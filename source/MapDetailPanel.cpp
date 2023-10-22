@@ -64,7 +64,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	// Convert the angle between two vectors into a sortable angle, i.e an angle
+	// Convert the angle between two vectors into a sortable angle, i.e. an angle
 	// plus a length that is used as a tie-breaker.
 	pair<double, double> SortAngle(const Point &reference, const Point &point)
 	{
@@ -194,9 +194,14 @@ bool MapDetailPanel::Scroll(double dx, double dy)
 // Only override the ones you need; the default action is to return false.
 bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
-	const double planetCardHeight = planetCardInterface->GetValue("height");
-	if((key == SDLK_TAB || command.Has(Command::JUMP)) && player.Flagship())
+	const double planetCardHeight = MapPlanetCard::Height();
+	if(command.Has(Command::HELP))
+	{
+		DoHelp("map advanced ports", true);
+		if(!player.GetPlanet())
+			DoHelp("map", true);
+	}
+	else if((key == SDLK_TAB || command.Has(Command::JUMP)) && player.Flagship())
 	{
 		// Clear the selected planet, if any.
 		selectedPlanet = nullptr;
@@ -351,7 +356,7 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 	const double planetCardWidth = planetCardInterface->GetValue("width");
 	const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
 	const double arrowOffset = mapInterface->GetValue("arrow x offset");
-	const double planetCardHeight = planetCardInterface->GetValue("height");
+	const double planetCardHeight = MapPlanetCard::Height();
 	if(x < Screen::Left() + 160)
 	{
 		// The player clicked in the left-hand interface. This could be the system
@@ -487,6 +492,7 @@ void MapDetailPanel::GeneratePlanetCards(const System &system)
 	planetCards.clear();
 	SetScroll(0.);
 	unsigned number = 0;
+	MapPlanetCard::ResetSize();
 	for(const StellarObject &object : system.Objects())
 		if(object.HasSprite() && object.HasValidPlanet())
 		{
@@ -672,7 +678,7 @@ void MapDetailPanel::DrawInfo()
 	const Color &back = *GameData::Colors().Get("map side panel background");
 
 	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
-	double planetHeight = planetCardInterface->GetValue("height");
+	double planetCardHeight = MapPlanetCard::Height();
 	double planetWidth = planetCardInterface->GetValue("width");
 	const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
 	double minPlanetPanelHeight = mapInterface->GetValue("min planet panel height");
@@ -686,7 +692,7 @@ void MapDetailPanel::DrawInfo()
 	// Draw the panel for the planets. If the system was not visited, no planets will be shown.
 	const double minimumSize = max(minPlanetPanelHeight, Screen::Height() - bottomGovY - systemSprite->Height());
 	planetPanelHeight = hasVisited ? min(min(minimumSize, maxPlanetPanelHeight),
-		(planetCards.size()) * planetHeight) : 0.;
+		(planetCards.size()) * planetCardHeight) : 0.;
 	Point size(planetWidth, planetPanelHeight);
 	// This needs to fill from the start of the screen.
 	FillShader::Fill(Screen::TopLeft() + Point(size.X() / 2., size.Y() / 2.),
@@ -705,10 +711,10 @@ void MapDetailPanel::DrawInfo()
 			// Fit another planet, if we can, also give scrolling freedom to reach the planets at the end.
 			// This updates the location of the card so it needs to be called before AvailableSpace().
 			card.DrawIfFits(uiPoint);
-			uiPoint.Y() += planetHeight;
+			uiPoint.Y() += planetCardHeight;
 
 			// Do this all of the time so we can scroll if an element is partially shown.
-			maxScroll += (planetHeight - card.AvailableSpace());
+			maxScroll += (planetCardHeight - card.AvailableSpace());
 		}
 
 		// Edges:

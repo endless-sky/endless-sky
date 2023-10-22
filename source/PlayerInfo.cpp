@@ -26,7 +26,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
-#include "Hardpoint.h"
 #include "Logger.h"
 #include "Messages.h"
 #include "Outfit.h"
@@ -707,16 +706,19 @@ void PlayerInfo::IncrementDate()
 
 	// Check if any special events should happen today.
 	auto it = gameEvents.begin();
+	list<DataNode> eventChanges;
 	while(it != gameEvents.end())
 	{
 		if(date < it->GetDate())
 			++it;
 		else
 		{
-			it->Apply(*this);
+			eventChanges.splice(eventChanges.end(), it->Apply(*this));
 			it = gameEvents.erase(it);
 		}
 	}
+	if(!eventChanges.empty())
+		AddChanges(eventChanges);
 
 	// Check if any missions have failed because of deadlines and
 	// do any daily mission actions for those that have not failed.
@@ -1411,16 +1413,11 @@ const CargoHold &PlayerInfo::Cargo() const
 
 
 
-// Get planetary storage information for current planet. Returns a pointer,
-// since we might not be on a planet, or since the storage might be empty.
-CargoHold *PlayerInfo::Storage(bool forceCreate)
+// Get items stored on the player's current planet.
+CargoHold &PlayerInfo::Storage()
 {
-	if(planet && (forceCreate || planetaryStorage.count(planet)))
-		return &(planetaryStorage[planet]);
-
-	// Nullptr can be returned when forceCreate is true if there is no
-	// planet; nullptr is the best we can offer in such cases.
-	return nullptr;
+	assert(planet && "can't get planetary storage in-flight");
+	return planetaryStorage[planet];
 }
 
 
@@ -1793,7 +1790,7 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 				// Transfer the outfits from cargo to the storage on this planet.
 				if(!outfit.second)
 					continue;
-				cargo.Transfer(outfit.first, outfit.second, *Storage(true));
+				cargo.Transfer(outfit.first, outfit.second, Storage());
 			}
 	}
 	accounts.AddCredits(income);
@@ -2786,6 +2783,13 @@ set<Ship *> PlayerInfo::GetGroup(int group)
 
 // Keep track of any outfits that you have sold since landing. These will be
 // available to buy back until you take off.
+const map<const Outfit *, int> &PlayerInfo::GetStock() const
+{
+	return stock;
+}
+
+
+
 int PlayerInfo::Stock(const Outfit *outfit) const
 {
 	auto it = stock.find(outfit);
@@ -3727,7 +3731,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	auto pluginFun = [](const string &name) -> bool
 	{
 		const Plugin *plugin = Plugins::Get().Find(name.substr(strlen("installed plugin: ")));
-		return plugin ? plugin->enabled : false;
+		return plugin ? plugin->IsValid() && plugin->enabled : false;
 	};
 	pluginProvider.SetHasFunction(pluginFun);
 	pluginProvider.SetGetFunction(pluginFun);
@@ -3989,7 +3993,7 @@ void PlayerInfo::SortAvailable()
 			// Tiebreaker for equal CONVENIENT is SPEED.
 			case SPEED:
 			{
-				// A higher "Speed" means the mission takes less time, ie. fewer
+				// A higher "Speed" means the mission takes less time, i.e. fewer
 				// jumps.
 				const int lJumps = lhs.ExpectedJumps();
 				const int rJumps = rhs.ExpectedJumps();
@@ -4006,7 +4010,7 @@ void PlayerInfo::SortAvailable()
 				else
 				{
 					// Negative values indicate indeterminable mission paths.
-					// eg. through a wormhole, meaning lower values are worse.
+					// e.g. through a wormhole, meaning lower values are worse.
 
 					// A value of 0 indicates the mission destination is the
 					// source, implying the actual path is complicated; consider
