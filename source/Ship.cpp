@@ -1479,17 +1479,18 @@ string Ship::GetHail(map<string, string> &&subs) const
 
 
 
-ShipAICache &Ship::GetAICache()
+const ShipAICache &Ship::GetAICache() const
 {
 	return aiCache;
 }
 
 
 
-void Ship::UpdateCaches()
+void Ship::UpdateCaches(bool onlyWeapons)
 {
 	aiCache.Recalibrate(*this);
-	navigation.Recalibrate(*this);
+	if(!onlyWeapons)
+		navigation.Recalibrate(*this);
 }
 
 

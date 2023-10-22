@@ -37,6 +37,7 @@ void ShipAICache::Calibrate(const Ship &ship)
 
 	shortestRange = 4000.;
 	shortestArtillery = 4000.;
+	gunReach = 4000.;
 	longestRange = 0.;
 	minSafeDistance = 0.;
 
@@ -71,15 +72,17 @@ void ShipAICache::Calibrate(const Ship &ship)
 			double range = weapon->Range();
 			shortestRange = min(range, shortestRange);
 			longestRange = max(range, longestRange);
-			if(range >= 1000. || (weapon->Homing() && range >= 500.))
+			if (!weapon->TurretTurn() && !weapon->Homing())
+				gunReach = min(range, gunReach);
+			if(range >= 1000. || ((weapon->Homing() || weapon->TurretTurn()) && range >= 500.))
 			{
 				shortestArtillery = min(range, shortestArtillery);
 				artilleryDPS += DPS;
 			}
 		}
 	}
-	// 4000 is the default value, and we need an appropriate range for the ranged AI.
-	if(ship.GetPersonality().IsArtillery() && shortestArtillery == 4000.)
+	// 4000 is the default value.
+	if(shortestArtillery == 4000.)
 		shortestArtillery = longestRange;
 
 	// Calculate this ship's "turning radius"; that is, the smallest circle it
