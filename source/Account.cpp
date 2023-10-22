@@ -171,6 +171,10 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 		out << "You could not pay all your maintenance costs.";
 	}
 
+	//Bill b_MortgagesPaid;
+	//Bill b_FinesPaid;
+	//tie(b_MortgagesPaid, b_FinesPaid) = PayMortgages(&mortgages);
+
 	// Unlike salaries, each mortgage payment must either be made in its entirety,
 	// or skipped completely (accruing interest and reducing your credit score).
 	int64_t mortgagesPaid = 0;
@@ -338,8 +342,11 @@ Bill Account::PayShipMaintenance(int64_t maintenance) {
 
 
 
-void Account::PayMortgages(std::vector<Mortgage> *mortgages) {
-	return;
+tuple<Bill,Bill> Account::PayMortgages(std::vector<Mortgage> *mortgages) {
+	Bill mortReciept;
+	Bill fineReceipt;
+
+	return make_tuple(mortReciept, fineReceipt);
 }
 
 

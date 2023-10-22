@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cstdint>
 #include <map>
 #include <string>
+#include <tuple>
 #include <vector>
 
 class DataNode;
@@ -50,7 +51,7 @@ public:
 	// Utility functions for Step
 	Bill PayCrewSalaries(int64_t salaries);
 	Bill PayShipMaintenance(int64_t maintenance);
-	void PayMortgages(std::vector<Mortgage> *mortgages);
+	std::tuple<Bill,Bill> PayMortgages(std::vector<Mortgage> *mortgages);
 
 	// Structural income.
 	const std::map<std::string, int64_t> &SalariesIncome() const;
