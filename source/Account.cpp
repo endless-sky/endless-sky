@@ -155,7 +155,6 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 	ostringstream out;
 
 	// Keep track of what payments were made and whether any could not be made.
-	//maintenanceDue += maintenance;
 	bool missedPayment = false;
 
 	// Crew salaries take highest priority.
@@ -171,26 +170,6 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 	{
 		out << "You could not pay all your maintenance costs.";
 	}
-	/*int64_t maintenancePaid = maintenanceDue;
-	if(maintenanceDue)
-	{
-		if(maintenanceDue > credits)
-		{
-			// Like with crew salaries, maintenance costs can be paid in part with
-			// the unpaid costs being paid later.
-			maintenancePaid = max<int64_t>(credits, 0);
-			maintenanceDue -= maintenancePaid;
-			credits -= maintenancePaid;
-			if(!missedPayment)
-				out << "You could not pay all your maintenance costs.";
-			missedPayment = true;
-		}
-		else
-		{
-			credits -= maintenanceDue;
-			maintenanceDue = 0;
-		}
-	}*/
 
 	// Unlike salaries, each mortgage payment must either be made in its entirety,
 	// or skipped completely (accruing interest and reducing your credit score).
@@ -341,8 +320,6 @@ Bill Account::PayShipMaintenance(int64_t maintenance) {
 			maintenancePaid = max<int64_t>(credits, 0);
 			maintenanceDue -= maintenancePaid;
 			credits -= maintenancePaid;
-			//if(!maintPaid)
-				//out << "You could not pay all your maintenance costs.";
 			maintPaid = false;
 		}
 		else
