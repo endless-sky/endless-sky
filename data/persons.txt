@@ -1050,6 +1050,7 @@ outfit "Crystal Projector"
 	"outfit space" -2
 	"gun ports" -1
 	"crystal projector" -1
+	"unique" 1
 	weapon
 		"hardpoint sprite" "hardpoint/shooting star flare/ss-rays"
 			"frame time" 3
@@ -1063,6 +1064,7 @@ outfit "Floating Crystal"
 	"outfit space" -3
 	"turret mounts" -1
 	"spinal mount" -1
+	"unique" 1
 	weapon
 		"turret turn" 6
 		"velocity" 250
@@ -1081,6 +1083,7 @@ outfit "Crystalline Formation"
 	"outfit space" -1
 	"turret mounts" -1
 	"shooting star" -1
+	"unique" 1
 	"core crystal" 1
 	weapon
 		sound "crunch"
@@ -1101,6 +1104,7 @@ outfit "Hexagonal Crystal"
 	"outfit space" -1
 	"turret mounts" -1
 	"shooting star" -1
+	"unique" 1
 	"core crystal" 1
 	weapon
 		sound "crunch"
@@ -1121,6 +1125,7 @@ outfit "Tree Skeleton Key Stone"
 	thumbnail "outfit/rock 1"
 	"mass" 1
 	"outfit space" -1
+	"unique" 1
 	"quantum keystone" 1
 	description "Although in appearance it may look somewhat similar to a tree, you don't know how it is supposed to resemble a skeleton. You aren't sure you want to find out either."
 

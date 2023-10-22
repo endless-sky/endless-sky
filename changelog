@@ -1,3 +1,48 @@
+Version 0.10.4
+  * Bug fixes:
+    * Content bugs:
+      * Typo fixes. (@tibetiroka, @warp-core)
+      * Added passenger counts to the descriptions of various Core jobs. (@bene-dictator)
+      * Various fixes to the new Coalition campaign intros. (@Arachi-Lover, @Saugia, @tibetiroka)
+      * Corrected the offer conditions of, and various other improvements to, "Small Pirate gambling". (@Anarchist2)
+      * Ensure that relevant Quarg governments are friendly to the Kor Mereti after their transformation. (@warp-core)
+      * Use fleets of the "Quarg (Kor Efreti)" government in ruined Korath space, and NPCs with the "Quarg (Hai)" governmment in the "Wanderers: Sestor: Quarg Help 2" and "Wanderers: Sestor: Farpoint Attack 2" missions. (@Saugia)
+      * Cleaned up the descriptions of various spaceport missions. (@Anarchist2)
+      * Removed some duplicated text from "Remnant: Celebration 1". (@warp-core)
+      * Correctly refer to commodity categories in some FW war jobs. (@tibetiroka)
+      * Make the "Quarg (Hai)" government hostile to the "Kor Sestor" government so the Quarg ships will properly aid in the defense of Farpoint. (@warp-core)
+      * Correctly display the payment for Heliarch Jump Drive delivery jobs. (@tibetiroka)
+    * Engine bugs:
+      * Correctly set the application icon on Linux. (@quyykk)
+      * Fix scrolling up with the keyboard from the top of a short list in the load panel causing all the items to snap to the bottom. (@warp-core)
+      * Fix blurriness when dragging to scroll panes in shop panels. (@Hurleveur)
+      * The "select nearest asteroid" command will no longer select asteroids beyond asteroid scan range. (@quyykk)
+      * The "infiltrating" and "clearance" mission tags will now work together correctly. (@RisingLeaf)
+      * Collision masks will now be generated for ships in save files using sprite scales that do not appear in the game data. (@quyykk)
+  * Game content:
+    * Mission changes:
+      * Changed the government of NPC ships in "FW Katya 2B" from "Pirate" to "Bounty Hunter" to better match the lore. (@Anarchist2)
+    * Graphics:
+      * Swapped a duplicated station landing image for a unique one. (@Saugia)
+    * Other:
+      * Tweaked some wording in "FW Pirates: Attack 1". (@hexagonrecursion)
+      * Tweaked some wording in "FW Diplomacy 1C". (@LazerLit)
+      * Removed an extraneous item from the "to offer" conditions of "The Book of Skadenga". (@hexagonrecursion)
+  * Game mechanics:
+    * New mechanics:
+      * Outfits can be given the "unique" attribute which will cause the player to be warned when they are about to be lost. (@TomGoodIdea)
+    * Mechanics changes:
+      * Ships are no longer allowed to be outfitted with negative "shield generation" or "hull repair rate" values. (@Arachi-Lover)
+      * Cooling and active cooling will be disabled when a ship is overheated. This reverts a change made in the previous release. (@QuantumShark)
+  * User interface:
+    * The "extended jump effects" setting is now off by default and has an additional intermediate level of motion blur. (@RisingLeaf, @TomGoodIdea)
+    * Added tooltips for all controls and settings. (@Amazinite)
+    * Added a key to bring up the help dialog for the current panel on demand. (@TomGoodIdea)
+    * The main save file for a pilot will always be listed above all the snapshots in the load panel. (@warp-core)
+  * CI/CD and development environment:
+    * Fix release names when using the release workflow. (@quyykk)
+    * Stop building 32-bit binaries for releases. (@quyykk)
+
 Version 0.10.3
   * Big changes:
     * The introductory chapters for TWO storylines in Coalition space are now available, allowing the player to either gain the favor of the Heliarchy or become entangled with the underground Lunarium faction. (@Arachi-Lover)
