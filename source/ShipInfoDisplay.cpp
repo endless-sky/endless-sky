@@ -45,7 +45,7 @@ ShipInfoDisplay::ShipInfoDisplay(const Ship &ship, const PlayerInfo &player, boo
 
 
 // Call this every time the ship changes.
-// Panels that have scrolling abilities are not limited by space, allowing more detailled attributes.
+// Panels that have scrolling abilities are not limited by space, allowing more detailed attributes.
 void ShipInfoDisplay::Update(const Ship &ship, const PlayerInfo &player, bool descriptionCollapsed, bool scrollingPanel)
 {
 	UpdateDescription(ship.Description(), ship.Attributes().Licenses(), true);
@@ -143,6 +143,15 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 
 	attributeHeaderLabels.push_back("model:");
 	attributeHeaderValues.push_back(ship.DisplayModelName());
+
+	// Only show the ship category on scrolling panels with no risk of overflow.
+	if(scrollingPanel)
+	{
+		attributeHeaderLabels.push_back("category:");
+		const string &category = ship.BaseAttributes().Category();
+		attributeHeaderValues.push_back(category.empty() ? "???" : category);
+	}
+
 	attributesHeight = 20;
 
 	attributeLabels.clear();
@@ -251,7 +260,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	attributeValues.push_back(Format::Number(60. * forwardThrust / ship.Drag()));
 	attributesHeight += 20;
 
-	// Movement stats are influenced by inertia redeuction.
+	// Movement stats are influenced by inertia reduction.
 	double reduction = 1. + attributes.Get("inertia reduction");
 	emptyMass /= reduction;
 	currentMass /= reduction;

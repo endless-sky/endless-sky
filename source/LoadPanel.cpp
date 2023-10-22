@@ -30,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Interface.h"
 #include "text/layout.hpp"
 #include "MainPanel.h"
+#include "MaskManager.h"
 #include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Rectangle.h"
@@ -307,7 +308,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 				if(it == files.begin())
 				{
 					it = files.end();
-					sideScroll = 20. * files.size() - 280.;
+					sideScroll = max(0., 20. * files.size() - 280.);
 				}
 				--it;
 			}
@@ -343,7 +344,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 				if(it == pit->second.begin())
 				{
 					it = pit->second.end();
-					centerScroll = 20. * pit->second.size() - 280.;
+					centerScroll = max(0., 20. * pit->second.size() - 280.);
 				}
 				--it;
 			}
@@ -465,20 +466,31 @@ void LoadPanel::UpdateLists()
 		string fileName = Files::Name(path);
 		// The file name is either "Pilot Name.txt" or "Pilot Name~SnapshotTitle.txt".
 		size_t pos = fileName.find('~');
-		if(pos == string::npos)
+		const bool isSnapshot = (pos != string::npos);
+		if(!isSnapshot)
 			pos = fileName.size() - 4;
 
 		string pilotName = fileName.substr(0, pos);
-		files[pilotName].emplace_back(fileName, Files::Timestamp(path));
+		auto &savesList = files[pilotName];
+		savesList.emplace_back(fileName, Files::Timestamp(path));
+		// Ensure that the main save for this pilot, not a snapshot, is first in the list.
+		if(!isSnapshot)
+			swap(savesList.front(), savesList.back());
 	}
 
 	for(auto &it : files)
-		sort(it.second.begin(), it.second.end(),
+	{
+		// Don't include the first item in the sort if this pilot has a non-snapshot save.
+		auto start = it.second.begin();
+		if(start->first.find('~') == string::npos)
+			++start;
+		sort(start, it.second.end(),
 			[](const pair<string, time_t> &a, const pair<string, time_t> &b) -> bool
 			{
 				return a.second > b.second || (a.second == b.second && a.first < b.first);
 			}
 		);
+	}
 
 	if(!files.empty())
 	{
@@ -550,6 +562,9 @@ void LoadPanel::LoadCallback()
 	gamePanels.CanSave(true);
 
 	player.Load(loadedInfo.Path());
+
+	// Scale any new masks that might have been added by the newly loaded save file.
+	GameData::GetMaskManager().ScaleMasks();
 
 	GetUI()->PopThrough(GetUI()->Root().get());
 	gamePanels.Push(new MainPanel(player));

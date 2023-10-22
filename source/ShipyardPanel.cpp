@@ -46,7 +46,7 @@ class System;
 using namespace std;
 
 namespace {
-	// Label for the decription field of the detail pane.
+	// Label for the description field of the detail pane.
 	const string DESCRIPTION = "description";
 
 	// The name entry dialog should include a "Random" button to choose a random
