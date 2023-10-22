@@ -26,6 +26,8 @@ struct PluginDependencies
 {
 	// Checks if there are any dependencies of any kind.
 	bool IsEmpty() const;
+	// Checks if there are any duplicate dependencies. E.g. the same dependency in both required and conflicted.
+	bool IsValid() const;
 	// The plugins, if any, which are required by this plugin.
 	Set<std::string> required;
 	// The plugins, if any, which are designed to work with this plugin but aren't required.
