@@ -107,6 +107,39 @@ SCENARIO( "Pay crew salaries", "[Account][PayCrewSalaries]" ) {
 		}
 	}
 }
+
+SCENARIO( "Pay ship maintenance", "[Account][PayShipMaintenance]" ) {
+	GIVEN( "An account" ) {
+		Account account;
+		WHEN( "no maintenance is owed" ) {
+			Bill maintenancePaid = account.PayShipMaintenance(0);
+			THEN( "Maintenance was paid in full and no credits were paid" ) {
+				REQUIRE(maintenancePaid.creditsPaid == 0);
+				REQUIRE(maintenancePaid.paidInFull == true);
+			}
+		}
+
+		WHEN( "500 in maintenance is owed but the account has no credits" ) {
+			REQUIRE(account.Credits() == 0);
+			Bill maintenancePaid = account.PayShipMaintenance(500);
+			THEN( "Maintenance was NOT paid in full and no credits were paid" ) {
+				REQUIRE(maintenancePaid.creditsPaid == 0);
+				REQUIRE(maintenancePaid.paidInFull == false);
+				REQUIRE(account.MaintenanceDue() == 500);
+			}
+		}
+
+		WHEN( "500 in maintenance is owed and the account has 1000 credits" ) {
+			account.AddCredits(1000);
+			Bill maintenancePaid = account.PayShipMaintenance(500);
+			THEN( "The salaries were were paid in full and 500 credits were paid" ) {
+				REQUIRE(maintenancePaid.creditsPaid == 500);
+				REQUIRE(maintenancePaid.paidInFull == true);
+				REQUIRE(account.MaintenanceDue() == 0);
+			}
+		}
+	}
+}
 // #endregion unit tests
 
 
