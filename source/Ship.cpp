@@ -90,6 +90,9 @@ namespace {
 	// Formula for the scan outfit or cargo factor is:
 	// factor = pow(sqrt(scanEfficiency) * framesToFullScan / SCAN_TIME, 1.5) / referenceSize
 
+	// Total number of frames the damaged overlay is show, if any.
+	constexpr int TOTAL_DAMAGE_FRAMES = 40;
+
 	// Helper function to transfer energy to a given stat if it is less than the
 	// given maximum value.
 	void DoRepair(double &stat, double &available, double maximum)
@@ -1609,6 +1612,10 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	// Show afterburner flares unless the ship is being destroyed.
 	if(!isBeingDestroyed)
 		DoEngineVisuals(visuals, isUsingAfterburner);
+
+	// Start fading the damage overlay.
+	if(damageOverlayTimer)
+		--damageOverlayTimer;
 }
 
 
@@ -2528,6 +2535,14 @@ double Ship::HullUntilDisabled() const
 
 
 
+// Returns the remaining damage timer, for the damage overlay.
+int Ship::DamageOverlayTimer() const
+{
+	return damageOverlayTimer;
+}
+
+
+
 const ShipJumpNavigation &Ship::JumpNavigation() const
 {
 	return navigation;
@@ -2743,6 +2758,8 @@ double Ship::MaxReverseVelocity() const
 // Create any target effects as sparks.
 int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const Government *sourceGovernment)
 {
+	damageOverlayTimer = TOTAL_DAMAGE_FRAMES;
+
 	bool wasDisabled = IsDisabled();
 	bool wasDestroyed = IsDestroyed();
 
