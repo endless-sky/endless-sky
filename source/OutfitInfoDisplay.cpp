@@ -179,7 +179,7 @@ namespace {
 		{"high shield permeability", 3},
 		{"low shield permeability", 3},
 		{"acceleration multiplier", 3},
-		{"turning multiplier", 3},
+		{"turn multiplier", 3},
 
 		{"burn protection", 4},
 		{"corrosion protection", 4},
