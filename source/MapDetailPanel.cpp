@@ -117,13 +117,13 @@ void MapDetailPanel::Step()
 	if(selectedSystem != shownSystem)
 		GeneratePlanetCards(*selectedSystem);
 
-	bool displayHelp = true;
-	if(displayHelp && !player.GetPlanet())
-		displayHelp = !DoHelp("map");
-	if(displayHelp && GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= player.StartData().GetDate() + 12)
-		displayHelp = !DoHelp("map advanced ports");
-	if(displayHelp)
-		displayHelp = !DoHelp("map advanced danger");
+	if(GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= player.StartData().GetDate() + 12)
+	{
+		DoHelp("map advanced danger");
+		DoHelp("map advanced ports");
+	}
+	if(!player.GetPlanet())
+		DoHelp("map");
 }
 
 
@@ -197,6 +197,7 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 	const double planetCardHeight = MapPlanetCard::Height();
 	if(command.Has(Command::HELP))
 	{
+		DoHelp("map advanced danger", true);
 		DoHelp("map advanced ports", true);
 		if(!player.GetPlanet())
 			DoHelp("map", true);
