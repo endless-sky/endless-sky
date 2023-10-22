@@ -155,7 +155,7 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 	ostringstream out;
 
 	// Keep track of what payments were made and whether any could not be made.
-	maintenanceDue += maintenance;
+	//maintenanceDue += maintenance;
 	bool missedPayment = false;
 
 	// Crew salaries take highest priority.
@@ -166,7 +166,12 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 	}
 
 	// Maintenance costs are dealt with after crew salaries given that they act similarly.
-	int64_t maintenancePaid = maintenanceDue;
+	Bill b_maintencancePaid = PayShipMaintenance(maintenance);
+	if(!b_maintencancePaid.paidInFull)
+	{
+		out << "You could not pay all your maintenance costs.";
+	}
+	/*int64_t maintenancePaid = maintenanceDue;
 	if(maintenanceDue)
 	{
 		if(maintenanceDue > credits)
@@ -185,7 +190,7 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 			credits -= maintenanceDue;
 			maintenanceDue = 0;
 		}
-	}
+	}*/
 
 	// Unlike salaries, each mortgage payment must either be made in its entirety,
 	// or skipped completely (accruing interest and reducing your credit score).
@@ -234,7 +239,7 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 
 	// If you didn't make any payments, no need to continue further.
 	// These should sum to 0, becoming true when inverted
-	if(b_SalariesPaid.paidInFull && !(maintenancePaid + mortgagesPaid + finesPaid))
+	if(b_SalariesPaid.paidInFull && b_maintencancePaid.paidInFull && !(mortgagesPaid + finesPaid))
 		return out.str();
 	else if(missedPayment)
 		out << " ";
@@ -244,8 +249,8 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 	map<string, int64_t> typesPaid;
 	if(b_SalariesPaid.creditsPaid > 0)
 		typesPaid["crew salaries"] = b_SalariesPaid.creditsPaid;
-	if(maintenancePaid)
-		typesPaid["maintenance"] = maintenancePaid;
+	if(b_maintencancePaid.creditsPaid > 0)
+		typesPaid["maintenance"] = b_maintencancePaid.creditsPaid;
 	if(mortgagesPaid)
 		typesPaid["mortgages"] = mortgagesPaid;
 	if(finesPaid)
@@ -267,9 +272,9 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 	{
 		if(b_SalariesPaid.creditsPaid > 0)
 			out << Format::CreditString(b_SalariesPaid.creditsPaid) << " in crew salaries"
-				<< ((mortgagesPaid || finesPaid || maintenancePaid) ? " and " : ".");
-		if(maintenancePaid)
-			out << Format::CreditString(maintenancePaid) << "  in maintenance"
+				<< ((mortgagesPaid || finesPaid || b_maintencancePaid.creditsPaid > 0) ? " and " : ".");
+		if(b_maintencancePaid.creditsPaid > 0)
+			out << Format::CreditString(b_maintencancePaid.creditsPaid) << "  in maintenance"
 				<< ((mortgagesPaid || finesPaid) ? " and " : ".");
 		if(mortgagesPaid)
 			out << Format::CreditString(mortgagesPaid) << " in mortgages"
@@ -288,7 +293,7 @@ Bill Account::PayCrewSalaries(int64_t salaries) {
 	//    1. The number of credits paid in salaries
 	//    2. Whether the salaries were paid in full
 	Bill receipt;
-	bool crewPaid = true; // this data needs to be returned by the payment function
+	bool crewPaid = true;
 
 	crewSalariesOwed += salaries;
 	int64_t salariesPaid = crewSalariesOwed;
@@ -323,9 +328,35 @@ Bill Account::PayShipMaintenance(int64_t maintenance) {
 	//    1. The number of credits paid in maintenance
 	//    2. Whether the maintenance was paid in full
 	Bill receipt;
+	bool maintPaid = true;
 
+	maintenanceDue += maintenance;
+	int64_t maintenancePaid = maintenanceDue;
+	if(maintenanceDue)
+	{
+		if(maintenanceDue > credits)
+		{
+			// Like with crew salaries, maintenance costs can be paid in part with
+			// the unpaid costs being paid later.
+			maintenancePaid = max<int64_t>(credits, 0);
+			maintenanceDue -= maintenancePaid;
+			credits -= maintenancePaid;
+			//if(!maintPaid)
+				//out << "You could not pay all your maintenance costs.";
+			maintPaid = false;
+		}
+		else
+		{
+			credits -= maintenanceDue;
+			maintenanceDue = 0;
+		}
+	}
+
+	receipt.paidInFull = maintPaid;
+	receipt.creditsPaid = maintenancePaid;
 	return receipt;
 }
+
 
 
 const map<string, int64_t> &Account::SalariesIncome() const
