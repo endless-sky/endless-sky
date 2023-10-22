@@ -106,7 +106,7 @@ namespace {
 		Preferences::OverlayState state = Preferences::OverlayState::OFF;
 	};
 
-	const vector<string> OverlaySetting::OVERLAY_SETTINGS = {"off", "always on", "damaged", "on hit", "--"};
+	const vector<string> OverlaySetting::OVERLAY_SETTINGS = {"off", "always on", "damaged", "--", "on hit"};
 
 	map<Preferences::OverlayType, OverlaySetting> statusOverlaySettings = {
 		{Preferences::OverlayType::ALL, Preferences::OverlayState::OFF},
