@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class DataNode;
 class DataWriter;
 
+struct Bill;
 
 
 // Class representing all your assets and liabilities and tracking their change
@@ -43,6 +44,8 @@ public:
 
 	// Step forward one day, and return a string summarizing payments made.
 	std::string Step(int64_t assets, int64_t salaries, int64_t maintenance);
+	// Return false if player fails to fully pay the crew
+	Bill PayCrewSalaries(int64_t salaries);
 
 	// Structural income.
 	const std::map<std::string, int64_t> &SalariesIncome() const;

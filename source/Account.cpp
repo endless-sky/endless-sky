@@ -31,6 +31,10 @@ namespace {
 	const unsigned HISTORY = 100;
 }
 
+struct Bill {
+	bool paidInFull;
+	int64_t creditsPaid;
+};
 
 
 // Load account information from a data file (saved game or starting conditions).
@@ -156,11 +160,16 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 	ostringstream out;
 
 	// Keep track of what payments were made and whether any could not be made.
-	crewSalariesOwed += salaries;
+	//crewSalariesOwed += salaries;
 	maintenanceDue += maintenance;
 	bool missedPayment = false;
 
 	// Crew salaries take highest priority.
+	Bill b_SalariesPaid = PayCrewSalaries(salaries);
+	if (!b_SalariesPaid.paidInFull) {
+		out << "You could not pay all your crew salaries.";
+	}
+	/*
 	int64_t salariesPaid = crewSalariesOwed;
 	if(crewSalariesOwed)
 	{
@@ -179,7 +188,7 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 			credits -= crewSalariesOwed;
 			crewSalariesOwed = 0;
 		}
-	}
+	}*/
 
 	// Maintenance costs are dealt with after crew salaries given that they act similarly.
 	int64_t maintenancePaid = maintenanceDue;
@@ -249,7 +258,8 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 	creditScore = max(200, min(800, creditScore + (missedPayment ? -5 : 1)));
 
 	// If you didn't make any payments, no need to continue further.
-	if(!(salariesPaid + maintenancePaid + mortgagesPaid + finesPaid))
+	// These should sum to 0, becoming true when inverted
+	if( b_SalariesPaid.paidInFull && !(maintenancePaid + mortgagesPaid + finesPaid))
 		return out.str();
 	else if(missedPayment)
 		out << " ";
@@ -257,8 +267,8 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 	out << "You paid ";
 
 	map<string, int64_t> typesPaid;
-	if(salariesPaid)
-		typesPaid["crew salaries"] = salariesPaid;
+	if(b_SalariesPaid.creditsPaid > 0)
+		typesPaid["crew salaries"] = b_SalariesPaid.creditsPaid;
 	if(maintenancePaid)
 		typesPaid["maintenance"] = maintenancePaid;
 	if(mortgagesPaid)
@@ -280,8 +290,8 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 	}
 	else
 	{
-		if(salariesPaid)
-			out << Format::CreditString(salariesPaid) << " in crew salaries"
+		if(b_SalariesPaid.creditsPaid > 0)
+			out << Format::CreditString(b_SalariesPaid.creditsPaid) << " in crew salaries"
 				<< ((mortgagesPaid || finesPaid || maintenancePaid) ? " and " : ".");
 		if(maintenancePaid)
 			out << Format::CreditString(maintenancePaid) << "  in maintenance"
@@ -293,6 +303,41 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 			out << Format::CreditString(finesPaid) << " in fines.";
 	}
 	return out.str();
+}
+
+
+
+Bill Account::PayCrewSalaries(int64_t salaries) {
+	// this function needs to preserve:
+	//    1. The number of credits paid in salaries
+	//    2. Whether the salaries were paid in full
+	Bill receipt;
+	bool crewPaid = true; // this data needs to be returned by the payment function
+
+	crewSalariesOwed += salaries;
+	int64_t salariesPaid = crewSalariesOwed;
+	if(crewSalariesOwed)
+	{
+		if(crewSalariesOwed > credits)
+		{
+			// If you can't pay the full salary amount, still pay some of it and
+			// remember how much back wages you owe to your crew.
+			salariesPaid = max<int64_t>(credits, 0);
+			crewSalariesOwed -= salariesPaid;
+			credits -= salariesPaid;
+			crewPaid = false;
+			//(*out) << "You could not pay all your crew salaries."; // this string needs to be returned by the function - CAN THIS BE HANDLED WHEN CHECKING THE RETURN DATA?
+		}
+		else
+		{
+			credits -= crewSalariesOwed;
+			crewSalariesOwed = 0;
+		}
+	}
+
+	receipt.paidInFull = crewPaid;
+	receipt.creditsPaid = salariesPaid;
+	return receipt;
 }
 
 
