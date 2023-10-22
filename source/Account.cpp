@@ -155,35 +155,15 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 	ostringstream out;
 
 	// Keep track of what payments were made and whether any could not be made.
-	//crewSalariesOwed += salaries;
 	maintenanceDue += maintenance;
 	bool missedPayment = false;
 
 	// Crew salaries take highest priority.
 	Bill b_SalariesPaid = PayCrewSalaries(salaries);
-	if (!b_SalariesPaid.paidInFull) {
+	if(!b_SalariesPaid.paidInFull)
+	{
 		out << "You could not pay all your crew salaries.";
 	}
-	/*
-	int64_t salariesPaid = crewSalariesOwed;
-	if(crewSalariesOwed)
-	{
-		if(crewSalariesOwed > credits)
-		{
-			// If you can't pay the full salary amount, still pay some of it and
-			// remember how much back wages you owe to your crew.
-			salariesPaid = max<int64_t>(credits, 0);
-			crewSalariesOwed -= salariesPaid;
-			credits -= salariesPaid;
-			missedPayment = true;
-			out << "You could not pay all your crew salaries.";
-		}
-		else
-		{
-			credits -= crewSalariesOwed;
-			crewSalariesOwed = 0;
-		}
-	}*/
 
 	// Maintenance costs are dealt with after crew salaries given that they act similarly.
 	int64_t maintenancePaid = maintenanceDue;
@@ -254,7 +234,7 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 
 	// If you didn't make any payments, no need to continue further.
 	// These should sum to 0, becoming true when inverted
-	if( b_SalariesPaid.paidInFull && !(maintenancePaid + mortgagesPaid + finesPaid))
+	if(b_SalariesPaid.paidInFull && !(maintenancePaid + mortgagesPaid + finesPaid))
 		return out.str();
 	else if(missedPayment)
 		out << " ";
