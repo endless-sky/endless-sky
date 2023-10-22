@@ -41,18 +41,6 @@ TEST_CASE( "Add credits to an account", "[Account][AddCredits]" ) {
 	REQUIRE(account.Credits() == 1000);
 }
 
-TEST_CASE( "Add mortgage to account", "[Account][AddMortgage]" ) {
-	Account account;
-	WHEN( "A mortgage is added to the account" ) {
-		account.AddMortgage(480000);
-		THEN( "The user has 1 mortgage and 480,000 credits" ) {
-			REQUIRE(account.Credits() == 480000);
-			REQUIRE(account.CreditScore() == 400);
-			REQUIRE(account.Mortgages().size() == 1);
-		}
-	}
-}
-
 SCENARIO( "Create an Account" , "[Account][Creation]" ) {
 	GIVEN( "an account" ) {
 		Account account;
@@ -148,6 +136,28 @@ SCENARIO( "Pay ship maintenance", "[Account][PayShipMaintenance]" ) {
 				REQUIRE(maintenancePaid.creditsPaid == 500);
 				REQUIRE(maintenancePaid.paidInFull == true);
 				REQUIRE(account.MaintenanceDue() == 0);
+			}
+		}
+	}
+}
+
+SCENARIO( "Working with mortgages on an account", "[Account][mortgages]" ) {
+	GIVEN( "An account" ) {
+		Account account;
+		WHEN( "A mortgage is added to the account" ) {
+			account.AddMortgage(480000);
+			THEN( "The user has 1 mortgage and 480,000 credits" ) {
+				REQUIRE(account.Credits() == 480000);
+				REQUIRE(account.CreditScore() == 400);
+				REQUIRE(account.Mortgages().size() == 1);
+			}
+			AND_WHEN( "A fine is added to the account" ) {
+				account.AddFine(20000);
+				THEN( "The user has 2 mortgages" ) {
+					REQUIRE(account.Credits() == 480000);
+					REQUIRE(account.CreditScore() == 400);
+					REQUIRE(account.Mortgages().size() == 2);
+				}
 			}
 		}
 	}
