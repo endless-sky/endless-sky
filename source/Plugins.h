@@ -22,6 +22,20 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
+struct PluginDependencies
+{
+	// Checks if there are any dependencies of any kind.
+	bool IsEmpty() const;
+	// The plugins, if any, which are required by this plugin.
+	Set<std::string> required;
+	// The plugins, if any, which are designed to work with this plugin but aren't required.
+	Set<std::string> optional;
+	// The plugins, if any, which can't be run along side this plugin.
+	Set<std::string> conflicted;
+};
+
+
+
 // Represents information about a single plugin.
 struct Plugin {
 	// Checks whether this plugin is valid, i.e. whether it exists.
@@ -34,12 +48,8 @@ struct Plugin {
 	// The about text, if any, of this plugin.
 	std::string aboutText;
 
-	// The plugins, if any, which are required by this plugin
-	Set<std::string> requiredDependencies;
-	// The plugins, if any, which are designed to work with this plugin but aren't required.
-	Set<std::string> optionalDependencies;
-	// The plugins, if any, which can't be run along side this plugin
-	Set<std::string> conflictedDependencies;
+	// Other plugins which are required for, optional for, or conflict with this plugin.
+	PluginDependencies dependencies;
 
 	// Whether this plugin was enabled, i.e. if it was loaded by the game.
 	bool enabled = true;

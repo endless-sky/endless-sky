@@ -50,6 +50,14 @@ namespace {
 
 
 
+// Checks if there are any dependencies of any kind.
+bool PluginDependencies::IsEmpty() const
+{
+	return required.size() + optional.size() + conflicted.size() == 0;
+}
+
+
+
 // Checks whether this plugin is valid, i.e. whether it exists.
 bool Plugin::IsValid() const
 {
@@ -68,9 +76,7 @@ const Plugin *Plugins::Load(const string &path)
 	string pluginFile = path + "plugin.txt";
 	string aboutText;
 
-	Set<string> requiredDependencies;
-	Set<string> optionalDependencies;
-	Set<string> conflictedDependencies;
+	PluginDependencies dependencies;
 
 	// Load plugin metadata from plugin.txt.
 	bool hasName = false;
@@ -86,13 +92,13 @@ const Plugin *Plugins::Load(const string &path)
 		// Dependencies.
 		else if(child.Token(0) == "requires")
 			for(const DataNode& grand : child)
-				requiredDependencies.Get(grand.Token(0));
+				dependencies.required.Get(grand.Token(0));
 		else if(child.Token(0) == "optional")
 			for(const DataNode& grand : child)
-				optionalDependencies.Get(grand.Token(0));
+				dependencies.optional.Get(grand.Token(0));
 		else if(child.Token(0) == "conflicts")
 			for(const DataNode& grand : child)
-				conflictedDependencies.Get(grand.Token(0));
+				dependencies.conflicted.Get(grand.Token(0));
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -117,31 +123,31 @@ const Plugin *Plugins::Load(const string &path)
 	plugin->aboutText = aboutText.empty() ? Files::Read(path + "about.txt") : std::move(aboutText);
 
 	// Ensure we don't have any duplicate dependencies.
-	for(const auto& it : requiredDependencies)
-		plugin->requiredDependencies.Get(it.first);
-	for(const auto& it : optionalDependencies)
+	for(const auto& it : dependencies.required)
+		plugin->dependencies.required.Get(it.first);
+	for(const auto& it : dependencies.optional)
 	{
 		string dependency = it.first;
-		if(requiredDependencies.Find(dependency))
+		if(dependencies.required.Find(dependency))
 			Logger::LogError("Warning: Optional dependency with the name \"" + dependency
-				+ "\" in plugin \"" + name
+				+ "\" in plugin \"" + plugin->name
 				+ "\" was already found in required dependencies list.");
 		else
-			plugin->optionalDependencies.Get(dependency);
+			plugin->dependencies.optional.Get(dependency);
 	}
-	for (const auto& it : conflictedDependencies)
+	for (const auto& it : dependencies.conflicted)
 	{
 		string dependency = it.first;
-		if(requiredDependencies.Find(dependency))
+		if(dependencies.required.Find(dependency))
 			Logger::LogError("Warning: Conflicts dependency with the name \"" + dependency
-				+ "\" in plugin \"" + name
+				+ "\" in plugin \"" + plugin->name
 				+ "\" was already found in required dependencies list.");
-		else if(optionalDependencies.Find(dependency))
+		else if(dependencies.optional.Find(dependency))
 			Logger::LogError("Warning: Conflicts dependency with the name \"" + dependency
-				+ "\" in plugin \"" + name 
+				+ "\" in plugin \"" + plugin->name 
 				+ "\" was already found in optional dependencies list.");
 		else
-			plugin->conflictedDependencies.Get(dependency);
+			plugin->dependencies.conflicted.Get(dependency);
 	}
 
 	return plugin;
