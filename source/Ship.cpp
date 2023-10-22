@@ -4350,7 +4350,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 	{
 		acceleration *= slowMultiplier;
 		// Acceleration multiplier needs to modify effective drag, otherwise it changes top speeds.
-		Point dragAcceleration = acceleration - velocity * Drag() * (1 + attributes.Get("acceleration multiplier")) / mass;
+		Point dragAcceleration = acceleration - velocity * Drag() * (1. + attributes.Get("acceleration multiplier")) / mass;
 		// Make sure dragAcceleration has nonzero length, to avoid divide by zero.
 		if(dragAcceleration)
 		{
