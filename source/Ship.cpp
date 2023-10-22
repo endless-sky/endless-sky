@@ -311,7 +311,7 @@ void Ship::Load(const DataNode &node)
 					engine.zoom = grand.Value(1);
 				else if(grandKey == "angle" && grand.Size() >= 2)
 					engine.facing += Angle(grand.Value(1));
-				else if (grandKey == "gimbal" && grand.Size() >= 2)
+				else if(grandKey == "gimbal" && grand.Size() >= 2)
 					engine.gimbal += Angle(grand.Value(1));
 				else
 				{
