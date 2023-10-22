@@ -47,6 +47,21 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release version="0.10.4" date="2023-10-21">
+      <description>
+        <p>This is a stable release, focused on fixing bugs and making some other small improvements.</p>
+        <p>These changes include:</p>
+        <ul>
+          <li>Various fixes and improvements to the new Coalition campaign intros.</li>
+          <li>Outfits can now be given the "unique" attribute. The player will be warned when any such outfits are about to be lost.</li>
+          <li>All controls and settings now have tooltips.</li>
+          <li>It is now possible to recall the help messages for the currently active panel on demand.</li>
+        </ul>
+        <p>There's much more in the changelog!</p>
+        <p>Special thanks to the 13 people who contributed to this release!</p>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.10.4/changelog</url>
+    </release>
     <release version="0.10.3" date="2023-09-30" type="development" urgency="low">
       <description>
         <p>This is an unstable release, containing big changes that may introduce new bugs.</p>
