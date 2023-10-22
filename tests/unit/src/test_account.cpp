@@ -74,6 +74,37 @@ SCENARIO( "Step forward" , "[Account][Step]" ) {
 		}
 	}
 }
+
+SCENARIO( "Pay crew salaries", "[Account][PayCrewSalaries]" ) {
+	GIVEN( "An account" ) {
+		Account account;
+		WHEN( "no salaries are paid" ) {
+			Bill salariesPaid = account.PayCrewSalaries(0);
+			THEN( "The salaries were paid in full and no credits were paid" ) {
+				REQUIRE(salariesPaid.creditsPaid == 0);
+				REQUIRE(salariesPaid.paidInFull == true);
+			}
+		}
+
+		WHEN( "500 in salaries are paid but the account has no credits" ) {
+			REQUIRE(account.Credits() == 0);
+			Bill salariesPaid = account.PayCrewSalaries(500);
+			THEN( "The salaries were NOT paid in full and no credits were paid" ) {
+				REQUIRE(salariesPaid.creditsPaid == 0);
+				REQUIRE(salariesPaid.paidInFull == false);
+			}
+		}
+
+		WHEN( "500 in salaries are paid and the account has 1000 credits" ) {
+			account.AddCredits(1000);
+			Bill salariesPaid = account.PayCrewSalaries(500);
+			THEN( "The salaries were were paid in full and 500 credits were paid" ) {
+				REQUIRE(salariesPaid.creditsPaid == 500);
+				REQUIRE(salariesPaid.paidInFull == true);
+			}
+		}
+	}
+}
 // #endregion unit tests
 
 
