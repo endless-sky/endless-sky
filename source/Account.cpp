@@ -31,11 +31,6 @@ namespace {
 	const unsigned HISTORY = 100;
 }
 
-struct Bill {
-	bool paidInFull;
-	int64_t creditsPaid;
-};
-
 
 // Load account information from a data file (saved game or starting conditions).
 void Account::Load(const DataNode &node, bool clearFirst)
@@ -308,6 +303,7 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 
 
 Bill Account::PayCrewSalaries(int64_t salaries) {
+// THIS FUNCTION HAS SIDE EFFECTS, INTERACTING DIRECTLY WITH THE ACCOUNT OBJECT
 	// this function needs to preserve:
 	//    1. The number of credits paid in salaries
 	//    2. Whether the salaries were paid in full
@@ -326,7 +322,6 @@ Bill Account::PayCrewSalaries(int64_t salaries) {
 			crewSalariesOwed -= salariesPaid;
 			credits -= salariesPaid;
 			crewPaid = false;
-			//(*out) << "You could not pay all your crew salaries."; // this string needs to be returned by the function - CAN THIS BE HANDLED WHEN CHECKING THE RETURN DATA?
 		}
 		else
 		{

@@ -26,7 +26,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class DataNode;
 class DataWriter;
 
-struct Bill;
+struct Bill {
+	bool paidInFull;
+	int64_t creditsPaid;
+};
 
 
 // Class representing all your assets and liabilities and tracking their change
