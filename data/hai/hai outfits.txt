@@ -806,6 +806,7 @@ outfit "Shield Beetle Pendant"
 	category "Unique"
 	thumbnail "outfit/crystal pendant"
 	"quantum keystone" 1
+	"unique" 1
 	description "A pendant made of the same crystalline rocks found on the Hai homeworld, fashioned after a Shield Beetle. A gift from Nanachi."
 	description "	It comes with a finely crafted lit shadowbox so it can be installed and displayed with pride. A trio of mounting brackets - miniatures of those used on Quantum Keystones - provide a secure anchor to keep the pendant safe."
 
