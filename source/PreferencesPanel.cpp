@@ -883,19 +883,19 @@ void PreferencesPanel::DrawPlugins()
 				if(plugin.dependencies.required.size() > 0)
 				{
 					text += "  Requires:\n";
-					for (auto& dependency : plugin.dependencies.required)
+					for(auto &dependency : plugin.dependencies.required)
 						text += "  - " + dependency.first + '\n';
 				}
 				if(plugin.dependencies.optional.size() > 0)
 				{
 					text += "  Optional:\n";
-					for (auto& dependency : plugin.dependencies.optional)
+					for(auto &dependency : plugin.dependencies.optional)
 						text += "  - " + dependency.first + '\n';
 				}
 				if(plugin.dependencies.conflicted.size() > 0)
 				{
 					text += "  Conficts:\n";
-					for (auto& dependency : plugin.dependencies.conflicted)
+					for(auto &dependency : plugin.dependencies.conflicted)
 						text += "  - " + dependency.first + '\n';
 				}
 				text += '\n';

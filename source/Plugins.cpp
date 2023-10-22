@@ -68,17 +68,17 @@ bool PluginDependencies::IsValid() const
 	// Required dependencies will already be valid due to sets not
 	// allowing duplicate values. Therefor we only need to check optional
 	// and conflicts.
-	for(const auto& it : optional)
+	for(const auto &it : optional)
 	{
 		string dependency = it.first;
-		if (required.Find(dependency))
+		if(required.Find(dependency))
 		{
 			isValid = false;
 			Logger::LogError("Warning: Optional dependency with the name \"" + dependency
 				+ "\" was already found in required dependencies list.");
 		}
 	}
-	for(const auto& it : conflicted)
+	for(const auto &it : conflicted)
 	{
 		string dependency = it.first;
 		if(required.Find(dependency))
@@ -133,13 +133,13 @@ const Plugin *Plugins::Load(const string &path)
 			aboutText = child.Token(1);
 		// Dependencies.
 		else if(child.Token(0) == "requires")
-			for(const DataNode& grand : child)
+			for(const DataNode &grand : child)
 				dependencies.required.Get(grand.Token(0));
 		else if(child.Token(0) == "optional")
-			for(const DataNode& grand : child)
+			for(const DataNode &grand : child)
 				dependencies.optional.Get(grand.Token(0));
 		else if(child.Token(0) == "conflicts")
-			for(const DataNode& grand : child)
+			for(const DataNode &grand : child)
 				dependencies.conflicted.Get(grand.Token(0));
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
@@ -159,7 +159,7 @@ const Plugin *Plugins::Load(const string &path)
 		return nullptr;
 	}
 
-	if (!dependencies.IsValid())
+	if(!dependencies.IsValid())
 	{
 		Logger::LogError("Warning: Skipping plugin located at \"" + path
 			+ "\" because plugin has errors in it dependencies.");
