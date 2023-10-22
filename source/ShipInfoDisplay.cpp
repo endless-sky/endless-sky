@@ -143,6 +143,15 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 
 	attributeHeaderLabels.push_back("model:");
 	attributeHeaderValues.push_back(ship.DisplayModelName());
+
+	// Only show the ship category on scrolling panels with no risk of overflow.
+	if(scrollingPanel)
+	{
+		attributeHeaderLabels.push_back("category:");
+		const string &category = ship.BaseAttributes().Category();
+		attributeHeaderValues.push_back(category.empty() ? "???" : category);
+	}
+
 	attributesHeight = 20;
 
 	attributeLabels.clear();
