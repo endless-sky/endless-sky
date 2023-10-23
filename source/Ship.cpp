@@ -2714,7 +2714,8 @@ double Ship::InertialMass() const
 
 double Ship::TurnRate() const
 {
-	return attributes.Get("turn") / InertialMass();
+	return attributes.Get("turn") / InertialMass()
+		* (1. + attributes.Get("turn multiplier"));
 }
 
 
@@ -2722,7 +2723,8 @@ double Ship::TurnRate() const
 double Ship::Acceleration() const
 {
 	double thrust = attributes.Get("thrust");
-	return (thrust ? thrust : attributes.Get("afterburner thrust")) / InertialMass();
+	return (thrust ? thrust : attributes.Get("afterburner thrust")) / InertialMass()
+		* (1. + attributes.Get("acceleration multiplier"));
 }
 
 
@@ -2740,7 +2742,8 @@ double Ship::MaxVelocity() const
 
 double Ship::ReverseAcceleration() const
 {
-	return attributes.Get("reverse thrust");
+	return attributes.Get("reverse thrust") / InertialMass()
+		* (1. + attributes.Get("acceleration multiplier"));
 }
 
 
@@ -4301,7 +4304,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 					slowness += scale * attributes.Get(isThrusting ? "thrusting slowing" : "reverse thrusting slowing");
 					disruption += scale * attributes.Get(isThrusting ? "thrusting disruption" : "reverse thrusting disruption");
 
-					acceleration += angle.Unit() * (thrustCommand * thrust / mass);
+					acceleration += angle.Unit() * thrustCommand * (isThrusting ? Acceleration() : ReverseAcceleration());
 				}
 			}
 		}
@@ -4345,7 +4348,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 				slowness += slownessCost;
 				disruption += disruptionCost;
 
-				acceleration += angle.Unit() * thrust / mass;
+				acceleration += angle.Unit() * (1. + attributes.Get("acceleration multiplier")) * thrust / mass;
 
 				// Only create the afterburner effects if the ship is in the player's system.
 				isUsingAfterburner = !forget;
@@ -4355,7 +4358,8 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 	if(acceleration)
 	{
 		acceleration *= slowMultiplier;
-		Point dragAcceleration = acceleration - velocity * (Drag() / mass);
+		// Acceleration multiplier needs to modify effective drag, otherwise it changes top speeds.
+		Point dragAcceleration = acceleration - velocity * Drag() * (1. + attributes.Get("acceleration multiplier")) / mass;
 		// Make sure dragAcceleration has nonzero length, to avoid divide by zero.
 		if(dragAcceleration)
 		{

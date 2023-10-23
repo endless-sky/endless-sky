@@ -266,19 +266,21 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	currentMass /= reduction;
 	fullMass /= reduction;
 	attributeLabels.push_back("acceleration:");
+	double baseAccel = 3600. * forwardThrust * (1. + attributes.Get("acceleration multiplier"));
 	if(!isGeneric)
-		attributeValues.push_back(Format::Number(3600. * forwardThrust / currentMass));
+		attributeValues.push_back(Format::Number(baseAccel / currentMass));
 	else
-		attributeValues.push_back(Format::Number(3600. * forwardThrust / fullMass)
-			+ " - " + Format::Number(3600. * forwardThrust / emptyMass));
+		attributeValues.push_back(Format::Number(baseAccel / fullMass)
+			+ " - " + Format::Number(baseAccel / emptyMass));
 	attributesHeight += 20;
 
 	attributeLabels.push_back("turning:");
+	double baseTurn = 60. * attributes.Get("turn") * (1. + attributes.Get("turn multiplier"));
 	if(!isGeneric)
-		attributeValues.push_back(Format::Number(60. * attributes.Get("turn") / currentMass));
+		attributeValues.push_back(Format::Number(baseTurn / currentMass));
 	else
-		attributeValues.push_back(Format::Number(60. * attributes.Get("turn") / fullMass)
-			+ " - " + Format::Number(60. * attributes.Get("turn") / emptyMass));
+		attributeValues.push_back(Format::Number(baseTurn / fullMass)
+			+ " - " + Format::Number(baseTurn / emptyMass));
 	attributesHeight += 20;
 
 	// Find out how much outfit, engine, and weapon space the chassis has.
