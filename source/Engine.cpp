@@ -872,7 +872,7 @@ void Engine::Step(bool isActive)
 		double width = max(target->Width(), target->Height());
 		Point pos = target->Position() - center;
 		statuses.emplace_back(pos, flagship->OutfitScanFraction(), flagship->CargoScanFraction(),
-			0., 10. + max(20., width * .5), 4, Angle(pos).Degrees() + 180.);
+			0., 10. + max(20., width * .5), 4, 1.f, Angle(pos).Degrees() + 180.);
 	}
 	// Handle any events that change the selected ships.
 	if(groupSelect >= 0)
@@ -1045,12 +1045,15 @@ void Engine::Draw() const
 		Point pos = it.position * zoom;
 		double radius = it.radius * zoom;
 		if(it.outer > 0.)
-			RingShader::Draw(pos, radius + 3., 1.5f, it.outer, color[it.type], 0.f, it.angle);
-		double dashes = (it.type >= 3) ? 0. : 20. * min(1., zoom);
+			RingShader::Draw(pos, radius + 3., 1.5f, it.outer,
+				Color::Multiply(it.alpha, color[it.type]), 0.f, it.angle);
+		double dashes = (it.type >= 5) ? 0. : 20. * min(1., zoom);
 		if(it.inner > 0.)
-			RingShader::Draw(pos, radius, 1.5f, it.inner, color[5 + it.type], dashes, it.angle);
+			RingShader::Draw(pos, radius, 1.5f, it.inner,
+				Color::Multiply(it.alpha, color[5 + it.type]), dashes, it.angle);
 		if(it.disabled > 0.)
-			RingShader::Draw(pos, radius, 1.5f, it.disabled, color[10 + it.type], dashes, it.angle);
+			RingShader::Draw(pos, radius, 1.5f, it.disabled,
+				Color::Multiply(it.alpha, color[10 + it.type]), dashes, it.angle);
 	}
 
 	// Draw labels on missiles
@@ -2668,7 +2671,20 @@ void Engine::EmplaceStatusOverlay(const shared_ptr<Ship> &it, Preferences::Overl
 		return;
 
 	double width = min(it->Width(), it->Height());
+	float alpha = 1.f;
+	if(overlaySetting == Preferences::OverlayState::ON_HIT)
+	{
+		// The number of frames left where we start fading the overlay.
+		static constexpr int FADE_STEPS = 10;
 
+		const int t = it->DamageOverlayTimer();
+		if(t >= FADE_STEPS)
+			alpha = 1.f;
+		else if(t > 0)
+			alpha = static_cast<float>(t) / FADE_STEPS;
+		else
+			alpha = 0.f;
+	}
 	statuses.emplace_back(it->Position() - center, it->Shields(), it->Hull(),
-		min(it->Hull(), it->DisabledHull()), max(20., width * .5), type);
+		min(it->Hull(), it->DisabledHull()), max(20., width * .5), type, alpha);
 }
