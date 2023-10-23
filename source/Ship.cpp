@@ -4459,10 +4459,9 @@ void Ship::DoEngineVisuals(vector<Visual> &visuals, bool isUsingAfterburner)
 		double gimbalDirection = (Commands().Has(Command::FORWARD) || Commands().Has(Command::BACK))
 			* -Commands().Turn();
 
-		for(const EnginePoint& point : enginePoints)
+		for(const EnginePoint &point : enginePoints)
 		{
 			Angle gimbal = Angle(gimbalDirection * point.gimbal.Degrees());
-
 			Point pos = angle.Rotate(point) * Zoom() + position;
 			// Stream the afterburner effects outward in the direction the engines are facing.
 			Point effectVelocity = velocity - 6. * (gimbal + angle).Unit();
