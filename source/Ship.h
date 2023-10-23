@@ -27,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Outfit.h"
 #include "Personality.h"
 #include "Point.h"
+#include "Port.h"
 #include "ship/ShipAICache.h"
 #include "ShipJumpNavigation.h"
 
@@ -289,7 +290,7 @@ public:
 	// Check if this ship has been destroyed.
 	bool IsDestroyed() const;
 	// Recharge and repair this ship (e.g. because it has landed).
-	void Recharge(bool atSpaceport = true);
+	void Recharge(int rechargeType = Port::RechargeType::All, bool hireCrew = true);
 	// Check if this ship is able to give the given ship enough fuel to jump.
 	bool CanRefuel(const Ship &other) const;
 	// Give the other ship enough fuel for it to jump.

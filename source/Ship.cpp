@@ -783,7 +783,7 @@ void Ship::FinishLoading(bool isNewInstance)
 	// If this ship is being instantiated for the first time, make sure its
 	// crew, fuel, etc. are all refilled.
 	if(isNewInstance)
-		Recharge(true);
+		Recharge();
 
 	// Ensure that all defined bays are of a valid category. Remove and warn about any
 	// invalid bays. Add a default "launch effect" to any remaining internal bays if
@@ -2273,7 +2273,7 @@ void Ship::Restore()
 	explosionCount = 0;
 	explosionRate = 0;
 	UnmarkForRemoval();
-	Recharge(true);
+	Recharge();
 }
 
 
@@ -2295,23 +2295,23 @@ bool Ship::IsDestroyed() const
 
 
 // Recharge and repair this ship (e.g. because it has landed).
-void Ship::Recharge(bool atSpaceport)
+void Ship::Recharge(int rechargeType, bool hireCrew)
 {
 	if(IsDestroyed())
 		return;
 
-	if(atSpaceport)
+	if(hireCrew)
 		crew = min<int>(max(crew, RequiredCrew()), attributes.Get("bunks"));
 	pilotError = 0;
 	pilotOkay = 0;
 
-	if(atSpaceport || attributes.Get("shield generation"))
+	if((rechargeType & Port::RechargeType::Shields) || attributes.Get("shield generation"))
 		shields = MaxShields();
-	if(atSpaceport || attributes.Get("hull repair rate"))
+	if((rechargeType & Port::RechargeType::Hull) || attributes.Get("hull repair rate"))
 		hull = MaxHull();
-	if(atSpaceport || attributes.Get("energy generation"))
+	if((rechargeType & Port::RechargeType::Energy) || attributes.Get("energy generation"))
 		energy = attributes.Get("energy capacity");
-	if(atSpaceport || attributes.Get("fuel generation"))
+	if((rechargeType & Port::RechargeType::Fuel) || attributes.Get("fuel generation"))
 		fuel = attributes.Get("fuel capacity");
 
 	heat = IdleHeat();
@@ -3994,7 +3994,7 @@ bool Ship::DoHyperspaceLogic(vector<Visual> &visuals)
 			{
 				for(const StellarObject &object : currentSystem->Objects())
 					if(object.HasSprite() && object.HasValidPlanet()
-							&& object.GetPlanet()->HasSpaceport())
+							&& object.GetPlanet()->HasServices())
 					{
 						target = object.Position();
 						break;
@@ -4114,7 +4114,7 @@ bool Ship::DoLandingLogic()
 	}
 	// Only refuel if this planet has a spaceport.
 	else if(fuel >= attributes.Get("fuel capacity")
-			|| !landingPlanet || !landingPlanet->HasSpaceport())
+			|| !landingPlanet || !landingPlanet->GetPort().CanRecharge(Port::RechargeType::Fuel))
 	{
 		zoom = min(1.f, zoom + landingSpeed);
 		SetTargetStellar(nullptr);
