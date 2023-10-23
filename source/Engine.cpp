@@ -288,6 +288,8 @@ Engine::Engine(PlayerInfo &player)
 				system->Position() - player.GetSystem()->Position());
 
 	GameData::SetHaze(player.GetSystem()->Haze(), true);
+
+	Lua::runInitScripts();
 }
 
 
@@ -1270,6 +1272,7 @@ void Engine::EnterSystem()
 	doEnter = true;
 	doEnterLabels = true;
 	player.IncrementDate();
+	Lua::runDailyScripts();
 	const Date &today = player.GetDate();
 
 	const System *system = flagship->GetSystem();

@@ -29,7 +29,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // to keep repeated messages from filling up the whole screen.
 class Messages {
 public:
-	enum class Importance : uint_least8_t {
+	enum class Importance : uint_fast8_t {
 		Highest,
 		High,
 		Info,

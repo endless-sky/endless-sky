@@ -28,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameLoadingPanel.h"
 #include "GameWindow.h"
 #include "Logger.h"
+#include "Lua.h"
 #include "MenuPanel.h"
 #include "Panel.h"
 #include "PlayerInfo.h"
@@ -79,6 +80,8 @@ void InitConsole();
 // Entry point for the EndlessSky executable
 int main(int argc, char *argv[])
 {
+	Lua::init();
+
 	// Handle command-line arguments
 #ifdef _WIN32
 	if(argc > 1)
@@ -212,6 +215,8 @@ int main(int argc, char *argv[])
 		GameWindow::ExitWithError(error.what(), doPopUp);
 		return 1;
 	}
+
+	Lua::close();
 
 	// Remember the window state and preferences if quitting normally.
 	Preferences::Set("maximized", GameWindow::IsMaximized());

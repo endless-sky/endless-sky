@@ -159,6 +159,12 @@ target_sources(EndlessSkyLib PRIVATE
 	JumpTypes.h
 	Logger.cpp
 	Logger.h
+	Lua.cpp
+	Lua.h
+	LuaImpl.cpp
+	LuaImpl.h
+	LuaPlugin.cpp
+	LuaPlugin.h
 	LineShader.cpp
 	LineShader.h
 	LoadPanel.cpp

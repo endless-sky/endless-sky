@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Files.h"
 #include "Information.h"
 #include "Logger.h"
+#include "Lua.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 
@@ -337,7 +338,10 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 	for(const DataNode &node : data)
 	{
 		const string &key = node.Token(0);
-		if(key == "color" && node.Size() >= 5)
+		if(key == "script" && node.Size() >= 2) {
+			Lua::loadSource(node.Token(1));
+		}
+		else if(key == "color" && node.Size() >= 5)
 			colors.Get(node.Token(1))->Load(
 				node.Value(2), node.Value(3), node.Value(4), node.Size() >= 6 ? node.Value(5) : 1.);
 		else if(key == "conversation" && node.Size() >= 2)

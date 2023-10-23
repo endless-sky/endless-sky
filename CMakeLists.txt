@@ -67,6 +67,7 @@ project("Endless Sky" VERSION 0.10.5
 find_package(SDL2 CONFIG REQUIRED)
 find_package(PNG REQUIRED)
 find_package(JPEG REQUIRED)
+find_package(lua REQUIRED)
 if(NOT APPLE)
 	find_package(GLEW REQUIRED)
 endif()
@@ -118,7 +119,7 @@ if(MINGW)
 endif()
 
 # Link with the general libraries.
-target_link_libraries(ExternalLibraries INTERFACE SDL2::SDL2 PNG::PNG JPEG::JPEG OpenAL::OpenAL
+target_link_libraries(ExternalLibraries INTERFACE SDL2::SDL2 PNG::PNG JPEG::JPEG OpenAL::OpenAL lua-cpp lua
 	"$<IF:$<CONFIG:Debug>,${LIBMAD_LIB_DEBUG},${LIBMAD_LIB_RELEASE}>")
 
 # Link the needed OS-specific dependencies, if any.
@@ -218,7 +219,7 @@ if(APPLE AND ES_CREATE_BUNDLE)
 		XCODE_ATTRIBUTE_ASSETCATALOG_COMPILER_APPICON_NAME endless-sky)
 	set_target_properties(EndlessSky PROPERTIES OUTPUT_NAME "Endless Sky")
 elseif(WIN32)
-	add_executable(EndlessSky WIN32 source/main.cpp source/WinApp.rc)
+	add_executable(EndlessSky WIN32 source/main.cpp)
 	set_target_properties(EndlessSky PROPERTIES OUTPUT_NAME "Endless Sky")
 else()
 	add_executable(EndlessSky source/main.cpp)
