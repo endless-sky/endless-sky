@@ -157,8 +157,13 @@ namespace {
 	void DrawFlareSprites(const Ship &ship, DrawList &draw, const vector<Ship::EnginePoint> &enginePoints,
 		const vector<pair<Body, int>> &flareSprites, uint8_t side)
 	{
+		double gimbalDirection = (ship.Commands().Has(Command::FORWARD) || ship.Commands().Has(Command::BACK))
+			* -ship.Commands().Turn();
+
 		for(const Ship::EnginePoint &point : enginePoints)
 		{
+			Angle gimbal = Angle(gimbalDirection * point.gimbal.Degrees());
+			Angle flareAngle = ship.Facing() + point.facing + gimbal;
 			Point pos = ship.Facing().Rotate(point) * ship.Zoom() + ship.Position();
 			// If multiple engines with the same flare are installed, draw up to
 			// three copies of the flare sprite.
@@ -168,7 +173,7 @@ namespace {
 					|| (point.steering == Ship::EnginePoint::RIGHT && ship.SteeringDirection() > 0.)))
 					for(int i = 0; i < it.second && i < 3; ++i)
 					{
-						Body sprite(it.first, pos, ship.Velocity(), ship.Facing() + point.facing, point.zoom);
+						Body sprite(it.first, pos, ship.Velocity(), flareAngle, point.zoom);
 						draw.Add(sprite, ship.Cloaking());
 					}
 		}

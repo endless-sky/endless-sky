@@ -1850,10 +1850,10 @@ mission "Escort Illegal Cargo (Large, North, Dangerous Path)"
 	source
 		government Republic "Free Worlds" Syndicate Neutral Pirate
 		attributes frontier north "north pirate"
-		distance 3 6
 	destination
 		government "Pirate"
 		attributes "north pirate"
+		distance 3 6
 	npc
 		government Republic
 		personality staying
@@ -1991,10 +1991,10 @@ mission "Escort Illegal Cargo (Large, Core, Dangerous Path)"
 	source
 		government Republic "Free Worlds" Syndicate Neutral Pirate
 		attributes core "core pirate"
-		distance 3 6
 	destination
 		government "Pirate"
 		attributes "core pirate"
+		distance 3 6
 	npc
 		government Syndicate
 		personality staying
@@ -2134,10 +2134,10 @@ mission "Escort Illegal Cargo (Large, South, Dangerous Path)"
 	source
 		government Republic "Free Worlds" Syndicate Neutral Pirate
 		attributes south "south pirate"
-		distance 3 6
 	destination
 		government "Pirate"
 		attributes "south pirate"
+		distance 3 6
 	npc
 		government Militia
 		personality staying
