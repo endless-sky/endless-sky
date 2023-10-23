@@ -4455,20 +4455,22 @@ void Ship::StepTargeting()
 void Ship::DoEngineVisuals(vector<Visual> &visuals, bool isUsingAfterburner)
 {
 	if(isUsingAfterburner && !Attributes().AfterburnerEffects().empty())
-		for(const EnginePoint &point : enginePoints)
+	{
+		double gimbalDirection = (Commands().Has(Command::FORWARD) || Commands().Has(Command::BACK))
+			* -Commands().Turn();
+
+		for(const EnginePoint& point : enginePoints)
 		{
-			double gimbalDirection = (Commands().Has(Command::FORWARD) || Commands().Has(Command::BACK))
-				* -Commands().Turn();
 			Angle gimbal = Angle(gimbalDirection * point.gimbal.Degrees());
 
 			Point pos = angle.Rotate(point) * Zoom() + position;
-
 			// Stream the afterburner effects outward in the direction the engines are facing.
 			Point effectVelocity = velocity - 6. * (gimbal + angle).Unit();
 			for(auto &&it : Attributes().AfterburnerEffects())
 				for(int i = 0; i < it.second; ++i)
 					visuals.emplace_back(*it.first, pos, effectVelocity, gimbal + angle);
 		}
+	}
 }
 
 
