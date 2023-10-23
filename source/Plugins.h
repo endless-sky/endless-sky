@@ -18,28 +18,28 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Set.h"
 
+#include <set>
 #include <string>
-
-
-
-struct PluginDependencies
-{
-	// Checks if there are any dependencies of any kind.
-	bool IsEmpty() const;
-	// Checks if there are any duplicate dependencies. E.g. the same dependency in both required and conflicted.
-	bool IsValid() const;
-	// The plugins, if any, which are required by this plugin.
-	Set<std::string> required;
-	// The plugins, if any, which are designed to work with this plugin but aren't required.
-	Set<std::string> optional;
-	// The plugins, if any, which can't be run along side this plugin.
-	Set<std::string> conflicted;
-};
 
 
 
 // Represents information about a single plugin.
 struct Plugin {
+	struct PluginDependencies
+	{
+		// Checks if there are any dependencies of any kind.
+		bool IsEmpty() const;
+		// Checks if there are any duplicate dependencies. E.g. the same dependency in both required and conflicted.
+		bool IsValid() const;
+
+		// The plugins, if any, which are required by this plugin.
+		std::set<std::string> required;
+		// The plugins, if any, which are designed to work with this plugin but aren't required.
+		std::set<std::string> optional;
+		// The plugins, if any, which can't be run along side this plugin.
+		std::set<std::string> conflicted;
+	};
+
 	// Checks whether this plugin is valid, i.e. whether it exists.
 	bool IsValid() const;
 

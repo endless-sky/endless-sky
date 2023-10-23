@@ -51,15 +51,15 @@ namespace {
 
 
 // Checks if there are any dependencies of any kind.
-bool PluginDependencies::IsEmpty() const
+bool Plugin::PluginDependencies::IsEmpty() const
 {
-	return required.size() + optional.size() + conflicted.size() == 0;
+	return required.empty() && optional.empty() && conflicted.empty();
 }
 
 
 
 // Checks if there are any duplicate dependencies. E.g. the same dependency in both required and conflicted.
-bool PluginDependencies::IsValid() const
+bool Plugin::PluginDependencies::IsValid() const
 {
 	// We will check every dependency before returning to allow the
 	// plugin developer to see all errors and not just the first.
@@ -68,26 +68,24 @@ bool PluginDependencies::IsValid() const
 	// Required dependencies will already be valid due to sets not
 	// allowing duplicate values. Therefor we only need to check optional
 	// and conflicts.
-	for(const auto &it : optional)
+	for(const string &dependency : optional)
 	{
-		string dependency = it.first;
-		if(required.Find(dependency))
+		if(required.find(dependency) != required.end())
 		{
 			isValid = false;
 			Logger::LogError("Warning: Optional dependency with the name \"" + dependency
 				+ "\" was already found in required dependencies list.");
 		}
 	}
-	for(const auto &it : conflicted)
+	for(const string &dependency : conflicted)
 	{
-		string dependency = it.first;
-		if(required.Find(dependency))
+		if(required.find(dependency) != required.end())
 		{
 			isValid = false;
 			Logger::LogError("Warning: Conflicts dependency with the name \"" + dependency
 				+ "\" was already found in required dependencies list.");
 		}
-		else if(optional.Find(dependency))
+		else if(optional.find(dependency) != optional.end())
 		{
 			isValid = false;
 			Logger::LogError("Warning: Conflicts dependency with the name \"" + dependency
@@ -118,7 +116,7 @@ const Plugin *Plugins::Load(const string &path)
 	string pluginFile = path + "plugin.txt";
 	string aboutText;
 
-	PluginDependencies dependencies;
+	Plugin::PluginDependencies dependencies;
 
 	// Load plugin metadata from plugin.txt.
 	bool hasName = false;
@@ -134,13 +132,13 @@ const Plugin *Plugins::Load(const string &path)
 		// Dependencies.
 		else if(child.Token(0) == "requires")
 			for(const DataNode &grand : child)
-				dependencies.required.Get(grand.Token(0));
+				dependencies.required.insert(grand.Token(0));
 		else if(child.Token(0) == "optional")
 			for(const DataNode &grand : child)
-				dependencies.optional.Get(grand.Token(0));
+				dependencies.optional.insert(grand.Token(0));
 		else if(child.Token(0) == "conflicts")
 			for(const DataNode &grand : child)
-				dependencies.conflicted.Get(grand.Token(0));
+				dependencies.conflicted.insert(grand.Token(0));
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
