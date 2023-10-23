@@ -15,6 +15,9 @@
 tip "acceleration:"
 	`How quickly this ship gains speed. The higher a ship's mass (including the mass of any cargo or fighters it is carrying), the slower it accelerates.`
 
+tip "acceleration multiplier:"
+	`Modifies the ship's acceleration by the given factor.`
+
 tip "active cooling:"
 	`Cooling provided per second when running at full strength. Active cooling requires energy, but if your heat level is low it runs at a lower cooling rate and lower energy draw. The amount of cooling is proportional to the temperature of your ship, reaching the full level only if you are about to overheat.`
 
@@ -632,6 +635,9 @@ tip "turn:"
 
 tip "turning:"
 	`Turn rate, in degrees per second. The higher a ship's mass (including the mass of any cargo or fighters it is carrying), the slower it turns.`
+
+tip "turn multiplier:"
+	`Modifies the ship's rate of turn by the given factor.`
 
 tip "turning energy:"
 	`Energy consumed per second when turning.`

@@ -50,6 +50,7 @@ public:
 	static const int SHOW_SPECIAL = -4;
 	static const int SHOW_GOVERNMENT = -5;
 	static const int SHOW_REPUTATION = -6;
+	static const int SHOW_DANGER = -7;
 
 	static const float OUTER;
 	static const float INNER;
@@ -95,6 +96,7 @@ protected:
 	static Color MapColor(double value);
 	static Color ReputationColor(double reputation, bool canLand, bool hasDominated);
 	static Color GovernmentColor(const Government *government);
+	static Color DangerColor(double danger);
 	static Color UninhabitedColor();
 	static Color UnexploredColor();
 
