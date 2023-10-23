@@ -4457,8 +4457,8 @@ void Ship::DoEngineVisuals(vector<Visual> &visuals, bool isUsingAfterburner)
 	if(isUsingAfterburner && !Attributes().AfterburnerEffects().empty())
 		for(const EnginePoint &point : enginePoints)
 		{
-			double gimbalDirection = (Commands().Has(Command::FORWARD) + Commands().Has(Command::BACK))
-				* (180 - Commands().Turn());
+			double gimbalDirection = (Commands().Has(Command::FORWARD) || Commands().Has(Command::BACK))
+				* -Commands().Turn();
 			Angle gimbal = Angle(gimbalDirection * point.gimbal.Degrees());
 
 			Point pos = angle.Rotate(point) * Zoom() + position;
