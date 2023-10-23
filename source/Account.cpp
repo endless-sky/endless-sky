@@ -171,35 +171,14 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 		out << "You could not pay all your maintenance costs.";
 	}
 
-	//Bill b_MortgagesPaid;
-	//Bill b_FinesPaid;
-	//tie(b_MortgagesPaid, b_FinesPaid) = PayMortgages(&mortgages);
-
 	// Unlike salaries, each mortgage payment must either be made in its entirety,
 	// or skipped completely (accruing interest and reducing your credit score).
-	int64_t mortgagesPaid = 0;
-	int64_t finesPaid = 0;
-	for(Mortgage &mortgage : mortgages)
-	{
-		int64_t payment = mortgage.Payment();
-		if(payment > credits)
-		{
-			mortgage.MissPayment();
-			if(!missedPayment)
-				out << "You missed a mortgage payment.";
-			missedPayment = true;
-		}
-		else
-		{
-			payment = mortgage.MakePayment();
-			credits -= payment;
-			// For the status text, keep track of whether this is a mortgage or a fine.
-			if(mortgage.Type() == "Mortgage")
-				mortgagesPaid += payment;
-			else
-				finesPaid += payment;
-		}
-		assets -= mortgage.Principal();
+	Bill b_MortgagesPaid;
+	Bill b_FinesPaid;
+	tie(b_MortgagesPaid, b_FinesPaid) = PayMortgages(&mortgages);
+	// print output
+	if(!b_MortgagesPaid.paidInFull || !b_FinesPaid.paidInFull) {
+		out << "You missed a mortgage payment.";
 	}
 	// If any mortgage has been fully paid off, remove it from the list.
 	for(auto it = mortgages.begin(); it != mortgages.end(); )
@@ -208,6 +187,10 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 			it = mortgages.erase(it);
 		else
 			++it;
+	}
+	// remove mortgage principal from asset calc
+	for(Mortgage &mortgage: mortgages) {
+		assets -= mortgage.Principal();
 	}
 
 	// Keep track of your net worth over the last HISTORY days.
@@ -224,7 +207,7 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 
 	// If you didn't make any payments, no need to continue further.
 	// These should sum to 0, becoming true when inverted
-	if(b_SalariesPaid.paidInFull && b_maintencancePaid.paidInFull && !(mortgagesPaid + finesPaid))
+	if(b_SalariesPaid.paidInFull && b_maintencancePaid.paidInFull && b_MortgagesPaid.paidInFull && b_FinesPaid.paidInFull)
 		return out.str();
 	else if(missedPayment)
 		out << " ";
@@ -236,10 +219,10 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 		typesPaid["crew salaries"] = b_SalariesPaid.creditsPaid;
 	if(b_maintencancePaid.creditsPaid > 0)
 		typesPaid["maintenance"] = b_maintencancePaid.creditsPaid;
-	if(mortgagesPaid)
-		typesPaid["mortgages"] = mortgagesPaid;
-	if(finesPaid)
-		typesPaid["fines"] = finesPaid;
+	if(b_MortgagesPaid.creditsPaid > 0)
+		typesPaid["mortgages"] = b_MortgagesPaid.creditsPaid;
+	if(b_FinesPaid.creditsPaid > 0)
+		typesPaid["fines"] = b_FinesPaid.creditsPaid;
 
 	// If you made payments of three or more types, the punctuation needs to
 	// include commas, so just handle that separately here.
@@ -257,15 +240,15 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 	{
 		if(b_SalariesPaid.creditsPaid > 0)
 			out << Format::CreditString(b_SalariesPaid.creditsPaid) << " in crew salaries"
-				<< ((mortgagesPaid || finesPaid || b_maintencancePaid.creditsPaid > 0) ? " and " : ".");
+				<< ((b_MortgagesPaid.creditsPaid || b_FinesPaid.creditsPaid || b_maintencancePaid.creditsPaid > 0) ? " and " : ".");
 		if(b_maintencancePaid.creditsPaid > 0)
 			out << Format::CreditString(b_maintencancePaid.creditsPaid) << "  in maintenance"
-				<< ((mortgagesPaid || finesPaid) ? " and " : ".");
-		if(mortgagesPaid)
-			out << Format::CreditString(mortgagesPaid) << " in mortgages"
-				<< (finesPaid ? " and " : ".");
-		if(finesPaid)
-			out << Format::CreditString(finesPaid) << " in fines.";
+				<< ((b_MortgagesPaid.creditsPaid || b_FinesPaid.creditsPaid) ? " and " : ".");
+		if(b_MortgagesPaid.creditsPaid)
+			out << Format::CreditString(b_MortgagesPaid.creditsPaid) << " in mortgages"
+				<< (b_FinesPaid.creditsPaid ? " and " : ".");
+		if(b_FinesPaid.creditsPaid)
+			out << Format::CreditString(b_FinesPaid.creditsPaid) << " in fines.";
 	}
 	return out.str();
 }
@@ -346,6 +329,36 @@ tuple<Bill,Bill> Account::PayMortgages(std::vector<Mortgage> *mortgages) {
 	Bill mortReciept;
 	Bill fineReceipt;
 
+	int64_t mortgagesPaid = 0;
+	int64_t finesPaid = 0;
+	for(Mortgage &mortgage : *mortgages)
+	{
+		int64_t payment = mortgage.Payment();
+		if(payment > credits)
+		{
+			mortgage.MissPayment();
+			//if(!missedPayment)
+			//	out << "You missed a mortgage payment.";
+			//missedPayment = true;
+			if(mortgage.Type() == "Mortgage")
+				mortReciept.paidInFull = false;
+			else
+				fineReceipt.paidInFull = false;
+		}
+		else
+		{
+			payment = mortgage.MakePayment();
+			credits -= payment;
+			// For the status text, keep track of whether this is a mortgage or a fine.
+			if(mortgage.Type() == "Mortgage")
+				mortgagesPaid += payment;
+			else
+				finesPaid += payment;
+		}
+	}
+
+	mortReciept.creditsPaid = mortgagesPaid;
+	fineReceipt.creditsPaid = finesPaid;
 	return make_tuple(mortReciept, fineReceipt);
 }
 
