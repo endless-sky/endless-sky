@@ -225,6 +225,66 @@ SCENARIO( "Updating history and calculating net worth", "[Account][UpdateHistory
 	}
 }
 
+SCENARIO( "Testing credit score updates", "[Account][UpdateCreditScore]" ) {
+	GIVEN( "An account with a credit score of 400 and a bunch of bills" ) {
+		Account account;
+		REQUIRE(account.CreditScore() == 400);
+
+		Bill salariesPaid, maintencancePaid, mortgagesPaid, finesPaid;
+		std::vector<Bill> bills = {salariesPaid, maintencancePaid, mortgagesPaid, finesPaid};
+
+		WHEN( "UpdateCreditScore is called with all bills paid in full" ) {
+			account.UpdateCreditScore(bills);
+			THEN( "The account's credit score is 401" ) {
+				REQUIRE(account.CreditScore() == 401);
+			}
+		}
+
+		WHEN( "UpdateCreditScore is called with salariesPaid NOT paid in full" ) {
+			bills.at(0).paidInFull = false;
+			account.UpdateCreditScore(bills);
+			THEN( "The account's credit score is 395" ) {
+				REQUIRE(account.CreditScore() == 395);
+			}
+		}
+
+		WHEN( "UpdateCreditScore is called with maintencancePaid NOT paid in full" ) {
+			bills.at(1).paidInFull = false;
+			account.UpdateCreditScore(bills);
+			THEN( "The account's credit score is 395" ) {
+				REQUIRE(account.CreditScore() == 395);
+			}
+		}
+
+		WHEN( "UpdateCreditScore is called with mortgagesPaid NOT paid in full" ) {
+			bills.at(2).paidInFull = false;
+			account.UpdateCreditScore(bills);
+			THEN( "The account's credit score is 395" ) {
+				REQUIRE(account.CreditScore() == 395);
+			}
+		}
+
+		WHEN( "UpdateCreditScore is called with finesPaid NOT paid in full" ) {
+			bills.at(3).paidInFull = false;
+			account.UpdateCreditScore(bills);
+			THEN( "The account's credit score is 395" ) {
+				REQUIRE(account.CreditScore() == 395);
+			}
+		}
+
+		WHEN( "UpdateCreditScore is called with more than one bill not paid in full" ) {
+			bills.at(0).paidInFull = false;
+			bills.at(1).paidInFull = false;
+			bills.at(2).paidInFull = false;
+			bills.at(3).paidInFull = false;
+			account.UpdateCreditScore(bills);
+			THEN( "The account's credit score is 395" ) {
+				REQUIRE(account.CreditScore() == 395);
+			}
+		}
+	}
+}
+
 // #endregion unit tests
 
 
