@@ -162,8 +162,9 @@ namespace {
 	void DrawFlareSprites(const Ship &ship, DrawList &draw, const vector<Ship::EnginePoint> &enginePoints,
 		const vector<pair<Body, int>> &flareSprites, uint8_t side, Point scale)
 	{
-		Point leftTurnScale = scale * Point(ship.TurnLeftHeldFrames() / static_cast<double>(Ship::MaximumThrusterHeldframes()), FlareCurve(ship.TurnLeftHeldFrames()  / static_cast<double>(Ship::MaximumThrusterHeldframes())));
-		Point rightTurnScale = scale * Point(ship.TurnRightHeldFrames() / static_cast<double>(Ship::MaximumThrusterHeldframes()), FlareCurve(ship.TurnRightHeldFrames()  / static_cast<double>(Ship::MaximumThrusterHeldframes())));
+		const auto maxHeld = 1. / static_cast<double>(Ship::MaximumThrusterHeldframes());
+		Point leftTurnScale = scale * Point(ship.TurnLeftHeldFrames() * maxHeld, FlareCurve(ship.TurnLeftHeldFrames() * maxHeld));
+		Point rightTurnScale = scale * Point(ship.TurnRightHeldFrames() * maxHeld, FlareCurve(ship.TurnRightHeldFrames() * maxHeld));
 		double gimbalDirection = (ship.Commands().Has(Command::FORWARD) || ship.Commands().Has(Command::BACK))
 			* -ship.Commands().Turn();
 
@@ -2512,8 +2513,9 @@ void Engine::AddSprites(const Ship &ship)
 			if(bay.side == Ship::Bay::UNDER && bay.ship)
 				drawObject(*bay.ship);
 
-	double thrustMul = FlareCurve(ship.Zoom() * ship.ThrustHeldFrames() / static_cast<double>(Ship::MaximumThrusterHeldframes()));
-	double reverseMul = FlareCurve(ship.Zoom() * ship.ReverseHeldFrames() / static_cast<double>(Ship::MaximumThrusterHeldframes()));
+	const auto maxHeld = 1. / static_cast<double>(Ship::MaximumThrusterHeldframes());
+	double thrustMul = FlareCurve(ship.Zoom() * ship.ThrustHeldFrames() * maxHeld);
+	double reverseMul = FlareCurve(ship.Zoom() * ship.ReverseHeldFrames() * maxHeld);
 
 	if(thrustMul && !ship.EnginePoints().empty())
 		DrawFlareSprites(ship, draw[calcTickTock], ship.EnginePoints(),
