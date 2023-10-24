@@ -378,7 +378,7 @@ int CargoHold::Transfer(const string &commodity, int amount, CargoHold &to)
 
 	// Remove up to the specified tons of cargo from this cargo hold, adding
 	// them to the given cargo hold if possible. If not possible, add the
-	// remainder back to this cargo hold, even if there is not space for it.
+	// remainder back to this cargo hold, even if there is no space for it.
 	// Do not invalidate existing iterators by modifying the container.
 	int removed = Remove(commodity, amount);
 	int added = to.Add(commodity, removed);
@@ -397,7 +397,7 @@ int CargoHold::Transfer(const Outfit *outfit, int amount, CargoHold &to)
 
 	// Remove up to the specified number of items from this cargo hold, adding
 	// them to the given cargo hold if possible. If not possible, add the
-	// remainder back to this cargo hold, even if there is not space for it.
+	// remainder back to this cargo hold, even if there is no space for it.
 	// Do not invalidate existing iterators by modifying the container.
 	int removed = Remove(outfit, amount);
 	int added = to.Add(outfit, removed);
