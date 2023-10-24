@@ -164,6 +164,9 @@ public:
 	// This is only useful for the player's ships.
 	double Attraction() const;
 	double Deterrence() const;
+	// Get and set if this ship will take the initiative to fire at enemies.
+	void SetHoldFire(bool hold = true);
+	bool HoldingFire() const;
 
 	// Check if this ship is configured in such a way that it would be difficult
 	// or impossible to fly.
@@ -529,6 +532,7 @@ private:
 
 	double attraction = 0.;
 	double deterrence = 0.;
+	bool holdFire = false;
 
 	Command commands;
 	FireCommand firingCommands;

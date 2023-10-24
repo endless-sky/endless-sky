@@ -1173,6 +1173,20 @@ double Ship::Deterrence() const
 
 
 
+void Ship::SetHoldFire(bool hold)
+{
+	holdFire = hold;
+}
+
+
+
+bool Ship::HoldingFire() const
+{
+	return holdFire;
+}
+
+
+
 // Check if this ship is configured in such a way that it would be difficult
 // or impossible to fly.
 vector<string> Ship::FlightCheck() const

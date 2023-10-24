@@ -396,7 +396,7 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 	if(activeCommands.Has(Command::HOLD_FIRE))
 	{
 		newOrders.type = Orders::HOLD_FIRE;
-		IssueOrders(player, newOrders, "holding fire");
+		IssueOrders(player, newOrders, "holding fire.");
 	}
 	if(activeCommands.Has(Command::HOLD_POSITION))
 	{
@@ -3193,9 +3193,9 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary) const
 				disabledOverride = (it->second.type == Orders::FINISH_OFF);
 				friendlyOverride = disabledOverride || (it->second.type == Orders::ATTACK);
 			}
-			else if(it->second.type == Orders::HOLD_FIRE)
-				return;
 		}
+		if(!disabledOverride && !friendlyOverride && ship.HoldingFire())
+			return;
 	}
 	bool currentIsEnemy = currentTarget
 		&& currentTarget->GetGovernment()->IsEnemy(gov)
@@ -4196,6 +4196,16 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 	// This should never happen, but just in case:
 	if(ships.empty())
 		return;
+
+	bool isHoldFireOrder = (newOrders.type == Orders::HOLD_FIRE);
+	bool holdingFire = false;
+	if(isHoldFireOrder)
+	{
+		// Set all the ships to the same behavior opposite of the first ship.
+		holdingFire = !ships[0]->HoldingFire();
+		for(const Ship *ship : ships)
+			const_cast<Ship *>(ship)->SetHoldFire(holdingFire);
+	}
 
 	Point centerOfGravity;
 	bool isMoveOrder = (newOrders.type == Orders::MOVE_TO);
