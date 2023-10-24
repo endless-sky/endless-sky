@@ -195,6 +195,8 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 	// makes you at least as credit-worthy as someone who pays debts on time.)
 	missedPayment = !salariesPaid.paidInFull;
 	missedPayment = !maintencancePaid.paidInFull;
+	missedPayment = !mortgagesPaid.paidInFull;
+	missedPayment = !finesPaid.paidInFull;
 	creditScore = max(200, min(800, creditScore + (missedPayment ? -5 : 1)));
 
 	// If you didn't make any payments, no need to continue further.
