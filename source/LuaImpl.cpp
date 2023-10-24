@@ -10,9 +10,7 @@
 
 using namespace std;
 
-#define L_ES_IMPL(name) extern "C" int name##(lua_State *L)
-
-L_ES_IMPL(printMsg)
+extern "C" int printMsg(lua_State *L)
 {
 	const char *message = luaL_checkstring(L, 1);
 	int priority;
@@ -31,7 +29,7 @@ L_ES_IMPL(printMsg)
 	return 0;
 }
 
-L_ES_IMPL(debug)
+extern "C" int debug(lua_State *L)
 {
 	const char *message = luaL_checkstring(L, 1);
 	Logger::LogError(string("[Lua]: ") + message);
