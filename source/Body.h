@@ -79,6 +79,7 @@ public:
 	// Set the color swizzle.
 	void SetSwizzle(int swizzle);
 
+	double Alpha() const;
 
 protected:
 	// Adjust the frame rate.
@@ -100,6 +101,8 @@ protected:
 	// A zoom of 1 means the sprite should be drawn at half size. For objects
 	// whose sprites should be full size, use zoom = 2.
 	float zoom = 1.f;
+
+	double alpha = 1.;
 
 	// Government, for use in collision checks.
 	const Government *government = nullptr;
