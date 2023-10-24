@@ -49,6 +49,7 @@ public:
 	// Step forward one day, and return a string summarizing payments made.
 	std::string Step(int64_t assets, int64_t salaries, int64_t maintenance);
 	// Utility functions for Step
+	std::vector<Bill> PayBills(int64_t salaries, int64_t maintenance);
 	Bill PayCrewSalaries(int64_t salaries);
 	Bill PayShipMaintenance(int64_t maintenance);
 	std::tuple<Bill,Bill> PayMortgages(std::vector<Mortgage> *mortgages);

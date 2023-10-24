@@ -240,6 +240,31 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 
 
 
+
+std::vector<Bill> Account::PayBills(int64_t salaries, int64_t maintenance) {
+	// Crew salaries take highest priority.
+	Bill salariesPaid = PayCrewSalaries(salaries);
+
+	// Maintenance costs are dealt with after crew salaries given that they act similarly.
+	Bill maintencancePaid = PayShipMaintenance(maintenance);
+
+	// Unlike salaries, each mortgage payment must either be made in its entirety,
+	// or skipped completely (accruing interest and reducing your credit score).
+	Bill mortgagesPaid;
+	Bill finesPaid;
+	if(Mortgages().size() > 0)
+	{
+		tie(mortgagesPaid, finesPaid) = PayMortgages(&mortgages);
+
+		// If any mortgage has been fully paid off, remove it from the list.
+		UpdateMortgages();
+	}
+
+	return {salariesPaid, maintencancePaid, mortgagesPaid, finesPaid};
+}
+
+
+
 Bill Account::PayCrewSalaries(int64_t salaries)
 {
 // THIS FUNCTION HAS SIDE EFFECTS, INTERACTING DIRECTLY WITH THE ACCOUNT OBJECT
