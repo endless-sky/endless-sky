@@ -431,7 +431,7 @@ government "Gegno Vi (Duelist B)"
 		board 0.5
 		destroy 0.3
 
-# Gegno Vi government that is always hostile but does not affect the main Vi government.
+# Gegno governments that are always hostile but do not affect the original governments.
 government "Gegno Vi (Combative)"
 	swizzle 0
 	"display name" "Gegno Vi"
@@ -445,6 +445,22 @@ government "Gegno Vi (Combative)"
 		"Gegno" 1
 		"Gegno Vi" 1
 		"Gegno Scin" -0.01
+	"penalty for"
+		assist 0
+
+government "Gegno Scin (Combative)"
+	swizzle 18
+	"display name" "Gegno Scin"
+	language "Gegno"
+	color "governments: Gegno Scin"
+
+	"player reputation" -1
+	"crew attack" 1.2
+	"crew defense" 1.4
+	"attitude toward"
+		"Gegno" 1
+		"Gegno Vi" -0.01
+		"Gegno Scin" 1
 	"penalty for"
 		assist 0
 

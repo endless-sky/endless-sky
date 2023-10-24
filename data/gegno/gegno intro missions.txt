@@ -545,7 +545,7 @@ mission "First Contact: Gegno Scin"
 			
 			label "reach"
 			action
-				"reputation: Gegno Scin" = -0.01
+				set "scin: provocative"
 			`	It is rather alarming that the Scin be comfortable in approaching you casually, and considering how the encounter with the Vi went, anything could happen next. You decide to reach for your pistol, but as soon as you do, the first thing you notice is a blade around your neck, and a bunch of sand flying past you. Slowly turning your head, your eyes are met with the cold, expressionless look of another Scin's face, who then motions you to return to your ship. They follow you as you do, continuing to hold the blade to your throat. Two more Scin suddenly appear from the sand along the way, while the others you first met remain at their position. The armor of the Scin escorting you is considerably different from the rest, characterized by darker shades, sharper edges, and several gadgets.`
 			`	Once you are at your ship, they move their blade away from you neck. Getting a better look at it, the blade is curved like a sickle, as opposed to a sword, meaning there was little chance you could have avoided being decapitated if they chose to do so. Boarding your ship in a hurry, you prepare to take off, and you notice the two Scin warships also begin to power up. It's clear you've overstayed your welcome.`
 				flee
@@ -596,7 +596,7 @@ mission "First Contact: Gegno Scin"
 
 			label "pistol"
 			action
-				"reputation: Gegno Scin" = -1
+				set "scin: provocative"
 			`	The situation you find yourself in is rather precarious - inside an alien species' vessel, strange devices, anything could happen next. You decide to reach for your pistol, but as soon as you do, the first thing you notice is a blade around your neck. Slowly turning your head, your eyes are met with the cold, expressionless look of yet another Scin's face, who you haven't seen yet. They continue to hold the blade to your throat as they activate the elevator again, lowering you back to the surface. Their armor is considerably different from the rest, characterized by darker shades, sharper edges, and several gadgets.`
 			`	They escort you back to your ship, and along the way, several more Scin stand guard, wearing the same armor. Once you are at your ship, the blade is moved away from you neck. Getting a better look at it, the blade is curved like a sickle, as opposed to a sword, meaning there was little chance you could have escaped being decapitated if they chose to do so. Boarding your ship in a hurry, you prepare to take off, and you notice the two Scin warships also begin to power up. It's clear you've overstayed your welcome.`
 				flee
@@ -624,6 +624,7 @@ mission "Scin Intro Warships"
 	npc
 		to spawn
 			not "scin: gestures"
+			not "scin: provocative"
 		government "Gegno Scin"
 		personality launching uninterested
 		system "Ilirco"
@@ -633,6 +634,29 @@ mission "Scin Intro Warships"
 				"Coesite" 2
 	on enter
 		fail
+
+mission "Scin Intro Warships Hostile"
+	invisible
+	landing
+	source "Yiia Iyr"
+	to offer
+		or
+			has "Giaru Gegno: Quarg Contact: offered"
+			has "Giaru Gegno: Revisit: offered"
+	npc
+		to spawn
+			not "scin: gestures"
+			has "scin: provocative"
+		government "Gegno Scin (Combative)"
+		personality launching uninterested
+		system "Ilirco"
+		fleet
+			names "gegno scin"
+			variant
+				"Coesite" 2
+	on enter
+		fail
+
 
 
 # Gegno Superheavy Missions
@@ -672,20 +696,20 @@ mission "Vi Augen"
 			
 			`After you power down your ship's systems and make your way into the ringworld, you are abruptly greeted by a group of Quarg led by the one you've previously met with. "<first> <last>, please swiftly follow." Without room for questions, it and the other Quarg quickly escort you to another room a few sections away from the hangar, similar to the one you visited before. This time, there is no table or chairs to sit at, and after the door shuts behind you, the Quarg in unique attire addresses you once more, seemingly rather disappointed.`
 			`	<First Last>. It has come to my watchful attention that you have been participating in, repetitious destructive actions, regarding factions of the Gegno. Inquiries have reoccured between us and their leadership, who seldom approach us in years of time. I recall cautioning against common interaction, however this is distastefully unprecedented."`
-			choice
+#			choice
 
 
 
 			label "post suspicions"
 			`After you power down your ship's systems and make your way into the ringworld, you are abruptly greeted by a group of Quarg led by none other than Adrauni. "<first> <last>, please swiftly follow." Without room for questions, it and the other Quarg quickly escort you to another room a few sections away from the hangar, similar to the one you visited before. This time, there is no table or chairs to sit at, and after the door shuts behind you, Adrauni addresses you once more, seemingly rather disappointed.`
 			`	<First Last>. It has come to my watchful attention that you have been participating in, repetitious destructive actions, regarding factions of the Gegno. Inquiries have reoccured between us and their leadership, who seldom approach us in years of time. I recall requesting strict cautionaries with the Gegno while we discussed apparent matters, however this is distastefully unprecedented."`
-			choice
+#			choice
 
 
 			label "post acquiescence"
 			`After you power down your ship's systems and make your way into the ringworld, you are abruptly greeted by a group of Quarg led by none other than Adrauni. "<first> <last>, please swiftly follow." Without room for questions, it and the other Quarg quickly escort you to another room a few sections away from the hangar, similar to the one you visited before. This time, there is no table or chairs to sit at, and after the door shuts behind you, Adrauni addresses you once more, seemingly rather disappointed.`
 			`	<First Last>. It has come to my watchful attention that you have been participating in, repetitious destructive actions, regarding factions of the Gegno."`
-			choice
+#			choice
 
 	on decline
 		"reputation: Quarg (Gegno)" == 0

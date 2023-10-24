@@ -44,8 +44,6 @@ mission "Passive-Aggressive Observations"
 
 			label continue
 			action
-				"reputation: Gegno Vi" = -0.1
-			action
 				set "provoked military"
 			`	You decide to continue flying towards the Vi without heeding their warning. With no hesitation, the interceptor begins to charge at you, and the ships on the surface start preparing for takeoff. Even some of the Vi solders on the ground are shouting and gesturing towards your vessel with their weapons. It would seem the Vi are no longer tolerative of your presence.`
 				decline
@@ -84,28 +82,28 @@ mission "Vi Military Group"
 			has "provoked military"
 		on kill
 			set "yvx killed"
-		government "Gegno Vi"
+		government "Gegno Vi (Combative)"
 		personality heroic vindictive ramming daring staying launching
 		system "Vorsuke"
 		ship "Rhyolite" "Imtydei"
 	npc
 		to spawn
 			has "provoked military"
-		government "Gegno Vi"
+		government "Gegno Vi (Combative)"
 		personality heroic vindictive staying launching
 		system "Vorsuke"
 		ship "Schist" "Ess Ouec"
 	npc
 		to spawn
 			has "provoked military"
-		government "Gegno Vi"
+		government "Gegno Vi (Combative)"
 		personality heroic vindictive staying launching
 		system "Vorsuke"
 		ship "Schist" "Ess Utchec"
 	npc
 		to spawn
 			has "provoked military"
-		government "Gegno Vi"
+		government "Gegno Vi (Combative)"
 		personality heroic vindictive staying entering
 		system "Vorsuke"
 		fleet
@@ -209,23 +207,14 @@ mission "Curious Civilians"
 		event "gegno suspicions"
 
 
-mission "Esstch Visit Tracker"
-#	invisible
-	landing
-	repeat 1
-	source "Esstch"
-	on offer
-		fail
-
-
 mission "Brief Bystander"
 #	invisible
 	landing
 	destination "Esstch"
 	to offer
-		has "Esstch Visit Tracker: offered" == 1
 		has "First Contact: Gegno Scin: offered"
 		not "Gegno Genocide Defense: offered"
+		random < 20
 	on complete
 		conversation
 			`As usual, the scattered recording instruments on the surface of this planet contradicts what little interest the Gegno appear to be giving it nowadays, despite its location within the Gegno's home system of Heutesl. Still, since this planet isn't strictly owned by the Gegno, it makes for a convenient place to stop, and they haven't seemed to either notice nor care when you have landed here before.`
@@ -753,7 +742,7 @@ mission "Gegno Anticipation"
 					goto "alone"
 
 			label "tech"
-			`	Adrauni clicks its teeth together in what appears to be a laughing manner, a reaction you have yet to see from it. "And we many Quarg, of those who live among ambitious humans, allowance of our tech have we given? One is not owed rights to another's under pretensive tolernace."` The other Quarg in the room look at Adrauni strangely, to which it begins a conversation with them in their own language. After a few moments, they too stare at you with strange looks, followed by an awkward silence, which is broken by Adrauni speaking to you once more. "With us as well, hardly do the Gegno share much intrigue at all."`
+			`	Adrauni clicks its teeth together in what appears to be a laughing manner, a reaction you have yet to see from it. "And we many Quarg, of those who live among ambitious humans, allowance of our tech have we given? One is not owed rights to another's under pretensive tolernace." The other Quarg in the room look at Adrauni strangely, to which it begins a conversation with them in their own language. After a few moments, they too stare at you with strange looks, followed by an awkward silence, which is broken by Adrauni speaking to you once more. "With us as well, hardly do the Gegno share much intrigue at all."`
 			choice
 				`	"Then is there no way I can work with the Gegno?"`
 					goto "work"
