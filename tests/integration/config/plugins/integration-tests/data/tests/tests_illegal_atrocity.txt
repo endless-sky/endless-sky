@@ -321,9 +321,8 @@ test "Launch Quarg Scanning Mission And Board"
 		input
 		# wait for it to become hostile from the scanning
 		branch "floating"
-			or
-				"reputation: Quarg" >= 0
-				"unpaid fines" == 1
+			"reputation: Quarg" >= 0
+			"unpaid fines" == 0
 		input
 			key "return"
 
