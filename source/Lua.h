@@ -20,13 +20,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <optional>
 
-extern "C" {
-	#include <lua.h>
-	#include <lauxlib.h>
-	#include <lualib.h>
+extern "C"
+{
+#include <lua.h>
+#include <lauxlib.h>
+#include <lualib.h>
 }
 
-namespace Lua {
+namespace Lua
+{
 	bool init();
 	void close();
 

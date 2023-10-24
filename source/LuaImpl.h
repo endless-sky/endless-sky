@@ -3,7 +3,8 @@
 
 #include "Lua.h"
 
-namespace LuaImpl {
+namespace LuaImpl
+{
 	void registerAll();
 
 	void registerFunction(lua_CFunction func, const char *name);

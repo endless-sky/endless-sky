@@ -33,17 +33,20 @@ namespace {
 	vector<LuaPlugin> plugins;
 }
 
-void Lua::dumpstack() {
+void Lua::dumpstack()
+{
 	printf("Dumping Stack:\n");
-	int top=lua_gettop(L);
-	for (int i=1; i <= top; i++) {
-		printf("%d\t%s\t", i, luaL_typename(L,i));
-		switch (lua_type(L, i)) {
+	int top = lua_gettop(L);
+	for (int i = 1; i <= top; i++)
+	{
+		printf("%d\t%s\t", i, luaL_typename(L, i));
+		switch (lua_type(L, i))
+		{
 		case LUA_TNUMBER:
-			printf("%g\n",lua_tonumber(L,i));
+			printf("%g\n", lua_tonumber(L, i));
 			break;
 		case LUA_TSTRING:
-			printf("%s\n",lua_tostring(L,i));
+			printf("%s\n", lua_tostring(L, i));
 			break;
 		case LUA_TBOOLEAN:
 			printf("%s\n", (lua_toboolean(L, i) ? "true" : "false"));
@@ -52,17 +55,19 @@ void Lua::dumpstack() {
 			printf("%s\n", "nil");
 			break;
 		default:
-			printf("%p\n",lua_topointer(L,i));
+			printf("%p\n", lua_topointer(L, i));
 			break;
 		}
 	}
 }
 
-lua_State *Lua::get() {
+lua_State *Lua::get()
+{
 	return L;
 }
 
-bool Lua::init() {
+bool Lua::init()
+{
 	L = luaL_newstate();
 	luaL_openlibs(L);
 
@@ -71,7 +76,8 @@ bool Lua::init() {
 	return true;
 }
 
-void Lua::close() {
+void Lua::close()
+{
 	lua_close(L);
 }
 
@@ -89,14 +95,16 @@ bool Lua::loadSource(const string &path)
 
 void Lua::runDailyScripts()
 {
-	for(auto &plugin : plugins) {
+	for (auto &plugin : plugins)
+	{
 		plugin.runDaily();
 	}
 }
 
 void Lua::runInitScripts()
 {
-	for(auto &plugin : plugins) {
+	for (auto &plugin : plugins)
+	{
 		plugin.runInit();
 	}
 }

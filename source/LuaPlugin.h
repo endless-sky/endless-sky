@@ -2,7 +2,8 @@
 
 #include <string>
 
-class LuaPlugin {
+class LuaPlugin
+{
 public:
 	LuaPlugin();
 
@@ -12,5 +13,4 @@ public:
 private:
 	int daily = LUA_NOREF;
 	int init = LUA_NOREF;
-
 };
