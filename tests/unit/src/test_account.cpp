@@ -177,7 +177,7 @@ SCENARIO( "Working with mortgages on an account", "[Account][mortgages]" ) {
 
 
 
-//SCENARIO( "Paying Mortgages", "[Account][PayMortgages]" ) {
+// SCENARIO( "Paying Mortgages", "[Account][PayMortgages]" ) {
 //	GIVEN( "An account with a mortgage and a fine" ) {
 //		Account account;
 //		account.AddMortgage(20000);
@@ -186,7 +186,7 @@ SCENARIO( "Working with mortgages on an account", "[Account][mortgages]" ) {
 //
 //		}
 //	}
-//}
+// }
 
 
 
@@ -212,7 +212,8 @@ SCENARIO( "Updating history and calculating net worth", "[Account][UpdateHistory
 				REQUIRE(account.History().at(0) == 1000);
 			}
 			AND_WHEN( "History is called 100 more times" ) {
-				for(int i = 0; i < 100; i++) {
+				for(int i = 0; i < 100; i++)
+				{
 					account.UpdateHistory(i);
 				}
 				THEN( "the first index will be removed to maintain a maximum length of 100" ) {
