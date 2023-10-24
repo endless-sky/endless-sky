@@ -213,6 +213,12 @@
 		<Unit filename="source/Logger.h" />
 		<Unit filename="source/LogbookPanel.cpp" />
 		<Unit filename="source/LogbookPanel.h" />
+		<Unit filename="source/Lua.cpp" />
+		<Unit filename="source/Lua.h" />
+		<Unit filename="source/LuaPlugin.cpp" />
+		<Unit filename="source/LuaPlugin.h" />
+		<Unit filename="source/LuaImpl.cpp" />
+		<Unit filename="source/LuaImpl.h" />
 		<Unit filename="source/MainPanel.cpp" />
 		<Unit filename="source/MainPanel.h" />
 		<Unit filename="source/MapDetailPanel.cpp" />
