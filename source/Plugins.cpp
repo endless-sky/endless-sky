@@ -114,7 +114,9 @@ const Plugin *Plugins::Load(const string &path)
 
 	string pluginFile = path + "plugin.txt";
 	string aboutText;
-
+	string version;
+	set<string> authors;
+	set<string> tags;
 	Plugin::PluginDependencies dependencies;
 
 	// Load plugin metadata from plugin.txt.
@@ -128,16 +130,33 @@ const Plugin *Plugins::Load(const string &path)
 		}
 		else if(child.Token(0) == "about" && child.Size() >= 2)
 			aboutText = child.Token(1);
-		// Dependencies.
-		else if(child.Token(0) == "requires" && child.HasChildren())
+		else if(child.Token(0) == "version" && child.Size() >= 2)
+			version = child.Token(1);
+		else if(child.Token(0) == "authors" && child.HasChildren())
 			for(const DataNode &grand : child)
-				dependencies.required.insert(grand.Token(0));
-		else if(child.Token(0) == "optional" && child.HasChildren())
+				authors.insert(grand.Token(0));
+		else if(child.Token(0) == "tags" && child.HasChildren())
 			for(const DataNode &grand : child)
-				dependencies.optional.insert(grand.Token(0));
-		else if(child.Token(0) == "conflicts" && child.HasChildren())
+				tags.insert(grand.Token(0));
+		else if(child.Token(0) == "dependencies" && child.HasChildren())
+		{
 			for(const DataNode &grand : child)
-				dependencies.conflicted.insert(grand.Token(0));
+			{
+				if(grand.Token(0) == "game version")
+					dependencies.gameVersion = grand.Token(1);
+				else if(grand.Token(0) == "requires" && grand.HasChildren())
+					for(const DataNode &great : grand)
+						dependencies.required.insert(great.Token(0));
+				else if(grand.Token(0) == "optional" && grand.HasChildren())
+					for(const DataNode &great : grand)
+						dependencies.optional.insert(great.Token(0));
+				else if(grand.Token(0) == "conflicts" && grand.HasChildren())
+					for(const DataNode &great : grand)
+						dependencies.conflicted.insert(great.Token(0));
+				else
+					grand.PrintTrace("Skipping unrecognized attribute:");
+			}
+		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -156,6 +175,7 @@ const Plugin *Plugins::Load(const string &path)
 		return nullptr;
 	}
 
+	// Skip the plugin if the dependencies aren't valid.
 	if(!dependencies.IsValid())
 	{
 		Logger::LogError("Warning: Skipping plugin located at \"" + path
@@ -167,7 +187,10 @@ const Plugin *Plugins::Load(const string &path)
 	plugin->path = path;
 	// Read the deprecated about.txt content if no about text was specified.
 	plugin->aboutText = aboutText.empty() ? Files::Read(path + "about.txt") : std::move(aboutText);
-	plugin->dependencies = dependencies;
+	plugin->version = std::move(version);
+	plugin->authors = std::move(authors);
+	plugin->tags = std::move(tags);
+	plugin->dependencies = std::move(dependencies);
 
 	return plugin;
 }
