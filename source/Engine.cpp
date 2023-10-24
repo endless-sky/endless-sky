@@ -163,8 +163,10 @@ namespace {
 		const vector<pair<Body, int>> &flareSprites, uint8_t side, Point scale)
 	{
 		const auto maxHeld = 1. / static_cast<double>(Ship::MaximumThrusterHeldframes());
-		Point leftTurnScale = scale * Point(ship.TurnLeftHeldFrames() * maxHeld, FlareCurve(ship.TurnLeftHeldFrames() * maxHeld));
-		Point rightTurnScale = scale * Point(ship.TurnRightHeldFrames() * maxHeld, FlareCurve(ship.TurnRightHeldFrames() * maxHeld));
+		Point leftTurnScale = scale * Point(ship.TurnLeftHeldFrames() * maxHeld,
+			FlareCurve(ship.TurnLeftHeldFrames() * maxHeld));
+		Point rightTurnScale = scale * Point(ship.TurnRightHeldFrames() * maxHeld,
+			FlareCurve(ship.TurnRightHeldFrames() * maxHeld));
 		double gimbalDirection = (ship.Commands().Has(Command::FORWARD) || ship.Commands().Has(Command::BACK))
 			* -ship.Commands().Turn();
 
