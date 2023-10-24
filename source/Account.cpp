@@ -154,9 +154,6 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 {
 	ostringstream out;
 
-	// Keep track of what payments were made and whether any could not be made.
-	bool missedPayment = false;
-
 	// Crew salaries take highest priority.
 	Bill salariesPaid = PayCrewSalaries(salaries);
 	if(!salariesPaid.paidInFull)
@@ -190,20 +187,14 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 
 	UpdateHistory(assets);
 
-	// If you failed to pay any debt, your credit score drops. Otherwise, even
-	// if you have no debts, it increases. (Because, having no debts at all
-	// makes you at least as credit-worthy as someone who pays debts on time.)
-	missedPayment = !salariesPaid.paidInFull;
-	missedPayment = !maintencancePaid.paidInFull;
-	missedPayment = !mortgagesPaid.paidInFull;
-	missedPayment = !finesPaid.paidInFull;
-	creditScore = max(200, min(800, creditScore + (missedPayment ? -5 : 1)));
+	std::vector<Bill> bills = {salariesPaid, maintencancePaid, mortgagesPaid, finesPaid};
+	UpdateCreditScore(bills);
 
 	// If you didn't make any payments, no need to continue further.
 	// These should sum to 0, becoming true when inverted
 	if(!(salariesPaid.creditsPaid + maintencancePaid.creditsPaid + mortgagesPaid.creditsPaid + finesPaid.creditsPaid))
 		return out.str();
-	else if(missedPayment)
+	else if(!salariesPaid.paidInFull || !maintencancePaid.paidInFull || !mortgagesPaid.paidInFull || !finesPaid.paidInFull)
 		out << " ";
 
 	out << "You paid ";
