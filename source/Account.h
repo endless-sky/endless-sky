@@ -55,6 +55,7 @@ public:
 	void UpdateMortgages();
 	void UpdateHistory(int64_t assets);
 	int64_t CalculateNetWorth(int64_t assets) const;
+	void UpdateCreditScore(std::vector<Bill> bills);
 
 	// Structural income.
 	const std::map<std::string, int64_t> &SalariesIncome() const;

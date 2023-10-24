@@ -371,6 +371,24 @@ void Account::UpdateMortgages()
 
 
 
+void Account::UpdateCreditScore(std::vector<Bill> bills) {
+	// If you failed to pay any debt, your credit score drops. Otherwise, even
+	// if you have no debts, it increases. (Because, having no debts at all
+	// makes you at least as credit-worthy as someone who pays debts on time.)
+	bool missedPayment = false;
+	for(Bill bill : bills)
+	{
+		if(!bill.paidInFull)
+		{
+			missedPayment = true;
+			break;
+		}
+	}
+	creditScore = max(200, min(800, creditScore + (missedPayment ? -5 : 1)));
+}
+
+
+
 void Account::UpdateHistory(int64_t assets)
 {
 	history.push_back(CalculateNetWorth(assets));
