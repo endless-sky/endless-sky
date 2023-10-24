@@ -375,7 +375,7 @@ void Account::UpdateMortgages()
 void Account::UpdateHistory(int64_t assets)
 {
 	history.push_back(CalculateNetWorth(assets));
-	if (history.size() > HISTORY)
+	if(history.size() > HISTORY)
 		history.erase(history.begin());
 }
 
@@ -384,9 +384,9 @@ void Account::UpdateHistory(int64_t assets)
 int64_t Account::CalculateNetWorth(int64_t assets) const
 {
 	int64_t sumPrincipals = 0;
-	for(Mortgage mortgage: Mortgages())
+	for(Mortgage mortgage : Mortgages())
 	{
-		sumPrincipals =  mortgage.Principal();
+		sumPrincipals = mortgage.Principal();
 	}
 
 	return assets - sumPrincipals - CrewSalariesOwed() - MaintenanceDue();

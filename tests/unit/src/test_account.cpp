@@ -176,17 +176,17 @@ SCENARIO( "Working with mortgages on an account", "[Account][mortgages]" ) {
 
 
 
-/*
-SCENARIO( "Paying Mortgages", "[Account][PayMortgages]" ) {
-	GIVEN( "An account with a mortgage and a fine" ) {
-		Account account;
-		account.AddMortgage(20000);
-		account.AddFine(1000);
-		WHEN( "" ) {
 
-		}
-	}
-}*/
+//SCENARIO( "Paying Mortgages", "[Account][PayMortgages]" ) {
+//	GIVEN( "An account with a mortgage and a fine" ) {
+//		Account account;
+//		account.AddMortgage(20000);
+//		account.AddFine(1000);
+//		WHEN( "" ) {
+//
+//		}
+//	}
+//}
 
 
 
