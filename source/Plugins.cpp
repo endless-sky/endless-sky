@@ -70,22 +70,21 @@ bool Plugin::PluginDependencies::IsValid() const
 	// and conflicts.
 	for(const string &dependency : optional)
 	{
-		if(required.find(dependency) != required.end())
+		if(required.count(dependency))
 		{
-			isValid = false;
 			Logger::LogError("Warning: Optional dependency with the name \"" + dependency
 				+ "\" was already found in required dependencies list.");
 		}
 	}
 	for(const string &dependency : conflicted)
 	{
-		if(required.find(dependency) != required.end())
+		if(required.count(dependency))
 		{
 			isValid = false;
 			Logger::LogError("Warning: Conflicts dependency with the name \"" + dependency
 				+ "\" was already found in required dependencies list.");
 		}
-		else if(optional.find(dependency) != optional.end())
+		else if(optional.count(dependency))
 		{
 			isValid = false;
 			Logger::LogError("Warning: Conflicts dependency with the name \"" + dependency
@@ -130,13 +129,13 @@ const Plugin *Plugins::Load(const string &path)
 		else if(child.Token(0) == "about" && child.Size() >= 2)
 			aboutText = child.Token(1);
 		// Dependencies.
-		else if(child.Token(0) == "requires")
+		else if(child.Token(0) == "requires" && child.HasChildren())
 			for(const DataNode &grand : child)
 				dependencies.required.insert(grand.Token(0));
-		else if(child.Token(0) == "optional")
+		else if(child.Token(0) == "optional" && child.HasChildren())
 			for(const DataNode &grand : child)
 				dependencies.optional.insert(grand.Token(0));
-		else if(child.Token(0) == "conflicts")
+		else if(child.Token(0) == "conflicts" && child.HasChildren())
 			for(const DataNode &grand : child)
 				dependencies.conflicted.insert(grand.Token(0));
 		else
@@ -160,7 +159,7 @@ const Plugin *Plugins::Load(const string &path)
 	if(!dependencies.IsValid())
 	{
 		Logger::LogError("Warning: Skipping plugin located at \"" + path
-			+ "\" because plugin has errors in it dependencies.");
+			+ "\" because plugin has errors in its dependencies.");
 		return nullptr;
 	}
 
