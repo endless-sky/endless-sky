@@ -28,8 +28,8 @@ class DataNode;
 class DataWriter;
 
 struct Bill {
-	bool paidInFull;
-	int64_t creditsPaid;
+	bool paidInFull = true;
+	int64_t creditsPaid = 0;
 };
 
 

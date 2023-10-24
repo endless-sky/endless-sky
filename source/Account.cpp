@@ -326,9 +326,6 @@ tuple<Bill,Bill> Account::PayMortgages(std::vector<Mortgage> *mortgages)
 	Bill mortReciept;
 	Bill fineReceipt;
 
-	mortReciept.paidInFull = true;
-	fineReceipt.paidInFull = true;
-
 	int64_t mortgagesPaid = 0;
 	int64_t finesPaid = 0;
 	for(Mortgage &mortgage : *mortgages)
