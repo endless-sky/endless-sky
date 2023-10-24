@@ -188,16 +188,7 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 		UpdateMortgages();
 	}
 
-	// remove mortgage principal from asset calc
-	for(Mortgage &mortgage: mortgages)
-	{
-		assets -= mortgage.Principal();
-	}
-
-	// Keep track of your net worth over the last HISTORY days.
-	if(history.size() > HISTORY)
-		history.erase(history.begin());
-	history.push_back(credits + assets - crewSalariesOwed - maintenanceDue);
+	UpdateHistory(assets);
 
 	// If you failed to pay any debt, your credit score drops. Otherwise, even
 	// if you have no debts, it increases. (Because, having no debts at all
