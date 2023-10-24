@@ -179,17 +179,19 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 	{
 		tie(mortgagesPaid, finesPaid) = PayMortgages(&mortgages);
 		// print output
-		if(!mortgagesPaid.paidInFull || !finesPaid.paidInFull) {
+		if(!mortgagesPaid.paidInFull || !finesPaid.paidInFull)
+		{
 			out << "You missed a mortgage payment.";
 		}
 
 		// If any mortgage has been fully paid off, remove it from the list.
 		UpdateMortgages();
+	}
 
-		// remove mortgage principal from asset calc
-		for(Mortgage &mortgage: mortgages) {
-			assets -= mortgage.Principal();
-		}
+	// remove mortgage principal from asset calc
+	for(Mortgage &mortgage: mortgages)
+	{
+		assets -= mortgage.Principal();
 	}
 
 	// Keep track of your net worth over the last HISTORY days.
@@ -254,7 +256,8 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 
 
 
-Bill Account::PayCrewSalaries(int64_t salaries) {
+Bill Account::PayCrewSalaries(int64_t salaries)
+{
 // THIS FUNCTION HAS SIDE EFFECTS, INTERACTING DIRECTLY WITH THE ACCOUNT OBJECT
 	// this function needs to preserve:
 	//    1. The number of credits paid in salaries
@@ -289,7 +292,8 @@ Bill Account::PayCrewSalaries(int64_t salaries) {
 
 
 
-Bill Account::PayShipMaintenance(int64_t maintenance) {
+Bill Account::PayShipMaintenance(int64_t maintenance)
+{
 // THIS FUNCTION HAS SIDE EFFECTS, INTERACTING DIRECTLY WITH THE ACCOUNT OBJECT
 	// this function needs to preserve:
 	//    1. The number of credits paid in maintenance
@@ -324,7 +328,8 @@ Bill Account::PayShipMaintenance(int64_t maintenance) {
 
 
 
-tuple<Bill,Bill> Account::PayMortgages(std::vector<Mortgage> *mortgages) {
+tuple<Bill,Bill> Account::PayMortgages(std::vector<Mortgage> *mortgages)
+{
 	Bill mortReciept;
 	Bill fineReceipt;
 
@@ -363,7 +368,8 @@ tuple<Bill,Bill> Account::PayMortgages(std::vector<Mortgage> *mortgages) {
 
 
 
-void Account::UpdateMortgages() {
+void Account::UpdateMortgages()
+{
 	for(auto it = mortgages.begin(); it != mortgages.end(); )
 	{
 		if(!it->Principal())
@@ -371,6 +377,28 @@ void Account::UpdateMortgages() {
 		else
 			++it;
 	}
+}
+
+
+
+void Account::UpdateHistory(int64_t assets)
+{
+	history.push_back(CalculateNetWorth(assets));
+	if (history.size() > HISTORY)
+		history.erase(history.begin());
+}
+
+
+
+int64_t Account::CalculateNetWorth(int64_t assets) const
+{
+	int64_t sumPrincipals = 0;
+	for(Mortgage mortgage: Mortgages())
+	{
+		sumPrincipals =  mortgage.Principal();
+	}
+
+	return assets - sumPrincipals - CrewSalariesOwed() - MaintenanceDue();
 }
 
 
@@ -444,6 +472,14 @@ void Account::PayMaintenance(int64_t amount)
 const vector<Mortgage> &Account::Mortgages() const
 {
 	return mortgages;
+}
+
+
+
+// Access the history.
+const vector<int64_t> &Account::History() const
+{
+	return history;
 }
 
 

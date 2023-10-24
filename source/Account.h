@@ -53,6 +53,8 @@ public:
 	Bill PayShipMaintenance(int64_t maintenance);
 	std::tuple<Bill,Bill> PayMortgages(std::vector<Mortgage> *mortgages);
 	void UpdateMortgages();
+	void UpdateHistory(int64_t assets);
+	int64_t CalculateNetWorth(int64_t assets) const;
 
 	// Structural income.
 	const std::map<std::string, int64_t> &SalariesIncome() const;
@@ -78,6 +80,8 @@ public:
 	int CreditScore() const;
 	// Get the total amount owed for "Mortgage", "Fine", or both.
 	int64_t TotalDebt(const std::string &type = "") const;
+
+	const std::vector<int64_t> &History() const;
 
 
 private:
