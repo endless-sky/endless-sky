@@ -434,7 +434,7 @@ Mask Mask::operator*(Point scale) const
 	for(auto &outline : newMask.outlines)
 		for(Point &p : outline)
 			p *= scale;
-	newMask.radius *= (scale.X() + scale.Y()) / 2.;
+	newMask.radius *= scale.Length();
 	return newMask;
 }
 

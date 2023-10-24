@@ -368,10 +368,11 @@ public:
 	double ReverseAcceleration() const;
 	double MaxReverseVelocity() const;
 
-	unsigned short ThrustHeldFrames() const;
-	unsigned short ReverseHeldFrames() const;
-	unsigned short TurnRightHeldFrames() const;
-	unsigned short TurnLeftHeldFrames() const;
+	const uint_fast8_t ThrustHeldFrames() const;
+	const uint_fast8_t ReverseHeldFrames() const;
+	const uint_fast8_t TurnRightHeldFrames() const;
+	const uint_fast8_t TurnLeftHeldFrames() const;
+	static const inline uint_fast8_t MaximumThrusterHeldframes() { return 16; };
 
 	// This ship just got hit by a weapon. Take damage according to the
 	// DamageDealt from that weapon. The return value is a ShipEvent type,
@@ -632,10 +633,10 @@ private:
 	// Acceleration can be created by engines, firing weapons, or weapon impacts.
 	Point acceleration;
 	// The amount of time in frames that an engine has been on for.
-	unsigned short thrusterHeldFrames = 0;
-	unsigned short reverseHeldFrames = 0;
-	unsigned short turnRightHeldFrames = 0;
-	unsigned short turnLeftHeldFrames = 0;
+	uint_fast8_t thrusterHeldFrames = 0;
+	uint_fast8_t reverseHeldFrames = 0;
+	uint_fast8_t turnRightHeldFrames = 0;
+	uint_fast8_t turnLeftHeldFrames = 0;
 
 	int crew = 0;
 	int pilotError = 0;
