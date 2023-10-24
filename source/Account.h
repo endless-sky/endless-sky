@@ -52,6 +52,7 @@ public:
 	Bill PayCrewSalaries(int64_t salaries);
 	Bill PayShipMaintenance(int64_t maintenance);
 	std::tuple<Bill,Bill> PayMortgages(std::vector<Mortgage> *mortgages);
+	void UpdateMortgages();
 
 	// Structural income.
 	const std::map<std::string, int64_t> &SalariesIncome() const;

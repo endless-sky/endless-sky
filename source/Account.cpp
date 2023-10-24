@@ -182,20 +182,15 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 		if(!mortgagesPaid.paidInFull || !finesPaid.paidInFull) {
 			out << "You missed a mortgage payment.";
 		}
+
 		// If any mortgage has been fully paid off, remove it from the list.
-		for(auto it = mortgages.begin(); it != mortgages.end(); )
-		{
-			if(!it->Principal())
-				it = mortgages.erase(it);
-			else
-				++it;
-		}
+		UpdateMortgages();
+
 		// remove mortgage principal from asset calc
 		for(Mortgage &mortgage: mortgages) {
 			assets -= mortgage.Principal();
 		}
 	}
-
 
 	// Keep track of your net worth over the last HISTORY days.
 	if(history.size() > HISTORY)
@@ -364,6 +359,18 @@ tuple<Bill,Bill> Account::PayMortgages(std::vector<Mortgage> *mortgages) {
 	mortReciept.creditsPaid = mortgagesPaid;
 	fineReceipt.creditsPaid = finesPaid;
 	return make_tuple(mortReciept, fineReceipt);
+}
+
+
+
+void Account::UpdateMortgages() {
+	for(auto it = mortgages.begin(); it != mortgages.end(); )
+	{
+		if(!it->Principal())
+			it = mortgages.erase(it);
+		else
+			++it;
+	}
 }
 
 

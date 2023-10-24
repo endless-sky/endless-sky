@@ -39,6 +39,17 @@ TEST_CASE( "Add credits to an account", "[Account][AddCredits]" ) {
 
 	account.AddCredits(1000);
 	REQUIRE(account.Credits() == 1000);
+
+	account.AddCredits(-1000);
+	REQUIRE(account.Credits() == 0);
+}
+
+TEST_CASE( "Remove paid-off mortgage from an account", "[Account][UpdateMortgages]" ) {
+	Account account;
+	account.AddMortgage(1000);
+	account.PayExtra(0, 1000);
+	account.UpdateMortgages();
+	REQUIRE(account.Mortgages().size() == 0);
 }
 
 SCENARIO( "Create an Account" , "[Account][Creation]" ) {
@@ -162,6 +173,21 @@ SCENARIO( "Working with mortgages on an account", "[Account][mortgages]" ) {
 		}
 	}
 }
+
+
+
+/*
+SCENARIO( "Paying Mortgages", "[Account][PayMortgages]" ) {
+	GIVEN( "An account with a mortgage and a fine" ) {
+		Account account;
+		account.AddMortgage(20000);
+		account.AddFine(1000);
+		WHEN( "" ) {
+
+		}
+	}
+}*/
+
 // #endregion unit tests
 
 
