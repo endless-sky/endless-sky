@@ -25,7 +25,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DrawList.h"
 #include "EscortDisplay.h"
 #include "Information.h"
-#include "Lua.h"
 #include "Point.h"
 #include "Preferences.h"
 #include "Radar.h"

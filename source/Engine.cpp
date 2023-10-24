@@ -36,6 +36,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Hazard.h"
 #include "Interface.h"
 #include "Logger.h"
+#include "Lua.h"
 #include "MapPanel.h"
 #include "Mask.h"
 #include "Messages.h"
