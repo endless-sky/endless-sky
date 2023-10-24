@@ -201,7 +201,7 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 
 	// If you didn't make any payments, no need to continue further.
 	// These should sum to 0, becoming true when inverted
-	if(salariesPaid.paidInFull && maintencancePaid.paidInFull && mortgagesPaid.paidInFull && finesPaid.paidInFull)
+	if(!(salariesPaid.creditsPaid + maintencancePaid.creditsPaid + mortgagesPaid.creditsPaid + finesPaid.creditsPaid))
 		return out.str();
 	else if(missedPayment)
 		out << " ";
