@@ -22,8 +22,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 extern "C"
 {
-#include <lua.h>
 #include <lauxlib.h>
+#include <lua.h>
 #include <lualib.h>
 }
 
