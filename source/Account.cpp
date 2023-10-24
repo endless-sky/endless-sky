@@ -272,7 +272,6 @@ Bill Account::PayCrewSalaries(int64_t salaries)
 	//    1. The number of credits paid in salaries
 	//    2. Whether the salaries were paid in full
 	Bill receipt;
-	bool crewPaid = true;
 
 	crewSalariesOwed += salaries;
 	int64_t salariesPaid = crewSalariesOwed;
@@ -285,7 +284,7 @@ Bill Account::PayCrewSalaries(int64_t salaries)
 			salariesPaid = max<int64_t>(credits, 0);
 			crewSalariesOwed -= salariesPaid;
 			credits -= salariesPaid;
-			crewPaid = false;
+			receipt.paidInFull = false;
 		}
 		else
 		{
@@ -294,7 +293,6 @@ Bill Account::PayCrewSalaries(int64_t salaries)
 		}
 	}
 
-	receipt.paidInFull = crewPaid;
 	receipt.creditsPaid = salariesPaid;
 	return receipt;
 }
@@ -308,7 +306,6 @@ Bill Account::PayShipMaintenance(int64_t maintenance)
 	//    1. The number of credits paid in maintenance
 	//    2. Whether the maintenance was paid in full
 	Bill receipt;
-	bool maintPaid = true;
 
 	maintenanceDue += maintenance;
 	int64_t maintenancePaid = maintenanceDue;
@@ -321,7 +318,7 @@ Bill Account::PayShipMaintenance(int64_t maintenance)
 			maintenancePaid = max<int64_t>(credits, 0);
 			maintenanceDue -= maintenancePaid;
 			credits -= maintenancePaid;
-			maintPaid = false;
+			receipt.paidInFull = false;
 		}
 		else
 		{
@@ -330,7 +327,6 @@ Bill Account::PayShipMaintenance(int64_t maintenance)
 		}
 	}
 
-	receipt.paidInFull = maintPaid;
 	receipt.creditsPaid = maintenancePaid;
 	return receipt;
 }
