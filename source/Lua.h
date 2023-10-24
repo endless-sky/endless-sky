@@ -17,8 +17,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define ES_LUA_H_
 
 #include <bitset>
-#include <string>
 #include <optional>
+#include <string>
 
 extern "C"
 {

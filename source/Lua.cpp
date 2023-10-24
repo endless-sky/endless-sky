@@ -13,14 +13,14 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "ConditionsStore.h"
-#include "GameData.h"
-
-#include "Files.h"
-#include "Logger.h"
 #include "Lua.h"
-#include "LuaPlugin.h"
+
+#include "ConditionsStore.h"
+#include "Files.h"
+#include "GameData.h"
+#include "Logger.h"
 #include "LuaImpl.h"
+#include "LuaPlugin.h"
 
 #include <iostream>
 #include <vector>
@@ -37,10 +37,10 @@ void Lua::dumpstack()
 {
 	printf("Dumping Stack:\n");
 	int top = lua_gettop(L);
-	for (int i = 1; i <= top; i++)
+	for(int i = 1; i <= top; i++)
 	{
 		printf("%d\t%s\t", i, luaL_typename(L, i));
-		switch (lua_type(L, i))
+		switch(lua_type(L, i))
 		{
 		case LUA_TNUMBER:
 			printf("%g\n", lua_tonumber(L, i));
@@ -95,7 +95,7 @@ bool Lua::loadSource(const string &path)
 
 void Lua::runDailyScripts()
 {
-	for (auto &plugin : plugins)
+	for(auto &plugin : plugins)
 	{
 		plugin.runDaily();
 	}
@@ -103,7 +103,7 @@ void Lua::runDailyScripts()
 
 void Lua::runInitScripts()
 {
-	for (auto &plugin : plugins)
+	for(auto &plugin : plugins)
 	{
 		plugin.runInit();
 	}
