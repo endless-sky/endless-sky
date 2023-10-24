@@ -163,6 +163,8 @@ namespace {
 		{"leak resistance", 2},
 		{"burn resistance", 2},
 
+		{"shield multiplier", 3},
+		{"hull multiplier", 3},
 		{"hull repair multiplier", 3},
 		{"hull energy multiplier", 3},
 		{"hull fuel multiplier", 3},
@@ -268,7 +270,7 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 
 	for(const string &license : outfit.Licenses())
 	{
-		if(player.Conditions().Has("license: " + license))
+		if(player.HasLicense(license))
 			continue;
 
 		const auto &licenseOutfit = GameData::Outfits().Find(license + " License");

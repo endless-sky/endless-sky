@@ -18,19 +18,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataFile.h"
 #include "DataNode.h"
 #include "Files.h"
-#include "text/FontSet.h"
-#include "ImageSet.h"
 #include "Information.h"
 #include "Logger.h"
-#include "MaskManager.h"
-#include "Music.h"
-#include "PlayerInfo.h"
-#include "Politics.h"
-#include "Random.h"
 #include "Sprite.h"
-#include "SpriteQueue.h"
 #include "SpriteSet.h"
-#include "StarField.h"
 
 #include <algorithm>
 #include <iterator>
@@ -133,6 +124,10 @@ void UniverseObjects::FinishLoading()
 	for(auto &&it : ships)
 		it.second.FinishLoading(true);
 	for(auto &&it : persons)
+		it.second.FinishLoading();
+
+	// Calculate minable values.
+	for(auto &&it : minables)
 		it.second.FinishLoading();
 
 	for(auto &&it : startConditions)
@@ -295,9 +290,9 @@ void UniverseObjects::CheckReferences()
 			NameAndWarn("planet", it);
 	// Ship model names are used by missions and depreciation.
 	for(auto &&it : ships)
-		if(it.second.ModelName().empty())
+		if(it.second.TrueModelName().empty())
 		{
-			it.second.SetModelName(it.first);
+			it.second.SetTrueModelName(it.first);
 			Warn("ship", it.first);
 		}
 	// Shipyards are never serialized.

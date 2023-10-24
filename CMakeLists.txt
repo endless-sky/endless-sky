@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.21..3.25)
 include(CMakeDependentOption)
 option(ES_USE_VCPKG "Use vcpkg to get dependencies." ON)
 cmake_dependent_option(ES_GLES "Build the game with OpenGL ES" OFF UNIX OFF)
+cmake_dependent_option(ES_FLATPAK "Build the game inside the Flatpak runtime" OFF UNIX OFF)
 cmake_dependent_option(ES_STEAM "Build the game for the Steam Linux runtime" OFF UNIX OFF)
 cmake_dependent_option(ES_USE_SYSTEM_LIBRARIES "Use system libraries instead of the vcpkg ones." ON UNIX OFF)
 cmake_dependent_option(ES_USE_OFFSCREEN
@@ -24,15 +25,18 @@ set(CMAKE_BUILD_RPATH_USE_ORIGIN ON)
 
 # Setup vcpkg.
 if(ES_USE_VCPKG)
-	include(utils/vcpkg_bootstrap.cmake)
-	x_vcpkg_bootstrap()
+	set(CMAKE_TOOLCHAIN_FILE "${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake"
+		CACHE STRING "Vcpkg toolchain file")
+	# No need to bootstrap vcpkg if the toolchain file is explictly provided.
+	if(CMAKE_TOOLCHAIN_FILE STREQUAL "${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake")
+		include(utils/vcpkg_bootstrap.cmake)
+		x_vcpkg_bootstrap()
+	endif()
 
 	set(VCPKG_BOOTSTRAP_OPTIONS "-disableMetrics")
 	set(VCPKG_INSTALL_OPTIONS "--no-print-usage")
 	set(CMAKE_POLICY_DEFAULT_CMP0077 NEW)
 	set(X_VCPKG_APPLOCAL_DEPS_INSTALL ON)
-	set(CMAKE_TOOLCHAIN_FILE "${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake"
-		CACHE STRING "Vcpkg toolchain file")
 endif()
 
 if(NOT ES_USE_SYSTEM_LIBRARIES)
@@ -40,9 +44,13 @@ if(NOT ES_USE_SYSTEM_LIBRARIES)
 	list(APPEND VCPKG_MANIFEST_FEATURES "system-libs")
 endif()
 
-# Some system libraries aren't available on the default Sniper runtime and need to be built from source.
-if(ES_STEAM)
+# Tell vcpkg to use system libraries that are missing on the respective platform.
+if(ES_FLATPAK)
+	list(APPEND VCPKG_MANIFEST_FEATURES "flatpak-libs")
+elseif(ES_STEAM)
 	list(APPEND VCPKG_MANIFEST_FEATURES "steam-libs")
+elseif(APPLE)
+	list(APPEND VCPKG_MANIFEST_FEATURES "macos-libs")
 endif()
 
 # Various helpful options for IDEs.
@@ -50,7 +58,7 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT EndlessSky)
 set(CMAKE_VS_JUST_MY_CODE_DEBUGGING ON)
 
-project("Endless Sky" VERSION 0.10.1
+project("Endless Sky" VERSION 0.10.4
 	DESCRIPTION "Space exploration, trading, and combat game."
 	HOMEPAGE_URL https://endless-sky.github.io/
 	LANGUAGES CXX)
@@ -218,7 +226,7 @@ else()
 endif()
 
 # Link with the library dependencies.
-target_link_libraries(EndlessSky PRIVATE ExternalLibraries $<TARGET_OBJECTS:EndlessSkyLib> $<TARGET_NAME_IF_EXISTS:SDL2::SDL2main>)
+target_link_libraries(EndlessSky PRIVATE ExternalLibraries EndlessSkyLib $<TARGET_NAME_IF_EXISTS:SDL2::SDL2main>)
 
 # Copy the MinGW runtime DLLs if necessary.
 if(MINGW AND WIN32)
@@ -255,7 +263,7 @@ elseif(UNIX)
 	install(TARGETS EndlessSky CONFIGURATIONS Release RUNTIME DESTINATION games)
 
 	# Install the desktop file.
-	install(FILES endless-sky.desktop DESTINATION share/applications)
+	install(FILES io.github.endless_sky.endless_sky.desktop DESTINATION share/applications)
 
 	# Install app center metadata.
 	install(FILES io.github.endless_sky.endless_sky.appdata.xml DESTINATION share/metainfo)

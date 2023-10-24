@@ -145,8 +145,9 @@ public:
 	const std::string &Name() const;
 
 	// Set / Get the name of this model of ship.
-	void SetModelName(const std::string &model);
-	const std::string &ModelName() const;
+	void SetTrueModelName(const std::string &model);
+	const std::string &TrueModelName() const;
+	const std::string &DisplayModelName() const;
 	const std::string &PluralModelName() const;
 	// Get the name of this ship as a variant.
 	const std::string &VariantName() const;
@@ -214,8 +215,7 @@ public:
 	// Move this ship. A ship may create effects as it moves, in particular if
 	// it is in the process of blowing up.
 	void Move(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
-	// Generate energy, heat, etc. (This is called by Move().)
-	void DoGeneration();
+
 	// Launch any ships that are ready to launch.
 	void Launch(std::list<std::shared_ptr<Ship>> &ships, std::vector<Visual> &visuals);
 	// Check if this ship is boarding another ship. If it is, it either plunders
@@ -263,6 +263,7 @@ public:
 	bool IsEnteringHyperspace() const;
 	// Check if this ship is entering or leaving hyperspace.
 	bool IsHyperspacing() const;
+	int GetHyperspacePercentage() const;
 	// Check if this ship is hyperspacing, specifically via a jump drive.
 	bool IsUsingJumpDrive() const;
 	// Check if this ship is currently able to enter hyperspace to it target.
@@ -313,6 +314,9 @@ public:
 	double Health() const;
 	// Get the hull fraction at which this ship is disabled.
 	double DisabledHull() const;
+	// Get the maximum shield and hull values of the ship, accounting for multipliers.
+	double MaxShields() const;
+	double MaxHull() const;
 	// Get the actual shield level of the ship.
 	double ShieldLevel() const;
 	// Get how disrupted this ship's shields are.
@@ -457,8 +461,38 @@ public:
 	std::shared_ptr<Ship> GetParent() const;
 	const std::vector<std::weak_ptr<Ship>> &GetEscorts() const;
 
+	// How many AI steps has this ship been lingering?
+	int GetLingerSteps() const;
+	// The AI wants the ship to linger for one AI step.
+	void Linger();
+
 
 private:
+	// Various steps of Ship::Move:
+
+	// Check if this ship has been in a different system from the player for so
+	// long that it should be "forgotten." Also eliminate ships that have no
+	// system set because they just entered a fighter bay. Clear the hyperspace
+	// targets of ships that can't enter hyperspace.
+	bool StepFlags();
+	// Step ship destruction logic. Returns 1 if the ship has been destroyed, -1 if it is being
+	// destroyed, or 0 otherwise.
+	int StepDestroyed(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
+	void DoGeneration();
+	void DoPassiveEffects(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
+	void DoJettison(std::list<std::shared_ptr<Flotsam>> &flotsam);
+	void DoCloakDecision();
+	// Step hyperspace enter/exit logic. Returns true if ship is hyperspacing in or out.
+	bool DoHyperspaceLogic(std::vector<Visual> &visuals);
+	// Step landing logic. Returns true if the ship is landing or departing.
+	bool DoLandingLogic();
+	void DoInitializeMovement();
+	void StepPilot();
+	void DoMovement(bool &isUsingAfterburner);
+	void StepTargeting();
+	void DoEngineVisuals(std::vector<Visual> &visuals, bool isUsingAfterburner);
+
+
 	// Add or remove a ship from this ship's list of escorts.
 	void AddEscort(Ship &ship);
 	void RemoveEscort(const Ship &ship);
@@ -489,7 +523,8 @@ private:
 	// Characteristics of the chassis:
 	bool isDefined = false;
 	const Ship *base = nullptr;
-	std::string modelName;
+	std::string trueModelName;
+	std::string displayModelName;
 	std::string pluralModelName;
 	std::string variantName;
 	std::string noun;
@@ -533,6 +568,9 @@ private:
 	double attraction = 0.;
 	double deterrence = 0.;
 	bool holdFire = false;
+
+	// Number of AI steps this ship has spent lingering
+	int lingerSteps = 0;
 
 	Command commands;
 	FireCommand firingCommands;
