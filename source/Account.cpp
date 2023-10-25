@@ -342,6 +342,7 @@ Bill Account::PayMortgages() {
 
 	for(Mortgage &mortgage : mortgages)
 	{
+		if(!(mortgage.Type() == "Mortgage")) continue;
 		int64_t payment = mortgage.Payment();
 		if(payment > credits)
 		{
@@ -361,8 +362,31 @@ Bill Account::PayMortgages() {
 
 
 
-Bill PayFines(std::vector<Mortgage> *mortgages) {
+Bill Account::PayFines() {
+// THIS FUNCTION HAS SIDE EFFECTS, INTERACTING DIRECTLY WITH THE ACCOUNT OBJECT
+	// this function needs to preserve:
+	//    1. The number of credits paid towards ALL fines
+	//    2. Whether ANY fine was not paid in full
 	Bill fineReceipt;
+
+	for(Mortgage &mortgage : mortgages)
+	{
+		if(!(mortgage.Type() == "Fine")) continue;
+		int64_t payment = mortgage.Payment();
+		if(payment > credits)
+		{
+			mortgage.MissPayment();
+			fineReceipt.paidInFull = false;
+		}
+		else
+		{
+			payment = mortgage.MakePayment();
+			credits -= payment;
+			fineReceipt.creditsPaid += payment;
+		}
+	}
+
+	return fineReceipt;
 }
 
 
