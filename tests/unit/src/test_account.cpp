@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // ... and any system includes needed for the test file.
 #include <map>
 #include <string>
+#include <sstream>
 
 using namespace std;
 
@@ -174,8 +175,6 @@ SCENARIO( "Working with mortgages on an account", "[Account][mortgages]" ) {
 	}
 }
 
-
-
 SCENARIO( "Paying Mortgages", "[Account][PayMortgages]" ) {
 	GIVEN( "An account with a mortgage" ) {
 		Account account;
@@ -202,8 +201,6 @@ SCENARIO( "Paying Mortgages", "[Account][PayMortgages]" ) {
 		}
 	}
 }
-
-
 
 SCENARIO( "Paying Fines", "[Account][PayFines]" ) {
 	GIVEN( "An account with a fine" ) {
@@ -233,7 +230,43 @@ SCENARIO( "Paying Fines", "[Account][PayFines]" ) {
 	}
 }
 
+SCENARIO( "Generating missed payment logs", "[Account][GenerateMissedPaymentLogs]" ) {
+	Account account;
+	Receipt salariesPaid, maintencancePaid, mortgagesPaid, finesPaid;
+	std::vector<Receipt> receipts = {salariesPaid, maintencancePaid, mortgagesPaid, finesPaid};
+	GIVEN("A list of receipts") {
+		WHEN("All receipts are fully paid") {
+			string logs = account.GenerateMissedPaymentLogs(&receipts);
+			THEN( "The log is an empty string" ) {
+				REQUIRE(logs.compare("") == 0);
+			}
+		}
+		WHEN("None of the receipts are fully paid and the account has no mortgages") {
+			receipts.at(0).paidInFull = false;
+			receipts.at(1).paidInFull = false;
+			ostringstream expectedLog;
+			expectedLog << "You could not pay all your crew salaries.";
+			expectedLog << "You could not pay all your maintenance costs.";
 
+			string logs = account.GenerateMissedPaymentLogs(&receipts);
+			THEN( "The log contains data" ) {
+				REQUIRE(logs.compare(expectedLog.str()) == 0);
+			}
+			AND_WHEN("None of the receipts are fully paid on an account with a mortgage and a fine") {
+				account.AddMortgage(10);
+				account.AddFine(10);
+				receipts.at(2).paidInFull = false;
+				receipts.at(3).paidInFull = false;
+				expectedLog << "You missed a mortgage payment.";
+
+				string logs = account.GenerateMissedPaymentLogs(&receipts);
+				THEN( "The log contains even more data" ) {
+					REQUIRE(logs.compare(expectedLog.str()) == 0);
+				}
+			}
+		}
+	}
+}
 
 SCENARIO( "Updating history and calculating net worth", "[Account][UpdateHistory]" ) {
 	GIVEN( "An account with no mortgages" ) {
