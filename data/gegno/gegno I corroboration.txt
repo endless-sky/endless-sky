@@ -12,6 +12,7 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 
+
 mission "Passive-Aggressive Observations"
 #	invisible
 	landing
@@ -21,6 +22,7 @@ mission "Passive-Aggressive Observations"
 		has "First Contact: Gegno Scin: offered"
 		not "Gegno Genocide Defense: offered"
 	on complete
+		"gegno: bgs" ++
 		conversation
 			`While navigating the skies of this desert world, you notice familiar readings to the planet you previously encountered a member of the Gegno Vi on. It's likely this world is also home to the same or similar species of large, worm-like creatures you confronted back then. Eventually, you come across a large Gegno Vi vessel stationed on the surface, though unlike in your prior experience, the ship isn't sunken into the desert, likely having recently landed here. A group of Vi warriors are marching out and nearby the vessel, and while they do, your radar picks up two more ships descending from above.`
 			choice
@@ -126,6 +128,7 @@ mission "Foreign Spectator I"
 		never
 	on enter "Eogho"
 		fail
+		"gegno: bgs" ++
 
 	npc
 		on provoke
@@ -167,6 +170,156 @@ mission "Foreign Spectator I"
 				"Mica" 2
 
 
+mission "Brief Bystander"
+#	invisible
+	landing
+	destination "Esstch"
+	to offer
+		has "First Contact: Gegno Scin: offered"
+		not "Gegno Genocide Defense: offered"
+		random < 20
+	on complete
+		"gegno: bgs" ++
+		conversation
+			`As usual, the scattered recording instruments on the surface of this planet contradicts what little interest the Gegno appear to be giving it nowadays, despite its location within the Gegno's home system of Heutesl. Still, since this planet isn't strictly owned by the Gegno, it makes for a convenient place to stop, and they haven't seemed to either notice nor care when you have landed here before.`
+			`	However, as you fly around this time, you notice a small Gegno shuttle parked on the ground. The tan coloration of its hull suggests that it's a civilian craft, but what it's doing here is unknown.`
+			choice
+				`	Investigate.`
+					goto investigate
+				`	Leave them be.`
+					decline
+
+			label investigate
+			action
+				set "gegno: approached bystander"
+			`	You steer your ship towards the shuttle, and once you approach it, you are able to see a Gegno on the ground nearby fiddling with one of the nearby devices on the surface. Though, as you fly closer, they stop their work and return to their shuttle, taking off shortly after. It seems like they weren't interested in any potential interaction with you.`
+			`	The satellite they were tinkering with doesn't strike you as anything special, being just another antique device amongst the others.`
+				decline
+
+
+mission "Scin on Cyife"
+#	invisible
+	landing
+	source "Cyife"
+	to offer
+#		random < 30
+		has "First Contact: Gegno Scin: offered"
+		not "Gegno Genocide Defense: offered"
+	on offer
+		"gegno: bgs" ++
+		set "visited cyife"
+		conversation
+			`Nothing is much of interest on a cold, unwelcoming moon in the middle of nowhere. However, there's something about the surface of Cyife that is a bit peculiar. Some of the light refracted through the surface seeminly dissipates, or reflects back in strange patterns. Although appearing like ice, more detailed inspection reveals that small patches of the terrain seem to be made of some other type of crystalline material. In the distance is something that truly stands out on this world - a large egg-shaped structure with a green hue to it.`
+
+			branch "saw epidote"
+				has "scin: approached epidote"
+
+			branch "boarded epidote"
+				has "scin: entered epidote"
+
+			`	Once you get close enough, the oblong object reveals itself to be some sort of large Gegno ship, and judging by the coloring, belongs to the Scin faction. What it's doing this far away from their home space is a mystery, much like the moon it's stationed on. Or, at least, was stationed on, as after a few seconds, it launches into the atmosphere and leaves the moon. There doesn't seem to be anything left at the place it was parked at, so it's hard to know the Scin were doing here to begin with.`
+				decline
+
+			label "saw epidote"
+			`	Once you get close enough, the oblong object reveals itself to be a large Gegno Scin ship, similar to the one you encountered during an interaction with the Scin a while ago. What it's doing this far away from their home space is a mystery, much like the moon it's stationed on. Or, at least, was stationed on, as after a few seconds, it launches into the atmosphere and leaves the moon. Perhaps it was some sort of warship spying on the nearby Gegno Vi systems.`
+				decline
+
+			label "boarded epidote"
+			`	Once you get close enough, the oblong object reveals itself to be one of the Gegno Scin's large research ships, the same kind that you've been inside of during an interaction with the Scin a while ago. It's possible the Scin found the mysteriousness of Cyife worth traveling so far from their home space to investigate, but you'll never know, as after a few seconds, the ship launches into the atmosphere and leaves the moon. They also didn't seem to leave anything behind, though the site the ship was parked at does appear to be one of the many strange regions of the moon.`
+				decline
+
+
+mission "Battle over Zydee"
+#	invisible
+	landing
+	to offer
+#		random < 30
+		has "First Contact: Gegno Scin: offered"
+		not "Gegno Genocide Defense: offered"
+	to complete
+		never
+	source "Zydee"
+	on offer
+		"gegno: bgs" ++
+		set "zydee appearance"
+		conversation
+			`Although this planet is uninhabited, there are more than a few Gegno Scin ships currently parked across the surface. It seems like there's an ongoing operation to continue constructing what infrastructure has been built in past, and the hard working Scin pay little to no attention to your visit.`
+			`	However, a few moments later, the Scin suddenly start scurrying to their ships. You haven't gotten close enough to alarm them, at least from your experiences with them so far. They begin taking off one by one in a hurried fashion, but not towards you - the <>'s sensors suddenly begin picking up a large Gegno Vi fleet entering the system. It appears that this place is turning into a battlefield, and getting caught up in the middle of it is likely something you should avoid.`
+				accept
+	on enter "Kneirc"
+		fail
+
+
+	npc
+		on provoke
+			set "zydee interference"
+		government "Gegno Scin"
+		personality timid launching uninterested
+		system "Kneirc"
+		fleet
+			names "gegno scin"
+			variant
+				"Epidote"
+				"Coesite"
+				"Tridymite"
+				"Halite"
+	npc
+		on provoke
+			set "zydee interference"
+		government "Gegno Vi"
+		personality heroic staying
+		system "Kneirc"
+		fleet
+			names "gegno vi"
+			variant
+				"Gneiss"
+				"Hornfel (Heavy Weapons)"
+				"Hornfel (Heavy Load)"
+				"Diorite"
+				"Schist (Heavy Load)"
+				"Schist (Light Load)"
+				"Eclogite" 3
+	npc
+		on provoke
+			set "zydee interference"
+		government "Gegno Scin"
+		personality heroic staying
+		system "Kneirc"
+		fleet
+			names "gegno scin"
+			variant
+				"Coesite" 3
+	npc
+		on provoke
+			set "zydee interference"
+		government "Gegno Scin"
+		personality heroic entering
+		system "Kneirc"
+		fleet
+			names "gegno scin"
+			variant
+				"Feldspar"
+				"Felsic" 2
+				"Coesite" 3
+				"Halite" 6
+
+
+mission "Curious Civilians"
+#	invisible
+	landing
+	to offer
+		has "First Contact: Gegno Scin: offered"
+		not "Gegno Genocide Defense: offered"
+	to complete
+		never
+	on enter
+		system
+			government "Gegno"
+		fail
+		"gegno: bgs" ++
+		event "gegno suspicions"
+
+
 mission "Scin Suspicion"
 #	invisible
 	repeat
@@ -192,56 +345,12 @@ mission "Scin Suspicion"
 				"Tridymite"
 
 
-mission "Curious Civilians"
-#	invisible
-	landing
-	to offer
-		has "First Contact: Gegno Scin: offered"
-		not "Gegno Genocide Defense: offered"
-	to complete
-		never
-	on enter
-		system
-			government "Gegno"
-		fail
-		event "gegno suspicions"
-
-
-mission "Brief Bystander"
-#	invisible
-	landing
-	destination "Esstch"
-	to offer
-		has "First Contact: Gegno Scin: offered"
-		not "Gegno Genocide Defense: offered"
-		random < 20
-	on complete
-		conversation
-			`As usual, the scattered recording instruments on the surface of this planet contradicts what little interest the Gegno appear to be giving it nowadays, despite its location within the Gegno's home system of Heutesl. Still, since this planet isn't strictly owned by the Gegno, it makes for a convenient place to stop, and they haven't seemed to either notice nor care when you have landed here before.`
-			`	However, as you fly around this time, you notice a small Gegno shuttle parked on the ground. The tan coloration of its hull suggests that it's a civilian craft, but what it's doing here is unknown.`
-			choice
-				`	Investigate.`
-					goto investigate
-				`	Leave them be.`
-					decline
-
-			label investigate
-			action
-				set "gegno: approached bystander"
-			`	You steer your ship towards the shuttle, and once you approach it, you are able to see a Gegno on the ground nearby fiddling with one of the nearby devices on the surface. Though, as you fly closer, they stop their work and return to their shuttle, taking off shortly after. It seems like they weren't interested in any potential interaction with you.`
-			`	The satellite they were tinkering with doesn't strike you as anything special, being just another antique device amongst the others.`
-				decline
-
-
 mission "Gegno Suspicions"
 #	invisible
 	landing
 	source "Giaru Gegno"
 	to offer
-		has "event: gegno suspicions"
-		has "Passive-Aggressive Observations: done"
-		has "Brief Bystander: done"
-		has "Foreign Spectator I: failed"
+		"gegno: bgs" == 3
 		not "Gegno Genocide Defense: offered"
 	on offer
 		conversation
@@ -356,7 +465,7 @@ mission "Veering Vi A"
 	deadline 7
 	to offer
 #		random < 30
-		has "Gegno Intervention: offered"
+		has "Gegno Suspicions: offered"
 		not "Full Vi Backlash: offered"
 		not "Gegno Genocide Defense: offered"
 
@@ -410,124 +519,6 @@ mission "Full Vi Backlash"
 		"reputation: Gegno Vi" = -1
 
 
-mission "Scin on Cyife"
-#	invisible
-	landing
-	source "Cyife"
-	to offer
-#		random < 30
-		has "Gegno Intervention: offered"
-		not "Gegno Genocide Defense: offered"
-	on offer
-		set "visited cyife"
-		conversation
-			`Nothing is much of interest on a cold, unwelcoming moon in the middle of nowhere. However, there's something about the surface of Cyife that is a bit peculiar. Some of the light refracted through the surface seeminly dissipates, or reflects back in strange patterns. Although appearing like ice, more detailed inspection reveals that small patches of the terrain seem to be made of some other type of crystalline material. In the distance is something that truly stands out on this world - a large egg-shaped structure with a green hue to it.`
-
-			branch "saw epidote"
-				has "scin: approached epidote"
-
-			branch "boarded epidote"
-				has "scin: entered epidote"
-
-			`	Once you get close enough, the oblong object reveals itself to be some sort of large Gegno ship, and judging by the coloring, belongs to the Scin faction. What it's doing this far away from their home space is a mystery, much like the moon it's stationed on. Or, at least, was stationed on, as after a few seconds, it launches into the atmosphere and leaves the moon. There doesn't seem to be anything left at the place it was parked at, so it's hard to know the Scin were doing here to begin with.`
-				decline
-
-			label "saw epidote"
-			`	Once you get close enough, the oblong object reveals itself to be a large Gegno Scin ship, similar to the one you encountered during an interaction with the Scin a while ago. What it's doing this far away from their home space is a mystery, much like the moon it's stationed on. Or, at least, was stationed on, as after a few seconds, it launches into the atmosphere and leaves the moon. Perhaps it was some sort of warship spying on the nearby Gegno Vi systems.`
-				decline
-
-			label "boarded epidote"
-			`	Once you get close enough, the oblong object reveals itself to be one of the Gegno Scin's large research ships, the same kind that you've been inside of during an interaction with the Scin a while ago. It's possible the Scin found the mysteriousness of Cyife worth traveling so far from their home space to investigate, but you'll never know, as after a few seconds, the ship launches into the atmosphere and leaves the moon. They also didn't seem to leave anything behind, though the site the ship was parked at does appear to be one of the many strange regions of the moon.`
-				decline
-
-
-mission "Battle over Zydee"
-#	invisible
-	landing
-	to offer
-#		random < 30
-		has "Gegno Intervention: declined"
-		not "Gegno Genocide Defense: offered"
-	to complete
-		never
-	source "Zydee"
-	on offer
-		set "zydee appearance"
-		conversation
-			`Although this planet is uninhabited, there are more than a few Gegno Scin ships currently parked across the surface. It seems like there's an ongoing operation to continue constructing what infrastructure has been built in past, and the hard working Scin pay little to no attention to your visit.`
-			`	However, a few moments later, the Scin suddenly start scurrying to their ships. You haven't gotten close enough to alarm them, at least from your experiences with them so far. They begin taking off one by one in a hurried fashion, but not towards you - the <>'s sensors suddenly begin picking up a large Gegno Vi fleet entering the system. It appears that this place is turning into a battlefield, and getting caught up in the middle of it is likely something you should avoid.`
-				accept
-	on enter "Kneirc"
-		fail
-
-
-	npc
-		on provoke
-			set "zydee interference"
-		government "Gegno Scin"
-		personality timid launching uninterested
-		system "Kneirc"
-		fleet
-			names "gegno scin"
-			variant
-				"Epidote"
-				"Coesite"
-				"Tridymite"
-				"Halite"
-	npc
-		on provoke
-			set "zydee interference"
-		government "Gegno Vi"
-		personality heroic staying
-		system "Kneirc"
-		fleet
-			names "gegno vi"
-			variant
-				"Gneiss"
-				"Hornfel (Heavy Weapons)"
-				"Hornfel (Heavy Load)"
-				"Diorite"
-				"Schist (Heavy Load)"
-				"Schist (Light Load)"
-				"Eclogite" 3
-	npc
-		on provoke
-			set "zydee interference"
-		government "Gegno Scin"
-		personality heroic staying
-		system "Kneirc"
-		fleet
-			names "gegno scin"
-			variant
-				"Coesite" 3
-	npc
-		on provoke
-			set "zydee interference"
-		government "Gegno Scin"
-		personality heroic entering
-		system "Kneirc"
-		fleet
-			names "gegno scin"
-			variant
-				"Feldspar"
-				"Felsic" 2
-				"Coesite" 3
-				"Halite" 6
-
-
-mission "Gegno Apprehension"
-#	invisible
-	landing
-	to offer
-		has or
-			"vi backlash" > 0
-			"Full Vi Backlash: offered"
-		has "Scin on Cyife: offered"
-		has "Battle over Zydee: offered"
-	on offer
-		fail
-
-
 mission "Return to Giaru Gegno"
 	landing
 	description `The Quarg known as Adrauni has summoned you back to <destination> to discuss their negotiations with the Gegno.`
@@ -536,6 +527,7 @@ mission "Return to Giaru Gegno"
 	destination "Giaru Gegno"
 	to offer
 		has "event: gegno quarg talks"
+		not "Gegno Apprehension: offered"
 		not "Gegno: Genocide Defense: offered"
 	on enter
 		dialog
@@ -802,8 +794,21 @@ mission "Gegno Anticipation"
 				"Quarg Wardragon"
 
 
+mission "Gegno Apprehension"
+#	invisible
+	landing
+	to offer
+		has or
+			"vi backlash" > 0
+			"Full Vi Backlash: offered"
+		"gegno: bgs" >= 6
+	on offer
+		fail
+
+
 # mission "Gegno Intervention"
 #	landing
+#	(needs an origin within a set distance in gegno space?)
 #	destination "Dueyu Eitch"
 #	deadline 8
 #	to offer

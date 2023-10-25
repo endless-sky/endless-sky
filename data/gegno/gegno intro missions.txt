@@ -683,8 +683,8 @@ mission "Vi Augen"
 	source "Giaru Gegno"
 	to offer
 		or
-			"reputation: Gegno Vi" >= -100
-			"reputation: Gegno Scin" >= -100
+			"reputation: Gegno Vi" >= -1000
+			"reputation: Gegno Scin" >= -1000
 		not "Gegno Destruction Trigger: offered"
 		not "Gegno Genocide Defense: offered"
 	on offer
@@ -700,10 +700,13 @@ mission "Vi Augen"
 
 
 
+
 			label "post suspicions"
 			`After you power down your ship's systems and make your way into the ringworld, you are abruptly greeted by a group of Quarg led by none other than Adrauni. "<first> <last>, please swiftly follow." Without room for questions, it and the other Quarg quickly escort you to another room a few sections away from the hangar, similar to the one you visited before. This time, there is no table or chairs to sit at, and after the door shuts behind you, Adrauni addresses you once more, seemingly rather disappointed.`
 			`	<First Last>. It has come to my watchful attention that you have been participating in, repetitious destructive actions, regarding factions of the Gegno. Inquiries have reoccured between us and their leadership, who seldom approach us in years of time. I recall requesting strict cautionaries with the Gegno while we discussed apparent matters, however this is distastefully unprecedented."`
 #			choice
+
+
 
 
 			label "post acquiescence"
@@ -711,11 +714,14 @@ mission "Vi Augen"
 			`	<First Last>. It has come to my watchful attention that you have been participating in, repetitious destructive actions, regarding factions of the Gegno."`
 #			choice
 
+
+
+
 	on decline
-		"reputation: Quarg (Gegno)" == 0
-		"reputation: Gegno" == 0
-		"reputation: Gegno Vi" == -100
-		"reputation: Gegno Scin" == -100
+		"reputation: Quarg (Gegno)" = 0
+		"reputation: Gegno" = 0
+		"reputation: Gegno Vi" = -1000
+		"reputation: Gegno Scin" = -1000
 		event "gegno leave quarg space"
 
 
@@ -732,9 +738,9 @@ mission "Gegno Genocide Defense"
 		fail "First Contact: Gegno Vi"
 		fail "Visit Quarg in Gegno Space"
 		fail "Vi Augen"
-		"reputation: Gegno" = -100
-		"reputation: Gegno Vi" = -100
-		"reputation: Gegno Scin" = -100
+		"reputation: Gegno" = -1000
+		"reputation: Gegno Vi" = -1000
+		"reputation: Gegno Scin" = -1000
 		event "gegno: unified defense"
 		conversation
 			`As soon as you land your ship, you suddenly receive an incoming hail. "It was incredibly unwise to engage in the unnecessary destruction of noncombatants belonging to a species not of your own." You recognize the voice belonging to that of a Quarg, though it sounds quite displeased. "A species that is still learning from themselves is vulnerable to outside influence, and your aggressive actions against civilians of the Gegno have resulted in needless events."`
