@@ -129,7 +129,10 @@ const Plugin *Plugins::Load(const string &path)
 			hasName = true;
 		}
 		else if(child.Token(0) == "about" && child.Size() >= 2)
-			aboutText = child.Token(1);
+		{
+			aboutText += child.Token(1);
+			aboutText += '\n';
+		}
 		else if(child.Token(0) == "version" && child.Size() >= 2)
 			version = child.Token(1);
 		else if(child.Token(0) == "authors" && child.HasChildren())
