@@ -105,6 +105,7 @@ public:
 
 		double zoom;
 		Angle facing;
+		Angle gimbal;
 	};
 
 
