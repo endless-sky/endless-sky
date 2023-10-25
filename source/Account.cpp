@@ -170,11 +170,11 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 
 	// Unlike salaries, each mortgage payment must either be made in its entirety,
 	// or skipped completely (accruing interest and reducing your credit score).
-	Bill mortgagesPaid;
-	Bill finesPaid;
+	Bill mortgagesPaid, finesPaid;
 	if(Mortgages().size() > 0)
 	{
-		tie(mortgagesPaid, finesPaid) = PayAllMortgages(&mortgages);
+		mortgagesPaid = PayMortgages();
+		finesPaid = PayFines();
 		// print output
 		if(!mortgagesPaid.paidInFull || !finesPaid.paidInFull)
 		{
@@ -250,11 +250,11 @@ std::vector<Bill> Account::PayBills(int64_t salaries, int64_t maintenance) {
 
 	// Unlike salaries, each mortgage payment must either be made in its entirety,
 	// or skipped completely (accruing interest and reducing your credit score).
-	Bill mortgagesPaid;
-	Bill finesPaid;
+	Bill mortgagesPaid, finesPaid;
 	if(Mortgages().size() > 0)
 	{
-		tie(mortgagesPaid, finesPaid) = PayAllMortgages(&mortgages);
+		mortgagesPaid = PayMortgages();
+		finesPaid = PayFines();
 
 		// If any mortgage has been fully paid off, remove it from the list.
 		UpdateMortgages();
@@ -387,43 +387,6 @@ Bill Account::PayFines() {
 	}
 
 	return fineReceipt;
-}
-
-
-
-tuple<Bill,Bill> Account::PayAllMortgages(std::vector<Mortgage> *mortgages)
-{
-	Bill mortReciept;
-	Bill fineReceipt;
-
-	int64_t mortgagesPaid = 0;
-	int64_t finesPaid = 0;
-	for(Mortgage &mortgage : *mortgages)
-	{
-		int64_t payment = mortgage.Payment();
-		if(payment > credits)
-		{
-			mortgage.MissPayment();
-			if(mortgage.Type() == "Mortgage")
-				mortReciept.paidInFull = false;
-			else if(mortgage.Type() == "Fine")
-				fineReceipt.paidInFull = false;
-		}
-		else
-		{
-			payment = mortgage.MakePayment();
-			credits -= payment;
-			// For the status text, keep track of whether this is a mortgage or a fine.
-			if(mortgage.Type() == "Mortgage")
-				mortgagesPaid += payment;
-			else
-				finesPaid += payment;
-		}
-	}
-
-	mortReciept.creditsPaid = mortgagesPaid;
-	fineReceipt.creditsPaid = finesPaid;
-	return make_tuple(mortReciept, fineReceipt);
 }
 
 

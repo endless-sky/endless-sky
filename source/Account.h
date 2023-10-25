@@ -54,7 +54,6 @@ public:
 	Bill PayShipMaintenance(int64_t maintenance);
 	Bill PayMortgages();
 	Bill PayFines();
-	std::tuple<Bill,Bill> PayAllMortgages(std::vector<Mortgage> *mortgages);
 	void UpdateMortgages();
 	void UpdateHistory(int64_t assets);
 	int64_t CalculateNetWorth(int64_t assets) const;
