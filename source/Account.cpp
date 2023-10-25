@@ -154,60 +154,50 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 {
 	ostringstream out;
 
-	// Crew salaries take highest priority.
-	Receipt salariesPaid = PayCrewSalaries(salaries);
-	if(!salariesPaid.paidInFull)
+	// Step 1: Pay the bills
+	std::vector<Receipt> receipts = PayBills(salaries, maintenance);
+
+	if(!receipts[0].paidInFull)
 	{
 		out << "You could not pay all your crew salaries.";
 	}
 
-	// Maintenance costs are dealt with after crew salaries given that they act similarly.
-	Receipt maintencancePaid = PayShipMaintenance(maintenance);
-	if(!maintencancePaid.paidInFull)
+	if(!receipts[1].paidInFull)
 	{
 		out << "You could not pay all your maintenance costs.";
 	}
 
-	// Unlike salaries, each mortgage payment must either be made in its entirety,
-	// or skipped completely (accruing interest and reducing your credit score).
-	Receipt mortgagesPaid, finesPaid;
 	if(Mortgages().size() > 0)
 	{
-		mortgagesPaid = PayMortgages();
-		finesPaid = PayFines();
-		// print output
-		if(!mortgagesPaid.paidInFull || !finesPaid.paidInFull)
+		if(!receipts[2].paidInFull || !receipts[3].paidInFull)
 		{
 			out << "You missed a mortgage payment.";
 		}
-
-		// If any mortgage has been fully paid off, remove it from the list.
-		UpdateMortgages();
 	}
 
+	// If any mortgage has been fully paid off, remove it from the list.
+	UpdateMortgages();
 	UpdateHistory(assets);
-
-	std::vector<Receipt> receipts = {salariesPaid, maintencancePaid, mortgagesPaid, finesPaid};
-	UpdateCreditScore(receipts);
+	UpdateCreditScore(&receipts);
 
 	// If you didn't make any payments, no need to continue further.
 	// These should sum to 0, becoming true when inverted
-	if(!(salariesPaid.creditsPaid + maintencancePaid.creditsPaid + mortgagesPaid.creditsPaid + finesPaid.creditsPaid))
+	if(!(receipts[0].creditsPaid + receipts[1].creditsPaid + receipts[2].creditsPaid + receipts[3].creditsPaid))
 		return out.str();
-	else if(!salariesPaid.paidInFull || !maintencancePaid.paidInFull || !mortgagesPaid.paidInFull || !finesPaid.paidInFull)
+	else if(!receipts[0].paidInFull || !receipts[1].paidInFull || !receipts[2].paidInFull || !receipts[3].paidInFull)
 		out << " ";
 
 	out << "You paid ";
 
 	map<string, int64_t> typesPaid;
-	if(salariesPaid.creditsPaid > 0)
-		typesPaid["crew salaries"] = salariesPaid.creditsPaid;
-	if(maintencancePaid.creditsPaid > 0)
-		typesPaid["maintenance"] = maintencancePaid.creditsPaid;
-	if(mortgagesPaid.creditsPaid > 0)
-		typesPaid["mortgages"] = mortgagesPaid.creditsPaid;
-	if(finesPaid.creditsPaid > 0)
-		typesPaid["fines"] = finesPaid.creditsPaid;
+	if(receipts[0].creditsPaid > 0)
+		typesPaid["crew salaries"] = receipts[0].creditsPaid;
+	if(receipts[1].creditsPaid > 0)
+		typesPaid["maintenance"] = receipts[1].creditsPaid;
+	if(receipts[2].creditsPaid > 0)
+		typesPaid["mortgages"] = receipts[2].creditsPaid;
+	if(receipts[3].creditsPaid > 0)
+		typesPaid["fines"] = receipts[3].creditsPaid;
 
 	// If you made payments of three or more types, the punctuation needs to
 	// include commas, so just handle that separately here.
@@ -223,21 +213,20 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 	}
 	else
 	{
-		if(salariesPaid.creditsPaid > 0)
-			out << Format::CreditString(salariesPaid.creditsPaid) << " in crew salaries"
-				<< ((mortgagesPaid.creditsPaid || finesPaid.creditsPaid || maintencancePaid.creditsPaid > 0) ? " and " : ".");
-		if(maintencancePaid.creditsPaid > 0)
-			out << Format::CreditString(maintencancePaid.creditsPaid) << "  in maintenance"
-				<< ((mortgagesPaid.creditsPaid || finesPaid.creditsPaid) ? " and " : ".");
-		if(mortgagesPaid.creditsPaid)
-			out << Format::CreditString(mortgagesPaid.creditsPaid) << " in mortgages"
-				<< (finesPaid.creditsPaid ? " and " : ".");
-		if(finesPaid.creditsPaid)
-			out << Format::CreditString(finesPaid.creditsPaid) << " in fines.";
+		if(receipts[0].creditsPaid > 0)
+			out << Format::CreditString(receipts[0].creditsPaid) << " in crew salaries"
+				<< ((receipts[2].creditsPaid || receipts[3].creditsPaid || receipts[1].creditsPaid > 0) ? " and " : ".");
+		if(receipts[1].creditsPaid > 0)
+			out << Format::CreditString(receipts[1].creditsPaid) << "  in maintenance"
+				<< ((receipts[2].creditsPaid || receipts[3].creditsPaid) ? " and " : ".");
+		if(receipts[2].creditsPaid)
+			out << Format::CreditString(receipts[2].creditsPaid) << " in mortgages"
+				<< (receipts[3].creditsPaid ? " and " : ".");
+		if(receipts[3].creditsPaid)
+			out << Format::CreditString(receipts[3].creditsPaid) << " in fines.";
 	}
 	return out.str();
 }
-
 
 
 
@@ -404,12 +393,12 @@ void Account::UpdateMortgages()
 
 
 
-void Account::UpdateCreditScore(std::vector<Receipt> receipts) {
+void Account::UpdateCreditScore(std::vector<Receipt> *receipts) {
 	// If you failed to pay any debt, your credit score drops. Otherwise, even
 	// if you have no debts, it increases. (Because, having no debts at all
 	// makes you at least as credit-worthy as someone who pays debts on time.)
 	bool missedPayment = false;
-	for(Receipt receipt : receipts)
+	for(Receipt receipt : *receipts)
 	{
 		if(!receipt.paidInFull)
 		{
