@@ -363,6 +363,63 @@ SCENARIO( "Testing credit score updates", "[Account][UpdateCreditScore]" ) {
 	}
 }
 
+SCENARIO("Check if any bills were paid", "[Account][AnyPaymentsMade]") {
+	GIVEN("A list of reciepts") {
+		Receipt salariesPaid, maintencancePaid, mortgagesPaid, finesPaid;
+		std::vector<Receipt> receipts = {salariesPaid, maintencancePaid, mortgagesPaid, finesPaid};
+
+		WHEN("No bill had a payment made") {
+			bool anyPaymentsMade = Account::AnyPaymentsMade(&receipts);
+			THEN( "Return false" ) {
+				REQUIRE(anyPaymentsMade == false);
+			}
+		}
+
+		WHEN("A salary payment was made") {
+			receipts.at(0).creditsPaid = 100;
+			bool anyPaymentsMade = Account::AnyPaymentsMade(&receipts);
+			THEN( "Return true" ) {
+				REQUIRE(anyPaymentsMade == true);
+			}
+		}
+
+		WHEN("A maintenance payment was made") {
+			receipts.at(1).creditsPaid = 100;
+			bool anyPaymentsMade = Account::AnyPaymentsMade(&receipts);
+			THEN( "Return true" ) {
+				REQUIRE(anyPaymentsMade == true);
+			}
+		}
+
+		WHEN("A mortgage payment was made") {
+			receipts.at(2).creditsPaid = 100;
+			bool anyPaymentsMade = Account::AnyPaymentsMade(&receipts);
+			THEN( "Return true" ) {
+				REQUIRE(anyPaymentsMade == true);
+			}
+		}
+
+		WHEN("A fine payment was made") {
+			receipts.at(3).creditsPaid = 100;
+			bool anyPaymentsMade = Account::AnyPaymentsMade(&receipts);
+			THEN( "Return true" ) {
+				REQUIRE(anyPaymentsMade == true);
+			}
+		}
+
+		WHEN("A payment of every type was made") {
+			receipts.at(0).creditsPaid = 100;
+			receipts.at(1).creditsPaid = 100;
+			receipts.at(2).creditsPaid = 100;
+			receipts.at(3).creditsPaid = 100;
+			bool anyPaymentsMade = Account::AnyPaymentsMade(&receipts);
+			THEN( "Return true" ) {
+				REQUIRE(anyPaymentsMade == true);
+			}
+		}
+	}
+}
+
 // #endregion unit tests
 
 
