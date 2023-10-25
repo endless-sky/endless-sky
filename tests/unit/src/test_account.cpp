@@ -90,7 +90,7 @@ SCENARIO( "Pay crew salaries", "[Account][PayCrewSalaries]" ) {
 	GIVEN( "An account" ) {
 		Account account;
 		WHEN( "no salaries are paid" ) {
-			Bill salariesPaid = account.PayCrewSalaries(0);
+			Receipt salariesPaid = account.PayCrewSalaries(0);
 			THEN( "The salaries were paid in full and no credits were paid" ) {
 				REQUIRE(salariesPaid.creditsPaid == 0);
 				REQUIRE(salariesPaid.paidInFull == true);
@@ -99,7 +99,7 @@ SCENARIO( "Pay crew salaries", "[Account][PayCrewSalaries]" ) {
 
 		WHEN( "500 in salaries are paid but the account has no credits" ) {
 			REQUIRE(account.Credits() == 0);
-			Bill salariesPaid = account.PayCrewSalaries(500);
+			Receipt salariesPaid = account.PayCrewSalaries(500);
 			THEN( "The salaries were NOT paid in full and no credits were paid" ) {
 				REQUIRE(salariesPaid.creditsPaid == 0);
 				REQUIRE(salariesPaid.paidInFull == false);
@@ -109,7 +109,7 @@ SCENARIO( "Pay crew salaries", "[Account][PayCrewSalaries]" ) {
 
 		WHEN( "500 in salaries are paid and the account has 1000 credits" ) {
 			account.AddCredits(1000);
-			Bill salariesPaid = account.PayCrewSalaries(500);
+			Receipt salariesPaid = account.PayCrewSalaries(500);
 			THEN( "The salaries were were paid in full and 500 credits were paid" ) {
 				REQUIRE(salariesPaid.creditsPaid == 500);
 				REQUIRE(salariesPaid.paidInFull == true);
@@ -123,7 +123,7 @@ SCENARIO( "Pay ship maintenance", "[Account][PayShipMaintenance]" ) {
 	GIVEN( "An account" ) {
 		Account account;
 		WHEN( "no maintenance is owed" ) {
-			Bill maintenancePaid = account.PayShipMaintenance(0);
+			Receipt maintenancePaid = account.PayShipMaintenance(0);
 			THEN( "Maintenance was paid in full and no credits were paid" ) {
 				REQUIRE(maintenancePaid.creditsPaid == 0);
 				REQUIRE(maintenancePaid.paidInFull == true);
@@ -132,7 +132,7 @@ SCENARIO( "Pay ship maintenance", "[Account][PayShipMaintenance]" ) {
 
 		WHEN( "500 in maintenance is owed but the account has no credits" ) {
 			REQUIRE(account.Credits() == 0);
-			Bill maintenancePaid = account.PayShipMaintenance(500);
+			Receipt maintenancePaid = account.PayShipMaintenance(500);
 			THEN( "Maintenance was NOT paid in full and no credits were paid" ) {
 				REQUIRE(maintenancePaid.creditsPaid == 0);
 				REQUIRE(maintenancePaid.paidInFull == false);
@@ -142,7 +142,7 @@ SCENARIO( "Pay ship maintenance", "[Account][PayShipMaintenance]" ) {
 
 		WHEN( "500 in maintenance is owed and the account has 1000 credits" ) {
 			account.AddCredits(1000);
-			Bill maintenancePaid = account.PayShipMaintenance(500);
+			Receipt maintenancePaid = account.PayShipMaintenance(500);
 			THEN( "The salaries were were paid in full and 500 credits were paid" ) {
 				REQUIRE(maintenancePaid.creditsPaid == 500);
 				REQUIRE(maintenancePaid.paidInFull == true);
@@ -183,7 +183,7 @@ SCENARIO( "Paying Mortgages", "[Account][PayMortgages]" ) {
 		account.AddMortgage(principal);
 		int64_t expectedPayment = account.Mortgages().at(0).Payment();
 		WHEN( "A payment is made by an account that has enough credits" ) {
-			Bill bill = account.PayMortgages();
+			Receipt bill = account.PayMortgages();
 			THEN("The mortgage payment is made successfully") {
 				REQUIRE(bill.creditsPaid == expectedPayment);
 				REQUIRE(bill.paidInFull == true);
@@ -193,7 +193,7 @@ SCENARIO( "Paying Mortgages", "[Account][PayMortgages]" ) {
 
 		WHEN( "A payment is made by an account that does NOT enough credits" ) {
 			account.AddCredits(0-account.Credits()+5);
-			Bill bill = account.PayMortgages();
+			Receipt bill = account.PayMortgages();
 			THEN("The mortgage payment is made successfully") {
 				REQUIRE(bill.creditsPaid == 0);
 				REQUIRE(bill.paidInFull == false);
@@ -213,7 +213,7 @@ SCENARIO( "Paying Fines", "[Account][PayFines]" ) {
 		account.AddFine(principal);
 		int64_t expectedPayment = account.Mortgages().at(0).Payment();
 		WHEN( "A payment is made by an account that has enough credits" ) {
-			Bill bill = account.PayFines();
+			Receipt bill = account.PayFines();
 			THEN("The fine payment is made successfully") {
 				REQUIRE(bill.creditsPaid == expectedPayment);
 				REQUIRE(bill.paidInFull == true);
@@ -223,7 +223,7 @@ SCENARIO( "Paying Fines", "[Account][PayFines]" ) {
 
 		WHEN( "A payment is made by an account that does NOT enough credits" ) {
 			account.AddCredits(-995);
-			Bill bill = account.PayFines();
+			Receipt bill = account.PayFines();
 			THEN("The fine payment is made successfully") {
 				REQUIRE(bill.creditsPaid == 0);
 				REQUIRE(bill.paidInFull == false);
@@ -275,8 +275,8 @@ SCENARIO( "Testing credit score updates", "[Account][UpdateCreditScore]" ) {
 		Account account;
 		REQUIRE(account.CreditScore() == 400);
 
-		Bill salariesPaid, maintencancePaid, mortgagesPaid, finesPaid;
-		std::vector<Bill> bills = {salariesPaid, maintencancePaid, mortgagesPaid, finesPaid};
+		Receipt salariesPaid, maintencancePaid, mortgagesPaid, finesPaid;
+		std::vector<Receipt> bills = {salariesPaid, maintencancePaid, mortgagesPaid, finesPaid};
 
 		WHEN( "UpdateCreditScore is called with all bills paid in full" ) {
 			account.UpdateCreditScore(bills);

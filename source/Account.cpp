@@ -155,14 +155,14 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 	ostringstream out;
 
 	// Crew salaries take highest priority.
-	Bill salariesPaid = PayCrewSalaries(salaries);
+	Receipt salariesPaid = PayCrewSalaries(salaries);
 	if(!salariesPaid.paidInFull)
 	{
 		out << "You could not pay all your crew salaries.";
 	}
 
 	// Maintenance costs are dealt with after crew salaries given that they act similarly.
-	Bill maintencancePaid = PayShipMaintenance(maintenance);
+	Receipt maintencancePaid = PayShipMaintenance(maintenance);
 	if(!maintencancePaid.paidInFull)
 	{
 		out << "You could not pay all your maintenance costs.";
@@ -170,7 +170,7 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 
 	// Unlike salaries, each mortgage payment must either be made in its entirety,
 	// or skipped completely (accruing interest and reducing your credit score).
-	Bill mortgagesPaid, finesPaid;
+	Receipt mortgagesPaid, finesPaid;
 	if(Mortgages().size() > 0)
 	{
 		mortgagesPaid = PayMortgages();
@@ -187,8 +187,8 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 
 	UpdateHistory(assets);
 
-	std::vector<Bill> bills = {salariesPaid, maintencancePaid, mortgagesPaid, finesPaid};
-	UpdateCreditScore(bills);
+	std::vector<Receipt> receipts = {salariesPaid, maintencancePaid, mortgagesPaid, finesPaid};
+	UpdateCreditScore(receipts);
 
 	// If you didn't make any payments, no need to continue further.
 	// These should sum to 0, becoming true when inverted
@@ -241,16 +241,16 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 
 
 
-std::vector<Bill> Account::PayBills(int64_t salaries, int64_t maintenance) {
+std::vector<Receipt> Account::PayBills(int64_t salaries, int64_t maintenance) {
 	// Crew salaries take highest priority.
-	Bill salariesPaid = PayCrewSalaries(salaries);
+	Receipt salariesPaid = PayCrewSalaries(salaries);
 
 	// Maintenance costs are dealt with after crew salaries given that they act similarly.
-	Bill maintencancePaid = PayShipMaintenance(maintenance);
+	Receipt maintencancePaid = PayShipMaintenance(maintenance);
 
 	// Unlike salaries, each mortgage payment must either be made in its entirety,
 	// or skipped completely (accruing interest and reducing your credit score).
-	Bill mortgagesPaid, finesPaid;
+	Receipt mortgagesPaid, finesPaid;
 	if(Mortgages().size() > 0)
 	{
 		mortgagesPaid = PayMortgages();
@@ -265,13 +265,13 @@ std::vector<Bill> Account::PayBills(int64_t salaries, int64_t maintenance) {
 
 
 
-Bill Account::PayCrewSalaries(int64_t salaries)
+Receipt Account::PayCrewSalaries(int64_t salaries)
 {
 // THIS FUNCTION HAS SIDE EFFECTS, INTERACTING DIRECTLY WITH THE ACCOUNT OBJECT
 	// this function needs to preserve:
 	//    1. The number of credits paid in salaries
 	//    2. Whether the salaries were paid in full
-	Bill receipt;
+	Receipt receipt;
 
 	crewSalariesOwed += salaries;
 	int64_t salariesPaid = crewSalariesOwed;
@@ -299,13 +299,13 @@ Bill Account::PayCrewSalaries(int64_t salaries)
 
 
 
-Bill Account::PayShipMaintenance(int64_t maintenance)
+Receipt Account::PayShipMaintenance(int64_t maintenance)
 {
 // THIS FUNCTION HAS SIDE EFFECTS, INTERACTING DIRECTLY WITH THE ACCOUNT OBJECT
 	// this function needs to preserve:
 	//    1. The number of credits paid in maintenance
 	//    2. Whether the maintenance was paid in full
-	Bill receipt;
+	Receipt receipt;
 
 	maintenanceDue += maintenance;
 	int64_t maintenancePaid = maintenanceDue;
@@ -333,12 +333,12 @@ Bill Account::PayShipMaintenance(int64_t maintenance)
 
 
 
-Bill Account::PayMortgages() {
+Receipt Account::PayMortgages() {
 // THIS FUNCTION HAS SIDE EFFECTS, INTERACTING DIRECTLY WITH THE ACCOUNT OBJECT
 	// this function needs to preserve:
 	//    1. The number of credits paid towards ALL mortgages
 	//    2. Whether ANY mortgage was not paid in full
-	Bill mortReciept;
+	Receipt receipt;
 
 	for(Mortgage &mortgage : mortgages)
 	{
@@ -347,27 +347,27 @@ Bill Account::PayMortgages() {
 		if(payment > credits)
 		{
 			mortgage.MissPayment();
-			mortReciept.paidInFull = false;
+			receipt.paidInFull = false;
 		}
 		else
 		{
 			payment = mortgage.MakePayment();
 			credits -= payment;
-			mortReciept.creditsPaid += payment;
+			receipt.creditsPaid += payment;
 		}
 	}
 
-	return mortReciept;
+	return receipt;
 }
 
 
 
-Bill Account::PayFines() {
+Receipt Account::PayFines() {
 // THIS FUNCTION HAS SIDE EFFECTS, INTERACTING DIRECTLY WITH THE ACCOUNT OBJECT
 	// this function needs to preserve:
 	//    1. The number of credits paid towards ALL fines
 	//    2. Whether ANY fine was not paid in full
-	Bill fineReceipt;
+	Receipt receipt;
 
 	for(Mortgage &mortgage : mortgages)
 	{
@@ -376,17 +376,17 @@ Bill Account::PayFines() {
 		if(payment > credits)
 		{
 			mortgage.MissPayment();
-			fineReceipt.paidInFull = false;
+			receipt.paidInFull = false;
 		}
 		else
 		{
 			payment = mortgage.MakePayment();
 			credits -= payment;
-			fineReceipt.creditsPaid += payment;
+			receipt.creditsPaid += payment;
 		}
 	}
 
-	return fineReceipt;
+	return receipt;
 }
 
 
@@ -404,14 +404,14 @@ void Account::UpdateMortgages()
 
 
 
-void Account::UpdateCreditScore(std::vector<Bill> bills) {
+void Account::UpdateCreditScore(std::vector<Receipt> receipts) {
 	// If you failed to pay any debt, your credit score drops. Otherwise, even
 	// if you have no debts, it increases. (Because, having no debts at all
 	// makes you at least as credit-worthy as someone who pays debts on time.)
 	bool missedPayment = false;
-	for(Bill bill : bills)
+	for(Receipt receipt : receipts)
 	{
-		if(!bill.paidInFull)
+		if(!receipt.paidInFull)
 		{
 			missedPayment = true;
 			break;

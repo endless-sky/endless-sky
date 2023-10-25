@@ -27,7 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class DataNode;
 class DataWriter;
 
-struct Bill {
+struct Receipt {
 	bool paidInFull = true;
 	int64_t creditsPaid = 0;
 };
@@ -49,15 +49,15 @@ public:
 	// Step forward one day, and return a string summarizing payments made.
 	std::string Step(int64_t assets, int64_t salaries, int64_t maintenance);
 	// Utility functions for Step
-	std::vector<Bill> PayBills(int64_t salaries, int64_t maintenance);
-	Bill PayCrewSalaries(int64_t salaries);
-	Bill PayShipMaintenance(int64_t maintenance);
-	Bill PayMortgages();
-	Bill PayFines();
+	std::vector<Receipt> PayBills(int64_t salaries, int64_t maintenance);
+	Receipt PayCrewSalaries(int64_t salaries);
+	Receipt PayShipMaintenance(int64_t maintenance);
+	Receipt PayMortgages();
+	Receipt PayFines();
 	void UpdateMortgages();
 	void UpdateHistory(int64_t assets);
 	int64_t CalculateNetWorth(int64_t assets) const;
-	void UpdateCreditScore(std::vector<Bill> bills);
+	void UpdateCreditScore(std::vector<Receipt> bills);
 
 	// Structural income.
 	const std::map<std::string, int64_t> &SalariesIncome() const;
