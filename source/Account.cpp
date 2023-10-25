@@ -174,7 +174,7 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 	Bill finesPaid;
 	if(Mortgages().size() > 0)
 	{
-		tie(mortgagesPaid, finesPaid) = PayMortgages(&mortgages);
+		tie(mortgagesPaid, finesPaid) = PayAllMortgages(&mortgages);
 		// print output
 		if(!mortgagesPaid.paidInFull || !finesPaid.paidInFull)
 		{
@@ -254,7 +254,7 @@ std::vector<Bill> Account::PayBills(int64_t salaries, int64_t maintenance) {
 	Bill finesPaid;
 	if(Mortgages().size() > 0)
 	{
-		tie(mortgagesPaid, finesPaid) = PayMortgages(&mortgages);
+		tie(mortgagesPaid, finesPaid) = PayAllMortgages(&mortgages);
 
 		// If any mortgage has been fully paid off, remove it from the list.
 		UpdateMortgages();
@@ -333,7 +333,41 @@ Bill Account::PayShipMaintenance(int64_t maintenance)
 
 
 
-tuple<Bill,Bill> Account::PayMortgages(std::vector<Mortgage> *mortgages)
+Bill Account::PayMortgages() {
+// THIS FUNCTION HAS SIDE EFFECTS, INTERACTING DIRECTLY WITH THE ACCOUNT OBJECT
+	// this function needs to preserve:
+	//    1. The number of credits paid towards ALL mortgages
+	//    2. Whether ANY mortgage was not paid in full
+	Bill mortReciept;
+
+	for(Mortgage &mortgage : mortgages)
+	{
+		int64_t payment = mortgage.Payment();
+		if(payment > credits)
+		{
+			mortgage.MissPayment();
+			mortReciept.paidInFull = false;
+		}
+		else
+		{
+			payment = mortgage.MakePayment();
+			credits -= payment;
+			mortReciept.creditsPaid += payment;
+		}
+	}
+
+	return mortReciept;
+}
+
+
+
+Bill PayFines(std::vector<Mortgage> *mortgages) {
+	Bill fineReceipt;
+}
+
+
+
+tuple<Bill,Bill> Account::PayAllMortgages(std::vector<Mortgage> *mortgages)
 {
 	Bill mortReciept;
 	Bill fineReceipt;
