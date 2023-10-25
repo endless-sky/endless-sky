@@ -54,6 +54,7 @@ public:
 	Receipt PayShipMaintenance(int64_t maintenance);
 	Receipt PayMortgages();
 	Receipt PayFines();
+	const std::string GenerateMissedPaymentLogs(std::vector<Receipt> *receipts) const;
 	void UpdateMortgages();
 	void UpdateHistory(int64_t assets);
 	int64_t CalculateNetWorth(int64_t assets) const;

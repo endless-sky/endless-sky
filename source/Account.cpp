@@ -380,6 +380,32 @@ Receipt Account::PayFines() {
 
 
 
+const string Account::GenerateMissedPaymentLogs(std::vector<Receipt> *receipts) const {
+	ostringstream log;
+
+	if(!receipts->at(0).paidInFull)
+	{
+		log << "You could not pay all your crew salaries.";
+	}
+
+	if(!receipts->at(0).paidInFull)
+	{
+		log << "You could not pay all your maintenance costs.";
+	}
+
+	if(Mortgages().size() > 0)
+	{
+		if(!receipts->at(0).paidInFull || !receipts->at(0).paidInFull)
+		{
+			log << "You missed a mortgage payment.";
+		}
+	}
+
+	return log.str();
+}
+
+
+
 void Account::UpdateMortgages()
 {
 	for(auto it = mortgages.begin(); it != mortgages.end(); )
