@@ -156,24 +156,7 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 
 	// Step 1: Pay the bills
 	std::vector<Receipt> receipts = PayBills(salaries, maintenance);
-
-	if(!receipts[0].paidInFull)
-	{
-		out << "You could not pay all your crew salaries.";
-	}
-
-	if(!receipts[1].paidInFull)
-	{
-		out << "You could not pay all your maintenance costs.";
-	}
-
-	if(Mortgages().size() > 0)
-	{
-		if(!receipts[2].paidInFull || !receipts[3].paidInFull)
-		{
-			out << "You missed a mortgage payment.";
-		}
-	}
+	out << GenerateMissedPaymentLogs(&receipts);
 
 	// If any mortgage has been fully paid off, remove it from the list.
 	UpdateMortgages();
