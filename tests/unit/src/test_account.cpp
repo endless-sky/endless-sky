@@ -184,17 +184,51 @@ SCENARIO( "Paying Mortgages", "[Account][PayMortgages]" ) {
 		int64_t expectedPayment = account.Mortgages().at(0).Payment();
 		WHEN( "A payment is made by an account that has enough credits" ) {
 			Bill bill = account.PayMortgages();
-			REQUIRE(bill.creditsPaid == expectedPayment);
-			REQUIRE(bill.paidInFull == true);
-			REQUIRE(account.Credits() == (principal - expectedPayment));
+			THEN("The mortgage payment is made successfully") {
+				REQUIRE(bill.creditsPaid == expectedPayment);
+				REQUIRE(bill.paidInFull == true);
+				REQUIRE(account.Credits() == (principal - expectedPayment));
+			}
 		}
 
 		WHEN( "A payment is made by an account that does NOT enough credits" ) {
 			account.AddCredits(0-account.Credits()+5);
 			Bill bill = account.PayMortgages();
-			REQUIRE(bill.creditsPaid == 0);
-			REQUIRE(bill.paidInFull == false);
-			REQUIRE(account.Credits() == 5);
+			THEN("The mortgage payment is made successfully") {
+				REQUIRE(bill.creditsPaid == 0);
+				REQUIRE(bill.paidInFull == false);
+				REQUIRE(account.Credits() == 5);
+			}
+		}
+	}
+}
+
+
+
+SCENARIO( "Paying Fines", "[Account][PayFines]" ) {
+	GIVEN( "An account with a fine" ) {
+		Account account;
+		int64_t principal = 1000;
+		account.AddCredits(principal);
+		account.AddFine(principal);
+		int64_t expectedPayment = account.Mortgages().at(0).Payment();
+		WHEN( "A payment is made by an account that has enough credits" ) {
+			Bill bill = account.PayFines();
+			THEN("The fine payment is made successfully") {
+				REQUIRE(bill.creditsPaid == expectedPayment);
+				REQUIRE(bill.paidInFull == true);
+				REQUIRE(account.Credits() == (principal - expectedPayment));
+			}
+		}
+
+		WHEN( "A payment is made by an account that does NOT enough credits" ) {
+			account.AddCredits(-995);
+			Bill bill = account.PayFines();
+			THEN("The fine payment is made successfully") {
+				REQUIRE(bill.creditsPaid == 0);
+				REQUIRE(bill.paidInFull == false);
+				REQUIRE(account.Credits() == 5);
+			}
 		}
 	}
 }
