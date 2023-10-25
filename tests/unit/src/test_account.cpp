@@ -176,17 +176,28 @@ SCENARIO( "Working with mortgages on an account", "[Account][mortgages]" ) {
 
 
 
+SCENARIO( "Paying Mortgages", "[Account][PayMortgages]" ) {
+	GIVEN( "An account with a mortgage" ) {
+		Account account;
+		int64_t principal = 20000;
+		account.AddMortgage(principal);
+		int64_t expectedPayment = account.Mortgages().at(0).Payment();
+		WHEN( "A payment is made by an account that has enough credits" ) {
+			Bill bill = account.PayMortgages();
+			REQUIRE(bill.creditsPaid == expectedPayment);
+			REQUIRE(bill.paidInFull == true);
+			REQUIRE(account.Credits() == (principal - expectedPayment));
+		}
 
-// SCENARIO( "Paying Mortgages", "[Account][PayMortgages]" ) {
-//	GIVEN( "An account with a mortgage and a fine" ) {
-//		Account account;
-//		account.AddMortgage(20000);
-//		account.AddFine(1000);
-//		WHEN( "" ) {
-//
-//		}
-//	}
-// }
+		WHEN( "A payment is made by an account that does NOT enough credits" ) {
+			account.AddCredits(0-account.Credits()+5);
+			Bill bill = account.PayMortgages();
+			REQUIRE(bill.creditsPaid == 0);
+			REQUIRE(bill.paidInFull == false);
+			REQUIRE(account.Credits() == 5);
+		}
+	}
+}
 
 
 
