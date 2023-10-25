@@ -877,9 +877,31 @@ void PreferencesPanel::DrawPlugins()
 			}
 
 			string text;
+			if(!plugin.version.empty())
+			{
+				text += "Version: " + plugin.version + '\n';
+			}
+			if(!plugin.authors.empty())
+			{
+				text += "Authors: ";
+				for(const string &author : plugin.authors)
+					text += author + ',';
+				text.pop_back();
+				text += '\n';
+			}
+			if(!plugin.tags.empty())
+			{
+				text += "Tags: ";
+				for(const string &tag : plugin.tags)
+					text += tag + ',';
+				text.pop_back();
+				text += '\n';
+			}
 			if(!plugin.dependencies.IsEmpty())
 			{
 				text += "Dependencies:\n";
+				if(!plugin.dependencies.gameVersion.empty())
+					text += "  Game Version: " + plugin.dependencies.gameVersion + '\n';
 				if(!plugin.dependencies.required.empty())
 				{
 					text += "  Requires:\n";
