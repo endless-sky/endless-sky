@@ -164,11 +164,8 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 	UpdateCreditScore(&receipts);
 
 	// If you didn't make any payments, no need to continue further.
-	// These should sum to 0, becoming true when inverted
-	if(!(receipts[0].creditsPaid + receipts[1].creditsPaid + receipts[2].creditsPaid + receipts[3].creditsPaid))
+	if(!AnyPaymentsMade(&receipts))
 		return out.str();
-	else if(!receipts[0].paidInFull || !receipts[1].paidInFull || !receipts[2].paidInFull || !receipts[3].paidInFull)
-		out << " ";
 
 	out << "You paid ";
 
