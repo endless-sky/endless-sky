@@ -402,6 +402,15 @@ void Account::UpdateMortgages()
 
 
 
+void Account::UpdateHistory(int64_t assets)
+{
+	history.push_back(CalculateNetWorth(assets));
+	if(history.size() > HISTORY)
+		history.erase(history.begin());
+}
+
+
+
 void Account::UpdateCreditScore(std::vector<Receipt> *receipts) {
 	// If you failed to pay any debt, your credit score drops. Otherwise, even
 	// if you have no debts, it increases. (Because, having no debts at all
@@ -420,11 +429,12 @@ void Account::UpdateCreditScore(std::vector<Receipt> *receipts) {
 
 
 
-void Account::UpdateHistory(int64_t assets)
-{
-	history.push_back(CalculateNetWorth(assets));
-	if(history.size() > HISTORY)
-		history.erase(history.begin());
+bool Account::AnyPaymentsMade(std::vector<Receipt> *receipts) {
+	for (Receipt receipt : *receipts) {
+		if(receipt.creditsPaid > 0)
+			return true;
+	}
+	return false;
 }
 
 
