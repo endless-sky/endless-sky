@@ -368,19 +368,19 @@ const string Account::GenerateMissedPaymentLogs(std::vector<Receipt> *receipts) 
 
 	if(!receipts->at(0).paidInFull)
 	{
-		log << "You could not pay all your crew salaries.";
+		log << "You could not pay all your crew salaries. ";
 	}
 
 	if(!receipts->at(1).paidInFull)
 	{
-		log << "You could not pay all your maintenance costs.";
+		log << "You could not pay all your maintenance costs. ";
 	}
 
 	if(Mortgages().size() > 0)
 	{
 		if(!receipts->at(2).paidInFull || !receipts->at(3).paidInFull)
 		{
-			log << "You missed a mortgage payment.";
+			log << "You missed a mortgage payment. ";
 		}
 	}
 

@@ -245,8 +245,8 @@ SCENARIO( "Generating missed payment logs", "[Account][GenerateMissedPaymentLogs
 			receipts.at(0).paidInFull = false;
 			receipts.at(1).paidInFull = false;
 			ostringstream expectedLog;
-			expectedLog << "You could not pay all your crew salaries.";
-			expectedLog << "You could not pay all your maintenance costs.";
+			expectedLog << "You could not pay all your crew salaries. ";
+			expectedLog << "You could not pay all your maintenance costs. ";
 
 			string logs = account.GenerateMissedPaymentLogs(&receipts);
 			THEN( "The log contains data" ) {
@@ -257,7 +257,7 @@ SCENARIO( "Generating missed payment logs", "[Account][GenerateMissedPaymentLogs
 				account.AddFine(10);
 				receipts.at(2).paidInFull = false;
 				receipts.at(3).paidInFull = false;
-				expectedLog << "You missed a mortgage payment.";
+				expectedLog << "You missed a mortgage payment. ";
 
 				string logs = account.GenerateMissedPaymentLogs(&receipts);
 				THEN( "The log contains even more data" ) {
