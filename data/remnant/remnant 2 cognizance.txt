@@ -25,7 +25,6 @@ mission "Remnant: Cognizance 1"
 		has "Remnant: Learn Sign Follow Up: declined"
 		random < 50
 	on offer
-		fail "Drak guarding void sprites"
 		conversation
 			`A familiar face is waiting for you as you step into the crowded spaceport on Aventine. "Captain <first>!" signs Plume. "I have been hoping you would stop by." He gestures for you to sit down on the bench next to him.`
 			`	"Now that most of the cocoons have been returned, I would like you to return to Nasqueron and Slylandro to observe the void sprites' behavior. It is my hope that we can gain far greater insight into their life cycle."`
