@@ -169,15 +169,7 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 
 	out << "You paid ";
 
-	map<string, int64_t> typesPaid;
-	if(receipts[0].creditsPaid > 0)
-		typesPaid["crew salaries"] = receipts[0].creditsPaid;
-	if(receipts[1].creditsPaid > 0)
-		typesPaid["maintenance"] = receipts[1].creditsPaid;
-	if(receipts[2].creditsPaid > 0)
-		typesPaid["mortgages"] = receipts[2].creditsPaid;
-	if(receipts[3].creditsPaid > 0)
-		typesPaid["fines"] = receipts[3].creditsPaid;
+	map<string, int64_t> typesPaid = GetTypesPaid(&receipts);
 
 	// If you made payments of three or more types, the punctuation needs to
 	// include commas, so just handle that separately here.
