@@ -167,36 +167,7 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 	if(!AnyPaymentsMade(&receipts))
 		return out.str();
 
-	out << "You paid ";
-
-	map<string, int64_t> typesPaid = GetTypesPaid(&receipts);
-
-	// If you made payments of three or more types, the punctuation needs to
-	// include commas, so just handle that separately here.
-	if(typesPaid.size() >= 3)
-	{
-		auto it = typesPaid.begin();
-		for(unsigned int i = 0; i < typesPaid.size() - 1; ++i)
-		{
-			out << Format::CreditString(it->second) << " in " << it->first << ", ";
-			++it;
-		}
-		out << "and " << Format::CreditString(it->second) << " in " << it->first + ".";
-	}
-	else
-	{
-		if(receipts[0].creditsPaid > 0)
-			out << Format::CreditString(receipts[0].creditsPaid) << " in crew salaries"
-				<< ((receipts[2].creditsPaid || receipts[3].creditsPaid || receipts[1].creditsPaid > 0) ? " and " : ".");
-		if(receipts[1].creditsPaid > 0)
-			out << Format::CreditString(receipts[1].creditsPaid) << "  in maintenance"
-				<< ((receipts[2].creditsPaid || receipts[3].creditsPaid) ? " and " : ".");
-		if(receipts[2].creditsPaid)
-			out << Format::CreditString(receipts[2].creditsPaid) << " in mortgages"
-				<< (receipts[3].creditsPaid ? " and " : ".");
-		if(receipts[3].creditsPaid)
-			out << Format::CreditString(receipts[3].creditsPaid) << " in fines.";
-	}
+	out << GeneratePaymentLogs(&receipts);
 	return out.str();
 }
 
@@ -428,23 +399,6 @@ bool Account::AnyPaymentsMade(std::vector<Receipt> *receipts) {
 
 
 
-map<string, int64_t> Account::GetTypesPaid(std::vector<Receipt> *receipts) {
-	map<string, int64_t> typesPaid;
-
-	if(receipts->at(0).creditsPaid > 0)
-		typesPaid["crew salaries"] = receipts->at(0).creditsPaid;
-	if(receipts->at(1).creditsPaid > 0)
-		typesPaid["maintenance"] = receipts->at(1).creditsPaid;
-	if(receipts->at(2).creditsPaid > 0)
-		typesPaid["mortgages"] = receipts->at(2).creditsPaid;
-	if(receipts->at(3).creditsPaid > 0)
-		typesPaid["fines"] = receipts->at(3).creditsPaid;
-
-	return typesPaid;
-}
-
-
-
 string Account::GeneratePaymentLogs(std::vector<Receipt> *receipts) {
 	ostringstream log;
 	log << "You paid ";
@@ -478,6 +432,23 @@ string Account::GeneratePaymentLogs(std::vector<Receipt> *receipts) {
 	}
 
 	return log.str();
+}
+
+
+
+map<string, int64_t> Account::GetTypesPaid(std::vector<Receipt> *receipts) {
+	map<string, int64_t> typesPaid;
+
+	if(receipts->at(0).creditsPaid > 0)
+		typesPaid["crew salaries"] = receipts->at(0).creditsPaid;
+	if(receipts->at(1).creditsPaid > 0)
+		typesPaid["maintenance"] = receipts->at(1).creditsPaid;
+	if(receipts->at(2).creditsPaid > 0)
+		typesPaid["mortgages"] = receipts->at(2).creditsPaid;
+	if(receipts->at(3).creditsPaid > 0)
+		typesPaid["fines"] = receipts->at(3).creditsPaid;
+
+	return typesPaid;
 }
 
 
