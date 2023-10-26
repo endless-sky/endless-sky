@@ -41,7 +41,7 @@ mission "Hai Reveal Exploration Period: Concerned Hai"
 			`	He takes a deep breath to steady himself before responding. "Unfortunately, yes. Fortunately for me, he was one of those captains who forget that walking up and down the length of your ship doesn't really qualify as regular exercise.`
 			label "shop sign"
 			`	"It's all a very unfortunate situation at the moment. With the increased appearance of humans in our space, and the uncertainty over what's going on, some merchants aren't plying the trade they usually do back and forth. The supplies of a few select things that are imported from the Republic have not been appearing quite as often, and so some Hai have taken to stockpiling certain commodities in case the supply shuts off entirely." He looks pointedly at the snus packs. "Tobacco is one of those commodities. Regulations prevent it from being grown on any Hai worlds. So, unless someone goes to the effort of setting up a greenhouse in space, that's entirely imported."`
-			`	He shrugs. "Personally, I think it's a gross habit, but it's far from being the only addictive substance around. It gives Hai a slightly improved intuition for maths by the way, not quite the same effect as on humans. Which is why it's popular with merchants, but that captain has had some bad luck, and they'd been sold out at his last three stops."`
+			`	He shrugs. "Personally, I think it's a gross habit, but it's far from being the only addictive substance around. It gives Hai a slightly improved intuition for math by the way, not quite the same effect as on humans. Which is why it's popular with merchants, but that captain has had some bad luck, and they'd been sold out at his last three stops."`
 			choice
 				`	"Sounds like the supply is short."`
 				`	"Sounds like a recipe for danger. Are you okay?"`
@@ -165,7 +165,7 @@ mission "Hai Reveal Exploration Period: Local Human Merchants Speak Up"
 					defer
 			branch "roll the dice"
 				random < 50
-			`	They notice you but just wave you off and board their ship. Clearly not in the mood for chatting this time.`
+			`	They notice you but just wave you off and board their ship. They're clearly not in the mood for chatting this time.`
 				defer
 			
 			label "roll the dice"
@@ -193,7 +193,7 @@ mission "Hai Reveal Exploration Period: Local Human Merchants Speak Up"
 				decline
 			
 			label "not new 1"
-			`	"Ahah, you'll know what I'm talking about then, Captain." He glances back at his crewman. "All these new folks in their clunkers from Lionheart and whatnot. Filling up the space lanes and splitting the already meager profits."`
+			`	"Ah-ha, you'll know what I'm talking about then, Captain." He glances back at his crewman. "All these new folks in their clunkers from Lionheart and whatnot. Filling up the space lanes and splitting the already meager profits."`
 			choice
 				`	"I suppose..."`
 					goto "no callout"
@@ -285,7 +285,7 @@ mission "Hai Reveal Exploration Period: Local Human Merchants Speak Up"
 			`	She leans in uncomfortably close to you. "You can take them anywhere," she breathes, barely audible but with distinct emphasis on 'anywhere'.`
 				goto "slip"
 			label "on about"
-			`	"Ahah, wouldn't you like to know? But you'll have to take one to find out!"`
+			`	"Aha, wouldn't you like to know? But you'll have to take one to find out!"`
 			label slip
 			`	She immediately slips away, and you have a sudden compulsion to check all of your pockets for your belongings.`
 				goto "gone"
@@ -453,7 +453,7 @@ mission "Hai Reveal Concern Period: Humans Going Home"
 				`	"Sorry, I'm not going that way."`
 					goto "not ever"
 			`	As it turns out, it is almost impossible to miss these humans, as their camp is located directly in the crossroads of the spaceport's major thoroughfares. Judging by their expensive clothing and somewhat impatient attitude they are people of means, which makes this even more odd.`
-			`	As soon as it becomes apparent that you're approaching them, one comes forward to greet you. "Ah, I trust you are here because you've been encouraged to help us. I am Brin." You introduce yourself in response, and they continue, "We have run an import services business here for some time, but with the recent events suspicion of human captains has arisen. Some Hai seem to believe any human captain is potentially someone who will abduct them." They say with a chuckle. "As you can imagine, we've been here a long time, so when we were asked to vet a few arrivals first we were happy enough to do so. It's gotten out of hand, though. The other day we even had the Portmaster insisting that we vet every human captain to arrive, but we don't have time for that, and we don't have access to any services that would really let us do that reliably. So we had to put our foot down and refuse.`
+			`	As soon as it becomes apparent that you're approaching them, one comes forward to greet you. "Ah, I trust you are here because you've been encouraged to help us. I am Brin." You introduce yourself in response, and they continue. "We have run an import services business here for some time, but with the recent events suspicion of human captains has arisen. Some Hai seem to believe any human captain is potentially someone who will abduct them," they say with a chuckle. "As you can imagine, we've been here a long time, so when we were asked to vet a few arrivals first we were happy enough to do so. It's gotten out of hand, though. The other day we even had the Portmaster insisting that we vet every human captain to arrive, but we don't have time for that, and we don't have access to any services that would really let us do that reliably. So we had to put our foot down and refuse.`
 			`	"Naturally, business immediately suffered, and we got enough flak for it that we decided it was time to shut up shop and go elsewhere until this all blows over. This offended someone and then several Hai captains refused to take us. Now, well, they've relented since we started camping out, but I can't honestly say we trust them either right now. We will be more than happy to give you a just compensation of <payment> to take us somewhere we won't be nearly the only humans in town."`
 			`	Another one steps forward, "We were hoping that the small amount of humans was a good business opportunity, which was true... until recently. Indeed, my colleagues and I will return to a location where we used to do business in the past, but you understand we cannot just ask any captain to take us, even if we are willing to make do without proper accommodations due to the relative urgency of the situation."`
 			choice
@@ -561,7 +561,7 @@ mission "Hai Reveal Concern Period: Raid on Allhome (away)"
 				`	(Keep walking.)`
 					goto walking
 			
-			`	As you approach the human, a relatively young-looking man, glances up at you. "Oh hello, just arrived did you? You didn't happen to see an Argosy out there on your way in?"`
+			`	As you approach the human, a relatively young-looking man, he glances up at you. "Oh hello, just arrived did you? You didn't happen to see an Argosy out there on your way in?"`
 			`	"Oh shush," says the Hai, "Your uncle will be here when he said he will, no need to bother random folks just going about their business."`
 			`	She looks at you with a wary eye, but then seems to relent. "Though I suppose you did come over here of your own volition, didn't you. Can we help you at all, Captain?"`
 			choice
@@ -654,7 +654,7 @@ mission "Hai Reveal Concern Period: Reactivating Sandsnap"
 					decline
 			`	There is a greeter, or perhaps a security guard, at the door who appraises you as you approach. "You must be here for the project," he says. "Identification please."`
 			`	After a quick check of your ID he gives you a very professional Hai smile. "Welcome to the Sandsnap Project. Your credentials are sufficient to apply so please, do come in. We hope you'll find the project interesting and the effort rewarding."`
-			`	As you enter a harried Hai gestures you over with enthusiasm. "Greetings," he checks his tablet. "Captain <last>! Your presence in these dire times is greatly appreciated, it has been at least a hundred years since we have had such a threat to our way of life! You must have noticed the spike in pirate activity. Perhaps our northern brethren have had a point all these years."`
+			`	As you enter a harried Hai gestures you over with enthusiasm. "Greetings," he checks his tablet. "Captain <last>! Your presence in these dire times is greatly appreciated - it has been at least a hundred years since we have had such a threat to our way of life! You must have noticed the spike in pirate activity. Perhaps our northern brethren have had a point all these years."`
 			`	He stops himself. "Not that our politics probably concern you. Let us cut to the matter at hand, shall we?"`
 			choice
 				`	(Nod.)`
