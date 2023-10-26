@@ -47,7 +47,7 @@ mission "Remnant: Cognizance 1"
 		government "Drak"
 		system "Nenia"
 		personality staying heroic disables uninterested
-		ship "Archon (Cloaked)" "Sleeping Dragon"
+		ship "Archon (Cloaked)" "Lifted Lorax"
 	npc
 		government "Korath"
 		system "Nenia"
