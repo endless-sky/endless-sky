@@ -714,7 +714,7 @@ mission "Remnant: Void Sprites 3"
 		government "Drak (Hostile)"
 		system "Nenia"
 		personality staying heroic nemesis frugal uninterested
-		ship "Archon (Cloaked)" "Sleeping Dragon"
+		ship "Archon (Cloaked)" "Lifted Lorax"
 	on stopover
 		conversation
 			`You have dodged the Archon and landed on the second of the two gas giants where the void sprites live. The hull of your tiny ship creaks and groans under the high atmospheric pressure, but seems to be holding together. Its sensors pick up flocks of void sprites floating between the planet's cloud layers, presumably feeding on airborne creatures too small to detect from this range.`
@@ -2012,7 +2012,7 @@ mission "Remnant: Return the Samples"
 		government "Drak (Hostile)"
 		system "Nenia"
 		personality staying heroic nemesis frugal uninterested
-		ship "Archon (Cloaked)" "Sleeping Dragon"
+		ship "Archon (Cloaked)" "Lifted Lorax"
 	on accept
 		log "People" "Plume" `A Remnant researcher specializing in xenobiology, Plume is at the forefront of recent efforts to restart research on the void sprites and a leading expert in non-carbon based lifeforms.`
 	on stopover
@@ -2054,7 +2054,7 @@ mission "Remnant: Return the Samples 2"
 		government "Drak"
 		system "Nenia"
 		personality staying heroic nemesis uninterested frugal
-		ship "Archon" "Sleeping Dragon"
+		ship "Archon" "Lifted Lorax"
 	on stopover
 		conversation
 			`As you approach Slylandro you watch the Archon like a hawk, but this time it doesn't attempt to drive you off with tridents of white energy. Cautiously you make your way to Slylandro and begin your descent.`
