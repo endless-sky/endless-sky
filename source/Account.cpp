@@ -134,9 +134,12 @@ void Account::AddCredits(int64_t value)
 // Pay down extra principal on a mortgage.
 void Account::PayExtra(int mortgage, int64_t amount)
 {
-	if(static_cast<unsigned>(mortgage) >= mortgages.size() || amount > credits
-			|| amount > mortgages[mortgage].Principal())
+	if(static_cast<unsigned>(mortgage) >= mortgages.size()
+		|| amount > credits
+		|| amount > mortgages[mortgage].Principal())
+	{
 		return;
+	}
 
 	mortgages[mortgage].PayExtra(amount);
 	credits -= amount;
