@@ -682,6 +682,7 @@ mission "Remnant: Void Sprites 3"
 	to offer
 		has "Remnant: Void Sprites 2: done"
 	on offer
+		fail "Drak guarding Void Sprites"
 		conversation
 			`The Remnant researcher seems disappointed that an outfit scan didn't reveal any information about the void sprites, but he is also excited about a new idea for studying them. "I found that we have several old mothballed ships suitable for exploring the upper atmosphere of a gas giant," he says. "Until I can publish my results I will not have the resources to compensate you, but I can provide you with one of our ships. Then you could land on the void sprite worlds and observe them in their natural habitat."`
 			choice
@@ -713,7 +714,7 @@ mission "Remnant: Void Sprites 3"
 		government "Drak (Hostile)"
 		system "Nenia"
 		personality staying heroic nemesis frugal uninterested
-		ship "Archon (Cloaked)" "Lifted Lorax"
+		ship "Archon (Cloaked)" "Sleeping Dragon"
 	on stopover
 		conversation
 			`You have dodged the Archon and landed on the second of the two gas giants where the void sprites live. The hull of your tiny ship creaks and groans under the high atmospheric pressure, but seems to be holding together. Its sensors pick up flocks of void sprites floating between the planet's cloud layers, presumably feeding on airborne creatures too small to detect from this range.`
@@ -1994,6 +1995,7 @@ mission "Remnant: Return the Samples"
 		has "Remnant: Technology Available: offered"
 		random < 50
 	on offer
+		fail "Drak guarding Void Sprites"
 		conversation
 			`As you are walking through the spaceport, the researcher you previously assisted with the studies on the void sprites approaches you in a hustle. "We have made some new discoveries!" he exclaims in a trill. "Some of the samples that we took all those years ago are actually eggs of some kind. So the Archon must view our previous research as being disruptive to the void sprites' lifecycles.`
 			`	"We have been storing these eggs in a cryogenic stasis tank, so they should still be viable and intact. Well, most of them, anyway." His notes trail off on a mournful tone.`
@@ -2010,7 +2012,7 @@ mission "Remnant: Return the Samples"
 		government "Drak (Hostile)"
 		system "Nenia"
 		personality staying heroic nemesis frugal uninterested
-		ship "Archon (Cloaked)" "Lifted Lorax"
+		ship "Archon (Cloaked)" "Sleeping Dragon"
 	on accept
 		log "People" "Plume" `A Remnant researcher specializing in xenobiology, Plume is at the forefront of recent efforts to restart research on the void sprites and a leading expert in non-carbon based lifeforms.`
 	on stopover
@@ -2035,6 +2037,7 @@ mission "Remnant: Return the Samples 2"
 	to offer
 		has "Remnant: Return the Samples: done"
 	on offer
+		fail "Drak guarding Void Sprites"
 		conversation
 			`Following Plume's directions, you find a lab tucked behind the main area of the spaceport, where a short walkway leads into an underground structure. Stepping inside the door you note a rack of camouflage netting positioned easily at hand. Given what you have learned of their history, it is probably a last-ditch preparation in case they need to hide the entrance from a raid.`
 			`	The lab itself is a microcosm of Remnant development. The structure appears to be some strange semi-organic material, and you can see an eclectic mix of familiar and unfamiliar shapes cluttering the tables. If you had to guess, you would say that this lab was the result of several different families of technology, only one of which was human.`
@@ -2051,10 +2054,15 @@ mission "Remnant: Return the Samples 2"
 		government "Drak"
 		system "Nenia"
 		personality staying heroic nemesis uninterested frugal
-		ship "Archon" "Lifted Lorax"
+		ship "Archon" "Sleeping Dragon"
 	on stopover
 		conversation
 			`As you approach Slylandro you watch the Archon like a hawk, but this time it doesn't attempt to drive you off with tridents of white energy. Cautiously you make your way to Slylandro and begin your descent.`
+				to display
+					"reputation: Drak" >= 0
+`			`As you approach Skylandro, you again dodge the Archon as it continues to try to drive you off with tridents of white energy. It must really not like you. Trying not to get hit, you make your way to Skylandro and begin your descent.`
+				to display
+					"reputation: Drak" < 0
 			`	As the <ship> sinks through the cloud layers, you notice the void sprites seem to be tailing you. A few drop past you with startling speed, only to reappear from below as you approach the designated altitude. At the last minute you remember Plume's request to record them, and hit the switch to activate the recorder for the exterior cameras.`
 			`	Setting the ship on autopilot, you head back and suit up in the bulky pressure suit once again. Readying the eggs in the cargo hold, you equalize pressure and open the bay doors. As before, the eggs are already floating as you open the cocoons and gently carry them to the door.`
 			`	Almost as soon as you release the first egg, a void sprite is there, brushing against the ship to scoop the egg away into the swirling mists. By the time you return with the next one, another sprite is already waiting at the door, undulating in the eerie light. By the time the last egg is released you can see dozens of the strange creatures swarming around the collection of eggs. It occurs to you that very few humans would ever have the chance to see anything like this.`
