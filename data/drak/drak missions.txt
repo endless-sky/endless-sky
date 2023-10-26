@@ -108,6 +108,7 @@ mission "Drak guarding Void Sprites"
 		not "Remnant: Void Sprites 3: active"
 		not "Remnant: Return the Samples: active"
 		not "Remnant: Return the Samples 2: active"
+		not "Remnant: Cognizance 1: active"
 	to complete
 		never
 	npc save
