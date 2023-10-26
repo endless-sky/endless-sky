@@ -445,6 +445,43 @@ map<string, int64_t> Account::GetTypesPaid(std::vector<Receipt> *receipts) {
 
 
 
+string Account::GeneratePaymentLogs(std::vector<Receipt> *receipts) {
+	ostringstream log;
+	log << "You paid ";
+	map<string, int64_t> typesPaid = Account::GetTypesPaid(receipts);
+
+	// If you made payments of three or more types, the punctuation needs to
+	// include commas, so just handle that separately here.
+	if(typesPaid.size() >= 3)
+	{
+		auto it = typesPaid.begin();
+		for(unsigned int i = 0; i < typesPaid.size() - 1; ++i)
+		{
+			log << Format::CreditString(it->second) << " in " << it->first << ", ";
+			++it;
+		}
+		log << "and " << Format::CreditString(it->second) << " in " << it->first + ".";
+	}
+	else
+	{
+		if(receipts->at(0).creditsPaid > 0)
+			log << Format::CreditString(receipts->at(0).creditsPaid) << " in crew salaries"
+				<< ((receipts->at(2).creditsPaid || receipts->at(3).creditsPaid || receipts->at(1).creditsPaid > 0) ? " and " : ".");
+		if(receipts->at(1).creditsPaid > 0)
+			log << Format::CreditString(receipts->at(1).creditsPaid) << " in maintenance"
+				<< ((receipts->at(2).creditsPaid || receipts->at(3).creditsPaid) ? " and " : ".");
+		if(receipts->at(2).creditsPaid)
+			log << Format::CreditString(receipts->at(2).creditsPaid) << " in mortgages"
+				<< (receipts->at(3).creditsPaid ? " and " : ".");
+		if(receipts->at(3).creditsPaid)
+			log << Format::CreditString(receipts->at(3).creditsPaid) << " in fines.";
+	}
+
+	return log.str();
+}
+
+
+
 int64_t Account::CalculateNetWorth(int64_t assets) const
 {
 	int64_t sumPrincipals = 0;
