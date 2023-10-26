@@ -34,6 +34,15 @@ namespace { // test namespace
 
 // #region unit tests
 // run this test first so we don't have to retest the assumption later
+
+TEST_CASE( "Set the number of credits in an account", "[Account][SetCredits]" ) {
+	Account account;
+	REQUIRE(account.Credits() == 0);
+
+	account.SetCredits(1000);
+	REQUIRE(account.Credits() == 1000);
+}
+
 TEST_CASE( "Add credits to an account", "[Account][AddCredits]" ) {
 	Account account;
 	REQUIRE(account.Credits() == 0);
@@ -43,6 +52,17 @@ TEST_CASE( "Add credits to an account", "[Account][AddCredits]" ) {
 
 	account.AddCredits(-1000);
 	REQUIRE(account.Credits() == 0);
+}
+
+TEST_CASE( "Subtract credits from an account", "[Account][AddCredits]" ) {
+	Account account;
+	account.SetCredits(1000);
+
+	account.SubtractCredits(1000);
+	REQUIRE(account.Credits() == 0);
+
+	account.SubtractCredits(-1000);
+	REQUIRE(account.Credits() == 1000);
 }
 
 TEST_CASE( "Remove paid-off mortgage from an account", "[Account][UpdateMortgages]" ) {
