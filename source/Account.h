@@ -60,6 +60,7 @@ public:
 	int64_t CalculateNetWorth(int64_t assets) const;
 	void UpdateCreditScore(std::vector<Receipt> *receipts);
 	static bool AnyPaymentsMade(std::vector<Receipt> *receipts);
+	static std::map<std::string, int64_t> GetTypesPaid(std::vector<Receipt> *receipts);
 
 	// Structural income.
 	const std::map<std::string, int64_t> &SalariesIncome() const;

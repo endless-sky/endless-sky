@@ -436,6 +436,23 @@ bool Account::AnyPaymentsMade(std::vector<Receipt> *receipts) {
 
 
 
+map<string, int64_t> Account::GetTypesPaid(std::vector<Receipt> *receipts) {
+	map<string, int64_t> typesPaid;
+
+	if(receipts->at(0).creditsPaid > 0)
+		typesPaid["crew salaries"] = receipts->at(0).creditsPaid;
+	if(receipts->at(1).creditsPaid > 0)
+		typesPaid["maintenance"] = receipts->at(1).creditsPaid;
+	if(receipts->at(2).creditsPaid > 0)
+		typesPaid["mortgages"] = receipts->at(2).creditsPaid;
+	if(receipts->at(3).creditsPaid > 0)
+		typesPaid["fines"] = receipts->at(3).creditsPaid;
+
+	return typesPaid;
+}
+
+
+
 int64_t Account::CalculateNetWorth(int64_t assets) const
 {
 	int64_t sumPrincipals = 0;
