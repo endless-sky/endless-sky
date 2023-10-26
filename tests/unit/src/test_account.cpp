@@ -476,6 +476,30 @@ SCENARIO( "Test GetTypesPaid", "[Account][GetTypesPaid]" ) {
 	}
 }
 
+SCENARIO( "Generating payment logs", "[Account][GeneratePaymentLogs]" ) {
+	Receipt salariesPaid, maintencancePaid, mortgagesPaid, finesPaid;
+	std::vector<Receipt> receipts = {salariesPaid, maintencancePaid, mortgagesPaid, finesPaid};
+
+	GIVEN("A list of receipts") {
+		WHEN("All receipts are fully paid") {
+			receipts.at(0).creditsPaid = 100;
+			receipts.at(1).creditsPaid = 100;
+			receipts.at(2).creditsPaid = 100;
+			receipts.at(3).creditsPaid = 100;
+			ostringstream expectedLog;
+			expectedLog << "You paid ";
+			string logs = Account::GeneratePaymentLogs(&receipts);
+			THEN( "The log includes every option" ) {
+				expectedLog << "100 credits in crew salaries, ";
+				expectedLog << "100 credits in fines, ";
+				expectedLog << "100 credits in maintenance, ";
+				expectedLog << "and 100 credits in mortgages.";
+				REQUIRE(logs.compare(expectedLog.str()) == 0);
+			}
+		}
+	}
+}
+
 // #endregion unit tests
 
 
