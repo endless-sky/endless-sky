@@ -420,6 +420,62 @@ SCENARIO("Check if any bills were paid", "[Account][AnyPaymentsMade]") {
 	}
 }
 
+SCENARIO( "Test GetTypesPaid", "[Account][GetTypesPaid]" ) {
+	GIVEN("A list of reciepts") {
+		Receipt salariesPaid, maintencancePaid, mortgagesPaid, finesPaid;
+		std::vector<Receipt> receipts = {salariesPaid, maintencancePaid, mortgagesPaid, finesPaid};
+		WHEN("No bill had a payment made") {
+			map<string, int64_t> typesPaid = Account::GetTypesPaid(&receipts);
+			THEN( "Return an empty map" ) {
+				REQUIRE(typesPaid.empty());
+			}
+		}
+
+		WHEN("A salary payment was made") {
+			receipts.at(0).creditsPaid = 100;
+			map<string, int64_t> typesPaid = Account::GetTypesPaid(&receipts);
+			THEN( "Return a map with salaries data" ) {
+				REQUIRE(typesPaid["crew salaries"] == 100);
+			}
+		}
+
+		WHEN("A maintenance payment was made") {
+			receipts.at(1).creditsPaid = 100;
+			map<string, int64_t> typesPaid = Account::GetTypesPaid(&receipts);
+			THEN( "Return a map with maintenance data" ) {
+				REQUIRE(typesPaid["maintenance"] == 100);
+			}
+		}
+
+		WHEN("A mortgage payment was made") {
+			receipts.at(2).creditsPaid = 100;
+			map<string, int64_t> typesPaid = Account::GetTypesPaid(&receipts);
+			THEN( "Return a map with mortgage data" ) {
+				REQUIRE(typesPaid["mortgages"] == 100);
+			}
+		}
+
+		WHEN("A fine payment was made") {
+			receipts.at(3).creditsPaid = 100;
+			map<string, int64_t> typesPaid = Account::GetTypesPaid(&receipts);
+			THEN( "Return a map with fine data" ) {
+				REQUIRE(typesPaid["fines"] == 100);
+			}
+		}
+
+		WHEN("A payment of every type was made") {
+			receipts.at(0).creditsPaid = 100;
+			receipts.at(1).creditsPaid = 100;
+			receipts.at(2).creditsPaid = 100;
+			receipts.at(3).creditsPaid = 100;
+			map<string, int64_t> typesPaid = Account::GetTypesPaid(&receipts);
+			THEN( "Return a map with all data types" ) {
+				REQUIRE(typesPaid.size() == 4);
+			}
+		}
+	}
+}
+
 // #endregion unit tests
 
 
