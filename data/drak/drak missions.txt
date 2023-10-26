@@ -115,7 +115,7 @@ mission "Drak guarding Void Sprites"
 		government Drak
 		personality heroic vindictive staying frugal
 		system Nenia
-		ship "Archon (Cloaked)" "Sleeping Dragon"
+		ship "Archon (Cloaked)" "Lifted Lorax"
 
 # Mission for those who had a savefile prior to 0.9.15 with the old Archon missions
 mission "Archon Personality Compatibility Patch"
