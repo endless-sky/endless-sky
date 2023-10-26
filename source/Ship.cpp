@@ -90,6 +90,9 @@ namespace {
 	// Formula for the scan outfit or cargo factor is:
 	// factor = pow(sqrt(scanEfficiency) * framesToFullScan / SCAN_TIME, 1.5) / referenceSize
 
+	// Total number of frames the damaged overlay is show, if any.
+	constexpr int TOTAL_DAMAGE_FRAMES = 40;
+
 	// Helper function to transfer energy to a given stat if it is less than the
 	// given maximum value.
 	void DoRepair(double &stat, double &available, double maximum)
@@ -311,6 +314,8 @@ void Ship::Load(const DataNode &node)
 					engine.zoom = grand.Value(1);
 				else if(grandKey == "angle" && grand.Size() >= 2)
 					engine.facing += Angle(grand.Value(1));
+				else if(grandKey == "gimbal" && grand.Size() >= 2)
+					engine.gimbal += Angle(grand.Value(1));
 				else
 				{
 					for(unsigned j = 1; j < ENGINE_SIDE.size(); ++j)
@@ -780,7 +785,7 @@ void Ship::FinishLoading(bool isNewInstance)
 	// If this ship is being instantiated for the first time, make sure its
 	// crew, fuel, etc. are all refilled.
 	if(isNewInstance)
-		Recharge(true);
+		Recharge();
 
 	// Ensure that all defined bays are of a valid category. Remove and warn about any
 	// invalid bays. Add a default "launch effect" to any remaining internal bays if
@@ -988,6 +993,7 @@ void Ship::Save(DataWriter &out) const
 			out.BeginChild();
 			out.Write("zoom", point.zoom);
 			out.Write("angle", point.facing.Degrees());
+			out.Write("gimbal", point.gimbal.Degrees());
 			out.Write(ENGINE_SIDE[point.side]);
 			out.EndChild();
 
@@ -998,6 +1004,7 @@ void Ship::Save(DataWriter &out) const
 			out.BeginChild();
 			out.Write("zoom", point.zoom);
 			out.Write("angle", point.facing.Degrees() - 180.);
+			out.Write("gimbal", point.gimbal.Degrees());
 			out.Write(ENGINE_SIDE[point.side]);
 			out.EndChild();
 		}
@@ -1007,6 +1014,7 @@ void Ship::Save(DataWriter &out) const
 			out.BeginChild();
 			out.Write("zoom", point.zoom);
 			out.Write("angle", point.facing.Degrees());
+			out.Write("gimbal", point.gimbal.Degrees());
 			out.Write(ENGINE_SIDE[point.side]);
 			out.Write(STEERING_FACING[point.steering]);
 			out.EndChild();
@@ -1609,6 +1617,10 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	// Show afterburner flares unless the ship is being destroyed.
 	if(!isBeingDestroyed)
 		DoEngineVisuals(visuals, isUsingAfterburner);
+
+	// Start fading the damage overlay.
+	if(damageOverlayTimer)
+		--damageOverlayTimer;
 }
 
 
@@ -2266,7 +2278,7 @@ void Ship::Restore()
 	explosionCount = 0;
 	explosionRate = 0;
 	UnmarkForRemoval();
-	Recharge(true);
+	Recharge();
 }
 
 
@@ -2288,23 +2300,23 @@ bool Ship::IsDestroyed() const
 
 
 // Recharge and repair this ship (e.g. because it has landed).
-void Ship::Recharge(bool atSpaceport)
+void Ship::Recharge(int rechargeType, bool hireCrew)
 {
 	if(IsDestroyed())
 		return;
 
-	if(atSpaceport)
+	if(hireCrew)
 		crew = min<int>(max(crew, RequiredCrew()), attributes.Get("bunks"));
 	pilotError = 0;
 	pilotOkay = 0;
 
-	if(atSpaceport || attributes.Get("shield generation"))
+	if((rechargeType & Port::RechargeType::Shields) || attributes.Get("shield generation"))
 		shields = MaxShields();
-	if(atSpaceport || attributes.Get("hull repair rate"))
+	if((rechargeType & Port::RechargeType::Hull) || attributes.Get("hull repair rate"))
 		hull = MaxHull();
-	if(atSpaceport || attributes.Get("energy generation"))
+	if((rechargeType & Port::RechargeType::Energy) || attributes.Get("energy generation"))
 		energy = attributes.Get("energy capacity");
-	if(atSpaceport || attributes.Get("fuel generation"))
+	if((rechargeType & Port::RechargeType::Fuel) || attributes.Get("fuel generation"))
 		fuel = attributes.Get("fuel capacity");
 
 	heat = IdleHeat();
@@ -2528,6 +2540,14 @@ double Ship::HullUntilDisabled() const
 
 
 
+// Returns the remaining damage timer, for the damage overlay.
+int Ship::DamageOverlayTimer() const
+{
+	return damageOverlayTimer;
+}
+
+
+
 const ShipJumpNavigation &Ship::JumpNavigation() const
 {
 	return navigation;
@@ -2699,7 +2719,8 @@ double Ship::InertialMass() const
 
 double Ship::TurnRate() const
 {
-	return attributes.Get("turn") / InertialMass();
+	return attributes.Get("turn") / InertialMass()
+		* (1. + attributes.Get("turn multiplier"));
 }
 
 
@@ -2707,7 +2728,8 @@ double Ship::TurnRate() const
 double Ship::Acceleration() const
 {
 	double thrust = attributes.Get("thrust");
-	return (thrust ? thrust : attributes.Get("afterburner thrust")) / InertialMass();
+	return (thrust ? thrust : attributes.Get("afterburner thrust")) / InertialMass()
+		* (1. + attributes.Get("acceleration multiplier"));
 }
 
 
@@ -2725,7 +2747,8 @@ double Ship::MaxVelocity() const
 
 double Ship::ReverseAcceleration() const
 {
-	return attributes.Get("reverse thrust");
+	return attributes.Get("reverse thrust") / InertialMass()
+		* (1. + attributes.Get("acceleration multiplier"));
 }
 
 
@@ -2743,6 +2766,8 @@ double Ship::MaxReverseVelocity() const
 // Create any target effects as sparks.
 int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const Government *sourceGovernment)
 {
+	damageOverlayTimer = TOTAL_DAMAGE_FRAMES;
+
 	bool wasDisabled = IsDisabled();
 	bool wasDestroyed = IsDestroyed();
 
@@ -3977,7 +4002,7 @@ bool Ship::DoHyperspaceLogic(vector<Visual> &visuals)
 			{
 				for(const StellarObject &object : currentSystem->Objects())
 					if(object.HasSprite() && object.HasValidPlanet()
-							&& object.GetPlanet()->HasSpaceport())
+							&& object.GetPlanet()->HasServices())
 					{
 						target = object.Position();
 						break;
@@ -4097,7 +4122,7 @@ bool Ship::DoLandingLogic()
 	}
 	// Only refuel if this planet has a spaceport.
 	else if(fuel >= attributes.Get("fuel capacity")
-			|| !landingPlanet || !landingPlanet->HasSpaceport())
+			|| !landingPlanet || !landingPlanet->GetPort().CanRecharge(Port::RechargeType::Fuel))
 	{
 		zoom = min(1.f, zoom + landingSpeed);
 		SetTargetStellar(nullptr);
@@ -4284,7 +4309,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 					slowness += scale * attributes.Get(isThrusting ? "thrusting slowing" : "reverse thrusting slowing");
 					disruption += scale * attributes.Get(isThrusting ? "thrusting disruption" : "reverse thrusting disruption");
 
-					acceleration += angle.Unit() * (thrustCommand * thrust / mass);
+					acceleration += angle.Unit() * thrustCommand * (isThrusting ? Acceleration() : ReverseAcceleration());
 				}
 			}
 		}
@@ -4328,7 +4353,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 				slowness += slownessCost;
 				disruption += disruptionCost;
 
-				acceleration += angle.Unit() * thrust / mass;
+				acceleration += angle.Unit() * (1. + attributes.Get("acceleration multiplier")) * thrust / mass;
 
 				// Only create the afterburner effects if the ship is in the player's system.
 				isUsingAfterburner = !forget;
@@ -4338,7 +4363,8 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 	if(acceleration)
 	{
 		acceleration *= slowMultiplier;
-		Point dragAcceleration = acceleration - velocity * (Drag() / mass);
+		// Acceleration multiplier needs to modify effective drag, otherwise it changes top speeds.
+		Point dragAcceleration = acceleration - velocity * Drag() * (1. + attributes.Get("acceleration multiplier")) / mass;
 		// Make sure dragAcceleration has nonzero length, to avoid divide by zero.
 		if(dragAcceleration)
 		{
@@ -4450,15 +4476,22 @@ void Ship::StepTargeting()
 void Ship::DoEngineVisuals(vector<Visual> &visuals, bool isUsingAfterburner)
 {
 	if(isUsingAfterburner && !Attributes().AfterburnerEffects().empty())
+	{
+		double gimbalDirection = (Commands().Has(Command::FORWARD) || Commands().Has(Command::BACK))
+			* -Commands().Turn();
+
 		for(const EnginePoint &point : enginePoints)
 		{
+			Angle gimbal = Angle(gimbalDirection * point.gimbal.Degrees());
+			Angle afterburnerAngle = angle + point.facing + gimbal;
 			Point pos = angle.Rotate(point) * Zoom() + position;
 			// Stream the afterburner effects outward in the direction the engines are facing.
-			Point effectVelocity = velocity - 6. * angle.Unit();
+			Point effectVelocity = velocity - 6. * afterburnerAngle.Unit();
 			for(auto &&it : Attributes().AfterburnerEffects())
 				for(int i = 0; i < it.second; ++i)
-					visuals.emplace_back(*it.first, pos, effectVelocity, angle);
+					visuals.emplace_back(*it.first, pos, effectVelocity, afterburnerAngle);
 		}
+	}
 }
 
 
