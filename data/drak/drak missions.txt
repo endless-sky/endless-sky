@@ -105,13 +105,15 @@ mission "Drak guarding Void Sprites"
 	repeat
 	to offer
 		not "Drak guarding Void Sprites: active"
-		not "Remnant: Void Sprites 3: active"
-		not "Remnant: Return the Samples: active"
-		not "Remnant: Return the Samples 2: active"
-		not "Remnant: Cognizance 1: active"
 	to complete
 		never
 	npc save
+		to despawn
+			or
+				has "Remnant: Void Sprites 3: active"
+				has "Remnant: Return the Samples: active"
+				has "Remnant: Return the Samples 2: active"
+				has "Remnant: Cognizance 1: active"
 		government Drak
 		personality heroic vindictive staying frugal
 		system Nenia
