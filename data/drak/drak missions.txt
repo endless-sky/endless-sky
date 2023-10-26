@@ -119,6 +119,14 @@ mission "Drak guarding Void Sprites"
 		system Nenia
 		ship "Archon (Cloaked)" "Lifted Lorax"
 
+# Mission for those who had a savefile prior to 0.10.5 with the old "Drak guarding void sprites" mission
+mission "Archon Void Sprite Compatibility Patch"
+	invisible
+	landing
+	on offer
+		fail "Drak guarding Void Sprites"
+		fail
+
 # Mission for those who had a savefile prior to 0.9.15 with the old Archon missions
 mission "Archon Personality Compatibility Patch"
 	invisible
@@ -126,5 +134,4 @@ mission "Archon Personality Compatibility Patch"
 	on offer
 		fail "Drak guarding Korath space"
 		fail "Drak guarding Sayaiban"
-		fail "Drak guarding Void Sprites"
 		fail
