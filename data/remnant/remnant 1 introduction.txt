@@ -2060,7 +2060,7 @@ mission "Remnant: Return the Samples 2"
 			`As you approach Slylandro you watch the Archon like a hawk, but this time it doesn't attempt to drive you off with tridents of white energy. Cautiously you make your way to Slylandro and begin your descent.`
 				to display
 					"reputation: Drak" >= 0
-`			`As you approach Skylandro, you again dodge the Archon as it continues to try to drive you off with tridents of white energy. It must really not like you. Trying not to get hit, you make your way to Skylandro and begin your descent.`
+			`As you approach Skylandro, you again dodge the Archon as it continues to try to drive you off with tridents of white energy. It must really not like you. Trying not to get hit, you make your way to Skylandro and begin your descent.`
 				to display
 					"reputation: Drak" < 0
 			`	As the <ship> sinks through the cloud layers, you notice the void sprites seem to be tailing you. A few drop past you with startling speed, only to reappear from below as you approach the designated altitude. At the last minute you remember Plume's request to record them, and hit the switch to activate the recorder for the exterior cameras.`
