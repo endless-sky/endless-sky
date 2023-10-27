@@ -115,6 +115,9 @@ public:
 	// Check how big a mortgage the player can afford to pay at their current income.
 	int64_t Prequalify() const;
 
+	// Get the player's total net worth (counting all ships and all debts).
+	int64_t NetWorth() const;
+
 	// -- Functions operating on the player's salaries.
 
 	// Access the map of player salaries.
@@ -160,6 +163,9 @@ public:
 	// Calculate the player's net worth based on the given assets.
 	int64_t CalculateNetWorth(int64_t assets) const;
 
+	// Get the total amount owed for "Mortgage", "Fine", or both.
+	int64_t TotalDebt(const std::string &type = "") const;
+
 	// Update the players credit score based on the given receipts.
 	// The credit score will always be set to a number between 200
 	// and 800, inclusive.
@@ -168,18 +174,12 @@ public:
 	// Check the receipts to see if any contained a non-zero payment.
 	static bool AnyPaymentsMade(std::vector<Receipt> *receipts);
 
-	// Check the receipts to see what types fo payments were made.
-	// If none were made, the map returned will be empty.
-	static std::map<std::string, int64_t> GetTypesPaid(std::vector<Receipt> *receipts);
-
 	// Generate a log string from the given receipts.
 	static std::string GeneratePaymentLogs(std::vector<Receipt> *receipts);
 
-	// Get the player's total net worth (counting all ships and all debts).
-	int64_t NetWorth() const;
-
-	// Get the total amount owed for "Mortgage", "Fine", or both.
-	int64_t TotalDebt(const std::string &type = "") const;
+	// Check the receipts to see what types fo payments were made.
+	// If none were made, the map returned will be empty.
+	static std::map<std::string, int64_t> GetTypesPaid(std::vector<Receipt> *receipts);
 
 
 private:

@@ -278,6 +278,13 @@ int64_t Account::Prequalify() const
 
 
 
+int64_t Account::NetWorth() const
+{
+	return history.empty() ? 0 : history.back();
+}
+
+
+
 const map<string, int64_t> &Account::SalariesIncome() const
 {
 	return salariesIncome;
@@ -528,6 +535,26 @@ void Account::UpdateHistory(int64_t assets)
 
 
 
+int64_t Account::CalculateNetWorth(int64_t assets) const
+{
+	return assets - TotalDebt() - OverdueCrewSalaries() - OverdueMaintenance();
+}
+
+
+
+// Sum the principals of all mortgages of a given type and return the result
+int64_t Account::TotalDebt(const string &type) const
+{
+	int64_t total = 0;
+	for(const Mortgage &mortgage : mortgages)
+		if(type.empty() || mortgage.Type() == type)
+			total += mortgage.Principal();
+
+	return total;
+}
+
+
+
 void Account::UpdateCreditScore(std::vector<Receipt> *receipts) {
 	// If you failed to pay any debt, your credit score drops. Otherwise, even
 	// if you have no debts, it increases. (Because, having no debts at all
@@ -609,32 +636,6 @@ map<string, int64_t> Account::GetTypesPaid(std::vector<Receipt> *receipts) {
 		typesPaid["fines"] = receipts->at(3).creditsPaid;
 
 	return typesPaid;
-}
-
-
-
-int64_t Account::CalculateNetWorth(int64_t assets) const
-{
-	return assets - TotalDebt() - OverdueCrewSalaries() - OverdueMaintenance();
-}
-
-
-
-int64_t Account::NetWorth() const
-{
-	return history.empty() ? 0 : history.back();
-}
-
-
-// Sum the principals of all mortgages of a given type and return the result
-int64_t Account::TotalDebt(const string &type) const
-{
-	int64_t total = 0;
-	for(const Mortgage &mortgage : mortgages)
-		if(type.empty() || mortgage.Type() == type)
-			total += mortgage.Principal();
-
-	return total;
 }
 
 
