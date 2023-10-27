@@ -38,7 +38,7 @@ void Account::Load(const DataNode &node, bool clearFirst)
 	if(clearFirst)
 	{
 		credits = 0;
-		crewSalariesOwed = 0;
+		overdueCrewSalaries = 0;
 		maintenanceDue = 0;
 		creditScore = 400;
 		mortgages.clear();
@@ -58,7 +58,7 @@ void Account::Load(const DataNode &node, bool clearFirst)
 					salariesIncome[grand.Token(0)] = grand.Value(1);
 			}
 		else if(child.Token(0) == "salaries" && child.Size() >= 2)
-			crewSalariesOwed = child.Value(1);
+			overdueCrewSalaries = child.Value(1);
 		else if(child.Token(0) == "maintenance" && child.Size() >= 2)
 			maintenanceDue = child.Value(1);
 		else if(child.Token(0) == "score" && child.Size() >= 2)
@@ -91,8 +91,8 @@ void Account::Save(DataWriter &out) const
 			}
 			out.EndChild();
 		}
-		if(crewSalariesOwed)
-			out.Write("salaries", crewSalariesOwed);
+		if(overdueCrewSalaries)
+			out.Write("salaries", overdueCrewSalaries);
 		if(maintenanceDue)
 			out.Write("maintenance", maintenanceDue);
 		out.Write("score", creditScore);
@@ -160,7 +160,7 @@ void Account::SetCreditScore(int64_t value) {
 
 int64_t Account::CrewSalariesOwed() const
 {
-	return crewSalariesOwed;
+	return overdueCrewSalaries;
 }
 
 
@@ -170,9 +170,9 @@ int64_t Account::CrewSalariesOwed() const
 // number of credits in the players account, pay of as much as the player has.
 void Account::PaySalaries(int64_t amount)
 {
-	amount = min(min(amount, crewSalariesOwed), credits);
+	amount = min(min(amount, overdueCrewSalaries), credits);
 	credits -= amount;
-	crewSalariesOwed -= amount;
+	overdueCrewSalaries -= amount;
 }
 
 
@@ -353,23 +353,23 @@ Receipt Account::PayCrewSalaries(int64_t salaries)
 	//    2. Whether the salaries were paid in full
 	Receipt receipt;
 
-	crewSalariesOwed += salaries;
-	int64_t salariesPaid = crewSalariesOwed;
-	if(crewSalariesOwed)
+	overdueCrewSalaries += salaries;
+	int64_t salariesPaid = overdueCrewSalaries;
+	if(overdueCrewSalaries)
 	{
-		if(crewSalariesOwed > credits)
+		if(overdueCrewSalaries > credits)
 		{
 			// If you can't pay the full salary amount, still pay some of it and
 			// remember how much back wages you owe to your crew.
 			salariesPaid = max<int64_t>(credits, 0);
-			crewSalariesOwed -= salariesPaid;
+			overdueCrewSalaries -= salariesPaid;
 			credits -= salariesPaid;
 			receipt.paidInFull = false;
 		}
 		else
 		{
-			credits -= crewSalariesOwed;
-			crewSalariesOwed = 0;
+			credits -= overdueCrewSalaries;
+			overdueCrewSalaries = 0;
 		}
 	}
 

@@ -81,7 +81,7 @@ public:
 
 	// -- Functions operating on the player's history.
 
-	// Access the history of the player's net worth
+	// Access the history of the player's net worth.
 	const std::vector<int64_t> &History() const;
 
 	// -- Functions operating on the player's maintenance.
@@ -190,7 +190,7 @@ private:
 	int creditScore = 400;
 
 	// If back salaries cannot be paid, it piles up rather than being ignored.
-	int64_t crewSalariesOwed = 0; // TODO: RENAME TO overdueCrewSalaries
+	int64_t overdueCrewSalaries = 0;
 
 	// History of the player's net worth. This is used to calculate your average
 	// daily income, which is used to calculate how big a mortgage you can afford.

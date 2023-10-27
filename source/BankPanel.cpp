@@ -110,7 +110,7 @@ void BankPanel::Draw()
 
 	// Check if salaries need to be drawn.
 	int64_t salaries = player.Salaries();
-	int64_t crewSalariesOwed = player.Accounts().CrewSalariesOwed();
+	int64_t overdueCrewSalaries = player.Accounts().CrewSalariesOwed();
 	int64_t salariesIncome = player.Accounts().SalariesIncomeTotal();
 	int64_t tributeIncome = player.GetTributeTotal();
 
@@ -119,7 +119,7 @@ void BankPanel::Draw()
 	int64_t maintenanceDue = player.Accounts().MaintenanceDue();
 	// Figure out how many rows of the display are for mortgages, and also check
 	// whether multiple mortgages have to be combined into the last row.
-	mortgageRows = MAX_ROWS - (salaries != 0 || crewSalariesOwed != 0) - (b.maintenanceCosts != 0 || maintenanceDue != 0)
+	mortgageRows = MAX_ROWS - (salaries != 0 || overdueCrewSalaries != 0) - (b.maintenanceCosts != 0 || maintenanceDue != 0)
 		- (b.assetsReturns != 0 || salariesIncome != 0 || tributeIncome != 0);
 	int mortgageCount = player.Accounts().Mortgages().size();
 	mergedMortgages = (mortgageCount > mortgageRows);
@@ -173,16 +173,16 @@ void BankPanel::Draw()
 	}
 	table.SetColor(unselected);
 	// Draw the salaries, if necessary.
-	if(salaries || crewSalariesOwed)
+	if(salaries || overdueCrewSalaries)
 	{
 		// Include salaries in the total daily payment.
 		totalPayment += salaries;
 
 		table.Draw("Crew Salaries");
 		// Check whether the player owes back salaries.
-		if(crewSalariesOwed)
+		if(overdueCrewSalaries)
 		{
-			table.Draw(Format::Credits(crewSalariesOwed));
+			table.Draw(Format::Credits(overdueCrewSalaries));
 			table.Draw("(overdue)");
 			table.Advance(1);
 		}
@@ -255,7 +255,7 @@ void BankPanel::Draw()
 	}
 
 	Information info;
-	if((crewSalariesOwed || maintenanceDue) && player.Accounts().Credits() > 0)
+	if((overdueCrewSalaries || maintenanceDue) && player.Accounts().Credits() > 0)
 		info.SetCondition("can pay");
 	else
 		for(const Mortgage &mortgage : player.Accounts().Mortgages())
