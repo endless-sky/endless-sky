@@ -682,6 +682,7 @@ mission "Remnant: Void Sprites 3"
 	to offer
 		has "Remnant: Void Sprites 2: done"
 	on offer
+		fail "Drak guarding void sprites"
 		conversation
 			`The Remnant researcher seems disappointed that an outfit scan didn't reveal any information about the void sprites, but he is also excited about a new idea for studying them. "I found that we have several old mothballed ships suitable for exploring the upper atmosphere of a gas giant," he says. "Until I can publish my results I will not have the resources to compensate you, but I can provide you with one of our ships. Then you could land on the void sprite worlds and observe them in their natural habitat."`
 			choice
@@ -1994,6 +1995,7 @@ mission "Remnant: Return the Samples"
 		has "Remnant: Technology Available: offered"
 		random < 50
 	on offer
+		fail "Drak guarding void sprites"
 		conversation
 			`As you are walking through the spaceport, the researcher you previously assisted with the studies on the void sprites approaches you in a hustle. "We have made some new discoveries!" he exclaims in a trill. "Some of the samples that we took all those years ago are actually eggs of some kind. So the Archon must view our previous research as being disruptive to the void sprites' lifecycles.`
 			`	"We have been storing these eggs in a cryogenic stasis tank, so they should still be viable and intact. Well, most of them, anyway." His notes trail off on a mournful tone.`
@@ -2035,6 +2037,7 @@ mission "Remnant: Return the Samples 2"
 	to offer
 		has "Remnant: Return the Samples: done"
 	on offer
+		fail "Drak guarding void sprites"
 		conversation
 			`Following Plume's directions, you find a lab tucked behind the main area of the spaceport, where a short walkway leads into an underground structure. Stepping inside the door you note a rack of camouflage netting positioned easily at hand. Given what you have learned of their history, it is probably a last-ditch preparation in case they need to hide the entrance from a raid.`
 			`	The lab itself is a microcosm of Remnant development. The structure appears to be some strange semi-organic material, and you can see an eclectic mix of familiar and unfamiliar shapes cluttering the tables. If you had to guess, you would say that this lab was the result of several different families of technology, only one of which was human.`
