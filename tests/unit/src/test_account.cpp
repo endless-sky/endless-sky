@@ -92,10 +92,11 @@ TEST_CASE( "Remove paid-off mortgage from an account", "[Account][UpdateMortgage
 
 TEST_CASE( "Calculate the player's net worth", "[Account][CalculateNetWorth]" ) {
 	Account account;
-	account.SetCredits(10000);
 	account.AddMortgage(1000);
 	account.AddFine(1000);
-
+	account.SetOverdueCrewSalaries(1000);
+	account.SetOverdueMaintenance(1000);
+	REQUIRE(account.CalculateNetWorth(5000) == 1000);
 }
 
 SCENARIO( "Create an Account" , "[Account][Creation]" ) {
