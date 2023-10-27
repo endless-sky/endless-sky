@@ -124,9 +124,28 @@ SCENARIO( "Step forward" , "[Account][Step]" ) {
 	}
 }
 
-SCENARIO( "Pay crew salaries", "[Account][PayCrewSalaries]" ) {
+SCENARIO( "Operations on overdueCrewSalaries", "[Account][overdueCrewSalaries]" ) {
 	GIVEN( "An account" ) {
 		Account account;
+		WHEN( "overdueCrewSalaries is 0" ) {
+			THEN( "OverdueCrewSalaries will return 0" ) {
+				REQUIRE(account.OverdueCrewSalaries() == 0);
+			}
+			AND_WHEN( "SetOverdueCrewSalaries is used to set a value" ) {
+				account.SetOverdueCrewSalaries(1000);
+				THEN( "overdueCrewSalaries is set to that value" ) {
+					REQUIRE(account.OverdueCrewSalaries() == 1000);
+				}
+				AND_WHEN( "PayOverdueCrewSalaries is used to pay off that value" ) {
+					account.SetCredits(1000);
+					account.PayOverdueCrewSalaries(1000);
+					THEN( "overdueCrewSalaries is 0" ) {
+						REQUIRE(account.OverdueCrewSalaries() == 0);
+					}
+				}
+			}
+		}
+
 		WHEN( "no salaries are paid" ) {
 			Receipt salariesPaid = account.PayCrewSalaries(0);
 			THEN( "The salaries were paid in full and no credits were paid" ) {

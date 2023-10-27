@@ -165,6 +165,12 @@ int64_t Account::OverdueCrewSalaries() const
 
 
 
+void Account::SetOverdueCrewSalaries(int64_t value) {
+	overdueCrewSalaries = value;
+}
+
+
+
 // If the amount in overdue crew salaries is less then the amount passed,
 // pay the overdue crew salaries. If either of those is more than the total
 // number of credits in the players account, pay of as much as the player has.
@@ -606,13 +612,7 @@ map<string, int64_t> Account::GetTypesPaid(std::vector<Receipt> *receipts) {
 
 int64_t Account::CalculateNetWorth(int64_t assets) const
 {
-	int64_t sumPrincipals = 0;
-	for(Mortgage mortgage : Mortgages())
-	{
-		sumPrincipals = mortgage.Principal();
-	}
-
-	return assets - sumPrincipals - OverdueCrewSalaries() - OverdueMaintenance();
+	return assets - TotalDebt() - OverdueCrewSalaries() - OverdueMaintenance();
 }
 
 

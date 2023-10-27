@@ -76,6 +76,9 @@ public:
 	// Access the overdue crew salaries.
 	int64_t OverdueCrewSalaries() const;
 
+	// Set the number of credits of unpaid salaries the player owes.
+	void SetOverdueCrewSalaries(int64_t value);
+
 	// Pay off the current overdue crew salaries by a given amount.
 	void PayOverdueCrewSalaries(int64_t amount);
 
