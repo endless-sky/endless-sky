@@ -39,7 +39,7 @@ void Account::Load(const DataNode &node, bool clearFirst)
 	{
 		credits = 0;
 		overdueCrewSalaries = 0;
-		maintenanceDue = 0;
+		overdueMaintenance = 0;
 		creditScore = 400;
 		mortgages.clear();
 		history.clear();
@@ -60,7 +60,7 @@ void Account::Load(const DataNode &node, bool clearFirst)
 		else if(child.Token(0) == "salaries" && child.Size() >= 2)
 			overdueCrewSalaries = child.Value(1);
 		else if(child.Token(0) == "maintenance" && child.Size() >= 2)
-			maintenanceDue = child.Value(1);
+			overdueMaintenance = child.Value(1);
 		else if(child.Token(0) == "score" && child.Size() >= 2)
 			creditScore = child.Value(1);
 		else if(child.Token(0) == "mortgage")
@@ -93,8 +93,8 @@ void Account::Save(DataWriter &out) const
 		}
 		if(overdueCrewSalaries)
 			out.Write("salaries", overdueCrewSalaries);
-		if(maintenanceDue)
-			out.Write("maintenance", maintenanceDue);
+		if(overdueMaintenance)
+			out.Write("maintenance", overdueMaintenance);
 		out.Write("score", creditScore);
 
 		out.Write("history");
@@ -186,7 +186,7 @@ const vector<int64_t> &Account::History() const
 
 int64_t Account::MaintenanceDue() const
 {
-	return maintenanceDue;
+	return overdueMaintenance;
 }
 
 
@@ -196,9 +196,9 @@ int64_t Account::MaintenanceDue() const
 // number of credits in the players account, pay of as much as the player has.
 void Account::PayMaintenance(int64_t amount)
 {
-	amount = min(min(amount, maintenanceDue), credits);
+	amount = min(min(amount, overdueMaintenance), credits);
 	credits -= amount;
-	maintenanceDue -= amount;
+	overdueMaintenance -= amount;
 }
 
 
@@ -387,23 +387,23 @@ Receipt Account::PayShipMaintenance(int64_t maintenance)
 	//    2. Whether the maintenance was paid in full
 	Receipt receipt;
 
-	maintenanceDue += maintenance;
-	int64_t maintenancePaid = maintenanceDue;
-	if(maintenanceDue)
+	overdueMaintenance += maintenance;
+	int64_t maintenancePaid = overdueMaintenance;
+	if(overdueMaintenance)
 	{
-		if(maintenanceDue > credits)
+		if(overdueMaintenance > credits)
 		{
 			// Like with crew salaries, maintenance costs can be paid in part with
 			// the unpaid costs being paid later.
 			maintenancePaid = max<int64_t>(credits, 0);
-			maintenanceDue -= maintenancePaid;
+			overdueMaintenance -= maintenancePaid;
 			credits -= maintenancePaid;
 			receipt.paidInFull = false;
 		}
 		else
 		{
-			credits -= maintenanceDue;
-			maintenanceDue = 0;
+			credits -= overdueMaintenance;
+			overdueMaintenance = 0;
 		}
 	}
 

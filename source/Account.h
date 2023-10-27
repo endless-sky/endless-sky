@@ -197,7 +197,7 @@ private:
 	std::vector<int64_t> history;
 
 	// If back maintenance cannot be paid, it piles up rather than being ignored.
-	int64_t maintenanceDue = 0; // TODO: RENAME TO overdueMaintenance
+	int64_t overdueMaintenance = 0;
 
 	// A list containing mortgages taken out and fines assigned to the player.
 	std::vector<Mortgage> mortgages;

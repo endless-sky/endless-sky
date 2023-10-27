@@ -116,10 +116,10 @@ void BankPanel::Draw()
 
 	// Check if maintenance needs to be drawn.
 	PlayerInfo::FleetBalance b = player.MaintenanceAndReturns();
-	int64_t maintenanceDue = player.Accounts().MaintenanceDue();
+	int64_t overdueMaintenance = player.Accounts().MaintenanceDue();
 	// Figure out how many rows of the display are for mortgages, and also check
 	// whether multiple mortgages have to be combined into the last row.
-	mortgageRows = MAX_ROWS - (salaries != 0 || overdueCrewSalaries != 0) - (b.maintenanceCosts != 0 || maintenanceDue != 0)
+	mortgageRows = MAX_ROWS - (salaries != 0 || overdueCrewSalaries != 0) - (b.maintenanceCosts != 0 || overdueMaintenance != 0)
 		- (b.assetsReturns != 0 || salariesIncome != 0 || tributeIncome != 0);
 	int mortgageCount = player.Accounts().Mortgages().size();
 	mergedMortgages = (mortgageCount > mortgageRows);
@@ -192,14 +192,14 @@ void BankPanel::Draw()
 		table.Advance();
 	}
 	// Draw the maintenance costs, if necessary.
-	if(b.maintenanceCosts || maintenanceDue)
+	if(b.maintenanceCosts || overdueMaintenance)
 	{
 		totalPayment += b.maintenanceCosts;
 
 		table.Draw("Maintenance");
-		if(maintenanceDue)
+		if(overdueMaintenance)
 		{
-			table.Draw(Format::Credits(maintenanceDue));
+			table.Draw(Format::Credits(overdueMaintenance));
 			table.Draw("(overdue)");
 			table.Advance(1);
 		}
@@ -255,7 +255,7 @@ void BankPanel::Draw()
 	}
 
 	Information info;
-	if((overdueCrewSalaries || maintenanceDue) && player.Accounts().Credits() > 0)
+	if((overdueCrewSalaries || overdueMaintenance) && player.Accounts().Credits() > 0)
 		info.SetCondition("can pay");
 	else
 		for(const Mortgage &mortgage : player.Accounts().Mortgages())
