@@ -119,7 +119,9 @@ void BankPanel::Draw()
 	int64_t overdueMaintenance = player.Accounts().OverdueMaintenance();
 	// Figure out how many rows of the display are for mortgages, and also check
 	// whether multiple mortgages have to be combined into the last row.
-	mortgageRows = MAX_ROWS - (salaries != 0 || overdueCrewSalaries != 0) - (b.maintenanceCosts != 0 || overdueMaintenance != 0)
+	mortgageRows = MAX_ROWS
+		- (salaries != 0 || overdueCrewSalaries != 0)
+		- (b.maintenanceCosts != 0 || overdueMaintenance != 0)
 		- (b.assetsReturns != 0 || salariesIncome != 0 || tributeIncome != 0);
 	int mortgageCount = player.Accounts().Mortgages().size();
 	mergedMortgages = (mortgageCount > mortgageRows);
