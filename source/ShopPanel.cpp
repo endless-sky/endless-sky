@@ -632,7 +632,7 @@ void ShopPanel::DoFind(const string &text)
 		if(ship && HasItem(ship->VariantName()))
 		{
 			index = Search(ship->VariantName(), text);
-		} else if (outfit && HasItem(outfit->TrueName())) {
+		} else if(outfit && HasItem(outfit->TrueName())) {
 			index = Search(outfit->TrueName(), text);
 		}
 		if(index >= 0 && index < bestIndex)
@@ -643,7 +643,7 @@ void ShopPanel::DoFind(const string &text)
 				break;
 		}
 	}
-	if (bestIndex == 9999)
+	if(bestIndex == 9999)
 		return;
 
 	if(bestItem->GetShip())
