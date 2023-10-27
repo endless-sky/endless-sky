@@ -138,15 +138,21 @@ public:
 	std::vector<Receipt> PayBills(int64_t salaries, int64_t maintenance);
 
 	// Attempt to pay crew salaries, returning the results.
+	// NOTE: This function may modify the credits and overdueCrewSalaries
+	// variables during execution.
 	Receipt PayCrewSalaries(int64_t salaries);
 
 	// Attempt to pay mainenance costs, returning the results.
+	// NOTE: This function may modify the credits and overdueMaintenance
+	// variables during execution.
 	Receipt PayMaintenance(int64_t maintenance);
 
 	// Attempt to mortgages, returning the results.
+	// NOTE: This function may modify the credits variable during execution.
 	Receipt PayMortgages();
 
 	// Attempt to pay fines, returning the results.
+	// NOTE: This function may modify the credits variable during execution.
 	Receipt PayFines();
 
 	// Generate a log string from the given receipts.

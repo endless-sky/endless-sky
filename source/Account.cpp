@@ -361,10 +361,6 @@ std::vector<Receipt> Account::PayBills(int64_t salaries, int64_t maintenance) {
 
 Receipt Account::PayCrewSalaries(int64_t salaries)
 {
-// THIS FUNCTION HAS SIDE EFFECTS, INTERACTING DIRECTLY WITH THE ACCOUNT OBJECT
-	// this function needs to preserve:
-	//    1. The number of credits paid in salaries
-	//    2. Whether the salaries were paid in full
 	Receipt receipt;
 
 	overdueCrewSalaries += salaries;
@@ -395,10 +391,6 @@ Receipt Account::PayCrewSalaries(int64_t salaries)
 
 Receipt Account::PayMaintenance(int64_t maintenance)
 {
-// THIS FUNCTION HAS SIDE EFFECTS, INTERACTING DIRECTLY WITH THE ACCOUNT OBJECT
-	// this function needs to preserve:
-	//    1. The number of credits paid in maintenance
-	//    2. Whether the maintenance was paid in full
 	Receipt receipt;
 
 	overdueMaintenance += maintenance;
@@ -428,8 +420,7 @@ Receipt Account::PayMaintenance(int64_t maintenance)
 
 
 Receipt Account::PayMortgages() {
-// THIS FUNCTION HAS SIDE EFFECTS, INTERACTING DIRECTLY WITH THE ACCOUNT OBJECT
-	// this function needs to preserve:
+	// This function needs to preserve:
 	//    1. The number of credits paid towards ALL mortgages
 	//    2. Whether ANY mortgage was not paid in full
 	Receipt receipt;
@@ -458,8 +449,7 @@ Receipt Account::PayMortgages() {
 
 
 Receipt Account::PayFines() {
-// THIS FUNCTION HAS SIDE EFFECTS, INTERACTING DIRECTLY WITH THE ACCOUNT OBJECT
-	// this function needs to preserve:
+	// This function needs to preserve:
 	//    1. The number of credits paid towards ALL fines
 	//    2. Whether ANY fine was not paid in full
 	Receipt receipt;
