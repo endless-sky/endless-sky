@@ -150,11 +150,10 @@ int Account::CreditScore() const
 
 void Account::SetCreditScore(int64_t value) {
 	creditScore = value;
-	if(creditScore < 200) {
+	if(creditScore < 200)
 		creditScore = 200;
-	} else if(creditScore > 800) {
+	else if(creditScore > 800)
 		creditScore = 800;
-	}
 }
 
 
@@ -539,7 +538,8 @@ void Account::UpdateCreditScore(std::vector<Receipt> *receipts) {
 
 
 bool Account::AnyPaymentsMade(std::vector<Receipt> *receipts) {
-	for (Receipt receipt : *receipts) {
+	for(Receipt receipt : *receipts)
+	{
 		if(receipt.creditsPaid > 0)
 			return true;
 	}
@@ -569,7 +569,9 @@ string Account::GeneratePaymentLogs(std::vector<Receipt> *receipts) {
 	{
 		if(receipts->at(0).creditsPaid > 0)
 			log << Format::CreditString(receipts->at(0).creditsPaid) << " in crew salaries"
-				<< ((receipts->at(2).creditsPaid || receipts->at(3).creditsPaid || receipts->at(1).creditsPaid > 0) ? " and " : ".");
+				<< ((receipts->at(2).creditsPaid
+					|| receipts->at(3).creditsPaid
+					|| receipts->at(1).creditsPaid > 0) ? " and " : ".");
 		if(receipts->at(1).creditsPaid > 0)
 			log << Format::CreditString(receipts->at(1).creditsPaid) << " in maintenance"
 				<< ((receipts->at(2).creditsPaid || receipts->at(3).creditsPaid) ? " and " : ".");

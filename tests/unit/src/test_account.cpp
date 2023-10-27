@@ -20,8 +20,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 // ... and any system includes needed for the test file.
 #include <map>
-#include <string>
 #include <sstream>
+#include <string>
 
 using namespace std;
 
@@ -228,7 +228,7 @@ SCENARIO( "Paying Mortgages", "[Account][PayMortgages]" ) {
 		}
 
 		WHEN( "A payment is made by an account that does NOT enough credits" ) {
-			account.AddCredits(0-account.Credits()+5);
+			account.SetCredits(5);
 			Receipt bill = account.PayMortgages();
 			THEN("The mortgage payment is made successfully") {
 				REQUIRE(bill.creditsPaid == 0);
