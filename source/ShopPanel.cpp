@@ -630,11 +630,9 @@ void ShopPanel::DoFind(const string &text)
 		const Ship *ship = it->GetShip();
 		const Outfit *outfit = it->GetOutfit();
 		if(ship && HasItem(ship->VariantName()))
-		{
 			index = Search(ship->VariantName(), text);
-		} else if(outfit && HasItem(outfit->TrueName())) {
+		else if(outfit && HasItem(outfit->TrueName()))
 			index = Search(outfit->TrueName(), text);
-		}
 		if(index >= 0 && index < bestIndex)
 		{
 			bestIndex = index;
