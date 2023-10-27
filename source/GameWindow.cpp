@@ -434,6 +434,9 @@ bool GameWindow::TrySetFullscreen()
 {
 	SDL_SetWindowFullscreen(mainWindow, SDL_WINDOW_FULLSCREEN);
 	SDL_SetWindowGrab(mainWindow, SDL_TRUE);
+	SDL_Rect rect;
+	SDL_GetDisplayBounds(SDL_GetWindowDisplayIndex(mainWindow), &rect);
+	SDL_SetWindowSize(mainWindow, rect.w, rect.h);
 
 	return GameWindow::IsFullscreen();
 }
