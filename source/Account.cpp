@@ -347,9 +347,6 @@ std::vector<Receipt> Account::PayBills(int64_t salaries, int64_t maintenance) {
 	{
 		mortgagesPaid = PayMortgages();
 		finesPaid = PayFines();
-
-		// If any mortgage has been fully paid off, remove it from the list.
-		UpdateMortgages();
 	}
 
 	return {salariesPaid, maintencancePaid, mortgagesPaid, finesPaid};
