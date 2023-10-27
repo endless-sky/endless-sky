@@ -105,27 +105,17 @@ mission "Drak guarding Void Sprites"
 	repeat
 	to offer
 		not "Drak guarding Void Sprites: active"
+		not "Remnant: Void Sprites 3: active"
+		not "Remnant: Return the Samples: active"
+		not "Remnant: Return the Samples 2: active"
+		not "Remnant: Cognizance 1: active"
 	to complete
 		never
 	npc save
-		to despawn
-			or
-				has "Remnant: Void Sprites 3: active"
-				has "Remnant: Return the Samples: active"
-				has "Remnant: Return the Samples 2: active"
-				has "Remnant: Cognizance 1: active"
 		government Drak
 		personality heroic vindictive staying frugal
 		system Nenia
 		ship "Archon (Cloaked)" "Lifted Lorax"
-
-# Mission for those who had a savefile prior to 0.10.5 with the old "Drak guarding void sprites" mission
-mission "Archon Void Sprite Compatibility Patch"
-	invisible
-	landing
-	on offer
-		fail "Drak guarding Void Sprites"
-		fail
 
 # Mission for those who had a savefile prior to 0.9.15 with the old Archon missions
 mission "Archon Personality Compatibility Patch"
@@ -134,4 +124,5 @@ mission "Archon Personality Compatibility Patch"
 	on offer
 		fail "Drak guarding Korath space"
 		fail "Drak guarding Sayaiban"
+		fail "Drak guarding Void Sprites"
 		fail
