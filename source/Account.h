@@ -41,12 +41,30 @@ public:
 	void Load(const DataNode &node, bool clearFirst);
 	void Save(DataWriter &out) const;
 
-	// Get or change the player's credits.
+	// Functions operating on the player's credits.
 	int64_t Credits() const;
 	void SetCredits(int64_t value);
 	void AddCredits(int64_t value);
 	void SubtractCredits(int64_t value);
 	void PayExtra(int mortgage, int64_t amount);
+
+	// Functions operating on the player's credit score.
+	// Getters, Setters, Modifiers
+
+	// Functions operating on the player's crew salaries.
+	// Getters, Setters, Modifiers
+
+	// Functions operating on the player's history.
+	// Getters, Setters, Modifiers
+
+	// Functions operating on the player's maintenance.
+	// Getters, Setters, Modifiers
+
+	// Functions operating on the player's mortgages and fines.
+	// Getters, Setters, Modifiers
+
+	// Functions operating on the player's salaries.
+	// Getters, Setters, Modifiers
 
 	// Step forward one day, and return a string summarizing payments made.
 	std::string Step(int64_t assets, int64_t salaries, int64_t maintenance);
@@ -99,20 +117,25 @@ private:
 
 private:
 	int64_t credits = 0;
-	// Regular income from salaries paid to the player.
-	std::map<std::string, int64_t> salariesIncome;
-	// If back salaries and maintenance cannot be paid, they pile up rather
-	// than being ignored.
-	int64_t crewSalariesOwed = 0;
-	int64_t maintenanceDue = 0;
+
 	// Your credit score determines the interest rate on your mortgages.
 	int creditScore = 400;
 
-	std::vector<Mortgage> mortgages;
+	// If back salaries cannot be paid, it piles up rather than being ignored.
+	int64_t crewSalariesOwed = 0;
 
 	// History of the player's net worth. This is used to calculate your average
 	// daily income, which is used to calculate how big a mortgage you can afford.
 	std::vector<int64_t> history;
+
+	// If back maintenance cannot be paid, it piles up rather than being ignored.
+	int64_t maintenanceDue = 0;
+
+	// A list containing mortgages taken out and fines assigned to the player
+	std::vector<Mortgage> mortgages;
+
+	// Regular income from salaries paid to the player.
+	std::map<std::string, int64_t> salariesIncome;
 };
 
 

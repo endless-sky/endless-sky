@@ -525,6 +525,7 @@ int64_t Account::CrewSalariesOwed() const
 
 
 
+// THIS FUNCTION IS ONLY USED IN THE BANKPANEL.CPP
 void Account::PaySalaries(int64_t amount)
 {
 	amount = min(min(amount, crewSalariesOwed), credits);
