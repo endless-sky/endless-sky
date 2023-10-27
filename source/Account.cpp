@@ -184,7 +184,7 @@ const vector<int64_t> &Account::History() const
 
 
 
-int64_t Account::MaintenanceDue() const
+int64_t Account::OverdueMaintenance() const
 {
 	return overdueMaintenance;
 }
@@ -612,7 +612,7 @@ int64_t Account::CalculateNetWorth(int64_t assets) const
 		sumPrincipals = mortgage.Principal();
 	}
 
-	return assets - sumPrincipals - OverdueCrewSalaries() - MaintenanceDue();
+	return assets - sumPrincipals - OverdueCrewSalaries() - OverdueMaintenance();
 }
 
 

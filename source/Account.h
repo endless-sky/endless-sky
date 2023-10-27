@@ -87,7 +87,7 @@ public:
 	// -- Functions operating on the player's maintenance.
 
 	// Access the overdue maintenance costs.
-	int64_t MaintenanceDue() const; // TODO: RENAME THIS TO OverdueMaintenance
+	int64_t OverdueMaintenance() const;
 
 	// Pay off the current overdue maintenance by a given amount.
 	void PayMaintenance(int64_t amount); // TODO: RENAME THIS TO PayOverdueMaintenance

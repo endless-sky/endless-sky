@@ -3128,7 +3128,7 @@ void PlayerInfo::RegisterDerivedConditions()
 
 	auto &&unpaidMaintenanceProvider = conditions.GetProviderNamed("unpaid maintenance");
 	unpaidMaintenanceProvider.SetGetFunction([this](const string &name) {
-		return min(limit, accounts.MaintenanceDue()); });
+		return min(limit, accounts.OverdueMaintenance()); });
 
 	auto &&creditScoreProvider = conditions.GetProviderNamed("credit score");
 	creditScoreProvider.SetGetFunction([this](const string &name) {

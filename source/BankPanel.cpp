@@ -116,7 +116,7 @@ void BankPanel::Draw()
 
 	// Check if maintenance needs to be drawn.
 	PlayerInfo::FleetBalance b = player.MaintenanceAndReturns();
-	int64_t overdueMaintenance = player.Accounts().MaintenanceDue();
+	int64_t overdueMaintenance = player.Accounts().OverdueMaintenance();
 	// Figure out how many rows of the display are for mortgages, and also check
 	// whether multiple mortgages have to be combined into the last row.
 	mortgageRows = MAX_ROWS - (salaries != 0 || overdueCrewSalaries != 0) - (b.maintenanceCosts != 0 || overdueMaintenance != 0)
@@ -304,7 +304,7 @@ bool BankPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 				++i;
 		}
 		player.Accounts().PayOverdueCrewSalaries(player.Accounts().OverdueCrewSalaries());
-		player.Accounts().PayMaintenance(player.Accounts().MaintenanceDue());
+		player.Accounts().PayMaintenance(player.Accounts().OverdueMaintenance());
 		qualify = player.Accounts().Prequalify();
 	}
 	else

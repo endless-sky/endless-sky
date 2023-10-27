@@ -174,7 +174,7 @@ SCENARIO( "Pay ship maintenance", "[Account][PayShipMaintenance]" ) {
 			THEN( "Maintenance was NOT paid in full and no credits were paid" ) {
 				REQUIRE(maintenancePaid.creditsPaid == 0);
 				REQUIRE(maintenancePaid.paidInFull == false);
-				REQUIRE(account.MaintenanceDue() == 500);
+				REQUIRE(account.OverdueMaintenance() == 500);
 			}
 		}
 
@@ -184,7 +184,7 @@ SCENARIO( "Pay ship maintenance", "[Account][PayShipMaintenance]" ) {
 			THEN( "The salaries were were paid in full and 500 credits were paid" ) {
 				REQUIRE(maintenancePaid.creditsPaid == 500);
 				REQUIRE(maintenancePaid.paidInFull == true);
-				REQUIRE(account.MaintenanceDue() == 0);
+				REQUIRE(account.OverdueMaintenance() == 0);
 			}
 		}
 	}
@@ -309,7 +309,7 @@ SCENARIO( "Updating history and calculating net worth", "[Account][UpdateHistory
 	GIVEN( "An account with no mortgages" ) {
 		Account account;
 		REQUIRE(account.OverdueCrewSalaries() == 0);
-		REQUIRE(account.MaintenanceDue() == 0);
+		REQUIRE(account.OverdueMaintenance() == 0);
 		REQUIRE(account.Mortgages().size() == 0);
 		REQUIRE(account.History().size() == 0);
 		WHEN( "CalculateNetWorth is run with 1000 credits in assets" ) {
