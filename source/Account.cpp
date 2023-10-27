@@ -623,6 +623,18 @@ int Account::CreditScore() const
 
 
 
+// Specify the player's credit score (cannot be set lower than 200, or greater than 800)
+void Account::SetCreditScore(int64_t value) {
+	creditScore = value;
+	if(creditScore < 200) {
+		creditScore = 200;
+	} else if(creditScore > 800) {
+		creditScore = 800;
+	}
+}
+
+
+
 // Get the total amount owed for "Mortgage", "Fine", or both.
 int64_t Account::TotalDebt(const string &type) const
 {

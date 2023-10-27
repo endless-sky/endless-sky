@@ -65,6 +65,23 @@ TEST_CASE( "Subtract credits from an account", "[Account][AddCredits]" ) {
 	REQUIRE(account.Credits() == 1000);
 }
 
+TEST_CASE( "Set the credit score of the account", "[Acount][SetCreditScore]" ) {
+	Account account;
+	REQUIRE(account.CreditScore() == 400);
+
+	account.SetCreditScore(500);
+	REQUIRE(account.CreditScore() == 500);
+
+	account.SetCreditScore(-100);
+	REQUIRE(account.CreditScore() == 200);
+
+	account.SetCreditScore(100);
+	REQUIRE(account.CreditScore() == 200);
+
+	account.SetCreditScore(900);
+	REQUIRE(account.CreditScore() == 800);
+}
+
 TEST_CASE( "Remove paid-off mortgage from an account", "[Account][UpdateMortgages]" ) {
 	Account account;
 	account.AddMortgage(1000);

@@ -50,6 +50,9 @@ public:
 
 	// Functions operating on the player's credit score.
 	// Getters, Setters, Modifiers
+	// Find out the player's credit rating.
+	int CreditScore() const;
+	void SetCreditScore(int64_t value);
 
 	// Functions operating on the player's crew salaries.
 	// Getters, Setters, Modifiers
@@ -103,8 +106,6 @@ public:
 	// Assets:
 	int64_t NetWorth() const;
 
-	// Find out the player's credit rating.
-	int CreditScore() const;
 	// Get the total amount owed for "Mortgage", "Fine", or both.
 	int64_t TotalDebt(const std::string &type = "") const;
 
