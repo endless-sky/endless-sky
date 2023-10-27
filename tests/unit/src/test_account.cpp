@@ -208,7 +208,7 @@ SCENARIO( "Operations on overdueMaintenance", "[Account][overdueMaintenance]" ) 
 		}
 
 		WHEN( "no maintenance is owed" ) {
-			Receipt maintenancePaid = account.PayShipMaintenance(0);
+			Receipt maintenancePaid = account.PayMaintenance(0);
 			THEN( "Maintenance was paid in full and no credits were paid" ) {
 				REQUIRE(maintenancePaid.creditsPaid == 0);
 				REQUIRE(maintenancePaid.paidInFull == true);
@@ -217,7 +217,7 @@ SCENARIO( "Operations on overdueMaintenance", "[Account][overdueMaintenance]" ) 
 
 		WHEN( "500 in maintenance is owed but the account has no credits" ) {
 			REQUIRE(account.Credits() == 0);
-			Receipt maintenancePaid = account.PayShipMaintenance(500);
+			Receipt maintenancePaid = account.PayMaintenance(500);
 			THEN( "Maintenance was NOT paid in full and no credits were paid" ) {
 				REQUIRE(maintenancePaid.creditsPaid == 0);
 				REQUIRE(maintenancePaid.paidInFull == false);
@@ -227,7 +227,7 @@ SCENARIO( "Operations on overdueMaintenance", "[Account][overdueMaintenance]" ) 
 
 		WHEN( "500 in maintenance is owed and the account has 1000 credits" ) {
 			account.AddCredits(1000);
-			Receipt maintenancePaid = account.PayShipMaintenance(500);
+			Receipt maintenancePaid = account.PayMaintenance(500);
 			THEN( "The salaries were were paid in full and 500 credits were paid" ) {
 				REQUIRE(maintenancePaid.creditsPaid == 500);
 				REQUIRE(maintenancePaid.paidInFull == true);

@@ -141,7 +141,7 @@ public:
 	Receipt PayCrewSalaries(int64_t salaries);
 
 	// Attempt to pay mainenance costs, returning the results.
-	Receipt PayShipMaintenance(int64_t maintenance); // TODO: RENAME THIS TO PayMaintenance
+	Receipt PayMaintenance(int64_t maintenance);
 
 	// Attempt to mortgages, returning the results.
 	Receipt PayMortgages();

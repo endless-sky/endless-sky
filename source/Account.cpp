@@ -345,7 +345,7 @@ std::vector<Receipt> Account::PayBills(int64_t salaries, int64_t maintenance) {
 	Receipt salariesPaid = PayCrewSalaries(salaries);
 
 	// Maintenance costs are dealt with after crew salaries given that they act similarly.
-	Receipt maintencancePaid = PayShipMaintenance(maintenance);
+	Receipt maintencancePaid = PayMaintenance(maintenance);
 
 	// Unlike salaries, each mortgage payment must either be made in its entirety,
 	// or skipped completely (accruing interest and reducing your credit score).
@@ -395,7 +395,7 @@ Receipt Account::PayCrewSalaries(int64_t salaries)
 
 
 
-Receipt Account::PayShipMaintenance(int64_t maintenance)
+Receipt Account::PayMaintenance(int64_t maintenance)
 {
 // THIS FUNCTION HAS SIDE EFFECTS, INTERACTING DIRECTLY WITH THE ACCOUNT OBJECT
 	// this function needs to preserve:
