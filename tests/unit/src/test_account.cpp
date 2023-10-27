@@ -35,36 +35,6 @@ namespace { // test namespace
 // #region unit tests
 // run this test first so we don't have to retest the assumption later
 
-TEST_CASE( "Set the number of credits in an account", "[Account][SetCredits]" ) {
-	Account account;
-	REQUIRE(account.Credits() == 0);
-
-	account.SetCredits(1000);
-	REQUIRE(account.Credits() == 1000);
-}
-
-TEST_CASE( "Add credits to an account", "[Account][AddCredits]" ) {
-	Account account;
-	REQUIRE(account.Credits() == 0);
-
-	account.AddCredits(1000);
-	REQUIRE(account.Credits() == 1000);
-
-	account.AddCredits(-1000);
-	REQUIRE(account.Credits() == 0);
-}
-
-TEST_CASE( "Subtract credits from an account", "[Account][AddCredits]" ) {
-	Account account;
-	account.SetCredits(1000);
-
-	account.SubtractCredits(1000);
-	REQUIRE(account.Credits() == 0);
-
-	account.SubtractCredits(-1000);
-	REQUIRE(account.Credits() == 1000);
-}
-
 TEST_CASE( "Set the credit score of the account", "[Acount][SetCreditScore]" ) {
 	Account account;
 	REQUIRE(account.CreditScore() == 400);
@@ -97,6 +67,48 @@ TEST_CASE( "Calculate the player's net worth", "[Account][CalculateNetWorth]" ) 
 	account.SetOverdueCrewSalaries(1000);
 	account.SetOverdueMaintenance(1000);
 	REQUIRE(account.CalculateNetWorth(5000) == 1000);
+}
+
+SCENARIO( "Operations on credits", "[Account][credits]" ) {
+	GIVEN( "An account" ) {
+		Account account;
+		THEN( "The account starts with 0 credits" ) {
+			REQUIRE(account.Credits() == 0);
+		}
+
+		WHEN( "SetCredits is called with 5" ) {
+			account.SetCredits(5);
+			THEN( "The number of credits will be 5" ) {
+				REQUIRE(account.Credits() == 5);
+			}
+		}
+
+		WHEN( "AddCredits is called with 5" ) {
+			account.AddCredits(5);
+			THEN( "The number of credits will be 5" ) {
+				REQUIRE(account.Credits() == 5);
+			}
+			AND_WHEN( "AddCredits is called with -5" ) {
+				account.AddCredits(-5);
+				THEN( "The number of credits will be 0" ) {
+					REQUIRE(account.Credits() == 0);
+				}
+			}
+		}
+
+		WHEN( "SubtractCredits is called with 5" ) {
+			account.SubtractCredits(5);
+			THEN( "The number of credits will be -5" ) {
+				REQUIRE(account.Credits() == -5);
+			}
+			AND_WHEN( "SubtractCredits is called with -5" ) {
+				account.SubtractCredits(-5);
+				THEN( "The number of credits will be 0" ) {
+					REQUIRE(account.Credits() == 0);
+				}
+			}
+		}
+	}
 }
 
 SCENARIO( "Create an Account" , "[Account][Creation]" ) {
