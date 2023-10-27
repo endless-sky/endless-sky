@@ -32,7 +32,7 @@ namespace {
 }
 
 
-// Load account information from a data file (saved game or starting conditions).
+
 void Account::Load(const DataNode &node, bool clearFirst)
 {
 	if(clearFirst)
@@ -75,7 +75,6 @@ void Account::Load(const DataNode &node, bool clearFirst)
 
 
 
-// Write account information to a saved game file.
 void Account::Save(DataWriter &out) const
 {
 	out.Write("account");
@@ -114,7 +113,6 @@ void Account::Save(DataWriter &out) const
 
 
 
-// How much the player currently has in the bank.
 int64_t Account::Credits() const
 {
 	return credits;
@@ -122,7 +120,6 @@ int64_t Account::Credits() const
 
 
 
-// Specify the number of credits in the players account
 void Account::SetCredits(int64_t value)
 {
 	credits = value;
@@ -130,8 +127,6 @@ void Account::SetCredits(int64_t value)
 
 
 
-// Give the player credits (or pass  negative number to subtract). If subtracting,
-// the calling function needs to check that this will not result in negative credits.
 void Account::AddCredits(int64_t value)
 {
 	credits += value;
@@ -139,8 +134,6 @@ void Account::AddCredits(int64_t value)
 
 
 
-// Remove the player's credits (or pass negative number to add). If subtracting,
-// the calling function needs to check that this will not result in negative credits.
 void Account::SubtractCredits(int64_t value)
 {
 	credits -= value;
@@ -148,7 +141,92 @@ void Account::SubtractCredits(int64_t value)
 
 
 
-// Pay down extra principal on a mortgage.
+int Account::CreditScore() const
+{
+	return creditScore;
+}
+
+
+
+void Account::SetCreditScore(int64_t value) {
+	creditScore = value;
+	if(creditScore < 200) {
+		creditScore = 200;
+	} else if(creditScore > 800) {
+		creditScore = 800;
+	}
+}
+
+
+
+int64_t Account::CrewSalariesOwed() const
+{
+	return crewSalariesOwed;
+}
+
+
+
+// If the amount in overdue crew salaries is less then the amount passed,
+// pay the overdue crew salaries. If either of those is more than the total
+// number of credits in the players account, pay of as much as the player has.
+void Account::PaySalaries(int64_t amount)
+{
+	amount = min(min(amount, crewSalariesOwed), credits);
+	credits -= amount;
+	crewSalariesOwed -= amount;
+}
+
+
+
+const vector<int64_t> &Account::History() const
+{
+	return history;
+}
+
+
+
+int64_t Account::MaintenanceDue() const
+{
+	return maintenanceDue;
+}
+
+
+
+// If the amount in overdue maintenance is less then the amount passed,
+// pay the overdue maintenance. If either of those is more than the total
+// number of credits in the players account, pay of as much as the player has.
+void Account::PayMaintenance(int64_t amount)
+{
+	amount = min(min(amount, maintenanceDue), credits);
+	credits -= amount;
+	maintenanceDue -= amount;
+}
+
+
+
+const vector<Mortgage> &Account::Mortgages() const
+{
+	return mortgages;
+}
+
+
+
+void Account::AddMortgage(int64_t principal)
+{
+	mortgages.emplace_back(principal, creditScore);
+	credits += principal;
+}
+
+
+
+// Add a mortgage with an interest rate of zero and a short term.
+void Account::AddFine(int64_t amount)
+{
+	mortgages.emplace_back(amount, 0, 60);
+}
+
+
+
 void Account::PayExtra(int mortgage, int64_t amount)
 {
 	if(static_cast<unsigned>(mortgage) >= mortgages.size()
@@ -169,7 +247,58 @@ void Account::PayExtra(int mortgage, int64_t amount)
 
 
 
-// Step forward one day, and return a string summarizing payments made.
+int64_t Account::Prequalify() const
+{
+	double payments = 0.;
+	int64_t liabilities = 0;
+	for(const Mortgage &mortgage : mortgages)
+	{
+		payments += mortgage.PrecisePayment();
+		liabilities += mortgage.Principal();
+	}
+
+	// Put a limit on new debt that the player can take out, as a fraction of
+	// their net worth, to avoid absurd mortgages being offered when the player
+	// has just captured some very lucrative ships.
+	return max<int64_t>(0, min(
+		NetWorth() / 3 + 500000 - liabilities,
+		Mortgage::Maximum(YearlyRevenue(), creditScore, payments)));
+}
+
+
+
+const map<string, int64_t> &Account::SalariesIncome() const
+{
+	return salariesIncome;
+}
+
+
+
+int64_t Account::SalariesIncomeTotal() const
+{
+	return accumulate(
+		salariesIncome.begin(),
+		salariesIncome.end(),
+		0,
+		[](int64_t value, const std::map<string, int64_t>::value_type &salary)
+		{
+			return value + salary.second;
+		}
+	);
+}
+
+
+
+void Account::SetSalaryIncome(string name, int64_t amount)
+{
+	if(amount == 0)
+		salariesIncome.erase(name);
+	else
+		salariesIncome[name] = amount;
+}
+
+
+
 string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 {
 	ostringstream out;
@@ -486,156 +615,13 @@ int64_t Account::CalculateNetWorth(int64_t assets) const
 
 
 
-const map<string, int64_t> &Account::SalariesIncome() const
-{
-	return salariesIncome;
-}
-
-
-
-int64_t Account::SalariesIncomeTotal() const
-{
-	return accumulate(
-		salariesIncome.begin(),
-		salariesIncome.end(),
-		0,
-		[](int64_t value, const std::map<string, int64_t>::value_type &salary)
-		{
-			return value + salary.second;
-		}
-	);
-}
-
-
-
-void Account::SetSalaryIncome(string name, int64_t amount)
-{
-	if(amount == 0)
-		salariesIncome.erase(name);
-	else
-		salariesIncome[name] = amount;
-}
-
-
-
-int64_t Account::CrewSalariesOwed() const
-{
-	return crewSalariesOwed;
-}
-
-
-
-// THIS FUNCTION IS ONLY USED IN THE BANKPANEL.CPP
-void Account::PaySalaries(int64_t amount)
-{
-	amount = min(min(amount, crewSalariesOwed), credits);
-	credits -= amount;
-	crewSalariesOwed -= amount;
-}
-
-
-
-int64_t Account::MaintenanceDue() const
-{
-	return maintenanceDue;
-}
-
-
-
-// THIS FUNCTION IS ONLY USED IN THE BANKPANEL.CPP
-void Account::PayMaintenance(int64_t amount)
-{
-	amount = min(min(amount, maintenanceDue), credits);
-	credits -= amount;
-	maintenanceDue -= amount;
-}
-
-
-
-// Access the list of mortgages.
-const vector<Mortgage> &Account::Mortgages() const
-{
-	return mortgages;
-}
-
-
-
-// Access the history.
-const vector<int64_t> &Account::History() const
-{
-	return history;
-}
-
-
-
-// Add a new mortgage for the given amount, with an interest rate determined by
-// your credit score.
-void Account::AddMortgage(int64_t principal)
-{
-	mortgages.emplace_back(principal, creditScore);
-	credits += principal;
-}
-
-
-
-// Add a "fine" with a high, fixed interest rate and a short term.
-void Account::AddFine(int64_t amount)
-{
-	mortgages.emplace_back(amount, 0, 60);
-}
-
-
-
-// Check how big a mortgage the player can afford to pay at their current income.
-int64_t Account::Prequalify() const
-{
-	double payments = 0.;
-	int64_t liabilities = 0;
-	for(const Mortgage &mortgage : mortgages)
-	{
-		payments += mortgage.PrecisePayment();
-		liabilities += mortgage.Principal();
-	}
-
-	// Put a limit on new debt that the player can take out, as a fraction of
-	// their net worth, to avoid absurd mortgages being offered when the player
-	// has just captured some very lucrative ships.
-	return max<int64_t>(0, min(
-		NetWorth() / 3 + 500000 - liabilities,
-		Mortgage::Maximum(YearlyRevenue(), creditScore, payments)));
-}
-
-
-
-// Get the player's total net worth (counting all ships and all debts).
 int64_t Account::NetWorth() const
 {
 	return history.empty() ? 0 : history.back();
 }
 
 
-
-// Find out the player's credit rating.
-int Account::CreditScore() const
-{
-	return creditScore;
-}
-
-
-
-// Specify the player's credit score (cannot be set lower than 200, or greater than 800)
-void Account::SetCreditScore(int64_t value) {
-	creditScore = value;
-	if(creditScore < 200) {
-		creditScore = 200;
-	} else if(creditScore > 800) {
-		creditScore = 800;
-	}
-}
-
-
-
-// Get the total amount owed for "Mortgage", "Fine", or both.
+// Sum the principals of all mortgages of a given type and return the result
 int64_t Account::TotalDebt(const string &type) const
 {
 	int64_t total = 0;
@@ -648,8 +634,6 @@ int64_t Account::TotalDebt(const string &type) const
 
 
 
-// Extrapolate from the player's current net worth history to determine how much
-// their net worth is expected to change over the course of the next year.
 int64_t Account::YearlyRevenue() const
 {
 	if(history.empty() || history.back() <= history.front())
