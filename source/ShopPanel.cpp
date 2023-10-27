@@ -433,6 +433,9 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	}
 	else if(key == SDLK_TAB)
 		activePane = (activePane == ShopPane::Main ? ShopPane::Sidebar : ShopPane::Main);
+	else if(key == 'f')
+		GetUI()->Push(new Dialog(
+			this, &ShopPanel::DoFind, "Search for:"));
 	else
 		return false;
 
@@ -612,6 +615,52 @@ bool ShopPanel::Release(int x, int y)
 bool ShopPanel::Scroll(double dx, double dy)
 {
 	return DoScroll(dy * 2.5 * Preferences::ScrollSpeed());
+}
+
+
+
+void ShopPanel::DoFind(const string &text)
+{
+	vector<Zone>::const_iterator it = zones.begin();
+	int bestIndex = 9999;
+	vector<Zone>::const_iterator bestItem;
+	int index;
+	for( ; it != zones.end(); ++it)
+	{
+		const Ship *ship = it->GetShip();
+		const Outfit *outfit = it->GetOutfit();
+		if(ship && HasItem(ship->VariantName()))
+		{
+			index = Search(ship->VariantName(), text);
+		} else if (outfit && HasItem(outfit->TrueName())) {
+			index = Search(outfit->TrueName(), text);
+		}
+		if(index >= 0 && index < bestIndex)
+		{
+			bestIndex = index;
+			bestItem = it;
+			if(!index)
+				break;
+		}
+	}
+	if (bestIndex == 9999)
+		return;
+
+	if(bestItem->GetShip())
+		selectedShip = bestItem->GetShip();
+	else
+		selectedOutfit = bestItem->GetOutfit();
+	MainAutoScroll(bestItem);
+	return;
+}
+
+
+
+int ShopPanel::Search(const string &str, const string &sub)
+{
+	auto it = search(str.begin(), str.end(), sub.begin(), sub.end(),
+		[](char a, char b) { return toupper(a) == toupper(b); });
+	return (it == str.end() ? -1 : it - str.begin());
 }
 
 
