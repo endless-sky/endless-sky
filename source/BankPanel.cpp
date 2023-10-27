@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
+#include "Mortgage.h"
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "text/Table.h"
