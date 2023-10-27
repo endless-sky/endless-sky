@@ -35,21 +35,17 @@ namespace { // test namespace
 // #region unit tests
 // run this test first so we don't have to retest the assumption later
 
-TEST_CASE( "Set the credit score of the account", "[Acount][SetCreditScore]" ) {
-	Account account;
-	REQUIRE(account.CreditScore() == 400);
-
-	account.SetCreditScore(500);
-	REQUIRE(account.CreditScore() == 500);
-
-	account.SetCreditScore(-100);
-	REQUIRE(account.CreditScore() == 200);
-
-	account.SetCreditScore(100);
-	REQUIRE(account.CreditScore() == 200);
-
-	account.SetCreditScore(900);
-	REQUIRE(account.CreditScore() == 800);
+SCENARIO( "Create an Account" , "[Account][Creation]" ) {
+	GIVEN( "an account" ) {
+		Account account;
+		WHEN( "a fine is levied" ) {
+			REQUIRE( account.TotalDebt() == 0 );
+			account.AddFine(10000);
+			THEN ( "debt is incurred" ) {
+				REQUIRE( account.TotalDebt() == 10000 );
+			}
+		}
+	}
 }
 
 TEST_CASE( "Remove paid-off mortgage from an account", "[Account][UpdateMortgages]" ) {
@@ -58,15 +54,6 @@ TEST_CASE( "Remove paid-off mortgage from an account", "[Account][UpdateMortgage
 	account.PayExtra(0, 1000);
 	account.UpdateMortgages();
 	REQUIRE(account.Mortgages().size() == 0);
-}
-
-TEST_CASE( "Calculate the player's net worth", "[Account][CalculateNetWorth]" ) {
-	Account account;
-	account.AddMortgage(1000);
-	account.AddFine(1000);
-	account.SetOverdueCrewSalaries(1000);
-	account.SetOverdueMaintenance(1000);
-	REQUIRE(account.CalculateNetWorth(5000) == 1000);
 }
 
 SCENARIO( "Operations on credits", "[Account][credits]" ) {
@@ -111,17 +98,21 @@ SCENARIO( "Operations on credits", "[Account][credits]" ) {
 	}
 }
 
-SCENARIO( "Create an Account" , "[Account][Creation]" ) {
-	GIVEN( "an account" ) {
-		Account account;
-		WHEN( "a fine is levied" ) {
-			REQUIRE( account.TotalDebt() == 0 );
-			account.AddFine(10000);
-			THEN ( "debt is incurred" ) {
-				REQUIRE( account.TotalDebt() == 10000 );
-			}
-		}
-	}
+TEST_CASE( "Set the credit score of the account", "[Acount][SetCreditScore]" ) {
+	Account account;
+	REQUIRE(account.CreditScore() == 400);
+
+	account.SetCreditScore(500);
+	REQUIRE(account.CreditScore() == 500);
+
+	account.SetCreditScore(-100);
+	REQUIRE(account.CreditScore() == 200);
+
+	account.SetCreditScore(100);
+	REQUIRE(account.CreditScore() == 200);
+
+	account.SetCreditScore(900);
+	REQUIRE(account.CreditScore() == 800);
 }
 
 SCENARIO( "Step forward" , "[Account][Step]" ) {
@@ -362,6 +353,15 @@ SCENARIO( "Generating missed payment logs", "[Account][GenerateMissedPaymentLogs
 			}
 		}
 	}
+}
+
+TEST_CASE( "Calculate the player's net worth", "[Account][CalculateNetWorth]" ) {
+	Account account;
+	account.AddMortgage(1000);
+	account.AddFine(1000);
+	account.SetOverdueCrewSalaries(1000);
+	account.SetOverdueMaintenance(1000);
+	REQUIRE(account.CalculateNetWorth(5000) == 1000);
 }
 
 SCENARIO( "Updating history and calculating net worth", "[Account][UpdateHistory]" ) {
