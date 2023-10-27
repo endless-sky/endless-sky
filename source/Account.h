@@ -80,6 +80,8 @@ public:
 	void PaySalaries(int64_t amount); // TODO: RENAME THIS TO PayOverdueCrewSalaries
 
 	// -- Functions operating on the player's history.
+
+	// Access the history of the player's net worth
 	const std::vector<int64_t> &History() const;
 
 	// -- Functions operating on the player's maintenance.
