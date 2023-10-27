@@ -341,22 +341,20 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 
 
 std::vector<Receipt> Account::PayBills(int64_t salaries, int64_t maintenance) {
+	std::vector<Receipt> receipts;
+
 	// Crew salaries take highest priority.
-	Receipt salariesPaid = PayCrewSalaries(salaries);
+	receipts.push_back(PayCrewSalaries(salaries));
 
 	// Maintenance costs are dealt with after crew salaries given that they act similarly.
-	Receipt maintencancePaid = PayMaintenance(maintenance);
+	receipts.push_back(PayMaintenance(maintenance));
 
 	// Unlike salaries, each mortgage payment must either be made in its entirety,
 	// or skipped completely (accruing interest and reducing your credit score).
-	Receipt mortgagesPaid, finesPaid;
-	if(Mortgages().size() > 0)
-	{
-		mortgagesPaid = PayMortgages();
-		finesPaid = PayFines();
-	}
+	receipts.push_back(PayMortgages());
+	receipts.push_back(PayFines());
 
-	return {salariesPaid, maintencancePaid, mortgagesPaid, finesPaid};
+	return receipts;
 }
 
 
@@ -435,6 +433,7 @@ Receipt Account::PayMortgages() {
 	//    1. The number of credits paid towards ALL mortgages
 	//    2. Whether ANY mortgage was not paid in full
 	Receipt receipt;
+	if(mortgages.empty()) return receipt;
 
 	for(Mortgage &mortgage : mortgages)
 	{
@@ -464,6 +463,7 @@ Receipt Account::PayFines() {
 	//    1. The number of credits paid towards ALL fines
 	//    2. Whether ANY fine was not paid in full
 	Receipt receipt;
+	if(mortgages.empty()) return receipt;
 
 	for(Mortgage &mortgage : mortgages)
 	{
