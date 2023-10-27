@@ -90,7 +90,7 @@ public:
 	int64_t OverdueMaintenance() const;
 
 	// Pay off the current overdue maintenance by a given amount.
-	void PayMaintenance(int64_t amount); // TODO: RENAME THIS TO PayOverdueMaintenance
+	void PayOverdueMaintenance(int64_t amount);
 
 	// -- Functions operating on the player's mortgages and fines.
 

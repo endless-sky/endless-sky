@@ -304,7 +304,7 @@ bool BankPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 				++i;
 		}
 		player.Accounts().PayOverdueCrewSalaries(player.Accounts().OverdueCrewSalaries());
-		player.Accounts().PayMaintenance(player.Accounts().OverdueMaintenance());
+		player.Accounts().PayOverdueMaintenance(player.Accounts().OverdueMaintenance());
 		qualify = player.Accounts().Prequalify();
 	}
 	else
