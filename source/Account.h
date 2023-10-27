@@ -74,10 +74,10 @@ public:
 	// -- Functions operating on the player's crew salaries.
 
 	// Access the overdue crew salaries.
-	int64_t OverdueCrewSalaries() const; // TODO: RENAME THIS TO OverdueCrewSalaries
+	int64_t OverdueCrewSalaries() const;
 
 	// Pay off the current overdue crew salaries by a given amount.
-	void PaySalaries(int64_t amount); // TODO: RENAME THIS TO PayOverdueCrewSalaries
+	void PayOverdueCrewSalaries(int64_t amount);
 
 	// -- Functions operating on the player's history.
 

@@ -168,7 +168,7 @@ int64_t Account::OverdueCrewSalaries() const
 // If the amount in overdue crew salaries is less then the amount passed,
 // pay the overdue crew salaries. If either of those is more than the total
 // number of credits in the players account, pay of as much as the player has.
-void Account::PaySalaries(int64_t amount)
+void Account::PayOverdueCrewSalaries(int64_t amount)
 {
 	amount = min(min(amount, overdueCrewSalaries), credits);
 	credits -= amount;

@@ -303,7 +303,7 @@ bool BankPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			else
 				++i;
 		}
-		player.Accounts().PaySalaries(player.Accounts().OverdueCrewSalaries());
+		player.Accounts().PayOverdueCrewSalaries(player.Accounts().OverdueCrewSalaries());
 		player.Accounts().PayMaintenance(player.Accounts().MaintenanceDue());
 		qualify = player.Accounts().Prequalify();
 	}
