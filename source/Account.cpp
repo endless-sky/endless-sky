@@ -158,7 +158,7 @@ void Account::SetCreditScore(int64_t value) {
 
 
 
-int64_t Account::CrewSalariesOwed() const
+int64_t Account::OverdueCrewSalaries() const
 {
 	return overdueCrewSalaries;
 }
@@ -612,7 +612,7 @@ int64_t Account::CalculateNetWorth(int64_t assets) const
 		sumPrincipals = mortgage.Principal();
 	}
 
-	return assets - sumPrincipals - CrewSalariesOwed() - MaintenanceDue();
+	return assets - sumPrincipals - OverdueCrewSalaries() - MaintenanceDue();
 }
 
 

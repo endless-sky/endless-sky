@@ -110,7 +110,7 @@ void BankPanel::Draw()
 
 	// Check if salaries need to be drawn.
 	int64_t salaries = player.Salaries();
-	int64_t overdueCrewSalaries = player.Accounts().CrewSalariesOwed();
+	int64_t overdueCrewSalaries = player.Accounts().OverdueCrewSalaries();
 	int64_t salariesIncome = player.Accounts().SalariesIncomeTotal();
 	int64_t tributeIncome = player.GetTributeTotal();
 
@@ -303,7 +303,7 @@ bool BankPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			else
 				++i;
 		}
-		player.Accounts().PaySalaries(player.Accounts().CrewSalariesOwed());
+		player.Accounts().PaySalaries(player.Accounts().OverdueCrewSalaries());
 		player.Accounts().PayMaintenance(player.Accounts().MaintenanceDue());
 		qualify = player.Accounts().Prequalify();
 	}
