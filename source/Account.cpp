@@ -197,6 +197,12 @@ int64_t Account::OverdueMaintenance() const
 
 
 
+void Account::SetOverdueMaintenance(int64_t value) {
+	overdueMaintenance = value;
+}
+
+
+
 // If the amount in overdue maintenance is less then the amount passed,
 // pay the overdue maintenance. If either of those is more than the total
 // number of credits in the players account, pay of as much as the player has.

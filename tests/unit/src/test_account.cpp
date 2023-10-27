@@ -90,6 +90,14 @@ TEST_CASE( "Remove paid-off mortgage from an account", "[Account][UpdateMortgage
 	REQUIRE(account.Mortgages().size() == 0);
 }
 
+TEST_CASE( "Calculate the player's net worth", "[Account][CalculateNetWorth]" ) {
+	Account account;
+	account.SetCredits(10000);
+	account.AddMortgage(1000);
+	account.AddFine(1000);
+
+}
+
 SCENARIO( "Create an Account" , "[Account][Creation]" ) {
 	GIVEN( "an account" ) {
 		Account account;
@@ -176,9 +184,28 @@ SCENARIO( "Operations on overdueCrewSalaries", "[Account][overdueCrewSalaries]" 
 	}
 }
 
-SCENARIO( "Pay ship maintenance", "[Account][PayShipMaintenance]" ) {
+SCENARIO( "Operations on overdueMaintenance", "[Account][overdueMaintenance]" ) {
 	GIVEN( "An account" ) {
 		Account account;
+		WHEN( "overdueMaintenance is 0" ) {
+			THEN( "overdueMaintenance will return 0" ) {
+				REQUIRE(account.OverdueMaintenance() == 0);
+			}
+			AND_WHEN( "SetOverdueMaintenance is used to set a value" ) {
+				account.SetOverdueMaintenance(1000);
+				THEN( "overdueMaintenance is set to that value" ) {
+					REQUIRE(account.OverdueMaintenance() == 1000);
+				}
+				AND_WHEN( "PayOverdueMaintenance is used to pay off that value" ) {
+					account.SetCredits(1000);
+					account.PayOverdueMaintenance(1000);
+					THEN( "overdueMaintenance is 0" ) {
+						REQUIRE(account.OverdueMaintenance() == 0);
+					}
+				}
+			}
+		}
+
 		WHEN( "no maintenance is owed" ) {
 			Receipt maintenancePaid = account.PayShipMaintenance(0);
 			THEN( "Maintenance was paid in full and no credits were paid" ) {

@@ -92,6 +92,9 @@ public:
 	// Access the overdue maintenance costs.
 	int64_t OverdueMaintenance() const;
 
+	// Set the number of credits of unpaid maintenance the player owes.
+	void SetOverdueMaintenance(int64_t value);
+
 	// Pay off the current overdue maintenance by a given amount.
 	void PayOverdueMaintenance(int64_t amount);
 
