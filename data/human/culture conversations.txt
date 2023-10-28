@@ -65,7 +65,7 @@ mission "Gift Store Interaction"
 		random < 1
 	on offer
 		conversation
-			`As you wander the spaceport with a snack, waiting for your ship to be refueled, you pass a local souvenir shop and poke your head in to kill a little time. You see a decent looking mug with the text "<origin>" printed underneath an attractive, stylized representation of the spaceport you are presently standing in and pick it up to see how it feels. The handle is solid, not too small for your fingers, and the lip of it looks like it would be comfortable to drink out of.`
+			`As you wander the spaceport with a snack, waiting for your ship to be refueled, you pass a local souvenir shop and poke your head in to kill a little time. You see a decent looking mug with the text "Peace, Prosperity, Progress" printed underneath the insignia of the Deep and pick it up to see how it feels. The handle is solid, not too small for your fingers, and the lip of it looks like it would be comfortable to drink out of.`
 			`	Two young adults wander into the aisle just a couple of meters away, conversing in a language that you don't understand, one that is perhaps local to the Deep. They're cooing over an item they've found, but when one flips it over to look at the price tag, there is an immediate exchange of looks and expressions that does not require translation. The item ends up back on the shelf with a giggle and a head-shake.`
 			branch broke
 				credits < 50
@@ -87,14 +87,6 @@ mission "Gift Store Interaction"
 			label broke
 			`	Curious, you turn over your own mug, and when you spot the 50 credit price tag your heart sinks. You could never afford such an expensive mug. You put it back and walk away while pondering your financial situation.`
 				decline
-
-outfit "Mug"
-	category "Hand to Hand"
-	cost 50
-	thumbnail "outfit/unknown"
-	"capture attack" .1
-	"unplunderable" 1
-	description "You can throw it in a pinch, you guess."
 
 
 
@@ -622,4 +614,74 @@ mission "Sol-Bound Shuttle"
 			`	"For you, maybe. I can tell by your accent that you've done a bit of travelling from your home planet. I like staying closer to home, though. With all the instability in the galaxy - pirates, aliens, and who knows what else - staying in Sol keeps me safe. Call me paranoid, but being in a place where I don't have to worry about that is something I value." She eyes a ship to the side that's having its hull repaired. The damage appears to have been inflicted by a beam weapon.`
 			label end
 			`	You say your goodbyes as you board your ships. Although you are both captains, the trajectory of your lives have taken very different courses.`
+				decline
+
+# Note about Earth Day and Earth Hour:
+# Earth Day (in 2023) is a day of awareness about climate change and occurs every 22nd of April. Earth Hour is an hour
+# of blackout around cities worldwide, also to bring awareness to climate change, and it's observed on the last Saturday
+# of March.
+
+# Since Earth Day has become a quasi-'national day' for Earthlings in Endless Sky, it would be interesting to have Earth
+# Hour be conflated with Earth Day as well, to demonstrate how people in a thousand years' time observe what we observe
+# today and how its meaning has changed.
+mission "Earth Day Blackout"
+	minor
+	landing
+	source "Earth"
+	to offer
+		day == 22
+		month == 5
+	on offer
+		conversation
+			`As you follow the tracking beacons towards Earth's central spaceport, you realize there's something very off. What was the bustling spaceport city is now completely still, and even though it is near midnight, the supertall buildings and skyscrapers are curiously dark; not a light is on for kilometers.`
+			`	Despite this, the spaceport seems to still be operational, because the automated procedures of signing landing documents, refueling, and checking your ship's spaceworthiness are completed as you land. In the spaceport terminal, there are wax candles spaced out to bring some light into the now dark corridors. It's a strange sight for the most populated planet in human space.`
+			choice
+				`	(Find someone and ask.)`
+				`	(The blackout will probably pass.)`
+					goto pass
+			branch attendant tourist
+				random > 50
+
+			label attendant
+			`	You approach an information desk in the terminal's atrium that, given the situation, doesn't seem to be as busy as expected. After a moment you get to the attendant behind the counter.`
+			choice
+				`	"What's with the blackout?"`
+				`	"When is the blackout going to be fixed?"`
+			`	The attendant chuckles to himself. "I should've expected that question from your accent. Today's Earth Day, when all the cities of Earth - and I mean all of them - participate in a total blackout. Even the Parliament building was out today. It makes us think about our origins; that we once lived on the soil without electricity, all confined to just this one planet here, divided and uncertain. Of course, people like me still have to keep working, but for other people it's a day off to enjoy what little wildlife and Earth us Earthlings have left, ironically. Do you have any other questions?`
+			choice
+				`	"When did this tradition start?"`
+				`	"Thank you for telling me."`
+					goto pass
+			`	"Well, my old history class tells me that the first Earth Day was around the 20th century, a few years after we landed on the Moon for the first time. Back then, there were a bunch of conflicts and disputes over resources and how we were fighting all over and digging it all up to power all those dirty, primitive cars, power plants, and factories we had back then. So as a show of unity against that people started celebrating Earth's natural beauty by bringing us back to our past."`
+			`	As he finishes, the ceiling lights flash back on. "Ah, well, there you go. Too bad I missed the celebrations, but that's the end of Earth Day and my night shift. I hope you had a good Earth Day, and have a good night!"`
+				decline
+
+			label tourist
+			`	You approach a woman with a bunch of oversized bags clustered around her seat. She's tapping rapidly on her datapad, but nonetheless she looks up when you approach. "Excuse me, Captain, I was just trying to figure out when the metro starts up again. Do you know?"`
+			choice
+				`	"I know just as much as you, sorry."`
+				`	"Maybe it's to do with the blackout?"`
+					goto "way in"
+			`	"Ha, they shut everything down for Earth Day and then assume all us offworlders get the idea. What do you know..."`
+			choice
+				`	"Earth Day?"`
+				`	"Shut everything down?"`
+			`	"Didn't you see what was happening outside on your way in? It's something to do with Earth Day. Back in those old days before humans were able to get off this planet, they were stuck in a chain of issues and disputes over energy. You know, they didn't have fusion reactors back then. Awfully primitive times.`
+				goto decided
+
+			label "way in"
+			`	"Yes, I suppose you must have seen what's happening outside on your way in. It's something to do with Earth Day. Back in those old days before humans were able to get off this planet, they were stuck in a chain of issues and disputes over energy. You know, they didn't have fusion reactors back then. Awfully primitive times.`
+
+			label decided
+			`	"So they decided that, on the 22nd of April each year, all of Earth would go into total blackout to symbolize that they didn't have enough energy to sustain themselves, and to remind them that the only way to advance was to keep pushing themselves forward, find new pathways to power, lest those blackouts became longer and more frequent. Fascinating, huh?"`
+			choice
+				`	"It seems a bit backwards."`
+				`	"It is fascinating, thanks."`
+					goto pass
+			`	"Well, perhaps. But Earth is like that sometimes. It's survived through so much, and without Earth Day to remind our ancestors that we must keep looking forward, maybe you wouldn't be in your fancy little spaceship, would you?"`
+			`	The lights in the spaceport turn back on as she says that, and she turns to look at her data pad again. "Oh, it's twelve o'clock. I've got to see if the metro's opened so I can get to my accommodation. Safe travels!"`
+				decline
+
+			label pass
+			`	After the clock passes midnight, the lights in the spaceport come back on, followed by the signage and lights of the city surrounding it. A few workers come and snuff out the candles before putting them away in unseen closets.`
 				decline

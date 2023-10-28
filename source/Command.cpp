@@ -73,6 +73,7 @@ const Command Command::INFO(ONE << 22, "View player info");
 const Command Command::MESSAGE_LOG(ONE << 23, "View message log");
 const Command Command::FULLSCREEN(ONE << 24, "Toggle fullscreen");
 const Command Command::FASTFORWARD(ONE << 25, "Toggle fast-forward");
+const Command Command::HELP(ONE << 25, "Show help");
 const Command Command::FIGHT(ONE << 26, "Fleet: Fight my target");
 const Command Command::GATHER(ONE << 27, "Fleet: Gather around me");
 const Command Command::HOLD(ONE << 28, "Fleet: Hold position");
