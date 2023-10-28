@@ -238,7 +238,8 @@ mission "<uhai> 5 Annex: Carrier Analysis"
 				decline
 
 			label sell
-			`	For a few seconds she just lays there, stunned, before answering, "Are.. You serious? I mean, of course you are, let me just think about this with my staff, I'll get back to you." She cuts the transmission for a few minutes, before reestablishing it with a formal offer, "I'll give you 10 millions and a few extras from our cache of Korath technology. You will naturally be able to buy back any outfits you may like from the outfitter, as only the hull of the ship is of interest to me."`
+			`	For a few seconds she just lays there, stunned, before answering, "Are.. You serious? I mean, of course you are, let me just think about this with my staff, I'll get back to you." She cuts the transmission for a few minutes, before reestablishing it with a formal offer, "I'll give you 10 millions and a few extras from our cache of Korath technology, including dreaded Piercer Missiles!`
+			`	You will naturally be able to buy back the outfits that are currently equipped on your ship from the outfitter - only the hull is of interest to me."`
 			`	A member of her staff murmurs something to her, and she realizes she forgot something, "I am so silly! You only have this one ship, so you would be unable to leave the planet if I take it. I'll give you an old Aphid we have lying around, that should allow you to get to Darkcloak safely, to buy a proper ship!"`
 				to display
 					"total ships" == 1
@@ -252,17 +253,18 @@ mission "<uhai> 5 Annex: Carrier Analysis"
 				"unfettered rep: Mera" ++
 				payment 10000000
 				outfit "Thermal Repeater Rifle" 25
-				outfit "Thermal Repeater" 2
-				outfit "Thermal Repeater Turret"
+				outfit "Piercer Missile Launcher" 2
+				outfit "Piercer Missile" 126
+				outfit "Piercer Missile Rack" 4
 				outfit "Plasma Core"
 			branch "flag only"
 				"total ships" <= 1
-			`	They take the ship away whilst giving you the agreed payment, and invite you to head to the outfitter to get outfits back if you so desire.`
+			`	They take the ship away whilst giving you the agreed payment and outfits, and invite you to head to the outfitter to get outfits back if you so desire.`
 				decline
 			label "flag only"
 			action
 				give ship "Aphid (Unfettered)"
-			`	They take the flagship away and give you the agreed payment, in addition to an old Aphid.`
+			`	They take the flagship away and give you the agreed payment and outfits, in addition to an old Aphid.`
 
 
 
