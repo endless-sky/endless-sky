@@ -242,6 +242,7 @@ outfitter "Mera's Lab"
 	"Pebble Core"
 	"Supercapacitor"
 	"Pulse Rifle"
+	"Asteroid Scanner"
 
 # For ships, stations, or corporations.
 phrase "hai"

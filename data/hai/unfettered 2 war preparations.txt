@@ -26,10 +26,10 @@ mission "<uhai> 10: Belt Materials"
 				`	"What kind of materials do you need?"`
 			`	Whether she hears your question or not, she responds to it explicitly, speaking to all that are present, "Do not bother with silicon, friends, we already have plenty, and its uses are limited. No, we need a lot of silver and lead. Also do not forget we are selling asteroid scanners in the outfitter, should you require any.`
 			`	"Titanium would also be welcomed, but as you well know there is only a very limited amount of it left in this system, and the fact there is a lot in Ik'kara'ka, as the aliens of the north call it, does little to help us."`
-			`	It looks like she is done speaking to the others, so now she comes to you, "Hello <first>. It's been a while since I last saw you. Heard you took care of that Auxiliary and brought back quite the treasure; great work!" Her tail moves from left to right as she says this, which is probably a sign of excitement. "The renovation efforts are progressing at rapid pace, but we still need all the hands we can get!"`
+			`	It looks like she is done speaking to the others, so now she comes to you, "Hello, <first>. It's been a while since I last saw you. Heard you took care of that Auxiliary and brought back quite the treasure; great work!" Her tail moves from left to right as she says this, which is probably a sign of excitement. "The renovation efforts are progressing at rapid pace, but we still need all the hands we can get!"`
 			label choice
 			choice
-				`	"See you soon with the requested resources."`
+				`	"I'll go collect the ressource, then."`
 					accept
 				`	"How should I collect minerals from asteroids?"`
 					to display
@@ -43,12 +43,12 @@ mission "<uhai> 10: Belt Materials"
 			label asteroidtuto
 			action
 				set "unfettered: asteroid tuto"
-			`	She seems a bit surprised, "You've never mined asteroids? I recommend you install an asteroid scanner so your ship can target them automatically. Just try to keep your ship stable around one and shoot it as you would any other ships. Keep in mind they have no shields, and you might not want to waste missiles on them, since they don't shoot back."`
+			`	She seems a bit surprised, "You've never mined asteroids? I recommend you install an asteroid scanner so your ship can target them automatically. Just try to keep your ship stable around one and shoot it as you would any other ship. Keep in mind they have no shields, and you might not want to waste missiles on them, since they don't shoot back."`
 				goto choice
 			label where
 			action
 				set "unfettered: asteroid systems"
-			`	Silicon can simply be found right over our heads, and there are silver asteroids present in Ehma Ti. The silicon asteroid looks similar to copper but is bigger. You can also just differentiate them with an asteroid scanner. Silver is easy to recognize with its very small size and natural sturdiness."`
+			`	Lead can simply be found right over our heads, and there are silver asteroids present in Ehma Ti. The lead asteroid looks similar to copper but is bigger. You can also just differentiate them with an asteroid scanner. Silver is easy to recognize with its very small size and natural sturdiness."`
 				goto choice
 			label nobiggie
 			`	"Oh, I see." Her tail movement stops at once. "Are you sure? This would mean a lot for me, a lot of Unfettered refuse to collect resources this way already, preferring to shoot enemies that fire back."`
@@ -85,7 +85,7 @@ mission "<uhai> 10: Belt Materials"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on visit
-		dialog "You have landed, but you do not mined enough materials from asteroids yet, or they are in one of your escorts that is not in the system. Remember that silver can be acquired in Ehma Ti, whilst Silicon can be found in Wah Yoot."
+		dialog "You have landed, but you do not mined enough materials from asteroids yet, or they are in one of your escorts that is not in the system. Remember that silver can be acquired in Ehma Ti, whilst lead can be found in Wah Yoot."
 	on complete
 		clear "unfettered: asteroid tuto"
 		clear "unfettered: asteroid systems"
@@ -551,7 +551,7 @@ mission "<uhai> 13: Korath Specialty"
 				`	(Follow him.)`
 				`	"I don't have time right now. I'll come back later."`
 					defer
-			`	These sections of lab are like nothing you've seen before, certainly not on the surface. Here, things are not only efficient but aesthetically pleasing. It almost looks like a museum, with different kinds of alien technologies. You find Mera working around a Williwaw cooler, but she is not alone. The Korath prisoners you rescued are with her. It appears they have recovered from recent events, although you notice one is missing, the one with the serious leg injury. They are all busy looking around, seemingly excited, like they can't focus on one thing at a time. Or maybe this is just too easy of a task for them... Their main focus, however, is on the cooler and its surrounding technologies, so they have not noticed you yet, or at least they have not reacted to your presence.`
+			`	These sections of the lab are not like anything you've seen before, certainly not on the surface. Here, things are not only efficient but aesthetically pleasing. It almost looks like a museum, with different kinds of alien technologies. You find Mera working around a Williwaw cooler, but she is not alone. The Korath prisoners you rescued are with her. It appears they have recovered from recent events, although you notice one is missing, the one with the serious leg injury. They are all busy looking around, seemingly excited, like they can't focus on one thing at a time. Or maybe this is just too easy of a task for them... Their main focus, however, is on the cooler and its surrounding technologies, so they have not noticed you yet, or at least they have not reacted to your presence.`
 			choice
 				`	"Here I am. What do you need me for?"`
 				`	(Wait for them to notice me.)`
@@ -570,8 +570,8 @@ mission "<uhai> 13: Korath Specialty"
 			label wait
 			action
 				"unfettered rep: sestors" ++
-			`	The Korath eventually notice you and begin staring at you. They move around in a decisive manner but never stop staring. You begin to feel intense pressure as they are scrutinizing you, learning every details, and probably guessing why you arrived. Or maybe they just wonder if you're the breakfast.`
-			`	Then they speak in an alien language and the translator starts working, speaking in a robotic voice, but you have trouble keeping up, and they don't seem to have enough patience to wait for it to catch up. "Ah it is the <one> who saved <we, us> why is it <surprised> to see <we, us> did it expect <we, us> would all <be over>?" Whilst speaking the Korath almost did a performance, getting down and moving around before joining together. You notice they pronounce some sounds longer, maybe in the hope of letting the translator make sense out of it, although most sounds are very short. You realize they've probably noticed you're surprised to see them here.`
+			`	The Korath eventually notice you and begin staring at you. They move around in a decisive manner but never stop staring. You begin to feel intense pressure as they are scrutinizing you, learning every detail, and probably guessing why you are here. Or maybe they just wonder if you're the breakfast.`
+			`	Then they speak in an alien language and the translator starts speaking in a robotic voice, but you have trouble keeping up, and they don't seem to have enough patience to wait for it to catch up. "Ah it is the <one> who saved <we, us> why is it <surprised> to see <we, us> did it expect <we, us> would all <be over>?" Whilst speaking the Korath almost did a performance, getting down and moving around before joining together. You notice they pronounce some sounds longer, maybe in the hope of letting the translator make sense out of it, although most sounds are very short. You realize they've probably noticed you're surprised to see them here.`
 			choice
 				`	"I didn't expect you to be back to working so soon."`
 					goto working
@@ -600,7 +600,7 @@ mission "<uhai> 13: Korath Specialty"
 				to display
 					not "unfettered: better sestor"
 					has "<uhai> 13: Better Translator: done"
-			`	"I really wish we could improve the translator, somehow. Maybe there is someone of importance in the council that would have interest for this?"`
+			`	"I really wish we could improve the translator, somehow. Maybe there is someone of importance in the council that would be interested in this?"`
 				to display
 					not "<uhai> 13: Better Translator: done"
 			choice
@@ -609,7 +609,8 @@ mission "<uhai> 13: Korath Specialty"
 				`	"Can you be more specific?"`
 			`	"Not really. I don't know all kinds of cooling your species could have, but it most be large, considering your technology is not as heat efficient as ours. You're probably even using things like water, ha! Don't bring us something quite that primitive. We want the good stuff, like your nitrogen cooling, for instance. Do bring a lot of it, say, 300 tons."`
 			choice
-				`	"I'll go look for those then."`
+				`	"I'll go look for those, then."`
+					accept
 				`	"I'm not interested in helping you anymore."`
 					decline
 			label quantity

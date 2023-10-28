@@ -539,7 +539,7 @@ mission "Unfettered: Bring Legendary Combo"
 			action
 				"unfettered: prototypes exchanged" += 2
 				outfit "Ionic Turret Prototype" 2
-			`	"You strike a hard bargain but I shall make the necessary arragements."`
+			`	"You strike a hard bargain but I shall make the necessary arrangements."`
 				goto deal
 			label shredders
 			action
