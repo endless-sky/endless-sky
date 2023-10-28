@@ -29,7 +29,7 @@ namespace {
 
 	vector<pair<string, Messages::Importance>> incoming;
 	vector<Messages::Entry> recent;
-	vector<pair<string, Messages::Importance>> log;
+	vector<pair<string, Messages::Importance>> logged;
 }
 
 
@@ -39,9 +39,9 @@ void Messages::Add(const string &message, Importance importance)
 {
 	lock_guard<mutex> lock(incomingMutex);
 	incoming.emplace_back(message, importance);
-	log.emplace(log.begin(), message, importance);
-	if(log.size() > MAX_LOG)
-		log.pop_back();
+	logged.emplace(log.begin(), message, importance);
+	if(logged.size() > MAX_LOG)
+		logged.pop_back();
 }
 
 
@@ -94,7 +94,7 @@ const vector<Messages::Entry> &Messages::Get(int step)
 
 const vector<pair<string, Messages::Importance>> &Messages::GetLog()
 {
-	return log;
+	return logged;
 }
 
 
@@ -105,7 +105,7 @@ void Messages::Reset()
 	lock_guard<mutex> lock(incomingMutex);
 	incoming.clear();
 	recent.clear();
-	log.clear();
+	logged.clear();
 }
 
 
