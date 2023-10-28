@@ -211,7 +211,7 @@ mission "<uhai> 5 Annex: Carrier Analysis"
 					decline
 			`	"No, of course not."`
 			label lab
-			scene "outfit/repeater?turret"
+			scene "outfit/repeater turret"
 			scene "outfit/repeater"
 			`	She sets the next destination, staying quiet. You arrive at the lab in little time, and she shows you your reward. "These are very powerful weapons, however your ship must be able to handle a lot of heat to use them. They are called 'Thermal Repeaters'. I have a lot of cleanup to do after what happened, so I'll simply ask you to choose between 2 turrets, or 5 guns."`
 			choice
