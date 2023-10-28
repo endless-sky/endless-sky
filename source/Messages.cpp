@@ -39,7 +39,7 @@ void Messages::Add(const string &message, Importance importance)
 {
 	lock_guard<mutex> lock(incomingMutex);
 	incoming.emplace_back(message, importance);
-	logged.emplace(log.begin(), message, importance);
+	logged.emplace(logged.begin(), message, importance);
 	if(logged.size() > MAX_LOG)
 		logged.pop_back();
 }
