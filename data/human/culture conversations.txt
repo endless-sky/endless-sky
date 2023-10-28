@@ -677,7 +677,7 @@ mission "Burthen Triathlon"
 				goto end
 
 			label "after tent"
-			`	As he nears the finish line the Burthensiders' enthusiastic cheers, whoops, and hollers erupt from the crowd, and the camera drones, their repulsors apparently now calibrated for Burthen's gravity, circle around the finishing straight. Just over the crowd a loudspeaker announces, "and here comes the winner of the Syndicate Athletics Burthen Triathlon, the world triathlete champion, competitor number fifty-eight, Samuel Abernathy!"`
+			`	As he nears the finish line the Burthensiders' enthusiastic cheers, whoops, and hollers erupt from the crowd, and the camera drones, their repulsors now calibrated for Burthen's gravity, circle around the finishing straight. Just over the crowd a loudspeaker announces, "And here comes the winner of the Syndicate Athletics Burthen Triathlon, the world triathlete champion, competitor number fifty-eight, Samuel Abernathy!"`
 
 			label "end"
 			`	Abernathy doesn't slow down until he's within an arm's length of the finishing line; as he crosses it he seizes the tape, making a yelp of simultaneous joy and relief. He holds the tape up before everybody in the crowd and at the cameras pointed at him, taking in the attention (and catching his breath) before accepting a bottle of water from someone on the sidelines.`
