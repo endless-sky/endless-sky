@@ -1552,8 +1552,8 @@ mission "FW Katya 2B"
 		log `Met up with a friend of Katya's named Mr. Eyes, who calls himself a "vigilante nuclear power plant inspector." He thinks he can help hunt down the people who bombed Geminus and Martini, to prove that the Free Worlds were not behind it.`
 	
 	npc
-		government "Pirate"
-		personality nemesis plunders waiting
+		government "Bounty Hunter"
+		personality nemesis plunders staying waiting
 		fleet "Small Core Pirates" 2
 	
 	on visit
