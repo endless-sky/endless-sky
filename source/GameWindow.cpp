@@ -32,7 +32,7 @@ using namespace std;
 namespace {
 	SDL_Window *mainWindow = nullptr;
 	SDL_GLContext context = nullptr;
-	int width, height = 0;
+	int width, height, xPos, yPos = 0;
 	bool supportsAdaptiveVSync = false;
 
 	// Logs SDL errors and returns true if found
@@ -133,6 +133,7 @@ bool GameWindow::Init()
 	}
 
 	SDL_GetWindowSize(mainWindow, &width, &height);
+	SDL_GetWindowPosition(mainWindow, &xPos, &yPos);
 	switch(Preferences::ScreenMode())
 	{
 	case 0:
@@ -313,6 +314,8 @@ void GameWindow::AdjustViewport()
 	{
 		width = windowWidth;
 		height = windowHeight;
+		xPos = windowX;
+		yPos = windowY;
 	}
 
 	// Round the window size up to a multiple of 2, even if this
@@ -400,7 +403,7 @@ bool GameWindow::IsMaximized()
 
 bool GameWindow::IsBorderless()
 {
-	return (SDL_GetWindowFlags(mainWindow) & SDL_WINDOW_FULLSCREEN_DESKTOP);
+	return (SDL_GetWindowFlags(mainWindow) & SDL_WINDOW_BORDERLESS);
 }
 
 
@@ -417,6 +420,10 @@ bool GameWindow::TrySetWindowed()
 	SDL_SetWindowFullscreen(mainWindow, 0);
 	SDL_SetWindowSize(mainWindow, width, height);
 	SDL_SetWindowGrab(mainWindow, SDL_FALSE);
+	SDL_SetWindowPosition(mainWindow, xPos, yPos);
+
+	SDL_SetWindowResizable(mainWindow, SDL_TRUE);
+	SDL_SetWindowBordered(mainWindow, SDL_TRUE);
 
 	return true;
 }
@@ -427,6 +434,7 @@ bool GameWindow::TrySetFullscreen()
 {
 	SDL_SetWindowFullscreen(mainWindow, SDL_WINDOW_FULLSCREEN);
 	SDL_SetWindowGrab(mainWindow, SDL_TRUE);
+
 	return GameWindow::IsFullscreen();
 }
 
@@ -434,8 +442,18 @@ bool GameWindow::TrySetFullscreen()
 
 bool GameWindow::TrySetBorderless()
 {
-	SDL_SetWindowFullscreen(mainWindow, SDL_WINDOW_FULLSCREEN_DESKTOP);
+	SDL_SetWindowFullscreen(mainWindow, 0);
 	SDL_SetWindowGrab(mainWindow, SDL_FALSE);
+	SDL_SetWindowResizable(mainWindow, SDL_FALSE);
+	SDL_SetWindowBordered(mainWindow, SDL_FALSE);
+	SDL_Rect rect;
+	SDL_GetDisplayBounds(SDL_GetWindowDisplayIndex(mainWindow), &rect);
+#ifdef _WIN32 // Hack to prevent weird windows compositing things
+	SDL_SetWindowSize(mainWindow, rect.w, rect.h + 1);
+#else
+	SDL_SetWindowSize(mainWindow, rect.w, rect.h);
+#endif
+	SDL_SetWindowPosition(mainWindow, rect.x, rect.y);
 
 	return GameWindow::IsBorderless();
 }
