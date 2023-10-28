@@ -63,6 +63,9 @@ private:
 	int modifier;
 
 	Sale<Ship> shipyard;
+
+	// Keep track of how many of the outfitter help screens have been shown
+	bool checkedHelp = false;
 };
 
 
