@@ -107,12 +107,8 @@ void ShipyardPanel::Step()
 {
 	ShopPanel::Step();
 	ShopPanel::CheckForMissions(Mission::SHIPYARD);
-	if(GetUI()->IsTop(this) && !checkedHelp)
-		// Use short-circuiting to only display one of them at a time.
-		// (The first valid condition encountered will make us skip the others.)
-		if(DoHelp("shipyard") || true)
-			// Either a help message was freshly displayed, or all of them have already been seen.
-			checkedHelp = true;
+	if(GetUI()->IsTop(this))
+		DoHelp("shipyard");
 }
 
 
