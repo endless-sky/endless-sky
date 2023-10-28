@@ -147,6 +147,104 @@ mission "Unfettered: Untrustable"
 
 
 
+mission "<uhai> 5 Annex: Carrier Analysis"
+	minor
+	invisible
+	landing
+	source "Firelode"
+	to offer
+		has "<uhai> 5: Auxiliary Scans: done"
+		has "ship model: Carrier"
+		random < 30
+		not "unfettered: outcast"
+	on offer
+		conversation
+			`As you finish the landing procedure you receive a warning from one of your first mates: a Lightning Bug is headed straight towards his Carrier, at full speed!`
+			`	Fortunately it stops as soon as it enters scanning range, and begins a full sweep of your ship, before hailing you. You immediately recognize Mera. "Hey there, <first>! I was warned about a Carrier arriving," she looks to her side, probably at one member of her crew as she continues, "because someone thought it was the Giftbringer..." before looking back to you, with a smile, "Anyway, what a pleasant surprise to know it was you. I hope you dont mind me taking some scans, you'll be compensated for it naturally. In fact, I'll allow you to come with me to the lab and choose any item you desire!"`
+			choice
+				`	"That seems like a good deal, I'm in!"`
+					goto deal
+				`	"You can do better than scan that ship, in fact I'm willing to sell it to you."`
+					goto sell
+				`	"My privacy is very important to me. Stop that scan at once."`
+			`	She seems really surprised, but gives a sign to her officers to stop the scanning. "In that case we will erase the information collected. Truly I had no idea you would see it this way. Still, this is such a shame..."`
+				decline
+			label deal
+			action
+				set "unfettered: carrier scans"
+			`	The scan is finished in a record speed, and Mera invites you on her ship to get to the lab. When you arrive on the bridge she is alone. "I like to be able to speak freely, you see," she says as you look at the empty bridge. "You never know who is listening," she says as she sets a course. "I have something to show you. But first, tell me, how did you acquire this Carrier? We Unfettered like to share stories, sometimes around campfires..." she says before snaping her fingers. Suddenly the atmosphere of the room changes, and you can see the outside of the ship as if it was no longer there.`
+			choice
+				`	"There is not much to say, I simply bought it."`
+					goto bought
+				`	"I acquired it in a grand battle for freedom!"`
+					goto freedom
+				`	"How did you do that?"`
+					goto explain
+				`	"I prefer not to talk about it."`
+			`	"Suit yourself."`
+				goto testingsite
+			label bought
+			`	"I see you are very humble, captain."`
+				goto testingsite
+			label freedom
+			`	"So you are already Unfettered in your heart!" She sighs. "I hope it means you understand that we do not all desire battle, but we do see it as a necessity."`
+				goto testingsite
+			label explain
+			`	"This?" She says, looking around. "It's just a few projectors, in truth. This was not their primary intended use, however," she says with a chuckle.`
+			label testingsite
+			`	You quickly arrive at a collection of craters, which remind you of the moon. She stops there and takes a deep breath.`
+			`	"I have a new gadget I wanted to show you. If you would like to do the honors, it has never been tested before!"`
+			choice
+				`	(Dewit!)`
+					goto dewit
+				`	"Are you sure it is safe?"`
+			`	"I am pretty confident it will not blow us up, if that is what you are wondering!"`
+			label dewit
+			`	You press the button and the huge turret on top of the ship starts to fire in a thunder of fire and rocks exploding, the power of the shots so big that the ship's thrusters are having a very hard time maintaining the ship in position. You can hear Mera laughing. "It works! It works!" The weapon appears to be pulse based, but the projectiles are much, much bigger, and more unstable as well, it seems.`
+			`	Suddenly alarms turn on and the ship is put in a yellow light. You can see Mera shouting something but you cannot hear her over the cacophony. She does not seem to be in panic at all, but you have not seen her move this fast yet. Suddenly you hear a loud click and the alarms turn off. She then stabilizes the ship and launches at full speed as you hear a loud bang. Turning around you see that she disconnected the turret from the ship. She goes over a mountaintop and then stays as close to the ground as possible.`
+			`	"I know I said it would not blow up, but..." she starts before being interrupted by a big explosion as the ship enters the bottom of a crater. "Well, this is why the tests are done here, after all." She seems a bit demotivated by this apparent failure. "This ship was simply not able to handle the sheer amount of heat produced! I should probably work more on stabilizing it, but that would cost energy..." she continues rambling, probably having forgotten your presence.`
+			choice
+				`	"Was that turret my reward?"`
+				`	"Can we get back to the lab?"`
+					goto lab
+				`	"I've seen enough for today, get me back to my ship."`
+					decline
+			`	"No, of course not."`
+			label lab
+			scene "outfit/repeater?turret"
+			scene "outfit/repeater"
+			`	She sets the next destination, staying quiet. You arrive at the lab in little time, and she shows you your reward. "These are very powerful weapons, however your ship must be able to handle a lot of heat to use them. They are called 'Thermal Repeaters'. I have a lot of cleanup to do after what happened, so I'll simply ask you to choose between 2 turrets, or 5 guns."`
+			choice
+				`	"The turrets."`
+				`	"The guns."`
+					goto guns
+			action
+				outfit "Thermal Repeater Turret" 2
+			`	"I knew you would say that. I'll pass the word to my engineers. Have fun with them."`
+				goto wornout
+				decline
+			label guns
+			action
+				outfit "Thermal Repeater" 5
+			label wornout
+			`	"Really? I wasn't expecting you to choose the guns. But I guess they do have more total firepower, even if they lack the tracking."`
+			`	She seems quite worn out by what happened today, and lets you find your way back to your ship.`
+				decline
+
+			label sell
+			`	For a few seconds she just lays there, stunned, before answering, "Are.. You serious? I mean, of course you are, let me just think about this with my staff, I'll get back to you." She cuts the transmission for a few minutes, before reestablishing it with a formal offer, "I'll give you <payment> instead of my first offer. You will naturally be able to buy back any outfits you may like from the outfitter, as only the hull of the ship is of interest to me."`
+			choice
+				`	"Deal!"`
+				`	"Come to think of it, I'm not ready to separate myself from that ship yet, a scan is all I can give you."`
+					goto deal
+			action
+				payment 25000000
+				take ship "Carrier"
+				set "unfettered: carrier"
+				"unfettered rep: Mera" += 2
+
+
+
 mission "<uhai> 13: Better Translator Directions"
 	minor
 	name "Find Choot'k"
@@ -175,6 +273,8 @@ mission "<uhai> 13: Better Translator Directions"
 					decline
 			`	You head to his throne room to see him, and this time the Unfettered guards have no issue with letting you pass. It is only once you enter the room that you see the void left by his absence. One of his aids comes your way, equipped with a translator. When you ask where he might be they think a bit and come up with the only logical answer, "Go look on Firelode, on top of the [biggest, most prominent] mountain. That is where he usually is at this [time, day]."`
 				accept
+	to fail
+		has "unfettered: outcast"
 
 mission "<uhai> 13: Better Translator"
 	landing
@@ -227,6 +327,8 @@ mission "<uhai> 13: Better Translator"
 			has "unfettered: stopped on hai-home"
 		fleet "Large Northern Pirates" 3
 		fleet "Small Northern Pirates" 3
+	to fail
+		has "unfettered: outcast"
 	on fail
 		dialog `Choot'k managed to get out from the ship before it exploded, by heading to an escape hatch when it started getting messy. His suit protected him from space long enough for a Hai ship to pick him off. However, he will probably not attempt something like this again...`
 	on complete
@@ -250,7 +352,8 @@ mission "<uhai> 13: A Warlord's Reception"
 	on enter
 		# SPOILER: he doesn't want them to get destroyed by the Hai because that would damage Alpha-Unfettered reputations, also he takes it as a challenge to his strength (except he's on your ship)
 		dialog `Upon entering the system you see multiple Cerberus ships, ready to attack you. Choot'k sends a message to the Hai. "Do not interfere, it would damage both my honor and <last>'s!" He did not ask for your opinion, but thankfully you have seen worse than a bunch of pirates.`
-
+	to fail
+		has "unfettered: outcast"
 
 
 conversation "modified shield beetle prize"
@@ -275,6 +378,7 @@ mission "<uhai> 15: Modified Beetle: Normal Prize"
 	to offer
 		has "<uhai> 15: Modified Beetle: done"
 		has "unfettered: prize right away"
+		not "unfettered: outcast"
 	on offer
 		conversation "modified shield beetle prize"
 		give ship "Modified Shield Beetle" "Cobra"
@@ -291,6 +395,7 @@ mission "<uhai> 15: Modified Beetle: Custom Price Notification"
 			has "event: unfettered: disable-er"
 			has "event: unfettered: syscore's got it"
 		not "unfettered: given the modified beetle"
+		not "unfettered: outcast"
 	on enter "Wah Yoot" "Hi Yahr" "Ehma Ti"
 		dialog `You receive a message from Mera, "The ship is ready and waiting for you on Darkcloak<, unfettered title>."`
 
@@ -317,6 +422,7 @@ mission "<uhai> 15: Modified Beetle: Custom Price A"
 	to offer
 		has "<uhai> 15: Modified Beetle: done"
 		has "event: unfettered: more dakka"
+		not "unfettered: outcast"
 	on offer
 		conversation "modified shield beetle prize"
 		give ship "Modified Shield Beetle (Blaster)" "Basilisk (Ignis)"
@@ -349,6 +455,7 @@ mission "<uhai> 15: Modified Beetle: Custom Price B"
 	to offer
 		has "<uhai> 15: Modified Beetle: done"
 		has "event: unfettered: cooler"
+		not "unfettered: outcast"
 	on offer
 		conversation "modified shield beetle prize"
 		give ship "Modified Shield Beetle (Heat Shunt)" "Basilisk (Aether)"
@@ -380,6 +487,7 @@ mission "<uhai> 15: Modified Beetle: Custom Price: C"
 	to offer
 		has "<uhai> 15: Modified Beetle: done"
 		has "event: unfettered: disable-er"
+		not "unfettered: outcast"
 	on offer
 		conversation "modified shield beetle prize"
 		give ship "Modified Shield Beetle (Ionic Turret)" "Basilisk (Aqua)"
@@ -413,6 +521,7 @@ mission "<uhai> 15: Modified Beetle: Custom Price: D"
 	to offer
 		has "<uhai> 15: Modified Beetle: done"
 		has "event: unfettered: syscore's got it"
+		not "unfettered: outcast"
 	on offer
 		conversation "modified shield beetle prize"
 		give ship "Modified Shield Beetle (Large Systems Core)" "Basilisk (Terra)"
@@ -430,6 +539,7 @@ mission "<uhai> 18: Wanderer Homeworld"
 		not "language: Wanderer"
 		not "First Contact: Wanderer: offered"
 		not "First Contact: Wanderer (Before Hai): offered"
+		not "unfettered: outcast"
 	to fail
 		has "<uhai> 18: Hai Language: failed"
 	on enter "Ka'ch'chrai"
@@ -492,6 +602,8 @@ mission "<uhai> 18: Hai Language"
 				"unfettered rep: He-Yi" += 2
 			`	"We suspected that to be the case, but you do well to be frank by telling us. You can go to Warfeed, where He-Yi will give you a mission to earn a translator."`
 				decline
+	to fail
+		has "unfettered: outcast"
 	on visit
 		dialog "You have not yet met the Wanderers and acquired a translator from <stopovers> to communicate with them."
 	to complete
@@ -537,7 +649,9 @@ mission "<uhai> 18: Detainer For Translator"
 					accept
 				`	"This is way too risky. I'm out."`
 	to fail
-		has "language: Wanderer"
+		or
+			has "language: Wanderer"
+			has "unfettered: outcast"
 	on visit
 		dialog `You do not yet have the weapon He-Yi asked for. Investigate the battles of the Korath automata and you may see it in action.`
 	on complete
@@ -568,6 +682,7 @@ mission "<uhai> 20: Bigeminate Sigil: Cloak"
 	to offer
 		has "<uhai> 17: Mirror Spy: offered"
 		random < 20
+		not "unfettered: outcast"
 	on offer
 		require "Cloaking Device"
 		conversation
@@ -779,7 +894,9 @@ mission "<uhai> 20: Boarding Equipement: Staffs Hint"
 			`As you land on this planet, you think back of the peculiar request He-Yi made to you: bring back non-deadly weapons. After thinking a while about it, you remember tales about the Pug having special weapons that could easily knock people out. Maybe you should go to <destination> and speak to the Oathkeepers about this.`
 				accept
 	to fail
-		has "<uhai> 20: Bigeminate Sigil: Boarding Equipement: done"
+		or
+			has "<uhai> 20: Bigeminate Sigil: Boarding Equipement: done"
+			not "unfettered: outcast"
 	on complete
 		conversation
 			`You cannot find Admiral Danforth, and wager he's probably busy with the pirates above. You think of disturbing him, but another Oathkeeper sees you and asks what you're looking for. You start speaking with him of the Pug war, and recognizing you, he seems eager to share his experience.`
@@ -806,6 +923,7 @@ mission "<uhai> 20: Boarding Equipement: More Enforcer Staffs"
 		has "<uhai> 20: Bigeminate Sigil: Boarding Equipement: offered"
 		not "<uhai> 20: Boarding Equipement: Enforcer Staffs: offered"
 		not "<uhai> 20: Boarding Equipement: Pug Staffs: offered"
+		not "unfettered: outcast"
 	on offer
 		require "Enforcer Riot Staff"
 		conversation "more staffs"
@@ -821,6 +939,7 @@ mission "<uhai> 20: Boarding Equipement: More Pug Staffs"
 		has "<uhai> 20: Bigeminate Sigil: Boarding Equipement: offered"
 		not "<uhai> 20: Boarding Equipement: Pug Staffs: offered"
 		not "<uhai> 20: Boarding Equipement: Enforcer Staffs: offered"
+		not "unfettered: outcast"
 	on offer
 		require "Pug Peacekeeping Staff"
 		conversation "more staffs"
@@ -832,6 +951,7 @@ mission "<uhai> 20: Boarding Equipement: Pug Staffs"
 	source "Warfeed"
 	to offer
 		has "<uhai> 20: Bigeminate Sigil: Boarding Equipement: offered"
+		not "unfettered: outcast"
 	on offer
 		dialog `Do you want to sell 20 Pug Peacekeeping Staffs to the Unfettered? He-Yi says they can give you <payment> for it.`
 	on accept
@@ -846,6 +966,7 @@ mission "<uhai> 20: Boarding Equipement: Enforcer Staffs"
 	source "Warfeed"
 	to offer
 		has "<uhai> 20: Bigeminate Sigil: Boarding Equipement: offered"
+		not "unfettered: outcast"
 	on offer
 		dialog `Do you want to sell 20 Enforcer Riot Staffs to the Unfettered? He-Yi says they can give you <payment> for it.`
 	on accept
@@ -860,6 +981,7 @@ mission "<uhai> 20: Boarding Equipement: Void Rifle"
 	source "Warfeed"
 	to offer
 		has "<uhai> 20: Bigeminate Sigil: Boarding Equipement: offered"
+		not "unfettered: outcast"
 	on offer
 		require "Void Rifle"
 		conversation

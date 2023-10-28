@@ -802,7 +802,7 @@ mission "Unfettered Bring More Coolers"
 		attributes "unfettered"
 	destination "Firelode"
 	to offer
-		has "<uhai> 13: Korath Specialty: done"
+		has "unfettered: new cooling system"
 		random < 20
 	on visit
 		dialog phrase "generic cargo on visit"

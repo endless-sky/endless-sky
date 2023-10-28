@@ -626,7 +626,7 @@ mission "<uhai> 13: Korath Specialty"
 		outfit "Liquid Nitrogen Cooler" -15
 		log `Brought human nitrogen cooling systems to the Unfettered. They should be able to retrofit them into something more useful.`
 		payment 2500000
-		dialog `Seeing you brought the coolers, Mera thanks you and hands you <payment>. "These systems should be useful. We'll upgrade the coolers you brought us into something less... primitive. The only thing we can use here is the base materials. It will probably take a month to repurpose it."`
+		dialog `Seeing you brought the coolers, Mera thanks you and hands you <payment>. "These systems should be useful. We'll upgrade the coolers you brought us into something less... primitive. The only thing we can use here is the base materials. It will probably take a month to repurpose them."`
 		event "unfettered: new cooling system" 25
 
 event "unfettered: new cooling system"
