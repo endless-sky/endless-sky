@@ -29,7 +29,7 @@ mission "<uhai> 10: Belt Materials"
 			`	It looks like she is done speaking to the others, so now she comes to you, "Hello, <first>. It's been a while since I last saw you. Heard you took care of that Auxiliary and brought back quite the treasure; great work!" Her tail moves from left to right as she says this, which is probably a sign of excitement. "The renovation efforts are progressing at rapid pace, but we still need all the hands we can get!"`
 			label choice
 			choice
-				`	"I'll go collect the ressource, then."`
+				`	"I'll go collect the minerals, then."`
 					accept
 				`	"How should I collect minerals from asteroids?"`
 					to display

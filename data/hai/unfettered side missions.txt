@@ -172,7 +172,7 @@ mission "<uhai> 5 Annex: Carrier Analysis"
 			label deal
 			action
 				set "unfettered: carrier scans"
-			`	The scan is finished in a record speed, and Mera invites you on her ship to get to the lab. When you arrive on the bridge she is alone. "I like to be able to speak freely, you see," she says as you look at the empty bridge. "You never know who is listening," she says as she sets a course. "I have something to show you. But first, tell me, how did you acquire this Carrier? We Unfettered like to share stories, sometimes around campfires..." she says before snaping her fingers. Suddenly the atmosphere of the room changes, and you can see the outside of the ship as if it was no longer there.`
+			`	The scan is finished in a record speed, and Mera invites you on her ship to get to the lab. When you arrive on the bridge she is alone. "I like to be able to speak freely, you see," she says as you look at the empty bridge. "You never know who is listening," she says as she sets a course. "I have something to show you. But first, tell me, how did you acquire this Carrier? We Unfettered like to share stories, sometimes around campfires..." she says before clapping her hands. Suddenly the atmosphere of the room changes, and you can see the outside of the ship as if it was no longer there.`
 			choice
 				`	"There is not much to say, I simply bought it."`
 					goto bought
@@ -222,7 +222,6 @@ mission "<uhai> 5 Annex: Carrier Analysis"
 				outfit "Thermal Repeater Turret" 2
 			`	"I knew you would say that. I'll pass the word to my engineers. Have fun with them."`
 				goto wornout
-				decline
 			label guns
 			action
 				outfit "Thermal Repeater" 5
