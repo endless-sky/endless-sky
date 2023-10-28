@@ -416,6 +416,7 @@ bool GameWindow::TrySetWindowed()
 {
 	SDL_SetWindowFullscreen(mainWindow, 0);
 	SDL_SetWindowSize(mainWindow, width, height);
+	SDL_SetWindowGrab(mainWindow, SDL_FALSE);
 
 	return true;
 }
@@ -425,6 +426,7 @@ bool GameWindow::TrySetWindowed()
 bool GameWindow::TrySetFullscreen()
 {
 	SDL_SetWindowFullscreen(mainWindow, SDL_WINDOW_FULLSCREEN);
+	SDL_SetWindowGrab(mainWindow, SDL_TRUE);
 	return GameWindow::IsFullscreen();
 }
 
@@ -433,6 +435,8 @@ bool GameWindow::TrySetFullscreen()
 bool GameWindow::TrySetBorderless()
 {
 	SDL_SetWindowFullscreen(mainWindow, SDL_WINDOW_FULLSCREEN_DESKTOP);
+	SDL_SetWindowGrab(mainWindow, SDL_FALSE);
+
 	return GameWindow::IsBorderless();
 }
 
