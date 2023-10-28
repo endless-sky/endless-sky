@@ -474,13 +474,13 @@ void Preferences::ToggleScreenMode()
 	switch(screenModeIndex)
 	{
 	case 0: // Windowed
-		if (GameWindow::TrySetFullscreen()) screenModeIndex = 1; else if (GameWindow::TrySetBorderless()) screenModeIndex = 2;
+		screenModeIndex = GameWindow::TrySetFullscreen() ? 1 : GameWindow::TrySetBorderless() ? 2 : 0;
 		break;
 	case 1: // Fullscreen
-		if (GameWindow::TrySetBorderless()) screenModeIndex = 2; else if (GameWindow::TrySetWindowed()) screenModeIndex = 0;
+		screenModeIndex = GameWindow::TrySetBorderless() ? 2 : GameWindow::TrySetWindowed() ? 0 : 1;
 		break;
 	case 2: // Borderless
-		if (GameWindow::TrySetWindowed()) screenModeIndex = 0; else if (GameWindow::TrySetFullscreen()) screenModeIndex = 1;
+		screenModeIndex = GameWindow::TrySetWindowed() ? 0 : GameWindow::TrySetFullscreen() ? 1 : 2;
 		break;
 	default:
 		break;
