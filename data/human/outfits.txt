@@ -398,7 +398,7 @@ outfit "Nerve Gas"
 outfit "Mug"
 	category "Hand to Hand"
 	cost 50
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/mug"
 	"capture attack" .1
 	"unique" 1
 	"unplunderable" 1
