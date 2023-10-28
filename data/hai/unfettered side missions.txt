@@ -160,6 +160,11 @@ mission "<uhai> 5 Annex: Carrier Analysis"
 	on offer
 		conversation
 			`As you finish the landing procedure you receive a warning from one of your first mates: a Lightning Bug is headed straight towards his Carrier, at full speed!`
+				to display
+					not "flagship model: Carrier"
+			`As you finish the landing procedure you a warning siren triggers on the bridge. One of your officers warns you that a Lightning Bug is headed straight towards you, at full speed!`
+				to display
+					has "flagship model: Carrier"
 			`	Fortunately it stops as soon as it enters scanning range, and begins a full sweep of your ship, before hailing you. You immediately recognize Mera. "Hey there, <first>! I was warned about a Carrier arriving," she looks to her side, probably at one member of her crew as she continues, "because someone thought it was the Giftbringer..." before looking back to you, with a smile, "Anyway, what a pleasant surprise to know it was you. I hope you dont mind me taking some scans, you'll be compensated for it naturally. In fact, I'll allow you to come with me to the lab and choose any item you desire!"`
 			choice
 				`	"That seems like a good deal, I'm in!"`
@@ -211,6 +216,8 @@ mission "<uhai> 5 Annex: Carrier Analysis"
 					decline
 			`	"No, of course not."`
 			label lab
+			action
+				"unfettered rep: Mera" ++
 			scene "outfit/repeater turret"
 			scene "outfit/repeater"
 			`	She sets the next destination, staying quiet. You arrive at the lab in little time, and she shows you your reward. "These are very powerful weapons, however your ship must be able to handle a lot of heat to use them. They are called 'Thermal Repeaters'. I have a lot of cleanup to do after what happened, so I'll simply ask you to choose between 2 turrets, or 5 guns."`
@@ -231,16 +238,31 @@ mission "<uhai> 5 Annex: Carrier Analysis"
 				decline
 
 			label sell
-			`	For a few seconds she just lays there, stunned, before answering, "Are.. You serious? I mean, of course you are, let me just think about this with my staff, I'll get back to you." She cuts the transmission for a few minutes, before reestablishing it with a formal offer, "I'll give you <payment> instead of my first offer. You will naturally be able to buy back any outfits you may like from the outfitter, as only the hull of the ship is of interest to me."`
+			`	For a few seconds she just lays there, stunned, before answering, "Are.. You serious? I mean, of course you are, let me just think about this with my staff, I'll get back to you." She cuts the transmission for a few minutes, before reestablishing it with a formal offer, "I'll give you 10 millions and a few extras from our cache of Korath technology. You will naturally be able to buy back any outfits you may like from the outfitter, as only the hull of the ship is of interest to me."`
+			`	A member of her staff murmurs something to her, and she realizes she forgot something, "I am so silly! You only have this one ship, so you would be unable to leave the planet if I take it. I'll give you an old Aphid we have lying around, that should allow you to get to Darkcloak safely, to buy a proper ship!"`
+				to display
+					"total ships" == 1
 			choice
 				`	"Deal!"`
 				`	"Come to think of it, I'm not ready to separate myself from that ship yet, a scan is all I can give you."`
 					goto deal
 			action
-				payment 25000000
 				take ship "Carrier"
 				set "unfettered: carrier"
-				"unfettered rep: Mera" += 2
+				"unfettered rep: Mera" ++
+				payment 10000000
+				outfit "Thermal Repeater Rifle" 25
+				outfit "Thermal Repeater" 2
+				outfit "Thermal Repeater Turret"
+				outfit "Plasma Core"
+			branch "flag only"
+				"total ships" <= 1
+			`	They take the ship away whilst giving you the agreed payment, and invite you to head to the outfitter to get outfits back if you so desire.`
+				decline
+			label "flag only"
+			action
+				give ship "Aphid (Unfettered)"
+			`	They take the flagship away and give you the agreed payment, in addition to an old Aphid.`
 
 
 
