@@ -630,6 +630,7 @@ mission "HR: Call for Aid with Sandsnap"
 		has "hr: sandsnap project"
 	on complete
 		payment 1000 150
+		dialog `Having accepted the job, the initial retainer of <payment> appears in your account.`
 
 
 

@@ -284,6 +284,8 @@ phrase "hai (human)"
 		"Snuggly"
 		"Chirpy"
 	word
+		" "
+	word
 		"Chipmunk"
 		"Badger"
 		"Quokka"
