@@ -1207,7 +1207,7 @@ tip "View zoom factor"
 	`Increase the zoom factor of the gameplay view when in flight. Can also be changed by the + and - keys and the scroll wheel.`
 
 tip "Screen mode"
-	`Switch the game's fullscreen mode. Fullscreen will trap the mouse cursor to the window and is slightly faster, while borderless will allow other windows to go on top and let the mouse escape the window, but is as slow as windowed. Can also be changed by the "Toggle fullscreen" control.`
+	`Switch the game's fullscreen mode. Fullscreen restricts the mouse cursor to the window and is slightly faster, while borderless allows other windows go on top and lets the mouse escape the window. Can also be changed by the "Toggle fullscreen" control.`
 
 tip "VSync"
 	`Toggle vsync between off, on, and adaptive (should your computer support it).`
