@@ -128,6 +128,7 @@ public:
 	static const std::vector<double> &Zooms();
 
 	static void ToggleScreenMode();
+	static int ScreenMode();
 	static const std::string &ScreenModeSetting();
 
 	// VSync setting, either "on", "off", or "adaptive".

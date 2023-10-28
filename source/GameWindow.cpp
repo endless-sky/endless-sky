@@ -32,8 +32,7 @@ using namespace std;
 namespace {
 	SDL_Window *mainWindow = nullptr;
 	SDL_GLContext context = nullptr;
-	int width = 0;
-	int height = 0;
+	int width, height, xPos, yPos = 0;
 	bool supportsAdaptiveVSync = false;
 
 	// Logs SDL errors and returns true if found
@@ -123,11 +122,6 @@ bool GameWindow::Init()
 	// Settings that must be declared before the window creation.
 	Uint32 flags = SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI;
 
-	if(Preferences::ScreenModeSetting() == "fullscreen")
-		flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
-	else if(Preferences::Has("maximized"))
-		flags |= SDL_WINDOW_MAXIMIZED;
-
 	// The main window spawns visibly at this point.
 	mainWindow = SDL_CreateWindow("Endless Sky", SDL_WINDOWPOS_UNDEFINED,
 		SDL_WINDOWPOS_UNDEFINED, windowWidth, windowHeight, flags);
@@ -136,6 +130,21 @@ bool GameWindow::Init()
 	{
 		ExitWithError("Unable to create window!");
 		return false;
+	}
+
+	SDL_GetWindowSize(mainWindow, &width, &height);
+	SDL_GetWindowPosition(mainWindow, &xPos, &yPos);
+	switch(Preferences::ScreenMode())
+	{
+	case 0:
+		TrySetWindowed();
+		break;
+	case 1:
+		TrySetFullscreen();
+		break;
+	case 2:
+		TrySetBorderless();
+		break;
 	}
 
 	// Settings that must be declared before the context creation.
@@ -297,12 +306,16 @@ void GameWindow::AdjustViewport()
 	// Get the window's size in screen coordinates.
 	int windowWidth, windowHeight;
 	SDL_GetWindowSize(mainWindow, &windowWidth, &windowHeight);
+	int windowX, windowY;
+	SDL_GetWindowPosition(mainWindow, &windowX, &windowY);
 
 	// Only save the window size when not in fullscreen mode.
-	if(!GameWindow::IsFullscreen())
+	if(!GameWindow::IsFullscreen() && !GameWindow::IsBorderless())
 	{
 		width = windowWidth;
 		height = windowHeight;
+		xPos = windowX;
+		yPos = windowY;
 	}
 
 	// Round the window size up to a multiple of 2, even if this
@@ -388,24 +401,60 @@ bool GameWindow::IsMaximized()
 
 
 
-bool GameWindow::IsFullscreen()
+bool GameWindow::IsBorderless()
 {
-	return (SDL_GetWindowFlags(mainWindow) & SDL_WINDOW_FULLSCREEN_DESKTOP);
+	return (SDL_GetWindowFlags(mainWindow) & SDL_WINDOW_BORDERLESS);
 }
 
 
 
-void GameWindow::ToggleFullscreen()
+bool GameWindow::IsFullscreen()
+{
+	return (SDL_GetWindowFlags(mainWindow) & SDL_WINDOW_FULLSCREEN);
+}
+
+
+
+bool GameWindow::TrySetWindowed()
+{
+	SDL_SetWindowFullscreen(mainWindow, 0);
+	SDL_SetWindowSize(mainWindow, width, height);
+	SDL_SetWindowPosition(mainWindow, xPos, yPos);
+
+	SDL_SetWindowResizable(mainWindow, SDL_TRUE);
+	SDL_SetWindowBordered(mainWindow, SDL_TRUE);
+
+	return true;
+}
+
+
+
+bool GameWindow::TrySetFullscreen()
 {
 	// This will generate a window size change event,
 	// no need to adjust the viewport here.
-	if(IsFullscreen())
-	{
-		SDL_SetWindowFullscreen(mainWindow, 0);
-		SDL_SetWindowSize(mainWindow, width, height);
-	}
-	else
-		SDL_SetWindowFullscreen(mainWindow, SDL_WINDOW_FULLSCREEN_DESKTOP);
+	SDL_SetWindowFullscreen(mainWindow, SDL_WINDOW_FULLSCREEN);
+
+	return GameWindow::IsFullscreen();
+}
+
+
+
+bool GameWindow::TrySetBorderless()
+{
+	SDL_SetWindowFullscreen(mainWindow, 0);
+	SDL_SetWindowResizable(mainWindow, SDL_FALSE);
+	SDL_SetWindowBordered(mainWindow, SDL_FALSE);
+	SDL_Rect rect;
+	SDL_GetDisplayBounds(SDL_GetWindowDisplayIndex(mainWindow), &rect);
+#ifdef _WIN32 // Hack to prevent weird windows compositing things
+	SDL_SetWindowSize(mainWindow, rect.w, rect.h + 1);
+#else
+	SDL_SetWindowSize(mainWindow, rect.w, rect.h);
+#endif
+	SDL_SetWindowPosition(mainWindow, rect.x, rect.y);
+
+	return GameWindow::IsBorderless();
 }
 
 

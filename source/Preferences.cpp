@@ -46,9 +46,9 @@ namespace {
 	size_t zoomIndex = 4;
 	constexpr double VOLUME_SCALE = .25;
 
-	// Default to fullscreen.
-	int screenModeIndex = 1;
-	const vector<string> SCREEN_MODE_SETTINGS = {"windowed", "fullscreen"};
+	// Default to borderless fullscreen.
+	int screenModeIndex = 2;
+	const vector<string> SCREEN_MODE_SETTINGS = {"windowed", "fullscreen", "borderless"};
 
 	// Enable standard VSync by default.
 	const vector<string> VSYNC_SETTINGS = {"off", "on", "adaptive"};
@@ -258,6 +258,7 @@ void Preferences::Save()
 
 	out.Write("volume", Audio::Volume() / VOLUME_SCALE);
 	out.Write("window size", Screen::RawWidth(), Screen::RawHeight());
+	out.Write("fullscreen", screenModeIndex);
 	out.Write("zoom", Screen::UserZoom());
 	out.Write("scroll speed", scrollSpeed);
 	out.Write("boarding target", boardingIndex);
@@ -470,8 +471,27 @@ const string &Preferences::ExtendedJumpEffectsSetting()
 
 void Preferences::ToggleScreenMode()
 {
-	GameWindow::ToggleFullscreen();
-	screenModeIndex = GameWindow::IsFullscreen();
+	switch(screenModeIndex)
+	{
+	case 0: // Windowed
+		if (GameWindow::TrySetFullscreen()) screenModeIndex = 1; else if (GameWindow::TrySetBorderless()) screenModeIndex = 2;
+		break;
+	case 1: // Fullscreen
+		if (GameWindow::TrySetBorderless()) screenModeIndex = 2; else if (GameWindow::TrySetWindowed()) screenModeIndex = 0;
+		break;
+	case 2: // Borderless
+		if (GameWindow::TrySetWindowed()) screenModeIndex = 0; else if (GameWindow::TrySetFullscreen()) screenModeIndex = 1;
+		break;
+	default:
+		break;
+	}
+}
+
+
+
+int Preferences::ScreenMode()
+{
+	return screenModeIndex;
 }
 
 
