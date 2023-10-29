@@ -32,7 +32,7 @@ void TextReplacements::Load(const DataNode &node)
 	// reserved, as these ones are done on the fly after all other replacements
 	// have been done.
 	const set<string> reserved = {"<first>", "<last>", "<ship>", "<current year>",
-		"<current full date>", "<current short date>", "<current day>", 
+		"<current full date>", "<current short date>", "<current day>",
 		"<current day name>", "<current month>", "<current month name>"};
 	for(const DataNode &child : node)
 	{
