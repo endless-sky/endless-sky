@@ -37,6 +37,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Preferences.h"
 #include "RaidFleet.h"
 #include "Random.h"
+#include "Raiders.h"
 #include "SavedGame.h"
 #include "Ship.h"
 #include "ShipEvent.h"
@@ -1344,16 +1345,21 @@ void PlayerInfo::SetShipOrder(const vector<shared_ptr<Ship>> &newOrder)
 
 // Find out how attractive the player's fleet is to pirates. Aside from a
 // heavy freighter, no single ship should attract extra pirate attention.
-pair<double, double> PlayerInfo::RaidFleetFactors() const
+pair<double, double> PlayerInfo::RaidFleetFactors(const System *system) const
 {
 	double attraction = 0.;
 	double deterrence = 0.;
+	bool normalAttraction = !system || !system->GetRaiders() || !system->GetRaiders()->ScoutsCargo();
+	double emptyCargoAttraction = normalAttraction ? 0. : system->GetRaiders()->EmptyCargoAttraction();
 	for(const shared_ptr<Ship> &ship : Ships())
 	{
 		if(ship->IsParked() || ship->IsDestroyed())
 			continue;
 
-		attraction += ship->Attraction();
+		if(normalAttraction)
+			attraction += ship->Attraction();
+		else
+		 	attraction += ship->Attraction() * emptyCargoAttraction * ship->Cargo().Free() / ship->Cargo().Size();
 		deterrence += ship->Deterrence();
 	}
 

@@ -611,6 +611,13 @@ const vector<RaidFleet> &Government::RaidFleets() const
 
 
 
+const Raiders *Government::GetRaiders() const
+{
+	return raiders;
+}
+
+
+
 // Check if, according to the politics stored by GameData, this government is
 // an enemy of the given government right now.
 bool Government::IsEnemy(const Government *other) const

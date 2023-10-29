@@ -32,6 +32,8 @@ public:
 	void LoadFleets(const DataNode &node, bool remove, int valueIndex, bool depreciated = false);
 	void Load(const DataNode &node);
 	const std::vector<RaidFleet> &RaidFleets() const;
+	double EmptyCargoAttraction() const;
+	bool ScoutsCargo() const;
 
 
 private:

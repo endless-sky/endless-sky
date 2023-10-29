@@ -99,6 +99,7 @@ public:
 	// it is empty, there are no pirate raids.
 	// The second attribute denotes the minimal and maximal attraction required for the fleet to appear.
 	const std::vector<RaidFleet> &RaidFleets() const;
+	const Raiders *GetRaiders() const;
 
 	// Check if, according to the politics stored by GameData, this government is
 	// an enemy of the given government right now.

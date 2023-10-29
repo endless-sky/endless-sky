@@ -992,6 +992,13 @@ const vector<RaidFleet> &System::RaidFleets() const
 
 
 
+const Raiders *System::GetRaiders() const
+{
+	return noRaids ? nullptr : raiders ? raiders : government->GetRaiders();
+}
+
+
+
 void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 {
 	int index = objects.size();

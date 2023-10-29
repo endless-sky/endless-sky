@@ -178,7 +178,7 @@ public:
 	void ReorderShip(int fromIndex, int toIndex);
 	void SetShipOrder(const std::vector<std::shared_ptr<Ship>> &newOrder);
 	// Get the attraction factors of the player's fleet to raid fleets.
-	std::pair<double, double> RaidFleetFactors() const;
+	std::pair<double, double> RaidFleetFactors(const System *system = nullptr) const;
 	double RaidFleetAttraction(const RaidFleet &raidFleet, const System *system);
 	void RefreshRaiding();
 

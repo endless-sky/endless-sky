@@ -94,7 +94,22 @@ void Raiders::Load(const DataNode &node)
 }
 
 
+
 const vector<RaidFleet> &Raiders::RaidFleets() const
 {
 	return raidFleets;
+}
+
+
+
+double Raiders::EmptyCargoAttraction() const
+{
+	return emptyCargoAttraction;
+}
+
+
+
+bool Raiders::ScoutsCargo() const
+{
+	return scoutsCargo;
 }

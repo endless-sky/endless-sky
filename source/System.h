@@ -176,6 +176,7 @@ public:
 	int MinimumFleetPeriod() const;
 
 	const std::vector<RaidFleet> &RaidFleets() const;
+	const Raiders *GetRaiders() const;
 
 
 private:
