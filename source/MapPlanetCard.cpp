@@ -26,7 +26,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Planet.h"
 #include "Point.h"
 #include "PointerShader.h"
-#include "Politics.h"
 #include "Screen.h"
 #include "SpriteShader.h"
 #include "StellarObject.h"
@@ -45,7 +44,7 @@ MapPlanetCard::MapPlanetCard(const StellarObject &object, unsigned number, bool 
 	: number(number), hasVisited(hasVisited), planetName(object.Name())
 {
 	planet = object.GetPlanet();
-	hasSpaceport = planet->HasSpaceport();
+	hasSpaceport = planet->HasServices();
 	hasShipyard = planet->HasShipyard();
 	hasOutfitter = planet->HasOutfitter();
 	governmentName = planet->GetGovernment()->GetName();
