@@ -1377,7 +1377,10 @@ double PlayerInfo::RaidFleetAttraction(const RaidFleet &raid, const System *syst
 		if(raid.MaxAttraction() > 0 && factors.first > raid.MaxAttraction())
 			return 0;
 
-		attraction = max(.005 * (factors.first - factors.second - raid.MinAttraction()), raid.CapAttraction());
+		attraction = .005 * (factors.first - factors.second - raid.MinAttraction());
+		double capAttraction = raid.CapAttraction();
+		if(capAttraction)
+			attraction = min(attraction, capAttraction);
 		// Then we consider the strength of other fleets in the system.
 		int64_t raidStrength = raidFleet->Strength();
 		if(system && raidStrength)
