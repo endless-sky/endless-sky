@@ -64,11 +64,17 @@ public:
 	int Year() const;
 
 	// Get dates for substitution into conversations.
+	// Get the current year as a string.
 	std::string CurrentYear() const;
+	// Get the current date in the form (Day DD MMM) e.g. Tue 16 Nov
 	std::string CurrentShortDate() const;
+	// Get the current day number e.g. 16th
 	std::string CurrentDay() const;
+	// Get the name of the current day e.g. Tue
 	std::string CurrentDayName() const;
+	// Get the current month number e.g. 10
 	std::string CurrentMonth() const;
+	// Get the name of the current month e.g. January.
 	std::string CurrentMonthName() const;
 
 private:
