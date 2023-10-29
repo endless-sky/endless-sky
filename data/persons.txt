@@ -1986,7 +1986,6 @@ person "Patrol Team"
 
 ship "Waverider"
 	sprite "ship/waverider"
-	thumbnail "thumbnail/waverider"
 	attributes
 		category "Light Warship"
 		"cost" 3000000
