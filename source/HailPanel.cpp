@@ -26,7 +26,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Information.h"
 #include "Interface.h"
 #include "Messages.h"
-#include "Phrase.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Politics.h"
@@ -138,10 +137,9 @@ HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
 	// to bypass language barriers.
 	if(planet && player.Flagship())
 		for(const Mission &mission : player.Missions())
-			if(mission.HasClearance(planet) && mission.ClearanceMessage() != "auto"
-					&& mission.HasFullClearance())
+			if(mission.HasClearance(planet) && mission.ClearanceMessage() != "auto")
 			{
-				planet->Bribe();
+				planet->Bribe(mission.HasFullClearance());
 				message = mission.ClearanceMessage();
 				return;
 			}
