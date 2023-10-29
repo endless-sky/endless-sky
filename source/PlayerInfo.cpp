@@ -36,8 +36,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Port.h"
 #include "Preferences.h"
 #include "RaidFleet.h"
-#include "Random.h"
 #include "Raiders.h"
+#include "Random.h"
 #include "SavedGame.h"
 #include "Ship.h"
 #include "ShipEvent.h"
@@ -1359,7 +1359,7 @@ pair<double, double> PlayerInfo::RaidFleetFactors(const System *system) const
 		if(normalAttraction)
 			attraction += ship->Attraction();
 		else
-		 	attraction += ship->Attraction() * emptyCargoAttraction * ship->Cargo().Free() / ship->Cargo().Size();
+			attraction += ship->Attraction() * emptyCargoAttraction * ship->Cargo().Free() / ship->Cargo().Size();
 		deterrence += ship->Deterrence();
 	}
 
