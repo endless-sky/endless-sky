@@ -2662,7 +2662,7 @@ int Ship::RequiredCrew() const
 
 int Ship::CrewValue() const
 {
-	int crewEquivalent = attributes.Get("crew equivalent")
+	int crewEquivalent = attributes.Get("crew equivalent");
 	if(attributes.get("crew equivalent overrides"))
 		return crewEquivalent ? crewEquivalent : max(Crew(), RequiredCrew());
 	return max(Crew(), RequiredCrew()) + crewEquivalent;
