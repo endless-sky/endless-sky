@@ -79,6 +79,7 @@ ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &con
 		subs["<ship>"] = player.Flagship()->Name();
 
 	Date date = player.GetDate();
+	subs["<current year>"] = date.CurrentYear();
 	subs["<current full date>"] = date.ToString();
 	subs["<current short date>"] = date.CurrentShortDate();
 	subs["<current day>"] = date.CurrentDay();

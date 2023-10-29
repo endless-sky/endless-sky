@@ -143,6 +143,11 @@ string Date::LongString() const
 	return result;
 }
 
+string Date::CurrentYear() const
+{
+	int year = Year();
+	return std::to_string(year);
+}
 string Date::CurrentShortDate() const
 {
 	int day = Day();
@@ -212,6 +217,7 @@ string Date::CurrentMonthName() const
 		"December"
 	};
 	const string &month = MONTH[Month() - 1];
+	return month;
 }
 
 // Check if this date has been initialized.

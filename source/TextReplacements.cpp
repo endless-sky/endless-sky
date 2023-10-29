@@ -31,8 +31,9 @@ void TextReplacements::Load(const DataNode &node)
 	// Check for reserved keys. Only some hardcoded replacement keys are
 	// reserved, as these ones are done on the fly after all other replacements
 	// have been done.
-	const set<string> reserved = {"<first>", "<last>", "<ship>"};
-
+	const set<string> reserved = {"<first>", "<last>", "<ship>", "<current year>",
+		"<current full date>", "<current short date>", "<current day>", 
+		"<current day name>", "<current month>", "<current month name>"};
 	for(const DataNode &child : node)
 	{
 		if(child.Size() < 2)

@@ -64,6 +64,7 @@ public:
 	int Year() const;
 
 	// Get dates for substitution into conversations.
+	std::string CurrentYear() const;
 	std::string CurrentShortDate() const;
 	std::string CurrentDay() const;
 	std::string CurrentDayName() const;
