@@ -143,7 +143,76 @@ string Date::LongString() const
 	return result;
 }
 
-
+string Date::CurrentShortDate() const
+{
+	int day = Day();
+	int month = Month();
+	int year = Year();
+	string result = Weekday(day, month, year);
+	result += " ";
+	result += std::to_string(day);
+	result += " ";
+	static const string MONTH[] = {
+			"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+	result += MONTH[month - 1];
+	return result;
+}
+string Date::CurrentDay() const
+{
+	int day = Day();
+	string dayString = to_string(day);
+	// All numbers in the teens add in "th", as do any numbers ending in 0 or in
+	// 4 through 9. Special endings are used for "1st", "2nd", and "3rd."
+	if(day / 10 == 1 || day % 10 == 0 || day % 10 > 3)
+		dayString += "th";
+	else if(day % 10 == 1)
+		dayString += "st";
+	else if(day % 10 == 2)
+		dayString += "nd";
+	else
+		dayString += "rd";
+	return dayString;
+}
+string Date::CurrentDayName() const
+{
+	int day = Day();
+	int month = Month();
+	int year = Year();
+	string result = Weekday(day, month, year);
+	return result;
+}
+string Date::CurrentMonth() const
+{
+	int month = Month();
+	string monthString = std::to_string(month);
+	if(month / 10 == 1 || month % 10 == 0 || month % 10 > 3)
+		monthString += "th";
+	else if(month % 10 == 1)
+		monthString += "st";
+	else if(month % 10 == 2)
+		monthString += "nd";
+	else
+		monthString += "rd";
+	return monthString;
+}
+string Date::CurrentMonthName() const
+{
+	static const string MONTH[] = {
+		"January",
+		"February",
+		"March",
+		"April",
+		"May",
+		"June",
+		"July",
+		"August",
+		"September",
+		"October",
+		"November",
+		"December"
+	};
+	const string &month = MONTH[Month() - 1];
+}
 
 // Check if this date has been initialized.
 Date::operator bool() const

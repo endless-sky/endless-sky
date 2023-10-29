@@ -63,6 +63,12 @@ public:
 	int Month() const;
 	int Year() const;
 
+	// Get dates for substitution into conversations.
+	std::string CurrentShortDate() const;
+	std::string CurrentDay() const;
+	std::string CurrentDayName() const;
+	std::string CurrentMonth() const;
+	std::string CurrentMonthName() const;
 
 private:
 	// The date is compressed into a single integer value to make it easy to

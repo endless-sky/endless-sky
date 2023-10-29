@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Color.h"
 #include "Command.h"
 #include "Conversation.h"
+#include "Date.h"
 #include "text/DisplayText.h"
 #include "FillShader.h"
 #include "text/Font.h"
@@ -76,6 +77,14 @@ ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &con
 		subs["<ship>"] = ship->Name();
 	else if(player.Flagship())
 		subs["<ship>"] = player.Flagship()->Name();
+
+	Date date = player.GetDate();
+	subs["<current full date>"] = date.ToString();
+	subs["<current short date>"] = date.CurrentShortDate();
+	subs["<current day>"] = date.CurrentDay();
+	subs["<current day name>"] = date.CurrentDayName();
+	subs["<current month>"] = date.CurrentMonth();
+	subs["<current month name>"] = date.CurrentMonthName();
 
 	// Start a PlayerInfo transaction to prevent saves during the conversation
 	// from recording partial results.
