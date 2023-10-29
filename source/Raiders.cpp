@@ -21,6 +21,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Government.h"
 #include "RaidFleet.h"
 
+#include <algorithm>
+
 using namespace std;
 
 

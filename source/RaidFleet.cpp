@@ -19,8 +19,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Fleet.h"
 #include "GameData.h"
 
-#include <algorithm>
-
 using namespace std;
 
 
