@@ -4574,21 +4574,43 @@ double Ship::CalculateDeterrence() const
 		if(hardpoint.GetOutfit())
 		{
 			const Outfit *weapon = hardpoint.GetOutfit();
-			// Ignore disabled and asteroid damages.
-			// Effects over time are considered over 60 frames, and disruption is % based so multiply it by 100 too.
-			// Damaging effects are considered more significant.
-			// First consider damaging effects, then energy and heat, and finally special effects.
-			double strength = weapon->DisruptionDamage() * 600.
-				+ (weapon->ShieldDamage() + weapon->RelativeShieldDamage() * attributes.Get("shields"))
-					+ weapon->DischargeDamage() * 60.
-				+ (weapon->HullDamage() + weapon->RelativeHullDamage() * attributes.Get("hull"))
-					+ weapon->CorrosionDamage() * 60.
-				+ ((weapon->EnergyDamage() + weapon->RelativeEnergyDamage() * attributes.Get("energy capacity"))
-					+ weapon->IonDamage() * 60. + weapon->ScramblingDamage() * 60) * .25
-				+ ((weapon->HeatDamage() + weapon->RelativeHeatDamage() * MaximumHeat())
-					+ weapon->BurnDamage() * 60.) * .1
-				+ weapon->SlowingDamage() * 10.
-				+ (weapon->FuelDamage() + weapon->LeakDamage() * 60.) * 2.;
+			// 1 DoT damage of type X = 100 damage of type X over an extended period of time
+			// (~95 damage after 5 seconds, ~99 damage after 8 seconds). Therefore, multiply
+			// DoT damage types by 100. Disruption, scrambling, and slowing don't have an
+			// analogous instantaneous damage type, but still just multiply them by 100 to
+			// stay consistent.
+
+			// Compare the relative damage types to the strength of the firing ship, since we
+			// have nothing else to reasonably compare against.
+
+			// Shield and hull damage are the primary damage types that dictate combat, so
+			// consider the full damage dealt by these types for the strength of a weapon.
+			double shieldFactor = weapon->ShieldDamage()
+					+ weapon->RelativeShieldDamage() * attributes.Get("shields")
+					+ weapon->DischargeDamage() * 100.
+			double hullFactor = weapon->HullDamage()
+					+ weapon->RelativeHullDamage() * attributes.Get("hull")
+					+ weapon->CorrosionDamage() * 100.;
+
+			// Other damage types don't outright destroy ships, so they aren't considered
+			// as heavily in the strength of a weapon.
+			double energyFactor = weapon->EnergyDamage()
+					+ weapon->RelativeEnergyDamage() * attributes.Get("energy capacity")
+					+ weapon->IonDamage() * 100.;
+			double heatFactor = weapon->HeatDamage()
+					+ weapon->RelativeHeatDamage() * MaximumHeat()
+					+ weapon->BurnDamage() * 100.;
+			double fuelFactor = weapon->FuelDamage()
+					+ weapon->RelativeFuelDamage() * attributes.Get("fuel capacity")
+					+ weapon->LeakDamage() * 100.;
+			double scramblingFactor = weapon->ScramblingDamage() * 100.;
+			double slowingFactor = weapon->SlowingDamage() * 100.;
+			double disruptionFactor = weapon->DisruptionDamage() * 100.;
+
+			// Disabled and asteroid damage are ignored because they don't matter in combat.
+
+			double strength = shieldFactor + hullFactor + 0.2 * (energyFactor + heatFactor + fuelFactor
+					+ scramblingFactor + slowingFactor + disruptionFactor);
 			tempDeterrence += .12 * strength / weapon->Reload();
 		}
 	return tempDeterrence;
