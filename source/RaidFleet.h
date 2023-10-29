@@ -36,10 +36,10 @@ public:
 
 private:
 	const Fleet *fleet = nullptr;
-	double minAttraction;
+	double minAttraction = 0.;
 	double maxAttraction;
 	double capAttraction;
-	double fleetCap;
+	double fleetCap = 10.;
 };
 
 

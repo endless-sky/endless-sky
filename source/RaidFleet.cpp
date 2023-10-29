@@ -79,7 +79,7 @@ double RaidFleet::MaxAttraction() const
 
 double RaidFleet::CapAttraction() const
 {
-	return capAttraction;
+	return capAttraction ? capAttraction : maxAttraction;
 }
 
 
