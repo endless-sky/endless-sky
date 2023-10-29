@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Outfit.h"
 #include "Phrase.h"
 #include "Politics.h"
+#include "Raiders.h"
 #include "Ship.h"
 #include "ShipEvent.h"
 
@@ -150,8 +151,8 @@ void Government::Load(const DataNode &node)
 						reputationMin = numeric_limits<double>::lowest();
 				}
 			}
-			else if(key == "raid")
-				raidFleets.clear();
+			else if(key == "raid" || key == "raiders")
+				raiders = nullptr;
 			else if(key == "display name")
 				displayName = name;
 			else if(key == "death sentence")
@@ -197,7 +198,12 @@ void Government::Load(const DataNode &node)
 		}
 
 		if(key == "raid")
-			RaidFleet::Load(raidFleets, child, remove, valueIndex);
+		{
+			child.PrintTrace("Warning: Deprecated use of \"raid\" instead of providing \"raiders\":");
+			if(!raiders)
+				raiders = new Raiders();
+			const_cast<Raiders*>(raiders)->LoadFleets(child, remove, valueIndex);
+		}
 		// Handle the attributes which cannot have a value removed.
 		else if(remove)
 			child.PrintTrace("Cannot \"remove\" a specific value from the given key:");
@@ -393,6 +399,8 @@ void Government::Load(const DataNode &node)
 			hostileDisabledHail = GameData::Phrases().Get(child.Token(valueIndex));
 		else if(key == "language")
 			language = child.Token(valueIndex);
+		else if(key == "raiders")
+			raiders = GameData::Raiders().Get(child.Token(valueIndex));
 		else if(key == "enforces" && child.Token(valueIndex) == "all")
 		{
 			enforcementZones.clear();
@@ -597,7 +605,8 @@ bool Government::SendUntranslatedHails() const
 // The second attribute denotes the minimal and maximal attraction required for the fleet to appear.
 const vector<RaidFleet> &Government::RaidFleets() const
 {
-	return raidFleets;
+	static const vector<RaidFleet> EMPTY;
+	return raiders ? raiders->RaidFleets() : EMPTY;
 }
 
 
