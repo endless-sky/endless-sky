@@ -648,7 +648,7 @@ const Set<Planet> &GameData::Planets()
 
 
 
-const Set<Raiders> &GameData::Raiders()
+const Set<Raiders> &GameData::GetRaiders()
 {
 	return objects.raiders;
 }

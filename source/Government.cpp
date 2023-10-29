@@ -400,7 +400,7 @@ void Government::Load(const DataNode &node)
 		else if(key == "language")
 			language = child.Token(valueIndex);
 		else if(key == "raiders")
-			raiders = GameData::Raiders().Get(child.Token(valueIndex));
+			raiders = GameData::GetRaiders().Get(child.Token(valueIndex));
 		else if(key == "enforces" && child.Token(valueIndex) == "all")
 		{
 			enforcementZones.clear();
