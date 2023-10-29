@@ -520,7 +520,7 @@ interface "plugins"
 		center -300 -150
 		dimensions 90 30
 		color bright
-	button d "_Download"
+	button l "_Library"
 		center -300 -110
 		dimensions 90 30
 		color medium
