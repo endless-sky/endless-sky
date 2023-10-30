@@ -1443,7 +1443,6 @@ void Engine::CalculateStep()
 
 	// Clear the list of objects to draw.
 	draw[currentCalculating].Clear(step, zoom);
-	// shipDraw[currentCalculating].Clear(step, zoom);
 	batchDraw[currentCalculating].Clear(step, zoom);
 	radar[currentCalculating].Clear();
 
