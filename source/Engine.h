@@ -108,7 +108,7 @@ private:
 
 		constexpr DoubleBuffer() : val(0) {}
 
-		inline void next() { if(val == 0) val = 1; else val = 0; }
+		inline void next() { val = !val; }
 
 	private:
 		size_t val;
