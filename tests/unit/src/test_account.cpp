@@ -115,27 +115,6 @@ TEST_CASE( "Set the credit score of the account", "[Acount][SetCreditScore]" ) {
 	REQUIRE(account.CreditScore() == 800);
 }
 
-SCENARIO( "Step forward" , "[Account][Step]" ) {
-	GIVEN( "An account with 1000 credits" ) {
-		Account account;
-		account.AddCredits(1000);
-		THEN( "Account has 1000 credits" ) {
-			REQUIRE( account.Credits() == 1000 );
-		}
-
-		WHEN( "Step() is called with no crew" ) {
-			int64_t assets = 0;      // This is net worth of all ships
-			int64_t salaries = 0;    // total owed in a single day's salaries
-			int64_t maintenance = 0; // sum of maintenance and generated income
-
-			string message = account.Step(assets, salaries, maintenance);
-			INFO(message);
-			string out = "";
-			REQUIRE( message.compare(out) == 0 );
-		}
-	}
-}
-
 SCENARIO( "Operations on overdueCrewSalaries", "[Account][overdueCrewSalaries]" ) {
 	GIVEN( "An account" ) {
 		Account account;
@@ -313,6 +292,27 @@ SCENARIO( "Paying Fines", "[Account][PayFines]" ) {
 				REQUIRE(bill.paidInFull == false);
 				REQUIRE(account.Credits() == 5);
 			}
+		}
+	}
+}
+
+SCENARIO( "Step forward" , "[Account][Step]" ) {
+	GIVEN( "An account with 1000 credits" ) {
+		Account account;
+		account.AddCredits(1000);
+		THEN( "Account has 1000 credits" ) {
+			REQUIRE( account.Credits() == 1000 );
+		}
+
+		WHEN( "Step() is called with no crew" ) {
+			int64_t assets = 0;      // This is net worth of all ships
+			int64_t salaries = 0;    // total owed in a single day's salaries
+			int64_t maintenance = 0; // sum of maintenance and generated income
+
+			string message = account.Step(assets, salaries, maintenance);
+			INFO(message);
+			string out = "";
+			REQUIRE( message.compare(out) == 0 );
 		}
 	}
 }
