@@ -34,7 +34,7 @@ class Visual;
 class Flotsam : public Body {
 public:
 	// Constructors for flotsam carrying either a commodity or an outfit.
-	Flotsam(std::string commodity, int count, const Government *sourceGovernment = nullptr);
+	Flotsam(const std::string &commodity, int count, const Government *sourceGovernment = nullptr);
 	Flotsam(const Outfit *outfit, int count, const Government *sourceGovernment = nullptr);
 
 	// Functions provided by the Body base class:

@@ -39,7 +39,7 @@ DataNode::DataNode(const DataNode *parent) noexcept(false)
 
 // Copy constructor.
 DataNode::DataNode(const DataNode &other)
-	: children(other.children), tokens(other.tokens), lineNumber(other.lineNumber)
+	: children(other.children), tokens(other.tokens), lineNumber(std::move(other.lineNumber))
 {
 	Reparent();
 }
@@ -51,7 +51,7 @@ DataNode &DataNode::operator=(const DataNode &other)
 {
 	children = other.children;
 	tokens = other.tokens;
-	lineNumber = other.lineNumber;
+	lineNumber = std::move(other.lineNumber);
 	Reparent();
 	return *this;
 }

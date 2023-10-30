@@ -87,7 +87,7 @@ namespace {
 
 
 Dialog::Dialog(function<void()> okFunction, const string &message, Truncate truncate, bool canCancel, bool okIsActive)
-	: voidFun(std::move(okFunction))
+	: voidFun(okFunction)
 {
 	Init(message, truncate, canCancel, false);
 	this->okIsActive = okIsActive;

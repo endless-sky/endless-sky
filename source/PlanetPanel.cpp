@@ -47,7 +47,7 @@ using namespace std;
 
 
 PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
-	: player(player), callback(std::move(callback)),
+	: player(player), callback(callback),
 	planet(*player.GetPlanet()), system(*player.GetSystem()),
 	ui(*GameData::Interfaces().Get("planet"))
 {

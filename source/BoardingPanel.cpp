@@ -536,8 +536,8 @@ void BoardingPanel::DoKeyboardNavigation(const SDL_Keycode key)
 // Functions for BoardingPanel::Plunder:
 
 // Constructor (commodity cargo).
-BoardingPanel::Plunder::Plunder(string commodity, int count, int unitValue)
-	: name(std::move(commodity)), outfit(nullptr), count(count), unitValue(unitValue)
+BoardingPanel::Plunder::Plunder(const string &commodity, int count, int unitValue)
+	: name(commodity), outfit(nullptr), count(count), unitValue(unitValue)
 {
 	UpdateStrings();
 }

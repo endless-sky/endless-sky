@@ -40,8 +40,8 @@ public:
 	class Entry {
 	public:
 		Entry() = default;
-		Entry(int step, std::string message, Importance importance)
-			: step(step), message(std::move(message)), importance(importance) {}
+		Entry(int step, const std::string &message, Importance importance)
+			: step(step), message(message), importance(importance) {}
 
 		int step;
 		std::string message;

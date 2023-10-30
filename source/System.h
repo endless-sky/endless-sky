@@ -50,7 +50,7 @@ public:
 public:
 	class Asteroid {
 	public:
-		Asteroid(std::string name, int count, double energy);
+		Asteroid(const std::string &name, int count, double energy);
 		Asteroid(const Minable *type, int count, double energy);
 
 		const std::string &Name() const;

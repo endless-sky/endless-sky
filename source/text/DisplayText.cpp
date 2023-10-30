@@ -15,8 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "DisplayText.h"
 
-#include <utility>
-
 
 
 DisplayText::DisplayText(const char *text, Layout layout)
@@ -26,8 +24,8 @@ DisplayText::DisplayText(const char *text, Layout layout)
 
 
 
-DisplayText::DisplayText(std::string text, Layout layout)
-	: layout(layout), text(std::move(text))
+DisplayText::DisplayText(const std::string &text, Layout layout)
+	: layout(layout), text(text)
 {
 }
 

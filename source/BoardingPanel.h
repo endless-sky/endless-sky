@@ -68,7 +68,7 @@ private:
 	class Plunder {
 	public:
 		// Plunder can be either outfits or commodities.
-		Plunder(std::string commodity, int count, int unitValue);
+		Plunder(const std::string &commodity, int count, int unitValue);
 		Plunder(const Outfit *outfit, int count);
 
 		// Sort by value per ton of mass.

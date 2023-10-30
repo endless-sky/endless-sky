@@ -31,7 +31,7 @@ class ImageBuffer;
 // not matter much and it makes working with the graphics a lot simpler.
 class Sprite {
 public:
-	explicit Sprite(std::string name = "");
+	explicit Sprite(const std::string &name = "");
 
 	const std::string &Name() const;
 

@@ -33,7 +33,7 @@ public:
 	class ImpactInfo {
 	public:
 		ImpactInfo(const Weapon &weapon, Point position, double scale)
-			: weapon(weapon), position(position), scale(scale) {}
+			: weapon(weapon), position(std::move(position)), scale(scale) {}
 
 		const Weapon &weapon;
 		Point position;

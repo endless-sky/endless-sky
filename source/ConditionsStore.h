@@ -60,7 +60,7 @@ public:
 		// This is intended as a private constructor, only to be called from within
 		// ConditionsStore. But we need to keep it public because of how the
 		// DerivedProviders are emplaced in the providers-map-variable.
-		DerivedProvider(std::string name, bool isPrefixProvider);
+		DerivedProvider(const std::string &name, bool isPrefixProvider);
 
 	private:
 		std::string name;
