@@ -219,6 +219,23 @@ SCENARIO( "Operations on overdueMaintenance", "[Account][overdueMaintenance]" ) 
 	}
 }
 
+SCENARIO( "Operations on history", "[Account][history]" ) {
+	GIVEN( "An account" ) {
+		Account account;
+		THEN( "The account starts with an empty history" ) {
+			REQUIRE(account.History().empty());
+		}
+
+		WHEN( "AddHistory is called with 1000" ) {
+			account.AddHistory(1000);
+			THEN( "History wil have a size of 1 and 1000 in the first index." ) {
+				REQUIRE(account.History().size() == 1);
+				REQUIRE(account.History().at(0) == 1000);
+			}
+		}
+	}
+}
+
 SCENARIO( "Working with mortgages on an account", "[Account][mortgages]" ) {
 	GIVEN( "An account" ) {
 		Account account;

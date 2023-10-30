@@ -190,6 +190,15 @@ const vector<int64_t> &Account::History() const
 
 
 
+// If the history grows longer than HISTORY,
+void Account::AddHistory(int64_t amount) {
+	history.push_back(amount);
+	if(history.size() > HISTORY)
+		history.erase(history.begin());
+}
+
+
+
 int64_t Account::OverdueMaintenance() const
 {
 	return overdueMaintenance;

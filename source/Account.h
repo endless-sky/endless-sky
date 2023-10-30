@@ -87,6 +87,9 @@ public:
 	// Access the history of the player's net worth.
 	const std::vector<int64_t> &History() const;
 
+	// Append an amount of credits to a player's history of net worth
+	void AddHistory(int64_t amount);
+
 	// -- Functions operating on the player's maintenance.
 
 	// Access the overdue maintenance costs.
