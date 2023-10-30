@@ -102,6 +102,19 @@ public:
 
 
 private:
+	class DoubleBuffer {
+	public:
+		constexpr operator size_t() const { return val; }
+
+		constexpr DoubleBuffer() : val(0) {}
+
+		inline void next() { if(val == 0) val = 1; else val = 0; }
+
+	private:
+		size_t val;
+		
+	};
+
 	class Target {
 	public:
 		Point center;
@@ -113,7 +126,7 @@ private:
 
 	class Status {
 	public:
-		Status(const Point &position, double outer, double inner,
+		constexpr Status(const Point &position, double outer, double inner,
 			double disabled, double radius, int type, float alpha, double angle = 0.)
 			: position(position), outer(outer), inner(inner),
 				disabled(disabled), radius(radius), type(type), alpha(alpha), angle(angle) {}
@@ -154,7 +167,7 @@ private:
 
 	void FillRadar();
 
-	void AddSprites(const Ship &ship);
+	void DrawShipSprites(const Ship &ship);
 
 	void DoGrudge(const std::shared_ptr<Ship> &target, const Government *attacker);
 
@@ -187,8 +200,8 @@ private:
 	std::condition_variable condition;
 	std::mutex swapMutex;
 
-	bool calcTickTock = false;
-	bool drawTickTock = false;
+	DoubleBuffer currentCalculating;
+	DoubleBuffer currentDrawing;
 	bool hasFinishedCalculating = true;
 	bool terminate = false;
 	bool wasActive = false;
