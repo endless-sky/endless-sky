@@ -527,9 +527,7 @@ void Account::UpdateMortgages()
 
 void Account::UpdateHistory(int64_t assets)
 {
-	history.push_back(CalculateNetWorth(assets));
-	if(history.size() > HISTORY)
-		history.erase(history.begin());
+	AddHistory(CalculateNetWorth(assets));
 }
 
 
