@@ -112,7 +112,7 @@ private:
 
 	private:
 		size_t val;
-		
+
 	};
 
 	class Target {
