@@ -134,7 +134,8 @@ public:
 	// Return the sum of all player salaries.
 	int64_t SalariesIncomeTotal() const;
 
-	// Set the number of credits in a specified salary.
+	// Set the number of credits in a specified salary. This will add the
+	// salaries if it does not already exist, or modify and existing salary.
 	void SetSalariesIncome(std::string name, int64_t amount);
 
 	// -- Miscellaneous Functions
