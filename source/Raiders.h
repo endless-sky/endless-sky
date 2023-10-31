@@ -39,7 +39,7 @@ public:
 private:
 	std::vector<RaidFleet> raidFleets;
 
-	double emptyCargoAttraction = 0.;
+	double emptyCargoAttraction = 1.;
 	bool scoutsCargo = false;
 	const Government *government = nullptr;
 };

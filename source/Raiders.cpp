@@ -74,7 +74,7 @@ void Raiders::Load(const DataNode &node)
 			if(key == "scouts cargo hold")
 				scoutsCargo = false;
 			else if(key == "empty cargo attraction")
-				emptyCargoAttraction = 0.;
+				emptyCargoAttraction = 1.;
 			else if(key == "fleet")
 				raidFleets = {};
 			else
