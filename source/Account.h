@@ -142,17 +142,17 @@ public:
 	// Remove the specified salary.
 	void RemoveSalariesIncome(std::string name);
 
-	// Clear the map of player salaries
+	// Clear the map of player salaries.
 	void ClearSalariesIncome();
 
 	// -- Miscellaneous Functions
 
 	// Step forward one day, and return a string summarizing payments made.
-	// NOTE: This function may modify account data during operation
+	// NOTE: This function may modify account data during operation.
 	std::string Step(int64_t assets, int64_t salaries, int64_t maintenance);
 
 	// Attempt to pay all bills, returning the results.
-	// NOTE: This function may modify account data during operation
+	// NOTE: This function may modify account data during operation.
 	std::vector<Receipt> PayBills(int64_t salaries, int64_t maintenance);
 
 	// Attempt to pay crew salaries, returning the results.
