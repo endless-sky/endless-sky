@@ -405,7 +405,7 @@ outfit "Enforcer Confrontation Gear"
 	"capture attack" 3.1
 	"capture defense" 4.9
 	"unplunderable" 1
-	description "The peak of Heliarch combat engineering, this weapon uses condensed blasts of energy to dispatch any who dare threaten the Coalition safety."
+	description "The peak of Heliarch combat engineering, this weapon uses condensed blasts of energy to dispatch any who dare threaten the safety of the Coalition."
 
 outfit "Enforcer Riot Staff"
 	category "Hand to Hand"
