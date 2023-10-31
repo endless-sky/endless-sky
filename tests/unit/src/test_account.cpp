@@ -364,6 +364,12 @@ SCENARIO( "Operations on player salaries", "[Account][salariesIncome]" ) {
 							account.SalariesIncome().end());
 					}
 				}
+				AND_WHEN("ClearSalariesIncome is called") {
+					account.ClearSalariesIncome();
+					THEN( "The map of player salaries is empty" ) {
+						REQUIRE(account.SalariesIncome().size() == 0);
+					}
+				}
 			}
 		}
 	}
