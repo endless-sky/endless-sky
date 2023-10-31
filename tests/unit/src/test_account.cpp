@@ -232,6 +232,16 @@ SCENARIO( "Operations on history", "[Account][history]" ) {
 				REQUIRE(account.History().size() == 1);
 				REQUIRE(account.History().at(0) == 1000);
 			}
+			AND_WHEN( "AddHistory is called 100 more times" ) {
+				for (int64_t i = 0; i < 100; i++)
+				{
+					account.AddHistory(i);
+				}
+				THEN( "Index 0 will contain 0 and the size will be 100" ) {
+					REQUIRE(account.History().at(0) == 0);
+					REQUIRE(account.History().size() == 100);
+				}
+			}
 		}
 	}
 }
