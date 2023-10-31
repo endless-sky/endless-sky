@@ -39,7 +39,7 @@ outfit "Ka'het Nullifier"
 		"reload" 350
 		"cluster"
 		"firing energy" 710
-		"firing force" 90
+		"firing force" 180
 		"firing heat" 160
 		"turn" 73
 		"shield damage" 120
@@ -47,7 +47,7 @@ outfit "Ka'het Nullifier"
 		"energy damage" 3200
 		"ion damage" 220
 		"scrambling damage" 10
-		"hit force" 50
+		"hit force" 100
 		"blast radius" 20
 	description "The Nullifier was one of the largest weapons the Builders ever developed, created specifically to be carried in battle by the Vareti. Although it does almost no damage to shields and hull, one shot is capable of disabling most kinds of reactors in a matter of seconds."
 
@@ -266,7 +266,7 @@ outfit "Ka'het EMP Deployer"
 		"hull damage" 100
 		"ion damage" 48
 		"scrambling damage" 48
-		"hit force" 90
+		"hit force" 180
 		"missile strength" 80
 	description "Eons ago, the Builders were attacked by alien ships which used weapons that ignored their hull and damaged their reactors. Although they never did recover any of these weapons, after years of research they managed to replicate their effects."
 
@@ -293,14 +293,14 @@ outfit "Ka'het Emergency Deployer"
 		"range override" 400
 		"firing energy" -3800
 		"firing force" 900
-		"firing heat" 5800
+		"firing heat" 11600
 		"firing hull" 60
 		"trigger radius" 40
 		"blast radius" 230
 		"shield damage" 28750
 		"hull damage" 9060
 		"heat damage" 4920
-		"hit force" 1600
+		"hit force" 3200
 		"missile strength" 280
 	description "Most drones the Builders possessed were completely unarmed, making them very vulnerable to enemy attacks. Since installing weapons would have greatly reduced its cargo capacity, they instead decided to dissuade possible hijackers by developing these Emergency Deployers: they work by activating a series of reactions inside the ship's MHD generator and then ejecting it towards the enemy, resulting in a large scale detonation as soon as it hits something."
 
