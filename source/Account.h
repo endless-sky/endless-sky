@@ -71,17 +71,6 @@ public:
 	// Specify the player's credit score (cannot be set lower than 200, or greater than 800).
 	void SetCreditScore(int64_t value);
 
-	// -- Functions operating on the player's crew salaries.
-
-	// Access the overdue crew salaries.
-	int64_t OverdueCrewSalaries() const;
-
-	// Set the number of credits of unpaid salaries the player owes.
-	void SetOverdueCrewSalaries(int64_t value);
-
-	// Pay off the current overdue crew salaries by a given amount.
-	void PayOverdueCrewSalaries(int64_t amount);
-
 	// -- Functions operating on the player's history.
 
 	// Access the history of the player's net worth.
@@ -94,17 +83,6 @@ public:
 
 	// Empty the player's net worth history.
 	void ResetHistory();
-
-	// -- Functions operating on the player's maintenance.
-
-	// Access the overdue maintenance costs.
-	int64_t OverdueMaintenance() const;
-
-	// Set the number of credits of unpaid maintenance the player owes.
-	void SetOverdueMaintenance(int64_t value);
-
-	// Pay off the current overdue maintenance by a given amount.
-	void PayOverdueMaintenance(int64_t amount);
 
 	// -- Functions operating on the player's mortgages and fines.
 
@@ -125,6 +103,28 @@ public:
 
 	// Get the player's total net worth (counting all ships and all debts).
 	int64_t NetWorth() const;
+
+	// -- Functions operating on the player's crew salaries.
+
+	// Access the overdue crew salaries.
+	int64_t OverdueCrewSalaries() const;
+
+	// Set the number of credits of unpaid salaries the player owes.
+	void SetOverdueCrewSalaries(int64_t value);
+
+	// Pay off the current overdue crew salaries by a given amount.
+	void PayOverdueCrewSalaries(int64_t amount);
+
+	// -- Functions operating on the player's overdue maintenance.
+
+	// Access the overdue maintenance costs.
+	int64_t OverdueMaintenance() const;
+
+	// Set the number of credits of unpaid maintenance the player owes.
+	void SetOverdueMaintenance(int64_t value);
+
+	// Pay off the current overdue maintenance by a given amount.
+	void PayOverdueMaintenance(int64_t amount);
 
 	// -- Functions operating on the player's salaries.
 

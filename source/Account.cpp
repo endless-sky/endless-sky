@@ -158,31 +158,6 @@ void Account::SetCreditScore(int64_t value) {
 
 
 
-int64_t Account::OverdueCrewSalaries() const
-{
-	return overdueCrewSalaries;
-}
-
-
-
-void Account::SetOverdueCrewSalaries(int64_t value) {
-	overdueCrewSalaries = value;
-}
-
-
-
-// If the amount in overdue crew salaries is less then the amount passed,
-// pay the overdue crew salaries. If either of those is more than the total
-// number of credits in the players account, pay of as much as the player has.
-void Account::PayOverdueCrewSalaries(int64_t amount)
-{
-	amount = min(min(amount, overdueCrewSalaries), credits);
-	credits -= amount;
-	overdueCrewSalaries -= amount;
-}
-
-
-
 const vector<int64_t> &Account::History() const
 {
 	return history;
@@ -200,31 +175,6 @@ void Account::AddHistory(int64_t amount) {
 
 void Account::ResetHistory() {
 	history.clear();
-}
-
-
-
-int64_t Account::OverdueMaintenance() const
-{
-	return overdueMaintenance;
-}
-
-
-
-void Account::SetOverdueMaintenance(int64_t value) {
-	overdueMaintenance = value;
-}
-
-
-
-// If the amount in overdue maintenance is less then the amount passed,
-// pay the overdue maintenance. If either of those is more than the total
-// number of credits in the players account, pay of as much as the player has.
-void Account::PayOverdueMaintenance(int64_t amount)
-{
-	amount = min(min(amount, overdueMaintenance), credits);
-	credits -= amount;
-	overdueMaintenance -= amount;
 }
 
 
@@ -295,6 +245,56 @@ int64_t Account::Prequalify() const
 int64_t Account::NetWorth() const
 {
 	return history.empty() ? 0 : history.back();
+}
+
+
+
+int64_t Account::OverdueCrewSalaries() const
+{
+	return overdueCrewSalaries;
+}
+
+
+
+void Account::SetOverdueCrewSalaries(int64_t value) {
+	overdueCrewSalaries = value;
+}
+
+
+
+// If the amount in overdue crew salaries is less then the amount passed,
+// pay the overdue crew salaries. If either of those is more than the total
+// number of credits in the players account, pay of as much as the player has.
+void Account::PayOverdueCrewSalaries(int64_t amount)
+{
+	amount = min(min(amount, overdueCrewSalaries), credits);
+	credits -= amount;
+	overdueCrewSalaries -= amount;
+}
+
+
+
+int64_t Account::OverdueMaintenance() const
+{
+	return overdueMaintenance;
+}
+
+
+
+void Account::SetOverdueMaintenance(int64_t value) {
+	overdueMaintenance = value;
+}
+
+
+
+// If the amount in overdue maintenance is less then the amount passed,
+// pay the overdue maintenance. If either of those is more than the total
+// number of credits in the players account, pay of as much as the player has.
+void Account::PayOverdueMaintenance(int64_t amount)
+{
+	amount = min(min(amount, overdueMaintenance), credits);
+	credits -= amount;
+	overdueMaintenance -= amount;
 }
 
 

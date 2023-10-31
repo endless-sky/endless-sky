@@ -115,110 +115,6 @@ TEST_CASE( "Set the credit score of the account", "[Acount][SetCreditScore]" ) {
 	REQUIRE(account.CreditScore() == 800);
 }
 
-SCENARIO( "Operations on overdueCrewSalaries", "[Account][overdueCrewSalaries]" ) {
-	GIVEN( "An account" ) {
-		Account account;
-		WHEN( "overdueCrewSalaries is 0" ) {
-			THEN( "OverdueCrewSalaries will return 0" ) {
-				REQUIRE(account.OverdueCrewSalaries() == 0);
-			}
-			AND_WHEN( "SetOverdueCrewSalaries is used to set a value" ) {
-				account.SetOverdueCrewSalaries(1000);
-				THEN( "overdueCrewSalaries is set to that value" ) {
-					REQUIRE(account.OverdueCrewSalaries() == 1000);
-				}
-				AND_WHEN( "PayOverdueCrewSalaries is used to pay off that value" ) {
-					account.SetCredits(1000);
-					account.PayOverdueCrewSalaries(1000);
-					THEN( "overdueCrewSalaries is 0" ) {
-						REQUIRE(account.OverdueCrewSalaries() == 0);
-					}
-				}
-			}
-		}
-
-		WHEN( "no salaries are paid" ) {
-			Receipt salariesPaid = account.PayCrewSalaries(0);
-			THEN( "The salaries were paid in full and no credits were paid" ) {
-				REQUIRE(salariesPaid.creditsPaid == 0);
-				REQUIRE(salariesPaid.paidInFull == true);
-			}
-		}
-
-		WHEN( "500 in salaries are paid but the account has no credits" ) {
-			REQUIRE(account.Credits() == 0);
-			Receipt salariesPaid = account.PayCrewSalaries(500);
-			THEN( "The salaries were NOT paid in full and no credits were paid" ) {
-				REQUIRE(salariesPaid.creditsPaid == 0);
-				REQUIRE(salariesPaid.paidInFull == false);
-				REQUIRE(account.OverdueCrewSalaries() == 500);
-			}
-		}
-
-		WHEN( "500 in salaries are paid and the account has 1000 credits" ) {
-			account.AddCredits(1000);
-			Receipt salariesPaid = account.PayCrewSalaries(500);
-			THEN( "The salaries were were paid in full and 500 credits were paid" ) {
-				REQUIRE(salariesPaid.creditsPaid == 500);
-				REQUIRE(salariesPaid.paidInFull == true);
-				REQUIRE(account.OverdueCrewSalaries() == 0);
-			}
-		}
-	}
-}
-
-SCENARIO( "Operations on overdueMaintenance", "[Account][overdueMaintenance]" ) {
-	GIVEN( "An account" ) {
-		Account account;
-		WHEN( "overdueMaintenance is 0" ) {
-			THEN( "overdueMaintenance will return 0" ) {
-				REQUIRE(account.OverdueMaintenance() == 0);
-			}
-			AND_WHEN( "SetOverdueMaintenance is used to set a value" ) {
-				account.SetOverdueMaintenance(1000);
-				THEN( "overdueMaintenance is set to that value" ) {
-					REQUIRE(account.OverdueMaintenance() == 1000);
-				}
-				AND_WHEN( "PayOverdueMaintenance is used to pay off that value" ) {
-					account.SetCredits(1000);
-					account.PayOverdueMaintenance(1000);
-					THEN( "overdueMaintenance is 0" ) {
-						REQUIRE(account.OverdueMaintenance() == 0);
-					}
-				}
-			}
-		}
-
-		WHEN( "no maintenance is owed" ) {
-			Receipt maintenancePaid = account.PayMaintenance(0);
-			THEN( "Maintenance was paid in full and no credits were paid" ) {
-				REQUIRE(maintenancePaid.creditsPaid == 0);
-				REQUIRE(maintenancePaid.paidInFull == true);
-			}
-		}
-
-		WHEN( "500 in maintenance is owed but the account has no credits" ) {
-			REQUIRE(account.Credits() == 0);
-			Receipt maintenancePaid = account.PayMaintenance(500);
-			THEN( "Maintenance was NOT paid in full and no credits were paid" ) {
-				REQUIRE(maintenancePaid.creditsPaid == 0);
-				REQUIRE(maintenancePaid.paidInFull == false);
-				REQUIRE(account.OverdueMaintenance() == 500);
-			}
-		}
-
-		WHEN( "500 in maintenance is owed and the account has 1000 credits" ) {
-			account.AddCredits(1000);
-			Receipt maintenancePaid = account.PayMaintenance(500);
-			THEN( "The salaries were were paid in full and 500 credits were paid" ) {
-				REQUIRE(maintenancePaid.creditsPaid == 500);
-				REQUIRE(maintenancePaid.paidInFull == true);
-				REQUIRE(account.OverdueMaintenance() == 0);
-			}
-		}
-	}
-}
-
 SCENARIO( "Operations on history", "[Account][history]" ) {
 	GIVEN( "An account" ) {
 		Account account;
@@ -324,6 +220,110 @@ SCENARIO( "Paying Fines", "[Account][PayFines]" ) {
 				REQUIRE(bill.creditsPaid == 0);
 				REQUIRE(bill.paidInFull == false);
 				REQUIRE(account.Credits() == 5);
+			}
+		}
+	}
+}
+
+SCENARIO( "Operations on overdueCrewSalaries", "[Account][overdueCrewSalaries]" ) {
+	GIVEN( "An account" ) {
+		Account account;
+		WHEN( "overdueCrewSalaries is 0" ) {
+			THEN( "OverdueCrewSalaries will return 0" ) {
+				REQUIRE(account.OverdueCrewSalaries() == 0);
+			}
+			AND_WHEN( "SetOverdueCrewSalaries is used to set a value" ) {
+				account.SetOverdueCrewSalaries(1000);
+				THEN( "overdueCrewSalaries is set to that value" ) {
+					REQUIRE(account.OverdueCrewSalaries() == 1000);
+				}
+				AND_WHEN( "PayOverdueCrewSalaries is used to pay off that value" ) {
+					account.SetCredits(1000);
+					account.PayOverdueCrewSalaries(1000);
+					THEN( "overdueCrewSalaries is 0" ) {
+						REQUIRE(account.OverdueCrewSalaries() == 0);
+					}
+				}
+			}
+		}
+
+		WHEN( "no salaries are paid" ) {
+			Receipt salariesPaid = account.PayCrewSalaries(0);
+			THEN( "The salaries were paid in full and no credits were paid" ) {
+				REQUIRE(salariesPaid.creditsPaid == 0);
+				REQUIRE(salariesPaid.paidInFull == true);
+			}
+		}
+
+		WHEN( "500 in salaries are paid but the account has no credits" ) {
+			REQUIRE(account.Credits() == 0);
+			Receipt salariesPaid = account.PayCrewSalaries(500);
+			THEN( "The salaries were NOT paid in full and no credits were paid" ) {
+				REQUIRE(salariesPaid.creditsPaid == 0);
+				REQUIRE(salariesPaid.paidInFull == false);
+				REQUIRE(account.OverdueCrewSalaries() == 500);
+			}
+		}
+
+		WHEN( "500 in salaries are paid and the account has 1000 credits" ) {
+			account.AddCredits(1000);
+			Receipt salariesPaid = account.PayCrewSalaries(500);
+			THEN( "The salaries were were paid in full and 500 credits were paid" ) {
+				REQUIRE(salariesPaid.creditsPaid == 500);
+				REQUIRE(salariesPaid.paidInFull == true);
+				REQUIRE(account.OverdueCrewSalaries() == 0);
+			}
+		}
+	}
+}
+
+SCENARIO( "Operations on overdueMaintenance", "[Account][overdueMaintenance]" ) {
+	GIVEN( "An account" ) {
+		Account account;
+		WHEN( "overdueMaintenance is 0" ) {
+			THEN( "overdueMaintenance will return 0" ) {
+				REQUIRE(account.OverdueMaintenance() == 0);
+			}
+			AND_WHEN( "SetOverdueMaintenance is used to set a value" ) {
+				account.SetOverdueMaintenance(1000);
+				THEN( "overdueMaintenance is set to that value" ) {
+					REQUIRE(account.OverdueMaintenance() == 1000);
+				}
+				AND_WHEN( "PayOverdueMaintenance is used to pay off that value" ) {
+					account.SetCredits(1000);
+					account.PayOverdueMaintenance(1000);
+					THEN( "overdueMaintenance is 0" ) {
+						REQUIRE(account.OverdueMaintenance() == 0);
+					}
+				}
+			}
+		}
+
+		WHEN( "no maintenance is owed" ) {
+			Receipt maintenancePaid = account.PayMaintenance(0);
+			THEN( "Maintenance was paid in full and no credits were paid" ) {
+				REQUIRE(maintenancePaid.creditsPaid == 0);
+				REQUIRE(maintenancePaid.paidInFull == true);
+			}
+		}
+
+		WHEN( "500 in maintenance is owed but the account has no credits" ) {
+			REQUIRE(account.Credits() == 0);
+			Receipt maintenancePaid = account.PayMaintenance(500);
+			THEN( "Maintenance was NOT paid in full and no credits were paid" ) {
+				REQUIRE(maintenancePaid.creditsPaid == 0);
+				REQUIRE(maintenancePaid.paidInFull == false);
+				REQUIRE(account.OverdueMaintenance() == 500);
+			}
+		}
+
+		WHEN( "500 in maintenance is owed and the account has 1000 credits" ) {
+			account.AddCredits(1000);
+			Receipt maintenancePaid = account.PayMaintenance(500);
+			THEN( "The salaries were were paid in full and 500 credits were paid" ) {
+				REQUIRE(maintenancePaid.creditsPaid == 500);
+				REQUIRE(maintenancePaid.paidInFull == true);
+				REQUIRE(account.OverdueMaintenance() == 0);
 			}
 		}
 	}
