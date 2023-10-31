@@ -64,7 +64,7 @@ outfit "Plankton Mouth"
 		"burst reload" 1
 		"burst count" 5
 		"reload" 20
-		"firing force" 50
+		"firing force" 100
 		"energy damage" 50
 
 
@@ -245,7 +245,7 @@ outfit "Astral Mouth"
 		"burst reload" 1
 		"burst count" 10
 		"reload" 40
-		"hit force" -50
+		"hit force" -100
 		"piercing" 1
 		"hull damage" 200
 
