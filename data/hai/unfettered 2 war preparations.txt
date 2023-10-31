@@ -1057,10 +1057,10 @@ mission "<uhai> 15: Modified Beetle"
 					"outfit (all): Ionic Turret Prototype" > "turrets owned"
 			branch normal
 				not "unfettered rep: Mera"
-			`	"Since this was partly a test-run, what suggestions would you make to improve the ship, so I can make changes to its outfits, before I finally give this ship to you?"`
+			`	"Since this was partly a test-run, what suggestions would you make to improve the ship, so I can make changes to its outfits, before I finally give this ship to you? If you are happy with it as is, you may find an extra in your cargo," she says with a wink.`
 			label suggestions
 			choice
-				`	"No need to modify the loadout, but I could use an extra outfit all the same."`
+				`	"No need to modify the loadout."`
 				`	"Can you explain to me why you named the ship Hera?"`
 					to display
 						not "unfettered: Hera"
