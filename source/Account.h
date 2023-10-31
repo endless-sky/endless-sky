@@ -136,7 +136,11 @@ public:
 
 	// Set the number of credits in a specified salary. This will add the
 	// salaries if it does not already exist, or modify and existing salary.
+	// If the amount passed in is 0, then the salary will be removed.
 	void SetSalariesIncome(std::string name, int64_t amount);
+
+	// Remove the specified salary.
+	void RemoveSalariesIncome(std::string name);
 
 	// -- Miscellaneous Functions
 

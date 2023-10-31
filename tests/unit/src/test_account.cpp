@@ -342,6 +342,29 @@ SCENARIO( "Operations on player salaries", "[Account][salariesIncome]" ) {
 				REQUIRE(account.SalariesIncome().size() == 1);
 				REQUIRE(account.SalariesIncome().find("test")->second == 1000);
 			}
+			AND_WHEN( "SalariesIncomeTotal is called after adding another couple salaries" ) {
+				account.SetSalariesIncome("test2", 2000);
+				account.SetSalariesIncome("test3", 3000);
+				THEN("The correct total is returned") {
+					REQUIRE(account.SalariesIncomeTotal() == 6000);
+				}
+				AND_WHEN("SetSalariesIncome is called to zero out the first salary") {
+					account.SetSalariesIncome("test", 0);
+					THEN( "Only the last two salaries remain" ) {
+						REQUIRE(account.SalariesIncome().size() == 2);
+						REQUIRE(account.SalariesIncome().find("test") ==
+							account.SalariesIncome().end());
+					}
+				}
+				AND_WHEN("RemoveSalariesIncome is called to zero out the first salary") {
+					account.RemoveSalariesIncome("test");
+					THEN( "Only the last two salaries remain" ) {
+						REQUIRE(account.SalariesIncome().size() == 2);
+						REQUIRE(account.SalariesIncome().find("test") ==
+							account.SalariesIncome().end());
+					}
+				}
+			}
 		}
 	}
 }
