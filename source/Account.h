@@ -140,9 +140,11 @@ public:
 	// -- Miscellaneous Functions
 
 	// Step forward one day, and return a string summarizing payments made.
+	// NOTE: This function may modify account data during operation
 	std::string Step(int64_t assets, int64_t salaries, int64_t maintenance);
 
 	// Attempt to pay all bills, returning the results.
+	// NOTE: This function may modify account data during operation
 	std::vector<Receipt> PayBills(int64_t salaries, int64_t maintenance);
 
 	// Attempt to pay crew salaries, returning the results.
@@ -209,18 +211,18 @@ private:
 	// Your credit score determines the interest rate on your mortgages.
 	int creditScore = 400;
 
-	// If back salaries cannot be paid, it piles up rather than being ignored.
-	int64_t overdueCrewSalaries = 0;
-
 	// History of the player's net worth. This is used to calculate your average
 	// daily income, which is used to calculate how big a mortgage you can afford.
 	std::vector<int64_t> history;
 
-	// If back maintenance cannot be paid, it piles up rather than being ignored.
-	int64_t overdueMaintenance = 0;
-
 	// A list containing mortgages taken out and fines assigned to the player.
 	std::vector<Mortgage> mortgages;
+
+	// If back salaries cannot be paid, it piles up rather than being ignored.
+	int64_t overdueCrewSalaries = 0;
+
+	// If back maintenance cannot be paid, it piles up rather than being ignored.
+	int64_t overdueMaintenance = 0;
 
 	// Regular income from salaries paid to the player.
 	std::map<std::string, int64_t> salariesIncome;

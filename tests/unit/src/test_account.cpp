@@ -329,6 +329,15 @@ SCENARIO( "Operations on overdueMaintenance", "[Account][overdueMaintenance]" ) 
 	}
 }
 
+SCENARIO( "Operations on player salaries", "[Account][salariesIncome]" ) {
+	GIVEN( "An account" ) {
+		Account account;
+		THEN( "The account starts with no player salaries" ) {
+			REQUIRE(account.SalariesIncome().empty());
+		}
+	}
+}
+
 SCENARIO( "Step forward" , "[Account][Step]" ) {
 	GIVEN( "An account with 1000 credits" ) {
 		Account account;
