@@ -92,6 +92,9 @@ public:
 	// be deleted.
 	void AddHistory(int64_t amount);
 
+	// Empty the player's net worth history.
+	void ResetHistory();
+
 	// -- Functions operating on the player's maintenance.
 
 	// Access the overdue maintenance costs.

@@ -198,6 +198,12 @@ void Account::AddHistory(int64_t amount) {
 
 
 
+void Account::ResetHistory() {
+	history.clear();
+}
+
+
+
 int64_t Account::OverdueMaintenance() const
 {
 	return overdueMaintenance;
