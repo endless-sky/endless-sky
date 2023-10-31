@@ -162,14 +162,14 @@ mission "<uhai> 5 Annex: Carrier Analysis"
 			`As you finish the landing procedure you receive a warning from one of your first mates: a Lightning Bug is headed straight towards his Carrier, at full speed!`
 				to display
 					not "flagship model: Carrier"
-			`As you finish the landing procedure you a warning siren triggers on the bridge. One of your officers warns you that a Lightning Bug is headed straight towards you, at full speed!`
+			`As you finish the landing procedure, a warning siren triggers on the bridge. One of your officers warns you that a Lightning Bug is headed straight towards you, at full speed!`
 				to display
 					has "flagship model: Carrier"
 			`	Fortunately it stops as soon as it enters scanning range, and begins a full sweep of your ship, before hailing you. You immediately recognize Mera. "Hey there, <first>! I was warned about a Carrier arriving," she looks to her side, probably at one member of her crew as she continues, "because someone thought it was the Giftbringer..." before looking back to you, with a smile, "Anyway, what a pleasant surprise to know it was you. I hope you dont mind me taking some scans, you'll be compensated for it naturally. In fact, I'll allow you to come with me to the lab and choose any item you desire!"`
 			choice
 				`	"That seems like a good deal, I'm in!"`
 					goto deal
-				`	"You can do better than scan that ship, in fact I'm willing to sell it to you."`
+				`	"Would you like to buy it instead?"`
 					goto sell
 				`	"My privacy is very important to me. Stop that scan at once."`
 			`	She seems really surprised, but gives a sign to her officers to stop the scanning. "In that case we will erase the information collected. Truly I had no idea you would see it this way. Still, this is such a shame..."`
@@ -177,11 +177,13 @@ mission "<uhai> 5 Annex: Carrier Analysis"
 			label deal
 			action
 				set "unfettered: carrier scans"
-			`	The scan is finished in a record speed, and Mera invites you on her ship to get to the lab. When you arrive on the bridge she is alone. "I like to be able to speak freely, you see," she says as you look at the empty bridge. "You never know who is listening," she says as she sets a course. "I have something to show you. But first, tell me, how did you acquire this Carrier? We Unfettered like to share stories, sometimes around campfires..." she says before clapping her hands. Suddenly the atmosphere of the room changes, and you can see the outside of the ship as if it was no longer there.`
+			`	The scan is finished in a record speed, and Mera invites you on her ship to get to the lab. When you arrive on the bridge she is alone. "I like to be able to speak freely, you see," she says as you look at the empty bridge. "You never know who is listening," she says as she sets a course. "I have something to show you. But first, tell me, how did you acquire this Carrier? We Unfettered like to share stories, sometimes around campfires..." she says before clapping her hands. Suddenly the atmosphere of the room changes, and you can see outside of the ship as if it was no longer there.`
 			choice
 				`	"There is not much to say, I simply bought it."`
 					goto bought
 				`	"I acquired it in a grand battle for freedom!"`
+					to display
+						has "Defend Sabik: done"
 					goto freedom
 				`	"How did you do that?"`
 					goto explain
@@ -189,7 +191,7 @@ mission "<uhai> 5 Annex: Carrier Analysis"
 			`	"Suit yourself."`
 				goto testingsite
 			label bought
-			`	"I see you are very humble, captain."`
+			`	"I see you are very humble, Captain."`
 				goto testingsite
 			label freedom
 			`	"So you are already Unfettered in your heart!" She sighs. "I hope it means you understand that we do not all desire battle, but we do see it as a necessity."`
@@ -197,7 +199,7 @@ mission "<uhai> 5 Annex: Carrier Analysis"
 			label explain
 			`	"This?" She says, looking around. "It's just a few projectors, in truth. This was not their primary intended use, however," she says with a chuckle.`
 			label testingsite
-			`	You quickly arrive at a collection of craters, which remind you of the moon. She stops there and takes a deep breath.`
+			`	You quickly arrive at a collection of craters, which remind you of the Earth's moon you could see on magazines as a child. She stops there and takes a deep breath.`
 			`	"I have a new gadget I wanted to show you. If you would like to do the honors, it has never been tested before!"`
 			choice
 				`	(Dewit!)`
@@ -205,7 +207,7 @@ mission "<uhai> 5 Annex: Carrier Analysis"
 				`	"Are you sure it is safe?"`
 			`	"I am pretty confident it will not blow us up, if that is what you are wondering!"`
 			label dewit
-			`	You press the button and the huge turret on top of the ship starts to fire in a thunder of fire and rocks exploding, the power of the shots so big that the ship's thrusters are having a very hard time maintaining the ship in position. You can hear Mera laughing. "It works! It works!" The weapon appears to be pulse based, but the projectiles are much, much bigger, and more unstable as well, it seems.`
+			`	You press the button and the huge turret mounted on the top of the ship begins firing bright pulses, exploding the rocks beneath in a hunder of fire, the power of the shots so big that the ship's thrusters are having a difficult time maintaining the ship in position. You can hear Mera laughing. "It works! It works!" The weapon appears to be pulse based, but the projectiles are much, much bigger, and more unstable as well, it seems.`
 			`	Suddenly alarms turn on and the ship is put in a yellow light. You can see Mera shouting something but you cannot hear her over the cacophony. She does not seem to be in panic at all, but you have not seen her move this fast yet. Suddenly you hear a loud click and the alarms turn off. She then stabilizes the ship and launches at full speed as you hear a loud bang. Turning around you see that she disconnected the turret from the ship. She goes over a mountaintop and then stays as close to the ground as possible.`
 			`	"I know I said it would not blow up, but..." she starts before being interrupted by a big explosion as the ship enters the bottom of a crater. "Well, this is why the tests are done here, after all." She seems a bit demotivated by this apparent failure. "This ship was simply not able to handle the sheer amount of heat produced! I should probably work more on stabilizing it, but that would cost energy..." she continues rambling, probably having forgotten your presence.`
 			choice
@@ -220,7 +222,7 @@ mission "<uhai> 5 Annex: Carrier Analysis"
 				"unfettered rep: Mera" ++
 			scene "outfit/repeater turret"
 			scene "outfit/repeater"
-			`	She sets the next destination, staying quiet. You arrive at the lab in little time, and she shows you your reward. "These are very powerful weapons, however your ship must be able to handle a lot of heat to use them. They are called 'Thermal Repeaters'. I have a lot of cleanup to do after what happened, so I'll simply ask you to choose between 2 turrets, or 5 guns."`
+			`	She sets the next destination, staying quiet. You arrive at the lab in little time, and she shows you your reward. "These are very powerful weapons, however your ship must be able to handle a lot of heat to use them. They are called 'Thermal Repeaters'. I have a lot of cleanup to do after what happened, so I'll simply ask you to choose between two of these turrets, or five guns."`
 			choice
 				`	"The turrets."`
 				`	"The guns."`
@@ -238,7 +240,7 @@ mission "<uhai> 5 Annex: Carrier Analysis"
 				decline
 
 			label sell
-			`	For a few seconds she just lays there, stunned, before answering, "Are.. You serious? I mean, of course you are, let me just think about this with my staff, I'll get back to you." She cuts the transmission for a few minutes, before reestablishing it with a formal offer, "I'll give you 10 millions and a few extras from our cache of Korath technology, including dreaded Piercer Missiles!`
+			`	For a few seconds she just lays there, stunned, before answering, "Are.. You serious? I mean, of course you are, let me just think about this with my staff, I'll get back to you." She cuts the transmission for a few minutes, before reestablishing it with a formal offer, "I'll give you 10 million credits and a few extras from our cache of Korath technology, including dreaded Piercer Missiles!`
 			`	You will naturally be able to buy back the outfits that are currently equipped on your ship from the outfitter - only the hull is of interest to me."`
 			`	A member of her staff murmurs something to her, and she realizes she forgot something, "I am so silly! You only have this one ship, so you would be unable to leave the planet if I take it. I'll give you an old Aphid we have lying around, that should allow you to get to Darkcloak safely, to buy a proper ship!"`
 				to display
@@ -259,7 +261,7 @@ mission "<uhai> 5 Annex: Carrier Analysis"
 				outfit "Plasma Core"
 			branch "flag only"
 				"total ships" <= 1
-			`	They take the ship away whilst giving you the agreed payment and outfits, and invite you to head to the outfitter to get outfits back if you so desire.`
+			`	They take the ship away whilst giving you the agreed payment and outfits, and invite you to head to the outfitter to get your outfits back if you so desire.`
 				decline
 			label "flag only"
 			action

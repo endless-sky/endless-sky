@@ -1060,8 +1060,10 @@ mission "<uhai> 15: Modified Beetle"
 			`	"Since this was partly a test-run, what suggestions would you make to improve the ship, so I can make changes to its outfits, before I finally give this ship to you?"`
 			label suggestions
 			choice
-				`	"The ship is fine, but I could use an extra outfit to modify the loadout myself."`
+				`	"No need to modify the loadout, but I could use an extra outfit all the same."`
 				`	"Can you explain to me why you named the ship Hera?"`
+					to display
+						not "unfettered: Hera"
 					goto hera
 				`	"I feel like it is lacking in raw firepower, missiles will just get intercepted before they can hit."`
 					goto dakka
@@ -1100,6 +1102,8 @@ mission "<uhai> 15: Modified Beetle"
 			`	"You can go claim the ship itself tomorrow, on Darkcloak, once I am done with the repairs. It should not take long!"`
 				accept
 			label hera
+			action
+				set "unfettered: Hera"
 			`	She almost jumps of excitement, "I was hoping you would ask that! Listening to the Alphas, I gathered Hera is the goddess of protection. That is the best way to describe this ship: it has significantly improved shielding compared to a standard Shield Beetle, and its equipement is mostly defense focused, using ionic prototypes to scramble enemy weapons and even disable their reactor, after some time. It is also my hope that this ship will be used sparingly, avoiding casualties if possible. But let us go back to the outfit upgrades I mentioned," she says whilst looking around, distracted.`
 				goto suggestions
 			label dakka
@@ -1389,7 +1393,7 @@ mission "<uhai> 16: Strength Of A Leader: He-Yi"
 						not "unfettered: sword choice"
 				`	"Why is your ship named Tejolis?"`
 					to display
-						not "unfettered: name choice"
+						not "unfettered: Tejolis"
 					goto tejolis
 				`	"Why is the hull of your ship so resilient?"`
 					to display
@@ -1411,7 +1415,7 @@ mission "<uhai> 16: Strength Of A Leader: He-Yi"
 				goto questions
 			label tejolis
 			action
-				set "unfettered: name choice"
+				set "unfettered: Tejolis"
 			`	"Tejolis is the [deity, ancient, revered elder] of [strategy, apt thinking, intelligence]." He sees that your translator has troubles translating this, and explains further, "It is the aptitude to make good judgments based on context. For instance, if you have time to choose, a quick decision does not make sense, and a wrong decision is hard to [justify, forgive]. Likewise, when time is of the essence, one must learn to [act, react] quickly or be overwhelmed by the actions of others. I named this ship in her honor and I have a statue of her in my war room because I follow her [teachings, legacy]. All warlord ships are named in reference to specific [deity, ancient, revered elder], and relate to their [intended, innate] functions."`
 				goto questions
 			label hull
@@ -1448,7 +1452,6 @@ mission "<uhai> 16: Strength Of A Leader: He-Yi"
 			action
 				clear "unfettered: questions"
 				clear "unfettered: sword choice"
-				clear "unfettered: name choice"
 				clear "unfettered: hull choice"
 				clear "unfettered: cloak choice"
 				clear "unfettered: weapon choice"
