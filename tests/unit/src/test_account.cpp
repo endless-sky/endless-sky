@@ -129,7 +129,7 @@ SCENARIO( "Operations on history", "[Account][history]" ) {
 				REQUIRE(account.History().at(0) == 1000);
 			}
 			AND_WHEN( "AddHistory is called 100 more times" ) {
-				for (int64_t i = 0; i < 100; i++)
+				for(int64_t i = 0; i < 100; i++)
 				{
 					account.AddHistory(i);
 				}
