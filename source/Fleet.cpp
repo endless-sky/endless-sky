@@ -250,7 +250,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		vector<const StellarObject *> stellarVector;
 		if(!personality.IsSurveillance())
 			for(const StellarObject &object : system.Objects())
-				if(object.HasValidPlanet() && object.GetPlanet()->HasSpaceport()
+				if(object.HasValidPlanet() && object.GetPlanet()->IsInhabited()
 						&& (unrestricted || !government->IsRestrictedFrom(*object.GetPlanet()))
 						&& !object.GetPlanet()->GetGovernment()->IsEnemy(government))
 					stellarVector.push_back(&object);
@@ -306,7 +306,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 				if(object.GetPlanet() == planet)
 					stellarObjects.push_back(&object);
 
-			// If the souce planet isn't in the source for some reason, bail out.
+			// If the source planet isn't in the source for some reason, bail out.
 			if(stellarObjects.empty())
 			{
 				// Log this error.
@@ -492,7 +492,7 @@ pair<Point, double> Fleet::ChooseCenter(const System &system)
 {
 	auto centers = vector<pair<Point, double>>();
 	for(const StellarObject &object : system.Objects())
-		if(object.HasValidPlanet() && object.GetPlanet()->HasSpaceport())
+		if(object.HasValidPlanet() && object.GetPlanet()->IsInhabited())
 			centers.emplace_back(object.Position(), object.Radius());
 
 	if(centers.empty())

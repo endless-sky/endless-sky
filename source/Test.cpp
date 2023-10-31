@@ -77,7 +77,7 @@ namespace {
 			+ "\", or \"" + lastValidIt->second + '"';
 	}
 
-	// Prepare an keyboard input to one of the UIs.
+	// Prepare a keyboard input to one of the UIs.
 	bool KeyInputToEvent(const char *keyName, Uint16 modKeys)
 	{
 		// Construct the event to send (from keyboard code and modifiers)
