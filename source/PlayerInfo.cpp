@@ -1349,14 +1349,14 @@ pair<double, double> PlayerInfo::RaidFleetFactors(const System *system) const
 {
 	double attraction = 0.;
 	double deterrence = 0.;
-	bool normalAttraction = !system || !system->GetRaiders() || !system->GetRaiders()->ScoutsCargo();
-	double emptyCargoAttraction = normalAttraction ? 0. : system->GetRaiders()->EmptyCargoAttraction();
+	bool defaultAttraction = !system || !system->GetRaiders() || !system->GetRaiders()->ScoutsCargo();
+	double emptyCargoAttraction = defaultAttraction ? 1. : system->GetRaiders()->EmptyCargoAttraction();
 	for(const shared_ptr<Ship> &ship : Ships())
 	{
 		if(ship->IsParked() || ship->IsDestroyed())
 			continue;
 
-		if(normalAttraction)
+		if(defaultAttraction)
 			attraction += ship->Attraction();
 		else
 			attraction += ship->Attraction() * emptyCargoAttraction * ship->Cargo().Free() / ship->Cargo().Size();
