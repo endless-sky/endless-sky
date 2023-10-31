@@ -3148,12 +3148,12 @@ void PlayerInfo::RegisterDerivedConditions()
 	salaryIncomeProvider.SetGetFunction(salaryIncomeHasGetFun);
 	salaryIncomeProvider.SetSetFunction([this](const string &name, int64_t value) -> bool
 	{
-		accounts.SetSalaryIncome(name.substr(strlen("salary: ")), value);
+		accounts.SetSalariesIncome(name.substr(strlen("salary: ")), value);
 		return true;
 	});
 	salaryIncomeProvider.SetEraseFunction([this](const string &name) -> bool
 	{
-		accounts.SetSalaryIncome(name.substr(strlen("salary: ")), 0);
+		accounts.SetSalariesIncome(name.substr(strlen("salary: ")), 0);
 		return true;
 	});
 

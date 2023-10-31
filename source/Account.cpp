@@ -321,7 +321,7 @@ int64_t Account::SalariesIncomeTotal() const
 
 
 
-void Account::SetSalaryIncome(string name, int64_t amount)
+void Account::SetSalariesIncome(string name, int64_t amount)
 {
 	if(amount == 0)
 		salariesIncome.erase(name);

@@ -335,6 +335,14 @@ SCENARIO( "Operations on player salaries", "[Account][salariesIncome]" ) {
 		THEN( "The account starts with no player salaries" ) {
 			REQUIRE(account.SalariesIncome().empty());
 		}
+
+		WHEN( "SetSalariesIncome is called" ) {
+			account.SetSalariesIncome("test", 1000);
+			THEN( "The data is stored properly" ) {
+				REQUIRE(account.SalariesIncome().size() == 1);
+				REQUIRE(account.SalariesIncome().find("test")->second == 1000);
+			}
+		}
 	}
 }
 

@@ -135,7 +135,7 @@ public:
 	int64_t SalariesIncomeTotal() const;
 
 	// Set the number of credits in a specified salary.
-	void SetSalaryIncome(std::string name, int64_t amount);
+	void SetSalariesIncome(std::string name, int64_t amount);
 
 	// -- Miscellaneous Functions
 
