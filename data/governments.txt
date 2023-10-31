@@ -663,7 +663,7 @@ government "Independent"
 	"fine" 0
 	"friendly hail" "friendly civilian"
 	"hostile hail" "hostile civilian"
-	raid "Large Southern Pirates"
+	raiders "Large Southern Pirates"
 
 # A government used for "Independent" ships that the player is allowed to kill without consequences.
 government "Independent (Killable)"

@@ -384,6 +384,8 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 			phrases.Get(node.Token(1))->Load(node);
 		else if(key == "planet" && node.Size() >= 2)
 			planets.Get(node.Token(1))->Load(node, wormholes);
+		else if(key == "raiders" && node.Size() >= 2)
+			raiders.Get(node.Token(1))->Load(node);
 		else if(key == "ship" && node.Size() >= 2)
 		{
 			// Allow multiple named variants of the same ship model.

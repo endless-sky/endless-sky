@@ -13,3 +13,6 @@
 
 raiders "pirates"
 	fleet "pirate raid"
+
+raiders "Large Southern Pirates"
+	fleet "Large Southern Pirates"
