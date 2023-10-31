@@ -82,7 +82,7 @@ public:
 	void AddHistory(int64_t amount);
 
 	// Empty the player's net worth history.
-	void ResetHistory();
+	void ClearHistory();
 
 	// -- Functions operating on the player's mortgages and fines.
 

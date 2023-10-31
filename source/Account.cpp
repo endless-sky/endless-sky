@@ -173,7 +173,7 @@ void Account::AddHistory(int64_t amount) {
 
 
 
-void Account::ResetHistory() {
+void Account::ClearHistory() {
 	history.clear();
 }
 
