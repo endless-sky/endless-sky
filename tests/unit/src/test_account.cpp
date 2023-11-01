@@ -247,7 +247,7 @@ SCENARIO( "Paying Fines during Step", "[Account][Step]" ) {
 		ostringstream expectedMessage;
 		expectedMessage << "You paid " << expectedPayment << " credits in fines.";
 		WHEN( "A payment is made by an account that has enough credits" ) {
-			string message = account.Step(0,0,0);
+			string message = account.Step(0, 0, 0);
 			THEN("The fine payment is made successfully and the credit score increases") {
 				REQUIRE(account.Credits() == (principal - expectedPayment));
 				REQUIRE(message == expectedMessage.str());
@@ -257,7 +257,7 @@ SCENARIO( "Paying Fines during Step", "[Account][Step]" ) {
 
 		WHEN( "A payment is made by an account that does NOT enough credits" ) {
 			account.SetCredits(5);
-			string message = account.Step(0,0,0);
+			string message = account.Step(0, 0, 0);
 			THEN("The fine payment is not made, the principal increases, and the credit score decreases") {
 				REQUIRE(account.Credits() == 5);
 				REQUIRE(message == "You missed a mortgage payment. ");
