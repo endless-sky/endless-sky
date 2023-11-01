@@ -216,22 +216,31 @@ SCENARIO( "Paying Mortgages during Step", "[Account][Step]" ) {
 		ostringstream expectedMessage;
 		expectedMessage << "You paid " << expectedPayment << " credits in mortgages.";
 		WHEN( "A payment is made by an account that has enough credits" ) {
-			string message = account.Step(0,0,0);
+			string message = account.Step(0, 0, 0);
 			THEN("The mortgage payment is made successfully and the credit score increases") {
 				REQUIRE(account.Credits() == (principal - expectedPayment));
 				REQUIRE(message == expectedMessage.str());
 				REQUIRE(account.CreditScore() == 401);
 			}
 		}
-
 		WHEN( "A payment is made by an account that does NOT enough credits" ) {
 			account.SetCredits(5);
-			string message = account.Step(0,0,0);
+			string message = account.Step(0, 0, 0);
 			THEN("The mortgage payment is not made, the principal increases, and the credit score decreases") {
 				REQUIRE(account.Credits() == 5);
 				REQUIRE(message == "You missed a mortgage payment. ");
 				REQUIRE(account.Mortgages().at(0).Principal() > principal);
 				REQUIRE(account.CreditScore() == 395);
+			}
+		}
+		WHEN( "A final payment is made" ) {
+			account.SetCredits(principal * 2);
+			account.PayExtra(0, principal-1);
+			string message = account.Step(0, 0, 0);
+			THEN("The mortgage payment is made successfully, the credit score increases, and the mortgage is removed from the account") {
+				REQUIRE(message == "You paid 1 credit in mortgages.");
+				REQUIRE(account.Mortgages().size() == 0);
+				REQUIRE(account.CreditScore() == 401);
 			}
 		}
 	}
@@ -254,7 +263,6 @@ SCENARIO( "Paying Fines during Step", "[Account][Step]" ) {
 				REQUIRE(account.CreditScore() == 401);
 			}
 		}
-
 		WHEN( "A payment is made by an account that does NOT enough credits" ) {
 			account.SetCredits(5);
 			string message = account.Step(0, 0, 0);
@@ -263,6 +271,16 @@ SCENARIO( "Paying Fines during Step", "[Account][Step]" ) {
 				REQUIRE(message == "You missed a mortgage payment. ");
 				REQUIRE(account.Mortgages().at(0).Principal() > principal);
 				REQUIRE(account.CreditScore() == 395);
+			}
+		}
+		WHEN( "A final payment is made" ) {
+			account.SetCredits(principal * 2);
+			account.PayExtra(0, principal-1);
+			string message = account.Step(0, 0, 0);
+			THEN("The fine payment is made successfully, the credit score increases, and the mortgage is removed from the account") {
+				REQUIRE(message == "You paid 1 credit in fines.");
+				REQUIRE(account.Mortgages().size() == 0);
+				REQUIRE(account.CreditScore() == 401);
 			}
 		}
 	}
