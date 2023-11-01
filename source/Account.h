@@ -176,10 +176,6 @@ public:
 	// This will remove any mortgages with a principal of 0.
 	void UpdateMortgages();
 
-	// Update the history of the player's net worth using the given assets.
-	// If the history has grown too long, the oldest instance is removed as well.
-	void UpdateHistory(int64_t assets);
-
 	// Calculate the player's net worth based on the given assets.
 	int64_t CalculateNetWorth(int64_t assets) const;
 

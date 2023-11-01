@@ -430,41 +430,6 @@ TEST_CASE( "Calculate the player's net worth", "[Account][CalculateNetWorth]" ) 
 	REQUIRE(account.CalculateNetWorth(5000) == 1000);
 }
 
-SCENARIO( "Updating history and calculating net worth", "[Account][UpdateHistory]" ) {
-	GIVEN( "An account with no mortgages" ) {
-		Account account;
-		REQUIRE(account.OverdueCrewSalaries() == 0);
-		REQUIRE(account.OverdueMaintenance() == 0);
-		REQUIRE(account.Mortgages().size() == 0);
-		REQUIRE(account.History().size() == 0);
-		WHEN( "CalculateNetWorth is run with 1000 credits in assets" ) {
-			int64_t testAssets = 1000;
-			int64_t netWorth = account.CalculateNetWorth(testAssets);
-			THEN( "Net worth is 1000 credits" ) {
-				REQUIRE(netWorth == 1000);
-			}
-		}
-		WHEN( "UpdateHistory is called with 1000 credits in assets" ) {
-			int64_t testAssets = 1000;
-			account.UpdateHistory(testAssets);
-			THEN( "History is one index long, and 1000 is stored in the first index" ) {
-				REQUIRE(account.History().size() == 1);
-				REQUIRE(account.History().at(0) == 1000);
-			}
-			AND_WHEN( "History is called 100 more times" ) {
-				for(int i = 0; i < 100; i++)
-				{
-					account.UpdateHistory(i);
-				}
-				THEN( "the first index will be removed to maintain a maximum length of 100" ) {
-					REQUIRE(account.History().size() == 100);
-					REQUIRE(account.History().at(0) == 0);
-				}
-			}
-		}
-	}
-}
-
 SCENARIO( "Testing credit score updates", "[Account][UpdateCreditScore]" ) {
 	GIVEN( "An account with a credit score of 400 and a bunch of receipts" ) {
 		Account account;

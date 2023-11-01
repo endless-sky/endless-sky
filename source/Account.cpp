@@ -346,7 +346,8 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 
 	// If any mortgage has been fully paid off, remove it from the list.
 	UpdateMortgages();
-	UpdateHistory(assets);
+
+	AddHistory(CalculateNetWorth(assets));
 	UpdateCreditScore(&receipts);
 
 	// If you didn't make any payments, no need to continue further.
@@ -531,13 +532,6 @@ void Account::UpdateMortgages()
 		else
 			++it;
 	}
-}
-
-
-
-void Account::UpdateHistory(int64_t assets)
-{
-	AddHistory(CalculateNetWorth(assets));
 }
 
 
