@@ -184,29 +184,29 @@ SCENARIO( "Paying Mortgages during Step", "[Account][Step]" ) {
 	}
 }
 
-SCENARIO( "Paying Fines", "[Account][PayFines]" ) {
+SCENARIO( "Paying Fines during Step", "[Account][Step]" ) {
 	GIVEN( "An account with a fine" ) {
 		Account account;
 		int64_t principal = 1000;
 		account.AddCredits(principal);
 		account.AddFine(principal);
 		int64_t expectedPayment = account.Mortgages().at(0).Payment();
+		ostringstream expectedMessage;
+		expectedMessage << "You paid " << expectedPayment << " credits in fines.";
 		WHEN( "A payment is made by an account that has enough credits" ) {
-			Receipt bill = account.PayFines();
+			string message = account.Step(0,0,0);
 			THEN("The fine payment is made successfully") {
-				REQUIRE(bill.creditsPaid == expectedPayment);
-				REQUIRE(bill.paidInFull == true);
 				REQUIRE(account.Credits() == (principal - expectedPayment));
+				REQUIRE(message == expectedMessage.str());
 			}
 		}
 
 		WHEN( "A payment is made by an account that does NOT enough credits" ) {
-			account.AddCredits(-995);
-			Receipt bill = account.PayFines();
+			account.SetCredits(5);
+			string message = account.Step(0,0,0);
 			THEN("The fine payment is made successfully") {
-				REQUIRE(bill.creditsPaid == 0);
-				REQUIRE(bill.paidInFull == false);
 				REQUIRE(account.Credits() == 5);
+				REQUIRE(message == "You missed a mortgage payment. ");
 			}
 		}
 	}

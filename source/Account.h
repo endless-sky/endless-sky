@@ -161,10 +161,6 @@ public:
 	// variables during execution.
 	Receipt PayMaintenance(int64_t maintenance);
 
-	// Attempt to pay fines, returning the results.
-	// NOTE: This function may modify the credits variable during execution.
-	Receipt PayFines();
-
 	// Generate a log string from the given receipts.
 	const std::string GenerateMissedPaymentLogs(std::vector<Receipt> *receipts) const;
 
@@ -198,6 +194,10 @@ private:
 	// Attempt to mortgages, returning the results.
 	// NOTE: This function may modify the credits variable during execution.
 	Receipt PayMortgages();
+
+	// Attempt to pay fines, returning the results.
+	// NOTE: This function may modify the credits variable during execution.
+	Receipt PayFines();
 
 	// Extrapolate from the player's current net worth history to determine how much
 	// their net worth is expected to change over the course of the next year.
