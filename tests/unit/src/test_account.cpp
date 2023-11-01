@@ -217,18 +217,21 @@ SCENARIO( "Paying Mortgages during Step", "[Account][Step]" ) {
 		expectedMessage << "You paid " << expectedPayment << " credits in mortgages.";
 		WHEN( "A payment is made by an account that has enough credits" ) {
 			string message = account.Step(0,0,0);
-			THEN("The mortgage payment is made successfully") {
+			THEN("The mortgage payment is made successfully and the credit score increases") {
 				REQUIRE(account.Credits() == (principal - expectedPayment));
 				REQUIRE(message == expectedMessage.str());
+				REQUIRE(account.CreditScore() == 401);
 			}
 		}
 
 		WHEN( "A payment is made by an account that does NOT enough credits" ) {
 			account.SetCredits(5);
 			string message = account.Step(0,0,0);
-			THEN("The mortgage payment is made successfully") {
+			THEN("The mortgage payment is not made, the principal increases, and the credit score decreases") {
 				REQUIRE(account.Credits() == 5);
 				REQUIRE(message == "You missed a mortgage payment. ");
+				REQUIRE(account.Mortgages().at(0).Principal() > principal);
+				REQUIRE(account.CreditScore() == 395);
 			}
 		}
 	}
@@ -245,18 +248,21 @@ SCENARIO( "Paying Fines during Step", "[Account][Step]" ) {
 		expectedMessage << "You paid " << expectedPayment << " credits in fines.";
 		WHEN( "A payment is made by an account that has enough credits" ) {
 			string message = account.Step(0,0,0);
-			THEN("The fine payment is made successfully") {
+			THEN("The fine payment is made successfully and the credit score increases") {
 				REQUIRE(account.Credits() == (principal - expectedPayment));
 				REQUIRE(message == expectedMessage.str());
+				REQUIRE(account.CreditScore() == 401);
 			}
 		}
 
 		WHEN( "A payment is made by an account that does NOT enough credits" ) {
 			account.SetCredits(5);
 			string message = account.Step(0,0,0);
-			THEN("The fine payment is made successfully") {
+			THEN("The fine payment is not made, the principal increases, and the credit score decreases") {
 				REQUIRE(account.Credits() == 5);
 				REQUIRE(message == "You missed a mortgage payment. ");
+				REQUIRE(account.Mortgages().at(0).Principal() > principal);
+				REQUIRE(account.CreditScore() == 395);
 			}
 		}
 	}
