@@ -910,7 +910,7 @@ government "Korath (Station)"
 
 government "Kor Alaji"
 	"display name" "Korath"
-	swizzle 21
+	swizzle 8
 	color "governments: Korath Exiles"
 	"crew attack" 1.4
 	"crew defense" 2.1
