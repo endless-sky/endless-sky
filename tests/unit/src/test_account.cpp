@@ -157,28 +157,28 @@ SCENARIO( "Working with mortgages on an account", "[Account][mortgages]" ) {
 	}
 }
 
-SCENARIO( "Paying Mortgages", "[Account][PayMortgages]" ) {
+SCENARIO( "Paying Mortgages during Step", "[Account][Step]" ) {
 	GIVEN( "An account with a mortgage" ) {
 		Account account;
 		int64_t principal = 20000;
 		account.AddMortgage(principal);
 		int64_t expectedPayment = account.Mortgages().at(0).Payment();
+		ostringstream expectedMessage;
+		expectedMessage << "You paid " << expectedPayment << " credits in mortgages.";
 		WHEN( "A payment is made by an account that has enough credits" ) {
-			Receipt bill = account.PayMortgages();
+			string message = account.Step(0,0,0);
 			THEN("The mortgage payment is made successfully") {
-				REQUIRE(bill.creditsPaid == expectedPayment);
-				REQUIRE(bill.paidInFull == true);
 				REQUIRE(account.Credits() == (principal - expectedPayment));
+				REQUIRE(message == expectedMessage.str());
 			}
 		}
 
 		WHEN( "A payment is made by an account that does NOT enough credits" ) {
 			account.SetCredits(5);
-			Receipt bill = account.PayMortgages();
+			string message = account.Step(0,0,0);
 			THEN("The mortgage payment is made successfully") {
-				REQUIRE(bill.creditsPaid == 0);
-				REQUIRE(bill.paidInFull == false);
 				REQUIRE(account.Credits() == 5);
+				REQUIRE(message == "You missed a mortgage payment. ");
 			}
 		}
 	}
