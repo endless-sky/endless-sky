@@ -90,7 +90,7 @@ mission "Navy resupply [0]"
 	to offer
 		random < 2
 	source
-		has government Republic Syndicate
+		government "Republic" "Syndicate"
 		not government Pirate
 		attributes outfitter factory
 	destination
