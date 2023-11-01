@@ -157,6 +157,31 @@ SCENARIO( "Working with mortgages on an account", "[Account][mortgages]" ) {
 	}
 }
 
+SCENARIO( "Paying crew salaries during Step", "[Account][Step]" ) {
+	GIVEN( "An account with no credits" ) {
+		Account account;
+		WHEN( "Crew salaries are paid during Step" ) {
+			string message = account.Step(0, 100, 0);
+			THEN( "The crew salaries cannot be paid, is stored as overdue, and the credit score drops" ) {
+				REQUIRE(message == "You could not pay all your crew salaries. ");
+				REQUIRE(account.OverdueCrewSalaries() == 100);
+				REQUIRE(account.CreditScore() == 395);
+			}
+			AND_WHEN( "The player has enough credits to pay off all crew salaries" ) {
+				account.SetCredits(200);
+				string message = account.Step(0, 100, 0);
+				string expectedMessage = "You paid 200 credits in crew salaries.";
+				THEN( "All overdue crew salaries are paid off and the credit score rises" ) {
+					REQUIRE(account.Credits() == 0);
+					REQUIRE(message == expectedMessage);
+					REQUIRE(account.OverdueCrewSalaries() == 0);
+					REQUIRE(account.CreditScore() == 396);
+				}
+			}
+		}
+	}
+}
+
 SCENARIO( "Paying maintenance during Step", "[Account][Step]" ) {
 	GIVEN( "An account with no credits" ) {
 		Account account;
@@ -256,34 +281,6 @@ SCENARIO( "Operations on overdueCrewSalaries", "[Account][overdueCrewSalaries]" 
 						REQUIRE(account.OverdueCrewSalaries() == 0);
 					}
 				}
-			}
-		}
-
-		WHEN( "no salaries are paid" ) {
-			Receipt salariesPaid = account.PayCrewSalaries(0);
-			THEN( "The salaries were paid in full and no credits were paid" ) {
-				REQUIRE(salariesPaid.creditsPaid == 0);
-				REQUIRE(salariesPaid.paidInFull == true);
-			}
-		}
-
-		WHEN( "500 in salaries are paid but the account has no credits" ) {
-			REQUIRE(account.Credits() == 0);
-			Receipt salariesPaid = account.PayCrewSalaries(500);
-			THEN( "The salaries were NOT paid in full and no credits were paid" ) {
-				REQUIRE(salariesPaid.creditsPaid == 0);
-				REQUIRE(salariesPaid.paidInFull == false);
-				REQUIRE(account.OverdueCrewSalaries() == 500);
-			}
-		}
-
-		WHEN( "500 in salaries are paid and the account has 1000 credits" ) {
-			account.AddCredits(1000);
-			Receipt salariesPaid = account.PayCrewSalaries(500);
-			THEN( "The salaries were were paid in full and 500 credits were paid" ) {
-				REQUIRE(salariesPaid.creditsPaid == 500);
-				REQUIRE(salariesPaid.paidInFull == true);
-				REQUIRE(account.OverdueCrewSalaries() == 0);
 			}
 		}
 	}

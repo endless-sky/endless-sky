@@ -151,11 +151,6 @@ public:
 	// NOTE: This function may modify account data during operation.
 	std::vector<Receipt> PayBills(int64_t salaries, int64_t maintenance);
 
-	// Attempt to pay crew salaries, returning the results.
-	// NOTE: This function may modify the credits and overdueCrewSalaries
-	// variables during execution.
-	Receipt PayCrewSalaries(int64_t salaries);
-
 	// Generate a log string from the given receipts.
 	const std::string GenerateMissedPaymentLogs(std::vector<Receipt> *receipts) const;
 
@@ -186,6 +181,11 @@ public:
 
 
 private:
+	// Attempt to pay crew salaries, returning the results.
+	// NOTE: This function may modify the credits and overdueCrewSalaries
+	// variables during execution.
+	Receipt PayCrewSalaries(int64_t salaries);
+
 	// Attempt to pay mainenance costs, returning the results.
 	// NOTE: This function may modify the credits and overdueMaintenance
 	// variables during execution.
