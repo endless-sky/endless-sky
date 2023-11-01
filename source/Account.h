@@ -59,10 +59,6 @@ public:
 	// the calling function needs to check that this will not result in negative credits.
 	void AddCredits(int64_t value);
 
-	// Remove the player's credits (or pass negative number to add). If subtracting,
-	// the calling function needs to check that this will not result in negative credits.
-	void SubtractCredits(int64_t value);
-
 	// -- Functions operating on the player's credit score.
 
 	// Get the player's credit rating.

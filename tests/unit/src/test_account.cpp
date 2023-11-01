@@ -82,19 +82,6 @@ SCENARIO( "Operations on credits", "[Account][credits]" ) {
 				}
 			}
 		}
-
-		WHEN( "SubtractCredits is called with 5" ) {
-			account.SubtractCredits(5);
-			THEN( "The number of credits will be -5" ) {
-				REQUIRE(account.Credits() == -5);
-			}
-			AND_WHEN( "SubtractCredits is called with -5" ) {
-				account.SubtractCredits(-5);
-				THEN( "The number of credits will be 0" ) {
-					REQUIRE(account.Credits() == 0);
-				}
-			}
-		}
 	}
 }
 

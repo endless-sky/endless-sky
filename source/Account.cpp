@@ -134,13 +134,6 @@ void Account::AddCredits(int64_t value)
 
 
 
-void Account::SubtractCredits(int64_t value)
-{
-	credits -= value;
-}
-
-
-
 int Account::CreditScore() const
 {
 	return creditScore;
