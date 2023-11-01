@@ -157,6 +157,31 @@ SCENARIO( "Working with mortgages on an account", "[Account][mortgages]" ) {
 	}
 }
 
+SCENARIO( "Paying maintenance during Step", "[Account][Step]" ) {
+	GIVEN( "An account with no credits" ) {
+		Account account;
+		WHEN( "Maintenance is paid during Step" ) {
+			string message = account.Step(0, 0, 100);
+			THEN( "The maintenance cannot be paid, is stored as overdue, and the credit score drops" ) {
+				REQUIRE(message == "You could not pay all your maintenance costs. ");
+				REQUIRE(account.OverdueMaintenance() == 100);
+				REQUIRE(account.CreditScore() == 395);
+			}
+			AND_WHEN( "The player has enough credits to pay off all maintenance" ) {
+				account.SetCredits(200);
+				string message = account.Step(0, 0, 100);
+				string expectedMessage = "You paid 200 credits in maintenance.";
+				THEN( "All overdue maintenance is paid off and the credit score rises" ) {
+					REQUIRE(account.Credits() == 0);
+					REQUIRE(message == expectedMessage);
+					REQUIRE(account.OverdueMaintenance() == 0);
+					REQUIRE(account.CreditScore() == 396);
+				}
+			}
+		}
+	}
+}
+
 SCENARIO( "Paying Mortgages during Step", "[Account][Step]" ) {
 	GIVEN( "An account with a mortgage" ) {
 		Account account;
@@ -283,34 +308,6 @@ SCENARIO( "Operations on overdueMaintenance", "[Account][overdueMaintenance]" ) 
 						REQUIRE(account.OverdueMaintenance() == 0);
 					}
 				}
-			}
-		}
-
-		WHEN( "no maintenance is owed" ) {
-			Receipt maintenancePaid = account.PayMaintenance(0);
-			THEN( "Maintenance was paid in full and no credits were paid" ) {
-				REQUIRE(maintenancePaid.creditsPaid == 0);
-				REQUIRE(maintenancePaid.paidInFull == true);
-			}
-		}
-
-		WHEN( "500 in maintenance is owed but the account has no credits" ) {
-			REQUIRE(account.Credits() == 0);
-			Receipt maintenancePaid = account.PayMaintenance(500);
-			THEN( "Maintenance was NOT paid in full and no credits were paid" ) {
-				REQUIRE(maintenancePaid.creditsPaid == 0);
-				REQUIRE(maintenancePaid.paidInFull == false);
-				REQUIRE(account.OverdueMaintenance() == 500);
-			}
-		}
-
-		WHEN( "500 in maintenance is owed and the account has 1000 credits" ) {
-			account.AddCredits(1000);
-			Receipt maintenancePaid = account.PayMaintenance(500);
-			THEN( "The salaries were were paid in full and 500 credits were paid" ) {
-				REQUIRE(maintenancePaid.creditsPaid == 500);
-				REQUIRE(maintenancePaid.paidInFull == true);
-				REQUIRE(account.OverdueMaintenance() == 0);
 			}
 		}
 	}

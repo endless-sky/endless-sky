@@ -156,11 +156,6 @@ public:
 	// variables during execution.
 	Receipt PayCrewSalaries(int64_t salaries);
 
-	// Attempt to pay mainenance costs, returning the results.
-	// NOTE: This function may modify the credits and overdueMaintenance
-	// variables during execution.
-	Receipt PayMaintenance(int64_t maintenance);
-
 	// Generate a log string from the given receipts.
 	const std::string GenerateMissedPaymentLogs(std::vector<Receipt> *receipts) const;
 
@@ -191,6 +186,11 @@ public:
 
 
 private:
+	// Attempt to pay mainenance costs, returning the results.
+	// NOTE: This function may modify the credits and overdueMaintenance
+	// variables during execution.
+	Receipt PayMaintenance(int64_t maintenance);
+
 	// Attempt to mortgages, returning the results.
 	// NOTE: This function may modify the credits variable during execution.
 	Receipt PayMortgages();
