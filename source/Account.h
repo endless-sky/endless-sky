@@ -150,9 +150,6 @@ public:
 	// NOTE: This function may modify account data during operation.
 	std::string Step(int64_t assets, int64_t salaries, int64_t maintenance);
 
-	// Check the receipts to see if any contained a non-zero payment.
-	static bool AnyPaymentsMade(std::vector<Receipt> *receipts);
-
 	// Generate a log string from the given receipts.
 	static std::string GeneratePaymentLogs(std::vector<Receipt> *receipts);
 
@@ -198,6 +195,9 @@ private:
 	// The credit score will always be set to a number between 200
 	// and 800, inclusive.
 	void UpdateCreditScore(std::vector<Receipt> *receipts);
+
+	// Check the receipts to see if any contained a non-zero payment.
+	static bool AnyPaymentsMade(std::vector<Receipt> *receipts);
 
 	// Extrapolate from the player's current net worth history to determine how much
 	// their net worth is expected to change over the course of the next year.
