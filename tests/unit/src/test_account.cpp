@@ -388,18 +388,10 @@ SCENARIO( "Step forward" , "[Account][Step]" ) {
 			string message = account.Step(assets, salaries, maintenance);
 			INFO(message);
 			string out = "";
-			REQUIRE( message.compare(out) == 0 );
+			REQUIRE(message == out);
+			REQUIRE(account.History().size() == 1);
 		}
 	}
-}
-
-TEST_CASE( "Calculate the player's net worth", "[Account][CalculateNetWorth]" ) {
-	Account account;
-	account.AddMortgage(1000);
-	account.AddFine(1000);
-	account.SetOverdueCrewSalaries(1000);
-	account.SetOverdueMaintenance(1000);
-	REQUIRE(account.CalculateNetWorth(5000) == 1000);
 }
 
 SCENARIO( "Testing credit score updates", "[Account][UpdateCreditScore]" ) {

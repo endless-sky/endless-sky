@@ -147,9 +147,6 @@ public:
 	// NOTE: This function may modify account data during operation.
 	std::string Step(int64_t assets, int64_t salaries, int64_t maintenance);
 
-	// Calculate the player's net worth based on the given assets.
-	int64_t CalculateNetWorth(int64_t assets) const;
-
 	// Get the total amount owed for "Mortgage", "Fine", or both.
 	int64_t TotalDebt(const std::string &type = "") const;
 
@@ -198,6 +195,9 @@ private:
 	// Update the lists of mortgages the player holds.
 	// This will remove any mortgages with a principal of 0.
 	void UpdateMortgages();
+
+	// Calculate the player's net worth based on the given assets.
+	int64_t CalculateNetWorth(int64_t assets) const;
 
 	// Extrapolate from the player's current net worth history to determine how much
 	// their net worth is expected to change over the course of the next year.
