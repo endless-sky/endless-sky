@@ -444,8 +444,6 @@ government "Gegno Vi (Combative)"
 	"crew attack" 1.3
 	"crew defense" 1.5
 	"attitude toward"
-		"Gegno" 1
-		"Gegno Vi" 1
 		"Gegno Scin" -0.01
 	"penalty for"
 		assist 0
@@ -460,9 +458,7 @@ government "Gegno Scin (Combative)"
 	"crew attack" 1.2
 	"crew defense" 1.4
 	"attitude toward"
-		"Gegno" 1
 		"Gegno Vi" -0.01
-		"Gegno Scin" 1
 	"penalty for"
 		assist 0
 
