@@ -274,12 +274,6 @@ void Account::PayOverdueCrewSalaries(int64_t amount)
 
 
 
-void Account::ClearSalariesIncome() {
-	salariesIncome.clear();
-}
-
-
-
 int64_t Account::OverdueMaintenance() const
 {
 	return overdueMaintenance;

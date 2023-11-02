@@ -138,9 +138,6 @@ public:
 	// Remove the specified salary.
 	void RemoveSalariesIncome(std::string name);
 
-	// Clear the map of player salaries.
-	void ClearSalariesIncome();
-
 	// -- Miscellaneous Functions
 
 	// Step forward one day, and return a string summarizing payments made.
