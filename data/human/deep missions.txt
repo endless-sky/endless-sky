@@ -4126,8 +4126,7 @@ mission "The Book of Skadenga"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	to offer
 		random < 10
-		or
-			has "event: the book"
+		has "event: the book"
 	on offer
 		conversation
 			`As you wander through the spaceport, something catches your eye at a kiosk selling gifts, trinkets, and other odds and ends.`
