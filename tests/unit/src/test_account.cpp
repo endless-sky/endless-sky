@@ -123,6 +123,12 @@ SCENARIO( "Working with mortgages on an account", "[Account][mortgages]" ) {
 				}
 			}
 		}
+		WHEN( "The mortgage is paid off at the bank" ) {
+			account.PayExtra(0, 480000);
+			THEN( "The mortgage is removed from the account" ) {
+				REQUIRE(account.Mortgages().size() == 0);
+			}
+		}
 	}
 }
 
