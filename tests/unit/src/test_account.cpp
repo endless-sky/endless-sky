@@ -385,6 +385,18 @@ SCENARIO( "Step forward" , "[Account][Step]" ) {
 				REQUIRE(message == expectedMessage.str());
 			}
 		}
+		WHEN( "Step is called with amounts owed for each type, but only enough credits for non-mortgages" ) {
+			account.AddMortgage(1000);
+			account.AddFine(100);
+			account.SetCredits(200);
+			string message = account.Step(0, 100, 100);
+			ostringstream expectedMessage;
+			expectedMessage << "You missed a mortgage payment. ";
+			expectedMessage << "You paid 100 credits in crew salaries and 100 credits in maintenance.";
+			THEN( "The message will contain data" ) {
+				REQUIRE(message == expectedMessage.str());
+			}
+		}
 	}
 }
 
