@@ -523,7 +523,7 @@ mission "Intro [3 Interceptor]"
 	
 	on offer
 		conversation
-			`You find James sitting at the spaceport's tiny bar, sipping a beer while watching the large displays that show the landing pads and the irrigated fields beyond. The displays are suppposed to make the underground building feel less claustrophobic, but living on a ship, that doesn't bother you much. "Care for a drink?" he asks.`
+			`You find James sitting at the spaceport's tiny bar, sipping a beer while watching the large displays that show the landing pads and the irrigated fields beyond. The displays are supposed to make the underground building feel less claustrophobic, but living on a ship, that doesn't bother you much. "Care for a drink?" he asks.`
 			choice
 				`	"Sure."`
 				`	"No thanks."`
