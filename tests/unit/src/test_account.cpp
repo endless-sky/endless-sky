@@ -373,23 +373,37 @@ SCENARIO( "Operations on player salaries", "[Account][salariesIncome]" ) {
 }
 
 SCENARIO( "Step forward" , "[Account][Step]" ) {
-	GIVEN( "An account with 1000 credits" ) {
+	GIVEN( "An account" ) {
 		Account account;
-		account.AddCredits(1000);
-		THEN( "Account has 1000 credits" ) {
-			REQUIRE( account.Credits() == 1000 );
+
+		WHEN( "Step() is called with no payments needed" ) {
+			string message = account.Step(0, 0, 0);
+			THEN( "There will be no message returns" ) {
+				REQUIRE(message == "");
+				REQUIRE(account.History().size() == 1);
+			}
 		}
-
-		WHEN( "Step() is called with no crew" ) {
-			int64_t assets = 0;      // This is net worth of all ships
-			int64_t salaries = 0;    // total owed in a single day's salaries
-			int64_t maintenance = 0; // sum of maintenance and generated income
-
-			string message = account.Step(assets, salaries, maintenance);
-			INFO(message);
-			string out = "";
-			REQUIRE(message == out);
-			REQUIRE(account.History().size() == 1);
+		WHEN( "Step is called with salaries, maintenance, and a fine that cannot be paid" ) {
+			account.AddFine(1000);
+			string message = account.Step(0, 100, 100);
+			THEN( "The message will contain data" ) {
+				REQUIRE(message == "You could not pay all your crew salaries. You could not pay all your maintenance costs. You missed a mortgage payment. ");
+			}
+		}
+		WHEN( "Step is called with salaries and maintenance that can be paid" ) {
+			account.AddCredits(1000);
+			string message = account.Step(0, 100, 100);
+			THEN( "The message will contain data" ) {
+				REQUIRE(message == "You paid 100 credits in crew salaries and 100 credits in maintenance.");
+			}
+		}
+		WHEN( "Step is called with salaries, maintenance, a mortgage, and a fine that can be paid" ) {
+			account.AddMortgage(1000);
+			account.AddFine(100);
+			string message = account.Step(0, 100, 100);
+			THEN( "The message will contain data" ) {
+				REQUIRE(message == "You paid 100 credits in crew salaries, 2 credits in fines, 100 credits in maintenance, and 5 credits in mortgages.");
+			}
 		}
 	}
 }
@@ -445,30 +459,6 @@ SCENARIO( "Test GetTypesPaid", "[Account][GetTypesPaid]" ) {
 			map<string, int64_t> typesPaid = Account::GetTypesPaid(&receipts);
 			THEN( "Return a map with all data types" ) {
 				REQUIRE(typesPaid.size() == 4);
-			}
-		}
-	}
-}
-
-SCENARIO( "Generating payment logs", "[Account][GeneratePaymentLogs]" ) {
-	Receipt salariesPaid, maintencancePaid, mortgagesPaid, finesPaid;
-	std::vector<Receipt> receipts = {salariesPaid, maintencancePaid, mortgagesPaid, finesPaid};
-
-	GIVEN("A list of receipts") {
-		WHEN("All receipts are fully paid") {
-			receipts.at(0).creditsPaid = 100;
-			receipts.at(1).creditsPaid = 100;
-			receipts.at(2).creditsPaid = 100;
-			receipts.at(3).creditsPaid = 100;
-			ostringstream expectedLog;
-			expectedLog << "You paid ";
-			string logs = Account::GeneratePaymentLogs(&receipts);
-			THEN( "The log includes every option" ) {
-				expectedLog << "100 credits in crew salaries, ";
-				expectedLog << "100 credits in fines, ";
-				expectedLog << "100 credits in maintenance, ";
-				expectedLog << "and 100 credits in mortgages.";
-				REQUIRE(logs.compare(expectedLog.str()) == 0);
 			}
 		}
 	}
