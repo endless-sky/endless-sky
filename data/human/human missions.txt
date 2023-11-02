@@ -6849,3 +6849,46 @@ mission "FW Refugees to Humanika"
 		dialog "Penny and Rosa thank you for getting them safely to <destination>, handing you <payment> for your troubles. You wish them and Eduardo the best of luck starting their new life away from a potential war in human space."
 		log "Minor People" "Penny Little, Rosa Perkins, and Eduardo" `A young family who wanted to escape a potential war in human space. Took them to the planet Humanika, where the Quarg let humans settle.`
 
+mission "Returning to Paradise"
+	name "Take family home to <planet>"
+	description "A family worried about the potential destruction in the Free Worlds wants to cut their vacation short and go home to <destination>."
+	source
+		government "Free Worlds"
+		attributes "tourism"
+	destination "Mainsail"
+	passengers 3
+	cargo "personal belongings" 1
+	to offer
+		has "FW Katya 7C: done"
+	on offer
+		conversation
+			`After walking around the spaceport for a while, you head back to your ship to find a middle-aged couple and two grade-school girls (probably their daughters, you reason) waiting for you at your hanger. While the man tries to resolve an argument between the two girls, the lady notices you immediately and begins to approach you. "Thank goodness you're here," she says. "We've been going from ship to ship looking for transport back home to the Paradise Planets. This war has caught us right in the middle of our vacation and we can't risk being anywhere near here when the Navy attacks, especially with our little angels," she gestures toward her daughters, now in a full-blown fight. "If you can find the time to take us, we will pay you very well."`
+			choice
+				`	"Sure, I'll take you."`
+				`	"Okay, but that's pretty far. This better be worth it."`
+				`	"No, I don't think so. Sorry."`
+					decline
+
+			`	"Then it's a deal," she says as she gives you a firm handshake. The whole family gets onto the <ship> without a word, leaving you to load their many bags and cases.`
+				accept
+
+	on complete
+		conversation
+			branch luxury
+				has "outfit: Luxury Accommodations"
+
+			action
+				payment 66999
+			`You're not sure if you've ever met a more pretentious and entitled family. The girls fought non-stop, and every member of the family complained constantly about the lack of luxury accommodations on your ship.`
+				goto end
+
+			label luxury
+			action
+				payment 120000
+			`You're not sure if you've ever met a more pretentious and entitled family. The girls fought non-stop, but fortunately, the family was satisfied with the luxury accommodations on your ship.`
+
+			label end
+			`	Once you land on <planet>, the lady gives you <payment> and the family leave without a word of thanks; they never even told you their names. Although you wish you'd been paid more considering how terrible they were, you're happy to be rid of them.`
+
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
