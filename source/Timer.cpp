@@ -60,7 +60,8 @@ void Timer::Load(const DataNode &node, const Mission *mission)
 			systems.Load(child);
 		else if(child.Token(0) == "proximity")
 		{
-			// If the proximity node specifies a single planet, we take that; otherwise, we look to its child for a LocationFilter
+			// If the proximity node specifies a single planet, we take that; 
+			// otherwise, we look to its child for a LocationFilter
 			if(child.Size() > 1)
 				proximityCenter = GameData::Planets().Find(child.Token(1));
 			else if(child.HasChildren())
