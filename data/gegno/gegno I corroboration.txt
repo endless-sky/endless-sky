@@ -282,6 +282,7 @@ mission "Battle over Zydee"
 		system "Kneirc"
 		fleet
 			names "gegno vi"
+			variant
 				"Diorite"
 				"Schist (Heavy Load)"
 				"Schist (Light Load)"
