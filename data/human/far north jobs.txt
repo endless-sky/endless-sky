@@ -91,7 +91,6 @@ mission "Navy resupply [0]"
 		random < 2
 	source
 		government "Republic" "Syndicate"
-		not government Pirate
 		attributes outfitter factory
 	destination
 		distance 2 10
