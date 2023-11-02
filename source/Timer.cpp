@@ -62,6 +62,17 @@ void Timer::Load(const DataNode &node, const Mission *mission)
 			systems.Load(child);
 		else if(child.Token(0) == "proximity")
 		{
+			// If the proximity node specifies a single planet, we take that; otherwise, we look to its child for a LocationFilter
+			if(child.Size() > 1)
+				proximityCenter = GameData::Planets().Find(child.Token(1));
+			else if(child.HasChildren())
+			{
+				const DataNode &firstGrand = (*child.begin());
+				proximityCenters.Load(firstGrand);
+			}
+		}
+		else if(child.Token(0) == "proximity settings")
+		{
 			if(child.Size() > 1)
 				proximity = child.Value(1);
 			if(child.Size() > 2)
@@ -70,14 +81,6 @@ void Timer::Load(const DataNode &node, const Mission *mission)
 					closeTo = true;
 				else if(child.Token(2) == "far")
 					closeTo = false;
-			}
-			if(child.HasChildren())
-			{
-				const DataNode &firstGrand = (*child.begin());
-				proximityCenter = GameData::Planets().Find(firstGrand.Token(0));
-				// If this is null, then it's not a planet by name, it's a LocationFiler
-				if(proximityCenter == nullptr)
-					proximityCenters.Load(firstGrand);
 			}
 		}
 		else if(child.Token(0) == "uncloaked")
@@ -157,15 +160,8 @@ void Timer::Save(DataWriter &out) const
 			string distance = "close";
 			if(!closeTo)
 				distance = "far";
-			out.Write("proximity", proximity, distance);
 			if(proximityCenter != nullptr)
-			{
-				out.BeginChild();
-				{
-					out.Write(proximityCenter->Name());
-				}
-				out.EndChild();
-			}
+				out.Write("proximity", proximityCenter->Name());
 			else if(!proximityCenters.IsEmpty())
 			{
 				out.BeginChild();
@@ -174,6 +170,7 @@ void Timer::Save(DataWriter &out) const
 				}
 				out.EndChild();
 			}
+			out.Write("proximity settings", proximity, distance);
 		}
 
 		action.Save(out);
