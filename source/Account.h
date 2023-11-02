@@ -150,10 +150,6 @@ public:
 	// NOTE: This function may modify account data during operation.
 	std::string Step(int64_t assets, int64_t salaries, int64_t maintenance);
 
-	// Check the receipts to see what types fo payments were made.
-	// If none were made, the map returned will be empty.
-	static std::map<std::string, int64_t> GetTypesPaid(std::vector<Receipt> *receipts);
-
 
 private:
 	// Generate a log string from the given receipts.
@@ -198,6 +194,10 @@ private:
 
 	// Generate a log string from the given receipts.
 	static std::string GeneratePaymentLogs(std::vector<Receipt> *receipts);
+
+	// Check the receipts to see what types fo payments were made.
+	// If none were made, the map returned will be empty.
+	static std::map<std::string, int64_t> GetTypesPaid(std::vector<Receipt> *receipts);
 
 	// Extrapolate from the player's current net worth history to determine how much
 	// their net worth is expected to change over the course of the next year.
