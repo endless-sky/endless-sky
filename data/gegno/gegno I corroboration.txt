@@ -375,7 +375,7 @@ mission "Gegno Suspicions"
 
 
 			label "negative rep"
-			`	"Formerly, I have offered suggestions of heedful interplay regarding the Gegno. However, we are increasingly aware of correlative happenings upon them involving yourself. It would seem consequential events have indeed occurred. Not often previously were we approached by Gegno, but a few notable occasions now have meaningful figures sought us out for inquiry...most notably due to violent circumstances." The Quarg stares at you for an extended period of time, waiting for some kind of answer.`
+			`	"Formerly, I have offered suggestions of heedful interplay regarding the Gegno. However, we are increasingly aware of correlative happenings upon them involving yourself. It would seem consequential events have indeed occurred. Not often previously were we approached by Gegno, but a few notable occasions now have meaningful figures sought us out for inquiry - most notably due to violent circumstances." The Quarg stares at you for an extended period of time, waiting for some kind of answer.`
 			choice
 				`	"They attacked me first."`
 				`	"I wanted to get their attention."`
@@ -392,7 +392,7 @@ mission "Gegno Suspicions"
 				goto cases
 			
 			label violence
-			`	The Quarg takes a long moment to ponder your statement, as if it wasn't expecting such a response. "Indeed, it is known that conflict is commonly naturals amongst you quarrelsome humans. But this matter is of another sort." The Quarg then thinks to itself again for a little longer.`
+			`	The Quarg takes a long moment to ponder your statement, as if it wasn't expecting such a response. "Indeed, it is known that conflict is commonly natural amongst you quarrelsome humans. But this matter is of another sort." The Quarg then thinks to itself again for a little longer.`
 
 			label interest
 			`	"Great curiosity does not equal great benefit. Even the most dangerous of creatures may glance but with interest at a moment's first. I would suppose you understand the deeper meaning of this." The Quarg glares at you, then ponders for a moment.`
@@ -620,7 +620,7 @@ mission "Gegno Anticipation"
 
 			action
 				set "gegno word: friend"
-			`	After a pause, Adrauni turns toward you, stares at you briefly, then looks back forward as the three of you continue through the ring. "Quite an important conclusion, is that not? Many times I have said this, that the Gegno are not what I would consider humans to posses knowledge of. Should you learn more, I'm afraid even then the Gegno do not contrastingly desire, what was the human word... camaraderie?" The Gegno then asks something in their language, and Adrauni begins a somewhat lengthy conversation with them.`
+			`	After a pause, Adrauni turns toward you, stares at you briefly, then looks back forward as the three of you continue through the ring. "Quite an important conclusion, is that not? Many times I have said this, that the Gegno are not what I would consider humans to posses knowledge of. Should you learn more, I'm afraid even then the Gegno do not contrastingly desire, what was the human word - camaraderie?" The Gegno then asks something in their language, and Adrauni begins a somewhat lengthy conversation with them.`
 			choice
 				`	"Maybe it's better I do leave them alone."`
 					goto "better"
@@ -636,7 +636,7 @@ mission "Gegno Anticipation"
 				goto "visit a"
 
 			label "better"
-			`	Adrauni speaks to the Gegno once more, this time for an extended period of time. The strange architecture of the ringworld does little to comfort you, as it feels like you've walked down the same path several times now. A few moments later, you eventually begin following Adrauni and the Gegno down what appears to be a different section, though it is strangely wider than previous ones. "Yes, it may be that your timely departure is the most favorable outcome in this affair." A long, awkward silence ensues, at the end of which Adrauni briefly comes to a hault, still facing forward, now crossing its armos behind its back. "Though you and I figure that is... unlikely."`
+			`	Adrauni speaks to the Gegno once more, this time for an extended period of time. The strange architecture of the ringworld does little to comfort you, as it feels like you've walked down the same path several times now. A few moments later, you eventually begin following Adrauni and the Gegno down what appears to be a different section, though it is strangely wider than previous ones. "Yes, it may be that your timely departure is the most favorable outcome in this affair." A long, awkward silence ensues, at the end of which Adrauni briefly comes to a hault, still facing forward, now crossing its armos behind its back. "Though you and I figure that is - unlikely."`
 				goto "visit a"
 
 			label "visit a"
@@ -768,11 +768,9 @@ mission "Gegno Anticipation"
 			label "work"
 			`	Test.`
 				goto "visit b"
-			
+
 			label "visit b"
 				accept
-
-
 
 	on accept
 		clear "gegno: landing dialog"
@@ -800,6 +798,7 @@ mission "Gegno Anticipation"
 #	to offer
 #		or
 #			"Gegno: BGS" >= 6
+#			"Gegno Anticipation: declined"
 #			and
 #				"Gegno: BGS" >= 3
 #				"Full Vi Backlash: offered"
