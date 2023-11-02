@@ -5577,11 +5577,6 @@ phrase "hostile pirate"
 		"You're the next victim of"
 		"You better know we're"
 		"You have no chance against us,"
-		"Consider it an honor to fight"
-		"You're bout' to get churned into wormfood by"
-		"You're about to fight"
-		"You'll soon be the next victim of"
-		"You'll be the next to die at the hands of"
 	word
 		" "
 	word
