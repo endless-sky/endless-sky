@@ -148,6 +148,13 @@ const vector<int64_t> &Account::History() const
 
 
 
+int64_t Account::NetWorth() const
+{
+	return history.empty() ? 0 : history.back();
+}
+
+
+
 void Account::AddHistory(int64_t amount) {
 	history.push_back(amount);
 	if(history.size() > HISTORY)
@@ -215,13 +222,6 @@ int64_t Account::Prequalify() const
 	return max<int64_t>(0, min(
 		NetWorth() / 3 + 500000 - liabilities,
 		Mortgage::Maximum(YearlyRevenue(), creditScore, payments)));
-}
-
-
-
-int64_t Account::NetWorth() const
-{
-	return history.empty() ? 0 : history.back();
 }
 
 

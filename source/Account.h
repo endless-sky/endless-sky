@@ -69,6 +69,9 @@ public:
 	// Access the history of the player's net worth.
 	const std::vector<int64_t> &History() const;
 
+	// Get the player's total net worth (counting all ships and all debts).
+	int64_t NetWorth() const;
+
 	// Append an amount of credits to a player's history of net worth.
 	// If the length exceeds the allowed length, the earliest entry will
 	// be deleted.
@@ -90,9 +93,6 @@ public:
 
 	// Check how big a mortgage the player can afford to pay at their current income.
 	int64_t Prequalify() const;
-
-	// Get the player's total net worth (counting all ships and all debts).
-	int64_t NetWorth() const;
 
 	// Get the total amount owed for "Mortgage", "Fine", or both.
 	int64_t TotalDebt(const std::string &type = "") const;
