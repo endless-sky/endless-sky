@@ -140,9 +140,6 @@ public:
 
 
 private:
-	// Generate a log string from the given receipts.
-	const std::string GenerateMissedPaymentLogs(std::vector<Receipt> *receipts) const;
-
 	// Attempt to pay all bills, returning the results.
 	// NOTE: This function may modify account data during operation.
 	std::vector<Receipt> PayBills(int64_t salaries, int64_t maintenance);
@@ -164,6 +161,9 @@ private:
 	// Attempt to pay fines, returning the results.
 	// NOTE: This function may modify the credits variable during execution.
 	Receipt PayFines();
+
+	// Generate a log string from the given receipts.
+	const std::string GenerateMissedPaymentLogs(std::vector<Receipt> *receipts) const;
 
 	// Update the lists of mortgages the player holds.
 	// This will remove any mortgages with a principal of 0.
