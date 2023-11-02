@@ -50,7 +50,11 @@ void Timer::Load(const DataNode &node, const Mission *mission)
 			if(child.Size() > 2)
 				rand = static_cast<uint32_t>(child.Value(2));
 
-			timeToWait = base + Random::Int(rand);
+			if(rand >= 1)
+				timeToWait = base + Random::Int(rand);
+			else
+				timeToWait = base;
+			
 		}
 		else if(child.Token(0) == "idle")
 			requireIdle = true;
