@@ -27,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Outfit.h"
 #include "Personality.h"
 #include "Point.h"
+#include "Port.h"
 #include "ship/ShipAICache.h"
 #include "ShipJumpNavigation.h"
 
@@ -104,6 +105,7 @@ public:
 
 		double zoom;
 		Angle facing;
+		Angle gimbal;
 	};
 
 
@@ -145,8 +147,9 @@ public:
 	const std::string &Name() const;
 
 	// Set / Get the name of this model of ship.
-	void SetModelName(const std::string &model);
-	const std::string &ModelName() const;
+	void SetTrueModelName(const std::string &model);
+	const std::string &TrueModelName() const;
+	const std::string &DisplayModelName() const;
 	const std::string &PluralModelName() const;
 	// Get the name of this ship as a variant.
 	const std::string &VariantName() const;
@@ -211,8 +214,7 @@ public:
 	// Move this ship. A ship may create effects as it moves, in particular if
 	// it is in the process of blowing up.
 	void Move(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
-	// Generate energy, heat, etc. (This is called by Move().)
-	void DoGeneration();
+
 	// Launch any ships that are ready to launch.
 	void Launch(std::list<std::shared_ptr<Ship>> &ships, std::vector<Visual> &visuals);
 	// Check if this ship is boarding another ship. If it is, it either plunders
@@ -260,6 +262,7 @@ public:
 	bool IsEnteringHyperspace() const;
 	// Check if this ship is entering or leaving hyperspace.
 	bool IsHyperspacing() const;
+	int GetHyperspacePercentage() const;
 	// Check if this ship is hyperspacing, specifically via a jump drive.
 	bool IsUsingJumpDrive() const;
 	// Check if this ship is currently able to enter hyperspace to it target.
@@ -288,7 +291,7 @@ public:
 	// Check if this ship has been destroyed.
 	bool IsDestroyed() const;
 	// Recharge and repair this ship (e.g. because it has landed).
-	void Recharge(bool atSpaceport = true);
+	void Recharge(int rechargeType = Port::RechargeType::All, bool hireCrew = true);
 	// Check if this ship is able to give the given ship enough fuel to jump.
 	bool CanRefuel(const Ship &other) const;
 	// Give the other ship enough fuel for it to jump.
@@ -310,6 +313,9 @@ public:
 	double Health() const;
 	// Get the hull fraction at which this ship is disabled.
 	double DisabledHull() const;
+	// Get the maximum shield and hull values of the ship, accounting for multipliers.
+	double MaxShields() const;
+	double MaxHull() const;
 	// Get the actual shield level of the ship.
 	double ShieldLevel() const;
 	// Get how disrupted this ship's shields are.
@@ -318,6 +324,8 @@ public:
 	// ship becomes disabled. Returns 0 if the ships hull is already below the
 	// disabled threshold.
 	double HullUntilDisabled() const;
+	// Returns the remaining damage timer, for the damage overlay.
+	int DamageOverlayTimer() const;
 	// Get this ship's jump navigation, which contains information about how
 	// much it costs for this ship to jump, how far it can jump, and its possible
 	// jump methods.
@@ -418,7 +426,7 @@ public:
 	// energy, ammo, and fuel to fire it).
 	bool CanFire(const Weapon *weapon) const;
 	// Fire the given weapon (i.e. deduct whatever energy, ammo, or fuel it uses
-	// and add whatever heat it generates. Assume that CanFire() is true.
+	// and add whatever heat it generates). Assume that CanFire() is true.
 	void ExpendAmmo(const Weapon &weapon);
 
 	// Each ship can have a target system (to travel to), a target planet (to
@@ -454,8 +462,38 @@ public:
 	std::shared_ptr<Ship> GetParent() const;
 	const std::vector<std::weak_ptr<Ship>> &GetEscorts() const;
 
+	// How many AI steps has this ship been lingering?
+	int GetLingerSteps() const;
+	// The AI wants the ship to linger for one AI step.
+	void Linger();
+
 
 private:
+	// Various steps of Ship::Move:
+
+	// Check if this ship has been in a different system from the player for so
+	// long that it should be "forgotten." Also eliminate ships that have no
+	// system set because they just entered a fighter bay. Clear the hyperspace
+	// targets of ships that can't enter hyperspace.
+	bool StepFlags();
+	// Step ship destruction logic. Returns 1 if the ship has been destroyed, -1 if it is being
+	// destroyed, or 0 otherwise.
+	int StepDestroyed(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
+	void DoGeneration();
+	void DoPassiveEffects(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
+	void DoJettison(std::list<std::shared_ptr<Flotsam>> &flotsam);
+	void DoCloakDecision();
+	// Step hyperspace enter/exit logic. Returns true if ship is hyperspacing in or out.
+	bool DoHyperspaceLogic(std::vector<Visual> &visuals);
+	// Step landing logic. Returns true if the ship is landing or departing.
+	bool DoLandingLogic();
+	void DoInitializeMovement();
+	void StepPilot();
+	void DoMovement(bool &isUsingAfterburner);
+	void StepTargeting();
+	void DoEngineVisuals(std::vector<Visual> &visuals, bool isUsingAfterburner);
+
+
 	// Add or remove a ship from this ship's list of escorts.
 	void AddEscort(Ship &ship);
 	void RemoveEscort(const Ship &ship);
@@ -486,7 +524,8 @@ private:
 	// Characteristics of the chassis:
 	bool isDefined = false;
 	const Ship *base = nullptr;
-	std::string modelName;
+	std::string trueModelName;
+	std::string displayModelName;
 	std::string pluralModelName;
 	std::string variantName;
 	std::string noun;
@@ -529,6 +568,9 @@ private:
 
 	double attraction = 0.;
 	double deterrence = 0.;
+
+	// Number of AI steps this ship has spent lingering
+	int lingerSteps = 0;
 
 	Command commands;
 	FireCommand firingCommands;
@@ -580,6 +622,8 @@ private:
 	// Delays for shield generation and hull repair.
 	int shieldDelay = 0;
 	int hullDelay = 0;
+	// Number of frames the damage overlay should be displayed, if any.
+	int damageOverlayTimer = 0;
 	// Acceleration can be created by engines, firing weapons, or weapon impacts.
 	Point acceleration;
 

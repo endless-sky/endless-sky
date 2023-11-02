@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "LocationFilter.h"
 #include "Outfit.h"
 #include "Planet.h"
+#include "Port.h"
 #include "Ship.h"
 #include "System.h"
 
@@ -39,7 +40,7 @@ namespace {
 	string ObjectName(const Type &object) = delete;
 
 	template <>
-	string ObjectName(const Ship &object) { return object.ModelName(); }
+	string ObjectName(const Ship &object) { return object.TrueModelName(); }
 
 	template <>
 	string ObjectName(const Outfit &object) { return object.TrueName(); }
@@ -152,7 +153,7 @@ namespace {
 			for(auto &it : GameData::Ships())
 			{
 				// Skip variants and unnamed / partially-defined ships.
-				if(it.second.ModelName() != it.first)
+				if(it.second.TrueModelName() != it.first)
 					continue;
 
 				const Ship &ship = it.second;
@@ -164,8 +165,8 @@ namespace {
 				cout << ship.Cost() << ',';
 
 				auto mass = attributes.Mass() ? attributes.Mass() : 1.;
-				cout << attributes.Get("shields") << ',';
-				cout << attributes.Get("hull") << ',';
+				cout << ship.MaxShields() << ',';
+				cout << ship.MaxHull() << ',';
 				cout << mass << ',';
 				cout << attributes.Get("drag") << ',';
 				cout << ship.HeatDissipation() * 1000. << ',';
@@ -209,7 +210,7 @@ namespace {
 			for(auto &it : GameData::Ships())
 			{
 				// Skip variants and unnamed / partially-defined ships, unless specified otherwise.
-				if(it.second.ModelName() != it.first && !variants)
+				if(it.second.TrueModelName() != it.first && !variants)
 					continue;
 
 				const Ship &ship = it.second;
@@ -220,8 +221,8 @@ namespace {
 				cout << ship.Cost() << ',';
 
 				auto mass = attributes.Mass() ? attributes.Mass() : 1.;
-				cout << attributes.Get("shields") << ',';
-				cout << attributes.Get("hull") << ',';
+				cout << ship.MaxShields() << ',';
+				cout << ship.MaxHull() << ',';
 				cout << mass << ',';
 				cout << attributes.Get("required crew") << ',';
 				cout << attributes.Get("bunks") << ',';
@@ -293,8 +294,8 @@ namespace {
 						if(weapon->Ammo() && !ship.OutfitCount(weapon->Ammo()))
 							continue;
 						double damage = weapon->ShieldDamage() + weapon->HullDamage()
-							+ (weapon->RelativeShieldDamage() * ship.Attributes().Get("shields"))
-							+ (weapon->RelativeHullDamage() * ship.Attributes().Get("hull"));
+							+ (weapon->RelativeShieldDamage() * ship.MaxShields())
+							+ (weapon->RelativeHullDamage() * ship.MaxHull());
 						deterrence += .12 * damage / weapon->Reload();
 					}
 				cout << deterrence << '\n';
@@ -306,7 +307,7 @@ namespace {
 			for(auto &it : GameData::Ships())
 			{
 				// Skip variants and unnamed / partially-defined ships, unless specified otherwise.
-				if(it.second.ModelName() != it.first && !variants)
+				if(it.second.TrueModelName() != it.first && !variants)
 					continue;
 
 				cout << "\"" << it.first << "\"\n";
@@ -595,7 +596,7 @@ namespace {
 				cout << it.first << "::";
 				const Planet &planet = it.second;
 				cout << planet.Description() << "::";
-				cout << planet.SpaceportDescription() << "\n";
+				cout << planet.GetPort().Description() << "\n";
 			}
 		};
 

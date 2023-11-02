@@ -205,6 +205,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Music.h
 	NPC.cpp
 	NPC.h
+	NPCAction.cpp
+	NPCAction.h
 	News.cpp
 	News.h
 	Outfit.cpp
@@ -241,6 +243,8 @@ target_sources(EndlessSkyLib PRIVATE
 	PointerShader.h
 	Politics.cpp
 	Politics.h
+	Port.cpp
+	Port.h
 	Preferences.cpp
 	Preferences.h
 	PreferencesPanel.cpp
@@ -251,6 +255,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Projectile.h
 	Radar.cpp
 	Radar.h
+	RaidFleet.cpp
+	RaidFleet.h
 	Random.cpp
 	Random.h
 	RandomEvent.h
@@ -276,6 +282,8 @@ target_sources(EndlessSkyLib PRIVATE
 	ShipInfoPanel.h
 	ShipJumpNavigation.cpp
 	ShipJumpNavigation.h
+	ShipManager.cpp
+	ShipManager.h
 	ShipyardPanel.cpp
 	ShipyardPanel.h
 	ShopPanel.cpp
