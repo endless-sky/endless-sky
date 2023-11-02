@@ -6880,7 +6880,7 @@ mission "Returning to Paradise"
 
 			action
 				payment 66999
-			`You're not sure if you've ever met a more pretentious and entitled family. The girls fought non-stop, and every member of the family complained constantly about the lack of luxury accommodations on your ship. Once you land on <planet>, the lady gives you <payment> and the family leave without a word of thanks; they never even told you their names. Although you wish you'd been paid more considering how terrible they were, you're happy to be rid of them.`
+			`You're not sure if you've ever met a more pretentious and entitled family. The girls fought non-stop, and every family member complained constantly about the lack of luxury accommodations on your ship. Once you land on <planet>, the lady gives you <payment> and the family leaves without a word of thanks; they never even tell you their names. You wish you'd been paid more considering how terrible they were, although you're happy to be rid of them.`
 				goto end
 
 			label luxury
