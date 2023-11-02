@@ -6859,10 +6859,11 @@ mission "Returning to Paradise"
 	passengers 3
 	cargo "personal belongings" 1
 	to offer
-		has "FW Katya 7C: done"
+		random < 30
+		not "FW Katya 7C: done"
 	on offer
 		conversation
-			`After walking around the spaceport for a while, you head back to your ship to find a middle-aged couple and two grade-school girls (probably their daughters, you reason) waiting for you at your hanger. While the man tries to resolve an argument between the two girls, the lady notices you immediately and begins to approach you. "Thank goodness you're here," she says. "We've been going from ship to ship looking for transport back home to the Paradise Planets. This war has caught us right in the middle of our vacation and we can't risk being anywhere near here when the Navy attacks, especially with our little angels," she gestures toward her daughters, now in a full-blown fight. "If you can find the time to take us, we will pay you very well."`
+			`After looking around <origin>'s spaceport, you head back to your ship to find a middle-aged couple and two grade-school girls (probably their daughters, you reason) waiting for you at your hanger. While the man tries to resolve an argument between the two girls, the lady notices you immediately and begins to approach you. "Thank goodness you're here," she says. "We've been going from ship to ship looking for transport back home to the Paradise Planets. This war has caught us right in the middle of our vacation and we can't risk being anywhere near here when the Navy attacks, especially with our little angels," she gestures toward her daughters, now in a full-blown fight. "If you can find the time to take us to <planet>, we will pay you very well."`
 			choice
 				`	"Sure, I'll take you."`
 				`	"Okay, but that's pretty far. This better be worth it."`
@@ -6879,16 +6880,15 @@ mission "Returning to Paradise"
 
 			action
 				payment 66999
-			`You're not sure if you've ever met a more pretentious and entitled family. The girls fought non-stop, and every member of the family complained constantly about the lack of luxury accommodations on your ship.`
+			`You're not sure if you've ever met a more pretentious and entitled family. The girls fought non-stop, and every member of the family complained constantly about the lack of luxury accommodations on your ship. Once you land on <planet>, the lady gives you <payment> and the family leave without a word of thanks; they never even told you their names. Although you wish you'd been paid more considering how terrible they were, you're happy to be rid of them.`
 				goto end
 
 			label luxury
 			action
 				payment 120000
-			`You're not sure if you've ever met a more pretentious and entitled family. The girls fought non-stop, but fortunately, the family was satisfied with the luxury accommodations on your ship.`
+			`You're not sure if you've ever met a more pretentious and entitled family. The girls fought non-stop, but fortunately, the family was satisfied with the luxury accommodations on your ship. Once you land on <planet>, the lady gives you <payment> and the family leave without a word of thanks; they never even told you their names. Nonetheless, you're happy to be rid of them.`
 
 			label end
-			`	Once you land on <planet>, the lady gives you <payment> and the family leave without a word of thanks; they never even told you their names. Although you wish you'd been paid more considering how terrible they were, you're happy to be rid of them.`
 
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
