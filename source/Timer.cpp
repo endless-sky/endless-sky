@@ -49,12 +49,6 @@ void Timer::Load(const DataNode &node, const Mission *mission)
 			base = static_cast<int64_t>(child.Value(1));
 			if(child.Size() > 2)
 				rand = static_cast<uint32_t>(child.Value(2));
-
-			if(rand >= 1)
-				timeToWait = base + Random::Int(rand);
-			else
-				timeToWait = base;
-			
 		}
 		else if(child.Token(0) == "idle")
 			requireIdle = true;
@@ -207,13 +201,17 @@ Timer Timer::Instantiate(map<string, string> &subs,
 	result.repeatReset = repeatReset;
 	result.resetFired = resetFired;
 
-	result.timeToWait = timeToWait;
 	result.timeElapsed = timeElapsed;
 	result.isComplete = isComplete;
 	result.isActive = isActive;
 
 	result.action = action.Instantiate(subs, origin, jumps, payload);
 	result.resetAction = resetAction.Instantiate(subs, origin, jumps, payload);
+
+	if(rand >= 1)
+		result.timeToWait = base + Random::Int(rand);
+	else
+		result.timeToWait = base;
 
 	return result;
 }
