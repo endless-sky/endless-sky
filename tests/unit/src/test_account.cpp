@@ -394,66 +394,6 @@ SCENARIO( "Step forward" , "[Account][Step]" ) {
 	}
 }
 
-SCENARIO( "Testing credit score updates", "[Account][UpdateCreditScore]" ) {
-	GIVEN( "An account with a credit score of 400 and a bunch of receipts" ) {
-		Account account;
-		REQUIRE(account.CreditScore() == 400);
-
-		Receipt salariesPaid, maintencancePaid, mortgagesPaid, finesPaid;
-		std::vector<Receipt> receipts = {salariesPaid, maintencancePaid, mortgagesPaid, finesPaid};
-
-		WHEN( "UpdateCreditScore is called with all receipts paid in full" ) {
-			account.UpdateCreditScore(&receipts);
-			THEN( "The account's credit score is 401" ) {
-				REQUIRE(account.CreditScore() == 401);
-			}
-		}
-
-		WHEN( "UpdateCreditScore is called with salariesPaid NOT paid in full" ) {
-			receipts.at(0).paidInFull = false;
-			account.UpdateCreditScore(&receipts);
-			THEN( "The account's credit score is 395" ) {
-				REQUIRE(account.CreditScore() == 395);
-			}
-		}
-
-		WHEN( "UpdateCreditScore is called with maintencancePaid NOT paid in full" ) {
-			receipts.at(1).paidInFull = false;
-			account.UpdateCreditScore(&receipts);
-			THEN( "The account's credit score is 395" ) {
-				REQUIRE(account.CreditScore() == 395);
-			}
-		}
-
-		WHEN( "UpdateCreditScore is called with mortgagesPaid NOT paid in full" ) {
-			receipts.at(2).paidInFull = false;
-			account.UpdateCreditScore(&receipts);
-			THEN( "The account's credit score is 395" ) {
-				REQUIRE(account.CreditScore() == 395);
-			}
-		}
-
-		WHEN( "UpdateCreditScore is called with finesPaid NOT paid in full" ) {
-			receipts.at(3).paidInFull = false;
-			account.UpdateCreditScore(&receipts);
-			THEN( "The account's credit score is 395" ) {
-				REQUIRE(account.CreditScore() == 395);
-			}
-		}
-
-		WHEN( "UpdateCreditScore is called with more than one bill not paid in full" ) {
-			receipts.at(0).paidInFull = false;
-			receipts.at(1).paidInFull = false;
-			receipts.at(2).paidInFull = false;
-			receipts.at(3).paidInFull = false;
-			account.UpdateCreditScore(&receipts);
-			THEN( "The account's credit score is 395" ) {
-				REQUIRE(account.CreditScore() == 395);
-			}
-		}
-	}
-}
-
 SCENARIO("Check if any bills were paid", "[Account][AnyPaymentsMade]") {
 	GIVEN("A list of reciepts") {
 		Receipt salariesPaid, maintencancePaid, mortgagesPaid, finesPaid;

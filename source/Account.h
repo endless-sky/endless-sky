@@ -150,11 +150,6 @@ public:
 	// NOTE: This function may modify account data during operation.
 	std::string Step(int64_t assets, int64_t salaries, int64_t maintenance);
 
-	// Update the players credit score based on the given receipts.
-	// The credit score will always be set to a number between 200
-	// and 800, inclusive.
-	void UpdateCreditScore(std::vector<Receipt> *receipts);
-
 	// Check the receipts to see if any contained a non-zero payment.
 	static bool AnyPaymentsMade(std::vector<Receipt> *receipts);
 
@@ -198,6 +193,11 @@ private:
 
 	// Calculate the player's net worth based on the given assets.
 	int64_t CalculateNetWorth(int64_t assets) const;
+
+	// Update the players credit score based on the given receipts.
+	// The credit score will always be set to a number between 200
+	// and 800, inclusive.
+	void UpdateCreditScore(std::vector<Receipt> *receipts);
 
 	// Extrapolate from the player's current net worth history to determine how much
 	// their net worth is expected to change over the course of the next year.
