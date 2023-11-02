@@ -439,7 +439,7 @@ mission "Intro [2.1 Interceptor]"
 					decline
 	
 			label "mining"
-			`	"That's good to hear," Captain Marshall says with a smile. "Mining without an asteroid scanner is a test of your piloting skills, but one that pays well."`
+			`	"That's good to hear," Captain Marshall says with a smile. "Mining without an asteroid scanner is a test of your piloting skills, but one that pays well.`
 			`	"The first challenge," he continues, "will be finding which asteroids are valuable. The worthless asteroids are either brown and smooth or gray and spiky with no apparent orbit. It doesn't matter how long you shoot them, they won't be destroyed. Valuable asteroids will always orbit the star and have a range of colors and surface textures. Titanium tends to be a bit larger, with a pitted surface. Lead is light gray and has a boxy shape. Silicon has a bit of a greenish cast and looks like it's been melted in places. I increase the resolution on my control displays to make identification and targeting easier.`
 			`	"Also remember that the more valuable the mineral the longer it takes to mine. Silicon breaks up quickly and you'll fill your hold in a hurry. Titanium is more work, but you make several times the number of credits for the effort."`
 			`	Captain Marshall wishes you luck and heads out into the spaceport. You and James spend a few minutes going over the plan as you finish your drinks. "You should start off easy and mine five tons of silicon. If you've got the hang of it, you can fill your hold with more valuable minerals. Remember there's no guaranteed payment in this kind of work. How much you make is based on the value of the minerals in your hold."`
