@@ -100,6 +100,9 @@ public:
 	// Get the player's total net worth (counting all ships and all debts).
 	int64_t NetWorth() const;
 
+	// Get the total amount owed for "Mortgage", "Fine", or both.
+	int64_t TotalDebt(const std::string &type = "") const;
+
 	// -- Functions operating on the player's crew salaries.
 
 	// Access the overdue crew salaries.
@@ -146,9 +149,6 @@ public:
 	// Step forward one day, and return a string summarizing payments made.
 	// NOTE: This function may modify account data during operation.
 	std::string Step(int64_t assets, int64_t salaries, int64_t maintenance);
-
-	// Get the total amount owed for "Mortgage", "Fine", or both.
-	int64_t TotalDebt(const std::string &type = "") const;
 
 	// Update the players credit score based on the given receipts.
 	// The credit score will always be set to a number between 200
