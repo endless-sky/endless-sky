@@ -346,8 +346,12 @@ public:
 	double MaximumHeat() const;
 	// Calculate the multiplier for cooling efficiency.
 	double CoolingEfficiency() const;
-	// Calculate the ship's drag after accounting for drag reduction.
+	// Calculate the drag on this ship. If the raw drag value is greater than the
+	// ship's mass, then the drag becomes the mass.
 	double Drag() const;
+	// Calculate the drag force that this ship experiences. The drag force is the drag
+	// divided by the mass, up to a value of 1.
+	double DragForce() const;
 
 	// Access how many crew members this ship has or needs.
 	int Crew() const;
