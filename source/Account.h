@@ -64,9 +64,6 @@ public:
 	// Get the player's credit rating.
 	int CreditScore() const;
 
-	// Specify the player's credit score (cannot be set lower than 200, or greater than 800).
-	void SetCreditScore(int64_t value);
-
 	// -- Functions operating on the player's history.
 
 	// Access the history of the player's net worth.

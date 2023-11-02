@@ -141,16 +141,6 @@ int Account::CreditScore() const
 
 
 
-void Account::SetCreditScore(int64_t value) {
-	creditScore = value;
-	if(creditScore < 200)
-		creditScore = 200;
-	else if(creditScore > 800)
-		creditScore = 800;
-}
-
-
-
 const vector<int64_t> &Account::History() const
 {
 	return history;
