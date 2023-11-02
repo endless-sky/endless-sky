@@ -215,7 +215,7 @@ void LoadPanel::Draw()
 		--hoverCount;
 	string hoverText;
 
-	// Draw the list of snapshots for hte selected pilot.
+	// Draw the list of snapshots for the selected pilot.
 	if(!selectedPilot.empty() && files.count(selectedPilot))
 	{
 		const Point topLeft = snapshotBox.TopLeft();
@@ -427,7 +427,6 @@ bool LoadPanel::Click(int x, int y, int clicks)
 				selectedFile = it.second.front().first;
 				centerScroll = 0;
 			}
-
 	}
 	else if(snapshotBox.Contains(click))
 	{

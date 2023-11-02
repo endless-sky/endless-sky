@@ -417,7 +417,7 @@ interface "load menu"
 	
 	sprite "_menu/side panel"
 		center 360 0
-
+	
 	button n "_New Pilot"
 		center -420 155
 		dimensions 120 30
