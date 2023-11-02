@@ -82,6 +82,7 @@ SCENARIO( "Operations on history", "[Account][history]" ) {
 		Account account;
 		THEN( "The account starts with an empty history" ) {
 			REQUIRE(account.History().empty());
+				REQUIRE(account.NetWorth() == 0);
 		}
 
 		WHEN( "AddHistory is called with 1000" ) {
@@ -89,6 +90,7 @@ SCENARIO( "Operations on history", "[Account][history]" ) {
 			THEN( "History wil have a size of 1 and 1000 in the first index." ) {
 				REQUIRE(account.History().size() == 1);
 				REQUIRE(account.History().at(0) == 1000);
+				REQUIRE(account.NetWorth() == 1000);
 			}
 			AND_WHEN( "AddHistory is called 100 more times" ) {
 				for(int64_t i = 0; i < 100; i++)
