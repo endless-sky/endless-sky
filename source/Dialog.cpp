@@ -335,7 +335,7 @@ void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool
 
 	text.Wrap(message);
 
-	// If the dialog is too tall, then switch to wide mode
+	// If the dialog is too tall, then switch to wide mode.
 	int maxHeight = Screen::Height() * 3 / 4;
 	if(text.Height() > maxHeight)
 	{
@@ -346,8 +346,8 @@ void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool
 
 		if(text.LongestLineWidth() <= WIDTH)
 		{
-			// Formatted text is long and skinny (ie scan result dialog). Go back
-			// to using the default.
+			// Formatted text is long and skinny (e.g. scan result dialog). Go back
+			// to using the default width, since the wide width doesn't help.
 			isWide = false;
 			text.SetWrapWidth(Width() - 20);
 			text.Wrap(message);
