@@ -166,12 +166,6 @@ void Account::AddHistory(int64_t amount) {
 
 
 
-void Account::ClearHistory() {
-	history.clear();
-}
-
-
-
 const vector<Mortgage> &Account::Mortgages() const
 {
 	return mortgages;

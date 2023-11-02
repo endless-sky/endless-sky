@@ -116,12 +116,6 @@ SCENARIO( "Operations on history", "[Account][history]" ) {
 					REQUIRE(account.History().at(0) == 0);
 					REQUIRE(account.History().size() == 100);
 				}
-				AND_WHEN( "ResetHistory is called" ) {
-					account.ClearHistory();
-					THEN( "The size of history will be size 0" ) {
-						REQUIRE(account.History().empty());
-					}
-				}
 			}
 		}
 	}
