@@ -19,7 +19,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Preferences.h"
 #include "Screen.h"
 #include "Sprite.h"
-#include "SpriteSet.h"
 #include "SpriteShader.h"
 
 #include <cmath>

@@ -26,18 +26,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Government.h"
 #include "ItemInfoDisplay.h"
 #include "text/layout.hpp"
-#include "Outfit.h"
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "PointerShader.h"
 #include "Preferences.h"
 #include "RingShader.h"
 #include "Screen.h"
-#include "Ship.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
-#include "StellarObject.h"
 #include "System.h"
 #include "text/truncate.hpp"
 #include "UI.h"
@@ -95,7 +92,9 @@ void MapSalesPanel::Draw()
 
 bool MapSalesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
+	if(command.Has(Command::HELP))
+		DoHelp("map advanced shops", true);
+	else if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
 	{
 		scroll += static_cast<double>((Screen::Height() - 100) * ((key == SDLK_PAGEUP) - (key == SDLK_PAGEDOWN)));
 		scroll = min(0., max(-maxScroll, scroll));
