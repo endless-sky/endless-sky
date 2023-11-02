@@ -221,9 +221,9 @@ SCENARIO( "Paying Mortgages during Step", "[Account][Step]" ) {
 		}
 		WHEN( "A final payment is made" ) {
 			account.SetCredits(principal * 2);
-			account.PayExtra(0, principal-1);
+			account.PayExtra(0, principal - 1);
 			string message = account.Step(0, 0, 0);
-			THEN("The mortgage payment is made successfully, the credit score increases, and the mortgage is removed from the account") {
+			THEN("The mortgage payment is made, the credit score increases, and the mortgage is removed") {
 				REQUIRE(message == "You paid 1 credit in mortgages.");
 				REQUIRE(account.Mortgages().size() == 0);
 				REQUIRE(account.CreditScore() == 401);
@@ -261,9 +261,9 @@ SCENARIO( "Paying Fines during Step", "[Account][Step]" ) {
 		}
 		WHEN( "A final payment is made" ) {
 			account.SetCredits(principal * 2);
-			account.PayExtra(0, principal-1);
+			account.PayExtra(0, principal - 1);
 			string message = account.Step(0, 0, 0);
-			THEN("The fine payment is made successfully, the credit score increases, and the mortgage is removed from the account") {
+			THEN("The fine payment is made, the credit score increases, and the mortgage is removed") {
 				REQUIRE(message == "You paid 1 credit in fines.");
 				REQUIRE(account.Mortgages().size() == 0);
 				REQUIRE(account.CreditScore() == 401);
@@ -366,8 +366,12 @@ SCENARIO( "Step forward" , "[Account][Step]" ) {
 		WHEN( "Step is called with salaries, maintenance, and a fine that cannot be paid" ) {
 			account.AddFine(1000);
 			string message = account.Step(0, 100, 100);
+			ostringstream expectedMessage;
+			expectedMessage << "You could not pay all your crew salaries. ";
+			expectedMessage << "You could not pay all your maintenance costs. ";
+			expectedMessage << "You missed a mortgage payment. ";
 			THEN( "The message will contain data" ) {
-				REQUIRE(message == "You could not pay all your crew salaries. You could not pay all your maintenance costs. You missed a mortgage payment. ");
+				REQUIRE(message == expectedMessage.str());
 			}
 		}
 		WHEN( "Step is called with salaries and maintenance that can be paid" ) {
@@ -381,8 +385,13 @@ SCENARIO( "Step forward" , "[Account][Step]" ) {
 			account.AddMortgage(1000);
 			account.AddFine(100);
 			string message = account.Step(0, 100, 100);
+			ostringstream expectedMessage;
+			expectedMessage << "You paid 100 credits in crew salaries, ";
+			expectedMessage << "2 credits in fines, ";
+			expectedMessage << "100 credits in maintenance, ";
+			expectedMessage << "and 5 credits in mortgages.";
 			THEN( "The message will contain data" ) {
-				REQUIRE(message == "You paid 100 credits in crew salaries, 2 credits in fines, 100 credits in maintenance, and 5 credits in mortgages.");
+				REQUIRE(message == expectedMessage.str());
 			}
 		}
 	}
