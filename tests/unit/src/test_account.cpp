@@ -347,14 +347,6 @@ SCENARIO( "Operations on player salaries", "[Account][salariesIncome]" ) {
 							account.SalariesIncome().end());
 					}
 				}
-				AND_WHEN("RemoveSalariesIncome is called to zero out the first salary") {
-					account.RemoveSalariesIncome("test");
-					THEN( "Only the last two salaries remain" ) {
-						REQUIRE(account.SalariesIncome().size() == 2);
-						REQUIRE(account.SalariesIncome().find("test") ==
-							account.SalariesIncome().end());
-					}
-				}
 			}
 		}
 	}

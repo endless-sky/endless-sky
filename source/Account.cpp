@@ -324,15 +324,9 @@ int64_t Account::SalariesIncomeTotal() const
 void Account::SetSalariesIncome(string name, int64_t amount)
 {
 	if(amount == 0)
-		RemoveSalariesIncome(name);
+		salariesIncome.erase(name);
 	else
 		salariesIncome[name] = amount;
-}
-
-
-
-void Account::RemoveSalariesIncome(string name) {
-	salariesIncome.erase(name);
 }
 
 

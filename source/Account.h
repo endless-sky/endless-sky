@@ -135,9 +135,6 @@ public:
 	// If the amount passed in is 0, then the salary will be removed.
 	void SetSalariesIncome(std::string name, int64_t amount);
 
-	// Remove the specified salary.
-	void RemoveSalariesIncome(std::string name);
-
 	// -- Miscellaneous Functions
 
 	// Step forward one day, and return a string summarizing payments made.
