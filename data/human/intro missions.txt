@@ -430,7 +430,7 @@ mission "Intro [2.1 Interceptor]"
 	
 	on offer
 		conversation
-			`James waves you over to his table when you enter the bar. He's sitting with another man with the local star map spread out between them. The steady patter of micrometeorites against the roof reminds you of rain on the factory roof in New Boston.`
+			`James waves you over to his table when you enter the bar. He's sitting with another man with a local star map spread out between them. There's a steady patter of micrometeorites against the roof that reminds you of rain on the factory roof in New Boston.`
 			`	"This is Captain Marshall," James says as you pull up a chair. "He mines in this part of space and says there's a good system nearby if you're willing to give it a try."`
 			choice
 				`	"I'm up for a challenge."`
