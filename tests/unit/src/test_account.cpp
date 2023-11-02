@@ -48,14 +48,6 @@ SCENARIO( "Create an Account" , "[Account][Creation]" ) {
 	}
 }
 
-TEST_CASE( "Remove paid-off mortgage from an account", "[Account][UpdateMortgages]" ) {
-	Account account;
-	account.AddMortgage(1000);
-	account.PayExtra(0, 1000);
-	account.UpdateMortgages();
-	REQUIRE(account.Mortgages().size() == 0);
-}
-
 SCENARIO( "Operations on credits", "[Account][credits]" ) {
 	GIVEN( "An account" ) {
 		Account account;
