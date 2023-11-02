@@ -6850,13 +6850,13 @@ mission "FW Refugees to Humanika"
 		log "Minor People" "Penny Little, Rosa Perkins, and Eduardo" `A young family who wanted to escape a potential war in human space. Took them to the planet Humanika, where the Quarg let humans settle.`
 
 mission "Returning to Paradise"
-	name "Take family home to <planet>"
-	description "A family worried about the potential destruction in the Free Worlds wants to cut their vacation short and go home to <destination>."
+	name "Take a family home to <planet>."
+	description "A family worried about the potential destruction within the Free Worlds wants to cut their vacation short and go home to <destination>."
 	source
 		government "Free Worlds"
 		attributes "tourism"
 	destination "Mainsail"
-	passengers 3
+	passengers 4
 	cargo "personal belongings" 1
 	to offer
 		random < 30
