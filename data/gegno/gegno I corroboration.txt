@@ -538,7 +538,7 @@ mission "Return to Giaru Gegno"
 		has "event: gegno: quarg talks"
 		not "Gegno: Genocide Defense: offered"
 	on enter
-		dialog				
+		dialog
 			`Upon departure from <origin>, you receive an incoming message. "Greetings, human <first> <last>. This message is from Adrauni. Please return to our ringworld at the first opportunity given to you."`
 				accept
 
@@ -767,7 +767,7 @@ mission "Gegno Anticipation"
 
 
 			label "no idea"
-			`	"Yes, I believe that to be a common theme in this extraneous situation. It is quite a dangerous practice to commit and act before knowledge, as we Quarg have been advising you impulsive humans for many years. In our discussions with you, evident it is that this has proven to be true. However, the great bounds stepped beyond here go beyond what we are able to accomodate." Adrauni then changes its expression slightly, glaring at you again. "Particularly after continual warnings prior." One of the other Quarg in the room says something to Adrauni, to which it begins a conversation in its own language.`
+			`	"Yes, I believe that to be a common theme in this extraneous situation. It is quite a dangerous practice to commit and act before knowledge, as we Quarg have been advising you impulsive humans for many years. In our discussions with you, evident it is that this has proven to be true. However, the great bounds stepped beyond here go beyond what we are able to accommodate." Adrauni then changes its expression slightly, glaring at you again. "Particularly after continual warnings prior." One of the other Quarg in the room says something to Adrauni, to which it begins a conversation in its own language.`
 			choice
 				`	"Then is there no way I can work with the Gegno?"`
 					goto "work"
@@ -784,7 +784,7 @@ mission "Gegno Anticipation"
 				goto "visit b"
 
 			label "visit b"
-			`	The door opens behind you, and the Quarg motion you to follow them once more, escorting you out of the room and back to the hangar your ship is parked in. On your way there, there seem to be a few more Quarg walking the corridors than usual, some stationed among various entrances. You can't help but remember that this is only one small section of the ring, making the rest of it seem even more impossibly large and filled with Quarg. Once you return to the hangar, you're greeted by the sight of the Vi Warriors being blocked off by a larger group of Quarg, although there doesn't seem to be any intentions of hostility, nor conversation, from either side. Adrauni then stops in front of you. "It is no longer in our perceptive juristiction to assist you in this. However, if you indeed continue to pursue this desire to associate with the Gegno, you must seek audience yourself. Visit the Gegno homeworld of Dueyu Eitch, present yourself in a manner that you desire to be perceived. Only then will you find the answer to your whims."`
+			`	The door opens behind you, and the Quarg motion you to follow them once more, escorting you out of the room and back to the hangar your ship is parked in. On your way there, there seem to be a few more Quarg walking the corridors than usual, some stationed among various entrances. You can't help but remember that this is only one small section of the ring, making the rest of it seem even more impossibly large and filled with Quarg. Once you return to the hangar, you're greeted by the sight of the Vi Warriors being blocked off by a larger group of Quarg, although there doesn't seem to be any intentions of hostility, nor conversation, from either side. Adrauni then stops in front of you. "It is no longer in our jurisdiction to assist you in this. However, if you indeed continue to pursue this desire to associate with the Gegno, you must seek audience yourself. Visit the Gegno homeworld of Dueyu Eitch, present yourself in a manner that you desire to be perceived. Only then will you find the answer to your whims."`
 
 			label "epilogue b"
 			choice
