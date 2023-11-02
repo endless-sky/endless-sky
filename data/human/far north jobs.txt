@@ -94,7 +94,7 @@ mission "Navy resupply [0]"
 		attributes outfitter factory
 	destination
 		distance 2 10
-		attributes north 
+		attributes north
 		attributes military
 		attributes outfitter
 	on visit
