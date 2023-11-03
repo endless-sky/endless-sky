@@ -6876,7 +6876,7 @@ mission "Adelita 1"
 			`	You approach some of the people at the end of the line and ask what's going on. "It's the last day of Adelita's exposition on the evacuation of Hope," says an excited young woman. "It was their first work that really got them famous. The last week of their expositions are always free so this is a great chance to see it if you haven't already."`
 			choice
 				`	"Sure, why not."`
-				` 	"Maybe some other time."`
+				`	"Maybe some other time."`
 					defer
 
 			`	"You're going to love it," she says. "No one knows who they really are but Adelita's work is what inspired me to study journalism. Their mixture of mediums, their eye for story telling... I just love it."`
@@ -7045,7 +7045,7 @@ mission "Adelita 4"
 					goto plan
 
 			`	"And you know they will use those poor people as human shields. Say we..." he is cut off by the proximity alert.`
-					goto showtime
+				goto showtime
 
 			label plan
 			`	"Now you're talking! But it would take a lot of planning to do it without killing the people we are trying to liberate. You know they will use those poor people as human shields. Say we..." he is cut off by the proximity alert.`
