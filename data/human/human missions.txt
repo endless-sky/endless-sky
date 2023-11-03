@@ -6867,7 +6867,7 @@ mission "Adelita 1"
 
 	on offer
 		conversation
-			`Walking around <origin>'s luxurious spaceport, you notice a large group of people gathered around one of the larger hangers; there are large signs that say "The Evacuation of Hope" in bold letters by it. It looks like some sort of exhibition.`
+			`Walking around <origin>'s luxurious spaceport, you notice a large group of people gathered around one of the larger hangars; there are large signs that say "The Evacuation of Hope" in bold letters by it. It looks like some sort of exhibition.`
 			choice
 				`	(Check it out.)`
 				`	(Not right now.)`
@@ -6904,7 +6904,7 @@ mission "Adelita 1"
 			`	Wandering around the exhibit gives you a sense of the desperation of the people as they evacuate, though it's a bit disconcerting when the occasional hologram walks through you. Inside houses you see families frantically gathering their belongings and running for the Navy ships. It strikes you that somewhere here is a young Katya leaving her doomed home. You walk down one of the lines of refugees, observing each person - their faces harried, distraught, frightened, determined. In the corner of your eye you notice that a Navy Officer slips in the snow, and as you look around a young man helps him up.`
 
 			label "move on"
-			`	As you move on you're startled to realize that you're face to face with the woman holding the baby, right where they were in the photo. She takes little steps toward the ship while bouncing the baby on her hip. A young woman with a camera and a respirator covering her face walks up to her, asks a question and begins to take photos. Before you can register what's going on the entire projection disappears in a disorienting flash, leaving you in a normal hanger bay. You are a little embarrassed to realize the exhibit is nearly empty as a woman walks up to you. "She loves that moment too. That's probably why she fought so hard to have that part left in, even though it's a security risk."`
+			`	As you move on you're startled to realize that you're face to face with the woman holding the baby, right where they were in the photo. She takes little steps toward the ship while bouncing the baby on her hip. A young woman with a camera and a respirator covering her face walks up to her, asks a question and begins to take photos. Before you can register what's going on the entire projection disappears in a disorienting flash, leaving you in a normal hangar bay. You are a little embarrassed to realize the exhibit is nearly empty as a woman walks up to you. "She loves that moment too. That's probably why she fought so hard to have that part left in, even though it's a security risk."`
 			`	"Oh, how rude of me," she says. "My name is Mariel, I organize these expositions and act as a spokesperson for Adelita. And you are?"`
 			choice
 				`	"Captain <last>."`
