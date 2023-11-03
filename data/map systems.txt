@@ -5989,7 +5989,7 @@ system Aspidiske
 system Atik
 	pos -66 -52
 	government Uninhabited
-	attributes "bright star" "giant star" "multi-star" "notable star"
+	attributes "bright star" "core" "giant star" "multi-star" "notable star"
 	arrival 5000
 	habitable 15105
 	belt 1240
@@ -8605,6 +8605,7 @@ system Coluber
 system Companion
 	pos -1032.59 709.051
 	government Coalition
+	attribute "saryd"
 	arrival 500
 	habitable 425
 	belt 1786
@@ -23168,7 +23169,7 @@ system Mirzam
 system Misam
 	pos -9 -80
 	government Pirate
-	attributes "multi-star" "notable star"
+	attributes "core" "multi-star" "notable star"
 	arrival 3835
 	habitable 3835
 	belt 1091
