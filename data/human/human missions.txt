@@ -6873,6 +6873,9 @@ mission "Returning to Paradise"
 			`	"Then it's a deal," she says as she gives you a firm handshake. The whole family gets onto the <ship> without a word, leaving you to load their many bags and cases.`
 				accept
 
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+
 	on complete
 		conversation
 			branch luxury
@@ -6889,6 +6892,3 @@ mission "Returning to Paradise"
 			`You're not sure if you've ever met a more pretentious and entitled family. The girls fought non-stop, but fortunately, the family was satisfied with the luxury accommodations on your ship. Once you land on <planet>, the lady gives you <payment> and the family leave without a word of thanks; they never even told you their names. Nonetheless, you're happy to be rid of them.`
 
 			label end
-
-	on visit
-		dialog phrase "generic cargo and passenger on visit"
