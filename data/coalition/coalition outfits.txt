@@ -199,7 +199,7 @@ outfit "Cooling Module"
 	"outfit space" -5
 	"active cooling" 21
 	"cooling energy" 1.4
-	description "This Cooling Module consumes energy. To conserve power, it does not ramp up to full strength unless a ship is overheated."
+	description "This Cooling Module consumes energy. To conserve power, it does not ramp up to full strength unless a ship is very close to overheating."
 
 outfit "Fuel Module"
 	category "Systems"
@@ -244,9 +244,9 @@ outfit "Shield Refactor Module"
 	"mass" 7
 	"outfit space" -7
 	"hull repair rate" -.2
-	"shield energy" .2
-	"shield heat" .24
-	"shield generation multiplier" .25
+	"shield energy" .24
+	"shield heat" .32
+	"shield generation multiplier" .2
 	"hull repair multiplier" -.2
 	description "In theory, all shield generators can operate at a much faster rate than normal, if pushed to their true limit. However, the constant need to reform shields during a heated battle quickly overloads shield generators and damages them in the process. By relocating dedicated hull repair systems to focus exclusively on repairing such damage, this compact device allows shield generators to reach their true potential."
 	description "	A much needed boon against the Heliarch torpedoes' devastating effects on hull plating, the Lunarium highly favors production of this expensive piece due to its advantages over other shield generators."
@@ -286,6 +286,7 @@ outfit "Outskirts Gauger"
 	thumbnail "outfit/outskirts gauger"
 	"mass" 8
 	"outfit space" -8
+	"unique" 1
 	"tactical scan power" 169
 	"energy consumption" .2
 	description "Completed with the data from one of their long-lost satellites, the newest scanner of House Idriss excels at reading various energy signatures across vast distances."
@@ -404,7 +405,7 @@ outfit "Enforcer Confrontation Gear"
 	"capture attack" 3.1
 	"capture defense" 4.9
 	"unplunderable" 1
-	description "The peak of Heliarch combat engineering, this weapon uses condensed blasts of energy to dispatch any who dare threaten the Coalition safety."
+	description "The peak of Heliarch combat engineering, this weapon uses condensed blasts of energy to dispatch any who dare threaten the safety of the Coalition."
 
 outfit "Enforcer Riot Staff"
 	category "Hand to Hand"
@@ -419,10 +420,10 @@ outfit "Enforcer Riot Staff"
 
 outfit "Anti-Materiel Gun"
 	category "Hand to Hand"
-	cost 128600
+	cost 257200
 	thumbnail "outfit/anti-materiel gun"
-	"capture attack" 3.6
-	"capture defense" 1.8
+	"capture attack" 3.4
+	"capture defense" 1.9
 	"unplunderable" 1
 	description "Easy to use and relatively cheap to manufacture, these weapons were born by refurbishing the Heliarchs' favored arms, with the new barrel shaping the energy into deadly blasts that make short work of even the toughest body armor."
 
