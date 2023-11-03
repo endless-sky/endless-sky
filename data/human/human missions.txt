@@ -7151,6 +7151,6 @@ mission "Adelita 5"
 
 	on complete
 		payment 220000
-		log `Helped the Adelita collective gather video evidence of Syndicate participation in the slave trade.`
+		log `Helped the underground journalistic collective Adelita Zero gather video evidence of Syndicate participation in the slave trade. Had to escape pirates while doing so.`
 		conversation
 			`Ale, River and Bunker look glad to be back on <planet>. "Ugh. We saw such horrible things," says Ale, "and now we have to watch it over and over again to edit it into something presentable." She hands you a stack of credit chips totaling <payment>. "There's a bonus in there for you, we really couldn't have done it without you. We'll let you know when it's done. Also, we might need you for some future projects, so expect us to be in touch." The group leaves your ship.`
