@@ -20514,6 +20514,7 @@ system L-6181
 system "Last Word"
 	pos -1145.59 495.051
 	government Coalition
+	attributes "saryd"
 	arrival 625
 	habitable 625
 	belt 1761
