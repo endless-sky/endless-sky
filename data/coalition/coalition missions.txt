@@ -3288,8 +3288,30 @@ mission "Coalition: Struggling Author 1"
 					goto "book length"
 				`	"Why is it a story about humanity stealing from the Quarg?"`
 					goto "quarg"
+				`	"Anything else aside from Beyond the Hyperdrive?"`
+			label "other novels"
+			`	"Beyond the Hyperdrive is the fifth book I've ever published, actually.", says Anna. Other 4 never got any sales. I write short stories on the Internet in my free time. In fact, I'll probably start writing my sixth in a couple months as soon as I find a good idea.`
+			choice
+				`	"What other short stories have you written?"`
+					goto "short stories"
+				`	"How about your previous books?"`
+			label "previous books"
+			`	"They weren't really successful. I'm still struggling. Some people buy them and I make a little money, but I never really reach the 5-digits. The first one remains unpublished; all the publishers rejected it. The second one was about a kid from the Paradise Worlds being sent to the Dirt Belt by his parents for being spoiled, the third one was about that same kid being kidnapped by pirates, I stopped that series since it was clear it would never sell."`
+			`	"'Beyond the Hyperdrive' is the fourth one and I'm hoping it will sell better than the previous two."`
+			choice
+				`	"How about short stories?"`
+			label "short stories"
+			`	"I write short stories and put them up on the internet some days. Helps me improve my writing and get that urge satiated without committing to a project as long-term as a novel."`
+			`	Anna shows you a webpage with all her stories. The viewer counts appear to be in the hundreds with the occasional one reaching 4 digits.`
+			choice
+				`	"So why is 'Beyond the Hyperdrive' about humans stealing from the Quarg?"`
+					goto "quarg"
 			label "book length"
 			`	"About three hundred pages. Not too long."`
+			choice
+				`	"Have you written any other novels?"`
+					goto "other novels"
+				`	"Why is it a story about humanity stealing from the Quarg?"`
 			label "quarg"
 			`	"I have a lot of problems with them. I just don't trust them. I remember when my parents took me to Humanika. Naturally, I wanted to explore, so I wandered off. I was lost. This creepy-looking Quarg found me, and when it tried to approach, I cried."`
 			`	"And then when I grew up, when I was a teenager, I decided to do a project on them for college. They responded with silence to my questions, as if they had something to hide. I worked as an assistant for a journalist for a few months. He kept asking me for help with the Quarg. They just would not budge."`
@@ -3297,7 +3319,7 @@ mission "Coalition: Struggling Author 1"
 				`	"Well that's all well and good. But I have my own business to attend to now. Good luck, and goodbye."`
 					decline
 				`	(Tell her about the Coalition.)`
-			`	You begin explaining the Coalition to Anna, going in-depth about their history and their culture, and their long history of opposing the Quarg, seeing as Anna has less than positive opinions of them.`
+			`	You begin explaining the Coalition to Anna, going in-depth about their history and their culture, and their long history of opposing the Quarg, seeing as Anna has less than positive opinions of them. At first Anna does not believe you; but you reassure her it's real.`
 			`	"Will they really like my books?"`
 			choice
 				`	"They will, hopefully."`
@@ -3583,7 +3605,7 @@ conversation "anna invites you to book signing"
 	`	Anna then takes out another copy of "Beyond the Hyperdrive", which she signs in front of you. It is the Coalition edition of the book, but translated to your language. Quickly reading through it, you realize that the book has been significantly altered from the version sold in human space. "Here, take it. A special copy just for you, as a thank you for all you've done."`
 	choice
 		`	"Anna, why is this book so different from the copies sold in human space?"`
-	`	"Well, for one, it's not in our language. Some concepts just don't translate very well, so I tried to capture the spirit of the story. The Heliarch linguists were very helpful," she explains. "They really went into depth on some aspects of the Coalition's languages. None of the major plot points were changed, thankfully, though some content in the book had to be edited or removed. My Heliarch friend said that if I changed this or removed that the book would sell so much better, and as they said, they wanted to 'make it more suitable for the Coalition'. Their words."`
+	`	"Well, for one, it's not in our language. Some concepts just don't translate very well, so I tried to capture the spirit of the story. The Heliarch linguists were very helpful," she explains. "They really went into depth on some aspects of the Coalition's languages. None of the major plot points were changed, thankfully, though some content in the book had to be edited or removed. My Heliarch friend said that if I changed this or removed that, the book would sell so much better, and as they said, they wanted to 'make it more suitable for the Coalition'. Their words."`
 	`	"As for the special copy, it was so I could verify and look at the changes they made, in my language, so I wouldn't have to learn their language. They agreed to print another copy for me so I could give it to you."`
 	`	"I've got to go now. I want to see how well my book is selling. Goodbye!"`
 	`	Anna then leaves your ship. You ponder what to do next, but you do feel rewarded having helped a struggling author make it big.`
