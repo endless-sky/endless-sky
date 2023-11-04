@@ -4545,7 +4545,7 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 			if(holdingFire)
 				holdFire.emplace(ship);
 			else
-			 	holdFire.erase(ship);
+				holdFire.erase(ship);
 		}
 	}
 
