@@ -26117,6 +26117,7 @@ system Plort
 system Polaris
 	pos -35 126
 	government Syndicate
+	attributes "core"
 	arrival 1715
 	habitable 1715
 	belt 1906
