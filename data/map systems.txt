@@ -8605,7 +8605,7 @@ system Coluber
 system Companion
 	pos -1032.59 709.051
 	government Coalition
-	attribute "saryd"
+	attributes "saryd"
 	arrival 500
 	habitable 425
 	belt 1786
