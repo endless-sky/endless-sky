@@ -6863,7 +6863,7 @@ mission "Returning to Paradise"
 		not "Rescue Katya 1: accepted"
 	on offer
 		conversation
-			`After looking around <origin>'s spaceport, you head back to your ship to find a middle-aged couple and two grade-school girls (probably their daughters, you reason) waiting for you at your hanger. While the man tries to resolve an argument between the two girls, the lady notices you immediately and begins to approach you. "Thank goodness you're here," she says. "We've been going from ship to ship looking for transport back home to the Paradise Planets. This war has caught us right in the middle of our vacation and we can't risk being anywhere near here when the Navy attacks, especially with our little angels," she gestures toward her daughters, now in a full-blown fight. "If you can find the time to take us to <planet>, we will pay you very well."`
+			`After looking around <origin>'s spaceport, you head back to your ship to find a middle-aged couple and two grade-school girls (probably their daughters, you reason) waiting for you at your landing pad. While the man tries to resolve an argument between the two girls, the lady notices you immediately and begins to approach you. "Thank goodness you're here," she says. "We've been going from ship to ship looking for transport back home to the Paradise Planets. This war has caught us right in the middle of our vacation and we can't risk being anywhere near here when the Navy attacks, especially with our little angels," she gestures toward her daughters, now in a full-blown fight. "If you can find the time to take us to <planet>, we will pay you very well."`
 			choice
 				`	"Sure, I'll take you."`
 				`	"Okay, but that's pretty far. This better be worth it."`
