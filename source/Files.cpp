@@ -127,6 +127,8 @@ namespace {
 
 		if(Files::Exists(parent + "/preferences.txt"))
 		{
+			SDL_Log("Fixing bug 96 by moving config files from %s to %s", parent.c_str(), path.c_str());
+
 			// Yes, this needs fixed.
 			// files/*.txt needs moved to files/saves
 			Files::CreateFolder(path + "/saves");
@@ -156,6 +158,67 @@ namespace {
 			Files::Move(parent + "/plugins", path + "/plugins");
 		}
 	}
+
+#ifdef __ANDROID__
+	void CrossFileSystemMove(const std::string& old_path, const std::string& new_path)
+	{
+		// used in situations where rename would fail, due to crossing a
+		// filesystem boundary
+		// TODO: add error checking?
+
+		DIR *dir = opendir(old_path.c_str());
+		while(true)
+		{
+			dirent *ent = readdir(dir);
+			if(!ent)
+				break;
+			// Skip dotfiles (including "." and "..").
+			if(ent->d_name[0] == '.')
+				continue;
+
+			string name = old_path + ent->d_name;
+			// Don't assume that this operating system's implementation of dirent
+			// includes the t_type field; in particular, on Windows it will not.
+			struct stat buf;
+			stat(name.c_str(), &buf);
+
+			if(S_ISREG(buf.st_mode))
+			{
+				Files::Copy(name, new_path + ent->d_name);
+				SDL_Log("Moving %s to %s", name.c_str(), (new_path + ent->d_name).c_str());
+				unlink(name.c_str());
+			}
+			else if(S_ISDIR(buf.st_mode))
+			{
+				const std::string recursive_path = new_path + ent->d_name + "/";
+				Files::MakeDir(recursive_path);
+				CrossFileSystemMove(name + "/", recursive_path);
+				rmdir(name.c_str());
+			}
+		}
+		closedir(dir);
+	}
+
+	void CheckBug_104(std::string old_path, std::string new_path)
+	{
+		// On android, we changed the default config path from internal private
+		// to external public storage. Copy any configs from the old to the new
+		// location.
+
+		if(Files::Exists(old_path + "/preferences.txt"))
+		{
+			// Yes, this needs fixed.
+			SDL_Log("Fixing bug 104 by moving config files from %s to %s", old_path.c_str(), new_path.c_str());
+
+			if(old_path.back() != '/')
+				old_path += '/';
+			if(new_path.back() != '/')
+				new_path += '/';
+
+			CrossFileSystemMove(old_path, new_path);
+		}
+	}
+#endif
 }
 
 
@@ -231,6 +294,21 @@ void Files::Init(const char * const *argv)
 		SDL_free(str);
 
 		CheckBug_96();
+
+#ifdef __ANDROID__
+		SDL_Log("SDL_AndroidGetExternalStorageState() == %d", SDL_AndroidGetExternalStorageState());
+		SDL_Log("SDL_AndroidGetExternalStoragePath() == %s", SDL_AndroidGetExternalStoragePath());
+
+		// Use the external path if its available
+		if (SDL_AndroidGetExternalStorageState() & SDL_ANDROID_EXTERNAL_STORAGE_WRITE != 0)
+		{
+			const char* path = SDL_AndroidGetExternalStoragePath();
+			std::string old_path = config;
+			config = path;
+
+			CheckBug_104(old_path, config);
+		}
+#endif
 	}
 
 #ifdef _WIN32
@@ -627,7 +705,10 @@ void Files::Move(const string &from, const string &to)
 #if defined _WIN32
 	MoveFileExW(Utf8::ToUTF16(from).c_str(), Utf8::ToUTF16(to).c_str(), MOVEFILE_REPLACE_EXISTING);
 #else
-	rename(from.c_str(), to.c_str());
+	if (rename(from.c_str(), to.c_str()) < 0)
+	{
+		SDL_Log("Rename failed: %d", errno);
+	}
 #endif
 }
 
