@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <list>
 #include <map>
 #include <memory>
+#include <set>
 #include <vector>
 
 class Angle;
@@ -172,12 +173,12 @@ private:
 private:
 	class Orders {
 	public:
+		static const int HOLD_FIRE = 0x010;
 		static const int HOLD_POSITION = 0x000;
 		// Hold active is the same command as hold position, but it is given when a ship
 		// actively needs to move back to the position it was holding.
 		static const int HOLD_ACTIVE = 0x001;
 		static const int MOVE_TO = 0x002;
-		static const int HOLD_FIRE = 0x010;
 		// HARVEST is related to MINE and is for picking up flotsam after
 		// ATTACK.
 		static const int HARVEST = 0x003;
@@ -237,6 +238,8 @@ private:
 	// player ships, which are never deleted except when landed, it can use
 	// ordinary pointers instead of weak pointers.
 	std::map<const Ship *, Orders> orders;
+	// Player ships in this set are set to hold fire.
+	std::set<const Ship *> holdFire;
 
 	// Records of what various AI ships and factions have done.
 	typedef std::owner_less<std::weak_ptr<const Ship>> Comp;

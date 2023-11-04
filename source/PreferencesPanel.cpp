@@ -450,8 +450,8 @@ void PreferencesPanel::DrawControls()
 		Command::NONE,
 		Command::DEPLOY,
 		Command::FIGHT,
-		Command::HOLD_FIRE,
 		Command::GATHER,
+		Command::HOLD_FIRE,
 		Command::HOLD_POSITION,
 		Command::AMMO,
 		Command::HARVEST

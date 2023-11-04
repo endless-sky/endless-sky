@@ -74,8 +74,8 @@ const Command Command::FULLSCREEN(ONE << 23, "Toggle fullscreen");
 const Command Command::FASTFORWARD(ONE << 24, "Toggle fast-forward");
 const Command Command::HELP(ONE << 25, "Show help");
 const Command Command::FIGHT(ONE << 26, "Fleet: Fight my target");
-const Command Command::HOLD_FIRE(ONE << 27, "Fleet: Toggle hold fire");
 const Command Command::GATHER(ONE << 28, "Fleet: Gather around me");
+const Command Command::HOLD_FIRE(ONE << 27, "Fleet: Toggle hold fire");
 const Command Command::HOLD_POSITION(ONE << 29, "Fleet: Hold position");
 const Command Command::HARVEST(ONE << 30, "Fleet: Harvest flotsam");
 const Command Command::AMMO(ONE << 31, "Fleet: Toggle ammo usage");
@@ -282,8 +282,8 @@ void Command::Load(const DataNode &node)
 			{"fullscreen", Command::FULLSCREEN},
 			{"fastforward", Command::FASTFORWARD},
 			{"fight", Command::FIGHT},
-			{"hold fire", Command::HOLD_FIRE},
 			{"gather", Command::GATHER},
+			{"hold fire", Command::HOLD_FIRE},
 			{"hold position", Command::HOLD_POSITION},
 			{"ammo", Command::AMMO},
 			{"nearest asteroid", Command::NEAREST_ASTEROID},

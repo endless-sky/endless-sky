@@ -442,13 +442,13 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 		newOrders.target = target;
 		IssueOrders(player, newOrders, "focusing fire on \"" + target->Name() + "\".");
 	}
+	else if(activeCommands.Has(Command::FIGHT) && targetAsteroid)
+		IssueAsteroidTarget(player, targetAsteroid);
 	if(activeCommands.Has(Command::HOLD_FIRE))
 	{
 		newOrders.type = Orders::HOLD_FIRE;
 		IssueOrders(player, newOrders, "holding fire.");
 	}
-	else if(activeCommands.Has(Command::FIGHT) && targetAsteroid)
-		IssueAsteroidTarget(player, targetAsteroid);
 	if(activeCommands.Has(Command::HOLD_POSITION))
 	{
 		newOrders.type = Orders::HOLD_POSITION;
@@ -3420,15 +3420,12 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 	if(ship.IsYours())
 	{
 		auto it = orders.find(&ship);
-		if(it != orders.end())
+		if(it != orders.end() && it->second.target.lock() == currentTarget)
 		{
-			if(it->second.target.lock() == currentTarget)
-			{
-				disabledOverride = (it->second.type == Orders::FINISH_OFF);
-				friendlyOverride = disabledOverride || (it->second.type == Orders::ATTACK);
-			}
+			disabledOverride = (it->second.type == Orders::FINISH_OFF);
+			friendlyOverride = disabledOverride || (it->second.type == Orders::ATTACK);
 		}
-		if(!disabledOverride && !friendlyOverride && ship.HoldingFire())
+		if(!disabledOverride && !friendlyOverride && holdFire.count(&ship))
 			return;
 	}
 	bool currentIsEnemy = currentTarget
@@ -4542,9 +4539,14 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 	if(isHoldFireOrder)
 	{
 		// Set all the ships to the same behavior opposite of the first ship.
-		holdingFire = !ships[0]->HoldingFire();
+		holdingFire = !holdFire.count(ships[0]);
 		for(const Ship *ship : ships)
-			const_cast<Ship *>(ship)->SetHoldFire(holdingFire);
+		{
+			if(holdingFire)
+				holdFire.emplace(ship);
+			else
+			 	holdFire.erase(ship);
+		}
 	}
 
 	Point centerOfGravity;

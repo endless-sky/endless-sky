@@ -63,8 +63,8 @@ public:
 	static const Command HELP;
 	// Escort commands:
 	static const Command FIGHT;
-	static const Command HOLD_FIRE;
 	static const Command GATHER;
+	static const Command HOLD_FIRE;
 	static const Command HOLD_POSITION;
 	static const Command AMMO;
 	static const Command HARVEST;
