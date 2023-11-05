@@ -3472,7 +3472,7 @@ mission "Coalition: Struggling Author 4"
 		has "Fangvin: Struggling Author 3: done"
 	on offer
 		conversation
-			`The spaceport of Ki Patek Ka is vast. You decide to search for Anna, who has chosen to settle in the cafeteria with her laptop. She is typing away at the keyboard, presumably writing a new novel.`
+			`The spaceport of Ki Patek Ka is vast. You decide to search for Anna, who has chosen to settle in the cafeteria with her laptop. She is typing away at the keyboard, presumably writing a short story to post.`
 			`	"<first>! I found a company who's willing to publish me! I sent them a digital copy of my book and they instructed me to visit their office on <destination>," explains Anna, once again enthusiastic.`
 			choice
 				`	"What's the publishing company called?"`
@@ -3544,7 +3544,7 @@ mission "Coalition: Struggling Author 4"
 			`	With that, you leave the room, and eventually the building. You board the train and walk past the same series of endless shops and streets in the spaceport city before returning to your ship. As soon as you're in your ship, you add a reminder to visit Anna later.`
 				decline
 			label stay
-			`	"I need to stay here I can answer their questions during the review process. Don't worry about me."`
+			`	"I need to stay here so I can answer their questions during the review process. Don't worry about me."`
 			choice
 				`	"Got it. Good luck publishing your book."`
 					goto thanks
