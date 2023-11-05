@@ -330,6 +330,12 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
+ images/ship/waverider*
+Copyright: Evan Fluharty (Evanfluharty@gmail.com)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license) and detailed by Saugia (<https://github.com/Saugia>).
+
+Files:
  images/ship/modified?boxwing*
  images/thumbnail/modified?boxwing*
 Copyright: Evan Fluharty (Evanfluharty@gmail.com)
@@ -651,7 +657,6 @@ Files:
  images/land/space2*
  images/land/station4*
  images/land/station6*
- images/land/station7*
  images/land/station9*
  images/land/station10*
  images/land/station11*
@@ -736,10 +741,18 @@ License: CC0
 Comment: Taken from https://pxhere.com/en/photo/1071635 and cropped.
 
 Files:
- images/land/station15*
+ images/land/station7*
 Copyright: N/A (CC0 Public Domain)
 License: CC0
 Comment: Taken from https://pxhere.com/en/photo/119196 and cropped.
+
+Files:
+ images/land/station15*
+Copyright: N/A (CC0 Public Domain)
+License: CC0
+Comment: Taken from https://pixabay.com/photos/step-industry-steel-3104846/ and cropped.
+ According to Section 3 of the Pixabay Terms of Service, all images with a
+ "published date" earlier than January 9, 2019 have the CC0 license.
 
 Files:
  images/land/station5.jpg
@@ -2078,6 +2091,7 @@ License: CC-BY-SA-4.0
 
 Files:
  images/outfit/android*
+ images/outfit/mug*
  images/outfit/skadetear*
 Copyright: Anarchist2
 License: CC-BY-SA-4.0
@@ -2154,6 +2168,12 @@ Files:
  images/land/hills11*
 Copyright: CyberJudas (cyberjudas@dnmx.org)
 License: CC-BY-SA-4.0
+
+Files:
+ images/ui/red?alert?grayed*
+Copyright: Dave Flowers
+License: CC-BY-SA-4.0
+Comment: grayscale version of images/ui/red alert, by Zitchas (zitchas.jma@gmail.com)
 
 Files:
  images/ui/sales?key*
