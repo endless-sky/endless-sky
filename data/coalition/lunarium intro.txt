@@ -105,7 +105,7 @@ mission "Lunarium: Smuggling: Charity 2"
 		not "Lunarium: Questions: active"
 		not "Lunarium: Quarg Interview: active"
 		not "Lunarium: Join: active"
-		not "assisting heliarcy"
+		not "assisting heliarchy"
 	on offer
 		conversation
 			branch chiree
