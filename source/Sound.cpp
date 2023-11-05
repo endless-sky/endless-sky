@@ -235,6 +235,8 @@ namespace {
 				frequency = static_cast<uint32_t>(info.hz);
 			else if(frequency != static_cast<uint32_t>(info.hz))
 				return false;          // file is not fixed frequency.
+			else if(info.channels != 1)
+				return false;          // only mono is supported
 
 			p += info.frame_bytes;
 		}
