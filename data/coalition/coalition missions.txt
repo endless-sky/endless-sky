@@ -3316,10 +3316,23 @@ mission "Coalition: Struggling Author 1"
 			`	"I have a lot of problems with them. I just don't trust them. I remember when my parents took me to Humanika. Naturally, I wanted to explore, so I wandered off. I was lost. This creepy-looking Quarg found me, and when it tried to approach, I cried."`
 			`	"And then when I grew up, when I was a teenager, I decided to do a project on them for college. They responded with silence to my questions, as if they had something to hide. I worked as an assistant for a journalist for a few months. He kept asking me for help with the Quarg. They just would not budge."`
 			choice
-				`	"Well that's all well and good. But I have my own business to attend to now. Good luck, and goodbye."`
+				`	"That must have been rough, stuck on Humanika. Did your parents eventually find you?"`
+					goto "parents"
+				`	"Well that's all well and good. But I have my own business to attend to now. Good luck with your book, thanks for your time, and goodbye."`
 					decline
 				`	(Tell her about the Coalition.)`
-			`	You begin explaining the Coalition to Anna, going in-depth about their history and their culture, and their long history of opposing the Quarg, seeing as Anna has less than positive opinions of them. At first Anna does not believe you; but you reassure her it's real.`
+					goto "coalition"
+			label "parents"
+			`	"They eventually found me, thankfully. But it was distressing being stuck with this Quarg for 10-30 minutes, I don't remember how long, before eventually this other Quarg took my parents to me. I told them I wanted to get off Humanika as fast as possible and get back to Zug. They obliged, and we were off that world and I never wanted to come back.`
+			choice
+				`	"So you said your book doesn't sell well, right?"`
+			`	"Yes, it doesn't. Do you know anyone who could help?"`
+			choice
+				`	"No, I'm afraid I don't know anyone who could."`
+					decline
+				`	(Tell her about the Coalition.)`
+			label "coalition"
+			`	You begin explaining the Coalition to Anna, going in-depth about their history and their culture, and their long history of opposing the Quarg, seeing as Anna has less than positive opinions of them. At first Anna does not believe you; but you reassure her it's real. You also mention the population of the Coalition and the novelty of an 'alien' author coming into the area.`
 			`	"Will they really like my books?"`
 			choice
 				`	"They will, hopefully."`
@@ -3340,8 +3353,8 @@ mission "Coalition: Struggling Author 1"
 			`	"Do I have to pay anything? As a struggling author, I can't afford off-world transport at all, let alone to a completely different alien race!"`
 			choice
 				`	"It's okay. I'm willing to make an exception for you."`
-			`	"Thank you so much! Just wait for a while, I need to finish my book signing event. It should be roughly 45 minutes before it's over, and then we can go to whatever this Coalition thing is," says Anna.`
-			`	You reply, "Good luck."`
+			`	"Thank you so much! Just wait for a while. I'll go over to my house and bring what I'll need for the trip, and then we can go to whatever this Coalition thing is," says Anna.`
+			`	You reply, "Alright, I'll be waiting for you."`
 			`	As you wait for Anna, you look over your maps of Coalition space to determine the most suitable place for Anna. After much deliberation and thought, you decide on <destination>.`
 			`	After approximately an hour of waiting, Anna appears outside of your ship, knocking on the hatch. You open the hatch to let her inside, as you lead her to her bunk and inform her of the destination. You prepare to leave the spaceport.`
 				accept
@@ -3349,7 +3362,7 @@ mission "Coalition: Struggling Author 1"
 		conversation
 			`	You leave the ship with Anna following you. The moment you are out of your ship, three Kimek surround you and Anna. The Kimek in the middle speaks, and then brief silence. The silence is broken as their translation box speaks.`
 			`	"Greetings, <first> <last>. This other human you have brought, who she is, may I ask you?"`
-			`	You are already known to the Coalition, so all you need to do is tell them your name. Anna introduces herself.`
+			`	The Coalition is already familiar with you, so you tell them your name while Anna introduces herself.`
 			`	"About what, do you write?", asks the Kimek.`
 			`	"Oh, I write science fiction books," says Anna.`
 			`	The Kimek begin conversing amongst themselves in their native language for a good ten to twenty seconds before they move to face you again.`
