@@ -3522,7 +3522,7 @@ mission "Coalition: Struggling Author 4"
 				`	(Leave the room to avoid spoilers.)`
 					goto "lounge"
 				`	(Stay in the room.)`
-			`	Under the watchful eye of the two Heliarchs in the room, Anna explains her anti-Quarg sentiments, the reasoning behind her choice to write the book, and the content of the book. She speaks quickly, but the Haliarchs' numerous questions for clarification and elaboration make the process a long one.`
+			`	Under the watchful eye of the two Heliarchs in the room, Anna explains her anti-Quarg sentiments, the reasoning behind her choice to write the book, and the content of the book. She speaks quickly, but the Heliarchs' numerous questions for clarification and elaboration make the process a long one.`
 			`	As the hours pass, Anna's enthusiastic tone remains strong and constant. The Kimek then takes the book, puts it in a nearby filing cabinet (or the Kimek equivalent) and thanks you and Anna.`
 				goto "interview over"
 			label "lounge"
