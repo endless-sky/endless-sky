@@ -1,10 +1,7 @@
 name: Steam
 
 on:
-  push:
-    branches:
-      - master
-      - releases/v[0-9]+.[0-9]+.[0-9]+
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}-${{ github.event_name }}
@@ -27,7 +24,9 @@ jobs:
       runtime: steam-container-runtime.tar.gz
       platform: com.valvesoftware.SteamRuntime.Platform-amd64,i386-sniper-runtime.tar.gz
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
+      with:
+        show-progress: false
 
     # Build the binary
     - name: Save Steam runtime version

@@ -177,7 +177,7 @@ def check_code_style(file, lines):
 # Appends the lists in the second tuple to the lists in the first tuple. Parameters:
 # first: the tuple where the lists are expanded
 # second: the tuple where the lists are not expanded
-# Returns the second tuple for re-use.
+# Returns the second tuple for reuse.
 def join(first, second):
 	for (list1, list2) in zip(first, second):
 		list1 += list2
