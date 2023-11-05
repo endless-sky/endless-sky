@@ -86,7 +86,6 @@ mission "Navy resupply [0]"
 	cargo Military 5 2 .1
 	job
 	repeat
-	clearance
 	deadline
 	to offer
 		random < 2
