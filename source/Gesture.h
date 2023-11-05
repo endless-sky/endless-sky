@@ -31,6 +31,7 @@ public:
    enum GestureEnum {NONE, X, CIRCLE, CARET_UP, CARET_LEFT, CARET_RIGHT, CARET_DOWN};
 
    void Start(float x, float y, int finger_id);
+   void Cancel() { m_valid = false; }
    GestureEnum Add(float x, float y, int finger_id);
    GestureEnum End();
 

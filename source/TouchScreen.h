@@ -24,6 +24,7 @@ class TouchScreen
 {
 public:
    static void Handle(const SDL_Event& event);
+   static void CancelGesture();
 
    static std::vector<Point> Points();
 };

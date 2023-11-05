@@ -72,6 +72,13 @@ void TouchScreen::Handle(const SDL_Event &event)
 
 
 
+void TouchScreen::CancelGesture()
+{
+	g_gesture.Cancel();
+}
+
+
+
 // Return a set of all points currently being touched on the screen.
 // No attempt is made to track which finger is which. If you need that info,
 // use the events.

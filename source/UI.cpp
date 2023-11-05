@@ -497,6 +497,10 @@ Command UI::ZoneCommands() const
 			{
 				if(!(zone->ZoneCommand() == Command()))
 					ret.Set(zone->ZoneCommand());
+
+				// Don't process gestures if we have crossed into a zone
+				TouchScreen::CancelGesture();
+
 				// even if this zone isn't associated with a command, don't
 				// consider any other zones (this one is being drawn on top of
 				// them)
