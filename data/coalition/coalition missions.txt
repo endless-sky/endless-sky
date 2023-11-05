@@ -3297,7 +3297,7 @@ mission "Coalition: Struggling Author 1"
 				`	"How about your previous books?"`
 			label "previous books"
 			`	"They weren't really successful. I'm still struggling. Some people buy them and I make a little money, but I never really reach the 5-digits. The first one remains unpublished; all the publishers rejected it. The second one was about a kid from the Paradise Worlds being sent to the Dirt Belt by his parents for being spoiled, the third one was about that same kid being kidnapped by pirates, I stopped that series since it was clear it would never sell."`
-			`	"'Beyond the Hyperdrive' is the fourth one and I'm hoping it will sell better than the previous two."`
+			`	"'Beyond the Hyperdrive' is the fifth one and I'm hoping it will sell better than the previous four."`
 			choice
 				`	"How about short stories?"`
 			label "short stories"
