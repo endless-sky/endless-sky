@@ -3384,8 +3384,6 @@ fleet "Humanika Rafeki Merchants"
 		"Quicksilver (Proton)"
 		"Quicksilver"
 		"Raven (Afterburner)"
-	variant 7
-		"Falcon (Plasma)"
 		"Blackbird" 2
 	variant 3
 		"Falcon (Heavy)"
