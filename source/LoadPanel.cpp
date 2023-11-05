@@ -198,8 +198,8 @@ void LoadPanel::Draw()
 			const Point textPoint(drawPoint.X() + hTextPad, zone.Center().Y() - font.Height() / 2);
 			bool isHighlighted = (it.first == selectedPilot || (hasHover && zone.Contains(hoverPoint)));
 
-			double alpha = min((textPoint.Y() - (top - fadeOut)) * .1,
-					(bottom - fadeOut - textPoint.Y()) * .1);
+			double alpha = min((drawPoint.Y() - (top - fadeOut)) * .1,
+					(bottom - fadeOut - drawPoint.Y()) * .1);
 			alpha = max(alpha, 0.);
 			alpha = min(alpha, 1.);
 
