@@ -6868,7 +6868,7 @@ mission "Adelita 1"
 
 	on offer
 		conversation
-			`Walking around <origin>'s luxurious spaceport, you notice a large group of people gathered around one of the larger hangars; there are large signs that say "The Evacuation of Hope" in bold letters by it. It looks like some sort of exhibition.`
+			`Walking around <origin>'s luxurious spaceport, you notice a significant group of people gathered around one of the larger hangars; there are prominent signs that say "The Evacuation of Hope" in bold letters by it. It looks like some sort of exhibition.`
 			choice
 				`	(Check it out.)`
 				`	(Not right now.)`
@@ -6883,7 +6883,7 @@ mission "Adelita 1"
 			`	"You're going to love it," she says. "No one knows who they really are, but Adelita's work is what inspired me to study journalism. Their mixture of mediums, their eye for story telling... I just love it."`
 			`	You reach the entrance to the exhibition soon enough. Inside is a large room filled with photos, videos, interviews and other mixed media. They focus on three groups: the refugees of Hope, the Navy that saved them, and the Paradise Worlds that protested the evacuation. At one end of the hangar, there is an installation with nearly a hundred original protest signs from rallies against the Dirt Belt and the Republic Navy; some of them quite crude and tasteless. It's a strong rebuke to see those displayed here, on a Paradise Planet.`
 			`	There are many, many photos, but one catches your eye. It's of a woman standing in line to board a ship, a baby held at her hip and a look of sad determination on her face. Their cheeks, rosy and chapped, stand out in contrast with the cold blues in the background.`
-			`	You head towards the exit, but as the automatic doors open, an arctic blast rushes at you from every direction. Instead of the spaceport's open apron, you find yourself in a life-sized 3D representation of the evacuation of Hope, complete with simulated climate effects and a projected horizon. There are huge Navy Cruisers and Auxiliaries slowly collecting ash in a snowy field near a small town as hundreds of refugees slowly board. But what stands out most is the massive volcano erupting in the background.`
+			`	You head towards the exit, but as the automatic doors open, an arctic blast rushes at you from every direction. Instead of the spaceport's open apron, you find yourself in a life-sized 3D representation of the evacuation of Hope, complete with simulated climate effects and a projected horizon. There are huge Navy Cruisers and Auxiliaries gradually being covered by ash in a snowy field near a small town as hundreds of refugees slowly board. But what stands out most is the massive volcano erupting in the background.`
 			`	"It's more of a collage than an exact rendering," says the young woman you met in line, having followed you all this way. "They took 3D recordings from different moments and areas of Hope and edited them together in various loops. The volcano was actually on the other side of the planet, for example. The magic of editing. So what do you think?"`
 			choice
 				`	"Impressive."`
@@ -6898,14 +6898,14 @@ mission "Adelita 1"
 			branch katya
 				has "FW Katya 4: done"
 
-			`	Wandering around the exhibit gives you a sense of the desperation of the people as they evacuate, though it's a bit disconcerting when the occasional hologram walks through you. Inside houses you see families frantically gathering their belongings and running for the Navy ships. You walk down one of the lines of refugees, observing each person - their faces harried, distraught, frightened, resolute. In the corner of your eye you notice that a Navy officer slips in the snow, and as you look around a young man helps him up.`
+			`	Inside houses you see families frantically gathering their belongings and running for the Navy ships. You walk down one of the lines of refugees, observing each person - their faces harried, distraught, frightened, resolute. From the corner of your eye you notice that a Navy officer slips in the snow, and as you look around a young man helps him up. Wandering around the exhibit gives you a sense of the desperation of the people as they evacuate, though it's a bit disconcerting when the occasional hologram walks through you.`
 				goto "move on"
 
 			label katya
-			`	Wandering around the exhibit gives you a sense of the desperation of the people as they evacuate, though it's a bit disconcerting when the occasional hologram walks through you. Inside houses you see families frantically gathering their belongings and running for the Navy ships. It strikes you that somewhere here is a young Katya leaving her doomed home. You walk down one of the lines of refugees, observing each person - their faces harried, distraught, frightened, resolute. In the corner of your eye you notice that a Navy officer slips in the snow, and as you look around a young man helps him up.`
+			`	Inside houses you see families frantically gathering their belongings and running for the Navy ships; it strikes you that somewhere here is a young Katya leaving her doomed home. You walk down one of the lines of refugees, observing each person - their faces harried, distraught, frightened, resolute. From the corner of your eye you notice that a Navy officer slips in the snow, and as you look around a young man helps him up. Wandering around the exhibit gives you a sense of the desperation of the people as they evacuate, though it's a bit disconcerting when the occasional hologram walks through you.`
 
 			label "move on"
-			`	As you move on, you're startled to find yourself face to face with the woman holding the baby, right where they were in the photo. She takes little steps toward the ship while bouncing the baby on her hip. A young woman with a camera and a respirator covering her face walks up to her, asks a question and begins to take photos. Suddenly, the entire projection disappears in a disorienting flash, leaving you in a sectioned-off section of the hangar bay. The exhibit is nearly empty as a woman walks up to you. "She loves that moment too. That's probably why she fought so hard to have that part left in, even though it's a security risk.`
+			`	As you move on, you're startled to find yourself face to face with the woman holding the baby, right where they were in the photo. She takes little steps toward the ship while bouncing the baby on her hip. A young woman with a camera and a respirator covering her face walks up to her, asks a question and begins to take photos. Suddenly, the entire projection disappears in a disorienting flash, leaving you in a cordoned-off section of the hangar bay. The exhibit is nearly empty as a woman walks up to you. "She loves that moment too. That's probably why she fought so hard to have that part left in, even though it's a security risk.`
 			`	"Oh, how rude of me," she says. "My name is Mariel, I organize these exhibitions and act as a spokesperson for Adelita. And you are?"`
 			choice
 				`	"Captain <last>."`
@@ -6956,7 +6956,7 @@ mission "Adelita 2"
 
 	on offer
 		conversation
-			`It takes a while to navigate through the bustling spaceport and the almost viscous fog of <origin>, but after finding an information screen, you're able to get to the Common Grounds Cafe. The cafe has a funky vibe to it and is quite busy. Nobody seems to recognize you, so you take a seat at a booth and order something to eat. Before your meal arrives, a woman, maybe in her late thirties with dark hair, sits down across from you and hails the server. She cheerfully orders a smoothie with a long list of ingredients, many of which you have never heard of, or can even pronounce.`
+			`It takes a while to navigate through the bustling spaceport and the almost viscous fog of <origin>, but after finding an information screen you're able to get to the Common Grounds Cafe, which has a funky vibe to it and is quite busy. Nobody seems to recognize you, so you take a seat at a booth and order something to eat. Before your meal arrives, a woman with dark hair, maybe in her late thirties, sits down across from you and hails the server. She cheerfully orders a smoothie with a long list of ingredients, many of which you have never heard of or can even pronounce.`
 			`	"Sorry for the cloak and dagger bit," she says to you finally. "We have enemies in high places. So Captain <last>, what did you think of the exhibition?"`
 			choice
 				`	"I found it quite moving."`
@@ -6972,7 +6972,7 @@ mission "Adelita 2"
 				goto choice
 
 			label political
-			`	"Oh. Unfortunately, for many, everything is political. It was political when the Paradise Worlds tried to block the evacuation. And it was political when the Navy did it without the permission of Parliament. And the same goes for every single act of oppression and liberation since the dawn of humanity. Our oppressors are very political. Maybe you have the hope of being one some day; wealthy, authoritative. Or maybe you just don't care. Either way, you don't sound like a good fit for this project. But thanks for transporting the installation," she says with a smile. She gets her smoothie to-go and walks out.`
+			`	"Oh. Unfortunately, for many, everything is political. It was political when the Paradise Worlds tried to block the evacuation. And it was political when the Navy did it anyway without the permission of Parliament. And the same goes for every single act of oppression and liberation since the dawn of humanity. Our oppressors are very political. Maybe you have the hope of being one some day; wealthy, authoritative. Or maybe you just don't care. Either way, you don't sound like a good fit for this project. But thanks for transporting the installation," she says with a smile. She gets her smoothie to-go and walks out.`
 				decline
 
 			label choice
@@ -6982,7 +6982,7 @@ mission "Adelita 2"
 				`	"Out."`
 					goto out
 
-			`	"Great. My name is Alejandra, but call me Ale. Here's the plan: you're going to drop me and a friend off at <planet> where we are going to film the conditions in a secret Syndicate sweatshop. Thing is, these aren't just poorly paid factory workers, but slaves. As you can imagine, we can't get in as regular workers, so with a bit of hacking we got ourselves jobs on site as private security. We know that one of the Syndicate's 'trusted contractors' are getting the slaves from the pirates on Covert, and we also know where they do the transaction. So while we are getting the footage we need in the factories, you will be going with an associate, Bunker, to spy on the Syndicate's rendezvous with the pirates on <planet>."`
+			`	"Great. My name is Alejandra, but call me Ale. Here's the plan: you're going to drop me and a friend off at <planet> where we are going to film the conditions in a secret Syndicate sweatshop. Thing is, these aren't just poorly paid factory workers, but slaves. As you can imagine, we can't get in as regular workers, so with a bit of hacking we got ourselves jobs on-site as private security. We know that one of the Syndicate's 'trusted contractors' are getting the slaves from the pirates on Covert, and we also know where they do the transaction. So while we are getting the footage we need in the factories, you will be going with an associate, Bunker, to spy on the Syndicate's rendezvous with the pirates on <planet>."`
 			`	Ale senses your concern about spying on pirates and the Syndicate. "Don't worry, Bunker is a pro, and we have an array of long-range stealth drones that do the spying, you won't be anywhere near them. But pirates do frequent the system, so you'll need to be quick."`
 			`	She waves to the server for the bill as she finishes the last gulp of her smoothie. "Let's go. Everyone will be meeting at the landing pad shortly."`
 			`	You go back to the <ship>'s landing pad, and sure enough there are two people with backpacks waiting for you with a few cases. They introduce themselves as River and Bunker.`
@@ -7047,7 +7047,7 @@ mission "Adelita 4"
 				goto "on site"
 
 			label "player has a fleet"
-			`You carefully bring the <ship> into the atmosphere while the rest of your fleet stays in space so that the pirates won't catch wind of Adelita's operation; luckily, it's not hard to find a remote canyon within range of the target area for you to lie low. You keep the <ship> hovering in case you need to make a quick escape, but you are low enough that Bunker releases the drones from the open cargo bay without a pressure suit. The drones are so small you can't make them out from the cockpit, nor can you see them on your ship's scanners. When Bunker returns to the cockpit, he sets up a display and sits at the controller. "Okay, they're on autopilot to the rendezvous site."`
+			`You carefully bring the <ship> into the atmosphere while the rest of your fleet stays in space so that the pirates won't catch wind of Adelita's operation. Luckily, it's not hard to find a remote canyon within range of the target area for you to lie low. You keep the <ship> hovering in case you need to make a quick escape, but you are low enough that Bunker releases the drones from the open cargo bay without a pressure suit. The drones are so small you can't make them out from the cockpit, nor can you see them on your ship's scanners. When Bunker returns to the cockpit, he sets up a display and sits at the controller. "Okay, they're on autopilot to the rendezvous site."`
 
 			label "on site"
 			`	Once the drones are on site, you can see a lone Syndicate-built freighter with a security detail posted in front of the loading ramp. "The pirates must be late," says Bunker, smirking. "Typical. I'm going to scatter the drones and set a proximity alert."`
@@ -7064,8 +7064,8 @@ mission "Adelita 4"
 			`	"Now you're talking! But it would take a lot of planning to do it without killing the people we are trying to liberate. You know they'll use those poor people as human shields. Say we-" Bunker is cut off by the proximity alert.`
 
 			label showtime
-			`	"Showtime!" he says, rubbing his hands together. Both of you watch as a capital ship in pirate colors lands near the security detail, probably deafening them with the sound of their repulsors. Accompanying it is a small flotilla of Quicksilver escorts. As soon as the loading ramp is down, the security detail gets to work herding the slaves from one ship to another; the detail hit, shove, and shout at anyone that moves too slowly for their liking.`
-			`	"Pigs," blurts out Bunker. He zooms in on two men talking a few meters away from everyone else. One is in a suit, the other a black hooded robe. "Must be the leaders," he whispers as if they can hear him. Just then, the hooded man looks up to the sky, as if he sees something. He motions, and the Quicksilvers fire up their engines.`
+			`	"Showtime!" he says, rubbing his hands together. Both of you watch as a capital ship accompanied by a small flotilla of Quicksilver escorts, all in pirate colors, land near the security detail, probably deafening them with the sound of their repulsors. As soon as the loading ramp is down, the security detail gets to work herding the slaves from one ship to another; hitting, shoving, and shouting at anyone that moves too slowly for their liking.`
+			`	"Pigs," blurts out Bunker. He zooms in on two men talking a few meters away from everyone else. One is in a suit, the other a black hooded robe. "Must be the leaders," he whispers as if they can hear him. Just then, the hooded man looks up to the sky as if he sees something. He motions, and the Quicksilvers fire up their engines.`
 			`	"Oh, I don't like the look of this," says Bunker.`
 			choice
 				`	"Keep filming."`
