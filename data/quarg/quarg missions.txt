@@ -386,10 +386,10 @@ mission "Ask Quarg About Coalition Late"
 			`	"Are we so horribly powerful indeed, or is our might mere consequence of being elders in this galaxy littered with the premature deaths of other species?" It asks. "No... forgive me, I did not answer your question. We... many of our youngsters and veterans alike vowed to never allow another ring to be lost. We do not kill for sport, but it has become as natural for a Quarg to defend a ring as it would be for a human to defend their family.`
 			`	"By the billions, defenders arose, ignoring our ways of peace, what social customs we were expected to follow, and... what you may call 'orders.' After a few centuries, those that tolerated, or were forced to tolerate the request for a ceasefire, were evacuated from the rings, and then it was only a matter of time before those of us that remained were overrun by the Coalition."`
 			`	It once again starts looking at the ceiling, remaining like that for a minute or so.`
-				branch "heliarch 2"
-					has "joined the heliarchs"
-				branch "lunarium 2"
-					has "joined the lunarium"
+			branch "heliarch 2"
+				has "joined the heliarchs"
+			branch "lunarium 2"
+				has "joined the lunarium"
 			label "heliarch 2"
 			`	It then turns to face you once more. "We have of course noticed that headpiece the Heliarchs have provided you with. Though you have officially joined their ranks, you are human. You are not bound to that area of space. There is no need for you to obey their orders. You do not need to ever return there. There is no need for you and us Quarg to be enemies."`
 			label "heliarch ask"
@@ -444,10 +444,10 @@ mission "Ask Quarg About Coalition Late"
 				goto "lunarium ask"
 			label end
 			action
-				clear "ask quarg coalition late: help
-				clear "ask quarg coalition late: tips
-				clear "ask quarg coalition late: threat
-				clear "ask quarg coalition late: aid
+				clear "ask quarg coalition late: help"
+				clear "ask quarg coalition late: tips"
+				clear "ask quarg coalition late: threat"
+				clear "ask quarg coalition late: aid"
 			`	You get up and are just about to leave when it says, "<first> <last>." The Quarg's gaze pierces you, its eye on the same level as your own. "Where is your home?"`
 			choice
 				`	"I come from New Boston, on the Dirt Belt."`
