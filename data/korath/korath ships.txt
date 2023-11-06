@@ -447,8 +447,8 @@ ship "Rai'alorej"
 		hull 27000
 		"required crew" 523
 		"bunks" 1433
-		"mass" 7698
-		"drag" 93.8
+		"mass" 6692
+		"drag" 82.8
 		"heat dissipation" .36
 		"fuel capacity" 700
 
