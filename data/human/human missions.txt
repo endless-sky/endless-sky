@@ -7041,7 +7041,7 @@ mission "Adelita 4"
 	on offer
 		conversation
 			branch "player has a fleet"
-				"ships: Space Liner" + "ships: Transport" + "ships: Light Freighter" + "ships: Heavy Freighter" + "ships: Utility" + "ships: Interceptor" + "ships: Light Warship" + "ships: Medium Warship" + "ships: Heavy Warship" + "ships: Superheavy" > 1
+				"total ships" - ( "ships: Fighter" + "ships: Drone" ) > 1
 
 			`It's not hard to find a remote canyon within range of the target area. You keep the <ship> hovering in case you need to make a quick escape, but you are low enough that Bunker releases the drones from the open cargo bay without a pressure suit. The drones are so small you can't make them out from the cockpit, nor can you see them on your ship's scanners. When Bunker returns to the cockpit, he sets up a display and sits at the controller. "Okay, they're on autopilot to the rendezvous site."`
 				goto "on site"
