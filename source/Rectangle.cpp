@@ -15,6 +15,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Rectangle.h"
 
+#include <algorithm>
+
+using namespace std;
+
 
 
 // Construct a rectangle by specifying the two corners rather than the
@@ -186,4 +190,16 @@ bool Rectangle::Contains(const Rectangle &other) const
 bool Rectangle::Overlaps(const Rectangle &other) const
 {
 	return !(other.Left() > Right() || other.Right() < Left() || other.Top() > Bottom() || other.Bottom() < Top());
+}
+
+
+
+bool Rectangle::Overlaps(const Point &circle, const double radius) const
+{
+	// Handle case where circle is entirely within rectangle.
+	if(Contains(circle))
+		return true;
+
+	const Point closest = Point(max(Left(), min(Right(), circle.X())), max(Top(), min(Bottom(), circle.Y())));
+	return (circle - closest).LengthSquared() < radius * radius;
 }

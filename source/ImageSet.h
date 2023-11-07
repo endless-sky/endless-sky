@@ -70,11 +70,11 @@ private:
 	// Name of the sprite that will be initialized with these images.
 	std::string name;
 	// Paths to all the images that were discovered during loading.
-	std::map<std::size_t, std::string> framePaths[2];
+	std::map<std::size_t, std::string> framePaths[4];
 	// Paths that comprise a valid animation sequence of 1 or more frames.
-	std::vector<std::string> paths[2];
+	std::vector<std::string> paths[4];
 	// Data loaded from the images:
-	ImageBuffer buffer[2];
+	ImageBuffer buffer[4];
 	std::vector<Mask> masks;
 };
 

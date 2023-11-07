@@ -202,6 +202,18 @@ namespace {
 		}
 		return pair<bool, bool>(blink, daysLeft > 0);
 	}
+
+	// Return total value of raid fleet (if any) and 60 frames worth of system danger.
+	double DangerFleetTotal(const PlayerInfo &player, const System &system, const bool withRaids)
+	{
+		double danger = system.Danger() * 60.;
+		if(withRaids)
+			for(const auto &raidFleet : system.GetGovernment()->RaidFleets())
+				danger += 10. * player.RaidFleetAttraction(raidFleet, &system) *
+					raidFleet.GetFleet()->Strength();
+		return danger;
+	}
+
 }
 
 const float MapPanel::OUTER = 6.f;
@@ -508,15 +520,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 	Color bright(2.f * alpha, 0.f);
 	// Non-hyperspace jumps are drawn with a dashed directional arrow.
 	if(!isLink)
-	{
-		double length = (to - from).Length();
-		int segments = static_cast<int>(length / 15.);
-		for(int i = 0; i < segments; ++i)
-			LineShader::Draw(
-				from + unit * ((i * length) / segments + 2.),
-				from + unit * (((i + 1) * length) / segments - 2.),
-				LINK_WIDTH, bright);
-	}
+		LineShader::DrawDashed(from, to, unit, LINK_WIDTH, bright, 11., 4.);
 	LineShader::Draw(to, to + Angle(-30.).Rotate(unit) * -10., LINK_WIDTH, bright);
 	LineShader::Draw(to, to + Angle(30.).Rotate(unit) * -10., LINK_WIDTH, bright);
 }
@@ -722,6 +726,18 @@ Color MapPanel::GovernmentColor(const Government *government)
 
 
 
+Color MapPanel::DangerColor(const double danger)
+{
+	if(std::isnan(danger))
+		return *GameData::Colors().Get("map danger none");
+	else if(danger > .5)
+		return Color(.6, .4 * (2. - 2. * min(1., danger)), 0., .4);
+	else
+		return MapColor(2. * danger - 1.);
+}
+
+
+
 Color MapPanel::UninhabitedColor()
 {
 	return GovernmentColor(GameData::Governments().Get("Uninhabited"));
@@ -797,6 +813,10 @@ void MapPanel::Select(const System *system)
 		if(isJumping)
 			plan.push_back(source);
 	}
+
+	// Reset the travel destination if the final system in the travel plan has changed.
+	if(!plan.empty())
+		player.SetTravelDestination(nullptr);
 }
 
 
@@ -878,6 +898,36 @@ int MapPanel::Search(const string &str, const string &sub)
 
 
 
+bool MapPanel::GetTravelInfo(const System *previous, const System *next, const double jumpRange,
+	bool &isJump, bool &isWormhole, bool &isMappable, Color *wormholeColor) const
+{
+	const bool isHyper = previous->Links().count(next);
+	isWormhole = false;
+	isMappable = false;
+	// Short-circuit the loop for MissionPanel, which draws hyperlinks and wormholes the same.
+	if(!isHyper || wormholeColor)
+		for(const StellarObject &object : previous->Objects())
+			if(object.HasSprite() && object.HasValidPlanet()
+				&& object.GetPlanet()->IsWormhole()
+				&& player.HasVisited(*object.GetPlanet())
+				&& player.HasVisited(*previous) && player.HasVisited(*next)
+				&& &object.GetPlanet()->GetWormhole()->WormholeDestination(*previous) == next)
+			{
+				isWormhole = true;
+				if(object.GetPlanet()->GetWormhole()->IsMappable())
+				{
+					isMappable = true;
+					if(wormholeColor)
+						*wormholeColor = *object.GetPlanet()->GetWormhole()->GetLinkColor();
+					break;
+				}
+			}
+	isJump = !isHyper && !isWormhole && previous->JumpNeighbors(jumpRange).count(next);
+	return isHyper || isWormhole || isJump;
+}
+
+
+
 void MapPanel::CenterOnSystem(const System *system, bool immediate)
 {
 	if(immediate)
@@ -899,6 +949,36 @@ void MapPanel::UpdateCache()
 	cachedCommodity = commodity;
 	nodes.clear();
 
+	// Get danger level range so we can scale by it.
+	double dangerMax = 0.;
+	double dangerScale = 1.;
+	if(commodity == SHOW_DANGER)
+	{
+		// Scale danger to span [0, 1] based on known systems, without including raid fleets
+		// as those can greatly skew the range once they start having a chance of appearing,
+		// leading to silly (and not very useful) displays.
+		double dangerMin = numeric_limits<double>::max();
+		for(const auto &it : GameData::Systems())
+		{
+			const System &system = it.second;
+
+			// Only check displayed systems.
+			if(!system.IsValid() || system.Inaccessible() || !player.HasVisited(system))
+				continue;
+
+			const double danger = DangerFleetTotal(player, system, false);
+			if(danger > 0.)
+			{
+				if(dangerMax < danger)
+					dangerMax = danger;
+				if(dangerMin > danger)
+					dangerMin = danger;
+			}
+		}
+		if(dangerMax)
+			dangerScale = 1. / log(dangerMin / dangerMax);
+	}
+
 	// Draw the circles for the systems, colored based on the selected criterion,
 	// which may be government, services, or commodity prices.
 	const Color &closeNameColor = *GameData::Colors().Get("map name");
@@ -916,7 +996,8 @@ void MapPanel::UpdateCache()
 		Color color = UninhabitedColor();
 		if(!player.HasVisited(system))
 			color = UnexploredColor();
-		else if(system.IsInhabited(player.Flagship()) || commodity == SHOW_SPECIAL || commodity == SHOW_VISITED)
+		else if(system.IsInhabited(player.Flagship()) || commodity == SHOW_SPECIAL
+				|| commodity == SHOW_VISITED || commodity == SHOW_DANGER)
 		{
 			if(commodity >= SHOW_SPECIAL)
 			{
@@ -974,6 +1055,14 @@ void MapPanel::UpdateCache()
 				const Government *gov = system.GetGovernment();
 				color = GovernmentColor(gov);
 			}
+			else if(commodity == SHOW_DANGER)
+			{
+				const double danger = DangerFleetTotal(player, system, true);
+				if(danger > 0.)
+					color = DangerColor(1. - dangerScale * log(danger / dangerMax));
+				else
+					color = DangerColor(numeric_limits<double>::quiet_NaN());
+			}
 			else
 			{
 				double reputation = system.GetGovernment()->Reputation();
@@ -990,10 +1079,10 @@ void MapPanel::UpdateCache()
 					if(object.HasSprite() && object.HasValidPlanet())
 					{
 						const Planet *planet = object.GetPlanet();
-						hasSpaceport |= !planet->IsWormhole() && planet->HasSpaceport();
+						hasSpaceport |= !planet->IsWormhole() && planet->HasServices();
 						if(planet->IsWormhole() || !planet->IsAccessible(player.Flagship()))
 							continue;
-						canLand |= planet->CanLand() && planet->HasSpaceport();
+						canLand |= planet->CanLand() && planet->HasServices();
 						isInhabited |= planet->IsInhabited();
 						hasDominated &= (!planet->IsInhabited()
 							|| GameData::GetPolitics().HasDominated(planet));
@@ -1048,7 +1137,6 @@ void MapPanel::DrawTravelPlan()
 	const Color &defaultColor = *colors.Get("map travel ok flagship");
 	const Color &outOfFlagshipFuelRangeColor = *colors.Get("map travel ok none");
 	const Color &withinFleetFuelRangeColor = *colors.Get("map travel ok fleet");
-	Color wormholeColor;
 
 	// At each point in the path, keep track of how many ships in the
 	// fleet are able to make it this far.
@@ -1073,40 +1161,19 @@ void MapPanel::DrawTravelPlan()
 		}
 	stranded |= !hasEscort;
 
+	const double jumpRange = flagship->JumpNavigation().JumpRange();
 	const System *previous = &playerSystem;
 	const System *next = nullptr;
-	double jumpRange = flagship->JumpNavigation().JumpRange();
 	for(int i = player.TravelPlan().size() - 1; i >= 0; --i, previous = next)
 	{
 		next = player.TravelPlan()[i];
-		bool isHyper = previous->Links().count(next);
-		bool isJump = !isHyper && previous->JumpNeighbors(jumpRange).count(next);
-		bool isWormhole = false;
-		bool skip = true;
-		for(const StellarObject &object : previous->Objects())
-		{
-			// Determine if this step of the travel plan can be completed by traversing a wormhole.
-			bool wormholeConnection = object.HasSprite()
-				&& object.HasValidPlanet()
-				&& object.GetPlanet()->IsWormhole()
-				&& player.HasVisited(*object.GetPlanet())
-				&& player.HasVisited(*previous) && player.HasVisited(*next)
-				&& (&object.GetPlanet()->GetWormhole()->WormholeDestination(*previous) == next);
-			if(wormholeConnection)
-			{
-				isWormhole = true;
-				// If this wormhole is not mappable, don't draw the link for this step of the travel plan.
-				const bool mappable = object.GetPlanet()->GetWormhole()->IsMappable();
-				skip &= !mappable;
-				if(mappable)
-					wormholeColor = *object.GetPlanet()->GetWormhole()->GetLinkColor();
-			}
-		}
-		if(isWormhole && skip)
-			continue;
 
-		if(!isHyper && !isJump && !isWormhole)
+		bool isJump, isWormhole, isMappable;
+		Color wormholeColor;
+		if(!GetTravelInfo(previous, next, jumpRange, isJump, isWormhole, isMappable, &wormholeColor))
 			break;
+		if(isWormhole && !isMappable)
+			continue;
 
 		// Wormholes cost nothing to go through. If this is not a wormhole,
 		// check how much fuel every ship will expend to go through it.
@@ -1134,10 +1201,17 @@ void MapPanel::DrawTravelPlan()
 		else if(fuel[flagship] >= 0.)
 			drawColor = defaultColor;
 
-		Point from = Zoom() * (next->Position() + center);
-		Point to = Zoom() * (previous->Position() + center);
-		Point unit = (from - to).Unit() * LINK_OFFSET;
-		LineShader::Draw(from - unit, to + unit, 3.f, drawColor);
+		Point from = Zoom() * (previous->Position() + center);
+		Point to = Zoom() * (next->Position() + center);
+		const Point unit = (to - from).Unit();
+		from += LINK_OFFSET * unit;
+		to -= LINK_OFFSET * unit;
+
+		// Non-hyperspace jumps are drawn with a dashed line.
+		if(isJump)
+			LineShader::DrawDashed(from, to, unit, 3.f, drawColor, 11., 4.);
+		else
+			LineShader::Draw(from, to, 3.f, drawColor);
 	}
 }
 
