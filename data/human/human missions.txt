@@ -7018,7 +7018,7 @@ mission "Adelita 3"
 	cargo "stealth drones" 1
 	on offer
 		conversation
-			`You drop off Ale and River at the spaceport. They are visibly embarrassed to be in security uniforms, or perhaps uncomfortable with their disguises which make them virtually unrecognizable; Bunker can't stop laughing at them. Everyone wishes each other good luck as the two walk off, and you and Bunker go back to the <ship> and prepare to take off for <planet>.`
+			`You drop off Ale and River at the spaceport. They are visibly embarrassed to be in security uniforms, or perhaps uncomfortable with their disguises which make them virtually unrecognizable; Bunker can't stop laughing at them. Everyone wishes each other good luck as the two walk off, and you and Bunker go back to the <ship> and prepare to depart for <planet>.`
 				accept
 
 	on visit
