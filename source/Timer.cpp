@@ -58,22 +58,17 @@ void Timer::Load(const DataNode &node, const Mission *mission)
 			system = GameData::Systems().Get(child.Token(1));
 		else if(child.Token(0) == "system")
 			systems.Load(child);
+		else if(child.Token(0) == "proximity" && child.Size() > 1)
+		{
+			proximityCenter = GameData::Planets().Get(child.Token(1));
+		}
 		else if(child.Token(0) == "proximity")
 		{
-			// If the proximity node specifies a single planet, we take that;
-			// otherwise, we look to its child for a LocationFilter
-			if(child.Size() > 1)
-				proximityCenter = GameData::Planets().Find(child.Token(1));
-			else if(child.HasChildren())
-			{
-				const DataNode &firstGrand = (*child.begin());
-				proximityCenters.Load(firstGrand);
-			}
+			proximityCenters.Load(child);
 		}
-		else if(child.Token(0) == "proximity settings")
+		else if(child.Token(0) == "proximity settings" && child.Size() > 1)
 		{
-			if(child.Size() > 1)
-				proximity = child.Value(1);
+			proximity = child.Value(1);
 			if(child.Size() > 2)
 			{
 				if(child.Token(2) == "close")
@@ -84,16 +79,19 @@ void Timer::Load(const DataNode &node, const Mission *mission)
 		}
 		else if(child.Token(0) == "uncloaked")
 			requireUncloaked = true;
-		else if(child.Token(0) == "reset")
+		else if(child.Token(0) == "reset" && child.Size() > 1)
 		{
-			if(child.Size() > 1 && child.Token(1) == "leave system")
+			const string &value = child.Token(1);
+			if(value == "leave system")
 				resetCondition = ResetCondition::LEAVE_SYSTEM;
-			else if(child.Size() > 1 && child.Token(1) == "leave zone")
+			else if(value == "leave zone")
 				resetCondition = ResetCondition::LEAVE_ZONE;
-			else if(child.Size() > 1 && child.Token(1) == "none")
+			else if(value == "none")
 				resetCondition = ResetCondition::NONE;
-			else if(child.Size() > 1 && child.Token(1) == "pause")
+			else if(value == "pause")
 				resetCondition = ResetCondition::PAUSE;
+			else
+				child.PrintTrace("Skipping unrecognized attribute:");
 		}
 		else if(child.Token(0) == "repeat reset")
 			repeatReset = true;
@@ -163,18 +161,14 @@ void Timer::Save(DataWriter &out) const
 				out.Write("proximity", proximityCenter->Name());
 			else if(!proximityCenters.IsEmpty())
 			{
-				out.BeginChild();
-				{
-					proximityCenters.Save(out);
-				}
-				out.EndChild();
+				out.Write("proximity");
+				proximityCenters.Save(out);
 			}
 			out.Write("proximity settings", proximity, distance);
 		}
 
 		action.Save(out);
 		resetAction.Save(out);
-
 	}
 	out.EndChild();
 }
@@ -311,8 +305,7 @@ void Timer::Step(PlayerInfo &player, UI *ui)
 		}
 	}
 	isActive = true;
-	++timeElapsed;
-	if(timeElapsed >= timeToWait)
+	if(++timeElapsed >= timeToWait)
 	{
 		if(!name.empty())
 			player.Conditions().Add("timer: " + name + ": complete", 1);

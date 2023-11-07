@@ -29,6 +29,8 @@ class Planet;
 class PlayerInfo;
 class UI;
 
+
+
 // Class representing a timer for triggering mission actions
 // This requires a specification of how long to wait (base + randint(rand)),
 // a system to wait in, and whether to reset the timer upon leaving the system
@@ -56,6 +58,7 @@ public:
 	// Progress the timer within the main loop
 	void Step(PlayerInfo &player, UI *ui);
 
+
 private:
 	enum class ResetCondition {
 		NONE,
@@ -64,6 +67,7 @@ private:
 		LEAVE_SYSTEM
 	};
 	void ResetOn(ResetCondition cond, PlayerInfo &player, UI *ui);
+
 
 private:
 	// The name of the timer
