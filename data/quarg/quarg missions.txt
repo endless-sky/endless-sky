@@ -342,12 +342,12 @@ mission "Ask Quarg About Coalition Late"
 		attributes "station"
 	on offer
 		conversation
-				branch heliarch
-					has "joined the heliarchs"
-				branch lunarium
-					has "joined the lunarium"
+			branch heliarch
+				has "joined the heliarchs"
+			branch lunarium
+				has "joined the lunarium"
 			label heliarch
-			`You've obtained the rank of Heliarch, the group who to this day remain hostile to the Quarg, but despite that you were allowed to land here on <origin> – whether because the Quarg simply don't know that you've joined the Heliarchs, or don't care enough to stop you from coming to their rings. Would you like to ask the Quarg for their side of the story, in light of what you've learned from the Heliarchs?`
+			`You've obtained the rank of Heliarch, the group who to this day remain hostile to the Quarg, but despite that you were allowed to land here on <origin> - whether because the Quarg simply don't know that you've joined the Heliarchs, or don't care enough to stop you from coming to their rings. Would you like to ask the Quarg for their side of the story, in light of what you've learned from the Heliarchs?`
 			choice
 				`	(Yes.)`
 					goto yes
