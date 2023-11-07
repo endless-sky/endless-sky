@@ -347,7 +347,7 @@ mission "Ask Quarg About Coalition Late"
 				branch lunarium
 					has "joined the lunarium"
 			label heliarch
-			`You've obtained the rank of Heliarch, the group who to this day remain hostile to the Quarg, but despite that you were allowed to land here on <origin>, whether because the Quarg simply don't know that you've joined the Heliarchs, or don't care enough to stop you from coming to their rings. Would you like to ask the Quarg for their side of the story, in light of what you've learned from the Heliarchs?`
+			`You've obtained the rank of Heliarch, the group who to this day remain hostile to the Quarg, but despite that you were allowed to land here on <origin> – whether because the Quarg simply don't know that you've joined the Heliarchs, or don't care enough to stop you from coming to their rings. Would you like to ask the Quarg for their side of the story, in light of what you've learned from the Heliarchs?`
 			choice
 				`	(Yes.)`
 					goto yes
@@ -365,12 +365,12 @@ mission "Ask Quarg About Coalition Late"
 				`	(No, I'm not interested.)`
 					decline
 			label yes
-			`	You're never quite sure who to speak with when it comes to the Quarg, but you're instinctively drawn to one that stands out: you judge it to be an older member of their species, its thin scales covering its fingers, and the more bony parts of its head have turned to a bright, silvery shade. Also unlike most Quarg you've seen, it is wearing a pale, faded white robe, with patches of red-colored chains (that somehow perfectly transition into fabric again) becoming more and more prominent closer to the top, culminating in a firm, crimson hood, covering its head. Most surprising of all for a Quarg, however, is the large scar taking up much of the left side of its face, completely covering where its left eye should be.`
+			`	You're never quite sure who to speak with when it comes to the Quarg, but you're instinctively drawn to one that stands out: you judge it to be an older member of their species, its thin scales covering its fingers, and the more bony parts of its head have turned to a bright, silvery shade. Also unlike most Quarg you've seen, it is wearing a pale, faded white robe, with patches of red-colored chains (that somehow perfectly transition into fabric again) becoming more and more prominent closer to the top, culminating in a firm, crimson hood covering its head. Most surprising of all for a Quarg, however, is the large scar taking up much of the left side of its face, completely covering where its left eye should be.`
 			`	It is completely static, with a lost gaze focused on the ceiling here until you approach it. It doesn't squat down to meet your eye level, and says nothing, simply gazing at you with its one eye, colored a bright gold.`
 			choice
 				`	"Hello, I'm <first> <last>. What can you tell me about the Coalition?"`
 				`	"Hello. Is it true that the Heliarchs defeated you and stole your ringworlds?"`
-			`	It continues to stare at you for a while, without as much as blinking. It looks over to a bench in one of the quieter areas here, and gestures for you to follow. As you two sit down, it finally speaks up.`
+			`	It continues to stare at you for a while, without as much as blinking. It looks over to a bench in one of the quieter areas here, and gestures for you to follow. As you two sit down it finally speaks up.`
 			`	"Those three species arose in relative rapid succession, all in close proximity, compared to how other species tend to be separated by long periods of time, and longer still their distances. So large are the gaps, that one might never learn of those that came before. But, that was not the case for the three. The first of them, the Saryds, were in many ways much like us Quarg in our younger days, and we perhaps were much too lenient because of that... The Kimek, traumatized by the billions fallen in their famines, sought help to make sure they would never face such a crisis again, and were eager to establish friendly relations with the Saryds. The Arachi, in a way, parallel humanity's development, though they were less keen on letting their inner conflicts be made public. They were the last of the three, and upon meeting their two seniors, invested heavily on research, to catch up.`
 			`	"In the intersecting point of their territories, we built our ringworlds. Seven thousand Earth years ago, the three species of the Coalition sought to take over those rings. After centuries... no, a millennium of fighting, we left that part of the galaxy."`
 			choice
