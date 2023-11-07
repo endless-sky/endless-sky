@@ -40,18 +40,23 @@ void Timer::Load(const DataNode &node, const Mission *mission)
 	if(node.Size() > 1)
 		name = node.Token(1);
 
-	this->mission = mission;
 
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "time" && child.Size() > 1)
 		{
-			base = static_cast<int64_t>(child.Value(1));
+			timeToWait = static_cast<int64_t>(child.Value(1));
 			if(child.Size() > 2)
 				rand = static_cast<uint32_t>(child.Value(2));
 		}
 		else if(child.Token(0) == "idle")
+		{
 			requireIdle = true;
+			// We square the max speed value here, so it can be conveniently 
+			// compared to the flagship's squared velocity length below.
+			if(child.Size() > 1)
+				idleMaxSpeed = child.Value(1) * child.Value(1);
+		}
 		else if(child.Token(0) == "optional")
 			optional = true;
 		else if(child.Token(0) == "system" && child.Size() > 1)
@@ -97,11 +102,13 @@ void Timer::Load(const DataNode &node, const Mission *mission)
 			repeatReset = true;
 		else if(child.Token(0) == "reset fired")
 			resetFired = true;
-		// We keep "on timeup" as separate tokens so that it's compatible with MissionAction syntax
+		// We keep "on timeup" as separate tokens so that it's compatible with MissionAction syntax.
 		else if(child.Token(0) == "on" && child.Size() > 1 && child.Token(1) == "timeup")
-			action.Load(child);
+			actions[TIMEUP].Load(child);
 		else if(child.Token(0) == "on" && child.Size() > 1 && child.Token(1) == "reset")
-			resetAction.Load(child);
+			actions[RESET].Load(child);
+		else
+			child.PrintTrace("Skipping unrecognized attribute:");
 
 	}
 }
@@ -109,7 +116,7 @@ void Timer::Load(const DataNode &node, const Mission *mission)
 
 
 // Note: the Save() function can assume this is an instantiated Timer, not a template,
-// so the time to wait will be saved fully calculated, and with any elapsed time subtracted
+// so the time to wait will be saved fully calculated, and with any elapsed time subtracted.
 void Timer::Save(DataWriter &out) const
 {
 	// If this Timer should no longer appear in-game, don't serialize it.
@@ -132,7 +139,12 @@ void Timer::Save(DataWriter &out) const
 			systems.Save(out);
 		}
 		if(requireIdle)
-			out.Write("idle");
+		{
+			if(idleMaxSpeed == DEFAULT_MAX_SPEED)
+				out.Write("idle");
+			else
+				out.Write("idle", sqrt(idleMaxSpeed));
+		}
 		if(optional)
 			out.Write("optional");
 		if(requireUncloaked)
@@ -167,8 +179,9 @@ void Timer::Save(DataWriter &out) const
 			out.Write("proximity settings", proximity, distance);
 		}
 
-		action.Save(out);
-		resetAction.Save(out);
+		for(const auto &it : actions)
+			it.second.Save(out);
+
 	}
 	out.EndChild();
 }
@@ -176,14 +189,12 @@ void Timer::Save(DataWriter &out) const
 
 
 // Calculate the total time to wait, including any random value,
-// and instantiate the triggered action
+// and instantiate the triggered action.
 Timer Timer::Instantiate(map<string, string> &subs,
 						const System *origin, int jumps, int64_t payload) const
 {
 	Timer result;
 	result.name = name;
-	result.base = base;
-	result.rand = rand;
 	result.requireIdle = requireIdle;
 	result.requireUncloaked = requireUncloaked;
 	result.system = system;
@@ -195,18 +206,19 @@ Timer Timer::Instantiate(map<string, string> &subs,
 	result.resetCondition = resetCondition;
 	result.repeatReset = repeatReset;
 	result.resetFired = resetFired;
+	result.idleMaxSpeed = idleMaxSpeed;
 
 	result.timeElapsed = timeElapsed;
 	result.isComplete = isComplete;
 	result.isActive = isActive;
 
-	result.action = action.Instantiate(subs, origin, jumps, payload);
-	result.resetAction = resetAction.Instantiate(subs, origin, jumps, payload);
+	for(const auto &it : actions)
+		result.actions[it.first] = it.second.Instantiate(subs, origin, jumps, payload);
 
 	if(rand >= 1)
-		result.timeToWait = base + Random::Int(rand);
+		result.timeToWait = timeToWait + Random::Int(rand);
 	else
-		result.timeToWait = base;
+		result.timeToWait = timeToWait;
 
 	return result;
 }
@@ -227,7 +239,7 @@ bool Timer::IsOptional() const
 
 
 
-void Timer::ResetOn(ResetCondition cond, PlayerInfo &player, UI *ui)
+void Timer::ResetOn(ResetCondition cond, PlayerInfo &player, UI *ui, Mission *mission)
 {
 	bool reset = cond == resetCondition;
 	reset |= (cond == Timer::ResetCondition::LEAVE_ZONE && resetCondition == Timer::ResetCondition::PAUSE);
@@ -235,11 +247,11 @@ void Timer::ResetOn(ResetCondition cond, PlayerInfo &player, UI *ui)
 				|| resetCondition == Timer::ResetCondition::LEAVE_ZONE));
 	if(isActive && reset)
 	{
+		timeToWait = timeToWait + timeElapsed;
 		timeElapsed = 0;
-		timeToWait = base + Random::Int(rand);
 		if(repeatReset || !resetFired)
 		{
-			resetAction.Do(player, ui, mission);
+			actions[RESET].Do(player, ui, mission);
 			resetFired = true;
 		}
 		isActive = false;
@@ -248,36 +260,37 @@ void Timer::ResetOn(ResetCondition cond, PlayerInfo &player, UI *ui)
 
 
 
-void Timer::Step(PlayerInfo &player, UI *ui)
+void Timer::Step(PlayerInfo &player, UI *ui, Mission *mission)
 {
 	if(isComplete)
 		return;
-	if(!player.Flagship())
+	Ship *flagship = player.Flagship();
+	if(!flagship)
 		return;
-	if((system && player.Flagship()->GetSystem() != system) ||
-		(!systems.IsEmpty() && !systems.Matches(player.Flagship()->GetSystem())))
+	if((system && flagship->GetSystem() != system) ||
+		(!systems.IsEmpty() && !systems.Matches(flagship->GetSystem())))
 	{
-		ResetOn(Timer::ResetCondition::LEAVE_SYSTEM, player, ui);
+		ResetOn(Timer::ResetCondition::LEAVE_SYSTEM, player, ui, mission);
 		return;
 	}
 	if(requireIdle)
 	{
-		bool shipIdle = (!player.Flagship()->IsThrusting() && !player.Flagship()->IsSteering()
-						&& !player.Flagship()->IsReversing());
-		for(const Hardpoint &weapon : player.Flagship()->Weapons())
+		bool shipIdle = (!flagship->IsThrusting() && !flagship->IsSteering()
+						&& !flagship->IsReversing() && flagship->Velocity().LengthSquared() < idleMaxSpeed);
+		for(const Hardpoint &weapon : flagship->Weapons())
 			shipIdle &= !weapon.WasFiring();
 		if(!shipIdle)
 		{
-			ResetOn(Timer::ResetCondition::PAUSE, player, ui);
+			ResetOn(Timer::ResetCondition::PAUSE, player, ui, mission);
 			return;
 		}
 	}
 	if(requireUncloaked)
 	{
-		double cloak = player.Flagship()->Cloaking();
+		double cloak = flagship->Cloaking();
 		if(cloak != 0.)
 		{
-			ResetOn(Timer::ResetCondition::PAUSE, player, ui);
+			ResetOn(Timer::ResetCondition::PAUSE, player, ui, mission);
 			return;
 		}
 	}
@@ -290,7 +303,7 @@ void Timer::Step(PlayerInfo &player, UI *ui)
 				if(proximityObject.HasValidPlanet() && (proximityCenter == proximityObject.GetPlanet() ||
 					proximityCenters.Matches(proximityObject.GetPlanet())))
 				{
-					double dist = player.Flagship()->Position().Distance(proximityObject.Position());
+					double dist = flagship->Position().Distance(proximityObject.Position());
 					if((closeTo && dist <= proximity) || (!closeTo && dist >= proximity))
 					{
 						inProximity = true;
@@ -300,16 +313,14 @@ void Timer::Step(PlayerInfo &player, UI *ui)
 		}
 		if(!inProximity)
 		{
-			ResetOn(Timer::ResetCondition::LEAVE_ZONE, player, ui);
+			ResetOn(Timer::ResetCondition::LEAVE_ZONE, player, ui, mission);
 			return;
 		}
 	}
 	isActive = true;
 	if(++timeElapsed >= timeToWait)
 	{
-		if(!name.empty())
-			player.Conditions().Add("timer: " + name + ": complete", 1);
-		action.Do(player, ui, mission);
+		actions[TIMEUP].Do(player, ui, mission);
 		isComplete = true;
 	}
 }
