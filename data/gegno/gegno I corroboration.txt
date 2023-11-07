@@ -537,7 +537,7 @@ mission "Return to Giaru Gegno"
 	destination "Giaru Gegno"
 	to offer
 		has "event: gegno: quarg talks"
-		not "Gegno: Genocide Defense: offered"
+		not "Gegno Genocide Defense: offered"
 	on enter
 		dialog
 			`Upon departure from <origin>, you receive an incoming message. "Greetings, human <first> <last>. This message is from Adrauni. Please return to our ringworld at the first opportunity given to you."`
@@ -552,7 +552,7 @@ mission "Gegno Anticipation"
 	clearance
 	to offer
 		has "Return to Giaru Gegno: offered"
-		not "Gegno: Genocide Defense: offererd"
+		not "Gegno Genocide Defense: offererd"
 		not "Gegno Intervention: offered"
 	on offer
 		conversation
@@ -841,20 +841,20 @@ mission "Gegno Anticipation"
 
 # mission "Gegno Intervention"
 #	landing
-#	(needs an origin within a set distance in gegno space?)
+#	source
+#		near "Heutesl" 100
 #	destination "Dueyu Eitch"
 #	deadline 8
 #	to offer
 #		or
 #			"Gegno: BGS" >= 6
-#			"Gegno Anticipation: declined"
 #			and
 #				"Gegno: BGS" >= 3
 #				"Full Vi Backlash: offered"
 #			and
 #				"Gegno: BGS" >= 3
 #				"reputation: Gegno Scin" <= 200 (tbd)
-#		not "Gegno: Genocide Defense: offered"
+#		not "Gegno Genocide Defense: offered"
 #
 #	on offer
 #		conversation
@@ -903,8 +903,7 @@ mission "Gegno Anticipation"
 #
 #			label "Veiuye"
 #
-#			`After you land on <planet>, you are greeted by a few Quarg who motion you to follow them. As they escort you through the halls of the ring, you notice that the lack of Gegno presence hasn't changed since your last visit. Down at the end of the next # corridor you see Adrauni waiting for you, however beside him is a Gegno in some form of strange attire. Once you meet up with them, the other Quarg head off into a different direction, and Adrauni begins walking down another hallway. "Please, indulge in # accompanying us."
-#			`	As you follow them, Adrauni begins to speak. "Do you recall what I intently spoke of during our previous meeting?
+#
 
 
 # mission "Acquiescence"

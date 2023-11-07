@@ -722,7 +722,7 @@ mission "Vi Augen"
 
 			label "post acquiescence"
 			`After you power down your ship's systems and make your way into the ringworld, you are abruptly greeted by a group of Quarg led by none other than Adrauni. "<first> <last>, please swiftly follow." Without room for questions, it and the other Quarg quickly escort you to another room a few sections away from the hangar, similar to the one you visited before. This time, there is no table or chairs to sit at, and after the door shuts behind you, Adrauni addresses you once more, seemingly rather disappointed.`
-			`	<First Last>. It has come to my watchful attention that you have been participating in, repetitious destructive actions, regarding factions of the Gegno."`
+			`	<First Last>. It has come to my watchful attention that you have been participating in excessively destructive actions regarding factions of the Gegno."`
 #			choice
 
 
