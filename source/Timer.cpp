@@ -52,7 +52,7 @@ void Timer::Load(const DataNode &node, const Mission *mission)
 		else if(child.Token(0) == "idle")
 		{
 			requireIdle = true;
-			// We square the max speed value here, so it can be conveniently 
+			// We square the max speed value here, so it can be conveniently
 			// compared to the flagship's squared velocity length below.
 			if(child.Size() > 1)
 				idleMaxSpeed = child.Value(1) * child.Value(1);
