@@ -2076,6 +2076,10 @@ mission "Heliarch License 1"
 			`	"Discussed your exploits, the consuls have. Much satisfaction, your contributions brought us," the Kimek continues.`
 			`	"With you, a meeting they request. To <destination> you must go, if to join our ranks, you so wish," the Arach finishes.`
 				accept
+	on accept
+		"assisting heliarchy" ++
+	on fail
+		"assisting heliarchy" --
 
 mission "Heliarch License 2"
 	landing
