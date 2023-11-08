@@ -2071,7 +2071,7 @@ mission "Heliarch License 1"
 		not "assisting heliarchy"
 		not "assisting lunarium"
 	to complete
-		not "assisting lunarium"	
+		not "assisting lunarium"
 	to fail
 		has "joined the lunarium"
 	on offer
