@@ -2081,7 +2081,7 @@ mission "Heliarch License 1"
 			`	"With you, a meeting they request. To <destination> you must go, if to join our ranks, you so wish," the Arach finishes.`
 				accept
 	on visit
-		dialog `The Heliarch authorities of the <origin> have offered you a position in the ranks of the Heliarchs. However, you are currently assisting the Lunarium. If you want to meet with the authorities and officially join the Heliarchy, then come back when you are no longer assisting the Lunarium.`
+		dialog `You are currently assisting the Lunarium. Cancel or finish any missions you have for them if you want to join the Heliarchy.`
 
 mission "Heliarch License 2"
 	landing
