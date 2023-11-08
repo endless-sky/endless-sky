@@ -2082,7 +2082,7 @@ mission "Heliarch License 1"
 				accept
 	on visit
 		conversation
-			`The Heliarch authorities of the <origin> have offered you a position in the ranks of the Heliarchs. However, you are currently assisting the Lunarium. If you want to meet with the authorities and officialy join the Heliarchy, then come back when you are no longer assisting the Lunarium.`
+			`The Heliarch authorities of the <origin> have offered you a position in the ranks of the Heliarchs. However, you are currently assisting the Lunarium. If you want to meet with the authorities and officially join the Heliarchy, then come back when you are no longer assisting the Lunarium.`
 
 mission "Heliarch License 2"
 	landing
