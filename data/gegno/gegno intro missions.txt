@@ -260,14 +260,7 @@ mission "Visit Quarg in Gegno Space"
 		personality staying
 		system "Heutesl"
 		fleet "Scin Warfleet"
-	npc
-		government "Gegno Scin (Neutral)"
-		personality surveillance
-		system "Heutesl"
-		fleet
-			names "gegno scin"
-			variant
-				"Tridymite"
+
 				
 mission "Discover Hostile Quarg"
 	invisible
@@ -450,26 +443,61 @@ mission "Giaru Gegno: Revisit"
 
 
 mission "Suspicious Scin"
-	name `Mysterious Signal`
-	description `Somehow, a strange map-like device, similar to one you've encountered previously, found itself on your ship, pointing to one planet in particular. Visiting it might shed some light on the situation.`
+	invisible
 	landing
 	source "Giaru Gegno"
 	destination "Yiia Iyr"
 	to offer
-		or
-			has "Giaru Gegno: Quarg Contact: offered"
-			has "Giaru Gegno: Revisit: offered"
+		has "Visit Quarg in Gegno Space: offered"
+		not "Gegno Genocide Defense: offered"
 	on enter
+		system
+			near "Aleit" 4 100
 		conversation
-			`As you're leaving the Quarg ringworld, a faint signal starts emitting from somewhere in your ship. You aren't sure what it is, as it doesn't appear to be originating from the ship itself, so you decide to take a look. After a few minutes of searching for the culprit, you come across a device not too dissimilar from the one that the Gegno you met on Var Oti had given you, arbitarily shoved into some corner of your ship's infrastructure. How or when it got there is unknown, but at least it wasn't something more dangerous like an explosive.`
-			`	Once you retrieve the device, you notice it's displaying some sort of map that has several locations in the region marked in some way or another, along with various scribblings in a langauge you can't understand. Although it's hard to make sense of what any of it means, one particular planet displayed has several graphics around it, much more extravagant than the rest. Perhaps visiting it will shed some light on this strange situation.`
-	on enter "Ilirco"
+			action
+				set "gegno: mysterious device"
+			`As you're traveling through Gegno space, a faint signal starts emitting from somewhere in your ship. You aren't sure what it is, as it doesn't appear to be originating from the ship itself, so you decide to take a look. After a few minutes of searching for the culprit, you come across a device not too dissimilar from the one that the Gegno you met on Var Oti had given you, arbitrarily shoved into some corner of your ship's infrastructure. How or when it got there is unknown, but at least it wasn't something more dangerous like an explosive.`
+			`	Once you retrieve the device, you notice that alongside with the signal it's emitting, there is some sort of map display that has several locations in the region marked in some way or another, along with various scribblings in a language you can't understand. Although it's hard to make sense of what any of it means, one particular planet displayed has several graphics around it, much more extravagant than the rest. Perhaps finding this planet will shed some light on this strange situation.`
+	on enter
+		system
+			near "Pukako" 2
 		dialog
-			`Once you enter the system, the mysterious device suddenly short-circuits and stops working.`
+			`The signal strength coming from the mysterious device is weaker now. You must be getting further away from the location marked on the device.`
+				to display
+					has "gegno: mysterious device"
+	on enter
+		system
+			near "Ptetubo" 2
+		dialog
+			`The signal strength coming from the mysterious device is weaker now. You must be getting further away from the location marked on the device.`
+				to display
+					has "gegno: mysterious device"
+	on enter
+		system
+			near "Ilirco" 1 2
+		dialog
+			`The signal strength coming from the mysterious device is stronger now. You must be getting close to the location marked on the device.`
+				to display
+					has "gegno: mysterious device"
+
+	on enter "Ilirco"
+		conversation
+			action
+				clear "gegno: mysterious device"
+			`Once you enter the system, the mysterious device suddenly short-circuits and stops working. You aren't sure if that means you've found your destination, or if this whole situation was just a ruse. Regardless, all that's left to do is to land on the planet and see if anything is there.`
+
 	npc
 		government "Gegno Scin (Neutral)"
 		personality launching mute uninterested
 		system "Aleit"
+		fleet
+			names "gegno scin"
+			variant
+				"Tridymite"
+	npc
+		government "Gegno Scin (Neutral)"
+		personality launching staying mute uninterested
+		system "Ilirco"
 		fleet
 			names "gegno scin"
 			variant
