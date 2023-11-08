@@ -1219,6 +1219,8 @@ mission "Heliarch Expedition 5"
 		conversation
 			`When you've touched down on the landing pads, you see you've received a message from the Heliarchs you brought to Ruin, the mysterious world on the other side of the wormhole the Pug left in Deneb. "Captain <last>, finished what research we could do on the broken ring, we have. About to jump back into the Coalition, we are. Imagine I do that like to speak with you after receiving our report, Consul Aulori will, so head you should to the <planet> as soon as possible."`
 				accept
+	on accept
+		"assisting heliarchy" ++
 	on fail
 		"assisting heliarchy" --
 	on complete
@@ -2079,6 +2081,8 @@ mission "Heliarch License 1"
 	on accept
 		"assisting heliarchy" ++
 	on fail
+		"assisting heliarchy" --
+	on complete
 		"assisting heliarchy" --
 
 mission "Heliarch License 2"
