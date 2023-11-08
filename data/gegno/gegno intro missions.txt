@@ -449,17 +449,42 @@ mission "Giaru Gegno: Revisit"
 				decline
 
 
-mission "First Contact: Gegno Scin"
+mission "Suspicious Scin"
+	name `Mysterious Signal`
+	description `Somehow, a strange map-like device, similar to one you've encountered previously, found itself on your ship, pointing to one planet in particular. Visiting it might shed some light on the situation.`
 	landing
-	source "Yiia Iyr"
+	source "Giaru Gegno"
+	destination "Yiia Iyr"
 	to offer
 		or
 			has "Giaru Gegno: Quarg Contact: offered"
 			has "Giaru Gegno: Revisit: offered"
+	on enter
+		conversation
+			`As you're leaving the Quarg ringworld, a faint signal starts emitting from somewhere in your ship. You aren't sure what it is, as it doesn't appear to be originating from the ship itself, so you decide to take a look. After a few minutes of searching for the culprit, you come across a device not too dissimilar from the one that the Gegno you met on Var Oti had given you, arbitarily shoved into some corner of your ship's infrastructure. How or when it got there is unknown, but at least it wasn't something more dangerous like an explosive.`
+			`	Once you retrieve the device, you notice it's displaying some sort of map that has several locations in the region marked in some way or another, along with various scribblings in a langauge you can't understand. Although it's hard to make sense of what any of it means, one particular planet displayed has several graphics around it, much more extravagant than the rest. Perhaps visiting it will shed some light on this strange situation.`
+	on enter "Ilirco"
+		dialog
+			`Once you enter the system, the mysterious device suddenly short-circuits and stops working.`
+	npc
+		government "Gegno Scin (Neutral)"
+		personality launching mute uninterested
+		system "Aleit"
+		fleet
+			names "gegno scin"
+			variant
+				"Tridymite"
+
+
+mission "First Contact: Gegno Scin"
+	landing
+	source "Yiia Iyr"
+	to offer
+		has "Suspicious Scin: offered"
 		not "Gegno Genocide Defense: offered"
 	on offer
 		conversation
-			`You make your descent to the surface of this world, going through several thick layers of clouds. Once you break though them and prepare to land, you notice what appear to be a few Gegno Scin ships grounded nearby, easily distinguished by their various green color patterns. Two of them look like military vessels you've seen in nearby systems, while a third one between them is a small shuttlecraft. Before you continue further, one of the warships begins to lift off the ground, heading for your direction.`
+			`You make your descent to the surface of this world, going through several thick layers of clouds. Once you break though them and prepare to land, you notice what appear to be a few Gegno Scin ships grounded nearby, easily distinguished by their various green color patterns. Two of them look like military vessels you've seen in nearby systems, while a third one between them is a small shuttlecraft. It's almost as if they were expecting you, as before you continue further, one of the warships begins to lift off the ground, heading for your direction.`
 			choice
 				`	(Leave the planet.)`
 					goto "leave"
@@ -473,7 +498,7 @@ mission "First Contact: Gegno Scin"
 			label "leave"
 			action
 				set "gegno: left scin"
-			`	Wary of the Scin warship, you turn around and begin to ascend back into space. The Scin ship advances towards yours, but as it comes closer, it begins to take on an escort formation with you, following you as you leave the planet's atmosphere. Once you finally make it back into space, the Scin ship breaks from formation and flies away. You're unsure of what they're doing on the planet, but it's probably better you are careful not to get involved.`
+			`	Wary of the Scin warship, you turn around and begin to ascend back into space. The Scin ship advances towards yours, but as it comes closer, it begins to take on an escort formation with you, following you as you leave the planet's atmosphere. Once you finally make it back into space, the Scin ship breaks from formation and flies away. You're unsure of what they're doing on the planet or why you've been lead to them, but it's probably better you're careful not to get involved.`
 				decline
 
 			label "follow"

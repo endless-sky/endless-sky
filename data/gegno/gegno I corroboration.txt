@@ -443,7 +443,7 @@ mission "Under the Nose"
 		ship "Rhyolite" "Imtydei"
 
 
-mission "Scin Suspicion"
+mission "Scin Surveillance"
 #	invisible
 	repeat
 	landing
