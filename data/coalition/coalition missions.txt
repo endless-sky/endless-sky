@@ -3488,50 +3488,112 @@ mission "Coalition: Struggling Author 4"
 			`Landing on <planet>, Anna is excitedly holding a copy of 'Beyond the Hyperdrive.' She hastily opens the hatch as soon as it unlocks.`
 			choice
 				`	"Wait for me!"`
-			`	Anna waits for you to catch up. "In the message they sent me, they included instructions on how to reach their offices," she explains. "Let's go!"`
-			`	You begin following Anna to the publisher's offices. You walk through endless rows of shops and streets, take a train to a large white building, before entering and approaching what looks like a receptionist.`
+			`	Anna stops, waiting for you to catch up. "In the message they sent me, they included instructions on how to reach their offices," she explains. "Let's go!"`
+			`	You begin following Anna to the publisher's offices. You walk through the spaceport and its endless rows of shops and streets, eventually approaching what looks like a train station. Anna looks at the message again and tells you which platform to go to and which train to take. After a few minutes the train arrives. You and Anna board the train and travel to a neighborhood, with a large white building dominating the skyline.`
+			`	Once the train stops, you get off onto the platform, and out of the station. Then, you walk around the building to find an entrance, before you see one. The entrance is busy; with many Kimek and the occasional Saryd and Arachi entering and exiting. Anna looks for a front desk, before she sees one and directs you to walk, to a Kimek, who looks like a receptionist.`
 			choice
 				`	"Hello, do you happen to know where Kimek Reader Publishing is?"`
 			`	"On the 16th floor, Kimek Reader Publishing is. Over there, the elevators are.", says the receptionist.`
-			`	You turn and eventually find what looks like the Kimek equivalent of an elevator.`
-			`	You and Anna enter the elevator, as Anna presses a button that closes the door and takes you up. When the door opens, you see a Kimek in front of you, a necklace around it with ornate jewelry and a translation device.`
+			`	You turn to where the Kimek points you; and see six large elevators, larger than what you are familiar with in human space. You look at all six and choose to enter the least crowded-looking one.`
+			`	You and Anna walk to and enter the elevator, as Anna presses a button. You hear the noises of the Kimek communicating in their native languages and get the feeling they are speaking of you.`
+			`	The elevator makes many stops at each floor of the building, as more and more Kimek reach their destinations. When the door opens on the 16th floor, the elevator is now half-full; and before you is a Kimek with a necklace around it with ornate jewelry and a translation device.`
 			`	"Greetings, humans. Follow me, you must, so discuss your book, we can," says the Kimek through its translation box.`
-			`	At the direction of the Kimek, you and Anna begin walking until directed to a room with glass walls. Anna puts down the copy of her book on the table, and the three of you take a seat.`
+			`	At the direction of the Kimek, you and Anna begin walking until directed to a room with glass walls. You walk by a lounge, an area where multiple Kimek are at a table discussing something with a group of Heliarchs, and a large open workspace where individual Kimek are sitting at their own computers.`
+			`	After a few minutes of walking, there is now an office with another Kimek and a team of five Heliarchs sitting, the Kimek directing you pointing toward that room.`
+			`As you enter, Anna puts down the copy of her book on the table, and the two of you take a seat. The Kimek that led you here briefly speaks to the other Kimek sitting at the interview table, before leaving.`
+			`	The Kimek's translation device begins to speak.`
+			`	"Greetings. Ikiyachee, my name is, and head editor of Kimek Reader Publishing, I am. To see an alien want to publish a book, interesting and unexpected it was, in my time here, 70 years long.", the Kimek says.`
+			`	"Hello, I am Anna Fangvin, and this is my friend <first> <last>, who has been very helpful in bringing me here."`
 			choice
-				`	"Hello. My name is <first> <last>, and this is my friend Anna Fangvin."`
-			`	"Greetings. At Kimek Reader Publishing, I work. A human, I have never encountered. But the book you sent, translate it we were able to."`
-			`	"Read it, we still haven't, and run it past the Heliarch censors, we must."`
-			`	Two Heliarch agents enter the room. "Supervise the interview, we are obligated to."`
+				`	"Yes, I am <first>, and that is my friend."`
+			`	"From the introduction and the first few pages, interesting it sounded, but run it past the Heliarch censors, we must. So, <first>, long and intensive, this interview will be. As very unique, to meet a human like her is, and to adapt her book to our culture, a long and drawn out process it will be."`
 			choice
 				`	"How long will I have to wait?"`
 					goto "wait time"
 				`	"Should I stay here to accompany Anna?`
 					goto "accompany"
 			label "wait time"
-			`	"Wait a few hours, you must," explains the Kimek.`
+			`	"Wait a few hours, you must, but the entire process, perhaps half a year, wait Anna must.", explains Ikiyachee.`
 			choice
+				`	"A few hours? That's quite boring, isn't it?"`
+					goto "boring"
 				`	"Should I stay here to accompany Anna?"`
+					goto "accompany"
+			label "boring"
+			`	"If boring for you, the interview is, then leave you may, to the lounge.`
+			choice
+				`	"Then I'm going to the lounge. Where is it?"`
+					goto "directions to lounge"
+				`	(Accompany Anna during the interview.)`
+					goto "stay in interview"
+			label "directions to lounge"
+			`	Ikiyachee gives you directions to the lounge, which you take.`
+			choice
+				`	(Wait in the lounge.)`
+					goto "lounge"
 			label "accompany"
-			`	"To accompany her in this room, we allow you to, but a lounge for you, we have. If too boring, the interview is, then leave you may."`
+			`	"To stay with her during the interview, we allow you to, but a lounge for you, we have. If too boring, the interview is, then leave you may."`
 			choice
 				`	(Wait in the lounge.)`
 					goto "lounge"
 				`	(Accompany Anna during the interview.)`
-			`	You choose to remain in the room. Once the Kimek asks the first question, Anna is all too happy to begin discussing the contents of her novel in great detail.`
-			choice
-				`	(Leave the room to avoid spoilers.)`
-					goto "lounge"
-				`	(Stay in the room.)`
+					goto "stay in interview"
+			label "stay in interview"
+			`	You choose to remain in the room. Once the first questions are asked, Anna is all too happy to begin discussing the contents of her novel in great detail.`
 			`	Under the watchful eye of the two Heliarchs in the room, Anna explains her anti-Quarg sentiments, the reasoning behind her choice to write the book, and the content of the book. She speaks quickly, but the Heliarchs' numerous questions for clarification and elaboration make the process a long one.`
-			`	As the hours pass, Anna's enthusiastic tone remains strong and constant. The Kimek then takes the book, puts it in a nearby filing cabinet (or the Kimek equivalent) and thanks you and Anna.`
-				goto "interview over"
+			`	As you listen, you learn that due to the Coalition's censorship and review process, Anna will have to stay for about half a year, during which she will have an apartment to live in.`
+			choice
+				`	"Do I have to stay with Anna here for half a year?"`
+					goto "half a year"
+				`Say nothing.`
+			label "rest of interview"
+			`	As the hours pass, Anna's enthusiastic tone remains strong and constant. The Kimek then takes the book, puts it in a nearby filing cabinet and thanks you and Anna. The three of you exchange pleasantries.`
+			`	You leave the interview room, the Heliarchs staying in the room, presumably to continue discussion with the Kimek. As the two of you walk, Anna begins to speak.`
+				goto thanks
+			label "half a year"
+			`	"Required to stay with Anna, you are not, but if you wish to, stay with her you may. To return to human space, you are free to do so.", says the Kimek.`
+				goto "rest of interview"
 			label "lounge"
-			`	You leave the room and walk to the lounge. Several Kimek are chatting in their native language, while a Saryd and Arach have chosen to rest.`
-			`	After a few hours, you see Anna emerge out of the room and walk toward you.`
+			`	You leave the room and walk to the lounge. There are several tables where many Kimek are chatting in their native language, while a few Saryds and Arachs are visibly relaxed. You sit at an empty table and pass the time, occasionally going to the water dispenser to hydrate yourself.`
+			`	After thirty minutes, a Kimek approaches you. Its translation device speaks. "So, the alien in our space, you are?"`
+			# kst-1 = [K]imek [s]mall[t]alk 1
+			choice
+				`	"I don't want to talk to you."`
+					goto "kst-1 ignore"
+				`	"Yes, I am <first> <last>. Glad to meet you."`
+					goto "kst-1 glad to meet you"
+				`	"Well, I'm not the only alien."`
+					goto "kst-1 not only alien"
+				`	"We call ourselves humans, not aliens."`
+					goto "kst-1 endonym"
+			label "kst-1 glad to meet you"
+			`	"Same. 'Akacharra', my name is. To our fine neighborhood, for what purpose have you come here?"`
+			choice
+				`	"Oh, my friend Anna Fangvin is publishing a book here. I brought her here."`
+					goto "kst-1 anna"
+			label "kst-1 not only alien"
+			`	"If more of you, here there are, then who are they?"`
+			choice
+				`	"It's just two; my friend Anna Fangvin and I. She's publishing a book in Coalition space. I brought her here."`
+					goto "kst-1 anna"
+			label "kst-1 endonym"
+			`	"'Humans', you are? Know that, I never did. For correcting me and educating me on your fellow kind, I am thankful.", says the Kimek. "So, the other human, who are they?"`
+			choice
+				`"Oh, that's my friend Anna Fangvin. She's here to publish her book in Coalition space."`
+			label "kst-1 anna"
+			`	"Anna Fangvin, her name is? An interesting name, it is, and her book, just as interesting it will be when it is released. But know the title of the book, I do not, so if tell me you will, appreciate it I will."`
+			choice
+				`"It is called 'Beyond the Hyperdrive'. It could very much be years before release, but I'm glad you're taking interest.`
+			`	"So, 'Beyond the Hyperdrive', it is? Thankful, I am, and on its release, buy the book I will remember to."`
+			`	The Kimek walks away after the two of you exchange farewells, leaving you to your own devices.`
+				goto "anna approaches"
+			label "kst-1 ignore"
+			`	"Sorry for invading your personal space, I am." The Kimek quickly walks away.`
+			label "anna approaches"
+			`	After a few hours, you see Anna enter the lounge and walk toward you. She takes a seat right next to you.`
 			choice
 				`	"How did the interview go?"`
-			label "interview over"
-			`	"They told me that due to the censorship and review process, I'll have to wait for roughly half a year. Thankfully, they have arranged a small apartment for me to live in. You can go on your own now, but please make sure you come back. If you want to return to human space, please add a reminder to come back and meet me."`
+			`	"They told me that due to the censorship and review process, I'll have to wait for roughly half a year. Thankfully, they have arranged a small apartment for me to live in. You can go on your own now, but please make sure you come back. If you want to return to human space, please remember to come back and meet me."`
 			choice
 				`	"Why don't you just go back to human space?"`
 					goto stay
@@ -3541,7 +3603,10 @@ mission "Coalition: Struggling Author 4"
 			choice
 				`	"Just helping out."`
 				`	"I'm happy to have helped you."`
-			`	With that, you leave the room, and eventually the building. You board the train and walk past the same series of endless shops and streets in the spaceport city before returning to your ship. As soon as you're in your ship, you add a reminder to visit Anna later.`
+			`	"Again, thank you. You will not be needed anymore for the process."`
+			choice
+				`	"(Leave.)"`
+			`	You return to the spaceport the way you came; and return to your ship. You are slightly anxious about the outcome of the process and whether Anna's book will even make it through the process and be published, but you have more important things to attend to for the next six months.`
 				decline
 			label stay
 			`	"I need to stay here so I can answer their questions during the review process. Don't worry about me."`
