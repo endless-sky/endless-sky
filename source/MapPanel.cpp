@@ -53,6 +53,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Wormhole.h"
 
 #include "opengl.h"
+#include "SpriteSet.h"
 
 #include <algorithm>
 #include <cctype>
@@ -318,6 +319,7 @@ void MapPanel::Draw()
 	DrawSystems();
 	DrawNames();
 	DrawMissions();
+	DrawSelectedSystem();
 }
 
 
@@ -1213,6 +1215,39 @@ void MapPanel::DrawTravelPlan()
 		else
 			LineShader::Draw(from, to, 3.f, drawColor);
 	}
+}
+
+
+
+// Fill in the top-middle header bar that names the selected system, and indicates its distance.
+void MapPanel::DrawSelectedSystem() const
+{
+	const Sprite *sprite = SpriteSet::Get("ui/selected system");
+	SpriteShader::Draw(sprite, Point(0., Screen::Top() + .5f * sprite->Height()));
+
+	string text;
+	if(!player.KnowsName(*selectedSystem))
+		text = "Selected system: unexplored system";
+	else
+		text = "Selected system: " + selectedSystem->Name();
+
+	int jumps = 0;
+	const vector<const System *> &plan = player.TravelPlan();
+	auto it = find(plan.begin(), plan.end(), selectedSystem);
+	if(it != plan.end())
+		jumps = plan.end() - it;
+	else if(distance.HasRoute(selectedSystem))
+		jumps = distance.Days(selectedSystem);
+
+	if(jumps == 1)
+		text += " (1 jump away)";
+	else if(jumps > 0)
+		text += " (" + to_string(jumps) + " jumps away)";
+
+	const Font &font = FontSet::Get(14);
+	Point pos(-175., Screen::Top() + .5 * (30. - font.Height()));
+	font.Draw({text, {350, Alignment::CENTER, Truncate::MIDDLE}},
+			  pos, *GameData::Colors().Get("bright"));
 }
 
 
