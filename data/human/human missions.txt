@@ -6868,7 +6868,7 @@ mission "Adelita 1"
 
 	on offer
 		conversation
-			`Walking around <origin>'s luxurious spaceport, you notice a significant group of people gathered around one of the larger hangars; there are prominent signs that say "The Evacuation of Hope" in bold letters by it. It looks like some sort of exhibition.`
+			`Walking around <origin>'s luxurious spaceport, you notice a significant group of people gathered around one of the larger hangars; there are prominent signs nearby that say "The Evacuation of Hope" in bold letters. It looks like some sort of exhibition.`
 			choice
 				`	(Check it out.)`
 				`	(Not right now.)`
@@ -6881,9 +6881,9 @@ mission "Adelita 1"
 					defer
 
 			`	"You're going to love it," she says. "No one knows who they really are, but Adelita's work is what inspired me to study journalism. Their mixture of mediums, their eye for story telling... I just love it."`
-			`	You reach the entrance to the exhibition soon enough. Inside is a large room filled with photos, videos, interviews and other mixed media. They focus on three groups: the refugees of Hope, the Navy that saved them, and the Paradise Worlds that protested the evacuation. At one end of the hangar, there is an installation with nearly a hundred original protest signs from rallies against the Dirt Belt and the Republic Navy; some of them quite crude and tasteless. It's a strong rebuke to see those displayed here, on a Paradise Planet.`
+			`	You reach the entrance to the exhibition soon enough. Inside is a large room filled with photos, videos, interviews, and other mixed media. They focus on three groups: the refugees of Hope, the Navy that saved them, and the Paradise Worlds that protested the evacuation. At one end of the hangar, there is an installation with nearly a hundred original protest signs from rallies against the Dirt Belt and the Republic Navy; some of them quite crude and tasteless. It's a strong rebuke to see those displayed here, on a Paradise Planet.`
 			`	There are many, many photos, but one catches your eye. It's of a woman standing in line to board a ship, a baby held at her hip and a look of sad determination on her face. Their cheeks, rosy and chapped, stand out in contrast with the cold blues in the background.`
-			`	You head towards the exit, but as the automatic doors open, an arctic blast rushes at you from every direction. Instead of the spaceport's open apron, you find yourself in a life-sized 3D representation of the evacuation of Hope, complete with simulated climate effects and a projected horizon. There are huge Navy Cruisers and Auxiliaries gradually being covered by ash in a snowy field near a small town as hundreds of refugees slowly board. But what stands out most is the massive volcano erupting in the background.`
+			`	You head towards the exit, but as the automatic doors open, an arctic blast rushes at you from every direction. Instead of the spaceport's open apron, you find yourself in a life-sized 3D representation of the evacuation of Hope, complete with simulated climate effects and a projected horizon. There are huge Navy Cruisers and Auxiliaries in a snowy field near a small town gradually being covered by ash as hundreds of refugees slowly board. But what stands out most is the massive volcano erupting in the background.`
 			`	"It's more of a collage than an exact rendering," says the young woman you met in line, having followed you all this way. "They took 3D recordings from different moments and areas of Hope and edited them together in various loops. The volcano was actually on the other side of the planet, for example. The magic of editing. So what do you think?"`
 			choice
 				`	"Impressive."`
@@ -6985,7 +6985,7 @@ mission "Adelita 2"
 			`	"Great. My name is Alejandra, but call me Ale. Here's the plan: you're going to drop me and a friend off at <planet> where we are going to film the conditions in a secret Syndicate sweatshop. Thing is, these aren't just poorly paid factory workers, but slaves. As you can imagine, we can't get in as regular workers, so with a bit of hacking we got ourselves jobs on-site as private security. We know that one of the Syndicate's 'trusted contractors' are getting the slaves from the pirates on Covert, and we also know where they do the transaction. So while we are getting the footage we need in the factories, you will be going with an associate, Bunker, to spy on the Syndicate's rendezvous with the pirates on <planet>."`
 			`	Ale senses your concern about spying on pirates and the Syndicate. "Don't worry, Bunker is a pro, and we have an array of long-range stealth drones that do the spying, you won't be anywhere near them. But pirates do frequent the system, so you'll need to be quick."`
 			`	She waves to the server for the bill as she finishes the last gulp of her smoothie. "Let's go. Everyone will be meeting at the landing pad shortly."`
-			`	You go back to the <ship>'s landing pad, and sure enough there are two people with backpacks waiting for you with a few cases. They introduce themselves as River and Bunker.`
+			`	You go back to the <ship>'s landing pad, and sure enough there are two people with backpacks and a few cases waiting for you. They introduce themselves as River and Bunker.`
 			choice
 				`	"I am Captain <first> <last>. Well met."`
 				`	"Hi, I'm <first>."`
@@ -7047,7 +7047,7 @@ mission "Adelita 4"
 				goto "on site"
 
 			label "player has a fleet"
-			`You carefully bring the <ship> into the atmosphere while the rest of your fleet stays in space so that the pirates won't catch wind of Adelita's operation. Luckily, it's not hard to find a remote canyon within range of the target area for you to lie low. You keep the <ship> hovering in case you need to make a quick escape, but you are low enough that Bunker releases the drones from the open cargo bay without a pressure suit. The drones are so small you can't make them out from the cockpit, nor can you see them on your ship's scanners. When Bunker returns to the cockpit, he sets up a display and sits at the controller. "Okay, they're on autopilot to the rendezvous site."`
+			`You carefully bring the <ship> into the atmosphere while the rest of your fleet stays in space so that the pirates won't catch wind of Adelita's operation. Luckily, it's not hard to find a remote canyon within range of the target area for you to lie low. You keep the <ship> hovering in case you need to make a quick escape while Bunker releases the drones from the open cargo bay. The drones are so small you can't make them out from the cockpit, nor can you see them on your ship's scanners. When Bunker returns to the cockpit, he sets up a display and sits at the controller. "Okay, they're on autopilot to the rendezvous site."`
 
 			label "on site"
 			`	Once the drones are on site, you can see a lone Syndicate-built freighter with a security detail posted in front of the loading ramp. "The pirates must be late," says Bunker, smirking. "Typical. I'm going to scatter the drones and set a proximity alert."`
