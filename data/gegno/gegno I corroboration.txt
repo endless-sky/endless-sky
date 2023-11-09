@@ -52,7 +52,6 @@ mission "Passive-Aggressive Observations"
 
 			label leave
 			action
-				set "gegno: left observations"
 			`	You decide to withdraw from the area, and the ships continue on their way towards the surface as if you weren't present. Regardless of whether or not they could have been hostile, getting mixed up with what may be some sort of military exercise could be dangerous, especially with the Vi.`
 				decline
 
@@ -60,12 +59,12 @@ mission "Passive-Aggressive Observations"
 		on kill
 			set "yvx killed"
 		government "Gegno Vi"
-		personality heroic vindictive staying ramming daring uninterested swarming
+		personality heroic vindictive staying ramming daring uninterested
 		system "Vorsuke"
 		ship "Rhyolite" "Imtydei"
 	npc save
 		government "Gegno Vi"
-		personality heroic vindictive staying uninterested swarming
+		personality heroic vindictive staying uninterested
 		system "Vorsuke"
 		ship "Schist" "Ess Ouec"
 
@@ -111,10 +110,8 @@ mission "Vi Military Group"
 		fleet
 			names "gegno vi"
 			variant
-				"Gneiss"
 				"Hornfel (Heavy Weapons)" 1
-				"Diorite" 1
-				"Eclogite" 3
+				"Eclogite" 2
 
 
 mission "Foreign Spectator I"
@@ -129,6 +126,8 @@ mission "Foreign Spectator I"
 	on enter "Eogho"
 		fail
 		"gegno: bgs" ++
+		conversation
+			`Although there is both a Vi and Scin fleet here, neither of them are engaging one another. Instead, they are observing a pair of ships, one from each side, that appear to be challenging one another. Maybe this is some sort of ceremonial event between the Gegno factions. It's probably best not to interfere.`
 
 	npc
 		on provoke
@@ -333,6 +332,7 @@ mission "Gegno Suspicions"
 	source "Giaru Gegno"
 	to offer
 		"gegno: bgs" >= 3
+		not "gegno: bgs" >= 6
 		not "Gegno Genocide Defense: offered"
 	on offer
 		conversation
@@ -387,7 +387,7 @@ mission "Gegno Suspicions"
 
 
 			label "negative rep"
-			`	"Formerly, I have offered suggestions of heedful interplay regarding the Gegno. However, we are increasingly aware of correlative happenings upon them involving yourself. It would seem consequential events have indeed occurred. Not often previously were we approached by Gegno, but a few notable occasions now have meaningful figures sought us out for inquiry - most notably due to violent circumstances." The Quarg stares at you for an extended period of time, waiting for some kind of answer.`
+			`	"Formerly, I have offered suggestions of heedful interplay regarding the Gegno. However, we are increasingly aware of correlative happenings upon them involving yourself. It would seem consequential events have indeed occurred. Not often previously were we approached by Gegno, but on a few notable occasions now have meaningful figures sought us out for inquiry - most notably due to violent circumstances." The Quarg stares at you for an extended period of time, waiting for some kind of answer.`
 			choice
 				`	"They attacked me first."`
 				`	"I wanted to get their attention."`
@@ -395,11 +395,11 @@ mission "Gegno Suspicions"
 				`	"Violence happens all the time in human space, but the Quarg don't seem interested in it."`
 					goto violence
 
-			`	The Quarg once again pauses for a long moment, staring at you. "Based on some principles, I may see reason for them to be, inclined, to do such. However, to do so in this manner would not line with their elder's interest, nor would any fabrications." The Quarg blinks at you, then ponders for a moment.`
+			`	The Quarg once again pauses for a long moment, staring at you. "Based on some principles, I may see reason for them to be, inclined, to do such. However, to do so in this case would not line with their elder's interest, nor would any, fabrications." The Quarg blinks at you, then ponders for a moment.`
 				goto cases
 
 			label attention
-			`	`
+			`	The Quarg blinks. "And you found a suitable solution to your, problem, by instigating unprovoked hostilities?" The Quarg then continues to stare at you in what you presume to be a judgemental manner for an awkward amount of time, then ponders to itself.`
 				goto cases
 
 			label violence
@@ -537,6 +537,7 @@ mission "Return to Giaru Gegno"
 	destination "Giaru Gegno"
 	to offer
 		has "event: gegno: quarg talks"
+		not "gegno: bgs" >= 6
 		not "Gegno Genocide Defense: offered"
 	on enter
 		dialog
@@ -553,7 +554,7 @@ mission "Gegno Anticipation"
 	to offer
 		has "Return to Giaru Gegno: offered"
 		not "Gegno Genocide Defense: offererd"
-		not "Gegno Intervention: offered"
+		not "gegno: bgs" >= 6
 	on offer
 		conversation
 			branch "negative rep"
@@ -818,7 +819,6 @@ mission "Gegno Anticipation"
 			`	"Although your actions thus far are in dissatisfaction, I aspire in future decisions being made to befit the wise on your journey ahead. I wish you an educational journey, <first> <last>." Adrauni bows for an extended period of time, then leaves the hangar. You get the feeling that this might have been the last time you meet with it. As you return to your ship, the Vi warriors continue watching from afar, but the Quarg continue to block them off. It is up to you to figure out yourself whether or not the Gegno will tolerate you any further.`
 				accept
 
-
 	on accept
 		clear "gegno: landing dialog"
 		clear "gegno: asked dialog"
@@ -838,72 +838,101 @@ mission "Gegno Anticipation"
 				"Quarg Wardragon"
 
 
+mission "Gegno Intervention"
+	landing
+	source
+		near "Heutesl" 100
+		not planet "Wye Tzeou"
+		not planet "Cyife"
+		not planet "Xurelei"
+	destination "Dueyu Eitch"
+	deadline 8
+	to offer
+		or
+			"gegno: bgs" >= 6
+			and
+				"gegno: bgs" >= 3
+				has "Full Vi Backlash: offered"
+			and
+				"gegno: bgs" >= 3
+				"reputation: Gegno Scin" <= 200
+#											^ TBD
+			and
+				"gegno: bgs" >= 3
+				or
+					has "interrupted arena"
+					has "provoked military"
+					has "zydee interference"
+					has "approached bystander"
+		not "Gegno Genocide Defense: offered"
 
-# mission "Gegno Intervention"
-#	landing
-#	source
-#		near "Heutesl" 100
-#	destination "Dueyu Eitch"
-#	deadline 8
-#	to offer
-#		or
-#			"Gegno: BGS" >= 6
-#			and
-#				"Gegno: BGS" >= 3
-#				"Full Vi Backlash: offered"
-#			and
-#				"Gegno: BGS" >= 3
-#				"reputation: Gegno Scin" <= 200 (tbd)
-#		not "Gegno Genocide Defense: offered"
-#
-#	on offer
-#		conversation
-#			branch "Nssyros"
-#				"flagship planet: Nssyros"
-#
-#			branch "Vigales"
-#				"flagship planet: Vigales"
-#
-#			branch "Dlia Jzaur"
-#				"flagship planet: Dlia Jzaur"
-#
-#			branch "Ilirco"
-#				"flagship planet: Ilirco"
-#
-#			branch "Ghneoe"
-#				"flagship planet: Ghneoe"
-#
-#			branch "Zydee"
-#				"flagship planet: Zydee"
-#
-#			branch "Veiuye"
-#				"flagship planet: Veiuye"
-#
-#
-#			`Giaru Gegno default convo."
-#				accept
-#
-#			label "Nssyros"
-#
-#
-#			label "Vigales"
-#
-#
-#			label "Dlia Jzaur"
-#
-#
-#			label "Ilirco"
-#
-#
-#			label "Ghneoe"
-#
-#
-#			label "Zydee"
-#
-#
-#			label "Veiuye"
-#
-#
+	on offer
+		conversation
+			branch "Esstch"
+				has "flagship planet: Esstch"
+
+			branch "Nssyros"
+				has "flagship planet: Nssyros"
+
+			branch "Vigales"
+				has "flagship planet: Vigales"
+
+			branch "Dlia Jzaur"
+				has "flagship planet: Dlia Jzaur"
+
+			branch "Yiia Iyr"
+				has "flagship planet: Ilirco"
+
+			branch "Ghneoe"
+				has "flagship planet: Ghneoe"
+
+			branch "Zydee"
+				has "flagship planet: Zydee"
+
+			branch "Veiuye"
+				has "flagship planet: Veiuye"
+
+			`While you are in the midst of docking with the ringworld, you notice a large civilian Gegno ship already present in your designated hangar, surrounded by several ships from both the factions of the Vi and Scin. Near them, a large group of Quarg seem to be "conversing" with a smaller group of Gegno that seem rather upset. As soon as you exit your ship, both groups stop and look your way as you recognize Adrauni swiftly approaching you alongside a Gegno that is wearing a very fancy set of armor, neither Scin nor Vi in appearance.`
+			`	Bla.`
+			choice
+			`	"What's going on?"`
+			`	"Did something happen?"`
+
+
+
+
+				accept
+
+			label "Eitch"
+			`Test.`
+				accept
+
+			label "Nssyros"
+			`Test.`
+				accept
+
+			label "Vigales"
+			`Test.`
+				accept
+
+			label "Dlia Jzaur"
+			`Test.`
+				accept
+
+			label "Yiia Iyr"
+			`Test.`
+				accept
+
+			label "Ghneoe"
+			`Test.`
+
+			label "Zydee"
+			`Test.`
+				accept
+
+			label "Veiuye"
+			`Test.`
+				accept
 
 
 # mission "Acquiescence"

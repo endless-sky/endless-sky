@@ -378,7 +378,7 @@ mission "Giaru Gegno: Quarg Contact"
 				`	"Thank you for the information."`
 					goto end
 				`	"It seems that you do not like the paths they've chosen."`
-			`	The Quarg stands up, but as it does so, you watch as a few marks on its otherwise gray skin shift into blue hues with faint traces of purple, though they fade away shortly after. "It is not in our prosperous grasp to persuade the Gegno, as once we did attempt to. They would ensure conflict with us should we interfere, and we have no desire to witness an imperiled uprising of such a sort once more." It pauses for an extended time, then gestures you to stand up as well.`
+			`	The Quarg stands up, but as it does so, you watch as a few marks on its otherwise gray skin shift into blue hues with faint traces of purple, though they fade away shortly after. "It is not in our prosperous grasp to persuade the Gegno, as once we did attempt to. They ensure conflict with us should we interfere, and we have no desire to witness an imperiled uprising of such a sort once more." It pauses for an extended time, then gestures you to stand up as well.`
 			
 			branch "interacted with outsider"
 				has "Visit Quarg in Gegno Space: offered"
@@ -462,14 +462,14 @@ mission "Suspicious Scin"
 		system
 			near "Pukako" 2
 		dialog
-			`The signal strength coming from the mysterious device is weaker now. You must be getting further away from the location marked on the device.`
+			`The signal strength coming from the mysterious device is weak. You must be far away from the location marked on the device.`
 				to display
 					has "gegno: mysterious device"
 	on enter
 		system
 			near "Ptetubo" 2
 		dialog
-			`The signal strength coming from the mysterious device is weaker now. You must be getting further away from the location marked on the device.`
+			`The signal strength coming from the mysterious device is weak. You must be far away from the location marked on the device.`
 				to display
 					has "gegno: mysterious device"
 	on enter
@@ -482,9 +482,10 @@ mission "Suspicious Scin"
 
 	on enter "Ilirco"
 		conversation
-			action
-				clear "gegno: mysterious device"
-			`Once you enter the system, the mysterious device suddenly short-circuits and stops working. You aren't sure if that means you've found your destination, or if this whole situation was just a ruse. Regardless, all that's left to do is to land on the planet and see if anything is there.`
+			`Once you enter the system, the mysterious device suddenly makes a loud noise. You aren't sure if that means you've found your destination, or if this whole situation was just a ruse. Either way, the only way to find out is to land on the planet and see if anything is there.`
+
+	on complete
+		clear "gegno: mysterious device"
 
 	npc
 		government "Gegno Scin (Neutral)"
@@ -493,7 +494,7 @@ mission "Suspicious Scin"
 		fleet
 			names "gegno scin"
 			variant
-				"Tridymite"
+				"Mica"
 	npc
 		government "Gegno Scin (Neutral)"
 		personality launching staying mute uninterested
@@ -613,6 +614,8 @@ mission "First Contact: Gegno Scin"
 			`	Once you are at your ship, they move their blade away from you neck. Getting a better look at it, the blade is curved like a sickle, as opposed to a sword, meaning there was little chance you could have avoided being decapitated if they chose to do so. Boarding your ship in a hurry, you prepare to take off, and you notice the two Scin warships also begin to power up. It's clear you've overstayed your welcome.`
 				flee
 
+#
+
 			label "approach"
 			action
 				set "scin: entered epidote"
@@ -720,6 +723,28 @@ mission "Scin Intro Warships Hostile"
 	on enter
 		fail
 
+
+mission "Gegno Exploration Nudge"
+	invisible
+	landing
+	source "Yiia Iyr"
+	to offer
+		has "Suspicious Scin: offered"
+		not "Gegno Genocide Defense: offered"
+	to complete
+		never
+	on enter
+		system
+			near "Ilirco" 1 100
+		fail
+		conversation
+			`	After leaving Ilirco, you recall that the map device showed markings for a few other planets throughout Gegno space as well. Perhaps there are other situations that you can encounter the Gegno in to try and find a way to learn more about them.`
+				to display
+					not "scin: provocative"
+
+			`After the aggressive encounter on <origin>, you recall that the map device showed markings for a few other planets throughout Gegno space as well. There could be more situations where you run into the Gegno again, so it might be best to be cautious going forward.`
+				to display
+					has "scin: provocative"
 
 
 # Gegno Superheavy Missions
