@@ -292,8 +292,8 @@ outfit "Ka'het Emergency Deployer"
 		"reload" 60
 		"range override" 400
 		"firing energy" -3800
-		"firing force" 900
-		"firing heat" 11600
+		"firing force" 1800
+		"firing heat" 5800
 		"firing hull" 60
 		"trigger radius" 40
 		"blast radius" 230
