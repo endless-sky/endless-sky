@@ -69,7 +69,7 @@ string GameWindow::SDLVersions()
 
 
 
-bool GameWindow::Init(bool isTesting)
+bool GameWindow::Init(bool headless)
 {
 #ifdef _WIN32
 	// Tell Windows this process is high dpi aware and doesn't need to get scaled.
@@ -81,7 +81,7 @@ bool GameWindow::Init(bool isTesting)
 #endif
 
 	// When running the integration tests, don't create a window nor an OpenGL context.
-	if(isTesting)
+	if(headless)
 		SDL_SetHint(SDL_HINT_VIDEODRIVER, "dummy");
 
 	// This needs to be called before any other SDL commands.
@@ -142,8 +142,8 @@ bool GameWindow::Init(bool isTesting)
 		return false;
 	}
 
-	// Bail out early if we are testing, no need to initialize all the OpenGL stuff.
-	if(isTesting)
+	// Bail out early if we are in headless mode; no need to initialize all the OpenGL stuff.
+	if(headless)
 	{
 		width = windowWidth;
 		height = windowHeight;

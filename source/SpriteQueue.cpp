@@ -189,12 +189,9 @@ void SpriteQueue::DoLoad(unique_lock<mutex> &lock)
 		Sprite *sprite = SpriteSet::Modify(toUnload.front());
 		toUnload.pop();
 
-		if(uploadSprites)
-		{
-			lock.unlock();
-			sprite->Unload();
-			lock.lock();
-		}
+		lock.unlock();
+		sprite->Unload();
+		lock.lock();
 	}
 
 	for(int i = 0; !toLoad.empty() && i < MAX_QUEUE; ++i)

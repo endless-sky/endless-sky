@@ -73,12 +73,8 @@ const string &Sprite::Name() const
 
 
 	// Add the given frames, optionally uploading thyem. The given buffer will be cleared afterwards.
-void Sprite::AddFrames(ImageBuffer &buffer, bool is2x, bool enableUpload)
+void Sprite::AddFrames(ImageBuffer &buffer, bool is2x)
 {
-	// Do nothing if the buffer is empty.
-	if(!buffer.Pixels())
-		return;
-
 	// If this is the 1x image, its dimensions determine the sprite's size.
 	if(!is2x)
 	{
@@ -87,7 +83,8 @@ void Sprite::AddFrames(ImageBuffer &buffer, bool is2x, bool enableUpload)
 		frames = buffer.Frames();
 	}
 
-	if(enableUpload)
+	// Only non-empty buffers need to be added to the sprite.
+	if(buffer.Pixels())
 		AddBuffer(buffer, &texture[is2x]);
 }
 
@@ -108,11 +105,17 @@ void Sprite::AddSwizzleMaskFrames(ImageBuffer &buffer, bool is2x)
 // Free up all textures loaded for this sprite.
 void Sprite::Unload()
 {
-	glDeleteTextures(2, texture);
-	texture[0] = texture[1] = 0;
+	if(texture[0] || texture[1])
+	{
+		glDeleteTextures(2, texture);
+		texture[0] = texture[1] = 0;
+	}
 
-	glDeleteTextures(2, swizzleMask);
-	swizzleMask[0] = swizzleMask[1] = 0;
+	if(swizzleMask[0] || swizzleMask[1])
+	{
+		glDeleteTextures(2, swizzleMask);
+		swizzleMask[0] = swizzleMask[1] = 0;
+	}
 
 	width = 0.f;
 	height = 0.f;
