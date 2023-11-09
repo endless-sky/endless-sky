@@ -6853,6 +6853,7 @@ mission "Adelita 1"
 	name "Exhibition installations to <planet>"
 	description `Transport <tons> of exhibition installations to <destination> for the Adelita collective. Payment is <payment>.`
 	minor
+	cargo "exhibition installations" 5
 	source
 		attributes "paradise"
 		not attributes "mining"
@@ -6860,7 +6861,6 @@ mission "Adelita 1"
 		not attributes "research"
 		not attributes "factory"
 	destination "Moonshake"
-	cargo "exhibition installations" 5
 	to offer
 		random < 80
 		has "Expedition to Hope 2: done"
@@ -6943,13 +6943,13 @@ mission "Adelita 1"
 event "adelita 2 offer expired"
 
 mission "Adelita 2"
-	description "Participate in an unauthorized filming of a Syndicate sweatshop on <destination>. (You will be paid <payment> after you complete the entire job.)"
 	name "Film Syndicate sweatshop on <planet>"
-	source "Moonshake"
-	destination "Maker"
+	description "Participate in an unauthorized filming of a Syndicate sweatshop on <destination>. (You will be paid <payment> after you complete the entire job.)"
+	cargo "stealth drones" 1
 	passengers 3
 	"apparent payment" 200000
-	cargo "stealth drones" 1
+	source "Moonshake"
+	destination "Maker"
 	to offer
 		has "Adelita 1: done"
 		not "adelita 2 offer expired"
@@ -6972,7 +6972,7 @@ mission "Adelita 2"
 				goto choice
 
 			label political
-			`	"Oh. Unfortunately, for many, everything is political. It was political when the Paradise Worlds tried to block the evacuation. And it was political when the Navy did it anyway without the permission of Parliament. And the same goes for every single act of oppression and liberation since the dawn of humanity. Our oppressors are very political. Maybe you have the hope of being one some day; wealthy, authoritative. Or maybe you just don't care. Either way, you don't sound like a good fit for this project. But thanks for transporting the installation," she says with a smile. She gets her smoothie to-go and walks out.`
+			`	"Oh. Unfortunately for many, everything is political. It was political when the Paradise Worlds tried to block the evacuation. And it was political when the Navy did it anyway without the permission of Parliament. And the same goes for every single act of oppression and liberation since the dawn of humanity. Our oppressors are very political. Maybe you have the hope of being one some day; wealthy, authoritative. Or maybe you just don't care. Either way, you don't sound like a good fit for this project. But thanks for transporting the installations," she says with a smile. She gets her smoothie to-go and walks out.`
 				decline
 
 			label choice
@@ -7008,14 +7008,15 @@ mission "Adelita 3"
 	landing
 	name "Film slave transaction"
 	description "Do a flyby of <destination> while Bunker spies on the slave transaction. (You will be paid <payment> after you complete the entire job.)"
+	cargo "stealth drones" 1
+	passengers 1
+	infiltrating
+	"apparent payment" 200000
 	source "Maker"
 	destination "Hippocrates"
-	"apparent payment" 200000
-	infiltrating
 	to offer
 		has "Adelita 2: done"
-	passengers 1
-	cargo "stealth drones" 1
+
 	on offer
 		conversation
 			`You drop off Ale and River at the spaceport. They are visibly embarrassed to be in security uniforms, or perhaps uncomfortable with their disguises which make them virtually unrecognizable; Bunker can't stop laughing at them. Everyone wishes each other good luck as the two walk off, and you and Bunker go back to the <ship> and prepare to depart for <planet>.`
@@ -7024,19 +7025,18 @@ mission "Adelita 3"
 	on visit
 		dialog `You realize that your escort carrying the drones hasn't entered the system yet. Better depart and wait for it.`
 
-
 mission "Adelita 4"
 	name "Slave trade"
 	description "Pick up the team on <destination>. (You will be paid <payment> after you complete the entire job.)"
-	source "Hippocrates"
-	destination "Maker"
 	landing
-	infiltrating
-	"apparent payment" 200000
-	to offer
-		has "Adelita 3: done"
 	passengers 1
 	cargo "stealth drones" 1
+	infiltrating
+	"apparent payment" 200000
+	source "Hippocrates"
+	destination "Maker"
+	to offer
+		has "Adelita 3: done"
 
 	on offer
 		conversation
@@ -7136,23 +7136,24 @@ mission "Adelita 4"
 mission "Adelita 5"
 	name "Slave trade"
 	description "Bring everyone back to <destination>. (You will be paid <payment> after you complete the entire job.)"
-	minor
-	source "Maker"
-	destination "Moonshake"
-	"apparent payment" 200000
 	landing
-	to offer
-		has "Adelita 4: done"
 	passengers 3
 	cargo "stealth drones" 1
+	"apparent payment" 200000
+	source "Maker"
+	destination "Moonshake"
+	to offer
+		has "Adelita 4: done"
 
 	on offer
 		conversation
 			branch experienced
 				has "adelita: killed pirates"
+
 			`It was close, but you make it back to Maker. Ale and River are soon on board and excited to be out of their disguises, and they spend a lot of time talking with Bunker about his part of the mission. Although exhausted, both are eager to get back and process what they filmed - both emotionally and literally.`
 			`	"That was horrible, but we got it done. Can we leave now?" asks Ale.`
 				launch
+
 			label experienced
 			`The pirates were no match for you. Ale and River are soon on board and excited to be out of their disguises, and they spend a lot of time talking with Bunker about his part of the mission. Although exhausted, both are eager to get back and process what they filmed - both emotionally and literally.`
 			`	"That was awful. Can we leave now?" asks Ale.`
@@ -7163,6 +7164,6 @@ mission "Adelita 5"
 
 	on complete
 		payment 220000
-		log `Helped the underground journalistic collective "Adelita Zero" gather video evidence of Syndicate participation in the slave trade. Had to escape pirates while doing so.`
+		log `Helped the underground journalism collective "Adelita Zero" gather video evidence of Syndicate participation in the slave trade. Had to escape pirates while doing so.`
 		conversation
 			`Ale, River, and Bunker look glad to be back on <planet>. "Ugh. Being there in person was bad enough," says Ale, "and now we have to watch it over and over again to edit it into something presentable." She hands you a stack of credit chips totaling <payment>. "There's a bonus in there for you, we really couldn't have done it without you. We'll let you know when it's done. Also, we might need you for some future projects, so expect us to be in touch." The group leaves your ship.`
