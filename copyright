@@ -960,8 +960,32 @@ Comment:
 
 Files:
  images/land/fields13*
+Copyright: Jeff King
+License: public-domain
+Comment:
+ Taken from https://v.gd/gTXIps. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
  images/land/fields14*
+Copyright: Jeroen van Dijk
+License: Unsplash License
+Comment:
+ Taken from https://v.gd/fH8o4c. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
  images/land/fields15*
+Copyright: Ales Krivec
+License: public-domain
+Comment:
+ Taken from https://v.gd/NqrJBG. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
  images/land/fog8*
  images/land/fog9*
  images/land/fog10*
@@ -2590,20 +2614,75 @@ Comment:
 
 Files:
  images/land/forest10*
- images/land/mountain27*
- images/land/mountain28*
- images/land/mountain29*
- images/land/mountain30*
- images/land/sea22*
- images/land/snow22*
-Copyright: Various
-License: Depends
+Copyright: Sarah Humer
+License: public-domain
 Comment:
- Taken from unsplash.com, cropped, and added to the game after June 2017. If the pictures
- were uploaded to unsplash.com before June 2017, they were donated and placed in the public
- domain. If the pictures were uploaded to unsplash.com after June 2017, they are subject
- to the Unsplash License. If they were also uploaded on or after February 2018, they are
- subject to additional restrictions.
+ Taken from https://v.gd/teEyvJ. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/mountain27*
+Copyright: Marek Piwnicki
+License: Unsplash License
+Comment:
+ Taken from https://v.gd/huqRe2. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
+ images/land/mountain28*
+Copyright: Luca Bravo
+License: Unsplash License
+Comment:
+ Taken from https://v.gd/hl74gr. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was uploaded before February 2018, so
+ it is not subject to additional restrictions.
+
+Files:
+ images/land/mountain29*
+Copyright: Marek Piwnicki
+License: Unsplash License
+Comment:
+ Taken from https://v.gd/VYqbjm. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
+ images/land/mountain30*
+Copyright: Mike Liao
+License: Unsplash License
+Comment:
+ Taken from https://v.gd/yoaA59. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was uploaded before February 2018, so
+ it is not subject to additional restrictions.
+
+Files:
+ images/land/sea22*
+Copyright: Martin Bennie
+License: Unsplash License
+Comment:
+ Taken from https://v.gd/VFft36. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
+ images/land/snow22*
+Copyright: Paston Woelber
+License: Unsplash License
+Comment:
+ Taken from https://v.gd/rYJdMa. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
 
 Files:
  images/ui/red?alert*
