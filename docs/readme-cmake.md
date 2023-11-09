@@ -55,7 +55,7 @@ You can use your favorite package manager to install the needed dependencies. If
 <summary>DEB-based distros</summary>
 
 ```
-g++ cmake ninja-build libsdl2-dev libpng-dev libjpeg-dev libgl1-mesa-dev libglew-dev libopenal-dev libmad0-dev uuid-dev
+g++ cmake ninja-build curl libsdl2-dev libpng-dev libjpeg-dev libgl1-mesa-dev libglew-dev libopenal-dev libmad0-dev uuid-dev
 ```
 
 </details>
