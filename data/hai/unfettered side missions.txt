@@ -96,7 +96,7 @@ mission "Hai Legacy 1"
 				`	(Never.)`
 					decline
 			label first
-			`As you're browsing the shipyard, you are discreetly approached by a hooded figure. When you stop to see what they want to say, they grab and pull your arm to follow them. "Keep walking," the stranger hisses. After pointing at and commenting on random ships, as if to mimic the actions of regular a passerby, they address you again. "My associates and I have a lucrative business proposition for you. If you are interested, come find us at these coordinates." Without waiting for a response, they fold a piece of paper into your hand before quickly fading into the crowd. It lists only a location, that you cross-reference with the local maps: a beach on the other side of the planet.`
+			`As you're browsing the shipyard, you are discreetly approached by a hooded figure. When you stop to see what they want to say, they grab and pull your arm to follow them. "Keep walking," the stranger hisses. After pointing at and commenting on random ships, as if to mimic the actions of a regular passerby, they address you again. "My associates and I have a lucrative business proposition for you. If you are interested, come find us at these coordinates." Without waiting for a response, they fold a piece of paper into your hand before quickly fading into the crowd. It lists only a location, that you cross-reference with the local maps: a beach on the other side of the planet.`
 			`	However, it also mentions you need to have at least 10 million in cash! It may be a good idea to save up or take a debt and then come back another day to head to the specified location.`
 				to display
 					"credits" < 10000000
@@ -108,7 +108,7 @@ mission "Hai Legacy 1"
 					defer
 			label go
 			`	While you're pondering whether there will be enough space to land your ship at the destination, you notice a train ticket has been placed in your pocket, with instructions written on the back. You proceed to take the train and hike a few hours to get the rest of the way there.`
-			`	Upon arriving, you take a look around, looking for the stranger. Except for a cave, some sparse vegetation, and of course the beach itself, you cannot see much of interest in the vicinity. You double check that these are the right coordinates and look around some more.`
+			`	Upon arriving, you take a look around for the stranger. Except for a cave, some sparse vegetation, and of course the beach itself, you cannot see much of interest in the vicinity. You double check that these are the right coordinates and look around some more.`
 			`	After waiting for some time, you spot two hooded figures further down the beach making their way toward you. You start to doubt whether or not this was a good idea, but it's too late to back out now. Even when they're close enough to speak, their faces somehow remain impossible to glimpse beneath the hoods. "Hello, <last>," one says to you. "We are sorry for all the complications, but the truth is, we cannot afford to take risks. It is best for all if you do not know who we are, and we needed a secluded area to speak to you."`
 			choice
 				`	"Tell me more."`
@@ -247,7 +247,7 @@ mission "Hai Legacy 2"
 			`Upon returning to the spaceport, one could say the cargo finds you more than you find it. A worker immediately greets you while others begin to fill your ship with crates, which a quick check shows have already been allocated for this ship in your name. All that is left to do is to bring it to <destination> by <date> for the promised sum of <payment>.`
 			choice
 				`(Prepare for takeoff.)`
-			`	As you head to the bridge, preparing to take off from the planet, you notice a message on the command panel, probably from your "associates:"`
+			`	As you head to the bridge, preparing to take off from the planet, you notice a message on the command panel, from your "associates," probably:`
 			`	"Use the Anomalocaris as your flagship.`
 			`	"Do not bring any other ships, as they are not needed for the cargo and would only be a liability at best in Unfettered space, when they could easily provoke them at worst."`
 			`	Given the potential dangers of that area of space, it would be a good idea to familiarize yourself with the design of the Anomalocaris and even customize it more to your own liking - especially if you plan to deliver the cargo in only this single ship, as requested.`
@@ -443,7 +443,7 @@ mission "Hai Legacy 3"
 			`	"Don't become overconfident now, Captain. I am sure you know what happens to such people.`
 			label next
 			`	"Congratulations, I never expected you had it in you. I will give you authorization to land on the condition that you keep this relic from our past in one piece. Make sure you do not lose it until you truly earn the right to call us friends, or we will consider you a true enemy of the Unfettered. Oh, and there are taxes on the daily fee, totaling 650 credits per day. I hope you don't mind.`
-			`	"Do keep it mind that if you lose this permit at any time and have not proven yourself another way, like by bringing us a Jump Drive, you will be treated like an outsider again."`
+			`	"Do keep in mind that if you lose this permit at any time and have not proven yourself another way, like by bringing us a Jump Drive, you will be treated like an outsider again."`
 			choice
 				`	"Thank you for your trust."`
 					goto trust
@@ -504,7 +504,7 @@ mission "Undeserved Anomalocaris"
 					depart
 			`	You end your crew exit what was briefly your ship, and you inform the local Unfettered militia that it is now theirs. The Unfettered that were assembling around your ship happily disperse, except for one, probably the leader judging by their open display of rare weaponry: dual pulse pistols. They come to talk to you, weapons in hand but lowered. "We are happy you could see reason and decided to hand over the ship. For this, we have decided to provide you with a suitable replacement, that should hopefully allow you exit our space safely.`
 			`	"Indeed that relic was not meant for you, but remember that there are other ways for you to prove yourself." The leader of these Unfettered continues with blatantly forced casualness. "Say, for example, bringing us a Jump Drive... or two... that for sure will be earning you favor, and prove you can fight.`
-			`	"For now, you have enough to worry about with all of the missiles that will be heading your way. If I were you I'd install a lot of jammers, you'll need them, ha!" A general laughter erupts, and they let you get comfortable in the new ship. You may want to get a better one, or at least upgrade this one in order to escape safely. You can also use bribes.`
+			`	"For now, you have enough to worry about with all of the missiles that will be heading your way. If I were you I'd install a lot of jammers. You'll need them, ha!" A general laughter erupts, and they let you get comfortable in the new ship. You may want to get a better one, or at least upgrade this one in order to escape safely. You can also use bribes.`
 			action
 				give ship "Lightning Bug (Unfettered Shipyards)" "Good Will"
 				take ship "Anomalocaris"
