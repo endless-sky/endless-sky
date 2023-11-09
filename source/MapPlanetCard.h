@@ -48,7 +48,7 @@ public:
 	explicit MapPlanetCard(const StellarObject &object, unsigned number, bool hasVisited);
 	// Return if this one was clicked, whether or not we did something about it.
 	ClickAction Click(int x, int y, int clicks);
-	// Draw this at the corresponding scoll; if it is not outside bounds, and return if we drew it.
+	// Draw this at the corresponding scroll; if it is not outside bounds, and return if we drew it.
 	bool DrawIfFits(const Point &uiPoint);
 	// If this object is currently being shown.
 	bool IsShown() const;
