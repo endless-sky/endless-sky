@@ -4543,7 +4543,7 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 		for(const Ship *ship : ships)
 		{
 			if(holdingFire)
-				holdFire.emplace(ship);
+				holdFire.insert(ship);
 			else
 				holdFire.erase(ship);
 		}

@@ -456,7 +456,8 @@ void PreferencesPanel::DrawControls()
 		Command::AMMO,
 		Command::HARVEST
 	};
-	static const Command *BREAK = &COMMANDS[20];
+	// After how many command a break should occur to push things on the second half of the panel.
+	static const Command *BREAK = &COMMANDS[19];
 	for(const Command &command : COMMANDS)
 	{
 		// The "BREAK" line is where to go to the next column.

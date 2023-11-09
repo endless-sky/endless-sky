@@ -238,7 +238,7 @@ private:
 	// player ships, which are never deleted except when landed, it can use
 	// ordinary pointers instead of weak pointers.
 	std::map<const Ship *, Orders> orders;
-	// Player ships in this set are set to hold fire.
+	// Player ships in this set will hold their fire.
 	std::set<const Ship *> holdFire;
 
 	// Records of what various AI ships and factions have done.
