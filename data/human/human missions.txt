@@ -6849,6 +6849,7 @@ mission "FW Refugees to Humanika"
 		dialog "Penny and Rosa thank you for getting them safely to <destination>, handing you <payment> for your troubles. You wish them and Eduardo the best of luck starting their new life away from a potential war in human space."
 		log "Minor People" "Penny Little, Rosa Perkins, and Eduardo" `A young family who wanted to escape a potential war in human space. Took them to the planet Humanika, where the Quarg let humans settle.`
 
+
 mission "Adelita 1"
 	name "Exhibition installations to <planet>"
 	description `Transport <tons> of exhibition installations to <destination> for the Adelita collective. Payment is <payment>.`
@@ -6856,10 +6857,7 @@ mission "Adelita 1"
 	cargo "exhibition installations" 5
 	source
 		attributes "paradise"
-		not attributes "mining"
-		not attributes "textiles"
-		not attributes "research"
-		not attributes "factory"
+		attributes "rich"
 	destination "Moonshake"
 	to offer
 		random < 80
@@ -6868,7 +6866,7 @@ mission "Adelita 1"
 
 	on offer
 		conversation
-			`Walking around <origin>'s luxurious spaceport, you notice a significant group of people gathered around one of the larger hangars; there are prominent signs nearby that say "The Evacuation of Hope" in bold letters. It looks like some sort of exhibition.`
+			`Walking on the tarmac of <origin>'s luxurious spaceport, you notice a significant group of people gathered around one of the larger hangars. From the signs nearby that display "The Evacuation of Hope" in bold letters, it looks like some sort of exhibition.`
 			choice
 				`	(Check it out.)`
 				`	(Not right now.)`
@@ -6917,6 +6915,7 @@ mission "Adelita 1"
 					goto decline
 
 			`	"Great!" Mariel says. "Bring your ship to this hangar, and I will have our crew get everything ready to load."`
+			`	After a couple hours, the whole exhibition is packed up and ready for transport to <planet>.`
 				accept
 
 			label decline
@@ -7003,7 +7002,6 @@ mission "Adelita 2"
 	on visit
 		dialog `You've landed on <planet>, but the filming equipment isn't in the system. Better depart and wait for your escorts to arrive in this star system.`
 
-
 mission "Adelita 3"
 	landing
 	name "Film slave transaction"
@@ -7026,7 +7024,7 @@ mission "Adelita 3"
 		dialog `You realize that your escort carrying the drones hasn't entered the system yet. Better depart and wait for it.`
 
 mission "Adelita 4"
-	name "Slave trade"
+	name "Take the film to <planet>"
 	description "Pick up the team on <destination>. (You will be paid <payment> after you complete the entire job.)"
 	landing
 	passengers 1
@@ -7132,9 +7130,8 @@ mission "Adelita 4"
 	on visit
 		dialog `Your escort carrying the spy drones was left behind. Better take off and wait for them to enter the system.`
 
-
 mission "Adelita 5"
-	name "Slave trade"
+	name "Return Adelita to <planet>"
 	description "Bring everyone back to <destination>. (You will be paid <payment> after you complete the entire job.)"
 	landing
 	passengers 3
@@ -7156,7 +7153,7 @@ mission "Adelita 5"
 
 			label experienced
 			`The pirates were no match for you. Ale and River are soon on board and excited to be out of their disguises, and they spend a lot of time talking with Bunker about his part of the mission. Although exhausted, both are eager to get back and process what they filmed - both emotionally and literally.`
-			`	"That was awful. Can we leave now?" asks Ale.`
+			`	"That was horrible, but we got it done. Can we leave now?" asks Ale.`
 				launch
 
 	on visit
