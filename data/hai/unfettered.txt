@@ -45,8 +45,16 @@ substitutions
 
 
 conversation "unfettered outcast"
+	branch "no license"
+		has "license: Unfettered"
+	action
+		# replace it by a wortless outfit
+		clear "license: Unfettered"
+		outfit "Unfettered License"
+	label "no license"
 	action
 		event "unfettered: outcast"
+		event "unfettered: challengers leave"
 	`The local authorities hail you immediately after the destruction of the Alpha ship with a code purple.`
 		to display
 			has "unfettered: destroyed auxiliary"
@@ -63,7 +71,7 @@ conversation "unfettered outcast"
 	`	"You have disappointed us greatly by breaking the sacred rules of the duels! Think very carefully before you make any more mistakes, or it will be war! We have removed any privileges you had, and have added you to the list of shame. Rest assured that no True Hai will offer you special missions any longer, but we'll allow you to ferry cargo. For now."`
 		decline
 	label "alpha ship"
-	`	"How dare you?! This ship was helping us by providing supplies, and you just shoot it down? Disabling it would have been more than fine, looting it tolerated, but destroying the source of our independance? We cannot tolerate it. It matters not who may have drawn the first shot, you have hereby lost all privileges, and it will be war if you make the slightest mistake!"`
+	`	"How dare you?! This ship was helping us by providing supplies, and you just shoot it down? Disabling it would have been more than fine, looting it tolerated, but destroying the source of our independence? We cannot tolerate it. It matters not who may have drawn the first shot, you have hereby lost all privileges, and it will be war if you make the slightest mistake!"`
 
 
 
@@ -75,10 +83,6 @@ event "unfettered: outcast"
 		remove outfitter "Unfettered"
 	government "Hai (Unfettered)"
 		"bribe" .04
-	event "unfettered: challengers leave"
-	# replace it by a wortless outfit
-	clear "license: Unfettered"
-	outfit "Unfettered License"
 	"reputation: Hai (Unfettered)" <?= 0
 
 
