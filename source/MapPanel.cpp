@@ -44,6 +44,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Screen.h"
 #include "Ship.h"
 #include "ShipJumpNavigation.h"
+#include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "StellarObject.h"
 #include "System.h"
@@ -53,7 +54,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Wormhole.h"
 
 #include "opengl.h"
-#include "SpriteSet.h"
 
 #include <algorithm>
 #include <cctype>
@@ -1246,8 +1246,7 @@ void MapPanel::DrawSelectedSystem() const
 
 	const Font &font = FontSet::Get(14);
 	Point pos(-175., Screen::Top() + .5 * (30. - font.Height()));
-	font.Draw({text, {350, Alignment::CENTER, Truncate::MIDDLE}},
-			  pos, *GameData::Colors().Get("bright"));
+	font.Draw({text, {350, Alignment::CENTER, Truncate::MIDDLE}},pos, *GameData::Colors().Get("bright"));
 }
 
 
