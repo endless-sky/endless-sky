@@ -521,35 +521,6 @@ mission "Unfettered Jump Drive Trading"
 
 
 
-phrase "Essential Unfettered Mission Fail"
-	word
-		`You have failed an essential Unfettered mission. You may want to reload your previous save if you want to be able to finish the campaign.`
-
-phrase "Essential Unfettered Mission Fail If Killed"
-	word
-		`If you did not kill the duelling ship, you may try this mission again later. Otherwise, you have failed an essential Unfettered mission. You may want to reload your previous save if you want to be able to finish the campaign.`
-
-# using <, > so we can have an empty name
-# could add some depending on the kind of warlord you are (and SB you choose):
-# He-Shi: sneaky, deadly
-# Mem-He: fast, ?
-# To-or: enduring, honest
-substitutions
-	"<uhai>" "Triumph of the True Hai"
-	"<, unfettered title>" ", monkey"
-	"<, unfettered title>" ", space-monkey"
-		has "Unfettered Jump Drive 1: offered"
-	"<, unfettered title>" ", Captain"
-		has "unfettered: beaten the captain"
-	"<, unfettered title>" ", Herald"
-		has "salary: Unfettered"
-	"<, unfettered title>" ", Warlord"
-		"salary: Unfettered" > 1000
-	"<, unfettered title>" ", High Warlord"
-		has "unfettered: high warlord"
-	"<, unfettered title>" ", outcast"
-		has "unfettered: outcast"
-
 mission "<uhai> 0: Bring Hai"
 	name `Bring True Hai`
 	description `Bring <bunks> Hai from <stopovers> to <origin>.`
@@ -957,8 +928,7 @@ mission "<uhai> 2: Prove Your Strength"
 		personality disables staying heroic target launching
 		ship "Si-Ra' Scorpion" "Intrepid"
 		on kill
-			dialog `The Unfettered authorities hail you immediately after the destruction of the <npc>. They speak in Hai but the tone alone is enough to understand what they mean: you should leave, or you risk being shot at.`
-			event "unfettered: outcast"
+			conversation "unfettered outcast"
 		conversation
 			`Now that you have disabled the <npc>, its captain hails you.`
 			branch "wanderer first"

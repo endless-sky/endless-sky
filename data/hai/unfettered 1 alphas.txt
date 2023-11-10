@@ -107,12 +107,6 @@ outfitter "Unfettered Alpha Trade"
 	"Type 3 Radiant Thruster"
 	"Type 3 Radiant Steering"
 
-conversation "unfettered: destroyed auxiliary"
-	`The Unfettered that hails you is enraged, "How dare you?! This ship was helping us by providing supplies, and you just shoot it down? We don't care who may have drawn the first shot, you are now an enemy of the Unfettered."`
-	action
-		set "unfettered: destroyed auxiliary"
-		"reputation: Hai (Unfettered)" <?= -1000
-
 mission "Unfettered: Alpha Supplies"
 	invisible
 	minor
@@ -169,7 +163,9 @@ mission "Unfettered: Alpha Supplies"
 			commodities "Military" "Electronics"
 			outfitters "Korath Drones Alpha Loot"
 		ship "Auxiliary (Alpha)" "Settler"
-		conversation "unfettered: destroyed auxiliary"
+		on kill
+			set "unfettered: destroyed auxiliary"
+			conversation "unfettered outcast"
 		on board
 			"alpha: worry" ++
 	npc kill
@@ -185,7 +181,9 @@ mission "Unfettered: Alpha Supplies"
 			commodities "Metal" "Heavy Metals"
 			outfitters "Unfettered Alpha Trade"
 		ship "Auxiliary (Alpha)" "Settler"
-		conversation "unfettered: destroyed auxiliary"
+		on kill
+			set "unfettered: destroyed auxiliary"
+			conversation "unfettered outcast"
 		on board
 			"alpha: worry" ++
 	npc
@@ -278,8 +276,8 @@ mission "<uhai> 5: Scan Auxiliary"
 		on "scan outfits"
 			set "unfettered: scanned auxiliary's outfits"
 		on kill
-			dialog `The local authorities hail you, with a code purple message. "You have disappointed us. Think very carefully before you make any more mistakes, or it will be war!"`
-			"reputation: Hai (Unfettered)" <?= 0
+			set "unfettered: destroyed auxiliary"
+			conversation "unfettered outcast"
 		conversation
 			branch "didn't listen"
 				not "outfit (flagship installed): Value Detector"

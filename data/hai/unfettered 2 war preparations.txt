@@ -1009,7 +1009,7 @@ mission "<uhai> 15: Modified Beetle"
 			disables staying heroic target waiting
 		ship "Modified Shield Beetle" "Hera"
 		on kill
-			event "unfettered: outcast"
+			conversation "unfettered outcast"
 		to spawn
 			"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 <= 18
 		conversation
@@ -1251,7 +1251,7 @@ mission "<uhai> 16: Strength Of A Leader: Si-Ra"
 		government "Hai (Unfettered Challenger)"
 		ship "Si-Ra' Golden Beetle" "Defiant"
 		on kill
-			event "unfettered: outcast"
+			conversation "unfettered outcast"
 		to spawn
 			not "unfettered: mad Si-Ra"
 			"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 <= 18
@@ -1331,6 +1331,8 @@ mission "<uhai> 16: Strength Of A Leader: He-Yi"
 			"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 <= 18
 		government "Hai (Unfettered Challenger)"
 		ship "Stag Beetle" "Tejolis"
+		on kill
+			conversation "unfettered outcast"
 		personality disables staying heroic target launching
 		conversation "unfettered war ready"
 	npc save disable
@@ -1339,6 +1341,8 @@ mission "<uhai> 16: Strength Of A Leader: He-Yi"
 			"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 <= 18
 		government "Hai (Unfettered Challenger)"
 		ship "Stag Beetle (Flamer)" "Tejolis"
+		on kill
+			conversation "unfettered outcast"
 		personality disables staying heroic target launching
 		conversation "unfettered war ready"
 	on disabled
