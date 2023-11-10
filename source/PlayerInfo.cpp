@@ -1212,20 +1212,25 @@ void PlayerInfo::SellShip(const Ship *selected, bool toStorage)
 		{
 			int day = date.DaysSinceEpoch();
 			int64_t cost;
-			CargoHold *storage = toStorage ? Storage() : nullptr;
 
-			if(storage)
+			if(toStorage)
 				cost = depreciation.Value(selected, day);
 			else
 				cost = depreciation.Value(*selected, day);
 
 			// Record the transfer of this ship in the depreciation and stock info.
 			stockDepreciation.Buy(*selected, day, &depreciation, toStorage);
-			for(const auto &it : selected->Outfits())
-				if(storage)
-					storage->Add(it.first, it.second);
-				else
+			if(toStorage)
+			{
+				CargoHold &storage = Storage();
+				for(const auto &it : selected->Outfits())
+					storage.Add(it.first, it.second);
+			}
+			else
+			{
+				for(const auto &it : selected->Outfits())
 					stock[it.first] += it.second;
+			}
 
 			accounts.AddCredits(cost);
 			ForgetGiftedShip(*it->get());
