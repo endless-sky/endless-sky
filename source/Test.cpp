@@ -77,7 +77,7 @@ namespace {
 			+ "\", or \"" + lastValidIt->second + '"';
 	}
 
-	// Prepare an keyboard input to one of the UIs.
+	// Prepare a keyboard input to one of the UIs.
 	bool KeyInputToEvent(const char *keyName, Uint16 modKeys)
 	{
 		// Construct the event to send (from keyboard code and modifiers)
@@ -626,10 +626,8 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 
 	if(!conditions.empty())
 		Logger::LogError(conditions);
-	else if(player.Conditions().PrimariesBegin() == player.Conditions().PrimariesEnd())
-		Logger::LogError("Player had no conditions set at the moment of failure.");
 	else
-		Logger::LogError("No test conditions were set at the moment of failure.");
+		Logger::LogError("No conditions to display at the moment of failure.");
 
 	// If this test was expected to fail, then return a success exitcode from the program
 	// because the test did what it was expected to do.
@@ -647,5 +645,5 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 void Test::UnexpectedSuccessResult() const
 {
 	throw runtime_error("Unexpected test result: Test marked with status '" + StatusText()
-		+ "' was not expected to finish succesfully.\n");
+		+ "' was not expected to finish successfully.\n");
 }

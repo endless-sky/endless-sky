@@ -26,7 +26,7 @@ using namespace std;
 
 namespace {
 	// Make sure the length of PersonalityTrait matches PERSONALITY_COUNT
-	// or the game will crash at runtime.
+	// or the build will fail.
 	enum PersonalityTrait {
 		PACIFIST,
 		FORBEARING,
@@ -57,9 +57,15 @@ namespace {
 		TARGET,
 		MARKED,
 		LAUNCHING,
+		LINGERING,
 		DARING,
 		SECRETIVE,
-		RAMMING
+		RAMMING,
+		UNRESTRICTED,
+		DECLOAKED,
+
+		// This must be last so it can be used for bounds checking.
+		LAST_ITEM_IN_PERSONALITY_TRAIT_ENUM
 	};
 
 	const map<string, PersonalityTrait> TOKEN = {
@@ -92,9 +98,12 @@ namespace {
 		{"target", TARGET},
 		{"marked", MARKED},
 		{"launching", LAUNCHING},
+		{"lingering", LINGERING},
 		{"daring", DARING},
 		{"secretive", SECRETIVE},
-		{"ramming", RAMMING}
+		{"ramming", RAMMING},
+		{"unrestricted", UNRESTRICTED},
+		{"decloaked", DECLOAKED}
 	};
 
 	// Tokens that combine two or more flags.
@@ -111,6 +120,8 @@ namespace {
 Personality::Personality() noexcept
 	: flags(1LL << DISABLES), confusionMultiplier(DEFAULT_CONFUSION), aimMultiplier(1.)
 {
+	static_assert(LAST_ITEM_IN_PERSONALITY_TRAIT_ENUM == PERSONALITY_COUNT,
+		"PERSONALITY_COUNT must match the length of PersonalityTraits");
 }
 
 
@@ -246,6 +257,13 @@ bool Personality::IsUnconstrained() const
 
 
 
+bool Personality::IsUnrestricted() const
+{
+	return flags.test(UNRESTRICTED);
+}
+
+
+
 bool Personality::IsCoward() const
 {
 	return flags.test(COWARD);
@@ -358,6 +376,13 @@ bool Personality::IsSwarming() const
 
 
 
+bool Personality::IsLingering() const
+{
+	return flags.test(LINGERING);
+}
+
+
+
 bool Personality::IsSecretive() const
 {
 	return flags.test(SECRETIVE);
@@ -389,6 +414,13 @@ bool Personality::IsMarked() const
 bool Personality::IsMute() const
 {
 	return flags.test(MUTE);
+}
+
+
+
+bool Personality::IsDecloaked() const
+{
+	return flags.test(DECLOAKED);
 }
 
 

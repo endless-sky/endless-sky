@@ -64,7 +64,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	// Convert the angle between two vectors into a sortable angle, i.e an angle
+	// Convert the angle between two vectors into a sortable angle, i.e. an angle
 	// plus a length that is used as a tie-breaker.
 	pair<double, double> SortAngle(const Point &reference, const Point &point)
 	{
@@ -116,10 +116,14 @@ void MapDetailPanel::Step()
 
 	if(selectedSystem != shownSystem)
 		GeneratePlanetCards(*selectedSystem);
+
+	if(GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= player.StartData().GetDate() + 12)
+	{
+		DoHelp("map advanced danger");
+		DoHelp("map advanced ports");
+	}
 	if(!player.GetPlanet())
 		DoHelp("map");
-	if(GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= player.StartData().GetDate() + 12)
-		DoHelp("map advanced ports");
 }
 
 
@@ -131,6 +135,7 @@ void MapDetailPanel::Draw()
 	DrawInfo();
 	DrawOrbits();
 	DrawKey();
+	FinishDrawing("is ports");
 }
 
 
@@ -189,9 +194,15 @@ bool MapDetailPanel::Scroll(double dx, double dy)
 // Only override the ones you need; the default action is to return false.
 bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
-	const double planetCardHeight = planetCardInterface->GetValue("height");
-	if((key == SDLK_TAB || command.Has(Command::JUMP)) && player.Flagship())
+	const double planetCardHeight = MapPlanetCard::Height();
+	if(command.Has(Command::HELP))
+	{
+		DoHelp("map advanced danger", true);
+		DoHelp("map advanced ports", true);
+		if(!player.GetPlanet())
+			DoHelp("map", true);
+	}
+	else if((key == SDLK_TAB || command.Has(Command::JUMP)) && player.Flagship())
 	{
 		// Clear the selected planet, if any.
 		selectedPlanet = nullptr;
@@ -346,7 +357,7 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 	const double planetCardWidth = planetCardInterface->GetValue("width");
 	const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
 	const double arrowOffset = mapInterface->GetValue("arrow x offset");
-	const double planetCardHeight = planetCardInterface->GetValue("height");
+	const double planetCardHeight = MapPlanetCard::Height();
 	if(x < Screen::Left() + 160)
 	{
 		// The player clicked in the left-hand interface. This could be the system
@@ -358,8 +369,10 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 			return true;
 		}
 		// Clicking the system name activates the view of the player's reputation with various governments.
+		// But the bit to the left will show danger of pirate/raid fleets instead.
 		else if(y < governmentY && y > governmentY - 30)
-			SetCommodity(SHOW_REPUTATION);
+			SetCommodity(x < Screen::Left() + mapInterface->GetValue("text margin") ?
+				SHOW_DANGER : SHOW_REPUTATION);
 		// Clicking the government name activates the view of system / planet ownership.
 		else if(y >= governmentY && y < governmentY + 25)
 			SetCommodity(SHOW_GOVERNMENT);
@@ -480,6 +493,7 @@ void MapDetailPanel::GeneratePlanetCards(const System &system)
 	planetCards.clear();
 	SetScroll(0.);
 	unsigned number = 0;
+	MapPlanetCard::ResetSize();
 	for(const StellarObject &object : system.Objects())
 		if(object.HasSprite() && object.HasValidPlanet())
 		{
@@ -517,9 +531,10 @@ void MapDetailPanel::DrawKey()
 		"You have visited:",
 		"", // Special should never be active in this mode.
 		"Government:",
-		"System:"
+		"System:",
+		"Danger level:"
 	};
-	const string &header = HEADER[-min(0, max(-6, commodity))];
+	const string &header = HEADER[-min(0, max(-7, commodity))];
 	font.Draw(header, pos + headerOff, medium);
 	pos.Y() += 20.;
 
@@ -625,10 +640,28 @@ void MapDetailPanel::DrawKey()
 		font.Draw("Dominated", pos + textOff, dim);
 		pos.Y() += 20.;
 	}
+	else if(commodity == SHOW_DANGER)
+	{
+		RingShader::Draw(pos, OUTER, INNER, DangerColor(numeric_limits<double>::quiet_NaN()));
+		font.Draw("None", pos + textOff, dim);
+		pos.Y() += 20.;
+		// Each system is colored in accordance with its danger to the player,
+		// including threats from any "raid fleet" presence.
+		static const string labels[4] = {"Minimal", "Low", "Moderate", "High"};
+		for(int i = 0; i < 4; ++i)
+		{
+			RingShader::Draw(pos, OUTER, INNER, DangerColor(i / 3.));
+			font.Draw(labels[i], pos + textOff, dim);
+			pos.Y() += 20.;
+		}
+	}
 
-	RingShader::Draw(pos, OUTER, INNER, UninhabitedColor());
-	font.Draw("Uninhabited", pos + textOff, dim);
-	pos.Y() += 20.;
+	if(commodity != SHOW_DANGER)
+	{
+		RingShader::Draw(pos, OUTER, INNER, UninhabitedColor());
+		font.Draw("Uninhabited", pos + textOff, dim);
+		pos.Y() += 20.;
+	}
 
 	RingShader::Draw(pos, OUTER, INNER, UnexploredColor());
 	font.Draw("Unexplored", pos + textOff, dim);
@@ -646,7 +679,7 @@ void MapDetailPanel::DrawInfo()
 	const Color &back = *GameData::Colors().Get("map side panel background");
 
 	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
-	double planetHeight = planetCardInterface->GetValue("height");
+	double planetCardHeight = MapPlanetCard::Height();
 	double planetWidth = planetCardInterface->GetValue("width");
 	const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
 	double minPlanetPanelHeight = mapInterface->GetValue("min planet panel height");
@@ -660,7 +693,7 @@ void MapDetailPanel::DrawInfo()
 	// Draw the panel for the planets. If the system was not visited, no planets will be shown.
 	const double minimumSize = max(minPlanetPanelHeight, Screen::Height() - bottomGovY - systemSprite->Height());
 	planetPanelHeight = hasVisited ? min(min(minimumSize, maxPlanetPanelHeight),
-		(planetCards.size()) * planetHeight) : 0.;
+		(planetCards.size()) * planetCardHeight) : 0.;
 	Point size(planetWidth, planetPanelHeight);
 	// This needs to fill from the start of the screen.
 	FillShader::Fill(Screen::TopLeft() + Point(size.X() / 2., size.Y() / 2.),
@@ -679,10 +712,10 @@ void MapDetailPanel::DrawInfo()
 			// Fit another planet, if we can, also give scrolling freedom to reach the planets at the end.
 			// This updates the location of the card so it needs to be called before AvailableSpace().
 			card.DrawIfFits(uiPoint);
-			uiPoint.Y() += planetHeight;
+			uiPoint.Y() += planetCardHeight;
 
 			// Do this all of the time so we can scroll if an element is partially shown.
-			maxScroll += (planetHeight - card.AvailableSpace());
+			maxScroll += (planetCardHeight - card.AvailableSpace());
 		}
 
 		// Edges:
@@ -716,6 +749,11 @@ void MapDetailPanel::DrawInfo()
 	SpriteShader::Draw(systemSprite, uiPoint + Point(systemSprite->Width() / 2. - textMargin, 0.));
 
 	const Font &font = FontSet::Get(14);
+	const Sprite *alertSprite = SpriteSet::Get(commodity == SHOW_DANGER ? "ui/red alert" : "ui/red alert grayed");
+	const float alertScale = min<float>(1.f, min<double>(textMargin,
+		font.Height()) / max(alertSprite->Width(), alertSprite->Height()));
+	SpriteShader::Draw(alertSprite, uiPoint + Point(-textMargin / 2., -7. + font.Height() / 2.), alertScale);
+
 	string systemName = player.KnowsName(*selectedSystem) ?
 		selectedSystem->Name() : "Unexplored System";
 	const auto alignLeft = Layout(145, Truncate::BACK);
@@ -801,8 +839,6 @@ void MapDetailPanel::DrawInfo()
 		text.Wrap(selectedPlanet->Description());
 		text.Draw(Point(Screen::Right() - X_OFFSET - WIDTH, Screen::Top() + 20), medium);
 	}
-
-	DrawButtons("is ports");
 }
 
 
@@ -810,6 +846,7 @@ void MapDetailPanel::DrawInfo()
 // Draw the planet orbits in the currently selected system, on the current day.
 void MapDetailPanel::DrawOrbits()
 {
+	planets.clear();
 	const Sprite *orbitSprite = SpriteSet::Get("ui/orbits and key");
 	SpriteShader::Draw(orbitSprite, Screen::TopRight() + .5 * Point(-orbitSprite->Width(), orbitSprite->Height()));
 	Point orbitCenter = Screen::TopRight() + Point(-120., 160.);
@@ -871,7 +908,6 @@ void MapDetailPanel::DrawOrbits()
 	}
 
 	// Draw the planets themselves.
-	planets.clear();
 	for(const StellarObject &object : selectedSystem->Objects())
 	{
 		if(object.Radius() <= 0.)

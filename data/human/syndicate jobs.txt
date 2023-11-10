@@ -21,7 +21,7 @@ mission "Transport executive to <planet>"
 	to offer
 		random < 20
 	to accept
-		has "outfit: Luxury Accommodations"
+		has "outfit (installed): Luxury Accommodations"
 	source
 		government "Syndicate"
 	destination
@@ -35,16 +35,16 @@ mission "Transport executive to <planet>"
 		dialog "The Syndicate executive rushes off your ship without even a goodbye, fancy briefcase in hand. You collect your payment of <payment>."
 
 
-mission "Corporate retreat from <origin>"
+mission "Corporate retreat to <planet stopovers>"
 	job
 	repeat
 	deadline
 	description "A team of <bunks> engineers needs transport to a corporate retreat on <stopovers>, after which they must return back to <origin> by <date>. They want a comfortable journey, so your ship must be outfitted suitably. Payment is <payment>."
-	passengers 7 18
+	passengers 3 10 .56
 	to offer
 		random < 20
 	to accept
-		has "outfit: Luxury Accommodations"
+		has "outfit (installed): Luxury Accommodations"
 	source
 		government "Syndicate"
 	stopover
@@ -56,6 +56,32 @@ mission "Corporate retreat from <origin>"
 		dialog "For days your ship has played host to endless discussions about load calculations, tensile strengths, and thermodynamic limits. You're grateful for some peace and quiet as the team of engineers tromps out of the hatch and heads for their exotic corporate retreat. You prepare for the return journey to <origin>."
 	on complete
 		payment 3000 160
+		dialog "The team's boss thanks you for a smooth trip and authorizes a payment of <payment>."
+
+
+mission "Large Corporate retreat"
+	name "Corporate retreat to <planet stopovers>"
+	job
+	repeat
+	deadline
+	description "A team of <bunks> engineers needs transport to a corporate retreat on <stopovers>, after which they must return back to <origin> by <date>. They want a comfortable journey, so your ship must be outfitted suitably. Payment is <payment>."
+	passengers 20 6 .15
+	to offer
+		random < 20
+		random < ( "passenger space" - 25 ) * 2
+	to accept
+		has "outfit (installed): Luxury Accommodations"
+	source
+		government "Syndicate"
+	stopover
+		attributes "quarg" "volcanic" "frontier" "north" "south"
+		not attributes "station" "military"
+		distance 3 12
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Quarg"
+	on stopover
+		dialog "For days your ship has played host to endless discussions about load calculations, tensile strengths, and thermodynamic limits. You're grateful for some peace and quiet as the team of engineers tromps out of the hatch and heads for their exotic corporate retreat. You prepare for the return journey to <origin>."
+	on complete
+		payment 130000 110
 		dialog "The team's boss thanks you for a smooth trip and authorizes a payment of <payment>."
 
 
@@ -91,7 +117,7 @@ mission "Document delivery to <planet>"
 	job
 	repeat
 	description "Deliver <tons> of ordinary documents to <destination>. Payment is <payment>."
-	cargo "Confidential documents" 6 12
+	cargo "Confidential documents" 1 16 .69
 	to offer
 		random < 10
 	source
@@ -111,7 +137,7 @@ mission "Waste recycling on <planet>"
 	job
 	repeat
 	description "Syndicated Systems is looking for intrepid captains willing to make a difference as part of our new Green Initiative! Deliver <tons> of recyclable <commodity> to our special facility on <destination>. Payment is <payment>."
-	cargo "Garbage" 6 40
+	cargo "Garbage" 5 2 .1
 	to offer
 		random < 20
 	source
@@ -156,7 +182,7 @@ mission "Rush equipment Delivery"
 	repeat
 	deadline
 	description "Syndicate techs on <destination> need a rush shipment of <tons> of specialized <commodity> by <date>. Payment is <payment>."
-	cargo "Equipment" 5 20
+	cargo "Equipment" 5 2 .15
 	to offer
 		random < 20
 	source
@@ -353,7 +379,7 @@ mission "Syndicate Prisoner Transport [0]"
 	to offer
 		random < 5
 	to accept
-		has "outfit: Luxury Accommodations"
+		has "outfit (installed): Luxury Accommodations"
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
@@ -377,7 +403,7 @@ mission "Syndicate Prisoner Transport [1]"
 	to offer
 		random < 15
 	to accept
-		has "outfit: Brig"
+		has "outfit (installed): Brig"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -389,7 +415,7 @@ mission "Syndicate Prisoner Transport [2]"
 	name "Transport convicted corporate spies"
 	job
 	repeat
-	description `Transport a group of convicted corporate spies to <planet> for their sentences. They must be held in suitable facilities made for the transfer of criminals. Payment is <payment>.`
+	description `Transport a group of <bunks> convicted corporate spies to <planet> for their sentences. They must be held in suitable facilities made for the transfer of criminals. Payment is <payment>.`
 	passengers 3 5
 	source
 		government "Syndicate"
@@ -401,7 +427,7 @@ mission "Syndicate Prisoner Transport [2]"
 	to offer
 		random < 15
 	to accept
-		has "outfit: Brig"
+		has "outfit (installed): Brig"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -413,7 +439,7 @@ mission "Syndicate Prisoner Transport [3]"
 	name "Transport detained protesters"
 	job
 	repeat
-	description `Transport a group of detained protesters to <planet> where they will await trial for inciting a riot. They must be held in suitable facilities made for the transfer of criminals. Payment is <payment>.`
+	description `Transport a group of <bunks> detained protesters to <planet> where they will await trial for inciting a riot. They must be held in suitable facilities made for the transfer of criminals. Payment is <payment>.`
 	passengers 10 40 .9
 	source
 		government "Syndicate"
@@ -426,7 +452,7 @@ mission "Syndicate Prisoner Transport [3]"
 	to offer
 		random < 15
 	to accept
-		has "outfit: Brig"
+		has "outfit (installed): Brig"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -438,8 +464,8 @@ mission "Syndicate Prisoner Transport [4]"
 	name "Transport detained labor organizers"
 	job
 	repeat
-	description `Transport a group of detained labor organizers to <planet> for "processing" as suspected terrorists. They must be held in suitable facilities made for the transfer of criminals. Payment is <payment>.`
-	passengers 3 15
+	description `Transport a group of <bunks> detained labor organizers to <planet> for "processing" as suspected terrorists. They must be held in suitable facilities made for the transfer of criminals. Payment is <payment>.`
+	passengers 3 10 .56
 	source
 		government "Syndicate"
 		attributes "factory" "farming" "mining"
@@ -451,7 +477,7 @@ mission "Syndicate Prisoner Transport [4]"
 	to offer
 		random < 10
 	to accept
-		has "outfit: Brig"
+		has "outfit (installed): Brig"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -465,7 +491,7 @@ mission "Return Syndicate Prisoners [0]"
 	repeat
 	description `Transport an acquitted white-collar criminal with his assistants, lawyers, and collection of <cargo> home to <planet>. He requires a suitably comfortable ship for the journey. Payment is <payment>.`
 	cargo "Luxury Goods" 1 10
-	passengers 5 12
+	passengers 3 10 .56
 	source
 		government "Syndicate"
 		attributes "rich"
@@ -477,7 +503,7 @@ mission "Return Syndicate Prisoners [0]"
 	to offer
 		random < 5
 	to accept
-		has "outfit: Luxury Accommodations"
+		has "outfit (installed): Luxury Accommodations"
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
@@ -489,7 +515,7 @@ mission "Return Syndicate Prisoners [1]"
 	name "Return detained protesters home"
 	job
 	repeat
-	description `Transport a group of protesters home to <planet> from their detention on <origin>. Payment is <payment>.`
+	description `Transport a group of <bunks> protesters home to <planet> from their detention on <origin>. Payment is <payment>.`
 	passengers 10 40 .9
 	source
 		government "Syndicate"
@@ -512,7 +538,7 @@ mission "Return Syndicate Prisoners [2]"
 	name "Return detained labor organizers home"
 	job
 	repeat
-	description `Transport a group of labor organizers home to <planet> from their imprisonment on <origin>. Payment is <payment>.`
+	description `Transport a group of <bunks> labor organizers home to <planet> from their imprisonment on <origin>. Payment is <payment>.`
 	passengers 3 15 .9
 	source
 		government "Syndicate"
@@ -529,3 +555,202 @@ mission "Return Syndicate Prisoners [2]"
 	on complete
 		payment 5000 100
 		dialog "The labor organizers are almost skeletally thin from their imprisonment. One of them raises his face to the sky as though showering in sunlight. You receive your payment of <payment>."
+
+
+mission "Syndicated Shipyards Shipment [0]"
+	name "Shipment to <planet>"
+	description "Syndicated Shipyards, one of the largest shipyards in human space, requests an independent captain to deliver <cargo> to <destination> to ensure sufficient stocks. Payment is <payment>."
+	cargo "weapons" 5 2 .1
+	job
+	repeat
+	to offer
+		random < 10
+	source
+		near Achernar 2 10
+		attributes core factory
+	destination Foundry
+	npc
+		government Pirate
+		personality heroic harvests plunders
+		fleet "Small Core Pirates"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic cargo delivery payment"
+
+mission "Syndicated Shipyards Shipment [1]"
+	name "Shipment to <planet>"
+	description "Syndicated Shipyards, one of the largest shipyards in human space, requests an independent captain to deliver <cargo> to <destination> to ensure sufficient stocks. Payment is <payment>."
+	cargo "Ship Alloys" 5 2 .1
+	job
+	repeat
+	to offer
+		random < 10
+	source
+		near Achernar 2 10
+		attributes core mining
+	destination Foundry
+	npc
+		government Pirate
+		personality heroic harvests plunders
+		fleet "Small Core Pirates"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic cargo delivery payment"
+
+mission "Syndicated Shipyards Shipment [2]"
+	name "Shipment to <planet>"
+	description "Syndicated Shipyards, one of the largest shipyards in human space, requests an independent captain to deliver <cargo> to <destination> to ensure sufficient stocks. Payment is <payment>."
+	cargo "Ship Systems" 5 2 .1
+	job
+	repeat
+	to offer
+		random < 10
+	source
+		near Achernar 2 10
+		attributes core factory
+	destination Foundry
+	npc
+		government Pirate
+		personality heroic harvests plunders
+		fleet "Small Core Pirates"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic cargo delivery payment"
+
+mission "Syndicated Shipyards Shipment [3]"
+	name "Shipment to <planet>"
+	description "Deliver <cargo> to <destination>, where Syndicated Shipyards, one of the largest shipyards in human space, is located. Payment is <payment>."
+	cargo "Ship Alloys" 5 2 .1
+	job
+	repeat
+	to offer
+		random < 10
+	source
+		near Achernar 2 10
+		attributes core factory
+	destination Foundry
+	npc
+		government Pirate
+		personality heroic harvests plunders
+		fleet "Small Core Pirates"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic cargo delivery payment"
+
+mission "Syndicated Systems Shipment [0]"
+	name "Shipment to <planet>"
+	description "Deliver <cargo> to <destination>, the home of Syndicated Systems, the largest ship systems and outfits manufacturer in human space. Payment is <payment>."
+	cargo Electronics 5 2 .1
+	job
+	repeat
+	to offer
+		random < 10
+	source
+		near Markab 2 10
+		attributes core factory
+	destination Hephaestus
+	npc
+		government Pirate
+		personality heroic harvests plunders
+		fleet "Small Core Pirates"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic cargo delivery payment"
+
+mission "Syndicated Systems Shipment [1]"
+	name "Shipment to <planet>"
+	description "Deliver <cargo> to <destination>, the home of Syndicated Systems, the largest ship systems and outfits manufacturer in human space. Payment is <payment>."
+	cargo Metal 5 2 .1
+	job
+	repeat
+	to offer
+		random < 10
+	source
+		near Markab 2 10
+		attributes core mining factory
+	destination Hephaestus
+	npc
+		government Pirate
+		personality heroic harvests plunders
+		fleet "Small Core Pirates"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic cargo delivery payment"
+
+mission "Megaparsec Shipment [0]"
+	name "Shipment to <planet>"
+	description "Deliver <cargo> to <destination>, the home of Megaparsec Inc., a shipyard known for their lightweight designs. Payment is <payment>."
+	cargo "weapons" 5 2 .1
+	job
+	repeat
+	to offer
+		random < 10
+	source
+		near Mirfak 2 10
+		attributes core factory
+	destination Sunracer
+	npc
+		government Pirate
+		personality heroic harvests plunders
+		fleet "Small Core Pirates"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic cargo delivery payment"
+
+mission "Megaparsec Shipment [1]"
+	name "Shipment to <planet>"
+	description "Deliver <cargo> to <destination>, the home of Megaparsec Inc., a shipyard known for their lightweight designs. Payment is <payment>."
+	cargo "Ship Alloys" 5 2 .1
+	job
+	repeat
+	to offer
+		random < 10
+	source
+		near Mirfak 2 10
+		attributes core mining factory
+	destination Sunracer
+	npc
+		government Pirate
+		personality heroic harvests plunders
+		fleet "Small Core Pirates"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic cargo delivery payment"
+
+mission "Megaparsec Shipment [2]"
+	name "Shipment to <planet>"
+	description "Deliver <cargo> to <destination>, the home of Megaparsec Inc., a shipyard known for their lightweight designs. Payment is <payment>."
+	cargo "Ship Systems" 5 2 .1
+	job
+	repeat
+	to offer
+		random < 10
+	source
+		near Mirfak 2 10
+		attributes core mining factory
+	destination Sunracer
+	npc
+		government Pirate
+		personality heroic harvests plunders
+		fleet "Small Core Pirates"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic cargo delivery payment"
