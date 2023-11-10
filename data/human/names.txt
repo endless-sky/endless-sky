@@ -3072,7 +3072,7 @@ phrase "civilian subphrase 15"
 
 phrase "deep science vessel"
 	word
-		"D.G.S. "
+		"D.R.S. "
 	phrase
 		"intellectuals"
 
