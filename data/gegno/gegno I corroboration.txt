@@ -903,7 +903,7 @@ mission "Gegno Intervention"
 
 				accept
 
-			label "Eitch"
+			label "Esstch"
 			`Test.`
 				accept
 
