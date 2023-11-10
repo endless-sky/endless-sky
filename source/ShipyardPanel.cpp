@@ -350,10 +350,12 @@ void ShipyardPanel::Sell(bool toStorage)
 	message += ((initialCount > 2) ? "\nfor " : " for ") + Format::CreditString(total) + "?";
 
 	if(toStorage)
+	{
 		message += " Any outfits will be placed in storage.";
-
-	sellShipOutfitsToStorage = toStorage;
-	GetUI()->Push(new Dialog(this, &ShipyardPanel::SellShip, message, Truncate::MIDDLE));
+		GetUI()->Push(new Dialog(this, &ShipyardPanel::SellShipChassis, message, Truncate::MIDDLE));
+	}
+	else
+		GetUI()->Push(new Dialog(this, &ShipyardPanel::SellShipAndOutfits, message, Truncate::MIDDLE));
 }
 
 
@@ -397,10 +399,24 @@ void ShipyardPanel::BuyShip(const string &name)
 
 
 
-void ShipyardPanel::SellShip()
+void ShipyardPanel::SellShipAndOutfits()
+{
+	SellShip(false);
+}
+
+
+
+void ShipyardPanel::SellShipChassis()
+{
+	SellShip(true);
+}
+
+
+
+void ShipyardPanel::SellShip(bool toStorage)
 {
 	for(Ship *ship : playerShips)
-		player.SellShip(ship, sellShipOutfitsToStorage);
+		player.SellShip(ship, toStorage);
 	playerShips.clear();
 	playerShip = nullptr;
 	for(const shared_ptr<Ship> &ship : player.Ships())
@@ -411,5 +427,4 @@ void ShipyardPanel::SellShip()
 		}
 	if(playerShip)
 		playerShips.insert(playerShip);
-	sellShipOutfitsToStorage = false;
 }
