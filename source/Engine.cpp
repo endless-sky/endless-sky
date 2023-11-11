@@ -364,7 +364,8 @@ void Engine::Place()
 			if(personality.IsLaunching() || launchesWithPlayer || (hasOwnPlanet && !object))
 			{
 				if(hasOwnPlanet)
-					Logger::LogError("Engine::Place: Set fallback planet for the NPC \"" + ship->Name() + "\" as it had an invalid planet");
+					Logger::LogError("Engine::Place: Set fallback planet for the NPC \""
+						+ ship->Name() + "\" as it had an invalid planet");
 				if(planet)
 					ship->SetPlanet(planet);
 				pos = planetPos + angle.Unit() * Random::Real() * planetRadius;
