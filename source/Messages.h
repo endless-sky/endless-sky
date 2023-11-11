@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define MESSAGES_H_
 
 #include <cstdint>
+#include <deque>
 #include <string>
 #include <vector>
 
@@ -58,7 +59,7 @@ public:
 	// will be culled out, and new ones that have just been added will have
 	// their "step" set to the given value.
 	static const std::vector<Entry> &Get(int step);
-	static const std::vector<std::pair<std::string, Messages::Importance>> &GetLog();
+	static const std::deque<std::pair<std::string, Messages::Importance>> &GetLog();
 
 	// Reset the messages (i.e. because a new game was loaded).
 	static void Reset();

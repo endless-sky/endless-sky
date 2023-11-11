@@ -25,7 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // User interface panel that displays message log.
 class MessageLogPanel : public Panel {
 public:
-	MessageLogPanel(const std::vector<std::pair<std::string, Messages::Importance>> &messages);
+	MessageLogPanel(const std::deque<std::pair<std::string, Messages::Importance>> &messages);
 
 	virtual void Draw() override;
 
@@ -39,7 +39,7 @@ protected:
 
 
 private:
-	const std::vector<std::pair<std::string, Messages::Importance>> &messages;
+	const std::deque<std::pair<std::string, Messages::Importance>> &messages;
 
 	double width;
 	// Current scroll:

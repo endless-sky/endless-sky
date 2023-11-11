@@ -29,7 +29,7 @@ namespace {
 
 	vector<pair<string, Messages::Importance>> incoming;
 	vector<Messages::Entry> recent;
-	vector<pair<string, Messages::Importance>> logged;
+	deque<pair<string, Messages::Importance>> logged;
 }
 
 
@@ -92,7 +92,7 @@ const vector<Messages::Entry> &Messages::Get(int step)
 
 
 
-const vector<pair<string, Messages::Importance>> &Messages::GetLog()
+const deque<pair<string, Messages::Importance>> &Messages::GetLog()
 {
 	return logged;
 }

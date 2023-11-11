@@ -40,7 +40,7 @@ namespace {
 
 
 
-MessageLogPanel::MessageLogPanel(const vector<pair<string, Messages::Importance>> &messages)
+MessageLogPanel::MessageLogPanel(const deque<pair<string, Messages::Importance>> &messages)
 	: messages(messages)
 {
 	SetInterruptible(false);
