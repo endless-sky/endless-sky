@@ -354,16 +354,17 @@ void Engine::Place()
 		// taking off from a specific planet or nearby.
 		if(ship->GetSystem() == system && !ship->IsDisabled())
 		{
-			const Personality &person = ship->GetPersonality();
+			const Personality &personality = ship->GetPersonality();
 			bool hasOwnPlanet = ship->GetPlanet();
-			bool launchesWithPlayer = (planet && planet->CanLand(*ship))
-					&& !person.IsStaying() && !person.IsWaiting()
-					&& (!hasOwnPlanet || (ship->IsYours() && ship->GetPlanet() == planet));
+			bool launchesWithPlayer = (ship->GetPlanet() == planet
+					&& !personality.IsStaying() && !personality.IsWaiting());
 			const StellarObject *object = hasOwnPlanet ?
 					ship->GetSystem()->FindStellar(ship->GetPlanet()) : nullptr;
 			// Default to the player's planet in the case of data definition errors.
-			if(person.IsLaunching() || launchesWithPlayer || (hasOwnPlanet && !object))
+			if(personality.IsLaunching() || launchesWithPlayer || (hasOwnPlanet && !object))
 			{
+				if(hasOwnPlanet)
+					Logger::LogError("Engine::Place: Set fallback planet for the NPC \"" + ship->Name() + "\" as it had an invalid planet");
 				if(planet)
 					ship->SetPlanet(planet);
 				pos = planetPos + angle.Unit() * Random::Real() * planetRadius;
