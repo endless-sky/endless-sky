@@ -263,7 +263,8 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 		testContext = TestContext(GameData::Tests().Get(testToRunName));
 
 
-	auto ProcessEvents = [&menuPanels, &gamePanels, &player, &cursorTime, &toggleTimeout, &debugMode, &isPaused, &isFastForward]
+	auto ProcessEvents = [&menuPanels, &gamePanels, &player, &cursorTime, &toggleTimeout, &debugMode, &isPaused,
+			&isFastForward]
 	{
 		SDL_Event event;
 		while(SDL_PollEvent(&event))
