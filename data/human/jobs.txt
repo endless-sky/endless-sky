@@ -2994,14 +2994,18 @@ mission "Bounty Hunting (Very Tiny, Local)"
 		personality heroic entering staying nemesis target
 		fleet
 			names "pirate"
-			variant 3
+			variant
 				"Scrapper"
-			variant 6
+			variant
+				"Scrapper (Gatling)"
+			variant
+				"Scrapper (Mod Blaster)"
+			variant 4
 				"Sparrow"
-			variant
+			variant 2
+				"Sparrow (Gatling)"
+			variant 2
 				"Wasp"
-			variant
-				"Wasp (Gatling)"
 			variant
 				"Wasp (Javelin)"
 			variant
@@ -3095,7 +3099,7 @@ mission "Bounty Hunting (Tiny, Local)"
 			variant
 				"Hawk"
 			variant
-				"Hawk (Rocket)"
+				"Hawk (Plasma)"
 			variant
 				"Hawk (Speedy)"
 			variant
@@ -3109,7 +3113,7 @@ mission "Bounty Hunting (Tiny, Local)"
 			variant
 				"Fury"
 			variant
-				"Fury (Missile)"
+				"Fury (Gatling)"
 			variant
 				"Fury (Heavy)"
 			variant
@@ -3367,7 +3371,7 @@ mission "Bounty Hunting (Medium, Local)"
 			variant
 				"Protector"
 			variant
-				"Protector (Laser)"
+				"Protector (Proton)"
 			variant
 				"Osprey (Missile)"
 			variant
