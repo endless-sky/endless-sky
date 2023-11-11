@@ -49,7 +49,6 @@ class Projectile;
 class Ship;
 class ShipEvent;
 class Sprite;
-class TestContext;
 class Visual;
 class Weather;
 
@@ -80,15 +79,15 @@ public:
 	// Begin the next step of calculations.
 	void Go();
 
+	// Give a command on behalf of the player, used for integration tests.
+	void GiveCommand(const Command &command);
+
 	// Get any special events that happened in this step.
 	// MainPanel::Step will clear this list.
 	std::list<ShipEvent> &Events();
 
 	// Draw a frame.
 	void Draw() const;
-
-	// Set the given TestContext in the next step of the Engine.
-	void SetTestContext(TestContext &newTestContext);
 
 	// Select the object the player clicked on.
 	void Click(const Point &from, const Point &to, bool hasShift, bool hasControl);
@@ -258,9 +257,6 @@ private:
 	// Set of asteroids scanned in the current system.
 	std::set<std::string> asteroidsScanned;
 	bool isAsteroidCatalogComplete = false;
-
-	// Input, Output and State handling for automated tests.
-	TestContext *testContext = nullptr;
 
 	double zoom = 1.;
 	double baseZoom = 1.;
