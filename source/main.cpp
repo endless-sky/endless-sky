@@ -269,7 +269,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	if(!testToRunName.empty())
 		testContext = TestContext(GameData::Tests().Get(testToRunName));
 
-	const bool shoulDraw = !testContext.CurrentTest() || debugMode;
+	const bool isHeadless = (testContext.CurrentTest() && !debugMode);
 
 	// IsDone becomes true when the game is quit.
 	while(!menuPanels.IsDone())
@@ -399,10 +399,10 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 			}
 		}
 
-		Audio::Step();
-
-		if(shoulDraw)
+		if(!isHeadless)
 		{
+			Audio::Step();
+
 			// Events in this frame may have cleared out the menu, in which case
 			// we should draw the game panels instead:
 			(menuPanels.IsEmpty() ? gamePanels : menuPanels).DrawAll();
@@ -410,12 +410,8 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 				SpriteShader::Draw(SpriteSet::Get("ui/fast forward"), Screen::TopLeft() + Point(10., 10.));
 
 			GameWindow::Step();
-		}
-
-		// When we perform automated testing, then we run the game by default as quickly as possible.
-		// Except when debug-mode is set.
-		if(!testContext.CurrentTest() || debugMode)
 			timer.Wait();
+		}
 
 		// If the player ended this frame in-game, count the elapsed time as played time.
 		if(menuPanels.IsEmpty())
