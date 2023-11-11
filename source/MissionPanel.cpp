@@ -277,7 +277,12 @@ void MissionPanel::Draw()
 // Only override the ones you need; the default action is to return false.
 bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	if(key == 'a' && CanAccept())
+	if(command.Has(Command::HELP))
+	{
+		DoHelp("jobs", true);
+		DoHelp("map advanced", true);
+	}
+	else if(key == 'a' && CanAccept())
 	{
 		Accept((mod & KMOD_CTRL));
 		return true;

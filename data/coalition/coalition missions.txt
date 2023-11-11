@@ -2758,7 +2758,7 @@ mission "Coalition: Expeditions Past 9"
 			choice
 				`	"Are you alright?"`
 				`	"He said they were going back immediately, but they never made it. You think that was the last pylon?"`
-				`	(Stay quiet).`
+				`	(Stay quiet.)`
 			`	She goes without a word for a while still. "Set a route for Ablub, could you, Captain? If follow the same route they used, we do, and if any more to find, there is, pick up the signals, I will."`
 			`	You agree, and look to set a route straight to Ablub.`
 				accept
@@ -3120,6 +3120,7 @@ mission "Heliarchs Buy Jump Drive Mission"
 	minor
 	landing
 	invisible
+	"apparent payment" 5000000
 	to offer
 		has "known to the heliarchs"
 		has "outfit (cargo): Jump Drive"

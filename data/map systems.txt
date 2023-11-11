@@ -10564,6 +10564,7 @@ system Dokdobaru
 	government "Quarg (Kor Efret)"
 	attributes "korath" "ringworld"
 	arrival 700
+	departure 1000
 	habitable 700
 	belt 1935
 	haze _menu/haze-133
