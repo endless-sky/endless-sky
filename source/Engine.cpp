@@ -363,7 +363,7 @@ void Engine::Place()
 			// Default to the player's planet in the case of data definition errors.
 			if(personality.IsLaunching() || launchesWithPlayer || (hasOwnPlanet && !object))
 			{
-				if(hasOwnPlanet)
+				if(hasOwnPlanet && !object)
 					Logger::LogError("Engine::Place: Set fallback planet for the NPC \""
 						+ ship->Name() + "\" as it had an invalid planet");
 				if(planet)
