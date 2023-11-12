@@ -229,7 +229,7 @@ mission "Curious Waiter"
 
 
 
-mission "Syndicate Security Troops"
+mission "Syndicated Security Troops"
 	minor
 	source
 		government "Syndicate"
