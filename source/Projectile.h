@@ -98,7 +98,7 @@ public:
 	double DistanceTraveled() const;
 
 	// Once the projectile has come into contact with a phasing device, it
-	// will be decided if it should completely phase trough or make contact.
+	// will be decided if it should completely phase through or make contact.
 	bool Phases(const Ship &ship) const;
 	void SetPhases(const Ship *ship);
 
@@ -124,7 +124,7 @@ private:
 
 	// This is safe to keep even if the ships die, because we don't actually call the ship,
 	// we just compare this pointer to other ship pointers.
-	const Ship * phasedShip;
+	const Ship *phasedShip;
 };
 
 

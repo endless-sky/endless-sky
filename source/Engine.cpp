@@ -2182,7 +2182,7 @@ void Engine::DoCollisions(Projectile &projectile)
 			Ship *ship = reinterpret_cast<Ship *>(shipCollisions.Line(projectile, &closestHit));
 			if(ship)
 			{
-				// Check if the ship makes the projectile pass trough it.
+				// Check if the ship makes the projectile pass through it.
 				if(ship->Phases(projectile))
 					closestHit = 1.;
 				else

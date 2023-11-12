@@ -148,7 +148,7 @@ tip "cloak shield protection:"
 	`Protection against weapons that do shield damage when the cloak is active. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in shield damage, while a total value of 11 only results in a 10 percent reduction.`
 
 tip "cloak phasing:"
-	`When cloaked, weapons cannot affect this ship, and pass right trough.`
+	`When cloaked, weapons cannot affect this ship, and pass right through.`
 
 tip "cloaked firing:"
 	`This device is so efficient at hiding you that you may shoot when cloaking, losing this amount of cloaking in the process, before being cloaked again. A negative value means shooting does not even hinder your cloak.`
