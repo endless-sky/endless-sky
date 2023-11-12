@@ -53,6 +53,8 @@ void Timer::Load(const DataNode &node)
 			if(child.Size() > 1)
 				idleMaxSpeed = child.Value(1) * child.Value(1);
 		}
+		else if(child.Token(0) == "peaceful")
+			requirePeaceful = true;
 		else if(child.Token(0) == "optional")
 			optional = true;
 		else if(child.Token(0) == "system" && child.Size() > 1)
@@ -100,9 +102,9 @@ void Timer::Load(const DataNode &node)
 			resetFired = true;
 		// We keep "on timeup" as separate tokens so that it's compatible with MissionAction syntax.
 		else if(child.Token(0) == "on" && child.Size() > 1 && child.Token(1) == "timeup")
-			actions[TIMEUP].Load(child);
+			actions[TimerTrigger::TIMEUP].Load(child);
 		else if(child.Token(0) == "on" && child.Size() > 1 && child.Token(1) == "reset")
-			actions[RESET].Load(child);
+			actions[TimerTrigger::RESET].Load(child);
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 
@@ -135,6 +137,8 @@ void Timer::Save(DataWriter &out) const
 		{
 			out.Write("idle", sqrt(idleMaxSpeed));
 		}
+		if(requirePeaceful)
+			out.Write("peaceful");
 		if(optional)
 			out.Write("optional");
 		if(requireUncloaked)
@@ -196,6 +200,7 @@ Timer Timer::Instantiate(map<string, string> &subs,
 	result.repeatReset = repeatReset;
 	result.resetFired = resetFired;
 	result.idleMaxSpeed = idleMaxSpeed;
+	result.requirePeaceful = requirePeaceful;
 
 	result.timeElapsed = timeElapsed;
 	result.isComplete = isComplete;
@@ -240,7 +245,7 @@ void Timer::ResetOn(ResetCondition cond, PlayerInfo &player, UI *ui, const Missi
 		timeElapsed = 0;
 		if(repeatReset || !resetFired)
 		{
-			auto it = actions.find(RESET)
+			auto it = actions.find(TimerTrigger::RESET);
 			if(it != actions.end())
 				it->second.Do(player, ui, &mission);
 			resetFired = true;
@@ -264,12 +269,15 @@ void Timer::Step(PlayerInfo &player, UI *ui, const Mission &mission)
 		ResetOn(Timer::ResetCondition::LEAVE_SYSTEM, player, ui, mission);
 		return;
 	}
-	if(requireIdle)
+	if(requireIdle || requirePeaceful)
 	{
-		bool shipIdle = (!flagship->IsThrusting() && !flagship->IsSteering()
+		bool shipIdle = true;
+		if(requireIdle)
+			shipIdle = (!flagship->IsThrusting() && !flagship->IsSteering()
 						&& !flagship->IsReversing() && flagship->Velocity().LengthSquared() < idleMaxSpeed);
-		for(const Hardpoint &weapon : flagship->Weapons())
-			shipIdle &= !weapon.WasFiring();
+		if(requirePeaceful)
+			for(const Hardpoint &weapon : flagship->Weapons())
+				shipIdle &= !weapon.WasFiring();
 		if(!shipIdle)
 		{
 			ResetOn(Timer::ResetCondition::PAUSE, player, ui, mission);
@@ -311,7 +319,7 @@ void Timer::Step(PlayerInfo &player, UI *ui, const Mission &mission)
 	isActive = true;
 	if(++timeElapsed >= timeToWait)
 	{
-		auto it = actions.find(TIMEUP)
+		auto it = actions.find(TimerTrigger::TIMEUP);
 		if(it != actions.end())
 			it->second.Do(player, ui, &mission);
 		isComplete = true;
