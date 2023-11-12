@@ -162,6 +162,7 @@ protected:
 	std::string tooltip;
 	WrappedText hoverText;
 
+	int selectedSystemOffset = 0;
 
 private:
 	void DrawTravelPlan();
