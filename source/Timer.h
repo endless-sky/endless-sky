@@ -62,7 +62,7 @@ public:
 private:
 	enum class TimerTrigger {
 		// The possible triggers for actions on this timer.
-		TIMEUP, 
+		TIMEUP,
 		RESET
 	};
 	enum class ResetCondition {
