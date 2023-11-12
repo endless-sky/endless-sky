@@ -1246,7 +1246,8 @@ void MapPanel::DrawSelectedSystem() const
 
 	const Font &font = FontSet::Get(14);
 	Point pos(-175., Screen::Top() + .5 * (30. - font.Height()));
-	font.Draw({text, {350, Alignment::CENTER, Truncate::MIDDLE}},pos, *GameData::Colors().Get("bright"));
+	font.Draw({text, {350, Alignment::CENTER, Truncate::MIDDLE}},
+		pos, *GameData::Colors().Get("bright"));
 }
 
 
