@@ -1295,6 +1295,8 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 		auto it = orders.find(&ship);
 		if(it != orders.end() && (it->second.type == Orders::ATTACK || it->second.type == Orders::FINISH_OFF))
 			return it->second.target.lock();
+		else if(holdFire.count(&ship))
+			return target;
 	}
 
 	// If this ship is not armed, do not make it fight.
@@ -4630,7 +4632,7 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 
 	if(alreadyHarvesting)
 		return;
-	else if(hasMismatch)
+	else if(holdingFire || (hasMismatch && !isHoldFireOrder))
 		Messages::Add(who + description, Messages::Importance::High);
 	else
 	{
