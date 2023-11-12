@@ -840,8 +840,7 @@ void MapDetailPanel::DrawInfo()
 		text.Draw(Point(Screen::Right() - X_OFFSET - WIDTH, Screen::Top() + 20), medium);
 
 		selectedSystemOffset = -150;
-	} else
-		selectedSystemOffset = 0;
+	}
 }
 
 

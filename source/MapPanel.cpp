@@ -320,6 +320,7 @@ void MapPanel::Draw()
 	DrawNames();
 	DrawMissions();
 	DrawSelectedSystem();
+	selectedSystemOffset = 0;
 }
 
 
