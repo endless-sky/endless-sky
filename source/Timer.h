@@ -60,6 +60,11 @@ public:
 
 
 private:
+	enum class TimerTrigger {
+		// The possible triggers for actions on this timer.
+		TIMEUP, 
+		RESET
+	};
 	enum class ResetCondition {
 		NONE,
 		PAUSE,
@@ -85,6 +90,8 @@ private:
 	bool requireIdle = false;
 	// The speed threshold the player's flagship must be under to count as "idle".
 	double idleMaxSpeed = 25.;
+	// Whether the timer requires the player to not be firing.
+	bool requirePeaceful = false;
 	// Whether the timer requires the player to be uncloaked to advance.
 	bool requireUncloaked = false;
 	// What circumstances will reset the timer: leaving the system,
@@ -101,8 +108,6 @@ private:
 	// The filter to use for which planet(s) to hang out near if a single planet isn't set.
 	LocationFilter proximityCenters;
 
-	// The possible triggers for actions on this timer.
-	enum TimerTrigger {TIMEUP, RESET};
 	// The action to be performed when triggers are fired.
 	std::map<TimerTrigger, MissionAction> actions;
 	// Should the reset action be performed every time, or just the first?
