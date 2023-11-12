@@ -471,15 +471,21 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	attributeValues.emplace_back(Format::Number(outfit.Range()));
 	attributesHeight += 20;
 
-	// Identify the dropoff at range.
-	double fullDropoff = outfit.DamageDropoff(outfit.Range());
+	// Identify the dropoff at range and inform the player.
+	double fullDropoff = outfit.MaxDropoff();
 
 	if(fullDropoff != 1.)
 	{
 		attributeLabels.emplace_back("dropoff modifier:");
 		attributeValues.emplace_back(Format::Number(100 * fullDropoff) + "%");
 		attributesHeight += 20;
+		// Identify the ranges between which the dropoff takes place.
+		attributeLabels.emplace_back("dropoff range:");
+		attributeValues.emplace_back(Format::Number(outfit.DropoffStart()) 
+			+ " - " + Format::Number(outfit.DropoffEnd()));
 	}
+
+
 
 	static const vector<pair<string, string>> VALUE_NAMES = {
 		{"shield damage", ""},

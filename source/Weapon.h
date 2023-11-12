@@ -192,6 +192,12 @@ public:
 	// Calculate the percent damage that this weapon deals given the distance
 	// that the projectile traveled if it has a damage dropoff range.
 	double DamageDropoff(double distance) const;
+	// Return the weapon's damage dropoff at maximum range
+	double MaxDropoff() const;
+	// Return the range at which the weapon's damage dropoff begins
+	double DropoffStart() const;
+	// Return the range at which the weapon's damage dropoff ends
+	double DropoffEnd() const;
 
 
 protected:
