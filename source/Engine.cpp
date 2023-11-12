@@ -609,7 +609,6 @@ void Engine::Step(bool isActive)
 		player.SetPlanet(flagship->GetPlanet());
 
 	const System *currentSystem = player.GetSystem();
-
 	// Update this here, for thread safety.
 	if(player.HasTravelPlan() && currentSystem == player.TravelPlan().back())
 		player.PopTravel();
@@ -1396,6 +1395,8 @@ void Engine::EnterSystem()
 		Messages::Add(GameData::HelpMessage("basics 2"), Messages::Importance::High);
 	}
 
+	// If the flagship is uncloaked when it enters a system,
+	// it has encountered all uncloaked ships in the system.
 	if(flagship->Cloaking() < 1.)
 		for(const shared_ptr<Ship> &ship : ships)
 			if(ship->GetSystem() == system && ship->Cloaking() < 1.)
@@ -1478,7 +1479,8 @@ void Engine::CalculateStep()
 			continue;
 		bool wasCloaked = (it->Cloaking() == 1.);
 		MoveShip(it);
-		// If we decloaked, *or* the player decloaked, and we're in the same system as the player, they encounter us.
+		// If either the flagship or this ship uncloaked this frame and both are uncloaked,
+		// then they have encountered each other.
 		if(((wasCloaked && it->Cloaking() < 1.) || (flagshipWasCloaked && flagship->Cloaking() < 1.))
 			&& flagship->GetSystem() == it->GetSystem() && flagship->Cloaking() < 1.)
 				eventQueue.emplace_back(player.FlagshipPtr(), it, ShipEvent::ENCOUNTER);
@@ -1748,6 +1750,8 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 				for(const auto &sound : jumpSounds)
 					Audio::Play(sound.first, position);
 
+			// If this ship entered the same system as the flagship and both are uncloaked,
+			// then they have encountered each other.
 			if(flagship->Cloaking() < 1. && ship->Cloaking() < 1.)
 				eventQueue.emplace_back(player.FlagshipPtr(), ship, ShipEvent::ENCOUNTER);
 		}
