@@ -40,9 +40,9 @@ class UI;
 class Timer {
 public:
 	Timer() = default;
-	Timer(const DataNode &node, const Mission *mission);
+	Timer(const DataNode &node);
 	// Set up the timer from its data file node.
-	void Load(const DataNode &node, const Mission *mission);
+	void Load(const DataNode &node);
 	// Note: the Save() function can assume this is an instantiated Timer, not a template,
 	// so the time to wait will be saved fully calculated, and with any elapsed time subtracted.
 	void Save(DataWriter &out) const;
@@ -56,7 +56,7 @@ public:
 	Timer Instantiate(std::map<std::string, std::string> &subs,
 					const System *origin, int jumps, int64_t payload) const;
 	// Progress the timer within the main loop.
-	void Step(PlayerInfo &player, UI *ui, Mission *mission);
+	void Step(PlayerInfo &player, UI *ui, const Mission &mission);
 
 
 private:
@@ -66,17 +66,13 @@ private:
 		LEAVE_ZONE,
 		LEAVE_SYSTEM
 	};
-	void ResetOn(ResetCondition cond, PlayerInfo &player, UI *ui, Mission *mission);
+	void ResetOn(ResetCondition cond, PlayerInfo &player, UI *ui, const Mission &mission);
 
 
 private:
-	// The default speed for determining whether the player is idle
-	const double DEFAULT_MAX_SPEED = 25.;
-	// The name of the timer.
-	std::string name;
 	// The basic amount of time to wait, with the optional random values.
-	uint32_t timeToWait = 0;
-	uint32_t rand = 0;
+	int timeToWait = 0;
+	int rand = 0;
 
 	// The system the timer is for.
 	const System *system = nullptr;
@@ -88,7 +84,7 @@ private:
 	// Whether the timer requires the player to be idle.
 	bool requireIdle = false;
 	// The speed threshold the player's flagship must be under to count as "idle".
-	double idleMaxSpeed = DEFAULT_MAX_SPEED;
+	double idleMaxSpeed = 25.;
 	// Whether the timer requires the player to be uncloaked to advance.
 	bool requireUncloaked = false;
 	// What circumstances will reset the timer: leaving the system,
@@ -114,7 +110,7 @@ private:
 	bool resetFired = false;
 
 	// Used for holding the current timer value when it's actually active.
-	uint32_t timeElapsed = 0.;
+	int timeElapsed = 0.;
 	// Set to true once the timer has run to completion so we don't keep trying to save or run it.
 	bool isComplete = false;
 	// Set to true when all the conditions are met.
