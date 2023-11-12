@@ -768,6 +768,12 @@ tip "ammo usage:"
 tip "range:"
 	`Total range of this weapon.`
 
+tip "dropoff modifier:"
+	`Multiplier to damage at max range.`
+
+tip "dropoff range:"
+	`Ranges between which the damage falls off from 100% to the displayed dropoff modifier.`
+
 tip "shield damage / second:"
 	`Shield damage dealt per second.`
 
