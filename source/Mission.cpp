@@ -302,7 +302,7 @@ void Mission::Load(const DataNode &node)
 		else if(child.Token(0) == "npc")
 			npcs.emplace_back(child);
 		else if(child.Token(0) == "timer")
-			timers.emplace_back(child, this);
+			timers.emplace_back(child);
 		else if(child.Token(0) == "on" && child.Size() >= 2 && child.Token(1) == "enter")
 		{
 			// "on enter" nodes may either name a specific system or use a LocationFilter
@@ -928,7 +928,7 @@ bool Mission::IsSatisfied(const PlayerInfo &player) const
 	for(const NPC &npc : npcs)
 		if(!npc.HasSucceeded(player.GetSystem()))
 			return false;
-	// All timers must be complete
+	// All non-optional timers must be complete.
 	for(const Timer &timer : timers)
 		if(!timer.IsOptional() && !timer.IsComplete())
 			return false;

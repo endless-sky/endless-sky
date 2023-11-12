@@ -28,26 +28,22 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
-Timer::Timer(const DataNode &node, const Mission *mission)
+Timer::Timer(const DataNode &node)
 {
-	Load(node, mission);
+	Load(node);
 }
 
 
 
-void Timer::Load(const DataNode &node, const Mission *mission)
+void Timer::Load(const DataNode &node)
 {
-	if(node.Size() > 1)
-		name = node.Token(1);
-
-
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "time" && child.Size() > 1)
 		{
-			timeToWait = static_cast<int64_t>(child.Value(1));
+			timeToWait = child.Value(1);
 			if(child.Size() > 2)
-				rand = static_cast<uint32_t>(child.Value(2));
+				rand = child.Value(2);
 		}
 		else if(child.Token(0) == "idle")
 		{
@@ -124,10 +120,7 @@ void Timer::Save(DataWriter &out) const
 		return;
 
 	int64_t timeRemaining = timeToWait - timeElapsed;
-	if(!name.empty())
-		out.Write("timer", name);
-	else
-		out.Write("timer");
+	out.Write("timer");
 	out.BeginChild();
 	{
 		out.Write("time", timeRemaining);
@@ -140,10 +133,7 @@ void Timer::Save(DataWriter &out) const
 		}
 		if(requireIdle)
 		{
-			if(idleMaxSpeed == DEFAULT_MAX_SPEED)
-				out.Write("idle");
-			else
-				out.Write("idle", sqrt(idleMaxSpeed));
+			out.Write("idle", sqrt(idleMaxSpeed));
 		}
 		if(optional)
 			out.Write("optional");
@@ -169,7 +159,7 @@ void Timer::Save(DataWriter &out) const
 			string distance = "close";
 			if(!closeTo)
 				distance = "far";
-			if(proximityCenter != nullptr)
+			if(proximityCenter)
 				out.Write("proximity", proximityCenter->Name());
 			else if(!proximityCenters.IsEmpty())
 			{
@@ -194,7 +184,6 @@ Timer Timer::Instantiate(map<string, string> &subs,
 						const System *origin, int jumps, int64_t payload) const
 {
 	Timer result;
-	result.name = name;
 	result.requireIdle = requireIdle;
 	result.requireUncloaked = requireUncloaked;
 	result.system = system;
@@ -239,7 +228,7 @@ bool Timer::IsOptional() const
 
 
 
-void Timer::ResetOn(ResetCondition cond, PlayerInfo &player, UI *ui, Mission *mission)
+void Timer::ResetOn(ResetCondition cond, PlayerInfo &player, UI *ui, const Mission &mission)
 {
 	bool reset = cond == resetCondition;
 	reset |= (cond == Timer::ResetCondition::LEAVE_ZONE && resetCondition == Timer::ResetCondition::PAUSE);
@@ -251,7 +240,9 @@ void Timer::ResetOn(ResetCondition cond, PlayerInfo &player, UI *ui, Mission *mi
 		timeElapsed = 0;
 		if(repeatReset || !resetFired)
 		{
-			actions[RESET].Do(player, ui, mission);
+			auto it = actions.find(RESET)
+			if(it != actions.end())
+				it->second.Do(player, ui, &mission);
 			resetFired = true;
 		}
 		isActive = false;
@@ -260,11 +251,11 @@ void Timer::ResetOn(ResetCondition cond, PlayerInfo &player, UI *ui, Mission *mi
 
 
 
-void Timer::Step(PlayerInfo &player, UI *ui, Mission *mission)
+void Timer::Step(PlayerInfo &player, UI *ui, const Mission &mission)
 {
 	if(isComplete)
 		return;
-	Ship *flagship = player.Flagship();
+	const Ship *flagship = player.Flagship();
 	if(!flagship)
 		return;
 	if((system && flagship->GetSystem() != system) ||
@@ -320,7 +311,9 @@ void Timer::Step(PlayerInfo &player, UI *ui, Mission *mission)
 	isActive = true;
 	if(++timeElapsed >= timeToWait)
 	{
-		actions[TIMEUP].Do(player, ui, mission);
+		auto it = actions.find(TIMEUP)
+		if(it != actions.end())
+			it->second.Do(player, ui, &mission);
 		isComplete = true;
 	}
 }
