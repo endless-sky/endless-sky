@@ -4216,7 +4216,7 @@ void PlayerInfo::StepMissionTimers(UI *ui)
 {
 	for(Mission &mission : missions)
 		for(Timer &timer : mission.Timers())
-			timer.Step(*this, ui, &mission);
+			timer.Step(*this, ui, mission);
 }
 
 
