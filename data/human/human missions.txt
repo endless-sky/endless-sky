@@ -7003,9 +7003,9 @@ mission "Adelita 2"
 		dialog `You've landed on <planet>, but the filming equipment isn't in the system. Better depart and wait for your escorts to arrive in this star system.`
 
 mission "Adelita 3"
-	landing
 	name "Film slave transaction"
 	description "Do a flyby of <destination> while Bunker spies on the slave transaction. (You will be paid <payment> after you complete the entire job.)"
+	landing
 	cargo "stealth drones" 1
 	passengers 1
 	infiltrating
@@ -7025,7 +7025,7 @@ mission "Adelita 3"
 
 mission "Adelita 4"
 	name "Take the film to <planet>"
-	description "Pick up the team on <destination>. (You will be paid <payment> after you complete the entire job.)"
+	description "Take the film to <destination>, where the rest of the Adelita group remained behind. (You will be paid <payment> after you complete the entire job.)"
 	landing
 	passengers 1
 	cargo "stealth drones" 1
