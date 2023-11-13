@@ -18,8 +18,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Color.h"
 #include "Point.h"
+#include "Rectangle.h"
 
 #include <string>
+#include <vector>
 
 class StellarObject;
 class System;
@@ -28,19 +30,40 @@ class System;
 
 class PlanetLabel {
 public:
-	PlanetLabel(const Point &position, const StellarObject &object, const System *system, double zoom);
+	PlanetLabel(const std::vector<PlanetLabel> &labels, const System &system, const StellarObject &object);
+
+	void Update(const Point &center, double zoom);
 
 	void Draw() const;
 
 
 private:
+	// Overlap detection.
+	void SetBoundingBox(const Point &labelDimensions, double angle);
+	Rectangle GetBoundingBox(double zoom) const;
+	bool HasOverlaps(const std::vector<PlanetLabel> &labels, const System &system,
+		const StellarObject &object, double zoom) const;
+
+
+private:
+	Point objectPosition;
+	double objectRadius = 0.;
+
+	// Used for overlap detection during label creation.
+	Rectangle box;
+	Point zoomOffset;
+
+	// Position and radius for drawing label.
 	Point position;
 	double radius = 0.;
+
 	std::string name;
 	std::string government;
+	Point nameOffset;
+	Point governmentOffset;
 	Color color;
 	int hostility = 0;
-	int direction = 0;
+	double innerAngle = -1.;
 };
 
 

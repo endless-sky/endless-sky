@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "LocationFilter.h"
 #include "Outfit.h"
 #include "Planet.h"
+#include "Port.h"
 #include "Ship.h"
 #include "System.h"
 
@@ -163,13 +164,12 @@ namespace {
 	{
 		auto PrintBaseShipStats = []() -> void
 		{
-			string keys[] = {"shields", "hull",
-					"drag", "required crew", "bunks", "cargo space", "fuel capacity",
+			string keys[] = {"drag", "required crew", "bunks", "cargo space", "fuel capacity",
 					"outift space", "weapon space", "engine capacity"};
 
 			DataWriter writer;
 			writer.SetSeparator(",");
-			writer.WriteToken("model", "category", "chassis cost", "loaded cost", "mass", "heat dissipation");
+			writer.WriteToken("model", "category", "chassis cost", "loaded cost", "shields", "hull", "mass", "heat dissipation");
 			for(auto &key : keys)
 				writer.WriteToken(key);
 			writer.Write("gun mounts", "turret mounts", "fighter bays", "drone bays");
@@ -187,7 +187,7 @@ namespace {
 				writer.WriteSeparator().SetSeparator(";");
 
 				const Outfit &attributes = ship.BaseAttributes();
-				writer.WriteToken(attributes.Category(), ship.ChassisCost(), ship.Cost());
+				writer.WriteToken(attributes.Category(), ship.ChassisCost(), ship.Cost(), ship.MaxShields(), ship.MaxHull());
 				writer.WriteToken(attributes.Mass() ? attributes.Mass() : 1.);
 				writer.WriteToken(ship.HeatDissipation() * 1000.);
 
@@ -241,8 +241,7 @@ namespace {
 				writer.WriteToken(attributes.Category(), ship.Cost());
 
 				auto mass = attributes.Mass() ? attributes.Mass() : 1.;
-				writer.WriteToken(attributes.Get("shields"), attributes.Get("hull"));
-				writer.WriteToken(mass);
+				writer.WriteToken(ship.MaxShields(), ship.MaxHull(), mass);
 				writer.WriteToken(attributes.Get("required crew"), attributes.Get("bunks"));
 				writer.WriteToken(attributes.Get("cargo space"), attributes.Get("fuel capacity"));
 
@@ -310,8 +309,8 @@ namespace {
 						if(weapon->Ammo() && !ship.OutfitCount(weapon->Ammo()))
 							continue;
 						double damage = weapon->ShieldDamage() + weapon->HullDamage()
-							+ (weapon->RelativeShieldDamage() * ship.Attributes().Get("shields"))
-							+ (weapon->RelativeHullDamage() * ship.Attributes().Get("hull"));
+							+ (weapon->RelativeShieldDamage() * ship.MaxShields())
+							+ (weapon->RelativeHullDamage() * ship.MaxHull());
 						deterrence += .12 * damage / weapon->Reload();
 					}
 				writer.Write(deterrence).SetSeparator(",");
@@ -617,7 +616,7 @@ namespace {
 				writer.WriteToken(it.first);
 				writer.WriteSeparator().SetSeparator(";");
 				const Planet &planet = it.second;
-				writer.WriteToken(planet.Description(), planet.SpaceportDescription());
+				writer.WriteToken(planet.Description(), planet.GetPort().Description());
 				writer.Write().SetSeparator(",");
 			}
 			cout << writer.GetText();
