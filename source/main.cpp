@@ -77,6 +77,7 @@ void PrintVersion();
 void GameLoop(PlayerInfo &player, const Conversation &conversation, const string &testToRun, bool debugMode);
 Conversation LoadConversation();
 void PrintTestsTable();
+int EventFilter(void* userdata, SDL_Event* event);
 #ifdef _WIN32
 void InitConsole();
 #endif
@@ -198,6 +199,19 @@ int main(int argc, char *argv[])
 			if(node.Token(0) == "conditions")
 				GameData::GlobalConditions().Load(node);
 
+		// For android, game loop does not run on the main thread, and some of these
+		// events need handled from within the java callback context. Handle them
+		// directly rather than relying on the sdl event loop. This filter needs
+		// set before any SDL events get generated, because it drops any events
+		// that happen to be in the queue (such as window sizing events)
+		SDL_SetEventFilter(EventFilter, nullptr);
+
+		SDL_SetHint(SDL_HINT_TOUCH_MOUSE_EVENTS, "0"); // turn off mouse emulation
+		SDL_SetHint(SDL_HINT_MOUSE_TOUCH_EVENTS, "0"); // turn off mouse emulation
+		SDL_SetHint(SDL_HINT_ACCELEROMETER_AS_JOYSTICK, "0"); // this shows up as bonus joystick
+		
+		SDL_Log("Setting the event filter");
+
 		if(!GameWindow::Init())
 			return 1;
 
@@ -273,14 +287,6 @@ int EventFilter(void* userdata, SDL_Event* event)
 
 void GameLoop(PlayerInfo &player, const Conversation &conversation, const string &testToRunName, bool debugMode)
 {
-	// For android, game loop does not run on the main thread, and some of these
-	// events need handled from within the java callback context. Handle them
-	// directly rather than relying on the sdl event loop.
-	SDL_SetEventFilter(EventFilter, nullptr);
-	SDL_SetHint(SDL_HINT_TOUCH_MOUSE_EVENTS, "0"); // turn off mouse emulation
-	SDL_SetHint(SDL_HINT_MOUSE_TOUCH_EVENTS, "0"); // turn off mouse emulation
-	SDL_SetHint(SDL_HINT_ACCELEROMETER_AS_JOYSTICK, "0"); // this shows up as bonus joystick
-
 	// SDL BUG? Calling SetEventFilter seems to drop the pending
 	// SDL_CONTROLLERDEVICEADDED event. This is why I'm calling
 	// SDL_Init(SDL_INIT_GAMECONTROLLER) *after* adding the event
