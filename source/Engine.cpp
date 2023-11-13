@@ -594,7 +594,7 @@ void Engine::Step(bool isActive)
 			else if(zoom.base > zoomTarget)
 				nextZoom.base = max(zoomTarget, zoom.base * (1. / (1. + zoomRatio)));
 		}
-		if(Preferences::Has("Landing zoom") && flagship->Zoom() < 1.)
+		if(flagship && flagship->Zoom() < 1. && Preferences::Has("Landing zoom"))
 		{
 			// Update the current zoom modifier if the flagship is landing or taking off.
 			if(!nextZoom.base)
