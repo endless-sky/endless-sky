@@ -66,7 +66,7 @@ mission "Gift Store Interaction"
 	on offer
 		conversation
 			`As you wander the spaceport with a snack, waiting for your ship to be refueled, you pass a local souvenir shop and poke your head in to kill a little time. You see a decent looking mug with the text "Peace, Prosperity, Progress" printed underneath the insignia of the Deep and pick it up to see how it feels. The handle is solid, not too small for your fingers, and the lip of it looks like it would be comfortable to drink out of.`
-			`	Two young adults wander into the aisle just a couple of meters away, conversing in a language that you don't understand, one that is perhaps local to the Deep. They're cooing over an item they've found, but when one flips it over to look at the price tag, there is an immediate exchange of looks and expressions that does not require translation. The item ends up back on the shelf with a giggle and a head-shake.`
+			`	Two young adults wander into the aisle just a couple of meters away, conversing in a language that you don't understand, one that is perhaps local to the Deep. They're cooing over an item they've found, but when one flips it over to look at the price tag, there is an immediate exchange of looks and expressions that does not require translation. The item ends up back on the shelf with a giggle and a headshake.`
 			branch broke
 				credits < 50
 			`	Curious, you turn over your own mug and see that it is indeed at least five times what you would expect to pay for a mug, even a good one: 50 credits. Still, it is certainly a novelty...`
