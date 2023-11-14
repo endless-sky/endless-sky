@@ -895,23 +895,23 @@ mission "Gegno Intervention"
 			`While you are in the midst of docking with the ringworld, you notice a large tan-colored Gegno ship already present in your designated hangar, surrounded by several ships from both the factions of the Vi and Scin. Near them, a small group of Quarg seem to be "conversing" with a smaller group of Gegno that seem rather upset. As soon as you exit your ship, both groups stop and look your way as you recognize Adrauni swiftly approaching you alongside a Gegno that is wearing a very fancy set of armor, neither Scin nor Vi in appearance.`
 			`	Adrauni does not hesitate to to address you. "<first> <last>. I presume you understand the meaning of this affair.`
 			choice
-			`	"What's going on?"`
-			`	"I'm not sure what's happening right now."`
+				`	"What's going on?"`
+				`	"I'm not sure what's happening right now."`
 
-			` The Quarg now stands in front of you, slightly lowering to speak to you. "As so happens to be the arduous case, several complaints we Quarg have recieved from the Gegno. Meddled in their affairs you have, one too many times. As much of a desire I have to converse with you more on the matter, I, nor the Quarg, are no longer of help to you in your endeavours here." Adrauni turns to the Gegno, who seems almost dismissive, or at the very least trying to avoid eye contact with you. After a brief discussion of which nothing you understood, the Gegno walks off to the tan-colored ship, followed by all of the other Gegno in the hangar also returning to their own ships.`
+			`	The Quarg now stands in front of you, slightly lowering to speak to you. "As so happens to be the arduous case, several complaints we Quarg have received from the Gegno. Meddled in their affairs you have, one too many times. As much of a desire I have to converse with you more on the matter, I, nor the Quarg, are no longer of help to you in your endeavors here." Adrauni turns to the Gegno, who seems almost dismissive, or at the very least trying to avoid eye contact with you. After a brief discussion of which nothing you understood, the Gegno walks off to the tan-colored ship, followed by all of the other Gegno in the hangar also returning to their own ships.`
 			`	As you watch all of the ships leave, Adrauni speaks once more. "Eight revolutions you have been given by the Gegno to make an appearance on their world. If to this you do not comply, then you are, in their words, dismissed from their space."`
 			choice
-			`	"Dismissed?"`
-			`	"Will you be coming with me?"`
-				goto "coming"
-			`	"Alright, I will go."`
-				goto "end"
+				`	"Dismissed?"`
+				`	"Will you be coming with me?"`
+					goto "coming"
+				`	"Alright, I will go."`
+					goto "end"
 
 			`	Adrauni thinks for a brief moment. "A more appropriate expression would be exiled, or perhaps shunned? Gegno culture is to hold all as a great home. Your presence in their space is to say you have already entered, though it is now an invitation you are no longer welcome to.`
 			choice
-			`	"Aren't I not already welcome?"`
-			`	"They can't decide where I go."`
-				goto "where"
+				`	"Aren't I not already welcome?"`
+				`	"They can't decide where I go."`
+					goto "where"
 			
 			`	"It is a difficult philosophy to explain. We Quarg were also subject to unwelcomeness. In some notable capacities we still are - however, it is of a different manner than this one."`
 				goto end
@@ -921,7 +921,7 @@ mission "Gegno Intervention"
 				goto "end"
 
 			label "coming"
-			`	"I shall not be. Indeed, it is regrettable that I can no longer be of assistance, but this matter is now between you and the Gegno. Should we Quarg pursue further, it would woefully harm what litte relations we currently have."`
+			`	"I shall not be. Indeed, it is regrettable that I can no longer be of assistance, but this matter is now between you and the Gegno. Should we Quarg pursue further, it would woefully harm what little relations we currently have."`
 				goto "end"
 
 			label "end"

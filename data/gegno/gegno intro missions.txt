@@ -261,7 +261,7 @@ mission "Visit Quarg in Gegno Space"
 		system "Heutesl"
 		fleet "Scin Warfleet"
 
-				
+
 mission "Discover Hostile Quarg"
 	invisible
 	landing
