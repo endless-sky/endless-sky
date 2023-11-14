@@ -838,15 +838,9 @@ mission "Gegno Anticipation"
 				"Quarg Wardragon"
 
 
-mission "Gegno Intervention"
+mission "Gegno Apprehension"
+	invisible
 	landing
-	source
-		near "Heutesl" 100
-		not planet "Wye Tzeou"
-		not planet "Cyife"
-		not planet "Xurelei"
-	destination "Dueyu Eitch"
-	deadline 8
 	to offer
 		or
 			"gegno: bgs" >= 6
@@ -855,7 +849,7 @@ mission "Gegno Intervention"
 				has "Full Vi Backlash: offered"
 			and
 				"gegno: bgs" >= 3
-				"reputation: Gegno Scin" <= 200
+				"reputation: Gegno Scin" <= -200
 #											^ TBD
 			and
 				"gegno: bgs" >= 3
@@ -863,7 +857,25 @@ mission "Gegno Intervention"
 					has "interrupted arena"
 					has "provoked military"
 					has "zydee interference"
-					has "approached bystander"
+					has "approached bystander"	
+	on offer
+		event "gegno: apprehension" 1
+		decline
+
+
+mission "Gegno Intervention"
+	landing
+	to offer
+		has "event: gegno: apprehension"
+		not "Gegno Genocide Defense: offered"
+	source
+		near "Heutesl" 100
+		not planet "Wye Tzeou"
+		not planet "Cyife"
+		not planet "Xurelei"
+	destination "Dueyu Eitch"
+	deadline 8
+
 		not "Gegno Genocide Defense: offered"
 
 	on offer

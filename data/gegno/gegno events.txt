@@ -17,21 +17,16 @@ event "gegno space label"
 		sprite label/gegno
 
 
-event "gegno leave quarg space"
-	system "Aleit"
-		remove fleet "Gegno Basic"
-		remove fleet "Gegno Cargo"
-	system "Elifennka"
-		remove fleet "Gegno Miners"
-	system "Yllke"
-		remove fleet "Gegno Basic"
-		remove fleet "Gegno Cargo"
-		remove fleet "Gegno Miners"
-	system "Heutesl"
-		remove fleet "Quarg (Gegno)"
+event "gegno: suspicions"
+	government "Gegno"
+		"send untranslated hails"
+		"friendly hail" "gegno untranslated"
 
 
 event "gegno: quarg talks"
+
+
+event "gegno: apprehension"
 
 
 event "gegno: unified defense"
@@ -66,11 +61,18 @@ event "gegno: unified defense"
 		add fleet "Large Quarg (Gegno)" 600
 
 
-event "gegno: suspicions"
-	government "Gegno"
-		"send untranslated hails"
-		"friendly hail" "gegno untranslated"
-
+event "gegno leave quarg space"
+	system "Aleit"
+		remove fleet "Gegno Basic"
+		remove fleet "Gegno Cargo"
+	system "Elifennka"
+		remove fleet "Gegno Miners"
+	system "Yllke"
+		remove fleet "Gegno Basic"
+		remove fleet "Gegno Cargo"
+		remove fleet "Gegno Miners"
+	system "Heutesl"
+		remove fleet "Quarg (Gegno)"
 
 
 # Will be defined in the future.
