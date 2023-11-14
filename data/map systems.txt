@@ -21097,7 +21097,7 @@ system "Kor Men"
 		period 1346.18
 
 system "Kor Nor'peli"
-	pos 9.5555556 59.777778
+	pos 12 105
 	government Korath
 	attributes "korath" "warm"
 	arrival 585
@@ -21239,7 +21239,7 @@ system "Kor Tar'bei"
 		period 3427.41
 
 system "Kor Zena'i"
-	pos 12 105
+	pos 9.5 59.8
 	government Korath
 	attributes "korath" "warm"
 	arrival 1385
