@@ -145,7 +145,6 @@ void ShipInfoPanel::Draw()
 	DrawWeapons(infoPanelUi->GetBox("weapons"));
 	DrawCargo(cargoBounds);
 
-
 	// If the player hovers their mouse over a ship attribute, show its tooltip.
 	info.DrawTooltips();
 }
