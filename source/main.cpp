@@ -210,8 +210,6 @@ int main(int argc, char *argv[])
 		SDL_SetHint(SDL_HINT_MOUSE_TOUCH_EVENTS, "0"); // turn off mouse emulation
 		SDL_SetHint(SDL_HINT_ACCELEROMETER_AS_JOYSTICK, "0"); // this shows up as bonus joystick
 		
-		SDL_Log("Setting the event filter");
-
 		if(!GameWindow::Init())
 			return 1;
 
