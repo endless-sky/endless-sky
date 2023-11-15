@@ -477,7 +477,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	if(fullDropoff != 1.)
 	{
 		attributeLabels.emplace_back("dropoff modifier:");
-		attributeValues.emplace_back(Format::Number(100 * fullDropoff) + "%");
+		attributeValues.emplace_back(Format::Number(100. * fullDropoff) + "%");
 		attributesHeight += 20;
 		// Identify the ranges between which the dropoff takes place.
 		attributeLabels.emplace_back("dropoff range:");
