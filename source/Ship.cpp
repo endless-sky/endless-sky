@@ -1789,11 +1789,11 @@ int Ship::Scan(const PlayerInfo &player)
 	if(!cargoDistanceSquared && !outfitDistanceSquared)
 		return 0;
 
-	double cargoSpeed = attributes.Get("cargo scan efficiency");
+	double cargoSpeed = attributes.Get("cargo scan efficiency") * 100;
 	if(!cargoSpeed)
 		cargoSpeed = cargoDistanceSquared;
 
-	double outfitSpeed = attributes.Get("outfit scan efficiency");
+	double outfitSpeed = attributes.Get("outfit scan efficiency") * 100;
 	if(!outfitSpeed)
 		outfitSpeed = outfitDistanceSquared;
 
