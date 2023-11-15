@@ -473,7 +473,6 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 
 	// Identify the dropoff at range and inform the player.
 	double fullDropoff = outfit.MaxDropoff();
-
 	if(fullDropoff != 1.)
 	{
 		attributeLabels.emplace_back("dropoff modifier:");
@@ -484,8 +483,6 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		attributeValues.emplace_back(Format::Number(outfit.DropoffStart())
 			+ " - " + Format::Number(outfit.DropoffEnd()));
 	}
-
-
 
 	static const vector<pair<string, string>> VALUE_NAMES = {
 		{"shield damage", ""},
