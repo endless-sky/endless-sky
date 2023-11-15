@@ -137,6 +137,8 @@ void Government::Load(const DataNode &node)
 		{
 			if(key == "provoked on scan")
 				provokedOnScan = false;
+			else if(key == "travel restrictions")
+				travelRestrictions = LocationFilter{};
 			else if(key == "reputation")
 			{
 				for(const DataNode &grand : child)
@@ -341,6 +343,13 @@ void Government::Load(const DataNode &node)
 			enforcementZones.emplace_back(child);
 		else if(key == "provoked on scan")
 			provokedOnScan = true;
+		else if(key == "travel restrictions" && child.HasChildren())
+		{
+			if(add)
+				travelRestrictions.Load(child);
+			else
+				travelRestrictions = LocationFilter(child);
+		}
 		else if(key == "foreign penalties for")
 			for(const DataNode &grand : child)
 				useForeignPenaltiesFor.insert(GameData::Governments().Get(grand.Token(0))->id);
@@ -756,4 +765,18 @@ double Government::CrewDefense() const
 bool Government::IsProvokedOnScan() const
 {
 	return provokedOnScan;
+}
+
+
+
+bool Government::IsRestrictedFrom(const System &system) const
+{
+	return !travelRestrictions.IsEmpty() && travelRestrictions.Matches(&system);
+}
+
+
+
+bool Government::IsRestrictedFrom(const Planet &planet) const
+{
+	return !travelRestrictions.IsEmpty() && travelRestrictions.Matches(&planet);
 }

@@ -26,7 +26,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
-#include "Hardpoint.h"
 #include "Logger.h"
 #include "Messages.h"
 #include "Outfit.h"
@@ -34,6 +33,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Planet.h"
 #include "Plugins.h"
 #include "Politics.h"
+#include "Port.h"
 #include "Preferences.h"
 #include "RaidFleet.h"
 #include "Random.h"
@@ -506,7 +506,7 @@ void PlayerInfo::Save() const
 			}
 			if(Files::Exists(filePath))
 				Files::Move(filePath, rootPrevious + "1.txt");
-			if(planet->HasSpaceport())
+			if(planet->HasServices())
 				Save(rootPrevious + "spaceport.txt");
 		}
 	}
@@ -707,16 +707,19 @@ void PlayerInfo::IncrementDate()
 
 	// Check if any special events should happen today.
 	auto it = gameEvents.begin();
+	list<DataNode> eventChanges;
 	while(it != gameEvents.end())
 	{
 		if(date < it->GetDate())
 			++it;
 		else
 		{
-			it->Apply(*this);
+			eventChanges.splice(eventChanges.end(), it->Apply(*this));
 			it = gameEvents.erase(it);
 		}
 	}
+	if(!eventChanges.empty())
+		AddChanges(eventChanges);
 
 	// Check if any missions have failed because of deadlines and
 	// do any daily mission actions for those that have not failed.
@@ -1411,16 +1414,11 @@ const CargoHold &PlayerInfo::Cargo() const
 
 
 
-// Get planetary storage information for current planet. Returns a pointer,
-// since we might not be on a planet, or since the storage might be empty.
-CargoHold *PlayerInfo::Storage(bool forceCreate)
+// Get items stored on the player's current planet.
+CargoHold &PlayerInfo::Storage()
 {
-	if(planet && (forceCreate || planetaryStorage.count(planet)))
-		return &(planetaryStorage[planet]);
-
-	// Nullptr can be returned when forceCreate is true if there is no
-	// planet; nullptr is the best we can offer in such cases.
-	return nullptr;
+	assert(planet && "can't get planetary storage in-flight");
+	return planetaryStorage[planet];
 }
 
 
@@ -1508,7 +1506,7 @@ void PlayerInfo::Land(UI *ui)
 	// Ships that are landed with you on the planet should fully recharge.
 	// Those in remote systems restore what they can without landing.
 	bool clearance = HasClearance(*this, planet);
-	bool hasSpaceport = planet->HasSpaceport() && (clearance || planet->CanUseServices());
+	const bool canUseServices = planet->CanUseServices();
 	for(const shared_ptr<Ship> &ship : ships)
 		if(!ship->IsParked() && !ship->IsDisabled())
 		{
@@ -1517,7 +1515,8 @@ void PlayerInfo::Land(UI *ui)
 				const bool alreadyLanded = ship->GetPlanet() == planet;
 				if(alreadyLanded || planet->CanLand(*ship) || (clearance && planet->IsAccessible(ship.get())))
 				{
-					ship->Recharge(hasSpaceport);
+					ship->Recharge(canUseServices ? planet->GetPort().GetRecharges() : Port::RechargeType::None,
+						planet->GetPort().HasService(Port::ServicesType::HireCrew));
 					if(!ship->GetPlanet())
 						ship->SetPlanet(planet);
 				}
@@ -1535,7 +1534,7 @@ void PlayerInfo::Land(UI *ui)
 				}
 			}
 			else
-				ship->Recharge(false);
+				ship->Recharge(Port::RechargeType::None, false);
 		}
 
 	// Cargo management needs to be done after updating ship locations (above).
@@ -1584,7 +1583,8 @@ void PlayerInfo::Land(UI *ui)
 
 	// Hire extra crew back if any were lost in-flight (i.e. boarding) or
 	// some bunks were freed up upon landing (i.e. completed missions).
-	if(Preferences::Has("Rehire extra crew when lost") && hasSpaceport && flagship)
+	if(Preferences::Has("Rehire extra crew when lost")
+			&& (planet->GetPort().HasService(Port::ServicesType::HireCrew) && canUseServices) && flagship)
 	{
 		int added = desiredCrew - flagship->Crew();
 		if(added > 0)
@@ -1634,7 +1634,7 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 	SetFlagship(*flagship);
 
 	// Recharge any ships that can be recharged, and load available cargo.
-	bool hasSpaceport = planet->HasSpaceport() && planet->CanUseServices();
+	const bool canUseServices = planet->CanUseServices();
 	for(const shared_ptr<Ship> &ship : ships)
 		if(!ship->IsParked() && !ship->IsDisabled())
 		{
@@ -1642,11 +1642,12 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 			ship->GetAICache().Calibrate(*ship.get());
 			if(ship->GetSystem() != system)
 			{
-				ship->Recharge(false);
+				ship->Recharge(Port::RechargeType::None, false);
 				continue;
 			}
 			else
-				ship->Recharge(hasSpaceport);
+				ship->Recharge(canUseServices ? planet->GetPort().GetRecharges() : Port::RechargeType::None,
+					planet->GetPort().HasService(Port::ServicesType::HireCrew));
 		}
 
 	if(distributeCargo)
@@ -1793,7 +1794,7 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 				// Transfer the outfits from cargo to the storage on this planet.
 				if(!outfit.second)
 					continue;
-				cargo.Transfer(outfit.first, outfit.second, *Storage(true));
+				cargo.Transfer(outfit.first, outfit.second, Storage());
 			}
 	}
 	accounts.AddCredits(income);
@@ -2786,6 +2787,13 @@ set<Ship *> PlayerInfo::GetGroup(int group)
 
 // Keep track of any outfits that you have sold since landing. These will be
 // available to buy back until you take off.
+const map<const Outfit *, int> &PlayerInfo::GetStock() const
+{
+	return stock;
+}
+
+
+
 int PlayerInfo::Stock(const Outfit *outfit) const
 {
 	auto it = stock.find(outfit);
@@ -3869,7 +3877,7 @@ void PlayerInfo::CreateMissions()
 	boardingMissions.clear();
 
 	// Check for available missions.
-	bool skipJobs = planet && !planet->IsInhabited();
+	bool skipJobs = planet && !planet->GetPort().HasService(Port::ServicesType::JobBoard);
 	bool hasPriorityMissions = false;
 	for(const auto &it : GameData::Missions())
 	{
@@ -3989,7 +3997,7 @@ void PlayerInfo::SortAvailable()
 			// Tiebreaker for equal CONVENIENT is SPEED.
 			case SPEED:
 			{
-				// A higher "Speed" means the mission takes less time, ie. fewer
+				// A higher "Speed" means the mission takes less time, i.e. fewer
 				// jumps.
 				const int lJumps = lhs.ExpectedJumps();
 				const int rJumps = rhs.ExpectedJumps();
@@ -4006,7 +4014,7 @@ void PlayerInfo::SortAvailable()
 				else
 				{
 					// Negative values indicate indeterminable mission paths.
-					// eg. through a wormhole, meaning lower values are worse.
+					// e.g. through a wormhole, meaning lower values are worse.
 
 					// A value of 0 indicates the mission destination is the
 					// source, implying the actual path is complicated; consider

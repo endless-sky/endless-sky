@@ -20,7 +20,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Flotsam.h"
 #include "text/Format.h"
 #include "GameData.h"
-#include "Mask.h"
 #include "Outfit.h"
 #include "pi.h"
 #include "Projectile.h"
