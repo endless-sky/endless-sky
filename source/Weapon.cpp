@@ -530,7 +530,7 @@ double Weapon::DropoffStart() const
 // Return the range at which the weapon's damage dropoff ends
 double Weapon::DropoffEnd() const
 {
-	return (damageDropoffRange.second ? damageDropoffRange.second : Range());
+	return damageDropoffRange.second;
 }
 
 
