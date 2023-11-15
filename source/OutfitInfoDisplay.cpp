@@ -485,6 +485,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		attributeLabels.emplace_back("dropoff range:");
 		attributeValues.emplace_back(Format::Number(outfit.DropoffStart())
 			+ " - " + Format::Number(outfit.DropoffEnd()));
+		attributesHeight += 20;
 	}
 
 	static const vector<pair<string, string>> VALUE_NAMES = {
