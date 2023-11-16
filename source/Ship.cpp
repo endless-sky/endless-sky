@@ -1850,7 +1850,7 @@ int Ship::Scan(const PlayerInfo &player)
 
 		// For slow scan rates, ensure maximum of 10 seconds to scan.
 		if(progress <= LINEAR_RATE)
-			elapsed += max<double>(MIN_SCAN_STEPS, progress);
+			elapsed += max(MIN_SCAN_STEPS, progress);
 		// For fast scan rates, apply an exponential drop-off to prevent insta-scanning.
 		else
 			elapsed += SCAN_TIME - (SCAN_TIME - LINEAR_RATE) *
