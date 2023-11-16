@@ -6879,7 +6879,7 @@ mission "Adelita 1"
 					defer
 
 			`	"You're going to love it," she says. "No one knows who they really are, but Adelita's work is what inspired me to study journalism. Their mixture of mediums, their eye for story telling... I just love it."`
-			`	You reach the entrance to the exhibition soon enough. Inside is a large room filled with photos, videos, interviews, and other mixed media. They focus on three groups: the refugees of Hope, the Navy that saved them, and the Paradise Worlds that protested the evacuation. At one end of the hangar, there is an installation with nearly a hundred original protest signs from rallies against the Dirt Belt and the Republic Navy; some of them quite crude and tasteless. It's a strong rebuke to see those displayed here, on a Paradise Planet.`
+			`	You reach the entrance to the exhibition soon enough. Inside is a large room filled with photos, videos, interviews, and other mixed media. They focus on three groups: the refugees of Hope, the Navy that saved them, and the Paradise Worlds that protested the evacuation. At one end of the hangar, there is an installation with nearly a hundred original protest signs from rallies against the Dirt Belt and the Republic Navy; some of them quite crude and tasteless. It's a strong rebuke to see those displayed here on a Paradise Planet.`
 			`	There are many, many photos, but one catches your eye. It's of a woman standing in line to board a ship, a baby held at her hip and a look of sad determination on her face. Their cheeks, rosy and chapped, stand out in contrast with the cold blues in the background.`
 			`	You head towards the exit, but as the automatic doors open, an arctic blast rushes at you from every direction. Instead of the spaceport's open apron, you find yourself in a life-sized 3D representation of the evacuation of Hope, complete with simulated climate effects and a projected horizon. There are huge Navy Cruisers and Auxiliaries in a snowy field near a small town gradually being covered by ash as hundreds of refugees slowly board. But what stands out most is the massive volcano erupting in the background.`
 			`	"It's more of a collage than an exact rendering," says the young woman you met in line, having followed you all this way. "They took 3D recordings from different moments and areas of Hope and edited them together in various loops. The volcano was actually on the other side of the planet, for example. The magic of editing. So what do you think?"`
@@ -6904,11 +6904,11 @@ mission "Adelita 1"
 
 			label "move on"
 			`	As you move on, you're startled to find yourself face to face with the woman holding the baby, right where they were in the photo. She takes little steps toward the ship while bouncing the baby on her hip. A young woman with a camera and a respirator covering her face walks up to her, asks a question and begins to take photos. Suddenly, the entire projection disappears in a disorienting flash, leaving you in a cordoned-off section of the hangar bay. The exhibit is nearly empty as a woman walks up to you. "She loves that moment too. That's probably why she fought so hard to have that part left in, even though it's a security risk.`
-			`	"Oh, how rude of me," she says. "My name is Mariel, I organize these exhibitions and act as a spokesperson for Adelita. And you are?"`
+			`	"Oh, how rude of me," she says, offering her hand. "My name is Mariel, I organize these exhibitions and act as a spokesperson for Adelita. And you are?"`
 			choice
 				`	"Captain <last>."`
 
-			`	"Captain," she says, her eyes lighting up. "Well as you may know, this is the last day of the exhibition. The captain I hired to transport everything back to <destination> is not only rude, but is now late. I would much rather have it in the hands of someone who appreciates the work. I was going to pay him 60,000 credits, but I can pay you <payment> to take his contract instead. What do you say?"`
+			`	"Captain," she says, her eyes lighting up. "Well, as you may know, this is the last day of the exhibition. The captain I hired to transport everything back to <destination> is not only rude, but is now late. I would much rather have it in the hands of someone who appreciates the work. I was going to pay him 60,000 credits, but I can pay you <payment> to take his contract instead. What do you say?"`
 			choice
 				`	"I would love to."`
 				`	"Sorry, I have more pressing matters at hand."`
@@ -6936,8 +6936,8 @@ mission "Adelita 1"
 		payment 80000
 		event "adelita 2 offer expired" 1
 		dialog
-			`After navigating the thick fog of Moonshake's atmosphere, you find a motley crew waiting on your landing pad. Once you sign your landing documents with the Syndicate officials, one of crew walks up to you and hands you a note. It reads:`
-			`	"Meet me at the Common Grounds Cafe in the spaceport if you're interested in doing a project with us. Make sure you're not followed. - Adelita Zero"`
+			`After navigating the thick fog of Moonshake's atmosphere, you find a motley crew waiting on your landing pad. Once you sign your landing documents with the Syndicate officials, one of the crew walks up to you and hands you a note. It reads:`
+			`	"Meet me at the Common Grounds Cafe in the spaceport if you're interested in assisting us with a new project. Make sure you're not followed. - Adelita Zero"`
 
 event "adelita 2 offer expired"
 
@@ -6955,8 +6955,9 @@ mission "Adelita 2"
 
 	on offer
 		conversation
-			`It takes a while to navigate through the bustling spaceport and the almost viscous fog of <origin>, but after finding an information screen you're able to get to the Common Grounds Cafe, which has a funky vibe to it and is quite busy. Nobody seems to recognize you, so you take a seat at a booth and order something to eat. Before your meal arrives, a woman with dark hair, maybe in her late thirties, sits down across from you and hails the server. She cheerfully orders a smoothie with a long list of ingredients, many of which you have never heard of or can even pronounce.`
-			`	"Sorry for the cloak and dagger bit," she says to you finally. "We have enemies in high places. So Captain <last>, what did you think of the exhibition?"`
+			`It takes a while to navigate through the bustling spaceport and the almost viscous fog of <origin>, but after finding an information screen you're able to get to the Common Grounds Cafe, which has a funky vibe to it and is quite busy. Nobody seems to recognize you, so you take a seat at a booth and order something to eat.`
+			`	Before your meal arrives, however, a woman with dark hair, maybe in her late thirties, sits down across from you and hails the server. She cheerfully orders a smoothie with a long list of ingredients, many of which you have never heard of or can even pronounce.`
+			`	"Sorry for the cloak and dagger bit," the woman says to you finally. "We have enemies in high places. So Captain <last>, what did you think of the exhibition?"`
 			choice
 				`	"I found it quite moving."`
 				`	"It was OK."`
@@ -6975,7 +6976,8 @@ mission "Adelita 2"
 				decline
 
 			label choice
-			`	"Mariel said you saw me take the photos of the woman and her baby," she says. "I really like that moment, but not many notice it." She leans in closer. "We need a captain to transport a team to one planet, quickly land on another, then pickup the team and return here with everyone safe and sound. I can't tell you much until you accept, but it's nothing too dicey. It's a dangerous universe, though, so who knows. Oh, and we have to leave today. It will pay, of course. <payment>. So what do you say? Are you in or out?" As she finishes, your order is served while she drinks her smoothie.`
+			`	"I head from Mariel that you saw me take the photos of the woman and her baby," she says. "I really liked that moment, but not many notice it." She gives a quick glance around before leaning in closer. "We need a captain to transport a team to one planet, quickly land on another, then pick up the team and return here with everyone safe and sound. I can't tell you much until you accept, but it's nothing too dicey. It's a dangerous universe, though, so who knows?" She looks at you expectantly.`
+			`	"Oh, and we have to leave today. It will pay, of course. <payment>. So what do you say? Are you in or out?" As she finishes, your order is served while she drinks her smoothie.`
 			choice
 				`	"In."`
 				`	"Out."`
@@ -6996,7 +6998,7 @@ mission "Adelita 2"
 				accept
 
 			label out
-			`	"I'm sorry to hear that," she says between gulps of her smoothie. "I suppose it just wasn't meant to be." She finishes her "drink" with lightning speed and leaves.`
+			`	"I'm sorry to hear that... I suppose it just wasn't meant to be." She gulps down her smoothie at lightning speed before leaving just as quickly.`
 				decline
 
 	on visit
