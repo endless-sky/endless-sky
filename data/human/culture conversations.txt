@@ -229,7 +229,7 @@ mission "Curious Waiter"
 
 
 
-mission "Syndicate Security Troops"
+mission "Syndicated Security Troops"
 	minor
 	source
 		government "Syndicate"
@@ -418,7 +418,7 @@ mission "Tarazed Ship Christening"
 			choice
 				`	(Take a closer look.)`
 					goto investigate
-				`	(Shout well wishes as I pass by)`
+				`	(Shout well wishes as I pass by.)`
 					goto passby
 				`	(Ignore them, I have more important things to do.)`
 			`	You hurry past the rowdy group, annoyed by the disturbance.`
