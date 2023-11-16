@@ -83,8 +83,8 @@ test-data "quarg rescue save"
 						drag 9.3
 						"heat dissipation" 0.5
 						hull 50000
-						"outfit scan power" 1e+20
-						"outfit scan efficiency" 1e+20
+						"outfit scan power" 1e+09
+						"outfit scan efficiency" 1e+09
 						"energy generation" 10
 						shields 160000
 					fuel 0
@@ -182,8 +182,8 @@ test-data "quarg scanning save"
 						drag 9.3
 						"heat dissipation" 0.5
 						hull 50000
-						"outfit scan power" 1e+20
-						"outfit scan efficiency" 1e+20
+						"outfit scan power" 1e+09
+						"outfit scan efficiency" 1e+09
 						"energy generation" 10
 						shields 160000
 					fuel 0
@@ -282,8 +282,8 @@ test-data "quarg atrocity save"
 						drag 9.3
 						"heat dissipation" 0.5
 						hull 50000
-						"outfit scan power" 1e+20
-						"outfit scan efficiency" 1e+20
+						"outfit scan power" 1e+09
+						"outfit scan efficiency" 1e+09
 						"energy generation" 10
 						shields 160000
 					fuel 0
