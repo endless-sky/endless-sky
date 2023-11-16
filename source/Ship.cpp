@@ -76,20 +76,18 @@ namespace {
 	const double LINEAR_RATE = 5;
 	const double SCAN_DROPOFF_EXPONENT = 5;
 
-	// These numbers ensure it takes 10 seconds for a Cargo Scanner to scan
-	// a Bulk Freighter at point blank range. Any ship with less than 40
-	// cargo space takes as long as a ship with 40 cargo space.
+	// In Ship::Scan, ships smaller than this are treated as being this size.
 	const double SCAN_MIN_CARGO_SPACE = 40;
+	const double SCAN_MIN_OUTFIT_SPACE = 200;
+
+	// Formula for calculating scan speed tuning factors:
+	// factor = pow(framesToFullScan / (SCAN_TIME * sqrt(scanEfficiency)), -1.5) / referenceSize
+
+	// Cargo scanner (5) takes 10 seconds (600/600=1.0) to scan a Bulk freighter (600 space) at 0 range
 	const double SCAN_CARGO_FACTOR = pow(1.0 / sqrt(5), -1.5) / 600;
 
-	// This ensures it takes 10 seconds for an Outfit Scanner to scan a
-	// Bactrian at point blank range. Any ship with less than 200 outfit
-	// space takes as long as a ship with 200 outfit space.
-	const double SCAN_MIN_OUTFIT_SPACE = 200;
+	// Outfit scanner (15) takes 10 seconds (600/600=1.0) to scan a Bactrian (740 space) at 0 range
 	const double SCAN_OUTFIT_FACTOR = pow(1.0 / sqrt(15), -1.5) / 740;
-
-	// Formula for the scan outfit or cargo factor is:
-	// factor = pow(sqrt(scanEfficiency) * framesToFullScan / SCAN_TIME, -1.5) / referenceSize
 
 	// Total number of frames the damaged overlay is show, if any.
 	constexpr int TOTAL_DAMAGE_FRAMES = 40;
