@@ -80,9 +80,9 @@ ship "%TEST%: outfitless wardragon"
 		"heat dissipation" 0.5
 		hull 50000
 		"outfit scan power" 1e+10
-		"outfit scan efficiency" 1e+10
+		"outfit scan efficiency" 1e+20
 		"cargo scan power" 1e+09
-		"cargo scan efficiency" 1e+09
+		"cargo scan efficiency" 1e+20
 		"energy generation" 10
 		shields 160000
 
