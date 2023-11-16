@@ -841,6 +841,8 @@ mission "Gegno Anticipation"
 mission "Gegno Apprehension"
 	invisible
 	landing
+	to complete
+		never
 	to offer
 		or
 			"gegno: bgs" >= 6
@@ -857,10 +859,10 @@ mission "Gegno Apprehension"
 					has "interrupted arena"
 					has "provoked military"
 					has "zydee interference"
-					has "approached bystander"	
+					has "approached bystander"
 	on offer
 		event "gegno: apprehension" 1
-		decline
+		fail
 
 
 mission "Gegno Intervention"
@@ -937,7 +939,7 @@ mission "Gegno Intervention"
 				goto "end"
 
 			label "end"
-			`	"I aspire in wiseful decisions from you in your journey ahead, <first> <last>." Adrauni bows for an extended period of time, then leaves the hangar. You get the feeling that this might have been the last time you meet with it. It is now up to you to try and find some sort of common ground with the Gegno, if at all.`
+			`	"I aspire in wiseful decisions from you in your journey ahead, <first> <last>." Adrauni bows for an extended period of time, then leaves the hangar. You get the feeling that this might have been the last time you meet with it. It is now up to you to try and figure out some sort of common ground with the Gegno, if it's possible anymore.`
 				accept
 
 			label "Esstch"
