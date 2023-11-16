@@ -195,6 +195,10 @@ string Format::Number(double value)
 {
 	if(!value)
 		return "0";
+	else if(std::isnan(value))
+		return "???";
+	else if(std::isinf(value))
+		return value > 0. ? "infinity" : "-infinity";
 
 	string result;
 	bool isNegative = (value < 0.);
@@ -258,6 +262,7 @@ string Format::Decimal(double value, int places)
 // Convert a string into a number. As with the output of Number(), the
 // string can have suffixes like "M", "B", etc.
 // It can also contain spaces or "," as separators like 1,000 or 1 000.
+// Does not support parsing NaN or infinite values.
 double Format::Parse(const string &str)
 {
 	double place = 1.;

@@ -283,6 +283,17 @@ void ImageSet::Load() noexcept(false)
 		}
 	}
 
+	auto FillSwizzleMasks = [&](vector<string> &toFill, unsigned int intendedSize) {
+		if(toFill.size() == 1 && intendedSize > 1)
+			for(unsigned int i = toFill.size(); i < intendedSize; i++)
+				toFill.emplace_back(toFill.back());
+	};
+	// If there is only a swizzle-mask defined for the first frame fill up the swizzle-masks
+	// with this mask.
+	FillSwizzleMasks(paths[2], paths[0].size());
+	FillSwizzleMasks(paths[3], paths[0].size());
+
+
 	auto LoadSprites = [&](vector<string> &toLoad, ImageBuffer &buffer, const string &specifier) {
 		for(size_t i = 0; i < frames && i < toLoad.size(); ++i)
 			if(!buffer.Read(toLoad[i], i))

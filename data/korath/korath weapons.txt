@@ -255,7 +255,7 @@ outfit "Blaze-Pike Turret"
 		sound "blaze-pike"
 		"hit effect" "blaze-pike hit"
 		"inaccuracy" 0.45
-		"turret turn" 2.8
+		"turret turn" 2.1
 		"velocity" 450
 		"lifetime" 1
 		"reload" 1
@@ -264,7 +264,7 @@ outfit "Blaze-Pike Turret"
 		"shield damage" 7.1
 		"hull damage" 3.1
 		"heat damage" 18
-		"burn damage" 0.45
+		"burn damage" 0.4
 	description "The seeming reverence the Korath have for fire appears embodied in this weapon. This pair of Fire-Lances mounted together in a turret do not merely create twin lances of fire: Rather, they begin to form a gestalt - a single, longer, hotter, and almost hypnotic column of fire."
 
 effect "blaze-pike hit"
@@ -293,7 +293,7 @@ outfit "Korath Inferno"
 		sound "korath inferno"
 		"hit effect" "korath inferno hit"
 		"inaccuracy" 0.5
-		"turret turn" 2
+		"turret turn" 1.3
 		"velocity" 550
 		"lifetime" 1
 		"reload" 1
@@ -302,7 +302,7 @@ outfit "Korath Inferno"
 		"shield damage" 10.8
 		"hull damage" 4.8
 		"heat damage" 30
-		"burn damage" 0.9
+		"burn damage" 0.75
 	description "Some Korath consider the Inferno the crowning achievement of Exile weapon design. Three Fire-Lances mounted together in precisely the right manner combine synergistically, creating a longer, more powerful beam than three would individually."
 
 effect "korath inferno hit"
