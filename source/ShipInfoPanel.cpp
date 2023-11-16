@@ -47,7 +47,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cmath>
 #include <utility>
 
-#include "Logger.h"
 
 using namespace std;
 
@@ -393,30 +392,24 @@ void ShipInfoPanel::SetUpHardpointCalcs(const Rectangle &bounds)
 	for(const Hardpoint &hardpoint : (**shipIt).Weapons())
 	{
 		if(hardpoint.IsTurret())
-			turretHardpoints.emplace_back(make_pair(&hardpoint, index));
+			turretHardpoints.emplace_back(&hardpoint, index);
 		else
-			gunHardpoints.emplace_back(make_pair(&hardpoint, index));
+			gunHardpoints.emplace_back(&hardpoint, index);
 		++index;
 	}
 
 	// Sort wepaons into left and right.
 	int count[2][2] = {{0, 0}, {0, 0}};
-	auto SortIntoIndices = [&] (std::vector<pair<const Hardpoint *, int>> &toSort)
+	auto SortIntoIndices = [&](std::vector<pair<const Hardpoint *, int>> &toSort)
 	{
 		for(const pair<const Hardpoint *, int> &hardpoint : toSort)
 		{
-			maxX = max(maxX, fabs(2. * hardpoint.first->GetPoint().X()));
-			++count[hardpoint.first->GetPoint().X() >= 0.][hardpoint.first->IsTurret()];
-			if(hardpoint.first->GetPoint().X() >= 0.)
-			{
-				indices[0].emplace_back(hardpoint.second);
-				weapons[0].emplace_back(hardpoint.first);
-			}
-			else
-			{
-				indices[1].emplace_back(hardpoint.second);
-				weapons[1].emplace_back(hardpoint.first);
-			}
+			const double xPos = hardpoint.first->GetPoint().X();
+			maxX = max(maxX, fabs(2. * xPos));
+			const bool isRight = xPos >= 0.;
+			++count[isRight][hardpoint.first->IsTurret()];
+			indices[!isRight].emplace_back(hardpoint.second);
+			weapons[!isRight].emplace_back(hardpoint.first);
 		}
 	};
 	SortIntoIndices(gunHardpoints);
@@ -429,14 +422,16 @@ void ShipInfoPanel::SetUpHardpointCalcs(const Rectangle &bounds)
 	double height = 20. * (gunRows + turretRows) + 10. * (gunRows && turretRows);
 	bool overflowsPage = height > bounds.Height();
 	height = overflowsPage ? bounds.Height() - HARDPOINT_PAGE_BUTTON_SPACE : height;
-	pages = overflowsPage ? 0 : 1;
 
 	// One row is 20 pixels in height, minus one for the buffer between turrets and guns.
 	rowsPerPage = static_cast<int>(height - 10. * (gunRows && turretRows)) / 20.;
 
 	// Everything fits on one page, no further calculations needed.
 	if(!overflowsPage)
+	{
+		pages = 1;
 		return;
+	}
 
 	// Get the total amount of pages
 	int gunPages = floor(gunRows / rowsPerPage);
