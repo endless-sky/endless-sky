@@ -156,6 +156,7 @@ outfitter "Hai Advanced"
 	`"Bondir" Atomic Steering`
 	`"Bufaer" Atomic Thruster`
 	`"Bufaer" Atomic Steering`
+	"Holovid Zone"
 	"Luxury Accommodations"
 	"Local Map"
 	"Quantum Keystone"
@@ -205,6 +206,7 @@ outfitter "Unfettered Basics"
 	"Pulse Rifle"
 	"Asteroid Scanner"
 	"Outfit Scanner"
+	"Phantom Pallet"
 
 # For ships, stations, or corporations.
 phrase "hai"

@@ -112,6 +112,7 @@ ship "Centipede"
 		"Hai Williwaw Cooling" 3
 		"Hai Cuttlefish Jammer" 2
 		"Luxury Accommodations"
+		"Holovid Zone"
 		"Quantum Keystone"
 		`"Biroo" Atomic Thruster`
 		`"Biroo" Atomic Steering`
