@@ -30,7 +30,7 @@ outfit "Holovid Zone"
 outfit "Phantom Pallet"
 	plural "Phantom Pallets"
 	category "Systems"
-	cost 60000
+	cost 35000
 	thumbnail "outfit/phantom pallet"
 	"mass" 1
 	"outfit space" -1
@@ -40,7 +40,7 @@ outfit "Phantom Pallet"
 	"cargo scan opacity" 15
 	"outfit scan opacity" 3
 	"illegal" 35000
-	description "These illegal hologram projectors confuse scanners and cargo inspectors. Hide them in walls, floors, crates, or anywhere else they fit. They'll fill available space with illusory cargo. It's good enough to fool sight, sound, and touch; but not taste or smell. Beware the fines: the pallets themselves are illegal. Many a captain have lost more money to pallet fines than they've gained from smuggling."
+	description "These illegal devices confuse scanners and cargo inspectors seeking contraband. They use holographic visuals, textured force fields, and audio to create realistic-seeming cargo. Hide them in walls, floors, crates, or anywhere else they fit. The projector will generate crates, barrels, piles, and whole shelving units. Beware the fines: the pallets themselves are illegal. Many a captain has lost more money to pallet fines than they've gained from smuggling."
 
 outfit "Pulse Cannon"
 	category "Guns"
