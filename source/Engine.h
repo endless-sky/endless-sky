@@ -114,9 +114,9 @@ private:
 	class Status {
 	public:
 		Status(const Point &position, double outer, double inner,
-			double disabled, double radius, int type, double angle = 0.)
+			double disabled, double radius, int type, float alpha, double angle = 0.)
 			: position(position), outer(outer), inner(inner),
-				disabled(disabled), radius(radius), type(type), angle(angle) {}
+				disabled(disabled), radius(radius), type(type), alpha(alpha), angle(angle) {}
 
 		Point position;
 		double outer;
@@ -124,6 +124,7 @@ private:
 		double disabled;
 		double radius;
 		int type;
+		float alpha;
 		double angle;
 	};
 
@@ -230,6 +231,7 @@ private:
 	int alarmTime = 0;
 	double flash = 0.;
 	bool doFlash = false;
+	bool doEnterLabels = false;
 	bool doEnter = false;
 	bool hadHostiles = false;
 
@@ -261,8 +263,10 @@ private:
 	TestContext *testContext = nullptr;
 
 	double zoom = 1.;
+	double baseZoom = 1.;
 	// Tracks the next zoom change so that objects aren't drawn at different zooms in a single frame.
 	double nextZoom = 0.;
+	double zoomMod = 2.;
 
 	double load = 0.;
 	int loadCount = 0;

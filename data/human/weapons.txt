@@ -507,7 +507,7 @@ outfit "Proton Gun"
 		"firing energy" 15
 		"firing force" 2
 		"firing heat" 60
-	description "The Proton Gun started out as the Syndicate's attempt to reverse engineer and mass produce a cheap competitor for the Particle Cannon. Unfortunately, they were unable to find a reliable way to keep the beam coherent, but the resulting weapon is still popular with some captains, particularly as an anti-fighter gun."
+	description "The Proton Gun started out as the Syndicate's attempt to reverse engineer and mass-produce a cheap competitor for the Particle Cannon. Unfortunately, they were unable to find a reliable way to keep the beam coherent, but the resulting weapon is still popular with some captains, particularly as an anti-fighter gun."
 
 outfit "Proton Fragment"
 	weapon
@@ -669,7 +669,7 @@ outfit "Flamethrower"
 		"lifetime" 5
 		"reload" 1
 		"firing energy" .1
-		"firing fuel" .25
+		"firing fuel" .4
 		"firing heat" 4
 	description "A crude but impressive-looking weapon, the Flamethrower ignites your hyperspace fuel and directs a stream of it towards your adversaries. The damage it does is relatively minor, but it can be useful for causing a target that is already operating near its thermal capacity to overheat, temporarily taking it out of the fight."
 
@@ -687,7 +687,7 @@ outfit "Flamethrower Projectile"
 		"dropoff modifier" .5
 		"shield damage" .8
 		"hull damage" .7
-		"heat damage" 150
+		"heat damage" 125
 
 effect "flamethrower die"
 	sprite "effect/explosion/small"
