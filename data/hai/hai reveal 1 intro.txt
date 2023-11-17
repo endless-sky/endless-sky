@@ -172,7 +172,7 @@ mission "Hai Reveal Exploration Period: Local Human Merchants Speak Up"
 			branch "second"
 				"HREP: Local Human Merchants (defer count)" = 2
 			# First option on first encounter if the dice decide it is so, second encounter goes to second option.
-			`	The captain, who turns out to be an older guy, greets you, "Good day, Captain. You new in these parts?"`
+			`	The captain, who turns out to be an older guy, says to you, "Good day, Captain. You new in these parts?"`
 			choice
 				`	"Yes, came after the news broke."`
 				`	"No, I've known about the Hai for ages."`
@@ -535,7 +535,9 @@ mission "Hai Reveal Concern Period: Raid on Allhome (local)"
 			`	"No, thank you for caring," she says. "Whatever you do, just be cautious about it. People are scared, and I have a hunch that when they're under pressure, the Hai are a little stranger than people think they are.`
 			`	"Safe travels, Captain."`
 				decline
-
+	on decline
+		clear "Hai Reveal Concern Period: Raid on Allhome (local): label help"
+		clear "Hai Reveal Concern Period: Raid on Allhome (local): label unfettered"
 
 mission "Hai Reveal Concern Period: Raid on Allhome (away)"
 	landing
