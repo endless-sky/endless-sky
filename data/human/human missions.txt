@@ -6976,7 +6976,7 @@ mission "Adelita 2"
 				decline
 
 			label choice
-			`	"I head from Mariel that you saw me take the photos of the woman and her baby," she says. "I really liked that moment, but not many notice it." She gives a quick glance around before leaning in closer. "We need a captain to transport a team to one planet, quickly land on another, then pick up the team and return here with everyone safe and sound. I can't tell you much until you accept, but it's nothing too dicey. It's a dangerous universe, though, so who knows?" She looks at you expectantly.`
+			`	"I heard from Mariel that you saw me take the photos of the woman and her baby," she says. "I really liked that moment, but not many notice it." She gives a quick glance around before leaning in closer. "We need a captain to transport a team to one planet, quickly land on another, then pick up the team and return here with everyone safe and sound. I can't tell you much until you accept, but it's nothing too dicey. It's a dangerous universe, though, so who knows?" She looks at you expectantly.`
 			`	"Oh, and we have to leave today. It will pay, of course. <payment>. So what do you say? Are you in or out?" As she finishes, your order is served while she drinks her smoothie.`
 			choice
 				`	"In."`
