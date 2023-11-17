@@ -276,3 +276,58 @@ mission "Transport seasonal workers to Earth"
 		payment
 		payment 2000
 		dialog "You wish the workers the best of luck on <planet>, and collect your payment of <payment>."
+
+
+mission "Tycho Crater Shipyards Shipment [0]"
+	name "Shipment to <planet>"
+	description "Deliver <cargo> to <destination>, the home of Tycho Crater Shipyards, a constituent of the Republic Navy Yard. Payment is <payment>."
+	cargo "weapons" 5 2 .1
+	job
+	repeat
+	to offer
+		random < 10
+	source
+		near Sol 2 10
+		attributes factory
+	destination Luna
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic cargo delivery payment"
+
+mission "Tycho Crater Shipyards Shipment [1]"
+	name "Shipment to <planet>"
+	description "Deliver <cargo> to <destination>, the home of Tycho Crater Shipyards, a constituent of the Republic Navy Yard. Payment is <payment>."
+	cargo "Ship Alloys" 5 2 .1
+	job
+	repeat
+	to offer
+		random < 10
+	source
+		near Sol 2 10
+		attributes factory mining
+	destination Luna
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic cargo delivery payment"
+
+mission "Tycho Crater Shipyards Shipment [2]"
+	name "Shipment to <planet>"
+	description "Deliver <cargo> to <destination>, the home of Tycho Crater Shipyards, a constituent of the Republic Navy Yard. Payment is <payment>."
+	cargo "Ship Systems" 5 2 .1
+	job
+	repeat
+	to offer
+		random < 10
+	source
+		near Sol 2 10
+		attributes factory
+	destination Luna
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic cargo delivery payment"
