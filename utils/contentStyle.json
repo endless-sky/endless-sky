@@ -27,17 +27,10 @@
 				]
 			}
 		],
-		"nodeOrdering": [
-			{
-				"nodes": ["on .*"],
-				"alphabetical": true
-			},
-			{
-				"nodes": ["phrase"],
-				"alphabetical":  false,
-				"order": ["word", "phrase"]
-			}
-		],
+		"nodes": {
+			"parameters": [],
+			"ordering": []
+		},
 		"regexChecks": [
 			{
 				"excludedNodes": [],

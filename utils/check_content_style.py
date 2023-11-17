@@ -146,6 +146,17 @@ def print_config_help():
 		["", "", "", "copyrightFormats", "An array of supported copyright formats. Each format is a JSON object with the following entries:"],
 		["", "", "", "", "", "holder", "A regex matching the entire 'copyright holder' line. This is repeatedly matched to the beginning of the file."],
 		["", "", "", "", "", "notice", "An array of regexes matching each subsequent line of the copyright notice."],
+		["", "", "", "nodes", "A JSON object containing various groups of rules for specific nodes. The object contains the following entries:"],
+		["", "", "", "", "", "parameters", "An array of objects specifying how many parameters a node has, and how each one should be quoted."],
+		["", "", "", "", "", "", "", "nodes", "An array of regexes matching the nodes this rule is applied to. They must match the entire name of the node."],
+		["", "", "", "", "", "", "", "types", "An array of arrays listing the accepted forms of quoting the argument. The supported values in each sub-array are the following:"],
+		["", "", "", "", "", "", "", "", "", "quote", "Text wrapped in quotation marks."],
+		["", "", "", "", "", "", "", "", "", "backtick", "Text wrapped in backticks."],
+		["", "", "", "", "", "", "", "", "", "none", "A single word without quotes."],
+		["", "", "", "", "", "ordering", "An array of rules specifying how nodes should be ordered inside specific parent nodes. This rule is only applied to the direct children of the node; any grandchildren will instead use their direct parent's ordering rules."],
+		["", "", "", "", "", "", "", "nodes", "An array of regexes matching the parent nodes this rule is applied to. They must match the entire name of the node."],
+		["", "", "", "", "", "", "", "alphabetical", "Whether to sort children alphabetically. Defaults to false."],
+		["", "", "", "", "", "", "", "order", "An array of strings listing the child nodes in order, if the nodes are not sorted alphabetically. Any node not in this array can be placed on any line. Does not support regular expressions."],
 		["", "", "", "regexChecks", "An array of regex-based checks that are applied to individual lines. The checks are grouped by the lines they are applied to. Each entry is a JSON object with the following entries:"],
 		["", "", "", "", "", "excludedNodes", "An array of regexes matching data nodes that the checks are not applied to. Indentation is not taken into account. Defaults to an empty array."],
 		["", "", "", "", "", "excludeComments", "Whether to exclude comments. Defaults to true."],
@@ -331,6 +342,20 @@ def check_indentation(contents, auto_correct, config):
 	return result
 
 
+# Parses the name of the data node from the line. Please note that not all values returned are actual data nodes; they are what the data node would be, if this line had any.
+# Parameters:
+# line: the line to parse from
+def parse_node(line):
+	line = line.lstrip()
+	if line.startswith("on ") or line.startswith("to "):
+		return " ".join(line.split(" ")[0:2])
+	if line.startswith("\""):
+		return line.split("\"")[1]
+	if line.startswith("`"):
+		return line.split("`")[1]
+	return line.split(" ")[0]
+
+
 # Checks whether the order of child nodes for every node are in the correct order.
 # Parameters:
 # contents: the contents of the file
@@ -338,23 +363,10 @@ def check_indentation(contents, auto_correct, config):
 # config: the script configuration
 # Return value: a CheckResult
 def check_child_node_order(contents, auto_correct, config):
-	# Parses the name of the data node from the line. Please note that not all values returned are actual data nodes; they are what the data node would be, if this line had any.
-	# Parameters:
-	# line: the line to parse from
-	def parse_node(line):
-		line = line.lstrip()
-		if line.startswith("on ") or line.startswith("to "):
-			return " ".join(line.split(" ")[0:2])
-		if line.startswith("\""):
-			return line.split("\"")[1]
-		if line.startswith("`"):
-			return line.split("`")[1]
-		return line.split(" ")[0]
-
 	result = CheckResult()
 	result.new_file_contents = [line for line in contents]
 
-	ordering = config["nodeOrdering"]
+	ordering = config["nodes"]["ordering"]
 	if ordering is None or len(ordering) == 0:
 		return result
 
@@ -367,29 +379,82 @@ def check_child_node_order(contents, auto_correct, config):
 		if line.lstrip().startswith("#") or len(line.strip()) == 0:
 			continue
 
+		# Finding parent node
 		indent = count_indent(indentation, line)
 		node = parse_node(line)
 		while 0 < len(nodes) > indent:
 			nodes.pop()
 		parent = None if len(nodes) == 0 else nodes[-1]
 
-		# Checking node order
+		# Checking node order (assuming this isn't the first child of the parent)
 		if parent is not None and len(parent[1]) > 0:
 			for ruleset in ordering:
-				for expectedNode in ruleset["nodes"]:
-					if re.fullmatch(expectedNode, parent[0]):
+				for expected_node in ruleset["nodes"]:
+					# Checking if this is the valid ruleset for this parent node
+					if re.fullmatch(expected_node, parent[0]):
 						if ruleset["alphabetical"]:
 							if parent[1][-1] > node:
 								result.errors.append(Error(index + 1, f"child nodes of '{parent[0]}' are not in alphabetical order; '{node}' should precede '{parent[1][-1]}'"))
 						else:
 							if "order" in ruleset and node in ruleset["order"]:
-								if ruleset["order"].index(parent[1][-1]) > ruleset["order"].index(node):
-									result.errors.append(Error(index + 1, f"child nodes of '{parent[0]}' are not in the expected order; '{node}' should precede '{parent[1][-1]}'"))
+								(last_index, prev) = next(((ruleset["order"].index(prev), prev) for prev in reversed(parent[1]) if prev in ruleset["order"]), None)
+								if last_index is not None and last_index > ruleset["order"].index(node):
+									result.errors.append(Error(index + 1, f"child nodes of '{parent[0]}' are not in the expected order; '{node}' should precede '{prev}'"))
 						break
 		# Storing the node
 		if parent is not None:
 			parent[-1].append(node)
 		nodes.append((parse_node(line), []))
+	return result
+
+
+# Checks whether the order of child nodes for every node are in the correct order.
+# Parameters:
+# contents: the contents of the file
+# auto_correct: whether to attempt to correct the issue
+# config: the script configuration
+# Return value: a CheckResult
+def check_node_parameters(contents, auto_correct, config):
+	# Finds the quotation type of each parameter.
+	def find_parameter_types(node, line):
+		types = []
+		current = ""
+		for word in line.split(" ")[node.count(" ") + 1:]:
+			if current == "":
+				if word[0] == '"' or word[0] == '`':
+					current = word[0]
+				else:
+					types.append("none")
+			if word[-1] == current:
+				types.append("quote" if current == '"' else "backtick")
+				current = ""
+		return types
+
+	result = CheckResult()
+	result.new_file_contents = [line for line in contents]
+
+	parameters = config["nodes"]["parameters"]
+	if parameters is None or len(parameters) == 0:
+		return result
+
+	for index, line in enumerate(contents):
+		line = line.split("#")[0].strip()
+		# Ignoring empty lines
+		if len(line) == 0:
+			continue
+		node = parse_node(line)
+		for rule in parameters:
+			for expected_node in rule["nodes"]:
+				# Finding the appropriate rule
+				if re.fullmatch(expected_node, node):
+					expected_types = rule["types"]
+					if expected_types is not None and len(expected_types) > 0:
+						types = find_parameter_types(node, line)
+						for (paramIndex, (expected, actual)) in enumerate(zip(expected_types, types)):
+							if actual not in expected and len(expected) > 0:
+								expected_text = " or ".join(expected)
+								result.errors.append(Error(index + 1, f"parameter {paramIndex + 1} of '{node}' uses non-standard quoting; expected {expected_text}, found {actual}"))
+					break
 	return result
 
 
@@ -561,6 +626,12 @@ def check_content_style(file, auto_correct, config):
 
 		# Checking the order of child nodes everywhere
 		issues.combine_with(check_child_node_order(contents, auto_correct, config))
+		if issues.should_reload():
+			do_reload()
+			continue
+
+		# Checking the order of child nodes everywhere
+		issues.combine_with(check_node_parameters(contents, auto_correct, config))
 		if issues.should_reload():
 			do_reload()
 			continue
