@@ -1220,7 +1220,7 @@ void MapPanel::DrawTravelPlan()
 
 
 // Fill in the top-middle header bar that names the selected system, and indicates its distance.
-void MapPanel::DrawSelectedSystem() const
+void MapPanel::DrawSelectedSystem()
 {
 	const Sprite *sprite = SpriteSet::Get("ui/selected system");
 	SpriteShader::Draw(sprite, Point(0. + selectedSystemOffset, Screen::Top() + .5f * sprite->Height()));
