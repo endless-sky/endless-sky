@@ -1276,7 +1276,7 @@ void MapPanel::DrawEscorts()
 			if(squad.second.activeShips || squad.second.parkedShips)
 				RingShader::Draw(pos, INNER - 1.f, 0.f, squad.second.activeShips ? active : parked);
 
-			if(squad.second.outfits.size())
+			if(!squad.second.outfits.empty())
 				// Stored outfits are drawn/indicated by 8 short rays out of the system center.
 				for(int i = 0; i < 8; ++i)
 				{

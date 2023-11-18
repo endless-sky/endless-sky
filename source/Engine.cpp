@@ -659,7 +659,7 @@ void Engine::Step(bool isActive)
 
 	// Update the player's ammo amounts.
 	if(flagship)
-		ammoDisplay.Update(*flagship.get());
+		ammoDisplay.Update(*flagship);
 
 
 	// Display escort information for all ships of the "Escort" government,

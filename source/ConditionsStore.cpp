@@ -180,19 +180,19 @@ void ConditionsStore::Save(DataWriter &out) const
 {
 	out.Write("conditions");
 	out.BeginChild();
-	for(auto it = storage.begin(); it != storage.end(); ++it)
+	for(const auto &it : storage)
 	{
 		// We don't need to save derived conditions that have a provider.
-		if(it->second.provider)
+		if(it.second.provider)
 			continue;
 		// If the condition's value is 0, don't write it at all.
-		if(!it->second.value)
+		if(!it.second.value)
 			continue;
 		// If the condition's value is 1, don't bother writing the 1.
-		if(it->second.value == 1)
-			out.Write(it->first);
+		if(it.second.value == 1)
+			out.Write(it.first);
 		else
-			out.Write(it->first, it->second.value);
+			out.Write(it.first, it.second.value);
 	}
 	out.EndChild();
 }
@@ -387,10 +387,10 @@ void ConditionsStore::Clear()
 int64_t ConditionsStore::PrimariesSize() const
 {
 	int64_t result = 0;
-	for(auto it = storage.begin(); it != storage.end(); ++it)
+	for(const auto &it : storage)
 	{
 		// We only count primary conditions; conditions that don't have a provider.
-		if(it->second.provider)
+		if(it.second.provider)
 			continue;
 		++result;
 	}
@@ -419,7 +419,7 @@ const ConditionsStore::ConditionEntry *ConditionsStore::GetEntry(const string &n
 
 	--it;
 	// The entry is matching if we have an exact string match.
-	if(!name.compare(it->first))
+	if(name == it->first)
 		return &(it->second);
 
 	// The entry is also matching when we have a prefix entry and the prefix part in the provider matches.

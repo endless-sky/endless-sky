@@ -66,7 +66,7 @@ public:
 private:
 	// "Sell" an item, removing it from the given record and returning the base
 	// day for its depreciation.
-	int Sell(std::map<int, int> &record);
+	int Sell(std::map<int, int> &record) const;
 	// Calculate depreciation:
 	double Depreciate(const std::map<int, int> &record, int day, int count = 1) const;
 	double Depreciate(int age) const;

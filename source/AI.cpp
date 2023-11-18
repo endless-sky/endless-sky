@@ -907,7 +907,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 					for(const auto &other : otherShips)
 						if(other->GetGovernment() == gov && other->GetSystem() == it->GetSystem() && !other->CanBeCarried())
 						{
-							if(!other->IsDisabled() && other->CanCarry(*it.get()))
+							if(!other->IsDisabled() && other->CanCarry(*it))
 								return other;
 							else
 								parentChoices.emplace_back(other);
@@ -3029,7 +3029,7 @@ void AI::DoPatrol(Ship &ship, Command &command) const
 			for(const StellarObject &object : ship.GetSystem()->Objects())
 				if(object.HasSprite() && object.GetPlanet() && object.GetPlanet()->CanLand(ship))
 					landingTargets.push_back(&object);
-			if(landingTargets.size())
+			if(!landingTargets.empty())
 			{
 				ship.SetTargetStellar(landingTargets[Random::Int(landingTargets.size())]);
 				MoveToPlanet(ship, command);
