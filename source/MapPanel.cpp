@@ -320,7 +320,6 @@ void MapPanel::Draw()
 	DrawNames();
 	DrawMissions();
 	DrawSelectedSystem();
-	selectedSystemOffset = 0;
 }
 
 
@@ -1249,6 +1248,10 @@ void MapPanel::DrawSelectedSystem() const
 	Point pos(-175. + selectedSystemOffset, Screen::Top() + .5 * (30. - font.Height()));
 	font.Draw({text, {350, Alignment::CENTER, Truncate::MIDDLE}},
 		pos, *GameData::Colors().Get("bright"));
+
+	// Reset the position of this UI element. If something is in the way, it will be
+	// moved back before it's drawn the next frame.
+	selectedSystemOffset = 0;
 }
 
 
