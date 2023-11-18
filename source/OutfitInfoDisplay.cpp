@@ -483,8 +483,9 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		attributesHeight += 20;
 		// Identify the ranges between which the dropoff takes place.
 		attributeLabels.emplace_back("dropoff range:");
-		attributeValues.emplace_back(Format::Number(outfit.DropoffStart())
-			+ " - " + Format::Number(outfit.DropoffEnd()));
+		const pair<double, double> &ranges = outfit.DropoffRanges();
+		attributeValues.emplace_back(Format::Number(ranges.first)
+			+ " - " + Format::Number(ranges.second));
 		attributesHeight += 20;
 	}
 

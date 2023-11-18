@@ -194,10 +194,8 @@ public:
 	double DamageDropoff(double distance) const;
 	// Return the weapon's damage dropoff at maximum range
 	double MaxDropoff() const;
-	// Return the range at which the weapon's damage dropoff begins
-	double DropoffStart() const;
-	// Return the range at which the weapon's damage dropoff ends
-	double DropoffEnd() const;
+	// Return the ranges at which the weapon's damage dropoff begins and ends.
+	const std::pair<double, double> &DropoffRanges() const;
 
 
 protected:
