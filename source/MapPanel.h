@@ -169,7 +169,7 @@ protected:
 private:
 	void DrawTravelPlan();
 	// Display the name of and distance to the selected system.
-	void DrawSelectedSystem() const;
+	void DrawSelectedSystem();
 	// Indicate which other systems have player escorts.
 	void DrawEscorts();
 	void DrawWormholes();
