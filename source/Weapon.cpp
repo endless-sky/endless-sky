@@ -520,7 +520,7 @@ double Weapon::MaxDropoff() const
 
 
 // Return the ranges at which the weapon's damage dropoff begins and ends.
-pair<double, double> &Weapon::DropoffRanges() const
+const pair<double, double> &Weapon::DropoffRanges() const
 {
 	return damageDropoffRange;
 }
