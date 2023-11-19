@@ -60,7 +60,7 @@ public:
 	void AddCredits(int64_t value);
 
 	// -- Functions operating on the player's credit score.
-  
+
 	// Get the player's credit rating.
 	int CreditScore() const;
 
