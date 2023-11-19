@@ -1221,7 +1221,7 @@ void PlayerInfo::SellShip(const Ship *selected, bool storeOutfits)
 				cost = depreciation.Value(*selected, day);
 
 			// Record the transfer of this ship in the depreciation and stock info.
-			stockDepreciation.Buy(*selected, day, &depreciation, toStorage);
+			stockDepreciation.Buy(*selected, day, &depreciation, storeOutfits);
 			if(storeOutfits)
 			{
 				CargoHold &storage = Storage();
