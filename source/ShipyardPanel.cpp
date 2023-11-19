@@ -147,7 +147,7 @@ int ShipyardPanel::DividerOffset() const
 
 int ShipyardPanel::DetailWidth() const
 {
-	return 3 * shipInfo.PanelWidth();
+	return 3 * ItemInfoDisplay::PanelWidth();
 }
 
 
