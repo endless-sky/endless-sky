@@ -4606,7 +4606,10 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 			// asteroid.
 			if(hasMismatch && targetAsteroid)
 				alreadyHarvesting = (existing.type == newOrders.type) && (newOrders.type == Orders::HARVEST);
-			existing = newOrders;
+
+			// The hold fire order should not overwrite compatible old orders like movements.
+			if(newOrders.type != Orders::HOLD_FIRE || (existing.type == Orders::FINISH_OFF || existing.type == Orders::ATTACK))
+				existing = newOrders;
 
 			if(isMoveOrder)
 			{
