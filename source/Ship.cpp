@@ -2661,8 +2661,7 @@ int Ship::Crew() const
 
 
 
-// Calculate the drag on this ship. If the raw drag value is greater than the
-// ship's mass, then the drag becomes the mass.
+// Calculate the drag on this ship. The drag can be no greater than the mass.
 double Ship::Drag() const
 {
 	double drag = attributes.Get("drag") / (1. + attributes.Get("drag reduction"));
