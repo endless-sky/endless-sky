@@ -297,7 +297,7 @@ int64_t Depreciation::Value(const Outfit *outfit, int day, int count) const
 
 // "Sell" an item, removing it from the given record and returning the base
 // day for its depreciation.
-int Depreciation::Sell(map<int, int> &record)
+int Depreciation::Sell(map<int, int> &record) const
 {
 	// If we're a planet, we start by selling the oldest, cheapest thing.
 	auto it = (isStock ? record.begin() : --record.end());

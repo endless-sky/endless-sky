@@ -46,7 +46,7 @@ public:
 public:
 	// ImageSets should be created with a name, as some image paths (e.g. plugin icons)
 	// do not contain the associated image name.
-	ImageSet(std::string name);
+	explicit ImageSet(std::string name);
 
 	// Get the name of the sprite for this image set.
 	const std::string &Name() const;

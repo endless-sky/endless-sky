@@ -38,9 +38,9 @@ public:
 	// name.
 	class Category {
 	public:
-		Category(std::string name, int precedence) : name(name), precedence(precedence) {}
+		Category(const std::string &name, int precedence) : name(name), precedence(precedence) {}
 		const std::string &Name() const { return name; }
-		const bool operator<(Category other) const { return SortHelper(*this, other); }
+		const bool operator<(const Category &other) const { return SortHelper(*this, other); }
 		const bool operator()(Category &a, Category &b) const { return SortHelper(a, b); }
 
 	private:

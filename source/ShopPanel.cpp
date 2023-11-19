@@ -706,7 +706,7 @@ void ShopPanel::DrawShipsSidebar()
 
 	// Check whether flight check tooltips should be shown.
 	const auto flightChecks = player.FlightCheck();
-	Point mouse = GetUI()->GetMouse();
+	Point mouse = UI::GetMouse();
 	warningType.clear();
 	shipZones.clear();
 

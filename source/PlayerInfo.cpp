@@ -1279,11 +1279,11 @@ vector<shared_ptr<Ship>>::iterator PlayerInfo::DisownShip(const Ship *selected)
 // flying with the player, and requires no daily crew payments.
 void PlayerInfo::ParkShip(const Ship *selected, bool isParked)
 {
-	for(auto it = ships.begin(); it != ships.end(); ++it)
-		if(it->get() == selected)
+	for(auto &ship : ships)
+		if(ship.get() == selected)
 		{
-			isParked &= !(*it)->IsDisabled();
-			(*it)->SetIsParked(isParked);
+			isParked &= !ship->IsDisabled();
+			ship->SetIsParked(isParked);
 			UpdateCargoCapacities();
 			flagship.reset();
 			return;
@@ -1295,10 +1295,10 @@ void PlayerInfo::ParkShip(const Ship *selected, bool isParked)
 // Rename the given ship.
 void PlayerInfo::RenameShip(const Ship *selected, const string &name)
 {
-	for(auto it = ships.begin(); it != ships.end(); ++it)
-		if(it->get() == selected)
+	for(auto &ship : ships)
+		if(ship.get() == selected)
 		{
-			(*it)->SetName(name);
+			ship->SetName(name);
 			return;
 		}
 }
@@ -2130,10 +2130,10 @@ void PlayerInfo::HandleBlockedMissions(Mission::Location location, UI *ui)
 	if(ships.empty() || missionList.empty())
 		return;
 
-	for(auto it = missionList.begin(); it != missionList.end(); ++it)
-		if(it->IsAtLocation(location) && it->CanOffer(*this) && !it->CanAccept(*this))
+	for(auto &it : missionList)
+		if(it.IsAtLocation(location) && it.CanOffer(*this) && !it.CanAccept(*this))
 		{
-			string message = it->BlockedMessage(*this);
+			string message = it.BlockedMessage(*this);
 			if(!message.empty())
 			{
 				ui->Push(new Dialog(message));
@@ -2234,10 +2234,10 @@ void PlayerInfo::RemoveMission(Mission::Trigger trigger, const Mission &mission,
 // Mark a mission as failed, but do not remove it from the mission list yet.
 void PlayerInfo::FailMission(const Mission &mission)
 {
-	for(auto it = missions.begin(); it != missions.end(); ++it)
-		if(&*it == &mission)
+	for(auto &it : missions)
+		if(&it == &mission)
 		{
-			it->Fail();
+			it.Fail();
 			return;
 		}
 }
@@ -2482,7 +2482,6 @@ void PlayerInfo::Map(int mapSize)
 	for(const System *system : distance.Systems())
 		if(!HasVisited(*system))
 			Visit(*system);
-	return;
 }
 
 
@@ -2952,8 +2951,8 @@ void PlayerInfo::ApplyChanges()
 	destroyedPersons.clear();
 
 	// Check which planets you have dominated.
-	for(auto it = tributeReceived.begin(); it != tributeReceived.end(); ++it)
-		GameData::GetPolitics().DominatePlanet(it->first);
+	for(auto &it : tributeReceived)
+		GameData::GetPolitics().DominatePlanet(it.first);
 
 	// Issue warnings for any data which has been mentioned but not actually defined, and
 	// ensure that all "undefined" data is appropriately named.
@@ -4341,7 +4340,7 @@ void PlayerInfo::Save(DataWriter &out) const
 	map<string, map<string, int>> offWorldMissionPassengers;
 	for(const auto &it : ships)
 	{
-		const Ship &ship = *it.get();
+		const Ship &ship = *it;
 		// If the ship is at the player's planet, its mission cargo allocation does not need to be saved.
 		if(ship.GetPlanet() == planet)
 			continue;
@@ -4350,7 +4349,7 @@ void PlayerInfo::Save(DataWriter &out) const
 		for(const auto &passengers : ship.Cargo().PassengerList())
 			offWorldMissionPassengers[passengers.first->UUID().ToString()][ship.UUID().ToString()] = passengers.second;
 	}
-	auto SaveMissionCargoDistribution = [&out](map<string, map<string, int>> toSave, bool passengers) -> void
+	auto SaveMissionCargoDistribution = [&out](const map<string, map<string, int>> &toSave, bool passengers) -> void
 	{
 		if(passengers)
 			out.Write("mission passengers");

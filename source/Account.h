@@ -60,7 +60,7 @@ public:
 	void AddCredits(int64_t value);
 
 	// -- Functions operating on the player's credit score.
-
+  
 	// Get the player's credit rating.
 	int CreditScore() const;
 
@@ -130,7 +130,7 @@ public:
 	// Set the number of credits in a specified salary. This will add the
 	// salaries if it does not already exist, or modify and existing salary.
 	// If the amount passed in is 0, then the salary will be removed.
-	void SetSalariesIncome(std::string name, int64_t amount);
+	void SetSalariesIncome(const std::string &name, int64_t amount);
 
 	// -- Miscellaneous Functions
 
