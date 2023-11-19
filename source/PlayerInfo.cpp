@@ -1205,7 +1205,7 @@ const Ship *PlayerInfo::GiftShip(const Ship *model, const string &name, const st
 
 
 // Sell the given ship (if it belongs to the player).
-void PlayerInfo::SellShip(const Ship *selected, bool toStorage)
+void PlayerInfo::SellShip(const Ship *selected, bool storeOutfits)
 {
 	for(auto it = ships.begin(); it != ships.end(); ++it)
 		if(it->get() == selected)
@@ -1213,14 +1213,16 @@ void PlayerInfo::SellShip(const Ship *selected, bool toStorage)
 			int day = date.DaysSinceEpoch();
 			int64_t cost;
 
-			if(toStorage)
+			// Passing a pointer to Value gets only the hull cost. Passing a reference
+			// gets hull and outfit costs.
+			if(storeOutfits)
 				cost = depreciation.Value(selected, day);
 			else
 				cost = depreciation.Value(*selected, day);
 
 			// Record the transfer of this ship in the depreciation and stock info.
 			stockDepreciation.Buy(*selected, day, &depreciation, toStorage);
-			if(toStorage)
+			if(storeOutfits)
 			{
 				CargoHold &storage = Storage();
 				for(const auto &it : selected->Outfits())

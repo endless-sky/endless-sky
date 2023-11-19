@@ -309,10 +309,8 @@ void ShipyardPanel::Sell(bool toStorage)
 	string message;
 	if(!toStorage)
 		message = "Sell the ";
-	else if(count == 1)
-		message = "Sell the hull of the ";
 	else
-		message = "Sell the hulls of the ";
+		message = "Sell the hull" + (count > 1 ? "s" : "") + " of the ";
 	if(count == 1)
 		message += playerShip->Name();
 	else if(count <= MAX_LIST)
