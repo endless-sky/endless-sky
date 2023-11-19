@@ -511,7 +511,8 @@ double Weapon::DamageDropoff(double distance) const
 }
 
 
-// Return the weapon's damage dropoff at maximum range
+
+// Return the weapon's damage dropoff at maximum range.
 double Weapon::MaxDropoff() const
 {
 	return damageDropoffModifier;

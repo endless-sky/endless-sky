@@ -192,7 +192,7 @@ public:
 	// Calculate the percent damage that this weapon deals given the distance
 	// that the projectile traveled if it has a damage dropoff range.
 	double DamageDropoff(double distance) const;
-	// Return the weapon's damage dropoff at maximum range
+	// Return the weapon's damage dropoff at maximum range.
 	double MaxDropoff() const;
 	// Return the ranges at which the weapon's damage dropoff begins and ends.
 	const std::pair<double, double> &DropoffRanges() const;
