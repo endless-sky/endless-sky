@@ -457,7 +457,8 @@ double Government::AttitudeToward(const Government *other) const
 	if(other == this)
 		return 1.;
 
-	return attitudeToward.find(other) != attitudeToward.end() ? attitudeToward.at(other) : 0.;
+	const auto attitude = attitudeToward.find(other);
+	return attitude != attitudeToward.end() ? attitude->second : 0.;
 }
 
 
