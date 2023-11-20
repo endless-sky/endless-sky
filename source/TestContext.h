@@ -26,7 +26,7 @@ class TestContext {
 friend class Test;
 public:
 	TestContext() = default;
-	TestContext(const Test *toRun);
+	explicit TestContext(const Test *toRun);
 	const Test *CurrentTest() const noexcept;
 
 

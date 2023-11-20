@@ -109,6 +109,8 @@ test "Test-Framework - Load Depart Land"
 		# Re-check startup conditions.
 		assert
 			"ships: Light Freighter" == 3
+		navigate
+			"travel destination" Earth
 		call "Land"
 		assert
 			"flagship landed" > 0
@@ -211,6 +213,8 @@ test "Test-Framework - Mission Injection"
 		call "Depart"
 		assert
 			"flagship landed" == 0
+		navigate
+			"travel destination" Earth
 		call "Land"
 		input
 			key "Return"
