@@ -347,6 +347,7 @@ public:
 	// Advance any active mission timers that meet the right criteria
 	void StepMissionTimers(UI *ui);
 
+
 private:
 	// Apply any "changes" saved in this player info to the global game state.
 	void ApplyChanges();

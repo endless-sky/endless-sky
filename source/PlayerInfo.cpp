@@ -4272,6 +4272,7 @@ void PlayerInfo::StepMissions(UI *ui)
 }
 
 
+
 void PlayerInfo::StepMissionTimers(UI *ui)
 {
 	for(Mission &mission : missions)

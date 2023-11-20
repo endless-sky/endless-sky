@@ -28,6 +28,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
+
+
 Timer::Timer(const DataNode &node)
 {
 	Load(node);
@@ -41,9 +43,9 @@ void Timer::Load(const DataNode &node)
 	{
 		if(child.Token(0) == "time" && child.Size() > 1)
 		{
-			timeToWait = child.Value(1);
+			waitTime = child.Value(1);
 			if(child.Size() > 2)
-				rand = child.Value(2);
+				randomWaitTime = child.Value(2);
 		}
 		else if(child.Token(0) == "idle")
 		{
@@ -107,7 +109,6 @@ void Timer::Load(const DataNode &node)
 			actions[TimerTrigger::RESET].Load(child);
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
-
 	}
 }
 
@@ -121,7 +122,7 @@ void Timer::Save(DataWriter &out) const
 	if(isComplete)
 		return;
 
-	int64_t timeRemaining = timeToWait - timeElapsed;
+	int64_t timeRemaining = waitTime - timeElapsed;
 	out.Write("timer");
 	out.BeginChild();
 	{
@@ -134,9 +135,7 @@ void Timer::Save(DataWriter &out) const
 			systems.Save(out);
 		}
 		if(requireIdle)
-		{
 			out.Write("idle", sqrt(idleMaxSpeed));
-		}
 		if(requirePeaceful)
 			out.Write("peaceful");
 		if(optional)
@@ -175,7 +174,6 @@ void Timer::Save(DataWriter &out) const
 
 		for(const auto &it : actions)
 			it.second.Save(out);
-
 	}
 	out.EndChild();
 }
@@ -201,18 +199,25 @@ Timer Timer::Instantiate(map<string, string> &subs,
 	result.resetFired = resetFired;
 	result.idleMaxSpeed = idleMaxSpeed;
 	result.requirePeaceful = requirePeaceful;
-
-	result.timeElapsed = timeElapsed;
-	result.isComplete = isComplete;
-	result.isActive = isActive;
-
+	auto ait = actions.begin();
+	for( ; ait != actions.end(); ++ait)
+	{
+		reason = ait->second.Validate();
+		if(!reason.empty())
+			break;
+	}
+	if(ait != actions.end())
+	{
+		Logger::LogError("Instantiation Error: Timer action \"" + TriggerToText(ait->first) + "\" in mission \""
+			+ Identifier() + "\" uses invalid " + std::move(reason));
+		return result;
+	}
 	for(const auto &it : actions)
-		result.actions[it.first] = it.second.Instantiate(subs, origin, jumps, payload);
+		result.actions[it.first] = it.second.Instantiate(subs, sourceSystem, jumps, payload);
 
-	if(rand >= 1)
-		result.timeToWait = timeToWait + Random::Int(rand);
-	else
-		result.timeToWait = timeToWait;
+	result.waitTime = waitTime;
+	if(randomWaitTime > 1)
+		result.waitTime += Random::Int(randomWaitTime);
 
 	return result;
 }
@@ -241,7 +246,6 @@ void Timer::ResetOn(ResetCondition cond, PlayerInfo &player, UI *ui, const Missi
 				|| resetCondition == Timer::ResetCondition::LEAVE_ZONE));
 	if(isActive && reset)
 	{
-		timeToWait = timeToWait + timeElapsed;
 		timeElapsed = 0;
 		if(repeatReset || !resetFired)
 		{
