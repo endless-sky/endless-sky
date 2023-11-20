@@ -75,9 +75,9 @@ private:
 
 
 private:
-	// The basic amount of time to wait, with the optional random values.
-	int timeToWait = 0;
-	int rand = 0;
+	// The base number of frames to wait, with an optional maximum random added value.
+	int waitTime = 0;
+	int randomWaitTime = 0;
 
 	// The system the timer is for.
 	const System *system = nullptr;
