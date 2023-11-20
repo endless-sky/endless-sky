@@ -248,9 +248,8 @@ Engine::Engine(PlayerInfo &player)
 	: player(player), ai(ships, asteroids.Minables(), flotsam),
 	ammoDisplay(player), shipCollisions(256u, 32u)
 {
-	baseZoom = Preferences::ViewZoom();
-	zoomMod = Preferences::Has("Landing zoom") ? 2. : 1.;
-	zoom = baseZoom * zoomMod;
+	zoom.base = Preferences::ViewZoom();
+	zoom.modifier = Preferences::Has("Landing zoom") ? 2. : 1.;
 
 	// Start the thread for doing calculations.
 	calcThread = thread(&Engine::ThreadEntryPoint, this);
@@ -574,14 +573,14 @@ void Engine::Step(bool isActive)
 	if(nextZoom)
 	{
 		// TODO: std::exchange
-		baseZoom = nextZoom;
-		nextZoom = 0.;
+		zoom = nextZoom;
+		nextZoom = {};
 	}
 	// Smoothly zoom in and out.
 	if(isActive)
 	{
 		double zoomTarget = Preferences::ViewZoom();
-		if(baseZoom != zoomTarget)
+		if(zoom.base != zoomTarget)
 		{
 			static const double ZOOM_SPEED = .05;
 
@@ -589,14 +588,20 @@ void Engine::Step(bool isActive)
 			static const double MAX_SPEED = .05;
 			static const double MIN_SPEED = .002;
 
-			double zoomRatio = max(MIN_SPEED, min(MAX_SPEED, abs(log2(baseZoom) - log2(zoomTarget)) * ZOOM_SPEED));
-			if(baseZoom < zoomTarget)
-				nextZoom = min(zoomTarget, baseZoom * (1. + zoomRatio));
-			else if(baseZoom > zoomTarget)
-				nextZoom = max(zoomTarget, baseZoom * (1. / (1. + zoomRatio)));
+			double zoomRatio = max(MIN_SPEED, min(MAX_SPEED, abs(log2(zoom.base) - log2(zoomTarget)) * ZOOM_SPEED));
+			if(zoom.base < zoomTarget)
+				nextZoom.base = min(zoomTarget, zoom.base * (1. + zoomRatio));
+			else if(zoom.base > zoomTarget)
+				nextZoom.base = max(zoomTarget, zoom.base * (1. / (1. + zoomRatio)));
+		}
+		if(flagship && flagship->Zoom() < 1. && Preferences::Has("Landing zoom"))
+		{
+			// Update the current zoom modifier if the flagship is landing or taking off.
+			if(!nextZoom.base)
+				nextZoom.base = zoom.base;
+			nextZoom.modifier = 1. + pow(1. - flagship->Zoom(), 2);
 		}
 	}
-	zoom = Preferences::Has("Landing zoom") ? baseZoom * (1 + pow(zoomMod - 1, 2)) : baseZoom;
 
 	// Draw a highlight to distinguish the flagship from other ships.
 	if(flagship && !flagship->IsDestroyed() && Preferences::Has("Highlight player's flagship"))
@@ -654,7 +659,7 @@ void Engine::Step(bool isActive)
 
 	// Update the player's ammo amounts.
 	if(flagship)
-		ammoDisplay.Update(*flagship.get());
+		ammoDisplay.Update(*flagship);
 
 
 	// Display escort information for all ships of the "Escort" government,
@@ -1052,7 +1057,7 @@ void Engine::Draw() const
 		if(it.outer > 0.)
 			RingShader::Draw(pos, radius + 3., 1.5f, it.outer,
 				Color::Multiply(it.alpha, color[it.type]), 0.f, it.angle);
-		double dashes = (it.type >= 5) ? 0. : 20. * min(1., zoom);
+		double dashes = (it.type >= 5) ? 0. : 20. * min<double>(1., zoom);
 		if(it.inner > 0.)
 			RingShader::Draw(pos, radius, 1.5f, it.inner,
 				Color::Multiply(it.alpha, color[5 + it.type]), dashes, it.angle);
@@ -1584,7 +1589,6 @@ void Engine::CalculateStep()
 	{
 		newCenter = flagship->Position();
 		newCenterVelocity = flagship->Velocity();
-		zoomMod = 2. - flagship->Zoom();
 	}
 	draw[calcTickTock].SetCenter(newCenter, newCenterVelocity);
 	batchDraw[calcTickTock].SetCenter(newCenter);
