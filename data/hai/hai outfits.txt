@@ -18,7 +18,7 @@ outfit "Phantom Pallet"
 	thumbnail "outfit/phantom pallet"
 	"mass" 0.2
 	"unplunderable" 1
-	"energy generation" -0.016667
+	"energy consumption" 0.016667
 	"heat generation" 0.03334
 
 	# Replacing 30% of your cargo bay with these triples your cargo scan time.
