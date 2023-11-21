@@ -38,7 +38,7 @@ outfit "Holovid Zone"
 	"outfit space" -20
 	"unplunderable" 1
 	"holographic entertainment" 1
-	"energy generation" -0.5
+	"energy consumption" 0.5
 	"heat generation" 1.0
 	"cargo scan opacity" 150
 	"outfit scan opacity" 150
