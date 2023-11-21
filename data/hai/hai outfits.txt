@@ -11,6 +11,24 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+outfit "Phantom Pallet"
+	plural "Phantom Pallets"
+	category "Systems"
+	cost 12000
+	thumbnail "outfit/phantom pallet"
+	"mass" 0.2
+	"unplunderable" 1
+	"energy generation" -0.016667
+	"heat generation" 0.03334
+
+	# Replacing 30% of your cargo bay with these triples your cargo scan time.
+	# Do not change these numbers without recalculating the resulting scan time.
+	"cargo space" -1
+	"cargo scan opacity" 15
+
+	"illegal" 12000
+	description "These illegal devices confuse scanners and cargo inspectors seeking contraband. They use holographic visuals, textured force fields, and audio to create realistic-seeming cargo. Hide them in walls, floors, crates, or anywhere else they fit. The projector will generate crates, barrels, piles, and whole shelving units. Beware the fines: the pallets themselves are illegal. Many a captain has lost more money to pallet fines than they've gained from smuggling."
+
 outfit "Holovid Zone"
 	plural "Holovid Zones"
 	category "Systems"
@@ -20,27 +38,12 @@ outfit "Holovid Zone"
 	"outfit space" -20
 	"unplunderable" 1
 	"holographic entertainment" 1
-	"energy generation" -0.9
-	"heat generation" 1.7
-	"cargo scan opacity" 80
-	"outfit scan opacity" 80
+	"energy generation" -0.5
+	"heat generation" 1.0
+	"cargo scan opacity" 150
+	"outfit scan opacity" 150
 	description "Behold the ultimate in immersive holographic entertainment: the Holovid Zone. Its holographic projectors and textured force fields present lifelike visuals. A phase array speaker system can emanate sounds from anywhere in the room. Connect this to your scanners to view a tactical situation as it evolves. Or your communications systems for a real-time 3D conference. Dazzle your passengers with the latest in holovids and games."
-	description "The possibilities are endless... especially for a sly captain. Should authorities seek contraband or illegal outfits, a Holovid Zone can fool them for hours. Deathsticks are hard to find in a ship with fifty tons of holographic straw."
-
-outfit "Phantom Pallet"
-	plural "Phantom Pallets"
-	category "Systems"
-	cost 35000
-	thumbnail "outfit/phantom pallet"
-	"mass" 1
-	"outfit space" -1
-	"cargo space" -2
-	"energy generation" -0.016667
-	"heat generation" 0.03334
-	"cargo scan opacity" 15
-	"outfit scan opacity" 3
-	"illegal" 35000
-	description "These illegal devices confuse scanners and cargo inspectors seeking contraband. They use holographic visuals, textured force fields, and audio to create realistic-seeming cargo. Hide them in walls, floors, crates, or anywhere else they fit. The projector will generate crates, barrels, piles, and whole shelving units. Beware the fines: the pallets themselves are illegal. Many a captain has lost more money to pallet fines than they've gained from smuggling."
+	description "The possibilities are endless... especially for a sly captain who misuses the device. Should authorities seek contraband or illegal outfits, a Holovid Zone can fool them for hours. Deathsticks are hard to find in a ship with fifty tons of holographic straw."
 
 outfit "Pulse Cannon"
 	category "Guns"
