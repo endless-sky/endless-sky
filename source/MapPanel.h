@@ -162,9 +162,14 @@ protected:
 	std::string tooltip;
 	WrappedText hoverText;
 
+	// An X offset in pixels to be applied to the selected system UI if something
+	// else gets in the way of its default position.
+	int selectedSystemOffset = 0;
 
 private:
 	void DrawTravelPlan();
+	// Display the name of and distance to the selected system.
+	void DrawSelectedSystem();
 	// Indicate which other systems have player escorts.
 	void DrawEscorts();
 	void DrawWormholes();
