@@ -120,4 +120,8 @@ test "Afterburner-flight - Simple depart land"
 			"test: steps to wait" = "test: steps to wait" - 1
 		branch "floating"
 			"test: steps to wait" > 0
+		navigate
+			"travel destination" Ruin
 		call "Land"
+		assert
+			"flagship landed" == 1
