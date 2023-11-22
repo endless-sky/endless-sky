@@ -102,11 +102,11 @@ public:
 
 
 private:
-	class DoubleBuffer {
+	class BufferIndex {
 	public:
 		constexpr operator size_t() const { return val; }
 
-		constexpr DoubleBuffer() : val(0) {}
+		constexpr BufferIndex() : val(0) {}
 
 		inline void next() { val = !val; }
 
@@ -211,16 +211,22 @@ private:
 	std::condition_variable condition;
 	std::mutex swapMutex;
 
-	DoubleBuffer currentCalculating;
-	DoubleBuffer currentDrawing;
+	// ES uses a technique called double buffering to calculate the next frame and render the current one simultaneously.
+	// To facilitate this, it uses two buffers for each list of things to draw - one for the next frame's calculations and
+	// one for the rendering the current frame. A little synchronisation is required to prevent mutable references to the
+	// currently rendering buffer.
+	BufferIndex currentCalcBuffer;
+	BufferIndex currentDrawBuffer;
 	bool hasFinishedCalculating = true;
+	DrawList draw[2];
+	BatchDrawList batchDraw[2];
+	Radar radar[2];
+
 	bool terminate = false;
 	bool wasActive = false;
 	bool isMouseHoldEnabled = false;
 	bool isMouseTurningEnabled = false;
-	DrawList draw[2];
-	BatchDrawList batchDraw[2];
-	Radar radar[2];
+
 	// Viewport position and velocity.
 	Point center;
 	Point centerVelocity;
