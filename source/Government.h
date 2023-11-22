@@ -143,8 +143,8 @@ public:
 	bool IsProvokedOnScan() const;
 
 	// Determine if ships from this government can travel to the given system or planet.
-	bool IsRestrictedFrom(const System &system) const;
-	bool IsRestrictedFrom(const Planet &planet) const;
+	bool IsRestrictedFrom(const System &system, const PlayerInfo *player = nullptr) const;
+	bool IsRestrictedFrom(const Planet &planet, const PlayerInfo *player = nullptr) const;
 
 
 private:

@@ -771,14 +771,14 @@ bool Government::IsProvokedOnScan() const
 
 
 
-bool Government::IsRestrictedFrom(const System &system) const
+bool Government::IsRestrictedFrom(const System &system, const PlayerInfo *player) const
 {
-	return !travelRestrictions.IsEmpty() && travelRestrictions.Matches(&system);
+	return !travelRestrictions.IsEmpty() && travelRestrictions.Matches(&system, player);
 }
 
 
 
-bool Government::IsRestrictedFrom(const Planet &planet) const
+bool Government::IsRestrictedFrom(const Planet &planet, const PlayerInfo *player) const
 {
-	return !travelRestrictions.IsEmpty() && travelRestrictions.Matches(&planet);
+	return !travelRestrictions.IsEmpty() && travelRestrictions.Matches(&planet, player);
 }
