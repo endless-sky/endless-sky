@@ -6983,8 +6983,20 @@ mission "Adelita 2"
 				`	"Out."`
 					goto out
 
-			`	"Great. My name is Alejandra, but call me Ale. Here's the plan: you're going to drop me and a friend off at <planet> where we are going to film the conditions in a secret Syndicate sweatshop. Thing is, these aren't just poorly paid factory workers, but slaves. As you can imagine, we can't get in as regular workers, so with a bit of hacking we got ourselves jobs on-site as private security. We know that one of the Syndicate's 'trusted contractors' are getting the slaves from the pirates on Covert, and we also know where they do the transaction. So while we are getting the footage we need in the factories, you will be going with an associate, Bunker, to spy on the Syndicate's rendezvous with the pirates on <planet>."`
-			`	Ale senses your concern about spying on pirates and the Syndicate. "Don't worry, Bunker is a pro, and we have an array of long-range stealth drones that do the spying, you won't be anywhere near them. But pirates do frequent the system, so you'll need to be quick."`
+			`	"Great. My name is Alejandra, but call me Ale. Here's the plan: you're going to drop me and a friend off at <planet> where we are going to film the conditions in a secret Syndicate sweatshop.
+			`	"Thing is, these aren't just poorly paid factory workers, but slaves. As you can imagine, we can't get in as regular workers, so with a bit of hacking we got ourselves jobs on-site as private security. We know that one of the Syndicate's 'trusted contractors' are getting the slaves from the pirates on Covert, and we also know where they do the transaction.
+			`	"So while we are getting the footage we need in the factories, you will be going with an associate, Bunker, to spy on the Syndicate's rendezvous with the pirates on <planet>."`
+			choice
+				`	"Hold on, pirates?"`
+				`	"Won't this get me in trouble with the Syndicate?"`
+					goto syndicate
+			`	"Don't worry, Bunker is a pro, and we have an array of long-range stealth drones that do the spying, you won't be anywhere near them. But you might encounter some lone pirates on the way, so you'll need to be quick."`
+				goto leave
+
+			label syndicate
+			`	"Well, I did say we had enemies in high places, didn't I? But don't worry, Bunker's a pro. We have an array of long-range stealth drones that do the spying, you won't be anywhere near them. Though pirates do frequent the system, so you'll need to be quick."`
+
+			label leave
 			`	She waves to the server for the bill as she finishes the last gulp of her smoothie. "Let's go. Everyone will be meeting at the landing pad shortly."`
 			`	You go back to the <ship>'s landing pad, and sure enough there are two people with backpacks and a few cases waiting for you. They introduce themselves as River and Bunker.`
 			choice
@@ -7019,7 +7031,7 @@ mission "Adelita 3"
 
 	on offer
 		conversation
-			`You drop off Ale and River at the spaceport. They are visibly embarrassed to be in security uniforms, or perhaps uncomfortable with their disguises which make them virtually unrecognizable; Bunker can't stop laughing at them. Everyone wishes each other good luck as the two walk off, and you and Bunker go back to the <ship> and prepare to depart for <planet>.`
+			`You drop off Ale and River at the spaceport, watching as they try not to seem either visibly embarrassed to be in their security uniforms, or uncomfortable with their disguises, even though they're now virtually indistinguishable as Syndicate personnel; Bunker can't stop laughing at them. Everyone wishes each other luck as the two walk off, and you and Bunker go back to the <ship> and prepare for the journey to <planet>.`
 				accept
 
 	on visit
@@ -7057,14 +7069,14 @@ mission "Adelita 4"
 				`	"What about doing both?"`
 					goto plan
 
-			`	"And you know they'll use those poor people as human shields. Say we-" Bunker is cut off by the proximity alert.`
+			`	"And you know they'll use those poor people as human shields. Say we-" A chirp from the proximity alert cuts him off.`
 				goto showtime
 
 			label plan
-			`	"Now you're talking! But it would take a lot of planning to do it without killing the people we are trying to liberate. You know they'll use those poor people as human shields. Say we-" Bunker is cut off by the proximity alert.`
+			`	"Now you're talking! But it would take a lot of planning to do it without killing the people we are trying to liberate. You know they'll use those poor people as human shields. Say we-" A chirp from the proximity alert cuts him off.`
 
 			label showtime
-			`	"Showtime!" he says, rubbing his hands together. Both of you watch as a capital ship accompanied by a small flotilla of Quicksilver escorts, all in pirate colors, land near the security detail, probably deafening them with the sound of their repulsors. As soon as the loading ramp is down, the security detail gets to work herding the slaves from one ship to another; hitting, shoving, and shouting at anyone that moves too slowly for their liking.`
+			`	"Showtime!" he exclaims, rubbing his hands together. Both of you watch as a capital ship accompanied by a small flotilla of Quicksilver escorts, all in pirate colors, land near the security detail, probably deafening them with the sound of their repulsors. As soon as the loading ramp is down, the security detail gets to work herding the slaves from one ship to another; hitting, shoving, and shouting at anyone that moves too slowly for their liking.`
 			`	"Pigs," blurts out Bunker. He zooms in on two men talking a few meters away from everyone else. One is in a suit, the other a black hooded robe. "Must be the leaders," he whispers as if they can hear him. Just then, the hooded man looks up to the sky as if he sees something. He motions, and the Quicksilvers fire up their engines.`
 			`	"Oh, I don't like the look of this," says Bunker.`
 			choice
