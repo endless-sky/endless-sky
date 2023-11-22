@@ -58,7 +58,7 @@ public:
 	~Mission() noexcept = default;
 
 	// Construct and Load() at the same time.
-	Mission(const DataNode &node);
+	explicit Mission(const DataNode &node);
 
 	// Load a mission, either from the game data or from a saved game.
 	void Load(const DataNode &node);

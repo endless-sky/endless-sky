@@ -163,6 +163,8 @@ namespace {
 		{"leak resistance", 2},
 		{"burn resistance", 2},
 
+		{"shield multiplier", 3},
+		{"hull multiplier", 3},
 		{"hull repair multiplier", 3},
 		{"hull energy multiplier", 3},
 		{"hull fuel multiplier", 3},
@@ -176,6 +178,8 @@ namespace {
 		{"overheat damage threshold", 3},
 		{"high shield permeability", 3},
 		{"low shield permeability", 3},
+		{"acceleration multiplier", 3},
+		{"turn multiplier", 3},
 
 		{"burn protection", 4},
 		{"corrosion protection", 4},
@@ -207,7 +211,8 @@ namespace {
 		{"hyperdrive", "Allows you to make hyperjumps."},
 		{"jump drive", "Lets you jump to any nearby system."},
 		{"minable", "This item is mined from asteroids."},
-		{"atrocity", "This outfit is considered an atrocity."}
+		{"atrocity", "This outfit is considered an atrocity."},
+		{"unique", "This item is unique."}
 	};
 
 	bool IsNotRequirement(const string &label)
@@ -468,6 +473,21 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	attributeLabels.emplace_back("range:");
 	attributeValues.emplace_back(Format::Number(outfit.Range()));
 	attributesHeight += 20;
+
+	// Identify the dropoff at range and inform the player.
+	double fullDropoff = outfit.MaxDropoff();
+	if(fullDropoff != 1.)
+	{
+		attributeLabels.emplace_back("dropoff modifier:");
+		attributeValues.emplace_back(Format::Number(100. * fullDropoff) + "%");
+		attributesHeight += 20;
+		// Identify the ranges between which the dropoff takes place.
+		attributeLabels.emplace_back("dropoff range:");
+		const pair<double, double> &ranges = outfit.DropoffRanges();
+		attributeValues.emplace_back(Format::Number(ranges.first)
+			+ " - " + Format::Number(ranges.second));
+		attributesHeight += 20;
+	}
 
 	static const vector<pair<string, string>> VALUE_NAMES = {
 		{"shield damage", ""},

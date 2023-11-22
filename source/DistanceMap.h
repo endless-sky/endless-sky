@@ -73,7 +73,7 @@ private:
 	// days, how much danger you will pass through, and where you will go next.
 	class Edge {
 	public:
-		Edge(const System *system = nullptr);
+		explicit Edge(const System *system = nullptr);
 
 		// Sorting operator to prioritize the "best" edges. The priority queue
 		// returns the "largest" item, so this should return true if this item
