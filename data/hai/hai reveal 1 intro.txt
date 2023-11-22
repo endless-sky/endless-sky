@@ -188,7 +188,7 @@ mission "Hai Reveal Exploration Period: Local Human Merchants Speak Up"
 			`	"'Course not, that's my whole point, genius. I'm here cause Greenwater's a nice place to live for three months of the year. Now all these new folks like yourself are just making it harder to earn a living and increasing the number of hazards I gotta pay to deal with."`
 			label "stinkeye"
 			`	His crewman cuts in, "Don't mind him, he's always like this."`
-			`	The captain gives you both the stinkeye and harrumphs. "Get back on board, we're late."`
+			`	The captain gives you both the stink eye and harrumphs. "Get back on board, we're late."`
 			`	As he stomps off he points at you. "Just remember, your lot are making our lives harder. Keep it up and something's gonna go wrong." He seals the airlock behind himself before giving you a chance to respond.`
 				decline
 			
@@ -447,7 +447,7 @@ mission "Hai Reveal Concern Period: Humans Going Home"
 				`	"What's the matter?"`
 				`	"I'm sorry, I'm busy right now."`
 					goto "not now"
-			`	"Well, there are a number of humans trying to get transport to somewhere else, but they're unwilling to book passage with any Hai captains. They've set up camp in the spaceport and they've been there long enough that it's causing some tension. We don't want to take direct action, but I think these <passengers> humans would be much better off if you could talk to them, and maybe at least take them to <destination>."`
+			`	"Well, there are a number of humans trying to get transport to somewhere else, but they're unwilling to book passage with any Hai captains. They've set up camp in the spaceport and they've been there long enough that it's causing some tension. We don't want to take direct action, but I think these <bunks> humans would be much better off if you could talk to them, and maybe at least take them to <destination>."`
 			choice
 				`	"I'll talk to them."`
 				`	"Sorry, I'm not going that way."`
@@ -563,7 +563,7 @@ mission "Hai Reveal Concern Period: Raid on Allhome (away)"
 				`	(Keep walking.)`
 					goto walking
 			
-			`	As you approach the human, a relatively young-looking man, he glances up at you. "Oh hello, just arrived did you? You didn't happen to see an Argosy out there on your way in?"`
+			`	As you approach the human, a relatively young-looking man, he glances up at you. "Oh hello, just arrived, did you? You didn't happen to see an Argosy out there on your way in?"`
 			`	"Oh shush," says the Hai, "Your uncle will be here when he said he will, no need to bother random folks just going about their business."`
 			`	She looks at you with a wary eye, but then seems to relent. "Though I suppose you did come over here of your own volition, didn't you. Can we help you at all, Captain?"`
 			choice
@@ -619,7 +619,6 @@ mission "Hai Reveal Concern Period: Raid on Allhome (away)"
 mission "HR: Call for Aid with Sandsnap"
 	name "Join an effort on <planet>"
 	job
-	repeat
 	description "Experienced combat pilots are requested to apply at the spaceport on <destination> for a project to reactivate the Sandsnap station."
 	to offer
 		not "hr: sandsnap project"
@@ -644,7 +643,7 @@ mission "Hai Reveal Concern Period: Reactivating Sandsnap"
 	destination "Sandsnap"
 	passengers 1
 	to offer
-		has "HR: Call for Aid with Sandsnap: accepted"
+		has "HR: Call for Aid with Sandsnap: active"
 	blocked `You are advised that participation in the Sandsnap Project will require at least 1 bunk free for passengers.`
 	on offer
 		conversation
@@ -664,10 +663,10 @@ mission "Hai Reveal Concern Period: Reactivating Sandsnap"
 					goto border
 				`	"What are you talking about?"`
 				`	"Not at all, I love politics."`
-			`	He seems surprised, "Oh. Well in that case, the Unfettered have been militarizing a lot in the last 20 years, forcing us to do the same in order to protect merchants from their raids. They may be right that we have grown weak, if the success of those pirate raids is any indication; security forces were simply not ready for them. We here are in the business of ensuring this will not happen again. Mark my words, nothing like an arms manufacturer setting up a support base to really wake a few people up.`
+			`	He seems surprised. "Oh. Well in that case, the Unfettered have been militarizing a lot in the last 20 years, forcing us to do the same in order to protect merchants from their raids. They may be right that we have grown weak, if the success of those pirate raids is any indication; security forces were simply not ready for them. We here are in the business of ensuring this will not happen again. Mark my words, nothing like an arms manufacturer setting up a support base to really wake a few people up.`
 			label border
 			`	"The raids have proven that we are not prepared to ensure true security on our borders. In order to address this we want to reactivate the mothballed station of <destination>, for which we have acquired the relevant paperwork and access codes. We have already hired a few mercenaries to help with the defense of our station, mostly local humans with experienced pasts. Once operational, the station should be a major strategic advantage for us, allowing resupply and repairs of ships at a location suitable for facilitating rapid response to detected threats."`
-			`	He indicates a door to another room, "The Stationkeeper will be out shortly. We've almost completed our final preparations, but we've been held up trying to make do with the firepower that's signed up so far. Judging by your credentials, I suspect that Kelamursh will want to travel with you. You will need to escort them to the station and dock, so they can confirm the access codes function and that there are no critical errors in the initial restoration process, as well as assess if any additional supplies are required."`
+			`	He indicates a door to another room and continues, "The Stationkeeper will be out shortly. We've almost completed our final preparations, but we've been held up trying to make do with the firepower that's signed up so far. Judging by your credentials, I suspect that Kelamursh will want to travel with you. You will need to escort them to the station and dock, so they can confirm the access codes function and that there are no critical errors in the initial restoration process, as well as assess if any additional supplies are required."`
 			`	As soon as he finishes, the door opens and a number of people file out, including a well-dressed Hai who immediately stops next to you.`
 			choice
 				`	(Greet the Stationkeeper.)`
@@ -778,7 +777,8 @@ event "hr: sandsnap awoken"
 		landscape land/station35
 		music ambient/machinery
 		description `This station was recently re-powered by a private military contractor to serve as a resupply and repair base that Hai warships can be stationed at to respond more rapidly to pirates entering the system. There has been a constant presence here since it was set up shortly after the pirate raids on Allhome.`
-		spaceport `The operating model for the spaceport is evidently based on the military base at Everhope, but the station layout makes restricting portions of the promenade unfeasible. This leaves the dual-level promenade fully open to civilian access, with security restrictions in place at all access points to the higher levels. The floor has had new texturing laid down to prevent slipping, but nearly every other surface appears to be coated in a fine, sticky, metallic powder. Frequently touched surfaces have been polished clean, but any accidental contact with the powder results in leaving fingerprints on any non-metallic surface until thoroughly wiped off.`
+		spaceport `The operating model for the spaceport is evidently based on the military base at Everhope, but Sandsnap's layout makes restricting portions of the promenade unfeasible. While this leaves the dual-level promenade fully open to civilian access, security restrictions have been put in place at all access points to the higher levels.`
+		`	The floor has had new texturing laid down to prevent slipping, but nearly every other surface appears to be coated in a fine, sticky, metallic powder. Frequently touched surfaces have been polished clean, but otherwise any accidental contact with the powder results in fingerprints being left on any non-metallic surface until it is thoroughly wiped off.`
 		bribe 0.8
 		security 0.8
 
