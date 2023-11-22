@@ -103,6 +103,7 @@ private:
 	// Common code from all three constructors:
 	void Init(const std::string &message, Truncate truncate, bool canCancel = true, bool isMission = false);
 	void DoCallback(bool isOk = true) const;
+	int Width() const;
 
 
 protected:
@@ -120,6 +121,7 @@ protected:
 	bool isMission;
 	bool isOkDisabled = false;
 	bool allowsFastForward = false;
+	bool isWide = false;
 
 	std::string input;
 
