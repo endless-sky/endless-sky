@@ -146,6 +146,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 				lifetime = max(0., value);
 			else if(key == "random lifetime")
 				randomLifetime = max(0., value);
+			else if(key == "fade out")
+				fadeOut = max(0., value);
 			else if(key == "reload")
 				reload = max(1., value);
 			else if(key == "burst reload")
@@ -506,6 +508,22 @@ double Weapon::DamageDropoff(double distance) const
 	// Damage modification is linear between the min and max dropoff points.
 	double slope = (1 - damageDropoffModifier) / (minDropoff - maxDropoff);
 	return slope * (distance - minDropoff) + 1;
+}
+
+
+
+// Return the weapon's damage dropoff at maximum range.
+double Weapon::MaxDropoff() const
+{
+	return damageDropoffModifier;
+}
+
+
+
+// Return the ranges at which the weapon's damage dropoff begins and ends.
+const pair<double, double> &Weapon::DropoffRanges() const
+{
+	return damageDropoffRange;
 }
 
 
