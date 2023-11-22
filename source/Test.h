@@ -78,7 +78,7 @@ public:
 
 
 	public:
-		TestStep(Type stepType);
+		explicit TestStep(Type stepType);
 		void LoadInput(const DataNode &node);
 
 

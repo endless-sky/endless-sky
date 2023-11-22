@@ -176,6 +176,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				hidden = false;
 			else if(key == "inaccessible")
 				inaccessible = false;
+			else if(key == "no raids")
+				noRaids = false;
 
 			// If not in "overwrite" mode, move on to the next node.
 			if(overwriteAll)
@@ -189,6 +191,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			hidden = true;
 		else if(key == "inaccessible")
 			inaccessible = true;
+		else if(key == "no raids")
+			noRaids = true;
 		else if(key == "ramscoop")
 		{
 			for(const DataNode &grand : child)
@@ -283,6 +287,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 					fleet.Category() = value + "@" + name;
 			}
 		}
+		else if(key == "raid")
+			RaidFleet::Load(raidFleets, child, remove, valueIndex);
 		else if(key == "hazard")
 		{
 			const Hazard *hazard = GameData::Hazards().Get(value);
@@ -975,6 +981,15 @@ double System::Danger() const
 int System::MinimumFleetPeriod() const
 {
 	return minimumFleetPeriod;
+}
+
+
+
+const vector<RaidFleet> &System::RaidFleets() const
+{
+	static const vector<RaidFleet> EMPTY;
+	// If the system defines its own raid fleets then those are used in lieu of the government's fleets.
+	return noRaids ? EMPTY : ((raidFleets.empty() && government) ? government->RaidFleets() : raidFleets);
 }
 
 
