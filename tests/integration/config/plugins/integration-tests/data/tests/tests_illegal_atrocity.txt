@@ -337,6 +337,8 @@ test "Illegal Test - Ignore and New Illegal"
 			"unpaid fines" == 0
 		call "Launch Quarg Scanning Mission And Board"
 		# land back with a fine of 1 for the hyperdrive, nothing from the gas
+		navigate
+			"travel destination" Ruin
 		call "Land"
 		# copy the test-data in the temporary conditions for debugging when an issue happens
 		assert
@@ -353,6 +355,8 @@ test "Atrocity Test - New Atrocity"
 			"reputation: Quarg" == 1000
 		call "Launch Quarg Scanning Mission And Board"
 		# land back with atrocity having been in effect (should nuke the reputation?)
+		navigate
+			"travel destination" Ruin
 		call "Land"
 		assert
 			# it'll be 0 from the atrocity and then minus whatever the atrocity reputation hit it
