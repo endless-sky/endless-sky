@@ -7025,8 +7025,8 @@ mission "Adelita 2"
 				`	"Out."`
 					goto out
 
-			`	"Great. My name is Alejandra, but call me Ale. Here's the plan: you're going to drop me and a friend off at <planet> where we are going to film the conditions in a secret Syndicate sweatshop.
-			`	"Thing is, these aren't just poorly paid factory workers, but slaves. As you can imagine, we can't get in as regular workers, so with a bit of hacking we got ourselves jobs on-site as private security. We know that one of the Syndicate's 'trusted contractors' are getting the slaves from the pirates on Covert, and we also know where they do the transaction.
+			`	"Great. My name is Alejandra, but call me Ale. Here's the plan: you're going to drop me and a friend off at <planet> where we are going to film the conditions in a secret Syndicate sweatshop.`
+			`	"Thing is, these aren't just poorly paid factory workers, but slaves. As you can imagine, we can't get in as regular workers, so with a bit of hacking we got ourselves jobs on-site as private security. We know that one of the Syndicate's 'trusted contractors' are getting the slaves from the pirates on Covert, and we also know where they do the transaction.`
 			`	"So while we are getting the footage we need in the factories, you will be going with an associate, Bunker, to spy on the Syndicate's rendezvous with the pirates on <planet>."`
 			choice
 				`	"Hold on, pirates?"`
@@ -7204,7 +7204,7 @@ mission "Adelita 5"
 				has "adelita: killed pirates"
 
 			`It was close, but you make it back to Maker. Ale and River are soon on board and excited to be out of their disguises, and they spend a lot of time talking with Bunker about his part of the mission. Although exhausted, both are eager to get back and process what they filmed - both emotionally and literally.`
-			`	"That was horrible, but we got it done," Ale mumbled. "Can we leave now?" 
+			`	"That was horrible, but we got it done," Ale mumbled. "Can we leave now?"`
 				launch
 
 			label experienced
