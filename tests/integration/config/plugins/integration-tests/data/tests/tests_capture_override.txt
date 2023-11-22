@@ -137,6 +137,8 @@ test "Capture Uncapturable With Capturable Override"
 			key a
 		input
 			key d
+		navigate
+			"travel destination" Ruin
 		call "Land"
 		assert
 			"ship model: %TEST%: outfitless wardragon" == 1

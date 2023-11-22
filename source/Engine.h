@@ -128,6 +128,17 @@ private:
 		double angle;
 	};
 
+	class Zoom {
+	public:
+		constexpr Zoom() : base(0.) {}
+		explicit constexpr Zoom(double zoom) : base(zoom) {}
+
+		constexpr operator double() const { return base * modifier; }
+
+		double base;
+		double modifier = 1.;
+	};
+
 
 private:
 	void EnterSystem();
@@ -262,11 +273,9 @@ private:
 	// Input, Output and State handling for automated tests.
 	TestContext *testContext = nullptr;
 
-	double zoom = 1.;
-	double baseZoom = 1.;
+	Zoom zoom;
 	// Tracks the next zoom change so that objects aren't drawn at different zooms in a single frame.
-	double nextZoom = 0.;
-	double zoomMod = 2.;
+	Zoom nextZoom;
 
 	double load = 0.;
 	int loadCount = 0;
