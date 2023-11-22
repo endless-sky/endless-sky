@@ -34,7 +34,6 @@ namespace {
 	SDL_GLContext context = nullptr;
 	int width = 0;
 	int height = 0;
-	bool hasSwizzle = false;
 	bool supportsAdaptiveVSync = false;
 
 	// Logs SDL errors and returns true if found
@@ -75,6 +74,10 @@ bool GameWindow::Init()
 #ifdef _WIN32
 	// Tell Windows this process is high dpi aware and doesn't need to get scaled.
 	SDL_SetHint(SDL_HINT_WINDOWS_DPI_AWARENESS, "permonitorv2");
+#elif defined(__linux__)
+	// Set the class name for the window on Linux. Used to set the application icon.
+	// This sets it for both X11 and Wayland.
+	setenv("SDL_VIDEO_X11_WMCLASS", "io.github.endless_sky.endless_sky", true);
 #endif
 
 	// This needs to be called before any other SDL commands.
@@ -212,7 +215,6 @@ bool GameWindow::Init()
 	glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 
 	// Check for support of various graphical features.
-	hasSwizzle = OpenGL::HasSwizzleSupport();
 	supportsAdaptiveVSync = OpenGL::HasAdaptiveVSyncSupport();
 
 	// Enable the user's preferred VSync state, otherwise update to an available
@@ -404,13 +406,6 @@ void GameWindow::ToggleFullscreen()
 	}
 	else
 		SDL_SetWindowFullscreen(mainWindow, SDL_WINDOW_FULLSCREEN_DESKTOP);
-}
-
-
-
-bool GameWindow::HasSwizzle()
-{
-	return hasSwizzle;
 }
 
 

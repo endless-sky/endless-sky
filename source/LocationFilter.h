@@ -40,7 +40,7 @@ class LocationFilter {
 public:
 	LocationFilter() noexcept = default;
 	// Construct and Load() at the same time.
-	LocationFilter(const DataNode &node);
+	explicit LocationFilter(const DataNode &node);
 
 	// Examine all the children of the given node and load any that are filters.
 	void Load(const DataNode &node);
