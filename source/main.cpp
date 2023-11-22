@@ -21,15 +21,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ConversationPanel.h"
 #include "DataFile.h"
 #include "DataNode.h"
-#include "DataWriter.h"
-#include "Dialog.h"
 #include "Files.h"
 #include "text/Font.h"
 #include "FrameTimer.h"
 #include "GameData.h"
 #include "GameLoadingPanel.h"
 #include "GameWindow.h"
-#include "Hardpoint.h"
 #include "Logger.h"
 #include "MenuPanel.h"
 #include "Panel.h"
@@ -93,7 +90,7 @@ int main(int argc, char *argv[])
 	bool printTests = false;
 	bool printData = false;
 	bool noTestMute = false;
-	string testToRunName = "";
+	string testToRunName;
 
 	// Ensure that we log errors to the errors.txt file.
 	Logger::SetLogErrorCallback([](const string &errorMessage) { Files::LogErrorToFile(errorMessage); });
@@ -307,16 +304,16 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 				// and the OpenGL viewport to match.
 				GameWindow::AdjustViewport();
 			}
-			else if(activeUI.Handle(event))
-			{
-				// The UI handled the event.
-			}
 			else if(event.type == SDL_KEYDOWN && !toggleTimeout
 					&& (Command(event.key.keysym.sym).Has(Command::FULLSCREEN)
 					|| (event.key.keysym.sym == SDLK_RETURN && (event.key.keysym.mod & KMOD_ALT))))
 			{
 				toggleTimeout = 30;
 				Preferences::ToggleScreenMode();
+			}
+			else if(activeUI.Handle(event))
+			{
+				// The UI handled the event.
 			}
 			else if(event.type == SDL_KEYDOWN && !event.key.repeat
 					&& (Command(event.key.keysym.sym).Has(Command::FASTFORWARD)))
@@ -459,7 +456,7 @@ void PrintHelp()
 void PrintVersion()
 {
 	cerr << endl;
-	cerr << "Endless Sky ver. 0.10.3-alpha" << endl;
+	cerr << "Endless Sky ver. 0.10.5-alpha" << endl;
 	cerr << "License GPLv3+: GNU GPL version 3 or later: <https://gnu.org/licenses/gpl.html>" << endl;
 	cerr << "This is free software: you are free to change and redistribute it." << endl;
 	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;
