@@ -617,7 +617,7 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 	}
 
 	// Print all conditions that are used in the test.
-	string conditions = "";
+	string conditions;
 	for(const auto &it : RelevantConditions())
 	{
 		const auto &val = player.Conditions().HasGet(it);

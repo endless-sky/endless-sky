@@ -1219,6 +1219,8 @@ mission "Heliarch Expedition 5"
 		conversation
 			`When you've touched down on the landing pads, you see you've received a message from the Heliarchs you brought to Ruin, the mysterious world on the other side of the wormhole the Pug left in Deneb. "Captain <last>, finished what research we could do on the broken ring, we have. About to jump back into the Coalition, we are. Imagine I do that like to speak with you after receiving our report, Consul Aulori will, so head you should to the <planet> as soon as possible."`
 				accept
+	on accept
+		"assisting heliarchy" ++
 	on fail
 		"assisting heliarchy" --
 	on complete
@@ -2068,6 +2070,8 @@ mission "Heliarch License 1"
 		not "joined the lunarium"
 		not "assisting heliarchy"
 		not "assisting lunarium"
+	to complete
+		not "assisting lunarium"
 	to fail
 		has "joined the lunarium"
 	on offer
@@ -2076,6 +2080,8 @@ mission "Heliarch License 1"
 			`	"Discussed your exploits, the consuls have. Much satisfaction, your contributions brought us," the Kimek continues.`
 			`	"With you, a meeting they request. To <destination> you must go, if to join our ranks, you so wish," the Arach finishes.`
 				accept
+	on visit
+		dialog `You are currently assisting the Lunarium. Cancel or finish any missions you have for them if you want to join the Heliarchy.`
 
 mission "Heliarch License 2"
 	landing
