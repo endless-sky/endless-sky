@@ -1,3 +1,16 @@
+# Copyright (c) 2022 by Hurleveur
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
 test-data "Checking For A Gifted Ship Test Save"
 	category "savegame"
 	contents
@@ -74,6 +87,8 @@ test "Checking For A Gifted Ship"
 		call "Load First Savegame"
 		# Make the missions trigger by landing again.
 		call "Depart"
+		navigate
+			"travel destination" Earth
 		call "Land"
 		call "Depart"
 		assert
@@ -86,6 +101,8 @@ test "Checking For A Gifted Ship"
 		call "Load First Savegame"
 		call "Wait 10 steps"
 		call "Depart"
+		navigate
+			"travel destination" Earth
 		call "Land"
 		assert
 			"ship model: Star Barge" == 0
@@ -218,6 +235,8 @@ test "Taking Ship With Outfits And Unconstrained"
 		call "Load First Savegame"
 		call "Depart"
 		# when we land the mission will trigger
+		navigate
+			"travel destination" Ingot
 		call "Land"
 		call "Wait 10 steps"
 		# The missions are checked by alphabetical order, meaning we know that if the third one triggered,

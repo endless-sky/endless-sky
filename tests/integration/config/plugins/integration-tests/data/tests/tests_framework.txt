@@ -1,4 +1,4 @@
-# Copyright 2020 by Peter van der Meer
+# Copyright (c) 2020 by Peter van der Meer
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
@@ -82,12 +82,6 @@ test "Test-Framework - UI Keyboard controls"
 		input
 			key p
 			# TODO: check if the panel is actually loaded
-		# Enter and leave shipyard
-		# Skipped, since Earth (the starting planet) doesn't have a shipyard.
-		#input
-		#	key s
-		#input
-		#	key l
 		# Enter and leave outfitter
 		input
 			key o
@@ -118,6 +112,8 @@ test "Test-Framework - Load Depart Land"
 		assert
 			"ships: Light Freighter" == 3
 		watchdog 90000
+		navigate
+			"travel destination" Earth
 		call "Land"
 		assert
 			"flagship landed" > 0
@@ -209,7 +205,7 @@ test-data "Test Mission Injection Mission"
 			on offer
 				conversation
 					`This mission has been injected!`
-					`   It was not present in the base game data.`
+					`	It was not present in the base game data.`
 						accept
 
 
@@ -224,6 +220,8 @@ test "Test-Framework - Mission Injection"
 		call "Depart"
 		assert
 			"flagship landed" == 0
+		navigate
+			"travel destination" Earth
 		call "Land"
 		input
 			key "Return"
