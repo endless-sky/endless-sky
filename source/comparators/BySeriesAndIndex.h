@@ -16,7 +16,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef BY_SERIES_AND_INDEX_H_
 #define BY_SERIES_AND_INDEX_H_
 
-#include "../CategoryList.h"
 #include "../CategoryTypes.h"
 #include "../GameData.h"
 #include "../Outfit.h"

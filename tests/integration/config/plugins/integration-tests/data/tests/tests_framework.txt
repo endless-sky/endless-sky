@@ -112,6 +112,8 @@ test "Test-Framework - Load Depart Land"
 		assert
 			"ships: Light Freighter" == 3
 		watchdog 90000
+		navigate
+			"travel destination" Earth
 		call "Land"
 		assert
 			"flagship landed" > 0
@@ -218,6 +220,8 @@ test "Test-Framework - Mission Injection"
 		call "Depart"
 		assert
 			"flagship landed" == 0
+		navigate
+			"travel destination" Earth
 		call "Land"
 		input
 			key "Return"

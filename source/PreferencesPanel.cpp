@@ -26,7 +26,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
-#include "text/layout.hpp"
 #include "Plugins.h"
 #include "Preferences.h"
 #include "Screen.h"
@@ -71,9 +70,11 @@ namespace {
 	const string SCROLL_SPEED = "Scroll speed";
 	const string FIGHTER_REPAIR = "Repair fighters in";
 	const string SHIP_OUTLINES = "Ship outlines in shops";
+	const string DATE_FORMAT = "Date format";
 	const string BOARDING_PRIORITY = "Boarding target priority";
 	const string TARGET_ASTEROIDS_BASED_ON = "Target asteroid based on";
 	const string BACKGROUND_PARALLAX = "Parallax background";
+	const string EXTENDED_JUMP_EFFECTS = "Extended jump effects";
 	const string ALERT_INDICATOR = "Alert indicator";
 
 	// How many pages of settings there are.
@@ -99,7 +100,7 @@ PreferencesPanel::PreferencesPanel()
 
 	// Initialize a centered tooltip.
 	hoverText.SetFont(FontSet::Get(14));
-	hoverText.SetWrapWidth(150);
+	hoverText.SetWrapWidth(250);
 	hoverText.SetAlignment(Alignment::LEFT);
 }
 
@@ -230,6 +231,8 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 				Preferences::ToggleBoarding();
 			else if(zone.Value() == BACKGROUND_PARALLAX)
 				Preferences::ToggleParallax();
+			else if(zone.Value() == EXTENDED_JUMP_EFFECTS)
+				Preferences::ToggleExtendedJumpEffects();
 			else if(zone.Value() == VIEW_ZOOM_FACTOR)
 			{
 				// Increase the zoom factor unless it is at the maximum. In that
@@ -278,6 +281,8 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 					speed = 20;
 				Preferences::SetScrollSpeed(speed);
 			}
+			else if(zone.Value() == DATE_FORMAT)
+				Preferences::ToggleDateFormat();
 			else if(zone.Value() == ALERT_INDICATOR)
 				Preferences::ToggleAlert();
 			// All other options are handled by just toggling the boolean state.
@@ -440,6 +445,7 @@ void PreferencesPanel::DrawControls()
 		Command::MENU,
 		Command::FULLSCREEN,
 		Command::FASTFORWARD,
+		Command::HELP,
 		Command::NONE,
 		Command::DEPLOY,
 		Command::FIGHT,
@@ -502,18 +508,18 @@ void PreferencesPanel::DrawControls()
 		}
 	}
 
-	Table shiftTable;
-	shiftTable.AddColumn(125, {150, Alignment::RIGHT});
-	shiftTable.SetUnderline(0, 130);
-	shiftTable.DrawAt(Point(-400, 32));
+	Table infoTable;
+	infoTable.AddColumn(125, {150, Alignment::RIGHT});
+	infoTable.SetUnderline(0, 130);
+	infoTable.DrawAt(Point(-400, 32));
 
-	shiftTable.DrawUnderline(medium);
-	shiftTable.Draw("With <shift> key", bright);
-	shiftTable.DrawGap(5);
-	shiftTable.Draw("Select nearest ship", medium);
-	shiftTable.Draw("Select next escort", medium);
-	shiftTable.Draw("Talk to planet", medium);
-	shiftTable.Draw("Board disabled escort", medium);
+	infoTable.DrawUnderline(medium);
+	infoTable.Draw("Additional info", bright);
+	infoTable.DrawGap(5);
+	infoTable.Draw("Press '_x' over controls", medium);
+	infoTable.Draw("to unbind them.", medium);
+	infoTable.Draw("Controls can share", medium);
+	infoTable.Draw("the same keybind.", medium);
 }
 
 
@@ -560,7 +566,7 @@ void PreferencesPanel::DrawSettings()
 		"Draw starfield",
 		BACKGROUND_PARALLAX,
 		"Show hyperspace flash",
-		"Extended jump effects",
+		EXTENDED_JUMP_EFFECTS,
 		SHIP_OUTLINES,
 		"\t",
 		"HUD",
@@ -607,7 +613,8 @@ void PreferencesPanel::DrawSettings()
 		"Confirm 'Sell Outfits' button",
 		"Confirm 'Sell Specials' button"
 		"Landing zoom",
-		SCROLL_SPEED
+		SCROLL_SPEED,
+		DATE_FORMAT
 	};
 
 	bool isCategory = true;
@@ -713,6 +720,11 @@ void PreferencesPanel::DrawSettings()
 		}
 		else if(setting == EXPEND_AMMO)
 			text = Preferences::AmmoUsage();
+		else if(setting == DATE_FORMAT)
+		{
+			text = Preferences::DateFormatSetting();
+			isOn = true;
+		}
 		else if(setting == FLOTSAM_SETTING)
 		{
 			text = Preferences::FlotsamSetting();
@@ -746,6 +758,11 @@ void PreferencesPanel::DrawSettings()
 		else if(setting == BACKGROUND_PARALLAX)
 		{
 			text = Preferences::ParallaxSetting();
+			isOn = text != "off";
+		}
+		else if(setting == EXTENDED_JUMP_EFFECTS)
+		{
+			text = Preferences::ExtendedJumpEffectsSetting();
 			isOn = text != "off";
 		}
 		else if(setting == REACTIVATE_HELP)
@@ -810,7 +827,7 @@ void PreferencesPanel::DrawPlugins()
 
 	const Sprite *box[2] = { SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked") };
 
-	const int MAX_TEXT_WIDTH = 230;
+	const int MAX_TEXT_WIDTH = 210;
 	Table table;
 	table.AddColumn(-115, {MAX_TEXT_WIDTH, Truncate::MIDDLE});
 	table.SetUnderline(-120, 100);

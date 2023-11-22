@@ -103,9 +103,9 @@ protected:
 	// A lot of different UI elements allow a modifier to change the number of
 	// something you are buying, so the shared function is defined here:
 	static int Modifier();
-	// Display the given help message if it has not yet been shown. Return true
-	// if the message was displayed.
-	bool DoHelp(const std::string &name) const;
+	// Display the given help message if it has not yet been shown
+	// (or if force is set to true). Return true if the message was displayed.
+	bool DoHelp(const std::string &name, bool force = false) const;
 
 
 private:

@@ -77,7 +77,7 @@ namespace {
 			+ "\", or \"" + lastValidIt->second + '"';
 	}
 
-	// Prepare an keyboard input to one of the UIs.
+	// Prepare a keyboard input to one of the UIs.
 	bool KeyInputToEvent(const char *keyName, Uint16 modKeys)
 	{
 		// Construct the event to send (from keyboard code and modifiers)
@@ -617,7 +617,7 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 	}
 
 	// Print all conditions that are used in the test.
-	string conditions = "";
+	string conditions;
 	for(const auto &it : RelevantConditions())
 	{
 		const auto &val = player.Conditions().HasGet(it);
