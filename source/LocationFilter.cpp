@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Government.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
+#include "Port.h"
 #include "Random.h"
 #include "Ship.h"
 #include "StellarObject.h"
@@ -599,7 +600,9 @@ const Planet *LocationFilter::PickPlanet(const System *origin, const PlayerInfo 
 		if(!planet.IsValid() || (planet.GetSystem() && planet.GetSystem()->Inaccessible()))
 			continue;
 		// Skip planets that do not offer special jobs or missions, unless they were explicitly listed as options.
-		if(planet.IsWormhole() || (requireSpaceport && !planet.HasSpaceport()) || (!hasClearance && !planet.CanLand()))
+		if(planet.IsWormhole()
+				|| (requireSpaceport && !planet.GetPort().HasService(Port::ServicesType::OffersMissions))
+				|| (!hasClearance && !planet.CanLand()))
 			if(planets.empty() || !planets.count(&planet))
 				continue;
 		if(Matches(&planet, player, origin))
