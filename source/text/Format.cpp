@@ -143,7 +143,7 @@ namespace {
 	//
 	// The getter() acts like ConditionsStore.Get(), providing condition values.
 	// These are passed through Format::Whatever(), and appended to the result.
-	void AppendCondition(string &result, const string &source, Format::ConditionGetter getter,
+	void AppendCondition(string &result, const string &source, const Format::ConditionGetter &getter,
 		size_t formatStart, size_t formatSize, size_t conditionStart, size_t conditionSize)
 	{
 		int64_t value = getter(source, conditionStart, conditionSize);
@@ -297,6 +297,10 @@ string Format::Number(double value)
 {
 	if(!value)
 		return "0";
+	else if(std::isnan(value))
+		return "???";
+	else if(std::isinf(value))
+		return value > 0. ? "infinity" : "-infinity";
 
 	string result;
 	bool isNegative = (value < 0.);
@@ -428,6 +432,7 @@ string Format::MLAForm(int64_t value, bool startOfSentence)
 // Convert a string into a number. As with the output of Number(), the
 // string can have suffixes like "M", "B", etc.
 // It can also contain spaces or "," as separators like 1,000 or 1 000.
+// Does not support parsing NaN or infinite values.
 double Format::Parse(const string &str)
 {
 	double place = 1.;
@@ -598,7 +603,7 @@ vector<string> Format::Split(const string &str, const string &separator)
 
 
 
-string Format::ExpandConditions(const string &source, ConditionGetter getter)
+string Format::ExpandConditions(const string &source, const ConditionGetter &getter)
 {
 	// Optimization for most common case: no conditions
 	if(source.find('&') == string::npos)
