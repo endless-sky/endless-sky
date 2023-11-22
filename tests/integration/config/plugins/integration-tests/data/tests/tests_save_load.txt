@@ -95,6 +95,8 @@ test "Saving during conversation"
 		call "Depart"
 		assert
 			"transient" == 0
+		navigate
+			"travel destination" Ruin
 		call "Land"
 		# This condition is set to ensure that the transaction snapshot includes everything before this mission.
 		apply
