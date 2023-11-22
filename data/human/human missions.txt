@@ -7162,11 +7162,11 @@ mission "Adelita 5"
 				has "adelita: killed pirates"
 
 			`It was close, but you make it back to Maker. Ale and River are soon on board and excited to be out of their disguises, and they spend a lot of time talking with Bunker about his part of the mission. Although exhausted, both are eager to get back and process what they filmed - both emotionally and literally.`
-			`	"That was horrible, but we got it done. Can we leave now?" asks Ale.`
+			`	"That was horrible, but we got it done," Ale mumbled. "Can we leave now?" 
 				launch
 
 			label experienced
-			`The pirates were no match for you. Ale and River are soon on board and excited to be out of their disguises, and they spend a lot of time talking with Bunker about his part of the mission. Although exhausted, both are eager to get back and process what they filmed - both emotionally and literally.`
+			`With the pirates neutralized, Ale and River are soon on board and excited to be out of their disguises, and they spend a lot of time talking with Bunker about his part of the mission. Although exhausted, both are eager to get back and process what they filmed - both emotionally and literally.`
 			`	"That was horrible, but we got it done. Can we leave now?" asks Ale.`
 				launch
 
@@ -7175,6 +7175,8 @@ mission "Adelita 5"
 
 	on complete
 		payment 220000
-		log `Helped the underground journalism collective "Adelita Zero" gather video evidence of Syndicate participation in the slave trade. Had to escape pirates while doing so.`
+		log `Helped the underground journalism collective "Adelita Zero" gather video evidence of Syndicate participation in the slave trade while escaping from pirates.`
 		conversation
-			`Ale, River, and Bunker look glad to be back on <planet>. "Ugh. Being there in person was bad enough," says Ale, "and now we have to watch it over and over again to edit it into something presentable." She hands you a stack of credit chips totaling <payment>. "There's a bonus in there for you, we really couldn't have done it without you. We'll let you know when it's done. Also, we might need you for some future projects, so expect us to be in touch." The group leaves your ship.`
+			`Ale, River, and Bunker look glad to be back on <planet>. "Being there in person was bad enough," Ale grumbles as she looks through a stack of folders on her datapad. "Now we have to watch it over and over again to edit it into something presentable."`
+			`	As they are leaving, Ale hands you a stack of credit chips totaling <payment>. "There's a bonus in there for you, we really couldn't have done it without you," she tells you with a bittersweet smile. "Of course, you'll be one of the first to know when it's done."`
+			`	She starts off to join River and Bunker out in the spaceport, before turning around one last time in the doorway. "We might be in need of you for some future projects too, Captain <last>. But goodbye for now. Stay safe on the star lanes!"`
