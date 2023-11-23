@@ -275,10 +275,10 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 			}
 			else if(zone.Value() == SCROLL_SPEED)
 			{
-				// Toggle between three different speeds.
-				int speed = Preferences::ScrollSpeed() + 20;
-				if(speed > 60)
-					speed = 20;
+				// Toggle between ten different speeds.
+				int speed = Preferences::ScrollSpeed() + 10;
+				if(speed > 100)
+					speed = 10;
 				Preferences::SetScrollSpeed(speed);
 			}
 			else if(zone.Value() == DATE_FORMAT)
@@ -611,6 +611,7 @@ void PreferencesPanel::DrawSettings()
 		"Interrupt fast-forward",
 		"Landing zoom",
 		SCROLL_SPEED,
+		"Scroll smoothing",
 		DATE_FORMAT
 	};
 
@@ -796,7 +797,7 @@ void PreferencesPanel::DrawSettings()
 		else if(setting == SCROLL_SPEED)
 		{
 			isOn = true;
-			text = to_string(Preferences::ScrollSpeed());
+			text = to_string(Preferences::ScrollSpeed()) + "%";
 		}
 		else if(setting == ALERT_INDICATOR)
 		{

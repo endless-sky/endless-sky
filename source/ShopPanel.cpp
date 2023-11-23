@@ -64,17 +64,19 @@ namespace {
 	}
 
 	// Update smooth scroll towards scroll.
-	void UpdateSmoothScroll(const double scroll, double &smoothScroll)
+	double UpdateSmoothScroll(const double scroll, const double smoothscroll)
 	{
-		const double dy = scroll - smoothScroll;
-		if(dy)
+		const double dy = scroll - smoothscroll;
+		if(dy && Preferences::Has("Scroll smoothing"))
 		{
 			// Handle small increments.
 			if(fabs(dy) < 6 && fabs(dy) > 1)
-				smoothScroll += copysign(1., dy);
+				return smoothscroll + copysign(1., dy);
 			// Keep scroll value an integer to prevent odd text artifacts.
 			else
-				smoothScroll = round(smoothScroll + dy * 0.2);
+				return round(smoothscroll + dy * 0.2);
+		} else {
+			return scroll;
 		}
 	}
 }
@@ -516,6 +518,8 @@ bool ShopPanel::Click(int x, int y, int /* clicks */)
 			else
 				selectedOutfit = zone.GetOutfit();
 
+			previousX = zone.Center().X();
+
 			return true;
 		}
 
@@ -675,7 +679,7 @@ void ShopPanel::DrawShipsSidebar()
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
 
-	UpdateSmoothScroll(sidebarScroll, sidebarSmoothScroll);
+	sidebarSmoothScroll = UpdateSmoothScroll(sidebarScroll, sidebarSmoothScroll);
 
 	// Fill in the background.
 	FillShader::Fill(
@@ -806,7 +810,7 @@ void ShopPanel::DrawDetailsSidebar()
 	const Color &line = *GameData::Colors().Get("dim");
 	const Color &back = *GameData::Colors().Get("shop info panel background");
 
-	UpdateSmoothScroll(infobarScroll, infobarSmoothScroll);
+	infobarSmoothScroll = UpdateSmoothScroll(infobarScroll, infobarSmoothScroll);
 
 	FillShader::Fill(
 		Point(Screen::Right() - SIDEBAR_WIDTH - INFOBAR_WIDTH, 0.),
@@ -912,7 +916,7 @@ void ShopPanel::DrawMain()
 	const Sprite *collapsedArrow = SpriteSet::Get("ui/collapsed");
 	const Sprite *expandedArrow = SpriteSet::Get("ui/expanded");
 
-	UpdateSmoothScroll(mainScroll, mainSmoothScroll);
+	mainSmoothScroll = UpdateSmoothScroll(mainScroll, mainSmoothScroll);
 
 	// Draw all the available items.
 	// First, figure out how many columns we can draw.
@@ -1188,6 +1192,8 @@ void ShopPanel::MainLeft()
 		MainAutoScroll(it);
 	}
 
+	previousX = it->Center().X();
+
 	selectedShip = it->GetShip();
 	selectedOutfit = it->GetOutfit();
 }
@@ -1210,6 +1216,8 @@ void ShopPanel::MainRight()
 	else
 		MainAutoScroll(it);
 
+	previousX = it->Center().X();
+
 	selectedShip = it->GetShip();
 	selectedOutfit = it->GetOutfit();
 }
@@ -1226,7 +1234,6 @@ void ShopPanel::MainUp()
 	if(it == zones.end())
 		it = zones.begin();
 
-	const double previousX = it->Center().X();
 	const double previousY = it->Center().Y();
 	while(it != zones.begin() && it->Center().Y() == previousY)
 		--it;
@@ -1265,7 +1272,6 @@ void ShopPanel::MainDown()
 		return;
 	}
 
-	const double previousX = it->Center().X();
 	const double previousY = it->Center().Y();
 	++it;
 	while(it != zones.end() && it->Center().Y() == previousY)

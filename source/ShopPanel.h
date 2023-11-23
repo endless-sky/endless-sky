@@ -171,6 +171,7 @@ protected:
 	double maxInfobarScroll = 0.;
 	ShopPane activePane = ShopPane::Main;
 	char hoverButton = '\0';
+	double previousX = 0.;
 
 	std::vector<Zone> zones;
 	std::vector<ClickZone<const Ship *>> shipZones;
@@ -214,6 +215,7 @@ private:
 
 private:
 	bool delayedAutoScroll = false;
+
 };
 
 
