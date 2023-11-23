@@ -64,17 +64,17 @@ namespace {
 	}
 
 	// Update smooth scroll towards scroll.
-	double UpdateSmoothScroll(const double scroll, const double smoothscroll)
+	double UpdateSmoothScroll(const double scroll, const double smoothScroll)
 	{
-		const double dy = scroll - smoothscroll;
+		const double dy = scroll - smoothScroll;
 		if(dy && Preferences::Has("Scroll smoothing"))
 		{
 			// Handle small increments.
 			if(fabs(dy) < 6 && fabs(dy) > 1)
-				return smoothscroll + copysign(1., dy);
+				return smoothScroll + copysign(1., dy);
 			// Keep scroll value an integer to prevent odd text artifacts.
 			else
-				return round(smoothscroll + dy * 0.2);
+				return round(smoothScroll + dy * 0.2);
 		}
 		return scroll;
 	}

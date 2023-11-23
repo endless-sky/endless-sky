@@ -215,7 +215,6 @@ private:
 
 private:
 	bool delayedAutoScroll = false;
-
 };
 
 
