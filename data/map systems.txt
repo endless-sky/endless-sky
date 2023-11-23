@@ -5990,7 +5990,7 @@ system Aspidiske
 system Atik
 	pos -66 -52
 	government "Humanika Rafeki Restricted"
-	attributes "bright star" "giant star" "multi-star" "notable star"
+	attributes "bright star" "core" "giant star" "multi-star" "notable star"
 	arrival 1800
 	habitable 1800
 	belt 1240
@@ -8620,6 +8620,7 @@ system Coluber
 system Companion
 	pos -1032.59 709.051
 	government Coalition
+	attributes "saryd"
 	arrival 500
 	habitable 425
 	belt 1786
@@ -20534,6 +20535,7 @@ system L-6181
 system "Last Word"
 	pos -1145.59 495.051
 	government Coalition
+	attributes "saryd"
 	arrival 625
 	habitable 625
 	belt 1761
@@ -23193,7 +23195,7 @@ system Mirzam
 system Misam
 	pos -9 -80
 	government "Humanika Rafeki Port"
-	attributes "multi-star" "notable star"
+	attributes "core" "multi-star" "notable star"
 	arrival 3835
 	habitable 3835
 	belt 1091
@@ -26151,6 +26153,7 @@ system Plort
 system Polaris
 	pos -35 126
 	government Syndicate
+	attributes "core"
 	arrival 1715
 	habitable 1715
 	belt 1906

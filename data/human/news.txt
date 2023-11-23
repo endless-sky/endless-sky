@@ -79,7 +79,6 @@ news "merchant in human space"
 			`"`
 		word
 			"Pirate attacks keep getting more and more frequent, even in star systems that used to be perfectly safe. Why isn't the Navy doing something about it?"
-			"I keep hearing rumors about ships disappearing north of Syndicate space. It's probably a bunch of hot air, but either way, I'm staying away from there!"
 			"I try to stick to safe parts of space if I can. Pirate attacks are too much risk for my tastes."
 			"It's such a shame how much the political situation has deteriorated. We're all humans; why can't we just get along?"
 			"I always buy my engines in the Deep. They sell the best of the best up there."
