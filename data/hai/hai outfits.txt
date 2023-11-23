@@ -24,7 +24,7 @@ outfit "Phantom Pallet"
 	"cargo space" -1
 	"cargo scan opacity" 15
 
-	description "This Unfettered modification of the standard Hai Holopad is a borderline-illegal smuggling tool."
+	description "This borderline-illegal smuggling tool is an Unfettered modification of the standard Hai Holopad."
 	description "Holopads are small versions of the Hai Holovid Zone. They have holographic projectors, textured force fields, and phase array speakers. As a mid-priced but powerful option, it's often seen in meeting rooms, arcades, and personal gaming setups. Several can be packed together to make a larger holographic space."
 	description "Unfettered Phantom Pallets are more durable and stealthy Holopads. They can hide under floors, in walls, or in ceilings, and remain undetected. Install them in your cargo bay and project fake cargo as sensor ghosts. They confuse scanners into scanning empty space instead of contraband. That can make the difference between seized cargo and delivering needed goods."
 
