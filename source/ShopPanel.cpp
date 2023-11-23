@@ -75,9 +75,8 @@ namespace {
 			// Keep scroll value an integer to prevent odd text artifacts.
 			else
 				return round(smoothscroll + dy * 0.2);
-		} else {
-			return scroll;
 		}
+		return scroll;
 	}
 }
 
