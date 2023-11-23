@@ -586,6 +586,7 @@ Files:
  images/land/lava6*
  images/land/mountain1*
  images/land/mountain3*
+ images/land/mountain4*
  images/land/mountain5*
  images/land/mountain6*
  images/land/mountain7*
@@ -1081,7 +1082,6 @@ Files:
  images/land/lava12*
  images/land/lava13*
  images/land/loc3*
- images/land/mountain4*
  images/land/sea18*
  images/land/sea19*
  images/land/sky10*
