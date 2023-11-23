@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class News;
 class PlayerInfo;
+class Port;
 class Interface;
 
 
@@ -35,6 +36,7 @@ public:
 
 	void UpdateNews();
 	virtual void Draw() override;
+	virtual const Port *GetPort() const override;
 
 
 private:
@@ -43,6 +45,7 @@ private:
 
 private:
 	WrappedText text;
+	const Port &port;
 	const Interface &ui;
 
 	// Current news item (if any):

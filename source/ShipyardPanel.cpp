@@ -31,7 +31,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
-#include "PointerShader.h"
 #include "Screen.h"
 #include "Ship.h"
 #include "Sprite.h"
@@ -47,7 +46,7 @@ class System;
 using namespace std;
 
 namespace {
-	// Label for the decription field of the detail pane.
+	// Label for the description field of the detail pane.
 	const string DESCRIPTION = "description";
 
 	// The name entry dialog should include a "Random" button to choose a random
@@ -119,10 +118,10 @@ bool ShipyardPanel::HasItem(const string &name) const
 
 
 
-void ShipyardPanel::DrawItem(const string &name, const Point &point, int scrollY)
+void ShipyardPanel::DrawItem(const string &name, const Point &point)
 {
 	const Ship *ship = GameData::Ships().Get(name);
-	zones.emplace_back(point, Point(SHIP_SIZE, SHIP_SIZE), ship, scrollY);
+	zones.emplace_back(point, Point(SHIP_SIZE, SHIP_SIZE), ship);
 	if(point.Y() + SHIP_SIZE / 2 < Screen::Top() || point.Y() - SHIP_SIZE / 2 > Screen::Bottom())
 		return;
 
@@ -140,7 +139,7 @@ int ShipyardPanel::DividerOffset() const
 
 int ShipyardPanel::DetailWidth() const
 {
-	return 3 * shipInfo.PanelWidth();
+	return 3 * ItemInfoDisplay::PanelWidth();
 }
 
 
@@ -154,7 +153,7 @@ int ShipyardPanel::DrawDetails(const Point &center)
 
 	if(selectedShip)
 	{
-		shipInfo.Update(*selectedShip, player, collapsed.count(DESCRIPTION));
+		shipInfo.Update(*selectedShip, player, collapsed.count(DESCRIPTION), true);
 		selectedItem = selectedShip->DisplayModelName();
 
 		const Point spriteCenter(center.X(), center.Y() + 20 + TileSize() / 2);
@@ -299,7 +298,13 @@ void ShipyardPanel::Sell(bool toStorage)
 
 	int count = playerShips.size();
 	int initialCount = count;
-	string message = "Sell the ";
+	string message;
+	if(!toStorage)
+		message = "Sell the ";
+	else if(count == 1)
+		message = "Sell the hull of the ";
+	else
+		message = "Sell the hulls of the ";
 	if(count == 1)
 		message += playerShip->Name();
 	else if(count <= MAX_LIST)
@@ -332,10 +337,17 @@ void ShipyardPanel::Sell(bool toStorage)
 	vector<shared_ptr<Ship>> toSell;
 	for(const auto &it : playerShips)
 		toSell.push_back(it->shared_from_this());
-	int64_t total = player.FleetDepreciation().Value(toSell, day);
+	int64_t total = player.FleetDepreciation().Value(toSell, day, toStorage);
 
 	message += ((initialCount > 2) ? "\nfor " : " for ") + Format::CreditString(total) + "?";
-	GetUI()->Push(new Dialog(this, &ShipyardPanel::SellShip, message, Truncate::MIDDLE));
+
+	if(toStorage)
+	{
+		message += " Any outfits will be placed in storage.";
+		GetUI()->Push(new Dialog(this, &ShipyardPanel::SellShipChassis, message, Truncate::MIDDLE));
+	}
+	else
+		GetUI()->Push(new Dialog(this, &ShipyardPanel::SellShipAndOutfits, message, Truncate::MIDDLE));
 }
 
 
@@ -374,14 +386,29 @@ void ShipyardPanel::BuyShip(const string &name)
 	playerShip = &*player.Ships().back();
 	playerShips.clear();
 	playerShips.insert(playerShip);
+	CheckSelection();
 }
 
 
 
-void ShipyardPanel::SellShip()
+void ShipyardPanel::SellShipAndOutfits()
+{
+	SellShip(false);
+}
+
+
+
+void ShipyardPanel::SellShipChassis()
+{
+	SellShip(true);
+}
+
+
+
+void ShipyardPanel::SellShip(bool toStorage)
 {
 	for(Ship *ship : playerShips)
-		player.SellShip(ship);
+		player.SellShip(ship, toStorage);
 	playerShips.clear();
 	playerShip = nullptr;
 	for(const shared_ptr<Ship> &ship : player.Ships())
@@ -392,5 +419,4 @@ void ShipyardPanel::SellShip()
 		}
 	if(playerShip)
 		playerShips.insert(playerShip);
-	player.UpdateCargoCapacities();
 }

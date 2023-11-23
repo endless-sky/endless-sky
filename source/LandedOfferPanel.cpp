@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "LandedOfferPanel.h"
 
 #include "PlayerInfo.h"
+#include "Port.h"
 #include "Ship.h"
 #include "UI.h"
 
@@ -64,7 +65,8 @@ void LandedOfferPanel::Step()
 		// This ensures those landing missions will be offered at the spaceport.
 		// For the shops, it makes more sense to wait until the player returns
 		// to the landing area.
-		if(location == Mission::SPACEPORT && !mission)
+		if(location == Mission::SPACEPORT && !mission && GetPort() &&
+				GetPort()->HasService(Port::ServicesType::OffersMissions))
 			mission = player.MissionToOffer(Mission::LANDING);
 
 		// Offer a mission if we have one
@@ -80,4 +82,11 @@ void LandedOfferPanel::Step()
 		else
 			return;
 	}
+}
+
+
+
+const Port *LandedOfferPanel::GetPort() const
+{
+	return nullptr;
 }

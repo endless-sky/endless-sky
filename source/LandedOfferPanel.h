@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <memory>
 
+class Port;
 
 
 class LandedOfferPanel : public Panel {
@@ -28,6 +29,7 @@ public:
 	LandedOfferPanel(PlayerInfo &player, Mission::Location location, std::shared_ptr<Panel> otherPanel = nullptr);
 	bool TimeToLeaveOrDie() const;
 	virtual void Step() override;
+	virtual const Port *GetPort() const;
 
 
 protected:
