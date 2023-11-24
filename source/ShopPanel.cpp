@@ -938,7 +938,8 @@ void ShopPanel::DrawButtons()
 		hoverButton == 'l' ? hover : active);
 
 	const Point findCenter = Screen::BottomRight() - Point(580, 20);
-	const Sprite *findIcon = hoverButton == 'f' ? SpriteSet::Get("ui/find icon light") : SpriteSet::Get("ui/find icon dark");
+	const Sprite *findIcon =
+		hoverButton == 'f' ? SpriteSet::Get("ui/find icon light") : SpriteSet::Get("ui/find icon dark");
 	SpriteShader::Draw(findIcon, findCenter);
 	static const string FIND = "_Find";
 
@@ -1487,7 +1488,6 @@ char ShopPanel::CheckButton(int x, int y)
 		return 's';
 	else if(x > 169 && x < 240)
 		return 'l';
-	
 
 	return ' ';
 }
