@@ -2661,10 +2661,23 @@ int Ship::Crew() const
 
 
 
-// Calculate drag, accounting for drag reduction.
+// Calculate the drag on this ship. The drag can be no greater than the mass.
 double Ship::Drag() const
 {
-	return attributes.Get("drag") / (1. + attributes.Get("drag reduction"));
+	double drag = attributes.Get("drag") / (1. + attributes.Get("drag reduction"));
+	double mass = InertialMass();
+	return drag >= mass ? mass : drag;
+}
+
+
+
+// Calculate the drag force that this ship experiences. The drag force is the drag
+// divided by the mass, up to a value of 1.
+double Ship::DragForce() const
+{
+	double drag = attributes.Get("drag") / (1. + attributes.Get("drag reduction"));
+	double mass = InertialMass();
+	return drag >= mass ? 1. : drag / mass;
 }
 
 
@@ -4201,10 +4214,11 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 	isUsingAfterburner = false;
 
 	double mass = InertialMass();
+	double dragForce = DragForce();
 	double slowMultiplier = 1. / (1. + slowness * .05);
 
 	if(isDisabled)
-		velocity *= 1. - Drag() / mass;
+		velocity *= 1. - dragForce;
 	else if(!pilotError)
 	{
 		if(commands.Turn())
@@ -4367,7 +4381,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 	{
 		acceleration *= slowMultiplier;
 		// Acceleration multiplier needs to modify effective drag, otherwise it changes top speeds.
-		Point dragAcceleration = acceleration - velocity * Drag() * (1. + attributes.Get("acceleration multiplier")) / mass;
+		Point dragAcceleration = acceleration - velocity * dragForce * (1. + attributes.Get("acceleration multiplier"));
 		// Make sure dragAcceleration has nonzero length, to avoid divide by zero.
 		if(dragAcceleration)
 		{

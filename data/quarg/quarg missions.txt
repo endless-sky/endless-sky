@@ -263,20 +263,6 @@ mission "Ask Quarg About Coalition Early"
 
 
 
-mission "Quarg Ships Atrocity"
-	landing
-	invisible
-	source
-		attributes quarg
-	to offer
-		or
-			has "ship model: Quarg Skylark"
-			has "ship model: Quarg Wardragon"
-	on offer
-		conversation "quarg imprisonment"
-
-
-
 mission "Quarg Pug Arfecta Warning"
 	minor
 	landing

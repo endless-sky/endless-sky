@@ -900,7 +900,7 @@ mission "WR Star 1"
 	passengers 3
 	cargo "sensors" 2
 	on offer
-		dialog `A group of <bunks> scientists approaches you and asks if you will be headed to the Rim any time soon. "We're doing research on Wolf-Rayet stars," they explain, "and we're hoping to find a captain who can do a fly-by of <waypoints>." Scientific research in the Deep is notoriously well-funded, so they will probably pay you quite well.`
+		dialog `A group of <bunks> scientists approaches you and asks if you will be headed to the Rim any time soon. "We're doing research on Wolf-Rayet stars," they explain, "and we're hoping to find a captain who can do a flyby of <waypoints>." Scientific research in the Deep is notoriously well-funded, so they will probably pay you quite well.`
 	on waypoint
 		dialog `The team of scientists unpacks their equipment and takes some measurements of the star. Before long they inform you they are ready to go home.`
 	on visit
@@ -4985,11 +4985,11 @@ mission "Dangerous Games 2"
 			label adventure
 			`	The adventure seekers, who you've spent the trip getting to know, are getting ready. You watch a nearby pair, Daciana and Mussie, helping each other get their wetsuits on. Daciana catches your gaze and grins. "Bafta, mate. Safe sailing, see you on the other side." Karengo gives you a signal and you hurry back to the cockpit to fly out, away from safe shoals and over the watery abyss.`
 			`	At your touch, the ship slowly sinks below the waves. As Karengo warned, most of your navigation systems quickly flash red warnings, then go offline; there is some unknown interference that overwhelms your ship's sensors, which were designed for space first and water second, or fifth, or not at all. Minutes tick by as the crew silently watches one of the few sensors still working.`
-			`	EIGHT KILOMETERS, the depth meter reads.`
-			`	TEN KILOMETERS.`
-			`	SIXTEEN KILOMETERS. A loud, metallic creak echoes through the ship and Mussie jumps, startled.`
+			`	EIGHT HUNDRED KILOPASCALS, the pressure gauge reads.`
+			`	ONE THOUSAND KILOPASCALS.`
+			`	ONE THOUSAND TWO HUNDRED KILOPASCALS. A loud, metallic creak echoes through the ship and Mussie jumps, startled.`
 			`	Karengo claps him on the back and gives him a signature grin. "Maybe <first> can keep you aboard after this in case they need anything from a high shelf!" Mussie smiles weakly, but his eyes don't leave the readout.`
-			`	TWENTY-FIVE KILOMETERS. "This's it," Karengo announces, "Sub up! Let's see what there is to see. And <first>, keep it to passive sensors. Don't want to attract any undue attention." The ship smoothly descends into the mouth of a massive cave and your visibility, clouded by dark sulfide emissions from the hydrothermal vents at the floor, drops to less than eight meters. 6 personal subpods fan out behind you, their communication equipment syncing with yours to display them as blips on your screen.`
+			`	ONE THOUSAND FIVE HUNDRED KILOPASCALS. "This's it," Karengo announces, "Sub up! Let's see what there is to see. And <first>, keep it to passive sensors. Don't want to attract any undue attention." The ship smoothly descends into the mouth of a massive cave and your visibility, clouded by dark sulfide emissions from the hydrothermal vents at the floor, drops to less than eight meters. 6 personal subpods fan out behind you, their communication equipment syncing with yours to display them as blips on your screen.`
 			`	"Ok, <first>," Karengo crackles over the radio. "I'll read you the first clue."`
 			`"No other path may you take"`
 			`"Oiled skins flash and flicker"`
@@ -6849,3 +6849,45 @@ mission "FW Refugees to Humanika"
 		dialog "Penny and Rosa thank you for getting them safely to <destination>, handing you <payment> for your troubles. You wish them and Eduardo the best of luck starting their new life away from a potential war in human space."
 		log "Minor People" "Penny Little, Rosa Perkins, and Eduardo" `A young family who wanted to escape a potential war in human space. Took them to the planet Humanika, where the Quarg let humans settle.`
 
+mission "Returning to Paradise"
+	name "Take a family home to <planet>."
+	description "A family worried about the potential destruction within the Free Worlds wants to cut their vacation short and go home to <destination>."
+	source
+		government "Free Worlds"
+		attributes "tourism"
+	destination "Mainsail"
+	passengers 4
+	cargo "personal belongings" 1
+	to offer
+		random < 30
+		not "chosen sides"
+		has "assisted free worlds"
+	on offer
+		conversation
+			`After looking around <origin>'s spaceport, you head back to your ship to find a middle-aged couple and two grade-school girls (probably their daughters, you reason) waiting for you at your landing pad. While the man tries to resolve an argument between the two girls, the lady notices you immediately and begins to approach you. "Thank goodness you're here," she says. "We've been going from ship to ship looking for transport back home to the Paradise Planets. This war has caught us right in the middle of our vacation and we can't risk being anywhere near here when the Navy attacks, especially with our little angels," she gestures toward her daughters, now in a full-blown fight. "If you can find the time to take us to <planet>, we will pay you very well."`
+			choice
+				`	"Sure, I'll take you."`
+				`	"Okay, but that's pretty far. This better be worth it."`
+				`	"No, I don't think so. Sorry."`
+					decline
+
+			`	"Then it's a deal," she says as she gives you a firm handshake. The whole family gets onto the <ship> without a word, leaving you to load their many bags and cases.`
+				accept
+
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+
+	on complete
+		conversation
+			branch luxury
+				has "outfit: Luxury Accommodations"
+
+			action
+				payment 66999
+			`You're not sure if you've ever met a more pretentious and entitled family. The girls fought non-stop, and every family member complained constantly about the lack of luxury accommodations on your ship. Once you land on <planet>, the lady gives you <payment> and the family leaves without a word of thanks; they never even tell you their names. Considering what they put you through they should have paid you more, but nonetheless you're happy to be rid of them.`
+				decline
+
+			label luxury
+			action
+				payment 120000
+			`You're not sure if you've ever met a more pretentious and entitled family. The girls fought non-stop, but fortunately, the family was satisfied with the luxury accommodations on your ship. Once you land on <planet>, the lady gives you <payment> and the family leave without a word of thanks; they never even tell you their names. Nonetheless, you're happy to be rid of them.`
