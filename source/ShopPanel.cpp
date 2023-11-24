@@ -937,6 +937,13 @@ void ShopPanel::DrawButtons()
 		leaveCenter - .5 * Point(bigFont.Width(LEAVE), bigFont.Height()),
 		hoverButton == 'l' ? hover : active);
 
+	const Point findCenter = Screen::BottomRight() - Point(600, 25);
+	FillShader::Fill(findCenter, Point(60, 30), back);
+	static const string FIND = "_Find";
+	bigFont.Draw(FIND,
+		findCenter - .5 * Point(bigFont.Width(FIND), bigFont.Height()),
+		hoverButton == 'f' ? hover : active);
+
 	int modifier = Modifier();
 	if(modifier > 1)
 	{
@@ -1460,6 +1467,10 @@ vector<ShopPanel::Zone>::const_iterator ShopPanel::Selected() const
 // letter of the button (or ' ' if it's not on a button).
 char ShopPanel::CheckButton(int x, int y)
 {
+	if(x > Screen::Right() - SIDEBAR_WIDTH - 380 && x < Screen::Right() - SIDEBAR_WIDTH - 320 &&
+		y > Screen::Bottom() - 40 && y < Screen::Bottom() - 10)
+		return 'f';
+
 	if(x < Screen::Right() - SIDEBAR_WIDTH || y < Screen::Bottom() - BUTTON_HEIGHT)
 		return '\0';
 
@@ -1478,6 +1489,7 @@ char ShopPanel::CheckButton(int x, int y)
 		return 's';
 	else if(x > 169 && x < 240)
 		return 'l';
+	
 
 	return ' ';
 }
