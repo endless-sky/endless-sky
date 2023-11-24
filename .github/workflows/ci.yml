@@ -66,7 +66,7 @@ jobs:
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v11
       with:
-        vcpkgGitCommitId: '2cf957350da28ad032178a974607f59f961217d9'
+        vcpkgGitCommitId: 'a42af01b72c28a8e1d7b48107b33e4f286a55ef6'
     - uses: lukka/run-cmake@v10
       with:
         configurePreset: ${{ matrix.opengl == 'GL' && 'linux-ci' || 'linux-gles-ci' }}
@@ -92,7 +92,7 @@ jobs:
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v11
       with:
-        vcpkgGitCommitId: '2cf957350da28ad032178a974607f59f961217d9'
+        vcpkgGitCommitId: 'a42af01b72c28a8e1d7b48107b33e4f286a55ef6'
     - uses: lukka/run-cmake@v10
       with:
         configurePreset: 'mingw-ci'
@@ -128,7 +128,7 @@ jobs:
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v11
       with:
-        vcpkgGitCommitId: '2cf957350da28ad032178a974607f59f961217d9'
+        vcpkgGitCommitId: 'a42af01b72c28a8e1d7b48107b33e4f286a55ef6'
     - uses: lukka/run-cmake@v10
       with:
         configurePreset: 'clang-cl-ci'
@@ -156,7 +156,7 @@ jobs:
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v11
       with:
-        vcpkgGitCommitId: '2cf957350da28ad032178a974607f59f961217d9'
+        vcpkgGitCommitId: 'a42af01b72c28a8e1d7b48107b33e4f286a55ef6'
     - uses: lukka/run-cmake@v10
       with:
         configurePreset: 'macos-ci'

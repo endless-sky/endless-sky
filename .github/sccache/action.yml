@@ -4,7 +4,7 @@ runs:
   using: 'composite'
   steps:
     - name: Set environment variables
-      run: echo "SCCACHE_VERSION=v0.5.0" >> $GITHUB_ENV
+      run: echo "SCCACHE_VERSION=v0.7.3" >> $GITHUB_ENV
       shell: bash
     - name: Download sccache
       run: |
