@@ -1205,18 +1205,34 @@ const Ship *PlayerInfo::GiftShip(const Ship *model, const string &name, const st
 
 
 // Sell the given ship (if it belongs to the player).
-void PlayerInfo::SellShip(const Ship *selected)
+void PlayerInfo::SellShip(const Ship *selected, bool storeOutfits)
 {
 	for(auto it = ships.begin(); it != ships.end(); ++it)
 		if(it->get() == selected)
 		{
 			int day = date.DaysSinceEpoch();
-			int64_t cost = depreciation.Value(*selected, day);
+			int64_t cost;
+
+			// Passing a pointer to Value gets only the hull cost. Passing a reference
+			// gets hull and outfit costs.
+			if(storeOutfits)
+				cost = depreciation.Value(selected, day);
+			else
+				cost = depreciation.Value(*selected, day);
 
 			// Record the transfer of this ship in the depreciation and stock info.
-			stockDepreciation.Buy(*selected, day, &depreciation);
-			for(const auto &it : selected->Outfits())
-				stock[it.first] += it.second;
+			stockDepreciation.Buy(*selected, day, &depreciation, storeOutfits);
+			if(storeOutfits)
+			{
+				CargoHold &storage = Storage();
+				for(const auto &it : selected->Outfits())
+					storage.Add(it.first, it.second);
+			}
+			else
+			{
+				for(const auto &it : selected->Outfits())
+					stock[it.first] += it.second;
+			}
 
 			accounts.AddCredits(cost);
 			ForgetGiftedShip(*it->get());
@@ -1539,6 +1555,10 @@ void PlayerInfo::Land(UI *ui)
 
 	// Cargo management needs to be done after updating ship locations (above).
 	UpdateCargoCapacities();
+	// If the player is actually landing (rather than simply loading the game),
+	// new fines may be levied.
+	if(!freshlyLoaded)
+		Fine(ui);
 	// Ships that are landed with you on the planet should pool all their cargo together.
 	PoolCargo();
 	// Adjust cargo cost basis for any cargo lost due to a ship being destroyed.
@@ -1553,15 +1573,9 @@ void PlayerInfo::Land(UI *ui)
 	StepMissions(ui);
 	UpdateCargoCapacities();
 
-	// If the player is actually landing (rather than simply loading the game),
-	// new missions are created and new fines may be levied.
+	// Create whatever missions this planet has to offer.
 	if(!freshlyLoaded)
-	{
-		// Create whatever missions this planet has to offer.
 		CreateMissions();
-		// Check if the player is doing anything illegal.
-		Fine(ui);
-	}
 	// Upon loading the game, prompt the player about any paused missions, but if there are many
 	// do not name them all (since this would overflow the screen).
 	else if(ui && !inactiveMissions.empty())
