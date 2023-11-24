@@ -51,6 +51,8 @@ If you want to build the libraries from source instead of using Homebrew, you ca
 
 You can use your favorite package manager to install the needed dependencies. If you're using a slower moving distro like Ubuntu or Debian (or any derivatives thereof), make sure to use at least Ubuntu 22.04 LTS or Debian 12. If you are using an older version of those distributions, see the note below.
 
+**Note**: If your distro does not provide up-to-date version of the needed libraries, you will need to tell CMake to build the libraries from source by passing `-DES_USE_SYSTEM_LIBRARIES=OFF` while configuring. You will also need at least CMake 3.21. You can get the latest version from the [offical website](https://cmake.org/download/). Additional dependencies will likely need to be installed to build the libraries from source as well.
+
 <details>
 <summary>DEB-based distros</summary>
 
@@ -68,8 +70,6 @@ gcc-c++ cmake ninja-build SDL2-devel libpng-devel libjpeg-turbo-devel mesa-libGL
 ```
 
 </details>
-
-**Note**: If your distro does not provide up-to-date version of the needed libraries, you will need to tell CMake to build the libraries from source by passing `-DES_USE_SYSTEM_LIBRARIES=OFF` while configuring. You will also need at least CMake 3.21. You can get the latest version from the [offical website](https://cmake.org/download/). Additional dependencies will likely need to be installed to build the libraries from source as well.
 
 ## Building the game
 
