@@ -937,12 +937,10 @@ void ShopPanel::DrawButtons()
 		leaveCenter - .5 * Point(bigFont.Width(LEAVE), bigFont.Height()),
 		hoverButton == 'l' ? hover : active);
 
-	const Point findCenter = Screen::BottomRight() - Point(600, 25);
-	FillShader::Fill(findCenter, Point(60, 30), back);
+	const Point findCenter = Screen::BottomRight() - Point(580, 20);
+	const Sprite *findIcon = hoverButton == 'f' ? SpriteSet::Get("ui/find icon light") : SpriteSet::Get("ui/find icon dark");
+	SpriteShader::Draw(findIcon, findCenter);
 	static const string FIND = "_Find";
-	bigFont.Draw(FIND,
-		findCenter - .5 * Point(bigFont.Width(FIND), bigFont.Height()),
-		hoverButton == 'f' ? hover : active);
 
 	int modifier = Modifier();
 	if(modifier > 1)
@@ -1467,8 +1465,8 @@ vector<ShopPanel::Zone>::const_iterator ShopPanel::Selected() const
 // letter of the button (or ' ' if it's not on a button).
 char ShopPanel::CheckButton(int x, int y)
 {
-	if(x > Screen::Right() - SIDEBAR_WIDTH - 380 && x < Screen::Right() - SIDEBAR_WIDTH - 320 &&
-		y > Screen::Bottom() - 40 && y < Screen::Bottom() - 10)
+	if(x > Screen::Right() - SIDEBAR_WIDTH - 342 && x < Screen::Right() - SIDEBAR_WIDTH - 316 &&
+		y > Screen::Bottom() - 31 && y < Screen::Bottom() - 4)
 		return 'f';
 
 	if(x < Screen::Right() - SIDEBAR_WIDTH || y < Screen::Bottom() - BUTTON_HEIGHT)
