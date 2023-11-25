@@ -434,8 +434,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	else if(key == SDLK_TAB)
 		activePane = (activePane == ShopPane::Main ? ShopPane::Sidebar : ShopPane::Main);
 	else if(key == 'f')
-		GetUI()->Push(new Dialog(
-			this, &ShopPanel::DoFind, "Search for:"));
+		GetUI()->Push(new Dialog(this, &ShopPanel::DoFind, "Search for:"));
 	else
 		return false;
 
