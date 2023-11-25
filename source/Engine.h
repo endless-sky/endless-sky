@@ -102,18 +102,7 @@ public:
 
 
 private:
-	class BufferIndex {
-	public:
-		constexpr operator size_t() const { return val; }
-
-		constexpr BufferIndex() : val(0) {}
-
-		inline void next() { val = !val; }
-
-	private:
-		size_t val;
-
-	};
+	typedef bool BufferIndex;
 
 	class Target {
 	public:
@@ -213,10 +202,10 @@ private:
 
 	// ES uses a technique called double buffering to calculate the next frame and render the current one simultaneously.
 	// To facilitate this, it uses two buffers for each list of things to draw - one for the next frame's calculations and
-	// one for the rendering the current frame. A little synchronisation is required to prevent mutable references to the
+	// one for rendering the current frame. A little synchronization is required to prevent mutable references to the
 	// currently rendering buffer.
-	BufferIndex currentCalcBuffer;
-	BufferIndex currentDrawBuffer;
+	BufferIndex currentCalcBuffer = false;
+	BufferIndex currentDrawBuffer = false;
 	bool hasFinishedCalculating = true;
 	DrawList draw[2];
 	BatchDrawList batchDraw[2];

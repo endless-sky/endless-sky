@@ -1001,7 +1001,7 @@ void Engine::Go()
 	{
 		unique_lock<mutex> lock(swapMutex);
 		++step;
-		currentCalcBuffer.next();
+		currentCalcBuffer = !currentCalcBuffer;
 		hasFinishedCalculating = false;
 	}
 	condition.notify_all();
