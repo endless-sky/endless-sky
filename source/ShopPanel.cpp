@@ -620,34 +620,16 @@ bool ShopPanel::Scroll(double dx, double dy)
 
 void ShopPanel::DoFind(const string &text)
 {
-	vector<Zone>::const_iterator it = zones.begin();
-	int bestIndex = 9999;
-	vector<Zone>::const_iterator bestItem;
-	int index;
-	for( ; it != zones.end(); ++it)
-	{
-		const Ship *ship = it->GetShip();
-		const Outfit *outfit = it->GetOutfit();
-		if(ship && HasItem(ship->TrueModelName()))
-			index = Search(ship->DisplayModelName(), text);
-		else if(outfit && HasItem(outfit->TrueName()))
-			index = Search(outfit->DisplayName(), text);
-		if(index >= 0 && index < bestIndex)
-		{
-			bestIndex = index;
-			bestItem = it;
-			if(!index)
-				break;
-		}
+	int index = FindItem(text);
+	if(index >= 0 && index < static_cast<int>(zones.size())) 
+ 	{
+		vector<Zone>::const_iterator best = std::next(zones.begin(), index);
+		if(best->GetShip())
+			selectedShip = best->GetShip();
+		else
+			selectedOutfit = best->GetOutfit();
+		MainAutoScroll(best);
 	}
-	if(bestIndex == 9999)
-		return;
-
-	if(bestItem->GetShip())
-		selectedShip = bestItem->GetShip();
-	else
-		selectedOutfit = bestItem->GetOutfit();
-	MainAutoScroll(bestItem);
 	return;
 }
 

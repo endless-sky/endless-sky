@@ -403,3 +403,25 @@ void ShipyardPanel::SellShip()
 	if(playerShip)
 		playerShips.insert(playerShip);
 }
+
+int ShipyardPanel::FindItem(const string &text) const
+{
+	int bestIndex = 9999;
+	int bestItem = -1;
+	vector<Zone>::const_iterator it = zones.begin();
+	for(unsigned int i = 0; i < zones.size(); ++i)
+	{
+		const Ship *ship = it->GetShip();
+		int index = Search(ship->DisplayModelName(), text);
+		if(index >= 0 && index < bestIndex)
+		{
+			bestIndex = index;
+			bestItem = i;
+			if(!index) {
+				return i;
+			}
+		}
+		++it;
+	}
+	return bestItem;
+}

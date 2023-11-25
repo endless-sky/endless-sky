@@ -980,3 +980,27 @@ const vector<Ship *> OutfitterPanel::GetShipsToOutfit(bool isBuy) const
 
 	return shipsToOutfit;
 }
+
+
+
+int OutfitterPanel::FindItem(const string &text) const
+{
+	int bestIndex = 9999;
+	int bestItem = -1;
+	vector<Zone>::const_iterator it = zones.begin();
+	for(unsigned int i = 0; i < zones.size(); ++i)
+	{
+		const Outfit *outfit = it->GetOutfit();
+		int index = Search(outfit->DisplayName(), text);
+		if(index >= 0 && index < bestIndex)
+		{
+			bestIndex = index;
+			bestItem = i;
+			if(!index) {
+				return i;
+			}
+		}
+		++it;
+	}
+	return bestItem;
+}
