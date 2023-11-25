@@ -2180,6 +2180,12 @@ Copyright: Dave Flowers
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
+Files:
+ images/ui/find?icon?dark*
+ images/ui/find?icon?light*
+Copyright: Daeridanii (https://github.com/Daeridanii1)
+License: CC0
+
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by

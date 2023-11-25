@@ -996,9 +996,8 @@ int OutfitterPanel::FindItem(const string &text) const
 		{
 			bestIndex = index;
 			bestItem = i;
-			if(!index) {
+			if(!index)
 				return i;
-			}
 		}
 		++it;
 	}
