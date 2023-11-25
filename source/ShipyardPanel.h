@@ -56,7 +56,9 @@ protected:
 
 private:
 	void BuyShip(const std::string &name);
-	void SellShip();
+	void SellShipAndOutfits();
+	void SellShipChassis();
+	void SellShip(bool toStorage);
 
 
 private:
