@@ -102,7 +102,7 @@ public:
 
 
 private:
-	typedef bool BufferIndex;
+	using BufferIndex = bool;
 
 	class Target {
 	public:
