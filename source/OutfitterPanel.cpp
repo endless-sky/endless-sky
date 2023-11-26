@@ -25,7 +25,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Format.h"
 #include "GameData.h"
 #include "Hardpoint.h"
-#include "text/layout.hpp"
 #include "Mission.h"
 #include "Outfit.h"
 #include "Planet.h"
@@ -237,7 +236,7 @@ int OutfitterPanel::DividerOffset() const
 
 int OutfitterPanel::DetailWidth() const
 {
-	return 3 * outfitInfo.PanelWidth();
+	return 3 * ItemInfoDisplay::PanelWidth();
 }
 
 
@@ -599,7 +598,7 @@ void OutfitterPanel::Sell(bool toStorage)
 	// If there are no ships that have this outfit, then sell from storage.
 	const vector<Ship *> shipsToOutfit = GetShipsToOutfit();
 
-	if(shipsToOutfit.size() > 0)
+	if(!shipsToOutfit.empty())
 	{
 		for(Ship *ship : shipsToOutfit)
 		{
