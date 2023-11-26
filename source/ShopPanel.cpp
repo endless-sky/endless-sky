@@ -705,6 +705,9 @@ bool ShopPanel::Click(int x, int y, int clicks)
 				std::set<Ship*> playerShipsToSelect;
 				for(const shared_ptr<Ship> &ship : player.Ships())
 				{
+					// Skip any ships that are "absent" for whatever reason.
+					if(!CanShowInSidebar(*ship, player.GetPlanet()))
+						continue;
 					if(ship.get() == zone.Value())
 					{
 						foundSelectedShip = true;
