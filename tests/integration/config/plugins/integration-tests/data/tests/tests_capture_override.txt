@@ -119,9 +119,6 @@ test "Capture Uncapturable With Capturable Override"
 		label "floating"
 		branch "floating"
 			not "%TEST%: Capture That Quarg!: offered"
-		# skip dialog
-		input
-			key "return"
 		# attempt capture and attack, then close the panel and land
 		input
 			key c

@@ -31,7 +31,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "PreferencesPanel.h"
-#include "Rectangle.h"
 #include "Ship.h"
 #include "Sprite.h"
 #include "StarField.h"
