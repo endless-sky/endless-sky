@@ -991,7 +991,7 @@ int OutfitterPanel::FindItem(const string &text) const
 	for(unsigned int i = 0; i < zones.size(); ++i, ++it)
 	{
 		const Outfit *outfit = it->GetOutfit();
-		int index = Search(outfit->DisplayName(), text);
+		int index = Format::Search(outfit->DisplayName(), text);
 		if(index >= 0 && index < bestIndex)
 		{
 			bestIndex = index;

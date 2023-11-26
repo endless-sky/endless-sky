@@ -72,6 +72,9 @@ public:
 
 	// Finds &[condition] and &[format@condition] in strings and expands them
 	static std::string ExpandConditions(const std::string &source, ConditionGetter getter);
+
+	// 
+	static int Search(const std::string &str, const std::string &sub);
 };
 
 

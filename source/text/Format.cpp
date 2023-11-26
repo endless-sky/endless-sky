@@ -538,3 +538,12 @@ string Format::ExpandConditions(const string &source, ConditionGetter getter)
 		result.append(source, start, string::npos);
 	return result;
 }
+
+
+
+int Format::Search(const string &str, const string &sub)
+{
+	auto it = search(str.begin(), str.end(), sub.begin(), sub.end(),
+		[](char a, char b) { return toupper(a) == toupper(b); });
+	return (it == str.end() ? -1 : it - str.begin());
+}

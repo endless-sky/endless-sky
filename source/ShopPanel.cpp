@@ -634,15 +634,6 @@ void ShopPanel::DoFind(const string &text)
 
 
 
-int ShopPanel::Search(const string &str, const string &sub)
-{
-	auto it = search(str.begin(), str.end(), sub.begin(), sub.end(),
-		[](char a, char b) { return toupper(a) == toupper(b); });
-	return (it == str.end() ? -1 : it - str.begin());
-}
-
-
-
 int64_t ShopPanel::LicenseCost(const Outfit *outfit, bool onlyOwned) const
 {
 	// If the player is attempting to install an outfit from cargo, storage, or that they just

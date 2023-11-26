@@ -412,7 +412,7 @@ int ShipyardPanel::FindItem(const string &text) const
 	for(unsigned int i = 0; i < zones.size(); ++i, ++it)
 	{
 		const Ship *ship = it->GetShip();
-		int index = Search(ship->DisplayModelName(), text);
+		int index = Format::Search(ship->DisplayModelName(), text);
 		if(index >= 0 && index < bestIndex)
 		{
 			bestIndex = index;
