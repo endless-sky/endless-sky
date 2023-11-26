@@ -28,6 +28,21 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
+namespace {
+	string TriggerToText(Timer::TimerTrigger trigger)
+	{
+		switch(trigger)
+		{
+			case Timer::TimerTrigger::TIMEUP:
+				return "on timeup";
+			case Timer::TimerTrigger::RESET:
+				return "on reset";
+			default:
+				return "unknown trigger";
+		}
+	}
+}
+
 
 
 Timer::Timer(const DataNode &node)
@@ -102,7 +117,6 @@ void Timer::Load(const DataNode &node)
 			repeatReset = true;
 		else if(child.Token(0) == "reset fired")
 			resetFired = true;
-		// We keep "on timeup" as separate tokens so that it's compatible with MissionAction syntax.
 		else if(child.Token(0) == "on" && child.Size() > 1 && child.Token(1) == "timeup")
 			actions[TimerTrigger::TIMEUP].Load(child);
 		else if(child.Token(0) == "on" && child.Size() > 1 && child.Token(1) == "reset")
@@ -182,8 +196,7 @@ void Timer::Save(DataWriter &out) const
 
 // Calculate the total time to wait, including any random value,
 // and instantiate the triggered action.
-Timer Timer::Instantiate(map<string, string> &subs,
-						const System *origin, int jumps, int64_t payload) const
+Timer Timer::Instantiate(map<string, string> &subs, const System *origin, int jumps, int64_t payload) const
 {
 	Timer result;
 	result.requireIdle = requireIdle;
@@ -199,6 +212,8 @@ Timer Timer::Instantiate(map<string, string> &subs,
 	result.resetFired = resetFired;
 	result.idleMaxSpeed = idleMaxSpeed;
 	result.requirePeaceful = requirePeaceful;
+	
+	string reason;
 	auto ait = actions.begin();
 	for( ; ait != actions.end(); ++ait)
 	{
@@ -208,12 +223,12 @@ Timer Timer::Instantiate(map<string, string> &subs,
 	}
 	if(ait != actions.end())
 	{
-		Logger::LogError("Instantiation Error: Timer action \"" + TriggerToText(ait->first) + "\" in mission \""
-			+ Identifier() + "\" uses invalid " + std::move(reason));
+		Logger::LogError("Instantiation Error: Timer action \"" + TriggerToText(ait->first)
+			+ "\" uses invalid " + std::move(reason));
 		return result;
 	}
 	for(const auto &it : actions)
-		result.actions[it.first] = it.second.Instantiate(subs, sourceSystem, jumps, payload);
+		result.actions[it.first] = it.second.Instantiate(subs, origin, jumps, payload);
 
 	result.waitTime = waitTime;
 	if(randomWaitTime > 1)
@@ -321,7 +336,7 @@ void Timer::Step(PlayerInfo &player, UI *ui, const Mission &mission)
 		}
 	}
 	isActive = true;
-	if(++timeElapsed >= timeToWait)
+	if(++timeElapsed >= waitTime)
 	{
 		auto it = actions.find(TimerTrigger::TIMEUP);
 		if(it != actions.end())
