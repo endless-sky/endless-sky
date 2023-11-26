@@ -623,14 +623,13 @@ void ShopPanel::DoFind(const string &text)
 	int index = FindItem(text);
 	if(index >= 0 && index < static_cast<int>(zones.size()))
 	{
-		vector<Zone>::const_iterator best = std::next(zones.begin(), index);
+		auto best = std::next(zones.begin(), index);
 		if(best->GetShip())
 			selectedShip = best->GetShip();
 		else
 			selectedOutfit = best->GetOutfit();
 		MainAutoScroll(best);
 	}
-	return;
 }
 
 

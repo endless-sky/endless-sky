@@ -408,8 +408,8 @@ int ShipyardPanel::FindItem(const string &text) const
 {
 	int bestIndex = 9999;
 	int bestItem = -1;
-	vector<Zone>::const_iterator it = zones.begin();
-	for(unsigned int i = 0; i < zones.size(); ++i)
+	auto it = zones.begin();
+	for(unsigned int i = 0; i < zones.size(); ++i, ++it)
 	{
 		const Ship *ship = it->GetShip();
 		int index = Search(ship->DisplayModelName(), text);
@@ -420,7 +420,6 @@ int ShipyardPanel::FindItem(const string &text) const
 			if(!index)
 				return i;
 		}
-		++it;
 	}
 	return bestItem;
 }

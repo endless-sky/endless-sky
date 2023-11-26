@@ -987,8 +987,8 @@ int OutfitterPanel::FindItem(const string &text) const
 {
 	int bestIndex = 9999;
 	int bestItem = -1;
-	vector<Zone>::const_iterator it = zones.begin();
-	for(unsigned int i = 0; i < zones.size(); ++i)
+	auto it = zones.begin();
+	for(unsigned int i = 0; i < zones.size(); ++i, ++it)
 	{
 		const Outfit *outfit = it->GetOutfit();
 		int index = Search(outfit->DisplayName(), text);
@@ -999,7 +999,6 @@ int OutfitterPanel::FindItem(const string &text) const
 			if(!index)
 				return i;
 		}
-		++it;
 	}
 	return bestItem;
 }
