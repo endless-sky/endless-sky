@@ -910,7 +910,7 @@ void ShopPanel::DrawButtons()
 
 	const Point findCenter = Screen::BottomRight() - Point(580, 20);
 	const Sprite *findIcon =
-		hoverButton == 'f' ? SpriteSet::Get("ui/find icon light") : SpriteSet::Get("ui/find icon dark");
+		hoverButton == 'f' ? SpriteSet::Get("ui/find selected") : SpriteSet::Get("ui/find unselected");
 	SpriteShader::Draw(findIcon, findCenter);
 	static const string FIND = "_Find";
 
