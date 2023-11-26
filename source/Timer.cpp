@@ -212,7 +212,7 @@ Timer Timer::Instantiate(map<string, string> &subs, const System *origin, int ju
 	result.resetFired = resetFired;
 	result.idleMaxSpeed = idleMaxSpeed;
 	result.requirePeaceful = requirePeaceful;
-	
+
 	string reason;
 	auto ait = actions.begin();
 	for( ; ait != actions.end(); ++ait)
