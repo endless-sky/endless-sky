@@ -1527,7 +1527,7 @@ mission "Swiftsong Business Convention [1]"
 		"reputation: Hai Merchant" += 3
 		"reputation: Hai Merchant (Human)" += 3
 		"reputation: Hai Merchant (Sympathizers)" += 3
-		dialog phrase "generic passenger on visit"
+		dialog phrase "generic passenger dropoff payment"
 
 
 
@@ -1552,7 +1552,7 @@ mission "Swiftsong Business Convention [2]"
 		"reputation: Hai Merchant" += 3
 		"reputation: Hai Merchant (Human)" += 3
 		"reputation: Hai Merchant (Sympathizers)" += 3
-		dialog phrase "generic passenger on visit"
+		dialog phrase "generic passenger dropoff payment"
 
 
 
@@ -1576,7 +1576,7 @@ mission "Swiftsong Film Festival [1]"
 		"reputation: Hai Merchant" += 3
 		"reputation: Hai Merchant (Human)" += 3
 		"reputation: Hai Merchant (Sympathizers)" += 3
-		dialog phrase "generic passenger on visit"
+		dialog phrase "generic passenger dropoff payment"
 
 
 
@@ -1600,7 +1600,7 @@ mission "Swiftsong Film Festival [2]"
 		"reputation: Hai Merchant" += 3
 		"reputation: Hai Merchant (Human)" += 3
 		"reputation: Hai Merchant (Sympathizers)" += 3
-		dialog phrase "generic passenger on visit"
+		dialog phrase "generic passenger dropoff payment"
 
 
 
@@ -1616,7 +1616,7 @@ mission "Swiftsong Music Festival [1]"
 		government "Hai"
 	destination "Swiftsong"
 	on visit
-		dialog phrase "generic cargo and passenger on visit"
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 10000 500
 		"reputation: Hai" += 3
@@ -1624,7 +1624,7 @@ mission "Swiftsong Music Festival [1]"
 		"reputation: Hai Merchant" += 3
 		"reputation: Hai Merchant (Human)" += 3
 		"reputation: Hai Merchant (Sympathizers)" += 3
-		dialog phrase "generic passenger on visit"
+		dialog phrase "generic passenger dropoff payment"
 
 
 
@@ -1640,7 +1640,7 @@ mission "Swiftsong Music Festival [2]"
 		government "Hai"
 	destination "Swiftsong"
 	on visit
-		dialog phrase "generic cargo and passenger on visit"
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 10000 500
 		"reputation: Hai" += 3
@@ -1648,7 +1648,7 @@ mission "Swiftsong Music Festival [2]"
 		"reputation: Hai Merchant" += 3
 		"reputation: Hai Merchant (Human)" += 3
 		"reputation: Hai Merchant (Sympathizers)" += 3
-		dialog phrase "generic passenger on visit"
+		dialog phrase "generic passenger dropoff payment"
 
 
 
@@ -1664,7 +1664,7 @@ mission "Swiftsong Computer Security Conference [1]"
 		government "Hai"
 	destination "Swiftsong"
 	on visit
-		dialog phrase "generic cargo and passenger on visit"
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 10000 500
 		"reputation: Hai" += 3
@@ -1672,7 +1672,7 @@ mission "Swiftsong Computer Security Conference [1]"
 		"reputation: Hai Merchant" += 3
 		"reputation: Hai Merchant (Human)" += 3
 		"reputation: Hai Merchant (Sympathizers)" += 3
-		dialog phrase "generic passenger on visit"
+		dialog phrase "generic passenger dropoff payment"
 
 
 
@@ -1688,7 +1688,7 @@ mission "Swiftsong Computer Security Conference [2]"
 		government "Hai"
 	destination "Swiftsong"
 	on visit
-		dialog phrase "generic cargo and passenger on visit"
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 10000 500
 		"reputation: Hai" += 3
@@ -1696,7 +1696,7 @@ mission "Swiftsong Computer Security Conference [2]"
 		"reputation: Hai Merchant" += 3
 		"reputation: Hai Merchant (Human)" += 3
 		"reputation: Hai Merchant (Sympathizers)" += 3
-		dialog phrase "generic passenger on visit"
+		dialog phrase "generic passenger dropoff payment"
 
 
 
@@ -1712,7 +1712,7 @@ mission "Swiftsong Science Fiction Convention [1]"
 		government "Hai"
 	destination "Swiftsong"
 	on visit
-		dialog phrase "generic cargo and passenger on visit"
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 10000 500
 		"reputation: Hai" += 3
@@ -1720,7 +1720,7 @@ mission "Swiftsong Science Fiction Convention [1]"
 		"reputation: Hai Merchant" += 3
 		"reputation: Hai Merchant (Human)" += 3
 		"reputation: Hai Merchant (Sympathizers)" += 3
-		dialog phrase "generic passenger on visit"
+		dialog phrase "generic passenger dropoff payment"
 
 
 
@@ -1736,7 +1736,7 @@ mission "Swiftsong Science Fiction Convention [2]"
 		government "Hai"
 	destination "Swiftsong"
 	on visit
-		dialog phrase "generic cargo and passenger on visit"
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 10000 500
 		"reputation: Hai" += 3
@@ -1744,4 +1744,4 @@ mission "Swiftsong Science Fiction Convention [2]"
 		"reputation: Hai Merchant" += 3
 		"reputation: Hai Merchant (Human)" += 3
 		"reputation: Hai Merchant (Sympathizers)" += 3
-		dialog phrase "generic passenger on visit"
+		dialog phrase "generic passenger dropoff payment"
