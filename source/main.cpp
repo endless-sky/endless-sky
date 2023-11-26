@@ -91,7 +91,7 @@ int main(int argc, char *argv[])
 	bool printTests = false;
 	bool printData = false;
 	bool noTestMute = false;
-	string testToRunName = "";
+	string testToRunName;
 
 	// Ensure that we log errors to the errors.txt file.
 	Logger::SetLogErrorCallback([](const string &errorMessage) { Files::LogErrorToFile(errorMessage); });
@@ -464,7 +464,7 @@ void PrintHelp()
 void PrintVersion()
 {
 	cerr << endl;
-	cerr << "Endless Sky ver. 0.10.4-alpha" << endl;
+	cerr << "Endless Sky ver. 0.10.5-alpha" << endl;
 	cerr << "License GPLv3+: GNU GPL version 3 or later: <https://gnu.org/licenses/gpl.html>" << endl;
 	cerr << "This is free software: you are free to change and redistribute it." << endl;
 	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;

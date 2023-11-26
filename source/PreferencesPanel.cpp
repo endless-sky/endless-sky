@@ -27,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Information.h"
 #include "Interface.h"
 #include "text/layout.hpp"
+#include "Plugins.h"
 #include "Preferences.h"
 #include "Screen.h"
 #include "Sprite.h"
@@ -498,6 +499,7 @@ void PreferencesPanel::DrawControls()
 		Command::MENU,
 		Command::FULLSCREEN,
 		Command::FASTFORWARD,
+		Command::HELP,
 		Command::NONE,
 		Command::DEPLOY,
 		Command::FIGHT,

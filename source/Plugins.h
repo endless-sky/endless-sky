@@ -39,7 +39,7 @@ struct Plugin {
 
 	// Whether this plugin was enabled, i.e. if it was loaded by the game.
 	bool enabled = true;
-	// The current state state of the plugin.
+	// The current state of the plugin.
 	bool currentState = true;
 	// If this plugin has been deleted.
 	bool removed = false;
