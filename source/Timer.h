@@ -39,6 +39,14 @@ class UI;
 // specific (named) system object.
 class Timer {
 public:
+	enum class TimerTrigger {
+		// The possible triggers for actions on this timer.
+		TIMEUP,
+		RESET
+	};
+
+
+public:
 	Timer() = default;
 	Timer(const DataNode &node);
 	// Set up the timer from its data file node.
@@ -53,18 +61,13 @@ public:
 	bool IsComplete() const;
 
 	// Calculate the total time to wait, including any random value.
-	Timer Instantiate(std::map<std::string, std::string> &subs,
-					const System *origin, int jumps, int64_t payload) const;
+	Timer Instantiate(std::map<std::string, std::string> &subs, const System *origin,
+		int jumps, int64_t payload) const;
 	// Progress the timer within the main loop.
 	void Step(PlayerInfo &player, UI *ui, const Mission &mission);
 
 
 private:
-	enum class TimerTrigger {
-		// The possible triggers for actions on this timer.
-		TIMEUP,
-		RESET
-	};
 	enum class ResetCondition {
 		NONE,
 		PAUSE,
