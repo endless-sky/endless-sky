@@ -677,8 +677,8 @@ Comment:
  it is not subject to additional restrictions. The link to
  the image on the archive is broken and the published date
  can't be seen if you just look at the site. If you click
- view source and search "published_at," you will see it
- was published in September 2017. You will also see in the
+ view source and search `"id":"EJ4qfFp1g8Q",` you will see
+ it was published in July 2017. You will also see in the
  source that the image is
  https://images.unsplash.com/photo-1500021804447-2ca2eaaaabeb,
  which matches the image.
@@ -1182,6 +1182,24 @@ Comment:
  unsplash.com before June 2017, so it is in the public domain.
 
 Files:
+ images/land/snow17*
+Copyright: Denis Linine
+License: Unsplash License
+Comment:
+ Taken from https://v.gd/1izGRx. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was uploaded before February 2018, so
+ it is not subject to additional restrictions.
+
+Files:
+ images/land/snow18*
+Copyright: Jeremy Bishop
+License: public-domain
+Comment:
+ Taken from https://v.gd/u0xxwt. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
  images/land/snow19*
 Copyright: Greg Garnhart
 License: Unsplash License
@@ -1249,21 +1267,141 @@ Comment:
  sale of unaltered copies.
 
 Files:
- images/land/snow15*
- images/land/snow17*
- images/land/snow18*
  images/land/station10*
+Copyright: Upal Patel
+License: Unsplash License
+Comment:
+ Taken from https://v.gd/ygdRgt. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
  images/land/station11*
+Copyright: Aurelien Thomas
+License: Unsplash License
+Comment:
+ Taken from https://v.gd/na9xh2. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
  images/land/station13*
+Copyright: Brayden Law
+License: Unsplash License
+Comment:
+ Taken from https://v.gd/yebPUH. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies. The published date can't be seen
+ if you just look at the site. If you click view source and
+ search "datePublished," you will see it was published in
+ December 2018.
+
+Files:
  images/land/station14*
+Copyright: Ferdinand Stohr
+License: public-domain
+Comment:
+ Taken from https://v.gd/vYAJDQ. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
  images/land/station16*
+Copyright: Aron Yigin
+License: Unsplash License
+Comment:
+ Taken from https://v.gd/GaWoev. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
  images/land/station17*
+Copyright: Upal Patel
+License: Unsplash License
+Comment:
+ Taken from https://v.gd/tytto4. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
  images/land/station18*
+Copyright: Will Dunkley
+License: Unsplash License
+Comment:
+ Taken from https://v.gd/cNuQAc. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was uploaded before February 2018, so
+ it is not subject to additional restrictions.
+
+Files:
  images/land/station19*
+Copyright: Bradley Jasper Ybanez
+License: Unsplash License
+Comment:
+ Taken from https://v.gd/PiFcGV. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
  images/land/station20*
+Copyright: Dan Asaki
+License: Unsplash License
+Comment:
+ Taken from https://v.gd/UD2WMf. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
  images/land/station21*
+Copyright: Ryan Tang
+License: Unsplash License
+Comment:
+ Taken from https://v.gd/EqroPb. This image was uploaded to
+ unsplash.com in June 2017, so it is subject to the Unsplash
+ License. It was uploaded before February 2018, so it is not
+ subject to additional restrictions.
+
+Files:
  images/land/station22*
+Copyright: Jonathan Gallegos
+License: Unsplash License
+Comment:
+ Taken from https://v.gd/cNuQAc. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was uploaded before February 2018, so
+ it is not subject to additional restrictions.
+
+Files:
  images/land/station23*
+Copyright: Patrick Robert Doyle
+License: Unsplash License
+Comment:
+ Taken from https://v.gd/cNuQAc. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was uploaded before February 2018, so
+ it is not subject to additional restrictions. The link to
+ the image on the archive is broken and the published date
+ can't be seen if you just look at the site. If you click
+ view source and search `"id":"b-FRIPfxcj4"`, you will see
+ it was published in May 2019. You will also see in the
+ source that the image is
+ https://images.unsplash.com/photo-1557153334-3480a560a36e,
+ which matches the image as per https://v.gd/5nXSwh.
+
+Files:
  images/land/station24*
  images/land/station25*
  images/land/station26*
