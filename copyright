@@ -1395,7 +1395,7 @@ Comment:
  it is not subject to additional restrictions. The link to
  the image on the archive is broken and the published date
  can't be seen if you just look at the site. If you click
- view source and search `"id":"b-FRIPfxcj4"`, you will see
+ view source and search `"id":"b-FRIPfxcj4",` you will see
  it was published in May 2019. You will also see in the
  source that the image is
  https://images.unsplash.com/photo-1557153334-3480a560a36e,
