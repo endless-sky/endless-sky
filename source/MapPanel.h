@@ -112,9 +112,6 @@ protected:
 	bool IsSatisfied(const Mission &mission) const;
 	static bool IsSatisfied(const PlayerInfo &player, const Mission &mission);
 
-	// Function for the "find" dialogs:
-	static int Search(const std::string &str, const std::string &sub);
-
 	// Returns if previous->next can be done with a known travel type.
 	bool GetTravelInfo(const System *previous, const System *next, double jumpRange, bool &isJump,
 		bool &isWormhole, bool &isMappable, Color *wormholeColor) const;
