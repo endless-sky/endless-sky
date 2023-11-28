@@ -434,6 +434,8 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	}
 	else if(key == SDLK_TAB)
 		activePane = (activePane == ShopPane::Main ? ShopPane::Sidebar : ShopPane::Main);
+	else if(key == 'f')
+		GetUI()->Push(new Dialog(this, &ShopPanel::DoFind, "Search for:"));
 	else
 		return false;
 
@@ -615,6 +617,22 @@ bool ShopPanel::Release(int x, int y)
 bool ShopPanel::Scroll(double dx, double dy)
 {
 	return DoScroll(dy * 2.5 * Preferences::ScrollSpeed());
+}
+
+
+
+void ShopPanel::DoFind(const string &text)
+{
+	int index = FindItem(text);
+	if(index >= 0 && index < static_cast<int>(zones.size()))
+	{
+		auto best = std::next(zones.begin(), index);
+		if(best->GetShip())
+			selectedShip = best->GetShip();
+		else
+			selectedOutfit = best->GetOutfit();
+		MainAutoScroll(best);
+	}
 }
 
 
@@ -892,6 +910,12 @@ void ShopPanel::DrawButtons()
 	bigFont.Draw(LEAVE,
 		leaveCenter - .5 * Point(bigFont.Width(LEAVE), bigFont.Height()),
 		hoverButton == 'l' ? hover : active);
+
+	const Point findCenter = Screen::BottomRight() - Point(580, 20);
+	const Sprite *findIcon =
+		hoverButton == 'f' ? SpriteSet::Get("ui/find selected") : SpriteSet::Get("ui/find unselected");
+	SpriteShader::Draw(findIcon, findCenter);
+	static const string FIND = "_Find";
 
 	int modifier = Modifier();
 	if(modifier > 1)
@@ -1418,6 +1442,10 @@ vector<ShopPanel::Zone>::const_iterator ShopPanel::Selected() const
 // letter of the button (or ' ' if it's not on a button).
 char ShopPanel::CheckButton(int x, int y)
 {
+	if(x > Screen::Right() - SIDEBAR_WIDTH - 342 && x < Screen::Right() - SIDEBAR_WIDTH - 316 &&
+		y > Screen::Bottom() - 31 && y < Screen::Bottom() - 4)
+		return 'f';
+
 	if(x < Screen::Right() - SIDEBAR_WIDTH || y < Screen::Bottom() - BUTTON_HEIGHT)
 		return '\0';
 
