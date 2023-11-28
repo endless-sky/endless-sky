@@ -1510,7 +1510,7 @@ mission "Swiftsong Business Convention [1]"
 	name "Transport to business convention at <planet>"
 	job
 	repeat
-	description "A group of <bunks> Hai who need to get to a business convention will pay you <payment> for you to transport them and their <tons> of supplies to <planet>."
+	description "A group of <bunks> Hai who need to get to a business convention will pay you <payment> in exchange for transporting them and their <tons> of supplies to <planet>."
 	passengers 4 2 .1
 	cargo "office supplies" 1 2
 	to offer
@@ -1535,7 +1535,7 @@ mission "Swiftsong Business Convention [2]"
 	name "Transport to business convention at <planet>"
 	job
 	repeat
-	description "A group of <bunks> Hai who need to get to a business convention will pay you <payment> for you to transport them and their <tons> of supplies to <planet>."
+	description "A group of <bunks> Hai who need to get to a business convention will pay you <payment> in exchange for transporting them and their <tons> of supplies to <planet>."
 	passengers 4 4 .1
 	cargo "office supplies" 1 3
 	to offer
@@ -1560,7 +1560,7 @@ mission "Swiftsong Film Festival [1]"
 	name "Transport to film festival at <planet>"
 	job
 	repeat
-	description "A group of <bunks> Hai movie buffs will pay you <payment> for you to transport them to <planet>, where a film festival is taking place."
+	description "A group of <bunks> Hai movie buffs will pay you <payment> in exchange for transporting them to <planet>, where a film festival is taking place."
 	passengers 4 2 .1
 	to offer
 		random < 10
@@ -1584,7 +1584,7 @@ mission "Swiftsong Film Festival [2]"
 	name "Transport to film festival at <planet>"
 	job
 	repeat
-	description "A group of <bunks> Hai movie buffs will pay you <payment> for you to transport them to <planet>, where a large film festival is taking place."
+	description "A group of <bunks> Hai movie buffs will pay you <payment> in exchange for transporting them to <planet>, where a large film festival is taking place."
 	passengers 4 4 .1
 	to offer
 		random < 5
@@ -1608,7 +1608,7 @@ mission "Swiftsong Music Festival [1]"
 	name "Transport to music festival at <planet>"
 	job
 	repeat
-	description "A group of <bunks> Hai will pay you <payment> for you to transport them to <planet>, where a music festival is taking place."
+	description "A group of <bunks> Hai will pay you <payment> in exchange for transporting them to <planet>, where a music festival is taking place."
 	passengers 4 2 .1
 	to offer
 		random < 10
@@ -1632,7 +1632,7 @@ mission "Swiftsong Music Festival [2]"
 	name "Transport to music festival at <planet>"
 	job
 	repeat
-	description "A group of <bunks> Hai will pay you <payment> for you to transport them to <planet>, where a large music festival is taking place."
+	description "A group of <bunks> Hai will pay you <payment> in exchange for transporting them to <planet>, where a large music festival is taking place."
 	passengers 4 4 .1
 	to offer
 		random < 5
@@ -1656,7 +1656,7 @@ mission "Swiftsong Computer Security Conference [1]"
 	name "Transport to computer security conference at <planet>"
 	job
 	repeat
-	description "A group of <bunks> Hai will pay you <payment> for you to transport them to <planet>, where a computer security conference is taking place."
+	description "A group of <bunks> Hai will pay you <payment> in exchange for transporting them to <planet>, where a computer security conference is taking place."
 	passengers 4 2 .1
 	to offer
 		random < 10
@@ -1680,7 +1680,7 @@ mission "Swiftsong Computer Security Conference [2]"
 	name "Transport to computer security conference at <planet>"
 	job
 	repeat
-	description "A group of <bunks> Hai will pay you <payment> for you to transport them to <planet>, where a large computer security conference is taking place."
+	description "A group of <bunks> Hai will pay you <payment> in exchange for transporting them to <planet>, where a large computer security conference is taking place."
 	passengers 4 4 .1
 	to offer
 		random < 5
@@ -1704,7 +1704,7 @@ mission "Swiftsong Science Fiction Convention [1]"
 	name "Transport to science fiction convention at <planet>"
 	job
 	repeat
-	description "A group of <bunks> Hai will pay you <payment> for you to transport them to <planet>, where a science fiction convention is taking place."
+	description "A group of <bunks> Hai will pay you <payment> in exchange for transporting them to <planet>, where a science fiction convention is taking place."
 	passengers 4 2 .1
 	to offer
 		random < 10
@@ -1728,12 +1728,13 @@ mission "Swiftsong Science Fiction Convention [2]"
 	name "Transport to science fiction convention at <planet>"
 	job
 	repeat
-	description "A group of <bunks> Hai will pay you <payment> for you to transport them to <planet>, where a large science fiction convention is taking place."
+	description "A group of <bunks> Hai will pay you <payment> in exchange for transporting them to <planet>, where a large science fiction convention is taking place."
 	passengers 4 4 .1
 	to offer
 		random < 5
 	source
 		government "Hai"
+		not "Swiftsong"
 	destination "Swiftsong"
 	on visit
 		dialog phrase "generic passenger on visit"
