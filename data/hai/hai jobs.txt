@@ -1517,6 +1517,7 @@ mission "Swiftsong Business Convention [1]"
 		random < 10
 	source
 		government "Hai"
+		not planet "Swiftsong"
 	destination "Swiftsong"
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
@@ -1542,6 +1543,7 @@ mission "Swiftsong Business Convention [2]"
 		random < 5
 	source
 		government "Hai"
+		not planet "Swiftsong"
 	destination "Swiftsong"
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
@@ -1566,6 +1568,7 @@ mission "Swiftsong Film Festival [1]"
 		random < 10
 	source
 		government "Hai"
+		not planet "Swiftsong"
 	destination "Swiftsong"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -1590,6 +1593,7 @@ mission "Swiftsong Film Festival [2]"
 		random < 5
 	source
 		government "Hai"
+		not planet "Swiftsong"
 	destination "Swiftsong"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -1614,6 +1618,7 @@ mission "Swiftsong Music Festival [1]"
 		random < 10
 	source
 		government "Hai"
+		not planet "Swiftsong"
 	destination "Swiftsong"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -1638,6 +1643,7 @@ mission "Swiftsong Music Festival [2]"
 		random < 5
 	source
 		government "Hai"
+		not planet "Swiftsong"
 	destination "Swiftsong"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -1662,6 +1668,7 @@ mission "Swiftsong Computer Security Conference [1]"
 		random < 10
 	source
 		government "Hai"
+		not planet "Swiftsong"
 	destination "Swiftsong"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -1685,7 +1692,8 @@ mission "Swiftsong Computer Security Conference [2]"
 	to offer
 		random < 5
 	source
-		government "Hai"
+		government "Hai"		
+		not planet "Swiftsong"
 	destination "Swiftsong"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -1710,6 +1718,7 @@ mission "Swiftsong Science Fiction Convention [1]"
 		random < 10
 	source
 		government "Hai"
+		not planet "Swiftsong"
 	destination "Swiftsong"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -1734,7 +1743,7 @@ mission "Swiftsong Science Fiction Convention [2]"
 		random < 5
 	source
 		government "Hai"
-		not "Swiftsong"
+		not planet "Swiftsong"
 	destination "Swiftsong"
 	on visit
 		dialog phrase "generic passenger on visit"
