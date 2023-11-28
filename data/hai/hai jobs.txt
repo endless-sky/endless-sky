@@ -1664,7 +1664,7 @@ mission "Swiftsong Computer Security Conference [2]"
 	to offer
 		random < 5
 	source
-		government "Hai"		
+		government "Hai"
 		not planet "Swiftsong"
 	destination "Swiftsong"
 	on visit
