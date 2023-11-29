@@ -581,6 +581,15 @@ interface "install plugins"
 		dimensions 90 30
 		color bright
 
+	active if "next install plugin"
+	button e "n_ext>"
+		center -30 170
+		dimensions 120 30
+	active if "previous install plugin"
+	button r "<p_revious"
+		center -215 170
+		dimensions 120 30
+
 	visible if "!can update"
 	active if "can install"
 	button i "_Install"
@@ -591,15 +600,6 @@ interface "install plugins"
 	active if "can update"
 	button u "_Update"
 		center -195 210
-		dimensions 120 30
-
-	active if "next install plugin"
-	button e "n_ext>"
-		center -30 170
-		dimensions 120 30
-	active if "previous install plugin"
-	button r "<p_revious"
-		center -215 170
 		dimensions 120 30
 
 	visible if "show plugins changed"

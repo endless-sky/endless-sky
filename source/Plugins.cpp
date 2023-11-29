@@ -302,7 +302,7 @@ bool Plugins::HasChanged()
 {
 	lock_guard<mutex> guard(pluginsMutex);
 	for(const auto &it : plugins)
-		if(it.second.enabled != it.second.currentState)
+		if(it.second.enabled != it.second.currentState || it.second.removed)
 			return true;
 	return oldNetworkActivity;
 }
@@ -335,66 +335,69 @@ void Plugins::TogglePlugin(const string &name)
 
 
 
-future<void> Plugins::Install(const InstallData &installData, bool update)
+future<void> Plugins::Install(InstallData *installData, bool update)
 {
 	oldNetworkActivity = true;
 	if(!update)
 	{
 		lock_guard<mutex> guard(activePluginsMutex);
-		if(!activePlugins.insert(installData.name).second)
+		if(!activePlugins.insert(installData->name).second)
 			return future<void>();
 	}
 
 	return async(launch::async, [installData, update]() noexcept -> void
 		{
-			string zipLocation = Files::Plugins() + installData.name + ".zip";
-			bool success = Download(installData.url, zipLocation);
+			string zipLocation = Files::Plugins() + installData->name + ".zip";
+			bool success = Download(installData->url, zipLocation);
 			if(success)
 			{
 				success = ExtractZIP(
 					zipLocation,
-					Files::Plugins(), installData.name + "/");
+					Files::Plugins(), installData->name + "/");
 				if(success)
 				{
 					if(update)
-						Files::DeleteDir(Files::Plugins() + installData.name);
+						Files::DeleteDir(Files::Plugins() + installData->name);
 					// Create a new entry for the plugin.
 					Plugin *newPlugin;
 					{
 						lock_guard<mutex> guard(pluginsMutex);
-						newPlugin = plugins.Get(installData.name);
+						newPlugin = plugins.Get(installData->name);
 					}
-					newPlugin->name = installData.name;
-					newPlugin->aboutText = installData.aboutText;
-					newPlugin->path = Files::Plugins() + installData.name + "/";
-					newPlugin->version = installData.version;
+					newPlugin->name = installData->name;
+					newPlugin->aboutText = installData->aboutText;
+					newPlugin->path = Files::Plugins() + installData->name + "/";
+					newPlugin->version = installData->version;
 					newPlugin->enabled = false;
 					newPlugin->currentState = true;
+
+					installData->installed = true;
+					installData->outdated = false;
 				}
 				else
-					Files::DeleteDir(Files::Plugins() + installData.name);
+					Files::DeleteDir(Files::Plugins() + installData->name);
 			}
 			Files::Delete(zipLocation);
 			{
 				lock_guard<mutex> guard(activePluginsMutex);
-				activePlugins.erase(installData.name);
+				activePlugins.erase(installData->name);
 			}
 		});
 }
 
 
 
-future<void> Plugins::Update(const InstallData &installData)
+future<void> Plugins::Update(InstallData *installData)
 {
 	{
 		lock_guard<mutex> guard(activePluginsMutex);
-		if(!activePlugins.insert(installData.name).second)
+		if(!activePlugins.insert(installData->name).second)
 			return future<void>();
 	}
 
 	{
 		lock_guard<mutex> guard(pluginsMutex);
-		plugins.Get(installData.name)->version = installData.version;
+		plugins.Get(installData->name)->version = installData->version;
 	}
 
 	return Install(installData, true);

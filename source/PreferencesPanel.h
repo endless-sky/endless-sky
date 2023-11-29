@@ -82,7 +82,7 @@ private:
 
 	std::string selectedPlugin;
 
-	Plugins::InstallData selectedPluginInstall;
+	Plugins::InstallData *selectedPluginInstall;
 	unsigned int pluginInstallPages = 1;
 	unsigned int currentPluginInstallPage = 0;
 	bool downloadedInfo = false;
@@ -92,7 +92,7 @@ private:
 	std::vector<ClickZone<Command>> zones;
 	std::vector<ClickZone<std::string>> prefZones;
 	std::vector<ClickZone<std::string>> pluginZones;
-	std::vector<ClickZone<Plugins::InstallData>> pluginInstallZones;
+	std::vector<ClickZone<Plugins::InstallData*>> pluginInstallZones;
 };
 
 

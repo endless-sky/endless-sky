@@ -132,12 +132,15 @@ void PreferencesPanel::Draw()
 		info.SetCondition("show previous");
 	if(currentSettingsPage + 1 < SETTINGS_PAGE_COUNT)
 		info.SetCondition("show next");
-	if(selectedPluginInstall.installed)
-		info.SetCondition("installed plugin");
-	if(!selectedPluginInstall.installed)
-		info.SetCondition("can install");
-	if(selectedPluginInstall.outdated && selectedPluginInstall.installed)
-		info.SetCondition("can update");
+	if(selectedPluginInstall)
+	{
+		if(selectedPluginInstall->installed)
+			info.SetCondition("installed plugin");
+		if(!selectedPluginInstall->installed)
+			info.SetCondition("can install");
+		if(selectedPluginInstall->outdated && selectedPluginInstall->installed)
+			info.SetCondition("can update");
+	}
 	if(currentPluginInstallPage > 0)
 		info.SetCondition("previous install plugin");
 	if(currentPluginInstallPage < pluginInstallPages - 1)
@@ -215,12 +218,12 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 			ProcessPluginIndex();
 		}
 	}
-	else if(key == 'i' && page == 'i' && selectedPluginInstall.url.size() && !selectedPluginInstall.installed)
+	else if(key == 'i' && page == 'i' && selectedPluginInstall && selectedPluginInstall->url.size() && !selectedPluginInstall->installed)
 		installFeedbacks.emplace_back(Plugins::Install(selectedPluginInstall));
-	else if(key == 'u' && page == 'i' && selectedPluginInstall.url.size() && selectedPluginInstall.outdated)
+	else if(key == 'u' && page == 'i' && selectedPluginInstall && selectedPluginInstall->url.size() && selectedPluginInstall->outdated)
 		installFeedbacks.emplace_back(Plugins::Update(selectedPluginInstall));
-	else if(key == 'u' && page == 'i' && selectedPluginInstall.url.size() && selectedPluginInstall.installed)
-		Plugins::DeletePlugin(selectedPluginInstall.name);
+	else if(key == 'u' && page == 'i' && selectedPluginInstall && selectedPluginInstall->url.size() && selectedPluginInstall->installed)
+		Plugins::DeletePlugin(selectedPluginInstall->name);
 	else if(key == 'r' && page == 'i')
 		currentPluginInstallPage = currentPluginInstallPage > 0 ? currentPluginInstallPage - 1 : 0;
 	else if(key == 'e' && page == 'i')
@@ -967,12 +970,12 @@ void PreferencesPanel::DrawPluginInstalls()
 	const int maxIndex = min(currentPageIndex + MAX_PLUGIN_INSTALLS_PER_PAGE, pluginInstallData.size());
 	for(int x = currentPageIndex; x < maxIndex; x++)
 	{
-		const Plugins::InstallData &installData = pluginInstallData.at(x);
+		Plugins::InstallData &installData = pluginInstallData.at(x);
 		if(!installData.name.size())
 			continue;
-		pluginInstallZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), installData);
+		pluginInstallZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), &installData);
 		// Use url as that is more unique, just in case.
-		bool isSelected = (installData.url == selectedPluginInstall.url);
+		bool isSelected = (selectedPluginInstall ? installData.url == selectedPluginInstall->url : false);
 		if(isSelected)
 			table.DrawHighlight(back);
 		if(installData.installed && installData.outdated)
