@@ -148,7 +148,7 @@ mission "<uhai> 11: Shipyard Intel"
 				`	(Later.)`
 					defer
 			`	You land amongst the myriad of other ships and swiftly exit as your ship has to get to the spaceport to clear space for the rest.`
-			`	As you move towards the centre of all of this activity, you find an Unfettered warlord that seems to be orchestrating it all, and ask for information. Even though he appears extremely busy speaking with others he notices you and heads your way. They seem able to continue without him, as he heads your way. He is speaking trough a translator, although he appears to be able to understand what you say without it. "It looks like even the monkeys cannot resist the [attraction, power] of the new ships," he says with a grim on his face.`
+			`	As you move towards the center of all of this activity, you find an Unfettered warlord that seems to be orchestrating it all, and ask for information. Even though he appears extremely busy speaking with others he notices you and heads your way. They seem able to continue without him, as he heads your way. He is speaking trough a translator, although he appears to be able to understand what you say without it. "It looks like even the monkeys cannot resist the [attraction, power] of the new ships," he says with a grim on his face.`
 			choice
 				`	"Are these Shield Beetles? That's the only Hai warship I've seen that's as large as these."`
 				`	"Why do you call me monkey? Have I not earned your respect yet?"`
@@ -247,39 +247,40 @@ mission "<uhai> 11: Shipyard Intel"
 			action
 				take ship "Centipede"
 					"with outfits"
+					id "hai second-hand ship"
 				payment 10000000
-			`	"A Centipede... This relatively recent design would be useful to study indeed."`
-				goto sell
+			`	"A Centipede... This relatively recent design would be useful to study indeed. I will give you 10 million credits in compensation."`
+				goto noboughtship
 			label sb
 			action
 				set "unfettered: sold SB"
 				take ship "Shield Beetle"
 					"with outfits"
+					id "hai second-hand ship"
 				payment 40000000
-			`	"A Shield Beetle, just like I [required, asked], perfect!"`
-				goto sell
+			`	"A Shield Beetle, just like I [required, asked], perfect! You have well deserved these 40 million credits!"`
+				goto noboughtship
 			label geocoris
 			action
 				take ship "Geocoris"
 					"with outfits"
+					id "hai second-hand ship"
 				payment 20000000
 				"unfettered: Solifuge deployment" ++
-			`	"Mera told me she could make use of one of these, perfect!`
-			label sell
-			`	"You have well deserved these <payment>!"`
+			`	"Mera told me she could make use of one of these, perfect! You have well deserved these 20 million credits!"`
 				goto noboughtship
 
 			label bought
 			action
 				payment 5000000
 				"unfettered rep: He-Yi" ++
-			`	"You had to pay a ship? Clever way to remove [suspicion, attention]. I can give you an extra <payment> to compensate. These scans are perfect! They are indeed much more [detailed, refined] that what I even asked for."`
+			`	"You had to buy a ship? Clever way to remove [suspicion, attention]. I can give you an extra <payment> to compensate. These scans are perfect! They are indeed much more [detailed, refined] that what I even asked for."`
 			`	"It seems like you have some cunning after all."`
 				to display
 					has "unfettered: monke!"
 			label noboughtship
 			choice
-				`	"Does this mean I can buy the new ships now?"`
+				`	"Does this mean I can buy the new big ships now?"`
 				`	"What about my pay, for the tribute?"`
 					goto tribute
 			`	He seems amused. "They are not [completed, functional] and for that you would have to do a bit more than bringing some intel. We still don't have much [capacity, resources] to build ships. But that will come soon - I first have to do some [managing, reordering]." He may have exaggerated how quickly you will get access to the new ships. As for the outfitter access it may take one more mission to make use of these upgrades in practice.`
@@ -369,6 +370,7 @@ mission "<uhai> 11: Shipyard Inspection"
 			action
 				set "unfettered: bought centipede"
 				give ship "Centipede"
+					id "hai second-hand ship"
 				payment -5000000
 			`	"And you are right to do so indeed! These ships are among the most recent ones we have in store."`
 				goto bought
@@ -381,6 +383,7 @@ mission "<uhai> 11: Shipyard Inspection"
 			action
 				set "unfettered: bought geocoris"
 				give ship "Geocoris"
+					id "hai second-hand ship"
 				payment -10000000
 			`	"A fine investment indeed, sir! Indeed, this is the best hai technology has to offer, no questions about it! Some only seem to see the warships, but I see you have good taste."`
 				goto bought
@@ -393,6 +396,7 @@ mission "<uhai> 11: Shipyard Inspection"
 			action
 				set "unfettered: bought SB"
 				give ship "Shield Beetle"
+					id "hai second-hand ship"
 				payment -25000000
 			`	"I would like to congratulate you sir. Why, this is clearly the best we have to offer. The design has been around for what feels like forever but what can I tell you, they simply don't make the new ones like they used to."`
 			label bought
@@ -437,7 +441,7 @@ mission "<uhai> 12: Outfitter Upgrade"
 			has "<uhai> 11: Shipyard Intel: done"
 			has "<uhai> 17: Mirror Spy: done"
 	substitutions
-		<monke> "your specie"
+		<monke> "your species"
 		<monke> "monkeys"
 			has "unfettered: monke!"
 	on offer
