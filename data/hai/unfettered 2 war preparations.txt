@@ -121,7 +121,7 @@ mission "<uhai> 10: Titanium"
 
 
 mission "<uhai> 11: Shipyard Intel"
-	shipyard
+	landing
 	name `Gather intel on Hai shipyards`
 	description `Go to <stopovers> and try to discreetly learn how their ships are produced, before coming back to <destination>, optionally with a bought ship.`
 	source "Darkcloak"
@@ -129,19 +129,26 @@ mission "<uhai> 11: Shipyard Intel"
 	cargo "food" 34
 	clearance `After explaining you are here to collect an Unfettered tribute, you receive clearance to land.`
 	to offer
+		not "<uhai> 10: Belt Materials: active" # just to not spam the player with missions
 		"reputation: Hai" >= 0
 		has "salary: Unfettered"
 		or
 			has "<uhai> 10: Belt Materials: done"
 			has "<uhai> 10: Belt Materials: declined"
+		or
+			not "<uhai> 11: Shipyard Intel: deferred"
+			random < 40
+	on defer
+		set "<uhai> 11: Shipyard Intel: deferred"
 	on offer
 		conversation
-			`You notice several large ships under construction upon entering the shipyard. Would you like to check what's going on?`
+			`As you are descending on the surface of the planet you notice a lot of ships heading towards the shipyard, where several large ships are under construction. Would you like to go check what's going on?`
 			choice
 				`	(Sure.)`
 				`	(Later.)`
 					defer
-			`	As you get closer to the ships, you find an Unfettered warlord and ask to learn more about them. The warlord is speaking trough a translator, although he appears to be able to understand what you say without it. "It looks like even the monkeys cannot resist the [attraction, power] of the new ships," he says.`
+			`	You land amongst the myriad of other ships and swiftly exit as your ship has to get to the spaceport to clear space for the rest.`
+			`	As you move towards the centre of all of this activity, you find an Unfettered warlord that seems to be orchestrating it all, and ask for information. Even though he appears extremely busy speaking with others he notices you and heads your way. They seem able to continue without him, as he heads your way. He is speaking trough a translator, although he appears to be able to understand what you say without it. "It looks like even the monkeys cannot resist the [attraction, power] of the new ships," he says with a grim on his face.`
 			choice
 				`	"Are these Shield Beetles? That's the only Hai warship I've seen that's as large as these."`
 				`	"Why do you call me monkey? Have I not earned your respect yet?"`
@@ -351,7 +358,7 @@ mission "<uhai> 11: Shipyard Inspection"
 			action
 				payment 5000000
 				fine 7000000
-			`	"Done. With this you'll at least be able to afford the Centipede."`
+			`	"Done. With this you should at least be able to afford the Centipede."`
 				goto changedmind
 			label centipede
 			`	"You will see it has no equal as cost efficient to transport troops or passengers around! And for a mere 5 million credits."`
@@ -375,6 +382,8 @@ mission "<uhai> 11: Shipyard Inspection"
 				set "unfettered: bought geocoris"
 				give ship "Geocoris"
 				payment -10000000
+			`	"A fine investment indeed, sir! Indeed, this is the best hai technology has to offer, no questions about it! Some only seem to see the warships, but I see you have good taste."`
+				goto bought
 			label sb
 			`	"Only the best? I can relate with that for sure. This ship is useful in many ways: as a warship, an escort, or even a cargo hauler of its own right with its acceptable 142 cargo space. It also is the most customizable ship we sell! All of that comes at a cost, however, as I am sure you understand. I can do no less than 25 million credits, everyone wants these!"`
 			choice
@@ -385,10 +394,11 @@ mission "<uhai> 11: Shipyard Inspection"
 				set "unfettered: bought SB"
 				give ship "Shield Beetle"
 				payment -25000000
+			`	"I would like to congratulate you sir. Why, this is clearly the best we have to offer. The design has been around for what feels like forever but what can I tell you, they simply don't make the new ones like they used to."`
 			label bought
 			action
 				set "unfettered: bought ship"
-			`	He shows you to the ship you requested and tells you all about its different qualities, but you don't really listen - you only bought this ship so he would let you finish your scans. You did have to spend a fine sum for it though... You could always sell it back to someone else, at the shipyard. Maybe you could use this ship's scanners to get an even better scan of the ships here.`
+			`	He shows you to the ship you requested and tells you all about its different qualities, but you don't really listen after a little bit - you only bought this ship so he would let you finish your scans. You did have to spend a fine sum for it though... You could always sell it back to someone else, at the shipyard. Maybe you could use this ship's scanners to get an even better scan of the ships here.`
 			label shipbought
 			`	Now that you're in the newly acquired ship, you pretend to look around until he leaves, seeing you are satisfied with your purchase. Then you get back to scanning the shipyard.`
 				goto finishscan
@@ -682,7 +692,11 @@ mission "<uhai> 14: Ion Materials"
 	source "Warfeed"
 	to offer
 		has "salary: Unfettered"
-		random < 40
+		or
+			not "<uhai> 14: Ion Materials: deferred"
+			random < 40
+	on defer
+		set "<uhai> 14: Ion Materials: deferred"
 	on offer
 		conversation
 			`When passing in front of a bar, you notice Si-Ra. He seems to be having quite a lot of fun. The bar itself does not seem that alien to you, although they are doing more than just drinking and chatting, judging by the smell...`
