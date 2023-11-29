@@ -631,6 +631,7 @@ void ShopPanel::DoFind(const string &text)
 			selectedShip = best->GetShip();
 		else
 			selectedOutfit = best->GetOutfit();
+		previousX = best->Center().X();
 		MainAutoScroll(best);
 	}
 }
