@@ -765,6 +765,16 @@ event "joined midas"
 
 
 
+mission "Midas: Be Warned"
+	landing
+	description "You have been warned of an impressive fleet waiting for you in the Wah Yoot system, and advised to 'aim for the head'"
+	destination "Darkcloak"
+	to offer
+		has "Midas: Daemons Unleashed: active"
+		"unfettered rep: He-Yi" >= 3
+	on offer
+		dialog `You receive a code purple message from an Unfettered warlord. "<last>. A black fleet has amassed in Wah Yoot. From the communications I intercepted they seem to be interested in you. Do not come here unprepared. Aim for the head."`
+
 # they get mad when you kill the twins, striking at you after they had time to muster their strength.
 # the Hai did not dare to contest them
 mission "Midas: Daemons Unleashed"

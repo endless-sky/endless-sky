@@ -486,9 +486,17 @@ mission "<uhai> 12: Outfitter Upgrade"
 		event "unfettered: darkcloak outfitter upgrade" 30
 		conversation
 			`After unloading all the cargo, you go check for He-Yi in the shipyard, but instead you find a Herald, ready to rely a message to you, "Ah, <first>. You have completed your part of the bargain, now you may have your reward.`
+			branch "has beetle"
+				has "<uhai> 15: Modified Beetle: done"
 			`	"This will help Mera prepare your reward, should you prove yourself to be worthy of it.`
-				to display
-					not "<uhai> 15: Modified Beetle: done"
+			choice
+				`	(Say nothing.)`
+					goto "has beetle"
+				`	Have I not done enough already to prove myself worthy?`
+			action
+				"unfettered rep: Herald" --
+			`	"Being worthy is not a permanent status of some kind that gives you access to all privileges. It is something you need to keep fighting for! Besides, do you really want to deny an engineer the opportunity to have some fun with their new prototype? I think not."`
+			label "has beetle"
 			`	"There could be more opportunities on Darkcloak for you, we do not only buy Jump Drives against money.`
 				to display
 					not "Unfettered Jump Drive Trading: offered"
@@ -957,7 +965,7 @@ mission "<uhai> 15: Modified Beetle"
 			branch waiting
 				has "<uhai> 15: Modified Beetle: deferred"
 			scene "thumbnail/hai modified shield beetle"
-			`Passing by the labs on the way down, you notice some kind of modified beetle outside, in the middle of what must be a test field, filled with craters you assume to be made during weapon testing.`
+			`Passing by the labs on the way down with your ship, you notice some kind of modified Shield Beetle outside, in the middle of what must be a test field, filled with craters probably made during weapon testing.`
 			`	Do you want to go see Mera to see what you can learn about this ship?`
 				to display
 					not "<uhai> 12: Outfitter Upgrade: done"
@@ -1258,6 +1266,9 @@ mission "<uhai> 16: Strength Of A Leader: Si-Ra"
 		conversation
 			branch "cheating bugger"
 				"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 > 18
+			`You receive an anonymous hail with a bird insigna on it, "What did you do to get these people upset? They're not the kind you want to upset! Be warned, Si-Ra is not intending to play fair - meaning you don't have to either. I made sure he will not be getting any reinforcements, the rest is up to you, but do not let him disable your ship, and don't count on him accepting bribes either!"`
+				to display
+					"unfettered rep: Herald" >= 1
 			`Si-Ra hails you, "May crossing swords sharpen our blades<, unfettered title>. Do not hold back until I am disabled!"`
 				accept
 			label "cheating bugger"
@@ -1281,7 +1292,7 @@ mission "<uhai> 16: Strength Of A Leader: Si-Ra"
 			action
 				set "unfettered: defeated Si-Ra"
 	# if you made him be kicked from Midas he'll be angry and not respect the rules of the fight, in which case you may kill him
-	# he'd get demoted for this anyway
+	# he'd get demoted for this anyway and runs away in an escape pod no matter what happens
 	npc disable
 		government "Hai (Unfettered Challenger)"
 		ship "Si-Ra' angry Beetle" "Hellfire"
@@ -1300,6 +1311,7 @@ mission "<uhai> 16: Strength Of A Leader: Si-Ra"
 		to spawn
 			has "unfettered: mad Si-Ra"
 			"armament deterrence" >= 12
+			"unfettered rep: Herald" < 1
 		to despawn
 			has "unfettered: defeated Si-Ra"
 		government "Hai (Unfettered Challenger)"
@@ -1940,7 +1952,7 @@ mission "<uhai> 19: Weird Aliens Spotted"
 				goto "show arfecta?"
 			label pug
 			action
-				"unfettered rep: Herald" ++
+				"unfettered rep: Herald" += 2
 				payment 250000
 			`	You explain to the herald that you have seen weird aliens in the north, the Pug, that have interfered with humanity in the past. They do not seem to believe you when you speak of technology capable of breaking down starlanes, "There is no way an alien race with such primitive ships would have that kind of technology. They must have simply abused your primitive sensors. They must have stolen the jump drives, and I only see that as an opportunity for later." You try to convince them that they should not take them lightly, but they do not want to listen. "We have already done too much to prepare for war to turn back at the first sign of potential trouble. Still, I appreciate you taking this initiative of coming here to warn us, especially with this precise information. You seem to have learned the ways of my master quickly.`
 			`	"Please accept <payment> for that."`
@@ -1957,7 +1969,7 @@ mission "<uhai> 19: Weird Aliens Spotted"
 					decline
 			action
 				set "unfettered: warned of arfecta"
-				"unfettered rep: Herald" ++
+				"unfettered rep: Herald" += 2
 				payment 250000
 			`	"Did you not say these Pug, as you call them, are masters of deception?`
 				to display
@@ -1968,7 +1980,7 @@ mission "<uhai> 19: Weird Aliens Spotted"
 			action
 				set "unfettered: preparing for the arfectas"
 				set "unfettered: high warlord"
-				"unfettered rep: Herald" += 2
+				"unfettered rep: Herald" += 3
 				"salary: Unfettered" *= 2
 			`	Since they do not seem to believe you, you show them the designs of the Arfecta you captured. You can see a mix of surprise and fear in their eyes as they take a step back. "How did you capture such a ship? It seems that you will prove an even better ally than we had anticipated... That ship would be fitting of a warlord. A High Warlord, even! We will double your salary, you deserve it! We have indeed heard of these Pug, but never did we imagine they would be able to display such strength... It is good to have an ally like you."`
 				accept
