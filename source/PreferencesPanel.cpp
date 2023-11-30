@@ -976,7 +976,7 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 
 void PreferencesPanel::HandleUp()
 {
-	switch (page)
+	switch(page)
 	{
 	case 'c':
 		if(selected > 0)
@@ -1005,7 +1005,7 @@ void PreferencesPanel::HandleUp()
 
 void PreferencesPanel::HandleDown()
 {
-	switch (page)
+	switch(page)
 	{
 	case 'c':
 		if(static_cast<unsigned>(selected + 1) < zones.size())
@@ -1034,7 +1034,7 @@ void PreferencesPanel::HandleDown()
 
 void PreferencesPanel::HandleConfirm()
 {
-	switch (page)
+	switch(page)
 	{
 	case 'c':
 		editing = selected;
