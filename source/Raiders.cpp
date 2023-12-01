@@ -46,7 +46,7 @@ void Raiders::LoadFleets(const DataNode &node, bool remove, int valueIndex, bool
 		else
 		{
 			RaidFleet raidFleet;
-			raidFleet.Load(node);
+			raidFleet.Load(node, fleet);
 			raidFleets.emplace_back(raidFleet);
 		}
 	}
@@ -66,7 +66,7 @@ void Raiders::Load(const DataNode &node)
 			continue;
 		}
 
-		const string &key = child.Token((add || remove) ? 1 : 0);
+		const string &key = child.Token(add || remove);
 		int valueIndex = (add || remove) ? 2 : 1;
 		bool hasValue = child.Size() > valueIndex;
 		if(remove && !hasValue)
@@ -82,11 +82,17 @@ void Raiders::Load(const DataNode &node)
 		}
 		else if(key == "scouts cargo hold")
 			scoutsCargo = true;
-		else if(key == "fleet" && hasValue)
-			LoadFleets(node, remove, valueIndex);
-		else if(key == "government" && hasValue)
+		else if(!hasValue)
+			child.PrintTrace("Error: Expected key to have a value:");
+		else if(key == "fleet")
+		{
+			if(!add)
+				raidFleets = {};
+			LoadFleets(child, remove, valueIndex);
+		}
+		else if(key == "government")
 			government = GameData::Governments().Get(child.Token(valueIndex));
-		else if(key == "empty cargo attraction" && hasValue)
+		else if(key == "empty cargo attraction")
 			emptyCargoAttraction = child.Value(valueIndex);
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");

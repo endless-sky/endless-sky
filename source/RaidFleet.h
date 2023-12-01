@@ -26,7 +26,7 @@ class RaidFleet {
 public:
 	RaidFleet(const Fleet *fleet, double minAttraction, double maxAttraction);
 	RaidFleet();
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const Fleet *fleet);
 	const Fleet *GetFleet() const;
 	double MinAttraction() const;
 	double MaxAttraction() const;
