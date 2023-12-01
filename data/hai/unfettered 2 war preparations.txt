@@ -916,7 +916,7 @@ mission "<uhai> 14: Ion Materials"
 			action
 				set "alpha: know about cache"
 				"unfettered rep: Si-Ra" --
-			`	"Yeah we did! I mean, it was mostly you..." He then calms down somewhat and looks at you seriously, "I had not told you that before, did I? Well, whatever, I hope that you can be trusted with this information, or else..." He then keeps on drinking as if nothing happened.`
+			`	"Yeah we did! I mean, it was mostly you..." He then calms down somewhat and looks at you seriously, "I had not told you that before, did I? 'Vino veritas' indeed. Well, I hope that you can be trusted with this information, or else..." He then keeps on drinking as if nothing happened.`
 				goto celebrate
 			label pirates
 			`	"Pirates? What are you talking about? Did you consume something before coming here? Ah! I see I am not the only one then..." His confusion then quickly dissipates as he empties his drink. It seems that the vault did not belong to pirates at all.`
@@ -1189,7 +1189,7 @@ conversation "unfettered war ready"
 			goto mistake
 		`	"Nothing specific. Well fought."`
 			goto "after Si-Ra"
-	`	He-Yi answers. "It looks like that was indeed the case. Sheer strength may be enough to defeat nearly everything in your way, but is it fun? Is it strategic? I try not to rely on that tactic too often."`
+	`	He-Yi answers. "It looks like that was indeed the case. Sheer strength may be enough to defeat nearly everything in your way, but is it fun? Is it strategic? I try not to rely on brute force too often."`
 	branch "after Si-Ra"
 		has "unfettered: mad Si-Ra"
 	`	Si-Ra then speaks. "Well<, unfettered title>, I sure wish I had the money for such a fleet. I could barely afford this ship, and it will need repairs again now."`
@@ -1270,6 +1270,11 @@ mission "<uhai> 16: Strength Of A Leader: Si-Ra"
 				to display
 					"unfettered rep: Herald" >= 1
 			`Si-Ra hails you, "May crossing swords sharpen our blades<, unfettered title>. Do not hold back until I am disabled!"`
+				to display
+					not "unfettered: mad Si-Ra"
+				accept
+			# he could say nemo me impune lacessit here but that may be a bit too obvious
+			`Si-Ra hails you, "May crossing swords sharpen our blades<, unfettered title>. Do not hold back. I won't. Alea iacta est, <last>."`
 				accept
 			label "cheating bugger"
 			`Si-Ra hails you, "That is too big of a fleet. Are you trying to trick me? I cancel this challenge, come back to me again when you are ready to show some respect. It'll be <fine> for wasting my time!"`
