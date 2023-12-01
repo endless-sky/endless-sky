@@ -102,5 +102,5 @@ mission "Incipias: The derelict"
 			derelict uninterested
 	on enter "Hui'uc"
 		conversation
-			`On entering the system you find an alien space ship disabled and badly damaged. You remember your training as a captain when your teacher told you about something about a codex of captains, "A captain never leaves a ship in need behind."`
+			`On entering the system you find an alien spaceship disabled and badly damaged. You remember your training as a captain when your teacher told you about something about a codex of captains, "A captain never leaves a ship in need behind."`
 
