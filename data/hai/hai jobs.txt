@@ -1524,7 +1524,7 @@ mission "Swiftsong Business Convention [1]"
 	on complete
 		payment 10000 500
 		"reputation: Hai" += 3
-		dialog phrase "generic passenger dropoff payment"
+		dialog `During the trip, your passengers appeared to be practicing a presentation for the conference. You sense a tinge of nervousness as they give you <payment> and leave your ship.`
 
 
 
@@ -1546,7 +1546,7 @@ mission "Swiftsong Business Convention [2]"
 	on complete
 		payment 10000 500
 		"reputation: Hai" += 3
-		dialog phrase "generic passenger dropoff payment"
+		dialog `During the trip, your passengers appeared to be practicing a presentation for the conference. You sense a tinge of nervousness as they give you <payment> and leave your ship.`
 
 
 
@@ -1567,7 +1567,7 @@ mission "Swiftsong Film Festival [1]"
 	on complete
 		payment 10000 500
 		"reputation: Hai" += 3
-		dialog phrase "generic passenger dropoff payment"
+		dialog `The Hai chitter excitedly as they give you <payment> and step off your ship. Some of the movie plots they discussed during the trip were bewildering.`
 
 
 
@@ -1588,7 +1588,7 @@ mission "Swiftsong Film Festival [2]"
 	on complete
 		payment 10000 500
 		"reputation: Hai" += 3
-		dialog phrase "generic passenger dropoff payment"
+		dialog `The Hai chitter excitedly as they give you <payment> and step off your ship. Some of the movie plots they discussed during the trip were bewildering.`
 
 
 
@@ -1609,7 +1609,7 @@ mission "Swiftsong Music Festival [1]"
 	on complete
 		payment 10000 500
 		"reputation: Hai" += 3
-		dialog phrase "generic passenger dropoff payment"
+		dialog `The Hai chitter excitedly as they give you <payment> and step off your ship. You can hear the music blasting all the way from the spaceport.`
 
 
 
@@ -1630,7 +1630,7 @@ mission "Swiftsong Music Festival [2]"
 	on complete
 		payment 10000 500
 		"reputation: Hai" += 3
-		dialog phrase "generic passenger dropoff payment"
+		dialog `The Hai chitter excitedly as they give you <payment> and step off your ship. You can hear the music blasting all the way from the spaceport.`
 
 
 
@@ -1651,7 +1651,7 @@ mission "Swiftsong Computer Security Conference [1]"
 	on complete
 		payment 10000 500
 		"reputation: Hai" += 3
-		dialog phrase "generic passenger dropoff payment"
+		dialog `The Hai chitter excitedly as they give you <payment> and step off your ship. Your passengers' conversations went mostly over your head, but they were otherwise pleasant the entire trip.`
 
 
 
@@ -1672,8 +1672,7 @@ mission "Swiftsong Computer Security Conference [2]"
 	on complete
 		payment 10000 500
 		"reputation: Hai" += 3
-		dialog phrase "generic passenger dropoff payment"
-
+		dialog `The Hai chitter excitedly as they give you <payment> and step off your ship. Your passengers' conversations went mostly over your head, but they were otherwise pleasant the entire trip.`
 
 
 mission "Swiftsong Science Fiction Convention [1]"
@@ -1693,7 +1692,7 @@ mission "Swiftsong Science Fiction Convention [1]"
 	on complete
 		payment 10000 500
 		"reputation: Hai" += 3
-		dialog phrase "generic passenger dropoff payment"
+		dialog `TThe Hai chitter excitedly as they give you <payment> and step off your ship. As they leave, you can identify some of their memoribilia as being human in origin.`
 
 
 
@@ -1714,4 +1713,4 @@ mission "Swiftsong Science Fiction Convention [2]"
 	on complete
 		payment 10000 500
 		"reputation: Hai" += 3
-		dialog phrase "generic passenger dropoff payment"
+		dialog `The Hai chitter excitedly as they give you <payment> and step off your ship. As they leave, you can identify some of their memoribilia as being human in origin.`
