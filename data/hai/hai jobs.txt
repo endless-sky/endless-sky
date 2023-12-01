@@ -1692,7 +1692,7 @@ mission "Swiftsong Science Fiction Convention [1]"
 	on complete
 		payment 10000 500
 		"reputation: Hai" += 3
-		dialog `TThe Hai chitter excitedly as they give you <payment> and step off your ship. As they leave, you can identify some of their memoribilia as being human in origin.`
+		dialog `The Hai chitter excitedly as they give you <payment> and step off your ship. As they leave, you can identify some of their memoribilia as being human in origin.`
 
 
 
