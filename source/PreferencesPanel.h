@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Command.h"
 #include "Plugins.h"
 #include "Point.h"
+#include "Sprite.h"
 #include "text/WrappedText.h"
 
 #include <future>
@@ -88,6 +89,7 @@ private:
 	bool downloadedInfo = false;
 	std::vector<std::future<void>> installFeedbacks;
 	std::vector<Plugins::InstallData> pluginInstallData;
+	Set<Sprite> icons;
 
 	std::vector<ClickZone<Command>> zones;
 	std::vector<ClickZone<std::string>> prefZones;

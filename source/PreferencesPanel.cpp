@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
+#include "ImageBuffer.h"
 #include "Information.h"
 #include "Interface.h"
 #include "text/layout.hpp"
@@ -46,6 +47,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cstdio>
 #include <fstream>
 #include <utility>
+
+#include "Logger.h"
 
 using namespace std;
 
@@ -988,7 +991,7 @@ void PreferencesPanel::DrawPluginInstalls()
 			table.Draw(installData.name, medium);
 		if(isSelected)
 		{
-			const Sprite *sprite = SpriteSet::Get(installData.name);
+			const Sprite *sprite = icons.Find(installData.name);
 			Point top(15., firstY);
 			if(sprite)
 			{
@@ -1074,8 +1077,9 @@ void PreferencesPanel::ProcessPluginIndex()
 		{
 			const Plugin *installedVersion = Plugins::Get().Find(pluginInstall["name"]);
 			bool isInstalled = installedVersion && !installedVersion->removed;
+			string pluginName = pluginInstall["name"];
 			Plugins::InstallData installData(
-				pluginInstall["name"],
+				pluginName,
 				pluginInstall["url"],
 				pluginInstall["version"],
 				pluginInstall["description"],
@@ -1083,6 +1087,21 @@ void PreferencesPanel::ProcessPluginIndex()
 				isInstalled && installedVersion->version != pluginInstall["version"]
 			);
 			pluginInstallData.emplace_back(installData);
+
+			//Files::CreateFolder(Files::Config() + "icons/");
+			string iconPath = Files::Config() + pluginName + ".png";
+			if(!Files::Exists(iconPath) && pluginInstall.contains("iconUrl"))
+				Plugins::Download(pluginInstall["iconUrl"], iconPath);
+			if(Files::Exists(iconPath))
+			{
+				ImageBuffer iconBuffer;
+				if(iconBuffer.Read(iconPath))
+				{
+					Logger::LogError("hi!");
+					Sprite *icon = icons.Get(pluginName);
+					icon->AddFrames(iconBuffer, false);
+				}
+			}
 		}
 		downloadedInfo = true;
 		GetUI()->Pop(GetUI()->Top().get());
