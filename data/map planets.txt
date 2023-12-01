@@ -4417,7 +4417,7 @@ planet Topkapi
 planet Treser
 	attributes "requires: gaslining"
 	landscape land/treser
-	description `A dark world lies beneath you. Some chemical compound in the clouds is absorbing over ninety percent of the incoming light. This results in a enormous amount of heat in the atmosphere of this gas giant. The extreme temperatures are so taxing on your ship that you are barely able to fly through the uppermost layers. When the heat exceeds a certain point the gas becomes plasma, creating small spots of light on this world of eternal darkness.`
+	description `A dark world lies beneath you. Some chemical compound in the clouds is absorbing over ninety percent of the incoming light. This results in an enormous amount of heat in the atmosphere of this gas giant. The extreme temperatures are so taxing on your ship that you are barely able to fly through the uppermost layers. When the heat exceeds a certain point the gas becomes plasma, creating small spots of light on this world of eternal darkness.`
 	government Uninhabited
 
 planet Trinket
