@@ -35,7 +35,7 @@ outfit "Internal Plasma Exhaust"
 	"thrust" 24
 	"turn" 2000
 	"flare sprite" "effect/plasma exhaust"
-			"frame rate" 16
+		"frame rate" 16
 
 ship "Silent Harvester"
 	sprite "ship/silent harvester"
