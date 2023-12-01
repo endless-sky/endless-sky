@@ -50,7 +50,7 @@ mission "Incipias: Meet the Quarg"
 			`    "An obvious pursuit for the young that is," it nods, "if advice you I may, to not walk this way in a careless maner, the galaxy holds many dangers that your kind has yet to discover or even to understand." It straightens up to its full height, towering over you, "but in the end worth the trouble it will be."`
 				goto "end"
 			label "new species"
-			`    "What a peculiar task that is," it looks confused and tilts its head, "what to achieve by this you hope? That an incredible amount of dangers come with meeting other species you not know? For a reason invisble borders in space there are. To be careful and consider every last step I advice."`
+			`    "What a peculiar task that is," it looks confused and tilts its head, "what to achieve by this you hope? That an incredible amount of dangers come with meeting other species you not know? For a reason invisible borders in space there are. To be careful and consider every last step I advice."`
 			label "end"
 			`    After a short pause it continues talking, "Your presence here our kind accepts, although not very happy we are. Allowed to travel here you are, but conditions there are. Not too far from here another kind just starts growing, great plans for them our leaders have. Do not interrupt them, hostile actions against them we will revenge."`
 			`    With these words the Quarg turns around and leaves. It seems like you are free to use the local facilities now.`

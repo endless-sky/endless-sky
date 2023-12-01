@@ -86,15 +86,18 @@ mission "Navy resupply [0]"
 	cargo Military 5 2 .1
 	job
 	repeat
-	clearance
+	deadline
 	to offer
 		random < 2
 	source
-		not government Pirate
+		government "Republic" "Syndicate"
 		attributes outfitter factory
 	destination
-		attributes north military
-		attributes outfitter
+		government "Republic"
+		distance 2 10
+		attributes north
+		attributes military outfitter
+		not attributes rich
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
