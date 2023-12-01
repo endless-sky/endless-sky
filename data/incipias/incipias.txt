@@ -286,6 +286,8 @@ phrase "incipias friendly disabled"
 		"[unable to fly, near death]"
 		"on the brink of getting useless"
 	word
+		","
+	word
 		" could you please "
 	word
 		"assist me"
