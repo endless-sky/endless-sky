@@ -61,7 +61,7 @@ ship "Venta"
 	explode "large explosion" 40
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
-	description "When the Hicemus came to power they needed a ship to symbolize their strength. With six guns and one turret, the venta is not only symbolizing strength but also the most powerful ship in Incipias history. Thanks to its sleek and aerodynamic design it is able to hunt down outlaws in space as well as in the clouds of a gas giant."
+	description "When the Hicemus came to power they needed a ship to symbolize their strength. With six guns and one turret, the Venta is the most powerful ship in Incipias history. Thanks to its sleek and aerodynamic design it is able to hunt down outlaws in space as well as in the clouds of a gas giant."
 
 ship "Nimbus"
 	"plural" "Nimbi"
@@ -109,7 +109,7 @@ ship "Nimbus"
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
 	description "The Nimbus is the first spaceship that the Incipias built that was really able to navigate through a system. Since it was first manufactured it has been loved among wealthier captains and a dream of captains just starting out."
-	description "Although the Nimbus is labeled as a medium warship, it is a multi-purpose ship. Whether one uses it for mining, passengers or cargo it will perform its job nicely. It is only occasionally used in combat because the Incipias are not fighting open wars."
+	description "Although the Nimbus is labeled as a medium warship, it is a multi-purpose ship. Whether one uses it for mining, passengers, or cargo, it will perform its job nicely. It is only occasionally used in combat because the Incipias are not currently fighting open wars."
 
 ship "Nimbus" "Nimbus (Civil)"
 	outfits
@@ -165,7 +165,7 @@ ship "Nimbo Stratus"
 	explode "medium explosion" 10
 	explode "large explosion" 20
 	"final explode" "final explosion medium"
-	description "Mining has always been a big business in Incipias society, that is why the Stratus is one of the most popular ships for captains in their early year, while not too expensive it is able to bring money in quickly. While the Stratus could be used in combat, it stands no chance to the Nimbus and therefore has never been used by the Hicemus military forces."
+	description "Mining has always been a big business in Incipias society, which is why the Stratus is the most common ship for beginning captains. Its cheap price tag and its ability to bring money in quickly ensure its continuing popularity. While the Stratus could be used in combat, it stands no chance against the Nimbus and therefore has never been used by the Hicemus military forces."
 
 ship "Nimbo Cirrus"
 	"plural" "Cirri"
@@ -199,7 +199,7 @@ ship "Nimbo Cirrus"
 	explode "medium explosion" 20
 	explode "large explosion" 30
 	"final explode" "final explosion medium"
-	description "When Pontes was built the need for a ship that could carry material and supplies into the orbit arose. While the Nimbus is able to carry some cargo, it is not specialized for that kind of work. The Cirrus on the other hand is a pure cargo ship and the inhabitants of Pontes rely on the regular deliveries."
+	description "When Pon'tes was built, the need arose for a ship that could carry large amounts of material and supplies into orbit. While the Nimbus is able to carry some cargo, it is not specialized for such work. The Cirrus on the other hand is a pure cargo ship, and the inhabitants of Pon'tes rely on its regular deliveries."
 
 ship "Gero"
 	"sprite" ship/gero
@@ -232,4 +232,4 @@ ship "Gero"
 	explode "medium explosion" 20
 	explode "large explosion" 30
 	"final explode" "final explosion medium"
-	description "With a huge spacestation like Pontes come people travelling between the station and the home planet. The designers from Alto shipyards quickly saw the opportunity and so the first passenger only ship was built."
+	description "The completion of Pon'tes caused a huge increase in travel between the station and Redias. Designers from Alto Shipyards quickly saw an opportunity and so the Incipias' first passenger-only ship was built."

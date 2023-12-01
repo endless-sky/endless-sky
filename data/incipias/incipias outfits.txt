@@ -76,7 +76,7 @@ outfit "Tractor Beam"
 		"hit force" -40
 		"slowing damage" 0.2
 	description "The Tractor Beam is one of the few technologies of the Incipias that surpasses anything humanity has made thus far - in fact, the first prototypes were built before the Incipias dreamed of space travel. Giant reactors were constructed to pull asteroids out of their home planet's orbit for easy access to more resources. Naturally, a mechanism to slow the asteroids down was also implemented to prevent accidental asteroid strikes."
-	description "As the Incipias' mastery of spaceflight grew, so did the generators' efficiency - this allowed for more compact, ship-based tractor beams. Resource collection was greatly streamlined by these new models - much to the benefit of the Incipias' otherwise sluggish ships."
+	description "As the Incipias' mastery of spaceflight grew, so did the generators' efficiency, which allowed for more compact, ship-based tractor beams. Resource collection was greatly streamlined by these new models, much to the benefit of the Incipias' otherwise sluggish ships."
 	description "Officially, these beams are used for mining operations; however, less scrupulous individuals have found they are equally valuable in combat, using the beams to lock down and pull in their opponents."
 	description "The secret of how these beams work is only known to a few scientists of the Incipias who are under the control of the state. Such knowledge, if made public, could have disastrous consequences."
 
@@ -156,7 +156,7 @@ outfit "Star Tail Cell"
 	thumbnail "outfit/star tail cell"
 	"mass" .1
 	"star tail capacity" -1
-	description "A very dense gas contained in a small cell, the amounts of energy it can free are exceptional."
+	description "A very dense gas contained in a small cell. The amounts of energy it can free are exceptional."
 
 outfit "Star Tail Storage"
 	category "Ammunition"
@@ -194,7 +194,7 @@ outfit "Solid-Class Shield"
 	"shield generation" .45
 	"energy generation" 6
 	"heat generation" 8
-	description "This shield generator is pure efficiency. It burns its input in stages from solid in the center to a gaseous state in the outer hull. Sadly this efficiency requires a lot of adjusting systems to stabilize the process, and therefore only the heaviest warships make use of the Solid-Class Shield."
+	description "This shield generator is the most efficient available to the Incipias. It burns its input in stages from solid in the center to a gaseous state in the outer hull. Sadly this efficiency requires a lot of adjusting systems to stabilize the process, and therefore only the heaviest warships make use of the Solid-Class Shield."
 
 outfit "Liquid Hydrogen Cell"
 	category "Power"
@@ -202,7 +202,7 @@ outfit "Liquid Hydrogen Cell"
 	mass 20
 	"outfit space" -20
 	"energy capacity" 500
-	description "This form of energy storage was discovered early by the Incipias because of the great amount of hydrogen on their homeworld. Because Incipias ships mostly access its energy at the time it is produced, only a small amount of storage is needed. Most of their ships have only one cell installed as a consequence."
+	description "This form of energy storage was discovered early by the Incipias because of the great amount of hydrogen on their homeworld. Because Incipias ships mostly access their energy at the time it is produced, only a small amount of storage is needed. Most of their ships have only one cell installed as a consequence."
 
 # Engines:
 outfit "MH Blue-Class Engine"
@@ -214,7 +214,7 @@ outfit "MH Blue-Class Engine"
 	"thrust" 16
 	"thrusting energy" 2
 	"thrusting heat" 2.5
-	description "For the Incipias blue is the weakest color, when engine gets labeled with blue one can only imagine how ships using it will be."
+	description "For the Incipias blue is the weakest color. An engine labeled with blue does not bode well for the speed of any ship using it."
 
 outfit "MH Blue-Class Steering"
 	category "Engines"
@@ -223,7 +223,7 @@ outfit "MH Blue-Class Steering"
 	"turn" 332
 	"turning energy" 1.
 	"turning heat" 3
-	description "This steering is barely providing the minimum force to turn a ship, but it still used often because of how cheap it is."
+	description "This steering barely provides the minimum force needed to turn a ship, but it still used often because of how cheap it is."
 
 outfit "MH Green-Class Engine"
 	category "Engines"
@@ -234,7 +234,7 @@ outfit "MH Green-Class Engine"
 	"thrust" 16
 	"thrusting energy" 2
 	"thrusting heat" 2.5
-	description "Green is a color of balance for the Incipias, this engine holds the balance between taking too much space and moving too slow."
+	description "Green is a color of balance for the Incipias. This engine is balanced between taking too much space and moving too slow."
 
 outfit "MH Green-Class Steering"
 	category "Engines"
@@ -243,7 +243,7 @@ outfit "MH Green-Class Steering"
 	"turn" 343
 	"turning energy" 1.1
 	"turning heat" 3.1
-	description "The Incipias seem to have something against turning their ships, even though this steering is supposed to be an upgrade of the blue-class it barely holds any improvements."
+	description "The Incipias seem to have something against turning their ships. Even though this steering is supposed to be an upgrade from the Blue-Class steering, it is barely an improvement."
 
 outfit "MH Red-Class Engine"
 	category "Engines"
@@ -254,7 +254,7 @@ outfit "MH Red-Class Engine"
 	"thrust" 32
 	"thrusting energy" 5
 	"thrusting heat" 10
-	description "The Incipias burn metallic hydrogen to move around in space. As a race that has easy access to metallic hydrogen on their homeplanet this allows for very efficient engines."
+	description "The Incipias burn metallic hydrogen to move around in space. As a race that has easy access to metallic hydrogen on their home planet this allows for very efficient engines."
 
 outfit "MH Red-Class Steering"
 	category "Engines"
@@ -263,7 +263,7 @@ outfit "MH Red-Class Steering"
 	"turn" 756
 	"turning energy" 2.5
 	"turning heat" 12
-	description "Even the Incipias realize that ships need to turn towards their target to be able to shoot it. These steerings are specifically designed for combat but capatains with a lot of money find it very useful for mining."
+	description "Even the Incipias realize that ships need to turn towards their target to be able to shoot it. This steering is specifically designed for combat but captains with a lot of money find it very useful for mining."
 
 
 # Hand to Hand
