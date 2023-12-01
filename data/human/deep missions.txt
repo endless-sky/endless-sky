@@ -3080,7 +3080,7 @@ mission "Home for Skadenga 1"
 			`	The Ondurdis turns back to you. "You must find the ninth Setstokkr, the missing pillar. It was dropped in space long ago, and we believe based on where it started it could have only found its way to one of two worlds. It either on Windblain in the Regor system, or Asgard in the Naos system." Offering you a small storage device, the Ondurdis continues, "Setstokkr have... unusual properties. This drive contains information that will allow you to track them. Go to these worlds, see if you can find the Setstokkr, and return to us with news. We are eager to know where Skade will send us."`
 			`	The sky glows and the earth rumbles as a shuttle lands not far from the village. "That shuttle will return you to the spaceport and your ship. May Skade guide you." With that The Ondurdis leaves you.`
 			choice
-				`	(Head to the shuttle)`
+				`	(Head to the shuttle.)`
 					goto shuttle
 				`	(Take a moment to investigate Goddess-Stone.)`
 			`	You walk toward the park filled with stone cairns, wooden pillars and Goddess-Stone.`
@@ -4126,8 +4126,7 @@ mission "The Book of Skadenga"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	to offer
 		random < 10
-		or
-			has "event: the book"
+		has "event: the book"
 	on offer
 		conversation
 			`As you wander through the spaceport, something catches your eye at a kiosk selling gifts, trinkets, and other odds and ends.`

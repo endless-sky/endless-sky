@@ -900,7 +900,7 @@ mission "WR Star 1"
 	passengers 3
 	cargo "sensors" 2
 	on offer
-		dialog `A group of <bunks> scientists approaches you and asks if you will be headed to the Rim any time soon. "We're doing research on Wolf-Rayet stars," they explain, "and we're hoping to find a captain who can do a fly-by of <waypoints>." Scientific research in the Deep is notoriously well-funded, so they will probably pay you quite well.`
+		dialog `A group of <bunks> scientists approaches you and asks if you will be headed to the Rim any time soon. "We're doing research on Wolf-Rayet stars," they explain, "and we're hoping to find a captain who can do a flyby of <waypoints>." Scientific research in the Deep is notoriously well-funded, so they will probably pay you quite well.`
 	on waypoint
 		dialog `The team of scientists unpacks their equipment and takes some measurements of the star. Before long they inform you they are ready to go home.`
 	on visit
@@ -4135,7 +4135,7 @@ mission "Street Swindle"
 			`	"Are you certain in your choice?" the magician asks. "Once you-"`
 			`	"Yes, I'm certain," the man interrupts. He draws 7000 credits and tosses them on the table. The magician lifts the cup, and a small red ball rolls from beneath. "And the first challenger proves to be a player!" the announcer says, mustering enthusiasm as the magician counts 14,000 credits to pay the man. "Let us find a new challenger! The next buy-in is a mere 400 credits; if you haven't played before, now's the time to test your skill!"`
 			choice
-				`	"I'd like to give it a try." (Bet 400 credits).`
+				`	"I'd like to give it a try." (Bet 400 credits.)`
 					goto firstgameplay
 				`	(Wait and watch.)`
 					goto firstgamewatch
@@ -4145,7 +4145,7 @@ mission "Street Swindle"
 			`	A short woman volunteers. The game progresses in a similar manner; by the end, you are certain the ball is underneath the center cup. Sure enough, the woman chooses that cup, and she walks away 400 credits richer.`
 			`	"The next buy-in is a larger prize!" the announcer calls after her before turning to address the crowd. "Six thousand credits, only for the proudest of players." The magician shakes her head softly, frowning at the cups.`
 			choice
-				`	"I'll do it!" (Bet 6000 credits).`
+				`	"I'll do it!" (Bet 6000 credits.)`
 					goto secondgameplay
 				`	(Continue watching.)`
 					goto secondgamewatch
@@ -4985,11 +4985,11 @@ mission "Dangerous Games 2"
 			label adventure
 			`	The adventure seekers, who you've spent the trip getting to know, are getting ready. You watch a nearby pair, Daciana and Mussie, helping each other get their wetsuits on. Daciana catches your gaze and grins. "Bafta, mate. Safe sailing, see you on the other side." Karengo gives you a signal and you hurry back to the cockpit to fly out, away from safe shoals and over the watery abyss.`
 			`	At your touch, the ship slowly sinks below the waves. As Karengo warned, most of your navigation systems quickly flash red warnings, then go offline; there is some unknown interference that overwhelms your ship's sensors, which were designed for space first and water second, or fifth, or not at all. Minutes tick by as the crew silently watches one of the few sensors still working.`
-			`	EIGHT KILOMETERS, the depth meter reads.`
-			`	TEN KILOMETERS.`
-			`	SIXTEEN KILOMETERS. A loud, metallic creak echoes through the ship and Mussie jumps, startled.`
+			`	EIGHT HUNDRED KILOPASCALS, the pressure gauge reads.`
+			`	ONE THOUSAND KILOPASCALS.`
+			`	ONE THOUSAND TWO HUNDRED KILOPASCALS. A loud, metallic creak echoes through the ship and Mussie jumps, startled.`
 			`	Karengo claps him on the back and gives him a signature grin. "Maybe <first> can keep you aboard after this in case they need anything from a high shelf!" Mussie smiles weakly, but his eyes don't leave the readout.`
-			`	TWENTY-FIVE KILOMETERS. "This's it," Karengo announces, "Sub up! Let's see what there is to see. And <first>, keep it to passive sensors. Don't want to attract any undue attention." The ship smoothly descends into the mouth of a massive cave and your visibility, clouded by dark sulfide emissions from the hydrothermal vents at the floor, drops to less than eight meters. 6 personal subpods fan out behind you, their communication equipment syncing with yours to display them as blips on your screen.`
+			`	ONE THOUSAND FIVE HUNDRED KILOPASCALS. "This's it," Karengo announces, "Sub up! Let's see what there is to see. And <first>, keep it to passive sensors. Don't want to attract any undue attention." The ship smoothly descends into the mouth of a massive cave and your visibility, clouded by dark sulfide emissions from the hydrothermal vents at the floor, drops to less than eight meters. 6 personal subpods fan out behind you, their communication equipment syncing with yours to display them as blips on your screen.`
 			`	"Ok, <first>," Karengo crackles over the radio. "I'll read you the first clue."`
 			`"No other path may you take"`
 			`"Oiled skins flash and flicker"`
@@ -4997,13 +4997,13 @@ mission "Dangerous Games 2"
 			`"Titanic walls crush and smash"`
 			`"Heed the beginnings to live".`
 			choice
-				`	(Go east).`
+				`	(Go east.)`
 					goto east
-				`	(Go north).`
+				`	(Go north.)`
 					goto north
-				`	(Go south).`
+				`	(Go south.)`
 					goto south
-				`	(Go west).`
+				`	(Go west.)`
 			action
 				set "Elias and Taddese dead"
 			`	Small schools of fish flit past as you guide your small fleet to the west. Minutes pass with no sign of danger, and finally Karengo broadcasts, "Good work, <first>. Looks like this is the way forward."`
@@ -5388,7 +5388,7 @@ mission "Riley"
 					goto death
 				`	(Turn the Core in for a bounty.)`
 					goto bounty
-				`	(Draw your gun and destroy the Core).`
+				`	(Draw your gun and destroy the Core.)`
 			label destroy
 			`	You pull out your gun and aim at the computer Church is in. Before you can fire, Riley runs out in front of the barrel, spreads her arms, and shouts, "No! Please, <first>, you have to understand! He's all I have left!"`
 			`	Behind her, Church says, "Riley, there is no need to be so loud. My microphones can hear you fine, and I do not want the nurse to become suspicious."`
@@ -5421,7 +5421,7 @@ mission "Riley"
 				`	(Say goodbye.)`
 				`	(Turn the Core in for a bounty.)`
 					goto bounty
-				`	(Draw your gun and destroy the Core).`
+				`	(Draw your gun and destroy the Core.)`
 					goto destroy
 			`	Respecting Riley's request to stay with her father, you make your farewells and head for the door.`
 			`	Despite her previous happiness, you notice that her disposition has become more muted after what you said. You wonder if she has begun to doubt whether her attachment to the AI is healthy.`
@@ -6244,14 +6244,14 @@ mission "Blind Man from Martini"
 			action
 				set "Blind Man from Martini: label daughter"
 				"Blind Man from Martini: taxi questions count" ++
-			`	"Luckily, my daughter was off-planet during the bombings. Anita was studying nanoengineering on Vinci and was going to apply for a job at CyberAcme there. But she gave that up to come take care of me after the bombings. When things were more ironed over, it was the midst of the civil war, and she managed to go back to Vinci and work at CyberAcme then, but... well, she has not been well since then."`
+			`	"Luckily, my daughter was off-planet during the bombings. Anita was studying nanoengineering on Vinci and was going to apply for a job at Polymath there. But she gave that up to come take care of me after the bombings. When things were more ironed over, it was the midst of the civil war, and she managed to go back to Vinci and work at Polymath then, but... well, she has not been well since then."`
 				goto taxi
 
 			label illness
 			action
 				set "Blind Man from Martini: label illness"
 				"Blind Man from Martini: taxi questions count" ++
-			`	"I don't know if I really should tell you this, but Anita was working on a project on nanomachines at CyberAcme when she got back. She was, uh... infected by them by accident. The experimental treatment is meant to try and eliminate the rogue machines, but since they're so small... that's why the treatment is experimental."`
+			`	"I don't know if I really should tell you this, but Anita was working on a project on nanomachines at Polymath when she got back. She was, uh... infected by them by accident. The experimental treatment is meant to try and eliminate the rogue machines, but since they're so small... that's why the treatment is experimental."`
 				goto taxi
 
 			label waiting
@@ -6768,6 +6768,7 @@ mission "Southern Fiance 6"
 			`	The official mansion is much more impressive than Carl's house as Agricultural Minister was, and Tom gives you a tour while Carl has to field some official phone calls. Partway through the tour, Tom gets a mischievous grin, and when he opens the next door, a very small child races out and cannons into his legs, gripping them tightly with a glad cry of "Daddy!" Tom proudly introduces Nita, his and Carl's three-year-old daughter, who giggles and tries to run off with your communicator.`
 			`	You're already looking forward to the food well before you sit down to dinner, and you are not disappointed: if anything, it's better than the last time you visited them. Carl confides that it used to be even better, but a year ago his best cook left to become a star teacher at the new culinary institute whose funding he championed.`
 			`	After dinner, as before, you catch each other up on what you've been doing since your last visit. Tom and Carl's side of this, in between bouts of corralling their exuberant daughter, is mostly about the joys and fears of fatherhood, and their hopes for their, and Nita's, future.`
+				goto end
 			
 			label already2
 			`	Even having seen it once before, you're still impressed with the governor's mansion. This time, though Carl still has to take an official call, Tom gets a mischievous grin and takes you upstairs to one particular room that you recall on the previous tour was a guest bedroom. When he opens the door, though, you have just time to see that it's been expertly redecorated as a nursery, before a very small child races out and cannons into his legs, gripping them tightly with a glad cry of "Daddy!" Tom proudly introduces Nita, his and Carl's three-year-old daughter, who giggles and tries to run off with your communicator.`
@@ -6848,3 +6849,45 @@ mission "FW Refugees to Humanika"
 		dialog "Penny and Rosa thank you for getting them safely to <destination>, handing you <payment> for your troubles. You wish them and Eduardo the best of luck starting their new life away from a potential war in human space."
 		log "Minor People" "Penny Little, Rosa Perkins, and Eduardo" `A young family who wanted to escape a potential war in human space. Took them to the planet Humanika, where the Quarg let humans settle.`
 
+mission "Returning to Paradise"
+	name "Take a family home to <planet>."
+	description "A family worried about the potential destruction within the Free Worlds wants to cut their vacation short and go home to <destination>."
+	source
+		government "Free Worlds"
+		attributes "tourism"
+	destination "Mainsail"
+	passengers 4
+	cargo "personal belongings" 1
+	to offer
+		random < 30
+		not "chosen sides"
+		has "assisted free worlds"
+	on offer
+		conversation
+			`After looking around <origin>'s spaceport, you head back to your ship to find a middle-aged couple and two grade-school girls (probably their daughters, you reason) waiting for you at your landing pad. While the man tries to resolve an argument between the two girls, the lady notices you immediately and begins to approach you. "Thank goodness you're here," she says. "We've been going from ship to ship looking for transport back home to the Paradise Planets. This war has caught us right in the middle of our vacation and we can't risk being anywhere near here when the Navy attacks, especially with our little angels," she gestures toward her daughters, now in a full-blown fight. "If you can find the time to take us to <planet>, we will pay you very well."`
+			choice
+				`	"Sure, I'll take you."`
+				`	"Okay, but that's pretty far. This better be worth it."`
+				`	"No, I don't think so. Sorry."`
+					decline
+
+			`	"Then it's a deal," she says as she gives you a firm handshake. The whole family gets onto the <ship> without a word, leaving you to load their many bags and cases.`
+				accept
+
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+
+	on complete
+		conversation
+			branch luxury
+				has "outfit: Luxury Accommodations"
+
+			action
+				payment 66999
+			`You're not sure if you've ever met a more pretentious and entitled family. The girls fought non-stop, and every family member complained constantly about the lack of luxury accommodations on your ship. Once you land on <planet>, the lady gives you <payment> and the family leaves without a word of thanks; they never even tell you their names. Considering what they put you through they should have paid you more, but nonetheless you're happy to be rid of them.`
+				decline
+
+			label luxury
+			action
+				payment 120000
+			`You're not sure if you've ever met a more pretentious and entitled family. The girls fought non-stop, but fortunately, the family was satisfied with the luxury accommodations on your ship. Once you land on <planet>, the lady gives you <payment> and the family leave without a word of thanks; they never even tell you their names. Nonetheless, you're happy to be rid of them.`
