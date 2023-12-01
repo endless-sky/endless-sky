@@ -176,7 +176,7 @@ int MapShipyardPanel::FindItem(const string &text) const
 	int bestItem = -1;
 	for(unsigned i = 0; i < list.size(); ++i)
 	{
-		int index = Search(list[i]->DisplayModelName(), text);
+		int index = Format::Search(list[i]->DisplayModelName(), text);
 		if(index >= 0 && index < bestIndex)
 		{
 			bestIndex = index;

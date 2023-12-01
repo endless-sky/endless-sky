@@ -52,6 +52,7 @@ protected:
 	virtual bool CanSell(bool toStorage = false) const override;
 	virtual void Sell(bool toStorage = false) override;
 	virtual bool CanSellMultiple() const override;
+	virtual int FindItem(const std::string &text) const override;
 
 
 private:
