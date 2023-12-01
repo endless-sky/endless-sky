@@ -641,7 +641,6 @@ government "Heliarch"
 		"Quarg (Kor Efret)" -.01
 		"Quarg (Gegno)" -.01
 		"Coalition" 1
-    
 
 government "Heliarch Test Dummy"
 	"display name" "Heliarch"
@@ -664,7 +663,7 @@ government "Hicemus"
 		"Conlatio" 1
 		"Incipias Civilian" 1
 	"friendly hail" "incipias common"
-	"friendly disabled hail" "incipias common disabled"
+	"friendly disabled hail" "incipias friendly disabled"
 	"hostile disabled hail" "incipias hostile disabled"
 
 government "Conlatio"
@@ -678,7 +677,7 @@ government "Conlatio"
 		"Hicemus" 1
 		"Incipias Civilian" 1
 	"friendly hail" "incipias common"
-	"friendly disabled hail" "incipias common disabled"
+	"friendly disabled hail" "incipias friendly disabled"
 	"hostile disabled hail" "incipias hostile disabled"
 
 government "Incipias Civilian"
@@ -692,7 +691,7 @@ government "Incipias Civilian"
 		"Hicemus" 1
 		"Conlatio" 1
 	"friendly hail" "incipias common"
-	"friendly disabled hail" "incipias common disabled"
+	"friendly disabled hail" "incipias friendly disabled"
 	"hostile disabled hail" "incipias hostile disabled"
 
 color "governments: Independent" .78 .36 .36
