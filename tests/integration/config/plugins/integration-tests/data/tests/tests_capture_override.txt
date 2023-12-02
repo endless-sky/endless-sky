@@ -100,10 +100,6 @@ test-data "Capture Uncapturable With Capturable Override Mission"
 				"override capture"
 			to offer
 				has "%TEST%: ILLEGAL CAPTURE"
-			on offer
-				conversation
-					`Skip this and get your own Quarg automaton, today!`
-						accept
 			destination "Earth"
 
 
@@ -124,12 +120,8 @@ test "Capture Uncapturable With Capturable Override"
 		label "floating"
 		# empty input to make time pass
 		input
-			key return
 		branch "floating"
 			not "%TEST%: Capture That Quarg!: offered"
-		# skip dialog
-		input
-			key "return"
 		# attempt capture and attack, then close the panel and land
 		input
 			key c
@@ -137,8 +129,9 @@ test "Capture Uncapturable With Capturable Override"
 			key a
 		input
 			key d
+		navigate
+			"travel destination" Ruin
 		call "Land"
-		call "Wait 10 steps"
 		assert
 			"ship model: %TEST%: outfitless wardragon" == 1
-			"test: %TEST%: Capture That Quarg!: declined" == 0
+			"%TEST%: Capture That Quarg!: declined" == 0

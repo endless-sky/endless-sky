@@ -662,9 +662,9 @@ mission "Lovelace Labs Shipment [0]"
 		payment 0 160
 		dialog phrase "generic cargo delivery payment"
 
-mission "Vinci Nanocircuits Shipment [0]"
+mission "Polymath Nanoinstruments Shipment [0]"
 	name "Shipment to <planet>"
-	description "Deliver <cargo> to <destination>, the home of Vinci Nanocircuits, one of the largest electronics firms in human space. Payment is <payment>."
+	description "Deliver <cargo> to <destination>, the home of Polymath Nanoinstruments, one of the largest electronics firms in human space. Payment is <payment>."
 	cargo Electronics 5 2 .1
 	job
 	repeat

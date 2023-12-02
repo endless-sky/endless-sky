@@ -2661,10 +2661,23 @@ int Ship::Crew() const
 
 
 
-// Calculate drag, accounting for drag reduction.
+// Calculate the drag on this ship. The drag can be no greater than the mass.
 double Ship::Drag() const
 {
-	return attributes.Get("drag") / (1. + attributes.Get("drag reduction"));
+	double drag = attributes.Get("drag") / (1. + attributes.Get("drag reduction"));
+	double mass = InertialMass();
+	return drag >= mass ? mass : drag;
+}
+
+
+
+// Calculate the drag force that this ship experiences. The drag force is the drag
+// divided by the mass, up to a value of 1.
+double Ship::DragForce() const
+{
+	double drag = attributes.Get("drag") / (1. + attributes.Get("drag reduction"));
+	double mass = InertialMass();
+	return drag >= mass ? 1. : drag / mass;
 }
 
 
@@ -2682,7 +2695,10 @@ int Ship::RequiredCrew() const
 
 int Ship::CrewValue() const
 {
-	return max(Crew(), RequiredCrew()) + attributes.Get("crew equivalent");
+	int crewEquivalent = attributes.Get("crew equivalent");
+	if(attributes.Get("use crew equivalent as crew"))
+		return crewEquivalent;
+	return max(Crew(), RequiredCrew()) + crewEquivalent;
 }
 
 
@@ -4198,10 +4214,11 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 	isUsingAfterburner = false;
 
 	double mass = InertialMass();
+	double dragForce = DragForce();
 	double slowMultiplier = 1. / (1. + slowness * .05);
 
 	if(isDisabled)
-		velocity *= 1. - Drag() / mass;
+		velocity *= 1. - dragForce;
 	else if(!pilotError)
 	{
 		if(commands.Turn())
@@ -4364,7 +4381,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 	{
 		acceleration *= slowMultiplier;
 		// Acceleration multiplier needs to modify effective drag, otherwise it changes top speeds.
-		Point dragAcceleration = acceleration - velocity * Drag() * (1. + attributes.Get("acceleration multiplier")) / mass;
+		Point dragAcceleration = acceleration - velocity * dragForce * (1. + attributes.Get("acceleration multiplier"));
 		// Make sure dragAcceleration has nonzero length, to avoid divide by zero.
 		if(dragAcceleration)
 		{
@@ -4621,9 +4638,43 @@ double Ship::CalculateDeterrence() const
 		if(hardpoint.GetOutfit())
 		{
 			const Outfit *weapon = hardpoint.GetOutfit();
-			double strength = weapon->ShieldDamage() + weapon->HullDamage()
-				+ (weapon->RelativeShieldDamage() * MaxShields())
-				+ (weapon->RelativeHullDamage() * MaxHull());
+			// 1 DoT damage of type X = 100 damage of type X over an extended period of time
+			// (~95 damage after 5 seconds, ~99 damage after 8 seconds). Therefore, multiply
+			// DoT damage types by 100. Disruption, scrambling, and slowing don't have an
+			// analogous instantaneous damage type, but still just multiply them by 100 to
+			// stay consistent.
+
+			// Compare the relative damage types to the strength of the firing ship, since we
+			// have nothing else to reasonably compare against.
+
+			// Shield and hull damage are the primary damage types that dictate combat, so
+			// consider the full damage dealt by these types for the strength of a weapon.
+			double shieldFactor = weapon->ShieldDamage()
+					+ weapon->RelativeShieldDamage() * MaxShields()
+					+ weapon->DischargeDamage() * 100.;
+			double hullFactor = weapon->HullDamage()
+					+ weapon->RelativeHullDamage() * MaxHull()
+					+ weapon->CorrosionDamage() * 100.;
+
+			// Other damage types don't outright destroy ships, so they aren't considered
+			// as heavily in the strength of a weapon.
+			double energyFactor = weapon->EnergyDamage()
+					+ weapon->RelativeEnergyDamage() * attributes.Get("energy capacity")
+					+ weapon->IonDamage() * 100.;
+			double heatFactor = weapon->HeatDamage()
+					+ weapon->RelativeHeatDamage() * MaximumHeat()
+					+ weapon->BurnDamage() * 100.;
+			double fuelFactor = weapon->FuelDamage()
+					+ weapon->RelativeFuelDamage() * attributes.Get("fuel capacity")
+					+ weapon->LeakDamage() * 100.;
+			double scramblingFactor = weapon->ScramblingDamage() * 100.;
+			double slowingFactor = weapon->SlowingDamage() * 100.;
+			double disruptionFactor = weapon->DisruptionDamage() * 100.;
+
+			// Disabled and asteroid damage are ignored because they don't matter in combat.
+
+			double strength = shieldFactor + hullFactor + 0.2 * (energyFactor + heatFactor + fuelFactor
+					+ scramblingFactor + slowingFactor + disruptionFactor);
 			tempDeterrence += .12 * strength / weapon->Reload();
 		}
 	return tempDeterrence;

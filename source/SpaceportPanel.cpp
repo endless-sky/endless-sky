@@ -16,14 +16,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SpaceportPanel.h"
 
 #include "text/alignment.hpp"
-#include "Color.h"
 #include "text/FontSet.h"
 #include "GameData.h"
 #include "Interface.h"
 #include "News.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
-#include "Point.h"
 #include "Random.h"
 #include "UI.h"
 
