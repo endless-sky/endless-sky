@@ -176,13 +176,13 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	{
 		++currentSettingsPage;
 		selected = 0;
-		selectedItem = "";
+		selectedItem.clear();
 	}
 	else if((key == 'r' || key == SDLK_PAGEDOWN) && currentSettingsPage > 0)
 	{
 		--currentSettingsPage;
 		selected = 0;
-		selectedItem = "";
+		selectedItem.clear();
 	}
 	else if((key == 'x' || key == SDLK_DELETE) && (page == 'c'))
 	{
@@ -760,7 +760,7 @@ void PreferencesPanel::DrawSettings()
 		table.Draw(text, isOn ? bright : medium);
 	}
 
-	if(selectedItem == "")
+	if(selectedItem.empty())
 		selectedItem = prefZones.at(selected).Value();
 }
 
