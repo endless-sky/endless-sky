@@ -22,7 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-// User interface panel that displays message log.
+// User interface panel that displays the message log.
 class MessageLogPanel : public Panel {
 public:
 	MessageLogPanel();

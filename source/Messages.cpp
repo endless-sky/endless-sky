@@ -111,9 +111,9 @@ void Messages::Reset()
 
 
 // Get color that should be used for drawing messages of given importance.
-const Color *Messages::GetColor(Importance importance, bool isLog)
+const Color *Messages::GetColor(Importance importance, bool isLogPanel)
 {
-	string prefix = isLog ? "message log importance " : "message importance ";
+	string prefix = isLogPanel ? "message log importance " : "message importance ";
 	switch(importance)
 	{
 		case Messages::Importance::Highest:
