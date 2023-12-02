@@ -89,6 +89,8 @@ public:
 	static void ProcessSprites();
 	// Wait until all pending sprite uploads are completed.
 	static void FinishLoadingSprites();
+	// Add a sprite to the queue.
+	static void LoadSprite(const std::string &path, const std::string &name);
 
 	// Get the list of resource sources (i.e. plugin folders).
 	static const std::vector<std::string> &Sources();

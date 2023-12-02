@@ -39,6 +39,7 @@ public:
 
 	// Draw this panel.
 	virtual void Draw() override;
+	virtual void Step() override;
 
 
 protected:

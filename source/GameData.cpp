@@ -304,6 +304,20 @@ void GameData::FinishLoadingSprites()
 
 
 
+// Add a sprite to the queue.
+void GameData::LoadSprite(const std::string &path, const std::string &name)
+{
+	auto image = make_shared<ImageSet>(name);
+	image->Add(path);
+	if(!image->IsEmpty())
+	{
+		image->ValidateFrames();
+		spriteQueue.Add(image);
+	}
+}
+
+
+
 // Get the list of resource sources (i.e. plugin folders).
 const vector<string> &GameData::Sources()
 {

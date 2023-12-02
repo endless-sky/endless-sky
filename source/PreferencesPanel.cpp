@@ -178,6 +178,14 @@ void PreferencesPanel::Draw()
 
 
 
+void PreferencesPanel::Step()
+{
+	if(downloadedInfo)
+		GameData::ProcessSprites();
+}
+
+
+
 bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	if(static_cast<unsigned>(editing) < zones.size())
@@ -991,7 +999,7 @@ void PreferencesPanel::DrawPluginInstalls()
 			table.Draw(installData.name, medium);
 		if(isSelected)
 		{
-			const Sprite *sprite = icons.Find(installData.name);
+			const Sprite *sprite = SpriteSet::Get(installData.name + "-libicon");
 			Point top(15., firstY);
 			if(sprite)
 			{
@@ -1088,20 +1096,12 @@ void PreferencesPanel::ProcessPluginIndex()
 			);
 			pluginInstallData.emplace_back(installData);
 
-			//Files::CreateFolder(Files::Config() + "icons/");
-			string iconPath = Files::Config() + pluginName + ".png";
+			Files::CreateFolder(Files::Config() + "icons/");
+			string iconPath = Files::Config() + "icons/" + pluginName + ".png";
 			if(!Files::Exists(iconPath) && pluginInstall.contains("iconUrl"))
 				Plugins::Download(pluginInstall["iconUrl"], iconPath);
 			if(Files::Exists(iconPath))
-			{
-				ImageBuffer iconBuffer;
-				if(iconBuffer.Read(iconPath))
-				{
-					Logger::LogError("hi!");
-					Sprite *icon = icons.Get(pluginName);
-					icon->AddFrames(iconBuffer, false);
-				}
-			}
+				GameData::LoadSprite(iconPath, pluginName + "-libicon");
 		}
 		downloadedInfo = true;
 		GetUI()->Pop(GetUI()->Top().get());
