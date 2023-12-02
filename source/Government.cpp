@@ -216,8 +216,6 @@ void Government::Load(const DataNode &node)
 					grand.PrintTrace("Skipping unrecognized attribute:");
 			}
 		}
-		else if(key == "default attitude")
-			defaultAttitude = child.Value(1);
 		else if(key == "reputation")
 		{
 			for(const DataNode &grand : child)
@@ -360,6 +358,8 @@ void Government::Load(const DataNode &node)
 			sendUntranslatedHails = true;
 		else if(!hasValue)
 			child.PrintTrace("Error: Expected key to have a value:");
+		else if(key == "default attitude")
+			defaultAttitude = child.Value(1);
 		else if(key == "player reputation")
 			initialPlayerReputation = add ? initialPlayerReputation + child.Value(valueIndex) : child.Value(valueIndex);
 		else if(key == "crew attack")
