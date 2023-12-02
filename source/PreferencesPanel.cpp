@@ -229,12 +229,12 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 			ProcessPluginIndex();
 		}
 	}
-	else if(key == 'i' && page == 'i' && selectedPluginInstall && selectedPluginInstall->url.size() && !selectedPluginInstall->installed)
+	else if(key == 'i' && page == 'i' && selectedPluginInstall && selectedPluginInstall->url.size()
+		&& !selectedPluginInstall->installed)
 		installFeedbacks.emplace_back(Plugins::Install(selectedPluginInstall));
-	else if(key == 'u' && page == 'i' && selectedPluginInstall && selectedPluginInstall->url.size() && selectedPluginInstall->outdated)
+	else if(key == 'u' && page == 'i' && selectedPluginInstall && selectedPluginInstall->url.size()
+		&& selectedPluginInstall->outdated)
 		installFeedbacks.emplace_back(Plugins::Update(selectedPluginInstall));
-	else if(key == 'u' && page == 'i' && selectedPluginInstall && selectedPluginInstall->url.size() && selectedPluginInstall->installed)
-		Plugins::DeletePlugin(selectedPluginInstall->name);
 	else if(key == 'r' && page == 'i')
 		currentPluginInstallPage = currentPluginInstallPage > 0 ? currentPluginInstallPage - 1 : 0;
 	else if(key == 'e' && page == 'i')

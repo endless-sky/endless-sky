@@ -43,6 +43,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #ifdef _WIN32
 #include "text/Utf8.h"
+
 #include <windows.h>
 #else
 #include <unistd.h>
