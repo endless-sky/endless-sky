@@ -4667,7 +4667,6 @@ void AI::UpdateOrders(const Ship &ship)
 void AI::IssueNPCOrders(Ship &ship, const System *targetSystem, const std::map<const Planet *, bool> stopovers)
 {
 	Orders newOrders;
-	const bool isSurveying = ship.IsSurveying();
 	const System *from = ship.GetSystem();
 	if(targetSystem)
 	{
@@ -4695,7 +4694,7 @@ void AI::IssueNPCOrders(Ship &ship, const System *targetSystem, const std::map<c
 
 	// If one of the planets in this system is a destination or stopover, it
 	// supercedes the order to travel to the next waypoint (unless already visited).
-	if(!stopovers.empty() && !isSurveying)
+	if(!stopovers.empty())
 		for(const auto &it : stopovers)
 			if(!it.second && it.first->IsInSystem(from))
 			{

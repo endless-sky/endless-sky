@@ -3444,15 +3444,6 @@ const System *Ship::GetDestinationSystem() const
 
 
 
-// Returns true for a mission NPC given a travel directive, when it has arrived
-// in one of its specified destination systems.
-const bool Ship::IsSurveying() const
-{
-	return stayingTime > 0 && currentSystem && currentSystem == destinationSystem;
-}
-
-
-
 // Persistent targets for mission NPCs.
 void Ship::SetStopovers(const std::vector<const Planet *> planets, const bool shouldRelaunch)
 {

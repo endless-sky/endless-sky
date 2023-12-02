@@ -448,7 +448,6 @@ public:
 	const bool HasTravelDirective() const;
 	const std::map<const Planet *, bool> GetStopovers() const;
 	const System *GetDestinationSystem() const;
-	const bool IsSurveying() const;
 
 	// Mining target.
 	std::shared_ptr<Minable> GetTargetAsteroid() const;
@@ -703,7 +702,6 @@ private:
 	// The list of consecutive NPC destination systems.
 	std::vector<const System *> waypoints;
 	size_t waypoint = 0;
-	int stayingTime = 0;
 	// The list of planets this NPC may land on, and if they have already
 	// been landed on in this sequence.
 	std::map<const Planet *, bool> travelDestinations;
