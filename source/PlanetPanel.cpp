@@ -215,7 +215,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	}
 	else if(command.Has(Command::MESSAGE_LOG))
 	{
-		GetUI()->Push(new MessageLogPanel(Messages::GetLog()));
+		GetUI()->Push(new MessageLogPanel());
 		return true;
 	}
 	else

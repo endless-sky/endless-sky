@@ -84,7 +84,7 @@ void MainPanel::Step()
 	}
 	else if(show.Has(Command::MESSAGE_LOG))
 	{
-		GetUI()->Push(new MessageLogPanel(Messages::GetLog()));
+		GetUI()->Push(new MessageLogPanel());
 		isActive = false;
 	}
 	else if(show.Has(Command::HAIL))

@@ -40,8 +40,8 @@ namespace {
 
 
 
-MessageLogPanel::MessageLogPanel(const deque<pair<string, Messages::Importance>> &messages)
-	: messages(messages)
+MessageLogPanel::MessageLogPanel()
+	: messages(Messages::GetLog())
 {
 	SetInterruptible(false);
 }

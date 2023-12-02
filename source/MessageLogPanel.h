@@ -25,7 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // User interface panel that displays message log.
 class MessageLogPanel : public Panel {
 public:
-	MessageLogPanel(const std::deque<std::pair<std::string, Messages::Importance>> &messages);
+	MessageLogPanel();
 
 	virtual void Draw() override;
 
