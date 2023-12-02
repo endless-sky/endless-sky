@@ -4663,7 +4663,7 @@ void AI::UpdateOrders(const Ship &ship)
 	}
 }
 
-// Job / Mission NPC blocks may use keywords (waypoint, visit, land) to define travel plans.
+// Job / Mission NPC blocks may use keywords (waypoint, stopover, destination) to define travel plans.
 void AI::IssueNPCOrders(Ship &ship, const System *targetSystem, const std::map<const Planet *, bool> stopovers)
 {
 	Orders newOrders;
@@ -4693,7 +4693,7 @@ void AI::IssueNPCOrders(Ship &ship, const System *targetSystem, const std::map<c
 		}
 	}
 
-	// If there is a directive to visit or land on a planet in this system, it
+	// If one of the planets in this system is a destination or stopover, it
 	// supercedes the order to travel to the next waypoint (unless already visited).
 	if(!stopovers.empty() && !isSurveying)
 		for(const auto &it : stopovers)

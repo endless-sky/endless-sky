@@ -144,7 +144,7 @@ private:
 	std::list<LocationFilter> waypointFilters;
 	std::list<LocationFilter> stopoverFilters;
 	// Default behavior is to permanently land on the destination planet.
-	bool doVisit = false;
+	bool doStopover = false;
 
 	// Start out landed on this planet.
 	const Planet *planet = nullptr;

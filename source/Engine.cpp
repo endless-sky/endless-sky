@@ -413,8 +413,8 @@ void Engine::Place(const list<NPC> &npcs, shared_ptr<Ship> flagship)
 		map<string, map<Ship *, int>> carriers;
 		for(const shared_ptr<Ship> &ship : npc.Ships())
 		{
-			// Skip ships that have been destroyed or have landed
-			if(ship->IsDestroyed() || ship->IsDisabled() || ship->HasLanded())
+			// Skip ships that have been destroyed, have landed, or are disabled
+			if(ship->IsRemoved() || ship->IsDisabled())
 				continue;
 
 			// Redo the loading up of fighters.
@@ -435,7 +435,7 @@ void Engine::Place(const list<NPC> &npcs, shared_ptr<Ship> flagship)
 		for(const shared_ptr<Ship> &ship : npc.Ships())
 		{
 			// Skip ships that have been destroyed or permanently landed.
-			if(ship->IsDestroyed() || ship->HasLanded())
+			if(ship->IsRemoved())
 				continue;
 
 			// Avoid the exploit where the player can wear down an NPC's

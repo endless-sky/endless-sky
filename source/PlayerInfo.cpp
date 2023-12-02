@@ -4086,7 +4086,7 @@ void PlayerInfo::StepMissions(UI *ui)
 				else if(ship->GetSystem() == system && !ship->IsDisabled()
 					&& ship->GetStopovers().count(planet) && !ship->GetStopovers().at(planet))
 				{
-					ship->Land();
+					ship->LandForever();
 					mission.Do(ShipEvent(nullptr, ship, ShipEvent::LAND), *this, ui);
 				}
 			}

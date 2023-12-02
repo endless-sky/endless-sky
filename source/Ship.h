@@ -291,8 +291,10 @@ public:
 	// Check if this ship has been destroyed.
 	bool IsDestroyed() const;
 	// Land/Check if this ship has permanently landed.
-	void Land();
+	void LandForever();
 	bool HasLanded() const;
+	// Check if this ship has permanently landed or been destroyed.
+	bool IsRemoved() const;
 	// Recharge and repair this ship (e.g. because it has landed).
 	void Recharge(int rechargeType = Port::RechargeType::All, bool hireCrew = true);
 	// Check if this ship is able to give the given ship enough fuel to jump.
@@ -705,9 +707,9 @@ private:
 	// The list of planets this NPC may land on, and if they have already
 	// been landed on in this sequence.
 	std::map<const Planet *, bool> travelDestinations;
-	// NPCs with a landing directive may only visit the destination
-	// planet, or they may permanently land.
-	bool doVisit = false;
+	// NPCs with a landing directive may only have a stopover, or land on
+	// a permanent destination planet.
+	bool doStopover = false;
 
 	// Links between escorts and parents.
 	std::vector<std::weak_ptr<Ship>> escorts;

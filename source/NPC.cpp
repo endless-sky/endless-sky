@@ -156,7 +156,7 @@ void NPC::Load(const DataNode &node)
 			// from multiple "destination" / "stopover" nodes. If any nodes are "stopover",
 			// all stopovers are visited (no permanent landing on the stopovers). If no
 			// planet is passed to the node, the mission's destination will be used.
-			doVisit |= child.Token(0) == "stopover";
+			doStopover |= child.Token(0) == "stopover";
 			if(!child.HasChildren())
 			{
 				// Given "destination/stopover" or "destination/stopover <planet 1> ... <planet N>".
@@ -316,7 +316,7 @@ void NPC::Load(const DataNode &node)
 		if(!waypoints.empty())
 			ship->SetWaypoints(waypoints);
 		if(!stopovers.empty())
-			ship->SetStopovers(stopovers, doVisit);
+			ship->SetStopovers(stopovers, doStopover);
 	}
 }
 
@@ -383,7 +383,7 @@ void NPC::Save(DataWriter &out) const
 
 		if(!stopovers.empty())
 		{
-			out.WriteToken(doVisit ? "stopover" : "destination");
+			out.WriteToken(doStopover ? "stopover" : "destination");
 			for(const auto &stopover : stopovers)
 				out.WriteToken(stopover->Name());
 			out.Write();
@@ -685,7 +685,7 @@ bool NPC::HasFailed() const
 		// If this ship has landed permanently, the NPC has failed if
 		// 1) it must accompany and is not in the destination system, or
 		// 2) it must evade, and is in the destination system.
-		if((it.second & ShipEvent::LAND) && !doVisit && it.first->GetSystem()
+		if((it.second & ShipEvent::LAND) && !doStopover && it.first->GetSystem()
 				&& ((mustAccompany && it.first->GetSystem() != destination)
 					|| (mustEvade && it.first->GetSystem() == destination)))
 			return true;
@@ -713,7 +713,7 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Plan
 	result.mustAccompany = mustAccompany;
 	result.waypoints = waypoints;
 	result.stopovers = stopovers;
-	result.doVisit = doVisit;
+	result.doStopover = doStopover;
 
 	result.passedSpawnConditions = passedSpawnConditions;
 	result.toSpawn = toSpawn;
@@ -797,7 +797,7 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Plan
 
 		// Use the destinations stored in the NPC copy, in case they were auto-generated.
 		if(!result.stopovers.empty())
-			ship->SetStopovers(result.stopovers, result.doVisit);
+			ship->SetStopovers(result.stopovers, result.doStopover);
 		if(!result.waypoints.empty())
 			ship->SetWaypoints(result.waypoints);
 

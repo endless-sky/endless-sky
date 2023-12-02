@@ -1716,7 +1716,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 	hasBoarded = false;
 
 	shared_ptr<Ship> victim = GetTargetShip();
-	if(CannotAct() || !victim || victim->IsDestroyed() || victim->HasLanded()
+	if(CannotAct() || !victim || victim->IsRemoved()
 		|| victim->GetSystem() != GetSystem())
 		return shared_ptr<Ship>();
 
@@ -2304,7 +2304,7 @@ bool Ship::IsDestroyed() const
 
 
 
-void Ship::Land()
+void Ship::LandForever()
 {
 	hasLanded = true;
 }
@@ -2319,10 +2319,18 @@ bool Ship::HasLanded() const
 
 
 
+// Check if this ship has permanently landed or been destroyed.
+bool Ship::IsRemoved() const
+{
+	return (hull < 0. || hasLanded);
+}
+
+
+
 // Recharge and repair this ship (e.g. because it has landed temporarily).
 void Ship::Recharge(int rechargeType, bool hireCrew)
 {
-	if(IsDestroyed() || HasLanded())
+	if(IsRemoved())
 		return;
 
 	if(hireCrew)
@@ -3448,7 +3456,7 @@ const bool Ship::IsSurveying() const
 // Persistent targets for mission NPCs.
 void Ship::SetStopovers(const std::vector<const Planet *> planets, const bool shouldRelaunch)
 {
-	doVisit = shouldRelaunch;
+	doStopover = shouldRelaunch;
 
 	// Mark each planet as not visited.
 	for(const auto &it : planets)
@@ -4216,7 +4224,8 @@ bool Ship::DoLandingLogic()
 	float landingSpeed = attributes.Get("landing speed");
 	landingSpeed = landingSpeed > 0 ? landingSpeed : .02f;
 	// Special ships do not disappear forever when they land; they just slowly refuel.
-	// Exception: mission NPCs given the 'land' directive will delete when they land on their target.
+	// Exception: mission NPCs given the 'destination' directive will be removed
+	// when they land on their target.
 	if(landingPlanet && zoom)
 	{
 		// Move the ship toward the center of the planet while landing.
@@ -4241,16 +4250,17 @@ bool Ship::DoLandingLogic()
 			else if(isSpecial && !isYours && !travelDestinations.empty())
 			{
 				// This mission NPC has a directive to land on at least one specific planet.
-				// If this is one of them, this ship may 'land' (permanently), or 'visit'.
+				// If this is one of them, this ship may land on a 'destination' (permanently),
+				// or have a 'stopover'.
 				auto it = travelDestinations.find(landingPlanet);
 				if(it != travelDestinations.end())
 				{
-					if(doVisit)
+					if(doStopover)
 						it->second = true;
 					else
 					{
 						MarkForRemoval();
-						hasLanded = true;
+						LandForever();
 						return true;
 					}
 				}
