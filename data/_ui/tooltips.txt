@@ -1351,7 +1351,7 @@ tip "Scroll speed"
 	`The speed of scrolling in panels that can scroll.`
 
 tip "Scroll smoothing"
-	`Scrolling is smoothed in the Outfitter & Shipyard`
+	`Whether scrolling is smoothed in the outfitter and shipyard.`
 
 tip "Date format"
 	`The format that dates in the game are displayed in.`
