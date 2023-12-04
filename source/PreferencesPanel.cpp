@@ -26,7 +26,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
-#include "text/layout.hpp"
 #include "Plugins.h"
 #include "Preferences.h"
 #include "Screen.h"
@@ -101,7 +100,7 @@ PreferencesPanel::PreferencesPanel()
 
 	// Initialize a centered tooltip.
 	hoverText.SetFont(FontSet::Get(14));
-	hoverText.SetWrapWidth(150);
+	hoverText.SetWrapWidth(250);
 	hoverText.SetAlignment(Alignment::LEFT);
 }
 
@@ -446,6 +445,7 @@ void PreferencesPanel::DrawControls()
 		Command::MENU,
 		Command::FULLSCREEN,
 		Command::FASTFORWARD,
+		Command::HELP,
 		Command::NONE,
 		Command::DEPLOY,
 		Command::FIGHT,
@@ -508,18 +508,18 @@ void PreferencesPanel::DrawControls()
 		}
 	}
 
-	Table shiftTable;
-	shiftTable.AddColumn(125, {150, Alignment::RIGHT});
-	shiftTable.SetUnderline(0, 130);
-	shiftTable.DrawAt(Point(-400, 32));
+	Table infoTable;
+	infoTable.AddColumn(125, {150, Alignment::RIGHT});
+	infoTable.SetUnderline(0, 130);
+	infoTable.DrawAt(Point(-400, 32));
 
-	shiftTable.DrawUnderline(medium);
-	shiftTable.Draw("With <shift> key", bright);
-	shiftTable.DrawGap(5);
-	shiftTable.Draw("Select nearest ship", medium);
-	shiftTable.Draw("Select next escort", medium);
-	shiftTable.Draw("Talk to planet", medium);
-	shiftTable.Draw("Board disabled escort", medium);
+	infoTable.DrawUnderline(medium);
+	infoTable.Draw("Additional info", bright);
+	infoTable.DrawGap(5);
+	infoTable.Draw("Press '_x' over controls", medium);
+	infoTable.Draw("to unbind them.", medium);
+	infoTable.Draw("Controls can share", medium);
+	infoTable.Draw("the same keybind.", medium);
 }
 
 

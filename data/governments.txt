@@ -174,8 +174,10 @@ government "Coalition"
 	"hostile disabled hail" "hostile disabled coalition"
 
 government "Deep"
+	"display name" "Deep Security"
 	swizzle 0
 	"player reputation" -1000
+	"hostile hail" "hostile deep"
 
 government "Deep Security"
 	swizzle 0
@@ -896,6 +898,22 @@ government "Lunarium"
 		"Heliarch" -.01
 		"Pirate" -.01
 
+government "Lunarium (Hidden)"
+	"display name" "Lunarium"
+	swizzle 5
+	"crew attack" 1.2
+	"crew defense" 2.7
+	language "Coalition"
+	"player reputation" 1
+	"friendly hail" "friendly lunarium"
+	"friendly disabled hail" "friendly disabled lunarium"
+	"hostile hail" "hostile lunarium"
+	"hostile disabled hail" "hostile disabled lunarium"
+	"attitude toward"
+		"Quarg" .01
+		"Heliarch" -.01
+		"Pirate" -.01
+
 government "Marauder"
 	swizzle 6
 	"player reputation" 1
@@ -1126,6 +1144,8 @@ government "Quarg"
 		"Medium Graviton Thruster"
 		"Medium Graviton Steering"
 		"Quantum Shield Generator"
+		ship "Quarg Skylark"
+		ship "Quarg Wardragon"
 
 government "Quarg (Hai)"
 	swizzle 0
@@ -1138,6 +1158,7 @@ government "Quarg (Hai)"
 		"Quarg (Kor Efret)" 1
 		"Quarg (Gegno)" 1
 		"Merchant" .01
+		"Kor Sestor" -.01
 		"Hai" .01
 		"Hai (Wormhole Access)" .01
 		"Pirate" -.01
@@ -1154,6 +1175,8 @@ government "Quarg (Hai)"
 		"Medium Graviton Thruster"
 		"Medium Graviton Steering"
 		"Quantum Shield Generator"
+		ship "Quarg Skylark"
+		ship "Quarg Wardragon"
 
 government "Quarg (Kor Efret)"
 	swizzle 0
@@ -1182,6 +1205,8 @@ government "Quarg (Kor Efret)"
 		"Medium Graviton Thruster"
 		"Medium Graviton Steering"
 		"Quantum Shield Generator"
+		ship "Quarg Skylark"
+		ship "Quarg Wardragon"
 
 government "Quarg (Gegno)"
 	swizzle 0
@@ -1208,6 +1233,8 @@ government "Quarg (Gegno)"
 		"Medium Graviton Thruster"
 		"Medium Graviton Steering"
 		"Quantum Shield Generator"
+		ship "Quarg Skylark"
+		ship "Quarg Wardragon"
 
 color "governments: Remnant" .89 .38 .62
 
