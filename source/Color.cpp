@@ -78,10 +78,11 @@ bool Color::IsLoaded() const
 // Get a float vector representing this color, for use by OpenGL.
 const float *Color::Get() const
 {
+	static float c[4];
+	std::copy(std::begin(color), std::end(color), std::begin(c));
+
 	switch (static_cast<Filter>(Preferences::GetColorFilterMode()))
 	{
-		static float c[4];
-		std::copy(std::begin(color), std::end(color), std::begin(c));
 		case Filter::NORMAL:
 			break;
 		// Color blindness accessibility filters are enabled.
@@ -97,8 +98,9 @@ const float *Color::Get() const
 			c[0] += (color[1] - color[0]) * color[2];
 			c[1] += (color[0] - color[1]) * color[2];
 			break;
-		return c;
 	}
+
+	return c;
 }
 
 
