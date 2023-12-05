@@ -704,9 +704,9 @@ bool Preferences::DoAlertHelper(Preferences::AlertIndicator toDo)
 
 
 
-const int &Preferences::GetColorFilterMode()
+Preferences::ColorFilter Preferences::GetColorFilterMode()
 {
-	return colorFilterIndex;
+	return static_cast<ColorFilter>(colorFilterIndex);
 }
 
 

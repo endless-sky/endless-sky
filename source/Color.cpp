@@ -81,20 +81,20 @@ const float *Color::Get() const
 	static float c[4];
 	std::copy(std::begin(color), std::end(color), std::begin(c));
 
-	switch (static_cast<Filter>(Preferences::GetColorFilterMode()))
+	switch (Preferences::GetColorFilterMode())
 	{
-		case Filter::NORMAL:
+		case Preferences::ColorFilter::NORMAL:
 			break;
 		// Color blindness accessibility filters are enabled.
-		case Filter::PROTANOPIA:
+		case Preferences::ColorFilter::PROTANOPIA:
 			if(color[0] > color[1])
 				c[2] = (1 - (1 - color[2]) * (1 - color[0]) + color[2]) / 2;
 			break;
-		case Filter::DEUTERANOPIA:
+		case Preferences::ColorFilter::DEUTERANOPIA:
 			if(color[1] > color[0])
 				c[2] = (1 - (1 - color[2]) * (1 - color[1]) + color[2]) / 2;
 			break;
-		case Filter::TRITANOPIA:
+		case Preferences::ColorFilter::TRITANOPIA:
 			c[0] += (color[1] - color[0]) * color[2];
 			c[1] += (color[0] - color[1]) * color[2];
 			break;
