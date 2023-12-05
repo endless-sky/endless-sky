@@ -76,6 +76,7 @@ namespace {
 	const string BACKGROUND_PARALLAX = "Parallax background";
 	const string EXTENDED_JUMP_EFFECTS = "Extended jump effects";
 	const string ALERT_INDICATOR = "Alert indicator";
+	const string COLOR_FILTER_SETTING = "Color filter";
 
 	// How many pages of settings there are.
 	const int SETTINGS_PAGE_COUNT = 2;
@@ -285,6 +286,8 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 				Preferences::ToggleDateFormat();
 			else if(zone.Value() == ALERT_INDICATOR)
 				Preferences::ToggleAlert();
+			else if(zone.Value() == COLOR_FILTER_SETTING)
+				Preferences::ToggleColorFilterSetting();
 			// All other options are handled by just toggling the boolean state.
 			else
 				Preferences::Set(zone.Value(), !Preferences::Has(zone.Value()));
@@ -557,6 +560,7 @@ void PreferencesPanel::DrawSettings()
 		VIEW_ZOOM_FACTOR,
 		SCREEN_MODE_SETTING,
 		VSYNC_SETTING,
+		COLOR_FILTER_SETTING,
 		"",
 		"Performance",
 		"Show CPU / GPU load",
@@ -803,7 +807,10 @@ void PreferencesPanel::DrawSettings()
 			isOn = Preferences::GetAlertIndicator() != Preferences::AlertIndicator::NONE;
 			text = Preferences::AlertSetting();
 		}
-		else
+		else if(setting == COLOR_FILTER_SETTING) {
+			text = Preferences::ColorFilterSetting();
+			isOn = text != "off";
+		} else
 			text = isOn ? "on" : "off";
 
 		if(setting == hoverItem)

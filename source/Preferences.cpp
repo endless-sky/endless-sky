@@ -140,6 +140,9 @@ namespace {
 	const vector<string> ALERT_INDICATOR_SETTING = {"off", "audio", "visual", "both"};
 	int alertIndicatorIndex = 3;
 
+	const vector<string> COLOR_FILTER_SETTING = {"normal", "protanopia", "deuteranopia", "tritanopia"};
+	int colorFilterIndex = 3;
+
 	int previousSaveCount = 3;
 }
 
@@ -211,6 +214,8 @@ void Preferences::Load()
 			dateFormatIndex = max<int>(0, min<int>(node.Value(1), DATEFMT_OPTIONS.size() - 1));
 		else if(node.Token(0) == "alert indicator")
 			alertIndicatorIndex = max<int>(0, min<int>(node.Value(1), ALERT_INDICATOR_SETTING.size() - 1));
+		else if(node.Token(0) == "color filter")
+			colorFilterIndex = max<int>(0, min<int>(node.Value(1), COLOR_FILTER_SETTING.size() - 1));
 		else if(node.Token(0) == "previous saves" && node.Size() >= 2)
 			previousSaveCount = max<int>(3, node.Value(1));
 		else if(node.Token(0) == "alt-mouse turning")
@@ -275,6 +280,7 @@ void Preferences::Save()
 	out.Write("Parallax background", parallaxIndex);
 	out.Write("Extended jump effects", extendedJumpEffectIndex);
 	out.Write("alert indicator", alertIndicatorIndex);
+	out.Write("color filter", colorFilterIndex);
 	out.Write("previous saves", previousSaveCount);
 
 	for(const auto &it : settings)
@@ -694,6 +700,28 @@ bool Preferences::DoAlertHelper(Preferences::AlertIndicator toDo)
 	else if(value == toDo)
 		return true;
 	return false;
+}
+
+
+
+const int &Preferences::GetColorFilterMode()
+{
+	return colorFilterIndex;
+}
+
+
+
+const std::string &Preferences::ColorFilterSetting()
+{
+	return COLOR_FILTER_SETTING[colorFilterIndex];
+}
+
+
+
+void Preferences::ToggleColorFilterSetting()
+{
+	if(++colorFilterIndex >= static_cast<int>(COLOR_FILTER_SETTING.size()))
+		colorFilterIndex = 0;
 }
 
 

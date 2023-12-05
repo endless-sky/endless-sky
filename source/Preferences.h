@@ -177,6 +177,11 @@ public:
 	static bool DisplayVisualAlert();
 	static bool DoAlertHelper(AlertIndicator toDo);
 
+	// Accessibility color filters
+	static const int &GetColorFilterMode();
+	static const std::string &ColorFilterSetting();
+	static void ToggleColorFilterSetting();
+
 	static int GetPreviousSaveCount();
 };
 

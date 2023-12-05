@@ -14,7 +14,16 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Color.h"
+#include "Preferences.h"
+#include <vector>
 
+namespace {
+	// Constants for each color filter mode to make for easier debugging.
+	static const int NORMAL = 0;
+	static const int PROTANOPIA = 1;
+	static const int DEUTERANOPIA = 2;
+	static const int TRITANOPIA = 3;
+}
 
 
 // Greyscale color constructor.
@@ -74,7 +83,28 @@ bool Color::IsLoaded() const
 // Get a float vector representing this color, for use by OpenGL.
 const float *Color::Get() const
 {
-	return color;
+	int cb = Preferences::GetColorFilterMode();
+	if (cb == NORMAL)
+		return color;
+	else
+	{
+		// Color blindness accessiblity filters are enabled.
+		static float c[4];
+		std::copy(std::begin(color), std::end(color), std::begin(c));
+
+		if (cb == PROTANOPIA) {
+			if (color[0] > color[1])
+				c[2] = (1 - (1 - color[2]) * (1 - color[0]) + color[2]) / 2;
+		} else if (cb == DEUTERANOPIA) {
+			if (color[1] > color[0])
+				c[2] = (1 - (1 - color[2]) * (1 - color[1]) + color[2]) / 2;
+		} else if (cb == TRITANOPIA) {
+			c[0] += (color[1] - color[0])*color[2];
+			c[1] += (color[0] - color[1])*color[2];
+		}
+		
+		return c;
+	}
 }
 
 
