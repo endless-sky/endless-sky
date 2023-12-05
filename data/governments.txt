@@ -1150,6 +1150,8 @@ government "Quarg"
 		"Medium Graviton Thruster"
 		"Medium Graviton Steering"
 		"Quantum Shield Generator"
+		ship "Quarg Skylark"
+		ship "Quarg Wardragon"
 
 government "Quarg (Hai)"
 	swizzle 0
@@ -1179,6 +1181,8 @@ government "Quarg (Hai)"
 		"Medium Graviton Thruster"
 		"Medium Graviton Steering"
 		"Quantum Shield Generator"
+		ship "Quarg Skylark"
+		ship "Quarg Wardragon"
 
 government "Quarg (Kor Efret)"
 	swizzle 0
@@ -1207,6 +1211,8 @@ government "Quarg (Kor Efret)"
 		"Medium Graviton Thruster"
 		"Medium Graviton Steering"
 		"Quantum Shield Generator"
+		ship "Quarg Skylark"
+		ship "Quarg Wardragon"
 
 government "Quarg (Gegno)"
 	swizzle 0
@@ -1233,6 +1239,8 @@ government "Quarg (Gegno)"
 		"Medium Graviton Thruster"
 		"Medium Graviton Steering"
 		"Quantum Shield Generator"
+		ship "Quarg Skylark"
+		ship "Quarg Wardragon"
 
 color "governments: Remnant" .89 .38 .62
 

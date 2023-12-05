@@ -49,7 +49,7 @@ public:
 public:
 	GameEvent() = default;
 	// Construct and Load() at the same time.
-	GameEvent(const DataNode &node);
+	explicit GameEvent(const DataNode &node);
 
 	void Load(const DataNode &node);
 	void Save(DataWriter &out) const;
