@@ -14,7 +14,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Color.h"
+
 #include "Preferences.h"
+
 #include <vector>
 
 namespace {
@@ -84,7 +86,7 @@ bool Color::IsLoaded() const
 const float *Color::Get() const
 {
 	int cb = Preferences::GetColorFilterMode();
-	if (cb == NORMAL)
+	if(cb == NORMAL)
 		return color;
 	else
 	{
@@ -92,17 +94,22 @@ const float *Color::Get() const
 		static float c[4];
 		std::copy(std::begin(color), std::end(color), std::begin(c));
 
-		if (cb == PROTANOPIA) {
-			if (color[0] > color[1])
+		if (cb == PROTANOPIA)
+		{
+			if(color[0] > color[1])
 				c[2] = (1 - (1 - color[2]) * (1 - color[0]) + color[2]) / 2;
-		} else if (cb == DEUTERANOPIA) {
-			if (color[1] > color[0])
-				c[2] = (1 - (1 - color[2]) * (1 - color[1]) + color[2]) / 2;
-		} else if (cb == TRITANOPIA) {
-			c[0] += (color[1] - color[0])*color[2];
-			c[1] += (color[0] - color[1])*color[2];
 		}
-		
+		else if(cb == DEUTERANOPIA)
+		{
+			if(color[1] > color[0])
+				c[2] = (1 - (1 - color[2]) * (1 - color[1]) + color[2]) / 2;
+		}
+		else if(cb == TRITANOPIA)
+		{
+			c[0] += (color[1] - color[0]) * color[2];
+			c[1] += (color[0] - color[1]) * color[2];
+		}
+
 		return c;
 	}
 }

@@ -807,7 +807,8 @@ void PreferencesPanel::DrawSettings()
 			isOn = Preferences::GetAlertIndicator() != Preferences::AlertIndicator::NONE;
 			text = Preferences::AlertSetting();
 		}
-		else if(setting == COLOR_FILTER_SETTING) {
+		else if(setting == COLOR_FILTER_SETTING)
+		{
 			text = Preferences::ColorFilterSetting();
 			isOn = text != "off";
 		} else
