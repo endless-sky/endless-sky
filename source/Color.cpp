@@ -94,7 +94,7 @@ const float *Color::Get() const
 		static float c[4];
 		std::copy(std::begin(color), std::end(color), std::begin(c));
 
-		if (cb == PROTANOPIA)
+		if(cb == PROTANOPIA)
 		{
 			if(color[0] > color[1])
 				c[2] = (1 - (1 - color[2]) * (1 - color[0]) + color[2]) / 2;
