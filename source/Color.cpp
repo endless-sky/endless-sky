@@ -81,7 +81,7 @@ const float *Color::Get() const
 	static float c[4];
 	std::copy(std::begin(color), std::end(color), std::begin(c));
 
-	switch (Preferences::GetColorFilterMode())
+	switch(Preferences::GetColorFilterMode())
 	{
 		case Preferences::ColorFilter::NORMAL:
 			break;
