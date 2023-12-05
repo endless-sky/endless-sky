@@ -811,7 +811,8 @@ void PreferencesPanel::DrawSettings()
 		{
 			text = Preferences::ColorFilterSetting();
 			isOn = text != "off";
-		} else
+		}
+		else
 			text = isOn ? "on" : "off";
 
 		if(setting == hoverItem)

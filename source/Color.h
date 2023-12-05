@@ -25,6 +25,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // zero the color's components will be added to whatever is underneath them.
 class Color {
 public:
+	// All the accessibility color filters, for easier debugging.
+	enum class Filter : int {
+		NORMAL = 0,
+		PROTANOPIA,
+		DEUTERANOPIA,
+		TRITANOPIA
+	};
+
 	// Constructor for shades of gray, opaque unless an alpha is also given.
 	explicit Color(float i = 1.f, float a = 1.f);
 	// Constructor for colors, opaque unless an alpha is also given.
