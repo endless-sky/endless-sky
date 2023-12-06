@@ -72,6 +72,7 @@ public:
 
 	// Open this user's plugins directory in their native file explorer.
 	static void OpenUserPluginFolder();
+	static void OpenUserSavesFolder();
 
 	// Logging to the error-log. Actual calls should be done through Logger
 	// and not directly here to ensure that other logging actions also

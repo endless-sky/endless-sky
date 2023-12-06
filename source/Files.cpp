@@ -575,6 +575,11 @@ void Files::OpenUserPluginFolder()
 	OpenFolder(Config() + "plugins");
 }
 
+// Open this user's save file directory in their native file explorer.
+void Files::OpenUserSavesFolder()
+{
+	OpenFolder(savePath);
+}
 
 
 void Files::LogErrorToFile(const string &message)
