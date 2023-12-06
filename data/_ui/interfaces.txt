@@ -398,8 +398,8 @@ interface "start conditions menu"
 
 
 interface "load menu"
-	sprite "_menu/side panel three buttons"
-		center -360 8
+	sprite "_menu/side panel"
+		center -360 0
 	box "pilots"
 		center -360 -19
 		dimensions 230 280
@@ -426,9 +426,12 @@ interface "load menu"
 		center -285 155
 		dimensions 90 30
 
+	sprite "ui/wide button"
+		center -435 195
+
 	active
 	button o "_Open Saves"
-		center -421 195
+		center -435 195
 		dimensions 120 30
 	
 	active if "pilot alive"
