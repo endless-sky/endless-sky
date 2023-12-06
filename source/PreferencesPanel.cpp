@@ -42,7 +42,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <SDL2/SDL.h>
 
 #include <algorithm>
-#include <string>
 
 using namespace std;
 
@@ -760,6 +759,7 @@ void PreferencesPanel::DrawSettings()
 		table.Draw(text, isOn ? bright : medium);
 	}
 
+	// Ugly hack to ensure that the currently selected item gets properly synced once the preferences map gets populated.
 	if(selectedItem.empty())
 		selectedItem = prefZones.at(selected).Value();
 }
