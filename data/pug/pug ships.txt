@@ -23,7 +23,7 @@ ship "Pug Zibruka"
 		"bunks" 6
 		"mass" 450
 		"drag" 4.65
-		"heat dissipation" .8
+		"heat dissipation" .54
 		"fuel capacity" 600
 		"cargo space" 20
 		"outfit space" 180
@@ -73,7 +73,7 @@ ship "Pug Enfolta"
 		"bunks" 27
 		"mass" 1103
 		"drag" 11.2
-		"heat dissipation" .7
+		"heat dissipation" .37
 		"fuel capacity" 600
 		"cargo space" 40
 		"outfit space" 360
@@ -128,7 +128,7 @@ ship "Pug Maboro"
 		"bunks" 87
 		"mass" 3040
 		"drag" 23.5
-		"heat dissipation" .6
+		"heat dissipation" .25
 		"fuel capacity" 600
 		"cargo space" 70
 		"outfit space" 560
@@ -185,7 +185,7 @@ ship "Pug Arfecta"
 		"bunks" 46
 		"mass" 1980
 		"drag" 15
-		"heat dissipation" .8
+		"heat dissipation" .4
 		"fuel capacity" 1200
 		"cargo space" 64
 		"outfit space" 640
