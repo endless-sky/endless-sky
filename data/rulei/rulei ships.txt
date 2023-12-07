@@ -31,7 +31,7 @@ ship "vyu-Ir"
 		"bunks" 100
 		"mass" 2200
 		"drag" 40
-		"heat dissipation" 10
+		"heat dissipation" 5
 		"fuel capacity" 1000
 		"cargo space" 1000
 		"outfit space" 1000
