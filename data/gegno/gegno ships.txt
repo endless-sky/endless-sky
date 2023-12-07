@@ -27,7 +27,7 @@ ship "Shale"
 		"bunks" 7
 		"mass" 134
 		"drag" 2.2
-		"heat dissipation" 0.8
+		"heat dissipation" 0.67
 		"fuel capacity" 400
 		"cargo space" 54
 		"outfit space" 113
@@ -65,7 +65,7 @@ ship "Dolomite"
 		"bunks" 79
 		"mass" 1162
 		"drag" 8.7
-		"heat dissipation" 0.6
+		"heat dissipation" 0.32
 		"fuel capacity" 500
 		"cargo space" 200
 		"outfit space" 152
@@ -108,7 +108,7 @@ ship "Conglomerate"
 		"bunks" 50
 		"mass" 2163
 		"drag" 27.8
-		"heat dissipation" 0.6
+		"heat dissipation" 0.3
 		"fuel capacity" 500
 		"cargo space" 415
 		"outfit space" 253
@@ -156,7 +156,7 @@ ship "Granofel"
 		"bunks" 15
 		"mass" 1933
 		"drag" 22
-		"heat dissipation" 0.6
+		"heat dissipation" 0.29
 		"fuel capacity" 500
 		"cargo space" 560
 		"outfit space" 230
@@ -204,7 +204,7 @@ ship "Gypsum"
 		"bunks" 9
 		"mass" 720
 		"drag" 4.8
-		"heat dissipation" 0.8
+		"heat dissipation" 0.5
 		"fuel capacity" 600
 		"cargo space" 160
 		"outfit space" 240
@@ -253,7 +253,7 @@ ship "Corundum"
 		"bunks" 9
 		"mass" 818
 		"drag" 5.4
-		"heat dissipation" 0.8
+		"heat dissipation" 0.54
 		"fuel capacity" 600
 		"cargo space" 140
 		"outfit space" 316
@@ -329,7 +329,7 @@ ship "Protolith"
 		"bunks" 4040
 		"mass" 15954
 		"drag" 187.2
-		"heat dissipation" 0.36
+		"heat dissipation" 0.12
 		"fuel capacity" 2100
 		"cargo space" 1160
 		"outfit space" 942
@@ -389,7 +389,7 @@ ship "Dunite"
 		"bunks" 1
 		"mass" 119
 		"drag" 0.66
-		"heat dissipation" 0.9
+		"heat dissipation" 0.82
 		"fuel capacity" 1
 		"cargo capacity" 1
 		"outfit space" 115
@@ -434,7 +434,7 @@ ship "Augen"
 		"bunks" 360
 		"mass" 25604
 		"drag" 200
-		"heat dissipation" 0.4
+		"heat dissipation" 0.1
 		"fuel capacity" 500
 		"cargo space" 84
 		"outfit space" 1868
@@ -555,7 +555,7 @@ ship "Slate"
 		"bunks" 4
 		"mass" 164
 		"drag" 2.4
-		"heat dissipation" 0.8
+		"heat dissipation" 0.67
 		"fuel capacity" 400
 		"cargo space" 81
 		"outfit space" 122
@@ -594,7 +594,7 @@ ship "Schist"
 		"bunks" 73
 		"mass" 1332
 		"drag" 11.21
-		"heat dissipation" 0.7
+		"heat dissipation" 0.37
 		"fuel capacity" 500
 		"cargo space" 140
 		"outfit space" 298
@@ -670,7 +670,7 @@ ship "Eclogite"
 		"bunks" 12
 		"mass" 611
 		"drag" 5.9
-		"heat dissipation" 0.7
+		"heat dissipation" 0.48
 		"fuel capacity" 400
 		"cargo space" 70
 		"outfit space" 285
@@ -720,7 +720,7 @@ ship "Diorite"
 		"bunks" 29
 		"mass" 860
 		"drag" 9.9
-		"heat dissipation" 0.8
+		"heat dissipation" 0.43
 		"fuel capacity" 500
 		"cargo space" 40
 		"outfit space" 453
@@ -787,7 +787,7 @@ ship "Hornfel"
 		"bunks" 48
 		"mass" 2238
 		"drag" 13.9
-		"heat dissipation" 0.6
+		"heat dissipation" 0.28
 		"fuel capacity" 600
 		"cargo space" 120
 		"outfit space" 508
@@ -911,7 +911,7 @@ ship "Gneiss"
 		"bunks" 162
 		"mass" 4404
 		"drag" 36.1
-		"heat dissipation" 0.4
+		"heat dissipation" 0.15
 		"fuel capacity" 500
 		"cargo space" 95
 		"outfit space" 841
@@ -983,7 +983,7 @@ ship "Granulite"
 		"bunks" 237
 		"mass" 5082
 		"drag" 70.5
-		"heat dissipation" 0.4
+		"heat dissipation" 0.14
 		"fuel capacity" 900
 		"cargo space" 718
 		"outfit space" 651
@@ -1104,7 +1104,7 @@ ship "Mica"
 		"bunks" 10
 		"mass" 108
 		"drag" 2
-		"heat dissipation" 0.8
+		"heat dissipation" 0.67
 		"fuel capacity" 400
 		"cargo space" 36
 		"outfit space" 118
@@ -1143,7 +1143,7 @@ ship "Coesite"
 		"bunks" 14
 		"mass" 428
 		"drag" 5.6
-		"heat dissipation" 0.7
+		"heat dissipation" 0.5
 		"fuel capacity" 500
 		"cargo space" 40
 		"outfit space" 264
@@ -1197,7 +1197,7 @@ ship "Tridymite"
 		"bunks" 29
 		"mass" 346
 		"drag" 4.9
-		"heat dissipation" 0.7
+		"heat dissipation" 0.5
 		"fuel capacity" 800
 		"cargo space" 56
 		"outfit space" 200
@@ -1250,7 +1250,7 @@ ship "Felsic"
 		"bunks" 53
 		"mass" 1275
 		"drag" 10.6
-		"heat dissipation" 0.7
+		"heat dissipation" 0.39
 		"fuel capacity" 500
 		"cargo space" 150
 		"outfit space" 322
@@ -1302,7 +1302,7 @@ ship "Feldspar"
 		"bunks" 192
 		"mass" 3574
 		"drag" 37.5
-		"heat dissipation" 0.5
+		"heat dissipation" 0.2
 		"fuel capacity" 600
 		"cargo space" 82
 		"outfit space" 566
@@ -1388,7 +1388,7 @@ ship "Epidote"
 		"bunks" 170
 		"mass" 3693
 		"drag" 40.2
-		"heat dissipation" 0.55
+		"heat dissipation" 0.22
 		"fuel capacity" 600
 		"cargo space" 430
 		"outfit space" 552
@@ -1451,7 +1451,7 @@ ship "Kyanite"
 		"bunks" 93
 		"mass" 2487
 		"drag" 30.7
-		"heat dissipation" 0.5
+		"heat dissipation" 0.24
 		"fuel capacity" 400
 		"cargo space" 76
 		"outfit space" 380
