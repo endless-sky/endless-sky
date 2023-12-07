@@ -23,7 +23,7 @@ ship "Earth Shaper"
 		"automaton" 1
 		"mass" 39
 		"drag" .99
-		"heat dissipation" .9
+		"heat dissipation" .82
 		"fuel capacity" 300
 		"cargo space" 27
 		"outfit space" 59
@@ -103,7 +103,7 @@ ship "Summer Leaf"
 		"bunks" 15
 		"mass" 282
 		"drag" 3.6
-		"heat dissipation" .8
+		"heat dissipation" .58
 		"fuel capacity" 800
 		"cargo space" 41
 		"outfit space" 320
@@ -153,7 +153,7 @@ ship "Autumn Leaf"
 		"bunks" 16
 		"mass" 375
 		"drag" 4.3
-		"heat dissipation" .8
+		"heat dissipation" .54
 		"fuel capacity" 1000
 		"cargo space" 45
 		"outfit space" 361
@@ -215,7 +215,7 @@ ship "Strong Wind"
 		"bunks" 39
 		"mass" 862
 		"drag" 8.5
-		"heat dissipation" .7
+		"heat dissipation" .39
 		"fuel capacity" 600
 		"cargo space" 68
 		"outfit space" 493
@@ -273,7 +273,7 @@ ship "Tempest"
 		"bunks" 53
 		"mass" 1340
 		"drag" 13.1
-		"heat dissipation" 0.65
+		"heat dissipation" 0.31
 		"fuel capacity" 600
 		"cargo space" 47
 		"outfit space" 607
@@ -396,7 +396,7 @@ ship "Derecho"
 		"bunks" 82
 		"mass" 2010
 		"drag" 20.9
-		"heat dissipation" 0.6
+		"heat dissipation" 0.25
 		"fuel capacity" 500
 		"cargo space" 56
 		"outfit space" 796
@@ -526,7 +526,7 @@ ship "Hurricane"
 		"bunks" 117
 		"mass" 4057
 		"drag" 34.5
-		"heat dissipation" 0.55
+		"heat dissipation" 0.19
 		"fuel capacity" 500
 		"cargo space" 98
 		"outfit space" 960
@@ -666,7 +666,7 @@ ship "Cool Breeze"
 		"bunks" 3
 		"mass" 123
 		"drag" 2.3
-		"heat dissipation" .9
+		"heat dissipation" .7
 		"fuel capacity" 400
 		"cargo space" 14
 		"outfit space" 192
@@ -723,7 +723,7 @@ ship "Winter Gale"
 		"bunks" 23
 		"mass" 743
 		"drag" 9.5
-		"heat dissipation" .7
+		"heat dissipation" .42
 		"fuel capacity" 600
 		"cargo space" 28
 		"outfit space" 478
@@ -826,7 +826,7 @@ ship "Deep River"
 		"bunks" 22
 		"mass" 1974
 		"drag" 19.7
-		"heat dissipation" .6
+		"heat dissipation" .29
 		"fuel capacity" 500
 		"cargo space" 1140
 		"outfit space" 363
@@ -915,7 +915,7 @@ ship "Deep River Transport"
 		"bunks" 166
 		"mass" 1974
 		"drag" 19.7
-		"heat dissipation" .6
+		"heat dissipation" .29
 		"fuel capacity" 500
 		"cargo space" 74
 		"outfit space" 321
@@ -967,7 +967,7 @@ ship "Riptide"
 		"bunks" 233
 		"mass" 1488
 		"drag" 14.6
-		"heat dissipation" .7
+		"heat dissipation" .35
 		"fuel capacity" 800
 		"cargo space" 164
 		"outfit space" 488
