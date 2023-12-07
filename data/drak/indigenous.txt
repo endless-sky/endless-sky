@@ -23,7 +23,7 @@ ship "Subsidurial"
 		"mass" 1400
 		"cargo space" 70
 		"drag" 16.4
-		"heat dissipation" .8
+		"heat dissipation" .4
 		"fuel capacity" 100
 		"thrust" 20
 		"turn" 1600
@@ -74,7 +74,7 @@ ship "Void Sprite"
 		"bunks" 4
 		"mass" 940
 		"drag" 16.4
-		"heat dissipation" .8
+		"heat dissipation" .4
 		"cargo space" 40
 		"outfit space" 20
 		"thrust" 40
@@ -131,7 +131,7 @@ ship "Void Sprite" "Void Sprite (Infant)"
 		"bunks" 2
 		"mass" 390
 		"drag" 10.8
-		"heat dissipation" .9
+		"heat dissipation" .45
 		"cargo space" 20
 		"outfit space" 10
 		"thrust" 36
@@ -178,7 +178,7 @@ ship "Ember Waste Node"
 		"bunks" 5
 		"mass" 2000
 		"drag" 16.4
-		"heat dissipation" 1
+		"heat dissipation" .5
 		"fuel capacity" 250
 		"cargo space" 39
 		"outfit space" 0
@@ -235,7 +235,7 @@ ship "Embershade"
 		"bunks" 1
 		"mass" 440
 		"drag" 8.4
-		"heat dissipation" .8
+		"heat dissipation" .4
 		"cargo space" 40
 		"fuel capacity" 100
 		"thrust" 40
@@ -275,7 +275,7 @@ ship "Embersylph"
 		"bunks" 1
 		"mass" 280
 		"drag" 6.4
-		"heat dissipation" .7
+		"heat dissipation" .35
 		"cargo space" 0
 		"fuel capacity" 100
 		"thrust" 16
