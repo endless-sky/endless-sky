@@ -771,6 +771,8 @@ test "Trigger Ruin Spaceport Mission"
 	description "Launch, land, and go to the spaceport to trigger any potential missions."
 	sequence
 		call "Depart"
+		navigate
+			"travel destination" Ruin
 		call "Land"
 		input
 			key p
@@ -781,6 +783,8 @@ test "Trigger Prime Spaceport Mission"
 	description "Launch, land, and go to the spaceport to trigger any potential missions."
 	sequence
 		call "Depart"
+		navigate
+			"travel destination" Prime
 		call "Land"
 		input
 			key p

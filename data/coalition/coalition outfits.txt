@@ -199,7 +199,7 @@ outfit "Cooling Module"
 	"outfit space" -5
 	"active cooling" 21
 	"cooling energy" 1.4
-	description "This Cooling Module consumes energy. To conserve power, it does not ramp up to full strength unless a ship is overheated."
+	description "This Cooling Module consumes energy. To conserve power, it does not ramp up to full strength unless a ship is very close to overheating."
 
 outfit "Fuel Module"
 	category "Systems"
@@ -405,7 +405,7 @@ outfit "Enforcer Confrontation Gear"
 	"capture attack" 3.1
 	"capture defense" 4.9
 	"unplunderable" 1
-	description "The peak of Heliarch combat engineering, this weapon uses condensed blasts of energy to dispatch any who dare threaten the Coalition safety."
+	description "The peak of Heliarch combat engineering, this weapon uses condensed blasts of energy to dispatch any who dare threaten the safety of the Coalition."
 
 outfit "Enforcer Riot Staff"
 	category "Hand to Hand"
