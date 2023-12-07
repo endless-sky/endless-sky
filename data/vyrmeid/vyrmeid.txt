@@ -28,7 +28,7 @@ ship "Vyrmeid"
 		"bunks" 1
 		"mass" 120
 		"drag" 16
-		"heat dissipation" 1.4
+		"heat dissipation" .7
 		"fuel capacity" 0
 		"cargo space" 0
 		"outfit space" 0
@@ -85,7 +85,7 @@ ship "Vyrmeid" "Vyrmeid (B)"
 		"bunks" 1
 		"mass" 290
 		"drag" 20
-		"heat dissipation" 1
+		"heat dissipation" .5
 		"fuel capacity" 0
 		"cargo space" 0
 		"outfit space" 10
@@ -136,7 +136,7 @@ ship "Vyrmeid" "Vyrmeid (C)"
 		"bunks" 2
 		"mass" 400
 		"drag" 18
-		"heat dissipation" 1.8
+		"heat dissipation" .9
 		"fuel capacity" 0
 		"cargo space" 0
 		"outfit space" 0
@@ -190,7 +190,7 @@ ship "Astral Cetacean"
 		"bunks" 9
 		"mass" 2400
 		"drag" 31.4
-		"heat dissipation" 0.68
+		"heat dissipation" 0.34
 		"fuel capacity" 200
 		"cargo space" 0
 		"outfit space" 0
