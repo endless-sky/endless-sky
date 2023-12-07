@@ -28,7 +28,7 @@ ship "Jje"
 		"bunks" 2
 		"mass" 200
 		"drag" 20
-		"heat dissipation" 20
+		"heat dissipation" 10
 		"engine capacity" 200
 		"cargo space" 10
 		"outfit space" 10
@@ -80,7 +80,7 @@ ship "Ayym"
 		"bunks" 4
 		"mass" 400
 		"drag" 40
-		"heat dissipation" 20
+		"heat dissipation" 10
 		"engine capacity" 200
 		"fuel capacity" 100
 		"cargo space" 10
