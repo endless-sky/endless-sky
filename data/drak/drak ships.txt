@@ -26,7 +26,7 @@ ship "Archon"
 		"bunks" 1
 		"mass" 3300
 		"drag" 54
-		"heat dissipation" 40
+		"heat dissipation" 20
 		"fuel capacity" 800
 		"cargo space" 0
 		"outfit space" 1300
