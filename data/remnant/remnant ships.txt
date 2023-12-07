@@ -29,7 +29,7 @@ ship "Albatross"
 		"cargo space" 124
 		"mass" 2277
 		"drag" 19.8
-		"heat dissipation" 0.6
+		"heat dissipation" 0.27
 		"fuel capacity" 600
 		"ramscoop" 2.75
 		"outfit space" 672
@@ -284,7 +284,7 @@ ship "Modified Dromedary"
 		"bunks" 300
 		"mass" 7324
 		"drag" 42.3
-		"heat dissipation" .4
+		"heat dissipation" .15
 		"fuel capacity" 900
 		"cargo space" 550
 		"outfit space" 740
@@ -488,7 +488,7 @@ ship "Gull"
 		"bunks" 20
 		"mass" 560
 		"drag" 9
-		"heat dissipation" 0.7
+		"heat dissipation" 0.47
 		"fuel capacity" 600
 		"ramscoop" 1.75
 		"cargo space" 175
@@ -648,7 +648,7 @@ ship "Heron"
 		"bunks" 3000
 		"mass" 26450
 		"drag" 100
-		"heat dissipation" .80
+		"heat dissipation" .20
 		"fuel capacity" 2500
 		"ramscoop" 10.75
 		"cargo space" 1110
@@ -815,7 +815,7 @@ ship "Ibis"
 		"bunks" 36
 		"mass" 1049
 		"drag" 9.7
-		"heat dissipation" 0.7
+		"heat dissipation" 0.37
 		"fuel capacity" 700
 		"ramscoop" 2.75
 		"cargo space" 103
@@ -902,7 +902,7 @@ ship "Merganser"
 		"ramscoop" 1.75
 		"mass" 130
 		"drag" 2.1
-		"heat dissipation" .9
+		"heat dissipation" .65
 		"gaslining" 1
 		"outfit space" 219
 		"shield generation" 2.8
@@ -1003,7 +1003,7 @@ ship "Pelican"
 		"cargo space" 302
 		"mass" 1040
 		"drag" 13
-		"heat dissipation" 0.7
+		"heat dissipation" 0.39
 		"fuel capacity" 600
 		"ramscoop" 2.75
 		"outfit space" 480
@@ -1083,7 +1083,7 @@ ship "Penguin"
 		"bunks" 3
 		"mass" 107
 		"drag" 1.5
-		"heat dissipation" 0.9
+		"heat dissipation" 0.75
 		"fuel capacity" 800
 		"energy capacity" 300
 		"ramscoop" 1.25
@@ -1189,7 +1189,7 @@ ship "Peregrine"
 		"bunks" 25
 		"mass" 1352
 		"drag" 8.6
-		"heat dissipation" 0.85
+		"heat dissipation" 0.43
 		"fuel capacity" 1100
 		"ramscoop" 3.25
 		"cargo space" 59
@@ -1308,7 +1308,7 @@ ship "Petrel"
 		"bunks" 3
 		"mass" 68
 		"drag" 1.7
-		"heat dissipation" .8
+		"heat dissipation" .73
 		"outfit space" 133
 		"weapon capacity" 33
 		"engine capacity" 34
@@ -1364,7 +1364,7 @@ ship "Puffin"
 		"bunks" 2
 		"mass" 52
 		"drag" 1.4
-		"heat dissipation" 0.9
+		"heat dissipation" 0.82
 		"fuel capacity" 700
 		"energy capacity" 150
 		"ramscoop" 1.25
@@ -1417,7 +1417,7 @@ ship "Smew"
 		"bunks" 8
 		"mass" 63
 		"drag" 1.92
-		"heat dissipation" .65
+		"heat dissipation" .60
 		"fuel capacity" 100
 		"cargo space" 70
 		"outfit space" 80
@@ -1502,7 +1502,7 @@ ship "Starling"
 		"bunks" 15
 		"mass" 563
 		"drag" 5.7
-		"heat dissipation" 0.7
+		"heat dissipation" 0.47
 		"fuel capacity" 900
 		"ramscoop" 1.75
 		"cargo space" 36
