@@ -26,7 +26,7 @@ ship "Korath Dredger"
 		"bunks" 357
 		"mass" 5581
 		"drag" 47.9
-		"heat dissipation" .45
+		"heat dissipation" .16
 		"fuel capacity" 900
 		"cargo space" 675
 		"outfit space" 763
@@ -103,7 +103,7 @@ ship "Korath Raider"
 		"bunks" 250
 		"mass" 2816
 		"drag" 28.8
-		"heat dissipation" .5
+		"heat dissipation" .21
 		"fuel capacity" 600
 		"cargo space" 175
 		"outfit space" 777
@@ -214,7 +214,7 @@ ship "Korath World-Ship"
 		"bunks" 1492
 		"mass" 7140
 		"drag" 65.1
-		"heat dissipation" .4
+		"heat dissipation" .13
 		"fuel capacity" 1000
 		"cargo space" 264
 		"outfit space" 839
