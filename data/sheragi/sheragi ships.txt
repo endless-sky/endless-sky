@@ -24,7 +24,7 @@ ship "Emerald Sword"
 		"bunks" 302
 		"mass" 7482
 		"drag" 64
-		"heat dissipation" 0.45
+		"heat dissipation" 0.15
 		"fuel capacity" 900
 		"cargo space" 169
 		"outfit space" 1190
@@ -176,7 +176,7 @@ ship "Black Diamond"
 		"automaton" 1
 		"mass" 70
 		"drag" .99
-		"heat dissipation" .86
+		"heat dissipation" .79
 		"outfit space" 152
 		"weapon capacity" 35
 		"engine capacity" 38
