@@ -1389,11 +1389,11 @@ mission "<uhai> 16: Strength Of A Leader: He-Yi"
 		dialog phrase "Essential Unfettered Mission Fail If Killed"
 	on complete
 		log `Officially joined the Unfettered Militia and received a license to purchase their heavy ships, when they become available in the near future.`
-		"salary: Unfettered" = 5000
+		"salary: Unfettered" *= 5
 		set "license: Unfettered"
 		clear "unfettered: defeated Si-Ra"
 		conversation
-			`He-Yi joins you on your ship after having parked his.`
+			`He-Yi joins you on your ship after bringing his ship to the shipyard for repairs.`
 			# Si-Ra will join Cerberus at this point
 			`	"I was told by one of Si-Ra' officers that he was planning to disrespect the rules of the duel, and to kill you. Fortunately he did not succeed, but his escape pod managed to escape, so this is may not be the last time we will hear of him. He has been marked as an outcast."`
 				to display
@@ -1412,7 +1412,7 @@ mission "<uhai> 16: Strength Of A Leader: He-Yi"
 			choice
 				`	"I will prove myself worthy of it."`
 					goto worthy
-				`	"He came a warlord?"`
+				`	"He became a warlord?"`
 			`	"You did not know? If a warlord is defeated in battle, he will have to give up his position or the item most dear to him, and considering your recent exploits, you are certainly more worthy of it than him. Si-Ra finally managed to overcome the owner of Scarred, using his new modified beetle, but I suspect that this will not be the last time we hear of either of them..."`
 			label worthy
 			`	He then draws his long sword, which has the same appearance as the keystone pendants popular among his race, and hands it to you. "You have also deserved the right to have this. It is a proof of our trust toward you and means you will have access to all of our ships. Whenever a warlord is defeated in battle, he has to surrender his sword to the one who vanquished him."`
@@ -1486,7 +1486,7 @@ mission "<uhai> 16: Strength Of A Leader: He-Yi"
 			`	"Most of us prefer not to use weapons of [aliens, untrue] because they think it means those are [more refined than, superior to] ours. I just recognize their [advantages, utility] in some scenarios."`
 				goto questions
 			label enough
-			`	"I have answered enough of your questions. Some things should remain a mystery. Knowledge is power, after all. Prepare yourself for war: bring us Jump Drives, train in challenge battle, and when we will be ready and only then, we will strike."`
+			`	"I have answered enough of your questions. Some things should remain [a mystery, conceiled]. Knowledge is power, after all."`
 			label clearconditions
 			action
 				clear "unfettered: questions"
@@ -1494,6 +1494,7 @@ mission "<uhai> 16: Strength Of A Leader: He-Yi"
 				clear "unfettered: hull choice"
 				clear "unfettered: cloak choice"
 				clear "unfettered: weapon choice"
+			`	"The time will come soon, prepare yourself for [war, tragedy]: bring us Jump Drives, train in challenge battle, and when we will be ready and only then, we will strike."`
 
 event "joined the unfettered"
 	government "Escort"
@@ -1888,7 +1889,7 @@ mission "<uhai> 19: Scout Wanderer Systems"
 				`	"What is a To-or?"`
 					goto toor
 			action
-				set "unfettered: warned"
+				set "unfettered: warned about scarred"
 			`	"Very well: Scarred. I will say no more, for information has a price."`
 				goto task
 			label toor
