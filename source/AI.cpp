@@ -31,6 +31,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
+#include "Port.h"
 #include "Preferences.h"
 #include "Random.h"
 #include "Ship.h"
@@ -727,7 +728,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 				target.reset();
 			else
 				for(const StellarObject &object : system->Objects())
-					if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->HasSpaceport()
+					if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->IsInhabited()
 							&& object.GetPlanet()->CanLand(*it))
 					{
 						target.reset();
@@ -906,7 +907,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 					for(const auto &other : otherShips)
 						if(other->GetGovernment() == gov && other->GetSystem() == it->GetSystem() && !other->CanBeCarried())
 						{
-							if(!other->IsDisabled() && other->CanCarry(*it.get()))
+							if(!other->IsDisabled() && other->CanCarry(*it))
 								return other;
 							else
 								parentChoices.emplace_back(other);
@@ -1717,7 +1718,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		// not land anywhere without a port.
 		vector<const StellarObject *> planets;
 		for(const StellarObject &object : origin->Objects())
-			if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->HasSpaceport()
+			if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->HasServices()
 					&& object.GetPlanet()->CanLand(ship))
 			{
 				planets.push_back(&object);
@@ -2183,9 +2184,8 @@ bool AI::Stop(Ship &ship, Command &command, double maxSpeed, const Point directi
 		forwardTime += stopTime;
 
 		// Figure out your reverse thruster stopping time:
-		double reverseAcceleration = ship.Attributes().Get("reverse thrust") / ship.InertialMass();
 		double reverseTime = (180. - degreesToTurn) / ship.TurnRate();
-		reverseTime += speed / reverseAcceleration;
+		reverseTime += speed / ship.ReverseAcceleration();
 
 		// If you want to end up facing a specific direction, add the extra turning time.
 		if(direction)
@@ -2385,7 +2385,7 @@ void AI::KeepStation(Ship &ship, Command &command, const Body &target)
 		command.SetTurn(targetAngle);
 
 	// Determine whether to apply thrust.
-	Point drag = ship.Velocity() * ship.Drag() / mass;
+	Point drag = ship.Velocity() * ship.DragForce();
 	if(ship.Attributes().Get("reverse thrust"))
 	{
 		// Don't take drag into account when reverse thrusting, because this
@@ -3029,7 +3029,7 @@ void AI::DoPatrol(Ship &ship, Command &command) const
 			for(const StellarObject &object : ship.GetSystem()->Objects())
 				if(object.HasSprite() && object.GetPlanet() && object.GetPlanet()->CanLand(ship))
 					landingTargets.push_back(&object);
-			if(landingTargets.size())
+			if(!landingTargets.empty())
 			{
 				ship.SetTargetStellar(landingTargets[Random::Int(landingTargets.size())]);
 				MoveToPlanet(ship, command);
@@ -4078,7 +4078,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 						double distance = ship.Position().Distance(object->Position());
 						const Planet *planet = object->GetPlanet();
 						types.insert(planet->Noun());
-						if((!planet->CanLand() || !planet->HasSpaceport()) && !planet->IsWormhole())
+						if((!planet->CanLand() || !planet->GetPort().CanRecharge(Port::RechargeType::Fuel))
+								&& !planet->IsWormhole())
 							distance += 10000.;
 
 						if(distance < closest)

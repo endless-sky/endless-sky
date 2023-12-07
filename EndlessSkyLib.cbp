@@ -289,6 +289,8 @@
 		<Unit filename="source/PointerShader.h" />
 		<Unit filename="source/Politics.cpp" />
 		<Unit filename="source/Politics.h" />
+		<Unit filename="source/Port.cpp" />
+		<Unit filename="source/Port.h" />
 		<Unit filename="source/Preferences.cpp" />
 		<Unit filename="source/Preferences.h" />
 		<Unit filename="source/PreferencesPanel.cpp" />
