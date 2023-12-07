@@ -1334,7 +1334,7 @@ mission "<uhai> 9: Capture The Alpha Auxiliary"
 		to spawn
 			has "midas: wronged"
 		ship "Far Osk 27" "Wrath"
-		ship "Far Osk 27" "Glutony"
+		ship "Far Osk 27" "Gluttony"
 		ship "Far Osk 27" "Greed"
 		ship "Far Osk 27" "Desecration"
 	to fail

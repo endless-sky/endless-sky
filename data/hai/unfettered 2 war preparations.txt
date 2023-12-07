@@ -1578,14 +1578,6 @@ mission "<uhai> 17: Spy On Hai A"
 					decline
 	on waypoint
 		dialog `It seems that the <npc> is in this system, and a Syndicate attack just launched. Judging by the marks on its hull, it will likely land to make repairs and restock ammo soon. You may be able to get the item without too much risk that way, and bribing them will mean secure landing. Or you could always just board it now and be done with it. You could even sabotage the ship to make your job easier, or take some more valuables with you.`
-	npc board
-		personality staying target
-		to despawn
-			has "<uhai> 17: Spy On Hai B: active"
-		government "Mhairi's Legion"
-		system "Alcyone"
-		ship "Leviathan (Cube)" "Degenerate"
-		dialog `You have managed to disable and board Mhairi's flagship. The item that fits best the description given is without any doubt the Mystery Cube. Bring it back to <destination>.`
 	# note: this only works because the fleets do not fight if you are not in the system.
 	# If that was to change we'd need a temporary fleet with an event changing the reputation.
 	npc
@@ -1614,6 +1606,14 @@ mission "<uhai> 17: Spy On Hai A"
 		government "Syndicate"
 		system "Alcyone"
 		fleet "Large Syndicate"
+	npc board
+		personality staying target
+		to despawn
+			has "<uhai> 17: Spy On Hai B: active"
+		government "Mhairi's Legion"
+		system "Alcyone"
+		ship "Leviathan (Cube)" "Degenerate"
+		dialog `You have managed to disable and board Mhairi's flagship. The item that fits best the description given is without any doubt the Mystery Cube. Bring it back to <destination>.`
 	on visit
 		dialog `You don't have the item He-Yi asked for. Or you have not brought the right item back. If that's the case, go back and board the ship to take the right item.`
 	to complete
@@ -1868,13 +1868,33 @@ mission "<uhai> 19: Scout Wanderer Systems"
 	on offer
 		log "Minor People" "Mysterious Herald" "A Herald of He-Yi that does not want to reveal their true identity. They seem to have a lot of culture, and stay calm in most situations."
 		conversation
-			`A Herald comes to your ship as you exit it. They are still wearing that same mask, although you feel like the color has slightly changed, "Hello again, <last>, my master has yet another task for you before the war starts."`
+			`You exit your ship and head to the spaceport as usual, but you cannot shake the sensation that you are being followed. Looking around you see a curious figure with a bird mask: the Herald. They head your way, aware of the fact they spotted.`
+			`	As they get closer you feel like the color of the mask has slightly changed, but their voice seems the same "It did not take you long to spot me, did it? You have bested me<, unfettered title> <last>!" They say, bowing their head so little you barely notice it. "Rest assured, I am not just here to watch over you; my master has yet another task to ask of you before the war starts."`
 			choice
 				`	"I am listening."`
 					goto task
-				`	"First I have a question, why have you not introduced yourself yet?"`
+				`	"Why were you watching me?"`
+				`	"First tell me, why have you not introduced yourself yet?"`
+					goto masked
 				`	"Later."`
 					defer
+			label watching
+			`	They look around discreetely - more so than earlier - before speaking in a lower tone, "Come, let us have a walk." You follow them, and they continue talking on the way, "Why does the To-or fight to the death? Is it pride? Is it protection of their loved ones, or a matter character? There are often multiple reasons for why things happen the way they do, and we do not always know them all."`
+			`	They then look at you directly, "You should know that there are some among us that do not appreciate the status you have been given, or what happened with the Alphas."`
+			choice
+				`	"What was the task again?"`
+					goto task
+				`	"Can you tell me more?"`
+				`	"What is a To-or?"`
+					goto toor
+			action
+				set "unfettered: warned"
+			`	"Very well: Scarred. I will say no more, for information has a price."`
+				goto task
+			label toor
+			`	"It is the most mighty creature we know of. They live on hai-home, in small but resilient communities, where every member has earned their place, and where nobody is left behind. They never run away from a fight, and rightly so, since they are the most impressive creatures on the planet."`
+				goto task
+			label masked
 			`	"When I wear that mask, I may not reveal my identity to anyone, that is my burden as a Herald of He-Yi. I do not wear this mask all the time, of course, only when I am on mission for him, or in his war room."`
 			label task
 			`	"We want you to survey all systems belonging to our enemies, to assess if they have some backup fleets or potential allies nearby."`
@@ -1911,13 +1931,14 @@ mission "<uhai> 19: Scout Wanderer Systems"
 	waypoint "Iyech'yek"
 	waypoint "Kiru'kichi"
 	waypoint "Es'sprak'ai"
+	waypoint "Aya'k'k"
 	on waypoint
 		dialog `You have scouted all of the Wanderer's systems. It's time to come back to <destination> for your reward.`
 	on complete
 		payment 1000000
 		conversation
-			`The herald is there when you land, apparently waiting for you. "My master could not come to receive the scans himself, but be sure I shall give them to him. Please, accept these <payment> credits in his name. I think you deserve a small explanation as to why these aliens are hostile to us.`
-			`	"As you probably already know, we are planning to invade them shortly. But, to be fair, we have already started doing a few skirmishes with them, notably for testing their strength, but mostly to get food from them. They have huge ships transporting a thousand tons of cargo each."`
+			`You find a message from the Herald on your terminal. "You should transmit the scans to the local authorities, we trust them to handle this kind of information. Please, accept these <payment> credits in advance.`
+			`	"I think you deserve a small explanation as to why these aliens up north are hostile to us: as you probably already know, we are planning to invade them shortly. But, to be fair, we have already started doing a few skirmishes and raids, notably to assess their strength, but mostly for food. They have huge ships transporting a thousand tons of cargo each, that lack manoeuvrability and are therefore prime targets for our tracker pods."`
 
 mission "<uhai> 19: Weird Aliens Spotted"
 	landing
