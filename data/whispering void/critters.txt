@@ -30,7 +30,7 @@ ship "Pincer Beast"
 		"automaton" 1
 		"mass" 1700
 		"drag" 19.2
-		"heat dissipation" .7
+		"heat dissipation" .35
 		"cargo space" 75
 		"cooling" 13
 		"thrust" 50
