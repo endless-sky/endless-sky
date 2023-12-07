@@ -87,6 +87,8 @@ test "Checking For A Gifted Ship"
 		call "Load First Savegame"
 		# Make the missions trigger by landing again.
 		call "Depart"
+		navigate
+			"travel destination" Earth
 		call "Land"
 		call "Depart"
 		assert
@@ -99,6 +101,8 @@ test "Checking For A Gifted Ship"
 		call "Load First Savegame"
 		call "Wait 10 steps"
 		call "Depart"
+		navigate
+			"travel destination" Earth
 		call "Land"
 		assert
 			"ship model: Star Barge" == 0
@@ -231,6 +235,8 @@ test "Taking Ship With Outfits And Unconstrained"
 		call "Load First Savegame"
 		call "Depart"
 		# when we land the mission will trigger
+		navigate
+			"travel destination" Ingot
 		call "Land"
 		call "Wait 10 steps"
 		# The missions are checked by alphabetical order, meaning we know that if the third one triggered,
