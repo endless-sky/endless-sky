@@ -25,7 +25,7 @@ ship "Arach Courier"
 		"bunks" 1
 		"mass" 150
 		"drag" 3.5
-		"heat dissipation" .65
+		"heat dissipation" .54
 		"fuel capacity" 300
 		"cargo space" 94
 		"outfit space" 148
@@ -84,7 +84,7 @@ ship "Arach Freighter"
 		"bunks" 10
 		"mass" 1312
 		"drag" 19.1
-		"heat dissipation" .55
+		"heat dissipation" .31
 		"fuel capacity" 500
 		"cargo space" 372
 		"outfit space" 349
@@ -154,7 +154,7 @@ ship "Arach Hulk"
 		"bunks" 14
 		"mass" 1980
 		"drag" 39.7
-		"heat dissipation" .50
+		"heat dissipation" .24
 		"fuel capacity" 500
 		"cargo space" 688
 		"outfit space" 520
@@ -230,7 +230,7 @@ ship "Arach Spindle"
 		"bunks" 14
 		"mass" 1190
 		"drag" 22.7
-		"heat dissipation" .55
+		"heat dissipation" .26
 		"fuel capacity" 500
 		"cargo space" 392
 		"outfit space" 434
@@ -341,7 +341,7 @@ ship "Arach Transport"
 		"bunks" 5
 		"mass" 560
 		"drag" 10.8
-		"heat dissipation" .60
+		"heat dissipation" .40
 		"fuel capacity" 400
 		"cargo space" 228
 		"outfit space" 281
@@ -408,7 +408,7 @@ ship "Heliarch Breacher"
 		"bunks" 15
 		"mass" 543
 		"drag" 5.12
-		"heat dissipation" .77
+		"heat dissipation" .48
 		"ion protection" .1
 		"scramble protection" .1
 		"fuel capacity" 800
@@ -526,7 +526,7 @@ ship "Heliarch Hunter"
 		"bunks" 41
 		"mass" 1295
 		"drag" 10.1
-		"heat dissipation" .71
+		"heat dissipation" .38
 		"ion protection" .2
 		"scramble protection" .2
 		"fuel capacity" 1500
@@ -712,7 +712,7 @@ ship "Heliarch Interdictor"
 		"bunks" 70
 		"mass" 1584
 		"drag" 14.8
-		"heat dissipation" .70
+		"heat dissipation" .35
 		"ion protection" .2
 		"scramble protection" .2
 		"fuel capacity" 800
@@ -885,7 +885,7 @@ ship "Heliarch Judicator"
 		"bunks" 110
 		"mass" 1484
 		"drag" 15.8
-		"heat dissipation" .67
+		"heat dissipation" .34
 		"ion protection" .2
 		"scramble protection" .2
 		"fuel capacity" 900
@@ -1069,7 +1069,7 @@ ship "Heliarch Neutralizer"
 		"bunks" 24
 		"mass" 652
 		"drag" 6.6
-		"heat dissipation" .75
+		"heat dissipation" .47
 		"ion protection" .1
 		"scramble protection" .1
 		"fuel capacity" 1000
@@ -1190,7 +1190,7 @@ ship "Heliarch Punisher"
 		"bunks" 145
 		"mass" 3278
 		"drag" 30.5
-		"heat dissipation" .60
+		"heat dissipation" .24
 		"ion protection" .3
 		"scramble protection" .3
 		"fuel capacity" 600
@@ -1552,7 +1552,7 @@ ship "Heliarch Stalker"
 		"bunks" 2
 		"mass" 100
 		"drag" 2.3
-		"heat dissipation" 0.64
+		"heat dissipation" 0.59
 		"outfit space" 133
 		"weapon capacity" 43
 		"engine capacity" 16
@@ -1608,7 +1608,7 @@ ship "Kimek Briar"
 		"bunks" 38
 		"mass" 392
 		"drag" 5.7
-		"heat dissipation" .75
+		"heat dissipation" .5
 		"fuel capacity" 700
 		"cargo space" 23
 		"outfit space" 245
@@ -1669,7 +1669,7 @@ ship "Kimek Spire"
 		"bunks" 296
 		"mass" 1735
 		"drag" 17.6
-		"heat dissipation" .60
+		"heat dissipation" .29
 		"fuel capacity" 800
 		"cargo space" 70
 		"outfit space" 489
@@ -1741,7 +1741,7 @@ ship "Kimek Thistle"
 		"bunks" 78
 		"mass" 743
 		"drag" 10.4
-		"heat dissipation" .70
+		"heat dissipation" .39
 		"fuel capacity" 700
 		"cargo space" 32
 		"outfit space" 321
@@ -1826,7 +1826,7 @@ ship "Kimek Thorn"
 		"bunks" 10
 		"mass" 100
 		"drag" 2
-		"heat dissipation" .80
+		"heat dissipation" .73
 		"fuel capacity" 600
 		"cargo space" 13
 		"outfit space" 133
@@ -1885,7 +1885,7 @@ ship "Saryd Runabout"
 		"bunks" 14
 		"mass" 234
 		"drag" 3.6
-		"heat dissipation" .70
+		"heat dissipation" .54
 		"fuel capacity" 400
 		"cargo space" 46
 		"outfit space" 172
@@ -1942,7 +1942,7 @@ ship "Saryd Sojourner"
 		"bunks" 101
 		"mass" 1970
 		"drag" 27.1
-		"heat dissipation" .50
+		"heat dissipation" .24
 		"fuel capacity" 800
 		"cargo space" 312
 		"outfit space" 568
@@ -2036,7 +2036,7 @@ ship "Saryd Traveler"
 		"bunks" 54
 		"mass" 1000
 		"drag" 9.9
-		"heat dissipation" .60
+		"heat dissipation" .33
 		"fuel capacity" 600
 		"cargo space" 164
 		"outfit space" 466
@@ -2111,7 +2111,7 @@ ship "Saryd Visitor"
 		"bunks" 32
 		"mass" 565
 		"drag" 6.6
-		"heat dissipation" .65
+		"heat dissipation" .44
 		"fuel capacity" 400
 		"cargo space" 108
 		"outfit space" 320
