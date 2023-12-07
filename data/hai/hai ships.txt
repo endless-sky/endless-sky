@@ -23,7 +23,7 @@ ship "Aphid"
 		"bunks" 5
 		"mass" 157
 		"drag" 2.3
-		"heat dissipation" .90
+		"heat dissipation" .75
 		"fuel capacity" 400
 		"cargo space" 51
 		"outfit space" 185
@@ -91,7 +91,7 @@ ship "Centipede"
 		"bunks" 131
 		"mass" 693
 		"drag" 7.4
-		"heat dissipation" .75
+		"heat dissipation" .4
 		"fuel capacity" 600
 		"cargo space" 38
 		"outfit space" 375
@@ -203,7 +203,7 @@ ship "Cicada"
 		"bunks" 51
 		"mass" 674
 		"drag" 7.5
-		"heat dissipation" .75
+		"heat dissipation" .47
 		"fuel capacity" 500
 		"cargo space" 143
 		"outfit space" 323
@@ -303,7 +303,7 @@ ship "Geocoris"
 		"bunks" 56
 		"mass" 2341
 		"drag" 35.9
-		"heat dissipation" 0.45
+		"heat dissipation" 0.22
 		"fuel capacity" 800
 		"cargo space" 761
 		"outfit space" 582
@@ -386,7 +386,7 @@ ship "Grasshopper"
 		"bunks" 5
 		"mass" 154
 		"drag" 1.8
-		"heat dissipation" .85
+		"heat dissipation" .71
 		"fuel capacity" 300
 		"cargo space" 29
 		"outfit space" 198
@@ -475,7 +475,7 @@ ship "Lightning Bug"
 		"bunks" 10
 		"mass" 519
 		"drag" 6.1
-		"heat dissipation" .85
+		"heat dissipation" .54
 		"fuel capacity" 600
 		"cargo space" 73
 		"outfit space" 278
@@ -573,7 +573,7 @@ ship "Ladybug"
 		"bunks" 33
 		"mass" 946
 		"drag" 10.3
-		"heat dissipation" .85
+		"heat dissipation" .45
 		"fuel capacity" 900
 		"cargo space" 91
 		"outfit space" 460
@@ -712,7 +712,7 @@ ship "Pond Strider"
 		"mass" 690
 		"drag" 7.1
 		"hull repair rate" 1
-		"heat dissipation" .5
+		"heat dissipation" .25
 		"fuel capacity" 300
 		"cargo space" 71
 		"outfit space" 354
@@ -858,7 +858,7 @@ ship "Sea Scorpion"
 		"bunks" 36
 		"mass" 1150
 		"drag" 10.4
-		"heat dissipation" .7
+		"heat dissipation" .35
 		"fuel capacity" 500
 		"cargo space" 45
 		"outfit space" 510
@@ -1010,7 +1010,7 @@ ship "Scarab"
 		"bunks" 27
 		"mass" 297
 		"drag" 5.3
-		"heat dissipation" .87
+		"heat dissipation" .63
 		"fuel capacity" 400
 		"cargo space" 44
 		"outfit space" 231
@@ -1061,7 +1061,7 @@ ship "Shield Beetle"
 		"bunks" 95
 		"mass" 3112
 		"drag" 23.8
-		"heat dissipation" .60
+		"heat dissipation" .23
 		"fuel capacity" 500
 		"cargo space" 142
 		"outfit space" 798
@@ -1453,7 +1453,7 @@ ship "Emperor Beetle"
 		"weapon capacity" 352
 		"engine capacity" 139
 		# Expensive features inherited from Ladybug-era technology, with some fuel (and improved heat dissipation):
-		"heat dissipation" 0.7
+		"heat dissipation" 0.26
 		"tactical scan power" 30
 		"ramscoop" .5
 		"fuel capacity" 600
@@ -1561,7 +1561,7 @@ ship "Solifuge"
 		"bunks" 118
 		"mass" 4256
 		"drag" 44.7
-		"heat dissipation" .42
+		"heat dissipation" .15
 		"fuel capacity" 600
 		"cargo space" 142
 		"outfit space" 828
@@ -1793,7 +1793,7 @@ ship "Water Bug"
 		"bunks" 29
 		"mass" 653
 		"drag" 9.4
-		"heat dissipation" .75
+		"heat dissipation" .47
 		"fuel capacity" 600
 		"cargo space" 197
 		"outfit space" 368
