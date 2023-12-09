@@ -293,8 +293,8 @@ mission "FW Southern Recon 1B: Alnasl Hint 1"
 		and
 			not "ship model (all): Gunboat"
 			or
-				has "outfit (installed): Electron Beam"
-				has "outfit (installed): Electron Turret"
+				not "outfit (installed): Electron Beam"
+				not "outfit (installed): Electron Turret"
 	on offer
 		conversation
 			`While refueling on <planet>, a Free Worlds captain approaches you. "Captain <last>, I hear you're on the search for one of those new lasers the Navy is using."`
