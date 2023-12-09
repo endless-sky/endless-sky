@@ -210,7 +210,7 @@ void Preferences::Load()
 	if(it != settings.end())
 	{
 		if(!it->second)
-			multiPreferences.alertIndicator.Load(2);;
+			multiPreferences.alertIndicator.Load(2);
 		settings.erase(it);
 	}
 
