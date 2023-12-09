@@ -5016,7 +5016,7 @@ system Alpherg
 		sprite star/k5
 		period 25
 	object "Mendez Station"
-		sprite planet/station9
+		sprite planet/station8
 			scale 0.5
 		distance 628.137
 		period 305.454
@@ -6527,7 +6527,7 @@ system Belenos
 			distance 185
 			period 40
 	object "M.B. Station"
-		sprite planet/station15
+		sprite planet/station5
 			scale 0.5
 		distance 2005.97
 		period 656.124
