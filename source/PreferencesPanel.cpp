@@ -809,8 +809,8 @@ void PreferencesPanel::DrawSettings()
 		}
 		else if(setting == COLOR_FILTER_SETTING)
 		{
+			isOn = true;
 			text = Preferences::ColorFilterSetting();
-			isOn = text != "off";
 		}
 		else
 			text = isOn ? "on" : "off";

@@ -86,6 +86,12 @@ const float *Color::Get() const
 		case Preferences::ColorFilter::NORMAL:
 			break;
 		// Color blindness accessibility filters are enabled.
+		// The protanopia and deuteranopia filters are loosely based off of
+		// Apple's similar filters, spreading the apparent saturation of
+		// different hues over a wider range.
+		// The tritanopia filter is simpler, increasing the red and green
+		// channels to compensate for the blue channel, and shifting blues
+		// toward either reds or greens.
 		case Preferences::ColorFilter::PROTANOPIA:
 			if(color[0] > color[1])
 				c[2] = (1 - (1 - color[2]) * (1 - color[0]) + color[2]) / 2;
