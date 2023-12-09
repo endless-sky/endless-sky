@@ -171,8 +171,9 @@ outfit "Ionic Turret Prototype"
 	"turret mounts" -1
 	"required crew" 1
 	weapon
-		sprite "projectile/ion bolt"
-			"frame rate" 5
+		sprite "projectile/ionic turret"
+			"frame rate" 20
+		"fade out" 10
 		"hardpoint sprite" "hardpoint/hai ionic turret"
 		"hardpoint offset" 16.
 		sound "ion"
