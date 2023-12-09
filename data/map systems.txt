@@ -5014,22 +5014,16 @@ system Alpherg
 	object
 		sprite star/k-giant
 		period 10
-	object
+	object "Bailey"
 		sprite planet/lava0
 		distance 381.365
 		period 54.3889
-		object
-			sprite planet/station14
-				scale 0.5
-			distance 150
-			period 60
-			offset 50
 	object
 		sprite planet/dust1-b
 		distance 757.697
 		period 152.315
 		offset -99
-	object
+	object "Mordenti-Bridi Station"
 		sprite planet/station15
 			scale 0.5
 		distance 2005.97
@@ -6531,12 +6525,7 @@ system Belenos
 		sprite planet/desert0-b
 		distance 238
 		period 44.6903
-	object
-		sprite planet/rock1
-		distance 700
-		period 225.421
-		offset 99
-	object
+	object "Gagarin"
 		sprite planet/forest1
 		distance 1432.76
 		period 660.101
@@ -8686,12 +8675,7 @@ system Citadelle
 		distance 295.594
 		period 40.9444
 		offset 43
-	object
-		sprite planet/cloud0
-		distance 1112.47
-		period 298.940
-		offset 45.6
-	object
+	object "Fortalaze de Alvorada"
 		sprite "planet/asteroid base"
 		distance 1500
 		period 468.045
@@ -14521,23 +14505,17 @@ system Fumalasamakah
 	object
 		sprite star/k5
 		period 25
-	object
+	object "Mendez Station"
 		sprite planet/station9
 			scale 0.5
 		distance 628.137
 		period 305.454
-		object
-			sprite planet/station11
-				scale 0.5
-			distance 334.376
-			period 148
-			offset -2
 	object
 		sprite planet/cloud8-b
 		distance 1817.57
 		period 1503.50
 		offset 55
-	object
+	object "Jakobsen"
 		sprite planet/ocean3-b
 		distance 3203.63
 		period 3518.27
@@ -14560,10 +14538,6 @@ system Fumalasamakah
 		distance 5672.61
 		period 8289.73
 		offset 83
-		object
-			sprite planet/desert2-b
-			distance 356.395
-			offset 63
 		object
 			sprite planet/rhea
 			distance 535.683
