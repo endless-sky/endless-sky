@@ -4990,7 +4990,7 @@ planet Bailey
 		fleet "CCOR Large" 5
 		fleet "CCOR Small" 8
 
-planet "Mordenti-Bridi Station"
+planet "M.B. Station"
 	attributes CCOR military station urban
 	landscape land/city6
 	description "The hub of military logistics for the CCOR Mordente-Bridi station is as close to a fortress as can be built without the benefit of an asteroid field. The twin cylinders that make up the outer hull are layered with the strongest armor CCOR can manufacture at scale. The Bridi Cylinder is pressurized containing crew quarters and logistical facilities, and the Mordente contains CCOR's shipyard."
@@ -5032,7 +5032,7 @@ planet Jakobsen
 		fleet "CCOR Large" 2
 		fleet "CCOR Small" 4
 
-planet "Fortalaze de Alvorada"
+planet "Alvorada"
 	attributes CCOR military station
 	description "Fortaleza da Alvorada Station is a grand fortress in space, built into the inner reaches of a giant asteroid surrounded by a field of smaller, yet still sizable, space-rocks. Serving as the seat of the CCOR government the station houses the offices of the members of the politburo, their meeting chambers, and grand server-banks to store and be able to process all information about the nation needed to make planning decisions."
 	spaceport "One of the few connections to the station proper, the starport is at the bottom of one of the deepest craters in the asteroid's surface. Larger ships are left in the crater with tunnels extended to allow the movement of people to and from while smaller ships are moved into hangars dug into the walls. From here looking out you get occasional glimpses of weapon batteries built into the surrounding asteroids."

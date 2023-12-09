@@ -6526,7 +6526,7 @@ system Belenos
 			sprite planet/ice0-b
 			distance 185
 			period 40
-	object "Mordenti-Bridi Station"
+	object "M.B. Station"
 		sprite planet/station15
 			scale 0.5
 		distance 2005.97
@@ -8668,16 +8668,16 @@ system Citadelle
 			sprite star/a-dwarf
 			distance 102.423
 			period 27.3
-	object
-		sprite planet/desert0-b
-		distance 295.594
-		period 40.9444
-		offset 43
 	object "Bailey"
 		sprite planet/lava0
 		distance 381.365
 		period 54.3889
-	object "Fortalaze de Alvorada"
+	object
+		sprite planet/desert0-b
+		distance 700
+		period 210
+		offset 43
+	object "Alvorada"
 		sprite "planet/asteroid base"
 		distance 1500
 		period 468.045
