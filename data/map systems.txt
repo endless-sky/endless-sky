@@ -22222,7 +22222,7 @@ system Mekislepti
 			period 30.4733
 
 system Men
-	pos -888 361
+	pos -900.2 366.4
 	government Pirate
 	attributes "south"
 	arrival 500
@@ -22230,6 +22230,7 @@ system Men
 	belt 1580
 	haze _menu/haze-33
 	link "Beta Lupi"
+	link "Gateway"
 	asteroids "small rock" 9 3.504
 	asteroids "medium rock" 2 5.376
 	asteroids "large rock" 5 5.952
@@ -35094,3 +35095,46 @@ system Zubeneschamali
 		sprite planet/dust3
 		distance 2218.25
 		period 1182.00
+
+
+
+
+
+# Pirate Stuff
+
+
+system Gateway
+	pos -882.629 328.38
+	government Pirate
+	link Asteroids
+	link Buffer
+	link Men
+
+system Asteroids
+	pos -901.111 279.139
+	government Uninhabited
+	link Buffer
+	link Gateway
+
+system "Inhab 2"
+	pos -1013.445 274.194
+	government Pirate
+	link Buffer
+
+system "Inhab 1"
+	pos -980.667 225.917
+	government Pirate
+	link Buffer
+
+system Buffer
+	pos -960.112 308.361
+	government Uninhabited
+	link Asteroids
+	link Gateway
+	link "Inhab 1"
+	link "Inhab 2"
+
+system Cartel
+	pos -213.657 383.366
+	government Pirate
+	link Gienah
