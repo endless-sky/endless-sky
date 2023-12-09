@@ -26,7 +26,7 @@ mission "FW Epilogue: Ijs and Katya"
 					defer
 			`	While looking Ijs up in the campus directory, you notice something else: Katya is listed in the directory too, as "Visiting Professor of Civics and Economics." You give Ijs a call and ask if he and Katya would like to meet up with you for dinner, and they readily agree.`
 			`	You follow their directions to a campus restaurant which still seems to be under construction. Katya eyes one of the less stable-looking walls suspiciously, but Ijs assures both of you that it's perfectly safe and the restaurant is fully operational despite the ongoing work.`
-			`	When you settle into your seats, Katya says, "It's really great to see you again, <first>."`
+			`	"It's really great to see you again, <first>," Katya says once you've settled into your seats. `
 			`	"Not to mention," says Ijs, "it's great to have an excuse to eat somewhere other than the student center for once. How has life been treating you, <first>?"`
 			choice
 				`	"I miss the excitement of the work we did together, but other than that life is great."`
