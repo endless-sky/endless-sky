@@ -40,9 +40,6 @@ namespace {
 	const string EXPEND_AMMO = "Escorts expend ammo";
 	const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
 
-	const vector<string> DATEFMT_OPTIONS = {"dd/mm/yyyy", "mm/dd/yyyy", "yyyy-mm-dd"};
-	int dateFormatIndex = 0;
-
 	size_t zoomIndex = 4;
 	constexpr double VOLUME_SCALE = .25;
 
@@ -107,7 +104,6 @@ namespace {
 	private:
 		Preferences::OverlayState state = Preferences::OverlayState::OFF;
 	};
-
 	const vector<string> OverlaySetting::OVERLAY_SETTINGS = {"off", "always on", "damaged", "--", "on hit"};
 
 	map<Preferences::OverlayType, OverlaySetting> statusOverlaySettings = {
@@ -118,29 +114,18 @@ namespace {
 		{Preferences::OverlayType::NEUTRAL, Preferences::OverlayState::OFF},
 	};
 
-	const vector<string> AUTO_AIM_SETTINGS = {"off", "always on", "when firing"};
-	int autoAimIndex = 2;
-
-	const vector<string> AUTO_FIRE_SETTINGS = {"off", "on", "guns only", "turrets only"};
-	int autoFireIndex = 0;
-
-	const vector<string> BOARDING_SETTINGS = {"proximity", "value", "mixed"};
-	int boardingIndex = 0;
-
-	const vector<string> FLOTSAM_SETTINGS = {"off", "on", "flagship only", "escorts only"};
-	int flotsamIndex = 1;
-
-	// Enable "fast" parallax by default. "fancy" is too GPU heavy, especially for low-end hardware.
-	const vector<string> PARALLAX_SETTINGS = {"off", "fancy", "fast"};
-	int parallaxIndex = 2;
-
-	const vector<string> EXTENDED_JUMP_EFFECT_SETTINGS = {"off", "medium", "heavy"};
-	int extendedJumpEffectIndex = 0;
-
-	const vector<string> ALERT_INDICATOR_SETTING = {"off", "audio", "visual", "both"};
-	int alertIndicatorIndex = 3;
-
 	int previousSaveCount = 3;
+
+	Preferences::MultiPreferences multiPreferences {
+		Preferences::MultiPreference<Preferences::AlertIndicator, 0>({"off", "audio", "visual", "both"}),
+		Preferences::MultiPreference<Preferences::AutoAim, 2>({"off", "always on", "when firing"}),
+		Preferences::MultiPreference<Preferences::AutoFire, 0>({"off", "on", "guns only", "turrets only"}),
+		Preferences::MultiPreference<Preferences::BackgroundParallax, 2>({"off", "fancy", "fast"}),
+		Preferences::MultiPreference<Preferences::BoardingPriority, 0>({"proximity", "value", "mixed"}),
+		Preferences::MultiPreference<Preferences::DateFormat, 0>({"dd/mm/yyyy", "mm/dd/yyyy", "yyyy-mm-dd"}),
+		Preferences::MultiPreference<Preferences::ExtendedJumpEffects, 0>({"off", "medium", "heavy"}),
+		Preferences::MultiPreference<Preferences::FlotsamCollection, 1>({"off", "on", "flagship only", "escorts only"}),
+	};
 }
 
 
@@ -180,9 +165,9 @@ void Preferences::Load()
 		else if(node.Token(0) == "scroll speed" && node.Size() >= 2)
 			scrollSpeed = node.Value(1);
 		else if(node.Token(0) == "boarding target")
-			boardingIndex = max<int>(0, min<int>(node.Value(1), BOARDING_SETTINGS.size() - 1));
+			multiPreferences.boardingPriority.Load(node.Value(1));
 		else if(node.Token(0) == "Flotsam collection")
-			flotsamIndex = max<int>(0, min<int>(node.Value(1), FLOTSAM_SETTINGS.size() - 1));
+			multiPreferences.flotsamCollection.Load(node.Value(1));
 		else if(node.Token(0) == "view zoom")
 			zoomIndex = max(0., node.Value(1));
 		else if(node.Token(0) == "vsync")
@@ -198,19 +183,19 @@ void Preferences::Load()
 		else if(node.Token(0) == "Show neutral overlays")
 			statusOverlaySettings[OverlayType::NEUTRAL].SetState(node.Value(1));
 		else if(node.Token(0) == "Automatic aiming")
-			autoAimIndex = max<int>(0, min<int>(node.Value(1), AUTO_AIM_SETTINGS.size() - 1));
+			multiPreferences.autoAim.Load(node.Value(1));
 		else if(node.Token(0) == "Automatic firing")
-			autoFireIndex = max<int>(0, min<int>(node.Value(1), AUTO_FIRE_SETTINGS.size() - 1));
+			multiPreferences.autoFire.Load(node.Value(1));
 		else if(node.Token(0) == "Parallax background")
-			parallaxIndex = max<int>(0, min<int>(node.Value(1), PARALLAX_SETTINGS.size() - 1));
+			multiPreferences.backgroundParallax.Load(node.Value(1));
 		else if(node.Token(0) == "Extended jump effects")
-			extendedJumpEffectIndex = max<int>(0, min<int>(node.Value(1), EXTENDED_JUMP_EFFECT_SETTINGS.size() - 1));
+			multiPreferences.extendedJumpEffects.Load(node.Value(1));
 		else if(node.Token(0) == "fullscreen")
 			screenModeIndex = max<int>(0, min<int>(node.Value(1), SCREEN_MODE_SETTINGS.size() - 1));
 		else if(node.Token(0) == "date format")
-			dateFormatIndex = max<int>(0, min<int>(node.Value(1), DATEFMT_OPTIONS.size() - 1));
+			multiPreferences.dateFormat.Load(node.Value(1));
 		else if(node.Token(0) == "alert indicator")
-			alertIndicatorIndex = max<int>(0, min<int>(node.Value(1), ALERT_INDICATOR_SETTING.size() - 1));
+			multiPreferences.alertIndicator.Load(node.Value(1));
 		else if(node.Token(0) == "previous saves" && node.Size() >= 2)
 			previousSaveCount = max<int>(3, node.Value(1));
 		else if(node.Token(0) == "alt-mouse turning")
@@ -225,7 +210,7 @@ void Preferences::Load()
 	if(it != settings.end())
 	{
 		if(!it->second)
-			alertIndicatorIndex = 2;
+			multiPreferences.alertIndicator.Load(2);;
 		settings.erase(it);
 	}
 
@@ -245,7 +230,7 @@ void Preferences::Load()
 	if(it != settings.end())
 	{
 		if(!it->second)
-			flotsamIndex = static_cast<int>(FlotsamCollection::ESCORT);
+			multiPreferences.flotsamCollection.Load(static_cast<int>(FlotsamCollection::ESCORT));
 		settings.erase(it);
 	}
 }
@@ -260,21 +245,21 @@ void Preferences::Save()
 	out.Write("window size", Screen::RawWidth(), Screen::RawHeight());
 	out.Write("zoom", Screen::UserZoom());
 	out.Write("scroll speed", scrollSpeed);
-	out.Write("boarding target", boardingIndex);
-	out.Write("Flotsam collection", flotsamIndex);
+	out.Write("boarding target", multiPreferences.boardingPriority.Index());
+	out.Write("Flotsam collection", multiPreferences.flotsamCollection.Index());
 	out.Write("view zoom", zoomIndex);
 	out.Write("vsync", vsyncIndex);
-	out.Write("date format", dateFormatIndex);
+	out.Write("date format", multiPreferences.dateFormat.Index());
 	out.Write("Show all status overlays", statusOverlaySettings[OverlayType::ALL].ToInt());
 	out.Write("Show flagship overlay", statusOverlaySettings[OverlayType::FLAGSHIP].ToInt());
 	out.Write("Show escort overlays", statusOverlaySettings[OverlayType::ESCORT].ToInt());
 	out.Write("Show enemy overlays", statusOverlaySettings[OverlayType::ENEMY].ToInt());
 	out.Write("Show neutral overlays", statusOverlaySettings[OverlayType::NEUTRAL].ToInt());
-	out.Write("Automatic aiming", autoAimIndex);
-	out.Write("Automatic firing", autoFireIndex);
-	out.Write("Parallax background", parallaxIndex);
-	out.Write("Extended jump effects", extendedJumpEffectIndex);
-	out.Write("alert indicator", alertIndicatorIndex);
+	out.Write("Automatic aiming", multiPreferences.autoAim.Index());
+	out.Write("Automatic firing", multiPreferences.autoFire.Index());
+	out.Write("Parallax background", multiPreferences.backgroundParallax.Index());
+	out.Write("Extended jump effects", multiPreferences.extendedJumpEffects.Index());
+	out.Write("alert indicator", multiPreferences.alertIndicator.Index());
 	out.Write("previous saves", previousSaveCount);
 
 	for(const auto &it : settings)
@@ -311,30 +296,6 @@ void Preferences::ToggleAmmoUsage()
 string Preferences::AmmoUsage()
 {
 	return Has(EXPEND_AMMO) ? Has(FRUGAL_ESCORTS) ? "frugally" : "always" : "never";
-}
-
-
-
-void Preferences::ToggleDateFormat()
-{
-	if(dateFormatIndex == static_cast<int>(DATEFMT_OPTIONS.size() - 1))
-		dateFormatIndex = 0;
-	else
-		++dateFormatIndex;
-}
-
-
-
-Preferences::DateFormat Preferences::GetDateFormat()
-{
-	return static_cast<DateFormat>(dateFormatIndex);
-}
-
-
-
-const string &Preferences::DateFormatSetting()
-{
-	return DATEFMT_OPTIONS[dateFormatIndex];
 }
 
 
@@ -415,55 +376,6 @@ const vector<double> &Preferences::Zooms()
 	static vector<double> DEFAULT_ZOOMS{1.};
 	const auto &zooms = GameData::Interfaces().Get("main view")->GetList("zooms");
 	return zooms.empty() ? DEFAULT_ZOOMS : zooms;
-}
-
-
-
-// Starfield parallax.
-void Preferences::ToggleParallax()
-{
-	int targetIndex = parallaxIndex + 1;
-	if(targetIndex == static_cast<int>(PARALLAX_SETTINGS.size()))
-		targetIndex = 0;
-	parallaxIndex = targetIndex;
-}
-
-
-
-Preferences::BackgroundParallax Preferences::GetBackgroundParallax()
-{
-	return static_cast<BackgroundParallax>(parallaxIndex);
-}
-
-
-
-const string &Preferences::ParallaxSetting()
-{
-	return PARALLAX_SETTINGS[parallaxIndex];
-}
-
-
-
-void Preferences::ToggleExtendedJumpEffects()
-{
-	int targetIndex = extendedJumpEffectIndex + 1;
-	if(targetIndex == static_cast<int>(EXTENDED_JUMP_EFFECT_SETTINGS.size()))
-		targetIndex = 0;
-	extendedJumpEffectIndex = targetIndex;
-}
-
-
-
-Preferences::ExtendedJumpEffects Preferences::GetExtendedJumpEffects()
-{
-	return static_cast<ExtendedJumpEffects>(extendedJumpEffectIndex);
-}
-
-
-
-const string &Preferences::ExtendedJumpEffectsSetting()
-{
-	return EXTENDED_JUMP_EFFECT_SETTINGS[extendedJumpEffectIndex];
 }
 
 
@@ -562,116 +474,6 @@ const string &Preferences::StatusOverlaysSetting(Preferences::OverlayType type)
 
 
 
-void Preferences::ToggleAutoAim()
-{
-	autoAimIndex = (autoAimIndex + 1) % AUTO_AIM_SETTINGS.size();
-}
-
-
-
-Preferences::AutoAim Preferences::GetAutoAim()
-{
-	return static_cast<AutoAim>(autoAimIndex);
-}
-
-
-
-const string &Preferences::AutoAimSetting()
-{
-	return AUTO_AIM_SETTINGS[autoAimIndex];
-}
-
-
-
-void Preferences::ToggleAutoFire()
-{
-	autoFireIndex = (autoFireIndex + 1) % AUTO_FIRE_SETTINGS.size();
-}
-
-
-
-Preferences::AutoFire Preferences::GetAutoFire()
-{
-	return static_cast<AutoFire>(autoFireIndex);
-}
-
-
-
-const string &Preferences::AutoFireSetting()
-{
-	return AUTO_FIRE_SETTINGS[autoFireIndex];
-}
-
-
-
-
-void Preferences::ToggleBoarding()
-{
-	int targetIndex = boardingIndex + 1;
-	if(targetIndex == static_cast<int>(BOARDING_SETTINGS.size()))
-		targetIndex = 0;
-	boardingIndex = targetIndex;
-}
-
-
-
-Preferences::BoardingPriority Preferences::GetBoardingPriority()
-{
-	return static_cast<BoardingPriority>(boardingIndex);
-}
-
-
-
-const string &Preferences::BoardingSetting()
-{
-	return BOARDING_SETTINGS[boardingIndex];
-}
-
-
-
-void Preferences::ToggleFlotsam()
-{
-	flotsamIndex = (flotsamIndex + 1) % FLOTSAM_SETTINGS.size();
-}
-
-
-
-Preferences::FlotsamCollection Preferences::GetFlotsamCollection()
-{
-	return static_cast<FlotsamCollection>(flotsamIndex);
-}
-
-
-
-const string &Preferences::FlotsamSetting()
-{
-	return FLOTSAM_SETTINGS[flotsamIndex];
-}
-
-
-
-void Preferences::ToggleAlert()
-{
-	if(++alertIndicatorIndex >= static_cast<int>(ALERT_INDICATOR_SETTING.size()))
-		alertIndicatorIndex = 0;
-}
-
-
-
-Preferences::AlertIndicator Preferences::GetAlertIndicator()
-{
-	return static_cast<AlertIndicator>(alertIndicatorIndex);
-}
-
-
-
-const std::string &Preferences::AlertSetting()
-{
-	return ALERT_INDICATOR_SETTING[alertIndicatorIndex];
-}
-
-
-
 bool Preferences::PlayAudioAlert()
 {
 	return DoAlertHelper(AlertIndicator::AUDIO);
@@ -688,7 +490,7 @@ bool Preferences::DisplayVisualAlert()
 
 bool Preferences::DoAlertHelper(Preferences::AlertIndicator toDo)
 {
-	auto value = GetAlertIndicator();
+	auto value = multiPreferences.alertIndicator.Get();
 	if(value == AlertIndicator::BOTH)
 		return true;
 	else if(value == toDo)
@@ -701,4 +503,10 @@ bool Preferences::DoAlertHelper(Preferences::AlertIndicator toDo)
 int Preferences::GetPreviousSaveCount()
 {
 	return previousSaveCount;
+}
+
+
+
+Preferences::MultiPreferences &Preferences::GetMultiPrefs() {
+	return multiPreferences;
 }

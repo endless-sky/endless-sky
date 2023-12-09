@@ -228,11 +228,11 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 				SDL_WarpMouseInWindow(nullptr, point.X(), point.Y());
 			}
 			else if(zone.Value() == BOARDING_PRIORITY)
-				Preferences::ToggleBoarding();
+				Preferences::GetMultiPrefs().boardingPriority.Toggle();
 			else if(zone.Value() == BACKGROUND_PARALLAX)
-				Preferences::ToggleParallax();
+				Preferences::GetMultiPrefs().backgroundParallax.Toggle();
 			else if(zone.Value() == EXTENDED_JUMP_EFFECTS)
-				Preferences::ToggleExtendedJumpEffects();
+				Preferences::GetMultiPrefs().extendedJumpEffects.Toggle();
 			else if(zone.Value() == VIEW_ZOOM_FACTOR)
 			{
 				// Increase the zoom factor unless it is at the maximum. In that
@@ -259,13 +259,13 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 			else if(zone.Value() == STATUS_OVERLAYS_NEUTRAL)
 				Preferences::CycleStatusOverlays(Preferences::OverlayType::NEUTRAL);
 			else if(zone.Value() == AUTO_AIM_SETTING)
-				Preferences::ToggleAutoAim();
+				Preferences::GetMultiPrefs().autoAim.Toggle();
 			else if(zone.Value() == AUTO_FIRE_SETTING)
-				Preferences::ToggleAutoFire();
+				Preferences::GetMultiPrefs().autoFire.Toggle();
 			else if(zone.Value() == EXPEND_AMMO)
 				Preferences::ToggleAmmoUsage();
 			else if(zone.Value() == FLOTSAM_SETTING)
-				Preferences::ToggleFlotsam();
+				Preferences::GetMultiPrefs().flotsamCollection.Toggle();
 			else if(zone.Value() == TURRET_TRACKING)
 				Preferences::Set(FOCUS_PREFERENCE, !Preferences::Has(FOCUS_PREFERENCE));
 			else if(zone.Value() == REACTIVATE_HELP)
@@ -282,9 +282,9 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 				Preferences::SetScrollSpeed(speed);
 			}
 			else if(zone.Value() == DATE_FORMAT)
-				Preferences::ToggleDateFormat();
+				Preferences::GetMultiPrefs().dateFormat.Toggle();
 			else if(zone.Value() == ALERT_INDICATOR)
-				Preferences::ToggleAlert();
+				Preferences::GetMultiPrefs().alertIndicator.Toggle();
 			// All other options are handled by just toggling the boolean state.
 			else
 				Preferences::Set(zone.Value(), !Preferences::Has(zone.Value()));
@@ -662,18 +662,18 @@ void PreferencesPanel::DrawSettings()
 		string text;
 		if(setting == ZOOM_FACTOR)
 		{
-			isOn = Screen::UserZoom() == Screen::Zoom();
 			text = to_string(Screen::UserZoom());
+			isOn = Screen::UserZoom() == Screen::Zoom();
 		}
 		else if(setting == VIEW_ZOOM_FACTOR)
 		{
-			isOn = true;
 			text = to_string(static_cast<int>(100. * Preferences::ViewZoom()));
+			isOn = true;
 		}
 		else if(setting == SCREEN_MODE_SETTING)
 		{
-			isOn = true;
 			text = Preferences::ScreenModeSetting();
+			isOn = true;
 		}
 		else if(setting == VSYNC_SETTING)
 		{
@@ -707,59 +707,59 @@ void PreferencesPanel::DrawSettings()
 		}
 		else if(setting == AUTO_AIM_SETTING)
 		{
-			text = Preferences::AutoAimSetting();
+			text = Preferences::GetMultiPrefs().autoAim.GetString();
 			isOn = text != "off";
 		}
 		else if(setting == AUTO_FIRE_SETTING)
 		{
-			text = Preferences::AutoFireSetting();
+			text = Preferences::GetMultiPrefs().autoFire.GetString();
 			isOn = text != "off";
 		}
 		else if(setting == EXPEND_AMMO)
 			text = Preferences::AmmoUsage();
 		else if(setting == DATE_FORMAT)
 		{
-			text = Preferences::DateFormatSetting();
+			text = Preferences::GetMultiPrefs().dateFormat.GetString();
 			isOn = true;
 		}
 		else if(setting == FLOTSAM_SETTING)
 		{
-			text = Preferences::FlotsamSetting();
+			text = Preferences::GetMultiPrefs().flotsamCollection.GetString();
 			isOn = text != "off";
 		}
 		else if(setting == TURRET_TRACKING)
 		{
-			isOn = true;
 			text = Preferences::Has(FOCUS_PREFERENCE) ? "focused" : "opportunistic";
+			isOn = true;
 		}
 		else if(setting == FIGHTER_REPAIR)
 		{
-			isOn = true;
 			text = Preferences::Has(FIGHTER_REPAIR) ? "parallel" : "series";
+			isOn = true;
 		}
 		else if(setting == SHIP_OUTLINES)
 		{
-			isOn = true;
 			text = Preferences::Has(SHIP_OUTLINES) ? "fancy" : "fast";
+			isOn = true;
 		}
 		else if(setting == BOARDING_PRIORITY)
 		{
+			text = Preferences::GetMultiPrefs().boardingPriority.GetString();
 			isOn = true;
-			text = Preferences::BoardingSetting();
 		}
 		else if(setting == TARGET_ASTEROIDS_BASED_ON)
 		{
-			isOn = true;
 			text = Preferences::Has(TARGET_ASTEROIDS_BASED_ON) ? "proximity" : "value";
+			isOn = true;
 		}
 		else if(setting == BACKGROUND_PARALLAX)
 		{
-			text = Preferences::ParallaxSetting();
+			text = Preferences::GetMultiPrefs().backgroundParallax.GetString();
 			isOn = text != "off";
 		}
 		else if(setting == EXTENDED_JUMP_EFFECTS)
 		{
-			text = Preferences::ExtendedJumpEffectsSetting();
+			text = Preferences::GetMultiPrefs().extendedJumpEffects.GetString();
 			isOn = text != "off";
 		}
 		else if(setting == REACTIVATE_HELP)
@@ -789,19 +789,19 @@ void PreferencesPanel::DrawSettings()
 				text = to_string(shown) + " / " + to_string(total);
 			else
 			{
-				isOn = true;
 				text = "done";
+				isOn = true;
 			}
 		}
 		else if(setting == SCROLL_SPEED)
 		{
-			isOn = true;
 			text = to_string(Preferences::ScrollSpeed());
+			isOn = true;
 		}
 		else if(setting == ALERT_INDICATOR)
 		{
-			isOn = Preferences::GetAlertIndicator() != Preferences::AlertIndicator::NONE;
-			text = Preferences::AlertSetting();
+			text = Preferences::GetMultiPrefs().alertIndicator.GetString();
+			isOn = Preferences::GetMultiPrefs().alertIndicator.Get() != Preferences::AlertIndicator::NONE;
 		}
 		else
 			text = isOn ? "on" : "off";

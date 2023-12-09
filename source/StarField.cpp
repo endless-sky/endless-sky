@@ -132,7 +132,7 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom, const Syst
 	double baseZoom = zoom;
 
 	// Check preferences for the parallax quality.
-	const auto parallaxSetting = Preferences::GetBackgroundParallax();
+	const auto parallaxSetting = Preferences::GetMultiPrefs().backgroundParallax.Get();
 	int layers = (parallaxSetting == Preferences::BackgroundParallax::FANCY) ? 3 : 1;
 	bool isParallax = (parallaxSetting == Preferences::BackgroundParallax::FANCY ||
 						parallaxSetting == Preferences::BackgroundParallax::FAST);
