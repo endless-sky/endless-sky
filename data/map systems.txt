@@ -4996,69 +4996,62 @@ system Alpheratz
 system Alpherg
 	pos -1009.44 272.194
 	government Pirate
-	arrival 3000
-	habitable 3000
+	arrival 500
+	habitable 425
 	haze _menu/haze-33
 	link Fumalasamakah
-	asteroids "small rock" 4 12
-	trade Clothing 318
-	trade Electronics 808
-	trade Equipment 358
-	trade Food 217
-	trade "Heavy Metals" 954
-	trade Industrial 834
-	trade "Luxury Goods" 1220
-	trade Medical 882
-	trade Metal 245
-	trade Plastic 366
+	asteroids "medium rock" 3 2.97
+	asteroids "small metal" 3 3.195
+	trade Clothing 280
+	trade Electronics 840
+	trade Equipment 353
+	trade Food 234
+	trade "Heavy Metals" 1008
+	trade Industrial 865
+	trade "Luxury Goods" 1198
+	trade Medical 857
+	trade Metal 266
+	trade Plastic 328
 	object
-		sprite star/k-giant
-		period 10
-	object "Bailey"
-		sprite planet/lava0
-		distance 381.365
-		period 54.3889
-	object
-		sprite planet/dust1-b
-		distance 757.697
-		period 152.315
-		offset -99
-	object "Mordenti-Bridi Station"
-		sprite planet/station15
+		sprite star/k5
+		period 25
+	object "Mendez Station"
+		sprite planet/station9
 			scale 0.5
-		distance 2005.97
-		period 656.124
-		offset 65
+		distance 628.137
+		period 305.454
 	object
-		sprite planet/gas0-b
-		distance 3608.23
-		period 1582.85
-		offset 21
-		object
-			sprite planet/cloud0
-			distance 314.164
-			period 83
-			offset 21
-		object
-			sprite planet/rock11-b
-			distance 475.844
-			period 121
-			offset 92
+		sprite planet/cloud8-b
+		distance 1817.57
+		period 1503.50
+		offset 55
+	object "Jakobsen"
+		sprite planet/ocean3-b
+		distance 3203.63
+		period 3518.27
+		offset 84
 	object
-		sprite planet/gas1
-			scale 1.3
-		distance 6016.11
-		period 3407.79
+		sprite planet/desert10-b
+		distance 3943.18
+		period 4804.37
+		offset 99
 		object
-			sprite planet/ice1
-			distance 575.411
-			period 84
-			offset 51
+			sprite planet/dust1-b
+			distance 226.581
+			offset 180
 		object
-			sprite planet/rock3
-			distance 846.619
-			period 120
-			offset 21
+			sprite planet/dust3
+			distance 332.337
+			offset 40
+	object
+		sprite planet/gas13
+		distance 5672.61
+		period 8289.73
+		offset 83
+		object
+			sprite planet/rhea
+			distance 535.683
+			offset 13
 
 system Altair
 	pos -357 161
@@ -6496,13 +6489,12 @@ system Beginning
 			period 11.563
 
 system Belenos
-	pos -882.629 328.38
+	pos -901.111 279.139
 	government Pirate
 	arrival 1080
 	habitable 1080
 	haze _menu/haze-33
 	link Fumalasamakah
-	link Men
 	link Thuban
 	asteroids "small rock" 1 1.188
 	asteroids "large rock" 1 0.977
@@ -14483,65 +14475,72 @@ system Fscher
 system Fumalasamakah
 	pos -962.334 301.805
 	government Pirate
-	arrival 500
-	habitable 425
+	arrival 3000
+	habitable 3000
 	haze _menu/haze-33
 	link Alpherg
-	link Belenos
 	link Citadelle
+	link Belenos
 	link Thuban
-	asteroids "medium rock" 3 2.97
-	asteroids "small metal" 3 3.195
-	trade Clothing 280
-	trade Electronics 840
-	trade Equipment 353
-	trade Food 234
-	trade "Heavy Metals" 1008
-	trade Industrial 865
-	trade "Luxury Goods" 1198
-	trade Medical 857
-	trade Metal 266
-	trade Plastic 328
+	asteroids "small rock" 4 12
+	trade Clothing 318
+	trade Electronics 808
+	trade Equipment 358
+	trade Food 217
+	trade "Heavy Metals" 954
+	trade Industrial 834
+	trade "Luxury Goods" 1220
+	trade Medical 882
+	trade Metal 245
+	trade Plastic 366
 	object
-		sprite star/k5
-		period 25
-	object "Mendez Station"
-		sprite planet/station9
+		sprite star/k-giant
+		period 10
+	object "Bailey"
+		sprite planet/lava0
+		distance 381.365
+		period 54.3889
+	object
+		sprite planet/dust1-b
+		distance 757.697
+		period 152.315
+		offset -99
+	object "Mordenti-Bridi Station"
+		sprite planet/station15
 			scale 0.5
-		distance 628.137
-		period 305.454
+		distance 2005.97
+		period 656.124
+		offset 65
 	object
-		sprite planet/cloud8-b
-		distance 1817.57
-		period 1503.50
-		offset 55
-	object "Jakobsen"
-		sprite planet/ocean3-b
-		distance 3203.63
-		period 3518.27
-		offset 84
+		sprite planet/gas0-b
+		distance 3608.23
+		period 1582.85
+		offset 21
+		object
+			sprite planet/cloud0
+			distance 314.164
+			period 83
+			offset 21
+		object
+			sprite planet/rock11-b
+			distance 475.844
+			period 121
+			offset 92
 	object
-		sprite planet/desert10-b
-		distance 3943.18
-		period 4804.37
-		offset 99
+		sprite planet/gas1
+			scale 1.3
+		distance 6016.11
+		period 3407.79
 		object
-			sprite planet/dust1-b
-			distance 226.581
-			offset 180
+			sprite planet/ice1
+			distance 575.411
+			period 84
+			offset 51
 		object
-			sprite planet/dust3
-			distance 332.337
-			offset 40
-	object
-		sprite planet/gas13
-		distance 5672.61
-		period 8289.73
-		offset 83
-		object
-			sprite planet/rhea
-			distance 535.683
-			offset 13
+			sprite planet/rock3
+			distance 846.619
+			period 120
+			offset 21
 
 system Furmeliki
 	pos -35.5695 -281.812
@@ -32041,7 +32040,7 @@ system "Thshybo Le"
 		period 2473.07
 
 system Thuban
-	pos -901.111 279.139
+	pos -882.629 328.38
 	government Uninhabited
 	arrival 5000
 	habitable 10000
@@ -32051,6 +32050,7 @@ system Thuban
 	haze _menu/haze-33
 	link Belenos
 	link Fumalasamakah
+	link Men
 	asteroids "small metal" 14 7
 	asteroids "large rock" 25 4
 	minables uranium 9 1.3
