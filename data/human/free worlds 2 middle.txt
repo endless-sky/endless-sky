@@ -232,6 +232,8 @@ mission "FW Southern Recon 1B"
 			names "republic small"
 			variant
 				"Gunboat (Mark II)"
+			"cargo settings"
+				cargo 0
 	to complete
 		not "FW Southern Recon 1B (Turret): done"
 	to fail
@@ -263,6 +265,24 @@ mission "FW Southern Recon 1B (Turret)"
 
 
 
+mission "FW Southern Recon 1B (Captured Gunboat)"
+	landing
+	invisible
+	source
+		government "Free Worlds"
+	to offer
+		has "FW Southern Recon 1B: active"
+		has "ship model (all): Gunboat"
+		or
+			has "outfit (installed): Electron Beam"
+			has "outfit (installed): Electron Turret"
+	on offer
+		dialog `You appear to have captured a Navy Gunboat with the new Electron Beams intact. Uninstall one of the weapons into your cargo, then take off and land on Trinket. (To uninstall the Electron Beam into cargo: select the Gunboat, then select the weapon in the outfitter and press _U, then ctrl + click the Gunboat to deselect it, then select the Electron Beam once more and press _C.)`
+	to fail
+		has "FW Southern Recon 1B: done"
+
+
+
 mission "FW Southern Recon 1B: Alnasl Hint 1"
 	landing
 	source
@@ -270,6 +290,11 @@ mission "FW Southern Recon 1B: Alnasl Hint 1"
 		near "Wei" 2
 	to offer
 		has "FW Southern Recon 1B: active"
+		and
+			not "ship model (all): Gunboat"
+			or
+				has "outfit (installed): Electron Beam"
+				has "outfit (installed): Electron Turret"
 	on offer
 		conversation
 			`While refueling on <planet>, a Free Worlds captain approaches you. "Captain <last>, I hear you're on the search for one of those new lasers the Navy is using."`
@@ -281,7 +306,7 @@ mission "FW Southern Recon 1B: Alnasl Hint 1"
 			label information
 			`	"We've had to stop all scouting parties into Republic space because of the strength of these new weapons, so we're flying in the dark on where the Navy is, but luckily we have received word from sympathizers in the Dirt Belt. The Navy has gathered forces with these new weapons in Alioth and Seginus, frequently entering the Wei system.`
 			`	"They haven't been coming into Kornephoros, so they're likely just patrolling the area to dissuade us from making any sudden moves. This means that Wei likely isn't your best bet for stealing a weapon given the traffic, but I hear that things aren't much better beyond Lesath. I wish we had some ships to spare to help you, but we just don't have that kind of freedom right now."`
-			`	You thank the Captain for the information and he wishes you good luck.`
+			`	You thank the captain for the information and he wishes you good luck.`
 				decline
 
 
