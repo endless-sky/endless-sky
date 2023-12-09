@@ -6517,6 +6517,12 @@ system Belenos
 		sprite planet/desert0-b
 		distance 238
 		period 44.6903
+	object "M.B. Station"
+		sprite planet/station5
+			scale 0.5
+		distance 658.6
+		period 310.5
+		offset 241
 	object "Gagarin"
 		sprite planet/forest1
 		distance 1432.76
@@ -6526,12 +6532,6 @@ system Belenos
 			sprite planet/ice0-b
 			distance 185
 			period 40
-	object "M.B. Station"
-		sprite planet/station5
-			scale 0.5
-		distance 2005.97
-		period 656.124
-		offset 65
 	object
 		sprite planet/gas10-b
 		distance 2762.88
