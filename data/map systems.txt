@@ -22230,7 +22230,7 @@ system Men
 	belt 1580
 	haze _menu/haze-33
 	link "Beta Lupi"
-	link "Gateway"
+	link "Belenos"
 	asteroids "small rock" 9 3.504
 	asteroids "medium rock" 2 5.376
 	asteroids "large rock" 5 5.952
@@ -35103,36 +35103,363 @@ system Zubeneschamali
 # Pirate Stuff
 
 
-system Gateway
-	pos -882.629 328.38
-	government Pirate
-	link Asteroids
-	link Buffer
-	link Men
-
-system Asteroids
-	pos -901.111 279.139
-	government Uninhabited
-	link Buffer
-	link Gateway
-
-system "Inhab 2"
-	pos -1013.445 274.194
-	government Pirate
-	link Buffer
-
-system "Inhab 1"
+system Citadelle
 	pos -980.667 225.917
 	government Pirate
-	link Buffer
+	habitable 650
+	haze _menu/haze-33
+	link Fumalasamakah
+	minables iron 6 10
+	minables aluminum 6 8
+	minables lead 6 13
 
-system Buffer
+	object
+		sprite star/f5
+		period 27.5
+		object
+			sprite star/a-dwarf
+			distance 102.423
+			period 27.3
+	object "Fortalaze de Alvorada"
+		sprite "planet/asteroid base"
+			scale 1.3
+		distance 1500
+		period 724
+		offset 53
+		object
+			sprite "planet/asteroid base"
+				scale 0.6
+			distance 152.382
+			period 10
+			offset 180
+		object
+			sprite "planet/asteroid base"
+				scale 0.7
+			distance 163.776
+			period 10
+			offset -44
+		object
+			sprite "planet/asteroid base"
+				scale 0.8
+			distance 150.823
+			period 10
+		object
+			sprite "planet/asteroid base"
+				scale 0.6
+			distance 101.337
+			period 12
+			offset 11
+		object
+			sprite "planet/asteroid base"
+				scale 0.4
+			distance 71.988
+			period 16
+			offset 36
+		object
+			sprite "planet/asteroid base"
+				scale 0.7
+			distance 85.111
+			period 12
+			offset 166
+	object
+		sprite planet/desert0-b
+			scale 0.55
+		distance 199.664
+		period 47.5
+		offset 43
+	object
+		sprite planet/cloud0
+		distance 1112.472
+		period 384.2
+		offset 45.6
+	object
+		sprite planet/gas14-b
+		distance 2839.731
+		period 1467
+		offset 21
+		object
+			sprite planet/ice2
+				scale 0.6
+			distance 473.376
+			period 385
+			offset 54
+		object
+			sprite planet/desert10-b
+				scale 0.34
+			distance 365.066
+			period 269
+			offset 83
+		object
+			sprite planet/ice0-b
+			distance 254.677
+			period 214
+			offset 11
+
+system Thuban
+	pos -901.111 279.139
+	government Uninhabited
+	belt 600
+	belt 1500 2
+	belt 200
+	haze _menu/haze-33
+	link Belenos
+	link Fumalasamakah
+	asteroids "small metal" 8 20
+	asteroids "large rock" 10 16
+	minables uranium 10 50
+	minables titanium 10 35
+
+	object
+		sprite star/o5
+			scale 2.5
+		period 999
+
+system Alpherg
+	pos -1013.445 274.194
+	government Pirate
+	habitable 2500
+	haze _menu/haze-33
+	link Fumalasamakah
+	asteroids "small rock" 4 12
+	trade Clothing 318
+	trade Electronics 808
+	trade Equipment 358
+	trade Food 217
+	trade "Heavy Metals" 954
+	trade Industrial 834
+	trade "Luxury Goods" 1220
+	trade Medical 882
+	trade Metal 245
+	trade Plastic 366
+
+	object
+		sprite star/k-giant
+		period 10
+	object Bailey
+		sprite planet/lava0
+		distance 381.365
+		period 60
+		object
+			sprite planet/station14
+				scale 0.4
+			distance 150
+			period 60
+			offset 50
+	object "Mordenti-Bridi Station"
+		sprite planet/station15
+			scale 1.3
+		distance 2005.971
+		period 1082
+		offset 65
+	object
+		sprite planet/gas0-b
+		distance 3608.232
+		period 2421
+		offset 21
+		object
+			sprite "planet/asteroid base"
+			distance 281.651
+			period 60
+			offset 186
+		object
+			sprite planet/cloud5-b
+				scale 0.5
+			distance 475.767
+			period 83
+			offset 21
+		object
+			sprite planet/desert1
+				scale 0.4
+			distance 647.134
+			period 121
+			offset 92
+	object
+		sprite planet/gas1
+			scale 1.3
+		distance 6016.112
+		period 2813
+		object
+			sprite planet/rock3
+			distance 846.619
+			period 120
+			offset 21
+		object
+			sprite planet/ice1
+				scale 0.6
+			distance 575.411
+			period 84
+			offset 51
+	object
+		sprite planet/dust1-b
+		distance 757.697
+		period 325
+		offset -99
+
+system Belenos
+	pos -882.629 328.38
+	government Pirate
+	haze _menu/haze-33
+	link Fumalasamakah
+	link Men
+	link Thuban
+	trade Clothing 287
+	trade Electronics 815
+	trade Equipment 404
+	trade Food 161
+	trade "Heavy Metals" 914
+	trade Industrial 842
+	trade "Luxury Goods" 1237
+	trade Medical 833
+	trade Metal 286
+	trade Plastic 337
+
+	object Gagarin
+		sprite planet/forest1
+			"random start frame"
+		distance 1432.766
+		period 380
+		offset 63
+		object
+			sprite planet/ice0-b
+				scale 0.6
+				"random start frame"
+			distance 185
+			period 40
+	object
+		sprite star/g0
+		period 10
+	object
+		sprite planet/desert0-b
+			scale 0.35
+			"random start frame"
+		distance 238
+		period 54
+	object
+		sprite planet/gas10-b
+		distance 2762.888
+		period 700
+		object
+			sprite planet/fog0-b
+				scale 0.38
+			distance 381.185
+			period 281
+			offset 30
+		object
+			sprite planet/ice0-b
+			distance 271.352
+			period 81
+			offset 86
+	object
+		sprite planet/rock1
+			scale 1.3
+		distance 700
+		period 284
+		offset 99
+		object
+			sprite planet/desert0-b
+				scale 0.4
+			distance 169.691
+			period 41
+			offset 64.
+
+system Fumalasamakah
 	pos -960.112 308.361
 	government Uninhabited
-	link Asteroids
-	link Gateway
-	link "Inhab 1"
-	link "Inhab 2"
+	habitable 5000
+	haze _menu/haze-33
+	link Alpherg
+	link Belenos
+	link Citadelle
+	link Thuban
+	trade Clothing 280
+	trade Electronics 840
+	trade Equipment 353
+	trade Food 234
+	trade "Heavy Metals" 1008
+	trade Industrial 865
+	trade "Luxury Goods" 1198
+	trade Medical 857
+	trade Metal 266
+	trade Plastic 328
+
+	object
+		sprite star/m-supergiant
+		period -25
+	object
+		sprite planet/station9
+			scale 0.8
+		distance 628.137
+		period 148
+		object "Mendez Station"
+			sprite planet/station11
+				scale 0.5
+			distance 334.376
+			period 148
+			offset -2
+	object Jakobsen
+		sprite planet/ocean3-b
+			scale 1.3
+		distance 3203.631
+		period -2182
+		offset 84
+		object
+			sprite "planet/asteroid base"
+				scale 0.4
+			distance 256.046
+			period -89
+			offset 73
+		object
+			sprite "planet/asteroid base"
+				scale 0.46
+			distance 344.241
+			period -121
+			offset 90
+	object
+		sprite planet/cloud8-b
+		distance 1817.575
+		period -1721
+		offset 55
+	object
+		sprite planet/gas13
+		distance 5672.615
+		period -5219
+		offset 83
+		object
+			sprite planet/lava3-b
+				scale 0.5
+			distance 309.979
+			period -84
+			offset 42
+		object
+			sprite planet/desert2-b
+				scale 0.6
+			distance 553.913
+			period -172
+			offset 63
+		object
+			sprite planet/desert10
+				scale 0.4
+			distance 730.175
+			period -218
+			offset 13
+	object
+		sprite planet/desert10-b
+			scale 1.3
+		distance 3943.187
+		period -2531
+		offset 99
+		object
+			sprite planet/dust3
+			distance 314.645
+			period -173
+			offset 42
+		object
+			sprite planet/dust1-b
+				scale 0.7
+			distance 247.827
+			period -175
+			offset 184
+
 
 system Cartel
 	pos -213.657 383.366
