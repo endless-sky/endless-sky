@@ -14482,7 +14482,7 @@ system Fscher
 
 system Fumalasamakah
 	pos -962.334 301.805
-	government Uninhabited
+	government Pirate
 	arrival 500
 	habitable 425
 	haze _menu/haze-33
