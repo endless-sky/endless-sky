@@ -51,7 +51,7 @@ public:
 	private:
 		int_fast8_t index;
 		const std::vector<std::string> names;
-		
+
 	};
 
 	enum class AlertIndicator : int_fast8_t {
@@ -97,7 +97,7 @@ public:
 		FLAGSHIP,
 		ESCORT
 	};
-		
+
 	struct MultiPreferences {
 		// Red alert siren and symbol
 		MultiPreference<AlertIndicator, 0> alertIndicator;
