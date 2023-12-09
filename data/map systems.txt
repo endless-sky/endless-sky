@@ -6526,6 +6526,12 @@ system Belenos
 			sprite planet/ice0-b
 			distance 185
 			period 40
+	object "Mordenti-Bridi Station"
+		sprite planet/station15
+			scale 0.5
+		distance 2005.97
+		period 656.124
+		offset 65
 	object
 		sprite planet/gas10-b
 		distance 2762.88
@@ -8667,6 +8673,10 @@ system Citadelle
 		distance 295.594
 		period 40.9444
 		offset 43
+	object "Bailey"
+		sprite planet/lava0
+		distance 381.365
+		period 54.3889
 	object "Fortalaze de Alvorada"
 		sprite "planet/asteroid base"
 		distance 1500
@@ -14474,7 +14484,7 @@ system Fscher
 
 system Fumalasamakah
 	pos -962.334 301.805
-	government Pirate
+	government Uninhabited
 	arrival 3000
 	habitable 3000
 	haze _menu/haze-33
@@ -14496,21 +14506,11 @@ system Fumalasamakah
 	object
 		sprite star/k-giant
 		period 10
-	object "Bailey"
-		sprite planet/lava0
-		distance 381.365
-		period 54.3889
 	object
 		sprite planet/dust1-b
 		distance 757.697
 		period 152.315
 		offset -99
-	object "Mordenti-Bridi Station"
-		sprite planet/station15
-			scale 0.5
-		distance 2005.97
-		period 656.124
-		offset 65
 	object
 		sprite planet/gas0-b
 		distance 3608.23
