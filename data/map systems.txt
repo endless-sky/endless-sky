@@ -22460,7 +22460,7 @@ system Men
 	belt 1580
 	haze _menu/haze-33
 	link "Beta Lupi"
-	link "Belenos"
+	link "Thuban"
 	asteroids "small rock" 9 3.504
 	asteroids "medium rock" 2 5.376
 	asteroids "large rock" 5 5.952
