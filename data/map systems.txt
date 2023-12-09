@@ -5015,21 +5015,21 @@ system Alpherg
 	object
 		sprite star/k5
 		period 25
-	object "Mendez Station"
-		sprite planet/station8
-			scale 0.5
-		distance 628.137
-		period 305.454
+	object "Jakobsen"
+		sprite planet/ocean3-b
+		distance 445.1
+		period 90
+		offset 84
+		object "Mendez Station"
+			sprite planet/station8
+				scale 0.5
+			distance 171.4
+			period 61.454
 	object
 		sprite planet/cloud8-b
 		distance 1817.57
 		period 1503.50
 		offset 55
-	object "Jakobsen"
-		sprite planet/ocean3-b
-		distance 3203.63
-		period 3518.27
-		offset 84
 	object
 		sprite planet/desert10-b
 		distance 3943.18
