@@ -2257,11 +2257,12 @@ ship "Leviathan" "Leviathan (Particle Chaser)"
 ship "Leviathan" "Leviathan (CCOR)"
 	outfits
 		"Plasma Cannon" 4
-		"Heavy Anti-Missile Turret" 3
+		"Heavy Anti-Missile Turret" 2
+		"Anti-Missile Turret" 2
 		"Fusion Reactor"
 		"S-970 Regenerator" 2
 		"nGVF-EE Fuel Cell"
-		"Supercapacitor" 2
+		"Supercapacitor"
 		"Liquid Helium Cooler"
 		"Liquid Nitrogen Cooler" 2
 		"Outfits Expansion" 4
