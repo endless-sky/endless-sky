@@ -202,8 +202,8 @@ private:
 	// To facilitate this, it uses two buffers for each list of things to draw - one for the next frame's calculations and
 	// one for rendering the current frame. A little synchronization is required to prevent mutable references to the
 	// currently rendering buffer.
-	size_t currentCalcBuffer = false;
-	size_t currentDrawBuffer = false;
+	size_t currentCalcBuffer = 0;
+	size_t currentDrawBuffer = 0;
 	bool hasFinishedCalculating = true;
 	DrawList draw[2];
 	BatchDrawList batchDraw[2];

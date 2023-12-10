@@ -1001,7 +1001,7 @@ void Engine::Go()
 	{
 		unique_lock<mutex> lock(swapMutex);
 		++step;
-		currentCalcBuffer = !currentCalcBuffer;
+		currentCalcBuffer = currentCalcBuffer ? 0 : 1;
 		hasFinishedCalculating = false;
 	}
 	condition.notify_all();
@@ -2131,8 +2131,8 @@ void Engine::HandleMouseInput(Command &activeCommands)
 	int mousePosY;
 	if((SDL_GetMouseState(&mousePosX, &mousePosY) & SDL_BUTTON_RMASK) != 0)
 		rightMouseButtonHeld = true;
-	double relX = mousePosX - Screen::RawWidth() / 2;
-	double relY = mousePosY - Screen::RawHeight() / 2;
+	double relX = mousePosX - Screen::RawWidth() / 2.0;
+	double relY = mousePosY - Screen::RawHeight() / 2.0;
 	ai.SetMousePosition(Point(relX, relY));
 
 	// Activate firing command.
