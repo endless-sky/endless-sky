@@ -28,7 +28,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cstddef>
+#include <cstdint>
 #include <map>
+#include <string>
+#include <vector>
 
 using namespace std;
 
@@ -116,17 +119,27 @@ namespace {
 
 	int previousSaveCount = 3;
 
-	Preferences::MultiPreferences multiPreferences {
-		Preferences::MultiPreference<Preferences::AlertIndicator, 0>({"off", "audio", "visual", "both"}),
-		Preferences::MultiPreference<Preferences::AutoAim, 2>({"off", "always on", "when firing"}),
-		Preferences::MultiPreference<Preferences::AutoFire, 0>({"off", "on", "guns only", "turrets only"}),
-		Preferences::MultiPreference<Preferences::BackgroundParallax, 2>({"off", "fancy", "fast"}),
-		Preferences::MultiPreference<Preferences::BoardingPriority, 0>({"proximity", "value", "mixed"}),
-		Preferences::MultiPreference<Preferences::DateFormat, 0>({"dd/mm/yyyy", "mm/dd/yyyy", "yyyy-mm-dd"}),
-		Preferences::MultiPreference<Preferences::ExtendedJumpEffects, 0>({"off", "medium", "heavy"}),
-		Preferences::MultiPreference<Preferences::FlotsamCollection, 1>({"off", "on", "flagship only", "escorts only"}),
-	};
 }
+
+
+
+
+Preferences::MultiPreference<Preferences::AlertIndicator, 0>Preferences::alertIndicator(
+	{"off", "audio", "visual", "both"});
+Preferences::MultiPreference<Preferences::AutoAim, 2>Preferences::autoAim(
+	{"off", "always on", "when firing"});
+Preferences::MultiPreference<Preferences::AutoFire, 0>Preferences::autoFire(
+	{"off", "on", "guns only", "turrets only"});
+Preferences::MultiPreference<Preferences::BackgroundParallax, 2>Preferences::backgroundParallax(
+	{"off", "fancy", "fast"});
+Preferences::MultiPreference<Preferences::BoardingPriority, 0>Preferences::boardingPriority(
+	{"proximity", "value", "mixed"});
+Preferences::MultiPreference<Preferences::DateFormat, 0>Preferences::dateFormat(
+	{"dd/mm/yyyy", "mm/dd/yyyy", "yyyy-mm-dd"});
+Preferences::MultiPreference<Preferences::ExtendedJumpEffects, 0>Preferences::extendedJumpEffects(
+	{"off", "medium", "heavy"});
+Preferences::MultiPreference<Preferences::FlotsamCollection, 1>Preferences::flotsamCollection(
+	{"off", "on", "flagship only", "escorts only"});
 
 
 
@@ -165,9 +178,9 @@ void Preferences::Load()
 		else if(node.Token(0) == "scroll speed" && node.Size() >= 2)
 			scrollSpeed = node.Value(1);
 		else if(node.Token(0) == "boarding target")
-			multiPreferences.boardingPriority.Load(node.Value(1));
+			boardingPriority.Load(node.Value(1));
 		else if(node.Token(0) == "Flotsam collection")
-			multiPreferences.flotsamCollection.Load(node.Value(1));
+			flotsamCollection.Load(node.Value(1));
 		else if(node.Token(0) == "view zoom")
 			zoomIndex = max(0., node.Value(1));
 		else if(node.Token(0) == "vsync")
@@ -183,19 +196,19 @@ void Preferences::Load()
 		else if(node.Token(0) == "Show neutral overlays")
 			statusOverlaySettings[OverlayType::NEUTRAL].SetState(node.Value(1));
 		else if(node.Token(0) == "Automatic aiming")
-			multiPreferences.autoAim.Load(node.Value(1));
+			autoAim.Load(node.Value(1));
 		else if(node.Token(0) == "Automatic firing")
-			multiPreferences.autoFire.Load(node.Value(1));
+			autoFire.Load(node.Value(1));
 		else if(node.Token(0) == "Parallax background")
-			multiPreferences.backgroundParallax.Load(node.Value(1));
+			backgroundParallax.Load(node.Value(1));
 		else if(node.Token(0) == "Extended jump effects")
-			multiPreferences.extendedJumpEffects.Load(node.Value(1));
+			extendedJumpEffects.Load(node.Value(1));
 		else if(node.Token(0) == "fullscreen")
 			screenModeIndex = max<int>(0, min<int>(node.Value(1), SCREEN_MODE_SETTINGS.size() - 1));
 		else if(node.Token(0) == "date format")
-			multiPreferences.dateFormat.Load(node.Value(1));
+			dateFormat.Load(node.Value(1));
 		else if(node.Token(0) == "alert indicator")
-			multiPreferences.alertIndicator.Load(node.Value(1));
+			alertIndicator.Load(node.Value(1));
 		else if(node.Token(0) == "previous saves" && node.Size() >= 2)
 			previousSaveCount = max<int>(3, node.Value(1));
 		else if(node.Token(0) == "alt-mouse turning")
@@ -210,7 +223,7 @@ void Preferences::Load()
 	if(it != settings.end())
 	{
 		if(!it->second)
-			multiPreferences.alertIndicator.Load(2);
+			alertIndicator.Load(2);
 		settings.erase(it);
 	}
 
@@ -230,7 +243,7 @@ void Preferences::Load()
 	if(it != settings.end())
 	{
 		if(!it->second)
-			multiPreferences.flotsamCollection.Load(static_cast<int>(FlotsamCollection::ESCORT));
+			flotsamCollection.Load(static_cast<int>(FlotsamCollection::ESCORT));
 		settings.erase(it);
 	}
 }
@@ -245,21 +258,21 @@ void Preferences::Save()
 	out.Write("window size", Screen::RawWidth(), Screen::RawHeight());
 	out.Write("zoom", Screen::UserZoom());
 	out.Write("scroll speed", scrollSpeed);
-	out.Write("boarding target", multiPreferences.boardingPriority.Index());
-	out.Write("Flotsam collection", multiPreferences.flotsamCollection.Index());
+	out.Write("boarding target", boardingPriority.Index());
+	out.Write("Flotsam collection", flotsamCollection.Index());
 	out.Write("view zoom", zoomIndex);
 	out.Write("vsync", vsyncIndex);
-	out.Write("date format", multiPreferences.dateFormat.Index());
+	out.Write("date format", dateFormat.Index());
 	out.Write("Show all status overlays", statusOverlaySettings[OverlayType::ALL].ToInt());
 	out.Write("Show flagship overlay", statusOverlaySettings[OverlayType::FLAGSHIP].ToInt());
 	out.Write("Show escort overlays", statusOverlaySettings[OverlayType::ESCORT].ToInt());
 	out.Write("Show enemy overlays", statusOverlaySettings[OverlayType::ENEMY].ToInt());
 	out.Write("Show neutral overlays", statusOverlaySettings[OverlayType::NEUTRAL].ToInt());
-	out.Write("Automatic aiming", multiPreferences.autoAim.Index());
-	out.Write("Automatic firing", multiPreferences.autoFire.Index());
-	out.Write("Parallax background", multiPreferences.backgroundParallax.Index());
-	out.Write("Extended jump effects", multiPreferences.extendedJumpEffects.Index());
-	out.Write("alert indicator", multiPreferences.alertIndicator.Index());
+	out.Write("Automatic aiming", autoAim.Index());
+	out.Write("Automatic firing", autoFire.Index());
+	out.Write("Parallax background", backgroundParallax.Index());
+	out.Write("Extended jump effects", extendedJumpEffects.Index());
+	out.Write("alert indicator", alertIndicator.Index());
 	out.Write("previous saves", previousSaveCount);
 
 	for(const auto &it : settings)
@@ -490,7 +503,7 @@ bool Preferences::DisplayVisualAlert()
 
 bool Preferences::DoAlertHelper(Preferences::AlertIndicator toDo)
 {
-	auto value = multiPreferences.alertIndicator.Get();
+	auto value = alertIndicator.Get();
 	if(value == AlertIndicator::BOTH)
 		return true;
 	else if(value == toDo)
@@ -503,10 +516,4 @@ bool Preferences::DoAlertHelper(Preferences::AlertIndicator toDo)
 int Preferences::GetPreviousSaveCount()
 {
 	return previousSaveCount;
-}
-
-
-
-Preferences::MultiPreferences &Preferences::GetMultiPrefs() {
-	return multiPreferences;
 }

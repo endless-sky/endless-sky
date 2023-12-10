@@ -3466,7 +3466,7 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 		// Skip weapons omitted by the "Automatic firing" preference.
 		if(isFlagship)
 		{
-			const auto autoFireMode = Preferences::GetMultiPrefs().autoFire.Get();
+			const auto autoFireMode = Preferences::autoFire.Get();
 			if(autoFireMode == Preferences::AutoFire::GUNS_ONLY && hardpoint.IsTurret())
 				continue;
 			if(autoFireMode == Preferences::AutoFire::TURRETS_ONLY && !hardpoint.IsTurret())
@@ -3897,7 +3897,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			if(shift)
 				ship.SetTargetShip(shared_ptr<Ship>());
 
-			const auto boardingPriority = Preferences::GetMultiPrefs().boardingPriority.Get();
+			const auto boardingPriority = Preferences::boardingPriority.Get();
 			auto strategy = [&]() noexcept -> function<double(const Ship &)>
 			{
 				Point current = ship.Position();
@@ -4184,7 +4184,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 
 	const shared_ptr<const Ship> target = ship.GetTargetShip();
 	AimTurrets(ship, firingCommands, !Preferences::Has("Turrets focus fire"));
-	if(Preferences::GetMultiPrefs().autoFire.Get() != Preferences::AutoFire::OFF && !ship.IsBoarding()
+	if(Preferences::autoFire.Get() != Preferences::AutoFire::OFF && !ship.IsBoarding()
 			&& !(autoPilot | activeCommands).Has(Command::LAND | Command::JUMP | Command::FLEET_JUMP | Command::BOARD)
 			&& (!target || target->GetGovernment()->IsEnemy()))
 		AutoFire(ship, firingCommands, false, true);
@@ -4246,8 +4246,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		else if(ship.GetTargetStellar())
 			command.SetTurn(TurnToward(ship, ship.GetTargetStellar()->Position() - ship.Position()));
 	}
-	else if((Preferences::GetMultiPrefs().autoAim.Get() == Preferences::AutoAim::ALWAYS_ON
-			|| (Preferences::GetMultiPrefs().autoAim.Get() == Preferences::AutoAim::WHEN_FIRING && isFiring))
+	else if((Preferences::autoAim.Get() == Preferences::AutoAim::ALWAYS_ON
+			|| (Preferences::autoAim.Get() == Preferences::AutoAim::WHEN_FIRING && isFiring))
 			&& !command.Turn() && !ship.IsBoarding()
 			&& ((target && target->GetSystem() == ship.GetSystem() && target->IsTargetable()) || ship.GetTargetAsteroid())
 			&& !autoPilot.Has(Command::LAND | Command::JUMP | Command::FLEET_JUMP | Command::BOARD))

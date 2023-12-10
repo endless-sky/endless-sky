@@ -27,22 +27,20 @@ public:
 	template<typename T, int_fast8_t defaultIndex>
 	class MultiPreference {
 	public:
-		MultiPreference<T, defaultIndex>(const std::vector<std::string> &names) : names(names) {
-			index = defaultIndex;
+		MultiPreference<T, defaultIndex>(const std::vector<std::string> &names) : index(defaultIndex), names(names) {}
+
+		const T Get() const {
+			return static_cast<T>(index);
+		}
+		const std::string &GetString() const {
+			return names[index];
+		}
+		const int_fast8_t Index() const {
+			return index;
 		}
 
 		void Toggle() {
 			index = (index + 1) % names.size();
-		};
-		const T Get() const {
-			return static_cast<T>(index);
-		};
-		const std::string &GetString() const {
-			return names[index];
-		};
-
-		const int_fast8_t Index() const {
-			return index;
 		}
 		void Load(int from) {
 			index = std::max<int>(0, std::min<int>(from, names.size() - 1));
@@ -96,25 +94,6 @@ public:
 		ON,
 		FLAGSHIP,
 		ESCORT
-	};
-
-	struct MultiPreferences {
-		// Red alert siren and symbol
-		MultiPreference<AlertIndicator, 0> alertIndicator;
-		// Auto aim setting, either "off", "always on", or "when firing".
-		MultiPreference<AutoAim, 2> autoAim;
-		// Auto fire setting, either "off", "on", "guns only", or "turrets only".
-		MultiPreference<AutoFire, 0> autoFire;
-		// Background parallax setting, either "fast", "fancy", or "off".
-		MultiPreference<BackgroundParallax, 2> backgroundParallax;
-		// Boarding target setting, either "proximity", "value" or "mixed".
-		MultiPreference<BoardingPriority, 0> boardingPriority;
-		// Date format preferences.
-		MultiPreference<DateFormat, 0> dateFormat;
-		// Extended jump effects setting, either "off", "medium", or "heavy".
-		MultiPreference<ExtendedJumpEffects, 0> extendedJumpEffects;
-		// Flotsam setting, either "off", "on", "flagship only", or "escorts only".
-		MultiPreference<FlotsamCollection, 1> flotsamCollection;
 	};
 
 	enum class VSync : int_fast8_t {
@@ -175,14 +154,30 @@ public:
 	static OverlayState StatusOverlaysState(OverlayType type);
 	static const std::string &StatusOverlaysSetting(OverlayType type);
 
-	static MultiPreferences &GetMultiPrefs();
-
 	// Red alert siren and symbol
 	static bool PlayAudioAlert();
 	static bool DisplayVisualAlert();
 	static bool DoAlertHelper(AlertIndicator toDo);
 
 	static int GetPreviousSaveCount();
+
+public:
+	// Red alert siren and symbol
+	static MultiPreference<AlertIndicator, 0> alertIndicator;
+	// Auto aim setting, either "off", "always on", or "when firing".
+	static MultiPreference<AutoAim, 2> autoAim;
+	// Auto fire setting, either "off", "on", "guns only", or "turrets only".
+	static MultiPreference<AutoFire, 0> autoFire;
+	// Background parallax setting, either "fast", "fancy", or "off".
+	static MultiPreference<BackgroundParallax, 2> backgroundParallax;
+	// Boarding target setting, either "proximity", "value" or "mixed".
+	static MultiPreference<BoardingPriority, 0> boardingPriority;
+	// Date format preferences.
+	static MultiPreference<DateFormat, 0> dateFormat;
+	// Extended jump effects setting, either "off", "medium", or "heavy".
+	static MultiPreference<ExtendedJumpEffects, 0> extendedJumpEffects;
+	// Flotsam setting, either "off", "on", "flagship only", or "escorts only".
+	static MultiPreference<FlotsamCollection, 1> flotsamCollection;
 
 };
 

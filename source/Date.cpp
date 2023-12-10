@@ -62,7 +62,7 @@ Date::Date(int day, int month, int year)
 // Convert a date to a string.
 const string &Date::ToString() const
 {
-	Preferences::DateFormat dateFormat = Preferences::GetMultiPrefs().dateFormat.Get();
+	Preferences::DateFormat dateFormat = Preferences::dateFormat.Get();
 
 	if(dateFormat != dateFormatInUse)
 	{
@@ -133,7 +133,7 @@ string Date::LongString() const
 	};
 	const string &month = MONTH[Month() - 1];
 
-	Preferences::DateFormat dateFormat = Preferences::GetMultiPrefs().dateFormat.Get();
+	Preferences::DateFormat dateFormat = Preferences::dateFormat.Get();
 	string result;
 	if(dateFormat == Preferences::DateFormat::YMD || dateFormat == Preferences::DateFormat::MDY)
 		result += std::move(month) + " " + std::move(dayString);

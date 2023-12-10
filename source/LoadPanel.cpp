@@ -68,7 +68,7 @@ namespace {
 	// Convert a time_t to a human-readable time and date.
 	string TimestampString(time_t timestamp)
 	{
-		pair<pair<string, string>, size_t> fmt = TimestampFormatString(Preferences::GetMultiPrefs().dateFormat.Get());
+		pair<pair<string, string>, size_t> fmt = TimestampFormatString(Preferences::dateFormat.Get());
 		char* buf = static_cast<char*>(std::malloc(fmt.second));
 
 #ifdef _WIN32

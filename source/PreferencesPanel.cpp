@@ -228,11 +228,11 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 				SDL_WarpMouseInWindow(nullptr, point.X(), point.Y());
 			}
 			else if(zone.Value() == BOARDING_PRIORITY)
-				Preferences::GetMultiPrefs().boardingPriority.Toggle();
+				Preferences::boardingPriority.Toggle();
 			else if(zone.Value() == BACKGROUND_PARALLAX)
-				Preferences::GetMultiPrefs().backgroundParallax.Toggle();
+				Preferences::backgroundParallax.Toggle();
 			else if(zone.Value() == EXTENDED_JUMP_EFFECTS)
-				Preferences::GetMultiPrefs().extendedJumpEffects.Toggle();
+				Preferences::extendedJumpEffects.Toggle();
 			else if(zone.Value() == VIEW_ZOOM_FACTOR)
 			{
 				// Increase the zoom factor unless it is at the maximum. In that
@@ -259,13 +259,13 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 			else if(zone.Value() == STATUS_OVERLAYS_NEUTRAL)
 				Preferences::CycleStatusOverlays(Preferences::OverlayType::NEUTRAL);
 			else if(zone.Value() == AUTO_AIM_SETTING)
-				Preferences::GetMultiPrefs().autoAim.Toggle();
+				Preferences::autoAim.Toggle();
 			else if(zone.Value() == AUTO_FIRE_SETTING)
-				Preferences::GetMultiPrefs().autoFire.Toggle();
+				Preferences::autoFire.Toggle();
 			else if(zone.Value() == EXPEND_AMMO)
 				Preferences::ToggleAmmoUsage();
 			else if(zone.Value() == FLOTSAM_SETTING)
-				Preferences::GetMultiPrefs().flotsamCollection.Toggle();
+				Preferences::flotsamCollection.Toggle();
 			else if(zone.Value() == TURRET_TRACKING)
 				Preferences::Set(FOCUS_PREFERENCE, !Preferences::Has(FOCUS_PREFERENCE));
 			else if(zone.Value() == REACTIVATE_HELP)
@@ -282,9 +282,9 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 				Preferences::SetScrollSpeed(speed);
 			}
 			else if(zone.Value() == DATE_FORMAT)
-				Preferences::GetMultiPrefs().dateFormat.Toggle();
+				Preferences::dateFormat.Toggle();
 			else if(zone.Value() == ALERT_INDICATOR)
-				Preferences::GetMultiPrefs().alertIndicator.Toggle();
+				Preferences::alertIndicator.Toggle();
 			// All other options are handled by just toggling the boolean state.
 			else
 				Preferences::Set(zone.Value(), !Preferences::Has(zone.Value()));
@@ -707,24 +707,24 @@ void PreferencesPanel::DrawSettings()
 		}
 		else if(setting == AUTO_AIM_SETTING)
 		{
-			text = Preferences::GetMultiPrefs().autoAim.GetString();
+			text = Preferences::autoAim.GetString();
 			isOn = text != "off";
 		}
 		else if(setting == AUTO_FIRE_SETTING)
 		{
-			text = Preferences::GetMultiPrefs().autoFire.GetString();
+			text = Preferences::autoFire.GetString();
 			isOn = text != "off";
 		}
 		else if(setting == EXPEND_AMMO)
 			text = Preferences::AmmoUsage();
 		else if(setting == DATE_FORMAT)
 		{
-			text = Preferences::GetMultiPrefs().dateFormat.GetString();
+			text = Preferences::dateFormat.GetString();
 			isOn = true;
 		}
 		else if(setting == FLOTSAM_SETTING)
 		{
-			text = Preferences::GetMultiPrefs().flotsamCollection.GetString();
+			text = Preferences::flotsamCollection.GetString();
 			isOn = text != "off";
 		}
 		else if(setting == TURRET_TRACKING)
@@ -744,7 +744,7 @@ void PreferencesPanel::DrawSettings()
 		}
 		else if(setting == BOARDING_PRIORITY)
 		{
-			text = Preferences::GetMultiPrefs().boardingPriority.GetString();
+			text = Preferences::boardingPriority.GetString();
 			isOn = true;
 		}
 		else if(setting == TARGET_ASTEROIDS_BASED_ON)
@@ -754,12 +754,12 @@ void PreferencesPanel::DrawSettings()
 		}
 		else if(setting == BACKGROUND_PARALLAX)
 		{
-			text = Preferences::GetMultiPrefs().backgroundParallax.GetString();
+			text = Preferences::backgroundParallax.GetString();
 			isOn = text != "off";
 		}
 		else if(setting == EXTENDED_JUMP_EFFECTS)
 		{
-			text = Preferences::GetMultiPrefs().extendedJumpEffects.GetString();
+			text = Preferences::extendedJumpEffects.GetString();
 			isOn = text != "off";
 		}
 		else if(setting == REACTIVATE_HELP)
@@ -800,8 +800,8 @@ void PreferencesPanel::DrawSettings()
 		}
 		else if(setting == ALERT_INDICATOR)
 		{
-			text = Preferences::GetMultiPrefs().alertIndicator.GetString();
-			isOn = Preferences::GetMultiPrefs().alertIndicator.Get() != Preferences::AlertIndicator::NONE;
+			text = Preferences::alertIndicator.GetString();
+			isOn = Preferences::alertIndicator.Get() != Preferences::AlertIndicator::NONE;
 		}
 		else
 			text = isOn ? "on" : "off";
