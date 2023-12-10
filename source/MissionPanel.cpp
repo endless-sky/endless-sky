@@ -953,7 +953,6 @@ void MissionPanel::Accept(bool force)
 	if(toAccept.GetAction(Mission::ACCEPT).HasRelocation())
 		GetUI()->Pop(this);
 
-
 	cycleInvolvedIndex = 0;
 
 	if(available.empty())

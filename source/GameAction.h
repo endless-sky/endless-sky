@@ -54,6 +54,8 @@ private:
 		LocationFilter relocateFilter;
 		bool relocateFlagshipOnly = false;
 	};
+
+
 public:
 	GameAction() = default;
 	// Construct and Load() at the same time.
