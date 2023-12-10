@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef ES_TEXT_FORMAT_H_
 #define ES_TEXT_FORMAT_H_
 
+#include <cstdint>
 #include <functional>
 #include <map>
 #include <string>
@@ -70,7 +71,10 @@ public:
 	static std::vector<std::string> Split(const std::string &str, const std::string &separator);
 
 	// Finds &[condition] and &[format@condition] in strings and expands them
-	static std::string ExpandConditions(const std::string &source, ConditionGetter getter);
+	static std::string ExpandConditions(const std::string &source, const ConditionGetter &getter);
+
+	// Function for the "find" dialogs:
+	static int Search(const std::string &str, const std::string &sub);
 };
 
 

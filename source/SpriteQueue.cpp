@@ -24,6 +24,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
+namespace {
+	// The maximum number of loaded images in the queue that are
+	// waiting to be uploaded to the GPU.
+	constexpr int MAX_QUEUE = 100;
+}
+
 
 
 // Constructor, which allocates worker threads.
@@ -108,12 +114,14 @@ void SpriteQueue::Finish()
 
 		// Load whatever is already queued up for loading.
 		DoLoad(lock);
+		lock.unlock();
 		if(GetProgress() == 1.)
 			break;
+		lock.lock();
 
 		// We still have sprites to upload, but none of them have been read from
 		// disk yet. Wait until one arrives.
-		loadCondition.wait(lock);
+		loadCondition.wait(lock, [this] { return !toLoad.empty(); });
 	}
 }
 
@@ -133,6 +141,12 @@ void SpriteQueue::operator()()
 				return;
 			if(toRead.empty())
 				break;
+			{
+				// Stop loading images so that the main thread can keep up.
+				unique_lock<mutex> lock(loadMutex);
+				if(toLoad.size() > MAX_QUEUE)
+					break;
+			}
 
 			// Extract the one item we should work on reading right now.
 			shared_ptr<ImageSet> imageSet = toRead.front();
@@ -156,7 +170,7 @@ void SpriteQueue::operator()()
 			lock.lock();
 		}
 
-		readCondition.wait(lock);
+		readCondition.wait(lock, [this] { return added < 0 || !toRead.empty(); });
 	}
 }
 
@@ -174,7 +188,7 @@ void SpriteQueue::DoLoad(unique_lock<mutex> &lock)
 		lock.lock();
 	}
 
-	for(int i = 0; !toLoad.empty() && i < 100; ++i)
+	for(int i = 0; !toLoad.empty() && i < MAX_QUEUE; ++i)
 	{
 		// Extract the one item we should work on uploading right now.
 		shared_ptr<ImageSet> imageSet = toLoad.front();
@@ -183,6 +197,7 @@ void SpriteQueue::DoLoad(unique_lock<mutex> &lock)
 		// It's now safe to modify the lists.
 		lock.unlock();
 
+		readCondition.notify_one();
 		imageSet->Upload(SpriteSet::Modify(imageSet->Name()));
 
 		lock.lock();
