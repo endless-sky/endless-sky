@@ -251,7 +251,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 		turn = 0.;
 
 	if(turn)
-		angle += turn;
+		angle += Angle(turn);
 
 	if(accel)
 	{
