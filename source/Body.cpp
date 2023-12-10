@@ -285,9 +285,20 @@ void Body::SetSwizzle(int swizzle)
 
 
 
-double Body::Alpha() const
+double Body::Alpha(const Point &drawCenter) const
 {
-	return alpha;
+	return alpha * DistanceAlpha(drawCenter);
+}
+
+
+
+double Body::DistanceAlpha(const Point &drawCenter) const
+{
+	if(distanceInvisible <= 0.)
+		return 1.;
+	double distance = (drawCenter - position).Length();
+	double distanceAlpha = max(min((distance - distanceInvisible) / (distanceVisible - distanceInvisible), 1.), 0.);
+	return distanceAlpha;
 }
 
 

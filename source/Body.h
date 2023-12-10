@@ -77,7 +77,8 @@ public:
 	// Set the color swizzle.
 	void SetSwizzle(int swizzle);
 
-	double Alpha() const;
+	double Alpha(const Point &drawCenter) const;
+	double DistanceAlpha(const Point &drawCenter) const;
 
 protected:
 	// Adjust the frame rate.
@@ -101,6 +102,8 @@ protected:
 	float scale = 1.f;
 
 	double alpha = 1.;
+	double distanceVisible = 0.;
+	double distanceInvisible = -1.;
 
 	// Government, for use in collision checks.
 	const Government *government = nullptr;
