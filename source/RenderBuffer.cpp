@@ -45,13 +45,13 @@ void RenderBuffer::Init()
 		"uniform vec2 size;\n"
 		"uniform vec2 position;\n"
 		"uniform vec2 scale;\n"
-		
+
 		"uniform vec2 srcposition;\n"
 		"uniform vec2 srcscale;\n"
-		
+
 		"in vec2 vert;\n"
 		"out vec2 tpos;\n"
-		
+
 		"void main() \n"
 		"{\n"
 		"  gl_Position = vec4((position + vert * size) * scale, 0, 1);\n"
@@ -67,10 +67,10 @@ void RenderBuffer::Init()
 		"precision mediump float;\n"
 		"precision mediump sampler2D;\n"
 		"uniform sampler2D tex;\n"
-		
+
 		"in vec2 tpos;\n"
 		"out vec4 finalColor;\n"
-		
+
 		"void main() {\n"
 		"  if(tpos.x > 0.0 && tpos.y > 0.0 &&\n"
 		"      tpos.x < 1.0 && tpos.y < 1.0 )\n"
@@ -114,7 +114,7 @@ void RenderBuffer::Init()
 
 // Create a texture of the given size that can be used as a render target
 RenderBuffer::RenderBuffer(const Point& dimensions):
-   m_size(dimensions)
+	m_size(dimensions)
 {
 	// Generate a framebuffer, and bind it.
 	glGenFramebuffers(1, &m_framebuffer);
@@ -200,8 +200,7 @@ void RenderBuffer::Deactivate()
 {
 	// Restore the old settings
 	Screen::SetDimensionsInternal(m_old_width, m_old_height);
-	glViewport(m_last_viewport[0], m_last_viewport[1],
-	           m_last_viewport[2], m_last_viewport[3]);
+	glViewport(m_last_viewport[0], m_last_viewport[1], m_last_viewport[2], m_last_viewport[3]);
 	glBindFramebuffer(GL_FRAMEBUFFER, m_last_framebuffer);
 }
 

@@ -342,7 +342,7 @@ bool PreferencesPanel::Scroll(double dx, double dy)
 		auto ui = GameData::Interfaces().Get("plugins");
 		const Rectangle & pluginBox = ui->GetBox("plugin list");
 		const Rectangle & descriptionBox = ui->GetBox("plugin description");
-		
+
 		if(pluginBox.Contains(hoverPoint))
 		{
 			pluginListScroll.Scroll(dy * Preferences::ScrollSpeed());
@@ -366,7 +366,7 @@ bool PreferencesPanel::Drag(double dx, double dy)
 		auto ui = GameData::Interfaces().Get("plugins");
 		const Rectangle & pluginBox = ui->GetBox("plugin list");
 		const Rectangle & descriptionBox = ui->GetBox("plugin description");
-		
+
 		if(pluginBox.Contains(hoverPoint))
 		{
 			// Steps is zero so that we don't animate mouse drags
@@ -851,14 +851,13 @@ void PreferencesPanel::DrawPlugins()
 	const Color &dim = *GameData::Colors().Get("dim");
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
-
-	const Sprite *box[2] = { SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked") };
-	
 	const Interface *pluginUI = GameData::Interfaces().Get("plugins");
 
-	
+	const Sprite *box[2] = { SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked") };
+
+	// Animate scrolling
 	pluginListScroll.Step();
-	
+
 	// Switch render target to pluginListClip. Until target is destroyed or
 	// deactivated, all opengl commands will be drawn there instead.
 	auto target = pluginListClip->SetTarget();
@@ -870,7 +869,7 @@ void PreferencesPanel::DrawPlugins()
 		Layout(pluginListBox.Width() - box[0]->Width(), Truncate::MIDDLE)
 	);
 	table.SetUnderline(pluginListClip->Left() + box[0]->Width(), pluginListClip->Right());
-	
+
 	int firstY = pluginListClip->Top();
 	// Table is at -110 while checkbox is at -130
 	table.DrawAt(Point(0, firstY + pluginListScroll.AnimatedValue()));
@@ -883,7 +882,7 @@ void PreferencesPanel::DrawPlugins()
 
 		// Only include the zone as clickable if its within the drawing area
 		bool displayed = table.GetPoint().Y() > pluginListClip->Top() - 20 &&
-		    table.GetPoint().Y() < pluginListClip->Bottom() - table.GetRowBounds().Height() + 20;
+			table.GetPoint().Y() < pluginListClip->Bottom() - table.GetRowBounds().Height() + 20;
 		if(displayed)
 			pluginZones.emplace_back(pluginListBox.Center() + table.GetCenterPoint(), table.GetRowSize(), plugin.name);
 
@@ -982,7 +981,7 @@ void PreferencesPanel::RenderPluginDescription(const Plugin& plugin)
 	wrap.SetWrapWidth(box.Width());
 	static const string EMPTY = "(No description given.)";
 	wrap.Wrap(plugin.aboutText.empty() ? EMPTY : plugin.aboutText);
-	
+
 	descriptionHeight += wrap.Height();
 
 	// Now that we know the size of the rendered description, resize the buffer

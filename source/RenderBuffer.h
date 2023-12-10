@@ -53,7 +53,7 @@ public:
 
 	protected:
 		Activation(RenderBuffer & b) : m_buffer(b) {}
-	
+
 	private:
 		RenderBuffer & m_buffer;
 		friend class RenderBuffer;
@@ -89,6 +89,5 @@ protected:
 };
 
 
+
 #endif
-
-

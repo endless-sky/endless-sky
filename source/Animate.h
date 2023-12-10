@@ -52,7 +52,7 @@ public:
 	const VarT & Value() const { return m_target; }
 	// Synonym for Value()
 	operator const VarT &() const { return Value(); }
-	
+
 	// Shortcut mathmatical operators for convenience
 	Animate & operator=(const VarT & v) { Set(v); return *this; }
 	Animate & operator+=(const VarT & v) { Set(m_target + v); return *this; }
