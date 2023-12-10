@@ -346,7 +346,7 @@ void Body::UnmarkForRemoval()
 
 
 
-// Turn this object its around center of rotation.
+// Turn this object around its center of rotation.
 void Body::Turn(double amount)
 {
 	angle += amount;
