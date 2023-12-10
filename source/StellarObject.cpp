@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Planet.h"
 #include "Politics.h"
 #include "Radar.h"
+#include "Ship.h"
 
 #include <algorithm>
 
@@ -151,6 +152,21 @@ int StellarObject::Parent() const
 double StellarObject::Distance() const
 {
 	return distance;
+}
+
+
+
+void StellarObject::UpdateDistanceVisibility(const Ship *ship)
+{
+	if(trueDistanceInvisible < 0.)
+		return;
+
+	double totalMod = 1.;
+	for(const auto &modifier : distanceVisibilityModifiers)
+		if(ship->Attributes().Get(modifier))
+			totalMod *= ship->Attributes().Get(modifier);
+	distanceInvisible = trueDistanceInvisible * totalMod;
+	distanceVisible = trueDistanceVisible * totalMod;
 }
 
 

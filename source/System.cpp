@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Minable.h"
 #include "Planet.h"
 #include "Random.h"
+#include "Ship.h"
 #include "SpriteSet.h"
 
 #include <algorithm>
@@ -526,6 +527,14 @@ void System::UpdateSystem(const Set<System> &systems, const set<double> &neighbo
 		minimumFleetPeriod = min<int>(minimumFleetPeriod, event.Period());
 	if(minimumFleetPeriod == numeric_limits<int>::max())
 		minimumFleetPeriod = 0;
+}
+
+
+
+void System::UpdateObjectVisibilities(const Ship *ship)
+{
+	for(auto &object : objects)
+		object.UpdateDistanceVisibility(ship);
 }
 
 
@@ -1033,9 +1042,12 @@ void System::LoadObjectHelper(const DataNode &node, StellarObject &object, bool 
 		object.offset = node.Value(1);
 	else if(key == "visibility" && hasValue)
 	{
-		object.distanceInvisible = node.Value(1);
+		object.trueDistanceInvisible = node.Value(1);
 		if(node.Size() > 2)
-			object.distanceVisible = node.Value(2);
+			object.trueDistanceVisible = node.Value(2);
+		for(const auto &child : node)
+			if(child.Token(0) == "modifier" && child.Size() > 1)
+				object.distanceVisibilityModifiers.insert(child.Token(1));
 	}
 	else if(removing && (key == "hazard" || key == "object"))
 		node.PrintTrace("Key \"" + key + "\" cannot be removed from an object:");
