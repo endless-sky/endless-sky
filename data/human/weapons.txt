@@ -1005,6 +1005,36 @@ outfit "Javelin Mini Pod"
 	description "	The weapon's high rate of fire also makes it useful for saturating well-protected ships' anti-missile defenses so that more dangerous projectiles fired by allied ships can sneak through."
 	description "	Mini pods enable fighters and other light craft to carry small quantities of Javelins into battle while retaining enough space for other weapons. Large ships are better off with full-size pods."
 
+outfit "Javelin Turret"
+	category "Secondary Weapons"
+	cost 110000
+	thumbnail "outfit/javelin turret"
+	"mass" 26
+	"outfit space" -58
+	"weapon capacity" -58
+	"turret mounts" -1
+	"javelin capacity" 800
+	weapon
+		sprite "projectile/javelin"
+		"hardpoint sprite" "hardpoint/javelin turret"
+		"hardpoint offset" 9.
+		sound "javelin"
+		ammo "Javelin"
+		icon "icon/javelin"
+		"hit effect" "tiny explosion"
+		"inaccuracy" 4
+		"turret turn" 2
+		"velocity" 10
+		"lifetime" 60
+		"reload" 5
+		"firing energy" .2
+		"firing heat" 12
+		"shield damage" 48
+		"hull damage" 26
+		"hit force" 5
+		"missile strength" 2
+	description "Javelin Turret."
+
 
 outfit "Torpedo"
 	plural "Torpedoes"

@@ -1787,6 +1787,7 @@ Files:
  images/ship/*astral*
  images/ship/*ayym*
  images/ship/embersylph*
+ images/ship/enforcer*
  images/ship/gegno?augen*
  images/ship/gegno?coesite*
  images/ship/gegno?conglomerate*
@@ -1813,9 +1814,9 @@ Files:
  images/ship/modified?dromedary*
  images/ship/modified?dromedary?wreck*
  images/ship/saber*
- images/ship/scavenger*
  images/ship/*vyrmeid*
  images/ship/*vyuir*
+ images/thumbnail/enforcer*
  images/thumbnail/gegno?augen*
  images/thumbnail/gegno?coesite*
  images/thumbnail/gegno?conglomerate*
@@ -1838,7 +1839,6 @@ Files:
  images/thumbnail/modified?dromedary*
  images/thumbnail/modified?dromedary?wreck*
  images/thumbnail/saber*
- images/thumbnail/scavenger*
  images/thumbnail/vyuir*
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
