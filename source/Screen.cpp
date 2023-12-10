@@ -180,3 +180,11 @@ Point Screen::BottomRight()
 {
 	return Point(.5 * WIDTH, .5 * HEIGHT);
 }
+
+
+
+void Screen::SetDimensionsInternal(int width, int height)
+{
+	WIDTH = width;
+	HEIGHT = height;
+}

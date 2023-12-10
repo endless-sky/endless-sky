@@ -27,7 +27,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Information.h"
 #include "Interface.h"
 #include "Plugins.h"
+#include "PointerShader.h"
 #include "Preferences.h"
+#include "RenderBuffer.h"
 #include "Screen.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
@@ -93,6 +95,7 @@ PreferencesPanel::PreferencesPanel()
 		if(plugin.second.IsValid())
 		{
 			selectedPlugin = plugin.first;
+			RenderPluginDescription(plugin.second);
 			break;
 		}
 
@@ -102,6 +105,31 @@ PreferencesPanel::PreferencesPanel()
 	hoverText.SetFont(FontSet::Get(14));
 	hoverText.SetWrapWidth(250);
 	hoverText.SetAlignment(Alignment::LEFT);
+
+	// Initialize the plugin list buffer
+	const Interface * pluginUi = GameData::Interfaces().Get("plugins");
+	Rectangle pluginListBox = pluginUi->GetBox("plugin list");
+	pluginListClip.reset(new RenderBuffer(pluginListBox.Dimensions()));
+
+	// set initial plugin list and description scroll ranges
+	pluginListHeight = 0;
+	for(const auto & plugin : Plugins::Get())
+	{
+		if(plugin.second.IsValid())
+			pluginListHeight += 20;
+	}
+	pluginListScroll.SetDisplaySize(pluginListBox.Height());
+	pluginListScroll.SetMaxValue(pluginListHeight);
+	Rectangle pluginDescriptionBox = pluginUi->GetBox("plugin description");
+	pluginDescriptionScroll.SetDisplaySize(pluginDescriptionBox.Height());
+}
+
+
+
+PreferencesPanel::~PreferencesPanel()
+{
+	// stub, for unique_ptr destruction to be defined in the right compilation
+	// unit
 }
 
 
@@ -220,11 +248,21 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 		}
 
 	for(const auto &zone : pluginZones)
-		if(zone.Contains(point))
+	{
+		if(zone.Contains(point) && selectedPlugin != zone.Value())
 		{
 			selectedPlugin = zone.Value();
+			for(const auto & plugin : Plugins::Get())
+			{
+				if(plugin.first == selectedPlugin)
+				{
+					RenderPluginDescription(plugin.second);
+					break;
+				}
+			}
 			break;
 		}
+	}
 
 	return true;
 }
@@ -259,43 +297,90 @@ bool PreferencesPanel::Hover(int x, int y)
 // Change the value being hovered over in the direction of the scroll.
 bool PreferencesPanel::Scroll(double dx, double dy)
 {
-	if(!dy || page != 's' || hoverItem.empty())
+	if(!dy)
 		return false;
 
-	if(hoverItem == ZOOM_FACTOR)
+	if(page == 's' && !hoverItem.empty())
 	{
-		int zoom = Screen::UserZoom();
-		if(dy < 0. && zoom > ZOOM_FACTOR_MIN)
-			zoom -= ZOOM_FACTOR_INCREMENT;
-		if(dy > 0. && zoom < ZOOM_FACTOR_MAX)
-			zoom += ZOOM_FACTOR_INCREMENT;
+		if(hoverItem == ZOOM_FACTOR)
+		{
+			int zoom = Screen::UserZoom();
+			if(dy < 0. && zoom > ZOOM_FACTOR_MIN)
+				zoom -= ZOOM_FACTOR_INCREMENT;
+			if(dy > 0. && zoom < ZOOM_FACTOR_MAX)
+				zoom += ZOOM_FACTOR_INCREMENT;
 
-		Screen::SetZoom(zoom);
-		if(Screen::Zoom() != zoom)
-			Screen::SetZoom(Screen::Zoom());
+			Screen::SetZoom(zoom);
+			if(Screen::Zoom() != zoom)
+				Screen::SetZoom(Screen::Zoom());
 
-		// Convert to raw window coordinates, at the new zoom level.
-		Point point = hoverPoint * (Screen::Zoom() / 100.);
-		point += .5 * Point(Screen::RawWidth(), Screen::RawHeight());
-		SDL_WarpMouseInWindow(nullptr, point.X(), point.Y());
+			// Convert to raw window coordinates, at the new zoom level.
+			Point point = hoverPoint * (Screen::Zoom() / 100.);
+			point += .5 * Point(Screen::RawWidth(), Screen::RawHeight());
+			SDL_WarpMouseInWindow(nullptr, point.X(), point.Y());
+		}
+		else if(hoverItem == VIEW_ZOOM_FACTOR)
+		{
+			if(dy < 0.)
+				Preferences::ZoomViewOut();
+			else
+				Preferences::ZoomViewIn();
+		}
+		else if(hoverItem == SCROLL_SPEED)
+		{
+			int speed = Preferences::ScrollSpeed();
+			if(dy < 0.)
+				speed = max(20, speed - 20);
+			else
+				speed = min(60, speed + 20);
+			Preferences::SetScrollSpeed(speed);
+		}
+		return true;
 	}
-	else if(hoverItem == VIEW_ZOOM_FACTOR)
+	else if(page == 'p')
 	{
-		if(dy < 0.)
-			Preferences::ZoomViewOut();
-		else
-			Preferences::ZoomViewIn();
+		auto ui = GameData::Interfaces().Get("plugins");
+		const Rectangle & pluginBox = ui->GetBox("plugin list");
+		const Rectangle & descriptionBox = ui->GetBox("plugin description");
+		
+		if(pluginBox.Contains(hoverPoint))
+		{
+			pluginListScroll.Scroll(dy * Preferences::ScrollSpeed());
+			return true;
+		}
+		else if(descriptionBox.Contains(hoverPoint) && pluginDescriptionBuffer)
+		{
+			pluginDescriptionScroll.Scroll(dy * Preferences::ScrollSpeed());
+			return true;
+		}
 	}
-	else if(hoverItem == SCROLL_SPEED)
+	return false;
+}
+
+
+
+bool PreferencesPanel::Drag(double dx, double dy)
+{
+	if(page == 'p')
 	{
-		int speed = Preferences::ScrollSpeed();
-		if(dy < 0.)
-			speed = max(20, speed - 20);
-		else
-			speed = min(60, speed + 20);
-		Preferences::SetScrollSpeed(speed);
+		auto ui = GameData::Interfaces().Get("plugins");
+		const Rectangle & pluginBox = ui->GetBox("plugin list");
+		const Rectangle & descriptionBox = ui->GetBox("plugin description");
+		
+		if(pluginBox.Contains(hoverPoint))
+		{
+			// Steps is zero so that we don't animate mouse drags
+			pluginListScroll.Scroll(dy, 0);
+			return true;
+		}
+		else if(descriptionBox.Contains(hoverPoint))
+		{
+			// Steps is zero so that we don't animate mouse drags
+			pluginDescriptionScroll.Scroll(dy, 0);
+			return true;
+		}
 	}
-	return true;
+	return false;
 }
 
 
@@ -768,19 +853,27 @@ void PreferencesPanel::DrawPlugins()
 	const Color &bright = *GameData::Colors().Get("bright");
 
 	const Sprite *box[2] = { SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked") };
+	
+	const Interface *pluginUI = GameData::Interfaces().Get("plugins");
 
-	const int MAX_TEXT_WIDTH = 210;
+	
+	pluginListScroll.Step();
+	
+	// Switch render target to pluginListClip. Until target is destroyed or
+	// deactivated, all opengl commands will be drawn there instead.
+	auto target = pluginListClip->SetTarget();
+	Rectangle pluginListBox = pluginUI->GetBox("plugin list");
+
 	Table table;
-	table.AddColumn(-115, {MAX_TEXT_WIDTH, Truncate::MIDDLE});
-	table.SetUnderline(-120, 100);
-
-	int firstY = -238;
+	table.AddColumn(
+		pluginListClip->Left() + box[0]->Width(),
+		Layout(pluginListBox.Width() - box[0]->Width(), Truncate::MIDDLE)
+	);
+	table.SetUnderline(pluginListClip->Left() + box[0]->Width(), pluginListClip->Right());
+	
+	int firstY = pluginListClip->Top();
 	// Table is at -110 while checkbox is at -130
-	table.DrawAt(Point(-110, firstY));
-	table.DrawUnderline(medium);
-	table.DrawGap(25);
-
-	const Font &font = FontSet::Get(14);
+	table.DrawAt(Point(0, firstY + pluginListScroll.AnimatedValue()));
 
 	for(const auto &it : Plugins::Get())
 	{
@@ -788,7 +881,11 @@ void PreferencesPanel::DrawPlugins()
 		if(!plugin.IsValid())
 			continue;
 
-		pluginZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), plugin.name);
+		// Only include the zone as clickable if its within the drawing area
+		bool displayed = table.GetPoint().Y() > pluginListClip->Top() - 20 &&
+		    table.GetPoint().Y() < pluginListClip->Bottom() - table.GetRowBounds().Height() + 20;
+		if(displayed)
+			pluginZones.emplace_back(pluginListBox.Center() + table.GetCenterPoint(), table.GetRowSize(), plugin.name);
 
 		bool isSelected = (plugin.name == selectedPlugin);
 		if(isSelected || plugin.name == hoverItem)
@@ -801,32 +898,112 @@ void PreferencesPanel::DrawPlugins()
 
 		topLeft.X() += 6.;
 		topLeft.Y() += 7.;
-		Rectangle zoneBounds = Rectangle::FromCorner(topLeft, Point(sprite->Width() - 8., sprite->Height() - 8.));
+		Rectangle zoneBounds = Rectangle::FromCorner(pluginListBox.Center() + topLeft, {sprite->Width(), sprite->Height()});
 
-		AddZone(zoneBounds, [&]() { Plugins::TogglePlugin(plugin.name); });
+		if(displayed)
+			AddZone(zoneBounds, [&]() { Plugins::TogglePlugin(plugin.name); });
 		if(isSelected)
 			table.Draw(plugin.name, bright);
 		else
 			table.Draw(plugin.name, plugin.enabled ? medium : dim);
+	}
 
-		if(isSelected)
+	// switch back to normal opengl operations
+	target.Deactivate();
+
+	// Draw the scrolled and clipped plugin list to the screen
+	pluginListClip->Draw(pluginListBox.Center());
+	const Point UP{0, -1};
+	const Point DOWN{0, 1};
+	if(pluginListScroll.Scrollable())
+	{
+		// Draw up and down pointers, mostly to indicate when scrolling
+		// is possible, but might as well make them clickable too.
+		Rectangle topRight({pluginListBox.Right(), pluginListBox.Top()}, {20.0, 20.0});
+		PointerShader::Draw(topRight.Center(), UP,
+			10.f, 10.f, 5.f, Color(pluginListScroll.ScrollAtMin() ? .2f : .8f, 0.f));
+		AddZone(topRight, [&]() { pluginListScroll.Scroll(Preferences::ScrollSpeed()); });
+
+		Rectangle bottomRight(pluginListBox.BottomRight(), {20.0, 20.0});
+		PointerShader::Draw(bottomRight.Center(), DOWN,
+			10.f, 10.f, 5.f, Color(pluginListScroll.ScrollAtMax() ? .2f : .8f, 0.f));
+		AddZone(bottomRight, [&]() { pluginListScroll.Scroll(-Preferences::ScrollSpeed()); });
+	}
+
+	// Draw the pre-rendered plugin description, if applicable
+	if(pluginDescriptionBuffer)
+	{
+		pluginDescriptionScroll.Step();
+		Rectangle descriptionBox = pluginUI->GetBox("plugin description");
+		pluginDescriptionBuffer->Draw(
+			descriptionBox.Center(),
+			descriptionBox.Dimensions(),
+			Point(0, -pluginDescriptionScroll.AnimatedValue())
+		);
+
+		if(pluginDescriptionScroll.Scrollable())
 		{
-			const Sprite *sprite = SpriteSet::Get(plugin.name);
-			Point top(15., firstY);
-			if(sprite)
-			{
-				Point center(130., top.Y() + .5 * sprite->Height());
-				SpriteShader::Draw(sprite, center);
-				top.Y() += sprite->Height() + 10.;
-			}
+			// Draw up and down pointers, mostly to indicate when
+			// scrolling is possible, but might as well make them
+			// clickable too.
+			Rectangle topRight({descriptionBox.Right(), descriptionBox.Top()}, {20.0, 20.0});
+			PointerShader::Draw(topRight.Center(), UP,
+				10.f, 10.f, 5.f, Color(pluginDescriptionScroll.ScrollAtMin() ? .2f : .8f, 0.f));
+			AddZone(topRight, [&]() { pluginDescriptionScroll.Scroll(Preferences::ScrollSpeed()); });
 
-			WrappedText wrap(font);
-			wrap.SetWrapWidth(MAX_TEXT_WIDTH);
-			static const string EMPTY = "(No description given.)";
-			wrap.Wrap(plugin.aboutText.empty() ? EMPTY : plugin.aboutText);
-			wrap.Draw(top, medium);
+			Rectangle bottomRight(descriptionBox.BottomRight(), {20.0, 20.0});
+			PointerShader::Draw(bottomRight.Center(), DOWN,
+				10.f, 10.f, 5.f, Color(pluginDescriptionScroll.ScrollAtMax() ? .2f : .8f, 0.f));
+			AddZone(bottomRight, [&]() { pluginDescriptionScroll.Scroll(-Preferences::ScrollSpeed()); });
 		}
 	}
+}
+
+
+
+// Render the plugin description into the pluginDescriptionBuffer
+void PreferencesPanel::RenderPluginDescription(const Plugin& plugin)
+{
+	const Color &medium = *GameData::Colors().Get("medium");
+	const Font &font = FontSet::Get(14);
+	Rectangle box = GameData::Interfaces().Get("plugins")->GetBox("plugin description");
+
+	// We are resizing and redrawing the description buffer. Reset the scroll
+	// back to zero
+	pluginDescriptionScroll.Set(0, 0);
+
+	// compute the height before drawing, so that we know the scroll bounds
+	const Sprite *sprite = SpriteSet::Get(plugin.name);
+	int descriptionHeight = 0;
+	if(sprite)
+		descriptionHeight += sprite->Height();
+
+	WrappedText wrap(font);
+	wrap.SetWrapWidth(box.Width());
+	static const string EMPTY = "(No description given.)";
+	wrap.Wrap(plugin.aboutText.empty() ? EMPTY : plugin.aboutText);
+	
+	descriptionHeight += wrap.Height();
+
+	// Now that we know the size of the rendered description, resize the buffer
+	// to fit, and activate it as a render target.
+	if(descriptionHeight < box.Height())
+		descriptionHeight = box.Height();
+	pluginDescriptionScroll.SetMaxValue(descriptionHeight);
+	pluginDescriptionBuffer.reset(new RenderBuffer(Point(box.Width(), descriptionHeight)));
+	// Redirect all drawing commands into the offscreen buffer
+	auto target = pluginDescriptionBuffer->SetTarget();
+
+	Point top(pluginDescriptionBuffer->Left(), pluginDescriptionBuffer->Top());
+	if(sprite)
+	{
+		Point center(0., top.Y() + .5 * sprite->Height());
+		SpriteShader::Draw(sprite, center);
+		top.Y() += sprite->Height() + 10.;
+	}
+
+	wrap.Draw(top, medium);
+	target.Deactivate();
 }
 
 

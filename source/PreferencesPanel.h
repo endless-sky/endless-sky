@@ -21,10 +21,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ClickZone.h"
 #include "Command.h"
 #include "Point.h"
+#include "ScrollVar.h"
 #include "text/WrappedText.h"
 
+#include <memory>
 #include <string>
 #include <vector>
+
+class RenderBuffer;
+struct Plugin;
 
 
 
@@ -32,6 +37,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class PreferencesPanel : public Panel {
 public:
 	PreferencesPanel();
+	virtual ~PreferencesPanel();
 
 	// Draw this panel.
 	virtual void Draw() override;
@@ -43,6 +49,7 @@ protected:
 	virtual bool Click(int x, int y, int clicks) override;
 	virtual bool Hover(int x, int y) override;
 	virtual bool Scroll(double dx, double dy) override;
+	virtual bool Drag(double dx, double dy) override;
 
 	virtual void EndEditing() override;
 
@@ -51,6 +58,7 @@ private:
 	void DrawControls();
 	void DrawSettings();
 	void DrawPlugins();
+	void RenderPluginDescription(const Plugin & plugin);
 
 	void DrawTooltips();
 
@@ -87,6 +95,12 @@ private:
 	std::vector<ClickZone<Command>> zones;
 	std::vector<ClickZone<std::string>> prefZones;
 	std::vector<ClickZone<std::string>> pluginZones;
+
+	std::unique_ptr<RenderBuffer> pluginListClip;
+	std::unique_ptr<RenderBuffer> pluginDescriptionBuffer;
+	ScrollVar<int> pluginListScroll;
+	ScrollVar<int> pluginDescriptionScroll;
+	int pluginListHeight = 0;
 };
 
 

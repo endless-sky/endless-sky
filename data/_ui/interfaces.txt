@@ -537,6 +537,13 @@ interface "plugins"
 		from -225 -236
 		align top left
 		color bright
+	visible
+	line
+		from -230 -222 to -10 -221
+	box "plugin list"
+		from -250 -215 to -10 180
+	box "plugin description"
+		from 250 -240 to 10 180
 
 
 

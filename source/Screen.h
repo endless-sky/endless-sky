@@ -55,6 +55,14 @@ public:
 	static Point TopRight();
 	static Point BottomLeft();
 	static Point BottomRight();
+
+private:
+	// Temporarily set the internal screen dimensions for off-screen
+	// rendering. Caller is responsible for restoring the screen dimensions
+	// when offscreen rendering is finished.
+	static void SetDimensionsInternal(int width, int height);
+
+	friend class RenderBuffer;
 };
 
 
