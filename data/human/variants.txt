@@ -535,7 +535,7 @@ ship "Berserker" "Berserker (Strike)"
 ship "Berserker" "Berserker (CCOR)"
 	outfits
 		"Gatling Gun" 4
-		"Gatling Ammo" 12000
+		"Gatling Gun Ammo" 12000
 		"nGVF-CC Fuel Cell"
 		"Water Coolant System"
 		"D41-HY Shield Generator"
@@ -1982,7 +1982,7 @@ ship "Hauler III" "Hauler III (CCOR)"
 		"nGVF-AA Fuel Cell"
 		"Supercapacitor"
 		"Liquid Nitrogen Cooler"
-		"D-41HY Shield Generator"
+		"D41-HY Shield Generator"
 		"Large Radar Jammer"
 		"Laser Rifle" 12
 		"Security Station"
@@ -2263,7 +2263,7 @@ ship "Leviathan" "Leviathan (CCOR)"
 		"nGVF-EE Fuel Cell"
 		"Supercapacitor" 2
 		"Liquid Helium Cooler"
-		"Liquid NItrogen Cooler" 2
+		"Liquid Nitrogen Cooler" 2
 		"Outfits Expansion" 4
 		"Tactical Scanner"
 		"Laser Rifle" 64
@@ -2271,7 +2271,7 @@ ship "Leviathan" "Leviathan (CCOR)"
 		"Impala Plasma Thruster"
 		"Impala Plasma Steering"
 		"Chipmunk Plasma Steering"
-		"Scram Drive""
+		"Scram Drive"
 
 
 ship "Manta" "Manta (Mark II)"
