@@ -134,7 +134,7 @@ RenderBuffer::RenderBuffer(const Point& dimensions):
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_size.X(), m_size.Y(), 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
 
 	// Attach the texture to the frame buffer
-	glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, m_texid, 0);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_texid, 0);
 	GLenum draw_buffers[] = {GL_COLOR_ATTACHMENT0};
 	glDrawBuffers(1, draw_buffers);
 
