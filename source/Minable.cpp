@@ -202,7 +202,7 @@ bool Minable::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	}
 
 	// Spin the object.
-	angle += spin;
+	Turn(spin.Degrees());
 
 	// Advance the object forward one step.
 	theta += angularMomentum / (radius * radius);

@@ -285,8 +285,6 @@ void Ship::Load(const DataNode &node)
 				attributes.Load(child);
 			}
 		}
-		else if(key == "center" && child.Size() >= 3)
-			center = Point(child.Value(1), child.Value(2));
 		else if((key == "engine" || key == "reverse engine" || key == "steering engine") && child.Size() >= 3)
 		{
 			if(!hasEngine)
@@ -976,9 +974,6 @@ void Ship::Save(DataWriter &out) const
 				});
 		}
 		out.EndChild();
-
-		if(center)
-			out.Write("center", center.X(), center.Y());
 
 		cargo.Save(out);
 		out.Write("crew", crew);

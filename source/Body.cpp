@@ -241,6 +241,8 @@ void Body::LoadSprite(const DataNode &node)
 		}
 		else if(child.Token(0) == "rewind")
 			rewind = true;
+		else if(child.Token(0) == "center" && child.Size() >= 3)
+			center = Point(child.Value(1), child.Value(2));
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -272,6 +274,8 @@ void Body::SaveSprite(DataWriter &out, const string &tag) const
 			out.Write("no repeat");
 		if(rewind)
 			out.Write("rewind");
+		if(center)
+			out.Write("center", center.X(), center.Y());
 	}
 	out.EndChild();
 }
