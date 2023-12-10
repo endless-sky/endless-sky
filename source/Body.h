@@ -91,6 +91,7 @@ protected:
 	void UnmarkForRemoval();
 	// Turn this object around its center of rotation.
 	void Turn(double amount);
+	void Turn(const Angle &amount);
 
 
 protected:
