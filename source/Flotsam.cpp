@@ -99,7 +99,7 @@ void Flotsam::Move(vector<Visual> &visuals)
 {
 	position += velocity;
 	velocity *= drag;
-	Turn(spin);
+	angle += spin;
 	--lifetime;
 	if(lifetime > 0)
 		return;
