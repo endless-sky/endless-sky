@@ -1752,7 +1752,6 @@ mission "Station Exploration 2"
 
 
 
-
 mission "Abandon Ship"
 	invisible
 	landing
