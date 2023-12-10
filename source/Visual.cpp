@@ -31,7 +31,7 @@ Visual::Visual(const Effect &effect, Point pos, Point vel, Angle facing, Point h
 	if(effect.randomLifetime > 0)
 		lifetime += Random::Int(effect.randomLifetime + 1);
 
-	angle = Angle::Random(effect.randomAngle) - Angle::Random(effect.randomAngle);
+	angle += Angle::Random(effect.randomAngle) - Angle::Random(effect.randomAngle);
 	spin = Angle::Random(effect.randomSpin) - Angle::Random(effect.randomSpin);
 
 	if(effect.hasAbsoluteVelocity)
