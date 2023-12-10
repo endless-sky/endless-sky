@@ -532,6 +532,24 @@ ship "Berserker" "Berserker (Strike)"
 		"Hyperdrive"
 
 
+ship "Berserker" "Berserker (CCOR)"
+	outfits
+		"Gatling Gun" 4
+		"Gatling Ammo" 12000
+		"nGVF-CC Fuel Cell"
+		"Water Coolant System"
+		"D41-HY Shield Generator"
+		"Small Radar Jammer" 3
+		"Cargo Scanner" 2
+		"Outfit Scanner" 2
+		"Security Station"
+		"Laser Rifle" 2
+		"Chipmunk Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Hyperdrive"
+
+
+
 ship "Blackbird" "Blackbird (Prisoner Transport)"
 	outfits
 		"Heavy Laser Turret"
@@ -1584,7 +1602,27 @@ ship "Firebird" "Firebird (Plasma)"
 		"X3700 Ion Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
-		
+
+ship "Firebird" "Firebird (CCOR)"
+	outfits
+		"Javelin Pod" 4
+		"Javelin" 1100
+		"Javelin Storage Crate" 3
+		"Heavy Anti-Missile Turret" 2
+		"Fission Reactor"
+		"Liquid Nitrogen Cooler"
+		"Water Coolant System" 2
+		"nGVF-BB Fuel Cell"
+		"S-970 Regenerator"
+		"Large Radar Jammer"
+		"Outfit Scanner"
+		"Outfits Expansion" 2
+		"Laser Rifle" 22
+		"Chipmunk Plasma Thruster"
+		"Chipmunk Plasma Steering"
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Hyperdrive"
 
 
 ship "Flivver" "Flivver (Hai)"
@@ -1936,6 +1974,22 @@ ship "Hauler III" "Hauler III (Hai)"
 	turret "Chameleon Anti-Missile"
 	turret "Quad Blaster Turret"
 
+ship "Hauler III" "Hauler III (CCOR)"
+	outfits
+		"Heavy Anti-Missile Turret" 3
+		"Anti-Missile Turret"
+		"NT-200 Nucleovoltaic"
+		"nGVF-AA Fuel Cell"
+		"Supercapacitor"
+		"Liquid Nitrogen Cooler"
+		"D-41HY Shield Generator"
+		"Large Radar Jammer"
+		"Laser Rifle" 12
+		"Security Station"
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Scram Drive"
+
 
 
 ship "Hawk" "Hawk (Bomber)"
@@ -2200,6 +2254,24 @@ ship "Leviathan" "Leviathan (Particle Chaser)"
 		"Quad Blaster Turret" 2
 		"Armageddon Core"
 
+ship "Leviathan" "Leviathan (CCOR)"
+	outfits
+		"Plasma Cannon" 4
+		"Heavy Anti-Missile Turret" 3
+		"Fusion Reactor"
+		"S-970 Regenerator" 2
+		"nGVF-EE Fuel Cell"
+		"Supercapacitor" 2
+		"Liquid Helium Cooler"
+		"Liquid NItrogen Cooler" 2
+		"Outfits Expansion" 4
+		"Tactical Scanner"
+		"Laser Rifle" 64
+		"Security Station"
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
+		"Chipmunk Plasma Steering"
+		"Scram Drive""
 
 
 ship "Manta" "Manta (Mark II)"
