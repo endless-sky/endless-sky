@@ -1605,15 +1605,14 @@ ship "Firebird" "Firebird (Plasma)"
 
 ship "Firebird" "Firebird (CCOR)"
 	outfits
-		"Javelin Pod" 4
-		"Javelin" 1100
-		"Javelin Storage Crate" 3
-		"Heavy Anti-Missile Turret" 2
+		"Gatling Gun" 4
+		"Gatling Gun Ammo" 12000
+		"Javelin Turret" 2
+		"Javelin" 1600
 		"Fission Reactor"
 		"Liquid Nitrogen Cooler"
 		"Water Coolant System" 2
 		"nGVF-BB Fuel Cell"
-		"S-970 Regenerator"
 		"Large Radar Jammer"
 		"Outfit Scanner"
 		"Outfits Expansion" 2
@@ -2260,7 +2259,6 @@ ship "Leviathan" "Leviathan (CCOR)"
 		"Heavy Anti-Missile Turret" 2
 		"Anti-Missile Turret" 2
 		"Fusion Reactor"
-		"S-970 Regenerator" 2
 		"nGVF-EE Fuel Cell"
 		"Supercapacitor"
 		"Liquid Helium Cooler"
