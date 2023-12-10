@@ -3174,6 +3174,113 @@ ship "Roost"
 
 
 
+ship "Saber"
+	sprite "ship/saber"
+	thumbnail "thumbnail/saber"
+	attributes
+		category "Medium Warship"
+		"cost" 2200000
+		"shields" 4600
+		"hull" 2600
+		"required crew" 16
+		"bunks" 25
+		"mass" 370
+		"drag" 6
+		"heat dissipation" .5
+		"fuel capacity" 600
+		"cargo space" 30
+		"outfit space" 280
+		"weapon capacity" 105
+		"engine capacity" 90
+		weapon
+			"blast radius" 72
+			"shield damage" 720
+			"hull damage" 360
+			"hit force" 1080
+	outfits
+		"Beam Laser" 3
+		"Blaster Turret"
+		"Javelin Pod" 2
+		"Javelin" 600
+		"Javelin Storage Crate" 2
+		
+		"nGVF-CC Fuel Cell"
+		"LP072a Battery Pack"
+		"D23-QP Shield Generator"
+		
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+
+	engine 0 105
+	gun -10.5 -105 "Beam Laser"
+	gun 0 -105 "Beam Laser"
+	gun 10.5 -105 "Beam Laser"
+	gun -5 -104 "Javelin Pod"
+	gun 5 -104 "Javelin Pod"
+	turret 0 27.5 "Blaster Turret"
+	leak "leak" 60 60
+	leak "flame" 40 80
+	leak "big leak" 40 20
+	explode "tiny explosion" 10
+	explode "small explosion" 24
+	explode "medium explosion" 28
+	explode "large explosion" 10
+	"final explode" "final explosion medium"
+	description `Saber.`
+
+
+
+ship "Scavenger"
+	sprite "ship/scavenger"
+	thumbnail "thumbnail/scavenger"
+	attributes
+		category "Light Warship"
+		"cost" 490000
+		"shields" 2300
+		"hull" 1100
+		"required crew" 3
+		"bunks" 5
+		"mass" 130
+		"drag" 2.9
+		"heat dissipation" .7
+		"fuel capacity" 400
+		"cargo space" 30
+		"outfit space" 210
+		"weapon capacity" 50
+		"engine capacity" 60
+		weapon
+			"blast radius" 34
+			"shield damage" 340
+			"hull damage" 170
+			"hit force" 510
+	outfits
+		"Energy Blaster" 4
+		"Laser Turret"
+		
+		"nGVF-CC Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
+		"Hyperdrive"
+
+	engine 0 39
+	gun -11 -52
+	gun 11 -52
+	gun -5.5 -48
+	gun 5.5 -48
+	turret 0 -0.5
+	leak "leak" 40 30
+	leak "flame" 50 60
+	explode "tiny explosion" 8
+	explode "small explosion" 12
+	explode "medium explosion" 4
+	description `Scavenger.`
+
+
+
 ship "Scout"
 	sprite "ship/scout"
 	thumbnail "thumbnail/scout"
