@@ -24,6 +24,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // TODO: C++17 has [[nodiscard]] attribute
 #ifdef __GNUC__
 #define WARN_UNUSED  __attribute__((warn_unused_result))
+#else
+#define WARN_UNUSED
 #endif
 
 
