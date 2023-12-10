@@ -1675,7 +1675,7 @@ mission "Station Exploration 1"
 		conversation
 			`It is a sunny afternoon as you walk through the spaceport. As you idly inspect a fruit stand you somehow find yourself surrounded by a group of young humans and Hai.`
 			`	"You're a spaceship captain, right? Could you take us to <planet>?" says one of the Hai, as if he had practiced this line for a while now.`
-			`	The human next to him gives him a nudge. "Don't forget to ask for a trip back, Tagreep, unless you want to be stranded there."
+			`	The human next to him gives him a nudge. "Don't forget to ask for a trip back, Tagreep, unless you want to be stranded there."`
 			choice
 				`	"What would you want to do on <planet>? Isn't that an abandoned station?"`
 					goto question
@@ -1684,7 +1684,7 @@ mission "Station Exploration 1"
 				`	"How much can you pay me?"`
 				`	"Sorry, I'm busy right now. Go ask some other captain."`
 						decline
-			`	The group starts to shuffle around with a nervous air. "Well, we're still in school, so money's kind of tight right now... But we can pay you! Is <payment> okay?" This last part is said in almost a whisper.
+			`	The group starts to shuffle around with a nervous air. "Well, we're still in school, so money's kind of tight right now... But we can pay you! Is <payment> okay?" This last part is said in almost a whisper.`
 			choice
 				`	"Why would you want to pay money to go to <planet>, anyhow? Isn't that an abandoned station?"`
 					goto question
@@ -1705,7 +1705,7 @@ mission "Station Exploration 1"
 				`	"I'm not about to risk getting in trouble for this. Find someone else."`
 						decline
 				`	"Not my business where you spend your vacations. Welcome aboard."`
-				label accept
+			label accept
 			`	The students race onboard your ship, occasionally glancing back to make sure no one in the spaceport recognizes them.`
 				accept
 	on visit
@@ -1733,20 +1733,20 @@ mission "Station Exploration 2"
 		dialog `You look for your passengers, but realize that they took a ride on one of your escorts! Better depart and wait for your escorts to arrive in this star system.`
 	on complete
 		conversation
-			`Upon landing, you are accosted by the local police.`
-			`	"Captain <last>?", says a Hai officer. "Could you come with me for a moment?"`
-			choice
-				`	"Am I in trouble?"`
-				`	"I'm innocent!"
-			`	"We just want to let you know what happened," he says. He leads you away from your passengers, who are currently being examined by a medic for any potential injuries, and sits you down at a table nearby.`
-			`	"I think you can tell by now that your passengers weren't exactly 'sanctioned visitors' to Darkrest. However, they didn't break anything - that announcement you heard was just a warning to refrain from touching a computer system without proper training, but it apparently spooked your passengers enough that they made a run for it. There's no law against just wandering around a station as long as you're not destructive, but typically people who do so get permission first." He give a wry smile. "Saves us from having to deal with false alarms like this."`
-			choice
-				`	"So, am I in trouble or not?"`
-					goto trouble
-				`	"Are my passengers going to be okay?"`
-			`	"Yeah, they're fine. We're basically just here to make sure they didn't injure themselves. Don't think their parents are going to be too thrilled with them, though."`
-			label trouble
-			`	"Simply bringing a paying passenger somewhere they requested to go isn't illegal. Your passengers were of age and knew what they were getting into, and you weren't deliberately enabling them to break the law. You're fine."`
+		`Upon landing, you are accosted by local police.`
+		`	"Captain <last>?", says a Hai officer. "Could you come with me for a moment?"`
+		choice
+			`	"Am I in trouble?"`
+			`	"I'm innocent!"`
+		`	"We just want to let you know what happened," he says. He leads you away from your passengers, who are currently being examined by a medic for any potential injuries, and sits you down at a table nearby.`
+		`	"I think you can tell by now that your passengers weren't exactly 'sanctioned visitors' to Darkrest. However, they didn't break anything - that announcement you heard was just a warning to refrain from touching a computer system without proper training, but it apparently spooked your passengers enough that they made a run for it. There's no law against just wandering around a station as long as you're not destructive, but typically people who do so get permission first." He give a wry smile. "Saves us from having to deal with false alarms like this."`
+		choice
+			`	"So, am I in trouble or not?"`
+				goto trouble
+			`	"Are my passengers going to be okay?"`
+		`	"Yeah, they're fine. We're basically just here to make sure they didn't injure themselves. Don't think their parents are going to be too thrilled with them, though."`
+		label trouble
+			`"Simply bringing a paying passenger somewhere they requested to go isn't illegal. Your passengers were of age and knew what they were getting into, and you weren't deliberately enabling them to break the law. You're fine."`
 			`	The officer gets up. "Next time though, you should probably think twice before bringing some college kids somewhere to go 'ghost-hunting'." He chuckles as he leaves.`
 				decline
 
@@ -1769,7 +1769,7 @@ mission "Abandon Ship"
 			`	"Captain <last>?", says a Hai officer. "Could you come with me for a moment?"`
 			choice
 				`	"Am I in trouble?"`
-				`	"I'm innocent!"
+				`	"I'm innocent!"`
 			`	You can clearly tell that the officer has little patience for your antics. He leads you away from your passengers, who are currently being examined by a medic for any potential injuries.`
 			`	"You are being fined <payment> for abandoning your passengers without warning. You're lucky you didn't end up with a more serious punishment." After chewing you out for endangering your passengers' safety, he walks away from you in a huff.`
 				accept
