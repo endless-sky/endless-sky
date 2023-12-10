@@ -2181,6 +2181,12 @@ Copyright: Dave Flowers
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
+Files:
+ images/ui/find?*
+Copyright: Daeridanii (https://github.com/Daeridanii1)
+License: CC0
+Comment: selected and unselected versions of images/ui/find, by Ember369 (https://github.com/Ember369)
+
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
