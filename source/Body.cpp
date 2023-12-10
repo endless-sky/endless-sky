@@ -15,14 +15,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Body.h"
 
-#include "Angle.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "GameData.h"
 #include "Mask.h"
 #include "MaskManager.h"
 #include "pi.h"
-#include "Point.h"
 #include "Random.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
