@@ -1733,22 +1733,22 @@ mission "Station Exploration 2"
 		dialog `You look for your passengers, but realize that they took a ride on one of your escorts! Better depart and wait for your escorts to arrive in this star system.`
 	on complete
 		conversation
-		`Upon landing, you are accosted by local police.`
-		`	"Captain <last>?", says a Hai officer. "Could you come with me for a moment?"`
-		choice
-			`	"Am I in trouble?"`
-			`	"I'm innocent!"`
-		`	"We just want to let you know what happened," he says. He leads you away from your passengers, who are currently being examined by a medic for any potential injuries, and sits you down at a table nearby.`
-		`	"I think you can tell by now that your passengers weren't exactly 'sanctioned visitors' to Darkrest. However, they didn't break anything - that announcement you heard was just a warning to refrain from touching a computer system without proper training, but it apparently spooked your passengers enough that they made a run for it. There's no law against just wandering around a station as long as you're not destructive, but typically people who do so get permission first." He give a wry smile. "Saves us from having to deal with false alarms like this."`
-		choice
-			`	"So, am I in trouble or not?"`
-				goto trouble
-			`	"Are my passengers going to be okay?"`
-		`	"Yeah, they're fine. We're basically just here to make sure they didn't injure themselves. Don't think their parents are going to be too thrilled with them, though."`
-		label trouble
-			`"Simply bringing a paying passenger somewhere they requested to go isn't illegal. Your passengers were of age and knew what they were getting into, and you weren't deliberately enabling them to break the law. You're fine."`
-			`	The officer gets up. "Next time though, you should probably think twice before bringing some college kids somewhere to go 'ghost-hunting'." He chuckles as he leaves.`
-				decline
+			`Upon landing, you are accosted by local police.`
+			`	"Captain <last>?", says a Hai officer. "Could you come with me for a moment?"`
+			choice
+				`	"Am I in trouble?"`
+				`	"I'm innocent!"`
+			`	"We just want to let you know what happened," he says. He leads you away from your passengers, who are currently being examined by a medic for any potential injuries, and sits you down at a table nearby.`
+			`	"I think you can tell by now that your passengers weren't exactly 'sanctioned visitors' to Darkrest. However, they didn't break anything - that announcement you heard was just a warning to refrain from touching a computer system without proper training, but it apparently spooked your passengers enough that they made a run for it. There's no law against just wandering around a station as long as you're not destructive, but typically people who do so get permission first." He give a wry smile. "Saves us from having to deal with false alarms like this."`
+			choice
+				`	"So, am I in trouble or not?"`
+					goto trouble
+				`	"Are my passengers going to be okay?"`
+			`	"Yeah, they're fine. We're basically just here to make sure they didn't injure themselves. Don't think their parents are going to be too thrilled with them, though."`
+			label trouble
+				`"Simply bringing a paying passenger somewhere they requested to go isn't illegal. Your passengers were of age and knew what they were getting into, and you weren't deliberately enabling them to break the law. You're fine."`
+				`	The officer gets up. "Next time though, you should probably think twice before bringing some college kids somewhere to go 'ghost-hunting'." He chuckles as he leaves.`
+					decline
 
 
 
