@@ -36,8 +36,9 @@ using namespace std;
 
 // Constructor, based on a Sprite.
 Body::Body(const Sprite *sprite, Point position, Point velocity, Angle facing, double zoom)
-	: position(position), velocity(velocity), angle(facing), zoom(zoom), sprite(sprite), randomize(true)
+	: position(position), velocity(velocity), zoom(zoom), sprite(sprite), randomize(true)
 {
+	Turn(facing);
 }
 
 
@@ -368,6 +369,13 @@ void Body::Turn(double amount)
 	rotatedCenter = RotatePointAroundOrigin(rotatedCenter, Angle(amount).Degrees() * TO_RAD);
 
 	position += rotatedCenter;
+}
+
+
+
+void Body::Turn(const Angle &amount)
+{
+	Turn(amount.Degrees());
 }
 
 

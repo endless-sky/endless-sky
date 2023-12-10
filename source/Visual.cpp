@@ -62,6 +62,6 @@ void Visual::Move()
 	else
 	{
 		position += velocity;
-		Turn(spin.Degrees());
+		Turn(spin);
 	}
 }

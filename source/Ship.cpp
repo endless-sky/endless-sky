@@ -1298,7 +1298,7 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 {
 	this->position = position;
 	this->velocity = velocity;
-	this->angle = angle;
+	this->Turn(angle);
 
 	// If landed, place the ship right above the planet.
 	// Escorts should take off a bit behind their flagships.
