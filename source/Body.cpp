@@ -36,6 +36,7 @@ using namespace std;
 Body::Body(const Sprite *sprite, Point position, Point velocity, Angle facing, double zoom)
 	: position(position), velocity(velocity), zoom(zoom), sprite(sprite), randomize(true)
 {
+	position += center;
 	Turn(facing);
 }
 
