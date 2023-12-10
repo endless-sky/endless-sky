@@ -1673,7 +1673,7 @@ mission "Station Exploration 1"
 		has "First Contact: Hai: offered"
 	on offer
 		conversation
-			`It is a sunny afternoon as you walk through the spaceport. As you idly inspect a fruit stand you somehow find yourself surrounded by a group of young humans and Hai.`
+			`It is a sunny afternoon as you idly walk through the spaceport, until you somehow find yourself surrounded by a group of young humans and Hai.`
 			`	"You're a spaceship captain, right? Could you take us to <planet>?" says one of the Hai, as if he had practiced this line for a while now.`
 			`	The human next to him gives him a nudge. "Don't forget to ask for a trip back, Tagreep, unless you want to be stranded there."`
 			choice
@@ -1706,13 +1706,13 @@ mission "Station Exploration 1"
 						decline
 				`	"Not my business where you spend your vacations. Welcome aboard."`
 			label accept
-			`	The students race onboard your ship, occasionally glancing back to make sure no one in the spaceport recognizes them.`
+			`	The students race onboard your ship. As they settle into their bunks, you can hear them speculating about what they will find on <planet>.`
 				accept
 	on visit
 		dialog `You look for your passengers, but realize that they took a ride on one of your escorts! Better depart and wait for your escorts to arrive in this star system.`
 	on complete
 		payment 8000
-		dialog `Your passengers' journey mainly consisted of trying to scare each other by telling ghost stories and jumping out of dimly-lit corners of your ship. Despite these annoyances, you land at the station with no issues. Your passengers practically jump off your ship after hastily paying you <payment>. After passing the time in your ship for a few hours, you are shocked by a loudspeaker pronouncing something in Hai. You figure you should head back to the spaceport to see what's going on. Then again, abandoning them may save you some trouble with law enforcement.`
+		dialog `Your passengers' journey mainly consisted of trying to scare each other by telling ghost stories and jumping out of dimly-lit corners of your ship. Despite these annoyances, you land at the station with no issues. Your passengers practically jump off your ship after hastily paying you <payment>. After passing the time in your ship for a few hours, you are shocked by a loudspeaker sternly pronouncing something in Hai. You figure you should head back to the spaceport to see what's going on. Then again, disassociating yourself from them may save you some trouble with law enforcement.`
 
 
 
@@ -1739,7 +1739,7 @@ mission "Station Exploration 2"
 				`	"Am I in trouble?"`
 				`	"I'm innocent!"`
 			`	"We just want to let you know what happened," he says. He leads you away from your passengers, who are currently being examined by a medic for any potential injuries, and sits you down at a table nearby.`
-			`	"I think you can tell by now that your passengers weren't exactly 'sanctioned visitors' to Darkrest. However, they didn't break anything - that announcement you heard was just a warning to refrain from touching a computer system without proper training, but it apparently spooked your passengers enough that they made a run for it. There's no law against just wandering around a station as long as you're not destructive, but typically people who do so get permission first." He give a wry smile. "Saves us from having to deal with false alarms like this."`
+			`	"I think you can tell by now that your passengers weren't exactly 'sanctioned visitors' to Darkrest. However, they didn't break anything - that announcement you heard was just a warning to refrain from touching a computer system without proper training, but it apparently spooked your passengers enough that they made a run for it. They're not in trouble, as there's no law against just wandering around a station as long as you're not destructive, but typically people who do so get permission first." He give a wry smile. "Saves us from having to deal with false alarms like this."`
 			choice
 				`	"So, am I in trouble or not?"`
 					goto trouble
@@ -1770,5 +1770,5 @@ mission "Abandon Ship"
 				`	"Am I in trouble?"`
 				`	"I'm innocent!"`
 			`	You can clearly tell that the officer has little patience for your antics. He leads you away from your passengers, who are currently being examined by a medic for any potential injuries.`
-			`	"You are being fined <payment> for abandoning your passengers without warning. You're lucky you didn't end up with a more serious punishment." After chewing you out for endangering your passengers' safety, he walks away from you in a huff.`
+			`	"You are being fined <payment> for abandoning your passengers without warning. You're lucky you didn't end up with a more serious punishment." After further chewing you out for endangering your passengers' safety, he walks away from you in a huff.`
 				accept
