@@ -40,7 +40,8 @@ public:
 		OFF = 0,
 		ON,
 		DAMAGED,
-		DISABLED
+		DISABLED,
+		ON_HIT,
 	};
 
 	enum class OverlayType : int_fast8_t {
