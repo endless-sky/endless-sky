@@ -976,24 +976,13 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 
 void PreferencesPanel::HandleUp()
 {
+	selected = max(0, selected - 1);
 	switch(page)
 	{
-	case 'c':
-		if(selected > 0)
-			--selected;
-		break;
 	case 's':
-		if(static_cast<unsigned>(selected) >= prefZones.size())
-			selected = prefZones.size() - 1;
-		if(selected > 0)
-			--selected;
 		selectedItem = prefZones.at(selected).Value();
 		break;
 	case 'p':
-		if(static_cast<unsigned>(selected) >= pluginZones.size())
-			selected = pluginZones.size() - 1;
-		if(selected > 0)
-			--selected;
 		selectedPlugin = pluginZones.at(selected).Value();
 		break;
 	default:
@@ -1008,21 +997,15 @@ void PreferencesPanel::HandleDown()
 	switch(page)
 	{
 	case 'c':
-		if(static_cast<unsigned>(selected + 1) < zones.size())
+		if(selected + 1 < static_cast<int>(zones.size()))
 			selected++;
 		break;
 	case 's':
-		if(static_cast<unsigned>(selected) >= prefZones.size())
-			selected = prefZones.size() - 1;
-		if(static_cast<unsigned>(selected + 1) < prefZones.size())
-			selected++;
+		selected = min(selected + 1, static_cast<int>(prefZones.size() - 1));
 		selectedItem = prefZones.at(selected).Value();
 		break;
 	case 'p':
-		if(static_cast<unsigned>(selected) >= pluginZones.size())
-			selected = pluginZones.size() - 1;
-		if(static_cast<unsigned>(selected + 1) < pluginZones.size())
-			selected++;
+		selected = min(selected + 1, static_cast<int>(pluginZones.size() - 1));
 		selectedPlugin = pluginZones.at(selected).Value();
 		break;
 	default:
