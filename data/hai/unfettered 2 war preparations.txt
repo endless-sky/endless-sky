@@ -1283,7 +1283,7 @@ mission "<uhai> 16: Strength Of A Leader: Si-Ra"
 				fine 100000
 	npc save disable
 		government "Hai (Unfettered Challenger)"
-		ship "Si-Ra' Golden Beetle" "Defiant"
+		ship "Si-Ra' Golden Beetle" "Dekarios"
 		on kill
 			conversation "unfettered outcast"
 		to spawn
@@ -1486,7 +1486,7 @@ mission "<uhai> 16: Strength Of A Leader: He-Yi"
 			`	"Most of us prefer not to use weapons of [aliens, untrue] because they think it means those are [more refined than, superior to] ours. I just recognize their [advantages, utility] in some scenarios."`
 				goto questions
 			label enough
-			`	"I have answered enough of your questions. Some things should remain [a mystery, conceiled]. Knowledge is power, after all."`
+			`	"I have answered enough of your questions. Some things should remain [a mystery, concealed]. Knowledge is power, after all."`
 			label clearconditions
 			action
 				clear "unfettered: questions"
@@ -1494,7 +1494,7 @@ mission "<uhai> 16: Strength Of A Leader: He-Yi"
 				clear "unfettered: hull choice"
 				clear "unfettered: cloak choice"
 				clear "unfettered: weapon choice"
-			`	"The time will come soon, prepare yourself for [war, tragedy]: bring us Jump Drives, train in challenge battle, and when we will be ready and only then, we will strike."`
+			`	"The time will come soon, prepare yourself for [war, tragedy]: bring us Jump Drives, train in challenge battle, and when we are ready and only then, we will strike."`
 
 event "joined the unfettered"
 	government "Escort"
@@ -1869,7 +1869,7 @@ mission "<uhai> 19: Scout Wanderer Systems"
 	on offer
 		log "Minor People" "Mysterious Herald" "A Herald of He-Yi that does not want to reveal their true identity. They seem to have a lot of culture, and stay calm in most situations."
 		conversation
-			`You exit your ship and head to the spaceport as usual, but you cannot shake the sensation that you are being followed. Looking around you see a curious figure with a bird mask: the Herald. They head your way, aware of the fact they spotted.`
+			`You exit your ship and head to the spaceport as usual, but you cannot shake the sensation that you are being followed. Looking around you see a curious figure with a bird mask: the Herald. They head your way, aware of the fact they have been spotted.`
 			`	As they get closer you feel like the color of the mask has slightly changed, but their voice seems the same "It did not take you long to spot me, did it? You have bested me<, unfettered title> <last>!" They say, bowing their head so little you barely notice it. "Rest assured, I am not just here to watch over you; my master has yet another task to ask of you before the war starts."`
 			choice
 				`	"I am listening."`
@@ -1885,18 +1885,27 @@ mission "<uhai> 19: Scout Wanderer Systems"
 			choice
 				`	"What was the task again?"`
 					goto task
-				`	"Can you tell me more?"`
+				`	"Can you tell me who I should be effrayed of?"`
 				`	"What is a To-or?"`
+					to display
+						not "unfettered: to-or knowledge"
 					goto toor
 			action
 				set "unfettered: warned about scarred"
-			`	"Very well: Scarred. I will say no more, for information has a price."`
+			`	"You should fear the Scarred. I will say no more, for information has a price."`
 				goto task
 			label toor
-			`	"It is the most mighty creature we know of. They live on hai-home, in small but resilient communities, where every member has earned their place, and where nobody is left behind. They never run away from a fight, and rightly so, since they are the most impressive creatures on the planet."`
-				goto task
+			action
+				set "unfettered: to-or knowledge"
+			`	"It is the most mighty creature we know of. They live on Hai-home, in small but resilient communities, where every member has earned their place, and where nobody is left behind. They never run away from a fight, and rightly so, since they are the most impressive creatures on the planet."`
+				goto askmore
 			label masked
 			`	"When I wear that mask, I may not reveal my identity to anyone, that is my burden as a Herald of He-Yi. I do not wear this mask all the time, of course, only when I am on mission for him, or in his war room."`
+			label askmore
+			choice
+				`	"Can you tell me more about the task?"`
+				`	"Why were you watching me earlier?"`
+					goto watching
 			label task
 			`	"We want you to survey all systems belonging to our enemies, to assess if they have some backup fleets or potential allies nearby."`
 			branch neutral
@@ -1939,7 +1948,7 @@ mission "<uhai> 19: Scout Wanderer Systems"
 		payment 1000000
 		conversation
 			`You find a message from the Herald on your terminal. "You should transmit the scans to the local authorities, we trust them to handle this kind of information. Please, accept these <payment> credits in advance.`
-			`	"I think you deserve a small explanation as to why these aliens up north are hostile to us: as you probably already know, we are planning to invade them shortly. But, to be fair, we have already started doing a few skirmishes and raids, notably to assess their strength, but mostly for food. They have huge ships transporting a thousand tons of cargo each, that lack manoeuvrability and are therefore prime targets for our tracker pods."`
+			`	"I think you deserve a small explanation as to why these aliens up north are hostile to us: as you probably already know, we are planning to invade them shortly. But, to be fair, we have already started doing a few skirmishes and raids, notably to assess their strength, but mostly for food. They have huge ships transporting a thousand tons of cargo each, that lack maneuverability and are therefore prime targets for our tracker pods."`
 
 mission "<uhai> 19: Weird Aliens Spotted"
 	landing
