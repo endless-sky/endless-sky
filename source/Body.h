@@ -89,7 +89,7 @@ protected:
 	void MarkForRemoval();
 	// Mark that this object should not be removed (e.g. a launched fighter).
 	void UnmarkForRemoval();
-	// Turn object around center of roation.
+	// Turn this object its around center of rotation.
 	void Turn(double amount);
 
 
