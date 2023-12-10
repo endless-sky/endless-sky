@@ -1027,7 +1027,7 @@ void Engine::Draw() const
 	const Interface *hud = GameData::Interfaces().Get("hud");
 
 	// Draw any active planet labels.
-	if(Preferences::Has("Show planet labels"))
+	if(Preferences::Has("Show planet labels") && !player.GetPlanet())
 		for(const PlanetLabel &label : labels)
 			label.Draw();
 

@@ -347,7 +347,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const 
 	else if(isOffer && ui)
 		player.MissionCallback(Conversation::ACCEPT);
 
-	action.Do(player, ui, caller, conversation->IsEmpty());
+	action.Do(player, ui, caller, conversation->IsEmpty() && dialogText.empty());
 }
 
 

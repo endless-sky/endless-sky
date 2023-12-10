@@ -342,7 +342,7 @@ const vector<ShipManager> &GameAction::Ships() const noexcept
 
 
 // Perform the specified tasks.
-void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, bool conversationEmpty) const
+void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, bool immediateRelocation) const
 {
 	if(!logText.empty())
 		player.AddLogEntry(logText);
@@ -403,7 +403,7 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, bool conv
 	{
 		player.QueueRelocation(relocateAction.relocateFilter.PickPlanet(player.GetSystem()),
 							relocateAction.relocateFlagshipOnly);
-		if(conversationEmpty)
+		if(immediateRelocation)
 			player.DoQueuedRelocation();
 	}
 

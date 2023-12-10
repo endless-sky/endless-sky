@@ -2608,7 +2608,6 @@ void PlayerInfo::DoQueuedRelocation()
 	system = relocation.relocationPlanet->GetSystem();
 	planet = relocation.relocationPlanet;
 	relocation.relocationStatus = RelocateStatus::IN_PROGRESS;
-	relocation.oldRelocationPlanet = relocation.relocationPlanet;
 	relocation.relocationPlanet = nullptr;
 }
 
@@ -2632,13 +2631,6 @@ PlayerInfo::RelocateStatus PlayerInfo::RelocationStatus() const
 void PlayerInfo::SetRelocationStatus(PlayerInfo::RelocateStatus status)
 {
 	relocation.relocationStatus = status;
-}
-
-
-
-const Planet *PlayerInfo::OldRelocationPlanet() const
-{
-	return relocation.oldRelocationPlanet;
 }
 
 

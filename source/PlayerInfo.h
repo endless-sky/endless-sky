@@ -79,7 +79,6 @@ public:
 		const Planet *relocationPlanet;
 		bool relocateFlagshipOnly;
 		RelocateStatus relocationStatus = RelocateStatus::NONE;
-		const Planet *oldRelocationPlanet = nullptr;
 	};
 
 
@@ -318,7 +317,6 @@ public:
 	void Relocate(UI *ui);
 	RelocateStatus RelocationStatus() const;
 	void SetRelocationStatus(RelocateStatus status);
-	const Planet *OldRelocationPlanet() const;
 
 	// Toggle which secondary weapon the player has selected.
 	const std::set<const Outfit *> &SelectedSecondaryWeapons() const;

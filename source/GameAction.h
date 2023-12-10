@@ -79,7 +79,7 @@ public:
 
 	const std::vector<ShipManager> &Ships() const noexcept;
 
-	void Do(PlayerInfo &player, UI *ui, const Mission *caller, bool conversationEmpty = false) const;
+	void Do(PlayerInfo &player, UI *ui, const Mission *caller, bool immediateRelocation = false) const;
 
 	// "Instantiate" this action by filling in the wildcard data for the actual
 	// payment, event delay, etc.
