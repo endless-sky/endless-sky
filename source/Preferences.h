@@ -27,24 +27,14 @@ public:
 	template<typename T, int_fast8_t defaultIndex>
 	class MultiPreference {
 	public:
-		MultiPreference<T, defaultIndex>(const std::vector<std::string> &names) : index(defaultIndex), names(names) {}
+		MultiPreference<T, defaultIndex>(const std::vector<std::string> &names);
 
-		const T Get() const {
-			return static_cast<T>(index);
-		}
-		const std::string &GetString() const {
-			return names[index];
-		}
-		const int_fast8_t Index() const {
-			return index;
-		}
+		const T Get() const;
+		const std::string &GetString() const;
+		const int_fast8_t Index() const;
 
-		void Toggle() {
-			index = (index + 1) % names.size();
-		}
-		void Load(int from) {
-			index = std::max<int>(0, std::min<int>(from, names.size() - 1));
-		}
+		void Toggle();
+		void Load(int from);
 
 	private:
 		int_fast8_t index;
@@ -84,7 +74,7 @@ public:
 		MDY,     // Month-first format. (Sat, Oct 4, 1941)
 		YMD      // All-numeric ISO 8601. (1941-10-04)
 	};
-	enum class ExtendedJumpEffects : int {
+	enum class ExtendedJumpEffects : int_fast8_t {
 		OFF = 0,
 		MEDIUM,
 		HEAVY
@@ -180,6 +170,52 @@ public:
 	static MultiPreference<FlotsamCollection, 1> flotsamCollection;
 
 };
+
+
+
+template<typename T, int_fast8_t defaultIndex>
+Preferences::MultiPreference<T, defaultIndex>::MultiPreference(const std::vector<std::string> &names)
+	: index(defaultIndex), names(names) {}
+
+
+
+template<typename T, int_fast8_t defaultIndex>
+const T Preferences::MultiPreference<T, defaultIndex>::Get() const
+{
+	return static_cast<T>(index);
+}
+
+
+
+template<typename T, int_fast8_t defaultIndex>
+const std::string &Preferences::MultiPreference<T, defaultIndex>::GetString() const
+{
+	return names[index];
+}
+
+
+
+template<typename T, int_fast8_t defaultIndex>
+const int_fast8_t Preferences::MultiPreference<T, defaultIndex>::Index() const
+{
+	return index;
+}
+
+
+
+template<typename T, int_fast8_t defaultIndex>
+void Preferences::MultiPreference<T, defaultIndex>::Toggle()
+{
+	index = (index + 1) % names.size();
+}
+
+
+
+template<typename T, int_fast8_t defaultIndex>
+void Preferences::MultiPreference<T, defaultIndex>::Load(int from)
+{
+	index = std::max<int>(0, std::min<int>(from, names.size() - 1));
+}
 
 
 
