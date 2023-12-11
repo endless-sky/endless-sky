@@ -32,7 +32,7 @@ mission "Unfettered: Hunger!"
 	on enter
 		system
 			government "Hai"
-		dialog `The local Hai authorities hail you. "Captain, We need your help! Our brethren up north are dying from hunger! The situation is even more dire than usual, and requires your immediate assistance. You will of course be well rewarded, as usual. We added a new job to respond to this crisis."`
+		dialog `The local Hai authorities hail you. "Captain, We need your help! Our brethren up north are starving! The situation is even more dire than usual, and requires your immediate assistance. You will of course be well rewarded, as usual. We added a new job to respond to this crisis."`
 	on enter
 		system
 			attributes "unfettered"

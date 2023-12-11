@@ -101,7 +101,7 @@ mission "Unfettered: Trigger The Challengers"
 	job
 	repeat
 	name "Ready for more spontaneous challengers"
-	description "Mark yourself as ready for more spontaneous challengers to come in all Unfettered systems."
+	description "Mark yourself as ready for more spontaneous challengers to come in all Unfettered systems. There currently "
 	source "Darkcloak"
 	to offer
 		has "unfettered: duel ready"
@@ -170,29 +170,31 @@ phrase "unfettered challenger boarded"
 
 phrase "unfettered challenger defeat message"
 	word
-		`"Did you cheat? If I learn you cheated, I will be the end of you, little monkey!`
-		`"Raaaah... Well, you have beaten me fairly, so I'll pay up..."`
-		`"Nicely done! You seem to learn from our encounters well... But next time will be different, I assure you."`
-		`"The fight is over! Stop shooting me or you'll blow holes into my ship!`
-		`"I surrender. You have indeed lived up to your reputation, I did not stand a chance in this battle. Still, a challenge is a challenge."`
-		`"Stop shooting me, you monkey, before my ship breaks apart!`
-		`"You seem to learn from our encounters well... next time it will be different."`
-		`"Urgent message: we surrender. It is not our way to fight until death, because then there is nothing to be learned through it."`
-		`"Is your fleet not too big for this battle? Or do you use superior weaponry?"`
-		`"Well done, I guess it is only fair that you be allowed to plunder a few of my outfits...`
+		`"`
+	word
+		`Did you cheat? If I learn you cheated, I will be the end of you, little monkey!`
+		`Raaaah... Well, you have beaten me fairly, so I'll pay up...`
+		`Nicely done! You seem to learn from our encounters well... But next time will be different, I assure you.`
+		`The fight is over! Stop shooting me or you'll blow holes into my ship!`
+		`I surrender. You have indeed lived up to your reputation, I did not stand a chance in this battle. Still, a challenge is a challenge.`
+		`Stop shooting me, you monkey, before my ship breaks apart!`
+		`You seem to learn from our encounters well... next time it will be different.`
+		`Urgent message: we surrender. It is not our way to fight until death, because then there is nothing to be learned through it.`
+		`Is your fleet not too big for this battle? Or do you use superior weaponry?`
+		`Well done, I guess it is only fair that you be allowed to plunder a few of my outfits...`
 	word
 		` `
 	word
-		`For now, here are the agreed <payment>. This is a credit chip that will only be exchanged upon landing. Hopefully the money will allows you to improve your flagship before our next battle..."`
-		`I am in no rush to provide you the <payment>, you will receive it when you land but not before."`
-		`You will receive <payment> upon landing, captain. Next time I will not underestimate you!"`
-		`You must have had an edge! I'm in no condition to give you your payment, but it will be delivered to you upon landing, but don't expect to see us again anytime soon."`
-		`You will receive the agreed <payment> upon landing."`
-		`Here is your <payment>, captain, to be received upon landing".`
-		`Whatever the case, you have earned my blade, and my respect, captain. You will be able to exchange it for <payment> when you land."`
-		`We will analyze the fight to make sure you have not cheated. If that is the case, you will receive the <payment> upon landing. If this was a fair fight, you may have gained my respect."`
+		`For now, here are the agreed <payment>. This is a credit chip that will only be exchanged upon landing. Hopefully the money will allows you to improve your flagship before our next battle..`
+		`I am in no rush to provide you the <payment>, you will receive it when you land but not before`
+		`You will receive <payment> upon landing, captain. Next time I will not underestimate you`
+		`You must have had an edge! I'm in no condition to give you your payment, but it will be delivered to you upon landing, but don't expect to see us again anytime soon`
+		`You will receive the agreed <payment> upon landing`
+		`Here is your <payment>, captain, to be received upon landing`
+		`Whatever the case, you have earned my blade, and my respect, captain. You will be able to exchange it for <payment> when you land`
+		`We will analyze the fight to make sure you have not cheated. If that is the case, you will receive the <payment> upon landing. If this was a fair fight, you may have gained my respect`
 	word
-		``
+		`."`
 	word
 		"	<boarding message>"
 
@@ -205,7 +207,7 @@ mission "Unfettered Challenge [0]"
 	substitutions
 		<payment> "200,000 credits"
 	name `Defeat a young Unfettered captain`
-	description `A young Unfettered captain wants to challenge you into a duel, provided you are not overwhelmingly strong. Disable his ship for <payment>.`
+	description `A young Unfettered captain wants to challenge you into a small duel. Disable his ship for <payment>.`
 	source
 		attributes "unfettered"
 	to offer
@@ -216,7 +218,7 @@ mission "Unfettered Challenge [0]"
 	on accept
 		"unfettered: total challengers" += 9
 	on disabled
-		dialog "beaten in duel"
+		dialog phrase "beaten in duel"
 		fail
 	npc save disable
 		government "Hai (Unfettered Challenger)"
@@ -236,7 +238,7 @@ mission "Unfettered Challenge [1A]"
 	substitutions
 		<payment> "500,000 credits"
 	name `Defeat an escorted Unfettered captain`
-	description `An Unfettered captain wants to challenge you into a duel with his escort, provided you are not overwhelmingly strong. Disable his ships for <payment>.`
+	description `An Unfettered captain wants to challenge you into a fair duel with his escort. Disable his ships for <payment>.`
 	source
 		attributes "unfettered"
 	to offer
@@ -247,7 +249,7 @@ mission "Unfettered Challenge [1A]"
 	on accept
 		"unfettered: total challengers" += 15
 	on disabled
-		dialog "beaten in duel"
+		dialog phrase "beaten in duel"
 		fail
 	npc save disable
 		government "Hai (Unfettered Challenger)"
@@ -267,7 +269,7 @@ mission "Unfettered Challenge [1B]"
 	substitutions
 		<payment> "500,000 credits"
 	name `Defeat an Unfettered captain`
-	description `An Unfettered captain wants to challenge you into a duel, provided you are not overwhelmingly strong. Disable his ship for <payment>.`
+	description `An Unfettered captain wants to challenge you into a reasonable duel. Disable his ship for <payment>.`
 	source
 		attributes "unfettered"
 	to offer
@@ -278,7 +280,7 @@ mission "Unfettered Challenge [1B]"
 	on accept
 		"unfettered: total challengers" += 15
 	on disabled
-		dialog "beaten in duel"
+		dialog phrase "beaten in duel"
 		fail
 	npc save disable
 		government "Hai (Unfettered Challenger)"
@@ -309,7 +311,7 @@ mission "Unfettered Challenge [2]"
 	on accept
 		"unfettered: total challengers" += 21
 	on disabled
-		dialog "beaten in duel"
+		dialog phrase "beaten in duel"
 		fail
 	npc save disable
 		government "Hai (Unfettered Challenger)"
@@ -519,7 +521,7 @@ mission "Unfettered: Bring Legendary Combo"
 					to display
 						"unfettered: prototypes exchanged" < 3
 					goto blasters
-				`	"My weapon is not for sale."`
+				`	"My weapons are not for sale."`
 					goto nodeal
 			action
 				give ship "Lightning Bug (Pulse)"
@@ -794,7 +796,7 @@ phrase "defeated unfettered challenger"
 		" Do not even think about capturing my ship." 3
 		" Now it is over, time to lay down your weapons." 3
 		" I accept my fate, take what is rightfully yours." 3
-		" Great stories will be told of our battle!" 3
+		" Great stories will be told!" 3
 		" You have the right to plunder." 3
 		" It would seem you are as strong as some pretended, perhaps even more." 3
 		" Finish me! I would rather die than have to live with this insult."

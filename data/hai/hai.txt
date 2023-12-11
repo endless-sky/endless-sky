@@ -243,6 +243,7 @@ outfitter "Mera's Lab"
 	"Supercapacitor"
 	"Pulse Rifle"
 	"Asteroid Scanner"
+	"Fuel Pod"
 
 # For ships, stations, or corporations.
 phrase "hai"

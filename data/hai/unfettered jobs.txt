@@ -157,7 +157,7 @@ mission "Unfettered Jump Drive 4"
 					goto money
 			action
 				outfit "Ionic Blaster Prototype" 4
-			`	The three blasters are loaded on your ship, in exchange for your jump drive.`
+			`	The four blasters are loaded on your ship, in exchange for your jump drive.`
 				goto prototype
 
 			label turret

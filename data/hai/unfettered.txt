@@ -23,9 +23,9 @@ phrase "Essential Unfettered Mission Fail If Killed"
 
 # using <, > so we can have an empty name
 # could add some depending on the kind of warlord you are (and SB you choose):
-# He-Shi: sneaky, deadly
-# Mem-He: fast, ?
-# To-or: enduring, honest
+# He'Shi: sneaky, deadly
+# Mem'he: fast, ?
+# To'or: enduring, honest
 substitutions
 	"<uhai>" "Triumph of the True Hai"
 	"<, unfettered title>" ", monkey"

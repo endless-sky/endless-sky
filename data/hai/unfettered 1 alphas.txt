@@ -174,8 +174,8 @@ mission "Unfettered: Alpha Supplies"
 		system "Hi Yahr"
 		to spawn
 			or
-				"day" == 2
-				"day" == 15
+				"day" == 3
+				"day" == 16
 		"cargo settings"
 			cargo 6
 			commodities "Metal" "Heavy Metals"
@@ -215,7 +215,7 @@ mission "<uhai> 5: Scan Auxiliary"
 	on offer
 		clear "event: unfettered: analyzed the scans"
 		conversation
-			`You go get a drink in the spaceport, taking a beverage that appears to be water, wanting to take no risks on this alien world. After tasting it, you are sure it is indeed water. The Unfettered here do not have the habit of consuming many special drinks - at least not on a regular basis.`
+			`You go get a drink in the spaceport, taking a beverage that appears to be water, not wanting to take risks on this alien world. After tasting it, you are sure it is indeed water. The Unfettered here do not have the habit of consuming many special drinks - at least not on a regular basis.`
 			branch goodmonke
 				has "<uhai> 4: Scan Geocoris: done"
 			`	An Unfettered that looks like a soldier comes to you, "Mera wants to see you," he starts, "Now!" He says before giving you time to argue, a hand clearly placed on his gun as a passive threat.`
@@ -273,6 +273,8 @@ mission "<uhai> 5: Scan Auxiliary"
 		ship "Auxiliary (Alpha)" "Settler"
 		on board
 			"alpha: worry" ++
+		on disabled
+			set "disabled auxiliary"
 		on "scan outfits"
 			set "unfettered: scanned auxiliary's outfits"
 		on kill
@@ -284,10 +286,15 @@ mission "<uhai> 5: Scan Auxiliary"
 			`You have finished scanning the Auxiliary, that seems to be controlled by humans.`
 			`	As you prepare yourself to exit the system and bring the logs back, you receive a message from the local Unfettered authorities.`
 			`	"We demand that you land right away. If you go to any other system, that ship may pursue you. We do not want a dispute between our suppliers of jump drives; this is probably just a misunderstanding. Surely the unfettered humans can work this out with you later. If you land, we can guarantee your safety here. We have requested that ship to land at another port, on Firelode, since it did fire on you first without any apparent provocation."`
+				to display
+					not "disabled auxiliary"
+			`	"Land at once! We can accept you disabling that ship, or even looting the weak, but do not presume to think about capturing it!"`
 			choice
 				`	"I will land, as you ask."`
 					accept
 				`	"But I can jump away without risk."`
+					to display
+						not "disabled auxiliary"
 					goto jump
 				`	"Screw you and your Chiefs! I'm taking that ship down!"`
 				`	"But I have an urgent mission for one of your engineers."`
@@ -321,8 +328,8 @@ mission "<uhai> 5: Scan Auxiliary"
 	on complete
 		dialog
 			`You are offered some surprisingly high-quality beverages to keep you waiting, that are much better than what you normally would be able to get on Unfettered worlds. This special treatment is probably in part due to your ongoing mission for Mera.`
-			`	One of them comes to talk to you, "I don't know if I should be telling you this, but this ship comes regularly, in the middle and at the end of each month. As far as we are concerned, this is a duel between you and them, meaning so long as they keep coming we will not mind. Just do not destroy them!"`
-			`	After a while, the ship goes away, you can now go back to <origin> with the scanner logs, at your own convenience.`
+			`	One of them comes to talk to you, "I don't know if I should be telling you this, but this ship comes regularly, in the middle and at the end of each month. As far as we are concerned, this is a duel between you and them, meaning so long as they keep coming we will not mind, but make sure you don't scare them off too much, will you? Maybe you should just avoid coming here at these dates, but whatever the case do not destroy them!"`
+			`	After a while, the ship finally leaves for good, you can now go back to <origin> with the scanner logs at your own convenience.`
 
 
 
@@ -345,7 +352,7 @@ mission "<uhai> 5: Auxiliary Scans"
 		event "unfettered: analyzed the scans" 15 30
 		conversation
 			`You send your logs as you land and receive a very generous payment of <payment>.`
-			`	Moments later, on your bridge, you hear a familiar voice from the coms. "Oh, you're back! Good!" You are a bit surprised by the interruption, but quickly recognize Mera. "Hey, I have received the scans, it will take me a few weeks to analyze them but in the meantime can I speak to you about the ship? I really am intrigued about that 'Auxiliary'." The excitement in her voice is hard to miss.`
+			`	Moments later, on your bridge, you hear a familiar voice from the coms. "Oh, you're back! Good!" You are a bit surprised by the interruption, but quickly recognize Mera. "Hey there. So, I have received the scans, it will take me a few weeks to analyze them just like last time. But I was wondering if in the meantime you could tell me a few things about the ship you scanned? I really am intrigued about that 'Auxiliary'." The excitement in her voice is hard to miss.`
 			choice
 				`	"Sorry, but I'm no engineer. I have no idea about how those work."`
 				`	"Sure. What is it you want to know about them?"`
@@ -425,7 +432,7 @@ mission "<uhai> 6 A: Loyal Escort"
 			`	"I knew I could count on you! The stories must be true."`
 				goto choose
 			label exaggerated
-			`	"What do you mean? Your ship is not as fast as a Mem'he and as enduring as a Toor? I will not accept excuses or cowardice, if that is the case, the time to prove yourself worthy is now!"`
+			`	"What do you mean? Your ship is not as fast as a Mem'he, and as enduring as a To'or? I will not accept excuses or cowardice, if that is the case, the time to prove yourself worthy is now!"`
 				goto choose
 			label purposehere
 			`	"As a Chief I need to be seen by my people, else they would never come to respect me, or follow my instructions. In this specific case, I am here to talk with warlords and soldiers alike, to make sure nobody tries something stupid, else innocent Hai may get hurt," he says in an assertive tone.`
@@ -804,7 +811,7 @@ mission "<uhai> 7: Stolen Cargo"
 		government "Cerberus"
 		to spawn
 			has "<uhai> 7: Cavalry Arrives: active"
-		personality target launching plunders vindictive uninterested marked
+		personality target launching plunders vindictive uninterested marked staying
 		ship "Bactrian (Cerberus)" "Rested Snake"
 		conversation
 			action
@@ -817,7 +824,7 @@ mission "<uhai> 7: Stolen Cargo"
 				`	"Were you sent by Sookootow's contact?"`
 				`	"What are these weapons you are using?"`
 					goto weapons
-			`	They laugh a bit, hearing the way you referenced their leader, "Yes, you could call her that."`
+			`	They laugh a bit, hearing the way you referenced their leader, "Yes, you could call her that.`
 				goto leave
 			label weapons
 			`	"They are simply a prototype we are testing on the field of battle, as it should be. You will learn more soon enough."`
@@ -839,7 +846,7 @@ mission "<uhai> 7: Stolen Cargo"
 			choice
 				`	"Thanks for the assistance."`
 					goto leaving
-				`	"I challenge you to a duel for those weapons!"`
+				`	"Wait! I challenge you to a duel for those weapons!"`
 			`	They seem surprised, but not disappointed in the slightest, "A challenge, interesting," one says, "We would have much to learn from each others," the other one add. "But what do we have to gain? Our shredders are worth many millions, so I think it would be fair you repayed their value to us, should you lose."`
 			choice
 				`	"Seems like a fair deal to me."`
@@ -856,6 +863,7 @@ mission "<uhai> 7: Stolen Cargo"
 				accept
 			label leaving
 			`	They end the transmission. You are left with as many questions as you had before starting the conversation, if not more.`
+			`	You notice an opportunity: if you were to capture these ships here and now, the Unfettered will probably not think too much of it. In a duel, however, they could view it differently.`
 				decline
 			label "allies died"
 			`	You are left wondering who those mysterious allies coming to help you were. Their death will probably mean you won't ever be able to have missions from their organization. They may even seek revange.`
@@ -892,11 +900,11 @@ conversation "cerberus reinforcements"
 		has "unfettered: cleaned up cerberus"
 	action
 		"unfettered: cleaned up cerberus" ++
-	`Now that you have taken care of all pirate reinforcements, it is time to board the flagship and take their loot.`
+	`Now that all pirate reinforcements have been taken care of, it is time to board the flagship and take their loot.`
 		to display
 			"unfettered: cleaned up cerberus" == 2
 		decline
-	`You have taken care of part of the pirate reinforcements, but more remain.`
+	`Part of the pirate reinforcements have been taken care of, but more remain.`
 		to display
 			"unfettered: cleaned up cerberus" == 1
 		decline
@@ -920,7 +928,7 @@ mission "<uhai> 7: Cavalry Arrives"
 	on enter
 		conversation
 			"As you enter the system it becomes clear: they have called for backup! Multiple pirate ships are arriving in the system. But you also see other ships arriving by jump drives. They do not appear to be pirates, maybe the 'contact' has provided help as well?"
-			`They hail you, "Listen carefully. You may have noticed a Korath drone in the area, and they don't like Alpha dogs around much. If Korath come to help, do not open fire on them, understood?" "I would recommend you make sure these pirate ships are on your side<, unfettered title>!" The other ship adds, before ending the hail, making it clear they will not take no for an answer.`
+			`They hail you, "Listen carefully. You may have noticed a Korath drone in the area, and they don't like Alpha dogs around much. If some Korath come to help, do not open fire on them, understood?" "We'll let you deal with that bactrian, but I would recommend you make sure these pirate ships are on your side<, unfettered title>!" The other ship adds, before ending the hail, making it clear they will not take no for an answer.`
 	npc save
 		government "Shadow"
 		personality entering heroic uninterested staying mute
@@ -958,8 +966,8 @@ mission "<uhai> 7: Cavalry Arrives"
 	npc disable
 		government "Cerberus"
 		personality plunders vindictive entering
-		fleet "Small Northern Pirates" 3
-		fleet "Large Northern Pirates"
+		fleet "Small Northern Pirates" 4
+		fleet "Large Northern Pirates" 2
 		conversation "cerberus reinforcements"
 	npc disable
 		system "Alcyone"
@@ -977,11 +985,16 @@ mission "<uhai> 7: Cavalry Arrives"
 
 mission "<uhai> 8: Unfettered Humans?"
 	landing
-	name "Who are the 'unfettered humans'?"
+	minor
+	name "Learn more about the 'unfettered humans'?"
 	description `The Auxiliary was manned by 'unfettered humans'. Find out what this means, pirates may have the answers.`
 	destination "Darkcloak"
 	to offer
-		has "<uhai> 5: Scan Auxiliary: done"
+		has "<uhai> 5: Auxiliary Scans: done"
+	on offer
+		conversation
+			`You learned from the Unfettered Hai that the Auxiliary you fought recently in order to get the scans was in fact manned by 'unfettered humans'. It would be wise to find out what that means, and where they come from, especially considering they shot you on sight.`
+				accept
 	to complete
 		has "unfettered: it's the Alphas!"
 
@@ -1106,14 +1119,18 @@ mission "<uhai> 8: Unfettered Humans Hint"
 		has "<uhai> 8: Unfettered Humans? Hint: failed"
 		not "<uhai> 8: It's The Alphas: offered"
 		not "flagship planet: New Tortuga"
+	to complete
+		has "unfettered: it's the Alphas!"
 
 
 
 mission "<uhai> 8: It's The Alphas"
 	landing
+	minor
 	invisible
 	to offer
 		has "<uhai> 8: Unfettered Humans?: active"
+		not "<uhai> 7: Stolen Cargo: active"
 	source "New Tortuga"
 	on offer
 		conversation

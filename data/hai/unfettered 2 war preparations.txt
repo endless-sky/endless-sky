@@ -1880,15 +1880,15 @@ mission "<uhai> 19: Scout Wanderer Systems"
 				`	"Later."`
 					defer
 			label watching
-			`	They look around discreetely - more so than earlier - before speaking in a lower tone, "Come, let us have a walk." You follow them, and they continue talking on the way, "Why does the To-or fight to the death? Is it pride? Is it protection of their loved ones, or a matter character? There are often multiple reasons for why things happen the way they do, and we do not always know them all."`
+			`	They look around discreetely - more so than earlier - before speaking in a lower tone, "Come, let us have a walk." You follow them, and they continue talking on the way, "Why does the To'or fight to the death? Is it pride? Is it protection of their loved ones, or a matter character? There are often multiple reasons for why things happen the way they do, and we do not always know them all."`
 			`	They then look at you directly, "You should know that there are some among us that do not appreciate the status you have been given, or what happened with the Alphas."`
 			choice
 				`	"What was the task again?"`
 					goto task
 				`	"Can you tell me who I should be afraid of?"`
-				`	"What is a To-or?"`
+				`	"What is a To'or?"`
 					to display
-						not "unfettered: to-or knowledge"
+						not "unfettered: to'or knowledge"
 					goto toor
 			action
 				set "unfettered: warned about scarred"
@@ -1896,7 +1896,7 @@ mission "<uhai> 19: Scout Wanderer Systems"
 				goto task
 			label toor
 			action
-				set "unfettered: to-or knowledge"
+				set "unfettered: to'or knowledge"
 			`	"It is the most mighty creature we know of. They live on Hai-home, in small but resilient communities, where every member has earned their place, and where nobody is left behind. They never run away from a fight, and rightly so, since they are the most impressive creatures on the planet."`
 				goto askmore
 			label masked

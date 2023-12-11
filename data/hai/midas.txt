@@ -21,7 +21,7 @@ outfit "Gold Bars"
 	thumbnail "outfit/gold bars"
 	mass 2.1
 	"installable" -1
-	description "It shines; you can feel its value. For some reason, the text 'nemo me impune lacessit' is written on them. You wonder what that could mean... surely nothing to worry about. Most outfitters are not real 'connoisseurs' of the value these hold however, and would not give you any more than the price of brute gold for it."
+	description "It shines; you can feel its value. For some reason, the text 'nemo me impune lacessit' is written on the gold bars. You wonder what that could mean... surely nothing to worry about. Most outfitters are not real 'connoisseurs' of the value these hold however, and would not give you any more than the price of brute gold for it."
 
 # the hyperdrive was optimized out, ship is for duels only
 ship "Sea Scorpion" "Si-Ra' Scorpion"
@@ -368,8 +368,8 @@ mission "Midas: Who is the mad one?"
 		"outfit: Gold Bars" < "midas: bars"
 	on offer
 		conversation
-			`	You had just finished making the transactions for gold bars you sold when you hear someone shouting. "STOP!" You immediately notice the voice is very old. He comes to you in a rush, seemingly alarmed. "These are cursed! You should get rid of them. As soon as you can!" He shouts to you and the one you just sold these to, who does not seem particularly surprised by this encounter.`
-			`	He then takes a closer look at the gold bars, even going as far as grabbing the last one you were giving to the buyer to take a closer look. He then stares at you. "How did you even acquire these?" he asks, but he does not give you time to respond. "Di-did you join them? If you did, I am very sorry for any disturbance I may have caused, sir!" he exclaims in fear, moving back and kneeling, as if wanting to apologize, and he presents the bar back as if it was some kind of offering. The buyer energetically takes the bar from his hands, not interested to hear any more, and gets away before you can react. You then turn back to this mysterious stranger.`
+			`	You had just finished making the transactions for gold bars you sold when you hear someone shouting. "STOP!" You immediately notice the voice is very old. He comes to you in a rush, seemingly alarmed, and addresses the one you sold the bars to. "These are cursed! You should get rid of them. As soon as you can!" You buyer does not seem particularly surprised by this encounter.`
+			`	The excited man then takes a closer look at the gold bars, even going as far as grabbing the last one you were giving to the buyer to take a closer look. He then stares at you. "How did you even acquire these?" he asks, but he does not give you time to respond. "Di-did you join them? If you did, I am very sorry for any disturbance I may have caused, sir!" he exclaims in fear, moving back and kneeling, as if wanting to apologize, and he presents the bar back as if it was some kind of offering. The buyer energetically takes the bar from his hands, not interested to hear any more, and gets away before you can react. You then turn back to this mysterious stranger.`
 			choice
 				`	"Who are 'they'?"`
 					goto who
@@ -380,14 +380,17 @@ mission "Midas: Who is the mad one?"
 					decline
 			`	"Ha! I made the same mistake, once, plundering them from a ship. It almost was my last."`
 			label who
-			`	He looks at you, fascinated. "You truly do not know, do you? Good! Then you may still be free. Do not make the mistake I did, or this gold will corrupt you! They will come for it! Stash it away, or sell it whilst you still can! It is not worth the fabulous prices they may offer for it!"`
+			`	He looks at you, fascinated. "You truly do not know, do you?" He stops for a few seconds, examining your face as if the truth was hidden behind your left ear. "Good! Then you may still be free. Do not make the mistake I did, or this gold will corrupt you! They will come for it! Stash it away, or sell it whilst you still can! It is not worth the fabulous prices they may offer for it!"`
 			`	He continues, finally and painfully catching his breath. "I went to the pirate worlds! To their territory! What a fool I was. Yes, it was a lot of credits, but not for me. I got plundered myself on the way there!"`
 			choice
 				`	"A good price you say? That sounds interesting."`
 				`	"You're right, it is not worth it, I will get rid of them."`
 					goto rid
-			`	"NO!! You fool! You won't be able to say I did not warn you. You truly are a lost cause, perhaps the bars have already affected you! At least, make sure to have enough escorts, and watch your back." he says, before leaving.`
-			`	"At least do not keep them on your flagship, that would only attract them."`
+				`	"I just sold all of my bars but if they are this interesting I'll be looking for more."`
+					to display
+						not "outfit (all): Gold Bars"
+			`	His eyes open fully in despair, "NO!! You fool! You won't be able to say I did not warn you. You truly are a lost cause, perhaps the bars have already affected you! At least, make sure to have enough escorts, and watch your back.`
+			`	"At least do not keep them on your flagship, that would only attract them," he shouts over his shoulder before running away.`
 				accept
 			label rid
 			`	"Good. You do well to listen." he says, before leaving, finally calm.`
@@ -630,7 +633,7 @@ mission "<uhai> 6 B: To The Wolves"
 	on offer
 		dialog
 			`You are alone in your quarters, waiting for the security detachment of the Hai admiral to arrive, when you hear a mysterious voice.`
-			`	"She of the Void requests that you bring the Hai ships to <waypoints>, without delay, in order to preserve Unfettered integrity. Do so and you will be richly rewarded.`
+			`	"She of the Void requests that you bring the Hai ships to <waypoints> without delay, in order to preserve Unfettered integrity. Do so and you will be richly rewarded.`
 			`	"Worry not, they will not suspect you for taking a small detour. We will bring the supplies to the Unfettered ourselves, we are only acting in their best interest, after all.`
 			`	"Whatever you decide, you do not want to speak of us to them," they add in a very serious tone, before the transmission stops. You notice a contract on your desk computer, ready to be accepted. This clearly conflicts with the official deal that was concluded between the Unfettered and the Hai, so you will have to choose between the two.`
 			``
@@ -641,8 +644,8 @@ mission "<uhai> 6 B: To The Wolves"
 		conversation
 			`One of the unindentified ships hail you. "You did well, Captain. Here is the first part of your reward: <payment>. You may help us by taking out these Hai ships, but it may be wise not to so that the rest of the Hai government will not suspect you for this unfortunate pirate attack.`
 			`	When this is done, go to <destination> for your reward. The Unfettered are going to be in high need of food, and you should bring them as much as you can to compensate for this small... delay in Hai food supplies."`
-			`	Right after that, the governor's ship hails you. "What have you done?" You feel like she was about to continue, but before she could all communications are jammed.`
-			`	You can see some pirates present with the Midas fleets, probably to distract other Hai ships that happen to be in the system.`
+			`	Right after that, the governor's ship hails you, and you hear her voice, between anger and confusion. "What have you done?!" You feel like she was about to continue, but before she could all communications are jammed.`
+			`	You can see some pirates present with the Midas fleets, probably to distract other Hai ships that happen to be in the system. It might be a good idea to bribe them.`
 		payment 1000000
 	# as of yet, we cannot make the main mission fail as your escorts are boarded, meaning these will not be disables
 	npc
@@ -917,7 +920,7 @@ phrase "enemy midas"
 	word
 		"You have "
 		"You possess "
-		"On your ship is "
+		"We know that on your ship you have "
 	word
 		"something "
 		"an item "
