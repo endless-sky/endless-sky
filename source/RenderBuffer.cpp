@@ -148,11 +148,6 @@ RenderBuffer::RenderBuffer(const Point& dimensions):
 
 	// default to the current viewport size at the time of construction
 	glGetIntegerv(GL_VIEWPORT, last_viewport);
-
-	// save off the screen size for the game coordinates (not the same as
-	// the window size or the viewport size)
-	old_width = Screen::Width();
-	old_height = Screen::Height();
 }
 
 
@@ -181,15 +176,11 @@ RenderBuffer::RenderTargetGuard RenderBuffer::SetTarget()
 
 
 	glViewport(0, 0, size.X(), size.Y());
-	old_width = Screen::Width();
-	old_height = Screen::Height();
-
-	Screen::SetDimensionsInternal(size.X(), size.Y());
 
 	static const float CLEAR[] = {0, 0, 0, 0};
 	glClearBufferfv(GL_COLOR, 0, CLEAR);
 
-	return RenderTargetGuard(*this);
+	return RenderTargetGuard(*this, size.X(), size.Y());
 }
 
 
@@ -198,7 +189,6 @@ RenderBuffer::RenderTargetGuard RenderBuffer::SetTarget()
 void RenderBuffer::Deactivate()
 {
 	// Restore the old settings
-	Screen::SetDimensionsInternal(old_width, old_height);
 	glViewport(last_viewport[0], last_viewport[1], last_viewport[2], last_viewport[3]);
 	glBindFramebuffer(GL_FRAMEBUFFER, last_framebuffer);
 }
@@ -294,13 +284,15 @@ RenderBuffer::RenderTargetGuard::~RenderTargetGuard()
 
 void RenderBuffer::RenderTargetGuard::Deactivate()
 {
-	m_buffer.Deactivate();
+	buffer.Deactivate();
+	screenGuard.Deactivate();
 }
 
 
 
-RenderBuffer::RenderTargetGuard::RenderTargetGuard(RenderBuffer &b) :
-	m_buffer(b)
+RenderBuffer::RenderTargetGuard::RenderTargetGuard(RenderBuffer &b, int screenWidth, int screenHeight):
+	buffer(b),
+	screenGuard(screenWidth, screenHeight)
 {
 
 }

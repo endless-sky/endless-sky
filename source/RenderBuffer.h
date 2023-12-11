@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Point.h"
 #include "Rectangle.h"
+#include "Screen.h"
 
 
 // TODO: put this in some header somewhere?
@@ -52,10 +53,11 @@ public:
 		void Deactivate();
 
 	protected:
-		RenderTargetGuard(RenderBuffer &b);
+		RenderTargetGuard(RenderBuffer &b, int screenWidth, int screenHeight);
 
 	private:
-		RenderBuffer &m_buffer;
+		RenderBuffer &buffer;
+		Screen::ScreenDimensionsGuard screenGuard;
 		friend class RenderBuffer;
 	};
 
@@ -84,8 +86,6 @@ protected:
 	unsigned int framebuffer = -1;
 	unsigned int last_framebuffer = 0;
 	int last_viewport[4] = {};
-	int old_width = 0;
-	int old_height = 0;
 };
 
 

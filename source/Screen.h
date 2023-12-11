@@ -56,14 +56,23 @@ public:
 	static Point BottomLeft();
 	static Point BottomRight();
 
-private:
-	// Temporarily set the internal screen dimensions for off-screen
-	// rendering. Caller is responsible for restoring the screen dimensions
-	// when offscreen rendering is finished.
-	static void SetDimensionsInternal(int width, int height);
 
-	friend class RenderBuffer;
+	// Use RAII to define the scope of a temporary screen size change
+	class ScreenDimensionsGuard final
+	{
+	public:
+		// Constructor that changes the screen size on creation
+		ScreenDimensionsGuard(int width, int height);
+		// Destructor, which restores the expected screen size
+		~ScreenDimensionsGuard();
+		// Restore the screen settings
+		void Deactivate();
 
+	private:
+		bool valid;
+		int oldWidth = 0;
+		int oldHeight = 0;
+	};
 };
 
 
