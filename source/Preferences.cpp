@@ -124,21 +124,21 @@ namespace {
 
 
 
-Preferences::MultiPreference<Preferences::AlertIndicator, 0>Preferences::alertIndicator(
+Preferences::MultiPreference<Preferences::AlertIndicator, 0> Preferences::alertIndicator(
 	{"off", "audio", "visual", "both"});
-Preferences::MultiPreference<Preferences::AutoAim, 2>Preferences::autoAim(
+Preferences::MultiPreference<Preferences::AutoAim, 2> Preferences::autoAim(
 	{"off", "always on", "when firing"});
-Preferences::MultiPreference<Preferences::AutoFire, 0>Preferences::autoFire(
+Preferences::MultiPreference<Preferences::AutoFire, 0> Preferences::autoFire(
 	{"off", "on", "guns only", "turrets only"});
-Preferences::MultiPreference<Preferences::BackgroundParallax, 2>Preferences::backgroundParallax(
+Preferences::MultiPreference<Preferences::BackgroundParallax, 2> Preferences::backgroundParallax(
 	{"off", "fancy", "fast"});
-Preferences::MultiPreference<Preferences::BoardingPriority, 0>Preferences::boardingPriority(
+Preferences::MultiPreference<Preferences::BoardingPriority, 0> Preferences::boardingPriority(
 	{"proximity", "value", "mixed"});
-Preferences::MultiPreference<Preferences::DateFormat, 0>Preferences::dateFormat(
+Preferences::MultiPreference<Preferences::DateFormat, 0> Preferences::dateFormat(
 	{"dd/mm/yyyy", "mm/dd/yyyy", "yyyy-mm-dd"});
-Preferences::MultiPreference<Preferences::ExtendedJumpEffects, 0>Preferences::extendedJumpEffects(
+Preferences::MultiPreference<Preferences::ExtendedJumpEffects, 0> Preferences::extendedJumpEffects(
 	{"off", "medium", "heavy"});
-Preferences::MultiPreference<Preferences::FlotsamCollection, 1>Preferences::flotsamCollection(
+Preferences::MultiPreference<Preferences::FlotsamCollection, 1> Preferences::flotsamCollection(
 	{"off", "on", "flagship only", "escorts only"});
 
 
