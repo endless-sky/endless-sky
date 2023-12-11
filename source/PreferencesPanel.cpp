@@ -113,11 +113,10 @@ PreferencesPanel::PreferencesPanel()
 
 	// set initial plugin list and description scroll ranges
 	pluginListHeight = 0;
-	for(const auto & plugin : Plugins::Get())
-	{
+	for(const auto &plugin : Plugins::Get())
 		if(plugin.second.IsValid())
 			pluginListHeight += 20;
-	}
+
 	pluginListScroll.SetDisplaySize(pluginListBox.Height());
 	pluginListScroll.SetMaxValue(pluginListHeight);
 	Rectangle pluginDescriptionBox = pluginUi->GetBox("plugin description");
@@ -126,10 +125,10 @@ PreferencesPanel::PreferencesPanel()
 
 
 
+// stub, for unique_ptr destruction to be defined in the right compilation unit
 PreferencesPanel::~PreferencesPanel()
 {
-	// stub, for unique_ptr destruction to be defined in the right compilation
-	// unit
+
 }
 
 
@@ -252,7 +251,7 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 		if(zone.Contains(point) && selectedPlugin != zone.Value())
 		{
 			selectedPlugin = zone.Value();
-			for(const auto & plugin : Plugins::Get())
+			for(const auto &plugin : Plugins::Get())
 			{
 				if(plugin.first == selectedPlugin)
 				{
@@ -340,8 +339,8 @@ bool PreferencesPanel::Scroll(double dx, double dy)
 	else if(page == 'p')
 	{
 		auto ui = GameData::Interfaces().Get("plugins");
-		const Rectangle & pluginBox = ui->GetBox("plugin list");
-		const Rectangle & descriptionBox = ui->GetBox("plugin description");
+		const Rectangle &pluginBox = ui->GetBox("plugin list");
+		const Rectangle &descriptionBox = ui->GetBox("plugin description");
 
 		if(pluginBox.Contains(hoverPoint))
 		{
@@ -364,8 +363,8 @@ bool PreferencesPanel::Drag(double dx, double dy)
 	if(page == 'p')
 	{
 		auto ui = GameData::Interfaces().Get("plugins");
-		const Rectangle & pluginBox = ui->GetBox("plugin list");
-		const Rectangle & descriptionBox = ui->GetBox("plugin description");
+		const Rectangle &pluginBox = ui->GetBox("plugin list");
+		const Rectangle &descriptionBox = ui->GetBox("plugin description");
 
 		if(pluginBox.Contains(hoverPoint))
 		{

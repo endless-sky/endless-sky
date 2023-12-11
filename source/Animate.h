@@ -18,50 +18,121 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 // Smoothly change a variable from one value to another. Used to smooth out
 // scrolling and panning.
-template <typename VarT>
+template <typename T>
 class Animate
 {
 public:
 	virtual ~Animate() = default;
 	// Set the next target value of this variable, linearly interpolated using
 	// steps frames.
-	virtual void Set(const VarT & current, int steps = 5)
-	{
-		m_steps = steps;
-		m_target = current;
-	}
+	virtual void Set(const T &current, int steps = 5);
+
 	// Reset the pending number of frames to zero. This makes the interpolated
 	// value jump straight to the target value.
-	void ResetAnimation() { m_steps = 0; }
+	void ResetAnimation();
 	// Compute the next interpolated value. This needs called once per frame.
-	void Step()
-	{
-		if(m_steps <= 0)
-			m_current = m_target;
-		else
-		{
-			VarT delta = (m_target - m_current) / m_steps;
-			m_current += delta;
-			--m_steps;
-		}
-	}
+	void Step();
 
 	// Returns the interpolated value.
-	const VarT & AnimatedValue() const { return m_current; }
+	const T &AnimatedValue() const;
 	// Returns the actual value.
-	const VarT & Value() const { return m_target; }
+	const T &Value() const;
 	// Synonym for Value()
-	operator const VarT &() const { return Value(); }
+	operator const T &() const;
 
 	// Shortcut mathmatical operators for convenience
-	Animate & operator=(const VarT & v) { Set(v); return *this; }
-	Animate & operator+=(const VarT & v) { Set(m_target + v); return *this; }
-	Animate & operator-=(const VarT & v) { Set(m_target - v); return *this; }
+	Animate &operator=(const T &v);
+	Animate &operator+=(const T &v);
+	Animate &operator-=(const T &v);
 
 private:
-	int m_steps = 0;
-	VarT m_current{};
-	VarT m_target{};
+	int steps = 0;
+	T current{};
+	T target{};
 };
+
+
+template <typename T>
+void Animate<T>::Set(const T &current, int steps)
+{
+	this->steps = steps;
+	this->target = current;
+}
+
+
+
+template <typename T>
+void Animate<T>::ResetAnimation()
+{
+	steps = 0;
+}
+
+
+
+template <typename T>
+void Animate<T>::Step()
+{
+	if(steps <= 0)
+		current = target;
+	else
+	{
+		T delta = (target - current) / steps;
+		current += delta;
+		--steps;
+	}
+}
+
+
+
+template <typename T>
+const T &Animate<T>::AnimatedValue() const
+{
+	return current;
+}
+
+
+
+template <typename T>
+const T &Animate<T>::Value() const
+{
+	return target;
+}
+
+
+
+template <typename T>
+Animate<T>::operator const T &() const
+{
+	return Value();
+}
+
+
+
+template <typename T>
+Animate<T> &Animate<T>::operator=(const T &v)
+{
+	Set(v);
+	return *this;
+}
+
+
+
+template <typename T>
+Animate<T> &Animate<T>::operator+=(const T &v)
+{
+	Set(target + v);
+	return *this;
+}
+
+
+
+template <typename T>
+Animate<T> &Animate<T>::operator-=(const T &v)
+{
+	Set(target - v);
+	return *this;
+}
+
+
 
 #endif

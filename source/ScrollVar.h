@@ -25,48 +25,116 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // the value to a suitable range.
 // The value returned by the Animate methods will be negative, as it is meant
 // to be added as an offset to the draw position.
-template <typename VarT>
-class ScrollVar: public Animate<VarT>
+template <typename T>
+class ScrollVar: public Animate<T>
 {
 public:
-	ScrollVar(const VarT & maxVal = VarT{}, const VarT & displaySize = VarT{}) :
-		m_maxVal{maxVal},
-		m_displaySize{displaySize}
-	{}
+	ScrollVar(const T &maxVal = T{}, const T &displaySize = T{});
 
 	// Set the maximum size of the scroll content.
-	void SetMaxValue(const VarT & value) { m_maxVal = value; Clamp(0); }
+	void SetMaxValue(const T &value);
 	// Set the size of the displayable scroll area.
-	void SetDisplaySize(const VarT & size) { m_displaySize = size; Clamp(0); }
+	void SetDisplaySize(const T &size);
 	// Returns true if scroll buttons are needed.
-	bool Scrollable() const { return m_maxVal > m_displaySize; }
+	bool Scrollable() const;
 	// Returns true if the value is at the minimum.
-	bool ScrollAtMin() const { return this->Value() >= VarT{}; }
+	bool ScrollAtMin() const;
 	// Returns true if the value is at the maximum.
-	bool ScrollAtMax() const { return this->Value() <= m_displaySize - m_maxVal; }
+	bool ScrollAtMax() const;
 	// Modifies the scroll value by dy, then clamps it to a suitable range
-	void Scroll(const VarT & dy, int steps = 5) { Set(this->Value() + dy, steps); }
+	void Scroll(const T &dy, int steps = 5);
 
 	// Sets the scroll value directly, then clamps it to a suitable range
-	virtual void Set(const VarT & current, int steps = 5) override
-	{
-		Animate<VarT>::Set(current, steps);
-		Clamp(steps);
-	}
+	virtual void Set(const T &current, int steps = 5) override;
 
 private:
 	// Makes sure the animation value stays in range.
-	void Clamp(int steps)
-	{
-		int minScroll = m_displaySize - m_maxVal;
-		if(this->Value() > VarT{} || m_maxVal < m_displaySize)
-			Animate<VarT>::Set(VarT{}, steps);
-		else if(this->Value() < minScroll)
-			Animate<VarT>::Set(minScroll, steps);
-	}
+	void Clamp(int steps);
 
-	VarT m_maxVal;
-	VarT m_displaySize;
+	T maxVal;
+	T displaySize;
 };
+
+
+
+template <typename T>
+ScrollVar<T>::ScrollVar(const T &maxVal, const T &displaySize):
+	maxVal{maxVal},
+	displaySize{displaySize}
+{
+
+}
+
+
+
+template <typename T>
+void ScrollVar<T>::SetMaxValue(const T &value)
+{
+	maxVal = value;
+	Clamp(0);
+}
+
+
+
+template <typename T>
+void ScrollVar<T>::SetDisplaySize(const T &size)
+{
+	displaySize = size;
+	Clamp(0);
+}
+
+
+
+template <typename T>
+bool ScrollVar<T>::Scrollable() const
+{
+	return maxVal > displaySize;
+}
+
+
+
+template <typename T>
+bool ScrollVar<T>::ScrollAtMin() const
+{
+	return this->Value() >= T{};
+}
+
+
+
+template <typename T>
+bool ScrollVar<T>::ScrollAtMax() const
+{
+	return this->Value() <= displaySize - maxVal;
+}
+
+
+
+template <typename T>
+void ScrollVar<T>::Scroll(const T &dy, int steps)
+{
+	Set(this->Value() + dy, steps);
+}
+
+
+
+template <typename T>
+void ScrollVar<T>::Set(const T &current, int steps)
+{
+	Animate<T>::Set(current, steps);
+	Clamp(steps);
+}
+
+
+template <typename T>
+void ScrollVar<T>::Clamp(int steps)
+{
+	int minScroll = displaySize - maxVal;
+	if(this->Value() > T{} || maxVal < displaySize)
+		Animate<T>::Set(T{}, steps);
+	else if(this->Value() < minScroll)
+		Animate<T>::Set(minScroll, steps);
+}
+
+
 
 #endif

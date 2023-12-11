@@ -63,6 +63,7 @@ private:
 	static void SetDimensionsInternal(int width, int height);
 
 	friend class RenderBuffer;
+
 };
 
 

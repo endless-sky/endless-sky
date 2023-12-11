@@ -20,7 +20,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Shader.h"
 
 #include "opengl.h"
-#include <SDL2/SDL_log.h>
 
 namespace {
 	Shader shader;
@@ -114,15 +113,15 @@ void RenderBuffer::Init()
 
 // Create a texture of the given size that can be used as a render target
 RenderBuffer::RenderBuffer(const Point& dimensions):
-	m_size(dimensions)
+	size(dimensions)
 {
 	// Generate a framebuffer, and bind it.
-	glGenFramebuffers(1, &m_framebuffer);
-	glBindFramebuffer(GL_FRAMEBUFFER, m_framebuffer);
+	glGenFramebuffers(1, &framebuffer);
+	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
 
 	// Generate the texture
-	glGenTextures(1, &m_texid);
-	glBindTexture(GL_TEXTURE_2D, m_texid);
+	glGenTextures(1, &texid);
+	glBindTexture(GL_TEXTURE_2D, texid);
 
 	// Use linear interpolation and no wrapping.
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -131,10 +130,10 @@ RenderBuffer::RenderBuffer(const Point& dimensions):
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
 	// Attach a blank image to the texture
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_size.X(), m_size.Y(), 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, size.X(), size.Y(), 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
 
 	// Attach the texture to the frame buffer
-	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_texid, 0);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, texid, 0);
 	GLenum draw_buffers[] = {GL_COLOR_ATTACHMENT0};
 	glDrawBuffers(1, draw_buffers);
 
@@ -148,12 +147,12 @@ RenderBuffer::RenderBuffer(const Point& dimensions):
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
 	// default to the current viewport size at the time of construction
-	glGetIntegerv(GL_VIEWPORT, m_last_viewport);
+	glGetIntegerv(GL_VIEWPORT, last_viewport);
 
 	// save off the screen size for the game coordinates (not the same as
 	// the window size or the viewport size)
-	m_old_width = Screen::Width();
-	m_old_height = Screen::Height();
+	old_width = Screen::Width();
+	old_height = Screen::Height();
 }
 
 
@@ -161,36 +160,36 @@ RenderBuffer::RenderBuffer(const Point& dimensions):
 // Destructor. Frees the texture and renderbuffers
 RenderBuffer::~RenderBuffer()
 {
-	glDeleteTextures(1, &m_texid);
-	glDeleteFramebuffers(1, &m_framebuffer);
+	glDeleteTextures(1, &texid);
+	glDeleteFramebuffers(1, &framebuffer);
 }
 
 
 
 // Turn this buffer on as a render target. The render target is restored if
 // the Activation object goes out of scope.
-RenderBuffer::Activation RenderBuffer::SetTarget()
+RenderBuffer::RenderTargetGuard RenderBuffer::SetTarget()
 {
 	// NOTE: These glGets can cause an unwanted state synchronization that can
 	//       cause performance problems. The only real reason we might want this
 	//       is if we are nesting render buffers. If only one framebuffer is
 	//       enabled at a time, then we can just reset the buffer to 0 when we
 	//       are done.
-	glGetIntegerv(GL_FRAMEBUFFER_BINDING, reinterpret_cast<int*>(&m_last_framebuffer));
-	glGetIntegerv(GL_VIEWPORT, m_last_viewport);
-	glBindFramebuffer(GL_FRAMEBUFFER, m_framebuffer);
+	glGetIntegerv(GL_FRAMEBUFFER_BINDING, reinterpret_cast<int*>(&last_framebuffer));
+	glGetIntegerv(GL_VIEWPORT, last_viewport);
+	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
 
 
-	glViewport(0, 0, m_size.X(), m_size.Y());
-	m_old_width = Screen::Width();
-	m_old_height = Screen::Height();
+	glViewport(0, 0, size.X(), size.Y());
+	old_width = Screen::Width();
+	old_height = Screen::Height();
 
-	Screen::SetDimensionsInternal(m_size.X(), m_size.Y());
+	Screen::SetDimensionsInternal(size.X(), size.Y());
 
 	static const float CLEAR[] = {0, 0, 0, 0};
 	glClearBufferfv(GL_COLOR, 0, CLEAR);
 
-	return Activation(*this);
+	return RenderTargetGuard(*this);
 }
 
 
@@ -199,9 +198,16 @@ RenderBuffer::Activation RenderBuffer::SetTarget()
 void RenderBuffer::Deactivate()
 {
 	// Restore the old settings
-	Screen::SetDimensionsInternal(m_old_width, m_old_height);
-	glViewport(m_last_viewport[0], m_last_viewport[1], m_last_viewport[2], m_last_viewport[3]);
-	glBindFramebuffer(GL_FRAMEBUFFER, m_last_framebuffer);
+	Screen::SetDimensionsInternal(old_width, old_height);
+	glViewport(last_viewport[0], last_viewport[1], last_viewport[2], last_viewport[3]);
+	glBindFramebuffer(GL_FRAMEBUFFER, last_framebuffer);
+}
+
+
+
+void RenderBuffer::Draw(const Point &position)
+{
+	Draw(position, size);
 }
 
 
@@ -213,17 +219,88 @@ void RenderBuffer::Draw(const Point& position, const Point& clipsize, const Poin
 	glBindVertexArray(vao);
 
 	glUniform1i(texI, 0);
-	glBindTexture(GL_TEXTURE_2D, m_texid);
+	glBindTexture(GL_TEXTURE_2D, texid);
 
 	glUniform2f(sizeI, clipsize.X(), clipsize.Y());
 	glUniform2f(positionI, position.X(), position.Y());
 	glUniform2f(scaleI, 2.f / Screen::Width(), -2.f / Screen::Height());
 
 	glUniform2f(srcpositionI, srcposition.X(), srcposition.Y());
-	glUniform2f(srcscaleI, 1.f / m_size.X(), 1.f / m_size.Y());
+	glUniform2f(srcscaleI, 1.f / size.X(), 1.f / size.Y());
 
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
 	glBindVertexArray(0);
 	glUseProgram(0);
+}
+
+
+
+double RenderBuffer::Top() const
+{
+	return -size.Y() / 2;
+}
+
+
+
+double RenderBuffer::Bottom() const
+{
+	return size.Y() / 2;
+}
+
+
+
+double RenderBuffer::Left() const
+{
+	return -size.X() / 2;
+}
+
+
+
+double RenderBuffer::Right() const
+{
+	return size.X() / 2;
+}
+
+
+
+const Point &RenderBuffer::Dimensions() const
+{
+	return size;
+}
+
+
+
+double RenderBuffer::Height() const
+{
+	return size.Y();
+}
+
+
+
+double RenderBuffer::Width() const
+{
+	return size.X();
+}
+
+
+
+RenderBuffer::RenderTargetGuard::~RenderTargetGuard()
+{
+	Deactivate();
+}
+
+
+
+void RenderBuffer::RenderTargetGuard::Deactivate()
+{
+	m_buffer.Deactivate();
+}
+
+
+
+RenderBuffer::RenderTargetGuard::RenderTargetGuard(RenderBuffer &b) :
+	m_buffer(b)
+{
+
 }

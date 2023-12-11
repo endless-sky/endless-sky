@@ -36,56 +36,56 @@ class RenderBuffer
 {
 public:
 	// Create a texture of the given size that can be used as a render target
-	RenderBuffer(const Point & dimensions);
+	RenderBuffer(const Point &dimensions);
 	virtual ~RenderBuffer();
 
 	// Initialize the shaders used internally
 	static void Init();
 
 	// Use RAII to control render target
-	class Activation
+	class RenderTargetGuard final
 	{
 	public:
-		virtual ~Activation() { Deactivate(); }
+		~RenderTargetGuard();
 
 		// Explicitly deactivate render target;
-		void Deactivate() { m_buffer.Deactivate(); }
+		void Deactivate();
 
 	protected:
-		Activation(RenderBuffer & b) : m_buffer(b) {}
+		RenderTargetGuard(RenderBuffer &b);
 
 	private:
-		RenderBuffer & m_buffer;
+		RenderBuffer &m_buffer;
 		friend class RenderBuffer;
 	};
 
 	// Turn this buffer on as a render target. The render target is restored if
 	// the Activation object goes out of scope.
-	Activation SetTarget() WARN_UNUSED;
+	RenderTargetGuard SetTarget() WARN_UNUSED;
 
 	// Draw the contents of this buffer at the specified position.
-	void Draw(const Point & position) { Draw(position, m_size); };
+	void Draw(const Point &position);
 	// Draw the contents of this buffer at the specified position, clipping the contents
-	void Draw(const Point & position, const Point & clipsize, const Point & srcposition = Point());
+	void Draw(const Point &position, const Point &clipsize, const Point &srcposition = Point());
 
-	double Top() const { return -m_size.Y() / 2; }
-	double Bottom() const { return m_size.Y() / 2; }
-	double Left() const { return -m_size.X() / 2; }
-	double Right() const { return m_size.X() / 2; }
-	const Point & Dimensions() const { return m_size; }
-	double Height() const { return m_size.Y(); }
-	double Width() const { return m_size.X(); }
+	double Top() const;
+	double Bottom() const;
+	double Left() const;
+	double Right() const;
+	const Point &Dimensions() const;
+	double Height() const;
+	double Width() const;
 
 protected:
 	void Deactivate();
 
-	Point m_size;
-	unsigned int m_texid = -1;
-	unsigned int m_framebuffer = -1;
-	unsigned int m_last_framebuffer = 0;
-	int m_last_viewport[4] = {};
-	int m_old_width = 0;
-	int m_old_height = 0;
+	Point size;
+	unsigned int texid = -1;
+	unsigned int framebuffer = -1;
+	unsigned int last_framebuffer = 0;
+	int last_viewport[4] = {};
+	int old_width = 0;
+	int old_height = 0;
 };
 
 
