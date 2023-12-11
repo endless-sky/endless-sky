@@ -515,7 +515,7 @@ mission "Unfettered: Bring Legendary Combo"
 					goto turrets
 				`	"I'd take nothing less than 4 tripulse shredders.`
 					goto shredders
-				`	"You better prepare 6 ionic blasters!"`
+				`	"You better prepare 8 ionic blasters!"`
 					to display
 						"unfettered: prototypes exchanged" < 3
 					goto blasters
@@ -549,7 +549,7 @@ mission "Unfettered: Bring Legendary Combo"
 			label blasters
 			action
 				"unfettered: prototypes exchanged" += 2
-				outfit "Ionic Blaster Prototype" 6
+				outfit "Ionic Blaster Prototype" 8
 			`	"It is agreed, then."`
 			label deal
 			action

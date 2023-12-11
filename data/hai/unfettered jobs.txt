@@ -146,7 +146,7 @@ mission "Unfettered Jump Drive 4"
 			choice
 				`	(Take two tripulse shredders.)`
 					goto tripulse
-				`	(Take 3 ionic blasters.)`
+				`	(Take 4 ionic blasters.)`
 					to display
 						"unfettered: prototypes exchanged" < 5
 				`	(Take 1 ionic turret.)`
@@ -156,7 +156,7 @@ mission "Unfettered Jump Drive 4"
 				`	(Take money instead.)`
 					goto money
 			action
-				outfit "Ionic Blaster Prototype" 3
+				outfit "Ionic Blaster Prototype" 4
 			`	The three blasters are loaded on your ship, in exchange for your jump drive.`
 				goto prototype
 

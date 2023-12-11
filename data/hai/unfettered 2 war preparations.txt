@@ -1885,7 +1885,7 @@ mission "<uhai> 19: Scout Wanderer Systems"
 			choice
 				`	"What was the task again?"`
 					goto task
-				`	"Can you tell me who I should be effrayed of?"`
+				`	"Can you tell me who I should be afraid of?"`
 				`	"What is a To-or?"`
 					to display
 						not "unfettered: to-or knowledge"
