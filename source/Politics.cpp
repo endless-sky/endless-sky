@@ -252,6 +252,9 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 			continue;
 		if(ship->GetSystem() != player.GetSystem())
 			continue;
+		const Planet *planet = player.GetPlanet();
+		if(planet && ship->GetPlanet() != planet)
+			continue;
 
 		int failedMissions = 0;
 

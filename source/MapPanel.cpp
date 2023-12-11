@@ -831,7 +831,7 @@ void MapPanel::Find(const string &name)
 		const System &system = it.second;
 		if(system.IsValid() && !system.Inaccessible() && player.HasVisited(system))
 		{
-			int index = Search(it.first, name);
+			int index = Format::Search(it.first, name);
 			if(index >= 0 && index < bestIndex)
 			{
 				bestIndex = index;
@@ -850,7 +850,7 @@ void MapPanel::Find(const string &name)
 		const Planet &planet = it.second;
 		if(planet.IsValid() && player.HasVisited(*planet.GetSystem()))
 		{
-			int index = Search(it.first, name);
+			int index = Format::Search(it.first, name);
 			if(index >= 0 && index < bestIndex)
 			{
 				bestIndex = index;
@@ -887,15 +887,6 @@ bool MapPanel::IsSatisfied(const Mission &mission) const
 bool MapPanel::IsSatisfied(const PlayerInfo &player, const Mission &mission)
 {
 	return mission.IsSatisfied(player) && !mission.HasFailed(player);
-}
-
-
-
-int MapPanel::Search(const string &str, const string &sub)
-{
-	auto it = search(str.begin(), str.end(), sub.begin(), sub.end(),
-		[](char a, char b) { return toupper(a) == toupper(b); });
-	return (it == str.end() ? -1 : it - str.begin());
 }
 
 
@@ -1276,7 +1267,7 @@ void MapPanel::DrawEscorts()
 			if(squad.second.activeShips || squad.second.parkedShips)
 				RingShader::Draw(pos, INNER - 1.f, 0.f, squad.second.activeShips ? active : parked);
 
-			if(squad.second.outfits.size())
+			if(!squad.second.outfits.empty())
 				// Stored outfits are drawn/indicated by 8 short rays out of the system center.
 				for(int i = 0; i < 8; ++i)
 				{

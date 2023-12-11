@@ -118,7 +118,7 @@ private:
 	std::vector<Word> words;
 	int height = 0;
 
-	int longesLineWidth = 0;
+	int longestLineWidth = 0;
 };
 
 
