@@ -6527,7 +6527,7 @@ system Belenos
 		distance 1432.76
 		period 660.101
 		offset 63
-		object  "M.B. Station"
+		object "M.B. Station"
 			sprite planet/station5
 				scale 0.5
 			distance 185
