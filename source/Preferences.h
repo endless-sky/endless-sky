@@ -48,48 +48,49 @@ public:
 		VISUAL,
 		BOTH
 	};
+
 	enum class AutoAim : int_fast8_t {
 		OFF = 0,
 		ALWAYS_ON,
 		WHEN_FIRING
 	};
+
 	enum class AutoFire : int_fast8_t {
 		OFF = 0,
 		ON,
 		GUNS_ONLY,
 		TURRETS_ONLY
 	};
+
 	enum class BackgroundParallax : int_fast8_t {
 		OFF = 0,
 		FANCY,
 		FAST
 	};
+
 	enum class BoardingPriority : int_fast8_t {
 		PROXIMITY = 0,
 		VALUE,
 		MIXED
 	};
+
 	enum class DateFormat : int_fast8_t {
 		DMY = 0, // Day-first format. (Sat, 4 Oct 1941)
 		MDY,     // Month-first format. (Sat, Oct 4, 1941)
 		YMD      // All-numeric ISO 8601. (1941-10-04)
 	};
+
 	enum class ExtendedJumpEffects : int_fast8_t {
 		OFF = 0,
 		MEDIUM,
 		HEAVY
 	};
+
 	enum class FlotsamCollection : int_fast8_t {
 		OFF = 0,
 		ON,
 		FLAGSHIP,
 		ESCORT
-	};
-
-	enum class VSync : int_fast8_t {
-		off = 0,
-		on,
-		adaptive,
 	};
 
 	enum class OverlayState : int_fast8_t {
@@ -99,12 +100,19 @@ public:
 		DISABLED,
 		ON_HIT,
 	};
+
 	enum class OverlayType : int_fast8_t {
 		ALL = 0,
 		FLAGSHIP,
 		ESCORT,
 		ENEMY,
 		NEUTRAL
+	};
+
+	enum class VSync : int_fast8_t {
+		off = 0,
+		on,
+		adaptive,
 	};
 
 
