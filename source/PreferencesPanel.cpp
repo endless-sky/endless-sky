@@ -107,7 +107,7 @@ PreferencesPanel::PreferencesPanel()
 	hoverText.SetAlignment(Alignment::LEFT);
 
 	// Initialize the plugin list buffer
-	const Interface * pluginUi = GameData::Interfaces().Get("plugins");
+	const Interface *pluginUi = GameData::Interfaces().Get("plugins");
 	Rectangle pluginListBox = pluginUi->GetBox("plugin list");
 	pluginListClip.reset(new RenderBuffer(pluginListBox.Dimensions()));
 
