@@ -1634,7 +1634,7 @@ ship "Firebird" "Firebird (CCOR)"
 		"Large Radar Jammer"
 		"Outfit Scanner"
 		"Laser Rifle" 22
-		"Security Center"
+		"Security Station"
 		"Chipmunk Plasma Thruster"
 		"Chipmunk Plasma Steering"
 		"Greyhound Plasma Thruster"
