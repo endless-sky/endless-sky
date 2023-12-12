@@ -1621,21 +1621,20 @@ ship "Firebird" "Firebird (Plasma)"
 
 ship "Firebird" "Firebird (CCOR)"
 	outfits
-		"Gatling Gun" 4
-		"Gatling Gun Ammo" 12000
+		"Twin Modified Blaster" 4
 		"Heavy Anti-Missile Turret"
 		"Javelin Turret"
-		"Javelin" 800
-		"Javelin Storage Crate" 4
+		"Javelin" 700
+		"Javelin Storage Crate" 3
 		"Fission Reactor"
 		"Water Coolant System"
 		"nGVF-BB Fuel Cell"
+		"Supercapacitor"
 		"D67-TM Shield Generator"
 		"Large Radar Jammer"
 		"Outfit Scanner"
 		"Laser Rifle" 22
 		"Security Station"
-		"Chipmunk Plasma Thruster"
 		"Chipmunk Plasma Steering"
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
