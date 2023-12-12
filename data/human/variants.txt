@@ -1425,6 +1425,24 @@ ship "Dreadnought" "Dreadnought (Plasma Jump)"
 		"Catalytic Ramscoop"
 
 
+ship "Enforcer" "Enforcer (CCOR)"
+	outfits
+		"Energy Blaster" 4
+		"Javelin Turret"
+		"Javelin" 500
+		"Javelin Storage Crate"
+		"nGVF-CC Fuel Cell"
+		"LP036a Battery Pack"
+		"D23-QP Shield Generator"
+		"Outfit Scanner"
+		"Cargo Scanner"
+		"Laser Rifle" 3
+		"Security Station"
+		"Greyhound Plasma Steering"
+		"Greyhound Plasma Thruster"
+		"Hyperdrive"
+
+		
 ship "Falcon" "Falcon (Heavy)"
 	outfits
 		"Torpedo Launcher" 2
@@ -1608,14 +1626,14 @@ ship "Firebird" "Firebird (CCOR)"
 		"Gatling Gun" 4
 		"Gatling Gun Ammo" 12000
 		"Javelin Turret" 2
-		"Javelin" 1600
+		"Javelin" 1200
+		"Javelin Storage Crate" 4
 		"Fission Reactor"
-		"Liquid Nitrogen Cooler"
-		"Water Coolant System" 2
+		"Water Coolant System"
 		"nGVF-BB Fuel Cell"
+		"D67-TM Shield Generator"
 		"Large Radar Jammer"
 		"Outfit Scanner"
-		"Outfits Expansion" 2
 		"Laser Rifle" 22
 		"Chipmunk Plasma Thruster"
 		"Chipmunk Plasma Steering"
@@ -2257,13 +2275,15 @@ ship "Leviathan" "Leviathan (CCOR)"
 	outfits
 		"Plasma Cannon" 4
 		"Heavy Anti-Missile Turret" 2
-		"Anti-Missile Turret" 2
+		"Javelin Turret" 2
+		"Javelin" 1200
+		"Javelin Storage Crate" 4
 		"Fusion Reactor"
 		"nGVF-EE Fuel Cell"
 		"Supercapacitor"
 		"Liquid Helium Cooler"
-		"Liquid Nitrogen Cooler" 2
-		"Outfits Expansion" 4
+		"D67-TM Shield Generator"
+		"Outfits Expansion" 3
 		"Tactical Scanner"
 		"Laser Rifle" 64
 		"Security Station"
@@ -2880,6 +2900,24 @@ ship "Roost" "Roost (Sidewinder)"
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
 		Hyperdrive
+
+
+
+ship "Saber" "Saber (CCOR)"
+	outfits
+		"Twin Modified Blaster" 2
+		"Gatling Gun" 3
+		"Gatling Gun Ammo" 9000
+		"Javelin Turret"
+		"Javelin" 600
+		"nGVF-CC Fuel Cell"
+		"LP072a Battery Pack"
+		"D41-HY Shield Generator"
+		"Laser Rifle" 16
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Chipmunk Plasma Steering"
+		"Hyperdrive"
 
 
 

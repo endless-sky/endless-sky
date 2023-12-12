@@ -1581,7 +1581,7 @@ ship "Enforcer"
 		"fuel capacity" 400
 		"cargo space" 30
 		"outfit space" 210
-		"weapon capacity" 50
+		"weapon capacity" 55
 		"engine capacity" 60
 		weapon
 			"blast radius" 34
