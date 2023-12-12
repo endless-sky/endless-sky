@@ -1009,11 +1009,11 @@ outfit "Javelin Turret"
 	category "Secondary Weapons"
 	cost 110000
 	thumbnail "outfit/javelin turret"
-	"mass" 26
-	"outfit space" -58
-	"weapon capacity" -58
+	"mass" 31
+	"outfit space" -31
+	"weapon capacity" -31
 	"turret mounts" -1
-	"javelin capacity" 800
+	"javelin capacity" 400
 	weapon
 		sprite "projectile/javelin"
 		"hardpoint sprite" "hardpoint/javelin turret"
@@ -1026,13 +1026,13 @@ outfit "Javelin Turret"
 		"turret turn" 2
 		"velocity" 10
 		"lifetime" 60
-		"reload" 5
+		"reload" 7
 		"firing energy" .2
 		"firing heat" 12
 		"shield damage" 48
 		"hull damage" 26
-		"hit force" 5
-		"missile strength" 2
+		"hit force" 50
+		"missile strength" 3
 	description "Javelin Turret."
 
 
