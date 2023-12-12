@@ -1007,6 +1007,7 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Frederick Goy IV (under the same license).
 
 Files:
+ images/hardpoint/javelin?turret*
  images/planet/station1*
  images/planet/station2*
  images/planet/station3*
@@ -1094,6 +1095,7 @@ Files:
  images/outfit/javelin?mini?pod*
  images/outfit/javelin?pod*
  images/outfit/javelin?storage*
+ images/outfit/javelin?turret*
  images/outfit/torpedo*
  images/outfit/torpedo?launcher*
  images/outfit/torpedo?storage*
