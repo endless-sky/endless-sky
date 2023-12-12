@@ -1979,6 +1979,62 @@ fleet "Large Southern Pirates"
 	variant 1
 		"Falcon (Laser)"
 
+fleet "CCOR Small"
+	government "Pirate"
+	names "pirate"
+	cargo 1
+	personality
+		disables plunders harvests
+	variant 5
+		"Berserker (CCOR)"
+	variant 1
+		"Berserker (CCOR)" 2
+	variant 2
+		"Enforcer"
+	variant 2
+		"Enforcer (CCOR)"
+	variant 1
+		"Saber"
+	variant 1
+		"Saber (CCOR)"
+	variant 1
+		"Saber (CCOR)"
+		"Berserker (CCOR)"
+	variant 1
+		"Berserker (CCOR" 2
+		"Enforcer (CCOR)"
+	variant 2
+		"Firebird (CCOR)"
+
+fleet "CCOR Large"
+	government "Pirate"
+	names "pirate"
+	cargo 1
+	personality
+		disables plunders harvests
+	variant 1
+		"Berserker (CCOR)" 2
+	variant 2
+		"Firebird (CCOR)"
+	variant 1
+		"Firebird (CCOR)" 2
+	variant 1
+		"Saber (CCOR)"
+		"Enforcer (CCOR)"
+	variant 1
+		"Saber"
+		"Saber (CCOR"
+		"Berserker (CCOR)"
+	variant 1
+		"Leviathan (CCOR)"
+	variant 1
+		"Leviathan (CCOR)"
+		"Firebird (CCOR)"
+	variant 1
+		"Leviathan (CCOR)"
+		"Saber (CCOR)"
+		"Enforcer (CCOR)" 2
+
 fleet "Small Independent"
 	government "Independent"
 	names "pirate"
