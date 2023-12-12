@@ -6515,9 +6515,9 @@ system Belenos
 	trade Metal 286
 	trade Plastic 337
 	fleet "Small Southern Pirates" 600
-	fleet "CCOR Small" 1500
+	fleet "Small CCOR" 1500
 	fleet "Large Southern Pirates" 2000
-	fleet "CCOR Large" 3000
+	fleet "Large CCOR" 3000
 	object
 		sprite star/g0
 		period 10
@@ -32073,7 +32073,7 @@ system Thuban
 	minables titanium 11 1
 	fleet "Small Southern Pirates" 1500
 	fleet "Large Southern Pirates" 2500
-	fleet "CCOR Small" 3000
+	fleet "Small CCOR" 3000
 	object
 		sprite star/o5
 		period 50

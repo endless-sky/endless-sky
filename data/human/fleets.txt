@@ -1979,7 +1979,7 @@ fleet "Large Southern Pirates"
 	variant 1
 		"Falcon (Laser)"
 
-fleet "CCOR Small"
+fleet "Small CCOR"
 	government "Pirate"
 	names "pirate"
 	cargo 1
@@ -2006,7 +2006,7 @@ fleet "CCOR Small"
 	variant 2
 		"Firebird (CCOR)"
 
-fleet "CCOR Large"
+fleet "Large CCOR"
 	government "Pirate"
 	names "pirate"
 	cargo 1
