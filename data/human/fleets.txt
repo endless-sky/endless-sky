@@ -75,6 +75,8 @@ fleet "Small Southern Merchants"
 		"Scout"
 	variant 1
 		"Scrapper"
+	variant 1
+		"Enforcer"
 
 fleet "Large Southern Merchants"
 	government "Merchant"
@@ -163,6 +165,8 @@ fleet "Large Southern Merchants"
 	variant 1
 		"Bulk Freighter (Long Haul)"
 		"Berserker (Strike)" 4
+	variant 1
+		"Saber"
 
 fleet "Small Core Merchants"
 	government "Merchant"
