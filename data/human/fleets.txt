@@ -2001,7 +2001,7 @@ fleet "CCOR Small"
 		"Saber (CCOR)"
 		"Berserker (CCOR)"
 	variant 1
-		"Berserker (CCOR" 2
+		"Berserker (CCOR)" 2
 		"Enforcer (CCOR)"
 	variant 2
 		"Firebird (CCOR)"
@@ -2023,7 +2023,7 @@ fleet "CCOR Large"
 		"Enforcer (CCOR)"
 	variant 1
 		"Saber"
-		"Saber (CCOR"
+		"Saber (CCOR)"
 		"Berserker (CCOR)"
 	variant 1
 		"Leviathan (CCOR)"
