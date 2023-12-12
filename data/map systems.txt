@@ -8682,21 +8682,21 @@ system Citadelle
 			period 27.3
 	object "Bailey"
 		sprite planet/lava0
-		distance 381.365
-		period 54.3889
+		distance 1733.1
+		period 320
+		offset -90
+		object "Alvorada"
+			sprite "planet/asteroid base"
+			distance 153
+			period 90.1
 	object
 		sprite planet/desert0-b
-		distance 700
-		period 210
+		distance 2253.29
+		period 400
 		offset 43
-	object "Alvorada"
-		sprite "planet/asteroid base"
-		distance 1500
-		period 468.045
-		offset 53
 	object
 		sprite planet/gas14-b
-		distance 2839.73
+		distance 3916.232
 		period 1219.17
 		offset 21
 		object
