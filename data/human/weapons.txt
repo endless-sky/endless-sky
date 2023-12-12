@@ -1009,7 +1009,7 @@ outfit "Javelin Turret"
 	category "Secondary Weapons"
 	cost 110000
 	thumbnail "outfit/javelin turret"
-	"mass" 31
+	"mass" 15
 	"outfit space" -31
 	"weapon capacity" -31
 	"turret mounts" -1
