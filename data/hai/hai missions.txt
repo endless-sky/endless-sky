@@ -1663,7 +1663,7 @@ mission "Strider notification"
 
 mission "Station Exploration 1"
 	name "Station Exploration"
-	description "Bring a group of Hai and human classmates to <planet>, so that they can explore the abandoned station."
+	description "Bring a group of Hai and human students to <planet>, so that they can explore the abandoned station."
 	minor
 	source "Greenwater"
 	destination "Darkrest"
@@ -1709,7 +1709,7 @@ mission "Station Exploration 1"
 			`	The students race onboard your ship. As they settle into their bunks, you can hear them speculating about what they will find on <planet>.`
 				accept
 	on visit
-		dialog `You look for your passengers, but realize that they took a ride on one of your escorts! Better depart and wait for your escorts to arrive in this star system.`
+		dialog `You look for the group of students you were transporting, but realize that they took a ride on one of your escorts! Better depart and wait for your escorts to arrive in this star system.`
 	on complete
 		payment 8000
 		dialog `Your passengers' journey mainly consisted of trying to scare each other by telling ghost stories and jumping out of dimly-lit corners of your ship. Despite these annoyances, you land at the station with no issues. Your passengers practically jump off your ship after hastily paying you <payment>. After passing the time in your ship for a few hours, you are shocked by a loudspeaker sternly pronouncing something in Hai. You figure you should head back to the spaceport to see what's going on. Then again, disassociating yourself from them may save you some trouble with law enforcement.`
@@ -1730,7 +1730,7 @@ mission "Station Exploration 2"
 			`The spaceport is bathed in red light, and the booming voice continues to play. Your passengers rush back onto your ship without saying a word, and you take off before something worse happens.`
 				accept
 	on visit
-		dialog `You look for your passengers, but realize that they took a ride on one of your escorts! Better depart and wait for your escorts to arrive in this star system.`
+		dialog `You look for the group of students you were transporting, but realize that they took a ride on one of your escorts! Better depart and wait for your escorts to arrive in this star system.`
 	on complete
 		conversation
 			`Upon landing, you are accosted by local police.`
@@ -1762,7 +1762,7 @@ mission "Abandon Ship"
 		has "Station Exploration 1: done"
 		not "Station Exploration 2: done"
 	on offer
-		payment -70000
+		fine 70000
 		conversation
 			`Upon landing, you are accosted by local police. Behind your ship, you see your passengers disembarking from a Hai ship. Some of them are crying, but they appear uninjured.`
 			`	"Captain <last>?", says a Hai officer. "Could you come with me for a moment?"`
