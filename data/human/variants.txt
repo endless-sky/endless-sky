@@ -1980,7 +1980,7 @@ ship "Hauler II" "Hauler II (CCOR)"
 		"Laser Rifle" 12
 		"Security Station" 2
 		"Capybara Reverse Thruster"
-		"Capybara Plasma Thruster"
+		"Chipmunk Plasma Thruster"
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
 		"Scram Drive"
