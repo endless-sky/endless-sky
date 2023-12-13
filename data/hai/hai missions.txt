@@ -1693,7 +1693,7 @@ mission "Station Exploration 1"
 				`	"No way, that's too low. Find someone else."`
 						decline
 			label question
-			`	"Well, that's kind of why we want to go there," says one of the Hai. "Some guy in our dorm told us that there's ghosts haunting <planet>, and we wanted call his bluff."`
+			`	"Well, that's kind of why we want to go there," says one of the Hai. "Some guy in our dorm told us that there's ghosts haunting <planet>, and we wanted to call his bluff."`
 			`	"We're planning to look around for an afternoon, see what we can find," one of the human students says, grinning. "Once we're done we'll let you know, and then we can leave."`
 			`	One of the shorter Hai in the back pipes up. "I brought cameras for the trip!" He is ignored by the rest of the group.`
 			choice
