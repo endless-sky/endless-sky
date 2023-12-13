@@ -5002,16 +5002,16 @@ system Alpherg
 	link Fumalasamakah
 	asteroids "medium rock" 3 2.97
 	asteroids "small metal" 3 3.195
-	trade Clothing 280
-	trade Electronics 840
-	trade Equipment 353
-	trade Food 234
-	trade "Heavy Metals" 1008
-	trade Industrial 865
-	trade "Luxury Goods" 1198
-	trade Medical 857
-	trade Metal 266
-	trade Plastic 328
+	trade Clothing 305
+	trade Electronics 878
+	trade Equipment 442
+	trade Food 221
+	trade "Heavy Metals" 860
+	trade Industrial 900
+	trade "Luxury Goods" 1280
+	trade Medical 869
+	trade Metal 280
+	trade Plastic 286
 	fleet "Small Southern Pirates" 1000
 	fleet "Small CCOR" 1500
 	fleet "Large Southern Pirates" 2000
@@ -6504,16 +6504,16 @@ system Belenos
 	asteroids "large rock" 1 0.977
 	asteroids "small metal" 6 0.977
 	asteroids "medium metal" 6 0.871
-	trade Clothing 287
-	trade Electronics 815
+	trade Clothing 270
+	trade Electronics 805
 	trade Equipment 404
-	trade Food 161
-	trade "Heavy Metals" 914
-	trade Industrial 842
-	trade "Luxury Goods" 1237
+	trade Food 243
+	trade "Heavy Metals" 900
+	trade Industrial 870
+	trade "Luxury Goods" 1330
 	trade Medical 833
-	trade Metal 286
-	trade Plastic 337
+	trade Metal 265
+	trade Plastic 267
 	fleet "Small Southern Pirates" 600
 	fleet "Small CCOR" 1500
 	fleet "Large Southern Pirates" 2000
@@ -8668,7 +8668,17 @@ system Citadelle
 	asteroids "medium metal" 2 2.732
 	asteroids "large metal" 1 2.622
 	minables iron 6 1.7
-	minables lead 6 2.9
+	minables lead 7 2.9
+	trade Clothing 260
+	trade Electronics 882
+	trade Equipment 470
+	trade Food 260
+	trade "Heavy Metals" 832
+	trade Industrial 911
+	trade "Luxury Goods" 1190
+	trade Medical 879
+	trade Metal 236
+	trade Plastic 278
 	fleet "Small CCOR" 800
 	fleet "Small Southern Pirates" 1000
 	fleet "Large CCOR" 2500

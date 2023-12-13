@@ -1611,7 +1611,7 @@ ship "Enforcer"
 	explode "tiny explosion" 8
 	explode "small explosion" 12
 	explode "medium explosion" 4
-	description `Enforcer.`
+	description "Prior to the formation of the galactic Republic, many star sectors were owned by small governing corporate entities, with the vast majority of space being inaccessible to private citizens. This lead to an increase in pirate activity, and the Enforcer was one of the more common system security vessels used for defense, boasting an armament of four gun mounts and a turreted mount, all packed on a small but defended frame that was powerful for its time. Although no longer on the market, this ship finds itself in the possession of a small portion of merchants, or ironically, various groups of pirates, as an aging combat ship easily outperformed by other light warships or even interceptors of a similar size."
 
 
 
@@ -3277,7 +3277,7 @@ ship "Saber"
 	explode "medium explosion" 28
 	explode "large explosion" 10
 	"final explode" "final explosion medium"
-	description `Saber.`
+	description "During the caravan era, a boom of economic development spread across human space in the paths of more heavily armed and technologically advanced merchant fleets originating from the Deep, resulting in ships such as the Saber being developed. This medium warship was one of the powerhorses of military might of its time, armed to the teeth with a notable five gun ports in the nose, and a dorsal turret mount to fire at anything not in front of it. As pirates began to join together in larger war bands in response to the more heavily defended merchants, the Saber became popular amongst them as well. Unlike other ships such as the Firebird, it slowly faded out to other competition on the rise, but nevertheless is admired by those who still own one."
 
 
 
