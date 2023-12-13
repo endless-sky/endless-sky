@@ -4977,7 +4977,7 @@ planet Gagarin
 planet Bailey
 	attributes CCOR mining
 	landscape land/lava3
-#	description "Bailey is a dead, nearly tidally locked, world scarcely larger or more habitable than Mercury. Its cool side has hardened into a mineral-rich crust, a rarity in this region of space. Though miners must regularly be on the move it has brought several mining expeditions to the planet. Like aphids sucking the sap from plants, semi-mobile mining stations strip and refine the minerals so that they may be used by the CCOR."
+#	description "Bailey is a dead, nearly tidally locked, world scarcely larger or more habitable than Mercury. Its cool side has hardened into a mineral-rich crust, a rarity in this region of space. Though miners must regularly be on the move it has brought several mining expeditions to the planet. Like aphids sucking the sap from plants, semi-mobile mining stations strip and refine the minerals, a method originally developed by CCOR that the pirates of the region have maintained since their fall."
 #	spaceport "Given the roving nature of the settlements, and the lack of general atmosphere, the spaceport and other major infrastructure are located in orbit. Transit to and from the planet is facilitated by a clever network of skyhooks, which utilize smaller amounts of rare and expensive resources compared to the more common repulsor technology used elsewhere."
 	bribe 1
 	security 0.33
@@ -4985,7 +4985,7 @@ planet Bailey
 planet "M.B. Station"
 	attributes CCOR military station urban
 	landscape land/city6
-	description "The hub of military logistics for the CCOR Mordente-Bridi station is as close to a fortress as can be built without the benefit of an asteroid field. The twin cylinders that make up the outer hull are layered with the strongest armor CCOR can manufacture at scale. The Bridi Cylinder is pressurized containing crew quarters and logistical facilities, and the Mordente contains CCOR's shipyard."
+	description "Mordente-Bridi Station, commonly shortened to M.B. Station, is a testiment to the engineering corps of the now defunct CCOR. Twin cylinders Mordente and Bridi make up the station's hull, built from the strongest armor CCOR could manufacture at scale. Bridi Cylinder is pressurized containing crew quarters and logistical infrastructure, amounting to a significant city, while the Mordente Cylinder contains what was CCOR's main shipyard."
 	spaceport "Almost none of the Mordente Cylinder is pressurized. Within the armored hull is a micro-gravity shipyard complete with worker-shuttles busily zipping about constructing and repairing a plethora of ships and the fighter hangars in addition to the spaceport."
 	shipyard "Advanced Southern Pirates"
 	shipyard "Betelgeuse Advanced"
@@ -5020,7 +5020,7 @@ planet Jakobsen
 planet "Alvorada"
 	attributes CCOR military station
 	landscape land/station8
-#	description "Fortaleza da Alvorada Station is a grand fortress in space, built into the inner reaches of a giant asteroid surrounded by a field of smaller, yet still sizable, space-rocks. Serving as the seat of the CCOR government the station houses the offices of the members of the politburo, their meeting chambers, and grand server-banks to store and be able to process all information about the nation needed to make planning decisions."
-#	spaceport "One of the few connections to the station proper, the starport is at the bottom of one of the deepest craters in the asteroid's surface. Larger ships are left in the crater with tunnels extended to allow the movement of people to and from while smaller ships are moved into hangars dug into the walls. From here looking out you get occasional glimpses of weapon batteries built into the surrounding asteroids."
+#	description "Formerly 'Fortaleza da Alvorada', Alvorada was hollowed out centuries ago to make an extensive network of bunker complexes that used to house the CCOR Politburo and the extensive computer system they used to make their regular plans. Rumor has it in the deepest reaches of the complex where no pirates have yet been able to breach they're still there having turned the system to guiding the guerrillas in reestablishing their homeland."
+#	spaceport "Alvorada's spaceport was built into one of the larger craters. Hangars for even heavy warships were dug into the walls. Everything about the installation here is as fortified as possible. From the ground you can see where artillary pieces were stationed, obscured from above but none the less would have had good firing lines at incoming vessels. Now that you've seen them, you can think of hundreds of places across the moon where similar emplacements could have been hidden."
 	bribe 1
 	security 1
