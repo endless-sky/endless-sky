@@ -1969,6 +1969,23 @@ ship "Hauler II" "Hauler II (Hai)"
 	turret "Quad Blaster Turret"
 
 
+ship "Hauler II" "Hauler II (CCOR)"
+	outfits
+		"Heavy Anti-Missile Turret" 2
+		"Anti-Missile Turret" 2
+		"S3 Thermionic"
+		"LP072a Battery Pack"
+		"D67-TM Shield Generator"
+		"Small Radar Jammer"
+		"Laser Rifle" 12
+		"Security Station" 2
+		"Capybara Reverse Thruster"
+		"Capybara Plasma Thruster"
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Scram Drive"
+
+
 
 ship "Hauler III" "Hauler III (Hai)"
 	outfits
@@ -1989,22 +2006,6 @@ ship "Hauler III" "Hauler III (Hai)"
 	turret "Chameleon Anti-Missile"
 	turret "Chameleon Anti-Missile"
 	turret "Quad Blaster Turret"
-
-ship "Hauler III" "Hauler III (CCOR)"
-	outfits
-		"Heavy Anti-Missile Turret" 3
-		"Anti-Missile Turret"
-		"NT-200 Nucleovoltaic"
-		"nGVF-AA Fuel Cell"
-		"Supercapacitor"
-		"Liquid Nitrogen Cooler"
-		"D41-HY Shield Generator"
-		"Large Radar Jammer"
-		"Laser Rifle" 12
-		"Security Station"
-		"Greyhound Plasma Thruster"
-		"Greyhound Plasma Steering"
-		"Scram Drive"
 
 
 
