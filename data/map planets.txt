@@ -136,6 +136,14 @@ planet "Alta Hai"
 	bribe 0
 	security 0.9
 
+planet "Alvorada"
+	attributes CCOR military station
+	landscape land/station8
+	description "Formerly 'Fortaleza da Alvorada', Alvorada was hollowed out centuries ago to make an extensive network of bunker complexes that used to house the CCOR Politburo and the extensive computer system they used to make their regular plans. Rumor has it in the deepest reaches of the complex where no pirates have yet been able to breach they're still there having turned the system to guiding the guerrillas in reestablishing their homeland."
+	spaceport "Alvorada's spaceport was built into one of the larger craters. Everything about the installation here is as fortified as possible - various hangars for even heavy warships are dug into the walls. From the ground, you can see where artillery pieces were stationed, obscured from above but none the less would have had good firing lines at incoming vessels. Now that you've seen them, you can think of hundreds of places across the moon where similar emplacements could have been hidden."
+	bribe 1
+	security 1
+
 planet Amazon
 	attributes core fishing forest frontier oil tourism
 	landscape land/forest7
@@ -276,6 +284,14 @@ planet Baianus
 	description `This frozen water world is reminiscent of Titan back in Sol: the surface is little more than a shattered wasteland of ice and the occasional rock outcropping, but the unbreathably thin atmosphere contains countless tantalizing traces of chemicals that suggest that something more might exist below the surface.`
 	description `	Unlike Titan, however, Baianus is regularly wracked by both waves of heat and energy, and a stay of any length on the surface is likely to see waves of auroras accompanied by glows and sparks rippling across the terrain. Your environmental system strongly recommends remaining inside your ship whenever ion storms are active.`
 	government Uninhabited
+
+planet Bailey
+	attributes CCOR mining
+	landscape land/lava3
+	description "Bailey is a dead, nearly tidally locked, world scarcely larger or more habitable than Mercury. Its cool side has hardened into a mineral-rich crust, a rarity in this region of space. Though miners must regularly be on the move it has brought several mining expeditions to the planet. Like aphids sucking the sap from plants, semi-mobile mining stations strip and refine the minerals, a method originally developed by CCOR that the pirates of the region have maintained since their fall."
+	spaceport "Given the roving nature of the settlements, and the lack of general atmosphere, the spaceport and other major infrastructure are located in orbit. Transit to and from the planet is facilitated by a clever network of skyhooks, which utilize smaller amounts of rare and expensive resources compared to the more common repulsor technology used elsewhere."
+	bribe 1
+	security 0.33
 
 planet "Bank of Blugtad"
 	attributes arach urban wealthy
@@ -1607,6 +1623,18 @@ planet Furnace
 		threshold 3500
 		fleet "Large Syndicate" 7
 
+planet Gagarin
+	attributes CCOR factory urban
+	landscape land/city0
+	description "Gagarin is the oldest-settled and most populated planet in the region of what used to belong to the CCOR. All the settlements of Gagarin are connected to a planetary transport and infrastructure grid... though the grid hasn't been able to keep pace with demand from a growing population. Although they were designed to be expanded with demand over time, such resource-intensive infrastructure projects became harder and harder to supply the materials for."
+	spaceport "The heart of the planetary infrastructure network the spaceport is perpetually crowded. Materials are constantly coming and going with ships landing, taking off, or being moved to underground hangars if they can't be unloaded quickly. The spaceport,at least, appears as if, albeit just barely, it's able to meet demand"
+	outfitter "Ammo South"
+	outfitter "Basic Outfits"
+	outfitter "Common Outfits"
+	outfitter "Pirate Outfits"
+	bribe 1
+	security 0.33
+
 planet "Gara Pvu"
 	attributes uninhabited
 	landscape land/sky3
@@ -2236,6 +2264,16 @@ planet Ironfirth
 	bribe 0
 	security 0
 
+planet Jakobsen
+	attributes CCOR farming
+	landscape land/sea4
+	description "Jakobsen is an ocean world, having approximately 6% of its surface above sea level. The land is almost exclusively volcanic islands and atolls as any land not refreshed by plate tectonics and slowly being eroded away by the immense seasonal storms that wreathe the planet. Despite these conditions, Jakobsen is an agricultural world, with vast fields of algae cultivated both to sustain the atmosphere's oxygen content and provide a nutritious, if bland, staple food."
+	spaceport "The spaceport is a wholly artificial island constructed near the center of one of the larger archipelagos. Surrounded by wave-breakers and raised several meters above the water line, the landing platforms are partially protected from the dangers of the planet's storms, additionally the smaller pads are able to be lowered into hangars so as to not be swept away during storms."
+	outfitter "Basic Outfits"
+	outfitter "Common Outfits"
+	bribe 1
+	security 0.33
+
 planet Janiculum
 	attributes uninhabited
 	landscape land/canyon11
@@ -2504,6 +2542,23 @@ planet Luna
 		threshold 7500
 		fleet "Large Republic" 10
 
+planet "M.B. Station"
+	attributes CCOR military station urban
+	landscape land/city6
+	description "Mordente-Bridi Station, commonly shortened to M.B. Station, is a testiment to the engineering corps of the now defunct CCOR. Twin cylinders Mordente and Bridi make up the station's hull, built from the strongest armor CCOR could manufacture at scale. Bridi Cylinder is pressurized containing crew quarters and logistical infrastructure, amounting to a significant city, while the Mordente Cylinder contains what was CCOR's main shipyard."
+	spaceport "Almost none of the Mordente Cylinder is pressurized. Within the armored hull is a micro-gravity shipyard complete with worker-shuttles busily zipping about constructing and repairing a plethora of ships and the fighter hangars in addition to the spaceport."
+	shipyard "Advanced Southern Pirates"
+	shipyard "Betelgeuse Advanced"
+	shipyard "Betelgeuse Basics"
+	shipyard "Southern Pirates"
+	outfitter "Ammo South"
+	outfitter "Basic Outfits"
+	outfitter "Basic Weapons"
+	outfitter "Common Outfits"
+	outfitter "Pirate Outfits"
+	bribe 1
+	security 0.5
+
 planet Maelstrom
 	attributes frontier mining north
 	landscape land/mountain21-harro
@@ -2648,6 +2703,14 @@ planet Memory
 	tribute 700
 		threshold 4000
 		fleet "Small Deep Security" 16
+
+planet "Mendez Station"
+	attributes CCOR station
+	landscape land/station20
+	description "Mendez Station is the closest object to Fumalasamakah. Located in a low orbit just above the stellar corona, the monumentous ram-scoops built into the star-facing side of the station collect stellar ejections to process into fuel. The station is perpetually hot, even in the habitation sections as an inescapable effect of begin so close to a great mass of plasma undergoing nuclear fusion, however it would surely be much more so if it weren't for the primarily polyfiber construction and heat-radiation spires built into the far side of the station."
+	spaceport "Rather than a traditional docking ring, part of which would be facing Fumalasamakah and its incredible heat and radiation at all times Mendez's 'spaceport' is actually a separate station located in a significantly higher stellar orbit. The station serves primarily as a secure dock for more normal ships while their inhabitants are taken to Mendez station via specialized transports built to resist the intense heat."
+	bribe 1
+	security 0.33
 
 planet "Merask Fortuno"
 	attributes korath station
@@ -4958,69 +5021,3 @@ planet Zydee
 	landscape land/enceladus_1
 	description `Although this moon initially seems barren and lifeless, there is evidence that the nearby Gegno Scin have recently attempted to set up an outpost here. Several partially-constructed buildings and landing zones are scattered about the surface, but none of them show any signs of activity, likely due to recent warfare with the Gegno Vi. Despite this, a small number of satellites actively orbit Zydee, likely providing important tactical information such as the volume of system traffic.`
 	government Uninhabited
-
-
-# Pirate Stuff
-
-planet Gagarin
-	attributes CCOR factory urban
-	landscape land/city0
-#	description "Gagarin is the oldest-settled and most populated planet in the region of what used to belong to the CCOR. All the settlements of Gagarin are connected to a planetary transport and infrastructure grid... though the grid hasn't been able to keep pace with demand from a growing population. Although they were designed to be expanded with demand over time, such resource-intensive infrastructure projects became harder and harder to supply the materials for."
-#	spaceport "The heart of the planetary infrastructure network the spaceport is perpetually crowded. Materials are constantly coming and going with ships landing, taking off, or being moved to underground hangars if they can't be unloaded quickly. The spaceport,at least, appears as if, albeit just barely, it's able to meet demand"
-	outfitter "Ammo South"
-	outfitter "Basic Outfits"
-	outfitter "Common Outfits"
-	outfitter "Pirate Outfits"
-	bribe 1
-	security 0.33
-
-planet Bailey
-	attributes CCOR mining
-	landscape land/lava3
-#	description "Bailey is a dead, nearly tidally locked, world scarcely larger or more habitable than Mercury. Its cool side has hardened into a mineral-rich crust, a rarity in this region of space. Though miners must regularly be on the move it has brought several mining expeditions to the planet. Like aphids sucking the sap from plants, semi-mobile mining stations strip and refine the minerals, a method originally developed by CCOR that the pirates of the region have maintained since their fall."
-#	spaceport "Given the roving nature of the settlements, and the lack of general atmosphere, the spaceport and other major infrastructure are located in orbit. Transit to and from the planet is facilitated by a clever network of skyhooks, which utilize smaller amounts of rare and expensive resources compared to the more common repulsor technology used elsewhere."
-	bribe 1
-	security 0.33
-
-planet "M.B. Station"
-	attributes CCOR military station urban
-	landscape land/city6
-	description "Mordente-Bridi Station, commonly shortened to M.B. Station, is a testiment to the engineering corps of the now defunct CCOR. Twin cylinders Mordente and Bridi make up the station's hull, built from the strongest armor CCOR could manufacture at scale. Bridi Cylinder is pressurized containing crew quarters and logistical infrastructure, amounting to a significant city, while the Mordente Cylinder contains what was CCOR's main shipyard."
-	spaceport "Almost none of the Mordente Cylinder is pressurized. Within the armored hull is a micro-gravity shipyard complete with worker-shuttles busily zipping about constructing and repairing a plethora of ships and the fighter hangars in addition to the spaceport."
-	shipyard "Advanced Southern Pirates"
-	shipyard "Betelgeuse Advanced"
-	shipyard "Betelgeuse Basics"
-	shipyard "Southern Pirates"
-	outfitter "Ammo South"
-	outfitter "Basic Outfits"
-	outfitter "Basic Weapons"
-	outfitter "Common Outfits"
-	outfitter "Pirate Outfits"
-	bribe 1
-	security 0.5
-
-planet "Mendez Station"
-	attributes CCOR station
-	landscape land/station20
-#	description "Mendez Station is the closest object to Fumalasamakah. Located in a low orbit just above the stellar corona, the monumentous ram-scoops built into the star-facing side of the station collect stellar ejections to process into fuel. The station is perpetually hot, even in the habitation sections as an inescapable effect of begin so close to a great mass of plasma undergoing nuclear fusion, however it would surely be much more so if it weren't for the primarily polyfiber construction and heat-radiation spires built into the far side of the station."
-#	spaceport "Rather than a traditional docking ring, part of which would be facing Fumalasamakah and its incredible heat and radiation at all times Mendez's 'spaceport' is actually a separate station located in a significantly higher stellar orbit. The station serves primarily as a secure dock for more normal ships while their inhabitants are taken to Mendez station via specialized transports built to resist the intense heat."
-	bribe 1
-	security 0.33
-
-planet Jakobsen
-	attributes CCOR farming
-	landscape land/sea4
-	description "Jakobsen is an ocean world, having approximately 6% of its surface above sea level. The land is almost exclusively volcanic islands and atolls as any land not refreshed by plate tectonics and slowly being eroded away by the immense seasonal storms that wreathe the planet. Despite these conditions, Jakobsen is an agricultural world, with vast fields of algae cultivated both to sustain the atmosphere's oxygen content and provide a nutritious, if bland, staple food."
-	spaceport "The spaceport is a wholly artificial island constructed near the center of one of the larger archipelagos. Surrounded by wave-breakers and raised several meters above the water line, the landing platforms are partially protected from the dangers of the planet's storms, additionally the smaller pads are able to be lowered into hangars so as to not be swept away during storms."
-	outfitter "Basic Outfits"
-	outfitter "Common Outfits"
-	bribe 1
-	security 0.33
-
-planet "Alvorada"
-	attributes CCOR military station
-	landscape land/station8
-#	description "Formerly 'Fortaleza da Alvorada', Alvorada was hollowed out centuries ago to make an extensive network of bunker complexes that used to house the CCOR Politburo and the extensive computer system they used to make their regular plans. Rumor has it in the deepest reaches of the complex where no pirates have yet been able to breach they're still there having turned the system to guiding the guerrillas in reestablishing their homeland."
-#	spaceport "Alvorada's spaceport was built into one of the larger craters. Everything about the installation here is as fortified as possible - various hangars for even heavy warships are dug into the walls. From the ground, you can see where artillery pieces were stationed, obscured from above but none the less would have had good firing lines at incoming vessels. Now that you've seen them, you can think of hundreds of places across the moon where similar emplacements could have been hidden."
-	bribe 1
-	security 1

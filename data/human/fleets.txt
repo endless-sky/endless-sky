@@ -2040,7 +2040,7 @@ fleet "Large CCOR"
 		"Enforcer (CCOR)" 2
 	variant 2
 		"Hauler II (CCOR)"
-	variant 1
+	variant 2
 		"Hauler II (CCOR)"
 		"Berserker (CCOR)"
 
