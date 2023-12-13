@@ -2908,7 +2908,8 @@ ship "Saber" "Saber (CCOR)"
 		"Gatling Gun" 3
 		"Gatling Gun Ammo" 9000
 		"Javelin Turret"
-		"Javelin" 600
+		"Javelin" 500
+		"Javelin Storage Crate"
 		"nGVF-CC Fuel Cell"
 		"LP072a Battery Pack"
 		"D41-HY Shield Generator"
