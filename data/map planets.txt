@@ -1626,7 +1626,7 @@ planet Furnace
 planet Gagarin
 	attributes CCOR factory urban
 	landscape land/city0
-	description "Gagarin is the oldest-settled and most populated planet in the region of what used to belong to the CCOR. All the settlements of Gagarin are connected to a planetary transport and infrastructure grid... though the grid hasn't been able to keep pace with demand from a growing population. Although they were designed to be expanded with demand over time, such resource-intensive infrastructure projects became harder and harder to supply the materials for."
+	description `Gagarin is the most populated planet in the region of what used to be the Confederated Councils of the Outer Rim, and was the first to be settled. All the settlements of Gagarin are connected to a planetary transport and infrastructure grid... although the grid hasn't been able to keep pace with demand from a growing population. Despite having been designed to be expanded with as demand increased, such resource-intensive infrastructure projects became harder and harder to maintain, due to shortages in supplies.`
 	spaceport `The heart of the planetary infrastructure network, Gargarin's spaceport is perpetually crowded. Materials are constantly coming and going with ships landing, taking off, or being moved to underground hangars if they can't be unloaded on time. At least the spaceport appears to be able to meet demand, if just barely.`
 	spaceport `	On the walls of the spaceport you see faded emblems for the CCOR, some of which have been plastered over by the local authorities, and others which have been plastered over again by the CCOR guerrillas.`
 	outfitter "Ammo South"
