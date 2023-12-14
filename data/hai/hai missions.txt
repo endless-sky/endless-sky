@@ -1678,47 +1678,47 @@ mission "Hai Film Crew [1]"
 		conversation
 			`A rapid tapping on your shoulder dissappiates any intentions you might have had about touring this spaceport in peace. You turn around to find a Hai, short even by their standards, looking up at you.`
 			`	"You're a ship captain, yes? Would you like to be part of cinema history?"`
-				choice
-					`	"I'm not much of a movie buff. I'll pass."`
-							decline
-					`	"Sure, what do you need me to do?"`
-					`	"What do you mean?"`
-				`	"My name is Likeet, and I'm in charge of coordinating transportation for an independent film crew. We need you to bring <bunks> crew members and <tons> of film equipment to Darkrest, then bring us back after about a month. We can pay you <payment>, but the rewards of being involved in an ambitious project such as this will be priceless."`
-				choice
-					`	"Why would you want to go to <planet>? Isn't that an abandoned station?"
-						goto ask
-					`	"Sure, I can take you there."`
-						goto accept
-					`	"I'm not going that way. You'll need to find some other captain."`
-							decline
-				label ask
-				`	"Ah, you must not know about <planet>. There are many tales which swirl around the station, chief among them being the existence of ghosts and monsters haunting its corridors. We'd like to take advantage of the popular image of Darkrest in the creation of our horror film by using it as a backdrop. It's sort of the human equivalent of setting your film in a 'haunted' forest. Don't worry, we'll bring enough food to last us for the month."`
-				choice
-					`	"Why do people think it's haunted?"`
-						goto haunted
-					`	"Alright then, I can take you there."`
-						goto accept
-					`	"I'm not going that way. You'll need to find some other captain."`
-							decline
-				label haunted
-				`	"Back when the station was still in use, there was a mysterious malfunction in one of the hatches that released oxygen out the airlock, suffocating hundreds on board to death. To this day, no one knows what caused it, and legends have grown out of the event."`
-				choice
-					`	"What makes you think I'm parking my ship at a haunted station?"`
-						goto ghosts
-					`	"Alright then, I can take you there."`
-						goto accept
-					`	"I'm not going that way. You'll need to find some other captain."`
+			choice
+				`	"I'm not much of a movie buff. I'll pass."`
 						decline
-				label ghosts
-					`	Likeet gives a laugh. "It's not actually haunted, of course. Those are just stories. Do you think I'd send an entire film crew and all their expensive equipment to a place that was actually dangerous?"`
-				choice
-					`	"Alright then, I can take you there."`
-						goto accept
-					`	"I'm not going that way. You'll need to find some other captain."`
-							decline
-				label accept
-					`	"Excellent! I'll let the crew know where to find you."`
-						accept
+					`"Sure, what do you need me to do?"`
+				`	"What do you mean?"`
+			`	"My name is Likeet, and I'm in charge of coordinating transportation for an independent film crew. We need you to bring <bunks> crew members and <tons> of film equipment to Darkrest, then bring us back after about a month. We can pay you <payment>, but the rewards of being involved in an ambitious project such as this will be priceless."`
+			choice
+				`	"Why would you want to go to <planet>? Isn't that an abandoned station?"`
+					goto ask
+				`	"Sure, I can take you there."`
+					goto accept
+				`	"I'm not going that way. You'll need to find some other captain."`
+						decline
+			label ask
+			`	"Ah, you must not know about <planet>. There are many tales which swirl around the station, chief among them being the existence of ghosts and monsters haunting its corridors. We'd like to take advantage of the popular image of Darkrest in the creation of our horror film by using it as a backdrop. It's sort of the human equivalent of setting your film in a 'haunted' forest. Don't worry, we'll bring enough food to last us for the month."`
+			choice
+				`	"Why do people think it's haunted?"`
+					goto haunted
+				`	"Alright then, I can take you there."`
+					goto accept
+				`	"I'm not going that way. You'll need to find some other captain."`
+						decline
+			label haunted
+			`	"Back when the station was still in use, there was a mysterious malfunction in one of the hatches that released oxygen out the airlock, suffocating hundreds on board to death. To this day, no one knows what caused it, and legends have grown out of the event."`
+			choice
+				`	"What makes you think I'm parking my ship at a haunted station?"`
+					goto ghosts
+				`	"Alright then, I can take you there."`
+					goto accept
+				`	"I'm not going that way. You'll need to find some other captain."`
+					decline
+			label ghosts
+				`	Likeet gives a laugh. "It's not actually haunted, of course. Those are just stories. Do you think I'd send an entire film crew and all their expensive equipment to a place that was actually dangerous?"`
+			choice
+				`	"Alright then, I can take you there."`
+					goto accept
+				`	"I'm not going that way. You'll need to find some other captain."`
+						decline
+			label accept
+				`	"Excellent! I'll let the crew know where to find you."`
+					accept
 	on visit
 		dialog `You've reached <planet>, but your cargo or passengers are on another ship! Better take off and wait for them to arrive in this system.`
 	on complete
@@ -1733,12 +1733,12 @@ mission "Hai Film Crew [1]"
 				`	"I better get going, then."`
 					goto going
 			label movie
-				`	"I don't want to spoil anything, but it's a psychological horror film that explores the nature of human isolation, and the shadow that our own mortality casts over our lives." She continues to elaborate on more philosophical themes that seemingly have less and less to do with the actual film, until she notices that your eyes have long since glazed over.`
-				`	"Well, anyways, thanks for your help, captain. I'll contact you in a month once we're finished," says Likeet.`
-						accept
+			`	"I don't want to spoil anything, but it's a psychological horror film that explores the nature of human isolation, and the shadow that our own mortality casts over our lives." She continues to elaborate on more philosophical themes that seemingly have less and less to do with the actual film, until she notices that your eyes have long since glazed over.`
+			`	"Well, anyways, thanks for your help, captain. I'll contact you in a month once we're finished," says Likeet.`
+					accept
 			label going
-				`	"Thanks for your help, captain. I'll contact you in a month once we're finished," says Likeet.`
-						accept
+			`	"Thanks for your help, captain. I'll contact you in a month once we're finished," says Likeet.`
+					accept
 
 
 
@@ -1772,10 +1772,10 @@ mission "Hai Film Crew [3]"
 			`The first thing you notice when you land on Darkrest is the mess. It looks as if a tornado has touched down on the set, and you suspect that natural disasters were not part of the movie's original script.`
 			`	"Controlled chaos, I call it," says Likeet, who has somehow materialized beside you. "We're just clearing everything out right now, making sure we didn't forget anything, the usual." It takes more than a few hours to load everything onto your ship. Once you're finished, the only sign that anyone was here is that the station's surfaces are free of dust.`
 			`	"Alright, captain. We'll need to get to <destination>, so that we can edit the raw footage in our studio. Gonna be nice to finally be back on a planet instead of this tin can." She pauses, as if she's trying to remember a line. "Oh yeah, I'll pay you <payment> once we've arrived. Let's get out of here."`
-					accept
+				accept
 	on visit
 		dialog `You've reached <planet>, but your cargo or passengers are on another ship! Better take off and wait for them to arrive in this system.`
 	on complete
 		payment 100000 50
 		conversation
-			`"Thanks for the ride, captain. Keep a lookout for my film in theaters. You'll know it when you see it." Once the cargo has been unloaded, she almost sprints away in excitement, no doubt trying to make it to her studio as quickly as possible. You notice that <payment> has been deposited into your account.
+			`"Thanks for the ride, captain. Keep a lookout for my film in theaters. You'll know it when you see it." Once the cargo has been unloaded, she almost sprints away in excitement, no doubt trying to make it to her studio as quickly as possible. You notice that <payment> has been deposited into your account.`
