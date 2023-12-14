@@ -39,9 +39,12 @@ void Messages::Add(const string &message, Importance importance)
 {
 	lock_guard<mutex> lock(incomingMutex);
 	incoming.emplace_back(message, importance);
-	logged.emplace(logged.begin(), message, importance);
-	if(logged.size() > MAX_LOG)
-		logged.pop_back();
+	if(message != logged.front())
+	{
+		logged.emplace_front(message, importance);
+		if(logged.size() > MAX_LOG)
+			logged.pop_back();
+	}
 }
 
 
