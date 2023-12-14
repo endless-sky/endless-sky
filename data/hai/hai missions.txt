@@ -1722,7 +1722,7 @@ mission "Hai Film Crew [1]"
 	on visit
 		dialog `You've reached <planet>, but your cargo or passengers are on another ship! Better take off and wait for them to arrive in this system.`
 	on complete
-		event "fiim crew" 30
+		event "film crew" 30
 		payment 100000 50
 		conversation
 			`You help your passengers unload all of their film equipment once you arrive on <planet>. The props seem to get more and more elaborate as they are unpacked from your ship. You note the presence of countless rubber limbs, mechanical monsters, and cans of fake blood being carried onto the set. Once you are finished, Likeet approaches you.`
