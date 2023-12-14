@@ -136,11 +136,11 @@ planet "Alta Hai"
 	bribe 0
 	security 0.9
 
-planet "Alvorada"
-	attributes CCOR military station
+planet Alvorada
+	attributes CCOR military station moon
 	landscape land/station8
-	description "Formerly 'Fortaleza da Alvorada', Alvorada was hollowed out centuries ago to make an extensive network of bunker complexes that used to house the CCOR Politburo and the extensive computer system they used to make their regular plans. Rumor has it in the deepest reaches of the complex where no pirates have yet been able to breach they're still there having turned the system to guiding the guerrillas in reestablishing their homeland."
-	spaceport "Alvorada's spaceport was built into one of the larger craters. Everything about the installation here is as fortified as possible - various hangars for even heavy warships are dug into the walls. From the ground, you can see where artillery pieces were stationed, obscured from above but none the less would have had good firing lines at incoming vessels. Now that you've seen them, you can think of hundreds of places across the moon where similar emplacements could have been hidden."
+	description `Formerly "Fortaleza da Alvorada", Alvorada was hollowed out centuries ago to make an extensive network of bunker complexes that used to house the Politburo of the CCOR, and the extensive computer system they built that formulated their systematic plans. Rumor has it that, in the deepest reaches of the complex where no pirates have yet been able to breach, they're still there, having adapted the system to instead direct the guerrillas in the reestablishment of their homeland.`
+	spaceport `Alvorada's spaceport was built into one of the larger craters. Everything about the installation here is as fortified as possible - various hangars for even heavy warships are dug into the walls. From the ground, you can see where artillery pieces were stationed, obscured from above but with clear firing lines at incoming vessels. Now that you've seen them, you can think of hundreds of places across the moon where similar emplacements could have been hidden.`
 	bribe 1
 	security 1
 
@@ -1627,7 +1627,8 @@ planet Gagarin
 	attributes CCOR factory urban
 	landscape land/city0
 	description "Gagarin is the oldest-settled and most populated planet in the region of what used to belong to the CCOR. All the settlements of Gagarin are connected to a planetary transport and infrastructure grid... though the grid hasn't been able to keep pace with demand from a growing population. Although they were designed to be expanded with demand over time, such resource-intensive infrastructure projects became harder and harder to supply the materials for."
-	spaceport "The heart of the planetary infrastructure network the spaceport is perpetually crowded. Materials are constantly coming and going with ships landing, taking off, or being moved to underground hangars if they can't be unloaded quickly. The spaceport at least appears as if, just barely, its able to meet demand."
+	spaceport `The heart of the planetary infrastructure network, Gargarin's spaceport is perpetually crowded. Materials are constantly coming and going with ships landing, taking off, or being moved to underground hangars if they can't be unloaded on time. At least the spaceport appears to be able to meet demand, if just barely.`
+	spaceport `	On the walls of the spaceport you see faded emblems for the CCOR, some of which have been plastered over by the local authorities, and others which have been plastered over again by the CCOR guerrilas.`
 	outfitter "Ammo South"
 	outfitter "Basic Outfits"
 	outfitter "Common Outfits"
@@ -2267,8 +2268,8 @@ planet Ironfirth
 planet Jakobsen
 	attributes CCOR farming
 	landscape land/sea4
-	description "Jakobsen is an ocean world, having approximately 6% of its surface above sea level. The land is almost exclusively volcanic islands and atolls as any land not refreshed by plate tectonics and slowly being eroded away by the immense seasonal storms that wreathe the planet. Despite these conditions, Jakobsen is an agricultural world, with vast fields of algae cultivated both to sustain the atmosphere's oxygen content and provide a nutritious, if bland, staple food."
-	spaceport "The spaceport is a wholly artificial island constructed near the center of one of the larger archipelagos. Surrounded by wave-breakers and raised several meters above the water line, the landing platforms are partially protected from the dangers of the planet's storms, additionally the smaller pads are able to be lowered into hangars so as to not be swept away during storms."
+	description `Jakobsen is an ocean world, having approximately 6% of its surface above sea level. The land is almost exclusively volcanic islands and atolls, as any land not refreshed by plate tectonics is slowly being eroded away by the immense seasonal storms that wreathe the planet. Despite these conditions, Jakobsen is an agricultural world, with vast fields of algae cultivated both to sustain the atmosphere's oxygen content and provide a nutritious, if bland, staple food.`
+	spaceport `The spaceport is a wholly artificial island constructed near the center of one of the larger archipelagos. Surrounded by wave-breakers and raised several meters above the water line, the landing platforms are partially protected from the dangers of the planet's storms; additionally, the smaller pads can be lowered into underground hangars to prevent them from being swept away.`
 	outfitter "Basic Outfits"
 	outfitter "Common Outfits"
 	bribe 1
