@@ -425,6 +425,13 @@ interface "load menu"
 	button d "_Delete"
 		center -285 155
 		dimensions 90 30
+
+	sprite "ui/wide button"
+		center -435 195
+	active
+	button o "_Open Saves"
+		center -435 195
+		dimensions 120 30
 	
 	active if "pilot alive"
 	button a "_Add Snapshot"
@@ -748,8 +755,6 @@ interface "escort element"
 	value "basic height" 30
 	value "system label height" 15
 
-	box "icon click zone"
-		center 20 10
 	anchor top left
 	outline "icon"
 		center 20 10

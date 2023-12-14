@@ -179,7 +179,7 @@ bool MapSalesPanel::Hover(int x, int y)
 {
 	isDragging = (x < Screen::Left() + WIDTH);
 
-	return isDragging ? true : MapPanel::Hover(x, y);
+	return isDragging || MapPanel::Hover(x, y);
 }
 
 
