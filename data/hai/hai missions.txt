@@ -1681,7 +1681,7 @@ mission "Hai Film Crew [1]"
 			choice
 				`	"I'm not much of a movie buff. I'll pass."`
 						decline
-					`"Sure, what do you need me to do?"`
+				`	"Sure, what do you need me to do?"`
 				`	"What do you mean?"`
 			`	"My name is Likeet, and I'm in charge of coordinating transportation for an independent film crew. We need you to bring <bunks> crew members and <tons> of film equipment to Darkrest, then bring us back after about a month. We can pay you <payment>, but the rewards of being involved in an ambitious project such as this will be priceless."`
 			choice
@@ -1766,7 +1766,7 @@ mission "Hai Film Crew [3]"
 	passengers 80
 	cargo "film equipment" 30
 	to offer
-		has Hai Film Crew [2]: done
+		has "Hai Film Crew [2]: done"
 	on offer
 		conversation
 			`The first thing you notice when you land on Darkrest is the mess. It looks as if a tornado has touched down on the set, and you suspect that natural disasters were not part of the movie's original script.`
