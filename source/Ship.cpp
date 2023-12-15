@@ -1306,7 +1306,7 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 {
 	this->position = position;
 	this->velocity = velocity;
-	this->angle = angle;
+	this->Turn(angle);
 
 	// If landed, place the ship right above the planet.
 	// Escorts should take off a bit behind their flagships.
@@ -4267,7 +4267,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 				slowness += scale * attributes.Get("turning slowing");
 				disruption += scale * attributes.Get("turning disruption");
 
-				angle += commands.Turn() * TurnRate() * slowMultiplier;
+				Turn(commands.Turn() * TurnRate() * slowMultiplier);
 			}
 		}
 		double thrustCommand = commands.Has(Command::FORWARD) - commands.Has(Command::BACK);
