@@ -214,7 +214,10 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 
 	for(const auto &zone : prefZones)
 		if(zone.Contains(point))
+		{
 			HandleSettingsString(zone.Value(), point);
+			break;
+		}
 
 	for(const auto &zone : pluginZones)
 		if(zone.Contains(point))
@@ -465,17 +468,6 @@ void PreferencesPanel::DrawSettings()
 	int firstY = -248;
 	table.DrawAt(Point(-130, firstY));
 
-	if(hoverItem != oldHoverItem)
-	{
-		latestItem = hoverItem;
-		oldHoverItem = latestItem;
-	}
-	if(selectedItem != oldSelectedItem)
-	{
-		latestItem = selectedItem;
-		oldSelectedItem = latestItem;
-	}
-
 	// About SETTINGS pagination
 	// * An empty string indicates that a category has ended.
 	// * A '\t' character indicates that the first column on this page has
@@ -591,6 +583,8 @@ void PreferencesPanel::DrawSettings()
 		}
 
 		// Record where this setting is displayed, so the user can click on it.
+		// Temporarily reset the row's size so the clickzone can cover the entire preference.
+		table.SetHighlight(-120, 120);
 		prefZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), setting);
 
 		// Get the "on / off" text for this setting. Setting "isOn"
@@ -759,7 +753,7 @@ void PreferencesPanel::DrawSettings()
 		table.Draw(text, isOn ? bright : medium);
 	}
 
-	// Ugly hack to ensure that the currently selected item gets properly synced once the preferences map gets populated.
+	// Sync the currently selected item after the preferences map has been populated.
 	if(selectedItem.empty())
 		selectedItem = prefZones.at(selected).Value();
 }

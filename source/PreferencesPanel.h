@@ -79,7 +79,6 @@ private:
 	std::string hoverItem;
 	std::string oldSelectedItem;
 	std::string oldHoverItem;
-	std::string latestItem;
 	std::string tooltip;
 	WrappedText hoverText;
 
