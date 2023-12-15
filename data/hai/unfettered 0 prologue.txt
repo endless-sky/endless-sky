@@ -599,7 +599,7 @@ mission "<uhai> 0: Bring Hai"
 			label translate
 			action
 				log "Minor People" "Merora" "A young adolescent Hai that came to Unfettered space after losing her parents to pirates. She is handling the loss very well, at least on the surface."
-			`	"Great! I am Merora, by the way." She looks around, noticing the way some people are staring at you. Surprisingly they seem to be staring at her almost as much as they do at you. She explains, "I came to Unfettered space when I had nowhere left to turn to, just a few weeks ago. I don't feel like I belong here yet, or anywhere for that matter. So trust me, I know what it feels like to be isolated here. What about you," she asks.`
+			`	"Great! I am Merora, by the way." She looks around, noticing the way some people are staring at you. Surprisingly they seem to be staring at her almost as much as they do at you. She explains, "I came to Unfettered space when I had nowhere left to turn to, just a few weeks ago. I don't feel like I belong here yet, or anywhere for that matter. So trust me, I know what it feels like to be isolated here. What about you?" she asks.`
 			`	You begin to introduce yourself to her, but barely get your name out before you are both distracted as the proceedings resume. A child, younger - or at least smaller - than any other you've seen on stage so far, approaches the Chiefs. Also alone, the child seems scared and perhaps even lost as they speak, so softly even those on stage must be straining to hear. One of the Chiefs breaks ranks to kneel by the child, comforting them as they speak quietly to each other.`
 			`	The Chief rises and turns to those watching to share the child's words, and Merora then translates it to you, "The child wishes to return home, to Hai space. However, he cannot do that alone, and the Chief is asking for someone to escort him, or find him a suitable transport. All Hai captains, even those who do not otherwise sympathize with our cause, would easily accept taking a child back to Hai space, without ever asking for anything in return. It only needs to be arranged by someone, as the child does not know who to turn to."`
 			choice
@@ -951,7 +951,7 @@ mission "<uhai> 2: Prove Your Strength"
 			label fire
 			`	In the background you hear fires roaring, it seems the damage to his ship was quite serious indeed.`
 			choice
-				`	"Be careful with provoking men you may have gotten killed! And don't count on me to repair your ship."`
+				`	"Be careful provoking me, you may have gotten killed! And don't count on me to repair your ship."`
 					goto dangerous
 				`	"What was this really about?"`
 				`	"Those weapons you were using are impressive."`
@@ -1273,7 +1273,7 @@ mission "<uhai> 3: Jump Drive Vault"
 			`	"We be not the ones who placed these drives here..." The Hai doesn't seem to want to tell you much about this vault.`
 			label ship
 			`	As soon as your ship arrives, you give the orders to collect the jump drives and install them if possible, so you may flee more swiftly. When your ship takes off, you notice more activity than on the way in...`
-			`	The Hai comes to speak to you on the bridge. "Batten down the hatches, matey! It took us too long to check and load the drives, and we seem to have attracted attention. I guess a lookout got away from the vault and contacted some friends..." Multiple alarms start going off, confirming his suspicions - hostile ships are launching and heading straight for you. You launch as soon as you can, rushing through the correct procedures. Meanwhile, the Unfettered captain joins you on the bridge, clearly used to being where the action is, invited or not, and gives you advice, "They'll probably be launching after us, you should first get some distance from them before trying to jump away."`
+			`	The Hai comes to speak to you on the bridge. "Batten down the hatches, matey! It took us too long to check and load the drives, and we seem to have attracted attention. I guess a lookout got away from the vault and contacted some friends..." Multiple alarms start going off, confirming his suspicions - hostile ships are launching and heading straight for you. You launch as soon as you can, rushing through the correct procedures. Meanwhile, the Unfettered captain joins you on the bridge, clearly used to being where the action is, invited or not, giving you advice. "They'll probably be launching after us, you should first get some distance from them before trying to jump away."`
 				launch
 	on accept
 		outfit "Jump Drive" 4

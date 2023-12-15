@@ -101,7 +101,7 @@ mission "Unfettered: Trigger The Challengers"
 	job
 	repeat
 	name "Ready for more spontaneous challengers"
-	description "Mark yourself as ready for more spontaneous challengers to come in all Unfettered systems. There currently "
+	description "Mark yourself as ready for more spontaneous challengers to come in all Unfettered systems. You have already done this &[unfettered: challengers] times."
 	source "Darkcloak"
 	to offer
 		has "unfettered: duel ready"
