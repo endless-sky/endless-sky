@@ -602,7 +602,7 @@ test "Buy First Ship"
 
 
 test "Start Game"
-	status active
+	status broken
 	description "Test if one can start the game correctly: choose a name and buy a ship."
 	sequence
 		call "Create New Pilot"

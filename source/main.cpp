@@ -122,20 +122,22 @@ int main(int argc, char *argv[])
 	printData = PrintData::IsPrintDataArgument(argv);
 	Files::Init(argv);
 
+	// Whether we are running an integration test.
+	const bool isTesting = !testToRunName.empty();
 	try {
 		// Load plugin preferences before game data if any.
 		Plugins::LoadSettings();
 
 		// Begin loading the game data.
 		bool isConsoleOnly = loadOnly || printTests || printData;
-		future<void> dataLoading = GameData::BeginLoad(isConsoleOnly, debugMode);
+		future<void> dataLoading = GameData::BeginLoad(isConsoleOnly, debugMode, isTesting && !debugMode);
 
 		// If we are not using the UI, or performing some automated task, we should load
 		// all data now. (Sprites and sounds can safely be deferred.)
-		if(isConsoleOnly || !testToRunName.empty())
+		if(isConsoleOnly || isTesting)
 			dataLoading.wait();
 
-		if(!testToRunName.empty() && !GameData::Tests().Has(testToRunName))
+		if(isTesting && !GameData::Tests().Has(testToRunName))
 		{
 			Logger::LogError("Test \"" + testToRunName + "\" not found.");
 			return 1;
@@ -181,20 +183,23 @@ int main(int argc, char *argv[])
 			if(node.Token(0) == "conditions")
 				GameData::GlobalConditions().Load(node);
 
-		if(!GameWindow::Init())
+		if(!GameWindow::Init(isTesting && !debugMode))
 			return 1;
 
-		GameData::LoadShaders();
+		GameData::LoadSettings();
 
-		// Show something other than a blank window.
-		GameWindow::Step();
+		if(!isTesting || debugMode)
+		{
+			GameData::LoadShaders();
+
+			// Show something other than a blank window.
+			GameWindow::Step();
+		}
 
 		Audio::Init(GameData::Sources());
 
-		if(!testToRunName.empty() && !noTestMute)
-		{
+		if(isTesting && !noTestMute)
 			Audio::SetVolume(0);
-		}
 
 		// This is the main loop where all the action begins.
 		GameLoop(player, conversation, testToRunName, debugMode);
@@ -206,8 +211,7 @@ int main(int argc, char *argv[])
 	catch(const runtime_error &error)
 	{
 		Audio::Quit();
-		bool doPopUp = testToRunName.empty();
-		GameWindow::ExitWithError(error.what(), doPopUp);
+		GameWindow::ExitWithError(error.what(), !isTesting);
 		return 1;
 	}
 
@@ -262,6 +266,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	if(!testToRunName.empty())
 		testContext = TestContext(GameData::Tests().Get(testToRunName));
 
+	const bool isHeadless = (testContext.CurrentTest() && !debugMode);
 
 	auto ProcessEvents = [&menuPanels, &gamePanels, &player, &cursorTime, &toggleTimeout, &debugMode, &isPaused,
 			&isFastForward]
@@ -318,7 +323,6 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 		{
 			if(toggleTimeout)
 				--toggleTimeout;
-
 			chrono::steady_clock::time_point start = chrono::steady_clock::now();
 
 			ProcessEvents();
@@ -431,18 +435,20 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 			// Tell all the panels to step forward, then draw them.
 			(menuPanels.IsEmpty() ? gamePanels : menuPanels).StepAll();
 
-			Audio::Step();
+			if(!isHeadless)
+			{
+				Audio::Step();
 
-			// Events in this frame may have cleared out the menu, in which case
-			// we should draw the game panels instead:
-			(menuPanels.IsEmpty() ? gamePanels : menuPanels).DrawAll();
+				// Events in this frame may have cleared out the menu, in which case
+				// we should draw the game panels instead:
+				(menuPanels.IsEmpty() ? gamePanels : menuPanels).DrawAll();
 
-			GameWindow::Step();
+				GameWindow::Step();
 
-			// When we perform automated testing, then we run the game by default as quickly as possible.
-			// Except when debug-mode is set, so that it is possible to follow along.
-			if(debugMode)
+				// When we perform automated testing, then we run the game by default as quickly as possible.
+				// Except when not in headless mode so that the user can follow along.
 				timer.Wait();
+			}
 		}
 	}
 

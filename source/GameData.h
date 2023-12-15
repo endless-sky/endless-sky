@@ -75,10 +75,11 @@ class Wormhole;
 // universe.
 class GameData {
 public:
-	static std::future<void> BeginLoad(bool onlyLoadData, bool debugMode);
+	static std::future<void> BeginLoad(bool onlyLoadData, bool debugMode, bool preventUpload);
 	static void FinishLoading();
 	// Check for objects that are referred to but never defined.
 	static void CheckReferences();
+	static void LoadSettings();
 	static void LoadShaders();
 	static double GetProgress();
 	// Whether initial game loading is complete (data, sprites and audio are loaded).
