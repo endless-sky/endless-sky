@@ -162,13 +162,23 @@ outfit "L-480 Regenerator"
 	"shield delay" 300
 	description "Lovelace large regenerator"
 
+outfit "E4-PA Shield Capacitor"
+	category "Systems"
+	cost 20000
+	thumbnail "outfit/unknown"
+	"mass" 7
+	"outfit space" -7
+	"shields" 450
+	"shield energy" .19
+	description "Capacitors as an alternative for generators and regenerators, providing more short term benefit but long term fights they're worse."
+
 outfit "E18-SD Shield Capacitor"
 	category "Systems"
 	cost 20000
 	thumbnail "outfit/unknown"
 	"mass" 18
 	"outfit space" -18
-	"shields" 800
+	"shields" 850
 	"shield energy" .25
 	description "Capacitors as an alternative for generators and regenerators, providing more short term benefit but long term fights they're worse."
 
@@ -178,7 +188,7 @@ outfit "E30-JL Shield Capacitor"
 	thumbnail "outfit/unknown"
 	"mass" 26
 	"outfit space" -26
-	"shields" 1850
+	"shields" 1900
 	"shield energy" .45
 	description "Capacitors as an alternative for generators and regenerators, providing more short term benefit but long term fights they're worse."
 
@@ -188,7 +198,7 @@ outfit "E54-DI Shield Capacitor"
 	thumbnail "outfit/unknown"
 	"mass" 38
 	"outfit space" -38
-	"shields" 3600
+	"shields" 3750
 	"shield energy" .83
 	description "Capacitors as an alternative for generators and regenerators, providing more short term benefit but long term fights they're worse."
 
