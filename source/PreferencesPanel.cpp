@@ -108,7 +108,7 @@ PreferencesPanel::PreferencesPanel()
 	// Set the initial plugin list and description scroll ranges.
 	const Interface *pluginUi = GameData::Interfaces().Get("plugins");
 	Rectangle pluginListBox = pluginUi->GetBox("plugin list");
-	
+
 	pluginListHeight = 0;
 	for(const auto &plugin : Plugins::Get())
 		if(plugin.second.IsValid())
