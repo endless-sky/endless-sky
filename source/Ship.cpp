@@ -2132,7 +2132,6 @@ bool Ship::IsUsingJumpDrive() const
 
 
 
-
 // Check if this ship is allowed to land on this planet, accounting for its personality.
 bool Ship::IsRestrictedFrom(const Planet &planet) const
 {
@@ -2147,7 +2146,6 @@ bool Ship::IsRestrictedFrom(const Planet &planet) const
 		return personality.IsRestricted() && restrictedByGov;
 	return !personality.IsUnrestricted() && restrictedByGov;
 }
-
 
 
 
