@@ -454,6 +454,17 @@ outfit "Hai Diamond Regenerator"
 
 outfit "Hai Topaz Capacitor"
 	category "Systems"
+	cost 90000
+	thumbnail "outfit/unknown"
+	"mass" 11
+	"outfit space" -11
+	"shields" 1000
+	"shield energy" .3
+	"shield heat" .1
+	description "Capacitors as an alternative for generators and regenerators, providing more short term benefit but long term fights they're worse."
+
+outfit "Hai Opal Capacitor"
+	category "Systems"
 	cost 280000
 	thumbnail "outfit/unknown"
 	"mass" 32
