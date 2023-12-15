@@ -116,7 +116,7 @@ outfit "Systems Core (Tiny)"
 	"mass" 17
 	"outfit space" -17
 	"energy capacity" 1300
-	"shield generation" 0.8
+	"shield generation" 1.2
 	"shield energy" 1.2
 	"hull repair rate" 0.1
 	"hull energy" 0.1
@@ -131,7 +131,7 @@ outfit "Systems Core (Small)"
 	"mass" 31
 	"outfit space" -31
 	"energy capacity" 2600
-	"shield generation" 1.6
+	"shield generation" 2.4
 	"shield energy" 2.4
 	"hull repair rate" 0.2
 	"hull energy" 0.2
@@ -146,7 +146,7 @@ outfit "Systems Core (Medium)"
 	"mass" 53
 	"outfit space" -53
 	"energy capacity" 5200
-	"shield generation" 3.1
+	"shield generation" 4.65
 	"shield energy" 4.6
 	"hull repair rate" 0.4
 	"hull energy" 0.4
@@ -161,7 +161,7 @@ outfit "Systems Core (Large)"
 	"mass" 91
 	"outfit space" -91
 	"energy capacity" 10400
-	"shield generation" 6.0
+	"shield generation" 9
 	"shield energy" 8.8
 	"hull repair rate" 0.8
 	"hull energy" 0.8

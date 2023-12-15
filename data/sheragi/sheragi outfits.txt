@@ -21,7 +21,7 @@ outfit "Small EM Battery"
 	"mass" 14
 	"outfit space" -14
 	"unique" 1
-	"shield generation" 0.14
+	"shield generation" 0.21
 	"shield energy" 0.14
 	"shield heat" 0.14
 	"energy capacity" 3600
@@ -35,7 +35,7 @@ outfit "Large EM Battery"
 	"mass" 150
 	"outfit space" -150
 	"unique" 1
-	"shield generation" 0.8
+	"shield generation" 1.2
 	"shield energy" 0.8
 	"shield heat" 0.8
 	"energy capacity" 40000
