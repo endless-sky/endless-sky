@@ -1738,7 +1738,12 @@ mission "Station Exploration 2"
 			choice
 				`	"Am I in trouble?"`
 				`	"I'm innocent!"`
-			`	"We just want to let you know what happened," he says. He leads you away from your passengers, who are currently being examined by a medic for any potential injuries, and sits you down at a table nearby.`
+					goto normal
+				`	(Run away.)`
+			`	Almost as soon as you turn around to run you feel a sharp pain in your side as your consciousness fades away.`
+			`	You look up, lying in the spot you just stood. Above you is the same officer which asked you to follow him. Apparently you were not out for long.`
+			label normal
+			`	"We just want to let you know what happened," the officer says. He leads you away from your passengers, who are currently being examined by a medic for any potential injuries, and sits you down at a table nearby.`
 			`	"I think you can tell by now that your passengers weren't exactly 'sanctioned visitors' to Darkrest. However, they didn't break anything - that announcement you heard was just a warning to refrain from touching a computer system without proper training, but it apparently spooked your passengers enough that they made a run for it. They're not in trouble, as there's no law against just wandering around a station as long as you're not destructive, but typically people who do so get permission first." He give a wry smile. "Saves us from having to deal with false alarms like this."`
 			choice
 				`	"So, am I in trouble or not?"`
@@ -1769,6 +1774,11 @@ mission "Abandon Ship"
 			choice
 				`	"Am I in trouble?"`
 				`	"I'm innocent!"`
+					goto normal
+				`	(Run away.)`
+			`	Almost as soon as you turn around to run you feel a sharp pain in your side as your consciousness fades away.`
+			`	You look up, lying in the spot you just stood. Above you is the same officer which asked you to follow him. Apparently you were not out for long.`
+			label normal
 			`	You can clearly tell that the officer has little patience for your antics. He leads you away from your passengers, who are currently being examined by a medic for any potential injuries.`
 			`	"You are being fined <payment> for abandoning your passengers without warning. You're lucky you didn't end up with a more serious punishment." After further chewing you out for endangering your passengers' safety, he walks away from you in a huff.`
 				accept
