@@ -164,7 +164,7 @@ outfit "L-480 Regenerator"
 
 outfit "E4-PA Shield Capacitor"
 	category "Systems"
-	cost 20000
+	cost 12000
 	thumbnail "outfit/unknown"
 	"mass" 7
 	"outfit space" -7
