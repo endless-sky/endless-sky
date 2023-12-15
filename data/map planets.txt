@@ -2708,7 +2708,7 @@ planet Memory
 planet "Mendez Station"
 	attributes CCOR station
 	landscape land/station20
-	description "Mendez Station is the closest object to Fumalasamakah. Located in a low orbit just above the stellar corona, the monumentous ram-scoops built into the star-facing side of the station collect stellar ejections to process into fuel. The station is perpetually hot, even in the habitation sections as an inescapable effect of begin so close to a great mass of plasma undergoing nuclear fusion, however it would surely be much more so if it weren't for the primarily polyfiber construction and heat-radiation spires built into the far side of the station."
+	description "Mendez Station is the closest object to Alpherg. Located in a low orbit just above the stellar corona, the monumentous ram-scoops built into the star-facing side of the station collect stellar ejections to process into fuel. The station is perpetually hot, even in the habitation sections as an inescapable effect of begin so close to a great mass of plasma undergoing nuclear fusion, however it would surely be much more so if it weren't for the primarily polyfiber construction and heat-radiation spires built into the far side of the station."
 	spaceport "Rather than a traditional docking ring, part of which would be facing Fumalasamakah and its incredible heat and radiation at all times Mendez's 'spaceport' is actually a separate station located in a significantly higher stellar orbit. The station serves primarily as a secure dock for more normal ships while their inhabitants are taken to Mendez station via specialized transports built to resist the intense heat."
 	bribe 1
 	security 0.33

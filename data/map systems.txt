@@ -5017,7 +5017,11 @@ system Alpherg
 	fleet "Large Southern Pirates" 2000
 	fleet "Large CCOR" 3000
 	object
+		sprite star/g-giant
+		period 10
+	object
 		sprite star/k5
+		distance 220
 		period 25
 	object "Jakobsen"
 		sprite planet/ocean3-b
@@ -6519,7 +6523,7 @@ system Belenos
 	fleet "Large Southern Pirates" 2000
 	fleet "Large CCOR" 3000
 	object
-		sprite star/g0
+		sprite star/f8
 		period 10
 	object
 		sprite planet/desert0-b
@@ -8684,7 +8688,7 @@ system Citadelle
 	fleet "Large CCOR" 2500
 	fleet "Large Southern Pirates" 3000
 	object
-		sprite star/f5
+		sprite star/k0
 		period 27.5
 		object
 			sprite star/a-dwarf
@@ -14530,7 +14534,7 @@ system Fumalasamakah
 	fleet "Large Southern Pirates" 2000
 	fleet "Large CCOR" 3000
 	object
-		sprite star/k-giant
+		sprite star/05
 		period 10
 	object
 		sprite planet/dust1-b
@@ -32085,8 +32089,14 @@ system Thuban
 	fleet "Large Southern Pirates" 2500
 	fleet "Small CCOR" 3000
 	object
-		sprite star/o5
+		sprite star/a0
+		distance 100
 		period 50
+	object
+		sprite star/a3
+		distance 150
+		period 50
+		offset 180
 
 system Torbab
 	pos -949.587 490.051
