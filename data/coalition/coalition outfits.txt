@@ -157,7 +157,7 @@ outfit "Small Repair Module"
 	thumbnail "outfit/small repair module"
 	"mass" 6
 	"outfit space" -6
-	"hull repair rate" .12
+	"hull repair rate" .18
 	"hull energy" .12
 	"hull heat" .1
 	description "Arach ships, which rely more on strong hull than on energy shields, often carry one of these repair modules to allow damaged hull plating to be patched back together on the fly."
@@ -170,7 +170,7 @@ outfit "Large Repair Module"
 	thumbnail "outfit/large repair module"
 	"mass" 21
 	"outfit space" -21
-	"hull repair rate" .57
+	"hull repair rate" .855
 	"hull energy" .57
 	"hull heat" .5
 	description "This hub houses a small fleet of repair robots that can climb around on a ship's hull and repair damage to it, even in the middle of combat."
@@ -183,7 +183,7 @@ outfit "Overclocked Repair Module"
 	thumbnail "outfit/overclocked repair module"
 	"mass" 32
 	"outfit space" -32
-	"hull repair rate" 1.4
+	"hull repair rate" 2.1
 	"hull energy" 1.4
 	"hull heat" 1.2
 	"heat generation" .6
@@ -260,7 +260,7 @@ outfit "Small Recovery Module"
 	"shield generation" 1.455
 	"shield energy" .43
 	"shield heat" .7
-	"hull repair rate" .43
+	"hull repair rate" .645
 	"hull energy" .97
 	"hull heat" .07
 	description "By combining the Coalition's shield generation and hull repair technologies into one piece of equipment, the Lunarium has increased the effectiveness of both, allowing for better defenses against Heliarch weaponry."

@@ -70,7 +70,7 @@ outfit "Nanite Enhancer"
 	thumbnail "outfit/nanite enhancer"
 	"mass" 5
 	"outfit space" -5
-	"hull repair rate" 0.25
+	"hull repair rate" 0.375
 	"hull energy" 0.75
 	"nanite upgrades" -2
 	description "The Nanite Enhancer is a component that can be installed into a Bunrodean nanite fabricator in order to modify its effectiveness. Enhancers increase the strength of the hull repair of a fabricator, but at the cost of reduced energy efficiency."
@@ -81,7 +81,7 @@ outfit "Nanite Limiter"
 	thumbnail "outfit/nanite limiter"
 	"mass" 2
 	"outfit space" -2
-	"hull repair rate" -0.025
+	"hull repair rate" -0.0375
 	"hull energy" -0.2
 	"nanite upgrades" -1
 	description "The Nanite Limiter is a component that can be installed into a Bunrodean nanite fabricator in order to modify its effectiveness. Limiters increase the energy and heat efficiency of a fabricator, but at the cost of reducing the strength of its hull repair."
@@ -92,7 +92,7 @@ outfit "Small Nanite Fabricator"
 	thumbnail "outfit/small nanite fabricator"
 	"mass" 23
 	"outfit space" -23
-	"hull repair rate" 0.72
+	"hull repair rate" 1.08
 	"hull energy" 1.08
 	"nanite upgrades" 4
 #	ammo "Nanite Enhancer"
@@ -106,7 +106,7 @@ outfit "Large Nanite Fabricator"
 	thumbnail "outfit/large nanite fabricator"
 	"mass" 58
 	"outfit space" -58
-	"hull repair rate" 2.12
+	"hull repair rate" 3.18
 	"hull energy" 3.18
 	"nanite upgrades" 10
 #	ammo "Nanite Enhancer"
