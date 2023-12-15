@@ -5025,9 +5025,9 @@ system Alpherg
 		period 25
 	object Jakobsen
 		sprite planet/ocean3-b
-		distance 445.1
-		period 56.1500
-		offset 84
+		distance 3164.1
+		period 985.15
+		offset 120
 		object "Mendez Station"
 			sprite planet/station8
 				scale 0.5
@@ -14534,7 +14534,7 @@ system Fumalasamakah
 	fleet "Large Southern Pirates" 2000
 	fleet "Large CCOR" 3000
 	object
-		sprite star/05
+		sprite star/o5
 		period 10
 	object
 		sprite planet/dust1-b
