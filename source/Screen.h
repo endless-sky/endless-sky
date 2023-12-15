@@ -57,19 +57,19 @@ public:
 	static Point BottomRight();
 
 
-	// Use RAII to define the scope of a temporary screen size change
+	// Use RAII to define the scope of a temporary screen size change.
 	class ScreenDimensionsGuard final
 	{
 	public:
-		// Constructor that changes the screen size on creation
+		// Constructor that changes the screen size on creation.
 		ScreenDimensionsGuard(int width, int height);
-		// Destructor, which restores the expected screen size
+		// Destructor, which restores the expected screen size.
 		~ScreenDimensionsGuard();
-		// Restore the screen settings
+		// Restore the screen settings.
 		void Deactivate();
 
 	private:
-		bool valid;
+		bool valid = false;
 		int oldWidth = 0;
 		int oldHeight = 0;
 	};

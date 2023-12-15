@@ -37,13 +37,14 @@ public:
 	const T &AnimatedValue() const;
 	// Returns the actual value.
 	const T &Value() const;
-	// Synonym for Value()
+	// Synonym for Value().
 	operator const T &() const;
 
-	// Shortcut mathmatical operators for convenience
+	// Shortcut mathmatical operators for convenience.
 	Animate &operator=(const T &v);
 	Animate &operator+=(const T &v);
 	Animate &operator-=(const T &v);
+
 
 private:
 	int steps = 0;

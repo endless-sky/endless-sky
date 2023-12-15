@@ -41,10 +41,10 @@ public:
 	bool ScrollAtMin() const;
 	// Returns true if the value is at the maximum.
 	bool ScrollAtMax() const;
-	// Modifies the scroll value by dy, then clamps it to a suitable range
+	// Modifies the scroll value by dy, then clamps it to a suitable range.
 	void Scroll(const T &dy, int steps = 5);
 
-	// Sets the scroll value directly, then clamps it to a suitable range
+	// Sets the scroll value directly, then clamps it to a suitable range.
 	virtual void Set(const T &current, int steps = 5) override;
 
 private:

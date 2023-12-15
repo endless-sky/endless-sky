@@ -36,14 +36,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class RenderBuffer
 {
 public:
-	// Create a texture of the given size that can be used as a render target
+	// Create a texture of the given size that can be used as a render target.
 	RenderBuffer(const Point &dimensions);
 	virtual ~RenderBuffer();
 
-	// Initialize the shaders used internally
+	// Initialize the shaders used internally.
 	static void Init();
 
-	// Use RAII to control render target
+	// Use RAII to control render target.
 	class RenderTargetGuard final
 	{
 	public:
@@ -67,7 +67,7 @@ public:
 
 	// Draw the contents of this buffer at the specified position.
 	void Draw(const Point &position);
-	// Draw the contents of this buffer at the specified position, clipping the contents
+	// Draw the contents of this buffer at the specified position, clipping the contents.
 	void Draw(const Point &position, const Point &clipsize, const Point &srcposition = Point());
 
 	double Top() const;

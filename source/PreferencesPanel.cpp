@@ -95,7 +95,6 @@ PreferencesPanel::PreferencesPanel()
 		if(plugin.second.IsValid())
 		{
 			selectedPlugin = plugin.first;
-			RenderPluginDescription(plugin.second);
 			break;
 		}
 
@@ -106,12 +105,10 @@ PreferencesPanel::PreferencesPanel()
 	hoverText.SetWrapWidth(250);
 	hoverText.SetAlignment(Alignment::LEFT);
 
-	// Initialize the plugin list buffer
+	// Set the initial plugin list and description scroll ranges.
 	const Interface *pluginUi = GameData::Interfaces().Get("plugins");
 	Rectangle pluginListBox = pluginUi->GetBox("plugin list");
-	pluginListClip.reset(new RenderBuffer(pluginListBox.Dimensions()));
-
-	// set initial plugin list and description scroll ranges
+	
 	pluginListHeight = 0;
 	for(const auto &plugin : Plugins::Get())
 		if(plugin.second.IsValid())
@@ -125,7 +122,7 @@ PreferencesPanel::PreferencesPanel()
 
 
 
-// stub, for unique_ptr destruction to be defined in the right compilation unit
+// Stub, for unique_ptr destruction to be defined in the right compilation unit.
 PreferencesPanel::~PreferencesPanel()
 {
 
@@ -195,6 +192,24 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		page = key;
 		hoverItem.clear();
 		selected = 0;
+
+		if(page == 'p')
+		{
+			// Reset the render buffers in case the UI scale has changed.
+			const Interface *pluginUi = GameData::Interfaces().Get("plugins");
+			Rectangle pluginListBox = pluginUi->GetBox("plugin list");
+			pluginListClip.reset(new RenderBuffer(pluginListBox.Dimensions()));
+			pluginDescriptionBuffer.reset();
+
+			for(const auto &plugin : Plugins::Get())
+			{
+				if(plugin.first == selectedPlugin)
+				{
+					RenderPluginDescription(plugin.second);
+					break;
+				}
+			}
+		}
 	}
 	else if(key == 'o' && page == 'p')
 		Files::OpenUserPluginFolder();
@@ -368,13 +383,13 @@ bool PreferencesPanel::Drag(double dx, double dy)
 
 		if(pluginBox.Contains(hoverPoint))
 		{
-			// Steps is zero so that we don't animate mouse drags
+			// Steps is zero so that we don't animate mouse drags.
 			pluginListScroll.Scroll(dy, 0);
 			return true;
 		}
 		else if(descriptionBox.Contains(hoverPoint))
 		{
-			// Steps is zero so that we don't animate mouse drags
+			// Steps is zero so that we don't animate mouse drags.
 			pluginDescriptionScroll.Scroll(dy, 0);
 			return true;
 		}
@@ -854,7 +869,7 @@ void PreferencesPanel::DrawPlugins()
 
 	const Sprite *box[2] = { SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked") };
 
-	// Animate scrolling
+	// Animate scrolling.
 	pluginListScroll.Step();
 
 	// Switch render target to pluginListClip. Until target is destroyed or
@@ -870,7 +885,6 @@ void PreferencesPanel::DrawPlugins()
 	table.SetUnderline(pluginListClip->Left() + box[0]->Width(), pluginListClip->Right());
 
 	int firstY = pluginListClip->Top();
-	// Table is at -110 while checkbox is at -130
 	table.DrawAt(Point(0, firstY + pluginListScroll.AnimatedValue()));
 
 	for(const auto &it : Plugins::Get())
@@ -879,7 +893,7 @@ void PreferencesPanel::DrawPlugins()
 		if(!plugin.IsValid())
 			continue;
 
-		// Only include the zone as clickable if its within the drawing area
+		// Only include the zone as clickable if its within the drawing area.
 		bool displayed = table.GetPoint().Y() > pluginListClip->Top() - 20 &&
 			table.GetPoint().Y() < pluginListClip->Bottom() - table.GetRowBounds().Height() + 20;
 		if(displayed)
@@ -906,10 +920,10 @@ void PreferencesPanel::DrawPlugins()
 			table.Draw(plugin.name, plugin.enabled ? medium : dim);
 	}
 
-	// switch back to normal opengl operations
+	// Switch back to normal opengl operations.
 	target.Deactivate();
 
-	// Draw the scrolled and clipped plugin list to the screen
+	// Draw the scrolled and clipped plugin list to the screen.
 	pluginListClip->Draw(pluginListBox.Center());
 	const Point UP{0, -1};
 	const Point DOWN{0, 1};
@@ -928,7 +942,7 @@ void PreferencesPanel::DrawPlugins()
 		AddZone(bottomRight, [&]() { pluginListScroll.Scroll(-Preferences::ScrollSpeed()); });
 	}
 
-	// Draw the pre-rendered plugin description, if applicable
+	// Draw the pre-rendered plugin description, if applicable.
 	if(pluginDescriptionBuffer)
 	{
 		pluginDescriptionScroll.Step();
@@ -959,18 +973,18 @@ void PreferencesPanel::DrawPlugins()
 
 
 
-// Render the plugin description into the pluginDescriptionBuffer
-void PreferencesPanel::RenderPluginDescription(const Plugin& plugin)
+// Render the plugin description into the pluginDescriptionBuffer.
+void PreferencesPanel::RenderPluginDescription(const Plugin &plugin)
 {
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Font &font = FontSet::Get(14);
 	Rectangle box = GameData::Interfaces().Get("plugins")->GetBox("plugin description");
 
 	// We are resizing and redrawing the description buffer. Reset the scroll
-	// back to zero
+	// back to zero.
 	pluginDescriptionScroll.Set(0, 0);
 
-	// compute the height before drawing, so that we know the scroll bounds
+	// Compute the height before drawing, so that we know the scroll bounds.
 	const Sprite *sprite = SpriteSet::Get(plugin.name);
 	int descriptionHeight = 0;
 	if(sprite)
@@ -989,7 +1003,7 @@ void PreferencesPanel::RenderPluginDescription(const Plugin& plugin)
 		descriptionHeight = box.Height();
 	pluginDescriptionScroll.SetMaxValue(descriptionHeight);
 	pluginDescriptionBuffer.reset(new RenderBuffer(Point(box.Width(), descriptionHeight)));
-	// Redirect all drawing commands into the offscreen buffer
+	// Redirect all drawing commands into the offscreen buffer.
 	auto target = pluginDescriptionBuffer->SetTarget();
 
 	Point top(pluginDescriptionBuffer->Left(), pluginDescriptionBuffer->Top());

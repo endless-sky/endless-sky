@@ -54,11 +54,11 @@ void RenderBuffer::Init()
 		"void main() \n"
 		"{\n"
 		"  gl_Position = vec4((position + vert * size) * scale, 0, 1);\n"
-		"  vec2 tvert = vert + vec2(.5, .5);\n" // Convert from vertex to texture coordinates
-		"  vec2 tsize = size * srcscale;\n"    // Convert from screen to texture coordinates
-		"  vec2 tsrc = srcposition * srcscale;\n" // Convert from screen to texture coordinates
+		"  vec2 tvert = vert + vec2(.5, .5);\n" // Convert from vertex to texture coordinates.
+		"  vec2 tsize = size * srcscale;\n"    // Convert from screen to texture coordinates.
+		"  vec2 tsrc = srcposition * srcscale;\n" // Convert from screen to texture coordinates.
 		"  tpos = tvert * tsize + tsrc;\n"
-		"  tpos.y = 1.0 - tpos.y;\n" // negative is up.
+		"  tpos.y = 1.0 - tpos.y;\n" // Negative is up.
 		"}\n";
 
 	static const char *fragmentCode =
@@ -119,7 +119,7 @@ RenderBuffer::RenderBuffer(const Point& dimensions):
 	glGenFramebuffers(1, &framebuffer);
 	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
 
-	// Generate the texture
+	// Generate the texture.
 	glGenTextures(1, &texid);
 	glBindTexture(GL_TEXTURE_2D, texid);
 
@@ -129,10 +129,11 @@ RenderBuffer::RenderBuffer(const Point& dimensions):
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-	// Attach a blank image to the texture
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, size.X(), size.Y(), 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+	// Attach a blank image to the texture.
+	const Point scaledSize = size * Screen::Zoom() / 100;
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, scaledSize.X(), scaledSize.Y(), 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
 
-	// Attach the texture to the frame buffer
+	// Attach the texture to the frame buffer.
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, texid, 0);
 	GLenum draw_buffers[] = {GL_COLOR_ATTACHMENT0};
 	glDrawBuffers(1, draw_buffers);
@@ -152,7 +153,7 @@ RenderBuffer::RenderBuffer(const Point& dimensions):
 
 
 
-// Destructor. Frees the texture and renderbuffers
+// Destructor. Frees the texture and renderbuffers.
 RenderBuffer::~RenderBuffer()
 {
 	glDeleteTextures(1, &texid);
@@ -174,8 +175,8 @@ RenderBuffer::RenderTargetGuard RenderBuffer::SetTarget()
 	glGetIntegerv(GL_VIEWPORT, last_viewport);
 	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
 
-
-	glViewport(0, 0, size.X(), size.Y());
+	const Point scaledSize = size * Screen::Zoom() / 100;
+	glViewport(0, 0, scaledSize.X(), scaledSize.Y());
 
 	static const float CLEAR[] = {0, 0, 0, 0};
 	glClearBufferfv(GL_COLOR, 0, CLEAR);
@@ -185,10 +186,10 @@ RenderBuffer::RenderTargetGuard RenderBuffer::SetTarget()
 
 
 
-// Reset the render target and viewport to the original settings
+// Reset the render target and viewport to the original settings.
 void RenderBuffer::Deactivate()
 {
-	// Restore the old settings
+	// Restore the old settings.
 	glViewport(last_viewport[0], last_viewport[1], last_viewport[2], last_viewport[3]);
 	glBindFramebuffer(GL_FRAMEBUFFER, last_framebuffer);
 }

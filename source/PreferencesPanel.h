@@ -58,7 +58,7 @@ private:
 	void DrawControls();
 	void DrawSettings();
 	void DrawPlugins();
-	void RenderPluginDescription(const Plugin & plugin);
+	void RenderPluginDescription(const Plugin &plugin);
 
 	void DrawTooltips();
 
