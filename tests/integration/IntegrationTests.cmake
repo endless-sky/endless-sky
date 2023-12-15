@@ -18,11 +18,11 @@ foreach(test ${INTEGRATION_TESTS_LIST})
 	# Launches the integration tests in release mode: In the background and as fast as possible.
 	set(ADD_TEST
 	"add_test([==[${test}]==] \"${CMAKE_COMMAND}\"
-		-DES=${ES}
-		-DTEST_CONFIGS=${TEST_CONFIGS}
+		\"-DES=${ES}\"
+		\"-DTEST_CONFIGS=${TEST_CONFIGS}\"
 		\"-Dtest=${test}\"
-		-DRESOURCE_PATH=${RESOURCE_PATH}
-		-DES_CONFIG=${ES_CONFIG}
+		\"-DRESOURCE_PATH=${RESOURCE_PATH}\"
+		\"-DES_CONFIG=${ES_CONFIG}\"
 		-P \"${CMAKE_SOURCE_DIR}/integration/RunIntegrationTest.cmake\")")
 		set(SET_TEST_PROPS
 	"set_tests_properties([==[${test}]==] PROPERTIES
@@ -32,11 +32,11 @@ foreach(test ${INTEGRATION_TESTS_LIST})
 	# Launches the integration tests in debug mode, so that they can be followed.
 	set(ADD_TEST_DEBUG
 	"add_test([==[[debug] ${test}]==] \"${CMAKE_COMMAND}\"
-		-DES=${ES}
-		-DTEST_CONFIGS=${TEST_CONFIGS}
+		\"-DES=${ES}\"
+		\"-DTEST_CONFIGS=${TEST_CONFIGS}\"
 		\"-Dtest=${test}\"
-		-DRESOURCE_PATH=${RESOURCE_PATH}
-		-DES_CONFIG=${ES_CONFIG}
+		\"-DRESOURCE_PATH=${RESOURCE_PATH}\"
+		\"-DES_CONFIG=${ES_CONFIG}\"
 		-DDEBUG=--debug
 		-P \"${CMAKE_SOURCE_DIR}/integration/RunIntegrationTest.cmake\")")
 	set(SET_TEST_PROPS_DEBUG
