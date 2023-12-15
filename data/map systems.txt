@@ -4996,8 +4996,8 @@ system Alpheratz
 system Alpherg
 	pos -1009.44 272.194
 	government Pirate
-	arrival 500
-	habitable 425
+	arrival 4475
+	habitable 4475
 	haze _menu/haze-33
 	link Fumalasamakah
 	asteroids "medium rock" 3 2.97
@@ -5023,10 +5023,10 @@ system Alpherg
 		sprite star/k5
 		distance 220
 		period 25
-	object "Jakobsen"
+	object Jakobsen
 		sprite planet/ocean3-b
 		distance 445.1
-		period 90
+		period 56.1500
 		offset 84
 		object "Mendez Station"
 			sprite planet/station8
@@ -5036,12 +5036,12 @@ system Alpherg
 	object
 		sprite planet/cloud8-b
 		distance 1817.57
-		period 1503.50
+		period 463.340
 		offset 55
 	object
 		sprite planet/desert10-b
 		distance 3943.18
-		period 4804.37
+		period 1480.58
 		offset 99
 		object
 			sprite planet/dust1-b
@@ -5054,7 +5054,7 @@ system Alpherg
 	object
 		sprite planet/gas13
 		distance 5672.61
-		period 8289.73
+		period 2554.68
 		offset 83
 		object
 			sprite planet/rhea
@@ -6497,10 +6497,10 @@ system Beginning
 			period 11.563
 
 system Belenos
-	pos -901.111 279.139
+		pos -901.111 279.139
 	government Pirate
-	arrival 1080
-	habitable 1080
+	arrival 1310
+	habitable 1310
 	haze _menu/haze-33
 	link Fumalasamakah
 	link Thuban
@@ -6528,18 +6528,18 @@ system Belenos
 	object
 		sprite planet/desert0-b
 		distance 238
-		period 44.6903
+		period 40.5779
 	object
 		sprite planet/ice0-b
 		distance 658.6
-		period 310.5
+		period 186.791
 		offset 241
-	object "Gagarin"
+	object Gagarin
 		sprite planet/forest5
 		distance 1432.76
-		period 660.101
+		period 599.355
 		offset 63
-		object "Mordente-Bridi"
+		object Mordente-Bridi
 			sprite planet/station5
 				scale 0.5
 			distance 185
@@ -6547,7 +6547,7 @@ system Belenos
 	object
 		sprite planet/gas10-b
 		distance 2762.88
-		period 1767.63
+		period 1604.97
 		object
 			sprite planet/ice0-b
 			distance 271.352
@@ -8662,8 +8662,8 @@ system Cinxia
 system Citadelle
 	pos -980.667 225.917
 	government Pirate
-	arrival 2465
-	habitable 2465
+	arrival 1240
+	habitable 1240
 	haze _menu/haze-33
 	link Fumalasamakah
 	asteroids "medium rock" 8 1.766
@@ -8694,24 +8694,24 @@ system Citadelle
 			sprite star/a-dwarf
 			distance 102.423
 			period 27.3
-	object "Bailey"
+	object Bailey
 		sprite planet/lava0
 		distance 1733.1
-		period 320
+		period 819.567
 		offset -90
-		object "Alvorada"
+		object Alvorada
 			sprite "planet/asteroid base"
 			distance 153
 			period 90.1
 	object
 		sprite planet/desert0-b
 		distance 2253.29
-		period 400
+		period 1214.99
 		offset 43
 	object
 		sprite planet/gas14-b
-		distance 3916.232
-		period 1219.17
+		distance 3916.23
+		period 2783.88
 		offset 21
 		object
 			sprite planet/ice0-b
@@ -32073,7 +32073,7 @@ system Thuban
 	pos -882.629 328.38
 	government Uninhabited
 	arrival 5000
-	habitable 10000
+	habitable 7050
 	belt 200 1
 	belt 600 1
 	belt 1500 2
