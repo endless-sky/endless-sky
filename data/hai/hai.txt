@@ -705,4 +705,3 @@ phrase "hostile disabled unfettered"
 	word
 		"!"
 		"."
-
