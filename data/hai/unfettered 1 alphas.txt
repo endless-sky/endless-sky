@@ -273,7 +273,7 @@ mission "<uhai> 5: Scan Auxiliary"
 		ship "Auxiliary (Alpha)" "Settler"
 		on board
 			"alpha: worry" ++
-		on disabled
+		on disable
 			set "disabled auxiliary"
 		on "scan outfits"
 			set "unfettered: scanned auxiliary's outfits"
