@@ -72,7 +72,7 @@ const string &Sprite::Name() const
 
 
 
-	// Add the given frames, optionally uploading thyem. The given buffer will be cleared afterwards.
+// Add the given frames, optionally uploading them. The given buffer will be cleared afterwards.
 void Sprite::AddFrames(ImageBuffer &buffer, bool is2x)
 {
 	// If this is the 1x image, its dimensions determine the sprite's size.
