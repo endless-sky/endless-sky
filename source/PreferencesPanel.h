@@ -77,8 +77,6 @@ private:
 	int hoverCount = 0;
 	std::string selectedItem;
 	std::string hoverItem;
-	std::string oldSelectedItem;
-	std::string oldHoverItem;
 	std::string tooltip;
 	WrappedText hoverText;
 
