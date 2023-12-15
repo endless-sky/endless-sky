@@ -540,6 +540,7 @@ event "southern carriers 1"
 		"Nest"
 	outfitter "Syndicate Advanced"
 		"X1050 Ion Engines"
+		"S-570 Regenerator"
 	fleet "Small Free Worlds"
 		fighters
 			names "free worlds fighters"

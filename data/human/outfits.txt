@@ -111,6 +111,19 @@ outfit "S-270 Regenerator"
 	"heat generation" 2
 	description "A shield regenerator works by subtly modifying the geometry of your shield matrix in order to make your shields more malleable and therefore much easier to recharge. Unfortunately, this causes your shields to also become less efficient, which draws energy away from your other systems, even when not charging shields, and creates heat."
 
+outfit "S-570 Regenerator"
+	category "Systems"
+	cost 350000
+	thumbnail "outfit/unknown"
+	"mass" 29
+	"outfit space" -29
+	"shield generation" 3.52
+	"shield energy" 3.52
+	"energy consumption" .7
+	"heat generation" 4.5
+	"shield delay" 270
+	description "There should be a regenerator that becomes available at the beginning of the war as competetion to the L class regenerators as well as show that the syndicate are developing the 270 and 970 regenerators."
+
 outfit "S-970 Regenerator"
 	category "Systems"
 	cost 800000
@@ -123,6 +136,81 @@ outfit "S-970 Regenerator"
 	"heat generation" 6
 	description "The S-970 Shield Regenerator is an advanced type of shield recharging technology. Unfortunately, its power needs are rather high, and the shifts it makes in your shield configuration also result in some feedback that causes heat to build up in the regenerator, even when your shields are at full strength."
 
+outfit "L-360 Regenerator"
+	category "Systems"
+	cost 100000
+	thumbnail "outfit/unknown"
+	"mass" 17
+	"outfit space" -17
+	"shield generation" 1.54
+	"shield energy" 1.54
+	"energy consumption" .4
+	"heat generation" 1.5
+	"shield delay" 240
+	description "Lovelace small regenerator"
+
+outfit "L-480 Regenerator"
+	category "Systems"
+	cost 275000
+	thumbnail "outfit/unknown"
+	"mass" 35
+	"outfit space" -35
+	"shield generation" 3.74
+	"shield energy" 3.74
+	"energy consumption" .9
+	"heat generation" 4
+	"shield delay" 300
+	description "Lovelace large regenerator"
+
+outfit "E18-SD Shield Capacitor"
+	category "Systems"
+	cost 20000
+	thumbnail "outfit/unknown"
+	"mass" 18
+	"outfit space" -18
+	"shields" 800
+	"shield energy" .25
+	description "Capacitors as an alternative for generators and regenerators, providing more short term benefit but long term fights they're worse."
+
+outfit "E30-JL Shield Capacitor"
+	category "Systems"
+	cost 35000
+	thumbnail "outfit/unknown"
+	"mass" 26
+	"outfit space" -26
+	"shields" 1850
+	"shield energy" .45
+	description "Capacitors as an alternative for generators and regenerators, providing more short term benefit but long term fights they're worse."
+
+outfit "E54-DI Shield Capacitor"
+	category "Systems"
+	cost 65000
+	thumbnail "outfit/unknown"
+	"mass" 38
+	"outfit space" -38
+	"shields" 3600
+	"shield energy" .83
+	description "Capacitors as an alternative for generators and regenerators, providing more short term benefit but long term fights they're worse."
+
+outfit "Light Hull Plating"
+	category "Systems"
+	cost 35000
+	thumbnail "outfit/unknown"
+	"mass" 20
+	"outfit space" -12
+	"hull" 400
+	"cooling inefficiency" 1
+	description "Hull plating would be for the south and pirates."
+
+outfit "Heavy Hull Plating"
+	category "Systems"
+	cost 75000
+	thumbnail "outfit/unknown"
+	"mass" 45
+	"outfit space" -22
+	"hull" 950
+	"cooling inefficiency" 1
+	description "Hull plating would be for the south + pirates."
 
 outfit "Small Radar Jammer"
 	category "Systems"

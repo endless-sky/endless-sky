@@ -99,6 +99,7 @@ outfitter "Hai Intermediate"
 	"Bunk Room"
 	"Fuel Pod"
 	"Hai Corundum Regenerator"
+	"Hai Topaz Capacitor"
 	`"Basrem" Reverse Thruster`
 	`"Basrem" Atomic Thruster`
 	`"Basrem" Atomic Steering`
@@ -143,6 +144,7 @@ outfitter "Hai Advanced"
 	"Fuel Pod"
 	"Hai Corundum Regenerator"
 	"Hai Diamond Regenerator"
+	"Hai Topaz Capacitor"
 	`"Basrem" Reverse Thruster`
 	`"Basrem" Atomic Thruster`
 	`"Basrem" Atomic Steering`
