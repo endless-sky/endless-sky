@@ -258,7 +258,7 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 		Rectangle pluginListBox = pluginUi->GetBox("plugin list");
 		if(pluginListBox.Contains(point))
 		{
-			auto index = 0;			
+			int index = 0;
 			for(const auto &zone : pluginZones)
 			{
 				if(zone.Contains(point) && selectedPlugin != zone.Value())
