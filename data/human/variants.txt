@@ -2166,24 +2166,6 @@ ship "Hogshead" "Hogshead (CCOR)"
 
 
 
-ship "Star Queen" "Star Queen (CCOR)"
-	swizzle 6
-	outfits
-		"Bunk Room" 2
-		"Capybara Reverse Thruster"
-		"D94-YV Shield Generator"
-		"Greyhound Plasma Steering"
-		"Greyhound Plasma Thruster"
-		"Heavy Anti-Missile Turret" 2
-		"Large Radar Jammer"
-		"Laser Rifle" 120
-		"Liquid Nitrogen Cooler"
-		"NT-200 Nucleovoltaic"
-		"Outfits Expansion" 2
-		"Scram Drive"
-		"Security Station" 9
-		Supercapacitor
-
 ship "Leviathan" "Leviathan (Hai Engines)"
 	outfits
 		"Particle Cannon" 4

@@ -2046,11 +2046,11 @@ fleet "Large CCOR"
 		"Hauler II (CCOR)"
 		"Berserker (CCOR)"
 	variant 2
-		"Hogshound"
+		"Hogshead"
 	variant 1
-		"Hogshound (CCOR)"
+		"Hogshead (CCOR)"
 	variant 1
-		"Hogshound (CCOR)"
+		"Hogshead (CCOR)"
 		"Enforcer (CCOR)"
 
 fleet "Small Independent"
