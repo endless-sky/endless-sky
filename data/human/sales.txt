@@ -175,6 +175,8 @@ outfitter "Humanika Rafeki Mimicry"
 	"Capybara Reverse Thruster"
 	"Impala Plasma Thruster"
 	"Impala Plasma Steering"
+	"Orca Plasma Thruster"
+	"Orca Plasma Steering"
 
 	# Widely available
 	"S3 Thermionic"

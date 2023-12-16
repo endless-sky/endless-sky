@@ -232,6 +232,9 @@ fleet "Kor Isaha Raid"
 	variant 1
 		"Palavret (Blaze)"
 		"'olofez" 2
+	variant 1
+		"Rano'erek"
+		"'olofez" 4
 
 fleet "Korath Ember Waste Raid"
 	government "Korath"

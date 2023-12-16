@@ -658,7 +658,7 @@ mission "First Contact: Korath Exiles"
 					goto wait
 
 			label draw
-			`	You draw the outline of your own ship on the same side of the core as theirs, but farther out, then draw a line around it marking the extents of human space. The Korath responds by drawing something that looks like a spider, beyond the southern edge of human space. It covers one whole galactic arm. Then, near the top of human space they push their finger deep into the ground, and again just north of there, and connect the two holes with a line.`
+			`	You draw the outline of your own ship on the same side of the core as theirs, but farther out, then draw a line around it marking the extents of human space. The Korath responds by drawing something that looks like a squirrel, beyond the northern edge of human space. Then, near the top of human space they push their finger deep into the ground, and again just north of there, and connect the two holes with a line.`
 			choice
 				`	(Add some details I know to the map.)`
 					goto add
@@ -670,7 +670,7 @@ mission "First Contact: Korath Exiles"
 			`	Near the southern end of human space, you draw a dot with a partial ring around it: the Quarg ringworld, under construction. The Korath respond by both beginning to draw more rings, spread out all over the galaxy, some broken, some complete. Then they draw more of the spiders, again spread out all over the galaxy, and then sprinkle sand over them so the lines are barely visible.`
 
 			label wait
-			`	The Korath pause for a minute and look at you, then begin drawing again. "Korath," says one of them, and draws another outline of one of their warships, but much larger, on the northern side of the galactic core. Then they brush away the outline of that big ship and draw three smaller ones, facing each other. "Korath," they say again, "no'lai en vas, certu forgu, mik'lak'nal torq." They rake their fingers through the sand, erasing the outlines of the three ships.`
+			`	The Korath pause for a minute and look at you, then begin drawing again. "Korath," says one of them, and draws another outline of one of their warships, but much larger, on the northern side of the galactic core. Then they brush away the outline of that big ship and draw several smaller ones, facing each other. "Korath," they say again, "no'lai en vas, certu forgu, mik'lak'nal torq." They rake their fingers through the sand, erasing the outlines of the three ships.`
 			`	Their companion picks up the story. "Vas, certu vas. Minli ka Korath torq. Kem'lor ka forli, ka merru, ka plee. Teka korma ka draki, rekki korath, marre fa long." They draw a bunch of small spiders, surrounding the Korath ships, then gather the sand from that part of the map and toss it onto the place where the first Korath ship was drawn. "Tarre ta fo'lu korath."`
 			`	The other one says, "Far'en lai, soru ka'lai en ka korath. Soti far'en lai ko forei lak'far." They point to the gun at the front of their fighter, then makes a gesture, hands turned downward toward the ground. "Far'en lai ka let'mari nik lak'mal." They point to a few places, hundreds of meters away, where you see green plants growing. "Nik lak'mal." Then they point to you. "Humani ka Korath nik lak'mal."`
 			`	To emphasize the point, on a blank part of the sand they draw a large circle with lots of dots on it, pointing to the plants as they make each dot. They then draw on outline of all three of your ships inside the circle, pointing towards each other. Finally, one picks up the sand they just used to make your ship, and tosses it back onto the map of human space, while the other picks up the sand that makes up their ships and likewise tosses it onto the map of their own space.`
@@ -684,7 +684,7 @@ mission "First Contact: Korath Exiles"
 			`	"We do not want to fight you," you say, and you redraw the human and Korath ships, on the map, so they are facing away from each other.`
 			`	"Kai," says one of the Korath, looking at the other, "mik'mal ka puk?"`
 			`	"Lajalness?" the other says back, and takes a moment to look at your ship.`
-			`	Returning to the sand, they make another copy of your respective ships, this time, all facing in the same direction. Making a gesture, they alter the drawing you made, so that the ships appear double-ended. They point to each drawing and then to you.`
+			`	Returning to the sand, they make another copy of your respective ships, this time, all facing in the same direction. Making a gesture, they alter the drawing you made, making the ships double-ended, with two bows and no stern. They point to each drawing and then to you.`
 			choice
 				`	(Point to the three ships flying together in the same direction.)`
 					goto together
@@ -741,7 +741,7 @@ mission "Korath [F01]: A Fishy Deal"
 	on offer
 		event "know about Korath fish jobs"
 		conversation
-			`Flying through the atmosphere of New Tortuga, you pass over a typhoon, overfly a tsunami, and take a short detour around a supercell thunderstorm. After a half hour of delicate flying, you approach doors more than a hundred meters tall. As they open, you can see they're ten meters thick, made of a material you don't recall seeing on human planets. Two layers of shields shut down in anticipation of your entry, each strong enough to stop a Navy Carrier. To the left and right, there are turrets with heat signatures higher than a Breeder Reactor. Whoever built this place values their safety... and has the funds and technology to secure it.`
+			`Flying through the atmosphere of New Tortuga, you pass over a typhoon, overfly a tsunami, and take a short detour around a supercell thunderstorm. After a half hour of delicate flying, you approach doors more than a hundred meters tall. As they open, you can see they're ten meters thick, made of an unfamiliar brown material. Two layers of shields shut down in anticipation of your entry, each strong enough to stop a Navy Carrier. To the left and right, there are turrets with heat signatures higher than a Breeder Reactor. Whoever built this place values their safety... and has the funds and technology to secure it.`
 			`	Spaceport authorities direct you to bay 23X-5, which contains an odd ship you see on your way in. It resembles an old-fashioned jet aircraft, whose four jet engines have been replaced with small ion engines. From the gold pipes on the tail, it appears to have a hyperdrive built into the hull. Several packages are being unloaded from the plane. A woman is waving her arms, perhaps with anger, as she walks from the cockpit into the spaceport.`
 			`	The ship is parked next to yours and the woman is about to walk past you. She looks quite distraught and, perchance, looks your way. Maybe a distraction will cheer her up?`
 			label questions
@@ -905,7 +905,7 @@ mission "Korath [F02]: A Fishy Proposition"
 			label warning
 			`	"One more matter, Captain <last>: a fair warning about some of our associates. To keep helping our planet, you need to be able to travel far and wide, acting as a courier through space we cannot reach. If you anger half the galaxy, not only will it risk your life, it'll hurt the people of New Tortuga.`
 			`	"You may have noticed some unusual ships near here, larger than anything else in human space. Assisting New Tortuga or this station can earn you favor with them. Eventually, they'll warm up to you and might even begin to trust you if you assist them when their ships are damaged.`
-			`	"For your safety, for their sake, and for the sake of my planet, I do implore you: do not assist those ships in combat. They know the risk they take when raiding, and have contingencies in place. It is more important to them that you retain your freedom of movement by not revealing your association with them."`
+			`	"For your safety, for their sake, and for the sake of my planet, I do implore you: do not assist those ships yet. They know the risk they take when raiding, and have contingencies in place. It is more important to them that you retain your freedom of movement by not revealing your association with them."`
 				goto departs
 
 			label reject
@@ -926,10 +926,9 @@ mission "Korath [F02]: A Fishy Proposition"
 		payment 165000
 
 		# This is a reputation reset for people who haven't been fighting the
-		# Korath. It's enough to (usually) cover disabling a Korath ship and
-		# pillaging it.
+		# Korath. It's enough to cover disabling and pillaging a Palavret.
 		# Anyone else will have to do a lot of assistance jobs.
-		"reputation: Korath" += 250
+		"reputation: Korath" += 300
 
 		conversation
 			`This time, you are directed to a different bunker city, on the other side of the planet from the main spaceport. The doors are considerably larger, and the bay is large enough to fit two dozen bulk freighters. You park near the far corner, close to one of the spaceport entrances, between a Behemoth and a Bactrian.`
@@ -985,17 +984,17 @@ mission "Korath [F03]: Rabasot Pa'ah Failed Landings"
 			`As you descend through the magnetosphere, your computer warns you of a build-up of unusual charged particles called muons, which is a bit odd. From your training on hyperspace exit and entrance, you recall that the mean lifetime of a muon is measured in microseconds. Something here must be actively generating them.`
 			`	You travel deeper into the atmosphere, approaching what appears to be an inactive volcanic island chain. As usual, your ship's descent causes air currents, but the strange atmosphere turns those currents into a powerful storm. The muons mix with this event, creating catastrophic explosions of electrical discharge.`
 			`	Remembering what you've read about extreme atmospheric landings, you reconfigure your shields to act as a plow, pushing through the storm. At first it isn't enough, so you pull upward, hoping the lower atmospheric density will let you escape. Once you're free, you realize you've already reached the exosphere.`
-			`	A quick analysis by your ship's computer tells you the shield plow technique should get you all the way down to the surface, if you avoid eddies in the magnetosphere. It seems those eddies interact with the nova in an odd manner that produces vast amounts of muons. Your shield was drawing them in and discharging them, creating an intense storm centered on your ship. The plow shape directed the electrical activity aft, letting you move freely.`
+			`	A quick analysis by your ship's computer tells you the shield plow technique should get you all the way down to the surface, if you avoid eddies in the magnetosphere. It seems those eddies interact with the carbon star in an odd manner that produces vast amounts of muons. Your shield was drawing them in and discharging them, creating an intense storm centered on your ship. The plow shape directed the electrical activity aft, letting you move freely.`
 			`	Certainly, a second landing attempt will get you through the atmosphere. Next, you'll have to scout for a safe place to land on this world of water and storms.`
 				launch
 
 			label "second attempt"
 			scene scene/volcanic-eruption-at-night
 			action
-				log "Was able to pass through the atmosphere of Rabasot Pa'ah despite the unusual atmospheric event. A volcanic eruption nearly hit the ship, perhaps caused by landing in the wrong area. There is a large island - or small continent - that looks suitable for landing. Another landing attempt should succeed."
-			`In this trip, your ship's descent stirred up awe-inspiring storm clouds, but traveling through them was easy. Your shield plow technique took you down to the lower troposphere, where the storms cleared enough for you to see. The original island chain was too far away, so you set course for a larger island nearby.`
-			`	Aiming for a hard-looking piece of ground, you touch down. As this planet has twice Earth's gravity, you extend your ship's artificial gravity field to the surface. Donning a space suit for safety's sake, you walk out to see nature taking control once again: the massive volcano in front of you starts to erupt.`
-			`	After a dash to the cockpit, still in your suit, you take off, satisfied that you've reached the surface - albeit in the worst possible spot. A third attempt will certainly succeed, as you saw a small continent with no apparent volcanic activity and a pleasant-looking bay.`
+				log "Was able to pass through the atmosphere of Rabasot Pa'ah despite the unusual atmospheric event. A volcanic eruption nearly hit the ship, perhaps caused by landing in the wrong area. There is a large island that might be suitable for landing. Another attempt could succeed."
+			`In this trip, your ship's descent stirred up awe-inspiring storm clouds, but traveling through them was easy. Your shield plow technique took you down to the lower troposphere, where the storms cleared enough for you to see. The original island chain was too far away, so you set course for another one nearby.`
+			`	Aiming for the hardest-looking piece of ground your sensors can find, you touch down. As this planet has twice Earth's gravity, you extend your ship's artificial gravity field to the surface. Donning a space suit for safety's sake, you walk out to see nature taking control once again: the massive volcano in front of you starts to erupt.`
+			`	After a dash to the cockpit, still in your suit, you take off, satisfied that you've reached the surface - albeit in the worst possible spot. A third attempt will certainly succeed, as you see a larger island with no apparent volcanic activity and a pleasant-looking bay.`
 				launch
 
 			label "third attempt"
@@ -1004,7 +1003,7 @@ mission "Korath [F03]: Rabasot Pa'ah Failed Landings"
 				set "landed on Rabasot Pa'ah"
 				log "Discovered a creature in a bay on the ocean world of Rabasot Pa'ah with the front half of a whale and the back half of a giant squid. They seem out-of-place, since the planet is almost devoid of macroscopic lifeforms. Perhaps someone is shipping them to the planet?"
 			`On your third attempt, you dodge most of the storms by flying into the atmosphere at an odd angle that keeps you in stable air nearly the whole way. After a long flight through safe atmosphere, you finally reach the bay and land on a durable mesa overlooking it. Extending your ship's artificial gravity field to the surface, you don your suit and walk out. It quickly becomes clear the mesa is artificial: it's a constructed landing pad for a ship of vast scale.`
-			`	This is the perfect location for life, so it's no surprise there are small plants and a few fish in the water. The seas are calmer here than the rest of the planet, and an unusual formation in the ionosphere protects this spot from the worst rays of the nova. The dominant land-based lifeform seems to be toothed worms about the size of your arm.`
+			`	This is the perfect location for life, so it's no surprise there are small plants and a few fish in the water. The seas are calmer here than the rest of the planet, and an unusual formation in the ionosphere protects this spot from the worst rays of the carbon star. The dominant land-based lifeform seems to be toothed worms about the size of your arm.`
 			`	The strangest feature is what appears to be slow-moving islands. As one comes closer, its form is more clear: an unholy marriage between a blue whale and a giant squid. On the far end of the mesa, you spy a gravity crane system that looks suitable for carrying such a beast out of the water.`
 				decline
 
@@ -1117,9 +1116,9 @@ mission "Korath [F06]: The Rainbow Feather"
 			action
 				set "Korath [F05]: The Rainbow Feather: feather"
 			`	She removes her necklace and cups the rainbow feather tenderly in her hands. "This was a gift from a Korath woman who is my... close friend. Korath keep memories in their skin and pass knowledge by eating another's memories. The stronger the memory, the more colorful the feathers. This feather has the memories and emotions that she identifies with me.`
-			`	"If she dies in a raid, and another Korath eats this, I'll have her back, in a way. Another Korath that feels for me as she does, and remembers our times together. All Korath know the consequence of a rainbow feather. This is how they pass all knowledge; not through schooling, but through skin.`
+			`	"If she dies in a raid, and another Korath eats this, I'll have her back, in a way. Another Korath that feels for me as she does, and remembers our times together. All Korath know the consequence of a rainbow feather. This is how they pass knowledge; not only through schooling, but through skin.`
 			`	"Think about that a moment. Years of memories flow in as if they were yesterday. Powerful emotions overwhelm you, and you don't understand why, because they aren't your own. You love someone who doesn't love you back because they never met you. Knowledge you couldn't comprehend before is intuitive, but it came at a high price. You'd lose all sense of time and self - unimaginable psychological pain to us is simply a fact of life to a Korath.`
-			`	"That, Captain, is the very core of their being. They never developed diplomacy because they didn't need it: a few feathers or the skin of the dead will end a conflict. That is, unless their terrible weapons annihilate the corpses, or if the enemies aren't Korath at all. We do what we can to mediate their troubles with humans, but we aren't always around."`
+			`	"That, Captain, is the very core of their being. They never developed diplomacy because they didn't need it: a few feathers or the skin of the dead may end a conflict. That is, unless their terrible weapons annihilate the corpses, or if the enemies aren't Korath at all. We do what we can to mediate their troubles with humans, but we aren't always around."`
 				goto check
 
 			label freedom

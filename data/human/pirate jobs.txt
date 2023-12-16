@@ -2099,7 +2099,7 @@ mission "Mercenary Job (Medium, South, Dangerous Origin)"
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes south
 	destination
-		government "Pirate" "Humanika Rafeki Port"
+		government "Pirate"
 		attributes "south pirate"
 		distance 3 4
 	npc
@@ -2142,10 +2142,10 @@ mission "Escort Illegal Cargo (Large, South, Dangerous Path)"
 		"combat rating" > 1100
 		"reputation: Pirate" > 0
 	source
-		government Republic "Free Worlds" Syndicate Neutral Pirate "Humanika Rafeki Port"
+		government Republic "Free Worlds" Syndicate Neutral Pirate
 		attributes south "south pirate"
 	destination
-		government "Pirate" "Humanika Rafeki Port"
+		government "Pirate"
 		attributes "south pirate"
 		distance 3 6
 	npc
@@ -2188,10 +2188,10 @@ mission "Escort Stolen Vessel (Extra Large, South, Dangerous Path)"
 		"combat rating" > 3000
 		"reputation: Pirate" > 0
 	source
-		government Republic "Free Worlds" Syndicate Neutral Pirate "Humanika Rafeki Port"
+		government Republic "Free Worlds" Syndicate Neutral Pirate
 		attributes south "south pirate"
 	destination
-		government "Pirate" "Humanika Rafeki Port"
+		government "Pirate"
 		attributes "south pirate"
 		distance 3 6
 	npc
@@ -2340,7 +2340,7 @@ mission "Eliminating Law Enforcement (South, Small)"
 		random < 25
 		"combat rating" > 1100
 	source
-		government "Pirate" "Humanika Rafeki Port"
+		government "Pirate"
 		attributes "south pirate"
 	npc kill
 		government "Militia"
@@ -2364,7 +2364,7 @@ mission "Eliminating Law Enforcement (South, Large)"
 		random < 15
 		"combat rating" > 3000
 	source
-		government "Pirate" "Humanika Rafeki Port"
+		government "Pirate"
 		attributes "south pirate"
 	npc kill
 		government "Militia"
@@ -2493,7 +2493,7 @@ mission "Eliminating Competition (South, Small)"
 		random < 20
 		"combat rating" > 400
 	source
-		government "Pirate" "Humanika Rafeki Port"
+		government "Pirate"
 		attributes "south pirate"
 	npc kill
 		government "Pirate (Rival)"
@@ -2518,7 +2518,7 @@ mission "Eliminating Competition (South, Large)"
 		random < 10
 		"combat rating" > 1100
 	source
-		government "Pirate" "Humanika Rafeki Port"
+		government "Pirate"
 		attributes "south pirate"
 	npc kill
 		government "Pirate (Rival)"
@@ -2682,7 +2682,7 @@ mission "Raid on Merchants (South)"
 		"combat rating" > 150
 		"reputation: Pirate" > 0
 	source
-		government "Pirate" "Humanika Rafeki Port"
+		government "Pirate"
 		attributes "south pirate"
 	npc
 		government "Pirate"
@@ -2838,7 +2838,7 @@ mission "Southern Pirate Defense"
 		random < 15
 		"reputation: Pirate" >= 0
 	source
-		government "Pirate" "Humanika Rafeki Port"
+		government "Pirate"
 		attributes "south pirate"
 	npc evade
 		government "Militia"
@@ -2865,7 +2865,7 @@ mission "Southern Pirate Defense [Unpaid]"
 		random < 5
 		"reputation: Pirate" >= 0
 	source
-		government "Pirate" "Humanika Rafeki Port"
+		government "Pirate"
 		attributes "south pirate"
 	npc evade
 		government "Militia"
@@ -2982,7 +2982,7 @@ mission "Cargo Theft (South)"
 		"combat rating" > 3000
 	deadline 14
 	source
-		government Pirate "Humanika Rafeki Port"
+		government "Pirate"
 		attributes "south pirate"
 	npc
 		government "Merchant"
@@ -3021,7 +3021,7 @@ mission "FW Assassination [1]"
 		"reputation: Pirate" > -100
 		has "event: war begins"
 	source
-		government "Pirate" "Humanika Rafeki Port"
+		government "Pirate"
 		attributes "south pirate"
 	npc kill
 		government "Free Worlds"
@@ -3064,7 +3064,7 @@ mission "FW Assassination [2]"
 		"reputation: Pirate" > -50
 		has "event: war begins"
 	source
-		government "Pirate" "Humanika Rafeki Port"
+		government "Pirate"
 		attributes "south pirate"
 	npc kill
 		government "Free Worlds"
