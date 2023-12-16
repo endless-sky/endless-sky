@@ -335,6 +335,27 @@ mission "Unfettered Lead Asteroid Mining 2"
 		outfit "Lead" -70
 
 
+mission "Unfettered Titanium Asteroid Mining"
+	job
+	repeat
+	name "Gather Titanium from asteroids"
+	description "Mine and collect 50 tons of titanium, then bring the minerals to <destination> for <payment>. Lead is available in the asteroid field in Wah Yoot."
+	source
+		attributes "unfettered"
+		not planet "Warfeed"
+	destination
+		attributes "unfettered"
+		not planet "Warfeed"
+	to offer
+		random < 40
+		"cargo space" > 30
+		has "<uhai> 10: Belt Materials: done"
+	on complete
+		payment 400000
+		dialog phrase "unfettered mining payment dialog"
+		outfit "Titanium" -50
+
+
 phrase "unfettered medicals pickup dialog"
 	word
 		`As usual, the Hai are more than happy to give you the medical supplies needed. "Tell our brothers and sisters to stay strong," one says while loading the supplies onto your ship.`

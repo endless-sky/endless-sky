@@ -13,7 +13,7 @@
 
 mission "<uhai> 10: Belt Materials"
 	name `Gather materials from asteroids`
-	description `Mine 20 tons of silver from the asteroid field in this system and 50 tons of lead from the asteroid field in <waypoints> and then bring them to <destination> for <payment>.`
+	description `Mine 20 tons of silver and 50 tons of lead, from the asteroid field of Ehma Ti and <waypoints> and then bring them to <destination> for <payment>.`
 	source "Firelode"
 	waypoint "Wah Yoot"
 	destination "Darkcloak"
@@ -113,12 +113,12 @@ mission "<uhai> 10: Belt Materials"
 			label asteroidtuto
 			action
 				set "unfettered: asteroid tuto"
-			`	She seems a bit surprised, "You've never mined asteroids? I recommend you install an asteroid scanner so your ship can target them automatically. Just try to keep your ship stable around one and shoot it as you would any other ship. Keep in mind they have no shields, and you might not want to waste missiles on them, since they don't shoot back."`
+			`	She seems a bit surprised, "You've never mined asteroids? I recommend you install an asteroid scanner so your ship can target them automatically. Just try to keep your ship stable around one and shoot it as you would any other ship. Keep in mind they have no shields, and you might not want to waste missiles on them, since they don't shoot back. One thing everyone may not know is that once you've exhausted all the asteroids in a system, you may as well land or change system knowing they'll be back the next time you launch!"`
 				goto choice
 			label where
 			action
 				set "unfettered: asteroid systems"
-			`	Lead can simply be found right over our heads, and there are silver asteroids present in Ehma Ti. The lead asteroid looks similar to copper but is bigger. You can also just differentiate them with an asteroid scanner. Silver is easy to recognize with its very small size and natural sturdiness."`
+			`	Lead can simply be found right over our heads, and there are silver asteroids present in Ehma Ti. The lead asteroid looks similar to copper but is bigger. You can also just differentiate them with an asteroid scanner. Silver is easy to recognize with its very small size and natural sturdiness. As for titanium, I know there is some in Ik'kara'ka, up North, I can point the location on your map if you want."`
 				goto choice
 			label nobiggie
 			`	"Oh, I see." Her tail movement stops at once. "Are you sure? This would mean a lot for me, a lot of Unfettered refuse to collect resources this way already, preferring to shoot enemies that fire back."`
@@ -130,26 +130,19 @@ mission "<uhai> 10: Belt Materials"
 	on decline
 		"unfettered rep: Mera" -= 2
 	npc
+		system "Ik'kara'ka"
 		government "Hai (Unfettered)"
-		personality harvests mining uninterested staying
-		fleet
-			names "hai"
-			variant
-				"Shield Beetle"
+		personality harvests mining uninterested staying marked
+		"Shield Beetle" "Domecatus"
 	npc
 		government "Hai (Unfettered)"
 		personality mining uninterested launching
-		fleet
-			names "hai"
-			variant
-				"Lightning Bug"
+		"Lightning Bug" "Thief"
 	npc
+		system "Wah Yoot"
 		government "Hai (Unfettered)"
 		personality harvests uninterested staying entering
-		fleet
-			names "hai"
-			variant
-				"Water Bug"
+		"Water Bug" "Hoarder"
 	to fail
 		has "unfettered: outcast"
 	on fail
@@ -172,7 +165,6 @@ mission "<uhai> 10: Titanium"
 	description `Mine 40 tons of Titanium from <waypoints> for <payment>.`
 	source "Firelode"
 	waypoint "Ik'kara'ka"
-	destination "Darkcloak"
 	to offer
 		has "salary: Unfettered"
 		"reputation: Wanderer" >= 0
