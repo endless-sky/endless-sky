@@ -6509,9 +6509,9 @@ event "kris gets frustrated"
 
 mission "Moving House 2"
 	minor
+	name "Moving House, Again"
 	description "Kris is unsatisfied with life on <destination> and wants your help to move."
 	landing
-	name "Moving House, Again"
 	source
 		near "Atria" 1 100
 	destination "Lichen"
@@ -6525,7 +6525,7 @@ mission "Moving House 2"
 				accept
 	on complete
 		conversation
-			`You arrive on <destination>, rent a local transport, and make your way to the location specified. When you knock on the door, Kris bursts out almost instantly. This time, they've got on a ruffly skirt, a button-down shirt, and suspenders, and their hair is in a tight bun. "Finally!" they say. "Everything's packed already; we just need to load it in and get to the spaceport."`
+			`You arrive on <planet>, rent a local transport, and make your way to the location specified. When you knock on the door, Kris bursts out almost instantly. This time, they've got on a ruffly skirt, a button-down shirt, and suspenders, and their hair is in a tight bun. "Finally!" they say. "Everything's packed already; we just need to load it in and get to the spaceport."`
 			`	It takes much less time to load everything this time than the last time you helped Kris move, and soon they hop in the driver's seat of the van, calling to you, "I'll meet you at the spaceport in an hour or two!"`
 
 mission "Moving House 3"
@@ -6564,7 +6564,7 @@ mission "Moving House 3"
 
 mission "Stranded In Paradise 1"
 	minor
-	name "Stranded in Paradise"
+	name "Transport Burnbecks to <planet>"
 	description "The Burnbeck family was stranded by the bombings, and needs <bunks> free for transport back home to <destination>. Payment is <payment>."
 	source
 		attributes "paradise"
@@ -6583,8 +6583,8 @@ mission "Stranded In Paradise 1"
 			`No sooner have you entered the spaceport than you are bowled over by a trio of adults, two women and a man, with a child trailing close behind them.`
 			`	"Oh - sorry!" the older of the two women exclaims. She puts out a hand to help you up, then gets a better look at you as you take it, stand, and dust yourself off. "Wait; are you a ship captain?" she says after a moment.`
 			`	"<first> <last>, captain of the <ship>," you reply. "Why?"`
-			`	"Oh! You may be the answer to our prayers, dearie!" She and the others have now gotten themselves a bit more organized, and you can tell that they must be a family. Confirming this, the woman says, "We're the Burnbecks; I'm Shirley, and this is my husband Darren." She gestures towards the other, younger woman, then the child. "These are our kids, Erin and Leigh" Leigh's features are softer than you'd expect a boy of his age would have. "We were on vacation here on <origin> when news of the war and those awful bombings came out. Well, I don't need to tell you, it's caused us some trouble! Or, well, maybe I do, since I didn't say where we're from: <destination>, down in what they're now calling the Free Worlds!"`
-			`	Her husband cuts in, "Anyway, the short of it is that we really need to get home, and right now, none of the regular services are running from here to <destination> because of the war. Could you possibly take the four of us back home? We...can't pay a lot, right now, but we can pay."`
+			`	"Oh! You may be the answer to our prayers, dearie!" She and the others have now gotten themselves a bit more organized, and you can tell that they must be a family. Confirming this, the woman says, "We're the Burnbecks; I'm Shirley, and this is my husband Darren." She gestures towards the other, younger woman, then the child. "These are our kids, Erin and Leigh." Leigh's features are softer than you'd expect a boy of his age would have. "We were on vacation here on <origin> when news of the secession and those awful bombings came out. Well, I don't need to tell you, it's caused us some trouble! Or, well, maybe I do, since I didn't say where we're from: <destination>, down in what they're now calling the Free Worlds!"`
+			`	Her husband cuts in, "Anyway, the short of it is that we really need to get home, and right now, none of the regular services are running from here to <planet> because of the likelihood of war. Could you possibly take the four of us back home? We... can't pay a lot, right now, but we can pay."`
 			choice
 				`	"Of course. I wouldn't leave people stranded like this."`
 					goto help
@@ -6599,7 +6599,7 @@ mission "Stranded In Paradise 1"
 	on complete
 		payment
 		payment 5000
-		log "Minor People" "The Burnbecks" `Shirley, Darren, Leigh, and Erin Burnbeck were vacationing in the Paradise Worlds when Gemini and Martini were bombed, stranding them. You helped them get back home.`
+		log "Minor People" "The Burnbecks" `Shirley, Darren, Leigh, and Erin Burnbeck were vacationing in the Paradise Worlds when Geminus and Martini were bombed, stranding them. You helped them get back home.`
 		conversation
 			`The trip south with the Burnbecks was mostly quite pleasant, but while they stop short of openly blaming them for the bombings on Geminus and Martini, they are very angry at the Free Worlds for seceding from the Republic. "We were perfectly happy belonging to the Republic," Darren said one evening in the mess. "I mean, seriously, did those people way down in, where is it, Zug? Bourne? Did they even think about the regular people and how this would affect them? Affect us?"`
 			`	While some of their complaints seem a bit selfish, it's hard to argue with the fact that this has disrupted a lot of lives. After touching down on <planet>, Darren, Leigh, and Erin joyfully run into the arms of their friends and family here. Shirley hangs back to hand you a credit chip for <payment> and thank you warmly (and at some length) for your help in getting home, before heading out to join her family in their reunion.`
@@ -6614,7 +6614,7 @@ mission "Stranded In Paradise 2"
 		has "FW Embassy 1B: done"
 	on offer
 		conversation
-			`While walking through the spaceport, you are surprised to see Shirley and Darren Burnbeck, along with a young man, who you recognize as Leigh after a few seconds. They greet you warmly, reassure you that Erin is just off to university on Zug, and so couldn't join them on this vacation, and invite you to have dinner with them at the spaceport cafe.`
+			`While walking through the spaceport, you are surprised to see Shirley and Darren Burnbeck, along with a young man, who you recognize as Leigh after a few seconds. They greet you warmly, reassure you that Erin is just off to university on Zug and so couldn't join them on this vacation, and invite you to have dinner with them at the spaceport cafe.`
 			choice
 				`	(Accept.)`
 					goto cafe
@@ -6629,8 +6629,8 @@ mission "Stranded In Paradise 2"
 				decline
 
 mission "Southern Fiance 1"
-	name "Fiance to <planet>"
 	minor
+	name "Fiance to <planet>"
 	description "Tom, formerly a marketer for the Syndicate, is going to live with his fiance on <destination>. Payment is <payment>."
 	source
 		attributes "core"
@@ -6763,7 +6763,7 @@ mission "Southern Fiance 6"
 			label already
 			`Like last time, the spaceport controller diverts you to the Governor's personal landing pad. Tom and Carl are waiting for you once more, and they greet you warmly. They take you in an official government vehicle to the governor's mansion, with a trying-to-be-subtle security detail always following just on the periphery.`
 			branch already2
-				has "Take Me To The South D: Followup 2A: declined"
+				has "Southern Fiance 5: declined"
 				
 			`	The official mansion is much more impressive than Carl's house as Agricultural Minister was, and Tom gives you a tour while Carl has to field some official phone calls. Partway through the tour, Tom gets a mischievous grin, and when he opens the next door, a very small child races out and cannons into his legs, gripping them tightly with a glad cry of "Daddy!" Tom proudly introduces Nita, his and Carl's three-year-old daughter, who giggles and tries to run off with your communicator.`
 			`	You're already looking forward to the food well before you sit down to dinner, and you are not disappointed: if anything, it's better than the last time you visited them. Carl confides that it used to be even better, but a year ago his best cook left to become a star teacher at the new culinary institute whose funding he championed.`
@@ -6850,8 +6850,8 @@ mission "FW Refugees to Humanika"
 		log "Minor People" "Penny Little, Rosa Perkins, and Eduardo" `A young family who wanted to escape a potential war in human space. Took them to the planet Humanika, where the Quarg let humans settle.`
 
 mission "Returning to Paradise"
-	name "Take a family home to <planet>."
-	description "A family worried about the potential destruction within the Free Worlds wants to cut their vacation short and go home to <destination>."
+	name "Transport family home to <planet>"
+	description `A family worried about the potential destruction within the Free Worlds wants to cut their vacation short and go home to <destination>. They promise to "pay you very well."`
 	source
 		government "Free Worlds"
 		attributes "tourism"
@@ -6864,7 +6864,9 @@ mission "Returning to Paradise"
 		has "assisted free worlds"
 	on offer
 		conversation
-			`After looking around <origin>'s spaceport, you head back to your ship to find a middle-aged couple and two grade-school girls (probably their daughters, you reason) waiting for you at your landing pad. While the man tries to resolve an argument between the two girls, the lady notices you immediately and begins to approach you. "Thank goodness you're here," she says. "We've been going from ship to ship looking for transport back home to the Paradise Planets. This war has caught us right in the middle of our vacation and we can't risk being anywhere near here when the Navy attacks, especially with our little angels," she gestures toward her daughters, now in a full-blown fight. "If you can find the time to take us to <planet>, we will pay you very well."`
+			`After looking around <origin>'s spaceport, you head back to your ship to find a middle-aged couple and two grade-school girls (probably their daughters, you reason) waiting for you at your landing pad. While the man tries to resolve an argument between the two girls, the lady notices you immediately and begins to approach you.`
+			`	"Thank goodness you're here," she says. "We've been going from ship to ship looking for transport back home to <destination>. This war has caught us right in the middle of our vacation and we can't risk being anywhere near here when the Navy attacks, especially with our little angels," she gestures toward her daughters, now in a full-blown fight.`
+			`	She looks back at you pleadingly. "If you can find the time to take us to <planet>, we will pay you very well."`
 			choice
 				`	"Sure, I'll take you."`
 				`	"Okay, but that's pretty far. This better be worth it."`
