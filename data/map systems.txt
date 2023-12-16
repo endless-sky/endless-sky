@@ -5019,6 +5019,11 @@ system Alpherg
 	object
 		sprite star/g-giant
 		period 10
+	object "Mendez Station"
+		sprite planet/mendez
+			scale 0.5
+		distance 517.5
+		period 61.4
 	object
 		sprite star/k5
 		distance 220
@@ -5028,11 +5033,6 @@ system Alpherg
 		distance 3164.1
 		period 985.15
 		offset 120
-		object "Mendez Station"
-			sprite planet/station8
-				scale 0.5
-			distance 171.4
-			period 61.454
 	object
 		sprite planet/cloud8-b
 		distance 1817.57
@@ -8694,15 +8694,16 @@ system Citadelle
 			sprite star/a-dwarf
 			distance 102.423
 			period 27.3
+	object Alvorada
+		sprite "planet/alvorada"
+			"scale" 0.75
+		distance 500
+		period 90.1
 	object Bailey
 		sprite planet/lava0
 		distance 1733.1
 		period 819.567
 		offset -90
-		object Alvorada
-			sprite "planet/asteroid base"
-			distance 153
-			period 90.1
 	object
 		sprite planet/desert0-b
 		distance 2253.29
