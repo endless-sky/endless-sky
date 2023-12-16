@@ -39,7 +39,6 @@ public:
 	private:
 		int_fast8_t index;
 		const std::vector<std::string> names;
-
 	};
 
 	enum class AlertIndicator : int_fast8_t {
@@ -152,15 +151,16 @@ public:
 	static OverlayState StatusOverlaysState(OverlayType type);
 	static const std::string &StatusOverlaysSetting(OverlayType type);
 
-	// Red alert siren and symbol
+	// Red alert siren and symbol.
 	static bool PlayAudioAlert();
 	static bool DisplayVisualAlert();
 	static bool DoAlertHelper(AlertIndicator toDo);
 
 	static int GetPreviousSaveCount();
 
+
 public:
-	// Red alert siren and symbol
+	// Red alert siren and symbol.
 	static MultiPreference<AlertIndicator, 0> alertIndicator;
 	// Auto aim setting, either "off", "always on", or "when firing".
 	static MultiPreference<AutoAim, 2> autoAim;
@@ -176,7 +176,6 @@ public:
 	static MultiPreference<ExtendedJumpEffects, 0> extendedJumpEffects;
 	// Flotsam setting, either "off", "on", "flagship only", or "escorts only".
 	static MultiPreference<FlotsamCollection, 1> flotsamCollection;
-
 };
 
 
