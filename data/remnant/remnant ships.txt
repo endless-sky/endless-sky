@@ -920,9 +920,9 @@ ship "Merganser"
 		"ion resistance energy" -0.05
 		"scramble resistance" 0.1
 		"scramble resistance energy" -0.05
-		"thrust" 5.0
-		"turn" 60.0
-		"reverse thrust" 5.0
+		"thrust" 7.5
+		"turn" 90.0
+		"reverse thrust" 7.5
 		"flare sprite" "effect/remnant flare/small"
 			"frame rate" 5
 		"flare sound" "plasma tiny"
