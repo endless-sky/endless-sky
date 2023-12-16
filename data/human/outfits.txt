@@ -205,7 +205,7 @@ outfit "E54-DI Shield Capacitor"
 outfit "Light Hull Plating"
 	category "Systems"
 	cost 35000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/light plating"
 	"mass" 20
 	"outfit space" -12
 	"hull" 400
@@ -215,7 +215,7 @@ outfit "Light Hull Plating"
 outfit "Heavy Hull Plating"
 	category "Systems"
 	cost 75000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/heavy plating"
 	"mass" 45
 	"outfit space" -22
 	"hull" 950
