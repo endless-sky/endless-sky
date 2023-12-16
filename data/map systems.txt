@@ -14511,12 +14511,12 @@ system Fscher
 system Fumalasamakah
 	pos -962.334 301.805
 	government Uninhabited
-	arrival 3000
-	habitable 3000
+	arrival 5000
+	habitable 5600
 	haze _menu/haze-33
 	link Alpherg
-	link Citadelle
 	link Belenos
+	link Citadelle
 	link Thuban
 	asteroids "small rock" 4 12
 	trade Clothing 318
@@ -14534,17 +14534,17 @@ system Fumalasamakah
 	fleet "Small CCOR" 2500
 	fleet "Large CCOR" 4000
 	object
-		sprite star/o5
+		sprite star/b5
 		period 10
 	object
 		sprite planet/dust1-b
 		distance 757.697
-		period 152.315
+		period 111.483
 		offset -99
 	object
 		sprite planet/gas0-b
 		distance 3608.23
-		period 1582.85
+		period 1158.53
 		offset 21
 		object
 			sprite planet/cloud0
@@ -14560,7 +14560,7 @@ system Fumalasamakah
 		sprite planet/gas1
 			scale 1.3
 		distance 6016.11
-		period 3407.79
+		period 2494.24
 		object
 			sprite planet/ice1
 			distance 575.411

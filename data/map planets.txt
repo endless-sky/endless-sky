@@ -2272,6 +2272,7 @@ planet Jakobsen
 	spaceport `The spaceport is a wholly artificial island constructed near the center of one of the larger archipelagos. Surrounded by wave-breakers and raised several meters above the water line, the landing platforms are partially protected from the dangers of the planet's storms; additionally, the smaller pads can be lowered into underground hangars to prevent them from being swept away.`
 	outfitter "Basic Outfits"
 	outfitter "Common Outfits"
+	outfitter "Ammo South"
 	bribe 1
 	security 0.33
 
@@ -2546,8 +2547,8 @@ planet Luna
 planet "Mordente-Bridi"
 	attributes CCOR military station urban
 	landscape land/city6
-	description "Mordente-Bridi Station, commonly shortened to M.B. Station, is a testiment to the engineering corps of the now defunct CCOR. Twin cylinders Mordente and Bridi make up the station's hull, built from the strongest armor CCOR could manufacture at scale. Bridi Cylinder is pressurized containing crew quarters and logistical infrastructure, amounting to a significant city, while the Mordente Cylinder contains what was CCOR's main shipyard."
-	spaceport "Almost none of the Mordente Cylinder is pressurized. Within the armored hull is a micro-gravity shipyard complete with worker-shuttles busily zipping about constructing and repairing a plethora of ships and the fighter hangars in addition to the spaceport."
+	description `A testament to the engineering corps of the now defunct CCOR, the massive Mordente-Bridi Station is one of the largest in human space. Twin cylinders Mordente and Bridi make up the station's hull, built from the strongest armor the CCOR could manufacture at scale. Bridi Cylinder is pressurized containing crew quarters and logistical infrastructure, amounting to a significant city, while Mordente Cylinder contains what was the Outer Rim's main shipyard.`
+	spaceport `Apart from the spaceport facilities, almost none of the Mordente Cylinder is pressurized. Making up most of its armored hull is a micro-gravity shipyard, which despite not being subject to a central government and defense force has remained quite busy. Worker shuttles are busily flying about the large space, tending to a multitude of ships; you notice that a few of them are also engaged in constructing new ships.`
 	shipyard "Advanced Southern Pirates"
 	shipyard "Betelgeuse Advanced"
 	shipyard "Betelgeuse Basics"
