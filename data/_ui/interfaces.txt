@@ -541,7 +541,7 @@ interface "plugins"
 	line
 		from -230 -222 to -10 -221
 	box "plugin list"
-		from -250 -215 to -10 180
+		from -250 -214 to -10 180
 	box "plugin description"
 		from 250 -240 to 10 180
 
