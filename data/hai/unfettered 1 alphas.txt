@@ -1296,8 +1296,10 @@ mission "<uhai> 9: Capture The Alpha Auxiliary"
 			branch nogift
 				"unfettered rep: Mera" < 2
 			`	"In fact, here is a gift for you to help with that: a Fuel Processor. Don't ask how I got it and you can keep it, deal?`
+			`	She also hands you a small tablet that automatically unlocks as you touch it. "Whilst we're exchanging presents... This will allow us to communicate privately over large distances, should the circumstances require it."`
 			action
 				outfit "Fuel Processor"
+				set "unfettered: Mera line"
 			label nogift
 			`	"Considering the damage left on the Auxiliary you will probably not have much time to wait to fuel up from the local stars. Finally, be prepared for a fight in space, as well as within the ship itself, in order to claim it, although I suspect you should be able to leave the ship disabled and come back to gear for boarding, given how isolated it has to be."`
 				accept

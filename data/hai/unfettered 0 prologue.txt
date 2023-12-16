@@ -598,6 +598,7 @@ mission "<uhai> 0: Bring Hai"
 				goto continue
 			label translate
 			action
+				"unfettered: Merora translate" ++
 				log "Minor People" "Merora" "A young adolescent Hai that came to Unfettered space after losing her parents to pirates. She is handling the loss very well, at least on the surface."
 			`	"Great! I am Merora, by the way." She looks around, noticing the way some people are staring at you. Surprisingly they seem to be staring at her almost as much as they do at you. She explains, "I came to Unfettered space when I had nowhere left to turn to, just a few weeks ago. I don't feel like I belong here yet, or anywhere for that matter. So trust me, I know what it feels like to be isolated here. What about you?" she asks.`
 			`	You begin to introduce yourself to her, but barely get your name out before you are both distracted as the proceedings resume. A child, younger - or at least smaller - than any other you've seen on stage so far, approaches the Chiefs. Also alone, the child seems scared and perhaps even lost as they speak, so softly even those on stage must be straining to hear. One of the Chiefs breaks ranks to kneel by the child, comforting them as they speak quietly to each other.`

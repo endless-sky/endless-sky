@@ -17,16 +17,86 @@ mission "<uhai> 10: Belt Materials"
 	source "Firelode"
 	waypoint "Wah Yoot"
 	destination "Darkcloak"
+	# some nuances are lost with a translator
+	substitutions
+		<brosis> "brothers and sisters"
+		<brosis> "[brothers, sisters]"
+			not "unfettered: Mera line"
+		<brethren> "brethren"
+		<brethren> "[brothers, sisters]"
+			not "unfettered: Mera line"
+		<kin> "kin"
+		<kin> "[brothers, sisters]"
+			not "unfettered: Mera line"
+		<reckless> "reckless"
+		<reckless> "[impatient, reckless]"
+			not "unfettered: Mera line"
+		<selling> "selling"
+		<selling> "[providing, selling]"
+			not "unfettered: Mera line"
+		<welcomed> "welcomed"
+		<welcomed> "[rewarded, welcomed]"
+			not "unfettered: Mera line"
 	to offer
 		has "salary: Unfettered"
 	on offer
 		conversation
-			`Not often do you see so much activity in Unfettered space. It looks like a major undertaking is about to happen, and you will probably be a part of it. When you land Mera is already in the process of spreading a message for all Unfettered to hear, her voice somehow present across the entire spaceport. "The time has come, brothers and sisters! Now all that is needed is to spread the word, and our brethren from Hai space will join us in glorious victory! But let us not be reckless. In order to win we will need ships and in order to welcome our kin we will need housing! For both we will need more materials, and even resources of the most basic kind. That is why we should all start gathering them here."`
+			`Not often do you see so much activity in Unfettered space. It looks like a major undertaking is about to happen, and you will probably be a part of it. When you land, Mera is already in the process of spreading a message for all Unfettered to hear, her voice somehow present across the entire spaceport.`
+			`	She speaks in Hai but she made sure to provide you with the translation on the device she gave you back when you were preparing to battle the Auxiliary. You would easily be able to read it to get a full translation.`
+				to display
+					not "unfettered: Mera line"
+			branch speak
+				not "unfettered: Merora translate"
+			`	Thankfully you spot Merora, the young Hai that helped you translate some time ago, back in the temple on this very same planet, when the elder's meeting with the public was happening.`
+				to display
+					has "unfettered: Merora translate"
+			`	As always you have your translator with you, ready for action.`
+				to display
+					has "language: Hai"
+			`	You also spot a translator or two near the stage, apparently for public use. They may be there for the occasional pirate the Unfettered may make use of, but there does not seem to be anyone using them here.`
+			choice
+				`	(Go speak with Merora.)`
+					to display
+						has "unfettered: Merora translate"
+				`	(Grab the translator.)`
+					to display
+						not "language: Hai"
+					goto speaktake
+				`	(Use your translator.)`
+					to display
+						has "language: Hai"
+					goto speak
+			`	You notice she seems to have made a few friends since the last time you saw her, and she is so busy discussing with them that she hardly notices you until you are right in front of her. She stands there for a few seconds, maw open, before gaining back focus and smiling with joy. "<first>! It's been a while." She presents her comrades to you, "These are X and Y, they work on the same ship I do. To be frank we don't see battle often, but I've had my fair share of it already, so I'm more than happy with that!" She says the last part with a bit of shame, but honesty.`
+			choice
+				`	"Can you translate for me, like last time?"`
+				`	"Do you know if I may borrow these translators?"`
+					goto borrow
+			label translate
+			action
+				"unfettered: Merora translate" ++
+			`	"Of course, I'd be more than happy to!" She listens closely, her ears moving towards the scene, before speaking, "I'll be giving you a short version because I have to go back to our ship soon! She says we need to gather materials from asteroids, but not silicon." She continues listening, focused, and finishes, "There are asteroid scanners available in the outfitter. Oh, and she really wants titanium, but there is not much around here. That's it, we'll be going back to our ship for the mining, this seems like a good opportunity. I hope we'll see each other again!" They move to their ship at a surprisingly quick pace, probably hoping to beat the competition.`
+				goto speakover
+			label borrow
+			`	"These? Oh, sure, they are for Unfettered humans of all kind, after all!"`
+			choice
+				`	"I will use one, then."`
+				`	"Can you translate for me, like last time?"`
+					goto translate
+			`	"Suit yourself, that's what they are here for." She and the others then walk away to a nearby bar to listen to the rest.`
+			label speaktake
+			action
+				set "unfettered: used translator"
+			label speak
+			`	"The time has come, <brosis>! Now all that is needed is to spread the word, and our <brethren> from Hai space will join us in glorious victory! But let us not be <reckless>. In order to win we will need ships and in order to welcome our <kin> we will need housing! For both we will need more materials, and even resources of the most basic kind. That is why we should all start gathering them here."`
 			choice
 				`	"What kind of materials do you need?"`
-			`	Whether she hears your question or not, she responds to it explicitly, speaking to all that are present, "Do not bother with silicon, friends, we already have plenty, and its uses are limited. No, we need a lot of silver and lead. Also do not forget we are selling asteroid scanners in the outfitter, should you require any.`
-			`	"Titanium would also be welcomed, but as you well know there is only a very limited amount of it left in this system, and the fact there is a lot in Ik'kara'ka, as the aliens of the north call it, does little to help us."`
-			`	It looks like she is done speaking to the others, so now she comes to you, "Hello, <first>. It's been a while since I last saw you. Heard you took care of that Auxiliary and brought back quite the treasure; great work!" Her tail moves from left to right as she says this, which is probably a sign of excitement. "The renovation efforts are progressing at rapid pace, but we still need all the hands we can get!"`
+			`	Whether she hears your question or not, she responds to it explicitly, speaking to all that are present, "Do not bother with silicon, friends, we already have plenty, and its uses are limited. No, we need a lot of silver and lead. Also do not forget we are <selling> asteroid scanners in the outfitter, should you require any.`
+			`	"Titanium would also be <welcomed>, but as you well know there is only a very limited amount of it left in this system, and the fact there is a lot in Ik'kara'ka, as the aliens of the north call it, does little to help us."`
+			label speakover
+			`	It looks like Mera is done speaking to the others, and she comes to you, "Hello, <first>. It's been a while since I last saw you. Heard you took care of that Auxiliary and brought back quite the treasure; great work!" Her tail moves from left to right as she says this, which is probably a sign of excitement. "The renovation efforts are progressing at rapid pace, but we still need all the hands we can get!"`
+			`	You see how she looks at the translator you have and give it back before doing anything else.`
+				to display
+					has "unfettered: used translator"
 			label choice
 			choice
 				`	"I'll go collect the minerals, then."`
