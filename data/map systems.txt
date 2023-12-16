@@ -6540,7 +6540,7 @@ system Belenos
 		period 599.355
 		offset 63
 		object Mordente-Bridi
-			sprite planet/station5
+			sprite planet/station18
 				scale 0.5
 			distance 185
 			period 40
