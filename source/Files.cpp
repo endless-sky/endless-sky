@@ -50,6 +50,7 @@ namespace {
 	string soundPath;
 	string savePath;
 	string testPath;
+	string pluginsPath;
 
 	File errorLog;
 
@@ -164,6 +165,8 @@ void Files::Init(const char * const *argv)
 	// clear to the user where plugins should go.
 	CreateFolder(config + "plugins/");
 
+	pluginsPath = config + "plugins/";
+
 	// Check that all the directories exist.
 	if(!Exists(dataPath) || !Exists(imagePath) || !Exists(soundPath))
 		throw runtime_error("Unable to find the resource directories!");
@@ -220,6 +223,13 @@ const string &Files::Saves()
 const string &Files::Tests()
 {
 	return testPath;
+}
+
+
+
+const string &Files::Plugins()
+{
+	return pluginsPath;
 }
 
 
@@ -474,6 +484,111 @@ void Files::Delete(const string &filePath)
 	DeleteFileW(Utf8::ToUTF16(filePath).c_str());
 #else
 	unlink(filePath.c_str());
+#endif
+}
+
+
+
+int Files::DeleteDir(const string &path)
+{
+#if defined (_WIN32)
+	HANDLE hFile; // Handle to directory
+	std::string strFilePath; // Filepath
+	std::string strPattern = path + "\\*.*"; // Pattern
+	WIN32_FIND_DATAW FileInformation; // File information
+
+	hFile = FindFirstFileW(Utf8::ToUTF16(strPattern).c_str(), &FileInformation);
+	if(hFile != INVALID_HANDLE_VALUE)
+	{
+		do {
+			if(FileInformation.cFileName[0] != '.')
+			{
+				strFilePath.erase();
+				strFilePath = path + "\\" + Utf8::ToUTF8(FileInformation.cFileName);
+
+				if(FileInformation.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+				{
+					// Delete subdirectory
+					int iRC = DeleteDir(strFilePath);
+					if(iRC)
+						return iRC;
+				}
+				else
+				{
+					// Set file attributes
+					if(SetFileAttributesW(Utf8::ToUTF16(strFilePath).c_str(), FILE_ATTRIBUTE_NORMAL) == FALSE)
+						return GetLastError();
+
+					// Delete file
+					if(DeleteFileW(Utf8::ToUTF16(strFilePath).c_str()) == FALSE)
+						return GetLastError();
+				}
+			}
+		} while(FindNextFileW(hFile, &FileInformation) == TRUE);
+
+		// Close handle
+		FindClose(hFile);
+
+		DWORD dwError = GetLastError();
+		if(dwError != ERROR_NO_MORE_FILES)
+			return dwError;
+	}
+	return 0;
+#else
+	DIR *dir = opendir(path.c_str());
+	if(!dir)
+	{
+		std::cerr << "Error opening directory.\n";
+		return true;
+	}
+
+	struct dirent *entry;
+	while((entry = readdir(dir)) != nullptr)
+	{
+		if(strcmp(entry->d_name, ".") != 0 && strcmp(entry->d_name, "..") != 0)
+		{
+			std::string filePath = path + "/" + entry->d_name;
+
+			struct stat fileStat;
+			if(lstat(filePath.c_str(), &fileStat) != 0)
+			{
+				std::cerr << "Error getting file/directory stat.\n";
+				closedir(dir);
+				return true;
+			}
+
+			if(S_ISDIR(fileStat.st_mode))
+			{
+				// Recursively delete subdirectories.
+				if(DeleteDir(filePath))
+				{
+					closedir(dir);
+					return true;
+				}
+			}
+			else
+			{
+				// Delete files within the directory.
+				if(unlink(filePath.c_str()) != 0)
+				{
+					std::cerr << "Error deleting file: " << filePath << "\n";
+					closedir(dir);
+					return true;
+				}
+			}
+		}
+	}
+
+	closedir(dir);
+
+	// Retry removing the directory after emptying it.
+	if(rmdir(path.c_str()) != 0)
+	{
+		std::cerr << "Error removing directory: " << path << "\n";
+		return true;
+	}
+
+	return false;
 #endif
 }
 

@@ -42,6 +42,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "UI.h"
 
 #include <chrono>
+#include <curl/curl.h>
 #include <iostream>
 #include <map>
 #include <thread>
@@ -52,7 +53,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 
 #ifdef _WIN32
-#define STRICT
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 #include <mmsystem.h>
@@ -84,6 +84,7 @@ int main(int argc, char *argv[])
 	if(argc > 1)
 		InitConsole();
 #endif
+
 	Conversation conversation;
 	bool debugMode = false;
 	bool loadOnly = false;
@@ -126,6 +127,9 @@ int main(int argc, char *argv[])
 
 	// Whether we are running an integration test.
 	const bool isTesting = !testToRunName.empty();
+	// Init curl.
+	curl_global_init(CURL_GLOBAL_DEFAULT);
+
 	try {
 		// Load plugin preferences before game data if any.
 		Plugins::LoadSettings();
@@ -214,6 +218,7 @@ int main(int argc, char *argv[])
 	{
 		Audio::Quit();
 		GameWindow::ExitWithError(error.what(), !isTesting);
+		curl_global_cleanup();
 		return 1;
 	}
 
@@ -226,6 +231,9 @@ int main(int argc, char *argv[])
 
 	Audio::Quit();
 	GameWindow::Quit();
+
+	// Exit curl.
+	curl_global_cleanup();
 
 	return 0;
 }

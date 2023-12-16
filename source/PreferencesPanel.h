@@ -20,9 +20,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ClickZone.h"
 #include "Command.h"
+#include "Plugins.h"
 #include "Point.h"
+#include "Sprite.h"
 #include "text/WrappedText.h"
 
+#include <future>
+#include <nlohmann/json.hpp>
 #include <string>
 #include <vector>
 
@@ -35,6 +39,7 @@ public:
 
 	// Draw this panel.
 	virtual void Draw() override;
+	virtual void Step() override;
 
 
 protected:
@@ -51,6 +56,7 @@ private:
 	void DrawControls();
 	void DrawSettings();
 	void DrawPlugins();
+	void DrawPluginInstalls();
 
 	void DrawTooltips();
 
@@ -62,6 +68,7 @@ private:
 	void HandleDown();
 	void HandleConfirm();
 
+	void ProcessPluginIndex();
 
 private:
 	int editing;
@@ -84,9 +91,18 @@ private:
 
 	std::string selectedPlugin;
 
+	Plugins::InstallData *selectedPluginInstall;
+	unsigned int pluginInstallPages = 1;
+	unsigned int currentPluginInstallPage = 0;
+	bool downloadedInfo = false;
+	std::vector<std::future<void>> installFeedbacks;
+	std::vector<Plugins::InstallData> pluginInstallData;
+	Set<Sprite> icons;
+
 	std::vector<ClickZone<Command>> zones;
 	std::vector<ClickZone<std::string>> prefZones;
 	std::vector<ClickZone<std::string>> pluginZones;
+	std::vector<ClickZone<Plugins::InstallData*>> pluginInstallZones;
 };
 
 

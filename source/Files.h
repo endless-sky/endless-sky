@@ -43,6 +43,7 @@ public:
 	static const std::string &Sounds();
 	static const std::string &Saves();
 	static const std::string &Tests();
+	static const std::string &Plugins();
 
 	// Get a list of all regular files in the given directory.
 	static std::vector<std::string> List(std::string directory);
@@ -58,6 +59,7 @@ public:
 	static void Copy(const std::string &from, const std::string &to);
 	static void Move(const std::string &from, const std::string &to);
 	static void Delete(const std::string &filePath);
+	static int DeleteDir(const std::string &path);
 
 	// Get the filename from a path.
 	static std::string Name(const std::string &path);
