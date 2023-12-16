@@ -3021,8 +3021,9 @@ mission "FW Assassination [1]"
 		"reputation: Pirate" > -100
 		has "event: war begins"
 	source
-		government "Pirate"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "south pirate"
+		not attributes "slavery ban"
 	npc kill
 		government "Free Worlds"
 		personality staying target
