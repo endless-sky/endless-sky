@@ -199,7 +199,7 @@ ship "Pug Arfecta"
 		"hull repair rate" 5
 		"hull energy" 5
 		"cloaking fuel" -.2
-		"reverse thrust" 66
+		"reverse thrust" 99
 		"reverse thrusting energy" 4.9
 		"reverse thrusting heat" 6.9
 		weapon
