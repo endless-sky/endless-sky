@@ -133,16 +133,18 @@ mission "<uhai> 10: Belt Materials"
 		system "Ik'kara'ka"
 		government "Hai (Unfettered)"
 		personality harvests mining uninterested staying marked
-		"Shield Beetle" "Domecatus"
+		ship "Shield Beetle" "Domecatus"
 	npc
 		government "Hai (Unfettered)"
 		personality mining uninterested launching
-		"Lightning Bug" "Thief"
+		ship "Lightning Bug" "The Ten Compatriots"
+		on kill
+			clear "unfettered: Merora translate"
 	npc
 		system "Wah Yoot"
 		government "Hai (Unfettered)"
 		personality harvests uninterested staying entering
-		"Water Bug" "Hoarder"
+		ship "Water Bug" "Hoarder"
 	to fail
 		has "unfettered: outcast"
 	on fail
