@@ -165,7 +165,7 @@ outfit "L-480 Regenerator"
 outfit "E4-PA Shield Capacitor"
 	category "Systems"
 	cost 12000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/e4 capacitor"
 	"mass" 7
 	"outfit space" -7
 	"shields" 450
@@ -175,7 +175,7 @@ outfit "E4-PA Shield Capacitor"
 outfit "E18-SD Shield Capacitor"
 	category "Systems"
 	cost 20000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/e18 capacitor"
 	"mass" 18
 	"outfit space" -18
 	"shields" 850
@@ -185,7 +185,7 @@ outfit "E18-SD Shield Capacitor"
 outfit "E30-JL Shield Capacitor"
 	category "Systems"
 	cost 35000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/e30 capacitor"
 	"mass" 26
 	"outfit space" -26
 	"shields" 1900
@@ -195,7 +195,7 @@ outfit "E30-JL Shield Capacitor"
 outfit "E54-DI Shield Capacitor"
 	category "Systems"
 	cost 65000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/e54 capacitor"
 	"mass" 38
 	"outfit space" -38
 	"shields" 3750
