@@ -2386,6 +2386,62 @@ ship "Heavy Shuttle"
 
 
 
+ship "Hogshead"
+	sprite "ship/hogshead"
+	thumbnail "thumbnail/hogshead"
+	attributes
+		category "Space Liner"
+		"cost" 3150000
+		"shields" 3200
+		"hull" 1900
+		"required crew" 18
+		"bunks" 84
+		"mass" 210
+		"drag" 4.3
+		"heat dissipation" .55
+		"fuel capacity" 600
+		"cargo space" 45
+		"outfit space" 320
+		"weapon capacity" 80
+		"engine capacity" 90
+		weapon
+			"blast radius" 51
+			"shield damage" 510
+			"hull damage" 255
+			"hit force" 765
+	outfits
+		"Heavy Anti-Missile Turret"
+		"Anti-Missile Turret"
+
+		"S3 Thermionic"
+		"KP-6 Photovoltaic Array" 2
+		"LP036a Battery Pack"
+
+		"D41-HY Shield Generator"
+		"Small Radar Jammer" 2
+		"Luxury Accommodations"
+		
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Hyperdrive"
+
+	engine 34 42
+	engine -34 42
+	gun -17.5 -79.5
+	gun 17.5 -79.5
+	turret 0 -46
+	turret 0 0
+	leak "leak" 50 40
+	leak "big leak" 70 40
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 25
+	explode "large explosion" 10
+	"final explode" "final explosion medium"
+	description "Manufactured from a forgotten shipyard many centuries ago, the Hogshead got its iconic name from the keg-like shape of its engine pods being a hot topic of discussion for captains everywhere. The ship quickly became popular after first being released for consumer purchase and was commonly seen around various systems as the go-to `space bus` in human space. Unfortunately, only a few decades after introducing the ship, the shipyard went bankrupt and was never seen again, leaving the Hogshead to history as their one-hit-wonder. In the current era, Hogsheads are much more uncommon, typically treated as `unsightly` compared to other vessels such as the Star Queen, but a few places in human space still sell them.`
+
+
+
 ship "Lance"
 	sprite "ship/lance"
 	thumbnail "thumbnail/lance"
@@ -3646,62 +3702,6 @@ ship "Star Barge"
 	explode "small explosion" 10
 	description "The Syndicate CT-50 Star Barge is little more than a cluster of cargo containers with an engine at one end and a cockpit on the other. It is a slow and ugly ship, but it can carry enough cargo to earn its captain a steady income even in parts of the galaxy where it is hard to find passengers to carry or courier missions."
 	description "	Because they often carry valuable cargo, and because they are too slow to evade any attackers, Star Barges are a common target of pirates."
-
-
-# Still need to fix a few things.
-ship "Star Liner"
-	sprite "ship/star liner"
-	thumbnail "thumbnail/star liner"
-	attributes
-		category "Space Liner"
-		"cost" 3150000
-		"shields" 3200
-		"hull" 1900
-		"required crew" 18
-		"bunks" 84
-		"mass" 210
-		"drag" 4.3
-		"heat dissipation" .55
-		"fuel capacity" 600
-		"cargo space" 45
-		"outfit space" 320
-		"weapon capacity" 80
-		"engine capacity" 90
-		weapon
-			"blast radius" 60
-			"shield damage" 600
-			"hull damage" 300
-			"hit force" 900
-	outfits
-		"Heavy Anti-Missile Turret"
-		"Anti-Missile Turret"
-
-		"S3 Thermionic"
-		"KP-6 Photovoltaic Array" 2
-		"LP036a Battery Pack"
-
-		"D41-HY Shield Generator"
-		"Small Radar Jammer" 2
-		"Luxury Accommodations"
-		
-		"Greyhound Plasma Thruster"
-		"Greyhound Plasma Steering"
-		"Hyperdrive"
-
-	engine 34 42
-	engine -34 42
-	gun -17.5 -79.5
-	gun 17.5 -79.5
-	turret 0 -46
-	turret 0 0
-	leak "leak" 50 50
-	leak "big leak" 80 30
-	explode "tiny explosion" 10
-	explode "small explosion" 25
-	explode "medium explosion" 25
-	explode "large explosion" 10
-	"final explode" "final explosion medium"
-	description "Star Liner."
 
 
 

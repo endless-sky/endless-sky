@@ -1768,6 +1768,7 @@ Files:
  images/outfit/warzone?core*
  images/planet/asura*
  images/planet/*beryl*
+ images/planet/station18*
  images/planet/tschyss*
  images/planet/*vajra*
  images/planet/vesvi*
@@ -1812,6 +1813,7 @@ Files:
  images/ship/gegno?shale*
  images/ship/gegno?slate*
  images/ship/gegno?tridymite*
+ images/ship/hogshead*
  images/ship/*jje*
  images/ship/modified?dromedary*
  images/ship/modified?dromedary?wreck*
@@ -1838,6 +1840,7 @@ Files:
  images/thumbnail/gegno?shale*
  images/thumbnail/gegno?slate*
  images/thumbnail/gegno?tridymite*
+ images/thumbnail/hogshead*
  images/thumbnail/modified?dromedary*
  images/thumbnail/modified?dromedary?wreck*
  images/thumbnail/saber*
