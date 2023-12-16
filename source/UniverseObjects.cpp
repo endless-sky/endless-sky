@@ -207,7 +207,7 @@ void UniverseObjects::CheckReferences()
 		return true;
 	};
 	// Set the name of an "undefined" class object, so that it can be written to the player's save.
-	auto NameAndWarn = [=](const string &noun, auto it)
+	auto NameAndWarn = [=](const string &noun, auto &it)
 	{
 		it.second.SetName(it.first);
 		Warn(noun, it.first);
