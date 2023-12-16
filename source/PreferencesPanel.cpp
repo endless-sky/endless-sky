@@ -135,13 +135,13 @@ void PreferencesPanel::Draw()
 		info.SetCondition("show previous");
 	if(currentSettingsPage + 1 < SETTINGS_PAGE_COUNT)
 		info.SetCondition("show next");
-	if(selectedPluginInstall)
+	if(latestPlugin)
 	{
-		if(selectedPluginInstall->installed)
+		if(latestPlugin->installed)
 			info.SetCondition("installed plugin");
-		if(!selectedPluginInstall->installed)
+		if(!latestPlugin->installed)
 			info.SetCondition("can install");
-		if(selectedPluginInstall->outdated && selectedPluginInstall->installed)
+		if(latestPlugin->outdated && latestPlugin->installed)
 			info.SetCondition("can update");
 	}
 	if(currentPluginInstallPage > 0)
@@ -195,27 +195,36 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		return true;
 	}
 
-	if(key == SDLK_DOWN && static_cast<unsigned>(selected + 1) < zones.size())
-		++selected;
-	else if(key == SDLK_UP && selected > 0)
-		--selected;
+	if(key == SDLK_DOWN)
+		HandleDown();
+	else if(key == SDLK_UP)
+		HandleUp();
 	else if(key == SDLK_RETURN)
-		editing = selected;
+		HandleConfirm();
 	else if(key == 'b' || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		Exit();
 	else if(key == 'c' || key == 's' || key == 'p')
 	{
 		page = key;
 		hoverItem.clear();
+		selected = 0;
 	}
 	else if(key == 'o' && page == 'p')
 		Files::OpenUserPluginFolder();
 	else if(key == 'u' && page == 'p')
 		Plugins::DeletePlugin(selectedPlugin);
 	else if((key == 'n' || key == SDLK_PAGEUP) && currentSettingsPage < SETTINGS_PAGE_COUNT - 1)
+	{
 		++currentSettingsPage;
+		selected = 0;
+		selectedItem.clear();
+	}
 	else if((key == 'r' || key == SDLK_PAGEDOWN) && currentSettingsPage > 0)
+	{
 		--currentSettingsPage;
+		selected = 0;
+		selectedItem.clear();
+	}
 	else if((key == 'x' || key == SDLK_DELETE) && (page == 'c'))
 	{
 		if(zones[latest].Value().KeyName() != Command::MENU.KeyName())
@@ -229,17 +238,25 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 			ProcessPluginIndex();
 		}
 	}
-	else if(key == 'i' && page == 'i' && selectedPluginInstall && selectedPluginInstall->url.size()
-		&& !selectedPluginInstall->installed)
-		installFeedbacks.emplace_back(Plugins::Install(selectedPluginInstall));
-	else if(key == 'u' && page == 'i' && selectedPluginInstall && selectedPluginInstall->url.size()
-		&& selectedPluginInstall->outdated)
-		installFeedbacks.emplace_back(Plugins::Update(selectedPluginInstall));
+	else if(key == 'i' && page == 'i' && latestPlugin && latestPlugin->url.size()
+		&& !latestPlugin->installed)
+		installFeedbacks.emplace_back(Plugins::Install(latestPlugin));
+	else if(key == 'u' && page == 'i' && latestPlugin && latestPlugin->url.size()
+		&& latestPlugin->outdated)
+		installFeedbacks.emplace_back(Plugins::Update(latestPlugin));
 	else if(key == 'r' && page == 'i')
+	{
 		currentPluginInstallPage = currentPluginInstallPage > 0 ? currentPluginInstallPage - 1 : 0;
+		selected = 0;
+		selecPluginInstall = nullptr;
+	}
 	else if(key == 'e' && page == 'i')
+	{
 		currentPluginInstallPage = currentPluginInstallPage < pluginInstallPages - 1 ?
 			currentPluginInstallPage + 1 : pluginInstallPages - 1;
+		selected = 0;
+		selecPluginInstall = nullptr;
+	}
 	else
 		return false;
 
@@ -267,88 +284,7 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 	for(const auto &zone : prefZones)
 		if(zone.Contains(point))
 		{
-			// For some settings, clicking the option does more than just toggle a
-			// boolean state keyed by the option's name.
-			if(zone.Value() == ZOOM_FACTOR)
-			{
-				int newZoom = Screen::UserZoom() + ZOOM_FACTOR_INCREMENT;
-				Screen::SetZoom(newZoom);
-				if(newZoom > ZOOM_FACTOR_MAX || Screen::Zoom() != newZoom)
-				{
-					// Notify the user why setting the zoom any higher isn't permitted.
-					// Only show this if it's not possible to zoom the view at all, as
-					// otherwise the dialog will show every time, which is annoying.
-					if(newZoom == ZOOM_FACTOR_MIN + ZOOM_FACTOR_INCREMENT)
-						GetUI()->Push(new Dialog(
-							"Your screen resolution is too low to support a zoom level above 100%."));
-					Screen::SetZoom(ZOOM_FACTOR_MIN);
-				}
-				// Convert to raw window coordinates, at the new zoom level.
-				point *= Screen::Zoom() / 100.;
-				point += .5 * Point(Screen::RawWidth(), Screen::RawHeight());
-				SDL_WarpMouseInWindow(nullptr, point.X(), point.Y());
-			}
-			else if(zone.Value() == BOARDING_PRIORITY)
-				Preferences::ToggleBoarding();
-			else if(zone.Value() == BACKGROUND_PARALLAX)
-				Preferences::ToggleParallax();
-			else if(zone.Value() == EXTENDED_JUMP_EFFECTS)
-				Preferences::ToggleExtendedJumpEffects();
-			else if(zone.Value() == VIEW_ZOOM_FACTOR)
-			{
-				// Increase the zoom factor unless it is at the maximum. In that
-				// case, cycle around to the lowest zoom factor.
-				if(!Preferences::ZoomViewIn())
-					while(Preferences::ZoomViewOut()) {}
-			}
-			else if(zone.Value() == SCREEN_MODE_SETTING)
-				Preferences::ToggleScreenMode();
-			else if(zone.Value() == VSYNC_SETTING)
-			{
-				if(!Preferences::ToggleVSync())
-					GetUI()->Push(new Dialog(
-						"Unable to change VSync state. (Your system's graphics settings may be controlling it instead.)"));
-			}
-			else if(zone.Value() == STATUS_OVERLAYS_ALL)
-				Preferences::CycleStatusOverlays(Preferences::OverlayType::ALL);
-			else if(zone.Value() == STATUS_OVERLAYS_FLAGSHIP)
-				Preferences::CycleStatusOverlays(Preferences::OverlayType::FLAGSHIP);
-			else if(zone.Value() == STATUS_OVERLAYS_ESCORT)
-				Preferences::CycleStatusOverlays(Preferences::OverlayType::ESCORT);
-			else if(zone.Value() == STATUS_OVERLAYS_ENEMY)
-				Preferences::CycleStatusOverlays(Preferences::OverlayType::ENEMY);
-			else if(zone.Value() == STATUS_OVERLAYS_NEUTRAL)
-				Preferences::CycleStatusOverlays(Preferences::OverlayType::NEUTRAL);
-			else if(zone.Value() == AUTO_AIM_SETTING)
-				Preferences::ToggleAutoAim();
-			else if(zone.Value() == AUTO_FIRE_SETTING)
-				Preferences::ToggleAutoFire();
-			else if(zone.Value() == EXPEND_AMMO)
-				Preferences::ToggleAmmoUsage();
-			else if(zone.Value() == FLOTSAM_SETTING)
-				Preferences::ToggleFlotsam();
-			else if(zone.Value() == TURRET_TRACKING)
-				Preferences::Set(FOCUS_PREFERENCE, !Preferences::Has(FOCUS_PREFERENCE));
-			else if(zone.Value() == REACTIVATE_HELP)
-			{
-				for(const auto &it : GameData::HelpTemplates())
-					Preferences::Set("help: " + it.first, false);
-			}
-			else if(zone.Value() == SCROLL_SPEED)
-			{
-				// Toggle between three different speeds.
-				int speed = Preferences::ScrollSpeed() + 20;
-				if(speed > 60)
-					speed = 20;
-				Preferences::SetScrollSpeed(speed);
-			}
-			else if(zone.Value() == DATE_FORMAT)
-				Preferences::ToggleDateFormat();
-			else if(zone.Value() == ALERT_INDICATOR)
-				Preferences::ToggleAlert();
-			// All other options are handled by just toggling the boolean state.
-			else
-				Preferences::Set(zone.Value(), !Preferences::Has(zone.Value()));
+			HandleSettingsString(zone.Value(), point);
 			break;
 		}
 
@@ -362,7 +298,7 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 	for(const auto &zone : pluginInstallZones)
 		if(zone.Contains(point))
 		{
-			selectedPluginInstall = zone.Value();
+			clickedPluginInstall = zone.Value();
 			break;
 		}
 
@@ -390,6 +326,12 @@ bool PreferencesPanel::Hover(int x, int y)
 	for(const auto &zone : pluginZones)
 		if(zone.Contains(hoverPoint))
 			hoverItem = zone.Value();
+
+	Plugins::InstallData *newData = nullptr;
+	for(const auto &zone : pluginInstallZones)
+		if(zone.Contains(hoverPoint))
+			newData = zone.Value();
+	hoverPluginInstall = newData;
 
 	return true;
 }
@@ -557,7 +499,8 @@ void PreferencesPanel::DrawControls()
 			bool isHovering = (index == hover && !isEditing);
 			if(!isHovering && index == selected)
 			{
-				table.SetHighlight(-120, 54);
+				auto textWidth = FontSet::Get(14).Width(command.Description());
+				table.SetHighlight(-120, textWidth - 110);
 				table.DrawHighlight(back);
 			}
 
@@ -722,6 +665,8 @@ void PreferencesPanel::DrawSettings()
 		}
 
 		// Record where this setting is displayed, so the user can click on it.
+		// Temporarily reset the row's size so the clickzone can cover the entire preference.
+		table.SetHighlight(-120, 120);
 		prefZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), setting);
 
 		// Get the "on / off" text for this setting. Setting "isOn"
@@ -875,10 +820,24 @@ void PreferencesPanel::DrawSettings()
 			text = isOn ? "on" : "off";
 
 		if(setting == hoverItem)
+		{
+			table.SetHighlight(-120, 120);
 			table.DrawHighlight(back);
+		}
+		else if(setting == selectedItem)
+		{
+			auto width = FontSet::Get(14).Width(setting);
+			table.SetHighlight(-120, width - 110);
+			table.DrawHighlight(back);
+		}
+
 		table.Draw(setting, isOn ? medium : dim);
 		table.Draw(text, isOn ? bright : medium);
 	}
+
+	// Sync the currently selected item after the preferences map has been populated.
+	if(selectedItem.empty())
+		selectedItem = prefZones.at(selected).Value();
 }
 
 
@@ -977,6 +936,14 @@ void PreferencesPanel::DrawPluginInstalls()
 
 	const Font &font = FontSet::Get(14);
 
+	if(selecPluginInstall != oldSelecPluginInstall)
+		latestPlugin = selecPluginInstall;
+	if(clickedPluginInstall != oldClickedPluginInstall)
+		latestPlugin = clickedPluginInstall;
+
+	oldSelecPluginInstall = selecPluginInstall;
+	oldClickedPluginInstall = clickedPluginInstall;
+
 	const size_t currentPageIndex = MAX_PLUGIN_INSTALLS_PER_PAGE * currentPluginInstallPage;
 	const int maxIndex = min(currentPageIndex + MAX_PLUGIN_INSTALLS_PER_PAGE, pluginInstallData.size());
 	for(int x = currentPageIndex; x < maxIndex; x++)
@@ -986,18 +953,27 @@ void PreferencesPanel::DrawPluginInstalls()
 			continue;
 		pluginInstallZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), &installData);
 		// Use url as that is more unique, just in case.
-		bool isSelected = (selectedPluginInstall ? installData.url == selectedPluginInstall->url : false);
-		if(isSelected)
+		bool isHover = (hoverPluginInstall ? installData.url == hoverPluginInstall->url : false);
+		bool isClick = (clickedPluginInstall ? installData.url == clickedPluginInstall->url : false);
+		bool isSelec = (selecPluginInstall ? installData.url == selecPluginInstall->url : false);
+		bool isLatest = (latestPlugin ? installData.url == latestPlugin->url : false);
+		if(isHover || isClick)
 			table.DrawHighlight(back);
+		else if(isSelec)
+		{
+			table.SetHighlight(-120, font.Width(selecPluginInstall->name) - 100);
+			table.DrawHighlight(back);
+			table.SetHighlight(-120, 100);
+		}
 		if(installData.installed && installData.outdated)
 			table.Draw(installData.name, outdated);
 		else if(installData.installed)
 			table.Draw(installData.name, dim);
-		else if(isSelected)
+		else if(isLatest)
 			table.Draw(installData.name, bright);
 		else
 			table.Draw(installData.name, medium);
-		if(isSelected)
+		if(isLatest)
 		{
 			const Sprite *sprite = SpriteSet::Get(installData.name + "-libicon");
 			Point top(15., firstY);
@@ -1013,6 +989,9 @@ void PreferencesPanel::DrawPluginInstalls()
 			wrap.Draw(top, medium);
 		}
 	}
+
+	if(!selecPluginInstall && !pluginInstallZones.empty())
+		selecPluginInstall = pluginInstallZones.at(0).Value();	
 }
 
 
@@ -1062,6 +1041,168 @@ void PreferencesPanel::Exit()
 	Command::SaveSettings(Files::Config() + "keys.txt");
 
 	GetUI()->Pop(this);
+}
+
+
+
+void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosition)
+{
+	// For some settings, clicking the option does more than just toggle a
+	// boolean state keyed by the option's name.
+	if(str == ZOOM_FACTOR)
+	{
+		int newZoom = Screen::UserZoom() + ZOOM_FACTOR_INCREMENT;
+		Screen::SetZoom(newZoom);
+		if(newZoom > ZOOM_FACTOR_MAX || Screen::Zoom() != newZoom)
+		{
+			// Notify the user why setting the zoom any higher isn't permitted.
+			// Only show this if it's not possible to zoom the view at all, as
+			// otherwise the dialog will show every time, which is annoying.
+			if(newZoom == ZOOM_FACTOR_MIN + ZOOM_FACTOR_INCREMENT)
+				GetUI()->Push(new Dialog(
+					"Your screen resolution is too low to support a zoom level above 100%."));
+			Screen::SetZoom(ZOOM_FACTOR_MIN);
+		}
+		// Convert to raw window coordinates, at the new zoom level.
+		cursorPosition *= Screen::Zoom() / 100.;
+		cursorPosition += .5 * Point(Screen::RawWidth(), Screen::RawHeight());
+		SDL_WarpMouseInWindow(nullptr, cursorPosition.X(), cursorPosition.Y());
+	}
+	else if(str == BOARDING_PRIORITY)
+		Preferences::ToggleBoarding();
+	else if(str == BACKGROUND_PARALLAX)
+		Preferences::ToggleParallax();
+	else if(str == EXTENDED_JUMP_EFFECTS)
+		Preferences::ToggleExtendedJumpEffects();
+	else if(str == VIEW_ZOOM_FACTOR)
+	{
+		// Increase the zoom factor unless it is at the maximum. In that
+		// case, cycle around to the lowest zoom factor.
+		if(!Preferences::ZoomViewIn())
+			while(Preferences::ZoomViewOut()) {}
+	}
+	else if(str == SCREEN_MODE_SETTING)
+		Preferences::ToggleScreenMode();
+	else if(str == VSYNC_SETTING)
+	{
+		if(!Preferences::ToggleVSync())
+			GetUI()->Push(new Dialog(
+				"Unable to change VSync state. (Your system's graphics settings may be controlling it instead.)"));
+	}
+	else if(str == STATUS_OVERLAYS_ALL)
+		Preferences::CycleStatusOverlays(Preferences::OverlayType::ALL);
+	else if(str == STATUS_OVERLAYS_FLAGSHIP)
+		Preferences::CycleStatusOverlays(Preferences::OverlayType::FLAGSHIP);
+	else if(str == STATUS_OVERLAYS_ESCORT)
+		Preferences::CycleStatusOverlays(Preferences::OverlayType::ESCORT);
+	else if(str == STATUS_OVERLAYS_ENEMY)
+		Preferences::CycleStatusOverlays(Preferences::OverlayType::ENEMY);
+	else if(str == STATUS_OVERLAYS_NEUTRAL)
+		Preferences::CycleStatusOverlays(Preferences::OverlayType::NEUTRAL);
+	else if(str == AUTO_AIM_SETTING)
+		Preferences::ToggleAutoAim();
+	else if(str == AUTO_FIRE_SETTING)
+		Preferences::ToggleAutoFire();
+	else if(str == EXPEND_AMMO)
+		Preferences::ToggleAmmoUsage();
+	else if(str == FLOTSAM_SETTING)
+		Preferences::ToggleFlotsam();
+	else if(str == TURRET_TRACKING)
+		Preferences::Set(FOCUS_PREFERENCE, !Preferences::Has(FOCUS_PREFERENCE));
+	else if(str == REACTIVATE_HELP)
+	{
+		for(const auto &it : GameData::HelpTemplates())
+			Preferences::Set("help: " + it.first, false);
+	}
+	else if(str == SCROLL_SPEED)
+	{
+		// Toggle between three different speeds.
+		int speed = Preferences::ScrollSpeed() + 20;
+		if(speed > 60)
+			speed = 20;
+		Preferences::SetScrollSpeed(speed);
+	}
+	else if(str == DATE_FORMAT)
+		Preferences::ToggleDateFormat();
+	else if(str == ALERT_INDICATOR)
+		Preferences::ToggleAlert();
+	// All other options are handled by just toggling the boolean state.
+	else
+		Preferences::Set(str, !Preferences::Has(str));
+}
+
+
+
+void PreferencesPanel::HandleUp()
+{
+	selected = max(0, selected - 1);
+	switch(page)
+	{
+	case 's':
+		selectedItem = prefZones.at(selected).Value();
+		break;
+	case 'p':
+		selectedPlugin = pluginZones.at(selected).Value();
+		break;
+	case 'i':
+		selecPluginInstall = pluginInstallZones.at(selected).Value();
+		break;
+	default:
+		break;
+	}
+}
+
+
+
+void PreferencesPanel::HandleDown()
+{
+	switch(page)
+	{
+	case 'c':
+		if(selected + 1 < static_cast<int>(zones.size()))
+			selected++;
+		break;
+	case 's':
+		selected = min(selected + 1, static_cast<int>(prefZones.size() - 1));
+		selectedItem = prefZones.at(selected).Value();
+		break;
+	case 'p':
+		selected = min(selected + 1, static_cast<int>(pluginZones.size() - 1));
+		selectedPlugin = pluginZones.at(selected).Value();
+		break;
+	case 'i':
+		selected = min(selected + 1, static_cast<int>(pluginInstallZones.size() - 1));
+		selecPluginInstall = pluginInstallZones.at(selected).Value();
+		break;
+	default:
+		break;
+	}
+}
+
+
+
+void PreferencesPanel::HandleConfirm()
+{
+	switch(page)
+	{
+	case 'c':
+		editing = selected;
+		break;
+	case 's':
+		HandleSettingsString(selectedItem, Screen::Dimensions() / 2.);
+		break;
+	case 'p':
+		Plugins::TogglePlugin(selectedPlugin);
+		break;
+	case 'i':
+		if(latestPlugin && latestPlugin->url.size() && !latestPlugin->installed)
+			installFeedbacks.emplace_back(Plugins::Install(latestPlugin));
+		else if(latestPlugin && latestPlugin->url.size() && latestPlugin->outdated)
+			installFeedbacks.emplace_back(Plugins::Update(latestPlugin));
+		break;
+	default:
+		break;
+	}
 }
 
 

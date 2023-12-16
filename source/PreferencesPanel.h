@@ -62,6 +62,12 @@ private:
 
 	void Exit();
 
+	void HandleSettingsString(const std::string &str, Point cursorPosition);
+
+	void HandleUp();
+	void HandleDown();
+	void HandleConfirm();
+
 	void ProcessPluginIndex();
 
 private:
@@ -76,6 +82,7 @@ private:
 
 	Point hoverPoint;
 	int hoverCount = 0;
+	std::string selectedItem;
 	std::string hoverItem;
 	std::string tooltip;
 	WrappedText hoverText;
@@ -84,7 +91,13 @@ private:
 
 	std::string selectedPlugin;
 
-	Plugins::InstallData *selectedPluginInstall;
+	Plugins::InstallData *latestPlugin = nullptr;
+
+	Plugins::InstallData *selecPluginInstall = nullptr;
+	Plugins::InstallData *oldSelecPluginInstall = nullptr;
+	Plugins::InstallData *clickedPluginInstall = nullptr;
+	Plugins::InstallData *oldClickedPluginInstall = nullptr;
+	Plugins::InstallData *hoverPluginInstall = nullptr;
 	unsigned int pluginInstallPages = 1;
 	unsigned int currentPluginInstallPage = 0;
 	bool downloadedInfo = false;

@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipEvent.h"
 
 #include <algorithm>
+#include <cmath>
 
 using namespace std;
 
@@ -208,7 +209,7 @@ void Government::Load(const DataNode &node)
 				if(grand.Size() >= 2)
 				{
 					const Government *gov = GameData::Governments().Get(grand.Token(0));
-					attitudeToward.resize(nextID, 0.);
+					attitudeToward.resize(nextID, numeric_limits<double>::quiet_NaN());
 					attitudeToward[gov->id] = grand.Value(1);
 				}
 				else
@@ -357,6 +358,8 @@ void Government::Load(const DataNode &node)
 			sendUntranslatedHails = true;
 		else if(!hasValue)
 			child.PrintTrace("Error: Expected key to have a value:");
+		else if(key == "default attitude")
+			defaultAttitude = child.Value(valueIndex);
 		else if(key == "player reputation")
 			initialPlayerReputation = add ? initialPlayerReputation + child.Value(valueIndex) : child.Value(valueIndex);
 		else if(key == "crew attack")
@@ -466,9 +469,10 @@ double Government::AttitudeToward(const Government *other) const
 		return 1.;
 
 	if(attitudeToward.size() <= other->id)
-		return 0.;
+		return defaultAttitude;
 
-	return attitudeToward[other->id];
+	double attitude = attitudeToward[other->id];
+	return std::isnan(attitude) ? defaultAttitude : attitude;
 }
 
 
