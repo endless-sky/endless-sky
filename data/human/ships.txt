@@ -2429,8 +2429,8 @@ ship "Hogshead"
 	engine -34 42
 	gun -17.5 -79.5
 	gun 17.5 -79.5
-	turret 0 -46
-	turret 0 0
+	turret 0 -44 "Heavy Anti-Missile Turret"
+	turret 0 63 "Anti-Missile Turret"
 	leak "leak" 50 40
 	leak "big leak" 70 40
 	explode "tiny explosion" 10

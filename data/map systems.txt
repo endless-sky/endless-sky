@@ -5013,9 +5013,9 @@ system Alpherg
 	trade Metal 280
 	trade Plastic 286
 	fleet "Small Southern Pirates" 1000
-	fleet "Small CCOR" 1500
 	fleet "Large Southern Pirates" 2000
-	fleet "Large CCOR" 3000
+	fleet "Small CCOR" 2500
+	fleet "Large CCOR" 4000
 	object
 		sprite star/g-giant
 		period 10
@@ -6519,9 +6519,9 @@ system Belenos
 	trade Metal 265
 	trade Plastic 267
 	fleet "Small Southern Pirates" 600
-	fleet "Small CCOR" 1500
 	fleet "Large Southern Pirates" 2000
-	fleet "Large CCOR" 3000
+	fleet "Small CCOR" 2500
+	fleet "Large CCOR" 4000
 	object
 		sprite star/f8
 		period 10
@@ -8683,10 +8683,10 @@ system Citadelle
 	trade Medical 879
 	trade Metal 236
 	trade Plastic 278
-	fleet "Small CCOR" 800
 	fleet "Small Southern Pirates" 1000
-	fleet "Large CCOR" 2500
 	fleet "Large Southern Pirates" 3000
+	fleet "Small CCOR" 1800
+	fleet "Large CCOR" 3500
 	object
 		sprite star/k0
 		period 27.5
@@ -14530,9 +14530,9 @@ system Fumalasamakah
 	trade Metal 245
 	trade Plastic 366
 	fleet "Small Southern Pirates" 1000
-	fleet "Small CCOR" 1500
 	fleet "Large Southern Pirates" 2000
-	fleet "Large CCOR" 3000
+	fleet "Small CCOR" 2500
+	fleet "Large CCOR" 4000
 	object
 		sprite star/o5
 		period 10
@@ -32087,7 +32087,7 @@ system Thuban
 	minables titanium 11 1
 	fleet "Small Southern Pirates" 1500
 	fleet "Large Southern Pirates" 2500
-	fleet "Small CCOR" 3000
+	fleet "Small CCOR" 4000
 	object
 		sprite star/a0
 		distance 100
