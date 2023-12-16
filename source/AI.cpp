@@ -1682,7 +1682,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	const System *origin = ship.GetSystem();
 	if(!ship.GetTargetSystem() && !ship.GetTargetStellar() && !shouldStay)
 	{
-		// TODO: This should problably be changed, because JumpsRemaining
+		// TODO: This should probably be changed, because JumpsRemaining
 		// does not return an accurate number.
 		int jumps = ship.JumpsRemaining(false);
 		// Each destination system has an average priority of 10.
