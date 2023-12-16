@@ -5,6 +5,11 @@ file(REMOVE_RECURSE "${TEST_CONFIG}")
 file(COPY "${ES_CONFIG}" DESTINATION "${TEST_CONFIGS}")
 file(RENAME "${TEST_CONFIGS}/config" "${TEST_CONFIG}")
 
+message(WARNING ${ES})
+message(WARNING "${TEST_CONFIG}")
+message(WARNING "${RESOURCE_PATH}")
+execute_process(COMMAND ${ES} --version)
+
 # Run the integration test
 execute_process(COMMAND $ENV{ES_INTEGRATION_PREFIX} ${ES} --config "${TEST_CONFIG}" --resources "${RESOURCE_PATH}" --test "${test}" ${DEBUG}
     OUTPUT_VARIABLE TEST_OUTPUT
