@@ -708,7 +708,7 @@ outfit "Anvil-Class Engine"
 	"turn" 554.4
 	"turning energy" 1.05
 	"turning heat" 1.1
-	"reverse thrust" 10.3
+	"reverse thrust" 15.45
 	"reverse thrusting energy" 1.5
 	"reverse thrusting heat" 1.45
 	"slowing resistance" 0.02
