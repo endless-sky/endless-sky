@@ -6,7 +6,7 @@ file(COPY "${ES_CONFIG}" DESTINATION "${TEST_CONFIGS}")
 file(RENAME "${TEST_CONFIGS}/config" "${TEST_CONFIG}")
 
 # Run the integration test
-execute_process(COMMAND $ENV{ES_INTEGRATION_PREFIX} "${ES}" --config "${TEST_CONFIG}" --resources "${RESOURCE_PATH}" --test "${test}" ${DEBUG}
+execute_process(COMMAND $ENV{ES_INTEGRATION_PREFIX} ${ES} --config "${TEST_CONFIG}" --resources "${RESOURCE_PATH}" --test "${test}" ${DEBUG}
     OUTPUT_VARIABLE TEST_OUTPUT
     ERROR_VARIABLE TEST_OUTPUT
     RESULT_VARIABLE TEST_RESULT)
