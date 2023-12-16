@@ -122,7 +122,7 @@ outfit "S-570 Regenerator"
 	"shield energy" 3
 	"energy consumption" .7
 	"heat generation" 4.5
-	"shield delay" 270
+	"shield delay" 240
 	description "There should be a regenerator that becomes available at the beginning of the war as competetion to the L class regenerators as well as show that the syndicate are developing the 270 and 970 regenerators."
 
 outfit "S-970 Regenerator"
