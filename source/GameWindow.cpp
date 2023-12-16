@@ -83,7 +83,7 @@ bool GameWindow::Init(bool headless)
 	// When running the integration tests, don't create a window nor an OpenGL context.
 	if(headless)
 #if defined(__linux__) && !SDL_VERSION_ATLEAST(2, 0, 22)
-		setenv("SDL_VIDEODRIVER", "dummy");
+		setenv("SDL_VIDEODRIVER", "dummy", true);
 #else
 		SDL_SetHint(SDL_HINT_VIDEODRIVER, "dummy");
 #endif
