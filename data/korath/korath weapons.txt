@@ -612,7 +612,7 @@ outfit "Korath Mine Submunition"
 		"drag" .05
 		"shield damage" 350
 		"hull damage" 280
-		"hit force" 200
+		"hit force" 300
 		"missile strength" 22
 
 effect "minelayer fire"
