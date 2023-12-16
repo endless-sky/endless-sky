@@ -716,7 +716,7 @@ mission "Stealth Cargo Smuggling (South) [0]"
 		"reputation: Pirate" > -10
 		"combat rating" > 1100
 	source
-		government "Pirate" "Humanika Rafeki Port"
+		government "Pirate"
 		attributes "south pirate"
 	destination
 		distance 3 12
@@ -774,7 +774,7 @@ mission "Stealth Cargo Smuggling (South) [1]"
 		"reputation: Pirate" > -10
 		"combat rating" > 1100
 	source
-		government "Pirate" "Humanika Rafeki Port"
+		government "Pirate"
 		attributes "south pirate"
 	destination
 		distance 4 14
@@ -1139,7 +1139,7 @@ mission "Stealth Drug Running (South) [0]"
 		"reputation: Pirate" > 0
 		"combat rating" > 1100
 	source
-		government "Pirate" "Humanika Rafeki Port"
+		government "Pirate"
 		attributes "south pirate"
 	destination
 		distance 3 12
@@ -1197,7 +1197,7 @@ mission "Stealth Drug Running (South) [1]"
 		"reputation: Pirate" > 0
 		"combat rating" > 1100
 	source
-		government "Pirate" "Humanika Rafeki Port"
+		government "Pirate"
 		attributes "south pirate"
 	destination
 		distance 4 14
@@ -1582,7 +1582,7 @@ mission "Highly Wanted Passenger (South)"
 		"reputation: Pirate" > 10
 		"combat rating" > 3000
 	source
-		government "Pirate" "Humanika Rafeki Port"
+		government "Pirate"
 		attributes "south pirate"
 	destination
 		distance 4 14
