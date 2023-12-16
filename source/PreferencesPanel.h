@@ -91,7 +91,13 @@ private:
 
 	std::string selectedPlugin;
 
-	Plugins::InstallData *selectedPluginInstall;
+	Plugins::InstallData *latestPlugin = nullptr;
+
+	Plugins::InstallData *selecPluginInstall = nullptr;
+	Plugins::InstallData *oldSelecPluginInstall = nullptr;
+	Plugins::InstallData *clickedPluginInstall = nullptr;
+	Plugins::InstallData *oldClickedPluginInstall = nullptr;
+	Plugins::InstallData *hoverPluginInstall = nullptr;
 	unsigned int pluginInstallPages = 1;
 	unsigned int currentPluginInstallPage = 0;
 	bool downloadedInfo = false;

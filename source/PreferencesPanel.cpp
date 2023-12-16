@@ -135,13 +135,13 @@ void PreferencesPanel::Draw()
 		info.SetCondition("show previous");
 	if(currentSettingsPage + 1 < SETTINGS_PAGE_COUNT)
 		info.SetCondition("show next");
-	if(selectedPluginInstall)
+	if(latestPlugin)
 	{
-		if(selectedPluginInstall->installed)
+		if(latestPlugin->installed)
 			info.SetCondition("installed plugin");
-		if(!selectedPluginInstall->installed)
+		if(!latestPlugin->installed)
 			info.SetCondition("can install");
-		if(selectedPluginInstall->outdated && selectedPluginInstall->installed)
+		if(latestPlugin->outdated && latestPlugin->installed)
 			info.SetCondition("can update");
 	}
 	if(currentPluginInstallPage > 0)
@@ -238,17 +238,25 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 			ProcessPluginIndex();
 		}
 	}
-	else if(key == 'i' && page == 'i' && selectedPluginInstall && selectedPluginInstall->url.size()
-		&& !selectedPluginInstall->installed)
-		installFeedbacks.emplace_back(Plugins::Install(selectedPluginInstall));
-	else if(key == 'u' && page == 'i' && selectedPluginInstall && selectedPluginInstall->url.size()
-		&& selectedPluginInstall->outdated)
-		installFeedbacks.emplace_back(Plugins::Update(selectedPluginInstall));
+	else if(key == 'i' && page == 'i' && latestPlugin && latestPlugin->url.size()
+		&& !latestPlugin->installed)
+		installFeedbacks.emplace_back(Plugins::Install(latestPlugin));
+	else if(key == 'u' && page == 'i' && latestPlugin && latestPlugin->url.size()
+		&& latestPlugin->outdated)
+		installFeedbacks.emplace_back(Plugins::Update(latestPlugin));
 	else if(key == 'r' && page == 'i')
+	{
 		currentPluginInstallPage = currentPluginInstallPage > 0 ? currentPluginInstallPage - 1 : 0;
+		selected = 0;
+		selecPluginInstall = nullptr;
+	}
 	else if(key == 'e' && page == 'i')
+	{
 		currentPluginInstallPage = currentPluginInstallPage < pluginInstallPages - 1 ?
 			currentPluginInstallPage + 1 : pluginInstallPages - 1;
+		selected = 0;
+		selecPluginInstall = nullptr;
+	}
 	else
 		return false;
 
@@ -290,7 +298,7 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 	for(const auto &zone : pluginInstallZones)
 		if(zone.Contains(point))
 		{
-			selectedPluginInstall = zone.Value();
+			clickedPluginInstall = zone.Value();
 			break;
 		}
 
@@ -318,6 +326,12 @@ bool PreferencesPanel::Hover(int x, int y)
 	for(const auto &zone : pluginZones)
 		if(zone.Contains(hoverPoint))
 			hoverItem = zone.Value();
+
+	Plugins::InstallData *newData = nullptr;
+	for(const auto &zone : pluginInstallZones)
+		if(zone.Contains(hoverPoint))
+			newData = zone.Value();
+	hoverPluginInstall = newData;
 
 	return true;
 }
@@ -922,6 +936,14 @@ void PreferencesPanel::DrawPluginInstalls()
 
 	const Font &font = FontSet::Get(14);
 
+	if(selecPluginInstall != oldSelecPluginInstall)
+		latestPlugin = selecPluginInstall;
+	if(clickedPluginInstall != oldClickedPluginInstall)
+		latestPlugin = clickedPluginInstall;
+
+	oldSelecPluginInstall = selecPluginInstall;
+	oldClickedPluginInstall = clickedPluginInstall;
+
 	const size_t currentPageIndex = MAX_PLUGIN_INSTALLS_PER_PAGE * currentPluginInstallPage;
 	const int maxIndex = min(currentPageIndex + MAX_PLUGIN_INSTALLS_PER_PAGE, pluginInstallData.size());
 	for(int x = currentPageIndex; x < maxIndex; x++)
@@ -931,18 +953,27 @@ void PreferencesPanel::DrawPluginInstalls()
 			continue;
 		pluginInstallZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), &installData);
 		// Use url as that is more unique, just in case.
-		bool isSelected = (selectedPluginInstall ? installData.url == selectedPluginInstall->url : false);
-		if(isSelected)
+		bool isHover = (hoverPluginInstall ? installData.url == hoverPluginInstall->url : false);
+		bool isClick = (clickedPluginInstall ? installData.url == clickedPluginInstall->url : false);
+		bool isSelec = (selecPluginInstall ? installData.url == selecPluginInstall->url : false);
+		bool isLatest = (latestPlugin ? installData.url == latestPlugin->url : false);
+		if(isHover || isClick)
 			table.DrawHighlight(back);
+		else if(isSelec)
+		{
+			table.SetHighlight(-120, font.Width(selecPluginInstall->name) - 100);
+			table.DrawHighlight(back);
+			table.SetHighlight(-120, 100);
+		}
 		if(installData.installed && installData.outdated)
 			table.Draw(installData.name, outdated);
 		else if(installData.installed)
 			table.Draw(installData.name, dim);
-		else if(isSelected)
+		else if(isLatest)
 			table.Draw(installData.name, bright);
 		else
 			table.Draw(installData.name, medium);
-		if(isSelected)
+		if(isLatest)
 		{
 			const Sprite *sprite = SpriteSet::Get(installData.name + "-libicon");
 			Point top(15., firstY);
@@ -958,6 +989,9 @@ void PreferencesPanel::DrawPluginInstalls()
 			wrap.Draw(top, medium);
 		}
 	}
+
+	if(!selecPluginInstall && !pluginInstallZones.empty())
+		selecPluginInstall = pluginInstallZones.at(0).Value();	
 }
 
 
@@ -1110,6 +1144,9 @@ void PreferencesPanel::HandleUp()
 	case 'p':
 		selectedPlugin = pluginZones.at(selected).Value();
 		break;
+	case 'i':
+		selecPluginInstall = pluginInstallZones.at(selected).Value();
+		break;
 	default:
 		break;
 	}
@@ -1133,6 +1170,10 @@ void PreferencesPanel::HandleDown()
 		selected = min(selected + 1, static_cast<int>(pluginZones.size() - 1));
 		selectedPlugin = pluginZones.at(selected).Value();
 		break;
+	case 'i':
+		selected = min(selected + 1, static_cast<int>(pluginInstallZones.size() - 1));
+		selecPluginInstall = pluginInstallZones.at(selected).Value();
+		break;
 	default:
 		break;
 	}
@@ -1152,6 +1193,12 @@ void PreferencesPanel::HandleConfirm()
 		break;
 	case 'p':
 		Plugins::TogglePlugin(selectedPlugin);
+		break;
+	case 'i':
+		if(latestPlugin && latestPlugin->url.size() && !latestPlugin->installed)
+			installFeedbacks.emplace_back(Plugins::Install(latestPlugin));
+		else if(latestPlugin && latestPlugin->url.size() && latestPlugin->outdated)
+			installFeedbacks.emplace_back(Plugins::Update(latestPlugin));
 		break;
 	default:
 		break;
