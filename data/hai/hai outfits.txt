@@ -455,7 +455,7 @@ outfit "Hai Diamond Regenerator"
 outfit "Hai Topaz Capacitor"
 	category "Systems"
 	cost 90000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/hai topaz capacitor"
 	"mass" 11
 	"outfit space" -11
 	"shields" 1000
@@ -466,7 +466,7 @@ outfit "Hai Topaz Capacitor"
 outfit "Hai Opal Capacitor"
 	category "Systems"
 	cost 280000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/hai opal capacitor"
 	"mass" 32
 	"outfit space" -32
 	"shields" 4200
