@@ -58,6 +58,7 @@ private:
 	void DrawControls();
 	void DrawSettings();
 	void DrawPlugins();
+	void RenderPluginDescription(const std::string &pluginName);
 	void RenderPluginDescription(const Plugin &plugin);
 
 	void DrawTooltips();
@@ -69,6 +70,9 @@ private:
 	void HandleUp();
 	void HandleDown();
 	void HandleConfirm();
+
+	// Scroll the plugin list until the selected plugin is visible.
+	void ScrollSelectedPlugin();
 
 
 private:

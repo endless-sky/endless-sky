@@ -41,7 +41,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/WrappedText.h"
 
 #include "opengl.h"
-#include <SDL2/SDL.h>
 
 #include <algorithm>
 
@@ -199,16 +198,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 			const Interface *pluginUi = GameData::Interfaces().Get("plugins");
 			Rectangle pluginListBox = pluginUi->GetBox("plugin list");
 			pluginListClip.reset(new RenderBuffer(pluginListBox.Dimensions()));
-			pluginDescriptionBuffer.reset();
-
-			for(const auto &plugin : Plugins::Get())
-			{
-				if(plugin.first == selectedPlugin)
-				{
-					RenderPluginDescription(plugin.second);
-					break;
-				}
-			}
+			RenderPluginDescription(selectedPlugin);
 		}
 	}
 	else if(key == 'o' && page == 'p')
@@ -261,20 +251,22 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 			break;
 		}
 
-	for(const auto &zone : pluginZones)
+	if(page == 'p')
 	{
-		if(zone.Contains(point) && selectedPlugin != zone.Value())
+		// Don't handle clicks outside of the clipped area.
+		const Interface *pluginUi = GameData::Interfaces().Get("plugins");
+		Rectangle pluginListBox = pluginUi->GetBox("plugin list");
+		if(pluginListBox.Contains(point))
 		{
-			selectedPlugin = zone.Value();
-			for(const auto &plugin : Plugins::Get())
+			for(const auto &zone : pluginZones)
 			{
-				if(plugin.first == selectedPlugin)
+				if(zone.Contains(point) && selectedPlugin != zone.Value())
 				{
-					RenderPluginDescription(plugin.second);
+					selectedPlugin = zone.Value();
+					RenderPluginDescription(selectedPlugin);
 					break;
 				}
 			}
-			break;
 		}
 	}
 
@@ -893,11 +885,7 @@ void PreferencesPanel::DrawPlugins()
 		if(!plugin.IsValid())
 			continue;
 
-		// Only include the zone as clickable if its within the drawing area.
-		bool displayed = table.GetPoint().Y() > pluginListClip->Top() - 20 &&
-			table.GetPoint().Y() < pluginListClip->Bottom() - table.GetRowBounds().Height() + 20;
-		if(displayed)
-			pluginZones.emplace_back(pluginListBox.Center() + table.GetCenterPoint(), table.GetRowSize(), plugin.name);
+		pluginZones.emplace_back(pluginListBox.Center() + table.GetCenterPoint(), table.GetRowSize(), plugin.name);
 
 		bool isSelected = (plugin.name == selectedPlugin);
 		if(isSelected || plugin.name == hoverItem)
@@ -912,6 +900,9 @@ void PreferencesPanel::DrawPlugins()
 		topLeft.Y() += 7.;
 		Rectangle zoneBounds = Rectangle::FromCorner(pluginListBox.Center() + topLeft, {sprite->Width(), sprite->Height()});
 
+		// Only include the zone as clickable if its within the drawing area.
+		bool displayed = table.GetPoint().Y() > pluginListClip->Top() - 20 &&
+			table.GetPoint().Y() < pluginListClip->Bottom() - table.GetRowBounds().Height() + 20;
 		if(displayed)
 			AddZone(zoneBounds, [&]() { Plugins::TogglePlugin(plugin.name); });
 		if(isSelected)
@@ -969,6 +960,18 @@ void PreferencesPanel::DrawPlugins()
 			AddZone(bottomRight, [&]() { pluginDescriptionScroll.Scroll(-Preferences::ScrollSpeed()); });
 		}
 	}
+}
+
+
+
+// Render the named plugin description into the pluginDescriptionBuffer.
+void PreferencesPanel::RenderPluginDescription(const std::string &pluginName)
+{
+	const Plugin *plugin = Plugins::Get().Find(pluginName);
+	if(plugin)
+		RenderPluginDescription(*plugin);
+	else
+		pluginDescriptionBuffer.reset();
 }
 
 
@@ -1167,6 +1170,8 @@ void PreferencesPanel::HandleUp()
 		break;
 	case 'p':
 		selectedPlugin = pluginZones.at(selected).Value();
+		RenderPluginDescription(selectedPlugin);
+		ScrollSelectedPlugin();
 		break;
 	default:
 		break;
@@ -1190,6 +1195,8 @@ void PreferencesPanel::HandleDown()
 	case 'p':
 		selected = min(selected + 1, static_cast<int>(pluginZones.size() - 1));
 		selectedPlugin = pluginZones.at(selected).Value();
+		RenderPluginDescription(selectedPlugin);
+		ScrollSelectedPlugin();
 		break;
 	default:
 		break;
@@ -1214,4 +1221,14 @@ void PreferencesPanel::HandleConfirm()
 	default:
 		break;
 	}
+}
+
+
+
+void PreferencesPanel::ScrollSelectedPlugin()
+{
+	while(selected * 20 + pluginListScroll < 0)
+		pluginListScroll += Preferences::ScrollSpeed();
+	while(selected * 20 + pluginListScroll > pluginListClip->Height())
+		pluginListScroll -= Preferences::ScrollSpeed();
 }
