@@ -219,12 +219,17 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 			break;
 		}
 
+	auto index = 0;
 	for(const auto &zone : pluginZones)
+	{
 		if(zone.Contains(point))
 		{
 			selectedPlugin = zone.Value();
+			selected = index;
 			break;
 		}
+		index++;
+	}
 
 	return true;
 }
