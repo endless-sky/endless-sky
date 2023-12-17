@@ -688,7 +688,6 @@ mission "<uhai> 18: Detainer For Translator"
 
 mission "<uhai> 18: Hai Language: Found Detainer"
 	boarding
-	invisible
 	to offer
 		has "<uhai> 18: Detainer For Translator: active"
 	source

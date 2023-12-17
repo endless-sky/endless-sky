@@ -746,6 +746,7 @@ phrase "hostile unfettered challenger"
 		"Yes! Fight me"
 		"Our battle will be sang in legends for years to come"
 		"Do not try to distract me with hails"
+		"Do you want to surrender already? Ha"
 	word
 		"!"
 

@@ -114,6 +114,7 @@ mission "Wanderers: Unfettered Diplomat"
 		not "Wanderers: Hai Diplomat: offered"
 		not "Wanderers: Diplomacy: offered"
 		not "<uhai> 18: Hai Language: active"
+		not "language: Hai"
 	on offer
 		conversation
 			`The aliens north of Hai space seem to speak the Hai language. Do you want to look for someone here who could serve as an interpreter?`

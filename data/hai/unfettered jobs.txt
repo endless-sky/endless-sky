@@ -339,7 +339,7 @@ mission "Unfettered Titanium Asteroid Mining"
 	job
 	repeat
 	name "Gather Titanium from asteroids"
-	description "Mine and collect 50 tons of titanium, then bring the minerals to <destination> for <payment>. Lead is available in the asteroid field in Wah Yoot."
+	description "Mine and collect 50 tons of titanium, then bring the minerals to <destination> for <payment>."
 	source
 		attributes "unfettered"
 		not planet "Warfeed"

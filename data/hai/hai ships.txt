@@ -773,6 +773,7 @@ ship "Modified Shield Beetle" "Si-Ra' Golden Beetle"
 		"heat dissipation" .05
 		"cargo space" -20
 		"outfit space" 15
+		"ion resistance" .25
 	outfits
 		"Tripulse Shredder" 8
 
@@ -1678,7 +1679,7 @@ ship "Stag Beetle"
 		"weapon capacity" 353
 		"engine capacity" 145
 		"spinal mount" 1
-		"scrambling resistance" 2
+		"scrambling resistance" .25
 		weapon
 			"blast radius" 515
 			"shield damage" 6000
@@ -1690,10 +1691,11 @@ ship "Stag Beetle"
 		"Ionic Blaster Prototype" 2
 		"Korath Detainer"
 		"Grab-Strike Turret"
-		"Banisher Grav-Turret"
-		"Bullfrog Anti-Missile" 3
+		"Blaze-Pike Turret"
+		"Bullfrog Anti-Missile"
 		
 		"Liquid Sodium Cooler"
+		"Small Heat Shunt"
 		"Systems Core (Large)"
 		"Dark Storm Shielding"
 		"Outfits Expansion" 4

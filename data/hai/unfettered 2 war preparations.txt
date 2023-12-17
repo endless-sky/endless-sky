@@ -54,6 +54,8 @@ mission "<uhai> 10: Belt Materials"
 				to display
 					has "language: Hai"
 			`	You also spot a translator or two near the stage, apparently for public use. They may be there for the occasional pirate the Unfettered may make use of, but there does not seem to be anyone using them here.`
+				to display
+					not "language: Hai"
 			choice
 				`	(Go speak with Merora.)`
 					to display
@@ -66,10 +68,12 @@ mission "<uhai> 10: Belt Materials"
 					to display
 						has "language: Hai"
 					goto speak
-			`	You notice she seems to have made a few friends since the last time you saw her, and she is so busy discussing with them that she hardly notices you until you are right in front of her. She stands there for a few seconds, maw open, before gaining back focus and smiling with joy. "<first>! It's been a while." She presents her comrades to you, "These are X and Y, they work on the same ship I do. To be frank we don't see battle often, but I've had my fair share of it already, so I'm more than happy with that!" She says the last part with a bit of shame, but honesty.`
+			`	You notice she seems to have made a few friends since the last time you saw her, and she is so busy discussing with them that she hardly notices you until you are right in front of her. She stands there for a few seconds, maw open, before gaining back focus and smiling with joy. "<first>! It's been a while." She presents her comrades to you, "This is Rick, a human that grew up in Hai space and then proved himself trough other means than battles." You shake hands and present yourself. "And this is Kenep, she left Hai space some time ago, to get inspiration for her art. They work on the same ship I do. To be frank we don't see battle often, but I've had my fair share of it already, so I'm more than happy with that!" She says the last part with a bit of shame, but honesty.`
 			choice
 				`	"Can you translate for me, like last time?"`
 				`	"Do you know if I may borrow these translators?"`
+					to display
+						not "language: Hai"
 					goto borrow
 			label translate
 			action
@@ -113,7 +117,7 @@ mission "<uhai> 10: Belt Materials"
 			label asteroidtuto
 			action
 				set "unfettered: asteroid tuto"
-			`	She seems a bit surprised, "You've never mined asteroids? I recommend you install an asteroid scanner so your ship can target them automatically. Just try to keep your ship stable around one and shoot it as you would any other ship. Keep in mind they have no shields, and you might not want to waste missiles on them, since they don't shoot back. One thing everyone may not know is that once you've exhausted all the asteroids in a system, you may as well land or change system knowing they'll be back the next time you launch!"`
+			`	She seems a bit surprised, "You've never mined asteroids? I recommend you install an asteroid scanner so your ship can target them automatically. Just try to keep your ship stable around one and shoot it as you would any other ship. Keep in mind they have no shields, and you might not want to waste missiles on them, since they don't shoot back. If you ever run out of targets, you can fly around for a couple of days and come back; new asteroids will likely enter the system in that time."`
 				goto choice
 			label where
 			action
@@ -289,14 +293,14 @@ mission "<uhai> 11: Shipyard Intel"
 					to display
 						or
 							and
-								has "unfettered: bought sb"
+								has "unfettered: bought SB"
 								has "ship model: Shield Beetle"
 							and
 								has "unfettered: bought geocoris"
 								has "ship model: Geocoris"
 							and
 								has "unfettered: bought centipede"
-								has "ship model: Geocoris"
+								has "ship model: Centipede"
 				`	(Ask him a compensation for the ship you bought, and show him the detailed scanner logs.)`
 					goto bought
 				`	(Just roll with it. No need for money, and the more detailed scans were not asked for.)`
@@ -712,7 +716,7 @@ mission "<uhai> 13: Korath Specialty"
 		outfit "Liquid Nitrogen Cooler" -15
 		log `Brought human nitrogen cooling systems to the Unfettered. They should be able to retrofit them into something more useful.`
 		payment 2500000
-		dialog `Seeing you brought the coolers, Mera thanks you and hands you <payment>. "These systems should be useful. We'll upgrade the coolers you brought us into something less... primitive. The only thing we can use here is the base materials. It will probably take a month to repurpose them."`
+		dialog `Seeing you brought the coolers, Mera thanks you and hands you <payment>. "These systems should be useful. We'll upgrade the coolers you brought us into something less... primitive. The only thing we can use here is the base materials. It will probably take a month to repurpose them, but I already have great uses in mind for them! Be sure to come back when the month is up, I think you won't be disappointed."`
 		event "unfettered: new cooling system" 25
 
 event "unfettered: new cooling system"
@@ -727,7 +731,7 @@ mission "Unfettered: New Cooling Available"
 		has "event: unfettered: new cooling system"
 	on offer
 		conversation
-			`You receive a message from Mera. "Hi <first>. Remember the coolers you helped to develop? They are finally available in my lab on Firelode. We don't yet have enough to equip all of our ships with them, but that's not required yet since our current weapons don't generate that much heat, barring prototypes. However, you're welcome to buy as many as you want!"`
+			`You receive a message from Mera. "Hi <first>. Remember the coolers you helped to develop? They are finally available in my lab on Firelode. We don't yet have enough to equip all of our ships with them, but that's not required yet since our current weapons don't generate that much heat, barring prototypes. However, you're welcome to buy as many as you want! Come meet me soon on Firelode, I have a surprise for you."`
 
 
 
@@ -906,7 +910,7 @@ mission "<uhai> 14: Ion Materials"
 			action
 				set "midas: angel assassination"
 				"midas: proven worthy" ++
-				"reputation: Midas" >?= 0
+				"reputation: Midas" >?= 1
 	npc
 		government "Midas"
 		personality derelict
@@ -1027,7 +1031,9 @@ mission "<uhai> 15: Modified Beetle"
 	on offer
 		conversation
 			branch waiting
-				has "<uhai> 15: Modified Beetle: deferred"
+				or
+					has "<uhai> 15: Modified Beetle: deferred"
+					has "<uhai> 15: Modified Beetle: offered"
 			scene "thumbnail/hai modified shield beetle"
 			`Passing by the labs on the way down with your ship, you notice some kind of modified Shield Beetle outside, in the middle of what must be a test field, filled with craters probably made during weapon testing.`
 			`	Do you want to go see Mera to see what you can learn about this ship?`
@@ -1295,7 +1301,7 @@ mission "<uhai> 16: Strength Of A Leader: Si-Ra"
 		conversation
 			branch "small fleet"
 				"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 <= 18
-			`You find Si-Ra and He-Yi waiting for you on the spaceport. Si-Ra starts speaking to you, "You have brought too many ships, come back with only your flagship, or a few lighter ships."`
+			`You find Si-Ra and He-Yi waiting for you on the spaceport. Si-Ra starts speaking to you, "You have brought too many ships, come back with only your flagship, or a few lighter ships, on another day, so we may duel!"`
 				defer
 			label "small fleet"
 			`You find Si-Ra and He-Yi waiting for you on the spaceport. Si-Ra asks, "Are you ready for war, <last>?" It seems to be a rhetorical question, and he does not wait for you to answer at all. He adds, "All Unfettered are expected to be ready for war, at any time."`
@@ -1312,8 +1318,9 @@ mission "<uhai> 16: Strength Of A Leader: Si-Ra"
 				`	"Now that it's here I'm starting to realize I don't want to be a part of your war. I'm out.`
 					decline
 			branch "mad Si-Ra"
-				"midas: wronged" > 1
-				"unfettered rep: Si-Ra" <= -2
+				or
+					"midas: wronged" > 1
+					"unfettered rep: Si-Ra" < 0
 			`	"And may you die ready as well. Let us fight, on the same terms of honor as before. Take off when you're ready, I will be waiting for you. Once you defeat me you will be able to fight the Tejolis."`
 			`	"I would highly advise you mark yourself as not ready for spontaneous challenges from the job board, for they may disrupt the fight."`
 				accept
@@ -1357,7 +1364,7 @@ mission "<uhai> 16: Strength Of A Leader: Si-Ra"
 			has "unfettered: defeated Si-Ra"
 		personality disables staying heroic target launching
 		conversation
-			`"You have defeated me, but He-Yi will not be as easy to beat! Land to repair, and then take off when you're be ready to face him." He launches an escape pod.`
+			`"You have defeated me, but He-Yi will not be as easy to beat! Land to repair, and then take off when you're be ready to face him. Don't forget, you are not to destroy this ship!" He launches an escape pod.`
 			action
 				set "unfettered: defeated Si-Ra"
 	# if you made him be kicked from Midas he'll be angry and not respect the rules of the fight, in which case you may kill him
@@ -1551,6 +1558,8 @@ mission "<uhai> 16: Strength Of A Leader: He-Yi"
 				goto questions
 			label enough
 			`	"I have answered enough of your questions. Some things should remain [a mystery, concealed]. Knowledge is power, after all."`
+				to display
+					"unfettered rep: He-Yi" < 3
 			label clearconditions
 			action
 				clear "unfettered: questions"
@@ -1614,6 +1623,7 @@ mission "<uhai> 17: Spy On Hai A"
 		random < 25 + "<uhai> 11: Shipyard Inspection: declined" * 75
 	waypoint "Alcyone"
 	destination "Warfeed"
+	deadline 45
 	on offer
 		conversation
 			`You are starting to get quite used to Unfettered spaceports: the dilapidation of different non-essential structures is beginning to feel normal. You feel like you need a change of scenery, so you wander to a side of the spaceport you have not explored before, but it turns out not to be very different.`
@@ -1627,30 +1637,34 @@ mission "<uhai> 17: Spy On Hai A"
 			`	"This warlord, Mhairi, has beaten the previous warlord in power there, right after he sent the orders to acquire the item. She may not know about it yet, but the officers of the previous warlord probably will - and those officers are now hers. Also, you shouldn't worry about how to identify said item. It is... unique. You will understand once you see it. Once you have it, bring it back to my master. You have been given access to his war room on <planet>."`
 			choice
 				`	"I will depart as soon as I can."`
-					accept
+					goto agree
 				`	"Is it common for the Unfettered to use heralds to bring messages?"`
 			`	"We don't believe technical ways of communicating to be safe, and they break the link between us. Messages could easily be spied upon by anyone intercepting it, so for some confidential missions like this one, it is quite common to use heralds. On top of that, the warlords generally have better things to do than moving around giving missions all the time. Do you have enough information? What shall I say to my warlord?"`
 			choice
 				`	"I will depart as soon as I can."`
-					accept
+					goto agree
 				`	"You could have just sent a message on a secure channel."`
 			`	"What is secure? There is no code that cannot be broken, and I did not have to travel far anyway. The Fettered Hai have become quite apt at languages, with their interest to communicate with other species like the Quarg or humans. Encryption is just like another language. We cannot risk them learning of this particular mission - you will understand why later. Information is the key here, and it always has been. We also don't want those up north to learn about this. They would surely be able to decrypt it.`
 			`	"We are not all as brutal as we let other races think. My warlord believes that it is to our advantage to not appear cunning, so that they may underestimate us." He seems to have had enough of talking, and is now waiting for you to answer He-Yi's request.`
 			choice
 				`	"I will depart as soon as I can."`
-					accept
 				`	"This seems too risky for me."`
 					decline
+			label agree
+			`	"Good! You have two months to get the item and bring it back, use them well. Oh, and I think He-Yi would be most impressed if you manage to acquire the item without looting it off the enemy ship."`
+				accept
 	on waypoint
-		dialog `It seems that the <npc> is in this system, and a Syndicate attack just launched. Judging by the marks on its hull, it will likely land to make repairs and restock ammo soon. You may be able to get the item without too much risk that way, and bribing them will mean secure landing. Or you could always just board it now and be done with it. You could even sabotage the ship to make your job easier, or take some more valuables with you.`
+		dialog
+			`It seems that the <npc> is in this system, and a Syndicate attack just launched!`
+			`Judging by the marks on its hull, it will likely land to make repairs and restock ammo soon. You may be able to get the item without too much risk that way, and bribing them will mean secure landing. Or you could always just board it now and be done with it. You could even sabotage the ship to make your job easier, or take some more valuables with you.`
 	# note: this only works because the fleets do not fight if you are not in the system.
 	# If that was to change we'd need a temporary fleet with an event changing the reputation.
 	npc
 		personality coward plunders vindictive staying
 		government "Mhairi's Legion"
 		system "Alcyone"
-		fleet "Large Northern Pirates" 4
-		fleet "Small Northern Pirates" 6
+		fleet "Large Northern Pirates" 3
+		fleet "Small Northern Pirates" 5
 	npc
 		personality derelict uninterested coward
 		government "Mhairi's Legion"
@@ -1671,6 +1685,7 @@ mission "<uhai> 17: Spy On Hai A"
 		government "Syndicate"
 		system "Alcyone"
 		fleet "Large Syndicate"
+	# last so <npc> refers to this one
 	npc board
 		personality staying target
 		to despawn
@@ -1678,7 +1693,12 @@ mission "<uhai> 17: Spy On Hai A"
 		government "Mhairi's Legion"
 		system "Alcyone"
 		ship "Leviathan (Cube)" "Degenerate"
-		dialog `You have managed to disable and board Mhairi's flagship. The item that fits best the description given is without any doubt the Mystery Cube. Bring it back to <destination>.`
+		on disable
+			dialog `The Degenerate is disabled, but be careful not to destroy before you get the item or it may be lost.`
+			set "unfettered: disabled degenerate"
+		dialog
+			`You perform a search of Mhairi's flagship, their crew forced to cooperate if they don't want to get spaced!`
+			` The item that best fits the description is the 'Mystery Cube'. Take it and bring it back to <destination>.`
 	on visit
 		dialog `You don't have the item He-Yi asked for. Or you have not brought the right item back. If that's the case, go back and board the ship to take the right item.`
 	to complete
@@ -1696,23 +1716,30 @@ mission "<uhai> 17: Spy On Hai B"
 		not "outfit (all): Mystery Cube"
 	on offer
 		conversation
-			`The final Syndicate ships are being taken out as you land on the planet next to another empty spot, hoping the Degenerate will land there. She does not seem to want to take any chances, and lands near a few of her own warships. As you depart the ship, your hairs stand up on the back of your neck. You try to get close to the Degenerate without drawing too much attention to yourself, and eventually arrive there, undetected.`
+			`The battle is pretty much over as you land on the planet next to another empty spot, hoping the Degenerate will land there. She does not seem to want to take any chances, and lands near a few of her own warships. As you depart the ship, your hairs stand up on the back of your neck. You try to get close to the Degenerate without drawing too much attention to yourself, and eventually arrive there, undetected.`
+			`	They are in need of heavy repairs with the extra damage inflicted to them in the recent battle. It would be easy to sneak your way in among all the other repair crews.`
+				to display
+					has "unfettered: disabled degenerate"
 			choice
 				`	(Try to steal the item.)`
 					goto steal
 				`	(Try to bargain.)`
 					goto bargain
 				`	(Try to take an isolated pirate captive and ask for the item in exchange.)`
-			`	In front of the ship there's a group of pirates, and you see one of them separate from the others to go within the ship. Judging from his appearance and the way others were addressing him, you assume him to be the leader of that small band, at least. You sneak past the group in front and follow him.`
+			`	There is a group of pirates in front of the ship, and you see one of them separate from the others to go within the ship. Judging from his appearance and the way others were addressing him, you assume him to be the leader of that small band, at least. You sneak past the group in front and follow him.`
 			branch luckyish
-				random < 20
+				random < 30
 			`	You get close up behind him and are about to pull your gun... when he suddenly turns back and throws the hardest haymaker you've ever experienced! You drop like a sack to the floor and never wake up again. That pirate probably has had some experience with back-stabbings before.`
 				die
 			label luckyish
-			`	You get close up behind him and are about to pull your gun... when he draws a sudden breath and begins to turn around! Fortunately, you're quicker, and you have your firearm pointed at him before he can do anything. Obviously experienced with hostage situations and prioritizing his own safety, he doesn't try to call for help. You present yourself to the group outside, with the gun still pointed at your hostage. The pirates look at each other and begin laughing before you die in a barrage of laser fire from the group, annihilating you and your hostage. It seems that they couldn't care less about their companions' lives.`
+			`	You get close up behind him and are about to pull your gun... when he draws a sudden breath and begins to turn around! Fortunately, you're quicker, and you have your firearm pointed at him before he can do anything. Obviously experienced with hostage situations, and prioritizing his own safety, he doesn't try to call for help. You present yourself to the group outside, with the gun still pointed at your hostage. The pirates look at each other and begin laughing before you die in a barrage of laser fire from the group, annihilating you and your hostage. It seems that they couldn't care less about their companions' lives.`
 				die
 			label steal
 			`	You manage to enter the ship discreetly. Some people will always notice, but you try to pose as a spaceport worker there to assist with the repairs, using equipment you find lying around. You should be able to go pretty much anywhere on the ship. You don't have any idea which part of the ship is actually damaged though, so your cover could easily be blown. There is no going back now, except maybe if you choose to provoke the pirate warlord into a fight to get the item.`
+			label search
+			`	You won't be able to search the ship forevever, and it would be wise to think carefuly about your next course of action.`
+			branch caught
+				"uhai choice: mistake" > 1 + "unfettered: disabled degenerate"
 			choice
 				`	(Search the lower decks.)`
 				`	(Search close to the weapons stations.)`
@@ -1727,13 +1754,13 @@ mission "<uhai> 17: Spy On Hai B"
 				`	(Leave the ship before you get caught and provoke the warlord.)`
 					goto challenge
 			`	You notice a lot of security stations around, they obviously care a lot about their warlord's security.`
-				goto caught
+				goto search
 			label weapons
 			`	This part of the ship is mostly full of torpedoes - apparently the warlord loves them. But there are not many people here, since it does not seem to have suffered damage. The torpedoes will probably be restocked soon, so you leave before someone comes in and notices you.`
 				goto found
 			label bridge
 			`	This bridge is very luxurious, you see that this warlord likes comfort, for herself at least. But you cannot find anything that looks unique at all.`
-				goto caught
+				goto search
 			label cargo
 			`	There are a lot of exotic things here, most of which are probably not legal at all. You better choose what to take with you, and fast! You also notice the presence of gold bars. There's no way you could carry all of them back with you discreetly, but you can drop them off the ship and then go grab them once you are out, hoping nobody will notice. Looking through a porthole, you don't see anyone around at the moment. Conveniently, there is even some sand on the ground there, so the bars should sink in, and be harder to notice.`
 			branch knowsbars
@@ -1745,7 +1772,7 @@ mission "<uhai> 17: Spy On Hai B"
 				goto fake
 			label engine
 			`	These are some fine last-generation atomic engines, a true beauty in your eyes. But admiring the engines doesn't help you find the item at all. Why would there be anything near the engines?`
-				goto caught
+				goto search
 			label fake
 			choice
 				`	(Take a heavily-modified alien looking pistol.)`
@@ -1766,11 +1793,21 @@ mission "<uhai> 17: Spy On Hai B"
 				`	(Five.)`
 					goto five
 				`	(Eight could be reasonable.)`
+					goto eight
 				`	(Take as much as I can: fifteen!.)`
+					goto fifteen
 				`	(Never mind, this isn't a good idea.)`
 					goto fake
+			branch "big repairs"
+				has "unfettered: disabled degenerate"
+			label fifteen
 			`	You got too greedy. As you're dropping the bars, you feel something cold hit your head. You never wake up again.`
 				die
+			label "big repairs"
+			action
+				outfit "Gold Bars" 8
+			`	You are able to take 8 stacks of gold bars! You almost feel too greedy, but everyone seems to be busy with the repairs.`
+				goto dropbars
 			label one
 			action
 				outfit "Gold Bars"
@@ -1821,13 +1858,23 @@ mission "<uhai> 17: Spy On Hai B"
 				goto leaveinpeace
 			label negotiate
 			`	"I can cut it down by... 2 million. Last chance, boy. 8 million credits, what do ya say?"`
+				to display
+					not "unfettered: disabled degenerate"
+			`	"You strike a hard bargain, but with our ship almost sinking recently... I can cut it by 5 millions, but nothing more."`
+				to display
+					has "unfettered: disabled degenerate"
 			choice
 				`	"Deal!"`
 				`	"There's no way I'm paying so much for an item I haven't even seen! I challenge your warlord to a fight."`
 					goto challenge
-			`	He seems disappointed to have only 8 million credits, but you feel like he still had the upper hand in that trade. He shows you to the item, a little cube, and you bring it back to your ship without any trouble. He also signals the local warships belonging to the warlord to let you leave without trouble.`
 			action
-				payment -8000000
+				payment -5000000
+			branch restourn
+				has "unfettered: disabled degenerate"
+			action
+				payment -3000000
+			label restourn
+			`	He seems disappointed to not have gotten the full 10 millions, but you feel like he still had the upper hand in that trade. He shows you to the item, a little cube, and you bring it back to your ship without any trouble. He also signals the local warships belonging to the warlord to let you leave without trouble.`
 			label leaveinpeace
 			action
 				set "midas: brokered deal"
@@ -1861,7 +1908,9 @@ mission "<uhai> 17: Mirror Spy"
 			action
 				log `Recovered a mystery cube from a pirate ship in the heat of battle.`
 			label "took on the ground"
-			`You find He-Yi in his war room, which is full of strange objects - only half of which appear to be weapons. You notice some keystone carvings, but also a statue, probably of some Hai goddess. He seems to have disciples, serving as his eyes and ears everywhere. You bring him the cube. "Very well done! But this is not over. You will have a big [reward, payment] once the mission is completed."`
+			action
+				"unfettered rep: He-Yi" += 2
+			`You come back to bring the Mystery Cube, and find He-Yi in his war room, which is full of strange objects - only half of which appear to be weapons. You notice some keystone carvings, but also a statue, probably of some Hai goddess. He seems to have disciples, serving as his eyes and ears everywhere. You bring him the cube. "Very well done! But this is not over. You will have a big [reward, payment] once the mission is completed."`
 			branch nodeal
 				not "midas: brokered deal"
 			action
@@ -1879,36 +1928,57 @@ mission "<uhai> 17: Mirror Spy"
 				`	"I was almost caught last time. I'm not trying again."`
 					decline
 			`	"You have earned the right to know, considering it is you who brought it to us. It's a very [complex, advanced] surveillance device, which should record everything that happens on the world as well as in [the system, space]."`
-			choice
-				`	"Why this particular world?"`
 			`	"All important Hai ships are built on our homeworld. That would be a perfect place to put this cube, but we don't want to bring too much [heat, attention] onto you. As you know, that's where most of their larger ships are made, and ships that get produced there are sent to the worlds which border ours. Also, because this is their home system, it makes sense that a lot of their fleets go through it. We want to learn more about their fleet [movements, activities], in order to be able to react in time should the worst arrive. Of course, we need something [unpredicted, discreet] to do it, else our operatives could get caught."`
-			choice
-				`	"If it's so sensible to movement all over the system, you could just have me place the cube in orbit."`
-			`	"We could, but it would be very suspicious for you to just go in that system and then come back here, and we don't want to risk anyone finding it by [chance, accident]. We have other reasons for wanting the cube on the planet, but I cannot tell you everything or I would risk much should you be [captured, coerced]. You already know more than [you should, I would prefer]."`
 			`	He leans over from his throne to get a dark look at you, "You [must, want to] do this given you failed the last mission."`
 				to display
 					has "<uhai> 11: Shipyard Inspection: declined"
+			label choose
 			choice
 				`	"Won't the Hai see this as a sign of mistrust? I don't think we should do this."`
 					to display
 						not "<uhai> 11: Shipyard Inspection: declined"
 				`	"I'll do it."`
 					accept
+				`	"If it's so sensible to movement all over the system, you could just have me place the cube in orbit."`
+					to display
+						not "uhai choice: cube in space"
+					goto orbit
 				`	"I was almost caught last time. I'm not trying again, even if it costs me my reputation with the Unfettered."`
 					decline
 			`	"You're right actually... This would be a sign of mistrust, showing that we even dare to suspect they could attack us... You don't have to do this, we can always keep the cube in reserve."`
+			label choice
 			choice
 				`	"I say we should trust the Hai indeed. They could have swarmed you ages ago if they really wanted to."`
+				`	"I would like to keep it."`
+					to display
+						not "uhai choice: keep cube"
+					goto keep
 				`	"Damn the Hai, I still want to do it."`
 					accept
 			action
 				outfit "Mystery Cube" -1
 				set "unfettered: mystery cube"
+				"unfettered rep: He-Yi" += 2
 			`	This seems to anger his pride a bit, but he knows full well that statement to be true. You give him the cube so it could be used later, and looking at his face he is satisfied to keep this asset, in the end.`
 				decline
+			label keep
+			branch joke
+				"unfettered rep: He-Yi" >= 3
+			`	"You are indeed [honourable, strong, worthy] of it. But do not lose it, it is [important, precious] to me!"`
+				decline
+			label joke
+			`	"You? Ha! You must be kidding."`
+				goto choice
+			label orbit
+			action
+				set "uhai choice: cube in space"
+			`	"We could, but it would be very suspicious for you to just go in that system and then come back here, and we don't want to risk anyone finding it by [chance, accident]. We have other reasons for wanting the cube on the planet, but I cannot tell you everything or I would risk much should you be [captured, coerced]. You already know more than [you should, I would prefer]."`
+				goto choose
 	on visit
 		dialog "You have landed on <destination> but either the food or the Mystery Cube are still on one of your escorts in another system."
 	on complete
+		clear "uhai choice: cube in space"
+		clear "uhai choice: keep cube"
 		outfit "Mystery Cube" -1
 		log `Placed a mysterious cube in a clearing on Hai-home. It should give intel on Hai ship movements and creation to the Unfettered.`
 		payment 5000000
@@ -1944,6 +2014,8 @@ mission "<uhai> 19: Scout Wanderer Systems"
 				`	"Later."`
 					defer
 			label watching
+			action
+				set "uhai choice: watching"
 			`	They look around discreetely - more so than earlier - before speaking in a lower tone, "Come, let us have a walk." You follow them, and they continue talking on the way, "Why does the To'or fight to the death? Is it pride? Is it protection of their loved ones, or a matter character? There are often multiple reasons for why things happen the way they do, and we do not always know them all."`
 			`	They then look at you directly, "You should know that there are some among us that do not appreciate the status you have been given, or what happened with the Alphas."`
 			choice
@@ -1969,6 +2041,8 @@ mission "<uhai> 19: Scout Wanderer Systems"
 			choice
 				`	"Can you tell me more about the task?"`
 				`	"Why were you watching me earlier?"`
+					to display
+						not "uhai choice: watching"
 					goto watching
 			label task
 			`	"We want you to survey all systems belonging to our enemies, to assess if they have some backup fleets or potential allies nearby."`
@@ -2009,10 +2083,12 @@ mission "<uhai> 19: Scout Wanderer Systems"
 	on waypoint
 		dialog `You have scouted all of the Wanderer's systems. It's time to come back to <destination> for your reward.`
 	on complete
+		clear "uhai choice: watching"
 		payment 1000000
 		conversation
 			`You find a message from the Herald on your terminal. "You should transmit the scans to the local authorities, we trust them to handle this kind of information. Please, accept these <payment> credits in advance.`
 			`	"I think you deserve a small explanation as to why these aliens up north are hostile to us: as you probably already know, we are planning to invade them shortly. But, to be fair, we have already started doing a few skirmishes and raids, notably to assess their strength, but mostly for food. They have huge ships transporting a thousand tons of cargo each, that lack maneuverability and are therefore prime targets for our tracker pods."`
+			`	You bring the scans to the authorities, as requested, and return to the spaceport.`
 
 mission "<uhai> 19: Weird Aliens Spotted"
 	landing
@@ -2065,7 +2141,7 @@ mission "<uhai> 19: Weird Aliens Spotted"
 					to display
 						has "ship model (all): Pug Arfecta"
 					goto arfectadesigns
-				`	(Say nothing more.)`
+				`	(Leave.)`
 					decline
 			action
 				set "unfettered: warned of arfecta"
