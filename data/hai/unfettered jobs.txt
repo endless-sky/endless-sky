@@ -745,7 +745,7 @@ ship "Argosy" "Argosy (Materials)"
 
 phrase "unfettered cargo interception payment dialog"
 	word
-		"The Unfettered unloading your cargo of materials gives you <payment>. Such a huge amount for the cargo itself, but considering what it took to get it, the price is certainly fair."
+		"The Unfettered unloading your cargo of materials gives you <payment>. A significant amount for the cargo itself, but considering what it took to get it, the price is certainly fair."
 		`An Unfettered unloading the materials comes to you, "It looks like the Elders are keeping their promises to rebuild, no matter the cost. Here are your <payment>."`
 		`As you land, you are directed instead to bring the materials directly to their destination. It is a short trip, considering you are used to traveling in space. There, you receive <payment> for your troubles, before heading back to the spaceport.`
 		`An Unfettered comes to you during the unloading of your cargo, "My deepest thanks, this will help in the repairs. We do not nearly produce enough materials to do it on our own." He then gives you <payment>.`
@@ -774,7 +774,7 @@ mission "Unfettered Cargo Interception West"
 				"Bastion (Materials)"
 			variant
 				"Argosy (Materials)"
-		dialog "This pirate ship indeed contains the materials you are looking for. You should bring them to <destination> to receive your payment."
+		dialog "This pirate ship indeed contains the materials you are looking for. You should take them, and bring them to <destination> to receive your payment."
 	on visit
 		dialog `You do not have the materials yet. Go look for them in western pirate space.`
 	on complete
@@ -804,7 +804,7 @@ mission "Unfettered Cargo Interception East"
 				"Bastion (Materials)"
 			variant
 				"Argosy (Materials)"
-		dialog "This pirate ship indeed contains the materials you are looking for. You should bring them to <destination> to receive your payment."
+		dialog "This pirate ship indeed contains the materials you are looking for. You should take them, and bring them to <destination> to receive your payment."
 	on visit
 		dialog "You do not have the materials yet. Go look for them in eastern pirate space."
 	on complete

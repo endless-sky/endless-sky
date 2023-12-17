@@ -785,18 +785,24 @@ mission "Midas: Daemons Unleashed"
 	invisible
 	to offer
 		has "event: midas: thorn talon vengeance"
+		or
+			not "<uhai> 16: Strength Of A Leader: Si-Ra: active"
+			has "unfettered: mad Si-Ra"
+		not "<uhai> 16: Strength Of A Leader: He-Yi: active"
 	npc kill
 		system "Wah Yoot"
 		government "Shadow"
 		personality heroic staying nemesis vindictive target mute
 		ship "Antlion" "Parmen"
 		conversation
-			`As soon as you destroy the flagship of this fleet, the others cease firing for a short while, unsure what to do next. The new flagship hails you. "I am now in command of Midas.`
+			`As soon as you destroy the flagship of this fleet, you can see confusion in the fleet, unsure whether to attack you or not. The new flagship hails you. "I am now in command of Midas.`
 			`	"I will not be making the same mistake my predecessor did. Before this becomes an uncontrollable spiral of destruction, I have decided to make you a part of our organization. Keep the bars you have safe, <last>, that is all I ask of you."`
 			choice
 				`	"May I wear your colors as well?"`
 					goto wearcolors
-				`	"How can I restore my reputation with the Unfettered?"`
+				`	"How can I restore my reputation with the Unfettered? Attacking the previous flagship seem to have upset them."`
+					to display
+						"reputation: Hai (Unfettered)" < 0
 				`	"You did not even ask me if I wanted to be a part of it."`
 					goto asked
 				`	(End the connection.)`
@@ -858,7 +864,7 @@ mission "Midas: Daemons Unleashed"
 			has "salary: Midas"
 		fleet "Marauders" 8
 	on enter "Wah Yoot"
-		dialog `As you enter Wah Yoot you spot a fleet of mercenaries, larger than anything you've seen from them before. The captain of the fleet hails you. "Nemo Me Impune Lacessit, <first> <last>. You have killed our own. We have come to bring justice upon you, whatever the cost. There will be no negotiations, no forgiveness. I am the Shadow of Mintaka, and the last person you will ever meet."`
+		dialog `As you enter Wah Yoot you spot a fleet of mercenaries, larger than anything you've seen from them before. The captain of the fleet hails you. "Nemo Me Impune Lacessit, <first> <last>. You have killed our own. We have come to bring justice upon you, whatever the cost. There will be no negotiations, no forgiveness so long as I draw breath! I am the Shadow of Mintaka, and never again will you see the light."`
 
 
 
