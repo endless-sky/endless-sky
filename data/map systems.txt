@@ -8666,11 +8666,12 @@ system Citadelle
 	habitable 1240
 	haze _menu/haze-33
 	link Fumalasamakah
-	asteroids "medium rock" 8 1.766
-	asteroids "large rock" 1 1.628
-	asteroids "small metal" 1 2.429
-	asteroids "medium metal" 2 2.732
-	asteroids "large metal" 1 2.622
+	asteroids "small rock" 28 1.404
+	asteroids "medium rock" 7 1.24
+	asteroids "large rock" 15 2.059
+	asteroids "small metal" 1 1.287
+	asteroids "medium metal" 27 1.217
+	asteroids "large metal" 3 1.661
 	minables iron 6 1.7
 	minables lead 7 2.9
 	trade Clothing 260
@@ -8684,8 +8685,8 @@ system Citadelle
 	trade Metal 236
 	trade Plastic 278
 	fleet "Small Southern Pirates" 1000
-	fleet "Large Southern Pirates" 3000
-	fleet "Small CCOR" 1800
+	fleet "Large Southern Pirates" 2500
+	fleet "Small CCOR" 2800
 	fleet "Large CCOR" 3500
 	object
 		sprite star/k0
@@ -8694,16 +8695,16 @@ system Citadelle
 			sprite star/a-dwarf
 			distance 102.423
 			period 27.3
-	object Alvorada
-		sprite "planet/alvorada"
-			"scale" 0.75
-		distance 500
-		period 90.1
 	object Bailey
 		sprite planet/lava0
-		distance 1733.1
-		period 819.567
-		offset -90
+		distance 705.3
+		period 115
+		offset 90
+	object Alvorada
+		sprite "planet/alvorada"
+			"scale" 0.5
+		distance 1428.7
+		period 705
 	object
 		sprite planet/desert0-b
 		distance 2253.29
