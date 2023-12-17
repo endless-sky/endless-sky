@@ -267,17 +267,17 @@ Engine::Engine(PlayerInfo &player)
 		center = object->Position();
 
 	// Now we know the player's current position. Draw the planets.
-	draw[calcTickTock].Clear(step, zoom);
-	draw[calcTickTock].SetCenter(center);
-	radar[calcTickTock].SetCenter(center);
+	draw[currentCalcBuffer].Clear(step, zoom);
+	draw[currentCalcBuffer].SetCenter(center);
+	radar[currentCalcBuffer].SetCenter(center);
 	const Ship *flagship = player.Flagship();
 	for(const StellarObject &object : player.GetSystem()->Objects())
 		if(object.HasSprite())
 		{
-			draw[calcTickTock].Add(object);
+			draw[currentCalcBuffer].Add(object);
 
 			double r = max(2., object.Radius() * .03 + .5);
-			radar[calcTickTock].Add(object.RadarType(flagship), object.Position(), r, r - 1.);
+			radar[currentCalcBuffer].Add(object.RadarType(flagship), object.Position(), r, r - 1.);
 		}
 
 	// Add all neighboring systems that the player has seen to the radar.
@@ -286,7 +286,7 @@ Engine::Engine(PlayerInfo &player)
 		player.GetSystem()->JumpNeighbors(flagship->JumpNavigation().JumpRange()) : player.GetSystem()->Links();
 	for(const System *system : links)
 		if(player.HasSeen(*system))
-			radar[calcTickTock].AddPointer(
+			radar[currentCalcBuffer].AddPointer(
 				(system == targetSystem) ? Radar::SPECIAL : Radar::INACTIVE,
 				system->Position() - player.GetSystem()->Position());
 
@@ -483,7 +483,7 @@ void Engine::Wait()
 {
 	unique_lock<mutex> lock(swapMutex);
 	condition.wait(lock, [this] { return hasFinishedCalculating; });
-	drawTickTock = calcTickTock;
+	currentDrawBuffer = currentCalcBuffer;
 }
 
 
@@ -982,7 +982,7 @@ void Engine::Go()
 	{
 		unique_lock<mutex> lock(swapMutex);
 		++step;
-		calcTickTock = !calcTickTock;
+		currentCalcBuffer = currentCalcBuffer ? 0 : 1;
 		hasFinishedCalculating = false;
 	}
 	condition.notify_all();
@@ -1020,8 +1020,8 @@ void Engine::Draw() const
 		for(const PlanetLabel &label : labels)
 			label.Draw();
 
-	draw[drawTickTock].Draw();
-	batchDraw[drawTickTock].Draw();
+	draw[currentDrawBuffer].Draw();
+	batchDraw[currentDrawBuffer].Draw();
 
 	for(const auto &it : statuses)
 	{
@@ -1127,7 +1127,7 @@ void Engine::Draw() const
 	hud->Draw(info);
 	if(hud->HasPoint("radar"))
 	{
-		radar[drawTickTock].Draw(
+		radar[currentDrawBuffer].Draw(
 			hud->GetPoint("radar"),
 			RADAR_SCALE,
 			hud->GetValue("radar radius"),
@@ -1428,9 +1428,9 @@ void Engine::CalculateStep()
 	const double zoom = nextZoom ? nextZoom : this->zoom;
 
 	// Clear the list of objects to draw.
-	draw[calcTickTock].Clear(step, zoom);
-	batchDraw[calcTickTock].Clear(step, zoom);
-	radar[calcTickTock].Clear();
+	draw[currentCalcBuffer].Clear(step, zoom);
+	batchDraw[currentCalcBuffer].Clear(step, zoom);
+	radar[currentCalcBuffer].Clear();
 
 	if(!player.GetSystem())
 		return;
@@ -1571,9 +1571,9 @@ void Engine::CalculateStep()
 		newCenter = flagship->Center();
 		newCenterVelocity = flagship->Velocity();
 	}
-	draw[calcTickTock].SetCenter(newCenter, newCenterVelocity);
-	batchDraw[calcTickTock].SetCenter(newCenter);
-	radar[calcTickTock].SetCenter(newCenter);
+	draw[currentCalcBuffer].SetCenter(newCenter, newCenterVelocity);
+	batchDraw[currentCalcBuffer].SetCenter(newCenter);
+	radar[currentCalcBuffer].SetCenter(newCenter);
 
 	// Populate the radar.
 	FillRadar();
@@ -1584,15 +1584,15 @@ void Engine::CalculateStep()
 		{
 			// Don't apply motion blur to very large planets and stars.
 			if(object.Width() >= 280.)
-				draw[calcTickTock].AddUnblurred(object);
+				draw[currentCalcBuffer].AddUnblurred(object);
 			else
-				draw[calcTickTock].Add(object);
+				draw[currentCalcBuffer].Add(object);
 		}
 	// Draw the asteroids and minables.
-	asteroids.Draw(draw[calcTickTock], newCenter, zoom);
+	asteroids.Draw(draw[currentCalcBuffer], newCenter, zoom);
 	// Draw the flotsam.
 	for(const shared_ptr<Flotsam> &it : flotsam)
-		draw[calcTickTock].Add(*it);
+		draw[currentCalcBuffer].Add(*it);
 	// Draw the ships. Skip the flagship, then draw it on top of all the others.
 	bool showFlagship = false;
 	for(const shared_ptr<Ship> &ship : ships)
@@ -1600,7 +1600,7 @@ void Engine::CalculateStep()
 		{
 			if(ship.get() != flagship)
 			{
-				AddSprites(*ship);
+				DrawShipSprites(*ship);
 				if(ship->IsThrusting() && !ship->EnginePoints().empty())
 				{
 					for(const auto &it : ship->Attributes().FlareSounds())
@@ -1623,7 +1623,7 @@ void Engine::CalculateStep()
 
 	if(flagship && showFlagship)
 	{
-		AddSprites(*flagship);
+		DrawShipSprites(*flagship);
 		if(flagship->IsThrusting() && !flagship->EnginePoints().empty())
 		{
 			for(const auto &it : flagship->Attributes().FlareSounds())
@@ -1642,10 +1642,10 @@ void Engine::CalculateStep()
 	}
 	// Draw the projectiles.
 	for(const Projectile &projectile : projectiles)
-		batchDraw[calcTickTock].Add(projectile, projectile.Clip());
+		batchDraw[currentCalcBuffer].Add(projectile, projectile.Clip());
 	// Draw the visuals.
 	for(const Visual &visual : visuals)
-		batchDraw[calcTickTock].AddVisual(visual);
+		batchDraw[currentCalcBuffer].AddVisual(visual);
 
 	// Keep track of how much of the CPU time we are using.
 	loadSum += loadTimer.Time();
@@ -2112,8 +2112,8 @@ void Engine::HandleMouseInput(Command &activeCommands)
 	int mousePosY;
 	if((SDL_GetMouseState(&mousePosX, &mousePosY) & SDL_BUTTON_RMASK) != 0)
 		rightMouseButtonHeld = true;
-	double relX = mousePosX - Screen::RawWidth() / 2;
-	double relY = mousePosY - Screen::RawHeight() / 2;
+	double relX = mousePosX - Screen::RawWidth() / 2.0;
+	double relY = mousePosY - Screen::RawHeight() / 2.0;
 	ai.SetMousePosition(Point(relX, relY));
 
 	// Activate firing command.
@@ -2378,7 +2378,7 @@ void Engine::FillRadar()
 		if(object.HasSprite())
 		{
 			double r = max(2., object.Radius() * .03 + .5);
-			radar[calcTickTock].Add(object.RadarType(flagship), object.Position(), r, r - 1.);
+			radar[currentCalcBuffer].Add(object.RadarType(flagship), object.Position(), r, r - 1.);
 		}
 
 	// Add pointers for neighboring systems.
@@ -2389,7 +2389,7 @@ void Engine::FillRadar()
 			playerSystem->JumpNeighbors(flagship->JumpNavigation().JumpRange()) : playerSystem->Links();
 		for(const System *system : links)
 			if(player.HasSeen(*system))
-				radar[calcTickTock].AddPointer(
+				radar[currentCalcBuffer].AddPointer(
 					(system == targetSystem) ? Radar::SPECIAL : Radar::INACTIVE,
 					system->Position() - playerSystem->Position());
 	}
@@ -2397,10 +2397,10 @@ void Engine::FillRadar()
 	// Add viewport brackets.
 	if(!Preferences::Has("Disable viewport on radar"))
 	{
-		radar[calcTickTock].AddViewportBoundary(Screen::TopLeft() / zoom);
-		radar[calcTickTock].AddViewportBoundary(Screen::TopRight() / zoom);
-		radar[calcTickTock].AddViewportBoundary(Screen::BottomLeft() / zoom);
-		radar[calcTickTock].AddViewportBoundary(Screen::BottomRight() / zoom);
+		radar[currentCalcBuffer].AddViewportBoundary(Screen::TopLeft() / zoom);
+		radar[currentCalcBuffer].AddViewportBoundary(Screen::TopRight() / zoom);
+		radar[currentCalcBuffer].AddViewportBoundary(Screen::BottomLeft() / zoom);
+		radar[currentCalcBuffer].AddViewportBoundary(Screen::BottomRight() / zoom);
 	}
 
 	// Add ships. Also check if hostile ships have newly appeared.
@@ -2419,7 +2419,7 @@ void Engine::FillRadar()
 			// Calculate how big the radar dot should be.
 			double size = sqrt(ship->Width() + ship->Height()) * .14 + .5;
 
-			radar[calcTickTock].Add(type, ship->Position(), size);
+			radar[currentCalcBuffer].Add(type, ship->Position(), size);
 
 			// Check if this is a hostile ship.
 			hasHostiles |= (!ship->IsDisabled() && ship->GetGovernment()->IsEnemy()
@@ -2444,11 +2444,11 @@ void Engine::FillRadar()
 		if(projectile.MissileStrength())
 		{
 			bool isEnemy = projectile.GetGovernment() && projectile.GetGovernment()->IsEnemy();
-			radar[calcTickTock].Add(
+			radar[currentCalcBuffer].Add(
 				isEnemy ? Radar::SPECIAL : Radar::INACTIVE, projectile.Position(), 1.);
 		}
 		else if(projectile.GetWeapon().BlastRadius())
-			radar[calcTickTock].Add(Radar::SPECIAL, projectile.Position(), 1.8);
+			radar[currentCalcBuffer].Add(Radar::SPECIAL, projectile.Position(), 1.8);
 	}
 }
 
@@ -2456,12 +2456,12 @@ void Engine::FillRadar()
 
 // Each ship is drawn as an entire stack of sprites, including hardpoint sprites
 // and engine flares and any fighters it is carrying externally.
-void Engine::AddSprites(const Ship &ship)
+void Engine::DrawShipSprites(const Ship &ship)
 {
 	bool hasFighters = ship.PositionFighters();
 	double cloak = ship.Cloaking();
 	bool drawCloaked = (cloak && ship.IsYours());
-	auto &itemsToDraw = draw[calcTickTock];
+	auto &itemsToDraw = draw[currentCalcBuffer];
 	auto drawObject = [&itemsToDraw, cloak, drawCloaked](const Body &body) -> void
 	{
 		// Draw cloaked/cloaking sprites swizzled red, and overlay this solid
@@ -2477,13 +2477,13 @@ void Engine::AddSprites(const Ship &ship)
 				drawObject(*bay.ship);
 
 	if(ship.IsThrusting() && !ship.EnginePoints().empty())
-		DrawFlareSprites(ship, draw[calcTickTock], ship.EnginePoints(),
+		DrawFlareSprites(ship, draw[currentCalcBuffer], ship.EnginePoints(),
 			ship.Attributes().FlareSprites(), Ship::EnginePoint::UNDER);
 	else if(ship.IsReversing() && !ship.ReverseEnginePoints().empty())
-		DrawFlareSprites(ship, draw[calcTickTock], ship.ReverseEnginePoints(),
+		DrawFlareSprites(ship, draw[currentCalcBuffer], ship.ReverseEnginePoints(),
 			ship.Attributes().ReverseFlareSprites(), Ship::EnginePoint::UNDER);
 	if(ship.IsSteering() && !ship.SteeringEnginePoints().empty())
-		DrawFlareSprites(ship, draw[calcTickTock], ship.SteeringEnginePoints(),
+		DrawFlareSprites(ship, draw[currentCalcBuffer], ship.SteeringEnginePoints(),
 			ship.Attributes().SteeringFlareSprites(), Ship::EnginePoint::UNDER);
 
 	auto drawHardpoint = [&drawObject, &ship](const Hardpoint &hardpoint) -> void
@@ -2509,13 +2509,13 @@ void Engine::AddSprites(const Ship &ship)
 			drawHardpoint(hardpoint);
 
 	if(ship.IsThrusting() && !ship.EnginePoints().empty())
-		DrawFlareSprites(ship, draw[calcTickTock], ship.EnginePoints(),
+		DrawFlareSprites(ship, draw[currentCalcBuffer], ship.EnginePoints(),
 			ship.Attributes().FlareSprites(), Ship::EnginePoint::OVER);
 	else if(ship.IsReversing() && !ship.ReverseEnginePoints().empty())
-		DrawFlareSprites(ship, draw[calcTickTock], ship.ReverseEnginePoints(),
+		DrawFlareSprites(ship, draw[currentCalcBuffer], ship.ReverseEnginePoints(),
 			ship.Attributes().ReverseFlareSprites(), Ship::EnginePoint::OVER);
 	if(ship.IsSteering() && !ship.SteeringEnginePoints().empty())
-		DrawFlareSprites(ship, draw[calcTickTock], ship.SteeringEnginePoints(),
+		DrawFlareSprites(ship, draw[currentCalcBuffer], ship.SteeringEnginePoints(),
 			ship.Attributes().SteeringFlareSprites(), Ship::EnginePoint::OVER);
 
 	if(hasFighters)

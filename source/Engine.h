@@ -112,7 +112,7 @@ private:
 
 	class Status {
 	public:
-		Status(const Point &position, double outer, double inner,
+		constexpr Status(const Point &position, double outer, double inner,
 			double disabled, double radius, int type, float alpha, double angle = 0.)
 			: position(position), outer(outer), inner(inner),
 				disabled(disabled), radius(radius), type(type), alpha(alpha), angle(angle) {}
@@ -164,7 +164,7 @@ private:
 
 	void FillRadar();
 
-	void AddSprites(const Ship &ship);
+	void DrawShipSprites(const Ship &ship);
 
 	void DoGrudge(const std::shared_ptr<Ship> &target, const Government *attacker);
 
@@ -197,16 +197,22 @@ private:
 	std::condition_variable condition;
 	std::mutex swapMutex;
 
-	bool calcTickTock = false;
-	bool drawTickTock = false;
+	// ES uses a technique called double buffering to calculate the next frame and render the current one simultaneously.
+	// To facilitate this, it uses two buffers for each list of things to draw - one for the next frame's calculations and
+	// one for rendering the current frame. A little synchronization is required to prevent mutable references to the
+	// currently rendering buffer.
+	size_t currentCalcBuffer = 0;
+	size_t currentDrawBuffer = 0;
 	bool hasFinishedCalculating = true;
+	DrawList draw[2];
+	BatchDrawList batchDraw[2];
+	Radar radar[2];
+
 	bool terminate = false;
 	bool wasActive = false;
 	bool isMouseHoldEnabled = false;
 	bool isMouseTurningEnabled = false;
-	DrawList draw[2];
-	BatchDrawList batchDraw[2];
-	Radar radar[2];
+
 	// Viewport position and velocity.
 	Point center;
 	Point centerVelocity;
