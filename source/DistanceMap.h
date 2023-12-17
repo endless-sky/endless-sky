@@ -120,6 +120,7 @@ private:
 	int hyperspaceFuel = 100;
 	int jumpFuel = 0;
 	double jumpRange = 0.;
+	const Ship *ship = nullptr;
 };
 
 
