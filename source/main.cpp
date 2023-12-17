@@ -396,7 +396,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 		}
 
 	// Game loop when running the game as part of an integration test.
-	if(testContext.CurrentTest())
+	else
 	{
 		int integrationStepCounter = 0;
 		while(!menuPanels.IsDone())
