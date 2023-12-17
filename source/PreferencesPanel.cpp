@@ -917,6 +917,11 @@ void PreferencesPanel::DrawPlugins()
 	// Switch back to normal opengl operations.
 	target.Deactivate();
 
+	pluginListClip->SetFadePadding(
+		pluginListScroll.ScrollAtMin() ? 0 : 20,
+		pluginListScroll.ScrollAtMax() ? 0 : 20
+	);
+
 	// Draw the scrolled and clipped plugin list to the screen.
 	pluginListClip->Draw(pluginListBox.Center());
 	const Point UP{0, -1};
@@ -941,6 +946,12 @@ void PreferencesPanel::DrawPlugins()
 	if(pluginDescriptionBuffer)
 	{
 		pluginDescriptionScroll.Step();
+
+		pluginDescriptionBuffer->SetFadePadding(
+			pluginDescriptionScroll.ScrollAtMin() ? 0 : 20,
+			pluginDescriptionScroll.ScrollAtMax() ? 0 : 20
+		);
+
 		Rectangle descriptionBox = pluginUI->GetBox("plugin description");
 		pluginDescriptionBuffer->Draw(
 			descriptionBox.Center(),

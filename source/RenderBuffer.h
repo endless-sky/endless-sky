@@ -72,6 +72,8 @@ public:
 	double Height() const;
 	double Width() const;
 
+	void SetFadePadding(int top, int bottom, int right = 0, int left = 0);
+
 
 protected:
 	void Deactivate();
@@ -79,8 +81,13 @@ protected:
 	Point size;
 	unsigned int texid = -1;
 	unsigned int framebuffer = -1;
-	unsigned int last_framebuffer = 0;
-	int last_viewport[4] = {};
+	unsigned int lastFramebuffer = 0;
+	int lastViewport[4] = {};
+
+	float fadePaddingLeft = 0;
+	float fadePaddingRight = 0;
+	float fadePaddingTop = 0;
+	float fadePaddingBottom = 0;
 };
 
 

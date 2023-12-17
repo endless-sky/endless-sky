@@ -28,6 +28,7 @@ namespace {
 	GLint scaleI = -1;
 	GLint srcpositionI = -1;
 	GLint srcscaleI = -1;
+	GLint fadeI = -1;
 
 	GLint texI = -1;
 
@@ -52,14 +53,15 @@ void RenderBuffer::Init()
 
 		"in vec2 vert;\n"
 		"out vec2 tpos;\n"
+		"out vec2 vpos;\n"
 
 		"void main() \n"
 		"{\n"
 		"  gl_Position = vec4((position + vert * size) * scale, 0, 1);\n"
-		"  vec2 tvert = vert + vec2(.5, .5);\n"   // Convert from vertex to texture coordinates.
+		"  vpos = vert + vec2(.5, .5);\n"         // Convert from vertex to texture coordinates.
 		"  vec2 tsize = size * srcscale;\n"       // Convert from screen to texture coordinates.
 		"  vec2 tsrc = srcposition * srcscale;\n" // Convert from screen to texture coordinates.
-		"  tpos = tvert * tsize + tsrc;\n"
+		"  tpos = vpos * tsize + tsrc;\n"
 		"  tpos.y = 1.0 - tpos.y;\n"              // Negative is up.
 		"}\n";
 
@@ -68,14 +70,21 @@ void RenderBuffer::Init()
 		"precision mediump float;\n"
 		"precision mediump sampler2D;\n"
 		"uniform sampler2D tex;\n"
+		"uniform vec4 fade;\n"
 
 		"in vec2 tpos;\n"
+		"in vec2 vpos;\n"
 		"out vec4 finalColor;\n"
 
 		"void main() {\n"
+		"  float weightTop = clamp(vpos.y / fade[0], 0.0, 1.0);\n"
+		"  float weightBottom = clamp((1.0 - vpos.y) / fade[1], 0.0, 1.0);\n"
+		"  float weightLeft = clamp(vpos.x / fade[2], 0.0, 1.0);\n"
+		"  float weightRight = clamp((1.0 - vpos.x) / fade[3], 0.0, 1.0);\n"
+		"  float weight = min(min(min(weightTop, weightBottom), weightLeft), weightRight);\n"
 		"  if(tpos.x > 0.0 && tpos.y > 0.0 &&\n"
 		"      tpos.x < 1.0 && tpos.y < 1.0 )\n"
-		"    finalColor = texture(tex, tpos);\n"
+		"    finalColor = texture(tex, tpos) * weight;\n"
 		"  else\n"
 		"    discard;\n"
 		"}\n";
@@ -87,6 +96,7 @@ void RenderBuffer::Init()
 	srcpositionI = shader.Uniform("srcposition");
 	srcscaleI = shader.Uniform("srcscale");
 	texI = shader.Uniform("tex");
+	fadeI = shader.Uniform("fade");
 
 	// Generate the vertex data for drawing sprites.
 	glGenVertexArrays(1, &vao);
@@ -149,7 +159,7 @@ RenderBuffer::RenderBuffer(const Point &dimensions):
 	glGenTextures(1, &texid);
 	glBindTexture(GL_TEXTURE_2D, texid);
 
-	// Use linear interpolation and no wrapping.
+	// Use nearest pixel and no wrapping.
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
@@ -172,7 +182,7 @@ RenderBuffer::RenderBuffer(const Point &dimensions):
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
 	// Default to the current viewport size at the time of construction.
-	glGetIntegerv(GL_VIEWPORT, last_viewport);
+	glGetIntegerv(GL_VIEWPORT, lastViewport);
 }
 
 
@@ -195,8 +205,8 @@ RenderBuffer::RenderTargetGuard RenderBuffer::SetTarget()
 	//       is if we are nesting render buffers. If only one framebuffer is
 	//       enabled at a time, then we can just reset the buffer to 0 when we
 	//       are done.
-	glGetIntegerv(GL_FRAMEBUFFER_BINDING, reinterpret_cast<int*>(&last_framebuffer));
-	glGetIntegerv(GL_VIEWPORT, last_viewport);
+	glGetIntegerv(GL_FRAMEBUFFER_BINDING, reinterpret_cast<int*>(&lastFramebuffer));
+	glGetIntegerv(GL_VIEWPORT, lastViewport);
 	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
 
 	const Point scaledSize = size * Screen::Zoom() / 100;
@@ -214,8 +224,8 @@ RenderBuffer::RenderTargetGuard RenderBuffer::SetTarget()
 void RenderBuffer::Deactivate()
 {
 	// Restore the old settings.
-	glViewport(last_viewport[0], last_viewport[1], last_viewport[2], last_viewport[3]);
-	glBindFramebuffer(GL_FRAMEBUFFER, last_framebuffer);
+	glViewport(lastViewport[0], lastViewport[1], lastViewport[2], lastViewport[3]);
+	glBindFramebuffer(GL_FRAMEBUFFER, lastFramebuffer);
 }
 
 
@@ -228,7 +238,7 @@ void RenderBuffer::Draw(const Point &position)
 
 
 // Draw the contents of this buffer at the specified position.
-void RenderBuffer::Draw(const Point& position, const Point& clipsize, const Point& srcposition)
+void RenderBuffer::Draw(const Point &position, const Point &clipsize, const Point &srcposition)
 {
 	glUseProgram(shader.Object());
 	glBindVertexArray(vao);
@@ -242,6 +252,13 @@ void RenderBuffer::Draw(const Point& position, const Point& clipsize, const Poin
 
 	glUniform2f(srcpositionI, srcposition.X(), srcposition.Y());
 	glUniform2f(srcscaleI, 1.f / size.X(), 1.f / size.Y());
+
+	glUniform4f(fadeI,
+		fadePaddingTop / clipsize.Y(),
+		fadePaddingBottom / clipsize.Y(),
+		fadePaddingLeft / clipsize.X(),
+		fadePaddingRight / clipsize.X()
+	);
 
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
@@ -296,4 +313,14 @@ double RenderBuffer::Height() const
 double RenderBuffer::Width() const
 {
 	return size.X();
+}
+
+
+
+void RenderBuffer::SetFadePadding(int top, int bottom, int left, int right)
+{
+	fadePaddingTop = top;
+	fadePaddingBottom = bottom;
+	fadePaddingLeft = left;
+	fadePaddingRight = right;
 }
