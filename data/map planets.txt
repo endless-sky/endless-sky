@@ -288,8 +288,9 @@ planet Baianus
 planet Bailey
 	attributes CCOR mining
 	landscape land/lava3
-	description "Bailey is a dead, nearly tidally locked, world scarcely larger or more habitable than Mercury. Its cool side has hardened into a mineral-rich crust, a rarity in this region of space. Though miners must regularly be on the move it has brought several mining expeditions to the planet. Like aphids sucking the sap from plants, semi-mobile mining stations strip and refine the minerals, a method originally developed by CCOR that the pirates of the region have maintained since their fall."
-	spaceport "Given the roving nature of the settlements, and the lack of general atmosphere, the spaceport and other major infrastructure are located in orbit. Transit to and from the planet is facilitated by a clever network of skyhooks, which utilize smaller amounts of rare and expensive resources compared to the more common repulsor technology used elsewhere."
+	description `Bailey is a dead, nearly tidally locked world scarcely larger and more habitable than Mercury. Its cool side has hardened into a mineral-rich crust, a rarity in this region of space. Though miners must regularly be on the move, it has brought several mining expeditions to the planet.`
+	description `	Like aphids sucking the sap from a plant, semi-mobile mining stations strip and refine the minerals, a method originally developed by the Confederated Councils. Since their fall, the pirates of the region have maintained the stations - although with considerably less organization than what was upheld by the central government.`
+	spaceport `Given the roving nature of the settlements, and the lack of a livable atmosphere, the spaceport and other major infrastructure are located in orbit. Transit to and from the planet is facilitated by a clever network of skyhooks, which utilize fewer amounts of rare and expensive resources compared to the more common repulsor technology used elsewhere.`
 	bribe 1
 	security 0.33
 
@@ -2268,7 +2269,8 @@ planet Ironfirth
 planet Jakobsen
 	attributes CCOR farming
 	landscape land/sea4
-	description `Jakobsen is an ocean world, having approximately 6% of its surface above sea level. The land is almost exclusively volcanic islands and atolls, as any land not refreshed by plate tectonics is slowly being eroded away by the immense seasonal storms that wreathe the planet. Despite these conditions, Jakobsen is an agricultural world, with vast fields of algae cultivated both to sustain the atmosphere's oxygen content and provide a nutritious, if bland, staple food.`
+	description `Jakobsen is an ocean world, having approximately 6% of its surface above sea level. The land is almost exclusively volcanic islands and atolls, as any land not refreshed by plate tectonics is slowly being eroded away by the immense seasonal storms that wreathe the planet.`
+	description `	Despite these conditions, Jakobsen is an agricultural world, with vast fields of algae cultivated both to sustain the atmosphere's oxygen content and provide a nutritious, if bland, staple food.`
 	spaceport `The spaceport is a wholly artificial island constructed near the center of one of the larger archipelagos. Surrounded by wave-breakers and raised several meters above the water line, the landing platforms are partially protected from the dangers of the planet's storms; additionally, the smaller pads can be lowered into underground hangars to prevent them from being swept away.`
 	outfitter "Basic Outfits"
 	outfitter "Common Outfits"

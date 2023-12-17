@@ -2438,7 +2438,8 @@ ship "Hogshead"
 	explode "medium explosion" 25
 	explode "large explosion" 10
 	"final explode" "final explosion medium"
-	description "Manufactured from a forgotten shipyard many centuries ago, the Hogshead got its iconic name from the keg-like shape of its engine pods being a hot topic of discussion for captains everywhere. The ship quickly became popular after first being released for consumer purchase and was commonly seen around various systems as the go-to `space bus` in human space. Unfortunately, only a few decades after introducing the ship, the shipyard went bankrupt and was never seen again, leaving the Hogshead to history as their one-hit-wonder. In the current era, Hogsheads are much more uncommon, typically treated as `unsightly` compared to other vessels such as the Star Queen, but a few places in human space still sell them."
+	description `Manufactured from a forgotten shipyard many centuries ago, the Hogshead got its iconic name from the keg-like shape of its engine pods being a hot topic of discussion for captains everywhere. The ship quickly became popular after first being released for consumer purchase and was commonly seen around various systems as the go-to "space bus" in human space.`
+	description `	Unfortunately, only a few decades after introducing the ship, the shipyard went bankrupt and was never seen again, leaving the Hogshead to history as their one-hit-wonder. In the current era, Hogsheads are much more uncommon, typically treated as "unsightly" compared to other vessels such as the Star Queen, but a few places in human space still sell them.`
 
 
 
