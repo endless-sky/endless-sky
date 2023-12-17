@@ -991,7 +991,7 @@ void PreferencesPanel::DrawPluginInstalls()
 	}
 
 	if(!selecPluginInstall && !pluginInstallZones.empty())
-		selecPluginInstall = pluginInstallZones.at(0).Value();	
+		selecPluginInstall = pluginInstallZones.at(0).Value();
 }
 
 
