@@ -105,7 +105,7 @@ mission "Lunarium: Smuggling: Charity 2"
 		not "Lunarium: Questions: active"
 		not "Lunarium: Quarg Interview: active"
 		not "Lunarium: Join: active"
-		not "assisting heliarcy"
+		not "assisting heliarchy"
 	on offer
 		conversation
 			branch chiree
@@ -1672,7 +1672,7 @@ mission "Lunarium: Combat Training 1"
 
 mission "Lunarium: Combat Training 2"
 	name "Combat Test"
-	description "Escort Pyakri's fleet to <waypoints>, and help them fight a pirate fleet there to get started with their training. Make sure all of the Lunarium ships survive."
+	description "Escort Pyakri's fleet to <waypoints>, and help them fight a pirate fleet there to get started with their training. Make sure all of the Lunarium ships survive. Return to <origin> once you're finished."
 	landing
 	source "Zug"
 	waypoint "Shaula"
@@ -1713,7 +1713,7 @@ mission "Lunarium: Combat Training 2"
 	on visit
 		dialog `You land on <planet>, but you're not done with the mission yet. Either some of the Lunarium's ships haven't entered the system yet, or some of the pirate ships in <waypoints> haven't been defeated. Return once everything is in order.`
 	npc accompany save
-		government "Lunarium"
+		government "Lunarium (Hidden)"
 		personality escort
 		ship "Bastion" "Procellarum"
 		ship "Argosy" "Ingenii"

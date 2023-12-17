@@ -44,7 +44,7 @@ MapPlanetCard::MapPlanetCard(const StellarObject &object, unsigned number, bool 
 	: number(number), hasVisited(hasVisited), planetName(object.Name())
 {
 	planet = object.GetPlanet();
-	hasSpaceport = planet->HasSpaceport();
+	hasSpaceport = planet->HasServices();
 	hasShipyard = planet->HasShipyard();
 	hasOutfitter = planet->HasOutfitter();
 	governmentName = planet->GetGovernment()->GetName();
@@ -101,8 +101,6 @@ MapPlanetCard::ClickAction MapPlanetCard::Click(int x, int y, int clicks)
 		double relativeY = (y - yCoordinate);
 		if(relativeY > 0. && relativeY < AvailableSpace())
 		{
-			isSelected = true;
-
 			// The first category is the planet name and is not selectable.
 			if(x > Screen::Left() + planetIconMaxSize &&
 					relativeY > textStart + categorySize && relativeY < textStart + categorySize * (categories + hasGovernments))

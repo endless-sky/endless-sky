@@ -25,7 +25,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Format.h"
 #include "GameData.h"
 #include "Hardpoint.h"
-#include "text/layout.hpp"
 #include "Mission.h"
 #include "Outfit.h"
 #include "Planet.h"
@@ -46,7 +45,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	// Label for the decription field of the detail pane.
+	// Label for the description field of the detail pane.
 	const string DESCRIPTION = "description";
 
 	// Determine the refillable ammunition a particular ship consumes or stores.
@@ -237,7 +236,7 @@ int OutfitterPanel::DividerOffset() const
 
 int OutfitterPanel::DetailWidth() const
 {
-	return 3 * outfitInfo.PanelWidth();
+	return 3 * ItemInfoDisplay::PanelWidth();
 }
 
 
@@ -599,7 +598,7 @@ void OutfitterPanel::Sell(bool toStorage)
 	// If there are no ships that have this outfit, then sell from storage.
 	const vector<Ship *> shipsToOutfit = GetShipsToOutfit();
 
-	if(shipsToOutfit.size() > 0)
+	if(!shipsToOutfit.empty())
 	{
 		for(Ship *ship : shipsToOutfit)
 		{
@@ -979,4 +978,26 @@ const vector<Ship *> OutfitterPanel::GetShipsToOutfit(bool isBuy) const
 	}
 
 	return shipsToOutfit;
+}
+
+
+
+int OutfitterPanel::FindItem(const string &text) const
+{
+	int bestIndex = 9999;
+	int bestItem = -1;
+	auto it = zones.begin();
+	for(unsigned int i = 0; i < zones.size(); ++i, ++it)
+	{
+		const Outfit *outfit = it->GetOutfit();
+		int index = Format::Search(outfit->DisplayName(), text);
+		if(index >= 0 && index < bestIndex)
+		{
+			bestIndex = index;
+			bestItem = i;
+			if(!index)
+				return i;
+		}
+	}
+	return bestItem;
 }

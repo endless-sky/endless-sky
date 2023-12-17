@@ -1333,7 +1333,8 @@ mission "Coalition: From Games 3"
 mission "Heliarchs Buy Jump Drive Job 1"
 	job
 	name "Sell Jump Drive"
-	description "Sell a jump drive to the Heliarchs for <payment> credits."
+	"apparent payment" 5000000
+	description "Sell a jump drive to the Heliarchs for <payment>."
 	source
 		government "Heliarch"
 	to offer
@@ -1377,6 +1378,7 @@ mission "Heliarchs Buy Jump Drive Job 2"
 	job
 	repeat
 	name "Sell Jump Drive"
+	"apparent payment" 5000000
 	description "Sell a jump drive to the Heliarchs for <payment>."
 	source
 		government "Heliarch"
@@ -1495,7 +1497,7 @@ mission "Heliarch Investigate"
 	job
 	repeat
 	name `Investigate signs of criminal activity`
-	description `Land on <stopovers>, where you and <bunks> other Heliarch agents will investigate an area where suspicious activity was reported. Payment is <payment>.`
+	description `Land on <stopovers>, where you and <bunks> other Heliarch agents will investigate an area where suspicious activity was reported. When you've finished, return to <origin> to receive <payment>.`
 	passengers 6 11
 	to offer
 		random < 60

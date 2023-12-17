@@ -31,7 +31,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "PreferencesPanel.h"
-#include "Rectangle.h"
 #include "Ship.h"
 #include "Sprite.h"
 #include "StarField.h"
@@ -66,7 +65,7 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 		for(const auto &source : GameData::Sources())
 		{
 			auto credit = Format::Split(Files::Read(source + "credits.txt"), "\n");
-			if((credit.size() > 1) || (credit.front() != ""))
+			if((credit.size() > 1) || !credit.front().empty())
 			{
 				credits.insert(credits.end(), credit.begin(), credit.end());
 				credits.insert(credits.end(), 15, "");
