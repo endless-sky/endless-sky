@@ -19,6 +19,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <vector>
 
+using namespace std;
+
 
 
 // Greyscale color constructor.
@@ -106,7 +108,7 @@ const float *Color::Get() const
 		case Preferences::ColorFilter::TRITANOPIA:
 			s = (-0.395913 * l) + (0.801109 * m);
 			break;
-		case Preferences::ColorFilter::NORMAL:
+		default:
 			break;
 	}
 
@@ -121,9 +123,9 @@ const float *Color::Get() const
 	b = color[2] + 0.7 * (color[0] - r) + (color[2] - b);
 
 	// Clamp the RGB colors to within the 0. to 1. range used by OpenGL.
-	r = (r < 0.) ? 0. : ((r > 1.) ? 1. : r);
-	g = (g < 0.) ? 0. : ((g > 1.) ? 1. : g);
-	b = (b < 0.) ? 0. : ((b > 1.) ? 1. : b);
+	r = max(0.f, min(r, 1.f));
+	g = max(0.f, min(g, 1.f));
+	b = max(0.f, min(b, 1.f));
 
 	// Return the final values. The tritanopia mode is somewhat extreme, so
 	// if it is in use the colors are blended with the original.
