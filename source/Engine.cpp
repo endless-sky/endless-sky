@@ -571,11 +571,7 @@ void Engine::Step(bool isActive)
 
 	// Update the zoom value now that the calculation thread is paused.
 	if(nextZoom)
-	{
-		// TODO: std::exchange
-		zoom = nextZoom;
-		nextZoom = {};
-	}
+		zoom = std::exchange(nextZoom, {});
 	// Smoothly zoom in and out.
 	if(isActive)
 	{
