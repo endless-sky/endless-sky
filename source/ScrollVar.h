@@ -47,6 +47,7 @@ public:
 	// Sets the scroll value directly, then clamps it to a suitable range.
 	virtual void Set(const T &current, int steps = 5) override;
 
+
 private:
 	// Makes sure the animation value stays in range.
 	void Clamp(int steps);
@@ -123,6 +124,7 @@ void ScrollVar<T>::Set(const T &current, int steps)
 	Animate<T>::Set(current, steps);
 	Clamp(steps);
 }
+
 
 
 template <typename T>

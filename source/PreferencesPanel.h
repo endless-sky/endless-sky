@@ -102,8 +102,8 @@ private:
 
 	std::unique_ptr<RenderBuffer> pluginListClip;
 	std::unique_ptr<RenderBuffer> pluginDescriptionBuffer;
-	ScrollVar<int> pluginListScroll;
-	ScrollVar<int> pluginDescriptionScroll;
+	ScrollVar<double> pluginListScroll;
+	ScrollVar<double> pluginDescriptionScroll;
 	int pluginListHeight = 0;
 };
 

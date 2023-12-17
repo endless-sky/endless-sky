@@ -16,6 +16,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef ANIMATE_H_INCLUDED
 #define ANIMATE_H_INCLUDED
 
+
+
 // Smoothly change a variable from one value to another. Used to smooth out
 // scrolling and panning.
 template <typename T>
@@ -51,6 +53,7 @@ private:
 	T current{};
 	T target{};
 };
+
 
 
 template <typename T>

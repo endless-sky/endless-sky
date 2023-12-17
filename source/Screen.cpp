@@ -31,6 +31,36 @@ namespace {
 
 
 
+Screen::ScreenDimensionsGuard::ScreenDimensionsGuard(int width, int height)
+{
+	valid = true;
+	oldWidth = WIDTH;
+	oldHeight = HEIGHT;
+	WIDTH = width;
+	HEIGHT = height;
+}
+
+
+
+Screen::ScreenDimensionsGuard::~ScreenDimensionsGuard()
+{
+	Deactivate();
+}
+
+
+
+void Screen::ScreenDimensionsGuard::Deactivate()
+{
+	if(valid)
+	{
+		WIDTH = oldWidth;
+		HEIGHT = oldHeight;
+		valid = false;
+	}
+}
+
+
+
 void Screen::SetRaw(int width, int height)
 {
 	RAW_WIDTH = width;
@@ -179,34 +209,4 @@ Point Screen::BottomLeft()
 Point Screen::BottomRight()
 {
 	return Point(.5 * WIDTH, .5 * HEIGHT);
-}
-
-
-
-Screen::ScreenDimensionsGuard::ScreenDimensionsGuard(int width, int height)
-{
-	valid = true;
-	oldWidth = WIDTH;
-	oldHeight = HEIGHT;
-	WIDTH = width;
-	HEIGHT = height;
-}
-
-
-
-Screen::ScreenDimensionsGuard::~ScreenDimensionsGuard()
-{
-	Deactivate();
-}
-
-
-
-void Screen::ScreenDimensionsGuard::Deactivate()
-{
-	if(valid)
-	{
-		WIDTH = oldWidth;
-		HEIGHT = oldHeight;
-		valid = false;
-	}
 }

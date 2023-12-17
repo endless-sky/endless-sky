@@ -880,7 +880,7 @@ void PreferencesPanel::DrawPlugins()
 	table.SetUnderline(pluginListClip->Left() + box[0]->Width(), pluginListClip->Right());
 
 	int firstY = pluginListClip->Top();
-	table.DrawAt(Point(0, firstY + pluginListScroll.AnimatedValue()));
+	table.DrawAt(Point(0, firstY + static_cast<int>(pluginListScroll.AnimatedValue())));
 
 	for(const auto &it : Plugins::Get())
 	{
@@ -921,16 +921,17 @@ void PreferencesPanel::DrawPlugins()
 	pluginListClip->Draw(pluginListBox.Center());
 	const Point UP{0, -1};
 	const Point DOWN{0, 1};
+	const Point POINTER_OFFSET{0, 5};
 	if(pluginListScroll.Scrollable())
 	{
 		// Draw up and down pointers, mostly to indicate when scrolling
 		// is possible, but might as well make them clickable too.
-		Rectangle topRight({pluginListBox.Right(), pluginListBox.Top()}, {20.0, 20.0});
+		Rectangle topRight({pluginListBox.Right(), pluginListBox.Top() + POINTER_OFFSET.Y()}, {20.0, 20.0});
 		PointerShader::Draw(topRight.Center(), UP,
 			10.f, 10.f, 5.f, Color(pluginListScroll.ScrollAtMin() ? .2f : .8f, 0.f));
 		AddZone(topRight, [&]() { pluginListScroll.Scroll(Preferences::ScrollSpeed()); });
 
-		Rectangle bottomRight(pluginListBox.BottomRight(), {20.0, 20.0});
+		Rectangle bottomRight(pluginListBox.BottomRight() - POINTER_OFFSET, {20.0, 20.0});
 		PointerShader::Draw(bottomRight.Center(), DOWN,
 			10.f, 10.f, 5.f, Color(pluginListScroll.ScrollAtMax() ? .2f : .8f, 0.f));
 		AddZone(bottomRight, [&]() { pluginListScroll.Scroll(-Preferences::ScrollSpeed()); });
@@ -944,7 +945,7 @@ void PreferencesPanel::DrawPlugins()
 		pluginDescriptionBuffer->Draw(
 			descriptionBox.Center(),
 			descriptionBox.Dimensions(),
-			Point(0, -pluginDescriptionScroll.AnimatedValue())
+			Point(0, -static_cast<int>(pluginDescriptionScroll.AnimatedValue()))
 		);
 
 		if(pluginDescriptionScroll.Scrollable())
@@ -952,12 +953,12 @@ void PreferencesPanel::DrawPlugins()
 			// Draw up and down pointers, mostly to indicate when
 			// scrolling is possible, but might as well make them
 			// clickable too.
-			Rectangle topRight({descriptionBox.Right(), descriptionBox.Top()}, {20.0, 20.0});
+			Rectangle topRight({descriptionBox.Right(), descriptionBox.Top() + POINTER_OFFSET.Y()}, {20.0, 20.0});
 			PointerShader::Draw(topRight.Center(), UP,
 				10.f, 10.f, 5.f, Color(pluginDescriptionScroll.ScrollAtMin() ? .2f : .8f, 0.f));
 			AddZone(topRight, [&]() { pluginDescriptionScroll.Scroll(Preferences::ScrollSpeed()); });
 
-			Rectangle bottomRight(descriptionBox.BottomRight(), {20.0, 20.0});
+			Rectangle bottomRight(descriptionBox.BottomRight() - POINTER_OFFSET, {20.0, 20.0});
 			PointerShader::Draw(bottomRight.Center(), DOWN,
 				10.f, 10.f, 5.f, Color(pluginDescriptionScroll.ScrollAtMax() ? .2f : .8f, 0.f));
 			AddZone(bottomRight, [&]() { pluginDescriptionScroll.Scroll(-Preferences::ScrollSpeed()); });

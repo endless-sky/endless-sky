@@ -35,6 +35,8 @@ namespace {
 	GLuint vbo = -1;
 }
 
+
+
 // Initialize the shaders.
 void RenderBuffer::Init()
 {
@@ -54,11 +56,11 @@ void RenderBuffer::Init()
 		"void main() \n"
 		"{\n"
 		"  gl_Position = vec4((position + vert * size) * scale, 0, 1);\n"
-		"  vec2 tvert = vert + vec2(.5, .5);\n" // Convert from vertex to texture coordinates.
-		"  vec2 tsize = size * srcscale;\n"    // Convert from screen to texture coordinates.
+		"  vec2 tvert = vert + vec2(.5, .5);\n"   // Convert from vertex to texture coordinates.
+		"  vec2 tsize = size * srcscale;\n"       // Convert from screen to texture coordinates.
 		"  vec2 tsrc = srcposition * srcscale;\n" // Convert from screen to texture coordinates.
 		"  tpos = tvert * tsize + tsrc;\n"
-		"  tpos.y = 1.0 - tpos.y;\n" // Negative is up.
+		"  tpos.y = 1.0 - tpos.y;\n"              // Negative is up.
 		"}\n";
 
 	static const char *fragmentCode =
@@ -104,15 +106,39 @@ void RenderBuffer::Init()
 	glEnableVertexAttribArray(shader.Attrib("vert"));
 	glVertexAttribPointer(shader.Attrib("vert"), 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), nullptr);
 
-	// unbind the VBO and VAO
+	// Unbind the VBO and VAO.
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 }
 
 
 
-// Create a texture of the given size that can be used as a render target
-RenderBuffer::RenderBuffer(const Point& dimensions):
+RenderBuffer::RenderTargetGuard::~RenderTargetGuard()
+{
+	Deactivate();
+}
+
+
+
+void RenderBuffer::RenderTargetGuard::Deactivate()
+{
+	buffer.Deactivate();
+	screenGuard.Deactivate();
+}
+
+
+
+RenderBuffer::RenderTargetGuard::RenderTargetGuard(RenderBuffer &b, int screenWidth, int screenHeight):
+	buffer(b),
+	screenGuard(screenWidth, screenHeight)
+{
+
+}
+
+
+
+// Create a texture of the given size that can be used as a render target.
+RenderBuffer::RenderBuffer(const Point &dimensions):
 	size(dimensions)
 {
 	// Generate a framebuffer, and bind it.
@@ -124,8 +150,8 @@ RenderBuffer::RenderBuffer(const Point& dimensions):
 	glBindTexture(GL_TEXTURE_2D, texid);
 
 	// Use linear interpolation and no wrapping.
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
@@ -139,15 +165,13 @@ RenderBuffer::RenderBuffer(const Point& dimensions):
 	glDrawBuffers(1, draw_buffers);
 
 	if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
-	{
 		Logger::LogError("Failed to initialize framebuffer for RenderBuffer");
-	}
 
 
 	glBindTexture(GL_TEXTURE_2D, 0);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-	// default to the current viewport size at the time of construction
+	// Default to the current viewport size at the time of construction.
 	glGetIntegerv(GL_VIEWPORT, last_viewport);
 }
 
@@ -272,28 +296,4 @@ double RenderBuffer::Height() const
 double RenderBuffer::Width() const
 {
 	return size.X();
-}
-
-
-
-RenderBuffer::RenderTargetGuard::~RenderTargetGuard()
-{
-	Deactivate();
-}
-
-
-
-void RenderBuffer::RenderTargetGuard::Deactivate()
-{
-	buffer.Deactivate();
-	screenGuard.Deactivate();
-}
-
-
-
-RenderBuffer::RenderTargetGuard::RenderTargetGuard(RenderBuffer &b, int screenWidth, int screenHeight):
-	buffer(b),
-	screenGuard(screenWidth, screenHeight)
-{
-
 }
