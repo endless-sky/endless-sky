@@ -93,7 +93,11 @@ void Playlist::Load(const DataNode &node)
 
 void Playlist::Activate() const
 {
-	currentTrack = tracks.Get();
+	// Linear should always get the first track in the list when activating.
+	if(progressionStyle == "linear" && tracks.size() > 0)
+		currentTrack = *tracks.begin();
+	else
+		currentTrack = tracks.Get();
 }
 
 
