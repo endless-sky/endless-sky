@@ -84,7 +84,7 @@ bool Plugin::PluginDependencies::IsValid() const
 			Logger::LogError("Warning: Conflicts dependency with the name \"" + dependency
 				+ "\" was already found in required dependencies list.");
 		}
-		else if(optional.count(dependency))
+		if(optional.count(dependency))
 		{
 			isValid = false;
 			Logger::LogError("Warning: Conflicts dependency with the name \"" + dependency
@@ -95,6 +95,59 @@ bool Plugin::PluginDependencies::IsValid() const
 	return isValid;
 }
 
+
+
+// Constructs a description of the plugin from its name, tags, dependencies, etc.
+string Plugin::CreateDescription() const
+{
+	string text;
+	if(!version.empty())
+	{
+		text += "Version: " + version + '\n';
+	}
+	if(!authors.empty())
+	{
+		text += "Authors: ";
+		for(const string &author : authors)
+			text += author + ',';
+		text.pop_back();
+		text += '\n';
+	}
+	if(!tags.empty())
+	{
+		text += "Tags: ";
+		for(const string &tag : tags)
+			text += tag + ',';
+		text.pop_back();
+		text += '\n';
+	}
+	if(!dependencies.IsEmpty())
+	{
+		text += "Dependencies:\n";
+		if(!dependencies.gameVersion.empty())
+			text += "  Game Version: " + dependencies.gameVersion + '\n';
+		if(!dependencies.required.empty())
+		{
+			text += "  Requires:\n";
+			for(const string &dependency : dependencies.required)
+				text += "  - " + dependency + '\n';
+		}
+		if(!dependencies.optional.empty())
+		{
+			text += "  Optional:\n";
+			for(const string &dependency : dependencies.optional)
+				text += "  - " + dependency + '\n';
+		}
+		if(!dependencies.conflicted.empty())
+		{
+			text += "  Conficts:\n";
+			for(const string &dependency : dependencies.conflicted)
+				text += "  - " + dependency + '\n';
+		}
+		text += '\n';
+	}
+	return text;
+}
 
 
 // Checks whether this plugin is valid, i.e. whether it exists.

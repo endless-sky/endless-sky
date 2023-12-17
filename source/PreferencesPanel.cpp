@@ -876,52 +876,7 @@ void PreferencesPanel::DrawPlugins()
 				top.Y() += sprite->Height() + 10.;
 			}
 
-			string text;
-			if(!plugin.version.empty())
-			{
-				text += "Version: " + plugin.version + '\n';
-			}
-			if(!plugin.authors.empty())
-			{
-				text += "Authors: ";
-				for(const string &author : plugin.authors)
-					text += author + ',';
-				text.pop_back();
-				text += '\n';
-			}
-			if(!plugin.tags.empty())
-			{
-				text += "Tags: ";
-				for(const string &tag : plugin.tags)
-					text += tag + ',';
-				text.pop_back();
-				text += '\n';
-			}
-			if(!plugin.dependencies.IsEmpty())
-			{
-				text += "Dependencies:\n";
-				if(!plugin.dependencies.gameVersion.empty())
-					text += "  Game Version: " + plugin.dependencies.gameVersion + '\n';
-				if(!plugin.dependencies.required.empty())
-				{
-					text += "  Requires:\n";
-					for(const string &dependency : plugin.dependencies.required)
-						text += "  - " + dependency + '\n';
-				}
-				if(!plugin.dependencies.optional.empty())
-				{
-					text += "  Optional:\n";
-					for(const string &dependency : plugin.dependencies.optional)
-						text += "  - " + dependency + '\n';
-				}
-				if(!plugin.dependencies.conflicted.empty())
-				{
-					text += "  Conficts:\n";
-					for(const string &dependency : plugin.dependencies.conflicted)
-						text += "  - " + dependency + '\n';
-				}
-				text += '\n';
-			}
+			string text = plugin.CreateDescription();
 
 			WrappedText wrap(font);
 			wrap.SetWrapWidth(MAX_TEXT_WIDTH);

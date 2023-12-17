@@ -44,6 +44,8 @@ struct Plugin {
 
 	// Checks whether this plugin is valid, i.e. whether it exists.
 	bool IsValid() const;
+	// Constructs a description of the plugin from its name, tags, dependencies, etc.
+	std::string CreateDescription() const;
 
 	// The name that identifies this plugin.
 	std::string name;
