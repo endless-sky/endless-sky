@@ -78,14 +78,14 @@ bool Color::IsLoaded() const
 // Get a float vector representing this color, for use by OpenGL.
 const float *Color::Get() const
 {
+	Preferences::ColorFilter filter = Preferences::GetColorFilterMode();
 	// No color filters are enabled, so there's no need to adjust anything.
-	if (Preferences::GetColorFilterMode() == Preferences::ColorFilter::NORMAL)
+	if(filter == Preferences::ColorFilter::NORMAL)
 		return color;
 
 	// Color blindness accessibility filters are enabled.
 	// LMS Daltonization is used to make the colors more distinct for
 	// color-blind players.
-	static float c[4];
 	static float l, m, s, r, g, b;
 
 	// Convert the colors from RGB to LMS, a color space that represents the
@@ -94,7 +94,7 @@ const float *Color::Get() const
 	m = (3.45565 * color[0]) + (27.1554 * color[1]) + (3.86714 * color[2]);
 	s = (0.0299566 * color[0]) + (0.184309 * color[1]) + (1.46709 * color[2]);
 
-	switch(Preferences::GetColorFilterMode())
+	switch(filter)
 	{
 		// Simulate color blidness.
 		case Preferences::ColorFilter::PROTANOPIA:
@@ -105,6 +105,8 @@ const float *Color::Get() const
 			break;
 		case Preferences::ColorFilter::TRITANOPIA:
 			s = (-0.395913 * l) + (0.801109 * m);
+			break;
+		case Preferences::ColorFilter::NORMAL:
 			break;
 	}
 
@@ -125,7 +127,7 @@ const float *Color::Get() const
 
 	// Return the final values. The tritanopia mode is somewhat extreme, so
 	// if it is in use the colors are blended with the original.
-	if (Preferences::GetColorFilterMode() == Preferences::ColorFilter::TRITANOPIA)
+	if(Preferences::GetColorFilterMode() == Preferences::ColorFilter::TRITANOPIA)
 		return new float[4]{(r + color[0]) / 2, (g + color[1]) / 2, (b + color[2]) / 2, color[3]};
 	return new float[4]{r, g, b, color[3]};
 }
