@@ -1737,6 +1737,7 @@ mission "Station Exploration 2"
 			`	"Captain <last>?", says a Hai officer. "Could you come with me for a moment?"`
 			choice
 				`	"Am I in trouble?"`
+					goto normal
 				`	"I'm innocent!"`
 					goto normal
 				`	(Run away.)`
@@ -1773,6 +1774,7 @@ mission "Abandon Ship"
 			`	"Captain <last>?", says a Hai officer. "Could you come with me for a moment?"`
 			choice
 				`	"Am I in trouble?"`
+					goto normal
 				`	"I'm innocent!"`
 					goto normal
 				`	(Run away.)`
