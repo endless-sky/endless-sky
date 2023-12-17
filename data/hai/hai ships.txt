@@ -1727,8 +1727,8 @@ ship "Stag Beetle"
 	gun 61 -14 "Ionic Blaster Prototype"
 	turret -51 21.5 "Bullfrog Anti-Missile"
 	turret 51 21.5 "Blaze-Pike Turret"
-	turret -56.5 75 
-	turret 56.5 75 
+	turret -56.5 75
+	turret 56.5 75
 	turret 0 85.5 "Grab-Strike Turret"
 	leak "leak" 35 45
 	leak "flame" 60 95
