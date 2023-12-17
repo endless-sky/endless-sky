@@ -78,35 +78,56 @@ bool Color::IsLoaded() const
 // Get a float vector representing this color, for use by OpenGL.
 const float *Color::Get() const
 {
+	// No color filters are enabled, so there's no need to adjust anything.
+	if (Preferences::GetColorFilterMode() == Preferences::ColorFilter::NORMAL)
+		return color;
+
+	// Color blindness accessibility filters are enabled.
+	// LMS Daltonization is used to make the colors more distinct for
+	// color-blind players.
 	static float c[4];
-	std::copy(std::begin(color), std::end(color), std::begin(c));
+	static float l, m, s, r, g, b;
+
+	// Convert the colors from RGB to LMS, a color space that represents the
+	// light received by the cones in the human eye better than RGB.
+	l = (17.8824 * color[0]) + (43.5161 * color[1]) + (4.11935 * color[2]);
+	m = (3.45565 * color[0]) + (27.1554 * color[1]) + (3.86714 * color[2]);
+	s = (0.0299566 * color[0]) + (0.184309 * color[1]) + (1.46709 * color[2]);
 
 	switch(Preferences::GetColorFilterMode())
 	{
-		case Preferences::ColorFilter::NORMAL:
-			break;
-		// Color blindness accessibility filters are enabled.
-		// The protanopia and deuteranopia filters are loosely based off of
-		// Apple's similar filters, spreading the apparent saturation of
-		// different hues over a wider range.
-		// The tritanopia filter is simpler, increasing the red and green
-		// channels to compensate for the blue channel, and shifting blues
-		// toward either reds or greens.
+		// Simulate color blidness.
 		case Preferences::ColorFilter::PROTANOPIA:
-			if(color[0] > color[1])
-				c[2] = (1 - (1 - color[2]) * (1 - color[0]) + color[2]) / 2;
+			l = (2.02344 * m) + (-2.52581 * s);
 			break;
 		case Preferences::ColorFilter::DEUTERANOPIA:
-			if(color[1] > color[0])
-				c[2] = (1 - (1 - color[2]) * (1 - color[1]) + color[2]) / 2;
+			m = (0.494207 * l) + (1.24827 * s);
 			break;
 		case Preferences::ColorFilter::TRITANOPIA:
-			c[0] += (color[1] - color[0]) * color[2];
-			c[1] += (color[0] - color[1]) * color[2];
+			s = (-0.395913 * l) + (0.801109 * m);
 			break;
 	}
 
-	return c;
+	// Convert the LMS colors back to RGB.
+	r = (0.0809444479 * l) + (-0.130504409 * m) + (0.116721066 * s);
+	g = (-0.0102485335 * l) + (0.0540193266 * m) + (-0.113614708 * s);
+	b = (-0.000365296938 * l) + (-0.00412161469 * m) + (0.693511405 * s);
+
+	// Compensate for invisible colors.
+	r = color[0];
+	g = color[1] + 0.7 * (color[0] - r) + (color[1] - g);
+	b = color[2] + 0.7 * (color[0] - r) + (color[2] - b);
+
+	// Clamp the RGB colors to within the 0. to 1. range used by OpenGL.
+	r = (r < 0.) ? 0. : ((r > 1.) ? 1. : r);
+	g = (g < 0.) ? 0. : ((g > 1.) ? 1. : g);
+	b = (b < 0.) ? 0. : ((b > 1.) ? 1. : b);
+
+	// Return the final values. The tritanopia mode is somewhat extreme, so
+	// if it is in use the colors are blended with the original.
+	if (Preferences::GetColorFilterMode() == Preferences::ColorFilter::TRITANOPIA)
+		return new float[4]{(r + color[0]) / 2, (g + color[1]) / 2, (b + color[2]) / 2, color[3]};
+	return new float[4]{r, g, b, color[3]};
 }
 
 
