@@ -4999,7 +4999,7 @@ system Alpherg
 	arrival 4475
 	habitable 4475
 	haze _menu/haze-33
-	link Fumalasamakah
+	link Fumalsamakah
 	asteroids "medium rock" 3 2.97
 	asteroids "small metal" 3 3.195
 	trade Clothing 305
@@ -6502,7 +6502,7 @@ system Belenos
 	arrival 1310
 	habitable 1310
 	haze _menu/haze-33
-	link Fumalasamakah
+	link Fumalsamakah
 	link Thuban
 	asteroids "small rock" 1 1.188
 	asteroids "large rock" 1 0.977
@@ -8665,7 +8665,7 @@ system Citadelle
 	arrival 1240
 	habitable 1240
 	haze _menu/haze-33
-	link Fumalasamakah
+	link Fumalsamakah
 	asteroids "small rock" 28 1.404
 	asteroids "medium rock" 7 1.24
 	asteroids "large rock" 15 2.059
@@ -14510,7 +14510,7 @@ system Fscher
 		distance 15894
 		period 10098.0
 
-system Fumalasamakah
+system Fumalsamakah
 	pos -962.334 301.805
 	government Uninhabited
 	arrival 5000
@@ -32081,7 +32081,7 @@ system Thuban
 	belt 1500 2
 	haze _menu/haze-33
 	link Belenos
-	link Fumalasamakah
+	link Fumalsamakah
 	link Men
 	asteroids "small metal" 14 7
 	asteroids "large rock" 25 4
