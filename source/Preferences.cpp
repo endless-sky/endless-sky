@@ -140,7 +140,7 @@ namespace {
 	const vector<string> ALERT_INDICATOR_SETTING = {"off", "audio", "visual", "both"};
 	int alertIndicatorIndex = 3;
 
-	const vector<string> COLOR_FILTER_SETTING = {"normal", "protanopia", "deuteranopia", "tritanopia"};
+	const vector<string> COLOR_FILTER_SETTING = {"off", "protanopia", "deuteranopia", "tritanopia"};
 	int colorFilterIndex = 0;
 
 	int previousSaveCount = 3;

@@ -76,7 +76,7 @@ namespace {
 	const string BACKGROUND_PARALLAX = "Parallax background";
 	const string EXTENDED_JUMP_EFFECTS = "Extended jump effects";
 	const string ALERT_INDICATOR = "Alert indicator";
-	const string COLOR_FILTER_SETTING = "Color filter";
+	const string COLOR_FILTER_SETTING = "Color blind mode";
 
 	// How many pages of settings there are.
 	const int SETTINGS_PAGE_COUNT = 2;
@@ -743,8 +743,8 @@ void PreferencesPanel::DrawSettings()
 		}
 		else if(setting == COLOR_FILTER_SETTING)
 		{
-			isOn = true;
 			text = Preferences::ColorFilterSetting();
+			isOn = text != "off";
 		}
 		else
 			text = isOn ? "on" : "off";

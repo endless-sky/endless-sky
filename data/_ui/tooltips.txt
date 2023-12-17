@@ -1218,7 +1218,7 @@ tip "Screen mode"
 tip "VSync"
 	`Toggle vsync between off, on, and adaptive (should your computer support it).`
 
-tip "Color filter"
+tip "Color blind mode"
 	`Toggle between normal colors and colors that are more distinct for people with protanopia, deuteranopia, or tritanopia.`
 
 tip "Show CPU / GPU load"
