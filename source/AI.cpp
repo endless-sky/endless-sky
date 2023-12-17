@@ -1682,7 +1682,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	const System *origin = ship.GetSystem();
 	if(!ship.GetTargetSystem() && !ship.GetTargetStellar() && !shouldStay)
 	{
-		// TODO: This should problably be changed, because JumpsRemaining
+		// TODO: This should probably be changed, because JumpsRemaining
 		// does not return an accurate number.
 		int jumps = ship.JumpsRemaining(false);
 		// Each destination system has an average priority of 10.
@@ -1695,10 +1695,9 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 			? origin->JumpNeighbors(ship.JumpNavigation().JumpRange()) : origin->Links();
 		if(jumps)
 		{
-			bool unrestricted = ship.GetPersonality().IsUnrestricted();
 			for(const System *link : links)
 			{
-				if(!unrestricted && gov->IsRestrictedFrom(*link))
+				if(ship.IsRestrictedFrom(*link))
 				{
 					systemWeights.push_back(0);
 					continue;
@@ -2766,9 +2765,8 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 		{
 			const auto &links = ship.JumpNavigation().HasJumpDrive() ?
 				system->JumpNeighbors(ship.JumpNavigation().JumpRange()) : system->Links();
-			bool unrestricted = ship.GetPersonality().IsUnrestricted();
 			for(const System *link : links)
-				if(unrestricted || !gov->IsRestrictedFrom(*link))
+				if(!ship.IsRestrictedFrom(*link))
 					targetSystems.push_back(link);
 		}
 
