@@ -1663,7 +1663,7 @@ mission "Strider notification"
 
 mission "Station Exploration 1"
 	name "Station Exploration"
-	description "Bring a group of Hai and human students to <planet>, so that they can explore the abandoned station."
+	description "Bring a group of Hai and human students to <planet> to explore the abandoned station."
 	minor
 	source "Greenwater"
 	destination "Darkrest"
