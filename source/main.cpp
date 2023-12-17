@@ -90,8 +90,13 @@ int main(int argc, char *argv[])
 	bool noTestMute = false;
 	string testToRunName;
 
+	// Whether the game has encountered errors while loading.
+	bool hasErrors = false;
 	// Ensure that we log errors to the errors.txt file.
-	Logger::SetLogErrorCallback([](const string &errorMessage) { Files::LogErrorToFile(errorMessage); });
+	Logger::SetLogErrorCallback([&hasErrors](const string &errorMessage) {
+		hasErrors = true;
+		Files::LogErrorToFile(errorMessage);
+	});
 
 	for(const char *const *it = argv + 1; *it; ++it)
 	{
@@ -164,8 +169,8 @@ int main(int argc, char *argv[])
 			// then check the default state of the universe.
 			if(!player.LoadRecent())
 				GameData::CheckReferences();
-			cout << "Parse completed." << endl;
-			return 0;
+			cout << "Parse completed with " << (hasErrors ? "at least one" : "no") << " error(s)." << endl;
+			return hasErrors;
 		}
 		assert(!isConsoleOnly && "Attempting to use UI when only data was loaded!");
 
