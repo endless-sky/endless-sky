@@ -505,7 +505,7 @@ void Engine::Step(bool isActive)
 	}
 	else if(flagship)
 	{
-		center = flagship->Position();
+		center = flagship->Center();
 		centerVelocity = flagship->Velocity();
 		Preferences::ExtendedJumpEffects jumpEffectState = Preferences::GetExtendedJumpEffects();
 		if(flagship->IsHyperspacing() && jumpEffectState != Preferences::ExtendedJumpEffects::OFF)
@@ -1587,7 +1587,7 @@ void Engine::CalculateStep()
 	Point newCenterVelocity;
 	if(flagship)
 	{
-		newCenter = flagship->Position();
+		newCenter = flagship->Center();
 		newCenterVelocity = flagship->Velocity();
 	}
 	draw[calcTickTock].SetCenter(newCenter, newCenterVelocity);
