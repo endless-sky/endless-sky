@@ -1034,7 +1034,7 @@ outfit "Javelin Turret"
 		"hit force" 50
 		"missile strength" 3
 	description "Mounting not one but two Javelin missile pods, the Javelin turret rains down and endless stream of unguided missiles that deal noticeably more damage than other turreted weapons of the same size, at the expensive of needing to refill on ammo once depleted due to its high fire rate. For that reason, these turrets are commonly paired with Javelin storage racks, as well as other weapons that don't require the use of ammunition, so that the parent ship doesn't need to leave combat once depleted of Javelins."
-	description "	As with its regular pod versions, the Javelin turret is excellent at overwhelming anti-missile systems, especially due to firing twice the speed, so that other ordinance from allied ships is able to make it through to the target."
+	description "	As with its regular pod versions, the Javelin turret is excellent at overwhelming anti-missile systems, especially due to firing at just over twice the speed, so that other ordinance from allied ships is able to make it through to the target."
 
 
 outfit "Torpedo"
