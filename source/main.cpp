@@ -319,6 +319,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 
 	// Game loop when running the game normally.
 	if(!testContext.CurrentTest())
+	{
 		while(!menuPanels.IsDone())
 		{
 			if(toggleTimeout)
@@ -394,7 +395,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 			if(menuPanels.IsEmpty())
 				player.AddPlayTime(chrono::steady_clock::now() - start);
 		}
-
+	}
 	// Game loop when running the game as part of an integration test.
 	else
 	{
