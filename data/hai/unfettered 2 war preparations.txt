@@ -1698,7 +1698,7 @@ mission "<uhai> 17: Spy On Hai A"
 			set "unfettered: disabled degenerate"
 		dialog
 			`You perform a search of Mhairi's flagship, their crew forced to cooperate if they don't want to get spaced!`
-			` The item that best fits the description is the 'Mystery Cube'. Take it and bring it back to <destination>.`
+			`	The item that best fits the description is the 'Mystery Cube'. Take it and bring it back to <destination>.`
 	on visit
 		dialog `You don't have the item He-Yi asked for. Or you have not brought the right item back. If that's the case, go back and board the ship to take the right item.`
 	to complete
@@ -1737,7 +1737,7 @@ mission "<uhai> 17: Spy On Hai B"
 			label steal
 			`	You manage to enter the ship discreetly. Some people will always notice, but you try to pose as a spaceport worker there to assist with the repairs, using equipment you find lying around. You should be able to go pretty much anywhere on the ship. You don't have any idea which part of the ship is actually damaged though, so your cover could easily be blown. There is no going back now, except maybe if you choose to provoke the pirate warlord into a fight to get the item.`
 			label search
-			`	You won't be able to search the ship forevever, and it would be wise to think carefuly about your next course of action.`
+			`	You won't be able to search the ship forevever, and it would be wise to think carefully about your next course of action.`
 			branch caught
 				"uhai choice: mistake" > 1 + "unfettered: disabled degenerate"
 			choice
@@ -1793,7 +1793,6 @@ mission "<uhai> 17: Spy On Hai B"
 				`	(Five.)`
 					goto five
 				`	(Eight could be reasonable.)`
-					goto eight
 				`	(Take as much as I can: fifteen!.)`
 					goto fifteen
 				`	(Never mind, this isn't a good idea.)`
