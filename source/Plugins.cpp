@@ -66,7 +66,7 @@ bool Plugin::PluginDependencies::IsValid() const
 	bool isValid = true;
 
 	// Required dependencies will already be valid due to sets not
-	// allowing duplicate values. Therefor we only need to check optional
+	// allowing duplicate values. Therefore we only need to check optional
 	// and conflicts.
 	for(const string &dependency : optional)
 	{

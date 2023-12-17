@@ -54,7 +54,7 @@ struct Plugin {
 	// The version of the plugin as defined by the authors.
 	std::string version;
 
-	// The set of tags which are used to categorise the plugin.
+	// The set of tags which are used to categorize the plugin.
 	std::set<std::string> tags;
 	// The set of people who have created the plugin.
 	std::set<std::string> authors;
