@@ -158,9 +158,9 @@ Color Color::Filter(Color c)
 	float m = (3.45565 * c.color[0]) + (27.1554 * c.color[1]) + (3.86714 * c.color[2]);
 	float s = (0.0299566 * c.color[0]) + (0.184309 * c.color[1]) + (1.46709 * c.color[2]);
 
+	// Simulate color blidness.
 	switch(filter)
 	{
-		// Simulate color blidness.
 		case Preferences::ColorFilter::PROTANOPIA:
 			l = (2.02344 * m) + (-2.52581 * s);
 			break;
