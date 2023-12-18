@@ -150,13 +150,12 @@ Color Color::Filter(Color c)
 	// Color blindness accessibility filters are enabled.
 	// LMS Daltonization is used to make the colors more distinct for
 	// color-blind players.
-	static float l, m, s, r, g, b;
 
 	// Convert the colors from RGB to LMS, a color space that represents the
 	// light received by the cones in the human eye better than RGB.
-	l = (17.8824 * c.color[0]) + (43.5161 * c.color[1]) + (4.11935 * c.color[2]);
-	m = (3.45565 * c.color[0]) + (27.1554 * c.color[1]) + (3.86714 * c.color[2]);
-	s = (0.0299566 * c.color[0]) + (0.184309 * c.color[1]) + (1.46709 * c.color[2]);
+	float l = (17.8824 * c.color[0]) + (43.5161 * c.color[1]) + (4.11935 * c.color[2]);
+	float m = (3.45565 * c.color[0]) + (27.1554 * c.color[1]) + (3.86714 * c.color[2]);
+	float s = (0.0299566 * c.color[0]) + (0.184309 * c.color[1]) + (1.46709 * c.color[2]);
 
 	switch(filter)
 	{
@@ -175,9 +174,9 @@ Color Color::Filter(Color c)
 	}
 
 	// Convert the LMS colors back to RGB.
-	r = (0.0809444479 * l) + (-0.130504409 * m) + (0.116721066 * s);
-	g = (-0.0102485335 * l) + (0.0540193266 * m) + (-0.113614708 * s);
-	b = (-0.000365296938 * l) + (-0.00412161469 * m) + (0.693511405 * s);
+	float r = (0.0809444479 * l) + (-0.130504409 * m) + (0.116721066 * s);
+	float g = (-0.0102485335 * l) + (0.0540193266 * m) + (-0.113614708 * s);
+	float b = (-0.000365296938 * l) + (-0.00412161469 * m) + (0.693511405 * s);
 
 	// Compensate for invisible colors.
 	r = c.color[0];
@@ -185,9 +184,9 @@ Color Color::Filter(Color c)
 	b = c.color[2] + 0.7 * (c.color[0] - r) + (c.color[2] - b);
 
 	// Clamp the RGB colors to within the 0. to 1. range used by OpenGL.
-	r = max(0.f, min(r, 1.f));
-	g = max(0.f, min(g, 1.f));
-	b = max(0.f, min(b, 1.f));
+	r = clamp(r, 0.f, 1.f);
+	g = clamp(g, 0.f, 1.f);
+	b = clamp(b, 0.f, 1.f);
 
 	// Return the final values. The tritanopia mode is somewhat extreme, so
 	// if it is in use the colors are blended with the original.

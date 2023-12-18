@@ -125,7 +125,7 @@ void LineShader::Draw(const Point &from, const Point &to, float width, const Col
 	GLfloat w[2] = {static_cast<float>(u.Y()), static_cast<float>(-u.X())};
 	glUniform2fv(widthI, 1, w);
 
-	glUniform4fv(colorI, 1, color.Filter(color).Get());
+	glUniform4fv(colorI, 1, Color::Filter(color).Get());
 
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
