@@ -44,6 +44,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Screen.h"
 #include "Ship.h"
 #include "ShipJumpNavigation.h"
+#include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "StellarObject.h"
 #include "System.h"
@@ -318,6 +319,7 @@ void MapPanel::Draw()
 	DrawSystems();
 	DrawNames();
 	DrawMissions();
+	DrawSelectedSystem();
 }
 
 
@@ -829,7 +831,7 @@ void MapPanel::Find(const string &name)
 		const System &system = it.second;
 		if(system.IsValid() && !system.Inaccessible() && player.HasVisited(system))
 		{
-			int index = Search(it.first, name);
+			int index = Format::Search(it.first, name);
 			if(index >= 0 && index < bestIndex)
 			{
 				bestIndex = index;
@@ -848,7 +850,7 @@ void MapPanel::Find(const string &name)
 		const Planet &planet = it.second;
 		if(planet.IsValid() && player.HasVisited(*planet.GetSystem()))
 		{
-			int index = Search(it.first, name);
+			int index = Format::Search(it.first, name);
 			if(index >= 0 && index < bestIndex)
 			{
 				bestIndex = index;
@@ -885,15 +887,6 @@ bool MapPanel::IsSatisfied(const Mission &mission) const
 bool MapPanel::IsSatisfied(const PlayerInfo &player, const Mission &mission)
 {
 	return mission.IsSatisfied(player) && !mission.HasFailed(player);
-}
-
-
-
-int MapPanel::Search(const string &str, const string &sub)
-{
-	auto it = search(str.begin(), str.end(), sub.begin(), sub.end(),
-		[](char a, char b) { return toupper(a) == toupper(b); });
-	return (it == str.end() ? -1 : it - str.begin());
 }
 
 
@@ -1217,6 +1210,43 @@ void MapPanel::DrawTravelPlan()
 
 
 
+// Fill in the top-middle header bar that names the selected system, and indicates its distance.
+void MapPanel::DrawSelectedSystem()
+{
+	const Sprite *sprite = SpriteSet::Get("ui/selected system");
+	SpriteShader::Draw(sprite, Point(0. + selectedSystemOffset, Screen::Top() + .5f * sprite->Height()));
+
+	string text;
+	if(!player.KnowsName(*selectedSystem))
+		text = "Selected system: unexplored system";
+	else
+		text = "Selected system: " + selectedSystem->Name();
+
+	int jumps = 0;
+	const vector<const System *> &plan = player.TravelPlan();
+	auto it = find(plan.begin(), plan.end(), selectedSystem);
+	if(it != plan.end())
+		jumps = plan.end() - it;
+	else if(distance.HasRoute(selectedSystem))
+		jumps = distance.Days(selectedSystem);
+
+	if(jumps == 1)
+		text += " (1 jump away)";
+	else if(jumps > 0)
+		text += " (" + to_string(jumps) + " jumps away)";
+
+	const Font &font = FontSet::Get(14);
+	Point pos(-175. + selectedSystemOffset, Screen::Top() + .5 * (30. - font.Height()));
+	font.Draw({text, {350, Alignment::CENTER, Truncate::MIDDLE}},
+		pos, *GameData::Colors().Get("bright"));
+
+	// Reset the position of this UI element. If something is in the way, it will be
+	// moved back before it's drawn the next frame.
+	selectedSystemOffset = 0;
+}
+
+
+
 // Communicate the location of non-destroyed, player-owned ships.
 void MapPanel::DrawEscorts()
 {
@@ -1237,7 +1267,7 @@ void MapPanel::DrawEscorts()
 			if(squad.second.activeShips || squad.second.parkedShips)
 				RingShader::Draw(pos, INNER - 1.f, 0.f, squad.second.activeShips ? active : parked);
 
-			if(squad.second.outfits.size())
+			if(!squad.second.outfits.empty())
 				// Stored outfits are drawn/indicated by 8 short rays out of the system center.
 				for(int i = 0; i < 8; ++i)
 				{

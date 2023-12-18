@@ -135,8 +135,11 @@ namespace {
 
 
 
-future<void> GameData::BeginLoad(bool onlyLoadData, bool debugMode)
+future<void> GameData::BeginLoad(bool onlyLoadData, bool debugMode, bool preventUpload)
 {
+	if(preventUpload)
+		spriteQueue.SetPreventUpload();
+
 	// Initialize the list of "source" folders based on any active plugins.
 	LoadSources();
 
@@ -199,14 +202,19 @@ void GameData::CheckReferences()
 
 
 
+void GameData::LoadSettings()
+{
+	// Load the key settings.
+	Command::LoadSettings(Files::Resources() + "keys.txt");
+	Command::LoadSettings(Files::Config() + "keys.txt");
+}
+
+
+
 void GameData::LoadShaders()
 {
 	FontSet::Add(Files::Images() + "font/ubuntu14r.png", 14);
 	FontSet::Add(Files::Images() + "font/ubuntu18r.png", 18);
-
-	// Load the key settings.
-	Command::LoadSettings(Files::Resources() + "keys.txt");
-	Command::LoadSettings(Files::Config() + "keys.txt");
 
 	FillShader::Init();
 	FogShader::Init();

@@ -29,7 +29,7 @@ class Variant {
 public:
 	Variant() = default;
 	// Construct and Load() at the same time.
-	Variant(const DataNode &node);
+	explicit Variant(const DataNode &node);
 
 	void Load(const DataNode &node);
 
