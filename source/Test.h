@@ -70,9 +70,6 @@ public:
 			LABEL,
 			// Instructs the game to set navigation / travel plan to a target system
 			NAVIGATE,
-			// Sets the watchdog timer. No value or zero disables the watchdog. Non-zero gives
-			// a watchdog in number of frames/steps.
-			WATCHDOG,
 		};
 
 
@@ -97,8 +94,6 @@ public:
 		// debug printing, so keeping the strings for now.
 		std::string jumpOnTrueTarget;
 		std::string jumpOnFalseTarget;
-
-		unsigned int watchdog = 0;
 
 		// Input variables.
 		Command command;
