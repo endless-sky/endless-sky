@@ -170,7 +170,7 @@ Color Color::Filter(Color c)
 		case Preferences::ColorFilter::TRITANOPIA:
 			s = (-0.395913 * l) + (0.801109 * m);
 			break;
-		default:
+		case Preferences::ColorFilter::NORMAL:
 			break;
 	}
 
