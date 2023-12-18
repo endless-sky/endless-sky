@@ -598,7 +598,7 @@ bool ShopPanel::Drag(double dx, double dy)
 				}
 	}
 	else
-		DoScroll(dy);
+		DoScroll(dy, false);
 
 	return true;
 }
@@ -1046,7 +1046,7 @@ int ShopPanel::DrawPlayerShipInfo(const Point &point)
 
 
 
-bool ShopPanel::DoScroll(double dy)
+bool ShopPanel::DoScroll(double dy, bool smoothing)
 {
 	if(activePane == ShopPane::Info)
 		infobarScroll = max(0., min(maxInfobarScroll, infobarScroll - dy));
@@ -1054,6 +1054,13 @@ bool ShopPanel::DoScroll(double dy)
 		sidebarScroll = max(0., min(maxSidebarScroll, sidebarScroll - dy));
 	else
 		mainScroll = max(0., min(maxMainScroll, mainScroll - dy));
+
+	if(!smoothing)
+	{
+		infobarSmoothScroll = infobarScroll;
+		sidebarSmoothScroll = sidebarScroll;
+		mainSmoothScroll = mainScroll;
+	}
 
 	return true;
 }

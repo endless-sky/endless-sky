@@ -200,7 +200,7 @@ private:
 
 	int DrawPlayerShipInfo(const Point &point);
 
-	bool DoScroll(double dy);
+	bool DoScroll(double dy, bool smoothing = true);
 	bool SetScrollToTop();
 	bool SetScrollToBottom();
 	void SideSelect(int count);
