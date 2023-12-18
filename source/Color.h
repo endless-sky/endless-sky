@@ -56,6 +56,9 @@ public:
 	// Multiply the RGBA values of the given Color by the given scalar and return a new Color.
 	static Color Multiply(float scalar, const Color &base);
 
+	// Apply color blindness accessibility filters to the given Color to obtain a new Color.
+	static Color Filter(Color c);
+
 
 private:
 	// Store the color as a float vector for easy interfacing with OpenGL.

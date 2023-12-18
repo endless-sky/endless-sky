@@ -140,7 +140,7 @@ void Font::DrawAliased(const string &str, double x, double y, const Color &color
 	glBindTexture(GL_TEXTURE_2D, texture);
 	glBindVertexArray(vao);
 
-	glUniform4fv(colorI, 1, color.Get());
+	glUniform4fv(colorI, 1, color.Filter(color).Get());
 
 	// Update the scale, only if the screen size has changed.
 	if(Screen::Width() != screenWidth || Screen::Height() != screenHeight)

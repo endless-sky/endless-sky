@@ -189,7 +189,7 @@ void OutlineShader::Draw(const Sprite *sprite, const Point &pos, const Point &si
 		static_cast<float>(pos.X()), static_cast<float>(pos.Y())};
 	glUniform2fv(positionI, 1, position);
 
-	glUniform4fv(colorI, 1, color.Get());
+	glUniform4fv(colorI, 1, color.Filter(color).Get());
 
 	glBindTexture(GL_TEXTURE_2D_ARRAY, sprite->Texture(unit.Length() * Screen::Zoom() > 50.));
 

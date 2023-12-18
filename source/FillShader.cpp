@@ -108,7 +108,7 @@ void FillShader::Fill(const Point &center, const Point &size, const Color &color
 	GLfloat sizeV[2] = {static_cast<float>(size.X()), static_cast<float>(size.Y())};
 	glUniform2fv(sizeI, 1, sizeV);
 
-	glUniform4fv(colorI, 1, color.Get());
+	glUniform4fv(colorI, 1, color.Filter(color).Get());
 
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 

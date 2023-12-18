@@ -177,7 +177,7 @@ void RingShader::Add(const Point &pos, float radius, float width, float fraction
 	glUniform1f(startAngleI, startAngle * TO_RAD);
 	glUniform1f(dashI, dash ? 2. * PI / dash : 0.);
 
-	glUniform4fv(colorI, 1, color.Get());
+	glUniform4fv(colorI, 1, color.Filter(color).Get());
 
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }

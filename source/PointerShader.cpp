@@ -150,7 +150,7 @@ void PointerShader::Add(const Point &center, const Point &angle,
 
 	glUniform1f(offsetI, offset);
 
-	glUniform4fv(colorI, 1, color.Get());
+	glUniform4fv(colorI, 1, color.Filter(color).Get());
 
 	glDrawArrays(GL_TRIANGLES, 0, 3);
 }
