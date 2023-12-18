@@ -176,6 +176,8 @@ protected:
 	ShopPane activePane = ShopPane::Main;
 	char hoverButton = '\0';
 
+	double previousX = 0.;
+
 	std::vector<Zone> zones;
 	std::vector<ClickZone<const Ship *>> shipZones;
 	std::vector<ClickZone<std::string>> categoryZones;
