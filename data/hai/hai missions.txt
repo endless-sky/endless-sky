@@ -1663,7 +1663,7 @@ mission "Strider notification"
 
 mission "Hai Film Crew [1]"
 	name "Hai Film Crew"
-	description "Bring a movie crew from <source> to <destination>, so that they can film a horror movie there."
+	description "Bring a movie crew from <origin> to <destination>, so that they can film a horror movie there."
 	minor
 	source
 		attributes hai urban
@@ -1720,7 +1720,7 @@ mission "Hai Film Crew [1]"
 				`	"Excellent! I'll let the crew know where to find you."`
 					accept
 	on visit
-		dialog `You've reached <planet>, but your cargo or passengers are on another ship! Better take off and wait for them to arrive in this system.`
+		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		event "film crew" 30
 		payment 100000 50
@@ -1762,7 +1762,7 @@ mission "Hai Film Crew [2]"
 
 mission "Hai Film Crew [3]"
 	name "Hai Film Crew"
-	description "Bring the movie crew you transported from <source> to their studio on <destination>."
+	description "Take Likeet's film crew home to their studio on <destination>. Payment is <payment>."
 	minor
 	source "Darkrest"
 	destination
@@ -1778,8 +1778,8 @@ mission "Hai Film Crew [3]"
 			`	"Alright, captain. We'll need to get to <destination>, so that we can edit the raw footage in our studio. Gonna be nice to finally be back on a planet instead of this tin can." She pauses, as if she's trying to remember a line. "Oh yeah, I'll pay you <payment> once we've arrived. Let's get out of here."`
 				accept
 	on visit
-		dialog `You've reached <planet>, but your cargo or passengers are on another ship! Better take off and wait for them to arrive in this system.`
+		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		payment 100000 50
 		conversation
-			`"Thanks for the ride, captain. Keep a lookout for my film in theaters. You'll know it when you see it." Once the cargo has been unloaded, she almost sprints away in excitement, no doubt trying to make it to her studio as quickly as possible. You notice that <payment> has been deposited into your account.`
+			`When you land on <planet>, you are approached by Likeet, who is carrying a large can of fake blood. "Thanks for the ride, captain. Keep a lookout for my film in theaters. You'll know it when you see it." Once the cargo has been unloaded, she almost sprints away in excitement, no doubt trying to make it to her studio as quickly as possible. You notice that <payment> has been deposited into your account.`
