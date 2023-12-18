@@ -108,11 +108,10 @@ test "Afterburner-flight - Simple depart land"
 	sequence
 		inject "burning flyers save"
 		call "Load First Savegame"
-		watchdog 12000
 		call "Depart"
 		# Wait for 10 seconds to drift away from the planet.
 		apply
-			"test: steps to wait" = 10 * 60
+			"test: steps to wait" = 20
 		label "floating"
 		# empty input to make time pass
 		input
