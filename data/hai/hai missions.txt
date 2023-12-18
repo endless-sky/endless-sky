@@ -1680,7 +1680,7 @@ mission "Hai Film Crew [1]"
 			`	"You're a ship captain, yes? Would you like to be part of cinema history?"`
 			choice
 				`	"I'm not much of a movie buff. I'll pass."`
-						decline
+					decline
 				`	"Sure, what do you need me to do?"`
 				`	"What do you mean?"`
 			`	"My name is Likeet, and I'm in charge of coordinating transportation for an independent film crew. We need you to bring <bunks> crew members and <tons> of film equipment to Darkrest, then bring us back after about a month. We can pay you <payment>, but the rewards of being involved in an ambitious project such as this will be priceless."`
@@ -1690,7 +1690,7 @@ mission "Hai Film Crew [1]"
 				`	"Sure, I can take you there."`
 					goto accept
 				`	"I'm not going that way. You'll need to find some other captain."`
-						decline
+					decline
 			label ask
 			`	"Ah, you must not know about <planet>. There are many tales which swirl around the station, chief among them being the existence of ghosts and monsters haunting its corridors. We'd like to take advantage of the popular image of Darkrest in the creation of our horror film by using it as a backdrop. It's sort of the human equivalent of setting your film in a 'haunted' forest. Don't worry, we'll bring enough food to last us for the month."`
 			choice
@@ -1699,7 +1699,7 @@ mission "Hai Film Crew [1]"
 				`	"Alright then, I can take you there."`
 					goto accept
 				`	"I'm not going that way. You'll need to find some other captain."`
-						decline
+					decline
 			label haunted
 			`	"Back when the station was still in use, there was a mysterious malfunction in one of the hatches that released oxygen out the airlock, suffocating hundreds on board to death. To this day, no one knows what caused it, and legends have grown out of the event."`
 			choice
@@ -1715,7 +1715,7 @@ mission "Hai Film Crew [1]"
 				`	"Alright then, I can take you there."`
 					goto accept
 				`	"I'm not going that way. You'll need to find some other captain."`
-						decline
+					decline
 			label accept
 				`	"Excellent! I'll let the crew know where to find you."`
 					accept
@@ -1733,10 +1733,10 @@ mission "Hai Film Crew [1]"
 					goto going
 			`	"I don't want to spoil anything, but it's a psychological horror film that explores the nature of human isolation, and the shadow that our own mortality casts over our lives." She continues to elaborate on more philosophical themes that seemingly have less and less to do with the actual film, until she notices that your eyes have long since glazed over.`
 			`	"Well, anyways, thanks for your help, captain. I'll contact you in a month once we're finished," says Likeet.`
-					accept
+				accept
 			label going
 			`	"Thanks for your help, captain. I'll contact you in a month once we're finished," says Likeet.`
-					accept
+				accept
 
 
 
@@ -1772,7 +1772,7 @@ mission "Hai Film Crew [3]"
 	on offer
 		conversation
 			`The first thing you notice when you land on Darkrest is the mess. It looks as if a tornado has touched down on the set, and you suspect that natural disasters were not part of the movie's original script.`
-			`	"Controlled chaos, I call it," says Likeet, who has somehow materialized beside you. "We're just clearing everything out right now, making sure we didn't forget anything, the usual."` 
+			`	"Controlled chaos, I call it," says Likeet, who has somehow materialized beside you. "We're just clearing everything out right now, making sure we didn't forget anything, the usual."`
 			`	It takes a few hours to load everything onto your ship. Once you're finished, the only sign that anyone was here is that the station's surfaces are free of dust.`
 			`	"Alright, captain. We'll need to get to <destination>, so that we can edit the raw footage in our studio. Gonna be nice to finally be back on a planet instead of this tin can." She pauses, as if she's trying to remember a line. "Oh yeah, I'll pay you <payment> once we've arrived. Let's get out of here."`
 				accept
