@@ -202,6 +202,6 @@ void TaskQueue::ThreadLoop() noexcept
 			task.queue->futures.erase(task.futureIt);
 		}
 
-		asyncCondition.wait(lock);
+		asyncCondition.wait(lock, [] { return shouldQuit || !tasks.empty(); });
 	}
 }

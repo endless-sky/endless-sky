@@ -283,6 +283,17 @@ void ImageSet::Load() noexcept(false)
 		}
 	}
 
+	auto FillSwizzleMasks = [&](vector<string> &toFill, unsigned int intendedSize) {
+		if(toFill.size() == 1 && intendedSize > 1)
+			for(unsigned int i = toFill.size(); i < intendedSize; i++)
+				toFill.emplace_back(toFill.back());
+	};
+	// If there is only a swizzle-mask defined for the first frame fill up the swizzle-masks
+	// with this mask.
+	FillSwizzleMasks(paths[2], paths[0].size());
+	FillSwizzleMasks(paths[3], paths[0].size());
+
+
 	auto LoadSprites = [&](vector<string> &toLoad, ImageBuffer &buffer, const string &specifier) {
 		for(size_t i = 0; i < frames && i < toLoad.size(); ++i)
 			if(!buffer.Read(toLoad[i], i))
@@ -311,16 +322,22 @@ void ImageSet::Load() noexcept(false)
 
 
 
-// Create the sprite and upload the image data to the GPU. After this is
+// Create the sprite and optionally upload the image data to the GPU. After this is
 // called, the internal image buffers and mask vector will be cleared, but
 // the paths are saved in case the sprite needs to be loaded again.
-void ImageSet::Upload(Sprite *sprite)
+void ImageSet::Upload(Sprite *sprite, bool enableUpload)
 {
+	// Clear all the buffers if we are not uploading the image data.
+	if(!enableUpload)
+		for(ImageBuffer &it : buffer)
+			it.Clear();
+
 	// Load the frames (this will clear the buffers).
 	sprite->AddFrames(buffer[0], false);
 	sprite->AddFrames(buffer[1], true);
 	sprite->AddSwizzleMaskFrames(buffer[2], false);
 	sprite->AddSwizzleMaskFrames(buffer[3], true);
+
 	GameData::GetMaskManager().SetMasks(sprite, std::move(masks));
 	masks.clear();
 }

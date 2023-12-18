@@ -98,6 +98,8 @@ namespace {
 
 	ConditionsStore globalConditions;
 
+	bool preventSpriteUpload = false;
+
 	// Tracks the progress of loading the sprites when the game starts.
 	int spriteLoadingProgress = 0;
 	int totalSprites = 0;
@@ -106,7 +108,11 @@ namespace {
 	void LoadSprite(TaskQueue &queue, const shared_ptr<ImageSet> &image)
 	{
 		queue.Run([image] { image->Load(); },
-				[image] { image->Upload(SpriteSet::Modify(image->Name())); ++spriteLoadingProgress; });
+				[image]
+					{
+						image->Upload(SpriteSet::Modify(image->Name()), !preventSpriteUpload);
+						++spriteLoadingProgress;
+					});
 		++totalSprites;
 	}
 
@@ -143,8 +149,10 @@ namespace {
 
 
 
-std::shared_future<void> GameData::BeginLoad(TaskQueue &queue, bool onlyLoadData, bool debugMode)
+shared_future<void> GameData::BeginLoad(TaskQueue &queue, bool onlyLoadData, bool debugMode, bool preventUpload)
 {
+	preventSpriteUpload = preventUpload;
+
 	// Initialize the list of "source" folders based on any active plugins.
 	LoadSources(queue);
 
@@ -208,14 +216,19 @@ void GameData::CheckReferences()
 
 
 
+void GameData::LoadSettings()
+{
+	// Load the key settings.
+	Command::LoadSettings(Files::Resources() + "keys.txt");
+	Command::LoadSettings(Files::Config() + "keys.txt");
+}
+
+
+
 void GameData::LoadShaders()
 {
 	FontSet::Add(Files::Images() + "font/ubuntu14r.png", 14);
 	FontSet::Add(Files::Images() + "font/ubuntu18r.png", 18);
-
-	// Load the key settings.
-	Command::LoadSettings(Files::Resources() + "keys.txt");
-	Command::LoadSettings(Files::Config() + "keys.txt");
 
 	FillShader::Init();
 	FogShader::Init();
@@ -290,7 +303,7 @@ void GameData::Preload(TaskQueue &queue, const Sprite *sprite)
 	preloaded[sprite] = 0;
 	auto image = dit->second;
 	queue.Run([image] { image->Load(); },
-		[image] { image->Upload(SpriteSet::Modify(image->Name())); });
+		[image] { image->Upload(SpriteSet::Modify(image->Name()), !preventSpriteUpload); });
 }
 
 

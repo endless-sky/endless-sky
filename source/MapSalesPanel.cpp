@@ -92,7 +92,9 @@ void MapSalesPanel::Draw()
 
 bool MapSalesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
+	if(command.Has(Command::HELP))
+		DoHelp("map advanced shops", true);
+	else if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
 	{
 		scroll += static_cast<double>((Screen::Height() - 100) * ((key == SDLK_PAGEUP) - (key == SDLK_PAGEDOWN)));
 		scroll = min(0., max(-maxScroll, scroll));
@@ -177,7 +179,7 @@ bool MapSalesPanel::Hover(int x, int y)
 {
 	isDragging = (x < Screen::Left() + WIDTH);
 
-	return isDragging ? true : MapPanel::Hover(x, y);
+	return isDragging || MapPanel::Hover(x, y);
 }
 
 
