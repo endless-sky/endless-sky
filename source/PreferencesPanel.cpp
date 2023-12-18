@@ -958,9 +958,9 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 	else if(str == SCROLL_SPEED)
 	{
 		// Toggle between three different speeds.
-		int speed = Preferences::ScrollSpeed() + 20;
-		if(speed > 60)
-			speed = 20;
+		int speed = Preferences::ScrollSpeed() + 10;
+		if(speed > 100)
+			speed = 10;
 		Preferences::SetScrollSpeed(speed);
 	}
 	else if(str == DATE_FORMAT)
