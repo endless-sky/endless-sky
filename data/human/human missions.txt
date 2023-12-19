@@ -6355,7 +6355,7 @@ mission "Care Package to South 1"
 			`You arrive at the militia base on <destination>, and ask at the gate for Gunnery Sergeant Irene Brower. After a few minutes, a compact young woman with close-cropped blonde hair appears and walks over. When she sees the package at your feet, her face splits into a lopsided grin and her steps quicken. "I see you've brought me a package; this must be from Torrey! She said she was sending something."`
 			`	You nod, introduce yourself, and briefly recount your meeting with her friend on <origin>. Irene laughs. "Yep, that's her. Well, thank you so much for bringing this." She hefts the heavy box with no apparent effort, gives you a firm nod, and turns to head back into the base.`
 			`	Before going more than three steps, she stops and turns back to you. "Oh, sorry - I'll authorize your payment as soon as I get back to my room. I don't have it with me."`
-			`	Sure enough, less than five minutes later, your communicator bleeps and reports that <payment> has been credited to your account.`
+			`	Sure enough, less than five minutes later, your communicator bleeps and reports that <payment> have been credited to your account.`
 
 mission "Care Package to South 2a"
 	landing
@@ -6669,7 +6669,7 @@ mission "Southern Fiance 1"
 		conversation
 			`During the trip to <destination>, you had several conversations with Tom, on a wide range of topics. The most common topic was his fiance, named Carl Chamberlain, sharing dozens of pictures of them together. He also presented some of his own portfolio, as a marketer and designer for a division of Syndicated Systems - at least until he quit his job for this. "I'm not worried, though," he remarks. "Money's fun, of course, but it's nothing compared to what we can do down there on Cornucopia."`
 			`	The trip south seems to fly by, and soon you are standing at the foot of the ramp shaking Tom's hand and bidding him farewell as Carl runs across the tarmac toward you. You step back as they practically leap into each other's arms, reuniting in spite of these tumultuous times.`
-			`	When you're back on board, you see an incoming message that informs you <payment> has been transferred to your account, along with a heartfelt thank-you note from both men.`
+			`	When you're back on board, you see an incoming message that informs you <payment> have been transferred to your account, along with a heartfelt thank-you note from both men.`
 
 event "tom and carl's wedding"
 
