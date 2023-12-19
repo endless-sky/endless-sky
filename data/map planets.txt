@@ -1627,7 +1627,7 @@ planet Furnace
 planet Gagarin
 	attributes CCOR factory urban
 	landscape land/city0
-	description `Gagarin is the most populated planet in what used to be the Confederated Councils of the Outer Rim, and was the first to be settled in this region. All the settlements of Gagarin are connected to a planetary transport and infrastructure grid... although the grid hasn't been able to keep pace with Gagarin's growing population. Despite having been designed to be expanded as demand increased, such a resource-intensive infrastructure project became harder and harder to maintain due to a continous shortage in supplies. The collapse of the CCOR has only exacerbated the grid's deficiencies.`
+	description `Gagarin is the most populated planet in what used to be the Confederated Councils of the Outer Rim, and was the first to be settled in this region. All the settlements of Gagarin are connected to a planetary transport and infrastructure grid... although the grid hasn't been able to keep pace with Gagarin's growing population. Despite having been designed to be expanded as demand increased, such a resource-intensive infrastructure project became harder and harder to maintain due to a continuous shortage in supplies. The collapse of the CCOR has only exacerbated the grid's deficiencies.`
 	spaceport `The heart of the planetary infrastructure network, Gargarin's spaceport is perpetually crowded. Materials are constantly coming and going with ships landing, taking off, or being moved to underground hangars if they can't be unloaded on time. At least the spaceport appears to be able to meet demand, if just barely.`
 	spaceport `	On the walls of the spaceport you see faded emblems for the CCOR, some of which have been plastered over by the local authorities, and others which have been plastered over again by the CCOR guerrillas.`
 	outfitter "Ammo South"
@@ -2711,8 +2711,8 @@ planet Memory
 planet "Mendez Station"
 	attributes CCOR station
 	landscape land/station20
-	description "Mendez Station is the closest object to Alpherg. Located in a low orbit just above the stellar corona, the monumentous ram-scoops built into the star-facing side of the station collect stellar ejections to process into fuel. The station is perpetually hot, even in the habitation sections as an inescapable effect of begin so close to a great mass of plasma undergoing nuclear fusion, however it would surely be much more so if it weren't for the primarily polyfiber construction and heat-radiation spires built into the far side of the station."
-	spaceport "Rather than a traditional docking ring, part of which would be facing Fumalasamakah and its incredible heat and radiation at all times Mendez's 'spaceport' is actually a separate station located in a significantly higher stellar orbit. The station serves primarily as a secure dock for more normal ships while their inhabitants are taken to Mendez station via specialized transports built to resist the intense heat."
+	description 'Mendez Station is the closest object to Alpherg's twin stars. Mostly uninhabited Mendez sits in low orbit using it's monumental ramscoops to collect solar wind to process into fuel. The station is uncomfortably hot, life support systems only turning on and beginning to cool the habitation segment when a ship is docked. The refining process here is almost entirely automated, the habitation segment was only expected to be in use during routine inspections and maintenance.'
+	spaceport 'Forgoing a traditional docking ring, which would be excessive for such a low traffic station, Mendez's 'spaceport' is a small number of almost archaic docking arms leading to the hab segment. There was a security system built into each airlock, engraved with the seal of the CCOR government, but they've all been either smashed, bypassed, or hacked allowing unrestricted access to the station.'
 	government "Uninhabited"
 	bribe 0
 	security 0
