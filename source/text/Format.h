@@ -71,7 +71,10 @@ public:
 	static std::vector<std::string> Split(const std::string &str, const std::string &separator);
 
 	// Finds &[condition] and &[format@condition] in strings and expands them
-	static std::string ExpandConditions(const std::string &source, ConditionGetter getter);
+	static std::string ExpandConditions(const std::string &source, const ConditionGetter &getter);
+
+	// Function for the "find" dialogs:
+	static int Search(const std::string &str, const std::string &sub);
 };
 
 

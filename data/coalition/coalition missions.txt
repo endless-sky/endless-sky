@@ -1624,8 +1624,10 @@ mission "Saryd University Lecture"
 				`	"There are many independent worlds that are not ruled by one singular government. Some groups there support piracy, but others are peaceful."`
 					goto pirategood
 			`	"Stamped out, may lawlessness soon be," says the Heliarch in a solemn tone of voice. She picks a Saryd for the next question.`
+				goto questionfour
 			label pirategood
 			`	Your microphone starts to fizzle out as you attempt to answer. The Heliarch's eight eyes are all on you, and you sense that it might not be a good idea to finish your sentence. The Heliarch selects a Saryd for the next question.`
+			label questionfour
 			`	"A fairly comprehensive map of human space, we have." The Saryd brings out a star map of the galactic south. "But of the core, we know not. Inform us of the galaxy, can you?"`
 			choice
 				`	(Tell them about the Korath.)`
@@ -2758,7 +2760,7 @@ mission "Coalition: Expeditions Past 9"
 			choice
 				`	"Are you alright?"`
 				`	"He said they were going back immediately, but they never made it. You think that was the last pylon?"`
-				`	(Stay quiet).`
+				`	(Stay quiet.)`
 			`	She goes without a word for a while still. "Set a route for Ablub, could you, Captain? If follow the same route they used, we do, and if any more to find, there is, pick up the signals, I will."`
 			`	You agree, and look to set a route straight to Ablub.`
 				accept
@@ -3120,6 +3122,7 @@ mission "Heliarchs Buy Jump Drive Mission"
 	minor
 	landing
 	invisible
+	"apparent payment" 5000000
 	to offer
 		has "known to the heliarchs"
 		has "outfit (cargo): Jump Drive"
