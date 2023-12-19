@@ -1676,7 +1676,7 @@ mission "Hai Film Crew [1]"
 		has "First Contact: Hai: offered"
 	on offer
 		conversation
-			`A rapid tapping on your shoulder dissappiates any intentions you might have had about touring this spaceport in peace. You turn around to find a Hai, short even by their standards, looking up at you.`
+			`A rapid tapping on your shoulder dissipates any intentions you might have had about touring this spaceport in peace. You turn around to find a Hai, short even by their standards, looking up at you.`
 			`	"You're a ship captain, yes? Would you like to be part of cinema history?"`
 			choice
 				`	"I'm not much of a movie buff. I'll pass."`
@@ -1701,7 +1701,7 @@ mission "Hai Film Crew [1]"
 				`	"I'm not going that way. You'll need to find some other captain."`
 					decline
 			label haunted
-			`	"Back when the station was still in use, there was a mysterious malfunction in one of the hatches that released oxygen out the airlock, suffocating hundreds on board to death. To this day, no one knows what caused it, and legends have grown out of the event."`
+			`	"Back when the station was still in use, there was a mysterious malfunction in one of the hatches which released oxygen out the airlock. Hundreds on board suffocated to death. To this day, no one knows what caused it, and legends have grown out of the event."`
 			choice
 				`	"What makes you think I'm parking my ship at a haunted station?"`
 					goto ghosts
@@ -1781,4 +1781,4 @@ mission "Hai Film Crew [3]"
 	on complete
 		payment 100000 50
 		conversation
-			`When you land on <planet>, you are approached by Likeet, who is carrying a large can of fake blood. "Thanks for the ride, captain. Keep a lookout for my film in theaters. You'll know it when you see it." Once the cargo has been unloaded, she almost sprints away in excitement, no doubt trying to make it to her studio as quickly as possible. You notice that <payment> has been deposited into your account.`
+			`When you land on <planet>, you are approached by Likeet, who is carrying a large can of fake blood. "Thanks for the ride, captain. Keep a lookout for my film in theaters. You'll know it when you see it." Once the cargo has been unloaded, she almost sprints away in excitement, no doubt trying to make it to her studio as quickly as possible. You notice that <payment> have been deposited into your account.`
