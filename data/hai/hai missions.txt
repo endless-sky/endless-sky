@@ -1663,7 +1663,7 @@ mission "Strider notification"
 
 mission "Hai Film Crew [1]"
 	name "Hai Film Crew"
-	description "Bring a movie crew from <origin> to <destination>, so that they can film a horror movie there."
+	description "Bring a movie crew from <origin> to <destination>, so that they can film a horror movie there. Payment is <payment>"
 	minor
 	source
 		attributes hai urban
@@ -1683,37 +1683,30 @@ mission "Hai Film Crew [1]"
 					decline
 				`	"Sure, what do you need me to do?"`
 				`	"What do you mean?"`
-			`	"My name is Likeet, and I'm in charge of coordinating transportation for an independent film crew. We need you to bring <bunks> crew members and <tons> of film equipment to Darkrest, then bring us back after about a month. We can pay you <payment>, but the rewards of being involved in an ambitious project such as this will be priceless."`
+			`	"My name is Likeet, and I'm in charge of coordinating transportation for an independent film crew. We need you to bring <bunks> crew members and <tons> of film equipment to Darkrest, then bring us back after about a month. We can pay you <payment>, but the immaterial rewards of being involved in an ambitious project such as this will be priceless."`
 			choice
 				`	"Why would you want to go to <planet>? Isn't that an abandoned station?"`
-					goto ask
 				`	"Sure, I can take you there."`
 					goto accept
 				`	"I'm not going that way. You'll need to find some other captain."`
 					decline
-			label ask
 			`	"Ah, you must not know about <planet>. There are many tales which swirl around the station, chief among them being the existence of ghosts and monsters haunting its corridors. We'd like to take advantage of the popular image of Darkrest in the creation of our horror film by using it as a backdrop. It's sort of the human equivalent of setting your film in a 'haunted' forest. Don't worry, we'll bring enough food to last us for the month."`
 			choice
 				`	"Why do people think it's haunted?"`
-					goto haunted
 				`	"Alright then, I can take you there."`
 					goto accept
 				`	"I'm not going that way. You'll need to find some other captain."`
 					decline
-			label haunted
 			`	"Back when the station was still in use, there was a mysterious malfunction in one of the hatches that released oxygen out the airlock, suffocating hundreds on board to death. To this day, no one knows what caused it, and legends have grown out of the event."`
 			choice
 				`	"What makes you think I'm parking my ship at a haunted station?"`
-					goto ghosts
 				`	"Alright then, I can take you there."`
 					goto accept
 				`	"I'm not going that way. You'll need to find some other captain."`
 					decline
-			label ghosts
 				`	Likeet gives a laugh. "It's not actually haunted, of course. Those are just stories. Do you think I'd send an entire film crew and all their expensive equipment to a place that was actually dangerous?"`
 			choice
 				`	"Alright then, I can take you there."`
-					goto accept
 				`	"I'm not going that way. You'll need to find some other captain."`
 					decline
 			label accept
