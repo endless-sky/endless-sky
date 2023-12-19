@@ -65,9 +65,6 @@ public:
 	// so, apply that zone's action and return true.
 	bool ZoneClick(const Point &point);
 
-	// Forward the given TestContext to the Engine under MainPanel.
-	virtual void SetTestContext(TestContext &testContext);
-
 	// Is fast-forward allowed to be on when this panel is on top of the GUI stack?
 	virtual bool AllowsFastForward() const noexcept;
 
