@@ -90,8 +90,6 @@ start "hai space after FW and HR"
 	# need to set it here to not have it trigger alongside the invisible mission
 	set "First Contact: Hai: offered"
 	set "Intro [0]: offered"
-	set "skip FW"
-	set "skip HR"
 
 
 
@@ -157,6 +155,7 @@ ship "Grasshopper" "Grasshopper (Expensive)"
 		"Pulse Rifle"
 		"Quantum Keystone" 2
 
+# the start itself cannot initiate events
 mission "Greenwater start"
 	landing
 	invisible
@@ -165,67 +164,6 @@ mission "Greenwater start"
 	on offer
 		event "not from boston"
 		event "grew up on greenwater"
-
-mission "FW completed"
-	landing
-	invisible
-	to offer
-		has "skip FW"
-	on offer
-		set "event: war begins: offered"
-		set "Geminus Rebuilt: offered"
-		set "chosen sides"
-		set "oathkeepers founded: offered"
-		set "main plot completed"
-		# make these available
-		event "flamethrower available"
-		event "dreadnoughts for sale"
-		event "dreadnought deployment"
-		event "catalytic ramscoop available"
-		event "deep sky tech available"
-		event "stack core for sale"
-		# FW map changes
-		event "oathkeepers founded"
-		event "bloodsea joins free worlds"
-		event "bloodsea spaceport completed"
-		event "albatross joins free worlds"
-		event "Greenrock recovered"
-		event "liberation of Poisonwood"
-		event "fwc southern liberation"
-		event "fwc capture cebalrai"
-		event "fwc defended cebalrai"
-		event "navy out of rastaban"
-		event "fw tarazed joins"
-		event "fwc capture kaus borealis"
-		event "fwc liberation of rasalhague"
-		event "fwc pug defeated"
-		event "geminus rebuilt"
-		# note: since you did not participate in the war you don't get the syndicate tech or the nukes.
-
-
-mission "HR completed"
-	landing
-	invisible
-	to offer
-		has "skip HR"
-	on offer
-		set "Hai Secret Leaker Begins: offered"
-		event "hai ladybug available"
-		event "secret mountaintop"
-		event "role-play station active"
-		event "mountaintop ascendant"
-		event "battle against scar's legion over"
-		event "hai-human resolution announced"
-		event "mooncreek operational"
-		event "mooncreek republic garrison"
-		event "mooncreek spaceport"
-		event "mooncreek syndicate garrison"
-		event "mooncreek main outfitters"
-		event "mooncreek fw outfitters"
-		event "mooncreek realized"
-		event "mooncreek founded"
-
-
 
 event "not from boston"
 	planet "New Boston"

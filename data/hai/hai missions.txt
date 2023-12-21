@@ -461,20 +461,11 @@ mission "Expanding Business [1]"
 	destination "Allhome"
 	to offer
 		has "event: hai-human resolution announced"
-		or
-			not "hai start"
-			"combat rating" > 500
 	on offer
 		conversation
 			`Walking through the <origin> spaceport, you notice that almost half of the people you see are humans, unlike other Hai worlds where the Hai outnumber humans by a sizable degree. A human dressed in a business suit shouts your name from across the street and approaches you.`
-			branch "hai start"
-				has "hai start"
 			`	"Captain <last>, fantastic to see you again! I noticed you right away when I laid my eyes upon you and I must say, I'd like to thank you again for what you've done."`
 			`	The man is David Turner, who was involved in the movie production during the Hai crisis. Almost reflexively he goes to grab a business card from his pocket but then seems to remember and puts it back away. Seems to be exactly the same card as last time though.`
-			label "hai start"
-			`	"Hello, captain. I come to you with a business opportunity you would do well to listen to." He grabs his business card to show it to you and presents himself. "My name is David Turner, you may know me for my involvement with the Hai cover movie? I come to you because you seem to have quite a bit of combat experience, which would be of great help for this business venture." He then adds, in a low tone, "Also, you are not a pirate saying that they redeemed themselves...`
-				to display
-					has "hai start"
 			`	"Now Captain, if you have a moment, I'd like to make a proposition to you." Turner turns around and waves his arm across the crowd of people in the spaceport. "You see all the humans here? About one out of every four of these people only arrived here after war broke out through the wormhole. Captains who knew of the Hai came flocking here in droves after the Navy entered Kornephoros, hoping to avoid any troubles that the war would bring. Some captains returned after the war ended, but most stayed, and I see a massive market opportunity in that."`
 			branch rich
 				"net worth" >= 4000000000
@@ -628,8 +619,6 @@ mission "Expanding Business [4]"
 			`By the time you finally reach <planet>, construction on the outfitter is already underway. The construction workers have laid the foundation of the outfitter close to the spaceport, taking up a good portion of a park.`
 			`	"I had to pay a pretty penny to get the outfitter this close to the spaceport," Turner says to you, "but it'll all be worth it in the end. The outfitter should be done in three months or so. You'll know it's done once you find an extra two thousand credits in your pocket every day."`
 			`	Turner pats you on the back. "Have fun until then, Captain <last>. Keep yourself busy saving the galaxy."`
-				to display
-					not "skip FW"
 
 event "outfitter on greenwater"
 	planet "Greenwater"
