@@ -4639,6 +4639,7 @@ mission "Hai Wormhole Warning"
 				`	"I did not exactly 'make contact', I grew up there."`
 					to display
 						has "hai start"
+					goto grewup
 				`	"It is. Is that a problem?"`
 					goto yes
 				`	"Perhaps. Why do you ask?"`
