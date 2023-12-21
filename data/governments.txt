@@ -1240,20 +1240,20 @@ government "Quarg (Incipias)"
 		"Pirate (Devil-Run Gang)" -.01
 	"custom penalties for"
 		"Conlatio"
-			disable -10.
-			board -10.
-			capture -20.
-			destroy -40.
+			disable 10
+			board 10
+			capture 20
+			destroy 40
 		"Incipias Civilian"
-			disable -10.
-			board -10.
-			capture -20.
-			destroy -40.
+			disable 10
+			board 10
+			capture 20
+			destroy 40
 		"Hicemus"
-			disable -10.
-			board -10.
-			capture -20.
-			destroy -40.
+			disable 10
+			board 10
+			capture 20
+			destroy 40
 	"death sentence" "quarg imprisonment"
 	"hostile hail" "hostile quarg"
 	"hostile disabled hail" "hostile quarg"
