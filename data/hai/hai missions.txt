@@ -1663,7 +1663,7 @@ mission "Strider notification"
 
 mission "Hai Film Crew [1]"
 	name "Hai Film Crew"
-	description "Bring a movie crew from <origin> to <destination>, so that they can film a horror movie there. Payment is <payment>"
+	description "Bring a movie crew from <origin> to <destination>, so that they can film a horror movie there. Payment is <payment>."
 	minor
 	source
 		attributes hai urban
