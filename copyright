@@ -2338,15 +2338,15 @@ License: CC-BY-SA-4.0
  .
  b. produce, reproduce, and Share Adapted Material.
  .
- 1. Exceptions and Limitations. For the avoidance of doubt, where
+ 2. Exceptions and Limitations. For the avoidance of doubt, where
  Exceptions and Limitations apply to Your use, this Public
  License does not apply, and You do not need to comply with
  its terms and conditions.
  .
- 1. Term. The term of this Public License is specified in Section
+ 3. Term. The term of this Public License is specified in Section
  6(a).
  .
- 1. Media and formats; technical modifications allowed. The
+ 4. Media and formats; technical modifications allowed. The
  Licensor authorizes You to exercise the Licensed Rights in
  all media and formats whether now known or hereafter created,
  and to make technical modifications necessary to do so. The
@@ -2358,7 +2358,7 @@ License: CC-BY-SA-4.0
  simply making modifications authorized by this Section 2(a)
  (4) never produces Adapted Material.
  .
- 1. Downstream recipients.
+ 5. Downstream recipients.
  .
  a. Offer from the Licensor -- Licensed Material. Every
  recipient of the Licensed Material automatically
@@ -2379,7 +2379,7 @@ License: CC-BY-SA-4.0
  Licensed Rights by any recipient of the Licensed
  Material.
  .
- 1. No endorsement. Nothing in this Public License constitutes or
+ 6. No endorsement. Nothing in this Public License constitutes or
  may be construed as permission to assert or imply that You
  are, or that Your use of the Licensed Material is, connected
  with, or sponsored, endorsed, or granted official status by,
@@ -2396,10 +2396,10 @@ License: CC-BY-SA-4.0
  extent necessary to allow You to exercise the Licensed
  Rights, but not otherwise.
  .
- 1. Patent and trademark rights are not licensed under this
+ 2. Patent and trademark rights are not licensed under this
  Public License.
  .
- 1. To the extent possible, the Licensor waives any right to
+ 3. To the extent possible, the Licensor waives any right to
  collect royalties from You for the exercise of the Licensed
  Rights, whether directly or through a collecting society
  under any voluntary or waivable statutory or compulsory
@@ -2442,14 +2442,14 @@ License: CC-BY-SA-4.0
  Public License, and include the text of, or the URI or
  hyperlink to, this Public License.
  .
- 1. You may satisfy the conditions in Section 3(a)(1) in any
+ 2. You may satisfy the conditions in Section 3(a)(1) in any
  reasonable manner based on the medium, means, and context in
  which You Share the Licensed Material. For example, it may be
  reasonable to satisfy the conditions by providing a URI or
  hyperlink to a resource that includes the required
  information.
  .
- 1. If requested by the Licensor, You must remove any of the
+ 3. If requested by the Licensor, You must remove any of the
  information required by Section 3(a)(1)(A) to the extent
  reasonably practicable.
  .
@@ -2462,12 +2462,12 @@ License: CC-BY-SA-4.0
  license with the same License Elements, this version or
  later, or a BY-SA Compatible License.
  .
- 1. You must include the text of, or the URI or hyperlink to, the
+ 2. You must include the text of, or the URI or hyperlink to, the
  Adapter's License You apply. You may satisfy this condition
  in any reasonable manner based on the medium, means, and
  context in which You Share Adapted Material.
  .
- 1. You may not offer or impose any additional or different terms
+ 3. You may not offer or impose any additional or different terms
  or conditions on, or apply any Effective Technological
  Measures to, Adapted Material that restrict exercise of the
  rights granted under the Adapter's License You apply.
@@ -2536,7 +2536,7 @@ License: CC-BY-SA-4.0
  it is cured within 30 days of Your discovery of the
  violation; or
  .
- 1. upon express reinstatement by the Licensor.
+ 2. upon express reinstatement by the Licensor.
  .
  For the avoidance of doubt, this Section 6(b) does not affect any
  right the Licensor may have to seek remedies for Your violations
