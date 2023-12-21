@@ -51,7 +51,7 @@ start "hai space"
 	thumbnail "scene/hai start"
 	system "Fah Soom"
 	planet "Greenwater"
-	date 18 6 3020
+	date 16 11 3013
 	to display
 		or
 			has "main plot completed"
@@ -71,7 +71,7 @@ start "hai space"
 		description "	You could have started a different way, went a different path."
 		system "Somewhere far north"
 		planet "Mixed culture"
-		date "middle of 3020"
+		date "Same old one"
 		credits 1.431M
 		debt 1.431M
 	to unlock
@@ -94,11 +94,11 @@ start "hai space"
 
 conversation "hai intro"
 	scene "scene/hai shipyard"
-	`	You've never been to the shipyard before, and going to the poles already feels like you're traveling to another world. The pictures and videos you've seen of all these ships before simply don't do them justice; seeing them for real is something else entirely. Even though you know a lot of those ships must have been in service for many years, you are stunned by how new and shiny they look. You begin to wonder if you are ready to take the big leap.`
+	`	You've never been to the shipyard before, and going to the North Pole already feels like you're traveling to another world. The pictures and videos you've seen of all these ships before simply don't do them justice; seeing them for real is something else entirely. Even though you know a lot of those ships must have been in service for many years, you are stunned by how new and shiny they look. You begin to wonder if you are ready to take the big leap.`
 	`	This "Aphid" could suit your needs. It is fast and able to carry a respectable amount of cargo.`
 	scene "thumbnail/hai aphid"
 	`	That is, unless you want to get adventurous and try out the impetuous Grasshopper. Surely the interceptor would be able to beat the smaller human warships, provided a competent pilot is at the helm.`
-	`	You have, after all, heard tales of pirates and quick money from the many newcomers. Thanks to the installation of Mountaintop, they say, the way to human space is much safer than it used to be. What happened with the Pug is not clear, however.`
+	`	You have, after all, heard tales of pirates and quick money from the many newcomers, for those willing to take big risks, that is.`
 	`	Alternatively, up north you can find the 'Unfettered'. Maybe they would come to like you, if you were to show them the strength and cunning they respect.`
 	choice
 		`	(Go to the bank.)`
