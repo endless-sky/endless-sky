@@ -86,6 +86,7 @@ start "hai space"
 			interest 0.003
 			term 730
 	set "hai start"
+	set "non-human space start"
 	# need to set it here to not have it trigger alongside the invisible mission
 	set "First Contact: Hai: offered"
 	set "Intro [0]: offered"
