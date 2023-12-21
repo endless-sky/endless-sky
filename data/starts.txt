@@ -47,7 +47,6 @@ conversation "default intro"
 start "hai space"
 	name "Hai Legacy"
 	description `You grew up on Greenwater, a world with a very rich and mixed culture. You've dreamed of owning your own fleet since you were given toy spaceships as a small child. In order to reach that goal, you worked hard making human clothing that sold well.`
-	description `	You were inspired by stories of heroes saving both humans and Hai.`
 	description `	Now, as you enter the shipyard, you feel like this is the start of a new life, in space.`
 	thumbnail "scene/hai start"
 	system "Fah Soom"

@@ -18,8 +18,6 @@ mission "Intro [0]"
 	passengers 1
 	source "New Boston"
 	destination "New Greenland"
-	to offer
-		not "hai start"
 	
 	on offer
 		log "Finally scraped together enough money for a down payment on a starship. The interest on the mortgage is exorbitant."
