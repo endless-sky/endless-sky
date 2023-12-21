@@ -88,7 +88,7 @@ ship "Antlion"
 		"cargo space" 56
 		drag 6.9
 		"engine capacity" 180
-		"fuel capacity" 600
+		"fuel capacity" 700
 		"heat dissipation" 0.66
 		hull 9000
 		"outfit space" 696
@@ -103,10 +103,11 @@ ship "Antlion"
 	outfits
 		"Ionic Blaster Prototype" 4
 		"Ionic Turret Prototype" 2
-		"Chameleon Anti-Missile" 2
+		"Chameleon Anti-Missile"
+		"Bullfrog Anti-Missile"
 
 		"Fuel Processor"
-		Hyperdrive
+		"Scram Drive"
 		"Hai Diamond Regenerator"
 		"Systems Core (Medium)"
 
@@ -145,7 +146,7 @@ ship "Antlion"
 	gun -15 -97 "Ionic Blaster Prototype"
 	gun 15 -97 "Ionic Blaster Prototype"
 	turret -22.5 -57.5 "Chameleon Anti-Missile"
-	turret 22.5 -57.5 "Chameleon Anti-Missile"
+	turret 22.5 -57.5 "Bullfrog Anti-Missile"
 	turret -15 41 "Ionic Turret Prototype"
 	turret 15 41 "Ionic Turret Prototype"
 	bay Drone -67 -76 under
