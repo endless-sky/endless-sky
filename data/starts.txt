@@ -105,8 +105,8 @@ conversation "hai intro"
 	scene "scene/hai bank"
 	`	You head to the bank's lobby, hoping to get enough of a loan to be able to buy one of these pristine ships.`
 	`	To your disappointment, the only ship you could afford is an Aphid. You arrange the contract to loan as much money as you need in order to buy one, in what has to be the first seriously unwise act of your life.`
-	`	You've heard of new captains stripping down their ships to recoup the initial buy-in, which is crossing your mind at seeing the financial burden you're about to take on. While waiting for paperwork to be processed, you scan over an Aphid pamphlet in the office. The pricey shield regenerator could be traded in if dangerous areas are avoided... and perhaps even the anti-missile system could be downgraded or outright removed... one of the Sand Cells could be sold back to make more space for cargo...`
-	`	Those anxious musings are interrupted when the bank employee finally lays it out to you, with a hesitant smile. "This will put you in a debt of 1.431 million credits, due in the course of 2 years, with an interest rate of 0.3% per day. Please sign here."`
+	`	You've heard of new captains stripping down their ships to recoup the initial buy-in, which is crossing your mind as you see the financial burden you're about to take on. While waiting for paperwork to be processed, you scan over an Aphid pamphlet in the office. The pricey shield regenerator could be traded in if dangerous areas are avoided... and perhaps even the anti-missile system could be downgraded or outright removed... one of the Sand Cells could be sold back to make more space for cargo...`
+	`	Those anxious musings are interrupted when the bank employee finally lays it out to you, with a hesitant smile. "You are accepting a loan in the amount of 1,431,000 credits, due over the course of 2 years, with an interest rate of 0.3% per day. Please sign here."`
 	name
 	`	You head out of the bank, but on your way to buy the Aphid at the shipyard, you see a notice. A retiring captain is offering to sell some of his ships at an interesting price, including a Grasshopper... Maybe they could sell it to you.`
 	choice

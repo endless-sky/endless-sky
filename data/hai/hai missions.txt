@@ -314,7 +314,7 @@ mission "Returning Home"
 				`	"Oh, yes. I do come from outside."`
 					to display
 						not "hai start"
-				`	"Not really, I grew up here and made these clothes for myself."`
+				`	"Not really. I grew up here and made these clothes for myself."`
 					to display
 						has "hai start"
 					goto outsider
@@ -324,7 +324,7 @@ mission "Returning Home"
 				to display
 					has "hai start"
 			label outsider
-			`	You explain to him that you grew up making clothes, meaning you eventually grew tired of the usual clothing you kept making. Once you gained enough experience, you started creating more original ones, including the one you're wearing right now. You add that whilst you may not have been born in human space, your family made sure you learned about the origins of your species; you know human space like your pocket.`
+			`	You explain to him that you grew up making clothes, meaning you eventually grew tired of the usual clothing you kept making. Once you gained enough experience, you started creating more original outfits, including the one you're wearing right now. You add that whilst you may not have been born in human space, your family made sure you learned about the origins of your species; you know human space like your pocket.`
 				to display
 					has "hai start"
 			`	"Good. My name is Elliot." You introduce yourself to Elliot and shake hands.`

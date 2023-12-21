@@ -1244,7 +1244,7 @@ mission "Deep: Project Hawking: Prime"
 			`	You tell Pierre about your life on New Boston, and how you saved up your money working at the textile mill from the age of fifteen until you were able to buy a pilot's license and finally leave your home world for the stars.`
 				to display
 					not "hai start"
-			`	You tell Pierre about your life on Greenwater, but make sure to change the name to a more normal human planet, given the republic's warning. You tell him you come from New Boston, where you worked your way up in the textile factory until you could afford the cheapest ship there.`
+			`	You tell Pierre about your life on Greenwater but make sure to change the name to a more normal human planet's, given the Republic's warning. You tell him you come from New Boston, where you worked your way up in a textile factory until you could afford the cheapest ship there.`
 				to display
 					has "hai start"
 			`	"We aren't too different then," Pierre remarks. "We both worked hard to get where we are today. Thanks for sharing, <first>."`
