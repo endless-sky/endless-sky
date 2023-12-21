@@ -137,7 +137,7 @@ planet "Alta Hai"
 	security 0.9
 
 planet Alvorada
-	attributes CCOR military station moon
+	attributes CCOR military station
 	landscape land/station8
 	description `Formerly "Fortaleza da Alvorada", Alvorada was hollowed out centuries ago to make an extensive network of bunker complexes that used to house the Politburo of the CCOR, and the extensive computer system they built that formulated their systematic plans. Rumor has it that, in the deepest reaches of the complex where no pirates have yet been able to breach, they're still there, having adapted the system to instead direct the guerrillas in the reestablishment of their homeland.`
 	spaceport `Alvorada's spaceport was built into one of the larger craters. Everything about the installation here is as fortified as possible - various hangars for even heavy warships are dug into the walls. From the ground, you can see where artillery pieces were stationed, obscured from above but with clear firing lines at incoming vessels. Now that you've seen them, you can think of hundreds of places across the moon where similar emplacements could have been hidden.`
@@ -288,7 +288,7 @@ planet Baianus
 planet Bailey
 	attributes CCOR mining
 	landscape land/lava3
-	description `Bailey is a dead, nearly tidally locked world scarcely larger and more habitable than Mercury. Its cool side has hardened into a mineral-rich crust, a rarity in this region of space. Though miners must regularly be on the move, it has brought several mining expeditions to the planet.`
+	description `Bailey is a dead, nearly tidally locked world scarcely larger and more habitable than Mercury. Its cool side has hardened into a mineral-rich crust, a rarity in this region of space. Despite these conditions, Bailey's bountiful crust has brought several mining expeditions to the planet.`
 	description `	Like aphids sucking the sap from a plant, semi-mobile mining stations strip and refine the minerals, a method originally developed by the Confederated Councils. Since their fall, the pirates of the region have maintained the stations - although with considerably less organization than what was upheld by the central government.`
 	spaceport `Given the roving nature of the settlements, and the lack of a livable atmosphere, the spaceport and other major infrastructure are located in orbit. Transit to and from the planet is facilitated by a clever network of skyhooks, which utilize fewer amounts of rare and expensive resources compared to the more common repulsor technology used elsewhere.`
 	bribe 1
@@ -2549,8 +2549,9 @@ planet Luna
 planet "Mordente-Bridi"
 	attributes CCOR military station urban
 	landscape land/city6
+	music ambient/machinery
 	description `A testament to the engineering corps of the now defunct CCOR, the massive Mordente-Bridi Station is one of the largest in human space. Twin cylinders Mordente and Bridi make up the station's hull, built from the strongest armor the CCOR could manufacture at scale. Bridi Cylinder is pressurized containing crew quarters and logistical infrastructure, amounting to a significant city, while Mordente Cylinder contains what was the Outer Rim's main shipyard.`
-	spaceport `Apart from the spaceport facilities, almost none of the Mordente Cylinder is pressurized. Making up most of its armored hull is a micro-gravity shipyard, which despite not being subject to a central government and defense force has remained quite busy. Worker shuttles are busily flying about the large space, tending to a multitude of ships; you notice that a few of them are also engaged in constructing new ships.`
+	spaceport `Apart from the spaceport facilities, almost none of Mordente Cylinder is pressurized. Making up most of its armored hull is a micro-gravity shipyard, which despite not being subject to a central government and defense force has remained quite busy. Worker shuttles are busily flying about the large space, tending to a multitude of ships; you notice that a few of them are also engaged in constructing new ships.`
 	shipyard "Advanced Southern Pirates"
 	shipyard "Betelgeuse Advanced"
 	shipyard "Betelgeuse Basics"
@@ -2711,8 +2712,8 @@ planet Memory
 planet "Mendez Station"
 	attributes CCOR station
 	landscape land/station20
+	music ambient/machinery
 	description 'Mendez Station is the closest object to Alpherg's twin stars. Mostly uninhabited Mendez sits in low orbit using it's monumental ramscoops to collect solar wind to process into fuel. The station is uncomfortably hot, life support systems only turning on and beginning to cool the habitation segment when a ship is docked. The refining process here is almost entirely automated, the habitation segment was only expected to be in use during routine inspections and maintenance.'
-	spaceport 'Forgoing a traditional docking ring, which would be excessive for such a low traffic station, Mendez's 'spaceport' is a small number of almost archaic docking arms leading to the hab segment. There was a security system built into each airlock, engraved with the seal of the CCOR government, but they've all been either smashed, bypassed, or hacked allowing unrestricted access to the station.'
 	government "Uninhabited"
 	bribe 0
 	security 0
