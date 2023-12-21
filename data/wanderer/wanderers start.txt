@@ -1405,7 +1405,7 @@ mission "Wanderers: Alpha Surveillance G"
 	on complete
 		conversation
 			`You and Elias return to Danforth's private office to debrief, but a few minutes after you arrive there is a knock on the door. Danforth pulls up a video monitor to check who it is, swears, takes a brief glance around the room as if to check that he hasn't left anything incriminating out in plain sight, then opens the door. An officer in an unmarked uniform walks in along with several armed guards. "Admiral Danforth," says the officer, "I trust your expedition went well?"`
-			` Danforth mumbles something in reply. "And you, Captain <last>," says the officer, "Always in the thick of things, eh?"`
+			`	Danforth mumbles something in reply. "And you, Captain <last>," says the officer, "Always in the thick of things, eh?"`
 			choice
 				`	"I suppose so."`
 				`	"Only when the galaxy needs saving."`
