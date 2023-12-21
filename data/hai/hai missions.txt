@@ -303,7 +303,7 @@ mission "Returning Home"
 					to display
 						not "hai start"
 					goto outsider
-				`	"Not really, I grew up here."`
+				`	"Not really. I grew up here."`
 					to display
 						has "hai start"
 					goto clothe
@@ -320,7 +320,7 @@ mission "Returning Home"
 					goto outsider
 			
 			label clothe
-			`	"That's weird, your clothes don't look like most do here." He says.`
+			`	"That's weird. Your clothes don't look like most do here," he says.`
 				to display
 					has "hai start"
 			label outsider
