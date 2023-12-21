@@ -4644,7 +4644,6 @@ mission "Hai Wormhole Warning"
 					goto yes
 				`	"Perhaps. Why do you ask?"`
 					goto maybe
-					goto grewup
 				`	"Aliens? I don't know of any aliens up there."`
 				`	"Hey! That's no way to talk about the pirates in the Far North."`
 			`	"Don't play coy with me, <last>. The Republic is aware that you've made contact with the Hai.`
