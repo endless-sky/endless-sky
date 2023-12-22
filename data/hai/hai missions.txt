@@ -1741,6 +1741,8 @@ mission "Hai Film Crew [2]"
 	landing
 	name "Hai Film Crew"
 	description "Go to <destination> to pick up the film crew you transported there."
+	source
+		government "Hai" "Hai (Unfettered)" "Republic" "Syndicate" "Free Worlds" "Pirate" "Neutral" "Independent"
 	destination "Darkrest"
 	to offer
 		has "event: hai film crew"
