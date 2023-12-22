@@ -1662,12 +1662,12 @@ mission "Strider notification"
 
 
 mission "Station Exploration 1"
-	name "Station Exploration"
-	description "Bring a group of Hai and human students to <planet> to explore the abandoned station."
 	minor
+	name "Bring students to <planet>"
+	description "Bring a group of Hai and human students to <destination> to explore the abandoned station. They promise to pay you <payment>."
+	passengers 5
 	source "Greenwater"
 	destination "Darkrest"
-	passengers 5
 	to offer
 		random < 30
 		has "First Contact: Hai: offered"
@@ -1679,6 +1679,12 @@ mission "Station Exploration 1"
 			choice
 				`	"What would you want to do on <planet>? Isn't that an abandoned station?"`
 					goto question
+						to display
+							has "visited planet: Darkrest"
+				`	"Why do you want to go to <planet>?"`
+					goto "question 1"
+						to display
+							not "visited planet: Darkrest"
 				`	"Sure, I can take you there and back."`
 					goto accept
 				`	"How much can you pay me?"`
@@ -1694,6 +1700,10 @@ mission "Station Exploration 1"
 						decline
 			label question
 			`	"Well, that's kind of why we want to go there," says one of the Hai. "Some guy in our dorm told us that there's ghosts haunting <planet>, and we wanted to call his bluff."`
+				goto continue
+			label "question 1"
+			`	"Some guy in our dorm told us that there's ghosts haunting <planet>," says one of the Hai, "and we wanted to call his bluff."`
+			label continue
 			`	"We're planning to look around for an afternoon, see what we can find," one of the human students says, grinning. "Once we're done we'll let you know, and then we can leave."`
 			`	One of the shorter Hai in the back pipes up. "I brought cameras for the trip!" He is ignored by the rest of the group.`
 			choice
@@ -1704,7 +1714,7 @@ mission "Station Exploration 1"
 			choice
 				`	"I'm not about to risk getting in trouble for this. Find someone else."`
 						decline
-				`	"Not my business where you spend your vacations. Welcome aboard."`
+				`	"Not my business where you spend your vacations. Come aboard."`
 			label accept
 			`	The students race onboard your ship. As they settle into their bunks, you can hear them speculating about what they will find on <planet>.`
 				accept
@@ -1712,19 +1722,20 @@ mission "Station Exploration 1"
 		dialog `You look for the group of students you were transporting, but realize that they took a ride on one of your escorts! Better depart and wait for your escorts to arrive in this star system.`
 	on complete
 		payment 8000
-		dialog `Your passengers' journey mainly consisted of trying to scare each other by telling ghost stories and jumping out of dimly-lit corners of your ship. Despite these annoyances, you land at the station with no issues. Your passengers practically jump off your ship after hastily paying you <payment>. After passing the time in your ship for a few hours, you are shocked by a loudspeaker sternly pronouncing something in Hai. You figure you should head back to the spaceport to see what's going on. Then again, disassociating yourself from them may save you some trouble with law enforcement.`
+		dialog `Your passengers' journey mainly consisted of trying to scare each other by telling ghost stories and jumping out of dimly-lit corners of your ship. Despite these annoyances, you land at the station with no issues. Your passengers practically jump off your ship after hastily paying you <payment>. After passing the time in your ship for a few hours, you are shocked by a loudspeaker sternly pronouncing something in Hai. You figure you should go back to <planet>'s spaceport to see what's going on. Then again, disassociating yourself from them may save you some trouble with law enforcement.`
 
 
 
 mission "Station Exploration 2"
-	name "Station Exploration"
-	description "Bring a group of Hai and human classmates back home to <planet>."
-	minor
+	priority
+	name "Bring students home to <planet>"
+	description "Bring a group of Hai and human classmates back home to <destination>."
+	passengers 5
 	source "Darkrest"
 	destination "Greenwater"
-	passengers 5
 	to offer
 		has "Station Exploration 1: done"
+		not "Station Exploration Abandon Ship: declined"
 	on offer
 		conversation
 			`The spaceport is bathed in red light, and the booming voice continues to play. Your passengers rush back onto your ship without saying a word, and you take off before something worse happens.`
@@ -1733,7 +1744,7 @@ mission "Station Exploration 2"
 		dialog `You look for the group of students you were transporting, but realize that they took a ride on one of your escorts! Better depart and wait for your escorts to arrive in this star system.`
 	on complete
 		conversation
-			`Upon landing, you are accosted by local police.`
+			`Upon landing, you are accosted by the local police on <planet>.`
 			`	"Captain <last>?", says a Hai officer. "Could you come with me for a moment?"`
 			choice
 				`	"Am I in trouble?"`
@@ -1742,7 +1753,7 @@ mission "Station Exploration 2"
 					goto normal
 				`	(Run away.)`
 			`	Almost as soon as you turn around to run you feel a sharp pain in your side as your consciousness fades away.`
-			`	You look up, lying in the spot you just stood. Above you is the same officer which asked you to follow him. Apparently you were not out for long.`
+			`	You look up, lying in the spot you just stood. Above you is the same officer which asked you to follow him, waving off another officer with a Pulse Rifle. Apparently you were not out for long.`
 			label normal
 			`	"We just want to let you know what happened," the officer says. He leads you away from your passengers, who are currently being examined by a medic for any potential injuries, and sits you down at a table nearby.`
 			`	"I think you can tell by now that your passengers weren't exactly 'sanctioned visitors' to Darkrest. However, they didn't break anything - that announcement you heard was just a warning to refrain from touching a computer system without proper training, but it apparently spooked your passengers enough that they made a run for it. They're not in trouble, as there's no law against just wandering around a station as long as you're not destructive, but typically people who do so get permission first." He give a wry smile. "Saves us from having to deal with false alarms like this."`
@@ -1758,7 +1769,7 @@ mission "Station Exploration 2"
 
 
 
-mission "Abandon Ship"
+mission "Station Exploration Abandon Ship"
 	invisible
 	landing
 	source
@@ -1770,7 +1781,7 @@ mission "Abandon Ship"
 	on offer
 		fine 70000
 		conversation
-			`Upon landing, you are accosted by local police. Behind your ship, you see your passengers disembarking from a Hai ship. Some of them are crying, but they appear uninjured.`
+			`Upon landing, you are accosted by the local police on <origin>. Behind your ship, you see your passengers disembarking from another Hai ship. Some of them are crying, but they appear uninjured.`
 			`	"Captain <last>?", says a Hai officer. "Could you come with me for a moment?"`
 			choice
 				`	"Am I in trouble?"`
@@ -1779,8 +1790,8 @@ mission "Abandon Ship"
 					goto normal
 				`	(Run away.)`
 			`	Almost as soon as you turn around to run you feel a sharp pain in your side as your consciousness fades away.`
-			`	You look up, lying in the spot you just stood. Above you is the same officer which asked you to follow him. Apparently you were not out for long.`
+			`	You look up, lying in the spot you just stood. Above you is the same officer which asked you to follow him, waving off another officer with a Pulse Rifle. Apparently you were not out for long.`
 			label normal
 			`	You can clearly tell that the officer has little patience for your antics. He leads you away from your passengers, who are currently being examined by a medic for any potential injuries.`
 			`	"You are being fined <payment> for abandoning your passengers without warning. You're lucky you didn't end up with a more serious punishment." After further chewing you out for endangering your passengers' safety, he walks away from you in a huff.`
-				accept
+				decline
