@@ -1662,15 +1662,15 @@ mission "Strider notification"
 
 
 mission "Hai Film Crew [1]"
+	minor
 	name "Hai Film Crew"
 	description "Bring a movie crew from <origin> to <destination>, so that they can film a horror movie there. Payment is <payment>."
-	minor
+	cargo "film equipment" 50
+	passengers 80
 	source
 		attributes hai urban
 		not attributes "uninhabited" "station"
 	destination "Darkrest"
-	passengers 80
-	cargo "film equipment" 50
 	to offer
 		random < 30
 		has "First Contact: Hai: offered"
@@ -1697,7 +1697,6 @@ mission "Hai Film Crew [1]"
 					goto accept
 				`	"I'm not going that way. You'll need to find some other captain."`
 					decline
-			label haunted
 			`	"Back when the station was still in use, there was a mysterious malfunction in one of the hatches which released oxygen out the airlock. Hundreds on board suffocated to death. To this day, no one knows what caused it, and legends have grown out of the event."`
 			choice
 				`	"What makes you think I'm parking my ship at a haunted station?"`
@@ -1716,7 +1715,7 @@ mission "Hai Film Crew [1]"
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
-		event "film crew" 30
+		event "hai film crew" 30
 		payment 100000 50
 		conversation
 			`You help your passengers unload all of their film equipment once you arrive on <planet>. The props seem to get more and more elaborate as they are unpacked from your ship. You note the presence of countless rubber limbs, mechanical monsters, and cans of fake blood being carried onto the set. Once you are finished, Likeet approaches you.`
@@ -1726,24 +1725,25 @@ mission "Hai Film Crew [1]"
 				`	"I better get going, then."`
 					goto going
 			`	"I don't want to spoil anything, but it's a psychological horror film that explores the nature of human isolation, and the shadow that our own mortality casts over our lives." She continues to elaborate on more philosophical themes that seemingly have less and less to do with the actual film, until she notices that your eyes have long since glazed over.`
-			`	"Well, anyways, thanks for your help, captain. I'll contact you in a month once we're finished," says Likeet.`
+			`	"Well, anyways, thanks for your help, Captain. I'll contact you in a month once we're finished," says Likeet.`
 				accept
 			label going
-			`	"Thanks for your help, captain. I'll contact you in a month once we're finished," says Likeet.`
+			`	"Thanks for your help, Captain. I'll contact you in a month once we're finished," says Likeet.`
 				accept
 
 
 
-event "film crew"
+event "hai film crew"
 
 
 
 mission "Hai Film Crew [2]"
+	landing
 	name "Hai Film Crew"
 	description "Go to <destination> to pick up the film crew you transported there."
 	destination "Darkrest"
 	to offer
-		has "event: film crew"
+		has "event: hai film crew"
 	on offer
 		dialog
 			`Upon landing your ship, you are startled by a vaguely familiar voice coming from your intercom. You soon recognize it as Likeet, the movie director that you brought to Darkrest a month ago.`
@@ -1753,19 +1753,19 @@ mission "Hai Film Crew [2]"
 
 
 mission "Hai Film Crew [3]"
+	minor
 	name "Hai Film Crew"
 	description "Take Likeet's film crew home to their studio on <destination>, so that they can process their film. Payment is <payment>."
-	minor
+	cargo "film equipment" 30
+	passengers 80
 	source "Darkrest"
 	destination
 		attributes hai urban
-	passengers 80
-	cargo "film equipment" 30
 	to offer
 		has "Hai Film Crew [2]: done"
 	on offer
 		conversation
-			`The first thing you notice when you land on Darkrest is the mess. It looks as if a tornado has touched down on the set, and you don't remember natural disasters being part of the movie's original script.`
+			`The first thing you notice when you land on Darkrest is the mess. It looks as if a tornado has touched down on the set, and you don't remember Likeet selling the movie as being about natural disasters.`
 			`	"Controlled chaos, I call it," says Likeet, who has somehow materialized beside you. "We're just clearing everything out right now, making sure we didn't forget anything, the usual."`
 			`	It takes a few hours to load everything onto your ship. Once you're finished, the only sign that anyone was here is that the station's surfaces are free of dust.`
 			`	"Alright, captain. We'll need to get to <destination>, so that we can edit the raw footage in our studio. Gonna be nice to finally be back on a planet instead of this tin can." She pauses, as if she's trying to remember a line. "Oh yeah, I'll pay you <payment> once we've arrived. Let's get out of here."`
