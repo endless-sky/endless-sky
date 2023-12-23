@@ -3852,7 +3852,7 @@ ship "Sunder"
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"
-		
+
 	engine -11.5 54
 	engine 11.5 54
 	gun -9.5 -53

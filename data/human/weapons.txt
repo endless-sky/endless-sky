@@ -1472,51 +1472,54 @@ effect "bullet impact"
 
 
 # Pending changes and mechanics. Currently a copy-pasted Anti-Missile.
-outfit "Tractor Beam Turret"
+outfit "Tractor Beam"
 	category "Turrets"
-	cost 60000
+	cost 75000
 	thumbnail "outfit/tractor beam turret"
-	"mass" 16
-	"outfit space" -16
-	"weapon capacity" -16
+	"mass" 13
+# Pending larger size
+	"outfit space" -13
+	"weapon capacity" -13
 	"turret mounts" -1
 	weapon
-		"hardpoint sprite" "hardpoint/tractor beam"
+		"hardpoint sprite" "hardpoint/anti-missile"
 		"hardpoint offset" 4.
 		"hit effect" "tractor beam"
-		"anti-missile" 5
-		"velocity" 150
+#		"tractor beam" 2
+		"anti-missile" 1
+		"velocity" 300
 		"lifetime" 1
 		"reload" 1
-		"firing energy" 5
-		"firing heat" 3
-	description "Tractor Beam Turret."
+		"firing energy" 3.8
+		"firing heat" .9
+	description "The anti-gravity properties of repulsor engines that allow ships to escape the gravity well of planets without the difficulty that humanity once faced before the era of the hyperdrive started a revolution in human spaceflight during the 24th century, and it was not long before this technology was put to use elsewhere."
+	description "    Tractor beams utilize repulsor technology to allow ships to attract space debris to them, be that the ores from a recently mined asteroid or the dumped cargo from a merchant ship fleeing for its life. This has led to tractor beams being a popular outfit among asteroid miners and pirates alike."
 
-# Ditto.
 effect "tractor beam"
-	sprite "effect/small anti missile"
-		"no repeat"
-		"frame rate" 3
+    sprite "effect/tractor beam"
+        "random start frame"
+		"frame rate" 2
 	sound "tractor beam"
-	"lifetime" 1
-	"velocity scale" 1
+    "lifetime" 1
+    "velocity scale" 1
+
 
 # Ditto.
 outfit "Mining Laser"
 	category "Guns"
 	cost 29000
 	thumbnail "outfit/mining laser"
-	"mass" 8
-	"outfit space" -8
-	"weapon capacity" -8
+	"mass" 12
+	"outfit space" -12
+	"weapon capacity" -12
 	"gun ports" -1
 	weapon
-		sprite "projectile/laser"
+		sprite "projectile/mining laser"
 			"frame rate" 1
 		sound "mining laser"
 		"hit effect" "beam laser impact"
 		"inaccuracy" .5
-		"velocity" 300
+		"velocity" 200
 		"lifetime" 1
 		"reload" 1
 		"firing energy" .67
