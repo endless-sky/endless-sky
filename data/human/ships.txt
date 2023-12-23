@@ -2571,7 +2571,7 @@ ship "Manta"
 	description "After their Quicksilver light warship with its armament of Particle Cannons became a large success with convoy escorts and planetary defense forces, Megaparsec decided to develop a larger ship with similar maneuverability but heavier firepower. The Manta is the result: a ship with enough long-range firepower that fleeing from a battle with it is almost impossible."
 
 
-# Ditto. Copy-pasted Combat Drone.
+
 ship "Mining Drone"
 	sprite "ship/mining drone"
 	thumbnail "thumbnail/mining drone"
@@ -2587,10 +2587,10 @@ ship "Mining Drone"
 		"weapon capacity" 12
 		"engine capacity" 28
 		weapon
-			"blast radius" 5
-			"shield damage" 50
-			"hull damage" 25
-			"hit force" 75
+			"blast radius" 3
+			"shield damage" 30
+			"hull damage" 15
+			"hit force" 45
 	outfits
 		"Mining Laser"
 
@@ -2602,7 +2602,7 @@ ship "Mining Drone"
 		
 	engine 0 22 0.9
 	gun 0 -22
-	explode "tiny explosion" 15
+	explode "tiny explosion" 10
 	description "Mining Drone."
 	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
 
@@ -3639,7 +3639,7 @@ ship "Star Queen"
 	description "	In support of environmental movements across the galaxy, all Star Queens come standard with an array of solar panels as their only source of energy as opposed to more popular power generators such as fuel cells or nuclear reactors that produce some amount of waste. Although some argue that this is a pointless move given the prevalence of clean fusion reactors, others have applauded it and cited the prohibitive costs of fusion reactors as a reason for using solar panels."
 
 
-# Pending content and mechanics. Currently a copy-pasted Clipper.
+
 ship "Sunder"
 	sprite "ship/sunder"
 	thumbnail "thumbnail/sunder"
@@ -3659,10 +3659,10 @@ ship "Sunder"
 		"weapon capacity" 50
 		"engine capacity" 90
 		weapon
-			"blast radius" 36
-			"shield damage" 360
-			"hull damage" 180
-			"hit force" 540
+			"blast radius" 28
+			"shield damage" 280
+			"hull damage" 140
+			"hit force" 420
 	outfits
 		"Mining Laser" 2
 		"Tractor Beam"
@@ -3689,9 +3689,9 @@ ship "Sunder"
 		"launch effect" "human external"
 	leak "leak" 60 50
 	leak "flame" 50 80
-	explode "tiny explosion" 15
-	explode "small explosion" 20
-	explode "medium explosion" 10
+	explode "tiny explosion" 20
+	explode "small explosion" 15
+	explode "medium explosion" 15
 	"final explode" "final explosion small"
 	description "Sunder mining ship."
 
