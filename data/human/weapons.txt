@@ -1465,7 +1465,7 @@ effect "bullet impact"
 	"velocity scale" -.05
 
 
-# Pending changes.
+
 outfit "Tractor Beam"
 	category "Turrets"
 	cost 75000
@@ -1497,7 +1497,7 @@ effect "tractor beam"
 	"velocity scale" 1
 
 
-# Ditto.
+
 outfit "Mining Laser"
 	category "Guns"
 	cost 38000
@@ -1522,7 +1522,6 @@ outfit "Mining Laser"
 	description "Mining Laser."
 
 
-# Ditto.
 outfit "Mining Laser Turret"
 	category "Turrets"
 	cost 66000
