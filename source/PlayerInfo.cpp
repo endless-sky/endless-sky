@@ -2384,22 +2384,9 @@ bool PlayerInfo::HasSeen(const System &system) const
 	if(&system == this->system)
 		return true;
 
-	if(system.Shrouded())
-	{
-		// If a shrouded system isn't in visible range then there's no chance of seeing it.
-		if(!system.VisibleNeighbors().count(this->system))
-			return false;
-		if(!system.Hidden())
-			return true;
-		// Shrouded and hidden systems must be linked to a system that can be viewed.
-		if(any_of(system.Links().begin(), system.Links().end(),
-				[&](const System *s) noexcept -> bool { return CanView(*s); }))
-			return true;
-
-		return false;
-	}
-
-	if(seen.count(&system))
+	// Shrouded systems have special considerations as to whether they're currently seen or not.
+	bool shrouded = system.Shrouded();
+	if(!shrouded && seen.count(&system))
 		return true;
 
 	auto usesSystem = [&system](const Mission &m) noexcept -> bool
@@ -2411,12 +2398,25 @@ bool PlayerInfo::HasSeen(const System &system) const
 		for(auto &&p : m.Stopovers())
 			if(p->IsInSystem(&system))
 				return true;
-		return false;
+		return m.Destination()->IsInSystem(&system);
 	};
 	if(any_of(availableJobs.begin(), availableJobs.end(), usesSystem))
 		return true;
 	if(any_of(missions.begin(), missions.end(), usesSystem))
 		return true;
+
+	if(shrouded)
+	{
+		// All systems linked to a visible system are themselves visible.
+		if(any_of(system.Links().begin(), system.Links().end(),
+				[&](const System *s) noexcept -> bool { return CanView(*s); }))
+			return true;
+		// A shrouded system not linked to a visible system must be within view range to be seen.
+		if(!system.VisibleNeighbors().count(this->system))
+			return false;
+		// If a shrouded system is in visible range, then it can be seen if it is not also hidden.
+		return !system.Hidden();
+	}
 
 	return KnowsName(system);
 }
@@ -2428,7 +2428,7 @@ bool PlayerInfo::CanView(const System &system) const
 {
 	// A player can always view the contents of the system they are in. Otherwise,
 	// the system must have been visited before and not be shrouded.
-	return (visitedSystems.count(&system) && !system.Shrouded()) || &system == this->system;
+	return (HasVisited(system) && !system.Shrouded()) || &system == this->system;
 }
 
 
@@ -2453,7 +2453,7 @@ bool PlayerInfo::HasVisited(const Planet &planet) const
 // because a job or active mission includes the name of that system.
 bool PlayerInfo::KnowsName(const System &system) const
 {
-	if(HasVisited(system))
+	if(CanView(system))
 		return true;
 
 	for(const Mission &mission : availableJobs)
