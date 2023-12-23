@@ -1463,3 +1463,64 @@ effect "bullet impact"
 	"lifetime" 8
 	"random angle" 40
 	"velocity scale" -.05
+
+
+
+
+
+
+
+
+# Pending changes and mechanics. Currently a copy-pasted Anti-Missile.
+outfit "Tractor Beam Turret"
+	category "Turrets"
+	cost 60000
+	thumbnail "outfit/tractor beam turret"
+	"mass" 16
+	"outfit space" -16
+	"weapon capacity" -16
+	"turret mounts" -1
+	weapon
+		"hardpoint sprite" "hardpoint/tractor beam"
+		"hardpoint offset" 4.
+		"hit effect" "tractor beam"
+		"anti-missile" 5
+		"velocity" 150
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 5
+		"firing heat" 3
+	description "Tractor Beam Turret."
+
+# Ditto.
+effect "tractor beam"
+	sprite "effect/small anti missile"
+		"no repeat"
+		"frame rate" 3
+	sound "tractor beam"
+	"lifetime" 1
+	"velocity scale" 1
+
+# Ditto.
+outfit "Mining Laser"
+	category "Guns"
+	cost 29000
+	thumbnail "outfit/mining laser"
+	"mass" 8
+	"outfit space" -8
+	"weapon capacity" -8
+	"gun ports" -1
+	weapon
+		sprite "projectile/laser"
+			"frame rate" 1
+		sound "mining laser"
+		"hit effect" "beam laser impact"
+		"inaccuracy" .5
+		"velocity" 300
+		"lifetime" 1
+		"reload" 1
+		"firing energy" .67
+		"firing heat" 1.6
+		"shield damage" 1
+		"hull damage" 1.3
+	description "Mining Laser."

@@ -3815,3 +3815,94 @@ ship "Wasp"
 	explode "tiny explosion" 20
 	explode "small explosion" 10
 	description "The Wasp is a medium-strength interceptor, designed by Syndicated Shipyards to serve as an escort for cargo vessels. Like most Syndicate ships, it is not particularly pretty, but it at least serves the purpose it was made for."
+
+
+# Pending content and mechanics. Currently a copy-pasted Clipper.
+ship "Sunder"
+	sprite "ship/sunder"
+	thumbnail "thumbnail/sunder"
+	attributes
+		category "Utility"
+		"cost" 900000
+		"shields" 2700
+		"hull" 800
+		"required crew" 3
+		"bunks" 9
+		"mass" 150
+		"drag" 3.7
+		"heat dissipation" .8
+		"fuel capacity" 500
+		"cargo space" 70
+		"outfit space" 260
+		"weapon capacity" 60
+		"engine capacity" 80
+		weapon
+			"blast radius" 36
+			"shield damage" 360
+			"hull damage" 180
+			"hit force" 540
+	outfits
+		"Beam Laser" 2
+		"Javelin Mini Pod" 2
+		"Javelin" 80
+		
+		"nGVF-DD Fuel Cell"
+		"LP072a Battery Pack"
+		"D23-QP Shield Generator"
+		
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Hyperdrive"
+		
+	engine -22 47
+	engine 22 47
+	gun -21.5 -18 "Javelin Mini Pod"
+	gun 21.5 -18 "Javelin Mini Pod"
+	gun -11 -8.5 "Beam Laser"
+	gun 11 -8.5 "Beam Laser"
+	turret 0 0
+	leak "leak" 60 50
+	leak "flame" 50 80
+	explode "tiny explosion" 15
+	explode "small explosion" 20
+	explode "medium explosion" 10
+	"final explode" "final explosion small"
+	description "Sunder mining ship."
+
+# Ditto. Copy-pasted Combat Drone.
+ship "Mining Drone"
+	sprite "ship/mining drone"
+	thumbnail "thumbnail/mining drone"
+	attributes
+		category "Drone"
+		licenses
+			Navy
+		"cost" 83000
+		"hull" 700
+		"automaton" 1
+		"mass" 20
+		"drag" .59
+		"heat dissipation" .9
+		"outfit space" 58
+		"weapon capacity" 8
+		"engine capacity" 28
+		weapon
+			"blast radius" 5
+			"shield damage" 50
+			"hull damage" 25
+			"hit force" 75
+	outfits
+		"Beam Laser"
+		
+		"nGVF-AA Fuel Cell"
+		"Supercapacitor"
+		
+		"X1700 Ion Thruster"
+		"X1200 Ion Steering"
+		
+	engine -8.5 28.5 0.9
+	engine 8.5 28.5 0.9
+	gun 0 -29 "Beam Laser"
+	explode "tiny explosion" 15
+	description "Mining Drone."
+	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
