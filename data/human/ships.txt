@@ -2571,6 +2571,44 @@ ship "Manta"
 	description "After their Quicksilver light warship with its armament of Particle Cannons became a large success with convoy escorts and planetary defense forces, Megaparsec decided to develop a larger ship with similar maneuverability but heavier firepower. The Manta is the result: a ship with enough long-range firepower that fleeing from a battle with it is almost impossible."
 
 
+# Ditto. Copy-pasted Combat Drone.
+ship "Mining Drone"
+	sprite "ship/mining drone"
+	thumbnail "thumbnail/mining drone"
+	attributes
+		category "Drone"
+		licenses
+			Navy
+		"cost" 83000
+		"hull" 700
+		"automaton" 1
+		"mass" 20
+		"drag" .59
+		"heat dissipation" .9
+		"outfit space" 62
+		"weapon capacity" 12
+		"engine capacity" 28
+		weapon
+			"blast radius" 5
+			"shield damage" 50
+			"hull damage" 25
+			"hit force" 75
+	outfits
+		"Mining Laser"
+		
+		"nGVF-AA Fuel Cell"
+		"Supercapacitor"
+		
+		"X1700 Ion Thruster"
+		"X1200 Ion Steering"
+		
+	engine 0 22 0.9
+	gun 0 -22
+	explode "tiny explosion" 15
+	description "Mining Drone."
+	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
+
+
 
 ship "Modified Argosy"
 	plural "Modified Argosies"
@@ -3603,6 +3641,63 @@ ship "Star Queen"
 	description "	In support of environmental movements across the galaxy, all Star Queens come standard with an array of solar panels as their only source of energy as opposed to more popular power generators such as fuel cells or nuclear reactors that produce some amount of waste. Although some argue that this is a pointless move given the prevalence of clean fusion reactors, others have applauded it and cited the prohibitive costs of fusion reactors as a reason for using solar panels."
 
 
+# Pending content and mechanics. Currently a copy-pasted Clipper.
+ship "Sunder"
+	sprite "ship/sunder"
+	thumbnail "thumbnail/sunder"
+	attributes
+		category "Utility"
+		"cost" 900000
+		"shields" 2700
+		"hull" 800
+		"required crew" 3
+		"bunks" 9
+		"mass" 150
+		"drag" 3.7
+		"heat dissipation" .8
+		"fuel capacity" 500
+		"cargo space" 70
+		"outfit space" 260
+		"weapon capacity" 60
+		"engine capacity" 80
+		weapon
+			"blast radius" 36
+			"shield damage" 360
+			"hull damage" 180
+			"hit force" 540
+	outfits
+		"Mining Laser" 2
+		"Tractor Beam Turret"
+
+		"nGVF-DD Fuel Cell"
+		"LP072a Battery Pack"
+		"D23-QP Shield Generator"
+		
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Hyperdrive"
+
+	engine -11.5 54
+	engine 11.5 54
+	gun -9.5 -53
+	gun 9.5 -53
+	turret 0 28.5
+	bay "Drone" 0 -14
+		"under"
+		"launch effect" "human external"
+	bay "Drone" 0 38
+		"under"
+		"angle" 180
+		"launch effect" "human external"
+	leak "leak" 60 50
+	leak "flame" 50 80
+	explode "tiny explosion" 15
+	explode "small explosion" 20
+	explode "medium explosion" 10
+	"final explode" "final explosion small"
+	description "Sunder mining ship."
+
+
 
 ship "Surveillance Drone"
 	sprite "ship/surveillance drone"
@@ -3815,97 +3910,3 @@ ship "Wasp"
 	explode "tiny explosion" 20
 	explode "small explosion" 10
 	description "The Wasp is a medium-strength interceptor, designed by Syndicated Shipyards to serve as an escort for cargo vessels. Like most Syndicate ships, it is not particularly pretty, but it at least serves the purpose it was made for."
-
-
-# Pending content and mechanics. Currently a copy-pasted Clipper.
-ship "Sunder"
-	sprite "ship/sunder"
-	thumbnail "thumbnail/sunder"
-	attributes
-		category "Utility"
-		"cost" 900000
-		"shields" 2700
-		"hull" 800
-		"required crew" 3
-		"bunks" 9
-		"mass" 150
-		"drag" 3.7
-		"heat dissipation" .8
-		"fuel capacity" 500
-		"cargo space" 70
-		"outfit space" 260
-		"weapon capacity" 60
-		"engine capacity" 80
-		weapon
-			"blast radius" 36
-			"shield damage" 360
-			"hull damage" 180
-			"hit force" 540
-	outfits
-		"Mining Laser" 2
-		"Tractor Beam"
-
-		"nGVF-DD Fuel Cell"
-		"LP072a Battery Pack"
-		"D23-QP Shield Generator"
-		
-		"Greyhound Plasma Thruster"
-		"Greyhound Plasma Steering"
-		"Hyperdrive"
-
-	engine -11.5 54
-	engine 11.5 54
-	gun -9.5 -53
-	gun 9.5 -53
-	turret 0 28.5
-	bay "Drone" 0 -14
-		"under"
-		"launch effect" "human external"
-	bay "Drone" 0 38
-		"under"
-		"angle" 180
-		"launch effect" "human external"
-	leak "leak" 60 50
-	leak "flame" 50 80
-	explode "tiny explosion" 15
-	explode "small explosion" 20
-	explode "medium explosion" 10
-	"final explode" "final explosion small"
-	description "Sunder mining ship."
-
-# Ditto. Copy-pasted Combat Drone.
-ship "Mining Drone"
-	sprite "ship/mining drone"
-	thumbnail "thumbnail/mining drone"
-	attributes
-		category "Drone"
-		licenses
-			Navy
-		"cost" 83000
-		"hull" 700
-		"automaton" 1
-		"mass" 20
-		"drag" .59
-		"heat dissipation" .9
-		"outfit space" 62
-		"weapon capacity" 12
-		"engine capacity" 28
-		weapon
-			"blast radius" 5
-			"shield damage" 50
-			"hull damage" 25
-			"hit force" 75
-	outfits
-		"Mining Laser"
-		
-		"nGVF-AA Fuel Cell"
-		"Supercapacitor"
-		
-		"X1700 Ion Thruster"
-		"X1200 Ion Steering"
-		
-	engine 0 22 0.9
-	gun 0 -22
-	explode "tiny explosion" 15
-	description "Mining Drone."
-	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."

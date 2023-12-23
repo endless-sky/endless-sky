@@ -1469,14 +1469,14 @@ effect "bullet impact"
 outfit "Tractor Beam"
 	category "Turrets"
 	cost 75000
-	thumbnail "outfit/tractor beam turret"
+	thumbnail "outfit/tractor beam"
 	"mass" 13
 # Pending larger size
 	"outfit space" -13
 	"weapon capacity" -13
 	"turret mounts" -1
 	weapon
-		"hardpoint sprite" "hardpoint/anti-missile"
+		"hardpoint sprite" "hardpoint/tractor beam"
 		"hardpoint offset" 4.
 		"hit effect" "tractor beam"
 #		"tractor beam" 2
