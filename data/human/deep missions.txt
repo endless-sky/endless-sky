@@ -3517,15 +3517,15 @@ mission "Skadenga Call 2"
 				`	"What do you want from me?"`
 				`	"Who are these people?"`
 					goto who
-			`	Hjlod glares at you. "From you? Everything. For that is what you took from us.`
+			`	Hjlod glares at you. "From you? Everything. For that is vhat you took from us.`
 			`	"I do not know vhy you did it. Vhy you brought us here. If Skade really let us down. Or if you ignored her," she growls. "But it does not matter. All that matters is that ve leave, and that is vhy ve need you."`
 				goto here
 			label who
 			`	Hjlod laughs and tears run down her cheeks. "Do you not recognize us? Our great savior? Ve are the Skadenga, and this is your handivwork."`
-			`	She look away from you and continues. "The rest are not dead, no. But they have left us. Most are happy; happy to be fed, happy to be entertained, happy to forget vho they are, happy to be Skadenga in name, but not in practice. But those here cannot accept that. Ve refuse to become them.`
+			`	She look away from you and continues. "The rest are not dead, no. But they have left us. Most are happy; happy to be fed, happy to be entertained, happy to forget who they are, happy to be Skadenga in name, but not in practice. But those here cannot accept that. Ve refuse to become them.`
 			`	"Ve hide now. From the social workers, from the service providers, from the government. They can still find us, they know ve are here, but vhat they don't know is that ve can leave. That you can take us avay from here."`
 			label here
-			`	Hjlod takes a deep, calming breath. "I call because you are our only hope. They vill not let us leave. They vill not let us be. They will steal our souls." She points a shaky finger at you. "Take us back to Nifel. All those who are left. Take us home. Ve know the cold vill get us eventually. But better to live on a dying vorld as Skadenga than to live here as nothing."`
+			`	Hjlod takes a deep, calming breath. "I call because you are our only hope. They vill not let us leave. They vill not let us be. They vill steal our souls." She points a shaky finger at you. "Take us back to Nifel. All those who are left. Take us home. Ve know the cold vill get us eventually. But better to live on a dying vorld as Skadenga than to live here as nothing."`
 			choice
 				`	"I will help you."`
 					goto help
@@ -3545,12 +3545,12 @@ mission "Skadenga Call 2"
 			`	You return to Hjlod, who is surprised that you came back at all, and let her know that you going to help them.`
 			label help
 			`	Hearing this, the slumped and depressed dredges in the hall stir and rise from their stupor. Hurriedly, some gather items while others race off further into the dark, unused parts of the spaceport.`
-			`	"Ve have 52 people that need off this vorld right now." Hjlod hesitates a moment, and then adds, "I know how much you like money. Ve have pooled all our savings together and will pay you <payment> for this job." She grabs a ragged duffle bag and a group gather around her. "The rest vill meet us at your ship. Ve move now."`
+			`	"Ve have 52 people that need off this vorld right now." Hjlod hesitates a moment, and then adds, "I know how much you like money. Ve have pooled all our savings together and vill pay you <payment> for this job." She grabs a ragged duffle bag and a group gather around her. "The rest vill meet us at your ship. Ve move now."`
 			choice
 				`	(Follow Hjlod.)`
 			`	Once you're back in the operational spaceport, you and your group move quickly, while drawing occasional glances from curious on-lookers. A large group of disheveled Skaldenga are waiting for you when you reach your ship. "Everyone on, quickly!" Hjlod barks at her people.`
 			`	A few moments later, they are all on board. "Asdis, headcount!" Hjlod orders. As you're waiting, two more dirty and gaunt Skadenga show up. Asdis adds them to her count and then addresses Hjlod. "Ondurdis, 48 total."`
-			`	Hjlod frowns. "It's Arnson's family isn't it? I told him he was too far."`
+			`	Hjlod frowns. "It's Arnson's family isn't it? I told him he vas too far."`
 			`	A commotion boils up from a few terminals down, and you see some civil servants and local police officers heading your way. Asdis is also watching. "They could still be coming."`
 			`	"It's too late for them." Hjlod shuts the hatch. "<first>, if ever ve vere friends. Take off, now."`
 			choice
@@ -4009,7 +4009,7 @@ mission "Stones of Skadenga 2"
 		has "Stones of Skadenga 1: done"
 	on offer
 		dialog
-			`A group of eight Skadenga approach you. They ask if you'd be willing to take them to <destination> so that they can return their loved-one's stones to their Family-Cairns, offering <payment> for their transportation.`
+			`A group of eight Skadenga approach you. They ask if you'd be willing to take them to <stopovers> so that they can return their loved-one's stones to their Family-Cairns, offering <payment> for their transportation.`
 	on stopover
 		dialog
 			`The eight Skadenga solmenly make their way off your ship and into the icy lands of Nifel. After a few hours they return, cold, and eager to return home to Windblaine.`
