@@ -1510,7 +1510,7 @@ outfit "Mining Laser"
 	cost 29000
 	thumbnail "outfit/mining laser"
 	"mass" 12
-	"outfit space" -20
+	"outfit space" -12
 	"weapon capacity" -12
 	"gun ports" -1
 	weapon
