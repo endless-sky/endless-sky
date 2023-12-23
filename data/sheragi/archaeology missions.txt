@@ -111,7 +111,7 @@ mission "Deep Archaeology 3"
 	npc
 		personality waiting
 		government "Deep Security"
-		ship "Raven (Afterburner)" "D.P.S. Wyrd"
+		ship "Raven (Afterburner)" "D.S.S. Wyrd"
 		on kill
 			set "dps wyrd dead"
 	
@@ -119,7 +119,7 @@ mission "Deep Archaeology 3"
 		personality waiting
 		system "Aspidiske"
 		government "Deep Security"
-		ship "Raven (Afterburner)" "D.P.S. Skuld"
+		ship "Raven (Afterburner)" "D.S.S. Skuld"
 		on kill
 			set "dps skuld dead"
 	
@@ -127,7 +127,7 @@ mission "Deep Archaeology 3"
 		personality waiting
 		system "Gomeisa"
 		government "Deep Security"
-		ship "Raven (Afterburner)" "D.P.S. Verthandi"
+		ship "Raven (Afterburner)" "D.S.S. Verthandi"
 		on kill
 			set "dps verthandi dead"
 	
@@ -209,37 +209,37 @@ mission "Deep Archaeology 5"
 	npc
 		personality heroic
 		government "Deep"
-		ship "Raven (Afterburner)" "D.P.S. Wyrd"
+		ship "Raven (Afterburner)" "D.S.S. Wyrd"
 		to despawn
 			has "dps wyrd dead"
 	npc
 		personality heroic
 		government "Deep"
-		ship "Raven (Afterburner)" "D.P.S. Skuld"
+		ship "Raven (Afterburner)" "D.S.S. Skuld"
 		to despawn
 			has "dps skuld dead"
 	npc
 		personality heroic
 		government "Deep"
-		ship "Raven (Afterburner)" "D.P.S. Verthandi"
+		ship "Raven (Afterburner)" "D.S.S. Verthandi"
 		to despawn
 			has "dps verthandi dead"
 	npc
 		personality heroic
 		government "Deep"
-		ship "Corvette (Speedy)" "D.P.S. Wyrdson"
+		ship "Corvette (Speedy)" "D.S.S. Wyrdson"
 		to despawn
 			not "dps wyrd dead"
 	npc
 		personality heroic
 		government "Deep"
-		ship "Corvette (Speedy)" "D.P.S. Skuldson"
+		ship "Corvette (Speedy)" "D.S.S. Skuldson"
 		to despawn
 			not "dps skuld dead"
 	npc
 		personality heroic
 		government "Deep"
-		ship "Corvette (Speedy)" "D.P.S. Verthandison"
+		ship "Corvette (Speedy)" "D.S.S. Verthandison"
 		to despawn
 			not "dps verthandi dead"
 	

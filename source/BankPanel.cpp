@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "text/alignment.hpp"
 #include "Color.h"
+#include "Command.h"
 #include "Dialog.h"
 #include "text/DisplayText.h"
 #include "text/Format.h"
@@ -267,7 +268,12 @@ void BankPanel::Draw()
 // Handle key presses, or clicks that the interface has mapped to a key press.
 bool BankPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	if(key == SDLK_UP && selectedRow)
+	if(command.Has(Command::HELP))
+	{
+		DoHelp("bank advanced", true);
+		DoHelp("bank", true);
+	}
+	else if(key == SDLK_UP && selectedRow)
 		--selectedRow;
 	else if(key == SDLK_DOWN && selectedRow < mortgageRows)
 		++selectedRow;
