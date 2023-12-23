@@ -2577,14 +2577,12 @@ ship "Mining Drone"
 	thumbnail "thumbnail/mining drone"
 	attributes
 		category "Drone"
-		licenses
-			Navy
 		"cost" 83000
-		"hull" 700
+		"hull" 300
 		"automaton" 1
-		"mass" 20
-		"drag" .59
-		"heat dissipation" .9
+		"mass" 12
+		"drag" .55
+		"heat dissipation" .8
 		"outfit space" 62
 		"weapon capacity" 12
 		"engine capacity" 28
@@ -2595,10 +2593,10 @@ ship "Mining Drone"
 			"hit force" 75
 	outfits
 		"Mining Laser"
-		
+
 		"nGVF-AA Fuel Cell"
 		"Supercapacitor"
-		
+
 		"X1700 Ion Thruster"
 		"X1200 Ion Steering"
 		
@@ -3647,19 +3645,19 @@ ship "Sunder"
 	thumbnail "thumbnail/sunder"
 	attributes
 		category "Utility"
-		"cost" 900000
-		"shields" 2700
-		"hull" 800
+		"cost" 1000000
+		"shields" 1200
+		"hull" 1600
 		"required crew" 3
-		"bunks" 9
-		"mass" 150
-		"drag" 3.7
-		"heat dissipation" .8
-		"fuel capacity" 500
-		"cargo space" 70
-		"outfit space" 260
-		"weapon capacity" 60
-		"engine capacity" 80
+		"bunks" 5
+		"mass" 160
+		"drag" 3.8
+		"heat dissipation" .7
+		"fuel capacity" 600
+		"cargo space" 80
+		"outfit space" 230
+		"weapon capacity" 50
+		"engine capacity" 90
 		weapon
 			"blast radius" 36
 			"shield damage" 360
@@ -3669,12 +3667,12 @@ ship "Sunder"
 		"Mining Laser" 2
 		"Tractor Beam"
 
-		"nGVF-DD Fuel Cell"
+		"nGVF-CC Fuel Cell"
 		"LP072a Battery Pack"
 		"D23-QP Shield Generator"
 		
-		"Greyhound Plasma Thruster"
-		"Greyhound Plasma Steering"
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
 		"Hyperdrive"
 
 	engine -11.5 54

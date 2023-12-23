@@ -1470,10 +1470,9 @@ outfit "Tractor Beam"
 	category "Turrets"
 	cost 75000
 	thumbnail "outfit/tractor beam"
-	"mass" 13
-# Pending larger size
-	"outfit space" -13
-	"weapon capacity" -13
+	"mass" 22
+	"outfit space" -22
+	"weapon capacity" -22
 	"turret mounts" -1
 	weapon
 		"hardpoint sprite" "hardpoint/tractor beam"
@@ -1484,8 +1483,8 @@ outfit "Tractor Beam"
 		"velocity" 300
 		"lifetime" 1
 		"reload" 1
-		"firing energy" 3.8
-		"firing heat" .9
+		"firing energy" 2.1
+		"firing heat" .8
 	description "The anti-gravity properties of repulsor engines that allow ships to escape the gravity well of planets without the difficulty that humanity once faced before the era of the hyperdrive started a revolution in human spaceflight during the 24th century, and it was not long before this technology was put to use elsewhere."
 	description "	Tractor beams utilize repulsor technology to allow ships to attract space debris to them, be that the ores from a recently mined asteroid or the dumped cargo from a merchant ship fleeing for its life. This has led to tractor beams being a popular outfit among asteroid miners and pirates alike."
 
@@ -1501,7 +1500,7 @@ effect "tractor beam"
 # Ditto.
 outfit "Mining Laser"
 	category "Guns"
-	cost 29000
+	cost 38000
 	thumbnail "outfit/mining laser"
 	"mass" 12
 	"outfit space" -12
@@ -1512,20 +1511,21 @@ outfit "Mining Laser"
 			"frame rate" 1
 		sound "mining laser"
 		"hit effect" "beam laser impact"
-		"inaccuracy" .5
+		"inaccuracy" .35
 		"velocity" 200
 		"lifetime" 1
 		"reload" 1
-		"firing energy" .67
-		"firing heat" 1.6
-		"shield damage" 1
-		"hull damage" 1.3
+		"firing energy" 1.1
+		"firing heat" 2.1
+		"shield damage" .8
+		"hull damage" 1.5
 	description "Mining Laser."
+
 
 # Ditto.
 outfit "Mining Laser Turret"
 	category "Turrets"
-	cost 140000
+	cost 66000
 	thumbnail "outfit/mining laser turret"
 	"mass" 18
 	"outfit space" -18
@@ -1539,13 +1539,13 @@ outfit "Mining Laser Turret"
 		"hardpoint offset" 0.7 8.
 		sound "mining laser"
 		"hit effect" "beam laser impact"
-		"inaccuracy" .5
-		"turret turn" 4.0
+		"inaccuracy" .35
+		"turret turn" 3.8
 		"velocity" 200
 		"lifetime" 1
 		"reload" 1
-		"firing energy" 1.33
-		"firing heat" 3.2
-		"shield damage" 2
-		"hull damage" 2.6
+		"firing energy" 1.1
+		"firing heat" 2.1
+		"shield damage" .8
+		"hull damage" 1.5
 	description "Mining Laser Turret."
