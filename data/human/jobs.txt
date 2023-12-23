@@ -2502,6 +2502,7 @@ mission "Stranded Field Trip"
 	cargo "educational supplies" 2 10 .6
 	to offer
 		random < ( "passenger space" - 30 ) / 2
+		random < 10
 	source
 		attributes "near earth" "deep" "paradise" "tourism"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -2513,7 +2514,7 @@ mission "Stranded Field Trip"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 100000 120
+		payment 100000 150
 		dialog `The students excitedly rush off your ship into the arms of their waiting parents. The adventure was fun, but they're very pleased to be safely home after so long. The school deposits <payment> into your account.`
 
 mission "Prisoners [0]"

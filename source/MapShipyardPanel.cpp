@@ -141,7 +141,7 @@ double MapShipyardPanel::SystemValue(const System *system) const
 	if(!system || !player.HasVisited(*system))
 		return numeric_limits<double>::quiet_NaN();
 
-	// If there is a shipyard with parked ships, the order of precendence is
+	// If there is a shipyard with parked ships, the order of precedence is
 	// a selected parked ship, the shipyard, parked ships.
 
 	const auto &systemShips = parkedShips.find(system);
@@ -176,7 +176,7 @@ int MapShipyardPanel::FindItem(const string &text) const
 	int bestItem = -1;
 	for(unsigned i = 0; i < list.size(); ++i)
 	{
-		int index = Search(list[i]->DisplayModelName(), text);
+		int index = Format::Search(list[i]->DisplayModelName(), text);
 		if(index >= 0 && index < bestIndex)
 		{
 			bestIndex = index;
