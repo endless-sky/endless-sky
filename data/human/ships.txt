@@ -3842,10 +3842,9 @@ ship "Sunder"
 			"hull damage" 180
 			"hit force" 540
 	outfits
-		"Beam Laser" 2
-		"Javelin Mini Pod" 2
-		"Javelin" 80
-		
+		"Mining Laser" 2
+		"Tractor Beam Turret"
+
 		"nGVF-DD Fuel Cell"
 		"LP072a Battery Pack"
 		"D23-QP Shield Generator"
@@ -3854,13 +3853,18 @@ ship "Sunder"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"
 		
-	engine -22 47
-	engine 22 47
-	gun -21.5 -18 "Javelin Mini Pod"
-	gun 21.5 -18 "Javelin Mini Pod"
-	gun -11 -8.5 "Beam Laser"
-	gun 11 -8.5 "Beam Laser"
-	turret 0 0
+	engine -11.5 54
+	engine 11.5 54
+	gun -9.5 -53
+	gun 9.5 -53
+	turret 0 28.5
+	bay "Drone" 0 -14
+		"under"
+		"launch effect" "human external"
+	bay "Drone" 0 38
+		"under"
+		"angle" 180
+		"launch effect" "human external"
 	leak "leak" 60 50
 	leak "flame" 50 80
 	explode "tiny explosion" 15
@@ -3892,7 +3896,7 @@ ship "Mining Drone"
 			"hull damage" 25
 			"hit force" 75
 	outfits
-		"Beam Laser"
+		"Mining Laser"
 		
 		"nGVF-AA Fuel Cell"
 		"Supercapacitor"
@@ -3900,9 +3904,8 @@ ship "Mining Drone"
 		"X1700 Ion Thruster"
 		"X1200 Ion Steering"
 		
-	engine -8.5 28.5 0.9
-	engine 8.5 28.5 0.9
-	gun 0 -29 "Beam Laser"
+	engine 0 22 0.9
+	gun 0 -22
 	explode "tiny explosion" 15
 	description "Mining Drone."
 	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
