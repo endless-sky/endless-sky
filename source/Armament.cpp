@@ -290,6 +290,7 @@ bool Armament::FireTractorBeam(int index, Ship &ship, const Flotsam &flotsam,
 }
 
 
+
 // Update the reload counters.
 void Armament::Step(const Ship &ship)
 {
