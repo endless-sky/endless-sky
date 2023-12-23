@@ -1523,7 +1523,7 @@ outfit "Mining Laser"
 	description "Mining Laser."
 
 # Ditto.
-outfit "Laser Turret"
+outfit "Mining Laser Turret"
 	category "Turrets"
 	cost 140000
 	thumbnail "outfit/mining laser turret"
@@ -1535,8 +1535,8 @@ outfit "Laser Turret"
 	weapon
 		sprite "projectile/mining laser"
 			"frame rate" 1
-		"hardpoint sprite" "hardpoint/laser turret"
-		"hardpoint offset" -0.5 8.
+		"hardpoint sprite" "hardpoint/mining laser turret"
+		"hardpoint offset" 0.7 8.
 		sound "mining laser"
 		"hit effect" "beam laser impact"
 		"inaccuracy" .5
