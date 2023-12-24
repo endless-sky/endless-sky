@@ -7864,7 +7864,8 @@ system Cardax
 	fleet "Small Core Pirates" 3000
 	fleet "Small Republic" 2000
 	fleet "Large Republic" 5000
-	fleet "Independent (Korath-Allied) Merchants" 20000
+	fleet "Independent (Korath-Allied) Merchants" 25000
+	fleet "Independent (Korath-Allied) Miners" 80000
 	object
 		sprite star/g0
 		distance 36.6984
@@ -9156,6 +9157,7 @@ system Danoa
 	fleet "Large Northern Pirates" 16000
 	fleet "Large Republic" 30000
 	fleet "Human Miners" 1600
+	fleet "Independent (Korath-Allied) Miners" 8000
 	object
 		sprite star/m8
 		period 10
@@ -23485,7 +23487,8 @@ system Moktar
 	fleet "Large Syndicate" 4000
 	fleet "Small Core Pirates" 2000
 	fleet "Small Northern Pirates" 3000
-	fleet "Independent (Korath-Allied) Merchants" 20000
+	fleet "Independent (Korath-Allied) Merchants" 25000
+	fleet "Independent (Korath-Allied) Miners" 80000
 	object
 		sprite star/k8
 		distance 31.0221
@@ -24441,7 +24444,8 @@ system Oblate
 	fleet "Small Core Pirates" 600
 	fleet "Large Core Pirates" 1000
 	fleet "Large Syndicate" 3000
-	fleet "Independent (Korath-Allied) Merchants" 20000
+	fleet "Independent (Korath-Allied) Merchants" 25000
+	fleet "Independent (Korath-Allied) Miners" 80000
 	fleet "Korath Raid" 30000
 	fleet "Korath Large Raid" 50000
 	object
