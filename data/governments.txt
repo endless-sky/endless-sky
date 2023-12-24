@@ -168,10 +168,16 @@ government "Coalition"
 	"player reputation" 1
 	"attitude toward"
 		"Heliarch" 1
+	"friendly hail" "friendly coalition"
+	"friendly disabled hail" "friendly disabled heliarch"
+	"hostile hail" "hostile coalition"
+	"hostile disabled hail" "hostile disabled coalition"
 
 government "Deep"
+	"display name" "Deep Security"
 	swizzle 0
 	"player reputation" -1000
+	"hostile hail" "hostile deep"
 
 government "Deep Security"
 	swizzle 0
@@ -420,11 +426,15 @@ government "Hai"
 		"Hai Merchant" 1
 		"Hai Merchant (Sympathizers)" 1
 		"Hai Merchant (Human)" 1
-		"Hai (Unfettered)" -.1
+		"Hai (Unfettered)" -.01
 		"Hai (Friendly Unfettered)" .1
 		"Hai (Unfettered Civilians)" .1
 		"Merchant" .01
 		"Elenctic Commune" .1
+	"penalty for"
+		assist -.15
+	"travel restrictions"
+		system "Wah Yoot"
 	"bribe" .2
 	"friendly hail" "friendly hai"
 	"friendly disabled hail" "friendly disabled hai"
@@ -443,11 +453,13 @@ government "Hai (Wormhole Access)"
 		"Hai Merchant" 1
 		"Hai Merchant (Sympathizers)" 1
 		"Hai Merchant (Human)" 1
-		"Hai (Unfettered)" -.1
+		"Hai (Unfettered)" -.01
 		"Hai (Friendly Unfettered)" .1
 		"Hai (Unfettered Civilians)" .1
 		"Merchant" .01
 		"Elenctic Commune" .1
+	"penalty for"
+		assist -.15
 	"bribe" .2
 	"friendly hail" "friendly hai"
 	"friendly disabled hail" "friendly disabled hai"
@@ -469,6 +481,13 @@ government "Hai Merchant"
 		"Hai (Friendly Unfettered)" .1
 		"Hai (Unfettered Civilians)" .1
 		"Merchant" .01
+	"penalty for"
+		assist -.15
+	"custom penalties for"
+		"Hai (Unfettered)"
+			capture 0
+	"travel restrictions"
+		system "Wah Yoot"
 	"bribe" .02
 	"friendly hail" "friendly hai"
 	"friendly disabled hail" "friendly disabled hai"
@@ -490,6 +509,8 @@ government "Hai Merchant (Sympathizers)"
 		"Hai (Friendly Unfettered)" .5
 		"Hai (Unfettered Civilians)" .5
 		"Merchant" .01
+	"penalty for"
+		assist -.15
 	"bribe" .02
 	"friendly hail" "friendly hai"
 	"friendly disabled hail" "friendly disabled hai"
@@ -511,6 +532,8 @@ government "Hai Merchant (Human)"
 		"Hai (Friendly Unfettered)" .1
 		"Hai (Unfettered Civilians)" .1
 		"Merchant" .01
+	"travel restrictions"
+		system "Wah Yoot"
 	"bribe" .02
 	"friendly hail" "friendly civilian"
 	"hostile hail" "hostile civilian"
@@ -539,6 +562,12 @@ government "Hai (Unfettered)"
 		"Merchant" -.01
 		"Kor Efret" -.01
 		"Elenctic Commune" .1
+	"foreign penalties for"
+		"Hai (Friendly Unfettered)"
+		"Hai (Unfettered Wanderer Tribute)"
+		"Hai (Unfettered Civilians)"
+	"penalty for"
+		disable 0
 	"bribe" .02
 	"fine" 0
 	"friendly hail" "friendly unfettered"
@@ -572,6 +601,8 @@ government "Hai (Friendly Unfettered)"
 		"Hai (Wormhole Access)" .01
 		"Hai (Unfettered)" 1
 		"Elenctic Commune" .01
+	"foreign penalties for"
+		"Hai (Unfettered)"
 	"bribe" .02
 	"fine" 0
 	"friendly hail" "friendly unfettered"
@@ -610,6 +641,16 @@ government "Heliarch"
 		"Quarg (Kor Efret)" -.01
 		"Quarg (Gegno)" -.01
 		"Coalition" 1
+
+government "Heliarch Test Dummy"
+	"display name" "Heliarch"
+	swizzle 0
+	color 1 .8 .5
+	"player reputation" -1000
+	"hostile hail" "heliarch test dummy"
+	"hostile disabled hail" "disabled heliarch test dummy"
+	"bribe" 0
+	"fine" 0
 
 color "governments: Independent" .78 .36 .36
 
@@ -690,19 +731,7 @@ government "Ka'het"
 	swizzle 0
 	language "Ka'het"
 
-	"attitude toward"
-		"Ka'het (Infighting)" -.01
-		"Remnant" -.01
-		"Quarg" -.01
-		"Pug" -.01
-		"Hai" -.01
-		"Hai (Wormhole Access)" -.01
-		"Korath" -.01
-		"Navy (Oathkeeper)" -.01
-		"Republic" -.01
-		"Free Worlds" -.01
-		"Hai (Unfettered)" -.01
-		"Wanderer" -.01
+	"default attitude" -.01
 	
 	"player reputation" -1
 
@@ -712,19 +741,7 @@ government "Ka'het (Infighting)"
 	swizzle 0
 	language "Ka'het"
 
-	"attitude toward"
-		"Ka'het" -.01
-		"Remnant" -.01
-		"Quarg" -.01
-		"Pug" -.01
-		"Hai" -.01
-		"Hai (Wormhole Access)" -.01
-		"Korath" -.01
-		"Navy (Oathkeeper)" -.01
-		"Republic" -.01
-		"Free Worlds" -.01
-		"Hai (Unfettered)" -.01
-		"Wanderer" -.01
+	"default attitude" -.01
 	
 	"player reputation" -1
 
@@ -837,6 +854,37 @@ government "Kor Sestor"
 		"Syndicate" -.01
 	
 	"player reputation" -1000
+
+government "Lunarium"
+	swizzle 2
+	"crew attack" 1.2
+	"crew defense" 2.7
+	language "Coalition"
+	"player reputation" 1
+	"friendly hail" "friendly lunarium"
+	"friendly disabled hail" "friendly disabled lunarium"
+	"hostile hail" "hostile lunarium"
+	"hostile disabled hail" "hostile disabled lunarium"
+	"attitude toward"
+		"Quarg" .01
+		"Heliarch" -.01
+		"Pirate" -.01
+
+government "Lunarium (Hidden)"
+	"display name" "Lunarium"
+	swizzle 5
+	"crew attack" 1.2
+	"crew defense" 2.7
+	language "Coalition"
+	"player reputation" 1
+	"friendly hail" "friendly lunarium"
+	"friendly disabled hail" "friendly disabled lunarium"
+	"hostile hail" "hostile lunarium"
+	"hostile disabled hail" "hostile disabled lunarium"
+	"attitude toward"
+		"Quarg" .01
+		"Heliarch" -.01
+		"Pirate" -.01
 
 government "Marauder"
 	swizzle 6
@@ -1068,6 +1116,8 @@ government "Quarg"
 		"Medium Graviton Thruster"
 		"Medium Graviton Steering"
 		"Quantum Shield Generator"
+		ship "Quarg Skylark"
+		ship "Quarg Wardragon"
 
 government "Quarg (Hai)"
 	swizzle 0
@@ -1080,6 +1130,7 @@ government "Quarg (Hai)"
 		"Quarg (Kor Efret)" 1
 		"Quarg (Gegno)" 1
 		"Merchant" .01
+		"Kor Sestor" -.01
 		"Hai" .01
 		"Hai (Wormhole Access)" .01
 		"Pirate" -.01
@@ -1096,6 +1147,8 @@ government "Quarg (Hai)"
 		"Medium Graviton Thruster"
 		"Medium Graviton Steering"
 		"Quantum Shield Generator"
+		ship "Quarg Skylark"
+		ship "Quarg Wardragon"
 
 government "Quarg (Kor Efret)"
 	swizzle 0
@@ -1124,6 +1177,8 @@ government "Quarg (Kor Efret)"
 		"Medium Graviton Thruster"
 		"Medium Graviton Steering"
 		"Quantum Shield Generator"
+		ship "Quarg Skylark"
+		ship "Quarg Wardragon"
 
 government "Quarg (Gegno)"
 	swizzle 0
@@ -1150,6 +1205,8 @@ government "Quarg (Gegno)"
 		"Medium Graviton Thruster"
 		"Medium Graviton Steering"
 		"Quantum Shield Generator"
+		ship "Quarg Skylark"
+		ship "Quarg Wardragon"
 
 color "governments: Remnant" .89 .38 .62
 

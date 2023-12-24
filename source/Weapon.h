@@ -79,6 +79,7 @@ public:
 	// Accessor functions for various attributes.
 	int Lifetime() const;
 	int RandomLifetime() const;
+	int FadeOut() const;
 	double Reload() const;
 	double BurstReload() const;
 	int BurstCount() const;
@@ -193,6 +194,10 @@ public:
 	// Calculate the percent damage that this weapon deals given the distance
 	// that the projectile traveled if it has a damage dropoff range.
 	double DamageDropoff(double distance) const;
+	// Return the weapon's damage dropoff at maximum range.
+	double MaxDropoff() const;
+	// Return the ranges at which the weapon's damage dropoff begins and ends.
+	const std::pair<double, double> &DropoffRanges() const;
 
 
 protected:
@@ -241,6 +246,7 @@ private:
 	// Attributes.
 	int lifetime = 0;
 	int randomLifetime = 0;
+	int fadeOut = 0;
 	double reload = 1.;
 	double burstReload = 1.;
 	int burstCount = 1;
@@ -333,7 +339,7 @@ private:
 
 	bool hasDamageDropoff = false;
 	std::pair<double, double> damageDropoffRange;
-	double damageDropoffModifier;
+	double damageDropoffModifier = 1.;
 
 	// Cache the calculation of these values, for faster access.
 	mutable bool calculatedDamage = true;
@@ -346,6 +352,7 @@ private:
 // Inline the accessors because they get called so frequently.
 inline int Weapon::Lifetime() const { return lifetime; }
 inline int Weapon::RandomLifetime() const { return randomLifetime; }
+inline int Weapon::FadeOut() const { return fadeOut; }
 inline double Weapon::Reload() const { return reload; }
 inline double Weapon::BurstReload() const { return burstReload; }
 inline int Weapon::BurstCount() const { return burstCount; }

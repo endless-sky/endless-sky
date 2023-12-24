@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <cstdint>
 #include <string>
+#include <utility>
 #include <vector>
 
 
@@ -32,6 +33,7 @@ public:
 	enum class Importance : uint_least8_t {
 		Highest,
 		High,
+		Info,
 		Low
 	};
 

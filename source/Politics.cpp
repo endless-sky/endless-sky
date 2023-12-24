@@ -166,12 +166,11 @@ bool Politics::CanLand(const Ship &ship, const Planet *planet) const
 {
 	if(!planet || !planet->GetSystem())
 		return false;
-	if(!planet->IsInhabited())
-		return true;
 
 	const Government *gov = ship.GetGovernment();
 	if(!gov->IsPlayer())
-		return !IsEnemy(gov, planet->GetGovernment());
+		return !ship.IsRestrictedFrom(*planet) &&
+			(!planet->IsInhabited() || !IsEnemy(gov, planet->GetGovernment()));
 
 	return CanLand(planet);
 }
@@ -253,6 +252,9 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 			continue;
 		if(ship->GetSystem() != player.GetSystem())
 			continue;
+		const Planet *planet = player.GetPlanet();
+		if(planet && ship->GetPlanet() != planet)
+			continue;
 
 		int failedMissions = 0;
 
@@ -286,6 +288,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 			}
 		}
 		if((!scan || (scan & ShipEvent::SCAN_OUTFITS)) && !EvadesOutfitScan(*ship))
+		{
 			for(const auto &it : ship->Outfits())
 				if(it.second)
 				{
@@ -298,9 +301,20 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 						reason = " for having illegal outfits installed on your ship.";
 					}
 				}
+
+			int shipFine = gov->Fines(ship.get());
+			if(gov->Condemns(ship.get()))
+				shipFine = -1;
+			if((shipFine > maxFine && maxFine >= 0) || shipFine < 0)
+			{
+				maxFine = shipFine;
+				reason = " for flying an illegal ship.";
+			}
+		}
 		if(failedMissions && maxFine > 0)
 		{
-			reason += "\n\tYou failed " + Format::Number(failedMissions) + ((failedMissions > 1) ? " missions" : " mission")
+			reason += "\n\tYou failed " + Format::Number(failedMissions)
+				+ ((failedMissions > 1) ? " missions" : " mission")
 				+ " after your illegal cargo was discovered.";
 		}
 	}
