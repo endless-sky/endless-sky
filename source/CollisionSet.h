@@ -16,7 +16,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef COLLISION_SET_H_
 #define COLLISION_SET_H_
 
-#include <set>
 #include <vector>
 
 class Government;
@@ -45,10 +44,10 @@ public:
 
 	// Get the first object that collides with the given projectile. If a
 	// "closest hit" value is given, update that value.
-	Body *Line(const Projectile &projectile, const std::set<const Body *> &hits, double *closestHit) const;
+	Body *Line(const Projectile &projectile, double *closestHit = nullptr) const;
 	// Check for collisions with a line, which may be a projectile's current
 	// position or its entire expected trajectory (for the auto-firing AI).
-	Body *Line(const Point &from, const Point &to, const std::set<const Body *> &hits, double *closestHit,
+	Body *Line(const Point &from, const Point &to, double *closestHit = nullptr,
 		const Government *pGov = nullptr, const Body *target = nullptr) const;
 
 	// Get all objects within the given range of the given point.
