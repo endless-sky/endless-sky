@@ -642,6 +642,7 @@ void Engine::Step(bool isActive)
 	if(flagship)
 		ammoDisplay.Update(*flagship);
 
+
 	// Display escort information for all ships of the "Escort" government,
 	// and all ships with the "escort" personality, except for fighters that
 	// are not owned by the player.

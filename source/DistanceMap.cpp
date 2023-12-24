@@ -252,10 +252,6 @@ void DistanceMap::Init(const Ship *ship)
 					// the wormhole and both endpoint systems must be viewable.
 					// (If this is a multi-stop wormhole, you may know about
 					// some paths that it takes but not others.)
-					if(ship && !object.GetPlanet()->IsAccessible(ship))
-					// the wormhole and both endpoint systems must be viewable.
-					// (If this is a multi-stop wormhole, you may know about
-					// some paths that it takes but not others.)
 					if(ship && (!object.GetPlanet()->IsAccessible(ship) ||
 							ship->IsRestrictedFrom(*object.GetPlanet())))
 						continue;

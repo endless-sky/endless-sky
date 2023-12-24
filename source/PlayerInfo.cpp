@@ -2407,11 +2407,11 @@ bool PlayerInfo::HasSeen(const System &system) const
 
 	if(shrouded)
 	{
-		// All systems linked to a visible system are themselves visible.
+		// All systems linked to a system the player can view are visible.
 		if(any_of(system.Links().begin(), system.Links().end(),
 				[&](const System *s) noexcept -> bool { return CanView(*s); }))
 			return true;
-		// A shrouded system not linked to a visible system must be within view range to be seen.
+		// A shrouded system not linked to a viewable system must be visible from the current system.
 		if(!system.VisibleNeighbors().count(this->system))
 			return false;
 		// If a shrouded system is in visible range, then it can be seen if it is not also hidden.
