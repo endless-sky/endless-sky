@@ -3890,7 +3890,7 @@ mission "Human to Hai Space"
 				`	"Why would you want to go all the way out to <planet>?"`
 					goto explain
 			`	"No way, you as well?" He stops for a second to process what you just said, "They say the universe is a small place, but I never believed any of that, until now, that is. I grew up in the city of Darwin."`
-			`	"Me too," you reply. "Almost felt like human space, we did not even have to learn hai. And those fluffy rodents always have a way to make you feel at home!"`
+			`	"Me too," you reply. "Almost felt like human space; we did not even have to learn Hai. And those fluffy rodents always have a way to make you feel at home!"`
 			label explain
 			`	"I have family there," he says. "I came out here to do some traveling and see a bit of human space, but now I have to get back home. You see, I was born on <planet>, and this is my first time out of the wormhole."`
 			choice
