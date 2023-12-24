@@ -4242,8 +4242,9 @@ system Almach
 	fleet "Small Core Pirates" 500
 	fleet "Large Core Pirates" 1400
 	fleet "Large Syndicate" 6000
+	fleet "Kor Isaha Raid" 90000
 	fleet "Korath Large Raid" 50000
-	fleet "Korath Miners" 25000
+	fleet "Korath Miners" 30000
 	object
 		sprite star/k8
 		period 10
@@ -7595,7 +7596,8 @@ system Caeculus
 	trade Metal 272
 	trade Plastic 289
 	fleet "Kor Alaji Raid" 40000
-	fleet "Korath Ember Waste Raid" 40000
+	fleet "Kor Isaha Raid" 50000
+	fleet "Korath Ember Waste Raid" 60000
 	fleet "Korath Rescue" 60000
 	fleet "Small Remnant" 30000
 	fleet "Large Remnant" 30000
@@ -8578,8 +8580,9 @@ system Coluber
 	trade Medical 798
 	trade Metal 475
 	trade Plastic 362
-	fleet "Kor Alaji Raid" 20000
-	fleet "Korath Ember Waste Raid" 15000
+	fleet "Kor Alaji Raid" 30000
+	fleet "Kor Isaha Raid" 20000
+	fleet "Korath Ember Waste Raid" 30000
 	fleet "Korath Rescue" 30000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
@@ -19665,7 +19668,8 @@ system "Kor Ak'Mari"
 	trade Medical 726
 	trade Metal 217
 	trade Plastic 524
-	fleet "Korath Raid" 3600
+	fleet "Korath Raid" 4800
+	fleet "Kor Isaha Raid" 15000
 	fleet "Korath Miners" 7500
 	fleet "Korath Large Raid" 3600
 	fleet "Korath Defense" 3600
@@ -19733,8 +19737,9 @@ system "Kor En'lakfar"
 	trade Medical 840
 	trade Metal 236
 	trade Plastic 488
-	fleet "Korath Raid" 1250
+	fleet "Korath Raid" 1325
 	fleet "Korath Home" 720
+	fleet "Kor Isaha Raid" 24000
 	fleet "Korath Large Raid" 15000
 	fleet "Korath Surveillance" 32000
 	fleet "Korath Defense" 1775
@@ -19803,7 +19808,8 @@ system "Kor Fel'tar"
 	trade Medical 841
 	trade Metal 256
 	trade Plastic 478
-	fleet "Korath Raid" 2050
+	fleet "Korath Raid" 2250
+	fleet "Kor Isaha Raid" 24000
 	fleet "Korath Home" 1200
 	fleet "Korath Defense" 2400
 	fleet "Korath Civilian Miners" 5000
@@ -19876,7 +19882,8 @@ system "Kor Men"
 	trade Metal 240
 	trade Plastic 497
 	fleet "Korath Home" 800
-	fleet "Korath Raid" 2040
+	fleet "Korath Raid" 2500
+	fleet "Kor Isaha Raid" 12000
 	fleet "Korath Defense" 2900
 	fleet "Korath Large Raid" 21000
 	fleet "Korath Surveillance" 46000
@@ -19947,7 +19954,8 @@ system "Kor Nor'peli"
 	fleet "Korath Defense" 1700
 	fleet "Korath Large Raid" 16000
 	fleet "Kor Alaji Raid" 5400
-	fleet "Korath Ember Waste Raid" 1800
+	fleet "Kor Isaha Raid" 5400
+	fleet "Korath Ember Waste Raid" 2700
 	fleet "Korath Ember Waste Large Raid" 20000
 	fleet "Korath Surveillance" 48000
 	fleet "Korath Civilian Large" 2000
@@ -20025,7 +20033,8 @@ system "Kor Tar'bei"
 	fleet "Korath Civilian Large" 1000
 	fleet "Korath Defense" 2600
 	fleet "Kor Alaji Raid" 12200
-	fleet "Korath Ember Waste Raid" 4070
+	fleet "Kor Isaha Raid" 12200
+	fleet "Korath Ember Waste Raid" 6100
 	fleet "Korath Surveillance" 50000
 	fleet "Korath Ember Waste Large Raid" 30000
 	fleet "Korsmanath A'awojs" 900
@@ -20080,7 +20089,8 @@ system "Kor Zena'i"
 	trade Medical 785
 	trade Metal 478
 	trade Plastic 381
-	fleet "Korath Raid" 1850
+	fleet "Korath Raid" 3700
+	fleet "Kor Isaha Raid" 3700
 	fleet "Korath Home" 1170
 	fleet "Korath Defense" 1660
 	fleet "Korath Large Raid" 16000
@@ -20694,7 +20704,8 @@ system Levana
 	trade Metal 407
 	trade Plastic 222
 	fleet "Kor Alaji Raid" 30000
-	fleet "Korath Ember Waste Raid" 15000
+	fleet "Kor Isaha Raid" 30000
+	fleet "Korath Ember Waste Raid" 30000
 	fleet "Korath Rescue" 30000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
@@ -21136,6 +21147,7 @@ system Lucina
 	trade Metal 524
 	trade Plastic 410
 	fleet "Kor Alaji Raid" 60000
+	fleet "Kor Isaha Raid" 15000
 	fleet "Korath Ember Waste Raid" 30000
 	fleet "Korath Rescue" 60000
 	hazard "Ember Waste Base Heat" 100
@@ -23221,8 +23233,9 @@ system Misam
 	trade Plastic 368
 	fleet "Small Core Pirates" 750
 	fleet "Large Core Pirates" 2000
-	fleet "Korath Raid" 5000
-	fleet "Korath Large Raid" 11000
+	fleet "Korath Raid" 6000
+	fleet "Kor Isaha Raid" 24000
+	fleet "Korath Large Raid" 12000
 	fleet "Korath Civilian Delivery" 50000
 	fleet "Independent (Korath-Allied) Miners" 7000
 	fleet "Large Syndicate" 15000
@@ -25039,8 +25052,9 @@ system Parca
 	trade Medical 872
 	trade Metal 531
 	trade Plastic 445
-	fleet "Kor Alaji Raid" 20000
-	fleet "Korath Ember Waste Raid" 15000
+	fleet "Kor Alaji Raid" 30000
+	fleet "Kor Isaha Raid" 15000
+	fleet "Korath Ember Waste Raid" 30000
 	fleet "Korath Rescue" 30000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
@@ -25469,7 +25483,8 @@ system Peragenor
 	fleet "Small Remnant" 7000
 	fleet "Remnant Transport" 7000
 	fleet "Kor Alaji Raid" 40000
-	fleet "Korath Ember Waste Raid" 40000
+	fleet "Kor Isaha Raid" 50000
+	fleet "Korath Ember Waste Raid" 60000
 	fleet "Korath Rescue" 90000
 	fleet Embershades 8000
 	hazard "Ember Waste Base Heat" 100
@@ -29056,6 +29071,7 @@ system Segesta
 	fleet "Small Remnant" 40000
 	fleet "Large Remnant" 40000
 	fleet "Korath Ember Waste Raid" 80000
+	fleet "Kor Isaha Raid" 80000
 	fleet "Kor Alaji Raid" 80000
 	fleet "Korath Rescue" 90000
 	fleet Embershades 15000
@@ -31038,7 +31054,8 @@ system Stercutus
 	trade Metal 299
 	trade Plastic 294
 	fleet "Kor Alaji Raid" 40000
-	fleet "Korath Ember Waste Raid" 40000
+	fleet "Kor Isaha Raid" 50000
+	fleet "Korath Ember Waste Raid" 60000
 	fleet "Korath Rescue" 60000
 	fleet "Small Remnant" 20000
 	fleet "Large Remnant" 20000
