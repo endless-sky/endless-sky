@@ -28,7 +28,7 @@ phrase "merchant names"
 
 news "merchant anywhere"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Hai" "Quarg" "Humanika Rafeki Port" "Humanika Rafeki Restricted"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Hai" "Quarg" "Independent (Korath-Allied) Port" "Independent (Korath-Allied) Restricted"
 		not
 			government "Quarg"
 			not attributes "human"
@@ -219,7 +219,7 @@ news "textile worker"
 
 news "humanika worker"
 	location
-		government "Humanika Rafeki Port"
+		government "Independent (Korath-Allied) Port"
 		attributes "mining" "factory"
 	name
 		word
@@ -486,7 +486,7 @@ news "unemployed youth"
 
 news "union organizer"
 	location
-		government "Syndicate" "Humanika Rafeki Port"
+		government "Syndicate" "Independent (Korath-Allied) Port"
 		not attributes "research" "frontier"
 	name
 		word
@@ -522,7 +522,7 @@ phrase "small trash item"
 
 news "waste collector"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Humanika Rafeki Port" "Humanika Rafeki Restricted"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Independent (Korath-Allied) Port" "Independent (Korath-Allied) Restricted"
 		attributes "dirt belt" "urban" "factory"
 		not attributes "paradise" "station"
 	name
@@ -547,7 +547,7 @@ news "waste collector"
 
 news "dock worker"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Humanika Rafeki Port" "Humanika Rafeki Restricted"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Independent (Korath-Allied) Port" "Independent (Korath-Allied) Restricted"
 		attributes "dirt belt" "rim" "factory" "south" "core"
 	name
 		word
@@ -724,7 +724,7 @@ news "loan officer"
 
 news "humanika engineer"
 	location
-		government "Humanika Rafeki Port"
+		government "Independent (Korath-Allied) Port"
 		attributes research
 	name
 		word
@@ -754,7 +754,7 @@ news "humanika engineer"
 
 news "humanika researcher"
 	location
-		government "Humanika Rafeki Port"
+		government "Independent (Korath-Allied) Port"
 		attributes research
 	name
 		word
@@ -825,7 +825,7 @@ news "hyperspace scientist"
 
 news "geological engineer"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Humanika Rafeki Port"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Independent (Korath-Allied) Port"
 		attributes "mining" "volcanic"
 	name
 		word
@@ -984,7 +984,7 @@ news "economist"
 
 news "mechanic"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Humanika Rafeki Port" "Humanika Rafeki Restricted"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Independent (Korath-Allied) Port" "Independent (Korath-Allied) Restricted"
 		attributes "dirt belt" "rim" "factory" "south" "core"
 	name
 		word
@@ -1026,7 +1026,7 @@ news "mechanic on frozen world"
 
 news "ship salesperson"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Humanika Rafeki Port"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Independent (Korath-Allied) Port"
 		attributes "shipyard"
 	name
 		word
@@ -1076,7 +1076,7 @@ news "nuclear technician"
 
 news "substance abuse counselor"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Humanika Rafeki Port"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Independent (Korath-Allied) Port"
 		attributes "poor" "dirt belt" "near earth" "south" "pirate-friendly"
 	name
 		word
@@ -1197,8 +1197,8 @@ news "actor"
 
 news "musician"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Humanika Rafeki Port"
-		attributes "south" "paradise" "near earth" "humanika rafeki"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Independent (Korath-Allied) Port"
+		attributes "south" "paradise" "near earth" "Independent (Korath-Allied)"
 	name
 		word
 			"Musician"
@@ -1559,7 +1559,7 @@ news "religious"
 
 news "proselytizing"
 	location
-		government "Pirate" "Humanika Rafeki Port"
+		government "Pirate" "Independent (Korath-Allied) Port"
 		attributes "religious"
 	name
 		word
@@ -1796,7 +1796,7 @@ news "syndicate soldier"
 
 news "pirate (slavery ban)"
 	location
-		government "Pirate" "Humanika Rafeki Port"
+		government "Pirate" "Independent (Korath-Allied) Port"
 		attributes "slavery ban"
 	name
 		word
@@ -1820,7 +1820,7 @@ news "pirate (slavery ban)"
 
 news "pirate"
 	location
-		government "Pirate" "Humanika Rafeki Port"
+		government "Pirate" "Independent (Korath-Allied) Port"
 		not attributes "slavery ban"
 	name
 		word
@@ -1895,7 +1895,7 @@ phrase "pirate news without slavery"
 
 news "merchant in pirate space"
 	location
-		government "Pirate" "Humanika Rafeki Port" "Humanika Rafeki Restricted"
+		government "Pirate" "Independent (Korath-Allied) Port" "Independent (Korath-Allied) Restricted"
 	name
 		phrase
 			"merchant names"
@@ -2287,7 +2287,7 @@ news "safety posters"
 
 news "graffiti on spaceport wall"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Pirate" "Humanika Rafeki Port" "Humanika Rafeki Restricted"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Pirate" "Independent (Korath-Allied) Port" "Independent (Korath-Allied) Restricted"
 	name
 		word
 			"Graffiti painted on a wall"
