@@ -621,7 +621,7 @@ void Engine::Step(bool isActive)
 				travelPlanIsValid = true;
 				break;
 			}
-		// Otherwise, the player must still be within jump range of the next system. 
+		// Otherwise, the player must still be within jump range of the next system.
 		travelPlanIsValid |= flagship->JumpNavigation().CanJump(flagship->GetSystem(), system);
 		// Other steps of the travel plan may have been invalidated as a result of the system no longer being visible.
 		travelPlanIsValid &= all_of(player.TravelPlan().begin(), player.TravelPlan().end(),
