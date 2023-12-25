@@ -83,7 +83,7 @@ public:
 	// Get information on the weapon that fired this projectile.
 	const Weapon &GetWeapon() const;
 	// Get information on how this projectile impacted a ship.
-	ImpactInfo GetInfo() const;
+	ImpactInfo GetInfo(double intersection) const;
 
 	// Find out which ship or government this projectile is targeting. Note:
 	// this pointer is not guaranteed to be dereferenceable, so only use it
@@ -98,6 +98,8 @@ public:
 
 	// Get the distance that this projectile has traveled.
 	double DistanceTraveled() const;
+	// Get the number of objects this projectile can still collide with.
+	uint16_t HitsRemaining() const;
 
 
 private:

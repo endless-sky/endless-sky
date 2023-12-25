@@ -288,12 +288,9 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 // marks the projectile as needing deletion if it has run out of hits.
 void Projectile::Explode(vector<Visual> &visuals, double intersection, Point hitVelocity)
 {
-	distanceTraveled += dV.Length() * intersection;
 	for(const auto &it : weapon->HitEffects())
 		for(int i = 0; i < it.second; ++i)
-		{
 			visuals.emplace_back(*it.first, position + velocity * intersection, velocity, angle, hitVelocity);
-		}
 	// The projectile dies if it has no hits remaining.
 	if(--hitsRemaining == 0)
 	{
@@ -346,9 +343,11 @@ const Weapon &Projectile::GetWeapon() const
 
 
 // Get information on how this projectile impacted a ship.
-Projectile::ImpactInfo Projectile::GetInfo() const
+Projectile::ImpactInfo Projectile::GetInfo(double intersection) const
 {
-	return ImpactInfo(*weapon, position, distanceTraveled);
+	// Account for the distance that this projectile traveled before intersecting
+	// with the target.
+	return ImpactInfo(*weapon, position, distanceTraveled + dV.Length() * intersection);
 }
 
 
@@ -456,4 +455,11 @@ void Projectile::CheckLock(const Ship &target)
 double Projectile::DistanceTraveled() const
 {
 	return distanceTraveled;
+}
+
+
+
+uint16_t Projectile::HitsRemaining() const
+{
+	return hitsRemaining;
 }
