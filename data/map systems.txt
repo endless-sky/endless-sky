@@ -3253,7 +3253,7 @@ system Alcyone
 	fleet "Large Core Pirates" 600
 	fleet "Large Syndicate" 1200
 	fleet "Korath Large Raid" 50000
-	fleet "Humanika Rafeki Merchants" 7000
+	fleet "Independent (Korath-Allied) Merchants" 7000
 	object
 		sprite star/m5
 		distance 49.6028
@@ -4242,8 +4242,9 @@ system Almach
 	fleet "Small Core Pirates" 500
 	fleet "Large Core Pirates" 1400
 	fleet "Large Syndicate" 6000
+	fleet "Kor Isaha Raid" 90000
 	fleet "Korath Large Raid" 50000
-	fleet "Korath Miners" 25000
+	fleet "Korath Miners" 30000
 	object
 		sprite star/k8
 		period 10
@@ -5989,7 +5990,7 @@ system Aspidiske
 
 system Atik
 	pos -66 -52
-	government "Humanika Rafeki Restricted"
+	government "Independent (Korath-Allied) Restricted"
 	attributes "bright star" "core" "giant star" "multi-star" "notable star"
 	arrival 1800
 	habitable 1800
@@ -6017,12 +6018,12 @@ system Atik
 	trade Plastic 416
 	fleet "Small Core Pirates" 10000
 	fleet "Large Core Pirates" 18000
-	fleet "Humanika Rafeki Miners" 10000
+	fleet "Independent (Korath-Allied) Miners" 10000
 	fleet "Large Syndicate" 15000
 	fleet "Human Miners" 15000
 	fleet "Korath Miners" 15000
 	fleet "Korath Civilian Delivery" 30000
-	fleet "Humanika Rafeki Merchants" 20000
+	fleet "Independent (Korath-Allied) Merchants" 20000
 	object
 		sprite star/b-giant
 		distance 150
@@ -6469,7 +6470,7 @@ system Bellatrix
 	fleet "Small Syndicate" 1000
 	fleet "Large Syndicate" 2000
 	fleet "Small Core Pirates" 3000
-	fleet "Humanika Rafeki Merchants" 30000
+	fleet "Independent (Korath-Allied) Merchants" 30000
 	object
 		sprite star/k3
 		distance 37.4638
@@ -7595,7 +7596,8 @@ system Caeculus
 	trade Metal 272
 	trade Plastic 289
 	fleet "Kor Alaji Raid" 40000
-	fleet "Korath Ember Waste Raid" 40000
+	fleet "Kor Isaha Raid" 50000
+	fleet "Korath Ember Waste Raid" 60000
 	fleet "Korath Rescue" 60000
 	fleet "Small Remnant" 30000
 	fleet "Large Remnant" 30000
@@ -7862,7 +7864,8 @@ system Cardax
 	fleet "Small Core Pirates" 3000
 	fleet "Small Republic" 2000
 	fleet "Large Republic" 5000
-	fleet "Humanika Rafeki Merchants" 20000
+	fleet "Independent (Korath-Allied) Merchants" 25000
+	fleet "Independent (Korath-Allied) Miners" 80000
 	object
 		sprite star/g0
 		distance 36.6984
@@ -8578,8 +8581,9 @@ system Coluber
 	trade Medical 798
 	trade Metal 475
 	trade Plastic 362
-	fleet "Kor Alaji Raid" 20000
-	fleet "Korath Ember Waste Raid" 15000
+	fleet "Kor Alaji Raid" 30000
+	fleet "Kor Isaha Raid" 20000
+	fleet "Korath Ember Waste Raid" 30000
 	fleet "Korath Rescue" 30000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
@@ -9153,6 +9157,7 @@ system Danoa
 	fleet "Large Northern Pirates" 16000
 	fleet "Large Republic" 30000
 	fleet "Human Miners" 1600
+	fleet "Independent (Korath-Allied) Miners" 8000
 	object
 		sprite star/m8
 		period 10
@@ -10936,8 +10941,8 @@ system Durax
 	fleet "Large Syndicate" 2500
 	fleet "Korath Raid" 7000
 	fleet "Korath Miners" 17000
-	fleet "Humanika Rafeki Miners" 5000
-	fleet "Humanika Rafeki Merchants" 10000
+	fleet "Independent (Korath-Allied) Miners" 5000
+	fleet "Independent (Korath-Allied) Merchants" 10000
 	object
 		sprite star/g0-old
 		period 10
@@ -19665,7 +19670,8 @@ system "Kor Ak'Mari"
 	trade Medical 726
 	trade Metal 217
 	trade Plastic 524
-	fleet "Korath Raid" 3600
+	fleet "Korath Raid" 4800
+	fleet "Kor Isaha Raid" 15000
 	fleet "Korath Miners" 7500
 	fleet "Korath Large Raid" 3600
 	fleet "Korath Defense" 3600
@@ -19733,8 +19739,9 @@ system "Kor En'lakfar"
 	trade Medical 840
 	trade Metal 236
 	trade Plastic 488
-	fleet "Korath Raid" 1250
+	fleet "Korath Raid" 1325
 	fleet "Korath Home" 720
+	fleet "Kor Isaha Raid" 24000
 	fleet "Korath Large Raid" 15000
 	fleet "Korath Surveillance" 32000
 	fleet "Korath Defense" 1775
@@ -19803,7 +19810,8 @@ system "Kor Fel'tar"
 	trade Medical 841
 	trade Metal 256
 	trade Plastic 478
-	fleet "Korath Raid" 2050
+	fleet "Korath Raid" 2250
+	fleet "Kor Isaha Raid" 24000
 	fleet "Korath Home" 1200
 	fleet "Korath Defense" 2400
 	fleet "Korath Civilian Miners" 5000
@@ -19876,7 +19884,8 @@ system "Kor Men"
 	trade Metal 240
 	trade Plastic 497
 	fleet "Korath Home" 800
-	fleet "Korath Raid" 2040
+	fleet "Korath Raid" 2500
+	fleet "Kor Isaha Raid" 12000
 	fleet "Korath Defense" 2900
 	fleet "Korath Large Raid" 21000
 	fleet "Korath Surveillance" 46000
@@ -19947,7 +19956,8 @@ system "Kor Nor'peli"
 	fleet "Korath Defense" 1700
 	fleet "Korath Large Raid" 16000
 	fleet "Kor Alaji Raid" 5400
-	fleet "Korath Ember Waste Raid" 1800
+	fleet "Kor Isaha Raid" 5400
+	fleet "Korath Ember Waste Raid" 2700
 	fleet "Korath Ember Waste Large Raid" 20000
 	fleet "Korath Surveillance" 48000
 	fleet "Korath Civilian Large" 2000
@@ -20025,7 +20035,8 @@ system "Kor Tar'bei"
 	fleet "Korath Civilian Large" 1000
 	fleet "Korath Defense" 2600
 	fleet "Kor Alaji Raid" 12200
-	fleet "Korath Ember Waste Raid" 4070
+	fleet "Kor Isaha Raid" 12200
+	fleet "Korath Ember Waste Raid" 6100
 	fleet "Korath Surveillance" 50000
 	fleet "Korath Ember Waste Large Raid" 30000
 	fleet "Korsmanath A'awojs" 900
@@ -20080,7 +20091,8 @@ system "Kor Zena'i"
 	trade Medical 785
 	trade Metal 478
 	trade Plastic 381
-	fleet "Korath Raid" 1850
+	fleet "Korath Raid" 3700
+	fleet "Kor Isaha Raid" 3700
 	fleet "Korath Home" 1170
 	fleet "Korath Defense" 1660
 	fleet "Korath Large Raid" 16000
@@ -20694,7 +20706,8 @@ system Levana
 	trade Metal 407
 	trade Plastic 222
 	fleet "Kor Alaji Raid" 30000
-	fleet "Korath Ember Waste Raid" 15000
+	fleet "Kor Isaha Raid" 30000
+	fleet "Korath Ember Waste Raid" 30000
 	fleet "Korath Rescue" 30000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
@@ -21136,6 +21149,7 @@ system Lucina
 	trade Metal 524
 	trade Plastic 410
 	fleet "Kor Alaji Raid" 60000
+	fleet "Kor Isaha Raid" 15000
 	fleet "Korath Ember Waste Raid" 30000
 	fleet "Korath Rescue" 60000
 	hazard "Ember Waste Base Heat" 100
@@ -22417,7 +22431,7 @@ system Menkar
 	fleet "Large Syndicate" 2000
 	fleet "Large Core Pirates" 4000
 	fleet "Human Miners" 2000
-	fleet "Humanika Rafeki Merchants" 30000
+	fleet "Independent (Korath-Allied) Merchants" 30000
 	object
 		sprite star/k3
 		period 10
@@ -23104,7 +23118,7 @@ system Mirfak
 	fleet "Large Core Merchants" 700
 	fleet "Small Syndicate" 1000
 	fleet "Large Syndicate" 1800
-	fleet "Humanika Rafeki Merchants" 30000
+	fleet "Independent (Korath-Allied) Merchants" 30000
 	object
 		sprite star/k8
 		period 10
@@ -23194,7 +23208,7 @@ system Mirzam
 
 system Misam
 	pos -9 -80
-	government "Humanika Rafeki Port"
+	government "Independent (Korath-Allied) Port"
 	attributes "core" "multi-star" "notable star"
 	arrival 3835
 	habitable 3835
@@ -23221,13 +23235,14 @@ system Misam
 	trade Plastic 368
 	fleet "Small Core Pirates" 750
 	fleet "Large Core Pirates" 2000
-	fleet "Korath Raid" 5000
-	fleet "Korath Large Raid" 11000
+	fleet "Korath Raid" 6000
+	fleet "Kor Isaha Raid" 24000
+	fleet "Korath Large Raid" 12000
 	fleet "Korath Civilian Delivery" 50000
-	fleet "Humanika Rafeki Miners" 7000
+	fleet "Independent (Korath-Allied) Miners" 7000
 	fleet "Large Syndicate" 15000
 	fleet "Korath Miners" 15000
-	fleet "Humanika Rafeki Merchants" 3000
+	fleet "Independent (Korath-Allied) Merchants" 3000
 	object
 		sprite star/f5-old
 		distance 50
@@ -23472,7 +23487,8 @@ system Moktar
 	fleet "Large Syndicate" 4000
 	fleet "Small Core Pirates" 2000
 	fleet "Small Northern Pirates" 3000
-	fleet "Humanika Rafeki Merchants" 20000
+	fleet "Independent (Korath-Allied) Merchants" 25000
+	fleet "Independent (Korath-Allied) Miners" 80000
 	object
 		sprite star/k8
 		distance 31.0221
@@ -23962,7 +23978,7 @@ system Nihal
 	fleet "Small Republic" 4000
 	fleet "Large Republic" 7000
 	fleet "Human Miners" 2000
-	fleet "Humanika Rafeki Merchants" 10000
+	fleet "Independent (Korath-Allied) Merchants" 10000
 	object
 		sprite star/k8
 		distance 26.8556
@@ -24428,7 +24444,8 @@ system Oblate
 	fleet "Small Core Pirates" 600
 	fleet "Large Core Pirates" 1000
 	fleet "Large Syndicate" 3000
-	fleet "Humanika Rafeki Merchants" 20000
+	fleet "Independent (Korath-Allied) Merchants" 25000
+	fleet "Independent (Korath-Allied) Miners" 80000
 	fleet "Korath Raid" 30000
 	fleet "Korath Large Raid" 50000
 	object
@@ -25039,8 +25056,9 @@ system Parca
 	trade Medical 872
 	trade Metal 531
 	trade Plastic 445
-	fleet "Kor Alaji Raid" 20000
-	fleet "Korath Ember Waste Raid" 15000
+	fleet "Kor Alaji Raid" 30000
+	fleet "Kor Isaha Raid" 15000
+	fleet "Korath Ember Waste Raid" 30000
 	fleet "Korath Rescue" 30000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
@@ -25469,7 +25487,8 @@ system Peragenor
 	fleet "Small Remnant" 7000
 	fleet "Remnant Transport" 7000
 	fleet "Kor Alaji Raid" 40000
-	fleet "Korath Ember Waste Raid" 40000
+	fleet "Kor Isaha Raid" 50000
+	fleet "Korath Ember Waste Raid" 60000
 	fleet "Korath Rescue" 90000
 	fleet Embershades 8000
 	hazard "Ember Waste Base Heat" 100
@@ -29056,6 +29075,7 @@ system Segesta
 	fleet "Small Remnant" 40000
 	fleet "Large Remnant" 40000
 	fleet "Korath Ember Waste Raid" 80000
+	fleet "Kor Isaha Raid" 80000
 	fleet "Kor Alaji Raid" 80000
 	fleet "Korath Rescue" 90000
 	fleet Embershades 15000
@@ -30717,7 +30737,7 @@ system Sospi
 	fleet "Small Republic" 5000
 	fleet "Large Republic" 9000
 	fleet "Human Miners" 5000
-	fleet "Humanika Rafeki Merchants" 30000
+	fleet "Independent (Korath-Allied) Merchants" 30000
 	object
 		sprite star/wr
 		period 10
@@ -31038,7 +31058,8 @@ system Stercutus
 	trade Metal 299
 	trade Plastic 294
 	fleet "Kor Alaji Raid" 40000
-	fleet "Korath Ember Waste Raid" 40000
+	fleet "Kor Isaha Raid" 50000
+	fleet "Korath Ember Waste Raid" 60000
 	fleet "Korath Rescue" 60000
 	fleet "Small Remnant" 20000
 	fleet "Large Remnant" 20000
@@ -33224,7 +33245,7 @@ system Volax
 	fleet "Large Northern Pirates" 3000
 	fleet "Small Republic" 5000
 	fleet "Large Republic" 9000
-	fleet "Humanika Rafeki Merchants" 20000
+	fleet "Independent (Korath-Allied) Merchants" 20000
 	object
 		sprite star/f5
 		period 10
@@ -34520,7 +34541,7 @@ system Zaurak
 	fleet "Small Core Pirates" 2000
 	fleet "Large Core Pirates" 4000
 	fleet "Human Miners" 2000
-	fleet "Humanika Rafeki Merchants" 20000
+	fleet "Independent (Korath-Allied) Merchants" 20000
 	object
 		sprite star/g5
 		period 10
