@@ -632,10 +632,10 @@ void OutfitterPanel::Sell(bool toStorage)
 			{
 				// Determine how many of this ammo I must sell to also sell the launcher.
 				int mustSell = 0;
-				ship->Attributes().Attributes().ForEach([&](const tuple<std::string, Attribute *, double> &it)
+				ship->Attributes().Attributes().ForEach([&](const AnyAttribute &it, double value)
 				{
-					if(get<2>(it) < 0.)
-						mustSell = max<int>(mustSell, get<2>(it) / ammo->Get(get<0>(it)));
+					if(value < 0.)
+						mustSell = max<int>(mustSell, value / ammo->Get(it));
 				});
 
 				if(mustSell)
@@ -690,22 +690,23 @@ void OutfitterPanel::FailSell(bool toStorage) const
 		else
 		{
 			for(const Ship *ship : playerShips)
-				selectedOutfit->Attributes().ForEach([&](const tuple<std::string, Attribute *, double> &it)
+				selectedOutfit->Attributes().ForEach([&](const AnyAttribute &it, double value)
 				{
-					if(ship->Attributes().Get(get<0>(it)) < get<2>(it))
+					string name = Attribute::GetLegacyName(it);
+					if(ship->Attributes().Get(it) < value)
 					{
 						for(const auto &sit : ship->Outfits())
-							if(sit.first->Get(get<0>(it)) < 0.)
+							if(sit.first->Get(it) < 0.)
 							{
 								GetUI()->Push(new Dialog("You cannot " + verb + " this outfit, "
-									"because that would cause your ship's \"" + get<0>(it) +
+									"because that would cause your ship's \"" + name +
 									"\" value to be reduced to less than zero. "
 									"To " + verb + " this outfit, you must " + verb + " the " +
 									sit.first->DisplayName() + " outfit first."));
 								return;
 							}
 						GetUI()->Push(new Dialog("You cannot " + verb + " this outfit, "
-							"because that would cause your ship's \"" + get<0>(it) +
+							"because that would cause your ship's \"" + name +
 							"\" value to be reduced to less than zero."));
 						return;
 					}

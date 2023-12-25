@@ -1149,7 +1149,7 @@ void MapPanel::DrawTravelPlan()
 				continue;
 			}
 
-			fuel[it.get()] = it->Fuel() * it->Attributes().Get("fuel capacity");
+			fuel[it.get()] = it->Fuel() * it->Attributes().Get({PASSIVE, FUEL});
 			hasEscort |= (it.get() != flagship);
 		}
 	stranded |= !hasEscort;

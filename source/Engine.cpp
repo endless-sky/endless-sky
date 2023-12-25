@@ -710,7 +710,7 @@ void Engine::Step(bool isActive)
 		// Have an alarm label flash up when enemy ships are in the system
 		if(alarmTime && step / 20 % 2 && Preferences::DisplayVisualAlert())
 			info.SetCondition("red alert");
-		double fuelCap = flagship->Attributes().Get("fuel capacity");
+		double fuelCap = flagship->Attributes().Get({PASSIVE, FUEL});
 		// If the flagship has a large amount of fuel, display a solid bar.
 		// Otherwise, display a segment for every 100 units of fuel.
 		if(fuelCap <= MAX_FUEL_DISPLAY)
@@ -848,9 +848,9 @@ void Engine::Step(bool isActive)
 			{
 				info.SetCondition("tactical display");
 				info.SetString("target crew", to_string(target->Crew()));
-				int fuel = round(target->Fuel() * target->Attributes().Get("fuel capacity"));
+				int fuel = round(target->Fuel() * target->Attributes().Get({PASSIVE, FUEL}));
 				info.SetString("target fuel", to_string(fuel));
-				int energy = round(target->Energy() * target->Attributes().Get("energy capacity"));
+				int energy = round(target->Energy() * target->Attributes().Get({PASSIVE, ENERGY}));
 				info.SetString("target energy", to_string(energy));
 				int heat = round(100. * target->Heat());
 				info.SetString("target heat", to_string(heat) + "%");

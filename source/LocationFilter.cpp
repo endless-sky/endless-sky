@@ -53,17 +53,35 @@ namespace {
 		}
 		return false;
 	}
-	bool SetsIntersect(const set<const Outfit *> &a, const set<const Outfit *> &b)
+	template<class T>
+	bool SetsIntersect(const set<T> &a, const set<T> &b)
 	{
 		auto ait = a.begin();
 		auto bit = b.begin();
-		// The stored values are pointers to the same GameData array:
-		// directly compare them.
+		// The stored values can be directly compared; if they are pointers, they point to the same GameData array
 		while(ait != a.end() && bit != b.end())
 		{
 			if(*ait == *bit)
 				return true;
 			else if(*ait < *bit)
+				++ait;
+			else
+				++bit;
+		}
+		return false;
+	}
+	template<class U, class T>
+	bool SetsIntersect(const set<U> &a, const set<T> &b)
+	{
+		auto ait = a.begin();
+		auto bit = b.begin();
+		// The stored values can be directly compared; if they are pointers, they point into the same GameData array
+		while(ait != a.end() && bit != b.end())
+		{
+			const T value = get<T>(*ait);
+			if(value == *bit)
+				return true;
+			else if(value < *bit)
 				++ait;
 			else
 				++bit;
@@ -246,8 +264,8 @@ void LocationFilter::Save(DataWriter &out) const
 			out.Write("attributes");
 			out.BeginChild();
 			{
-				for(const string &name : it)
-					out.Write(name);
+				for(const AnyAttribute &attr : it)
+					out.Write(Attribute::GetLegacyName(attr));
 			}
 			out.EndChild();
 		}
@@ -348,7 +366,7 @@ bool LocationFilter::Matches(const Planet *planet, const System *origin) const
 
 	if(!planets.empty() && !planets.count(planet))
 		return false;
-	for(const set<string> &attr : attributes)
+	for(const set<AnyAttribute> &attr : attributes)
 		if(!SetsIntersect(attr, planet->Attributes()))
 			return false;
 
@@ -393,13 +411,13 @@ bool LocationFilter::Matches(const Ship &ship) const
 	if(!attributes.empty())
 	{
 		// Create a set from the positive-valued attributes of this ship.
-		set<string> shipAttributes;
-		ship.Attributes().Attributes().ForEach([&shipAttributes](const tuple<std::string, Attribute *, double> &attr)
+		set<AnyAttribute> shipAttributes;
+		ship.Attributes().Attributes().ForEach([&shipAttributes](const AnyAttribute &attr, const double value)
 		{
-			if(get<2>(attr) > 0.)
-				shipAttributes.insert(shipAttributes.end(), get<0>(attr));
+			if(value > 0.)
+				shipAttributes.insert(attr);
 		});
-		for(const set<string> &attr : attributes)
+		for(const set<AnyAttribute>&attr : attributes)
 			if(!SetsIntersect(attr, shipAttributes))
 				return false;
 	}
@@ -544,9 +562,9 @@ void LocationFilter::LoadChild(const DataNode &child)
 	}
 	else if(key == "attributes")
 	{
-		attributes.push_back(set<string>());
+		attributes.emplace_back();
 		for(int i = valueIndex; i < child.Size(); ++i)
-			attributes.back().insert(child.Token(i));
+			attributes.back().insert(Attribute::ParseAny(child.Token(i)));
 		for(const DataNode &grand : child)
 			for(int i = 0; i < grand.Size(); ++i)
 				attributes.back().insert(grand.Token(i));
@@ -591,7 +609,7 @@ void LocationFilter::LoadChild(const DataNode &child)
 	}
 	else if(key == "outfits" && child.Size() >= 2 + isNot)
 	{
-		outfits.push_back(set<const Outfit *>());
+		outfits.emplace_back();
 		for(int i = 1 + isNot; i < child.Size(); ++i)
 			outfits.back().insert(GameData::Outfits().Get(child.Token(i)));
 		for(const DataNode &grand : child)
@@ -626,7 +644,7 @@ bool LocationFilter::Matches(const System *system, const System *origin, bool di
 		// required attributes from each set.
 		if(!attributes.empty())
 		{
-			for(const set<string> &attr : attributes)
+			for(const set<AnyAttribute> &attr : attributes)
 			{
 				bool matches = SetsIntersect(attr, system->Attributes());
 				for(const StellarObject &object : system->Objects())

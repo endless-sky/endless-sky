@@ -173,7 +173,7 @@ namespace {
 				cout << attributes.Get("required crew") << ',';
 				cout << attributes.Get("bunks") << ',';
 				cout << attributes.Get("cargo space") << ',';
-				cout << attributes.Get("fuel capacity") << ',';
+				cout << attributes.Get({PASSIVE, FUEL}) << ',';
 
 				cout << attributes.Get("outfit space") << ',';
 				cout << attributes.Get("weapon capacity") << ',';
@@ -227,34 +227,36 @@ namespace {
 				cout << attributes.Get("required crew") << ',';
 				cout << attributes.Get("bunks") << ',';
 				cout << attributes.Get("cargo space") << ',';
-				cout << attributes.Get("fuel capacity") << ',';
+				cout << attributes.Get({PASSIVE, FUEL}) << ',';
 
 				cout << ship.BaseAttributes().Get("outfit space") << ',';
 				cout << ship.BaseAttributes().Get("weapon capacity") << ',';
 				cout << ship.BaseAttributes().Get("engine capacity") << ',';
-				cout << (attributes.Get("drag") ? (60. * attributes.Get("thrust") / attributes.Get("drag")) : 0) << ',';
-				cout << 3600. * attributes.Get("thrust") / mass << ',';
-				cout << 60. * attributes.Get("turn") / mass << ',';
+				cout << (attributes.Get("drag") ? (60. * attributes.Get({THRUSTING, THRUST}) / attributes.Get("drag")) : 0) << ',';
+				cout << 3600. * attributes.Get({THRUSTING, THRUST}) / mass << ',';
+				cout << 60. * attributes.Get({TURNING, TURN}) / mass << ',';
 
 				double energyConsumed = attributes.Get("energy consumption")
-					+ max(attributes.Get("thrusting energy"), attributes.Get("reverse thrusting energy"))
-					+ attributes.Get("turning energy")
-					+ attributes.Get("afterburner energy")
+					+ max(attributes.Get({THRUSTING, ENERGY}), attributes.Get({REVERSE_THRUSTING, ENERGY}))
+					+ attributes.Get({TURNING, ENERGY})
+					+ attributes.Get({AFTERBURNING, ENERGY})
 					+ attributes.Get("fuel energy")
-					+ (attributes.Get("hull energy") * (1 + attributes.Get("hull energy multiplier")))
-					+ (attributes.Get("shield energy") * (1 + attributes.Get("shield energy multiplier")))
-					+ attributes.Get("cooling energy")
-					+ attributes.Get("cloaking energy");
+					+ (attributes.Get({HULL_REPAIR, ENERGY}) * (1 + attributes.Get(AttributeAccess(HULL_REPAIR, ENERGY).Multiplier())))
+					+ (attributes.Get({SHIELD_GENERATION, ENERGY}) *
+							(1 + attributes.Get(AttributeAccess(SHIELD_GENERATION, ENERGY).Multiplier())))
+					+ attributes.Get({ACTIVE_COOL, ENERGY})
+					+ attributes.Get({CLOAKING, ENERGY});
 
-				double heatProduced = attributes.Get("heat generation") - attributes.Get("cooling")
-					+ max(attributes.Get("thrusting heat"), attributes.Get("reverse thrusting heat"))
-					+ attributes.Get("turning heat")
-					+ attributes.Get("afterburner heat")
+				double heatProduced = attributes.Get("heat generation") - attributes.Get({PASSIVE, COOLING})
+					+ max(attributes.Get({THRUSTING, HEAT}), attributes.Get({REVERSE_THRUSTING, HEAT}))
+					+ attributes.Get({TURNING, HEAT})
+					+ attributes.Get({AFTERBURNING, HEAT})
 					+ attributes.Get("fuel heat")
-					+ (attributes.Get("hull heat") * (1. + attributes.Get("hull heat multiplier")))
-					+ (attributes.Get("shield heat") * (1. + attributes.Get("shield heat multiplier")))
+					+ (attributes.Get({HULL_REPAIR, HEAT}) * (1. + attributes.Get(AttributeAccess(HULL_REPAIR, HEAT).Multiplier())))
+					+ (attributes.Get({SHIELD_GENERATION, HEAT}) *
+							(1. + attributes.Get(AttributeAccess(SHIELD_GENERATION, HEAT).Multiplier())))
 					+ attributes.Get("solar heat")
-					+ attributes.Get("cloaking heat");
+					+ attributes.Get({CLOAKING, HEAT});
 
 				for(const auto &oit : ship.Outfits())
 					if(oit.first->IsWeapon() && oit.first->Reload())
@@ -265,7 +267,7 @@ namespace {
 					}
 				cout << 60. * (attributes.Get("energy generation") + attributes.Get("solar collection")) << ',';
 				cout << 60. * energyConsumed << ',';
-				cout << attributes.Get("energy capacity") << ',';
+				cout << attributes.Get({PASSIVE, ENERGY}) << ',';
 				cout << ship.IdleHeat() / max(1., ship.MaximumHeat()) << ',';
 				cout << 60. * heatProduced << ',';
 				// Maximum heat is 100 degrees per ton. Bleed off rate is 1/1000 per 60th of a second, so:
@@ -455,19 +457,19 @@ namespace {
 				cout << outfit.Mass() << ',';
 				cout << outfit.Get("outfit space") << ',';
 				cout << outfit.Get("engine capacity") << ',';
-				cout << outfit.Get("thrust") * 3600. << ',';
-				cout << outfit.Get("thrusting energy") * 60. << ',';
-				cout << outfit.Get("thrusting heat") * 60. << ',';
-				cout << outfit.Get("turn") * 60. << ',';
-				cout << outfit.Get("turning energy") * 60. << ',';
-				cout << outfit.Get("turning heat") * 60. << ',';
-				cout << outfit.Get("reverse thrust") * 3600. << ',';
-				cout << outfit.Get("reverse thrusting energy") * 60. << ',';
-				cout << outfit.Get("reverse thrusting heat") * 60. << ',';
-				cout << outfit.Get("afterburner thrust") * 3600. << ',';
-				cout << outfit.Get("afterburner energy") * 60. << ',';
-				cout << outfit.Get("afterburner heat") * 60. << ',';
-				cout << outfit.Get("afterburner fuel") * 60. << '\n';
+				cout << outfit.Get({THRUSTING, THRUST}) * 3600. << ',';
+				cout << outfit.Get({THRUSTING, ENERGY}) * 60. << ',';
+				cout << outfit.Get({THRUSTING, HEAT}) * 60. << ',';
+				cout << outfit.Get({TURNING, TURN}) * 60. << ',';
+				cout << outfit.Get({TURNING, ENERGY}) * 60. << ',';
+				cout << outfit.Get({TURNING, HEAT}) * 60. << ',';
+				cout << outfit.Get({REVERSE_THRUSTING, REVERSE_THRUST}) * 3600. << ',';
+				cout << outfit.Get({REVERSE_THRUSTING, ENERGY}) * 60. << ',';
+				cout << outfit.Get({REVERSE_THRUSTING, HEAT}) * 60. << ',';
+				cout << outfit.Get({AFTERBURNING, THRUST}) * 3600. << ',';
+				cout << outfit.Get({AFTERBURNING, ENERGY}) * 60. << ',';
+				cout << outfit.Get({AFTERBURNING, HEAT}) * 60. << ',';
+				cout << outfit.Get({AFTERBURNING, FUEL}) * 60. << '\n';
 			}
 
 			cout.flush();
@@ -491,7 +493,7 @@ namespace {
 				cout << outfit.Get("outfit space") << ',';
 				cout << outfit.Get("energy generation") << ',';
 				cout << outfit.Get("heat generation") << ',';
-				cout << outfit.Get("energy capacity") << '\n';
+				cout << outfit.Get({PASSIVE, ENERGY}) << '\n';
 			}
 
 			cout.flush();
@@ -499,19 +501,19 @@ namespace {
 
 		auto PrintOutfitsAllStats = []() -> void
 		{
-			set<string> attributes;
+			set<AnyAttribute> attributes;
 			for(auto &it : GameData::Outfits())
 			{
 				const Outfit &outfit = it.second;
-				outfit.Attributes().ForEach([&attributes](const tuple<std::string, Attribute *, double> &it)
+				outfit.Attributes().ForEach([&attributes](const AnyAttribute &it, double value)
 				{
-					attributes.insert(get<0>(it));
+					attributes.insert(it);
 				});
 			}
 
 			cout << "name" << ',' << "category" << ',' << "cost" << ',' << "mass";
 			for(const auto &attribute : attributes)
-				cout << ',' << '"' << attribute << '"';
+				cout << ',' << '"' << Attribute::GetLegacyName(attribute) << '"';
 			cout << '\n';
 
 			for(auto &it : GameData::Outfits())

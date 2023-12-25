@@ -19,14 +19,18 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // Defines groupings for attributes. Many of these are situations when outfit effects are applied to a ship.
 // The first couple entries (until CLOAKING) define the same effect as the first couple entries of AttributeEffect,
 // and can be used as a shortcut in the data format.
+// Categories are also generated programmatically. For any category C and effect E,
+// C + ATTRIBUTE_CATEGORY_COUNT * (E + 1)
+// denotes a special category that is combined with the effect. This is primarily used for RESISTANCE, where
+// categories such as "burn resistance" are created this way.
 enum AttributeCategory : int {
 	SHIELD_GENERATION,
 	HULL_REPAIR,
 	THRUSTING,
 	REVERSE_THRUSTING,
 	TURNING,
-	COOL,
 	ACTIVE_COOL,
+	RAMSCOOPING,
 	CLOAKING,
 	AFTERBURNING,
 	FIRING,

@@ -44,15 +44,15 @@ TEST_CASE( "AttributeStore::GetMinimum", "[AttributeStore][GetMinimum]" ) {
 		CHECK( a.GetMinimum("fuel consumption") == std::numeric_limits<double>::lowest() );
 	}
 	SECTION( "Multipliers" ) {
-		CHECK( a.GetMinimum(Attribute(SHIELD_GENERATION, SHIELDS).Multiplier()) == -1. );
-		CHECK( a.GetMinimum(Attribute(THRUSTING, ENERGY).Relative().Multiplier()) == -1. );
+		CHECK( a.GetMinimum(AttributeAccess(SHIELD_GENERATION, SHIELDS).Multiplier()) == -1. );
+		CHECK( a.GetMinimum(AttributeAccess(THRUSTING, ENERGY).Relative().Multiplier()) == -1. );
 	}
 	SECTION( "Protection" ) {
-		CHECK( a.GetMinimum(Attribute(PROTECTION, SCRAMBLE)) == -0.99 );
-		CHECK( a.GetMinimum(Attribute(PROTECTION, SCRAMBLE, ENERGY)) == std::numeric_limits<double>::lowest() );
+		CHECK( a.GetMinimum(AttributeAccess(PROTECTION, SCRAMBLE)) == -0.99 );
+		CHECK( a.GetMinimum(AttributeAccess(PROTECTION, SCRAMBLE, ENERGY)) == std::numeric_limits<double>::lowest() );
 	}
 	SECTION( "Others" ) {
-		CHECK( a.GetMinimum(Attribute(THRUSTING, SCRAMBLE)) == std::numeric_limits<double>::lowest() );
+		CHECK( a.GetMinimum(AttributeAccess(THRUSTING, SCRAMBLE)) == std::numeric_limits<double>::lowest() );
 	}
 }
 
@@ -62,12 +62,12 @@ TEST_CASE( "AttributeStore::Set", "[AttributeStore][Set]" ) {
 	SECTION( "Empty when only contains 0" ) {
 		CHECK( a.empty() );
 	}
-	a.Set(Attribute(PROTECTION, SCRAMBLE), -2.);
+	a.Set(AttributeAccess(PROTECTION, SCRAMBLE), -2.);
 	SECTION( "Respecting minimum values" ) {
-		CHECK( a.Get(Attribute(PROTECTION, SCRAMBLE)) == -0.99 );
+		CHECK( a.Get(AttributeAccess(PROTECTION, SCRAMBLE)) == -0.99 );
 	}
-	SECTION( "Updates legacy values" ) {
-		CHECK( a.Get("scramble protection") == a.Get(Attribute(PROTECTION, SCRAMBLE)) );
+	SECTION( "Doesn't update legacy values" ) {
+		CHECK( a.Get("scramble protection") == 0. );
 	}
 	SECTION( "Not empty when contains data" ) {
 		CHECK( !a.empty() );
@@ -76,10 +76,22 @@ TEST_CASE( "AttributeStore::Set", "[AttributeStore][Set]" ) {
 
 TEST_CASE( "AttributeStore::Load", "[AttributeStore][Load]" ) {
 	AttributeStore store;
-	DataNode node = AsDataNode("parent\n\tattribute 1\n\tthrust 100\n\t\tenergy 20\n"
-			"\t\theat 10\n\t\"other attribute\" 1\n\t\"shield generation\"\n\t\tshields 30\n\t\tenergy 50\n"
-			"\tturn 500\n\t\tshields 100\n\tresistance\n\t\tscramble 100\n\t\t\tenergy 20\n"
-			"\t\"slowing resistance\" 30\n\t\theat 40");
+	DataNode node = AsDataNode("parent\n"
+							"	attribute 1\n"
+							"	thrust 100\n"
+							"		energy 20\n"
+							"		heat 10\n"
+							"	turn 500\n"
+							"		shields 100\n"
+							"	\"scramble resistance\" 100\n"
+							"		energy 20\n"
+							"	\"other attribute\" 1\n"
+							"	\"another attribute\" 0\n"
+							"	\"shield generation\" 30\n"
+							"		\"energy\" 50\n"
+							"	\"slowing resistance\" 30\n"
+							"		heat 40\n"
+							"		energy 20");
 	for(const DataNode &child : node)
 		store.Load(child);
 	SECTION( "Check loaded attributes" ) {
@@ -87,30 +99,33 @@ TEST_CASE( "AttributeStore::Load", "[AttributeStore][Load]" ) {
 		CHECK( !store.IsPresent("some attribute") );
 		CHECK( store.IsPresent("attribute") );
 		CHECK( store.Get("attribute") == 1. );
-		CHECK( store.Get("thrust") == 100. );
-		CHECK( store.Get(Attribute(THRUSTING, THRUST)) == 100. );
-		CHECK( store.Get("thrusting energy") == 20. );
-		CHECK( store.Get(Attribute(THRUSTING, ENERGY)) == 20. );
-		CHECK( store.Get("thrusting heat") == 10. );
-		CHECK( store.Get(Attribute(THRUSTING, HEAT)) == 10. );
+		CHECK( store.Get("thrust") == 0. );
+		CHECK( store.IsPresent({THRUSTING, THRUST}) );
+		CHECK( store.Get({THRUSTING, THRUST}) == 100. );
+		CHECK( store.Get("thrusting energy") == 0. );
+		CHECK( store.Get({THRUSTING, ENERGY}) == 20. );
+		CHECK( store.Get("thrusting heat") == 0. );
+		CHECK( store.Get({THRUSTING, HEAT}) == 10. );
 		CHECK( store.IsPresent("other attribute") );
 		CHECK( store.Get("other attribute") == 1. );
-		CHECK( store.Get("shield generation") == 30. );
-		CHECK( store.Get(Attribute(SHIELD_GENERATION, SHIELDS)) == 30. );
-		CHECK( store.Get("shield energy") == 50. );
-		CHECK( store.Get(Attribute(SHIELD_GENERATION, ENERGY)) == 50. );
-		CHECK( store.Get("turn") == 500. );
-		CHECK( store.Get(Attribute(TURNING, TURN)) == 500. );
-		CHECK( store.Get("turning shields") == 100. );
-		CHECK( store.Get(Attribute(TURNING, SHIELDS)) == 100. );
-		CHECK( store.Get("scramble resistance") == 100. );
-		CHECK( store.Get(Attribute(RESISTANCE, SCRAMBLE)) == 100. );
-		CHECK( store.Get("scramble resistance energy") == 20. );
-		CHECK( store.Get(Attribute(RESISTANCE, SCRAMBLE, ENERGY)) == 20. );
-		CHECK( store.Get("slowing resistance") == 30. );
-		CHECK( store.Get(Attribute(RESISTANCE, SLOWING)) == 30. );
-		CHECK( store.Get("slowing resistance heat") == 40. );
-		CHECK( store.Get(Attribute(RESISTANCE, SLOWING, HEAT)) == 40. );
+		CHECK( !store.IsPresent("another attribute") );
+		CHECK( store.Get("another attribute") == 0. );
+		CHECK( store.Get("shield generation") == 0. );
+		CHECK( store.Get({SHIELD_GENERATION, SHIELDS}) == 30. );
+		CHECK( store.Get("shield energy") == 0. );
+		CHECK( store.Get({SHIELD_GENERATION, ENERGY}) == 50. );
+		CHECK( store.Get("turn") == 0. );
+		CHECK( store.Get({TURNING, TURN}) == 500. );
+		CHECK( store.Get("turning shields") == 0. );
+		CHECK( store.Get({TURNING, SHIELDS}) == 100. );
+		CHECK( store.Get("scramble resistance") == 0. );
+		CHECK( store.Get({RESISTANCE, SCRAMBLE}) == 100. );
+		CHECK( store.Get("scramble resistance energy") == 0. );
+		CHECK( store.Get({RESISTANCE, SCRAMBLE, ENERGY}) == 20. );
+		CHECK( store.Get("slowing resistance") == 0. );
+		CHECK( store.Get({RESISTANCE, SLOWING}) == 30. );
+		CHECK( store.Get("slowing resistance heat") == 0. );
+		CHECK( store.Get({RESISTANCE, SLOWING, HEAT}) == 40. );
 	}
 }
 // #endregion unit tests

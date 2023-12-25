@@ -17,54 +17,252 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <limits>
-#include <unordered_map>
+#include <map>
 
 using namespace std;
 
-namespace {
-	// Cached mappings between the two formats. The indexing of newToOld is offset by one compared to the enum values.
-	string newToOld[ATTRIBUTE_CATEGORY_COUNT + 1][ATTRIBUTE_EFFECT_COUNT * 4 + 1][ATTRIBUTE_EFFECT_COUNT * 4 + 1];
-	unordered_map<string, Attribute*> oldToNew;
-}
-
-const string Attribute::effectNames[] = {"shields", "hull", "thrust", "reverse thrust", "turn",
-		"cooling", "active cooling", "cloak", "force", "energy", "fuel", "heat", "discharge", "corrosion", "leak", "burn",
-		"ion", "scramble", "slowing", "disruption", "disabled", "minable", "ramscoop", "piercing", "delay", "depleted delay"};
+const string Attribute::effectNames[] = {"shields", "hull", "thrust", "reverse thrust", "turn", "active cooling",
+										 "ramscoop", "cloak", "cooling", "force", "energy", "fuel", "heat", "discharge", "corrosion", "leak", "burn",
+										 "ion", "scramble", "slowing", "disruption", "disabled", "minable", "piercing"};
 
 // Some category names are always the same as the corresponding effect names.
+// The last two entries both correspond to PASSIVE, as it can denote both capacity
+// and passively applied effects (such as cooling).
 const string Attribute::categoryNames[] = {"shield generation", "hull repair rate",
-		GetEffectName(THRUST), GetEffectName(REVERSE_THRUST), GetEffectName(TURN), GetEffectName(COOLING),
-		GetEffectName(ACTIVE_COOLING), GetEffectName(CLOAK), "afterburner thrust", "firing", "protection",
-		"resistance", "damage", "capacity"};
-
-bool Attribute::cached = false;
+										   GetEffectName(THRUST), GetEffectName(REVERSE_THRUST), GetEffectName(TURN), GetEffectName(ACTIVE_COOLING),
+										   GetEffectName(RAMSCOOP), GetEffectName(CLOAK), "afterburner thrust", "firing", "protection",
+										   "resistance", "damage", "capacity"};
 
 
 
-// Creates a new categorized attribute. Use -1 if there is no category or effect in the definition.
-// The created attribute may report a different category or effect
-// if the same attribute can be described in multiple ways, and usePreferred is set to true.
-// In that case, the preferred version of the attribute is created, which is safe to use in AttributeStore::Set().
-Attribute::Attribute(AttributeCategory category, AttributeEffect effect, AttributeEffect secondary, bool usePreferred)
-{
-	if(usePreferred)
+
+namespace {
+	// Cached mappings between the two formats. The indexing of newToOld is offset by one compared to the enum values.
+	map<string, Attribute> oldToNew = {
+			{"capacity", Attribute(PASSIVE)},
+			{"energy capacity", AttributeAccess(PASSIVE, ENERGY)},
+			{"shields", AttributeAccess(PASSIVE, SHIELDS)},
+			{"shield multiplier", AttributeAccess(PASSIVE, SHIELDS).Multiplier()},
+			{"shield generation", AttributeAccess(SHIELD_GENERATION, SHIELDS)},
+			{"shield energy", AttributeAccess(SHIELD_GENERATION, ENERGY)},
+			{"shield heat", AttributeAccess(SHIELD_GENERATION, HEAT)},
+			{"shield fuel", AttributeAccess(SHIELD_GENERATION, FUEL)},
+			{"hull", AttributeAccess(PASSIVE, HULL)},
+			{"hull multiplier", AttributeAccess(PASSIVE, HULL).Multiplier()},
+			{"hull repair rate", AttributeAccess(HULL_REPAIR, HULL)},
+			{"hull energy", AttributeAccess(HULL_REPAIR, ENERGY)},
+			{"hull heat", AttributeAccess(HULL_REPAIR, HEAT)},
+			{"hull fuel", AttributeAccess(HULL_REPAIR, FUEL)},
+			{"shield generation multiplier", AttributeAccess(SHIELD_GENERATION, SHIELDS).Multiplier()},
+			{"shield energy multiplier", AttributeAccess(SHIELD_GENERATION, ENERGY).Multiplier()},
+			{"shield heat multiplier", AttributeAccess(SHIELD_GENERATION, HEAT).Multiplier()},
+			{"shield fuel multiplier", AttributeAccess(SHIELD_GENERATION, FUEL).Multiplier()},
+			{"hull repair multiplier", AttributeAccess(HULL_REPAIR, HULL).Multiplier()},
+			{"hull energy multiplier", AttributeAccess(HULL_REPAIR, ENERGY).Multiplier()},
+			{"hull heat multiplier", AttributeAccess(HULL_REPAIR, HEAT).Multiplier()},
+			{"hull fuel multiplier", AttributeAccess(HULL_REPAIR, FUEL).Multiplier()},
+			{"ramscoop", AttributeAccess(RAMSCOOPING, RAMSCOOP)},
+			{"fuel capacity", AttributeAccess(PASSIVE, FUEL)},
+			{"thrust", AttributeAccess(THRUSTING, THRUST)},
+			{"thrusting energy", AttributeAccess(THRUSTING, ENERGY)},
+			{"thrusting heat", AttributeAccess(THRUSTING, HEAT)},
+			{"thrusting shields", AttributeAccess(THRUSTING, SHIELDS)},
+			{"thrusting hull", AttributeAccess(THRUSTING, HULL)},
+			{"thrusting fuel", AttributeAccess(THRUSTING, FUEL)},
+			{"thrusting discharge", AttributeAccess(THRUSTING, DISCHARGE)},
+			{"thrusting corrosion", AttributeAccess(THRUSTING, CORROSION)},
+			{"thrusting ion", AttributeAccess(THRUSTING, ION)},
+			{"thrusting scramble", AttributeAccess(THRUSTING, SCRAMBLE)},
+			{"thrusting leakage", AttributeAccess(THRUSTING, LEAK)},
+			{"thrusting burn", AttributeAccess(THRUSTING, BURN)},
+			{"thrusting slowing", AttributeAccess(THRUSTING, SLOWING)},
+			{"thrusting disruption", AttributeAccess(THRUSTING, DISRUPTION)},
+			{"turn", AttributeAccess(TURNING, TURN)},
+			{"turning energy", AttributeAccess(TURNING, ENERGY)},
+			{"turning heat", AttributeAccess(TURNING, HEAT)},
+			{"turning shields", AttributeAccess(TURNING, SHIELDS)},
+			{"turning hull", AttributeAccess(TURNING, HULL)},
+			{"turning fuel", AttributeAccess(TURNING, FUEL)},
+			{"turning discharge", AttributeAccess(TURNING, DISCHARGE)},
+			{"turning corrosion", AttributeAccess(TURNING, CORROSION)},
+			{"turning ion", AttributeAccess(TURNING, ION)},
+			{"turning scramble", AttributeAccess(TURNING, SCRAMBLE)},
+			{"turning leakage", AttributeAccess(TURNING, LEAK)},
+			{"turning burn", AttributeAccess(TURNING, BURN)},
+			{"turning slowing", AttributeAccess(TURNING, SLOWING)},
+			{"turning disruption", AttributeAccess(TURNING, DISRUPTION)},
+			{"reverse thrust", AttributeAccess(REVERSE_THRUSTING, REVERSE_THRUST)},
+			{"reverse thrusting energy", AttributeAccess(REVERSE_THRUSTING, ENERGY)},
+			{"reverse thrusting heat", AttributeAccess(REVERSE_THRUSTING, HEAT)},
+			{"reverse thrusting shields", AttributeAccess(REVERSE_THRUSTING, SHIELDS)},
+			{"reverse thrusting hull", AttributeAccess(REVERSE_THRUSTING, HULL)},
+			{"reverse thrusting fuel", AttributeAccess(REVERSE_THRUSTING, FUEL)},
+			{"reverse thrusting discharge", AttributeAccess(REVERSE_THRUSTING, DISCHARGE)},
+			{"reverse thrusting corrosion", AttributeAccess(REVERSE_THRUSTING, CORROSION)},
+			{"reverse thrusting ion", AttributeAccess(REVERSE_THRUSTING, ION)},
+			{"reverse thrusting scramble", AttributeAccess(REVERSE_THRUSTING, SCRAMBLE)},
+			{"reverse thrusting leakage", AttributeAccess(REVERSE_THRUSTING, LEAK)},
+			{"reverse thrusting burn", AttributeAccess(REVERSE_THRUSTING, BURN)},
+			{"reverse thrusting slowing", AttributeAccess(REVERSE_THRUSTING, SLOWING)},
+			{"reverse thrusting disruption", AttributeAccess(REVERSE_THRUSTING, DISRUPTION)},
+			{"afterburner thrust", AttributeAccess(AFTERBURNING, THRUST)},
+			{"afterburner energy", AttributeAccess(AFTERBURNING, ENERGY)},
+			{"afterburner heat", AttributeAccess(AFTERBURNING, HEAT)},
+			{"afterburner shields", AttributeAccess(AFTERBURNING, SHIELDS)},
+			{"afterburner hull", AttributeAccess(AFTERBURNING, HULL)},
+			{"afterburner fuel", AttributeAccess(AFTERBURNING, FUEL)},
+			{"afterburner discharge", AttributeAccess(AFTERBURNING, DISCHARGE)},
+			{"afterburner corrosion", AttributeAccess(AFTERBURNING, CORROSION)},
+			{"afterburner ion", AttributeAccess(AFTERBURNING, ION)},
+			{"afterburner scramble", AttributeAccess(AFTERBURNING, SCRAMBLE)},
+			{"afterburner leakage", AttributeAccess(AFTERBURNING, LEAK)},
+			{"afterburner burn", AttributeAccess(AFTERBURNING, BURN)},
+			{"afterburner slowing", AttributeAccess(AFTERBURNING, SLOWING)},
+			{"afterburner disruption", AttributeAccess(AFTERBURNING, DISRUPTION)},
+			{"cooling", AttributeAccess(PASSIVE, COOLING)},
+			{"active cooling", AttributeAccess(ACTIVE_COOL, ACTIVE_COOLING)},
+			{"cooling energy", AttributeAccess(ACTIVE_COOL, ENERGY)},
+			{"heat capacity", AttributeAccess(PASSIVE, HEAT)},
+			{"cloak", AttributeAccess(CLOAKING, CLOAK)},
+			{"cloaking energy", AttributeAccess(CLOAKING, ENERGY)},
+			{"cloaking fuel", AttributeAccess(CLOAKING, FUEL)},
+			{"cloaking heat", AttributeAccess(CLOAKING, HEAT)},
+			{"disruption resistance", AttributeAccess(RESISTANCE, DISRUPTION)},
+			{"disruption resistance energy", AttributeAccess(RESISTANCE, DISRUPTION, ENERGY)},
+			{"disruption resistance heat", AttributeAccess(RESISTANCE, DISRUPTION, HEAT)},
+			{"disruption resistance fuel", AttributeAccess(RESISTANCE, DISRUPTION, FUEL)},
+			{"ion resistance", AttributeAccess(RESISTANCE, ION)},
+			{"ion resistance energy", AttributeAccess(RESISTANCE, ION, ENERGY)},
+			{"ion resistance heat", AttributeAccess(RESISTANCE, ION, HEAT)},
+			{"ion resistance fuel", AttributeAccess(RESISTANCE, ION, FUEL)},
+			{"scramble resistance", AttributeAccess(RESISTANCE, SCRAMBLE)},
+			{"scramble resistance energy", AttributeAccess(RESISTANCE, SCRAMBLE, ENERGY)},
+			{"scramble resistance heat", AttributeAccess(RESISTANCE, SCRAMBLE, HEAT)},
+			{"scramble resistance fuel", AttributeAccess(RESISTANCE, SCRAMBLE, FUEL)},
+			{"slowing resistance", AttributeAccess(RESISTANCE, SLOWING)},
+			{"slowing resistance energy", AttributeAccess(RESISTANCE, SLOWING, ENERGY)},
+			{"slowing resistance heat", AttributeAccess(RESISTANCE, SLOWING, HEAT)},
+			{"slowing resistance fuel", AttributeAccess(RESISTANCE, SLOWING, FUEL)},
+			{"discharge resistance", AttributeAccess(RESISTANCE, DISCHARGE)},
+			{"discharge resistance energy", AttributeAccess(RESISTANCE, DISCHARGE, ENERGY)},
+			{"discharge resistance heat", AttributeAccess(RESISTANCE, DISCHARGE, HEAT)},
+			{"discharge resistance fuel", AttributeAccess(RESISTANCE, DISCHARGE, FUEL)},
+			{"corrosion resistance", AttributeAccess(RESISTANCE, CORROSION)},
+			{"corrosion resistance energy", AttributeAccess(RESISTANCE, CORROSION, ENERGY)},
+			{"corrosion resistance heat", AttributeAccess(RESISTANCE, CORROSION, HEAT)},
+			{"corrosion resistance fuel", AttributeAccess(RESISTANCE, CORROSION, FUEL)},
+			{"leak resistance", AttributeAccess(RESISTANCE, LEAK)},
+			{"leak resistance energy", AttributeAccess(RESISTANCE, LEAK, ENERGY)},
+			{"leak resistance heat", AttributeAccess(RESISTANCE, LEAK, HEAT)},
+			{"leak resistance fuel", AttributeAccess(RESISTANCE, LEAK, FUEL)},
+			{"burn resistance", AttributeAccess(RESISTANCE, BURN)},
+			{"burn resistance energy", AttributeAccess(RESISTANCE, BURN, ENERGY)},
+			{"burn resistance heat", AttributeAccess(RESISTANCE, BURN, HEAT)},
+			{"burn resistance fuel", AttributeAccess(RESISTANCE, BURN, FUEL)},
+			{"piercing resistance", AttributeAccess(RESISTANCE, PIERCING)},
+			{"disruption protection", AttributeAccess(PROTECTION, DISRUPTION)},
+			{"energy protection", AttributeAccess(PROTECTION, ENERGY)},
+			{"force protection", AttributeAccess(PROTECTION, FORCE)},
+			{"fuel protection", AttributeAccess(PROTECTION, FUEL)},
+			{"heat protection", AttributeAccess(PROTECTION, HEAT)},
+			{"hull protection", AttributeAccess(PROTECTION, HULL)},
+			{"ion protection", AttributeAccess(PROTECTION, ION)},
+			{"scramble protection", AttributeAccess(PROTECTION, SCRAMBLE)},
+			{"piercing protection", AttributeAccess(PROTECTION, PIERCING)},
+			{"shield protection", AttributeAccess(PROTECTION, SHIELDS)},
+			{"slowing protection", AttributeAccess(PROTECTION, SLOWING)},
+			{"discharge protection", AttributeAccess(PROTECTION, DISCHARGE)},
+			{"corrosion protection", AttributeAccess(PROTECTION, CORROSION)},
+			{"leak protection", AttributeAccess(PROTECTION, LEAK)},
+			{"burn protection", AttributeAccess(PROTECTION, BURN)},
+			{"firing energy", AttributeAccess(FIRING, ENERGY)},
+			{"firing force", AttributeAccess(FIRING, FORCE)},
+			{"firing fuel", AttributeAccess(FIRING, FUEL)},
+			{"firing heat", AttributeAccess(FIRING, HEAT)},
+			{"firing hull", AttributeAccess(FIRING, HULL)},
+			{"firing shields", AttributeAccess(FIRING, SHIELDS)},
+			{"firing ion", AttributeAccess(FIRING, ION)},
+			{"firing scramble", AttributeAccess(FIRING, SCRAMBLE)},
+			{"firing slowing", AttributeAccess(FIRING, SLOWING)},
+			{"firing disruption", AttributeAccess(FIRING, DISRUPTION)},
+			{"firing discharge", AttributeAccess(FIRING, DISCHARGE)},
+			{"firing corrosion", AttributeAccess(FIRING, CORROSION)},
+			{"firing leak", AttributeAccess(FIRING, LEAK)},
+			{"firing burn", AttributeAccess(FIRING, BURN)},
+			{"relative firing energy", AttributeAccess(FIRING, ENERGY).Relative()},
+			{"relative firing fuel", AttributeAccess(FIRING, FUEL).Relative()},
+			{"relative firing heat", AttributeAccess(FIRING, HEAT).Relative()},
+			{"relative firing hull", AttributeAccess(FIRING, HULL).Relative()},
+			{"relative firing shields", AttributeAccess(FIRING, SHIELDS).Relative()},
+			{"hit force", AttributeAccess(DAMAGE, FORCE)},
+			{"piercing", AttributeAccess(DAMAGE, PIERCING)},
+			{"shield damage", AttributeAccess(DAMAGE, SHIELDS)},
+			{"hull damage", AttributeAccess(DAMAGE, HULL)},
+			{"disabled damage", AttributeAccess(DAMAGE, DISABLED)},
+			{"minable damage", AttributeAccess(DAMAGE, MINABLE)},
+			{"heat damage", AttributeAccess(DAMAGE, HEAT)},
+			{"fuel damage", AttributeAccess(DAMAGE, FUEL)},
+			{"energy damage", AttributeAccess(DAMAGE, ENERGY)},
+			{"relative shield damage", AttributeAccess(DAMAGE, SHIELDS).Relative()},
+			{"relative hull damage", AttributeAccess(DAMAGE, HULL).Relative()},
+			{"relative disabled damage", AttributeAccess(DAMAGE, DISABLED).Relative()},
+			{"relative minable damage", AttributeAccess(DAMAGE, MINABLE).Relative()},
+			{"relative heat damage", AttributeAccess(DAMAGE, HEAT).Relative()},
+			{"relative fuel damage", AttributeAccess(DAMAGE, FUEL).Relative()},
+			{"relative energy damage", AttributeAccess(DAMAGE, ENERGY).Relative()},
+			{"ion damage", AttributeAccess(DAMAGE, ION)},
+			{"scrambling damage", AttributeAccess(DAMAGE, SCRAMBLE)},
+			{"disruption damage", AttributeAccess(DAMAGE, DISRUPTION)},
+			{"slowing damage", AttributeAccess(DAMAGE, SLOWING)},
+			{"discharge damage", AttributeAccess(DAMAGE, DISCHARGE)},
+			{"corrosion damage", AttributeAccess(DAMAGE, CORROSION)},
+			{"leak damage", AttributeAccess(DAMAGE, LEAK)},
+			{"burn damage", AttributeAccess(DAMAGE, BURN)}
+	};
+
+	map<AttributeAccess, string> newToOld = []() {
+		map<AttributeAccess, string> m;
+		for(const auto &it : oldToNew)
+			for(const auto &effect : it.second.Effects()) // There should only be a single effect
+				m[{it.second.Category(), effect.second.Type()}] = it.first;
+		return m;
+	}();
+
+	map<string, AttributeEffectType> allEffects = []()
 	{
-		if(category == -1)
-			category = PASSIVE;
-		if(category == PASSIVE && effect <= CLOAK && effect > HULL)
-			category = static_cast<AttributeCategory>(effect);
-		else if(effect == -1 && category <= CLOAKING)
-			effect = static_cast<AttributeEffect>(category);
-		else if(effect == -1 && category == AFTERBURNING)
-			effect = THRUST;
-		if(category == PASSIVE && effect == PIERCING)
-			category = DAMAGE;
-		if(category == COOL && effect == ENERGY)
-			category = ACTIVE_COOL;
-	}
-	this->category = category;
-	this->effect = effect;
-	this->secondary = secondary;
+		map<string, AttributeEffectType> names;
+		for(int i = 0; i < 4 * ATTRIBUTE_EFFECT_COUNT; i++)
+		{
+			AttributeEffectType type = static_cast<AttributeEffectType>(i);
+			names.emplace(Attribute::GetEffectName(type), type);
+		}
+		return names;
+	}();
+}
+
+
+
+// Creates a new categorized attribute. Use -1 if there is no category in the definition.
+Attribute::Attribute(AttributeCategory category) : category(category)
+{
+}
+
+
+
+// Copies an attribute and multiplies all of its values.
+Attribute::Attribute(const Attribute &other, double multiplier) : category(other.category)
+{
+	for(const auto &item : other.effects)
+		effects.insert({item.first, AttributeEffect(item.second.Type(),
+		item.second.Value() * multiplier, item.second.Minimum())});
+}
+
+
+
+// Creates an attribute with a single initial effect
+Attribute::Attribute(const AttributeAccess access, double value) : category(access.Category())
+{
+	effects.emplace(access.Effect(), AttributeEffect(access.Effect(), value, access.GetDefaultMinimum()));
 }
 
 
@@ -72,7 +270,10 @@ Attribute::Attribute(AttributeCategory category, AttributeEffect effect, Attribu
 // Gets the data format name of the category, as used in the new syntax.
 string Attribute::GetCategoryName(const AttributeCategory category)
 {
-	return (category >= 0 && category < ATTRIBUTE_CATEGORY_COUNT) ? categoryNames[category] : "";
+	if(category >= ATTRIBUTE_CATEGORY_COUNT)
+		return GetEffectName(static_cast<AttributeEffectType>(category / ATTRIBUTE_CATEGORY_COUNT - 1)) + " " +
+				GetCategoryName(static_cast<AttributeCategory>(category % ATTRIBUTE_CATEGORY_COUNT));
+	return category >= 0 ? categoryNames[category] : "";
 }
 
 
@@ -80,12 +281,12 @@ string Attribute::GetCategoryName(const AttributeCategory category)
 // Gets the data format name of the effect, as used in the new syntax. This also supports
 // multipliers, so for any effect E, passing E + ATTRIBUTE_EFFECT_COUNT will produce the name of the
 // multiplier effect.
-string Attribute::GetEffectName(const AttributeEffect effect)
+string Attribute::GetEffectName(const AttributeEffectType effect)
 {
 	if(effect >= ATTRIBUTE_EFFECT_COUNT * 2)
-		return "relative " + GetEffectName(static_cast<AttributeEffect>(effect - 2 * ATTRIBUTE_EFFECT_COUNT));
+		return "relative " + GetEffectName(static_cast<AttributeEffectType>(effect - 2 * ATTRIBUTE_EFFECT_COUNT));
 	if(effect >= ATTRIBUTE_EFFECT_COUNT)
-		return GetEffectName(static_cast<AttributeEffect>(effect - ATTRIBUTE_EFFECT_COUNT)) + " multiplier";
+		return GetEffectName(static_cast<AttributeEffectType>(effect - ATTRIBUTE_EFFECT_COUNT)) + " multiplier";
 	if(effect < 0)
 		return "";
 	return effectNames[effect];
@@ -93,96 +294,32 @@ string Attribute::GetEffectName(const AttributeEffect effect)
 
 
 
-// Calculates what the legacy name of the category-effect pair is. These results are cached
-// for faster access via GetLegacyName().
-string Attribute::CalculateLegacyName() const
+// Gets the old-style name of the attribute. Returns an empty string if the attribute is not supported
+// in the old format.
+string Attribute::GetLegacyName(const AttributeAccess access)
 {
-	if(effect == -1)
-		return Attribute::GetCategoryName(category);
-	if(category == PASSIVE || category == -1)
+	auto it = newToOld.find(access);
+	if(it == newToOld.end())
 	{
-		if(effect == HULL)
-			return "hull";
-		if(effect == SHIELDS)
-			return "shields";
-		if(effect == RAMSCOOP)
-			return "ramscoop";
-		return Attribute::GetEffectName(effect) + (secondary == -1 ? "" : " " + Attribute::GetEffectName(secondary))
-				+ " capacity";
+		// TODO: find a better solution, or resort to manually mapping all supported attributes.
+		// This is just a stopgap measure to avoid hard crashes during testing; not to be relied upon
+		auto baseType = static_cast<AttributeEffectType>(access.Effect() % static_cast<int>(ATTRIBUTE_EFFECT_COUNT));
+		string prefix = access.Effect() >= 2 * ATTRIBUTE_EFFECT_COUNT ? "relative " : "";
+		string suffix = (access.Effect() >= ATTRIBUTE_EFFECT_COUNT && prefix.empty()) ? " multiplier" : "";
+		string category = GetCategoryName(access.Category()) + " ";
+		string effect = GetEffectName(baseType);
+		string final = prefix + category + effect + suffix;
+		newToOld.insert(it, {access, final});
+		return final;
 	}
-
-	int effectType = effect % ATTRIBUTE_EFFECT_COUNT;
-	string effectName = Attribute::GetEffectName(static_cast<AttributeEffect>(effectType));
-	string secondaryName = Attribute::GetEffectName(static_cast<AttributeEffect>(secondary % ATTRIBUTE_EFFECT_COUNT));
-	string categoryName = Attribute::GetCategoryName(category);
-
-	if(effectType == HULL)
-		effectName = "hull";
-	if(category == PASSIVE)
-		categoryName = "";
-	else if((category == CLOAKING || category == THRUSTING || category == REVERSE_THRUSTING || category == TURNING)
-			&& (effect != -1 && static_cast<int>(category) != static_cast<int>(effect)))
-		categoryName += "ing";
-	else if(category == SHIELD_GENERATION && effectType != SHIELDS)
-		categoryName = "shield";
-	else if(category == HULL_REPAIR && effectType != HULL)
-		categoryName = "hull";
-	else if(category == HULL_REPAIR && (effect == HULL || effect == HULL + 2 * ATTRIBUTE_EFFECT_COUNT))
-		categoryName = "hull repair rate";
-	else if(category == HULL_REPAIR && effectType == HULL)
-		categoryName = "hull repair";
-	else if(category == AFTERBURNING)
-		categoryName = "afterburner";
-	else if(category == RESISTANCE && secondaryName != "")
-		categoryName += " " + secondaryName;
-	else if(category == DAMAGE && effectType == PIERCING)
-		categoryName = "";
-	else if(category == DAMAGE && effectType == FORCE)
-		categoryName = "hit";
-	else if(category == ACTIVE_COOL && effectType != ACTIVE_COOLING)
-		categoryName = "cooling";
-	else if(category == DAMAGE && effectType == SCRAMBLE)
-		effectName = "scrambling";
-	if(effectType == LEAK && (category == THRUSTING || category == REVERSE_THRUSTING || category == TURNING
-			|| category == AFTERBURNING))
-		effectName = "leakage";
-	if((category >= PROTECTION && category <= DAMAGE) && effectType == SHIELDS)
-		effectName = "shield";
-	if(category == HULL_REPAIR && effectType == DELAY)
-		return "repair " + effectName;
-	if(category == HULL_REPAIR && effectType == DEPLETED_DELAY)
-		return "disabled repair delay";
-	if(category == SHIELD_GENERATION && effectType == DELAY)
-		return "shield " + effectName;
-	if(category == SHIELD_GENERATION && effectType == DEPLETED_DELAY)
-		return "depleted shield delay";
-	if(category == SHIELD_GENERATION && effectType == HULL)
-		effectName = "repair";
-
-	string composite;
-	// shortcuts: "energy generation energy" is "energy generation", etc.
-	if(static_cast<int>(category) == effectType && category <= CLOAKING)
-		composite = categoryName;
-	else if(category == PROTECTION || category == RESISTANCE || (category == DAMAGE && effect != FORCE))
-		composite = effectName + ((effectName == "" || categoryName == "") ? "" : " ") + categoryName;
-	else
-		composite = categoryName + ((effectName == "" || categoryName == "") ? "" : " ") + effectName;
-
-	if(IsRelative())
-		composite = "relative " + composite;
-	if(IsMultiplier())
-		composite += " multiplier";
-	return composite;
+	return it->second;
 }
 
 
 
-// Maps the attribute to the legacy single string format.
-string Attribute::GetLegacyName() const
+string Attribute::GetLegacyName(const AnyAttribute &attribute)
 {
-	if(!cached)
-		PrepareCache();
-	return newToOld[category + 1][effect + 1][secondary + 1];
+	return attribute.index() ? Attribute::GetLegacyName(get<1>(attribute)) : get<0>(attribute);
 }
 
 
@@ -190,189 +327,52 @@ string Attribute::GetLegacyName() const
 // Gets the attribute for the specified token, if any.
 Attribute *Attribute::Parse(const string &token)
 {
-	if(!cached)
-		PrepareCache();
 	auto it = oldToNew.find(token);
 	if(it == oldToNew.end())
 		return nullptr;
-	return it->second;
+	return &(it->second);
 }
 
 
 
-// Creates a cache for faster data loading.
-void Attribute::PrepareCache()
+// Applies the effect from the token to this attribute.
+void Attribute::Parse(const DataNode &node)
 {
-	for(int effect = -1; effect < ATTRIBUTE_EFFECT_COUNT * 4; effect++)
+	const string &text = node.Token(0);
+	if(node.Size() >= 2)
 	{
-		for(int category = -1; category < ATTRIBUTE_CATEGORY_COUNT; category++)
+		auto it = allEffects.find(text);
+		if(it == allEffects.end())
+			node.PrintTrace("Skipping unrecognized attribute effect:");
+		else
 		{
-			for(int secondary = -1; secondary < (ATTRIBUTE_EFFECT_COUNT * 4) * (category == RESISTANCE); secondary++)
-			{
-				Attribute *a = new Attribute(static_cast<AttributeCategory>(category), static_cast<AttributeEffect>(effect),
-						static_cast<AttributeEffect>(secondary));
-				string s = a->CalculateLegacyName();
-				newToOld[category + 1][effect + 1][secondary + 1] = s;
-				if(oldToNew.find(s) == oldToNew.end())
-					oldToNew[s] = a;
-				else
-					delete a;
-			}
+			AttributeAccess access{category, it->second};
+			AddEffect({access.Effect(), node.Value(1), access.GetDefaultMinimum()});
 		}
 	}
-	// ensure that effect names are always recognized
-	for(int effect = 0; effect < ATTRIBUTE_EFFECT_COUNT * 4; effect++)
-	{
-		string s = GetEffectName(static_cast<AttributeEffect>(effect));
-		if(oldToNew.find(s) == oldToNew.end())
-			oldToNew[s] = new Attribute(static_cast<AttributeCategory>(-1), static_cast<AttributeEffect>(effect),
-					static_cast<AttributeEffect>(-1));;
-	}
-	cached = true;
+	else
+		node.PrintTrace("Skipping attribute effect without value:");
+
 }
 
 
 
-// Checks whether the specified combination is fully supported by the engine.
-bool Attribute::IsSupported() const
+// Parses an attribute into an AttributeAccess or the original string.
+AnyAttribute Attribute::ParseAny(const std::string &attribute)
 {
-	// Attributes without effect don't do anything
-	if(effect == -1)
-		return false;
-	// Only resistance has secondary effects, and only if the resistance itself is supported.
-	// The secondary effect can only be energy, heat or fuel.
-	if(secondary != -1)
-	{
-		if(category != RESISTANCE)
-			return false;
-		if(effect >= ATTRIBUTE_EFFECT_COUNT || effect == PIERCING)
-			return false;
-		if(!Attribute(category, effect).IsSupported())
-			return false;
-		return secondary == ENERGY || secondary == HEAT || secondary == FUEL;
-	}
-	// Relative effects are only used when dealing damage, and only for specific effects.
-	if(IsRelative())
-	{
-		if(IsMultiplier())
-			return false;
-		int effectType = effect % ATTRIBUTE_EFFECT_COUNT;
-		switch(category)
-		{
-			case DAMAGE:
-				if(effectType == DISABLED || effectType == MINABLE)
-					return true;
-			case FIRING:
-				if(effectType <= HULL || (effectType >= ENERGY && effectType <= HEAT))
-					return true;
-			default:
-				return false;
-		}
-	}
-	// Multipliers are only used in shield and hull repair attributes, and for a handful of effects.
-	if(IsMultiplier())
-	{
-		if(category != SHIELD_GENERATION && category != HULL_REPAIR)
-			return false;
-		int effectType = effect % ATTRIBUTE_EFFECT_COUNT;
-		return effectType == ENERGY || effectType == HEAT || effectType == FUEL || effectType == category;
-	}
-	// Thrust/turn etc. is only supported in its own category,
-	// unless it's afterburner thrust.
-	if(effect == THRUST && category == AFTERBURNING)
-		return true;
-	if(effect >= THRUST && effect <= CLOAK)
-		return static_cast<int>(effect) == static_cast<int>(category);
-	// Energy, fuel and heat can be produced/consumed nearly everywhere, except in
-	// attributes like cooling or resistance.
-	if(effect >= ENERGY && effect <= HEAT)
-		return (category != COOL && category != ACTIVE_COOL && category != RESISTANCE) ||
-				(effect == ENERGY && category == ACTIVE_COOL);
-	// Most damage types
-	if(effect >= DISCHARGE && effect <= DISRUPTION)
-		return (category >= AFTERBURNING && category <= DAMAGE) || (category >= THRUSTING && category <= TURNING);
-	// More obscure combinations of attributes
-	switch(effect)
-	{
-		case SHIELDS:
-		case HULL:
-			if(category <= HULL_REPAIR && static_cast<int>(effect) != static_cast<int>(category))
-				return false;
-			return (category < COOL || category > CLOAKING) && category != RESISTANCE;
-		case FORCE:
-			return category == FIRING || category == PROTECTION || category == DAMAGE;
-		case DISABLED:
-		case MINABLE:
-			return category == DAMAGE;
-		case PIERCING:
-			return category == DAMAGE || category == PROTECTION || category == RESISTANCE;
-		case DELAY:
-		case DEPLETED_DELAY:
-			return category == HULL_REPAIR || category == SHIELD_GENERATION;
-		case RAMSCOOP:
-			return category == PASSIVE;
-		default:
-			return false;
-	}
-}
-
-
-
-// Checks whether this attribute is a requirement for its category.
-// Required attributes mark resource consumption when an action is taken.
-bool Attribute::IsRequirement() const
-{
-	if(category == -1 || category == PASSIVE || category == DAMAGE || category == PROTECTION
-			|| category == COOL || effect == -1)
-		return false;
-	if(static_cast<int>(category) == static_cast<int>(effect) && category <= CLOAKING)
-		return false;
-	if(effect <= HULL || effect == ENERGY || effect == FUEL || effect == DELAY)
-		return true;
-	return false;
-}
-
-
-
-// Checks whether this attribute is a multiplier.
-bool Attribute::IsMultiplier() const
-{
-	return effect >= ATTRIBUTE_EFFECT_COUNT && (effect < ATTRIBUTE_EFFECT_COUNT * 2
-		|| effect >= ATTRIBUTE_EFFECT_COUNT * 3);
-}
-
-
-
-// Creates a multiplier for this attribute, if not already a multiplier.
-Attribute Attribute::Multiplier() const
-{
-	if(IsMultiplier())
-		return *this;
-	return Attribute(category, static_cast<AttributeEffect>(effect + ATTRIBUTE_EFFECT_COUNT), secondary);
-}
-
-
-
-// Checks whether this attribute is relative.
-bool Attribute::IsRelative() const
-{
-	return effect >= ATTRIBUTE_EFFECT_COUNT * 2;
-}
-
-
-
-// Creates a relative version of this attribute, if not already relative.
-Attribute Attribute::Relative() const
-{
-	if(IsRelative())
-		return *this;
-	return Attribute(category, static_cast<AttributeEffect>(effect + 2 * ATTRIBUTE_EFFECT_COUNT), secondary);
+	auto it = oldToNew.find(attribute);
+	if(it == oldToNew.end())
+		return attribute;
+	for(const auto &item : it->second.Effects())
+		if(item.second.Value() != 0.)
+			return AttributeAccess(it->second.Category(), item.first);
+	return attribute;
 }
 
 
 
 // Gets the category of this attribute.
-AttributeCategory Attribute::Category() const
+const AttributeCategory Attribute::Category() const
 {
 	return category;
 }
@@ -380,56 +380,54 @@ AttributeCategory Attribute::Category() const
 
 
 // Gets the effect of this attribute.
-AttributeEffect Attribute::Effect() const
+const std::map<AttributeEffectType, AttributeEffect> &Attribute::Effects() const
 {
-	return effect;
+	return effects;
 }
 
 
 
-// Gets the secondary effect of this attribute.
-AttributeEffect Attribute::Secondary() const
+// Gets an existing effect, or nullptr.
+const AttributeEffect *Attribute::GetEffect(const AttributeEffectType type) const
 {
-	return secondary;
+	const auto &it = effects.find(type);
+	if(it == effects.end())
+		return nullptr;
+	return &(it->second);
 }
 
 
 
-// Gets the minimum value of this attribute.
-double Attribute::GetMinimumValue() const
+AttributeEffect *Attribute::GetEffect(const AttributeEffectType type)
 {
-	if(IsMultiplier())
-		return -1.;
-	if(category == PROTECTION && secondary == -1)
-		return -0.99;
-	return numeric_limits<double>::lowest();
+	auto it = effects.find(type);
+	if(it == effects.end())
+		return nullptr;
+	return &(it->second);
 }
 
 
 
-template <>
-bool Attribute::operator==(const Attribute &other) const
+// Adds a new effect to this attribute.
+void Attribute::AddEffect(const AttributeEffect effect)
 {
-	return category == other.category && effect == other.effect && secondary == other.secondary;
-}
-
-
-
-template <class A>
-bool Attribute::operator==(const A &other) const
-{
-	return false;
+	auto it = effects.find(effect.Type());
+	if(it == effects.end())
+		effects.insert({effect.Type(), effect});
+	else
+		it->second.Add(effect.Value());
 }
 
 
 
 bool Attribute::operator<(const Attribute &other) const
 {
-	if(category == other.category)
-	{
-		if(effect == other.effect)
-			return secondary < other.secondary;
-		return effect < other.effect;
-	}
 	return category < other.category;
+}
+
+
+
+bool Attribute::operator<(const AttributeCategory &other) const
+{
+	return category < other;
 }

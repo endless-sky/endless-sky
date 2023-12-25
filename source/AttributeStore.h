@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define ATTRIBUTE_STORE_H_
 
 #include "attribute/Attribute.h"
+#include "attribute/AttributeAccess.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Dictionary.h"
@@ -25,36 +26,43 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <functional>
 #include <limits>
 #include <map>
-#include <set>
 #include <string>
 
 class AttributeStore {
 public:
 	// Checks whether the specified attribute is defined here.
-	template <class A>
-	inline bool IsPresent(const A &attribute) const;
-	inline bool IsPresent(const char *attribute) const;
+	bool IsPresent(const AttributeAccess attribute) const;
+	template <class T>
+	bool IsPresent(const T &attribute) const;
+	bool IsPresent(const char *attribute) const;
 	// Gets the value of the specified attribute, or 0 if not present.
-	template <class A>
-	inline double Get(const A &attribute) const;
-	inline double Get(const char *attribute) const;
+	double Get(const AttributeAccess attribute) const;
+	template <class T>
+	double Get(const T &attribute) const;
+	double Get(const char *attribute) const;
+	// Gets the attribute for the specified category, or nullptr.
+	const Attribute *GetAttribute(const AttributeCategory category) const;
+	Attribute *GetAttribute(const AttributeCategory category);
+	const AttributeEffect *GetEffect(const AttributeAccess access) const;
+	AttributeEffect *GetEffect(const AttributeAccess access);
 	// Sets the value of the specified attribute. If the attribute is not present, it is added to this collection
 	// with this value.
-	template <class A>
-	inline void Set(const A &attribute, double value);
-	inline void Set(const char *attribute, double value);
+	void Set(const AttributeAccess attribute, double value);
+	template <class T>
+	void Set(const T &attribute, double value);
+	void Set(const char *attribute, double value);
 
 	// Checks whether there are any attributes stored here.
 	bool empty() const;
 
 	// Gets the minimum allowed value of the attribute.
-	template <class A>
-	inline double GetMinimum(const A &attribute) const;
-	inline double GetMinimum(const char *attribute) const;
+	double GetMinimum(const AttributeAccess attribute) const;
+	template <class T>
+	double GetMinimum(const T &attribute) const;
+	double GetMinimum(const char *attribute) const;
 
 	// Loads data from the data node. This function can be called multiple times on an instance.
-	void Load(const DataNode &node, const bool isWeapon = false, const Attribute parent =
-			Attribute(static_cast<AttributeCategory>(-1), static_cast<AttributeEffect>(-1)));
+	void Load(const DataNode &node);
 	// Writes the attributes into the data writer.
 	void Save(DataWriter &writer) const;
 
@@ -70,51 +78,30 @@ public:
 	// Determine whether the given number of instances of the given attributes can
 	// be added to this instance. If not, return the std::maximum number that can be added.
 	int CanAdd(const AttributeStore &other, int count) const;
-
-	// Adds attributes the specified number of times.
 	void Add(const AttributeStore &other, const int count);
+	// Adds attributes the specified number of times.
 	template <class A>
-	inline void Add(const A &attribute, const AttributeStore &other, const int count);
-	inline void Add(const char *attribute, const AttributeStore &other, const int count);
+	void Add(const A &attribute, const AttributeStore &other, const int count);
+	void Add(const char *attribute, const AttributeStore &other, const int count);
 	template <class A>
-	inline void Add(const A &attribute, const double amount);
-	inline void Add(const char *attribute, const double amount);
+	void Add(const A &attribute, const double amount);
+	void Add(const char *attribute, const double amount);
 
 	// Calls the given function on all attributes.
-	void ForEach(const std::function<void(const std::tuple<std::string,Attribute*,double>)> &function) const;
+	void ForEach(const std::function<void(const AnyAttribute &, double)> &function) const;
 
 private:
-	template <class A>
+	template <typename A>
 	int CanAdd(const A &attribute, const AttributeStore &other, int count) const;
-	// Saves an attribute. Also gets the set of already saved attributes and the last saved attribute.
-	void Save(DataWriter &writer, const Attribute &attribute, std::set<Attribute> &written, Attribute &previous) const;
 
 private:
-	const static double EPS;
 	const static std::map<std::string, double> MINIMUM_OVERRIDES;
 	Dictionary textAttributes;
-	std::map<Attribute, double> categorizedAttributes;
+	std::map<AttributeCategory, Attribute> categorizedAttributes;
 };
 
 
 
-// Checking if an attribute is present.
-template <class A>
-inline bool AttributeStore::IsPresent(const A &attribute) const
-{
-	return Get(attribute) != 0.;
-}
-
-
-
-inline bool AttributeStore::IsPresent(const char *attribute) const
-{
-	return Get(attribute) != 0.;
-}
-
-
-
-// Getting the value of an attribute, or a default.
 template <>
 inline double AttributeStore::Get(const std::string &attribute) const
 {
@@ -123,62 +110,47 @@ inline double AttributeStore::Get(const std::string &attribute) const
 
 
 
-inline double AttributeStore::Get(const char *attribute) const
-{
-	return textAttributes.Get(attribute);
-}
-
-
-
 template <>
-inline double AttributeStore::Get(const Attribute &attribute) const
+inline double AttributeStore::Get(const AnyAttribute &attribute) const
 {
-	auto it = categorizedAttributes.find(attribute);
-	if(it == categorizedAttributes.end())
-		return 0.;
-	return it->second;
+	return attribute.index() ? Get(std::get<1>(attribute)) : Get(std::get<0>(attribute));
 }
 
 
 
-// Setting attribute values
 template <>
 inline void AttributeStore::Set(const std::string &attribute, double value)
 {
 	auto it = MINIMUM_OVERRIDES.find(attribute);
 	if(it != MINIMUM_OVERRIDES.end())
 		value = std::max(value, it->second);
-	if(value && fabs(value) < EPS)
+	if(value && fabs(value) < AttributeEffect::EPS)
 		value = 0.;
 	textAttributes[attribute] = value;
 }
 
 
 
-inline void AttributeStore::Set(const char *attribute, double value)
+template <>
+inline void AttributeStore::Set(const AnyAttribute &attribute, double value)
 {
-	Set(std::string(attribute), value);
+	attribute.index() ? Set(std::get<1>(attribute), value) : Set(std::get<0>(attribute), value);
 }
 
 
 
 template <>
-inline void AttributeStore::Set(const Attribute &attribute, double value)
+inline bool AttributeStore::IsPresent(const std::string &attribute) const
 {
-	value = std::max(value, attribute.GetMinimumValue());
-	if(value && fabs(value) < EPS)
-		value = 0.;
-	categorizedAttributes[attribute] = value;
-	textAttributes[attribute.GetLegacyName()] = value;
+	return Get(attribute) != 0.;
 }
 
 
 
-// Gets the minimum allowed value of the attribute.
 template <>
-inline double AttributeStore::GetMinimum(const Attribute &attribute) const
+inline bool AttributeStore::IsPresent(const AnyAttribute &attribute) const
 {
-	return attribute.GetMinimumValue();
+	return attribute.index() ? IsPresent(std::get<1>(attribute)) : IsPresent(std::get<0>(attribute));
 }
 
 
@@ -194,17 +166,10 @@ inline double AttributeStore::GetMinimum(const std::string &attribute) const
 
 
 
-inline double AttributeStore::GetMinimum(const char *attribute) const
-{
-	return GetMinimum(std::string(attribute));
-}
-
-
-
-// Determine whether the given number of instances of the given attributes can
-// be added to this instance. If not, return the std::maximum number that can be added.
+// Determine whether the attribute can be added to this instance 'count' times.
+// If not, return the maximum number that can be added.
 template <class A>
-int AttributeStore::CanAdd(const A &attribute, const AttributeStore &other, int count) const
+inline int AttributeStore::CanAdd(const A &attribute, const AttributeStore &other, int count) const
 {
 	if(count)
 	{
@@ -215,8 +180,8 @@ int AttributeStore::CanAdd(const A &attribute, const AttributeStore &other, int 
 		double value = Get(attribute);
 		double amount = other.Get(attribute);
 		// Allow for rounding errors:
-		if(value + amount * count < minimum - EPS)
-			return (value - minimum) / -amount + EPS;
+		if(value + amount * count < minimum - AttributeEffect::EPS)
+			return (value - minimum) / -amount + AttributeEffect::EPS;
 	}
 	return count;
 }
@@ -238,10 +203,24 @@ inline void AttributeStore::Add(const char *attribute, const AttributeStore &oth
 
 
 
-template <class A>
+template<class A>
 inline void AttributeStore::Add(const A &attribute, const double amount)
 {
 	Set(attribute, Get(attribute) + amount);
+}
+
+
+
+template <>
+inline void AttributeStore::Add(const Attribute &attribute, const double amount)
+{
+	Attribute copy(attribute, amount);
+	Attribute *current = GetAttribute(attribute.Category());
+	if(current == nullptr)
+		categorizedAttributes.insert({attribute.Category(), copy});
+	else
+		for(const auto &[type, effect] : copy.Effects())
+			current->AddEffect(effect);
 }
 
 

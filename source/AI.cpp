@@ -202,7 +202,7 @@ namespace {
 	bool ShouldRefuel(const Ship &ship, const DistanceMap &route, double fuelCapacity = 0.)
 	{
 		if(!fuelCapacity)
-			fuelCapacity = ship.Attributes().Get("fuel capacity");
+			fuelCapacity = ship.Attributes().Get({PASSIVE, FUEL});
 
 		const System *from = ship.GetSystem();
 		const bool systemHasFuel = from->HasFuelFor(ship) && fuelCapacity;
@@ -374,7 +374,7 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 	// Only toggle the "cloak" command if one of your ships has a cloaking device.
 	if(activeCommands.Has(Command::CLOAK))
 		for(const auto &it : player.Ships())
-			if(!it->IsParked() && it->Attributes().Get("cloak"))
+			if(!it->IsParked() && it->Attributes().Get({CLOAKING, CLOAK}))
 			{
 				isCloaking = !isCloaking;
 				Messages::Add(isCloaking ? "Engaging cloaking device." : "Disengaging cloaking device."
@@ -983,7 +983,7 @@ void AI::Step(Command &activeCommands)
 			MoveIndependent(*it, command);
 		else if(parent->GetSystem() != it->GetSystem())
 		{
-			if(personality.IsStaying() || !it->Attributes().Get("fuel capacity"))
+			if(personality.IsStaying() || !it->Attributes().Get({PASSIVE, FUEL}))
 				MoveIndependent(*it, command);
 			else
 				MoveEscort(*it, command);
@@ -1742,7 +1742,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	else if(ship.GetTargetStellar())
 	{
 		MoveToPlanet(ship, command);
-		if(!shouldStay && ship.Attributes().Get("fuel capacity") && ship.GetTargetStellar()->HasSprite()
+		if(!shouldStay && ship.Attributes().Get({PASSIVE, FUEL}) && ship.GetTargetStellar()->HasSprite()
 				&& ship.GetTargetStellar()->GetPlanet() && ship.GetTargetStellar()->GetPlanet()->CanLand(ship))
 			command |= Command::LAND;
 		else if(ship.Position().Distance(ship.GetTargetStellar()->Position()) < 100.)
@@ -1764,7 +1764,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 {
 	const Ship &parent = *ship.GetParent();
 	const System *currentSystem = ship.GetSystem();
-	bool hasFuelCapacity = ship.Attributes().Get("fuel capacity");
+	bool hasFuelCapacity = ship.Attributes().Get({PASSIVE, FUEL});
 	bool needsFuel = ship.NeedsFuel();
 	bool isStaying = ship.GetPersonality().IsStaying() || !hasFuelCapacity;
 	bool parentIsHere = (currentSystem == parent.GetSystem());
@@ -2039,9 +2039,9 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, const System *playerSy
 
 	// If a carried ship has fuel capacity but is very low, it should return if
 	// the parent can refuel it.
-	double maxFuel = ship.Attributes().Get("fuel capacity");
+	double maxFuel = ship.Attributes().Get({PASSIVE, FUEL});
 	if(maxFuel && ship.Fuel() < .005 && parent.JumpNavigation().JumpFuel() < parent.Fuel() *
-			parent.Attributes().Get("fuel capacity") - maxFuel)
+			parent.Attributes().Get({PASSIVE, FUEL}) - maxFuel)
 		return true;
 
 	// NPC ships should always transfer cargo. Player ships should only
@@ -2178,7 +2178,7 @@ bool AI::Stop(Ship &ship, Command &command, double maxSpeed, const Point directi
 
 	// If you have a reverse thruster, figure out whether using it is faster
 	// than turning around and using your main thruster.
-	if(ship.Attributes().Get("reverse thrust"))
+	if(ship.Attributes().Get({REVERSE_THRUSTING, REVERSE_THRUST}))
 	{
 		// Figure out your stopping time using your main engine:
 		double degreesToTurn = TO_DEG * acos(min(1., max(-1., -velocity.Unit().Dot(angle.Unit()))));
@@ -2388,11 +2388,11 @@ void AI::KeepStation(Ship &ship, Command &command, const Body &target)
 
 	// Determine whether to apply thrust.
 	Point drag = ship.Velocity() * ship.DragForce();
-	if(ship.Attributes().Get("reverse thrust"))
+	if(ship.Attributes().Get({REVERSE_THRUSTING, REVERSE_THRUST}))
 	{
 		// Don't take drag into account when reverse thrusting, because this
 		// estimate of how it will be applied can be quite inaccurate.
-		Point a = (unit * (-ship.Attributes().Get("reverse thrust") / mass)).Unit();
+		Point a = (unit * (-ship.Attributes().Get({REVERSE_THRUSTING, REVERSE_THRUST}) / mass)).Unit();
 		double direction = positionWeight * positionDelta.Dot(a) / POSITION_DEADBAND
 			+ velocityWeight * velocityDelta.Dot(a) / VELOCITY_DEADBAND;
 		if(direction > THRUST_DEADBAND)
@@ -2516,7 +2516,7 @@ void AI::MoveToAttack(Ship &ship, Command &command, const Body &target)
 	const auto facing = ship.Facing().Unit().Dot(direction.Unit());
 	// If the ship has reverse thrusters and the target is behind it, we can
 	// use them to reach the target more quickly.
-	if(facing < -.75 && ship.Attributes().Get("reverse thrust"))
+	if(facing < -.75 && ship.Attributes().Get({REVERSE_THRUSTING, REVERSE_THRUST}))
 		command |= Command::BACK;
 	// This isn't perfect, but it works well enough.
 	else if((facing >= 0. && direction.Length() > diameter)
@@ -2565,18 +2565,18 @@ void AI::PickUp(Ship &ship, Command &command, const Body &target)
 // energy strain, or undue thermal loads if almost overheated.
 bool AI::ShouldUseAfterburner(Ship &ship)
 {
-	if(!ship.Attributes().Get("afterburner thrust"))
+	if(!ship.Attributes().Get({AFTERBURNING, THRUST}))
 		return false;
 
-	double fuel = ship.Fuel() * ship.Attributes().Get("fuel capacity");
-	double neededFuel = ship.Attributes().Get("afterburner fuel");
-	double energy = ship.Energy() * ship.Attributes().Get("energy capacity");
-	double neededEnergy = ship.Attributes().Get("afterburner energy");
+	double fuel = ship.Fuel() * ship.Attributes().Get({PASSIVE, FUEL});
+	double neededFuel = ship.Attributes().Get({AFTERBURNING, FUEL});
+	double energy = ship.Energy() * ship.Attributes().Get({PASSIVE, ENERGY});
+	double neededEnergy = ship.Attributes().Get({AFTERBURNING, ENERGY});
 	if(energy == 0.)
 		energy = ship.Attributes().Get("energy generation")
 				+ 0.2 * ship.Attributes().Get("solar collection")
 				- ship.Attributes().Get("energy consumption");
-	double outputHeat = ship.Attributes().Get("afterburner heat") / (100 * ship.Mass());
+	double outputHeat = ship.Attributes().Get({AFTERBURNING, HEAT}) / (100 * ship.Mass());
 	if((!neededFuel || fuel - neededFuel > ship.JumpNavigation().JumpFuel())
 			&& (!neededEnergy || neededEnergy / energy < 0.25)
 			&& (!outputHeat || ship.Heat() + outputHeat < .9))
@@ -2919,16 +2919,16 @@ bool AI::DoCloak(Ship &ship, Command &command)
 		return false;
 
 	const Outfit &attributes = ship.Attributes();
-	if(!attributes.Get("cloak"))
+	if(!attributes.Get({CLOAKING, CLOAK}))
 		return false;
 
 	// Never cloak if it will cause you to be stranded.
-	double fuelCost = attributes.Get("cloaking fuel") + attributes.Get("fuel consumption")
+	double fuelCost = attributes.Get({CLOAKING, FUEL}) + attributes.Get("fuel consumption")
 		- attributes.Get("fuel generation");
-	if(attributes.Get("cloaking fuel") && !attributes.Get("ramscoop"))
+	if(attributes.Get("cloaking fuel") && !attributes.Get({RAMSCOOPING, RAMSCOOP}))
 	{
-		double fuel = ship.Fuel() * attributes.Get("fuel capacity");
-		int steps = ceil((1. - ship.Cloaking()) / attributes.Get("cloak"));
+		double fuel = ship.Fuel() * attributes.Get({PASSIVE, FUEL});
+		int steps = ceil((1. - ship.Cloaking()) / attributes.Get({CLOAKING, CLOAK}));
 		// Only cloak if you will be able to fully cloak and also maintain it
 		// for as long as it will take you to reach full cloak.
 		fuel -= fuelCost * (1 + 2 * steps);
@@ -2983,7 +2983,7 @@ bool AI::DoCloak(Ship &ship, Command &command)
 	bool cloakFreely = (fuelCost <= 0.) && !ship.GetShipToAssist() && !ship.IsYours();
 	// If this ship is injured / repairing, it should cloak while under threat.
 	bool cloakToRepair = (ship.Health() < RETREAT_HEALTH + hysteresis)
-			&& (attributes.Get("shield generation") || attributes.Get("hull repair rate"));
+			&& (attributes.Get({SHIELD_GENERATION, SHIELDS}) || attributes.Get({HULL_REPAIR, HULL}));
 	if(cloakToRepair && (cloakFreely || range < 2000. * (1. + hysteresis)))
 	{
 		command |= Command::CLOAK;
@@ -3168,10 +3168,10 @@ Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &sho
 	// The average term's value will be v / 2. So:
 	stopDistance += .5 * v * v / acceleration;
 
-	if(ship.Attributes().Get("reverse thrust"))
+	if(ship.Attributes().Get({REVERSE_THRUSTING, REVERSE_THRUST}))
 	{
 		// Figure out your reverse thruster stopping distance:
-		double reverseAcceleration = ship.Attributes().Get("reverse thrust") / ship.InertialMass();
+		double reverseAcceleration = ship.Attributes().Get({REVERSE_THRUSTING, REVERSE_THRUST}) / ship.InertialMass();
 		double reverseDistance = v * (180. - degreesToTurn) / turnRate;
 		reverseDistance += .5 * v * v / reverseAcceleration;
 
@@ -3492,7 +3492,7 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 		// fuel that you cannot leave the system if necessary.
 		if(weapon->FiringFuel())
 		{
-			double fuel = ship.Fuel() * ship.Attributes().Get("fuel capacity");
+			double fuel = ship.Fuel() * ship.Attributes().Get({PASSIVE, FUEL});
 			fuel -= weapon->FiringFuel();
 			// If the ship is not ever leaving this system, it does not need to
 			// reserve any fuel.
@@ -4202,7 +4202,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 			command.SetTurn(activeCommands.Has(Command::RIGHT) - activeCommands.Has(Command::LEFT));
 		if(activeCommands.Has(Command::BACK))
 		{
-			if(!activeCommands.Has(Command::FORWARD) && ship.Attributes().Get("reverse thrust"))
+			if(!activeCommands.Has(Command::FORWARD) && ship.Attributes().Get({REVERSE_THRUSTING, REVERSE_THRUST}))
 				command |= Command::BACK;
 			else if(!activeCommands.Has(Command::RIGHT | Command::LEFT | Command::AUTOSTEER))
 				command.SetTurn(TurnBackward(ship));

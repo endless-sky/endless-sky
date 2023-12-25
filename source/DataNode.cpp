@@ -110,6 +110,15 @@ void DataNode::AddToken(string token)
 
 
 
+// Adds a new node as a child of this node. The parent of the given node will be set to this node.
+void DataNode::AddChild(DataNode &node)
+{
+	node.parent = this;
+	children.emplace_back(node);
+}
+
+
+
 // Convert the token with the given index to a numerical value.
 double DataNode::Value(int index) const
 {

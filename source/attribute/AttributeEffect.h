@@ -16,37 +16,50 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef ATTRIBUTE_EFFECT_H_
 #define ATTRIBUTE_EFFECT_H_
 
-// The different effects of an attribute. Each one has multiple variants,
-// each offset by ATTRIBUTE_EFFECT_COUNT. The variants are:
-// base (not offset), multiplier, relative, relative multiplier.
-enum AttributeEffect : int {
-	SHIELDS,
-	HULL,
-	THRUST,
-	REVERSE_THRUST,
-	TURN,
-	COOLING,
-	ACTIVE_COOLING,
-	CLOAK,
-	FORCE,
-	ENERGY,
-	FUEL,
-	HEAT,
-	DISCHARGE,
-	CORROSION,
-	LEAK,
-	BURN,
-	ION,
-	SCRAMBLE,
-	SLOWING,
-	DISRUPTION,
-	DISABLED,
-	MINABLE,
-	RAMSCOOP,
-	PIERCING,
-	DELAY,
-	DEPLETED_DELAY,
-	ATTRIBUTE_EFFECT_COUNT
+#include "AttributeCategory.h"
+#include "AttributeEffectType.h"
+
+#include <cmath>
+#include <limits>
+
+class AttributeEffect {
+public:
+	// Creates a new effect of a specified type, value and minimum.
+	AttributeEffect(const AttributeEffectType type, const double value, const double minimum =
+			std::numeric_limits<double>::lowest());
+
+	// Gets the type of the effect, its value, and its sub-effects.
+	AttributeEffectType Type() const;
+	double Value() const;
+	double Minimum() const;
+
+
+	// Checks whether this effect is a multiplier.
+	bool IsMultiplier() const;
+	// Checks whether this effect is relative.
+	bool IsRelative() const;
+
+	// Adds the specified amount to this effect's value.
+	void Add(const double amount);
+	// Sets the effect's value to the specified amount.
+	void Set(const double amount);
+
+	// Checks whether this effect is a requirement for its category.
+	// Required effects mark resource consumption when an action is taken.
+	bool IsRequirement(const AttributeCategory category) const;
+
+	// Checks if this effect, when used with the PASSIVE category, denotes a capacity or a
+	// passively applied effect.
+	bool IsCapacity() const;
+
+	const static double EPS;
+private:
+	// The type of this effect,
+	const AttributeEffectType type;
+	// its value,
+	double value;
+	// and its minimum value.
+	const double min;
 };
 
 #endif

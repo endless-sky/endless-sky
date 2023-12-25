@@ -15,9 +15,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "AttributeStore.h"
 
+#include <sstream>
+
 using namespace std;
 
-const double AttributeStore::EPS = 0.0000000001;
+
+
 const map<string, double> AttributeStore::MINIMUM_OVERRIDES = {
 	{"hull threshold", numeric_limits<double>::lowest()},
 	{"energy generation", numeric_limits<double>::lowest()},
@@ -31,58 +34,152 @@ const map<string, double> AttributeStore::MINIMUM_OVERRIDES = {
 	{"crew equivalent", numeric_limits<double>::lowest()}
 };
 
+
+
+// Checking if an attribute is present.
+bool AttributeStore::IsPresent(const AttributeAccess attribute) const
+{
+	return Get(attribute) != 0.;
+}
+
+
+
+bool AttributeStore::IsPresent(const char *attribute) const
+{
+	return Get(attribute) != 0.;
+}
+
+
+
+// Getting the value of an attribute, or a default.
+double AttributeStore::Get(const AttributeAccess attribute) const
+{
+	const AttributeEffect *e = GetEffect(attribute);
+	if(e == nullptr)
+		return 0.;
+	return e->Value();
+}
+
+
+
+double AttributeStore::Get(const char *attribute) const
+{
+	return textAttributes.Get(attribute);
+}
+
+
+
+const Attribute *AttributeStore::GetAttribute(const AttributeCategory category) const
+{
+	auto it = categorizedAttributes.find(category);
+	if(it == categorizedAttributes.end())
+		return nullptr;
+	return &(it->second);
+}
+
+
+
+Attribute *AttributeStore::GetAttribute(const AttributeCategory category)
+{
+	// const_cast is fine because the object isn't const originally
+	return const_cast<Attribute*>(const_cast<const AttributeStore*>(this)->GetAttribute(category));
+}
+
+
+
+const AttributeEffect *AttributeStore::GetEffect(const AttributeAccess access) const
+{
+	const Attribute *a = GetAttribute(access.Category());
+	if(a == nullptr)
+		return nullptr;
+	return a->GetEffect(access.Effect());
+}
+
+
+
+AttributeEffect *AttributeStore::GetEffect(const AttributeAccess access)
+{
+	// const_cast is fine because the object isn't const originally
+	return const_cast<AttributeEffect*>(const_cast<const AttributeStore*>(this)->GetEffect(access));
+}
+
+
+
+// Setting attribute values
+void AttributeStore::Set(const char *attribute, double value)
+{
+	std::string s = std::string(attribute);
+	Set(s, value);
+}
+
+
+
+void AttributeStore::Set(const AttributeAccess access, double value)
+{
+	Attribute *a = GetAttribute(access.Category());
+	if(!a)
+	{
+		Attribute attr = Attribute(access.Category());
+		categorizedAttributes.insert({access.Category(), attr});
+		a = GetAttribute(access.Category());
+	}
+	AttributeEffect *e = a->GetEffect(access.Effect());
+	if(!e)
+		a->AddEffect(AttributeEffect(access.Effect(), value, access.GetDefaultMinimum()));
+	else
+		e->Set(value);
+}
+
+
+
 // Checks whether there are any attributes stored here.
 bool AttributeStore::empty() const
 {
-	if(textAttributes.empty())
+	if(textAttributes.empty() && categorizedAttributes.empty())
 		return true;
 	for(auto &it : textAttributes)
-	{
 		if(it.second != 0.)
 			return false;
-	}
+	for(const auto &it : categorizedAttributes)
+		for(const auto &item : it.second.Effects())
+			if(item.second.Value() != 0.)
+				return false;
 	return true;
 }
 
 
 
-// Loads data from the data node. This function can be called multiple times on an instance.
-void AttributeStore::Load(const DataNode &node, const bool isWeapon, const Attribute parent)
+// Gets the minimum allowed value of the attribute.
+double AttributeStore::GetMinimum(const AttributeAccess attribute) const
 {
+	const AttributeEffect *e = GetEffect(attribute);
+	if(e == nullptr)
+		return attribute.GetDefaultMinimum();
+	return e->Minimum();
+}
+
+
+
+double AttributeStore::GetMinimum(const char *attribute) const
+{
+	return GetMinimum(std::string(attribute));
+}
+
+
+
+// Loads data from the data node. This function can be called multiple times on an instance.
+void AttributeStore::Load(const DataNode &node) {
 	const string &key = node.Token(0);
-	Attribute *a = Attribute::Parse(key);
-	if(key == "minable" && parent.Category() == PASSIVE) // handle name collision
-		a = nullptr;
-	if(a)
+	Attribute *parsed = Attribute::Parse(key);
+	if(parsed && key.find("shield") != string::npos)
+		node.PrintTrace(to_string(parsed->Category()));
+	if(parsed)
 	{
-		Attribute attribute = *a;
-		if(attribute.Category() == PASSIVE)
-		{
-			if(parent.Effect() == -1 || parent.Effect() == attribute.Effect() ||
-					(parent.Category() <= CLOAKING && parent.Effect() == static_cast<int>(parent.Category())))
-				attribute = Attribute(parent.Category(), attribute.Effect(), attribute.Secondary());
-			else
-				attribute = Attribute(parent.Category(), parent.Effect(), attribute.Effect());
-		}
-		else if(parent.Category() != PASSIVE && parent.Category() != attribute.Category())
-		{
-			node.PrintTrace("Illegally nested categories: \"" + key + "\":");
-			return;
-		}
-		if(attribute.IsSupported())
-		{
-			// Weapons only have firing effects and damage, the rest are generic outfit categories.
-			if(isWeapon == (attribute.Category() == FIRING || attribute.Category() == DAMAGE))
-				Set(attribute, node.Size() >= 2 ? node.Value(1) : 0.);
-			else if(isWeapon)
-				node.PrintTrace("Attribute should be outside weapon node: \"" + key + "\":");
-			else
-				node.PrintTrace("Attribute should be inside weapon node: \"" + key + "\":");
-		}
-		else if(node.Size() >= 2)
-			textAttributes[key] = node.Value(1);
+		Attribute attribute = Attribute(*parsed, node.Size() >= 2 ? node.Value(1) : 1.);
 		for(const DataNode &child : node)
-			Load(child, isWeapon, attribute);
+			attribute.Parse(child);
+		for(const auto &it : attribute.Effects())
+			Set({attribute.Category(), it.first}, it.second.Value());
 	}
 	else if(node.Size() >= 2)
 		textAttributes[key] = node.Value(1);
@@ -96,106 +193,34 @@ void AttributeStore::Load(const DataNode &node, const bool isWeapon, const Attri
 void AttributeStore::Save(DataWriter &writer) const
 {
 	for(auto &it : textAttributes)
-	{
-		if(Attribute::Parse(it.first) == nullptr)
-			writer.Write(it.first, it.second);
-	}
-	set<Attribute> written;
-	Attribute last(static_cast<AttributeCategory>(-1), static_cast<AttributeEffect>(-1));
+		writer.Write(it.first, it.second);
 	for(auto &it : categorizedAttributes)
 	{
-		if(it.second)
-			Save(writer, it.first, written, last);
+		DataNode node;
+		node.AddToken(Attribute::GetCategoryName(it.first));
+		for(auto &entry : it.second.Effects())
+		{
+			DataNode child(&node);
+			child.AddToken(Attribute::GetEffectName(entry.second.Type()));
+			ostringstream temp;
+			temp << entry.second.Value();
+			child.AddToken(temp.str());
+			node.AddChild(child);
+		}
+		writer.Write(node);
 	}
-	if(last.Secondary() != -1)
-		writer.EndChild();
-	if(last.Effect() != -1 && last.Category() != PASSIVE)
-		writer.EndChild();
-}
-
-
-
-// Gets the direct parent of the attribute
-Attribute GetParent(const Attribute &attribute)
-{
-	if(attribute.Secondary() != -1)
-		return Attribute(attribute.Category(), attribute.Effect(), static_cast<AttributeEffect>(-1), false);
-	if(attribute.Effect() != -1)
-		return Attribute(attribute.Category(), static_cast<AttributeEffect>(-1), static_cast<AttributeEffect>(-1), false);
-	return Attribute(static_cast<AttributeCategory>(-1), static_cast<AttributeEffect>(-1),
-			static_cast<AttributeEffect>(-1), false);
-}
-
-
-
-// Checks if the attribute is a (direct or indirect) child of the other.
-bool IsChild(const Attribute &parent, const Attribute &child)
-{
-	if(parent.Category() == -1)
-		return true;
-	else if(parent == child)
-		return false;
-	else if(parent.Secondary() != -1)
-		return false;
-	else if(parent.Category() == PASSIVE && parent.Effect() == -1)
-		return true;
-	else if(parent.Effect() == child.Effect() || (parent.Effect() != -1 && child.Effect() == -1))
-		return true;
-	return parent.Category() == child.Category();
-}
-
-
-
-// Gets the value that is saved for this attribute. Used here because attributes are not
-// always in their preferred form when saving.
-Attribute GetPreferredForm(const Attribute &attribute)
-{
-	return Attribute(attribute.Category(), attribute.Effect(), attribute.Secondary());
-}
-
-
-
-// Saves an attribute. Also gets the set of already saved attributes and the last saved attribute.
-void AttributeStore::Save(DataWriter &writer, const Attribute &attribute, set<Attribute> &written,
-		Attribute &previous) const
-{
-	if(attribute.Category() == -1 || (attribute.Category() == PASSIVE && attribute.Effect() == -1)
-			|| written.count(attribute))
-		return;
-
-	if(!IsChild(GetParent(previous), attribute)) // wrong parent
-	{
-		writer.EndChild();
-		previous = GetParent(previous);
-	}
-
-	Save(writer, GetParent(attribute), written, previous);// saving parent
-	if(written.count(GetPreferredForm(attribute))) // don't duplicate attributes
-		return;
-
-	if(previous.Category() != -1 && previous.Category() != PASSIVE && GetParent(attribute) == previous)
-		writer.BeginChild(); // first child after parent
-
-	if(attribute.Effect() != -1)
-		writer.WriteToken(Attribute::GetEffectName(attribute.Secondary() == -1 ? attribute.Effect() : attribute.Secondary()));
-	else
-		writer.WriteToken(Attribute::GetCategoryName(attribute.Category()));
-	Attribute preferred = GetPreferredForm(attribute);
-	if(IsPresent(preferred))
-		writer.Write(Get(preferred));
-	else
-		writer.Write();
-	previous = attribute;
-	written.emplace(attribute);
-	written.emplace(preferred);
 }
 
 
 
 int AttributeStore::CanAdd(const AttributeStore &other, int count) const
 {
-	for(const auto &it : textAttributes)
+	for(const auto &it : other.textAttributes)
 		count = min(count, CanAdd(string(it.first), other, count));
+	for(auto &it : other.categorizedAttributes)
+		for(const auto &item : it.second.Effects())
+			count = min(count, CanAdd(AttributeAccess(it.first, item.first), other, count));
+
 	return count;
 }
 
@@ -207,17 +232,16 @@ void AttributeStore::Add(const AttributeStore &other, const int count)
 	for(auto &it : other.textAttributes)
 		Add(it.first, other, count);
 	for(auto &it : other.categorizedAttributes)
-		Add(it.first, other, count);
+		Add(it.second, count);
 }
 
 
 
-// Calls the given function on all attributes.
-void AttributeStore::ForEach(const std::function<void(std::tuple<string,Attribute*,double>)> &function) const
+void AttributeStore::ForEach(const std::function<void(const AnyAttribute &, double)> &function) const
 {
 	for(auto &it : textAttributes)
-	{
-		Attribute *a = (it.second == numeric_limits<double>::infinity() ? Attribute::Parse(it.first) : nullptr);
-		function(tuple<string, Attribute*, double>(it.first, a, it.second));
-	}
+		function({it.first}, it.second);
+	for(auto &it : categorizedAttributes)
+		for(const auto &item : it.second.Effects())
+			function({AttributeAccess(it.first, item.first)}, item.second.Value());
 }

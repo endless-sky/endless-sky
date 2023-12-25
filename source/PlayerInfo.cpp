@@ -3260,7 +3260,7 @@ void PlayerInfo::RegisterDerivedConditions()
 			return attributes.Cost();
 		if(attribute == "mass")
 			return round(attributes.Mass() * 1000.);
-		return round(attributes.Get(attribute) * 1000.);
+		return round(attributes.Get(Attribute::ParseAny(attribute)) * 1000.);
 	};
 
 	auto &&flagshipBaseAttributeProvider = conditions.GetProviderPrefixed("flagship base attribute: ");

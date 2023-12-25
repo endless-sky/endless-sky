@@ -38,10 +38,10 @@ void Weapon::LoadWeapon(const DataNode &node)
 	doesDamage = false;
 	bool safeRangeOverriden = false;
 	// using infinity to keep track of whether these values have been parsed
-	attributes.Set(Attribute(DAMAGE, DISABLED), numeric_limits<double>::infinity());
-	attributes.Set(Attribute(DAMAGE, DISABLED).Relative(), numeric_limits<double>::infinity());
-	attributes.Set(Attribute(DAMAGE, MINABLE), numeric_limits<double>::infinity());
-	attributes.Set(Attribute(DAMAGE, MINABLE).Relative(), numeric_limits<double>::infinity());
+	attributes.Set(AttributeAccess(DAMAGE, DISABLED), numeric_limits<double>::infinity());
+	attributes.Set(AttributeAccess(DAMAGE, DISABLED).Relative(), numeric_limits<double>::infinity());
+	attributes.Set(AttributeAccess(DAMAGE, MINABLE), numeric_limits<double>::infinity());
+	attributes.Set(AttributeAccess(DAMAGE, MINABLE).Relative(), numeric_limits<double>::infinity());
 
 	for(const DataNode &child : node)
 	{
@@ -219,19 +219,20 @@ void Weapon::LoadWeapon(const DataNode &node)
 			else if(key == "dropoff modifier")
 				damageDropoffModifier = max(0., value);
 			else
-				attributes.Load(child, true);
+				attributes.Load(child);
 		}
 	}
 	// Disabled damage defaults to hull damage if not specified.
-	if(attributes.Get(Attribute(DAMAGE, DISABLED)) == numeric_limits<double>::infinity())
-		attributes.Set(Attribute(DAMAGE, DISABLED), attributes.Get(Attribute(DAMAGE, HULL)));
-	if(attributes.Get(Attribute(DAMAGE, DISABLED).Relative()) == numeric_limits<double>::infinity())
-		attributes.Set(Attribute(DAMAGE, DISABLED).Relative(), attributes.Get(Attribute(DAMAGE, HULL).Relative()));
+	if(attributes.Get(AttributeAccess(DAMAGE, DISABLED)) == numeric_limits<double>::infinity())
+		attributes.Set(AttributeAccess(DAMAGE, DISABLED), attributes.Get(AttributeAccess(DAMAGE, HULL)));
+	if(attributes.Get(AttributeAccess(DAMAGE, DISABLED).Relative()) == numeric_limits<double>::infinity())
+		attributes.Set(AttributeAccess(DAMAGE, DISABLED).Relative(),
+			attributes.Get(AttributeAccess(DAMAGE, HULL).Relative()));
 	// Minable damage defaults to hull damage if not specified.
-	if(attributes.Get(Attribute(DAMAGE, MINABLE)) == numeric_limits<double>::infinity())
-		attributes.Set(Attribute(DAMAGE, MINABLE), attributes.Get(Attribute(DAMAGE, HULL)));
-	if(attributes.Get(Attribute(DAMAGE, MINABLE).Relative()) == numeric_limits<double>::infinity())
-		attributes.Set(Attribute(DAMAGE, MINABLE).Relative(), attributes.Get(Attribute(DAMAGE, HULL).Relative()));
+	if(attributes.Get(AttributeAccess(DAMAGE, MINABLE)) == numeric_limits<double>::infinity())
+		attributes.Set(AttributeAccess(DAMAGE, MINABLE), attributes.Get(AttributeAccess(DAMAGE, HULL)));
+	if(attributes.Get(AttributeAccess(DAMAGE, MINABLE).Relative()) == numeric_limits<double>::infinity())
+		attributes.Set(AttributeAccess(DAMAGE, MINABLE).Relative(), attributes.Get(AttributeAccess(DAMAGE, HULL).Relative()));
 
 	// Sanity checks:
 	if(burstReload > reload)
@@ -334,19 +335,13 @@ const Sprite *Weapon::Icon() const
 
 double Weapon::Get(const char *attribute) const
 {
-	return Get(string(attribute));
+	const string temp = string(attribute);
+	return Get(temp);
 }
 
 
 
-double Weapon::Get(const string &attribute) const
-{
-	return attributes.Get(attribute);
-}
-
-
-
-double Weapon::Get(const Attribute &attribute) const
+double Weapon::Get(const AttributeAccess attribute) const
 {
 	return attributes.Get(attribute);
 }
@@ -469,20 +464,20 @@ void Weapon::SetTurretTurn(double rate)
 
 
 
-double Weapon::TotalDamage(const AttributeEffect effect) const
+double Weapon::TotalDamage(const AttributeEffectType effect) const
 {
 	if(!calculatedDamage)
 	{
 		calculatedDamage = true;
 		for(int i = 0; i < ATTRIBUTE_EFFECT_COUNT; ++i)
 		{
-			Attribute a = Attribute(DAMAGE, static_cast<AttributeEffect>(i));
+			AttributeAccess a(DAMAGE, static_cast<AttributeEffectType>(i));
 			for(const auto &it : submunitions)
 				attributes.Add(a, it.weapon->attributes, it.count);
 			doesDamage |= (attributes.Get(a) > 0.);
 		}
 	}
-	return attributes.Get(Attribute(DAMAGE, effect));
+	return attributes.Get(AttributeAccess(DAMAGE, effect));
 }
 
 
