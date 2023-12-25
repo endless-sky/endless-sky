@@ -312,7 +312,7 @@ double Projectile::Clip() const
 // Get whether the lifetime on this projectile has run out.
 bool Projectile::IsDead() const
 {
-	return lifetime < 0;
+	return lifetime <= 0;
 }
 
 
