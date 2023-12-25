@@ -395,8 +395,12 @@
 		<Unit filename="source/shift.h" />
 		<Unit filename="source/attribute/Attribute.cpp" />
 		<Unit filename="source/attribute/Attribute.h" />
+		<Unit filename="source/attribute/AttributeAccess.cpp" />
+		<Unit filename="source/attribute/AttributeAccess.h" />
 		<Unit filename="source/attribute/AttributeCategory.h" />
+		<Unit filename="source/attribute/AttributeEffect.cpp" />
 		<Unit filename="source/attribute/AttributeEffect.h" />
+		<Unit filename="source/attribute/AttributeEffectType.h" />
 		<Unit filename="source/comparators/ByGivenOrder.h" />
 		<Unit filename="source/comparators/ByName.h" />
 		<Unit filename="source/comparators/BySeriesAndIndex.h" />
