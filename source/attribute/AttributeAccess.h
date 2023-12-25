@@ -41,7 +41,7 @@ public:
 	// Creates a relative version of this attribute, if not already relative.
 	AttributeAccess Relative() const;
 	static AttributeEffectType Relative(const AttributeEffectType effect);
-	
+
 	// Gets the attribute's category effect (variant), or -1 if none.
 	AttributeEffectType GetCategoryEffect() const;
 	static AttributeEffectType GetCategoryEffect(const AttributeCategory category);

@@ -22,16 +22,16 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 const string Attribute::effectNames[] = {"shields", "hull", "thrust", "reverse thrust", "turn", "active cooling",
-										 "ramscoop", "cloak", "cooling", "force", "energy", "fuel", "heat", "discharge", "corrosion", "leak", "burn",
-										 "ion", "scramble", "slowing", "disruption", "disabled", "minable", "piercing"};
+										"ramscoop", "cloak", "cooling", "force", "energy", "fuel", "heat", "discharge", "corrosion", "leak", "burn",
+										"ion", "scramble", "slowing", "disruption", "disabled", "minable", "piercing"};
 
 // Some category names are always the same as the corresponding effect names.
 // The last two entries both correspond to PASSIVE, as it can denote both capacity
 // and passively applied effects (such as cooling).
 const string Attribute::categoryNames[] = {"shield generation", "hull repair rate",
-										   GetEffectName(THRUST), GetEffectName(REVERSE_THRUST), GetEffectName(TURN), GetEffectName(ACTIVE_COOLING),
-										   GetEffectName(RAMSCOOP), GetEffectName(CLOAK), "afterburner thrust", "firing", "protection",
-										   "resistance", "damage", "capacity"};
+										GetEffectName(THRUST), GetEffectName(REVERSE_THRUST), GetEffectName(TURN), GetEffectName(ACTIVE_COOLING),
+										GetEffectName(RAMSCOOP), GetEffectName(CLOAK), "afterburner thrust", "firing", "protection",
+										"resistance", "damage", "capacity"};
 
 
 
