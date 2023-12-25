@@ -171,8 +171,6 @@ double AttributeStore::GetMinimum(const char *attribute) const
 void AttributeStore::Load(const DataNode &node) {
 	const string &key = node.Token(0);
 	Attribute *parsed = Attribute::Parse(key);
-	if(parsed && key.find("shield") != string::npos)
-		node.PrintTrace(to_string(parsed->Category()));
 	if(parsed)
 	{
 		Attribute attribute = Attribute(*parsed, node.Size() >= 2 ? node.Value(1) : 1.);
