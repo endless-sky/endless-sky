@@ -4456,6 +4456,8 @@ mission "Retrieve recruiters [0]"
 		dialog phrase "generic passenger dropoff payment"
 	on visit
 		dialog phrase "generic passenger on visit"
+	on stopover
+		dialog phrase "generic passenger stopover pickup"
 
 mission "Retrieve recruiters [1]"
 	name "Return recruiters home to <planet>"
@@ -4478,6 +4480,8 @@ mission "Retrieve recruiters [1]"
 		dialog phrase "generic passenger dropoff payment"
 	on visit
 		dialog phrase "generic passenger on visit"
+	on stopover
+		dialog phrase "generic passenger stopover pickup"
 
 mission "Retrieve recruiters [2]"
 	name "Return recruiters home to <planet>"
@@ -4501,6 +4505,8 @@ mission "Retrieve recruiters [2]"
 		dialog phrase "generic passenger dropoff payment"
 	on visit
 		dialog phrase "generic passenger on visit"
+	on stopover
+		dialog phrase "generic passenger stopover pickup"
 
 mission "Farming Employee Poaching"
 	name "Research farmer to <planet>"
@@ -4782,8 +4788,6 @@ mission "Banned Syndicate Items [0]"
 		government Syndicate
 		not attributes uninhabited
 		distance 5 100
-	on stopover
-		dialog phrase "generic passenger stopover pickup"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -4806,8 +4810,6 @@ mission "Banned Syndicate Items [1]"
 		government Syndicate
 		not attributes uninhabited
 		distance 5 100
-	on stopover
-		dialog phrase "generic passenger stopover pickup"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -4830,8 +4832,6 @@ mission "Banned Syndicate Items [2]"
 		government Syndicate
 		not attributes uninhabited
 		distance 5 100
-	on stopover
-		dialog phrase "generic passenger stopover pickup"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -4854,8 +4854,6 @@ mission "Banned Syndicate Items [3]"
 		government Syndicate
 		not attributes uninhabited
 		distance 5 100
-	on stopover
-		dialog phrase "generic passenger stopover pickup"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -4878,8 +4876,6 @@ mission "Banned Syndicate Items [4]"
 		government Syndicate
 		not attributes uninhabited
 		distance 5 100
-	on stopover
-		dialog phrase "generic passenger stopover pickup"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
