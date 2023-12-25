@@ -2161,11 +2161,18 @@ Comment: Derived from _menu/haze-133 (no copyright given).
 
 Files:
  images/star/proto-planetary-disk*
+ images/projectile/ionic turret*
 Copyright: RisingLeaf (https://github.com/RisingLeaf)
 License: CC-BY-SA-4.0
 
 Files:
- images/scene/volcanic-eruption-at-night.jpg
+ images/effect/ionic?impact*
+Copyright: RisingLeaf (https://github.com/RisingLeaf)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
+images/scene/volcanic-eruption-at-night.jpg
 Copyright: None; public domain. Creator Vide/A.Hubner, US National Park Service (https://www.nps.gov/media/video/view.htm?id=2F152320-6D7D-4CF1-875D-37B3F3216293)
 License: None; public domain.
 
