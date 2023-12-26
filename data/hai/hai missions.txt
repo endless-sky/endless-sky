@@ -1767,7 +1767,7 @@ mission "Hai Film Crew [3]"
 		has "Hai Film Crew [2]: done"
 	on offer
 		conversation
-			`The first thing you notice when you land on Darkrest is the mess. It looks as if a tornado has touched down on the set, and you don't remember Likeet selling the movie as being about natural disasters.`
+			`The first thing you notice when you land on Darkrest is the mess. It looks as if a tornado has touched down on the set, and you don't remember Likeet talking about natural disasters when she described the movie.`
 			`	"Controlled chaos, I call it," says Likeet, who has somehow materialized beside you. "We're just clearing everything out right now, making sure we didn't forget anything, the usual."`
 			`	It takes a few hours to load everything onto your ship. Once you're finished, the only sign that anyone was here is that the station's surfaces are free of dust.`
 			`	"Alright, captain. We'll need to get to <destination>, so that we can edit the raw footage in our studio. Gonna be nice to finally be back on a planet instead of this tin can." She pauses, as if she's trying to remember a line. "Oh yeah, I'll pay you <payment> once we've arrived. Let's get out of here."`
