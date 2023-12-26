@@ -201,8 +201,9 @@ void GameAction::LoadSingle(const DataNode &child)
 		{
 			if(grand.Token(0) == "location" && grand.HasChildren())
 			{
-				relocateAction.isDefined = true;
 				relocateAction.relocateFilter.Load(grand);
+				if(relocateAction.relocateFilter.IsValid())
+					relocateAction.isDefined = true;
 			}
 			else if(grand.Token(0) == "flagship only")
 				relocateAction.relocateFlagshipOnly = true;
@@ -403,7 +404,7 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, bool imme
 	{
 		player.QueueRelocation(relocateAction.relocateFilter.PickPlanet(player.GetSystem()),
 							relocateAction.relocateFlagshipOnly);
-		if(immediateRelocation)
+		if(true)
 			player.DoQueuedRelocation();
 	}
 
@@ -447,9 +448,7 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 	result.fail = fail;
 	result.failCaller = failCaller;
 
-	result.relocateAction.isDefined = relocateAction.isDefined;
-	result.relocateAction.relocateFilter = relocateAction.relocateFilter;
-	result.relocateAction.relocateFlagshipOnly = relocateAction.relocateFlagshipOnly;
+	result.relocateAction = relocateAction;
 
 	result.conditions = conditions;
 

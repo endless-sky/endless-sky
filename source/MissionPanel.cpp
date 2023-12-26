@@ -949,9 +949,10 @@ void MissionPanel::Accept(bool force)
 	}
 
 	++availableIt;
-	player.AcceptJob(toAccept, GetUI());
 	if(toAccept.GetAction(Mission::ACCEPT).HasRelocation())
 		GetUI()->Pop(this);
+	player.AcceptJob(toAccept, GetUI());
+
 
 	cycleInvolvedIndex = 0;
 

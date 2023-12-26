@@ -399,7 +399,9 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 			// Action nodes are able to perform various actions, e.g. changing
 			// the player's conditions, granting payments, triggering events,
 			// and more. They are not allowed to spawn additional UI elements.
-			conversation.GetAction(node).Do(player, nullptr, caller);
+			conversation.GetAction(node).Do(player, nullptr, caller, false);
+			if(conversation.GetAction(node).HasRelocation())
+				UI().Pop(this);
 		}
 		else if(conversation.ShouldDisplayNode(player.Conditions(), node))
 		{
