@@ -1926,6 +1926,7 @@ Comment: Derived from works by Michael Zahniser (under the same license) and Eva
 Files:
  images/hardpoint/blaze-pike*
  images/hardpoint/korath?inferno*
+ images/hardpoint/mining?laser?turret*
  images/hardpoint/shunt-strike*
  images/icon/firelight*
  images/outfit/blaze?pike*
@@ -1934,6 +1935,7 @@ Files:
  images/outfit/firelight?rack*
  images/outfit/korath?inferno*
  images/outfit/mining?laser*
+ images/outfit/mining?laser?turret*
  images/outfit/shunt-strike*
  images/planet/station4c*
  images/planet/station5c*
