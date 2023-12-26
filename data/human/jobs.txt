@@ -2985,7 +2985,7 @@ mission "Bounty Hunting (Very Tiny, Local)"
 			has "ships: Interceptor"
 			has "ships: Light Warship"
 		"combat rating" < 80
-		random < 30
+		random < 15
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
@@ -3034,7 +3034,7 @@ mission "Bounty Hunting (Tiny)"
 			has "ships: Interceptor"
 			has "ships: Light Warship"
 		"combat rating" < 200
-		random < 35
+		random < 30
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
@@ -3087,7 +3087,7 @@ mission "Bounty Hunting (Tiny, Local)"
 			has "ships: Interceptor"
 			has "ships: Light Warship"
 		"combat rating" < 200
-		random < 25
+		random < 20
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
@@ -3138,7 +3138,7 @@ mission "Bounty Hunting (Very Small)"
 			has "ships: Light Warship"
 			has "ships: Medium Warship"
 		"combat rating" < 350
-		random < 30
+		random < 25
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
@@ -3235,7 +3235,7 @@ mission "Bounty Hunting (Small)"
 	to offer
 		"combat rating" > 200
 		"combat rating" < 500
-		random < 30
+		random < 25
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
@@ -3321,7 +3321,7 @@ mission "Bounty Hunting (Medium)"
 	to offer
 		"combat rating" > 350
 		"combat rating" < 1200
-		random < 30
+		random < 25
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
@@ -3395,7 +3395,7 @@ mission "Bounty Hunting (Big)"
 	to offer
 		"combat rating" > 500
 		"combat rating" < 2500
-		random < 30
+		random < 25
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
