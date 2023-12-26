@@ -39,15 +39,11 @@ struct Receipt {
 // over time.
 class Account {
 public:
-	// -- Load or save account data.
-
 	// Load account information from a data file (saved game or starting conditions).
 	void Load(const DataNode &node, bool clearFirst);
 
 	// Write account information to a saved game file.
 	void Save(DataWriter &out) const;
-
-	// -- Functions operating on the player's credits.
 
 	// Get much the player currently has in the bank.
 	int64_t Credits() const;
@@ -59,12 +55,8 @@ public:
 	// the calling function needs to check that this will not result in negative credits.
 	void AddCredits(int64_t value);
 
-	// -- Functions operating on the player's credit score.
-
 	// Get the player's credit rating.
 	int CreditScore() const;
-
-	// -- Functions operating on the player's history.
 
 	// Access the history of the player's net worth.
 	const std::vector<int64_t> &History() const;
@@ -76,8 +68,6 @@ public:
 	// If the length exceeds the allowed length, the earliest entry will
 	// be deleted.
 	void AddHistory(int64_t amount);
-
-	// -- Functions operating on the player's mortgages and fines.
 
 	// Access the list of mortgages.
 	const std::vector<Mortgage> &Mortgages() const;
@@ -97,8 +87,6 @@ public:
 	// Get the total amount owed for "Mortgage", "Fine", or both.
 	int64_t TotalDebt(const std::string &type = "") const;
 
-	// -- Functions operating on the player's crew salaries.
-
 	// Access the overdue crew salaries.
 	int64_t OverdueCrewSalaries() const;
 
@@ -108,8 +96,6 @@ public:
 	// Pay off the current overdue crew salaries by a given amount.
 	void PayOverdueCrewSalaries(int64_t amount);
 
-	// -- Functions operating on the player's overdue maintenance.
-
 	// Access the overdue maintenance costs.
 	int64_t OverdueMaintenance() const;
 
@@ -118,8 +104,6 @@ public:
 
 	// Pay off the current overdue maintenance by a given amount.
 	void PayOverdueMaintenance(int64_t amount);
-
-	// -- Functions operating on the player's salaries.
 
 	// Access the map of player salaries.
 	const std::map<std::string, int64_t> &SalariesIncome() const;
@@ -131,8 +115,6 @@ public:
 	// salaries if it does not already exist, or modify and existing salary.
 	// If the amount passed in is 0, then the salary will be removed.
 	void SetSalariesIncome(const std::string &name, int64_t amount);
-
-	// -- Miscellaneous Functions
 
 	// Step forward one day, and return a string summarizing payments made.
 	// NOTE: This function may modify account data during operation.
