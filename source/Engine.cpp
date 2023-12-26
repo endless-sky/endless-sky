@@ -2226,8 +2226,6 @@ void Engine::DoCollisions(Projectile &projectile)
 				if(eventType)
 					eventQueue.emplace_back(gov, ship->shared_from_this(), eventType);
 			}
-			// Blast radius projectiles can only explode once in a frame.
-			break;
 		}
 		else if(hit)
 		{
