@@ -1173,7 +1173,6 @@ mission "Sheragi Archaeology: The Box 7b"
 			`	You produce an image of the cube that you found on your holopad. The curator stares at it, and then slowly turns to you with pity in his eyes.`
 			`	"This box is red," he says gently. "I read a thesis once on the prevalence of color blindness in humans, but-"`
 			`	You interrupt the curator and explain that 'black box', in human terminology, refers to a device used to collect and preserve flight data in the event of a catastrophic failure.`
-			`	Recognition seems to dawn on him.`
 			`	"A Sheragi 'black box', you say? That's an incredible find! Be careful about the information it contains, though. They are a doomed species. Don't you humans have a legend about a cursed box? What was it... Pandora's Box?`
 			label end
 			`	"In any case... I am not authorized to sell you documents, I just take care of artifacts here. Giving Sheragi technology to humans will likely be a very bureaucratic process. I suggest you contact the Ministry of Culture on Hai-home."`
