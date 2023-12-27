@@ -1854,6 +1854,15 @@ event "navy expand typhoon sales"
 		"Typhoon Pod"
 		"Typhoon Storage Tube"
 
+mission "Navy expands typhoon sales"
+	invisible
+	landing
+	to offer
+		has "event: deep sky tech available"
+	on offer
+		event "navy expand typhoon sales" 120
+		fail
+
 
 
 event "navy out of rastaban"
