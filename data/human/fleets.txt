@@ -163,6 +163,11 @@ fleet "Large Southern Merchants"
 	variant 1
 		"Bulk Freighter (Long Haul)"
 		"Berserker (Strike)" 4
+	variant 1
+		"Hogshead"
+	variant 1
+		"Hogshead"
+		"Sparrow"
 
 fleet "Small Core Merchants"
 	government "Merchant"
@@ -706,6 +711,11 @@ fleet "Large Northern Merchants"
 	variant 1
 		"Star Queen"
 		"Firebird (Plasma)" 2
+	variant 1
+		"Hogshead"
+		"Firebird"
+	variant 1
+		"Firebird (Plasma)"
 	variant 8
 		"Hauler III"
 		"Hauler II"

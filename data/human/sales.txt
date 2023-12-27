@@ -61,6 +61,9 @@ shipyard "Betelgeuse Advanced"
 	"Star Queen"
 	"Hauler"
 
+shipyard "Tycho Crater Advanced" 
+	"Hogshead"
+
 shipyard "Navy Basics"
 	"Rainmaker"
 	"Gunboat"
