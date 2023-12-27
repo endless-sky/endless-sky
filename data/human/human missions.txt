@@ -7138,7 +7138,7 @@ mission "Adelita 4"
 					goto "call drones"
 
 			`	"You're the captain," Bunker responds in a sore tone. Meanwhile, you continue to watch the display. It takes a couple minutes before the last of the slaves are loaded, followed by the security team. The two men in the suit and hood are the last to board their ships.`
-			`	You barely notice the humming of thrusters from outside just as the <ship> receives a hail of particle cannon fire from a pirate Quicksilver, appearing seemingly from nowhere as they whittle down the shield down in a split second. You shunt your repulsors to full blast to get into orbit, but another pair of Quicksilvers send another volley of fire that breaks through and takes your ship's repulsors offline. The last thing you experience is the ship slowing to a halt, pausing in the air for just a moment before the pilot seat goes out underneath you, the cockpit filled with screams as the <ship> makes a one way trip towards the surface.`
+			`	You barely notice the humming of thrusters from outside just as the <ship> receives a hail of particle cannon fire from a pirate Quicksilver, appearing seemingly from nowhere as they whittle the shields down in a split second. You shunt the <ship>'s repulsors to full blast to get into orbit, but another pair of Quicksilvers send another volley of particle fire that breaks through and takes the repulsors offline. The last thing you experience is the ship slowing to a halt, pausing in the air for just a moment before the pilot seat goes out underneath you, the cockpit filled with screams as the <ship> makes a one way trip towards the surface.`
 				die
 
 			label "see us"
@@ -7172,7 +7172,7 @@ mission "Adelita 4"
 				launch
 
 			label blaster
-			`	You get up and point your pistol at Bunker while ordering him to stand down. "Don't do this," he says. You turn around to look for the handcuffs when you notice a slight hum from outside before getting raked with particle fire from the pirate Quicksilvers, who have found your location and are now speeding towards you. You try to pull out to space but another flotilla of Quicksilvers appear, sending even more volleys of particle fire at you. The <ship>'s repulsors are hit and you feel your pilot seat go out underneath you as your ship falls from the sky, exploding on impact with <origin>'s surface.`
+			`	You get up and point your pistol at Bunker while ordering him to stand down. "Don't do this," he says, shrinking from you as he puts his hands up. As you are restraining him, you notice the humming of thrusters from outside - then the <ship> receives a hail of particle cannon fire out of nowhere! You turn around and see pirate Quicksilvers all converging towards you, whittling the <ship>'s shields down in a split second. You shunt the <ship>'s repulsors to full blast to get into orbit, but a volley of particle fire breaks through and takes the repulsors offline. The last thing you experience is the ship slowing to a halt, pausing in the air for just a moment before the pilot seat goes out underneath you, the cockpit filled with screams as the <ship> makes a one way trip towards the surface.`
 				die
 
 	npc
@@ -7201,16 +7201,16 @@ mission "Adelita 5"
 
 	on offer
 		conversation
-			branch experienced
+			branch "killed pirates"
 				has "adelita: killed pirates"
 
-			`It was close, but you make it back to Maker. Ale and River are soon on board and excited to be out of their disguises, and they spend a lot of time talking with Bunker about his part of the mission. Although exhausted, both are eager to get back and process what they filmed - both emotionally and literally.`
-			`	"That was horrible, but we got it done," Ale mumbled. "Can we leave now?"`
+			`You managed to evade the Quicksilvers and arrive on <origin> alive. As soon as you land Ale and River rush on board, obviously relieved to be out of their disguises, and they spend a lot of time talking with Bunker about his part of the mission. Although exhausted, both are eager to get back and process what they filmed - both emotionally and literally.`
+			`	"That was horrible, but we got it done," Ale mumbles. "Can we leave now?"`
 				launch
 
-			label experienced
-			`With the pirates neutralized, Ale and River are soon on board and excited to be out of their disguises, and they spend a lot of time talking with Bunker about his part of the mission. Although exhausted, both are eager to get back and process what they filmed - both emotionally and literally.`
-			`	"That was horrible, but we got it done. Can we leave now?" asks Ale.`
+			label "killed pirates"
+			`You managed to neutralize the Quicksilvers and arrive on <origin> alive. As soon as you land Ale and River rush on board, obviously relieved to be out of their disguises, and they spend a lot of time talking with Bunker about his part of the mission. Although exhausted, all of them are eager to get back and process what they filmed - both emotionally and literally.`
+			`	"That was horrible, but we got it done," Ale mumbles. "Can we leave now?"`
 				launch
 
 	on visit
