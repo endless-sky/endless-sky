@@ -163,7 +163,7 @@ fleet "Large Southern Merchants"
 	variant 1
 		"Bulk Freighter (Long Haul)"
 		"Berserker (Strike)" 4
-	variant 1
+	variant 2
 		"Hogshead"
 	variant 1
 		"Hogshead"
@@ -405,6 +405,8 @@ fleet "Large Core Merchants"
 	variant 2
 		"Bulk Freighter" 2
 		"Vanguard" 1
+	variant 1
+		"Hogshead"
 
 fleet "Paradise Merchants"
 	government "Merchant"
@@ -469,6 +471,8 @@ fleet "Paradise Merchants"
 		"Scout (Speedy)"
 	variant 1
 		"Container Transport (Short Haul)"
+	variant 1
+		"Hogshead"
 
 fleet "Small Northern Merchants"
 	government "Merchant"
@@ -715,6 +719,7 @@ fleet "Large Northern Merchants"
 		"Hogshead"
 		"Firebird"
 	variant 1
+		"Hogshead"
 		"Firebird (Plasma)"
 	variant 8
 		"Hauler III"
@@ -1996,12 +2001,12 @@ fleet "Small CCOR"
 	personality
 		disables plunders harvests
 	variant 5
+		"Berserker"
+	variant 3
 		"Berserker (CCOR)"
 	variant 1
-		"Berserker (CCOR)" 2
-	variant 2
 		"Enforcer"
-	variant 2
+	variant 1
 		"Enforcer (CCOR)"
 	variant 1
 		"Saber"
@@ -2011,7 +2016,7 @@ fleet "Small CCOR"
 		"Saber (CCOR)"
 		"Berserker (CCOR)"
 	variant 1
-		"Berserker (CCOR)" 2
+		"Berserker (CCOR)"
 		"Enforcer (CCOR)"
 
 fleet "Large CCOR"
@@ -2020,9 +2025,9 @@ fleet "Large CCOR"
 	cargo 1
 	personality
 		disables plunders harvests
-	variant 1
-		"Berserker (CCOR)" 2
 	variant 2
+		"Berserker (CCOR)" 2
+	variant 3
 		"Firebird (CCOR)"
 	variant 1
 		"Firebird (CCOR)"
@@ -2043,14 +2048,14 @@ fleet "Large CCOR"
 		"Saber (CCOR)"
 		"Enforcer (CCOR)"
 		"Berserker (CCOR)"
-	variant 2
+	variant 1
 		"Hauler II"
 	variant 1
 		"Hauler II (CCOR)"
 	variant 1
 		"Hauler II (CCOR)"
 		"Berserker (CCOR)"
-	variant 2
+	variant 1
 		"Hogshead"
 	variant 1
 		"Hogshead (CCOR)"
