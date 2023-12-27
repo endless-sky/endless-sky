@@ -443,3 +443,17 @@ double Projectile::DistanceTraveled() const
 {
 	return distanceTraveled;
 }
+
+
+
+bool Projectile::Phases(const Ship &ship) const
+{
+	return phasedShip == &ship;
+}
+
+
+
+void Projectile::SetPhases(const Ship *ship)
+{
+	phasedShip = ship;
+}
