@@ -184,6 +184,8 @@ public:
 
 	double Piercing() const;
 
+	double Prospecting() const;
+
 	double TotalLifetime() const;
 	double Range() const;
 
@@ -328,6 +330,8 @@ private:
 
 	double piercing = 0.;
 
+	double prospecting = 0.;
+
 	double rangeOverride = 0.;
 	double velocityOverride = 0.;
 
@@ -393,6 +397,8 @@ inline double Weapon::RelativeFiringHull() const{ return relativeFiringHull; }
 inline double Weapon::RelativeFiringShields() const{ return relativeFiringShields; }
 
 inline double Weapon::Piercing() const { return piercing; }
+
+inline double Weapon::Prospecting() const { return prospecting; }
 
 inline double Weapon::SplitRange() const { return splitRange; }
 inline double Weapon::TriggerRadius() const { return triggerRadius; }

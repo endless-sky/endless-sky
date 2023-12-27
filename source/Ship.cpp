@@ -1306,7 +1306,7 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 {
 	this->position = position;
 	this->velocity = velocity;
-	this->angle = angle;
+	this->Turn(angle);
 
 	// If landed, place the ship right above the planet.
 	// Escorts should take off a bit behind their flagships.
@@ -2128,6 +2128,40 @@ int Ship::GetHyperspacePercentage() const
 bool Ship::IsUsingJumpDrive() const
 {
 	return (hyperspaceSystem || hyperspaceCount) && isUsingJumpDrive;
+}
+
+
+
+// Check if this ship is allowed to land on this planet, accounting for its personality.
+bool Ship::IsRestrictedFrom(const Planet &planet) const
+{
+	// The player's ships have no travel restrictions.
+	if(isYours || !government)
+		return false;
+
+	bool restrictedByGov = government->IsRestrictedFrom(planet);
+	// Special ships (such as NPCs) are unrestricted by default and must be explicitly restricted
+	// by their government's travel restrictions in order to follow them.
+	if(isSpecial)
+		return personality.IsRestricted() && restrictedByGov;
+	return !personality.IsUnrestricted() && restrictedByGov;
+}
+
+
+
+// Check if this ship is allowed to enter this system, accounting for its personality.
+bool Ship::IsRestrictedFrom(const System &system) const
+{
+	// The player's ships have no travel restrictions.
+	if(isYours || !government)
+		return false;
+
+	bool restrictedByGov = government->IsRestrictedFrom(system);
+	// Special ships (such as NPCs) are unrestricted by default and must be explicitly restricted
+	// by their government's travel restrictions in order to follow them.
+	if(isSpecial)
+		return personality.IsRestricted() && restrictedByGov;
+	return !personality.IsUnrestricted() && restrictedByGov;
 }
 
 
@@ -4267,7 +4301,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 				slowness += scale * attributes.Get("turning slowing");
 				disruption += scale * attributes.Get("turning disruption");
 
-				angle += commands.Turn() * TurnRate() * slowMultiplier;
+				Turn(commands.Turn() * TurnRate() * slowMultiplier);
 			}
 		}
 		double thrustCommand = commands.Has(Command::FORWARD) - commands.Has(Command::BACK);
