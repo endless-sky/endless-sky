@@ -7045,7 +7045,8 @@ mission "Adelita 2"
 				`	"I am Captain <first> <last>. Well met."`
 				`	"Hi, I'm <first>."`
 					goto loadup
-			`	They all frown at your formality.`
+			`	They all frown at your formality. "Well, let's load up," says Bunker.`
+				accept
 
 			label loadup
 			`	"Good. Now that that's done with, let's load up," says Bunker, before letting out a holler. "Taking down the Man. I love it!"`
@@ -7137,7 +7138,7 @@ mission "Adelita 4"
 					goto "call drones"
 
 			`	"You're the captain," Bunker responds in a sore tone. Meanwhile, you continue to watch the display. It takes a couple minutes before the last of the slaves are loaded, followed by the security team. The two men in the suit and hood are the last to board their ships.`
-			`	You notice a slight hum from outside before getting raked with particle fire from the pirate Quicksilvers. You try to pull out to space but another pair of Quicksilvers appear, sending even more volleys of particle fire at you. The <ship>'s repulsors are hit and you feel your pilot seat go out underneath you as your ship falls from the sky, exploding on impact with <origin>'s surface.`
+			`	You barely notice the humming of thrusters from outside just as the <ship> receives a hail of particle cannon fire from a pirate Quicksilver, appearing seemingly from nowhere as they whittle down the shield down in a split second. You shunt your repulsors to full blast to get into orbit, but another pair of Quicksilvers send another volley of fire that breaks through and takes your ship's repulsors offline. The last thing you experience is the ship slowing to a halt, pausing in the air for just a moment before the pilot seat goes out underneath you, the cockpit filled with screams as the <ship> makes a one way trip towards the surface.`
 				die
 
 			label "see us"
