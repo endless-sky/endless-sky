@@ -2716,7 +2716,7 @@ planet "Mendez Station"
 	attributes ccor station
 	landscape land/station20
 	music ambient/machinery
-	description `Mendez Station is the closest object to Alpherg's twin stars. Built by the CCOR as part of its efforts to build self-sufficiency in the Outer Rim, the station's gigantic ramscoops collect the system's solar wind and refine it into hyperdrive fuel.`
+	description `Mendez Station is the closest object to Alpherg's twin stars. Constructed by the CCOR as part of its efforts to build self-sufficiency in the Outer Rim, the station's gigantic ramscoops collect charged particles from the system's solar winds and refine them into hyperdrive fuel.`
 	description `	Since its establishment, Mendez has been uninhabited for most of its operational life. The station's location makes it uncomfortably hot, and as a result, Mendez is almost entirely automated apart from a small control room used during maintenance.`
 	government "Uninhabited"
 	bribe 0.2
