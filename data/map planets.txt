@@ -2272,7 +2272,7 @@ planet Jakobsen
 	attributes ccor farming
 	landscape land/sea4
 	description `Jakobsen is an ocean world with only 6% of its surface above sea level. The land consists almost exclusively of volcanic islands and atolls, as any land not refreshed by plate tectonics is slowly being eroded away by the immense seasonal storms that wreathe the planet.`
-	description `	Despite these conditions, Jakobsen is an agricultural world, with vast fields of algae cultivated both to sustain the atmosphere's oxygen content and provide a nutritious, if bland, staple food.`
+	description `	Despite these conditions, Jakobsen is an agricultural world, with vast fields of algae cultivated both to sustain the atmosphere's oxygen content and to provide a nutritious, if bland, staple food.`
 	spaceport `The spaceport is a wholly artificial island constructed near the center of one of the larger archipelagos. Surrounded by breakwaters and raised several meters above the water line, the landing platforms are partially protected from the dangers of the planet's storms; additionally, the smaller pads can be lowered into underground hangars to prevent them from being swept away.`
 	outfitter "Basic Outfits"
 	outfitter "Common Outfits"
