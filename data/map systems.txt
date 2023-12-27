@@ -6497,7 +6497,7 @@ system Beginning
 			period 11.563
 
 system Belenos
-		pos -901.111 279.139
+	pos -901.111 279.139
 	government Pirate
 	arrival 1310
 	habitable 1310
@@ -14560,7 +14560,6 @@ system Fumalsamakah
 			offset 92
 	object
 		sprite planet/gas1
-			scale 1.3
 		distance 6016.11
 		period 2494.24
 		object
