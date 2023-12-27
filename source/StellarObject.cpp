@@ -161,12 +161,25 @@ void StellarObject::UpdateDistanceVisibility(const Ship *ship)
 	if(trueDistanceInvisible < 0.)
 		return;
 
+	for(const auto &clearer : distanceVisibilityClearers)
+		if(ship->Attributes().Get(clearer))
+		{
+			distanceInvisible = -1.;
+			return;
+		}
+
 	double totalMod = 1.;
-	for(const auto &modifier : distanceVisibilityModifiers)
-		if(ship->Attributes().Get(modifier))
-			totalMod *= ship->Attributes().Get(modifier);
-	distanceInvisible = trueDistanceInvisible * totalMod;
-	distanceVisible = trueDistanceVisible * totalMod;
+	for(const auto &multiplier : distanceVisibilityMultipliers)
+		if(ship->Attributes().Get(multiplier))
+			totalMod *= ship->Attributes().Get(multiplier);
+
+	double totalAdd = 0.;
+	for(const auto &adder : distanceVisibilityAdders)
+		if(ship->Attributes().Get(adder))
+			totalAdd += ship->Attributes().Get(adder);
+
+	distanceInvisible = trueDistanceInvisible * totalMod + totalAdd;
+	distanceVisible = trueDistanceVisible * totalMod + totalAdd;
 }
 
 
