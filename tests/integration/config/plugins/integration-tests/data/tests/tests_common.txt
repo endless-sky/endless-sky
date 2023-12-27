@@ -601,45 +601,12 @@ test "Buy First Ship"
 			key l
 
 
-test "Wait 55 steps"
-	status partial
-	description "Wait 55 steps for something that requires some time, like launching or loading the game."
-	sequence
-		apply
-			"test: wait 55" = 55
-		label wait_load
-		apply
-			"test: wait 55" -= 1
-		input
-		branch wait_load
-			"test: wait 55" > 0
-
-
-test "Wait 10 steps"
-	status partial
-	description "Wait 10 steps, for instance to give time for the game to propagate conditions, or load something."
-	sequence
-		apply
-			"test: wait 10" = 10
-		label wait
-		apply
-			"test: wait 10" -= 1
-		input
-		branch wait
-			"test: wait 10" > 0
-
-
 test "Start Game"
-	status active
+	status broken
 	description "Test if one can start the game correctly: choose a name and buy a ship."
 	sequence
-		watchdog 1000
 		call "Create New Pilot"
-		# the game needs a few steps to load the new pilot
-		call "Wait 55 steps"
 		call "Buy First Ship"
-		# game needs time to process showing the mission
-		call "Wait 10 steps"
 		# beat it, old timer
 		input
 			key 3
@@ -694,41 +661,23 @@ test "Depart"
 	sequence
 		input
 			key d
-		# The game needs 2 gamesteps for processing the launch before commands like the jump command can be given.
-		# Using empty inputs to trigger those game loops.
-		input
-		input
-		# The ships zoom gets restored at a rate of .02 per step, so wait for a bit more than 50 steps to get to full zoom/full control.
-		call "Wait 55 steps"
 
 
 test "Depart and Ignore Warning Message"
 	status partial
 	description "Helper function to depart from a planet when a message requiring acknowledgement via keyboard input is expected."
 	sequence
-		input
-			key d
-		# The game needs 2 gamesteps for processing the launch before commands like the jump command can be given.
-		# Using empty inputs to trigger those game loops.
-		input
-		input
+		call "Depart"
 		# Acknowledge the expected message
 		input
 			key "Return"
-		# The ships zoom gets restored at a rate of .02 per step, so wait for a bit more than 50 steps to get to full zoom/full control.
-		call "Wait 55 steps"
 
 
 test "Depart and Abort on Warning Message"
 	status partial
 	description "Helper function to attempt departure from a planet, then stop when an expected warning message is given."
 	sequence
-		input
-			key d
-		# The game needs 2 gamesteps for processing the launch before commands like the jump command can be given.
-		# Using empty inputs to trigger those game loops.
-		input
-		input
+		call "Depart"
 		# Acknowledge the expected message and abort take off.
 		input
 			key "Escape"
@@ -759,8 +708,6 @@ test "Land"
 		input
 			command land
 		label "landing"
-		# empty input to make time pass
-		input
 		branch "landing"
 			"flagship landed" == 0
 
@@ -771,6 +718,8 @@ test "Trigger Ruin Spaceport Mission"
 	description "Launch, land, and go to the spaceport to trigger any potential missions."
 	sequence
 		call "Depart"
+		navigate
+			"travel destination" Ruin
 		call "Land"
 		input
 			key p
@@ -781,6 +730,8 @@ test "Trigger Prime Spaceport Mission"
 	description "Launch, land, and go to the spaceport to trigger any potential missions."
 	sequence
 		call "Depart"
+		navigate
+			"travel destination" Prime
 		call "Land"
 		input
 			key p

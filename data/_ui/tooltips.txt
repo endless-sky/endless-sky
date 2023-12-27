@@ -15,8 +15,11 @@
 tip "acceleration:"
 	`How quickly this ship gains speed. The higher a ship's mass (including the mass of any cargo or fighters it is carrying), the slower it accelerates.`
 
+tip "acceleration multiplier:"
+	`Modifies the ship's acceleration by the given factor.`
+
 tip "active cooling:"
-	`Cooling provided per second when running at full strength. Active cooling requires energy, but if your heat level is low it runs at a lower cooling rate and lower energy draw. The amount of cooling is proportional to the temperature of your ship, reaching the full level only if your ship is overheated.`
+	`Cooling provided per second when running at full strength. Active cooling requires energy, but if your heat level is low it runs at a lower cooling rate and lower energy draw. The amount of cooling is proportional to the temperature of your ship, reaching the full level only if you are about to overheat.`
 
 tip "afterburner energy:"
 	`Energy consumed per second when firing this afterburner.`
@@ -130,7 +133,7 @@ tip "cooling:"
 	`Heat dissipated per second. This is for when your ship's built-in heat dissipation is not sufficient to keep it from overheating.`
 
 tip "cooling energy:"
-	`Energy consumed per second when active cooling is running at full strength (because your ship is overheated).`
+	`Energy consumed per second when active cooling is running at full strength (because your ship's temperature is approaching the overheating threshold).`
 
 tip "cooling inefficiency:"
 	`Interference with your ship's cooling abilities. Its cooling systems will only be about 75% effective at a cooling inefficiency of 5, and 30% at an inefficiency of 10.`
@@ -633,6 +636,9 @@ tip "turn:"
 tip "turning:"
 	`Turn rate, in degrees per second. The higher a ship's mass (including the mass of any cargo or fighters it is carrying), the slower it turns.`
 
+tip "turn multiplier:"
+	`Modifies the ship's rate of turn by the given factor.`
+
 tip "turning energy:"
 	`Energy consumed per second when turning.`
 
@@ -767,6 +773,12 @@ tip "ammo usage:"
 
 tip "range:"
 	`Total range of this weapon.`
+
+tip "dropoff modifier:"
+	`The multiplier applied to the damage of this weapon once its projectile has reached the maximum dropoff range.`
+
+tip "dropoff range:"
+	`The starting and ending range between which the damage of this weapon ramps from 100% to the displayed dropoff modifier.`
 
 tip "shield damage / second:"
 	`Shield damage dealt per second.`
@@ -1092,23 +1104,251 @@ tip "This outfit is considered an atrocity."
 
 
 # Controls
-tip `Reverse`
-	`Turn opposite to the flight direction (or use reverse engines if you have them installed). Combine with <shift> key to stop your ship.`
+tip "Forward thrust"
+	`Accelerate your flagship forward.`
+
+tip "Turn left"
+	`Turn your flagship left.`
+
+tip "Turn right"
+	`Turn your flagship right.`
+
+tip "Reverse"
+	`Turn your flagship opposite its current direction of flight. If reverse thrusters are installed, accelerate backwards.`
+	`With <shift>, stop your ship.`
+
+tip "Fire afterburner"
+	`Fire your flagship's afterburner, if one is installed.`
+
+tip "Auto steer"
+	`If the "Automatic aiming" setting is off, activate automatic aiming when this key is held.`
+
+tip "Land on planet / station"
+	`Land on the selected planet. If no planet is selected, automatically selects a planet to land on, or attempts to land on the planet you are directly on top of if traveling at low speeds. If a planet is already selected, double tapping will cycle to the next planet.`
+
+tip "Initiate hyperspace jump"
+	`Initiate a hyperspace jump to follow your current travel plan. If you have no travel plan, initiates a jump nearest to your current facing angle. When held, commands your escorts to get ready to jump and only initiates the jump when released.`
+	`With <shift>, your fleet will not jump until every ship in the fleet is ready for every system in the travel plan instead of needing to hold the key at each system.`
+
+tip "View star map"
+	`Open the star map panel.`
+
+tip "View player info"
+	`Open the player info panel.`
+
+tip "Select nearest hostile ship"
+	`Select the nearest hostile ship.`
+	`With <shift>, select the nearest ship regardless of hostility.`
+
+tip "Select next ship"
+	`Select the next non-escort ship in the system, cycling through all ships.`
+	`With <shift>, cycle through escorts.`
+
+tip "Talk to selected ship"
+	`Hail the selected ship or planet. If both a ship and planet are selected, hails the ship.`
+	`With <shift>, hails the planet.`
+
+tip "Board selected ship"
+	`Board the selected ship. If no boardable ship is selected, selects a ship to board based on the "Boarding target priority" setting.`
+	`With <shift>, selects an escort to board.`
+
+tip "Select nearest asteroid"
+	`Select the nearest asteroid based on the "Target asteroid based on" setting.`
+
+tip "Scan selected ship"
+	`Scan the selected ship, if you have outfit or cargo scanners installed.`
+
+tip "Fire primary weapon"
+	`Fire all of your flagship's primary weapons. The "automatic firing" setting will fire only those weapons that are within your target's range.`
+
+tip "Select secondary weapon"
+	`Cycle to your flagship's next secondary weapon. After cycling through all secondary weapons individually, selects every secondary weapon at once, then selects no weapons.`
+
+tip "Fire secondary weapon"
+	`Fire your flagship's selected secondary weapon(s).`
+
+tip "Toggle cloaking device"
+	`Activate or deactivate your fleet's cloaking devices, if any are installed.`
+
+tip "Mouse turning (hold)"
+	`Cause your flagship to turn toward your mouse if this key is held. To have mouse turning always active, activate the "Control ship with mouse" setting. If that setting is active, holding this key deactivates mouse turning.`
+
+tip "Show main menu"
+	`Open the main menu.`
+
+tip "Toggle fullscreen"
+	`Toggle whether the game is in fullscreen mode.`
+
+tip "Toggle fast-forward"
+	`Toggle a 3x speed fast-forward. Fast-forward may be automatically deactivated by the "Interrupt fast-forward" setting.`
+
+tip "Show help"
+	`Display the help dialogs that are relevant to your current UI panel and situation. Uses the same help dialogs from the "Reactivate first-time help" setting, forcing them to appear even if they have already appeared before.`
+
+tip "Deploy / recall fighters"
+	`Deploy or recall carried ships (e.g. fighters, drones) in your fleet. Requires carriers with space to hold the carried ships.`
+
+tip "Fleet: Fight my target"
+	`Command your entire fleet to focus fire on the selected target. If only some escorts are selected, only sends the command to those escorts. This command can also be sent by right clicking on a hostile ship.`
+
+tip "Fleet: Gather around me"
+	`Command your fleet to gather around your flagship. If only some escorts are selected, only sends the command to those escorts. You can also command escorts to gather around another ship by right clicking on a friendly ship.`
+
+tip "Fleet: Hold position"
+	`Command your fleet to gather around your flagship. If only some escorts are selected, only sends the command to those escorts. This command can also be sent by right clicking on empty space.`
+
+tip "Fleet: Toggle ammo usage"
+	`Toggle the "Escorts expend ammo" setting.`
+
+tip "Fleet: Harvest flotsam"
+	`Command your fleet to harvest nearby flotsam (e.g. dropped cargo). The "Flotsam collection" setting must allow your escorts to pick up flotsam in order to harvest it.`
 
 
 
 # Settings
+tip "Main zoom factor"
+	`Increase the main zoom factor (the size of the UI and gameplay). Wraps back to 100 if the zoom exceeds your screen's limits. If the zoom factor is greater than 100, activates high DPI images if they are available.`
+
+tip "View zoom factor"
+	`Increase the zoom factor of the gameplay view when in flight. Can also be changed by the + and - keys and the scroll wheel.`
+
+tip "Screen mode"
+	`Toggle whether the game is in windowed or fullscreen mode. Can also be toggled by the "Toggle fullscreen" control.`
+
+tip "VSync"
+	`Toggle vsync between off, on, and adaptive (should your computer support it).`
+
+tip "Show CPU / GPU load"
+	`Display the CPU and GPU load at the top of the screen while in flight. Loads are presented as a percentage of a frame (1/60th of a second) that it takes to calculate or draw each frame. >100% load (or >33% when fast-forward is active) means the game will run slower.`
+
+tip "Render motion blur"
+	`Toggle whether motion blur is rendered for all moving objects.`
+
+tip "Reduce large graphics"
+	`Reduce the size of very large graphics (images with >= 1 million pixels) to half their size. May be used to free up memory.`
+
+tip "Draw background haze"
+	`Draw the background haze when in flight.`
+
+tip "Draw starfield"
+	`Draw the background starfield when in flight.`
+
+tip "Parallax background"
+	`Add parallax to objects in the background (haze and starfield). If set to fancy, create three layers of parallax. If set to fast, create one layer of parallax.`
+
+tip "Show hyperspace flash"
+	`Create a white flash when hyperspacing between systems.`
+
+tip "Extended jump effects"
+	`Add additional motion blur to the background when jumping between systems. The medium and heavy options control how intense the effect is.`
+
+tip "Ship outlines in shops"
+	`Controls the display of your fleet ship icons when in the shipyard or outfitter. When fancy, applies a sobel filter to all ships. (This can result in high GPU load for large fleets.) When fast, just uses the ship's sprite.`
+
+tip "Show status overlays"
+	`Display status overlays over top of all ships when in flight. Status overlays display a ship's shields and hull. If the damaged option is chosen, overlays only appear on ships that have taken damage.`
+
+tip "   Show flagship overlay"
+	`Display a status overlay over top of your flagship when in flight.`
+
+tip "   Show escort overlays"
+	`Display status overlays over top of your escorts when in flight.`
+
+tip "   Show enemy overlays"
+	`Display status overlays over top of hostile ships when in flight.`
+
+tip "   Show neutral overlays"
+	`Display status overlays over top of friendly and neutral ships when in flight.`
+
+tip "Show missile overlays"
+	`Display an overlay on hostile missiles. The overlay indicates the danger of the missiles, with more powerful missiles relative to your flagship's HP being indicated more intensely.`
+
+tip "Show asteroid scanner overlay"
+	`If an asteroid scanner is installed on your flagship, display an overlay for nearby asteroids.`
+
+tip "Highlight player's flagship"
+	`Apply a green highlight to your flagship.`
+
+tip "Rotate flagship in HUD"
+	`Rotate the icon for your flagship in the HUD to match your flagship's actual rotation.`
+
+tip "Show planet labels"
+	`Display an overlay on nearby landable planets and stations.`
+
+tip "Show mini-map"
+	`Display a mini-map of nearby systems when initiating a hyperspace jump.`
+
+tip "Clickable radar display"
+	`Activate the ability to send commands to your escorts using the in-system radar mini-map.`
+
+tip "Alert indicator"
+	`Indicate when hostile ships enter your current system. Audio plays a siren. Visual displays an alert icon by the in-system radar.`
+
+tip "Extra fleet status messages"
+	`Display extra status messages about escorts in your fleet, such as when they are destroyed or scanned.`
+
+tip "Control ship with mouse"
+	`If active, your flagship will always turn toward your mouse. For activating mouse turning on a key press, see the "Mouse turning (hold)" control.`
+
 tip "Automatic aiming"
 	`Automatically turn your ship towards your target to aim fixed weapons.`
 
 tip "Automatic firing"
 	`Automatically fire your primary weapons if your enemy is within the weapon's range.`
 
-tip "Deadline blink by distance"
-	`For rush missions, subtract the distance to the destination from the deadline to determine how fast to blink the map marker.`
+tip "Turret tracking"
+	`The strategy that your fleet's turrets use when targeting hostiles. Focused tracking will target all turrets on a ship at the same hostile. Opportunistic tracking will cause turrets to target ships that they are nearest to aiming at, allowing multiple hostiles to be engaged at once.`
+
+tip "Target asteroid based on"
+	`The strategy that the "Select nearest asteroid" control uses for selecting asteroids. Proximity selects the nearest asteroid. Value selects the highest value asteroid.`
+
+tip "Boarding target priority"
+	`The strategy that the "Board selected ship" control uses for selecting ships when you have none targeted. Proximity selects the nearest ship. Value selects the highest value ship (with the value being estimated if you haven't scanned the outfits of the ship). Mixed accounts for the value divided by the distance to the ship.`
+
+tip "Escorts expend ammo"
+	`The strategy that your escorts use for determining when to fire their secondary weapons. Able to be toggled by the "Fleet: Toggle ammo usage" control. The frugal setting only fires secondary weapons when your escort's HP is low or the hostiles in the system are stronger than your fleet and friendlies.`
 
 tip "Flotsam collection"
 	`Control which of your ships can pick up cargo floating in space.`
 
+tip "Repair fighters in"
+	`The strategy used for repairing carried ships (e.g. fighters, drones) in your fleet while they are docked with their carrier. Series repairs the highest HP ship until it is fully repaired, then moves on to the next one. Parallel repairs the lowest HP ship at all times so that all ships increase in HP together.`
+
+tip "Fighters transfer cargo"
+	`Fighters transfer any cargo that they have to their carried ship when they dock.`
+
+tip "Rehire extra crew when lost"
+	`Rehires extra crew whenever you land if you lost additional (non-required) crew while in flight.`
+
+tip "Deadline blink by distance"
+	`For rush missions, subtract the distance to the destination from the deadline to determine how fast to blink the map marker.`
+
+tip "Hide unexplored map regions"
+	`Creates a dark shroud over regions of the galaxy that you haven't explored yet. The shroud is lifted as you explore systems.`
+
+tip "Show escort systems on map"
+	`If you have escorts, marks systems with escorts in them on the star map.`
+
+tip "Show stored outfits on map"
+	`If you have outfits stored on a planet, marks systems with stored outfits on the star map.`
+
 tip "System map sends move orders"
-	`Right-click on a location in the system mini-map on the galaxy map to send your escort to that location in the selected system.`
+	`Right-click on a location in the system mini-map on the galaxy map to send your escorts to that location in the selected system.`
+
+tip "Always underline shortcuts"
+	`Always underline the shortcut key for any buttons. Holding the alt key in any panel will also underline the button shortcut keys if this setting is off.`
+
+tip "Reactivate first-time help"
+	`Reactivate the first-time help dialogs.`
+
+tip "Interrupt fast-forward"
+	`Disable fast-forward whenever you land or when a conversation, dialog, or other panel appears while in flight.`
+
+tip "Landing zoom"
+	`Apply a cinematic zoom in and out when you are landing and taking off.`
+
+tip "Scroll speed"
+	`The speed of scrolling in panels that can scroll.`
+
+tip "Date format"
+	`The format that dates in the game are displayed in.`

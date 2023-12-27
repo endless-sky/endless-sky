@@ -1180,7 +1180,7 @@ mission "Heliarch Expedition 4"
 		event "heliarch expedition break 2" 275 496
 		conversation
 			`The Punisher's captain had you follow his ship all over the planet after they refueled in <planet>'s odd facilities. Apparently they want an isolated place to set up their camp here, somewhere they wouldn't be easily spotted.`
-			`	They settle for a cavern on the way up a mountain, overlooking a foggy valley. A river is faintly visible through the dense fog. As they unload the cargo and start setting up, the captain comes to you. He is a young Arach, and his previous demeanor of taking worried glances at the sky has grown even more intense here, as he struggles to so much as look at you as he begins talking. "In the name of the crew, thank you I must for guiding us, Captain <last>." He finally settles on a compromise: one pair of eyes fixated on you, and the rest scouring the skies. "Stocked with enough supplies to last just under a year, the ship is, but if fruitful our efforts to establish some manner of farm we are, remain for much longer, we will. The consul's orders, those are. When about to head back into the Coalition we are, send I will a message to you, notifying that our work here is finished."`
+			`	They settle for a cavern on the way up a mountain, overlooking a foggy valley. A river is faintly visible through the dense fog. As they unload the cargo and start setting up, the captain comes to you. He is a young Arach, and his previous demeanor of taking worried glances at the sky has grown even more intense here, as he struggles to so much as look at you as he begins talking. "In the name of the crew, thank you I must for guiding us, Captain <last>." He finally settles on a compromise: one pair of eyes fixated on you, and the rest scouring the skies. "Stocked with enough supplies to last just under a year, the ship is, but if fruitful in our efforts to establish some manner of farm we are, remain for much longer, we will. The consul's orders, those are. When about to head back into the Coalition we are, send a message to you I will, notifying that our work here is finished."`
 			choice
 				`	"Understood. Until then, good luck on your research here."`
 					goto end
@@ -1199,7 +1199,7 @@ mission "Heliarch Expedition 4"
 				`	"It's still forbidden? But Sedlitaris returned just fine, I flew her through human space and back with no issues."`
 				`	"Don't worry, I'm sure you'll be alright. Good luck on your research."`
 					goto end
-			`	"True that is, but repealed, the measure that prohibits everyone leaving was not. Spoken with Arbiter Sedlitaris myself I did, and admit I must that much more at ease I now am. But, still, remain vigilant for the crew's sake, I must. Changed their opinions like me, not many of them have."`
+			`	"True that is, but repealed, the measure that prohibits everyone leaving was not. Speak with Arbiter Sedlitaris myself I did, and admit I must that much more at ease now I am. But, still, remain vigilant for the crew's sake, I must. Changed their opinions like me, not many of them have."`
 			label end
 			`	He thanks you again for your help, and with a salute bids you farewell, heading to help the Punisher's crew establish their base of operations inside the caverns. You get back in your ship and fly back to the empty docks of <planet>. Now it's a matter of waiting for the Heliarch teams here to do their job and return to the Coalition.`
 
@@ -1219,6 +1219,8 @@ mission "Heliarch Expedition 5"
 		conversation
 			`When you've touched down on the landing pads, you see you've received a message from the Heliarchs you brought to Ruin, the mysterious world on the other side of the wormhole the Pug left in Deneb. "Captain <last>, finished what research we could do on the broken ring, we have. About to jump back into the Coalition, we are. Imagine I do that like to speak with you after receiving our report, Consul Aulori will, so head you should to the <planet> as soon as possible."`
 				accept
+	on accept
+		"assisting heliarchy" ++
 	on fail
 		"assisting heliarchy" --
 	on complete
@@ -1618,7 +1620,7 @@ mission "Heliarch Drills 1"
 		has "license: Coalition"
 		not "joined the lunarium"
 		not "assisting lunarium"
-		random < 8
+		random < 11
 		"combat rating" >= 8104
 	on offer
 		conversation
@@ -2068,6 +2070,8 @@ mission "Heliarch License 1"
 		not "joined the lunarium"
 		not "assisting heliarchy"
 		not "assisting lunarium"
+	to complete
+		not "assisting lunarium"
 	to fail
 		has "joined the lunarium"
 	on offer
@@ -2076,6 +2080,8 @@ mission "Heliarch License 1"
 			`	"Discussed your exploits, the consuls have. Much satisfaction, your contributions brought us," the Kimek continues.`
 			`	"With you, a meeting they request. To <destination> you must go, if to join our ranks, you so wish," the Arach finishes.`
 				accept
+	on visit
+		dialog `You are currently assisting the Lunarium. Cancel or finish any missions you have for them if you want to join the Heliarchy.`
 
 mission "Heliarch License 2"
 	landing
