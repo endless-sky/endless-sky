@@ -2531,7 +2531,7 @@ ship "Modified Argosy" "Modified Argosy (Missile)"
 ship "Modified Argosy" "Modified Argosy (Javelin)"
 	outfits
 		"Twin Blaster" 4
-		"Javelin Turret" 2
+		"Javelin Turret"
 		"Javelin" 600
 		"Javelin Storage Crate" 2
 		"Heavy Anti-Missile Turret"
