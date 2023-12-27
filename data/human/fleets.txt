@@ -107,8 +107,6 @@ fleet "Large Southern Merchants"
 	variant 15
 		"Argosy (Turret)"
 	variant 10
-		"Argosy (Javelin)"
-	variant 10
 		"Bastion"
 		"Freighter" 3
 	variant 10
