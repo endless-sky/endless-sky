@@ -141,8 +141,8 @@ planet Alvorada
 	landscape land/station8
 	description `Formerly "Fortaleza da Alvorada," Alvorada was hollowed out centuries ago to make an extensive network of bunker complexes that used to house the Politburo of the CCOR, and the extensive computer system they built that formulated their systematic plans. Rumor has it that, in the deepest reaches of the complex where no pirates have yet been able to breach, they're still there, having adapted the system to instead direct the guerrillas in the reestablishment of their homeland.`
 	spaceport `Alvorada's spaceport was built into one of the larger craters. Everything about the installation here is as fortified as possible - various hangars for even heavy warships are dug into the walls. From the ground, you can see where artillery pieces were stationed, obscured from above but with clear firing lines at incoming vessels. Now that you've seen them, you can think of hundreds of places across the asteroid where similar emplacements could have been hidden.`
-	bribe 1
-	security 1
+	bribe 0.9
+	security 0
 
 planet Amazon
 	attributes core fishing forest frontier oil tourism
@@ -291,8 +291,8 @@ planet Bailey
 	description `Bailey is a dead, nearly tidally locked world scarcely larger and more habitable than Mercury. Its cool side has hardened into a mineral-rich crust, a rarity in this region of space. Despite these conditions, Bailey's bountiful crust has brought several mining expeditions to the planet.`
 	description `	Like aphids sucking the sap from a plant, semi-mobile mining stations strip and refine the minerals, a method originally developed by the Confederated Councils. Since their fall, the pirates of the region have maintained the stations - although with considerably less organization than what was upheld by the central government.`
 	spaceport `Given the roving nature of the settlements, and the lack of a livable atmosphere, the spaceport and other major infrastructure are located in orbit. Transit to and from the planet is facilitated by a clever network of skyhooks, which utilize fewer amounts of rare and expensive resources compared to the more common repulsor technology used elsewhere.`
-	bribe 1
-	security 0.33
+	bribe 0.3
+	security 0
 
 planet "Bank of Blugtad"
 	attributes arach urban wealthy
@@ -1634,8 +1634,8 @@ planet Gagarin
 	outfitter "Basic Outfits"
 	outfitter "Common Outfits"
 	outfitter "Pirate Outfits"
-	bribe 1
-	security 0.33
+	bribe 0.5
+	security 0
 
 planet "Gara Pvu"
 	attributes uninhabited
@@ -2275,8 +2275,8 @@ planet Jakobsen
 	outfitter "Basic Outfits"
 	outfitter "Common Outfits"
 	outfitter "Ammo South"
-	bribe 1
-	security 0.33
+	bribe 0.2
+	security 0
 
 planet Janiculum
 	attributes uninhabited
@@ -2561,8 +2561,8 @@ planet "Mordente-Bridi"
 	outfitter "Basic Weapons"
 	outfitter "Common Outfits"
 	outfitter "Pirate Outfits"
-	bribe 1
-	security 0.5
+	bribe 0.6
+	security 0
 
 planet Maelstrom
 	attributes frontier mining north
@@ -2716,7 +2716,7 @@ planet "Mendez Station"
 	description `Mendez Station is the closest object to Alpherg's twin stars. Built by the CCOR as part of its efforts to build self-sufficiency in the Outer Rim, the station's gigantic ramscoops collect the system's solar wind and refine it into hyperdrive fuel.`
 	description `	Since its establishment, Mendez has been uninhabited for most of its operational life. The station's location makes it uncomfortably hot, and as a result, Mendez is almost entirely automated apart from a small control room used during maintenance.`
 	government "Uninhabited"
-	bribe 0
+	bribe 0.2
 	security 0
 
 planet "Merask Fortuno"

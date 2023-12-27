@@ -5032,17 +5032,14 @@ system Alpherg
 		sprite planet/ocean3-b
 		distance 3164.1
 		period 985.15
-		offset 120
 	object
 		sprite planet/cloud8-b
 		distance 1817.57
 		period 463.340
-		offset 55
 	object
 		sprite planet/desert10-b
 		distance 3943.18
 		period 1480.58
-		offset 99
 		object
 			sprite planet/dust1-b
 			distance 226.581
@@ -5055,7 +5052,6 @@ system Alpherg
 		sprite planet/gas13
 		distance 5672.61
 		period 2554.68
-		offset 83
 		object
 			sprite planet/rhea
 			distance 535.683
@@ -6533,12 +6529,10 @@ system Belenos
 		sprite planet/ice0-b
 		distance 658.6
 		period 186.791
-		offset 241
 	object Gagarin
 		sprite planet/forest5
 		distance 1432.76
 		period 599.355
-		offset 63
 		object Mordente-Bridi
 			sprite planet/station18
 				scale 0.5
@@ -6552,7 +6546,6 @@ system Belenos
 			sprite planet/ice0-b
 			distance 271.352
 			period 81
-			offset 86
 
 system Bellatrix
 	pos -225 -82
@@ -8699,7 +8692,6 @@ system Citadelle
 		sprite planet/lava0
 		distance 705.3
 		period 115
-		offset 90
 	object Alvorada
 		sprite "planet/alvorada"
 			"scale" 0.5
@@ -8709,17 +8701,14 @@ system Citadelle
 		sprite planet/desert0-b
 		distance 2253.29
 		period 1214.99
-		offset 43
 	object
 		sprite planet/gas14-b
 		distance 3916.23
 		period 2783.88
-		offset 21
 		object
 			sprite planet/ice0-b
 			distance 254.677
 			period 214
-			offset 11
 		object
 			sprite planet/ice8
 			distance 396.023
@@ -8729,7 +8718,6 @@ system Citadelle
 			sprite planet/desert9-b
 			distance 540.643
 			period 269
-			offset 83
 
 system Coluber
 	pos 149.504 197.389
@@ -14542,22 +14530,18 @@ system Fumalsamakah
 		sprite planet/dust1-b
 		distance 757.697
 		period 111.483
-		offset -99
 	object
 		sprite planet/gas0-b
 		distance 3608.23
 		period 1158.53
-		offset 21
 		object
 			sprite planet/cloud0
 			distance 314.164
 			period 83
-			offset 21
 		object
 			sprite planet/rock11-b
 			distance 475.844
 			period 121
-			offset 92
 	object
 		sprite planet/gas1
 		distance 6016.11
@@ -14566,12 +14550,10 @@ system Fumalsamakah
 			sprite planet/ice1
 			distance 575.411
 			period 84
-			offset 51
 		object
 			sprite planet/rock3
 			distance 846.619
 			period 120
-			offset 21
 
 system Furmeliki
 	pos -35.5695 -281.812
@@ -32097,7 +32079,6 @@ system Thuban
 		sprite star/a3
 		distance 150
 		period 50
-		offset 180
 
 system Torbab
 	pos -949.587 490.051
