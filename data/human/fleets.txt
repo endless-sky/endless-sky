@@ -107,6 +107,8 @@ fleet "Large Southern Merchants"
 	variant 15
 		"Argosy (Turret)"
 	variant 10
+		"Argosy (Javelin)"
+	variant 10
 		"Bastion"
 		"Freighter" 3
 	variant 10
@@ -1138,6 +1140,8 @@ fleet "Large Free Worlds"
 		"Falcon (Heavy)"
 	variant 1
 		"Falcon (Laser)"
+	variant 1
+		"Falcon (Javelin)"
 	variant 2
 		"Falcon"
 		"Hawk" 2
@@ -1182,6 +1186,10 @@ fleet "Large Free Worlds"
 		"Falcon (Heavy)"
 		"Fury (Bomber)" 2
 		"Sparrow" 4
+	variant 1
+		"Falcon (Javelin)"
+		"Hawk (Plasma)" 2
+		"Sparrow" 2
 	variant 1
 		"Hawk" 4
 	variant 1
@@ -1301,6 +1309,8 @@ fleet "Large Militia"
 		"Falcon (Heavy)"
 	variant 1
 		"Falcon (Laser)"
+	variant 1
+		"Falcon (Javelin)"
 	variant 2
 		"Falcon"
 		"Hawk" 2
@@ -1912,6 +1922,8 @@ fleet "Large Southern Pirates"
 		"Modified Argosy (Blaster)"
 	variant 1
 		"Modified Argosy (Missile)"
+	variant 1
+		"Modified Argosy (Javelin)"
 	variant 4
 		"Clipper"
 	variant 2
@@ -1978,6 +1990,9 @@ fleet "Large Southern Pirates"
 	variant 1
 		"Fury (Heavy)" 2
 		"Modified Argosy (Missile)"
+	variant 1
+		"Modified Argosy (Javelin)"
+		"Sparrow"
 	variant 4
 		"Bastion"
 	variant 2
@@ -1993,6 +2008,8 @@ fleet "Large Southern Pirates"
 		"Falcon (Heavy)"
 	variant 1
 		"Falcon (Laser)"
+	variant 1
+		"Falcon (Javelin)"
 
 fleet "Small CCOR"
 	government "Pirate"
@@ -2635,6 +2652,8 @@ fleet "pirate explosive"
 		"Modified Argosy (Heavy)"
 	variant 1
 		"Modified Argosy (Blaster)"
+	variant 1
+		"Modified Argosy (Javelin)"
 	variant 2
 		"Clipper (Speedy)"
 	variant 1
@@ -2673,6 +2692,8 @@ fleet "pirate explosive"
 		"Falcon (Heavy)"
 	variant 1
 		"Falcon (Laser)"
+	variant 1
+		"Falcon (Javelin)"
 	variant 5
 		"Quicksilver (Proton)" 3
 	variant 2

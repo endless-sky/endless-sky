@@ -1529,6 +1529,33 @@ ship "Falcon" "Falcon (Laser Chaser)"
 		"Heavy Laser" 4
 		"Armageddon Core"
 
+ship "Falcon" "Falcon (Javelin)"
+	outfits
+		"Twin Blaster" 4
+		"Heavy Laser Turret"
+		"Heavy Anti-Missile Turret"
+		"Javelin Turret" 2
+		"Javelin" 1100
+		"Javelin Storage Crate" 3
+		"Breeder Reactor"
+		"LP072a Battery Pack"
+		"D67-TM Shield Generator"
+		"Large Radar Jammer"
+		"Liquid Nitrogen Cooler"
+		"Tactical Scanner"
+		"Laser Rifle" 25
+		"Capybara Reverse Thruster"
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+	gun "Twin Blaster"
+	gun "Twin Blaster"
+	gun "Twin Blaster"
+	gun "Twin Blaster"
+	turret "Heavy Laser Turret"
+	turret "Heavy Anti-Missile Turret"
+	turret "Javelin Turret"
+	turret "Javelin Turret"
 
 
 ship "Firebird" "Firebird (Hai Shields)"
@@ -2498,6 +2525,24 @@ ship "Modified Argosy" "Modified Argosy (Missile)"
 		"Laser Rifle"
 		"X3700 Ion Thruster"
 		"Greyhound Plasma Steering"
+		"Hyperdrive"
+	
+	
+ship "Modified Argosy" "Modified Argosy (Javelin)"
+	outfits
+		"Twin Blaster" 4
+		"Javelin Turret" 2
+		"Javelin" 600
+		"Javelin Storage Crate" 2
+		"Heavy Anti-Missile Turret"
+		"S3 Thermionic"
+		"LP072a Battery Pack"
+		"D41-HY Shield Generator"
+		"Brig"
+		"Outfits Expansion"
+		"Laser Rifle" 3
+		"Greyhound Plasma Thruster"
+		"X3200 Ion Steering"
 		"Hyperdrive"
 
 
