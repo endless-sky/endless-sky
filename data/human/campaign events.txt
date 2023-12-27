@@ -1847,6 +1847,13 @@ event "deep sky tech available"
 		"Typhoon Storage Tube"
 		"Electron Turret"
 
+event "navy expand typhoon sales"
+	outfitter "Lovelace Advanced"
+		"Typhoon Torpedo"
+		"Typhoon Launcher"
+		"Typhoon Pod"
+		"Typhoon Storage Tube"
+
 
 
 event "navy out of rastaban"
