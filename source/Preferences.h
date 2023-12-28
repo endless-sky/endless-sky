@@ -138,7 +138,7 @@ public:
 	static void ToggleCameraAcceleration();
 	static const std::string &CameraAcceleration();
 
-  static void CycleStatusOverlays(OverlayType type);
+	static void CycleStatusOverlays(OverlayType type);
 	static OverlayState StatusOverlaysState(OverlayType type);
 	static const std::string &StatusOverlaysSetting(OverlayType type);
 

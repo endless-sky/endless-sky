@@ -505,7 +505,7 @@ void Engine::Step(bool isActive)
 	}
 	else if(flagship)
 	{
-		center = newCenter
+		center = newCenter;
 		centerVelocity = flagship->Velocity();
 		Preferences::ExtendedJumpEffects jumpEffectState = Preferences::GetExtendedJumpEffects();
 		if(flagship->IsHyperspacing() && jumpEffectState != Preferences::ExtendedJumpEffects::OFF)

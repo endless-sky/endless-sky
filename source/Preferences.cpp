@@ -57,7 +57,7 @@ namespace {
 	int cameraAccelerationIndex = 0;
 	const vector<string> CAMERA_ACCELERATION_SETTINGS = {"off", "on", "reversed"};
 
-  
+
 	class OverlaySetting {
 	public:
 		OverlaySetting() = default;

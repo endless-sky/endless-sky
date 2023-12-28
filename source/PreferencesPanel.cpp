@@ -935,7 +935,7 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 			GetUI()->Push(new Dialog(
 				"Unable to change VSync state. (Your system's graphics settings may be controlling it instead.)"));
 	}
-	else if(zone.Value() == CAMERA_ACCELERATION)
+	else if(str == CAMERA_ACCELERATION)
 		Preferences::ToggleCameraAcceleration();
 	else if(str == STATUS_OVERLAYS_ALL)
 		Preferences::CycleStatusOverlays(Preferences::OverlayType::ALL);
