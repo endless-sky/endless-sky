@@ -1582,15 +1582,11 @@ void Engine::CalculateStep()
 			offsetMultiplier = offsetMultiplier <= 0. ? 0.
 				: offsetMultiplier - OFFSET_CHANGE;
 
-		// This makes the sliding smooth and gentle.
-		double smoothStep = offsetMultiplier < 0.5 ? 4 * pow(offsetMultiplier, 3)
-			: 1 - pow((-2 * offsetMultiplier) + 2, 3) / 2;
-
 		// If this effect is disabled in the preferences, multiply the end product by 0.
 		double prefMul = Preferences::CameraAcceleration() == "on" ? 1.
 			: (Preferences::CameraAcceleration() == "reversed" ? -1. : 0.);
 
-		offset = prefMul * flagship->Velocity() * 2.5 * zoom * smoothStep;
+		offset = prefMul * flagship->Velocity() * 40. * zoom * offsetMultiplier;
 
 		newCenter = !flagship->IsHyperspacing() ?
 			flagship->Center() + offset : flagship->Center();
