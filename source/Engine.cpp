@@ -1395,11 +1395,11 @@ void Engine::EnterSystem()
 		Messages::Add(GameData::HelpMessage("basics 2"), Messages::Importance::High);
 	}
 
-	// If the flagship is uncloaked when it enters a system,
-	// it has encountered all uncloaked ships in the system.
-	if(flagship->Cloaking() < 1.)
+	// If the flagship is targetable when it enters a system,
+	// it has encountered all targetable ships in the system.
+	if(flagship->IsTargetable())
 		for(const shared_ptr<Ship> &ship : ships)
-			if(ship->GetSystem() == system && ship->Cloaking() < 1.)
+			if(ship->GetSystem() == system && ship->IsTargetable() < 1.)
 				eventQueue.emplace_back(player.FlagshipPtr(), ship, ShipEvent::ENCOUNTER);
 }
 
@@ -1468,7 +1468,7 @@ void Engine::CalculateStep()
 
 	// Keep track of the flagship to see if it jumps or enters a wormhole this turn.
 	const Ship *flagship = player.Flagship();
-	bool flagshipWasCloaked = (flagship && flagship->Cloaking() == 1);
+	bool flagshipWasUntargetable = (flagship && !flagship->IsTargetable());
 	bool wasHyperspacing = (flagship && flagship->IsEnteringHyperspace());
 	// First, move the player's flagship.
 	MoveShip(player.FlagshipPtr());
@@ -1477,12 +1477,12 @@ void Engine::CalculateStep()
 	{
 		if(it == player.FlagshipPtr())
 			continue;
-		bool wasCloaked = (it->Cloaking() == 1.);
+		bool wasUntargetable = (!it->IsTargetable());
 		MoveShip(it);
 		// If either the flagship or this ship uncloaked this frame and both are uncloaked,
 		// then they have encountered each other.
-		if(((wasCloaked && it->Cloaking() < 1.) || (flagshipWasCloaked && flagship->Cloaking() < 1.))
-			&& flagship->GetSystem() == it->GetSystem() && flagship->Cloaking() < 1.)
+		if(((wasUntargetable && it->Cloaking() < 1.) || (flagshipWasUntargetable && flagship->IsTargetable()))
+			&& flagship->GetSystem() == it->GetSystem() && flagship->IsTargetable())
 				eventQueue.emplace_back(player.FlagshipPtr(), it, ShipEvent::ENCOUNTER);
 	}
 	// If the flagship just began jumping, play the appropriate sound.
@@ -1750,9 +1750,9 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 				for(const auto &sound : jumpSounds)
 					Audio::Play(sound.first, position);
 
-			// If this ship entered the same system as the flagship and both are uncloaked,
+			// If this ship entered the same system as the flagship and both are targetable,
 			// then they have encountered each other.
-			if(flagship->Cloaking() < 1. && ship->Cloaking() < 1.)
+			if(flagship->IsTargetable() && ship->IsTargetable())
 				eventQueue.emplace_back(player.FlagshipPtr(), ship, ShipEvent::ENCOUNTER);
 		}
 	}
