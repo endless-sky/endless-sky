@@ -1504,7 +1504,9 @@ outfit "Gatling Turret"
 		"firing heat" 5
 		"cluster"
 		"hit effect" "bullet impact"
-	description `Gatling Turret.`
+	description `In an act that would make Dr. Richard J. Gatling spin with the ferocity of the barrels of his invention in the grave, the Gatling Turret was born when an enterprising pirate thought to replace the Energy Blasters on a Blaster Turret with a pair of Gatling Guns. Ever since, the dominion of the Gatling Gun has spread across the Southern Rim, terrorizing merchants and law enforcement alike with its unparalleled ability to tear apart the hulls of ships.`
+
+
 
 outfit "Gat Submunition"
 	weapon
