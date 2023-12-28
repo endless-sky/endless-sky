@@ -47,16 +47,6 @@ namespace {
 
 
 
-Angle Projectile::Inaccuracy(double value)
-{
-	Angle inaccuracy;
-	if(value)
-		inaccuracy = Angle::Random(value) - Angle::Random(value);
-	return inaccuracy;
-}
-
-
-
 Projectile::Projectile(const Ship &parent, Point position, Angle angle, const Weapon *weapon)
 	: Body(weapon->WeaponSprite(), position, parent.Velocity(), angle),
 	weapon(weapon), targetShip(parent.GetTargetShip()), lifetime(weapon->Lifetime())
@@ -129,7 +119,12 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 
 			for(const auto &it : weapon->Submunitions())
 				for(size_t i = 0; i < it.count; ++i)
-					projectiles.emplace_back(*this, it.offset, it.facing + Projectile::Inaccuracy(it.weapon->Inaccuracy()), it.weapon);
+				{
+					const Weapon *const subWeapon = it.weapon;
+					Angle inaccuracy = Distribution::GenerateInaccuracy(subWeapon->Inaccuracy(),
+							subWeapon->InaccuracyDistribution());
+					projectiles.emplace_back(*this, it.offset, it.facing + inaccuracy, subWeapon);
+				}
 		}
 		MarkForRemoval();
 		return;
@@ -278,6 +273,11 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 	// sub-munitions next turn.
 	if(target && (position - target->Position()).Length() < weapon->SplitRange())
 		lifetime = 0;
+
+	// A projectile will begin to fade out when the remaining lifetime is smaller
+	// than the specified "fade out" time.
+	if(lifetime < weapon->FadeOut())
+		alpha = static_cast<double>(lifetime) / weapon->FadeOut();
 }
 
 

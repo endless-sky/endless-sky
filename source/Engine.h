@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "EscortDisplay.h"
 #include "Information.h"
 #include "Point.h"
+#include "Preferences.h"
 #include "Radar.h"
 #include "Rectangle.h"
 
@@ -48,7 +49,6 @@ class Projectile;
 class Ship;
 class ShipEvent;
 class Sprite;
-class TestContext;
 class Visual;
 class Weather;
 
@@ -79,15 +79,15 @@ public:
 	// Begin the next step of calculations.
 	void Go();
 
+	// Give a command on behalf of the player, used for integration tests.
+	void GiveCommand(const Command &command);
+
 	// Get any special events that happened in this step.
 	// MainPanel::Step will clear this list.
 	std::list<ShipEvent> &Events();
 
 	// Draw a frame.
 	void Draw() const;
-
-	// Set the given TestContext in the next step of the Engine.
-	void SetTestContext(TestContext &newTestContext);
 
 	// Select the object the player clicked on.
 	void Click(const Point &from, const Point &to, bool hasShift, bool hasControl);
@@ -98,6 +98,45 @@ public:
 	// government; gov projectiles stop targeting the player and player's
 	// projectiles stop targeting gov.
 	void BreakTargeting(const Government *gov);
+
+
+private:
+	class Target {
+	public:
+		Point center;
+		Angle angle;
+		double radius;
+		const Color &color;
+		int count;
+	};
+
+	class Status {
+	public:
+		constexpr Status(const Point &position, double outer, double inner,
+			double disabled, double radius, int type, float alpha, double angle = 0.)
+			: position(position), outer(outer), inner(inner),
+				disabled(disabled), radius(radius), type(type), alpha(alpha), angle(angle) {}
+
+		Point position;
+		double outer;
+		double inner;
+		double disabled;
+		double radius;
+		int type;
+		float alpha;
+		double angle;
+	};
+
+	class Zoom {
+	public:
+		constexpr Zoom() : base(0.) {}
+		explicit constexpr Zoom(double zoom) : base(zoom) {}
+
+		constexpr operator double() const { return base * modifier; }
+
+		double base;
+		double modifier = 1.;
+	};
 
 
 private:
@@ -125,34 +164,12 @@ private:
 
 	void FillRadar();
 
-	void AddSprites(const Ship &ship);
+	void DrawShipSprites(const Ship &ship);
 
 	void DoGrudge(const std::shared_ptr<Ship> &target, const Government *attacker);
 
-
-private:
-	class Target {
-	public:
-		Point center;
-		Angle angle;
-		double radius;
-		const Color &color;
-		int count;
-	};
-
-	class Status {
-	public:
-		Status(const Point &position, double outer, double inner,
-			double disabled, double radius, int type, double angle = 0.);
-
-		Point position;
-		double outer;
-		double inner;
-		double disabled;
-		double radius;
-		int type;
-		double angle;
-	};
+	void CreateStatusOverlays();
+	void EmplaceStatusOverlay(const std::shared_ptr<Ship> &ship, Preferences::OverlayState overlaySetting, int value);
 
 
 private:
@@ -180,17 +197,22 @@ private:
 	std::condition_variable condition;
 	std::mutex swapMutex;
 
-	bool calcTickTock = false;
-	bool drawTickTock = false;
+	// ES uses a technique called double buffering to calculate the next frame and render the current one simultaneously.
+	// To facilitate this, it uses two buffers for each list of things to draw - one for the next frame's calculations and
+	// one for rendering the current frame. A little synchronization is required to prevent mutable references to the
+	// currently rendering buffer.
+	size_t currentCalcBuffer = 0;
+	size_t currentDrawBuffer = 0;
 	bool hasFinishedCalculating = true;
-	bool terminate = false;
-	bool wasActive = false;
-	bool isMouseToggleEnabled = false;
-	bool isMouseHoldEnabled = false;
-	bool isMouseTurningEnabled = false;
 	DrawList draw[2];
 	BatchDrawList batchDraw[2];
 	Radar radar[2];
+
+	bool terminate = false;
+	bool wasActive = false;
+	bool isMouseHoldEnabled = false;
+	bool isMouseTurningEnabled = false;
+
 	// Viewport position and velocity.
 	Point center;
 	Point newCenter;
@@ -228,6 +250,7 @@ private:
 	int alarmTime = 0;
 	double flash = 0.;
 	bool doFlash = false;
+	bool doEnterLabels = false;
 	bool doEnter = false;
 	bool hadHostiles = false;
 
@@ -251,12 +274,13 @@ private:
 	Rectangle clickBox;
 	int groupSelect = -1;
 
-	// Input, Output and State handling for automated tests.
-	TestContext *testContext = nullptr;
+	// Set of asteroids scanned in the current system.
+	std::set<std::string> asteroidsScanned;
+	bool isAsteroidCatalogComplete = false;
 
-	double zoom = 1.;
+	Zoom zoom;
 	// Tracks the next zoom change so that objects aren't drawn at different zooms in a single frame.
-	double nextZoom = 0.;
+	Zoom nextZoom;
 
 	double load = 0.;
 	int loadCount = 0;

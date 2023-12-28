@@ -31,7 +31,7 @@ Weather::Weather(const Hazard *hazard, int totalLifetime, int lifetimeRemaining,
 {
 	// Using a deviation of totalLifetime / 4.3 causes the strength of the
 	// weather to start and end at about 10% the maximum. Store the entire
-	// denominator of the exponent for the normal curve euqation here since
+	// denominator of the exponent for the normal curve equation here since
 	// this doesn't change with the elapsed time.
 	deviation = totalLifetime / 4.3;
 	deviation = 2. * deviation * deviation;

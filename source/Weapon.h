@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Angle.h"
 #include "Body.h"
+#include "Distribution.h"
 #include "Point.h"
 
 #include <cstddef>
@@ -77,6 +78,7 @@ public:
 	// Accessor functions for various attributes.
 	int Lifetime() const;
 	int RandomLifetime() const;
+	int FadeOut() const;
 	double Reload() const;
 	double BurstReload() const;
 	int BurstCount() const;
@@ -101,6 +103,7 @@ public:
 
 	double Turn() const;
 	double Inaccuracy() const;
+	std::pair<Distribution::Type, bool> InaccuracyDistribution() const;
 	double TurretTurn() const;
 
 	double Tracking() const;
@@ -181,6 +184,8 @@ public:
 
 	double Piercing() const;
 
+	double Prospecting() const;
+
 	double TotalLifetime() const;
 	double Range() const;
 
@@ -189,6 +194,10 @@ public:
 	// Calculate the percent damage that this weapon deals given the distance
 	// that the projectile traveled if it has a damage dropoff range.
 	double DamageDropoff(double distance) const;
+	// Return the weapon's damage dropoff at maximum range.
+	double MaxDropoff() const;
+	// Return the ranges at which the weapon's damage dropoff begins and ends.
+	const std::pair<double, double> &DropoffRanges() const;
 
 
 protected:
@@ -237,6 +246,7 @@ private:
 	// Attributes.
 	int lifetime = 0;
 	int randomLifetime = 0;
+	int fadeOut = 0;
 	double reload = 1.;
 	double burstReload = 1.;
 	int burstCount = 1;
@@ -253,6 +263,9 @@ private:
 
 	double turn = 0.;
 	double inaccuracy = 0.;
+	// A pair representing the disribution type of this weapon's inaccuracy
+	// and whether it is inverted
+	std::pair<Distribution::Type, bool> inaccuracyDistribution = {Distribution::Type::Triangular, false};
 	double turretTurn = 0.;
 
 	double tracking = 0.;
@@ -317,12 +330,14 @@ private:
 
 	double piercing = 0.;
 
+	double prospecting = 0.;
+
 	double rangeOverride = 0.;
 	double velocityOverride = 0.;
 
 	bool hasDamageDropoff = false;
 	std::pair<double, double> damageDropoffRange;
-	double damageDropoffModifier;
+	double damageDropoffModifier = 1.;
 
 	// Cache the calculation of these values, for faster access.
 	mutable bool calculatedDamage = true;
@@ -335,6 +350,7 @@ private:
 // Inline the accessors because they get called so frequently.
 inline int Weapon::Lifetime() const { return lifetime; }
 inline int Weapon::RandomLifetime() const { return randomLifetime; }
+inline int Weapon::FadeOut() const { return fadeOut; }
 inline double Weapon::Reload() const { return reload; }
 inline double Weapon::BurstReload() const { return burstReload; }
 inline int Weapon::BurstCount() const { return burstCount; }
@@ -352,7 +368,6 @@ inline double Weapon::Drag() const { return drag; }
 inline const Point &Weapon::HardpointOffset() const { return hardpointOffset; }
 
 inline double Weapon::Turn() const { return turn; }
-inline double Weapon::Inaccuracy() const { return inaccuracy; }
 inline double Weapon::TurretTurn() const { return turretTurn; }
 
 inline double Weapon::Tracking() const { return tracking; }
@@ -382,6 +397,8 @@ inline double Weapon::RelativeFiringHull() const{ return relativeFiringHull; }
 inline double Weapon::RelativeFiringShields() const{ return relativeFiringShields; }
 
 inline double Weapon::Piercing() const { return piercing; }
+
+inline double Weapon::Prospecting() const { return prospecting; }
 
 inline double Weapon::SplitRange() const { return splitRange; }
 inline double Weapon::TriggerRadius() const { return triggerRadius; }

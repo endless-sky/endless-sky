@@ -108,13 +108,6 @@ bool Panel::ZoneClick(const Point &point)
 
 
 
-// Forward the given TestContext to the Engine under MainPanel.
-void Panel::SetTestContext(TestContext &testContext)
-{
-}
-
-
-
 // Panels will by default not allow fast-forward. The ones that do allow
 // it will override this (virtual) function and return true.
 bool Panel::AllowsFastForward() const noexcept
@@ -245,12 +238,12 @@ int Panel::Modifier()
 
 
 
-// Display the given help message if it has not yet been shown. Return true
-// if the message was displayed.
-bool Panel::DoHelp(const string &name) const
+// Display the given help message if it has not yet been shown
+// (or if force is set to true). Return true if the message was displayed.
+bool Panel::DoHelp(const string &name, bool force) const
 {
 	string preference = "help: " + name;
-	if(Preferences::Has(preference))
+	if(!force && Preferences::Has(preference))
 		return false;
 
 	const string &message = GameData::HelpMessage(name);

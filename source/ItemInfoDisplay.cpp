@@ -161,8 +161,10 @@ void ItemInfoDisplay::UpdateDescription(const string &text, const vector<string>
 		description.Wrap(fullText);
 	}
 
-	// Pad by 10 pixels on the top and bottom.
-	descriptionHeight = description.Height() + 20;
+	// If there is a description, pad by 10 pixels on the top and bottom.
+	descriptionHeight = description.Height();
+	if(descriptionHeight)
+		descriptionHeight += 20;
 }
 
 
