@@ -1138,8 +1138,6 @@ fleet "Large Free Worlds"
 		"Falcon (Heavy)"
 	variant 1
 		"Falcon (Laser)"
-	variant 1
-		"Falcon (Javelin)"
 	variant 2
 		"Falcon"
 		"Hawk" 2
@@ -1184,10 +1182,6 @@ fleet "Large Free Worlds"
 		"Falcon (Heavy)"
 		"Fury (Bomber)" 2
 		"Sparrow" 4
-	variant 1
-		"Falcon (Javelin)"
-		"Hawk (Plasma)" 2
-		"Sparrow" 2
 	variant 1
 		"Hawk" 4
 	variant 1
@@ -1307,8 +1301,6 @@ fleet "Large Militia"
 		"Falcon (Heavy)"
 	variant 1
 		"Falcon (Laser)"
-	variant 1
-		"Falcon (Javelin)"
 	variant 2
 		"Falcon"
 		"Hawk" 2
@@ -1922,6 +1914,8 @@ fleet "Large Southern Pirates"
 		"Modified Argosy (Missile)"
 	variant 1
 		"Modified Argosy (Javelin)"
+	variant 1
+		"Modified Argosy (Gatling)"
 	variant 4
 		"Clipper"
 	variant 2
@@ -1991,12 +1985,18 @@ fleet "Large Southern Pirates"
 	variant 1
 		"Modified Argosy (Javelin)"
 		"Sparrow"
+	variant 1
+		"Modified Argosy (Gatling)"
+		"Hawk"
+		"Sparrow"
 	variant 4
 		"Bastion"
 	variant 2
 		"Bastion (Heavy)"
 	variant 2
 		"Bastion (Laser)"
+	variant 2
+		"Bastion (Gatling)"
 	variant 2
 		"Falcon"
 	variant 1
@@ -2026,9 +2026,9 @@ fleet "Small CCOR"
 	variant 1
 		"Saber"
 	variant 1
-		"Saber (CCOR)"
+		"Saber (CCOR Gatling)"
 	variant 1
-		"Saber (CCOR)"
+		"Saber (CCOR Javelin)"
 		"Berserker (CCOR)"
 	variant 1
 		"Berserker (CCOR)"
@@ -2051,16 +2051,16 @@ fleet "Large CCOR"
 		"Firebird (CCOR)"
 		"Enforcer"
 	variant 1
-		"Saber (CCOR)"
+		"Saber (CCOR Gatling)"
 		"Enforcer (CCOR)"
 	variant 1
-		"Saber (CCOR)"
+		"Saber (CCOR Javelin)"
 		"Berserker (CCOR)"
 	variant 1
 		"Leviathan (CCOR)"
 	variant 1
 		"Leviathan (CCOR)"
-		"Saber (CCOR)"
+		"Saber (CCOR Gatling)"
 		"Enforcer (CCOR)"
 		"Berserker (CCOR)"
 	variant 1
@@ -2650,8 +2650,6 @@ fleet "pirate explosive"
 		"Modified Argosy (Heavy)"
 	variant 1
 		"Modified Argosy (Blaster)"
-	variant 1
-		"Modified Argosy (Javelin)"
 	variant 2
 		"Clipper (Speedy)"
 	variant 1
@@ -2690,8 +2688,6 @@ fleet "pirate explosive"
 		"Falcon (Heavy)"
 	variant 1
 		"Falcon (Laser)"
-	variant 1
-		"Falcon (Javelin)"
 	variant 5
 		"Quicksilver (Proton)" 3
 	variant 2

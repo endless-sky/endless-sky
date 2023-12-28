@@ -1860,6 +1860,7 @@ planet Greenrock
 	outfitter "Kraz Basics"
 	outfitter "Syndicate Basics"
 	outfitter "Pirate Outfits"
+	outfitter "South Pirate Outfits Advanced"
 	bribe 0.05
 	security 0
 	tribute 1800
@@ -2564,6 +2565,7 @@ planet "Mordente-Bridi"
 	outfitter "Basic Weapons"
 	outfitter "Common Outfits"
 	outfitter "Pirate Outfits"
+	outfitter "South Pirate Outfits Advanced"
 	bribe 0.6
 	security 0
 
@@ -4082,6 +4084,7 @@ planet "Smuggler's Den"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
 	outfitter "Pirate Outfits"
+	outfitter "South Pirate Outfits Advanced"
 	bribe 0.06
 	security 0
 	tribute 400

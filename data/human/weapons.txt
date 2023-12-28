@@ -1473,6 +1473,47 @@ outfit "Gatling Gun"
 		"hit effect" "bullet impact"
 	description `When Dr. Richard J. Gatling invented the rapid-fire gun bearing his name in the 19th century, he hoped that its destructiveness would lead to the end of war itself. Over a millennium later, this modern incarnation of the Gatling Gun sees action in the stars, a testament to its fundamentally robust design - and Dr. Gatling's naivete. While capable of a high fire rate, this gun needs to cool down for twice as long as it fires, and can only sustain a maximum of three seconds of continuous fire.`
 
+outfit "Gatling Turret"
+	category "Secondary Weapons"
+	cost 120000
+	thumbnail "outfit/gat turret"
+	"mass" 11
+	"outfit space" -23
+	"weapon capacity" -23
+	"turret mounts" -1
+	"gatling round capacity" 6000
+	weapon
+		sound "gatling"
+		"hardpoint sprite" "hardpoint/gat turret hardpoint"
+		"submunition" "Gat Submunition"
+			"offset" 1.5 -6
+			"facing" 0.3
+		"submunition" "Gat Submunition"
+			"offset" -1.5 -6
+			"facing" -0.3
+		ammo "Gatling Gun Ammo" 2
+		icon "icon/gat"
+		"inaccuracy" 2
+		"turret turn" 3.4
+		"velocity override" 16
+		"lifetime" 0
+		"reload" 3
+		"burst count" 180
+		"burst reload" 1
+		"firing energy" .06
+		"firing heat" 5
+		"cluster"
+		"hit effect" "bullet impact"
+	description `Gatling Turret.`
+
+outfit "Gat Submunition"
+	weapon
+		sprite "projectile/tinyflare"
+		"hit effect" "bullet impact"
+		"velocity" 16
+		"lifetime" 1
+		"submunition" "gbullet"
+
 outfit "gbullet"
 	weapon
 		sprite "projectile/bullet"
