@@ -246,7 +246,7 @@ namespace {
 			return false;
 		}
 
-		// Adjust settings to make sure the result will be a RGBA file.
+		// Adjust settings to make sure the result will be an RGBA file.
 		int colorType = png_get_color_type(png, info);
 		int bitDepth = png_get_bit_depth(png, info);
 

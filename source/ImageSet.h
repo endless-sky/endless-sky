@@ -46,7 +46,7 @@ public:
 public:
 	// ImageSets should be created with a name, as some image paths (e.g. plugin icons)
 	// do not contain the associated image name.
-	ImageSet(std::string name);
+	explicit ImageSet(std::string name);
 
 	// Get the name of the sprite for this image set.
 	const std::string &Name() const;
@@ -60,10 +60,10 @@ public:
 	// Load all the frames. This should be called in one of the image-loading
 	// worker threads. This also generates collision masks if needed.
 	void Load() noexcept(false);
-	// Create the sprite and upload the image data to the GPU. After this is
+	// Create the sprite and optionally upload the image data to the GPU. After this is
 	// called, the internal image buffers and mask vector will be cleared, but
 	// the paths are saved in case the sprite needs to be loaded again.
-	void Upload(Sprite *sprite);
+	void Upload(Sprite *sprite, bool enableUpload);
 
 
 private:

@@ -302,6 +302,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 				damage[HIT_FORCE] = value;
 			else if(key == "piercing")
 				piercing = max(0., value);
+			else if(key == "prospecting")
+				prospecting = value;
 			else if(key == "range override")
 				rangeOverride = max(0., value);
 			else if(key == "velocity override")
@@ -508,6 +510,22 @@ double Weapon::DamageDropoff(double distance) const
 	// Damage modification is linear between the min and max dropoff points.
 	double slope = (1 - damageDropoffModifier) / (minDropoff - maxDropoff);
 	return slope * (distance - minDropoff) + 1;
+}
+
+
+
+// Return the weapon's damage dropoff at maximum range.
+double Weapon::MaxDropoff() const
+{
+	return damageDropoffModifier;
+}
+
+
+
+// Return the ranges at which the weapon's damage dropoff begins and ends.
+const pair<double, double> &Weapon::DropoffRanges() const
+{
+	return damageDropoffRange;
 }
 
 

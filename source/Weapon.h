@@ -184,6 +184,8 @@ public:
 
 	double Piercing() const;
 
+	double Prospecting() const;
+
 	double TotalLifetime() const;
 	double Range() const;
 
@@ -192,6 +194,10 @@ public:
 	// Calculate the percent damage that this weapon deals given the distance
 	// that the projectile traveled if it has a damage dropoff range.
 	double DamageDropoff(double distance) const;
+	// Return the weapon's damage dropoff at maximum range.
+	double MaxDropoff() const;
+	// Return the ranges at which the weapon's damage dropoff begins and ends.
+	const std::pair<double, double> &DropoffRanges() const;
 
 
 protected:
@@ -324,12 +330,14 @@ private:
 
 	double piercing = 0.;
 
+	double prospecting = 0.;
+
 	double rangeOverride = 0.;
 	double velocityOverride = 0.;
 
 	bool hasDamageDropoff = false;
 	std::pair<double, double> damageDropoffRange;
-	double damageDropoffModifier;
+	double damageDropoffModifier = 1.;
 
 	// Cache the calculation of these values, for faster access.
 	mutable bool calculatedDamage = true;
@@ -389,6 +397,8 @@ inline double Weapon::RelativeFiringHull() const{ return relativeFiringHull; }
 inline double Weapon::RelativeFiringShields() const{ return relativeFiringShields; }
 
 inline double Weapon::Piercing() const { return piercing; }
+
+inline double Weapon::Prospecting() const { return prospecting; }
 
 inline double Weapon::SplitRange() const { return splitRange; }
 inline double Weapon::TriggerRadius() const { return triggerRadius; }

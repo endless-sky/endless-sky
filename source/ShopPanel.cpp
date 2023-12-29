@@ -70,7 +70,7 @@ namespace {
 		if(dy)
 		{
 			// Handle small increments.
-			if(fabs(dy) < 6)
+			if(fabs(dy) < 6 && fabs(dy) > 1)
 				smoothScroll += copysign(1., dy);
 			// Keep scroll value an integer to prevent odd text artifacts.
 			else
@@ -292,13 +292,24 @@ void ShopPanel::ToggleCargo()
 // Only override the ones you need; the default action is to return false.
 bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	bool toStorage = selectedOutfit && (key == 'r' || key == 'u');
+	bool toStorage = planet && planet->HasOutfitter() && (key == 'r' || key == 'u');
 	if(key == 'l' || key == 'd' || key == SDLK_ESCAPE
 			|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 	{
 		if(!isOutfitter)
 			player.UpdateCargoCapacities();
 		GetUI()->Pop(this);
+	}
+	else if(command.Has(Command::HELP))
+	{
+		if(player.Ships().size() > 1)
+			DoHelp("multiple ships", true);
+		if(isOutfitter)
+		{
+			DoHelp("uninstalling and storage", true);
+			DoHelp("cargo management", true);
+			DoHelp("outfitter", true);
+		}
 	}
 	else if(command.Has(Command::MAP))
 	{
@@ -422,6 +433,8 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	}
 	else if(key == SDLK_TAB)
 		activePane = (activePane == ShopPane::Main ? ShopPane::Sidebar : ShopPane::Main);
+	else if(key == 'f')
+		GetUI()->Push(new Dialog(this, &ShopPanel::DoFind, "Search for:"));
 	else
 		return false;
 
@@ -504,6 +517,8 @@ bool ShopPanel::Click(int x, int y, int /* clicks */)
 				selectedShip = zone.GetShip();
 			else
 				selectedOutfit = zone.GetOutfit();
+
+			previousX = zone.Center().X();
 
 			return true;
 		}
@@ -605,6 +620,25 @@ bool ShopPanel::Scroll(double dx, double dy)
 
 
 
+void ShopPanel::DoFind(const string &text)
+{
+	int index = FindItem(text);
+	if(index >= 0 && index < static_cast<int>(zones.size()))
+	{
+		auto best = std::next(zones.begin(), index);
+		if(best->GetShip())
+			selectedShip = best->GetShip();
+		else
+			selectedOutfit = best->GetOutfit();
+
+		previousX = best->Center().X();
+
+		MainAutoScroll(best);
+	}
+}
+
+
+
 int64_t ShopPanel::LicenseCost(const Outfit *outfit, bool onlyOwned) const
 {
 	// If the player is attempting to install an outfit from cargo, storage, or that they just
@@ -695,7 +729,7 @@ void ShopPanel::DrawShipsSidebar()
 
 	// Check whether flight check tooltips should be shown.
 	const auto flightChecks = player.FlightCheck();
-	Point mouse = GetUI()->GetMouse();
+	Point mouse = UI::GetMouse();
 	warningType.clear();
 	shipZones.clear();
 
@@ -878,6 +912,12 @@ void ShopPanel::DrawButtons()
 	bigFont.Draw(LEAVE,
 		leaveCenter - .5 * Point(bigFont.Width(LEAVE), bigFont.Height()),
 		hoverButton == 'l' ? hover : active);
+
+	const Point findCenter = Screen::BottomRight() - Point(580, 20);
+	const Sprite *findIcon =
+		hoverButton == 'f' ? SpriteSet::Get("ui/find selected") : SpriteSet::Get("ui/find unselected");
+	SpriteShader::Draw(findIcon, findCenter);
+	static const string FIND = "_Find";
 
 	int modifier = Modifier();
 	if(modifier > 1)
@@ -1177,6 +1217,8 @@ void ShopPanel::MainLeft()
 		MainAutoScroll(it);
 	}
 
+	previousX = it->Center().X();
+
 	selectedShip = it->GetShip();
 	selectedOutfit = it->GetOutfit();
 }
@@ -1199,6 +1241,8 @@ void ShopPanel::MainRight()
 	else
 		MainAutoScroll(it);
 
+	previousX = it->Center().X();
+
 	selectedShip = it->GetShip();
 	selectedOutfit = it->GetOutfit();
 }
@@ -1215,7 +1259,6 @@ void ShopPanel::MainUp()
 	if(it == zones.end())
 		it = zones.begin();
 
-	const double previousX = it->Center().X();
 	const double previousY = it->Center().Y();
 	while(it != zones.begin() && it->Center().Y() == previousY)
 		--it;
@@ -1254,7 +1297,6 @@ void ShopPanel::MainDown()
 		return;
 	}
 
-	const double previousX = it->Center().X();
 	const double previousY = it->Center().Y();
 	++it;
 	while(it != zones.end() && it->Center().Y() == previousY)
@@ -1402,6 +1444,10 @@ vector<ShopPanel::Zone>::const_iterator ShopPanel::Selected() const
 // letter of the button (or ' ' if it's not on a button).
 char ShopPanel::CheckButton(int x, int y)
 {
+	if(x > Screen::Right() - SIDEBAR_WIDTH - 342 && x < Screen::Right() - SIDEBAR_WIDTH - 316 &&
+		y > Screen::Bottom() - 31 && y < Screen::Bottom() - 4)
+		return 'f';
+
 	if(x < Screen::Right() - SIDEBAR_WIDTH || y < Screen::Bottom() - BUTTON_HEIGHT)
 		return '\0';
 
