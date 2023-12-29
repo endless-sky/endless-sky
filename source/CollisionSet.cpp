@@ -167,50 +167,25 @@ void CollisionSet::Finish()
 
 
 
-// Get the first (closest) collision for the given projectile.
-Collision CollisionSet::Line(const Projectile &projectile) const
-{
-	// What objects the projectile hits depends on its government.
-	const Government *pGov = projectile.GetGovernment();
-
-	// Convert the start and end coordinates to integers.
-	Point from = projectile.Position();
-	Point to = from + projectile.Velocity();
-	return Line(from, to, pGov, projectile.Target());
-}
-
-
-
 // Get all collisions for the given projectile. Collisions are not necessarily
-// sorted by distance.
-const vector<Collision> &CollisionSet::LineAll(const Projectile &projectile) const
+// sorted by distance. If the projectile is incapable if impacting multiple ships
+// in the same frame then only the closest collision is returned.
+const vector<Collision> &CollisionSet::Line(const Projectile &projectile) const
 {
 	// What objects the projectile hits depends on its government.
 	const Government *pGov = projectile.GetGovernment();
 
-	// Convert the start and end coordinates to integers.
+	// Convert the projectile to a line represented by its start and end points.
 	Point from = projectile.Position();
 	Point to = from + projectile.Velocity();
-	// If this projectile can only hit a single target anyway then just get the closest
-	// hit.
-	return LineAll(from, to, pGov, projectile.Target(), projectile.HitsRemaining() == 1);
+	return Line(from, to, pGov, projectile.Target(), projectile.HitsRemaining() == 1);
 }
 
 
 
-// Get the first (closest) collision along a line, which may be a projectile's current
-// position or its entire expected trajectory (for the auto-firing AI).
-Collision CollisionSet::Line(const Point &from, const Point &to, const Government *pGov,
-		const Body *target) const
-{
-	return LineAll(from, to, pGov, target, false)[0];
-}
-
-
-
-// Get all collisions along a line, given that the "all" boolean is true.
-// Otherwise, return the first (closest) collision.
-const vector<Collision> &CollisionSet::LineAll(const Point &from, const Point &to,
+// Get all collisions along a line. Collisions are not necessarily sorted by
+// distance. If the all variable is false then only the closest collision is returned.
+const vector<Collision> &CollisionSet::Line(const Point &from, const Point &to,
 		const Government *pGov, const Body *target, bool all) const
 {
 	const int x = from.X();
@@ -257,7 +232,7 @@ const vector<Collision> &CollisionSet::LineAll(const Point &from, const Point &t
 				lineResult.emplace_back(it->body, collisionType, range);
 		}
 
-		if(!all)
+		if(!all && closer_result.GetClosestDistance() < 1.)
 			lineResult.emplace_back(closer_result.GetClosestBody(), collisionType, closer_result.GetClosestDistance());
 		return lineResult;
 	}
@@ -273,7 +248,7 @@ const vector<Collision> &CollisionSet::LineAll(const Point &from, const Point &t
 		}
 		Point newEnd = from + pVelocity.Unit() * USED_MAX_VELOCITY;
 
-		return LineAll(from, newEnd, pGov, target, all);
+		return Line(from, newEnd, pGov, target, all);
 	}
 
 	// When stepping from one grid cell to the next, we'll go in this direction.
@@ -368,7 +343,7 @@ const vector<Collision> &CollisionSet::LineAll(const Point &from, const Point &t
 		}
 	}
 
-	if(!all)
+	if(!all && closer_result.GetClosestBody())
 		lineResult.emplace_back(closer_result.GetClosestBody(), collisionType, closer_result.GetClosestDistance());
 	return lineResult;
 }

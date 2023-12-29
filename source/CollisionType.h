@@ -22,7 +22,7 @@ enum class CollisionType : int {
 	NONE,
 	SHIP,
 	MINABLE,
-	ASTEROID
+	ASTEROID,
 };
 
 

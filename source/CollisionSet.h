@@ -45,19 +45,14 @@ public:
 	// Finish adding objects (and organize them into the final lookup table).
 	void Finish();
 
-	// Get the first (closest) collision for the given projectile.
-	Collision Line(const Projectile &projectile) const;
 	// Get all collisions for the given projectile. Collisions are not necessarily
-	// sorted by distance.
-	const std::vector<Collision> &LineAll(const Projectile &projectile) const;
+	// sorted by distance. If the projectile is incapable if impacting multiple ships
+	// in the same frame then only the closest collision is returned.
+	const std::vector<Collision> &Line(const Projectile &projectile) const;
 
-	// Get the first (closest) collision along a line, which may be a projectile's current
-	// position or its entire expected trajectory (for the auto-firing AI).
-	Collision Line(const Point &from, const Point &to, const Government *pGov = nullptr,
-		const Body *target = nullptr) const;
-	// Get all collisions along a line, given that the "all" boolean is true.
-	// Otherwise, return the first (closest) collision.
-	const std::vector<Collision> &LineAll(const Point &from, const Point &to,
+	// Get all collisions along a line. Collisions are not necessarily sorted by
+	// distance. If the all variable is false then only the closest collision is returned.
+	const std::vector<Collision> &Line(const Point &from, const Point &to,
 		const Government *pGov = nullptr, const Body *target = nullptr, bool all = true) const;
 
 	// Get all objects within the given range of the given point.

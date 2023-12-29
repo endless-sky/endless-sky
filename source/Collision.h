@@ -19,25 +19,24 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Body.h"
 #include "CollisionType.h"
 
-#include <list>
-#include <memory>
-#include <vector>
-
 
 
 // Represents a collision between a projectile and a ship, asteroid, or minable.
-// Contains information such as the distance
+// Contains information such as the distance.
 class Collision {
 public:
-	// Initialize a Collision, recording the Body that was hit, the type of
-	// object that the Body is (nothing, a Ship, a Minable, or an Asteroid),
-	// and the range that the Body was hit at.
+	// Initialize a Collision.
 	Collision(Body *hit, CollisionType collisionType, double range);
 
+	// The Body that was hit for this collision. May be a nullptr if nothing
+	// was directly hit.
 	Body *HitBody();
+	// The type of Body that was hit.
 	CollisionType GetCollisionType() const;
+	// The intersection range at which the collision occurred with the Body.
 	double IntersectionRange() const;
 
+	// Compare two Collisions by their intersection range.
 	bool operator<(const Collision &rhs) const;
 
 

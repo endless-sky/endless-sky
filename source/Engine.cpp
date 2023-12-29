@@ -2167,7 +2167,7 @@ void Engine::DoCollisions(Projectile &projectile)
 		// If nothing triggered the projectile, check for collisions with ships and asteroids.
 		if(collisions.empty())
 		{
-			const vector<Collision> &newShipHits = shipCollisions.LineAll(projectile);
+			const vector<Collision> &newShipHits = shipCollisions.Line(projectile);
 			collisions.insert(collisions.end(), newShipHits.begin(), newShipHits.end());
 
 			// "Phasing" projectiles can pass through asteroids. For all other
