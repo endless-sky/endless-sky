@@ -177,7 +177,7 @@ const vector<Collision> &CollisionSet::Line(const Projectile &projectile) const
 	// Convert the projectile to a line represented by its start and end points.
 	Point from = projectile.Position();
 	Point to = from + projectile.Velocity();
-	return Line(from, to, pGov, projectile.Target(), projectile.HitsRemaining() == 1);
+	return Line(from, to, pGov, projectile.Target(), projectile.HitsRemaining() != 1);
 }
 
 
