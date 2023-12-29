@@ -1,3 +1,17 @@
+# Copyright (c) 2023 by Azure
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+
 galaxy "label twilight"
 	pos -420 750
 	sprite label/twilight
@@ -2253,7 +2267,7 @@ system Gossamer
 			period 410.203
 
 system Prelude
-	pos -497.841 950.835
+	pos -494.73 952.391
 	government "Avgi (Dissonance)"
 	attributes avgi dissonance "giant star" "notable star" "tangled shroud"
 	habitable 2300
@@ -2500,7 +2514,7 @@ system Billow
 	habitable 320
 	belt 1921 6
 	belt 2280 2
-	"jump range" 30
+	"jump range" 60
 	haze _menu/haze-twilight
 	link Soar
 	asteroids "large metal" 1 1.911
@@ -2826,7 +2840,7 @@ system Corporeal
 			period 255.225
 
 system Caesura
-	pos -705.694 862.904
+	pos -721.694 865.126
 	government Uninhabited
 	attributes "black hole" "notable star" twilight
 	habitable 3450
@@ -4073,7 +4087,7 @@ system H-1
 			period 98.524
 
 system B-11
-	pos -272.711 1081.958
+	pos -277.007 1089.439
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
@@ -4469,7 +4483,7 @@ system C-12
 		period 9523.29
 
 system He-4
-	pos -447.069 963.449
+	pos -450.476 965.671
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
@@ -4509,7 +4523,7 @@ system He-4
 		period 17716.642
 
 system Si-28
-	pos -475.746 985.267
+	pos -470.042 984.748
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
@@ -4575,7 +4589,7 @@ system Si-28
 			period 209.873
 
 system Kr-84
-	pos -740.944 986.919
+	pos -709.277 920.586
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 2160
@@ -4666,7 +4680,7 @@ system Ar-40
 		period 12734.3
 
 system N-14
-	pos -208.155 1089.918
+	pos -222.303 1081.177
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
