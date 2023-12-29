@@ -35,7 +35,9 @@ ship "Undsyni" "Undsyni (Tanker)"
 		"Cryogenic Deuterium Tank" 18
 		"Dipole Ramscoop"
 
-		"Z-330 Fusion Torch"
+		`Z-330 "Spark" Fusion Torch`
+		"Inductive Extractor"
+		"Remass Injector" 2
 		"XY-360 Radial Thrusters"
 		"Hyperdrive"
 
@@ -55,7 +57,7 @@ ship "Prismaios" "Prismaios (Coilgun)"
 		"Multispectral Scanner"
 		"Electrostatic Ramscoop"
 		
-		"Z-330 Fusion Torch"
+		`Z-330 "Spark" Fusion Torch`
 		"XY-180 Radial Thrusters"
 		"Hyperdrive"
 
@@ -76,7 +78,9 @@ ship "Prismaios" "Prismaios (Atomic)"
 		"Multispectral Scanner"
 		"Electrostatic Ramscoop"
 		
-		"Z-330 Fusion Torch"
+		`Z-330 "Spark" Fusion Torch`
+		"Inductive Extractor"
+		"Remass Injector" 2
 		"XY-180 Radial Thrusters"
 		"Hyperdrive"
 
@@ -102,7 +106,9 @@ ship "Diaspersi" "Diaspersi (Atomic)"
 		"Deuterium Slush Tank"
 		"Electrostatic Ramscoop"
 		
-		"Z-660 Fusion Torch"
+		`Z-660 "Zap" Fusion Torch`
+		"Inductive Extractor" 2
+		"Remass Injector" 4
 		"XY-360 Radial Thrusters"
 		"Hyperdrive"
 
@@ -120,7 +126,9 @@ ship "Difraktos" "Difraktos (Missile)"
 		"Concealment Scales"
 		"Electrostatic Ramscoop"
 		
-		"Z-330 Fusion Torch"
+		`Z-330 "Spark" Fusion Torch`
+		"Inductive Extractor"
+		"Remass Injector" 2
 		"XY-360 Radial Thrusters"
 		"Hyperdrive"
 
@@ -140,7 +148,9 @@ ship "Difraktos" "Difraktos (Kinetic)"
 		"Concealment Scales"
 		"Electrostatic Ramscoop"
 		
-		"Z-330 Fusion Torch"
+		`Z-330 "Spark" Fusion Torch`
+		"Inductive Extractor"
+		"Remass Injector" 2
 		"XY-360 Radial Thrusters"
 		"Hyperdrive"
 
@@ -162,7 +172,9 @@ ship "Difraktos" "Difraktos (Atomic)"
 		"Concealment Scales"
 		"Electrostatic Ramscoop"
 		
-		"Z-660 Fusion Torch"
+		`Z-660 "Zap" Fusion Torch`
+		"Inductive Extractor" 2
+		"Remass Injector" 4
 		"XY-360 Radial Thrusters"
 		"Hyperdrive"
 
@@ -187,7 +199,9 @@ ship "Atenuatia" "Atenuatia (Atomic)"
 		"Electrostatic Ramscoop" 2
 		"Multispectral Scanner" 9
 		
-		"Z-660 Fusion Torch"
+		`Z-660 "Zap" Fusion Torch`
+		"Inductive Extractor" 2
+		"Remass Injector" 4
 		"XY-360 Radial Thrusters"
 		"Hyperdrive"
 

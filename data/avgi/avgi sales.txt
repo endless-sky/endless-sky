@@ -106,13 +106,15 @@ outfitter "Avgi Advanced Systems"
 
 outfitter "Avgi Basic Drives"
 	"Magnetoplasma Drive"
-	"Z-330 Fusion Torch"
+	`Z-330 "Spark" Fusion Torch`
 	"XY-180 Radial Thrusters"
 	"XY-360 Radial Thrusters"
+	"Remass Injector"
+	"Inductive Extractor"
 
 outfitter "Avgi Advanced Drives"
-	"Z-660 Fusion Torch"
-	"Z-990 Fusion Torch"
+	`Z-660 "Bolt" Fusion Torch`
+	`Z-990 "Zap" Fusion Torch`
 	"XY-720 Radial Thrusters"
 
 outfitter "Avgi Basic Combat"

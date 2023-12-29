@@ -20,7 +20,7 @@ outfit "Ultrarelativistic Electron Beam"
 	licenses
 		"Avgi Civilian"
 	cost 40000
-	thumbnail "outfit/speckle gun"
+	thumbnail "outfit/unknown"
 	"mass" 3.6
 	"outfit space" -9
 	"weapon capacity" -9
@@ -39,6 +39,7 @@ outfit "Ultrarelativistic Electron Beam"
 		"firing force" 1
 		"velocity override" 240
 		"submunition" "Electron Packet" 600
+
 
 outfit "Electron Packet"
 	weapon
@@ -146,7 +147,7 @@ outfit "Speckle Turret"
 		"range override" 1200
 		"reload" 12
 		"turret turn" 6
-		"firing energy" 60
+		"firing energy" 48
 		"firing heat" 24
 		"firing force" 24
 		"submunition" "Speck"
@@ -224,7 +225,7 @@ outfit "Fleck Coilgun"
 		"range override" 1440
 		"lifetime" 1
 		"reload" 60
-		"firing energy" 150
+		"firing energy" 210
 		"firing heat" 18
 		"firing force" 60
 		"submunition" "Fleck"
@@ -255,7 +256,7 @@ outfit "Fleck Turret"
 		"lifetime" 1
 		"reload" 30
 		"turret turn" 3.6
-		"firing energy" 120
+		"firing energy" 180
 		"firing heat" 12
 		"firing force" 60
 		"submunition" "Fleck"
@@ -273,7 +274,7 @@ outfit "Fleck"
 		"random lifetime" 6
 		"inaccuracy" 0.3
 		"shield damage" 72
-		"hull damage" 105
+		"hull damage" 150
 		"hit force" 60
 		"missile strength" 3
 
@@ -307,7 +308,7 @@ outfit "Phased Array Laser (Green)"
 		"die effect" "green phaser scattering"
 		"fire effect" "green phaser fire"
 		"anti-missile" 3
-		"velocity" 1800
+		"velocity" 1200
 		"lifetime" 1
 		"reload" 1
 		"firing energy" 12
@@ -341,13 +342,12 @@ outfit "Phased Array Laser (Blue)"
 		"lifetime" 1
 		"reload" 1
 		"turret turn" 6
-		"firing energy" 15
+		"firing energy" 12
 		"firing heat" 12
-		"shield damage" 3.6
+		"shield damage" 3
 		"hull damage" 4.2
 		"heat damage" 6
 		"damage dropoff" 0 3600
-		"dropoff modifier" 0.15
 	description "This phased array laser, or phaser, binds thousands of individual optical fibers together to create a single collimated beam precise enough to target projectiles in flight. An azure glow strong enough to blind the naked eye is the only indication of this weapon firing."
 	description "The turret itself only contains the optics needed to synthesize and target the beam, allowing the laser light to be produced elsewhere. Because of this, an Optical Lasing Generator is needed to run this turret, providing enough power to support two Blue Phasers."
 	description "Without the advanced insights needed to produce classical 'beam weapons' such as those used by humans and other species, the laser suffers from diffraction as it travels. This causes its damage to rapidly drop off with distance, becoming almost useless at its maximum range."
@@ -1182,7 +1182,7 @@ outfit "Concentrating Solar Array"
 	"mass" 3
 	"outfit space" -18
 	"solar collection" 2.4
-	"solar heat" 1.2
+	"solar heat" 1.02
 	description "This large set of concentrating solar cells efficiently collects sunlight, turning it into usable energy. Thin Fresnel lenses concentrate sunlight onto a small number of highly efficient solar cells, reducing weight and improving efficiency."
 	description "While much more efficient than a single cell alone, the Solar Array also produces more than a proportionate amount of heat."
 
@@ -1199,7 +1199,7 @@ outfit "Photoelectric Scales"
 	"solar collection" 6
 	"solar heat" 1.8
 	description "These concentrating solar panels can be mounted conformally to a ship's hull, efficiently collecting sunlight and turning it into usable energy."
-	description "Photovoltaic Scales take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star. However, they also tend to increase the amount of heat absorbed from the local star."
+	description "Photovoltaic Scales take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
 
 
 outfit "Lantern Fission Core"
@@ -1212,63 +1212,7 @@ outfit "Lantern Fission Core"
 	"outfit space" -24
 	"energy generation" 4.2
 	"heat generation" 5.4
-	description "The Lantern is a compact dusty plasma fission reactor designed to fit even on large fighters or interceptors. By suspending uranium dust in a hydrogen plasma, which is in turn contained by a magnetic field, the reactor can achieve incredible core temperatures high enough to make it efficient for its size."
-
-
-outfit "Luminous Fusion Core"
-	category "Power"
-	licenses
-		"Avgi Civilian"
-	cost 3420000
-	thumbnail "outfit/fusion core small"
-	"mass" 42
-	"outfit space" -42
-	"fuel energy" 12
-	"fuel heat" 30
-	"fuel consumption" 0.09
-	description "Balance TBD"
-	
-
-outfit "Brilliant Fusion Core"
-	category "Power"
-	licenses
-		"Avgi Military"
-	cost 5760000
-	thumbnail "outfit/unknown"
-	"mass" 72
-	"outfit space" -72
-	"fuel energy" 21
-	"fuel heat" 48
-	"fuel consumption" 0.12
-	description "Balance TBD"
-
-
-outfit "Radiant Fusion Core"
-	category "Power"
-	licenses
-		"Avgi Military"
-	cost 14460000
-	thumbnail "outfit/unknown"
-	"mass" 105
-	"outfit space" -105
-	"fuel energy" 33
-	"fuel heat" 72
-	"fuel consumption" 0.15
-	description "Balance TBD"
-
-
-outfit "Stellar Fusion Core"
-	category "Power"
-	licenses
-		"Avgi Military"
-	cost 20460000
-	thumbnail "outfit/unknown"
-	"mass" 144
-	"outfit space" -144
-	"fuel energy" 48
-	"fuel heat" 102
-	"fuel consumption" 0.18
-	description "Balance TBD"
+	description "The Lantern is a compact dusty plasma fission reactor designed to fit even on large fighters or interceptors. By suspending uranium dust in a hydrogen plasma, which is in turn contained by a magnetic field, the reactor can achieve incredible core temperatures high enough to make it efficient for its size, at the cost of producing significant amounts of waste heat."
 
 
 outfit "Ultracapacitor Cell"
@@ -1297,7 +1241,6 @@ outfit "Ultracapacitor Bank"
 	"ion protection" -0.03
 	"description" "These fractal capacitors are capable of storing a large amount of energy within superconducting graphene sheets. This capacitor bank chains together six individual cells, but saves space by discarding redundant components and unnecessary structural mass."
 	"description" "Like its component cells, the capacitor bank is vulnerable to ionizing weapons, but is relatively better shielded for its size by virtue of its reduced surface area to volume ratio."
-
 
 
 # Engines:
@@ -1334,7 +1277,7 @@ outfit "Magnetoplasma Drive"
 	description "Designed to be clustered, this design is capable of full six-axis control."
 
 
-outfit "Z-330 Fusion Torch"
+outfit `Z-330 "Spark" Fusion Torch`
 	category "Engines"
 	licenses
 		"Avgi Military"
@@ -1345,21 +1288,20 @@ outfit "Z-330 Fusion Torch"
 	"engine capacity" -33
 	"thrust" 45
 	"thrusting energy" 3
-	"thrusting heat" 15
+	"thrusting heat" 45
 	"thrusting fuel" 0.03
 	"drag reduction" 2
+	"energy generation" 3
 	"flare sprite" "effect/avgi flare/fusion"
 		"frame rate" 15
 		"scale" 0.75
 	"flare sound" "remnant afterburner"
-	"afterburner thrust" 90
-	"afterburner fuel" 0.24
-	"afterburner heat" -12
 	"afterburner effect" "small remass injection"
+	"fusion power" 3
 	description "Balance TBD"
 
 
-outfit "Z-660 Fusion Torch"
+outfit `Z-660 "Zap" Fusion Torch`
 	category "Engines"
 	licenses
 		"Avgi Military"
@@ -1370,20 +1312,19 @@ outfit "Z-660 Fusion Torch"
 	"engine capacity" -66
 	"thrust" 93
 	"thrusting energy" 6
-	"thrusting heat" 30
+	"thrusting heat" 90
 	"thrusting fuel" 0.06
 	"drag reduction" 2
+	"energy generation" 6
 	"flare sprite" "effect/avgi flare/fusion"
 		"frame rate" 15
 	"flare sound" "remnant afterburner"
-	"afterburner thrust" 186
-	"afterburner fuel" 0.48
-	"afterburner heat" -21
 	"afterburner effect" "medium remass injection"
+	"fusion power" 6
 	description "Balance TBD"
 
 
-outfit "Z-990 Fusion Torch"
+outfit `Z-990 "Arc" Fusion Torch`
 	category "Engines"
 	licenses
 		"Avgi Military"
@@ -1394,17 +1335,16 @@ outfit "Z-990 Fusion Torch"
 	"engine capacity" -99
 	"thrust" 144
 	"thrusting energy" 9
-	"thrusting heat" 45
+	"thrusting heat" 135
 	"thrusting fuel" 0.09
 	"drag reduction" 2
+	"energy generation" 9
 	"flare sprite" "effect/avgi flare/fusion"
 		"frame rate" 30
 		"scale" 2
 	"flare sound" "remnant afterburner"
-	"afterburner thrust" 288
-	"afterburner fuel" 0.72
-	"afterburner heat" -27
 	"afterburner effect" "large remass injection"
+	"fusion power" 9
 	description "Balance TBD"
 
 
@@ -1424,6 +1364,37 @@ effect "large remass injection"
 		"frame rate" 30
 		"scale" 2
 	sound "flamethrower"
+
+
+outfit "Remass Injector"
+	category "Engines"
+	licenses
+		"Avgi Military"
+	"cost" 2760000
+	thumbnail "outfit/unknown"
+	"mass" 6
+	"outfit space" -6
+	"engine capacity" -6
+	"afterburner thrust" 45
+	"afterburner fuel" 0.12
+	"afterburner heat" -24
+	"fusion power" -1
+	description "Balance TBD"
+
+
+outfit "Inductive Extractor"
+	category "Engines"
+	licenses
+		"Avgi Military"
+	"cost" 2760000
+	thumbnail "outfit/unknown"
+	"mass" 9
+	"outfit space" -9
+	"thrust" -6
+	"thrusting energy" -18
+	"thrusting heat" 6
+	"fusion power" -1
+	description "Balance TBD"
 
 
 outfit "XY-180 Radial Thrusters"
@@ -1562,6 +1533,15 @@ outfit "Avgi Civilian License"
 	thumbnail "outfit/unknown"
 
 outfit "Avgi Military License"
+	category "Licenses"
+	thumbnail "outfit/unknown"
+
+
+outfit "Avgi Starfarer License"
+	category "Licenses"
+	thumbnail "outfit/unknown"
+
+outfit "Avgi Starship License"
 	category "Licenses"
 	thumbnail "outfit/unknown"
 

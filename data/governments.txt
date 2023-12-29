@@ -183,6 +183,8 @@ government "Avgi (Wandering Fleet)"
 		provoke 0.1
 		scan 0.01
 	bribe 0
+	"travel restrictions"
+		system "S-32"
 
 government "Bad Trip"
 	swizzle 0

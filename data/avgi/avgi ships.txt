@@ -625,7 +625,9 @@ ship "Frequentia"
 		"Electrostatic Ramscoop"
 		"Electromotive Rifle" 2
 
-		"Z-330 Fusion Torch"
+		`Z-330 "Spark" Fusion Torch`
+		"Inductive Extractor"
+		"Remass Injector" 2
 		"XY-180 Radial Thrusters"
 		"Hyperdrive"
 
@@ -704,7 +706,9 @@ ship "Polari"
 		"Electrostatic Ramscoop"
 		"Electromotive Rifle" 9
 
-		"Z-330 Fusion Torch"
+		`Z-330 "Spark" Fusion Torch`
+		"Inductive Extractor"
+		"Remass Injector" 2
 		"XY-180 Radial Thrusters"
 		"Hyperdrive"
 
@@ -913,7 +917,9 @@ ship "Undsyni"
 		"Multispectral Scanner"
 		"Spectrometer Array"
 
-		"Z-330 Fusion Torch"
+		`Z-330 "Spark" Fusion Torch`
+		"Inductive Extractor"
+		"Remass Injector" 2
 		"XY-360 Radial Thrusters"
 		"Hyperdrive"
 
@@ -962,8 +968,8 @@ ship "Undsyni"
 	explode "huge explosion" 9
 	"final explode" "final explosion large"
 
-	description "The Undsyni-class Auxiliary Freighter is not just a bulk freighter, but one built to be large and strong enough to hold its own against attacks from smaller, more militarized vessels. While not quite as payload efficient as more spindly ships such as the Avlaki and Harmonikos, the Undsyni's resilience makes it much more survivable against attacks, with its fusion torch giving it the acceleration to both evade enemies and minimize travel times."
-	description "Even before the Incursion, the Undsyni's strong hull and internal outfit capacity made it a popular option as a capital warship for groups who could not gain access to specialized warships."
+	description "The Undsyni-class Auxiliary Freighter is not a mere bulk freighter, but rather one built to be large and strong enough to hold its own against attacks from smaller, more militarized vessels. While not quite as payload efficient as more spindly ships such as the Avlaki and Harmonikos, the Undsyni's resilience makes it much more survivable against attacks, with its fusion torch giving it the acceleration to both evade enemies and minimize travel times."
+	description "Even before the Incursion, the Undsyni's strong hull and internal outfit capacity made it a popular option as a capital ship for renegade groups who could not gain access to specialized warships."
 	description "A reinforced spine running the length of the ship allows it to fit a huge Dipole Ramscoop, capable of bearing the extreme stresses the ramscoop's magnetic field puts on its superconducting magnets. In this configuration, a tanker Undsyni can supply the fuel needs of an entire fleetgroup across dozens of systems."
 
 
@@ -1126,7 +1132,9 @@ ship "Tremoros"
 		"Multispectral Scanner"
 		"Electrostatic Ramscoop"
 		
-		"Z-330 Fusion Torch"
+		`Z-330 "Spark" Fusion Torch`
+		"Inductive Extractor"
+		"Remass Injector" 2
 		"XY-180 Radial Thrusters"
 		"Hyperdrive"
 
@@ -1207,7 +1215,9 @@ ship "Prismaios"
 		"Multispectral Scanner"
 		"Electrostatic Ramscoop"
 		
-		"Z-330 Fusion Torch"
+		`Z-330 "Spark" Fusion Torch`
+		"Inductive Extractor"
+		"Remass Injector" 2
 		"XY-360 Radial Thrusters"
 		"Hyperdrive"
 
@@ -1286,7 +1296,9 @@ ship "Interferos"
 		"Optical Lasing Generator"
 		"Electrostatic Ramscoop"
 		
-		"Z-330 Fusion Torch"
+		`Z-330 "Spark" Fusion Torch`
+		"Inductive Extractor"
+		"Remass Injector" 2
 		"XY-180 Radial Thrusters"
 		"Hyperdrive"
 
@@ -1377,7 +1389,9 @@ ship "Diaspersi"
 		"Electrostatic Ramscoop"
 		"Electromotive Rifle" 36
 		
-		"Z-330 Fusion Torch"
+		`Z-330 "Spark" Fusion Torch`
+		"Inductive Extractor"
+		"Remass Injector" 2
 		"XY-360 Radial Thrusters"
 		"Hyperdrive"
 
@@ -1479,7 +1493,9 @@ ship "Difraktos"
 		"Electrostatic Ramscoop"
 		"Electromotive Rifle" 42
 
-		"Z-660 Fusion Torch"
+		`Z-660 "Zap" Fusion Torch`
+		"Inductive Extractor" 2
+		"Remass Injector" 4
 		"XY-360 Radial Thrusters"
 		"Hyperdrive"
 
@@ -1570,7 +1586,9 @@ ship "Refraktos"
 		"Thermal Sink Partition" 3
 		"Electromotive Rifle" 24
 		
-		"Z-330 Fusion Torch"
+		`Z-330 "Spark" Fusion Torch`
+		"Inductive Extractor"
+		"Remass Injector" 2
 		"XY-360 Radial Thrusters"
 		"Hyperdrive"
 
@@ -1668,7 +1686,9 @@ ship "Atenuatia"
 		"Multispectral Scanner" 9
 		"Electromotive Rifle" 90
 		
-		"Z-660 Fusion Torch"
+		`Z-660 "Zap" Fusion Torch`
+		"Inductive Extractor" 2
+		"Remass Injector" 4
 		"XY-360 Radial Thrusters"
 		"Hyperdrive"
 
@@ -2058,15 +2078,21 @@ ship "Optikon"
 		"fuel capacity" 100
 		"outfit space" 60
 		"engine capacity" 24
-		"atmosphere scan" 30
+		"atmosphere scan" 36
+		"outfit scan power" 42
+		"outfit scan efficiency" 12
+		"cargo scan power" 42
+		"cargo scan efficiency" 12
+		"tactical scan power" 72
+		"asteroid scan power" 36
 		weapon
 			"blast radius" 9
 			"shield damage" 150
 			"hull damage" 90
 			"hit force" 60
 	outfits
-		"Concentrating Solar Array"
-		"Ultracapacitor Cell" 2
+		"Concentrating Solar Cell" 3
+		"Ultracapacitor Cell" 3
 		"Multispectral Scanner"
 		"Spectrometer Array"
 
