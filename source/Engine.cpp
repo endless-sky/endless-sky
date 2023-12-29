@@ -1399,7 +1399,7 @@ void Engine::EnterSystem()
 	// it has encountered all targetable ships in the system.
 	if(flagship->IsTargetable())
 		for(const shared_ptr<Ship> &ship : ships)
-			if(ship->GetSystem() == system && ship->IsTargetable() < 1.)
+			if(ship->GetSystem() == system && ship->IsTargetable())
 				eventQueue.emplace_back(player.FlagshipPtr(), ship, ShipEvent::ENCOUNTER);
 }
 
@@ -1481,7 +1481,7 @@ void Engine::CalculateStep()
 		MoveShip(it);
 		// If either the flagship or this ship uncloaked this frame and both are uncloaked,
 		// then they have encountered each other.
-		if(((wasUntargetable && it->Cloaking() < 1.) || (flagshipWasUntargetable && flagship->IsTargetable()))
+		if(((wasUntargetable && it->IsTargetable()) || (flagshipWasUntargetable && flagship->IsTargetable()))
 			&& flagship->GetSystem() == it->GetSystem() && flagship->IsTargetable())
 				eventQueue.emplace_back(player.FlagshipPtr(), it, ShipEvent::ENCOUNTER);
 	}
