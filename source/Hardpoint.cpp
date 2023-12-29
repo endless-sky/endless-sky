@@ -141,7 +141,7 @@ bool Hardpoint::IsHoming() const
 // (e.g. anti-missile, tractor beam).
 bool Hardpoint::IsSpecial() const
 {
-	return outfit && (outfit->AntiMissile() > 0 || outfit->TractorBeam() > 0.);
+	return outfit && (outfit->AntiMissile() || outfit->TractorBeam());
 }
 
 
