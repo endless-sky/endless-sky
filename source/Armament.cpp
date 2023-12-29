@@ -235,7 +235,9 @@ void Armament::Aim(const FireCommand &command)
 // not ready, return false.
 void Armament::Fire(int index, Ship &ship, vector<Projectile> &projectiles, vector<Visual> &visuals, bool jammed)
 {
-	if(static_cast<unsigned>(index) >= hardpoints.size() || !hardpoints[index].IsReady())
+	// Don't check if the hardpoint jammed here, as the weapon may not even
+	// attempt to fire due to stream reloading.
+	if(!CheckHardpoint(index))
 		return;
 
 	// A weapon that has already started a burst ignores stream timing.
@@ -260,14 +262,8 @@ void Armament::Fire(int index, Ship &ship, vector<Projectile> &projectiles, vect
 bool Armament::FireAntiMissile(int index, Ship &ship, const Projectile &projectile,
 	vector<Visual> &visuals, bool jammed)
 {
-	if(static_cast<unsigned>(index) >= hardpoints.size() || !hardpoints[index].IsReady())
+	if(!CheckHardpoint(index, jammed))
 		return false;
-
-	if(jammed)
-	{
-		hardpoints[index].Jam();
-		return false;
-	}
 
 	return hardpoints[index].FireAntiMissile(ship, projectile, visuals);
 }
@@ -277,14 +273,8 @@ bool Armament::FireAntiMissile(int index, Ship &ship, const Projectile &projecti
 bool Armament::FireTractorBeam(int index, Ship &ship, const Flotsam &flotsam,
 	vector<Visual> &visuals, bool jammed)
 {
-	if(static_cast<unsigned>(index) >= hardpoints.size() || !hardpoints[index].IsReady())
+	if(!CheckHardpoint(index, jammed))
 		return false;
-
-	if(jammed)
-	{
-		hardpoints[index].Jam();
-		return false;
-	}
 
 	return hardpoints[index].FireTractorBeam(ship, flotsam, visuals);
 }
@@ -304,4 +294,20 @@ void Armament::Step(const Ship &ship)
 		// Always reload to the quickest firing interval.
 		it.second = max(it.second, 1 - count);
 	}
+}
+
+
+
+bool Armament::CheckHardpoint(int index, bool jammed)
+{
+	if(static_cast<unsigned>(index) >= hardpoints.size() || !hardpoints[index].IsReady())
+		return false;
+
+	if(jammed)
+	{
+		hardpoints[index].Jam();
+		return false;
+	}
+
+	return true;
 }

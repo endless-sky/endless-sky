@@ -86,6 +86,12 @@ public:
 
 
 private:
+	// Check if the given hardpoint index is valid. Jam the hardpoint if it needs jammed.
+	// Returns false if the index is invalid or the hardpoint jammed.
+	bool CheckHardpoint(int index, bool jammed = false);
+
+
+private:
 	// Note: the Armament must be copied when an instance of a Ship is made, so
 	// it should not hold any pointers specific to one ship (including to
 	// elements of this Armament itself).
