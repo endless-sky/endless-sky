@@ -1949,6 +1949,7 @@ void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 
 	antiMissileRange = 0.;
 	tractorBeamRange = 0.;
+	tractorFlotsam.clear();
 
 	double jamChance = CalculateJamChance(Energy(), scrambling);
 
@@ -2046,6 +2047,9 @@ Point Ship::FireTractorBeam(const Flotsam &flotsam, vector<Visual> &visuals)
 				Point hardpointPos = Position() + Zoom() * Facing().Rotate(hardpoints[i].GetPoint());
 				// Heavier flotsam are harder to pull.
 				pullVector += (hardpointPos - flotsam.Position()).Unit() * weapon->TractorBeam() / flotsam.Mass();
+				// Remember that this flotsam is being pulled by a tractor beam so that this ship
+				// doesn't try to manually collect it.
+				tractorFlotsam.insert(&flotsam);
 				// If this ship is opportunistic, then only fire one tractor beam at each flostam.
 				if(personality.IsOpportunistic() || (isYours && opportunisticEscorts))
 					break;
@@ -3439,6 +3443,13 @@ shared_ptr<Minable> Ship::GetTargetAsteroid() const
 shared_ptr<Flotsam> Ship::GetTargetFlotsam() const
 {
 	return targetFlotsam.lock();
+}
+
+
+
+const set<const Flotsam *> &Ship::GetTractorFlotsam() const
+{
+	return tractorFlotsam;
 }
 
 

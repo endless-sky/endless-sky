@@ -2853,7 +2853,9 @@ bool AI::DoHarvesting(Ship &ship, Command &command) const
 {
 	// If the ship has no target to pick up, do nothing.
 	shared_ptr<Flotsam> target = ship.GetTargetFlotsam();
-	if(target && !ship.CanPickUp(*target))
+	// Don't try to chase flotsam that are already being pulled toward the ship by a tractor beam.
+	const set<const Flotsam *> &avoid = ship.GetTractorFlotsam();
+	if(target && (!ship.CanPickUp(*target) || avoid.count(target.get())))
 	{
 		target.reset();
 		ship.SetTargetFlotsam(target);
@@ -2868,7 +2870,7 @@ bool AI::DoHarvesting(Ship &ship, Command &command) const
 		double bestTime = 600.;
 		for(const shared_ptr<Flotsam> &it : flotsam)
 		{
-			if(!ship.CanPickUp(*it))
+			if(!ship.CanPickUp(*it) || avoid.count(it.get()))
 				continue;
 			// Only pick up flotsam that is nearby and that you are facing toward. Player escorts should
 			// always attempt to pick up nearby flotsams when they are given a harvest order, and so ignore

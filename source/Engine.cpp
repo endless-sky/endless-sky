@@ -2304,11 +2304,39 @@ void Engine::DoCollection(Flotsam &flotsam)
 		// Keep track of the the net effect of all the tractor beams pulling on
 		// this flotsam.
 		Point pullVector;
+		// Also determine the average velocity of the ships pulling on this flotsam.
+		Point avgShipVelocity;
+		int count = 0;
 		for(Ship *ship : hasTractorBeam)
-			pullVector += ship->FireTractorBeam(flotsam, visuals);
+		{
+			Point shipPull = ship->FireTractorBeam(flotsam, visuals);
+			if(shipPull)
+			{
+				pullVector += shipPull;
+				avgShipVelocity += ship->Velocity();
+				++count;
+			}
+		}
 
 		if(pullVector)
+		{
+			// If any tractor beams successfully fired on this flotsam, also drag the flotsam with
+			// the average velocity of each ship.
+			// When dealing with individual ships, this makes tractor beams feel more more capable of
+			// dragging flotsams to the ship. Otherwise, a ship could be drifting away from a flotsam
+			// at the same speed that the tractor beam is pulling the flotsam toward the ship,
+			// which looks awkward and makes the tractor beam feel pointless; the whole point of
+			// a tractor beam should be that it collects flotsam for you.
+			// This does mean that if you fly toward a flotsam that is in your tractor beam then
+			// you'll be pushing the flotsam away from your ship, but the pull of the tractor beam
+			// will still slowly close the distance between the ship and the flotsam.
+			// When dealing with multiple ships, this causes a better appearance of a struggle between
+			// the ships all trying to get ahold of the flotsam should the ships all have similar velocities.
+			// If the ships have differing velocities, then it can make it look like the quicker ship is
+			// yanking the flotsam away from the slower ship.
+			pullVector += avgShipVelocity / count;
 			flotsam.SetVelocity(pullVector);
+		}
 		return;
 	}
 
