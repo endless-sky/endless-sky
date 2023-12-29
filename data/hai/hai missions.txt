@@ -140,8 +140,6 @@ mission "Discovered Wormhole Alpha"
 		set "wormhole alpha found"
 		fail
 
-
-
 mission "Assisting Hai"
 	assisting
 	repeat
@@ -152,12 +150,8 @@ mission "Assisting Hai"
 		not attributes "automaton"
 	on offer
 		payment 30000
-		conversation
-			`${assist merchant 1} <origin>${assist merchant 2} ${assist merchant 3} <payment>${assist merchant 4}`
-				decline
+		conversation "assisting merchant hazardous"
 	destination "Hai-home"
-
-
 
 mission "Ask the Hai about the Unfettered"
 	landing
