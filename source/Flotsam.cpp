@@ -121,7 +121,7 @@ void Flotsam::Move(vector<Visual> &visuals)
 // Pull this flotsam toward a tractor beam.
 void Flotsam::Tractor(Point pull)
 {
-	velocity = pull / Mass();
+	velocity = pull;
 }
 
 

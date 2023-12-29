@@ -237,10 +237,9 @@ public:
 	bool HasTractorBeam() const;
 	// Fire an anti-missile at the given missile. Returns true if the missile was killed.
 	bool FireAntiMissile(const Projectile &projectile, std::vector<Visual> &visuals);
-	// Fire tractor beams at the given flotsam. Adds to the vector of the origin and magnitude
-	// of any tractor beams pulling on the flotsam.
-	void FireTractorBeam(const Flotsam &flotsam, std::vector<Visual> &visuals,
-		std::vector<std::pair<Point, double>> &tractorBeams);
+	// Fire tractor beams at the given flotsam. Returns a Point representing the net
+	// pull on the flotsam from this ship's tractor beams.
+	Point FireTractorBeam(const Flotsam &flotsam, std::vector<Visual> &visuals);
 
 	// Get the system this ship is in. Set to nullptr if the ship is being carried.
 	const System *GetSystem() const;

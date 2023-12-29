@@ -2010,27 +2010,27 @@ bool Ship::FireAntiMissile(const Projectile &projectile, vector<Visual> &visuals
 
 
 
-// Fire tractor beams at the given flotsam. Adds to the vector of the origin and magnitude
-// of any tractor beams pulling on the flotsam.
-void Ship::FireTractorBeam(const Flotsam &flotsam, vector<Visual> &visuals,
-	vector<pair<Point, double>> &tractorBeams)
+// Fire tractor beams at the given flotsam. Returns a Point representing the net
+// pull on the flotsam from this ship's tractor beams.
+Point Ship::FireTractorBeam(const Flotsam &flotsam, vector<Visual> &visuals)
 {
+	Point pullVector;
 	if(flotsam.Position().Distance(position) > tractorBeamRange)
-		return;
+		return pullVector;
 	if(CannotAct())
-		return;
+		return pullVector;
 	// Don't waste energy on flotsams that you can't pick up.
 	if(!CanPickUp(flotsam))
-		return;
+		return pullVector;
 	if(IsYours())
 	{
 		const auto flotsamSetting = Preferences::GetFlotsamCollection();
 		if(flotsamSetting == Preferences::FlotsamCollection::OFF)
-			return;
+			return pullVector;
 		if(!GetParent() && flotsamSetting == Preferences::FlotsamCollection::ESCORT)
-			return;
+			return pullVector;
 		if(flotsamSetting == Preferences::FlotsamCollection::FLAGSHIP)
-			return;
+			return pullVector;
 	}
 
 	double jamChance = CalculateJamChance(Energy(), scrambling);
@@ -2044,12 +2044,14 @@ void Ship::FireTractorBeam(const Flotsam &flotsam, vector<Visual> &visuals,
 			if(armament.FireTractorBeam(i, *this, flotsam, visuals, Random::Real() < jamChance))
 			{
 				Point hardpointPos = Position() + Zoom() * Facing().Rotate(hardpoints[i].GetPoint());
-				tractorBeams.emplace_back(hardpointPos, weapon->TractorBeam());
+				// Heavier flotsam are harder to pull.
+				pullVector += (hardpointPos - flotsam.Position()).Unit() * weapon->TractorBeam() / flotsam.Mass();
 				// If this ship is opportunistic, then only fire one tractor beam at each flostam.
 				if(personality.IsOpportunistic() || (isYours && opportunisticEscorts))
-					return;
+					break;
 			}
 	}
+	return pullVector;
 }
 
 

@@ -2301,21 +2301,11 @@ void Engine::DoCollection(Flotsam &flotsam)
 	// pull it.
 	if(!collector)
 	{
-		// Keep track of the origin and strength of pull that each tractor beam
-		// has on this flotsam.
-		vector<pair<Point, double>> tractorBeams;
-		for(Ship *ship : hasTractorBeam)
-			ship->FireTractorBeam(flotsam, visuals, tractorBeams);
-
-		// Find the net effect of all the tractor beams pulling on
+		// Keep track of the the net effect of all the tractor beams pulling on
 		// this flotsam.
 		Point pullVector;
-		for(auto &weapon : tractorBeams)
-		{
-			Point direction = (weapon.first - flotsam.Position()).Unit();
-			double magnitude = weapon.second;
-			pullVector += direction * magnitude;
-		}
+		for(Ship *ship : hasTractorBeam)
+			pullVector += ship->FireTractorBeam(flotsam, visuals);
 
 		if(pullVector)
 			flotsam.Tractor(pullVector);
