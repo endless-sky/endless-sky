@@ -378,7 +378,7 @@ mission "Pookie, Part 3"
 				`	(Stay and watch.)`
 				`	(Leave the building.)`
 					goto nope
-			`	You look on at the duel, as does the rest of the building. The crowd has already taken sides, with some shouting Zinc's name and others shouting Doom's. Doom initially appears to have the upper hand, ramming himself into Zinc with impunity as she is sent sprawling. However, when Doom goes in for another tackle, Zinc dashes in and sinks her teeth into his neck. His roars of pain deminish into whimpers as blood spills readily on the complex's floor.`
+			`	You look on at the duel, as does the rest of the building. The crowd has already taken sides, with some shouting Zinc's name and others shouting Doom's. Doom initially appears to have the upper hand, ramming himself into Zinc with impunity as she is sent sprawling. However, when Doom goes in for another tackle, Zinc dashes in and sinks her teeth into his neck. His roars of pain diminish into whimpers as blood spills readily on the complex's floor.`
 			`	Suddenly, a gunshot rings out throughout the building. The two beasts fall over as the stagehand steps forward holding a shotgun. The crowd is left in silence for a moment, until they start to jeer and boo, angered by the unsatisfying end to the duel. The stagehand responds by pointing his gun up and firing again. "That's enough!" he yells. "If you freaks want your bloodsports, then go to the gladiator stadium, or a cockfighting ring. But this establishment will not support such degeneracy!" The crowd goes quiet, but out of the corner of your eye, you see some mean-faced figures reach into their pockets.`
 			choice
 				`	(Get out before it gets ugly.)`
