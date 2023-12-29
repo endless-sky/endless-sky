@@ -2308,7 +2308,7 @@ void Engine::DoCollection(Flotsam &flotsam)
 			pullVector += ship->FireTractorBeam(flotsam, visuals);
 
 		if(pullVector)
-			flotsam.Tractor(pullVector);
+			flotsam.SetVelocity(pullVector);
 		return;
 	}
 
