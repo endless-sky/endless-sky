@@ -71,6 +71,7 @@ public:
 	// This is how big one "unit" of the flotsam is (in tons). If a ship has
 	// less than this amount of space, it can't pick up anything here.
 	double UnitSize() const;
+	double Mass() const;
 
 	// Transfer contents to the collector ship. The flotsam velocity is
 	// stabilized in proportion to the amount being transferred.
