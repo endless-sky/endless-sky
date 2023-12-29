@@ -22,7 +22,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 // Represents a collision between a projectile and a ship, asteroid, or minable.
-// Contains information such as the distance.
 class Collision {
 public:
 	// Initialize a Collision.

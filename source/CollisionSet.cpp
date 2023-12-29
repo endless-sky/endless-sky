@@ -29,7 +29,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <numeric>
 #include <set>
 #include <string>
-#include <utility>
 
 using namespace std;
 
