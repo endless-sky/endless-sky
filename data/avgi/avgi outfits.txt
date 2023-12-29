@@ -1286,10 +1286,10 @@ outfit `Z-330 "Spark" Fusion Torch`
 	"mass" 33
 	"outfit space" -33
 	"engine capacity" -33
-	"thrust" 45
-	"thrusting energy" 3
+	"thrust" 69
+	"thrusting energy" 9
 	"thrusting heat" 45
-	"thrusting fuel" 0.03
+	"thrusting fuel" 0.06
 	"drag reduction" 2
 	"energy generation" 3
 	"flare sprite" "effect/avgi flare/fusion"
@@ -1310,10 +1310,10 @@ outfit `Z-660 "Zap" Fusion Torch`
 	"mass" 66
 	"outfit space" -66
 	"engine capacity" -66
-	"thrust" 93
-	"thrusting energy" 6
+	"thrust" 144
+	"thrusting energy" 18
 	"thrusting heat" 90
-	"thrusting fuel" 0.06
+	"thrusting fuel" 0.12
 	"drag reduction" 2
 	"energy generation" 6
 	"flare sprite" "effect/avgi flare/fusion"
@@ -1333,10 +1333,10 @@ outfit `Z-990 "Arc" Fusion Torch`
 	"mass" 99
 	"outfit space" -99
 	"engine capacity" -99
-	"thrust" 144
-	"thrusting energy" 9
+	"thrust" 222
+	"thrusting energy" 27
 	"thrusting heat" 135
-	"thrusting fuel" 0.09
+	"thrusting fuel" 0.18
 	"drag reduction" 2
 	"energy generation" 9
 	"flare sprite" "effect/avgi flare/fusion"
@@ -1375,7 +1375,7 @@ outfit "Remass Injector"
 	"mass" 6
 	"outfit space" -6
 	"engine capacity" -6
-	"afterburner thrust" 45
+	"afterburner thrust" 60
 	"afterburner fuel" 0.12
 	"afterburner heat" -24
 	"fusion power" -1

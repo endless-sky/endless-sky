@@ -1,26 +1,18 @@
-# Copyright (c) 2023 by Azure
-#
-# Endless Sky is free software: you can redistribute it and/or modify it under the
-# terms of the GNU General Public License as published by the Free Software
-# Foundation, either version 3 of the License, or (at your option) any later version.
-#
-# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
-# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE. See the GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License along with
-# this program. If not, see <https://www.gnu.org/licenses/>.
-
-
 galaxy "label twilight"
 	pos -420 750
+	sprite label/twilight
 
 galaxy "label tangled shroud"
-	pos -150 900
+	pos -480 1020
+	sprite "label/tangled shroud"
+
+galaxy "label outer limits"
+	pos -510 1260
+	sprite "label/outer limits"
 
 system Anax
 	pos -462.815 698.074
-	government Aberrant
+	government Avgi
 	attributes avgi twilight
 	habitable 2200
 	belt 6000 10
@@ -531,8 +523,8 @@ system Anax
 			period 430.255
 
 system Clip
-	pos -503.464 712.559
-	government Aberrant
+	pos -508.501 711.522
+	government Avgi
 	attributes avgi twilight
 	habitable 625
 	belt 1750 4
@@ -603,6 +595,7 @@ system Empyrean
 	belt 1027 5
 	haze _menu/haze-twilight-thin
 	link Corporeal
+	link Evanescence
 	link Firmament
 	link Lumine
 	link Quintessence
@@ -760,6 +753,7 @@ system Quintessence
 	belt 1958 4
 	haze _menu/haze-black
 	link Arche
+	link Axiom
 	link Empyrean
 	link Evanescence
 	asteroids "small metal" 49 3.499
@@ -797,7 +791,7 @@ system Quintessence
 			period 226.069
 
 system Decet
-	pos -151.933 607.226
+	pos -148.822 603.448
 	government Uninhabited
 	attributes magnetar neutron twilight
 	habitable 100
@@ -816,7 +810,7 @@ system Decet
 		period 1
 
 system Mote
-	pos -490.911 894.88
+	pos -492.244 905.843
 	government Uninhabited
 	attributes twilight
 	habitable 10
@@ -1169,7 +1163,7 @@ system Septet
 	attributes carbon "ember waste" "notable star" twilight
 	habitable 3100
 	belt 2640 6
-	"jump range" 30
+	"jump range" 60
 	haze _menu/haze-red
 	link Octet
 	link Quintet
@@ -1351,27 +1345,22 @@ system Stream
 			period 331.195
 
 system Ensemble
-	pos -244.872 910.714
+	pos -522.936 1154.157
 	government "Avgi (Consonance)"
 	attributes avgi "bright star" consonance "notable star" "tangled shroud"
 	habitable 3250
 	belt 1401 5
-	haze _menu/haze-none
-	link As-75
-	link B-11
-	link Ge-73
-	link Sb-122
-	link Si-28
-	link Te-128
+	"jump range" 30
+	link K-39
 	asteroids "large metal" 1 6.84
 	fleet "Avgi Orbital Defense" 1200
-	fleet "Avgi Patrol" 1200
+	fleet "Avgi Patrol" 2400
 	fleet "Avgi Core Defense" 6000
 	fleet "Avgi Fleetgroup" 12000
-	fleet "Small Avgi Merchants" 2500
-	fleet "Large Avgi Merchants" 4000
+	fleet "Small Avgi Merchants" 2400
+	fleet "Large Avgi Merchants" 4200
 	fleet "Small Dissonance Merchants" 4200
-	fleet "Large Dissonance Merchants" 7500
+	fleet "Large Dissonance Merchants" 12000
 	object
 		sprite star/a8
 		distance 111.791
@@ -1458,7 +1447,7 @@ system Quartet
 		period 30689.117
 
 system Gust
-	pos -648.098 791.448
+	pos -648.246 805.151
 	government Uninhabited
 	attributes twilight
 	habitable 450
@@ -1615,11 +1604,11 @@ system Duet
 
 system Soar
 	pos -449.741 655.204
-	government Aberrant
+	government Avgi
 	attributes avgi twilight
 	habitable 490
 	belt 2200 10
-	"jump range" 30
+	"jump range" 90
 	haze _menu/haze-twilight
 	link Anax
 	link Billow
@@ -1699,7 +1688,7 @@ system Soar
 
 system Thread
 	pos -417.054 737.075
-	government Aberrant
+	government Avgi
 	attributes avgi twilight
 	habitable 1088.405
 	belt 2100 10
@@ -1759,7 +1748,7 @@ system Thread
 
 system Sail
 	pos -543.979 666.89
-	government Aberrant
+	government Avgi
 	attributes avgi twilight
 	habitable 1310
 	belt 1110 3
@@ -1845,16 +1834,13 @@ system Sail
 		period 14367.268
 
 system Interlude
-	pos -22.147 951.674
+	pos -684.045 1245.357
 	government "Avgi (Dissonance)"
-	attributes avgi "bright star" dissonance "ember waste" "giant star" multi-star "notable star" "tangled shroud"
+	attributes avgi "bright star" dissonance "giant star" multi-star "notable star" "tangled shroud"
 	habitable 7906.478
 	belt 3024 10
 	haze _menu/haze-67
-	link Ar-40
-	link Kr-84
-	link Ne-20
-	link Og-294
+	link Anthem
 	asteroids "small rock" 2 1.485
 	asteroids "large rock" 4 2.554
 	asteroids "large metal" 8 2.673
@@ -1865,9 +1851,9 @@ system Interlude
 	minables titanium 14 3.517
 	minables platinum 4 18.241
 	minables uranium 2 20.512
-	fleet "Small Dissonance Merchants" 1600
-	fleet "Large Dissonance Merchants" 2900
-	fleet "Dissonance Miners" 3600
+	fleet "Small Dissonance Merchants" 1800
+	fleet "Large Dissonance Merchants" 2700
+	fleet "Dissonance Miners" 2400
 	fleet "Small Avgi Merchants" 4200
 	fleet "Large Avgi Merchants" 9000
 	fleet "Avgi Patrol" 42000
@@ -2038,7 +2024,7 @@ system Span
 			period 222.855
 
 system Vorpal
-	pos -421.757 803
+	pos -437.711 789.074
 	government Uninhabited
 	attributes neutron "notable star" twilight
 	habitable 100
@@ -2076,16 +2062,15 @@ system Vorpal
 			period 449.031
 
 system Concerto
-	pos -170.282 1022.167
+	pos -486.457 1231.183
 	government Avgi
-	attributes avgi "bright star" consonance "notable star" "tangled shroud"
+	attributes avgi "bright star" consonance "notable star" "outer limits"
 	habitable 3650
 	belt 4475 10
 	haze _menu/haze-67
-	link Ba-137
-	link Be-9
-	link Mg-24
-	link Sr-88
+	link Acapella
+	link Cantata
+	link Symphony
 	asteroids "small rock" 2 1.735
 	asteroids "medium rock" 7 1.86
 	asteroids "large rock" 3 1.191
@@ -2093,10 +2078,13 @@ system Concerto
 	minables iron 24 2.437
 	fleet "Avgi Orbital Defense" 1200
 	fleet "Avgi Core Defense" 2700
-	fleet "Avgi Fleetgroup" 3800
+	fleet "Avgi Patrol" 4200
+	fleet "Avgi Fleetgroup" 3600
 	fleet "Small Avgi Merchants" 2400
-	fleet "Large Avgi Merchants" 3200
-	fleet "Avgi Miners" 3600
+	fleet "Large Avgi Merchants" 3000
+	fleet "Avgi Miners" 4200
+	fleet "Small Aberrant" 36000
+	fleet "Large Aberrant" 30000
 	object
 		sprite star/a0
 		period 10
@@ -2265,14 +2253,14 @@ system Gossamer
 			period 410.203
 
 system Prelude
-	pos -123.092 859.188
+	pos -497.841 950.835
 	government "Avgi (Dissonance)"
-	attributes avgi dissonance "ember waste" "giant star" "notable star" "tangled shroud"
+	attributes avgi dissonance "giant star" "notable star" "tangled shroud"
 	habitable 2300
 	belt 1664 5
-	haze _menu/haze-red
-	link At-210
-	link Ts-294
+	"jump range" 30
+	haze _menu/haze-twilight-thin
+	link Si-28
 	asteroids "small rock" 3 4.111
 	asteroids "medium rock" 5 3.953
 	asteroids "large rock" 1 4.585
@@ -2283,13 +2271,11 @@ system Prelude
 	minables gold 1 6.375
 	minables lead 5 7.644
 	fleet "Small Dissonance Merchants" 1800
-	fleet "Large Dissonance Merchants" 4100
-	fleet "Dissonance Miners" 3700
+	fleet "Large Dissonance Merchants" 4200
+	fleet "Dissonance Miners" 3600
 	fleet "Small Avgi Merchants" 9000
 	fleet "Large Avgi Merchants" 18000
 	fleet "Avgi Patrol" 42000
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 9000
 	object
 		sprite star/m-giant
 		period 10
@@ -2324,26 +2310,29 @@ system Prelude
 			period 178.034
 
 system Symphony
-	pos -132.616 991.927
+	pos -423.014 1260.277
 	government "Avgi (Consonance)"
-	attributes avgi consonance "tangled shroud"
+	attributes avgi consonance "outer limits"
 	habitable 450
 	belt 1997 7
 	belt 2468 5
 	haze _menu/haze-33
-	link Ca-40
-	link Sr-88
+	link Concerto
+	link Rhapsody
 	asteroids "small rock" 2 5.25
 	asteroids "medium rock" 6 5.18
 	asteroids "small metal" 2 5.39
 	asteroids "medium metal" 3 4.2
 	minables aluminum 5 9.3
-	fleet "Avgi Orbital Defense" 2000
-	fleet "Avgi Core Defense" 3100
-	fleet "Avgi Fleetgroup" 3800
-	fleet "Small Avgi Merchants" 2100
-	fleet "Large Avgi Merchants" 4300
-	fleet "Avgi Miners" 4300
+	fleet "Avgi Orbital Defense" 2400
+	fleet "Avgi Core Defense" 3600
+	fleet "Avgi Patrol" 6000
+	fleet "Avgi Fleetgroup" 3600
+	fleet "Small Avgi Merchants" 3000
+	fleet "Large Avgi Merchants" 2700
+	fleet "Avgi Miners" 6000
+	fleet "Small Aberrant" 42000
+	fleet "Large Aberrant" 36000
 	object
 		sprite star/k3
 		period 10
@@ -2407,7 +2396,7 @@ system Symphony
 		period 21526.164
 
 system Whirlwind
-	pos -669.44 846.643
+	pos -671.292 848.347
 	government Uninhabited
 	attributes twilight
 	habitable 2267.708
@@ -2643,7 +2632,7 @@ system Tap
 	habitable 100
 	belt 1482 4
 	belt 1983
-	"jump range" 30
+	"jump range" 60
 	haze _menu/haze-twilight-thin
 	link Peak
 	asteroids "small metal" 9 1.86
@@ -2681,7 +2670,7 @@ system Tap
 
 system Mellow
 	pos -384.748 645.559
-	government Aberrant
+	government Avgi
 	attributes avgi twilight
 	habitable 832.541
 	belt 1521 6
@@ -2736,13 +2725,12 @@ system Mellow
 		period 7272.613
 
 system Postlude
-	pos 141.372 829.66
+	pos -276.012 966.9
 	government Uninhabited
-	attributes "ember waste" hiders "tangled shroud"
+	attributes "tangled shroud"
 	habitable 1330.038
 	belt 1814 6
-	haze _menu/haze-brown
-	link Cs-133
+	haze _menu/haze-133
 	asteroids "medium metal" 13 5.468
 	asteroids "large metal" 1 6.634
 	minables lead 1 8.654
@@ -2767,7 +2755,7 @@ system Postlude
 			period 174.787
 
 system Corporeal
-	pos -401.83 780.193
+	pos -402.126 772.934
 	government Uninhabited
 	attributes ringworld twilight
 	habitable 700
@@ -2851,16 +2839,15 @@ system Caesura
 		period 10
 
 system Arche
-	pos -356.501 878.946
+	pos -407.454 926.462
 	government "Avgi (Twilight Guard)"
 	attributes avgi "bright star" consonance multi-star "notable star" twilight
 	habitable 14197.215
 	belt 1808 2
 	belt 2396 8
-	link B-11
-	link C-12
-	link N-14
-	link O-16
+	haze _menu/haze-twilight-thin
+	link H-1
+	link He-4
 	link Quintessence
 	asteroids "small rock" 3 5.94
 	asteroids "medium rock" 6 3.66
@@ -2871,10 +2858,13 @@ system Arche
 	minables silver 6 3.606
 	minables gold 6 8.493
 	minables platinum 6 6.303
+	fleet "Small Avgi Merchants" 8400
+	fleet "Large Avgi Merchants" 6000
 	fleet "Avgi Scouts" 9000
-	fleet "Avgi Patrol" 2800
-	fleet "Avgi Strike Group" 6000
+	fleet "Avgi Patrol" 2700
+	fleet "Avgi Strike Group" 4200
 	fleet "Small Aberrant" 2400
+	fleet "Large Aberrant" 3600
 	object
 		sprite star/o0
 		distance 17.842
@@ -2924,7 +2914,7 @@ system Arche
 			period 237.628
 
 system Twirl
-	pos -581.755 958.35
+	pos -586.459 966.98
 	government Uninhabited
 	attributes neutron "notable star" twilight
 	habitable 100
@@ -2978,7 +2968,7 @@ system Peak
 	attributes twilight
 	habitable 490
 	belt 1833 10
-	"jump range" 30
+	"jump range" 60
 	haze _menu/haze-twilight
 	link Tap
 	link Tumble
@@ -3061,7 +3051,7 @@ system Tailwind
 		period 1494.459
 
 system Wave
-	pos -561.915 830.66
+	pos -559.693 832.475
 	government Uninhabited
 	attributes twilight
 	habitable 550
@@ -3177,7 +3167,7 @@ system Tide
 			period 221.64
 
 system Lift
-	pos -541.561 902.854
+	pos -543.19 913.669
 	government Uninhabited
 	attributes twilight
 	habitable 230
@@ -3230,13 +3220,13 @@ system Lift
 			period 210.152
 
 system Apeiron
-	pos -445.588 872.587
+	pos -446.338 868.864
 	government Uninhabited
 	attributes twilight
 	habitable 2267.708
 	belt 1990 7
 	belt 2362 9
-	haze _menu/haze-133
+	haze _menu/haze-twilight-thin
 	link Evanescence
 	asteroids "small rock" 46 3.848
 	asteroids "medium rock" 2 6.413
@@ -3307,6 +3297,7 @@ system Evanescence
 	belt 2362 9
 	haze _menu/haze-twilight-thin
 	link Apeiron
+	link Empyrean
 	link Quintessence
 	link Stream
 	asteroids "small rock" 46 3.848
@@ -3364,7 +3355,7 @@ system Evanescence
 		period 2949.062
 
 system Torrent
-	pos -597.925 864.223
+	pos -597.481 873.853
 	government Uninhabited
 	attributes "bright star" "giant star" multi-star "notable star" twilight
 	habitable 2654.36
@@ -3408,7 +3399,7 @@ system Torrent
 		period 1765.289
 
 system Rivulet
-	pos -535.248 803.655
+	pos -539.841 805.136
 	government Uninhabited
 	attributes twilight
 	habitable 2200
@@ -3456,7 +3447,7 @@ system Rivulet
 		period 7194.41
 
 system Gale
-	pos -640.875 886.786
+	pos -637.393 901.601
 	government Uninhabited
 	attributes twilight
 	habitable 1080
@@ -3496,7 +3487,7 @@ system Gale
 		period 2307.861
 
 system Current
-	pos -607.077 818.9
+	pos -609.744 827.788
 	government Uninhabited
 	habitable 1250
 	belt 1923 9
@@ -3548,7 +3539,7 @@ system Current
 			period 299.01
 
 system Glide
-	pos -547.736 880.073
+	pos -549.07 887.777
 	government Uninhabited
 	attributes twilight
 	habitable 1328.533
@@ -3618,7 +3609,7 @@ system Aileron
 	habitable 1320.275
 	belt 1094 6
 	belt 1907 7
-	"jump range" 30
+	"jump range" 60
 	haze _menu/haze-twilight
 	link Rivulet
 	asteroids "small rock" 3 3.363
@@ -3665,7 +3656,7 @@ system Aileron
 			period 124.417
 
 system Circulate
-	pos -510.478 848.865
+	pos -517.737 857.458
 	government Uninhabited
 	attributes twilight
 	habitable 1250
@@ -3699,8 +3690,8 @@ system Circulate
 		period 1229.502
 
 system Wake
-	pos -519.902 764.569
-	government Aberrant
+	pos -526.272 757.754
+	government Avgi
 	habitable 490
 	belt 1052 3
 	belt 1608 5
@@ -3734,63 +3725,24 @@ system Wake
 		distance 2659.018
 		period 2477.672
 
-system Cs-133
-	pos 81.376 868.695
-	government Uninhabited
-	attributes "ember waste" hiders "tangled shroud"
-	habitable 370
-	belt 1863 9
-	belt 1967 9
-	haze _menu/haze-red
-	link Fr-223
-	link K-39
-	link Postlude
-	link Rb-85
-	asteroids "small rock" 1 2.698
-	asteroids "small metal" 11 3.519
-	minables iron 2 5.674
-	minables titanium 4 4.666
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 9000
-	object
-		sprite star/k8
-		period 10
-	object
-		sprite planet/cloud4
-		distance 895
-		period 556.793
-		object
-			sprite planet/luna
-			distance 169
-			period 83.048
-	object
-		sprite planet/rock3-b
-		distance 1931
-		period 1764.544
-	object
-		sprite planet/dust0
-		distance 4019
-		period 5298.295
-
 system O-16
-	pos -288.292 842.639
+	pos -356.272 1098.517
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
 	belt 1487
+	"jump range" 30
 	haze _menu/haze-none
-	link Arche
-	link P-31
-	link S-32
-	link Te-128
+	link Li-7
 	asteroids "medium rock" 7 3.937
 	asteroids "large rock" 1 4.043
-	fleet "Small Avgi Merchants" 3600
-	fleet "Large Avgi Merchants" 5400
-	fleet "Avgi Scouts" 5600
-	fleet "Avgi Patrol" 2400
-	fleet "Avgi Strike Group" 9000
-	fleet "Small Aberrant" 2800
+	fleet "Small Avgi Merchants" 7200
+	fleet "Large Avgi Merchants" 12000
+	fleet "Avgi Scouts" 9000
+	fleet "Avgi Patrol" 4200
+	fleet "Avgi Strike Group" 18000
+	fleet "Small Aberrant" 4200
+	fleet "Large Aberrant" 9000
 	object
 		sprite planet/browndwarf-y-rouge
 		period 10
@@ -3804,16 +3756,18 @@ system O-16
 			period 347.603
 
 system Li-7
-	pos 64.227 953.358
+	pos -348.338 1045.531
 	government Uninhabited
-	attributes hiders "tangled shroud"
+	attributes "tangled shroud"
 	habitable 14.142
 	belt 1565 2
 	belt 2323 10
 	belt 2984 7
-	haze _menu/haze-67
-	link Na-23
-	link Ne-20
+	link B-11
+	link Be-9
+	link C-12
+	link H-1
+	link O-16
 	asteroids "small rock" 29 3.289
 	asteroids "medium rock" 6 4.306
 	asteroids "large rock" 8 5.741
@@ -3822,6 +3776,14 @@ system Li-7
 	asteroids "large metal" 1 5.681
 	minables aluminum 4 7.173
 	minables silicon 9 6.889
+	fleet "Small Avgi Merchants" 4200
+	fleet "Large Avgi Merchants" 8400
+	fleet "Avgi Miners" 12000
+	fleet "Avgi Scouts" 9000
+	fleet "Avgi Patrol" 2700
+	fleet "Avgi Strike Group" 9000
+	fleet "Small Aberrant" 3000
+	fleet "Large Aberrant" 6000
 	object
 		sprite planet/browndwarf-y-rouge
 		distance 272.733
@@ -3853,26 +3815,30 @@ system Li-7
 		period 68523.248
 
 system Ne-20
-	pos -9.278 907.623
+	pos -433.455 1017.834
 	government Uninhabited
-	attributes "ember waste" hiders "tangled shroud"
+	attributes "tangled shroud"
 	habitable 230
 	belt 1601 6
 	belt 1914
-	haze _menu/haze-red
-	link Ar-40
-	link He-4
-	link K-39
-	link Li-7
+	"jump range" 30
+	haze _menu/haze-none
+	link C-12
+	link Cl-35
+	link Na-23
 	asteroids "small rock" 5 2.013
 	asteroids "large rock" 2 1.877
 	asteroids "small metal" 1 1.986
 	asteroids "medium metal" 3 1.55
 	minables neodymium 4 3.253
-	fleet "Dissonance Miners" 4300
-	fleet "Small Avgi Merchants" 8000
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 25000
+	fleet "Small Avgi Merchants" 4200
+	fleet "Large Avgi Merchants" 8400
+	fleet "Avgi Miners" 12000
+	fleet "Avgi Scouts" 9000
+	fleet "Avgi Patrol" 2700
+	fleet "Avgi Strike Group" 9000
+	fleet "Small Aberrant" 3000
+	fleet "Large Aberrant" 6000
 	object
 		sprite star/m3
 		period 10
@@ -3897,42 +3863,31 @@ system Ne-20
 			distance 406
 			period 503.829
 
-system Xe-131
-	pos -24.17 1000.365
-	government Uninhabited
-	attributes "tangled shroud"
-	habitable 320
-	belt 1497 8
-	link Kr-84
-	link Rn-222
-	asteroids "small rock" 1 2.944
-	asteroids "large rock" 2 1.792
-	asteroids "small metal" 7 1.728
-	fleet "Dissonance Miners" 4000
-	object
-		sprite star/m0
-		period 10
-	object
-		sprite planet/gas3-hot
-		distance 786
-		period 492.741
-
 system S-32
-	pos -192.211 848.742
+	pos -560.192 1021.674
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
 	belt 1131 4
+	"jump range" 30
 	haze _menu/haze-none
-	link F-19
-	link O-16
-	link Sb-122
+	link Ar-40
+	link Mg-24
 	asteroids "small rock" 3 2.05
 	asteroids "medium rock" 1 2.184
 	asteroids "large rock" 2 2.923
 	asteroids "small metal" 3 2.52
 	asteroids "large metal" 2 1.848
 	minables iron 1 3.05
+	fleet "Small Avgi Merchants" 7200
+	fleet "Large Avgi Merchants" 12000
+	fleet "Small Dissonance Merchants" 7200
+	fleet "Large Dissonance Merchants" 12000
+	fleet "Avgi Scouts" 9000
+	fleet "Avgi Patrol" 4200
+	fleet "Avgi Strike Group" 18000
+	fleet "Small Aberrant" 4200
+	fleet "Large Aberrant" 9000
 	object
 		sprite planet/browndwarf-t-rouge
 		period 24.088
@@ -3942,18 +3897,25 @@ system S-32
 		period 15442.849
 
 system Be-9
-	pos -162.532 1056.338
+	pos -265.8 994.743
 	government Uninhabited
 	attributes "bright star" "notable star" "tangled shroud"
 	habitable 3400
 	belt 1490 8
-	haze _menu/haze-133
-	link Concerto
-	link Mg-24
+	"jump range" 30
+	link Li-7
 	asteroids "medium rock" 4 5.116
 	asteroids "large rock" 3 4.953
-	minables aluminum 5 11.355
-	minables iron 12 9.566
+	minables platinum 18 11.355
+	minables gold 9 9.566
+	fleet "Small Avgi Merchants" 7200
+	fleet "Large Avgi Merchants" 12000
+	fleet "Avgi Miners" 6000
+	fleet "Avgi Scouts" 9000
+	fleet "Avgi Patrol" 4200
+	fleet "Avgi Strike Group" 18000
+	fleet "Small Aberrant" 4200
+	fleet "Large Aberrant" 9000
 	object
 		sprite star/a3
 		period 10
@@ -3987,20 +3949,29 @@ system Be-9
 			period 144.074
 
 system Br-80
-	pos -171.072 920.748
+	pos -635.099 1116.134
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
 	belt 1989 5
 	haze _menu/haze-none
-	link Cl-35
-	link I-127
+	link Ge-73
 	asteroids "small rock" 1 1.61
 	asteroids "large rock" 6 2.383
 	asteroids "small metal" 6 2.19
 	asteroids "large metal" 2 2.93
-	fleet "Dissonance Miners" 5000
-	fleet "Small Avgi Merchants" 6100
+	minables gold 4 5.315
+	fleet "Small Avgi Merchants" 36000
+	fleet "Large Avgi Merchants" 42000
+	fleet "Avgi Miners" 9000
+	fleet "Small Dissonance Merchants" 36000
+	fleet "Large Dissonance Merchants" 42000
+	fleet "Dissonance Miners" 9000
+	fleet "Avgi Scouts" 12000
+	fleet "Avgi Patrol" 9000
+	fleet "Avgi Strike Group" 24000
+	fleet "Small Aberrant" 12000
+	fleet "Large Aberrant" 18000
 	object
 		sprite planet/browndwarf-y-rouge
 		period 60.864
@@ -4034,23 +4005,29 @@ system Br-80
 		period 47706.203
 
 system H-1
-	pos -16.872 832.201
+	pos -346.308 999.578
 	government Uninhabited
-	attributes "ember waste" hiders "tangled shroud"
+	attributes "tangled shroud"
 	habitable 135
 	belt 1692 7
-	"jump range" 0
-	haze _menu/haze-red
-	link He-4
+	"jump range" 30
+	haze _menu/haze-67
+	link Arche
+	link Li-7
 	asteroids "small rock" 1 1.548
 	asteroids "large rock" 1 1.525
 	asteroids "small metal" 17 2.195
 	asteroids "medium metal" 1 1.317
 	asteroids "large metal" 17 1.779
 	minables iron 7 2.226
-	fleet "Dissonance Miners" 5000
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 9000
+	fleet "Small Avgi Merchants" 4200
+	fleet "Large Avgi Merchants" 8400
+	fleet "Avgi Miners" 12000
+	fleet "Avgi Scouts" 9000
+	fleet "Avgi Patrol" 2700
+	fleet "Avgi Strike Group" 9000
+	fleet "Small Aberrant" 3000
+	fleet "Large Aberrant" 6000
 	object
 		sprite star/m8
 		period 10
@@ -4095,41 +4072,25 @@ system H-1
 			distance 242
 			period 98.524
 
-system Fr-223
-	pos 98.609 877.834
-	government Uninhabited
-	attributes "ember waste" hiders "tangled shroud" wormhole
-	habitable 10
-	belt 1356 5
-	haze _menu/haze-red
-	link Cs-133
-	asteroids "large metal" 1 3.943
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 25000
-	object
-		sprite planet/browndwarf-y-rouge
-		period 194.333
-	object
-		sprite planet/rock6
-		distance 4966
-		period 44265.978
-	object "Shrouded Embers"
-		sprite planet/wormhole-red
-		distance 9467
-		period 116514.119
-
 system B-11
-	pos -302.314 894.673
+	pos -272.711 1081.958
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
 	belt 1448 7
+	"jump range" 30
 	haze _menu/haze-none
-	link Arche
-	link Ensemble
-	link Si-28
+	link Li-7
+	link N-14
 	asteroids "small rock" 3 3.139
 	asteroids "small metal" 3 2.713
+	fleet "Small Avgi Merchants" 7200
+	fleet "Large Avgi Merchants" 12000
+	fleet "Avgi Scouts" 9000
+	fleet "Avgi Patrol" 4200
+	fleet "Avgi Strike Group" 18000
+	fleet "Small Aberrant" 4200
+	fleet "Large Aberrant" 9000
 	object
 		sprite planet/browndwarf-l-rouge
 		period 10
@@ -4143,22 +4104,31 @@ system B-11
 		period 23392.83
 
 system Ge-73
-	pos -222.367 963.803
+	pos -572.654 1100.597
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
 	belt 1758 6
 	belt 1846 9
+	"jump range" 30
 	haze _menu/haze-none
-	link As-75
-	link Ba-137
-	link Ensemble
-	link Si-28
+	link Ar-40
+	link Ballad
+	link Br-80
+	link Mg-24
 	asteroids "small metal" 1 1.584
-	minables copper 1 1.851
-	fleet "Small Avgi Merchants" 5600
-	fleet "Large Avgi Merchants" 7300
-	fleet "Avgi Core Defense" 3800
+	minables copper 3 1.851
+	fleet "Small Avgi Merchants" 4200
+	fleet "Large Avgi Merchants" 8400
+	fleet "Dissonance Miners" 12000
+	fleet "Small Dissonance Merchants" 4200
+	fleet "Large Dissonance Merchants" 8400
+	fleet "Dissonance Miners" 12000
+	fleet "Avgi Scouts" 9000
+	fleet "Avgi Patrol" 2700
+	fleet "Avgi Strike Group" 9000
+	fleet "Small Aberrant" 4200
+	fleet "Large Aberrant" 8400
 	object
 		sprite planet/browndwarf-y-rouge
 		period 207.807
@@ -4167,53 +4137,26 @@ system Ge-73
 		distance 3460.455
 		period 25748.963
 
-system Sb-122
-	pos -213.357 900.325
-	government Uninhabited
-	attributes "tangled shroud"
-	habitable 320
-	belt 1419 5
-	belt 2336 6
-	haze _menu/haze-none
-	link Ensemble
-	link S-32
-	link Te-128
-	asteroids "small rock" 2 4.947
-	asteroids "medium rock" 6 4.284
-	asteroids "large rock" 1 3.519
-	minables tungsten 1 4.758
-	fleet "Small Avgi Merchants" 3900
-	fleet "Large Avgi Merchants" 5500
-	object
-		sprite star/m0
-		period 10
-	object
-		sprite planet/tethys
-		distance 273
-		period 100.862
-	object
-		sprite planet/saturn
-		distance 1911
-		period 1867.996
-		object
-			sprite planet/dust3
-			distance 275
-			period 172.385
-	object
-		sprite planet/gas11
-		distance 4052
-		period 5767.521
-
 system Mg-24
-	pos -134.923 1040.967
+	pos -522.025 1041.909
 	government Uninhabited
 	attributes "bright star" "notable star" "tangled shroud"
 	habitable 3000
 	belt 1078
-	haze _menu/haze-133
-	link Be-9
-	link Concerto
+	"jump range" 30
+	haze _menu/haze-none
+	link Ge-73
+	link Na-23
+	link S-32
+	link Si-28
 	asteroids "large metal" 1 3.584
+	fleet "Small Avgi Merchants" 4200
+	fleet "Large Avgi Merchants" 8400
+	fleet "Avgi Scouts" 9000
+	fleet "Avgi Patrol" 2700
+	fleet "Avgi Strike Group" 9000
+	fleet "Small Aberrant" 4200
+	fleet "Large Aberrant" 8400
 	object
 		sprite star/a8
 		period 10
@@ -4242,47 +4185,29 @@ system Mg-24
 		distance 5854.284
 		period 3271.223
 
-system Ba-137
-	pos -221.041 1010.682
-	government Uninhabited
-	attributes "tangled shroud"
-	habitable 10
-	belt 1144
-	belt 2010 6
-	haze _menu/haze-none
-	link Concerto
-	link Ge-73
-	link Sr-88
-	asteroids "medium rock" 3 3.283
-	asteroids "large rock" 1 3.334
-	asteroids "small metal" 3 4.771
-	asteroids "medium metal" 1 4.72
-	asteroids "large metal" 2 3.232
-	fleet "Small Avgi Merchants" 5400
-	fleet "Large Avgi Merchants" 6600
-	fleet "Avgi Core Defense" 3700
-	object
-		sprite planet/browndwarf-t-rouge
-		period 10
-	object
-		sprite planet/rock18
-		distance 1168
-		period 5049.22
-
 system As-75
-	pos -187.586 955.23
+	pos -706.15 962.552
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
 	belt 1315 10
 	belt 2249 8
+	"jump range" 30
 	haze _menu/haze-none
-	link Ensemble
-	link Ge-73
+	link Ca-40
+	link Kr-84
 	asteroids "small rock" 2 2.228
 	minables iron 3 4.749
-	fleet "Small Avgi Merchants" 3700
-	fleet "Avgi Core Defense" 4200
+	fleet "Small Avgi Merchants" 36000
+	fleet "Large Avgi Merchants" 42000
+	fleet "Small Dissonance Merchants" 36000
+	fleet "Large Dissonance Merchants" 42000
+	fleet "Dissonance Miners" 12000
+	fleet "Avgi Scouts" 12000
+	fleet "Avgi Patrol" 9000
+	fleet "Avgi Strike Group" 24000
+	fleet "Small Aberrant" 12000
+	fleet "Large Aberrant" 18000
 	object
 		sprite planet/browndwarf-l-rouge
 		period 10
@@ -4304,17 +4229,26 @@ system As-75
 		period 295797.773
 
 system Na-23
-	pos 82.003 937.49
+	pos -484.285 1074.756
 	government Uninhabited
-	attributes hiders "tangled shroud"
+	attributes "tangled shroud"
 	habitable 135
 	belt 1511 9
-	haze _menu/haze-67
-	link K-39
-	link Li-7
+	"jump range" 30
+	haze _menu/haze-none
+	link Cl-35
+	link Mg-24
+	link Ne-20
 	asteroids "small metal" 10 3.168
 	asteroids "medium metal" 1 4.205
 	asteroids "large metal" 3 4.262
+	fleet "Small Avgi Merchants" 4200
+	fleet "Large Avgi Merchants" 8400
+	fleet "Avgi Scouts" 9000
+	fleet "Avgi Patrol" 2700
+	fleet "Avgi Strike Group" 9000
+	fleet "Small Aberrant" 3000
+	fleet "Large Aberrant" 6000
 	object
 		sprite star/m8
 		period 10
@@ -4343,54 +4277,30 @@ system Na-23
 			distance 333
 			period 159.032
 
-system Rb-85
-	pos 28.705 856.962
-	government Uninhabited
-	attributes "ember waste" hiders "tangled shroud"
-	habitable 230
-	belt 1490 3
-	haze _menu/haze-red
-	link Cs-133
-	link K-39
-	asteroids "large metal" 1 1.034
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 9000
-	object
-		sprite star/m3
-		period 10
-	object
-		sprite planet/lava5-b
-		distance 314
-		period 146.754
-	object
-		sprite planet/gas14
-		distance 2475
-		period 3247.573
-		object
-			sprite planet/dust1
-			distance 267
-			period 135.689
-		object
-			sprite planet/dust7-b
-			distance 438
-			period 346.507
-
 system Ca-40
-	pos -92.844 973.172
+	pos -637.242 1017.521
 	government Uninhabited
-	attributes "ember waste" "tangled shroud" wormhole
+	attributes "tangled shroud"
 	habitable 10
 	belt 1137 4
-	haze _menu/haze-red
-	link Symphony
+	"jump range" 30
+	haze _menu/haze-none
+	link Ar-40
+	link As-75
+	link P-31
 	asteroids "small rock" 2 4.644
 	asteroids "large rock" 8 3.51
 	asteroids "small metal" 3 3.564
 	asteroids "large metal" 1 3.672
 	minables titanium 2 5.388
 	minables copper 8 4.361
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 25000
+	fleet "Small Avgi Merchants" 36000
+	fleet "Large Avgi Merchants" 42000
+	fleet "Avgi Scouts" 12000
+	fleet "Avgi Patrol" 9000
+	fleet "Avgi Strike Group" 24000
+	fleet "Small Aberrant" 12000
+	fleet "Large Aberrant" 18000
 	object
 		sprite planet/browndwarf-t-rouge
 		period 10
@@ -4406,79 +4316,29 @@ system Ca-40
 			sprite planet/oberon
 			distance 364
 			period 427.707
-	object "Shrouded Embers"
-		sprite planet/wormhole-red
-		distance 13561
-		period 199754.957
-
-system Og-294
-	pos 4.185 943.689
-	government Uninhabited
-	attributes "tangled shroud"
-	habitable 1715
-	belt 1564 4
-	haze _menu/haze-67
-	link Interlude
-	asteroids "large rock" 2 2.055
-	asteroids "small metal" 1 1.724
-	minables lead 4 2.765
-	minables neodymium 4 2.624
-	fleet "Dissonance Miners" 5000
-	object
-		sprite star/f5
-		distance 7.038
-		period 50.847
-		offset 180
-	object
-		sprite planet/luna
-		distance 236
-		period 35.018
-	object
-		sprite planet/neptune
-		distance 1096.59
-		period 350.747
-		object
-			sprite planet/rock3-b
-			distance 225
-			period 127.578
-	object
-		sprite planet/oberon
-		distance 1890.867
-		period 794.181
-	object
-		sprite planet/lava0
-		distance 2947.895
-		period 1545.952
-	object
-		sprite planet/gas3
-		distance 4821.373
-		period 3233.583
-		object
-			sprite planet/rock0
-			distance 317
-			period 213.348
 
 system F-19
-	pos -132.749 894.646
+	pos -361.277 1136.45
 	government Uninhabited
-	attributes "ember waste" "tangled shroud"
+	attributes "tangled shroud"
 	habitable 450
 	belt 1588 2
 	belt 1771 3
-	haze _menu/haze-red
-	link At-210
-	link Cl-35
-	link S-32
+	"jump range" 30
+	haze _menu/haze-none
+	link C-12
 	asteroids "medium rock" 11 4.392
 	asteroids "large rock" 1 5.544
 	asteroids "medium metal" 1 6.336
 	asteroids "large metal" 5 3.744
 	minables lead 6 5.488
-	fleet "Dissonance Miners" 4000
-	fleet "Small Avgi Merchants" 3800
-	fleet "Large Avgi Merchants" 6300
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 25000
+	fleet "Small Avgi Merchants" 36000
+	fleet "Large Avgi Merchants" 42000
+	fleet "Avgi Scouts" 12000
+	fleet "Avgi Patrol" 6000
+	fleet "Avgi Strike Group" 24000
+	fleet "Small Aberrant" 12000
+	fleet "Large Aberrant" 18000
 	object
 		sprite star/k3
 		period 10
@@ -4496,14 +4356,24 @@ system F-19
 			period 154.364
 
 system P-31
-	pos -265.289 829.783
+	pos -655.049 1070.939
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
 	belt 1352 7
+	"jump range" 30
 	haze _menu/haze-none
-	link O-16
+	link Ca-40
 	asteroids "medium metal" 6 3.29
+	fleet "Small Avgi Merchants" 36000
+	fleet "Large Avgi Merchants" 42000
+	fleet "Small Dissonance Merchants" 24000
+	fleet "Large Dissonance Merchants" 36000
+	fleet "Avgi Scouts" 12000
+	fleet "Avgi Patrol" 9000
+	fleet "Avgi Strike Group" 24000
+	fleet "Small Aberrant" 12000
+	fleet "Large Aberrant" 18000
 	object
 		sprite planet/browndwarf-l-rouge
 		period 131.466
@@ -4512,83 +4382,27 @@ system P-31
 		distance 1783
 		period 9523.29
 
-system I-127
-	pos -126.08 939.357
-	government Uninhabited
-	attributes "ember waste" "tangled shroud"
-	habitable 425
-	belt 1872 3
-	belt 2228 3
-	belt 2966 6
-	haze _menu/haze-red
-	link Br-80
-	link Cl-35
-	asteroids "small metal" 1 1.71
-	asteroids "medium metal" 4 2.651
-	minables titanium 2 3.51
-	fleet "Dissonance Miners" 5000
-	fleet "Small Avgi Merchants" 6500
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 25000
-	object
-		sprite star/k5
-		period 10
-	object
-		sprite planet/gas7
-		distance 1666
-		period 1319.405
-	object
-		sprite planet/gas16-b
-		distance 8882
-		period 16241.707
-		object
-			sprite planet/ice7
-			distance 214
-			period 81.929
-
-system Sr-88
-	pos -158.475 980.006
+system Cl-35
+	pos -454.772 1100.79
 	government Uninhabited
 	attributes "tangled shroud"
-	habitable 10
-	belt 1140 4
-	belt 1715 8
-	haze _menu/haze-none
-	link Ba-137
-	link Concerto
-	link Symphony
-	asteroids "small metal" 4 4.353
-	asteroids "medium metal" 3 2.975
-	asteroids "large metal" 7 5.51
-	minables lead 4 5.196
-	object
-		sprite planet/browndwarf-y-rouge
-		period 129.916
-	object
-		sprite planet/gas2-hot
-		distance 1137
-		period 4849.542
-
-system Cl-35
-	pos -112.707 910.219
-	government Uninhabited
-	attributes "ember waste" "tangled shroud"
 	habitable 500.1
 	belt 1606 5
 	belt 2416
-	haze _menu/haze-red
-	link Ar-40
-	link At-210
-	link Br-80
-	link F-19
-	link I-127
+	"jump range" 30
+	haze _menu/haze-none
+	link K-39
+	link Na-23
+	link Ne-20
 	asteroids "small rock" 6 1.054
 	asteroids "small metal" 4 1.496
-	fleet "Dissonance Miners" 4000
-	fleet "Small Avgi Merchants" 4500
-	fleet "Large Avgi Merchants" 6100
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 25000
+	fleet "Small Avgi Merchants" 4200
+	fleet "Large Avgi Merchants" 8400
+	fleet "Avgi Scouts" 9000
+	fleet "Avgi Patrol" 2700
+	fleet "Avgi Strike Group" 9000
+	fleet "Small Aberrant" 3000
+	fleet "Large Aberrant" 6000
 	object
 		sprite planet/browndwarf-l-rouge
 		period 64.247
@@ -4598,16 +4412,15 @@ system Cl-35
 		period 445.61
 
 system K-39
-	pos 50.682 899.606
+	pos -452.966 1131.947
 	government Uninhabited
-	attributes "ember waste" hiders "tangled shroud"
+	attributes "tangled shroud"
 	habitable 10
 	belt 1927 8
-	haze _menu/haze-red
-	link Cs-133
-	link Na-23
-	link Ne-20
-	link Rb-85
+	"jump range" 30
+	haze _menu/haze-none
+	link Cl-35
+	link Ensemble
 	asteroids "medium rock" 3 3.618
 	asteroids "large rock" 1 4.427
 	asteroids "small metal" 25 2.523
@@ -4615,28 +4428,38 @@ system K-39
 	asteroids "large metal" 3 3.57
 	minables iron 2 4.796
 	minables copper 3 4.652
-	fleet "Dissonance Miners" 5000
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 25000
+	fleet "Small Avgi Merchants" 4200
+	fleet "Large Avgi Merchants" 8400
+	fleet "Avgi Miners" 9000
+	fleet "Avgi Scouts" 9000
+	fleet "Avgi Patrol" 2700
+	fleet "Avgi Strike Group" 9000
+	fleet "Small Aberrant" 4200
+	fleet "Large Aberrant" 8400
 	object
 		sprite planet/browndwarf-l-rouge
 		period 204.702
 
 system C-12
-	pos -401.749 890.619
+	pos -396.193 1075.83
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
 	belt 1985 4
-	haze _menu/haze-133
-	link Arche
-	link N-14
+	"jump range" 30
+	haze _menu/haze-none
+	link F-19
+	link Li-7
+	link Ne-20
 	asteroids "small rock" 5 3.864
 	asteroids "small metal" 4 3.735
-	fleet "Avgi Scouts" 6800
-	fleet "Avgi Patrol" 2800
-	fleet "Avgi Strike Group" 11300
-	fleet "Small Aberrant" 4800
+	fleet "Small Avgi Merchants" 4200
+	fleet "Large Avgi Merchants" 8400
+	fleet "Avgi Scouts" 9000
+	fleet "Avgi Patrol" 2700
+	fleet "Avgi Strike Group" 9000
+	fleet "Small Aberrant" 3000
+	fleet "Large Aberrant" 6000
 	object
 		sprite planet/browndwarf-y-rouge
 		period 10
@@ -4646,14 +4469,14 @@ system C-12
 		period 9523.29
 
 system He-4
-	pos -27.384 873.775
+	pos -447.069 963.449
 	government Uninhabited
-	attributes "ember waste" hiders "tangled shroud"
+	attributes "tangled shroud"
 	habitable 10
 	belt 1514 3
-	haze _menu/haze-red
-	link H-1
-	link Ne-20
+	"jump range" 30
+	haze _menu/haze-none
+	link Arche
 	asteroids "small rock" 16 1.903
 	asteroids "medium rock" 10 2.808
 	asteroids "small metal" 9 2.402
@@ -4661,9 +4484,14 @@ system He-4
 	asteroids "large metal" 7 1.872
 	minables titanium 7 2.557
 	minables lead 16 3.38
-	fleet "Dissonance Miners" 4600
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 9000
+	fleet "Small Avgi Merchants" 7200
+	fleet "Large Avgi Merchants" 12000
+	fleet "Avgi Miners" 9000
+	fleet "Avgi Scouts" 9000
+	fleet "Avgi Patrol" 4200
+	fleet "Avgi Strike Group" 12000
+	fleet "Small Aberrant" 3000
+	fleet "Large Aberrant" 6000
 	object
 		sprite planet/browndwarf-y-rouge
 		period 10
@@ -4680,59 +4508,32 @@ system He-4
 		distance 2697
 		period 17716.642
 
-system At-210
-	pos -84.513 885.871
-	government Uninhabited
-	attributes "ember waste" "tangled shroud"
-	habitable 135
-	belt 1112 7
-	belt 1644 9
-	haze _menu/haze-red
-	link Ar-40
-	link Cl-35
-	link F-19
-	link Prelude
-	asteroids "medium metal" 6 3.959
-	minables tungsten 7 2.964
-	fleet "Dissonance Miners" 4000
-	fleet "Small Avgi Merchants" 4700
-	fleet "Large Avgi Merchants" 7200
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 25000
-	object
-		sprite star/m8
-		period 10
-	object
-		sprite planet/rock4
-		distance 603
-		period 509.764
-	object
-		sprite planet/gas8
-		distance 2153
-		period 3439.214
-		object
-			sprite planet/ice0-b
-			distance 323
-			period 219.434
-
 system Si-28
-	pos -254.819 955.056
+	pos -475.746 985.267
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
 	belt 1086
+	"jump range" 30
 	haze _menu/haze-none
-	link B-11
-	link Ensemble
-	link Ge-73
+	link Mg-24
+	link Prelude
 	asteroids "small rock" 3 1.994
 	asteroids "medium rock" 2 3.128
 	asteroids "large rock" 3 2.893
 	asteroids "small metal" 3 3.715
 	asteroids "large metal" 1 3.441
-	minables copper 2 5.83
-	fleet "Small Avgi Merchants" 3800
-	fleet "Avgi Core Defense" 4200
+	minables copper 6 5.83
+	fleet "Small Avgi Merchants" 8400
+	fleet "Large Avgi Merchants" 16800
+	fleet "Small Dissonance Merchants" 4200
+	fleet "Large Dissonance Merchants" 8400
+	fleet "Dissonance Miners" 9000
+	fleet "Avgi Scouts" 9000
+	fleet "Avgi Patrol" 2700
+	fleet "Avgi Strike Group" 9000
+	fleet "Small Aberrant" 4200
+	fleet "Large Aberrant" 8400
 	object
 		sprite planet/browndwarf-t-rouge
 		period 10
@@ -4774,17 +4575,25 @@ system Si-28
 			period 209.873
 
 system Kr-84
-	pos -64.786 973.671
+	pos -740.944 986.919
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 2160
 	belt 1811 4
+	"jump range" 30
 	haze _menu/haze-67
-	link Ar-40
-	link Interlude
-	link Xe-131
+	link As-75
 	asteroids "large metal" 1 3.325
-	fleet "Dissonance Miners" 4300
+	fleet "Small Avgi Merchants" 42000
+	fleet "Large Avgi Merchants" 60000
+	fleet "Small Dissonance Merchants" 36000
+	fleet "Large Dissonance Merchants" 42000
+	fleet "Dissonance Miners" 9000
+	fleet "Avgi Scouts" 12000
+	fleet "Avgi Patrol" 9000
+	fleet "Avgi Strike Group" 24000
+	fleet "Small Aberrant" 24000
+	fleet "Large Aberrant" 36000
 	object
 		sprite star/g0-old
 		period 10
@@ -4806,28 +4615,30 @@ system Kr-84
 			period 143.535
 
 system Ar-40
-	pos -59.923 922.488
+	pos -598.144 1049.772
 	government Uninhabited
-	attributes "ember waste" "tangled shroud"
+	attributes "tangled shroud"
 	habitable 160.312
 	belt 1885 3
 	belt 2084 8
-	haze _menu/haze-red
-	link At-210
-	link Cl-35
-	link Interlude
-	link Kr-84
-	link Ne-20
+	"jump range" 30
+	haze _menu/haze-none
+	link Ca-40
+	link Ge-73
+	link S-32
 	asteroids "large rock" 1 2.296
 	asteroids "small metal" 6 1.624
 	asteroids "large metal" 3 2.8
 	minables silver 7 3.762
 	minables copper 3 3.762
-	fleet "Dissonance Miners" 4000
-	fleet "Small Dissonance Merchants" 4200
-	fleet "Large Dissonance Merchants" 5700
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 25000
+	fleet "Small Avgi Merchants" 7200
+	fleet "Large Avgi Merchants" 12000
+	fleet "Avgi Miners" 7200
+	fleet "Avgi Scouts" 9000
+	fleet "Avgi Patrol" 4200
+	fleet "Avgi Strike Group" 18000
+	fleet "Small Aberrant" 4200
+	fleet "Large Aberrant" 9000
 	object
 		sprite planet/browndwarf-y-rouge
 		distance 290.378
@@ -4855,16 +4666,23 @@ system Ar-40
 		period 12734.3
 
 system N-14
-	pos -383.673 919.318
+	pos -208.155 1089.918
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
 	belt 1578 5
 	belt 2409
+	"jump range" 30
 	haze _menu/haze-none
-	link Arche
-	link C-12
+	link B-11
 	asteroids "large metal" 2 4.844
+	fleet "Small Avgi Merchants" 36000
+	fleet "Large Avgi Merchants" 42000
+	fleet "Avgi Scouts" 12000
+	fleet "Avgi Patrol" 6000
+	fleet "Avgi Strike Group" 24000
+	fleet "Small Aberrant" 12000
+	fleet "Large Aberrant" 18000
 	object
 		sprite planet/browndwarf-t-rouge
 		period 10
@@ -4877,148 +4695,517 @@ system N-14
 			distance 320
 			period 178.034
 
-system Rn-222
-	pos 10.406 985.068
+system Rhapsody
+	pos -366.928 1237.746
 	government Uninhabited
-	attributes "tangled shroud"
+	attributes "outer limits"
 	habitable 1080
-	belt 1979 5
-	belt 2230 3
-	haze _menu/haze-67
-	link Xe-131
-	asteroids "small rock" 4 1.197
-	asteroids "medium rock" 2 1.691
-	asteroids "large rock" 5 1.216
-	asteroids "small metal" 7 1.026
-	asteroids "medium metal" 3 1.653
-	asteroids "large metal" 36 1.482
-	minables silver 14 2.516
-	fleet "Dissonance Miners" 5000
+	belt 1720 7
+	haze _menu/haze-33
+	link Symphony
+	asteroids "small rock" 11 3.229
+	asteroids "medium rock" 3 3.478
+	asteroids "large rock" 10 3.478
+	asteroids "small metal" 1 3.54
+	asteroids "medium metal" 4 4.533
+	asteroids "large metal" 24 5.216
+	minables aluminum 7 8.58
+	minables silver 1 5.54
+	fleet "Avgi Patrol" 4200
+	fleet "Avgi Strike Group" 9000
+	fleet "Small Avgi Merchants" 6000
+	fleet "Large Avgi Merchants" 12000
+	fleet "Avgi Miners" 6000
+	fleet "Small Aberrant" 42000
+	fleet "Large Aberrant" 36000
 	object
 		sprite star/g0
 		period 10
 	object
-		sprite planet/oberon-b
-		distance 268
-		period 53.401
+		sprite planet/browndwarf-t
+		distance 542.442
+		period 153.772
 	object
-		sprite planet/gas9
-		distance 1686
-		period 842.625
-		object
-			sprite planet/desert4-b
-			distance 250
-			period 186.991
+		sprite planet/lava1-b
+		distance 1457
+		period 676.92
 	object
-		sprite planet/gas17-b
-		distance 3712
-		period 2752.707
+		sprite planet/gas5-b
+		distance 2699
+		period 1706.681
 		object
-			sprite planet/miranda
-			distance 260
-			period 198.322
+			sprite planet/dust1-b
+			distance 300
+			period 161.607
+	object
+		sprite planet/gas8-b
+		distance 3645
+		period 2678.517
 		object
-			sprite planet/lava0
-			distance 382
-			period 195.395
+			sprite planet/dust3
+			distance 366
+			period 264.681
 
-system Ts-294
-	pos -108.726 817.962
+system Acapella
+	pos -475.594 1336.079
 	government Uninhabited
-	attributes "ember waste" "tangled shroud" wormhole
-	habitable 135
-	belt 1224 4
-	"jump range" 30
-	haze _menu/haze-red
-	link Prelude
-	asteroids "small rock" 4 4.435
-	asteroids "small metal" 6 3.405
-	asteroids "large metal" 4 2.554
-	minables copper 12 6.663
-	fleet "Dissonance Miners" 4300
-	fleet "Small Avgi Merchants" 5100
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 9000
+	attributes "outer limits"
+	habitable 1080
+	belt 1545 7
+	belt 1677 2
+	haze _menu/haze-none
+	link Concerto
+	asteroids "small rock" 6 1.96
+	asteroids "medium rock" 2 1.346
+	asteroids "large rock" 1 1.861
+	asteroids "small metal" 5 1.406
+	asteroids "medium metal" 6 1.901
+	asteroids "large metal" 6 1.921
+	fleet "Avgi Patrol" 4200
+	fleet "Avgi Strike Group" 9000
+	fleet "Small Avgi Merchants" 6000
+	fleet "Large Avgi Merchants" 12000
+	fleet "Small Aberrant" 42000
+	fleet "Large Aberrant" 36000
 	object
-		sprite star/m8
+		sprite star/g0
 		period 10
 	object
-		sprite planet/dust1-b
-		distance 1029
-		period 1136.361
+		sprite planet/lava2-b
+		distance 954
+		period 358.65
 	object
-		sprite planet/gas4
-		distance 2004
-		period 3088.444
+		sprite planet/gas5-b
+		distance 2111
+		period 1180.539
 		object
-			sprite planet/ice0
-			distance 412
-			period 316.116
-		object
-			sprite planet/rock17-b
-			distance 583
-			period 866.956
+			sprite planet/dust3-b
+			distance 291
+			period 187.646
 	object
-		sprite planet/gas7-b
-		distance 3143
-		period 6066.102
+		sprite planet/gas8
+		distance 3368
+		period 2379.065
 		object
-			sprite planet/rhea-b
-			distance 304
-			period 164.85
+			sprite planet/dust3
+			distance 347
+			period 244.34
+	object
+		sprite planet/gas13-b
+		distance 4567
+		period 3756.597
 		object
-			sprite planet/rock20
-			distance 422
-			period 327.695
-	object "Shrouded Embers"
-		sprite planet/wormhole-red
-		distance 7953
-		period 24416.847
+			sprite planet/luna
+			distance 277
+			period 174.269
+	object
+		sprite planet/gas17
+		distance 12602
+		period 17218.976
 
-system Te-128
-	pos -258.164 889.417
+system Anthem
+	pos -614.927 1207.412
 	government Uninhabited
-	attributes "tangled shroud"
-	habitable 426.439
-	belt 1414 6
-	belt 2203 3
-	haze _menu/haze-none
-	link Ensemble
-	link O-16
-	link Sb-122
-	asteroids "small rock" 1 3.564
-	asteroids "medium rock" 3 3.049
-	asteroids "large rock" 2 2.693
-	asteroids "medium metal" 13 2.693
-	asteroids "large metal" 1 3.366
-	minables silver 2 4.969
-	object
-		sprite star/m-dwarf
-		distance 84.034
-		period 37.099
+	attributes "outer limits"
+	habitable 425
+	belt 1764 6
+	haze _menu/haze-67
+	link Ballad
+	link Chorale
+	link Interlude
+	link Serenade
+	link Sonata
+	asteroids "medium rock" 17 2.387
+	asteroids "large rock" 1 2.114
+	asteroids "small metal" 9 2.319
+	asteroids "medium metal" 15 2.114
+	asteroids "large metal" 11 2.967
+	minables copper 5 2.937
+	fleet "Small Avgi Merchants" 4200
+	fleet "Large Avgi Merchants" 8400
+	fleet "Small Dissonance Merchants" 4200
+	fleet "Large Dissonance Merchants" 8400
+	fleet "Dissonance Miners" 9000
+	fleet "Avgi Scouts" 9000
+	fleet "Avgi Patrol" 2700
+	fleet "Avgi Strike Group" 9000
+	fleet "Small Aberrant" 12000
+	fleet "Large Aberrant" 18000
 	object
 		sprite star/k5
-		distance 1.966
-		period 37.099
+		period 10
+	object
+		sprite planet/gas15
+		distance 650
+		period 321.54
+		object
+			sprite planet/rhea-b
+			distance 250
+			period 122.939
+		object
+			sprite planet/forest7
+			distance 362
+			period 0
+	object
+		sprite planet/rock3
+		distance 1403
+		period 1019.652
+	object
+		sprite planet/gas10
+		distance 2731
+		period 2769.16
+		object
+			sprite planet/rock3-b
+			distance 214
+			period 118.337
+	object
+		sprite planet/gas2-b
+		distance 4964
+		period 6785.99
+
+system Madrigal
+	pos -715.4 1172.579
+	government Uninhabited
+	attributes "outer limits"
+	habitable 425
+	belt 1380 3
+	haze _menu/haze-red
+	link Chorale
+	asteroids "small rock" 1 7.44
+	asteroids "large rock" 1 6.845
+	asteroids "small metal" 1 5.431
+	asteroids "medium metal" 6 6.696
+	asteroids "large metal" 1 7.217
+	fleet "Small Avgi Merchants" 36000
+	fleet "Large Avgi Merchants" 42000
+	fleet "Small Dissonance Merchants" 24000
+	fleet "Large Dissonance Merchants" 36000
+	fleet "Avgi Scouts" 12000
+	fleet "Avgi Patrol" 9000
+	fleet "Avgi Strike Group" 24000
+	fleet "Small Aberrant" 30000
+	fleet "Large Aberrant" 36000
+	object
+		sprite star/k5
+		period 10
+	object
+		sprite planet/forest7
+		distance 255
+		period 79.009
+	object
+		sprite planet/rock9
+		distance 865
+		period 493.617
+	object
+		sprite planet/io-b
+		distance 2006
+		period 1743.259
+	object
+		sprite planet/gas17-b
+		distance 4669
+		period 6190.152
+		object
+			sprite planet/rhea-b
+			distance 252
+			period 124.417
+	object
+		sprite planet/gas13-b
+		distance 8287
+		period 14637.319
+
+system Ballad
+	pos -556.594 1184.412
+	government Uninhabited
+	attributes "outer limits"
+	habitable 1047.521
+	belt 1550 10
+	haze _menu/haze-none
+	link Anthem
+	link Ge-73
+	asteroids "medium rock" 4 2.523
+	asteroids "large rock" 5 2.558
+	asteroids "small metal" 2 3.069
+	asteroids "medium metal" 49 1.773
+	asteroids "large metal" 25 2.046
+	minables silver 1 3.744
+	minables copper 1 3.919
+	fleet "Small Avgi Merchants" 4200
+	fleet "Large Avgi Merchants" 8400
+	fleet "Small Dissonance Merchants" 4200
+	fleet "Large Dissonance Merchants" 8400
+	fleet "Dissonance Miners" 12000
+	fleet "Avgi Scouts" 9000
+	fleet "Avgi Patrol" 2700
+	fleet "Avgi Strike Group" 9000
+	fleet "Small Aberrant" 12000
+	fleet "Large Aberrant" 18000
+	object
+		sprite star/k8
+		distance 183.665
+		period 79.789
 		offset 180
 	object
-		sprite planet/dust4-b
-		distance 230
-		period 67.565
+		sprite star/k0-old
+		distance 51.835
+		period 79.789
 	object
-		sprite planet/cloud4
-		distance 677
-		period 341.204
+		sprite planet/neptune-b
+		distance 2952
+		period 1982.226
+	object
+		sprite planet/gas10-b
+		distance 4492
+		period 3720.817
 		object
-			sprite planet/ice7-b
-			distance 185
-			period 65.853
+			sprite planet/dust5-b
+			distance 244
+			period 99.748
+		object
+			sprite planet/io
+			distance 410
+			period 313.817
+		object
+			sprite planet/dust1-b
+			distance 590
+			period 445.714
 	object
-		sprite planet/gas2
-		distance 1403
-		period 1017.931
+		sprite planet/browndwarf-t
+		distance 10519
+		period 13333.382
+
+system Cantata
+	pos -550.927 1268.412
+	government Uninhabited
+	attributes "outer limits"
+	habitable 450
+	belt 1853 7
+	haze _menu/haze-67
+	link Concerto
+	link Serenade
+	asteroids "small rock" 21 1.228
+	asteroids "medium rock" 3 0.766
+	asteroids "large rock" 22 0.858
+	asteroids "small metal" 13 0.95
+	asteroids "medium metal" 5 0.845
+	asteroids "large metal" 5 1.32
+	minables titanium 1 1.596
+	fleet "Small Avgi Merchants" 4200
+	fleet "Large Avgi Merchants" 8400
+	fleet "Dissonance Miners" 12000
+	fleet "Avgi Scouts" 9000
+	fleet "Avgi Patrol" 2400
+	fleet "Avgi Strike Group" 6000
+	fleet "Avgi Fleetgroup" 12000
+	fleet "Small Aberrant" 24000
+	fleet "Large Aberrant" 30000
 	object
-		sprite planet/ice0-b
-		distance 1844
-		period 1533.815
+		sprite star/k3
+		period 10
+	object
+		sprite planet/jupiter-b
+		distance 1281.966
+		period 865.503
+		object
+			sprite planet/rock3
+			distance 303
+			period 199.372
+		object
+			sprite planet/io
+			distance 452
+			period 363.252
+	object
+		sprite planet/gas1
+		distance 3449.066
+		period 3819.496
+		object
+			sprite planet/lava0-b
+			distance 483
+			period 277.804
+		object
+			sprite planet/miranda-b
+			distance 622
+			period 733.833
+
+system Sonata
+	pos -635.594 1153.079
+	government Uninhabited
+	attributes "outer limits"
+	habitable 980
+	belt 1543
+	belt 1949 4
+	haze _menu/haze-33
+	link Anthem
+	link Chorale
+	asteroids "large rock" 1 2.201
+	asteroids "small metal" 7 1.736
+	asteroids "medium metal" 12 3.069
+	asteroids "large metal" 2 3.007
+	fleet "Small Avgi Merchants" 9000
+	fleet "Large Avgi Merchants" 18000
+	fleet "Small Dissonance Merchants" 9000
+	fleet "Large Dissonance Merchants" 18000
+	fleet "Avgi Scouts" 9000
+	fleet "Avgi Patrol" 4200
+	fleet "Avgi Strike Group" 18000
+	fleet "Small Aberrant" 24000
+	fleet "Large Aberrant" 30000
+	object
+		sprite star/k0-old
+		period 10
+	object
+		sprite planet/gas4
+		distance 582
+		period 179.404
+		object
+			sprite planet/miranda-b
+			distance 239
+			period 174.787
+	object
+		sprite planet/desert1-b
+		distance 1455
+		period 709.155
+	object
+		sprite planet/gas3-b
+		distance 2328
+		period 1435.23
+	object
+		sprite planet/gas15-b
+		distance 4555
+		period 3928.073
+		object
+			sprite planet/rock14-b
+			distance 253
+			period 105.317
+	object
+		sprite planet/gas0-hot
+		distance 6707
+		period 7018.421
+
+system Axiom
+	pos -313.913 863.623
+	government Uninhabited
+	attributes "bright star" multi-star "notable star" twilight
+	habitable 4854.122
+	belt 1744 4
+	belt 1934 3
+	haze _menu/haze-black
+	link Quintessence
+	asteroids "small rock" 1 5.375
+	asteroids "large rock" 1 4.312
+	asteroids "small metal" 3 3.438
+	asteroids "medium metal" 1 5.688
+	asteroids "large metal" 4 6.062
+	object
+		sprite star/a0
+		distance 82.007
+		period 174.406
+	object
+		sprite star/a5
+		distance 41.681
+		period 174.406
+		offset 180
+	object
+		sprite planet/gas3
+		distance 2876
+		period 885.499
+	object
+		sprite planet/gas0-b
+		distance 4610
+		period 1797.033
+		object
+			sprite planet/ice8-b
+			distance 299
+			period 195.437
+
+system Serenade
+	pos -602.094 1253.564
+	government Uninhabited
+	attributes "outer limits"
+	habitable 2160
+	belt 1671 8
+	belt 1833 4
+	haze _menu/haze-67
+	link Anthem
+	link Cantata
+	asteroids "small rock" 7 1.706
+	asteroids "medium rock" 4 1.339
+	asteroids "large rock" 3 1.793
+	asteroids "small metal" 27 1.75
+	asteroids "medium metal" 3 1.231
+	asteroids "large metal" 5 1.944
+	minables aluminum 8 1.75
+	fleet "Small Avgi Merchants" 4200
+	fleet "Large Avgi Merchants" 8400
+	fleet "Avgi Miners" 9000
+	fleet "Small Dissonance Merchants" 6000
+	fleet "Large Dissonance Merchants" 9000
+	fleet "Dissonance Miners" 9000
+	fleet "Avgi Scouts" 9000
+	fleet "Avgi Patrol" 2700
+	fleet "Avgi Strike Group" 9000
+	fleet "Small Aberrant" 12000
+	fleet "Large Aberrant" 18000
+	object
+		sprite star/g0-old
+		period 10
+	object
+		sprite planet/dust1
+		distance 353
+		period 57.081
+	object
+		sprite planet/rhea-b
+		distance 1411
+		period 456.167
+	object
+		sprite planet/gas13-b
+		distance 2919
+		period 1357.326
+	object
+		sprite planet/beryl/beryl
+		distance 8433
+		period 6665.094
+	object
+		sprite planet/browndwarf-y
+		distance 9139
+		period 7519.364
+
+system Chorale
+	pos -670.471 1190.69
+	government Uninhabited
+	attributes "outer limits"
+	habitable 230
+	belt 1970 8
+	haze _menu/haze-33
+	link Anthem
+	link Madrigal
+	link Sonata
+	asteroids "large metal" 1 3.067
+	fleet "Small Avgi Merchants" 7200
+	fleet "Large Avgi Merchants" 12000
+	fleet "Small Dissonance Merchants" 7200
+	fleet "Large Dissonance Merchants" 12000
+	fleet "Avgi Scouts" 9000
+	fleet "Avgi Patrol" 4200
+	fleet "Avgi Strike Group" 18000
+	fleet "Small Aberrant" 24000
+	fleet "Large Aberrant" 30000
+	object
+		sprite star/m3
+		period 10
+	object
+		sprite planet/gas5-b
+		distance 4758
+		period 8656.309
+		object
+			sprite planet/rhea
+			distance 266
+			period 134.928
+		object
+			sprite planet/io
+			distance 398
+			period 300.141
+		object
+			sprite planet/tethys
+			distance 550
+			period 794.398
 

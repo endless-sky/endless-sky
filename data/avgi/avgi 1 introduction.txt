@@ -35,7 +35,7 @@ mission "Avgi: First Contact"
 		attributes "avgi"
 	landing
 	waypoint "Arche"
-	waypoint "Ensemble"
+	waypoint "Ballad"
 	destination "Peripheria"
 	clearance
 	on offer
