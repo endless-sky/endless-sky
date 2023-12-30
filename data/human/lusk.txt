@@ -59,15 +59,13 @@ mission "BAM: Transport Lusk"
 	on visit
 		dialog `You arrive on <planet>, but realize that your escort carrying Johann Lusk has not arrived yet. Better depart and wait for your escorts to enter the system.`
 	on complete
-		log `Transported a certain "entrepreneur" named Johann Lusk to a business meeting on Ada. He stiffed me on payment.`
+		log `Transported a certain "entrepreneur" named Johann Lusk to a business meeting on Ada. Got stiffed on the payment.`
 		conversation
 			`	As soon as you land on <planet>, Lusk is already ready to go. He thanks you profusely as he rushes out of your ship, promising to return in one hour with your payment. There's no way you can catch him without sprinting, so you instead resign yourself to watching him go and hope that he returns with your payment soon.`
 			`	Three hours go by and you're just about to write off this boondoggle as a total loss. As you begin to prepare your ship to depart, you manage to spot a severely downcast Lusk reluctantly trudging toward your ship. When he finally reaches your vessel, he seems to invite himself in and walk right past you to collapse into a chair just past the airlock.`
 			choice
 				`	"I take it your meeting didn't go so well?"`
-					goto rant
 				`	"Well, 'hello' to you too."`
-					goto rant
 				`	"Where's my money?"`
 					goto nopay
 			label rant
@@ -97,15 +95,17 @@ mission "BAM: Transport Lusk"
 					to display
 						has "bam: ranted"
 				`	"I'm afraid I must insist."`
-					goto insisted
-				`	"If you don't pay me immediately, I am calling the police."`
-					goto insisted
-			label insisted
+				`	"If you don't pay me immediately, I'm calling the police."`
 			action
 				payment 9486
+				clear "bam: ranted"
+				clear "bam: demanded payment"
 			`	The contrite look on Lusk's face immediately morphs into one of rage. "You want your money, you mewling buffoon? Fine! Here! Take it, and I hope I never see you again!" He rummages hastily through his pockets and pulls out a grimy credit chip before flinging it at your face. You react quickly enough to catch it, but by the time you look back at him, he is already rushing out the door.`
 			`	Upon accessing the credit chip, you find that he only paid you <payment>.`
 				decline
 			label hearmore
+			action
+				clear "bam: ranted"
+				clear "bam: demanded payment"
 			`	"Wonderful! Meet me in the spaceport in one hour. I'll tell you everything. Trust me - you're going to want to hear this." He scrambles out of his chair and rushes out of your ship, muttering something about emeralds on his way out. You take note that he still has not paid you what he promised for the trip to <planet>.`
 
