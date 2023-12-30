@@ -239,7 +239,6 @@ namespace {
 
 	const double RADAR_SCALE = .025;
 	const double MAX_FUEL_DISPLAY = 5000.;
-	constexpr static double OFFSET_CHANGE = 0.01;
 }
 
 
@@ -1585,7 +1584,7 @@ void Engine::CalculateStep()
 				offset -= offset / 128.;
 
 			newCenter = !flagship->IsHyperspacing() ?
-				flagship->Center() + offset * zoom * prefMul * 16 : flagship->Center();
+				flagship->Center() + offset * prefMul * 16 : flagship->Center();
 		}
 		else
 			newCenter = flagship->Center();
