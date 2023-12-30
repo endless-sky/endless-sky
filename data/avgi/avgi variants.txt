@@ -109,7 +109,7 @@ ship "Diaspersi" "Diaspersi (Atomic)"
 		"Deuterium Slush Tank"
 		"Electrostatic Ramscoop"
 		
-		`Z-330 "Zap" Fusion Torch`
+		`Z-330 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector" 2
 		"XY-360 Radial Thrusters"
@@ -165,7 +165,7 @@ ship "Difraktos" "Difraktos (Atomic)"
 		"Nadir Missile" 168
 		"Nadir Magazine" 2
 
-		"Ulracapacitor Cell" 3
+		"Ultracapacitor Cell" 3
 		"Diffuse Deflector"
 		"Optical Lasing Generator"
 		"Multispectral Scanner" 2

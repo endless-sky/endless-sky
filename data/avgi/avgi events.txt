@@ -18,4 +18,9 @@ event "twilight label"
 
 event "tangled shroud label"
 	galaxy "label tangled shroud"
-		sprite label/tangled shroud
+		sprite "label/tangled shroud"
+
+
+event "outer limits label"
+	galaxy "label outer limits"
+		sprite "label/outer limits"

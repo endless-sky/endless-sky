@@ -249,7 +249,7 @@ phrase "avgi warm acknowledgment"
 		"Welcome to our space"
 		"Welcome"
 		"Well met"
-		"You are acknowldged"
+		"You are acknowledged"
 
 
 phrase "avgi cold acknowledgment"

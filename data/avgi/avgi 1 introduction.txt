@@ -39,6 +39,7 @@ mission "Avgi: First Contact"
 	destination "Peripheria"
 	clearance
 	on offer
+		event "tangled shroud label"
 		conversation
 			branch aviskir
 				has "flagship planet: Aviskir"
@@ -176,7 +177,7 @@ mission "Avgi: First Contact"
 		"reputation: Avgi (Twilight Guard)" += 10
 		set "discovered avgi"
 		log "Factions" "Avgi" `The Avgi are a young race of dragonfly-like aliens inhabiting this part of the galaxy. Their homeworld and core space have been occupied by an alien invasion.`
-		event "tangled shroud label"
+		event "outer limits label"
 		conversation
 			`After a confusing journey through the winding hyperlanes, you finally arrive at the system the alien marked on your map. You notice that your flight computer has failed to record the location of the systems you passed through, probably due to the same anomaly that made your ship almost completely blind within the region. This system appears unaffected however, and your computer is able to chart its position.`
 			`	The alien ship pings you, indicating to follow as it flies towards what looks to be a large inhabited station in the system. Shaped like a circular disk, a large cutout in the center exposes hundreds of docking bays and what looks to be a spaceport. As you watch, a trio of sleek looking fightercraft launch from the station and take up escort positions around you and the other alien ship you have followed all this way. You can only assume your escort is in communication with the station authorities.`
@@ -579,7 +580,7 @@ mission "Avgi: Defend Ensemble 2"
 				`	"What do you suggest?"`
 				`	"Where should we look then?"`
 			`	"I have a friend among the Avgi, one who doesn't frequent the official circles in the Consonance as much. There's an entire second branch of the Tangled Shroud, mostly ran by miners and small time shipbuilders, the kind of people who talk a lot among themselvess about rumors and tall tales. The official story behind the Incursion, the invasion of the Aberrant, is that they came from a chain of systems in the East, but no one ever talks about where exactly that chain leads. I'm wondering if my friend knows anyone with more to the story."`
-			`	"They had to come from sonewhere," you realize.`
+			`	"They had to come from somewhere," you realize.`
 			`	"Exactly. And if they came into Avgi space from somewhere, there might be a way out too. Either way, I think we should pay my friend a visit after you wrap up this mission. Might as well head to the spaceport and see what they want."`
 
 	on decline

@@ -535,15 +535,3 @@ planet "Outpost Lito"
 	government "Avgi (Dissonance)"
 	"required reputation" 10
 
-
-wormhole "Shrouded Embers"
-	mappable
-	link Ca-40 Fr-223
-	link Fr-223 Ts-294
-	link Ts-294 Ca-40
-	color "wormholes: Ember Waste"
-
-planet "Shrouded Embers"
-	attributes "requires: quantum keystone"
-	spaceport ""
-	wormhole "Shrouded Embers"
