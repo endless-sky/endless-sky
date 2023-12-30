@@ -1570,11 +1570,11 @@ void Engine::CalculateStep()
 	{
 		// Code block to calculate the center of the viewport.
 		// If Camera Acceleration is enabled an offset calculated through the
-		// flagship's velocity will be added to the center
-
+		// flagship's velocity will be added to the center.
+		newCenter = flagship->Center();
 		double prefMul = Preferences::CameraAcceleration() == "on" ? 1.
 			: (Preferences::CameraAcceleration() == "reversed" ? -1. : 0.);
-		if(prefMul != 0.)
+		if(prefMul != 0. && !flagship->IsHyperspacing())
 		{
 			// If the flagship isn't thrusting, because no drag is experienced,
 			// gently slide the flagship back to the center of the screen.
@@ -1583,11 +1583,8 @@ void Engine::CalculateStep()
 			else
 				offset -= offset.Unit() / 32.;
 
-			newCenter = !flagship->IsHyperspacing() ?
-				flagship->Center() + offset * prefMul * 8 : flagship->Center();
+			newCenter += offset * prefMul * 8;
 		}
-		else
-			newCenter = flagship->Center();
 		newCenterVelocity = flagship->Velocity();
 	}
 	draw[currentCalcBuffer].SetCenter(newCenter, newCenterVelocity);
