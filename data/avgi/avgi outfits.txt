@@ -1297,7 +1297,7 @@ outfit `Z-330 "Spark" Fusion Torch`
 		"scale" 0.75
 	"flare sound" "remnant afterburner"
 	"afterburner effect" "small remass injection"
-	"fusion power" 3
+	"magnozzle rings" 3
 	description "Balance TBD"
 
 
@@ -1320,7 +1320,7 @@ outfit `Z-660 "Zap" Fusion Torch`
 		"frame rate" 15
 	"flare sound" "remnant afterburner"
 	"afterburner effect" "medium remass injection"
-	"fusion power" 6
+	"magnozzle rings" 6
 	description "Balance TBD"
 
 
@@ -1344,7 +1344,7 @@ outfit `Z-990 "Arc" Fusion Torch`
 		"scale" 2
 	"flare sound" "remnant afterburner"
 	"afterburner effect" "large remass injection"
-	"fusion power" 9
+	"magnozzle rings" 9
 	description "Balance TBD"
 
 
@@ -1378,7 +1378,7 @@ outfit "Remass Injector"
 	"afterburner thrust" 60
 	"afterburner fuel" 0.12
 	"afterburner heat" -24
-	"fusion power" -1
+	"magnozzle rings" -1
 	description "Balance TBD"
 
 
@@ -1393,7 +1393,7 @@ outfit "Inductive Extractor"
 	"thrust" -6
 	"thrusting energy" -18
 	"thrusting heat" 6
-	"fusion power" -1
+	"magnozzle rings" -1
 	description "Balance TBD"
 
 
@@ -1469,16 +1469,16 @@ outfit "XY-720 Radial Thrusters"
 	"reverse thrusting heat" -9
 	"steering flare sprite" "effect/avgi flare/rcs"
 		"frame rate" 30
-		"scale" 0.5
+		"scale" 0.25
 	"steering flare sound" "plasma small"
 	"reverse flare sprite" "effect/avgi flare/rcs"
 		"frame rate" 30
-		"scale" 0.75
+		"scale" 0.5
 	"reverse flare sound" "plasma small"
 	description "Balance TBD"
 
 
-outfit "Beam Core Antimatter Torch"
+outfit `Z-1200 "Beam" Antimatter Torch`
 	category "Engines"
 	"cost" 900000000
 	thumbnail "outfit/unknown"
@@ -1500,6 +1500,7 @@ outfit "Beam Core Antimatter Torch"
 		"frame rate" 30
 		"scale" 0.125
 	"steering flare sound" "remnant afterburner"
+	"magnozzle rings" 18
 	description "Balance TBD"
 
 

@@ -627,7 +627,7 @@ ship "Frequentia"
 
 		`Z-330 "Spark" Fusion Torch`
 		"Inductive Extractor"
-		"Remass Injector" 2
+		"Remass Injector"
 		"XY-180 Radial Thrusters"
 		"Hyperdrive"
 
@@ -694,7 +694,6 @@ ship "Polari"
 		"Phased Array Laser (Blue)"
 		"Phased Array Laser (Green)"
 
-		"Lantern Fission Core"
 		"Photoelectric Scales"
 		"Ultracapacitor Cell" 3
 		"Diffuse Deflector"
@@ -708,7 +707,7 @@ ship "Polari"
 
 		`Z-330 "Spark" Fusion Torch`
 		"Inductive Extractor"
-		"Remass Injector" 2
+		"Remass Injector"
 		"XY-180 Radial Thrusters"
 		"Hyperdrive"
 
@@ -909,7 +908,7 @@ ship "Undsyni"
 		"Sidereal Missile" 84
 		"Electromotive Rifle" 24
 
-		"Luminous Fusion Core"
+		"Lantern Fission Core"
 		"Ultracapacitor Bank" 3
 		"Diffuse Deflector"
 		"Optical Lasing Generator"
@@ -1003,9 +1002,8 @@ ship "Modified Tachytia"
 		"Phased Array Laser (Blue)" 6
 		"Phased Array Laser (Green)" 3
 		"Dipole Ramscoop"
-		
-		"Stellar Fusion Core"
-		"Radiant Fusion Core"
+
+		"Lantern Fission Core" 2
 		"Photoelectric Scales"
 		"Ultracapacitor Bank" 6
 		"Specular Deflector" 2
@@ -1017,7 +1015,8 @@ ship "Modified Tachytia"
 		"Radiative Scales"
 		"Electromotive Rifle" 600
 		
-		"Beam Core Antimatter Torch"
+		`Z-1200 "Beam" Antimatter Torch`
+		"Inductive Extractor" 6
 		"Hyperdrive"
 
 	turret 36 183 "Phased Array Laser (Blue)"
@@ -1115,7 +1114,7 @@ ship "Tremoros"
 		"cargo space" 12
 		"outfit space" 210
 		"weapon capacity" 60
-		"engine capacity" 54
+		"engine capacity" 60
 		"anchor point" 1
 		weapon
 			"blast radius" 90
@@ -1126,7 +1125,6 @@ ship "Tremoros"
 		"Speckle Railgun" 4
 		"Speck Round" 14400
 		
-		"Lantern Fission Core"
 		"Ultracapacitor Cell" 4
 		"Diffuse Deflector"
 		"Multispectral Scanner"
@@ -1134,7 +1132,7 @@ ship "Tremoros"
 		
 		`Z-330 "Spark" Fusion Torch`
 		"Inductive Extractor"
-		"Remass Injector" 2
+		"Remass Injector"
 		"XY-180 Radial Thrusters"
 		"Hyperdrive"
 
@@ -1208,7 +1206,6 @@ ship "Prismaios"
 		"Sidereal Missile" 84
 		"Electromotive Rifle" 6
 
-		"Luminous Fusion Core"
 		"Ultracapacitor Bank"
 		"Diffuse Deflector"
 		"Optical Lasing Generator"
@@ -1290,7 +1287,6 @@ ship "Interferos"
 		"Sidereal Launcher" 4
 		"Sidereal Missile" 168
 
-		"Luminous Fusion Core"
 		"Ultracapacitor Cell" 3
 		"Diffuse Deflector"
 		"Optical Lasing Generator"
@@ -1298,7 +1294,7 @@ ship "Interferos"
 		
 		`Z-330 "Spark" Fusion Torch`
 		"Inductive Extractor"
-		"Remass Injector" 2
+		"Remass Injector"
 		"XY-180 Radial Thrusters"
 		"Hyperdrive"
 
@@ -1374,12 +1370,9 @@ ship "Diaspersi"
 		"Fleck Turret"
 		"Fleck Round" 2400
 		"Sidereal Launcher" 2
-		"Sidereal Magazine" 2
-		"Equinox Torpedo Stockpile" 2
-		"Equinox Torpedo" 24
-		"Sidereal Missile" 156
+		"Sidereal Magazine" 6
+		"Sidereal Missile" 300
 		
-		"Luminous Fusion Core"
 		"Ultracapacitor Bank"
 		"Diffuse Deflector"
 		"Optical Lasing Generator"
@@ -1482,7 +1475,6 @@ ship "Difraktos"
 		"Sidereal Magazine" 2
 		"Sidereal Missile" 324
 
-		"Brilliant Fusion Core"
 		"Lantern Fission Core"
 		"Ultracapacitor Bank"
 		"Ultracapacitor Cell"
@@ -1576,7 +1568,6 @@ ship "Refraktos"
 		"Phased Array Laser (Blue)" 4
 		"Phased Array Laser (Green)" 3
 
-		"Stellar Fusion Core"
 		"Photoelectric Scales"
 		"Ultracapacitor Bank" 2
 		"Diffuse Deflector"
@@ -1586,9 +1577,9 @@ ship "Refraktos"
 		"Thermal Sink Partition" 3
 		"Electromotive Rifle" 24
 		
-		`Z-330 "Spark" Fusion Torch`
-		"Inductive Extractor"
-		"Remass Injector" 2
+		`Z-660 "Zap" Fusion Torch`
+		"Inductive Extractor" 5
+		"Remass Injector" 1
 		"XY-360 Radial Thrusters"
 		"Hyperdrive"
 
@@ -1658,7 +1649,7 @@ ship "Atenuatia"
 		"drag" 4.5
 		"heat dissipation" 1.8
 		"fuel capacity" 2400
-		"cargo space" 90
+		"cargo space" 120
 		"outfit space" 690
 		"weapon capacity" 180
 		"engine capacity" 174
@@ -1673,12 +1664,10 @@ ship "Atenuatia"
 		"Fleck Round" 2400
 		"Phased Array Laser (Blue)" 2
 		"Phased Array Laser (Green)" 3
-		"Sidereal VLS Array"
-		"Equinox Torpedo Stockpile" 3
-		"Equinox Torpedo" 36
-		"Sidereal Missile" 126
+		"Sidereal VLS Array" 2
+		"Sidereal Magazine" 6
+		"Sidereal Missile" 468
 		
-		"Radiant Fusion Core"
 		"Ultracapacitor Bank" 2
 		"Specular Deflector"
 		"Optical Lasing Generator" 2
@@ -1687,9 +1676,9 @@ ship "Atenuatia"
 		"Electromotive Rifle" 90
 		
 		`Z-660 "Zap" Fusion Torch`
-		"Inductive Extractor" 2
-		"Remass Injector" 4
-		"XY-360 Radial Thrusters"
+		"Inductive Extractor" 4
+		"Remass Injector" 2
+		"XY-720 Radial Thrusters"
 		"Hyperdrive"
 
 	engine 0 250

@@ -25,15 +25,19 @@ ship "Undsyni" "Undsyni (Tanker)"
 		"Phased Array Laser (Green)" 3
 		"Speckle Turret" 2
 		"Speck Round" 14400
+		"Sidereal Launcher" 2
+		"Sidereal Missile" 84
+		"Electromotive Rifle" 24
 
-		"Brilliant Fusion Core"
-		"Ultracapacitor Bank"
+		"Lantern Fission Core"
+		"Ultracapacitor Bank" 3
 		"Diffuse Deflector"
 		"Optical Lasing Generator"
+		"Electrostatic Ramscoop"
+		"Cryogenic Deuterium Tank" 18
+		"Deuterium Slush Tank" 9
 		"Multispectral Scanner"
 		"Spectrometer Array"
-		"Cryogenic Deuterium Tank" 18
-		"Dipole Ramscoop"
 
 		`Z-330 "Spark" Fusion Torch`
 		"Inductive Extractor"
@@ -50,7 +54,6 @@ ship "Prismaios" "Prismaios (Coilgun)"
 		"Fleck Turret" 2
 		"Fleck Round" 4800
 
-		"Luminous Fusion Core"
 		"Ultracapacitor Bank" 2
 		"Diffuse Deflector"
 		"Optical Lasing Generator"
@@ -58,7 +61,9 @@ ship "Prismaios" "Prismaios (Coilgun)"
 		"Electrostatic Ramscoop"
 		
 		`Z-330 "Spark" Fusion Torch`
-		"XY-180 Radial Thrusters"
+		"Inductive Extractor"
+		"Remass Injector" 2
+		"XY-360 Radial Thrusters"
 		"Hyperdrive"
 
 
@@ -68,11 +73,10 @@ ship "Prismaios" "Prismaios (Atomic)"
 		"Speckle Turret" 2
 		"Speck Round" 14400
 		"Nadir Launcher" 2
-		"Nadir Magazine"
-		"Nadir Missile" 48
+		"Nadir Magazine" 2
+		"Nadir Missile" 60
 
-		"Luminous Fusion Core"
-		"Ultracapacitor Cell" 3
+		"Ultracapacitor Bank"
 		"Diffuse Deflector"
 		"Optical Lasing Generator"
 		"Multispectral Scanner"
@@ -94,10 +98,9 @@ ship "Diaspersi" "Diaspersi (Atomic)"
 		"Fleck Round" 2400
 		"Nadir Launcher" 2
 		"Nadir Missile" 36
-		"Equinox Torpedo Stockpile"
-		"Equinox Torpedo" 12
+		"Equinox Torpedo Stockpile" 3
+		"Equinox Torpedo" 36
 		
-		"Luminous Fusion Core"
 		"Ultracapacitor Bank"
 		"Diffuse Deflector"
 		"Optical Lasing Generator"
@@ -106,9 +109,9 @@ ship "Diaspersi" "Diaspersi (Atomic)"
 		"Deuterium Slush Tank"
 		"Electrostatic Ramscoop"
 		
-		`Z-660 "Zap" Fusion Torch`
-		"Inductive Extractor" 2
-		"Remass Injector" 4
+		`Z-330 "Zap" Fusion Torch`
+		"Inductive Extractor"
+		"Remass Injector" 2
 		"XY-360 Radial Thrusters"
 		"Hyperdrive"
 
@@ -117,10 +120,9 @@ ship "Difraktos" "Difraktos (Missile)"
 	outfits
 		"Sidereal VLS Array" 6
 		"Sidereal Magazine" 6
-		"Sidereal Missile" 936
+		"Sidereal Missile" 972
 
-		"Luminous Fusion Core"
-		"Ultracapacitor Cell" 3
+		"Ultracapacitor Bank"
 		"Diffuse Deflector"
 		"Multispectral Scanner" 2
 		"Concealment Scales"
@@ -136,20 +138,19 @@ ship "Difraktos" "Difraktos (Missile)"
 ship "Difraktos" "Difraktos (Kinetic)"
 	outfits
 		"Phased Array Laser (Green)" 2
-		"Fleck Turret" 4
+		"Fleck Turret" 6
 		"Fleck Magazine"
-		"Fleck Round" 10800
+		"Fleck Round" 15600
 
-		"Radiant Fusion Core"
-		"Ultracapacitor Bank" 2
+		"Ultracapacitor Cell" 3
 		"Diffuse Deflector"
 		"Optical Lasing Generator"
-		"Multispectral Scanner" 2
+		"Multispectral Scanner"
 		"Concealment Scales"
 		"Electrostatic Ramscoop"
 		
-		`Z-330 "Spark" Fusion Torch`
-		"Inductive Extractor"
+		`Z-660 "Zap" Fusion Torch`
+		"Inductive Extractor" 4
 		"Remass Injector" 2
 		"XY-360 Radial Thrusters"
 		"Hyperdrive"
@@ -157,24 +158,24 @@ ship "Difraktos" "Difraktos (Kinetic)"
 
 ship "Difraktos" "Difraktos (Atomic)"
 	outfits
-		"Phased Array Laser (Green)"
+		"Phased Array Laser (Green)" 3
 		"Fleck Turret" 2
 		"Fleck Round" 4800
-		"Nadir VLS Array" 2
-		"Nadir Missile" 108
-		"Nadir Magazine"
+		"Nadir VLS Array" 3
+		"Nadir Missile" 168
+		"Nadir Magazine" 2
 
-		"Brilliant Fusion Core"
-		"Ultracapacitor Bank"
+		"Ulracapacitor Cell" 3
 		"Diffuse Deflector"
 		"Optical Lasing Generator"
 		"Multispectral Scanner" 2
 		"Concealment Scales"
 		"Electrostatic Ramscoop"
-		
+		"Electromotive Rifle" 42
+
 		`Z-660 "Zap" Fusion Torch`
 		"Inductive Extractor" 2
-		"Remass Injector" 4
+		"Remass Injector" 2
 		"XY-360 Radial Thrusters"
 		"Hyperdrive"
 
@@ -188,16 +189,15 @@ ship "Atenuatia" "Atenuatia (Atomic)"
 		"Phased Array Laser (Blue)" 2
 		"Phased Array Laser (Green)" 3
 		"Nadir VLS Array"
-		"Equinox Torpedo Stockpile" 3
-		"Equinox Torpedo" 36
+		"Equinox Torpedo Stockpile" 6
+		"Equinox Torpedo" 72
 		"Nadir Missile" 48
 		
-		"Radiant Fusion Core"
 		"Ultracapacitor Bank" 2
 		"Specular Deflector"
 		"Optical Lasing Generator" 2
-		"Electrostatic Ramscoop" 2
-		"Multispectral Scanner" 9
+		"Electrostatic Ramscoop"
+		"Multispectral Scanner" 6
 		
 		`Z-660 "Zap" Fusion Torch`
 		"Inductive Extractor" 2

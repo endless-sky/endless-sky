@@ -74,9 +74,6 @@ shipyard "Avgi Spaceguard Heavy"
 
 
 outfitter "Avgi Basic Systems"
-	"Luminous Fusion Core"
-	"Brilliant Fusion Core"
-	"Lantern Fission Core"
 	"Photoelectric Scales"
 	"Concentrating Solar Cell"
 	"Concentrating Solar Array"
@@ -95,8 +92,6 @@ outfitter "Avgi Basic Systems"
 	"Ultrarelativistic Electron Beam"
 
 outfitter "Avgi Advanced Systems"
-	"Radiant Fusion Core"
-	"Stellar Fusion Core"
 	"Diffuse Deflector"
 	"Spectrometer Array"
 	"Thermal Sink Partition"
@@ -113,8 +108,8 @@ outfitter "Avgi Basic Drives"
 	"Inductive Extractor"
 
 outfitter "Avgi Advanced Drives"
-	`Z-660 "Bolt" Fusion Torch`
-	`Z-990 "Zap" Fusion Torch`
+	`Z-660 "Zap" Fusion Torch`
+	`Z-990 "Arc" Fusion Torch`
 	"XY-720 Radial Thrusters"
 
 outfitter "Avgi Basic Combat"
