@@ -67,19 +67,19 @@ mission "Assisting Merchant (Large)"
 	destination "Earth"
 
 phrase "assist merchant 1"
-	phrase 
+	phrase
 		"assist merchant 1-1"
-	phrase 
+	phrase
 		"assist merchant 1-2"
-	phrase 
+	phrase
 		"assist merchant 1-3"
 
 phrase "assist merchant 1 hazardous"
-	phrase 
+	phrase
 		"assist merchant 1-1"
-	phrase 
+	phrase
 		"assist merchant 1-2 hazardous"
-	phrase 
+	phrase
 		"assist merchant 1-3"
 
 phrase "assist merchant 1-1"
