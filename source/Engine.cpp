@@ -1559,6 +1559,10 @@ void Engine::CalculateStep()
 	for(const shared_ptr<Flotsam> &it : flotsam)
 		DoCollection(*it);
 
+	// Now that flotsam collection is done, clear the cache of ships with
+	// tractor beam systems ready to fire.
+	hasTractorBeam.clear();
+
 	// Check for ship scanning.
 	for(const shared_ptr<Ship> &it : ships)
 		DoScanning(it);
@@ -1758,10 +1762,15 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 	// Launch fighters.
 	ship->Launch(newShips, newVisuals);
 
-	// Fire weapons. If this returns true the ship has at least one anti-missile
-	// system ready to fire.
-	if(ship->Fire(newProjectiles, newVisuals))
+	// Fire weapons.
+	ship->Fire(newProjectiles, newVisuals);
+
+	// Anti-missile and tractor beam systems are fired separately from normal weaponry.
+	// Track which ships have at least one such system ready to fire.
+	if(ship->HasAntiMissile())
 		hasAntiMissile.push_back(ship.get());
+	if(ship->HasTractorBeam())
+		hasTractorBeam.push_back(ship.get());
 }
 
 
@@ -2304,8 +2313,48 @@ void Engine::DoCollection(Flotsam &flotsam)
 			break;
 		}
 	}
+	// If the flotsam was not collected, give tractor beam systems a chance to
+	// pull it.
 	if(!collector)
+	{
+		// Keep track of the the net effect of all the tractor beams pulling on
+		// this flotsam.
+		Point pullVector;
+		// Also determine the average velocity of the ships pulling on this flotsam.
+		Point avgShipVelocity;
+		int count = 0;
+		for(Ship *ship : hasTractorBeam)
+		{
+			Point shipPull = ship->FireTractorBeam(flotsam, visuals);
+			if(shipPull)
+			{
+				pullVector += shipPull;
+				avgShipVelocity += ship->Velocity();
+				++count;
+			}
+		}
+
+		if(pullVector)
+		{
+			// If any tractor beams successfully fired on this flotsam, also drag the flotsam with
+			// the average velocity of each ship.
+			// When dealing with individual ships, this makes tractor beams feel more more capable of
+			// dragging flotsams to the ship. Otherwise, a ship could be drifting away from a flotsam
+			// at the same speed that the tractor beam is pulling the flotsam toward the ship,
+			// which looks awkward and makes the tractor beam feel pointless; the whole point of
+			// a tractor beam should be that it collects flotsam for you.
+			// This does mean that if you fly toward a flotsam that is in your tractor beam then
+			// you'll be pushing the flotsam away from your ship, but the pull of the tractor beam
+			// will still slowly close the distance between the ship and the flotsam.
+			// When dealing with multiple ships, this causes a better appearance of a struggle between
+			// the ships all trying to get ahold of the flotsam should the ships all have similar velocities.
+			// If the ships have differing velocities, then it can make it look like the quicker ship is
+			// yanking the flotsam away from the slower ship.
+			pullVector += avgShipVelocity / count;
+			flotsam.SetVelocity(pullVector);
+		}
 		return;
+	}
 
 	// Checks for player FlotsamCollection setting
 	if(collector->IsYours())
@@ -2313,12 +2362,9 @@ void Engine::DoCollection(Flotsam &flotsam)
 		const auto flotsamSetting = Preferences::GetFlotsamCollection();
 		if(flotsamSetting == Preferences::FlotsamCollection::OFF)
 			return;
-		if(collector == player.Flagship())
-		{
-			if(flotsamSetting == Preferences::FlotsamCollection::ESCORT)
-				return;
-		}
-		else if(flotsamSetting == Preferences::FlotsamCollection::FLAGSHIP)
+		if(collector == player.Flagship() && flotsamSetting == Preferences::FlotsamCollection::ESCORT)
+			return;
+		if(flotsamSetting == Preferences::FlotsamCollection::FLAGSHIP)
 			return;
 	}
 
