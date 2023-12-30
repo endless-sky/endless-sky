@@ -3693,7 +3693,7 @@ ship "Sunder"
 	explode "small explosion" 15
 	explode "medium explosion" 15
 	"final explode" "final explosion small"
-	description "Sunder mining ship."
+	description "Sunder mining ship. Decide on shipyard/location sold. Same for mining drone."
 
 
 
