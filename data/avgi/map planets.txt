@@ -36,7 +36,7 @@ planet Melatos
 	government Uninhabited
 
 planet Aviskir
-	attributes avgi "avgi core" rich urban
+	attributes avgi "avgi core" "aberrant siege" rich urban
 	landscape land/mountain39
 	description "Aviskir is a world of sweeping mountains and sparkling oceans. It also happens to be the Avgi homeworld, bustling with nine billion members of the species. Civilization has concentrated largely around bountiful mountain valleys and fjords, many warmed by hot springs and geothermal heat. The largest cities are built around the smaller peaks, laced with slender bridges and bright skyscrapers. They stand in contrast to the rural valley settlements below, which are said to offer simpler, more traditional lives."
 	description "The Incursion has forced the remaining Avgi on the surface to dedicate a large part of their industry towards building defensive missile systems and banks of lasers, all in the hope of turning away the attack runs the Aberrant sometimes make on the surface."
@@ -79,7 +79,7 @@ planet "Feo Platform"
 
 
 planet Thilos
-	attributes avgi frozen
+	attributes avgi "aberrant siege" frozen
 	landscape land/snow24
 	description "The Avgi were fortunate to have this nearly habitable planet in their home system. Covered in a thick crust of ice, a deep subsurface ocean lies just below the surface, heated by the radioactive decay of isotopes in its rocky core."
 	description "This planet was the first to be settled by the Avgi, who almost immediately began thickening its atmosphere, oxygenating it, and warming the surface with orbital mirrors. Despite beginning this process nearly three centuries ago, it will likely be another century before Thilos becomes warm enough to live on, though its atmosphere is already breathable."
@@ -119,7 +119,7 @@ planet Entantel
 
 
 planet Livolua
-	attributes avgi "avgi core" rich urban
+	attributes avgi "avgi core" "aberrant siege" rich urban
 	landscape land/water24
 	description "Livolua was the first extrasolar planet to be colonized by the Avgi, through the use of multiple waves of slower than light starships over two hundred years ago. With its wide range of climates ideal for life, it boasts a population two thirds as large as Aviskir itself, and an equally impressive number of independent polities."
 	spaceport "The primary spaceport was built into the center of the first settlement to be established on the planet, which received incoming starships for decades. Since then, it was expanded upwards into a surprisingly tall cylinder of basalt and steel, itself housing millions of Avgi."
@@ -174,7 +174,7 @@ planet Uryyhr
 
 
 planet Stilacrest
-	attributes avgi fishing rich religious
+	attributes avgi "aberrant siege" fishing rich religious
 	landscape land/myrabella4
 	description "This warm world, with its shallow freshwater seas, pleasant weather, and white limestone cliffs would be an ideal vacation world to any human. The mountain-born Avgi, however, were rather discomforted by its relatively flat landscape and sluggish winds, and permanent settlement has been sparse."
 	description "The oceans are rich in appetizing sea life, and Stilacrest is home to an abundance of independent fishing boats run by those seeking to build a new life away from the homeworld. The lure of the calm waves and mild weather is said to have attracted a meditative, laid back sort of personality."
@@ -190,7 +190,7 @@ planet Stilacrest
 	outfitter "Avgi Basic Combat"
 	
 planet Cyreal
-	attributes avgi forest tourism
+	attributes avgi "aberrant siege" forest tourism
 	landscape land/hills13
 	description "Cyreal was one of the first extrasolar worlds to be colonized by the Avgi. Like the rest of the nearest worlds, it was settled by numerous waves of slower than light starships. A low gravity moon, it is covered in sharp mountains and tall forests. It was once heavily settled, used as a green space by the miners in the system who grew weary of the confines of their mining vessels."
 	description "While somewhat metal-poor, by exploiting the asteroids and other bodies in the Span system, Cyreal developed a robust industrial base that allowed it to weather the economic shock that came with the invention of the hyperdrive relatively easily."
@@ -207,7 +207,7 @@ planet Cyreal
 
 
 planet Amathil
-	attributes avgi desert
+	attributes avgi "aberrant siege" desert
 	landscape land/canyon16
 	description "As far as desert worlds come, Amathil is merely dry and sandy, with a mild surface temperature that is surprisingly uniform across latitudes thanks to high altitude winds. While unattractive for settlement due to the scarcity of greenery, Amathil is still home to the descendents of those who arrived on the first few sublight starships, back when little was known about the planet besides that it had an oxygenated atmosphere. The unique culture that has since grown here, under a unified planetary government, emphasizes a sense of community and generosity, or at least that is the way the locals are perceived by outsiders."
 	spaceport "The spaceport is spartan, with Amathil not receiving much traffic on a daily basis. Amathil's primary export is people, with many choosing to leave the isolated world in favor of moving to one of the more cosmopolitan worlds elsewhere."
@@ -225,7 +225,7 @@ planet Felorap
 
 
 planet Araio
-	attributes avgi farming frontier rich
+	attributes avgi "aberrant siege" farming frontier rich
 	landscape land/canyon3
 	description "Araio is a relatively small world dominated by a single supercontinent. Continental uplift has made much of this continent characterized by mountainous highland, scattered with numerous springs and lakes. Though the air is thin and the soil is rocky, hardy plants and woody trees cling to life, breaking up the landscape of rocky mountains with colorful meadows and bountiful forests."
 	description "Araio garnered a reputation as a frontier world ripe for plucky pioneers, being reminiscent of an often romanticized historical era on Aviskir. While rich in gemstones, natural stones have not been competitive with nanofabbed alternatives since long before the planet was settled, and thus the economy on the surface is almost completely dominated by homesteads and small frontier towns."
@@ -258,7 +258,7 @@ planet Hilothire
 
 
 planet Mabatham
-	attributes avgi frontier research
+	attributes avgi "aberrant siege" frontier research
 	landscape land/sky1
 	description "Mabatham teeters on the line between ocean planet and hothouse world. With a surface largely covered with water, broken only by a handful of volcanic islands, its atmosphere is thick and humid, saturated with water vapor that works to trap the heat from its two parent stars. While temperate near the poles, the equator is inhospitably warm, with constant hurricanes dwarfing anything seen on either Earth or Aviskir raging in the tropics."
 	description "	Despite the constant rains and frequent storms, the planet's bountiful oceanic ecosystem is able to sustain a small community of particularly stuborn Avgi, who managed to eke out a life on a rocky island chain. They refused to be evacuated in the wake of the Incursion, and their outpost remains, weathering the wind and sea."

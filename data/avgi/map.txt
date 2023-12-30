@@ -1359,6 +1359,8 @@ system Stream
 			period 331.195
 
 system Ensemble
+	hidden
+	shrouded
 	pos -522.936 1154.157
 	government "Avgi (Consonance)"
 	attributes avgi "bright star" consonance "notable star" "tangled shroud"
@@ -2267,6 +2269,8 @@ system Gossamer
 			period 410.203
 
 system Prelude
+	hidden
+	shrouded
 	pos -494.73 952.391
 	government "Avgi (Dissonance)"
 	attributes avgi dissonance "giant star" "notable star" "tangled shroud"
@@ -2739,6 +2743,7 @@ system Mellow
 		period 7272.613
 
 system Postlude
+	shrouded
 	pos -276.012 966.9
 	government Uninhabited
 	attributes "tangled shroud"
@@ -3740,6 +3745,8 @@ system Wake
 		period 2477.672
 
 system O-16
+	hidden
+	shrouded
 	pos -356.272 1098.517
 	government Uninhabited
 	attributes "tangled shroud"
@@ -3770,6 +3777,8 @@ system O-16
 			period 347.603
 
 system Li-7
+	hidden
+	shrouded
 	pos -348.338 1045.531
 	government Uninhabited
 	attributes "tangled shroud"
@@ -3829,6 +3838,8 @@ system Li-7
 		period 68523.248
 
 system Ne-20
+	hidden
+	shrouded
 	pos -433.455 1017.834
 	government Uninhabited
 	attributes "tangled shroud"
@@ -3878,6 +3889,8 @@ system Ne-20
 			period 503.829
 
 system S-32
+	hidden
+	shrouded
 	pos -560.192 1021.674
 	government Uninhabited
 	attributes "tangled shroud"
@@ -3911,6 +3924,8 @@ system S-32
 		period 15442.849
 
 system Be-9
+	hidden
+	shrouded
 	pos -265.8 994.743
 	government Uninhabited
 	attributes "bright star" "notable star" "tangled shroud"
@@ -3963,6 +3978,8 @@ system Be-9
 			period 144.074
 
 system Br-80
+	hidden
+	shrouded
 	pos -635.099 1116.134
 	government Uninhabited
 	attributes "tangled shroud"
@@ -4019,6 +4036,8 @@ system Br-80
 		period 47706.203
 
 system H-1
+	hidden
+	shrouded
 	pos -346.308 999.578
 	government Uninhabited
 	attributes "tangled shroud"
@@ -4087,6 +4106,8 @@ system H-1
 			period 98.524
 
 system B-11
+	hidden
+	shrouded
 	pos -277.007 1089.439
 	government Uninhabited
 	attributes "tangled shroud"
@@ -4118,6 +4139,8 @@ system B-11
 		period 23392.83
 
 system Ge-73
+	hidden
+	shrouded
 	pos -572.654 1100.597
 	government Uninhabited
 	attributes "tangled shroud"
@@ -4152,6 +4175,8 @@ system Ge-73
 		period 25748.963
 
 system Mg-24
+	hidden
+	shrouded
 	pos -522.025 1041.909
 	government Uninhabited
 	attributes "bright star" "notable star" "tangled shroud"
@@ -4200,6 +4225,8 @@ system Mg-24
 		period 3271.223
 
 system As-75
+	hidden
+	shrouded
 	pos -706.15 962.552
 	government Uninhabited
 	attributes "tangled shroud"
@@ -4243,6 +4270,8 @@ system As-75
 		period 295797.773
 
 system Na-23
+	hidden
+	shrouded
 	pos -484.285 1074.756
 	government Uninhabited
 	attributes "tangled shroud"
@@ -4292,6 +4321,8 @@ system Na-23
 			period 159.032
 
 system Ca-40
+	hidden
+	shrouded
 	pos -637.242 1017.521
 	government Uninhabited
 	attributes "tangled shroud"
@@ -4332,6 +4363,8 @@ system Ca-40
 			period 427.707
 
 system F-19
+	hidden
+	shrouded
 	pos -361.277 1136.45
 	government Uninhabited
 	attributes "tangled shroud"
@@ -4370,6 +4403,8 @@ system F-19
 			period 154.364
 
 system P-31
+	hidden
+	shrouded
 	pos -655.049 1070.939
 	government Uninhabited
 	attributes "tangled shroud"
@@ -4397,6 +4432,8 @@ system P-31
 		period 9523.29
 
 system Cl-35
+	hidden
+	shrouded
 	pos -454.772 1100.79
 	government Uninhabited
 	attributes "tangled shroud"
@@ -4426,6 +4463,8 @@ system Cl-35
 		period 445.61
 
 system K-39
+	hidden
+	shrouded
 	pos -452.966 1131.947
 	government Uninhabited
 	attributes "tangled shroud"
@@ -4455,6 +4494,8 @@ system K-39
 		period 204.702
 
 system C-12
+	hidden
+	shrouded
 	pos -396.193 1075.83
 	government Uninhabited
 	attributes "tangled shroud"
@@ -4483,6 +4524,8 @@ system C-12
 		period 9523.29
 
 system He-4
+	hidden
+	shrouded
 	pos -450.476 965.671
 	government Uninhabited
 	attributes "tangled shroud"
@@ -4523,6 +4566,8 @@ system He-4
 		period 17716.642
 
 system Si-28
+	hidden
+	shrouded
 	pos -470.042 984.748
 	government Uninhabited
 	attributes "tangled shroud"
@@ -4589,6 +4634,8 @@ system Si-28
 			period 209.873
 
 system Kr-84
+	hidden
+	shrouded
 	pos -709.277 920.586
 	government Uninhabited
 	attributes "tangled shroud"
@@ -4629,6 +4676,8 @@ system Kr-84
 			period 143.535
 
 system Ar-40
+	hidden
+	shrouded
 	pos -598.144 1049.772
 	government Uninhabited
 	attributes "tangled shroud"
@@ -4680,6 +4729,8 @@ system Ar-40
 		period 12734.3
 
 system N-14
+	hidden
+	shrouded
 	pos -222.303 1081.177
 	government Uninhabited
 	attributes "tangled shroud"
