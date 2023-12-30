@@ -18,7 +18,7 @@ mission "BAM: Transport Lusk"
 		attributes "deep"
 	destination "Ada"
 #	to offer
-#		random > 10
+#		random < 10
 	passengers 1
 	on offer
 		conversation
@@ -68,7 +68,7 @@ mission "BAM: Transport Lusk"
 					goto rant
 				`	"Well, 'hello' to you too."`
 					goto rant
-				`	"Where's my money, bitch?"`
+				`	"Where's my money?"`
 					goto nopay
 			label rant
 			action
