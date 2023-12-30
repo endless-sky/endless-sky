@@ -611,7 +611,7 @@ void Engine::Step(bool isActive)
 		for(const StellarObject &object : flagship->GetSystem()->Objects())
 			if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->IsWormhole()
 				&& object.GetPlanet()->IsAccessible(flagship.get()) && player.HasVisited(*object.GetPlanet())
-				&& player.HasVisited(*system))
+				&& player.CanView(*system))
 			{
 				const auto *wormhole = object.GetPlanet()->GetWormhole();
 				if(&wormhole->WormholeDestination(*flagship->GetSystem()) != system)
@@ -753,7 +753,7 @@ void Engine::Step(bool isActive)
 	else if(flagship && flagship->GetTargetSystem())
 	{
 		info.SetString("navigation mode", "Hyperspace:");
-		if(player.HasVisited(*flagship->GetTargetSystem()))
+		if(player.CanView(*flagship->GetTargetSystem()))
 			info.SetString("destination", flagship->GetTargetSystem()->Name());
 		else
 			info.SetString("destination", "unexplored system");
