@@ -140,6 +140,8 @@ mission "Discovered Wormhole Alpha"
 		set "wormhole alpha found"
 		fail
 
+
+
 mission "Assisting Hai"
 	assisting
 	repeat
@@ -152,6 +154,8 @@ mission "Assisting Hai"
 		payment 30000
 		conversation "assisting merchant hazardous"
 	destination "Hai-home"
+
+
 
 mission "Ask the Hai about the Unfettered"
 	landing
