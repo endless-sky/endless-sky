@@ -1004,7 +1004,7 @@ void PreferencesPanel::RenderPluginDescription(const Plugin &plugin)
 
 	// Compute the height before drawing, so that we know the scroll bounds.
 	const Sprite *sprite = SpriteSet::Get(plugin.name);
-	int descriptionHeight = 0;
+	int descriptionHeight = 2; // Account for 2px KERN offset in Font.cpp.
 	if(sprite)
 		descriptionHeight += sprite->Height();
 
