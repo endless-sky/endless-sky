@@ -493,6 +493,7 @@ void PreferencesPanel::DrawSettings()
 		SCREEN_MODE_SETTING,
 		VSYNC_SETTING,
 		CAMERA_ACCELERATION,
+		"",
 		"Performance",
 		"Show CPU / GPU load",
 		"Render motion blur",
