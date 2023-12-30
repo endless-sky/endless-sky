@@ -24,10 +24,10 @@ mission "remembrance day"
 	substitutions
 		"<Today>" "Today, throughout human space,"
 		"<Today>" `	"Today`
-			has "non-human space start"
+			not "human space start"
 		"<end paragraph>" ""
 		"<end paragraph>" `"`
-			has "non-human space start"
+			not "human space start"
 	to offer
 		has "event: remembrance day"
 	on offer
@@ -36,7 +36,7 @@ mission "remembrance day"
 		conversation
 			`As you land on this human world, you receive an informative news bulletin titled 'Remembrance Day', noted as very important. It reads:`
 				to display
-					has "non-human space start"
+					not "human space start"
 			`<Today> is Remembrance Day, the anniversary of the beginning of the Alpha Wars more than five centuries ago. The Alphas were genetically engineered soldiers, with superhuman agility and intelligence, and a complete lack of compassion or empathy. At the height of the War, dozens of planets had been enslaved by the Alphas.`
 			`	Remembrance Day commemorates the beginning of the war, rather than its end, as a perpetual reminder that the war is not over: although the Alphas were defeated, some of them escaped and remained in hiding, and they and their offspring are presumed to still be present in the galaxy today.`
 			`	Since the Alpha War, genetic resequencing technology has been very tightly controlled. Because the Alphas were the product of experimental genetic manipulation rather than natural evolution, it is believed that their genes are less robust than true human beings, and they are almost unable to have viable offspring without access to special technology. Therefore, most Alpha enclaves that have been discovered since the War have had very small populations, no more than a few dozen.`
