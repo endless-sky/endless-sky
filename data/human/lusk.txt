@@ -14,12 +14,12 @@
 mission "BAM: Transport Lusk"
 	name "Transport Lusk to <planet>"
 	description "Transport entrepreneur Johann Lusk to a business meeting on <destination>."
+	passengers 1
 	source
 		attributes "deep"
 	destination "Ada"
 #	to offer
 #		random < 10
-	passengers 1
 	on offer
 		conversation
 			`As you enter the spaceport, your attention is immediately drawn to a somewhat disheveled man wearing a cheap black suit with a red and black checkered tie. He scrabbles on the floor on his hands and knees, desperately gathering a pile of loose papers into a briefcase. While others seem to be watching him, nobody has done anything to help.`
