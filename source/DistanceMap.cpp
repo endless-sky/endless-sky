@@ -336,5 +336,5 @@ bool DistanceMap::CheckLink(const System &from, const System &to, bool useJump) 
 	if(useJump && from.Position().Distance(to.Position()) <= distance)
 		return true;
 
-	return (player->HasVisited(from) || player->HasVisited(to));
+	return (player->CanView(from) || player->CanView(to));
 }
