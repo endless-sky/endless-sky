@@ -262,6 +262,7 @@ planet Mabatham
 	landscape land/sky1
 	description "Mabatham teeters on the line between ocean planet and hothouse world. With a surface largely covered with water, broken only by a handful of volcanic islands, its atmosphere is thick and humid, saturated with water vapor that works to trap the heat from its two parent stars. While temperate near the poles, the equator is inhospitably warm, with constant hurricanes dwarfing anything seen on either Earth or Aviskir raging in the tropics."
 	description "	Despite the constant rains and frequent storms, the planet's bountiful oceanic ecosystem is able to sustain a small community of particularly stuborn Avgi, who managed to eke out a life on a rocky island chain. They refused to be evacuated in the wake of the Incursion, and their outpost remains, weathering the wind and sea."
+	spaceport "The 'spaceport' is nothing more than a stony island mostly cleared of boulders and debris. A few small cranes and fuel tanks are strewn haphazardly along the edge, used to service the rare visiting starship."
 	government Avgi
 	security 0
 

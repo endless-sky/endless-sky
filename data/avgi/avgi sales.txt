@@ -74,6 +74,7 @@ shipyard "Avgi Spaceguard Heavy"
 
 
 outfitter "Avgi Basic Systems"
+	"Lantern Fission Core"
 	"Photoelectric Scales"
 	"Concentrating Solar Cell"
 	"Concentrating Solar Array"
