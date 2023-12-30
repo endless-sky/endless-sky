@@ -61,7 +61,13 @@ mission "BAM: Transport Lusk"
 	on complete
 		log `Transported a certain "entrepreneur" named Johann Lusk to a business meeting on Ada. Got stiffed on the payment.`
 		conversation
-			`	As soon as you land on <planet>, Lusk is already ready to go. He thanks you profusely as he rushes out of your ship, promising to return in one hour with your payment. There's no way you can catch him without sprinting, so you instead resign yourself to watching him go and hope that he returns with your payment soon.`
+			`	As soon as you land on <planet>, Lusk is already ready to go. He thanks you profusely as he rushes out of your ship, promising to return in one hour with your payment. There's no way you can catch him without sprinting.`
+			choice
+				`	(Wait and hope that he returns when he promised.)`
+					goto wait
+				`	(Sprint out after him.)`
+			`	Determined not to let your fare escape, you immediately give chase, but he is surprisingly quick and navigates the spaceport masterfully. Hot on his heels, you almost crash headlong into an old woman with a small dog in her arms. She shrieks, and you draw dirty looks from members of the crowd. In the commotion, you seem to have lost track of Lusk, but you spot him again as he darts to and fro, zigzagging between passengers and leaping over the cordons meant to keep people in orderly lines. Eventually, out of breath, you have no choice but to stop as the black speck that remains of Johann Lusk's cheap suit disappears into the distance. Defeated, you walk back to your ship and resolve to wait for his return.`
+			label wait
 			`	Three hours go by and you're just about to write off this boondoggle as a total loss. As you begin to prepare your ship to depart, you manage to spot a severely downcast Lusk reluctantly trudging toward your ship. When he finally reaches your vessel, he seems to invite himself in and walk right past you to collapse into a chair just past the airlock.`
 			choice
 				`	"I take it your meeting didn't go so well?"`
