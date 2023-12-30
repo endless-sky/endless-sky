@@ -1065,7 +1065,7 @@ void Engine::Draw() const
 		Point size(highlightSprite->Width(), highlightSprite->Height());
 		const Color &color = *colors.Get("flagship highlight");
 		// The flagship is always in the dead center of the screen.
-		OutlineShader::Draw(highlightSprite, Point(), size, color, highlightUnit, highlightFrame);
+		OutlineShader::Draw(highlightSprite, -offset, size, color, highlightUnit, highlightFrame);
 	}
 
 	if(flash)
@@ -1576,18 +1576,18 @@ void Engine::CalculateStep()
 		// If Camera Acceleration is enabled an offset calculated through the
 		// flagship's velocity will be added to the center.
 		newCenter = flagship->Center();
-		double prefMul = Preferences::CameraAcceleration() == "on" ? 1.
-			: (Preferences::CameraAcceleration() == "reversed" ? -1. : 0.);
-		if(prefMul != 0. && !flagship->IsHyperspacing())
+		double cameraAccelMultiplier = (Preferences::CameraAcceleration() == "on" ? 1.
+			: (Preferences::CameraAcceleration() == "reversed" ? -1. : 0.)) * 8;
+		if(cameraAccelMultiplier != 0. && !flagship->IsHyperspacing())
 		{
 			// If the flagship isn't thrusting, because no drag is experienced,
 			// gently slide the flagship back to the center of the screen.
 			if(flagship->IsThrusting() || flagship->IsReversing())
-				offset += (flagship->Velocity() - offset) / 64.;
+				offset += ((flagship->Velocity() - offset) / 64.) * cameraAccelMultiplier;
 			else
-				offset -= offset.Unit() / 32.;
+				offset -= (offset.Unit() / 32.) * cameraAccelMultiplier;
 
-			newCenter += offset * prefMul * 8;
+			newCenter += offset;
 		}
 		newCenterVelocity = flagship->Velocity();
 	}
