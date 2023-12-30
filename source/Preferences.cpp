@@ -636,6 +636,7 @@ void Preferences::ToggleBoarding()
 }
 
 
+
 Preferences::BoardingPriority Preferences::GetBoardingPriority()
 {
 	return static_cast<BoardingPriority>(boardingIndex);
