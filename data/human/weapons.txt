@@ -1478,8 +1478,7 @@ outfit "Tractor Beam"
 		"hardpoint sprite" "hardpoint/tractor beam"
 		"hardpoint offset" 4.
 		"hit effect" "tractor beam"
-#		"tractor beam" 2
-		"anti-missile" 1
+		"tractor beam" 10
 		"velocity" 300
 		"lifetime" 1
 		"reload" 1
@@ -1518,7 +1517,9 @@ outfit "Mining Laser"
 		"firing energy" 1.1
 		"firing heat" 2.1
 		"shield damage" .8
-		"hull damage" 1.5
+		"hull damage" 1.4
+		"minable damage" 1.9
+		"prospecting" 0.1
 	description "Mining Laser."
 
 
@@ -1546,5 +1547,7 @@ outfit "Mining Laser Turret"
 		"firing energy" 1.1
 		"firing heat" 2.1
 		"shield damage" .8
-		"hull damage" 1.5
+		"hull damage" 1.4
+		"minable damage" 1.9
+		"prospecting" 0.1
 	description "Mining Laser Turret."

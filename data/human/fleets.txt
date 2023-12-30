@@ -464,6 +464,9 @@ fleet "Paradise Merchants"
 		"Scout (Speedy)"
 	variant 1
 		"Container Transport (Short Haul)"
+	variant 3
+		"Sunder"
+		"Mining Drone" 2
 
 fleet "Small Northern Merchants"
 	government "Merchant"
@@ -1006,6 +1009,9 @@ fleet "Human Miners"
 		"Headhunter"
 	variant 2
 		"Headhunter (Miner)"
+	variant 2
+		"Sunder"
+		"Mining Drone" 2
 
 fleet "Small Free Worlds"
 	government "Free Worlds"
