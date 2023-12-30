@@ -30,8 +30,6 @@ namespace {
 	GLint srcscaleI = -1;
 	GLint fadeI = -1;
 
-	GLint texI = -1;
-
 	GLuint vao = -1;
 	GLuint vbo = -1;
 }
@@ -95,7 +93,6 @@ void RenderBuffer::Init()
 	scaleI = shader.Uniform("scale");
 	srcpositionI = shader.Uniform("srcposition");
 	srcscaleI = shader.Uniform("srcscale");
-	texI = shader.Uniform("tex");
 	fadeI = shader.Uniform("fade");
 
 	// Generate the vertex data for drawing sprites.
@@ -243,7 +240,6 @@ void RenderBuffer::Draw(const Point &position, const Point &clipsize, const Poin
 	glUseProgram(shader.Object());
 	glBindVertexArray(vao);
 
-	glUniform1i(texI, 0);
 	glBindTexture(GL_TEXTURE_2D, texid);
 
 	glUniform2f(sizeI, clipsize.X(), clipsize.Y());

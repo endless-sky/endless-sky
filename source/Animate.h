@@ -31,7 +31,7 @@ public:
 
 	// Reset the pending number of frames to zero. This makes the interpolated
 	// value jump straight to the target value.
-	void ResetAnimation();
+	void EndAnimation();
 	// Compute the next interpolated value. This needs called once per frame.
 	void Step();
 
@@ -66,7 +66,7 @@ void Animate<T>::Set(const T &current, int steps)
 
 
 template <typename T>
-void Animate<T>::ResetAnimation()
+void Animate<T>::EndAnimation()
 {
 	steps = 0;
 }
