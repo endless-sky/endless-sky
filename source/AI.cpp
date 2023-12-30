@@ -123,7 +123,7 @@ namespace {
 		for(const Hardpoint &hardpoint : ship.Weapons())
 		{
 			const Weapon *weapon = hardpoint.GetOutfit();
-			if(weapon && !hardpoint.IsAntiMissile())
+			if(weapon && !hardpoint.IsSpecial())
 			{
 				if(weapon->Ammo() && !ship.OutfitCount(weapon->Ammo()))
 					continue;
@@ -1257,7 +1257,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	double minRange = numeric_limits<double>::infinity();
 	double maxRange = 0.;
 	for(const Hardpoint &weapon : ship.Weapons())
-		if(weapon.GetOutfit() && !weapon.IsAntiMissile())
+		if(weapon.GetOutfit() && !weapon.IsSpecial())
 		{
 			minRange = min(minRange, weapon.GetOutfit()->Range());
 			maxRange = max(maxRange, weapon.GetOutfit()->Range());
@@ -2020,7 +2020,7 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, const System *playerSy
 	for(const Hardpoint &hardpoint : ship.Weapons())
 	{
 		const Weapon *weapon = hardpoint.GetOutfit();
-		if(weapon && !hardpoint.IsAntiMissile())
+		if(weapon && !hardpoint.IsSpecial())
 		{
 			const Outfit *ammo = weapon->Ammo();
 			if(!ammo || ship.OutfitCount(ammo))
@@ -2853,7 +2853,9 @@ bool AI::DoHarvesting(Ship &ship, Command &command) const
 {
 	// If the ship has no target to pick up, do nothing.
 	shared_ptr<Flotsam> target = ship.GetTargetFlotsam();
-	if(target && !ship.CanPickUp(*target))
+	// Don't try to chase flotsam that are already being pulled toward the ship by a tractor beam.
+	const set<const Flotsam *> &avoid = ship.GetTractorFlotsam();
+	if(target && (!ship.CanPickUp(*target) || avoid.count(target.get())))
 	{
 		target.reset();
 		ship.SetTargetFlotsam(target);
@@ -2868,7 +2870,7 @@ bool AI::DoHarvesting(Ship &ship, Command &command) const
 		double bestTime = 600.;
 		for(const shared_ptr<Flotsam> &it : flotsam)
 		{
-			if(!ship.CanPickUp(*it))
+			if(!ship.CanPickUp(*it) || avoid.count(it.get()))
 				continue;
 			// Only pick up flotsam that is nearby and that you are facing toward. Player escorts should
 			// always attempt to pick up nearby flotsams when they are given a harvest order, and so ignore
@@ -3743,7 +3745,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 		for(const StellarObject &object : ship.GetSystem()->Objects())
 			if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->IsWormhole()
 				&& object.GetPlanet()->IsAccessible(&ship) && player.HasVisited(*object.GetPlanet())
-				&& player.HasVisited(*system))
+				&& player.CanView(*system))
 			{
 				const auto *wormhole = object.GetPlanet()->GetWormhole();
 				if(&wormhole->WormholeDestination(*ship.GetSystem()) != system)
