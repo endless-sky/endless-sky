@@ -7106,7 +7106,7 @@ mission "Adelita 4"
 
 			label "on site"
 			`	Once the drones are on site, you can see a lone Syndicate-built freighter with a security detail posted in front of the loading ramp. "The pirates must be late," says Bunker, smirking. "Typical. I'm going to scatter the drones and set a proximity alert."`
-			`	He hums to himself for a while before making some small talk. "You know, there's a part of me that would much rather be liberating slaves instead of filming them, but for now it seems like this is the best way for me to help. Say we did liberate them right now; there's just going to be another slave ship tomorrow. But if we create political and social will, that could stop the slave ships forever."`
+			`	He hums to himself for a while before he turns to you and starts talking again. "You know, there's a part of me that would much rather be liberating slaves instead of filming them, but for now it seems like this is the best way for me to help. Say we did liberate them right now; there's just going to be another slave ship tomorrow. But if we create political and social will, that could stop the slave ships forever."`
 			choice
 				`	"I think you're right."`
 				`	"What about doing both?"`
