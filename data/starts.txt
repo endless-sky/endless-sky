@@ -28,7 +28,20 @@ start "default"
 			interest 0.004
 			term 365
 	set "license: Pilot's"
+	set "species: human"
+	set "human space start"
 
+
+# Patch for if the player started a game before 0.10.5
+mission "Default Start Patch"
+	invisible
+	landing
+	to offer
+		not "hai space start"
+	on offer
+		set "species: human"
+		set "human space start"
+		fail
 
 
 conversation "default intro"
@@ -46,7 +59,7 @@ conversation "default intro"
 
 start "hai space"
 	name "New Hai"
-	description `You grew up on Greenwater, a world with a very rich and mixed culture. You've dreamed of owning your own fleet since you were given toy spaceships as a small child. In order to reach that goal, you worked hard making human clothing that sold well.`
+	description `You grew up on Greenwater, a world with a very rich and mixed culture. You've dreamed of owning your own fleet since you were given toy spaceships as a small child. In order to reach that goal, you worked hard at a travel company, recommending mostly locations in human space.`
 	description `	Now, as you enter the shipyard, you feel like this is the start of a new life, in space.`
 	thumbnail "scene/hai start"
 	system "Fah Soom"
@@ -85,8 +98,8 @@ start "hai space"
 			principal 1431000
 			interest 0.003
 			term 730
-	set "hai start"
-	set "non-human space start"
+	set "species: human"
+	set "hai space start"
 	# need to set it here to not have it trigger alongside the invisible mission
 	set "First Contact: Hai: offered"
 	set "Intro [0]: offered"
@@ -132,7 +145,7 @@ conversation "hai intro"
 	`	As the two of you settle up the paperwork, the captain takes the time to explain, in great detail, why this ship is so marvelous. Because of how excited you are to finally fly, you miss everything other than repeated reference to the 'exceptional' reinforced armor.`
 	`	Before you leave, they give you a final tip: "If you want to, you can always sell this ship and buy an Aphid instead. The shipyard authorities will give you a discount for having sold my ship."`
 	action
-		set "hai start: Grasshopper"
+		set "hai space start: Grasshopper"
 		give ship "Grasshopper (Expensive)" "Pristine Jewel"
 		payment -1132000
 
@@ -160,7 +173,7 @@ mission "Greenwater start"
 	landing
 	invisible
 	to offer
-		has "hai start"
+		has "hai space start"
 	on offer
 		event "not from boston"
 		event "grew up on greenwater"
@@ -183,4 +196,4 @@ event "grew up on greenwater"
 substitutions
 	"<origin planet>" "New Boston"
 	"<origin planet>" "Greenwater"
-		has "hai start"
+		has "hai space start"

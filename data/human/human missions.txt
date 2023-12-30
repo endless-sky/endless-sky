@@ -3861,7 +3861,7 @@ mission "Human to Hai Space"
 			choice
 				`	"'Heard tell'? That is where I come from!"`
 					to display
-						has "hai start"
+						has "hai space start"
 					goto origin
 				`	"You mean the Hai? You'll have to go up north for that."`
 					goto hai
@@ -3882,7 +3882,7 @@ mission "Human to Hai Space"
 			choice
 				`	"Greenwater? I come from there!"`
 					to display
-						has "hai start"
+						has "hai space start"
 				`	"Alright, I'll take you there."`
 					accept
 				`	"Sorry, I'm too busy right now."`
@@ -3918,7 +3918,7 @@ mission "Human to Hai Space"
 					decline
 				`	"May I come speak with them?"`
 					to display
-						has "hai start"
+						has "hai space start"
 					goto haistart
 				`	"That's your family?"`
 			`	The man looks at you. "I'm adopted," he says. One of the Hai notices your confusion, and chitters. "Ah, you have not seen a human-Hai family, have you? Perhaps it is strange, but we are happy together nonetheless. Thank you for transporting our son safely."`
@@ -3929,7 +3929,7 @@ mission "Human to Hai Space"
 			`	After thanking you once again, they walk off. As they leave, you overhear Benjamin talk to his family about his trip. "They had so many kinds of food there, it was delicious! Although I did get homesick for pickled acorns..."`
 				decline
 			label haistart
-			`	"Of course, you did bring me all the way back here, after all." These are my parents, Yeerto and Taepip. His father Yeerto then speaks, "I recognize the clothing you're wearing... I bought some, back in the days. Nice work on them, by the way!"`
+			`	"Of course, you did bring me all the way back here, after all." These are my parents, Yeerto and Taepip. His father Yeerto then speaks, "We heard about your travel agency, even went there at some point when we were thinking of relocating to human space. It ended up being a touch too expensive, though, so Elliot arranged a merchant to bring him on the way."`
 			`	"It feels nice to have my hard work be recognized," you answer.`
 			`	"Honest work always bears fruits." His mother, Taepip, picks up, looking at her son, "That's what we always told him after we adopted him."`
 			choice
@@ -4673,7 +4673,7 @@ mission "Hai Wormhole Warning"
 			choice
 				`	"I did not exactly 'make contact'. I grew up there."`
 					to display
-						has "hai start"
+						has "hai space start"
 					goto grewup
 				`	"It is. Is that a problem?"`
 					goto yes

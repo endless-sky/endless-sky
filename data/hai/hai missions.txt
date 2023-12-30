@@ -301,11 +301,11 @@ mission "Returning Home"
 			choice
 				`	"Yes, I am."`
 					to display
-						not "hai start"
+						not "hai space start"
 					goto outsider
 				`	"Not really. I grew up here."`
 					to display
-						has "hai start"
+						has "hai space start"
 					goto clothe
 				`	"What do you mean 'the outside?'"`
 			
@@ -313,20 +313,18 @@ mission "Returning Home"
 			choice
 				`	"Oh, yes. I do come from outside."`
 					to display
-						not "hai start"
-				`	"Not really. I grew up here and made these clothes for myself."`
+						not "hai space start"
+				`	"Not really. I grew up here."`
 					to display
-						has "hai start"
+						has "hai space start"
 					goto outsider
 			
 			label clothe
 			`	"That's weird. Your clothes don't look like most do here," he says.`
-				to display
-					has "hai start"
 			label outsider
-			`	You explain to him that you grew up making clothes, meaning you eventually grew tired of the usual clothing you kept making. Once you gained enough experience, you started creating more original outfits, including the one you're wearing right now. You add that whilst you may not have been born in human space, your family made sure you learned about the origins of your species; you know human space like your pocket.`
+			`	You explain to him that these clothes used to belong to your father, that was a merchant from human space, and your mother kept some for you when he left. You add that whilst you may not have been born in human space, your family made sure you learned about the origins of your species; you know human space like your pocket. That was very useful for your work in a travel agency.`
 				to display
-					has "hai start"
+					has "hai space start"
 			`	"Good. My name is Elliot." You introduce yourself to Elliot and shake hands.`
 			`	"Can you take me to <destination>?" Elliot asks.`
 			`	"That's all the way in the Dirt Belt," you say. "Why do you want to go that far?"`

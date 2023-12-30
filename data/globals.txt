@@ -28,12 +28,3 @@ mission "main plot completed: global"
 	on offer
 		set "global: main plot completed"
 		fail
-
-mission "event: hai-human resolution announced: global"
-	landing
-	invisible
-	to offer
-		has "event: hai-human resolution announced"
-	on offer
-		set "global: event: hai-human resolution announced"
-		fail
