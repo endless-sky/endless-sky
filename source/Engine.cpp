@@ -1573,23 +1573,22 @@ void Engine::CalculateStep()
 		// If Camera Acceleration is enabled an offset calculated through the
 		// flagship's velocity will be added to the center
 
-		// If the flagship isn't thrusting, because no drag is experienced,
-		// gently slide the flagship back to the center of the screen.
-		if(flagship->IsThrusting())
-			offsetMultiplier = offsetMultiplier >= 1. ? 1.
-				: offsetMultiplier + OFFSET_CHANGE;
-		else
-			offsetMultiplier = offsetMultiplier <= 0. ? 0.
-				: offsetMultiplier - OFFSET_CHANGE;
-
-		// If this effect is disabled in the preferences, multiply the end product by 0.
 		double prefMul = Preferences::CameraAcceleration() == "on" ? 1.
 			: (Preferences::CameraAcceleration() == "reversed" ? -1. : 0.);
+		if(prefMul != 0.)
+		{
+			// If the flagship isn't thrusting, because no drag is experienced,
+			// gently slide the flagship back to the center of the screen.
+			if(flagship->IsThrusting() || flagship->IsReversing())
+				offset += (flagship->Velocity() - offset) / 64.;
+			else
+				offset -= offset / 128.;
 
-		offset = prefMul * flagship->Velocity() * 40. * zoom * offsetMultiplier;
-
-		newCenter = !flagship->IsHyperspacing() ?
-			flagship->Center() + offset : flagship->Center();
+			newCenter = !flagship->IsHyperspacing() ?
+				flagship->Center() + offset * zoom * prefMul * 16 : flagship->Center();
+		}
+		else
+			newCenter = flagship->Center();
 		newCenterVelocity = flagship->Velocity();
 	}
 	draw[currentCalcBuffer].SetCenter(newCenter, newCenterVelocity);

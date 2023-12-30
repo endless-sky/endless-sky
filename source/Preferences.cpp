@@ -54,8 +54,8 @@ namespace {
 	const vector<string> VSYNC_SETTINGS = {"off", "on", "adaptive"};
 	int vsyncIndex = 1;
 
-	int cameraAccelerationIndex = 0;
 	const vector<string> CAMERA_ACCELERATION_SETTINGS = {"off", "on", "reversed"};
+	int cameraAccelerationIndex = 0;
 
 
 	class OverlaySetting {
@@ -191,6 +191,8 @@ void Preferences::Load()
 			zoomIndex = max(0., node.Value(1));
 		else if(node.Token(0) == "vsync")
 			vsyncIndex = max<int>(0, min<int>(node.Value(1), VSYNC_SETTINGS.size() - 1));
+		else if(node.Token(0) == "camera acceleration")
+			cameraAccelerationIndex = max<int>(0, min<int>(node.Value(1), CAMERA_ACCELERATION_SETTINGS.size() - 1));
 		else if(node.Token(0) == "Show all status overlays")
 			statusOverlaySettings[OverlayType::ALL].SetState(node.Value(1));
 		else if(node.Token(0) == "Show flagship overlay")
@@ -211,8 +213,6 @@ void Preferences::Load()
 			extendedJumpEffectIndex = max<int>(0, min<int>(node.Value(1), EXTENDED_JUMP_EFFECT_SETTINGS.size() - 1));
 		else if(node.Token(0) == "fullscreen")
 			screenModeIndex = max<int>(0, min<int>(node.Value(1), SCREEN_MODE_SETTINGS.size() - 1));
-		else if(node.Token(0) == "camera acceleration")
-			cameraAccelerationIndex = max<int>(0, min<int>(node.Value(1), CAMERA_ACCELERATION_SETTINGS.size() - 1));
 		else if(node.Token(0) == "date format")
 			dateFormatIndex = max<int>(0, min<int>(node.Value(1), DATEFMT_OPTIONS.size() - 1));
 		else if(node.Token(0) == "alert indicator")
@@ -538,6 +538,13 @@ void Preferences::ToggleCameraAcceleration()
 
 
 
+const string &Preferences::CameraAcceleration()
+{
+	return CAMERA_ACCELERATION_SETTINGS[cameraAccelerationIndex];
+}
+
+
+
 void Preferences::CycleStatusOverlays(Preferences::OverlayType type)
 {
 	// Calling OverlaySetting::Increment when the state is ON_HIT will cycle to off.
@@ -627,14 +634,6 @@ void Preferences::ToggleBoarding()
 		targetIndex = 0;
 	boardingIndex = targetIndex;
 }
-
-
-
-const string &Preferences::CameraAcceleration()
-{
-	return CAMERA_ACCELERATION_SETTINGS[cameraAccelerationIndex];
-}
-
 
 
 Preferences::BoardingPriority Preferences::GetBoardingPriority()
