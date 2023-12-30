@@ -1581,10 +1581,10 @@ void Engine::CalculateStep()
 			if(flagship->IsThrusting() || flagship->IsReversing())
 				offset += (flagship->Velocity() - offset) / 64.;
 			else
-				offset -= offset / 128.;
+				offset -= offset.Unit() / 32.;
 
 			newCenter = !flagship->IsHyperspacing() ?
-				flagship->Center() + offset * prefMul * 16 : flagship->Center();
+				flagship->Center() + offset * prefMul * 8 : flagship->Center();
 		}
 		else
 			newCenter = flagship->Center();
