@@ -246,23 +246,21 @@ namespace {
 	const double CAMERA_REACTIVITY = 0.05;
 
 	pair<Point, Point> NewCenter(const Point &oldCenter, const Point &oldCenterVelocity, const Point &baseCenter, const Point &baseVelocity) {
-		double cameraAccelMultiplier = (Preferences::CameraAcceleration() == "on" ? 1.
-			: (Preferences::CameraAcceleration() == "reversed" ? -1. : 0.));
+		double cameraAccelMultiplier = (Preferences::CameraAcceleration() == Preferences::CameraAccel::ON ? 1.
+			: (Preferences::CameraAcceleration() == Preferences::CameraAccel::REVERSED ? -1. : 0.));
 
-		const auto centerOffset = oldCenter - baseCenter;
-		const auto oldCenterCorrected = baseCenter + centerOffset * cameraAccelMultiplier;
+		const auto oldCenterVelocityCorrected = baseVelocity + (oldCenterVelocity - baseVelocity) * cameraAccelMultiplier;
 
-		const auto centerVelOffset = oldCenterVelocity - baseVelocity;
-		const auto oldcentervelCorrected = baseVelocity + centerVelOffset * cameraAccelMultiplier;
+		const auto newVelocity = oldCenterVelocityCorrected + (baseVelocity - oldCenterVelocityCorrected) * CAMERA_SMOOTHNESS;
+		const auto newCenter = oldCenter + newVelocity;
 
-		const auto newVelocity = oldcentervelCorrected + (baseVelocity - oldcentervelCorrected) * CAMERA_SMOOTHNESS;
-		const auto newCenter = oldCenterCorrected + newVelocity;
-		const auto newCenterOffset = (baseCenter - newCenter) * CAMERA_REACTIVITY;
+		const auto newVelocityOffset = newVelocity - baseVelocity;
 
-		const auto thing = newVelocity - baseVelocity;
-		const auto thing2 = (newCenter + newCenterOffset) - baseCenter;
+		const auto extraDynamicity = 0.5 + 0.5 * pow(max(0., newVelocityOffset.Unit().Dot(baseVelocity.Unit())), 2.0);
 
-		return make_pair(baseCenter + thing2 * cameraAccelMultiplier, baseVelocity + thing * cameraAccelMultiplier);
+		const auto newCenterOffset = (newCenter + (baseCenter - newCenter) * CAMERA_REACTIVITY * extraDynamicity) - baseCenter;
+
+		return make_pair(baseCenter + newCenterOffset, baseVelocity + newVelocityOffset * cameraAccelMultiplier);
 	}
 }
 

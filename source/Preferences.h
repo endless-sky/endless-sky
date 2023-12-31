@@ -30,6 +30,12 @@ public:
 		adaptive,
 	};
 
+	enum class CameraAccel : int_fast8_t {
+		OFF = 0,
+		ON,
+		REVERSED,
+	};
+
 	enum class DateFormat : int_fast8_t {
 		DMY = 0, // Day-first format. (Sat, 4 Oct 1941)
 		MDY,     // Month-first format. (Sat, Oct 4, 1941)
@@ -136,7 +142,8 @@ public:
 	static const std::string &VSyncSetting();
 
 	static void ToggleCameraAcceleration();
-	static const std::string &CameraAcceleration();
+	static const std::string &CameraAccelerationName();
+	static const CameraAccel CameraAcceleration();
 
 	static void CycleStatusOverlays(OverlayType type);
 	static OverlayState StatusOverlaysState(OverlayType type);

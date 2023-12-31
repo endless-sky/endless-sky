@@ -537,9 +537,16 @@ void Preferences::ToggleCameraAcceleration()
 
 
 
-const string &Preferences::CameraAcceleration()
+const string &Preferences::CameraAccelerationName()
 {
 	return CAMERA_ACCELERATION_SETTINGS[cameraAccelerationIndex];
+}
+
+
+
+const Preferences::CameraAccel Preferences::CameraAcceleration()
+{
+	return static_cast<CameraAccel>(cameraAccelerationIndex);
 }
 
 

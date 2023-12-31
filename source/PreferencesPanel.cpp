@@ -625,7 +625,7 @@ void PreferencesPanel::DrawSettings()
 		}
 		else if(setting == CAMERA_ACCELERATION)
 		{
-			text = Preferences::CameraAcceleration();
+			text = Preferences::CameraAccelerationName();
 			isOn = text != "off";
 		}
 		else if(setting == STATUS_OVERLAYS_FLAGSHIP)
