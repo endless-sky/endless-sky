@@ -1524,7 +1524,7 @@ mission "Swiftsong Business Convention [1]"
 	on complete
 		payment 10000 150
 		"reputation: Hai" += 3
-		dialog `During the trip, your passengers appeared to be practicing a presentation for the conference. You sense a tinge of nervousness as they give you <payment> and leave your ship.`
+		dialog `During the trip, your passengers appeared to be practicing a presentation for the convention. You sense a tinge of nervousness as they give you <payment> and leave your ship.`
 
 
 
