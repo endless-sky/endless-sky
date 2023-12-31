@@ -1614,7 +1614,7 @@ void Engine::CalculateStep()
 
 	// Draw the objects. Start by figuring out where the view should be centered:
 	Point newCenter = center;
-	Point newCenterVelocity = centerVelocity;
+	Point newCenterVelocity;
 	if(flagship)
 	{
 		const auto newCamera = NewCenter(center, centerVelocity,
