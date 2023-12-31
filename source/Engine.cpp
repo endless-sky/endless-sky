@@ -548,6 +548,7 @@ void Engine::Step(bool isActive)
 			center = newCamera.first;
 			centerVelocity = newCamera.second;
 		}
+		flagshipOutlineLocation = flagship->Position();
 
 		if(doEnterLabels)
 		{
@@ -1103,8 +1104,7 @@ void Engine::Draw() const
 	{
 		Point size(highlightSprite->Width(), highlightSprite->Height());
 		const Color &color = *colors.Get("flagship highlight");
-		// The flagship is always in the dead center of the screen.
-		OutlineShader::Draw(highlightSprite, Point(), size, color, highlightUnit, highlightFrame);
+		OutlineShader::Draw(highlightSprite, (flagshipOutlineLocation - center) * zoom, size, color, highlightUnit, highlightFrame);
 	}
 
 	if(flash)
