@@ -253,20 +253,20 @@ namespace {
 
 		double cameraAccelMultiplier = Preferences::CameraAcceleration() == Preferences::CameraAccel::REVERSED ? -1. : 1.;
 
-		const auto lerp = [](const auto &a, const auto &b, const auto &c)
+		const Point Lerp = [](const Point &a, const Point &b, const Point &c)
 		{
 			return a + (b - a) * c;
 		};
 
 		// Flip the velocity offset if cameraAccelMultiplier is negative to simplify logic.
-		const auto absoluteOldCenterVelocity = lerp(baseVelocity, oldCenterVelocity, cameraAccelMultiplier);
+		const Point absoluteOldCenterVelocity = Lerp(baseVelocity, oldCenterVelocity, cameraAccelMultiplier);
 
-		const auto newAbsVelocity = lerp(absoluteOldCenterVelocity, baseVelocity, CAMERA_VELOCITY_TRACKING);
+		const Point newAbsVelocity = Lerp(absoluteOldCenterVelocity, baseVelocity, CAMERA_VELOCITY_TRACKING);
 
-		const auto newCenter = lerp(oldCenter + newAbsVelocity, baseCenter, CAMERA_POSITION_CENTERING);
+		const Point newCenter = Lerp(oldCenter + newAbsVelocity, baseCenter, CAMERA_POSITION_CENTERING);
 
 		// Flip the velocity back over the baseVelocity
-		const auto newVelocity = lerp(baseVelocity, newAbsVelocity, cameraAccelMultiplier);
+		const Point newVelocity = Lerp(baseVelocity, newAbsVelocity, cameraAccelMultiplier);
 
 		return make_pair(newCenter, newVelocity);
 	}
