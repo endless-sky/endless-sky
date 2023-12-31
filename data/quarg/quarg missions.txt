@@ -383,13 +383,7 @@ mission "Ask Quarg About Coalition Late"
 				`	"That's all. Thank you for speaking with me."`
 					goto end
 			`	It slowly turns its head over to face you, with its eye gazing into your own. An uncomfortable minute passes at a snail's pace, as you seem to struggle keeping eye contact with the Quarg, while at the same time finding it difficult to look elsewhere.`
-			branch pug
-				has "main plot completed"
-			`	"We had gone there to protect the three species. To guide them. To observe them. We failed the latter, losing track of wisdom and reason in favor of fearing past shames. In that, our guidance became compromised. We were no longer seen as protectors, but as those they had to protect themselves against."`
-				goto "after conclusions"
-			label pug
-			`	"Our fleets were first to arrive. We had gone there, to the region now forming the Coalition, before the Saryds had even first left their world. But, soon enough, they had followed us there. The Pug. The insufferable meddlers who have brought ruin to us and to many others throughout the galaxy. Still, we had sworn to defend the three species, we would not allow them to fall prey to the games of the Pug, not them." It brings one hand to its neck, lightly pressing it as if to relieve some pressure. "But never did we move past that. The shame brought upon us by the Pug had us blinded to reality, and so we frightened the Arachi, the Kimek, and our friends the Saryds. We failed them, all the same." It takes its hand away from its neck, fixing its hood in place. "We failed..."`
-			label "after conclusions"
+			`	"We had gone there to protect the three species. To guide them. To observe them. We failed the latter, losing track of wisdom and reason in favor of fearing past shames. In that, our guidance became compromised, for they trusted us no longer. We were no longer seen as protectors, but as those they had to protect themselves against."`
 			choice
 				`	"Even now you're more advanced than them, aren't you? How come you lost thousands of years ago, when they were weaker?"`
 				`	"That's all. Thank you for speaking with me."`
