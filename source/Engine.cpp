@@ -249,16 +249,16 @@ namespace {
 		double cameraAccelMultiplier = (Preferences::CameraAcceleration() == Preferences::CameraAccel::ON ? 1.
 			: (Preferences::CameraAcceleration() == Preferences::CameraAccel::REVERSED ? -1. : 0.));
 
-		const auto oldCenterVelocityCorrected = baseVelocity + (oldCenterVelocity - baseVelocity) * cameraAccelMultiplier;
+		const auto lerp = [](const auto &a, const auto &b, const auto &c){
+			return a + (b - a) * c;
+		};
 
-		const auto newVelocity = oldCenterVelocityCorrected + (baseVelocity - oldCenterVelocityCorrected) * CAMERA_SMOOTHNESS;
-		const auto newCenter = oldCenter + newVelocity;
+		
+		const auto absoluteOldCenterVelocity = lerp(baseVelocity, oldCenterVelocity, cameraAccelMultiplier);
 
-		const auto newVelocityOffset = newVelocity - baseVelocity;
-
-		const auto newCenterOffset = (newCenter + (baseCenter - newCenter) * CAMERA_REACTIVITY) - baseCenter;
-
-		return make_pair(baseCenter + newCenterOffset, baseVelocity + newVelocityOffset * cameraAccelMultiplier);
+		const auto newVelocity = lerp(absoluteOldCenterVelocity, baseVelocity, CAMERA_SMOOTHNESS);
+		
+		return make_pair(lerp(oldCenter + newVelocity, baseCenter, CAMERA_REACTIVITY), lerp(baseVelocity, newVelocity, cameraAccelMultiplier));
 	}
 }
 
