@@ -26,7 +26,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "FillShader.h"
 #include "Fleet.h"
 #include "Flotsam.h"
-#include "Point.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
@@ -48,6 +47,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Planet.h"
 #include "PlanetLabel.h"
 #include "PlayerInfo.h"
+#include "Point.h"
 #include "PointerShader.h"
 #include "Preferences.h"
 #include "Projectile.h"
@@ -245,11 +245,14 @@ namespace {
 	const double CAMERA_VELOCITY_TRACKING = 0.1;
 	const double CAMERA_POSITION_CENTERING = 0.01;
 
-	pair<Point, Point> NewCenter(const Point &oldCenter, const Point &oldCenterVelocity, const Point &baseCenter, const Point &baseVelocity) {
+	pair<Point, Point> NewCenter(const Point &oldCenter, const Point &oldCenterVelocity,
+		const Point &baseCenter, const Point &baseVelocity)
+	{
 		double cameraAccelMultiplier = (Preferences::CameraAcceleration() == Preferences::CameraAccel::ON ? 1.
 			: (Preferences::CameraAcceleration() == Preferences::CameraAccel::REVERSED ? -1. : 0.));
 
-		const auto lerp = [](const auto &a, const auto &b, const auto &c){
+		const auto lerp = [](const auto &a, const auto &b, const auto &c)
+		{
 			return a + (b - a) * c;
 		};
 
@@ -257,7 +260,7 @@ namespace {
 		const auto absoluteOldCenterVelocity = lerp(baseVelocity, oldCenterVelocity, cameraAccelMultiplier);
 
 		const auto newAbsVelocity = lerp(absoluteOldCenterVelocity, baseVelocity, CAMERA_VELOCITY_TRACKING);
-		
+
 		const auto newCenter = lerp(oldCenter + newAbsVelocity, baseCenter, CAMERA_POSITION_CENTERING);
 
 		// Flip the velocity back over the baseVelocity
