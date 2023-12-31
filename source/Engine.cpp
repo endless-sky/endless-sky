@@ -242,8 +242,8 @@ namespace {
 	const double RADAR_SCALE = .025;
 	const double MAX_FUEL_DISPLAY = 5000.;
 
-	const double CAMERA_SMOOTHNESS = 0.025;
-	const double CAMERA_REACTIVITY = 0.05;
+	const double CAMERA_VELOCITY_TRACKING = 0.1;
+	const double CAMERA_POSITION_CENTERING = 0.01;
 
 	pair<Point, Point> NewCenter(const Point &oldCenter, const Point &oldCenterVelocity, const Point &baseCenter, const Point &baseVelocity) {
 		double cameraAccelMultiplier = (Preferences::CameraAcceleration() == Preferences::CameraAccel::ON ? 1.
@@ -256,14 +256,14 @@ namespace {
 		// Flip the velocity offset if cameraAccelMultiplier is negative to simplify logic.
 		const auto absoluteOldCenterVelocity = lerp(baseVelocity, oldCenterVelocity, cameraAccelMultiplier);
 
-		const auto newAbsVelocity = lerp(absoluteOldCenterVelocity, baseVelocity, CAMERA_SMOOTHNESS);
+		const auto newAbsVelocity = lerp(absoluteOldCenterVelocity, baseVelocity, CAMERA_VELOCITY_TRACKING);
 		
-		const auto newCenter = lerp(oldCenter + newAbsVelocity, baseCenter, CAMERA_REACTIVITY);
+		const auto newCenter = lerp(oldCenter + newAbsVelocity, baseCenter, CAMERA_POSITION_CENTERING);
 
 		// Flip the velocity back over the baseVelocity
-		const auto newVelovity = lerp(baseVelocity, newAbsVelocity, cameraAccelMultiplier);
+		const auto newVelocity = lerp(baseVelocity, newAbsVelocity, cameraAccelMultiplier);
 
-		return make_pair(newCenter, newVelovity);
+		return make_pair(newCenter, newVelocity);
 	}
 }
 
