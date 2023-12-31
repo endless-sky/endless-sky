@@ -1306,7 +1306,7 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 {
 	this->position = position;
 	this->velocity = velocity;
-	this->angle = angle;
+	this->Turn(angle);
 
 	// If landed, place the ship right above the planet.
 	// Escorts should take off a bit behind their flagships.
@@ -1931,10 +1931,10 @@ double Ship::OutfitScanFraction() const
 
 
 
-// Fire any weapons that are ready to fire. If an anti-missile is ready,
-// instead of firing here this function returns true and it can be fired if
-// collision detection finds a missile in range.
-bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
+// Fire any primary or secondary weapons that are ready to fire. Determines
+// if any special weapons (e.g. anti-missile, tractor beam) are ready to fire.
+// The firing of special weapons is handled separately.
+void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 {
 	isInSystem = true;
 	forget = 0;
@@ -1945,9 +1945,11 @@ bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 		projectiles.emplace_back(position, explosionWeapon);
 
 	if(CannotAct())
-		return false;
+		return;
 
 	antiMissileRange = 0.;
+	tractorBeamRange = 0.;
+	tractorFlotsam.clear();
 
 	double jamChance = CalculateJamChance(Energy(), scrambling);
 
@@ -1959,14 +1961,28 @@ bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 		{
 			if(weapon->AntiMissile())
 				antiMissileRange = max(antiMissileRange, weapon->Velocity() + weaponRadius);
+			else if(weapon->TractorBeam())
+				tractorBeamRange = max(tractorBeamRange, weapon->Velocity() + weaponRadius);
 			else if(firingCommands.HasFire(i))
 				armament.Fire(i, *this, projectiles, visuals, Random::Real() < jamChance);
 		}
 	}
 
 	armament.Step(*this);
+}
 
+
+
+bool Ship::HasAntiMissile() const
+{
 	return antiMissileRange;
+}
+
+
+
+bool Ship::HasTractorBeam() const
+{
+	return tractorBeamRange;
 }
 
 
@@ -1991,6 +2007,55 @@ bool Ship::FireAntiMissile(const Projectile &projectile, vector<Visual> &visuals
 	}
 
 	return false;
+}
+
+
+
+// Fire tractor beams at the given flotsam. Returns a Point representing the net
+// pull on the flotsam from this ship's tractor beams.
+Point Ship::FireTractorBeam(const Flotsam &flotsam, vector<Visual> &visuals)
+{
+	Point pullVector;
+	if(flotsam.Position().Distance(position) > tractorBeamRange)
+		return pullVector;
+	if(CannotAct())
+		return pullVector;
+	// Don't waste energy on flotsams that you can't pick up.
+	if(!CanPickUp(flotsam))
+		return pullVector;
+	if(IsYours())
+	{
+		const auto flotsamSetting = Preferences::GetFlotsamCollection();
+		if(flotsamSetting == Preferences::FlotsamCollection::OFF)
+			return pullVector;
+		if(!GetParent() && flotsamSetting == Preferences::FlotsamCollection::ESCORT)
+			return pullVector;
+		if(flotsamSetting == Preferences::FlotsamCollection::FLAGSHIP)
+			return pullVector;
+	}
+
+	double jamChance = CalculateJamChance(Energy(), scrambling);
+
+	bool opportunisticEscorts = !Preferences::Has("Turrets focus fire");
+	const vector<Hardpoint> &hardpoints = armament.Get();
+	for(unsigned i = 0; i < hardpoints.size(); ++i)
+	{
+		const Weapon *weapon = hardpoints[i].GetOutfit();
+		if(weapon && CanFire(weapon))
+			if(armament.FireTractorBeam(i, *this, flotsam, visuals, Random::Real() < jamChance))
+			{
+				Point hardpointPos = Position() + Zoom() * Facing().Rotate(hardpoints[i].GetPoint());
+				// Heavier flotsam are harder to pull.
+				pullVector += (hardpointPos - flotsam.Position()).Unit() * weapon->TractorBeam() / flotsam.Mass();
+				// Remember that this flotsam is being pulled by a tractor beam so that this ship
+				// doesn't try to manually collect it.
+				tractorFlotsam.insert(&flotsam);
+				// If this ship is opportunistic, then only fire one tractor beam at each flostam.
+				if(personality.IsOpportunistic() || (isYours && opportunisticEscorts))
+					break;
+			}
+	}
+	return pullVector;
 }
 
 
@@ -2128,6 +2193,40 @@ int Ship::GetHyperspacePercentage() const
 bool Ship::IsUsingJumpDrive() const
 {
 	return (hyperspaceSystem || hyperspaceCount) && isUsingJumpDrive;
+}
+
+
+
+// Check if this ship is allowed to land on this planet, accounting for its personality.
+bool Ship::IsRestrictedFrom(const Planet &planet) const
+{
+	// The player's ships have no travel restrictions.
+	if(isYours || !government)
+		return false;
+
+	bool restrictedByGov = government->IsRestrictedFrom(planet);
+	// Special ships (such as NPCs) are unrestricted by default and must be explicitly restricted
+	// by their government's travel restrictions in order to follow them.
+	if(isSpecial)
+		return personality.IsRestricted() && restrictedByGov;
+	return !personality.IsUnrestricted() && restrictedByGov;
+}
+
+
+
+// Check if this ship is allowed to enter this system, accounting for its personality.
+bool Ship::IsRestrictedFrom(const System &system) const
+{
+	// The player's ships have no travel restrictions.
+	if(isYours || !government)
+		return false;
+
+	bool restrictedByGov = government->IsRestrictedFrom(system);
+	// Special ships (such as NPCs) are unrestricted by default and must be explicitly restricted
+	// by their government's travel restrictions in order to follow them.
+	if(isSpecial)
+		return personality.IsRestricted() && restrictedByGov;
+	return !personality.IsUnrestricted() && restrictedByGov;
 }
 
 
@@ -2661,10 +2760,23 @@ int Ship::Crew() const
 
 
 
-// Calculate drag, accounting for drag reduction.
+// Calculate the drag on this ship. The drag can be no greater than the mass.
 double Ship::Drag() const
 {
-	return attributes.Get("drag") / (1. + attributes.Get("drag reduction"));
+	double drag = attributes.Get("drag") / (1. + attributes.Get("drag reduction"));
+	double mass = InertialMass();
+	return drag >= mass ? mass : drag;
+}
+
+
+
+// Calculate the drag force that this ship experiences. The drag force is the drag
+// divided by the mass, up to a value of 1.
+double Ship::DragForce() const
+{
+	double drag = attributes.Get("drag") / (1. + attributes.Get("drag reduction"));
+	double mass = InertialMass();
+	return drag >= mass ? 1. : drag / mass;
 }
 
 
@@ -2682,7 +2794,10 @@ int Ship::RequiredCrew() const
 
 int Ship::CrewValue() const
 {
-	return max(Crew(), RequiredCrew()) + attributes.Get("crew equivalent");
+	int crewEquivalent = attributes.Get("crew equivalent");
+	if(attributes.Get("use crew equivalent as crew"))
+		return crewEquivalent;
+	return max(Crew(), RequiredCrew()) + crewEquivalent;
 }
 
 
@@ -3328,6 +3443,13 @@ shared_ptr<Minable> Ship::GetTargetAsteroid() const
 shared_ptr<Flotsam> Ship::GetTargetFlotsam() const
 {
 	return targetFlotsam.lock();
+}
+
+
+
+const set<const Flotsam *> &Ship::GetTractorFlotsam() const
+{
+	return tractorFlotsam;
 }
 
 
@@ -4198,10 +4320,11 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 	isUsingAfterburner = false;
 
 	double mass = InertialMass();
+	double dragForce = DragForce();
 	double slowMultiplier = 1. / (1. + slowness * .05);
 
 	if(isDisabled)
-		velocity *= 1. - Drag() / mass;
+		velocity *= 1. - dragForce;
 	else if(!pilotError)
 	{
 		if(commands.Turn())
@@ -4250,7 +4373,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 				slowness += scale * attributes.Get("turning slowing");
 				disruption += scale * attributes.Get("turning disruption");
 
-				angle += commands.Turn() * TurnRate() * slowMultiplier;
+				Turn(commands.Turn() * TurnRate() * slowMultiplier);
 			}
 		}
 		double thrustCommand = commands.Has(Command::FORWARD) - commands.Has(Command::BACK);
@@ -4364,7 +4487,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 	{
 		acceleration *= slowMultiplier;
 		// Acceleration multiplier needs to modify effective drag, otherwise it changes top speeds.
-		Point dragAcceleration = acceleration - velocity * Drag() * (1. + attributes.Get("acceleration multiplier")) / mass;
+		Point dragAcceleration = acceleration - velocity * dragForce * (1. + attributes.Get("acceleration multiplier"));
 		// Make sure dragAcceleration has nonzero length, to avoid divide by zero.
 		if(dragAcceleration)
 		{
