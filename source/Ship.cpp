@@ -70,24 +70,24 @@ namespace {
 	const double SCAN_TIME = 600.;
 	// Always gain at least 1 step of scan progress for every frame spent scanning while in range.
 	// This ensures every scan completes within 600 frames (10 seconds) of being in range.
-	const double MIN_SCAN_STEPS = 1;
+	const double MIN_SCAN_STEPS = 1.;
 	// Exponential dropoff of scan rate starts at scan rate of SCAN_TIME/LINEAR_RATE
 	// with an exponent of SCAN_DROPOFF_EXPONENT.
-	const double LINEAR_RATE = 5;
-	const double SCAN_DROPOFF_EXPONENT = 5;
+	const double LINEAR_RATE = 5.;
+	const double SCAN_DROPOFF_EXPONENT = 5.;
 
 	// In Ship::Scan, ships smaller than this are treated as being this size.
-	const double SCAN_MIN_CARGO_SPACE = 40;
-	const double SCAN_MIN_OUTFIT_SPACE = 200;
+	const double SCAN_MIN_CARGO_SPACE = 40.;
+	const double SCAN_MIN_OUTFIT_SPACE = 200.;
 
 	// Formula for calculating scan speed tuning factors:
 	// factor = pow(framesToFullScan / (SCAN_TIME * sqrt(scanEfficiency)), -1.5) / referenceSize
 
-	// Cargo scanner (5) takes 10 seconds (600/600=1.0) to scan a Bulk freighter (600 space) at 0 range
-	const double SCAN_CARGO_FACTOR = pow(1.0 / sqrt(5), -1.5) / 600;
+	// Cargo scanner (5) takes 10 seconds (600/600=1.0) to scan a Bulk freighter (600 space) at 0 range.
+	const double SCAN_CARGO_FACTOR = pow(1.0 / sqrt(5.), -1.5) / 600.;
 
-	// Outfit scanner (15) takes 10 seconds (600/600=1.0) to scan a Bactrian (740 space) at 0 range
-	const double SCAN_OUTFIT_FACTOR = pow(1.0 / sqrt(15), -1.5) / 740;
+	// Outfit scanner (15) takes 10 seconds (600/600=1.0) to scan a Bactrian (740 space) at 0 range.
+	const double SCAN_OUTFIT_FACTOR = pow(1.0 / sqrt(15.), -1.5) / 740.;
 
 	// Total number of frames the damaged overlay is show, if any.
 	constexpr int TOTAL_DAMAGE_FRAMES = 40;
