@@ -253,7 +253,7 @@ namespace {
 
 		double cameraAccelMultiplier = Preferences::CameraAcceleration() == Preferences::CameraAccel::REVERSED ? -1. : 1.;
 
-		const Point Lerp = [](const Point &a, const Point &b, const Point &c)
+		const auto Lerp = [](const auto &a, const auto &b, const auto &c)
 		{
 			return a + (b - a) * c;
 		};
