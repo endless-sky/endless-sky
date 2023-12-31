@@ -22,12 +22,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 // Class that can redirect all drawing commands to an internal texture.
-// This buffer uses coordinates from 0, 0 in the top left, to width, height
+// This buffer uses coordinates from (0, 0) in the top left, to (width, height)
 // in the bottom right.
 class RenderBuffer
 {
 public:
-	// Use RAII to control render target.
+	// RAII wrapper to prevent accidentally not unbinding the render target.
 	class RenderTargetGuard final
 	{
 	public:
@@ -77,6 +77,7 @@ public:
 protected:
 	void Deactivate();
 
+private:
 	Point size;
 	unsigned int texid = -1;
 	unsigned int framebuffer = -1;

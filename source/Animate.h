@@ -25,8 +25,8 @@ class Animate
 {
 public:
 	virtual ~Animate() = default;
-	// Set the next target value of this variable, linearly interpolated using
-	// steps frames.
+	// Set the next target value of this variable, linearly interpolated along
+	// the given number of frames.
 	virtual void Set(const T &current, int steps = 5);
 
 	// Reset the pending number of frames to zero. This makes the interpolated

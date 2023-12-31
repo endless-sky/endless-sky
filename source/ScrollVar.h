@@ -20,11 +20,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-// This class will allow you to set a scroll value, and provide an animation
-// interpolation between the old value and the new value, and will clamp
-// the value to a suitable range.
-// The value returned by the Animate methods will be negative, as it is meant
-// to be added as an offset to the draw position.
+// This class allows you to set a scroll value and provides animation
+// interpolation between the old and new values, while clamping the value to a
+// suitable range. The Animate methods will return negative values, as they are
+// meant to be added as an offset to the draw position.
 template <typename T>
 class ScrollVar: public Animate<T>
 {
@@ -62,7 +61,6 @@ template <typename T>
 ScrollVar<T>::ScrollVar(const T &maxVal, const T &displaySize)
 	: maxVal{maxVal}, displaySize{displaySize}
 {
-
 }
 
 

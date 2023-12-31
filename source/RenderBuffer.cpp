@@ -141,7 +141,6 @@ void RenderBuffer::RenderTargetGuard::Deactivate()
 RenderBuffer::RenderTargetGuard::RenderTargetGuard(RenderBuffer &b, int screenWidth, int screenHeight)
 	: buffer(b), screenGuard(screenWidth, screenHeight)
 {
-
 }
 
 
@@ -150,7 +149,7 @@ RenderBuffer::RenderTargetGuard::RenderTargetGuard(RenderBuffer &b, int screenWi
 RenderBuffer::RenderBuffer(const Point &dimensions)
 	: size(dimensions)
 {
-	// Generate a framebuffer, and bind it.
+	// Generate a framebuffer.
 	glGenFramebuffers(1, &framebuffer);
 	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
 
