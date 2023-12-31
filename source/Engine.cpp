@@ -248,8 +248,10 @@ namespace {
 	pair<Point, Point> NewCenter(const Point &oldCenter, const Point &oldCenterVelocity,
 		const Point &baseCenter, const Point &baseVelocity)
 	{
-		double cameraAccelMultiplier = (Preferences::CameraAcceleration() == Preferences::CameraAccel::ON ? 1.
-			: (Preferences::CameraAcceleration() == Preferences::CameraAccel::REVERSED ? -1. : 0.));
+		if(Preferences::CameraAcceleration() == Preferences::CameraAccel::OFF)
+			return make_pair(baseCenter, baseVelocity);
+
+		double cameraAccelMultiplier = Preferences::CameraAcceleration() == Preferences::CameraAccel::REVERSED ? -1. : 1.;
 
 		const auto lerp = [](const auto &a, const auto &b, const auto &c)
 		{
