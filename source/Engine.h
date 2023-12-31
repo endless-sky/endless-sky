@@ -230,10 +230,9 @@ private:
 	std::vector<PlanetLabel> labels;
 	std::vector<AlertLabel> missileLabels;
 	std::vector<std::pair<const Outfit *, int>> ammo;
-	// Prevent desyncing from visual position
-	Point flagshipOutlineLocation;
 	int jumpCount = 0;
 	const System *jumpInProgress[2] = {nullptr, nullptr};
+	Point highlightLocation;
 	const Sprite *highlightSprite = nullptr;
 	Point highlightUnit;
 	float highlightFrame = 0.f;

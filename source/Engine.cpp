@@ -551,7 +551,6 @@ void Engine::Step(bool isActive)
 			center = newCamera.first;
 			centerVelocity = newCamera.second;
 		}
-		flagshipOutlineLocation = flagship->Position();
 
 		if(doEnterLabels)
 		{
@@ -633,6 +632,7 @@ void Engine::Step(bool isActive)
 		highlightSprite = flagship->GetSprite();
 		highlightUnit = flagship->Unit() * zoom;
 		highlightFrame = flagship->GetFrame();
+		highlightLocation = flagship->Position();
 	}
 	else
 		highlightSprite = nullptr;
@@ -1107,7 +1107,8 @@ void Engine::Draw() const
 	{
 		Point size(highlightSprite->Width(), highlightSprite->Height());
 		const Color &color = *colors.Get("flagship highlight");
-		OutlineShader::Draw(highlightSprite, (flagshipOutlineLocation - center) * zoom, size, color, highlightUnit, highlightFrame);
+		OutlineShader::Draw(highlightSprite, (highlightLocation - center) * zoom,
+			size, color, highlightUnit, highlightFrame);
 	}
 
 	if(flash)
