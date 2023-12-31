@@ -1419,7 +1419,7 @@ mission "Heliarch Contain True"
 	on complete
 		payment
 		payment 70000
-		dialog `You and the other agents converge on the marked area and quickly move to cut off any exits. After a brief firefight, the criminals surrender and a Heliarch ship swoops in to pick them up. You bid your Heliarch colleagues farewell and return to your ship, where you are happy to see that <payment> has already been transferred to your account.`
+		dialog `You and the other agents converge on the marked area and quickly move to cut off any exits. After a brief firefight, the criminals surrender and a Heliarch ship swoops in to pick them up. You bid your Heliarch colleagues farewell and return to your ship, where you are happy to see that <payment> have already been transferred to your account.`
 
 mission "Heliarch Contain Fail"
 	job

@@ -44,11 +44,11 @@ public:
 	// The hail panel calls this when it closes.
 	void OnBribeCallback(const Government *bribed);
 
-	// Forward the given TestContext to the Engine under MainPanel.
-	virtual void SetTestContext(TestContext &testContext) override;
-
 	// The main panel allows fast-forward.
 	bool AllowsFastForward() const noexcept final;
+
+	// Get the underlying game engine used by the game.
+	Engine &GetEngine();
 
 
 protected:

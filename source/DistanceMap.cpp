@@ -78,8 +78,10 @@ DistanceMap::DistanceMap(const PlayerInfo &player, const System *center)
 // Calculate the path for the given ship to get to the given system. The
 // ship will use a jump drive or hyperdrive depending on what it has. The
 // pathfinding will stop once a path to the destination is found.
-DistanceMap::DistanceMap(const Ship &ship, const System *destination)
-	: source(ship.GetSystem()), center(destination)
+// If a player is given, the path will only include systems that the
+// player has visited.
+DistanceMap::DistanceMap(const Ship &ship, const System *destination, const PlayerInfo *player)
+	: player(player), source(ship.GetSystem()), center(destination)
 {
 	if(!source || !destination)
 		return;
@@ -247,15 +249,15 @@ void DistanceMap::Init(const Ship *ship)
 
 					// In order to plan travel through a wormhole, it must be
 					// "accessible" to your flagship, and you must have visited
-					// the wormhole and both endpoint systems. (If this is a
-					// multi-stop wormhole, you may know about some paths that
-					// it takes but not others.)
+					// the wormhole and both endpoint systems must be viewable.
+					// (If this is a multi-stop wormhole, you may know about
+					// some paths that it takes but not others.)
 					if(ship && (!object.GetPlanet()->IsAccessible(ship) ||
 							ship->IsRestrictedFrom(*object.GetPlanet())))
 						continue;
 					if(player && !player->HasVisited(*object.GetPlanet()))
 						continue;
-					if(player && !(player->HasVisited(*top.next) && player->HasVisited(link)))
+					if(player && !(player->CanView(*top.next) && player->CanView(link)))
 						continue;
 
 					Add(link, top);
@@ -334,5 +336,5 @@ bool DistanceMap::CheckLink(const System &from, const System &to, bool useJump) 
 	if(useJump && from.Position().Distance(to.Position()) <= distance)
 		return true;
 
-	return (player->HasVisited(from) || player->HasVisited(to));
+	return (player->CanView(from) || player->CanView(to));
 }
