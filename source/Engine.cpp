@@ -256,9 +256,7 @@ namespace {
 
 		const auto newVelocityOffset = newVelocity - baseVelocity;
 
-		const auto extraDynamicity = 0.5 + 0.5 * pow(max(0., newVelocityOffset.Unit().Dot(baseVelocity.Unit())), 2.0);
-
-		const auto newCenterOffset = (newCenter + (baseCenter - newCenter) * CAMERA_REACTIVITY * extraDynamicity) - baseCenter;
+		const auto newCenterOffset = (newCenter + (baseCenter - newCenter) * CAMERA_REACTIVITY) - baseCenter;
 
 		return make_pair(baseCenter + newCenterOffset, baseVelocity + newVelocityOffset * cameraAccelMultiplier);
 	}
