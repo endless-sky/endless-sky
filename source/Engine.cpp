@@ -253,12 +253,17 @@ namespace {
 			return a + (b - a) * c;
 		};
 
-		
+		// Flip the velocity offset if cameraAccelMultiplier is negative to simplify logic.
 		const auto absoluteOldCenterVelocity = lerp(baseVelocity, oldCenterVelocity, cameraAccelMultiplier);
 
-		const auto newVelocity = lerp(absoluteOldCenterVelocity, baseVelocity, CAMERA_SMOOTHNESS);
+		const auto newAbsVelocity = lerp(absoluteOldCenterVelocity, baseVelocity, CAMERA_SMOOTHNESS);
 		
-		return make_pair(lerp(oldCenter + newVelocity, baseCenter, CAMERA_REACTIVITY), lerp(baseVelocity, newVelocity, cameraAccelMultiplier));
+		const auto newCenter = lerp(oldCenter + newAbsVelocity, baseCenter, CAMERA_REACTIVITY);
+
+		// Flip the velocity back over the baseVelocity
+		const auto newVelovity = lerp(baseVelocity, newAbsVelocity, cameraAccelMultiplier);
+
+		return make_pair(newCenter, newVelovity);
 	}
 }
 
