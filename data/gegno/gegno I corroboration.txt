@@ -932,8 +932,8 @@ mission "Acquiescence"
 	source "Dueyu Eitch"
 	to offer
 		or
-			"Gegno Anticipation: offered"
-			"Gegno Intervention: offered"
+			has "Gegno Anticipation: offered"
+			has "Gegno Intervention: offered"
 	on offer
 		clear "gegno: bgs"
 		conversation
@@ -941,6 +941,11 @@ mission "Acquiescence"
 				has "Gegno Anticipation: offered"
 			branch "intervention"
 				has "Gegno Intervention: offered"
+			
+			label "anticipation"
+			
+			label "intervention"
+
 			`Test.`
 				decline
 
