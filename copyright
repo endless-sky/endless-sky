@@ -2969,30 +2969,171 @@ License: CC-BY-SA-4.0
 
 Files:
  images/scene/citydark*
- images/scene/buildings*
- images/scene/busystreet*
- images/scene/iceplains*
- images/scene/iceplains2*
- images/scene/iceplains3*
- images/scene/lonelyrock*
- images/scene/redrocks*
- images/scene/seasidecliffs*
- images/scene/Seasunset*
- images/scene/smeer*
- images/scene/snowfield*
- images/scene/snowvillage*
- images/scene/sunset*
- images/scene/tower*
- images/scene/icepicture*
- images/scene/snowplain*
-Copyright: unsplash.com/
-License: Depends
+Copyright: N/A (CC0 Public Domain)
+License: CC0
 Comment:
- Taken from unsplash.com and added to the game after June 2017. If the pictures were
- uploaded to unsplash.com before June 2017, they were donated and placed in the public
- domain. If the pictures were uploaded to unsplash.com on or after June 2017, they are
- subject to the Unsplash License. If they were also uploaded after February 2018, they
- are subject to additional restrictions.
+ Taken from pixwizard.com. Archived at https://archive.is/JPrU9.
+
+Files:
+ images/scene/buildings*
+Copyright: N/A (CC0 Public Domain)
+License: CC0
+Comment:
+ Taken from pixwizard.com. Archived at https://archive.is/x993H.
+
+Files:
+ images/scene/lonelyrock*
+Copyright: US NOAA
+License: public-domain
+Comment:
+ From US NOAA, and therefore in the public domain because it was created by
+ government employees while doing work for the government.
+
+Files:
+ images/scene/snowplain*
+Copyright: US NOAA
+License: public-domain
+Comment:
+ From US NOAA, and therefore in the public domain because it was created by
+ government employees while doing work for the government.
+
+Files:
+ images/scene/busystreet*
+Copyright: Gabriel Del Fiaco
+License: public-domain
+Comment:
+ Taken from https://archive.is/29hj9. This image was uploaded
+ to unsplash.com before June 2017, so it is in the public
+ domain.
+
+Files:
+ images/scene/iceplains*
+Copyright: Federico Di Dio
+License: Unsplash License
+Comment:
+ Taken from https://archive.is/MirSk. This image was
+ uploaded to unsplash.com after June 2017, so it is subject
+ to the Unsplash License. It was also uploaded after
+ February 2018, so it is subject to an additional restriction
+ limiting the sale of unaltered copies.
+
+Files:
+ images/scene/iceplains2*
+Copyright: Vidar Nordli-Mathisen
+License: Unsplash License
+Comment:
+ Taken from https://archive.is/uC6Up. This image was uploaded
+ to unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded on February 2, 2018,
+ so it is not subject to additional restrictions, as this is
+ before the additional restrictions were added.
+
+Files:
+ images/scene/iceplains3*
+Copyright: Daniel Frank
+License: Unsplash License
+Comment:
+ Taken from https://archive.is/xK5Wu. This image was
+ uploaded to unsplash.com after June 2017, so it is subject
+ to the Unsplash License. It was also uploaded after
+ February 2018, so it is subject to an additional restriction
+ limiting the sale of unaltered copies.
+
+Files:
+ images/scene/redrocks*
+Copyright: Joshua Gresham
+License: Unsplash License
+Comment:
+ Taken from https://archive.is/0gRHU. This image was
+ uploaded to unsplash.com after June 2017, so it is subject
+ to the Unsplash License. It was also uploaded after
+ February 2018, so it is subject to an additional restriction
+ limiting the sale of unaltered copies.
+
+Files:
+ images/scene/seasidecliffs*
+Copyright: Joachim Pressl
+License: Unsplash License
+Comment:
+ Taken from https://archive.is/caZ9F. This image was
+ uploaded to unsplash.com after June 2017, so it is subject
+ to the Unsplash License. It was also uploaded after
+ February 2018, so it is subject to an additional restriction
+ limiting the sale of unaltered copies.
+
+Files:
+ images/scene/Seasunset*
+Copyright: Jim Cooke
+License: Unsplash License
+Comment:
+ Taken from https://archive.is/zRulg. This image was uploaded
+ to unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was uploaded before February 2018, so
+ it is not subject to additional restrictions.
+
+Files:
+ images/scene/smeer*
+Copyright: Parrish Freeman
+License: Unsplash License
+Comment:
+ Taken from https://archive.is/W6LES. This image was
+ uploaded to unsplash.com after June 2017, so it is subject
+ to the Unsplash License. It was also uploaded after
+ February 2018, so it is subject to an additional restriction
+ limiting the sale of unaltered copies.
+
+Files:
+ images/scene/snowfield*
+Copyright: Alessio Soggetti
+License: Unsplash License
+Comment:
+ Taken from https://archive.is/JGEju. This image was
+ uploaded to unsplash.com after June 2017, so it is subject
+ to the Unsplash License. It was also uploaded after
+ February 2018, so it is subject to an additional restriction
+ limiting the sale of unaltered copies.
+
+Files:
+ images/scene/snowvillage*
+Copyright: Matthew Buchanan
+License: Unsplash License
+Comment:
+ Taken from https://archive.is/DRS7j. This image was
+ uploaded to unsplash.com after June 2017, so it is subject
+ to the Unsplash License. It was also uploaded after
+ February 2018, so it is subject to an additional restriction
+ limiting the sale of unaltered copies.
+
+Files:
+ images/scene/sunset*
+Copyright: Carl Schlabach
+License: Unsplash License
+Comment:
+ Taken from https://archive.is/oFaOT. This image was
+ uploaded to unsplash.com after June 2017, so it is subject
+ to the Unsplash License. It was also uploaded after
+ February 2018, so it is subject to an additional restriction
+ limiting the sale of unaltered copies.
+
+Files:
+ images/scene/tower*
+Copyright: Constant Loubier
+License: Unsplash License
+Comment:
+ Taken from https://archive.is/764rq. This image was
+ uploaded to unsplash.com after June 2017, so it is subject
+ to the Unsplash License. It was also uploaded after
+ February 2018, so it is subject to an additional restriction
+ limiting the sale of unaltered copies.
+
+Files:
+ images/scene/icepicture*
+Copyright: Alberto Restifo
+License: public-domain
+Comment:
+ Taken from https://archive.is/d4jre. This image was uploaded
+ to unsplash.com before June 2017, so it is in the public
+ domain.
 
 Files:
  images/scene/hroar*
