@@ -1507,7 +1507,7 @@ mission "Hai Prisoner Roleplay"
 
 
 mission "Swiftsong Business Convention [1]"
-	name "Transport to business convention at <planet>"
+	name "<planet> business convention"
 	job
 	repeat
 	description "A group of <bunks> Hai who need to get to a business convention will pay you <payment> in exchange for transporting them and their <tons> of supplies to <planet>."
@@ -1522,14 +1522,14 @@ mission "Swiftsong Business Convention [1]"
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
-		payment 10000 500
+		payment 10000 150
 		"reputation: Hai" += 3
 		dialog `During the trip, your passengers appeared to be practicing a presentation for the conference. You sense a tinge of nervousness as they give you <payment> and leave your ship.`
 
 
 
 mission "Swiftsong Business Convention [2]"
-	name "Transport to business convention at <planet>"
+	name "<planet> business convention at"
 	job
 	repeat
 	description "A group of <bunks> Hai who need to get to a business convention will pay you <payment> in exchange for transporting them and their <tons> of supplies to <planet>."
@@ -1544,16 +1544,16 @@ mission "Swiftsong Business Convention [2]"
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
-		payment 10000 500
+		payment 10000 150
 		"reputation: Hai" += 3
-		dialog `During the trip, your passengers appeared to be practicing a presentation for the conference. You sense a tinge of nervousness as they give you <payment> and leave your ship.`
+		dialog `During the trip, your passengers appeared to be practicing a presentation for the convention. You sense a tinge of nervousness as they give you <payment> and leave your ship.`
 
 
 
 mission "Swiftsong Film Festival [1]"
-	name "Transport to film festival at <planet>"
 	job
 	repeat
+	name "Transport to film festival at <planet>"
 	description "A group of <bunks> Hai movie buffs will pay you <payment> in exchange for transporting them to <planet>, where a film festival is taking place."
 	passengers 4 2 .1
 	to offer
@@ -1713,4 +1713,4 @@ mission "Swiftsong Science Fiction Convention [2]"
 	on complete
 		payment 10000 500
 		"reputation: Hai" += 3
-		dialog `The Hai chitter excitedly as they give you <payment> and step off your ship. As they leave, you can identify some of their memorabilia as being human in origin.`
+		dialog `The Hai chitter excitedly as they give you <payment> and step off your ship. As they leave, one of them gives you a hand gesture that you recognize from an old human sci-fi program.`
