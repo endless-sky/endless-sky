@@ -75,10 +75,13 @@ void RenderBuffer::Init()
 		"out vec4 finalColor;\n"
 
 		"void main() {\n"
-		"  float weightTop = fade[0] < 0.001 ? 1.0 : clamp(vpos.y / fade[0], 0.0, 1.0);\n"
-		"  float weightBottom = fade[1] < 0.001 ? 1.0 : clamp((1.0 - vpos.y) / fade[1], 0.0, 1.0);\n"
-		"  float weightLeft = fade[2] < 0.001 ? 1.0 : clamp(vpos.x / fade[2], 0.0, 1.0);\n"
-		"  float weightRight = fade[3] < 0.001 ? 1.0 : clamp((1.0 - vpos.x) / fade[3], 0.0, 1.0);\n"
+		// Using epsilon here to prevent dividing by zero, which breaks the
+		// shader on nvidia cards.
+		"  float epsilon = .001;"
+		"  float weightTop = clamp((vpos.y + epsilon) / (fade[0] + epsilon), 0.0, 1.0);\n"
+		"  float weightBottom = clamp(((1.0 - vpos.y) + epsilon) / (fade[1] + epsilon), 0.0, 1.0);\n"
+		"  float weightLeft = clamp((vpos.x + epsilon) / (fade[2] + epsilon), 0.0, 1.0);\n"
+		"  float weightRight = clamp(((1.0 - vpos.x) + epsilon) / (fade[3] + epsilon), 0.0, 1.0);\n"
 		"  float weight = min(min(min(weightTop, weightBottom), weightLeft), weightRight);\n"
 		"  if(tpos.x > 0.0 && tpos.y > 0.0 &&\n"
 		"      tpos.x < 1.0 && tpos.y < 1.0 )\n"
