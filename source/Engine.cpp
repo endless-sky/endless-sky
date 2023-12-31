@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "FillShader.h"
 #include "Fleet.h"
 #include "Flotsam.h"
+#include "Point.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
@@ -72,6 +73,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <cmath>
 #include <string>
+#include <utility>
 
 using namespace std;
 
@@ -239,6 +241,26 @@ namespace {
 
 	const double RADAR_SCALE = .025;
 	const double MAX_FUEL_DISPLAY = 5000.;
+
+	const double CAMERA_SMOOTHNESS = 0.025;
+	const double CAMERA_REACTIVITY = 0.05;
+
+	pair<Point, Point> NewCenter(const Point &oldCenter, const Point &oldCenterVelocity, const Point &baseCenter, const Point &baseVelocity) {
+		double cameraAccelMultiplier = (Preferences::CameraAcceleration() == "on" ? 1.
+			: (Preferences::CameraAcceleration() == "reversed" ? -1. : 0.));
+
+		const auto oldCenterVelocity2 = (oldCenterVelocity - baseVelocity) * cameraAccelMultiplier;
+		const auto oldCenter2 = (oldCenter - baseCenter) * cameraAccelMultiplier;
+
+		const auto newVelocity = oldCenterVelocity + (baseVelocity - oldCenterVelocity) * CAMERA_SMOOTHNESS;
+		const auto newCenter = oldCenter + newVelocity;
+		const auto newCenterOffset = (baseCenter - newCenter) * CAMERA_REACTIVITY;
+
+		const auto thing = newVelocity - baseVelocity;
+		const auto thing2 = (newCenter + newCenterOffset) - baseCenter;
+
+		return make_pair(baseCenter + thing2 * cameraAccelMultiplier, baseVelocity + thing * cameraAccelMultiplier);
+	}
 }
 
 
@@ -504,8 +526,11 @@ void Engine::Step(bool isActive)
 	}
 	else if(flagship)
 	{
-		center = flagship->Center();
-		centerVelocity = flagship->Velocity();
+		const auto newCamera = NewCenter(center, centerVelocity,
+			flagship->Position(), flagship->Velocity());
+		center = newCamera.first;
+		centerVelocity = newCamera.second;
+
 		Preferences::ExtendedJumpEffects jumpEffectState = Preferences::GetExtendedJumpEffects();
 		if(flagship->IsHyperspacing() && jumpEffectState != Preferences::ExtendedJumpEffects::OFF)
 			centerVelocity *= 1. + pow(flagship->GetHyperspacePercentage() /
@@ -1569,11 +1594,13 @@ void Engine::CalculateStep()
 
 	// Draw the objects. Start by figuring out where the view should be centered:
 	Point newCenter = center;
-	Point newCenterVelocity;
+	Point newCenterVelocity = centerVelocity;
 	if(flagship)
 	{
-		newCenter = flagship->Center();
-		newCenterVelocity = flagship->Velocity();
+		const auto newCamera = NewCenter(center, centerVelocity,
+			flagship->Position(), flagship->Velocity());
+		newCenter = newCamera.first;
+		newCenterVelocity = newCamera.second;
 	}
 	draw[currentCalcBuffer].SetCenter(newCenter, newCenterVelocity);
 	batchDraw[currentCalcBuffer].SetCenter(newCenter);

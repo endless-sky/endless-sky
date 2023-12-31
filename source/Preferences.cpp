@@ -54,6 +54,9 @@ namespace {
 	const vector<string> VSYNC_SETTINGS = {"off", "on", "adaptive"};
 	int vsyncIndex = 1;
 
+	const vector<string> CAMERA_ACCELERATION_SETTINGS = {"off", "on", "reversed"};
+	int cameraAccelerationIndex = 0;
+
 	class OverlaySetting {
 	public:
 		OverlaySetting() = default;
@@ -187,6 +190,8 @@ void Preferences::Load()
 			zoomIndex = max(0., node.Value(1));
 		else if(node.Token(0) == "vsync")
 			vsyncIndex = max<int>(0, min<int>(node.Value(1), VSYNC_SETTINGS.size() - 1));
+		else if(node.Token(0) == "camera acceleration")
+			cameraAccelerationIndex = max<int>(0, min<int>(node.Value(1), CAMERA_ACCELERATION_SETTINGS.size() - 1));
 		else if(node.Token(0) == "Show all status overlays")
 			statusOverlaySettings[OverlayType::ALL].SetState(node.Value(1));
 		else if(node.Token(0) == "Show flagship overlay")
@@ -264,6 +269,7 @@ void Preferences::Save()
 	out.Write("Flotsam collection", flotsamIndex);
 	out.Write("view zoom", zoomIndex);
 	out.Write("vsync", vsyncIndex);
+	out.Write("camera acceleration", cameraAccelerationIndex);
 	out.Write("date format", dateFormatIndex);
 	out.Write("Show all status overlays", statusOverlaySettings[OverlayType::ALL].ToInt());
 	out.Write("Show flagship overlay", statusOverlaySettings[OverlayType::FLAGSHIP].ToInt());
@@ -519,6 +525,21 @@ Preferences::VSync Preferences::VSyncState()
 const string &Preferences::VSyncSetting()
 {
 	return VSYNC_SETTINGS[vsyncIndex];
+}
+
+
+
+void Preferences::ToggleCameraAcceleration()
+{
+	cameraAccelerationIndex = cameraAccelerationIndex <
+		static_cast<int>(CAMERA_ACCELERATION_SETTINGS.size()) - 1 ? cameraAccelerationIndex + 1 : 0;
+}
+
+
+
+const string &Preferences::CameraAcceleration()
+{
+	return CAMERA_ACCELERATION_SETTINGS[cameraAccelerationIndex];
 }
 
 

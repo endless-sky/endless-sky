@@ -56,6 +56,7 @@ namespace {
 	const string AUTO_FIRE_SETTING = "Automatic firing";
 	const string SCREEN_MODE_SETTING = "Screen mode";
 	const string VSYNC_SETTING = "VSync";
+	const string CAMERA_ACCELERATION = "Camera Acceleration";
 	const string STATUS_OVERLAYS_ALL = "Show status overlays";
 	const string STATUS_OVERLAYS_FLAGSHIP = "   Show flagship overlay";
 	const string STATUS_OVERLAYS_ESCORT = "   Show escort overlays";
@@ -491,6 +492,7 @@ void PreferencesPanel::DrawSettings()
 		VIEW_ZOOM_FACTOR,
 		SCREEN_MODE_SETTING,
 		VSYNC_SETTING,
+		CAMERA_ACCELERATION,
 		"",
 		"Performance",
 		"Show CPU / GPU load",
@@ -619,6 +621,11 @@ void PreferencesPanel::DrawSettings()
 		else if(setting == STATUS_OVERLAYS_ALL)
 		{
 			text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::ALL);
+			isOn = text != "off";
+		}
+		else if(setting == CAMERA_ACCELERATION)
+		{
+			text = Preferences::CameraAcceleration();
 			isOn = text != "off";
 		}
 		else if(setting == STATUS_OVERLAYS_FLAGSHIP)
@@ -929,6 +936,8 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 			GetUI()->Push(new Dialog(
 				"Unable to change VSync state. (Your system's graphics settings may be controlling it instead.)"));
 	}
+	else if(str == CAMERA_ACCELERATION)
+		Preferences::ToggleCameraAcceleration();
 	else if(str == STATUS_OVERLAYS_ALL)
 		Preferences::CycleStatusOverlays(Preferences::OverlayType::ALL);
 	else if(str == STATUS_OVERLAYS_FLAGSHIP)

@@ -135,6 +135,9 @@ public:
 	static VSync VSyncState();
 	static const std::string &VSyncSetting();
 
+	static void ToggleCameraAcceleration();
+	static const std::string &CameraAcceleration();
+
 	static void CycleStatusOverlays(OverlayType type);
 	static OverlayState StatusOverlaysState(OverlayType type);
 	static const std::string &StatusOverlaysSetting(OverlayType type);
