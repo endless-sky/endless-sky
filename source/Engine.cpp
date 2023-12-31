@@ -249,11 +249,14 @@ namespace {
 		double cameraAccelMultiplier = (Preferences::CameraAcceleration() == "on" ? 1.
 			: (Preferences::CameraAcceleration() == "reversed" ? -1. : 0.));
 
-		const auto oldCenterVelocity2 = (oldCenterVelocity - baseVelocity) * cameraAccelMultiplier;
-		const auto oldCenter2 = (oldCenter - baseCenter) * cameraAccelMultiplier;
+		const auto centerOffset = oldCenter - baseCenter;
+		const auto oldCenterCorrected = baseCenter + centerOffset * cameraAccelMultiplier;
 
-		const auto newVelocity = oldCenterVelocity + (baseVelocity - oldCenterVelocity) * CAMERA_SMOOTHNESS;
-		const auto newCenter = oldCenter + newVelocity;
+		const auto centerVelOffset = oldCenterVelocity - baseVelocity;
+		const auto oldcentervelCorrected = baseVelocity + centerVelOffset * cameraAccelMultiplier;
+
+		const auto newVelocity = oldcentervelCorrected + (baseVelocity - oldcentervelCorrected) * CAMERA_SMOOTHNESS;
+		const auto newCenter = oldCenterCorrected + newVelocity;
 		const auto newCenterOffset = (baseCenter - newCenter) * CAMERA_REACTIVITY;
 
 		const auto thing = newVelocity - baseVelocity;
