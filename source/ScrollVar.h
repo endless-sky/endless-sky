@@ -38,9 +38,9 @@ public:
 	// Returns true if scroll buttons are needed.
 	bool Scrollable() const;
 	// Returns true if the value is at the minimum.
-	bool ScrollAtMin() const;
+	bool IsScrollAtMin() const;
 	// Returns true if the value is at the maximum.
-	bool ScrollAtMax() const;
+	bool IsScrollAtMax() const;
 	// Modifies the scroll value by dy, then clamps it to a suitable range.
 	void Scroll(const T &dy, int steps = 5);
 
@@ -59,9 +59,8 @@ private:
 
 
 template <typename T>
-ScrollVar<T>::ScrollVar(const T &maxVal, const T &displaySize):
-	maxVal{maxVal},
-	displaySize{displaySize}
+ScrollVar<T>::ScrollVar(const T &maxVal, const T &displaySize)
+	: maxVal{maxVal}, displaySize{displaySize}
 {
 
 }
@@ -95,7 +94,7 @@ bool ScrollVar<T>::Scrollable() const
 
 
 template <typename T>
-bool ScrollVar<T>::ScrollAtMin() const
+bool ScrollVar<T>::IsScrollAtMin() const
 {
 	return this->Value() >= T{};
 }
@@ -103,7 +102,7 @@ bool ScrollVar<T>::ScrollAtMin() const
 
 
 template <typename T>
-bool ScrollVar<T>::ScrollAtMax() const
+bool ScrollVar<T>::IsScrollAtMax() const
 {
 	return this->Value() <= displaySize - maxVal;
 }

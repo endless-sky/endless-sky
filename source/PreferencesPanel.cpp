@@ -124,7 +124,6 @@ PreferencesPanel::PreferencesPanel()
 // Stub, for unique_ptr destruction to be defined in the right compilation unit.
 PreferencesPanel::~PreferencesPanel()
 {
-
 }
 
 
@@ -197,7 +196,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 			// Reset the render buffers in case the UI scale has changed.
 			const Interface *pluginUi = GameData::Interfaces().Get("plugins");
 			Rectangle pluginListBox = pluginUi->GetBox("plugin list");
-			pluginListClip.reset(new RenderBuffer(pluginListBox.Dimensions()));
+			pluginListClip = std::make_unique<RenderBuffer>(pluginListBox.Dimensions());
 			RenderPluginDescription(selectedPlugin);
 		}
 	}
@@ -918,8 +917,8 @@ void PreferencesPanel::DrawPlugins()
 	target.Deactivate();
 
 	pluginListClip->SetFadePadding(
-		pluginListScroll.ScrollAtMin() ? 0 : 20,
-		pluginListScroll.ScrollAtMax() ? 0 : 20
+		pluginListScroll.IsScrollAtMin() ? 0 : 20,
+		pluginListScroll.IsScrollAtMax() ? 0 : 20
 	);
 
 	// Draw the scrolled and clipped plugin list to the screen.
@@ -933,12 +932,12 @@ void PreferencesPanel::DrawPlugins()
 		// is possible, but might as well make them clickable too.
 		Rectangle topRight({pluginListBox.Right(), pluginListBox.Top() + POINTER_OFFSET.Y()}, {20.0, 20.0});
 		PointerShader::Draw(topRight.Center(), UP,
-			10.f, 10.f, 5.f, Color(pluginListScroll.ScrollAtMin() ? .2f : .8f, 0.f));
+			10.f, 10.f, 5.f, Color(pluginListScroll.IsScrollAtMin() ? .2f : .8f, 0.f));
 		AddZone(topRight, [&]() { pluginListScroll.Scroll(Preferences::ScrollSpeed()); });
 
 		Rectangle bottomRight(pluginListBox.BottomRight() - POINTER_OFFSET, {20.0, 20.0});
 		PointerShader::Draw(bottomRight.Center(), DOWN,
-			10.f, 10.f, 5.f, Color(pluginListScroll.ScrollAtMax() ? .2f : .8f, 0.f));
+			10.f, 10.f, 5.f, Color(pluginListScroll.IsScrollAtMax() ? .2f : .8f, 0.f));
 		AddZone(bottomRight, [&]() { pluginListScroll.Scroll(-Preferences::ScrollSpeed()); });
 	}
 
@@ -948,8 +947,8 @@ void PreferencesPanel::DrawPlugins()
 		pluginDescriptionScroll.Step();
 
 		pluginDescriptionBuffer->SetFadePadding(
-			pluginDescriptionScroll.ScrollAtMin() ? 0 : 20,
-			pluginDescriptionScroll.ScrollAtMax() ? 0 : 20
+			pluginDescriptionScroll.IsScrollAtMin() ? 0 : 20,
+			pluginDescriptionScroll.IsScrollAtMax() ? 0 : 20
 		);
 
 		Rectangle descriptionBox = pluginUI->GetBox("plugin description");
@@ -966,12 +965,12 @@ void PreferencesPanel::DrawPlugins()
 			// clickable too.
 			Rectangle topRight({descriptionBox.Right(), descriptionBox.Top() + POINTER_OFFSET.Y()}, {20.0, 20.0});
 			PointerShader::Draw(topRight.Center(), UP,
-				10.f, 10.f, 5.f, Color(pluginDescriptionScroll.ScrollAtMin() ? .2f : .8f, 0.f));
+				10.f, 10.f, 5.f, Color(pluginDescriptionScroll.IsScrollAtMin() ? .2f : .8f, 0.f));
 			AddZone(topRight, [&]() { pluginDescriptionScroll.Scroll(Preferences::ScrollSpeed()); });
 
 			Rectangle bottomRight(descriptionBox.BottomRight() - POINTER_OFFSET, {20.0, 20.0});
 			PointerShader::Draw(bottomRight.Center(), DOWN,
-				10.f, 10.f, 5.f, Color(pluginDescriptionScroll.ScrollAtMax() ? .2f : .8f, 0.f));
+				10.f, 10.f, 5.f, Color(pluginDescriptionScroll.IsScrollAtMax() ? .2f : .8f, 0.f));
 			AddZone(bottomRight, [&]() { pluginDescriptionScroll.Scroll(-Preferences::ScrollSpeed()); });
 		}
 	}
@@ -1020,7 +1019,7 @@ void PreferencesPanel::RenderPluginDescription(const Plugin &plugin)
 	if(descriptionHeight < box.Height())
 		descriptionHeight = box.Height();
 	pluginDescriptionScroll.SetMaxValue(descriptionHeight);
-	pluginDescriptionBuffer.reset(new RenderBuffer(Point(box.Width(), descriptionHeight)));
+	pluginDescriptionBuffer = std::make_unique<RenderBuffer>(Point(box.Width(), descriptionHeight));
 	// Redirect all drawing commands into the offscreen buffer.
 	auto target = pluginDescriptionBuffer->SetTarget();
 

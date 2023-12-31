@@ -32,10 +32,8 @@ namespace {
 
 
 Screen::ScreenDimensionsGuard::ScreenDimensionsGuard(int width, int height)
+	: valid(true), oldWidth(WIDTH), oldHeight(HEIGHT)
 {
-	valid = true;
-	oldWidth = WIDTH;
-	oldHeight = HEIGHT;
 	WIDTH = width;
 	HEIGHT = height;
 }
@@ -51,12 +49,12 @@ Screen::ScreenDimensionsGuard::~ScreenDimensionsGuard()
 
 void Screen::ScreenDimensionsGuard::Deactivate()
 {
-	if(valid)
-	{
-		WIDTH = oldWidth;
-		HEIGHT = oldHeight;
-		valid = false;
-	}
+	if(!valid)
+		return;
+
+	WIDTH = oldWidth;
+	HEIGHT = oldHeight;
+	valid = false;
 }
 
 

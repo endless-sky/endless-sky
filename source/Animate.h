@@ -32,7 +32,7 @@ public:
 	// Reset the pending number of frames to zero. This makes the interpolated
 	// value jump straight to the target value.
 	void EndAnimation();
-	// Compute the next interpolated value. This needs called once per frame.
+	// Compute the next interpolated value. This needs to be called once per frame.
 	void Step();
 
 	// Returns the interpolated value.
@@ -52,6 +52,7 @@ private:
 	int steps = 0;
 	T current{};
 	T target{};
+
 };
 
 

@@ -135,9 +135,8 @@ void RenderBuffer::RenderTargetGuard::Deactivate()
 
 
 
-RenderBuffer::RenderTargetGuard::RenderTargetGuard(RenderBuffer &b, int screenWidth, int screenHeight):
-	buffer(b),
-	screenGuard(screenWidth, screenHeight)
+RenderBuffer::RenderTargetGuard::RenderTargetGuard(RenderBuffer &b, int screenWidth, int screenHeight)
+	: buffer(b), screenGuard(screenWidth, screenHeight)
 {
 
 }
@@ -145,8 +144,8 @@ RenderBuffer::RenderTargetGuard::RenderTargetGuard(RenderBuffer &b, int screenWi
 
 
 // Create a texture of the given size that can be used as a render target.
-RenderBuffer::RenderBuffer(const Point &dimensions):
-	size(dimensions)
+RenderBuffer::RenderBuffer(const Point &dimensions)
+	: size(dimensions)
 {
 	// Generate a framebuffer, and bind it.
 	glGenFramebuffers(1, &framebuffer);
@@ -163,7 +162,7 @@ RenderBuffer::RenderBuffer(const Point &dimensions):
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
 	// Attach a blank image to the texture.
-	const Point scaledSize = size * Screen::Zoom() / 100;
+	const Point scaledSize = size * Screen::Zoom() / 100.0;
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, scaledSize.X(), scaledSize.Y(), 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
 
 	// Attach the texture to the frame buffer.
@@ -206,7 +205,7 @@ RenderBuffer::RenderTargetGuard RenderBuffer::SetTarget()
 	glGetIntegerv(GL_VIEWPORT, lastViewport);
 	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
 
-	const Point scaledSize = size * Screen::Zoom() / 100;
+	const Point scaledSize = size * Screen::Zoom() / 100.0;
 	glViewport(0, 0, scaledSize.X(), scaledSize.Y());
 
 	static const float CLEAR[] = {0, 0, 0, 0};
@@ -250,10 +249,10 @@ void RenderBuffer::Draw(const Point &position, const Point &clipsize, const Poin
 	glUniform2f(srcscaleI, 1.f / size.X(), 1.f / size.Y());
 
 	glUniform4f(fadeI,
-		fadePaddingTop / clipsize.Y(),
-		fadePaddingBottom / clipsize.Y(),
-		fadePaddingLeft / clipsize.X(),
-		fadePaddingRight / clipsize.X()
+		fadePadding[0] / clipsize.Y(),
+		fadePadding[1] / clipsize.Y(),
+		fadePadding[2] / clipsize.X(),
+		fadePadding[3] / clipsize.X()
 	);
 
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
@@ -313,10 +312,10 @@ double RenderBuffer::Width() const
 
 
 
-void RenderBuffer::SetFadePadding(int top, int bottom, int left, int right)
+void RenderBuffer::SetFadePadding(float top, float bottom, float left, float right)
 {
-	fadePaddingTop = top;
-	fadePaddingBottom = bottom;
-	fadePaddingLeft = left;
-	fadePaddingRight = right;
+	fadePadding[0] = top;
+	fadePadding[1] = bottom;
+	fadePadding[2] = left;
+	fadePadding[3] = right;
 }

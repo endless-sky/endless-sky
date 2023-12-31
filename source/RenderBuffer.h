@@ -17,7 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define RENDERBUFFER_H
 
 #include "Point.h"
-#include "Rectangle.h"
 #include "Screen.h"
 
 
@@ -72,7 +71,7 @@ public:
 	double Height() const;
 	double Width() const;
 
-	void SetFadePadding(int top, int bottom, int right = 0, int left = 0);
+	void SetFadePadding(float top, float bottom, float right = 0, float left = 0);
 
 
 protected:
@@ -84,10 +83,7 @@ protected:
 	unsigned int lastFramebuffer = 0;
 	int lastViewport[4] = {};
 
-	float fadePaddingLeft = 0;
-	float fadePaddingRight = 0;
-	float fadePaddingTop = 0;
-	float fadePaddingBottom = 0;
+	float fadePadding[4] = {};
 };
 
 
