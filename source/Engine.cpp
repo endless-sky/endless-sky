@@ -527,13 +527,23 @@ void Engine::Step(bool isActive)
 	{
 		const auto newCamera = NewCenter(center, centerVelocity,
 			flagship->Position(), flagship->Velocity());
-		center = newCamera.first;
-		centerVelocity = newCamera.second;
 
-		Preferences::ExtendedJumpEffects jumpEffectState = Preferences::GetExtendedJumpEffects();
-		if(flagship->IsHyperspacing() && jumpEffectState != Preferences::ExtendedJumpEffects::OFF)
-			centerVelocity *= 1. + pow(flagship->GetHyperspacePercentage() /
-				(jumpEffectState == Preferences::ExtendedJumpEffects::MEDIUM ? 40. : 20.), 2);
+		if(flagship->IsHyperspacing())
+		{
+			center = newCamera.first + (flagship->Position() - newCamera.first) * flagship->GetHyperspacePercentage() / 100.;
+			centerVelocity = flagship->Velocity();
+
+			Preferences::ExtendedJumpEffects jumpEffectState = Preferences::GetExtendedJumpEffects();
+			if(Preferences::GetExtendedJumpEffects() != Preferences::ExtendedJumpEffects::OFF)
+				centerVelocity *= 1. + pow(flagship->GetHyperspacePercentage() /
+					(jumpEffectState == Preferences::ExtendedJumpEffects::MEDIUM ? 40. : 20.), 2);
+		}
+		else
+		{
+			center = newCamera.first;
+			centerVelocity = newCamera.second;
+		}
+
 		if(doEnterLabels)
 		{
 			doEnterLabels = false;
