@@ -447,7 +447,7 @@ mission "Scin Surveillance"
 #	invisible
 	repeat
 	landing
-	deadline 11
+	deadline 7
 	source
 		near "Heutesl" 100
 	to offer
@@ -932,7 +932,7 @@ mission "Acquiescence Fleet"
 			"reputation: Gegno" = -100
 			"reputation: Gegno Vi" = -100
 			"reputation: Gegno Scin" = -100
-			dialog `After deciding to fire upon the Gegno fleet surveying your visit to their homeworld, you are met with aggressive opposition along with what sound like countless angry hails. Whatever chance you had left in associating with the Gegno is long gone.`
+			dialog `After deciding to fire upon the Gegno fleet surveying your visit to their homeworld, you are met with aggressive opposition along with what sound like countless angry hails. Whatever chance you had left in associating with the Gegno is gone now.`
 		government "Gegno Vi (Neutral)"
 		personality heroic vindictive staying
 		system "Heutesl"
@@ -945,7 +945,7 @@ mission "Acquiescence Fleet"
 			"reputation: Gegno" = 0
 			"reputation: Gegno Vi" = -100
 			"reputation: Gegno Scin" = -100
-			dialog `After deciding to fire upon the Gegno fleet surveying your visit to their homeworld, you are met with aggressive opposition along with what sound like countless angry hails. Whatever chance you had left in associating with the Gegno is long gone.`
+			dialog `After deciding to fire upon the Gegno fleet surveying your visit to their homeworld, you are met with aggressive opposition along with what sound like countless angry hails. Whatever chance you had left in associating with the Gegno is gone now.`
 		government "Gegno Scin (Neutral)"
 		personality heroic vindictive staying
 		system "Heutesl"

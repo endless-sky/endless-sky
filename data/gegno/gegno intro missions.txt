@@ -765,55 +765,6 @@ mission "Vi Augen"
 		never
 
 
-# Gegno Destruction Trigger
-	invisible
-	landing
-	source "Giaru Gegno"
-	to offer
-		has "Giaru Gegno: Quarg Contact: offered"
-		or
-			"reputation: Gegno Vi" >= -1000
-			"reputation: Gegno Scin" >= -1000
-		not "Gegno Destruction Trigger: offered"
-		not "Gegno Genocide Defense: offered"
-	on offer
-		conversation
-			branch "post suspicions"
-				has "Gegno Suspicions: offered"
-			branch "post acquiescence"
-				has "Acquiescence: offered"
-			
-			`After you power down your ship's systems and make your way into the ringworld, you are abruptly greeted by a group of Quarg led by the one you've previously met with. "<first> <last>, please swiftly follow." Without room for questions, it and the other Quarg quickly escort you to another room a few sections away from the hangar, similar to the one you visited before. This time, there is no table or chairs to sit at, and after the door shuts behind you, the Quarg in unique attire addresses you once more, seemingly rather disappointed.`
-			`	<First Last>. It has come to my watchful attention that you have been participating in, repetitious destructive actions, regarding factions of the Gegno. Inquiries have reoccured between us and their leadership, who seldom approach us in years of time. I recall cautioning against common interaction, however this is distastefully unprecedented."`
-#			choice
-
-
-
-
-			label "post suspicions"
-			`After you power down your ship's systems and make your way into the ringworld, you are abruptly greeted by a group of Quarg led by none other than Adrauni. "<first> <last>, please swiftly follow." Without room for questions, it and the other Quarg quickly escort you to another room a few sections away from the hangar, similar to the one you visited before. This time, there is no table or chairs to sit at, and after the door shuts behind you, Adrauni addresses you once more, seemingly rather disappointed.`
-			`	<First Last>. It has come to my watchful attention that you have been participating in, repetitious destructive actions, regarding factions of the Gegno. Inquiries have reoccured between us and their leadership, who seldom approach us in years of time. I recall requesting strict cautionaries with the Gegno while we discussed apparent matters, however this is distastefully unprecedented."`
-#			choice
-
-
-
-
-			label "post acquiescence"
-			`After you power down your ship's systems and make your way into the ringworld, you are abruptly greeted by a group of Quarg led by none other than Adrauni. "<first> <last>, please swiftly follow." Without room for questions, it and the other Quarg quickly escort you to another room a few sections away from the hangar, similar to the one you visited before. This time, there is no table or chairs to sit at, and after the door shuts behind you, Adrauni addresses you once more, seemingly rather disappointed.`
-			`	<First Last>. It has come to my watchful attention that you have been participating in excessively destructive actions regarding factions of the Gegno."`
-#			choice
-
-
-
-
-	on decline
-		"reputation: Quarg (Gegno)" = 0
-		"reputation: Gegno" = 0
-		"reputation: Gegno Vi" = -1000
-		"reputation: Gegno Scin" = -1000
-		event "gegno leave quarg space"
-
-
 # Gegno Genocide Trigger
 
 mission "Gegno Genocide Defense"
