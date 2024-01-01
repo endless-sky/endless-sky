@@ -691,13 +691,13 @@ void ShopPanel::DrawShipsSidebar()
 
 	// Draw this string, centered in the side panel:
 	static const string YOURS = "Your Ships:";
-	Point yoursPoint(Screen::Right() - SIDEBAR_WIDTH, Screen::Top() + 10 + sidebarScroll.AnimatedValue());
+	Point yoursPoint(Screen::Right() - SIDEBAR_WIDTH, Screen::Top() + 10 - sidebarScroll.AnimatedValue());
 	font.Draw({YOURS, {SIDEBAR_WIDTH, Alignment::CENTER}}, yoursPoint, bright);
 
 	// Start below the "Your Ships" label, and draw them.
 	Point point(
 		Screen::Right() - SIDEBAR_WIDTH / 2 - 93,
-		Screen::Top() + SIDEBAR_WIDTH / 2 + sidebarScroll.AnimatedValue() + 40 - 93);
+		Screen::Top() + SIDEBAR_WIDTH / 2 - sidebarScroll.AnimatedValue() + 40 - 93);
 
 	const Planet *here = player.GetPlanet();
 	int shipsHere = 0;
@@ -792,7 +792,7 @@ void ShopPanel::DrawShipsSidebar()
 		font.Draw({space, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, point, bright);
 		point.Y() += 20.;
 	}
-	sidebarScroll.SetMaxValue(max(0., point.Y() - sidebarScroll.AnimatedValue() - Screen::Bottom() + BUTTON_HEIGHT));
+	sidebarScroll.SetMaxValue(max(0., point.Y() + sidebarScroll.AnimatedValue() - Screen::Bottom() + BUTTON_HEIGHT));
 
 	PointerShader::Draw(Point(Screen::Right() - 10, Screen::Top() + 10),
 		Point(0., -1.), 10.f, 10.f, 5.f, Color(!sidebarScroll.IsScrollAtMin() ? .8f : .2f, 0.f));
@@ -821,11 +821,11 @@ void ShopPanel::DrawDetailsSidebar()
 
 	Point point(
 		Screen::Right() - SIDE_WIDTH + INFOBAR_WIDTH / 2,
-		Screen::Top() + 10 + infobarScroll.AnimatedValue());
+		Screen::Top() + 10 - infobarScroll.AnimatedValue());
 
-	int heightOffset = DrawDetails(point);
+	double heightOffset = DrawDetails(point);
 
-	infobarScroll.SetMaxValue(max(0., heightOffset - infobarScroll.AnimatedValue() - Screen::Bottom()));
+	infobarScroll.SetMaxValue(max(0., heightOffset + infobarScroll.AnimatedValue() - Screen::Bottom()));
 
 	PointerShader::Draw(Point(Screen::Right() - SIDEBAR_WIDTH - 10, Screen::Top() + 10),
 		Point(0., -1.), 10.f, 10.f, 5.f, Color(!infobarScroll.IsScrollAtMin() ? .8f : .2f, 0.f));
@@ -934,7 +934,7 @@ void ShopPanel::DrawMain()
 
 	const Point begin(
 		(Screen::Width() - columnWidth) / -2,
-		(Screen::Height() - TILE_SIZE) / -2 + mainScroll.AnimatedValue());
+		(Screen::Height() - TILE_SIZE) / -2 - mainScroll.AnimatedValue());
 	Point point = begin;
 	const float endX = Screen::Right() - (SIDE_WIDTH + 1);
 	double nextY = begin.Y() + TILE_SIZE;
@@ -1003,7 +1003,7 @@ void ShopPanel::DrawMain()
 
 	// What amount would mainScroll have to equal to make nextY equal the
 	// bottom of the screen? (Also leave space for the "key" at the bottom.)
-	mainScroll.SetMaxValue(max(0., nextY - mainScroll.AnimatedValue() - Screen::Height() / 2 - TILE_SIZE / 2 +
+	mainScroll.SetMaxValue(max(0., nextY + mainScroll.AnimatedValue() - Screen::Height() / 2 - TILE_SIZE / 2 +
 		VisibilityCheckboxesSize() + 40.));
 
 	PointerShader::Draw(Point(Screen::Right() - 10 - SIDE_WIDTH, Screen::Top() + 10),
@@ -1029,11 +1029,11 @@ int ShopPanel::DrawPlayerShipInfo(const Point &point)
 bool ShopPanel::DoScroll(double dy, int steps)
 {
 	if(activePane == ShopPane::Info)
-		infobarScroll.Scroll(dy, steps);
+		infobarScroll.Scroll(-dy, steps);
 	else if(activePane == ShopPane::Sidebar)
-		sidebarScroll.Scroll(dy, steps);
+		sidebarScroll.Scroll(-dy, steps);
 	else
-		mainScroll.Scroll(dy, steps);
+		mainScroll.Scroll(-dy, steps);
 
 	return true;
 }
@@ -1165,12 +1165,12 @@ void ShopPanel::MainAutoScroll(const vector<Zone>::const_iterator &selected)
 	const int topY = selected->Center().Y() - TILE_SIZE / 2;
 	const int offTop = topY + Screen::Bottom();
 	if(offTop < 0)
-		mainScroll -= offTop;
+		mainScroll += offTop;
 	else
 	{
 		const int offBottom = topY + TILE_SIZE - Screen::Bottom();
 		if(offBottom > 0)
-			mainScroll -= offBottom;
+			mainScroll += offBottom;
 	}
 }
 
@@ -1279,7 +1279,7 @@ void ShopPanel::MainDown()
 	if(it == zones.end())
 	{
 		it = zones.begin();
-		mainScroll = 0;
+		mainScroll = 0.0;
 	}
 	else
 		MainAutoScroll(it);

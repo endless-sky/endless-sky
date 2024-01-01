@@ -83,7 +83,7 @@ protected:
 	virtual void DrawItem(const std::string &name, const Point &point) = 0;
 	virtual int DividerOffset() const = 0;
 	virtual int DetailWidth() const = 0;
-	virtual int DrawDetails(const Point &center) = 0;
+	virtual double DrawDetails(const Point &center) = 0;
 	virtual BuyResult CanBuy(bool onlyOwned = false) const = 0;
 	virtual void Buy(bool onlyOwned = false) = 0;
 	virtual bool CanSell(bool toStorage = false) const = 0;
@@ -165,9 +165,9 @@ protected:
 	const Outfit *selectedOutfit = nullptr;
 	// (It may be worth moving the above pointers into the derived classes in the future.)
 
-	ScrollVar<double> mainScroll = 0.;
-	ScrollVar<double> sidebarScroll = 0.;
-	ScrollVar<double> infobarScroll = 0.;
+	ScrollVar<double> mainScroll;
+	ScrollVar<double> sidebarScroll;
+	ScrollVar<double> infobarScroll;
 	ShopPane activePane = ShopPane::Main;
 	char hoverButton = '\0';
 
