@@ -295,8 +295,8 @@ outfit "Lantern Fission Core"
 	thumbnail "outfit/lantern fission core"
 	"mass" 24
 	"outfit space" -24
-	"energy generation" 4.2
-	"heat generation" 5.4
+	"energy generation" 3.9
+	"heat generation" 12
 	description "The Lantern is a compact dusty plasma fission reactor designed to fit even on large fighters or interceptors. By suspending uranium dust in a hydrogen plasma, which is in turn contained by a magnetic field, the reactor can achieve incredible core temperatures high enough to make it efficient for its size, at the cost of producing significant amounts of waste heat."
 
 
@@ -374,7 +374,7 @@ outfit `Z-330 "Spark" Fusion Torch`
 	"thrust" 69
 	"thrusting energy" 9
 	"thrusting heat" 45
-	"thrusting fuel" 0.06
+	"thrusting fuel" 0.09
 	"drag reduction" 2
 	"energy generation" 3
 	"flare sprite" "effect/avgi flare/fusion"
@@ -398,7 +398,7 @@ outfit `Z-660 "Zap" Fusion Torch`
 	"thrust" 144
 	"thrusting energy" 18
 	"thrusting heat" 90
-	"thrusting fuel" 0.12
+	"thrusting fuel" 0.18
 	"drag reduction" 2
 	"energy generation" 6
 	"flare sprite" "effect/avgi flare/fusion"
@@ -421,7 +421,7 @@ outfit `Z-990 "Arc" Fusion Torch`
 	"thrust" 222
 	"thrusting energy" 27
 	"thrusting heat" 135
-	"thrusting fuel" 0.18
+	"thrusting fuel" 0.27
 	"drag reduction" 2
 	"energy generation" 9
 	"flare sprite" "effect/avgi flare/fusion"
@@ -457,11 +457,11 @@ outfit "Remass Injector"
 		"Avgi Military"
 	"cost" 2760000
 	thumbnail "outfit/unknown"
-	"mass" 6
-	"outfit space" -6
-	"engine capacity" -6
+	"mass" 3
+	"outfit space" -3
+	"engine capacity" -3
 	"afterburner thrust" 60
-	"afterburner fuel" 0.12
+	"afterburner fuel" 0.18
 	"afterburner heat" -24
 	"magnozzle rings" -1
 	description "Balance TBD"

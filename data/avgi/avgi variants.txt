@@ -25,8 +25,8 @@ ship "Undsyni" "Undsyni (Tanker)"
 		"Phased Array Laser (Green)" 3
 		"Speckle Turret" 2
 		"Speck Round" 14400
-		"Sidereal Launcher" 2
-		"Sidereal Missile" 84
+		"Dart Launcher" 2
+		`"Dart" Kinetic Missile` 120
 		"Electromotive Rifle" 24
 
 		"Lantern Fission Core"
@@ -72,9 +72,9 @@ ship "Prismaios" "Prismaios (Atomic)"
 		"Phased Array Laser (Green)"
 		"Speckle Turret" 2
 		"Speck Round" 14400
-		"Nadir Launcher" 2
-		"Nadir Magazine" 2
-		"Nadir Missile" 60
+		"Rush Launcher" 2
+		"Rush Magazine" 2
+		`"Rush" Nuclear Missile` 60
 
 		"Ultracapacitor Bank"
 		"Diffuse Deflector"
@@ -96,8 +96,8 @@ ship "Diaspersi" "Diaspersi (Atomic)"
 		"Phased Array Laser (Green)" 2
 		"Fleck Turret"
 		"Fleck Round" 2400
-		"Nadir Launcher" 2
-		"Nadir Missile" 36
+		"Rush Launcher" 2
+		`"Rush" Nuclear Missile` 36
 		"Equinox Torpedo Stockpile" 3
 		"Equinox Torpedo" 36
 		
@@ -118,9 +118,9 @@ ship "Diaspersi" "Diaspersi (Atomic)"
 
 ship "Difraktos" "Difraktos (Missile)"
 	outfits
-		"Sidereal VLS Array" 6
-		"Sidereal Magazine" 6
-		"Sidereal Missile" 972
+		"Dart Launch Array" 6
+		"Dart Magazine" 6
+		`"Dart" Kinetic Missile` 1800
 
 		"Ultracapacitor Bank"
 		"Diffuse Deflector"
@@ -161,9 +161,9 @@ ship "Difraktos" "Difraktos (Atomic)"
 		"Phased Array Laser (Green)" 3
 		"Fleck Turret" 2
 		"Fleck Round" 4800
-		"Nadir VLS Array" 3
-		"Nadir Missile" 168
-		"Nadir Magazine" 2
+		"Rush Launch Array" 3
+		`"Rush" Nuclear Missile` 168
+		"Rush Magazine" 2
 
 		"Ultracapacitor Cell" 3
 		"Diffuse Deflector"
@@ -188,10 +188,10 @@ ship "Atenuatia" "Atenuatia (Atomic)"
 		"Fleck Round" 2400
 		"Phased Array Laser (Blue)" 2
 		"Phased Array Laser (Green)" 3
-		"Nadir VLS Array"
+		"Rush Launch Array"
 		"Equinox Torpedo Stockpile" 6
 		"Equinox Torpedo" 72
-		"Nadir Missile" 48
+		`"Rush" Nuclear Missile` 48
 		
 		"Ultracapacitor Bank" 2
 		"Specular Deflector"

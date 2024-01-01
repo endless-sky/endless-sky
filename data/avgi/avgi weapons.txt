@@ -362,22 +362,20 @@ outfit "Ultrarelativistic Electron Beam"
 		"Avgi Civilian"
 	cost 40000
 	thumbnail "outfit/unknown"
-	"mass" 3.6
-	"outfit space" -9
-	"weapon capacity" -9
-	"energy capacity" 90
+	"mass" 30
+	"outfit space" -30
+	"weapon capacity" -30
 	"gun ports" -1
 	weapon
 		sprite "projectile/ion rain"
 			"frame rate" 30
 			"no repeat"
-		sound "dragonflame"
-		"fire effect" "speck fire"
+		sound "zapper"
+		"fire effect" "pwavefire"
 		"inaccuracy" 0.6
 		"reload" 60
 		"firing energy" 3600
-		"firing heat" 3000
-		"firing force" 1
+		"firing heat" 1800
 		"velocity override" 240
 		"submunition" "Electron Packet" 600
 
@@ -411,255 +409,218 @@ effect "bremsstrahlung"
 
 # Missiles:
 
-
-outfit "Sidereal Missile"
+outfit `"Dart" Kinetic Missile`
 	category "Ammunition"
 	licenses
 		"Avgi Military"
 	cost 600
-	thumbnail "outfit/sidereal missile"
-	"mass" 0.3
-	"sidereal capacity" -1
-	description "The Sidereal missile is a cheap, disposable kinetic kill vehicle designed for situations where a nuclear warhead would be unnecessary. Upon closing in on a target, the missile unwraps into dozens of thin tungsten rods to create a cone shaped area of effect. This makes it difficult to shoot down without very long ranged antimissile systems."
+	thumbnail "outfit/dart missile"
+	"mass" 0.15
+	"dart capacity" -1
+	description "The Dart missile is a cheap, disposable kinetic kill vehicle designed for situations where a nuclear warhead would be unnecessary. Upon closing in on a target, the missile unwraps into dozens of thin tungsten rods to create a cone shaped area of effect. This makes it difficult to shoot down without very long ranged antimissile systems."
 
 
-outfit "Sidereal Launcher"
-	category "Secondary Weapons"
+outfit "Dart Magazine"
+	category "Ammunition"
 	licenses
 		"Avgi Military"
-	cost 1370000
+	cost 1440000
 	thumbnail "outfit/unknown"
-	"mass" 2.4
-	"outfit space" -15
-	"weapon capacity" -15
-	"gun ports" -1
-	"sidereal capacity" 42
-	weapon
-		sprite "projectile/sidewinder"
-			"no repeat"
-			"frame rate" .25
-		sound "finisher"
-		ammo "Sidereal Missile"
-		icon "icon/finisher"
-		"fire effect" "sidewinder fire"
-		"die effect" "finisher fragment" 6
-		"inaccuracy" 2.4
-		"velocity" 9
-		"lifetime" 15
-		"reload" 45
-		"firing energy" 3
-		"firing heat" 3
-		"turn" 180
-		"homing" 2
-		"radar tracking" 0.6
-		"infrared tracking" 0.9
-		"missile strength" 9
-		"submunition" "Sidereal Active"
-	description "Sidereal missiles are minimalist kinetic kill vehicles designed for use in situations where nuclear weapons are considered unnecessary. Little more than a payload of tungsten rods, a thruster package, and a nose mounted sensor array, they can be manufactured in bulk at minimal cost."
-	description "By splitting into a number of tungsten rods upon approaching a target, only a fraction of the payload actually impacts it, but the damage is also distributed over a large area of effect, making evasion difficult."
-	description "This is a standard modular launcher designed for use on light to medium warships."
+	"mass" 3
+	"outfit space" -12
+	"dart capacity" 60
+	ammo "Dart Missile"
+	description "Dart storage"
 
 
-outfit "Sidereal Pod"
-	category "Secondary Weapons"
-	licenses
-		"Avgi Military"
-	cost 1370000
-	thumbnail "outfit/unknown"
-	"mass" 1.8
-	"outfit space" -3
-	"weapon capacity" -3
-	"gun ports" -1
-	"sidereal capacity" 6
-	weapon
-		sprite "projectile/sidewinder"
-			"no repeat"
-			"frame rate" .25
-		sound "finisher"
-		ammo "Sidereal Missile"
-		icon "icon/finisher"
-		"fire effect" "sidewinder fire"
-		"die effect" "finisher fragment" 6
-		"inaccuracy" 3.6
-		"velocity" 3
-		"lifetime" 15
-		"reload" 90
-		"firing energy" 3
-		"firing heat" 3
-		"turn" 180
-		"homing" 2
-		"radar tracking" 0.6
-		"infrared tracking" 0.9
-		"missile strength" 12
-		"submunition" "Sidereal Active"
-	description "Sidereal missiles are minimalist kinetic kill vehicles designed for use in situations where nuclear weapons are considered unnecessary. Little more than a payload of tungsten rods, a thruster package, and a nose mounted sensor array, they can be manufactured in bulk at minimal cost."
-	description "By splitting into a number of tungsten rods upon approaching a target, only a fraction of the payload actually impacts it, but the damage is also distributed over a large area of effect, making evasion difficult."
-	description "Designed specifically for use by Vibratia combat drones, this compact Sidereal pod carries a stores number of missiles internally, allowing small ships to install one alongside their primary weapons."
-
-
-outfit "Sidereal VLS Array"
+outfit "Dart Launcher"
 	category "Secondary Weapons"
 	licenses
 		"Avgi Military"
 	cost 1370000
 	thumbnail "outfit/unknown"
 	"mass" 6
-	"outfit space" -42
-	"weapon capacity" -42
-	"turret mounts" -1
-	"sidereal capacity" 126
+	"outfit space" -15
+	"weapon capacity" -15
+	"gun ports" -1
+	"dart capacity" 60
 	weapon
-		sprite "projectile/sidewinder"
+		sprite "projectile/shardactive"
 			"no repeat"
 			"frame rate" .25
 		sound "finisher"
-		ammo "Sidereal Missile"
+		ammo `"Dart" Kinetic Missile`
 		icon "icon/finisher"
 		"fire effect" "sidewinder fire"
+		"fire effect" "speck fire"
 		"inaccuracy" 2.4
-		"velocity" 9
-		"lifetime" 15
-		"reload" 30
-		"burst reload" 12
-		"burst count" 6
-		"turret turn" 9
-		"firing energy" 3
+		"velocity" 18
+		"lifetime" 30
+		"reload" 45
+		"firing energy" 6
 		"firing heat" 3
-		"turn" 180
-		"homing" 2
-		"radar tracking" 0.6
 		"infrared tracking" 0.9
 		"missile strength" 9
-		"submunition" "Sidereal Active"
-		"stream"
-	description "Sidereal missiles are minimalist kinetic kill vehicles designed for use in situations where nuclear weapons are considered unnecessary. Little more than a payload of tungsten rods, a thruster package, and a nose mounted sensor array, they can be manufactured in bulk at minimal cost."
+		"submunition" "Dart Active"
+	description "Dart missiles are minimalist kinetic kill vehicles designed for use in situations where nuclear weapons are considered unnecessary. Little more than a payload of tungsten rods, a thruster package, and a nose mounted sensor array, they can be manufactured in bulk at minimal cost."
 	description "By splitting into a number of tungsten rods upon approaching a target, only a fraction of the payload actually impacts it, but the damage is also distributed over a large area of effect, making evasion difficult."
-	description "This large Vertical Launch Cell array is made up of forty cells, each with Sidereals stacked three missiles deep. Designed for rapid vertical launch, it needs a turret mount to function properly."
+	description "This is a standard modular launcher designed for use on light to medium warships. A coilgun launch system allows the missiles to be deployed with considerable initial velocity, making up for the limited fuel supply on the missile itself."
 
 
-outfit "Sidereal Active"
+outfit "Dart Launch Array"
+	category "Secondary Weapons"
+	licenses
+		"Avgi Military"
+	cost 1370000
+	thumbnail "outfit/unknown"
+	"mass" 9
+	"outfit space" -45
+	"weapon capacity" -45
+	"turret mounts" -1
+	"dart capacity" 240
 	weapon
-		sprite "projectile/sidewinder"
+		sprite "projectile/shardactive"
 			"no repeat"
 			"frame rate" .25
-		"die effect" "tiny explosion"
+		sound "finisher"
+		ammo `"Dart" Kinetic Missile`
+		icon "icon/finisher"
+		"fire effect" "sidewinder fire"
+		"inaccuracy" 90
+		"velocity" 3
+		"lifetime" 30
+		"reload" 15
+		"burst reload" 9
+		"burst count" 12
+		"turret turn" 9
+		"firing energy" 3
+		"infrared tracking" 0.9
+		"missile strength" 9
+		"submunition" "Dart Active"
+		"stream"
+	description "Dart missiles are minimalist kinetic kill vehicles designed for use in situations where nuclear weapons are considered unnecessary. Little more than a payload of tungsten rods, a thruster package, and a nose mounted sensor array, they can be manufactured in bulk at minimal cost."
+	description "By splitting into a number of tungsten rods upon approaching a target, only a fraction of the payload actually impacts it, but the damage is also distributed over a large area of effect, making evasion difficult."
+	description "This large Vertical Launch Cell array is made up of forty cells, each with Dart stacked six missiles deep. Designed for rapid vertical cold-launch, it needs an open space comparable to a turret mount to function properly."
+
+
+outfit "Dart Active"
+	weapon
+		sprite "projectile/shardactive"
+			"no repeat"
+			"frame rate" .25
 		"hit effect" "missile hit"
-		"live effect" "sidereal exhaust" 3600
-		"live effect" "sidereal trail" 3600
-		"lifetime" 600
-		"split range" 450
-		"acceleration" 1.8
-		"drag" .09
-		"turn" 12
+		"live effect" "dart trail" 1800
+		"die effect" "missile death"
+		"lifetime" 1800
+		"split range" 300
+		"acceleration" 0.09
+		"drag" .003
+		"turn" 6
 		"homing" 4
-		"radar tracking" 0.6
 		"infrared tracking" 0.9
 		"hit force" 210
 		"missile strength" 12
-		"submunition" "Sidereal Flack" 18
+		"submunition" "Dart Flack" 30
 
 
-outfit "Sidereal Flack"
+outfit "Dart Flack"
 	weapon
 		sprite "projectile/speck"
 			"frame rate" 30
 			"no repeat"
 		"die effect" "missile death"
 		"hit effect" "bombardment impact"
-		"inaccuracy" 15
+		"inaccuracy" 30
 			narrow
-		"lifetime" 30
+		"lifetime" 60
 		"random lifetime" 30
-		"shield damage" 9
-		"hull damage" 12
-		"hit force" 36
+		"random velocity" -6
+		"shield damage" 6
+		"hull damage" 9
+		"hit force" 60
 		"missile strength" 3
 
-effect "sidereal exhaust"
-	sprite "effect/static"
+effect "dart exhaust"
+	sprite "effect/puff"
 		"no repeat"
-		"frame rate" 6
-		"scale" 2
-	"lifetime" 3
-	"random angle" 180
-	"random spin" 360
-	"random velocity" -3
-	"velocity scale" 0.6
-
-effect "sidereal trail"
-	sprite "effect/burning spark"
-		"no repeat"
-		"frame rate" 6
-		"scale" 0.75
-	"lifetime" 90
+		"frame rate" 3
+		"scale" 0.5
+	"lifetime" 30
+	"random lifetime" 15
 	"random angle" 15
 	"random spin" 360
-	"random velocity" -3
+	"random velocity" -6
 	"velocity scale" 0
 
-outfit "Sidereal Magazine"
-	category "Ammunition"
-	licenses
-		"Avgi Military"
-	cost 1440000
-	thumbnail "outfit/unknown"
-	"mass" 1.2
-	"outfit space" -12
-	"sidereal capacity" 36
-	ammo "Sidereal Missile"
-	description "Sidereal storage"
+effect "dart trail"
+	sprite "effect/avgi flare/rcs"
+		"random start frame"
+		"scale" 0.5
+	"lifetime" 0
+	"velocity scale" 0
 
 
-outfit "Nadir Missile"
+outfit `"Rush" Nuclear Missile`
 	category "Ammunition"
 	licenses
 		"Avgi Atomics"
 	cost 660000
-	thumbnail "outfit/nadir missile"
+	thumbnail "outfit/rush missile"
 	"mass" 0.9
-	"nadir capacity" -1
+	"rush capacity" -1
 	description "Unlike humanity, the Avgi do not have a strong taboo against the use of nuclear weapons in space. To them, nuclear weapons are simply another tool, albeit one with a particularly high energy density, to be used when the occasion calls for it. Nuclear weapons have been the Avgi's trump card against the Aberrant, the one weapon they have capable of reliably breaking their advanced shields and atomizing their armor."
 	description "This particular missile carries a compact thermonuclear warhead, a geometrically complex staged device with a far higher yield density than anything humanity has developed. It seems to be the product of centuries of development of nuclear arms, as opposed to humanity's long abstentation from nuclear weapons research."
 
 
-outfit "Nadir Launcher"
+outfit "Rush Magazine"
+	category "Ammunition"
+	licenses
+		"Avgi Atomics"
+	cost 1440000
+	thumbnail "outfit/unknown"
+	"mass" 1.2
+	"outfit space" -12
+	"rush capacity" 12
+	ammo "Rush Missile"
+	description "Rush storage"
+
+
+outfit "Rush Launcher"
 	category "Secondary Weapons"
 	licenses
 		"Avgi Atomics"
 	cost 1370000
-	thumbnail "outfit/nadir missile launcher"
-	"mass" 4.8
-	"outfit space" -21
-	"weapon capacity" -21
+	thumbnail "outfit/rush missile launcher"
+	"mass" 4.5
+	"outfit space" -18
+	"weapon capacity" -18
 	"gun ports" -1
-	"nadir capacity" 18
+	"rush capacity" 12
 	weapon
-		sprite "projectile/thunderhead"
+		sprite "projectile/thunderhead fragment"
 			"frame rate" 1
 			"no repeat"
 		sound "finisher"
-		ammo "Nadir Missile"
+		ammo `"Rush" Nuclear Missile`
 		icon "icon/finisher"
-		"fire effect" "finisher sparks" 6
-		"die effect" "finisher fragment" 6
-		"inaccuracy" 3
+		"fire effect" "sidewinder fire"
+		"fire effect" "speck fire"
+		"inaccuracy" 2.4
 		"velocity" 9
 		"lifetime" 30
-		"range override" 4800
-		"reload" 90
+		"reload" 60
 		"firing energy" 6
-		"firing heat" 9
-		"turn" 6
-		"homing" 2
-		"radar tracking" .9
+		"firing heat" 3
+		"radar tracking" 0.6
+		"infrared tracking" 0.9
 		"missile strength" 36
-		"submunition" "Nadir Active"
+		"submunition" "Rush Active"
 		stream
 	description "Unlike humanity, the Avgi do not have a strong taboo against the use of nuclear weapons in space. To them, nuclear weapons are simply another tool, albeit one with a particularly high energy density, to be used when the occasion calls for it. Nuclear weapons have been the Avgi's trump card against the Aberrant, the one weapon they have capable of reliably breaking their advanced shields and atomizing their armor."
 	description "A standard modular launcher such as this one is designed to be easily installed on light to medium warships."
 
 
-outfit "Nadir VLS Array"
+outfit "Rush Launch Array"
 	category "Secondary Weapons"
 	licenses
 		"Avgi Atomics"
@@ -669,71 +630,55 @@ outfit "Nadir VLS Array"
 	"outfit space" -48
 	"weapon capacity" -48
 	"turret mounts" -1
-	"nadir capacity" 48
+	"rush capacity" 48
 	weapon
-		sprite "projectile/thunderhead"
+		sprite "projectile/thunderhead fragment"
 			"frame rate" 1
 			"no repeat"
 		sound "finisher"
-		ammo "Nadir Missile"
+		ammo `"Rush" Nuclear Missile`
 		icon "icon/finisher"
-		"fire effect" "finisher sparks" 6
-		"die effect" "finisher fragment" 6
-		"inaccuracy" 3
-		"velocity" 9
+		"fire effect" "sidewinder fire"
+		"inaccuracy" 45
+		"velocity" 3
 		"lifetime" 30
-		"range override" 4800
-		"reload" 60
-		"burst reload" 30
+		"reload" 30
+		"burst reload" 12
 		"burst count" 3
 		"turret turn" 9
-		"firing energy" 6
-		"firing heat" 9
-		"turn" 6
-		"homing" 2
-		"radar tracking" .9
+		"firing energy" 3
+		"radar tracking" 0.6
+		"infrared tracking" 0.9
 		"missile strength" 36
-		"submunition" "Nadir Active"
+		"submunition" "Rush Active"
 		"stream"
 
 
-outfit "Nadir Active"
+outfit "Rush Active"
 	weapon
-		sprite "projectile/thunderhead"
+		sprite "projectile/thunderhead fragment"
 			"frame rate" 2.4
 		"hit effect" "thermonuclear flash"
 		"hit effect" "prompt radiation" 9
 		"hit effect" "fission fragments" 240
+		"live effect" "dart trail" 1800
 		"die effect" "missile death"
-		"lifetime" 600
-		"acceleration" 1.8
-		"drag" .09
-		"turn" 12
+		"lifetime" 1800
+		"acceleration" 0.6
+		"drag" .03
+		"turn" 9
 		"homing" 4
-		"radar tracking" 0.6
-		"infrared tracking" 0.9
-		"trigger radius" 18
+		"radar tracking" 0.9
+		"infrared tracking" 0.6
+		"trigger radius" 60
 		"blast radius" 180
-		"shield damage" 6000
-		"hull damage" 4800
+		"shield damage" 9000
+		"hull damage" 6000
 		"hit force" 3600
-		"missile strength" 36
+		"missile strength" 42
 
 
-outfit "Nadir Magazine"
-	category "Ammunition"
-	licenses
-		"Avgi Atomics"
-	cost 1440000
-	thumbnail "outfit/unknown"
-	"mass" 3
-	"outfit space" -18
-	"nadir capacity" 12
-	ammo "Nadir Missile"
-	description "Nadir storage"
-
-
-outfit "Azimuth Missile"
+outfit `"Snap" Nuclear Shaped Charge`
 	category "Ammunition"
 	licenses
 		"Avgi Atomics"
@@ -744,7 +689,20 @@ outfit "Azimuth Missile"
 	description "Casaba Howitzer (campaign unlock, not needed for initial PR)"
 
 
-outfit "Azimuth Launcher"
+outfit "Snap Magazine"
+	category "Ammunition"
+	licenses
+		"Avgi Atomics"
+	cost 1440000
+	thumbnail "outfit/unknown"
+	"mass" 3
+	"outfit space" -18
+	"azimuth capacity" 12
+	ammo "Snap Missile"
+	description "Snap storage"
+
+
+outfit "Snap Launcher"
 	category "Secondary Weapons"
 	licenses
 		"Avgi Atomics"
@@ -760,7 +718,7 @@ outfit "Azimuth Launcher"
 			"frame rate" 1
 			"no repeat"
 		sound "finisher"
-		ammo "Azimuth Missile"
+		ammo `"Snap" Nuclear Shaped Charge`
 		icon "icon/finisher"
 		"fire effect" "finisher sparks" 8
 		"die effect" "finisher fragment" 6
@@ -776,11 +734,11 @@ outfit "Azimuth Launcher"
 		"homing" 2
 		"radar tracking" .8
 		"missile strength" 12
-		"submunition" "Active Azimuth"
+		"submunition" "Active Snap"
 	description `Casaba Howitzer`
 
 
-outfit "Active Azimuth"
+outfit "Active Snap"
 	weapon
 		sprite "projectile/thunderhead"
 			"frame rate" 2.4
@@ -802,19 +760,44 @@ outfit "Active Azimuth"
 		"hull damage" 3600
 		"hit force" 2100
 		"missile strength" 50
+		"submunition" "Snapfront" 600
+		"submunition" "Snapback" 300
 
 
-outfit "Azimuth Magazine"
-	category "Ammunition"
-	licenses
-		"Avgi Atomics"
-	cost 1440000
-	thumbnail "outfit/unknown"
-	"mass" 3
-	"outfit space" -18
-	"azimuth capacity" 12
-	ammo "Azimuth Missile"
-	description "Azimuth storage"
+outfit "Snapfront"
+	weapon
+		sprite "effect/plasma impact"
+			"frame rate" 6
+			"no repeat"
+		"hit effect" "fusion cannon impact"
+		"live effect" "fusion cannon cloud" 600
+		"live effect" "fission fragments" 600
+		"inaccuracy" 15
+			narrow
+		"lifetime" 60
+		"random lifetime" 30
+		"velocoity" 60
+		"random velocity" 30
+		"shield damage" 6
+		"hull damage" 9
+		"hit force" 60
+
+
+outfit "Snapback"
+	weapon
+		sprite "projectile/speck"
+			"frame rate" 30
+			"no repeat"
+		"hit effect" "fusion cannon impact"
+		"live effect" "fusion cannon cloud" 300
+		"live effect" "fission fragments" 300
+		"inaccuracy" 60
+			inverted
+		"random lifetime" 90
+		"random velocity" -30
+		"shield damage" 6
+		"hull damage" 9
+		"hit force" 60
 
 
 outfit "Equinox Torpedo"

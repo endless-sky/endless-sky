@@ -776,8 +776,8 @@ ship "Entasi"
 			"hit force" 1200
 	outfits
 		"Phased Array Laser (Blue)" 2
-		"Sidereal Launcher" 2
-		"Sidereal Missile" 84
+		"Dart Launcher" 2
+		`"Dart" Kinetic Missile` 120
 
 		"Ultracapacitor Bank" 3
 		"Diffuse Deflector"
@@ -789,8 +789,8 @@ ship "Entasi"
 		"Magnetoplasma Drive" 2
 		"Hyperdrive"
 
-	gun -36 9 "Sidereal Launcher"
-	gun 36 9 "Sidereal Launcher"
+	gun -36 9 "Dart Launcher"
+	gun 36 9 "Dart Launcher"
 	gun -36 9
 	gun 36 9
 	turret -10 72 "Phased Array Laser (Blue)"
@@ -904,8 +904,8 @@ ship "Undsyni"
 		"Phased Array Laser (Green)" 3
 		"Speckle Turret" 2
 		"Speck Round" 14400
-		"Sidereal Launcher" 2
-		"Sidereal Missile" 84
+		"Dart Launcher" 2
+		`"Dart" Kinetic Missile` 120
 		"Electromotive Rifle" 24
 
 		"Lantern Fission Core"
@@ -924,9 +924,9 @@ ship "Undsyni"
 
 	gun 0 -213
 		over
-	gun -42 -139 "Sidereal Launcher"
+	gun -42 -139 "Dart Launcher"
 		angle -90
-	gun 42 -139 "Sidereal Launcher"
+	gun 42 -139 "Dart Launcher"
 		angle 90
 	turret -33 -138 "Speckle Turret"
 	turret 33 -138 "Speckle Turret"
@@ -1003,7 +1003,7 @@ ship "Modified Tachytia"
 		"Phased Array Laser (Green)" 3
 		"Dipole Ramscoop"
 
-		"Lantern Fission Core" 2
+		"Lantern Fission Core" 3
 		"Photoelectric Scales"
 		"Ultracapacitor Bank" 6
 		"Specular Deflector" 2
@@ -1202,8 +1202,8 @@ ship "Prismaios"
 		"Phased Array Laser (Green)"
 		"Speckle Turret" 2
 		"Speck Round" 14400
-		"Sidereal Launcher" 2
-		"Sidereal Missile" 84
+		"Dart Launcher" 2
+		`"Dart" Kinetic Missile` 120
 		"Electromotive Rifle" 6
 
 		"Ultracapacitor Bank"
@@ -1237,9 +1237,9 @@ ship "Prismaios"
 		right
 	gun -9 -48
 	gun 9 -48
-	gun -9 33 "Sidereal Launcher"
+	gun -9 33 "Dart Launcher"
 		angle -90
-	gun 9 33 "Sidereal Launcher"
+	gun 9 33 "Dart Launcher"
 		angle 90
 	turret -9 18 "Speckle Turret"
 	turret 9 18 "Speckle Turret"
@@ -1284,8 +1284,8 @@ ship "Interferos"
 			"hit force" 900
 	outfits
 		"Phased Array Laser (Green)" 2
-		"Sidereal Launcher" 4
-		"Sidereal Missile" 168
+		"Dart Launcher" 4
+		`"Dart" Kinetic Missile` 240
 
 		"Ultracapacitor Cell" 3
 		"Diffuse Deflector"
@@ -1298,13 +1298,13 @@ ship "Interferos"
 		"XY-180 Radial Thrusters"
 		"Hyperdrive"
 
-	gun -33 -57 "Sidereal Launcher"
+	gun -33 -57 "Dart Launcher"
 		angle -60
-	gun 33 -57 "Sidereal Launcher"
+	gun 33 -57 "Dart Launcher"
 		angle 60
-	gun -33 -42 "Sidereal Launcher"
+	gun -33 -42 "Dart Launcher"
 		angle -60
-	gun 33 -42 "Sidereal Launcher"
+	gun 33 -42 "Dart Launcher"
 		angle 60
 	turret -21.5 -81 "Phased Array Laser (Green)"
 	turret 21.5 -81 "Phased Array Laser (Green)"
@@ -1369,9 +1369,9 @@ ship "Diaspersi"
 		"Phased Array Laser (Green)" 2
 		"Fleck Turret"
 		"Fleck Round" 2400
-		"Sidereal Launcher" 2
-		"Sidereal Magazine" 6
-		"Sidereal Missile" 300
+		"Dart Launcher" 2
+		"Dart Magazine" 6
+		`"Dart" Kinetic Missile` 480
 		
 		"Ultracapacitor Bank"
 		"Diffuse Deflector"
@@ -1389,9 +1389,9 @@ ship "Diaspersi"
 		"Hyperdrive"
 
 	gun 0 -156
-	gun -18 -9 "Sidereal Launcher"
+	gun -18 -9 "Dart Launcher"
 		angle -90
-	gun 18 -9 "Sidereal Launcher"
+	gun 18 -9 "Dart Launcher"
 		angle 90
 	turret -9 12 "Phased Array Laser (Green)"
 	turret 9 12 "Phased Array Laser (Green)"
@@ -1471,9 +1471,9 @@ ship "Difraktos"
 		"Phased Array Laser (Green)" 2
 		"Fleck Turret" 2
 		"Fleck Round" 4800
-		"Sidereal VLS Array" 2
-		"Sidereal Magazine" 2
-		"Sidereal Missile" 324
+		"Dart Launch Array" 2
+		"Dart Magazine" 2
+		`"Dart" Kinetic Missile` 600
 
 		"Lantern Fission Core"
 		"Ultracapacitor Bank"
@@ -1497,8 +1497,8 @@ ship "Difraktos"
 		angle 90
 	turret -9 -111 "Fleck Turret"
 	turret 9 -111 "Fleck Turret"
-	turret -9 -87 "Sidereal VLS Array"
-	turret 9 -87 "Sidereal VLS Array"
+	turret -9 -87 "Dart Launch Array"
+	turret 9 -87 "Dart Launch Array"
 	turret -9 -66
 	turret 9 -66
 	turret 0 36 "Phased Array Laser (Green)"
@@ -1664,9 +1664,9 @@ ship "Atenuatia"
 		"Fleck Round" 2400
 		"Phased Array Laser (Blue)" 2
 		"Phased Array Laser (Green)" 3
-		"Sidereal VLS Array" 2
-		"Sidereal Magazine" 6
-		"Sidereal Missile" 468
+		"Dart Launch Array" 2
+		"Dart Magazine" 6
+		`"Dart" Kinetic Missile` 840
 		
 		"Ultracapacitor Bank" 2
 		"Specular Deflector"
@@ -1711,7 +1711,7 @@ ship "Atenuatia"
 	turret 60 -174 "Phased Array Laser (Blue)"
 	turret -60 -174 "Phased Array Laser (Blue)"
 	turret 0 -96
-	turret 0 -36 "Sidereal VLS Array"
+	turret 0 -36 "Dart Launch Array"
 	turret 0 30 "Phased Array Laser (Green)"
 	turret 0 96 "Phased Array Laser (Green)"
 	turret 0 160
@@ -1926,8 +1926,8 @@ ship "Vibratia"
 		"drag" 0.15
 		"heat dissipation" 0.99
 		"fuel capacity" 100
-		"outfit space" 84
-		"weapon capacity" 18
+		"outfit space" 72
+		"weapon capacity" 24
 		"engine capacity" 24
 		"radar jamming" 3
 		weapon
@@ -1938,8 +1938,8 @@ ship "Vibratia"
 	outfits
 		"Speckle Railgun"
 		"Speck Round" 1800
-		"Sidereal Pod"
-		"Sidereal Missile" 6
+		"Dart Launcher"
+		`"Dart" Kinetic Missile` 60
 	
 		"Concentrating Solar Array"
 		"Ultracapacitor Cell"
@@ -1969,7 +1969,7 @@ ship "Vibratia"
 		zoom 0.5
 		right
 	gun 0 -27 "Speckle Railgun"
-	gun 0 -27 "Sidereal Pod"
+	gun 0 -27 "Dart Pod"
 
 	explode "tiny explosion" 9
 
@@ -2003,8 +2003,8 @@ ship "Undulon"
 			"hull damage" 120
 			"hit force" 90
 	outfits
-		"Nadir Launcher"
-		"Nadir Missile" 6
+		"Rush Launcher"
+		`"Rush" Nuclear Missile` 6
 
 		"Concentrating Solar Cell" 3
 		"Ultracapacitor Cell"
@@ -2041,7 +2041,7 @@ ship "Undulon"
 		zoom 0.5
 		left
 
-	gun 0 -29 "Nadir Launcher"
+	gun 0 -29 "Rush Launcher"
 
 	explode "tiny explosion" 12
 
