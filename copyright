@@ -536,6 +536,36 @@ License: CC-BY-SA-3.0
 Comment: Derived from works by Rob Lavinsky (under the same license).
 
 Files:
+ images/scene/hai?bank*
+Copyright: Tomasz Frankowski
+License: public-domain
+Comment:
+ Taken from https://v.gd/Utf1Ww. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/scene/hai?shipyard*
+Copyright: Dan Asaki
+License: Unsplash License
+Comment:
+ Taken from https://v.gd/UD2WMf. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
+ images/scene/hai?start*
+Copyright: Willian Justen de Vasconcellos
+License: Unsplash License
+Comment:
+ Taken from https://archive.is/7WLG3. This image was uploaded
+ to unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded on February 11, 2018,
+ so it is not subject to additional restrictions, as this is
+ a week before the additional restrictions were added.
+
+Files:
  images/land/badlands0*
  images/land/badlands1*
  images/land/badlands2*
@@ -697,9 +727,6 @@ Files:
  images/land/water8*
  images/land/water12*
  images/land/water13*
- images/scene/hai?bank*
- images/scene/hai?shipyard*
- images/scene/hai?start*
 Copyright: Various
 License: public-domain
  Taken from unsplash.com, a collection of photographs that have been donated and
