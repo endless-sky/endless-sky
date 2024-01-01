@@ -591,7 +591,7 @@ void Engine::Step(bool isActive)
 		{
 			if(!ship->IsYours() || ship->GetSystem() != player.GetSystem() || ship->Cloaking() == 0.)
 				continue;
-			
+
 			outlines.emplace_back(ship->GetSprite(), (ship->Position() - center) * zoom, ship->Unit() * zoom,
 				ship->GetFrame(), Color::Multiply(ship->Cloaking(), cloakColor));
 		}
