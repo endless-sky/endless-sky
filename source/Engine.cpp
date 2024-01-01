@@ -587,14 +587,15 @@ void Engine::Step(bool isActive)
 
 	outlines.clear();
 	const Color &cloakColor = *GameData::Colors().Get("cloak highlight");
-	for(const auto &ship : ships)
-	{
-		if(!ship->IsYours() || ship->GetSystem() != player.GetSystem() || ship->Cloaking() == 0.)
-			continue;
-		
-		outlines.emplace_back(ship->GetSprite(), (ship->Position() - center) * zoom, ship->Unit() * zoom,
-			ship->GetFrame(), Color::Multiply(ship->Cloaking(), cloakColor));
-	}
+	if(Preferences::Has("Cloaked ship outlines"))
+		for(const auto &ship : ships)
+		{
+			if(!ship->IsYours() || ship->GetSystem() != player.GetSystem() || ship->Cloaking() == 0.)
+				continue;
+			
+			outlines.emplace_back(ship->GetSprite(), (ship->Position() - center) * zoom, ship->Unit() * zoom,
+				ship->GetFrame(), Color::Multiply(ship->Cloaking(), cloakColor));
+		}
 
 	// Add the flagship outline last to distinguish the flagship from other ships.
 	if(flagship && !flagship->IsDestroyed() && Preferences::Has("Highlight player's flagship"))
@@ -1068,7 +1069,6 @@ void Engine::Draw() const
 	for(const AlertLabel &label : missileLabels)
 		label.Draw();
 
-	Messages::Add(to_string(outlines.size()));
 	for(const auto &outline : outlines)
 	{
 		Point size(outline.sprite->Width(), outline.sprite->Height());
@@ -2514,13 +2514,14 @@ void Engine::DrawShipSprites(const Ship &ship)
 	bool hasFighters = ship.PositionFighters();
 	double cloak = ship.Cloaking();
 	bool drawCloaked = (cloak && ship.IsYours());
+	bool fancyCloak = Preferences::Has("Cloaked ship outlines");
 	auto &itemsToDraw = draw[currentCalcBuffer];
-	auto drawObject = [&itemsToDraw, cloak, drawCloaked](const Body &body) -> void
+	auto drawObject = [&itemsToDraw, cloak, drawCloaked, fancyCloak](const Body &body) -> void
 	{
 		// Draw cloaked/cloaking sprites swizzled red, and overlay this solid
 		// sprite with an increasingly transparent "regular" sprite.
 		if(drawCloaked)
-			itemsToDraw.AddSwizzled(body, 10, 0.5);
+			itemsToDraw.AddSwizzled(body, fancyCloak ? 10 : 27, fancyCloak ? 0.5 : 0.);
 		itemsToDraw.Add(body, cloak);
 	};
 

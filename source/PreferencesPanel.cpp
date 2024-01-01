@@ -61,6 +61,7 @@ namespace {
 	const string STATUS_OVERLAYS_ESCORT = "   Show escort overlays";
 	const string STATUS_OVERLAYS_ENEMY = "   Show enemy overlays";
 	const string STATUS_OVERLAYS_NEUTRAL = "   Show neutral overlays";
+	const string CLOAK_OUTLINE = "Cloaked ship outlines";
 	const string EXPEND_AMMO = "Escorts expend ammo";
 	const string FLOTSAM_SETTING = "Flotsam collection";
 	const string TURRET_TRACKING = "Turret tracking";
@@ -509,6 +510,7 @@ void PreferencesPanel::DrawSettings()
 		STATUS_OVERLAYS_ESCORT,
 		STATUS_OVERLAYS_ENEMY,
 		STATUS_OVERLAYS_NEUTRAL,
+		CLOAK_OUTLINE,
 		"Show missile overlays",
 		"Show asteroid scanner overlay",
 		"Highlight player's flagship",
@@ -640,6 +642,11 @@ void PreferencesPanel::DrawSettings()
 		{
 			text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::NEUTRAL);
 			isOn = text != "off" && text != "--";
+		}
+		else if(setting == CLOAK_OUTLINE)
+		{
+			text = Preferences::Has(CLOAK_OUTLINE) ? "fancy" : "fast";
+			isOn = true;
 		}
 		else if(setting == AUTO_AIM_SETTING)
 		{
