@@ -2016,7 +2016,8 @@ bool Ship::FireAntiMissile(const Projectile &projectile, vector<Visual> &visuals
 Point Ship::FireTractorBeam(const Flotsam &flotsam, vector<Visual> &visuals)
 {
 	Point pullVector;
-	if(flotsam.Position().Distance(position) > tractorBeamRange)
+	const float distance = flotsam.Position().Distance(position);
+	if(distance > tractorBeamRange || distance - Radius() <= 0)
 		return pullVector;
 	if(CannotAct())
 		return pullVector;
