@@ -47,6 +47,7 @@ public:
 		friend class RenderBuffer;
 	};
 
+public:
 	// Create a texture of the given size that can be used as a render target.
 	RenderBuffer(const Point &dimensions);
 	virtual ~RenderBuffer();
@@ -76,6 +77,7 @@ public:
 
 protected:
 	void Deactivate();
+
 
 private:
 	Point size;
