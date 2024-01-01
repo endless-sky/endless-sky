@@ -961,7 +961,7 @@ mission "Gegno Intervention"
 	npc
 		on provoke
 			fail
-			"reputation: Gegno" = 0
+			"reputation: Gegno" = -100
 			"reputation: Gegno Vi" = -100
 			"reputation: Gegno Scin" = -100
 			dialog `After deciding to fire upon the Gegno fleet surveying your visit to their homeworld, you are met with aggressive opposition along with what sound like countless angry hails. Whatever chance you had left in associating with the Gegno is gone now.`
@@ -988,13 +988,55 @@ mission "Acquiescence"
 		conversation
 			branch "intervention"
 				has "Gegno Intervention: offered"
+				
+			`The Gegno display caution once more as fleets of both Vi and Scin ships orbit their homeworld while you approach it. Your Quarg "escort", which was already in the system before you, stays behind. A few smaller Gegno ships from the fleets follow you down to the planet's surface, forming up in front of you to lead you to your destination. Once you pass through the several layers of smog, you're once again flying around the towering cities of the Gegno homeworld. They almost look castle-like, extending into the sky sometimes even beyond the smog, lighting it up with small patches of red and yellow while the busy traffic of local aircraft buzz around them. The Gegno ships continue to guide you around, eventually leading you away from the business of the cities to a more remote area. In the distance is yet another massive structure shrouded by the smog, possibly the one you visited the first time you were here. However, the activity around it seems much less compared to anything else thus far.`
+			`	Instead of to one of the docking ports alongside the tower, the Gegno ships direct you to the base of it, underneath several more layers of smog. Once you finally reach the surface, your escorts hold position in the air while you park your ship on the ground, but apart from them, the area seems devoid of Gegno, almost hauntingly so, as a cloud of smoke obscures the base of the tower.`
+			choice
+				`	(Stay in your ship.)`
+				`	(Exit your ship.)`
+					goto exit
 			
-			`Gegno fleet above follow. You land. Talks.`
+			`	You decide to remain in the safety of your ship. The Gegno in the ships above aren't helping you anymore, simply watching you from above. There are no other ships in the area, let alone any sort of vehicles. Before too long, you notice a shadowed figure in the smoke ahead of your ship, carrying a long staff of some sort. A lone Gegno exits the smoke cloud, takes a few more heavy steps, then stands their ground several meters away from your ship. Any action you take now would be solely of your own discretion, however there are only two choices left for you to make.`
+			choice
+				`	(Meet with the Gegno.)`
+				`	(Leave the Gegno and their world.)`
+					goto "no more gegno"
+
+			`	You decide to continue on your endeavour. You've made it this far, considering you're back on their homeworld and they haven't shown any signs of wanting you off of it as of yet. The outside environment appears to be "safe" for humans - being something similar what is on Earth, if it were even more polluted. Donning your sidearm in the case of an emergency, you exit your ship and cautiously approach the Gegno. Although it's a little hard to tell, you're almost certain this is the Gegno that you first met on that desert planet from before, the only difference being some kind of red band on their left arm. The ships above suddenly fly off, and the Gegno turns around, beginning to head for the massive tower that stands in front of you. Recalling back to the first time you met them, they ended up walking to your ship anyway without you, so you follow them with only the slightest of hesitation.`
+				goto tower
+
+
+			label "exit"
+			`	The outside environment appears to be "safe" for humans - being something similar what is on Earth, if it were even more polluted. Donning your sidearm in the case of an emergency, you exit your ship. The Gegno in the ships above aren't helping you anymore, but are intently watching your every move. Apart from the distant thrusting of their engines, it's eerily quiet. Before too long, you notice a shadowed figure in the smoke ahead of your ship, carrying a long staff of some sort. A lone Gegno exits the smoke cloud, slowly approaching your ship. After a few more heavy steps, they stop just a few meters from you. Although it's a little hard to tell, you're almost certain this is the Gegno that you first met on that desert planet from before, the only difference being some kind of red band on their left arm. At this point, action you take now would be solely of your own discretion, however there are only two choices left to be made.`
+			choice
+				`	(Meet with the Gegno.)`
+				`	(Leave the Gegno and their world.)`
+					goto "no more gegno"
+
+			`	You decide to continue on your endeavour. You've made it this far, considering you're back on their homeworld and they haven't shown any signs of wanting you off of it as of yet. As you approach the Gegno, it indeed seems to be the one you've met in the past. The ships above suddenly fly off, and the Gegno turns around, beginning to head for the massive tower that stands in front of you. Recalling back to that first encounter, they ended up walking to your ship anyway without you, so you follow them with only the slightest of hesitation.`
+
+
+
+			label "tower"
+
+
+
+
+
+
+
 				decline
-			
+
 			label "intervention"
 			`Gegno fleet above follow. You land. Angry talks.`
 				decline
+
+			label "no more gegno"
+			`	Despite making it this far, you ultimately decide that pursing this ruse with the Gegno is no longer worth the effort. Even if you did meet up with them, or ended up in some sort of debate with them, it would likely take another excessive amount of effort in order to get any amount of progression with them, if at all. Perhaps even landing here was a mistake, as you could never guess what might happen if you continued this endeavour, given you are all alone on the homeworld of a species that has shown to be rather xenophobic, even to the Quarg. As you prepare to depart, the Gegno, who was watching you all this time with a blank stare, lifts their staff weapon and flips it around. Following an explosive cloud of smoke, a sizable crater appears just barely next to your ship on the ground. It seems they are, at the very least, unhappy with your decision to leave, which is a little odd considering they didn't want anything to do with you before. Though, the fact they intentionally missed such a large target might have other connotations. Regardless, it could have been you on the other end of that blast.`
+			`	Despite that aggressive action, you are not followed as you leave the planet.`
+				flee
+
+
 
 
 
