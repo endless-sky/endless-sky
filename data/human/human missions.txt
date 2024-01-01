@@ -378,7 +378,7 @@ mission "Pookie, Part 3"
 				`	(Stay and watch.)`
 				`	(Leave the building.)`
 					goto nope
-			`	You look on at the duel, as does the rest of the building. The crowd has already taken sides, with some shouting Zinc's name and others shouting Doom's. Doom initially appears to have the upper hand, ramming himself into Zinc with impunity as she is sent sprawling. However, when Doom goes in for another tackle, Zinc dashes in and sinks her teeth into his neck. His roars of pain deminish into whimpers as blood spills readily on the complex's floor.`
+			`	You look on at the duel, as does the rest of the building. The crowd has already taken sides, with some shouting Zinc's name and others shouting Doom's. Doom initially appears to have the upper hand, ramming himself into Zinc with impunity as she is sent sprawling. However, when Doom goes in for another tackle, Zinc dashes in and sinks her teeth into his neck. His roars of pain diminish into whimpers as blood spills readily on the complex's floor.`
 			`	Suddenly, a gunshot rings out throughout the building. The two beasts fall over as the stagehand steps forward holding a shotgun. The crowd is left in silence for a moment, until they start to jeer and boo, angered by the unsatisfying end to the duel. The stagehand responds by pointing his gun up and firing again. "That's enough!" he yells. "If you freaks want your bloodsports, then go to the gladiator stadium, or a cockfighting ring. But this establishment will not support such degeneracy!" The crowd goes quiet, but out of the corner of your eye, you see some mean-faced figures reach into their pockets.`
 			choice
 				`	(Get out before it gets ugly.)`
@@ -6355,7 +6355,7 @@ mission "Care Package to South 1"
 			`You arrive at the militia base on <destination>, and ask at the gate for Gunnery Sergeant Irene Brower. After a few minutes, a compact young woman with close-cropped blonde hair appears and walks over. When she sees the package at your feet, her face splits into a lopsided grin and her steps quicken. "I see you've brought me a package; this must be from Torrey! She said she was sending something."`
 			`	You nod, introduce yourself, and briefly recount your meeting with her friend on <origin>. Irene laughs. "Yep, that's her. Well, thank you so much for bringing this." She hefts the heavy box with no apparent effort, gives you a firm nod, and turns to head back into the base.`
 			`	Before going more than three steps, she stops and turns back to you. "Oh, sorry - I'll authorize your payment as soon as I get back to my room. I don't have it with me."`
-			`	Sure enough, less than five minutes later, your communicator bleeps and reports that <payment> has been credited to your account.`
+			`	Sure enough, less than five minutes later, your communicator bleeps and reports that <payment> have been credited to your account.`
 
 mission "Care Package to South 2a"
 	landing
@@ -6509,9 +6509,9 @@ event "kris gets frustrated"
 
 mission "Moving House 2"
 	minor
+	name "Moving House, Again"
 	description "Kris is unsatisfied with life on <destination> and wants your help to move."
 	landing
-	name "Moving House, Again"
 	source
 		near "Atria" 1 100
 	destination "Lichen"
@@ -6525,7 +6525,7 @@ mission "Moving House 2"
 				accept
 	on complete
 		conversation
-			`You arrive on <destination>, rent a local transport, and make your way to the location specified. When you knock on the door, Kris bursts out almost instantly. This time, they've got on a ruffly skirt, a button-down shirt, and suspenders, and their hair is in a tight bun. "Finally!" they say. "Everything's packed already; we just need to load it in and get to the spaceport."`
+			`You arrive on <planet>, rent a local transport, and make your way to the location specified. When you knock on the door, Kris bursts out almost instantly. This time, they've got on a ruffly skirt, a button-down shirt, and suspenders, and their hair is in a tight bun. "Finally!" they say. "Everything's packed already; we just need to load it in and get to the spaceport."`
 			`	It takes much less time to load everything this time than the last time you helped Kris move, and soon they hop in the driver's seat of the van, calling to you, "I'll meet you at the spaceport in an hour or two!"`
 
 mission "Moving House 3"
@@ -6564,7 +6564,7 @@ mission "Moving House 3"
 
 mission "Stranded In Paradise 1"
 	minor
-	name "Stranded in Paradise"
+	name "Transport Burnbecks to <planet>"
 	description "The Burnbeck family was stranded by the bombings, and needs <bunks> free for transport back home to <destination>. Payment is <payment>."
 	source
 		attributes "paradise"
@@ -6583,8 +6583,8 @@ mission "Stranded In Paradise 1"
 			`No sooner have you entered the spaceport than you are bowled over by a trio of adults, two women and a man, with a child trailing close behind them.`
 			`	"Oh - sorry!" the older of the two women exclaims. She puts out a hand to help you up, then gets a better look at you as you take it, stand, and dust yourself off. "Wait; are you a ship captain?" she says after a moment.`
 			`	"<first> <last>, captain of the <ship>," you reply. "Why?"`
-			`	"Oh! You may be the answer to our prayers, dearie!" She and the others have now gotten themselves a bit more organized, and you can tell that they must be a family. Confirming this, the woman says, "We're the Burnbecks; I'm Shirley, and this is my husband Darren." She gestures towards the other, younger woman, then the child. "These are our kids, Erin and Leigh" Leigh's features are softer than you'd expect a boy of his age would have. "We were on vacation here on <origin> when news of the war and those awful bombings came out. Well, I don't need to tell you, it's caused us some trouble! Or, well, maybe I do, since I didn't say where we're from: <destination>, down in what they're now calling the Free Worlds!"`
-			`	Her husband cuts in, "Anyway, the short of it is that we really need to get home, and right now, none of the regular services are running from here to <destination> because of the war. Could you possibly take the four of us back home? We...can't pay a lot, right now, but we can pay."`
+			`	"Oh! You may be the answer to our prayers, dearie!" She and the others have now gotten themselves a bit more organized, and you can tell that they must be a family. Confirming this, the woman says, "We're the Burnbecks; I'm Shirley, and this is my husband Darren." She gestures towards the other, younger woman, then the child. "These are our kids, Erin and Leigh." Leigh's features are softer than you'd expect a boy of his age would have. "We were on vacation here on <origin> when news of the secession and those awful bombings came out. Well, I don't need to tell you, it's caused us some trouble! Or, well, maybe I do, since I didn't say where we're from: <destination>, down in what they're now calling the Free Worlds!"`
+			`	Her husband cuts in, "Anyway, the short of it is that we really need to get home, and right now, none of the regular services are running from here to <planet> because of the likelihood of war. Could you possibly take the four of us back home? We... can't pay a lot, right now, but we can pay."`
 			choice
 				`	"Of course. I wouldn't leave people stranded like this."`
 					goto help
@@ -6599,7 +6599,7 @@ mission "Stranded In Paradise 1"
 	on complete
 		payment
 		payment 5000
-		log "Minor People" "The Burnbecks" `Shirley, Darren, Leigh, and Erin Burnbeck were vacationing in the Paradise Worlds when Gemini and Martini were bombed, stranding them. You helped them get back home.`
+		log "Minor People" "The Burnbecks" `Shirley, Darren, Leigh, and Erin Burnbeck were vacationing in the Paradise Worlds when Geminus and Martini were bombed, stranding them. You helped them get back home.`
 		conversation
 			`The trip south with the Burnbecks was mostly quite pleasant, but while they stop short of openly blaming them for the bombings on Geminus and Martini, they are very angry at the Free Worlds for seceding from the Republic. "We were perfectly happy belonging to the Republic," Darren said one evening in the mess. "I mean, seriously, did those people way down in, where is it, Zug? Bourne? Did they even think about the regular people and how this would affect them? Affect us?"`
 			`	While some of their complaints seem a bit selfish, it's hard to argue with the fact that this has disrupted a lot of lives. After touching down on <planet>, Darren, Leigh, and Erin joyfully run into the arms of their friends and family here. Shirley hangs back to hand you a credit chip for <payment> and thank you warmly (and at some length) for your help in getting home, before heading out to join her family in their reunion.`
@@ -6614,7 +6614,7 @@ mission "Stranded In Paradise 2"
 		has "FW Embassy 1B: done"
 	on offer
 		conversation
-			`While walking through the spaceport, you are surprised to see Shirley and Darren Burnbeck, along with a young man, who you recognize as Leigh after a few seconds. They greet you warmly, reassure you that Erin is just off to university on Zug, and so couldn't join them on this vacation, and invite you to have dinner with them at the spaceport cafe.`
+			`While walking through the spaceport, you are surprised to see Shirley and Darren Burnbeck, along with a young man, who you recognize as Leigh after a few seconds. They greet you warmly, reassure you that Erin is just off to university on Zug and so couldn't join them on this vacation, and invite you to have dinner with them at the spaceport cafe.`
 			choice
 				`	(Accept.)`
 					goto cafe
@@ -6629,8 +6629,8 @@ mission "Stranded In Paradise 2"
 				decline
 
 mission "Southern Fiance 1"
-	name "Fiance to <planet>"
 	minor
+	name "Fiance to <planet>"
 	description "Tom, formerly a marketer for the Syndicate, is going to live with his fiance on <destination>. Payment is <payment>."
 	source
 		attributes "core"
@@ -6669,7 +6669,7 @@ mission "Southern Fiance 1"
 		conversation
 			`During the trip to <destination>, you had several conversations with Tom, on a wide range of topics. The most common topic was his fiance, named Carl Chamberlain, sharing dozens of pictures of them together. He also presented some of his own portfolio, as a marketer and designer for a division of Syndicated Systems - at least until he quit his job for this. "I'm not worried, though," he remarks. "Money's fun, of course, but it's nothing compared to what we can do down there on Cornucopia."`
 			`	The trip south seems to fly by, and soon you are standing at the foot of the ramp shaking Tom's hand and bidding him farewell as Carl runs across the tarmac toward you. You step back as they practically leap into each other's arms, reuniting in spite of these tumultuous times.`
-			`	When you're back on board, you see an incoming message that informs you <payment> has been transferred to your account, along with a heartfelt thank-you note from both men.`
+			`	When you're back on board, you see an incoming message that informs you <payment> have been transferred to your account, along with a heartfelt thank-you note from both men.`
 
 event "tom and carl's wedding"
 
@@ -6763,7 +6763,7 @@ mission "Southern Fiance 6"
 			label already
 			`Like last time, the spaceport controller diverts you to the Governor's personal landing pad. Tom and Carl are waiting for you once more, and they greet you warmly. They take you in an official government vehicle to the governor's mansion, with a trying-to-be-subtle security detail always following just on the periphery.`
 			branch already2
-				has "Take Me To The South D: Followup 2A: declined"
+				has "Southern Fiance 5: declined"
 				
 			`	The official mansion is much more impressive than Carl's house as Agricultural Minister was, and Tom gives you a tour while Carl has to field some official phone calls. Partway through the tour, Tom gets a mischievous grin, and when he opens the next door, a very small child races out and cannons into his legs, gripping them tightly with a glad cry of "Daddy!" Tom proudly introduces Nita, his and Carl's three-year-old daughter, who giggles and tries to run off with your communicator.`
 			`	You're already looking forward to the food well before you sit down to dinner, and you are not disappointed: if anything, it's better than the last time you visited them. Carl confides that it used to be even better, but a year ago his best cook left to become a star teacher at the new culinary institute whose funding he championed.`
