@@ -51,6 +51,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Plugins.h"
 #include "PointerShader.h"
 #include "Politics.h"
+#include "RenderBuffer.h"
 #include "RingShader.h"
 #include "Ship.h"
 #include "Sprite.h"
@@ -221,6 +222,7 @@ void GameData::LoadShaders()
 	RingShader::Init();
 	SpriteShader::Init();
 	BatchShader::Init();
+	RenderBuffer::Init();
 
 	background.Init(16384, 4096);
 }
