@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Mission.h"
 #include "OutfitInfoDisplay.h"
 #include "Point.h"
+#include "ScrollVar.h"
 #include "ShipInfoDisplay.h"
 
 #include <map>
@@ -164,15 +165,9 @@ protected:
 	const Outfit *selectedOutfit = nullptr;
 	// (It may be worth moving the above pointers into the derived classes in the future.)
 
-	double mainScroll = 0.;
-	double mainSmoothScroll = 0;
-	double sidebarScroll = 0.;
-	double sidebarSmoothScroll = 0.;
-	double infobarScroll = 0.;
-	double infobarSmoothScroll = 0.;
-	double maxMainScroll = 0.;
-	double maxSidebarScroll = 0.;
-	double maxInfobarScroll = 0.;
+	ScrollVar<double> mainScroll = 0.;
+	ScrollVar<double> sidebarScroll = 0.;
+	ScrollVar<double> infobarScroll = 0.;
 	ShopPane activePane = ShopPane::Main;
 	char hoverButton = '\0';
 
@@ -201,7 +196,7 @@ private:
 
 	int DrawPlayerShipInfo(const Point &point);
 
-	bool DoScroll(double dy);
+	bool DoScroll(double dy, int steps = 5);
 	bool SetScrollToTop();
 	bool SetScrollToBottom();
 	void SideSelect(int count);

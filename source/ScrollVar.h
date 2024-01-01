@@ -32,6 +32,8 @@ public:
 
 	// Set the maximum size of the scroll content.
 	void SetMaxValue(const T &value);
+	// Get the maximum size of the scroll content.
+	const T &MaxValue() const;
 	// Set the size of the displayable scroll area.
 	void SetDisplaySize(const T &size);
 	// Returns true if scroll buttons are needed.
@@ -70,6 +72,14 @@ void ScrollVar<T>::SetMaxValue(const T &value)
 {
 	maxVal = value;
 	Clamp(0);
+}
+
+
+
+template <typename T>
+const T &ScrollVar<T>::MaxValue() const
+{
+	return maxVal;
 }
 
 
