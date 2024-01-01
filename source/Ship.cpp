@@ -2020,8 +2020,7 @@ bool Ship::FireAntiMissile(const Projectile &projectile, vector<Visual> &visuals
 Point Ship::FireTractorBeam(const Flotsam &flotsam, vector<Visual> &visuals)
 {
 	Point pullVector;
-	const double distance = flotsam.Position().Distance(position);
-	if(distance > tractorBeamRange || distance - Radius() <= 0)
+	if(flotsam.Position().Distance(position) > tractorBeamRange)
 		return pullVector;
 	if(CannotAct())
 		return pullVector;
@@ -2046,7 +2045,7 @@ Point Ship::FireTractorBeam(const Flotsam &flotsam, vector<Visual> &visuals)
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
 	{
 		const Weapon *weapon = hardpoints[i].GetOutfit();
-		if(weapon && CanFire(weapon))
+		if(weapon && CanFire(weapon) && flotsam.Position().Distance(position + hardpoints[i].GetPoint()) - 5. > 0.)
 			if(armament.FireTractorBeam(i, *this, flotsam, visuals, Random::Real() < jamChance))
 			{
 				Point hardpointPos = Position() + Zoom() * Facing().Rotate(hardpoints[i].GetPoint());
