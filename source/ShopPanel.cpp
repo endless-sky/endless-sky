@@ -597,7 +597,12 @@ bool ShopPanel::Drag(double dx, double dy)
 				}
 	}
 	else
+	{
 		DoScroll(dy);
+		infobarSmoothScroll = infobarScroll;
+		sidebarSmoothScroll = sidebarScroll;
+		mainSmoothScroll = mainScroll;
+	}
 
 	return true;
 }
