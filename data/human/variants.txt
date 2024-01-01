@@ -1417,7 +1417,7 @@ ship "Dagger" "Dagger (Miner)"
 		"Mining Laser"
 
 		"nGVF-BB Fuel Cell"
-		"Supercapacitor" 3
+		"Supercapacitor"
 		"D14-RN Shield Generator"
 		
 		"X1700 Ion Thruster"
