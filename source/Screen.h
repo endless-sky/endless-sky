@@ -42,6 +42,7 @@ public:
 		int oldHeight = 0;
 	};
 
+
 public:
 	static void SetRaw(int width, int height);
 
