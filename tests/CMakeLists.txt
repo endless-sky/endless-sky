@@ -3,6 +3,11 @@ if(UNIX AND NOT APPLE)
 	set_target_properties(EndlessSkyTests PROPERTIES OUTPUT_NAME "endless-sky-tests")
 endif()
 
+if(NOT MSVC)
+	target_compile_options(EndlessSkyTests PUBLIC
+		"-Wall" "-pedantic-errors" "-Wold-style-cast" "-fno-rtti")
+endif()
+
 # Every source file (and header file) should be listed here.
 # If you add a new file, add it to this list.
 target_sources(EndlessSkyTests PRIVATE
