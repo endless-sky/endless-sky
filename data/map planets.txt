@@ -291,7 +291,7 @@ planet Baianus
 
 planet Bailey
 	attributes ccor mining
-	landscape land/lava3
+	landscape land/lava9
 	description `Bailey is a dead, nearly tidally locked world scarcely larger and more habitable than Mercury. Its cool side has hardened into a mineral-rich crust, a rarity in this region of space. Despite its inhospitable conditions, Bailey's bountiful crust has brought several mining expeditions to the planet.`
 	description `	Like aphids sucking the sap from a plant, semi-mobile mining stations strip and refine the minerals, a method originally developed by the Confederated Councils. Since their fall, the pirates of the region have maintained the stations - although with considerably less organization than what was upheld by the central government.`
 	spaceport `Given the roving nature of the settlements, and the lack of a livable atmosphere, the spaceport and other major infrastructure are located on a repulsor-lift facility hovering a meter above Bailey's surface. Floating in place thanks to the lack of atmosphere, the planet slowly rotates beneath it while the facility is always on Bailey's dark side.`
@@ -1634,7 +1634,7 @@ planet Furnace
 
 planet Gagarin
 	attributes ccor factory urban
-	landscape land/city0
+	landscape land/city16
 	description `Gagarin is the most populous planet in what used to be the Confederated Councils of the Outer Rim, and it was one of the first colonies established in this region. All of the settlements on Gagarin are connected to a planetary transport and infrastructure grid... although the grid hasn't been able to keep pace with Gagarin's growing population. Despite having been designed for expansion commensurate with increasing demand, such a resource-intensive infrastructure project became harder and harder to maintain due to continuous supply shortages. The collapse of the CCOR has only exacerbated the grid's deficiencies.`
 	spaceport `The heart of the planetary infrastructure network, Gargarin's spaceport is perpetually crowded. Materials are constantly coming and going with ships landing, taking off, or being moved to underground hangars if they can't be unloaded on time. At least the spaceport appears to be able to meet demand, if just barely.`
 	spaceport `	On the walls of the spaceport you see faded emblems for the CCOR, some of which have been plastered over by the local authorities, and others which have been plastered over again by the CCOR guerrillas.`
@@ -2280,7 +2280,7 @@ planet Ironfirth
 
 planet Jakobsen
 	attributes ccor farming
-	landscape land/sea4
+	landscape land/sea18
 	description `Jakobsen is an ocean world with only 6% of its surface above sea level. The land consists almost exclusively of volcanic islands and atolls, as any land not refreshed by plate tectonics is slowly being eroded away by the immense seasonal storms that wreathe the planet.`
 	description `	Despite these conditions, Jakobsen is an agricultural world, with vast fields of algae cultivated both to sustain the atmosphere's oxygen content and to provide a nutritious, if bland, staple food.`
 	spaceport `The spaceport is a wholly artificial island constructed near the center of one of the larger archipelagos. Surrounded by breakwaters and raised several meters above the water line, the landing platforms are partially protected from the dangers of the planet's storms; additionally, the smaller pads can be lowered into underground hangars to prevent them from being swept away.`
@@ -2563,7 +2563,7 @@ planet Luna
 
 planet "Mordente-Bridi"
 	attributes ccor military station urban
-	landscape land/city6
+	landscape land/city3
 	music ambient/machinery
 	description `A testament to the ingenuity of the engineering corps of the now defunct CCOR, the massive Mordente-Bridi Station is one of the largest in human space. Twin cylinders Mordente and Bridi make up the station's hull, built from the strongest alloy the CCOR could manufacture at scale. Bridi Cylinder is pressurized and contains crew quarters and logistical infrastructure amounting to that of a sizable city, while Mordente Cylinder contains what was the Outer Rim's main shipyard.`
 	spaceport `Apart from the spaceport facilities, almost none of Mordente Cylinder is pressurized. Making up most of its armored hull is a micro-gravity shipyard, which despite not being subject to a central government and defense force has remained quite busy. Worker shuttles are busily flying about the large space, tending to a multitude of ships; you notice that a few of them are also engaged in constructing new vessels.`
@@ -2731,7 +2731,7 @@ planet Memory
 
 planet "Mendez Station"
 	attributes ccor station
-	landscape land/station20
+	landscape land/station2
 	music ambient/machinery
 	description `Mendez Station is the closest object to Alpherg's twin stars. Constructed by the CCOR as part of its efforts to build self-sufficiency in the Outer Rim, the station's gigantic ramscoops collect charged particles from the system's solar winds and refine them into hyperdrive fuel.`
 	description `	Since its establishment, Mendez has been uninhabited for most of its operational life. The station's location makes it uncomfortably hot, and as a result, Mendez is almost entirely automated apart from a small control room used during maintenance.`
