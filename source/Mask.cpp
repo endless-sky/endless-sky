@@ -390,12 +390,10 @@ bool Mask::WithinRing(Point point, Angle facing, double inner, double outer) con
 
 	// While a ring might not contain any outlines of the mask, it may be
 	// located entirely inside of the mask. This should still count as the
-	// mask being within the ring. The inner radius of the ring must be
-	// smaller than the mask's radius for this to even be a possibility,
-	// as otherwise the center of the ring may be contained within the mask,
-	// but the ring itself can't possibly touch any contents of the mask
-	// because the inner edge of the ring is too far away.
-	return inner < radius && Contains(point, facing);
+	// mask being within the ring. This can only be the case if the
+	// entire ring is smaller than the radius of the mask and the center
+	// of the ring is within the mask.
+	return outer < radius && Contains(point);
 }
 
 
