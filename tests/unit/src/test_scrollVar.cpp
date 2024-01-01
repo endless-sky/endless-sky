@@ -61,21 +61,21 @@ SCENARIO( "Creating a ScrollVar", "[ScrollVar][Creation]" ) {
 				}
 				AND_WHEN( "you step once" ) {
 					sv.Step();
-					THEN ("the ScrollVar animation advances one unit") {
+					THEN( "the ScrollVar animation advances one unit" ) {
 						CHECK(sv.AnimatedValue() == 1.0);
 					}
 				}
 				AND_WHEN( "you step five times" ) {
-					for (int i = 0; i < 5; ++i)
+					for(int i = 0; i < 5; ++i)
 						sv.Step();
-					THEN ("the ScrollVar animation advances five units") {
+					THEN( "the ScrollVar animation advances five units" ) {
 						CHECK(sv.AnimatedValue() == 5.0);
 					}
 				}
 				AND_WHEN( "you step six times" ) {
-					for (int i = 0; i < 6; ++i)
+					for(int i = 0; i < 6; ++i)
 						sv.Step();
-					THEN ("the ScrollVar animation advances only five units") {
+					THEN( "the ScrollVar animation advances only five units" ) {
 						CHECK(sv.AnimatedValue() == 5.0);
 					}
 				}
