@@ -1355,3 +1355,6 @@ tip "Scroll speed"
 
 tip "Date format"
 	`The format that dates in the game are displayed in.`
+
+tip "Cloaked ship outlines"
+	`Transparent with a red outline when set to fancy, just red when fast.`
