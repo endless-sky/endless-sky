@@ -103,7 +103,6 @@ test "Npc Destination Test"
 			travel Procyon
 			travel Sirius
 			"travel destination" Geminus
-		watchdog 12000
 		call "Depart"
 		# trigger the mission
 		call "Land"
