@@ -333,6 +333,88 @@ effect "heavy laser impact"
 	"random velocity" 1
 	"velocity scale" -.007
 
+outfit "Mining Laser"
+	category "Guns"
+	cost 38000
+	thumbnail "outfit/mining laser"
+	"mass" 12
+	"outfit space" -12
+	"weapon capacity" -12
+	"gun ports" -1
+	weapon
+		sprite "projectile/mining laser"
+			"frame rate" 1
+		sound "mining laser"
+		"hit effect" "beam laser impact"
+		"inaccuracy" .35
+		"velocity" 200
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 1.1
+		"firing heat" 2.1
+		"shield damage" .8
+		"hull damage" 1.4
+		"minable damage" 1.9
+		"prospecting" 0.1
+	description "Mining Laser."
+
+outfit "Mining Laser Turret"
+	category "Turrets"
+	cost 66000
+	thumbnail "outfit/mining laser turret"
+	"mass" 18
+	"outfit space" -18
+	"weapon capacity" -18
+	"turret mounts" -1
+	"required crew" 1
+	weapon
+		sprite "projectile/mining laser"
+			"frame rate" 1
+		"hardpoint sprite" "hardpoint/mining laser turret"
+		"hardpoint offset" 0.7 8.
+		sound "mining laser"
+		"hit effect" "beam laser impact"
+		"inaccuracy" .35
+		"turret turn" 3.8
+		"velocity" 200
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 1.1
+		"firing heat" 2.1
+		"shield damage" .8
+		"hull damage" 1.4
+		"minable damage" 1.9
+		"prospecting" 0.1
+	description "Mining Laser Turret."
+
+outfit "Tractor Beam"
+	category "Turrets"
+	cost 75000
+	thumbnail "outfit/tractor beam"
+	"mass" 22
+	"outfit space" -22
+	"weapon capacity" -22
+	"turret mounts" -1
+	weapon
+		"hardpoint sprite" "hardpoint/tractor beam"
+		"hardpoint offset" 4.
+		"hit effect" "tractor beam"
+		"tractor beam" 10
+		"velocity" 300
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 2.1
+		"firing heat" .8
+	description "The anti-gravity properties of repulsor engines that allow ships to escape the gravity well of planets without the difficulty that humanity once faced before the era of the hyperdrive started a revolution in human spaceflight during the 24th century, and it was not long before this technology was put to use elsewhere."
+	description "	Tractor beams utilize repulsor technology to allow ships to attract space debris to them, be that the ores from a recently mined asteroid or the dumped cargo from a merchant ship fleeing for its life. This has led to tractor beams being a popular outfit among asteroid miners and pirates alike."
+
+effect "tractor beam"
+	sprite "effect/tractor beam"
+		"frame rate" 2
+		"random start frame"
+	sound "tractor beam"
+	"lifetime" 1
+	"velocity scale" 1
 
 outfit "Electron Beam"
 	category "Guns"
@@ -1463,91 +1545,3 @@ effect "bullet impact"
 	"lifetime" 8
 	"random angle" 40
 	"velocity scale" -.05
-
-
-
-outfit "Tractor Beam"
-	category "Turrets"
-	cost 75000
-	thumbnail "outfit/tractor beam"
-	"mass" 22
-	"outfit space" -22
-	"weapon capacity" -22
-	"turret mounts" -1
-	weapon
-		"hardpoint sprite" "hardpoint/tractor beam"
-		"hardpoint offset" 4.
-		"hit effect" "tractor beam"
-		"tractor beam" 10
-		"velocity" 300
-		"lifetime" 1
-		"reload" 1
-		"firing energy" 2.1
-		"firing heat" .8
-	description "The anti-gravity properties of repulsor engines that allow ships to escape the gravity well of planets without the difficulty that humanity once faced before the era of the hyperdrive started a revolution in human spaceflight during the 24th century, and it was not long before this technology was put to use elsewhere."
-	description "	Tractor beams utilize repulsor technology to allow ships to attract space debris to them, be that the ores from a recently mined asteroid or the dumped cargo from a merchant ship fleeing for its life. This has led to tractor beams being a popular outfit among asteroid miners and pirates alike."
-
-effect "tractor beam"
-	sprite "effect/tractor beam"
-		"frame rate" 2
-		"random start frame"
-	sound "tractor beam"
-	"lifetime" 1
-	"velocity scale" 1
-
-
-
-outfit "Mining Laser"
-	category "Guns"
-	cost 38000
-	thumbnail "outfit/mining laser"
-	"mass" 12
-	"outfit space" -12
-	"weapon capacity" -12
-	"gun ports" -1
-	weapon
-		sprite "projectile/mining laser"
-			"frame rate" 1
-		sound "mining laser"
-		"hit effect" "beam laser impact"
-		"inaccuracy" .35
-		"velocity" 200
-		"lifetime" 1
-		"reload" 1
-		"firing energy" 1.1
-		"firing heat" 2.1
-		"shield damage" .8
-		"hull damage" 1.4
-		"minable damage" 1.9
-		"prospecting" 0.1
-	description "Mining Laser."
-
-
-outfit "Mining Laser Turret"
-	category "Turrets"
-	cost 66000
-	thumbnail "outfit/mining laser turret"
-	"mass" 18
-	"outfit space" -18
-	"weapon capacity" -18
-	"turret mounts" -1
-	"required crew" 1
-	weapon
-		sprite "projectile/mining laser"
-			"frame rate" 1
-		"hardpoint sprite" "hardpoint/mining laser turret"
-		"hardpoint offset" 0.7 8.
-		sound "mining laser"
-		"hit effect" "beam laser impact"
-		"inaccuracy" .35
-		"turret turn" 3.8
-		"velocity" 200
-		"lifetime" 1
-		"reload" 1
-		"firing energy" 1.1
-		"firing heat" 2.1
-		"shield damage" .8
-		"hull damage" 1.4
-		"minable damage" 1.9
-		"prospecting" 0.1
-	description "Mining Laser Turret."

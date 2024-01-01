@@ -3667,10 +3667,11 @@ ship "Sunder"
 		"Mining Laser" 2
 		"Tractor Beam"
 
+		"Asteroid Scanner"
 		"nGVF-CC Fuel Cell"
-		"LP072a Battery Pack"
+		"LP036a Battery Pack"
 		"D23-QP Shield Generator"
-		
+
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
 		"Hyperdrive"
