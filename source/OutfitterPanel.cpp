@@ -246,7 +246,7 @@ double OutfitterPanel::DrawDetails(const Point &center)
 	string selectedItem = "Nothing Selected";
 	const Font &font = FontSet::Get(14);
 
-	int heightOffset = 20;
+	double heightOffset = 20.;
 
 	if(selectedOutfit)
 	{

@@ -52,6 +52,7 @@ public:
 	// Shortcut mathmatical operators for convenience.
 	ScrollVar &operator=(const T &v);
 
+
 private:
 	// Makes sure the animation value stays in range.
 	void Clamp(int steps);
@@ -155,6 +156,7 @@ ScrollVar<T> &ScrollVar<T>::operator=(const T &v)
 	Set(v);
 	return *this;
 }
+
 
 
 #endif

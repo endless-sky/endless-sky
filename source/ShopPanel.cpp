@@ -1213,7 +1213,7 @@ void ShopPanel::MainRight()
 	if(it == zones.end() || ++it == zones.end())
 	{
 		it = zones.begin();
-		mainScroll = 0;
+		mainScroll = 0.;
 	}
 	else
 		MainAutoScroll(it);
@@ -1266,7 +1266,7 @@ void ShopPanel::MainDown()
 	// Special case: nothing is selected. Select the first item.
 	if(it == zones.end())
 	{
-		mainScroll = 0;
+		mainScroll = 0.;
 		selectedShip = zones.begin()->GetShip();
 		selectedOutfit = zones.begin()->GetOutfit();
 		return;
@@ -1279,7 +1279,7 @@ void ShopPanel::MainDown()
 	if(it == zones.end())
 	{
 		it = zones.begin();
-		mainScroll = 0.0;
+		mainScroll = 0.;
 	}
 	else
 		MainAutoScroll(it);
