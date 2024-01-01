@@ -28,89 +28,109 @@ namespace { // test namespace
 
 
 // #region unit tests
-TEST_CASE( "ScrollVar::ScrollVar()" ) {
-	ScrollVar<double> sv;
-	CHECK_FALSE(sv.Scrollable());
-	CHECK(sv == 0.0);
-	CHECK(sv.AnimatedValue() == 0.0);
-	CHECK(sv.MaxValue() == 0.0);
-}
+SCENARIO( "Creating a ScrollVar", "[ScrollVar][Creation]" ) {
+	GIVEN( "a new ScrollVar" ) {
+		ScrollVar<double> sv;
+		WHEN( "no changes are made to it" ) {
+			THEN( "it isn't scrollable" ) {
+				CHECK_FALSE(sv.Scrollable());
+				CHECK(sv == 0.0);
+				CHECK(sv.AnimatedValue() == 0.0);
+				CHECK(sv.MaxValue() == 0.0);
+			}
+		}
+		WHEN( "its max scroll value is set to 10" ) {
+			sv.SetMaxValue(10.0);
+			THEN( "the SrollVar is now scrollable and is at the min scroll" ) {
+				CHECK(sv.Scrollable());
+				CHECK(sv.IsScrollAtMin());
+				CHECK_FALSE(sv.IsScrollAtMax());
+				CHECK(sv == 0.0);
+				CHECK(sv.AnimatedValue() == 0.0);
+				CHECK(sv.MaxValue() == 10.0);
+			}
+			AND_WHEN( "you scroll 5 units" ) {
+				sv.Scroll(5.0);
+				THEN( "the ScrollVar is not at the min or max scroll" ) {
+					CHECK(sv.Scrollable());
+					CHECK_FALSE(sv.IsScrollAtMin());
+					CHECK_FALSE(sv.IsScrollAtMax());
+					CHECK(sv == 5.0);
+					CHECK(sv.AnimatedValue() == 0.0);
+					CHECK(sv.MaxValue() == 10.0);
+				}
+				AND_WHEN( "you step once" ) {
+					sv.Step();
+					THEN ("the ScrollVar animation advances one unit") {
+						CHECK(sv.AnimatedValue() == 1.0);
+					}
+				}
+				AND_WHEN( "you step five times" ) {
+					for (int i = 0; i < 5; ++i)
+						sv.Step();
+					THEN ("the ScrollVar animation advances five units") {
+						CHECK(sv.AnimatedValue() == 5.0);
+					}
+				}
+				AND_WHEN( "you step six times" ) {
+					for (int i = 0; i < 6; ++i)
+						sv.Step();
+					THEN ("the ScrollVar animation advances only five units") {
+						CHECK(sv.AnimatedValue() == 5.0);
+					}
+				}
+			}
+			AND_WHEN( "you scroll 10 units" ) {
+				sv.Scroll(10.0);
+				THEN( "the ScrollVar is at the max scroll" ) {
+					CHECK(sv.Scrollable());
+					CHECK_FALSE(sv.IsScrollAtMin());
+					CHECK(sv.IsScrollAtMax());
+					CHECK(sv == 10.0);
+					CHECK(sv.AnimatedValue() == 0.0);
+					CHECK(sv.MaxValue() == 10.0);
+				}
+			}
+			AND_WHEN( "you scroll 15 units" ) {
+				sv.Scroll(15.0);
+				THEN( "the ScrollVar does not exceed the max value" ) {
+					CHECK(sv.MaxValue() == 10.0);
+					CHECK(sv == 10.0);
+				}
+			}
+			AND_WHEN( "you scroll 10 units and then change the max to 5 units" ) {
+				sv.Scroll(10.0);
+				sv.SetMaxValue(5.0);
+				THEN( "the ScrollVar value is clamped to the new max") {
+					CHECK(sv.MaxValue() == 5.0);
+					CHECK(sv == 5.0);
+				}
+			}
+			AND_WHEN( "you set the display size to 5" )
+			{
+				sv.SetDisplaySize(5.0);
+				THEN( "the ScrollVar is scrollable up to 5 units" ) {
+					CHECK(sv.Scrollable());
+					CHECK(sv.IsScrollAtMin());
+					CHECK(!sv.IsScrollAtMax());
 
-TEST_CASE( "ScrollVar::SetMaxValue()" ) {
-	ScrollVar<double> sv;
-	sv.SetMaxValue(10.0);
-	CHECK(sv.Scrollable());
-	CHECK(sv.IsScrollAtMin());
-	CHECK(!sv.IsScrollAtMax());
-	CHECK(sv == 0.0);
-	CHECK(sv.AnimatedValue() == 0.0);
-	CHECK(sv.MaxValue() == 10.0);
-}
-
-TEST_CASE( "ScrollVar::Scroll()" ) {
-	ScrollVar<double> sv;
-	sv.SetMaxValue(10.0);
-	sv.Scroll(5.0);
-	CHECK(sv.Scrollable());
-	CHECK(!sv.IsScrollAtMin());
-	CHECK(!sv.IsScrollAtMax());
-	CHECK(sv == 5.0);
-	CHECK(sv.AnimatedValue() == 0.0);
-	CHECK(sv.MaxValue() == 10.0);
-}
-
-TEST_CASE( "ScrollVar::Step()" ) {
-	ScrollVar<double> sv;
-	sv.SetMaxValue(10.0);
-	sv.Scroll(5.0);
-	CHECK(sv.Scrollable());
-	CHECK(!sv.IsScrollAtMin());
-	CHECK(!sv.IsScrollAtMax());
-	CHECK(sv == 5.0);
-	CHECK(sv.AnimatedValue() == 0.0);
-	CHECK(sv.MaxValue() == 10.0);
-	sv.Step();
-	CHECK(sv.AnimatedValue() == Approx(1.0));
-	sv.Step();
-	CHECK(sv.AnimatedValue() == Approx(2.0));
-	sv.Step();
-	CHECK(sv.AnimatedValue() == Approx(3.0));
-	sv.Step();
-	CHECK(sv.AnimatedValue() == Approx(4.0));
-	sv.Step();
-	CHECK(sv.AnimatedValue() == Approx(5.0));
-	sv.Step();
-	CHECK(sv.AnimatedValue() == Approx(5.0));
-}
-
-TEST_CASE( "ScrollVar::Clamp()" ) {
-	ScrollVar<double> sv;
-	sv.SetMaxValue(10.0);
-	sv.Scroll(15.0);
-
-	CHECK(sv.MaxValue() == 10.0);
-	CHECK(sv == 10.0);
-
-	sv.SetMaxValue(5.0);
-	CHECK(sv.MaxValue() == 5.0);
-	CHECK(sv == 5.0);
-}
-
-TEST_CASE( "ScrollVar::SetDisplaySize()" ) {
-	ScrollVar<double> sv;
-	sv.SetMaxValue(10.0);
-	sv.SetDisplaySize(10);
-	CHECK(!sv.Scrollable());
-
-	sv.SetDisplaySize(5.0);
-	CHECK(sv.Scrollable());
-	CHECK(sv.IsScrollAtMin());
-	CHECK(!sv.IsScrollAtMax());
-
-	sv.Scroll(10.0);
-	CHECK(!sv.IsScrollAtMin());
-	CHECK(sv.IsScrollAtMax());
-	CHECK(sv == 5.0);
+					sv.Scroll(10.0);
+					CHECK(!sv.IsScrollAtMin());
+					CHECK(sv.IsScrollAtMax());
+					CHECK(sv == 5.0);
+				}
+			}
+			AND_WHEN( "you set the display size to 10" )
+			{
+				sv.SetDisplaySize(10.0);
+				THEN( "the ScrollVar is no longer scrollable and is at the min scroll" ) {
+					CHECK_FALSE(sv.Scrollable());
+					CHECK(sv == 0.0);
+					CHECK(sv.AnimatedValue() == 0.0);
+				}
+			}
+		}
+	}
 }
 
 // Test code goes here. Preferably, use scenario-driven language making use of the SCENARIO, GIVEN,
