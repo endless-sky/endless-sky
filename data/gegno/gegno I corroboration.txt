@@ -1028,7 +1028,7 @@ mission "Acquiescence"
 
 			`	You watch as the Gegno enters the other cage, and after a few clanks of chains and other sounds, ascend up above to wherever your next destination is without a second thought. You reluctantly enter the other one, and after a few moments, begin ascending as well. The shaking and clanging of the lift doesn't exactly ease your mind, but at least you're still in one piece.`
 			`	All of a sudden, you start to hear a deep, methodical rumble coming from above you. A few more seconds go by, and in an instant you're met with a gust of air. Your cage is out in the open air, connected to just a few support beams and the pulley system that is lifting it. Surrounding the core of the tower in front of you are other large metal pulley systems, with the Gegno in the one in the distance to your left. The low rumbling you heard earlier is clear now - as you're ascending, various levels of the tower's core have numerous balconies with many other Gegno playing large timpany-like drums to a tribal-like tune, occasionally grunting or blowing another horn-like instrument.`
-			`	After a few more minutes of chanting and drumming, several layers of smog, and possibly height sickness, the lift arrives at the very top of the tower - a huge, circular platform out in the open with a bunch of important-looking Gegno formed up around a large device of sorts. In contrast to the base, this part of the tower seems to be the most technologically advanced, with some other devices spead around the surface. Extending to the darkened sky is a ring of electronic torches, and as you look at them, you see in the far distance other towers and buildings alike. The Gegno that has guided you here gestures one last time to go to their location amongst the others.`
+			`	After a few more minutes of chanting and drumming, several layers of smog, and possibly height sickness, the lift arrives at the very top of the tower - a huge, circular platform out in the open with a bunch of important-looking Gegno formed up around a large tabe of sorts that looks like a display grid with several statuettes of planets and ships on top of it. In contrast to the base, this part of the tower seems to be the most technologically advanced, with some other types of devices spead around the surface. Extending to the darkened sky is a ring of electronic torches, with other towers and buildings alike far in the distance behind them. The Gegno that has guided you here gestures one last time to go to their location amongst the others.`
 			choice
 				`	(Go to the Gegno.)`
 					goto "meeting"
@@ -1038,62 +1038,131 @@ mission "Acquiescence"
 
 			label meeting
 			`	Once you meet up with the Gegno, the drumming and chants come to an abrupt hault. The device at the center of the platform is some sort of monitor on the ground, and shown on it are various texts - none of which you can understand. Three Gegno standing next to one another, separate from everyone else, begin speaking in low, booming voices, also none of which you can understand. One of them is very bulky and looks like Gegno that belong to the Vi faction, meanwhile the other two are a bit more like the civilian Gegno you've seen glimpses of before. All three of them are wearing the same set of armor, which looks much more intricate than anything else you've seen, with various protrustions, drapes, and other details. Aside from them, all of the other Gegno present are of various builds, though none of them are wearing any colors indicating a faction. Some of them gaze toward you occasionally, while others pay you no attention at all.`
-			`	The awkwardness of the situation increases as time goes by. Several minutes have passed now, and during that time, a few Gegno from the crowd have stepped up to the opposite side of the device from the trio, possibly speaking about you as they do. You look over to your Gegno guide standing next to you, but their gaze is locked on the conversation ahead. They haven't gone up to speak at all, until a few moments later, when one of the trio calls them over. An image of the desert planet where everything started comes up on the device, and a heated-sounding discussion follows. As you watch, you notice that it is the only Gegno with that red band on their arm. The other Gegno in the crowd don't seem very pleased as their discussion continues.`
+			`	The awkwardness of the situation increases as time goes by. Several minutes have passed now, and during that time, a few Gegno from the crowd have stepped up to the opposite side of the table from the trio, possibly speaking about you as they do. You look over to your Gegno guide standing next to you, but their gaze is locked on the conversation ahead. They haven't gone up to speak at all, until a few moments later, when one of the trio calls them over, shoving over a statuette of a desert planet, the one where everything started. A heated-sounding discussion follows, and while you watch your guide, you notice that it is the only Gegno with that red band on their arm. The other Gegno in the crowd don't seem very pleased as their discussion continues.`
 			`	Though it seemed like it was never coming, the moment comes where the bulkier of the trio directly gestures to you. The tension of the situation skyrockets as they say something in their language, then gesture you to stand across from them. All of the other Gegno are now staring you down, waiting, as your guide heads off to the side.`
 			choice
 				`	(Approach the trio.)`
 				`	(Remain where you stand.)`
 #					goto "stay"
 
-			`	Any Gegno in your path march out of your way as you approach the center of the platform. You're in the spotlight now, and the silence is deafening. As soon as you stop at the trio, a few images of the <ship> in various contexts come up on the device, alongside images of several planets you've been to in Gegno space. Following another brief moment of silence, one which seemingly everyone braces themselves for, one of the three addresses you in their language at a lower volume than they were speaking before.`
+			`	Any Gegno in your path march out of your way as you approach the center of the platform. You're in the spotlight now, and the silence is deafening. As soon as you stop at the trio, a few images of the <ship> in various contexts come up on the table's monitor, and one of the trio moves several planet figurines of the ones you've been to in Gegno space. Following another brief moment of silence, one which seemingly everyone braces themselves for, one of the three addresses you in their language at a lower volume than they were speaking before.`
 			`	"Eyuu udyom Gegno tyysis. Udiyh tei arrtes ofor tei piyepuo?"`
 			choice
 				`	"Are you asking something about the Gegno?"`
 				`	"I would like to work out something with the Gegno."`
 				`	"I'm sorry, I don't understand what you are saying."`
 
-			`	The Gegno stares at you, then looks at the display.`
+			`	The Gegno stares at you, then looks at the display, which is slowly paning between the situations you've found yourself in.`
 				decline
 
 
-# Branch for BGS Missions
+			`	A more detailed image of a desert planet, different than the first one, comes onto the display. Alongside it are many graphics - one representing a platoon of Vi warriors, one of the Gegno ship type you saw there, and a few words scrolling by, possibly names of each warrior that was present that day. Next to the name of the planet is a smaller graphic of one of those giant sandworms you fought, suggesting that they're found on desert worlds beyond the first one.`
+				to display
+					has "Passive-Aggressive Observations: declined"
 
-			# Observations
 
-			# Bystander (maybe leave this out as a sort of safety measure against said bystander becoming public knowledge yet)
+			`	To the side of the table is a statuette of the Mercury-like planet here in their home system, though it doesn't come up on the screen at any point.`
+				to display
+					has "Brief Bystander: declined"
 
-			# Eogho
 
-			# Cyife
+			`	An image of distinct ships come up that match a pair of statuettes on the table. One of them is the same type of Vi ship you came across in the sand on the desert world, and the other is a Scin ship that looks like a derivative of other Gegno ships. You hear someone in the crowd yell loudly in what might be disappointment, but they are silenced by the Gegno trio.`
+				to display
+					has "Foreign Spectator I: failed"
 
-			# Zydee (notable as an important battle took place)
 
-# Other Branches
+			`	One of the more heavily represented situations is the one that involved a large battle between the Vi and Scin over a moon orbiting a forest world. A long list of phrases scrolls by with graphics of different Gegno ships next to them, probably those who took part in said battle. A few of the Gegno around you murmur to each other, occasionally grunting.`
+				to display
+					has "Battle over Zydee: offered"
 
-			# List of lives if you've killed anyone
-			
-			# List the Augen if you stole it
+
+			`	On the far end of the table is a small statuette of an ice moon, but besides that, nothing else comes up regarding it.`
+				to display
+					has "Scin on Cyife: offered"
+
+
+			`	You look up to see the trio of Gegno still intently staring at you, meanwhile all of others surrounding you are glaring at you intensely. On the display, two icons appear side by side, and under each of them are long lists of phrases. As they scroll, the Gegno break out in discussion with one another, some loud and some not. You almost jump when the trio address the crowd and begin a speech of sorts, sometimes gesturing to the crowd, and sometimes gesturing to you. Although most of the Gegno seem frustrated, the trio calms the crowd after a few more moments.`
+				to display
+					or
+						"reputation: Gegno Vi" < 0
+						"reputation: Gegno Scin" < 0
+
+			`	The bulkier Gegno of the trio then places a statuette of a massive Vi warship in the middle of the table, one that you definitely recognize. More angry outbursts come from the Gegno, and while the one who placed the statue glares at you, the other two eventually deescalate the uproar.`
+				to display
+					has "dead augen"
+
+
+			`	After having gone through the cases in which you've been involved with the Gegno, the trio addresses the gathering once more with a big speech. Their low, booming voices echo through the outside air, and all of the Gegno respond with concurrent bellows or chants. Once more, everything is left in silence. Oddly enough, you've been treated as an equal with all of the Gegno here - aside from being put in the spotlight, which other Gegno have been as well, you stand amongst them as part of the gathering. Rather than some foreign alien, you aren't restricted in any way, even with a weapon on you. One of the "shorter" Gegno in the trio gestures back to you and speaks to you from across the table. You still don't understand a word they are saying but must have been important as all of the other Gegno, except your guide, back up several more steps, who only takes a few steps back. The trio member gestures with both arms to the table, and all three then back up themselves, leaving you alone in the open with some sort of expectation.`
+
+			label "self proclamation"
+			choice
+			`	(Stay where you are and do nothing.)`
+				goto "do nothing"
+			`	(Approach the table and try to explain your situations.)`
+				goto "explain"
+			`	(Call to your Gegno guide.)`
+
+			action
+				set "gegno: called guide"
+			`	You gesture to your Gegno "friend", hoping that they might be able to weigh in on some of the situations since they've aided you up until now. They don't respond whatsoever, and some of the Gegno in the crowd seem either upset at you for chosing to call to them, or upset at them instead for some reason, grunting a few times. Regardless, it seems they aren't going to help you.`
+				to display
+					not "gegno: called guide"
+				goto "self proclamation"
+
+			label "nothing"
+			`	You don't approach the table, standing awkwardly in the open. Maybe it's better to not say anything at all if you're what they perceive as the problem here. A whole minute of silence goes by, and all of the Gegno, including the trio, haven't so so much as a word, silently judging the choice you've decided to make. The trio then march back to the table, moving all of the statuettes aside as if they're setting up for something.`
+				goto "what does home mean"
+
+			label "explain"
+			`	Walking up to the table, you try your hardest to explain each situation represented on it one by one. Since you can't read or do anything with the actual display on the monitor, you try picking up the statuettes, to which nobody seems bothered by. At the same time, you gesture using your hands, mainly representing your ship flying "away". You wonder if anything you've shown or said makes any sense to the Gegno, but they don't seem to be paying attention to your words or actions themselves, rather, they seem to respond slightly to the tone and emotion of them. After doing your best to describe everything, you back off from the table, and the trio march back up to it, discussing amongst themselves. A few moments later, they start moving all of the statuettes aside as if they're setting up for something.`
+				goto "what does home mean"
+
 
 
 #			label "stay" (more aggressive)
 
 
-# Branch for if you continued with Scin Encounter, where the scin attempts to communicate with you again except in front of everyone.
 
+			label "what does home mean"
+			`	Surprising both you and other Gegno, an image of the planet Earth appears on the monitor. There's no way the Gegno have ever visited human space, let alone leave the borders of their own for something involving another alien species. How they got this image is a mystery, but the fact is that an image of the ancestral homeworld of humanity is right in front of you. The member of the Gegno trio that has spoken the least then steps forward, but instead of up to the table, they make their way to you personally.`
+			choice
+				`	(Do nothing.)`
+				`	(Place your hand on your holster.)
 
-# Ultimate decision, based on how much of the above you've accumulated
-
-			# Have something lead to the player saying "Dueyu", which means "home" in Gegno, but the Gegno trio walks close and shows distaste as they don't think the player knows how to truly cherish a "home"
-
-			# If accepted, sent to Tschyss
+			`	Now standing not even two meters in front of you, the Gegno stares at you intently. An image of the world you're on right now slides over the one of Earth, and the Gegno gestures to it. "Gegno Dueyu Eitch echre, echre isend Gegno." The image shifts back to Earth, with the Gegno still gesturing to it. "Eyuu dueyu nnepta, viehetch eyuu." The Gegno now motions at the ground below you "Viehetch eyuu ayyr dueyu Eitch. Udiyh tei tsider?"
+			choice
+				`	(Don't say anything.)`
+				`	".....Dueyu Earth?"
+					goto "dueyu"
+					
+			`	Without saying a word, you continue to look at the Gegno, and it continues to stare back, pondering your silence. They make a snorting sound with their nose, then leaves you to join the other two behind them.`
+				goto "decision"
+		
+			label "dueyu"
+			`	The Gegno leans closer to your height and shows an expression of dissaproval. You panick a little, and some of the others seem surprised that they got this close to you. They then speak in a low rumble, kind of like a whisper spoken aloud. "Eyuu idu keiou ghynem uf, `Dueyu`." Lifting back up, the Gegno heads back to the other two behind them.`
 			
-			# If declined, brought back to ship, and the Gegno guide does the fire aside your ship thing here (see below)
-
-# End of Mission
-
-
+			branch "done with the gegno"
+				has
+					
 
 
+
+
+
+
+
+
+			`	For one last time, the trio beckons to the crowd followed by a long speech. An image of a space station appears on the screen, and a large discussion begins between the other Gegno, whom have formed back up with each other. The trio continues to speak, and some arguments between various Gegno in the audience start happening. While all of this debate occurs, your Gegno guide bumps into you and starts to direct you away from the discussion back to the cage lift with nobody else batting an eye. Several minutes later, you find yourself escorted back to the base of the tower, which is now surrounded by a large group of Gegno civillians, all gawking at the two of you. You're lead back to your ship with your head spinning slightly, unsure what to make of that whole encounter. As they did the first time you were with them on this planet, the Gegno gestures to the sky while handing you a small compass device, this time marking a different location on the map.`
+			`	At the very least, you can take this is they are not done with you yet, so you prepare to travel to your next destination.`
+				clear "gegno: called guide"
+				flee
+
+
+			label "done with the gegno"
+			`	For one last time, the trio beckons to the crowd followed by a long speech. Afterwards, the crowd goes silent. Your Gegno guide bumps into you and starts to direct you back to the cage lift with nobody else batting an eye. Several minutes later, you find yourself escorted back to the base of the tower, still as barren as it was earlier. You're lead back to your ship with your head spinning slightly, unsure what to make of that whole encounter. The Gegno remains at a distance from your ship as you prepare to depart.`
+			`	Before you leave, you watch as they lift their staff weapon and flip it around. Following an explosive cloud of smoke, a sizable crater appears just barely next to your ship on the ground. It seems that you're no longer welcome here, though, the fact they intentionally missed such a large target might have other connotations. Regardless, it could have been you on the other end of that blast at any point during this journey.`
+			`	Despite the aggressive action, you are not followed as you leave the planet.`
+				flee
 
 
 			label "no more gegno"
@@ -1109,5 +1178,8 @@ mission "Acquiescence"
 #	If Quarg are hostile to begin with
 #	Intervention occurring on planets aside from Giaru Gegno
 # 	Etc..
+#	Branch/To displays in Acquiescene for if you did the whole Scin encounter.
+
+
 
 
