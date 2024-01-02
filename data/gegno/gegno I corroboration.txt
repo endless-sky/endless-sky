@@ -1028,7 +1028,7 @@ mission "Acquiescence"
 
 			`	You watch as the Gegno enters the other cage, and after a few clanks of chains and other sounds, ascend up above to wherever your next destination is without a second thought. You reluctantly enter the other one, and after a few moments, begin ascending as well. The shaking and clanging of the lift doesn't exactly ease your mind, but at least you're still in one piece.`
 			`	All of a sudden, you start to hear a deep, methodical rumble coming from above you. A few more seconds go by, and in an instant you're met with a gust of air. Your cage is out in the open air, connected to just a few support beams and the pulley system that is lifting it. Surrounding the core of the tower in front of you are other large metal pulley systems, with the Gegno in the one in the distance to your left. The low rumbling you heard earlier is clear now - as you're ascending, various levels of the tower's core have numerous balconies with many other Gegno playing large timpany-like drums to a tribal-like tune, occasionally grunting or blowing another horn-like instrument.`
-			`	After a few more minutes of chanting and drumming, several layers of smog, and possibly height sickness, the lift arrives at the very top of the tower - a huge, circular platform out in the open with a bunch of important-looking Gegno formed up around a large device of sorts. In contrast to the base, this part of the tower seems to be the most technologically advanced, with some other devices spead around the surface. Extending to the sky is a ring of electronic torches, and as you look at them, you see in the far distance other towers and buildings alike. The Gegno that has guided you here gestures one last time to go to their location amongst the others.`
+			`	After a few more minutes of chanting and drumming, several layers of smog, and possibly height sickness, the lift arrives at the very top of the tower - a huge, circular platform out in the open with a bunch of important-looking Gegno formed up around a large device of sorts. In contrast to the base, this part of the tower seems to be the most technologically advanced, with some other devices spead around the surface. Extending to the darkened sky is a ring of electronic torches, and as you look at them, you see in the far distance other towers and buildings alike. The Gegno that has guided you here gestures one last time to go to their location amongst the others.`
 			choice
 				`	(Go to the Gegno.)`
 					goto "meeting"
@@ -1037,8 +1037,8 @@ mission "Acquiescence"
 			`	It's not long before a pair of Gegno soldiers walk over and essentially "pressure" you into joining the others. You're on their turf now, so you might as well play by their rules.`
 
 			label meeting
-			`	Once you meet up with the Gegno, the chants and music come to an abrupt hault. The device at the center of the platform is some sort of monitor on the ground, and shown on it are various texts - none of which you can understand. Three Gegno standing next to one another, separate from everyone else, begin speaking in low, booming voices, also none of which you can understand. One of them is very bulky and looks like Gegno that belong to the Vi faction, meanwhile the other two are a bit more like the civilian Gegno you've seen glimpses of before. All three of them are wearing the same set of armor, which looks much more intricate than anything else you've seen, with various protrustions, drapes, and other details. Aside from them, all of the other Gegno present are of various builds, though none of them are wearing any colors indicating a faction. Some of them gaze toward you occasionally, while others pay you no attention at all.`
-			`	The awkwardness of the situation increases as time goes by. Several minutes have passed now, and during that time, a few Gegno from the crowd have stepped up to the opposite side of the device from the trio, possibly speaking about you as they do. You look over to your Gegno guide standing next to you, but their gaze is locked on the conversation ahead. They haven't gone up to speak at all, until a few moments later, when one of the trio calls them over. An image of the desert planet where everything started comes up on the device, and a heated-sounding discussion follows. As you watch, you realize that it is the only Gegno not wearing some form of armor, instead wearing something much lighter alongside that red band on their arm. The other Gegno in the crowd don't seem very pleased as their discussion continues.`
+			`	Once you meet up with the Gegno, the drumming and chants come to an abrupt hault. The device at the center of the platform is some sort of monitor on the ground, and shown on it are various texts - none of which you can understand. Three Gegno standing next to one another, separate from everyone else, begin speaking in low, booming voices, also none of which you can understand. One of them is very bulky and looks like Gegno that belong to the Vi faction, meanwhile the other two are a bit more like the civilian Gegno you've seen glimpses of before. All three of them are wearing the same set of armor, which looks much more intricate than anything else you've seen, with various protrustions, drapes, and other details. Aside from them, all of the other Gegno present are of various builds, though none of them are wearing any colors indicating a faction. Some of them gaze toward you occasionally, while others pay you no attention at all.`
+			`	The awkwardness of the situation increases as time goes by. Several minutes have passed now, and during that time, a few Gegno from the crowd have stepped up to the opposite side of the device from the trio, possibly speaking about you as they do. You look over to your Gegno guide standing next to you, but their gaze is locked on the conversation ahead. They haven't gone up to speak at all, until a few moments later, when one of the trio calls them over. An image of the desert planet where everything started comes up on the device, and a heated-sounding discussion follows. As you watch, you notice that it is the only Gegno with that red band on their arm. The other Gegno in the crowd don't seem very pleased as their discussion continues.`
 			`	Though it seemed like it was never coming, the moment comes where the bulkier of the trio directly gestures to you. The tension of the situation skyrockets as they say something in their language, then gesture you to stand across from them. All of the other Gegno are now staring you down, waiting, as your guide heads off to the side.`
 			choice
 				`	(Approach the trio.)`
@@ -1052,10 +1052,44 @@ mission "Acquiescence"
 				`	"I would like to work out something with the Gegno."`
 				`	"I'm sorry, I don't understand what you are saying."`
 
-			`	The Gegno stares at you, then looks at the display below.`
+			`	The Gegno stares at you, then looks at the display.`
 				decline
 
+
 # Branch for BGS Missions
+
+			# Observations
+
+			# Bystander (maybe leave this out as a sort of safety measure against said bystander becoming public knowledge yet)
+
+			# Eogho
+
+			# Cyife
+
+			# Zydee (notable as an important battle took place)
+
+# Other Branches
+
+			# List of lives if you've killed anyone
+			
+			# List the Augen if you stole it
+
+
+#			label "stay" (more aggressive)
+
+
+# Branch for if you continued with Scin Encounter, where the scin attempts to communicate with you again except in front of everyone.
+
+
+# Ultimate decision, based on how much of the above you've accumulated
+
+			# Have something lead to the player saying "Dueyu", which means "home" in Gegno, but the Gegno trio walks close and shows distaste as they don't think the player knows how to truly cherish a "home"
+
+			# If accepted, sent to Tschyss
+			
+			# If declined, brought back to ship, and the Gegno guide does the fire aside your ship thing here (see below)
+
+# End of Mission
 
 
 
@@ -1068,10 +1102,6 @@ mission "Acquiescence"
 			`	Despite the aggressive action, you are not followed as you leave the planet.`
 				flee
 
-
-
-
-
 # Mining jobs for filler
 
 
@@ -1079,3 +1109,5 @@ mission "Acquiescence"
 #	If Quarg are hostile to begin with
 #	Intervention occurring on planets aside from Giaru Gegno
 # 	Etc..
+
+
