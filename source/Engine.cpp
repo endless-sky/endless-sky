@@ -2520,7 +2520,7 @@ void Engine::DrawShipSprites(const Ship &ship)
 		// Draw cloaked/cloaking sprites swizzled red, and overlay this solid
 		// sprite with an increasingly transparent "regular" sprite.
 		if(drawCloaked)
-			itemsToDraw.AddSwizzled(body, fancyCloak ? 10 : 27, fancyCloak ? 0.5 : 0.);
+			itemsToDraw.AddSwizzled(body, fancyCloak ? 9 : 27, fancyCloak ? 0.5 : 0.25);
 		itemsToDraw.Add(body, cloak);
 	};
 
@@ -2686,7 +2686,7 @@ void Engine::CreateStatusOverlays()
 
 	for(const auto &it : ships)
 	{
-		if(!it->GetGovernment() || it->GetSystem() != currentSystem || it->Cloaking() == 1.)
+		if(!it->GetGovernment() || it->GetSystem() != currentSystem || (!it->IsYours() && it->Cloaking() == 1.))
 			continue;
 		// Don't show status for dead ships.
 		if(it->IsDestroyed())
@@ -2729,6 +2729,10 @@ void Engine::EmplaceStatusOverlay(const shared_ptr<Ship> &it, Preferences::Overl
 		else
 			alpha = 0.f;
 	}
+
+	if(it->IsYours())
+		cloak *= 0.6;
+	
 	statuses.emplace_back(it->Position() - center, it->Shields(), it->Hull(),
 		min(it->Hull(), it->DisabledHull()), max(20., width * .5), type, alpha * (1. - cloak));
 }

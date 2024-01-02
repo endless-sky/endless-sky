@@ -1248,6 +1248,9 @@ tip "Extended jump effects"
 tip "Ship outlines in shops"
 	`Controls the display of your fleet ship icons when in the shipyard or outfitter. When fancy, applies a sobel filter to all ships. (This can result in high GPU load for large fleets.) When fast, just uses the ship's sprite.`
 
+tip "Cloaked ship outlines"
+	`Controls the display of cloaked escorts. When fancy, causes the ship to become transparent and applies a red outline. When fast, simply shifts the ship to being red.`
+
 tip "Show status overlays"
 	`Display status overlays over top of all ships when in flight. Status overlays display a ship's shields and hull. If the damaged option is chosen, overlays only appear on ships that have taken damage.`
 
@@ -1355,6 +1358,3 @@ tip "Scroll speed"
 
 tip "Date format"
 	`The format that dates in the game are displayed in.`
-
-tip "Cloaked ship outlines"
-	`Transparent with a red outline when set to fancy, just red when fast.`

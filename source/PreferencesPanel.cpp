@@ -56,12 +56,12 @@ namespace {
 	const string AUTO_FIRE_SETTING = "Automatic firing";
 	const string SCREEN_MODE_SETTING = "Screen mode";
 	const string VSYNC_SETTING = "VSync";
+	const string CLOAK_OUTLINE = "Cloaked ship outlines";
 	const string STATUS_OVERLAYS_ALL = "Show status overlays";
 	const string STATUS_OVERLAYS_FLAGSHIP = "   Show flagship overlay";
 	const string STATUS_OVERLAYS_ESCORT = "   Show escort overlays";
 	const string STATUS_OVERLAYS_ENEMY = "   Show enemy overlays";
 	const string STATUS_OVERLAYS_NEUTRAL = "   Show neutral overlays";
-	const string CLOAK_OUTLINE = "Cloaked ship outlines";
 	const string EXPEND_AMMO = "Escorts expend ammo";
 	const string FLOTSAM_SETTING = "Flotsam collection";
 	const string TURRET_TRACKING = "Turret tracking";
@@ -503,6 +503,7 @@ void PreferencesPanel::DrawSettings()
 		"Show hyperspace flash",
 		EXTENDED_JUMP_EFFECTS,
 		SHIP_OUTLINES,
+		CLOAK_OUTLINE,
 		"\t",
 		"HUD",
 		STATUS_OVERLAYS_ALL,
@@ -510,7 +511,6 @@ void PreferencesPanel::DrawSettings()
 		STATUS_OVERLAYS_ESCORT,
 		STATUS_OVERLAYS_ENEMY,
 		STATUS_OVERLAYS_NEUTRAL,
-		CLOAK_OUTLINE,
 		"Show missile overlays",
 		"Show asteroid scanner overlay",
 		"Highlight player's flagship",
