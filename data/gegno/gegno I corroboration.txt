@@ -989,7 +989,8 @@ mission "Acquiescence"
 			branch "intervention"
 				has "Gegno Intervention: offered"
 				
-			`The Gegno display caution once more as fleets of both Vi and Scin ships orbit their homeworld while you approach it. Your Quarg "escort", which was already in the system before you, stays behind. A few smaller Gegno ships from the fleets follow you down to the planet's surface, forming up in front of you to lead you to your destination. Once you pass through the several layers of smog, you're once again flying around the towering cities of the Gegno homeworld. They almost look castle-like, extending into the sky sometimes even beyond the smog, lighting it up with small patches of red and yellow while the busy traffic of local aircraft buzz around them. The Gegno ships continue to guide you around, eventually leading you away from the business of the cities to a more remote area. In the distance is yet another massive structure shrouded by the smog, possibly the one you visited the first time you were here. However, the activity around it seems much less compared to anything else thus far.`
+			`The Gegno display caution once more as fleets of both Vi and Scin ships orbit their homeworld while you approach it. Your Quarg "escort", which was already in the system before you, stays behind. A few smaller Gegno ships from the fleets follow you down to the planet's surface, forming up in front of you to lead you to your destination.`
+			`	Once you pass through the several layers of smog, you're once again flying around the towering cities of the Gegno homeworld. They almost look castle-like, extending into the sky sometimes even beyond the smog, lighting it up with small patches of red and yellow while the busy traffic of local aircraft buzzes around them. The Gegno ships continue to guide you around, eventually leading you away from the business of the cities to a more remote area. In the distance is yet another massive structure shrouded by the smog, possibly the one you visited the first time you were here. However, the activity around it seems much less compared to anything else thus far.`
 			`	Instead of to one of the docking ports alongside the tower, the Gegno ships direct you to the base of it, underneath several more layers of smog. Once you finally reach the surface, your escorts hold position in the air while you park your ship on the ground, but apart from them, the area seems devoid of Gegno, almost hauntingly so, as a cloud of smoke obscures the base of the tower.`
 			choice
 				`	(Stay in your ship.)`
@@ -1019,12 +1020,24 @@ mission "Acquiescence"
 
 			label "tower"
 
+			`	The tower ahead of you is a true sight to behold. It appears to be larger and taller than anything like human architecture, but the base of it seems very old, noticably so compared to the portions you've seen higher above in the clouds of dark smog. Unlike those upper levels, it is relatively thinner, although with many large suspension bars surrounding it, angled into the ground. You approach the front entrance, and instead of various orange and red glowing lights, there are various rows of torch-like structures with flames reaching high above them.`
+			`	The interior is just as intriguing. You were expecting at least something similar to the interior of human buildings, but the first area you enter in looks like it almost came straight out of some old medieval fantasy story. Everything is very rocky in appearance, although it seems more intentional than natural, as if it was sculpted this way. Some entrances seem to be made of newer metallic materials, while others seem as old as the foundation itself. You wonder if all Gegno architecture is built like this, but your curiousity is cut short when the Gegno, that has been many steps ahead of you, grunts and gestures you down a different path. Eventually you are lead into an enourmous open room, probably half the diameter of the building itself. It may not be anything comparable to a Quarg station, but you have to wonder how nobody gets lost here.`
+			`	Several more bewildering twists and turns later, you arrive in a relatively smaller room, and at the other side of it are two cage-like devices. The Gegno steps into one, and motions you to the other.`
+			choice
+				`	(Enter the cage.)`
+				`	"I hope this isn't a jail cell."`
 
+			`	You watch as the Gegno enters the other cage, and after a few clanks of chains and other sounds, ascend up above to wherever your next destination is without a second thought. You reluctantly enter the other one, and after a few moments, begin ascending as well. The shaking and clanging of the lift doesn't exactly ease your mind, but at least you're still in one piece.`
+			`	All of a sudden, you start to hear a deep, methodical rumble coming from above you. A few more seconds go by, and in an instant you're met with a gust of air. Your cage is out in the open air, connected to just a few support beams and the pulley system that is lifting it. Surrouning the core of the enormous tower in front of you are other large metal pulley systems, with the Gegno in the one in the distance to your left. The low rumbling you heard earlier is clear now - as you're ascending, various levels of the tower's core have numerous balconies with many other Gegno playing large timpany-like drums to a tribal-like tune, occasionally grunting or blowing another horn-like instrument.`
+			`	After a few more minutes of chanting and drumming, several layers of smog, and possibly height sickness, the lift arrives at the very top of the tower - a huge, circular floor out in the open with a bunch of important-looking Gegno formed up around a large device of sorts. You leave the cage, and your Gegno guide gestures one last time to come to their location.`
+			choice
+				`	(Go to the Gegno.)`
+					goto "meeting"
+				`	(Stay where you are.)`
+			
+			`	It's not long before a pair of Gegno soldiers walk over and essentially "pressure" you into joining the others. You're on their turf now, so you might as well play by their rules.`
 
-
-
-
-
+			label meeting
 				decline
 
 			label "intervention"
@@ -1032,8 +1045,9 @@ mission "Acquiescence"
 				decline
 
 			label "no more gegno"
-			`	Despite making it this far, you ultimately decide that pursing this ruse with the Gegno is no longer worth the effort. Even if you did meet up with them, or ended up in some sort of debate with them, it would likely take another excessive amount of effort in order to get any amount of progression with them, if at all. Perhaps even landing here was a mistake, as you could never guess what might happen if you continued this endeavor, given you are all alone on the homeworld of a species that has shown to be rather xenophobic, even to the Quarg. As you prepare to depart, the Gegno, who was watching you all this time with a blank stare, lifts their staff weapon and flips it around. Following an explosive cloud of smoke, a sizable crater appears just barely next to your ship on the ground. It seems they are, at the very least, unhappy with your decision to leave, which is a little odd considering they didn't want anything to do with you before. Though, the fact they intentionally missed such a large target might have other connotations. Regardless, it could have been you on the other end of that blast.`
-			`	Despite that aggressive action, you are not followed as you leave the planet.`
+			`	You ultimately decide that pursing this ruse with the Gegno is no longer worth the effort. Even if you did meet up with them, or ended up in some sort of debate with them, it would likely take another excessive amount of effort in order to get any amount of progression with them, if at all. Perhaps even landing here was a mistake, as you could never guess what might happen if you continued this endeavor, given you are all alone on the homeworld of a species that has shown to be rather xenophobic, even to the Quarg.
+			`	As you prepare to depart, the Gegno, who was watching you all this time with a blank stare, lifts their staff weapon and flips it around. Following an explosive cloud of smoke, a sizable crater appears just barely next to your ship on the ground. It seems they are, at the very least, unhappy with your decision to leave, which is a little odd considering they didn't want anything to do with you before. Though, the fact they intentionally missed such a large target might have other connotations. Regardless, it could have been you on the other end of that blast.`
+			`	Despite the aggressive action, you are not followed as you leave the planet.`
 				flee
 
 
