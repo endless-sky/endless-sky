@@ -983,6 +983,7 @@ mission "Acquiescence"
 		not or
 			"Gegno Anticipation: failed"
 			"Gegno Intervention: failed"
+	destination "Tschyss"
 	on offer
 		clear "gegno: bgs"
 		conversation
@@ -1096,11 +1097,11 @@ mission "Acquiescence"
 
 			label "self proclamation"
 			choice
-			`	(Stay where you are and do nothing.)`
-				goto "do nothing"
-			`	(Approach the table and try to explain your situations.)`
-				goto "explain"
-			`	(Call to your Gegno guide.)`
+				`	(Stay where you are and do nothing.)`
+					goto "do nothing"
+				`	(Approach the table and try to explain your situations.)`
+					goto "explain"
+				`	(Call to your Gegno guide.)`
 
 			action
 				set "gegno: called guide"
@@ -1109,7 +1110,7 @@ mission "Acquiescence"
 					not "gegno: called guide"
 				goto "self proclamation"
 
-			label "nothing"
+			label "do nothing"
 			`	You don't approach the table, standing awkwardly in the open. Maybe it's better to not say anything at all if you're what they perceive as the problem here. A whole minute of silence goes by, and all of the Gegno, including the trio, haven't so so much as a word, silently judging the choice you've decided to make. The trio then march back to the table, moving all of the statuettes aside as if they're setting up for something.`
 				goto "what does home mean"
 
@@ -1127,35 +1128,28 @@ mission "Acquiescence"
 			`	Surprising both you and other Gegno, an image of the planet Earth appears on the monitor. There's no way the Gegno have ever visited human space, let alone leave the borders of their own for something involving another alien species. How they got this image is a mystery, but the fact is that an image of the ancestral homeworld of humanity is right in front of you. The member of the Gegno trio that has spoken the least then steps forward, but instead of up to the table, they make their way to you personally.`
 			choice
 				`	(Do nothing.)`
-				`	(Place your hand on your holster.)
+				`	(Place your hand on your holster.)`
 
-			`	Now standing not even two meters in front of you, the Gegno stares at you intently. An image of the world you're on right now slides over the one of Earth, and the Gegno gestures to it. "Gegno Dueyu Eitch echre, echre isend Gegno." The image shifts back to Earth, with the Gegno still gesturing to it. "Eyuu dueyu nnepta, viehetch eyuu." The Gegno now motions at the ground below you "Viehetch eyuu ayyr dueyu Eitch. Udiyh tei tsider?"
+			`	Now standing not even two meters in front of you, the Gegno stares at you intently. An image of the world you're on right now slides over the one of Earth, and the Gegno gestures to it. "Gegno Dueyu Eitch echre, echre isend Gegno." The image shifts back to Earth, with the Gegno still gesturing to it. "Eyuu dueyu nnepta, viehetch eyuu." The Gegno now motions at the ground below you "Viehetch eyuu ayyr dueyu Eitch. Udiyh tei tsider?"`
 			choice
 				`	(Don't say anything.)`
-				`	".....Dueyu Earth?"
+				`	"...Dueyu Earth?"`
 					goto "dueyu"
 					
 			`	Without saying a word, you continue to look at the Gegno, and it continues to stare back, pondering your silence. They make a snorting sound with their nose, then leaves you to join the other two behind them.`
 				goto "decision"
 		
 			label "dueyu"
-			`	The Gegno leans closer to your height and shows an expression of dissaproval. You panick a little, and some of the others seem surprised that they got this close to you. They then speak in a low rumble, kind of like a whisper spoken aloud. "Eyuu idu keiou ghynem uf, `Dueyu`." Lifting back up, the Gegno heads back to the other two behind them.`
-			
-			branch "done with the gegno"
-				has
-					
+			`	The Gegno leans closer to your height and shows an expression of dissaproval. You panick a little, and some of the others seem surprised that they got this close to you. They then speak in a low rumble, kind of like a whisper spoken aloud. "Eyuu idu keiou ghynem uf, "Dueyu"." Lifting back up, the Gegno heads back to the other two behind them.`
 
 
+#			branch "done with the gegno"
 
 
-
-
-
-
+			label "decision"
 			`	For one last time, the trio beckons to the crowd followed by a long speech. An image of a space station appears on the screen, and a large discussion begins between the other Gegno, whom have formed back up with each other. The trio continues to speak, and some arguments between various Gegno in the audience start happening. While all of this debate occurs, your Gegno guide bumps into you and starts to direct you away from the discussion back to the cage lift with nobody else batting an eye. Several minutes later, you find yourself escorted back to the base of the tower, which is now surrounded by a large group of Gegno civilians, all gawking at the two of you. You're lead back to your ship with your head spinning slightly, unsure what to make of that whole encounter. As they did the first time you were with them on this planet, the Gegno gestures to the sky while handing you a small compass device, this time marking a different location on the map.`
 			`	At the very least, you can take this is they are not done with you yet, so you prepare to travel to your next destination.`
-				clear "gegno: called guide"
-				flee
+				launch
 
 
 			label "done with the gegno"
@@ -1170,6 +1164,15 @@ mission "Acquiescence"
 			`	As you prepare to depart, the Gegno, who was watching you all this time with a blank stare, lifts their staff weapon and flips it around. Following an explosive cloud of smoke, a sizable crater appears just barely next to your ship on the ground. It seems they are, at the very least, unhappy with your decision to leave, which is a little odd considering they didn't want anything to do with you before. Though, the fact they intentionally missed such a large target might have other connotations. Regardless, it could have been you on the other end of that blast.`
 			`	Despite the aggressive action, you are not followed as you leave the planet.`
 				flee
+
+	on accept
+		clear "gegno: called guide"
+
+	on decline
+		clear "gegno: called guide"
+
+
+
 
 # Mining jobs for filler
 
