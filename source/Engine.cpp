@@ -253,20 +253,15 @@ namespace {
 
 		double cameraAccelMultiplier = Preferences::CameraAcceleration() == Preferences::CameraAccel::REVERSED ? -1. : 1.;
 
-		const auto Lerp = [](const auto &a, const auto &b, const auto &c)
-		{
-			return a + (b - a) * c;
-		};
-
 		// Flip the velocity offset if cameraAccelMultiplier is negative to simplify logic.
-		const Point absoluteOldCenterVelocity = Lerp(baseVelocity, oldCenterVelocity, cameraAccelMultiplier);
+		const Point absoluteOldCenterVelocity = baseVelocity.Lerp(oldCenterVelocity, cameraAccelMultiplier);
 
-		const Point newAbsVelocity = Lerp(absoluteOldCenterVelocity, baseVelocity, CAMERA_VELOCITY_TRACKING);
+		const Point newAbsVelocity = absoluteOldCenterVelocity.Lerp(baseVelocity, CAMERA_VELOCITY_TRACKING);
 
-		const Point newCenter = Lerp(oldCenter + newAbsVelocity, baseCenter, CAMERA_POSITION_CENTERING);
+		const Point newCenter = (oldCenter + newAbsVelocity).Lerp(baseCenter, CAMERA_POSITION_CENTERING);
 
 		// Flip the velocity back over the baseVelocity
-		const Point newVelocity = Lerp(baseVelocity, newAbsVelocity, cameraAccelMultiplier);
+		const Point newVelocity = baseVelocity.Lerp(newAbsVelocity, cameraAccelMultiplier);
 
 		return make_pair(newCenter, newVelocity);
 	}
@@ -536,11 +531,11 @@ void Engine::Step(bool isActive)
 	else if(flagship)
 	{
 		const auto newCamera = NewCenter(center, centerVelocity,
-			flagship->Position(), flagship->Velocity());
+			flagship->Center(), flagship->Velocity());
 
 		if(flagship->IsHyperspacing())
 		{
-			center = newCamera.first + (flagship->Position() - newCamera.first) * flagship->GetHyperspacePercentage() / 100.;
+			center = newCamera.first.Lerp(flagship->Center(), flagship->GetHyperspacePercentage() / 100.);
 			centerVelocity = flagship->Velocity();
 
 			Preferences::ExtendedJumpEffects jumpEffectState = Preferences::GetExtendedJumpEffects();
@@ -548,7 +543,7 @@ void Engine::Step(bool isActive)
 				centerVelocity *= 1. + pow(flagship->GetHyperspacePercentage() /
 					(jumpEffectState == Preferences::ExtendedJumpEffects::MEDIUM ? 40. : 20.), 2);
 		}
-		else
+		else if(isActive)
 		{
 			center = newCamera.first;
 			centerVelocity = newCamera.second;
@@ -1618,7 +1613,7 @@ void Engine::CalculateStep()
 	if(flagship)
 	{
 		const auto newCamera = NewCenter(center, centerVelocity,
-			flagship->Position(), flagship->Velocity());
+			flagship->Center(), flagship->Velocity());
 		newCenter = newCamera.first;
 		newCenterVelocity = newCamera.second;
 	}
