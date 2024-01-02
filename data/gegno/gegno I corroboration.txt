@@ -1017,32 +1017,49 @@ mission "Acquiescence"
 			`	You decide to continue on your endeavor. You've made it this far, considering you're back on their homeworld and they haven't shown any signs of wanting you off of it as of yet. As you approach the Gegno, it indeed seems to be the one you've met in the past. The ships above suddenly fly off, and the Gegno turns around, beginning to head for the massive tower that stands in front of you. Recalling back to that first encounter, they ended up walking to your ship anyway without you, so you follow them with only the slightest of hesitation.`
 
 
-
 			label "tower"
 
-			`	The tower ahead of you is a true sight to behold. It appears to be larger and taller than anything like human architecture, but the base of it seems very old, noticably so compared to the portions you've seen higher above in the clouds of dark smog. Unlike those upper levels, it is relatively thinner, although with many large suspension bars surrounding it, angled into the ground. You approach the front entrance, and instead of various orange and red glowing lights, there are various rows of torch-like structures with flames reaching high above them.`
-			`	The interior is just as intriguing. You were expecting at least something similar to the interior of human buildings, but the first area you enter in looks like it almost came straight out of some old medieval fantasy story. Everything is very rocky in appearance, although it seems more intentional than natural, as if it was sculpted this way. Some entrances seem to be made of newer metallic materials, while others seem as old as the foundation itself. You wonder if all Gegno architecture is built like this, but your curiousity is cut short when the Gegno, that has been many steps ahead of you, grunts and gestures you down a different path. Eventually you are lead into an enourmous open room, probably half the diameter of the building itself. It may not be anything comparable to a Quarg station, but you have to wonder how nobody gets lost here.`
+			`	The tower ahead of you is a true sight to behold. It appears to be larger and taller than anything like human architecture, but the base of it seems very old, noticeably so compared to the portions you've seen higher above in the clouds of dark smog. Unlike those upper levels, it is relatively thinner, although with many large suspension bars surrounding it, angled into the ground. You approach the front entrance, and instead of various orange and red glowing lights, there are various rows of torch-like structures with flames reaching high above them.`
+			`	The interior is just as intriguing. You were expecting at least something similar to the interior of human buildings, but the first area you enter in looks like it almost came straight out of some old medieval fantasy story. Everything is very rocky in appearance, although it seems more intentional than natural, as if it was sculpted this way. Some entrances seem to be made of newer metallic materials, while others seem as old as the foundation itself. You wonder if all Gegno architecture is built like this, but your curiosity is cut short when the Gegno, that has been many steps ahead of you, grunts and gestures you down a different path. Eventually you are lead into an enormous open room, probably half the diameter of the building itself. It may not be anything comparable to a Quarg station, but you have to wonder how nobody gets lost here.`
 			`	Several more bewildering twists and turns later, you arrive in a relatively smaller room, and at the other side of it are two cage-like devices. The Gegno steps into one, and motions you to the other.`
 			choice
 				`	(Enter the cage.)`
 				`	"I hope this isn't a jail cell."`
 
 			`	You watch as the Gegno enters the other cage, and after a few clanks of chains and other sounds, ascend up above to wherever your next destination is without a second thought. You reluctantly enter the other one, and after a few moments, begin ascending as well. The shaking and clanging of the lift doesn't exactly ease your mind, but at least you're still in one piece.`
-			`	All of a sudden, you start to hear a deep, methodical rumble coming from above you. A few more seconds go by, and in an instant you're met with a gust of air. Your cage is out in the open air, connected to just a few support beams and the pulley system that is lifting it. Surrouning the core of the enormous tower in front of you are other large metal pulley systems, with the Gegno in the one in the distance to your left. The low rumbling you heard earlier is clear now - as you're ascending, various levels of the tower's core have numerous balconies with many other Gegno playing large timpany-like drums to a tribal-like tune, occasionally grunting or blowing another horn-like instrument.`
-			`	After a few more minutes of chanting and drumming, several layers of smog, and possibly height sickness, the lift arrives at the very top of the tower - a huge, circular floor out in the open with a bunch of important-looking Gegno formed up around a large device of sorts. You leave the cage, and your Gegno guide gestures one last time to come to their location.`
+			`	All of a sudden, you start to hear a deep, methodical rumble coming from above you. A few more seconds go by, and in an instant you're met with a gust of air. Your cage is out in the open air, connected to just a few support beams and the pulley system that is lifting it. Surrounding the core of the tower in front of you are other large metal pulley systems, with the Gegno in the one in the distance to your left. The low rumbling you heard earlier is clear now - as you're ascending, various levels of the tower's core have numerous balconies with many other Gegno playing large timpany-like drums to a tribal-like tune, occasionally grunting or blowing another horn-like instrument.`
+			`	After a few more minutes of chanting and drumming, several layers of smog, and possibly height sickness, the lift arrives at the very top of the tower - a huge, circular platform out in the open with a bunch of important-looking Gegno formed up around a large device of sorts. In contrast to the base, this part of the tower seems to be the most technologically advanced, with some other devices spead around the surface. Extending to the sky is a ring of electronic torches, and as you look at them, you see in the far distance other towers and buildings alike. The Gegno that has guided you here gestures one last time to go to their location amongst the others.`
 			choice
 				`	(Go to the Gegno.)`
 					goto "meeting"
 				`	(Stay where you are.)`
-			
+
 			`	It's not long before a pair of Gegno soldiers walk over and essentially "pressure" you into joining the others. You're on their turf now, so you might as well play by their rules.`
 
 			label meeting
-				decline
+			`	Once you meet up with the Gegno, the chants and music come to an abrupt hault. The device at the center of the platform is some sort of monitor on the ground, and shown on it are various texts - none of which you can understand. Three Gegno standing next to one another, separate from everyone else, begin speaking in low, booming voices, also none of which you can understand. One of them is very bulky and looks like Gegno that belong to the Vi faction, meanwhile the other two are a bit more like the civilian Gegno you've seen glimpses of before. All three of them are wearing the same set of armor, which looks much more intricate than anything else you've seen, with various protrustions, drapes, and other details. Aside from them, all of the other Gegno present are of various builds, though none of them are wearing any colors indicating a faction. Some of them gaze toward you occasionally, while others pay you no attention at all.`
+			`	The awkwardness of the situation increases as time goes by. Several minutes have passed now, and during that time, a few Gegno from the crowd have stepped up to the opposite side of the device from the trio, possibly speaking about you as they do. You look over to your Gegno guide standing next to you, but their gaze is locked on the conversation ahead. They haven't gone up to speak at all, until a few moments later, when one of the trio calls them over. An image of the desert planet where everything started comes up on the device, and a heated-sounding discussion follows. As you watch, you realize that it is the only Gegno not wearing some form of armor, instead wearing something much lighter alongside that red band on their arm. The other Gegno in the crowd don't seem very pleased as their discussion continues.`
+			`	Though it seemed like it was never coming, the moment comes where the bulkier of the trio directly gestures to you. The tension of the situation skyrockets as they say something in their language, then gesture you to stand across from them. All of the other Gegno are now staring you down, waiting, as your guide heads off to the side.`
+			choice
+				`	(Approach the trio.)`
+				`	(Remain where you stand.)`
+					goto "stay"
 
-			label "intervention"
-			`Gegno fleet above follow. You land. Angry talks.`
+			`	Any Gegno in your path march out of your way as you approach the center of the platform. You're in the spotlight now, and the silence is deafening. As soon as you stop at the trio, a few images of the <ship> in various contexts come up on the device, alongside images of several planets you've been to in Gegno space. Following another brief moment of silence, one which seemingly everyone braces themselves for, one of the three addresses you in their language at a lower volume than they were speaking before.`
+			`	"Eyuu udyom Gegno tyysis. Udiyh tei arrtes ofor tei piyepuo?"`
+			choice
+				`	"Are you asking something about the Gegno?"`
+				`	"I would like to work out something with the Gegno."`
+				`	"I'm sorry, I don't understand what you are saying."`
+
+			`	The Gegno stares at you, then looks at the display below.  
 				decline
+#	Branch for BGS Misions
+
+
+
+
+
 
 			label "no more gegno"
 			`	You ultimately decide that pursing this ruse with the Gegno is no longer worth the effort. Even if you did meet up with them, or ended up in some sort of debate with them, it would likely take another excessive amount of effort in order to get any amount of progression with them, if at all. Perhaps even landing here was a mistake, as you could never guess what might happen if you continued this endeavor, given you are all alone on the homeworld of a species that has shown to be rather xenophobic, even to the Quarg.
