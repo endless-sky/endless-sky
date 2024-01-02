@@ -155,7 +155,8 @@ int64_t Account::NetWorth() const
 
 
 
-void Account::AddHistory(int64_t amount) {
+void Account::AddHistory(int64_t amount)
+{
 	history.push_back(amount);
 	if(history.size() > HISTORY)
 		history.erase(history.begin());
@@ -246,7 +247,8 @@ int64_t Account::OverdueCrewSalaries() const
 
 
 
-void Account::SetOverdueCrewSalaries(int64_t value) {
+void Account::SetOverdueCrewSalaries(int64_t value)
+{
 	overdueCrewSalaries = value;
 }
 
@@ -271,7 +273,8 @@ int64_t Account::OverdueMaintenance() const
 
 
 
-void Account::SetOverdueMaintenance(int64_t value) {
+void Account::SetOverdueMaintenance(int64_t value)
+{
 	overdueMaintenance = value;
 }
 
@@ -345,7 +348,8 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 
 
 
-std::vector<Receipt> Account::PayBills(int64_t salaries, int64_t maintenance) {
+std::vector<Receipt> Account::PayBills(int64_t salaries, int64_t maintenance)
+{
 	std::vector<Receipt> receipts;
 
 	// Crew salaries take highest priority.
@@ -424,7 +428,8 @@ Receipt Account::PayMaintenance(int64_t maintenance)
 
 
 
-Receipt Account::PayMortgages() {
+Receipt Account::PayMortgages()
+{
 	// This function needs to preserve:
 	//    1. The number of credits paid towards ALL mortgages
 	//    2. Whether ANY mortgage was not paid in full
@@ -453,7 +458,8 @@ Receipt Account::PayMortgages() {
 
 
 
-Receipt Account::PayFines() {
+Receipt Account::PayFines()
+{
 	// This function needs to preserve:
 	//    1. The number of credits paid towards ALL fines
 	//    2. Whether ANY fine was not paid in full
@@ -482,7 +488,8 @@ Receipt Account::PayFines() {
 
 
 
-const string Account::GenerateMissedPaymentLogs(std::vector<Receipt> *receipts) const {
+const string Account::GenerateMissedPaymentLogs(std::vector<Receipt> *receipts) const
+{
 	ostringstream log;
 
 	if(!receipts->at(0).paidInFull)
@@ -528,7 +535,8 @@ int64_t Account::CalculateNetWorth(int64_t assets) const
 
 
 
-void Account::UpdateCreditScore(std::vector<Receipt> *receipts) {
+void Account::UpdateCreditScore(std::vector<Receipt> *receipts)
+{
 	// If you failed to pay any debt, your credit score drops. Otherwise, even
 	// if you have no debts, it increases. (Because, having no debts at all
 	// makes you at least as credit-worthy as someone who pays debts on time.)
@@ -546,7 +554,8 @@ void Account::UpdateCreditScore(std::vector<Receipt> *receipts) {
 
 
 
-bool Account::AnyPaymentsMade(std::vector<Receipt> *receipts) {
+bool Account::AnyPaymentsMade(std::vector<Receipt> *receipts)
+{
 	for(Receipt receipt : *receipts)
 	{
 		if(receipt.creditsPaid > 0)
@@ -557,7 +566,8 @@ bool Account::AnyPaymentsMade(std::vector<Receipt> *receipts) {
 
 
 
-string Account::GeneratePaymentLogs(std::vector<Receipt> *receipts) {
+string Account::GeneratePaymentLogs(std::vector<Receipt> *receipts)
+{
 	ostringstream log;
 	log << "You paid ";
 	map<string, int64_t> typesPaid = Account::GetTypesPaid(receipts);
@@ -596,7 +606,8 @@ string Account::GeneratePaymentLogs(std::vector<Receipt> *receipts) {
 
 
 
-map<string, int64_t> Account::GetTypesPaid(std::vector<Receipt> *receipts) {
+map<string, int64_t> Account::GetTypesPaid(std::vector<Receipt> *receipts)
+{
 	map<string, int64_t> typesPaid;
 
 	if(receipts->at(0).creditsPaid > 0)
