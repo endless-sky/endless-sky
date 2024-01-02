@@ -986,9 +986,9 @@ mission "Acquiescence"
 	on offer
 		clear "gegno: bgs"
 		conversation
-			branch "intervention"
+#			branch "intervention"
 #				has "Gegno Intervention: offered"
-				
+
 			`The Gegno display caution once more as fleets of both Vi and Scin ships orbit their homeworld while you approach it. Your Quarg "escort", which was already in the system before you, stays behind. A few smaller Gegno ships from the fleets follow you down to the planet's surface, forming up in front of you to lead you to your destination.`
 			`	Once you pass through the several layers of smog, you're once again flying around the towering cities of the Gegno homeworld. They almost look castle-like, extending into the sky sometimes even beyond the smog, lighting it up with small patches of red and yellow while the busy traffic of local aircraft buzzes around them. The Gegno ships continue to guide you around, eventually leading you away from the business of the cities to a more remote area. In the distance is yet another massive structure shrouded by the smog, possibly the one you visited the first time you were here. However, the activity around it seems much less compared to anything else thus far.`
 			`	Instead of to one of the docking ports alongside the tower, the Gegno ships direct you to the base of it, underneath several more layers of smog. Once you finally reach the surface, your escorts hold position in the air while you park your ship on the ground, but apart from them, the area seems devoid of Gegno, almost hauntingly so, as a cloud of smoke obscures the base of the tower.`
