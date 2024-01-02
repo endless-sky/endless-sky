@@ -974,11 +974,14 @@ mission "Gegno Intervention"
 		fleet "Scin Warfleet" 3
 
 
+# Figure a workaround for removing clearance if player shoots the defense fleets
+
+
 mission "Acquiescence"
 	landing
 	clearance
-# Figure out workaround for this and the above fleet provocation not working properly with it. (Maybe just have something happen on the planet.)
 	source "Dueyu Eitch"
+	passengers 1
 	to offer
 		or
 			has "Gegno Anticipation: offered"
@@ -1095,7 +1098,6 @@ mission "Acquiescence"
 			label "self proclamation"
 			choice
 				`	(Stay where you are and do nothing.)`
-					goto "do nothing"
 				`	(Approach the table and try to explain your situations.)`
 					goto "explain"
 
@@ -1135,7 +1137,7 @@ mission "Acquiescence"
 						reputation "Gegno Scin" <= -50
 					and
 						reputation "Gegno Vi" < 0
-						reputation "Gegno Scin" < 0						
+						reputation "Gegno Scin" < 0
 						has "zydee interference"
 					and
 						has "Full Vi Backlash: offered"
@@ -1167,7 +1169,7 @@ mission "Acquiescence"
 	on complete
 		conversation
 			`You arrive at your destination. Instead of being directly behind you during your trip, the Gegno ended up taking a seat next to one of your open bunks, not moving a muscle up until now. Despite the grandiose nature of the Gegno's one and only massive space station, it seems very old and inactive. As you are escorted around the spacious interior, which a majority of is still a skeletal frame of pipes, bars, and support, there is a noticeable lack of personnel and running machinery. Some sections aren't even properly pressurized, but thankfully your spacesuit helps with that. Occasionally you come across some workers, but they appear very lethargic, or maybe even demotivated.`
-			`	Eventually you end up in a large docking bay where more workers and ships are present. Some of the workers are hauling crates of materials back and forth, with others are talking amongst each other. The Gegno with you then hands you the compass device from earlier, which now shows a series of graphics in a list that seem to be updating in real-time. On the left side of each graphic are various types of minable asteroids, and on the right are tally marks, which thankfully you can understand. It is some sort of job list linked with the station, which implies that the Gegno are at least giving you a chance to work with in, to "do your part", or perhaps "make up for what you've done.
+			`	Eventually you end up in a large docking bay where more workers and ships are present. Some of the workers are hauling crates of materials back and forth, with others are talking amongst each other. The Gegno with you then hands you the compass device from earlier, which now shows a series of graphics in a list that seem to be updating in real-time. On the left side of each graphic are various types of minable asteroids, and on the right are tally marks, which thankfully you can understand. It is some sort of job list linked with the station, which implies that the Gegno are at least giving you a chance to work with in, to "do your part", or perhaps "make up for what you've done.`
 			`	After one last glare at you, the Gegno leaves you to your own devices. You wonder if you'll ever see them again, considering the way they've been treated by the other Gegno.`
 
 
