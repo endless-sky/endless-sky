@@ -987,7 +987,7 @@ mission "Acquiescence"
 		clear "gegno: bgs"
 		conversation
 			branch "intervention"
-				has "Gegno Intervention: offered"
+#				has "Gegno Intervention: offered"
 				
 			`The Gegno display caution once more as fleets of both Vi and Scin ships orbit their homeworld while you approach it. Your Quarg "escort", which was already in the system before you, stays behind. A few smaller Gegno ships from the fleets follow you down to the planet's surface, forming up in front of you to lead you to your destination.`
 			`	Once you pass through the several layers of smog, you're once again flying around the towering cities of the Gegno homeworld. They almost look castle-like, extending into the sky sometimes even beyond the smog, lighting it up with small patches of red and yellow while the busy traffic of local aircraft buzzes around them. The Gegno ships continue to guide you around, eventually leading you away from the business of the cities to a more remote area. In the distance is yet another massive structure shrouded by the smog, possibly the one you visited the first time you were here. However, the activity around it seems much less compared to anything else thus far.`
@@ -1043,7 +1043,7 @@ mission "Acquiescence"
 			choice
 				`	(Approach the trio.)`
 				`	(Remain where you stand.)`
-					goto "stay"
+#					goto "stay"
 
 			`	Any Gegno in your path march out of your way as you approach the center of the platform. You're in the spotlight now, and the silence is deafening. As soon as you stop at the trio, a few images of the <ship> in various contexts come up on the device, alongside images of several planets you've been to in Gegno space. Following another brief moment of silence, one which seemingly everyone braces themselves for, one of the three addresses you in their language at a lower volume than they were speaking before.`
 			`	"Eyuu udyom Gegno tyysis. Udiyh tei arrtes ofor tei piyepuo?"`
@@ -1052,9 +1052,10 @@ mission "Acquiescence"
 				`	"I would like to work out something with the Gegno."`
 				`	"I'm sorry, I don't understand what you are saying."`
 
-			`	The Gegno stares at you, then looks at the display below.  
+			`	The Gegno stares at you, then looks at the display below.`
 				decline
-#	Branch for BGS Misions
+
+# Branch for BGS Missions
 
 
 
@@ -1062,7 +1063,7 @@ mission "Acquiescence"
 
 
 			label "no more gegno"
-			`	You ultimately decide that pursing this ruse with the Gegno is no longer worth the effort. Even if you did meet up with them, or ended up in some sort of debate with them, it would likely take another excessive amount of effort in order to get any amount of progression with them, if at all. Perhaps even landing here was a mistake, as you could never guess what might happen if you continued this endeavor, given you are all alone on the homeworld of a species that has shown to be rather xenophobic, even to the Quarg.
+			`	You ultimately decide that pursing this ruse with the Gegno is no longer worth the effort. Even if you did meet up with them, or ended up in some sort of debate with them, it would likely take another excessive amount of effort in order to get any amount of progression with them, if at all. Perhaps even landing here was a mistake, as you could never guess what might happen if you continued this endeavor, given you are all alone on the homeworld of a species that has shown to be rather xenophobic, even to the Quarg.`
 			`	As you prepare to depart, the Gegno, who was watching you all this time with a blank stare, lifts their staff weapon and flips it around. Following an explosive cloud of smoke, a sizable crater appears just barely next to your ship on the ground. It seems they are, at the very least, unhappy with your decision to leave, which is a little odd considering they didn't want anything to do with you before. Though, the fact they intentionally missed such a large target might have other connotations. Regardless, it could have been you on the other end of that blast.`
 			`	Despite the aggressive action, you are not followed as you leave the planet.`
 				flee
