@@ -535,13 +535,9 @@ void Engine::Step(bool isActive)
 
 		if(flagship->IsHyperspacing())
 		{
-			center = newCamera.first.Lerp(flagship->Center(), flagship->GetHyperspacePercentage() / 100.);
+			hyperspacePercentage = flagship->GetHyperspacePercentage() / 100.;
+			center = newCamera.first.Lerp(flagship->Center(), pow(hyperspacePercentage, .5));
 			centerVelocity = flagship->Velocity();
-
-			Preferences::ExtendedJumpEffects jumpEffectState = Preferences::GetExtendedJumpEffects();
-			if(Preferences::GetExtendedJumpEffects() != Preferences::ExtendedJumpEffects::OFF)
-				centerVelocity *= 1. + pow(flagship->GetHyperspacePercentage() /
-					(jumpEffectState == Preferences::ExtendedJumpEffects::MEDIUM ? 40. : 20.), 2);
 		}
 		else if(isActive)
 		{
@@ -1050,8 +1046,16 @@ list<ShipEvent> &Engine::Events()
 // Draw a frame.
 void Engine::Draw() const
 {
-	GameData::Background().Draw(center, Preferences::Has("Render motion blur") ? centerVelocity : Point(),
-		zoom, (player.Flagship() ? player.Flagship()->GetSystem() : player.GetSystem()));
+	Preferences::ExtendedJumpEffects jumpEffectState = Preferences::GetExtendedJumpEffects();
+	Point motionBlur = centerVelocity;
+	if(!Preferences::Has("Render motion blur"))
+		motionBlur = Point();
+	if(jumpEffectState != Preferences::ExtendedJumpEffects::OFF)
+		motionBlur *= 1. + pow(hyperspacePercentage *
+			(jumpEffectState == Preferences::ExtendedJumpEffects::MEDIUM ? 2.4 : 5.), 2);
+
+	GameData::Background().Draw(center, motionBlur, zoom,
+		(player.Flagship() ? player.Flagship()->GetSystem() : player.GetSystem()));
 	static const Set<Color> &colors = GameData::Colors();
 	const Interface *hud = GameData::Interfaces().Get("hud");
 
@@ -1420,6 +1424,10 @@ void Engine::EnterSystem()
 	newProjectiles.clear();
 	newVisuals.clear();
 	newFlotsam.clear();
+
+
+	center = flagship->Center();
+	centerVelocity = flagship->Velocity();
 
 	// Help message for new players. Show this message for the first four days,
 	// since the new player ships can make at most four jumps before landing.

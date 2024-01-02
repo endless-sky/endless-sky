@@ -236,6 +236,7 @@ private:
 	const Sprite *highlightSprite = nullptr;
 	Point highlightUnit;
 	float highlightFrame = 0.f;
+	double hyperspacePercentage = 0.;
 
 	int step = 0;
 
