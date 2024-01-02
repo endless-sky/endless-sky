@@ -449,6 +449,7 @@ mission "Suspicious Scin"
 	destination "Yiia Iyr"
 	to offer
 		has "Visit Quarg in Gegno Space: offered"
+		not "First Contact: Gegno Scin: offered"
 		not "Gegno Genocide Defense: offered"
 	on enter
 		system
@@ -509,7 +510,6 @@ mission "First Contact: Gegno Scin"
 	landing
 	source "Yiia Iyr"
 	to offer
-		has "Suspicious Scin: offered"
 		not "Gegno Genocide Defense: offered"
 	on offer
 		conversation
@@ -614,7 +614,6 @@ mission "First Contact: Gegno Scin"
 			`	Once you are at your ship, they move their blade away from you neck. Getting a better look at it, the blade is curved like a sickle, as opposed to a sword, meaning there was little chance you could have avoided being decapitated if they chose to do so. Boarding your ship in a hurry, you prepare to take off, and you notice the two Scin warships also begin to power up. It's clear you've overstayed your welcome.`
 				flee
 
-#
 
 			label "approach"
 			action
@@ -724,6 +723,7 @@ mission "Scin Intro Warships Hostile"
 		fail
 
 
+# Unsure if necessary.
 mission "Gegno Exploration Nudge"
 	invisible
 	landing
