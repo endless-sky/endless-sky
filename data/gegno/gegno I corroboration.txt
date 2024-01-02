@@ -1020,7 +1020,7 @@ mission "Acquiescence"
 			label "tower"
 			`	The tower ahead of you is a true sight to behold. It appears to be larger and taller than anything like human architecture, but the base of it seems very old, noticeably so compared to the portions you've seen higher above in the clouds of dark smog. Unlike those upper levels, it is relatively thinner, although with many large suspension bars surrounding it, angled into the ground. You approach the front entrance, and instead of various orange and red glowing lights, there are rows of torch-like structures with flames reaching high above them.`
 
-			`	The interior is just as intriguing. You were expecting at least something similar to the interior of human buildings, but the first area you enter in looks like it almost came straight out of some old medieval fantasy story. Everything is very rocky in appearance, although it seems more intentional than natural, as if it was sculpted this way. Some entrances seem to be made of newer metallic materials, while others seem as old as the foundation itself. You wonder if all Gegno architecture is built like this, but your curiosity is cut short when the Gegno, that has been many steps ahead of you, grunts and gestures you down a different path. Eventually you are lead to a smal room with two cage-like platforms on the other side.The Gegno steps into one, and motions you to the other.`
+			`	The interior is just as intriguing. You were expecting at least something similar to the interior of human buildings, but the first area you enter in looks like it almost came straight out of some old medieval fantasy story. Everything is very rocky in appearance, although it seems more intentional than natural, as if it was sculpted this way. Some entrances seem to be made of newer metallic materials, while others seem as old as the foundation itself. You wonder if all Gegno architecture is built like this, but your curiosity is cut short when the Gegno, that has been many steps ahead of you, grunts and gestures you down a different path. Eventually you are lead to a small room with two cage-like platforms on the other side.The Gegno steps into one, and motions you to the other.`
 			`	After clanks of chains and other sounds, you begin to ascend up above to wherever your next destination is. The shaking and clanging of the lift doesn't exactly ease your mind, but at least you're still in one piece. All of a sudden, you start to hear a deep, methodical rumble coming from above you. A few more seconds go by, and in an instant you're met with a gust of air. Your cage is out in the open air, connected only to support rails and the pulley system that is lifting it. Surrounding the core of the tower in front of you are other large metal pulley systems, with the Gegno in the one in the distance to your left. The low rumbling you heard earlier is clear now - as you're ascending, certain levels of the tower's core have numerous balconies with many other Gegno playing large timpany-like drums to a tribal-like tune, occasionally grunting or blowing another horn-like instrument.`
 			`	A few more minutes go by of drumming, several layers of smog, and possibly height sickness, the lift arrives at the very top of the tower - a huge, circular platform out in the open with a bunch of important-looking Gegno formed up around a large table of sorts that looks like a display grid with several statuettes of planets and ships on top of it. In contrast to the base, this part of the tower seems to be the most technologically advanced, with some other types of devices spead around the surface. Extending to the darkened sky is a ring of electronic torches, with other towers and buildings alike far in the distance behind them. The Gegno that has guided you here gestures one last time to go to their location amongst the others.`
 			choice
@@ -1098,17 +1098,7 @@ mission "Acquiescence"
 					goto "do nothing"
 				`	(Approach the table and try to explain your situations.)`
 					goto "explain"
-				`	(Call to your Gegno guide.)`
 
-			action
-				set "gegno: called guide"
-			`	You gesture to your Gegno "friend", hoping that they might be able to weigh in on some of the situations since they've aided you up until now. They don't respond whatsoever, and some of the Gegno in the crowd seem either upset at you for choosing to call to them, or upset at them instead for some reason, grunting a little. Regardless, it seems they aren't going to help you.`
-				to display
-					not "gegno: called guide"
-				goto "self proclamation"
-
-
-			label "do nothing"
 			action
 				set "gegno: no proclamation"
 			`	You don't approach the table, standing awkwardly in the open. Maybe it's better to not say anything at all if you're what they perceive as the problem here. A whole minute of silence goes by, and all of the Gegno, including the trio, haven't so so much as a word, silently judging the choice you've decided to make. The trio then march back to the table, moving all of the statuettes aside as if they're setting up for something.`
@@ -1155,7 +1145,6 @@ mission "Acquiescence"
 						has "gegno: no proclamation"
 
 
-
 			label "decision"
 			`	For one last time, the trio beckons to the crowd followed by a long speech. An image of a space station appears on the screen, and a large discussion begins between the other Gegno, whom have formed back up with each other. The trio continues to speak, and some arguments between various Gegno in the audience start happening. While all of this debate occurs, your Gegno guide bumps into you and starts to direct you away from the discussion back to the cage lift with nobody else batting an eye. Several minutes later, you find yourself escorted back to the base of the tower, which is now surrounded by a large group of Gegno civilians, all gawking at the two of you. You're lead back to your ship with your head spinning slightly, unsure what to make of that whole encounter. As they did the first time you were with them on this planet, the Gegno heads for your ship again, handing you a small compass device, this time marking a different location on the map.`
 			`	At the very least, you can take this is they are not done with you yet, so you prepare to travel to your next destination.`
@@ -1175,16 +1164,9 @@ mission "Acquiescence"
 			`	Despite the aggressive action, you are not followed as you leave the planet.`
 				flee
 
-	on accept
-		clear "gegno: called guide"
-
-	on decline
-		clear "gegno: called guide"
-
-
 	on complete
 		conversation
-			`You arrive at your destination. Instead of being directly behind you during your trip, the Gegno ended up taking a seat next to one of your open bunks, not moving a muscle up until now. Despite the grandiose nature of the Gegno's one and only massive space station, it seems very old and inactive. As you are escorted around the spacious interior, which a majority of is still a skeletal frame of pipes, bars, and support, there is a noticable lack of personnel and running machinery. Some sections aren't even properly pressurized, but thankfully your spacesuit helps with that. Occasionally you come across some workers, but they appear very lethargic, or maybe even demotivated.`
+			`You arrive at your destination. Instead of being directly behind you during your trip, the Gegno ended up taking a seat next to one of your open bunks, not moving a muscle up until now. Despite the grandiose nature of the Gegno's one and only massive space station, it seems very old and inactive. As you are escorted around the spacious interior, which a majority of is still a skeletal frame of pipes, bars, and support, there is a noticeable lack of personnel and running machinery. Some sections aren't even properly pressurized, but thankfully your spacesuit helps with that. Occasionally you come across some workers, but they appear very lethargic, or maybe even demotivated.`
 			`	Eventually you end up in a large docking bay where more workers and ships are present. Some of the workers are hauling crates of materials back and forth, with others are talking amongst each other. The Gegno with you then hands you the compass device from earlier, which now shows a series of graphics in a list that seem to be updating in real-time. On the left side of each graphic are various types of minable asteroids, and on the right are tally marks, which thankfully you can understand. It is some sort of job list linked with the station, which implies that the Gegno are at least giving you a chance to work with in, to "do your part", or perhaps "make up for what you've done.
 			`	After one last glare at you, the Gegno leaves you to your own devices. You wonder if you'll ever see them again, considering the way they've been treated by the other Gegno.`
 
