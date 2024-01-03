@@ -18,7 +18,7 @@ mission "Passive-Aggressive Observations"
 	landing
 	destination "Vigales"
 	to offer
-#		random < 30
+		random < 30
 		has "First Contact: Gegno Scin: offered"
 		not "Gegno Genocide Defense: offered"
 	on complete
@@ -118,7 +118,7 @@ mission "Foreign Spectator I"
 	invisible
 	landing
 	to offer
-#		random < 30
+		random < 30
 		has "First Contact: Gegno Scin: offered"
 		not "Gegno Genocide Defense: offered"
 	to complete
@@ -201,7 +201,7 @@ mission "Scin on Cyife"
 	landing
 	source "Cyife"
 	to offer
-#		random < 30
+		random < 30
 		has "First Contact: Gegno Scin: offered"
 		not "Gegno Genocide Defense: offered"
 	on offer
@@ -231,7 +231,7 @@ mission "Battle over Zydee"
 	invisible
 	landing
 	to offer
-#		random < 30
+		random < 30
 		has "First Contact: Gegno Scin: offered"
 		not "Gegno Genocide Defense: offered"
 	to complete
@@ -473,7 +473,7 @@ mission "Veering Vi A"
 	landing
 	deadline 7
 	to offer
-#		random < 30
+		random < 30
 		has "Gegno Suspicions: declined"
 		not "Full Vi Backlash: offered"
 		not "Gegno Genocide Defense: offered"
@@ -499,7 +499,7 @@ mission "Veering Vi B"
 	landing
 	deadline 7
 	to offer
-#		random < 30
+		random < 30
 		has "Gegno Suspicions: declined"
 		not "Full Vi Backlash: offered"
 		not "Gegno Genocide Defense: offered"
