@@ -947,6 +947,8 @@ mission "Gegno Intervention"
 				goto "end"
 
 			label "end"
+			action
+				"reputation: Quarg (Gegno)" = 0
 			`	"I aspire in wiseful decisions from you in your journey ahead, <first> <last>." Adrauni bows for an extended period of time, then leaves the hangar. You get the feeling that this might have been the last time you meet with it. It is now up to you to try and figure out some sort of common ground with the Gegno, if it's possible anymore.`
 				accept
 
