@@ -1132,11 +1132,11 @@ mission "Acquiescence"
 			branch "done with the gegno"
 				or
 					or
-						reputation "Gegno Vi" <= -100
-						reputation "Gegno Scin" <= -50
+						"reputation: Gegno Vi" <= -100
+						"reputation: Gegno Scin" <= -50
 					and
-						reputation "Gegno Vi" < 0
-						reputation "Gegno Scin" < 0
+						"reputation: Gegno Vi" < 0
+						"reputation: Gegno Scin" < 0
 						has "zydee interference"
 					and
 						has "Full Vi Backlash: offered"
