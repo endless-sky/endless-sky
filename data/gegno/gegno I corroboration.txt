@@ -935,18 +935,18 @@ mission "Gegno Intervention"
 					goto "where"
 			
 			`	"It is a difficult philosophy to explain. We Quarg were also subject to unwelcomeness. In some notable capacities we still are - however, it is of a different manner than this one."`
-				goto end
+				goto "end"
 
 			label "where"
 			`	"Be that as it may, do not rushedly conflate such with unpunishable action. On their worlds is to their own conscientious discretion, however, what action you ultimately decide upon in their space is not without observation."`
 				goto "end"
 
 			label "coming"
-			`	"I shall not be. Indeed, it is regrettable that I can no longer be of assistance, but this matter is now between you and the Gegno. Should we Quarg pursue further, it would woefully harm what little relations we currently have."`
+			`	"I shall not be. Indeed, it is regrettable that I can no longer be of assistance, but the fate of this matter belongs to only you and the Gegno."`
 				goto "end"
 
 			label "end"
-			`	"I aspire in wiseful decisions from you in your journey ahead, <first> <last>." Adrauni bows for an extended period of time, then leaves the hangar. You get the feeling that this might have been the last time you meet with it. It is now up to you to try and figure out some sort of common ground with the Gegno, if it's possible anymore.`
+			`	Adrauni stands before you one last time. "To keep what little relations we have with the Gegno, I must inform you we no longer can allow access to our worlds here in their space. Despite this misfortune, I aspire in wiseful decisions from you in your journey ahead, <first> <last>." Adrauni bows for an extended period of time, then leaves the hangar, this likely being the last time you ever meet with it. It is now up to you to try and figure out some sort of common ground with the Gegno, if it's possible anymore.`
 				accept
 
 	npc
