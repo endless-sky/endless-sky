@@ -172,12 +172,15 @@ mission "Foreign Spectator I"
 mission "Brief Bystander"
 	invisible
 	landing
-	destination "Esstch"
+	source "Esstch"
 	to offer
 		has "First Contact: Gegno Scin: offered"
 		not "Gegno Genocide Defense: offered"
 		random < 20
-	on complete
+	to complete
+		never
+	on visit
+		fail
 		"gegno: encounters" ++
 		conversation
 			`As usual, the scattered recording instruments on the surface of this planet contradicts what little interest the Gegno appear to be giving it nowadays, despite its location within the Gegno's home system of Heutesl. Still, since this planet isn't strictly owned by the Gegno, it makes for a convenient place to stop, and they haven't seemed to either notice nor care when you have landed here before.`
