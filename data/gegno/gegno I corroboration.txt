@@ -899,6 +899,7 @@ mission "Gegno Apprehension"
 
 mission "Gegno Intervention"
 	landing
+	clearance
 	to offer
 		has "event: gegno: apprehension"
 		not "Gegno Genocide Defense: offered"
