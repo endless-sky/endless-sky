@@ -556,7 +556,7 @@ mission "Gegno Anticipation"
 	to offer
 		has "Return to Giaru Gegno: offered"
 		not "Gegno Genocide Defense: offererd"
-		not "Gegno Intervention: offered"
+		not "Gegno Apprehension: offered"
 		not	"reputation: Gegno Vi" <= -100
 		not	"reputation: Gegno Scin" <= -100
 	on offer
