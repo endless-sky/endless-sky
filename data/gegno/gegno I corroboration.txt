@@ -13,8 +13,10 @@
 
 
 
+# "BGS", or "Background Simulator", refers to more missions the player can accumulate while interacting with the Gegno that are used for conditions later.
+
 mission "Passive-Aggressive Observations"
-#	invisible
+	invisible
 	landing
 	destination "Vigales"
 	to offer
@@ -69,7 +71,7 @@ mission "Passive-Aggressive Observations"
 		ship "Schist" "Ess Ouec"
 
 mission "Vi Military Group"
-#	invisible
+	invisible
 	landing
 	to offer
 		has "Passive-Aggressive Observations: done"
@@ -115,7 +117,7 @@ mission "Vi Military Group"
 
 
 mission "Foreign Spectator I"
-#	invisible
+	invisible
 	landing
 	to offer
 #		random < 30
@@ -170,7 +172,7 @@ mission "Foreign Spectator I"
 
 
 mission "Brief Bystander"
-#	invisible
+	invisible
 	landing
 	destination "Esstch"
 	to offer
@@ -197,7 +199,7 @@ mission "Brief Bystander"
 
 
 mission "Scin on Cyife"
-#	invisible
+	invisible
 	landing
 	source "Cyife"
 	to offer
@@ -228,7 +230,7 @@ mission "Scin on Cyife"
 
 
 mission "Battle over Zydee"
-#	invisible
+	invisible
 	landing
 	to offer
 #		random < 30
@@ -310,7 +312,7 @@ mission "Battle over Zydee"
 
 
 mission "Curious Civilians"
-#	invisible
+	invisible
 	landing
 	to offer
 		has "First Contact: Gegno Scin: offered"
@@ -326,7 +328,7 @@ mission "Curious Civilians"
 
 
 mission "Gegno Suspicions"
-#	invisible
+	invisible
 	landing
 	source "Giaru Gegno"
 	to offer
@@ -419,7 +421,7 @@ mission "Gegno Suspicions"
 
 
 mission "Under the Nose"
-#	invisible
+	invisible
 	landing
 	source "Giaru Gegno"
 	to offer
@@ -441,7 +443,7 @@ mission "Under the Nose"
 
 
 mission "Scin Surveillance"
-#	invisible
+	invisible
 	repeat
 	landing
 	deadline 7
@@ -470,7 +472,7 @@ mission "Scin Surveillance"
 
 mission "Veering Vi A"
 	repeat
-#	invisible
+	invisible
 	landing
 	deadline 7
 	to offer
@@ -497,7 +499,7 @@ mission "Veering Vi A"
 
 mission "Veering Vi B"
 	repeat
-#	invisible
+	invisible
 	landing
 	deadline 7
 	to offer
@@ -522,7 +524,7 @@ mission "Veering Vi B"
 
 
 mission "Full Vi Backlash"
-#	invisible
+	invisible
 	landing
 	to offer
 		"vi backlash" >= 3
@@ -976,8 +978,7 @@ mission "Gegno Intervention"
 		fleet "Scin Warfleet" 3
 
 
-# Figure a workaround for removing clearance if player shoots the defense fleets
-
+# Figure a workaround for removing clearance if player shoots the defense fleets.
 
 mission "Acquiescence"
 	landing
@@ -1176,4 +1177,4 @@ mission "Acquiescence"
 			`	After one last glare at you, the Gegno leaves you to your own devices. You wonder if you'll ever see them again, considering the way they've been treated by the other Gegno.`
 
 
-# Mining jobs for filler
+# Mining jobs for filler to be created.

@@ -676,10 +676,10 @@ ship "Rhyolite"
 		"weapon capacity" 78
 		"engine capacity" 100
 		weapon
-			"blast radius" 36
-			"shield damage" 160
-			"hull damage" 270
-			"hit force" 430
+			"blast radius" 28
+			"shield damage" 190
+			"hull damage" 360
+			"hit force" 330
 	outfits
 		"Irate Cannon" 4
 		
