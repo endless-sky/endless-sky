@@ -477,9 +477,8 @@ mission "Veering Vi A"
 		has "Gegno Suspicions: declined"
 		not "Full Vi Backlash: offered"
 		not "Gegno Genocide Defense: offered"
-		not or
-			"Gegno Anticipation: offered"
-			"Gegno Intervention: offered"
+		not	"Gegno Anticipation: offered"
+		not	"Gegno Intervention: offered"
 	npc
 		on kill
 			"vi backlash" ++
@@ -504,9 +503,8 @@ mission "Veering Vi B"
 		has "Gegno Suspicions: declined"
 		not "Full Vi Backlash: offered"
 		not "Gegno Genocide Defense: offered"
-		not or
-			"Gegno Anticipation: offered"
-			"Gegno Intervention: offered"
+		not	"Gegno Anticipation: offered"
+		not	"Gegno Intervention: offered"
 	npc
 		on kill
 			"vi backlash" ++
@@ -557,10 +555,9 @@ mission "Gegno Anticipation"
 	to offer
 		has "Return to Giaru Gegno: offered"
 		not "Gegno Genocide Defense: offererd"
-		not "Gegno Intervention: offered"
-		not or
-			"reputation: Gegno Vi" <= -100
-			"reputation: Gegno Scin" <= -100
+		not "Gegno Intervention: offered" 
+		not	"reputation: Gegno Vi" <= -100
+		not	"reputation: Gegno Scin" <= -100
 	on offer
 		fail "Scin Surveillance"
 		fail "Veering Vi A"
@@ -987,9 +984,9 @@ mission "Acquiescence"
 		or
 			has "Gegno Anticipation: offered"
 			has "Gegno Intervention: offered"
-		not or
-			"Gegno Anticipation: failed"
-			"Gegno Intervention: failed"
+		not "Gegno Anticipation: failed"
+		not "Gegno Intervention: failed"
+
 	destination "Tschyss"
 	on offer
 		conversation
