@@ -463,21 +463,21 @@ mission "Suspicious Scin"
 		system
 			near "Pukako" 2
 		dialog
-			`The signal strength coming from the mysterious device is weak. You must be far away from the location marked on the device.`
+			`The signal coming from the mysterious device is weak. You must be far away from the location marked on the device.`
 				to display
 					has "gegno: mysterious device"
 	on enter
 		system
 			near "Ptetubo" 2
 		dialog
-			`The signal strength coming from the mysterious device is weak. You must be far away from the location marked on the device.`
+			`The signal coming from the mysterious device is weak. You must be far away from the location marked on the device.`
 				to display
 					has "gegno: mysterious device"
 	on enter
 		system
 			near "Ilirco" 1 2
 		dialog
-			`The signal strength coming from the mysterious device is stronger now. You seem to be getting close to the location marked on the device.`
+			`The signal coming from the mysterious device is stronger now. You seem to be getting close to the location marked on the device.`
 				to display
 					has "gegno: mysterious device"
 
@@ -723,7 +723,7 @@ mission "Scin Intro Warships Hostile"
 		fail
 
 
-# Unsure if necessary.
+# Debating on removing this, as it seems to be a bit too hand-holdey, and the above is already reason for the player to explore more.
 mission "Gegno Exploration Nudge"
 	invisible
 	landing
