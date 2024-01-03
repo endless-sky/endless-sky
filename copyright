@@ -1805,6 +1805,7 @@ Files:
  images/ship/gegno?kyanite*
  images/ship/gegno?mica*
  images/ship/gegno?protolith*
+ images/ship/gegno?rhyolite*
  images/ship/gegno?schist*
  images/ship/gegno?shale*
  images/ship/gegno?slate*
@@ -1829,6 +1830,8 @@ Files:
  images/thumbnail/gegno?halite*
  images/thumbnail/gegno?kyanite*
  images/thumbnail/gegno?mica*
+ images/thumbnail/gegno?protolith*
+ images/thumbnail/gegno?rhyolite*
  images/thumbnail/gegno?schist*
  images/thumbnail/gegno?shale*
  images/thumbnail/gegno?slate*
