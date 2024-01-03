@@ -13,8 +13,6 @@
 
 
 
-# "BGS", or "Background Simulator", refers to more missions the player can accumulate while interacting with the Gegno that are used for conditions later.
-
 mission "Passive-Aggressive Observations"
 	invisible
 	landing
@@ -24,7 +22,7 @@ mission "Passive-Aggressive Observations"
 		has "First Contact: Gegno Scin: offered"
 		not "Gegno Genocide Defense: offered"
 	on complete
-		"gegno: bgs" ++
+		"gegno: encounters" ++
 		conversation
 			`While navigating the skies of this desert world, you notice familiar readings to the planet you previously encountered a member of the Gegno Vi on. It's likely this world is also home to the same or similar species of large, worm-like creatures you confronted back then. Eventually, you come across a large Gegno Vi vessel stationed on the surface, though unlike in your prior experience, the ship isn't sunken into the desert, likely having recently landed here. A group of Vi warriors are marching out and nearby the vessel, and while they do, your radar picks up two more ships descending from above.`
 			choice
@@ -127,7 +125,7 @@ mission "Foreign Spectator I"
 		never
 	on enter "Eogho"
 		fail
-		"gegno: bgs" ++
+		"gegno: encounters" ++
 		conversation
 			`Although there is both a Vi and Scin fleet here, neither of them are engaging one another. Instead, they are observing a pair of ships, one from each side, that appear to be challenging one another. Maybe this is some sort of ceremonial event between the Gegno factions. It's probably best not to interfere.`
 
@@ -180,7 +178,7 @@ mission "Brief Bystander"
 		not "Gegno Genocide Defense: offered"
 		random < 20
 	on complete
-		"gegno: bgs" ++
+		"gegno: encounters" ++
 		conversation
 			`As usual, the scattered recording instruments on the surface of this planet contradicts what little interest the Gegno appear to be giving it nowadays, despite its location within the Gegno's home system of Heutesl. Still, since this planet isn't strictly owned by the Gegno, it makes for a convenient place to stop, and they haven't seemed to either notice nor care when you have landed here before.`
 			`	However, as you fly around this time, you notice a small Gegno shuttle parked on the ground. The tan coloration of its hull suggests that it's a civilian craft, but what it's doing here is unknown.`
@@ -207,7 +205,7 @@ mission "Scin on Cyife"
 		has "First Contact: Gegno Scin: offered"
 		not "Gegno Genocide Defense: offered"
 	on offer
-		"gegno: bgs" ++
+		"gegno: encounters" ++
 		conversation
 			`Nothing is much of interest on a cold, unwelcoming moon in the middle of nowhere. However, there's something about the surface of Cyife that is a bit peculiar. Some of the light refracted through the surface seeminly dissipates, or reflects back in strange patterns. Although appearing like ice, more detailed inspection reveals that small patches of the terrain seem to be made of some other type of crystalline material. In the distance is something that truly stands out on this world - a large egg-shaped structure with a green hue to it.`
 
@@ -240,7 +238,7 @@ mission "Battle over Zydee"
 		never
 	source "Zydee"
 	on offer
-		"gegno: bgs" ++
+		"gegno: encounters" ++
 		conversation
 			`Although this planet is uninhabited, there are more than a few Gegno Scin ships currently parked across the surface. It seems like there's an ongoing operation to continue constructing what infrastructure has been built in past, and the hard working Scin pay little to no attention to your visit.`
 			`	However, a few moments later, the Scin suddenly start scurrying to their ships. You haven't gotten close enough to alarm them, at least from your experiences with them so far. They begin taking off one by one in a hurried fashion, but not towards you - the <ship>'s sensors suddenly begin picking up a large Gegno Vi fleet entering the system. It appears that this place is turning into a battlefield, and getting caught up in the middle of it is likely something you should avoid.`
@@ -323,7 +321,7 @@ mission "Curious Civilians"
 		system
 			government "Gegno"
 		fail
-		"gegno: bgs" ++
+		"gegno: encounters" ++
 		event "gegno: suspicions"
 
 
@@ -332,8 +330,8 @@ mission "Gegno Suspicions"
 	landing
 	source "Giaru Gegno"
 	to offer
-		"gegno: bgs" >= 3
-		"gegno: bgs" < 6
+		"gegno: encounters" >= 3
+		"gegno: encounters" < 6
 		not "Gegno Genocide Defense: offered"
 	on offer
 		conversation
@@ -454,10 +452,8 @@ mission "Scin Surveillance"
 		has "event: gegno: suspicions"
 		not "Scin Suspicion: offered"
 		not "Gegno Genocide Defense: offered"
-		not
-			or
-				"Gegno Anticipation: offered"
-				"Gegno Intervention: offered"
+		not "Gegno Anticipation: offered"
+		not "Gegno Intervention: offered"
 	to complete
 		never
 	npc save
@@ -544,7 +540,7 @@ mission "Return to Giaru Gegno"
 	destination "Giaru Gegno"
 	to offer
 		has "event: gegno: quarg talks"
-		"gegno: bgs" < 6
+		"gegno: encounters" < 6
 		not "Gegno Genocide Defense: offered"
 	on enter
 		dialog
@@ -881,19 +877,19 @@ mission "Gegno Apprehension"
 		never
 	to offer
 		or
-			"gegno: bgs" >= 6
+			"gegno: encounters" >= 6
 			has "dead augen"
 			and
-				"gegno: bgs" >= 3
+				"gegno: encounters" >= 3
 				has "Full Vi Backlash: offered"
 			and
-				"gegno: bgs" >= 3
+				"gegno: encounters" >= 3
 				or
 					"reputation: Gegno Vi" <= -100
 					"reputation: Gegno Scin" <= -50
 
 			and
-				"gegno: bgs" >= 3
+				"gegno: encounters" >= 3
 				or
 					has "interrupted arena"
 					has "provoked military"
@@ -1148,7 +1144,7 @@ mission "Acquiescence"
 						has "Full Vi Backlash: offered"
 						has "dead augen"
 					and
-						"gegno: bgs" >= 6
+						"gegno: encounters" >= 6
 						has "gegno: no proclamation"
 
 
