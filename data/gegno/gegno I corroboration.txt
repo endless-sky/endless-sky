@@ -454,9 +454,10 @@ mission "Scin Surveillance"
 		has "event: gegno: suspicions"
 		not "Scin Suspicion: offered"
 		not "Gegno Genocide Defense: offered"
-		not or
-			"Gegno Anticipation: offered"
-			"Gegno Intervention: offered"
+		not
+			or
+				"Gegno Anticipation: offered"
+				"Gegno Intervention: offered"
 	to complete
 		never
 	npc save
@@ -976,6 +977,7 @@ mission "Gegno Intervention"
 		personality heroic vindictive staying
 		system "Heutesl"
 		fleet "Scin Warfleet" 3
+
 
 
 # Figure a workaround for removing clearance if player shoots the defense fleets.
