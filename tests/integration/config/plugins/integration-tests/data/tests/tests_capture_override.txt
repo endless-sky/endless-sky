@@ -110,7 +110,6 @@ test "Capture Uncapturable With Capturable Override"
 		inject "Capture Uncapturable With Capturable Override Mission"
 		inject "Capture Uncapturable With Capturable Override Save"
 		call "Load First Savegame"
-		watchdog 8000
 		# to make sure we can capture
 		assert
 			"reputation: Quarg" < 0
@@ -118,8 +117,6 @@ test "Capture Uncapturable With Capturable Override"
 		input
 			command board
 		label "floating"
-		# empty input to make time pass
-		input
 		branch "floating"
 			not "%TEST%: Capture That Quarg!: offered"
 		# attempt capture and attack, then close the panel and land
