@@ -23,7 +23,7 @@ mission "Gegno Asteroid Mining - Aluminum"
 		has "Gegno Asteroid Mining Prologue: done"
 		random < 10
 		"cargo space" > 5
-	on compete
+	on complete
 		"gegno: mining jobs" ++
 		payment 10000
 		dialog phrase "gegno mining payment dialog"
@@ -41,7 +41,7 @@ mission "Gegno Asteroid Mining - Copper"
 		has "Gegno Asteroid Mining Prologue: done"
 		random < 10
 		"cargo space" > 5
-	on compete
+	on complete
 		"gegno: mining jobs" ++
 		payment 10000
 		dialog phrase "gegno mining payment dialog"
@@ -59,7 +59,7 @@ mission "Gegno Asteroid Mining - Iron"
 		has "Gegno Asteroid Mining Prologue: done"
 		random < 10
 		"cargo space" > 5
-	on compete
+	on complete
 		"gegno: mining jobs" ++
 		payment 10000
 		dialog phrase "gegno mining payment dialog"
@@ -77,7 +77,7 @@ mission "Gegno Asteroid Mining - Lead"
 		has "Gegno Asteroid Mining Prologue: done"
 		random < 10
 		"cargo space" > 5
-	on compete
+	on complete
 		"gegno: mining jobs" ++
 		payment 10000
 		dialog phrase "gegno mining payment dialog"
@@ -95,7 +95,7 @@ mission "Gegno Asteroid Mining - Silicon"
 		has "Gegno Asteroid Mining Prologue: done"
 		random < 10
 		"cargo space" > 5
-	on compete
+	on complete
 		"gegno: mining jobs" ++
 		payment 10000
 		dialog phrase "gegno mining payment dialog"
@@ -113,7 +113,7 @@ mission "Gegno Asteroid Mining - Titanium"
 		has "Gegno Asteroid Mining Prologue: done"
 		random < 10
 		"cargo space" > 5
-	on compete
+	on complete
 		"gegno: mining jobs" ++
 		payment 10000
 		dialog phrase "gegno mining payment dialog"
