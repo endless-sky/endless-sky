@@ -372,7 +372,7 @@ outfit `Z-330 "Spark" Fusion Torch`
 	"outfit space" -33
 	"engine capacity" -33
 	"thrust" 69
-	"thrusting energy" 18
+	"thrusting energy" 12
 	"thrusting heat" 45
 	"thrusting fuel" 0.09
 	"drag reduction" 2
@@ -396,7 +396,7 @@ outfit `Z-660 "Zap" Fusion Torch`
 	"outfit space" -66
 	"engine capacity" -66
 	"thrust" 144
-	"thrusting energy" 36
+	"thrusting energy" 24
 	"thrusting heat" 90
 	"thrusting fuel" 0.18
 	"drag reduction" 2
@@ -419,7 +419,7 @@ outfit `Z-990 "Arc" Fusion Torch`
 	"outfit space" -99
 	"engine capacity" -99
 	"thrust" 222
-	"thrusting energy" 54
+	"thrusting energy" 36
 	"thrusting heat" 135
 	"thrusting fuel" 0.27
 	"drag reduction" 2
