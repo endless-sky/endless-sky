@@ -16,7 +16,7 @@ mission "Gegno Asteroid Mining - Aluminum"
 	job
 	repeat
 	name "Gather 10 tons of Aluminum"
-	description "Mine and collect 10 tons of Aluminum, then bring the minerals back to the Gegno at <source>."
+	description "Mine and collect 10 tons of Aluminum, then bring the minerals back to the Gegno at <origin>."
 	source "Tschyss"
 	destination "Tschyss"
 	to offer
@@ -36,7 +36,7 @@ mission "Gegno Asteroid Mining - Copper"
 	job
 	repeat
 	name "Gather 10 tons of Copper"
-	description "Mine and collect 10 tons of Copper, then bring the minerals back to the Gegno at <source>."
+	description "Mine and collect 10 tons of Copper, then bring the minerals back to the Gegno at <origin>."
 	source "Tschyss"
 	destination "Tschyss"
 	to offer
@@ -56,7 +56,7 @@ mission "Gegno Asteroid Mining - Iron"
 	job
 	repeat
 	name "Gather 10 tons of Iron"
-	description "Mine and collect 10 tons of Iron, then bring the minerals back to the Gegno at <source>."
+	description "Mine and collect 10 tons of Iron, then bring the minerals back to the Gegno at <origin>."
 	source "Tschyss"
 	destination "Tschyss"
 	to offer
@@ -76,7 +76,7 @@ mission "Gegno Asteroid Mining - Lead"
 	job
 	repeat
 	name "Gather 10 tons of Lead"
-	description "Mine and collect 10 tons of Lead, then bring the minerals back to the Gegno at <source>."
+	description "Mine and collect 10 tons of Lead, then bring the minerals back to the Gegno at <origin>."
 	source "Tschyss"
 	destination "Tschyss"
 	to offer
@@ -96,7 +96,7 @@ mission "Gegno Asteroid Mining - Silicon"
 	job
 	repeat
 	name "Gather 10 tons of Silicon"
-	description "Mine and collect 10 tons of Silicon, then bring the minerals back to the Gegno at <source>."
+	description "Mine and collect 10 tons of Silicon, then bring the minerals back to the Gegno at <origin>."
 	source "Tschyss"
 	destination "Tschyss"
 	to offer
@@ -116,7 +116,7 @@ mission "Gegno Asteroid Mining - Titanium"
 	job
 	repeat
 	name "Gather 10 tons of Titanium"
-	description "Mine and collect 10 tons of Titanium, then bring the minerals back to the Gegno at <source>."
+	description "Mine and collect 10 tons of Titanium, then bring the minerals back to the Gegno at <origin>."
 	source "Tschyss"
 	destination "Tschyss"
 	to offer
