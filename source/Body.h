@@ -80,6 +80,7 @@ public:
 
 	double Alpha(const Point &drawCenter) const;
 	double DistanceAlpha(const Point &drawCenter) const;
+	bool IsVisible(const Point &drawCenter) const;
 
 protected:
 	// Adjust the frame rate.

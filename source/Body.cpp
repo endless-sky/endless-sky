@@ -315,6 +315,13 @@ double Body::DistanceAlpha(const Point &drawCenter) const
 
 
 
+bool Body::IsVisible(const Point &drawCenter) const
+{
+	return DistanceAlpha(drawCenter) > 0.;
+}
+
+
+
 // Set the frame rate of the sprite. This is used for objects that just specify
 // a sprite instead of a full animation data structure.
 void Body::SetFrameRate(float framesPerSecond)
