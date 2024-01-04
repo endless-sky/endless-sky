@@ -1500,9 +1500,9 @@ ship "Starling"
 		"hull" 4900
 		"required crew" 6
 		"bunks" 15
-		"mass" 416
-		"drag" 4.7
-		"heat dissipation" 0.56
+		"mass" 387
+		"drag" 4.6
+		"heat dissipation" 0.59
 		"fuel capacity" 900
 		"ramscoop" 1.75
 		"cargo space" 36

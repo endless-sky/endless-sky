@@ -406,9 +406,9 @@ ship "Heliarch Breacher"
 		"hull" 21500
 		"required crew" 11
 		"bunks" 15
-		"mass" 372
-		"drag" 4.2
-		"heat dissipation" .6
+		"mass" 343
+		"drag" 4.0
+		"heat dissipation" .62
 		"ion protection" .1
 		"scramble protection" .1
 		"fuel capacity" 800
@@ -1067,9 +1067,9 @@ ship "Heliarch Neutralizer"
 		"hull" 32800
 		"required crew" 17
 		"bunks" 24
-		"mass" 461
-		"drag" 5.3
-		"heat dissipation" .58
+		"mass" 429
+		"drag" 5.1
+		"heat dissipation" .6
 		"ion protection" .1
 		"scramble protection" .1
 		"fuel capacity" 1000

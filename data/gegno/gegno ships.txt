@@ -668,9 +668,9 @@ ship "Eclogite"
 		"hull" 6900
 		"required crew" 9
 		"bunks" 12
-		"mass" 443
-		"drag" 4.8
-		"heat dissipation" 0.54
+		"mass" 415
+		"drag" 4.6
+		"heat dissipation" 0.56
 		"fuel capacity" 400
 		"cargo space" 70
 		"outfit space" 285
@@ -1141,9 +1141,9 @@ ship "Coesite"
 		"hull" 5600
 		"required crew" 8
 		"bunks" 14
-		"mass" 330
-		"drag" 4.8
-		"heat dissipation" 0.59
+		"mass" 305
+		"drag" 4.6
+		"heat dissipation" 0.61
 		"fuel capacity" 500
 		"cargo space" 40
 		"outfit space" 264

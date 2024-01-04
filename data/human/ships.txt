@@ -85,9 +85,9 @@ ship "Argosy"
 		"hull" 2600
 		"required crew" 4
 		"bunks" 14
-		"mass" 510
-		"drag" 7.7
-		"heat dissipation" .54
+		"mass" 480
+		"drag" 7.4
+		"heat dissipation" .56
 		"fuel capacity" 400
 		"cargo space" 120
 		"outfit space" 270
@@ -1061,9 +1061,9 @@ ship "Clipper"
 		"hull" 800
 		"required crew" 3
 		"bunks" 9
-		"mass" 230
-		"drag" 4.4
-		"heat dissipation" .67
+		"mass" 210
+		"drag" 4.3
+		"heat dissipation" .7
 		"fuel capacity" 500
 		"cargo space" 70
 		"outfit space" 260
@@ -1356,9 +1356,9 @@ ship "Cutthroat"
 		"hull" 600
 		"required crew" 4
 		"bunks" 6
-		"mass" 275
-		"drag" 4.1
-		"heat dissipation" .67
+		"mass" 252
+		"drag" 3.9
+		"heat dissipation" .7
 		"fuel capacity" 500
 		"cargo space" 27
 		"outfit space" 282
@@ -1966,9 +1966,9 @@ ship "Gunboat"
 		"hull" 1400
 		"required crew" 7
 		"bunks" 12
-		"mass" 300
-		"drag" 4.2
-		"heat dissipation" .6
+		"mass" 280
+		"drag" 4.0
+		"heat dissipation" .62
 		"fuel capacity" 600
 		"cargo space" 50
 		"outfit space" 270
@@ -2250,9 +2250,9 @@ ship "Headhunter"
 		"hull" 700
 		"required crew" 2
 		"bunks" 4
-		"mass" 190
-		"drag" 3.1
-		"heat dissipation" .67
+		"mass" 175
+		"drag" 3.0
+		"heat dissipation" .7
 		"fuel capacity" 400
 		"cargo space" 50
 		"outfit space" 250
@@ -2583,9 +2583,9 @@ ship "Modified Argosy"
 		"hull" 1900
 		"required crew" 5
 		"bunks" 12
-		"mass" 430
-		"drag" 8.1
-		"heat dissipation" .47
+		"mass" 400
+		"drag" 7.8
+		"heat dissipation" .48
 		"fuel capacity" 400
 		"cargo space" 60
 		"outfit space" 340
@@ -2955,9 +2955,9 @@ ship "Quicksilver"
 		"hull" 800
 		"required crew" 3
 		"bunks" 6
-		"mass" 190
-		"drag" 3.2
-		"heat dissipation" .67
+		"mass" 170
+		"drag" 3.1
+		"heat dissipation" .7
 		"fuel capacity" 400
 		"cargo space" 15
 		"outfit space" 240
@@ -3003,9 +3003,9 @@ ship "Rainmaker"
 		"hull" 1200
 		"required crew" 3
 		"bunks" 7
-		"mass" 280
-		"drag" 4.7
-		"heat dissipation" .48
+		"mass" 260
+		"drag" 4.6
+		"heat dissipation" .5
 		"fuel capacity" 500
 		"cargo space" 25
 		"outfit space" 240

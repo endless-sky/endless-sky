@@ -23,9 +23,9 @@ ship "Maeri'het"
 		"hull" 23100
 		"required crew" 1
 		"bunks" 1
-		"mass" 660
-		"drag" 5.1
-		"heat dissipation" .3
+		"mass" 620
+		"drag" 5.0
+		"heat dissipation" .31
 		"overheat damage threshold" 0.2
 		"overheat damage rate" 1.3
 		"fuel capacity" 800

@@ -473,9 +473,9 @@ ship "Lightning Bug"
 		"hull" 1700
 		"required crew" 4
 		"bunks" 10
-		"mass" 370
-		"drag" 4.9
-		"heat dissipation" .66
+		"mass" 345
+		"drag" 4.8
+		"heat dissipation" .68
 		"fuel capacity" 600
 		"cargo space" 73
 		"outfit space" 278

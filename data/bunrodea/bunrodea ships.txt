@@ -249,9 +249,9 @@ ship "Tekkan"
 		"hull" 5200
 		"required crew" 6
 		"bunks" 9
-		"mass" 393
-		"drag" 4.1
-		"heat dissipation" 0.72
+		"mass" 364
+		"drag" 4.0
+		"heat dissipation" 0.75
 		"fuel capacity" 700
 		"cargo space" 21
 		"outfit space" 321
@@ -305,9 +305,9 @@ ship "Kunai"
 		"hull" 5700
 		"required crew" 15
 		"bunks" 37
-		"mass" 642
-		"drag" 7
-		"heat dissipation" 0.63
+		"mass" 603
+		"drag" 6.8
+		"heat dissipation" 0.66
 		"fuel capacity" 700
 		"cargo space" 28
 		"outfit space" 407

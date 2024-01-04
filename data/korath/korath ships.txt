@@ -1801,9 +1801,9 @@ ship "Met Par Tek 53"
 		"hull" 22200
 		"automaton" 1
 		"crew equivalent" 25
-		"mass" 935
-		"drag" 8.6
-		"heat dissipation" .54
+		"mass" 884
+		"drag" 8.3
+		"heat dissipation" .56
 		"fuel capacity" 400
 		"cargo space" 26
 		"outfit space" 610
@@ -1989,9 +1989,9 @@ ship "Model 16"
 		"hull" 9800
 		"automaton" 1
 		"crew equivalent" 10
-		"mass" 420
-		"drag" 8.6
-		"heat dissipation" 1.04
+		"mass" 390
+		"drag" 8.3
+		"heat dissipation" 1.09
 		"fuel capacity" 400
 		"cargo space" 7
 		"outfit space" 426
@@ -2043,9 +2043,9 @@ ship "Model 32"
 		"hull" 13400
 		"automaton" 1
 		"crew equivalent" 25
-		"mass" 670
-		"drag" 12.1
-		"heat dissipation" .97
+		"mass" 625
+		"drag" 11.7
+		"heat dissipation" 1.0
 		"fuel capacity" 400
 		"cargo space" 16
 		"outfit space" 481

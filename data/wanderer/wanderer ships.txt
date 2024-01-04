@@ -101,9 +101,9 @@ ship "Summer Leaf"
 		"hull" 6700
 		"required crew" 6
 		"bunks" 15
-		"mass" 196
-		"drag" 3.1
-		"heat dissipation" .67
+		"mass" 174
+		"drag" 3.0
+		"heat dissipation" .7
 		"fuel capacity" 800
 		"cargo space" 41
 		"outfit space" 320
@@ -151,9 +151,9 @@ ship "Autumn Leaf"
 		"hull" 7400
 		"required crew" 8
 		"bunks" 16
-		"mass" 252
-		"drag" 3.6
-		"heat dissipation" .64
+		"mass" 228
+		"drag" 3.5
+		"heat dissipation" .67
 		"fuel capacity" 1000
 		"cargo space" 45
 		"outfit space" 361
@@ -721,9 +721,9 @@ ship "Winter Gale"
 		"hull" 14800
 		"required crew" 14
 		"bunks" 23
-		"mass" 491
-		"drag" 7.6
-		"heat dissipation" .52
+		"mass" 455
+		"drag" 7.3
+		"heat dissipation" .54
 		"fuel capacity" 600
 		"cargo space" 28
 		"outfit space" 478
