@@ -559,8 +559,8 @@ mission "Gegno Anticipation"
 		has "Return to Giaru Gegno: offered"
 		not "Gegno Genocide Defense: offered"
 		not "event: gegno: apprehension"
-		not	"reputation: Gegno Vi" <= -100
-		not	"reputation: Gegno Scin" <= -100
+		"reputation: Gegno Vi" > -100
+		"reputation: Gegno Scin" > -50
 	on offer
 		conversation
 			branch "negative rep"
