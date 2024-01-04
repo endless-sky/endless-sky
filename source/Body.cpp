@@ -306,7 +306,7 @@ double Body::Alpha(const Point &drawCenter) const
 
 double Body::DistanceAlpha(const Point &drawCenter) const
 {
-	if(distanceInvisible <= 0.)
+	if(!distanceInvisible)
 		return 1.;
 	double distance = (drawCenter - position).Length();
 	double distanceAlpha = max(min((distance - distanceInvisible) / (distanceVisible - distanceInvisible), 1.), 0.);
