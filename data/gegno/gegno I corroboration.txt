@@ -127,7 +127,7 @@ mission "Foreign Spectator I"
 		fail
 		"gegno: encounters" ++
 		conversation
-			`Although there is both a Vi and Scin fleet here, neither of them are engaging one another. Instead, they are observing a pair of ships, one from each side, that appear to be challenging one another. Maybe this is some sort of ceremonial event between the Gegno factions. It's probably best not to interfere.`
+			`As you enter the system, you notice that there are both a Vi and Scin fleet at the center, although neither of them are engaging one another. Instead, they are observing a pair of ships, one from each side, that appear to be challenging one another. Maybe this is some sort of ceremonial event between the Gegno factions. It's probably best not to interfere.`
 
 	npc
 		on provoke
@@ -336,8 +336,7 @@ mission "Gegno Suspicions"
 	on offer
 		conversation
 			`After you go through your post-docking routine and enter the ringworld, you can't help but feel that something is a bit off. Normally the Quarg here would be swiftly walking about, focused on attending to their duties, but for some reason, there seems to be less of them around than usual. Moreover, those you do come across are occasionally having discussions with one another, sometimes looking in your direction even for the slightest second. What stands out the most is the lack of any Gegno in the area you're in at all.`
-			`	A few minutes later, while you are making your way through the pristine interior of the ring, you hear a voice call to you from down one of the various branching corridors. Turning around, you recognize the unique attire of the Quarg that has helped you in the past, along with a few others.`
-			`	"Circumstantial greetings once more, <first> <last>. Might we have a significant moment of your attention?"`
+			`	A few minutes later, while you are making your way through the pristine interior of the ring, you hear a voice call to you from down one of the various branching corridors. Turning around, you recognize the unique attire of the Quarg that has helped you in the past, along with a few others. "Circumstantial greetings once more, <first> <last>. Might we have a significant moment of your attention?"`
 			choice
 				`	"Sure."`
 					goto "follow"
@@ -352,8 +351,7 @@ mission "Gegno Suspicions"
 					"reputation: Gegno Vi" < 0
 					"reputation: Gegno Scin" < 0
 
-			`	"Formerly, I have offered suggestions of heedful interplay regarding the Gegno. We have been alerted of a few additional encounters you've experienced, although they seemed minimal in nature. In such cases, it has been generally described that you left in a timely manner, in which we are notably appreciative of."`
-			`	"However," the Quarg continues, "despite your efforts in recommended cautions, there are some meaningful figures of Gegno standing that expressed frustration in your trivial appearances. They inquired us of the possibility of unnecessary reoccurences."`
+			`	"Formerly, I have offered suggestions of heedful interplay regarding the Gegno. We have been alerted of a few additional encounters you've experienced, although they seemed minimal in nature. In such cases, it has been generally described that you left in a timely manner, in which we are notably appreciative of. However," the Quarg continues, "despite your efforts in recommended cautions, there are some meaningful figures of Gegno standing that expressed frustration in your trivial appearances. They inquired us of the possibility of unnecessary reoccurences."`
 			choice
 				`	"Why does this frustrate them?"`
 				`	"I haven't done any harm to them."`
@@ -376,7 +374,8 @@ mission "Gegno Suspicions"
 				goto imagine
 
 			label imagine
-			`	"Imagine, if you will, during the substantial conflicts the humans call the Turf Wars, a strange alien came to human space. We Quarg woefully witnessed that hazardous conflict - it was a time of great waste, unfortunate peril, and unsavory distrust among humanity. The Gegno are in a vulnerable state notably comparable to such a time, and introduction of outsiders would not befit the case. The truth remains that we have been contacted by a few Gegno of importance in respect to your past presences, and there has been show of concern to your unstated intentions." After a brief pause, the Quarg looks to you in a strange manner, and you aren't sure what to make of it. "Though, unexpectedly, a select few times we have also been curiously asked of your origins, an experience we are not strongly familiar with involving the Gegno." The Quarg leaves its chair and motions you to do the same.`
+			`	"Imagine, if you will, during the substantial conflicts the humans call the Turf Wars, a strange alien came to human space. We Quarg woefully witnessed that hazardous conflict - it was a time of great waste, unfortunate peril, and unsavory distrust among humanity. The Gegno are in a vulnerable state notably comparable to such a time, and introduction of outsiders would not befit the case. The truth remains that we have been contacted by a few Gegno of importance in respect to your past presences, and there has been show of concern to your unstated intentions." After a brief pause, the Quarg looks to you in a strange manner, and you aren't sure what to make of it. "Though, unexpectedly, a select few times we have also been curiously asked of your origins, an experience we are not strongly familiar with involving the Gegno."`
+			`	The Quarg leaves its chair and motions you to do the same.`
 			choice
 				`	(Stand up.)`
 
@@ -450,7 +449,6 @@ mission "Scin Surveillance"
 	to offer
 		random < 70
 		has "event: gegno: suspicions"
-		not "Scin Suspicion: offered"
 		not "Gegno Genocide Defense: offered"
 		not "Gegno Anticipation: offered"
 		not "Gegno Intervention: offered"
@@ -545,6 +543,10 @@ mission "Return to Giaru Gegno"
 		dialog
 			`Upon departure from <origin>, you receive an incoming message. "Greetings, human <first> <last>. This message is from Adrauni. Return to our ringworld at the first opportunity given to you."`
 				accept
+	on complete
+		fail "Scin Surveillance"
+		fail "Veering Vi A"
+		fail "Veering Vi B"
 
 
 mission "Gegno Anticipation"
@@ -555,14 +557,11 @@ mission "Gegno Anticipation"
 	clearance
 	to offer
 		has "Return to Giaru Gegno: offered"
-		not "Gegno Genocide Defense: offererd"
+		not "Gegno Genocide Defense: offered"
 		not "Gegno Apprehension: offered"
 		not	"reputation: Gegno Vi" <= -100
 		not	"reputation: Gegno Scin" <= -100
 	on offer
-		fail "Scin Surveillance"
-		fail "Veering Vi A"
-		fail "Veering Vi B"
 		conversation
 			branch "negative rep"
 				or
@@ -1061,12 +1060,12 @@ mission "Acquiescence"
 
 			`	A more detailed image of a desert planet, different than the first one, comes onto the display. Alongside it are many graphics - one representing a platoon of Vi warriors, one of the Gegno ship type you saw there, and a few words scrolling by, possibly names of each warrior that was present that day. Next to the name of the planet is a smaller graphic of one of those giant sandworms you fought, suggesting that they're found on desert worlds beyond the first one.`
 				to display
-					has "Passive-Aggressive Observations: declined"
+					has "Passive-Aggressive Observations: done"
 
 
 			`	To the side of the table is a statuette of the Mercury-like planet here in their home system, though it doesn't come up on the screen at any point.`
 				to display
-					has "Brief Bystander: declined"
+					has "Brief Bystander: done"
 
 
 			`	An image of two distinct ships comes up, matching a pair of statuettes on the table. One of them is the same type of Vi ship you came across in the sand on the desert world, and the other is a Scin ship that looks like a derivative of other Gegno ships. You hear someone in the crowd yell loudly in what might be disappointment, but they are silenced by the Gegno trio.`
@@ -1175,14 +1174,16 @@ mission "Acquiescence"
 
 
 mission "Gegno Asteroid Mining Prologue"
+	name "Mine and return 5 tons of Iron to <origin> in the Oosuoro system."
 	landing
 	source "Tschyss"
+	destination "Tschyss"
 	to offer
 		has "Acquiescence: offered"
 		not "Gegno Genocide Defense: offered"
 	on offer
 		conversation
-			branch "deferred"
+			branch "returned"
 				has "Gegno Asteroid Mining Prologue: deferred"
 
 			`You arrive at your destination. Instead of being directly behind you during your trip, the Gegno ended up taking a seat next to one of your open bunks, not moving a muscle up until now. Despite the grandiose nature of the Gegno's one and only massive space station, it seems very old and inactive. As you are escorted around the spacious interior, which a majority of is still a skeletal frame of pipes, bars, and support, there is a noticeable lack of personnel and running machinery. Some sections aren't even properly pressurized, but thankfully your spacesuit helps with that. Occasionally you come across some workers, but they appear very lethargic, or maybe even demotivated.`
@@ -1203,14 +1204,14 @@ mission "Gegno Asteroid Mining Prologue"
 			
 			label "accept"
 			`	You fiddle with the screen, trying to decipher how to use it. Some of the Gegno gaze at you for doing so, and while they silently judge, you manage to figure out that it's a touch-sensitive screen, though it takes a lot of force for you to get it to work.`
-			`	The graphic that appears the first time you get the device to work is of a Lead asteroid, with five strange-looking tally marks next to it. Time to find some Lead.`
+			`	The graphic that appears the first time you get the device to work is of a Lead asteroid, with five strange-looking tally marks next to it. Mining for them wasn't exactly the first thing you were expecting to do for the Gegno, but it is a start.`
 				accept
 
 			label "nothing"
 			`	You decide to leave the facility. None of the Gegno pay you any attention as you do, focused back on their work once more.`
 				defer
 
-			label "deferred"
+			label "returned"
 			`	Despite previously leaving the station, you're given clearance to land again. Would you like to go to the job facility and try to accept one of the listings?`
 			choice
 				`	(Yes.)`

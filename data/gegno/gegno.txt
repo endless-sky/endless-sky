@@ -215,7 +215,7 @@ phrase "gegno mining payment dialog"
 	word
 		"hesitantly"
 		"quickly"
-		"slowly" 
+		"slowly"
 		"easily"
 		"haphazardly"
 	word
