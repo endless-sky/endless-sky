@@ -196,3 +196,31 @@ phrase "gegno untranslated"
 		"Tii ayyr eno Gegno."
 		"Vytii ayyr eisktici uf tii."
 		"Scienn ayyr eisktici uf tii."
+
+
+# Mining job dialog.
+
+phrase "gegno mining payment dialog"
+	word
+		"Following a small debate,"
+		"After you depart from your ship,"
+		"Almost absent-mindedly,"
+		"Without paying you the slightest attention,"
+		
+	word
+		" a few bulky Gegno "
+		" a group of irritated Gegno "
+		" some unenthused Gegno workers "
+		" a large group of Gegno "
+	word
+		"hesitantly"
+		"quickly"
+		"slowly" 
+		"easily"
+		"haphazardly"
+	word
+		" unload your ship of materials,"
+		" unload the materials out of your cargo bay,"
+		" haul the materials out of your ship,"
+	word
+		" and you are payed <payment> credits."
