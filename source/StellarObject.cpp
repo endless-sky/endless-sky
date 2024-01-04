@@ -158,7 +158,7 @@ double StellarObject::Distance() const
 
 void StellarObject::UpdateDistanceVisibility(const Ship *ship)
 {
-	if(trueDistanceInvisible < 0.)
+	if(!trueDistanceInvisible)
 		return;
 
 	// Check if the player has an attribute that allows them to always
