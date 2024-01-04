@@ -530,7 +530,7 @@ mission "Full Vi Backlash"
 
 mission "Return to Giaru Gegno"
 	landing
-	description `The Quarg known as Adrauni has summoned you back to <destination> to discuss their negotiations with the Gegno.`
+	description `The Quarg known as Adrauni has summoned you back to <destination>.`
 	source
 		not planet "Giaru Gegno"
 	destination "Giaru Gegno"
@@ -558,7 +558,7 @@ mission "Gegno Anticipation"
 	to offer
 		has "Return to Giaru Gegno: offered"
 		not "Gegno Genocide Defense: offered"
-		not "Gegno Apprehension: offered"
+		not "event: gegno: apprehension"
 		not	"reputation: Gegno Vi" <= -100
 		not	"reputation: Gegno Scin" <= -100
 	on offer
@@ -891,9 +891,8 @@ mission "Gegno Apprehension"
 					has "interrupted arena"
 					has "provoked military"
 					has "zydee interference"
-					has "approached bystander"
 	on offer
-		event "gegno: apprehension" 1
+		event "gegno: apprehension"
 		fail
 
 
