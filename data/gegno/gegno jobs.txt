@@ -26,7 +26,7 @@ mission "Gegno Asteroid Mining - Aluminum"
 	on compete
 		"gegno: mining jobs" ++
 		payment 10000
-		dialog phrase "gegno mining payment dialogue"
+		dialog phrase "gegno mining payment dialog"
 		outfit "Aluminum" -10
 
 
@@ -44,7 +44,7 @@ mission "Gegno Asteroid Mining - Copper"
 	on compete
 		"gegno: mining jobs" ++
 		payment 10000
-		dialog phrase "gegno mining payment dialogue"
+		dialog phrase "gegno mining payment dialog"
 		outfit "Copper" -10
 
 
@@ -62,7 +62,7 @@ mission "Gegno Asteroid Mining - Iron"
 	on compete
 		"gegno: mining jobs" ++
 		payment 10000
-		dialog phrase "gegno mining payment dialogue"
+		dialog phrase "gegno mining payment dialog"
 		outfit "Iron" -10
 
 
@@ -80,7 +80,7 @@ mission "Gegno Asteroid Mining - Lead"
 	on compete
 		"gegno: mining jobs" ++
 		payment 10000
-		dialog phrase "gegno mining payment dialogue"
+		dialog phrase "gegno mining payment dialog"
 		outfit "Lead" -10
 
 
@@ -98,7 +98,7 @@ mission "Gegno Asteroid Mining - Silicon"
 	on compete
 		"gegno: mining jobs" ++
 		payment 10000
-		dialog phrase "gegno mining payment dialogue"
+		dialog phrase "gegno mining payment dialog"
 		outfit "Silicon" -10
 
 
@@ -116,5 +116,5 @@ mission "Gegno Asteroid Mining - Titanium"
 	on compete
 		"gegno: mining jobs" ++
 		payment 10000
-		dialog phrase "gegno mining payment dialogue"
+		dialog phrase "gegno mining payment dialog"
 		outfit "Titanium" -10
