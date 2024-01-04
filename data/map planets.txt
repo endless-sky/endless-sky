@@ -4427,7 +4427,6 @@ planet Tschyss
 	music ambient/machinery
 	description `This massive station is the only orbital structure that can be found in Gegno space, and is still under heavy construction. Although a majority of the exterior seems complete, the interior is noticeably lacking in comparison, and it seems that the progress has slowed down significantly in recent times. A large portion of the station is filled with crew quarters and living sections, all larger than in human space, and the outside is enveloped in many docking bays of numerous sizes.`
 	spaceport `Gegno of all kinds are walking to and fro, though they seem very tired and overworked. Not a lot of them seem happy with their current working conditions, but all you can do is watch from a distance in a small half-built area nearby your ship's designated docking bay. Despite the scale and number of onboard facilities that you can see, there are only a small number of Gegno making use of them.`
-	outfitter "Gegno Basic"
 	government Gegno
 	"required reputation" 0.1
 	bribe 0
