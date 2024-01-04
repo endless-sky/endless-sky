@@ -1098,8 +1098,8 @@ mission "Acquiescence"
 
 			label "self proclamation"
 			choice
-				`	(Stay where you are and do nothing.)`
 				`	(Approach the table and try to explain your situations.)`
+				`	(Stay where you are and do nothing.)`
 					goto "explain"
 
 			action
@@ -1149,6 +1149,8 @@ mission "Acquiescence"
 
 
 			label "decision"
+			action
+				"reputation: Gegno" = 0.1
 			`	For one last time, the trio beckons to the crowd followed by a long speech. An image of a space station appears on the screen, and a large discussion begins between the other Gegno, whom have formed back up with each other. The trio continues to speak, and some arguments between various Gegno in the audience start happening. While all of this debate occurs, your Gegno guide bumps into you and starts to direct you away from the discussion back to the cage lift with nobody else batting an eye.`
 			`	Several minutes later, you find yourself escorted back to the base of the tower, which is now surrounded by a large group of Gegno civilians, all gawking at the two of you. You're lead back to your ship with your head spinning slightly, unsure what to make of that whole encounter. As they did the first time you were with them on this planet, the Gegno heads for your ship again, handing you a small compass device, this time marking a different location on the map.`
 			`	At the very least, you can take this is they are not done with you yet, so you prepare to travel to your next destination.`
@@ -1168,12 +1170,10 @@ mission "Acquiescence"
 			`	Despite the aggressive action, you are not followed as you leave the planet.`
 				flee
 
-	on complete
-		"reputation: Gegno" = 0.1
-
 
 mission "Gegno Asteroid Mining Prologue"
-	name "Mine and return 5 tons of Iron to <origin> in the Oosuoro system."
+	name "Mine 5 tons of Iron"
+	description "Mine and return 5 tons of Iron to <origin> in the Oosuoro system."
 	landing
 	source "Tschyss"
 	destination "Tschyss"
