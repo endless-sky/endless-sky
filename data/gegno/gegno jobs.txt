@@ -25,7 +25,7 @@ mission "Gegno Asteroid Mining - Aluminum"
 		"cargo space" > 5
 	on complete
 		"gegno: mining jobs" ++
-		payment 10000
+		payment 100000
 		dialog phrase "gegno mining payment dialog"
 		outfit "Aluminum" -10
 
@@ -43,7 +43,7 @@ mission "Gegno Asteroid Mining - Copper"
 		"cargo space" > 5
 	on complete
 		"gegno: mining jobs" ++
-		payment 10000
+		payment 100000
 		dialog phrase "gegno mining payment dialog"
 		outfit "Copper" -10
 
@@ -61,7 +61,7 @@ mission "Gegno Asteroid Mining - Iron"
 		"cargo space" > 5
 	on complete
 		"gegno: mining jobs" ++
-		payment 10000
+		payment 100000
 		dialog phrase "gegno mining payment dialog"
 		outfit "Iron" -10
 
@@ -79,7 +79,7 @@ mission "Gegno Asteroid Mining - Lead"
 		"cargo space" > 5
 	on complete
 		"gegno: mining jobs" ++
-		payment 10000
+		payment 100000
 		dialog phrase "gegno mining payment dialog"
 		outfit "Lead" -10
 
@@ -97,7 +97,7 @@ mission "Gegno Asteroid Mining - Silicon"
 		"cargo space" > 5
 	on complete
 		"gegno: mining jobs" ++
-		payment 10000
+		payment 100000
 		dialog phrase "gegno mining payment dialog"
 		outfit "Silicon" -10
 
@@ -115,6 +115,6 @@ mission "Gegno Asteroid Mining - Titanium"
 		"cargo space" > 5
 	on complete
 		"gegno: mining jobs" ++
-		payment 10000
+		payment 100000
 		dialog phrase "gegno mining payment dialog"
 		outfit "Titanium" -10
