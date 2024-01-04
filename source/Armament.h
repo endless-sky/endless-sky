@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <vector>
 
 class FireCommand;
+class Flotsam;
 class Outfit;
 class Point;
 class Projectile;
@@ -74,10 +75,20 @@ public:
 	// not ready, return false.
 	void Fire(int index, Ship &ship, std::vector<Projectile> &projectiles, std::vector<Visual> &visuals, bool jammed);
 	// Fire the given anti-missile system.
-	bool FireAntiMissile(int index, Ship &ship, const Projectile &projectile, std::vector<Visual> &visuals, bool jammed);
+	bool FireAntiMissile(int index, Ship &ship, const Projectile &projectile,
+		std::vector<Visual> &visuals, bool jammed);
+	// Fire the given tractor beam.
+	bool FireTractorBeam(int index, Ship &ship, const Flotsam &flotsam,
+		std::vector<Visual> &visuals, bool jammed);
 
 	// Update the reload counters.
 	void Step(const Ship &ship);
+
+
+private:
+	// Check if the given hardpoint index is valid. Jam the hardpoint if it needs jammed.
+	// Returns false if the index is invalid or the hardpoint jammed.
+	bool CheckHardpoint(int index, bool jammed = false);
 
 
 private:

@@ -1847,6 +1847,22 @@ event "deep sky tech available"
 		"Typhoon Storage Tube"
 		"Electron Turret"
 
+event "navy expand typhoon sales"
+	outfitter "Lovelace Advanced"
+		"Typhoon Torpedo"
+		"Typhoon Launcher"
+		"Typhoon Pod"
+		"Typhoon Storage Tube"
+
+mission "Navy expands typhoon sales"
+	invisible
+	landing
+	to offer
+		has "event: deep sky tech available"
+	on offer
+		event "navy expand typhoon sales" 120
+		fail
+
 
 
 event "navy out of rastaban"

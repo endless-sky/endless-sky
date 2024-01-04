@@ -518,6 +518,8 @@ bool ShopPanel::Click(int x, int y, int /* clicks */)
 			else
 				selectedOutfit = zone.GetOutfit();
 
+			previousX = zone.Center().X();
+
 			return true;
 		}
 
@@ -628,6 +630,9 @@ void ShopPanel::DoFind(const string &text)
 			selectedShip = best->GetShip();
 		else
 			selectedOutfit = best->GetOutfit();
+
+		previousX = best->Center().X();
+
 		MainAutoScroll(best);
 	}
 }
@@ -1212,6 +1217,8 @@ void ShopPanel::MainLeft()
 		MainAutoScroll(it);
 	}
 
+	previousX = it->Center().X();
+
 	selectedShip = it->GetShip();
 	selectedOutfit = it->GetOutfit();
 }
@@ -1234,6 +1241,8 @@ void ShopPanel::MainRight()
 	else
 		MainAutoScroll(it);
 
+	previousX = it->Center().X();
+
 	selectedShip = it->GetShip();
 	selectedOutfit = it->GetOutfit();
 }
@@ -1250,7 +1259,6 @@ void ShopPanel::MainUp()
 	if(it == zones.end())
 		it = zones.begin();
 
-	const double previousX = it->Center().X();
 	const double previousY = it->Center().Y();
 	while(it != zones.begin() && it->Center().Y() == previousY)
 		--it;
@@ -1289,7 +1297,6 @@ void ShopPanel::MainDown()
 		return;
 	}
 
-	const double previousX = it->Center().X();
 	const double previousY = it->Center().Y();
 	++it;
 	while(it != zones.end() && it->Center().Y() == previousY)
