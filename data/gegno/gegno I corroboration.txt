@@ -1172,10 +1172,54 @@ mission "Acquiescence"
 
 	on complete
 		"reputation: Gegno" = 0.1
+
+
+mission "Gegno Asteroid Mining Prologue"
+	landing
+	source "Tschyss"
+	to offer
+		has "Acquiescence: offered"
+		not "Gegno Genocide Defense: offered"
+	on offer
 		conversation
+			branch "deferred"
+				has "Gegno Asteroid Mining Prologue: deferred"
+
 			`You arrive at your destination. Instead of being directly behind you during your trip, the Gegno ended up taking a seat next to one of your open bunks, not moving a muscle up until now. Despite the grandiose nature of the Gegno's one and only massive space station, it seems very old and inactive. As you are escorted around the spacious interior, which a majority of is still a skeletal frame of pipes, bars, and support, there is a noticeable lack of personnel and running machinery. Some sections aren't even properly pressurized, but thankfully your spacesuit helps with that. Occasionally you come across some workers, but they appear very lethargic, or maybe even demotivated.`
-			`	Eventually you end up in a large docking bay where more workers and ships are present. Some of the workers are hauling crates of materials back and forth, with others are talking amongst each other. The Gegno with you then hands you the compass device from earlier, which now shows a series of graphics in a list that seem to be updating in real-time. On the left side of each graphic are various types of minable asteroids, and on the right are tally marks, which thankfully you can understand. It is some sort of job list linked with the station, which implies that the Gegno are at least giving you a chance to work with in, to "do your part", or perhaps "make up for what you've done.`
-			`	After one last glare at you, the Gegno leaves you to your own devices. You wonder if you'll ever see them again, considering the way they've been treated by the other Gegno.`
+			`	Eventually you end up in a large docking bay where more workers and ships are present. Some of the workers are hauling crates of materials back and forth, with others are talking amongst each other. The Gegno with you then motions over to a half-cracked display board on one of the walls across the room. After one last glare at you, the Gegno leaves you to your own devices. You wonder if you'll ever see them again, considering the way they've been treated by the other Gegno.`
+			choice
+				`	(Go to the display.)`
+					goto "board"
+				`	(Try to communicate with the other Gegno around you.)`
+			
+			`	You attempt to get the attention of some of the other Gegno present in the facility, but most of them give you strange glares or outright ignore you, until one seemingly annoyed Gegno gestures to the large cracked display.`
 
+			label "board"
+			`	The display, although cracked and beaten up otherwise, still appears functional, presenting a series of graphics in a list that seem to be updating in real-time. On the left side of each graphic are various types of minable asteroids, and on the right are tally marks, which thankfully you can understand. It appears to be some sort of job list linked with the station, which implies that the Gegno are at least giving you a chance to work with them here at this station, to "do your part", or perhaps "make up for what you've done.`
+			choice
+				`	(Accept one of the jobs.)`
+				`	(Leave without doing anything.)`
+					goto "nothing"
+			
+			label "accept"
+			`	You fiddle with the screen, trying to decipher how to use it. Some of the Gegno gaze at you for doing so, and while they silently judge, you manage to figure out that it's a touch-sensitive screen, though it takes a lot of force for you to get it to work.`
+			`	The graphic that appears the first time you get the device to work is of a Lead asteroid, with five strange-looking tally marks next to it. Time to find some Lead.`
+				accept
 
-# Mining jobs for filler to be created.
+			label "nothing"
+			`	You decide to leave the facility. None of the Gegno pay you any attention as you do, focused back on their work once more.`
+				defer
+
+			label "deferred"
+			`	Despite previously leaving the station, you're given clearance to land again. Would you like to go to the job facility and try to accept one of the listings?`
+			choice
+				`	(Yes.)`
+					goto "accept"
+				`	(No.)`
+					defer
+
+	on complete
+		payment 5000
+		outfit "Lead" -5
+		conversation
+			`You dock with the station at the facility's port, rather than on the other side of it. Waiting for you is a large group of Gegno workers, all in rusted or damaged gear. After a few moments of staring and discussion amongst one another, they unload the minerals from your ship, then go about their business as if nothing happened. Another approaches you, and to your surprise, pays you <payment> for your work. It seems the Gegno reward effort even if it's by the member of another species. For the time being, the station remains accessible to you, as well as these small odd jobs for mining. Hopefully someday the Gegno will recognize that you're worth more than whatever they've labeled you for.`

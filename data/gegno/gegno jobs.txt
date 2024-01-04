@@ -1,0 +1,120 @@
+# Copyright (c) 2024 by Saugia
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+
+mission "Gegno Asteroid Mining - Aluminum"
+	job
+	repeat
+	name "Gather 10 tons of Aluminum from asteroids"
+	description "Mine and collect 10 tons of Aluminum, then bring the minerals back to the Gegno at <source>."
+	source "Tschyss"
+	destination "Tschyss"
+	to offer
+		has "Gegno Asteroid Mining Prologue: done"
+		random < 10
+		"cargo space" > 5
+	on compete
+		"gegno: mining jobs" ++
+		payment 10000
+		dialog phrase "gegno mining payment dialogue"
+		outfit "Aluminum" -10
+
+
+mission "Gegno Asteroid Mining - Copper"
+	job
+	repeat
+	name "Gather 10 tons of Copper from asteroids"
+	description "Mine and collect 10 tons of Copper, then bring the minerals back to the Gegno at <source>."
+	source "Tschyss"
+	destination "Tschyss"
+	to offer
+		has "Gegno Asteroid Mining Prologue: done"
+		random < 10
+		"cargo space" > 5
+	on compete
+		"gegno: mining jobs" ++
+		payment 10000
+		dialog phrase "gegno mining payment dialogue"
+		outfit "Copper" -10
+
+
+mission "Gegno Asteroid Mining - Iron"
+	job
+	repeat
+	name "Gather 10 tons of Iron from asteroids"
+	description "Mine and collect 10 tons of Iron, then bring the minerals back to the Gegno at <source>."
+	source "Tschyss"
+	destination "Tschyss"
+	to offer
+		has "Gegno Asteroid Mining Prologue: done"
+		random < 10
+		"cargo space" > 5
+	on compete
+		"gegno: mining jobs" ++
+		payment 10000
+		dialog phrase "gegno mining payment dialogue"
+		outfit "Iron" -10
+
+
+mission "Gegno Asteroid Mining - Lead"
+	job
+	repeat
+	name "Gather 10 tons of Lead from asteroids"
+	description "Mine and collect 10 tons of Lead, then bring the minerals back to the Gegno at <source>."
+	source "Tschyss"
+	destination "Tschyss"
+	to offer
+		has "Gegno Asteroid Mining Prologue: done"
+		random < 10
+		"cargo space" > 5
+	on compete
+		"gegno: mining jobs" ++
+		payment 10000
+		dialog phrase "gegno mining payment dialogue"
+		outfit "Lead" -10
+
+
+mission "Gegno Asteroid Mining - Silicon"
+	job
+	repeat
+	name "Gather 10 tons of Silicon from asteroids"
+	description "Mine and collect 10 tons of Silicon, then bring the minerals back to the Gegno at <source>."
+	source "Tschyss"
+	destination "Tschyss"
+	to offer
+		has "Gegno Asteroid Mining Prologue: done"
+		random < 10
+		"cargo space" > 5
+	on compete
+		"gegno: mining jobs" ++
+		payment 10000
+		dialog phrase "gegno mining payment dialogue"
+		outfit "Silicon" -10
+
+
+mission "Gegno Asteroid Mining - Titanium"
+	job
+	repeat
+	name "Gather 10 tons of Titanium from asteroids"
+	description "Mine and collect 10 tons of Titanium, then bring the minerals back to the Gegno at <source>."
+	source "Tschyss"
+	destination "Tschyss"
+	to offer
+		has "Gegno Asteroid Mining Prologue: done"
+		random < 10
+		"cargo space" > 5
+	on compete
+		"gegno: mining jobs" ++
+		payment 10000
+		dialog phrase "gegno mining payment dialogue"
+		outfit "Titanium" -10
