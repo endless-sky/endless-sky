@@ -1217,9 +1217,10 @@ mission "Gegno Asteroid Mining Prologue"
 				`	(No.)`
 					defer
 	on visit
-		dialog "You've returned to <origin>, but do not have 5 tons of Iron minerals. Make sure to mine 5 tons of Iron and collect them in your cargo before you land."
+		dialog "You've returned to <origin>, but do not have 5 tons of Iron mined and in your ship. Make sure to mine 5 tons of Iron and collect it into your cargo before you land."
 	on complete
-		payment 50000
-		outfit "Lead" -5
+		payment 12000
+		outfit "Iron" -5
 		conversation
-			`You dock with the station at the facility's port, rather than on the other side of it. Waiting for you is a large group of Gegno workers, all in rusted or damaged gear. After a few moments of staring and discussion amongst one another, they unload the minerals from your ship, then go about their business as if nothing happened. Another approaches you, and to your surprise, pays you a rather large sum of <payment> for your work. It seems the Gegno cherish and reward effort no matter who does it, even a member of another species. For the time being, the station remains accessible to you, as well as these small odd jobs for mining. Hopefully someday the Gegno will recognize that you're worth more than whatever they've labeled you for.`
+			`You dock with the station at the facility's port, rather than on the other side of it. Waiting for you is a large group of Gegno workers, all in rusted or damaged gear. After a few moments of staring and discussion amongst one another, they unload the minerals from your ship, then go about their business as if nothing happened. Another approaches you, and to your surprise, pays you a sum of <payment> for your work. It seems the Gegno cherish and reward effort no matter who does it, even a member of another species.`
+			`	For the time being, the station remains accessible to you, as well as these small odd jobs for mining. Hopefully someday the Gegno will recognize that you're worth more than whatever they've labeled you for.`
