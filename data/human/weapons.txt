@@ -356,7 +356,9 @@ outfit "Mining Laser"
 		"hull damage" 1.4
 		"minable damage" 1.9
 		"prospecting" 0.1
-	description "Mining Laser."
+	description "While it was the Deep that developed the militarized Beam Laser in common use today, short range mining lasers have been a mainstay of human asteroid mining since the dawn of spaceflight. Given their strength at drilling through rock and metal, some people do use them as weapons, although their inefficacy against shields, along with their short range, have long since sidelined them from serious combat."
+	description "	This mining laser comes equipped with an extremely short range asteroid targetting scanner as well as mining algorithms. As such, drones and fighters that have it installed will automatically engage in mining when launched."
+
 
 outfit "Mining Laser Turret"
 	category "Turrets"
@@ -385,7 +387,9 @@ outfit "Mining Laser Turret"
 		"hull damage" 1.4
 		"minable damage" 1.9
 		"prospecting" 0.1
-	description "Mining Laser Turret."
+	description "The efficiency of a Mining Laser is truly brought out when mounted on a turreted base, which makes it easier for large and slow ships with spacious cargo holds to mine. Despite not being a combat weapon, its ability to track targets separately from gun mounts still annoys figher pilots."
+	description "	Minng Laser Turrets are designed to be used in conjunction with Asteroid Scanners, as being unable to target asteroids means you have to fire the weapon manually as if it were a fixed gun."
+
 
 outfit "Tractor Beam"
 	category "Turrets"
@@ -405,8 +409,8 @@ outfit "Tractor Beam"
 		"reload" 1
 		"firing energy" 2.1
 		"firing heat" .8
-	description "The anti-gravity properties of repulsor engines that allow ships to escape the gravity well of planets without the difficulty that humanity once faced before the era of the hyperdrive started a revolution in human spaceflight during the 24th century, and it was not long before this technology was put to use elsewhere."
-	description "	Tractor beams utilize repulsor technology to allow ships to attract space debris to them, be that the ores from a recently mined asteroid or the dumped cargo from a merchant ship fleeing for its life. This has led to tractor beams being a popular outfit among asteroid miners and pirates alike."
+	description "The anti-gravity properties of repulsor engines that allow ships to escape the gravity well of planets, without the difficulty that humanity once faced before the era of the hyperdrive, started a revolution in human spaceflight during the 24th century. It was not long before this technology was put to use elsewhere."
+	description "	Tractor beams utilize repulsor technology to allow ships to attract space debris to them, be that the ores from a recently mined asteroid, or the dumped cargo from a merchant ship fleeing for its life. This has led to tractor beams being a popular outfit among asteroid miners and pirates alike."
 
 effect "tractor beam"
 	sprite "effect/tractor beam"
