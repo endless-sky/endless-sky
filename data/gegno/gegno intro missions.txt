@@ -506,6 +506,7 @@ mission "First Contact: Gegno Scin"
 	landing
 	source "Yiia Iyr"
 	to offer
+		has "Suspicious Scin: offered"
 		not "Gegno Genocide Defense: offered"
 	on offer
 		conversation

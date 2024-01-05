@@ -354,6 +354,7 @@ mission "Gegno Suspicions"
 			`	"Formerly, I have offered suggestions of heedful interplay regarding the Gegno. We have been alerted of a few additional encounters you've experienced, although they seemed minimal in nature. In such cases, it has been generally described that you left in a timely manner, for which we are notably appreciative. However," the Quarg continues, "despite your efforts in recommended cautions, there are some meaningful figures of Gegno standing that expressed frustration in your trivial appearances. They inquired of us as to the possibility of unnecessary reoccurrences."`
 			choice
 				`	"Why does this frustrate them?"`
+					goto imagine
 				`	"I haven't done any harm to them."`
 					goto harm
 				`	"It was more coincidential than anything."`
@@ -371,7 +372,6 @@ mission "Gegno Suspicions"
 
 			label learn
 			`	"Not always does the desire to learn lead to pleasant opportunities. The most curious of creatures can easily be harmed when naive to the nature of their interests." The Quarg then ponders for a moment.`
-				goto imagine
 
 			label imagine
 			`	"Imagine, if you will, during the substantial conflicts the humans call the Turf Wars, a strange alien came to human space. We Quarg woefully witnessed that hazardous conflict - it was a time of great waste, unfortunate peril, and unsavory distrust among humanity. The Gegno are in a vulnerable state notably comparable to such a time, and introduction of outsiders would not befit the case. The truth remains that we have been contacted by a few Gegno of importance in respect to your past presences, and there has been show of concern to your unstated intentions." After a brief pause, the Quarg looks to you in a strange manner, and you aren't sure what to make of it. "Though, unexpectedly, a select few times we have also been curiously asked of your origins, an experience we are not strongly familiar with involving the Gegno."`
