@@ -613,7 +613,7 @@ mission "Gegno Anticipation"
 				`	"I don't know."`
 					goto "unsure"
 
-			`	"Indeed, the Gegno are wary of you, who lacks caution." A few seconds, and Adrauni gives a strange look towards the Gegno. You aren't sure what it's thinking. The Gegno asks something in their language, but receives no response. A few more moments go by before Adrauni speaks again. "Despite that, you have found yourself in precarious situations we have not. We as a species embraced contact with the Gegno, however, you remain the only human here. Perhaps therein lies a notable implication of distinction."`
+			`	"Indeed, the Gegno are wary of you, who lacks caution." A few seconds pass, and Adrauni gives a strange look towards the Gegno. You aren't sure what it's thinking. The Gegno presumably asks something in their language, but receives no response. A few more moments go by before Adrauni speaks again. "Despite that, you have found yourself in precarious situations we have not. We as a species embraced contact with the Gegno, however, you remain the only human here. Perhaps therein lies a notable implication of distinction."`
 			choice
 				`	"Are you saying there's something I can do?"`
 					goto "understand"
