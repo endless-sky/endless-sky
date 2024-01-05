@@ -1429,7 +1429,6 @@ mission "FW Pirates: Attack 2"
 		dialog `You've landed on <planet>, but there are still pirates defending the system. All pirates in the system must be eliminated before <planet> can be taken.`
 	on complete
 		event "fw suppressed Greenrock"
-		set "fw greenrock invader"
 		log "Disobeyed the Free Worlds Senate by helping to launch an attack on the pirate hub world of Greenrock. Captured the planet after a massive battle, but it is unclear how long the Free Worlds can afford to keep them subdued by force."
 		conversation
 			`As the remaining invasion fleet comes in for a landing on <origin>, you spot small pirate ships scattering from the spaceport, not into space, but instead into the far reaches of the Greenrock wilderness. When you reach the spaceport, there is a wild mix of emotions from the locals who remained. Some spit at you and curse you out. Others thank you for driving off the pirates, even if only temporarily. Others still thank you for freeing them and ask for transportation off-world before the slavers return; Greenrock is the hub of the underground slave trade in the galaxy, and it seems in the confusion and rush for some criminals to escape the spaceport, they left their slaves behind.`
