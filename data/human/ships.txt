@@ -2603,7 +2603,7 @@ ship "Mining Drone"
 	engine 0 22 0.9
 	gun 0 -22
 	explode "tiny explosion" 10
-	description "Mining Drone."
+	description "The semi-autonomous Mining Drone is used by the Syndicate alongside the Sunder mining vessel in a supportive role. Not being much more than a Mining Laser with an engine stuck to the rear of it, these drones do not last long in combat with other ships due to how fragile they are."
 	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
 
 
@@ -3694,7 +3694,9 @@ ship "Sunder"
 	explode "small explosion" 15
 	explode "medium explosion" 15
 	"final explode" "final explosion small"
-	description "Sunder mining ship. Decide on shipyard/location sold. Same for mining drone."
+	description "A further development on the old asteroid mining ships used in the Sol Main Belt centuries ago, the Sunder is a versatile mining platform equipped with dedicated prospecting equipment, most notably an undercarriage that supports two Minng Drones."
+	description "	The newest model of the Sunder is now manufactured by Syndicated Shipyards so that the Syndicate can take advantage of asteroid minerals near the Core."
+
 
 
 
