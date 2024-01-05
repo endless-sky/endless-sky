@@ -1468,7 +1468,7 @@ mission "FW Bloodsea 1.1"
 			`	"So, we attack them?" you ask.`
 			label invade
 			branch hostile
-				not "event: fw suppressed Greenrock"
+				not "fw greenrock invader"
 			`	"They didn't seem very happy about you doing that the first time. But..." Alondo pauses for a moment.`
 			label hostile
 			`	"That's certainly the simpler option," he says. "Tomek may have been punished for disobeying the Senate's orders, but we're in a different situation now. Our numbers have swelled because of our victories and new territory, and we now have the Dreadnoughts at our disposal, so occupying Bloodsea is now a viable option.`
