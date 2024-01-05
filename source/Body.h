@@ -112,7 +112,7 @@ protected:
 
 	double alpha = 1.;
 	double distanceVisible = 0.;
-	double distanceInvisible = -1.;
+	double distanceInvisible = 0.;
 
 	// Government, for use in collision checks.
 	const Government *government = nullptr;
