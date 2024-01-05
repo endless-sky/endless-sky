@@ -1095,12 +1095,10 @@ mission "Acquiescence"
 
 			`	After having gone through the cases in which you've been involved in, the trio addresses the gathering once more with a big speech. Their voices echo through the outside air, and all of the Gegno respond with concurrent bellows or chants, followed by more silence. Oddly enough, you've been treated as an equal with all of the Gegno here - you stand amongst them as part of the gathering, rather than some foreign alien. You aren't restricted at all, even with a weapon on you.`
 			`	One of the smaller Gegno in the trio gestures back to you and speaks once more. You still don't understand a word they are saying, but it must have been important, as all of the other Gegno except your guide back away several steps. The trio member invites you with both arms to use the table, and all three of them back up themselves, leaving you alone in the open with some sort of expectation.`
-
-			label "self proclamation"
 			choice
 				`	(Approach the table and try to explain your situations.)`
-				`	(Stay where you are and do nothing.)`
 					goto "explain"
+				`	(Stay where you are and do nothing.)`
 
 			action
 				set "gegno: no proclamation"
@@ -1114,22 +1112,22 @@ mission "Acquiescence"
 
 
 			label "what does home mean"
-			`	Surprising both you and other Gegno, an image of the planet Earth appears on the monitor. There's no way the Gegno have ever visited human space, let alone leave the borders of their own for something involving another alien species. How they got this image is a mystery, but the fact is that an image of the ancestral homeworld of humanity is right in front of you. The member of the Gegno trio that has spoken the least then steps forward, but instead of up to the table, they make their way to you personally.`
+			`	Surprising both you and other Gegno, an image of the planet Earth appears on the monitor. There's no way the Gegno have ever visited human space, let alone leave the borders of their own for something involving another alien species. How they got this image is a mystery, but the fact is that an image of the ancestral homeworld of humanity is right in front of you. The member of the Gegno trio that has spoken the least then steps forward, but instead of up to the table, they make their way to you directly.`
 			choice
 				`	(Do nothing.)`
-				`	(Place your hand on your holster.)`
+#				`	(Place your hand on your holster.)`
 
-			`	Now standing not even two meters in front of you, the Gegno stares at you intently. An image of the world you're on right now slides over the one of Earth, and the Gegno gestures to it. "Gegno Dueyu Eitch echre, echre isend Gegno." The image shifts back to Earth, with the Gegno still gesturing to it. "Eyuu dueyu nnepta, viehetch eyuu." The Gegno now motions at the ground below you "Viehetch eyuu ayyr dueyu Eitch. Udiyh tei tsider?"`
+			`	Now standing not even two meters in front of you, the Gegno stares at you intently. An image of the world you're on right now slides over the one of Earth, and the Gegno gestures to it. "Gegno Dueyu Eitch echre, echre isend Gegno." The image shifts back to Earth, with the Gegno still gesturing to the screen. "Eyuu dueyu nnepta, viehetch eyuu." The Gegno now motions at the ground at your feet. "Viehetch eyuu ayyr dueyu Eitch. Udiyh tei tsider?"`
 			choice
 				`	(Don't say anything.)`
 				`	"...Dueyu Earth?"`
 					goto "dueyu"
-					
+
 			`	Without saying a word, you continue to look at the Gegno, and it continues to stare back, pondering your silence. They make a snorting sound with their nose, then leaves you to join the other two behind them.`
 				goto "decision"
 		
 			label "dueyu"
-			`	The Gegno leans closer to your height and shows an expression of dissaproval. You panick a little, and some of the others seem surprised that they got this close to you. They then speak in a low rumble, kind of like a whisper spoken aloud. "Eyuu idu keiou ghynem uf, "Dueyu"." Lifting back up, the Gegno heads back to the other two behind them.`
+			`	The Gegno leans closer to your height and shows an expression of possibly disapproval. You panick a little, and some of the others seem surprised that they got this close to you. They then speak in a low rumble, kind of like a whisper spoken aloud. "Eyuu idu keiou ghynem uf, "Dueyu"." Lifting back up, the Gegno heads back to the other two behind them.`
 
 			branch "done with the gegno"
 				or
@@ -1149,26 +1147,27 @@ mission "Acquiescence"
 
 
 			label "decision"
-			action
-				"reputation: Gegno" = 0.1
-			`	For one last time, the trio beckons to the crowd followed by a long speech. An image of a space station appears on the screen, and a large discussion begins between the other Gegno, whom have formed back up with each other. The trio continues to speak, and some arguments between various Gegno in the audience start happening. While all of this debate occurs, your Gegno guide bumps into you and starts to direct you away from the discussion back to the cage lift with nobody else batting an eye.`
-			`	Several minutes later, you find yourself escorted back to the base of the tower, which is now surrounded by a large group of Gegno civilians, all gawking at the two of you. You're lead back to your ship with your head spinning slightly, unsure what to make of that whole encounter. As they did the first time you were with them on this planet, the Gegno heads for your ship again, handing you a small compass device, this time marking a different location on the map.`
-			`	At the very least, you can take this is they are not done with you yet, so you prepare to travel to your next destination.`
+			action		
+				"reputation: Gegno" = 1
+			`	For one last time, the trio beckons to the crowd followed by a long speech. An image of a space station appears on the screen, and a large discussion begins between the other Gegno, whom have formed back up with each other. Some arguments between various Gegno in the audience start happening, meanwhile, your Gegno guide bumps into you and starts to direct you away from the discussion, back to the cage lift with nobody else batting an eye.`
+			`	Several minutes later, you are escorted back to the base of the tower, which is now surrounded by a large group of Gegno civilians, all gawking at the two of you. You're lead back to your ship with your head spinning slightly, unsure what to make of that whole encounter. As they did the first time you were with them on the one desert planet, the Gegno heads for your ship, handing you a small compass device, this time marking a different location on the map.`
+			`	At the very least, you can take this as they are not done with you yet, so you prepare to travel to your next destination.`
 				launch
 
 
 			label "done with the gegno"
-			`	For one last time, the trio beckons to the crowd followed by a long speech. Afterwards, the crowd goes silent. Your Gegno guide bumps into you and starts to direct you back to the cage lift with nobody else batting an eye. Several minutes later, you find yourself escorted back to the base of the tower, still as barren as it was earlier. You're lead back to your ship with your head spinning slightly, unsure what to make of that whole encounter. The Gegno remains at a distance from your ship as you prepare to depart.`
+			`	For one last time, the trio beckons to the crowd followed by a long speech. Afterwards, the crowd goes silent. Your Gegno guide bumps into you and starts to direct you back to the cage lift with nobody else batting an eye. Several minutes later, you are escorted back to the base of the tower, still as barren as it was earlier. You're lead back to your ship with your head spinning slightly, unsure what to make of that whole encounter. The Gegno remains at a distance from your ship as you prepare to depart.`
 			`	Before you leave, you watch as they lift their staff weapon and flip it around. Following an explosive cloud of smoke, a sizable crater appears just barely next to your ship on the ground. It seems that you're no longer welcome here, though, the fact they intentionally missed such a large target might have other connotations. Regardless, it could have been you on the other end of that blast at any point during this journey.`
 			`	Despite the aggressive action, you are not followed as you leave the planet.`
 				flee
 
 
 			label "no more gegno"
-			`	You ultimately decide that pursing this ruse with the Gegno is no longer worth the effort. Even if you did meet up with them, or ended up in some sort of debate with them, it would likely take another excessive amount of effort in order to get any amount of progression with them, if at all. Perhaps even landing here was a mistake, as you could never guess what might happen if you continued this endeavor, given you are all alone on the homeworld of a species that has shown to be rather xenophobic, even to the Quarg.`
+			`	You ultimately decide that pursing this ruse with the Gegno is no longer worth the effort. Even if you did meet up with them, or ended up in some sort of debate with them, it would likely take another excessive amount of effort in order to get any amount of progress, if at all. Perhaps even landing here was a mistake, as you could never guess what might happen if you continued this endeavor, given you are all alone on the homeworld of a species that has shown to be rather xenophobic, even to the Quarg.`
 			`	As you prepare to depart, the Gegno, who was watching you all this time with a blank stare, lifts their staff weapon and flips it around. Following an explosive cloud of smoke, a sizable crater appears just barely next to your ship on the ground. It seems they are, at the very least, unhappy with your decision to leave, which is a little odd considering they didn't want anything to do with you before. Though, the fact they intentionally missed such a large target might have other connotations. Regardless, it could have been you on the other end of that blast.`
 			`	Despite the aggressive action, you are not followed as you leave the planet.`
 				flee
+
 
 
 mission "Gegno Asteroid Mining Prologue"
@@ -1184,8 +1183,8 @@ mission "Gegno Asteroid Mining Prologue"
 			branch "returned"
 				has "Gegno Asteroid Mining Prologue: deferred"
 
-			`You arrive at your destination. Instead of being directly behind you during your trip, the Gegno ended up taking a seat next to one of your open bunks, not moving a muscle up until now. Despite the grandiose nature of the Gegno's one and only massive space station, it seems very old and inactive. As you are escorted around the spacious interior, which a majority of is still a skeletal frame of pipes, bars, and support, there is a noticeable lack of personnel and running machinery. Some sections aren't even properly pressurized, but thankfully your spacesuit helps with that. Occasionally you come across some workers, but they appear very lethargic, or maybe even demotivated.`
-			`	Eventually you end up in a large docking bay where more workers and ships are present. Some of the workers are hauling crates of materials back and forth, with others are talking amongst each other. The Gegno with you then motions over to a half-cracked display board on one of the walls across the room. After one last glare at you, the Gegno leaves you to your own devices. You wonder if you'll ever see them again, considering the way they've been treated by the other Gegno.`
+			`You arrive at your destination. Instead of standing directly behind you in your cockpit this time, the Gegno ended up taking a seat next to one of your open bunks, not moving a muscle up until now. Despite the grandiose nature of the Gegno's one and only massive space station, it seems very old and inactive. As you are escorted around the spacious interior, which a majority of is still a skeletal frame of pipes, bars, and supportive structure, there is a noticeable lack of personnel and running machinery. Some sections aren't even properly pressurized, but thankfully your spacesuit helps with that. Occasionally you come across some workers, but they appear very lethargic, or maybe even demotivated.`
+			`	Eventually you end up in a large docking bay where more workers and ships are present. Some of the workers are hauling crates of materials back and forth, with others are talking amongst each other. The Gegno with you then motions over to a half-cracked display board on one of the walls across the room. After one last glare at you, the Gegno leaves you to your own devices. You wonder if you'll ever see them again, considering the way they've been treated by the others.`
 			choice
 				`	(Go to the display.)`
 					goto "board"
@@ -1194,7 +1193,7 @@ mission "Gegno Asteroid Mining Prologue"
 			`	You attempt to get the attention of some of the other Gegno present in the facility, but most of them give you strange glares or outright ignore you, until one seemingly annoyed Gegno gestures to the large cracked display.`
 
 			label "board"
-			`	The display, although cracked and beaten up otherwise, still appears functional, presenting a series of graphics in a list that seem to be updating in real-time. On the left side of each graphic are various types of minable asteroids, and on the right are tally marks, which thankfully you can understand. It appears to be some sort of job list linked with the station, which implies that the Gegno are at least giving you a chance to work with them here at this station, to "do your part", or perhaps "make up for what you've done.`
+			`	The display, although cracked and beaten up otherwise, still appears functional, presenting a series of graphics in a list that seem to be updating in real-time. On the left side of each graphic are various types of minable asteroids, and on the right are tally marks, which thankfully you can understand. It appears to be some sort of job list linked with the station, which implies that the Gegno are at least giving you a chance to work with them here, to "do your part", or perhaps "make up for what you've done."`
 			choice
 				`	(Accept one of the jobs.)`
 				`	(Leave without doing anything.)`
