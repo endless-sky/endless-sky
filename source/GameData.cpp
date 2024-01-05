@@ -503,10 +503,10 @@ void GameData::UpdateSystems()
 
 
 
-void GameData::UpdateSystem(const std::string &name, const Ship *ship)
+void GameData::UpdateSystem(const std::string &name, const Ship *flagship)
 {
-	if(objects.systems.Find(name))
-		objects.systems.Get(name)->UpdateObjectVisibilities(ship);
+	if(flagship && objects.systems.Find(name))
+		objects.systems.Get(name)->UpdateObjectVisibilities(flagship);
 }
 
 

@@ -535,10 +535,11 @@ void System::UpdateSystem(const Set<System> &systems, const set<double> &neighbo
 
 
 
-void System::UpdateObjectVisibilities(const Ship *ship)
+void System::UpdateObjectVisibilities(const Ship *flagship)
 {
-	for(auto &object : objects)
-		object.UpdateDistanceVisibility(ship);
+	if(flagship)
+		for(auto &object : objects)
+			object.UpdateDistanceVisibility(flagship);
 }
 
 

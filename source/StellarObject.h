@@ -75,7 +75,7 @@ public:
 	double Distance() const;
 
 	// Change the distances an object is visible from, based on ship attributes.
-	void UpdateDistanceVisibility(const Ship *ship);
+	void UpdateDistanceVisibility(const Ship *flagship);
 
 
 private:
