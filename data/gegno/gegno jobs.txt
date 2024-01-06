@@ -55,7 +55,7 @@ mission "Gegno Asteroid Mining - Copper"
 mission "Gegno Asteroid Mining - Iron"
 	job
 	repeat
-	name "Gather 10 tons of Iron"
+	name "Gather 10 tons of iron"
 	description "Mine and collect 10 tons of iron, then bring the minerals back to the Gegno at <origin>."
 	source "Tschyss"
 	destination "Tschyss"
