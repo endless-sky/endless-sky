@@ -223,4 +223,4 @@ phrase "gegno mining payment dialog"
 		" unload the materials out of your cargo bay,"
 		" haul the materials out of your ship,"
 	word
-		" and you are payed <payment> credits."
+		" and you are paid <payment> credits."

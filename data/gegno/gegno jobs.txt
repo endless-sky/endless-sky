@@ -15,8 +15,8 @@
 mission "Gegno Asteroid Mining - Aluminum"
 	job
 	repeat
-	name "Gather 10 tons of Aluminum"
-	description "Mine and collect 10 tons of Aluminum, then bring the minerals back to the Gegno at <origin>."
+	name "Gather 10 tons of aluminum"
+	description "Mine and collect 10 tons of aluminum, then bring the minerals back to the Gegno at <origin>."
 	source "Tschyss"
 	destination "Tschyss"
 	to offer
@@ -24,7 +24,7 @@ mission "Gegno Asteroid Mining - Aluminum"
 		random < 10
 		"cargo space" > 5
 	on visit
-		dialog "You've returned to <origin>, but do not have 10 tons of Aluminum mined and in your ship. Make sure to mine 10 tons of Aluminum and collect it into your cargo before you land."
+		dialog "You've returned to <origin>, but do not have 10 tons of aluminum mined and in your ship. Make sure to mine 10 tons of aluminum and collect it into your cargo before you land."
 	on complete
 		"gegno: mining jobs" ++
 		payment 36000
@@ -35,8 +35,8 @@ mission "Gegno Asteroid Mining - Aluminum"
 mission "Gegno Asteroid Mining - Copper"
 	job
 	repeat
-	name "Gather 10 tons of Copper"
-	description "Mine and collect 10 tons of Copper, then bring the minerals back to the Gegno at <origin>."
+	name "Gather 10 tons of copper"
+	description "Mine and collect 10 tons of copper, then bring the minerals back to the Gegno at <origin>."
 	source "Tschyss"
 	destination "Tschyss"
 	to offer
@@ -44,7 +44,7 @@ mission "Gegno Asteroid Mining - Copper"
 		random < 10
 		"cargo space" > 5
 	on visit
-		dialog "You've returned to <origin>, but do not have 10 tons of Copper mined and in your ship. Make sure to mine 10 tons of Copper and collect it into your cargo before you land."
+		dialog "You've returned to <origin>, but do not have 10 tons of copper mined and in your ship. Make sure to mine 10 tons of copper and collect it into your cargo before you land."
 	on complete
 		"gegno: mining jobs" ++
 		payment 60000
@@ -56,7 +56,7 @@ mission "Gegno Asteroid Mining - Iron"
 	job
 	repeat
 	name "Gather 10 tons of Iron"
-	description "Mine and collect 10 tons of Iron, then bring the minerals back to the Gegno at <origin>."
+	description "Mine and collect 10 tons of iron, then bring the minerals back to the Gegno at <origin>."
 	source "Tschyss"
 	destination "Tschyss"
 	to offer
@@ -64,7 +64,7 @@ mission "Gegno Asteroid Mining - Iron"
 		random < 10
 		"cargo space" > 5
 	on visit
-		dialog "You've returned to <origin>, but do not have 10 tons of Iron mined and in your ship. Make sure to mine 10 tons of Iron and collect it into your cargo before you land."
+		dialog "You've returned to <origin>, but do not have 10 tons of iron mined and in your ship. Make sure to mine 10 tons of iron and collect it into your cargo before you land."
 	on complete
 		"gegno: mining jobs" ++
 		payment 24000
@@ -75,8 +75,8 @@ mission "Gegno Asteroid Mining - Iron"
 mission "Gegno Asteroid Mining - Lead"
 	job
 	repeat
-	name "Gather 10 tons of Lead"
-	description "Mine and collect 10 tons of Lead, then bring the minerals back to the Gegno at <origin>."
+	name "Gather 10 tons of lead"
+	description "Mine and collect 10 tons of lead, then bring the minerals back to the Gegno at <origin>."
 	source "Tschyss"
 	destination "Tschyss"
 	to offer
@@ -84,7 +84,7 @@ mission "Gegno Asteroid Mining - Lead"
 		random < 10
 		"cargo space" > 5
 	on visit
-		dialog "You've returned to <origin>, but do not have 10 tons of Lead mined and in your ship. Make sure to mine 10 tons of Lead and collect it into your cargo before you land."
+		dialog "You've returned to <origin>, but do not have 10 tons of lead mined and in your ship. Make sure to mine 10 tons of lead and collect it into your cargo before you land."
 	on complete
 		"gegno: mining jobs" ++
 		payment 18000
@@ -95,8 +95,8 @@ mission "Gegno Asteroid Mining - Lead"
 mission "Gegno Asteroid Mining - Silicon"
 	job
 	repeat
-	name "Gather 10 tons of Silicon"
-	description "Mine and collect 10 tons of Silicon, then bring the minerals back to the Gegno at <origin>."
+	name "Gather 10 tons of silicon"
+	description "Mine and collect 10 tons of silicon, then bring the minerals back to the Gegno at <origin>."
 	source "Tschyss"
 	destination "Tschyss"
 	to offer
@@ -104,7 +104,7 @@ mission "Gegno Asteroid Mining - Silicon"
 		random < 10
 		"cargo space" > 5
 	on visit
-		dialog "You've returned to <origin>, but do not have 10 tons of Silicon mined and in your ship. Make sure to mine 10 tons of Silicon and collect it into your cargo before you land."
+		dialog "You've returned to <origin>, but do not have 10 tons of silicon mined and in your ship. Make sure to mine 10 tons of silicon and collect it into your cargo before you land."
 	on complete
 		"gegno: mining jobs" ++
 		payment 8000
@@ -115,8 +115,8 @@ mission "Gegno Asteroid Mining - Silicon"
 mission "Gegno Asteroid Mining - Titanium"
 	job
 	repeat
-	name "Gather 10 tons of Titanium"
-	description "Mine and collect 10 tons of Titanium, then bring the minerals back to the Gegno at <origin>."
+	name "Gather 10 tons of titanium"
+	description "Mine and collect 10 tons of titanium, then bring the minerals back to the Gegno at <origin>."
 	source "Tschyss"
 	destination "Tschyss"
 	to offer
@@ -124,7 +124,7 @@ mission "Gegno Asteroid Mining - Titanium"
 		random < 10
 		"cargo space" > 5
 	on visit
-		dialog "You've returned to <origin>, but do not have 10 tons of Titanium mined and in your ship. Make sure to mine 10 tons of Titanium and collect it into your cargo before you land."
+		dialog "You've returned to <origin>, but do not have 10 tons of titanium mined and in your ship. Make sure to mine 10 tons of titanium and collect it into your cargo before you land."
 	on complete
 		"gegno: mining jobs" ++
 		payment 50000
