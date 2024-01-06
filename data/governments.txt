@@ -731,21 +731,7 @@ government "Ka'het"
 	swizzle 0
 	language "Ka'het"
 
-	"attitude toward"
-		"Ka'het (Infighting)" -.01
-		"Remnant" -.01
-		"Quarg" -.01
-		"Pug" -.01
-		"Hai" -.01
-		"Hai (Wormhole Access)" -.01
-		"Korath" -.01
-		"Navy (Oathkeeper)" -.01
-		"Republic" -.01
-		"Free Worlds" -.01
-		"Hai (Unfettered)" -.01
-		"Wanderer" -.01
-		"Coalition" -.01
-		"Heliarch" -.01
+	"default attitude" -.01
 	
 	"player reputation" -1
 
@@ -755,21 +741,7 @@ government "Ka'het (Infighting)"
 	swizzle 0
 	language "Ka'het"
 
-	"attitude toward"
-		"Ka'het" -.01
-		"Remnant" -.01
-		"Quarg" -.01
-		"Pug" -.01
-		"Hai" -.01
-		"Hai (Wormhole Access)" -.01
-		"Korath" -.01
-		"Navy (Oathkeeper)" -.01
-		"Republic" -.01
-		"Free Worlds" -.01
-		"Hai (Unfettered)" -.01
-		"Wanderer" -.01
-		"Coalition" -.01
-		"Heliarch" -.01
+	"default attitude" -.01
 	
 	"player reputation" -1
 
@@ -1144,6 +1116,8 @@ government "Quarg"
 		"Medium Graviton Thruster"
 		"Medium Graviton Steering"
 		"Quantum Shield Generator"
+		ship "Quarg Skylark"
+		ship "Quarg Wardragon"
 
 government "Quarg (Hai)"
 	swizzle 0
@@ -1173,6 +1147,8 @@ government "Quarg (Hai)"
 		"Medium Graviton Thruster"
 		"Medium Graviton Steering"
 		"Quantum Shield Generator"
+		ship "Quarg Skylark"
+		ship "Quarg Wardragon"
 
 government "Quarg (Kor Efret)"
 	swizzle 0
@@ -1201,6 +1177,8 @@ government "Quarg (Kor Efret)"
 		"Medium Graviton Thruster"
 		"Medium Graviton Steering"
 		"Quantum Shield Generator"
+		ship "Quarg Skylark"
+		ship "Quarg Wardragon"
 
 government "Quarg (Gegno)"
 	swizzle 0
@@ -1227,6 +1205,8 @@ government "Quarg (Gegno)"
 		"Medium Graviton Thruster"
 		"Medium Graviton Steering"
 		"Quantum Shield Generator"
+		ship "Quarg Skylark"
+		ship "Quarg Wardragon"
 
 color "governments: Remnant" .89 .38 .62
 
