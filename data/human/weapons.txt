@@ -355,7 +355,7 @@ outfit "Mining Laser"
 		"shield damage" .8
 		"hull damage" 1.4
 		"minable damage" 1.9
-		"prospecting" 0.1
+		"prospecting" 1
 	description "While it was the Deep that developed the militarized Beam Laser in common use today, short range mining lasers have been a mainstay of human asteroid mining since the dawn of spaceflight. Given their strength at drilling through rock and metal, some people do use them as weapons, although their inefficacy against shields, along with their short range, have long since sidelined them from serious combat."
 	description "	This mining laser comes equipped with an extremely short range asteroid targeting scanner as well as mining algorithms. As such, drones and fighters that have it installed will automatically engage in mining when launched."
 
