@@ -1211,7 +1211,7 @@ mission "Gegno Asteroid Mining Prologue"
 			
 			label "accept"
 			`	You fiddle with the screen, trying to decipher how to use it. Some of the Gegno gaze at you for doing so, and while they silently judge, you manage to figure out that it's a touch-sensitive screen, though it takes a lot of force for you to get it to work.`
-			`	The graphic that appears the first time you get the device to work is of a Lead asteroid, with five strange-looking tally marks next to it. Mining for them wasn't exactly the first thing you were expecting to do for the Gegno, but it is a start.`
+			`	The graphic that appears the first time you get the device to work is of an Iron asteroid, with five strange-looking tally marks next to it. Mining for them wasn't exactly the first thing you were expecting to do for the Gegno, but it is a start.`
 				accept
 
 			label "nothing"
