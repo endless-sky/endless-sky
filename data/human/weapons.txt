@@ -386,7 +386,7 @@ outfit "Mining Laser Turret"
 		"shield damage" .8
 		"hull damage" 1.4
 		"minable damage" 1.9
-		"prospecting" 0.1
+		"prospecting" 1
 	description "The efficiency of a Mining Laser is truly brought out when mounted on a turreted base, which makes it easier for large and slow ships with spacious cargo holds to mine. Despite not being a combat weapon, its ability to track targets separately from gun mounts still annoys figher pilots."
 	description "	Mining Laser Turrets are designed to be used in conjunction with Asteroid Scanners, as being unable to target asteroids means you have to fire the weapon manually as if it were a fixed gun."
 
