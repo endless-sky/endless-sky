@@ -776,7 +776,7 @@ outfit "Snapfront"
 			narrow
 		"lifetime" 60
 		"random lifetime" 30
-		"velocoity" 60
+		"velocity" 60
 		"random velocity" 30
 		"shield damage" 6
 		"hull damage" 9
