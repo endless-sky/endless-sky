@@ -140,7 +140,7 @@ Color Color::Multiply(float scalar, const Color &base)
 
 
 // Apply color blindness filters to this color.
-Color Color::Filter(Color c)
+Color Color::Filter(const Color &c)
 {
 	Preferences::ColorFilter filter = Preferences::GetColorFilterMode();
 	// No color filters are enabled, so there's no need to adjust anything.
@@ -149,7 +149,7 @@ Color Color::Filter(Color c)
 
 	// Color blindness accessibility filters are enabled.
 	// LMS Daltonization is used to make the colors more distinct for
-	// color-blind players.
+	// color blind players.
 
 	// Convert the colors from RGB to LMS, a color space that represents the
 	// light received by the cones in the human eye better than RGB.
@@ -157,7 +157,7 @@ Color Color::Filter(Color c)
 	float m = (3.45565 * c.color[0]) + (27.1554 * c.color[1]) + (3.86714 * c.color[2]);
 	float s = (0.0299566 * c.color[0]) + (0.184309 * c.color[1]) + (1.46709 * c.color[2]);
 
-	// Simulate color blidness.
+	// Simulate color blindness.
 	switch(filter)
 	{
 		case Preferences::ColorFilter::PROTANOPIA:

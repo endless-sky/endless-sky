@@ -704,6 +704,14 @@ bool Preferences::DoAlertHelper(Preferences::AlertIndicator toDo)
 
 
 
+void Preferences::ToggleColorFilterSetting()
+{
+	if(++colorFilterIndex >= static_cast<int>(COLOR_FILTER_SETTING.size()))
+		colorFilterIndex = 0;
+}
+
+
+
 Preferences::ColorFilter Preferences::GetColorFilterMode()
 {
 	return static_cast<ColorFilter>(colorFilterIndex);
@@ -714,14 +722,6 @@ Preferences::ColorFilter Preferences::GetColorFilterMode()
 const std::string &Preferences::ColorFilterSetting()
 {
 	return COLOR_FILTER_SETTING[colorFilterIndex];
-}
-
-
-
-void Preferences::ToggleColorFilterSetting()
-{
-	if(++colorFilterIndex >= static_cast<int>(COLOR_FILTER_SETTING.size()))
-		colorFilterIndex = 0;
 }
 
 

@@ -57,7 +57,7 @@ public:
 	static Color Multiply(float scalar, const Color &base);
 
 	// Apply color blindness accessibility filters to the given Color to obtain a new Color.
-	static Color Filter(Color c);
+	static Color Filter(const Color &c);
 
 
 private:
