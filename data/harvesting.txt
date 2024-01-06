@@ -14,6 +14,7 @@
 minable "aluminum"
 	sprite "asteroid/silicon/spin"
 	hull 900
+		"toughness" 6500
 	"random hull" 200
 	payload "Aluminum" 40
 	explode "smoke" 40
@@ -35,6 +36,7 @@ outfit "Aluminum"
 minable "copper"
 	sprite "asteroid/gold/spin"
 	hull 1080
+		"toughness" 7200
 	"random hull" 240
 	payload "Copper" 20
 	explode "smoke" 20
@@ -56,6 +58,7 @@ outfit "Copper"
 minable "gold"
 	sprite "asteroid/gold/spin"
 	hull 2520
+		"toughness" 43200
 	"random hull" 560
 	payload "Gold" 16
 	explode "smoke" 20
@@ -77,6 +80,7 @@ outfit "Gold"
 minable "iron"
 	sprite "asteroid/iron/spin"
 	hull 1440
+		"toughness" 9600
 	"random hull" 320
 	payload "Iron" 50
 	explode "smoke" 40
@@ -98,6 +102,7 @@ outfit "Iron"
 minable "lead"
 	sprite "asteroid/lead/spin"
 	hull 720
+		"toughness" 4400
 	"random hull" 160
 	payload "Lead" 32
 	explode "smoke" 30
@@ -119,6 +124,7 @@ outfit "Lead"
 minable "neodymium"
 	sprite "asteroid/iron/spin"
 	hull 3240
+		"toughness" 77000
 	"random hull" 720
 	payload "Neodymium" 40
 	explode "smoke" 40
@@ -140,6 +146,7 @@ outfit "Neodymium"
 minable "platinum"
 	sprite "asteroid/silver/spin"
 	hull 3600
+		"toughness" 133000
 	"random hull" 800
 	payload "Platinum" 16
 	explode "smoke" 20
@@ -161,6 +168,7 @@ outfit "Platinum"
 minable "silicon"
 	sprite "asteroid/silicon/spin"
 	hull 360
+		"toughness" 1900
 	"random hull" 80
 	payload "Silicon" 50
 	explode "smoke" 40
@@ -182,6 +190,7 @@ outfit "Silicon"
 minable "silver"
 	sprite "asteroid/silver/spin"
 	hull 1800
+		"toughness" 30850
 	"random hull" 400
 	payload "Silver" 20
 	explode "smoke" 20
@@ -203,6 +212,7 @@ outfit "Silver"
 minable "titanium"
 	sprite "asteroid/titanium/spin"
 	hull 2160
+		"toughness" 22800
 	"random hull" 480
 	payload "Titanium" 32
 	explode "smoke" 30
@@ -224,6 +234,7 @@ outfit "Titanium"
 minable "tungsten"
 	sprite "asteroid/titanium/spin"
 	hull 4320
+		"toughness" 57000
 	"random hull" 960
 	payload "Tungsten" 24
 	explode "smoke" 30
@@ -245,6 +256,7 @@ outfit "Tungsten"
 minable "uranium"
 	sprite "asteroid/lead/spin"
 	hull 2880
+		"toughness" 49400
 	"random hull" 640
 	payload "Uranium" 24
 	explode "smoke" 30
@@ -266,6 +278,7 @@ outfit "Uranium"
 minable "yottrite"
 	sprite "asteroid/yottrite/spin"
 	hull 18000
+		"toughness" 1377500
 	"random hull" 4000
 	payload "Yottrite" 7
 	explode "smoke" 30
@@ -347,6 +360,7 @@ minable "large plant cluster"
 minable "live crystal"
 	sprite "asteroid/livecrystal/livecrystal"
 	hull 900
+		"toughness" 21400
 	"random hull" 200
 	payload "Void Orchid" 8
 	explode "smoke" 15
