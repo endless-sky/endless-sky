@@ -3105,7 +3105,7 @@ mission "Wanderers: Sestor: Exiles 3"
 	on accept
 		log "Succeeded in communicating with the Korath Exiles, by landing on the one habitable planet in their territory. (It seems like the Exiles might have a taboo against using weapons on that world.) The Exiles agreed to send some ships to help disable the remaining Kor Sestor factory."
 		fail "Wanderers: Sestor: Exiles 2"
-		event "wanderers: Exiles peaceful"
+		event "wanderers: exiles peaceful"
 	npc accompany save
 		government "Korath"
 		personality escort
