@@ -23,7 +23,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Dialog.h"
 #include "DistanceMap.h"
 #include "Files.h"
-#include "SystemEntry.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
