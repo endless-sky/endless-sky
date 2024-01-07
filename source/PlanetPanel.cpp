@@ -74,13 +74,10 @@ void PlanetPanel::Step()
 {
 	UI *ui = GetUI();
 
-	// Do any relocations that might have been initiated by a conversation.
-	if(ui->IsTop(this) || ui->IsTop(selectedPanel))
-		player.DoQueuedRelocation();
-
 	// If the player is relocating, simulate a TakeOff followed
 	// by a forced landing. No transition will be noticeable.
-	if(player.RelocationStatus() == PlayerInfo::RelocateStatus::IN_PROGRESS)
+	if((ui->IsTop(this) || ui->IsTop(selectedPanel)) &&
+		player.RelocationStatus() == PlayerInfo::RelocateStatus::IN_PROGRESS)
 	{
 		player.SetRelocationStatus(PlayerInfo::RelocateStatus::COMPLETE);
 		player.Save();
