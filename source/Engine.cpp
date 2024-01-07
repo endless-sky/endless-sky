@@ -603,10 +603,11 @@ void Engine::Step(bool isActive)
 	// Update this here, for thread safety.
 	if(player.HasTravelPlan() && currentSystem == player.TravelPlan().back())
 		player.PopTravel();
-	// Check if the first step of the travel plan is valid.
+	// Check if the player's travel plan is still valid.
 	if(flagship && player.HasTravelPlan())
 	{
 		bool travelPlanIsValid = false;
+		// If the player is traveling through a wormhole to the next system, then the plan is valid.
 		const System *system = player.TravelPlan().back();
 		for(const StellarObject &object : flagship->GetSystem()->Objects())
 			if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->IsWormhole()
@@ -620,7 +621,11 @@ void Engine::Step(bool isActive)
 				travelPlanIsValid = true;
 				break;
 			}
+		// Otherwise, the player must still be within jump range of the next system.
 		travelPlanIsValid |= flagship->JumpNavigation().CanJump(flagship->GetSystem(), system);
+		// Other steps of the travel plan may have been invalidated as a result of the system no longer being visible.
+		travelPlanIsValid &= all_of(player.TravelPlan().begin(), player.TravelPlan().end(),
+				[this](const System *system) -> bool { return player.HasSeen(*system); });
 		if(!travelPlanIsValid)
 		{
 			if(flagship->GetTargetSystem() == player.TravelPlan().back())
@@ -641,7 +646,6 @@ void Engine::Step(bool isActive)
 	// Update the player's ammo amounts.
 	if(flagship)
 		ammoDisplay.Update(*flagship);
-
 
 	// Display escort information for all ships of the "Escort" government,
 	// and all ships with the "escort" personality, except for fighters that
