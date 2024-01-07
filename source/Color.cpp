@@ -179,9 +179,9 @@ Color Color::Filter(const Color &c)
 	float b = (-0.000365296938 * l) + (-0.00412161469 * m) + (0.693511405 * s);
 
 	// Compensate for invisible colors.
-	g = c.color[1] + 0.5 * (c.color[0] - r) + (c.color[1] - g);
-	b = c.color[2] + 0.5 * (c.color[0] - r) + (c.color[2] - b);
 	r = c.color[0];
+	g = 2 * c.color[1] - g;
+	b = 2 * c.color[2] - b;
 
 	// Clamp the RGB colors to within the 0. to 1. range used by OpenGL.
 	r = clamp(r, 0.f, 1.f);
