@@ -89,7 +89,7 @@ mission "Kestrel Testing"
 					goto engines
 				`	"Maybe you should work on improving the shields and hull."`
 					goto shields
-				`	"I feel like larger ships should have more bays for fighters."`
+				`	"I feel like such a large ship should have more bays for fighters."`
 					goto bays
 			
 			label weapons
