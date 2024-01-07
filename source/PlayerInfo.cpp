@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Dialog.h"
 #include "DistanceMap.h"
 #include "Files.h"
+#include "SystemEntry.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
@@ -89,6 +90,8 @@ namespace {
 				return "jump drive";
 			case SystemEntry::WORMHOLE:
 				return "wormhole";
+			case SystemEntry::RELOCATION:
+				return "relocation";
 			default:
 			case SystemEntry::TAKE_OFF:
 				return "takeoff";
@@ -103,6 +106,8 @@ namespace {
 			return SystemEntry::JUMP;
 		else if(entry == "wormhole")
 			return SystemEntry::WORMHOLE;
+		else if(entry == "relocation")
+			return SystemEntry::RELOCATION;
 		return SystemEntry::TAKE_OFF;
 	}
 
@@ -2645,6 +2650,7 @@ void PlayerInfo::Relocate(UI *ui)
 {
 	LeavePlanet(true);
 	EnterPlanet(ui);
+	SetSystemEntry(SystemEntry::RELOCATION);
 }
 
 
