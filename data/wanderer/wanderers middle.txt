@@ -3418,7 +3418,7 @@ mission "Wanderers: Sestor: Final: Patched"
 		event "wanderers: exiles hostile" 4
 		conversation
 			`When you meet with the Wanderer leaders, Sobari Tele'ek tells you, "We have received word from our [scouts, observers] that the Sestor drones are [dwindling, reducing] in numbers and will soon be no more. We owe you our [gratitude, thanks]. But, the Mereti tell us a more worrisome [tale, story]."`
-			`	Meto Pa'aret says, "The Mereti [contacted, communicated with] me and said that one of their stations was [raided, infiltrated] by the Korath Exiles, and some of their [machinery, equipment] was stolen. The Mereti did not [fight, attack] the Exiles because they thought they were [friends, allies]. Captain <last>, can you bring Rek to visit the [Exiles, outcasts] and learn what their plans are?"`
+			`	Meto Pa'aret says, "The Mereti [contacted, communicated with] me and said that one of their stations was [raided, infiltrated] by the Korath Exiles, and some of their [machinery, equipment] was stolen. The Mereti did not [fight, attack] the Exiles because they thought they were [friends, allies]. Captain <last>, can you bring Rek to visit the [exiles, outcasts] and learn what their plans are?"`
 			choice
 				`	"Sure, I would be glad to."`
 					accept
