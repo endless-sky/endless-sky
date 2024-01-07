@@ -311,7 +311,6 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const 
 	const shared_ptr<Ship> &ship, const bool isUnique) const
 {
 	bool isOffer = (trigger == "offer");
-	action.Do(player, ui, caller, conversation->IsEmpty() && dialogText.empty());
 	if(!conversation->IsEmpty() && ui)
 	{
 		// Conversations offered while boarding or assisting reference a ship,
@@ -347,6 +346,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const 
 	}
 	else if(isOffer && ui)
 		player.MissionCallback(Conversation::ACCEPT);
+	action.Do(player, ui, caller, conversation->IsEmpty() && dialogText.empty());
 }
 
 

@@ -88,6 +88,15 @@ ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &con
 
 
 
+ConversationPanel::~ConversationPanel()
+{
+	// Finish the PlayerInfo transaction so any changes get saved again.
+	if(useTransactions)
+		player.FinishTransaction();
+}
+
+
+
 void ConversationPanel::SetCallback(function<void(int)> fun)
 {
 	callback = std::move(fun);
@@ -439,10 +448,6 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 // Exit this panel and do whatever needs to happen next.
 void ConversationPanel::Exit()
 {
-	// Finish the PlayerInfo transaction so any changes get saved again.
-	if(useTransactions)
-		player.FinishTransaction();
-
 	GetUI()->Pop(this);
 	// Some conversations may be offered from an NPC, e.g. an assisting or
 	// boarding mission's `on offer`, or from completing a mission's NPC

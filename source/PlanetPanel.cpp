@@ -72,12 +72,17 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback, const Pl
 
 void PlanetPanel::Step()
 {
+	UI *ui = GetUI();
+
+	// Do any relocations that might have been initiated by a conversation.
+	if(ui->IsTop(this) || ui->IsTop(selectedPanel))
+		player.DoQueuedRelocation();
+
 	// If the player is relocating, simulate a TakeOff followed
 	// by a forced landing. No transition will be noticeable.
 	if(player.RelocationStatus() == PlayerInfo::RelocateStatus::IN_PROGRESS)
 	{
 		player.SetRelocationStatus(PlayerInfo::RelocateStatus::COMPLETE);
-		UI *ui = GetUI();
 		player.Save();
 		player.Relocate(ui);
 		if(callback)
@@ -99,13 +104,13 @@ void PlanetPanel::Step()
 	// handle the intro mission in the event the player moves away
 	// from the landing before buying a ship.
 	const Panel *activePanel = selectedPanel ? selectedPanel : this;
-	if(activePanel != spaceport.get() && GetUI()->IsTop(activePanel))
+	if(activePanel != spaceport.get() && ui->IsTop(activePanel))
 	{
 		Mission *mission = player.MissionToOffer(Mission::LANDING);
 		if(mission)
-			mission->Do(Mission::OFFER, player, GetUI());
+			mission->Do(Mission::OFFER, player, ui);
 		else
-			player.HandleBlockedMissions(Mission::LANDING, GetUI());
+			player.HandleBlockedMissions(Mission::LANDING, ui);
 	}
 }
 

@@ -2228,7 +2228,6 @@ void PlayerInfo::MissionCallback(int response)
 		mission.Do(Mission::DEFER, *this);
 		missionList.pop_front();
 	}
-	DoQueuedRelocation();
 }
 
 

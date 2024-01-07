@@ -404,7 +404,7 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, bool imme
 	{
 		player.QueueRelocation(relocateAction.relocateFilter.PickPlanet(player.GetSystem()),
 							relocateAction.relocateFlagshipOnly);
-		if(true)
+		if(immediateRelocation)
 			player.DoQueuedRelocation();
 	}
 
