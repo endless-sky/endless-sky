@@ -3745,7 +3745,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 		for(const StellarObject &object : ship.GetSystem()->Objects())
 			if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->IsWormhole()
 				&& object.GetPlanet()->IsAccessible(&ship) && player.HasVisited(*object.GetPlanet())
-				&& player.HasVisited(*system))
+				&& player.CanView(*system))
 			{
 				const auto *wormhole = object.GetPlanet()->GetWormhole();
 				if(&wormhole->WormholeDestination(*ship.GetSystem()) != system)
