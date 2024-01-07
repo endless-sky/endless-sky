@@ -14,9 +14,9 @@
 minable "aluminum"
 	sprite "asteroid/silicon/spin"
 	hull 900
-		"toughness" 6500
 	"random hull" 200
 	payload "Aluminum" 40
+		"toughness" 6500
 	explode "smoke" 40
 	explode "bolide" 40
 	explode "asteroid crunch large"
@@ -36,9 +36,9 @@ outfit "Aluminum"
 minable "copper"
 	sprite "asteroid/gold/spin"
 	hull 1080
-		"toughness" 7200
 	"random hull" 240
 	payload "Copper" 20
+		"toughness" 7200
 	explode "smoke" 20
 	explode "bolide" 20
 	explode "asteroid crunch small"
@@ -58,9 +58,9 @@ outfit "Copper"
 minable "gold"
 	sprite "asteroid/gold/spin"
 	hull 2520
-		"toughness" 43200
 	"random hull" 560
 	payload "Gold" 16
+		"toughness" 43200
 	explode "smoke" 20
 	explode "bolide" 20
 	explode "asteroid crunch small"
@@ -80,9 +80,9 @@ outfit "Gold"
 minable "iron"
 	sprite "asteroid/iron/spin"
 	hull 1440
-		"toughness" 9600
 	"random hull" 320
 	payload "Iron" 50
+		"toughness" 9600
 	explode "smoke" 40
 	explode "bolide" 40
 	explode "asteroid crunch large"
@@ -102,9 +102,9 @@ outfit "Iron"
 minable "lead"
 	sprite "asteroid/lead/spin"
 	hull 720
-		"toughness" 4400
 	"random hull" 160
 	payload "Lead" 32
+		"toughness" 4400
 	explode "smoke" 30
 	explode "bolide" 30
 	explode "asteroid crunch medium"
@@ -124,9 +124,9 @@ outfit "Lead"
 minable "neodymium"
 	sprite "asteroid/iron/spin"
 	hull 3240
-		"toughness" 77000
 	"random hull" 720
 	payload "Neodymium" 40
+		"toughness" 77000
 	explode "smoke" 40
 	explode "bolide" 40
 	explode "asteroid crunch large"
@@ -146,9 +146,9 @@ outfit "Neodymium"
 minable "platinum"
 	sprite "asteroid/silver/spin"
 	hull 3600
-		"toughness" 133000
 	"random hull" 800
 	payload "Platinum" 16
+		"toughness" 133000
 	explode "smoke" 20
 	explode "bolide" 20
 	explode "asteroid crunch small"
@@ -168,9 +168,9 @@ outfit "Platinum"
 minable "silicon"
 	sprite "asteroid/silicon/spin"
 	hull 360
-		"toughness" 1900
 	"random hull" 80
 	payload "Silicon" 50
+		"toughness" 1900
 	explode "smoke" 40
 	explode "bolide" 40
 	explode "asteroid crunch large"
@@ -190,9 +190,9 @@ outfit "Silicon"
 minable "silver"
 	sprite "asteroid/silver/spin"
 	hull 1800
-		"toughness" 30850
 	"random hull" 400
 	payload "Silver" 20
+		"toughness" 30850
 	explode "smoke" 20
 	explode "bolide" 20
 	explode "asteroid crunch small"
@@ -212,9 +212,9 @@ outfit "Silver"
 minable "titanium"
 	sprite "asteroid/titanium/spin"
 	hull 2160
-		"toughness" 22800
 	"random hull" 480
 	payload "Titanium" 32
+		"toughness" 22800
 	explode "smoke" 30
 	explode "bolide" 30
 	explode "asteroid crunch medium"
@@ -234,9 +234,9 @@ outfit "Titanium"
 minable "tungsten"
 	sprite "asteroid/titanium/spin"
 	hull 4320
-		"toughness" 57000
 	"random hull" 960
 	payload "Tungsten" 24
+		"toughness" 57000
 	explode "smoke" 30
 	explode "bolide" 30
 	explode "asteroid crunch medium"
@@ -256,9 +256,9 @@ outfit "Tungsten"
 minable "uranium"
 	sprite "asteroid/lead/spin"
 	hull 2880
-		"toughness" 49400
 	"random hull" 640
 	payload "Uranium" 24
+		"toughness" 49400
 	explode "smoke" 30
 	explode "bolide" 30
 	explode "asteroid crunch medium"
@@ -278,9 +278,9 @@ outfit "Uranium"
 minable "yottrite"
 	sprite "asteroid/yottrite/spin"
 	hull 18000
-		"toughness" 1377500
 	"random hull" 4000
 	payload "Yottrite" 7
+		"toughness" 1377500
 	explode "smoke" 30
 	explode "bolide" 30
 	explode "asteroid crunch medium"
@@ -306,6 +306,7 @@ minable "plant"
 	hull 2520
 	"random hull" 560
 	payload "Void Orchid" 21
+		"toughness" 59920
 	explode "smoke" 30
 	explode "bolide" 30
 	explode "final explosion medium"
@@ -316,6 +317,7 @@ minable "plant2"
 	hull 2340
 	"random hull" 520
 	payload "Void Orchid" 20
+		"toughness" 55640
 	explode "smoke" 30
 	explode "bolide" 30
 	explode "final explosion medium"
@@ -325,6 +327,7 @@ minable "plant cluster"
 	hull 1080
 	"random hull" 240
 	payload "Void Orchid" 11
+		"toughness" 25680
 	explode "smoke" 20
 	explode "bolide" 20
 	explode "final explosion small"
@@ -334,6 +337,7 @@ minable "large plant"
 	hull 3420
 	"random hull" 760
 	payload "Void Orchid" 41
+		"toughness" 81320
 	explode "smoke" 30
 	explode "bolide" 40
 	explode "final explosion medium"
@@ -344,6 +348,7 @@ minable "large plant2"
 	hull 3240
 	"random hull" 720
 	payload "Void Orchid" 41
+		"toughness" 77040
 	explode "smoke" 30
 	explode "bolide" 40
 	explode "final explosion medium"
@@ -353,6 +358,7 @@ minable "large plant cluster"
 	hull 1980
 	"random hull" 440
 	payload "Void Orchid" 22
+		"toughness" 47080
 	explode "smoke" 30
 	explode "bolide" 40
 	explode "final explosion medium"
@@ -360,9 +366,9 @@ minable "large plant cluster"
 minable "live crystal"
 	sprite "asteroid/livecrystal/livecrystal"
 	hull 900
-		"toughness" 21400
 	"random hull" 200
 	payload "Void Orchid" 8
+		"toughness" 21400
 	explode "smoke" 15
 	explode "bolide" 10
 	explode "final explosion small"
@@ -372,6 +378,7 @@ minable "space flora"
 	hull 900
 	"random hull" 200
 	payload "Void Orchid" 8
+		"toughness" 21400
 	explode "smoke" 15
 	explode "bolide" 10
 	explode "final explosion small"
@@ -381,6 +388,7 @@ minable "large space flora"
 	hull 1800
 	"random hull" 400
 	payload "Void Orchid" 16
+		"toughness" 42800
 	explode "smoke" 25
 	explode "bolide" 20
 	explode "final explosion medium"
