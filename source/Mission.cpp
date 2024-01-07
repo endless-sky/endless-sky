@@ -35,7 +35,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cmath>
 #include <limits>
 #include <sstream>
-#include <iostream>
 
 using namespace std;
 
@@ -1055,9 +1054,7 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	if(it != actions.end() && !it->second.CanBeDone(player, boardingShip))
 		return false;
 
-	if(trigger == OFFER)
-		++player.Conditions()[name + ": offered"];
-	else if(trigger == ACCEPT)
+	if(trigger == ACCEPT)
 	{
 		++player.Conditions()[name + ": offered"];
 		++player.Conditions()[name + ": active"];
@@ -1091,7 +1088,6 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	// a special marker at the destination if the map is opened during any
 	// mission dialog or conversation. Invisible missions don't show this
 	// marker.
-	std::cout<<"ho "<<TriggerToText(trigger)<<" "<<name<<" "<<uuid.ToString()<<std::endl;
 	if(it != actions.end())
 		it->second.Do(player, ui, this, (destination && isVisible) ? destination->GetSystem() : nullptr,
 			boardingShip, IsUnique());
