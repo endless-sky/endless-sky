@@ -17,22 +17,3 @@ category "series"
 	"Human: Plasma" 120
 	"Human: Atomic" 130
 	"Human: Afterburners" 140
-
-mission "relocate"
-	repeat
-	on offer
-		relocate
-			"flagship only"
-			location
-				planet "Earth"
-		conversation
-			`You're going to Detroit.`
-			choice
-				`	"NOOOOOOOOOOOOOOOOOOOOOO."`
-					goto test
-				`	"I refuse"`
-			`	"Too bad."`
-				decline
-			label test				
-			`	YES`
-			 accept
