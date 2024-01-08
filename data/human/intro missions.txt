@@ -145,7 +145,7 @@ mission "Intro [2 Transport]"
 				`	"Sure!"`
 				`	"No thanks, I think I'll strike off on my own now."`
 					decline
-			`	"Great," he says. "This is Chuck, and Sarah, and their son Carl. Let's help them carry their luggage to your ship." As you begin walking back, slightly ahead of them, James whispers to you, "Tourists are always a good way to make money. They're on vacation, so they don't mind paying a bit extra. But no point in your cargo space going to waste, so take a look at the job board and see if there are any delivery missions we can run at the same time. And if you want to be a little safer should we come across any pirates, sell off any guns you might have. It might seem counterintuitive, but being unarmed makes you less of a target to pirates if there are others in the system that they could be defending themselves against."`
+			`	"Great," he says. "This is Chuck, and Sarah, and their son Carl. Let's help them carry their luggage to your ship." As you begin walking back, slightly ahead of them, James whispers to you, "Tourists are always a good way to make money. They're on vacation, so they don't mind paying a bit extra. But no point in your cargo space going to waste, so take a look at the job board and see if there are any delivery missions we can run at the same time. And if you want to be a little safer should we come across any pirates, sell off any offensive weapons you might have. It might seem counterintuitive, but being unarmed makes you less of a target to pirates if there are others in the system that they could be defending themselves against."`
 				accept
 	
 	on complete
@@ -408,7 +408,7 @@ mission "Intro [2 Interceptor]"
 	on complete
 		payment 40000
 		conversation
-			`As you land on Ingot, James says, "Well, you made it in one piece! Still think you want to be piloting a Sparrow?"`
+			`As you land on Ingot, James says, "Well, you made it in one piece! Still think you want to be piloting an interceptor?"`
 			choice
 				`	"Sure, but I can't wait until I've got a ship big enough to stand up to pirates instead of running from them."`
 				`	"Well, maybe I should've bought a freighter instead."`
