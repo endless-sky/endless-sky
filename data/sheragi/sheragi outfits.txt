@@ -128,6 +128,14 @@ outfit "Fusion Drive"
 	"unplunderable" 1
 	description "The Sheragi engines are much more than simple tubes spewing fire; they are a collection of interdependent devices, providing increased efficiency at the cost of modularity. These include a hyperdrive, an enormous fusion reactor, and the most powerful plasma engines you've ever seen. It's all examples of relatively simple technology, but they have been refined and taken to their extreme. The engines are fundamentally connected to the fusion reactor, increasing their thrust even further and thereby allowing the Emerald Sword to fly at impressive speeds, traveling through interstellar space with relative ease."
 
+outfit "Ancient Alien Artifact"
+	category "Systems"
+	cost 0
+	thumbnail "outfit/sheragi ews"
+	"mass" 3
+	"outfit space" -3
+	description "A pristine artifact discovered on an abandoned asteroid. Perhaps there is someone who knows what to do with this."
+
 outfit "Electronic Warfare System"
 	category "Systems"
 	cost 3400000
@@ -140,6 +148,19 @@ outfit "Electronic Warfare System"
 	"scan interference" 2
 	"energy consumption" .2
 	description "This device provides radar jamming and a whole suite of electronic warfare, gathering data about the battlefield in real time and enhancing a ship's combat capabilities. It was an essential item for every Sheragi warship, and the technique it uses is still difficult to counter to this very day."
+
+outfit "Retrofitted Electronic Warfare System"
+	category "Systems"
+	cost 3400000
+	thumbnail "outfit/sheragi ews"
+	"mass" 5
+	"outfit space" -5
+	"radar jamming" 10
+	"tactical scan power" 25
+	"scan interference" 2
+	"energy consumption" .1
+	description "This device provides radar jamming and a whole suite of electronic warfare, gathering data about the battlefield in real time and enhancing a ship's combat capabilities. Weland has retrofitted the 'Dragon Tech' to better function with modern systems."
+
 
 # Weapons
 
