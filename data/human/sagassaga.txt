@@ -312,7 +312,7 @@ mission "Best Friend 8"
 			`	She'll stop eventually, no reason to reward her bad behavior by reacting to it. You get back to your ship.`
 				decline
 			label check
-			`	You find Saga barking, whimpering and pawing at some foodstuff crates you recently took on. There is one crate in particular she is fiercly interested in.`
+			`	You find Saga barking, whimpering and pawing at some foodstuff crates you recently took on. There is one crate in particular she is fiercely interested in.`
 			choice
 				`	(Open the create.)`
 					goto crate
@@ -410,7 +410,7 @@ mission "Happy Tim"
 	on offer
 		require "Saga"
 		conversation
-			`	An indictor light is blinking on your main panel. There is a cached message waiting for you to play.`
+			`	An indicator light is blinking on your main panel. There is a cached message waiting for you to play.`
 			choice
 				`	(Play the message.)`
 			`	A young woman in very professional clothes appears on the screen. "Captain <last>, I am pleased to inform you that the Governor of Rand has invited you to attend an award ceremony in your honor. Please come to Rand at your earliest convenience.`
@@ -460,7 +460,7 @@ mission "Hero of Rand"
 				`	"I appreciate it. But I don't have time."`
 					goto nothankyou
 				`	"No. I don't care about your capitalist dream, or whatever else is going on here. I am out."`
-			`	Timothy frowns, and his head droops a little. It is a hard place, Rand, and I will admit I live better than most now. But I earned it, and I will not make apologizes for working hard and smart. I am sorry this could not have been a joyful occasion. You gave me my start, and I will never forget it, but perhaps you've changed more than I have. Good luck, and goodbye.`
+			`	Timothy frowns, and his head droops a little. "It is a hard place, Rand, and I will admit I live better than most now. But I earned it, and I will not make apologizes for working hard and smart. I am sorry this could not have been a joyful occasion. You gave me my start, and I will never forget it, but perhaps you've changed more than I have. Good luck, and goodbye."`
 			`	Timothy turns his chair from you, and says nothing as you exit his mansion. A new vehicle is waiting for you outside, and you ride it in silence through the blinding dust back to the spaceport.`
 				decline
 			label nothankyou
@@ -638,6 +638,7 @@ mission "Monk Tim"
 					goto whyyes
 				`	"I don't have time for fans."`
 			`	"Of course." The monk says,"you are a busy person." He says goodbye and returns to his brothers.`
+			decline
 			label whyyes
 			`	The monk beams. "Wonderful. It'll be a bit of a hike, but the views are worth it."`
 			`	He leads you into the mountains beyond the spaceport. You travel up various narrow passes, and steep cliff sides. It's a difficult trail, but the scenery is remarkable. Your views are filled with broken mountains, jagged rocks, green vibrant life, and distant valleys.`
@@ -767,7 +768,7 @@ mission "Taking the Bird Home"
 	on enter
 	on enter
 		conversation
-			`	A nearly mature bird flies around your ship, bombing random controls and instruments with little white torpedos, while squawking intermittently. Saga watches warily having been the victim of its barrage more than a few times.`
+			`	A nearly mature bird flies around your ship, bombing random controls and instruments with little white torpedoes, while squawking intermittently. Saga watches warily having been the victim of its barrage more than a few times.`
 			`	The <ship> is not place for a bird. It's time to find it a home. You're not exactly certain what species of bird it is, however you think you've seen something like on New Britain.`
 			`	Perhaps, that would be a good home for it.`
 	on complete
@@ -1275,10 +1276,10 @@ mission "Ice Queen 5"
 	landing
 	on offer
 		dialog
-			`	Your inbox blinks with a new message from Ildico on Chiron.`
-			`	'I need to see you. Please come. My address is attached.`
+			`	Your inbox blinks with a new message from Ildico on Chiron:`
+			`	"I need to see you. Please come. My address is attached.`
 			`				-your friend`
-			`					Ildy`			
+			`					Ildy"`			
 	on complete
 		dialog
 			`	The myriad lights of urban settlements twinkle in the dusk as you approach the capitol, and main spaceport, of Chiron. Crickets, brought from old Earth, chirp in the twilit air. Your ship parked, you'll need to make your way to main spaceport to hire transportation to Ildico's address.`
@@ -1362,7 +1363,7 @@ mission "Ice Queen 6"
 				`	(Thank her.)`
 			`	I'll also transfer small sum of money for your troubles. I fear I will be needing most of my family's fortune, but hopefully what little I can offer will help. `
 			choice
-				` 	(You ask if it's wise for her and a child to be left alone in a place like Haven.)`
+				` 	(Ask if it's wise for her and a child to be left alone in a place like Haven.)`
 			`	She laughs. "Haven better watch out for me. After Hope, and Chiron. This place will be a cakewalk."`
 			`	She takes her child in one hand, and the briefcase in the other, and walks off your ship.`
 
@@ -1378,10 +1379,10 @@ mission "Ice Queen 7"
 	landing
 	on offer
 		dialog
-			`	Your inbox blinks with a new message from Ildico on Haven.`
-			`	'It's been too long, and I could use your help. Please, come to Haven.`
+			`	Your inbox blinks with a new message from Ildico on Haven:`
+			`	"It's been too long, and I could use your help. Please, come to Haven.`
 			`				-your friend`
-			`					Ildy`			
+			`					Ildy"`			
 	on complete
 		dialog
 			`	Even from orbit, Haven looks ugly, and as you approach the planet, it doesn't get any better. Upon landing you're alerted Ildico is waiting for you in the spaceport.`
@@ -1402,7 +1403,7 @@ mission "Ice Queen 8"
 				`	"Ildy asked me to come here."`
 				`	"Ildy, Help!"`
 			`	The band of cut-throats looks at you, confused, and then most of them lower their weapons.`
-			`	"Boss." One of them hollers, "this stranger says they are here for you, I think."`
+			`	"Boss," One of them hollers, "this stranger says they are here for you, I think."`
 			`	Footsteps echo on the opposite side of the warehouse as someone approaches.`
 			`	One of the men starts laughing. "Ildy?! Haha, never thought to call her that. Hey Ildy! How come you never told us to call you that? Or that some kind of special pet name?"`
 			`	The man flashes an unsavory grin at you. His rotting teeth full on display.`
