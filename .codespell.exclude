@@ -95,3 +95,7 @@ planet "Sies Upi"
 		log "Minor People" "Torrey and Irene" `Torrey Dupont, an activist, is friends with SMDP militia NCO Irene Brower. You delivered a package for them.`
 		"Brin"
 		"exis"
+		"Ser"
+			`	(Inquire about the dog, and her possible owner.)`
+			`	The man's eyes seem to sag as you speak. Your earnest words lulling him to sleep. Once you're done he frowns, and shakes his head slowly.`
+			`	"Ser," he says with forced politeness, "this is a spaceport, not a shelter. We are aware of that stray dog. She has been prowling around for weeks. No one has come to collect her, and no one wants her. Frankly, we assumed the feral sheep would get to her by now. It would have done us all a favor.`
