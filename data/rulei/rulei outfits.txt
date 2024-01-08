@@ -1,0 +1,168 @@
+# Copyright (c) 2022 by Saugia
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+outfit "Fate Sealer"
+	category "Guns"
+	cost 77777777
+	thumbnail "outfit/unknown"
+	"mass" 31
+	"outfit space" -31
+	"weapon capacity" -31
+	"gun ports" -1
+	weapon
+		sound "fate fire"
+		"fire effect" "fate fire"
+		"velocity" 0
+		"lifetime" 60
+		"velocity override" 1400
+		"range override" 4800
+		"reload" 100
+		"firing energy" 800
+		"firing heat" 400
+		"turn" 180
+		"homing" 2
+		"infrared tracking" 1
+		"radar tracking" 1
+		"optical tracking" 1
+		"cluster"
+		"safe"
+		"submunition" "Fate Sealer Activated"
+	description `An energy particle weapon that intensifies a blast to a single location after a brief duration. The after-effect of the explosion pulls the target closer to the origin of the blast.`
+
+outfit "Fate Sealer Activated"
+	weapon
+		"hit effect" "fusion blast"
+		"lifetime" 4
+		"velocity" 1400
+		"acceleration" 0.01
+		"trigger radius" 50
+		"blast radius" 100
+		"shield damage" 900
+		"hull damage" 300
+		"hit force" -800
+		"slowing damage" 20
+		"safe"
+
+outfit "Fate Divider"
+	category "Guns"
+	cost 77777777
+	thumbnail "outfit/unknown"
+	"mass" 31
+	"outfit space" -31
+	"weapon capacity" -31
+	"gun ports" -1
+	weapon
+		sound "fate fire"
+		"fire effect" "fate fire"
+		"velocity" 0
+		"lifetime" 60
+		"velocity override" 1400
+		"range override" 600
+		"reload" 100
+		"firing energy" 800
+		"firing heat" 400
+		"turn" 180
+		"homing" 2
+		"infrared tracking" 1
+		"radar tracking" 1
+		"optical tracking" 1
+		"cluster"
+		"safe"
+		"submunition" "Fate Divider Activated"
+	description `An energy particle weapon that intensifies a blast to a single location after a brief duration. The after-effect of the explosion pushes the target farther from the origin of the blast.`
+
+outfit "Fate Divider Activated"
+	weapon
+		"hit effect" "fusion blast"
+		"lifetime" 1
+		"velocity" 1400
+		"acceleration" 0.01
+		"trigger radius" 50
+		"blast radius" 100
+		"shield damage" 900
+		"hull damage" 300
+		"hit force" 800
+		"discharge damage" 45
+		"safe"
+		
+effect "fate fire"
+	sprite effect/blink
+		"scale" 0.5
+		"frame rate" 18
+		"no repeat"
+	lifetime 30
+	"random angle" 360
+
+effect "fusion blast"
+	sprite "effect/explosion/pug/huge"
+		"no repeat"
+		"frame rate" 15
+	sound "fusion blast"
+	"lifetime" 36
+	"random angle" 360
+	"random frame rate" 5
+	"random spin" 5
+	"random velocity" 1
+	"velocity scale" .001
+
+outfit "Abyssal Composer"
+	category "Guns"
+	cost 170000000
+	thumbnail "outfit/unknown"
+	"mass" 121
+	"outfit space" -121
+	"weapon capacity" -121
+	"gun ports" -1
+	weapon
+		sound "composer"
+		"ammo" "Abyssal Composer" 0
+		"hit effect" "composed" 2
+		"hit effect" "drained"
+		"inaccuracy" 45
+		"velocity" 660
+		"lifetime" 1
+		"range override" 600
+		"reload" 1
+		"hardpoint offset" 20
+		"firing energy" -8
+		"firing force" 25
+		"firing heat" 25
+		"firing shields" -30
+		"firing hull" -8
+		"shield damage" 180
+		"hull damage" 180
+		"hit force" -125
+		"slowing damage" 10
+		"energy damage" 100
+		"piercing" 0.3
+	description `This is an extremely dangerous device that uses graviton technology to pull a target's mass and energy apart, and then feeds the materials to the firing ship's systems.`
+
+effect "composed"
+	sprite "effect/composed"
+		"no repeat"
+		"scale" 0.75
+		"frame rate" 20
+	sound "composer"
+	"lifetime" 30
+	"random velocity" 1
+	"velocity scale" -0.001
+
+effect "drained"
+	sprite "effect/drain"
+		"no repeat"
+		"frame rate" 30
+		"scale" 0.3
+	sound "composer"
+	"lifetime" 20
+	"random velocity" 1
+	"velocity scale" -0.01

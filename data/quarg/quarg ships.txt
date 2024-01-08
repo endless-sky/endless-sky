@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 ship "Quarg Skylark"
 	sprite "ship/skylark"
@@ -103,10 +106,10 @@ ship "Quarg Wardragon"
 		
 	engine -14 47
 	engine 14 47
-	turret -28 7 "Quarg Skylance"
-	turret 28 7 "Quarg Skylance"
 	turret -9 -14 "Quarg Anti-Missile"
 	turret 9 -14 "Quarg Anti-Missile"
+	turret -28 7 "Quarg Skylance"
+	turret 28 7 "Quarg Skylance"
 	explode "tiny explosion" 12
 	explode "small explosion" 16
 	explode "medium explosion" 30

@@ -7,13 +7,17 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef GAME_ACTION_H_
 #define GAME_ACTION_H_
 
 #include "ConditionSet.h"
+#include "ShipManager.h"
 
 #include <cstdint>
 #include <map>
@@ -25,6 +29,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class DataNode;
 class DataWriter;
 class GameEvent;
+class Mission;
 class Outfit;
 class PlayerInfo;
 class Ship;
@@ -43,11 +48,11 @@ class GameAction {
 public:
 	GameAction() = default;
 	// Construct and Load() at the same time.
-	GameAction(const DataNode &node, const std::string &missionName);
+	GameAction(const DataNode &node);
 
-	void Load(const DataNode &node, const std::string &missionName);
+	void Load(const DataNode &node);
 	// Process a single sibling node.
-	void LoadSingle(const DataNode &child, const std::string &missionName);
+	void LoadSingle(const DataNode &child);
 	void Save(DataWriter &out) const;
 
 	// Determine if this GameAction references content that is not fully defined.
@@ -59,9 +64,10 @@ public:
 	int64_t Payment() const noexcept;
 	int64_t Fine() const noexcept;
 	const std::map<const Outfit *, int> &Outfits() const noexcept;
+	const std::vector<ShipManager> &Ships() const noexcept;
 
 	// Perform this action.
-	void Do(PlayerInfo &player, UI *ui) const;
+	void Do(PlayerInfo &player, UI *ui, const Mission *caller) const;
 
 	// "Instantiate" this action by filling in the wildcard data for the actual
 	// payment, event delay, etc.
@@ -74,7 +80,7 @@ private:
 	std::map<std::string, std::map<std::string, std::string>> specialLogText;
 
 	std::map<const GameEvent *, std::pair<int, int>> events;
-	std::vector<std::pair<const Ship *, std::string>> giftShips;
+	std::vector<ShipManager> giftShips;
 	std::map<const Outfit *, int> giftOutfits;
 
 	int64_t payment = 0;
@@ -83,6 +89,8 @@ private:
 
 	// When this action is performed, the missions with these names fail.
 	std::set<std::string> fail;
+	// When this action is performed, the mission that called this action is failed.
+	bool failCaller = false;
 
 	ConditionSet conditions;
 };

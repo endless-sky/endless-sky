@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Hazard.h"
@@ -34,6 +37,8 @@ void Hazard::Load(const DataNode &node)
 			LoadWeapon(child);
 		else if(key == "constant strength")
 			deviates = false;
+		else if(key == "system-wide")
+			systemWide = true;
 		else if(child.Size() < 2)
 			child.PrintTrace("Skipping hazard attribute with no value specified:");
 		else if(key == "period")
@@ -55,7 +60,10 @@ void Hazard::Load(const DataNode &node)
 		}
 		else if(key == "environmental effect")
 		{
-			int count = (child.Size() >= 3) ? child.Value(2) : 1;
+			// Fractional counts may be accepted, since the real count gets multiplied by the strength
+			// of the hazard. The resulting real count will then be rounded down to the nearest int
+			// to determine the number of effects that appear.
+			float count = (child.Size() >= 3) ? static_cast<float>(child.Value(2)) : 1.f;
 			environmentalEffects[GameData::Effects().Get(child.Token(1))] += count;
 		}
 		else
@@ -114,6 +122,13 @@ double Hazard::RandomStrength() const
 
 
 
+bool Hazard::SystemWide() const
+{
+	return systemWide;
+}
+
+
+
 // The minimum and maximum distances from the origin in which this hazard has an effect.
 double Hazard::MinRange() const
 {
@@ -130,7 +145,7 @@ double Hazard::MaxRange() const
 
 
 // Visuals to be created while this hazard is active.
-const map<const Effect *, int> &Hazard::EnvironmentalEffects() const
+const map<const Effect *, float> &Hazard::EnvironmentalEffects() const
 {
 	return environmentalEffects;
 }

@@ -7,15 +7,19 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef MESSAGES_H_
 #define MESSAGES_H_
 
-#include <string>
-#include <vector>
 #include <cstdint>
+#include <string>
+#include <utility>
+#include <vector>
 
 
 
@@ -29,6 +33,7 @@ public:
 	enum class Importance : uint_least8_t {
 		Highest,
 		High,
+		Info,
 		Low
 	};
 
@@ -45,7 +50,7 @@ public:
 
 public:
 	// Add a message to the list along with its level of importance
-	static void Add(const std::string &message, Importance importance);
+	static void Add(const std::string &message, Importance importance = Importance::Low);
 
 	// Get the messages for the given game step. Any messages that are too old
 	// will be culled out, and new ones that have just been added will have

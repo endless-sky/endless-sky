@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 outfit "Small Collector Module"
 	category "Power"
@@ -17,7 +20,7 @@ outfit "Small Collector Module"
 	"mass" 8
 	"outfit space" -6
 	"solar collection" .8
-	"heat generation" .4
+	"solar heat" .4
 	description "Solar power is the mainstay of the Coalition's merchant marine. The design of these panels has been refined over the millennia, growing ever more efficient."
 
 outfit "Large Collector Module"
@@ -29,7 +32,7 @@ outfit "Large Collector Module"
 	"mass" 28
 	"outfit space" -21
 	"solar collection" 3.3
-	"heat generation" 1.5
+	"solar heat" 1.5
 	description "One of these solar panels is enough to meet the energy needs of a medium-sized Coalition civilian ship, especially given the energy efficiency of their engines and the fact that under their laws only Heliarch ships are allowed to have weapons."
 
 outfit "Small Reactor Module"
@@ -42,7 +45,8 @@ outfit "Small Reactor Module"
 	"outfit space" -42
 	"energy generation" 9.8
 	"heat generation" 19
-	description "Solar power is sufficient for commerce, but excessive thriftiness is seldom a winning strategy in warfare. So for ships that must have a reliable energy source to power weapons, the Heliarchs use nuclear reactors."
+	description "Solar power is sufficient for commerce, but excessive thriftiness is seldom a winning strategy in warfare. For ships that must have a reliable energy source to power weapons, the Heliarchs use compact nuclear reactors."
+	description "	A beam of antiprotons triggers fusion in tiny injected fuel pellets, allowing for a complete burnup far more efficient than would otherwise be possible."
 
 outfit "Large Reactor Module"
 	category "Power"
@@ -54,7 +58,8 @@ outfit "Large Reactor Module"
 	"outfit space" -98
 	"energy generation" 24.2
 	"heat generation" 45
-	description "This reactor was designed for the most powerful Heliarch warships. Its design has not changed significantly in the millennia since the first battle with the Quarg, but each generation of reactors is made slightly more efficient than the previous ones."
+	description "Though still unable to replicate Quarg power generation technology, Heliarch science teams are constantly looking to realize their most recent guess on how they work. For this larger module, a steady stream of injected antiprotons catalyzes reactions in carefully confined fusion plasma, extracting as much power as physically possible."
+	description "	This advanced fusion reactor was designed for the most powerful Heliarch warships. Its structure has not changed significantly in the millennia since the first battle with the Quarg, but each generation of reactors is made slightly more efficient than the previous ones."
 
 outfit "Small Cogeneration Module"
 	category "Power"
@@ -85,22 +90,22 @@ outfit "Small Battery Module"
 	category "Power"
 	licenses
 		Coalition
-	cost 44000
+	cost 22000
 	thumbnail "outfit/small battery module"
 	"mass" 4
 	"outfit space" -4
-	"energy capacity" 900
+	"energy capacity" 3600
 	description "Because Coalition ships rely on solar power, they must also be able to store a substantial amount of energy. This small battery pack is much more efficient than comparable human technology."
 
 outfit "Large Battery Module"
 	category "Power"
 	licenses
 		Coalition
-	cost 340000
+	cost 170000
 	thumbnail "outfit/large battery module"
 	"mass" 18
 	"outfit space" -18
-	"energy capacity" 4500
+	"energy capacity" 18000
 	description "This battery pack stores enough power to allow a Coalition ship to continue maneuvering even when its solar panels are only producing a fraction of their peak output."
 
 
@@ -194,7 +199,7 @@ outfit "Cooling Module"
 	"outfit space" -5
 	"active cooling" 21
 	"cooling energy" 1.4
-	description "This cooling module consumes energy. To conserve power, it does not ramp up to full strength unless a ship is very close to overheating."
+	description "This Cooling Module consumes energy. To conserve power, it does not ramp up to full strength unless a ship is very close to overheating."
 
 outfit "Fuel Module"
 	category "Systems"
@@ -206,8 +211,59 @@ outfit "Fuel Module"
 	"outfit space" -19
 	"fuel capacity" 400
 	"fuel protection" .25
-	description "In their early days of space exploration, the Saryds developed the fuel module to travel far from Saros without worrying about becoming stranded without fuel, or sudden fuel leaks."
-	description "	Nowadays, nearly every system on the Coalition has refuelling facilities, but some captains still find use in the extra jumps these modules offer."
+	description "In their early days of space exploration, the Saryds developed the Fuel Module to travel far from Saros without worrying about becoming stranded without fuel, or sudden fuel leaks."
+	description "	Nowadays, nearly every system in the Coalition has refueling facilities, but some captains still find use in the extra jumps these modules offer."
+
+outfit "Decoy Plating"
+	category "Systems"
+	cost 93000
+	thumbnail "outfit/decoy plating"
+	"mass" 7
+	"outfit space" -7
+	"scan interference" 2
+	"radar jamming" 5
+	description "This plating takes advantage of a ship's scan logs and reproduces the data of other ships nearby, effectively deflecting attempts to scan a ship's true cargo and equipment."
+	description "	Out of a need to protect themselves against destructive Heliarch torpedoes, the Lunarium incorporated small, independent radar jamming systems in each section of the plating, if only to act as a last line of defense."
+
+outfit "Refueling Module"
+	category "Systems"
+	cost 822000
+	thumbnail "outfit/refueling module"
+	"mass" 10
+	"outfit space" -10
+	"fuel capacity" -100
+	"fuel generation" .05
+	"energy consumption" .11
+	description "To avoid the risk of being inspected by the Heliarchs as they refuel on planets, Lunarium captains employ this outfit when carrying supplies or stolen outfits."
+	description "	The outfit's mechanisms need a partitioned amount of fuel set aside to allow it to work properly, so a ship can only install so many of these before becoming incapable of jumping to another system."
+
+outfit "Shield Refactor Module"
+	category "Systems"
+	cost 3248000
+	thumbnail "outfit/shield refactor module"
+	"mass" 7
+	"outfit space" -7
+	"hull repair rate" -.25
+	"shield energy multiplier" .2
+	"shield heat" .32
+	"shield generation multiplier" .2
+	"hull repair multiplier" -.2
+	description "In theory, all shield generators can operate at a much faster rate than normal, if pushed to their true limit. However, the constant need to reform shields during a heated battle quickly overloads shield generators and damages them in the process. By relocating dedicated hull repair systems to focus exclusively on repairing such damage, this compact device allows shield generators to reach their true potential."
+	description "	A much needed boon against the Heliarch torpedoes' devastating effects on hull plating, the Lunarium highly favors production of this expensive piece due to its advantages over other shield generators."
+
+outfit "Small Recovery Module"
+	category "Systems"
+	cost 625000
+	thumbnail "outfit/small recovery module"
+	"mass" 25
+	"outfit space" -25
+	"shield generation" .97
+	"shield energy" .43
+	"shield heat" .7
+	"hull repair rate" .43
+	"hull energy" .97
+	"hull heat" .07
+	description "By combining the Coalition's shield generation and hull repair technologies into one piece of equipment, the Lunarium has increased the effectiveness of both, allowing for better defenses against Heliarch weaponry."
 
 outfit "Scanning Module"
 	category "Systems"
@@ -218,12 +274,23 @@ outfit "Scanning Module"
 	"mass" 3
 	"outfit space" -3
 	"outfit scan power" 25
-	"outfit scan speed" 1
+	"outfit scan efficiency" 18
 	"cargo scan power" 25
-	"cargo scan speed" 1
+	"cargo scan efficiency" 18
 	"tactical scan power" 25
 	description "This system allows the Heliarchs to scan nearby ships, enabling them to detect weapons or illegal goods."
 
+outfit "Outskirts Gauger"
+	category "Systems"
+	cost 1406000
+	thumbnail "outfit/outskirts gauger"
+	"mass" 8
+	"outfit space" -8
+	"unique" 1
+	"tactical scan power" 169
+	"energy consumption" .2
+	description "Completed with the data from one of their long-lost satellites, the newest scanner of House Idriss excels at reading various energy signatures across vast distances."
+	description "	Constantly running its calculations about every little thing it detects within its impressive range, the gauger needs a steady supply of energy to function."
 
 outfit "Small Thrust Module"
 	category "Engines"
@@ -234,11 +301,11 @@ outfit "Small Thrust Module"
 	"mass" 9
 	"outfit space" -9
 	"engine capacity" -9
-	"thrust" 6.6
+	"thrust" 8.3
 	"thrusting energy" 0.46
 	"thrusting heat" 3
 	"flare sprite" "effect/coalition flare/small"
-		"frame rate" 4.8
+		"frame rate" 10
 	"flare sound" "atomic tiny"
 	description "This tiny thruster produces a considerable amount of thrust... but also a considerable amount of heat."
 
@@ -251,13 +318,49 @@ outfit "Large Thrust Module"
 	"mass" 32
 	"outfit space" -32
 	"engine capacity" -32
-	"thrust" 26.2
+	"thrust" 30.6
 	"thrusting energy" 1.7
 	"thrusting heat" 11
 	"flare sprite" "effect/coalition flare/large"
-		"frame rate" 3.5
+		"frame rate" 7
 	"flare sound" "atomic small"
 	description "Coalition engineers prefer to focus on perfecting a few versatile designs rather than producing a wide range of them. This thruster is quite efficient, but large ships will need several of them stacked together to produce sufficient thrust."
+
+outfit "Small Reverse Module"
+	category "Engines"
+	licenses
+		Coalition
+	"cost" 66000
+	thumbnail "outfit/small reverse module"
+	"mass" 9
+	"outfit space" -9
+	"weapon capacity" -9
+	"reverse thrust" 8.3
+	"reverse thrusting energy" 0.46
+	"reverse thrusting heat" 3
+	"reverse flare sprite" "effect/coalition flare/small"
+		"frame rate" 10
+	"reverse flare sound" "atomic tiny"
+	description "Placing this tiny thruster in the front of a freighter or transport allows Coalition merchants to considerably improve their energy efficiency, which is of great benefit when relying on solar power."
+	description "	Because a reverse thruster must be facing forwards, it must be installed in the weapon section of your ship instead of the engine section."
+
+outfit "Large Reverse Module"
+	category "Engines"
+	licenses
+		Coalition
+	"cost" 292000
+	thumbnail "outfit/large reverse module"
+	"mass" 32
+	"outfit space" -32
+	"weapon capacity" -32
+	"reverse thrust" 30.6
+	"reverse thrusting energy" 1.7
+	"reverse thrusting heat" 11
+	"reverse flare sprite" "effect/coalition flare/large"
+		"frame rate" 7
+	"reverse flare sound" "atomic small"
+	description "With their significant weapons capacity left unused in peacetime, captains of larger Coalition freighters and transports can use Large Reverse Modules to rapidly slow their ships, allowing them to save both time and energy."
+	description "	Because a reverse thruster must be facing forwards, it must be installed in the weapon section of your ship instead of the engine section."
 
 outfit "Small Steering Module"
 	category "Engines"
@@ -272,7 +375,7 @@ outfit "Small Steering Module"
 	"turning energy" 0.26
 	"turning heat" 1.8
 	"steering flare sprite" "effect/coalition flare/small"
-		"frame rate" 4.8
+		"frame rate" 10
 	"steering flare sound" "atomic tiny"
 	description "Despite its high efficiency, this module is not sufficient for any but the tiniest of ships. Instead, the modules are designed with the expectation that ships may use two or three of them in tandem."
 
@@ -285,11 +388,11 @@ outfit "Large Steering Module"
 	"mass" 25
 	"outfit space" -25
 	"engine capacity" -25
-	"turn" 711.9
+	"turn" 747
 	"turning energy" 1.0
 	"turning heat" 6.5
 	"steering flare sprite" "effect/coalition flare/large"
-		"frame rate" 3.5
+		"frame rate" 7
 	"steering flare sound" "atomic small"
 	description "By focusing on small, modular engines rather than the massive capital ship drives that most other species develop, the Coalition loses some of the potential efficiency for very large ships, but gains a considerable amount of flexibility."
 
@@ -302,7 +405,7 @@ outfit "Enforcer Confrontation Gear"
 	"capture attack" 3.1
 	"capture defense" 4.9
 	"unplunderable" 1
-	description "The peak of Heliarch combat engineering, this weapon uses condensed blasts of energy to dispatch any who dare threaten the Coalition safety."
+	description "The peak of Heliarch combat engineering, this weapon uses condensed blasts of energy to dispatch any who dare threaten the safety of the Coalition."
 
 outfit "Enforcer Riot Staff"
 	category "Hand to Hand"
@@ -313,9 +416,23 @@ outfit "Enforcer Riot Staff"
 	"capture attack" 2.0
 	"capture defense" 3.5
 	"unplunderable" 1
-	description "Made to deal with the occasional dissidents that pop up around Coalition space in a non lethal manner, these weapons see minimal use in shipbound combat, but are carried anyway in the event a dissident gets aboard."
+	description "Made to deal with the occasional dissidents that pop up around Coalition space in a non-lethal manner, these weapons see minimal use in shipbound combat, but are carried anyway in the event a dissident gets aboard."
+
+outfit "Anti-Materiel Gun"
+	category "Hand to Hand"
+	cost 257200
+	thumbnail "outfit/anti-materiel gun"
+	"capture attack" 3.4
+	"capture defense" 1.9
+	"unplunderable" 1
+	description "Easy to use and relatively cheap to manufacture, these weapons were born by refurbishing the Heliarchs' favored arms, with the new barrel shaping the energy into deadly blasts that make short work of even the toughest body armor."
 
 outfit "Coalition License"
-	category "Special"
+	category "Licenses"
 	thumbnail "outfit/coalition license"
 	description "Completed a lot of Coalition jobs and received permission to purchase civilian technology and ships."
+
+outfit "Heliarch License"
+	category "Licenses"
+	thumbnail "outfit/heliarch license"
+	description "An ornate circlet of gold and platinum, it serves as both a symbol of rank and as a license to access exclusive Heliarch facilities. Custom-made to fit a human's head, it's surprisingly light and comfortable."

@@ -7,11 +7,16 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "AsteroidField.h"
 
+#include "Collision.h"
+#include "CollisionType.h"
 #include "DrawList.h"
 #include "Mask.h"
 #include "Minable.h"
@@ -36,7 +41,8 @@ namespace {
 
 // Constructor, to set up the collision set parameters.
 AsteroidField::AsteroidField()
-	: asteroidCollisions(CELL_SIZE, CELL_COUNT), minableCollisions(CELL_SIZE, CELL_COUNT)
+	: asteroidCollisions(CELL_SIZE, CELL_COUNT, CollisionType::ASTEROID),
+	minableCollisions(CELL_SIZE, CELL_COUNT, CollisionType::MINABLE)
 {
 }
 
@@ -61,7 +67,7 @@ void AsteroidField::Add(const string &name, int count, double energy)
 
 
 
-void AsteroidField::Add(const Minable *minable, int count, double energy, const WeightedList<System::Belt> &belts)
+void AsteroidField::Add(const Minable *minable, int count, double energy, const WeightedList<double> &belts)
 {
 	// Double check that the given asteroid is defined.
 	if(!minable || !minable->GetMask().IsLoaded())
@@ -71,7 +77,7 @@ void AsteroidField::Add(const Minable *minable, int count, double energy, const 
 	for(int i = 0; i < count; ++i)
 	{
 		minables.emplace_back(new Minable(*minable));
-		minables.back()->Place(energy, belts.Get().Radius());
+		minables.back()->Place(energy, belts.Get());
 	}
 }
 
@@ -118,12 +124,12 @@ void AsteroidField::Draw(DrawList &draw, const Point &center, double zoom) const
 
 
 
-// Check if the given projectile collides with any asteroids.
-Body *AsteroidField::Collide(const Projectile &projectile, double *closestHit)
+// Check if the given projectile collides with any asteroids. This excludes minables.
+const vector<Collision> &AsteroidField::CollideAsteroids(const Projectile &projectile) const
 {
-	Body *hit = nullptr;
+	result.clear();
 
-	// First, check for collisions with ordinary asteroids, which are tiled.
+	// Check for collisions with ordinary asteroids, which are tiled.
 	// Rather than tiling the collision set, tile the projectile.
 	Point from = projectile.Position();
 	Point to = from + projectile.Velocity();
@@ -144,27 +150,24 @@ Body *AsteroidField::Collide(const Projectile &projectile, double *closestHit)
 		for(int x = 0; x < tileX; ++x)
 		{
 			Point offset = Point(x, y) * WRAP;
-			Body *body = asteroidCollisions.Line(from + offset, to + offset, closestHit);
-			if(body)
-				hit = body;
+			const vector<Collision> &newHits = asteroidCollisions.Line(from + offset, to + offset);
+			result.insert(result.end(), newHits.begin(), newHits.end());
 		}
 
-	// Now, check for collisions with minable asteroids. Because this is the
-	// very last collision check to be done, if a minable asteroid is the
-	// closest hit, it really is what the projectile struck - that is, we are
-	// not going to later find a ship or something else that is closer.
-	Body *body = minableCollisions.Line(projectile, closestHit);
-	if(body)
-	{
-		hit = body;
-		reinterpret_cast<Minable *>(body)->TakeDamage(projectile);
-	}
-	return hit;
+	return result;
 }
 
 
 
-// Get the list of mainable asteroids.
+// Check if the given projectile collides with any minables.
+const vector<Collision> &AsteroidField::CollideMinables(const Projectile &projectile) const
+{
+	return minableCollisions.Line(projectile);
+}
+
+
+
+// Get the list of minable asteroids.
 const list<shared_ptr<Minable>> &AsteroidField::Minables() const
 {
 	return minables;

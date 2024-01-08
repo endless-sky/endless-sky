@@ -2,6 +2,7 @@
 root = true
 
 [*]
+end_of_line = lf
 insert_final_newline = true
 trim_trailing_whitespace = true
 
@@ -11,8 +12,21 @@ trim_trailing_whitespace = false
 indent_style = tab
 
 # Code files
-[*.{cpp,h,rc,hpp}, SConstruct, SConscript]
+[{*.{cpp,h,rc,hpp}, SConstruct, SConscript}]
 indent_style = tab
+# Except any third-party libraries
+[catch.hpp]
+indent_style = unset
+
+# Changelog file
+[changelog]
+indent_style = space
+indent_size = 2
+
+# Credits file
+[credits.txt]
+indent_style = space
+indent_size = 2
 
 # Markdown
 [*.md]

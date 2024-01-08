@@ -6,60 +6,63 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 outfit "Supercapacitor"
 	category "Power"
-	cost 25000
+	cost 1500
 	thumbnail "outfit/supercapacitor"
 	"mass" 2
 	"outfit space" -2
-	"energy capacity" 150
+	"energy capacity" 750
 	description "With a powerful enough generator, many ships do not need batteries at all. The one exception is projectile weapons, which usually require a burst of energy far exceeding what the generator produces. Supercapacitors provide just enough energy storage for those weapons, without requiring you to install a bulky battery pack."
 
 outfit "LP036a Battery Pack"
 	category "Power"
-	cost 12000
+	cost 6000
 	thumbnail "outfit/tiny battery"
 	"mass" 10
 	"outfit space" -10
-	"energy capacity" 1000
+	"energy capacity" 4000
 	description "A ship can run without batteries if its generator's instantaneous power output is higher than the total energy consumption of its systems, but batteries make it possible to store up energy when it is not needed and thus to use a much smaller and cheaper generator."
 
 outfit "LP072a Battery Pack"
 	category "Power"
-	cost 30000
+	cost 14000
 	thumbnail "outfit/small battery"
 	"mass" 20
 	"outfit space" -20
-	"energy capacity" 2200
+	"energy capacity" 8800
 	description "This battery pack has more than twice the energy capacity of the most basic model, allowing your ship to engage in combat for longer periods of time before running out of energy. Some pilots have even been known to install these in lieu of any generator at all, trusting that they can reach their destination planet and recharge before running out of battery power, but that is a risky proposition."
 
 outfit "LP144a Battery Pack"
 	category "Power"
-	cost 67000
+	cost 32000
 	thumbnail "outfit/medium battery"
 	"mass" 40
 	"outfit space" -40
-	"energy capacity" 4800
+	"energy capacity" 19200
 	description "This medium-sized battery pack is intended for ships that need to fire the occasional salvo of high-powered weaponry without running out of energy. As with all battery packs, relying on batteries is risky if combat lasts long enough for them to become depleted."
 
 outfit "LP288a Battery Pack"
 	category "Power"
-	cost 150000
+	cost 54000
 	thumbnail "outfit/large battery"
-	"mass" 80
-	"outfit space" -80
-	"energy capacity" 10400
+	"mass" 60
+	"outfit space" -60
+	"energy capacity" 31200
 	description "This is a large battery pack designed for ships that may occasionally have high power needs but do not want the expense or the heat associated with a more powerful ship's generator."
 
 outfit "LP576a Battery Pack"
 	category "Power"
-	cost 380000
+	cost 80000
 	thumbnail "outfit/huge battery"
-	"mass" 160
-	"outfit space" -160
-	"energy capacity" 23000
+	"mass" 80
+	"outfit space" -80
+	"energy capacity" 46000
 	description "For most ships that require this much power, a larger generator makes more sense than a battery this size. However, battery packs have the advantage that they generate no heat, so some captains use them instead of powerful generators if they do not expect to be in combat frequently or for extended periods of time."
 
 
@@ -84,7 +87,7 @@ outfit "KP-6 Photovoltaic Array"
 
 outfit "nGVF-AA Fuel Cell"
 	category "Power"
-	cost 40000
+	cost 35000
 	thumbnail "outfit/tiny fuel cell"
 	"mass" 20
 	"outfit space" -20
@@ -192,7 +195,7 @@ outfit "Breeder Reactor"
 	"outfit space" -80
 	"energy generation" 12.8
 	"heat generation" 35
-	description "A breeder reactor is a more efficient fission reactor that captures some of the neutron radiation produced by the reactor and uses it to enrich more fuel. They are also, of course, bigger and more expensive as a result."
+	description "A Breeder Reactor is a more efficient fission reactor that captures some of the neutron radiation produced by the reactor and uses it to enrich more fuel. They are also, of course, bigger and more expensive as a result."
 
 outfit "Fusion Reactor"
 	category "Power"

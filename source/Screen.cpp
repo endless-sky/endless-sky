@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Screen.h"
@@ -24,6 +27,34 @@ namespace {
 	int USER_ZOOM = 100;
 	int EFFECTIVE_ZOOM = 100;
 	bool HIGH_DPI = false;
+}
+
+
+
+Screen::ScreenDimensionsGuard::ScreenDimensionsGuard(int width, int height)
+	: valid(true), oldWidth(WIDTH), oldHeight(HEIGHT)
+{
+	WIDTH = width;
+	HEIGHT = height;
+}
+
+
+
+Screen::ScreenDimensionsGuard::~ScreenDimensionsGuard()
+{
+	Deactivate();
+}
+
+
+
+void Screen::ScreenDimensionsGuard::Deactivate()
+{
+	if(!valid)
+		return;
+
+	WIDTH = oldWidth;
+	HEIGHT = oldHeight;
+	valid = false;
 }
 
 

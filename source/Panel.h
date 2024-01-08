@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef PANEL_H_
@@ -62,9 +65,6 @@ public:
 	// so, apply that zone's action and return true.
 	bool ZoneClick(const Point &point);
 
-	// Forward the given TestContext to the Engine under MainPanel.
-	virtual void SetTestContext(TestContext &testContext);
-
 	// Is fast-forward allowed to be on when this panel is on top of the GUI stack?
 	virtual bool AllowsFastForward() const noexcept;
 
@@ -100,9 +100,9 @@ protected:
 	// A lot of different UI elements allow a modifier to change the number of
 	// something you are buying, so the shared function is defined here:
 	static int Modifier();
-	// Display the given help message if it has not yet been shown. Return true
-	// if the message was displayed.
-	bool DoHelp(const std::string &name) const;
+	// Display the given help message if it has not yet been shown
+	// (or if force is set to true). Return true if the message was displayed.
+	bool DoHelp(const std::string &name, bool force = false) const;
 
 
 private:

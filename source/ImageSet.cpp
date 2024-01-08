@@ -7,13 +7,17 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "ImageSet.h"
 
-#include "Files.h"
 #include "GameData.h"
+#include "ImageBuffer.h"
+#include "Logger.h"
 #include "Mask.h"
 #include "MaskManager.h"
 #include "Sprite.h"
@@ -33,6 +37,16 @@ namespace {
 
 		size_t pos = path.length() - 7;
 		return (path[pos] == '@' && path[pos + 1] == '2' && path[pos + 2] == 'x');
+	}
+
+	// Determine whether the given path is to a swizzle mask.
+	bool IsSwizzleMask(const string &path, bool is2x)
+	{
+		if(path.length() < 7 || (is2x && path.length() < 10))
+			return false;
+
+		size_t pos = path.length() - (is2x ? 10 : 7);
+		return (path[pos] == '@' && path[pos + 1] == 's' && path[pos + 2] == 'w');
 	}
 
 	// Check if the given character is a valid blending mode.
@@ -57,8 +71,9 @@ namespace {
 	size_t NameEnd(const string &path)
 	{
 		// The path always ends in a three-letter extension, ".png" or ".jpg".
-		// In addition, 3 more characters may be taken up by an @2x label.
-		size_t end = path.length() - (Is2x(path) ? 7 : 4);
+		// In addition, 3 more characters may be taken up by an @2x label or a mask label.
+		bool is2x = Is2x(path);
+		size_t end = path.length() - (is2x ? 7 : 4) - (IsSwizzleMask(path, is2x) ? 3 : 0);
 		// This should never happen, but just in case:
 		if(!end)
 			return 0;
@@ -78,7 +93,7 @@ namespace {
 	size_t FrameIndex(const string &path)
 	{
 		// Get the character index where the "name" portion of the path ends.
-		// A path's format is always: <name>(<blend><frame>)(@2x).(png|jpg)
+		// A path's format is always: <name>(<blend><frame>)(@sw)(@2x).(png|jpg)
 		size_t i = NameEnd(path);
 
 		// If the name contains a frame index, it must be separated from the name
@@ -96,15 +111,17 @@ namespace {
 	}
 
 	// Add consecutive frames from the given map to the given vector. Issue warnings for missing or mislabeled frames.
-	void AddValid(const map<size_t, string> &frameData, vector<string> &sequence, const string &prefix, bool is2x) noexcept(false)
+	void AddValid(const map<size_t, string> &frameData, vector<string> &sequence,
+		const string &prefix, bool is2x, bool isSwizzleMask) noexcept(false)
 	{
 		if(frameData.empty())
 			return;
 		// Valid animations (or stills) begin with frame 0.
 		if(frameData.begin()->first != 0)
 		{
-			Files::LogError(prefix + "ignored " + (is2x ? "@2x " : "") + "frame " + to_string(frameData.begin()->first)
-					+ " (" + to_string(frameData.size()) + " ignored in total). Animations must start at frame 0.");
+			Logger::LogError(prefix + "ignored " + (isSwizzleMask ? "mask " : "") + (is2x ? "@2x " : "")
+				+ "frame " + to_string(frameData.begin()->first) + " (" + to_string(frameData.size())
+				+ " ignored in total). Animations must start at frame 0.");
 			return;
 		}
 
@@ -117,14 +134,16 @@ namespace {
 		// Copy the sorted, valid paths from the map to the frame sequence vector.
 		size_t count = distance(frameData.begin(), next);
 		sequence.resize(count);
-		transform(frameData.begin(), next, sequence.begin(), [](const pair<size_t, string> &p) -> string { return p.second; });
+		transform(frameData.begin(), next, sequence.begin(),
+			[](const pair<size_t, string> &p) -> string { return p.second; });
 
 		// If `next` is not the end, then there was at least one discontinuous frame.
 		if(next != frameData.end())
 		{
 			size_t ignored = distance(next, frameData.end());
-			Files::LogError(prefix + "missing " + (is2x ? "@2x " : "") + "frame " + to_string(it->first + 1) + " (" + to_string(ignored)
-					+ (ignored > 1 ? " frames" : " frame") + " ignored in total).");
+			Logger::LogError(prefix + "missing " + (isSwizzleMask ? "mask " : "") + (is2x ? "@2x " : "") + "frame "
+				+ to_string(it->first + 1) + " (" + to_string(ignored)
+				+ (ignored > 1 ? " frames" : " frame") + " ignored in total).");
 		}
 	}
 }
@@ -179,6 +198,14 @@ const string &ImageSet::Name() const
 
 
 
+// Whether this image set is empty, i.e. has no images.
+bool ImageSet::IsEmpty() const
+{
+	return framePaths[0].empty() && framePaths[1].empty();
+}
+
+
+
 // Add a single image to this set. Assume the name of the image has already
 // been checked to make sure it belongs in this set.
 void ImageSet::Add(string path)
@@ -187,7 +214,7 @@ void ImageSet::Add(string path)
 	bool is2x = Is2x(path);
 	size_t frame = FrameIndex(path);
 	// Store the requested path.
-	framePaths[is2x][frame].swap(path);
+	framePaths[is2x + (2 * IsSwizzleMask(path, is2x))][frame].swap(path);
 }
 
 
@@ -196,18 +223,28 @@ void ImageSet::Add(string path)
 void ImageSet::ValidateFrames() noexcept(false)
 {
 	string prefix = "Sprite \"" + name + "\": ";
-	AddValid(framePaths[0], paths[0], prefix, false);
-	AddValid(framePaths[1], paths[1], prefix, true);
+	AddValid(framePaths[0], paths[0], prefix, false, false);
+	AddValid(framePaths[1], paths[1], prefix, true, false);
+	AddValid(framePaths[2], paths[2], prefix, false, true);
+	AddValid(framePaths[3], paths[3], prefix, true, true);
 	framePaths[0].clear();
 	framePaths[1].clear();
+	framePaths[2].clear();
+	framePaths[3].clear();
 
-	// Drop any @2x paths that will not be used.
-	if(paths[1].size() > paths[0].size())
-	{
-		Files::LogError(prefix + to_string(paths[1].size() - paths[0].size())
-				+ " extra frames for the @2x sprite will be ignored.");
-		paths[1].resize(paths[0].size());
-	}
+	auto DropPaths = [&](vector<string> &toResize, const string &specifier) {
+		if(toResize.size() > paths[0].size())
+		{
+			Logger::LogError(prefix + to_string(toResize.size() - paths[0].size())
+				+ " extra frames for the " + specifier + " sprite will be ignored.");
+			toResize.resize(paths[0].size());
+		}
+	};
+
+	// Drop any @2x and mask paths that will not be used.
+	DropPaths(paths[1], "@2x");
+	DropPaths(paths[2], "mask");
+	DropPaths(paths[3], "@2x mask");
 }
 
 
@@ -224,6 +261,8 @@ void ImageSet::Load() noexcept(false)
 	size_t frames = paths[0].size();
 	buffer[0].Clear(frames);
 	buffer[1].Clear(frames);
+	buffer[2].Clear(frames);
+	buffer[3].Clear(frames);
 
 	// Check whether we need to generate collision masks.
 	bool makeMasks = IsMasked(name);
@@ -235,23 +274,40 @@ void ImageSet::Load() noexcept(false)
 	for(size_t i = 0; i < frames; ++i)
 	{
 		if(!buffer[0].Read(paths[0][i], i))
-			Files::LogError("Failed to read image data for \"" + name + "\" frame #" + to_string(i));
+			Logger::LogError("Failed to read image data for \"" + name + "\" frame #" + to_string(i));
 		else if(makeMasks)
 		{
 			masks[i].Create(buffer[0], i);
 			if(!masks[i].IsLoaded())
-				Files::LogError("Failed to create collision mask for \"" + name + "\" frame #" + to_string(i));
+				Logger::LogError("Failed to create collision mask for \"" + name + "\" frame #" + to_string(i));
 		}
 	}
-	// Now, load the 2x sprites, if they exist. Because the number of 1x frames
+
+	auto FillSwizzleMasks = [&](vector<string> &toFill, unsigned int intendedSize) {
+		if(toFill.size() == 1 && intendedSize > 1)
+			for(unsigned int i = toFill.size(); i < intendedSize; i++)
+				toFill.emplace_back(toFill.back());
+	};
+	// If there is only a swizzle-mask defined for the first frame fill up the swizzle-masks
+	// with this mask.
+	FillSwizzleMasks(paths[2], paths[0].size());
+	FillSwizzleMasks(paths[3], paths[0].size());
+
+
+	auto LoadSprites = [&](vector<string> &toLoad, ImageBuffer &buffer, const string &specifier) {
+		for(size_t i = 0; i < frames && i < toLoad.size(); ++i)
+			if(!buffer.Read(toLoad[i], i))
+			{
+				Logger::LogError("Removing " + specifier + " frames for \"" + name + "\" due to read error");
+				buffer.Clear();
+				break;
+			}
+	};
+	// Now, load the mask and 2x sprites, if they exist. Because the number of 1x frames
 	// is definitive, don't load any frames beyond the size of the 1x list.
-	for(size_t i = 0; i < frames && i < paths[1].size(); ++i)
-		if(!buffer[1].Read(paths[1][i], i))
-		{
-			Files::LogError("Removing @2x frames for \"" + name + "\" due to read error");
-			buffer[1].Clear();
-			break;
-		}
+	LoadSprites(paths[1], buffer[1], "@2x");
+	LoadSprites(paths[2], buffer[2], "mask");
+	LoadSprites(paths[3], buffer[3], "@2x mask");
 
 	// Warn about a "high-profile" image that will be blurry due to rendering at 50% scale.
 	bool willBlur = (buffer[0].Width() & 1) || (buffer[0].Height() & 1);
@@ -260,20 +316,28 @@ void ImageSet::Load() noexcept(false)
 			|| (name.length() > 7 && !name.compare(0, 7, "outfit/"))
 			|| (name.length() > 10 && !name.compare(0, 10, "thumbnail/"))
 	))
-		Files::LogError("Warning: image \"" + name + "\" will be blurry since width and/or height are not even ("
+		Logger::LogError("Warning: image \"" + name + "\" will be blurry since width and/or height are not even ("
 			+ to_string(buffer[0].Width()) + "x" + to_string(buffer[0].Height()) + ").");
 }
 
 
 
-// Create the sprite and upload the image data to the GPU. After this is
+// Create the sprite and optionally upload the image data to the GPU. After this is
 // called, the internal image buffers and mask vector will be cleared, but
 // the paths are saved in case the sprite needs to be loaded again.
-void ImageSet::Upload(Sprite *sprite)
+void ImageSet::Upload(Sprite *sprite, bool enableUpload)
 {
+	// Clear all the buffers if we are not uploading the image data.
+	if(!enableUpload)
+		for(ImageBuffer &it : buffer)
+			it.Clear();
+
 	// Load the frames (this will clear the buffers).
 	sprite->AddFrames(buffer[0], false);
 	sprite->AddFrames(buffer[1], true);
+	sprite->AddSwizzleMaskFrames(buffer[2], false);
+	sprite->AddSwizzleMaskFrames(buffer[3], true);
+
 	GameData::GetMaskManager().SetMasks(sprite, std::move(masks));
 	masks.clear();
 }

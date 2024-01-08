@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "DistanceMap.h"
@@ -15,8 +18,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Ship.h"
+#include "ShipJumpNavigation.h"
 #include "StellarObject.h"
 #include "System.h"
+#include "Wormhole.h"
 
 using namespace std;
 
@@ -26,7 +31,18 @@ using namespace std;
 // it is a limit on how many systems should be returned. If it is below zero
 // it specifies the maximum distance away that paths should be found.
 DistanceMap::DistanceMap(const System *center, int maxCount, int maxDistance)
-	: center(center), maxCount(maxCount), maxDistance(maxDistance), useWormholes(false)
+	: DistanceMap(center, WormholeStrategy::NONE, false, maxCount, maxDistance)
+{
+}
+
+
+
+// Constructor that allows configuring the use of wormholes and jump drive travel.
+// Since no ship instance is available, we use the base game's default fuel for jump travel.
+DistanceMap::DistanceMap(const System *center, WormholeStrategy wormholeStrategy,
+		bool useJumpDrive, int maxCount, int maxDistance)
+	: center(center), wormholeStrategy(wormholeStrategy), maxCount(maxCount),
+			maxDistance(maxDistance), jumpFuel(useJumpDrive ? 200 : 0), jumpRange(useJumpDrive ? 100. : 0.)
 {
 	Init();
 }
@@ -62,8 +78,10 @@ DistanceMap::DistanceMap(const PlayerInfo &player, const System *center)
 // Calculate the path for the given ship to get to the given system. The
 // ship will use a jump drive or hyperdrive depending on what it has. The
 // pathfinding will stop once a path to the destination is found.
-DistanceMap::DistanceMap(const Ship &ship, const System *destination)
-	: source(ship.GetSystem()), center(destination)
+// If a player is given, the path will only include systems that the
+// player has visited.
+DistanceMap::DistanceMap(const Ship &ship, const System *destination, const PlayerInfo *player)
+	: player(player), source(ship.GetSystem()), center(destination)
 {
 	if(!source || !destination)
 		return;
@@ -157,7 +175,7 @@ bool DistanceMap::Edge::operator<(const Edge &other) const
 // source system or the maximum count is reached.
 void DistanceMap::Init(const Ship *ship)
 {
-	if(!center)
+	if(!center || (ship && ship->IsRestrictedFrom(*center)))
 		return;
 
 	route[center] = Edge();
@@ -168,12 +186,13 @@ void DistanceMap::Init(const Ship *ship)
 	// hyperdrive capability and no jump drive.
 	if(ship)
 	{
-		hyperspaceFuel = ship->HyperdriveFuel();
-		jumpFuel = ship->JumpDriveFuel();
-		jumpRange = ship->JumpRange();
-		// If hyperjumps and non-hyper jumps cost the same amount, there is no
-		// need to check hyperjump paths at all.
-		if(hyperspaceFuel == jumpFuel)
+		this->ship = ship;
+		hyperspaceFuel = ship->JumpNavigation().HyperdriveFuel();
+		jumpFuel = ship->JumpNavigation().JumpDriveFuel();
+		jumpRange = ship->JumpNavigation().JumpRange();
+		// If hyperjumps and non-hyper jumps cost the same amount, or non-hyper jumps are always cheaper,
+		// there is no need to check hyperjump paths at all.
+		if(jumpFuel && hyperspaceFuel >= jumpFuel)
 			hyperspaceFuel = 0.;
 
 		// If this ship has no mode of hyperspace travel, and no local
@@ -215,28 +234,30 @@ void DistanceMap::Init(const Ship *ship)
 
 		// Check for wormholes (which cost zero fuel). Wormhole travel should
 		// not be included in Local Maps or mission itineraries.
-		if(useWormholes)
+		if(wormholeStrategy != WormholeStrategy::NONE)
 			for(const StellarObject &object : top.next->Objects())
-				if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->IsWormhole())
+				if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->IsWormhole()
+					&& (object.GetPlanet()->IsUnrestricted() || wormholeStrategy == WormholeStrategy::ALL))
 				{
 					// If we're seeking a path toward a "source," travel through
 					// wormholes in the reverse of the normal direction.
 					const System &link = source ?
-						*object.GetPlanet()->WormholeSource(top.next) :
-						*object.GetPlanet()->WormholeDestination(top.next);
+						object.GetPlanet()->GetWormhole()->WormholeSource(*top.next) :
+						object.GetPlanet()->GetWormhole()->WormholeDestination(*top.next);
 					if(HasBetter(link, top))
 						continue;
 
 					// In order to plan travel through a wormhole, it must be
 					// "accessible" to your flagship, and you must have visited
-					// the wormhole and both endpoint systems. (If this is a
-					// multi-stop wormhole, you may know about some paths that
-					// it takes but not others.)
-					if(ship && !object.GetPlanet()->IsAccessible(ship))
+					// the wormhole and both endpoint systems must be viewable.
+					// (If this is a multi-stop wormhole, you may know about
+					// some paths that it takes but not others.)
+					if(ship && (!object.GetPlanet()->IsAccessible(ship) ||
+							ship->IsRestrictedFrom(*object.GetPlanet())))
 						continue;
 					if(player && !player->HasVisited(*object.GetPlanet()))
 						continue;
-					if(player && !(player->HasVisited(*top.next) && player->HasVisited(link)))
+					if(player && !(player->CanView(*top.next) && player->CanView(link)))
 						continue;
 
 					Add(link, top);
@@ -296,12 +317,12 @@ void DistanceMap::Add(const System &to, Edge edge)
 
 
 // Check whether the given link is travelable. If no player was given in the
-// constructor then this is always true; otherwise, the player must know
+// constructor then this depends on travel restrictions; otherwise, the player must know
 // that the given link exists.
 bool DistanceMap::CheckLink(const System &from, const System &to, bool useJump) const
 {
 	if(!player)
-		return true;
+		return !ship || !ship->IsRestrictedFrom(to);
 
 	if(!player->HasSeen(to))
 		return false;
@@ -315,5 +336,5 @@ bool DistanceMap::CheckLink(const System &from, const System &to, bool useJump) 
 	if(useJump && from.Position().Distance(to.Position()) <= distance)
 		return true;
 
-	return (player->HasVisited(from) || player->HasVisited(to));
+	return (player->CanView(from) || player->CanView(to));
 }

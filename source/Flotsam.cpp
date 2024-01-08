@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Flotsam.h"
@@ -115,6 +118,13 @@ void Flotsam::Move(vector<Visual> &visuals)
 
 
 
+void Flotsam::SetVelocity(Point velocity)
+{
+	this->velocity = velocity;
+}
+
+
+
 // This is the one ship that cannot pick up this flotsam.
 const Ship *Flotsam::Source() const
 {
@@ -159,6 +169,13 @@ int Flotsam::Count() const
 double Flotsam::UnitSize() const
 {
 	return outfit ? outfit->Mass() : 1.;
+}
+
+
+
+double Flotsam::Mass() const
+{
+	return Count() * UnitSize();
 }
 
 
