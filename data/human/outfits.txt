@@ -430,7 +430,7 @@ outfit "Tear of Skade"
 	"unique" 1
 	description "A strange glowing stone gifted to you by the Skadenga. It lacks any power source, yet is quite cold."
 
-	outfit "Tear of Skade (Harmonized)"
+outfit "Tear of Skade (Harmonized)"
 	category "Unique"
 	thumbnail "outfit/skadetear"
 	"cooling" 7
