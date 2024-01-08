@@ -1,3 +1,16 @@
+# Copyright (c) 2024 by SpearDane
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
 mission "Best Friend"
 	name "Man's Best Friend"
 	minor
@@ -7,12 +20,12 @@ mission "Best Friend"
 	invisible
 	on offer
 		conversation
-			`	All around you off-world merchants haggle over the price of wool. A swirling cacophony of rising, falling, angry, hungry, sly, honeyed voices threading stories, pleas, and promises in hope of walking away from this sheep-covered world with a slightly better deal. They are all oblivious to the wider world around them, to the amber sunset, to the dancing motes of dust, to the gentle bleats beyond the shallow walls of this facility.`
+			`All around you off-world merchants haggle over the price of wool. A swirling cacophony of rising, falling, angry, hungry, sly, honeyed voices threading stories, pleas, and promises in hope of walking away from this sheep-covered world with a slightly better deal. They are all oblivious to the wider world around them, to the amber sunset, to the dancing motes of dust, to the gentle bleats beyond the shallow walls of this facility.`
 			`	Now that you think about it, you notice something is off about a few of those gentle bleats. They sound hostile, angry, even dangerous. Just beyond the nearest exit something strange is going on, something unremarked and unnoticed by all the people around you.`
 			choice
-				`	(Investigate the Noise.)`
+				`	(Investigate the noise.)`
 					goto investigate
-				`	(Ignore the Noise.)` 
+				`	(Ignore the noise.)` 
 			`The doings of sheep, no matter how odd or murderous their bleats may sound, are not exactly a pressing matter for you. You have more important things to do, and make your way through the throng of haggling hucksters, and back toward your ship.`
 				decline
 			label investigate
@@ -39,7 +52,7 @@ mission "Best Friend"
 			`	Saga happily follows you inside the spaceport. No one seems to mind a mutt at your heels, and after a little searching you find an information kiosk. A man with tired eyes, and a wool vest stands within it.`
 			choice
 				`	(Inquire about the dog, and her possible owner.)`
-			`	The man's eyes seem to sag as you speak. Your earnest words lulling him to sleep. Once you're done he frowns, and shakes his head slowly.`
+			`	The man's eyes seem to sag as you speak; your earnest words seem to be lulling him to sleep. Once you're done speaking he frowns, and shakes his head slowly.`
 			`	"Ser," he says with forced politeness, "this is a spaceport, not a shelter. We are aware of that stray dog. She has been prowling around for weeks. No one has come to collect her, and no one wants her. Frankly, we assumed the feral sheep would get to her by now. It would have done us all a favor.`
 			` 	I am sorry she has distracted you, and is now wasting both our time. If you'd like you can leave her with me, and I'll take care of it." `
 			choice
