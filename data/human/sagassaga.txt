@@ -410,7 +410,7 @@ mission "Happy Tim"
 	on offer
 		require "Saga"
 		conversation
-			`	An indictor light is blinking on your main panel. There is a cached message waiting for you to play.`
+			`	An indicator light is blinking on your main panel. There is a cached message waiting for you to play.`
 			choice
 				`	(Play the message.)`
 			`	A young woman in very professional clothes appears on the screen. "Captain <last>, I am pleased to inform you that the Governor of Rand has invited you to attend an award ceremony in your honor. Please come to Rand at your earliest convenience.`
