@@ -1363,7 +1363,7 @@ mission "Ice Queen 6"
 				`	(Thank her.)`
 			`	I'll also transfer small sum of money for your troubles. I fear I will be needing most of my family's fortune, but hopefully what little I can offer will help. `
 			choice
-				` 	(You ask if it's wise for her and a child to be left alone in a place like Haven.)`
+				` 	(Ask if it's wise for her and a child to be left alone in a place like Haven.)`
 			`	She laughs. "Haven better watch out for me. After Hope, and Chiron. This place will be a cakewalk."`
 			`	She takes her child in one hand, and the briefcase in the other, and walks off your ship.`
 
