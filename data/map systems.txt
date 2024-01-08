@@ -32077,8 +32077,9 @@ system Thuban
 		period 50
 	object
 		sprite star/a3
-		distance 150
+		distance 100
 		period 50
+		offset 180
 
 system Torbab
 	pos -949.587 490.051
