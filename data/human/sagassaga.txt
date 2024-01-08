@@ -1379,10 +1379,10 @@ mission "Ice Queen 7"
 	landing
 	on offer
 		dialog
-			`	Your inbox blinks with a new message from Ildico on Haven.`
-			`	'It's been too long, and I could use your help. Please, come to Haven.`
+			`	Your inbox blinks with a new message from Ildico on Haven:`
+			`	"It's been too long, and I could use your help. Please, come to Haven.`
 			`				-your friend`
-			`					Ildy`			
+			`					Ildy"`			
 	on complete
 		dialog
 			`	Even from orbit, Haven looks ugly, and as you approach the planet, it doesn't get any better. Upon landing you're alerted Ildico is waiting for you in the spaceport.`
