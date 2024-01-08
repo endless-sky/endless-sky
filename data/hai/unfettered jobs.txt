@@ -324,7 +324,7 @@ mission "Unfettered Small Medicals Rush"
 		attributes "spaceport"
 	destination "Darkcloak"
 	to offer
-		random < 20 "Unfettered Jump Drive 2: offered" * 10
+		random < 20 + "Unfettered Jump Drive 2: offered" * 10
 		"reputation: Hai (Unfettered)" >= 0
 	on visit
 		dialog phrase "generic missing stopover or cargo"
