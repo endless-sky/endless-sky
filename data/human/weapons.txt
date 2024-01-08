@@ -414,7 +414,7 @@ outfit "Tractor Beam"
 
 effect "tractor beam"
 	sprite "effect/tractor beam"
-		"random start frame"
+		"frame rate" 3.5
 	sound "tractor beam"
 	"lifetime" 1
 	"velocity scale" 1
