@@ -52,7 +52,7 @@ mission "Best Friend"
 			`	Saga happily follows you inside the spaceport. No one seems to mind a mutt at your heels, and after a little searching you find an information kiosk. A man with tired eyes, and a wool vest stands within it.`
 			choice
 				`	(Inquire about the dog, and her possible owner.)`
-			`	The man's eyes seem to sag as you speak. Your earnest words lulling him to sleep. Once you're done he frowns, and shakes his head slowly.`
+			`	The man's eyes seem to sag as you speak; your earnest words seem to be lulling him to sleep. Once you're done speaking he frowns, and shakes his head slowly.`
 			`	"Ser," he says with forced politeness, "this is a spaceport, not a shelter. We are aware of that stray dog. She has been prowling around for weeks. No one has come to collect her, and no one wants her. Frankly, we assumed the feral sheep would get to her by now. It would have done us all a favor.`
 			` 	I am sorry she has distracted you, and is now wasting both our time. If you'd like you can leave her with me, and I'll take care of it." `
 			choice
