@@ -23,9 +23,9 @@ mission "Best Friend"
 			`All around you off-world merchants haggle over the price of wool. A swirling cacophony of rising, falling, angry, hungry, sly, honeyed voices threading stories, pleas, and promises in hope of walking away from this sheep-covered world with a slightly better deal. They are all oblivious to the wider world around them, to the amber sunset, to the dancing motes of dust, to the gentle bleats beyond the shallow walls of this facility.`
 			`	Now that you think about it, you notice something is off about a few of those gentle bleats. They sound hostile, angry, even dangerous. Just beyond the nearest exit something strange is going on, something unremarked and unnoticed by all the people around you.`
 			choice
-				`	(Investigate the Noise.)`
+				`	(Investigate the noise.)`
 					goto investigate
-				`	(Ignore the Noise.)` 
+				`	(Ignore the noise.)` 
 			`The doings of sheep, no matter how odd or murderous their bleats may sound, are not exactly a pressing matter for you. You have more important things to do, and make your way through the throng of haggling hucksters, and back toward your ship.`
 				decline
 			label investigate
