@@ -460,7 +460,7 @@ mission "Hero of Rand"
 				`	"I appreciate it. But I don't have time."`
 					goto nothankyou
 				`	"No. I don't care about your capitalist dream, or whatever else is going on here. I am out."`
-			`	Timothy frowns, and his head droops a little. It is a hard place, Rand, and I will admit I live better than most now. But I earned it, and I will not make apologizes for working hard and smart. I am sorry this could not have been a joyful occasion. You gave me my start, and I will never forget it, but perhaps you've changed more than I have. Good luck, and goodbye.`
+			`	Timothy frowns, and his head droops a little. "It is a hard place, Rand, and I will admit I live better than most now. But I earned it, and I will not make apologizes for working hard and smart. I am sorry this could not have been a joyful occasion. You gave me my start, and I will never forget it, but perhaps you've changed more than I have. Good luck, and goodbye."`
 			`	Timothy turns his chair from you, and says nothing as you exit his mansion. A new vehicle is waiting for you outside, and you ride it in silence through the blinding dust back to the spaceport.`
 				decline
 			label nothankyou
