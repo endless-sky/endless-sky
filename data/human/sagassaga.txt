@@ -312,7 +312,7 @@ mission "Best Friend 8"
 			`	She'll stop eventually, no reason to reward her bad behavior by reacting to it. You get back to your ship.`
 				decline
 			label check
-			`	You find Saga barking, whimpering and pawing at some foodstuff crates you recently took on. There is one crate in particular she is fiercly interested in.`
+			`	You find Saga barking, whimpering and pawing at some foodstuff crates you recently took on. There is one crate in particular she is fiercely interested in.`
 			choice
 				`	(Open the create.)`
 					goto crate
