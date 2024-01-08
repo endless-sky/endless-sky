@@ -1276,10 +1276,10 @@ mission "Ice Queen 5"
 	landing
 	on offer
 		dialog
-			`	Your inbox blinks with a new message from Ildico on Chiron.`
-			`	'I need to see you. Please come. My address is attached.`
+			`	Your inbox blinks with a new message from Ildico on Chiron:`
+			`	"I need to see you. Please come. My address is attached.`
 			`				-your friend`
-			`					Ildy`			
+			`					Ildy"`			
 	on complete
 		dialog
 			`	The myriad lights of urban settlements twinkle in the dusk as you approach the capitol, and main spaceport, of Chiron. Crickets, brought from old Earth, chirp in the twilit air. Your ship parked, you'll need to make your way to main spaceport to hire transportation to Ildico's address.`
