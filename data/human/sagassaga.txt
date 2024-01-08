@@ -1403,7 +1403,7 @@ mission "Ice Queen 8"
 				`	"Ildy asked me to come here."`
 				`	"Ildy, Help!"`
 			`	The band of cut-throats looks at you, confused, and then most of them lower their weapons.`
-			`	"Boss." One of them hollers, "this stranger says they are here for you, I think."`
+			`	"Boss," One of them hollers, "this stranger says they are here for you, I think."`
 			`	Footsteps echo on the opposite side of the warehouse as someone approaches.`
 			`	One of the men starts laughing. "Ildy?! Haha, never thought to call her that. Hey Ildy! How come you never told us to call you that? Or that some kind of special pet name?"`
 			`	The man flashes an unsavory grin at you. His rotting teeth full on display.`
