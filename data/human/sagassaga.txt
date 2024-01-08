@@ -638,6 +638,7 @@ mission "Monk Tim"
 					goto whyyes
 				`	"I don't have time for fans."`
 			`	"Of course." The monk says,"you are a busy person." He says goodbye and returns to his brothers.`
+			decline
 			label whyyes
 			`	The monk beams. "Wonderful. It'll be a bit of a hike, but the views are worth it."`
 			`	He leads you into the mountains beyond the spaceport. You travel up various narrow passes, and steep cliff sides. It's a difficult trail, but the scenery is remarkable. Your views are filled with broken mountains, jagged rocks, green vibrant life, and distant valleys.`
