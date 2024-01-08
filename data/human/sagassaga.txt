@@ -768,7 +768,7 @@ mission "Taking the Bird Home"
 	on enter
 	on enter
 		conversation
-			`	A nearly mature bird flies around your ship, bombing random controls and instruments with little white torpedos, while squawking intermittently. Saga watches warily having been the victim of its barrage more than a few times.`
+			`	A nearly mature bird flies around your ship, bombing random controls and instruments with little white torpedoes, while squawking intermittently. Saga watches warily having been the victim of its barrage more than a few times.`
 			`	The <ship> is not place for a bird. It's time to find it a home. You're not exactly certain what species of bird it is, however you think you've seen something like on New Britain.`
 			`	Perhaps, that would be a good home for it.`
 	on complete
