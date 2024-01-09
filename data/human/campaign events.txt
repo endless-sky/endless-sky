@@ -267,9 +267,9 @@ event "initial deployment 1"
 		fleet "Human Miners" 2000
 	planet "New Austria"
 		description `New Austria is a rugged mountain world, full of snow-capped peaks and valleys so deep and so steep that they rarely see sunlight.`
-		description `The few settlements that have been built here were developed for mining sapphires and rubies. The sapphires found in New Austria range from blue to yellow to black to clear in color, and are used both for industrial abrasives and for jewelry.`
-		description `For centuries the locals have tried to find a deposit of diamonds, and local folklore revolves around the prosperity that would come to this world if diamonds were ever discovered.`
-		description `The Navy has recently requisitioned one of the abandoned mining towns and begun refurbishing it for a secure military base, with the mining tunnels used as deep underground bunkers.`
+		description `	The few settlements that have been built here were developed for mining sapphires and rubies. The sapphires range from blue to yellow to black to clear in color and are used for industrial abrasives and jewelry.`
+		description `	For centuries the locals have tried to find a deposit of diamonds, and local folklore revolves around the prosperity that would come to this world if diamonds were ever discovered.`
+		description `	The Navy has recently requisitioned one of the abandoned mining towns and begun refurbishing it for a secure military base, with the mining tunnels used as deep underground bunkers.`
 
 event "initial deployment 2"
 	date 14 8 3014
@@ -541,7 +541,8 @@ event "southern carriers 1"
 	outfitter "Syndicate Advanced"
 		"X1050 Ion Engines"
 	fleet "Small Free Worlds"
-		fighters "free worlds fighters"
+		fighters
+			names "free worlds fighters"
 		add variant 1
 			"Nest"
 			"Finch" 2
@@ -552,12 +553,11 @@ event "southern carriers 2"
 	shipyard "Southbound Advanced"
 		"Roost"
 		"Skein"
-	shipyard "Syndicate Basics"
-		"Barb (Proton)"
 	outfitter "Syndicate Basics"
 		"X1050 Ion Engines"
 	fleet "Large Southern Merchants"
-		fighters "free worlds fighter"
+		fighters
+			names "free worlds fighter"
 		add variant 15
 			"Hauler III"
 			"Nest"
@@ -577,7 +577,8 @@ event "southern carriers 2"
 			"Boxwing" 6
 
 	fleet "Small Independent"
-		fighters "free worlds fighter"
+		fighters
+			names "free worlds fighter"
 		add variant 1
 			"Nest"
 			"Barb" 2
@@ -595,7 +596,8 @@ event "southern carriers 3"
 		"Roost"
 		"Skein"
 	fleet "Large Free Worlds"
-		fighters "free worlds fighters"
+		fighters
+			names "free worlds fighters"
 		add variant 2
 			"Roost"
 			"Finch" 4
@@ -621,7 +623,8 @@ event "southern carriers 3"
 
 event "southern carriers 4"
 	fleet "Large Northern Merchants"
-		fighters "free worlds fighter"
+		fighters
+			names "free worlds fighter"
 		add variant 2
 			"Hauler III"
 			"Hauler II"
@@ -654,7 +657,8 @@ event "southern carriers 4"
 			"Barb (Gatling)" 4
 
 	fleet "Large Independent"
-		fighters "free worlds fighter"
+		fighters
+			names "free worlds fighter"
 		add variant 2
 			"Roost"
 			"Barb" 4
@@ -675,6 +679,11 @@ event "southern carriers 4"
 		add variant 1
 			"Roost"
 			"Lance (Gatling)" 4
+
+	fleet "Human Miners"
+		add variant 1
+			"Nest (Miner)"
+			"Barb (Miner)" 2
 
 event "initial deployment 4"
 	date 17 9 3014
@@ -1121,7 +1130,7 @@ event "fw abandoned Greenrock"
 		fleet "Large Free Worlds" 9000
 	planet "Greenrock"
 		description `Greenrock was the closest thing that the pirates in southern human space had to a center of government, at least until the Free Worlds occupied it. When rival pirate bands sought to negotiate on neutral territory, this is where they met. Nearly everything was for sale here: illegal weapons, ships customized for pirating, and even slaves.`
-		description `	That was until the Free Worlds occupied the system and cleaned up many of the major population centers. With the Free Worlds gone though, the planet has begun to return to its natural state of crime and villainy.`
+		description `	That was until the Free Worlds occupied the system and cleaned up many of the major population centers. With the Free Worlds gone, the planet has begun to return to its natural state of crime and villainy.`
 		spaceport `You have heard enough about this port's reputation that you are not surprised to see the remnants of slave markets, now empty as a result of the Free Worlds occupation. The spaceport's shady establishments are beginning to return to their normal clientele and services.`
 		spaceport `	With the Free Worlds now gone, dark alleyways are absolutely to be avoided. Down one alley you see a shop called "Mike's Mustelids," the inside like a jungle. You hear the howls and yells of various exotic animals coming from inside, and the alleyway is home to a number of presumably-escaped weasels, ferrets, and wolverines running about.`
 
@@ -1842,6 +1851,22 @@ event "deep sky tech available"
 		"Typhoon Pod"
 		"Typhoon Storage Tube"
 		"Electron Turret"
+
+event "navy expand typhoon sales"
+	outfitter "Lovelace Advanced"
+		"Typhoon Torpedo"
+		"Typhoon Launcher"
+		"Typhoon Pod"
+		"Typhoon Storage Tube"
+
+mission "Navy expands typhoon sales"
+	invisible
+	landing
+	to offer
+		has "event: deep sky tech available"
+	on offer
+		event "navy expand typhoon sales" 120
+		fail
 
 
 

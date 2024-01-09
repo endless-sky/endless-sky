@@ -83,7 +83,7 @@ void Account::Save(DataWriter &out) const
 	out.BeginChild();
 	{
 		out.Write("credits", credits);
-		if(salariesIncome.size() > 0)
+		if(!salariesIncome.empty())
 		{
 			out.Write("salaries income");
 			out.BeginChild();
@@ -319,7 +319,7 @@ int64_t Account::SalariesIncomeTotal() const
 
 
 
-void Account::SetSalaryIncome(string name, int64_t amount)
+void Account::SetSalaryIncome(const string &name, int64_t amount)
 {
 	if(amount == 0)
 		salariesIncome.erase(name);
@@ -390,11 +390,11 @@ void Account::AddFine(int64_t amount)
 // Check how big a mortgage the player can afford to pay at their current income.
 int64_t Account::Prequalify() const
 {
-	int64_t payments = 0;
+	double payments = 0.;
 	int64_t liabilities = 0;
 	for(const Mortgage &mortgage : mortgages)
 	{
-		payments += mortgage.Payment();
+		payments += mortgage.PrecisePayment();
 		liabilities += mortgage.Principal();
 	}
 

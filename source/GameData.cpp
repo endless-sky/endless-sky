@@ -22,7 +22,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Command.h"
 #include "ConditionsStore.h"
 #include "Conversation.h"
-#include "DataFile.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Effect.h"
@@ -52,7 +51,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Plugins.h"
 #include "PointerShader.h"
 #include "Politics.h"
-#include "Random.h"
+#include "RenderBuffer.h"
 #include "RingShader.h"
 #include "Ship.h"
 #include "Sprite.h"
@@ -105,6 +104,9 @@ namespace {
 	void LoadPlugin(const string &path)
 	{
 		const auto *plugin = Plugins::Load(path);
+		if(!plugin)
+			return;
+
 		if(plugin->enabled)
 			sources.push_back(path);
 
@@ -132,8 +134,11 @@ namespace {
 
 
 
-future<void> GameData::BeginLoad(bool onlyLoadData, bool debugMode)
+future<void> GameData::BeginLoad(bool onlyLoadData, bool debugMode, bool preventUpload)
 {
+	if(preventUpload)
+		spriteQueue.SetPreventUpload();
+
 	// Initialize the list of "source" folders based on any active plugins.
 	LoadSources();
 
@@ -195,14 +200,19 @@ void GameData::CheckReferences()
 
 
 
-void GameData::LoadShaders(bool useShaderSwizzle)
+void GameData::LoadSettings()
 {
-	FontSet::Add(Files::Images() + "font/ubuntu14r.png", 14);
-	FontSet::Add(Files::Images() + "font/ubuntu18r.png", 18);
-
 	// Load the key settings.
 	Command::LoadSettings(Files::Resources() + "keys.txt");
 	Command::LoadSettings(Files::Config() + "keys.txt");
+}
+
+
+
+void GameData::LoadShaders()
+{
+	FontSet::Add(Files::Images() + "font/ubuntu14r.png", 14);
+	FontSet::Add(Files::Images() + "font/ubuntu18r.png", 18);
 
 	FillShader::Init();
 	FogShader::Init();
@@ -210,8 +220,9 @@ void GameData::LoadShaders(bool useShaderSwizzle)
 	OutlineShader::Init();
 	PointerShader::Init();
 	RingShader::Init();
-	SpriteShader::Init(useShaderSwizzle);
+	SpriteShader::Init();
 	BatchShader::Init();
+	RenderBuffer::Init();
 
 	background.Init(16384, 4096);
 }
@@ -538,7 +549,6 @@ const Set<Effect> &GameData::Effects()
 
 
 
-
 const Set<GameEvent> &GameData::Events()
 {
 	return objects.events;
@@ -592,7 +602,6 @@ const Set<Minable> &GameData::Minables()
 {
 	return objects.minables;
 }
-
 
 
 
@@ -719,7 +728,6 @@ const vector<Trade::Commodity> &GameData::Commodities()
 {
 	return objects.trade.Commodities();
 }
-
 
 
 
