@@ -3695,7 +3695,7 @@ ship "Sunder"
 	explode "medium explosion" 15
 	"final explode" "final explosion small"
 	description "A further development on the old asteroid mining ships used in the Sol Main Belt centuries ago, the Sunder is a versatile mining platform equipped with dedicated prospecting equipment, most notably an undercarriage that supports two Mining Drones."
-	description "	The newest model of the Sunder is now manufactured by Syndicated Shipyards so that the Syndicate can take advantage of asteroid minerals near the Core."
+	description "	The newest model of the Sunder is now manufactured by Syndicated Shipyards, a consequence of the Syndicate's efforts to further exploit the Core's mineral wealth."
 
 
 
