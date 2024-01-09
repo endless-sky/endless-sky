@@ -3414,6 +3414,8 @@ fleet "Derelict Republic"
 		"Aerie (Derelict)"
 	variant 1
 		"Leviathan (Derelict)"
+	variant 20
+		"Sunder (Derelict)"
 
 fleet "Derelict Southern"
 	government "Derelict (Boardable)"
@@ -3441,6 +3443,8 @@ fleet "Derelict Southern"
 		"Freighter (Derelict)"
 	variant 1
 		"Falcon (Derelict)"
+	variant 24
+		"Sunder (Derelict)"
 
 fleet "Derelict Syndicate"
 	government "Derelict (Boardable)"
@@ -3448,22 +3452,24 @@ fleet "Derelict Syndicate"
 	"cargo settings"
 		cargo 1
 		outfitters "Derelict Syndicate"
-	variant 12
+	variant 15
 		"Bounder (Derelict)"
-	variant 8
+	variant 10
 		"Hauler (Derelict)"
 	variant 25
 		"Freighter (Derelict)"
-	variant 1
+	variant 2
 		"Bulk Freighter (Derelict)"
 	variant 10
 		"Quicksilver (Derelict)"
-	variant 2
+	variant 3
 		"Firebird (Derelict)"
-	variant 8
+	variant 9
 		"Splinter (Derelict)"
-	variant 2
+	variant 3
 		"Protector (Derelict)"
+	variant 20
+		"Sunder (Derelict)"
 
 fleet "Derelict Pirate"
 	government "Derelict (Boardable)"

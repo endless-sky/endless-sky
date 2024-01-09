@@ -3712,6 +3712,27 @@ ship "Star Queen" "Star Queen (Hai Trafficker)"
 		"Security Station" 2
 
 
+ship "Sunder" "Sunder (Derelict)"
+	"uncapturable"
+	add attributes
+		"cost" -450000
+		"hull" -350
+		"cargo space" -15
+		"fuel capacity" -100
+		"outfit space" -10
+		"bunks" -5
+		"required crew" -3
+		"automaton" 1
+	outfits
+		"Mining Laser" 1
+		"Mining Laser Turret"
+		"Asteroid Scanner"
+		"nGVF-DD Fuel Cell"
+		"LP036a Battery Pack"
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Hyperdrive"
+
 
 ship "Sunder" "Sunder (Heavy)"
 	outfits
