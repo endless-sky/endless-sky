@@ -41,7 +41,7 @@ namespace {
 
 
 MessageLogPanel::MessageLogPanel()
-	: messages(Messages::GetLog())
+	: messages(Messages::GetLog()), width(GameData::Interfaces().Get("message log")->GetValue("width"))
 {
 	SetInterruptible(false);
 }
@@ -54,7 +54,6 @@ void MessageLogPanel::Draw()
 	DrawBackdrop();
 
 	// Draw the panel.
-	width = Screen::Width() - GameData::Interfaces().Get("message log")->GetValue("margin");
 	const Color &backColor = *GameData::Colors().Get("message log background");
 	FillShader::Fill(
 		Point(Screen::Left() + .5 * width, 0.),

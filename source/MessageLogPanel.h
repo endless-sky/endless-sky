@@ -41,7 +41,7 @@ protected:
 private:
 	const std::deque<std::pair<std::string, Messages::Importance>> &messages;
 
-	double width;
+	const double width;
 	// Current scroll:
 	double scroll = 0.;
 	double maxScroll = 0.;

@@ -1535,7 +1535,7 @@ interface "info panel"
 
 
 interface "message log"
-	value "margin" 300
+	value "width" 570
 
 
 
