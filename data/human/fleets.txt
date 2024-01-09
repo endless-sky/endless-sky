@@ -3423,6 +3423,7 @@ fleet "Derelict Southern"
 	"cargo settings"
 		cargo 1
 		outfitters "Derelict Southern"
+	personality derelict mute
 	variant 24
 		"Argosy (Derelict)"
 	variant 12
@@ -3452,6 +3453,7 @@ fleet "Derelict Syndicate"
 	"cargo settings"
 		cargo 1
 		outfitters "Derelict Syndicate"
+	personality derelict mute
 	variant 15
 		"Bounder (Derelict)"
 	variant 10
@@ -3477,6 +3479,7 @@ fleet "Derelict Pirate"
 	"cargo settings"
 		cargo 1
 		outfitters "Derelict Pirate"
+	personality derelict mute
 	variant 60
 		"Scrapper (Derelict)"
 	variant 3
