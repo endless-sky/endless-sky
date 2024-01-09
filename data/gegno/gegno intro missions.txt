@@ -864,7 +864,6 @@ mission "Gegno Hunter Fleets"
 				"Coesite" 6
 
 
-
 # Gegno Vi Duels
 
 mission "Gegno Vi Duels"

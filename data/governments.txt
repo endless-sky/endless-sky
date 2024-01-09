@@ -462,7 +462,6 @@ government "Gegno Scin (Combative)"
 	"penalty for"
 		assist 0
 
-
 color "governments: Hai" .86 .48 .79
 
 government "Hai"
