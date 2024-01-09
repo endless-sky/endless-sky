@@ -356,7 +356,7 @@ outfit "Mining Laser"
 		"hull damage" 1.4
 		"minable damage" 1.9
 		"prospecting" 1
-	description "The development of the Beam Laser in the mid-2400s not only led to a revolution in space warfare, but also to the field of asteroid mining, as the traditional but inefficient method of towing asteroids to bases for extraction was supplanted by individual spacecraft that could precisely extract the ore from asteroids themselves. The modern Mining Laser is a derivative of the Beam Laser engineered to optimise mineral yield and extraction rates at the expense of range and shield damage."
+	description "The development of the Beam Laser in the mid-2400s not only led to a revolution in space warfare, but also to the field of asteroid mining, as the traditional but inefficient method of towing asteroids to bases for extraction was supplanted by individual spacecraft that could precisely extract the ore from asteroids themselves. The modern Mining Laser is a derivative of the Beam Laser engineered to optimize mineral yield and extraction rates at the expense of range and shield damage."
 	description "	The Mining Laser also comes equipped with an extremely short range asteroid targeting scanner. As such, drones and fighters that have it installed will automatically engage in mining when launched."
 
 
