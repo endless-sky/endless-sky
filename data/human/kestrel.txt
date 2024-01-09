@@ -89,6 +89,8 @@ mission "Kestrel Testing"
 					goto engines
 				`	"Maybe you should work on improving the shields and hull."`
 					goto shields
+				`	"I feel like such a large ship should have more bays for fighters."`
+					goto bays
 			
 			label weapons
 			action
@@ -106,6 +108,12 @@ mission "Kestrel Testing"
 			action
 				set "kestrel: more shields"
 			`	"Okay," he says, "we'll focus on strengthening the hull and the shield matrix."`
+				goto name
+			
+			label bays
+			action
+				set "kestrel: more bays"
+			`	"Very well," he says, "we'll see if we can incorporate more fighter bays into the hull."`
 				goto name
 			
 			label name
@@ -187,6 +195,17 @@ mission "Kestrel: More Shields"
 
 
 
+mission "Kestrel: More Bays"
+	landing
+	invisible
+	to offer
+		has "kestrel: more bays"
+	on offer
+		event "kestrel available: more bays" 50
+		fail
+
+
+
 mission "Kestrel Available"
 	landing
 	source
@@ -202,6 +221,9 @@ mission "Kestrel Available"
 			branch shields
 				has "kestrel: more shields"
 			
+			branch bays
+				has "kestrel: more bays"
+			
 			scene "thumbnail/kestrelw"
 			``
 				goto message
@@ -213,6 +235,11 @@ mission "Kestrel Available"
 			
 			label shields
 			scene "thumbnail/kestrels"
+			``
+				goto message
+				
+			label bays
+			scene "thumbnail/kestrelc"
 			``
 			label message
 			`You receive a message from Charles Atinoda, the ship designer at Tarazed Corporation: "Captain <last>, we are pleased to inform you that our latest warship is now available for sale here on Wayfarer. We've taken all your feedback into account in the final design. Thank you again!"`
@@ -232,6 +259,10 @@ event "kestrel available: more shields"
 	set "kestrel available"
 	shipyard "Tarazed Advanced"
 		"Kestrel (More Shields)"
+event "kestrel available: more bays"
+	set "kestrel available"
+	shipyard "Tarazed Advanced"
+		"Kestrel (More Bays)"
 
 
 ship "Unknown Ship Type"
@@ -394,3 +425,45 @@ ship "Kestrel" "Kestrel (More Weapons)"
 	turret 7 -4 "Heavy Laser Turret"
 	turret -23 14 "Heavy Laser Turret"
 	turret 23 14 "Heavy Laser Turret"
+
+ship "Kestrel" "Kestrel (More Bays)"
+	sprite "ship/kestrelc"
+	thumbnail "thumbnail/kestrelc"
+	add attributes
+		"mass" 60
+		"weapon capacity" -20
+	outfits
+		"Particle Cannon" 2
+		"Torpedo Launcher" 2
+		"Torpedo" 60
+		"Heavy Laser Turret" 4
+		
+		"Fusion Reactor"
+		"LP144a Battery Pack"
+		"D94-YV Shield Generator"
+		"Liquid Nitrogen Cooler"
+		"Tactical Scanner" 2
+		
+		"Orca Plasma Thruster"
+		"Orca Plasma Steering"
+		"Hyperdrive"
+	gun -73.5 46 "Torpedo Launcher"
+	gun 73.5 46 "Torpedo Launcher"
+	gun -29.5 52 "Particle Cannon"
+	gun 29.5 52 "Particle Cannon"
+	turret -8 -10.5 "Heavy Laser Turret"
+	turret 8 -10.5 "Heavy Laser Turret"
+	turret -20.5 9 "Heavy Laser Turret"
+	turret 20.5 9 "Heavy Laser Turret"
+	bay "Fighter" -46 106
+		"launch effect" "human internal"
+	bay "Fighter" 46 106
+		"launch effect" "human internal"
+	bay "Fighter" -62 78
+		"launch effect" "human internal"
+	bay "Fighter" 62 78
+		"launch effect" "human internal"
+	bay "Fighter" -56 70
+		"launch effect" "human internal"
+	bay "Fighter" 56 70
+		"launch effect" "human internal"
