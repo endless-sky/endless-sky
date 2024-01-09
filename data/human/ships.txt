@@ -3650,9 +3650,9 @@ ship "Sunder"
 		"hull" 1600
 		"required crew" 3
 		"bunks" 5
-		"mass" 160
-		"drag" 3.8
-		"heat dissipation" .7
+		"mass" 260
+		"drag" 4.7
+		"heat dissipation" .56
 		"fuel capacity" 600
 		"cargo space" 80
 		"outfit space" 230
