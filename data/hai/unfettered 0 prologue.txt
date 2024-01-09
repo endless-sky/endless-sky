@@ -1144,7 +1144,7 @@ mission "<uhai> 3: Recover Jump Drives"
 			action
 				outfit "Jump Drive"
 			branch "good boy!"
-				"unfettered: took Si-Ra' gold" <= 5
+				"unfettered: took Si-Ra' gold" <= 4
 				"unfettered: took Si-Ra' weapons" <= 2
 			action
 				payment -1500000

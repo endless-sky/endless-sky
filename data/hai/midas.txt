@@ -27,31 +27,36 @@ outfit "Gold Bars"
 ship "Sea Scorpion" "Si-Ra' Scorpion"
 	add attributes
 		"weapon capacity" 4
-		"cargo space" -30
-		"outfit space" 25
+		"engine capacity" -7
 	outfits
 		"Ionic Blaster Prototype" 4
 		"Ionic Turret Prototype" 2
 
-		"Hai Diamond Regenerator"
 		"Systems Core (Small)"
+		"Hai Diamond Regenerator"
+		"Bright Cloud Shielding"
 		"Hai Octopus Jammer"
-		"Small Heat Shunt"
-		"Liquid Nitrogen Cooler"
-		"Value Detector"
-		"Hai Chasm Batteries"
+		"Hai Cuttlefish Jammer"
 
+		"Small Heat Shunt"
+		"Hai Zephyr Cooling"
+		"Hai Williwaw Cooling"
+		"Outfits Expansion" 2
+
+		"Hai Chasm Batteries" 2
+		"Supercapacitor" 2
 		"Small Biochemical Cell"
 		"Boulder Reactor"
 		
 		"Pulse Rifle" 35
 		"Dual Pulse Pistols"
 
-		`"Bondir" Atomic Steering`
-		`"Bondir" Atomic Thruster`
+		`"Biroo" Atomic Steering`
+		`"Biroo" Atomic Thruster`
+		"Afterburner (Asteroid Class)"
 	cargo
 		outfits
-			"Gold Bars" 15
+			"Gold Bars" 5
 
 ship "Marauder Firebird" "Marauder Firebird (Bars)"
 	crew 37

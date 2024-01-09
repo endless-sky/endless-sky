@@ -1388,6 +1388,8 @@ mission "<uhai> 16: Strength Of A Leader: Si-Ra"
 			has "unfettered: mad Si-Ra"
 			"armament deterrence" >= 12
 			"unfettered rep: Herald" < 1
+			# only comes the first time, then they pretend nothing happened
+			"<uhai> 16: Strength Of A Leader: Si-Ra: offered" < 2
 		to despawn
 			has "unfettered: defeated Si-Ra"
 		government "Hai (Unfettered Challenger)"

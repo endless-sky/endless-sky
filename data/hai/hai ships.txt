@@ -730,18 +730,21 @@ ship "Modified Shield Beetle"
 	outfits
 		"Ionic Blaster Prototype" 4
 		"Hai Tracker Pod" 4
+		"Tracker Storage Pod" 2
 		"Ionic Turret Prototype" 2
-		"Chameleon Anti-Missile"
+		"Warder Anti-Missile"
+		"Value Detector"
+		"Hai Cuttlefish Jammer" 2
 		"Boulder Reactor" 2
 		"Hai Ravine Batteries"
 		"Hai Diamond Regenerator" 3
 		"Hai Zephyr Cooling" 3
-		"Hai Tracker" 224
-		"Outfits Expansion"
+		"Hai Tracker" 252
+		"Outfits Expansion" 4
 		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
-		"Quantum Keystone"
+		"Quantum Keystone" 2
 	engine -45 123
 	engine 45 123
 	gun -22 -103
@@ -752,7 +755,7 @@ ship "Modified Shield Beetle"
 	gun 48 -53.5 "Hai Tracker Pod"
 	gun -61.5 -23 "Hai Tracker Pod"
 	gun 61.5 -23 "Hai Tracker Pod"
-	turret 0 5 "Chameleon Anti-Missile"
+	turret 0 5 "Warder Anti-Missile"
 	turret -55.5 74.5
 	turret 55.5 74.5
 	leak "leak" 35 45
@@ -771,32 +774,31 @@ ship "Modified Shield Beetle" "Si-Ra' Golden Beetle"
 		"shields" -2000
 		"hull" 500
 		"heat dissipation" .05
-		"cargo space" -20
-		"outfit space" 15
 		"ion resistance" .25
 	outfits
 		"Tripulse Shredder" 8
 
-		"Hai Octopus Jammer"
-		"Large Heat Shunt"
-		"Hai Zephyr Cooling" 3
+		"Hai Octopus Jammer" 3
+		"Hai Zephyr Cooling" 2
 		Hyperdrive
 		"Quantum Keystone"
 		"Hai Diamond Regenerator"
 		"Systems Core (Medium)"
+		"Value Detector"
 
-		"Boulder Reactor"
-		"Geode Reactor"
-		"Hai Ravine Batteries"
+		"White Sun Reactor"
+		"Generator (Inferno Class)"
+		"Hai Gorge Batteries"
+		"Supercapacitor"
 
 		"Pulse Rifle" 77
 		"Dual Pulse Pistols"
 
 		`"Bondir" Atomic Thruster`
-		`"Bufaer" Atomic Steering`
+		`"Bondir" Atomic Steering`
 	cargo
 		outfits
-			"Gold Bars" 40
+			"Gold Bars" 20
 
 # he's really angry at this point if you kicked him to this beetle,
 # he risked everything to upgrade his ship and to kill you so that he can get back into Midas
@@ -1680,6 +1682,7 @@ ship "Stag Beetle"
 		"engine capacity" 145
 		"spinal mount" 1
 		"scrambling resistance" .25
+		"unfettered remote" 1
 		weapon
 			"blast radius" 515
 			"shield damage" 6000
@@ -1688,22 +1691,23 @@ ship "Stag Beetle"
 	outfits
 		"Sunbeam" 2
 		"Fire-Lance" 2
-		"Ionic Blaster Prototype" 2
+		"Plasma Cannon" 2
 		"Korath Detainer"
 		"Grab-Strike Turret"
-		"Blaze-Pike Turret"
-		"Bullfrog Anti-Missile"
+		"Thermal Repeater" 2
+		"Bullfrog Anti-Missile" 3
 		
 		"Liquid Sodium Cooler"
 		"Small Heat Shunt"
 		"Systems Core (Large)"
 		"Dark Storm Shielding"
+		"Hai Zephyr Cooling"
 		"Outfits Expansion" 4
 		"Fuel Processor"
 		"Large Heat Shunt"
 		"Jump Drive"
 		
-		`"Bufaer" Atomic Steering`
+		`"Bondir" Atomic Steering`
 		"Afterburner (Comet Class)"
 		"Thruster (Lunar Class)"
 		
@@ -1711,7 +1715,7 @@ ship "Stag Beetle"
 		"Small Biochemical Cell"
 		
 		"Thermal Repeater Rifle" 20
-		"Pulse Rifle" 60
+		"Pulse Rifle" 47
 		"Dual Pulse Pistols" 10
 		"Unfettered License"
 	engine -45 123
@@ -1723,10 +1727,10 @@ ship "Stag Beetle"
 	gun 34 -68 "Fire-Lance"
 	gun -49 -38
 	gun 49 -38
-	gun -61 -14 "Ionic Blaster Prototype"
-	gun 61 -14 "Ionic Blaster Prototype"
-	turret -51 21.5 "Bullfrog Anti-Missile"
-	turret 51 21.5 "Blaze-Pike Turret"
+	gun -61 -14
+	gun 61 -14
+	turret -51 21.5
+	turret 51 21.5
 	turret -56.5 75
 	turret 56.5 75
 	turret 0 85.5 "Grab-Strike Turret"
@@ -1741,6 +1745,47 @@ ship "Stag Beetle"
 	"final explode" "final explosion large"
 	description "At the core of this vessel are the ancient remains of a Korath raider that, despite making good use of a cloaking device, harassed the Unfettered one too many times. Although it does suffer from higher mass than a normal shield beetle, it also enjoys a more resilient hull and shield matrix."
 	description "The owner of this ship is the servant of Tejolis; they are the incarnation of strategical might on the battlefield."
+
+ship "Stag Beetle" "Stag Beetle (Flamer)"
+	outfits
+		"Sunbeam" 4
+		"Flamethrower" 2
+		"Korath Detainer"
+		"Grab-Strike Turret"
+		"Banisher Grav-Turret"
+		"Bullfrog Anti-Missile" 3
+		
+		"Liquid Sodium Cooler"
+		"Systems Core (Large)" 2
+		"Outfits Expansion" 4
+		"Wanderer Ramscoop"
+		"Jump Drive"
+		
+		`"Bufaer" Atomic Steering`
+		"Afterburner (Comet Class)"
+		"Thruster (Lunar Class)"
+		
+		"Double Plasma Core"
+		"Large Biochemical Cell"
+		
+		"Thermal Repeater Rifle" 20
+		"Pulse Rifle" 47
+		"Dual Pulse Pistols" 10
+		"Unfettered License"
+	gun 0 -7 "Korath Detainer"
+	gun -22 -102 "Sunbeam"
+	gun 22 -102 "Sunbeam"
+	gun -34 -68 "Sunbeam"
+	gun 34 -68 "Sunbeam"
+	gun -49 -38
+	gun 49 -38
+	gun -61 -14 "Flamethrower"
+	gun 61 -14 "Flamethrower"
+	turret -51 21.5 "Grab-Strike Turret"
+	turret 51 21.5 "Bullfrog Anti-Missile"
+	turret -56.5 75 "Banisher Grav-Turret"
+	turret 56.5 75 "Bullfrog Anti-Missile"
+	turret 0 85.5 "Bullfrog Anti-Missile"
 
 
 # Flagship of the Unfettered Hai, filled with the spoils of wars against Korath and Wanderers:
@@ -1852,47 +1897,6 @@ ship "Emperor Beetle"
 	description "Before the Shield Beetle, the Hai used the Titan Beetle, a weaker but more capable ship of a similar design. The Emperor Beetle is a Titan coated with many layers of modern armor, making it a more powerful warship than anything else the Hai have built in modern times. Unfortunately, the advanced features are quite expensive, so these ships are used sparingly as flagships and trophy ships."
 	description "	As it is not meant to plunder but to lead in glorious battle, many of the cargo bays were removed and converted to space for weapons and defensive improvements. This change came at the cost of increased mass and lowered agility, but that is a sacrifice the Unfettered are more than willing to make."
 	description "	More than just a ship, the Emperor Beetle was built to inspire fear in its enemies, making it known that they face no simple Hai, but the military leaders of the Unfettered leading at the front of those they command. Some believe it to be foolish to show their leaders' ships in such a manner, but that is not how the Unfettered think. This ship was built to withstand far more punishment than any normal Shield Beetle, while still being able to dish out damage of its own."
-
-ship "Stag Beetle" "Stag Beetle (Flamer)"
-	outfits
-		"Sunbeam" 4
-		"Flamethrower" 2
-		"Korath Detainer"
-		"Grab-Strike Turret"
-		"Banisher Grav-Turret"
-		"Bullfrog Anti-Missile" 3
-		
-		"Liquid Sodium Cooler"
-		"Systems Core (Large)" 2
-		"Outfits Expansion" 4
-		"Wanderer Ramscoop"
-		"Jump Drive"
-		
-		`"Bufaer" Atomic Steering`
-		"Afterburner (Comet Class)"
-		"Thruster (Lunar Class)"
-		
-		"Double Plasma Core"
-		"Large Biochemical Cell"
-		
-		"Thermal Repeater Rifle" 20
-		"Pulse Rifle" 60
-		"Dual Pulse Pistols" 10
-		"Unfettered License"
-	gun 0 -7 "Korath Detainer"
-	gun -22 -102 "Sunbeam"
-	gun 22 -102 "Sunbeam"
-	gun -34 -68 "Sunbeam"
-	gun 34 -68 "Sunbeam"
-	gun -49 -38
-	gun 49 -38
-	gun -61 -14 "Flamethrower"
-	gun 61 -14 "Flamethrower"
-	turret -51 21.5 "Grab-Strike Turret"
-	turret 51 21.5 "Bullfrog Anti-Missile"
-	turret -56.5 75 "Banisher Grav-Turret"
-	turret 56.5 75 "Bullfrog Anti-Missile"
-	turret 0 85.5 "Bullfrog Anti-Missile"
 
 
 ship "Solifuge"
