@@ -47,7 +47,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Planet.h"
 #include "PlanetLabel.h"
 #include "PlayerInfo.h"
-#include "Point.h"
 #include "PointerShader.h"
 #include "Preferences.h"
 #include "Projectile.h"
@@ -73,7 +72,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <cmath>
 #include <string>
-#include <utility>
 
 using namespace std;
 
@@ -625,7 +623,7 @@ void Engine::Step(bool isActive)
 		highlightSprite = flagship->GetSprite();
 		highlightUnit = flagship->Unit() * zoom;
 		highlightFrame = flagship->GetFrame();
-		highlightLocation = flagship->Position();
+		highlightLocation = flagship->Center();
 	}
 	else
 		highlightSprite = nullptr;
@@ -1046,11 +1044,10 @@ list<ShipEvent> &Engine::Events()
 // Draw a frame.
 void Engine::Draw() const
 {
-	Preferences::ExtendedJumpEffects jumpEffectState = Preferences::GetExtendedJumpEffects();
-	Point motionBlur = centerVelocity;
-	if(!Preferences::Has("Render motion blur"))
-		motionBlur = Point();
-	if(jumpEffectState != Preferences::ExtendedJumpEffects::OFF)
+    Point motionBlur = Preferences::Has("Render motion blur") ? centerVelocity : Point();
+
+    Preferences::ExtendedJumpEffects jumpEffectState = Preferences::GetExtendedJumpEffects();
+    if (jumpEffectState != Preferences::ExtendedJumpEffects::OFF)
 		motionBlur *= 1. + pow(hyperspacePercentage *
 			(jumpEffectState == Preferences::ExtendedJumpEffects::MEDIUM ? 2.4 : 5.), 2);
 
