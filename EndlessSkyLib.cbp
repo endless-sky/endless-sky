@@ -97,8 +97,11 @@
 		<Unit filename="source/CategoryList.h" />
 		<Unit filename="source/CategoryTypes.h" />
 		<Unit filename="source/ClickZone.h" />
+		<Unit filename="source/Collision.cpp" />
+		<Unit filename="source/Collision.h" />
 		<Unit filename="source/CollisionSet.cpp" />
 		<Unit filename="source/CollisionSet.h" />
+		<Unit filename="source/CollisionType.h" />
 		<Unit filename="source/Color.cpp" />
 		<Unit filename="source/Color.h" />
 		<Unit filename="source/Command.cpp" />
