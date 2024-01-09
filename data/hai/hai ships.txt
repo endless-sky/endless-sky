@@ -769,38 +769,7 @@ ship "Modified Shield Beetle"
 	"final explode" "final explosion large"
 	description "This is a prototype created by the Unfettered. They have upgraded its shield matrix as well as most other components of the ship, but this process has sacrificed stability and increased heat generation."
 
-ship "Modified Shield Beetle" "Si-Ra' Golden Beetle"
-	add attributes
-		"shields" -2000
-		"hull" 500
-		"heat dissipation" .05
-		"ion resistance" .25
-	outfits
-		"Tripulse Shredder" 8
-
-		"Hai Octopus Jammer" 3
-		"Hai Zephyr Cooling" 2
-		Hyperdrive
-		"Quantum Keystone"
-		"Hai Diamond Regenerator"
-		"Systems Core (Medium)"
-		"Value Detector"
-
-		"White Sun Reactor"
-		"Generator (Inferno Class)"
-		"Hai Gorge Batteries"
-		"Supercapacitor"
-
-		"Pulse Rifle" 77
-		"Dual Pulse Pistols"
-
-		`"Bondir" Atomic Thruster`
-		`"Bondir" Atomic Steering`
-	cargo
-		outfits
-			"Gold Bars" 20
-
-# he's really angry at this point if you kicked him to this beetle,
+# Si-Ra will use this modified beetle when provoked,
 # he risked everything to upgrade his ship and to kill you so that he can get back into Midas
 ship "Modified Shield Beetle" "Si-Ra' angry Beetle"
 	add attributes
@@ -1658,6 +1627,7 @@ ship "Shield Beetle" "Shield Beetle (Thunderhead)"
 
 
 # He Yi's Beetle (has flamethrower variant defined in the side missions, provided you sell flamers)
+# also has an ion variant with a nullifier you will bring him, for part 2
 ship "Stag Beetle"
 	sprite "ship/hai stag beetle"
 	thumbnail "thumbnail/hai stag beetle"
@@ -1783,10 +1753,50 @@ ship "Stag Beetle" "Stag Beetle (Flamer)"
 	gun -61 -14 "Flamethrower"
 	gun 61 -14 "Flamethrower"
 	turret -51 21.5 "Grab-Strike Turret"
-	turret 51 21.5 "Bullfrog Anti-Missile"
+	turret 51 21.5
 	turret -56.5 75 "Banisher Grav-Turret"
-	turret 56.5 75 "Bullfrog Anti-Missile"
-	turret 0 85.5 "Bullfrog Anti-Missile"
+	turret 56.5 75
+	turret 0 85.5
+
+ship "Stag Beetle" "Stag Beetle (Ion)"
+	outfits
+		"Ka'het Nullifier"
+		"Ion Cannon" 2
+		"Ionic Blaster Prototype" 2
+		"Railgun" 2
+		"Railgun Slug" 2000
+		"Ionic Turret Prototype" 2
+		
+		"Liquid Sodium Cooler"
+		"Systems Core (Large)" 2
+		"Outfits Expansion" 4
+		"Wanderer Ramscoop"
+		"Jump Drive"
+		
+		`"Bufaer" Atomic Steering`
+		"Afterburner (Comet Class)"
+		"Thruster (Lunar Class)"
+		
+		"Double Plasma Core"
+		"Large Biochemical Cell"
+		
+		"Thermal Repeater Rifle" 20
+		"Pulse Rifle" 47
+		"Dual Pulse Pistols" 10
+	gun 0 -7 "Ka'het Nullifier"
+	gun -22 -102 "Ion Cannon"
+	gun 22 -102 "Ion Cannon"
+	gun -34 -68 "Ionic Blaster Prototype"
+	gun 34 -68 "Ionic Blaster Prototype"
+	gun -49 -38 "Railgun"
+	gun 49 -38 "Railgun"
+	gun -61 -14
+	gun 61 -14
+	turret -51 21.5 "Ionic Turret Prototype"
+	turret 51 21.5 "Ionic Turret Prototype"
+	turret -56.5 75
+	turret 56.5 75
+	turret 0 85.5
 
 
 # Flagship of the Unfettered Hai, filled with the spoils of wars against Korath and Wanderers:

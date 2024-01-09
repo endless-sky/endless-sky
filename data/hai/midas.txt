@@ -32,26 +32,22 @@ ship "Sea Scorpion" "Si-Ra' Scorpion"
 	outfits
 		"Ionic Blaster Prototype" 4
 		"Ionic Turret Prototype" 2
-
 		"Systems Core (Small)"
 		"Hai Diamond Regenerator"
 		"Bright Cloud Shielding"
 		"Hai Octopus Jammer"
 		"Hai Cuttlefish Jammer"
-
 		"Small Heat Shunt"
 		"Hai Zephyr Cooling"
 		"Hai Williwaw Cooling"
 		"Outfits Expansion" 2
-
 		"Hai Chasm Batteries" 2
 		"Supercapacitor" 2
 		"Small Biochemical Cell"
 		"Boulder Reactor"
-		
+
 		"Pulse Rifle" 35
 		"Dual Pulse Pistols"
-
 		`"Biroo" Atomic Steering`
 		`"Biroo" Atomic Thruster`
 		"Afterburner (Asteroid Class)"
@@ -59,6 +55,34 @@ ship "Sea Scorpion" "Si-Ra' Scorpion"
 	cargo
 		outfits
 			"Gold Bars" 5
+
+ship "Modified Shield Beetle" "Si-Ra' Golden Beetle"
+	add attributes
+		"shields" -2000
+		"hull" 500
+		"heat dissipation" .05
+		"ion resistance" .25
+	outfits
+		"Tripulse Shredder" 8
+		"Hai Octopus Jammer" 3
+		"Hai Zephyr Cooling" 2
+		Hyperdrive
+		"Quantum Keystone"
+		"Hai Diamond Regenerator"
+		"Systems Core (Medium)"
+		"Value Detector"
+		"White Sun Reactor"
+		"Generator (Inferno Class)"
+		"Hai Gorge Batteries"
+		"Supercapacitor"
+
+		"Pulse Rifle" 77
+		"Dual Pulse Pistols"
+		`"Bondir" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+	cargo
+		outfits
+			"Gold Bars" 20
 
 ship "Marauder Firebird" "Marauder Firebird (Bars)"
 	crew 37
@@ -117,7 +141,6 @@ ship "Antlion"
 		"Scram Drive"
 		"Hai Diamond Regenerator"
 		"Systems Core (Medium)"
-
 		"Geode Reactor"
 		"Hai Valley Batteries"
 		"Value Detector" 2
