@@ -402,8 +402,9 @@ outfit "Tractor Beam"
 	weapon
 		"hardpoint sprite" "hardpoint/tractor beam"
 		"hardpoint offset" 4.
+		sound "tractor beam"
 		"hit effect" "tractor beam"
-		"tractor beam" 10
+		"tractor beam" 7
 		"velocity" 300
 		"lifetime" 1
 		"reload" 1
@@ -415,7 +416,6 @@ outfit "Tractor Beam"
 effect "tractor beam"
 	sprite "effect/tractor beam"
 		"frame rate" 3.5
-	sound "tractor beam"
 	"lifetime" 1
 	"velocity scale" 1
 

@@ -369,6 +369,7 @@ ship "Barb" "Barb (Proton)"
 		"X1050 Ion Engines"
 
 
+
 ship "Barb" "Barb (Gatling)"
 	outfits
 		"Gatling Gun"

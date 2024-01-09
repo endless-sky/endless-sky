@@ -2577,7 +2577,7 @@ ship "Mining Drone"
 	thumbnail "thumbnail/mining drone"
 	attributes
 		category "Drone"
-		"cost" 83000
+		"cost" 58000
 		"hull" 300
 		"automaton" 1
 		"mass" 12
