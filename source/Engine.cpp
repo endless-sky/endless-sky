@@ -621,8 +621,8 @@ void Engine::Step(bool isActive)
 			if(!it->IsYours() && !it->CanBeCarried())
 			{
 				bool isSelected = (flagship && flagship->GetTargetShip() == it);
-				const System *sys = it->GetSystem();
-				escorts.Add(*it, sys == currentSystem, player.KnowsName(*sys), fleetIsJumping, isSelected);
+				const System *system = it->GetSystem();
+				escorts.Add(*it, system == currentSystem, player.KnowsName(*system), fleetIsJumping, isSelected);
 			}
 	for(const shared_ptr<Ship> &escort : player.Ships())
 		if(!escort->IsParked() && escort != flagship && !escort->IsDestroyed())
@@ -635,8 +635,8 @@ void Engine::Step(bool isActive)
 					isSelected = true;
 					break;
 				}
-			const System *sys = escort->GetSystem();
-			escorts.Add(*escort, sys == currentSystem, player.KnowsName(*sys), fleetIsJumping, isSelected);
+			const System *system = escort->GetSystem();
+			escorts.Add(*escort, system == currentSystem, player.KnowsName(*system), fleetIsJumping, isSelected);
 		}
 
 	// Create the status overlays.
