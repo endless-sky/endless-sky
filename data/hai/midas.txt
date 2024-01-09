@@ -28,6 +28,7 @@ ship "Sea Scorpion" "Si-Ra' Scorpion"
 	add attributes
 		"weapon capacity" 4
 		"engine capacity" -7
+		"outfit space" 1
 	outfits
 		"Ionic Blaster Prototype" 4
 		"Ionic Turret Prototype" 2
@@ -54,6 +55,7 @@ ship "Sea Scorpion" "Si-Ra' Scorpion"
 		`"Biroo" Atomic Steering`
 		`"Biroo" Atomic Thruster`
 		"Afterburner (Asteroid Class)"
+		"Heshi"
 	cargo
 		outfits
 			"Gold Bars" 5

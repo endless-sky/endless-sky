@@ -1692,10 +1692,10 @@ ship "Stag Beetle"
 		"Sunbeam" 2
 		"Fire-Lance" 2
 		"Plasma Cannon" 2
+		"Thermal Repeater" 2
 		"Korath Detainer"
 		"Grab-Strike Turret"
-		"Thermal Repeater" 2
-		"Bullfrog Anti-Missile" 3
+		"Bullfrog Anti-Missile" 4
 		
 		"Liquid Sodium Cooler"
 		"Small Heat Shunt"
@@ -1707,12 +1707,13 @@ ship "Stag Beetle"
 		"Large Heat Shunt"
 		"Jump Drive"
 		
-		`"Bondir" Atomic Steering`
+		"Type 4 Radiant Steering"
 		"Afterburner (Comet Class)"
-		"Thruster (Lunar Class)"
+		"Type 3 Radiant Thruster"
 		
 		"Triple Plasma Core"
 		"Small Biochemical Cell"
+		"Supercapacitor"
 		
 		"Thermal Repeater Rifle" 20
 		"Pulse Rifle" 47
@@ -1725,8 +1726,8 @@ ship "Stag Beetle"
 	gun 22 -102 "Sunbeam"
 	gun -34 -68 "Fire-Lance"
 	gun 34 -68 "Fire-Lance"
-	gun -49 -38
-	gun 49 -38
+	gun -49 -38 "Plasma Cannon"
+	gun 49 -38 "Plasma Cannon"
 	gun -61 -14
 	gun 61 -14
 	turret -51 21.5
