@@ -356,8 +356,8 @@ outfit "Mining Laser"
 		"hull damage" 1.4
 		"minable damage" 1.9
 		"prospecting" 1
-	description "The development of the Beam Laser in the mid-2400s not only led to a revolution in space warfare, but also to the field of asteroid mining, as the traditional but inefficient method of towing asteroids to bases for extraction was supplanted by individual spacecraft that could precisely extract the ore from asteroids themselves. The modern Mining Laser is a derivative of the Beam Laser engineered to optimize mineral yield and extraction rates at the expense of range and shield damage."
-	description "	The Mining Laser also comes equipped with an extremely short range asteroid targeting scanner. As such, drones and fighters that have it installed will automatically engage in mining when launched."
+	description "The development of the Beam Laser in the mid-2400s not only led to advancements in space warfare, but also to the field of asteroid mining, as the traditional but inefficient method of towing asteroids to bases for extraction was supplanted by individual spacecraft that could precisely extract the ore from asteroids themselves."
+	description "	The modern Mining Laser is a derivative of the Beam Laser engineered to optimize mineral yield and extraction rates at the expense of range and shield damage."
 
 
 outfit "Mining Laser Turret"
@@ -387,8 +387,8 @@ outfit "Mining Laser Turret"
 		"hull damage" 1.4
 		"minable damage" 1.9
 		"prospecting" 1
-	description "The efficiency of a Mining Laser is truly brought out when mounted on a turreted base, which makes it easier for large and slow ships with spacious cargo holds to mine."
-	description "	Mining Laser Turrets are designed to be used in conjunction with Asteroid Scanners, as being unable to target asteroids means you have to fire the weapon manually as if it were a fixed gun."
+	description "While asteroid miners typically prefer more nimble ships that can keep speed with asteroids, the Mining Laser Turret makes it easier for large and slow ships with spacious cargo holds to mine."
+	description "	Mining Laser Turrets are designed to be used in conjunction with asteroid scanners, as being unable to target asteroids means you have to aim the weapon manually as if it were a fixed gun."
 
 
 outfit "Tractor Beam"
@@ -410,8 +410,7 @@ outfit "Tractor Beam"
 		"reload" 1
 		"firing energy" 2.1
 		"firing heat" .8
-	description "The anti-gravity properties of repulsor engines that allow ships to escape the gravity well of planets, without the difficulty that humanity once faced before the era of the hyperdrive, started a revolution in human spaceflight during the 24th century. It was not long before this technology was put to use elsewhere."
-	description "	Tractor beams utilize repulsor technology to allow ships to attract space debris to them, be that the ores from a recently mined asteroid, or the dumped cargo from a merchant ship fleeing for its life. This has led to tractor beams being a popular outfit among asteroid miners and pirates alike."
+	description "The anti-gravity properties of repulsor engines started a revolution in human spaceflight during the 24th century, and it was not long before this technology was put to use elsewhere. Tractor beams utilize repulsor technology to allow ships to attract space debris to them, be that the ores from a recently mined asteroid, or the dumped cargo from a merchant ship fleeing for its life. This has led to tractor beams being a popular outfit among asteroid miners and pirates alike."
 
 effect "tractor beam"
 	sprite "effect/tractor beam"
