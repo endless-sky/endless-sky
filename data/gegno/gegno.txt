@@ -206,12 +206,14 @@ phrase "gegno mining payment dialog"
 		"After you depart from your ship,"
 		"Almost absent-mindedly,"
 		"Without paying you the slightest attention,"
+		"With only a noncommittal grunt,"
 		
 	word
 		" a few bulky Gegno "
 		" a group of irritated Gegno "
 		" some unenthused Gegno workers "
 		" a large group of Gegno "
+		" a couple of hulking Gegno "
 	word
 		"hesitantly"
 		"quickly"
@@ -222,5 +224,6 @@ phrase "gegno mining payment dialog"
 		" unload your ship of materials,"
 		" unload the materials out of your cargo bay,"
 		" haul the materials out of your ship,"
+		" unpack the materials from your cargo hold,"
 	word
 		" and you are paid <payment> credits."
