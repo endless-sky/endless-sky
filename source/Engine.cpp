@@ -1463,8 +1463,11 @@ void Engine::CalculateStep()
 	const Ship *flagship = player.Flagship();
 	bool flagshipWasUntargetable = (flagship && !flagship->IsTargetable());
 	bool wasHyperspacing = (flagship && flagship->IsEnteringHyperspace());
+	const System *flagshipSystem = (flagship ? flagship->GetSystem() : nullptr);
 	// First, move the player's flagship.
 	MoveShip(player.FlagshipPtr());
+	bool flagshipIsUntargetable = (flagship && !flagship->IsTargetable());
+	bool flagshipBecameTargetable = flagshipWasUntargetable && !flagshipIsUntargetable;
 	// Then, move the other ships.
 	for(const shared_ptr<Ship> &it : ships)
 	{
@@ -1474,8 +1477,8 @@ void Engine::CalculateStep()
 		MoveShip(it);
 		// If either the flagship or this ship uncloaked this frame and both are uncloaked,
 		// then they have encountered each other.
-		if(((wasUntargetable && it->IsTargetable()) || (flagshipWasUntargetable && flagship->IsTargetable()))
-			&& flagship->GetSystem() == it->GetSystem() && flagship->IsTargetable())
+		if(((wasUntargetable && it->IsTargetable()) || flagshipBecameTargetable)
+			&& flagshipSystem == it->GetSystem() && !flagshipIsUntargetable)
 				eventQueue.emplace_back(player.FlagshipPtr(), it, ShipEvent::ENCOUNTER);
 	}
 	// If the flagship just began jumping, play the appropriate sound.
