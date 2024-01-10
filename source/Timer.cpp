@@ -213,6 +213,7 @@ Timer Timer::Instantiate(map<string, string> &subs, const System *origin, int ju
 	result.idleMaxSpeed = idleMaxSpeed;
 	result.requirePeaceful = requirePeaceful;
 
+	// Validate all the actions attached to the timer, and if they're *all* valid, instantiate them too
 	string reason;
 	auto ait = actions.begin();
 	for( ; ait != actions.end(); ++ait)
@@ -230,6 +231,7 @@ Timer Timer::Instantiate(map<string, string> &subs, const System *origin, int ju
 	for(const auto &it : actions)
 		result.actions[it.first] = it.second.Instantiate(subs, origin, jumps, payload);
 
+	// Calculate the random variance to the wait time
 	result.waitTime = waitTime;
 	if(randomWaitTime > 1)
 		result.waitTime += Random::Int(randomWaitTime);
@@ -252,9 +254,13 @@ bool Timer::IsOptional() const
 }
 
 
-
+// This method gets called every time the *possible* reset conditions are met,
+// regardless of whether this particular timer is set to reset on them.
+// If it is, then it resets the elapsed time to 0, marks the timer as inactive,
+// and conditionally fires the reset action, if any.
 void Timer::ResetOn(ResetCondition cond, PlayerInfo &player, UI *ui, const Mission &mission)
 {
+	// Check whether this timer actually wants to reset on the given condition.
 	bool reset = cond == resetCondition;
 	reset |= (cond == Timer::ResetCondition::LEAVE_ZONE && resetCondition == Timer::ResetCondition::PAUSE);
 	reset |= (cond == Timer::ResetCondition::LEAVE_SYSTEM && (resetCondition == Timer::ResetCondition::PAUSE
@@ -262,6 +268,8 @@ void Timer::ResetOn(ResetCondition cond, PlayerInfo &player, UI *ui, const Missi
 	if(isActive && reset)
 	{
 		timeElapsed = 0;
+		// Perform the reset action, if there is one, assuming *either* it
+		// hasn't fired yet, *or* the timer is configured to fire it every reset.
 		if(repeatReset || !resetFired)
 		{
 			auto it = actions.find(TimerTrigger::RESET);
@@ -277,17 +285,27 @@ void Timer::ResetOn(ResetCondition cond, PlayerInfo &player, UI *ui, const Missi
 
 void Timer::Step(PlayerInfo &player, UI *ui, const Mission &mission)
 {
+	// Don't do any work for already-completed timers.
 	if(isComplete)
 		return;
 	const Ship *flagship = player.Flagship();
+	// Since we can only advance timers while flying, we can't do that if we have no flagship.
 	if(!flagship)
 		return;
+	// Now we go through all the possible reset/do-not-advance conditions for the timer.
+	// If and only if it passes all of them, the timer is marked as active and it advances.
+	// For each, if it fails, it calls ResetOn() with that reset condition.
+
+	// First we check to see if the player is in the specified system (or one of them).
 	if((system && flagship->GetSystem() != system) ||
 		(!systems.IsEmpty() && !systems.Matches(flagship->GetSystem())))
 	{
 		ResetOn(Timer::ResetCondition::LEAVE_SYSTEM, player, ui, mission);
 		return;
 	}
+
+	// Then we check if the timer requires the player to be idle (not turning, accelerating, or moving faster than
+	// the idle max speed) or peaceful (not firing any weapons). 
 	if(requireIdle || requirePeaceful)
 	{
 		bool shipIdle = true;
@@ -303,6 +321,8 @@ void Timer::Step(PlayerInfo &player, UI *ui, const Mission &mission)
 			return;
 		}
 	}
+
+	// Then we check if the flagship is required to be uncloaked.
 	if(requireUncloaked)
 	{
 		double cloak = flagship->Cloaking();
@@ -312,6 +332,8 @@ void Timer::Step(PlayerInfo &player, UI *ui, const Mission &mission)
 			return;
 		}
 	}
+
+	// Finally, we check if the flagship is required to be close to a particular stellar object.
 	if(proximity > 0.)
 	{
 		bool inProximity = false;
@@ -335,7 +357,12 @@ void Timer::Step(PlayerInfo &player, UI *ui, const Mission &mission)
 			return;
 		}
 	}
+
+	// Saving our active state allows us to avoid unnecessary resets.
 	isActive = true;
+	
+	// And here is the actual core of the timer: advance the time by 1 tick, and
+	// if it's been long enough, fire the timeup action.
 	if(++timeElapsed >= waitTime)
 	{
 		auto it = actions.find(TimerTrigger::TIMEUP);
