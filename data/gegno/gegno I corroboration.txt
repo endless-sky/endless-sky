@@ -1091,7 +1091,7 @@ mission "Acquiescence"
 					has "dead augen"
 
 
-			`	After having gone through the cases in which you've been involved in, the trio addresses the gathering once more with a big speech. Their voices echo through the outside air, and all of the Gegno respond with concurrent bellows or chants, followed by more silence. Oddly enough, you've been treated as an equal with all of the Gegno here - you stand amongst them as part of the gathering, rather than some foreign alien. You aren't restricted at all, even with a weapon on you.`
+			`	After having gone through all of the cases which involved you, the trio addresses the gathering once more with a big speech. Their voices echo through the outside air, and all of the Gegno respond with concurrent bellows or chants, followed by more silence. Oddly enough, you've been treated as an equal with all of the Gegno here. You suddenly feel as if you are standing amongst them as part of the gathering, rather than as some foreign alien. You aren't restricted at all, even with a weapon on you.`
 			`	One of the smaller Gegno in the trio gestures back to you and speaks once more. You still don't understand a word they are saying, but it must have been important, as all of the other Gegno except your guide back away several steps. The trio member invites you with both arms to use the objects and the table, while all three of them back up themselves, leaving you alone in the open with some sort of expectation.`
 			choice
 				`	(Approach the table and try to explain your situations.)`
