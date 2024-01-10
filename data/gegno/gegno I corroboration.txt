@@ -35,12 +35,6 @@ mission "Passive-Aggressive Observations"
 					goto leave
 				`	(Approach the landing zone.)`
 			`	Throttling your ship forward, you head towards the Vi's landing zone. While the other transport vessel has touched down already, the interceptor is still in the process of landing, but suddenly whips around to face you as you approach. Unlike the Scin's warships you confronted a few days ago, which were more reactive to your presence than direct about it, the Vi here are going out of their way to approach your ship, in contrast to just a few moments ago. A moment later, you receive what sounds like an angry hail from the interceptor.`
-			
-			
-			`	Throttling your ship forward, you head towards the Vi's landing zone. While the other transport vessel has touched down already, the interceptor is still in the process of landing, but suddenly whips around to face you as you approach. Unlike the initial reaction of the Scin's warships you confronted a few days ago, the Vi are quick to respond to your presence, and in contrast to a few minutes ago, are clearly acknowledging it. A moment later, you receive what sounds like an angry hail from the interceptor.`
-			
-			
-			
 			`	"Tchii ciei escitch tchii iedf teih Voordhte!"`
 			choice
 				`	(Leave now.)`

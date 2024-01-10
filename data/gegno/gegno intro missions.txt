@@ -388,12 +388,6 @@ mission "Giaru Gegno: Quarg Contact"
 			label end
 			`	The Quarg motions a bow to you, and the first one from earlier escorts you out of the room. It seems associating with these so-called "Gegno" is very unlikely for you, and you will have to deal with their xenophobia for the foreseeable future.`
 				decline
-			
-			label "gegno destruction"
-			action
-				"reputation: Gegno Quarg" = 0
-			`	In progress.`
-				decline
 
 
 mission "Gegno Quarg Direction to Ringworld"
