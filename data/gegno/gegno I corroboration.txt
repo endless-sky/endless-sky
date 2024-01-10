@@ -317,7 +317,7 @@ mission "Curious Civilians"
 			government "Gegno"
 		fail
 		"gegno: encounters" ++
-		event "gegno: scin surveillance"
+		event "gegno: civilian suspicion"
 
 
 mission "Gegno Suspicions"
@@ -443,7 +443,7 @@ mission "Scin Surveillance"
 		near "Heutesl" 100
 	to offer
 		random < 30
-		has "event: gegno: scin surveillance"
+		has "event: gegno: civilian suspicion"
 		not "Gegno Genocide Defense: offered"
 		not "Gegno Anticipation: offered"
 		not "Gegno Intervention: offered"

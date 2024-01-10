@@ -17,7 +17,7 @@ event "gegno space label"
 		sprite label/gegno
 
 
-event "gegno: suspicions"
+event "gegno: civilian suspicion"
 	government "Gegno"
 		"send untranslated hails"
 		"friendly hail" "gegno untranslated"
