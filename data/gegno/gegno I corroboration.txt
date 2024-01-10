@@ -317,7 +317,7 @@ mission "Curious Civilians"
 			government "Gegno"
 		fail
 		"gegno: encounters" ++
-		event "gegno: suspicions"
+		event "gegno: scin surveillance"
 
 
 mission "Gegno Suspicions"
@@ -443,7 +443,7 @@ mission "Scin Surveillance"
 		near "Heutesl" 100
 	to offer
 		random < 30
-		has "event: gegno: suspicions"
+		has "event: gegno: scin surveillance"
 		not "Gegno Genocide Defense: offered"
 		not "Gegno Anticipation: offered"
 		not "Gegno Intervention: offered"
@@ -654,7 +654,7 @@ mission "Gegno Anticipation"
 				goto "visit a"
 
 			label "visit a"
-			`	A few more pathways later, you are at the end of your seemingly long trip through the ringworld, finding yourself back where you started - the docking facility where your ship is stationed. Although it felt like a dizzying maze to follow Adrauni around back to here, you can't help but imagine how much more confusing it would be to explore the entirety of a ringworld, considering that was only several minutes worth. Adrauni stops and turns to you, slightly lowering itself to speak closer to your own height. "You must seek audience on your own, tenacious, behalf. Visit the Gegno homeworld of Dueyu Eitch, present yourself in a manner that you desire to be perceived. Only then will you find your desired answer."`
+			`	With the Gegno leaving the two of you at the next one, you follow Adrauni down a few more pathways to one last stop. You are at the end of your seemingly long trip through the ringworld, finding yourself back where you started - the docking facility where your ship is stationed. Although it felt like a dizzying maze to follow Adrauni around back to here, you can't help but imagine how much more confusing it would be to explore the entirety of a ringworld, considering that was only several minutes worth. Adrauni stops and turns to you, slightly lowering itself to speak closer to your own height. "You must seek audience on your own, tenacious, behalf. Visit the Gegno homeworld of Dueyu Eitch, present yourself in a manner that you desire to be perceived. Only then will you find your desired answer."`
 			
 			label "epilogue a"
 			choice
@@ -850,7 +850,7 @@ mission "Gegno Anticipation"
 	npc
 		on provoke
 			fail
-			"reputation: Gegno" = 0
+			"reputation: Gegno" = -100
 			"reputation: Gegno Vi" = -100
 			"reputation: Gegno Scin" = -100
 			dialog `After deciding to fire upon the Gegno fleet surveying your visit to their homeworld, you are met with aggressive opposition along with what sound like countless angry hails. Whatever chance you had left of associating with the Gegno is gone now.`
@@ -906,8 +906,8 @@ mission "Gegno Intervention"
 			`While you are in the midst of docking with the ringworld, you notice a large tan-colored Gegno ship already present in your designated hangar, surrounded by several ships from both the factions of the Vi and Scin. Near them, a small group of Quarg seem to be "conversing" with a smaller group of Gegno that seem rather upset. As soon as you exit your ship, both groups stop and look your way as you recognize Adrauni swiftly approaching you alongside a Gegno that is wearing a very intricate set of armor, neither Scin nor Vi in appearance.`
 			`	Adrauni does not hesitate to address you. "<first> <last>. I presume you understand the meaning of this affair."`
 			choice
-				`	"What's going on?"`
 				`	"I'm not sure what's happening right now."`
+				`	"I think I understand the gist of it."`
 
 			`	The Quarg now stands in front of you, slightly lowering to speak to you. "As so happens to be the arduous case, several complaints we Quarg have received from the Gegno. Meddled in their affairs you have, one too many times. As much of a desire I have to converse with you more on the matter, not I, nor the Quarg, will be of any further help to you in your endeavors here." Adrauni turns to the Gegno, who seems almost dismissive, or at the very least trying to avoid eye contact with you. After a brief discussion of which you understood nothing, the Gegno walks off to the tan-colored ship. As if on cue, all of the other Gegno in the hangar return to their own respective ships.`
 			`	As you watch all of the ships leave, Adrauni speaks once more. "Eight revolutions you have been given by the Gegno to make an appearance on their world. If to this you do not comply, then you are, in their words, dismissed from their space."`
@@ -981,7 +981,7 @@ mission "Acquiescence"
 	destination "Tschyss"
 	on offer
 		conversation
-			`The Gegno display caution once more as fleets of both Vi and Scin ships orbit their homeworld while you approach it. Your Quarg "escort", which was already in the system before you, stays behind. A few smaller Gegno ships from the fleets follow you down to the planet's surface, forming up in front of you to lead you to your destination.`
+			`The Gegno display caution once more as fleets of both Vi and Scin ships orbit their homeworld while you approach it. Your Quarg "escort", which was already in the system before you, stays behind. A few smaller Gegno ships from each fleet follow you down to the planet's surface, forming up in front of you to lead you to your destination.`
 				to display
 					has "gegno anticipation: quarg escort"
 				
