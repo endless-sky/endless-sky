@@ -11,6 +11,35 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+
+
+ship "Aerie" "Aerie (Miner)"
+	outfits
+		"Mining Laser" 2
+		"Mining Laser Turret" 2
+		"Tractor Beam"
+		
+		"Asteroid Scanner" 2
+		"NT-200 Nucleovoltaic"
+		"KP-6 Photovoltaic Panel" 2
+		"LP072a Battery Pack"
+		"D67-TM Shield Generator"
+		"Cargo Expansion"
+		"Large Radar Jammer"
+		"Laser Rifle" 3
+		
+		"X1100 Ion Reverse Thruster"
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+	gun "Mining Laser"
+	gun "Mining Laser"
+	turret "Tractor Beam"
+	turret "Mining Laser Turret"
+	turret "Mining Laser Turret"
+
+
+
 ship "Argosy" "Argosy (Blaster)"
 	outfits
 		"Energy Blaster" 4
@@ -352,6 +381,17 @@ ship "Barb" "Barb (Gatling)"
 		"X1050 Ion Engines"
 
 
+ship "Barb" "Barb (Miner)"
+	outfits
+		"Mining Laser Turret"
+
+		"nGVF-AA Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+
+		"X1050 Ion Engines"
+
+
 
 ship "Bastion" "Bastion (Heavy)"
 	outfits
@@ -526,6 +566,36 @@ ship "Behemoth" "Behemoth (Speedy)"
 		"A125 Atomic Steering"
 		"A375 Atomic Steering"
 		"Scram Drive"
+
+
+ship "Behemoth" "Behemoth (Miner)"
+	outfits
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 90
+		"Mining Laser Turret" 4
+		"Tractor Beam" 2
+		
+		"Asteroid Scanner" 2
+		"NT-200 Nucleovoltaic"
+		"LP144a Battery Pack"
+		"D67-TM Shield Generator"
+		"Cooling Ducts" 2
+		"Large Radar Jammer"
+		"Cargo Expansion" 2
+		"Laser Rifle" 6
+		
+		"AR120 Reverse Thruster"
+		"A250 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Scram Drive"
+	gun "Meteor Missile Launcher"
+	gun "Meteor Missile Launcher"
+	turret "Tractor Beam"
+	turret "Mining Laser Turret"
+	turret "Mining Laser Turret"
+	turret "Mining Laser Turret"
+	turret "Mining Laser Turret"
+	turret "Tractor Beam"
 
 
 
@@ -1388,6 +1458,19 @@ ship "Cutthroat" "Cutthroat (Jousting)"
 
 
 
+ship "Dagger" "Dagger (Miner)"
+	outfits
+		"Mining Laser"
+
+		"nGVF-BB Fuel Cell"
+		"Supercapacitor"
+		"D14-RN Shield Generator"
+		
+		"X1700 Ion Thruster"
+		"X1200 Ion Steering"
+
+
+
 ship "Dreadnought" "Dreadnought (Jump)"
 	outfits
 		"Torpedo Launcher" 4
@@ -1729,6 +1812,44 @@ ship "Flivver" "Flivver (Racing)"
 
 
 
+ship "Freighter" "Freighter (Miner A)"
+	outfits
+		"Mining Laser Turret"
+		"Tractor Beam" 2
+
+		"Asteroid Scanner"
+		"nGVF-CC Fuel Cell"
+		"LP072a Battery Pack"
+		"D14-RN Shield Generator"
+
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"X1100 Ion Reverse Thruster"
+		"Scram Drive"
+	turret "Tractor Beam"
+	turret "Mining Laser Turret"
+	turret "Tractor Beam"
+
+
+ship "Freighter" "Freighter (Miner B)"
+	outfits
+		"Mining Laser Turret" 2
+		"Tractor Beam"
+
+		"nGVF-CC Fuel Cell"
+		"LP072a Battery Pack"
+		"D14-RN Shield Generator"
+
+		"Asteroid Scanner"
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"X1100 Ion Reverse Thruster"
+		"Scram Drive"
+	turret "Mining Laser Turret"
+	turret "Tractor Beam"
+	turret "Mining Laser Turret"
+
+
 ship "Freighter" "Freighter (Fancy)"
 	outfits
 		"Laser Turret" 2
@@ -1951,7 +2072,7 @@ ship "Fury" "Fury (Missile)"
 		"Hyperdrive"
 
 
-ship "Fury" "Fury (Miner)"
+ship "Fury" "Fury (Miner A)"
 	outfits
 		"Heavy Laser" 2
 		"nGVF-CC Fuel Cell"
@@ -1961,6 +2082,26 @@ ship "Fury" "Fury (Miner)"
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
 		"Hyperdrive"
+
+
+ship "Fury" "Fury (Miner B)"
+	outfits
+		"Mining Laser" 2
+		"Energy Blaster" 2
+		
+		"nGVF-CC Fuel Cell"
+		"LP036a Battery Pack"
+		"Small Radar Jammer" 2
+		
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
+		"Hyperdrive"
+	gun "Mining Laser"
+	gun "Mining Laser"
+	gun
+	gun
+	gun "Energy Blaster"
+	gun "Energy Blaster"
 
 
 
@@ -2112,7 +2253,7 @@ ship "Hawk" "Hawk (Speedy)"
 		"Hyperdrive"
 
 
-ship "Hawk" "Hawk (Miner)"
+ship "Hawk" "Hawk (Miner A)"
 	outfits
 		"Heavy Laser" 2
 		"S3 Thermionic"
@@ -2121,6 +2262,21 @@ ship "Hawk" "Hawk (Miner)"
 		"Asteroid Scanner"
 		"A120 Atomic Thruster"
 		"A255 Atomic Steering"
+		"Hyperdrive"
+
+
+ship "Hawk" "Hawk (Miner B)"
+	outfits
+		"Mining Laser" 2
+		
+		"nGVF-CC Fuel Cell"
+		"KP-6 Photovoltaic Panel" 2
+		"LP036a Battery Pack"
+		"D23-QP Shield Generator"
+		"Small Radar Jammer"
+		
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
 		"Hyperdrive"
 
 
@@ -2148,7 +2304,7 @@ ship "Headhunter" "Headhunter (Particle)"
 		"Hyperdrive"
 
 
-ship "Headhunter" "Headhunter (Miner)"
+ship "Headhunter" "Headhunter (Miner A)"
 	outfits
 		"Particle Cannon" 2
 		"NT-200 Nucleovoltaic"
@@ -2157,6 +2313,21 @@ ship "Headhunter" "Headhunter (Miner)"
 		"Asteroid Scanner"
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
+		"Hyperdrive"
+
+
+ship "Headhunter" "Headhunter (Miner B)"
+	outfits
+		"Mining Laser" 4
+		
+		"Asteroid Scanner"
+		"RT-I Radiothermal"
+		"KP-6 Photovoltaic Array"
+		"LP072a Battery Pack"
+		"D23-QP Shield Generator"
+		
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
 		"Hyperdrive"
 
 
@@ -3146,6 +3317,18 @@ ship "Sparrow" "Sparrow (Patrol)"
 		"Hyperdrive"
 
 
+ship "Sparrow" "Sparrow (Miner)"
+	outfits
+		"Mining Laser" 2
+		
+		"nGVF-BB Fuel Cell"
+		"LP036a Battery Pack"
+
+		"Chipmunk Plasma Thruster"
+		"Chipmunk Plasma Steering"
+		"Hyperdrive"
+
+
 
 ship "Splinter" "Splinter (Laser)"
 	outfits
@@ -3233,6 +3416,19 @@ ship "Star Barge" "Star Barge (Armed)"
 		"Hyperdrive"
 
 
+ship "Star Barge" "Star Barge (Miner)"
+	outfits
+		"Mining Laser Turret"
+
+		"nGVF-BB Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		
+		"X1700 Ion Thruster"
+		"X1200 Ion Steering"
+		"Hyperdrive"
+
+
 
 ship "Star Queen" "Star Queen (Hai)"
 	outfits
@@ -3266,6 +3462,22 @@ ship "Star Queen" "Star Queen (Hai Trafficker)"
 		Ramscoop
 		"Scram Drive"
 		"Security Station" 2
+
+
+
+ship "Sunder" "Sunder (Heavy)"
+	outfits
+		"Mining Laser" 2
+		"Mining Laser Turret"
+
+		"Asteroid Scanner"
+		"nGVF-DD Fuel Cell"
+		"LP036a Battery Pack"
+		"D23-QP Shield Generator"
+
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Scram Drive"
 
 
 
