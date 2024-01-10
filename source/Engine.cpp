@@ -1394,13 +1394,6 @@ void Engine::EnterSystem()
 		Messages::Add(GameData::HelpMessage("basics 1"), Messages::Importance::High);
 		Messages::Add(GameData::HelpMessage("basics 2"), Messages::Importance::High);
 	}
-
-	// If the flagship is targetable when it enters a system,
-	// it has encountered all targetable ships in the system.
-	if(flagship->IsTargetable())
-		for(const shared_ptr<Ship> &ship : ships)
-			if(ship->GetSystem() == system && ship->IsTargetable())
-				eventQueue.emplace_back(player.FlagshipPtr(), ship, ShipEvent::ENCOUNTER);
 }
 
 
@@ -1472,7 +1465,7 @@ void Engine::CalculateStep()
 	bool wasHyperspacing = (flagship && flagship->IsEnteringHyperspace());
 	// First, move the player's flagship.
 	MoveShip(player.FlagshipPtr());
-	// Then, move all the rest of the ships.
+	// Then, move the other ships.
 	for(const shared_ptr<Ship> &it : ships)
 	{
 		if(it == player.FlagshipPtr())
@@ -1749,11 +1742,6 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 			else
 				for(const auto &sound : jumpSounds)
 					Audio::Play(sound.first, position);
-
-			// If this ship entered the same system as the flagship and both are targetable,
-			// then they have encountered each other.
-			if(flagship->IsTargetable() && ship->IsTargetable())
-				eventQueue.emplace_back(player.FlagshipPtr(), ship, ShipEvent::ENCOUNTER);
 		}
 	}
 
