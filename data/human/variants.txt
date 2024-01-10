@@ -1535,6 +1535,7 @@ ship "Dreadnought" "Dreadnought (Plasma Jump)"
 		"Catalytic Ramscoop"
 
 
+
 ship "Enforcer" "Enforcer (CCOR)"
 	outfits
 		"Energy Blaster" 4
@@ -1550,7 +1551,8 @@ ship "Enforcer" "Enforcer (CCOR)"
 		"Greyhound Plasma Thruster"
 		"Hyperdrive"
 
-		
+
+
 ship "Falcon" "Falcon (Heavy)"
 	outfits
 		"Torpedo Launcher" 2
@@ -1639,6 +1641,7 @@ ship "Falcon" "Falcon (Laser Chaser)"
 		"Heavy Laser" 4
 		"Armageddon Core"
 
+
 ship "Falcon" "Falcon (Javelin)"
 	outfits
 		"Twin Blaster" 4
@@ -1666,6 +1669,7 @@ ship "Falcon" "Falcon (Javelin)"
 	turret "Heavy Anti-Missile Turret"
 	turret "Javelin Turret"
 	turret "Javelin Turret"
+
 
 
 ship "Firebird" "Firebird (Hai Shields)"
@@ -1756,6 +1760,7 @@ ship "Firebird" "Firebird (Plasma)"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 
+
 ship "Firebird" "Firebird (CCOR)"
 	outfits
 		"Twin Modified Blaster" 4
@@ -1776,6 +1781,7 @@ ship "Firebird" "Firebird (CCOR)"
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"
+
 
 
 ship "Flivver" "Flivver (Hai)"
@@ -2513,6 +2519,7 @@ ship "Leviathan" "Leviathan (Particle Chaser)"
 		"Quad Blaster Turret" 2
 		"Armageddon Core"
 
+
 ship "Leviathan" "Leviathan (CCOR)"
 	outfits
 		"Plasma Cannon" 4
@@ -2533,6 +2540,7 @@ ship "Leviathan" "Leviathan (CCOR)"
 		"Impala Plasma Steering"
 		"Chipmunk Plasma Steering"
 		"Scram Drive"
+
 
 
 ship "Manta" "Manta (Mark II)"
@@ -3198,7 +3206,6 @@ ship "Saber" "Saber (CCOR Javelin)"
 		"Greyhound Plasma Steering"
 		"Chipmunk Plasma Steering"
 		"Hyperdrive"
-
 
 
 ship "Saber" "Saber (CCOR Gatling)"
