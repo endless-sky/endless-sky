@@ -1086,6 +1086,9 @@ tip "missile strength:"
 tip "anti-missile:"
 	`The power of the anti-missile shots. Higher values make it easier to destroy stronger projectiles.`
 
+tip "tractor beam:"
+	`The base velocity that this weapon pulls flotsam toward itself. Heavier flotsam is more difficult to pull.`
+
 
 
 # Flight checks:
