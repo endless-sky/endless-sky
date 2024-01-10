@@ -1105,7 +1105,7 @@ mission "Acquiescence"
 
 
 			label "explain"
-			`	Walking up to the table, you try your hardest to explain each situation one by one. Since you can't read or do anything with the actual display on the monitor, you try picking up the models, to which nobody seems bothered by. At the same time, you gesture using your hands, mainly representing your ship flying "away". You wonder if anything makes any sense to the Gegno, but they don't seem to be paying attention to your words or actions themselves, rather, they seem to respond to the tone and emotion of them. After doing your best to describe everything, you back off from the table with the trio march back up to it, discussing amongst themselves. They start moving all of the models aside as if they're setting up for something.`
+			`	Walking up to the table, you try your hardest to explain each situation one by one. Since you can't read or do anything with the actual display on the monitor, you try picking up the models, which nobody seems to be bothered by. At the same time, you gesture using your hands, mainly representing your ship flying "away". You wonder if anything makes any sense to the Gegno, but they don't seem to be paying attention to your words or actions themselves, rather, they seem to respond to the tone and emotion of them. After doing your best to describe everything, you back off from the table, and the trio march back up to it, discussing your response amongst themselves. They start moving all of the models aside as if they're setting up for something.`
 				goto "what does home mean"
 
 
