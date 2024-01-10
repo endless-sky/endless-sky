@@ -44,7 +44,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "StartConditions.h"
 #include "StellarObject.h"
 #include "System.h"
-#include "Timer.h"
 #include "UI.h"
 
 #include <algorithm>
