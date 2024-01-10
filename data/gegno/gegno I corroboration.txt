@@ -183,8 +183,8 @@ mission "Brief Bystander"
 	on complete
 		"gegno: encounters" ++
 		conversation
-			`As usual, the presence of scattered recording instruments on the surface of this planet contradicts what little interest the Gegno appear to be giving it nowadays, despite its location within the Gegno's home system of Heutesl. Still, since this planet isn't strictly owned by the Gegno, it makes for a convenient place to stop, and they have seemed to neither notice nor care when you have landed here before.`
-			`	However, as you fly around this time, you notice a small Gegno shuttle parked on the ground. The tan coloration of its hull suggests that it's a civilian craft, but what it's doing here is unknown.`
+			`The presence of scattered recording instruments on the surface of this planet contradicts what little interest the Gegno appear to be giving it nowadays, despite its location within the Gegno's home system of Heutesl. Still, since this planet isn't strictly owned by the Gegno, it makes for a convenient place to stop, and they seem to neither notice nor care that you have landed here.`
+			`	However, as you fly around, you notice a small Gegno shuttle parked on the ground. The tan coloration of its hull suggests that it's a civilian craft, but what it's doing here is unknown.`
 			choice
 				`	Investigate.`
 					goto investigate
@@ -241,7 +241,7 @@ mission "Battle over Zydee"
 	on offer
 		"gegno: encounters" ++
 		conversation
-			`Although this planet is uninhabited, there are more than a few Gegno Scin ships currently parked across the surface. It seems like there's an ongoing operation to continue constructing what infrastructure has been built in past, and the hard working Scin pay little to no attention to your visit.`
+			`Although this planet is uninhabited, there are more than a few Gegno Scin ships currently parked across the surface. It seems like there's an ongoing operation to continue constructing what infrastructure has been built in past, and the hard-working Scin pay little to no attention to your visit.`
 			`	However, a few moments later, the Scin suddenly start scurrying to their ships. You haven't gotten close enough to alarm them, at least from your experiences with them so far. They begin taking off one by one in a hurried fashion, but not towards you - the <ship>'s sensors suddenly begin picking up a large Gegno Vi fleet entering the system. It appears that this place is turning into a battlefield, and getting caught up in the middle of it is likely something you should avoid.`
 				accept
 	on enter "Kneirc"
@@ -336,8 +336,8 @@ mission "Gegno Suspicions"
 		not "Gegno Genocide Defense: offered"
 	on offer
 		conversation
-			`After you go through your post-docking routine and enter the ringworld, you can't help but feel that something is a bit off. Normally the Quarg here would be swiftly walking about, focused on attending to their duties, but for some reason, there seems to be less of them around than usual. Moreover, those you do come across are occasionally having discussions with one another, sometimes looking in your direction even for the slightest second. What stands out the most is the utter lack of any Gegno in the area you're visiting.`
-			`	A few minutes later, while you are making your way through the pristine interior of the ring, you hear a voice call to you from down one of the various branching corridors. Turning around, you recognize the unique attire of the Quarg that has helped you in the past, along with a few others. "Circumstantial greetings once more, <first> <last>. Might we have a significant moment of your attention?"`
+			`After you go through your post-docking routine and enter the ringworld, you can't help but feel that something is a bit off. Normally, the Quarg here would be swiftly walking about, focused on attending to their duties, but for some reason, there seem to be fewer of them around than usual. Moreover, those you do come across are occasionally having discussions with one another, sometimes looking in your direction even for the slightest second. What stands out the most is the utter lack of any Gegno in the area you're visiting.`
+			`	A few minutes later, while you are making your way through the pristine interior of the ring, you hear a voice call to you from down one of the various branching corridors. Turning around, you recognize the unique attire of the Quarg whom has helped you in the past, along with a few others. "Circumstantial greetings once more, <first> <last>. Might we have a significant moment of your attention?"`
 			choice
 				`	"Sure."`
 					goto "follow"
@@ -352,7 +352,7 @@ mission "Gegno Suspicions"
 					"reputation: Gegno Vi" < 0
 					"reputation: Gegno Scin" < 0
 
-			`	"Formerly, I have offered suggestions of heedful interplay regarding the Gegno. We have been alerted of a few additional encounters you've experienced, although they seemed minimal in nature. In such cases, it has been generally described that you left in a timely manner, for which we are notably appreciative. However," the Quarg continues, "despite your efforts in recommended cautions, there are some meaningful figures of Gegno standing that expressed frustration in your trivial appearances. They inquired of us as to the possibility of unnecessary reoccurrences."`
+			`	"Formerly, I have offered suggestions of heedful interplay regarding the Gegno. We have been alerted of a few additional encounters you've experienced, although they seemed minimal in nature. In such cases, it has been generally described that you left in a timely manner, for which we are notably appreciative. However," the Quarg continues, "despite your efforts in recommended cautions, there are some Gegno figures of meaningful standing that expressed frustration in your trivial appearances. They inquired of us as to the possibility of unnecessary reoccurrences."`
 			choice
 				`	"Why does this frustrate them?"`
 					goto imagine
@@ -394,7 +394,7 @@ mission "Gegno Suspicions"
 				`	"Violence happens all the time in human space, but the Quarg don't seem interested in it."`
 					goto violence
 
-			`	The Quarg continues to look at you for an extended period of time before answering. "Based on some principles, I may see reason for them to be... inclined... to do such. However, to do so in this case would not line with their elder's interest, nor would any fabrications." The Quarg blinks at you, then ponders for a moment.`
+			`	The Quarg continues to look at you for a while longer before answering. "Based on some principles, I may see reason for them to be... inclined... to do such. However, to do so in this case would not line with their elder's interest, nor would any fabrications." The Quarg blinks at you, then ponders for a moment.`
 				goto cases
 
 			label attention
@@ -406,12 +406,12 @@ mission "Gegno Suspicions"
 
 
 			label cases
-			`	"Imagine, if you will, during the substantial conflicts the humans call the Turf Wars, a hostile alien came to human space. We Quarg woefully witnessed that hazardous conflict - it was a time of great waste, unfortunate peril, and unsavory distrust among humanity. The Gegno are in a vulnerable state notably comparable to such a time, and introduction of even more hostilities would not befit the case, especially of those from the outside. We have been contacted by numerous members of high Gegno standing and wish for this to be a matter only of further strict cautionaries, but regrettably, the Gegno believe it a matter beyond attentiveness." The Quarg leaves its chair and motions you to do the same.`
+			`	"Imagine, if you will, during the substantial conflicts the humans call the Turf Wars, a hostile alien came to human space. We Quarg woefully witnessed that hazardous conflict - it was a time of great waste, unfortunate peril, and unsavory distrust among humanity. The Gegno are in a vulnerable state notably comparable to such a time, and introduction of even more hostilities would not befit the case, especially of those from the outside. We have been contacted by numerous Gegno members of high standing and wish for this to be a matter only of further strict cautionaries, but regrettably, the Gegno believe it a matter beyond attentiveness." The Quarg leaves its chair and motions you to do the same.`
 			choice
 				`	(Stand up.)`
 
-			`	"You are recommended for departure from Gegno space as of this decisive moment. Meanwhile, we shall attempt a most careful negotiation with their hierarchy to come in terms of an acceptable toleration of sorts. Should we find commonality, you will receive communication from one of the title 'Adrauni', as has been bestowed upon me."`
-			`	As the rest of the Quarg escort you out of the room, the Quarg named 'Adrauni' addresses you one last time. "Do avoid any further, violent tendencies, captain." If the Gegno are willing to go as far as to contact the Quarg, then this is truly an important matter to them. For the time being, it's probably best to listen to the Quarg's warnings this time around and leave Gegno space until some kind of resolution is found, if at all.`
+			`	"You are recommended for departure from Gegno space as of this decisive moment. Meanwhile, we shall attempt a most careful negotiation with their hierarchy to come to terms of an acceptable toleration of sorts. Should we find commonality, you will receive communication from one of the title 'Adrauni', as has been bestowed upon me."`
+			`	As the rest of the Quarg escort you out of the room, the Quarg named 'Adrauni' addresses you one last time. "Do avoid any further violent tendencies, Captain." If the Gegno are willing to go as far as to contact the Quarg, then this is truly an important matter to them. For the time being, it's probably best to listen to the Quarg's warnings this time around and leave Gegno space until some kind of resolution is found, if at all.`
 				decline
 
 	on decline
@@ -435,7 +435,7 @@ mission "Under the Nose"
 		on kill
 			set "yvx killed"
 		government "Gegno Vi"
-		personality heroic vindictive ramming daring entering fleeing uninterested
+		personality heroic vindictive ramming entering fleeing uninterested
 		system "Aleit"
 		ship "Rhyolite" "Imtydei"
 
@@ -588,7 +588,7 @@ mission "Gegno Anticipation"
 				`	"I don't know."`
 					goto "unsure"
 
-			`	Adrauni ponders for a few moments as you continue walking through the impeccable interior of the ringworld. "That is a rather human response. However, do not conflate your value in assistance with theirs. Even should you provide beneficial assistance to the Gegno, a beneficiary response in return is not necessitated. You have heeded my warnings at this juncture, yet you simply are doing what the Gegno desired from the beginning, and that is to be left alone."`
+			`	Adrauni ponders for a few moments as you continue walking through the impeccable interior of the ringworld. "That is a rather human response. However, do not conflate your value in assistance with theirs. Even should you provide beneficial assistance to the Gegno, a beneficent response in return is not necessitated. You have heeded my warnings at this juncture, yet you simply are doing what the Gegno desired from the beginning, and that is leaving them alone."`
 			choice
 				`	"Maybe it's better I do leave them alone."`
 					goto "better"
@@ -614,7 +614,7 @@ mission "Gegno Anticipation"
 				`	"I don't know."`
 					goto "unsure"
 
-			`	"Indeed, the Gegno are wary of you, who lacks caution." A few seconds pass, and Adrauni gives a strange look towards the Gegno. You aren't sure what it's thinking. The Gegno presumably asks something in their language, but receives no response. A few more moments go by before Adrauni speaks again. "Despite that, you have found yourself in precarious situations we have not. We as a species embraced contact with the Gegno, however, you remain the only human here. Perhaps therein lies a notable implication of distinction."`
+			`	"Indeed, the Gegno are wary of you, who lack caution." A few seconds pass, and Adrauni gives a strange look towards the Gegno. You aren't sure what it's thinking. The Gegno seems to ask a question in their language, but receives no response. Adrauni pauses a while longer before speaking again. "Despite that, you have found yourself in precarious situations we have not. We as a species embraced contact with the Gegno, however, you remain the only human here. Perhaps therein lies a notable implication of distinction."`
 			choice
 				`	"Are you saying there's something I can do?"`
 					goto "understand"
@@ -691,15 +691,15 @@ mission "Gegno Anticipation"
 			label "ask"
 			action
 				set "gegno: asked dialog"
-			`	Adrauni ponders your question for a few moments before answering. "Ah, yes, your naievety to Gegno culture had but briefly passed me. That of the female Scin is tradition to allocate time of research just short of a lifespan. Whom you speak of is very much devoted to us here, nothing more. For any official matters with the Gegno to pass, they must go through the great heart of the colony."`
+			`	Adrauni ponders your question for a few moments before answering. "Ah, yes, your naivety to Gegno culture had but briefly passed me. Tradition amongst female Scin is to allocate time of research just short of a lifespan. The one whom you speak of is very much devoted to us here, nothing more. For any official matters with the Gegno to pass, they must go through the great heart of the colony."`
 				goto "epilogue a"
 
 			label "escort"
 			action
 				set "gegno: escort dialog"
-			`	Adrauni blinks at you. "I would have hoped you understand what was meant by your previous realization." It looks off to the side in deep thought, then back to you. "Habitually, we Quarg scarcely visit the Gegno for the most minor of reasons. Should you be accompanied at this time, the Gegno's unstable perception of you would alter further. Imagine if the Quarg visited your own planet called Earth with strange others in tow." You guess that Adrauni then does what the Quarg equivalent of a sigh would be. "However yes, I am capabale of sending you escort. Be certain in this decision."`
+			`	Adrauni blinks at you. "I would have hoped you understood what was meant by your previous realization." It looks off to the side in deep thought, then back to you. "Habitually, we Quarg scarcely visit the Gegno for the most minor of reasons. Should you be accompanied at this time, the Gegno's unstable perception of you would alter further. Imagine if the Quarg visited your own planet called Earth with strange others in tow." You guess that Adrauni then does what the Quarg equivalent of a sigh would be. "However yes, I am capable of sending you escort. Be certain in this decision."`
 			choice
-				`	"Yes, I would like escort."`
+				`	"Yes, I would like an escort."`
 					goto "quarg escort"
 				`	"Actually, I should be fine."`
 					goto "no escort"
@@ -718,14 +718,12 @@ mission "Gegno Anticipation"
 				goto "epilogue a"
 
 			label "end a"
-			`	"Safe travels, <first> <last>. I aspire in your daring decisions to befit the wise on your journey ahead." Adrauni bows for an extended period of time, then leaves the hangar. You get the feeling that this might have been the last time you meet with it. As you return to your ship, a few other Quarg, who have been watching the conversation from afar, also return to their normal routine as if nothing had happened. Now, it is up to you to see for yourself whether or not the Gegno will accept you.`
+			`	"Safe travels, <first> <last>. I aspire for your daring decisions to befit the wise on your journey ahead." Adrauni gives you a lengthy bow, then leaves the hangar. You get the feeling that this might have been the last time you meet with it. As you return to your ship, a few other Quarg, who have been watching the conversation from afar, also return to their normal routine as if nothing had happened. Now, it is up to you to see for yourself whether or not the Gegno will accept you.`
 				accept
-
-
 
 			label "negative rep"
 
-			`Once you land on the ringworld, you notice a group of Gegno off to the side of the hangar you are stationed in. They appear to be warriors of the Vi based on their appearance, and while they aren't moving from their position, they watch you intently as you exit your ship. A small group of Quarg then approach you and quickly motion you to follow them, escorting you through various halls of the ring. Eventually you are led to the room where you met Adrauni in the past, or perhaps one identical to it. "Please, seat yourself with I."`
+			`Once you land on the ringworld, you notice a group of Gegno off to the side of the hangar you are stationed in. They appear to be warriors of the Vi based on their appearance, and while they aren't moving from their position, they watch you intently as you exit your ship. A small group of Quarg then approach you and quickly motion you to follow them, escorting you through various halls of the ring. Eventually you are led to the room where you met Adrauni in the past, or perhaps one identical to it. "Please, seat yourself."`
 			`	You sit down, along with two other Quarg, and the rest of them leave the room with the door sliding shut behind them. Adrauni stares blankly at you for a while, then speaks. "I presume you understand what result came from my negotiations with the tedious Gegno."`
 			choice
 				`	"That they are upset with me?"`
@@ -734,7 +732,7 @@ mission "Gegno Anticipation"
 				`	"No, I do not."`
 					goto "no idea"
 
-			`	Adrauni continues to stare at you, then slowly blinks. "I see. What is your strange understanding of the term, tolerance, in this capacity?"`
+			`	Adrauni continues to stare at you, then slowly blinks. "I see. What is your strange understanding of the term 'tolerate' in this capacity?"`
 			choice
 				`	"Permission to land on their worlds."`
 				`	"Allow me access to their technology."`
@@ -742,7 +740,7 @@ mission "Gegno Anticipation"
 				`	"I don't know."`
 					goto "dont know"
 
-			`	Adrauni ponders for a few moments. "That is a rather human response. Although we Quarg are, by your definition, minimally tolerative of your species, access to only some of our wondrous worlds we give you. However, what of humans to others? Should the Gegno, or species of other eccentricities, be given leisure to your planet Earth? May it be the case with you, though with anxious humanity, it certainly would not be." One of the other Quarg in the room says something to Adrauni, to which it begins a conversation in its own language.`
+			`	Adrauni ponders for a few moments. "That is a rather human response. Although we Quarg are, by your definition, minimally tolerant of your species, access to only some of our wondrous worlds we give you. However, what of humans to others? Should the Gegno, or species of other eccentricities, be given leisure to your planet Earth? It may be the case with you, though with anxious humanity, it certainly would not be." One of the other Quarg in the room says something to Adrauni, to which it responds with a conversation in its own language.`
 			choice
 				`	"Is there no way I can work with the Gegno?"`
 					goto "work"
@@ -750,7 +748,7 @@ mission "Gegno Anticipation"
 					goto "alone"
 
 			label "tech"
-			`	Adrauni clicks its teeth together in what appears to be a laughing manner, a reaction you have yet to see from it. "And we many Quarg, of those who live among ambitious humans, allowance of our tech have we given? One is not owed rights to another's under pretensive tolerance." The other Quarg in the room look at Adrauni strangely, to which it begins a conversation with them in their own language. After a few moments, they too stare at you with strange looks, followed by an awkward silence, which is broken by Adrauni speaking to you once more. "With us as well, hardly do the Gegno share much intrigue at all."`
+			`	Adrauni clicks its teeth together in what appears to be a laughing manner, a reaction you have yet to see from it. "And we many Quarg, of those who live among ambitious humans, allowance of our technology have we given? One is not owed rights to another's inventions under pretensive tolerance." The other Quarg in the room look at Adrauni strangely, after which it begins a conversation with them in their own language. After a few moments, they too stare at you with strange looks, followed by an awkward silence, which is broken by Adrauni speaking to you once more. "With us as well, hardly do the Gegno share much of intrigue at all."`
 			choice
 				`	"Then is there no way I can work with the Gegno?"`
 					goto "work"
@@ -767,7 +765,7 @@ mission "Gegno Anticipation"
 
 
 			label "upset"
-			`	"It would be evidently so, given that those of the Vi themselves have brazenly entered our ring. A show of force is most unprecedented, even more so opposed to other means of less inmodest communication. I had the slightest hope you understood my preachings of nonviolence, as I believe there to be benefit from optimistic aspirations in younger species, but ultimately my hopes are proven unfounded." Some of the other Quarg in the room abruptly address Adrauni as if you weren't present and begin a long period of debate, occasionally followed by glares in your direction.`
+			`	"It would be evidently so, given that those of the Vi themselves have brazenly entered our ring. A show of force is most unprecedented, even more so opposed to other means of less immodest communication. I had the slightest hope you understood my preachings of nonviolence, as I believe there to be benefit from optimistic aspirations in younger species, but ultimately my hopes are proven unfounded." Some of the other Quarg in the room abruptly address Adrauni as if you weren't present and begin a long period of debate, occasionally punctuated by glares in your direction.`
 			choice
 				`	"Then is there no way I can work with the Gegno?"`
 					goto "work"
@@ -776,7 +774,7 @@ mission "Gegno Anticipation"
 
 
 			label "no idea"
-			`	"Yes, I believe that to be a common theme in this extraneous situation. It is quite a dangerous practice to commit and act before knowledge, as we Quarg have been advising you impulsive humans for many years. In our discussions with you, evident it is that this has proven to be true. However, the great bounds stepped beyond here go beyond what we are able to accommodate." Adrauni then changes its expression slightly, glaring at you again. "Particularly after continual warnings prior." One of the other Quarg in the room says something to Adrauni, to which it begins a conversation in its own language.`
+			`	"Yes, I believe that to be a common theme in this extraneous situation. It is quite a dangerous practice to commit an act before knowledge, as we Quarg have been advising you impulsive humans for many years. In our discussions with you, evident it is that this has proven to be true. However, the great bounds stepped beyond here go beyond what we are able to accommodate." Adrauni then changes its expression slightly, glowering at you again. "Particularly after continual warnings prior." One of the other Quarg in the room says something to Adrauni, to which it begins a conversation in its own language.`
 			choice
 				`	"Then is there no way I can work with the Gegno?"`
 					goto "work"
@@ -785,11 +783,11 @@ mission "Gegno Anticipation"
 
 			
 			label "work"
-			`	You sit in silence for an awkward period of time, during which even the Quarg don't speak to one another. The strange structure and bright lights of the room do little to comfort you as the Quarg ponder to themselves. A few moments later, they begin talking amongst themselves once more, but you don't get a chance to get a word in. After several more minutes of deliberation and strange looks, the other Quarg stand up and flank you from both sides, while Adrauni finally addresses you once more. "Unfortunately, at this stage of events, I, nor the Quarg, can no longer give you an answer to your inquiry. We are of agreement in strong opposition to further interaction between yourself and the Gegno." It then does what you think would be the eqiuvalent of a Quarg sigh.`
+			`	You sit in silence for an uncomfortable amount of time, during which even the Quarg don't speak to one another. The strange structure and bright lights of the room do little to reassure you as the Quarg ponder to themselves. A few moments later, they begin talking amongst themselves once more, but you don't get a chance to get a word in. After several more minutes of deliberation and strange looks, the other Quarg stand up and flank you from both sides, while Adrauni finally addresses you once more. "Unfortunately, at this stage of events, not I, nor the Quarg, can give you an answer to your inquiry. We are of agreement in our strong opposition to further interaction between yourself and the Gegno." It then does what you think would be the eqiuvalent of a Quarg sigh.`
 				goto "visit b"
 
 			label "alone"
-			`	You sit in silence for an awkward period of time, during which even the Quarg don't speak to one another. The strange structure and bright lights of the room do little to comfort you as the Quarg ponder to themselves. A few moments later, they begin talking amongst themselves once more, but you don't get a chance to get a word in. After several more minutes of deliberation and strange looks, the other Quarg stand up and flank you from both sides, while Adrauni finally addresses you once more. "Indeed, that statement is in our strongest of preferences for this matter." It stands up and crosses its arms behind its back. "Though I would suppose you and I figure that to be - unlikely."`
+			`	You sit in silence for an uncomfortable period of time, during which even the Quarg don't speak to one another. The strange structure and bright lights of the room do little to reassure you as the Quarg ponder to themselves. A few moments later, they begin talking amongst themselves once more, but you don't get a chance to get a word in. After several more minutes of deliberation and strange looks, the other Quarg stand up and flank you from both sides, while Adrauni finally addresses you once more. "Indeed, that statement is in our strongest of preferences for this matter." It stands up and crosses its arms behind its back. "Though I would suppose you and I figure that to be... unlikely."`
 				goto "visit b"
 
 			label "visit b"
@@ -819,11 +817,11 @@ mission "Gegno Anticipation"
 			label "there"
 			action
 				set "gegno: there dialog"
-			`	"Those of the Vi do not represent those of the Gegno, that is, of a whole species. The Vi present with us are merely of one family, to which there are many such groups." Adrauni ponders your question for a few moments, almost appearing to have a slight interest in it. "It is unlike that of which you humans are familiar to. Vi culture does not denote a family merely by ancestry nor familiarity."`
+			`	"Those of the Vi do not represent those of the Gegno, that is, of a whole species. The Vi present with us are merely of one family, to which there are many such groups." Adrauni considers your question for a few moments, almost appearing to have a slight interest in it. "It is unlike that of which you humans are familiar to. Vi culture does not denote a family merely by ancestry nor familiarity."`
 				goto "epilogue b"
 
 			label "end b"
-			`	"Although your actions thus far are in dissatisfaction, I aspire in future decisions being made to befit the wise on your journey ahead. I wish you an educational journey, <first> <last>." Adrauni bows for an extended period of time, then leaves the hangar. You get the feeling that this might have been the last time you meet with it. As you return to your ship, the Vi warriors continue watching from afar, but the Quarg continue to block them off. It is up to you to figure out yourself whether or not the Gegno will tolerate you any further.`
+			`	"Although your actions thus far are in dissatisfaction, I aspire for future decisions being made to befit the wise on your journey ahead. I wish you an educational journey, <first> <last>." Adrauni gives you a lengthy bow, then leaves the hangar. You get the feeling that this might have been the last time you meet with it. As you return to your ship, the Vi warriors continue watching from afar, but the Quarg steadfastly block them off. It is up to you to figure out yourself whether or not the Gegno will tolerate you any further.`
 				accept
 
 	on accept
@@ -850,7 +848,7 @@ mission "Gegno Anticipation"
 			"reputation: Gegno" = -100
 			"reputation: Gegno Vi" = -100
 			"reputation: Gegno Scin" = -100
-			dialog `After deciding to fire upon the Gegno fleet surveying your visit to their homeworld, you are met with aggressive opposition along with what sound like countless angry hails. Whatever chance you had left in associating with the Gegno is gone now.`
+			dialog `After deciding to fire upon the Gegno fleet surveying your visit to their homeworld, you are met with aggressive opposition along with what sound like countless angry hails. Whatever chance you had left of associating with the Gegno is gone now.`
 		government "Gegno Vi (Neutral)"
 		personality heroic vindictive staying
 		system "Heutesl"
@@ -861,7 +859,7 @@ mission "Gegno Anticipation"
 			"reputation: Gegno" = 0
 			"reputation: Gegno Vi" = -100
 			"reputation: Gegno Scin" = -100
-			dialog `After deciding to fire upon the Gegno fleet surveying your visit to their homeworld, you are met with aggressive opposition along with what sound like countless angry hails. Whatever chance you had left in associating with the Gegno is gone now.`
+			dialog `After deciding to fire upon the Gegno fleet surveying your visit to their homeworld, you are met with aggressive opposition along with what sound like countless angry hails. Whatever chance you had left of associating with the Gegno is gone now.`
 		government "Gegno Scin (Neutral)"
 		personality heroic vindictive staying
 		system "Heutesl"
@@ -885,7 +883,6 @@ mission "Gegno Apprehension"
 				or
 					"reputation: Gegno Vi" <= -100
 					"reputation: Gegno Scin" <= -50
-
 			and
 				"gegno: encounters" >= 3
 				or
@@ -918,7 +915,7 @@ mission "Gegno Intervention"
 				`	"What's going on?"`
 				`	"I'm not sure what's happening right now."`
 
-			`	The Quarg now stands in front of you, slightly lowering to speak to you. "As so happens to be the arduous case, several complaints we Quarg have received from the Gegno. Meddled in their affairs you have, one too many times. As much of a desire I have to converse with you more on the matter, I, nor the Quarg, are no longer of help to you in your endeavors here." Adrauni turns to the Gegno, who seems almost dismissive, or at the very least trying to avoid eye contact with you. After a brief discussion of which nothing you understood, the Gegno walks off to the tan-colored ship, followed by all of the other Gegno in the hangar also returning to their own ships.`
+			`	The Quarg now stands in front of you, slightly lowering to speak to you. "As so happens to be the arduous case, several complaints we Quarg have received from the Gegno. Meddled in their affairs you have, one too many times. As much of a desire I have to converse with you more on the matter, not I, nor the Quarg, will be of any further help to you in your endeavors here." Adrauni turns to the Gegno, who seems almost dismissive, or at the very least trying to avoid eye contact with you. After a brief discussion of which you understood nothing, the Gegno walks off to the tan-colored ship. As if on cue, all of the other Gegno in the hangar return to their own respective ships.`
 			`	As you watch all of the ships leave, Adrauni speaks once more. "Eight revolutions you have been given by the Gegno to make an appearance on their world. If to this you do not comply, then you are, in their words, dismissed from their space."`
 			choice
 				`	"Dismissed?"`
@@ -929,11 +926,11 @@ mission "Gegno Intervention"
 
 			`	Adrauni thinks for a brief moment. "A more appropriate expression would be exiled, or perhaps shunned? Gegno culture is to hold all as a great home. Your presence in their space is to say you have already entered, though it is now an invitation you are no longer welcome to."`
 			choice
-				`	"Aren't I not already welcome?"`
+				`	"Aren't I already unwelcome?"`
 				`	"They can't decide where I go."`
 					goto "where"
 			
-			`	"It is a difficult philosophy to explain. We Quarg were also subject to unwelcomeness. In some notable capacities we still are - however, it is of a different manner than this one."`
+			`	"It is a difficult philosophy to explain. We Quarg were also subject to inhospitality. In some notable capacities we still are - however, it is of a different manner than this one."`
 				goto "end"
 
 			label "where"
@@ -945,7 +942,7 @@ mission "Gegno Intervention"
 				goto "end"
 
 			label "end"
-			`	Adrauni stands before you one last time. "To keep what little relations we have with the Gegno, I must inform you we no longer can allow access to our worlds here in their space. Despite this misfortune, I aspire in wiseful decisions from you in your journey ahead, <first> <last>." Adrauni bows for an extended period of time, then leaves the hangar, this likely being the last time you ever meet with it. It is now up to you to try and figure out some sort of common ground with the Gegno, if it's possible anymore.`
+			`	Adrauni stands up to its full height before you one last time. "To keep what little relations we have with the Gegno, I must inform you we no longer can allow access to our worlds here in their space. Despite this misfortune, I aspire for wise decisions from you in your journey ahead, <first> <last>." Adrauni gives you a lengthy bow, then leaves the hangar, this likely being the last time you ever meet with it. It is now up to you to try and figure out some sort of common ground with the Gegno, if that's even still possible.`
 				accept
 
 	npc
@@ -954,7 +951,7 @@ mission "Gegno Intervention"
 			"reputation: Gegno" = -100
 			"reputation: Gegno Vi" = -100
 			"reputation: Gegno Scin" = -100
-			dialog `After deciding to fire upon the Gegno fleet surveying your visit to their homeworld, you are met with aggressive opposition along with what sound like countless angry hails. Whatever chance you had left in associating with the Gegno is gone now.`
+			dialog `After deciding to fire upon the Gegno fleet surveying your visit to their homeworld, you are met with aggressive opposition along with what sound like countless angry hails. Whatever chance you had left of associating with the Gegno is gone now.`
 		government "Gegno Vi (Neutral)"
 		personality heroic vindictive staying
 		system "Heutesl"
@@ -965,7 +962,7 @@ mission "Gegno Intervention"
 			"reputation: Gegno" = -100
 			"reputation: Gegno Vi" = -100
 			"reputation: Gegno Scin" = -100
-			dialog `After deciding to fire upon the Gegno fleet surveying your visit to their homeworld, you are met with aggressive opposition along with what sound like countless angry hails. Whatever chance you had left in associating with the Gegno is gone now.`
+			dialog `After deciding to fire upon the Gegno fleet surveying your visit to their homeworld, you are met with aggressive opposition along with what sound like countless angry hails. Whatever chance you had left of associating with the Gegno is gone now.`
 		government "Gegno Scin (Neutral)"
 		personality heroic vindictive staying
 		system "Heutesl"
