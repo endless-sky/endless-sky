@@ -1019,7 +1019,7 @@ mission "Acquiescence"
 
 
 			label "tower"
-			`	The tower ahead of you is a true sight to behold. It appears to be larger and taller than anything in human architecture, yet it appears very old, noticeably so compared to the portions you've seen higher above in the clouds of dark smog. The base, which grows larger the higher up the tower goes, is lined with rows of torch-like structures with flames reaching high above them. The interior is just as intriguing - the first area you enter looks like it almost came straight out of some old medieval fantasy story. Everything looks rocky and sculpted in appearance, although some entrances seem to be made of newer metallic materials.`
+			`	The tower ahead of you is truly a sight to behold. It appears to be larger and taller than anything in human architecture, yet it looks very old - noticeably so - compared to the portions you've seen higher up in the clouds of dark smog. The base, which grows larger the higher up the tower goes, is lined with rows of torch-like structures with flames reaching high above them. The interior is just as intriguing - the first area you enter looks like it almost came straight out of some old medieval fantasy story. Everything looks rocky and sculpted in appearance, although some entrances seem to be made of newer metallic materials.`
 			`	You wonder if all Gegno architecture is built like this, but your curiosity is cut short when the Gegno, whom has been many steps ahead of you, grunts and gestures for you to enter a cage-like platform at the other side of an enormous room.`
 			choice
 				`	(Enter the cage.)`
