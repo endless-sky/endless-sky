@@ -2078,6 +2078,18 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and detailed by Anarchist2.
 
 Files:
+ images/projectile/*tinyflare*
+Copyright: Saugia <https://github.com/Saugia>
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license) and Iaz Poolar (under the same license).
+
+Files:
+ images/icon/gat turret*
+Copyright: Saugia <https://github.com/Saugia>
+License: CC-BY-SA-4.0
+Comment: Derived from works by Maximilian Korber (under the same license) and Amazinite (under the same license).
+
+Files:
  sounds/remnant?afterburner.wav
 Copyright: Public Domain
 License: public-domain

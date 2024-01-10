@@ -51,7 +51,7 @@ outfit "Twin Blaster"
 			"facing" -0.3
 		"hit effect" "blaster impact" 2
 		"inaccuracy" 3
-		"lifetime" 0
+		"lifetime" 1
 		"velocity override" 10.625
 		"range override" 510
 		"reload" 12
@@ -1104,13 +1104,13 @@ outfit "Javelin Turret"
 		"hardpoint offset" 9.
 		sound "javelin"
 		ammo "Javelin"
-		icon "icon/javelin"
+		icon "icon/javelin turret"
 		"hit effect" "tiny explosion"
 		"inaccuracy" 4
 		"turret turn" 2
 		"velocity" 10
 		"lifetime" 60
-		"reload" 7
+		"reload" 7.5
 		"firing energy" .2
 		"firing heat" 12
 		"shield damage" 48
@@ -1118,7 +1118,7 @@ outfit "Javelin Turret"
 		"hit force" 50
 		"missile strength" 3
 	description "Mounting not one but two Javelin Pods, the Javelin Turret rains down an endless stream of unguided missiles that deal noticeably more damage than other turreted weapons of the same size, at the expense of using a prodigious amount of ammo due to its high fire rate. For that reason, these turrets are commonly paired with Javelin Storage Crates, as well as with other weapons that don't require the use of ammunition to fall back on once all of the rockets are expended."
-	description "	With just over twice the fire rate of a Javelin Pod, the Javelin Turret excels at overwhelming anti-missile systems so that other ordnance from allied ships is able to reach the target."
+	description "	With twice the fire rate of a Javelin Pod, the Javelin Turret excels at overwhelming anti-missile systems so that other ordnance from allied ships is able to reach the target."
 
 
 outfit "Torpedo"
@@ -1568,19 +1568,21 @@ outfit "Gatling Turret"
 	"gatling round capacity" 6000
 	weapon
 		sound "gatling"
+		sprite "projectile/2x tinyflare"
+			"random start frame"
 		"hardpoint sprite" "hardpoint/gat turret hardpoint"
-		"submunition" "Gat Submunition"
+		"submunition" "gbullet"
 			"offset" 1.5 -6
 			"facing" 0.3
-		"submunition" "Gat Submunition"
+		"submunition" "gbullet"
 			"offset" -1.5 -6
 			"facing" -0.3
 		ammo "Gatling Gun Ammo" 2
-		icon "icon/gat"
+		icon "icon/gat turret"
 		"inaccuracy" 2
 		"turret turn" 3.4
 		"velocity override" 16
-		"lifetime" 0
+		"lifetime" 1
 		"reload" 3
 		"burst count" 180
 		"burst reload" 1
@@ -1589,16 +1591,6 @@ outfit "Gatling Turret"
 		"cluster"
 		"hit effect" "bullet impact"
 	description `In an act that would make Dr. Richard J. Gatling spin in his grave with the ferocity of the barrels of his invention, the Gatling Turret was born when a resourceful pirate thought to replace the Energy Blasters on a Blaster Turret with a pair of Gatling Guns. Ever since, the dominion of the Gatling Turret has spread across the Southern Rim, terrorizing merchants and law enforcement alike with its unparalleled ability to tear apart the hulls of ships.`
-
-
-
-outfit "Gat Submunition"
-	weapon
-		sprite "projectile/tinyflare"
-		"hit effect" "bullet impact"
-		"velocity" 16
-		"lifetime" 1
-		"submunition" "gbullet"
 
 outfit "gbullet"
 	weapon
