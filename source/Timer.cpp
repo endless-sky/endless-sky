@@ -241,7 +241,7 @@ Timer Timer::Instantiate(map<string, string> &subs, const System *origin, int ju
 	for(const StellarObject &proximityObject : system->Objects())
 		if(proximityObject.HasValidPlanet() && (proximityCenter == proximityObject.GetPlanet() ||
 			proximityCenters.Matches(proximityObject.GetPlanet())))
-			result.proximityCache.push_back(&proximityObject);
+			result.proximityCache.insert(&proximityObject);
 
 	return result;
 }
