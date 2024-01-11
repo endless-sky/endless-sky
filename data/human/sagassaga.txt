@@ -1110,7 +1110,7 @@ mission "Ice Queen"
 			`	"You are lucky that you did not barge in here a year ago, or even a month ago." She nods towards Saga, who is now sitting politely at her feet, "And you're lucky that I like her."`
 			`	"Now tell me, who are you, and what are you doing here?" She says through grit teeth.` 
 			choice
-				`	(You tell her who you are, and how you chased Saga into her home.)`
+				`	(Tell her who you are, and how you chased Saga into her home.)`
 			`	The woman nods slowly, and then painfully, slides back down to the ground.`
 			`	Her eyes fall to the floor. "I have no choice, but to trust you. I have lived here all my life, but my equipment has failed. I never wanted to leave, I was never meant to leave, but I won't let the ice win. I won't let it take me, too."`
 			`	She looks back up at you with her piercing eyes, "I am Ildico, last of House Drifa, daughter of Deoric, once one of the most powerful men on Hope. Everyone fled the ice. The Republic Navy made it easy. Enter their ships and be shipped off to paradise, to live as no ones at the sufferance of strangers."`
