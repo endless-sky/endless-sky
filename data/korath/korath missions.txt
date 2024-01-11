@@ -578,35 +578,6 @@ mission "Efreti: Distress Call 8"
 			`	You carefully store the chip in a safe place.`
 
 
-mission "Exile: Boarding Civilian Korath"
-	boarding
-	minor
-	destination "Earth"
-	source
-		outfits "Microbot Defense Station"
-		or
-			government "Korath"
-			government "Korath (Civilian)"
-	on offer
-		conversation
-			`Upon docking with the massive Korath vessel, unlike previous encounters with their craft, this one seems to have specialised microbot defences located in every entry point. Capture looks to be hellish at your most generous approximation.`
-			`	What is more interesting is that, while your sensors indicate a number of lifesigns designated as hostiles, they also are picking up a number of very small lifeforms that the scanners are having trouble picking up throughout the craft.`
-			`	Ignoring this your first crew members begin moving into the unguarded sections of the cargo bay, prepared to loot.`
-			`	Suddenly you see three, no four Korath moving through the cargo bay. Strange since this means they are outside their defensive microbot perimeter. You send a warning to the crew in advance.`
-			`	Visual feed is then sent back as your crew encounter the enemy. What seems to only be three Korath, not four.One is half the others size, and one using the other two as cover is instead holding an orb of some kind.`
-			choice
-				`	"Open fire."`
-					goto fire
-				`	"They don't seem hostile, probably stragglers, let them go."`
-			`	As they rush over to the doorway, panic clear on their movement, it all finally clicks in your mind. The Korath are lizards, the small one must be a child, and the weapon less one is holding an egg. It's a family who came here to rescue their egg.`
-			`	Having this sort of ship in your fleet would be a boon, but is it worth the cost to get it?`
-			label fire
-			`	Your men open fire, hitting the largest one multiple times taking it down, while the smaller Korath manages to avoid most shots, but the one carrying the orb takes a hit to the arm, dropping it to the ground.`
-			`	The orb cracks open and a yolk-like substance splatters out as it's carrier lets out a heart-rending screech. The smaller one pulls the other, screaming survivor through the door as your men are too shocked by the reaction to continue firing.`
-			`	It all then finally clicks in your mind. The Korath are lizards, the small one must have been a child, and the unarmed one was holding an egg. It's a family who came here to attempt to rescue their egg.`
-			`	Having this sort of ship in your fleet would be a boon, but is it worth the cost to get it?`
-				decline
-
 mission "Exile: Boarding Worldship Korath"
 	boarding
 	minor
@@ -619,8 +590,8 @@ mission "Exile: Boarding Worldship Korath"
 			government "Korath (Civilian)"
 	on offer
 		conversation
-			`Docking with the gargantuan vessel allows you a front-row seat to witness the sheer scale of this ship. Your sensors detect tens of thousands of life signs aboard, along with what must be Korath eggs, and even a small grove of trees within the craft.`
-			`	Even before your scanners pick up what must be hundreds of the Korath's terrifying microbot defences, you realise that a ship of this scale would require an actual army and weeks of constant fighting, to even have a hope of fully capturing it.`
-			`	Destroying this ship would be destroying an entire city, maybe even genocide. Perhaps when you finish ripping out the outfits you desire, to avoid angering the Korath, you should avoid further damaging this gargantuan vessel.`
+			`Docking with the gargantuan vessel allows you a front-row seat to witness the sheer scale of this ship. Your sensors detect tens of thousands of life signs aboard, along with numerous other minor lifesigns, perhaps the trees that you can see in the massive dome atop the craft?`
+			`	As you scan the ship, you come to realise that a ship of this scale would require an actual army and likely weeks of constant fighting, to even have a chance of fully capturing it. If you aren’t thorough enough, you could easily imagine Korath fighting guerrilla campaigns throughout such a gigantic craft, even after you claim it.`
+			`	Destroying this ship would clearly be analogous to blowing up an entire city, maybe even genocide depending on the Korath's total population. Doing so to such a large population will probably anger the Korath greatly.`
 				decline
 
