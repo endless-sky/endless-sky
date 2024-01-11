@@ -168,6 +168,8 @@ public:
 	const std::list<NPC> &NPCs() const;
 	// Get a list of timers associated with this mission.
 	std::list<Timer> &Timers();
+	// Iterate through the timers and progress them if applicable
+	void StepTimers(PlayerInfo &player, UI *ui);
 	// Update which NPCs are active based on their spawn and despawn conditions.
 	void UpdateNPCs(const PlayerInfo &player);
 	// Checks if the given ship belongs to one of the mission's NPCs.
