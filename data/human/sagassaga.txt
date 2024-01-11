@@ -946,7 +946,7 @@ mission "Lost Dog"
 			`	Beyond every bend, over every horizon, lurks another breathtaking view. Strolling through Calda, is like being inside painting. It's surreal. Saga, too, is enjoying herself. So many new scents here for her to explore.`
 			`	Eventually as you walk, you come across a dog park. Saga drags you on the leash, as she is keen to interact with her peers.`
 			choice
-				`	(Go to the Dog park.)`
+				`	(Go to the dog park.)`
 					goto dogpark
 				`	(Head back to the ship.)`
 			`	It was splendid walk, but it's time to head back. You have more important things to do than wander around an expensive terraformed beach. You and Saga head back the ship.`
