@@ -1133,7 +1133,7 @@ mission "Ice Queen"
 			`	Your vision grows darker until only a single point of light remains. You don't feel cold, or pain, or anything at all. You just feel heavy. So heavy. Too heavy. So, you let go.`
 				die
 			label rations
-			`	Ildico, her eyes still closed, makes a swift motion with hand too fast for you to see. Yet even as her wrist his flicking toward you, it suddenly jerks to the side, she cries out, and her knife narrowly misses your throat.`
+			`	Ildico, her eyes still closed, makes a swift motion with her hand too fast for you to see. Yet even as her wrist his flicking toward you, it suddenly jerks to the side, she cries out, and her knife narrowly misses your throat.`
 			`	She hollers, holding her bloody wrist where Saga had swiftly bit her, and saved you from certain death.`
 			`	Saga growls at her as you back away.`
 			`	"I won't die here! I won't let the ice take me!"`
