@@ -123,6 +123,9 @@ private:
 	bool isComplete = false;
 	// Set to true when all the conditions are met.
 	bool isActive = false;
+
+	// A place to cache the proximity object(s) so we don't have to test for them every time
+	std::list<const StellarObject *> proximityCache;
 };
 
 
