@@ -205,11 +205,11 @@ mission "Scin on Cyife"
 		conversation
 			`Nothing is of much interest on a cold, unwelcoming moon in the middle of nowhere. However, there's something about the surface of Cyife that is a bit peculiar. Some of the light refracted through the surface seemingly dissipates or reflects back in strange patterns. Although it appears to be ice, more detailed inspection reveals that small patches of the terrain seem to instead be made of some other type of crystalline material. In the distance is something that truly stands out on this world - a large egg-shaped structure with a green hue to it.`
 
-			branch "saw epidote"
-				has "scin: approached epidote"
-
 			branch "boarded epidote"
 				has "scin: entered epidote"
+
+			branch "saw epidote"
+				has "scin: approached epidote"
 
 			`	Once you get close enough, the oblong object reveals itself to be some sort of large Gegno ship with the coloring of the Scin faction. What it's doing this far away from their home space is a mystery, much like the moon it's stationed on. After a few seconds, it launches into the atmosphere and leaves the moon. There doesn't seem to be anything left where it was parked, nor any trace of what the Scin were doing here to begin with.`
 				decline
