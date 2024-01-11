@@ -312,7 +312,7 @@ void Timer::Step(PlayerInfo &player, UI *ui, const Mission &mission)
 	}
 
 	// Then we check if the timer requires the player to be idle (not turning, accelerating, or moving faster than
-	// the idle max speed) or peaceful (not firing any weapons). 
+	// the idle max speed) or peaceful (not firing any weapons).
 	if(requireIdle || requirePeaceful)
 	{
 		bool shipIdle = true;
