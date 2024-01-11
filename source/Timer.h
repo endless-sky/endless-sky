@@ -125,7 +125,7 @@ private:
 	bool isActive = false;
 
 	// A place to cache the proximity object(s) so we don't have to test for them every time
-	std::list<const StellarObject *> proximityCache;
+	std::set<const StellarObject *> proximityCache;
 };
 
 
