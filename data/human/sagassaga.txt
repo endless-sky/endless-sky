@@ -1089,7 +1089,7 @@ mission "Ice Queen"
 			`	Beyond your ship are the ruins of the last unfrozen city. Where the final refugees huddled together awaiting their saviors, the Republic Navy, and were whisked away to other more welcoming worlds.`
 			`	Before you have time to tire of the dire scenery, and dreary thoughts this world dredges up, your faithful pup, Saga, rushes toward the door and barks with purpose.`
 			choice
-				`	(Open the Door.)`
+				`	(Open the door.)`
 					goto opendoor
 				`	(Ignore Saga, and leave.)`
 			`	You turn away from the empty ice, and the total ruin of this world, and back to your ship's console. You ignore Saga's incessant barking, and plot a course back into the familiar darkness of space.`
