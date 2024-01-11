@@ -231,10 +231,17 @@ Timer Timer::Instantiate(map<string, string> &subs, const System *origin, int ju
 	for(const auto &it : actions)
 		result.actions[it.first] = it.second.Instantiate(subs, origin, jumps, payload);
 
-	// Calculate the random variance to the wait time
+	// Calculate the random variance to the wait time.
 	result.waitTime = waitTime;
 	if(randomWaitTime > 1)
 		result.waitTime += Random::Int(randomWaitTime);
+
+	// We also build a cache of the matching proximity object(s) for the instantiated Timer.
+	// This avoids having to do all these comparisons every Step().
+	for(const StellarObject &proximityObject : system->Objects())
+		if(proximityObject.HasValidPlanet() && (proximityCenter == proximityObject.GetPlanet() ||
+			proximityCenters.Matches(proximityObject.GetPlanet())))
+			result.proximityCache.push_back(&proximityObject);
 
 	return result;
 }
@@ -337,20 +344,16 @@ void Timer::Step(PlayerInfo &player, UI *ui, const Mission &mission)
 	if(proximity > 0.)
 	{
 		bool inProximity = false;
-		if(proximityCenter || !proximityCenters.IsEmpty())
-		{
-			for(const StellarObject &proximityObject : system->Objects())
-				if(proximityObject.HasValidPlanet() && (proximityCenter == proximityObject.GetPlanet() ||
-					proximityCenters.Matches(proximityObject.GetPlanet())))
+		if(proximityCache.size() > 0)
+			for(const StellarObject *proximityObject : proximityCache)
+			{
+				double dist = flagship->Position().Distance(proximityObject->Position());
+				if((closeTo && dist <= proximity) || (!closeTo && dist >= proximity))
 				{
-					double dist = flagship->Position().Distance(proximityObject.Position());
-					if((closeTo && dist <= proximity) || (!closeTo && dist >= proximity))
-					{
-						inProximity = true;
-						break;
-					}
+					inProximity = true;
+					break;
 				}
-		}
+			}
 		if(!inProximity)
 		{
 			ResetOn(Timer::ResetCondition::LEAVE_ZONE, player, ui, mission);
@@ -360,7 +363,7 @@ void Timer::Step(PlayerInfo &player, UI *ui, const Mission &mission)
 
 	// Saving our active state allows us to avoid unnecessary resets.
 	isActive = true;
-	
+
 	// And here is the actual core of the timer: advance the time by 1 tick, and
 	// if it's been long enough, fire the timeup action.
 	if(++timeElapsed >= waitTime)
