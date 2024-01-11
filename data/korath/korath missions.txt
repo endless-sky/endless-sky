@@ -583,11 +583,9 @@ mission "Exile: Boarding Worldship Korath"
 	minor
 	destination "Earth"
 	source
+		government "Korath" "Korath (Civilian)"
 		category "Superheavy"
 		outfits "Afterburner (Stellar Class)"
-		or
-			government "Korath"
-			government "Korath (Civilian)"
 	on offer
 		conversation
 			`Docking with the gargantuan vessel allows you a front-row seat to witness the sheer scale of this ship. Your sensors detect tens of thousands of life signs aboard, along with numerous other minor lifesigns, perhaps the trees that you can see in the massive dome atop the craft?`
