@@ -770,7 +770,7 @@ mission "Taking the Bird Home"
 		conversation
 			`	A nearly mature bird flies around your ship, bombing random controls and instruments with little white torpedoes, while squawking intermittently. Saga watches warily having been the victim of its barrage more than a few times.`
 			`	The <ship> is not place for a bird. It's time to find it a home. You're not exactly certain what species of bird it is, however you think you've seen something like on New Britain.`
-			`	Perhaps, that would be a good home for it.`
+			`	Perhaps that would be a good home for it?`
 	on complete
 		conversation
 			`	Despite the birds unsuitability for ship-life there were good moments with it. When you nursed it, when it played with Saga, when it would perch comfortably upon your shoulder. Which is why it is bittersweet as you watch it, first timdly, and then boldly fly beyond your ship and soar out into the wilds of New Britain.`
