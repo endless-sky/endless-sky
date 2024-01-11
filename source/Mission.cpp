@@ -1214,7 +1214,7 @@ list<Timer> &Mission::Timers()
 	return timers;
 }
 
-// Iterate through the timers and progress them if applicable
+// Iterate through the timers and progress them if applicable.
 void Mission::StepTimers(PlayerInfo &player, UI *ui)
 {
 	for(Timer &timer : timers)
