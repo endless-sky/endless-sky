@@ -193,5 +193,5 @@ mission "Investment Collection 1"
 		"credits" > 150000
 	on offer
 		conversation
-			`You walk into the spaceport ...`
+			`You walk into the spaceport...`
 			`	PLACEHOLDER`
