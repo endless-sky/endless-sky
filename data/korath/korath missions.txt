@@ -589,7 +589,7 @@ mission "Exile: Boarding Worldship Korath"
 	on offer
 		conversation
 			`Docking with the gargantuan vessel allows you a front-row seat to witness the sheer scale of this ship. Your sensors detect tens of thousands of life-signs aboard, along with numerous other minor lifesigns, perhaps the trees that you can see in the massive dome atop the craft?`
-			`	As you scan the ship, your computer advises you that a ship of this scale would require an actual army and likely weeks of constant fighting to even have a chance of fully capturing it. A thorough sweep would be essential to preventing the Korath from fighting guerrilla campaigns against you, even after you claim it.`
+			`	As you continue to scan this massive vessel, your computer's analysis makes it clear that a ship of this scale would require an actual army spending weeks of constant fighting to even have a chance of capturing and fully controlling. A thorough and time intensive sweep would be absolutely essential to preventing surviving Korath from engaging in guerrilla campaigns against your crew or even just sabotaging vital components.`
 			`	Destroying this ship would be equivalent to blowing up an entire city and probably greatly upset the Korath. Depending on the Korath's total population, it may even be considered an act of genocide.`
 				decline
 
