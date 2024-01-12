@@ -1208,18 +1208,13 @@ void Mission::UpdateNPCs(const PlayerInfo &player)
 
 
 
-// Get a list of Timers associated with this mission.
-list<Timer> &Mission::Timers()
-{
-	return timers;
-}
-
 // Iterate through the timers and progress them if applicable.
 void Mission::StepTimers(PlayerInfo &player, UI *ui)
 {
 	for(Timer &timer : timers)
 		timer.Step(player, ui, *this);
 }
+
 
 
 // Checks if the given ship belongs to one of the mission's NPCs.

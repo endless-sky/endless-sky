@@ -166,8 +166,6 @@ public:
 	// Get a list of NPCs associated with this mission. Every time the player
 	// takes off from a planet, they should be added to the active ships.
 	const std::list<NPC> &NPCs() const;
-	// Get a list of timers associated with this mission.
-	std::list<Timer> &Timers();
 	// Iterate through the timers and progress them if applicable
 	void StepTimers(PlayerInfo &player, UI *ui);
 	// Update which NPCs are active based on their spawn and despawn conditions.
