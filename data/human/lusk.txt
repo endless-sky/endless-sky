@@ -119,11 +119,9 @@ mission "Transport Lusk"
 
 
 mission "An Investment Opportunity"
-	name "An Investment Opportunity"
 	description "Take Johann Lusk to <destination> to tour an emerald mine."
 	passengers 1
-	source
-		"Ada"
+	source "Ada"
 	destination "Gemstone"
 	to offer
 		has "Transport Lusk: done"
@@ -168,16 +166,20 @@ mission "An Investment Opportunity"
 				`	"Okay, let's go to <planet>."`
 					accept
 	on accept
-		`	"Magnificent!"`
-		`	PLACEHOLDER`
+		conversation
+			`	"Magnificent!"`
+			`	PLACEHOLDER`
 	on decline
-		`	ANGERY PLACEHOLDER`
+		conversation
+			`	ANGERY PLACEHOLDER`
 	on visit
 		dialog `You arrive on <planet>, but realize that your escort carrying Johann Lusk has not arrived yet. Better depart and wait for your escorts to enter the system.`
 	on complete
 	# PLACEHOLDER log entries
 		log `Transported Johann Lusk to Gemstone to visit an emerald mine. He is seeking investment capital. Still haven't been paid.`
 		log "People" "Johann Lusk" `An "entrepreneur" and mineralogist who seeks to build an emerald mine."`
+		conversation
+			`PLACEHOLDER`
 
 
 
@@ -185,8 +187,7 @@ mission "An Investment Opportunity"
 mission "Investment Collection 1"
 	name "PLACEHOLDER"
 	description "PLACEHOLDER"
-	source
-		"Gemstone"
+	source "Gemstone"
 	to offer
 		has "An Investment Opportunity: done"
 		"credits" > 150000
