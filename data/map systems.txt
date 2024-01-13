@@ -14502,7 +14502,7 @@ system Fscher
 
 system Fumalsamakah
 	pos -962.334 301.805
-	government Uninhabited
+	government Pirate
 	arrival 5000
 	habitable 5600
 	haze _menu/haze-33
@@ -32056,7 +32056,7 @@ system "Thshybo Le"
 
 system Thuban
 	pos -882.629 328.38
-	government Uninhabited
+	government Pirate
 	arrival 5000
 	habitable 7050
 	belt 200 1
