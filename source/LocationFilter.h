@@ -16,6 +16,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef LOCATION_FILTER_H_
 #define LOCATION_FILTER_H_
 
+#include "DistanceCalculationSettings.h"
+
 #include <list>
 #include <set>
 #include <string>
@@ -38,7 +40,7 @@ class LocationFilter {
 public:
 	LocationFilter() noexcept = default;
 	// Construct and Load() at the same time.
-	LocationFilter(const DataNode &node);
+	explicit LocationFilter(const DataNode &node);
 
 	// Examine all the children of the given node and load any that are filters.
 	void Load(const DataNode &node);
@@ -76,6 +78,8 @@ private:
 
 
 private:
+	bool isEmpty = true;
+
 	// The planet must satisfy these conditions:
 	std::set<const Planet *> planets;
 	// It must have at least one attribute from each set in this list:
@@ -88,9 +92,11 @@ private:
 	const System *center = nullptr;
 	int centerMinDistance = 0;
 	int centerMaxDistance = 1;
+	DistanceCalculationSettings centerDistanceOptions;
 	// Distance limits used in a "distance" filter.
 	int originMinDistance = 0;
 	int originMaxDistance = -1;
+	DistanceCalculationSettings originDistanceOptions;
 
 	// At least one of the outfits from each set must be available
 	// (to purchase or plunder):

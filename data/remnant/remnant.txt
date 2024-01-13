@@ -15,10 +15,10 @@ fleet "Small Remnant"
 	government "Remnant"
 	names "remnant"
 	cargo 2
-	commodities Food Clothing Metal Plastic Medical "Heavy Metals"
-	outfitters "Korath Basics" "Korath Exiles" "Ka'het"
+	commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
+	outfitters "Korath Exiles Remnant Donations" "Ka'het"
 	personality
-		disables heroic plunders appeasing
+		disables heroic plunders appeasing secretive
 	variant 8
 		"Starling"
 	variant 6
@@ -52,10 +52,10 @@ fleet "Large Remnant"
 	government "Remnant"
 	names "remnant"
 	cargo 2
-	commodities Food Clothing Metal Plastic Medical "Heavy Metals"
-	outfitters "Korath Basics" "Korath Exiles" "Ka'het"
+	commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
+	outfitters "Korath Exiles Remnant Donations" "Ka'het"
 	personality
-		disables heroic plunders appeasing
+		disables heroic plunders appeasing secretive
 	variant 6
 		"Albatross"
 		"Starling" 2
@@ -106,10 +106,10 @@ fleet "Remnant Transport"
 	government "Remnant"
 	names "remnant"
 	cargo 2
-	commodities Food Clothing Metal Plastic Medical "Heavy Metals"
-	outfitters "Korath Basics" "Korath Exiles" "Ka'het"
+	commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
+	outfitters "Korath Exiles Remnant Donations" "Ka'het"
 	personality
-		disables plunders coward appeasing mining harvests
+		disables plunders coward appeasing mining harvests secretive
 	variant 10
 		"Gull"
 	variant 5
@@ -159,10 +159,10 @@ fleet "Remnant Home Guard"
 	government "Remnant"
 	names "remnant"
 	cargo 2
-	commodities Food Metal Plastic "Heavy Metals"
-	outfitters "Korath Basics" "Korath Exiles" "Ka'het"
+	commodities "Food" "Metal" "Plastic" "Heavy Metals"
+	outfitters "Korath Exiles Remnant Donations" "Ka'het"
 	personality
-		disables plunders appeasing mining harvests surveillance
+		disables plunders appeasing mining harvests surveillance secretive
 	variant 20
 		"Tern" 1
 	variant 10

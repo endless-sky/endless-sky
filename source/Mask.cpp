@@ -302,7 +302,7 @@ void Mask::Create(const ImageBuffer &image, int frame)
 			continue;
 
 		radius = max(radius, ComputeRadius(outline));
-		outlines.push_back(move(outline));
+		outlines.push_back(std::move(outline));
 		outlines.back().shrink_to_fit();
 	}
 	outlines.shrink_to_fit();
@@ -328,6 +328,10 @@ double Mask::Collide(Point sA, Point vA, Angle facing) const
 	// Bail out if we're too far away to possibly be touching.
 	double distance = sA.Length();
 	if(!IsLoaded() || distance > radius + vA.Length())
+		return 1.;
+
+	// Bail out even if the segment doesn't touch a circle of 'radius'.
+	if(DistanceSquared(Point(), sA, sA + vA) > (radius * radius))
 		return 1.;
 
 	// Rotate into the mask's frame of reference.
@@ -375,6 +379,7 @@ bool Mask::WithinRing(Point point, Angle facing, double inner, double outer) con
 	inner *= inner;
 	outer *= outer;
 
+	// Determine if the ring contains any of the outlines of the mask.
 	for(auto &&outline : outlines)
 		for(auto &&p : outline)
 		{
@@ -383,7 +388,12 @@ bool Mask::WithinRing(Point point, Angle facing, double inner, double outer) con
 				return true;
 		}
 
-	return false;
+	// While a ring might not contain any outlines of the mask, it may be
+	// located entirely inside of the mask. This should still count as the
+	// mask being within the ring. This can only be the case if the
+	// entire ring is smaller than the radius of the mask and the center
+	// of the ring is within the mask.
+	return outer < radius && Contains(point);
 }
 
 

@@ -19,7 +19,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Panel.h"
 
 #include "Angle.h"
-#include "Point.h"
 
 #include <cstdint>
 #include <memory>
@@ -69,9 +68,11 @@ private:
 	int64_t bribe = 0;
 	const Government *bribed = nullptr;
 	bool playerNeedsHelp = false;
+	bool canAssistPlayer = true;
 	bool canGiveFuel = false;
 	bool canRepair = false;
 	bool hasLanguage = true;
+	bool requestedToBribeShip = false;
 };
 
 

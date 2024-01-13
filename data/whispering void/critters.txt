@@ -1,0 +1,97 @@
+# Copyright (c) 2020 by MasterOfGrey
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+ship "Pincer Beast"
+	# This creature is only in intergalactic space, far away from
+	# civilization, so the player knows no "proper" name for this
+	# creature. Hence the descriptive name.
+	
+	# This beast has to have realistic energy and heat stats
+	# since it needs to react correctly to ion and heat damage
+	# from pirates and predators.
+	
+	noun "creature"
+	sprite "ship/pincer beast"
+	thumbnail "thumbnail/pincer beast"
+	attributes
+		category "Light Freighter"
+		"hull" 14300
+		"self destruct" 1.0
+		"automaton" 1
+		"mass" 850
+		"drag" 9.6
+		"heat dissipation" .7
+		"cargo space" 75
+		"cooling" 13
+		"thrust" 25
+		"turn" 1100
+		"hull repair rate" 5
+		"energy capacity" 1000
+		"energy generation" 5
+		"jump speed" .2
+		"jump fuel" 100
+		"hyperdrive" 1
+		"ramscoop" 0.5
+		"fuel capacity" 300
+		"inscrutable" 1
+		"gaslining" 1
+		weapon
+			"blast radius" 60
+			"shield damage" 800
+			"hull damage" 900
+			"hit force" 3600
+	outfits
+		Pincer 2
+	gun -41 -45 Pincer
+	gun 41 -45 Pincer
+	leak "blood" -40 -20
+	explode "blood" 45
+	"final explode" "pincer beast shatter"
+	description `This creature appears to have an outer shell made of small asteroids held together by strands of carbon nanotubes. It pulls rocks through arms into its main cavity where it processes them to make more shell. The multi-colored hairs pointing back seem to be a drive system of sorts, manipulating the gravity field around the creature to accelerate it. There is no apparent hyperdrive mechanism, but somehow it is able to open a hyperspace window.`
+
+effect "pincer beast shatter"
+	sprite "effect/pincer beast shatter"
+		"no repeat"
+		"frame rate" 12
+	sound "pincer beast die"
+	"lifetime" 60
+	"velocity scale" .15
+	"random velocity" .4
+	"random angle" 360
+
+fleet "Pincer Beast"
+	government "Forest (Prey)"
+	cargo 0
+	personality
+		confusion 20
+		timid mining harvests mute
+	variant
+		"Pincer Beast"
+	variant
+		"Pincer Beast" 2
+
+outfit "Pincer"
+	category "Guns"
+	"gun ports" -1
+	weapon
+		sound "pincer hit"
+		"hit effect" "void sprite chewing"
+		"inaccuracy" 180
+		"velocity" 40
+		"lifetime" 1
+		"reload" 120
+		"cluster"
+		"shield damage" 1900
+		"hull damage" 1900
+		"firing energy" 40
+		"firing heat" 20

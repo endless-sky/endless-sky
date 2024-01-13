@@ -35,12 +35,13 @@ namespace {
 // Move the given masks at 1x scale into the manager's storage.
 void MaskManager::SetMasks(const Sprite *sprite, vector<Mask> &&masks)
 {
+	lock_guard<mutex> lock(spriteMutex);
 	auto &scales = spriteMasks[sprite];
 	auto it = scales.find(DEFAULT);
 	if(it != scales.end())
 		it->second.swap(masks);
 	else
-		scales.emplace(DEFAULT, move(masks));
+		scales.emplace(DEFAULT, std::move(masks));
 }
 
 
@@ -48,6 +49,7 @@ void MaskManager::SetMasks(const Sprite *sprite, vector<Mask> &&masks)
 // Add a scale that the given sprite needs to have a mask for.
 void MaskManager::RegisterScale(const Sprite *sprite, double scale)
 {
+	lock_guard<mutex> lock(spriteMutex);
 	auto &scales = spriteMasks[sprite];
 	auto lb = scales.lower_bound(scale);
 	if(lb == scales.end() || lb->first != scale)
@@ -70,19 +72,17 @@ void MaskManager::ScaleMasks()
 			continue;
 
 		const auto &baseMasks = baseIt->second;
-		for(auto it = scales.begin(); it != baseIt; ++it)
+		for(auto &it : scales)
 		{
-			auto &masks = it->second;
+			auto &masks = it.second;
+
+			// Skip mask generation for scales that have already been generated previously.
+			if(!masks.empty())
+				continue;
+
 			masks.reserve(baseMasks.size());
 			for(auto &&mask : baseMasks)
-				masks.push_back(mask * it->first);
-		}
-		for(auto it = next(baseIt); it != scales.end(); ++it)
-		{
-			auto &masks = it->second;
-			masks.reserve(baseMasks.size());
-			for(auto &&mask : baseMasks)
-				masks.push_back(mask * it->first);
+				masks.push_back(mask * it.first);
 		}
 	}
 }

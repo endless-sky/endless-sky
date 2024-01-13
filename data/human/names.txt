@@ -11,7 +11,7 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-# Word lists that are re-used for many different ship name phrases
+# Word lists that are reused for many different ship name phrases
 phrase "digit"
 	word
 		"0"
@@ -232,6 +232,19 @@ phrase "adjectives"
 		"Portside"
 		"Starboard"
 		"Topside"
+		"Holy"
+		"Vulgar"
+		"Foolish"
+		"Accidental"
+		"Avuncular"
+		"Calm"
+		"Martian"
+		"Lunar"
+		"Alpine"
+		"Canine"
+		"Vulpine"
+		"Feline"
+		"Ursine"
 
 phrase "cardinal directions"
 	word
@@ -443,6 +456,7 @@ phrase "singular nouns"
 		"Cutter"
 		"Dune"
 		"Obelisk"
+		"Totem"
 
 phrase "plural nouns"
 	word
@@ -649,21 +663,23 @@ phrase "nouns of indeterminate quantity"
 		"Defiance"
 		"Borneo"
 		"Grace"
+		"Chance"
+		"Luck"
 
 phrase "the-nouns"
 	word
 		"the "
 	phrase
-		"singular nouns" 201
+		"singular nouns" 202
 		"cardinal directions" 4
 
 phrase "things you can be of"
 	word
 		"of "
 	phrase
-		"plural nouns" 110
+		"plural nouns" 142
 		"the-nouns" 205
-		"nouns of indeterminate quantity" 101
+		"nouns of indeterminate quantity" 103
 
 phrase "male titles"
 	word
@@ -674,6 +690,20 @@ phrase "male titles"
 		"Duke"
 		"Baron"
 		"Master"
+		"Brother"
+		"Hetman"
+		"Sultan"
+		"Caliph"
+		"Chairman"
+		"Uncle"
+		"Earl"
+		"Jarl"
+		"Count"
+		"Marquis"
+		"Viscount"
+		"Tsar"
+		"Sir"
+		"Pasha"
 
 phrase "female titles"
 	word
@@ -683,6 +713,12 @@ phrase "female titles"
 		"Empress"
 		"Duchess"
 		"Mistress"
+		"Sister"
+		"Chairwoman"
+		"Aunt"
+		"Madam"
+		"Countess"
+		"Baroness"
 
 phrase "gender-neutral titles"
 	word
@@ -692,6 +728,18 @@ phrase "gender-neutral titles"
 		"Admiral"
 		"Sovereign"
 		"Commodore"
+		"President"
+		"Major"
+		"Chieftain"
+		"Overseer"
+		"Cousin"
+		"Steward"
+		"Director"
+		"Prime Minister"
+		"General"
+		"Sergeant"
+		"Hajji"
+		"Rabbi"
 
 phrase "all titles"
 	phrase
@@ -960,6 +1008,11 @@ phrase "female names"
 		"Grace"
 		"Andromeda"
 		"Cassiopeia"
+
+phrase "human names"
+	phrase
+		"male names"
+		"female names"
 
 # Only used in news items, not ship names yet.
 phrase "family names"
@@ -2632,9 +2685,9 @@ phrase "civilian subphrase 1"
 	phrase
 		"male names" 124
 		"female names" 132
-		"singular nouns" 201
-		"plural nouns" 110
-		"nouns of indeterminate quantity" 101
+		"singular nouns" 202
+		"plural nouns" 142
+		"nouns of indeterminate quantity" 103
 	phrase
 		"sometimes a successor"
 
@@ -2644,14 +2697,14 @@ phrase "civilian subphrase 1"
 # Cobalt Winds
 phrase "civilian subphrase 2"
 	phrase
-		"adjectives" 152
-		"singular nouns" 201
-		"nouns of indeterminate quantity" 101
+		"adjectives" 165
+		"singular nouns" 202
+		"nouns of indeterminate quantity" 103
 	word
 		" "
 	phrase
-		"singular nouns" 201
-		"plural nouns" 110
+		"singular nouns" 202
+		"plural nouns" 142
 
 # e.g.:
 # Xu's Flags
@@ -2668,9 +2721,9 @@ phrase "civilian subphrase 3"
 	word
 		"%'s "
 	phrase
-		"singular nouns" 201
-		"plural nouns" 110
-		"nouns of indeterminate quantity" 101
+		"singular nouns" 202
+		"plural nouns" 142
+		"nouns of indeterminate quantity" 103
 	# When making a word ending in "s" possessive, only add an apostrophe.
 	replace
 		"s%'s" "s'"
@@ -2682,13 +2735,13 @@ phrase "civilian subphrase 3"
 # Tears and Sorrow
 phrase "civilian subphrase 4"
 	phrase
-		"plural nouns" 110
-		"nouns of indeterminate quantity" 101
+		"plural nouns" 142
+		"nouns of indeterminate quantity" 103
 	word
 		" and "
 	phrase
-		"plural nouns" 110
-		"nouns of indeterminate quantity" 101
+		"plural nouns" 142
+		"nouns of indeterminate quantity" 103
 
 # e.g.:
 # Four Clouds
@@ -2747,8 +2800,8 @@ phrase "civilian subphrase 8"
 # Green Admiral
 phrase "civilian subphrase 9"
 	phrase
-		"singular nouns" 201
-		"adjectives" 152
+		"singular nouns" 202
+		"adjectives" 165
 	word
 		" "
 	phrase
@@ -2763,8 +2816,8 @@ phrase "civilian subphrase 9"
 # Moonlight of Bravery
 phrase "civilian subphrase 10"
 	phrase
-		"singular nouns" 201
-		"plural nouns" 110
+		"singular nouns" 202
+		"plural nouns" 142
 	word
 		" "
 	phrase
@@ -2780,17 +2833,17 @@ phrase "civilian subphrase 11"
 	word
 		" "
 	phrase
-		"singular nouns" 201
-		"plural nouns" 110
+		"singular nouns" 202
+		"plural nouns" 142
 		"all titles" 25
 	phrase
 		"sometimes a successor"
 
 phrase "civilian subphrase 12"
 	phrase
-		"adjectives" 152
+		"adjectives" 165
 		"nouns of indeterminate quantity" 101
-		"singular nouns" 201
+		"singular nouns" 202
 		"all titles" 25
 		"female names" 132
 	phrase
@@ -2907,15 +2960,13 @@ phrase "civilian subphrase 14"
 		"Zhou"
 		"Zhuang"
 	word
-		" "
-	word
 		"${sometimes a successor}" 6
-		"Hu"
-		"Shan"
-		"Tang"
-		"Chuan"
-		"Shun"
-		"Gang"
+		" Hu"
+		" Shan"
+		" Tang"
+		" Chuan"
+		" Shun"
+		" Gang"
 
 phrase "civilian subphrase 15"
 	# These should ideally all be single-syllable words
@@ -3019,6 +3070,12 @@ phrase "civilian subphrase 15"
 
 
 
+phrase "deep science vessel"
+	word
+		"D.R.S. "
+	phrase
+		"intellectuals"
+
 # Law enforcement names:
 
 phrase "republic capital"
@@ -3048,11 +3105,13 @@ phrase "mountains"
 		"Baker"
 		"Banahaw"
 		"Baxter"
+		"Ben Nevis"
 		"Blackcomb"
 		"Blanc"
 		"Brandberg"
 		"Breithorn"
 		"Brewster"
+		"Brocken"
 		"Bross"
 		"Cathkin"
 		"Chongtar"
@@ -3063,12 +3122,14 @@ phrase "mountains"
 		"Columbia"
 		"Cook"
 		"Crillon"
+		"Dapsang"
 		"Delos"
 		"Denali"
 		"Diran"
 		"Douglas"
+		"Dufour"
 		"Eiger"
-		"Elgon"
+		"Elbrus"
 		"Elgon"
 		"Erebus"
 		"Etna"
@@ -3081,8 +3142,10 @@ phrase "mountains"
 		"Galeras"
 		"Gannett"
 		"Garibaldi"
+		"Gasherbrum"
 		"Gerizim"
 		"Gistola"
+		"Gongga"
 		"Greylock"
 		"Guna"
 		"Haddington"
@@ -3093,6 +3156,7 @@ phrase "mountains"
 		"Hermon"
 		"Hood"
 		"Hotaka"
+		"Huangshan"
 		"Huascaran"
 		"Hubbard"
 		"Jackson"
@@ -3100,7 +3164,6 @@ phrase "mountains"
 		"Jaya"
 		"Kabru"
 		"Kailash"
-		"Kamet"
 		"Kamet"
 		"Kangri"
 		"Kangto"
@@ -3112,6 +3175,7 @@ phrase "mountains"
 		"Kilimanjaro"
 		"Kinabalu"
 		"Kirkpatrick"
+		"Kolahoi"
 		"Korbu"
 		"Koussi"
 		"Krakatoa"
@@ -3126,6 +3190,7 @@ phrase "mountains"
 		"Makalu"
 		"Manaslu"
 		"Markham"
+		"Marmolada"
 		"Massif"
 		"Matterhorn"
 		"Mayon"
@@ -3133,16 +3198,23 @@ phrase "mountains"
 		"McKinley"
 		"McMaster"
 		"Meron"
+		"Mian"
+		"Mismi"
 		"Mitre"
+		"Mitchell"
 		"Monadnock"
-		"Mondanock"
+		"Motutapu"
 		"Muhabura"
+		"Mulhacen"
 		"Naltar"
 		"Nanshan"
+		"Nevado Sajama"
+		"Ngaliema"
 		"Nordend"
 		"Olympus"
 		"Oppland"
 		"Ossa"
+		"Paektu"
 		"Paradiso"
 		"Parnassus"
 		"Pelion"
@@ -3151,6 +3223,8 @@ phrase "mountains"
 		"Pumori"
 		"Rainier"
 		"Raleigh"
+		"Rangitoto"
+		"Ras Dashen"
 		"Razorback"
 		"Riding"
 		"Rimo"
@@ -3159,6 +3233,7 @@ phrase "mountains"
 		"Sacagawea"
 		"Samsari"
 		"Sandia"
+		"Sant Jeroni"
 		"Saramati"
 		"Scafell"
 		"Schilthorn"
@@ -3178,6 +3253,7 @@ phrase "mountains"
 		"Taal"
 		"Tabor"
 		"Tai"
+		"Talgar"
 		"Tallac"
 		"Taranaki"
 		"Telemark"
@@ -3199,12 +3275,15 @@ phrase "mountains"
 		"Weisshorn"
 		"Wood"
 		"Wutai"
+		"Yushan"
 
 phrase "deep"
 	word
 		"D.S.S. "
 	phrase
-		"intellectuals"
+		"intellectuals" 127
+		"deep planets" 18
+		"deep systems" 12
 
 phrase "intellectuals"
 	word
@@ -3215,29 +3294,43 @@ phrase "intellectuals"
 		"Avogadro"
 		"Abbe"
 		"Alcubierre"
+		"al-Haytham"
+		"al-Khwarizmi"
 		"Abbott"
 		"Alvarez"
 		"Angstrom"
 		"Anderson"
+		"Aquinas"
 		"Babbage"
 		"Bell"
 		"Becquerel"
 		"Bernoulli"
+		"Bethe"
 		"Bohr"
+		"Bose"
 		"Brahe"
+		"Bunsen"
+		"Cavendish"
+		"Cayley"
 		"Chandrasekhar"
 		"Cherenkov"
+		"Conway"
+		"Copernicus"
 		"Coriolis"
 		"Coulomb"
 		"Crick"
 		"Curie"
 		"Dalton"
+		"Darwin"
+		"Davy"
 		"Democritus"
 		"Dewar"
 		"Dirac"
 		"Doppler"
+		"Dyson"
 		"Einstein"
 		"Englert"
+		"Euclid"
 		"Euler"
 		"Edison"
 		"Fahrenheit"
@@ -3247,8 +3340,11 @@ phrase "intellectuals"
 		"Fourier"
 		"Franklin"
 		"Fresnel"
+		"Galileo"
 		"Galvani"
+		"Gauss"
 		"Geiger"
+		"Goedel"
 		"Hall"
 		"Hawking"
 		"Heisenberg"
@@ -3258,21 +3354,26 @@ phrase "intellectuals"
 		"Hopper"
 		"Hubble"
 		"Huygens"
+		"Hypatia"
 		"Jenner"
 		"Joule"
 		"Kepler"
 		"Kimura"
+		"Kirchhoff"
 		"Koch"
 		"Lagrange"
 		"Lebedev"
 		"Legasov"
 		"Leibniz"
+		"Locke"
 		"Lovelace"
 		"Lyapunov"
 		"Mach"
 		"Marconi"
 		"Maxwell"
 		"McClintock"
+		"Mendeleev"
+		"Napier"
 		"Neumann"
 		"Newcomb"
 		"Newton"
@@ -3280,16 +3381,23 @@ phrase "intellectuals"
 		"Okazaki"
 		"Oppenheimer"
 		"Pascal"
+		"Pasteur"
 		"Pauling"
 		"Penrose"
 		"Planck"
+		"Plot"
 		"Poincare"
 		"Poisson"
 		"Porco"
+		"Ptolemy"
+		"Pythagoras"
+		"Ramanujan"
 		"Rayleigh"
 		"Richter"
 		"Roentgen"
-		"Ramanujan"
+		"Roux"
+		"Russell"
+		"Rutherford"
 		"Sagan"
 		"Schroedinger"
 		"Schwarzschild"
@@ -3297,14 +3405,55 @@ phrase "intellectuals"
 		"Snow"
 		"Suzuki"
 		"Tao"
+		"Teller"
 		"Tesla"
+		"Thomson"
 		"Turing"
 		"Venter"
+		"Volta"
 		"Watson"
 		"Watt"
 		"Weber"
+		"Wigner"
 
-phrase "militia"
+phrase "deep planets"
+	word
+		"Valhalla"
+		"Muspel"
+		"Norn"
+		"Nifel"
+		"Memory"
+		"Haze"
+		"Mani"
+		"Bivrost"
+		"Asgard"
+		"Midgard"
+		"Windblain"
+		"Helheim"
+		"Alfheim"
+		"Huginn"
+		"Muninn"
+		"Fenrir"
+		"Alexandria"
+		"Leviathan"
+		"Phoenix"
+
+phrase "deep systems"
+	word
+		"Wezen"
+		"Naos"
+		"Aludra"
+		"Suhail"
+		"Regor"
+		"Markeb"
+		"Aspidiske"
+		"Epsilon Leonis"
+		"Adhara"
+		"Gomeisa"
+		"Zosma"
+		"Dubhe"
+
+phrase "militia capital"
 	word
 		"I.M.S. "
 	phrase
@@ -3320,6 +3469,7 @@ phrase "trees"
 	word
 		"Alder"
 		"Aloe"
+		"Arrowwood"
 		"Ash"
 		"Aspen"
 		"Asphodel"
@@ -3330,10 +3480,10 @@ phrase "trees"
 		"Beech"
 		"Birch"
 		"Borage"
-		"Brisbane"
 		"Buckthorn"
 		"Carob"
 		"Cedar"
+		"Cherry"
 		"Chestnut"
 		"Chinquapin"
 		"Coral"
@@ -3347,7 +3497,7 @@ phrase "trees"
 		"Elder"
 		"Elm"
 		"Eucalyptus"
-		"Ginko"
+		"Ginkgo"
 		"Hawthorn"
 		"Hazel"
 		"Heath"
@@ -3355,6 +3505,7 @@ phrase "trees"
 		"Hickory"
 		"Holly"
 		"Hophorn"
+		"Ilex"
 		"Ironwood"
 		"Joshua"
 		"Juniper"
@@ -3496,6 +3647,7 @@ phrase "rivers"
 		"Amazon"
 		"Amur"
 		"Angara"
+		"Aras"
 		"Arkansas"
 		"Athabasca"
 		"Atrato"
@@ -3503,12 +3655,18 @@ phrase "rivers"
 		"Barito"
 		"Barwon"
 		"Belaya"
+		"Bosna"
 		"Boyne"
+		"Brahmaputra"
 		"Branco"
 		"Breede"
+		"Brisbane"
 		"Catatumbo"
 		"Chambeshi"
+		"Chu"
+		"Clutha"
 		"Clwyd"
+		"Clyde"
 		"Colorado"
 		"Columbia"
 		"Congo"
@@ -3519,18 +3677,30 @@ phrase "rivers"
 		"Daugava"
 		"Devi"
 		"Dnieper"
+		"Dniester"
 		"Don"
 		"Dongjiang"
+		"Dordogne"
+		"Ebro"
 		"Elbe"
+		"Essequibo"
 		"Euphrates"
 		"Flinders"
+		"Fly"
+		"Forth"
 		"Fraser"
+		"Gambia"
 		"Gandaki"
 		"Ganges"
+		"Garonne"
 		"Godavari"
+		"Halys"
+		"Hanjiang"
 		"Hayle"
 		"Helmand"
 		"Hiwassee"
+		"Huai He"
+		"Huang He"
 		"Indus"
 		"Irawaddy"
 		"Irtysh"
@@ -3541,6 +3711,7 @@ phrase "rivers"
 		"Kama"
 		"Kasai"
 		"Kolyma"
+		"Krishna"
 		"Lachlan"
 		"Lagan"
 		"Lena"
@@ -3554,14 +3725,17 @@ phrase "rivers"
 		"Mahanadi"
 		"Mekong"
 		"Mersey"
+		"Meuse"
 		"Mississippi"
 		"Modder"
 		"Mohawk"
 		"Murray"
+		"Murrumbidgee"
 		"Narva"
 		"Naryn"
 		"Nelson"
 		"Neva"
+		"Niagara"
 		"Niger"
 		"Nile"
 		"Ohlanga"
@@ -3569,6 +3743,7 @@ phrase "rivers"
 		"Orange"
 		"Orinoco"
 		"Oxus"
+		"Oyono"
 		"Palala"
 		"Paraguay"
 		"Pastaza"
@@ -3578,27 +3753,37 @@ phrase "rivers"
 		"Pilcomayo"
 		"Pitt"
 		"Platte"
+		"Po"
 		"Potomac"
+		"Rajang"
 		"Rhine"
 		"Rhone"
-		"Rio"
+		"Rio de la Plata"
+		"Rio Grande"
+		"Rio Negro"
 		"Rubicon"
+		"Saginaw"
 		"Salado"
 		"Salween"
 		"Sangamon"
-		"Sanginaw"
+		"Sao Francisco"
 		"Saskatchewan"
+		"Sava"
 		"Schuylkill"
 		"Seine"
 		"Senegal"
 		"Sepik"
 		"Severn"
 		"Skagit"
+		"Song Cai"
+		"Songhua"
 		"Squamish"
+		"St. Lawrence"
 		"Sungari"
 		"Susquehanna"
 		"Tagus"
 		"Tambo"
+		"Tarim"
 		"Tauranga"
 		"Thames"
 		"Tiber"
@@ -3607,17 +3792,26 @@ phrase "rivers"
 		"Tsilma"
 		"Tyne"
 		"Ural"
+		"Uruguay"
 		"Vistula"
 		"Volga"
-		"Voltra"
+		"Volta"
 		"Wabash"
 		"Waikato"
+		"Waimakariri"
+		"Wujiang"
 		"Yangtze"
 		"Yarra"
 		"Yenisei"
 		"Yukon"
 		"Zaire"
 		"Zambezi"
+
+phrase "militia small"
+	word
+		"I.M.S. "
+	phrase
+		"flowers"
 
 phrase "free worlds small"
 	word
@@ -3631,44 +3825,79 @@ phrase "flowers"
 		"Amaryllis"
 		"Ambrosia"
 		"Aster"
+		"Aubretia"
 		"Banksia"
+		"Begonia"
 		"Bell"
+		"Bellflower"
 		"Bergamot"
 		"Berry"
 		"Bittersweet"
+		"Bluebell"
 		"Brier"
 		"Burdock"
 		"Buttercup"
+		"Candytuft"
 		"Carnation"
+		"Catmint"
 		"Cherry"
 		"Chrysanthemum"
+		"Clarkia"
 		"Clover"
 		"Columbine"
+		"Cornflower"
+		"Cranesbell"
 		"Daffodil"
 		"Daisy"
+		"Daphne"
+		"Forsythia"
 		"Foxglove"
 		"Foxtail"
+		"Freesia"
+		"Fuchsia"
 		"Gentian"
 		"Gillyflower"
 		"Ginger"
 		"Goldenrod"
+		"Heartsease"
+		"Heather"
+		"Hellebore"
+		"Hibiscus"
 		"Holly"
+		"Hollyhock"
+		"Honesty"
+		"Hosta"
 		"Hyacinth"
+		"Hydrangea"
+		"Iris"
 		"Ivy"
+		"Jasmine"
+		"Jonquil"
+		"Lantana"
 		"Larkspur"
 		"Lavender"
 		"Lilac"
 		"Lily"
 		"Loosestrife"
+		"Lotus"
+		"Lupin"
+		"Magnolia"
+		"Mallow"
 		"Marigold"
+		"Mayflower"
 		"Mimosa"
+		"Moonflower"
 		"Morel"
 		"Mum"
 		"Nettle"
 		"Nightshade"
 		"Orchid"
 		"Peony"
+		"Petunia"
+		"Phlox"
+		"Pincushion"
 		"Poke"
+		"Poppy"
 		"Primrose"
 		"Purslane"
 		"Rose"
@@ -3684,15 +3913,25 @@ phrase "flowers"
 		"Snowdrop"
 		"Sorrel"
 		"Spurge"
+		"Starflower"
+		"Stargazer"
 		"Stonecrop"
+		"Strawflower"
+		"Sundrop"
 		"Sunflower"
+		"Sweetpea"
 		"Thistle"
 		"Thyme"
 		"Trillium"
 		"Tulip"
+		"Verbena"
 		"Vetch"
 		"Viburnum"
+		"Viola"
 		"Violet"
+		"Waterlily"
+		"Windflower"
+		"Wisteria"
 		"Yarrow"
 
 phrase "syndicate small"
@@ -3743,6 +3982,15 @@ phrase "free worlds fighter"
 		"Wolf"
 		"Hound"
 		"Fox"
+		"Reynard"
+		"Vixen"
+		"Coyote"
+		"Dhole"
+		"Fennec"
+		"Vulpine"
+		"Culpeo"
+		"Jackal"
+		"Dingo"
 	word
 		" "
 	phrase
@@ -4166,6 +4414,9 @@ phrase "pirate nouns"
 		"Slayer"
 		"Vulture"
 		"Anthrax"
+		"Totem"
+		"Dragon"
+		"Basilisk"
 
 phrase "pirate nouns that work after bad outcomes"
 	word
@@ -4227,7 +4478,6 @@ phrase "bad outcomes"
 		"Blood"
 		"Poison"
 		"Blight"
-		"Fury"
 		"Misfortune"
 		"Damnation"
 		"Contagion"
@@ -4533,9 +4783,9 @@ phrase "pirate subphrase 2"
 	word
 		" "
 	phrase
-		"pirate nouns" 110
+		"pirate nouns" 113
 		"pirate nouns that work after bad outcomes" 27
-		"bad outcomes" 53
+		"bad outcomes" 52
 
 phrase "pirate subphrase 3"
 	phrase
@@ -4546,7 +4796,7 @@ phrase "pirate subphrase 3"
 		" "
 	phrase
 		"sinister names" 78
-		"bad outcomes" 53
+		"bad outcomes" 52
 
 phrase "pirate subphrase 4"
 	phrase
@@ -4554,9 +4804,9 @@ phrase "pirate subphrase 4"
 	word
 		"%'s "
 	phrase
-		"pirate nouns" 110
+		"pirate nouns" 113
 		"pirate nouns that work after bad outcomes" 27
-		"bad outcomes" 53
+		"bad outcomes" 52
 	# When making a word ending in "s" possessive, only add an apostrophe.
 	replace
 		"s%'s" "s'"
@@ -4572,7 +4822,7 @@ phrase "pirate subphrase 5"
 
 phrase "pirate subphrase 6"
 	phrase
-		"pirate nouns" 110
+		"pirate nouns" 113
 		"pirate nouns that work after bad outcomes" 27
 	word
 		" of "
@@ -4581,7 +4831,7 @@ phrase "pirate subphrase 6"
 
 phrase "pirate subphrase 7"
 	phrase
-		"bad outcomes" 53
+		"bad outcomes" 52
 		"pirate adjectives that work as titles" 65
 		"pirate adjectives that don't work as titles" 67
 	word
@@ -4591,9 +4841,9 @@ phrase "pirate subphrase 7"
 
 phrase "pirate subphrase 8"
 	phrase
-		"pirate nouns" 110
+		"pirate nouns" 113
 		"pirate nouns that work after bad outcomes" 27
-		"bad outcomes" 53
+		"bad outcomes" 52
 
 phrase "pirate subphrase 9"
 	word

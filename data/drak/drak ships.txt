@@ -32,7 +32,7 @@ ship "Archon"
 		"outfit space" 1300
 		"weapon capacity" 1125
 		"engine capacity" 200
-		"energy capacity" 20000
+		"energy capacity" 100000
 		"energy generation" 1000
 		"heat generation" 17
 		"shield generation" 100
@@ -40,7 +40,9 @@ ship "Archon"
 		"hull repair rate" 100
 		"hull energy" 100
 		"ion protection" 3
+		"scramble protection" 3
 		"ion resistance" 1
+		"scramble resistance" 1
 		"ramscoop" 100
 		"thrust" 80
 		"thrusting energy" 20

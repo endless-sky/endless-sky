@@ -144,7 +144,12 @@ fleet "Wanderer Kor Efret Traders"
 		"Strong Wind"
 	variant 2
 		"Tempest"
+	variant
+		"Tempest (Moonbeam)"
 	variant 3
+		"Autumn Leaf"
+	variant
+		"Autumn Leaf (Heavy)"
 		"Autumn Leaf"
 
 shipyard "Wanderer Basics"
@@ -448,7 +453,7 @@ phrase "friendly wanderer"
 		"wrecked"
 	word
 		"."
-			
+		
 phrase "friendly wanderer"
 	word
 		"Wanderer "
@@ -879,8 +884,13 @@ event "wanderers: more systems lost"
 		spaceport `The raft of algae that supports the spaceport is probably at least a dozen meters thick, but flexible enough that it bends as the ocean swells pass underneath, causing individual buildings to rise up or tilt slightly relative to their neighbors. Now that this world has been captured by the Unfettered, nearly all the buildings are empty; it appears that the Hai are not too fond of the idea of inhabiting a water world, so they are using it mostly as a military base.`
 
 planet "The Eye"
-	description ""
 	spaceport ""
+	wormhole "The Eye"
+
+wormhole "The Eye"
+	mappable
+	link Sabriset Sko'karak
+	link Sko'karak Sabriset
 
 event "wanderers: the eye begins to open"
 	system Sko'karak
@@ -904,21 +914,21 @@ event "wanderers: the eye opens"
 		add fleet "Wanderer Defense" 1600
 		add fleet "Wanderer Drones" 800
 	system Kaliptari
-		fleet "Large Quarg" 2000
+		fleet "Large Quarg (Kor Efret)" 2000
 		fleet "Small Kor Mereti" 8000
 		fleet "Large Kor Mereti" 3600
 		fleet "Wanderer Defense" 1000
 		fleet "Wanderer Drones" 500
 	system Solifar
-		fleet "Large Quarg" 3000
+		fleet "Large Quarg (Kor Efret)" 3000
 		fleet "Wanderer Defense" 1800
 		fleet "Wanderer Drones" 700
 	system Fornarep
-		fleet "Large Quarg" 1000
+		fleet "Large Quarg (Kor Efret)" 1000
 		fleet "Small Kor Mereti" 7000
 		fleet "Large Kor Mereti" 4000
 	system Skeruto
-		fleet "Large Quarg" 1000
+		fleet "Large Quarg (Kor Efret)" 1000
 	system Mekislepti
 		add fleet "Small Kor Mereti" 4000
 		add fleet "Large Kor Mereti" 12000
@@ -1012,3 +1022,24 @@ event "wanderers: desi seledrak"
 		description `Plumes of soot and ash rise from a cluster of several dozen volcanoes on this planet's main continent, shrouding the planet in a thick layer of clouds and choking out the sunlight. The ruins of several Korath cities and the geometric grids of cleared land surrounding them show that this was once a farming world, but now few plants are able to survive and kilometer-high glaciers have begun creeping down from the poles.`
 		description `	With some help from the Mereti drones, the Wanderers have set up factories here that are pumping out carbon dioxide and methane to warm the atmosphere. In a few decades, the glaciers may start to recede.`
 		spaceport `This odd settlement was built half by the Wanderers and half by the Mereti drones. The layout of the streets is completely chaotic, and they have planted rows of trees and bushes everywhere: some inside greenhouses, and some hardier species out in the open air. The settlement is near the equator, but it is still not particularly warm.`
+
+event "wanderers: moonbeam mass production"
+	fleet "Wanderer Defense"
+		add variant 3
+			"Hurricane (Moonbeam)"
+		add variant
+			"Hurricane (Moonbeam)"
+			"Derecho (Moonbeam)"
+		add variant 3
+			"Derecho (Moonbeam)"
+			"Tempest (Moonbeam)" 2
+		add variant 5
+			"Tempest"
+			"Autumn Leaf (Heavy)"
+			"Autumn Leaf"
+		add variant
+			"Derecho"
+			"Autumn Leaf (Heavy)" 2
+	outfitter "Wanderer Advanced"
+		"Moonbeam"
+		"Moonbeam Turret"

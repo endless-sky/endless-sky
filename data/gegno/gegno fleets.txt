@@ -1,0 +1,438 @@
+# Copyright (c) 2022 by Saugia
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+fleet "Gegno Basic"
+	government Gegno
+	names "gegno scin"
+	cargo 2
+	personality
+		timid
+	variant 6
+		"Shale"
+	variant 3
+		"Dolomite"
+	variant 3
+		"Shale" 2
+	variant
+		"Shale" 3
+	variant
+		"Dolomite"
+		"Shale"
+	variant
+		"Dolomite" 2
+	variant
+		"Conglomerate"
+	variant
+		"Conglomerate"
+		"Shale"
+
+fleet "Gegno Miners"
+	government Gegno
+	names "gegno scin"
+	cargo 0
+	personality
+		pacifist timid plunders mining harvests ramming
+	variant 22
+		"Gypsum"
+	variant 6
+		"Corundum"
+	variant 5
+		"Corundum (Torch)"
+	variant
+		"Corundum (Multi)"
+	variant
+		"Gypsum"
+		"Granofel"
+	variant
+		"Corundum"
+		"Granofel"
+	variant
+		"Gypsum" 2
+	variant
+		"Corundum"
+		"Corundum (Torch)"
+
+fleet "Gegno Cargo"
+	government Gegno
+	names "gegno vi"
+	cargo 0
+	personality
+		timid
+	variant 8
+		"Dolomite" 2
+	variant 6
+		"Conglomerate"
+	variant 4
+		"Granofel"
+	variant 2
+		"Dolomite"
+		"Granofel"
+	variant 2
+		"Conglomerate"
+		"Dolomite"
+	variant 2
+		"Conglomerate"
+		"Granofel"
+	variant
+		"Granofel" 2
+		"Gypsum"
+	variant
+		"Granofel"
+		"Corundum"
+
+fleet "Gegno Old"
+	government Gegno
+	names "gegno vi"
+	cargo 2
+	personality
+		timid
+	variant
+		"Protolith"
+
+fleet "Small Vi"
+	government "Gegno Vi"
+	names "gegno vi"
+	cargo 1
+	personality
+		heroic vindictive
+	variant 10
+		"Eclogite"
+	variant 7
+		"Eclogite" 2
+	variant
+		"Hornfel"
+	variant 3
+		"Eclogite"
+		"Hornfel"
+	variant
+		Gneiss
+	variant
+		"Eclogite" 2
+		"Hornfel (Light Load)"
+	variant
+		"Gneiss"
+
+fleet "Large Vi"
+	government "Gegno Vi"
+	names "gegno vi"
+	cargo 2
+	personality
+		heroic vindictive opportunistic
+	variant 6
+		"Eclogite" 2
+	variant 4
+		"Eclogite"
+		"Hornfel"
+	variant 3
+		"Hornfel"
+	variant 3
+		"Hornfel (Heavy Load)"
+	variant 3
+		"Hornfel (Light Load)"
+	variant 3
+		"Gneiss"
+	variant 3
+		"Eclogite" 2
+		"Gneiss"
+	variant 2
+		"Eclogite" 2
+		"Hornfel" 2
+	variant
+		"Hornfel (Heavy Load)"
+		"Hornfel (Light Load)"
+	variant
+		"Hornfel (Heavy Load)"
+		"Gneiss"
+	variant
+		"Eclogite"
+		"Hornfel"
+		"Gneiss"
+	variant 2
+		"Eclogite" 2
+		"Hornfel (Light Load)"
+		"Hornfel (Heavy Load)"
+	variant
+		"Eclogite"
+		"Hornfel (Light Load)"
+		"Hornfel (Heavy Load)"
+		"Gneiss"
+	variant
+		"Eclogite" 2
+	variant
+		"Hornfel (Heavy Weapons)"
+		"Hornfel (Light Load)"
+		"Eclogite"
+	variant
+		"Gneiss"
+		"Hornfel (Heavy Weapons)"
+
+fleet "Vi Transport"
+	government "Gegno Vi"
+	names "gegno vi"
+	cargo 3
+	personality
+		timid plunders opportunistic
+	variant 14
+		"Slate"
+	variant 2
+		"Slate" 2
+	variant 8
+		"Schist"
+	variant 3
+		"Schist (Light Load)"
+	variant 2
+		"Slate"
+		"Schist (Heavy Load)"
+		"Schist (Light Load)"
+	variant 2
+		"Slate" 2
+		"Schist"
+	variant 4
+		"Slate"
+		"Schist (Heavy Load)"
+	variant
+		"Schist" 2
+	variant 2
+		"Schist (Light Load)"
+	variant
+		"Schist (Heavy Load)"
+	variant
+		"Granulite"
+
+fleet "Vi Cargo"
+	government "Gegno Vi"
+	names "gegno vi"
+	cargo 3
+	personality
+		plunders heroic opportunistic
+	variant 2
+		"Schist (Heavy Load)"
+	variant 2
+		"Hornfel (Light Load)"
+	variant
+		"Hornfel (Heavy Weapons)"
+	variant 2
+		"Schist (Light Load)"
+	variant
+		"Hornfel"
+	variant
+		"Schist"
+	variant
+		"Hornfel (Heavy Load)"
+		"Schist (Heavy Load)"
+	variant
+		"Granulite"
+		"Schist (Heavy Load)"
+
+fleet "Small Vi II"
+	government "Gegno Vi"
+	names "gegno vi"
+	cargo 2
+	personality
+		heroic vindictive opportunistic
+	variant 3
+		"Eclogite"
+	variant 2
+		"Eclogite"
+		"Diorite"
+	variant
+		"Diorite"
+	variant
+		"Eclogite" 2
+		"Diorite"
+	
+
+fleet "Small Scin"
+	government "Gegno Scin"
+	names "gegno scin"
+	cargo 1
+	personality
+		vindictive
+	variant 7
+		"Coesite"
+	variant 3
+		"Felsic"
+		"Coesite"
+	variant 4
+		"Coesite" 3
+	variant
+		"Coesite" 2
+	variant
+		"Feldspar"
+		"Halite" 6
+
+fleet "Large Scin"
+	government "Gegno Scin"
+	names "gegno scin"
+	cargo 2
+	personality
+		vindictive opportunistic
+	variant 8
+		"Coesite" 2
+	variant 4
+		"Felsic"
+		"Coesite"
+	variant 3
+		"Felsic"
+		"Coesite" 2
+	variant 3
+		"Coesite" 3
+	variant
+		"Feldspar"
+		"Halite" 6
+	variant
+		"Feldspar"
+		"Halite" 6
+		"Coesite"
+	variant
+		"Feldspar"
+		"Halite" 6
+		"Felsic"
+		"Coesite"
+
+fleet "Scin Transport"
+	government "Gegno Scin"
+	names "gegno scin"
+	cargo 3
+	personality
+		timid
+	variant 7
+		"Mica"
+	variant 4
+		"Felsic"
+		"Mica"
+	variant 2
+		"Felsic"
+		"Mica"
+		"Coesite"
+	variant 3
+		"Mica" 2
+	variant
+		"Epidote"
+		"Halite"
+	variant
+		"Epidote"
+		"Halite"
+	variant
+		"Tridymite"
+
+fleet "Scin Cargo"
+	government "Gegno Scin"
+	names "gegno scin"
+	cargo 4
+	personality
+		timid
+	variant 5
+		"Felsic"
+	variant 3
+		"Felsic"
+		"Coesite"
+	variant 2
+		"Felsic"
+		"Mica"
+		"Coesite"
+	variant
+		"Felsic" 2
+		"Mica"
+	variant
+		"Epidote"
+		"Halite"
+	variant
+		"Epidote"
+		"Halite"
+		"Coesite"
+
+fleet "Vi Warfleet"
+	government "Gegno Vi"
+	names "gegno vi"
+	cargo 0
+	personality
+		heroic vindictive opportunistic harvests
+	variant 7
+		"Eclogite" 2
+	variant 4
+		"Hornfel"
+		"Eclogite" 2
+	variant 2
+		"Hornfel"
+		"Hornfel (Light Load)"
+	variant
+		"Gneiss"
+		"Eclogite"
+	variant
+		"Gneiss"
+		"Eclogite"
+		"Hornfel (Heavy Load)"
+	variant
+		"Gneiss"
+		"Hornfel (Heavy Weapons)"
+
+fleet "Scin Warfleet"
+	government "Gegno Scin"
+	names "gegno scin"
+	cargo 0
+	personality
+		vindictive opportunistic harvests
+	variant 6
+		"Felsic"
+		"Coesite" 3
+	variant 4
+		"Felsic"
+		"Coesite" 2
+	variant
+		"Felsic" 2
+		"Coesite"
+	variant
+		"Feldspar" 2
+		"Halite" 12
+	variant
+		"Feldspar"
+		"Halite" 6
+		"Coesite"
+		"Felsic"
+	variant
+		"Feldspar"
+		"Halite" 6
+		"Coesite" 2
+		
+fleet "Gegno Vi Duelist A"
+	government "Gegno Vi (Duelist A)"
+	names "gegno vi"
+	personality
+		heroic unconstrained ramming
+	variant
+		"Dunite"
+
+fleet "Gegno Vi Duelist B"
+	government "Gegno Vi (Duelist B)"
+	names "gegno vi"
+	personality
+		heroic unconstrained ramming
+	variant
+		"Dunite"
+
+fleet "Scin Science"
+	government "Gegno Scin"
+	names "gegno scin"
+	cargo 4
+	personality
+		mining harvests
+	variant
+		"Kyanite"
+		"Tridymite"
+	variant
+		"Kyanite (Guile)"
+		"Tridymite"
+	variant
+		"Kyanite (Acumen)"
+		"Tridymite"

@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Command.h"
 #include "Dialog.h"
 #include "FillShader.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Point.h"
 #include "Preferences.h"
@@ -103,13 +104,6 @@ bool Panel::ZoneClick(const Point &point)
 			return true;
 		}
 	return false;
-}
-
-
-
-// Forward the given TestContext to the Engine under MainPanel.
-void Panel::SetTestContext(TestContext &testContext)
-{
 }
 
 
@@ -244,12 +238,12 @@ int Panel::Modifier()
 
 
 
-// Display the given help message if it has not yet been shown. Return true
-// if the message was displayed.
-bool Panel::DoHelp(const string &name) const
+// Display the given help message if it has not yet been shown
+// (or if force is set to true). Return true if the message was displayed.
+bool Panel::DoHelp(const string &name, bool force) const
 {
 	string preference = "help: " + name;
-	if(Preferences::Has(preference))
+	if(!force && Preferences::Has(preference))
 		return false;
 
 	const string &message = GameData::HelpMessage(name);
@@ -257,7 +251,7 @@ bool Panel::DoHelp(const string &name) const
 		return false;
 
 	Preferences::Set(preference);
-	ui->Push(new Dialog(message));
+	ui->Push(new Dialog(Format::Capitalize(name) + ":\n\n" + message));
 
 	return true;
 }

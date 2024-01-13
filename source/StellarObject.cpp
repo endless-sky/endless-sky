@@ -98,7 +98,7 @@ const string &StellarObject::LandingMessage() const
 int StellarObject::RadarType(const Ship *ship) const
 {
 	if(IsStar())
-		return Radar::SPECIAL;
+		return Radar::STAR;
 	else if(!planet || !planet->IsAccessible(ship))
 		return Radar::INACTIVE;
 	else if(planet->IsWormhole())

@@ -16,14 +16,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Sound.h"
 
 #include "File.h"
-#include "Files.h"
 
-#ifndef __APPLE__
 #include <AL/al.h>
-#else
-#include <OpenAL/al.h>
-#endif
 
+#include <cstdint>
 #include <cstdio>
 #include <vector>
 

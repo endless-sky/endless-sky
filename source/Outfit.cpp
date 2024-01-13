@@ -36,11 +36,9 @@ namespace {
 	// disallowed or undesirable behaviors (such as dividing by zero).
 	const auto MINIMUM_OVERRIDES = map<string, double>{
 		// Attributes which are present and map to zero may have any value.
-		{"shield generation", 0.},
 		{"shield energy", 0.},
 		{"shield fuel", 0.},
 		{"shield heat", 0.},
-		{"hull repair rate", 0.},
 		{"hull energy", 0.},
 		{"hull fuel", 0.},
 		{"hull heat", 0.},
@@ -52,6 +50,7 @@ namespace {
 		{"fuel energy", 0.},
 		{"fuel heat", 0.},
 		{"heat generation", 0.},
+		{"flotsam chance", 0.},
 
 		{"thrusting shields", 0.},
 		{"thrusting hull", 0.},
@@ -115,6 +114,9 @@ namespace {
 		{"ion resistance energy", 0.},
 		{"ion resistance fuel", 0.},
 		{"ion resistance heat", 0.},
+		{"scramble resistance energy", 0.},
+		{"scramble resistance fuel", 0.},
+		{"scramble resistance heat", 0.},
 		{"leak resistance energy", 0.},
 		{"leak resistance fuel", 0.},
 		{"leak resistance heat", 0.},
@@ -138,22 +140,29 @@ namespace {
 		{"piercing protection", -0.99},
 		{"force protection", -0.99},
 		{"discharge protection", -0.99},
+		{"drag reduction", -0.99},
 		{"corrosion protection", -0.99},
+		{"inertia reduction", -0.99},
 		{"ion protection", -0.99},
+		{"scramble protection", -0.99},
 		{"leak protection", -0.99},
 		{"burn protection", -0.99},
 		{"disruption protection", -0.99},
 		{"slowing protection", -0.99},
 
 		// "Multiplier" attributes appear in numerators and are incremented by 1.
+		{"hull multiplier", -1. },
 		{"hull repair multiplier", -1.},
 		{"hull energy multiplier", -1.},
 		{"hull fuel multiplier", -1.},
 		{"hull heat multiplier", -1.},
+		{"shield multiplier", -1. },
 		{"shield generation multiplier", -1.},
 		{"shield energy multiplier", -1.},
 		{"shield fuel multiplier", -1.},
-		{"shield heat multiplier", -1.}
+		{"shield heat multiplier", -1.},
+		{"acceleration multiplier", -1.},
+		{"turn multiplier", -1.}
 	};
 
 	void AddFlareSprites(vector<pair<Body, int>> &thisFlares, const pair<Body, int> &it, int count)
@@ -161,7 +170,8 @@ namespace {
 		auto oit = find_if(thisFlares.begin(), thisFlares.end(),
 			[&it](const pair<Body, int> &flare)
 			{
-				return it.first.GetSprite() == flare.first.GetSprite();
+				return (it.first.GetSprite() == flare.first.GetSprite()
+					&& it.first.Scale() == flare.first.Scale());
 			}
 		);
 
@@ -190,16 +200,20 @@ namespace {
 void Outfit::Load(const DataNode &node)
 {
 	if(node.Size() >= 2)
-	{
-		name = node.Token(1);
-		pluralName = name + 's';
-	}
+		trueName = node.Token(1);
+
 	isDefined = true;
 
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "category" && child.Size() >= 2)
+		if(child.Token(0) == "display name" && child.Size() >= 2)
+			displayName = child.Token(1);
+		else if(child.Token(0) == "category" && child.Size() >= 2)
 			category = child.Token(1);
+		else if(child.Token(0) == "series" && child.Size() >= 2)
+			series = child.Token(1);
+		else if(child.Token(0) == "index" && child.Size() >= 2)
+			index = child.Value(1);
 		else if(child.Token(0) == "plural" && child.Size() >= 2)
 			pluralName = child.Token(1);
 		else if(child.Token(0) == "flare sprite" && child.Size() >= 2)
@@ -289,6 +303,23 @@ void Outfit::Load(const DataNode &node)
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 
+	if(displayName.empty())
+		displayName = trueName;
+
+	// If no plural name has been defined, append an 's' to the name and use that.
+	// If the name ends in an 's' or 'z', and no plural name has been defined, print a
+	// warning since an explicit plural name is always required in this case.
+	// Unless this outfit definition isn't declared with the `outfit` keyword,
+	// because then this is probably being done in `add attributes` on a ship,
+	// so the name doesn't matter.
+	if(!displayName.empty() && pluralName.empty())
+	{
+		pluralName = displayName + 's';
+		if((displayName.back() == 's' || displayName.back() == 'z') && node.Token(0) == "outfit")
+			node.PrintTrace("Warning: explicit plural name definition required, but none is provided. Defaulting to \""
+					+ pluralName + "\".");
+	}
+
 	// Only outfits with the jump drive and jump range attributes can
 	// use the jump range, so only keep track of the jump range on
 	// viable outfits.
@@ -296,7 +327,8 @@ void Outfit::Load(const DataNode &node)
 		GameData::AddJumpRange(attributes.Get("jump range"));
 
 	// Legacy support for turrets that don't specify a turn rate:
-	if(IsWeapon() && attributes.Get("turret mounts") && !TurretTurn() && !AntiMissile())
+	if(IsWeapon() && attributes.Get("turret mounts") && !TurretTurn()
+		&& !AntiMissile() && !TractorBeam())
 	{
 		SetTurretTurn(4.);
 		node.PrintTrace("Warning: Deprecated use of a turret without specified \"turret turn\":");
@@ -305,7 +337,7 @@ void Outfit::Load(const DataNode &node)
 	// so no runtime code has to check for both.
 	auto convertScan = [&](string &&kind) -> void
 	{
-		const string label = kind + " scan";
+		string label = kind + " scan";
 		double initial = attributes.Get(label);
 		if(initial)
 		{
@@ -317,8 +349,22 @@ void Outfit::Load(const DataNode &node)
 			attributes[label + " power"] += initial * initial * .0001;
 			// The default scan speed of 1 is unrelated to the magnitude of the scan value.
 			// It may have been already specified, and if so, should not be increased.
-			if(!attributes.Get(label + " speed"))
-				attributes[label + " speed"] = 1.;
+			if(!attributes.Get(label + " efficiency"))
+				attributes[label + " efficiency"] = 15.;
+		}
+
+		// Similar check for scan speed which is replaced with scan efficiency.
+		label += " speed";
+		initial = attributes.Get(label);
+		if(initial)
+		{
+			attributes[label] = 0.;
+			node.PrintTrace("Warning: Deprecated use of \"" + label + "\" instead of \""
+					+ kind + " scan efficiency\":");
+			// A reasonable update is 15x the previous value, as the base scan time
+			// is 10x what it was before scan efficiency was introduced, along with
+			// ships which are larger or further away also increasing the scan time.
+			attributes[kind + " scan efficiency"] += initial * 15.;
 		}
 	};
 	convertScan("outfit");
@@ -337,16 +383,23 @@ bool Outfit::IsDefined() const
 
 // When writing to the player's save, the reference name is used even if this
 // outfit was not fully defined (i.e. belongs to an inactive plugin).
-const string &Outfit::Name() const
+const string &Outfit::TrueName() const
 {
-	return name;
+	return trueName;
+}
+
+
+
+const string &Outfit::DisplayName() const
+{
+	return displayName;
 }
 
 
 
 void Outfit::SetName(const string &name)
 {
-	this->name = name;
+	this->trueName = name;
 }
 
 
@@ -361,6 +414,20 @@ const string &Outfit::PluralName() const
 const string &Outfit::Category() const
 {
 	return category;
+}
+
+
+
+const string &Outfit::Series() const
+{
+	return series;
+}
+
+
+
+const int Outfit::Index() const
+{
+	return index;
 }
 
 
@@ -431,7 +498,7 @@ int Outfit::CanAdd(const Outfit &other, int count) const
 
 		// Only automatons may have a "required crew" of 0.
 		if(!strcmp(at.first, "required crew"))
-			minimum = !attributes.Get("automaton");
+			minimum = !(attributes.Get("automaton") || other.attributes.Get("automaton"));
 
 		double value = Get(at.first);
 		// Allow for rounding errors:
