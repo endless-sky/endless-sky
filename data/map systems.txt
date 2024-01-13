@@ -8686,10 +8686,10 @@ system Citadelle
 	object
 		sprite star/k0
 		period 27.5
-		object
-			sprite star/a-dwarf
-			distance 102.423
-			period 27.3
+	object
+		sprite star/a-dwarf
+		distance 102.423
+		period 27.3
 	object Bailey
 		sprite planet/lava0
 		distance 705.3

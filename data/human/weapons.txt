@@ -1117,7 +1117,7 @@ outfit "Javelin Turret"
 		"hull damage" 26
 		"hit force" 50
 		"missile strength" 3
-	description "Mounting not one but two Javelin Pods, the Javelin Turret rains down an endless stream of unguided missiles that deal noticeably more damage than other turreted weapons of the same size, at the expense of using a prodigious amount of ammo due to its high fire rate. For that reason, these turrets are commonly paired with Javelin Storage Crates, as well as with other weapons that don't require the use of ammunition to fall back on once all of the rockets are expended."
+	description "Mounting not one but two Javelin Pods, the Javelin Turret delivers a torrential downpour of unguided missiles that deal noticeably more damage than other turreted weapons of the same size, at the expense of using a prodigious amount of ammo due to its high fire rate. For that reason, these turrets are commonly paired with Javelin Storage Crates and weapons that don't require the use of ammunition to fall back on once all of the missiles are expended."
 	description "	With twice the fire rate of a Javelin Pod, the Javelin Turret excels at overwhelming anti-missile systems so that other ordnance from allied ships is able to reach the target."
 
 
@@ -1581,7 +1581,7 @@ outfit "Gatling Turret"
 		icon "icon/gat turret"
 		"inaccuracy" 2
 		"turret turn" 3.4
-		"velocity override" 16
+		"velocity" 16
 		"lifetime" 1
 		"reload" 3
 		"burst count" 180
