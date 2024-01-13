@@ -13919,6 +13919,7 @@ system Feraticus
 	hazard "Ember Waste Base Storm" 9000
 	object
 		sprite planet/browndwarf-l-rogue
+		period 10
 	object
 		sprite planet/rock0-b
 		distance 364.77
@@ -14641,6 +14642,7 @@ system G-3191
 			"random start frame"
 			"frame rate" 30
 			scale 0.5
+		period 10
 	object
 		sprite star/f-supergiant
 		distance 600.65
@@ -25128,6 +25130,7 @@ system Paeli
 	hazard "Ember Waste Base Storm" 9000
 	object
 		sprite planet/browndwarf-t-rogue
+		period 10
 	object
 		sprite planet/desert4-b
 		distance 275
@@ -25804,6 +25807,7 @@ system Perfica
 	hazard "Ember Waste Base Storm" 9000
 	object
 		sprite planet/browndwarf-y-rogue
+		period 10
 	object
 		sprite planet/ice5
 		distance 351
