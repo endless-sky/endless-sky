@@ -1288,18 +1288,25 @@ mission "FW Katya 1"
 			
 			label karate
 			`	You dodge sideways and spin quickly. As you do so you hear a loud click, but the gun does not fire. With one hand you knock aside the gun. With the other you land a karate chop which, if you had studied karate, would've shattered her collarbone and left her reeling in pain. But since you have not studied karate, instead your blow bounces harmlessly off her surprisingly muscular shoulder.`
-			`	Your assailant turns out to be wearing a Free Worlds uniform and a disappointed expression. "Well aren't you a dumb reckless bastard!" she says, "I'd hoped for something better from you. First of all, if this gun were loaded, your brains would be splattered all over the sidewalk. And second, you fight like a girl. I have no use for hotheads like you." She stalks off, leaving you very confused. It would appear that you've just failed some sort of test.`
+			`	Your assailant turns out to be wearing a Free Worlds uniform and a very disappointed expression. "Well, aren't you a dumb, reckless bastard." she says, "I'd hoped for something better from you. If this gun was loaded, your brains would already be splattered all over the sidewalk. And you hit like a paper tiger in that's been soaking in the rain for the past few days. I have no use for hotheads like you." She makes to stalk off, leaving you very confused. It would appear that you've just failed some sort of test.`
 			choice
 				`	(Let her go.)`
 					decline
-				`	"Oh yeah? Well you ARE a girl!"`
+				`	"I would've won if I had a weapon."`
 			
-			`	She turns back around, with a fearsome gleam in her eyes, and walks up to you until your faces are only inches apart. "Yeah, but I don't fight like one," she says. "I... fight like a she-badger."`
+			`	She turns back with a blazing glint in her eyes, tossing an object in your direction. "Try me," she growls. You look down at what you just caught in your hand. A taser looks back at you with a judging stare.`
 			choice
-				`	"A she... badger?"`
+				`	(Try her.)`
+					goto winded
+				`	(Pass the weapon back.)`
 			
-			`	"Fearsome creatures." She walks away, leaving you even more confused.`
-				decline
+			`	"You know, maybe you can learn. I think I'll give you another shot."`
+				goto explanation
+
+			label winded
+			`	You pull the trigger, and the next thing you know, you're lying belly-up on the ground, winded and gasping for air. The woman walks off, muttering about how she "needed a little stress relief anyways, so it wasn't a total waste of time."`
+			
+			`You stay laying there for a good few minutes, trying to appreciate the pastel sunset that spreads out across the sky, but a few stones poking at your back and a gathering crowd force you to pull yourself up and make your way back to the <ship>.`
 	
 	on decline
 		event "FW Katya Alt 2: ready" 21
