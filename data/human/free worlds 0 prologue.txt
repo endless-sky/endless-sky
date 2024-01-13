@@ -1304,7 +1304,7 @@ mission "FW Katya 1"
 				goto explanation
 
 			label winded
-			`	You pull the trigger, and the next thing you know, you're lying belly-up on the ground, winded and gasping for air. The woman walks off, muttering about how she "needed a little stress relief anyways, so it wasn't a total waste of time."`
+			`	You pull the trigger. The next thing you know, you're lying belly-up on the ground, winded and gasping for air. The woman walks off, muttering about how she "needed a little stress relief anyways, so it wasn't a total waste of time."`
 			
 			`You stay laying there for a good few minutes, trying to appreciate the pastel sunset that spreads out across the sky, but a few stones poking at your back and a gathering crowd force you to pull yourself up and make your way back to the <ship>.`
 	
