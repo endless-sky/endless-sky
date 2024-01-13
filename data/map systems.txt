@@ -8692,8 +8692,8 @@ system Citadelle
 		period 27.3
 	object Bailey
 		sprite planet/lava0
-		distance 705.3
-		period 212.769
+		distance 350
+		period 80
 	object Alvorada
 		sprite planet/alvorada
 			scale 0.5
