@@ -1288,7 +1288,7 @@ mission "FW Katya 1"
 			
 			label karate
 			`	You dodge sideways and spin quickly. As you do so you hear a loud click, but the gun does not fire. With one hand you knock aside the gun. With the other you land a karate chop which, if you had studied karate, would've shattered her collarbone and left her reeling in pain. But since you have not studied karate, instead your blow bounces harmlessly off her surprisingly muscular shoulder.`
-			`	Your assailant turns out to be wearing a Free Worlds uniform and a very disappointed expression. "Well, aren't you a dumb, reckless bastard." she says, "I'd hoped for something better from you. If this gun was loaded, your brains would already be splattered all over the sidewalk. And you hit like a paper tiger that's been soaking for days. I have no use for hotheads like you." She makes to stalk off, leaving you very confused. It would appear that you've just failed some sort of test.`
+			`	Your assailant turns out to be wearing a Free Worlds uniform and a very disappointed expression. "Well, aren't you a dumb, reckless bastard." she says, "I'd hoped for something better from you. Were this gun loaded, your brains would already be splattered all over the sidewalk. And you hit like a paper tiger that's been soaking for days. I have no use for hotheads like you." She makes to stalk off, leaving you very confused. It would appear that you've just failed some sort of test.`
 			choice
 				`	(Let her go.)`
 					decline
