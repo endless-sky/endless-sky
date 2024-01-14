@@ -46,6 +46,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <cmath>
 #include <limits>
+#include <memory>
 #include <set>
 
 using namespace std;
@@ -850,99 +851,9 @@ void AI::Step(Command &activeCommands)
 		}
 
 		// Handle carried ships:
-		if(it->CanBeCarried())
-		{
-			// A carried ship must belong to the same government as its parent to dock with it.
-			bool hasParent = parent && !parent->IsDestroyed() && parent->GetGovernment() == gov;
-			bool inParentSystem = hasParent && parent->GetSystem() == system;
-			// NPCs may take 30 seconds or longer to find a new parent. Player
-			// owned fighter shouldn't take more than a few seconds.
-			const bool findNewParent = isYours ? !Random::Int(30) : !Random::Int(1800);
-			bool parentHasSpace = inParentSystem && parent->BaysFree(it->Attributes().Category());
-			if(findNewParent && parentHasSpace && isYours)
-				parentHasSpace = parent->CanCarry(*it);
-			if(!hasParent || (!inParentSystem && !it->JumpNavigation().JumpFuel()) || (!parentHasSpace && findNewParent))
-			{
-				// Find the possible parents for orphaned fighters and drones.
-				vector<shared_ptr<Ship>> parentChoices{};
-				parentChoices.reserve(ships.size() * .1);
-				auto getParentFrom = [&it, &gov, &parentChoices, &system](const list<shared_ptr<Ship>> &otherShips) -> shared_ptr<Ship>
-				{
-					for(const auto &other : otherShips)
-						if(other->GetGovernment() == gov && other->GetSystem() == system && !other->CanBeCarried())
-						{
-							if(!other->IsDisabled() && other->CanCarry(*it))
-								return other;
-							else
-								parentChoices.emplace_back(other);
-						}
-					return shared_ptr<Ship>();
-				};
-				// Mission ships should only pick amongst ships from the same mission.
-				auto missionIt = it->IsSpecial() && !isYours
-					? find_if(player.Missions().begin(), player.Missions().end(),
-						[&it](const Mission &m) { return m.HasShip(it); })
-					: player.Missions().end();
+		if(it->CanBeCarried() && HandleCarriedShips(it, parent, command, playerSystem))
+			continue;
 
-				shared_ptr<Ship> newParent;
-				if(missionIt != player.Missions().end())
-				{
-					const auto &npcs = missionIt->NPCs();
-					for(const auto &npc : npcs)
-					{
-						// Don't reparent to NPC ships that have not been spawned.
-						if(!npc.ShouldSpawn())
-							continue;
-						newParent = getParentFrom(npc.Ships());
-						if(newParent)
-							break;
-					}
-				}
-				else
-					newParent = getParentFrom(ships);
-
-				// If a new parent was found, then this carried ship should always reparent
-				// as a ship of its own government is in-system and has space to carry it.
-				if(newParent)
-					parent = newParent;
-				// Otherwise, if one or more in-system ships of the same government were found,
-				// this carried ship should flock with one of them, even if they can't carry it.
-				else if(!parentChoices.empty())
-					parent = parentChoices[Random::Int(parentChoices.size())];
-				// Player-owned carriables that can't be carried and have no ships to flock with
-				// should keep their current parent, or if it is destroyed, their parent's parent.
-				else if(isYours)
-				{
-					if(parent && parent->IsDestroyed())
-						parent = parent->GetParent();
-				}
-				// All remaining non-player ships should forget their previous parent entirely.
-				else
-					parent.reset();
-
-				// Player-owned carriables should defer to player carrier if
-				// selected parent can't carry it. This is necessary to prevent
-				// fighters from jumping around fleet when there's not enough
-				// bays.
-				if(isYours && parent && parent->GetParent() && !parent->CanCarry(*it))
-					parent = parent->GetParent();
-
-				if(it->GetParent() != parent)
-					it->SetParent(parent);
-			}
-			// Otherwise, check if this ship wants to return to its parent (e.g. to repair).
-			else if(parentHasSpace && ShouldDock(*it, *parent, playerSystem))
-			{
-				it->SetTargetShip(parent);
-				MoveTo(*it, command, parent->Position(), parent->Velocity(), 40., .8);
-				command |= Command::BOARD;
-				it->SetCommands(command, firingCommands);
-				continue;
-			}
-			// If we get here, it means that the ship has not decided to return
-			// to its mothership. So, it should continue to be deployed.
-			command |= Command::DEPLOY;
-		}
 		// If this ship has decided to recall all of its fighters because combat has ceased,
 		// it comes to a stop to facilitate their reboarding process.
 		bool mustRecall = false;
@@ -2058,6 +1969,108 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, const System *playerSy
 				return true;
 		}
 	}
+
+	return false;
+}
+
+
+
+bool AI::HandleCarriedShips(const shared_ptr<Ship> &ship, shared_ptr<Ship> &parent, Command &command,
+	const System *playerSystem) const
+{
+	const Government *gov = ship->GetGovernment();
+	const System *system = ship->GetSystem();
+	const bool isYours = ship->IsYours();
+	// A carried ship must belong to the same government as its parent to dock with it.
+	bool hasParent = parent && !parent->IsDestroyed() && parent->GetGovernment() == gov;
+	bool inParentSystem = hasParent && parent->GetSystem() == system;
+	// NPCs may take 30 seconds or longer to find a new parent. Player
+	// owned fighter shouldn't take more than a few seconds.
+	const bool findNewParent = isYours ? !Random::Int(30) : !Random::Int(1800);
+	bool parentHasSpace = inParentSystem && parent->BaysFree(ship->Attributes().Category());
+	if(findNewParent && parentHasSpace && isYours)
+		parentHasSpace = parent->CanCarry(*ship);
+	if(!hasParent || (!inParentSystem && !ship->JumpNavigation().JumpFuel()) || (!parentHasSpace && findNewParent))
+	{
+		// Find the possible parents for orphaned fighters and drones.
+		vector<shared_ptr<Ship>> parentChoices{};
+		parentChoices.reserve(ships.size() * .1);
+		auto getParentFrom = [&ship, &gov, &parentChoices, &system](const list<shared_ptr<Ship>> &otherShips) -> shared_ptr<Ship>
+		{
+			for(const auto &other : otherShips)
+				if(other->GetGovernment() == gov && other->GetSystem() == system && !other->CanBeCarried())
+				{
+					if(!other->IsDisabled() && other->CanCarry(*ship))
+						return other;
+					else
+						parentChoices.emplace_back(other);
+				}
+			return shared_ptr<Ship>();
+		};
+		// Mission ships should only pick amongst ships from the same mission.
+		auto missionIt = ship->IsSpecial() && !isYours
+			? find_if(player.Missions().begin(), player.Missions().end(),
+				[&ship](const Mission &m) { return m.HasShip(ship); })
+			: player.Missions().end();
+
+		shared_ptr<Ship> newParent;
+		if(missionIt != player.Missions().end())
+		{
+			const auto &npcs = missionIt->NPCs();
+			for(const auto &npc : npcs)
+			{
+				// Don't reparent to NPC ships that have not been spawned.
+				if(!npc.ShouldSpawn())
+					continue;
+				newParent = getParentFrom(npc.Ships());
+				if(newParent)
+					break;
+			}
+		}
+		else
+			newParent = getParentFrom(ships);
+
+		// If a new parent was found, then this carried ship should always reparent
+		// as a ship of its own government is in-system and has space to carry it.
+		if(newParent)
+			parent = newParent;
+		// Otherwise, if one or more in-system ships of the same government were found,
+		// this carried ship should flock with one of them, even if they can't carry it.
+		else if(!parentChoices.empty())
+			parent = parentChoices[Random::Int(parentChoices.size())];
+		// Player-owned carriables that can't be carried and have no ships to flock with
+		// should keep their current parent, or if it is destroyed, their parent's parent.
+		else if(isYours)
+		{
+			if(parent && parent->IsDestroyed())
+				parent = parent->GetParent();
+		}
+		// All remaining non-player ships should forget their previous parent entirely.
+		else
+			parent.reset();
+
+		// Player-owned carriables should defer to player carrier if
+		// selected parent can't carry it. This is necessary to prevent
+		// fighters from jumping around fleet when there's not enough
+		// bays.
+		if(isYours && parent && parent->GetParent() && !parent->CanCarry(*ship))
+			parent = parent->GetParent();
+
+		if(ship->GetParent() != parent)
+			ship->SetParent(parent);
+	}
+	// Otherwise, check if this ship wants to return to its parent (e.g. to repair).
+	else if(parentHasSpace && ShouldDock(*ship, *parent, playerSystem))
+	{
+		ship->SetTargetShip(parent);
+		MoveTo(*ship, command, parent->Position(), parent->Velocity(), 40., .8);
+		command |= Command::BOARD;
+		ship->SetCommands(command, firingCommands);
+		return true;
+	}
+	// If we get here, it means that the ship has not decided to return
+	// to its mothership. So, it should continue to be deployed.
+	command |= Command::DEPLOY;
 
 	return false;
 }
