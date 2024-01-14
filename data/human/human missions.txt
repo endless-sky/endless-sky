@@ -3880,7 +3880,7 @@ mission "Human to Hai Space"
 			`	"If that's the case, could you bring me to <destination>? I'll give you <payment>."`
 			label choice
 			choice
-				`	"Greenwater? I come from there!"`
+				`	"<planet>? I come from there!"`
 					to display
 						has "hai space start"
 				`	"Alright, I'll take you there."`
