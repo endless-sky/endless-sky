@@ -1637,7 +1637,7 @@ planet Gagarin
 	attributes ccor factory frontier urban pirate south "south pirate"
 	landscape land/city16-sfiera
 	description `Gagarin is the most populous planet in what used to be the Confederated Councils of the Outer Rim, and it was one of the first colonies established in this region. All of the settlements on Gagarin are connected to a planetary transport and infrastructure grid... although the grid hasn't been able to keep pace with Gagarin's growing population. Despite having been designed for expansion commensurate with increasing demand, such a resource-intensive infrastructure project became harder and harder to maintain due to continuous supply shortages. The collapse of the CCOR has only exacerbated the grid's deficiencies.`
-	spaceport `The heart of the planetary infrastructure network, Gargarin's spaceport is perpetually crowded. Materials are constantly coming and going with ships landing, taking off, or being moved to underground hangars if they can't be unloaded on time. At least the spaceport appears to be able to meet demand, if just barely.`
+	spaceport `The heart of the planetary infrastructure network, Gagarin's spaceport is perpetually crowded. Materials are constantly coming and going with ships landing, taking off, or being moved to underground hangars if they can't be unloaded on time. At least the spaceport appears to be able to meet demand, if just barely.`
 	spaceport `	On the walls of the spaceport you see faded emblems for the CCOR, some of which have been plastered over by the local authorities, and others which have been plastered over again by the CCOR guerrillas.`
 	outfitter "Ammo South"
 	outfitter "Basic Outfits"
