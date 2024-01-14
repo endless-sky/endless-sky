@@ -1,3 +1,35 @@
+Version 0.10.5
+  * Big changes:
+
+  * Bug fixes:
+    * Content bugs:
+
+    * Engine bugs:
+
+  * Game content:
+    * New content:
+
+    * Mission changes:
+
+    * Balance:
+
+    * Other:
+
+  * Game mechanics:
+    * New mechanics:
+
+      * New autoconditions:
+
+    * Changed mechanics:
+
+    * AI:
+
+  * User interface:
+
+  * Under the hood:
+
+  * CI/CD and development environment:
+
 Version 0.10.4
   * Bug fixes:
     * Content bugs:
