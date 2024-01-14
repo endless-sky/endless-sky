@@ -293,9 +293,9 @@ planet Baianus
 planet Bailey
 	attributes ccor frontier mining pirate south "south pirate"
 	landscape land/mercury1
-	description `Bailey is a dead, nearly tidally locked world scarcely larger and more habitable than Mercury. Its cool side has hardened into a mineral-rich crust, a rarity in this region of space. Despite its inhospitable conditions, Bailey's bountiful crust has brought several mining expeditions to the planet.`
+	description `Bailey is a dead, nearly tidally locked world scarcely larger and more habitable than Mercury. As the planet slowly rotates relative to its host stars, its hot side is blasted into a molten wasteland, while its cool side hardens into a mineral-rich crust, a rarity in this region of space.`
 	description `	Like aphids sucking the sap from a plant, semi-mobile mining stations strip and refine the minerals, a method originally developed by the Confederated Councils. Since their fall, the pirates of the region have maintained the stations - although with considerably less organization than what was upheld by the central government.`
-	spaceport `Given the roving nature of the settlements, and the lack of a livable atmosphere, the spaceport and other major infrastructure are located on a repulsor-lift facility hovering a meter above Bailey's surface. Floating in place thanks to the lack of atmosphere, the planet slowly rotates beneath it while the facility is always on Bailey's dark side.`
+	spaceport `Given the inhabitability of the hot side of the planet, the spaceport and other major infrastructure is just as mobile as the mining stations. The spaceport is located close to the planet's terminator, cast in a perpetual twilight. Whenever the stars threaten to rise over the horizon, each building activates repulsor-lifts located under their foundations, causing the entire spaceport to rise above the ground and move in unison several kilometers away from the terminator, ensuring that the spaceport remains relatively habitable.`
 	bribe 0.03
 	security 0
 	tribute 300
