@@ -1611,7 +1611,7 @@ ship "Enforcer"
 	explode "tiny explosion" 8
 	explode "small explosion" 12
 	explode "medium explosion" 4
-	description "Prior to the formation of the galactic Republic, many star sectors were owned by small governing corporate entities, with the vast majority of space being inaccessible to private citizens. The only exception to this rule were the pirate bands, whose few ships were often stolen or rebellious corporate fleets of their own, yet who had an outsized impact on interstellar trade. The necessity for corporations to protect their operations meant that Enforcer was one of the more common system security vessels used for defense. The ship boasts an armament of four gun ports and a turreted mount, all packed on a small but defensible frame that was powerful for its time."
+	description `Prior to the formation of the galactic Republic, many star systems were owned by "governing corporate entities," with the vast majority of space being inaccessible to private citizens. The only exception to this rule were the pirate bands, whose few ships were often stolen or rebellious corporate fleets of their own, yet who had an outsized impact on interstellar trade. The necessity for corporations to protect their operations meant that Enforcer was one of the most common vessels used for security and defense. The ship boasts an armament of four gun ports and a turreted mount, all packed on a small but defensible frame that was powerful for its time.`
 	description `	Although no longer on the market, the Enforcer finds itself in the possession of a small number of merchants and, ironically, various groups of pirates, as an aging combat ship easily outperformed by other light warships or even interceptors of a similar size.`
 
 
