@@ -3,7 +3,7 @@ Version 0.10.5
     * Mining Stuff (new attributes, new outfits, new ships, new mechanics, etc... @Amazinite will expand upon this).
   * Bug fixes:
     * Content bugs:
-      * Typo fixes. (@Corraban2, @opusforlife2, @Wedge009, @jarmokivekas, @Anarchist2, @Tangle10, @Saugia, @tibetiroka, @bene-dictator, @ziproot, @mOctave, @alexrovw, (@The-Legendary-M),
+      * Typo fixes. (@Corraban2, @opusforlife2, @Wedge009, @jarmokivekas, @Anarchist2, @Tangle10, @Saugia, @tibetiroka, @bene-dictator, @ziproot, @mOctave, @alexrovw, @The-Legendary-M),
       * Fixed the location filters for some pirate escort jobs. (@ziproot)
       * Added a missing "goto" in "Southern Finance 6". (@bene-dictator)
       * Added a missing departure distance to Dokdobaru. (@Arachi-Lover)
@@ -26,7 +26,7 @@ Version 0.10.5
       * Added a new culture conversation about Earth Day. (@bene-dictator)
       * Added a few new generic human jobs. (@bene-dictator)
       * More Quarg spaceport news. (@Arachi-Lover)
-      * Added a new person ship for the Github reviewers. (@TheMarksman-ES, @Saugia, @EjoThims, @roadrunner56, @bene-dictator, @tibetiroka)
+      * Added a new person ship for the Github reviewers. (@TheMarksman-ES, @Saugia, @EjoThims, @roadrunner56, @bene-dictator, @tibetiroka, @1010todd)
       * Added new Deep hails and ship names. (@bene-dictator)
       * Added a new culture conversation about Burthen. (@bene-dictator)
       * Added a new mission about transporting a stranded Paradise Worlds family back home. (@bene-dictator)
@@ -58,10 +58,10 @@ Version 0.10.5
           * Turn rate reduced from 2.8 to 2.1.
           * Burn damage reduced from 0.45 to 0.4.
       * Nerfed the Flamethrower again. (@Quantumshark)
-      * Firing fuel increased from 0.25 to 0.4.
-      * Heat damage reduced from 150 to 125.
+        * Firing fuel increased from 0.25 to 0.4.
+        * Heat damage reduced from 150 to 125.
       * Nerfed the Shield Refactor Module so that ships with larger outfit space can't abuse it. (@Arachi-Lover)
-        * Cost increasesd from 2843000 to 3248000.
+        * Cost increased from 2843000 to 3248000.
         * Decreased "hull repair rate" from -0.2 to -0.25.
         * Replaced the "shield energy" attribute (at a value of 0.24) with the "shield energy multiplier" attribute (at a value of 0.2).
     * Other:
