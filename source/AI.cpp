@@ -1919,7 +1919,8 @@ bool AI::HandleCarriedShips(const shared_ptr<Ship> &ship, shared_ptr<Ship> &pare
 		// Find the possible parents for orphaned fighters and drones.
 		vector<shared_ptr<Ship>> parentChoices{};
 		parentChoices.reserve(ships.size() * .1);
-		auto getParentFrom = [&ship, &gov, &parentChoices, &system](const list<shared_ptr<Ship>> &otherShips) -> shared_ptr<Ship>
+		auto getParentFrom = [&ship, &gov, &parentChoices, &system](const list<shared_ptr<Ship>> &otherShips)
+			-> shared_ptr<Ship>
 		{
 			for(const auto &other : otherShips)
 				if(other->GetGovernment() == gov && other->GetSystem() == system && !other->CanBeCarried())
