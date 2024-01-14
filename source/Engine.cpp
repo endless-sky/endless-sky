@@ -1050,10 +1050,10 @@ list<ShipEvent> &Engine::Events()
 // Draw a frame.
 void Engine::Draw() const
 {
-    Point motionBlur = Preferences::Has("Render motion blur") ? centerVelocity : Point();
+	Point motionBlur = Preferences::Has("Render motion blur") ? centerVelocity : Point();
 
-    Preferences::ExtendedJumpEffects jumpEffectState = Preferences::GetExtendedJumpEffects();
-    if (jumpEffectState != Preferences::ExtendedJumpEffects::OFF)
+	Preferences::ExtendedJumpEffects jumpEffectState = Preferences::GetExtendedJumpEffects();
+	if(jumpEffectState != Preferences::ExtendedJumpEffects::OFF)
 		motionBlur *= 1. + pow(hyperspacePercentage *
 			(jumpEffectState == Preferences::ExtendedJumpEffects::MEDIUM ? 2.4 : 5.), 2);
 
