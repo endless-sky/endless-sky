@@ -550,10 +550,8 @@ void AI::Step(Command &activeCommands)
 	step = (step + 1) & 31;
 	int targetTurn = 0;
 	int minerCount = 0;
-	const int maxMinerCount = MaxMinerCount();
 	const bool playerOpportunisticEscorts = !Preferences::Has("Turrets focus fire");
 	const bool playerFightersRetreat = Preferences::Has("Damaged fighters retreat");
-	const int npcMaxMiningTime = GameData::GetGamerules().NPCMaxMiningTime();
 	for(const auto &it : ships)
 	{
 		const System *system = it->GetSystem();
@@ -652,10 +650,8 @@ void AI::Step(Command &activeCommands)
 		shared_ptr<Minable> targetAsteroid = it->GetTargetAsteroid();
 		shared_ptr<Flotsam> targetFlotsam = it->GetTargetFlotsam();
 		// This is only done if this ship is in the players system.
-		if(isPresent)
-		{
-
-		}
+		if(isPresent && HandlePersonalityTraits(it, parent, command, target, minerCount))
+			continue;
 
 		// This ship may have updated its target ship.
 
@@ -675,78 +671,6 @@ void AI::Step(Command &activeCommands)
 
 		if(isPresent)
 		{
-
-			// Behave in accordance with personality traits.
-			if(personality.IsSwarming() && !strandedWithHelper)
-			{
-				// Swarming ships should not wait for (or be waited for by) any ship.
-				if(parent)
-				{
-					parent.reset();
-					it->SetParent(parent);
-				}
-				// Flock between allied, in-system ships.
-				DoSwarming(*it, command, target);
-				it->SetCommands(command, firingCommands);
-				continue;
-			}
-
-			if(personality.IsSecretive() && DoSecretive(*it, command))
-			{
-				it->SetCommands(command);
-				continue;
-			}
-
-			// Surveillance NPCs with enforcement authority (or those from
-			// missions) should perform scans and surveys of the system.
-			if(personality.IsSurveillance() && !strandedWithHelper
-					&& (scanPermissions[gov] || it->IsSpecial()))
-			{
-				DoSurveillance(*it, command, target);
-				it->SetCommands(command, firingCommands);
-				continue;
-			}
-
-			// Ships that harvest flotsam prioritize it over stopping to be refueled.
-			if(personality.Harvests() && DoHarvesting(*it, command))
-			{
-				it->SetCommands(command, firingCommands);
-				continue;
-			}
-
-			// Attacking a hostile ship, fleeing and stopping to be refueled are more important than mining.
-			if(personality.IsMining() && !shouldFlee && !target && !strandedWithHelper && maxMinerCount)
-			{
-				// Miners with free cargo space and available mining time should mine. Mission NPCs
-				// should mine even if there are other miners or they have been mining a while.
-				if(it->Cargo().Free() >= 5 && IsArmed(*it) && (it->IsSpecial()
-						|| (++miningTime[&*it] < npcMaxMiningTime && ++minerCount < maxMinerCount)))
-				{
-					if(it->HasBays())
-					{
-						command |= Command::DEPLOY;
-						Deploy(*it, false);
-					}
-					DoMining(*it, command);
-					it->SetCommands(command, firingCommands);
-					continue;
-				}
-				// Fighters and drones should assist their parent's mining operation if they cannot
-				// carry ore, and the asteroid is near enough that the parent can harvest the ore.
-				if(it->CanBeCarried() && parent && miningTime[parent.get()] < 3601)
-				{
-					const shared_ptr<Minable> &minable = parent->GetTargetAsteroid();
-					if(minable && minable->Position().Distance(parent->Position()) < 600.)
-					{
-						it->SetTargetAsteroid(minable);
-						MoveToAttack(*it, command, *minable);
-						AutoFire(*it, firingCommands, *minable);
-						it->SetCommands(command, firingCommands);
-						continue;
-					}
-				}
-				it->SetTargetAsteroid(nullptr);
-			}
 		}
 
 		// Handle carried ships:
@@ -1977,10 +1901,12 @@ bool AI::HandleCarriedShips(const shared_ptr<Ship> &ship, shared_ptr<Ship> &pare
 
 
 bool AI::HandlePersonalityTraits(const shared_ptr<Ship> &ship, shared_ptr<Ship> &parent, Command &command,
-	shared_ptr<Ship> &target, bool shouldFlee, bool strandedWithHelper)
+	shared_ptr<Ship> &target, int &minerCount)
 {
 	const Personality &personality = ship->GetPersonality();
 	const Government *gov = ship->GetGovernment();
+	bool strandedWithHelper = isStranded &&
+			(HasHelper(*it, isStranded) || it->GetPersonality().IsDerelict() || it->IsYours());
 	// Behave in accordance with personality traits.
 	if(personality.IsSwarming() && !strandedWithHelper)
 	{
@@ -2019,9 +1945,10 @@ bool AI::HandlePersonalityTraits(const shared_ptr<Ship> &ship, shared_ptr<Ship> 
 		return true;
 	}
 
-	const int maxMinerCount = MaxMinerCount();
-	const int npcMaxMiningTime = GameData::GetGamerules().NPCMaxMiningTime();
+	const int maxMinerCount = minables.empty() ? 0 : 9;
+	static const int npcMaxMiningTime = GameData::GetGamerules().NPCMaxMiningTime();
 	// Attacking a hostile ship, fleeing and stopping to be refueled are more important than mining.
+	const bool shouldFlee = ShouldFlee(*ship);
 	if(personality.IsMining() && !shouldFlee && !target && !strandedWithHelper && maxMinerCount)
 	{
 		// Miners with free cargo space and available mining time should mine. Mission NPCs
@@ -2054,6 +1981,8 @@ bool AI::HandlePersonalityTraits(const shared_ptr<Ship> &ship, shared_ptr<Ship> 
 		}
 		ship->SetTargetAsteroid(nullptr);
 	}
+
+	return false;
 }
 
 
@@ -4486,13 +4415,6 @@ void AI::CacheShipLists()
 			list.insert(list.end(), oit.second.begin(), oit.second.end());
 		}
 	}
-}
-
-
-
-int AI::MaxMinerCount() const
-{
-	return minables.empty() ? 0 : 9;
 }
 
 
