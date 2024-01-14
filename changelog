@@ -96,7 +96,7 @@ Version 0.10.5
     * Added a wider dialog box for longer dialog text. (@theweirdnut)
     * The click zones in the escort display are now much larger. (@warp-core)
     * Fixed a zoom mismatch with landing zoom and zooming in/out. (@quyykk)
-    * "All map panels now show how many jumps away the selected system is, not just the mission panel. (@VeryGoodDog)
+    * All map panels now show how many jumps away the selected system is, not just the mission panel. (@VeryGoodDog)
     * Damage dropoff on weapons is now displayed in the outfitter. (@Quantumshark)
     * The "u" and "c" keys can now be used to sell a ship while sending all of its outfits to storage. (@kaol)
     * Added search functionality to the shops with the "f" key. (@Ember369)
