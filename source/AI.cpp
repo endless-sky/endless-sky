@@ -758,7 +758,6 @@ void AI::Step(Command &activeCommands)
 		}
 
 		// This ship may have updated its target ship.
-
 		target = it->GetTargetShip();
 
 		const double targetDistance = target ? target->Position().Distance(it->Position())
@@ -776,7 +775,6 @@ void AI::Step(Command &activeCommands)
 		if(isPresent && HandlePersonalityTraits(it, parent, command, target, minerCount, strandedWithHelper))
 			continue;
 
-		// Handle carried ships:
 		if(it->CanBeCarried() && HandleCarriedShips(it, parent, command, playerSystem))
 			continue;
 
