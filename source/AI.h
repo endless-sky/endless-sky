@@ -110,7 +110,7 @@ private:
 	bool HandleCarriedShips(const std::shared_ptr<Ship> &ship, std::shared_ptr<Ship> &parent, Command &command,
 		const System *playerSystem) const;
 	bool HandlePersonalityTraits(const std::shared_ptr<Ship> &ship, std::shared_ptr<Ship> &parent, Command &command,
-		std::shared_ptr<Ship> &target, int &minerCount);
+		std::shared_ptr<Ship> &target, int &minerCount, bool strandedWithHelper);
 
 	// Methods of moving from the current position to a desired position / orientation.
 	static double TurnBackward(const Ship &ship);

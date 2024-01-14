@@ -650,8 +650,112 @@ void AI::Step(Command &activeCommands)
 		shared_ptr<Minable> targetAsteroid = it->GetTargetAsteroid();
 		shared_ptr<Flotsam> targetFlotsam = it->GetTargetFlotsam();
 		// This is only done if this ship is in the players system.
-		if(isPresent && HandlePersonalityTraits(it, parent, command, target, minerCount))
+		if(isPresent)
+		{
+			if(isYours && targetFlotsam && FollowOrders(*it, command))
+				continue;
+			if(!personality.IsSwarming())
+			{
+				// Each ship only switches targets twice a second, so that it can
+				// focus on damaging one particular ship.
+				targetTurn = (targetTurn + 1) & 31;
+				if(targetTurn == step || !target || target->IsDestroyed() || (target->IsDisabled() && personality.Disables())
+						|| (target->IsFleeing() && personality.IsMerciful()) || !target->IsTargetable())
+				{
+					target = FindTarget(*it);
+					it->SetTargetShip(target);
+				}
+			}
+
+			AimTurrets(*it, firingCommands, isYours ? playerOpportunisticEscorts : personality.IsOpportunistic());
+			if(targetAsteroid)
+				AutoFire(*it, firingCommands, *targetAsteroid);
+			else
+				AutoFire(*it, firingCommands);
+		}
+
+		// If this ship is hyperspacing, or in the act of
+		// launching or landing, it can't do anything else.
+		if(it->IsHyperspacing() || it->Zoom() < 1.)
+		{
+			it->SetCommands(command, firingCommands);
 			continue;
+		}
+
+		// Run away if your hostile target is not disabled
+		// and you are either badly damaged or have run out of ammo.
+		// Player ships never stop targeting hostiles, while hostile mission NPCs will
+		// do so only if they are allowed to leave.
+		const bool shouldFlee = ShouldFlee(*it);
+		if(!isYours && shouldFlee && target && target->GetGovernment()->IsEnemy(gov) && !target->IsDisabled()
+			&& (!it->GetParent() || !it->GetParent()->GetGovernment()->IsEnemy(gov)))
+		{
+			// Make sure the ship has somewhere to flee to.
+			if(it->JumpsRemaining() && (!system->Links().empty() || it->JumpNavigation().HasJumpDrive()))
+				target.reset();
+			else
+				for(const StellarObject &object : system->Objects())
+					if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->IsInhabited()
+							&& object.GetPlanet()->CanLand(*it))
+					{
+						target.reset();
+						break;
+					}
+
+			if(target)
+				// This ship has nowhere to flee to: Stop fleeing.
+				it->SetFleeing(false);
+			else
+			{
+				// This ship has somewhere to flee to: Remove target and mark this ship as fleeing.
+				it->SetTargetShip(target);
+				it->SetFleeing();
+			}
+		}
+		else if(it->IsFleeing())
+			it->SetFleeing(false);
+
+		// Special actions when a ship is heavily damaged:
+		if(healthRemaining < RETREAT_HEALTH + .25)
+		{
+			// Cowards abandon their fleets.
+			if(parent && personality.IsCoward())
+			{
+				parent.reset();
+				it->SetParent(nullptr);
+			}
+			// Appeasing ships jettison cargo to distract their pursuers.
+			if(personality.IsAppeasing() && it->Cargo().Used())
+				DoAppeasing(it, &appeasementThreshold[it.get()]);
+		}
+
+		// If recruited to assist a ship, follow through on the commitment
+		// instead of ignoring it due to other personality traits.
+		shared_ptr<Ship> shipToAssist = it->GetShipToAssist();
+		if(shipToAssist)
+		{
+			// Check if the ship that is supposed to be assisted is still in need of assist.
+			if(shipToAssist->IsDestroyed() || shipToAssist->GetSystem() != system
+					|| shipToAssist->IsLanding() || shipToAssist->IsHyperspacing()
+					|| shipToAssist->GetGovernment()->IsEnemy(gov)
+					|| (!shipToAssist->IsDisabled() && !shipToAssist->NeedsFuel()))
+			{
+				shipToAssist.reset();
+				it->SetShipToAssist(nullptr);
+			}
+			else if(!it->IsBoarding())
+			{
+				MoveTo(*it, command, shipToAssist->Position(), shipToAssist->Velocity(), 40., .8);
+				command |= Command::BOARD;
+			}
+
+			if(shipToAssist)
+			{
+				it->SetTargetShip(shipToAssist);
+				it->SetCommands(command, firingCommands);
+				continue;
+			}
+		}
 
 		// This ship may have updated its target ship.
 
@@ -669,9 +773,8 @@ void AI::Step(Command &activeCommands)
 		const bool strandedWithHelper = isStranded &&
 			(HasHelper(*it, isStranded) || personality.IsDerelict() || isYours);
 
-		if(isPresent)
-		{
-		}
+		if(isPresent && HandlePersonalityTraits(it, parent, command, target, minerCount, strandedWithHelper))
+			continue;
 
 		// Handle carried ships:
 		if(it->CanBeCarried() && HandleCarriedShips(it, parent, command, playerSystem))
@@ -1901,12 +2004,10 @@ bool AI::HandleCarriedShips(const shared_ptr<Ship> &ship, shared_ptr<Ship> &pare
 
 
 bool AI::HandlePersonalityTraits(const shared_ptr<Ship> &ship, shared_ptr<Ship> &parent, Command &command,
-	shared_ptr<Ship> &target, int &minerCount)
+	shared_ptr<Ship> &target, int &minerCount, bool strandedWithHelper)
 {
 	const Personality &personality = ship->GetPersonality();
 	const Government *gov = ship->GetGovernment();
-	bool strandedWithHelper = isStranded &&
-			(HasHelper(*it, isStranded) || it->GetPersonality().IsDerelict() || it->IsYours());
 	// Behave in accordance with personality traits.
 	if(personality.IsSwarming() && !strandedWithHelper)
 	{
