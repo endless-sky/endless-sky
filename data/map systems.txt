@@ -4998,6 +4998,7 @@ system Alpheratz
 system Alpherg
 	pos -1009.44 272.194
 	government Pirate
+	attributes "ccor" "south" "giant star" "notable star"
 	arrival 4475
 	habitable 4475
 	haze _menu/haze-33
@@ -6497,6 +6498,7 @@ system Beginning
 system Belenos
 	pos -901.111 279.139
 	government Pirate
+	attributes "ccor" "south"
 	arrival 1310
 	habitable 1310
 	haze _menu/haze-33
@@ -8657,6 +8659,7 @@ system Cinxia
 system Citadelle
 	pos -980.667 225.917
 	government Pirate
+	attributes "ccor" "south"
 	arrival 1240
 	habitable 1240
 	haze _menu/haze-33
@@ -14503,6 +14506,7 @@ system Fscher
 system Fumalsamakah
 	pos -962.334 301.805
 	government Pirate
+	attributes "ccor" "south" "bright star" "notable star"
 	arrival 5000
 	habitable 5600
 	haze _menu/haze-33
@@ -32057,6 +32061,7 @@ system "Thshybo Le"
 system Thuban
 	pos -882.629 328.38
 	government Pirate
+	attributes "ccor" "south" "bright star" "notable star"
 	arrival 5000
 	habitable 7050
 	belt 200 1
