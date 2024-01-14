@@ -14,7 +14,7 @@ Version 0.10.5
 	  * Fixed/adjusted a few things in the "Early South" mission set. (@bene-dictator)
 	  * Corrected several outdated conditions in "FW Bloodsea 1.1". (@RisingLeaf)
     * Engine bugs:
-	  * The drag value for a ship used in calculations has been capped to the ship's mass to avoid problematic behaviour. (@warp-core)
+	  * The drag value for a ship used in calculations has been capped to the ship's mass to avoid problematic behavior. (@warp-core)
 	  * Limited the heat meter length on the escort HUD. (@TomGoodIdea)
 	  * Planetary security fines are now properly applied for illegal cargo. (@TomGoodIdea)
 	  * Fixed a rare deadlock while loading the game. (@quyykk)
@@ -56,14 +56,14 @@ Version 0.10.5
 		  * Burn damage reduced from 0.9 to 0.75.
 		* Blaze-pike
 		  * Turn rate reduced from 2.8 to 2.1.
-		  * Burn damage reduced from 0.45 to 0.4.		
+		  * Burn damage reduced from 0.45 to 0.4.
 	  * Nerfed the Flamethrower again. (@Quantumshark)
 		* Firing fuel increased from 0.25 to 0.4.
 		* Heat damage reduced from 150 to 125.
 	  * Nerfed the Shield Refactor Module so that ships with larger outfit space can't abuse it. (@Arachi-Lover)
 	    * Cost increasesd from 2843000 to 3248000.
 		* Decreased "hull repair rate" from -0.2 to -0.25.
-		* Replaced the "shield energy" attribute (at a value of 0.24) with the "shield energy multiplier" attribute (at a value of 0.2). 
+		* Replaced the "shield energy" attribute (at a value of 0.24) with the "shield energy multiplier" attribute (at a value of 0.2).
     * Other:
 	  * Removed the Quarg atrocity mission and added the proper arocities to the Quarg governments. (@TomGoodIdea)
 	  * Reworked and removed some overly-wordy and complex hails. (@bene-dictator)
@@ -85,14 +85,14 @@ Version 0.10.5
 	  * Projectiles can now be given a new "penetration count" attribute that allows them to penetrate through ships and deal damage multiple times. (@Amazinite)
     * Mechanic changes:
 	  * It is now possible to provide a single swizzle mask for an animated sprite, instead of needing one for each frame of sprite. (@RisingLeaf)
-	  * Adjusted the scaling of scan times with an increasd amount of scanners. (@UnorderedSigh)
+	  * Adjusted the scaling of scan times with an increased amount of scanners. (@UnorderedSigh)
   * User interface:
-	* The main view zoom levels can now be customised through the interfaces file. (@Zitchas, @Hurleveur, @quyykk)
+	* The main view zoom levels can now be customized through the interfaces file. (@Zitchas, @Hurleveur, @quyykk)
 	* Improved landing target selection when above a star. (@quyykk)
 	* Ship categories for player ships are now displayed in the shop panels. (@m0ctave)
 	* Added an "on hit" mode for status overlays. (@Koranir, @warp-core, @quyykk)
 	* Added a new map key that displays the relative danger of visited systems. (@flowers9)
-	* The regions for the lists in the load panel are now defined in the inferfaces file. (@warp-core)
+	* The regions for the lists in the load panel are now defined in the interfaces file. (@warp-core)
 	* Added a wider dialog box for longer dialog text. (@theweirdnut)
 	* The click zones in the escort display are now much larger. (@warp-core)
 	* Fixed a zoom mismatch with landing zoom and zooming in/out. (@quyykk)
