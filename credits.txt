@@ -148,6 +148,7 @@ contributed to Endless Sky:
   alex116
   AlexBassett
   alextd
+  alexrovw
   Alkallid
   Amacita
   Amazinite
@@ -156,6 +157,7 @@ contributed to Endless Sky:
   anarcat
   Anarchist2
   Aneutronic
+  AntimatterReactor
   AraCaputDraco
   Arachi-Lover
   aradapilot
@@ -254,6 +256,7 @@ contributed to Endless Sky:
   JanErikAhrens
   janisozaur
   jarekchr
+  jarmokivekas
   jerith
   jjhankins
   jmathes
@@ -344,6 +347,7 @@ contributed to Endless Sky:
   real-dam
   realityforge
   Red-57
+  RedDeadUndead
   redschalken
   ReimeiSky
   reizbar
@@ -387,10 +391,12 @@ contributed to Endless Sky:
   strollcata
   SubstandardZeal
   Tadrix
+  Tangle10
   tboby
   tehhowch
   temtemy
   Terin
+  The-Legendary-M
   thebigh2014
   TheMarksman-ES
   thenerdfreak
@@ -414,6 +420,7 @@ contributed to Endless Sky:
   tux2603
   unjown
   UnorderedSigh
+  VeryGoodDog
   Vilhelm16
   vitalchip
   W1zrad
