@@ -818,7 +818,6 @@ outfit "Heshi"
 	cost 10000
 	thumbnail "outfit/unknown"
 	"mass" 1
-	"outfit space" -1
 	"capture attack" 4
 	"capture defense" 8
 	"maintenance costs" 100
@@ -922,7 +921,11 @@ mission "<uhai> 2: Prove Your Strength"
 		conversation
 			branch "cheating bugger"
 				"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 > 12
-			`The captain hails you, "May crossing swords sharpen our blades. Let it begin!"`
+			`The captain launches right after you, and hails you as soon as you enter orbit, probably anxious to get the fight started.`
+			`	"I saw fit to bring a bit of extra crew to make it a fair fight, as it is no sitting duck that you brought! Given the fragile nature of their ships, we'll understand if they were to go down in battle. Just do not capture their ship.`
+				to display
+					"ships: Medium Warship" + "ships: Heavy Warship" * 2 > 1
+			`	"May crossing swords sharpen our blades. Let it begin!"`
 				accept
 			label "cheating bugger"
 			`The captain hails you, "That is too big of a fleet, ye monkey! This challenge sinked, come back to me again when ye 'r ready to do it by the code! It'll cost ye <fine> for wasting my time."`
@@ -932,9 +935,28 @@ mission "<uhai> 2: Prove Your Strength"
 	on disabled
 		dialog `The Captain hails you, "Full of holes so soon, matey? No matter, I get me fee of 250 thousand credits! When ye're ready to fight like a Heshi, come to the 'port to see if I'm on the deck! In the mean time I can repair ye for a lil' purse's worth, but be sure to give it in a private hail and then hail me ship again to ask for help, me first mate must not know about it or I could have a mutiny on my hands for not sharing!"`
 		fine 250000
+	# if you have a heavy warship, or two mediums he'll bring "friends"
+	npc disable
+		government "Hai (Unfettered Challenger)"
+		personality disables staying heroic target launching unconstrained
+		to spawn
+			"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 > 8
+		ship "Grasshopper (Tracker)" "Rock"
+		ship "Grasshopper (Ion)" "Thunder"
+		on capture
+			fail
+	npc disable
+		government "Hai (Unfettered Challenger)"
+		personality disables staying heroic target launching unconstrained
+		to spawn
+			"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 > 10
+		ship "Lightning Bug (Pulse)" "Rain"
+		on capture
+			fail
 	npc save disable
 		government "Hai (Unfettered Challenger)"
 		personality disables staying heroic target launching unconstrained
+		# vulnerable to ion
 		ship "Si-Ra' Scorpion" "Intrepid"
 		on kill
 			conversation "unfettered outcast"
@@ -1004,8 +1026,8 @@ mission "<uhai> 2: Prove Your Strength"
 				log `Defeated a young Unfettered Captain in a duel, and took part in a surprisingly scary Unfettered martial ceremony.`
 				event "unfettered: JD raid plan ready" 5 15
 				set "unfettered: duel ready"
-				"unfettered: took Si-Ra' gold" = "outfit (all): Gold Bars"
-				"unfettered: took Si-Ra' weapons" = "outfit (all): Ionic Blaster Prototype" + "outfit (all): Ionic Turret Prototype" * 3
+				# there's no way to get these before the duel
+				"unfettered: took Si-Ra' stuff" = "outfit (all): Gold Bars" + "outfit (all): Ionic Blaster Prototype" * 2
 			`	As he passes near you he quickly speaks, "It'll be a few weeks before I'm ready for more action."`
 				accept
 			label stay
@@ -1144,8 +1166,7 @@ mission "<uhai> 3: Recover Jump Drives"
 			action
 				outfit "Jump Drive"
 			branch "good boy!"
-				"unfettered: took Si-Ra' gold" <= 4
-				"unfettered: took Si-Ra' weapons" <= 2
+				"unfettered: took Si-Ra' stuff" <= 4
 			action
 				payment -1500000
 				"unfettered rep: Si-Ra" --
@@ -1165,8 +1186,7 @@ mission "<uhai> 3: Recover Jump Drives"
 				event "cerberus revealed"
 			label leave
 			action
-				clear "unfettered: took Si-Ra' gold"
-				clear "unfettered: took Si-Ra' weapons"
+				clear "unfettered: took Si-Ra' stuff"
 				"unfettered rep: Si-Ra" ++
 			`	"<first> was also the name of my mentor, ye know. Always flying a Sparrow, that one. Told him it'd get him in trouble one day, but he never listened... t'was a cheerful lad, I wonder what happened to him."`
 				to display

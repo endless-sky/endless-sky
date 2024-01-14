@@ -1103,6 +1103,7 @@ mission "<uhai> 15: Modified Beetle"
 		personality
 			confusion 50
 			disables staying heroic target waiting
+		# vulnerable to heat/missiles
 		ship "Modified Shield Beetle" "Hera"
 		on kill
 			conversation "unfettered outcast"
@@ -1354,6 +1355,7 @@ mission "<uhai> 16: Strength Of A Leader: Si-Ra"
 				fine 100000
 	npc save disable
 		government "Hai (Unfettered Challenger)"
+		# vulnerable to heat/missiles (it's still a modified shield beetle)
 		ship "Si-Ra' Golden Beetle" "Dekarios"
 		on kill
 			conversation "unfettered outcast"
@@ -1438,6 +1440,7 @@ mission "<uhai> 16: Strength Of A Leader: He-Yi"
 			not "Unfettered Bring Fire: done"
 			"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 <= 18
 		government "Hai (Unfettered Challenger)"
+		# vulnerable to missiles
 		ship "Stag Beetle" "Tejolis"
 		on kill
 			conversation "unfettered outcast"
