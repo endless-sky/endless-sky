@@ -209,6 +209,7 @@ public:
 	// Set the commands for this ship to follow this timestep.
 	void SetCommands(const Command &command);
 	void SetCommands(const FireCommand &firingCommand);
+	void SetCommands(const Command &command, const FireCommand &firingCommand);
 	const Command &Commands() const;
 	const FireCommand &FiringCommands() const noexcept;
 	// Move this ship. A ship may create effects as it moves, in particular if
