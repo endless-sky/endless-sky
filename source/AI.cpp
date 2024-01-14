@@ -555,8 +555,10 @@ void AI::Step(Command &activeCommands)
 	const int npcMaxMiningTime = GameData::GetGamerules().NPCMaxMiningTime();
 	for(const auto &it : ships)
 	{
+		const System *system = it->GetSystem();
+
 		// A destroyed or carried ship can't do anything.
-		if(it->IsDestroyed() || !it->GetSystem())
+		if(it->IsDestroyed() || !system)
 			continue;
 
 		// The player is their own AI.
@@ -572,10 +574,11 @@ void AI::Step(Command &activeCommands)
 		const Government *gov = it->GetGovernment();
 		const Personality &personality = it->GetPersonality();
 		const double healthRemaining = it->Health();
-		const bool isPresent = (it->GetSystem() == playerSystem);
+		const bool isPresent = (system == playerSystem);
 		const bool thisIsLaunching = (isPresent && HasDeployments(*it));
 		const bool IsDisabled = it->IsDisabled();
 		const bool isYours = it->IsYours();
+
 		bool isStranded = IsStranded(*it);
 
 		if(isStranded || IsDisabled)
@@ -607,6 +610,7 @@ void AI::Step(Command &activeCommands)
 		if(it->IsOverheated())
 			continue;
 
+
 		Command command;
 		firingCommands.SetHardpoints(it->Weapons().size());
 		if(isYours)
@@ -623,13 +627,14 @@ void AI::Step(Command &activeCommands)
 		}
 
 		// Cloak if the AI considers it appropriate.
-		if((!isYours || !isCloaking) && DoCloak(*it, command))
+		if(!(isYours && isCloaking) && DoCloak(*it, command))
 		{
 			// The ship chose to retreat from its target, e.g. to repair.
 			it->SetCommands(command);
 			continue;
 		}
 
+		// Retrive parent ship and update if necessary.
 		shared_ptr<Ship> parent = it->GetParent();
 		if(parent && parent->IsDestroyed())
 		{
@@ -645,6 +650,7 @@ void AI::Step(Command &activeCommands)
 		shared_ptr<Ship> target = it->GetTargetShip();
 		shared_ptr<Minable> targetAsteroid = it->GetTargetAsteroid();
 		shared_ptr<Flotsam> targetFlotsam = it->GetTargetFlotsam();
+		// This is only done if this ship is in the players system.
 		if(isPresent)
 		{
 			if(isYours && targetFlotsam && FollowOrders(*it, command))
@@ -686,7 +692,6 @@ void AI::Step(Command &activeCommands)
 			&& (!it->GetParent() || !it->GetParent()->GetGovernment()->IsEnemy(gov)))
 		{
 			// Make sure the ship has somewhere to flee to.
-			const System *system = it->GetSystem();
 			if(it->JumpsRemaining() && (!system->Links().empty() || it->JumpNavigation().HasJumpDrive()))
 				target.reset();
 			else
@@ -730,8 +735,8 @@ void AI::Step(Command &activeCommands)
 		shared_ptr<Ship> shipToAssist = it->GetShipToAssist();
 		if(shipToAssist)
 		{
-			// Check if the ship that is supposed to assit is still able to assist.
-			if(shipToAssist->IsDestroyed() || shipToAssist->GetSystem() != it->GetSystem()
+			// Check if the ship that is supposed to be assisted is still in need of assist.
+			if(shipToAssist->IsDestroyed() || shipToAssist->GetSystem() != system
 					|| shipToAssist->IsLanding() || shipToAssist->IsHyperspacing()
 					|| shipToAssist->GetGovernment()->IsEnemy(gov)
 					|| (!shipToAssist->IsDisabled() && !shipToAssist->NeedsFuel()))
@@ -754,10 +759,11 @@ void AI::Step(Command &activeCommands)
 		}
 
 		// This ship may have updated its target ship.
-		double targetDistance = numeric_limits<double>::infinity();
+
 		target = it->GetTargetShip();
-		if(target)
-			targetDistance = target->Position().Distance(it->Position());
+
+		const double targetDistance = target ? target->Position().Distance(it->Position())
+			: numeric_limits<double>::infinity();
 
 		// Special case: if the player's flagship tries to board a ship to
 		// refuel it, that escort should hold position for boarding.
@@ -785,12 +791,11 @@ void AI::Step(Command &activeCommands)
 				continue;
 			}
 
-			if(personality.IsSecretive())
-				if(DoSecretive(*it, command))
-				{
-					it->SetCommands(command);
-					continue;
-				}
+			if(personality.IsSecretive() && DoSecretive(*it, command))
+			{
+				it->SetCommands(command);
+				continue;
+			}
 
 			// Surveillance NPCs with enforcement authority (or those from
 			// missions) should perform scans and surveys of the system.
@@ -849,22 +854,22 @@ void AI::Step(Command &activeCommands)
 		{
 			// A carried ship must belong to the same government as its parent to dock with it.
 			bool hasParent = parent && !parent->IsDestroyed() && parent->GetGovernment() == gov;
-			bool inParentSystem = hasParent && parent->GetSystem() == it->GetSystem();
+			bool inParentSystem = hasParent && parent->GetSystem() == system;
 			// NPCs may take 30 seconds or longer to find a new parent. Player
 			// owned fighter shouldn't take more than a few seconds.
-			bool findNewParent = isYours ? !Random::Int(30) : !Random::Int(1800);
+			const bool findNewParent = isYours ? !Random::Int(30) : !Random::Int(1800);
 			bool parentHasSpace = inParentSystem && parent->BaysFree(it->Attributes().Category());
 			if(findNewParent && parentHasSpace && isYours)
 				parentHasSpace = parent->CanCarry(*it);
 			if(!hasParent || (!inParentSystem && !it->JumpNavigation().JumpFuel()) || (!parentHasSpace && findNewParent))
 			{
 				// Find the possible parents for orphaned fighters and drones.
-				auto parentChoices = vector<shared_ptr<Ship>>{};
+				vector<shared_ptr<Ship>> parentChoices{};
 				parentChoices.reserve(ships.size() * .1);
-				auto getParentFrom = [&it, &gov, &parentChoices](const list<shared_ptr<Ship>> &otherShips) -> shared_ptr<Ship>
+				auto getParentFrom = [&it, &gov, &parentChoices, &system](const list<shared_ptr<Ship>> &otherShips) -> shared_ptr<Ship>
 				{
 					for(const auto &other : otherShips)
-						if(other->GetGovernment() == gov && other->GetSystem() == it->GetSystem() && !other->CanBeCarried())
+						if(other->GetGovernment() == gov && other->GetSystem() == system && !other->CanBeCarried())
 						{
 							if(!other->IsDisabled() && other->CanCarry(*it))
 								return other;
@@ -882,7 +887,7 @@ void AI::Step(Command &activeCommands)
 				shared_ptr<Ship> newParent;
 				if(missionIt != player.Missions().end())
 				{
-					auto &npcs = missionIt->NPCs();
+					const auto &npcs = missionIt->NPCs();
 					for(const auto &npc : npcs)
 					{
 						// Don't reparent to NPC ships that have not been spawned.
@@ -947,7 +952,7 @@ void AI::Step(Command &activeCommands)
 			{
 				shared_ptr<const Ship> escort = ptr.lock();
 				// Note: HasDeployOrder is always `false` for NPC ships, as it is solely used for player ships.
-				if(escort && escort->CanBeCarried() && !escort->HasDeployOrder() && escort->GetSystem() == it->GetSystem()
+				if(escort && escort->CanBeCarried() && !escort->HasDeployOrder() && escort->GetSystem() == system
 						&& !escort->IsDisabled() && it->BaysFree(escort->Attributes().Category()))
 				{
 					mustRecall = true;
@@ -978,7 +983,7 @@ void AI::Step(Command &activeCommands)
 		// immediate needs (like refueling).
 		else if(!parent)
 			MoveIndependent(*it, command);
-		else if(parent->GetSystem() != it->GetSystem())
+		else if(parent->GetSystem() != system)
 		{
 			if(personality.IsStaying() || !it->Attributes().Get("fuel capacity"))
 				MoveIndependent(*it, command);
@@ -1514,9 +1519,7 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 	else if(type == Orders::HARVEST)
 	{
 		if(DoHarvesting(ship, command))
-		{
 			ship.SetCommands(command, firingCommands);
-		}
 		else
 			return false;
 	}
