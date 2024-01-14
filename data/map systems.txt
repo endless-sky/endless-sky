@@ -8685,15 +8685,15 @@ system Citadelle
 	fleet "Large CCOR" 4500
 	object
 		sprite star/k0
-		period 27.5
+		period 15
 	object
 		sprite star/a-dwarf
 		distance 102.423
-		period 27.3
+		period 15
 	object Bailey
 		sprite planet/lava0
-		distance 350
-		period 80
+		distance 192.4
+		period 30.3149
 	object Alvorada
 		sprite planet/alvorada
 			scale 0.5
