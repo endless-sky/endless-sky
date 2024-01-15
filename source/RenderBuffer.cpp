@@ -66,7 +66,9 @@ void RenderBuffer::Init()
 	static const char *fragmentCode =
 		"// fragment blit shader\n"
 		"precision mediump float;\n"
+#ifdef ES_GLES
 		"precision mediump sampler2D;\n"
+#endif
 		"uniform sampler2D tex;\n"
 		"uniform vec4 fade;\n"
 
