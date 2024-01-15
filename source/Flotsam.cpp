@@ -118,6 +118,13 @@ void Flotsam::Move(vector<Visual> &visuals)
 
 
 
+void Flotsam::SetVelocity(Point velocity)
+{
+	this->velocity = velocity;
+}
+
+
+
 // This is the one ship that cannot pick up this flotsam.
 const Ship *Flotsam::Source() const
 {
@@ -162,6 +169,13 @@ int Flotsam::Count() const
 double Flotsam::UnitSize() const
 {
 	return outfit ? outfit->Mass() : 1.;
+}
+
+
+
+double Flotsam::Mass() const
+{
+	return Count() * UnitSize();
 }
 
 

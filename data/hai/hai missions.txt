@@ -146,15 +146,13 @@ mission "Assisting Hai"
 	assisting
 	repeat
 	to offer
-		random < 27
+		random < 19
 	source
-		government "Hai"
+		government "Hai" "Hai Merchant" "Hai Merchant (Human)"
 		not attributes "automaton"
 	on offer
 		payment 30000
-		conversation
-			`Knowing you risked your life to save the <origin>, the captain gives you <payment>.`
-				decline
+		conversation "assisting merchant hazardous"
 	destination "Hai-home"
 
 
@@ -827,7 +825,7 @@ mission "Expanding Business: shipyard complete"
 
 
 mission "Hiding in Plain Sight"
-	description "Bring Arthur and his Hai friend Kiru to <destination> for a gaming convention by <date>"
+	description "Bring Arthur and his Hai friend Kiru to <destination> for a gaming convention by <date>."
 	minor
 	source
 		government "Hai"

@@ -28,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "HiringPanel.h"
 #include "Interface.h"
 #include "MapDetailPanel.h"
+#include "MessageLogPanel.h"
 #include "MissionPanel.h"
 #include "OutfitterPanel.h"
 #include "Planet.h"
@@ -212,6 +213,11 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 		GetUI()->Push(new PlayerInfoPanel(player));
 		return true;
 	}
+	else if(command.Has(Command::MESSAGE_LOG))
+	{
+		GetUI()->Push(new MessageLogPanel());
+		return true;
+	}
 	else
 		return false;
 
@@ -351,7 +357,7 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 		|| !leftUniques.empty())
 	{
 		ostringstream out;
-		auto ListUniques = [&out] (const map<const Outfit *, int> uniques)
+		auto ListUniques = [&out] (const map<const Outfit *, int> &uniques)
 		{
 			const int detailedSize = (uniques.size() > 5 ? 4 : uniques.size());
 			auto it = uniques.begin();

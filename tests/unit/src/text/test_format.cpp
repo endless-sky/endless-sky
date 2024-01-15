@@ -159,6 +159,11 @@ TEST_CASE( "Format::Number", "[Format][Number]") {
 		CHECK( Format::Number(-.0) == "0" );
 		CHECK( Format::Number(.0) == "0" );
 	}
+	SECTION( "Non-finite inputs" ) {
+		CHECK( Format::Number(0./0.) == "???" );
+		CHECK( Format::Number(1./0.) == "infinity" );
+		CHECK( Format::Number(-1./0.) == "-infinity" );
+	}
 	SECTION( "Integral inputs" ) {
 		CHECK( Format::Number(1) == "1" );
 		CHECK( Format::Number(-1.) == "-1" );

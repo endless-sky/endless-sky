@@ -114,13 +114,23 @@ void SpriteQueue::Finish()
 
 		// Load whatever is already queued up for loading.
 		DoLoad(lock);
+		lock.unlock();
 		if(GetProgress() == 1.)
 			break;
+		lock.lock();
 
 		// We still have sprites to upload, but none of them have been read from
 		// disk yet. Wait until one arrives.
-		loadCondition.wait(lock);
+		loadCondition.wait(lock, [this] { return !toLoad.empty(); });
 	}
+}
+
+
+
+// Don't upload the images to the GPU using OpenGL. Used for the integration tests.
+void SpriteQueue::SetPreventUpload()
+{
+	uploadSprites = false;
 }
 
 
@@ -168,7 +178,7 @@ void SpriteQueue::operator()()
 			lock.lock();
 		}
 
-		readCondition.wait(lock);
+		readCondition.wait(lock, [this] { return added < 0 || !toRead.empty(); });
 	}
 }
 
@@ -196,7 +206,7 @@ void SpriteQueue::DoLoad(unique_lock<mutex> &lock)
 		lock.unlock();
 
 		readCondition.notify_one();
-		imageSet->Upload(SpriteSet::Modify(imageSet->Name()));
+		imageSet->Upload(SpriteSet::Modify(imageSet->Name()), uploadSprites);
 
 		lock.lock();
 		++completed;

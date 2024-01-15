@@ -1419,7 +1419,7 @@ mission "Heliarch Contain True"
 	on complete
 		payment
 		payment 70000
-		dialog `You and the other agents converge on the marked area and quickly move to cut off any exits. After a brief firefight, the criminals surrender and a Heliarch ship swoops in to pick them up. You bid your Heliarch colleagues farewell and return to your ship, where you are happy to see that <payment> has already been transferred to your account.`
+		dialog `You and the other agents converge on the marked area and quickly move to cut off any exits. After a brief firefight, the criminals surrender and a Heliarch ship swoops in to pick them up. You bid your Heliarch colleagues farewell and return to your ship, where you are happy to see that <payment> have already been transferred to your account.`
 
 mission "Heliarch Contain Fail"
 	job
@@ -1536,10 +1536,10 @@ mission "Evacuate Lunarium True"
 		government "Coalition"
 	stopover
 		government "Coalition"
-		distance 2 6
+		distance 2 4
 	destination
 		government "Coalition"
-		distance 3 5
+		distance 5 6
 	on stopover
 		dialog `The Lunarium members rush to your ship once it touches down on the hangars, and you swiftly open your hatch for them to come in. One of the calmer members asks that you head to <destination> as soon as possible.`
 	on visit
@@ -1568,10 +1568,10 @@ mission "Evacuate Lunarium Fail"
 		government "Coalition"
 	stopover
 		government "Coalition"
-		distance 2 6
+		distance 2 4
 	destination
 		government "Coalition"
-		distance 3 5
+		distance 5 6
 	on stopover
 		dialog `You touch down on the hangars, and wait for a few minutes for the Lunarium members. Many minutes pass, however, and none arrive. Instead the docks become increasingly filled with Heliarch agents. A message appears on your monitor, saying that the Heliarchs got to the members here first, but thanking you for your efforts anyway.`
 		fail
