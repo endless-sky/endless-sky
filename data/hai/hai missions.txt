@@ -1690,19 +1690,24 @@ mission "Station Exploration 1"
 				`	"How much can you pay me?"`
 				`	"Sorry, I'm busy right now. Go ask some other captain."`
 						decline
-			`	The group starts to shuffle around with a nervous air. "Well, we're still in school, so money's kind of tight right now... But we can pay you! Is <payment> okay?" This last part is said in almost a whisper.`
+			`	The group starts to shuffle around with a nervous air. "Well, we're still in school, so money's kind of tight right now... But we can pay you!" The Hai pauses to glance at his friends and, in almost a whisper, says, "is <payment> okay?"`
 			choice
 				`	"Why would you want to pay money to go to <planet>, anyhow? Isn't that an abandoned station?"`
-					goto question
+					to display
+						has "visited planet: Darkrest"
+				`	"Why do you want to go to <planet>?"`
+					goto "question 1"
+					to display
+						not "visited planet: Darkrest"
 				`	"Sure, I'm not hurting for cash right now."`
 					goto accept
 				`	"No way, that's too low. Find someone else."`
-						decline
+					decline
 			label question
-			`	"Well, that's kind of why we want to go there," says one of the Hai. "Some guy in our dorm told us that there's ghosts haunting <planet>, and we wanted to call his bluff."`
+			`	"Well, that's kind of why we want to go there," says another one of the Hai. "Some guy in our dorm told us that there's ghosts haunting <planet>, and we wanted to call his bluff."`
 				goto continue
 			label "question 1"
-			`	"Some guy in our dorm told us that there's ghosts haunting <planet>," says one of the Hai, "and we wanted to call his bluff."`
+			`	"Some guy in our dorm told us that there's ghosts haunting <planet>," says another one of the Hai, "and we wanted to call his bluff."`
 			label continue
 			`	"We're planning to look around for an afternoon, see what we can find," one of the human students says, grinning. "Once we're done we'll let you know, and then we can leave."`
 			`	One of the shorter Hai in the back pipes up. "I brought cameras for the trip!" He is ignored by the rest of the group.`
@@ -1713,7 +1718,7 @@ mission "Station Exploration 1"
 			`	The students look at each other, considering this question for what is apparently the first time. "We've heard of other people going there with no problems, as long as they were... discreet about it," says one of the students, trying to assure both you and their fellow classmates. Another mentions having heard something about needing a permit to enter, but he is quickly shushed by the rest of the group.`
 			choice
 				`	"I'm not about to risk getting in trouble for this. Find someone else."`
-						decline
+					decline
 				`	"Not my business where you spend your vacations. Come aboard."`
 			label accept
 			`	The students race onboard your ship. As they settle into their bunks, you can hear them speculating about what they will find on <planet>.`
@@ -1738,8 +1743,8 @@ mission "Station Exploration 2"
 		not "Station Exploration Abandon Ship: declined"
 	on offer
 		conversation
-			`The spaceport is bathed in red light, and the booming voice continues to play. Your passengers rush back onto your ship without saying a word, and you take off before something worse happens.`
-				accept
+			`The spaceport is bathed in red light, and the booming voice continues to play. Your red-faced passengers rush back onto your ship shouting at each other in a mixture of languages, but once they're through the airlock you take off before something worse happens.`
+				launch
 	on visit
 		dialog `You look for the group of students you were transporting, but realize that they took a ride on one of your escorts! Better depart and wait for your escorts to arrive in this star system.`
 	on complete
@@ -1763,9 +1768,9 @@ mission "Station Exploration 2"
 				`	"Are my passengers going to be okay?"`
 			`	"Yeah, they're fine. We're basically just here to make sure they didn't injure themselves. Don't imagine that their parents are going to be too thrilled with them, though."`
 			label trouble
-				`"Simply bringing a paying passenger somewhere they requested to go isn't illegal. Your passengers were of age and knew what they were getting into, and you weren't deliberately enabling them to break the law. You're fine."`
-				`	The officer gets up. "Next time though, you should probably think twice before bringing some college kids somewhere to go 'ghost-hunting'." He chuckles as he leaves.`
-					decline
+			`	"Simply bringing a paying passenger somewhere they requested to go isn't illegal. Your passengers were of age and knew what they were getting into, and you weren't deliberately enabling them to break the law. You're fine."`
+			`	The officer gets up. "Next time though, you should probably think twice before bringing some college kids somewhere to go 'ghost-hunting'." He chuckles as he leaves.`
+				decline
 
 
 
@@ -1781,7 +1786,7 @@ mission "Station Exploration Abandon Ship"
 	on offer
 		fine 70000
 		conversation
-			`Upon landing, you are accosted by the local police on <origin>. Behind your ship, you see your passengers disembarking from another Hai ship. Some of them are crying, but they appear uninjured.`
+			`Upon landing, you are accosted by the local police on <origin>. Behind your ship, you see your passengers disembarking from another Hai ship. Some of them are red-faced and crying, but they appear uninjured.`
 			`	"Captain <last>?", says a Hai officer. "Could you come with me for a moment?"`
 			choice
 				`	"Am I in trouble?"`
