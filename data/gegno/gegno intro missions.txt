@@ -16,6 +16,7 @@ mission "First Contact: Gegno Vi"
 	landing
 	name `<Alien> Transport`
 	description `Transport the <alien> you assisted on <origin> to the location designated on the map.`
+	blocked `You need at least one available bunk to accept this mission.`
 	substitutions
 		"<alien>" "alien"
 		"<alien>" "Gegno"
