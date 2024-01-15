@@ -1157,7 +1157,7 @@ mission "Acquiescence"
 
 
 			label "done with the gegno"
-			`	For one last time, the trio beckons to the crowd followed by a long speech. Afterwards, the crowd goes silent. Your Gegno guide bumps into you and starts to direct you back to the cage lift with nobody else batting an eye. Several minutes later, you are escorted back to the base of the tower, still as barren as it was earlier. You're lead back to your ship with your head spinning slightly, unsure what to make of that whole encounter. The Gegno remains at a distance from your ship as you prepare to depart.`
+			`	With a sense of finality, the trio beckons to the crowd and begins another long speech. When they are finished, the crowd goes silent. Your Gegno guide bumps into you and starts to direct you back to the cage lift while nobody else bats an eye. Several minutes later, you are escorted back to the base of the tower, still as barren as it was earlier. You're led back to your ship with your head spinning slightly, unsure what to make of that whole encounter. The Gegno remains at a distance from your ship as you prepare to depart.`
 			`	Before you leave, you watch as they lift their staff weapon and flip it around. An explosive cloud of smoke follows, and a sizable crater appears just barely avoiding your ship on the ground. It seems that you're no longer welcome here, though, the fact that they intentionally missed such a large target might have other implications. Regardless, it could have been you on the other end of that blast at any point during this journey.`
 			`	Despite the aggressive action, you are not followed as you leave the planet.`
 				flee
