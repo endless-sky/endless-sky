@@ -1575,9 +1575,9 @@ ship "Enforcer"
 		"hull" 1100
 		"required crew" 3
 		"bunks" 5
-		"mass" 130
-		"drag" 2.9
-		"heat dissipation" .7
+		"mass" 180
+		"drag" 3.3
+		"heat dissipation" .61
 		"fuel capacity" 400
 		"cargo space" 30
 		"outfit space" 210
@@ -2397,9 +2397,9 @@ ship "Hogshead"
 		"hull" 1900
 		"required crew" 18
 		"bunks" 84
-		"mass" 210
-		"drag" 4.3
-		"heat dissipation" .55
+		"mass" 450
+		"drag" 6.2
+		"heat dissipation" .38
 		"fuel capacity" 600
 		"cargo space" 45
 		"outfit space" 320
@@ -3328,9 +3328,9 @@ ship "Saber"
 		"hull" 2600
 		"required crew" 16
 		"bunks" 25
-		"mass" 370
-		"drag" 6
-		"heat dissipation" .5
+		"mass" 660
+		"drag" 8.7
+		"heat dissipation" .35
 		"fuel capacity" 600
 		"cargo space" 30
 		"outfit space" 280
