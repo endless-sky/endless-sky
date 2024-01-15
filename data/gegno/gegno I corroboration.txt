@@ -642,7 +642,7 @@ mission "Gegno Anticipation"
 					goto "understand"
 
 			label "interest"
-			`	The Quarg turns back to you. "You are here not at the whim of your fanatic species, but at your own behest. Actions you take may be that of a human, but are not willed by that of humanity." Blinking slowly, Adrauni then turns to the Gegno and begins a somewhat lengthy conversation with them.`
+			`	The Quarg turns back to you. "You are here not at the whim of your fanatic species, but at your own behest. Actions you take may be that of a human, but are not willed by that of humanity." Blinking slowly, Adrauni then turns to the Gegno walking besides it and begins a somewhat lengthy conversation with them.`
 				goto "visit a"
 
 			label "understand"
