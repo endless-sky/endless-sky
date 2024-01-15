@@ -324,5 +324,5 @@ mission "Film Release"
 				`	(Go see it.)`
 				`	(Pass.)`
 					decline
-			`	You find a movie theater showing Likeet's film. You're not quite sure what's happening: something to do with an unseen monster that seems to slowly drive those it meets insane. It seems to be a hit with the Hai audience though, and you leave the theater feeling distinctly unnerved.`
+			`	You find a movie theater showing Likeet's film. You're not quite sure what's happening: something to do with an unseen monster that seems to slowly drive those it meets insane. It seems to be a hit with the Hai audience, though, and you leave the theater feeling distinctly unnerved.`
 				decline
