@@ -22,9 +22,10 @@ mission "Gegno Asteroid Mining - Aluminum"
 	to offer
 		has "Gegno Asteroid Mining Prologue: done"
 		random < 10
+	to accept
 		"cargo space" > 5
 	on visit
-		dialog "You've returned to <origin>, but do not have 10 tons of aluminum mined and in your ship. Make sure to mine 10 tons of aluminum and collect it into your cargo before you land."
+		dialog "You've returned to <origin>, but do not have 10 tons of aluminum in your cargo hold. Make sure to mine 10 tons of aluminum and collect it into your cargo before you land."
 	on complete
 		"gegno: mining jobs" ++
 		payment 36000
@@ -42,9 +43,10 @@ mission "Gegno Asteroid Mining - Copper"
 	to offer
 		has "Gegno Asteroid Mining Prologue: done"
 		random < 10
+	to accept
 		"cargo space" > 5
 	on visit
-		dialog "You've returned to <origin>, but do not have 10 tons of copper mined and in your ship. Make sure to mine 10 tons of copper and collect it into your cargo before you land."
+		dialog "You've returned to <origin>, but do not have 10 tons of copper in your cargo hold. Make sure to mine 10 tons of copper and collect it into your cargo before you land."
 	on complete
 		"gegno: mining jobs" ++
 		payment 60000
@@ -62,9 +64,10 @@ mission "Gegno Asteroid Mining - Iron"
 	to offer
 		has "Gegno Asteroid Mining Prologue: done"
 		random < 10
+	to accept
 		"cargo space" > 5
 	on visit
-		dialog "You've returned to <origin>, but do not have 10 tons of iron mined and in your ship. Make sure to mine 10 tons of iron and collect it into your cargo before you land."
+		dialog "You've returned to <origin>, but do not have 10 tons of iron in your cargo hold. Make sure to mine 10 tons of iron and collect it into your cargo before you land."
 	on complete
 		"gegno: mining jobs" ++
 		payment 24000
@@ -82,9 +85,10 @@ mission "Gegno Asteroid Mining - Lead"
 	to offer
 		has "Gegno Asteroid Mining Prologue: done"
 		random < 10
+	to accept
 		"cargo space" > 5
 	on visit
-		dialog "You've returned to <origin>, but do not have 10 tons of lead mined and in your ship. Make sure to mine 10 tons of lead and collect it into your cargo before you land."
+		dialog "You've returned to <origin>, but do not have 10 tons of lead in your cargo hold. Make sure to mine 10 tons of lead and collect it into your cargo before you land."
 	on complete
 		"gegno: mining jobs" ++
 		payment 18000
@@ -102,9 +106,10 @@ mission "Gegno Asteroid Mining - Silicon"
 	to offer
 		has "Gegno Asteroid Mining Prologue: done"
 		random < 10
+	to accept
 		"cargo space" > 5
 	on visit
-		dialog "You've returned to <origin>, but do not have 10 tons of silicon mined and in your ship. Make sure to mine 10 tons of silicon and collect it into your cargo before you land."
+		dialog "You've returned to <origin>, but do not have 10 tons of silicon in your cargo hold. Make sure to mine 10 tons of silicon and collect it into your cargo before you land."
 	on complete
 		"gegno: mining jobs" ++
 		payment 8000
@@ -122,9 +127,10 @@ mission "Gegno Asteroid Mining - Titanium"
 	to offer
 		has "Gegno Asteroid Mining Prologue: done"
 		random < 10
+	to accept
 		"cargo space" > 5
 	on visit
-		dialog "You've returned to <origin>, but do not have 10 tons of titanium mined and in your ship. Make sure to mine 10 tons of titanium and collect it into your cargo before you land."
+		dialog "You've returned to <origin>, but do not have 10 tons of titanium in your cargo hold. Make sure to mine 10 tons of titanium and collect it into your cargo before you land."
 	on complete
 		"gegno: mining jobs" ++
 		payment 50000
