@@ -1174,7 +1174,7 @@ mission "Acquiescence"
 mission "Gegno Asteroid Mining Prologue"
 	landing
 	name "Mine 5 tons of Iron"
-	description "Mine and return 5 tons of Iron to <origin> in the Oosuoro system."
+	description "Mine and return 5 tons of iron to <destination>."
 	source "Tschyss"
 	to offer
 		has "Acquiescence: offered"
