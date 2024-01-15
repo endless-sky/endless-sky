@@ -881,7 +881,6 @@ mission "Gegno Apprehension"
 				"gegno: encounters" >= 3
 				or
 					has "interrupted arena"
-					has "provoked military"
 					has "zydee interference"
 	on offer
 		event "gegno: apprehension"
