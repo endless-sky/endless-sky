@@ -1150,7 +1150,7 @@ mission "Acquiescence"
 			label "decision"
 			action
 				"reputation: Gegno" = 1
-			`	For one last time, the trio beckons to the crowd followed by a long speech. An image of a space station appears on the screen, and a large discussion begins between the other Gegno, whom have formed back up with each other. Some arguments between various Gegno in the audience start happening, meanwhile, your Gegno guide bumps into you and starts to direct you away from the discussion, back to the cage lift with nobody else batting an eye.`
+			`	With a sense of finality, the trio beckons to the crowd and begins another long speech. An image of a space station appears on the screen, and a large discussion begins between the other Gegno, whom have formed back up with each other. Some arguments between various Gegno in the audience start happening, meanwhile, your Gegno guide bumps into you and starts to direct you away from the discussion, back to the cage lift with nobody else batting an eye.`
 			`	Several minutes later, you are escorted back to the base of the tower, which is now surrounded by a large group of Gegno civilians, all gawking at the two of you. You're led back to your ship with your head spinning slightly, unsure what to make of that whole encounter. As they did the first time you were with them on the one desert planet, the Gegno heads for your ship and hands you a small compass device, this time marking a different location on the map.`
 			`	At the very least, you can take this as an indication that they are not done with you yet, so you prepare to travel to your next destination.`
 				launch
