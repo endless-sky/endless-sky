@@ -717,7 +717,7 @@ mission "Gegno Anticipation"
 
 			label "negative rep"
 
-			`Once you land on the ringworld, you notice a group of Gegno off to the side of the hangar you are stationed in. They appear to be warriors of the Vi based on their appearance, and while they aren't moving from their position, they watch you intently as you exit your ship. A small group of Quarg then approach you and quickly motion you to follow them, escorting you through various halls of the ring. Eventually you are led to the room where you met Adrauni in the past, or perhaps one identical to it. "Please, seat yourself."`
+			`Once you land on the ringworld, you notice a group of Gegno off to the side of the hangar you are stationed in. They have the hulking appearance of the warriors of the Vi, and while they aren't moving from their position, they watch you intently as you exit your ship. A small group of Quarg then approach you and quickly motion you to follow them, escorting you through various halls of the ring. Eventually you are led to the room where you met Adrauni in the past, or perhaps one identical to it. "Please, seat yourself."`
 			`	You sit down, along with two other Quarg, and the rest of them leave the room with the door sliding shut behind them. Adrauni stares blankly at you for a while, then speaks. "I presume you understand what result came from my negotiations with the tedious Gegno."`
 			choice
 				`	"That they are upset with me?"`
@@ -1015,7 +1015,7 @@ mission "Acquiescence"
 				`	(Leave the Gegno and their world.)`
 					goto "no more gegno"
 
-			`	You decide to continue in your endeavor. You've made it this far, considering you're back on their homeworld and they haven't shown any signs of wanting you off of it as of yet. As you approach the Gegno, it indeed seems to be the one you've met in the past. The ships above suddenly fly off, and the Gegno turns around, beginning to head for the massive tower that stands in front of you.`
+			`	You decide to continue in your endeavor. Considering you're back on their homeworld and they haven't shown any signs of wanting you off of it as of yet, there's no point to throwing all your progress away. As you approach the Gegno, it indeed seems to be the one you've met in the past. The ships above suddenly fly off, and the Gegno turns around, beginning to head for the massive tower that stands in front of you.`
 
 
 			label "tower"
