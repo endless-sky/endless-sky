@@ -798,7 +798,7 @@ mission "Gegno Anticipation"
 						not "gegno: there dialog"
 					goto "there"
 			
-				`	"Okay, I will leave now."`
+				`	"I will be leaving now."`
 					to display
 						has "gegno: deny dialog"
 					goto "end b"
@@ -1033,7 +1033,7 @@ mission "Acquiescence"
 					goto "meeting"
 				`	(Stay where you are.)`
 
-			`	It's not long before a pair of Gegno soldiers walk over and essentially "pressure" you into joining the others. You're on their turf now, so you might as well play by their rules.`
+			`	It's not long before a pair of Gegno soldiers walk over and essentially "pressure" you into joining the others. You might as well play by their rules, given the situation.`
 
 			label meeting
 			`	Once you reach the other Gegno, the drumming comes to an abrupt halt. Shown in the center of the display is some text, none of which you can understand. Three Gegno standing next to one another, separate from everyone else, begin speaking in low, booming voices, also none of which you can understand. One is very bulky, and looks like the Gegno that belong to the Vi faction, while the other two are a bit smaller. All three of them are wearing the same set of intricate armor with fancy protrusions, drapes, and other details. All of the other Gegno present are of various builds, though none of them are wearing any colors indicating a faction. Some of them gaze toward you occasionally, while others pay you no attention at all.`
