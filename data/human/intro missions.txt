@@ -427,22 +427,25 @@ mission "Intro [2.1 Interceptor]"
 	destination "New Sahara"
 	to offer
 		has "Intro [2 Interceptor]: done"
+		not "Intro [3 Interceptor]: offered"
 	
 	on offer
 		conversation
 			`James waves you over to his table when you enter the bar. He's sitting with another man with a local star map spread out between them. There's a steady patter of micrometeorites against the roof that reminds you of rain on the factory roof in New Boston.`
-			`	"This is Captain Marshall," James says as you pull up a chair. "He mines in this part of space and says there's a good system nearby if you're willing to give it a try."`
+			`	"This is Captain Marshall," James says as you pull up a chair. "I told him about your new Sparrow and how it'd be a good idea for you to get a taste of mining. He mines in this part of space and says there's a good system nearby if you're willing to give it a try."`
 			choice
-				`	"I'm up for a challenge."`
+				`	"I'm willing to give it a shot."`
 					goto mining
 				`	"I'm ready to head out on my own."`
 					decline
 	
 			label "mining"
-			`	"That's good to hear," Captain Marshall says with a smile. "Mining without an asteroid scanner is a test of your piloting skills, but one that pays well.`
-			`	"The first challenge," he continues, "will be finding which asteroids are valuable. The worthless asteroids are either brown and smooth or gray and spiky with no apparent orbit. It doesn't matter how long you shoot them, they won't be destroyed. Valuable asteroids will always orbit the star and have a range of colors and surface textures. Titanium tends to be a bit larger, with a pitted surface. Lead is light gray and has a boxy shape. Silicon has a bit of a greenish cast and looks like it's been melted in places. I increase the resolution on my control displays to make identification and targeting easier.`
-			`	"Also remember that the more valuable the mineral the longer it takes to mine. Silicon breaks up quickly and you'll fill your hold in a hurry. Titanium is more work, but you make several times the number of credits for the effort."`
-			`	Captain Marshall wishes you luck and heads out into the spaceport. You and James spend a few minutes going over the plan as you finish your drinks. "You should start off easy and mine five tons of silicon. If you've got the hang of it, you can fill your hold with more valuable minerals. There's plenty of both at <destination>. Remember, there's no guaranteed payment in this kind of work; how much you make is based on the value of the minerals in your hold."`
+			`	"That's good to hear," Captain Marshall says with a smile. "But be warned that mining is as easy as one might think. Especially without an asteroid scanner, mining can be just as much a test of your piloting skills as combat.`
+			`	"The first challenge," he continues, "will be finding which asteroids are valuable. The worthless asteroids are either brown and smooth or gray and spiky with no apparent orbit. It doesn't matter how long you shoot them, they won't be destroyed. Valuable asteroids will always orbit the star and have a range of colors and surface textures. If you're not sure which are which and you don't have an asteroid scanner to tell you, keep a look out for other miners to see what they're firing at.`
+			`	"Generally speaking, the more valuable minerals are tougher to mine, either because they're harder to break apart or they're less common and in more dangerous regions of the galaxy. Silicon breaks up quickly; you'll fill your hold in a hurry and the stuff is everywhere. Platinum or gold are more work; not as common in areas where the Navy watches your back, but you make several times the number of credits for the effort.`
+			`	"I could go on, but I think you get the picture."`
+			`	You and James chat with Marshall a while longer, and he suggests trying your hand at mining in <system>. "It's a great place. You could throw a dart in that system and half the time you'd hit an asteroid worth at least something, and I've never been bothered by pirates while I've been there."`
+			`	"That does sound like a good place for a beginner pilot," James says. "How about we start small, <first>? Let's go mine at least five tons of silicon before landing on <planet> and we can call it a day."`
 				accept
 	
 	on visit
@@ -455,17 +458,13 @@ mission "Intro [2.1 Interceptor]"
 			choice
 				`	"I can't believe anyone would do that much work."`
 				`	"I love flying like that."`
-			`	James nods and says, "Chasing asteroids is always a challenge. But when you're starting off, mining can be a fast way to build cash for your next ship. It's also a great way to explore the galaxy. Jobs always follow the trade routes and settled areas. Mining makes it profitable to explore the nooks and crannies of the hyperlanes. If the place you end up landing has an economy, they'll buy the minerals in your hold. Mainly though, it's about how you like to spend your time. Some captains like managing a trading fleet while others like to strike out on their own and fly their ship directly.`
-			`	"Mining can be complex compared to running jobs or trading commodities. I learned that first hand after pirates disabled my ship when I was starting out. I worked as crew on a mining ship while it was being repaired. Are there any questions you'd like to ask?"`
+			`	James nods and says, "Chasing asteroids can be a challenge, but when you're starting off, mining can be a fast way to build cash for your next ship. It's also a great way to explore the galaxy. Jobs always follow the trade routes and settled areas. Mining makes it profitable to explore the nooks and crannies of the hyperlanes. If the place you end up landing has an economy, they'll buy the minerals in your hold. Mainly though, it's about how you like to spend your time. Some captains like managing a trading fleet while others like to strike out on their own.`
+			`	"Mining can be complex compared to running jobs or trading commodities. I learned that first hand after pirates disabled my ship when I was starting out and I worked aboard a mining ship while it was being repaired. Now that was a while back so I might be a little rusty, but I could try at answering any other questions you might have about mining."`
 
 			label choices
 			choice
 				`	"What equipment do I need to mine?"`
 					goto equipment
-				`	"Can a fleet help me mine?"`
-					goto fleet
-				`	"Where are safe places to mine?"`
-					goto safety
 				`	"How do you deal with pirates?"`
 					goto pirates
 				`	"How can I check the value of minerals?"`
@@ -474,7 +473,7 @@ mission "Intro [2.1 Interceptor]"
 					goto end
 
 			label equipment
-			`	"Well, you need a weapon that does hull damage," James says. "A beam laser will get the job done, but it will take awhile. The most valuable tool is an asteroid scanner. They're expensive, but they connect into your navigation and targeting systems to point you towards minable asteroids. You can also set them to find the most valuable asteroids which increases your profitability per run. After that, a tactical scanner will give you range to target and show how much damage you're doing. An afterburner is good for chasing down fast moving asteroids or getting away from pirates without leaving the system. A ramscoop will let you refuel while mining. You can extend your range and be ready for a quick escape.`
+			`	"Well, you need a weapon that does hull damage," James says. "A beam laser will get the job done, but it will take awhile. The most valuable tool is an asteroid scanner. They're expensive, but they connect into your navigation and targeting systems to point you towards minable asteroids. You can also set them to find the most valuable asteroids which increases your profitability per run. After that, a tactical scanner will give you range to target and show how much damage you're doing. An afterburner is good for chasing down fast moving asteroids or getting away from pirates without leaving the system. A ramscoop will let you refuel while mining, can extend your exploration range, and allow you to be ready for a quick escape."`
 			choice
 				`	"I can't fit all that on my ship!"`
 					goto shipmods
@@ -485,16 +484,8 @@ mission "Intro [2.1 Interceptor]"
 			`	James gives you a knowing smile as he answers, "Not in a factory build, you won't. But you'd be surprised how much space you can free up even in a Sparrow if you're willing to flexible about health and safety. Do you really need that much power? If you've got an outfitter on the planet where you're mining, do you need a hyperdrive, or even a shield generator? Maybe a cargo expansion would be more use." He pauses briefly, perhaps considering what liability he's opened himself up for, then adds, "I'm not saying you should, of course, but you have options.`
 				goto more
 
-			label fleet
-			`	"If you have a fleet, you can target an asteroid and they will all fire on it and then pick up the minerals. You can work much more quickly and harvest more in a run. If you have a carrier, you can have fighters mine and return the minerals to your hold.`
-				goto more
-
-			label safety
-			`	James takes a moment to think before responding, "Go where pirates aren't welcome," he says. "The Navy heavily patrols the Paradise Worlds and pirates don't last long in the Deep. There are some systems in the Dirt Belt with a strong Navy presence and high quality asteroids. You could also go to the Quarg systems and you won't be bothered. But know that danger and opportunity go together, so you'll often find lucrative mining in uninhabited spaces and around pirate worlds.`
-				goto more
-
 			label pirates
-			`	"You can always bribe them when you get into the system and they'll leave you alone. If the minerals are good enough and you have enough cargo capacity you'll still turn a profit. If you have a fast ship, you can just run away. Most pirates are lazy and will turn back if you head to the edges of the system. Of course, with enough of a fleet you just fight them off." He shakes his head. "Most pirates would be richer and live longer if they just mined instead of extorting bribes and cargo.`
+			`	"You can always bribe them to leave you alone. If the minerals are good enough and you have enough cargo capacity, you'll still turn a profit. Or if you have a fast ship, you can just run away. Of course, with enough of a fleet you just fight them off." He shakes his head. "Most pirates would be richer and live longer if they just mined instead of extorting bribes and cargo.`
 				goto more
 			
 			label value
