@@ -61,6 +61,9 @@ shipyard "Betelgeuse Advanced"
 	"Star Queen"
 	"Hauler"
 
+shipyard "Tycho Crater Advanced"
+	"Hogshead"
+
 shipyard "Navy Basics"
 	"Rainmaker"
 	"Gunboat"
@@ -554,6 +557,10 @@ outfitter "Pirate Outfits"
 	"Brig"
 	"Twin Blaster"
 	"Twin Modified Blaster"
+
+outfitter "South Pirate Outfits Advanced"
+	"Javelin Turret"
+	"Gatling Turret"
 
 outfitter "Syndicate Assistance"
 	"Anti-Missile Turret"
