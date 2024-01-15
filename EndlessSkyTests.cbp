@@ -87,6 +87,7 @@
 		<Unit filename="tests/unit/src/test_point.cpp" />
 		<Unit filename="tests/unit/src/test_random.cpp" />
 		<Unit filename="tests/unit/src/test_set.cpp" />
+		<Unit filename="tests/unit/src/test_scrollVar.cpp" />
 		<Unit filename="tests/unit/src/test_ship.cpp" />
 		<Unit filename="tests/unit/src/test_weightedList.cpp" />
 		<Unit filename="tests/unit/src/comparators/test_byGivenOrder.cpp" />
