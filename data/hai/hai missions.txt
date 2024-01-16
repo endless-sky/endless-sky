@@ -1766,7 +1766,7 @@ mission "Station Exploration 2"
 				`	"So, am I in trouble or not?"`
 					goto trouble
 				`	"Are my passengers going to be okay?"`
-			`	"Yeah, they're fine. We're basically just here to make sure they didn't injure themselves. Don't imagine that their parents are going to be too thrilled with them, though."`
+			`	"Yeah, they're fine. We're basically just here to make sure they didn't injure themselves. Don't imagine that their parents are going to be too thrilled with them, though.`
 			label trouble
 			`	"Simply bringing a paying passenger somewhere they requested to go isn't illegal. Your passengers were of age and knew what they were getting into, and you weren't deliberately enabling them to break the law. You're fine."`
 			`	The officer gets up. "Next time though, you should probably think twice before bringing some college kids somewhere to go 'ghost-hunting.'" He chuckles as he leaves.`
