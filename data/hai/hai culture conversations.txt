@@ -314,7 +314,7 @@ mission "Hai Film Release"
 		government "Hai"
 		not attributes "station"
 	to offer
-		has "Hai Film Crew [3]: done"
+		has "Hai Film Crew 3: done"
 		random < 1
 	on offer
 		conversation
