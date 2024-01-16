@@ -585,7 +585,7 @@ mission "Exile: Boarding Worldship Korath"
 	source
 		government "Korath" "Korath (Civilian)"
 		category "Superheavy"
-		outfits "Afterburner (Stellar Class)"
+		not outfits "Microbot Grinder"
 	on offer
 		conversation
 			`Docking with the gargantuan vessel allows you a front-row seat to witness the sheer scale of this ship. Your sensors detect tens of thousands of life signs aboard, most of which read as likely intelligent, with many thousands more minor life signs alongside them.`
