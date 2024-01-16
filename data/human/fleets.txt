@@ -3395,7 +3395,7 @@ fleet "Derelict Republic"
 	"cargo settings"
 		cargo 1
 		outfitters "Derelict Republic"
-	personality derelict mute
+	personality derelict mute marked
 	variant 18
 		"Scout (Derelict)"
 	variant 12
@@ -3423,7 +3423,7 @@ fleet "Derelict Southern"
 	"cargo settings"
 		cargo 1
 		outfitters "Derelict Southern"
-	personality derelict mute
+	personality derelict mute marked
 	variant 24
 		"Argosy (Derelict)"
 	variant 12
@@ -3453,7 +3453,7 @@ fleet "Derelict Syndicate"
 	"cargo settings"
 		cargo 1
 		outfitters "Derelict Syndicate"
-	personality derelict mute
+	personality derelict mute marked
 	variant 15
 		"Bounder (Derelict)"
 	variant 10
@@ -3479,7 +3479,7 @@ fleet "Derelict Pirate"
 	"cargo settings"
 		cargo 1
 		outfitters "Derelict Pirate"
-	personality derelict mute
+	personality derelict mute marked
 	variant 60
 		"Scrapper (Derelict)"
 	variant 3
