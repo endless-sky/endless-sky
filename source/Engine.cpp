@@ -1095,25 +1095,7 @@ void Engine::Draw() const
 		if(messagePoint.Y() < messageBox.Top())
 			break;
 		float alpha = (it->step + 1000 - step) * .001f;
-		const Color *color = nullptr;
-		switch(it->importance)
-		{
-			case Messages::Importance::Highest:
-				color = GameData::Colors().Find("message importance highest");
-				break;
-			case Messages::Importance::High:
-				color = GameData::Colors().Find("message importance high");
-				break;
-			case Messages::Importance::Info:
-				color = GameData::Colors().Find("message importance info");
-				break;
-			case Messages::Importance::Low:
-				color = GameData::Colors().Find("message importance low");
-				break;
-		}
-		if(!color)
-			color = GameData::Colors().Get("message importance default");
-		messageLine.Draw(messagePoint, color->Additive(alpha));
+		messageLine.Draw(messagePoint, Messages::GetColor(it->importance, false)->Additive(alpha));
 	}
 
 	// Draw crosshairs around anything that is targeted.
@@ -1280,7 +1262,7 @@ void Engine::EnterSystem()
 
 	Messages::Add("Entering the " + system->Name() + " system on "
 		+ today.ToString() + (system->IsInhabited(flagship) ?
-			"." : ". No inhabited planets detected."), Messages::Importance::High);
+			"." : ". No inhabited planets detected."), Messages::Importance::Daily);
 
 	// Preload landscapes and determine if the player used a wormhole.
 	// (It is allowed for a wormhole's exit point to have no sprite.)
