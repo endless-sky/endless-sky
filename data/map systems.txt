@@ -17300,6 +17300,7 @@ system Ildaria
 	fleet "Large Militia" 6000
 	fleet "Small Southern Pirates" 1000
 	fleet "Large Southern Pirates" 2000
+	fleet "Derelict Southern" 25000
 	object
 		sprite star/nova-small
 		period 10
@@ -35240,6 +35241,7 @@ system Zubenelgenubi
 	fleet "Large Militia" 3000
 	fleet "Small Southern Pirates" 3000
 	fleet "Large Southern Pirates" 5000
+	fleet "Derelict Southern" 30000
 	object
 		sprite star/g5
 		distance 37.6707
