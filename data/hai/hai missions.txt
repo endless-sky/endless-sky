@@ -1664,6 +1664,7 @@ mission "Station Exploration 1"
 	name "Bring students to <planet>"
 	description "Bring a group of Hai and human students to <destination> to explore the abandoned station. They promise to pay you <payment>."
 	passengers 5
+	"apparent payment" 8000
 	source "Greenwater"
 	destination "Darkrest"
 	to offer
@@ -1671,7 +1672,7 @@ mission "Station Exploration 1"
 		has "First Contact: Hai: offered"
 	on offer
 		conversation
-			`It is a sunny afternoon as you idly walk through the spaceport, until you somehow find yourself surrounded by a group of young humans and Hai.`
+			`It is a sunny afternoon as you idly walk through the spaceport alone, until you somehow find yourself surrounded by a group of young humans and Hai.`
 			`	"You're a spaceship captain, right? Could you take us to <planet>?" says one of the Hai, as if he had practiced this line for a while now.`
 			`	The human next to him gives him a nudge. "Don't forget to ask for a trip back, Tagreep, unless you want to be stranded there."`
 			choice
@@ -1688,7 +1689,7 @@ mission "Station Exploration 1"
 				`	"How much can you pay me?"`
 				`	"Sorry, I'm busy right now. Go ask some other captain."`
 					decline
-			`	The group starts to shuffle around with a nervous air. "Well, we're still in school, so money's kind of tight right now... But we can pay you!" The Hai pauses to glance at his friends and, in almost a whisper, says, "Is <payment> okay?"`
+			`	The group starts to shuffle around with a nervous air. "Well, we're still in school, so money's kind of tight right now... But we can pay you!" Tagreep pauses to glance at his friends and, in almost a whisper, says, "Is <payment> okay?"`
 			choice
 				`	"Why would you want to pay money to go to <planet>, anyhow? Isn't that an abandoned station?"`
 					to display
@@ -1717,7 +1718,7 @@ mission "Station Exploration 1"
 			choice
 				`	"I'm not about to risk getting in trouble for this. Find someone else."`
 					decline
-				`	"If anyone asks, I'll say I didn't know a permit was needed. Welcome aboard."`
+				`	"If anyone asks, I'll say I didn't know a permit was needed. Come aboard."`
 			label accept
 			`	The students race onboard your ship. As they settle into their bunks, you can hear them speculating about what they will find on <planet>.`
 				accept
@@ -1739,7 +1740,7 @@ mission "Station Exploration 2"
 		payment 8000
 		conversation
 			`Your passengers' journey mainly consisted of trying to scare each other by telling ghost stories and jumping out of dimly-lit corners of your ship. Despite these annoyances, you land at the station with no issues. Your passengers practically jump off your ship after hastily paying you <payment>.`
-			`	After passing the time in your ship for a few hours, you are shocked by a loudspeaker sternly pronouncing something in Hai. You then notice your passengers rushing towards your ship with a panicked look in their eyes. You imagine that they want to take advantage of that return trip you promised as soon as possible; however, disassociating yourself from them may save you some trouble with law enforcement.`
+			`	After passing the time in your ship for a few hours, you are startled by a loudspeaker sternly pronouncing something in Hai. You then notice your passengers rushing towards your ship with a panicked look in their eyes. You imagine that they want to take advantage of that return trip you promised as soon as possible; however, disassociating yourself from them may save you some trouble with law enforcement.`
 			choice
 				`	(Wait for your passengers.)`
 					goto wait
