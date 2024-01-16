@@ -14,10 +14,6 @@
 ship "Aerie" "Aerie (Derelict)"
 	"uncapturable"
 	add attributes
-		"cost" -3325000
-		"hull" -650
-		"outfit space" -65
-		"weapon capacity" -50
 		"bunks" -28
 		"required crew" -10
 		"automaton" 1
@@ -29,9 +25,6 @@ ship "Aerie" "Aerie (Derelict)"
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
 		"Hyperdrive"
-	gun -12 -78
-	turret 0 1.5
-	turret 31 15.5
 
 
 ship "Aerie" "Aerie (Miner)"
@@ -76,9 +69,6 @@ ship "Argosy" "Argosy (Blaster)"
 ship "Argosy" "Argosy (Derelict)"
 	"uncapturable"
 	add attributes
-		"cost" -1875000
-		"hull" -1200
-		"outfit space" -25
 		"bunks" -14
 		"required crew" -4
 		"automaton" 1
@@ -433,12 +423,6 @@ ship "Barb" "Barb (Miner)"
 ship "Bastion" "Bastion (Derelict)"
 	"uncapturable"
 	add attributes
-		"cost" -3700000
-		"hull" -2150
-		"cargo space" -45
-		"outfit space" -75
-		"weapon capacity" -55
-		"fuel capacity" -100
 		"bunks" -40
 		"required crew" -17
 		"automaton" 1
@@ -450,11 +434,6 @@ ship "Bastion" "Bastion (Derelict)"
 		"Impala Plasma Thruster"
 		"Impala Plasma Steering"
 		"Hyperdrive"
-	gun 52.5 -0.5
-	gun 52.5 -0.5
-	gun -52.5 -0.5
-	turret 35.5 29.5
-	turret 0 0.5
 
 
 ship "Bastion" "Bastion (Heavy)"
@@ -654,11 +633,6 @@ ship "Berserker" "Berserker (Afterburner)"
 ship "Berserker" "Berserker (Derelict)"
 	"uncapturable"
 	add attributes
-		"cost" -450000
-		"hull" -175
-		"fuel capacity" -100
-		"outfit space" -25
-		"weapon capacity" -15
 		"bunks" -2
 		"required crew" -1
 		"automaton" 1
@@ -667,8 +641,6 @@ ship "Berserker" "Berserker (Derelict)"
 		"X2700 Ion Thruster"
 		"X3200 Ion Steering"
 		"Hyperdrive"
-	gun -20 12
-	gun 44 10
 
 
 ship "Berserker" "Berserker (Strike)"
@@ -729,12 +701,6 @@ ship "Blackbird" "Blackbird (Hai Trafficker)"
 ship "Bounder" "Bounder (Derelict)"
 	"uncapturable"
 	add attributes
-		"cost" -810000
-		"hull" -225
-		"fuel capacity" -400
-		"cargo space" -10
-		"outfit space" -20
-		"engine capacity" -16
 		"bunks" -17
 		"required crew" -1
 		"automaton" 1
@@ -815,11 +781,6 @@ ship "Bulk Freighter" "Bulk Freighter (Blaster)"
 ship "Bulk Freighter" "Bulk Freighter (Derelict)"
 	"uncapturable"
 	add attributes
-		"cost" -10750000
-		"hull" -4600
-		"fuel capacity" -300
-		"cargo space" -290
-		"outfit space" -45
 		"bunks" -21
 		"required crew" -12
 		"automaton" 1
@@ -1028,12 +989,6 @@ ship "Carrier" "Carrier (Mark II)"
 ship "Clipper" "Clipper (Derelict)"
 	"uncapturable"
 	add attributes
-		"cost" -810000
-		"hull" -225
-		"fuel capacity" -200
-		"cargo space" -25
-		"outfit space" -20
-		"weapon capacity" -10
 		"bunks" -9
 		"required crew" -3
 		"automaton" 1
@@ -1043,9 +998,6 @@ ship "Clipper" "Clipper (Derelict)"
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"
-	gun -21.5 -18
-	gun 21.5 -18
-	gun -11 -8.5
 
 
 ship "Clipper" "Clipper (Heavy)"
@@ -1640,12 +1592,6 @@ ship "Dreadnought" "Dreadnought (Plasma Jump)"
 ship "Falcon" "Falcon (Derelict)"
 	"uncapturable"
 	add attributes
-		"cost" -10575000
-		"hull" -1950
-		"cargo space" -90
-		"outfit space" -90
-		"engine capacity" -22
-		"fuel capacity" -300
 		"bunks" -91
 		"required crew" -52
 		"automaton" 1
@@ -1657,11 +1603,6 @@ ship "Falcon" "Falcon (Derelict)"
 		"Impala Plasma Thruster"
 		"Impala Plasma Steering"
 		"Hyperdrive"
-	gun -37.5 -31.5
-	gun 37.5 -31.5
-	gun -49 -19.5
-	gun 49 -19.5
-	turret 25.5 12.5
 
 
 ship "Falcon" "Falcon (Heavy)"
@@ -1757,11 +1698,6 @@ ship "Falcon" "Falcon (Laser Chaser)"
 ship "Firebird" "Firebird (Derelict)"
 	"uncapturable"
 	add attributes
-		"cost" -3600000
-		"hull" -550
-		"cargo space" -25
-		"outfit space" -25
-		"fuel capacity" -100
 		"bunks" -22
 		"required crew" -7
 		"automaton" 1
@@ -1899,11 +1835,6 @@ ship "Flivver" "Flivver (Racing)"
 ship "Freighter" "Freighter (Derelict)"
 	"uncapturable"
 	add attributes
-		"cost" -675000
-		"hull" -900
-		"cargo space" -45
-		"outfit space" -20
-		"fuel capacity" -100
 		"bunks" -7
 		"required crew" -2
 		"automaton" 1
@@ -2115,10 +2046,6 @@ ship "Fury" "Fury (Bomber)"
 ship "Fury" "Fury (Derelict)"
 	"uncapturable"
 	add attributes
-		"cost" -435000
-		"hull" -120
-		"outfit space" -20
-		"weapon capacity" -15
 		"bunks" -3
 		"required crew" -1
 		"automaton" 1
@@ -2129,9 +2056,6 @@ ship "Fury" "Fury (Derelict)"
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
 		"Hyperdrive"
-	gun -11 -28
-	gun 17 -19.5
-	gun 5.5 -33
 
 
 ship "Fury" "Fury (Flamethrower)"
@@ -2250,11 +2174,6 @@ ship "Gunboat" "Gunboat (Mark II)"
 ship "Hauler" "Hauler (Derelict)"
 	"uncapturable"
 	add attributes
-		"cost" -1340000
-		"hull" -1850
-		"cargo space" -50
-		"outfit space" -10
-		"fuel capacity" -100
 		"bunks" -12
 		"required crew" -3
 		"automaton" 1
@@ -2292,11 +2211,6 @@ ship "Hauler" "Hauler (Hai)"
 ship "Hauler II" "Hauler II (Derelict)"
 	"uncapturable"
 	add attributes
-		"cost" -2200000
-		"hull" -2350
-		"cargo space" -90
-		"outfit space" -25
-		"fuel capacity" -100
 		"bunks" -12
 		"required crew" -3
 		"automaton" 1
@@ -2372,10 +2286,6 @@ ship "Hawk" "Hawk (Bomber)"
 ship "Hawk" "Hawk (Derelict)"
 	"uncapturable"
 	add attributes
-		"cost" -600000
-		"hull" -220
-		"outfit space" -15
-		"weapon capacity" -5
 		"bunks" -4
 		"required crew" -1
 		"automaton" 1
@@ -2545,12 +2455,6 @@ ship "Lance" "Lance (Gatling)"
 ship "Leviathan" "Leviathan (Derelict)"
 	"uncapturable"
 	add attributes
-		"cost" -9450000
-		"hull" -2800
-		"cargo space" -30
-		"outfit space" -105
-		"weapon capacity" -90
-		"fuel capacity" -100
 		"bunks" -64
 		"required crew" -43
 		"automaton" 1
@@ -2561,11 +2465,6 @@ ship "Leviathan" "Leviathan (Derelict)"
 		"X3700 Ion Thruster"
 		"X4200 Ion Steering"
 		"Hyperdrive"
-	gun -37.5 -31.5
-	gun 37.5 -31.5
-	gun -49 -19.5
-	gun 49 -19.5
-	turret 25.5 12.5
 
 
 ship "Leviathan" "Leviathan (Hai Engines)"
@@ -3053,11 +2952,6 @@ ship "Osprey" "Osprey (Alien Weapons)"
 ship "Osprey" "Osprey (Derelict)"
 	"uncapturable"
 	add attributes
-		"cost" -3950000
-		"hull" -775
-		"cargo space" -5
-		"outfit space" -75
-		"weapon capacity" -65
 		"bunks" -24
 		"required crew" -9
 		"automaton" 1
@@ -3068,9 +2962,6 @@ ship "Osprey" "Osprey (Derelict)"
 		"Impala Plasma Thruster"
 		"Impala Plasma Steering"
 		"Hyperdrive"
-	gun 9.5 -95.5
-	turret -15.5 -12
-	turret 15.5 -12
 
 
 ship "Osprey" "Osprey (Laser)"
@@ -3138,12 +3029,6 @@ ship "Osprey" "Osprey (Particle Anti-Missile)"
 ship "Protector" "Protector (Derelict)"
 	"uncapturable"
 	add attributes
-		"cost" -5250000
-		"hull" -3650
-		"cargo space" -30
-		"outfit space" -75
-		"weapon capacity" -35
-		"engine capacity" -11
 		"bunks" -69
 		"required crew" -30
 		"automaton" 1
@@ -3157,14 +3042,6 @@ ship "Protector" "Protector (Derelict)"
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
 		"Hyperdrive"
-	turret 0 -28.5
-	turret -48.5 -48.5
-	turret 48.5 -48.5
-	turret -68.5 0 "Quad Blaster Turret"
-	turret 68.5 0
-	turret -48.5 48.5
-	turret 48.5 48.5 "Quad Blaster Turret"
-	turret 0 30 "Anti-Missile Turret"
 
 
 ship "Protector" "Protector (Laser)"
@@ -3235,11 +3112,6 @@ ship "Protector" "Protector (Quad Blaster)"
 ship "Quicksilver" "Quicksilver (Derelict)"
 	"uncapturable"
 	add attributes
-		"cost" -600000
-		"hull" -325
-		"fuel capacity" -100
-		"outfit space" -25
-		"weapon capacity" -20
 		"bunks" -6
 		"required crew" -3
 		"automaton" 1
@@ -3248,7 +3120,6 @@ ship "Quicksilver" "Quicksilver (Derelict)"
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"
-	gun -6 -39.5
 
 
 ship "Quicksilver" "Quicksilver (Mark II)"
@@ -3379,10 +3250,6 @@ ship "Roost" "Roost (Sidewinder)"
 ship "Scout" "Scout (Derelict)"
 	"uncapturable"
 	add attributes
-		"cost" -800000
-		"hull" -175
-		"fuel capacity" -100
-		"weapon capacity" -10
 		"bunks" -12
 		"required crew" -1
 		"automaton" 1
@@ -3393,8 +3260,6 @@ ship "Scout" "Scout (Derelict)"
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
 		"Hyperdrive"
-	gun -18.5 -6
-	turret 0 -2.5
 
 
 ship "Scout" "Scout (Speedy)"
@@ -3418,11 +3283,6 @@ ship "Scout" "Scout (Speedy)"
 ship "Scrapper" "Scrapper (Derelict)"
 	"uncapturable"
 	add attributes
-		"cost" -45000
-		"hull" -20
-		"cargo space" -11
-		"weapon capacity" -4
-		"engine capacity" -9
 		"bunks" -4
 		"required crew" -1
 		"automaton" 1
@@ -3431,8 +3291,6 @@ ship "Scrapper" "Scrapper (Derelict)"
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
 		"Hyperdrive"
-	gun -18.5 -6
-	turret 0 -2.5
 
 
 ship "Scrapper" "Scrapper (Minimal)"
@@ -3531,11 +3389,6 @@ ship "Sparrow" "Sparrow (Miner)"
 ship "Splinter" "Splinter (Derelict)"
 	"uncapturable"
 	add attributes
-		"cost" -2775000
-		"hull" -650
-		"fuel capacity" -200
-		"outfit space" -70
-		"weapon capacity" -55
 		"bunks" -21
 		"required crew" -7
 		"automaton" 1
@@ -3548,9 +3401,6 @@ ship "Splinter" "Splinter (Derelict)"
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
 		"Hyperdrive"
-	gun -12 -93
-	gun 12 -93
-	turret -13 42
 
 
 ship "Splinter" "Splinter (Laser)"
@@ -3656,12 +3506,6 @@ ship "Star Barge" "Star Barge (Miner)"
 ship "Star Queen" "Star Queen (Derelict)"
 	"uncapturable"
 	add attributes
-		"cost" -4025000
-		"hull" -850
-		"cargo space" -15
-		"fuel capacity" -300
-		"outfit space" -50
-		"weapon capacity" -15
 		"bunks" -112
 		"required crew" -33
 		"automaton" 1
@@ -3672,10 +3516,6 @@ ship "Star Queen" "Star Queen (Derelict)"
 		"X3700 Ion Thruster"
 		"X2200 Ion Steering"
 		"Hyperdrive"
-	gun 0 -113
-	gun -24 -76
-	turret -21.5 2.5
-	turret 21.5 2.5
 
 
 ship "Star Queen" "Star Queen (Hai)"
@@ -3715,11 +3555,6 @@ ship "Star Queen" "Star Queen (Hai Trafficker)"
 ship "Sunder" "Sunder (Derelict)"
 	"uncapturable"
 	add attributes
-		"cost" -450000
-		"hull" -350
-		"cargo space" -15
-		"fuel capacity" -100
-		"outfit space" -10
 		"bunks" -5
 		"required crew" -3
 		"automaton" 1
