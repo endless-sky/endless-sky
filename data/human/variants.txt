@@ -2565,19 +2565,23 @@ ship "Heavy Shuttle" "Heavy Shuttle (Armed)"
 		"Hyperdrive"
 
 
-
-ship "Lance" "Lance (Gatling)"
+ship "Hogshead" "Hogshead (Derelict)"
+	"uncapturable"
+	add attributes
+		"bunks" -84
+		"required crew" -18
+		"automaton" 1
 	outfits
-		"Gatling Gun" 2
-		"Gatling Gun Ammo" 6000
-		Supercapacitor
-		"nGVF-BB Fuel Cell"
-		"D14-RN Shield Generator"
-		"X1700 Ion Thruster"
-		"X1200 Ion Steering"
-	gun
-	gun "Gatling Gun"
-	gun "Gatling Gun"
+		"Heavy Anti-Missile Turret"
+		"S3 Thermionic"
+		"LP036a Battery Pack"
+		"D67-TM Shield Generator"
+		"Outfits Expansion"
+		"Bunk Room" 2
+		"Laser Rifle" 37
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Scram Drive"
 
 
 ship "Hogshead" "Hogshead (CCOR)"
@@ -2594,6 +2598,20 @@ ship "Hogshead" "Hogshead (CCOR)"
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
 		"Scram Drive"
+
+
+ship "Lance" "Lance (Gatling)"
+	outfits
+		"Gatling Gun" 2
+		"Gatling Gun Ammo" 6000
+		Supercapacitor
+		"nGVF-BB Fuel Cell"
+		"D14-RN Shield Generator"
+		"X1700 Ion Thruster"
+		"X1200 Ion Steering"
+	gun
+	gun "Gatling Gun"
+	gun "Gatling Gun"
 
 
 ship "Leviathan" "Leviathan (Derelict)"

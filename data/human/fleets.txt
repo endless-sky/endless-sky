@@ -3546,6 +3546,8 @@ fleet "Derelict Southern"
 		"Falcon (Derelict)"
 	variant 24
 		"Sunder (Derelict)"
+	variant 2
+		"Hogshead (Derelict)"
 
 fleet "Derelict Syndicate"
 	government "Derelict (Boardable)"
