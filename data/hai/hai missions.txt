@@ -1719,7 +1719,7 @@ mission "Station Exploration 1"
 			choice
 				`	"I'm not about to risk getting in trouble for this. Find someone else."`
 					decline
-				`	"Not my business where you spend your vacations. Come aboard."`
+				`	"If anyone asks, I'll say I didn't know a permit was needed. Welcome aboard."`
 			label accept
 			`	The students race onboard your ship. As they settle into their bunks, you can hear them speculating about what they will find on <planet>.`
 				accept
@@ -1727,7 +1727,7 @@ mission "Station Exploration 1"
 		dialog `You look for the group of students you were transporting, but realize that they took a ride on one of your escorts! Better depart and wait for your escorts to arrive in this star system.`
 	on complete
 		payment 8000
-		dialog `Your passengers' journey mainly consisted of trying to scare each other by telling ghost stories and jumping out of dimly-lit corners of your ship. Despite these annoyances, you land at the station with no issues. Your passengers practically jump off your ship after hastily paying you <payment>. After passing the time in your ship for a few hours, you are shocked by a loudspeaker sternly pronouncing something in Hai. You figure you should go back to <planet>'s spaceport to see what's going on. Then again, disassociating yourself from them may save you some trouble with law enforcement.`
+		dialog `Your passengers' journey mainly consisted of trying to scare each other by telling ghost stories and jumping out of dimly-lit corners of your ship. Despite these annoyances, you land at the station with no issues. Your passengers practically jump off your ship after hastily paying you <payment>. After passing the time in your ship for a few hours, you are shocked by a loudspeaker sternly pronouncing something in Hai. You figure you should see what's going on. Then again, disassociating yourself from them may save you some trouble with law enforcement.`
 
 
 
@@ -1790,12 +1790,16 @@ mission "Station Exploration Abandon Ship"
 			`	"Captain <last>?", says a Hai officer. "Could you come with me for a moment?"`
 			choice
 				`	"Am I in trouble?"`
-					goto normal
+					goto questions
 				`	"I'm innocent!"`
 					goto normal
 				`	(Run away.)`
 			`	Almost as soon as you turn around to run you feel a sharp pain in your side as your consciousness fades away.`
 			`	You look up, lying in the spot you just stood. Above you is the same officer which asked you to follow him, waving off another officer with a Pulse Rifle. Apparently you were not out for long.`
+				goto normal
+			label questions
+			`	You can clearly tell that the officer has little patience for your questions. He leads you away from your passengers, who are currently being examined by a medic for any potential injuries.`
+			`	"You are being fined <payment> for abandoning your passengers without warning. You're lucky you didn't end up with a more serious punishment." After further chewing you out for endangering your passengers' safety, he walks away from you in a huff.`
 			label normal
 			`	You can clearly tell that the officer has little patience for your antics. He leads you away from your passengers, who are currently being examined by a medic for any potential injuries.`
 			`	"You are being fined <payment> for abandoning your passengers without warning. You're lucky you didn't end up with a more serious punishment." After further chewing you out for endangering your passengers' safety, he walks away from you in a huff.`
