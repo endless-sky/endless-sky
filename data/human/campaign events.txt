@@ -208,6 +208,7 @@ event "initial deployment 1"
 		fleet "Large Republic" 400
 		fleet "Small Northern Pirates" 4000
 		fleet "Large Northern Pirates" 8000
+		fleet "Derelict Republic" 30000
 		fleet "Navy Surveillance" 2000
 	system "Phecda"
 		fleet "Small Northern Merchants" 900
@@ -242,6 +243,7 @@ event "initial deployment 1"
 		fleet "Small Republic" 2500
 		fleet "Large Republic" 4000
 		fleet "Small Southern Pirates" 5000
+		fleet "Derelict Republic" 10000
 		fleet "Navy Surveillance" 2000
 	system "Mizar"
 		fleet "Small Southern Merchants" 1400
@@ -249,6 +251,7 @@ event "initial deployment 1"
 		fleet "Small Republic" 1000
 		fleet "Large Republic" 1400
 		fleet "Small Southern Pirates" 9000
+		fleet "Derelict Republic" 30000
 		fleet "Navy Surveillance" 2000
 	system "Muphrid"
 		fleet "Small Southern Merchants" 1200
@@ -256,6 +259,7 @@ event "initial deployment 1"
 		fleet "Small Republic" 1100
 		fleet "Large Republic" 1900
 		fleet "Small Southern Pirates" 9000
+		fleet "Derelict Republic" 30000
 		fleet "Navy Surveillance" 2000
 	system "Menkent"
 		fleet "Small Southern Merchants" 700
@@ -318,6 +322,7 @@ event "initial deployment 2"
 		fleet "Large Free Worlds" 3600
 		fleet "Small Southern Pirates" 4000
 		fleet "Large Southern Pirates" 7000
+		fleet "Derelict Southern" 25000
 	
 	system "Mora"
 		fleet "Small Southern Merchants" 2800
@@ -326,6 +331,7 @@ event "initial deployment 2"
 		fleet "Large Southern Pirates" 4000
 		fleet "Small Republic" 1000
 		fleet "Large Republic" 2000
+		fleet "Derelict Republic" 30000
 		fleet "Navy Surveillance" 1600
 	system "Delta Velorum"
 		fleet "Small Southern Merchants" 1000
@@ -350,6 +356,7 @@ event "initial deployment 2"
 		fleet "Large Southern Pirates" 4000
 		fleet "Small Republic" 2000
 		fleet "Large Republic" 3000
+		fleet "Derelict Republic" 30000
 		fleet "Navy Surveillance" 1600
 	system "Cor Caroli"
 		fleet "Small Southern Merchants" 700
@@ -395,6 +402,7 @@ event "initial deployment 2"
 		fleet "Small Southern Pirates" 5000
 		fleet "Small Republic" 2000
 		fleet "Large Republic" 3000
+		fleet "Derelict Southern" 30000
 		fleet "Navy Surveillance" 1600
 	system "Arcturus"
 		fleet "Small Southern Merchants" 700
@@ -423,6 +431,7 @@ event "initial deployment 2"
 		fleet "Small Southern Pirates" 1500
 		fleet "Small Republic" 7000
 		fleet "Large Republic" 12000
+		fleet "Derelict Southern" 10000
 		fleet "Navy Surveillance" 1600
 	system "Cebalrai"
 		fleet "Small Southern Merchants" 600
@@ -449,6 +458,7 @@ event "initial deployment 3"
 		fleet "Large Free Worlds" 1000
 		fleet "Small Southern Pirates" 5000
 		fleet "Large Southern Pirates" 8000
+		fleet "Derelict Southern" 30000
 	system "Unukalhai"
 		fleet "Small Southern Merchants" 900
 		fleet "Large Southern Merchants" 3000
@@ -481,6 +491,7 @@ event "initial deployment 3"
 		fleet "Small Southern Pirates" 6000
 		fleet "Small Republic" 800
 		fleet "Large Republic" 700
+		fleet "Derelict Southern" 30000
 		fleet "Navy Surveillance" 1200
 	system "Seginus"
 		fleet "Small Southern Merchants" 1200
@@ -495,6 +506,7 @@ event "initial deployment 3"
 		fleet "Small Southern Pirates" 6000
 		fleet "Small Republic" 900
 		fleet "Large Republic" 1100
+		fleet "Derelict Southern" 30000
 		fleet "Navy Surveillance" 1200
 	system "Eber"
 		fleet "Small Southern Merchants" 1900
@@ -502,6 +514,7 @@ event "initial deployment 3"
 		fleet "Small Southern Pirates" 3000
 		fleet "Small Republic" 1000
 		fleet "Large Republic" 1500
+		fleet "Derelict Southern" 10000
 		fleet "Navy Surveillance" 1200
 	system "Alpha Arae"
 		fleet "Small Southern Merchants" 2100
@@ -510,6 +523,7 @@ event "initial deployment 3"
 		fleet "Large Southern Pirates" 13000
 		fleet "Small Republic" 900
 		fleet "Large Republic" 800
+		fleet "Derelict Southern" 30000
 		fleet "Navy Surveillance" 1200
 	system "Kaus Borealis"
 		fleet "Small Southern Merchants" 900
@@ -712,6 +726,7 @@ event "initial deployment 4"
 		fleet "Large Southern Pirates" 7000
 		fleet "Small Free Worlds" 800
 		fleet "Large Free Worlds" 1100
+		fleet "Derelict Southern" 30000
 		fleet "Navy Surveillance" 800
 	system "Atria"
 		fleet "Small Southern Merchants" 700
@@ -747,6 +762,7 @@ event "initial deployment 4"
 		fleet "Large Southern Pirates" 1600
 		fleet "Small Free Worlds" 4000
 		fleet "Large Free Worlds" 8000
+		fleet "Derelict Southern" 30000
 	system "Yed Prior"
 		fleet "Small Northern Merchants" 800
 		fleet "Large Northern Merchants" 1100
@@ -941,6 +957,7 @@ event "oathkeepers founded"
 		fleet "Republic Logistics" 5400
 		fleet "Small Northern Pirates" 3000
 		fleet "Large Northern Pirates" 5000
+		fleet "Derelict Republic" 30000
 	system "Alnitak"
 		fleet "Small Northern Pirates" 3000
 		fleet "Large Northern Pirates" 5000
@@ -959,6 +976,7 @@ event "oathkeepers founded"
 		fleet "Large Northern Pirates" 2000
 		fleet "Large Oathkeeper" 2000
 		fleet "Small Northern Merchants" 4000
+		fleet "Derelict Pirate" 30000
 	system "Almaaz"
 		fleet "Small Northern Pirates" 500
 		fleet "Large Northern Pirates" 600
@@ -968,11 +986,13 @@ event "oathkeepers founded"
 		fleet "Large Northern Pirates" 1000
 		fleet "Large Oathkeeper" 4000
 		fleet "Small Northern Merchants" 8000
+		fleet "Derelict Pirate" 10000
 	system "Tortor"
 		fleet "Small Northern Pirates" 1000
 		fleet "Large Northern Pirates" 1000
 		fleet "Large Oathkeeper" 6000
 		fleet "Small Northern Merchants" 6000
+		fleet "Derelict Pirate" 10000
 	planet "Farpoint"
 		description `Farpoint, on the northernmost end of human space, is a rocky desert planet home to a Republic Navy base and not much else. Farming is possible only within greenhouses, and this system is too far from the galactic center to be desirable for trade or industry.`
 		description `	Lately the Navy base on Farpoint is growing, because it has become the new home of the Navy Oathkeepers, a small branch of the Navy that has sworn to stay uninvolved in the conflict with the Free Worlds.`
@@ -1414,6 +1434,7 @@ event "normal in Alnasl"
 		fleet "Small Southern Pirates" 6000
 		fleet "Small Republic" 900
 		fleet "Large Republic" 1100
+		fleet "Derelict Southern" 30000
 		fleet "Navy Surveillance" 1200
 	system "Wei"
 		add fleet "Large Republic" 700
@@ -1428,6 +1449,7 @@ event "fw southern expansion"
 		fleet "Large Free Worlds" 1100
 		fleet "Small Southern Pirates" 2000
 		fleet "Large Southern Pirates" 5000
+		fleet "Derelict Southern" 30000
 		fleet "Navy Surveillance" 4000
 	system "Sargas"
 		fleet "Small Southern Merchants" 600
@@ -1514,6 +1536,7 @@ event "fw occupying the north"
 		fleet "Large Northern Merchants" 8000
 		fleet "Small Free Worlds" 1500
 		fleet "Large Free Worlds" 3800
+		fleet "Derelict Southern" 10000
 	system "Seginus"
 		fleet "Small Southern Merchants" 1200
 		fleet "Large Southern Merchants" 2700
@@ -1527,6 +1550,7 @@ event "fw occupying the north"
 		fleet "Large Southern Merchants" 2500
 		fleet "Small Free Worlds" 800
 		fleet "Large Free Worlds" 1000
+		fleet "Derelict Southern" 30000
 		fleet "Navy Surveillance" 4000
 
 
@@ -1729,12 +1753,14 @@ event "fw expanded and cut"
 		fleet "Small Republic" 1000
 		fleet "Large Republic" 1000
 		fleet "Large Free Worlds" 800
+		fleet "Derelict Southern" 30000
 	system "Alpha Arae"
 		fleet "Small Southern Merchants" 5000
 		fleet "Large Southern Merchants" 6000
 		fleet "Small Republic" 800
 		fleet "Large Republic" 1000
 		fleet "Large Free Worlds" 3000
+		fleet "Derelict Southern" 30000
 
 
 
@@ -1812,6 +1838,7 @@ event "fw armistice"
 		fleet "Small Southern Pirates" 5000
 		fleet "Small Republic" 2000
 		fleet "Large Republic" 3000
+		fleet "Derelict Southern" 30000
 		fleet "Navy Surveillance" 1600
 	system "Kaus Borealis"
 		remove fleet "Republic Logistics"
@@ -1905,6 +1932,7 @@ event "navy out of rastaban"
 		fleet "Large Free Worlds" 1100
 		fleet "Small Southern Pirates" 2000
 		fleet "Large Southern Pirates" 5000
+		fleet "Derelict Southern" 30000
 		fleet "Navy Surveillance" 4000
 	system "Alpha Arae"
 		fleet "Small Southern Merchants" 2100
@@ -1913,6 +1941,7 @@ event "navy out of rastaban"
 		fleet "Large Southern Pirates" 13000
 		fleet "Small Republic" 900
 		fleet "Large Republic" 800
+		fleet "Derelict Southern" 30000
 		fleet "Navy Surveillance" 1200
 
 
@@ -2286,11 +2315,13 @@ event "pug flee"
 		fleet "Small Republic" 3000
 		fleet "Large Republic" 7000
 		fleet "Small Northern Pirates" 2500
+		fleet "Derelict Republic" 10000
 	system "Orvala"
 		fleet "Small Southern Merchants" 3000
 		fleet "Large Southern Merchants" 6000
 		fleet "Small Southern Pirates" 1000
 		fleet "Large Southern Pirates" 3000
+		fleet "Derelict Southern" 10000
 	system "Deneb"
 		fleet "Small Core Merchants" 5000
 		add object "Pug Wormhole"
@@ -2509,6 +2540,7 @@ event "fwc southern liberation"
 		fleet "Large Free Worlds" 1100
 		fleet "Small Southern Pirates" 2000
 		fleet "Large Southern Pirates" 5000
+		fleet "Derelict Southern" 30000
 		fleet "Navy Surveillance" 4000
 
 
