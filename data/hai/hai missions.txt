@@ -1662,7 +1662,7 @@ mission "Strider notification"
 mission "Hai Film Crew 1"
 	minor
 	name "Hai film crew to <planet>"
-	description "Bring a film crew from <origin> to <destination>, so that they can film a horror film there. Payment is <payment>."
+	description "Bring a film crew from <origin> to <destination>, so that they can shoot a horror film there. Payment is <payment>."
 	cargo "film equipment" 50
 	passengers 80
 	source
@@ -1731,7 +1731,6 @@ mission "Hai Film Crew 1"
 				accept
 			label going
 			`	"Thanks for your help, Captain. I'll contact you in a month once we're finished," says Likeet.`
-				accept
 
 
 
