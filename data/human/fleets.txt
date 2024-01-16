@@ -3393,7 +3393,7 @@ fleet "Derelict Republic"
 	government "Derelict (Boardable)"
 	names "civilian"
 	"cargo settings"
-		cargo 1
+		cargo 2
 		outfitters "Derelict Republic"
 	personality derelict mute marked
 	variant 18
@@ -3421,7 +3421,7 @@ fleet "Derelict Southern"
 	government "Derelict (Boardable)"
 	names "civilian"
 	"cargo settings"
-		cargo 1
+		cargo 2
 		outfitters "Derelict Southern"
 	personality derelict mute marked
 	variant 24
@@ -3451,7 +3451,7 @@ fleet "Derelict Syndicate"
 	government "Derelict (Boardable)"
 	names "civilian"
 	"cargo settings"
-		cargo 1
+		cargo 2
 		outfitters "Derelict Syndicate"
 	personality derelict mute marked
 	variant 15
@@ -3477,7 +3477,7 @@ fleet "Derelict Pirate"
 	government "Derelict (Boardable)"
 	names "civilian"
 	"cargo settings"
-		cargo 1
+		cargo 2
 		outfitters "Derelict Pirate"
 	personality derelict mute marked
 	variant 60
