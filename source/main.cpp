@@ -43,7 +43,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "TestContext.h"
 #include "UI.h"
 
-#include <SDL2/SDL_keycode.h>
 #include <chrono>
 #include <iostream>
 #include <map>
