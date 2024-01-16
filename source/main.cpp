@@ -43,7 +43,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "TestContext.h"
 #include "UI.h"
 
-#include <SDL2/SDL_keycode.h>
 #include <chrono>
 #include <iostream>
 #include <map>
@@ -315,8 +314,10 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 			{
 				// The UI handled the event.
 			}
-			isFastForward = SDL_GetModState() & KMOD_CAPS;
 		}
+
+		// Check if caps lock is active, if yes fast forward should be on.
+		isFastForward = SDL_GetModState() & KMOD_CAPS;
 	};
 
 	// Game loop when running the game normally.
