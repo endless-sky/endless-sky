@@ -1677,25 +1677,25 @@ mission "Hai Film Crew [1]"
 	on offer
 		conversation
 			`A rapid tapping on your shoulder dissipates any intentions you might have had about touring this spaceport in peace. You turn around to find a Hai, short even by their standards, looking up at you.`
-			`	"You're a ship captain, yes? Would you like to be part of cinema history?"`
+			`	"You're a ship captain, yes? Would you like to be part of cinema history?" she asks.`
 			choice
 				`	"I'm not much of a movie buff. I'll pass."`
 					decline
 				`	"Sure, what do you need me to do?"`
 				`	"What do you mean?"`
-			`	"My name is Likeet, and I'm in charge of coordinating transportation for an independent film crew. We need you to bring <bunks> crew members and <tons> of film equipment to Darkrest, then bring us back after about a month. We can pay you <payment>, but the immaterial rewards of being involved in an ambitious project such as this will be priceless."`
+			`	"My name is Likeet, and I'm in charge of coordinating transportation for an independent film crew. We need you to bring <bunks> crew members and <tons> of film equipment to <planet>, then bring us back after about a month. We can pay you <payment>, but the immaterial rewards of being involved in an ambitious project such as this will be priceless."`
 			choice
-				`	"Why would you want to go to <planet>? Isn't that an abandoned station?"`
+				`	"Why would you want film in <planet>? Isn't that an abandoned station?"`
 					to display
 						has "visited planet: Darkrest"
-				`	"Why would you want to go to <planet>?"`
+				`	"What's so special about <planet> for filming?"`
 					to display
 						not "visited planet: Darkrest"
 				`	"Sure, I can take you there."`
 					goto accept
 				`	"I'm not going that way. You'll need to find some other captain."`
 					decline
-			`	"Ah, you must not know about <planet>. There are many tales which swirl around the station, chief among them being the existence of ghosts and monsters haunting its corridors. We'd like to take advantage of the popular image of Darkrest in the creation of our horror film by using it as a backdrop. It's sort of the human equivalent of setting your film in a 'haunted' forest. Don't worry, we'll bring enough food to last us for the month."`
+			`	"Ah, you must not know about <planet>. There are many tales which swirl around the station, chief among them being the existence of ghosts and monsters haunting its corridors. We'd like to take advantage of the popular image of <planet> in the creation of our horror film by using it as a backdrop. It's sort of the human equivalent of setting your film in a 'haunted' forest. Don't worry, we'll bring enough food to last us for the month."`
 			choice
 				`	"Why do people think it's haunted?"`
 				`	"Alright then, I can take you there."`
@@ -1709,14 +1709,14 @@ mission "Hai Film Crew [1]"
 					goto accept
 				`	"I'm not going that way. You'll need to find some other captain."`
 					decline
-				`	Likeet gives a laugh. "It's not actually haunted, of course. Those are just stories. Do you think I'd send an entire film crew and all their expensive equipment to a place that was actually dangerous?"`
+			`	Likeet gives a laugh. "It's not actually haunted, of course. Those are just stories. Do you think I'd send an entire film crew and all their expensive equipment to a place that was actually dangerous?"`
 			choice
 				`	"Alright then, I can take you there."`
 				`	"I'm not going that way. You'll need to find some other captain."`
 					decline
 			label accept
-				`	"Excellent! I'll let the crew know where to find you."`
-					accept
+			`	"Excellent! I'll let the crew know where to find you."`
+				accept
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
@@ -1747,7 +1747,7 @@ mission "Hai Film Crew [2]"
 	name "Hai Film Crew"
 	description "Go to <destination> to pick up the film crew you transported there."
 	source
-		government "Hai" "Hai (Unfettered)" "Republic" "Syndicate" "Free Worlds" "Pirate" "Neutral" "Independent"
+		near "Ya Hai" 0 100
 	destination "Darkrest"
 	to offer
 		has "event: hai film crew"
@@ -1755,12 +1755,11 @@ mission "Hai Film Crew [2]"
 		dialog
 			`Upon landing your ship, you receive a voice call. Although the sender didn't bother to identify themselves, you soon recognize it as the voice of Likeet, the movie director that you brought to Darkrest a month ago.`
 			`	"Captain <last>! Good to see you again! We've finished filming here and need a ride off this place. I'll see you soon." Before you can say anything, she hangs up.`
-				accept
 
 
 
 mission "Hai Film Crew [3]"
-	minor
+	landing
 	name "Hai Film Crew"
 	description "Take Likeet's film crew home to their studio on <destination>, so that they can process the film they shot on <origin>. Payment is <payment>."
 	cargo "film equipment" 30
@@ -1782,4 +1781,4 @@ mission "Hai Film Crew [3]"
 	on complete
 		payment 100000 50
 		conversation
-			`When you land on <planet>, you are approached by Likeet, who is carrying a large can of fake blood. "Thanks for the ride, captain. Keep a lookout for my film in theaters. You'll know it when you see it." Once the cargo has been unloaded, she almost sprints away in excitement, no doubt trying to make it to her studio as quickly as possible. You notice that <payment> have been deposited into your account.`
+			`When you land on <planet>, you are approached by Likeet, who is carrying a large can of fake blood. "Thanks for the ride, Captain. Keep a lookout for my film in theaters. You'll know it when you see it." Once the cargo has been unloaded, she almost sprints away in excitement, no doubt trying to make it to her studio as quickly as possible. You notice that <payment> have been deposited into your account.`
