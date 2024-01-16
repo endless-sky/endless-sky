@@ -6856,9 +6856,9 @@ mission "Derelict Informer"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not attributes "uninhabited"
-		not system "Rutilicus"
 	to offer
 		random < 4
+		"days since start" > 30
 	on offer
 		conversation
 			`As you touch down on <origin>, you see that the landing pad next to yours holds a freighter that is practically falling apart. Standing next to it is a man with the grizzled look of an experienced captain.`
