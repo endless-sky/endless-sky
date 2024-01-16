@@ -17,7 +17,7 @@ ship "Venta"
 	"thumbnail" thumbnail/venta
 	"swizzle" 0
 	attributes
-		"category" "Large Warship"
+		"category" "Heavy Warship"
 		licenses
 			"Hicemus Conflict"
 		"cost" 25000000
