@@ -1723,8 +1723,6 @@ mission "Station Exploration 1"
 				accept
 	on visit
 		dialog `You look for the group of students you were transporting, but realize that they took a ride on one of your escorts! Better depart and wait for your escorts to arrive in this star system.`
-	on complete
-		payment 8000
 
 
 
