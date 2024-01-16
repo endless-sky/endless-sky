@@ -43,6 +43,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "TestContext.h"
 #include "UI.h"
 
+#include <SDL2/SDL_keycode.h>
 #include <chrono>
 #include <iostream>
 #include <map>
@@ -314,11 +315,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 			{
 				// The UI handled the event.
 			}
-			else if(event.type == SDL_KEYDOWN && !event.key.repeat
-					&& (Command(event.key.keysym.sym).Has(Command::FASTFORWARD)))
-			{
-				isFastForward = !isFastForward;
-			}
+			isFastForward = SDL_GetModState() & KMOD_CAPS;
 		}
 	};
 
