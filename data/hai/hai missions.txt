@@ -1661,7 +1661,7 @@ mission "Strider notification"
 
 
 
-mission "Hai Film Crew [1]"
+mission "Hai Film Crew 1"
 	minor
 	name "Hai Film Crew"
 	description "Bring a movie crew from <origin> to <destination>, so that they can film a horror movie there. Payment is <payment>."
@@ -1683,9 +1683,9 @@ mission "Hai Film Crew [1]"
 					decline
 				`	"Sure, what do you need me to do?"`
 				`	"What do you mean?"`
-			`	"My name is Likeet, and I'm in charge of coordinating transportation for an independent film crew. We need you to bring <bunks> crew members and <tons> of film equipment to <planet>, then bring us back after about a month. We can pay you <payment>, but the immaterial rewards of being involved in an ambitious project such as this will be priceless."`
+			`	"My name is Likeet, and I'm the director of an independent film production. We need you to bring <bunks> crew members and <tons> of film equipment to <planet>, then bring us back after about a month. We can pay you <payment>, but the immaterial rewards of being involved in an ambitious project such as this will be priceless."`
 			choice
-				`	"Why would you want film in <planet>? Isn't that an abandoned station?"`
+				`	"Why would you want to film in <planet>? Isn't that an abandoned station?"`
 					to display
 						has "visited planet: Darkrest"
 				`	"What's so special about <planet> for filming?"`
@@ -1729,7 +1729,7 @@ mission "Hai Film Crew [1]"
 				`	"What's your movie about, anyways?"`
 				`	"I better get going, then."`
 					goto going
-			`	"I don't want to spoil anything, but it's a psychological horror film that explores the nature of human isolation, and the shadow that our own mortality casts over our lives." She continues to elaborate on more philosophical themes that seemingly have less and less to do with the actual film, until she notices that your eyes have long since glazed over.`
+			`	"I don't want to spoil anything, but it's a psychological horror film that explores the nature of isolation, and the shadow that our own mortality casts over our lives." She continues to elaborate on more philosophical themes that seemingly have less and less to do with the actual film, until she notices that your eyes have long since glazed over.`
 			`	"Well, anyways, thanks for your help, Captain. I'll contact you in a month once we're finished filming," says Likeet.`
 				accept
 			label going
@@ -1742,7 +1742,7 @@ event "hai film crew"
 
 
 
-mission "Hai Film Crew [2]"
+mission "Hai Film Crew 2"
 	landing
 	name "Hai Film Crew"
 	description "Go to <destination> to pick up the film crew you transported there."
@@ -1758,7 +1758,7 @@ mission "Hai Film Crew [2]"
 
 
 
-mission "Hai Film Crew [3]"
+mission "Hai Film Crew 3"
 	landing
 	name "Hai Film Crew"
 	description "Take Likeet's film crew home to their studio on <destination>, so that they can process the film they shot on <origin>. Payment is <payment>."

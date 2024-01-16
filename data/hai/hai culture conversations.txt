@@ -323,5 +323,9 @@ mission "Film Release"
 				`	(Go see it.)`
 				`	(Pass.)`
 					decline
-			`	You find a movie theater showing Likeet's film. You're not quite sure what's happening: something to do with an unseen monster that seems to slowly drive those it meets insane. It seems to be a hit with the Hai audience, though, and you leave the theater feeling distinctly unnerved.`
+			branch translator
+				has "language: Hai"
+			`	You find a movie theater showing Likeet's film. You're not quite sure what's happening: something to do with an unseen monster inhabiting the station that slowly drives those it meets insane. It seems to be a hit with the Hai audience, though, and you leave the theater feeling distinctly unnerved.`
 				decline
+			label translator
+			`	You find a movie theater showing Likeet's film, but your translator is of little help here. The movie is sparse on dialog, and the few lines spoken in the movie seem to be cryptic references to Hai literature and philosophy. The most you are able to make out is that the movie is about an unseen monster inhabiting the station that slowly drives those it meets insane. It seems to be a hit with the Hai audience, though, and you leave the theater feeling distinctly unnerved.
