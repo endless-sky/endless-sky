@@ -471,7 +471,7 @@ mission "Intro [2.1 Interceptor]"
 				`	"I think I have enough information."`
 					goto end
 
-			`	"Well, you need a weapon that does hull damage," James says. "A Beam Laser will get the job done, but it will take a while. If you want to optimise your mining operations, however, you'll want a Mining Laser. Not only does it cut through asteroids faster, it's also more precise and preserves more minerals when the asteroid breaks apart. Some miners like to have a bit of combat flexibility by mining with Heavy Lasers, however.`
+			`	"Well, you need a weapon that does hull damage," James says. "A Beam Laser will get the job done, but it will take a while. If you want to optimize your mining operations, however, you'll want a Mining Laser. Not only does it cut through asteroids faster, it's also more precise and preserves more minerals when the asteroid breaks apart. Some miners like to have a bit of combat flexibility by mining with Heavy Lasers, however.`
 			`	"Aside from lasers, the most valuable tool is an asteroid scanner. They're expensive, but they connect into your navigation and targeting systems to point you towards minable asteroids. You can also set them to find the most valuable asteroids, which increases your profitability per run. After that, a tactical scanner will tell you how far away the asteroid is and show how much damage you're doing. An afterburner is good for chasing down fast moving asteroids or getting away from pirates without leaving the system. A ramscoop will let you refuel while mining, extend your exploration range, and allow you to be ready for a quick escape."`
 			choice
 				`	"I can't fit all that on my ship!"`
