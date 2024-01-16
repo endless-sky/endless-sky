@@ -1679,18 +1679,18 @@ mission "Station Exploration 1"
 			choice
 				`	"What would you want to do on <planet>? Isn't that an abandoned station?"`
 					goto question
-						to display
-							has "visited planet: Darkrest"
+					to display
+						has "visited planet: Darkrest"
 				`	"Why do you want to go to <planet>?"`
 					goto "question 1"
-						to display
-							not "visited planet: Darkrest"
+					to display
+						not "visited planet: Darkrest"
 				`	"Sure, I can take you there and back."`
 					goto accept
 				`	"How much can you pay me?"`
 				`	"Sorry, I'm busy right now. Go ask some other captain."`
 						decline
-			`	The group starts to shuffle around with a nervous air. "Well, we're still in school, so money's kind of tight right now... But we can pay you!" The Hai pauses to glance at his friends and, in almost a whisper, says, "is <payment> okay?"`
+			`	The group starts to shuffle around with a nervous air. "Well, we're still in school, so money's kind of tight right now... But we can pay you!" The Hai pauses to glance at his friends and, in almost a whisper, says, "Is <payment> okay?"`
 			choice
 				`	"Why would you want to pay money to go to <planet>, anyhow? Isn't that an abandoned station?"`
 					to display
@@ -1769,7 +1769,7 @@ mission "Station Exploration 2"
 			`	"Yeah, they're fine. We're basically just here to make sure they didn't injure themselves. Don't imagine that their parents are going to be too thrilled with them, though."`
 			label trouble
 			`	"Simply bringing a paying passenger somewhere they requested to go isn't illegal. Your passengers were of age and knew what they were getting into, and you weren't deliberately enabling them to break the law. You're fine."`
-			`	The officer gets up. "Next time though, you should probably think twice before bringing some college kids somewhere to go 'ghost-hunting'." He chuckles as he leaves.`
+			`	The officer gets up. "Next time though, you should probably think twice before bringing some college kids somewhere to go 'ghost-hunting.'" He chuckles as he leaves.`
 				decline
 
 
