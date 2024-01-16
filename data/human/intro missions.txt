@@ -421,7 +421,7 @@ mission "Intro [2.1 Interceptor]"
 	priority
 	name "Mine asteroids in <system>"
 	description "Go to the <system> system and mine 5 tons of Silicon, then land on <planet>."
-	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
+	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I think you'll find what I want to show you next very interesting, but you'll need to free up <capacity> first. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	passengers 1
 	source "Ingot"
 	destination "New Sahara"
@@ -431,18 +431,18 @@ mission "Intro [2.1 Interceptor]"
 	
 	on offer
 		conversation
-			`James waves you over to his table when you enter the bar. He's sitting with another man with a local star map spread out between them. There's a steady patter of micrometeorites against the roof that reminds you of rain on the factory roof in New Boston.`
-			`	"This is Captain Marshall," James says as you pull up a chair. "I told him about your new Sparrow and how it'd be a good idea for you to get a taste of mining. He mines in this part of space and says there's a good system nearby if you're willing to give it a try."`
+			`You find James waiting for you just outside the spaceport bar. Against the steady patter of micrometeorites against the roof he tells you, "Working here is one of the few jobs in the galaxy more dangerous than fighting pirates. And worse, because if a big meteorite decides to strike this station, there's basically nothing they can do about it except hope they see it coming." He turns to you with a grin. "But nonetheless, I think you might be interested in this idea."`
+			`	James leads you down the side of the bar to a booth where a man with a half-eaten hamburger and a plate of fries is sitting, busily examining a star map of the local sector. He notices your arrival and stands up to greet you. "<first>, this is Captain Marshall," James says as you shake his hand. "I told him about your new ship and how it'd be a good idea for you to get a taste of asteroid mining. He mines in this part of space and says there's a good system nearby if you're willing to give it a try."`
 			choice
-				`	"I'm willing to give it a shot."`
+				`	"I'll give it a shot."`
 					goto mining
-				`	"I'm ready to head out on my own."`
+				`	"I think I'm ready to head out on my own."`
 					decline
 	
 			label "mining"
-			`	"That's good to hear," Captain Marshall says with a smile. "But be warned that mining is as easy as one might think. Especially without an asteroid scanner, mining can be just as much a test of your piloting skills as combat.`
+			`	"That's good to hear," Captain Marshall says with a smile. "But be warned that mining isn't as easy as one might think. Especially without an asteroid scanner, mining can be just as much a test of your piloting skills as combat.`
 			`	"The first challenge," he continues, "will be finding which asteroids are valuable. The worthless asteroids are either brown and smooth or gray and spiky with no apparent orbit. It doesn't matter how long you shoot them, they won't be destroyed. Valuable asteroids will always orbit the star and have a range of colors and surface textures. If you're not sure which are which and you don't have an asteroid scanner to tell you, keep a look out for other miners to see what they're firing at.`
-			`	"Generally speaking, the more valuable minerals are tougher to mine, either because they're harder to break apart or they're less common and in more dangerous regions of the galaxy. Silicon breaks up quickly; you'll fill your hold in a hurry and the stuff is everywhere. Platinum or gold are more work; not as common in areas where the Navy watches your back, but you make several times the number of credits for the effort.`
+			`	"Generally speaking, the more valuable minerals are tougher to mine, either because they're harder to break apart, or they're less common and in more dangerous regions of the galaxy. Silicon breaks up quickly; you'll fill your hold in a hurry and the stuff is everywhere. Platinum or gold asteroids are more work; they're not as common in areas where the Navy watches your back, but you make several times the number of credits for the effort.`
 			`	"I could go on, but I think you get the picture."`
 			`	You and James chat with Marshall a while longer, and he suggests trying your hand at mining in <system>. "It's a great place. You could throw a dart in that system and half the time you'd hit an asteroid worth at least something, and I've never been bothered by pirates while I've been there."`
 			`	"That does sound like a good place for a beginner pilot," James says. "How about we start small, <first>? Let's go mine at least five tons of silicon before landing on <planet> and we can call it a day."`
@@ -464,7 +464,6 @@ mission "Intro [2.1 Interceptor]"
 			label choices
 			choice
 				`	"What equipment do I need to mine?"`
-					goto equipment
 				`	"How do you deal with pirates?"`
 					goto pirates
 				`	"How can I check the value of minerals?"`
@@ -472,25 +471,22 @@ mission "Intro [2.1 Interceptor]"
 				`	"I think I have enough information."`
 					goto end
 
-			label equipment
-			`	"Well, you need a weapon that does hull damage," James says. "A beam laser will get the job done, but it will take awhile. The most valuable tool is an asteroid scanner. They're expensive, but they connect into your navigation and targeting systems to point you towards minable asteroids. You can also set them to find the most valuable asteroids which increases your profitability per run. After that, a tactical scanner will give you range to target and show how much damage you're doing. An afterburner is good for chasing down fast moving asteroids or getting away from pirates without leaving the system. A ramscoop will let you refuel while mining, can extend your exploration range, and allow you to be ready for a quick escape."`
+			`	"Well, you need a weapon that does hull damage," James says. "A Beam Laser will get the job done, but it will take a while. If you want to optimise your mining operations, however, you'll want a Mining Laser. Not only does it cut through asteroids faster, it's also more precise and preserves more minerals when the asteroid breaks apart. Some miners like to have a bit of combat flexibility by mining with Heavy Lasers, however.`
+			`	"Aside from lasers, the most valuable tool is an asteroid scanner. They're expensive, but they connect into your navigation and targeting systems to point you towards minable asteroids. You can also set them to find the most valuable asteroids, which increases your profitability per run. After that, a tactical scanner will tell you how far away the asteroid is and show how much damage you're doing. An afterburner is good for chasing down fast moving asteroids or getting away from pirates without leaving the system. A ramscoop will let you refuel while mining, extend your exploration range, and allow you to be ready for a quick escape."`
 			choice
 				`	"I can't fit all that on my ship!"`
-					goto shipmods
 				`	"That all makes sense."`
 					goto more
-			
-			label shipmods
-			`	James gives you a knowing smile as he answers, "Not in a factory build, you won't. But you'd be surprised how much space you can free up even in a Sparrow if you're willing to flexible about health and safety. Do you really need that much power? If you've got an outfitter on the planet where you're mining, do you need a hyperdrive, or even a shield generator? Maybe a cargo expansion would be more use." He pauses briefly, perhaps considering what liability he's opened himself up for, then adds, "I'm not saying you should, of course, but you have options.`
+
+			`	James gives you a knowing smile as he answers, "Not in a factory build, you won't. But you'd be surprised how much space you can free up even in a Sparrow if you're willing to be flexible. Do you really need that much power? If you've got an outfitter on the planet where you're mining, do you need a hyperdrive, or even a shield generator? Maybe a cargo expansion would be of more use." He pauses briefly, perhaps considering what liability he's opened himself up for, then adds, "I'm not saying you should, of course, but you have options.`
 				goto more
 
 			label pirates
-			`	"You can always bribe them to leave you alone. If the minerals are good enough and you have enough cargo capacity, you'll still turn a profit. Or if you have a fast ship, you can just run away. Of course, with enough of a fleet you just fight them off." He shakes his head. "Most pirates would be richer and live longer if they just mined instead of extorting bribes and cargo.`
+			`	"You can always bribe them to leave you alone. If the minerals are good enough and you have enough cargo capacity, you'll still turn a profit. Or if you have a fast ship, you can just run away. Of course, with enough of a fleet you just fight them off." He shakes his head. "Most pirates would be richer and live longer if they just mined instead of extorting merchants and plundering ships.`
 				goto more
 			
 			label value
 			`	"You will learn this by experience, but if the planet has an outfitter, you can check the price there before you sell.`
-				goto more
 
 			label more
 			`	"Anything else you want to ask me?"`
@@ -514,7 +510,8 @@ mission "Intro [3 Interceptor]"
 	
 	on offer
 		conversation
-			`You find James sitting at the spaceport's tiny bar, sipping a beer while watching the large displays that show the landing pads and the irrigated fields beyond. The displays are supposed to make the underground building feel less claustrophobic. "Care for a drink?" he asks.`
+			`You find James sitting at the spaceport's tiny bar, sipping a beer while watching the large displays that show the landing pads and the irrigated fields beyond. The displays are supposed to make the underground building feel less claustrophobic. "This is one of the least habitable planets in the galaxy. But if it doesn't kill us instantly, then someone's tried to settle it." He pauses for a moment while gazing at one of the displays. You spot a sandstorm picking up in the far distance as the workers in the fields hastily finish their work before it arrives.`
+			`	"Care for a drink?" he asks.`
 			choice
 				`	"Sure."`
 				`	"No thanks."`
