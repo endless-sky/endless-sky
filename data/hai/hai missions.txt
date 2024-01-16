@@ -1721,9 +1721,8 @@ mission "Hai Film Crew 1"
 		event "hai film crew" 30
 		payment 100000 50
 		conversation
-			`You help your passengers unload all of their film equipment once you arrive on <planet>. The props seem to get more and more elaborate as they are unpacked from your ship. You note the presence of countless rubber limbs, mechanical monsters, and cans of fake blood being carried onto the set. Once you are finished, Likeet approaches you.`
+			`You help your passengers unload all of their film equipment once you arrive on <planet>. The props seem to get more and more elaborate as they are unpacked from your ship; you note the presence of countless rubber limbs, mechanical monsters, and cans of fake blood being carried onto the set. Once you are finished, Likeet approaches you.`
 			choice
-				`	"What's the name of your movie, anyways?"`
 				`	"What's your movie about, anyways?"`
 				`	"I better get going, then."`
 					goto going
@@ -1751,7 +1750,7 @@ mission "Hai Film Crew 2"
 		has "event: hai film crew"
 	on offer
 		dialog
-			`Upon landing your ship, you receive a voice call. Although the sender didn't bother to identify themselves, you soon recognize it as the voice of Likeet, the movie director that you brought to Darkrest a month ago.`
+			`Upon landing your ship you receive a voice call. Although the sender didn't bother to identify themselves, you soon recognize it as the voice of Likeet, the movie director that you brought to Darkrest a month ago.`
 			`	"Captain <last>! Good to see you again! We've finished filming here and need a ride off this place. I'll see you soon." Before you can say anything, she hangs up.`
 
 
@@ -1772,7 +1771,7 @@ mission "Hai Film Crew 3"
 			`The first thing you notice when you land on Darkrest is the mess. It looks as if a tornado has touched down on the set, and you don't remember Likeet talking about natural disasters when she described the movie.`
 			`	"Controlled chaos, I call it," says Likeet, who has somehow materialized beside you. "We're just clearing everything out right now, making sure we didn't forget anything, the usual."`
 			`	It takes a few hours to load everything onto your ship. Once you're finished, the only sign that anyone was here is that the station's surfaces are free of dust.`
-			`	"Alright, captain. We'll need to get to <destination>, so that we can edit the raw footage in our studio. Gonna be nice to finally be back on a planet instead of this tin can." She pauses, as if she's trying to remember a line. "Oh yeah, I'll pay you <payment> once we've arrived. Let's get out of here."`
+			`	"Alright, Captain. We'll need to get to <planet> so that we can edit the raw footage in our studio. Gonna be nice to finally be back on a planet instead of this tin can." She pauses, as if she's trying to remember a line. "Oh yeah, I'll pay you <payment> once we've arrived. Let's get out of here."`
 				accept
 	on visit
 		dialog phrase "generic cargo and passenger on visit"

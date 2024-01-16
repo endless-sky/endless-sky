@@ -308,7 +308,7 @@ mission "Robotic Musical 1"
 
 
 
-mission "Film Release"
+mission "Hai Film Release"
 	minor
 	source
 		government "Hai"
@@ -318,7 +318,7 @@ mission "Film Release"
 		random < 1
 	on offer
 		conversation
-			`Upon visiting the spaceport, you notice a poster for a movie in Hai. You recognize it as taking place on Darkrest, and quickly realize that this must be the movie that Likeet had made. The Hai-language title has been translated to "The Final Rest," but the full movie doesn't appear to have been subtitled in the human language yet.`
+			`Upon visiting the spaceport, you notice a poster for a movie in Hai. You recognize it as taking place on Darkrest, and quickly realize that this must be the movie that Likeet had made. The Hai-language title has been translated to "The Final Rest," but the full movie doesn't appear to have been subtitled in your language yet.`
 			choice
 				`	(Go see it.)`
 				`	(Pass.)`
