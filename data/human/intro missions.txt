@@ -431,7 +431,7 @@ mission "Intro [2.1 Interceptor]"
 	
 	on offer
 		conversation
-			`You find James waiting for you just outside the spaceport bar. Against the steady patter of micrometeorites against the roof he tells you, "Working here is one of the few jobs in the galaxy more dangerous than fighting pirates. And worse, because if a big meteorite decides to strike this station, there's basically nothing they can do about it except hope they see it coming." He turns to you with a grin. "But nonetheless, I think you might be interested in this idea."`
+			`You find James waiting for you just outside the spaceport bar. Against the steady patter of micrometeorites against the roof he tells you, "Working here on <origin> is one of the few jobs in the galaxy more dangerous than fighting pirates. And worse, because if a big meteorite decides to strike this station, there's basically nothing the miners can do about it except hope they see it coming." He turns to you with a grin. "But nonetheless, I think you might be interested in this idea."`
 			`	James leads you down the side of the bar to a booth where a man with a half-eaten hamburger and a plate of fries is sitting, busily examining a star map of the local sector. He notices your arrival and stands up to greet you. "<first>, this is Captain Marshall," James says as you shake his hand. "I told him about your new ship and how it'd be a good idea for you to get a taste of asteroid mining. He mines in this part of space and says there's a good system nearby if you're willing to give it a try."`
 			choice
 				`	"I'll give it a shot."`
