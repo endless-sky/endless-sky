@@ -1183,7 +1183,7 @@ tip "Toggle fullscreen"
 	`Toggle whether the game is in fullscreen mode.`
 
 tip "Toggle fast-forward"
-	`Toggle a 3x speed fast-forward. Fast-forward may be automatically deactivated by the "Interrupt fast-forward" setting.`
+	`Toggle a 3x speed fast-forward. Fast-forward may be automatically deactivated by the "Interrupt fast-forward" setting. If the key is set to caps-lock it will also be updated when the game window is not in focus.`
 
 tip "Show help"
 	`Display the help dialogs that are relevant to your current UI panel and situation. Uses the same help dialogs from the "Reactivate first-time help" setting, forcing them to appear even if they have already appeared before.`
