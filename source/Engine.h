@@ -20,7 +20,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "AmmoDisplay.h"
 #include "AsteroidField.h"
 #include "BatchDrawList.h"
-#include "Body.h"
 #include "CollisionSet.h"
 #include "Color.h"
 #include "Command.h"
