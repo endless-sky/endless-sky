@@ -774,6 +774,12 @@ tip "ammo usage:"
 tip "range:"
 	`Total range of this weapon.`
 
+tip "dropoff modifier:"
+	`The multiplier applied to the damage of this weapon once its projectile has reached the maximum dropoff range.`
+
+tip "dropoff range:"
+	`The starting and ending range between which the damage of this weapon ramps from 100% to the displayed dropoff modifier.`
+
 tip "shield damage / second:"
 	`Shield damage dealt per second.`
 
@@ -961,7 +967,7 @@ tip "% minable damage / shot:"
 	`Minable damage dealt as a percentage of the target's total health, in lieu of relative hull damage being used.`
 
 tip "% fuel damage / shot:"
-	`Fuel loss caused per shot as a percentage of the the target's total fuel capacity. Only half as effective when the target's shields are up.`
+	`Fuel loss caused per shot as a percentage of the target's total fuel capacity. Only half as effective when the target's shields are up.`
 
 tip "% heat damage / shot:"
 	`Increases the target ship's heat as a percentage of its maximum heat capacity by this amount per shot. Only half as effective when the target's shields are up.`
@@ -1034,6 +1040,9 @@ tip "missile strength:"
 
 tip "anti-missile:"
 	`The power of the anti-missile shots. Higher values make it easier to destroy stronger projectiles.`
+
+tip "tractor beam:"
+	`The base velocity that this weapon pulls flotsam toward itself. Heavier flotsam is more difficult to pull.`
 
 
 

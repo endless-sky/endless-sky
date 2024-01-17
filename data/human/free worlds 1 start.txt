@@ -379,7 +379,7 @@ mission "FW Syndicate Diplomacy 1B"
 				goto remington
 			
 			label stand
-			`	You take a step into Remington's path as Alondo boards your ship. Remington stops face-to-face with you. "What, a guy can't talk to an old friend?" he says while looking over your shoulder`
+			`	You take a step into Remington's path as Alondo boards your ship. Remington stops face-to-face with you. "What, a guy can't talk to an old friend?" he says while looking over your shoulder.`
 			label remington
 			choice
 				`	"He's clearly not interested."`
@@ -952,7 +952,7 @@ mission "FW Supply Convoy 1"
 
 mission "FW Pirates 1"
 	name "Pirate Reconnaissance"
-	description "Scout out all the pirate systems on the southern fringe of human space, then report back to Tomek on <planet>."
+	description "Scout out four pirate systems on the southern fringe of human space, then report back to Tomek on <planet>."
 	source "Longjump"
 	waypoint "Antares"
 	waypoint "Men"
