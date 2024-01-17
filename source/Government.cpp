@@ -406,7 +406,7 @@ void Government::Load(const DataNode &node)
 	}
 
 	// Ensure reputation minimum is not above the
-	// maximum, and set reputation again to enforce limtis.
+	// maximum, and set reputation again to enforce limits.
 	if(reputationMin > reputationMax)
 		reputationMin = reputationMax;
 	SetReputation(Reputation());

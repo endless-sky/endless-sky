@@ -51,8 +51,11 @@ target_sources(EndlessSkyLib PRIVATE
 	CategoryList.h
 	CategoryTypes.h
 	ClickZone.h
+	Collision.cpp
+	Collision.h
 	CollisionSet.cpp
 	CollisionSet.h
+	CollisionType.h
 	Color.cpp
 	Color.h
 	Command.cpp
@@ -190,6 +193,8 @@ target_sources(EndlessSkyLib PRIVATE
 	MenuAnimationPanel.h
 	MenuPanel.cpp
 	MenuPanel.h
+	MessageLogPanel.cpp
+	MessageLogPanel.h
 	Messages.cpp
 	Messages.h
 	Minable.cpp
