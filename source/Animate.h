@@ -42,7 +42,7 @@ public:
 	// Synonym for Value().
 	operator const T &() const;
 
-	// Shortcut mathmatical operators for convenience.
+	// Shortcut mathematical operators for convenience.
 	Animate &operator=(const T &v);
 	Animate &operator+=(const T &v);
 	Animate &operator-=(const T &v);
