@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class Command;
 class Point;
+class Sprite;
 class TestContext;
 class UI;
 
@@ -37,6 +38,11 @@ class UI;
 // default, a panel allows the panels under it to show through, but does not
 // allow them to receive any events that it does not know how to handle.
 class Panel {
+public:
+	// Draw a sprite repeatedly to make a vertical edge.
+	static void DrawEdgeSprite(const Sprite *edgeSprite, int posX);
+
+
 public:
 	// Make the destructor virtual just in case any derived class needs it.
 	virtual ~Panel() = default;
