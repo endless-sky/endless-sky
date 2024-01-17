@@ -493,7 +493,7 @@ mission "Intro [2.1 Interceptor]"
 				goto choices
 			
 			label end
-			`	"If you're willing to take me on one more journey," James says, "meet me in the spaceport bar in a little while."`
+			`	"If you're willing to take me on one more journey," James says, "meet me in the spaceport bar in a little while. Don't forget to sell off your minerals at the trading post, or if there is one, the outfitter."`
 
 
 
@@ -510,7 +510,8 @@ mission "Intro [3 Interceptor]"
 	
 	on offer
 		conversation
-			`You find James sitting at the spaceport's tiny bar, sipping a beer while watching the large displays that show the landing pads and the irrigated fields beyond. The displays are supposed to make the underground building feel less claustrophobic. "This is one of the least habitable planets in the galaxy. But if it doesn't kill us instantly, then someone's tried to settle it." He pauses for a moment while gazing at one of the displays. You spot a sandstorm picking up in the far distance as the workers in the fields hastily finish their work before it arrives.`
+			`You find James sitting at the spaceport's tiny bar, sipping a beer while watching the large displays that show the landing pads and the irrigated fields beyond. The displays are supposed to make the underground building feel less claustrophobic.`
+			`	"This is one of the least habitable planets in the galaxy. But if it doesn't kill us instantly, then someone's tried to settle it." He pauses for a moment while gazing at one of the displays. You spot a sandstorm picking up in the far distance as the workers in the fields hastily finish their work before it arrives.`
 			`	"Care for a drink?" he asks.`
 			choice
 				`	"Sure."`
