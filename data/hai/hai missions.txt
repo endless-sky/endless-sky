@@ -1731,7 +1731,6 @@ mission "Hai Film Crew 1"
 				accept
 			label going
 			`	"Thanks for your help, Captain. I'll contact you in a month once we're finished," says Likeet.`
-				accept
 
 
 
@@ -1779,7 +1778,6 @@ mission "Hai Film Crew 3"
 		payment 100000 50
 		conversation
 			`When you land on <planet>, you are approached by Likeet, who is carrying a large can of fake blood. "Thanks for the ride, Captain. Keep a lookout for my film in theaters. You'll know it when you see it." Once the cargo has been unloaded, she almost sprints away in excitement, no doubt trying to make it to her studio as quickly as possible. You notice that <payment> have been deposited into your account.`
-
 
 
 
