@@ -16,6 +16,7 @@
 import glob
 import os.path
 import sys
+from enum import Enum
 
 import regex as re
 import json
@@ -93,6 +94,23 @@ class Warning(Error):
 
 	def __str__(self):
 		return f"\tWARNING: line {self.line}: {self.reason}"
+
+
+# The possible types of a data token; this is not the same as a token in the game engine.
+# These types are used to simplify managing data without full parsing support; this is why indentation and
+# comments are also handled as tokens (and both are always a single token).
+class TokenType(Enum):
+	INDENT = 0
+	NODE = 1,
+	PARAM = 2,
+	COMMENT = 3
+
+
+# The types of quoting a token might have.
+class QuoteType(Enum):
+	NONE = "none"
+	QUOTE = "quote"
+	BACKTICK = "backtick"
 
 
 # Prints a help message. This is used when the --help option is given.
@@ -345,15 +363,102 @@ def check_indentation(contents, auto_correct, config):
 # Parses the name of the data node from the line. Please note that not all values returned are actual data nodes; they are what the data node would be, if this line had any.
 # Parameters:
 # line: the line to parse from
+# Return value: a (string, QuoteType) tuple
 def parse_node(line):
 	line = line.lstrip()
 	if line.startswith("on ") or line.startswith("to "):
-		return " ".join(line.split(" ")[0:2])
+		return " ".join(line.split(" ")[0:2]), QuoteType.NONE
 	if line.startswith("\""):
-		return line.split("\"")[1]
+		return line.split("\"")[1], QuoteType.QUOTE
 	if line.startswith("`"):
-		return line.split("`")[1]
-	return line.split(" ")[0]
+		return line.split("`")[1], QuoteType.BACKTICK
+	return line.split(" ")[0], QuoteType.NONE
+
+
+# Parses the line into a series of tokens.
+# Parameters:
+# line: the line to parse
+# Return value: a dict from TokenType to string for COMMENT and INDENT types, a (string, QuoteType) tuple for NODE and a list of (string, QuoteType) tuples for PARAM.
+# Each entry is present in the returned dict.
+def parse_line(line):
+	# Finds each parameter and their quotation types.
+	def find_parameter_types(node, line):
+		types = []
+		current_separator = ""
+		contents = []
+		for word in line.split(" ")[node.count(" ") + 1:]:
+			if current_separator == "":
+				if len(word) > 0 and (word[0] == '"' or word[0] == '`'):
+					current_separator = word[0]
+					word = word[1:]
+				else:
+					types.append((word,  QuoteType.NONE))
+					continue
+			if len(word) > 0 and word[-1] == current_separator:
+				contents.append(word[:-1])
+				type = QuoteType.QUOTE if current_separator == '"' else QuoteType.BACKTICK
+				types.append((" ".join(contents), type))
+				current_separator = ""
+				contents = []
+			else:
+				contents.append(word)
+		return types
+
+	# Default values
+	result = {
+		TokenType.INDENT: "",
+		TokenType.COMMENT: "",
+		TokenType.NODE: ("", QuoteType.NONE),
+		TokenType.PARAM: []
+	}
+	if len(line) == 0:
+		return result
+
+	# Getting the leading indentation of the line
+	stripped = line.lstrip()
+	indent = line[0:(len(line) - len(stripped))]
+	# Separating the contents from the comment
+	parts = stripped.split("#", 1)
+	if len(parts) == 2:
+		parts[1] = "#" + parts[1]
+		# If there is a comment on the line, move any whitespaces between the node and the comment to the beginning of the comment token.
+		end_stripped = parts[0].rstrip()
+		before_comment = parts[0][len(end_stripped):]
+		parts[1] = before_comment + parts[1]
+		parts[0] = end_stripped
+	else:
+		parts[0] = parts[0].rstrip()
+
+	(node, node_quote_type) = parse_node(parts[0])
+	params = find_parameter_types(node, parts[0])
+
+	if len(indent) > 0:
+		result[TokenType.INDENT] = indent
+	if len(node) > 0:
+		result[TokenType.NODE] = (node, node_quote_type)
+	result[TokenType.PARAM] = params
+	if len(parts) > 1:
+		result[TokenType.COMMENT] = parts[1]
+	return result
+
+
+# Generates a line from the tokens parsed via parseLine().
+def generate_line(tokens):
+	# Encloses the specified text in the specified type of quotes.
+	def quote_token(text, type):
+		if type == QuoteType.QUOTE:
+			return '"' + text + '"'
+		elif type == QuoteType.BACKTICK:
+			return '`' + text + '`'
+		return text
+	line = tokens[TokenType.INDENT]
+	if len(tokens[TokenType.NODE][0]) > 0:
+		line += quote_token(tokens[TokenType.NODE][0], tokens[TokenType.NODE][1])
+		if len(tokens[TokenType.PARAM]) > 0:
+			line += " "
+	line += " ".join(quote_token(text, type) for (text, type) in tokens[TokenType.PARAM])
+	line += tokens[TokenType.COMMENT]
+	return line
 
 
 # Checks whether the order of child nodes for every node are in the correct order.
@@ -381,7 +486,7 @@ def check_child_node_order(contents, auto_correct, config):
 
 		# Finding parent node
 		indent = count_indent(indentation, line)
-		node = parse_node(line)
+		node = parse_node(line)[0]
 		while 0 < len(nodes) > indent:
 			nodes.pop()
 		parent = None if len(nodes) == 0 else nodes[-1]
@@ -404,31 +509,34 @@ def check_child_node_order(contents, auto_correct, config):
 		# Storing the node
 		if parent is not None:
 			parent[-1].append(node)
-		nodes.append((parse_node(line), []))
+		nodes.append((parse_node(line)[0], []))
 	return result
 
 
-# Checks whether the order of child nodes for every node are in the correct order.
+# Checks whether parameters of a node are quoted correctly.
 # Parameters:
 # contents: the contents of the file
 # auto_correct: whether to attempt to correct the issue
 # config: the script configuration
 # Return value: a CheckResult
 def check_node_parameters(contents, auto_correct, config):
-	# Finds the quotation type of each parameter.
-	def find_parameter_types(node, line):
-		types = []
-		current = ""
-		for word in line.split(" ")[node.count(" ") + 1:]:
-			if current == "":
-				if word[0] == '"' or word[0] == '`':
-					current = word[0]
-				else:
-					types.append("none")
-			if word[-1] == current:
-				types.append("quote" if current == '"' else "backtick")
-				current = ""
-		return types
+	# Replaces the nth parameter with a differently quoted parameter of the same value.
+	def find_quote_type(text, allowed_types):
+		original_types = [type for type in allowed_types]
+		if QuoteType.NONE in allowed_types and (' ' in text or len(text) == 0):
+			allowed_types.remove(QuoteType.NONE)
+		if QuoteType.QUOTE in allowed_types and '"' in text:
+			allowed_types.remove(QuoteType.QUOTE)
+
+		if QuoteType.NONE in allowed_types:
+			return QuoteType.NONE
+		elif QuoteType.QUOTE in allowed_types:
+			return QuoteType.QUOTE
+		elif QuoteType.BACKTICK in allowed_types:
+			return QuoteType.BACKTICK
+		else:
+			# Value cannot be properly quoted
+			return original_types[0]
 
 	result = CheckResult()
 	result.new_file_contents = [line for line in contents]
@@ -438,22 +546,34 @@ def check_node_parameters(contents, auto_correct, config):
 		return result
 
 	for index, line in enumerate(contents):
-		line = line.split("#")[0].strip()
 		# Ignoring empty lines
 		if len(line) == 0:
 			continue
-		node = parse_node(line)
+		tokens = parse_line(line)
+		# Getting the node from the parsed line
+		node = tokens[TokenType.NODE][0]
+		if len(node) == 0:
+			continue
+		# Checking all rules for this node
 		for rule in parameters:
 			for expected_node in rule["nodes"]:
 				# Finding the appropriate rule
 				if re.fullmatch(expected_node, node):
-					expected_types = rule["types"]
+					expected_types = [[QuoteType(type) for type in types] for types in rule["types"]]
 					if expected_types is not None and len(expected_types) > 0:
-						types = find_parameter_types(node, line)
+						types = [quote_type for (_, quote_type) in tokens[TokenType.PARAM]]
 						for (paramIndex, (expected, actual)) in enumerate(zip(expected_types, types)):
+							# If the quote type is not allowed, generate an error
 							if actual not in expected and len(expected) > 0:
-								expected_text = " or ".join(expected)
-								result.errors.append(Error(index + 1, f"parameter {paramIndex + 1} of '{node}' uses non-standard quoting; expected {expected_text}, found {actual}"))
+								expected_text = " or ".join([type.value for type in expected])
+								error = Error(index + 1, f"parameter {paramIndex + 1} of '{node}' uses non-standard quoting; expected {expected_text}, found {actual.value}")
+								if auto_correct:
+									# Change the stored quote type and generate the line again:
+									tokens[TokenType.PARAM][paramIndex] = (tokens[TokenType.PARAM][paramIndex][0], find_quote_type(tokens[TokenType.PARAM][paramIndex][0], expected_types[paramIndex]))
+									result.new_file_contents[index] = generate_line(tokens)
+									result.fixed_errors.append(error)
+								else:
+									result.errors.append(error)
 					break
 	return result
 
@@ -584,7 +704,6 @@ def rewrite(file, contents, config):
 def check_content_style(file, auto_correct, config):
 	fixed_errors = []
 	fixed_warnings = []
-
 	def do_reload():
 		nonlocal fixed_errors
 		nonlocal fixed_warnings
@@ -630,7 +749,7 @@ def check_content_style(file, auto_correct, config):
 			do_reload()
 			continue
 
-		# Checking the order of child nodes everywhere
+		# Checking the quotes for node parameters
 		issues.combine_with(check_node_parameters(contents, auto_correct, config))
 		if issues.should_reload():
 			do_reload()
