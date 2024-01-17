@@ -4007,8 +4007,8 @@ planet Siedi
 planet "Sies Upi"
 	attributes gegno vi
 	landscape land/desert15
-	description `Sies Upi is one of the most recently colonized planets of the Gegno Vi. This hot, dry world with harsh living environments serves as more of an outpost than it does a colony, but nevertheless the Vi found ways to create manageable living conditions.`
-	spaceport `This spaceport seems a lot more militarized than other Gegno planet spaceports, full of geared up Vi with their ships parked close by. The roar of an enormous cruiser's engines can be heard just as often as the shutting down of another. There doesn't look to be very many non-military personnel here, and it feels somewhat claustrophobic with all of the guards standing around.`
+	description `Sies Upi is one of the most recently colonized planets of the Gegno Vi. This hot, dry, and harsh world serves as more of an outpost than it does a colony, but nevertheless the Vi have found ways to create manageable living conditions for their settlers.`
+	spaceport `This spaceport seems a lot more militarized than other Gegno planetary spaceports, full of geared up Vi with their ships parked close by. The roar of an enormous cruiser's engines can be heard just as often as the shutting down of another. There doesn't look to be very many non-military personnel here, and it feels somewhat claustrophobic with all of the guards standing around.`
 	government "Gegno Vi"
 	outfitter "Vi Basic"
 	"required reputation" 1
@@ -4784,7 +4784,7 @@ planet "Vibrant Water"
 planet Vigales
 	attributes uninhabited
 	landscape land/desert14
-	description `This hot desert world is home to several species of underground animals. These animals are very reptile-like, having appearances similar to that of lizards or salamanders from Earth, although much larger in size. It is believed that some indigenous species in Gegno space have originated from this world, or are descendants of ancestral species that once inhabited it.`
+	description `This hot desert world is home to several species of underground animals. These animals are very reptile-like, having appearances similar to that of lizards or salamanders from Earth, although much larger in size. It is believed that some indigenous species common across Gegno space originated from this world, or are descendants of ancestral species that once inhabited it.`
 	government Uninhabited
 
 planet Viminal
