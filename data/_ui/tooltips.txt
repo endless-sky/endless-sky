@@ -1188,6 +1188,9 @@ tip "Toggle fast-forward"
 tip "Show help"
 	`Display the help dialogs that are relevant to your current UI panel and situation. Uses the same help dialogs from the "Reactivate first-time help" setting, forcing them to appear even if they have already appeared before.`
 
+tip "View message log"
+	`Open the log panel containing status messages and hails from other ships received since the current pilot was loaded.`
+
 tip "Deploy / recall fighters"
 	`Deploy or recall carried ships (e.g. fighters, drones) in your fleet. Requires carriers with space to hold the carried ships.`
 
