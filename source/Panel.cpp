@@ -24,9 +24,28 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "Preferences.h"
 #include "Screen.h"
+#include "Sprite.h"
+#include "SpriteShader.h"
 #include "UI.h"
 
 using namespace std;
+
+
+
+// Draw a sprite repeatedly to make a vertical edge.
+void Panel::DrawEdgeSprite(const Sprite *edgeSprite, int posX)
+{
+	if(edgeSprite->Height())
+	{
+		// If the screen is high enough, the edge sprite should repeat.
+		double spriteHeight = edgeSprite->Height();
+		Point pos(
+			posX + .5 * edgeSprite->Width(),
+			Screen::Top() + .5 * spriteHeight);
+		for( ; pos.Y() - .5 * spriteHeight < Screen::Bottom(); pos.Y() += spriteHeight)
+			SpriteShader::Draw(edgeSprite, pos);
+	}
+}
 
 
 
@@ -104,13 +123,6 @@ bool Panel::ZoneClick(const Point &point)
 			return true;
 		}
 	return false;
-}
-
-
-
-// Forward the given TestContext to the Engine under MainPanel.
-void Panel::SetTestContext(TestContext &testContext)
-{
 }
 
 
@@ -245,12 +257,12 @@ int Panel::Modifier()
 
 
 
-// Display the given help message if it has not yet been shown. Return true
-// if the message was displayed.
-bool Panel::DoHelp(const string &name) const
+// Display the given help message if it has not yet been shown
+// (or if force is set to true). Return true if the message was displayed.
+bool Panel::DoHelp(const string &name, bool force) const
 {
 	string preference = "help: " + name;
-	if(Preferences::Has(preference))
+	if(!force && Preferences::Has(preference))
 		return false;
 
 	const string &message = GameData::HelpMessage(name);

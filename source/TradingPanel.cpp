@@ -224,7 +224,9 @@ void TradingPanel::Draw()
 // Only override the ones you need; the default action is to return false.
 bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	if(key == SDLK_UP)
+	if(command.Has(Command::HELP))
+		DoHelp("trading", true);
+	else if(key == SDLK_UP)
 		player.SetMapColoring(max(0, player.MapColoring() - 1));
 	else if(key == SDLK_DOWN)
 		player.SetMapColoring(max(0, min(COMMODITY_COUNT - 1, player.MapColoring() + 1)));
@@ -232,39 +234,42 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 		Buy(1);
 	else if(key == SDLK_MINUS || key == SDLK_KP_MINUS || key == SDLK_BACKSPACE || key == SDLK_DELETE)
 		Buy(-1);
-	else if(key == 'B' || (key == 'b' && (mod & KMOD_SHIFT)))
+	else if(key == 'u' || key == 'B' || (key == 'b' && (mod & KMOD_SHIFT)))
 		Buy(1000000000);
-	else if(key == 'S' || (key == 's' && (mod & KMOD_SHIFT)))
+	else if(key == 'e' || key == 'S' || (key == 's' && (mod & KMOD_SHIFT)))
 	{
-		for(const auto &it : GameData::Commodities())
+		for(const auto &it : player.Cargo().Commodities())
 		{
-			int64_t amount = player.Cargo().Get(it.name);
-			int64_t price = system.Trade(it.name);
+			const string &commodity = it.first;
+			const int64_t &amount = it.second;
+			int64_t price = system.Trade(commodity);
 			if(!price || !amount)
 				continue;
 
-			int64_t basis = player.GetBasis(it.name, -amount);
-			player.AdjustBasis(it.name, basis);
+			int64_t basis = player.GetBasis(commodity, -amount);
 			profit += amount * price + basis;
 			tonsSold += amount;
 
-			player.Cargo().Remove(it.name, amount);
+			GameData::AddPurchase(system, commodity, -amount);
+			player.AdjustBasis(commodity, basis);
 			player.Accounts().AddCredits(amount * price);
-			GameData::AddPurchase(system, it.name, -amount);
+			player.Cargo().Remove(commodity, amount);
 		}
 		int day = player.GetDate().DaysSinceEpoch();
 		for(const auto &it : player.Cargo().Outfits())
 		{
-			if(it.first->Get("minable") <= 0. && !sellOutfits)
+			const Outfit * const outfit = it.first;
+			const int64_t &amount = it.second;
+			if(outfit->Get("minable") <= 0. && !sellOutfits)
 				continue;
 
-			int64_t value = player.FleetDepreciation().Value(it.first, day, it.second);
+			int64_t value = player.FleetDepreciation().Value(outfit, day, amount);
 			profit += value;
-			tonsSold += static_cast<int>(it.second * it.first->Mass());
+			tonsSold += static_cast<int>(amount * outfit->Mass());
 
-			player.AddStock(it.first, it.second);
+			player.AddStock(outfit, amount);
 			player.Accounts().AddCredits(value);
-			player.Cargo().Remove(it.first, it.second);
+			player.Cargo().Remove(outfit, amount);
 		}
 	}
 	else if(command.Has(Command::MAP))

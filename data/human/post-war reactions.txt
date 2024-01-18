@@ -1,0 +1,258 @@
+# Copyright (c) 2022-2023 by an anonymous author
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+mission "Main Plot Completed Date"
+	landing
+	invisible
+	to offer
+		has "main plot completed"
+	on offer
+		"main plot completed date" = "days since start"
+		fail
+
+
+
+mission "War Reactions: Asteroid Miners"
+	minor
+	landing
+	source
+		government "Republic"
+		attributes "deep" "paradise" "north"
+		attributes "spaceport"
+	to offer
+		has "main plot completed date"
+		"days since start" - "main plot completed date" > 30
+		random < 30
+	on offer
+		"war reactions" ++
+		conversation
+			`As you leave your ship, you see a crowd watching a video screen not far from your landing spot. The video jumps between a panel discussion and footage of Admiral Danforth being quizzed by Parliament. It has finished by the time you arrive, and many of the onlookers have already left for their business. Two captains remain, however, and, by the sounds of it, they're having a passionate discussion about the video.`
+			choice
+				`	"Hey. What was that video about?"`
+				`	(Leave them be.)`
+					decline
+			`	You're startled when the two captains turn to you, twin men with preposterous sideburns and rat-like mustaches. It's impossible to tell if they're smiling or frowning, as the pair live squarely in the middle of the uncanny valley.`
+			`	The left twin asks, "Can you believe this? It's been weeks and everyone's still obsessing over the Pug invasion. The news was all experts and officials at first, but now we just see talking heads and conspiracy theorists."`
+			`	In disbelief, the right twin responds, "It's just a propaganda exercise to boost Syndicate sales. Even if these elusive 'Pug' existed, we won't hear the end of it as long as the story boosts public opinion of the Syndicate."`
+			choice
+				`	"It was possibly the biggest event this century. Of course people are going to keep talking about it."`
+				`	"Oh, the Pug were real alright. I met some and fought them."`
+					goto nobody
+				`	"I think you both need to shave."`
+					goto scowl
+			`	One twin rolls his eyes while the other twitches his mustache awkwardly. He rewinds the video to the Parliamentary discussion, where Danforth is reassuring councilors about the Navy's ability to patrol the fringes of human space.`
+			`	The left twin says, "Look at this bozo! Bounty's Councilor Maduena Kabiru, he keeps ranting against this Navy guy, uh, this Admiral..." He snaps his fingers trying to remember the name.`
+			`	"Admiral Danforth," says the right twin.`
+			`	"Right. Danforth. This councilor wants Danforth to defend against 'unknown dangers at the fringes of human space.' Don't we have enough immediate problems without imagining new horrors?"`
+			`	"Like terrorists nuking us," says the right twin.`
+			choice
+				`	"The Navy is skilled and honorable. I trust them to protect us."`
+					goto eyes
+				`	"No, don't worry about that. I ended the bomb threat."`
+					to display
+						has "free worlds reconciliation"
+				`	"Maybe you're right."`
+					goto shrug
+				`	"All we can do is get on with our lives, right?"`
+					goto shrug
+				`	"If you don't shave soon, people will think you're wearing masks."`
+					goto scowl
+			label nobody
+			`	Both of them give hard belly laughs, sending waves through their mustaches from the breeze of their breath.`
+			`	The left twin says, "Who are you, Admiral Danforts?"`
+			`	His twin corrects him. "Danforth. Admiral Danforth. Did the Navy fire you or are you here on holiday?"`
+			choice
+				`	"Have you been under a rock the whole war? I'm Captain <first> <last>!"`
+				`	"Never mind."`
+					goto shrug
+				`	"At least I don't have a disheveled hamster stuck to my upper lip."`
+					goto scowl
+			`	Both twins look confused, and the left one responds. "We've been mining asteroids the whole war. The war was a big deal, but most of us had to keep living our lives. Do you think we have time to keep track of every warring captain?"`
+			`	The right one says apologetically, "Thank you for your service, Captain <last>."`
+			`	They both give clumsy but well-intentioned salutes and return to their ships.`
+				decline
+			label eyes
+			`	The left twin laughs and says, "Pardon us if we keep our eyes open and trust to our own guns." Both twins nod and depart to their ships.`
+				decline
+			label shrug
+			`	Both twins shrug and leave for their ships.`
+				decline
+			label scowl
+			`	Both twins' faces twist in a way that might indicate embarrassment or annoyance. It's hard to tell since their facial hair is halting any emotive power. They walk away in the direction of their ships.`
+				decline
+
+
+
+mission "War Reactions: Navy and Free Worlds Captains"
+	minor
+	source
+		government "Republic" "Syndicate" "Free Worlds"
+		attributes "spaceport"
+		near "Sirius" 5 100
+	to offer
+		has "main plot completed date"
+		"days since start" - "main plot completed date" > 30
+		random < 30
+	on offer
+		"war reactions" ++
+		conversation
+			`You are relaxing in a cafe while your ship refuels, and a pair of middle-aged captains come to your table. One is Navy, the other is Free Worlds, and they bear a striking resemblance to each other.`
+			`	"Captain Rain, R.N.S. Camuy," says one. "How's the <ship>, Captain <last>?"`
+			`	"Captain Fiona, F.S. Baobab," says the other. "We both saw you in battle against the Pug. You're the war's most accomplished captain!`
+			`	"We've been patrolling together and we saw your ship, so we've come to say hi."`
+			label questions
+			action
+				"WR: Captains: question" ++
+			choice
+				`	"Why are Navy and Free Worlds captains traveling together?"`
+					goto navy
+					to display
+						not "WR: Captains: navy"
+				`	"Have you found any new aliens?"`
+					goto aliens
+					to display
+						not "WR: Captains: aliens"
+						has "WR: Captains: navy"
+				`	"Did you fight on the other side of the war from each other?"`
+					goto sister
+					to display
+						not "WR: Captains: sister"
+				`	"You were on opposite sides as sisters!?"`
+					goto opposite
+					to display
+						has "WR: Captains: sister"
+						not "WR: Captains: opposite"
+				`	"It was good meeting you both, but I must get back to my business now."`
+					decline
+					to display
+						"WR: Captains: question" > 1
+				`	"Hello. Sorry, but I don't have much time to talk."`
+					to display
+						"WR: Captains: question" <= 1
+			`	"Oh, we should've guessed you were too busy to chat," says Captain Rain.`
+			`	"The war might be over, but I'm sure there's still plenty of work for a captain such as yourself to do," says Captain Fiona. "Well it was at least nice to meet you. Stay well."`
+				decline
+			
+			label navy
+			action
+				set "WR: Captains: navy"
+			`	"Joint police operation," says Captain Rain. "It's more common than you may think."`
+			`	Captain Fiona nods. "We're shutting down a galactic Spider Funk smuggling operation. It's an illegal hallucinogenic. Not addictive, but still dangerous. The organization running it is huge, well funded, and well armed."`
+			`	"Not a match for a Dreadnought and an Auxiliary, though," brags Rain.`
+			`	"We have to fly all over Republic and Free Worlds space, so we have a joint patrol with one ship from each state."`
+			`	"Of course, we have another mission," says Fiona. "Everywhere we go, we look out for new alien activity."`
+				goto questions
+			
+			label aliens
+			action
+				set "WR: Captains: aliens"
+			`	"Only the usual assortment of hoaxes," says Rain. They both laugh at this.`
+			`	"Seriously, though, both the Free Worlds Senate and Republic Parliament are up in arms over fear of aliens," says Fiona. Rain adds, "Only metaphorically up in arms, this time.`
+			`	"If we find new aliens, we'll let the necessary authorities know as soon as possible. You should do the same. Be discrete, avoid conflicts, and seek help if you need it."`
+				goto questions
+			
+			label sister
+			action
+				set "WR: Captains: sister"
+			`	"Yup," Fiona says, "being my sister didn't stop me blowing up her Cruiser! We rescued her ship's escape pods, though; they were veering concerningly towards a star."`
+			`	Rain continues, "Can you imagine my surprise when I woke up on my sister's new Dreadnought?"`
+			`	"Hey, you got a new Auxiliary commission afterwards," replies Fiona, poking Rain as she says it, "and your whole crew survived. Now we escort each other's ships during investigations!"`
+				goto questions
+			
+			label opposite
+			action
+				set "WR: Captains: opposite"
+			`	"Well, Rain went off to Earth to join the Navy Academy years ago," says Captain Fiona.`
+			`	"And Fiona stayed on Longjump and joined the local militia before the Free Worlds was formed," says Captain Rain. "It's not that we wanted to fight each other, but we both believed in our own sides."`
+				goto questions
+
+
+
+mission "War Reactions: Syndicate Orphan"
+	minor
+	landing
+	source
+		government "Syndicate"
+		attributes "spaceport"
+		not attributes "station"
+	to offer
+		has "main plot completed date"
+		"days since start" - "main plot completed date" > 20
+		random < 30
+	on offer
+		"war reactions" ++
+		conversation
+			`When you exit the landing area, you hear sounds of fists falling on skin and a kid yelling for help. Around the corner are three scruffy-looking boys hitting a fourth, who just fell on the ground. It's not clear if they're going to stop attacking him.`
+			choice
+				`	"Break it up, kids."`
+				`	(Ignore them and keep walking.)`
+					decline
+			`	The three attackers turn around, looking furious. They eye the gun in your holster and run away.`
+			`	The boy on the ground slowly rises to his feet. He looks about twelve years old. It takes him a few seconds to recover. "Thanks. Not a lot of people around here would help like that. I'm Gus." He looks worried and asks, "Can you walk me to the repair shop? I'm already late for work, and I'm afraid they'll attack me again."`
+			label questions
+			choice
+				`	"Why were those boys attacking you?"`
+					goto attacking
+					to display
+						not "WR: Orphan: attacking"
+				`	"Aren't you a little young to work in a repair shop?"`
+					goto young
+				`	"I'm in a hurry. You're on your own."`
+					decline
+			label attacking
+			action
+				set "WR: Orphan: attacking"
+			`	"My brother is a private, third class, in the Syndicate's Ancillary Security Service." He grins proudly, clearly having practiced that delivery. "He monitors the Syndicate workplaces and he turned those boys in for smoking on the job last week. I guess they finally got a break for the repair shop and came after me since they can't hurt my brother."`
+				goto questions
+			label young
+			`	As you start walking, he answers. "No, I'm an orphan." He sees your confusion and explains. "The Syndicate lets some of us orphans work in industry. In return they give us better schooling, nicer housing, and doctor's visits." He puffs himself up. "Only the cleverest of us get to do it. All of the jobs for orphans are safe too; we don't use big dangerous equipment. Just ordinary stuff, like hammers, soldering irons, or sewing machines.`
+			`	"Wait a minute!" He suddenly looks at you with wide eyes. "You're a captain, right? Were you in the big fights? I was on Maker when I saw some Pug ships fighting our ships on our school's big edu-screen."`
+			choice
+				`	"Yes, I'm Captain <first> <last>."`
+					goto me
+				`	"I blew up my share of Pug ships."`
+					goto blew
+				`	"Actually, I led the battle."`
+			`	"Oh, hold on," he says, pulling out a durable-looking data pad labeled 'Syndicate Childcare Device.' After some typing and swiping, he declares, "You're Captain <first> <last>! Wow! It's an honor to meet you. Can I shake your hand?" He puts out his hand, and you shake it.`
+				goto next
+			label me
+			`	"Oh, hold on," he says, pulling out a durable-looking data pad labeled 'Syndicate Childcare Device'. After some typing and swiping, he declares, "You led the attack! Wow! It's an honor to meet you. Can I shake your hand?" He puts out his hand, and you shake it.`
+				goto next
+			label blew
+			`	"I bet you did! I wish I was on one of our warships, bravely defending us all. Blowing up Pugs, getting paid. It sounds amazing!"`
+			label next
+			`	"What was it like, fighting those nasty, evil Pugs?"`
+			choice
+				`	"War is hell, kid. I'm not going to glorify it for you."`
+					goto hell
+				`	"Actually, they're not evil. Their 'war' was a ploy to get us to stop fighting among ourselves. A lot of Pug gave their lives willingly to save us from self-destruction."`
+				`	"Leading a battle is like chess with guns and engines. It's the most exhilarating feeling I've ever felt."`
+					goto chess
+				`	"It was an honor to protect the human race from our attackers."`
+					goto honor
+			`	"Woah, you sound really smart. Like one of those sensible experts in the vids! Still, without people like you, the Pug's plan couldn't have worked. I still reckon you were the best, Captain."`
+				goto salute
+			label hell
+			`	"You went through hell for us, eh? That sounds less fun than I thought... Maybe I should stick to school and be an engineer instead of a pilot. I dunno."`
+				goto salute
+			label chess
+			`	"The Syndicate is training me to maintain and they're even going to train me to pilot their combat ships when I'm older! One day, I'll fight aliens like you did."`
+				goto salute
+			label honor
+			`	"Honor... and service. The Syndicate will train boys like me, but I've wondered about joining the Navy. It isn't as profitable, but it sounds more noble."`
+			label salute
+			`	You arrive at the repair shop, and an older boy, perhaps seventeen, meets the two of you. Gus stands to attention and gives you a well-practiced salute. You politely salute him in return.`
+			`	As Gus ends his salute, the boy attacks him from behind, putting him into a choke hold. It's clear he's taking extreme care when doing it. "Did you wander out of the childcare district? Was it the spaceport landing area this time? I can see scratches and bruises all over you." Gus replies, "I'm sorry, Calvin! I was curious."`
+			`	Calvin lets him out of the hold and says to you, "Thank you for saving my brother. He's the only family I have left, and I hope," he pinches him, "he'll stop risking his life out of curiosity." He looks at Gus kindly. "Come on, let's get you to the medic."`
+			`	Calvin waves goodbye as he walks his brother in.`
+				decline

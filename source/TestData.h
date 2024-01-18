@@ -28,7 +28,7 @@ class TestData {
 public:
 	const std::string &Name() const;
 	void Load(const DataNode &node, const std::string &sourceDataFilePath);
-	// Function to inject the test-data into the game or into the games
+	// Function to inject the test-data into the game or into the game's
 	// environment.
 	bool Inject() const;
 

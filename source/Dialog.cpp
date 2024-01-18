@@ -27,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MapDetailPanel.h"
 #include "PlayerInfo.h"
 #include "Point.h"
+#include "Screen.h"
 #include "shift.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
@@ -34,11 +35,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "UI.h"
 
 #include <cmath>
+#include <utility>
 
 using namespace std;
 
 namespace {
 	const int WIDTH = 250;
+	const int WIDE_WIDTH = 450;
 
 	// Map any conceivable numeric keypad keys to their ASCII values. Most of
 	// these will presumably only exist on special programming keyboards.
@@ -85,6 +88,14 @@ namespace {
 }
 
 
+Dialog::Dialog(function<void()> okFunction, const string &message, Truncate truncate, bool canCancel, bool okIsActive)
+	: voidFun(okFunction)
+{
+	Init(message, truncate, canCancel, false);
+	this->okIsActive = okIsActive;
+}
+
+
 
 // Dialog that has no callback (information only). In this form, there is
 // only an "ok" button, not a "cancel" button.
@@ -112,14 +123,14 @@ void Dialog::Draw()
 {
 	DrawBackdrop();
 
-	const Sprite *top = SpriteSet::Get("ui/dialog top");
-	const Sprite *middle = SpriteSet::Get("ui/dialog middle");
-	const Sprite *bottom = SpriteSet::Get("ui/dialog bottom");
+	const Sprite *top = SpriteSet::Get(isWide ? "ui/dialog top wide" : "ui/dialog top");
+	const Sprite *middle = SpriteSet::Get(isWide ? "ui/dialog middle wide" : "ui/dialog middle");
+	const Sprite *bottom = SpriteSet::Get(isWide ? "ui/dialog bottom wide" : "ui/dialog bottom");
 	const Sprite *cancel = SpriteSet::Get("ui/dialog cancel");
 
 	// Get the position of the top of this dialog, and of the text and input.
 	Point pos(0., (top->Height() + height * middle->Height() + bottom->Height()) * -.5f);
-	Point textPos(WIDTH * -.5 + 10., pos.Y() + 20.);
+	Point textPos(Width() * -.5 + 10., pos.Y() + 20.);
 	Point inputPos = Point(0., -70.) - pos;
 
 	// Draw the top section of the dialog box.
@@ -149,7 +160,7 @@ void Dialog::Draw()
 	if(canCancel)
 	{
 		string cancelText = isMission ? "Decline" : "Cancel";
-		cancelPos = pos + Point(10., 0.);
+		cancelPos = pos + Point(isWide ? 110. : 10., 0.);
 		SpriteShader::Draw(cancel, cancelPos);
 		Point labelPos(
 			cancelPos.X() - .5 * font.Width(cancelText),
@@ -157,7 +168,7 @@ void Dialog::Draw()
 		font.Draw(cancelText, labelPos, !okIsActive ? bright : dim);
 	}
 	string okText = isMission ? "Accept" : "OK";
-	okPos = pos + Point(90., 0.);
+	okPos = pos + Point(isWide ? 190. : 90., 0.);
 	Point labelPos(
 		okPos.X() - .5 * font.Width(okText),
 		okPos.Y() - .5 * font.Height());
@@ -169,12 +180,12 @@ void Dialog::Draw()
 	// Draw the input, if any.
 	if(!isMission && (intFun || stringFun))
 	{
-		FillShader::Fill(inputPos, Point(WIDTH - 20., 20.), back);
+		FillShader::Fill(inputPos, Point(Width() - 20., 20.), back);
 
 		Point stringPos(
-			inputPos.X() - (WIDTH - 20) * .5 + 5.,
+			inputPos.X() - (Width() - 20) * .5 + 5.,
 			inputPos.Y() - .5 * font.Height());
-		const auto inputText = DisplayText(input, {WIDTH - 30, Truncate::FRONT});
+		const auto inputText = DisplayText(input, {Width() - 30, Truncate::FRONT});
 		font.Draw(inputText, stringPos, bright);
 
 		Point barPos(stringPos.X() + font.FormattedWidth(inputText) + 2., inputPos.Y());
@@ -254,7 +265,12 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 			okIsActive = true;
 		if(key == 'd' || (canCancel && isCloseRequest))
 			okIsActive = false;
-		if(okIsActive || isMission)
+		if(boolFun)
+		{
+			DoCallback(okIsActive);
+			GetUI()->Pop(this);
+		}
+		else if(okIsActive || isMission)
 		{
 			// If the OK button is disabled (because the input failed the validation),
 			// don't execute the callback.
@@ -311,13 +327,33 @@ void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool
 	this->isMission = isMission;
 	this->canCancel = canCancel;
 	okIsActive = true;
+	isWide = false;
 
 	text.SetAlignment(Alignment::JUSTIFIED);
-	text.SetWrapWidth(WIDTH - 20);
+	text.SetWrapWidth(Width() - 20);
 	text.SetFont(FontSet::Get(14));
 	text.SetTruncate(truncate);
 
 	text.Wrap(message);
+
+	// If the dialog is too tall, then switch to wide mode.
+	int maxHeight = Screen::Height() * 3 / 4;
+	if(text.Height() > maxHeight)
+	{
+		isWide = true;
+		// Re-wrap with the new width
+		text.SetWrapWidth(Width() - 20);
+		text.Wrap(message);
+
+		if(text.LongestLineWidth() <= WIDTH)
+		{
+			// Formatted text is long and skinny (e.g. scan result dialog). Go back
+			// to using the default width, since the wide width doesn't help.
+			isWide = false;
+			text.SetWrapWidth(Width() - 20);
+			text.Wrap(message);
+		}
+	}
 
 	// The dialog with no extenders is 80 pixels tall. 10 pixels at the top and
 	// bottom are "padding," but text.Height() over-reports the height by about
@@ -333,7 +369,7 @@ void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool
 
 
 
-void Dialog::DoCallback() const
+void Dialog::DoCallback(const bool isOk) const
 {
 	if(isMission)
 	{
@@ -360,4 +396,14 @@ void Dialog::DoCallback() const
 
 	if(voidFun)
 		voidFun();
+
+	if(boolFun)
+		boolFun(isOk);
+}
+
+
+
+int Dialog::Width() const
+{
+	return isWide ? WIDE_WIDTH : WIDTH;
 }

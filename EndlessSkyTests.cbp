@@ -48,7 +48,7 @@
 		<Compiler>
 			<Add option="-Wall" />
 			<Add option="-pedantic-errors" />
-			<Add option="-std=c++11" />
+			<Add option="-std=c++17" />
 			<Add option="-Wold-style-cast" />
 			<Add option="-fno-rtti" />
 			<Add directory="tests/unit/include" />
@@ -78,6 +78,7 @@
 		<Unit filename="tests/unit/src/test_datafile.cpp" />
 		<Unit filename="tests/unit/src/test_datanode.cpp" />
 		<Unit filename="tests/unit/src/test_dictionary.cpp" />
+		<Unit filename="tests/unit/src/test_distance_calculation_settings.cpp" />
 		<Unit filename="tests/unit/src/test_esuuid.cpp" />
 		<Unit filename="tests/unit/src/test_exclusiveItem.cpp" />
 		<Unit filename="tests/unit/src/test_firecommand.cpp" />
@@ -86,6 +87,7 @@
 		<Unit filename="tests/unit/src/test_point.cpp" />
 		<Unit filename="tests/unit/src/test_random.cpp" />
 		<Unit filename="tests/unit/src/test_set.cpp" />
+		<Unit filename="tests/unit/src/test_scrollVar.cpp" />
 		<Unit filename="tests/unit/src/test_ship.cpp" />
 		<Unit filename="tests/unit/src/test_weightedList.cpp" />
 		<Unit filename="tests/unit/src/comparators/test_byGivenOrder.cpp" />

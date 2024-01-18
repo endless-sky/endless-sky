@@ -303,7 +303,7 @@ mission "Remnant: Cognizance 6"
 
 mission "Remnant: Cognizance 7"
 	name "Take Plume to <planet>"
-	description "Plume wants to witness firsthand what is going on in Nenia."
+	description "Plume wants to witness firsthand what is going on in Nenia, and would like to visit <planet>."
 	source "Caelian"
 	destination "Nasqueron"
 	to offer
@@ -728,7 +728,7 @@ mission "Remnant: Cognizance 20"
 				`	"Not right now."`
 					goto maybelater
 				`	"You aren't a prefect. How can you make a decision like that?"`
-			`	Before he can respond, another Remnant answers. "The Prefects are not the sole source of decisions. One could say that they are the 'executive' authority that can make on-the-spot decisions, whereas the Remnant as a whole makes what one might term "legislative" decision making. The scope of our decisions as a group are limited based on the size of the group making the decision."`
+			`	Before he can respond, another Remnant answers. "The Prefects are not the sole source of decisions. One could say that they are the 'executive' authority that can make on-the-spot decisions, whereas the Remnant as a whole makes what one might term 'legislative' decision making. The scope of our decisions as a group are limited based on the size of the group making the decision."`
 			choice
 				`	"That makes sense."`
 					goto missionchoice
@@ -1477,7 +1477,7 @@ mission "Remnant: Cognizance 34"
 		conversation
 			`Back on the station Dusk, Gavriil, and many of the Remnant on the station meet you in the docking bay. Dusk and several of the others just came back from walking out on the hull of <origin>, and they report seeing void sprites passing close to the station. They quickly pull the data from your ship sensors and throw it up on a holographic display. Everyone gathers around, intently drinking in the data and footage. They stand, stare, and ponder with intense concentration as the data continues to stream in from the station.`
 			`	Without warning, something clicks in your mind. Suddenly there is a hum of hundreds of conversations crowding your thoughts and a momentary feeling of seeing the system through thousands of eyes. You feel a wave of curiosity, and a glimpse of <origin> as it might have been once - shiny and gleaming. The image ages like a fast-forward video of untold thousands of orbits as the station wears and the sky changes around it. Then the image freezes on what appears to be the present day. A feeling of appreciation replaces the sense of curiosity, followed by a blurry image of the <ship> leaving the station and heading in a dozen different directions simultaneously, as if watching it splinter into ghosts.`
-			`	The final image is of the creature the Remnant termed the "Ember Node," floating in space. The image splinters the same way as the image of your ship, and fragments into multiple ghosts of itself that vanish into a rift of energy. The sense of curiosity returns, and then there is a another click, and suddenly your mind is your own once again.`
+			`	The final image is of the creature the Remnant termed the "Ember Node," floating in space. The image splinters the same way as the image of your ship, and fragments into multiple ghosts of itself that vanish into a rift of energy. The sense of curiosity returns, and then there is another click, and suddenly your mind is your own once again.`
 
 
 
@@ -1530,7 +1530,7 @@ mission "Remnant: Cognizance 35"
 			`	Gavriil gestures neutrally. "Well, I am worried, of course. I would be devastated to find out I had destroyed humanity, and everything else in existence." They look somber, but then perk up again. "But if everything has been annihilated, there is nothing I can do about it. So I shall focus on learning what I can, doing what must be done, and enjoy the fact that the universe has inexplicably revealed once again that the sum of all our knowledge is merely the introductory metaphor to help us grasp how things work." Their gestures abruptly change tone. "Speaking of which, we need to report what we have learned to the rest, which means leaving this place."`
 			label cutpower
 			`	Gavriil gestures at the control panel in front of them. "I do not know for sure, but based on events, I suspect that if we manually induce a power failure we should be able to reverse the process that transported us to this realm." They smile eagerly. "I have everything all set up, and we have people waiting across the station." They look confident. "We think that we can safely spin down the reactor and cut power across a number of these arrays in a controlled fashion. This should replicate the original power failure, except with fewer risks and less damage to the system."`
-			`	They lead you over to a panel in the main loading dock. "I know, it says 'Job Board' on it. I re-used the coding for our task list to improvise this mass-notification system." They smile in amusement. "When you are ready to go, just select the 'De-activate Array' option from the panel. That will notify everyone and begin the shutdown."`
+			`	They lead you over to a panel in the main loading dock. "I know, it says 'Job Board' on it. I reused the coding for our task list to improvise this mass-notification system." They smile in amusement. "When you are ready to go, just select the 'De-activate Array' option from the panel. That will notify everyone and begin the shutdown."`
 			`	They hand you a data crystal, and then a large case. "Here is an encrypted data crystal of all our data so far. The case has several sets, with the data stored in a variety of different mechanisms and encryptions. We do not know what happens when the station is activated or deactivated, so multiple formats for storing the data will give a better chance that at least some of it will remain intact to be delivered."`
 			`	They step back. "Well, I will return to the controls. Just give the signal when you are ready to leave. Embers light your path, Captain <first>."`
 
