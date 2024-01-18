@@ -1,6 +1,7 @@
 Version 0.10.5
   * Big changes:
-    * Mining Stuff (new attributes, new outfits, new ships, new mechanics, etc... @Amazinite will expand upon this).
+    * Mining Additions (new attributes, new outfits, new ships, new mechanics, etc... will expand upon this before release).
+	* CCOR/Pirate Additions (will expand upon this before release).
   * Bug fixes:
     * Content bugs:
       * Typo fixes. (@Corraban2, @opusforlife2, @Wedge009, @jarmokivekas, @Anarchist2, @Tangle10, @Saugia, @tibetiroka, @bene-dictator, @ziproot, @mOctave, @alexrovw, @The-Legendary-M),
@@ -11,7 +12,7 @@ Version 0.10.5
       * Added missing conditions in the Heliarch intro. (@ziproot)
       * Added some missing system attributes. (@Tangle10)
       * Added a missing `goto` in "Saryd University Lecture". (@RedDeadUndead)
-      * Fixed/adjusted a few things in the "Early South" mission set. (@bene-dictator)
+      * Fixed/adjusted a few things in the "Early South" mission set. (@RisingLeaf, @bene-dictator)
       * Corrected several outdated conditions in "FW Bloodsea 1.1". (@RisingLeaf)
     * Engine bugs:
       * The drag value for a ship used in calculations has been capped to the ship's mass to avoid problematic behavior. (@warp-core)
@@ -19,14 +20,14 @@ Version 0.10.5
       * Planetary security fines are now properly applied for illegal cargo. (@TomGoodIdea)
       * Fixed a rare deadlock while loading the game. (@quyykk)
       * Fixed a compilation error on SDL before v2.0.22. (@quyykk)
-      * Corrected collision checks for fast moving flotsams. (@RisingLeaf)
+      * Corrected collision checks for fast moving flotsams. (@RisingLeaf, @Amazinite)
       * Travel plan validity checks now ensure that all systems are visible. (@Amazinite)
   * Game content:
     * New content:
       * Added a new culture conversation about Earth Day. (@bene-dictator)
       * Added a few new generic human jobs. (@bene-dictator)
       * More Quarg spaceport news. (@Arachi-Lover)
-      * Added a new person ship for the Github reviewers. (@TheMarksman-ES, @Saugia, @EjoThims, @roadrunner56, @bene-dictator, @tibetiroka, @1010todd)
+      * Added a new person ship for the Github reviewers. (@TheMarksman-ES, @Saugia, @EjoThims, @roadrunner56, @bene-dictator, @tibetiroka, @1010todd, @DarcyManoel)
       * Added new Deep hails and ship names. (@bene-dictator)
       * Added a new culture conversation about Burthen. (@bene-dictator)
       * Added a new mission about transporting a stranded Paradise Worlds family back home. (@bene-dictator)
@@ -65,7 +66,7 @@ Version 0.10.5
         * Decreased "hull repair rate" from -0.2 to -0.25.
         * Replaced the "shield energy" attribute (at a value of 0.24) with the "shield energy multiplier" attribute (at a value of 0.2).
     * Other:
-      * Removed the Quarg atrocity mission and added the proper arocities to the Quarg governments. (@TomGoodIdea)
+      * Removed the Quarg atrocity mission and added the proper atrocities to the Quarg governments. (@TomGoodIdea)
       * Reworked and removed some overly-wordy and complex hails. (@bene-dictator)
       * Locelace Labs will now sell Typhoon Torpedo outfits shortly after they are introduced. (@Quantumshark)
       * Small wording tweaks in the intro mission set. (@Hurleveur)
