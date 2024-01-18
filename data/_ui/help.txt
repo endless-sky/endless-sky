@@ -110,7 +110,7 @@ help "fleet asteroid mining shortcuts"
 	`Shortcuts for asteroid targeting:`
 	`	<Select nearest asteroid> selects the nearest asteroid if you have an asteroid scanner.`
 	`	<Fleet: Fight my target> will focus your fleet on mining a targeted asteroid.`
-	`	<Fleet: Harvest flotsam> will toggle whether your fleet tries to pick up flotsams.`
+	`	<Fleet: Harvest flotsam> will toggle whether your fleet tries to pick up flotsam.`
 	``
 	`Alternate targeting:`
 	`	Left click - will target an asteroid without mining it.`
