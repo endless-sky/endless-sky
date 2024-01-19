@@ -193,6 +193,8 @@ target_sources(EndlessSkyLib PRIVATE
 	MenuAnimationPanel.h
 	MenuPanel.cpp
 	MenuPanel.h
+	MessageLogPanel.cpp
+	MessageLogPanel.h
 	Messages.cpp
 	Messages.h
 	Minable.cpp
