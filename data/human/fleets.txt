@@ -3489,12 +3489,12 @@ fleet "Human Wormhole Guards"
 	variant 5
 		"Rainmaker (Mark II Old Weapons)"
 
-fleet "Derelict Republic"
+fleet "Derelict Northern"
 	government "Derelict (Boardable)"
 	names "civilian"
 	"cargo settings"
 		cargo 2
-		outfitters "Derelict Republic"
+		outfitters "Derelict Northern"
 	personality derelict mute marked
 	variant 20
 		"Scout (Derelict)"
@@ -3550,12 +3550,12 @@ fleet "Derelict Southern"
 	variant 1
 		"Falcon (Derelict)"
 
-fleet "Derelict Syndicate"
+fleet "Derelict Core"
 	government "Derelict (Boardable)"
 	names "civilian"
 	"cargo settings"
 		cargo 2
-		outfitters "Derelict Syndicate"
+		outfitters "Derelict Core"
 	personality derelict mute marked
 	variant 25
 		"Freighter (Derelict)"

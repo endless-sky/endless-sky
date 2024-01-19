@@ -208,7 +208,7 @@ event "initial deployment 1"
 		fleet "Large Republic" 400
 		fleet "Small Northern Pirates" 4000
 		fleet "Large Northern Pirates" 8000
-		fleet "Derelict Republic" 30000
+		fleet "Derelict Northern" 30000
 		fleet "Navy Surveillance" 2000
 	system "Phecda"
 		fleet "Small Northern Merchants" 900
@@ -243,7 +243,7 @@ event "initial deployment 1"
 		fleet "Small Republic" 2500
 		fleet "Large Republic" 4000
 		fleet "Small Southern Pirates" 5000
-		fleet "Derelict Republic" 10000
+		fleet "Derelict Northern" 10000
 		fleet "Navy Surveillance" 2000
 	system "Mizar"
 		fleet "Small Southern Merchants" 1400
@@ -251,7 +251,7 @@ event "initial deployment 1"
 		fleet "Small Republic" 1000
 		fleet "Large Republic" 1400
 		fleet "Small Southern Pirates" 9000
-		fleet "Derelict Republic" 30000
+		fleet "Derelict Northern" 30000
 		fleet "Navy Surveillance" 2000
 	system "Muphrid"
 		fleet "Small Southern Merchants" 1200
@@ -259,7 +259,7 @@ event "initial deployment 1"
 		fleet "Small Republic" 1100
 		fleet "Large Republic" 1900
 		fleet "Small Southern Pirates" 9000
-		fleet "Derelict Republic" 30000
+		fleet "Derelict Northern" 30000
 		fleet "Navy Surveillance" 2000
 	system "Menkent"
 		fleet "Small Southern Merchants" 700
@@ -331,7 +331,7 @@ event "initial deployment 2"
 		fleet "Large Southern Pirates" 4000
 		fleet "Small Republic" 1000
 		fleet "Large Republic" 2000
-		fleet "Derelict Republic" 30000
+		fleet "Derelict Northern" 30000
 		fleet "Navy Surveillance" 1600
 	system "Delta Velorum"
 		fleet "Small Southern Merchants" 1000
@@ -356,7 +356,7 @@ event "initial deployment 2"
 		fleet "Large Southern Pirates" 4000
 		fleet "Small Republic" 2000
 		fleet "Large Republic" 3000
-		fleet "Derelict Republic" 30000
+		fleet "Derelict Northern" 30000
 		fleet "Navy Surveillance" 1600
 	system "Cor Caroli"
 		fleet "Small Southern Merchants" 700
@@ -957,7 +957,7 @@ event "oathkeepers founded"
 		fleet "Republic Logistics" 5400
 		fleet "Small Northern Pirates" 3000
 		fleet "Large Northern Pirates" 5000
-		fleet "Derelict Republic" 30000
+		fleet "Derelict Northern" 30000
 	system "Alnitak"
 		fleet "Small Northern Pirates" 3000
 		fleet "Large Northern Pirates" 5000
@@ -2315,7 +2315,7 @@ event "pug flee"
 		fleet "Small Republic" 3000
 		fleet "Large Republic" 7000
 		fleet "Small Northern Pirates" 2500
-		fleet "Derelict Republic" 10000
+		fleet "Derelict Northern" 10000
 	system "Orvala"
 		fleet "Small Southern Merchants" 3000
 		fleet "Large Southern Merchants" 6000
