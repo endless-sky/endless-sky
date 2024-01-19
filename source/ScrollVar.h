@@ -49,7 +49,7 @@ public:
 	// Sets the scroll value directly, then clamps it to a suitable range.
 	virtual void Set(const T &current, int steps = 5) override;
 
-	// Shortcut mathmatical operators for convenience.
+	// Shortcut mathematical operators for convenience.
 	ScrollVar &operator=(const T &v);
 
 
