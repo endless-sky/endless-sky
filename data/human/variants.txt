@@ -11,22 +11,6 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-ship "Aerie" "Aerie (Derelict)"
-	"uncapturable"
-	add attributes
-		"bunks" -28
-		"required crew" -10
-		"automaton" 1
-	outfits
-		"KP-6 Photovoltaic Panel"
-		"LP072a Battery Pack"
-		"Large Radar Jammer"
-		"Laser Rifle" 3
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
-		"Hyperdrive"
-
-
 ship "Aerie" "Aerie (Miner)"
 	outfits
 		"Mining Laser" 2
@@ -64,20 +48,6 @@ ship "Argosy" "Argosy (Blaster)"
 		"Outfits Expansion"
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
-		"Hyperdrive"
-
-
-ship "Argosy" "Argosy (Derelict)"
-	"uncapturable"
-	add attributes
-		"bunks" -14
-		"required crew" -4
-		"automaton" 1
-	outfits
-		"Energy Blaster"
-		"RT-I Radiothermal"
-		"Greyhound Plasma Thruster"
-		"Greyhound Plasma Steering"
 		"Hyperdrive"
 
 
@@ -420,23 +390,6 @@ ship "Barb" "Barb (Miner)"
 		"X1050 Ion Engines"
 
 
-
-ship "Bastion" "Bastion (Derelict)"
-	"uncapturable"
-	add attributes
-		"bunks" -40
-		"required crew" -17
-		"automaton" 1
-	outfits
-		"Heavy Rocket Rack" 2
-		"nGVF-BB Fuel Cell"
-		"Water Coolant System"
-		"Laser Rifle" 7
-		"Impala Plasma Thruster"
-		"Impala Plasma Steering"
-		"Hyperdrive"
-
-
 ship "Bastion" "Bastion (Heavy)"
 	outfits
 		"Plasma Cannon" 4
@@ -658,19 +611,6 @@ ship "Berserker" "Berserker (Afterburner)"
 		"Hyperdrive"
 
 
-ship "Berserker" "Berserker (Derelict)"
-	"uncapturable"
-	add attributes
-		"bunks" -2
-		"required crew" -1
-		"automaton" 1
-	outfits
-		"nGVF-CC Fuel Cell"
-		"X2700 Ion Thruster"
-		"X3200 Ion Steering"
-		"Hyperdrive"
-
-
 ship "Berserker" "Berserker (Strike)"
 	outfits
 		"Heavy Rocket Pod"
@@ -744,20 +684,6 @@ ship "Blackbird" "Blackbird (Hai Trafficker)"
 		"Security Station" 3
 
 
-ship "Bounder" "Bounder (Derelict)"
-	"uncapturable"
-	add attributes
-		"bunks" -17
-		"required crew" -1
-		"automaton" 1
-	outfits
-		"KP-6 Photovoltaic Array"
-		"LP036a Battery Pack"
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
-		"Hyperdrive"
-
-
 ship "Bounder" "Bounder (Hai)"
 	outfits
 		"Pulse Turret"
@@ -822,21 +748,6 @@ ship "Bulk Freighter" "Bulk Freighter (Blaster)"
 	turret "Quad Blaster Turret"
 	turret "Anti-Missile Turret"
 	turret "Quad Blaster Turret"
-
-
-ship "Bulk Freighter" "Bulk Freighter (Derelict)"
-	"uncapturable"
-	add attributes
-		"bunks" -21
-		"required crew" -12
-		"automaton" 1
-	outfits
-		"RT-I Radiothermal"
-		"LP144a Battery Pack"
-		"Laser Rifle"
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
-		"Scram Drive"
 
 
 ship "Bulk Freighter" "Bulk Freighter (Hai)"
@@ -1029,21 +940,6 @@ ship "Carrier" "Carrier (Mark II)"
 	turret "Electron Turret"
 	turret "Heavy Anti-Missile Turret"
 	turret "Electron Turret"
-
-
-
-ship "Clipper" "Clipper (Derelict)"
-	"uncapturable"
-	add attributes
-		"bunks" -9
-		"required crew" -3
-		"automaton" 1
-	outfits
-		"nGVF-AA Fuel Cell"
-		"LP072a Battery Pack"
-		"Greyhound Plasma Thruster"
-		"Greyhound Plasma Steering"
-		"Hyperdrive"
 
 
 ship "Clipper" "Clipper (Heavy)"
@@ -1652,22 +1548,6 @@ ship "Enforcer" "Enforcer (CCOR)"
 		"Hyperdrive"
 
 
-ship "Falcon" "Falcon (Derelict)"
-	"uncapturable"
-	add attributes
-		"bunks" -91
-		"required crew" -52
-		"automaton" 1
-	outfits
-		"KP-6 Photovoltaic Array"
-		"KP-6 Photovoltaic Panel" 2
-		"LP144a Battery Pack"
-		"Laser Rifle" 15
-		"Impala Plasma Thruster"
-		"Impala Plasma Steering"
-		"Hyperdrive"
-
-
 ship "Falcon" "Falcon (Heavy)"
 	outfits
 		"Torpedo Launcher" 2
@@ -1784,21 +1664,6 @@ ship "Falcon" "Falcon (Javelin)"
 	turret "Heavy Anti-Missile Turret"
 	turret "Javelin Turret"
 	turret "Javelin Turret"
-
-
-
-ship "Firebird" "Firebird (Derelict)"
-	"uncapturable"
-	add attributes
-		"bunks" -22
-		"required crew" -7
-		"automaton" 1
-	outfits
-		"nGVF-AA Fuel Cell"
-		"Laser Rifle" 3
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
-		"Hyperdrive"
 
 
 ship "Firebird" "Firebird (Hai Shields)"
@@ -1943,20 +1808,6 @@ ship "Flivver" "Flivver (Racing)"
 		"Water Coolant System"
 		"A120 Atomic Thruster"
 		"A125 Atomic Steering"
-		"Hyperdrive"
-
-
-ship "Freighter" "Freighter (Derelict)"
-	"uncapturable"
-	add attributes
-		"bunks" -7
-		"required crew" -2
-		"automaton" 1
-	outfits
-		"nGVF-AA Fuel Cell"
-		"LP072a Battery Pack"
-		"X2700 Ion Thruster"
-		"X2200 Ion Steering"
 		"Hyperdrive"
 
 
@@ -2155,21 +2006,6 @@ ship "Fury" "Fury (Bomber)"
 		"X2700 Ion Thruster"
 		"Chipmunk Plasma Steering"
 		"Hyperdrive"
-		
-
-ship "Fury" "Fury (Derelict)"
-	"uncapturable"
-	add attributes
-		"bunks" -3
-		"required crew" -1
-		"automaton" 1
-	outfits
-		"Energy Blaster"
-		"nGVF-AA Fuel Cell"
-		"LP036a Battery Pack"
-		"X2700 Ion Thruster"
-		"X2200 Ion Steering"
-		"Hyperdrive"
 
 
 ship "Fury" "Fury (Flamethrower)"
@@ -2284,23 +2120,6 @@ ship "Gunboat" "Gunboat (Mark II)"
 		"Hyperdrive"
 
 
-
-ship "Hauler" "Hauler (Derelict)"
-	"uncapturable"
-	add attributes
-		"bunks" -12
-		"required crew" -3
-		"automaton" 1
-	outfits
-		"Quad Blaster Turret"
-		"nGVF-AA Fuel Cell"
-		"LP072a Battery Pack"
-		"Small Radar Jammer"
-		"Greyhound Plasma Thruster"
-		"Impala Plasma Steering"
-		"Hyperdrive"
-
-
 ship "Hauler" "Hauler (Hai)"
 	outfits
 		"Meteor Missile Launcher" 2
@@ -2319,23 +2138,6 @@ ship "Hauler" "Hauler (Hai)"
 	turret "Chameleon Anti-Missile"
 	turret "Chameleon Anti-Missile"
 	turret "Quad Blaster Turret"
-
-
-
-ship "Hauler II" "Hauler II (Derelict)"
-	"uncapturable"
-	add attributes
-		"bunks" -12
-		"required crew" -3
-		"automaton" 1
-	outfits
-		"Meteor Missile Pod"
-		"Meteor Missile" 4
-		"Meteor Missile Box"
-		"S3 Thermionic"
-		"Greyhound Plasma Thruster"
-		"Impala Plasma Steering"
-		"Hyperdrive"
 
 
 ship "Hauler II" "Hauler II (Hai)"
@@ -2410,20 +2212,6 @@ ship "Hawk" "Hawk (Bomber)"
 		"D41-HY Shield Generator"
 		"Small Radar Jammer" 2
 		"X2700 Ion Thruster"
-		"Greyhound Plasma Steering"
-		"Hyperdrive"
-
-
-ship "Hawk" "Hawk (Derelict)"
-	"uncapturable"
-	add attributes
-		"bunks" -4
-		"required crew" -1
-		"automaton" 1
-	outfits
-		"KP-6 Photovoltaic Panel"
-		"LP036a Battery Pack"
-		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"
 
@@ -2567,25 +2355,6 @@ ship "Heavy Shuttle" "Heavy Shuttle (Armed)"
 		"Hyperdrive"
 
 
-ship "Hogshead" "Hogshead (Derelict)"
-	"uncapturable"
-	add attributes
-		"bunks" -84
-		"required crew" -18
-		"automaton" 1
-	outfits
-		"Heavy Anti-Missile Turret"
-		"S3 Thermionic"
-		"LP036a Battery Pack"
-		"D67-TM Shield Generator"
-		"Outfits Expansion"
-		"Bunk Room" 2
-		"Laser Rifle" 37
-		"Greyhound Plasma Thruster"
-		"Greyhound Plasma Steering"
-		"Scram Drive"
-
-
 ship "Hogshead" "Hogshead (CCOR)"
 	outfits
 		"Heavy Anti-Missile Turret" 2
@@ -2614,21 +2383,6 @@ ship "Lance" "Lance (Gatling)"
 	gun
 	gun "Gatling Gun"
 	gun "Gatling Gun"
-
-
-ship "Leviathan" "Leviathan (Derelict)"
-	"uncapturable"
-	add attributes
-		"bunks" -64
-		"required crew" -43
-		"automaton" 1
-	outfits
-		"nGVF-AA Fuel Cell"
-		"LP144a Battery Pack"
-		"Laser Rifle" 15
-		"X3700 Ion Thruster"
-		"X4200 Ion Steering"
-		"Hyperdrive"
 
 
 ship "Leviathan" "Leviathan (Hai Engines)"
@@ -3172,21 +2926,6 @@ ship "Osprey" "Osprey (Alien Weapons)"
 		Hyperdrive
 
 
-ship "Osprey" "Osprey (Derelict)"
-	"uncapturable"
-	add attributes
-		"bunks" -24
-		"required crew" -9
-		"automaton" 1
-	outfits
-		"nGVF-AA Fuel Cell"
-		"LP036a Battery Pack"
-		"Laser Rifle" 3
-		"Impala Plasma Thruster"
-		"Impala Plasma Steering"
-		"Hyperdrive"
-
-
 ship "Osprey" "Osprey (Laser)"
 	outfits
 		"Heavy Laser" 4
@@ -3246,25 +2985,6 @@ ship "Osprey" "Osprey (Particle Anti-Missile)"
 		"Laser Rifle" 3
 		"Water Coolant System"
 		"Fusion Reactor"
-
-
-
-ship "Protector" "Protector (Derelict)"
-	"uncapturable"
-	add attributes
-		"bunks" -69
-		"required crew" -30
-		"automaton" 1
-	outfits
-		"Quad Blaster Turret" 2
-		"Anti-Missile Turret"
-		"nGVF-AA Fuel Cell"
-		"LP288a Battery Pack"
-		"Small Radar Jammer"
-		"Laser Rifle" 6
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
-		"Hyperdrive"
 
 
 ship "Protector" "Protector (Laser)"
@@ -3328,20 +3048,6 @@ ship "Protector" "Protector (Quad Blaster)"
 		"Laser Rifle" 6
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
-		"Hyperdrive"
-
-
-
-ship "Quicksilver" "Quicksilver (Derelict)"
-	"uncapturable"
-	add attributes
-		"bunks" -6
-		"required crew" -3
-		"automaton" 1
-	outfits
-		"nGVF-DD Fuel Cell"
-		"Greyhound Plasma Thruster"
-		"Greyhound Plasma Steering"
 		"Hyperdrive"
 
 
@@ -3505,21 +3211,6 @@ ship "Saber" "Saber (CCOR Gatling)"
 		"Hyperdrive"
 
 
-ship "Scout" "Scout (Derelict)"
-	"uncapturable"
-	add attributes
-		"bunks" -12
-		"required crew" -1
-		"automaton" 1
-	outfits
-		"nGVF-AA Fuel Cell"
-		"LP036a Battery Pack"
-		"Small Radar Jammer"
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
-		"Hyperdrive"
-
-
 ship "Scout" "Scout (Speedy)"
 	outfits
 		"Meteor Missile Pod"
@@ -3534,20 +3225,6 @@ ship "Scout" "Scout (Speedy)"
 		"Outfits Expansion"
 		"A370 Atomic Thruster"
 		"A255 Atomic Steering"
-		"Hyperdrive"
-
-
-
-ship "Scrapper" "Scrapper (Derelict)"
-	"uncapturable"
-	add attributes
-		"bunks" -4
-		"required crew" -1
-		"automaton" 1
-	outfits
-		"KP-6 Photovoltaic Panel" 4
-		"X2700 Ion Thruster"
-		"X2200 Ion Steering"
 		"Hyperdrive"
 
 
@@ -3640,24 +3317,6 @@ ship "Sparrow" "Sparrow (Miner)"
 
 		"Chipmunk Plasma Thruster"
 		"Chipmunk Plasma Steering"
-		"Hyperdrive"
-
-
-
-ship "Splinter" "Splinter (Derelict)"
-	"uncapturable"
-	add attributes
-		"bunks" -21
-		"required crew" -7
-		"automaton" 1
-	outfits
-		"nGVF-AA Fuel Cell"
-		"LP144a Battery Pack"
-		"Small Radar Jammer"
-		"Water Coolant System"
-		"Laser Rifle"
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
 		"Hyperdrive"
 
 
@@ -3760,22 +3419,6 @@ ship "Star Barge" "Star Barge (Miner)"
 		"Hyperdrive"
 
 
-
-ship "Star Queen" "Star Queen (Derelict)"
-	"uncapturable"
-	add attributes
-		"bunks" -112
-		"required crew" -33
-		"automaton" 1
-	outfits
-		"KP-6 Photovoltaic Array" 3
-		"Small Radar Jammer"
-		"Luxury Accommodations"
-		"X3700 Ion Thruster"
-		"X2200 Ion Steering"
-		"Hyperdrive"
-
-
 ship "Star Queen" "Star Queen (Hai)"
 	outfits
 		"Hai Tracker Pod" 3
@@ -3808,23 +3451,6 @@ ship "Star Queen" "Star Queen (Hai Trafficker)"
 		Ramscoop
 		"Scram Drive"
 		"Security Station" 2
-
-
-ship "Sunder" "Sunder (Derelict)"
-	"uncapturable"
-	add attributes
-		"bunks" -5
-		"required crew" -3
-		"automaton" 1
-	outfits
-		"Mining Laser" 1
-		"Mining Laser Turret"
-		"Asteroid Scanner"
-		"nGVF-DD Fuel Cell"
-		"LP036a Battery Pack"
-		"Greyhound Plasma Thruster"
-		"Greyhound Plasma Steering"
-		"Hyperdrive"
 
 
 ship "Sunder" "Sunder (Heavy)"

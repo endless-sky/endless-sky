@@ -1,0 +1,375 @@
+# Copyright (c) 2024 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+ship "Aerie" "Aerie (Derelict)"
+	"uncapturable"
+	add attributes
+		"bunks" -28
+		"required crew" -10
+		"automaton" 1
+	outfits
+		"KP-6 Photovoltaic Panel"
+		"LP072a Battery Pack"
+		"Large Radar Jammer"
+		"Laser Rifle" 3
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+
+
+ship "Argosy" "Argosy (Derelict)"
+	"uncapturable"
+	add attributes
+		"bunks" -14
+		"required crew" -4
+		"automaton" 1
+	outfits
+		"Energy Blaster"
+		"RT-I Radiothermal"
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Hyperdrive"
+
+
+ship "Bastion" "Bastion (Derelict)"
+	"uncapturable"
+	add attributes
+		"bunks" -40
+		"required crew" -17
+		"automaton" 1
+	outfits
+		"Heavy Rocket Rack" 2
+		"nGVF-BB Fuel Cell"
+		"Water Coolant System"
+		"Laser Rifle" 7
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+
+
+ship "Berserker" "Berserker (Derelict)"
+	"uncapturable"
+	add attributes
+		"bunks" -2
+		"required crew" -1
+		"automaton" 1
+	outfits
+		"nGVF-CC Fuel Cell"
+		"X2700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+
+
+ship "Bounder" "Bounder (Derelict)"
+	"uncapturable"
+	add attributes
+		"bunks" -17
+		"required crew" -1
+		"automaton" 1
+	outfits
+		"KP-6 Photovoltaic Array"
+		"LP036a Battery Pack"
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+
+
+ship "Bulk Freighter" "Bulk Freighter (Derelict)"
+	"uncapturable"
+	add attributes
+		"bunks" -21
+		"required crew" -12
+		"automaton" 1
+	outfits
+		"RT-I Radiothermal"
+		"LP144a Battery Pack"
+		"Laser Rifle"
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Scram Drive"
+
+
+ship "Clipper" "Clipper (Derelict)"
+	"uncapturable"
+	add attributes
+		"bunks" -9
+		"required crew" -3
+		"automaton" 1
+	outfits
+		"nGVF-AA Fuel Cell"
+		"LP072a Battery Pack"
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Hyperdrive"
+
+
+ship "Falcon" "Falcon (Derelict)"
+	"uncapturable"
+	add attributes
+		"bunks" -91
+		"required crew" -52
+		"automaton" 1
+	outfits
+		"KP-6 Photovoltaic Array"
+		"KP-6 Photovoltaic Panel" 2
+		"LP144a Battery Pack"
+		"Laser Rifle" 15
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+
+
+ship "Firebird" "Firebird (Derelict)"
+	"uncapturable"
+	add attributes
+		"bunks" -22
+		"required crew" -7
+		"automaton" 1
+	outfits
+		"nGVF-AA Fuel Cell"
+		"Laser Rifle" 3
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+
+
+ship "Freighter" "Freighter (Derelict)"
+	"uncapturable"
+	add attributes
+		"bunks" -7
+		"required crew" -2
+		"automaton" 1
+	outfits
+		"nGVF-AA Fuel Cell"
+		"LP072a Battery Pack"
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
+		"Hyperdrive"
+
+
+ship "Fury" "Fury (Derelict)"
+	"uncapturable"
+	add attributes
+		"bunks" -3
+		"required crew" -1
+		"automaton" 1
+	outfits
+		"Energy Blaster"
+		"nGVF-AA Fuel Cell"
+		"LP036a Battery Pack"
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
+		"Hyperdrive"
+
+
+ship "Hauler" "Hauler (Derelict)"
+	"uncapturable"
+	add attributes
+		"bunks" -12
+		"required crew" -3
+		"automaton" 1
+	outfits
+		"Quad Blaster Turret"
+		"nGVF-AA Fuel Cell"
+		"LP072a Battery Pack"
+		"Small Radar Jammer"
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+
+
+ship "Hauler II" "Hauler II (Derelict)"
+	"uncapturable"
+	add attributes
+		"bunks" -12
+		"required crew" -3
+		"automaton" 1
+	outfits
+		"Meteor Missile Pod"
+		"Meteor Missile" 4
+		"Meteor Missile Box"
+		"S3 Thermionic"
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+
+
+ship "Hawk" "Hawk (Derelict)"
+	"uncapturable"
+	add attributes
+		"bunks" -4
+		"required crew" -1
+		"automaton" 1
+	outfits
+		"KP-6 Photovoltaic Panel"
+		"LP036a Battery Pack"
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Hyperdrive"
+
+
+ship "Hogshead" "Hogshead (Derelict)"
+	"uncapturable"
+	add attributes
+		"bunks" -84
+		"required crew" -18
+		"automaton" 1
+	outfits
+		"Heavy Anti-Missile Turret"
+		"S3 Thermionic"
+		"LP036a Battery Pack"
+		"D67-TM Shield Generator"
+		"Outfits Expansion"
+		"Bunk Room" 2
+		"Laser Rifle" 37
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Scram Drive"
+
+
+ship "Leviathan" "Leviathan (Derelict)"
+	"uncapturable"
+	add attributes
+		"bunks" -64
+		"required crew" -43
+		"automaton" 1
+	outfits
+		"nGVF-AA Fuel Cell"
+		"LP144a Battery Pack"
+		"Laser Rifle" 15
+		"X3700 Ion Thruster"
+		"X4200 Ion Steering"
+		"Hyperdrive"
+
+
+ship "Osprey" "Osprey (Derelict)"
+	"uncapturable"
+	add attributes
+		"bunks" -24
+		"required crew" -9
+		"automaton" 1
+	outfits
+		"nGVF-AA Fuel Cell"
+		"LP036a Battery Pack"
+		"Laser Rifle" 3
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+
+
+ship "Protector" "Protector (Derelict)"
+	"uncapturable"
+	add attributes
+		"bunks" -69
+		"required crew" -30
+		"automaton" 1
+	outfits
+		"Quad Blaster Turret" 2
+		"Anti-Missile Turret"
+		"nGVF-AA Fuel Cell"
+		"LP288a Battery Pack"
+		"Small Radar Jammer"
+		"Laser Rifle" 6
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+
+
+ship "Quicksilver" "Quicksilver (Derelict)"
+	"uncapturable"
+	add attributes
+		"bunks" -6
+		"required crew" -3
+		"automaton" 1
+	outfits
+		"nGVF-DD Fuel Cell"
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Hyperdrive"
+
+
+ship "Scout" "Scout (Derelict)"
+	"uncapturable"
+	add attributes
+		"bunks" -12
+		"required crew" -1
+		"automaton" 1
+	outfits
+		"nGVF-AA Fuel Cell"
+		"LP036a Battery Pack"
+		"Small Radar Jammer"
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+
+
+ship "Scrapper" "Scrapper (Derelict)"
+	"uncapturable"
+	add attributes
+		"bunks" -4
+		"required crew" -1
+		"automaton" 1
+	outfits
+		"KP-6 Photovoltaic Panel" 4
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
+		"Hyperdrive"
+
+
+ship "Splinter" "Splinter (Derelict)"
+	"uncapturable"
+	add attributes
+		"bunks" -21
+		"required crew" -7
+		"automaton" 1
+	outfits
+		"nGVF-AA Fuel Cell"
+		"LP144a Battery Pack"
+		"Small Radar Jammer"
+		"Water Coolant System"
+		"Laser Rifle"
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+
+
+ship "Star Queen" "Star Queen (Derelict)"
+	"uncapturable"
+	add attributes
+		"bunks" -112
+		"required crew" -33
+		"automaton" 1
+	outfits
+		"KP-6 Photovoltaic Array" 3
+		"Small Radar Jammer"
+		"Luxury Accommodations"
+		"X3700 Ion Thruster"
+		"X2200 Ion Steering"
+		"Hyperdrive"
+
+
+ship "Sunder" "Sunder (Derelict)"
+	"uncapturable"
+	add attributes
+		"bunks" -5
+		"required crew" -3
+		"automaton" 1
+	outfits
+		"Mining Laser" 1
+		"Mining Laser Turret"
+		"Asteroid Scanner"
+		"nGVF-DD Fuel Cell"
+		"LP036a Battery Pack"
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Hyperdrive"
