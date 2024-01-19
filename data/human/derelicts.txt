@@ -1,4 +1,4 @@
-# Copyright (c) 2024 by Michael Zahniser
+# Copyright (c) 2024 by Michael Zahniser and Petersupes
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
@@ -10,6 +10,112 @@
 #
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
+
+fleet "Derelict Northern"
+	government "Derelict (Boardable)"
+	names "civilian"
+	"cargo settings"
+		cargo 2
+		outfitters "Derelict Northern"
+	personality derelict mute marked
+	variant 20
+		"Scout (Derelict)"
+	variant 20
+		"Sunder (Derelict)"
+	variant 18
+		"Berserker (Derelict)"
+	variant 15
+		"Freighter (Derelict)"
+	variant 14
+		"Firebird (Derelict)"
+	variant 12
+		"Aerie (Derelict)"
+	variant 12
+		"Hauler (Derelict)"
+	variant 5
+		"Hauler II (Derelict)"
+	variant 2
+		"Star Queen (Derelict)"
+	variant 1
+		"Leviathan (Derelict)"
+
+fleet "Derelict Southern"
+	government "Derelict (Boardable)"
+	names "civilian"
+	"cargo settings"
+		cargo 2
+		outfitters "Derelict Southern"
+	personality derelict mute marked
+	variant 30
+		"Hawk (Derelict)"
+	variant 30
+		"Fury (Derelict)"
+	variant 24
+		"Argosy (Derelict)"
+	variant 24
+		"Clipper (Derelict)"
+	variant 24
+		"Sunder (Derelict)"
+	variant 16
+		"Bastion (Derelict)"
+	variant 15
+		"Freighter (Derelict)"
+	variant 12
+		"Hauler (Derelict)"
+	variant 12
+		"Osprey (Derelict)"
+	variant 3
+		"Firebird (Derelict)"
+	variant 2
+		"Hogshead (Derelict)"
+	variant 1
+		"Falcon (Derelict)"
+
+fleet "Derelict Core"
+	government "Derelict (Boardable)"
+	names "civilian"
+	"cargo settings"
+		cargo 2
+		outfitters "Derelict Core"
+	personality derelict mute marked
+	variant 25
+		"Freighter (Derelict)"
+	variant 20
+		"Bounder (Derelict)"
+	variant 15
+		"Sunder (Derelict)"
+	variant 15
+		"Quicksilver (Derelict)"
+	variant 10
+		"Hauler (Derelict)"
+	variant 9
+		"Splinter (Derelict)"
+	variant 3
+		"Firebird (Derelict)"
+	variant 3
+		"Protector (Derelict)"
+	variant 2
+		"Bulk Freighter (Derelict)"
+
+fleet "Derelict Pirate"
+	government "Derelict (Boardable)"
+	names "pirate"
+	"cargo settings"
+		cargo 2
+		outfitters "Derelict Pirate"
+	personality derelict mute marked
+	variant 25
+		"Scrapper (Derelict)"
+	variant 20
+		"Berserker (Derelict)"
+	variant 12
+		"Hawk (Derelict)"
+	variant 5
+		"Firebird (Derelict)"
+	variant 2
+		"Leviathan (Derelict)"
+
+# Ship Variants
 
 ship "Aerie" "Aerie (Derelict)"
 	"uncapturable"
