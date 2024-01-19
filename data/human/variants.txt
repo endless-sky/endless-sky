@@ -11,6 +11,8 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+
+
 ship "Aerie" "Aerie (Miner)"
 	outfits
 		"Mining Laser" 2
@@ -388,6 +390,7 @@ ship "Barb" "Barb (Miner)"
 		"D14-RN Shield Generator"
 
 		"X1050 Ion Engines"
+
 
 
 ship "Bastion" "Bastion (Heavy)"
@@ -940,6 +943,7 @@ ship "Carrier" "Carrier (Mark II)"
 	turret "Electron Turret"
 	turret "Heavy Anti-Missile Turret"
 	turret "Electron Turret"
+
 
 
 ship "Clipper" "Clipper (Heavy)"
@@ -1548,6 +1552,7 @@ ship "Enforcer" "Enforcer (CCOR)"
 		"Hyperdrive"
 
 
+
 ship "Falcon" "Falcon (Heavy)"
 	outfits
 		"Torpedo Launcher" 2
@@ -1664,6 +1669,7 @@ ship "Falcon" "Falcon (Javelin)"
 	turret "Heavy Anti-Missile Turret"
 	turret "Javelin Turret"
 	turret "Javelin Turret"
+
 
 
 ship "Firebird" "Firebird (Hai Shields)"
@@ -1809,6 +1815,7 @@ ship "Flivver" "Flivver (Racing)"
 		"A120 Atomic Thruster"
 		"A125 Atomic Steering"
 		"Hyperdrive"
+
 
 
 ship "Freighter" "Freighter (Miner A)"
@@ -2006,7 +2013,7 @@ ship "Fury" "Fury (Bomber)"
 		"X2700 Ion Thruster"
 		"Chipmunk Plasma Steering"
 		"Hyperdrive"
-
+		
 
 ship "Fury" "Fury (Flamethrower)"
 	outfits
@@ -2120,6 +2127,7 @@ ship "Gunboat" "Gunboat (Mark II)"
 		"Hyperdrive"
 
 
+
 ship "Hauler" "Hauler (Hai)"
 	outfits
 		"Meteor Missile Launcher" 2
@@ -2138,6 +2146,7 @@ ship "Hauler" "Hauler (Hai)"
 	turret "Chameleon Anti-Missile"
 	turret "Chameleon Anti-Missile"
 	turret "Quad Blaster Turret"
+
 
 
 ship "Hauler II" "Hauler II (Hai)"
@@ -2355,6 +2364,22 @@ ship "Heavy Shuttle" "Heavy Shuttle (Armed)"
 		"Hyperdrive"
 
 
+
+ship "Lance" "Lance (Gatling)"
+	outfits
+		"Gatling Gun" 2
+		"Gatling Gun Ammo" 6000
+		Supercapacitor
+		"nGVF-BB Fuel Cell"
+		"D14-RN Shield Generator"
+		"X1700 Ion Thruster"
+		"X1200 Ion Steering"
+	gun
+	gun "Gatling Gun"
+	gun "Gatling Gun"
+
+
+
 ship "Hogshead" "Hogshead (CCOR)"
 	outfits
 		"Heavy Anti-Missile Turret" 2
@@ -2370,19 +2395,6 @@ ship "Hogshead" "Hogshead (CCOR)"
 		"Greyhound Plasma Steering"
 		"Scram Drive"
 
-
-ship "Lance" "Lance (Gatling)"
-	outfits
-		"Gatling Gun" 2
-		"Gatling Gun Ammo" 6000
-		Supercapacitor
-		"nGVF-BB Fuel Cell"
-		"D14-RN Shield Generator"
-		"X1700 Ion Thruster"
-		"X1200 Ion Steering"
-	gun
-	gun "Gatling Gun"
-	gun "Gatling Gun"
 
 
 ship "Leviathan" "Leviathan (Hai Engines)"
@@ -2987,6 +2999,7 @@ ship "Osprey" "Osprey (Particle Anti-Missile)"
 		"Fusion Reactor"
 
 
+
 ship "Protector" "Protector (Laser)"
 	outfits
 		"Sidewinder Missile Launcher"
@@ -3049,6 +3062,7 @@ ship "Protector" "Protector (Quad Blaster)"
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
 		"Hyperdrive"
+
 
 
 ship "Quicksilver" "Quicksilver (Mark II)"
@@ -3211,6 +3225,7 @@ ship "Saber" "Saber (CCOR Gatling)"
 		"Hyperdrive"
 
 
+
 ship "Scout" "Scout (Speedy)"
 	outfits
 		"Meteor Missile Pod"
@@ -3226,6 +3241,7 @@ ship "Scout" "Scout (Speedy)"
 		"A370 Atomic Thruster"
 		"A255 Atomic Steering"
 		"Hyperdrive"
+
 
 
 ship "Scrapper" "Scrapper (Minimal)"
@@ -3318,6 +3334,7 @@ ship "Sparrow" "Sparrow (Miner)"
 		"Chipmunk Plasma Thruster"
 		"Chipmunk Plasma Steering"
 		"Hyperdrive"
+
 
 
 ship "Splinter" "Splinter (Laser)"
@@ -3419,6 +3436,7 @@ ship "Star Barge" "Star Barge (Miner)"
 		"Hyperdrive"
 
 
+
 ship "Star Queen" "Star Queen (Hai)"
 	outfits
 		"Hai Tracker Pod" 3
@@ -3451,6 +3469,7 @@ ship "Star Queen" "Star Queen (Hai Trafficker)"
 		Ramscoop
 		"Scram Drive"
 		"Security Station" 2
+
 
 
 ship "Sunder" "Sunder (Heavy)"
