@@ -53,6 +53,7 @@ ship "Aerie" "Aerie (Miner)"
 	turret "Mining Laser Turret"
 
 
+
 ship "Argosy" "Argosy (Blaster)"
 	outfits
 		"Energy Blaster" 4
@@ -1632,6 +1633,7 @@ ship "Dreadnought" "Dreadnought (Plasma Jump)"
 		"LP144a Battery Pack"
 		"Fuel Pod" 2
 		"Catalytic Ramscoop"
+
 
 
 ship "Enforcer" "Enforcer (CCOR)"
@@ -3465,6 +3467,7 @@ ship "Roost" "Roost (Sidewinder)"
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
 		Hyperdrive
+
 
 
 ship "Saber" "Saber (CCOR Javelin)"

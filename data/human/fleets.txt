@@ -3577,7 +3577,7 @@ fleet "Derelict Syndicate"
 
 fleet "Derelict Pirate"
 	government "Derelict (Boardable)"
-	names "civilian"
+	names "pirate"
 	"cargo settings"
 		cargo 2
 		outfitters "Derelict Pirate"
