@@ -1094,7 +1094,7 @@ mission "<uhai> 3: Recover Jump Drives"
 			`	"We be going to collect a few jump drives! Normally ye would not be able to get such a job, since ye have not earned much among us still, but I have the connection to get it for ye. Ye see, officially this be me mission, and a very lucrative one, at that! On top of that, should we succeed, next time ye may be entrusted with such missions on your own, but don't ye be expecting near the same booty for yerself."`
 			choice
 				`	"Okay... That just seems too good to be true. What's the catch?"`
-			`	"Well... the world be called 'Freedom', and that may sound nice, but it be a dangerous human port, full of privateers and swashbucklers. That is why I need yer ship, for transportation beyond Hai space. Ye will also need to save room in yer cargo hold or on your flagship for four jump drives. Ye be warned: this be no mission for the lighthearted."`
+			`	"Well... the world be called 'Freedom', and that may sound nice, but it be a dangerous human port, full of privateers and swashbucklers. That is why I need yer ship, for transportation beyond Hai space. Ye will also need to save room in yer cargo hold or on your flagship for four jump drives. Be warned: this be no mission for the lighthearted."`
 			choice
 				`	"Let's go then!"`
 					goto leave
@@ -1117,7 +1117,7 @@ mission "<uhai> 3: Recover Jump Drives"
 			`	"One last warning for ye: Ye should sail the skies with a hyperdrive, especially with the dangers of where we be headed. A jump drive won't do us any favors getting there, but 'twill bring more than a mite of unwanted company. Nor should we risk whether or not the lily-livered scallywags up north would decide to fit ye with a hempen halter from yer association with us."`
 			choice
 				`	(Show him to your ship.)`
-					branch ship
+					goto ship
 				`	"Perrots?"`
 			label aliens
 			`	"The aliens we be raiding, ye swab! And don't be joining that party until we tell you so!"`
