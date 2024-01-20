@@ -837,6 +837,18 @@ outfit "Dual Pulse Pistols"
 	description "A pair of modified heavy pulse pistols that are favored by some Unfettered and the occasional pirate captain. Dual wielding them adds more firepower during short raids against a ship's defenders. Individually, they lose their energy charge more quickly than a pulse rifle, making them a poor choice for holding a defensive position during a long siege."
 
 
+outfit "Heshi"
+	category "Unique"
+	cost 10000
+	thumbnail "outfit/unknown"
+	"mass" 1
+	"capture attack" 4
+	"capture defense" 8
+	"maintenance costs" 100
+	"unplunderable" 1
+	description "This is an aquarium containing what the Hai call a 'Heshi' - a huge scorpion looking creature. It must be fed and cared for but can be very useful in damaging the morale of enemies attacking the ship."
+	description "	On the offensive it can be used to intimidate enemies into surrendering, when they are made aware that they could become its next meal if they do not cooperate... Furthermore, it is very useful in the event of an interrogation."
+
 outfit "Unfettered License"
 	category "Licenses"
 	thumbnail "outfit/true unfettered license"
