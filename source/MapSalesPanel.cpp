@@ -92,7 +92,9 @@ void MapSalesPanel::Draw()
 
 bool MapSalesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
+	if(command.Has(Command::HELP))
+		DoHelp("map advanced shops", true);
+	else if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
 	{
 		scroll += static_cast<double>((Screen::Height() - 100) * ((key == SDLK_PAGEUP) - (key == SDLK_PAGEDOWN)));
 		scroll = min(0., max(-maxScroll, scroll));
@@ -177,7 +179,7 @@ bool MapSalesPanel::Hover(int x, int y)
 {
 	isDragging = (x < Screen::Left() + WIDTH);
 
-	return isDragging ? true : MapPanel::Hover(x, y);
+	return isDragging || MapPanel::Hover(x, y);
 }
 
 
@@ -260,22 +262,11 @@ void MapSalesPanel::DrawPanel() const
 {
 	const Color &back = *GameData::Colors().Get("map side panel background");
 	FillShader::Fill(
-		Point(Screen::Width() * -.5 + WIDTH * .5, 0.),
+		Point(Screen::Left() + WIDTH * .5, 0.),
 		Point(WIDTH, Screen::Height()),
 		back);
 
-	const Sprite *edgeSprite = SpriteSet::Get("ui/right edge");
-	if(edgeSprite->Height())
-	{
-		int steps = Screen::Height() / edgeSprite->Height();
-		for(int y = -steps; y <= steps; ++y)
-		{
-			Point pos(
-				Screen::Width() * -.5f + WIDTH + .5f * edgeSprite->Width(),
-				y * edgeSprite->Height());
-			SpriteShader::Draw(edgeSprite, pos);
-		}
-	}
+	Panel::DrawEdgeSprite(SpriteSet::Get("ui/right edge"), Screen::Left() + WIDTH);
 }
 
 

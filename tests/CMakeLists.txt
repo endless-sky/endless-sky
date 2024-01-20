@@ -3,6 +3,11 @@ if(UNIX AND NOT APPLE)
 	set_target_properties(EndlessSkyTests PROPERTIES OUTPUT_NAME "endless-sky-tests")
 endif()
 
+if(NOT MSVC)
+	target_compile_options(EndlessSkyTests PUBLIC
+		"-Wall" "-pedantic-errors" "-Wold-style-cast" "-fno-rtti")
+endif()
+
 # Every source file (and header file) should be listed here.
 # If you add a new file, add it to this list.
 target_sources(EndlessSkyTests PRIVATE
@@ -30,6 +35,7 @@ target_sources(EndlessSkyTests PRIVATE
 	unit/src/test_main.cpp
 	unit/src/test_point.cpp
 	unit/src/test_random.cpp
+	unit/src/test_scrollVar.cpp
 	unit/src/test_set.cpp
 	unit/src/test_ship.cpp
 	unit/src/test_template.txt
@@ -53,6 +59,7 @@ list(APPEND INTEGRATION_TESTS
 	integration/config/plugins/integration-tests/data/tests/tests_framework.txt
 	integration/config/plugins/integration-tests/data/tests/tests_hyperjumps_to_autocondition.txt
 	integration/config/plugins/integration-tests/data/tests/tests_illegal_atrocity.txt
+	integration/config/plugins/integration-tests/data/tests/tests_landing.txt
 	integration/config/plugins/integration-tests/data/tests/tests_take_ships.txt
 	integration/config/plugins/integration-tests/data/tests/tests_save_load.txt
 	integration/config/plugins/integration-tests/data/tests/tests_ship_sale.txt

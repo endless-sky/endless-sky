@@ -307,3 +307,25 @@ mission "Robotic Musical 1"
 				decline
 
 
+
+mission "Hai Film Release"
+	minor
+	source
+		government "Hai"
+		not attributes "station"
+	to offer
+		has "Hai Film Crew 3: done"
+		random < 1
+	on offer
+		conversation
+			`Upon visiting the spaceport, you notice a poster for a movie in Hai. You recognize it as taking place on Darkrest, and quickly realize that this must be the movie that Likeet had made. The Hai-language title has been translated to "The Final Rest," but the full movie doesn't appear to have been subtitled in your language yet.`
+			choice
+				`	(Go see it.)`
+				`	(Pass.)`
+					decline
+			branch translator
+				has "language: Hai"
+			`	You find a movie theater showing Likeet's film. You're not quite sure what's happening: something to do with an unseen monster inhabiting the station that slowly drives those it meets insane. It seems to be a hit with the Hai audience, though, and you leave the theater feeling distinctly unnerved.`
+				decline
+			label translator
+			`	You find a movie theater showing Likeet's film, but your translator is of little help here. The movie is sparse on dialog, and the few lines spoken in the movie seem to be cryptic references to Hai literature and philosophy. The most you are able to make out is that the movie is about an unseen monster inhabiting the station that slowly drives those it meets insane. It seems to be a hit with the Hai audience, though, and you leave the theater feeling distinctly unnerved.`
