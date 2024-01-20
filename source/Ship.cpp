@@ -2415,9 +2415,9 @@ void Ship::Recharge(int rechargeType, bool hireCrew)
 	pilotOkay = 0;
 
 	if(attributes.Get("shield generation"))
-		shields = max(shields, MaxShields() * ShieldRepairLimit());
+		shields = max(shields, MaxShields() * (1 - attributes.Get("nonregenerative shields")));
 	if(attributes.Get("hull repair rate"))
-		hull = max(hull, MaxHull() * HullRepairLimit());
+		hull = max(hull, MaxHull() * (1 - attributes.Get("nonregenerative shields")));
 	if(rechargeType & Port::RechargeType::Shields)
 	{
 		shields = MaxShields();
@@ -2622,24 +2622,6 @@ double Ship::MaxShields() const
 double Ship::MaxHull() const
 {
 	return attributes.Get("hull") * (1 + attributes.Get("hull multiplier"));
-}
-
-
-
-double Ship::ShieldRepairLimit() const
-{
-	double shieldLimit = attributes.Get("nonregenerative shields");
-
-
-	return 1 - shieldLimit;
-}
-
-
-
-double Ship::HullRepairLimit() const
-{
-	double hullLimit = attributes.Get("nonrepairable hull");
-	return 1 - hullLimit;
 }
 
 
@@ -3768,7 +3750,7 @@ void Ship::DoGeneration()
 		const double hullWearing = (attributes.Get("hull repair wear")
 			* (1. + attributes.Get("hull wear multiplier"))) / hullAvailable;
 		double hullRemaining = hullAvailable;
-		if(!hullDelay && hull <= (HullRepairLimit() * MaxHull()))
+		if(!hullDelay && hull <= ((1 - attributes.Get("nonrepairable hull")) * MaxHull()))
 			DoRepair(hull, hullRemaining, MaxHull(),
 				energy, hullEnergy, fuel, hullFuel, heat, hullHeat, hullWear, hullWearing);
 
@@ -3783,7 +3765,7 @@ void Ship::DoGeneration()
 		const double shieldsWearing = (attributes.Get("shield generation wear")
 			* (1. + attributes.Get("shield wear multiplier"))) / shieldsAvailable;
 		double shieldsRemaining = shieldsAvailable;
-		if(!shieldDelay && shields <= (ShieldRepairLimit() * MaxShields()))
+		if(!shieldDelay && shields <= ((1 - attributes.Get("nonregenerative shields")) * MaxShields()))
 			DoRepair(shields, shieldsRemaining, MaxShields(),
 				energy, shieldsEnergy, fuel, shieldsFuel, heat, shieldsHeat, shieldsWear, shieldsWearing);
 
@@ -3808,10 +3790,10 @@ void Ship::DoGeneration()
 			for(const pair<double, Ship *> &it : carried)
 			{
 				Ship &ship = *it.second;
-				if(!hullDelay && hull <= (HullRepairLimit() * MaxHull()))
+				if(!hullDelay && hull <= ((1 - attributes.Get("nonrepairable hull")) * MaxHull()))
 					DoRepair(ship.hull, hullRemaining, ship.MaxHull(),
 						energy, hullEnergy, heat, hullHeat, fuel, hullFuel, hullWear, hullWearing);
-				if(!shieldDelay && shields <= (ShieldRepairLimit() * MaxShields()))
+				if(!shieldDelay && shields <= ((1 - attributes.Get("nonregenerative shields")) * MaxShields()))
 					DoRepair(ship.shields, shieldsRemaining, ship.MaxShields(),
 						energy, shieldsEnergy, heat, shieldsHeat, fuel, shieldsFuel, shieldsWear, shieldsWearing);
 			}
