@@ -1455,7 +1455,7 @@ void Engine::CalculateStep()
 	{
 		if(it == player.FlagshipPtr())
 			continue;
-		bool wasUntargetable = (!it->IsTargetable());
+		bool wasUntargetable = !it->IsTargetable();
 		MoveShip(it);
 		bool isTargetable = it->IsTargetable();
 		if(flagshipSystem == it->GetSystem()
