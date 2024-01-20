@@ -892,7 +892,7 @@ ship "Merganser"
 		category "Interceptor"
 		licenses
 			Remnant
-		"cost" 6830000
+		"cost" 4830000
 		"shields" 3500
 		"hull" 3000
 		"required crew" 1
