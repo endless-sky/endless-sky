@@ -1443,10 +1443,26 @@ void Engine::CalculateStep()
 
 	// Keep track of the flagship to see if it jumps or enters a wormhole this turn.
 	const Ship *flagship = player.Flagship();
+	bool flagshipWasUntargetable = (flagship && !flagship->IsTargetable());
 	bool wasHyperspacing = (flagship && flagship->IsEnteringHyperspace());
-	// Move all the ships.
+	// First, move the player's flagship.
+	MoveShip(player.FlagshipPtr());
+	const System *flagshipSystem = (flagship ? flagship->GetSystem() : nullptr);
+	bool flagshipIsTargetable = (flagship && flagship->IsTargetable());
+	bool flagshipBecameTargetable = flagshipWasUntargetable && flagshipIsTargetable;
+	// Then, move the other ships.
 	for(const shared_ptr<Ship> &it : ships)
+	{
+		if(it == player.FlagshipPtr())
+			continue;
+		bool wasUntargetable = !it->IsTargetable();
 		MoveShip(it);
+		bool isTargetable = it->IsTargetable();
+		if(flagshipSystem == it->GetSystem()
+			&& ((wasUntargetable && isTargetable) || flagshipBecameTargetable)
+			&& isTargetable && flagshipIsTargetable)
+				eventQueue.emplace_back(player.FlagshipPtr(), it, ShipEvent::ENCOUNTER);
+	}
 	// If the flagship just began jumping, play the appropriate sound.
 	if(!wasHyperspacing && flagship && flagship->IsEnteringHyperspace())
 	{
