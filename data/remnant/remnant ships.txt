@@ -893,47 +893,31 @@ ship "Merganser"
 		licenses
 			Remnant
 		"cost" 6830000
-		"shields" 3000
-		"hull" 5000
+		"shields" 3500
+		"hull" 3000
 		"required crew" 1
 		"bunks" 3
 		"cargo space" 11
 		"fuel capacity" 600
 		"ramscoop" 1.75
-		"mass" 30
+		"mass" 60
 		"drag" 1.5
 		"heat dissipation" .9
 		"gaslining" 1
-		"outfit space" 219
-		"shield generation" 2.8
+		"outfit space" 180
+		"weapon capacity" 40
+		"engine capacity" 65
+		"shield generation" 1.4
 		"shield energy" 1.2
-		"hull repair rate" 1.8
-		"hull energy" 0.6
-		"cloak" .04
-		"cloaking energy" 2
-		"cloaking fuel" .05
+		"hull repair rate" 0.6
+		"hull energy" 0.4
+		"cloak" .03
+		"cloaking energy" 5
+		"cloaking fuel" .1
 		"atmosphere scan" 100
 		"outfit scan power" 12
 		"outfit scan efficiency" 12
 		"tactical scan power" 26
-		"ion resistance" 0.1
-		"ion resistance energy" -0.05
-		"scramble resistance" 0.1
-		"scramble resistance energy" -0.05
-		"thrust" 5.0
-		"turn" 60.0
-		"reverse thrust" 5.0
-		"flare sprite" "effect/remnant flare/small"
-			"frame rate" 5
-		"flare sound" "plasma tiny"
-		"steering flare sprite" "effect/remnant flare/small"
-			"frame rate" 5
-		"steering flare sound" "plasma tiny"
-		"reverse flare sprite" "effect/remnant flare/small"
-			"frame rate" 5
-		"reverse flare sound" "plasma tiny"
-		"weapon capacity" 85
-		"engine capacity" 70
 		weapon
 			"blast radius" 10
 			"shield damage" 100
@@ -942,7 +926,7 @@ ship "Merganser"
 	outfits
 		"Inhibitor Cannon" 2
 		
-		"Millennium Cell" 2
+		"Millennium Cell"
 		"Crystal Capacitor" 2
 		"Small Heat Shunt"
 		"Quantum Key Stone"
@@ -1107,18 +1091,6 @@ ship "Penguin"
 		"scramble protection" 0.25
 		"ion resistance" 0.05
 		"scramble resistance" 0.05
-		"thrust" 4.2
-		"turn" 80.0
-		"reverse thrust" 4.2
-		"flare sprite" "effect/remnant flare/small"
-			"frame rate" 5
-		"flare sound" "plasma tiny"
-		"steering flare sprite" "effect/remnant flare/small"
-			"frame rate" 5
-		"steering flare sound" "plasma tiny"
-		"reverse flare sprite" "effect/remnant flare/small"
-			"frame rate" 5
-		"reverse flare sound" "plasma tiny"
 		"remnant node" 1
 		weapon
 			"blast radius" 20
