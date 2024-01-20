@@ -595,6 +595,7 @@ ship "Ikatila'ej"
 
 
 ship "Lor'kas Ik 577"
+	"display name" "Karek A'awoj"
 	sprite "ship/world-ship a"
 	thumbnail "thumbnail/world-ship a"
 	attributes
@@ -670,6 +671,7 @@ ship "Lor'kas Ik 577"
 
 
 ship "Ra'gru Ik 618"
+	"display name" "Sapira A'awoj"
 	sprite "ship/world-ship b"
 	thumbnail "thumbnail/world-ship b"
 	attributes
@@ -754,6 +756,7 @@ ship "Ra'gru Ik 618"
 
 
 ship "Kas'lor Ik 582"
+	"display name" "Dathnak A'awoj"
 	sprite "ship/world-ship c"
 	thumbnail "thumbnail/world-ship c"
 	attributes
@@ -826,6 +829,7 @@ ship "Kas'lor Ik 582"
 
 
 ship "Lor'nag Ik 590"
+	"display name" "Anatrusk A'awoj"
 	sprite "ship/world-ship d"
 	thumbnail "thumbnail/world-ship d"
 	attributes
@@ -901,6 +905,7 @@ ship "Lor'nag Ik 590"
 
 
 ship "Ra'at Ik 621"
+	"display name" "Ikfar A'awoj"
 	sprite "ship/world-ship e"
 	thumbnail "thumbnail/world-ship e"
 	attributes
