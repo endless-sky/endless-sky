@@ -919,6 +919,7 @@ ship "Merganser"
 		"outfit scan efficiency" 12
 		"tactical scan power" 26
 		"ion resistance" 0.025
+		"scramble resistance" 0.025
 		weapon
 			"blast radius" 10
 			"shield damage" 100
