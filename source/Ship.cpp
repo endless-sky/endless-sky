@@ -3783,7 +3783,7 @@ void Ship::DoGeneration()
 		const double shieldsWearing = (attributes.Get("shield generation wear")
 			* (1. + attributes.Get("shield wear multiplier"))) / shieldsAvailable;
 		double shieldsRemaining = shieldsAvailable;
-		if (!shieldDelay && shields <= (ShieldRepairLimit() * MaxShields()))
+		if(!shieldDelay && shields <= (ShieldRepairLimit() * MaxShields()))
 			DoRepair(shields, shieldsRemaining, MaxShields(),
 				energy, shieldsEnergy, fuel, shieldsFuel, heat, shieldsHeat, shieldsWear, shieldsWearing);
 
