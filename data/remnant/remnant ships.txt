@@ -899,25 +899,26 @@ ship "Merganser"
 		"bunks" 3
 		"cargo space" 11
 		"fuel capacity" 600
-		"ramscoop" 1.75
-		"mass" 60
+		"ramscoop" 1.25
+		"mass" 90
 		"drag" 1.5
 		"heat dissipation" .9
 		"gaslining" 1
 		"outfit space" 180
-		"weapon capacity" 40
-		"engine capacity" 65
+		"weapon capacity" 60
+		"engine capacity" 69
 		"shield generation" 1.4
 		"shield energy" 1.2
 		"hull repair rate" 0.6
 		"hull energy" 0.4
 		"cloak" .03
-		"cloaking energy" 5
-		"cloaking fuel" .1
+		"cloaking energy" 4
+		"cloaking fuel" .075
 		"atmosphere scan" 100
 		"outfit scan power" 12
 		"outfit scan efficiency" 12
 		"tactical scan power" 26
+		"ion resistance" 0.025
 		weapon
 			"blast radius" 10
 			"shield damage" 100
@@ -931,10 +932,11 @@ ship "Merganser"
 		"Small Heat Shunt"
 		"Quantum Key Stone"
 		
-		"Crucible-Class Thruster"
 		"Anvil-Class Engine"
+		"Crucible-Class Thruster"
+		"Crucible-Class Steering"
 		"Bellows-Class Afterburner"
-		"Scram Drive"
+		"Hyperdrive"
 		
 	gun 0 -48.5
 	gun -6 -41 "Inhibitor Cannon"
@@ -955,15 +957,16 @@ ship "Merganser" "Merganser (II)"
 		"Teciimach Pod"
 		"Teciimach Canister" 3
 		
-		"Millennium Cell" 2
+		"Millennium Cell"
 		"Crystal Capacitor" 2
 		"Small Heat Shunt"
 		"Quantum Key Stone"
 		
-		"Crucible-Class Thruster"
 		"Anvil-Class Engine"
+		"Crucible-Class Thruster"
+		"Crucible-Class Steering"
 		"Bellows-Class Afterburner"
-		"Scram Drive"
+		"Hyperdrive"
 		
 	gun 0 -48.5 "Teciimach Pod"
 	gun -6 -41 "Inhibitor Cannon"
@@ -1155,34 +1158,31 @@ ship "Peregrine"
 		licenses
 			"Remnant Capital"
 		"cost" 41627000
-		"shields" 16400
-		"hull" 10600
+		"shields" 15400
+		"hull" 8600
 		"required crew" 9
 		"bunks" 25
 		"mass" 350
 		"drag" 4.3
 		"heat dissipation" 0.85
-		"fuel capacity" 1100
+		"fuel capacity" 900
 		"ramscoop" 3.25
-		"cargo space" 59
+		"cargo space" 49
 		"outfit space" 552
 		"weapon capacity" 220
 		"engine capacity" 171
-		"shield generation" 4.9
+		"shield generation" 3.9
 		"shield energy" 3.0
-		"hull repair rate" 2.5
+		"hull repair rate" 1.5
 		"hull energy" 0.90
-		"cloak" .04
-		"cloaking energy" 2.5
+		"cloak" .03
+		"cloaking energy" 3
 		"cloaking fuel" .05
 		"gaslining" 1
 		"outfit scan power" 18
 		"outfit scan efficiency" 22
-		"tactical scan power" 50
-		"ion protection" 0.25
-		"scramble protection" 0.25
-		"slowing protection" 0.25
-		"remnant node" 5
+		"tactical scan power" 39
+		"remnant node" 3
 		weapon
 			"blast radius" 240
 			"shield damage" 2400
