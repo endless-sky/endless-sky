@@ -1182,7 +1182,7 @@ ship "Peregrine"
 		"outfit scan power" 18
 		"outfit scan efficiency" 22
 		"tactical scan power" 39
-		"remnant node" 3
+		"remnant node" 5
 		weapon
 			"blast radius" 240
 			"shield damage" 2400
