@@ -479,7 +479,7 @@ outfit "Hai Zephyr Cooling"
 	"mass" 14
 	"outfit space" -14
 	"cooling" 24
-	description `This more advanced cooling system has been developed by the Unfettered with significant help from Korath scientists, who were highly amused with the Williwaw's simultaneous "primitive" design and similarities to a Korath heat shunt.`
+	description `This cooling system has been developed by the Unfettered with significant help from Korath scientists, who were highly amused that Williwaw had such a "primitive" design yet simultaneously still shared many similarities to a Korath heat shunt.`
 	description `	Although advanced for the Hai, the Korath meant this "simple" hydrogen-circulating cooler to be an easy-to-understand stopgap for immediate production, while they brought the Hai up to speed with "proper" heat shunt theory and design.`
 
 
@@ -841,8 +841,8 @@ outfit "Unfettered License"
 	category "Licenses"
 	thumbnail "outfit/true unfettered license"
 	"unplunderable" 1
-	description "This sword may be a bit of a strange license, but its intention is to inspire pride to the wearer, and when the Unfettered see it they show respect. This was given by one of their warlords as a sign of trust, and it is quite handy in fights."
-	description "	Somehow, the blade feels very light, and as though it was accompanying the strikes of its owner. The blade itself is mostly intended to be defensive, and fits you quite well even though it was clearly meant for a Hai."
+	description "This sword may be a bit of a strange license, but its intention is to inspire pride in the wearer, and when the Unfettered see it, they show respect. This was given by one of their warlords as a sign of trust, and it is quite handy in fights."
+	description "	When striking, somehow this blade feels very light, as though it was moving along with its wielder. The blade itself is mostly intended to be defensive and fits you quite well, despite clearly being meant for a Hai."
 
 outfit "Ionic Blade"
 	category "Unique"
@@ -852,7 +852,7 @@ outfit "Ionic Blade"
 	"capture defense" 10
 	"energy consumption" 0.1
 	"unplunderable" 1
-	description "This legendary blade is able to affect the surrounding energy fields, powering down any energy-based weapons the enemy may have. The field can even sometimes be used to stun nearby enemies, or even a small section of their ships, in order to open hatches or temporarily deactivate defenses. However this blade needs to be recharged before each battle, and is made useless once its power supply runs out. It also has magnetic properties - the more charged it is, the more repulsive it is to any metals, making it a lifesaver in some scenarios. Some even say it can enact a small, temporary force field around its owner, in case of emergencies."
+	description "This legendary blade is able to affect nearby electric fields, powering down any energy-based weapons the enemy may have. It generates a small EM pulse which can sometimes be wielded to stun enemies within reach, and it can even be used to open hatches or temporarily deactivate defenses. However, this blade needs to be recharged before each battle and is made useless once its power supply runs out. It also has magnetic properties - the more charged it is, the more repulsive it is to any metals, making it a lifesaver in some scenarios. The effect is almost akin to a temporary 'force field' around the wielder."
 
 outfit "Shield Beetle Pendant"
 	category "Unique"

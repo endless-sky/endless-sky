@@ -1,4 +1,4 @@
-# Copyright (c) 2022 by Hurleveur
+# Copyright (c) 2024 by Hurleveur
 # Copyright (c) 2023 by williaji for hunger stories
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the

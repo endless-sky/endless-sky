@@ -1,5 +1,5 @@
 # Copyright (c) 2015 by Michael Zahniser for the first 5 missions
-# Copyright (c) 2022 by Hurleveur and Ejo Thims for the rest
+# Copyright (c) 2024 by Hurleveur and Ejo Thims for the rest
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
@@ -848,9 +848,15 @@ mission "<uhai> 2: Prove Your Strength"
 				or
 					has "<uhai> 2: Prove Your Strength: deferred"
 					has "<uhai> 2: Prove Your Strength: offered"
-			`You start wandering in the spaceport, and on the way you notice just how much everything around you here is simple, efficient, and ordered, unlike the world of Firelode. The Unfettered present are proudly showing their weapons, more so than on other planets, and some of them are even armored. They seem ready for action, at any time. Thankfully they no longer consider you an enemy, at least for the moment.`
+			`You start wandering in the spaceport, and on the way you notice just how much everything around you here is simple, efficient, and ordered, unlike the world of Firelode.`
+				to display
+					has "visited planet: Firelode"
+			`You start wandering in the spaceport, and on the way you are surprised how it is simple, efficient, and ordered, especially for an Unfettered planet.`
+				to display
+					not "visited planet: Firelode"
+			`	The Unfettered present are proudly showing their weapons, more so than on other planets, and some of them are even armored. They seem ready for action, at any time. Thankfully they no longer consider you an enemy, at least for the moment.`
 			`	Eventually your attention is drawn to a gathering, where someone is speaking loudly to a small crowd of people. They all seem very familiar with each other, and as you watch, they have noticed you too. The one who was addressing the others saunters through the group and over to you. This could mean trouble.`
-			`	"Arrr, be this the bilge-sucking <, unfettered title> ye all speak so highly of? The one who fears not to come into our ports, and fight our ships?" He asks the others, apparently mocking you. You're a little surprised at his creative grasp of your language.`
+			`	"Arrr, be this the bilge-sucking<, unfettered title> ye all speak so highly of? The one who fears not to come into our ports, and fight our ships?" He asks the others, apparently mocking you. You're a little surprised at his creative grasp of your language.`
 			choice
 				`	"I fear nothing. Do you?"`
 					goto provoke
@@ -869,7 +875,7 @@ mission "<uhai> 2: Prove Your Strength"
 			label provoke
 			`	"So the space-monkey can speak? Let us see if it can fight as well," he says with a provocative tone.`
 			label lesson
-			`	Time for him to learn a lesson. The thought that you may be in over your head briefly crosses your mind, but you brush it aside.`
+			`	It may be time for him to learn a lesson.`
 			`	After a cheering from his crowd, the arrogant Hai then speaks to you directly. "Ye and me then, a battle of flagships. Face me far above the tallest trees, whenever ye find the courage. But rest assured, monkey, I have the skill to humiliate ye without feeding ye to the fishes!"`
 			choice
 				`	"Let me show you my worth in battle. Right now."`
@@ -880,10 +886,10 @@ mission "<uhai> 2: Prove Your Strength"
 					goto crush
 				`	(Run away.)`
 			label run
-			`	As you move away you hear laughter, but nobody tries to stop you. You have just shown to the Unfettered how much of a coward you are, and will probably never be offered any missions from them anymore.`
+			`	As you move away you hear laughter, but nobody tries to stop you. You have just shown the Unfettered how much of a coward you are, and you will probably never be offered any missions from them anymore.`
 				decline
 			label rules
-			`	"I guess it only be fair that ye know... Ye're supposed to bring only yer flagship, but if ye admit it be too weak, then more ships can be brought, so long as it still be a fair battle. Do not expect anyone to be fighting ye for honor if ye bring an armada. The challenge lasts until one of our ships is scuttled or one of us agrees to walk the plank. Ye can always stall the call to battle, if ye were to offer a symbolic bribe of 1000 credits, offered in space before the battle begins, to demand it be fought another day. After ye did that, ye must wait a full day, or 'till be considered an offense, and all nearby ships will fire at you! The challenge must eventually be answered though, no matter how long or often ye want to delay it. Finally, it is right of the victor to plunder the ashamed, but absolutely not that ye try to capture the ship. So, be ye ready to face yer doom?"`
+			`	"I guess it only be fair that ye know... Ye're supposed to bring only yer flagship, but if ye admit it be too weak, then more ships can be brought, so long as it still be a fair battle. Do not expect anyone to be fighting ye for honor if ye bring an armada. The challenge lasts until one of our ships is scuttled or one of us agrees to walk the plank. Ye can always stall the call to battle, if ye were to offer a symbolic bribe of 1000 credits, offered in space before the battle begins, to demand it be fought another day. After ye did that, ye must wait a full day, or 'twill be considered an offense, and all nearby ships will fire at you! The challenge must eventually be answered though, no matter how long or often ye want to delay it. Finally, it is the right of the victor to plunder the ashamed, but absolutely not that ye try to capture the ship. So, be ye ready to face yer doom?"`
 			choice
 				`	"Let me show you my worth in battle. Right now."`
 					goto accept
@@ -922,13 +928,13 @@ mission "<uhai> 2: Prove Your Strength"
 			branch "cheating bugger"
 				"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 > 12
 			`The captain launches right after you, and hails you as soon as you enter orbit, probably anxious to get the fight started.`
-			`	"I saw fit to bring a bit of extra crew to make it a fair fight, as it is no sitting duck that you brought! Given the fragile nature of their ships, we'll understand if they were to go down in battle. Just do not capture their ship.`
+			`	"I saw fit to bring a bit of extra crew to make it a fair fight, as it is no sitting duck that ye brought! They don't really count for the duel, in fact with how little decks they have we'll understand if they were to go down in battle, but don't ye dare commandeer their ships!`
 				to display
 					"ships: Medium Warship" + "ships: Heavy Warship" * 2 > 1
 			`	"May crossing swords sharpen our blades. Let it begin!"`
 				accept
 			label "cheating bugger"
-			`The captain hails you, "That is too big of a fleet, ye monkey! This challenge sinked, come back to me again when ye 'r ready to do it by the code! It'll cost ye <fine> for wasting my time."`
+			`The captain hails you, "That is too big of a fleet, ye monkey! This challenge be sunk. Come back to me again when ye 'r ready to do it by the code! It'll cost ye <fine> for wasting my time."`
 			action
 				fail "<uhai> 2: Prove Your Strength"
 				fine 25000
@@ -939,6 +945,7 @@ mission "<uhai> 2: Prove Your Strength"
 	npc disable
 		government "Hai (Unfettered Challenger)"
 		personality disables staying heroic target launching unconstrained
+		# note: this does not quite work as it should: it's only checked upon offering of the mission and entering a system, it should be as you launch and then we can set a condition for it
 		to spawn
 			"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 > 8
 		ship "Grasshopper (Tracker)" "Rock"
@@ -972,14 +979,14 @@ mission "<uhai> 2: Prove Your Strength"
 				to display
 					not "Unfettered Jump Drive 1: offered"
 			label fire
-			`	In the background you hear fires roaring, it seems the damage to his ship was quite serious indeed.`
+			`	In the background you hear fires roaring; it seems the damage to his ship was quite serious indeed.`
 			choice
-				`	"Be careful provoking me, you may have gotten killed! And don't count on me to repair your ship."`
+				`	"Be careful provoking me - you may have gotten killed! And don't count on me to repair your ship."`
 					goto dangerous
 				`	"What was this really about?"`
 				`	"Those weapons you were using are impressive."`
 					goto weapons
-			`	"Ye have earned the right to know. We Unfettered always seek to improve ourselves, be it in combat or otherwise. Ye travel from far away, and we do not see many strangers around here. I wanted to see how ye approached me challenge; I hoped I could find knowledge in how you lost. I may have underestimated yer ability to fight though... A mistake which I shall not make again next time."`
+			`	"Ye have earned the right to know. We Unfettered always seek to improve ourselves, be it in combat or otherwise. Ye travel from far away, and we do not see many strangers around here. I wanted to see how ye approached me challenge; I hoped I could find knowledge in how you lost. I may have underestimated yer ability to fight though... a mistake which I shall not make again next time."`
 			choice
 				`	"You could have just asked."`
 			`	"We cannot learn from words alone, and ye have not proven yerself to us as one who can be trusted, anyway. That be why I provoked ye." One of his crew mutters something from behind him, but you cannot hear it clearly. "Well, that, and yes, maybe I be a bit too prideful meself, especially when I be three sheets to the wind. I took on a challenge I should not have..." He shouts something in Hai, presumably to the crew member who just spoke.`
@@ -1005,7 +1012,7 @@ mission "<uhai> 2: Prove Your Strength"
 	on complete
 		conversation
 			`You land and the Captain joins you once he is done with repairs. He presents what looks like an aquarium as a reward for the duel.`
-			`	As you move closer to it to inspect it you are almost frightened to death by the huge scorpion looking creature rushing towards you.`
+			`	As you move closer to inspect it you are almost frightened to death by the huge scorpion looking creature rushing towards you.`
 			`	There is little time to think as the huge creature gets closer and closer!`
 			choice
 				`	(Run far away in case it escapes!)`
@@ -1015,12 +1022,12 @@ mission "<uhai> 2: Prove Your Strength"
 					goto stay
 				`	(Shoot it.)`
 					goto shoot
-			`	Surprisingly, no Unfettered look amused by the apparent cowardiness. "Fear is good, so long as it does not control you," one of them says.`
+			`	Surprisingly, no Unfettered look amused by the apparent cowardliness. "Fear is good, so long as it does not control you," one of them says.`
 			label reward
 			action
 				outfit "Heshi"
-			`	Si-Ra does not give you any explanation, instead he proceeds to raise his fist. As you do not react he gestures with his other hand, clearly meaning you ought to do the same.`
-			`	After you rise your fist in response, he bows his head so slightly you barely notice it, and moves away. You wonder what you should do with the creature, but refusing the gift does not seem like an option.`
+			`	The Captain does not give you any explanation, instead he proceeds to raise his fist. As you do not react he gestures with his other hand, clearly meaning you ought to do the same.`
+			`	After you raise your fist in response, he bows his head so slightly you barely notice it, and moves away. You wonder what you should do with the creature, but refusing the gift does not seem like an option.`
 			label end
 			action
 				log `Defeated a young Unfettered Captain in a duel, and took part in a surprisingly scary Unfettered martial ceremony.`
@@ -1032,7 +1039,7 @@ mission "<uhai> 2: Prove Your Strength"
 				accept
 			label stay
 			`	You stay there, surely impressing all Hai present! However it also means you get hit by the tail of the monster as it jumps out to hit you, and everything gets dark in a minute.`
-			`	You hear voices around you, someone screaming for help but also Si-Ra speaking calmly, "There is no cure for humans," as you hear this you sink deeper and deeper, almost losing consciousness, "there is nothing to be done. This is a fight they will have to win on their own."`
+			`	You hear voices around you, someone screaming for help, but also your recent opponent speaking calmly. "There is no cure for humans," you hear as you sink deeper and deeper, down to the edge of unconsciousness, "there is nothing to be done. This is a fight they will have to win on their own."`
 			`	Suddenly the world darkens, and you fall. When you open your eyes again, all is vivid, as if you had never seen before. You see the scorpion that attacked you, clearer than ever in all its might and with the sparks of intelligence in its eyes, before it swiftly moves away.`
 			`	You are taken far away by a beam of pure light. You see collapsed civilisations, fighting to reclaim their forgotten glory as they struggle even to feed their own people. You see a planet, once beautiful, get bombarded until not a single trace of life is left. You see stars, beautiful and seemingly eternal, get blasted away with all surrounding space. You see automated ships, repairing wounds.`
 			action
@@ -1043,15 +1050,15 @@ mission "<uhai> 2: Prove Your Strength"
 				`	(Wake up.)`
 				`	(Give up.)`
 					die
-			`	You wake up in a hospital bed, Si-Ra is there and speaks very quietly, almost gently, "That was maybe not smart, lad, but it sure was brave! You have what it takes to be one of us, just make sure you don't get killed next time." He then moves to the door behind you.`
+			`	You wake up in a hospital bed, the Captain is there and speaks very quietly, almost gently, "That was maybe not smart, lad, but it sure was brave! You have what it takes to be one of us, just make sure you don't get killed next time." He then moves to the door behind you.`
 				goto end
 			label run
 			action
 				log "Defeated a young Unfettered Captain in a duel, but it seems that was not the whole test. The second part involved a monstruous scorpion from which it felt like a good idea to run at the time. The Unfettered did not see it that way, however."
-			`	You start running away and hear Si-Ra speak to his crew, loud enough for you to hear, "The monkey is running away from danger. It would not be fit to join us indeed. It will not fight for us."`
+			`	You start running away and hear the Captain speak to his crew, loud enough for you to hear, "The monkey is running away from danger. It would not be fit to join us indeed. It will not fight for us."`
 				decline
 			label shoot
-			`	You get your weapon out and shoot the monster as it attempts to rush out of its aquarium. You are not sure if you hit it with the erupting water that came out your way as the beast emerged, but at least you are still alive!`
+			`	You get your weapon out and shoot the monster as it attempts to rush out of its aquarium. You are not sure if your shot over the aquarium hit it, because of the erupting water that came out your way as the beast emerged, but at least you are still alive!`
 				goto reward
 
 event "unfettered: JD raid plan ready"
@@ -1074,14 +1081,14 @@ mission "<uhai> 3: Recover Jump Drives"
 		has "event: unfettered: JD raid plan ready"
 	on offer
 		conversation
-			`As you pass what looks like a bar in the spaceport, you're greeted by the same Hai captain that challenged you earlier. "So we meet again! Arr, if ye be wanting to scuttle me clipper again, it'll take a lot more salt out of ye! Well... once I have her fixed and back, anyway. But that' not be why I be here, today," he says, apparently happy to see you. "I have a job for ye!"`
+			`As you pass what looks like a bar in the spaceport, you're greeted by the same Hai captain that challenged you earlier. "So we meet again! Arr, if ye be wanting to scuttle me clipper again, it'll take a lot more salt out of ye! Well... once I have her fixed and back, anyway. But that not be why I be here, today," he says, apparently happy to see you. "I have a job for ye!"`
 			choice
 				`	"What's the job about?"`
 					goto job
 				`	"Sure, I would do anything for my favorite squirrel!"`
 					goto insult
 				`	"Just admit it. You're scared to fight me."`
-			`	"Nice try, but ye will not trick this old monkey! Worry not, soon I shall have a grander vessel, and when I do, 'twill be ye that walks the plank in our next battle! Most of the time, having the bigger chase guns on yer man-o-war is all the strategy and diplomacy ye need. In this case, however, I be lacking cannons, so the best choice is for me to fold. For now, at least."`
+			`	"Nice try, but ye will not trick this old cap'n! Worry not, soon I shall have a grander vessel, and when I do, 'twill be ye that walks the plank in our next battle! Most of the time, having the bigger guns on yer man-o-war is all the strategy and diplomacy ye need. In this case, however, I be lacking cannons, so the best choice is for me to fold. For now, at least."`
 			choice
 				`	"What can I do for my favorite squirrel?"`
 					goto insult
@@ -1116,7 +1123,7 @@ mission "<uhai> 3: Recover Jump Drives"
 			label cut
 			`	"Ye humans always be obsessed with yer doubloons... So many much greater a variety of booty ye could be seeking. Rest assured, it be quite the coffer. I be taking half of the total bounty, and ye should well remember how well ye were paid for the ones ye've already delivered to me brethren."`
 			label leave
-			`	"One last warning for ye: Ye should sail the skies with a hyperdrive, especially with the dangers of where we be headed. A jump drive won't do us any favors getting there, but 'twill bring more than a mite of unwanted company. Nor should we risk the Wanderers decided to fit ye with a hempen halter from yer association with us."`
+			`	"One last warning for ye: Ye should sail the skies with a hyperdrive, especially with the dangers of where we be headed. A jump drive won't do us any favors getting there, but 'twill bring more than a mite of unwanted company. Nor should we risk whether or not the lily-livered scallywags up north would decide to fit ye with a hempen halter from yer association with us."`
 			`	You accompany him to your ship, and he seems actually impressed, even more so when seeing the interior. "Your ship indeed be... adequate, for a warrior and this task," he begrudges.`
 			`	"Hold up right there matey, the sea sooner be purple than I'd see ye can fit four drives in yer holds! Ya better make some space!"`
 				to display

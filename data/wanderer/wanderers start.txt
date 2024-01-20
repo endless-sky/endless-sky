@@ -82,7 +82,7 @@ mission "First Contact: Wanderer"
 			branch accept
 				not "<uhai> 18: Hai Language: active"
 			`	You should probably go back to the Unfettered and speak to them about the need for a diplomat, or any way to understand these aliens. He-Yi should be able to help you with this.`
-			`	Alternatively, you could go to the Hai and get your translator that way, although He-Yi will probably respect that less.`
+			`	Alternatively, you could go to the Hai and ask them for a translator instead, although He-Yi will probably respect you less.`
 				accept
 	on visit
 		dialog `Your ship is surrounded by the birdlike aliens. When you step onto the planet, one of the aliens seems to recognize you. "Ka'hai?" they seem to ask, once again mimicking the rodent-like ears of the Hai with their feathered limbs. You shake your head, for you have returned without a Hai to act as an interpreter. Maybe it would be wise to actually go to the Hai before returning to see if one will come with you.`
@@ -560,7 +560,7 @@ mission "Wanderers: Defend Vara Ke'sok Hint"
 			`	"At the [body, planet] named Vara Ke'sok, there are [raids, conquests] by Unfettered that take place. During these, various structures get [damaged, hurt]. We wish you to help [fix, mend] these by carrying <tons> of [supplies, materials]."`
 			choice
 				`	"I'd be happy to do that."`
-				`	"I'd prefer to not intervene in your conflict with the Unfettered."`
+				`	"I'd prefer not to intervene in your conflict with the Unfettered."`
 					decline
 				`	"Sorry, but I have more important matters to attend to."`
 					defer
@@ -616,9 +616,9 @@ mission "Wanderers: Defend Vara Ke'sok"
 	on complete
 		event "Sich'ka'ara restored"
 	on enter
-		dialog `As you are preparing to engage the Unfettered, one of their ships hails you. "What be a guppy like ye doing this far out to sea? Be ye lost, landlubber? This be yer last chance! Take arms to defend this world against us, and ye will be considered fettered forever. Make yer choice carefully, Captain. I strongly council ye to abort this mission, savvy?"`
+		dialog `As you are preparing to engage the Unfettered, one of their ships hails you. "What be a guppy like you doing this far out in the void? Be ye lost, landlubber? This be yer last warning! Take arms to defend this world against us, and ye will be considered Fettered forever. Make yer choice carefully, Cap'n. I strongly council ye to abort this mission, savvy?"`
 	on fail
-		dialog `The captain from earlier hails you again. "You did well to listen! We could always could use another helpful lad back in Unfettered space... Feel free to visit Darkcloak, I'll be there once I'm done with this raid. Speaking of, ye were tagged as loot so I'd recommend ye run off for the time being!"`
+		dialog `The captain from earlier hails you again. "You did well to listen! We could always could use another helpful matey back in Unfettered space... Feel free to visit Darkcloak. I'll be there once I'm done with this raid. Speaking of which, ye were tagged as loot so I'd recommend ye run off for the time being!"`
 		"reputation: Hai (Unfettered)" >?= 100
 
 	npc
@@ -1031,7 +1031,7 @@ mission "Wanderers: Alpha Surveillance A"
 				goto where
 			label oldbase
 			action
-				set "told them the alpha base location"
+				set "told wanderers the alpha base location"
 			`	"An old base, you say? They probably no longer operate there anymore then. I would advise against going there again, because it will most likely have traps."`
 			`	"Then where could they have gone?" you ask.`
 			label where
@@ -1247,12 +1247,12 @@ mission "Wanderers: Alpha Surveillance D"
 	substitutions
 		"<base found>" "It appears that you have found the Alpha base."
 		"<base found>" "You were right all along, this is indeed the Alpha base, right where you said it would be."
-			has "told them the alpha base location"
-		"<base found>" "It appears that the base was not as old and abandoned as it had first looked."
-			not "told them the alpha base location"
+			has "told wanderers the alpha base location"
+		"<base found>" "It appears that the base is not as old and abandoned as it first seemed."
+			not "told wanderers the alpha base location"
 			has "alpha: host found"
 		<guess> `".`
-		<guess> `". This probably will be the same path as last time.`
+		<guess> `". This will probably be the same path as last time.`
 			has "alpha: host found"
 	
 	on offer
@@ -1343,9 +1343,9 @@ mission "Wanderers: Alpha Surveillance D (Avalon)"
 		has "Wanderers: Alpha Surveillance D: active"
 	substitutions
 		<sensors> "but your sensors are not able to locate it, and even if you could"
-		<sensors> "you are able to locate it after some time, however"
+		<sensors> "you are able to locate it after some time. However,"
 			"outfit (installed): Value Detector" + "outfit (installed): Research Laboratory" + "outfit (installed): Surveillance Pod" + "ship model: Peregrine" + "ship model: Merganser" > 0
-		<sensors> "you still know the location from last time, however it is heavily guarded this time,"
+		<sensors> "you still know the location from last time. However, it is heavily guarded this time, and"
 			has "alpha: host found"
 	on offer
 		conversation
