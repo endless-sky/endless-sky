@@ -29,6 +29,7 @@ mission "First Contact: Gegno Vi"
 	passengers 1
 	to offer
 		not "Gegno Genocide Defense: offered"
+		has "First Contact: Quarg: offered"
 	on offer
 		conversation
 			branch "second encounter"
@@ -292,7 +293,6 @@ mission "Giaru Gegno: Quarg Contact"
 	landing
 	source "Giaru Gegno"
 	to offer
-		has "First Contact: Quarg: offered"
 		not "Gegno Genocide Defense: offered"
 	on offer
 		log "Factions" "Gegno" `The Gegno are a humanoid species to the galactic east of the core, split amongst themselves into branches. One branch is the Gegno Vi, who are spoken of to be strong and forceful brutes. The other is the Gegno Scin, mentioned to be progressers of research and technology. Apart from them, a majority of the Gegno's population consists of complacent civilians.`
