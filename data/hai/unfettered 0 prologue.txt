@@ -963,7 +963,7 @@ mission "<uhai> 2: Prove Your Strength"
 			`	"It seems ye fight admirably after all. Ye've earned my respect today," he says with a voice so calm you are surprised it came from the same captain who was recently provoking you for no apparent reason.`
 				goto fire
 			label "wanderer first"
-			`	"Well<, unfettered title>, it seems you be worthy of joining our crew! I was the one who contacted you on behalf of our ship captain, in perrot space up north! Ye've earned my respect today," he says with a voice so calm you are surprised it came from the same captain who was recently provoking you for no apparent reason.`
+			`	"Well<, unfettered title>, it seems you be worthy of joining our crew! I was the one who contacted you on behalf of our ship captain, in parrot space up north! Ye've earned my respect today," he says with a voice so calm you are surprised it came from the same captain who was recently provoking you for no apparent reason.`
 			`	"However, since I knew you I made sure to allow you to prove yerself pretty fast, but if you want to continue doing business with us, jump drives are always appreciated..."`
 				to display
 					not "Unfettered Jump Drive 1: offered"
@@ -1011,7 +1011,14 @@ mission "<uhai> 2: Prove Your Strength"
 					goto stay
 				`	(Shoot it.)`
 					goto shoot
+				`	(Try to calm it.)`
+					goto calm
 			`	Surprisingly, no Unfettered look amused by the apparent cowardliness. "Fear is good, so long as it does not control you," one of them says.`
+			label calm
+			action
+				"unfettered rep: Si-Ra" ++
+			`	You hold out your hand peacefully to try and appease it as it jumps out. Surprisingly, it stops right in front of you, and observes you, its eyes deep as the void. The Unfettered are all gawching at you, impressed by this feat of courage that is seemingly paying off. Then a nearby warrior points their weapons at it, and the scorpion-like creature moves faster than you thought possible, striking you with its tail. Then, everything gets dark.`
+				goto poisoned
 			label reward
 			action
 				outfit "Heshi"
@@ -1027,13 +1034,20 @@ mission "<uhai> 2: Prove Your Strength"
 			`	As he passes near you he quickly speaks, "It'll be a few weeks before I'm ready for more action."`
 				accept
 			label stay
-			`	You stay there, surely impressing all Hai present! However it also means you get hit by the tail of the monster as it jumps out to hit you, and everything gets dark in a minute.`
+			`	You stay there, surely impressing all Hai present! However it also means you get hit by the tail of the monster as it jumps out to hit you, and everything gets darke.`
+			label poisoned
 			`	You hear voices around you, someone screaming for help, but also your recent opponent speaking calmly. "There is no cure for humans," you hear as you sink deeper and deeper, down to the edge of unconsciousness, "there is nothing to be done. This is a fight they will have to win on their own."`
-			`	Suddenly the world darkens, and you fall. When you open your eyes again, all is vivid, as if you had never seen before. You see the scorpion that attacked you, clearer than ever in all its might and with the sparks of intelligence in its eyes, before it swiftly moves away.`
-			`	You are taken far away by a beam of pure light. You see collapsed civilisations, fighting to reclaim their forgotten glory as they struggle even to feed their own people. You see a planet, once beautiful, get bombarded until not a single trace of life is left. You see stars, beautiful and seemingly eternal, get blasted away with all surrounding space. You see automated ships, repairing wounds.`
+			`	Suddenly the world darkens, and you fall. When you open your eyes again, all is vivid, as if you had never seen before. You see the scorpion-like creature that attacked you, clearer than ever, in all its might and with a deep spark of intelligence in its eyes, before it swiftly moves away.`
+			`	Then you are taken far away by a beam of pure light. You see collapsed civilisations, fighting to reclaim their forgotten glory as they struggle to feed their own people. You see a planet, once beautiful, now being bombarded until not a single trace of life is left. You see stars, seemingly eternal, blasted away with all surrounding space. You see automated ships, repairing wounds.`
 			action
 				set "unfettered: heshi trip"
 				"unfettered rep: Si-Ra" ++
+			`	Except you never wake up. The final words you hear before all is truly dark speak of an ongoing medical crisis taking priority.`
+				to display
+					not "Unfettered Small Medicals Rush: done"
+					not "Unfettered Big Medicals Rush: done"
+					not "<uhai> 1: Bring Medicine: done"
+				die
 			`	Until, finally you are brought back by that same beam of light, and it is all you can see.`
 			choice
 				`	(Wake up.)`
@@ -1103,11 +1117,11 @@ mission "<uhai> 3: Recover Jump Drives"
 					goto cut
 			action
 				"unfettered rep: Si-Ra" --
-			`	"Jump drives be a fine spot of loot amongst me people. I would not risk one by traveling through hostile space. Ye've had one yerself, so ye should know about the scurvy dogs to the south who give no quarter. The perrots to the north would like to see me walk the plank as well... A jump drive would be of no special help to us on this voyage." He seems disappointed by you having to ask such an obvious thing.`
+			`	"Jump drives be a fine spot of loot amongst me people. I would not risk one by traveling through hostile space. Ye've had one yerself, so ye should know about the scurvy dogs to the south who give no quarter. The parrots to the north would like to see me walk the plank as well... A jump drive would be of no special help to us on this voyage." He seems disappointed by you having to ask such an obvious thing.`
 			choice
 				`	"Let's go then!"`
 					goto leave
-				`	"Perrots?"`
+				`	"parrots?"`
 					goto aliens
 				`	"Sorry, but I won't risk my ship by going anywhere close to these pirates."`
 					decline
@@ -1118,7 +1132,7 @@ mission "<uhai> 3: Recover Jump Drives"
 			choice
 				`	(Show him to your ship.)`
 					goto ship
-				`	"Perrots?"`
+				`	"parrots?"`
 			label aliens
 			`	"The aliens we be raiding, ye swab! And don't be joining that party until we tell you so!"`
 			label ship
