@@ -326,6 +326,9 @@ public:
 	// Get the maximum shield and hull values of the ship, accounting for multipliers.
 	double MaxShields() const;
 	double MaxHull() const;
+	// Get the repair limits of the ship.
+	double ShieldRepairLimit() const;
+	double HullRepairLimit() const;
 	// Get the actual shield level of the ship.
 	double ShieldLevel() const;
 	// Get how disrupted this ship's shields are.
@@ -615,6 +618,8 @@ private:
 	// Various energy levels:
 	double shields = 0.;
 	double hull = 0.;
+	double shieldsWear = 0.;
+	double hullWear = 0.;
 	double fuel = 0.;
 	double energy = 0.;
 	double heat = 0.;

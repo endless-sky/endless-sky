@@ -105,9 +105,9 @@ namespace {
 	// how much repair is available and how much energy, fuel, and heat are available.
 	// Updates the stat, the available amount, and the energy, fuel, and heat amounts.
 	void DoRepair(double &stat, double &available, double maximum, double &energy, double energyCost,
-		double &fuel, double fuelCost, double &heat, double heatCost)
+		double &fuel, double fuelCost, double &heat, double heatCost, double &wear, double wearCost)
 	{
-		if(available <= 0. || stat >= maximum)
+		if(available <= 0. || stat >= (maximum - wear))
 			return;
 
 		// Energy, heat, and fuel costs are the energy, fuel, or heat required per unit repaired.
@@ -126,6 +126,7 @@ namespace {
 			energy -= transfer * energyCost;
 			fuel -= transfer * fuelCost;
 			heat += transfer * heatCost;
+			wear += transfer * wearCost;
 		}
 	}
 
@@ -2413,10 +2414,20 @@ void Ship::Recharge(int rechargeType, bool hireCrew)
 	pilotError = 0;
 	pilotOkay = 0;
 
-	if((rechargeType & Port::RechargeType::Shields) || attributes.Get("shield generation"))
+	if(attributes.Get("shield generation"))
+		shields = max(shields, MaxShields() * ShieldRepairLimit());
+	if(attributes.Get("hull repair rate"))
+		hull = max(hull, MaxHull() * HullRepairLimit());
+	if(rechargeType & Port::RechargeType::Shields)
+	{
 		shields = MaxShields();
-	if((rechargeType & Port::RechargeType::Hull) || attributes.Get("hull repair rate"))
+		shieldsWear = 0;
+	}
+	if(rechargeType & Port::RechargeType::Hull)
+	{
 		hull = MaxHull();
+		hullWear = 0;
+	}
 	if((rechargeType & Port::RechargeType::Energy) || attributes.Get("energy generation"))
 		energy = attributes.Get("energy capacity");
 	if((rechargeType & Port::RechargeType::Fuel) || attributes.Get("fuel generation"))
@@ -2607,9 +2618,28 @@ double Ship::MaxShields() const
 }
 
 
+
 double Ship::MaxHull() const
 {
 	return attributes.Get("hull") * (1 + attributes.Get("hull multiplier"));
+}
+
+
+
+double Ship::ShieldRepairLimit() const
+{
+	double shieldLimit = attributes.Get("nonregenerative shields");
+
+
+	return 1 - shieldLimit;
+}
+
+
+
+double Ship::HullRepairLimit() const
+{
+	double hullLimit = attributes.Get("nonrepairable hull");
+	return 1 - hullLimit;
 }
 
 
@@ -3735,10 +3765,12 @@ void Ship::DoGeneration()
 			* (1. + attributes.Get("hull fuel multiplier"))) / hullAvailable;
 		const double hullHeat = (attributes.Get("hull heat")
 			* (1. + attributes.Get("hull heat multiplier"))) / hullAvailable;
+		const double hullWearing = (attributes.Get("hull repair wear")
+			* (1. + attributes.Get("hull wear multiplier"))) / hullAvailable;
 		double hullRemaining = hullAvailable;
-		if(!hullDelay)
+		if(!hullDelay && hull <= (HullRepairLimit() * MaxHull()))
 			DoRepair(hull, hullRemaining, MaxHull(),
-				energy, hullEnergy, fuel, hullFuel, heat, hullHeat);
+				energy, hullEnergy, fuel, hullFuel, heat, hullHeat, hullWear, hullWearing);
 
 		const double shieldsAvailable = attributes.Get("shield generation")
 			* (1. + attributes.Get("shield generation multiplier"));
@@ -3748,10 +3780,12 @@ void Ship::DoGeneration()
 			* (1. + attributes.Get("shield fuel multiplier"))) / shieldsAvailable;
 		const double shieldsHeat = (attributes.Get("shield heat")
 			* (1. + attributes.Get("shield heat multiplier"))) / shieldsAvailable;
+		const double shieldsWearing = (attributes.Get("shield generation wear")
+			* (1. + attributes.Get("shield wear multiplier"))) / shieldsAvailable;
 		double shieldsRemaining = shieldsAvailable;
-		if(!shieldDelay)
+		if (!shieldDelay && shields <= (ShieldRepairLimit() * MaxShields()))
 			DoRepair(shields, shieldsRemaining, MaxShields(),
-				energy, shieldsEnergy, fuel, shieldsFuel, heat, shieldsHeat);
+				energy, shieldsEnergy, fuel, shieldsFuel, heat, shieldsHeat, shieldsWear, shieldsWearing);
 
 		if(!bays.empty())
 		{
@@ -3774,12 +3808,12 @@ void Ship::DoGeneration()
 			for(const pair<double, Ship *> &it : carried)
 			{
 				Ship &ship = *it.second;
-				if(!hullDelay)
+				if(!hullDelay && hull <= (HullRepairLimit() * MaxHull()))
 					DoRepair(ship.hull, hullRemaining, ship.MaxHull(),
-						energy, hullEnergy, heat, hullHeat, fuel, hullFuel);
-				if(!shieldDelay)
+						energy, hullEnergy, heat, hullHeat, fuel, hullFuel, hullWear, hullWearing);
+				if(!shieldDelay && shields <= (ShieldRepairLimit() * MaxShields()))
 					DoRepair(ship.shields, shieldsRemaining, ship.MaxShields(),
-						energy, shieldsEnergy, heat, shieldsHeat, fuel, shieldsFuel);
+						energy, shieldsEnergy, heat, shieldsHeat, fuel, shieldsFuel, shieldsWear, shieldsWearing);
 			}
 
 			// Now that there is no more need to use energy for hull and shield

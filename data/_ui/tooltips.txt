@@ -282,6 +282,15 @@ tip "hull heat:"
 tip "hull heat multiplier:"
 	`Modifies the heat produced when repairing the hull by the given factor.`
 
+tip "hull repair wear:"
+	`Temporary maximum hull lost per second when repairing the hull.`
+
+tip "hull wear multiplier:"
+	`Modifies the temporary maximum hull lost when repairing the hull by the given factor.`
+
+tip "nonrepairable hull"
+	`The percentage of the ship's hull that cannot be repaired.`
+
 tip "hull multiplier:"
 	`Modifies the ship's total hull strength by the given factor.`
 
@@ -533,6 +542,15 @@ tip "shield heat:"
 
 tip "shield heat multiplier:"
 	`Modifies the heat produced when recharging shields by the given factor.`
+
+tip "shield generation wear:"
+	`Temporary maximum shields lost per second when recharging shields.`
+
+tip "shield wear multiplier:"
+	`Modifies the temporary maximum shields lost when recharging shields by the given factor.`
+
+tip "nonregenerative shields"
+	`The percentage of the ship's shields that cannot be regenerated.`
 
 tip "shield generation:"
 	`Shield points recharged per second. Recharging shields usually consumes energy, and may also produce heat.`
