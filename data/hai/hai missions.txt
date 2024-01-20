@@ -1666,7 +1666,8 @@ mission "Hai Film Crew 1"
 	cargo "film equipment" 50
 	passengers 80
 	source
-		attributes hai urban
+		attributes hai
+		attributes urban
 		not attributes "uninhabited" "station"
 	destination "Darkrest"
 	to offer
@@ -1762,7 +1763,8 @@ mission "Hai Film Crew 3"
 	passengers 80
 	source "Darkrest"
 	destination
-		attributes hai urban
+		attributes hai
+		attributes urban
 	to offer
 		has "Hai Film Crew 2: done"
 	on offer
