@@ -34,7 +34,7 @@ class UI;
 // Class representing a timer for triggering mission actions. Timers count
 // down a certain number of frames before triggering if the player meets the
 // conditions for the timer starting (e.g. the player is moving slowly or is near
-// a certain object), but may be reset by various actions the player takes. 
+// a certain object), but may be reset by various actions the player takes.
 class Timer {
 public:
 	enum class TimerTrigger {
