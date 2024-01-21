@@ -933,7 +933,6 @@ ship "Merganser"
 		"Small Heat Shunt"
 		"Quantum Key Stone"
 		
-		"Anvil-Class Engine"
 		"Crucible-Class Thruster"
 		"Crucible-Class Steering"
 		"Bellows-Class Afterburner"
