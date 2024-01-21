@@ -1,7 +1,7 @@
 Version 0.10.5
   * Big changes:
-    * Mining Additions (new attributes, new outfits, new ships, new mechanics, etc... will expand upon this before release).
-    * CCOR/Pirate Additions (will expand upon this before release).
+    * Expanded the mechanics behind asteroid mining, including the addition of mining lasers that increase the yield of asteroids, tractor beams that pull ores toward your ship, and dedicated mining ships in human space. (@Amazinite, @bene-dictator, @Quantumshark, @Saugia)
+    * Added a small pirate region to the south, home to the remnants of a collapsed government: the Confederated Councils of the Outer Rim. Includes the addition of various new pirate ships and weapons. This is the first of a number of planned expansions to pirate content and gameplay, with the goal of making it so that playing as a pirate is a more viable option. Stay tuned for more in future updates. (@beccabunny, @bene-dictator, @Ebreus, @Galaucus, @Quantumshark, @Saugia)
   * Bug fixes:
     * Content bugs:
       * Typo fixes. (@Corraban2, @opusforlife2, @Wedge009, @jarmokivekas, @Anarchist2, @Tangle10, @Saugia, @tibetiroka, @bene-dictator, @ziproot, @mOctave, @alexrovw, @The-Legendary-M),
@@ -36,7 +36,7 @@ Version 0.10.5
       * Added some larger Hai transport jobs. (@roadrunner56)
       * Introduced a new Kestrel variant. (@Saugia)
     * Mission changes:
-      * Added npc cargo to some existing human jobs. (@bene-dictator)
+      * Added NPC cargo to some existing human jobs. (@bene-dictator)
       * The government of the hostile ships in "Deep Archaeology" now displays as "Deep Security". (@ziproot)
       * Updated the "Heliarch Invesigate" and "Lunarium: Combat Training 2" missions to mention to return to their origins. (@Arachi-Lover)
       * The offer rate of "Stranded Field Trip" has been reduced. (@Anarchist2)
@@ -49,7 +49,7 @@ Version 0.10.5
       * Updated Ka'het outfit graphics. (@beccabunny)
       * Added a sprite for the Deep Mug. (@Anarchist2)
       * New unique projectile and hit effect graphics for the Ionic Turret. (@RisingLeaf)
-      * Lowered the brightness of the center of the map sprite for better readability. (@RisingLeaf)
+      * Lowered the brightness of the center of the map sprite for better readability of system names. (@RisingLeaf)
     * Balance:
       * Nerfed the Inferno and Blaze-pike turrets as they were a bit too strong. (@Quantumshark)
         * Inferno
@@ -74,14 +74,14 @@ Version 0.10.5
   * Game mechanics:
     * New mechanics:
       * Added gamerules for depreciation-related constants. (@1010todd)
-      * Added the ability to define custom spaceports with custom services. (@quyykk)
+      * Added the ability to define custom spaceports, controlling which services are available there and whether the spaceport will refuel, recharge, or repair your ships. (@quyykk)
       * Created two new attributes, "acceleration multiplier" and "turn multiplier", which allow the adjustment of a ship's acceleration or turn. (@Quantumshark)
       * Engine hardpoints can now be given the "gimbal" attribute to rotate engine flares when thrusting and turning. (@Azure3141)
       * The raid deterrence of a weapon now accounts for all combat damage types. (@Hurleveur)
-      * Added a new attribute, "use crew equivalent as crew", which enables the counting of "crew equivalent" as crew alongside a normal crew on a ship. (@Hurleveur)
+      * Added a new attribute, "use crew equivalent as crew", which causes the "crew equivalent" attribute to count as the total crew of the ship instead of adding to it for reputation purposes. (@Hurleveur)
       * Governments can now define default attitudes toward other governments. (@TomGoodIdea)
       * A ship's center of rotation can now be defined with a new "center" attribute. (@RisingLeaf)
-      * Npcs can now be given a "restricted" personality that follows government travel restrictions. (@Hurleveur)
+      * NPCs can now be given a "restricted" personality that follows government travel restrictions. (@Hurleveur)
       * Escorts now only pathfind through systems that the player has visited before. (@quyykk)
       * Projectiles can now be given a new "penetration count" attribute that allows them to penetrate through ships and deal damage multiple times. (@Amazinite)
     * Mechanic changes:
@@ -91,7 +91,7 @@ Version 0.10.5
     * The main view zoom levels can now be customized through the interfaces file. (@Zitchas, @Hurleveur, @quyykk)
     * Improved landing target selection when above a star. (@quyykk)
     * Ship categories for player ships are now displayed in the shop panels. (@m0ctave)
-    * Added an "on hit" mode for status overlays. (@Koranir, @warp-core, @quyykk)
+    * Added an "on hit" mode for status overlays, causing the overlay to display only after a ship has taken damage and fade away shortly after. (@Koranir, @warp-core, @quyykk)
     * Added a new map key that displays the relative danger of visited systems. (@flowers9)
     * The regions for the lists in the load panel are now defined in the interfaces file. (@warp-core)
     * Added a wider dialog box for longer dialog text. (@theweirdnut)
@@ -105,10 +105,10 @@ Version 0.10.5
     * The keyboard can now be used to navigate the plug-ins menu. (@Koranir)
     * Shop keyboard navigation now remembers the selected column when moving between differently sized rows. (@Koranir)
     * The "u" and "e" keys can now be used as shortcuts to "buy all" or "sell all" on the trading panel. (@AntimatterReactor)
-    * Added scrolling to the plug-ins panel for both the plug-ins list and plug-in descriptions. (@thewierdnut)
+    * Added scrolling to the plugins panel for both the plugins list and plugin descriptions. (@thewierdnut)
   * Under the hood:
     * Added support for formatting non-finite values. (@tibetiroka)
-    * Minor tweaks, refactors and code style changes. (@tibetiroka)
+    * Minor tweaks, refactors, and code style changes. (@tibetiroka)
     * Removed unused #includes. (@tibetiroka)
     * Migrated to C++17. (@tibetiroka, @quyykk)
     * Renamed confusingly named variables in the engine. (@Koranir)
