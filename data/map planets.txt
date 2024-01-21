@@ -1281,7 +1281,7 @@ planet Erabuthro
 	description `Erabuthro is the capital of the Bunrodean Hegemony, home to the throne of the Queen. Only those with the blessings of the Queen are allowed to set foot on the planet's surface, although receiving such blessing doesn't necessarily guarantee a warm welcome.`
 	description `	Much of the planet's land area is covered in a hexagonal pattern of city and wilderness, with every hexagonal urban area bordering an area of wilderness, as if the planet consisted of one giant city with hundreds or maybe even thousands of parks scattered across it.`
 	spaceport `The central hub of the spaceport is an engineering marvel of impossible looking structures, such as buildings with large unsupported overhangs that look as though they should collapse under their own weight. The spaceport includes many of the typical services that you would expect, but also has a number of buildings that seem to act as embassies or consulates from other worlds.`
-	spaceport `	Being an outsider on royal grounds, you are at all times escorted by a group of armed guards and a translator, although they seem to give you free reign to go wherever you want without any trouble. Only when approaching the royal palace without an invitation do they stop you.`
+	spaceport `	Being an outsider on royal grounds, you are at all times escorted by a group of armed guards and a translator, although they seem to give you free rein to go wherever you want without any trouble. Only when approaching the royal palace without an invitation do they stop you.`
 	shipyard "Bunrodea Basic"
 	shipyard "Bunrodea Advanced"
 	shipyard "Bunrodea Capital"
