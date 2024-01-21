@@ -6881,7 +6881,7 @@ mission "Derelict Informer"
 				`	"Derelict hunting?"`
 				`	"So you search for abandoned ships?"`
 					goto precisely
-			`	"Derelict hunting involves searching abandoned ship hulls. They usually have a few parts left on them that you can sell for a few credits, and if you're lucky you might even score some rare outfits or the whole hull if it's stable enough. Wouldn't recommend actually using that hull though. They're usually very fragile like this freighter here."`
+			`	"Derelict hunting involves searching abandoned ship hulls. They usually have a few parts left on them that you can sell for a few credits, and if you're lucky you might even score some rare outfits."`
 			choice
 				`	"So you search for abandoned ships and loot them?"`
 				`	"I get it, you're recycling old ships for profit."`
@@ -6895,7 +6895,7 @@ mission "Derelict Treasure Map: Ion Cannons"
 	description "Follow the treasure map you found in a derelict ship to <destination>."
 	destination "New Argentina"
 	to offer
-		has "derelict treasure map"
+		has "derelict treasure map: ion cannons"
 	on offer
 	on offer
 		conversation
@@ -6907,7 +6907,7 @@ mission "Derelict Treasure Map: Ion Cannons"
 					decline
 	on complete
 		conversation
-			`Flying low over <planet> you follow the instructions to an isolated valley where you promptly land and get to digging. After hours of shovelling the hard soil you're met with a thunk as you strike metal.`
+			`Flying low over <planet> you follow the instructions to an isolated valley where you promptly land and get to digging. After hours of shoveling the hard soil you're met with a thunk as you strike metal.`
 			branch hai
 				has "First Contact: Hai: offered"
 			`	Opening the cache reveals a large store of credits along with the alien weapons the map's owner wrote about. You marvel at their strange design and wonder at their power.`
@@ -6928,14 +6928,13 @@ mission "Derelict Treasure Map: Ion Cannons"
 mission "Derelict Family Investment 1"
 	name "Lost Family Investment"
 	description "Return the credits you found in a derelict ship to the family it belongs to."
-	name "Colin Sawyer's Investment"
 	landing
 	to offer
 		has "derelict family investment"
 	destination "Sundive"
 	on offer
 		conversation
-			`Upon landing on <origin> you take out the text log you recovered alongside the case of credits from the derelict ship. The log reveals the credits were the result of a risky investment in an attempt to buy a better life for the captain of the ship, Colin Sawyer, and his family. You assume that the captain never made it home, and looking further into the personal log you find that the family used to reside on <destination>.`
+			`Upon landing on <origin> you take out the text log you recovered alongside the case of <payment> from the derelict ship. The log reveals the credits were the result of a risky investment in an attempt to buy a better life for the captain of the ship, Colin Sawyer, and his family. You assume that the captain never made it home, and looking further into the personal log you find that the family used to reside on <destination>.`
 			`	Perhaps the family still live there.`
 			choice
 				`	(Attempt to return the credits.)`
@@ -6956,7 +6955,6 @@ mission "Derelict Family Investment 1"
 mission "Derelict Family Investment 2"
 	name "Lost Family Investment"
 	description "Return the credits you found in a derelict ship to the family it belongs to."
-	name "Colin Sawyer's Investment"
 	landing
 	to offer
 		has "Derelict Family Investment 1: done"
