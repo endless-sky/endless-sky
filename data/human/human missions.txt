@@ -6946,7 +6946,7 @@ mission "Adelita 1"
 				goto questions
 
 			label "been to hope"
-			`	"Oh, wow! It must have been a harrowing experience. Adelita does an powerful job of giving you the whole story, though, and I bet you'll still learn a lot. You might even feel as if you've been transported back there yourself," she says with a mischievous grin. "You know, this was their first work that really got them famous in the interplanetary scene, but they've been forced to close it and today's their final day. I had to see it one more time before they went."`
+			`	"Oh, wow! It must have been a harrowing experience. Adelita does a powerful job of giving you the whole story, though, and I bet you'll still learn a lot. You might even feel as if you've been transported back there yourself," she says with a mischievous grin. "You know, this was their first work that really got them famous in the interplanetary scene, but they've been forced to close it and today's their final day. I had to see it one more time before they went."`
 
 			label questions
 			choice
