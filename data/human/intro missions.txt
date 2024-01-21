@@ -12,13 +12,13 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 mission "Intro [0]"
+	priority
 	name "Passenger to <planet>"
 	description "This old-timer captain offered to ride along with you to <destination>, and to give you some tips along the way."
 	landing
 	passengers 1
 	source "New Boston"
 	destination "New Greenland"
-	
 	on offer
 		log "Finally scraped together enough money for a down payment on a starship. The interest on the mortgage is exorbitant."
 		log "Factions" "Republic" `Hundreds of years ago, the independent territories in different parts of human space agreed to join together into a single democratic government, with Earth as its capital. The rise of the Republic ushered in a long period of peace and prosperity in human history.`
