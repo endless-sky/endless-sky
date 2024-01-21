@@ -2877,7 +2877,7 @@ planet Muspel
 		fleet "Small Deep Security" 14
 
 planet Mutiny
-	attributes core pirate "core pirate"
+	attributes core "core pirate" pirate
 	landscape land/badlands13
 	description `Centuries ago, Mutiny was used as a sort of prison world for a powerful band of pirates, a place where rivals could be marooned or held for ransom, rather than killing them outright. It is a cold, dark planet, and food is scarce, but over time several villages developed in the more hospitable regions. No longer prisoners, the inhabitants who remain do so because they prefer a simple life beyond the reach of any government, on a planet that will never be stolen from them because it carries nothing of value.`
 	security 0
