@@ -31,12 +31,10 @@ class UI;
 
 
 
-// Class representing a timer for triggering mission actions
-// This requires a specification of how long to wait (base + randint(rand)),
-// a system to wait in, and whether to reset the timer upon leaving the system
-// and can optionally require the player to be idle (no acceleration), and/or
-// within or beyond a certain proximity to the system center or a
-// specific (named) system object.
+// Class representing a timer for triggering mission actions. Timers count
+// down a certain number of frames before triggering if the player meets the
+// conditions for the timer starting (e.g. the player is moving slowly or is near
+// a certain object), but may be reset by various actions the player takes. 
 class Timer {
 public:
 	enum class TimerTrigger {
@@ -57,7 +55,7 @@ public:
 
 	// Get whether the timer is optional to complete.
 	bool IsOptional() const;
-	// Get whether the timer is currently active.
+	// Get whether the timer has completed.
 	bool IsComplete() const;
 
 	// Calculate the total time to wait, including any random value.
@@ -87,7 +85,7 @@ private:
 	// The filter for the systems it can be for.
 	LocationFilter systems;
 
-	// If set, the mission the timer is attached to can be completed even without it.
+	// If set, the timer is not a necessary objection for the completion of its mission.
 	bool optional = false;
 	// Whether the timer requires the player to be idle.
 	bool requireIdle = false;
@@ -121,10 +119,10 @@ private:
 	int timeElapsed = 0.;
 	// Set to true once the timer has run to completion so we don't keep trying to save or run it.
 	bool isComplete = false;
-	// Set to true when all the conditions are met.
+	// Set to true when all the conditions are met for the timer to count down.
 	bool isActive = false;
 
-	// A place to cache the proximity object(s) so we don't have to test for them every time
+	// A place to cache the proximity object(s) so we don't have to test for them every time.
 	std::set<const StellarObject *> proximityCache;
 };
 
