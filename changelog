@@ -4,9 +4,8 @@ Version 0.10.5
     * Added a small pirate region to the south, home to the remnants of a collapsed government: the Confederated Councils of the Outer Rim. Includes the addition of various new pirate ships and weapons. This is the first of a number of planned expansions to pirate content and gameplay, with the goal of making it so that playing as a pirate is a more viable option. Stay tuned for more in future updates. (@beccabunny, @bene-dictator, @Ebreus, @Galaucus, @Quantumshark, @Saugia)
   * Bug fixes:
     * Content bugs:
-      * Typo fixes. (@Corraban2, @opusforlife2, @Wedge009, @jarmokivekas, @Anarchist2, @Tangle10, @Saugia, @tibetiroka, @bene-dictator, @ziproot, @mOctave, @alexrovw, @The-Legendary-M),
+      * Typo fixes. (@alexrovw, @Anarchist2, @bene-dictator, @Corraban2, @jarmokivekas, @LepRyot, @mOctave, @opusforlife2, @Saugia, @Tangle10, @tibetiroka, @The-Legendary-M, @ThrawnCA, @Wedge009, @ziproot, 
       * Fixed the location filters for some pirate escort jobs. (@ziproot)
-      * Added a missing "goto" in "Southern Finance 6". (@bene-dictator)
       * Added a missing departure distance to Dokdobaru. (@Arachi-Lover)
       * Various fixes to "Navy Resupply [0]". (@LazerLit)
       * Added missing conditions in the Heliarch intro. (@ziproot)
@@ -14,6 +13,12 @@ Version 0.10.5
       * Added a missing `goto` in "Saryd University Lecture". (@RedDeadUndead)
       * Fixed/adjusted a few things in the "Early South" mission set. (@RisingLeaf, @bene-dictator)
       * Corrected several outdated conditions in "FW Bloodsea 1.1". (@RisingLeaf)
+      * Gave "Remnant Cafeteria" news a location filter so it properly appears. (@warp-core)
+      * "Evacuate Lunarium" rescue jobs no longer overlap locations. (@Arachi-lover)
+      * Fixed location filters for some of the new Hai missions. (@bene-dictator)
+      * "Hai Wormhole Warning" is now correctly restricted from offering if you've started the Hai Reveal storyline. (@ziproot)
+      * "Remnant: Void Sprites 3" now lists all possible mission objectives, now informing the player why the mission doesn't complete if they don't meet the objectives. (@roadrunner56)
+      * Added proper location attributes to Clink and Mutiny. (@roadrunner56)
     * Engine bugs:
       * The drag value for a ship used in calculations has been capped to the ship's mass to avoid problematic behavior. (@warp-core)
       * Limited the heat meter length on the escort HUD. (@TomGoodIdea)
@@ -22,12 +27,16 @@ Version 0.10.5
       * Fixed a compilation error on SDL before v2.0.22. (@quyykk)
       * Corrected collision checks for fast moving flotsams. (@RisingLeaf, @Amazinite)
       * Travel plan validity checks now ensure that all systems are visible. (@Amazinite)
+      * Fixed shader compilation error that could occur on older OpenGL versions. (@RisingLeaf)
+      * Fixed a segementation fault when opening the message log. (@RisingLeaf)
+      * The player's ship now faces its flight direction on takeoff from a planet. (@TomGoodIdea)
+      * The zoom modifier is now reset if the landing zoom setting is disabled. (@TomGoodIdea)
   * Game content:
     * New content:
       * Added a new culture conversation about Earth Day. (@bene-dictator)
       * Added a few new generic human jobs. (@bene-dictator)
       * More Quarg spaceport news. (@Arachi-Lover)
-      * Added a new person ship for the Github reviewers. (@TheMarksman-ES, @Saugia, @EjoThims, @roadrunner56, @bene-dictator, @tibetiroka, @1010todd, @DarcyManoel)
+      * Added a new person ship for the Github reviewers. (@bene-dictator, @DarcyManoel @EjoThims, @roadrunner56, @Saugia, @TheMarksman-ES, @tibetiroka, @1010todd)
       * Added new Deep hails and ship names. (@bene-dictator)
       * Added a new culture conversation about Burthen. (@bene-dictator)
       * Added a new mission about transporting a stranded Paradise Worlds family back home. (@bene-dictator)
@@ -35,21 +44,26 @@ Version 0.10.5
       * A new set of bounty jobs that make use of the "entering" personality. (@Quantumshark)
       * Added some larger Hai transport jobs. (@roadrunner56)
       * Introduced a new Kestrel variant. (@Saugia)
+      * Introduced a new mission where the player can talk to the Quarg about the Coalition after having joined either the Lunarium or Heliarchs. (@Arachi-Lover)
+      * Created a few new Hai transport missions that interact with Darkrest. (@roadrunner56)
+      * Added a new mining tutorial mission to the Sparrow intro quest. (@Amazinite, @williaji)
     * Mission changes:
       * Added NPC cargo to some existing human jobs. (@bene-dictator)
       * The government of the hostile ships in "Deep Archaeology" now displays as "Deep Security". (@ziproot)
-      * Updated the "Heliarch Invesigate" and "Lunarium: Combat Training 2" missions to mention to return to their origins. (@Arachi-Lover)
+      * Updated the "Heliarch Investigate" and "Lunarium: Combat Training 2" missions to mention to return to their origins. (@Arachi-Lover)
       * The offer rate of "Stranded Field Trip" has been reduced. (@Anarchist2)
       * Adjusted the conversation in "FW Epilogue: Ijs and Katya" to better reflect the current state of the game. (@hexagonrecursion)
       * Changed the description of how deep the ocean is in "Dangerous Games 2" to be more reasonable. (@ziproot)
       * Expanded the conversation in "Sheragi Archaeology: The Box 7b" to include a "black box" joke. (@alexrovw)
       * Diversified some assisting boarding missions. (@Daeridanii1)
       * Changed how Sayari refers to humans when translating for the Wanderers in "Wanderers: Translation Machine". (@The-Legendary-M)
+      * Disabled the Gegno intro missions if the player has not done the first contact mission for the Quarg. (@Saugia)
     * Graphics:
       * Updated Ka'het outfit graphics. (@beccabunny)
       * Added a sprite for the Deep Mug. (@Anarchist2)
       * New unique projectile and hit effect graphics for the Ionic Turret. (@RisingLeaf)
       * Lowered the brightness of the center of the map sprite for better readability of system names. (@RisingLeaf)
+      * "Ringworld Debris: Quarg" has been adjusted to be more vague about the ringworld's fate. (@Arachi-Lover)
     * Balance:
       * Nerfed the Inferno and Blaze-pike turrets as they were a bit too strong. (@Quantumshark)
         * Inferno
@@ -70,7 +84,7 @@ Version 0.10.5
       * Reworked and removed some overly-wordy and complex hails. (@bene-dictator)
       * Locelace Labs will now sell Typhoon Torpedo outfits shortly after they are introduced. (@Quantumshark)
       * Small wording tweaks in the intro mission set. (@Hurleveur)
-      * Various adjustments to intro Gegno content. (@Saugia)
+      * Various adjustments to intro Gegno content. (@Saugia, @bene-dictator)
   * Game mechanics:
     * New mechanics:
       * Added gamerules for depreciation-related constants. (@1010todd)
@@ -84,6 +98,8 @@ Version 0.10.5
       * NPCs can now be given a "restricted" personality that follows government travel restrictions. (@Hurleveur)
       * Escorts now only pathfind through systems that the player has visited before. (@quyykk)
       * Projectiles can now be given a new "penetration count" attribute that allows them to penetrate through ships and deal damage multiple times. (@Amazinite)
+      * Added the ability to trigger an action when encountering an NPC. (@danaris)
+      * Ship variants can now add licenses onto the base model using a "licenses" node under "add attributes". (@UnorderedSigh)
     * Mechanic changes:
       * It is now possible to provide a single swizzle mask for an animated sprite, instead of needing one for each frame of sprite. (@RisingLeaf)
       * Adjusted the scaling of scan times with an increased amount of scanners. (@UnorderedSigh)
@@ -106,12 +122,15 @@ Version 0.10.5
     * Shop keyboard navigation now remembers the selected column when moving between differently sized rows. (@Koranir)
     * The "u" and "e" keys can now be used as shortcuts to "buy all" or "sell all" on the trading panel. (@AntimatterReactor)
     * Added scrolling to the plugins panel for both the plugins list and plugin descriptions. (@thewierdnut)
+    * The state of the caps lock key is now tied to the state of fast-forward if caps lock is used for fast-forward. (@RisingLeaf)
   * Under the hood:
     * Added support for formatting non-finite values. (@tibetiroka)
     * Minor tweaks, refactors, and code style changes. (@tibetiroka)
     * Removed unused #includes. (@tibetiroka)
     * Migrated to C++17. (@tibetiroka, @quyykk)
     * Renamed confusingly named variables in the engine. (@Koranir)
+    * ShopPanel now uses ScrollVar for its scrolling panes. (@thewierdnut)
+    * Added a new message log panel that displays past hails and status messages. (@TomGoodIdea)
   * CI/CD and development environment:
     * Added a missing word exclusion to the spellcheck CI. (@tibetiroka)
     * Fixed some failing integration tests. (@Hurleveur)
@@ -130,6 +149,7 @@ Version 0.10.5
     * The data files CI no longer needs the test_parse scripts. (@quyykk)
     * A new commit will no longer cancel the Actions running for previous commits. (@quyykk)
     * Integration tests are now allowed to run on every platform. (@quyykk)
+    * If an integration test fails due to a segfault, a reason is now given so that the error is more clear. (@quyykk)
 
 Version 0.10.4
   * Bug fixes:
