@@ -62,6 +62,9 @@ void Timer::Load(const DataNode &node)
 			if(child.Size() > 2)
 				randomWaitTime = child.Value(2);
 		}
+		else if(child.Token(0) == "elapsed")
+			// This is only for saved timers; it is not intended for the data files.
+			timeElapsed = child.Value(1);
 		else if(child.Token(0) == "idle")
 		{
 			requireIdle = true;
@@ -135,11 +138,14 @@ void Timer::Save(DataWriter &out) const
 	if(isComplete)
 		return;
 
-	int64_t timeRemaining = waitTime - timeElapsed;
 	out.Write("timer");
 	out.BeginChild();
 	{
-		out.Write("time", timeRemaining);
+		if(randomWaitTime)
+			out.Write("time", waitTime, randomWaitTime);
+		else
+			out.Write("time", waitTime);
+		out.Write("elapsed", timeElapsed);
 		if(system)
 			out.Write("system", system->Name());
 		else if(!systems.IsEmpty())
@@ -237,7 +243,7 @@ Timer Timer::Instantiate(map<string, string> &subs, const System *origin, int ju
 
 	// We also build a cache of the matching proximity object(s) for the instantiated Timer.
 	// This avoids having to do all these comparisons every Step().
-	if(system && (proximityCenter || !proximityCenters.isEmpty()))
+	if(system && (proximityCenter || !proximityCenters.IsEmpty()))
 		for(const StellarObject &proximityObject : system->Objects())
 			if(proximityObject.HasValidPlanet() && (proximityCenter == proximityObject.GetPlanet() ||
 				proximityCenters.Matches(proximityObject.GetPlanet())))
@@ -248,16 +254,18 @@ Timer Timer::Instantiate(map<string, string> &subs, const System *origin, int ju
 
 
 
-bool Timer::IsComplete() const
+// Get whether the timer is optional to complete.
+bool Timer::IsOptional() const
 {
-	return isComplete;
+	return optional;
 }
 
 
 
-bool Timer::IsOptional() const
+// Get whether the timer has completed.
+bool Timer::IsComplete() const
 {
-	return optional;
+	return isComplete;
 }
 
 
@@ -269,7 +277,12 @@ void Timer::ResetOn(ResetCondition cond, PlayerInfo &player, UI *ui, const Missi
 {
 	// Check whether this timer actually wants to reset on the given condition.
 	bool reset = cond == resetCondition;
+	// If the reset condition being passed in is LEAVE_ZONE (ie, the player is no longer in proximity),
+	// then we also reset if the timer's reset condition is PAUSE (ie, player no longer meets the criteria).
 	reset |= (cond == Timer::ResetCondition::LEAVE_ZONE && resetCondition == Timer::ResetCondition::PAUSE);
+	// If the reset condition being passed in is LEAVE_SYSTEM, then we also reset if either of the other two
+	// conditions is specified for the timer, since we are then necessarily outside the zone, and thus the
+	// clock is stopped.
 	reset |= (cond == Timer::ResetCondition::LEAVE_SYSTEM && (resetCondition == Timer::ResetCondition::PAUSE
 				|| resetCondition == Timer::ResetCondition::LEAVE_ZONE));
 	if(isActive && reset)
