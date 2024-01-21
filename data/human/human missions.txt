@@ -6899,39 +6899,77 @@ mission "Adelita 1"
 	description `Transport <tons> of exhibition installations to <destination> for the Adelita collective. Payment is <payment>.`
 	minor
 	cargo "exhibition installations" 5
-	source
-		attributes "paradise"
-		attributes "rich"
+	source "Follower"
 	destination "Moonshake"
 	to offer
-		random < 80
-		has "Expedition to Hope 2: done"
+		or
+			random < 10
+			and
+				random < 60
+				has "Expedition to Hope 2: done"
 		"combat rating" > 40
 
 	on offer
 		conversation
-			`Walking on the tarmac of <origin>'s luxurious spaceport, you notice a significant group of people gathered around one of the larger hangars. From the signs nearby that display "The Evacuation of Hope" in bold letters, it looks like some sort of exhibition.`
+			branch "has visited"
+				has "visited planet: Hope"
+			`Walking on the edges of <origin>'s spaceport district, you notice signage advertising an exhibition based on the planet Hope and the disaster and evacuation that happened on it in 2994; you vaguely remember it as being a planet in a system southwest of New Boston. But what makes it stand out from the typical advertisements that you see on notice boards and interactive screens is its colorful language - with phrases like "Considered Offensive by Paradisians," "Why We Can't Give Up Hope," and "Evicted by the Paradise Planets."`
+				goto directions
+
+			label "has visited"
+			`Walking on the edges of <origin>'s spaceport district, you notice signage advertising an exhibition based on the planet Hope and the disaster and evacuation that happened on it in 2994; you remember having been there once before on an excursion. But what makes it stand out from the typical advertisements that you see on notice boards and interactive screens is its colorful language - with phrases like "Considered Offensive by Paradisians," "Why We Can't Give Up Hope," and "Evicted by the Paradise Planets."`
+
+			label directions
+			`	At the bottom of each sign are the directions to get to the exhibition. It appears to be located in a warehouse yard nearby, where the spaceport district borders the city that surrounds it.`
 			choice
 				`	(Check it out.)`
-				`	(Not right now.)`
-					defer
-
-			`	You approach some of the people at the end of the line and ask what's going on. "It's Adelita's exhibition on the evacuation of Hope," says an excited young woman. "It was their first work that really got them famous. The last week of each of their exhibitions is always free, so this is a great chance to see it if you haven't already."`
+				`	(Not interested.)`
+					decline
+			`	Following the signage you notice a significant group of people gathered in front in front of a large warehouse that stands out amongst the rest of the warehouses in the yard. As you wait in the queue a young woman lines up behind you with a readily apparent exuberance and asks you, "I'd like to know, out of interest, how much you know about Hope and its history?"`
 			choice
-				`	"Sure, why not."`
-				`	"Maybe some other time."`
-					defer
+				`	"Not much at all."`
+				`	"I come from the Dirt Belt, but I really don't know too much about what happened on Hope."`
+				`	"I've been there myself and know what happened, but other than that I don't know."`
+					goto "been to hope"
+					to display
+						has "visited planet: Hope"
+						or
+							not "Expedition to Hope 2: done"
+							not "FW Katya 4: done"
+				`	"I've been there myself, actually, and met some people affected by it."`
+					goto "been to hope"
+					to display
+						or
+							has "Expedition to Hope 2: done"
+							has "FW Katya 4: done"
+			`	"Well, then it's a good thing you're seeing Adelita's exhibition on Hope. You'll be surprised at how powerful it is, and you'll learn a lot about the whole sad tragedy that happened there and what Parliament and the Paradise Worlds did to everybody who tried to help," she says sullenly. "You know, this was their first work that really got them famous in the interplanetary scene, but they've been forced to close it and but today's their final day. I had to see it one more time before they went."`
+				goto questions
 
-			`	"You're going to love it," she says. "No one knows who they really are, but Adelita's work is what inspired me to study journalism. Their use of mixed media, their eye for story telling... I just love it."`
-			`	You reach the entrance to the exhibition soon enough. Inside is a large room filled with photos, videos, interviews, and other mixed media. They focus on three groups: the refugees of Hope, the Navy that saved them, and the Paradise Worlds that protested the evacuation. At one end of the hangar, there is an installation with nearly a hundred original protest signs from rallies against the Dirt Belt and the Republic Navy; some of them are quite crude and tasteless. It's a strong rebuke to see those displayed here on a Paradise Planet.`
+			label "been to hope"
+			`	"Oh, wow! It must have been a harrowing experience. Adelita does an powerful job of giving you the whole story, though, and I bet you'll still learn a lot. You might even feel as if you've been transported back there yourself," she says with a mischievous grin. "You know, this was their first work that really got them famous in the interplanetary scene, but they've been forced to close it and today's their final day. I had to see it one more time before they went."`
+
+			label questions
+			choice
+				`	"Who's Adelita?"`
+				`	"Why did they have to close it?"`
+					goto signage
+
+			`	"They're an independent journalistic collective whose goals are to bring the injustices of human civilization to light. No one knows who they really are, but Adelita's work is what inspired me to study journalism. Their use of mixed media, their eye for story telling... I just love it. I know you're going to love it too," she says.`
+				goto exhibition
+
+			label signage
+			`	"Well, this exhibition used to be permanent and it garnered a lot of attention, but the planetary government was pressured by the Paradise Planets to force Adelita to leave because it gave such a candid view of what they did to those poor people. Personally, I think what Parliament and the Paradise Planets have been doing to the people of Hope and their advocates like Adelita has been just abhorrent and wrong."`
+
+			label exhibition
+			`	You reach the entrance to the exhibition soon enough. Inside is a large room filled with photos, videos, interviews, and other mixed media. They focus on three groups: the refugees of Hope, the Navy that saved them, and the Paradise Worlds that protested the evacuation. At one end of the hangar, there is an installation with nearly a hundred original protest signs from rallies against the Dirt Belt and the Republic Navy; some of them are quite crude and tasteless. It's a strong rebuke to see those displayed here, so close to the Paradise Planets.`
 			`	There are many, many photos, but one in particular catches your eye. It's of a woman standing in line to board a ship, a baby held at her hip and a look of sadness and determination on her face. The mother and child's cheeks, rosy and chapped, stand out in contrast with the cold blues in the background.`
-			`	You head towards the exit, but as the automatic doors open, an arctic blast rushes at you from every direction. Instead of the spaceport's open apron, you find yourself in a life-sized 3D representation of the evacuation of Hope, complete with simulated climate effects and a projected horizon. There are huge Navy Cruisers and Auxiliaries in a snowy field near a small town gradually being covered by ash as hundreds of refugees slowly board. But what stands out most is the massive volcano erupting in the background.`
+			`	You head towards the exit, but as the automatic doors open, an arctic blast pummels into you from out of nowhere. Instead of <origin>'s spaceport, you find yourself in a life-sized 3D representation of the evacuation of Hope, complete with simulated climate effects and a projected horizon. There are huge Navy Cruisers and Auxiliaries in a snowy field near a small town gradually being covered by ash as hundreds of refugees slowly board. But what stands out most is the massive volcano erupting in the background.`
 			`	"It's more of a collage than an exact rendering," says the young woman you met in line, having followed you all this way. "They took 3D recordings from different moments and areas of Hope and edited them together in various loops. The volcano was actually on the other side of the planet, for example. The magic of editing. So what do you think?"`
 			choice
 				`	"Impressive."`
 				`	"It's alright."`
 
-			`	"Well, it was just as I imagined it," the woman replies. "Oh! I have an exam to cram for. Enjoy the exhibition; I think it closes soon." She heads for the exit.`
+			`	"I've been here ten times and I always manage to be awestruck," the woman replies. "Enjoy the exhibition; I think it will close soon, and for the last time." She heads for the exit.`
 			choice
 				`	(Continue wandering around the exhibit.)`
 				`	(Go to the exit.)`
@@ -6964,11 +7002,11 @@ mission "Adelita 1"
 				accept
 
 			label decline
-			`	"Oh. I'm surprised you would turn down so much money for such little work as well as a chance to meet the artists. But it's your call." Mariel glances at her watch. "Well, anyway, the exhibit is closed. I'm going to have to ask you to leave."`
+			`	"Oh. I'm surprised you would turn down so much money for such little work as well as a chance to meet the artists. But it's your call." Mariel glances at her watch. "Well, anyway, the exhibition has closed. I'm going to have to ask you to leave."`
 				decline
 
 			label exit
-			`	Following where the woman went, you find the true exit of the hangar and go back out onto the familiar spaceport tarmac.`
+			`	Following where the woman went, you find the true exit of the warehouse and go back out onto the more familiar grounds of <origin>'s spaceport.`
 				decline
 
 	on accept
@@ -7186,8 +7224,6 @@ mission "Adelita 4"
 		ship "Quicksilver" "Dog's Leash"
 		ship "Quicksilver" "Burning Whip"
 		ship "Quicksilver" "Iron Chains"
-		on disable
-			set "adelita: killed pirates"
 
 	on visit
 		dialog `Your escort carrying the spy drones was left behind. Better take off and wait for them to enter the system.`
@@ -7208,17 +7244,9 @@ mission "Adelita 5"
 
 	on offer
 		conversation
-			branch "killed pirates"
-				has "adelita: killed pirates"
-
-			`You managed to evade the Quicksilvers and arrive on <origin> alive. As soon as you land, Ale and River rush on board, obviously relieved to be out of their disguises, and they spend a lot of time talking with Bunker about his part of the mission. Although exhausted, both are eager to get back and process what they filmed - both emotionally and literally.`
+			`You managed to deal with the Quicksilvers and arrive on <origin> alive. As soon as you land, Ale and River rush on board, obviously relieved to be out of their disguises, and they spend a lot of time talking with Bunker about his part of the mission. Although exhausted, all of them are eager to get back and process what they filmed - both emotionally and literally.`
 			`	"That was horrible, but we got it done," Ale mumbles. "Can we leave now?"`
-				launch
-
-			label "killed pirates"
-			`You managed to neutralize the Quicksilvers and arrive on <origin> alive. As soon as you land, Ale and River rush on board, obviously relieved to be out of their disguises, and they spend a lot of time talking with Bunker about his part of the mission. Although exhausted, all of them are eager to get back and process what they filmed - both emotionally and literally.`
-			`	"That was horrible, but we got it done," Ale mumbles. "Can we leave now?"`
-				launch
+				accept
 
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
