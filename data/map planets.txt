@@ -404,7 +404,7 @@ planet Bluerun
 	attributes hai station uninhabited
 	landscape land/station33
 	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere, and a status panel indicates that the station's generators are functional but shut down, with standby mechanisms running on solar power alone.`
-	description `	Bluerun seems to have been mainly meant for civilian habituation, but extensive mineral processing facilities indicate that ore refining was a sizable industry here. No doubt the designers of this station sought to take advantage of the large number of metallic asteroids in this system and process ores stationside rather than rely solely on Stonebreak's facilities. Doing so presumably reduced the resource burden caused by the massive influx of migrants to this station.`
+	description `	Bluerun seems to have been mainly built for civilian habituation, but extensive mineral processing facilities indicate that ore refining was once a sizable industry here. No doubt the designers of this station sought to take advantage of the large number of metallic asteroids in this system and process ores stationside rather than rely solely on Stonebreak's facilities. Doing so presumably reduced the resource burden caused by the massive influx of migrants to this station.`
 	government Uninhabited
 	bribe 0
 	security 0
@@ -2280,7 +2280,7 @@ planet Ironfirth
 	attributes hai station uninhabited
 	landscape land/station44
 	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere, and a status panel indicates that the station's generators are functional but shut down, with standby mechanisms running on solar power alone.`
-	description `	Judging by the size of the docking bay in this station, there was a substantial level of inter-system traffic between Ironfirth and Makerplace. The station's former population most likely communted to the planet for work, filling up its factories and ballooning their output. Considering how busy it must have been in its prime, the docking bay is eerily quiet.`
+	description `	Judging by the size of the docking bay in this station, there appeared to be a substantial level of intra-system traffic between Ironfirth and Makerplace. The station's former population most likely communted to the planet for work, filling up its factories and ballooning their output. Considering how busy it must have been in its prime, the docking bay is eerily quiet.`
 	government Uninhabited
 	bribe 0
 	security 0
@@ -3532,7 +3532,7 @@ planet Redwatch
 	attributes hai station uninhabited
 	landscape land/station6
 	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere, and a status panel indicates that the station's generators are functional but shut down, with standby mechanisms running on solar power alone.`
-	description `	In contrast to the Hai's normally durable engineering, this station appears to have sustained substantial damage since it was abandoned. Given its proximity to Unfettered space, the station's scars are most likely a reflection of the current war going on between the Hai and their northern brethren.`
+	description `	In contrast to the Hai's normally durable engineering, this station appears to have sustained substantial damage since it was abandoned. Given its proximity to Unfettered space, the station's scars are most likely a reflection of the current war taking place between the Hai and their northern brethren.`
 	government Uninhabited
 	bribe 0
 	security 0
