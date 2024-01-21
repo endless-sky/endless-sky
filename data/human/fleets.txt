@@ -2525,9 +2525,6 @@ fleet "Large Northern Pirates"
 	variant 1
 		"Fury (Heavy)" 2
 		"Firebird (Missile)"
-	variant 1
-		"Bactrian"
-		"Dagger" 3
 
 fleet "pirate raid"
 	government "Pirate"
@@ -3441,26 +3438,6 @@ fleet "Hired Guns"
 		"Splinter (Laser)"
 	variant 1
 		"Vanguard (Particle)"
-		"Splinter (Proton)"
-	variant 1
-		"Bactrian (Hired Gun)"
-		"Dagger" 3
-		"Modified Argosy" 2
-	variant 1
-		"Bactrian (Hired Gun)"
-		"Mule (Heavy)"
-		"Dagger" 4
-	variant 1
-		"Bactrian (Hired Gun)"
-		"Dagger" 3
-		"Corvette"
-	variant 1
-		"Bactrian (Hired Gun)"
-		"Dagger" 3
-		"Splinter (Laser)"
-	variant 1
-		"Bactrian (Hired Gun)"
-		"Dagger" 3
 		"Splinter (Proton)"
 
 # The Navy forces which blockade the wormhole during the Hai crisis.
