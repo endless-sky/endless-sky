@@ -2881,6 +2881,34 @@ ship "Nest" "Nest (Sidewinder)"
 		Hyperdrive
 
 
+ship "Nest" "Nest (Miner)"
+	outfits
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 60
+		"Mining Laser Turret"
+		"Tractor Beam" 2
+		"Heavy Anti-Missile Turret"
+		
+		"Asteroid Scanner"
+		"S3 Thermionic"
+		"LP072a Battery Pack"
+		"D41-HY Shield Generator"
+		"Large Radar Jammer"
+		"Cargo Expansion"
+		"Laser Rifle" 3
+		
+		"Capybara Reverse Thruster"
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Scram Drive"
+	gun "Meteor Missile Launcher"
+	gun "Meteor Missile Launcher"
+	turret "Mining Laser Turret"
+	turret "Tractor Beam"
+	turret "Tractor Beam"
+	turret "Heavy Anti-Missile Turret"
+
+
 
 ship "Nighthawk" "Nighthawk (Raider)"
 	crew 28
