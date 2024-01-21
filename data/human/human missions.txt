@@ -6893,3 +6893,94 @@ mission "Returning to Paradise"
 			action
 				payment 120000
 			`You're not sure if you've ever met a more pretentious and entitled family. The girls fought non-stop, but fortunately, the family was satisfied with the luxury accommodations on your ship. Once you land on <planet>, the lady gives you <payment> and the family leave without a word of thanks; they never even tell you their names. Nonetheless, you're happy to be rid of them.`
+
+mission "Bactrian Seizure"
+	name "Surrender your Bactrian to Deep Security on <planet>"
+	description `Deep Security has demanded that you surrender the stolen Bactrian in your possession to their offices on <destination>. They promise a "substantial reward."`
+	landing
+	source
+		government "Republic"
+	destination "Valhalla"
+	deadline 30
+	repeat
+	to offer
+		not "license: City-Ship"
+		has "ship model: Bactrian"
+	on offer
+		conversation
+			`As you land on <origin>, you see a contingent of officers wearing Deep Security uniforms waiting for you at the landing site. They wait patiently as you finish your landing routine and exit your ship. A woman with elaborate epaulettes and rank insignia steps forward and speaks to you.`
+			`	"<first> <last>?" She glances down at a tablet in her hand. "You are <first> <last>, correct?"`
+			choice
+				`	"Yes? How can I help you?`
+					goto reason
+				`	(Remain silent.)`
+			`	She stares at you for an awkward moment before breaking eye contact to look at the Bactrian behind you. "I suppose it doesn't really matter if you answer me." She shrugs and continues.`
+			label reason
+			`	"Deep Security has been made aware that you recently came into possession of a stolen Bactrian. As you may know, Bactrians are considered the sovereign property of the Deep - only to be piloted by licensed individuals." She gives you a practiced smile which does not reach her eyes. "The Deep would like to thank you for bringing this lost ship back into the fold. You are to return the vessel to <destination> by <day> in exchange for a substantial reward. Think of it as a finder's fee. We greatly appreciate your cooperation in this matter."`
+			branch oneship
+				"total ships" < 2
+			label walksaway
+			`	She begins to walk away.`
+			choice
+				`	"And if I refuse?"`
+					goto refuse
+				`	"Understood."`
+				`	(Remain silent.)`
+			`	As she leaves, the contingent of Deep Security officers turn on their heels and walk with her, leaving you at the landing pad alone.`
+				accept
+			label refuse
+			`	The officer stops in her tracks and turns to you. The smile is gone, replaced with a hard glare.`
+			`	"That wasn't a request," she says coldly, almost too quietly to hear. Then, she seems to compose herself and forces a smile. Tapping on her tablet, she brings up a display with an official-looking Republic seal and the words "Penal Code" in large bold letters.`
+			`	"According to the Dereliction and Salvage Act of 2976, article three, section seven, subsection A, unlicensed pilots found in possession of any city-ship, including but not limited to ships in the Lionheart 'Bactrian' class must surrender ownership of such ships within 30 days of having been given lawful notice under subsection B." She quotes the text of the law robotically, as if having recited it many times. "Failure to comply constitutes a Class B felony as described under article one, section one, subsection C." She looks at you with that same rictus smile on her face.`
+			choice
+				`	"Uhhh..."`
+			`	"In layman's terms, you would become an enemy of the Deep and, by extension, the Republic should you unwisely choose not to comply. Once again, we greatly appreciate your cooperation in this matter."`
+			`	She turns her back to you and walks away. As she leaves, the contingent of Deep Security officers turn on their heels and walk with her, leaving you at the landing pad alone.`
+				accept
+			label oneship
+			`	The officer looks down at her tablet again and frowns. "My records show that came here with only one ship - the Bactrian in question, I presume." She nods at the giant city-ship behind you. "Rest assured that your compensation will be sufficient to purchase a decent replacement ship at the <planet> shipyard, should you so choose."`
+				goto walksaway
+	to complete
+		has "ship model: Bactrian"
+	on visit
+		dialog
+			`	You have landed on <planet>, but you did not bring your Bactrian with you. As a reminder, Deep Security has given you until <date> to return the Bactrian here.`
+	on complete
+		conversation
+			`You land on <planet> and see another detachment of Deep Security officers waiting for you. This time, a man with similar rank insignia steps forward and gives you a genuine smile.`
+			`	"Welcome to <planet>, Captain <last>. I presume you are here to return the Bactrian?"`
+			choice
+				`"Yes, of course."`
+				`"Only because you forced my hand."`
+				`"Absolutely not. Stay away from my ship."`
+					goto violence
+			`	"Thank you, Captain." He looks at you almost apologetically. "We really are grateful that you returned this ship to us. We here in the Deep feel a special connection to these beauties." He pauses and looks fondly at the city-ship behind you. "We hate to see them misused by pirates and untrusted individuals."`
+			branch positiverep
+				"reputation: Deep Security" > 1
+			`	He hesitates for a moment before continuing.`
+			label positiverep
+			`	"You know, there is a legitimate way that you can pilot one of these ships," he says. "Earning the trust of the Deep is no easy task, but the government has been known to grant city-ship licenses to those whom make unique contributions to the safety and security of our little corner of the galaxy."`
+			`	He leans in close and whispers in your ear. "If I were you, I would look for any 'mysterious' jobs that you may find posted on job boards here in the Deep."`
+			# Need combat rating of at least 65 to qualify for any Deep convoy missions
+			branch highcombatrating
+				"combat rating" > 65
+			`	He takes a step back and looks at you appraisingly. "You may also want to brush up on your space combat skills. Deep Security will sometimes offer contracts to independent captains who have proven experience in combat."`
+			label highcombatrating
+			`	The officer turns to walk away, but stops himself almost immediately.`
+			`	"Oh! I almost forgot to inform you that Deep Security has authorized a payment of <payment> as a reward for returning the Bactrian." With that, he leaves the landing area and the detachment of Deep Security officers march forward to board your former ship.`
+				take ship "Bactrian"
+				payment 7000000
+				decline
+			label violence
+			`	The warm smile on the officer's face evaporates and he fixes you with a momentary look of sadness before shouting to the officers behind him. "Security! Arrest this criminal!"`
+			`	The officers lunge forward with surprising speed, leaving you insufficient time to reach your ship or respond with force. Before you know it, one has taken your sidearm while the others pin you to the ground and put you in wrist restraints.`
+			`	The commanding officer speaks again, "I'm afraid that's not an option, Captain <last>." He sighs. "Regrettably, your actions have forced me to issue a fine. We will not imprison you this time, but I urge you to consider your choices more carefully in the future. Our patience is not unlimited."`
+			`	He turns around, then pauses for a moment and says, "You will still be paid for returning the Bactrian despite your illicit conduct. We're not monsters, you know."`
+			`	As he leaves, the Deep Security officers swarm your former ship. One stays behind and removes your wrist restraints, handing your sidearm back to you with a stern look before walking away.`
+				take ship "Bactrian"
+				fine 1000000
+				payment 7000000
+				decline
+	on fail
+		"reputation: Deep Security" <?= -1000
+		dialog `You failed to return the Bactrian to <planet> before the deadline! Deep Security will not take kindly to this.`
