@@ -893,11 +893,11 @@ fleet "Sea Scorpion Challenger"
 	government "Hai (Unfettered Challenger)"
 	names "hai"
 	personality disables plunders staying timid target
-	variant 5
+	variant 4
 		"Sea Scorpion (Pulse)"
-	variant 3
+	variant 2
 		"Sea Scorpion (Shields, Trackers)"
-	variant 5
+	variant 4
 		"Sea Scorpion (Ion)"
 	variant
 		"Sea Scorpion (Ionic)"
@@ -908,11 +908,11 @@ fleet "Shield Beetle Challenger"
 	government "Hai (Unfettered Challenger)"
 	names "hai"
 	personality disables plunders staying timid target
-	variant 5
+	variant 3
 		"Shield Beetle (Pulse)"
-	variant 5
+	variant 3
 		"Shield Beetle"
-	variant 5
+	variant 3
 		"Shield Beetle (Tracker)"
 	variant
 		"Shield Beetle (Ionic)"
