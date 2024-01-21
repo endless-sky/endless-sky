@@ -958,7 +958,7 @@ ship "Merganser" "Merganser (II)"
 		"Teciimach Pod"
 		"Teciimach Canister" 3
 		
-		"Millennium Cell"
+		"Millennium Cell" 2
 		"Crystal Capacitor"
 		"Small Heat Shunt"
 		"Quantum Key Stone"
