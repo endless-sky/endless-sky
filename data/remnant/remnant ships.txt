@@ -928,7 +928,7 @@ ship "Merganser"
 	outfits
 		"Inhibitor Cannon" 2
 		
-		"Millennium Cell"
+		"Millennium Cell" 2
 		"Crystal Capacitor"
 		"Small Heat Shunt"
 		"Quantum Key Stone"
