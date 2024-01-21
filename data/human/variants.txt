@@ -2881,7 +2881,6 @@ ship "Nest" "Nest (Sidewinder)"
 		Hyperdrive
 
 
-
 ship "Nest" "Nest (Miner)"
 	outfits
 		"Meteor Missile Launcher" 2
