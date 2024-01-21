@@ -1166,17 +1166,15 @@ void MapPanel::DrawSystems()
 		// Ensures every multiple-star system has a unique, deterministic rotation.
 		float starAngle = node.name.length() + node.position.Length();
 		float spin = 4 * acos(0.0) / node.mapIcon.size();
+		
 
-		Point starOffset(4, 4);
-		if(node.mapIcon.size() == 1)
-			starOffset = Point(0, 0);
+		Point starRotate(cos(starAngle), sin(starAngle));
+		Point starOffset = (node.mapIcon.size() == 1) ? Point(0, 0) : Point(4, 4);
 
-
+		// Draw the star sprites
 		for(string star : node.mapIcon)
 		{
 			starAngle = starAngle + spin;
-			Point starRotate(cos(starAngle), sin(starAngle));
-
 			const Body starBody = Body(SpriteSet::Get(star), pos + zoom * starOffset * starRotate, Point(0, 0), starAngle, sqrt(zoom) / 2);
 			batchDraw.Add(starBody);
 		}
