@@ -27,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+class CategoryList;
 class Color;
 class ConditionsStore;
 class Conversation;
@@ -74,11 +75,12 @@ class Wormhole;
 // universe.
 class GameData {
 public:
-	static std::future<void> BeginLoad(bool onlyLoadData, bool debugMode);
+	static std::future<void> BeginLoad(bool onlyLoadData, bool debugMode, bool preventUpload);
 	static void FinishLoading();
 	// Check for objects that are referred to but never defined.
 	static void CheckReferences();
-	static void LoadShaders(bool useShaderSwizzle);
+	static void LoadSettings();
+	static void LoadShaders();
 	static double GetProgress();
 	// Whether initial game loading is complete (data, sprites and audio are loaded).
 	static bool IsLoaded();
@@ -160,8 +162,8 @@ public:
 
 	// Strings for combat rating levels, etc.
 	static const std::string &Rating(const std::string &type, int level);
-	// Strings for ship, bay type, and outfit categories.
-	static const std::vector<std::string> &Category(const CategoryType type);
+	// Collections for ship, bay type, outfit, and other categories.
+	static const CategoryList &GetCategory(const CategoryType type);
 
 	static const StarField &Background();
 	static void SetHaze(const Sprite *sprite, bool allowAnimation);

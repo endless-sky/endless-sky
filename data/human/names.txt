@@ -11,7 +11,7 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-# Word lists that are re-used for many different ship name phrases
+# Word lists that are reused for many different ship name phrases
 phrase "digit"
 	word
 		"0"
@@ -232,6 +232,19 @@ phrase "adjectives"
 		"Portside"
 		"Starboard"
 		"Topside"
+		"Holy"
+		"Vulgar"
+		"Foolish"
+		"Accidental"
+		"Avuncular"
+		"Calm"
+		"Martian"
+		"Lunar"
+		"Alpine"
+		"Canine"
+		"Vulpine"
+		"Feline"
+		"Ursine"
 
 phrase "cardinal directions"
 	word
@@ -443,6 +456,7 @@ phrase "singular nouns"
 		"Cutter"
 		"Dune"
 		"Obelisk"
+		"Totem"
 
 phrase "plural nouns"
 	word
@@ -649,21 +663,23 @@ phrase "nouns of indeterminate quantity"
 		"Defiance"
 		"Borneo"
 		"Grace"
+		"Chance"
+		"Luck"
 
 phrase "the-nouns"
 	word
 		"the "
 	phrase
-		"singular nouns" 201
+		"singular nouns" 202
 		"cardinal directions" 4
 
 phrase "things you can be of"
 	word
 		"of "
 	phrase
-		"plural nouns" 110
+		"plural nouns" 142
 		"the-nouns" 205
-		"nouns of indeterminate quantity" 101
+		"nouns of indeterminate quantity" 103
 
 phrase "male titles"
 	word
@@ -674,6 +690,20 @@ phrase "male titles"
 		"Duke"
 		"Baron"
 		"Master"
+		"Brother"
+		"Hetman"
+		"Sultan"
+		"Caliph"
+		"Chairman"
+		"Uncle"
+		"Earl"
+		"Jarl"
+		"Count"
+		"Marquis"
+		"Viscount"
+		"Tsar"
+		"Sir"
+		"Pasha"
 
 phrase "female titles"
 	word
@@ -683,6 +713,12 @@ phrase "female titles"
 		"Empress"
 		"Duchess"
 		"Mistress"
+		"Sister"
+		"Chairwoman"
+		"Aunt"
+		"Madam"
+		"Countess"
+		"Baroness"
 
 phrase "gender-neutral titles"
 	word
@@ -692,6 +728,18 @@ phrase "gender-neutral titles"
 		"Admiral"
 		"Sovereign"
 		"Commodore"
+		"President"
+		"Major"
+		"Chieftain"
+		"Overseer"
+		"Cousin"
+		"Steward"
+		"Director"
+		"Prime Minister"
+		"General"
+		"Sergeant"
+		"Hajji"
+		"Rabbi"
 
 phrase "all titles"
 	phrase
@@ -960,6 +1008,11 @@ phrase "female names"
 		"Grace"
 		"Andromeda"
 		"Cassiopeia"
+
+phrase "human names"
+	phrase
+		"male names"
+		"female names"
 
 # Only used in news items, not ship names yet.
 phrase "family names"
@@ -2632,9 +2685,9 @@ phrase "civilian subphrase 1"
 	phrase
 		"male names" 124
 		"female names" 132
-		"singular nouns" 201
-		"plural nouns" 110
-		"nouns of indeterminate quantity" 101
+		"singular nouns" 202
+		"plural nouns" 142
+		"nouns of indeterminate quantity" 103
 	phrase
 		"sometimes a successor"
 
@@ -2644,14 +2697,14 @@ phrase "civilian subphrase 1"
 # Cobalt Winds
 phrase "civilian subphrase 2"
 	phrase
-		"adjectives" 152
-		"singular nouns" 201
-		"nouns of indeterminate quantity" 101
+		"adjectives" 165
+		"singular nouns" 202
+		"nouns of indeterminate quantity" 103
 	word
 		" "
 	phrase
-		"singular nouns" 201
-		"plural nouns" 110
+		"singular nouns" 202
+		"plural nouns" 142
 
 # e.g.:
 # Xu's Flags
@@ -2668,9 +2721,9 @@ phrase "civilian subphrase 3"
 	word
 		"%'s "
 	phrase
-		"singular nouns" 201
-		"plural nouns" 110
-		"nouns of indeterminate quantity" 101
+		"singular nouns" 202
+		"plural nouns" 142
+		"nouns of indeterminate quantity" 103
 	# When making a word ending in "s" possessive, only add an apostrophe.
 	replace
 		"s%'s" "s'"
@@ -2682,13 +2735,13 @@ phrase "civilian subphrase 3"
 # Tears and Sorrow
 phrase "civilian subphrase 4"
 	phrase
-		"plural nouns" 110
-		"nouns of indeterminate quantity" 101
+		"plural nouns" 142
+		"nouns of indeterminate quantity" 103
 	word
 		" and "
 	phrase
-		"plural nouns" 110
-		"nouns of indeterminate quantity" 101
+		"plural nouns" 142
+		"nouns of indeterminate quantity" 103
 
 # e.g.:
 # Four Clouds
@@ -2747,8 +2800,8 @@ phrase "civilian subphrase 8"
 # Green Admiral
 phrase "civilian subphrase 9"
 	phrase
-		"singular nouns" 201
-		"adjectives" 152
+		"singular nouns" 202
+		"adjectives" 165
 	word
 		" "
 	phrase
@@ -2763,8 +2816,8 @@ phrase "civilian subphrase 9"
 # Moonlight of Bravery
 phrase "civilian subphrase 10"
 	phrase
-		"singular nouns" 201
-		"plural nouns" 110
+		"singular nouns" 202
+		"plural nouns" 142
 	word
 		" "
 	phrase
@@ -2780,17 +2833,17 @@ phrase "civilian subphrase 11"
 	word
 		" "
 	phrase
-		"singular nouns" 201
-		"plural nouns" 110
+		"singular nouns" 202
+		"plural nouns" 142
 		"all titles" 25
 	phrase
 		"sometimes a successor"
 
 phrase "civilian subphrase 12"
 	phrase
-		"adjectives" 152
+		"adjectives" 165
 		"nouns of indeterminate quantity" 101
-		"singular nouns" 201
+		"singular nouns" 202
 		"all titles" 25
 		"female names" 132
 	phrase
@@ -3017,6 +3070,12 @@ phrase "civilian subphrase 15"
 
 
 
+phrase "deep science vessel"
+	word
+		"D.R.S. "
+	phrase
+		"intellectuals"
+
 # Law enforcement names:
 
 phrase "republic capital"
@@ -3222,7 +3281,9 @@ phrase "deep"
 	word
 		"D.S.S. "
 	phrase
-		"intellectuals"
+		"intellectuals" 127
+		"deep planets" 18
+		"deep systems" 12
 
 phrase "intellectuals"
 	word
@@ -3233,29 +3294,43 @@ phrase "intellectuals"
 		"Avogadro"
 		"Abbe"
 		"Alcubierre"
+		"al-Haytham"
+		"al-Khwarizmi"
 		"Abbott"
 		"Alvarez"
 		"Angstrom"
 		"Anderson"
+		"Aquinas"
 		"Babbage"
 		"Bell"
 		"Becquerel"
 		"Bernoulli"
+		"Bethe"
 		"Bohr"
+		"Bose"
 		"Brahe"
+		"Bunsen"
+		"Cavendish"
+		"Cayley"
 		"Chandrasekhar"
 		"Cherenkov"
+		"Conway"
+		"Copernicus"
 		"Coriolis"
 		"Coulomb"
 		"Crick"
 		"Curie"
 		"Dalton"
+		"Darwin"
+		"Davy"
 		"Democritus"
 		"Dewar"
 		"Dirac"
 		"Doppler"
+		"Dyson"
 		"Einstein"
 		"Englert"
+		"Euclid"
 		"Euler"
 		"Edison"
 		"Fahrenheit"
@@ -3265,8 +3340,11 @@ phrase "intellectuals"
 		"Fourier"
 		"Franklin"
 		"Fresnel"
+		"Galileo"
 		"Galvani"
+		"Gauss"
 		"Geiger"
+		"Goedel"
 		"Hall"
 		"Hawking"
 		"Heisenberg"
@@ -3276,21 +3354,26 @@ phrase "intellectuals"
 		"Hopper"
 		"Hubble"
 		"Huygens"
+		"Hypatia"
 		"Jenner"
 		"Joule"
 		"Kepler"
 		"Kimura"
+		"Kirchhoff"
 		"Koch"
 		"Lagrange"
 		"Lebedev"
 		"Legasov"
 		"Leibniz"
+		"Locke"
 		"Lovelace"
 		"Lyapunov"
 		"Mach"
 		"Marconi"
 		"Maxwell"
 		"McClintock"
+		"Mendeleev"
+		"Napier"
 		"Neumann"
 		"Newcomb"
 		"Newton"
@@ -3298,6 +3381,7 @@ phrase "intellectuals"
 		"Okazaki"
 		"Oppenheimer"
 		"Pascal"
+		"Pasteur"
 		"Pauling"
 		"Penrose"
 		"Planck"
@@ -3305,10 +3389,15 @@ phrase "intellectuals"
 		"Poincare"
 		"Poisson"
 		"Porco"
+		"Ptolemy"
+		"Pythagoras"
+		"Ramanujan"
 		"Rayleigh"
 		"Richter"
 		"Roentgen"
-		"Ramanujan"
+		"Roux"
+		"Russell"
+		"Rutherford"
 		"Sagan"
 		"Schroedinger"
 		"Schwarzschild"
@@ -3316,12 +3405,53 @@ phrase "intellectuals"
 		"Snow"
 		"Suzuki"
 		"Tao"
+		"Teller"
 		"Tesla"
+		"Thomson"
 		"Turing"
 		"Venter"
+		"Volta"
 		"Watson"
 		"Watt"
 		"Weber"
+		"Wigner"
+
+phrase "deep planets"
+	word
+		"Valhalla"
+		"Muspel"
+		"Norn"
+		"Nifel"
+		"Memory"
+		"Haze"
+		"Mani"
+		"Bivrost"
+		"Asgard"
+		"Midgard"
+		"Windblain"
+		"Helheim"
+		"Alfheim"
+		"Huginn"
+		"Muninn"
+		"Fenrir"
+		"Alexandria"
+		"Leviathan"
+		"Phoenix"
+
+phrase "deep systems"
+	word
+		"Wezen"
+		"Naos"
+		"Aludra"
+		"Suhail"
+		"Regor"
+		"Markeb"
+		"Aspidiske"
+		"Epsilon Leonis"
+		"Adhara"
+		"Gomeisa"
+		"Zosma"
+		"Dubhe"
 
 phrase "militia capital"
 	word
@@ -3367,7 +3497,7 @@ phrase "trees"
 		"Elder"
 		"Elm"
 		"Eucalyptus"
-		"Ginko"
+		"Ginkgo"
 		"Hawthorn"
 		"Hazel"
 		"Heath"
@@ -4284,6 +4414,9 @@ phrase "pirate nouns"
 		"Slayer"
 		"Vulture"
 		"Anthrax"
+		"Totem"
+		"Dragon"
+		"Basilisk"
 
 phrase "pirate nouns that work after bad outcomes"
 	word
@@ -4650,7 +4783,7 @@ phrase "pirate subphrase 2"
 	word
 		" "
 	phrase
-		"pirate nouns" 110
+		"pirate nouns" 113
 		"pirate nouns that work after bad outcomes" 27
 		"bad outcomes" 52
 
@@ -4671,7 +4804,7 @@ phrase "pirate subphrase 4"
 	word
 		"%'s "
 	phrase
-		"pirate nouns" 110
+		"pirate nouns" 113
 		"pirate nouns that work after bad outcomes" 27
 		"bad outcomes" 52
 	# When making a word ending in "s" possessive, only add an apostrophe.
@@ -4689,7 +4822,7 @@ phrase "pirate subphrase 5"
 
 phrase "pirate subphrase 6"
 	phrase
-		"pirate nouns" 110
+		"pirate nouns" 113
 		"pirate nouns that work after bad outcomes" 27
 	word
 		" of "
@@ -4708,7 +4841,7 @@ phrase "pirate subphrase 7"
 
 phrase "pirate subphrase 8"
 	phrase
-		"pirate nouns" 110
+		"pirate nouns" 113
 		"pirate nouns that work after bad outcomes" 27
 		"bad outcomes" 52
 

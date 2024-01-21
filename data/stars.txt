@@ -205,11 +205,11 @@ star "star/g-supergiant"
 	icon map/a-star
 star "star/k-supergiant"
 	power 1.8
-	wind 2
+	wind 3
 	icon map/k-supergiant-star
 star "star/m-supergiant"
 	power 1.6
-	wind 2
+	wind 3.1
 	icon map/m-supergiant-star
 
 # Special stars.
@@ -230,7 +230,7 @@ star "star/nova-small"
 	wind 4
 	icon map/nova-small-star
 star "star/wr"
-	power 0.4
+	power 5
 	wind 4
 	icon map/wr-star
 star "star/protostar-orange"
@@ -297,21 +297,21 @@ star "star/l-dwarf"
 star "planet/browndwarf-l"
 	power 0.4
 	wind 0.5
-star "planet/browndwarf-l-rouge"
+star "planet/browndwarf-l-rogue"
 	power 0.4
 	wind 0.5
 	icon map/brown-dwarf-star
 star "planet/browndwarf-t"
 	power 0.3
 	wind 0.4
-star "planet/browndwarf-t-rouge"
+star "planet/browndwarf-t-rogue"
 	power 0.3
 	wind 0.4
 	icon map/brown-dwarf-star
 star "planet/browndwarf-y"
 	power 0.1
 	wind 0.3
-star "planet/browndwarf-y-rouge"
+star "planet/browndwarf-y-rogue"
 	power 0.1
 	wind 0.3
 	icon map/brown-dwarf-star

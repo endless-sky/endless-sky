@@ -36,11 +36,9 @@ namespace {
 	// disallowed or undesirable behaviors (such as dividing by zero).
 	const auto MINIMUM_OVERRIDES = map<string, double>{
 		// Attributes which are present and map to zero may have any value.
-		{"shield generation", 0.},
 		{"shield energy", 0.},
 		{"shield fuel", 0.},
 		{"shield heat", 0.},
-		{"hull repair rate", 0.},
 		{"hull energy", 0.},
 		{"hull fuel", 0.},
 		{"hull heat", 0.},
@@ -153,14 +151,18 @@ namespace {
 		{"slowing protection", -0.99},
 
 		// "Multiplier" attributes appear in numerators and are incremented by 1.
+		{"hull multiplier", -1. },
 		{"hull repair multiplier", -1.},
 		{"hull energy multiplier", -1.},
 		{"hull fuel multiplier", -1.},
 		{"hull heat multiplier", -1.},
+		{"shield multiplier", -1. },
 		{"shield generation multiplier", -1.},
 		{"shield energy multiplier", -1.},
 		{"shield fuel multiplier", -1.},
-		{"shield heat multiplier", -1.}
+		{"shield heat multiplier", -1.},
+		{"acceleration multiplier", -1.},
+		{"turn multiplier", -1.}
 	};
 
 	void AddFlareSprites(vector<pair<Body, int>> &thisFlares, const pair<Body, int> &it, int count)
@@ -168,7 +170,8 @@ namespace {
 		auto oit = find_if(thisFlares.begin(), thisFlares.end(),
 			[&it](const pair<Body, int> &flare)
 			{
-				return it.first.GetSprite() == flare.first.GetSprite();
+				return (it.first.GetSprite() == flare.first.GetSprite()
+					&& it.first.Scale() == flare.first.Scale());
 			}
 		);
 
@@ -207,6 +210,10 @@ void Outfit::Load(const DataNode &node)
 			displayName = child.Token(1);
 		else if(child.Token(0) == "category" && child.Size() >= 2)
 			category = child.Token(1);
+		else if(child.Token(0) == "series" && child.Size() >= 2)
+			series = child.Token(1);
+		else if(child.Token(0) == "index" && child.Size() >= 2)
+			index = child.Value(1);
 		else if(child.Token(0) == "plural" && child.Size() >= 2)
 			pluralName = child.Token(1);
 		else if(child.Token(0) == "flare sprite" && child.Size() >= 2)
@@ -320,7 +327,8 @@ void Outfit::Load(const DataNode &node)
 		GameData::AddJumpRange(attributes.Get("jump range"));
 
 	// Legacy support for turrets that don't specify a turn rate:
-	if(IsWeapon() && attributes.Get("turret mounts") && !TurretTurn() && !AntiMissile())
+	if(IsWeapon() && attributes.Get("turret mounts") && !TurretTurn()
+		&& !AntiMissile() && !TractorBeam())
 	{
 		SetTurretTurn(4.);
 		node.PrintTrace("Warning: Deprecated use of a turret without specified \"turret turn\":");
@@ -406,6 +414,20 @@ const string &Outfit::PluralName() const
 const string &Outfit::Category() const
 {
 	return category;
+}
+
+
+
+const string &Outfit::Series() const
+{
+	return series;
+}
+
+
+
+const int Outfit::Index() const
+{
+	return index;
 }
 
 

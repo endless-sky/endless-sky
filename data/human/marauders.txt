@@ -151,11 +151,11 @@ ship "Marauder Bounder"
 		"Volcano Afterburner"
 		"Hyperdrive"
 		
-	engine -12 44
-	engine 12 44
-	gun 0 -85 "Particle Cannon"
-	turret -38 7 "Quad Blaster Turret"
-	turret 38 7 "Quad Blaster Turret"
+	engine -10 44
+	engine 10 44
+	gun 0 -84.5 "Particle Cannon"
+	turret -38 12 "Quad Blaster Turret"
+	turret 38 12 "Quad Blaster Turret"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 15
@@ -183,9 +183,9 @@ ship "Marauder Bounder" "Marauder Bounder (Engines)"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 		
-	engine -12 58 .7
-	engine 0 51
-	engine 12 58 .7
+	engine -12.5 56 .7
+	engine 0 52.5
+	engine 12.5 56 .7
 	description "The previous owner of this Bounder has modified an already fast courier-scout into an even faster heavy escort interceptor with some truly enormous engines, giving it incredible maneuverability for its size."
 
 
@@ -210,12 +210,12 @@ ship "Marauder Bounder" "Marauder Bounder (Weapons)"
 		"A255 Atomic Steering"
 		"Hyperdrive"
 		
-	engine -15 44
-	engine 15 44
-	gun -7 -77 "Modified Blaster"
-	gun 7 -77 "Modified Blaster"
-	turret -37 4 "Heavy Laser Turret"
-	turret 37 4 "Heavy Laser Turret"
+	engine -10 44
+	engine 10 44
+	gun -9 -84.5 "Modified Blaster"
+	gun 9 -84.5 "Modified Blaster"
+	turret -38 12 "Heavy Laser Turret"
+	turret 38 12 "Heavy Laser Turret"
 	description "Simultaneously the deadliest and most graceful interceptor in the galaxy, this former Bounder courier-scout has been equipped with incredibly powerful weapons for a ship of its size."
 
 
@@ -282,22 +282,22 @@ ship "Marauder Falcon" "Marauder Falcon (Engines)"
 	sprite "ship/mfalcone"
 	thumbnail "thumbnail/mfalcone"
 	add attributes
-		"engine capacity" 55
+		"engine capacity" 25
 	outfits
 		"Electron Beam" 4
-		"Blaster Turret" 2
+		"Quad Blaster Turret" 2
 		"Modified Blaster Turret" 2
 		
 		"Fusion Reactor"
 		"LP144a Battery Pack"
-		"D41-HY Shield Generator"
+		"D94-YV Shield Generator"
 		"Large Radar Jammer"
 		"Liquid Helium Cooler"
 		"Outfits Expansion" 3
 		"Laser Rifle" 80
 		
 		"A860 Atomic Thruster"
-		"A865 Atomic Steering"
+		"A525 Atomic Steering"
 		"Hyperdrive"
 	
 	engine -23.5 140 .7
@@ -309,8 +309,8 @@ ship "Marauder Falcon" "Marauder Falcon (Engines)"
 	gun 19 -76.5 "Electron Beam"
 	turret -16 -29 "Modified Blaster Turret"
 	turret 16 -29 "Modified Blaster Turret"
-	turret -50 39.5 "Blaster Turret"
-	turret 50 39.5 "Blaster Turret"
+	turret -50 39.5 "Quad Blaster Turret"
+	turret 50 39.5 "Quad Blaster Turret"
 	description "Whoever modified this Falcon clearly valued speed above all else. Major sections of the hull have been reconfigured to accommodate the largest possible engines. If hot-rodding across the galaxy in a 1000-ton warship that handles like a Flivver is your dream, look no further."
 
 
@@ -531,7 +531,7 @@ ship "Marauder Leviathan" "Marauder Leviathan (Engines)"
 	sprite "ship/mleviathane"
 	thumbnail "thumbnail/mleviathane"
 	add attributes
-		"engine capacity" 80
+		"engine capacity" 40
 	outfits
 		"Electron Beam" 4
 		"Quad Blaster Turret" 4
@@ -539,13 +539,14 @@ ship "Marauder Leviathan" "Marauder Leviathan (Engines)"
 		"Fusion Reactor"
 		"LP144a Battery Pack"
 		"D94-YV Shield Generator"
+		"D67-TM Shield Generator"
 		"Large Radar Jammer"
 		"Liquid Helium Cooler"
 		"Liquid Nitrogen Cooler"
 		"Outfits Expansion" 2
 		"Laser Rifle" 69
 		
-		"A860 Atomic Thruster"
+		"A520 Atomic Thruster"
 		"A865 Atomic Steering"
 		"Hyperdrive"
 	
@@ -633,12 +634,12 @@ ship "Marauder Manta"
 	
 	engine -33 40
 	engine 33 40
+	gun -68.5 -33 "Meteor Missile Launcher"
+	gun 68.5 -33 "Meteor Missile Launcher"
 	gun -20 -31 "Plasma Cannon"
 	gun 20 -31 "Plasma Cannon"
 	gun -26.5 -30 "Plasma Cannon"
 	gun 26.5 -30 "Plasma Cannon"
-	gun -68.5 -33 "Meteor Missile Launcher"
-	gun 68.5 -33 "Meteor Missile Launcher"
 	turret 0 -28 "Quad Blaster Turret"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
@@ -714,7 +715,7 @@ ship "Marauder Manta" "Marauder Manta (Weapons)"
 	gun -20 -33 "Particle Cannon"
 	gun 20 -33 "Particle Cannon"
 	turret 0 -28.5 "Heavy Anti-Missile Turret"
-	description `This Manta has undergone extensive modification, featuring extra gun ports, hull plating, and shield emitters. Whoever modified it seems to have forgotten to include dedicated space for the power systems, as they're crammed in and around everything else like an afterthought. If its dry tonnage were any higher, it would be classified as a heavy warship.`
+	description `This Manta has undergone extensive modification, featuring extra hull plating, shield emitters, weapon space, and even a turret mount. Whoever modified it seems to have forgotten to include dedicated space for the power systems, as they're crammed in and around everything else like an afterthought. If its dry tonnage were any higher, it would be classified as a heavy warship.`
 
 
 

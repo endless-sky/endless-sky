@@ -61,8 +61,8 @@ namespace {
 
 // Constructor.
 ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &conversation,
-	const System *system, const shared_ptr<Ship> &ship, bool useTransactions)
-	: player(player), useTransactions(useTransactions), conversation(conversation),
+	const Mission *caller, const System *system, const shared_ptr<Ship> &ship, bool useTransactions)
+	: player(player), caller(caller), useTransactions(useTransactions), conversation(conversation),
 	scroll(0.), system(system), ship(ship)
 {
 #if defined _WIN32
@@ -111,17 +111,7 @@ void ConversationPanel::Draw()
 		Point(boxWidth, Screen::Height()),
 		back);
 
-	const Sprite *edgeSprite = SpriteSet::Get("ui/right edge");
-	if(edgeSprite->Height())
-	{
-		// If the screen is high enough, the edge sprite should repeat.
-		double spriteHeight = edgeSprite->Height();
-		Point pos(
-			Screen::Left() + boxWidth + .5 * edgeSprite->Width(),
-			Screen::Top() + .5 * spriteHeight);
-		for( ; pos.Y() - .5 * spriteHeight < Screen::Bottom(); pos.Y() += spriteHeight)
-			SpriteShader::Draw(edgeSprite, pos);
-	}
+	Panel::DrawEdgeSprite(SpriteSet::Get("ui/right edge"), Screen::Left() + boxWidth);
 
 	// Get the font and colors we'll need for drawing everything.
 	const Font &font = FontSet::Get(14);
@@ -351,6 +341,12 @@ bool ConversationPanel::Hover(int x, int y)
 // The player just selected the given choice.
 void ConversationPanel::Goto(int index, int selectedChoice)
 {
+	const ConditionsStore &conditions = player.Conditions();
+	Format::ConditionGetter getter = [&conditions](const std::string &str, size_t start, size_t length) -> int64_t
+	{
+		return conditions.Get(str.substr(start, length));
+	};
+
 	if(index)
 	{
 		// Add the chosen option to the text.
@@ -393,13 +389,13 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 			// Action nodes are able to perform various actions, e.g. changing
 			// the player's conditions, granting payments, triggering events,
 			// and more. They are not allowed to spawn additional UI elements.
-			conversation.GetAction(node).Do(player, nullptr);
+			conversation.GetAction(node).Do(player, nullptr, caller);
 		}
 		else if(conversation.ShouldDisplayNode(player.Conditions(), node))
 		{
 			// This is an ordinary conversation node which should be displayed.
 			// Perform any necessary text replacement, and add the text to the display.
-			string altered = Format::Replace(conversation.Text(node), subs);
+			string altered = Format::ExpandConditions(Format::Replace(conversation.Text(node), subs), getter);
 			text.emplace_back(altered, conversation.Scene(node), text.empty());
 		}
 		else
@@ -415,7 +411,7 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 	for(int i = 0; i < conversation.Choices(node); ++i)
 		if(conversation.ShouldDisplayNode(player.Conditions(), node, i))
 		{
-			string altered = Format::Replace(conversation.Text(node, i), subs);
+			string altered = Format::ExpandConditions(Format::Replace(conversation.Text(node, i), subs), getter);
 			choices.emplace_back(Paragraph(altered), i);
 		}
 	// This is a safeguard in case of logic errors, to ensure we don't set the player name.

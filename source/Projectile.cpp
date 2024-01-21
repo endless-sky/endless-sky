@@ -47,21 +47,12 @@ namespace {
 
 
 
-Angle Projectile::Inaccuracy(double value)
-{
-	Angle inaccuracy;
-	if(value)
-		inaccuracy = Angle::Random(value) - Angle::Random(value);
-	return inaccuracy;
-}
-
-
-
 Projectile::Projectile(const Ship &parent, Point position, Angle angle, const Weapon *weapon)
 	: Body(weapon->WeaponSprite(), position, parent.Velocity(), angle),
 	weapon(weapon), targetShip(parent.GetTargetShip()), lifetime(weapon->Lifetime())
 {
 	government = parent.GetGovernment();
+	hitsRemaining = weapon->PenetrationCount();
 
 	// If you are boarding your target, do not fire on it.
 	if(parent.IsBoarding() || parent.Commands().Has(Command::BOARD))
@@ -88,6 +79,7 @@ Projectile::Projectile(const Projectile &parent, const Point &offset, const Angl
 {
 	government = parent.government;
 	targetGovernment = parent.targetGovernment;
+	hitsRemaining = weapon->PenetrationCount();
 
 	cachedTarget = TargetPtr().get();
 
@@ -129,7 +121,12 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 
 			for(const auto &it : weapon->Submunitions())
 				for(size_t i = 0; i < it.count; ++i)
-					projectiles.emplace_back(*this, it.offset, it.facing + Projectile::Inaccuracy(it.weapon->Inaccuracy()), it.weapon);
+				{
+					const Weapon *const subWeapon = it.weapon;
+					Angle inaccuracy = Distribution::GenerateInaccuracy(subWeapon->Inaccuracy(),
+							subWeapon->InaccuracyDistribution());
+					projectiles.emplace_back(*this, it.offset, it.facing + inaccuracy, subWeapon);
+				}
 		}
 		MarkForRemoval();
 		return;
@@ -278,22 +275,28 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 	// sub-munitions next turn.
 	if(target && (position - target->Position()).Length() < weapon->SplitRange())
 		lifetime = 0;
+
+	// A projectile will begin to fade out when the remaining lifetime is smaller
+	// than the specified "fade out" time.
+	if(lifetime < weapon->FadeOut())
+		alpha = static_cast<double>(lifetime) / weapon->FadeOut();
 }
 
 
 
 // This projectile hit something. Create the explosion, if any. This also
-// marks the projectile as needing deletion.
+// marks the projectile as needing deletion if it has run out of hits.
 void Projectile::Explode(vector<Visual> &visuals, double intersection, Point hitVelocity)
 {
-	clip = intersection;
-	distanceTraveled += dV.Length() * intersection;
 	for(const auto &it : weapon->HitEffects())
 		for(int i = 0; i < it.second; ++i)
-		{
 			visuals.emplace_back(*it.first, position + velocity * intersection, velocity, angle, hitVelocity);
-		}
-	lifetime = -100;
+	// The projectile dies if it has no hits remaining.
+	if(--hitsRemaining == 0)
+	{
+		clip = intersection;
+		lifetime = -100;
+	}
 }
 
 
@@ -302,6 +305,14 @@ void Projectile::Explode(vector<Visual> &visuals, double intersection, Point hit
 double Projectile::Clip() const
 {
 	return clip;
+}
+
+
+
+// Get whether the lifetime on this projectile has run out.
+bool Projectile::IsDead() const
+{
+	return lifetime <= 0;
 }
 
 
@@ -332,9 +343,11 @@ const Weapon &Projectile::GetWeapon() const
 
 
 // Get information on how this projectile impacted a ship.
-Projectile::ImpactInfo Projectile::GetInfo() const
+Projectile::ImpactInfo Projectile::GetInfo(double intersection) const
 {
-	return ImpactInfo(*weapon, position, distanceTraveled);
+	// Account for the distance that this projectile traveled before intersecting
+	// with the target.
+	return ImpactInfo(*weapon, position, distanceTraveled + dV.Length() * intersection);
 }
 
 
@@ -442,4 +455,11 @@ void Projectile::CheckLock(const Ship &target)
 double Projectile::DistanceTraveled() const
 {
 	return distanceTraveled;
+}
+
+
+
+uint16_t Projectile::HitsRemaining() const
+{
+	return hitsRemaining;
 }

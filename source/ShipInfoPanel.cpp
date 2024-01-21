@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipInfoPanel.h"
 
 #include "text/alignment.hpp"
+#include "CategoryList.h"
 #include "CategoryTypes.h"
 #include "Command.h"
 #include "Dialog.h"
@@ -139,6 +140,8 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 	bool shift = (mod & KMOD_SHIFT);
 	if(key == 'd' || key == SDLK_ESCAPE || (key == 'w' && control))
 		GetUI()->Pop(this);
+	else if(command.Has(Command::HELP))
+		DoHelp("ship info", true);
 	else if(!player.Ships().empty() && ((key == 'p' && !shift) || key == SDLK_LEFT || key == SDLK_UP))
 	{
 		if(shipIt == panelState.Ships().begin())
@@ -168,9 +171,43 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 	else if(panelState.CanEdit() && key == 'D')
 	{
 		if(shipIt->get() != player.Flagship())
-			GetUI()->Push(new Dialog(this, &ShipInfoPanel::Disown, "Are you sure you want to disown \""
+		{
+			map<const Outfit*, int> uniqueOutfits;
+			auto AddToUniques = [&uniqueOutfits] (const std::map<const Outfit *, int> &outfits)
+			{
+				for(const auto &it : outfits)
+					if(it.first->Attributes().Get("unique"))
+						uniqueOutfits[it.first] += it.second;
+			};
+			AddToUniques(shipIt->get()->Outfits());
+			AddToUniques(shipIt->get()->Cargo().Outfits());
+
+			string message = "Are you sure you want to disown \""
 				+ shipIt->get()->Name()
-				+ "\"? Disowning a ship rather than selling it means you will not get any money for it."));
+				+ "\"? Disowning a ship rather than selling it means you will not get any money for it.";
+			if(!uniqueOutfits.empty())
+			{
+				const int uniquesSize = uniqueOutfits.size();
+				const int detailedOutfitSize = (uniquesSize > 20 ? 19 : uniquesSize);
+				message += "\nThe following unique items carried by the ship will be lost:";
+				auto it = uniqueOutfits.begin();
+				for(int i = 0; i < detailedOutfitSize; ++i)
+				{
+					message += "\n" + to_string(it->second) + " "
+						+ (it->second == 1 ? it->first->DisplayName() : it->first->PluralName());
+					++it;
+				}
+				if(it != uniqueOutfits.end())
+				{
+					int otherUniquesCount = 0;
+					for( ; it != uniqueOutfits.end(); ++it)
+						otherUniquesCount += it->second;
+					message += "\nand " + to_string(otherUniquesCount) + " other unique outfits";
+				}
+			}
+
+			GetUI()->Push(new Dialog(this, &ShipInfoPanel::Disown, message));
+		}
 	}
 	else if(key == 'c' && CanDump())
 	{
@@ -283,7 +320,7 @@ void ShipInfoPanel::UpdateInfo()
 		return;
 
 	const Ship &ship = **shipIt;
-	info.Update(ship, player.FleetDepreciation(), player.GetDate().DaysSinceEpoch());
+	info.Update(ship, player);
 	if(player.Flagship() && ship.GetSystem() == player.GetSystem() && &ship != player.Flagship())
 		player.Flagship()->SetTargetShip(*shipIt);
 
@@ -350,13 +387,14 @@ void ShipInfoPanel::DrawOutfits(const Rectangle &bounds, Rectangle &cargoBounds)
 	table.DrawAt(start);
 
 	// Draw the outfits in the same order used in the outfitter.
-	for(const string &category : GameData::Category(CategoryType::OUTFIT))
+	for(const auto &cat : GameData::GetCategory(CategoryType::OUTFIT))
 	{
+		const string &category = cat.Name();
 		auto it = outfits.find(category);
 		if(it == outfits.end())
 			continue;
 
-		// Skip to the next column if there is not space for this category label
+		// Skip to the next column if there is no space for this category label
 		// plus at least one outfit.
 		if(table.GetRowBounds().Bottom() + 40. > bounds.Bottom())
 		{
@@ -484,10 +522,13 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 		zones.emplace_back(zoneCenter, LINE_SIZE, index);
 
 		// Determine what color to use for the line.
-		float high = (index == hoverIndex ? .8f : .5f);
-		Color color(high, .75f * high, 0.f, 1.f);
+		Color color;
 		if(isTurret)
-			color = Color(0.f, .75f * high, high, 1.f);
+			color = *GameData::Colors().Get(isHover ? "player info hardpoint turret hover"
+			: "player info hardpoint turret");
+		else
+			color = *GameData::Colors().Get(isHover ? "player info hardpoint gun hover"
+			: "player info hardpoint gun");
 
 		// Draw the line.
 		Point from(fromX[isRight], zoneCenter.Y());
@@ -721,7 +762,7 @@ void ShipInfoPanel::Dump()
 	selectedCommodity.clear();
 	selectedPlunder = nullptr;
 
-	info.Update(**shipIt, player.FleetDepreciation(), player.GetDate().DaysSinceEpoch());
+	info.Update(**shipIt, player);
 	if(loss)
 		Messages::Add("You jettisoned " + Format::CreditString(loss) + " worth of cargo."
 			, Messages::Importance::High);
@@ -737,7 +778,7 @@ void ShipInfoPanel::DumpPlunder(int count)
 	{
 		loss += count * selectedPlunder->Cost();
 		(*shipIt)->Jettison(selectedPlunder, count);
-		info.Update(**shipIt, player.FleetDepreciation(), player.GetDate().DaysSinceEpoch());
+		info.Update(**shipIt, player);
 
 		if(loss)
 			Messages::Add("You jettisoned " + Format::CreditString(loss) + " worth of cargo."
@@ -757,7 +798,7 @@ void ShipInfoPanel::DumpCommodities(int count)
 		loss += basis;
 		player.AdjustBasis(selectedCommodity, -basis);
 		(*shipIt)->Jettison(selectedCommodity, count);
-		info.Update(**shipIt, player.FleetDepreciation(), player.GetDate().DaysSinceEpoch());
+		info.Update(**shipIt, player);
 
 		if(loss)
 			Messages::Add("You jettisoned " + Format::CreditString(loss) + " worth of cargo."

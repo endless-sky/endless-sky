@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Depreciation.h"
 #include "text/Format.h"
+#include "GameData.h"
 #include "Outfit.h"
 #include "PlayerInfo.h"
 
@@ -162,6 +163,8 @@ namespace {
 		{"leak resistance", 2},
 		{"burn resistance", 2},
 
+		{"shield multiplier", 3},
+		{"hull multiplier", 3},
 		{"hull repair multiplier", 3},
 		{"hull energy multiplier", 3},
 		{"hull fuel multiplier", 3},
@@ -173,6 +176,10 @@ namespace {
 		{"shield heat multiplier", 3},
 		{"threshold percentage", 3},
 		{"overheat damage threshold", 3},
+		{"high shield permeability", 3},
+		{"low shield permeability", 3},
+		{"acceleration multiplier", 3},
+		{"turn multiplier", 3},
 
 		{"burn protection", 4},
 		{"corrosion protection", 4},
@@ -204,7 +211,8 @@ namespace {
 		{"hyperdrive", "Allows you to make hyperjumps."},
 		{"jump drive", "Lets you jump to any nearby system."},
 		{"minable", "This item is mined from asteroids."},
-		{"atrocity", "This outfit is considered an atrocity."}
+		{"atrocity", "This outfit is considered an atrocity."},
+		{"unique", "This item is unique."}
 	};
 
 	bool IsNotRequirement(const string &label)
@@ -217,18 +225,19 @@ namespace {
 
 
 
-OutfitInfoDisplay::OutfitInfoDisplay(const Outfit &outfit, const PlayerInfo &player, bool canSell)
+OutfitInfoDisplay::OutfitInfoDisplay(const Outfit &outfit, const PlayerInfo &player,
+		bool canSell, bool descriptionCollapsed)
 {
-	Update(outfit, player, canSell);
+	Update(outfit, player, canSell, descriptionCollapsed);
 }
 
 
 
 // Call this every time the ship changes.
-void OutfitInfoDisplay::Update(const Outfit &outfit, const PlayerInfo &player, bool canSell)
+void OutfitInfoDisplay::Update(const Outfit &outfit, const PlayerInfo &player, bool canSell, bool descriptionCollapsed)
 {
 	UpdateDescription(outfit.Description(), outfit.Licenses(), false);
-	UpdateRequirements(outfit, player, canSell);
+	UpdateRequirements(outfit, player, canSell, descriptionCollapsed);
 	UpdateAttributes(outfit);
 
 	maximumHeight = max(descriptionHeight, max(requirementsHeight, attributesHeight));
@@ -250,7 +259,8 @@ void OutfitInfoDisplay::DrawRequirements(const Point &topLeft) const
 
 
 
-void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInfo &player, bool canSell)
+void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInfo &player,
+		bool canSell, bool descriptionCollapsed)
 {
 	requirementLabels.clear();
 	requirementValues.clear();
@@ -260,6 +270,20 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 	int64_t cost = outfit.Cost();
 	int64_t buyValue = player.StockDepreciation().Value(&outfit, day);
 	int64_t sellValue = player.FleetDepreciation().Value(&outfit, day);
+
+	for(const string &license : outfit.Licenses())
+	{
+		if(player.HasLicense(license))
+			continue;
+
+		const auto &licenseOutfit = GameData::Outfits().Find(license + " License");
+		if(descriptionCollapsed || (licenseOutfit && licenseOutfit->Cost()))
+		{
+			requirementLabels.push_back("license:");
+			requirementValues.push_back(license);
+			requirementsHeight += 20;
+		}
+	}
 
 	if(buyValue == cost)
 		requirementLabels.push_back("cost:");
@@ -450,6 +474,21 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	attributeValues.emplace_back(Format::Number(outfit.Range()));
 	attributesHeight += 20;
 
+	// Identify the dropoff at range and inform the player.
+	double fullDropoff = outfit.MaxDropoff();
+	if(fullDropoff != 1.)
+	{
+		attributeLabels.emplace_back("dropoff modifier:");
+		attributeValues.emplace_back(Format::Number(100. * fullDropoff) + "%");
+		attributesHeight += 20;
+		// Identify the ranges between which the dropoff takes place.
+		attributeLabels.emplace_back("dropoff range:");
+		const pair<double, double> &ranges = outfit.DropoffRanges();
+		attributeValues.emplace_back(Format::Number(ranges.first)
+			+ " - " + Format::Number(ranges.second));
+		attributesHeight += 20;
+	}
+
 	static const vector<pair<string, string>> VALUE_NAMES = {
 		{"shield damage", ""},
 		{"hull damage", ""},
@@ -625,13 +664,15 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		"inaccuracy:",
 		"blast radius:",
 		"missile strength:",
-		"anti-missile:"
+		"anti-missile:",
+		"tractor beam:"
 	};
 	vector<double> otherValues = {
 		outfit.Inaccuracy(),
 		outfit.BlastRadius(),
 		static_cast<double>(outfit.MissileStrength()),
-		static_cast<double>(outfit.AntiMissile())
+		static_cast<double>(outfit.AntiMissile()),
+		outfit.TractorBeam() * 60.
 	};
 
 	for(unsigned i = 0; i < OTHER_NAMES.size(); ++i)

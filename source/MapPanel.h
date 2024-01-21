@@ -51,6 +51,7 @@ public:
 	static const int SHOW_SPECIAL = -4;
 	static const int SHOW_GOVERNMENT = -5;
 	static const int SHOW_REPUTATION = -6;
+	static const int SHOW_DANGER = -7;
 
 	static const float OUTER;
 	static const float INNER;
@@ -75,7 +76,9 @@ public:
 	virtual void Step() override;
 	virtual void Draw() override;
 
-	void DrawButtons(const std::string &condition);
+	// Draw map mode buttons, escort/storage tooltips, and the non-routable system warning.
+	void FinishDrawing(const std::string &buttonCondition);
+
 	static void DrawMiniMap(const PlayerInfo &player, float alpha, const System *const jump[2], int step);
 
 	// Map panels allow fast-forward to stay active.
@@ -94,6 +97,7 @@ protected:
 	static Color MapColor(double value);
 	static Color ReputationColor(double reputation, bool canLand, bool hasDominated);
 	static Color GovernmentColor(const Government *government);
+	static Color DangerColor(double danger);
 	static Color UninhabitedColor();
 	static Color UnexploredColor();
 
@@ -109,8 +113,9 @@ protected:
 	bool IsSatisfied(const Mission &mission) const;
 	static bool IsSatisfied(const PlayerInfo &player, const Mission &mission);
 
-	// Function for the "find" dialogs:
-	static int Search(const std::string &str, const std::string &sub);
+	// Returns if previous->next can be done with a known travel type.
+	bool GetTravelInfo(const System *previous, const System *next, double jumpRange, bool &isJump,
+		bool &isWormhole, bool &isMappable, Color *wormholeColor) const;
 
 
 protected:
@@ -155,9 +160,14 @@ protected:
 	std::string tooltip;
 	WrappedText hoverText;
 
+	// An X offset in pixels to be applied to the selected system UI if something
+	// else gets in the way of its default position.
+	int selectedSystemOffset = 0;
 
 private:
 	void DrawTravelPlan();
+	// Display the name of and distance to the selected system.
+	void DrawSelectedSystem();
 	// Indicate which other systems have player escorts.
 	void DrawEscorts();
 	void DrawWormholes();
@@ -166,7 +176,6 @@ private:
 	void DrawSystems();
 	void DrawNames();
 	void DrawMissions();
-	void DrawTooltips();
 	void DrawPointer(const System *system, unsigned &systemCount, const Color &color, bool bigger = false);
 	static void DrawPointer(Point position, unsigned &systemCount, const Color &color,
 		bool drawBack = true, bool bigger = false);
