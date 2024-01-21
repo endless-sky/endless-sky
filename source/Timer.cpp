@@ -68,7 +68,10 @@ void Timer::Load(const DataNode &node)
 			// We square the max speed value here, so it can be conveniently
 			// compared to the flagship's squared velocity length below.
 			if(child.Size() > 1)
-				idleMaxSpeed = child.Value(1) * child.Value(1);
+			{
+				idleMaxSpeed = child.Value(1);
+				idleMaxSpeed *= idleMaxSpeed;
+			}
 		}
 		else if(child.Token(0) == "peaceful")
 			requirePeaceful = true;
@@ -79,13 +82,9 @@ void Timer::Load(const DataNode &node)
 		else if(child.Token(0) == "system")
 			systems.Load(child);
 		else if(child.Token(0) == "proximity" && child.Size() > 1)
-		{
 			proximityCenter = GameData::Planets().Get(child.Token(1));
-		}
 		else if(child.Token(0) == "proximity")
-		{
 			proximityCenters.Load(child);
-		}
 		else if(child.Token(0) == "proximity settings" && child.Size() > 1)
 		{
 			proximity = child.Value(1);
@@ -238,10 +237,11 @@ Timer Timer::Instantiate(map<string, string> &subs, const System *origin, int ju
 
 	// We also build a cache of the matching proximity object(s) for the instantiated Timer.
 	// This avoids having to do all these comparisons every Step().
-	for(const StellarObject &proximityObject : system->Objects())
-		if(proximityObject.HasValidPlanet() && (proximityCenter == proximityObject.GetPlanet() ||
-			proximityCenters.Matches(proximityObject.GetPlanet())))
-			result.proximityCache.insert(&proximityObject);
+	if(system && (proximityCenter || !proximityCenters.isEmpty()))
+		for(const StellarObject &proximityObject : system->Objects())
+			if(proximityObject.HasValidPlanet() && (proximityCenter == proximityObject.GetPlanet() ||
+				proximityCenters.Matches(proximityObject.GetPlanet())))
+				result.proximityCache.insert(&proximityObject);
 
 	return result;
 }
