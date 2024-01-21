@@ -2895,7 +2895,7 @@ ship "Nest" "Nest (Miner)"
 		"LP072a Battery Pack"
 		"D41-HY Shield Generator"
 		"Large Radar Jammer"
-		"Cargo Expansion" 2
+		"Cargo Expansion"
 		"Laser Rifle" 3
 		
 		"Capybara Reverse Thruster"
