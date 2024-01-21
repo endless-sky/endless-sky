@@ -715,11 +715,8 @@ mission "Boarding Derelict"
 	npc
 		government "Pirate"
 		personality entering nemesis vindictive staying
-		to spawn
-			has "derelict pirate beacon"
 		fleet "pirate raid" 2
 	on offer
-		clear "derelict pirate beacon"
 		conversation
 			`You board the <origin> and look around its derelict hull, which appears to be in fairly stable condition. You could risk repairing it for a greater profit, or you could salvage what you can from the ship and leave the rest.`
 			choice
@@ -757,7 +754,7 @@ mission "Boarding Derelict"
 			choice
 				`	(Repair the power.)`
 					goto power(eh)
-				`	(Flee the ship for fear your repairs have made the ship more dangerous.)`
+				`	(Flee the ship for fear my repairs have made the ship more dangerous.)`
 					goto flee
 			label hull(p)
 			branch crumple
@@ -766,7 +763,7 @@ mission "Boarding Derelict"
 			choice
 				`	(Repair the engines.)`
 					goto engines(hp)
-				`	(Flee the ship for fear your repairs have made the ship more dangerous.)`
+				`	(Flee the ship for fear my repairs have made the ship more dangerous.)`
 					goto flee
 			label hull(ep)
 			branch crumple
@@ -793,14 +790,14 @@ mission "Boarding Derelict"
 			choice
 				`	(Repair the power.)`
 					goto power(eh)
-				`	(Flee the ship for fear your repairs have made the ship more dangerous.)`
+				`	(Flee the ship for fear my repairs have made the ship more dangerous.)`
 					goto flee
 			label engines(p)
 			`	As you are fixing the engine systems a valve bursts open. Luckily you restored power, allowing the secondary valve to close itself automatically and prevent the coolant from forcefully spraying out. With more caution, you finish up your repairs of the engines.`
 			choice
 				`	(Repair the hull.)`
 					goto hull(ep)
-				`	(Flee the ship for fear your repairs have made the ship more dangerous.)`
+				`	(Flee the ship for fear my repairs have made the ship more dangerous.)`
 					goto flee
 			label engines(hp)
 			`	As you are fixing the engine systems a valve bursts open. Luckily you restored power, allowing the secondary valve to close itself automatically and prevent the coolant from forcefully spraying out. With more caution, you finish up your repairs of the engines.`
@@ -817,7 +814,7 @@ mission "Boarding Derelict"
 			choice
 				`	(Repair the engines.)`
 					goto engines(hp)
-				`	(Flee the ship for fear your repairs have made the ship more dangerous.)`
+				`	(Flee the ship for fear my repairs have made the ship more dangerous.)`
 					goto flee
 			label power(e)
 			branch powersurge
@@ -826,7 +823,7 @@ mission "Boarding Derelict"
 			choice
 				`	(Repair the hull.)`
 					goto hull(ep)
-				`	(Flee the ship for fear your repairs have made the ship more dangerous.)`
+				`	(Flee the ship for fear my repairs have made the ship more dangerous.)`
 					goto flee
 			label power(eh)
 			branch powersurge
@@ -882,15 +879,13 @@ mission "Boarding Derelict"
 			`	Despite your best efforts to make the ship actually fly, it just won't. On the upside, now you have time to loot and pilfer some outfits from the ship as you please. Before leaving the cockpit you find a credit chip sitting in the cockpit worth <payment>.`
 				decline
 			label beacon
-			action
-				set "derelict pirate beacon"
-			`	However, you soon notice a blinking light on the controls of the ship. You wonder what it could signal as you approach it, and once you get close enough you realize that it warns of the arrival of 'hostile spacecraft' entering the system. You now have a pretty good guess at what you're dealing with as you race back to your ship.`
+			`	However, you soon notice a blinking light on the controls of the ship. You wonder what it could signal as you approach it, and once you get close enough you realize that it warns of the arrival of "hostile spacecraft" entering the system. You now have a pretty good guess at what you're dealing with as you race back to your ship.`
 				launch
 			label virus
 			action
 				payment -200000
 			`	However, moments later a screen lights up in the cockpit displaying something strange. Upon closer inspection you realize it's some form of malicious software, and it's attempting to hack into your ship!`
-			`	You race back to your ship, quickly launching and destroying the <origin>, but by the time you manage to destroy the virus it has already hacked into your bank account and stolen <payment> credits from you.`
+			`	You race back to your ship, quickly launching and destroying the <origin>, but by the time you manage to destroy the virus it has already hacked into your bank account; your account reports a change in balance of <payment>.`
 				depart
 			label salvage
 			`	Deciding not to risk it you quickly scour the ship for valuable scrap and outfits.`
@@ -898,7 +893,7 @@ mission "Boarding Derelict"
 				random < 40
 			action
 				payment 10000
-			`	Upon a brief inspection of the ship you find few valuables, only managing to salvage a meager <payment> credits from the <origin>. Before you depart you detonate the ship to prevent any other derelict hunters from scouring an empty ship.`
+			`	Upon a brief inspection of the ship you find few valuables, only managing to salvage a meager <payment> from the <origin>. Before you depart you detonate the ship to prevent any other derelict hunters from scouring an empty ship.`
 				depart
 			label valuable
 			branch rare
@@ -911,7 +906,7 @@ mission "Boarding Derelict"
 					random < 5
 			action
 				payment 63000
-			`	Searching through the ship you find that it is quite valuable; you manage to salvage a substantial amount from the <origin>, worth <payment> credits. Before you depart you detonate the ship to prevent any other derelict hunters from scouring the now empty ship.`
+			`	Searching through the ship you find that it is quite valuable; you manage to salvage a substantial amount from the <origin>, worth <payment>. Before you depart you detonate the ship to prevent any other derelict hunters from scouring the now empty ship.`
 				depart
 			label rare
 			branch quest
@@ -920,7 +915,7 @@ mission "Boarding Derelict"
 					not "derelict family investment"
 			action
 				payment 475000
-			`	Hidden away under a panel you find a small box. Opening it reveals a huge amount of credits worth <payment> Before you depart you detonate the ship to prevent any other derelict hunters from scouring the now empty ship.`
+			`	Hidden away under a panel you find a small box. Opening it reveals a huge amount of credits worth <payment>. Before you depart you detonate the ship to prevent any other derelict hunters from scouring the now empty ship.`
 				depart
 			label quest
 			branch treasure
@@ -936,5 +931,5 @@ mission "Boarding Derelict"
 			action
 				set "derelict treasure map"
 				payment 26500
-			`	As you search the ship for anything valuable you find some kind of map tucked into a panel. It's easy to carry, allowing you time to further salvage a meager <payment> credits from the <origin>. Before you depart you detonate the ship to prevent any other derelict hunters from scouring the now empty ship.`
+			`	As you search the ship for anything valuable you find some kind of map tucked into a panel. It's easy to carry, allowing you time to further salvage a meager <payment> from the <origin>. Before you depart you detonate the ship to prevent any other derelict hunters from scouring the now empty ship.`
 				depart

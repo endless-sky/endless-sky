@@ -6858,7 +6858,6 @@ mission "Derelict Informer"
 		not attributes "uninhabited"
 	to offer
 		random < 4
-		"days since start" > 30
 	on offer
 		conversation
 			`As you touch down on <origin>, you see that the landing pad next to yours holds a freighter that is practically falling apart. Standing next to it is a man with the grizzled look of an experienced captain.`
@@ -6880,10 +6879,8 @@ mission "Derelict Informer"
 			`	An easy, broad smile upon his face tells you he's heard such a question before. "Glad you asked. It's always a pleasure to teach another captain about the niche trade of derelict hunting."`
 			choice
 				`	"Derelict hunting?"`
-					goto confused
 				`	"So you search for abandoned ships?"`
 					goto precisely
-			label confused
 			`	"Derelict hunting involves searching abandoned ship hulls. They usually have a few parts left on them that you can sell for a few credits, and if you're lucky you might even score some rare outfits or the whole hull if it's stable enough. Wouldn't recommend actually using that hull though. They're usually very fragile like this freighter here."`
 			choice
 				`	"So you search for abandoned ships and loot them?"`
@@ -6892,12 +6889,14 @@ mission "Derelict Informer"
 			`	"Precisely. If you want to go hunting for derelicts yourself, they can be rarely found in out of the way uninhabited systems. Good hunting out there." He turns back to his score.`
 				decline
 
-mission "Derelict Treasure Map"
-	description "Follow the treasure map you found in a derelict ship."
+mission "Derelict Treasure Map: Ion Cannons"
 	landing
+	name "Derelict Treasure Map"
+	description "Follow the treasure map you found in a derelict ship to <destination>."
+	destination "New Argentina"
 	to offer
 		has "derelict treasure map"
-	destination "New Argentina"
+	on offer
 	on offer
 		conversation
 			`Upon landing on <origin> you take out the treasure map you recovered from the derelict ship. The map gives detailed instructions about where the treasure was buried on the sparsely populated world of <destination>. However, the map's creator claims to have obtained some kind of alien weapons that disrupts a ship's electrical systems. The outlandish claim seems to bring doubt to the validity of the map.`
@@ -6937,18 +6936,18 @@ mission "Derelict Family Investment 1"
 	on offer
 		conversation
 			`Upon landing on <origin> you take out the text log you recovered alongside the case of credits from the derelict ship. The log reveals the credits were the result of a risky investment in an attempt to buy a better life for the captain of the ship, Colin Sawyer, and his family. You assume that the captain never made it home, and looking further into the personal log you find that the family used to reside on <destination>.`
-			`	Perhaps the family still live there?`
+			`	Perhaps the family still live there.`
 			choice
 				`	(Attempt to return the credits.)`
 					accept
-				`	(Keep the credits to yourself.)`
+				`	(Keep the credits to myself.)`
 			action
 				payment 325000
 			`	You decide to keep the money. After all, it's not every day that you find a score worth <payment>.`
 				decline
 	on complete
 		conversation
-			`	Upon landing on <planet> you take a transport out to the small farm indicated in the log as the home of Captain Sawyer's family. After knocking on the door of the farmhouse a man opens the door and asks, "Can I help you?"`
+			`Upon landing on <planet> you take a transport out to the small farm indicated in the log as the home of Captain Sawyer's family. After knocking on the door of the farmhouse a man opens the door and asks, "Can I help you?"`
 			choice
 				`	"Do you know a Colin Sawyer?"`
 				`	"Do the Sawyers live here?"`
@@ -6965,7 +6964,7 @@ mission "Derelict Family Investment 2"
 	on complete
 		payment 500000
 		conversation
-			`	It doesn't take long to find the Sawyers' home on <planet>. The building makes it clear that the family has done well for themselves. After a quick explanation with the desk clerk that you have something important to give, you take an elevator ride to the penthouse. You ring the buzzer and are greeted by a woman in her late fifties. "A delivery?" she asks.`
+			`It doesn't take long to find the Sawyers' home on <planet>. The building makes it clear that the family has done well for themselves. After a quick explanation with the desk clerk that you have something important to give, you take an elevator ride to the penthouse. You ring the buzzer and are greeted by a woman in her late fifties. "A delivery?" she asks.`
 			choice
 				`	"Do you know a Colin Sawyer?"`
 			`	A scowl appears on her face as she spits out a response. "What do you know of my Da? That deadbeat left me and my family with next to nothing."`
