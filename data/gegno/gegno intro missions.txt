@@ -29,6 +29,7 @@ mission "First Contact: Gegno Vi"
 	passengers 1
 	to offer
 		not "Gegno Genocide Defense: offered"
+		has "First Contact: Quarg: offered"
 	on offer
 		conversation
 			branch "second encounter"
@@ -112,7 +113,7 @@ mission "First Contact: Gegno Vi"
 			choice
 				`	(Approach the Vi warrior.)`
 				`	(Turn back to my ship.)`
-			`	Suddenly, the ground starts to vibrate intensity. You take out your sidearm in a panic, but as you look back up at the Vi, you notice that they too enter a defensive stance - but not towards you. A large maw bursts open in the sand to your left, and out of it comes a massive creature hundreds of times the size of you, covered in spikes and scales. You barely have time to react as it plummets onto the sand to your right, but you get a glimpse of the Vi riding the beast as they impale it with their weapon.`
+			`	Suddenly, the ground starts to vibrate intensely. You take out your sidearm in a panic, but as you look back up at the Vi, you notice that they too enter a defensive stance - but not towards you. A large maw bursts open in the sand to your left, and out of it comes a massive creature hundreds of times the size of you, covered in spikes and scales. You barely have time to react as it plummets onto the sand to your right, but you get a glimpse of the Vi riding the beast as they impale it with their weapon.`
 			choice
 				`	(Observe the situation from a distance.)`
 					goto observe
@@ -292,7 +293,6 @@ mission "Giaru Gegno: Quarg Contact"
 	landing
 	source "Giaru Gegno"
 	to offer
-		has "First Contact: Quarg: offered"
 		not "Gegno Genocide Defense: offered"
 	on offer
 		log "Factions" "Gegno" `The Gegno are a humanoid species to the galactic east of the core, split amongst themselves into branches. One branch is the Gegno Vi, who are spoken of to be strong and forceful brutes. The other is the Gegno Scin, mentioned to be progressers of research and technology. Apart from them, a majority of the Gegno's population consists of complacent civilians.`
@@ -401,7 +401,7 @@ mission "Gegno Quarg Direction to Ringworld"
 		not "Giaru Gegno: Quarg Contact: offered"
 	on offer
 		conversation
-			`As soon as you land on this Quarg world, a few Quarg swiftly make their way to your ship. One of them stands in front of the rest and beckons you over while the others quietly speak to themselves in a language you've not heard before. The Quarg bows down slightly to speak to you, and judging by the look in its eyes, they seem rather perplexed. "Sdii veebyi keies Gegnion?" it asks, which seems to be the language the others were speaking in. Afterwords, it patiently waits for your response.`
+			`As soon as you land on this Quarg world, a few Quarg swiftly make their way to your ship. One of them stands in front of the rest and beckons you over while the others quietly speak to themselves in a language you've not heard before. The Quarg bows down slightly to speak to you, and judging by the look in its eyes, they seem rather perplexed. "Sdii veebyi keies Gegnion?" it asks, which seems to be the language the others were speaking in. Afterwards, it patiently waits for your response.`
 			choice
 				`	(Try to speak to the Quarg.)`
 			`	You introduce yourself to the Quarg and then explain that you don't understand their language. It lifts itself back up slowly, seemingly pondering the situation before turning back to the others. After a few more exchanged words, one of the other Quarg walk off and fetch some sort of device, bringing it back to you. It appears to be some type of holographic map. The Quarg gestures to a system nearby, which then reveals a hologram of a Quarg Ringworld. "Ehsveet Duebyuarr Giaru, Aechman," it says, and then bows before you.`

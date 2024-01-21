@@ -523,7 +523,7 @@ void Outfit::Add(const Outfit &other, int count)
 		if(fabs(attributes[at.first]) < EPS)
 			attributes[at.first] = 0.;
 	}
-
+	licenses.insert(licenses.end(), other.licenses.begin(), other.licenses.end());
 	for(const auto &it : other.flareSprites)
 		AddFlareSprites(flareSprites, it, count);
 	for(const auto &it : other.reverseFlareSprites)
