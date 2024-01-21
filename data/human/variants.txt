@@ -2886,8 +2886,9 @@ ship "Nest" "Nest (Miner)"
 	outfits
 		"Meteor Missile Launcher" 2
 		"Meteor Missile" 60
+		"Mining Laser Turret"
 		"Tractor Beam" 2
-		"Heavy Anti-Missile Turret" 2
+		"Heavy Anti-Missile Turret"
 		
 		"Asteroid Scanner"
 		"S3 Thermionic"
