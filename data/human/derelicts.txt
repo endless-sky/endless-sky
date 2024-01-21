@@ -13,6 +13,7 @@
 
 outfitter "Derelict Northern"
 	"Particle Cannon"
+	"Heavy Laser Turret"
 	"Dwarf Core"
 	"D94-YV Shield Generator"
 	"Liquid Nitrogen Cooler"
@@ -24,6 +25,7 @@ outfitter "Derelict Northern"
 
 outfitter "Derelict Southern"
 	"Plasma Cannon"
+	"Quad Blaster Turret"
 	"S3 Thermionic"
 	"D94-YV Shield Generator"
 	"Liquid Helium Cooler"
@@ -35,6 +37,7 @@ outfitter "Derelict Southern"
 
 outfitter "Derelict Core"
 	"Proton Gun"
+	"Proton Turret"
 	"RT-I Radiothermal"
 	"D94-YV Shield Generator"
 	"Liquid Nitrogen Cooler"
@@ -46,20 +49,24 @@ outfitter "Derelict Core"
 
 outfitter "Derelict Pirate"
 	"Twin Modified Blaster"
+	"Modified Blaster Turret"
 	"RT-I Radiothermal"
 	"D94-YV Shield Generator"
 	"Liquid Nitrogen Cooler"
 	"Interference Plating"
+	"Nerve Gas"
 	"Large Radar Jammer"
 	"AR120 Reverse Thruster"
 	"Capybara Reverse Thruster"
 	"X1100 Ion Reverse Thruster"
 
+# Fleets
+
 fleet "Derelict Northern"
 	government "Derelict (Boardable)"
 	names "civilian"
 	"cargo settings"
-		cargo 2
+		cargo 3
 		outfitters "Derelict Northern"
 	personality derelict mute marked
 	variant 20
@@ -87,7 +94,7 @@ fleet "Derelict Southern"
 	government "Derelict (Boardable)"
 	names "civilian"
 	"cargo settings"
-		cargo 2
+		cargo 3
 		outfitters "Derelict Southern"
 	personality derelict mute marked
 	variant 30
@@ -119,7 +126,7 @@ fleet "Derelict Core"
 	government "Derelict (Boardable)"
 	names "civilian"
 	"cargo settings"
-		cargo 2
+		cargo 3
 		outfitters "Derelict Core"
 	personality derelict mute marked
 	variant 25
@@ -145,7 +152,7 @@ fleet "Derelict Pirate"
 	government "Derelict (Boardable)"
 	names "pirate"
 	"cargo settings"
-		cargo 2
+		cargo 4
 		outfitters "Derelict Pirate"
 	personality derelict mute marked
 	variant 25
