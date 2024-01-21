@@ -929,7 +929,7 @@ ship "Merganser"
 		"Inhibitor Cannon" 2
 		
 		"Millennium Cell"
-		"Crystal Capacitor" 2
+		"Crystal Capacitor"
 		"Small Heat Shunt"
 		"Quantum Key Stone"
 		
