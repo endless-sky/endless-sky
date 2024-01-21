@@ -4,7 +4,7 @@ Version 0.10.5
     * Added a small pirate region to the south, home to the remnants of a collapsed government: the Confederated Councils of the Outer Rim. Includes the addition of various new pirate ships and weapons. This is the first of a number of planned expansions to pirate content and gameplay, with the goal of making it so that playing as a pirate is a more viable option. Stay tuned for more in future updates. (@beccabunny, @bene-dictator, @Ebreus, @Galaucus, @Quantumshark, @Saugia)
   * Bug fixes:
     * Content bugs:
-      * Typo fixes. (@alexrovw, @Anarchist2, @bene-dictator, @Corraban2, @jarmokivekas, @LepRyot, @mOctave, @opusforlife2, @Saugia, @Tangle10, @tibetiroka, @The-Legendary-M, @ThrawnCA, @Wedge009, @ziproot, 
+      * Typo fixes. (@alexrovw, @Anarchist2, @bene-dictator, @Corraban2, @jarmokivekas, @LepRyot, @mOctave, @opusforlife2, @Saugia, @Tangle10, @tibetiroka, @The-Legendary-M, @ThrawnCA, @Wedge009, @ziproot)
       * Fixed the location filters for some pirate escort jobs. (@ziproot)
       * Added a missing departure distance to Dokdobaru. (@Arachi-Lover)
       * Various fixes to "Navy Resupply [0]". (@LazerLit)
@@ -28,7 +28,7 @@ Version 0.10.5
       * Corrected collision checks for fast moving flotsams. (@RisingLeaf, @Amazinite)
       * Travel plan validity checks now ensure that all systems are visible. (@Amazinite)
       * Fixed shader compilation error that could occur on older OpenGL versions. (@RisingLeaf)
-      * Fixed a segementation fault when opening the message log. (@RisingLeaf)
+      * Fixed a segmentation fault when opening the message log. (@RisingLeaf)
       * The player's ship now faces its flight direction on takeoff from a planet. (@TomGoodIdea)
       * The zoom modifier is now reset if the landing zoom setting is disabled. (@TomGoodIdea)
   * Game content:
