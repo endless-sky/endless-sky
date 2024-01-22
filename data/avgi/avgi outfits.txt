@@ -106,7 +106,7 @@ outfit "Electrostatic Ramscoop"
 	description "Ramscoops like these were used in Avgi ram-augmented torchships, allowing them to sustain constant burns during their sublight interstellar journeys."
 
 
-outfit "Dipole Ramscoop"
+outfit "Plasmadyne Ramscoop"
 	category "Systems"
 	licenses
 		"Avgi Civilian"
@@ -120,7 +120,7 @@ outfit "Dipole Ramscoop"
 	"fuel generation" 0.6
 	"energy consumption" 9
 	weapon
-		"hardpoint sprite" "hardpoint/dipole ramscoop"
+		"hardpoint sprite" "hardpoint/plasmadyne ramscoop"
 	description "With massive banks of superconducting magnets, extremely powerful magnetic fields grab ambient hydrogen atoms by their magnetic dipoles, channeling them towards a collection point without needing to first ionize them. This results in a ramscoop that is far more efficient in both fuel collection and energy use than the Electrostatic Ramscoop, but which is utterly massive in size. The magnetic stresses involved are so huge that a dedicated spinal mount is needed to use this ramscoop without tearing the ship apart."
 	description "Ramscoops like these were used in Avgi ram-augmented torchships, allowing them to sustain constant burns during their sublight interstellar journeys."
 

@@ -969,7 +969,7 @@ ship "Undsyni"
 
 	description "The Undsyni-class Auxiliary Freighter is not a mere bulk freighter, but rather one built to be large and strong enough to hold its own against attacks from smaller, more militarized vessels. While not quite as payload efficient as more spindly ships such as the Avlaki and Harmonikos, the Undsyni's resilience makes it much more survivable against attacks, with its fusion torch giving it the acceleration to both evade enemies and minimize travel times."
 	description "Even before the Incursion, the Undsyni's strong hull and internal outfit capacity made it a popular option as a capital ship for renegade groups who could not gain access to specialized warships."
-	description "A reinforced spine running the length of the ship allows it to fit a huge Dipole Ramscoop, capable of bearing the extreme stresses the ramscoop's magnetic field puts on its superconducting magnets. In this configuration, a tanker Undsyni can supply the fuel needs of an entire fleetgroup across dozens of systems."
+	description "A reinforced spine running the length of the ship allows it to fit a huge Plasmadyne Ramscoop, capable of bearing the extreme stresses the ramscoop's magnetic field puts on its superconducting magnets. In this configuration, a tanker Undsyni can supply the fuel needs of an entire fleetgroup across dozens of systems."
 
 
 ship "Modified Tachytia"
@@ -1001,7 +1001,7 @@ ship "Modified Tachytia"
 	outfits
 		"Phased Array Laser (Blue)" 6
 		"Phased Array Laser (Green)" 3
-		"Dipole Ramscoop"
+		"Plasmadyne Ramscoop"
 
 		"Lantern Fission Core" 3
 		"Photoelectric Scales"
@@ -1028,7 +1028,7 @@ ship "Modified Tachytia"
 	turret 0 6 "Phased Array Laser (Green)"
 	turret 0 -367 "Phased Array Laser (Green)"
 	turret 0 480 "Phased Array Laser (Green)"
-	gun 0 -384 "Dipole Ramscoop"
+	gun 0 -384 "Plasmadyne Ramscoop"
 
 	bay "Drone" -18 420
 	bay "Drone" 18 420
