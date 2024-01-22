@@ -1398,18 +1398,11 @@ void MapPanel::DrawSystems()
 	double zoom = Zoom();
 	float ringInner = INNER;
 	float ringOuter = OUTER;
-	float ringFade = 1.;
 	float starAngle;
 	float spin;
 	Point starOffset;
 
-	if(isStarry)
-	{
-		ringFade = (zoom <= 0.75) ? 1. : 1.1 - zoom / 2.5;
-		ringInner = (zoom <= 0.75) ? INNER : INNER + zoom;
-	}
-
-
+	float ringFade = isStarry ? 1.33 - zoom : 1.;
 	for(const Node &node : nodes)
 	{
 		Point pos = zoom * (node.position + center);
@@ -1417,7 +1410,7 @@ void MapPanel::DrawSystems()
 		// System rings fade as you zoom in.
 		RingShader::Draw(pos, ringOuter, ringInner, node.color.Additive(ringFade));
 
-		if(isStarry && zoom >= 0.75)
+		if(isStarry)
 		{
 			// Ensures every multiple-star system has a characteristic, deterministic rotation.
 			starAngle = node.name.length() + node.position.Length();
@@ -1425,7 +1418,7 @@ void MapPanel::DrawSystems()
 			starOffset = (node.mapIcon.size() == 1) ? Point(0, 0) : Point(4, 4);
 
 			// Draw the star sprites
-			for (string star : node.mapIcon)
+			for(string star : node.mapIcon)
 			{
 				starAngle = starAngle + spin;
 				Point starRotate(cos(starAngle), sin(starAngle));
@@ -1459,16 +1452,19 @@ void MapPanel::DrawNames()
 {
 	// Don't draw if too small.
 	double zoom = Zoom();
-	if(zoom <= 0.75)
+	if(zoom <= 0.66)
 		return;
 
 	// Draw names for all systems you have visited.
 	bool useBigFont = (zoom > 2.);
 	const Font &font = FontSet::Get(useBigFont ? 18 : 14);
+	double zoomFactor = zoom / 2;
 	for(const Node &node : nodes)
 	{
 		Point offset(useBigFont ? 8. : 6., -.5 * font.Height());
-		font.Draw(node.name, zoom * (node.position + center) + offset, isStarry ? node.color : node.nameColor);
+		font.Draw(node.name, zoom * (node.position + center) + offset,
+			(isStarry ? Color::Combine(1. - zoomFactor, node.nameColor, zoomFactor, node.color)
+				: node.nameColor).Additive(.75));
 	}
 
 }
