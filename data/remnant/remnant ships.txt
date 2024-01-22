@@ -906,7 +906,7 @@ ship "Merganser"
 		"gaslining" 1
 		"outfit space" 180
 		"weapon capacity" 60
-		"engine capacity" 69
+		"engine capacity" 60
 		"shield generation" 1.4
 		"shield energy" 1.2
 		"hull repair rate" 0.6
