@@ -79,7 +79,6 @@ galaxy "pug empty galaxy"
 	sprite ui/pleiades
 
 system "1 Axis"
-	mapicon map/a-star
 	pos -1274.63 267.214
 	government Coalition
 	attributes "kimek"
