@@ -482,7 +482,7 @@ mission "Hai Leaks Response 6"
 			`	"A very sweet friend of mine, who is much too enthusiastic and perhaps led by the vagaries of youth but nonetheless quite astute, keeps harping on to me about this theory of hers that some kind of smuggling ring is kidnapping Hai and transporting them into human space with the quiet support of one of your legal entities.`
 			`	"Of course, a thorough investigation has occurred on our side, and no admissible evidence of such things has turned up, but...`
 			`	"Well, you see we cannot investigate your space openly or easily. I have paid it little mind, written it off as one of her eccentricities, but things are very tense right now. The Council of Elders wants to maintain our secrecy and the human diplomats are willing to accommodate us, but we sense their governments grow tired of maintaining the fiction. We are well aware that human intelligence services are highly competent, and motivated by many different factors. It worries me that one of your factions may not be wholly honest, and may have knowledge they intend to use as ammunition if things don't work out well for them."`
-			`	You have not had much exposure to this elected "Council of Elders", but it seems they must hold some kind of final authority over decisions.`
+			`	You have not had much exposure to this elected "Council of Elders," but it seems they must hold some kind of final authority over decisions.`
 			choice
 				`	"But what should I do about it?"`
 					goto dothings
