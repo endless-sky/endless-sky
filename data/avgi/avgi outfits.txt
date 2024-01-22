@@ -475,7 +475,7 @@ outfit "Inductive Extractor"
 	thumbnail "outfit/unknown"
 	"mass" 9
 	"outfit space" -9
-	"engine space" -9
+	"engine capacity" -9
 	"thrust" -6
 	"thrusting energy" -18
 	"thrusting heat" 6

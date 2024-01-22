@@ -371,7 +371,7 @@ outfit "Ultrarelativistic Electron Beam"
 			"frame rate" 30
 			"no repeat"
 		sound "zapper"
-		"fire effect" "pwavefire"
+		"fire effect" "lightning flare"
 		"inaccuracy" 0.6
 		"reload" 60
 		"firing energy" 3600
@@ -429,7 +429,7 @@ outfit "Dart Magazine"
 	"mass" 3
 	"outfit space" -12
 	"dart capacity" 60
-	ammo "Dart Missile"
+	ammo `"Dart" Kinetic Missile`
 	description "Dart storage"
 
 
@@ -581,7 +581,7 @@ outfit "Rush Magazine"
 	"mass" 1.2
 	"outfit space" -12
 	"rush capacity" 12
-	ammo "Rush Missile"
+	ammo `"Rush" Nuclear Missile`
 	description "Rush storage"
 
 
@@ -698,7 +698,7 @@ outfit "Snap Magazine"
 	"mass" 3
 	"outfit space" -18
 	"azimuth capacity" 12
-	ammo "Snap Missile"
+	ammo `"Snap" Nuclear Shaped Charge`
 	description "Snap storage"
 
 
