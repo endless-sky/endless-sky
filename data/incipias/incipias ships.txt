@@ -83,6 +83,7 @@ ship "Nimbus"
 		"cargo space" 75
 		"outfit space" 450
 		"weapon capacity" 120
+		"engine capacity" 85
 		"gaslining" 1
 		"fuel capacity" 200
 	outfits
@@ -148,6 +149,7 @@ ship "Nimbo Stratus"
 		"cargo space" 50
 		"outfit space" 250
 		"weapon capacity" 50
+		"engine capacity" 60
 		"gaslining" 1
 		"fuel capacity" 200
 
@@ -184,6 +186,7 @@ ship "Nimbo Cirrus"
 		"heat dissipation" .75
 		"cargo space" 200
 		"outfit space" 100
+		"engine capacity" 50
 		"gaslining" 1
 		"fuel capacity" 200
 	outfits
@@ -217,6 +220,7 @@ ship "Gero"
 		"heat dissipation" .75
 		"cargo space" 20
 		"outfit space" 100
+		"engine capacity" 50
 		"gaslining" 1
 		"fuel capacity" 200
 	outfits

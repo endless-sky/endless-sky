@@ -208,6 +208,9 @@ outfit "Liquid Hydrogen Cell"
 outfit "MH Blue-Class Engine"
 	category "Engines"
 	thumbnail "outfit/mh blue-class engine"
+	"mass" 27
+	"outfit space" -27
+	"engine capacity" -27
 	"flare sprite" "effect/incipias flare/metallic hydrogen small"
 		"frame rate" 24
 	"flare sound" "plasma huge"
@@ -219,6 +222,9 @@ outfit "MH Blue-Class Engine"
 outfit "MH Blue-Class Steering"
 	category "Engines"
 	thumbnail "outfit/mh blue-class steering"
+	"mass" 24
+	"outfit space" -24
+	"engine capacity" -24
 	"steering flare sound" "plasma huge"
 	"turn" 332
 	"turning energy" 1.
@@ -228,10 +234,13 @@ outfit "MH Blue-Class Steering"
 outfit "MH Green-Class Engine"
 	category "Engines"
 	thumbnail "outfit/mh green-class engine"
+	"mass" 32
+	"outfit space" -32
+	"engine capacity" -32
 	"flare sprite" "effect/incipias flare/metallic hydrogen medium"
 		"frame rate" 24
 	"flare sound" "plasma huge"
-	"thrust" 16
+	"thrust" 20
 	"thrusting energy" 2
 	"thrusting heat" 2.5
 	description "Green is a color of balance for the Incipias. This engine is balanced between taking too much space and moving too slow."
@@ -239,8 +248,11 @@ outfit "MH Green-Class Engine"
 outfit "MH Green-Class Steering"
 	category "Engines"
 	thumbnail "outfit/mh green-class steering"
+	"mass" 28
+	"outfit space" -28
+	"engine capacity" -28
 	"steering flare sound" "plasma huge"
-	"turn" 343
+	"turn" 412
 	"turning energy" 1.1
 	"turning heat" 3.1
 	description "The Incipias seem to have something against turning their ships. Even though this steering is supposed to be an upgrade from the Blue-Class steering, it is barely an improvement."
@@ -248,6 +260,9 @@ outfit "MH Green-Class Steering"
 outfit "MH Red-Class Engine"
 	category "Engines"
 	thumbnail "outfit/mh red-class engine"
+	"mass" 41
+	"outfit space" -41
+	"engine capacity" -41
 	"flare sprite" "effect/incipias flare/metallic hydrogen large"
 		"frame rate" 24
 	"flare sound" "plasma huge"
@@ -260,6 +275,9 @@ outfit "MH Red-Class Steering"
 	category "Engines"
 	thumbnail "outfit/mh red-class steering"
 	"steering flare sound" "plasma huge"
+	"mass" 41
+	"outfit space" -41
+	"engine capacity" -41
 	"turn" 756
 	"turning energy" 2.5
 	"turning heat" 12
