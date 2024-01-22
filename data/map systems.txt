@@ -13,7 +13,7 @@
 
 galaxy "Milky Way"
 	pos 112 22
-	sprite "ui/milky way"
+	sprite "map/milky way"
 
 galaxy "label arachi"
 	pos -750 615
