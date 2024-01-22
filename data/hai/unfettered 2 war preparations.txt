@@ -68,7 +68,7 @@ mission "<uhai> 10: Belt Materials"
 					to display
 						has "language: Hai"
 					goto speak
-			`	You notice she seems to have made a few friends since the last time you saw her, and she is so busy discussing with them that she hardly notices you until you are right in front of her. She stands there for a few seconds, maw open, before gaining back focus and smiling with joy. "<first>! It's been a while." She presents her comrades to you, "This is Rick, a human that grew up in Hai space and then proved himself trough other means than battles." You shake hands and present yourself. "And this is Kenep, she left Hai space some time ago, to get inspiration for her art. They work on the same ship I do. To be frank we don't see battle often, but I've had my fair share of it already, so I'm more than happy with that!" She says the last part with a bit of shame, but honesty.`
+			`	You notice she seems to have made a few friends since the last time you saw her, and she is so busy discussing with them that she hardly notices you until you are right in front of her. She stands there for a few seconds, maw open, before gaining back focus and smiling with joy. "<first>! It's been a while." She presents her comrades to you, "This is Rick, a human that grew up in Hai space and then proved himself through other means than battles." You shake hands and present yourself. "And this is Kenep, she left Hai space some time ago, to get inspiration for her art. They work on the same ship I do. To be frank we don't see battle often, but I've had my fair share of it already, so I'm more than happy with that!" She says the last part with a bit of shame, but honesty.`
 			choice
 				`	"Can you translate for me, like last time?"`
 				`	"Do you know if I may borrow these translators?"`
@@ -216,7 +216,7 @@ mission "<uhai> 11: Shipyard Intel"
 				`	(Later.)`
 					defer
 			`	You land amongst the myriad of other ships and swiftly exit as your ship has to get to the spaceport to clear space for the rest.`
-			`	As you move towards the center of all of this activity, you find an Unfettered warlord that seems to be orchestrating it all, and ask for information. Even though he appears extremely busy speaking with others he notices you and heads your way. They seem able to continue without him, as he heads your way. He is speaking trough a translator, although he appears to be able to understand what you say without it. "It looks like even the monkeys cannot resist the [attraction, power] of the new ships," he says with a grim on his face.`
+			`	As you move towards the center of all of this activity, you find an Unfettered warlord that seems to be orchestrating it all, and ask for information. Even though he appears extremely busy speaking with others he notices you and heads your way. They seem able to continue without him, as he heads your way. He speaks using a translator, although he appears to be able to understand what you say without it. "It looks like even the monkeys cannot resist the [attraction, power] of the new ships," he says with a grim on his face.`
 			choice
 				`	"Are these Shield Beetles? That's the only Hai warship I've seen that's as large as these."`
 				`	"Why do you call me monkey? Have I not earned your respect yet?"`
@@ -278,7 +278,7 @@ mission "<uhai> 11: Shipyard Intel"
 	to complete
 		has "<uhai> 11: Shipyard Inspection: offered"
 	on complete
-		log "People" "He-Yi" `An Unfettered warlord that appreciates directness and calls humans monkeys. He is particularly skilled at management, and speaks trough a translator, although he has little to no problem understanding my language without it.`
+		log "People" "He-Yi" `An Unfettered warlord that appreciates directness and calls humans monkeys. He is particularly skilled at management, and speaks using a translator, although he has little to no problem understanding my language without it.`
 		conversation
 			branch failed
 				has "<uhai> 11: Shipyard Inspection: declined"
@@ -1633,7 +1633,7 @@ mission "<uhai> 17: Spy On Hai A"
 		conversation
 			`You are starting to get quite used to Unfettered spaceports: the dilapidation of different non-essential structures is beginning to feel normal. You feel like you need a change of scenery, so you wander to a side of the spaceport you have not explored before, but it turns out not to be very different.`
 			`	Your thoughts are interrupted by a local Unfettered wearing a strange mask resembling some kind of bird, who seems to have a very important message to give you given how fast he is speaking. "My warlord, He-Yi, has asked me to deliver a message. It has come to his attention that an item of great importance to us is currently in the possession of an unfettered human warlord." You guess that he means a pirate leader. "The warlord can be found in <waypoints>. We want you to go and retrieve that item right now - by any means.`
-			`	"Oh, and he wanted me to add that this mission is essential because you failed to get the shipyard intel trough other means!"`
+			`	"Oh, and he wanted me to add that this mission is essential because you failed to get the shipyard intel through other means!"`
 				to display
 					has "<uhai> 11: Shipyard Inspection: declined"
 			choice
@@ -1699,7 +1699,7 @@ mission "<uhai> 17: Spy On Hai A"
 		system "Alcyone"
 		ship "Leviathan (Cube)" "Degenerate"
 		on disable
-			dialog `The Degenerate is disabled, but be careful not to destroy before you get the item or it may be lost.`
+			dialog `The Degenerate is disabled, but be careful not to destroy it before you get the item or it may be lost.`
 			set "unfettered: disabled degenerate"
 		dialog
 			`You perform a search of Mhairi's flagship, their crew forced to cooperate if they don't want to get spaced!`
@@ -1992,7 +1992,7 @@ mission "<uhai> 17: Mirror Spy"
 
 
 
-# 18 is optional, in side missions because you can learn Hai trough the Hai diplomats
+# 18 is optional, in side missions because you can learn Hai through the Hai diplomats
 # idea: add a duel against the Herald where they have a Water Bug wearing an Octopulse
 mission "<uhai> 19: Scout Wanderer Systems"
 	name `Know your enemy`

@@ -408,7 +408,7 @@ news "hai attacked by pirates"
 		word
 			`"`
 		word
-			"The human ship carrying my family was attacked by pirates when they came back from human space. I guess I may as well be join the Unfettered now that I have nothing to lose."
+			"The human ship carrying my family was attacked by pirates when they came back from human space. I guess I may as well join the Unfettered now that I have nothing to lose."
 			"Pirates destroyed the human ship my children were on. They were always curious about the humans, and look where that got them! I will join the Unfettered; they are right."
 			"Human ships are so frail... My sister was on one, and she told me it lost all of its shields in a few shots! Thankfully, human weapons are not that strong either, so they were able to escape."
 			"You call these human vessels ships? They just barely protect against the void. Given the danger of human space, I would expect humans to have more heavy transports that can at least try to defend themselves, such as the Behemoth!"

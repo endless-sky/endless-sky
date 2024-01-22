@@ -478,7 +478,7 @@ mission "<uhai> 6 A: Loyal Escort"
 			conversation
 				branch "feasting wolves"
 					has "<uhai> 6 B: To The Wolves: active"
-				`The governor hails you, "We.. need.. immediate.. assistance..." you can only parse these few words trough the chaos but it is clear that your escort is disabled. You must quickly help them or you will have failed the escort, and since you did not accept the mysterious deal that was offered to you earlier, you would get no reward for it.`
+				`The governor hails you, "We.. need.. immediate.. assistance..." you can only parse these few words through the chaos but it is clear that your escort is disabled. You must quickly help them or you will have failed the escort, and since you did not accept the mysterious deal that was offered to you earlier, you would get no reward for it.`
 				`	If one of the ship was destroyed it is already too late.`
 					decline
 				label "feasting wolves"
@@ -763,7 +763,7 @@ mission "<uhai> 7: Stolen Cargo"
 			label worthless
 			action
 				set "unfettered: worthless question"
-			`	"Our contact mentioned having to sometimes fight alien invaders, although they did not want to specify which. They also have to pass trough the big no man's land that leads to the wormhole afterwards, which has some pirates here and there. However, maybe she exaggerated the risks, in order to increase the cost. We are quite desperate for materials, and thus ready to pay quite a hefty price."`
+			`	"Our contact mentioned having to sometimes fight alien invaders, although they did not want to specify which. They also have to pass through the big no man's land that leads to the wormhole afterwards, which has some pirates here and there. However, maybe she exaggerated the risks, in order to increase the cost. We are quite desperate for materials, and thus ready to pay quite a hefty price."`
 				goto choose
 			label whyhire
 			action
@@ -1282,7 +1282,7 @@ mission "<uhai> 9: Capture The Alpha Auxiliary"
 			label scanned
 			action
 				"unfettered rep: Mera" ++
-			`	She moves her head to the side, surprised, "You... Did? Let me take a look at it then," she asks, and you give her the details. "It seems like this ship was outfitted for speed rather than combat, luckily for you. They are using 2 Tracker Pods, 2 Bullfrogs and one combo of turrets that disrupt shields and slice trough hull. I am not much of a strategist so I'll let you decide what to make out of this intel," she says, before taking another look at the logs. And almost jumping in place, "Wait! They have a Systems Core, and plenty of fuel. That must mean that the damage to their ship should have been repaired very quickly. The trail could run cold very quickly in that case, I'd advise you to head east as soon as you can." She stops for a second, unsure what to say, "No, that can't be. Anyway, back to the damage suffered to their ship."`
+			`	She moves her head to the side, surprised, "You... Did? Let me take a look at it then," she asks, and you give her the details. "It seems like this ship was outfitted for speed rather than combat, luckily for you. They are using 2 Tracker Pods, 2 Bullfrogs and one combo of turrets that disrupt shields and slice through hull. I am not much of a strategist so I'll let you decide what to make out of this intel," she says, before taking another look at the logs. And almost jumping in place, "Wait! They have a Systems Core, and plenty of fuel. That must mean that the damage to their ship should have been repaired very quickly. The trail could run cold very quickly in that case, I'd advise you to head east as soon as you can." She stops for a second, unsure what to say, "No, that can't be. Anyway, back to the damage suffered to their ship."`
 			choice
 				`	(Let her continue.)`
 					goto information

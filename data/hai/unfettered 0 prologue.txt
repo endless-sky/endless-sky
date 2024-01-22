@@ -560,7 +560,7 @@ mission "<uhai> 0: Bring Hai"
 			has "language: Hai"
 	on offer
 		conversation
-			`Looking outside, you see the sun is setting. You take a moment to admire the breathtaking view of the sun passing trough some clouds of pollution and notice a large, white, square-shaped structure in the distance, perhaps some sort of stadium, which a growing crowd of Unfettered are streaming towards. Ships keep landing and unloading even more Hai all over the spaceport, so much so that, exiting your ship, you cannot avoid being caught up in the crowd, almost carried, as they head towards the building. It is grandiose compared to its surroundings, distinguished by its sheer length and pure white appearance. In contrast, most of the surrounding structures appear to be houses or bars, all with more dilapidated appearances.`
+			`Looking outside, you see the sun is setting. You take a moment to admire the breathtaking view of the sun passing through some clouds of pollution and notice a large, white, square-shaped structure in the distance, perhaps some sort of stadium, which a growing crowd of Unfettered are streaming towards. Ships keep landing and unloading even more Hai all over the spaceport, so much so that, exiting your ship, you cannot avoid being caught up in the crowd, almost carried, as they head towards the building. It is grandiose compared to its surroundings, distinguished by its sheer length and pure white appearance. In contrast, most of the surrounding structures appear to be houses or bars, all with more dilapidated appearances.`
 			`	Something of great interest must be happening in this building, but not all the Unfettered in the crowd actually share your destination; many are instead breaking away to fill the nearby bars. Some simply wander aimlessly, others are sitting on the rocky ground, chatting. Quite a few of them appear to be trading a small quantity of goods between themselves.`
 			choice
 				`	(Go into the stadium.)`
@@ -1017,7 +1017,7 @@ mission "<uhai> 2: Prove Your Strength"
 			label calm
 			action
 				"unfettered rep: Si-Ra" ++
-			`	You hold out your hand peacefully to try and appease it as it jumps out. Surprisingly, it stops right in front of you, and observes you, its eyes deep as the void. The Unfettered are all gawching at you, impressed by this feat of courage that is seemingly paying off. Then a nearby warrior points their weapons at it, and the scorpion-like creature moves faster than you thought possible, striking you with its tail. Then, everything gets dark.`
+			`	You hold out your hand peacefully to try and appease it as it jumps out. Surprisingly, it stops right in front of you, and observes you, its eyes deep as the void. The Unfettered are all gawking at you, impressed by this feat of courage that is seemingly paying off. Then a nearby warrior points their weapons at it, and the scorpion-like creature moves faster than you thought possible, striking you with its tail. Then, everything gets dark.`
 				goto poisoned
 			label reward
 			action
@@ -1034,7 +1034,7 @@ mission "<uhai> 2: Prove Your Strength"
 			`	As he passes near you he quickly speaks, "It'll be a few weeks before I'm ready for more action."`
 				accept
 			label stay
-			`	You stay there, surely impressing all Hai present! However it also means you get hit by the tail of the monster as it jumps out to hit you, and everything gets darke.`
+			`	You stay there, surely impressing all Hai present! However it also means you get hit by the tail of the monster as it jumps out to hit you, and everything gets dark.`
 			label poisoned
 			`	You hear voices around you, someone screaming for help, but also your recent opponent speaking calmly. "There is no cure for humans," you hear as you sink deeper and deeper, down to the edge of unconsciousness, "there is nothing to be done. This is a fight they will have to win on their own."`
 			`	Suddenly the world darkens, and you fall. When you open your eyes again, all is vivid, as if you had never seen before. You see the scorpion-like creature that attacked you, clearer than ever, in all its might and with a deep spark of intelligence in its eyes, before it swiftly moves away.`
@@ -1128,7 +1128,7 @@ mission "<uhai> 3: Recover Jump Drives"
 			label cut
 			`	"Ye humans always be obsessed with yer doubloons... So many much greater a variety of booty ye could be seeking. Rest assured, it be quite the coffer. I be taking half of the total bounty, and ye should well remember how well ye were paid for the ones ye've already delivered to me brethren."`
 			label leave
-			`	"One last warning for ye: Ye should sail the skies with a hyperdrive, especially with the dangers of where we be headed. A jump drive won't do us any favors getting there, but 'twill bring more than a mite of unwanted company. Nor should we risk whether or not the lily-livered scallywags up north would decide to fit ye with a hempen halter from yer association with us."`
+			`	"One last warning for ye: Ye should sail the skies with a hyperdrive, especially with the dangers of where we be headed. A jump drive won't do us any favors getting there, but 'twill bring more than a mite of unwanted company. Nor should we risk whether or not the perrots up north would decide to fit ye with a hempen halter from yer association with us."`
 			choice
 				`	(Show him to your ship.)`
 					goto ship
@@ -1469,7 +1469,7 @@ mission "<uhai> 4: Scan Geocoris"
 					goto choose
 				`	"Not my problem."`
 					decline
-		log "People" "Mera" `An Unfettered engineer who is interested in ship designs of all kinds. She is easily excited by new technologies and ships, and seems to communicate partly trough her bodily language.`
+		log "People" "Mera" `An Unfettered engineer who is interested in ship designs of all kinds. She is easily excited by new technologies and ships, and seems to communicate partly through her bodily language.`
 	on decline
 		event "unfettered: analyzed the scans" 30 60
 	on abort
