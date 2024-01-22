@@ -86,7 +86,7 @@ mission "Hai Leaks Response 3"
 			`	Mr. Yang responds, "On that, I'm afraid I may have some bad news." He taps on his screen as he says, 'bad news,' and the holoprojector begins showing a series of charts.`
 			label charts
 			`	"One of the things I brought with me was Republic Intelligence's estimate of the effectiveness of various information containment measures."`
-			`	You're not an expert at data analysis, but the highlighted percentages ranging from 4% to 39% do not look promising. The final graphic is a map of stages of what is labeled as 'artifact penetration'. "Artifact penetration is the point at which a government cannot reasonably attempt to pretend something is anything but the truth, at least not while still holding to the claim of being a representative government," explains Mr. Yang.`
+			`	You're not an expert at data analysis, but the highlighted percentages ranging from 4% to 39% do not look promising. The final graphic is a map of stages of what is labeled as "artifact penetration." "Artifact penetration is the point at which a government cannot reasonably attempt to pretend something is anything but the truth, at least not while still holding to the claim of being a representative government," explains Mr. Yang.`
 			`	He checks the date. "Our most optimistic estimates suggest the Republic will be forced to acknowledge the existence of the Hai within three months, or we would lose so much credibility as to compromise electoral stability. The actual time limit is probably sooner."`
 			choice
 				`	"Would that be so bad?"`
@@ -165,7 +165,7 @@ mission "Hai Leaks Response 4"
 		event "waypoint pirates vanquished"
 		event "hai ladybug available"
 		event "humans adopt ladybugs" 20 30
-		log `Defeated the "Black Lich". They had managed to kidnap a number of Hai straight off the planet with a combination of trickery and speed. Rewarded well.`
+		log `Defeated the "Black Lich." They had managed to kidnap a number of Hai straight off the planet with a combination of trickery and speed. Rewarded well.`
 		conversation
 			branch "saved geocoris"
 				has "ship model (all): Geodesic Geocoris"
@@ -444,7 +444,7 @@ mission "Hai Leaks Response 6"
 		# Hai like you a lot now, and as a result, you have permanent access to Hai-home:
 		"reputation: Hai" >?= 100
 		fail "Hai Leaks Response 5B"
-		log `The working solution to the secrecy crisis for now is to have the Hai post a number of ships on the other side of the wormhole to play-act for the cover story that they're making a big budget movie to target fans of the popular franchise 'Our Fuzzy Paradise'. The presence of Hai who won't take off their costumes has been attributed to a 'fan community' that have been hired on as a focus group to be there as part of the production. Despite all this, it is only a short-term solution. Asked by Sayari to look into a rumor about more kidnapped Hai. She does not consider it to be a particularly likely scenario, but her contacts insist.`
+		log `The working solution to the secrecy crisis for now is to have the Hai post a number of ships on the other side of the wormhole to play-act for the cover story that they're making a big budget movie to target fans of the popular franchise "Our Fuzzy Paradise." The presence of Hai who won't take off their costumes has been attributed to a "fan community" that have been hired on as a focus group to be there as part of the production. Despite all this, it is only a short-term solution. Asked by Sayari to look into a rumor about more kidnapped Hai. She does not consider it to be a particularly likely scenario, but her contacts insist.`
 		conversation
 			`Arriving at the secure landing area on Hai-home, you are met by a group of relieved diplomats. Of all of them, Alondo seems to be the least tired and takes the time to let you know what's been going on. "Captain <last>! You've missed quite the palaver. Still, I doubt you lost much. We've spent four hours trying to explain to Sayari what a 'furry' is."`
 			choice
@@ -495,13 +495,13 @@ mission "Hai Leaks Response 6"
 				"hai slave prereq" >= 1
 			choice
 				`	"Sure, I can have a look around."`
-			`	She gives you a little smile and nods. "If you come across someone and have difficulty getting them to trust you, try telling them 'Luf e ow, vai, luf e eh'."`
+			`	She gives you a little smile and nods. "If you come across someone and have difficulty getting them to trust you, try telling them 'Luf e ow, vai, luf e eh.'"`
 				goto mean
 			label aboutthat
 			`	"Well, about that," you say, "I think I might have already come across some potential evidence of this before."`
 			`	Sayari's hood nearly slips off as she looks up at you with a horrified expression. "Surely not?!"`
 			`	You rush to reassure her. "Nothing concrete, of course. I can go and look to be sure."`
-			`	She gives you a very serious look and nods. "If you come across any others and have difficulty getting them to trust you, try telling them 'Luf e ow, vai, luf e eh'."`
+			`	She gives you a very serious look and nods. "If you come across any others and have difficulty getting them to trust you, try telling them 'Luf e ow, vai, luf e eh.'"`
 			label mean
 			choice
 				`	"Thank you, I will."`
