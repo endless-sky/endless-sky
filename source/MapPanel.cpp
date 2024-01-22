@@ -1402,7 +1402,7 @@ void MapPanel::DrawSystems()
 	float spin;
 	Point starOffset;
 
-	float ringFade = isStarry ? 1.33 - zoom : 1.;
+	float ringFade = isStarry ? 1.5 - zoom : 1.;
 	for(const Node &node : nodes)
 	{
 		Point pos = zoom * (node.position + center);
@@ -1415,7 +1415,7 @@ void MapPanel::DrawSystems()
 			// Ensures every multiple-star system has a characteristic, deterministic rotation.
 			starAngle = node.name.length() + node.position.Length();
 			spin = 4 * acos(0.0) / node.mapIcon.size();
-			starOffset = (node.mapIcon.size() == 1) ? Point(0, 0) : Point(4, 4);
+			starOffset = (node.mapIcon.size() == 1) ? Point(0, 0) : node.mapIcon.size() * Point(2, 2);
 
 			// Draw the star sprites
 			for(string star : node.mapIcon)
@@ -1423,7 +1423,7 @@ void MapPanel::DrawSystems()
 				starAngle = starAngle + spin;
 				Point starRotate(cos(starAngle), sin(starAngle));
 				const Body starBody = Body(SpriteSet::Get(star), pos + zoom * starOffset * starRotate,
-					Point(0, 0), starAngle, sqrt(zoom) / 2);
+					Point(0, 0), 0, sqrt(zoom) / 2);
 				batchDraw.Add(starBody);
 			}
 		}
@@ -1461,10 +1461,10 @@ void MapPanel::DrawNames()
 	double zoomFactor = zoom / 2;
 	for(const Node &node : nodes)
 	{
-		Point offset(useBigFont ? 8. : 6., -.5 * font.Height());
+		Point offset(useBigFont ? 10. : 8., -.5 * font.Height());
 		font.Draw(node.name, zoom * (node.position + center) + offset,
 			(isStarry ? Color::Combine(1. - zoomFactor, node.nameColor, zoomFactor, node.color)
-				: node.nameColor).Additive(.75));
+				: node.nameColor).Additive(.9));
 	}
 
 }
