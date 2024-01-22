@@ -1108,14 +1108,14 @@ ship "Penguin"
 		"ion resistance" 0.05
 		"scramble resistance" 0.05
 		"thrust" 4.2
-		"thrusting energy" 0.65
-		"thrusting heat" 0.6
+		"thrusting energy" 0.6
+		"thrusting heat" 0.55
 		"turn" 80.0
-		"turning energy" 0.25
-		"turning heat" 0.25
+		"turning energy" 0.15
+		"turning heat" 0.15
 		"reverse thrust" 4.2
-		"reverse thrusting energy" 0.65
-		"reverse thrusting heat" 0.6
+		"reverse thrusting energy" 0.6
+		"reverse thrusting heat" 0.55
 		"flare sprite" "effect/remnant flare/small"
 			"frame rate" 5
 		"flare sound" "plasma tiny"
