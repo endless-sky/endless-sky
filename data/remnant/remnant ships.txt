@@ -920,6 +920,25 @@ ship "Merganser"
 		"tactical scan power" 26
 		"ion resistance" 0.025
 		"scramble resistance" 0.025
+		"thrust" 5.0
+		"turn" 60.0
+		"reverse thrust" 5.0
+		"thrusting energy" 0.75
+		"thrusting heat" 0.7
+		"turning energy" 0.15
+		"turning heat" 0.2
+		"reverse thrusting energy" 0.75
+		"reverse thrusting heat" 0.7
+		"flare sprite" "effect/remnant flare/small"
+			"frame rate" 5
+		"flare sound" "plasma tiny"
+		"steering flare sprite" "effect/remnant flare/small"
+			"frame rate" 5
+		"steering flare sound" "plasma tiny"
+		"reverse flare sprite" "effect/remnant flare/small"
+			"frame rate" 5
+		"reverse flare sound" "plasma tiny"
+		
 		weapon
 			"blast radius" 10
 			"shield damage" 100
