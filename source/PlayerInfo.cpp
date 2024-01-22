@@ -248,7 +248,7 @@ void PlayerInfo::Load(const string &path)
 			mapColoring = child.Value(1);
 		else if(child.Token(0) == "map zoom" && child.Size() >= 2)
 			mapZoom = child.Value(1);
-		else if (child.Token(0) == "starry map" && child.Size() >= 2)
+		else if(child.Token(0) == "starry map" && child.Size() >= 2)
 			isStarry = child.Value(1);
 		else if(child.Token(0) == "collapsed" && child.Size() >= 2)
 		{

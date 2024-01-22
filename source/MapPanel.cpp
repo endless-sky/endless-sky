@@ -339,7 +339,7 @@ void MapPanel::FinishDrawing(const string &buttonCondition)
 		info.SetCondition("max zoom");
 	if(player.MapZoom() <= static_cast<int>(mapInterface->GetValue("min zoom")))
 		info.SetCondition("min zoom");
-	if (player.StarryMap() == true)
+	if(player.StarryMap() == true)
 	{
 		info.SetCondition("is starry");
 		isStarry = true;
@@ -550,36 +550,36 @@ bool MapPanel::AllowsFastForward() const noexcept
 bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	const Interface *mapInterface = GameData::Interfaces().Get("map");
-	if (command.Has(Command::MAP) || key == 'd' || key == SDLK_ESCAPE
+	if(command.Has(Command::MAP) || key == 'd' || key == SDLK_ESCAPE
 		|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		GetUI()->Pop(this);
-	else if (key == 's' && buttonCondition != "is shipyards")
+	else if(key == 's' && buttonCondition != "is shipyards")
 	{
 		GetUI()->Pop(this);
 		GetUI()->Push(new MapShipyardPanel(*this));
 	}
-	else if (key == 'o' && buttonCondition != "is outfitters")
+	else if(key == 'o' && buttonCondition != "is outfitters")
 	{
 		GetUI()->Pop(this);
 		GetUI()->Push(new MapOutfitterPanel(*this));
 	}
-	else if (key == 'i' && buttonCondition != "is missions")
+	else if(key == 'i' && buttonCondition != "is missions")
 	{
 		GetUI()->Pop(this);
 		GetUI()->Push(new MissionPanel(*this));
 	}
-	else if (key == 'p' && buttonCondition != "is ports")
+	else if(key == 'p' && buttonCondition != "is ports")
 	{
 		GetUI()->Pop(this);
 		GetUI()->Push(new MapDetailPanel(*this));
 	}
-	else if (key == 'f')
+	else if(key == 'f')
 	{
 		GetUI()->Push(new Dialog(
 			this, &MapPanel::Find, "Search for:", "", Truncate::NONE, true));
 		return true;
 	}
-	else if (key == ']' && isStarry == false)
+	else if(key == ']' && isStarry == false)
 		player.SetStarryMap(true);
 	else if(key == '[' && isStarry == true)
 		player.SetStarryMap(false);
