@@ -1402,13 +1402,14 @@ void MapPanel::DrawSystems()
 	float spin;
 	Point starOffset;
 
-	float ringFade = isStarry ? 1.5 - zoom : 1.;
+	float ringFade = isStarry ? 1.5 - 1.25 * zoom : 1.;
 	for(const Node &node : nodes)
 	{
 		Point pos = zoom * (node.position + center);
 
 		// System rings fade as you zoom in.
-		RingShader::Draw(pos, ringOuter, ringInner, node.color.Additive(ringFade));
+		RingShader::Draw(pos, ringOuter, ringInner, node.color.Additive(max(ringFade,
+			node.mapIcon.size() == 0 ? .9f : 0)));
 
 		if(isStarry)
 		{
@@ -1423,7 +1424,7 @@ void MapPanel::DrawSystems()
 				starAngle = starAngle + spin;
 				Point starRotate(cos(starAngle), sin(starAngle));
 				const Body starBody = Body(SpriteSet::Get(star), pos + zoom * starOffset * starRotate,
-					Point(0, 0), 0, sqrt(zoom) / 2);
+					Point(0, 0), 0, sqrt(zoom) / 2, min(zoom + 0.2, 0.8));
 				batchDraw.Add(starBody);
 			}
 		}
