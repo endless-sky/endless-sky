@@ -779,7 +779,7 @@ mission "Quarg Interrogation"
 			`	"And why did you agree? Do you wish to join their ranks, perhaps?" it asks.`
 			choice
 				`	"I just wanted to help. It's not like I destroyed your ships or something."`
-				`	"They told me that the Quarg keep others in 'separate boxes', and that you hinder their development."`
+				`	"They told me that the Quarg keep others in 'separate boxes,' and that you hinder their development."`
 					goto hinder
 			`	"Perhaps not, but you agreed to collect information on us and our worlds, which hold countless civilians, and deliver the findings to a group that despises us."`
 				goto end

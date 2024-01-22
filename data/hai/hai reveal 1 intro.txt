@@ -451,7 +451,7 @@ mission "Hai Leaks Response 6"
 				`	"What? That could've been entertaining."`
 				`	"Hmm. No, I probably didn't miss much."`
 				`	"Oh, I could have told her all about it..."`
-			`	He chuckles. "Anyway, I have a hunch that we'll need you again before too long, but for now they're putting some Hai patrols out on the other side of the wormhole with a couple of Navy observers on board to 'play the part', as it were. We've got a plan now but there's some work to pull it off. There's some older counter-propaganda that we're leveraging to pass things off as a big budget movie production."`
+			`	He chuckles. "Anyway, I have a hunch that we'll need you again before too long, but for now they're putting some Hai patrols out on the other side of the wormhole with a couple of Navy observers on board to 'play the part,' as it were. We've got a plan now but there's some work to pull it off. There's some older counter-propaganda that we're leveraging to pass things off as a big budget movie production."`
 			choice
 				`	"Sounds good. What's next?"`
 					goto next
@@ -460,7 +460,7 @@ mission "Hai Leaks Response 6"
 				`	"Am I allowed to know more?"`
 			`	Alondo gives you a quizzical look. "Of course you are, <last>."`
 			label about
-			`	He pulls out a hand tablet and shows you a title screen which doesn't automatically look familiar. As he talks he flicks through a series of reference images. "There's an older TV show franchise with a cult following called 'Our Fuzzy Paradise', which has had a few different reboots and iterations over the decades. In case you haven't guessed, it features a whole cast of anthropomorphic squirrels. Most recently we had a seven season series run subtitled 'Fellowship is Glamorous' which was one of the more successful ones."`
+			`	He pulls out a hand tablet and shows you a title screen which doesn't automatically look familiar. As he talks he flicks through a series of reference images. "There's an older TV show franchise with a cult following called 'Our Fuzzy Paradise,' which has had a few different reboots and iterations over the decades. In case you haven't guessed, it features a whole cast of anthropomorphic squirrels. Most recently we had a seven season series run subtitled 'Fellowship is Glamorous' which was one of the more successful ones."`
 			choice
 				`	"That sounds... interesting. Tell me more."`
 				`	"Never mind. It sounds like you have that under control. What's next?"`
