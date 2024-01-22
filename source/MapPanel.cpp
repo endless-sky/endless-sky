@@ -339,6 +339,16 @@ void MapPanel::FinishDrawing(const string &buttonCondition)
 		info.SetCondition("max zoom");
 	if(player.MapZoom() <= static_cast<int>(mapInterface->GetValue("min zoom")))
 		info.SetCondition("min zoom");
+	if (player.StarryMap() == true)
+	{
+		info.SetCondition("is starry");
+		isStarry = true;
+	}
+	if(player.StarryMap() == false)
+	{
+		info.SetCondition("!is starry");
+		isStarry = false;
+	}
 	const Interface *mapButtonUi = GameData::Interfaces().Get(Screen::Width() < 1280
 		? "map buttons (small screen)" : "map buttons");
 	mapButtonUi->Draw(info, this);
@@ -540,35 +550,39 @@ bool MapPanel::AllowsFastForward() const noexcept
 bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	const Interface *mapInterface = GameData::Interfaces().Get("map");
-	if(command.Has(Command::MAP) || key == 'd' || key == SDLK_ESCAPE
-			|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
+	if (command.Has(Command::MAP) || key == 'd' || key == SDLK_ESCAPE
+		|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		GetUI()->Pop(this);
-	else if(key == 's' && buttonCondition != "is shipyards")
+	else if (key == 's' && buttonCondition != "is shipyards")
 	{
 		GetUI()->Pop(this);
 		GetUI()->Push(new MapShipyardPanel(*this));
 	}
-	else if(key == 'o' && buttonCondition != "is outfitters")
+	else if (key == 'o' && buttonCondition != "is outfitters")
 	{
 		GetUI()->Pop(this);
 		GetUI()->Push(new MapOutfitterPanel(*this));
 	}
-	else if(key == 'i' && buttonCondition != "is missions")
+	else if (key == 'i' && buttonCondition != "is missions")
 	{
 		GetUI()->Pop(this);
 		GetUI()->Push(new MissionPanel(*this));
 	}
-	else if(key == 'p' && buttonCondition != "is ports")
+	else if (key == 'p' && buttonCondition != "is ports")
 	{
 		GetUI()->Pop(this);
 		GetUI()->Push(new MapDetailPanel(*this));
 	}
-	else if(key == 'f')
+	else if (key == 'f')
 	{
 		GetUI()->Push(new Dialog(
 			this, &MapPanel::Find, "Search for:", "", Truncate::NONE, true));
 		return true;
 	}
+	else if (key == ']' && isStarry == false)
+		player.SetStarryMap(true);
+	else if(key == '[' && isStarry == true)
+		player.SetStarryMap(false);
 	else if(key == SDLK_PLUS || key == SDLK_KP_PLUS || key == SDLK_EQUALS)
 		player.SetMapZoom(min(static_cast<float>(mapInterface->GetValue("max zoom")), player.MapZoom() + 0.5f));
 	else if(key == SDLK_MINUS || key == SDLK_KP_MINUS)
@@ -1378,29 +1392,47 @@ void MapPanel::DrawSystems()
 	if(commodity == SHOW_GOVERNMENT)
 		closeGovernments.clear();
 
+
+
 	// Draw the circles for the systems.
 	double zoom = Zoom();
-	float ringSize = INNER + zoom;
-	float ringFade = zoom <= 0.75 ? 0.9 : 1.1 - zoom / 2.5;
+	float ringInner = INNER;
+	float ringOuter = OUTER;
+	float ringFade = 1.;
+	float starAngle;
+	float spin;
+	Point starOffset;
+
+	if(isStarry)
+	{
+		ringFade = (zoom <= 0.75) ? 1. : 1.1 - zoom / 2.5;
+		ringInner = (zoom <= 0.75) ? INNER : INNER + zoom;
+	}
+
+
 	for(const Node &node : nodes)
 	{
 		Point pos = zoom * (node.position + center);
 
 		// System rings fade as you zoom in.
-		RingShader::Draw(pos, ringSize + 2.5, ringSize, node.color.Transparent(ringFade));
+		RingShader::Draw(pos, ringOuter, ringInner, node.color.Additive(ringFade));
 
-		// Ensures every multiple-star system has a unique, deterministic rotation.
-		float starAngle = node.name.length() + node.position.Length();
-		float spin = 4 * acos(0.0) / node.mapIcon.size();
-		Point starOffset = (node.mapIcon.size() == 1) ? Point(0, 0) : Point(4, 4);
-
-		// Draw the star sprites
-		for(string star : node.mapIcon)
+		if(isStarry && zoom >= 0.75)
 		{
-			starAngle = starAngle + spin;
-			Point starRotate(cos(starAngle), sin(starAngle));
-			const Body starBody = Body(SpriteSet::Get(star), pos + zoom * starOffset * starRotate, Point(0, 0), starAngle, sqrt(zoom) / 2);
-			batchDraw.Add(starBody);
+			// Ensures every multiple-star system has a characteristic, deterministic rotation.
+			starAngle = node.name.length() + node.position.Length();
+			spin = 4 * acos(0.0) / node.mapIcon.size();
+			starOffset = (node.mapIcon.size() == 1) ? Point(0, 0) : Point(4, 4);
+
+			// Draw the star sprites
+			for (string star : node.mapIcon)
+			{
+				starAngle = starAngle + spin;
+				Point starRotate(cos(starAngle), sin(starAngle));
+				const Body starBody = Body(SpriteSet::Get(star), pos + zoom * starOffset * starRotate,
+					Point(0, 0), starAngle, sqrt(zoom) / 2);
+				batchDraw.Add(starBody);
+			}
 		}
 
 		batchDraw.Draw();
@@ -1435,10 +1467,8 @@ void MapPanel::DrawNames()
 	const Font &font = FontSet::Get(useBigFont ? 18 : 14);
 	for(const Node &node : nodes)
 	{
-		int namewidth = font.Width(node.name);
-		Point offset(useBigFont ? -namewidth / 2 : -namewidth / 2, 0.75 * font.Height());
-		font.Draw(node.name, zoom * (node.position + center) + offset,
-					Color::Combine(1. -pow(zoom / 3., 2), node.nameColor, zoom / 3., node.color));
+		Point offset(useBigFont ? 8. : 6., -.5 * font.Height());
+		font.Draw(node.name, zoom * (node.position + center) + offset, isStarry ? node.color : node.nameColor);
 	}
 
 }

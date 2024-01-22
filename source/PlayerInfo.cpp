@@ -248,6 +248,8 @@ void PlayerInfo::Load(const string &path)
 			mapColoring = child.Value(1);
 		else if(child.Token(0) == "map zoom" && child.Size() >= 2)
 			mapZoom = child.Value(1);
+		else if (child.Token(0) == "is starry" && child.Size() >= 2)
+			isStarry = child.Value(1);
 		else if(child.Token(0) == "collapsed" && child.Size() >= 2)
 		{
 			for(const DataNode &grand : child)
@@ -2958,6 +2960,22 @@ void PlayerInfo::SetMapZoom(float level)
 
 
 
+// Get the map display mode.
+float PlayerInfo::StarryMap() const
+{
+	return isStarry;
+}
+
+
+
+// Set the map display mode.
+void PlayerInfo::SetStarryMap(bool state)
+{
+	isStarry = state;
+}
+
+
+
 // Get the set of collapsed categories for the named panel.
 set<string> &PlayerInfo::Collapsed(const string &name)
 {
@@ -4258,6 +4276,7 @@ void PlayerInfo::Save(DataWriter &out) const
 	// Save the current setting for the map coloring;
 	out.Write("map coloring", mapColoring);
 	out.Write("map zoom", mapZoom);
+	out.Write("is starry", isStarry);
 	// Remember what categories are collapsed.
 	for(const auto &it : collapsed)
 	{

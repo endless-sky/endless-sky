@@ -335,6 +335,9 @@ public:
 	// Get or set the map zoom level.
 	float MapZoom() const;
 	void SetMapZoom(float level);
+	// Get or set the map display mode.
+	float StarryMap() const;
+	void SetStarryMap(bool state);
 	// Get the set of collapsed categories for the named panel.
 	std::set<std::string> &Collapsed(const std::string &name);
 	// Should help dialogs relating to carriers be displayed?
@@ -459,6 +462,7 @@ private:
 	// Currently selected coloring, in the map panel (defaults to reputation):
 	int mapColoring = -6;
 	float mapZoom = 0;
+	bool isStarry;
 
 	// Currently collapsed categories for various panels.
 	std::map<std::string, std::set<std::string>> collapsed;
