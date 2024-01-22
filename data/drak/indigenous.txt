@@ -450,10 +450,10 @@ fleet "Embershades"
 
 
 fleet "Embersylphs"
-	government "Indigenous Lifeform"
+	government "Ember Waste"
 	cargo 0
 	personality
-		lingering timid mute swarming unconstrained
+		timid mute swarming unconstrained
 	variant 12
 		"Embersylph" 1
 	variant 4
