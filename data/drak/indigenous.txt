@@ -299,7 +299,7 @@ ship "Embersylph"
 	turret 0 0 "Absorption Organ"
 	leak "blood" 2
 	explode "blood" 1
-	description "Embersylphs are strange creatures that glow in various hues, gracefully swinging several long appendiges in a strangely methodic movement. The only known behavior these creatures are known to display is an act of curiousity for other life."
+	description "Embersylphs are strange creatures that glow in various hues, gracefully swinging several long appendiges in a strangely methodic movement. The only known behavior these creatures are known to display is an act of curiosity for other life."
 
 
 
