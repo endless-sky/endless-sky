@@ -290,7 +290,6 @@ government "Free Worlds (Anti-Pug)"
 		"Militia" .3
 		"Pirate" -.4
 		"Pirate (Devil-Run Gang)" -.4
-		"Pug" -.01
 		"Smuggler (Hai Trafficker)" .05
 		"Neutral" .1
 	"bribe" .1
