@@ -19,6 +19,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Audio.h"
 #include "CategoryList.h"
 #include "CategoryTypes.h"
+#include "Collision.h"
+#include "CollisionType.h"
 #include "CoreStartData.h"
 #include "DamageDealt.h"
 #include "DamageProfile.h"
@@ -245,7 +247,7 @@ namespace {
 
 Engine::Engine(PlayerInfo &player)
 	: player(player), ai(player, ships, asteroids.Minables(), flotsam),
-	ammoDisplay(player), shipCollisions(256u, 32u)
+	ammoDisplay(player), shipCollisions(256u, 32u, CollisionType::SHIP)
 {
 	zoom.base = Preferences::ViewZoom();
 	zoom.modifier = Preferences::Has("Landing zoom") ? 2. : 1.;
@@ -603,10 +605,11 @@ void Engine::Step(bool isActive)
 	// Update this here, for thread safety.
 	if(player.HasTravelPlan() && currentSystem == player.TravelPlan().back())
 		player.PopTravel();
-	// Check if the first step of the travel plan is valid.
+	// Check if the player's travel plan is still valid.
 	if(flagship && player.HasTravelPlan())
 	{
 		bool travelPlanIsValid = false;
+		// If the player is traveling through a wormhole to the next system, then the plan is valid.
 		const System *system = player.TravelPlan().back();
 		for(const StellarObject &object : flagship->GetSystem()->Objects())
 			if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->IsWormhole()
@@ -620,7 +623,11 @@ void Engine::Step(bool isActive)
 				travelPlanIsValid = true;
 				break;
 			}
+		// Otherwise, the player must still be within jump range of the next system.
 		travelPlanIsValid |= flagship->JumpNavigation().CanJump(flagship->GetSystem(), system);
+		// Other steps of the travel plan may have been invalidated as a result of the system no longer being visible.
+		travelPlanIsValid &= all_of(player.TravelPlan().begin(), player.TravelPlan().end(),
+				[this](const System *system) -> bool { return player.HasSeen(*system); });
 		if(!travelPlanIsValid)
 		{
 			if(flagship->GetTargetSystem() == player.TravelPlan().back())
@@ -641,7 +648,6 @@ void Engine::Step(bool isActive)
 	// Update the player's ammo amounts.
 	if(flagship)
 		ammoDisplay.Update(*flagship);
-
 
 	// Display escort information for all ships of the "Escort" government,
 	// and all ships with the "escort" personality, except for fighters that
@@ -1087,25 +1093,7 @@ void Engine::Draw() const
 		if(messagePoint.Y() < messageBox.Top())
 			break;
 		float alpha = (it->step + 1000 - step) * .001f;
-		const Color *color = nullptr;
-		switch(it->importance)
-		{
-			case Messages::Importance::Highest:
-				color = GameData::Colors().Find("message importance highest");
-				break;
-			case Messages::Importance::High:
-				color = GameData::Colors().Find("message importance high");
-				break;
-			case Messages::Importance::Info:
-				color = GameData::Colors().Find("message importance info");
-				break;
-			case Messages::Importance::Low:
-				color = GameData::Colors().Find("message importance low");
-				break;
-		}
-		if(!color)
-			color = GameData::Colors().Get("message importance default");
-		messageLine.Draw(messagePoint, color->Additive(alpha));
+		messageLine.Draw(messagePoint, Messages::GetColor(it->importance, false)->Additive(alpha));
 	}
 
 	// Draw crosshairs around anything that is targeted.
@@ -1272,7 +1260,7 @@ void Engine::EnterSystem()
 
 	Messages::Add("Entering the " + system->Name() + " system on "
 		+ today.ToString() + (system->IsInhabited(flagship) ?
-			"." : ". No inhabited planets detected."), Messages::Importance::High);
+			"." : ". No inhabited planets detected."), Messages::Importance::Daily);
 
 	// Preload landscapes and determine if the player used a wormhole.
 	// (It is allowed for a wormhole's exit point to have no sprite.)
@@ -2140,14 +2128,12 @@ void Engine::DoCollisions(Projectile &projectile)
 	// The asteroids can collide with projectiles, the same as any other
 	// object. If the asteroid turns out to be closer than the ship, it
 	// shields the ship (unless the projectile has a blast radius).
-	Point hitVelocity;
-	double closestHit = 1.;
-	shared_ptr<Ship> hit;
+	vector<Collision> collisions;
 	const Government *gov = projectile.GetGovernment();
 
 	// If this "projectile" is a ship explosion, it always explodes.
 	if(!gov)
-		closestHit = 0.;
+		collisions.emplace_back(nullptr, CollisionType::NONE, 0.);
 	else if(projectile.GetWeapon().IsPhasing() && projectile.Target())
 	{
 		// "Phasing" projectiles that have a target will never hit any other ship.
@@ -2157,10 +2143,7 @@ void Engine::DoCollisions(Projectile &projectile)
 			Point offset = projectile.Position() - target->Position();
 			double range = target->GetMask(step).Collide(offset, projectile.Velocity(), target->Facing());
 			if(range < 1.)
-			{
-				closestHit = range;
-				hit = target;
-			}
+				collisions.emplace_back(target.get(), CollisionType::SHIP, range);
 		}
 	}
 	else
@@ -2172,52 +2155,59 @@ void Engine::DoCollisions(Projectile &projectile)
 				if(body == projectile.Target() || (gov->IsEnemy(body->GetGovernment())
 						&& reinterpret_cast<const Ship *>(body)->Cloaking() < 1.))
 				{
-					closestHit = 0.;
+					collisions.emplace_back(nullptr, CollisionType::NONE, 0.);
 					break;
 				}
 
-		// If nothing triggered the projectile, check for collisions with ships.
-		if(closestHit > 0.)
+		// If nothing triggered the projectile, check for collisions with ships and asteroids.
+		if(collisions.empty())
 		{
-			Ship *ship = reinterpret_cast<Ship *>(shipCollisions.Line(projectile, &closestHit));
-			if(ship)
+			const vector<Collision> &newShipHits = shipCollisions.Line(projectile);
+			collisions.insert(collisions.end(), newShipHits.begin(), newShipHits.end());
+
+			// "Phasing" projectiles can pass through asteroids. For all other
+			// projectiles, check if they've hit an asteroid.
+			if(!projectile.GetWeapon().IsPhasing())
 			{
-				hit = ship->shared_from_this();
-				hitVelocity = ship->Velocity();
-			}
-		}
-		// "Phasing" projectiles can pass through asteroids. For all other
-		// projectiles, check if they've hit an asteroid that is closer than any
-		// ship that they have hit.
-		if(!projectile.GetWeapon().IsPhasing())
-		{
-			Body *asteroid = asteroids.Collide(projectile, &closestHit);
-			if(asteroid)
-			{
-				hitVelocity = asteroid->Velocity();
-				hit.reset();
+				const vector<Collision> &newAsteroidHits = asteroids.CollideAsteroids(projectile);
+				collisions.insert(collisions.end(), newAsteroidHits.begin(), newAsteroidHits.end());
+
+				const vector<Collision> &newMinableHits = asteroids.CollideMinables(projectile);
+				collisions.insert(collisions.end(), newMinableHits.begin(), newMinableHits.end());
 			}
 		}
 	}
 
-	// Check if the projectile hit something.
-	if(closestHit < 1.)
+	// Sort the Collisions by increasing range so that the closer collisions are evaluated first.
+	sort(collisions.begin(), collisions.end());
+
+	// Run all collisiions until either the projectile dies or there are no more collisions left.
+	for(Collision &collision : collisions)
 	{
+		Body *hit = collision.HitBody();
+		CollisionType collisionType = collision.GetCollisionType();
+		double range = collision.IntersectionRange();
+
+		shared_ptr<Ship> shipHit;
+		if(hit && collisionType == CollisionType::SHIP)
+			shipHit = reinterpret_cast<Ship *>(hit)->shared_from_this();
+
 		// Create the explosion the given distance along the projectile's
 		// motion path for this step.
-		projectile.Explode(visuals, closestHit, hitVelocity);
+		projectile.Explode(visuals, range, hit ? hit->Velocity() : Point());
 
-		const DamageProfile damage(projectile.GetInfo());
+		const DamageProfile damage(projectile.GetInfo(range));
 
 		// If this projectile has a blast radius, find all ships within its
 		// radius. Otherwise, only one is damaged.
+		// TODO: Also deal blast damage to minables?
 		double blastRadius = projectile.GetWeapon().BlastRadius();
-		bool isSafe = projectile.GetWeapon().IsSafe();
 		if(blastRadius)
 		{
 			// Even friendly ships can be hit by the blast, unless it is a
 			// "safe" weapon.
-			Point hitPos = projectile.Position() + closestHit * projectile.Velocity();
+			Point hitPos = projectile.Position() + range * projectile.Velocity();
+			bool isSafe = projectile.GetWeapon().IsSafe();
 			for(Body *body : shipCollisions.Circle(hitPos, blastRadius))
 			{
 				Ship *ship = reinterpret_cast<Ship *>(body);
@@ -2226,7 +2216,7 @@ void Engine::DoCollisions(Projectile &projectile)
 					continue;
 
 				// Only directly targeted ships get provoked by blast weapons.
-				int eventType = ship->TakeDamage(visuals, damage.CalculateDamage(*ship, ship == hit.get()),
+				int eventType = ship->TakeDamage(visuals, damage.CalculateDamage(*ship, ship == hit),
 					targeted ? gov : nullptr);
 				if(eventType)
 					eventQueue.emplace_back(gov, ship->shared_from_this(), eventType);
@@ -2234,18 +2224,25 @@ void Engine::DoCollisions(Projectile &projectile)
 		}
 		else if(hit)
 		{
-			int eventType = hit->TakeDamage(visuals, damage.CalculateDamage(*hit), gov);
-			if(eventType)
-				eventQueue.emplace_back(gov, hit, eventType);
+			if(collisionType == CollisionType::SHIP)
+			{
+				int eventType = shipHit->TakeDamage(visuals, damage.CalculateDamage(*shipHit), gov);
+				if(eventType)
+					eventQueue.emplace_back(gov, shipHit, eventType);
+			}
+			else if(collisionType == CollisionType::MINABLE)
+				reinterpret_cast<Minable *>(hit)->TakeDamage(projectile);
 		}
 
-		if(hit)
-			DoGrudge(hit, gov);
+		if(shipHit)
+			DoGrudge(shipHit, gov);
+		if(projectile.IsDead())
+			break;
 	}
-	else if(projectile.MissileStrength())
+
+	// If the projectile is still alive, give the anti-missile systems a chance to shoot it down.
+	if(!projectile.IsDead() && projectile.MissileStrength())
 	{
-		// If the projectile did not hit anything, give the anti-missile systems
-		// a chance to shoot it down.
 		for(Ship *ship : hasAntiMissile)
 			if(ship == projectile.Target() || gov->IsEnemy(ship->GetGovernment()))
 				if(ship->FireAntiMissile(projectile, visuals))
@@ -2301,7 +2298,7 @@ void Engine::DoCollection(Flotsam &flotsam)
 	// pull it.
 	if(!collector)
 	{
-		// Keep track of the the net effect of all the tractor beams pulling on
+		// Keep track of the net effect of all the tractor beams pulling on
 		// this flotsam.
 		Point pullVector;
 		// Also determine the average velocity of the ships pulling on this flotsam.
@@ -2322,8 +2319,8 @@ void Engine::DoCollection(Flotsam &flotsam)
 		{
 			// If any tractor beams successfully fired on this flotsam, also drag the flotsam with
 			// the average velocity of each ship.
-			// When dealing with individual ships, this makes tractor beams feel more more capable of
-			// dragging flotsams to the ship. Otherwise, a ship could be drifting away from a flotsam
+			// When dealing with individual ships, this makes tractor beams feel more capable of
+			// dragging flotsam to the ship. Otherwise, a ship could be drifting away from a flotsam
 			// at the same speed that the tractor beam is pulling the flotsam toward the ship,
 			// which looks awkward and makes the tractor beam feel pointless; the whole point of
 			// a tractor beam should be that it collects flotsam for you.

@@ -64,31 +64,30 @@ namespace {
 
 	const double MAXIMUM_TEMPERATURE = 100.;
 
-	// Scanning takes between 2 and 10 seconds (SCAN_TIME / MAX_SCAN_STEPS and SCAN_TIME / MIN_SCAN_STEPS)
+	// Scanning takes up to 10 seconds (SCAN_TIME / MIN_SCAN_STEPS)
 	// dependent on the range from the ship (among other factors).
 	// The scan speed uses a gaussian drop-off with the reported scan radius as the standard deviation.
 	const double SCAN_TIME = 600.;
 	// Always gain at least 1 step of scan progress for every frame spent scanning while in range.
 	// This ensures every scan completes within 600 frames (10 seconds) of being in range.
-	const double MIN_SCAN_STEPS = 1;
-	// Gain no more than 5 steps of scan progress for every frame spent scanning while in range.
-	// This ensures no scan takes fewer than 120 frames (2 seconds.)
-	const double MAX_SCAN_STEPS = 5; // minimum of 2 seconds to scan
+	const double MIN_SCAN_STEPS = 1.;
+	// Exponential dropoff of scan rate starts at scan rate of SCAN_TIME/LINEAR_RATE
+	// with an exponent of SCAN_DROPOFF_EXPONENT.
+	const double LINEAR_RATE = 5.;
+	const double SCAN_DROPOFF_EXPONENT = 5.;
 
-	// These numbers ensure it takes 10 seconds for a Cargo Scanner to scan
-	// a Bulk Freighter at point blank range. Any ship with less than 40
-	// cargo space takes as long as a ship with 40 cargo space.
-	const double SCAN_MIN_CARGO_SPACE = 40;
-	const double SCAN_CARGO_FACTOR = 3;
+	// In Ship::Scan, ships smaller than this are treated as being this size.
+	const double SCAN_MIN_CARGO_SPACE = 40.;
+	const double SCAN_MIN_OUTFIT_SPACE = 200.;
 
-	// This ensures it takes 10 seconds for an Outfit Scanner to scan a
-	// Bactrian at point blank range. Any ship with less than 200 outfit
-	// space takes as long as a ship with 200 outfit space.
-	const double SCAN_MIN_OUTFIT_SPACE = 200;
-	const double SCAN_OUTFIT_FACTOR = 10;
+	// Formula for calculating scan speed tuning factors:
+	// factor = pow(framesToFullScan / (SCAN_TIME * sqrt(scanEfficiency)), -1.5) / referenceSize
 
-	// Formula for the scan outfit or cargo factor is:
-	// factor = pow(sqrt(scanEfficiency) * framesToFullScan / SCAN_TIME, 1.5) / referenceSize
+	// Cargo scanner (5) takes 10 seconds (600/600=1.0) to scan a Bulk freighter (600 space) at 0 range.
+	const double SCAN_CARGO_FACTOR = pow(1.0 / sqrt(5.), -1.5) / 600.;
+
+	// Outfit scanner (15) takes 10 seconds (600/600=1.0) to scan a Bactrian (740 space) at 0 range.
+	const double SCAN_OUTFIT_FACTOR = pow(1.0 / sqrt(15.), -1.5) / 740.;
 
 	// Total number of frames the damaged overlay is show, if any.
 	constexpr int TOTAL_DAMAGE_FRAMES = 40;
@@ -1847,8 +1846,13 @@ int Ship::Scan(const PlayerInfo &player)
 
 		const double progress = exp(distanceExponent) * sqrt(speed) * depthFactor;
 
-		// Bound progress each step to limit minimum and maximum scan times.
-		elapsed += max<double>(MIN_SCAN_STEPS, min<double>(MAX_SCAN_STEPS, progress));
+		// For slow scan rates, ensure maximum of 10 seconds to scan.
+		if(progress <= LINEAR_RATE)
+			elapsed += max(MIN_SCAN_STEPS, progress);
+		// For fast scan rates, apply an exponential drop-off to prevent insta-scanning.
+		else
+			elapsed += SCAN_TIME - (SCAN_TIME - LINEAR_RATE) *
+				exp(-(progress - LINEAR_RATE) / SCAN_TIME / SCAN_DROPOFF_EXPONENT);
 
 		if(elapsed >= SCAN_TIME)
 			result |= event;

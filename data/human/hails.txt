@@ -949,6 +949,7 @@ phrase "friendly civilian"
 		"How many New Bostonians does it take to change a lightbulb? I have no idea, never been there."
 		"How many Delvians does it take to change a lightbulb? Zero, the room caves in before you can replace the bulb."
 		"How many Sinterians does it take to change a lightbulb? Zero, they just send in a robot to do the job."
+		"Those Hogsheads! I can't believe they're still flying around with kegs for engines!"
 	word
 		"" 2
 		" What? Not funny?"

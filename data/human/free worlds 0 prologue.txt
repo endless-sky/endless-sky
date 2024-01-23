@@ -129,7 +129,7 @@ mission "Pact Recon 2"
 		not "event: war begins"
 	
 	on offer
-		dialog `You receive another message from Freya: "Hello, Captain! I've got a more challenging and lucrative mission for you this time. We need someone to do a flyby of all four pirate systems here in the South, to gauge their strength. Again, no fighting is required, just fly in and out of the systems as fast as possible, and we're willing to pay much more than the last job given the danger involved. What do you say?"`
+		dialog `You receive another message from Freya: "Hello, Captain! I've got a more challenging and lucrative mission for you this time. We need someone to do a flyby of four pirate systems bordering the South, to gauge their strength. Again, no fighting is required, just fly in and out of the systems as fast as possible, and we're willing to pay much more than the last job given the danger involved. What do you say?"`
 	
 	on visit
 		dialog phrase "generic waypoint on visit"
