@@ -60,7 +60,8 @@ mission "To Earth Day celebration [0]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	destination
 		system "Sol"
-		attributes "urban"
+		# Replace with planet Earth and remove attribute from Earth when doing so would not result in the game turning it into a fixed destination. This way Earth is filtered out if you cannot land there.
+		attributes "earth"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -96,7 +97,8 @@ mission "To Earth Day celebration [1]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	destination
 		system "Sol"
-		attributes "urban"
+		# Replace with planet Earth and remove attribute from Earth when doing so would not result in the game turning it into a fixed destination. This way Earth is filtered out if you cannot land there.
+		attributes "earth"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -133,7 +135,8 @@ mission "To Earth Day celebration [2]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	destination
 		system "Sol"
-		attributes "urban"
+		# Replace with planet Earth and remove attribute from Earth when doing so would not result in the game turning it into a fixed destination. This way Earth is filtered out if you cannot land there.
+		attributes "earth"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
