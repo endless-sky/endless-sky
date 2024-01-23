@@ -63,7 +63,7 @@ planet Sela
 
 planet "Feo Platform"
 	attributes avgi station military uninhabited
-	landscape land/station46
+	landscape land/station53
 	description "Hastily assembled from mothballed mass driver components, the Feo Platform is an enormous hypervelocity gun intended to provide fire support to Avgi fleets defending the Tangled Shroud from Aberrant invasion. While a few Aberrations sometimes manage to slip past, the gun together with the fleetgroup the platform supports have so far managed to hold the lines."
 	spaceport "The spaceport is designed to service an entire fleetgroup of Avgi warships at once, with drydocks large enough to repair mid-sized vessels without them needing to venture back into the Tangled Shroud."
 	government "Avgi (Twilight Guard)"
@@ -104,7 +104,7 @@ planet Anitlos
 
 planet "Nisos Cylinder"
 	attributes avgi station urban uninhabited
-	landscape land/station47
+	landscape land/station55
 	description "The Nisos Cylinder was once a huge habitat station, of the same type as the O'Neil Cylinder concept from Earth. Nisos was one of the few cylinders to be completely evacuated before the Aberrant took the Anax system, and compared to its neighbors it is relatively intact."
 	government Uninhabited
 
@@ -414,7 +414,7 @@ planet Ashkelon
 
 planet "Peripheria"
 	attributes avgi "avgi diaspora" station urban
-	landscape land/station48
+	landscape land/station54
 	description "This enormous, kilometer wide rotating station is the capital of the Avgi civilization in exile. Shaped like a solid disc, it is home to almost a million Avgi, made up of both civilians that were able to flee the core worlds during the invasion and those who already led independent lives in deep space."
 	description "The station contains hundreds of levels, with centripetal gravity on the edges being the strongest. The outer rim is perpetually expanded to create more living space, and will likely continue to grow until the structural limits of the station are reached."
 	description "The station also hosts the Assembly of Consonant Polities, a league of various nations and communities that now serves as the de-facto species wide government."
