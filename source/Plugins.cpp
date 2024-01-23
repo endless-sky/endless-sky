@@ -101,15 +101,14 @@ bool Plugin::PluginDependencies::IsValid() const
 string Plugin::CreateDescription() const
 {
 	string text;
-	if(!version.empty())
-	{
-		text += "Version: " + version + '\n';
-	}
+	text += "Version: " + version + '\n';
+
 	if(!authors.empty())
 	{
 		text += "Authors: ";
 		for(const string &author : authors)
-			text += author + ',';
+			text += author + ", ";
+		text.pop_back();
 		text.pop_back();
 		text += '\n';
 	}
@@ -117,7 +116,8 @@ string Plugin::CreateDescription() const
 	{
 		text += "Tags: ";
 		for(const string &tag : tags)
-			text += tag + ',';
+			text += tag + ", ";
+		text.pop_back();
 		text.pop_back();
 		text += '\n';
 	}
@@ -148,6 +148,7 @@ string Plugin::CreateDescription() const
 	}
 	return text;
 }
+
 
 
 // Checks whether this plugin is valid, i.e. whether it exists.

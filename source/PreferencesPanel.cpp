@@ -876,13 +876,10 @@ void PreferencesPanel::DrawPlugins()
 				top.Y() += sprite->Height() + 10.;
 			}
 
-			string text = plugin.CreateDescription();
-
 			WrappedText wrap(font);
 			wrap.SetWrapWidth(MAX_TEXT_WIDTH);
 			static const string EMPTY = "(No description given.)";
-			text += plugin.aboutText.empty() ? EMPTY : plugin.aboutText;
-			wrap.Wrap(text);
+			wrap.Wrap(plugin.CreateDescription() + (plugin.aboutText.empty() ? EMPTY : plugin.aboutText));
 			wrap.Draw(top, medium);
 		}
 	}
