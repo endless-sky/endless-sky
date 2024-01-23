@@ -1498,7 +1498,7 @@ planet Firefall
 	attributes hai station uninhabited
 	landscape land/station36
 	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere, and a status panel indicates that the station's generators are functional but shut down, with standby mechanisms running on solar power alone.`
-	description `	Dwarfed by the nearby Quarg ringworld, Firefall is nevertheless capable of holding countless Hai. The station, like most others in Hai space, was once used to house those who migrated from the Hai's crumbling galactic empire without placing undue strain on their planets' natural resources. As their society adjusted to living within their systems behind the wormhole, the once-massive population of this station slowly dwindled as residents moved planetside. Now it is quite literally a shell of its former self, having been emptied out of all non-essential equipment long ago.`
+	description `	Dwarfed by the nearby Quarg ringworld, Firefall is nevertheless capable of holding countless Hai. The station, like most others in Hai space, was once used to house those who migrated from the Hai's crumbling galactic empire without placing undue strain on their planets' natural resources. As their society adjusted to living within their systems behind the wormhole, residents moved planetside, and the once-massive population of this station slowly dwindled. Now it is quite literally a shell of its former self, having been emptied out of all non-essential equipment long ago.`
 	government Uninhabited
 	bribe 0
 	security 0
@@ -2516,7 +2516,7 @@ planet Limejog
 	attributes hai station uninhabited
 	landscape land/station45
 	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere, and a status panel indicates that the station's generators are functional but shut down, with standby mechanisms running on solar power alone.`
-	description `	This station still bears marks from the Hai-Korath war, even though it had long since been abandoned by the time the raids began. Even so, the station is remarkably intact, a testament to Hai engineering's durability and longevity, if not necessarily beauty.`
+	description `	Though it had long since been abandoned by the time the raids began, this station came under repeated attack during the Hai-Korath war and still bears the marks to this day. Even so, the station is remarkably intact, a testament to Hai engineering's durability and longevity, if not necessarily beauty.` `
 	government Uninhabited
 	bribe 0
 	security 0
