@@ -879,7 +879,7 @@ mission "Boarding Derelict"
 				"credits" > 1000000
 			action
 				payment 65000
-			`	Despite your best efforts to make the ship actually fly, it just won't. On the upside, now you have time to loot and pilfer some outfits from the ship as you please. Before leaving the cockpit you find a credit chip sitting in the cockpit worth <payment>.`
+			`	Despite your best efforts to make the ship actually fly, it just won't. On the upside, now you have time to loot and pilfer some outfits from the ship as you please. Before leaving the cockpit you find a credit chip sitting on the controls worth <payment>.`
 				decline
 			label beacon
 			`	However, you notice a blinking light on the controls of the ship. You wonder what it could signal as you approach it, and once you get close enough you realize that it warns of the arrival of "hostile spacecraft" entering the system. The derelict must have been a pirate trap, and to make matters worse, the ship appears to be rigged to blow! You now have a pretty good guess at what you're dealing with as you race back to your ship.`
