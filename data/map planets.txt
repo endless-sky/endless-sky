@@ -2516,7 +2516,7 @@ planet Limejog
 	attributes hai station uninhabited
 	landscape land/station45
 	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere, and a status panel indicates that the station's generators are functional but shut down, with standby mechanisms running on solar power alone.`
-	description `	Though it had long since been abandoned by the time the raids began, this station came under repeated attack during the Hai-Korath war and still bears the marks to this day. Even so, the station is remarkably intact, a testament to Hai engineering's durability and longevity, if not necessarily beauty.` `
+	description `	Though it had long since been abandoned by the time the raids began, this station came under repeated attack during the Hai-Korath war and still bears the marks to this day. Even so, the station is remarkably intact, a testament to Hai engineering's durability and longevity, if not necessarily beauty.`
 	government Uninhabited
 	bribe 0
 	security 0
