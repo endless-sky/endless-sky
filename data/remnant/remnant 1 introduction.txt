@@ -3820,7 +3820,7 @@ mission "Remnant: Logistics 1"
 			`Eon leads you to the bustling cafeteria, chattering about ship design since the Alpha Wars. He orders a couple of hot drinks and leads you to a quiet table overlooking the docks. You try your drink. It's strongly flavored but a bit odd, like someone's memory of what coffee should taste like, reconstituted from local foods.`
 			`	Eon leaves his untouched as he launches into conversation. "Those of us in logistics have noticed that you are spending time in our systems, and we wanted to see if you would be available to pick up work for us. It would be delivery work like the generator you brought for the housing project."`
 			choice
-				`	(Nod)`
+				`	(Nod.)`
 					goto delivery
 				`	"You put starship radiothermals in your houses?"`
 			`	"You do not?" he responds playfully. "Well, 'generators in each community' would be more accurate. We maintain a decentralized power grid so we have more resiliency in the event of an attack or natural disaster. It also makes use of the power plants we salvage from the Korath and ones we recover from our own damaged ships. Besides, widely deploying the technology ensures that we have expertise to maintain and repair it all across the Remnant. But," he signs a pushing motion, "civil engineering is another subject. I hope you are more interested in how we move our various cargoes."`

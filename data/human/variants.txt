@@ -2963,7 +2963,7 @@ ship "Splinter" "Splinter (Proton)"
 	turret "Proton Turret"
 
 
-# Used in the Hai Reveal campaign by a special Syndicate Security team. Should not be used before.
+# Used in the Hai Reveal campaign by a special Syndicated Security team. Should not be used before.
 ship "Splinter" "Splinter (Flamethrower Blaster)"
 	outfits
 		"Heavy Anti-Missile Turret"

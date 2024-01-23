@@ -1497,7 +1497,7 @@ mission "Heliarch Investigate"
 	job
 	repeat
 	name `Investigate signs of criminal activity`
-	description `Land on <stopovers>, where you and <bunks> other Heliarch agents will investigate an area where suspicious activity was reported. Payment is <payment>.`
+	description `Land on <stopovers>, where you and <bunks> other Heliarch agents will investigate an area where suspicious activity was reported. When you've finished, return to <origin> to receive <payment>.`
 	passengers 6 11
 	to offer
 		random < 60

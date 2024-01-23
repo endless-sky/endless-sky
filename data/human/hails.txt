@@ -1176,11 +1176,15 @@ phrase "friendly civilian"
 		"Watcher"
 		"Stormhold"
 		"Mutiny"
+		"Sundrinker"
+		"New Boston"
+		"Serpens"
 	word
 		"? "
 	word
 		"Do you know anybody who has ever been there"
 		"Do you ever wonder why nobody lives there"
+		"Have you met anybody from that place"
 		"Have you ever wondered why nobody goes there"
 		"Have you heard anything about what goes on there"
 		"Have you ever seen any news about that world"
@@ -1662,8 +1666,7 @@ phrase "friendly civilian"
 	word
 		"transport"
 		"smuggle"
-		"steal"
-		"plunder"
+		"sell"
 	word
 		" "
 	phrase
@@ -2834,17 +2837,11 @@ phrase "friendly navy"
 		"'s motto:" 4
 		"'s goal is to create"
 		"'s goal is to ensure"
-		" seeks"
 		" wishes for"
 		" strives for"
-		" aspires to achieve"
-		" seeks to achieve"
-		" strives to achieve"
-		" is advancing"
-		" ensures"
-		" promotes"
-		" believes in"
 		" works for"
+		" aspires for"
+		" is advancing"
 		" is here to ensure"
 		" is here to advance"
 		" is here to promote"
@@ -2855,16 +2852,9 @@ phrase "friendly navy"
 
 phrase "friendly navy"
 	word
-		"We are obligated to inform you that all"
-		"All"
-		"Be warned that all"
 		"We warn you that all"
 		"We inform you that all"
-		"An injunctive warning: all"
 		"Under Republic law, all"
-		"By the decree of Parliament, all"
-		"By the laws of Parliament, all"
-		"By Republic law, all"
 		"We advise you that all"
 	word
 		" "
@@ -2883,33 +2873,20 @@ phrase "friendly navy"
 	word
 		"in"
 		"within"
-		"passing through"
 		"traveling in"
 	word
 		" "
 	word
 		"the Republic"
 		"Republic space"
-		"the jurisdiction of the Republic"
-		"the Republic's jurisdiction"
-		"Parliament's mandate"
-		"Parliament's jurisdiction"
 	word
 		" "
 	word
 		"will undergo"
-		"will be subjected to"
-		"may be subjected to"
 		"are subject to"
 		"must comply with"
 	word
-		" "
-	word
-		"periodic"
-		"random"
-		"regular"
-	word
-		" "
+		" random "
 	word
 		"cargo"
 		"outfit"
@@ -2918,44 +2895,31 @@ phrase "friendly navy"
 		" "
 	word
 		"scans"
-		"examinations"
 		"inspections"
-		"searches"
-		"sweeps"
 	word
 		"."
 
 phrase "friendly navy"
 	word
-		"We are obligated to inform you that"
 		"Be warned that"
-		"We warn you that"
 		"We inform you that"
-		"An injunctive warning:"
 		"Under Republic law,"
-		"By the decree of Parliament,"
-		"By the laws of Parliament,"
-		"By Republic law,"
 		"We advise you that"
 	word
 		" "
 	word
-		"planetary officials"
 		"Navy officers"
 		"border control officials"
-		"Gunboat patrols"
-		"Navy Gunboats"
-		"Gunboat forces"
-		"Gunboat monitors"
-		"Navy police forces"
-		"Navy forces"
-		"Republic forces"
 	word
-		" will "
 		" must "
-		" may "
-	phrase
-		"navy warning adverb"
+	word
+		"perform "
+		"conduct "
+		"run "
+	word
+		"random "
+		"regular "
+		""
 	word
 		"cargo"
 		"outfit"
@@ -2964,10 +2928,7 @@ phrase "friendly navy"
 		" "
 	word
 		"scans"
-		"examinations"
 		"inspections"
-		"searches"
-		"sweeps"
 	word
 		" on "
 	word
@@ -2985,32 +2946,9 @@ phrase "friendly navy"
 	word
 		"travelling in the Republic"
 		"travelling in Republic space"
-		"travelling in the Republic's jurisdiction"
-		"within the Republic's jurisdiction"
 		"landing on a Republic planet"
-		"landing within Republic territory"
 	word
 		"."
-
-phrase "navy warning adverb"
-	word
-		"randomly "
-		"regularly "
-		" "
-	word
-		"perform "
-		"conduct "
-		"run "
-
-phrase "navy warning adverb"
-	word
-		"perform "
-		"conduct "
-		"run "
-	word
-		"random "
-		"regular "
-		" "
 
 phrase "friendly navy"
 	word
@@ -3018,24 +2956,9 @@ phrase "friendly navy"
 	word
 		"illegal"
 		"prohibited"
-		"an illegal act"
-		"an illicit act"
-		"a criminal act"
-		"a punishable act"
+		"punishable"
 	word
-		" "
-	word
-		"under Republic law"
-		"by the laws of the Republic"
-		"by the laws of Parliament"
-	word
-		" to "
-	word
-		"willingly "
-		"knowingly "
-		"deliberately "
-		"purposefully "
-		"" 6
+		" by Republic law to "
 	phrase
 		"navy illegal acts"
 	word
@@ -3045,8 +2968,6 @@ phrase "navy illegal acts"
 	word
 		"install"
 		"use"
-		"employ"
-		"utilize"
 	word
 		" "
 	word
@@ -3064,9 +2985,6 @@ phrase "navy illegal acts"
 		"traffic"
 		"transport"
 		"smuggle"
-		"trade"
-		"deal"
-		"carry"
 	word
 		" "
 	word
@@ -3075,21 +2993,19 @@ phrase "navy illegal acts"
 phrase "navy illegal acts"
 	word
 		"engage in"
-		"participate in"
 		"become involved in"
 	word
 		" "
 	word
-		"the transportation of slaves"
 		"the trafficking of slaves"
 		"the trading of slaves"
 		"the galactic slave trade"
-		"slavery"
 
 phrase "navy illegal acts"
 	word
 		"operate"
 		"pilot"
+		"own"
 	word
 		" "
 	word
@@ -3105,58 +3021,29 @@ phrase "navy illegal acts"
 
 phrase "navy illegal acts"
 	word
-		"operate"
-		"pilot"
-	word
-		" "
-	word
-		"unlicensed"
-		"unauthorized"
-		"illegal"
-	word
-		" "
-	word
-		"ships"
-		"warships"
-		"vessels"
-
-phrase "navy illegal acts"
-	word
 		"attack"
 		"provoke"
-		"damage"
 		"destroy"
 		"disable"
-		"harm"
 		"plunder"
-		"seize control of"
-		"seize"
 	word
 		" "
 	word
 		"merchant ships"
-		"Navy ships"
-		"corporate-affiliated ships"
-		"planetary security forces"
-		"corporate security forces"
-		"private ships"
 		"civilian ships"
-		"Republic ships"
-		"Syndicate ships"
+		"Navy ships"
+		"security ships"
 
 phrase "navy illegal acts"
 	word
 		"disrupt"
 		"disturb"
-		"interrupt"
 	word
 		" "
 	word
 		"the peace"
 		"the order"
 		"merchant activity"
-		"mercantile activity"
-		"economic activity"
 		"commercial activity"
 		"trade lanes"
 		"civil order"
@@ -3164,73 +3051,33 @@ phrase "navy illegal acts"
 phrase "navy illegal acts"
 	word
 		"interdict"
-		"intercept"
 		"attack"
-		"obstruct"
-		"impede"
 	word
 		" "
 	word
-		"merchant activity"
-		"mercantile activity"
-		"merchant ships"
-		"merchant vessels"
-		"civilian ships"
-		"civilian vessels"
+		"merchant"
+		"civilian"
+	word
+		" "
+	word
+		"ships"
+		"activity"
+		"vessels"
 
 phrase "navy illegal acts"
 	word
-		"paint your ship in"
-		"paint your vessel in"
-		"decorate your ship in"
-		"decorate your vessel in"
-		"have your ship fly"
-		"have your ship display"
 		"fly"
 		"display"
 	word
 		" "
 	word
-		"colors that would label you as a pirate"
-		"markings that would label you as a pirate"
-		"colors that would suggest piracy"
-		"markings that would suggest piracy"
-		"illegal colors"
-		"illegal markings"
-		"uncivil colors"
-		"uncivil markings"
-		"pirate colors"
-		"pirate markings"
-		"anarchist colors"
-		"anarchist markings"
-
-phrase "friendly navy"
+		"illegal"
+		"pirate"
+		"marauder"
+		"anarchist"
 	word
-		"Anybody"
-		"Any captain"
-		"Any starship captain"
-		"Any starship commander"
-	word
-		" found in breach of "
-		" that has broken "
-	word
-		"Republic law "
-		"the laws of Parliament "
-		"the laws of the Republic "
-	word
-		"will be fined"
-		"will face fines"
-		"will face penalties"
-		"may face severe penalties"
-		"may be penalized"
-		"may be imprisoned"
-		"may be sentenced to prison"
-		"may be sent to a penal colony"
-		"may be declared an enemy of the Republic"
-		"may be considered an outlaw"
-		"may be considered a criminal"
-	word
-		"."
+		"markings"
+		"colors"
 
 phrase "friendly free worlds militia 1"
 	word
@@ -4389,6 +4236,8 @@ phrase "friendly pirate"
 	word
 		"!"
 		"."
+	replace
+		"?." "?"
 
 phrase "friendly pirate"
 	word
@@ -4464,6 +4313,7 @@ phrase "friendly pirate"
 		"threatening to throw them out the airlock"
 		"threatening to kill them"
 		"threatening to shoot them"
+		"using them as bait when you're boarding an enemy ship"
 	word
 		"."
 	word
@@ -4542,425 +4392,6 @@ phrase "friendly pirate"
 		"anarchists"
 	word
 		"."
-
-phrase "friendly pirate"
-	word
-		"We" 4
-		"We're short on supplies, so we"
-		"We haven't been on one for so long, so we"
-		"Come with us! We"
-		"You gotta come with us! We"
-	word
-		"'re going"
-		"'re about to go"
-		"'re planning to go"
-		" want to go"
-		"'re going to go"
-		"'re gonna go"
-	word
-		" "
-	word
-		"on a raid on"
-		"on an assault on"
-		"on an attack on"
-		"raiding"
-		"assaulting"
-		"attacking"
-		"shooting up"
-		"blasting"
-		"plundering"
-		"pummeling"
-		"robbing"
-	word
-		" "
-	phrase
-		"pirate plans attack"
-	word
-		"!"
-	word
-		" ${pirate attack outcomes}!" 2
-		""
-
-phrase "pirate plans attack"
-	word
-		"the spaceport"
-		"the outfitter"
-		"the fuel depot"
-		"the weapons depot"
-		"some villages"
-		"some towns"
-		"a rival base"
-		"a rival post"
-		"a rival cell"
-		"a rival gang"
-		"a rival band"
-		"a competing base"
-		"a competing cell"
-		"a competing gang"
-		"a competing band"
-		"a base"
-		"a cell"
-		"a gang"
-		"a band"
-		"another gang"
-		"another band"
-		"another cell"
-		"our rivals"
-		"our competitors"
-		"some numbskulls"
-		"the Man"
-		"the Law"
-		"some of our friends"
-	word
-		" in "
-		" on "
-	phrase
-		"north pirate target"
-		"south pirate target"
-		"core pirate target"
-
-phrase "pirate plans attack"
-	phrase
-		"north pirate target"
-		"south pirate target"
-		"core pirate target"
-	word
-		"'s "
-	word
-		"spaceport"
-		"outfitter"
-		"fuel depot"
-		"weapons depot"
-		"villages"
-		"towns"
-	replace
-		"s's" "s'"
-		
-phrase "pirate plans attack"
-	word
-		"a convoy"
-		"a fleet"
-		"a rival fleet"
-		"a rival gang"
-		"a rival band"
-		"a competing fleet"
-		"a competing gang"
-		"a competing band"
-		"another gang"
-		"another band"
-		"another fleet"
-		"our rivals"
-		"our competitors"
-		"some numbskulls"
-		"some merchants"
-		"some patrol ships"
-		"the Man"
-		"the Law"
-		"the long arm of the Law"
-		"some of our friends"
-	word
-		""
-		" in a nearby system"
-		" a couple systems away"
-		" a couple of jumps away"
-		" a couple jumps away"
-		" only a few jumps away"
-		" soon"
-		" in a couple days"
-		" in a few days"
-
-phrase "pirate attack outcomes"
-	word
-		"We're gonna "
-		"We'll "
-	word
-		"become super rich"
-		"get rich"
-		"be jumping in the cash"
-		"be crawling in credits"
-		"be swimming in money"
-		"be the top gang"
-		"be the apex gang"
-		"have so many ships"
-		"dominate them"
-		"humiliate them"
-		"destroy them"
-		"obliterate them"
-		"walk away with so much tribute"
-		"get out of there commanding a big warship"
-		"take their ships"
-		"take them over"
-		"take their credits"
-		"take their goods"
-
-phrase "pirate attack outcomes"
-	word
-		"They're gonna "
-		"They'll "
-	word
-		"become wormfood"
-		"become spacedust"
-		"become shipless"
-		"be a whole lot poorer"
-		"lose their position"
-		"be wiped off the starmap"
-		"get dominated"
-		"get humiliated"
-		"get destroyed"
-		"get obliterated"
-		"have to pay a lot of tribute"
-		"get wrecked"
-		"surrender quickly to our onslaught"
-		"surrender quickly"
-		"have no chance against us"
-
-phrase "friendly pirate"
-	word
-		"Heh heh heh,"
-		"Ha ha ha,"
-		"Ho ho ho,"
-		"Oh,"
-		"Speaking of targets,"
-		"Since we're sharing stories,"
-		"You wanna know something?"
-		"My ship's so cracked!"
-		"We're cracked!"
-		"My ship's so good!"
-		"Man,"
-		"Dude,"
-		"You can't beat this one!"
-		"You think you can take me on?"
-		"You think you can take us on?"
-		"You think you're big time?"
-		"Nah,"
-	word
-		" I "
-	word
-		"was at"
-		"did"
-		"participated in"
-		"fought at"
-		"battled at"
-		"was part of"
-		"had been"
-		"was part of"
-		"led the charge at"
-		"decided the fate of the battle at"
-		"singlehandedly won"
-		"was responsible for"
-		"coordinated"
-		"planned"
-		"executed"
-		"wasn't counting, but I musta' destroyed at least a dozen ships in"
-		"destroyed a Falcon with just Energy Blasters at"
-		"disabled a Leviathan with my shields down at"
-		"obliterated a Protector at"
-		"took on a Vanguard by myself at"
-		"took on three Ospreys at once at"
-		"battled four Splinters at"
-		"took out two Mantas in"
-		"blew up a couple Firebirds in"
-		"obliterated a few Argosies at"
-		"went toe-to-toe with a Bastion at"
-		"survived a Navy fleet at"
-		"ensured victory at"
-		"took out multiple ships at"
-	word
-		" "
-	phrase
-		"pirate big raid"
-
-phrase "pirate big raid"
-	word
-		"that"
-		"the"
-	word
-		""
-		" epic"
-		" mega"
-		" large"
-		" big"
-		" huge"
-		" fat"
-		" hard"
-		" gnarly"
-		" nasty"
-		" crazy"
-		" cosmic"
-		" ambitious"
-		" gargantuan"
-		" ginormous"
-	word
-		" "
-	word
-		"raid"
-		"assault"
-		"plundering"
-		"looting"
-		"storming"
-		"sacking"
-	word
-		" of "
-		" on "
-		" at "
-	phrase
-		"north pirate target"
-		"south pirate target"
-		"core pirate target"
-	word
-		". "
-		"! "
-	phrase
-		"pirate boast"
-	word
-		"!"
-
-phrase "pirate big raid"
-	word
-		"the "
-	word
-		"fattest"
-		"juiciest"
-		"plumpest"
-		"greatest"
-		"hugest"
-		"gnarliest"
-		"biggest"
-		"craziest"
-		"juiciest"
-		"most cosmic"
-		"most enormous"
-		"most epic"
-		"most fat"
-		"most juicy"
-		"most greatest"
-		"most biggest"
-		"most fattest"
-		"most nasty"
-		"most gnarly"
-		"most plump"
-		"most ambitious"
-		"most crazy"
-	word
-		" "
-	word
-		"raid"
-		"assault"
-		"sack"
-		"plundering"
-		"looting"
-		"storming"
-		"sacking"
-	word
-		" of "
-		" on "
-		" at "
-	phrase
-		"north pirate target"
-		"south pirate target"
-		"core pirate target"
-	word
-		""
-		" ever"
-		" in their history"
-		" in history"
-		" of all time"
-		". ${pirate boast}" 11
-		"! ${pirate boast}" 11
-	word
-		"!"
-
-phrase "pirate boast"
-	word
-		"We made off with so many ships"
-		"We made off with so many credits"
-		"We made off with so much tribute"
-		"We made off with such a big haul"
-		"We're richer than David Turner"
-		"We made off with so many credits"
-		"We're easily the richest pirates this side of Earth"
-		"We're easily the richest pirates this side of Hephaesteus"
-		"We've got more credits than we can count"
-		"We plundered more ships than we could count"
-		"We couldn't even count that many credits"
-		"We couldn't even count that many ships"
-		"You shoulda been there"
-		"You shoulda heard them scream"
-		"You shoulda brought along your guns"
-		"I'm not kidding"
-		"I'm not joking"
-		"I'm not one to joke"
-		"It's not a joke"
-		"We smoked their defense fleet"
-		"We obliterated their defense fleet"
-		"We decimated their defense fleet"
-		"We destroyed their defense fleet"
-		"They weren't even a match for us"
-		"We didn't lose a single ship"
-		"We beat them to a pulp"
-		"We sent them packing"
-		"It was too easy"
-		"That was one hell of a fight"
-		"That battle's going into the history books"
-		"I'm sure I blew up more than a dozen ships"
-		"Now that's who you're facing"
-		"That's who you're facing"
-
-# A few pirates make it up as far north as Asgard, and they have ships like Corvettes and Aeries which they must get from the Deep by raiding or capture. The pirate planets are there because of pirate band infighting.
-phrase "north pirate target"
-	word
-		"Farpoint"
-		"Shroud"
-		"Sunracer"
-		"Prime"
-		"Follower"
-		"Featherweight"
-		"Maelstrom"
-		"Haze"
-		"Memory"
-		"Haven"
-		"Freedom"
-		"Zenith"
-
-phrase "core pirate target"
-	word
-		"Maker"
-		"Moonshake"
-		"Hephaesteus"
-		"Shangri-La"
-		"Foundry"
-		"Delve"
-		"Sundive"
-		"Nimbus"
-		"Lodestone"
-		"Crossroads"
-		"Stormhold"
-
-phrase "south pirate target"
-	word
-		"Glaze"
-		"Solace"
-		"Longjump"
-		"Zug"
-		"Deep"
-		"Wayfarer"
-		"New Britain"
-		"Rand"
-		"Skymoot"
-		"Starcross"
-		"New Argentina"
-		"New Tibet"
-		"New Holland"
-		"Heartland"
-		"Gemstone"
-		"Clark"
-		"Bounty"
-		"New Kansas"
-		"Thule"
-		"Smugglers' Den"
-		"Albatross"
-		"Bloodsea"
-		"Greenrock"
 
 phrase "friendly pirate"
 	word
@@ -5794,6 +5225,9 @@ phrase "friendly deep"
 	word
 		"" 3
 		"are called to "
+		"have a duty to "
+		"work in conjunction with the Navy to "
+		"work with the Republic to "
 		"are diligent to "
 		"must constantly "
 		"diligently "
@@ -5824,6 +5258,253 @@ phrase "friendly deep"
 		"piracy"
 		"social regression"
 		"corruption"
+		"hostility and war"
+		"instability"
+		"anarchism"
+		"hostility"
+		"base values"
+	word
+		"."
+
+phrase "friendly deep"
+	word
+		"We"
+		"Our ships"
+		"Our security forces"
+		"Our fleets"
+		"Our forces"
+	word
+		" "
+	word
+		"" 3
+		"are called to "
+		"are diligent to "
+		"must constantly "
+		"diligently "
+		"always "
+		"must "
+		"shall "
+	word
+		"safeguard"
+		"defend"
+		"protect"
+		"guard"
+		"shield"
+		"advance"
+		"work in advancing"
+	word
+		" "
+	word
+		"" 3
+		"the Deep's "
+		"those who bring "
+		"the ones who serve "
+		"our shared% "
+		"our "
+	word
+		""
+		"%valued "
+		"%invaluable "
+		"%hard-fought "
+		"%cherished "
+		"%precious "
+	word
+		"democracy"
+		"commonwealth"
+		"sovereignty"
+		"autonomy"
+		"prosperity"
+		"peace"
+		"economic prosperity"
+		"economic progress"
+		"progress"
+		"scientific progress"
+		"social cohesion"
+		"peace, prosperity, and progress"
+		"peace among the stars"
+		"freedoms"
+	word
+		"."
+	replace
+		"% %" ", "
+		"%" ""
+
+phrase "friendly deep"
+	word
+		"Please"
+		"We advise you to"
+		"Do not hesitate to"
+	word
+		" "
+	word
+		"contact"
+		"give evidence to"
+		"liaise with"
+		"provide information to"
+	word
+		" "
+	word
+		"a Deep Security official"
+		"a Deep Security officer"
+		"a Deep Security office"
+		"a Deep Security ship"
+		"a Deep Security branch office"
+		"a Deep Security agent"
+		"a local Deep Security official"
+		"a local Deep Security officer"
+		"a local Deep Security office"
+		"a local Deep Security ship"
+		"a local Deep Security branch office"
+		"a local Deep Security agent"
+		"the Deep's autonomous security forces" 6
+		"our security forces" 6
+		"our officials" 6
+		"our agents" 6
+		"our officers" 6
+		"Deep authorities" 6
+	word
+		" "
+	word
+		"in the event of"
+		"if you witness"
+		"if you have been the target of"
+		"if you have been affected by"
+	word
+		" "
+	word
+		"piracy"
+		"an unlawful attack by pirates"
+		"an unlawful attack by anarchists"
+		"illegal attacks by pirates"
+		"illegal attacks by anarchists"
+	word
+		"."
+
+
+phrase "friendly deep"
+	word
+		"Our security forces"
+		"We"
+		"The citizens of the Deep"
+		"The ships of the Deep"
+		"The Deep%"
+	word
+		" "
+	word
+		"bid"
+		"wish"
+		"offer"
+		"work to give"
+		"ensure"
+	word
+		" "
+	word
+		"you"
+		"your ship"
+		"your vessel"
+		"your enterprise"
+	word
+		" "
+	word
+		"peace, prosperity, and progress"
+		"peace"
+		"prosperity"
+		"security"
+		"success"
+	word
+		" "
+	word
+		"in our space"
+		"throughout our space"
+		"throughout the commonwealth"
+	word
+		"."
+	replace
+		"% bid" " bids"
+		"% wish" " wishes"
+		"% offer" " offers"
+		"% work to give" " works to give"
+		"% ensure" " ensures"
+
+phrase "friendly deep"
+	word
+		"Peace, prosperity, progress"
+		"Our planets work towards three virtues: peace, prosperity, progress"
+		"Peace, prosperity, and progress among the stars"
+		"The Deep has been the guiding light of human civilization for centuries"
+		"Please contact Deep Security if you witness the unlawful possession of sanctioned ships"
+	word
+		"."
+
+phrase "hostile deep"
+	word
+		"You are"
+		"Your actions are"
+		"Your hostile actions are"
+		"The actions of your ship are"
+		"We cannot allow you to continue"
+		"We must stop you from"
+	word
+		" "
+	word
+		"threatening"
+		"disrupting"
+		"working against"
+		"undoing"
+		"destroying"
+		"breaking"
+		"weakening"
+		"tearing at"
+		"harming"
+		"unsettling"
+	word
+		" the "
+	word
+		"fabric"
+		"balance"
+		"common good"
+		"cohesion"
+		"unity"
+		"health"
+	word
+		" of "
+	word
+		"our society"
+		"civilization"
+		"the commonwealth"
+		"society"
+		"our civilization"
+		"human society"
+	word
+		"."
+
+phrase "hostile deep"
+	word
+		"You have found yourself"
+		"You are"
+		"Your actions are"
+		"The actions of your ship are"
+	word
+		" "
+	word
+		"in breach of"
+		"in violation of"
+		"in transgression of"
+		"breaking"
+		"breaching"
+		"violating"
+		"transgressing"
+		"infracting upon"
+	word
+		" "
+	word
+		"the laws of the Deep"
+		"the laws of the Republic"
+		"the laws of Parliament"
+		"the statutes of the Deep"
+		"the statutes of the Republic"
+		"the statutes of Parliament"
+		"interstellar law"
 	word
 		"."
 
@@ -6152,6 +5833,8 @@ phrase "hostile pirate"
 		"The Modified Argosy: muscle of pirate fleets!"
 		"Pirates a problem? Just pay them off!"
 		"I want to see your cargo!"
+		"Die already!"
+		"Pirate captains are the most honest of captains. I honestly want to see you die!"
 
 phrase "hostile pirate"
 	word

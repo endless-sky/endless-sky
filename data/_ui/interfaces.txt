@@ -400,8 +400,21 @@ interface "start conditions menu"
 interface "load menu"
 	sprite "_menu/side panel"
 		center -360 0
+	box "pilots"
+		center -360 -19
+		dimensions 230 280
+	
 	sprite "_menu/side panel"
 		center 0 0
+	box "snapshots"
+		center 0 -19
+		dimensions 230 280
+	
+	value "pilot horizontal text pad" 5
+	value "pilot fade out" 10
+	value "snapshot horizontal text pad" 5
+	value "snapshot fade out" 10
+	
 	sprite "_menu/side panel"
 		center 360 0
 	
@@ -412,6 +425,13 @@ interface "load menu"
 	button d "_Delete"
 		center -285 155
 		dimensions 90 30
+
+	sprite "ui/wide button"
+		center -435 195
+	active
+	button o "_Open Saves"
+		center -435 195
+		dimensions 120 30
 	
 	active if "pilot alive"
 	button a "_Add Snapshot"
@@ -735,8 +755,6 @@ interface "escort element"
 	value "basic height" 30
 	value "system label height" 15
 
-	box "icon click zone"
-		center 20 10
 	anchor top left
 	outline "icon"
 		center 20 10

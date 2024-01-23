@@ -561,7 +561,7 @@ bool NPC::HasSucceeded(const System *playerSystem, bool ignoreIfDespawnable) con
 				isImmobile |= ship->GetPersonality().IsDerelict()
 					&& !(it->second & ShipEvent::ASSIST);
 			}
-			bool isHere = false;
+			bool isHere;
 			// If this ship is being carried, check the parent's system.
 			if(!ship->GetSystem() && ship->CanBeCarried() && ship->GetParent())
 				isHere = ship->GetParent()->GetSystem() == playerSystem;
@@ -712,7 +712,7 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 
 	// Set the cargo for each ship in the NPC if the NPC itself has cargo settings.
 	if(overrideFleetCargo)
-		for(auto ship : result.ships)
+		for(const auto &ship : result.ships)
 			cargo.SetCargo(&*ship);
 
 	// String replacement:

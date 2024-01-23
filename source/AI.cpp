@@ -225,46 +225,6 @@ namespace {
 		return fuel < route.RequiredFuel(from, (to ? to : route.End()));
 	}
 
-	// Set the ship's TargetStellar or TargetSystem in order to reach the
-	// next desired system. Will target a landable planet to refuel.
-	void SelectRoute(Ship &ship, const System *targetSystem)
-	{
-		const System *from = ship.GetSystem();
-		if(from == targetSystem || !targetSystem)
-			return;
-		const DistanceMap route(ship, targetSystem);
-		const bool needsRefuel = ShouldRefuel(ship, route);
-		const System *to = route.Route(from);
-		// The destination may be accessible by both jump and wormhole.
-		// Prefer wormhole travel in these cases, to conserve fuel. Must
-		// check accessibility as DistanceMap may only see the jump path.
-		if(to && !needsRefuel)
-			for(const StellarObject &object : from->Objects())
-			{
-				if(!object.HasSprite() || !object.HasValidPlanet())
-					continue;
-
-				const Planet &planet = *object.GetPlanet();
-				if(planet.IsWormhole() && planet.IsAccessible(&ship)
-						&& &planet.GetWormhole()->WormholeDestination(*from) == to)
-				{
-					ship.SetTargetStellar(&object);
-					ship.SetTargetSystem(nullptr);
-					return;
-				}
-			}
-		else if(needsRefuel)
-		{
-			// There is at least one planet that can refuel the ship.
-			ship.SetTargetStellar(AI::FindLandingLocation(ship));
-			return;
-		}
-		// Either there is no viable wormhole route to this system, or
-		// the target system cannot be reached.
-		ship.SetTargetSystem(to);
-		ship.SetTargetStellar(nullptr);
-	}
-
 	// The health remaining before becoming disabled, at which fighters and
 	// other ships consider retreating from battle.
 	const double RETREAT_HEALTH = .25;
@@ -338,8 +298,9 @@ namespace {
 
 
 
-AI::AI(const List<Ship> &ships, const List<Minable> &minables, const List<Flotsam> &flotsam)
-	: ships(ships), minables(minables), flotsam(flotsam)
+AI::AI(const PlayerInfo &player, const List<Ship> &ships,
+		const List<Minable> &minables, const List<Flotsam> &flotsam)
+	: player(player), ships(ships), minables(minables), flotsam(flotsam)
 {
 	// Allocate a starting amount of hardpoints for ships.
 	firingCommands.SetHardpoints(12);
@@ -348,7 +309,7 @@ AI::AI(const List<Ship> &ships, const List<Minable> &minables, const List<Flotsa
 
 
 // Fleet commands from the player.
-void AI::IssueShipTarget(const PlayerInfo &player, const shared_ptr<Ship> &target)
+void AI::IssueShipTarget(const shared_ptr<Ship> &target)
 {
 	Orders newOrders;
 	bool isEnemy = target->GetGovernment()->IsEnemy();
@@ -356,23 +317,23 @@ void AI::IssueShipTarget(const PlayerInfo &player, const shared_ptr<Ship> &targe
 		: target->IsDisabled() ? Orders::FINISH_OFF : Orders::ATTACK);
 	newOrders.target = target;
 	string description = (isEnemy ? "focusing fire on" : "following") + (" \"" + target->Name() + "\".");
-	IssueOrders(player, newOrders, description);
+	IssueOrders(newOrders, description);
 }
 
 
 
-void AI::IssueAsteroidTarget(const PlayerInfo &player, const shared_ptr<Minable> &targetAsteroid)
+void AI::IssueAsteroidTarget(const shared_ptr<Minable> &targetAsteroid)
 {
 	Orders newOrders;
 	newOrders.type = Orders::MINE;
 	newOrders.targetAsteroid = targetAsteroid;
-	IssueOrders(player, newOrders,
+	IssueOrders(newOrders,
 			"focusing fire on " + targetAsteroid->DisplayName() + " " + targetAsteroid->Noun() + ".");
 }
 
 
 
-void AI::IssueMoveTarget(const PlayerInfo &player, const Point &target, const System *moveToSystem)
+void AI::IssueMoveTarget(const Point &target, const System *moveToSystem)
 {
 	Orders newOrders;
 	newOrders.type = Orders::MOVE_TO;
@@ -380,7 +341,7 @@ void AI::IssueMoveTarget(const PlayerInfo &player, const Point &target, const Sy
 	newOrders.targetSystem = moveToSystem;
 	string description = "moving to the given location";
 	description += player.GetSystem() == moveToSystem ? "." : (" in the " + moveToSystem->Name() + " system.");
-	IssueOrders(player, newOrders, description);
+	IssueOrders(newOrders, description);
 }
 
 
@@ -440,20 +401,20 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 	{
 		newOrders.type = target->IsDisabled() ? Orders::FINISH_OFF : Orders::ATTACK;
 		newOrders.target = target;
-		IssueOrders(player, newOrders, "focusing fire on \"" + target->Name() + "\".");
+		IssueOrders(newOrders, "focusing fire on \"" + target->Name() + "\".");
 	}
 	else if(activeCommands.Has(Command::FIGHT) && targetAsteroid)
-		IssueAsteroidTarget(player, targetAsteroid);
+		IssueAsteroidTarget(targetAsteroid);
 	if(activeCommands.Has(Command::HOLD))
 	{
 		newOrders.type = Orders::HOLD_POSITION;
-		IssueOrders(player, newOrders, "holding position.");
+		IssueOrders(newOrders, "holding position.");
 	}
 	if(activeCommands.Has(Command::GATHER))
 	{
 		newOrders.type = Orders::GATHER;
 		newOrders.target = player.FlagshipPtr();
-		IssueOrders(player, newOrders, "gathering around your flagship.");
+		IssueOrders(newOrders, "gathering around your flagship.");
 	}
 
 	// Get rid of any invalid orders. Carried ships will retain orders in case they are deployed.
@@ -555,7 +516,7 @@ void AI::ClearOrders()
 
 
 
-void AI::Step(const PlayerInfo &player, Command &activeCommands)
+void AI::Step(Command &activeCommands)
 {
 	// First, figure out the comparative strengths of the present governments.
 	const System *playerSystem = player.GetSystem();
@@ -605,7 +566,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		{
 			// Player cannot do anything if the flagship is landing.
 			if(!flagship->IsLanding())
-				MovePlayer(*it, player, activeCommands);
+				MovePlayer(*it, activeCommands);
 			continue;
 		}
 
@@ -907,7 +868,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 					for(const auto &other : otherShips)
 						if(other->GetGovernment() == gov && other->GetSystem() == it->GetSystem() && !other->CanBeCarried())
 						{
-							if(!other->IsDisabled() && other->CanCarry(*it.get()))
+							if(!other->IsDisabled() && other->CanCarry(*it))
 								return other;
 							else
 								parentChoices.emplace_back(other);
@@ -1682,7 +1643,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	const System *origin = ship.GetSystem();
 	if(!ship.GetTargetSystem() && !ship.GetTargetStellar() && !shouldStay)
 	{
-		// TODO: This should problably be changed, because JumpsRemaining
+		// TODO: This should probably be changed, because JumpsRemaining
 		// does not return an accurate number.
 		int jumps = ship.JumpsRemaining(false);
 		// Each destination system has an average priority of 10.
@@ -1695,10 +1656,9 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 			? origin->JumpNeighbors(ship.JumpNavigation().JumpRange()) : origin->Links();
 		if(jumps)
 		{
-			bool unrestricted = ship.GetPersonality().IsUnrestricted();
 			for(const System *link : links)
 			{
-				if(!unrestricted && gov->IsRestrictedFrom(*link))
+				if(ship.IsRestrictedFrom(*link))
 				{
 					systemWeights.push_back(0);
 					continue;
@@ -1983,6 +1943,48 @@ bool AI::CanRefuel(const Ship &ship, const StellarObject *target)
 		return false;
 
 	return true;
+}
+
+
+// Set the ship's target system or planet in order to reach the
+// next desired system. Will target a landable planet to refuel.
+// If the ship is an escort it will only use routes known to the player.
+void AI::SelectRoute(Ship &ship, const System *targetSystem) const
+{
+		const System *from = ship.GetSystem();
+		if(from == targetSystem || !targetSystem)
+			return;
+		const DistanceMap route(ship, targetSystem, ship.IsYours() ? &player : nullptr);
+		const bool needsRefuel = ShouldRefuel(ship, route);
+		const System *to = route.Route(from);
+		// The destination may be accessible by both jump and wormhole.
+		// Prefer wormhole travel in these cases, to conserve fuel. Must
+		// check accessibility as DistanceMap may only see the jump path.
+		if(to && !needsRefuel)
+			for(const StellarObject &object : from->Objects())
+			{
+				if(!object.HasSprite() || !object.HasValidPlanet())
+					continue;
+
+				const Planet &planet = *object.GetPlanet();
+				if(planet.IsWormhole() && planet.IsAccessible(&ship)
+						&& &planet.GetWormhole()->WormholeDestination(*from) == to)
+				{
+					ship.SetTargetStellar(&object);
+					ship.SetTargetSystem(nullptr);
+					return;
+				}
+			}
+		else if(needsRefuel)
+		{
+			// There is at least one planet that can refuel the ship.
+			ship.SetTargetStellar(AI::FindLandingLocation(ship));
+			return;
+		}
+		// Either there is no viable wormhole route to this system, or
+		// the target system cannot be reached.
+		ship.SetTargetSystem(to);
+		ship.SetTargetStellar(nullptr);
 }
 
 
@@ -2385,7 +2387,7 @@ void AI::KeepStation(Ship &ship, Command &command, const Body &target)
 		command.SetTurn(targetAngle);
 
 	// Determine whether to apply thrust.
-	Point drag = ship.Velocity() * ship.Drag() / mass;
+	Point drag = ship.Velocity() * ship.DragForce();
 	if(ship.Attributes().Get("reverse thrust"))
 	{
 		// Don't take drag into account when reverse thrusting, because this
@@ -2766,9 +2768,8 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 		{
 			const auto &links = ship.JumpNavigation().HasJumpDrive() ?
 				system->JumpNeighbors(ship.JumpNavigation().JumpRange()) : system->Links();
-			bool unrestricted = ship.GetPersonality().IsUnrestricted();
 			for(const System *link : links)
-				if(unrestricted || !gov->IsRestrictedFrom(*link))
+				if(!ship.IsRestrictedFrom(*link))
 					targetSystems.push_back(link);
 		}
 
@@ -3029,7 +3030,7 @@ void AI::DoPatrol(Ship &ship, Command &command) const
 			for(const StellarObject &object : ship.GetSystem()->Objects())
 				if(object.HasSprite() && object.GetPlanet() && object.GetPlanet()->CanLand(ship))
 					landingTargets.push_back(&object);
-			if(landingTargets.size())
+			if(!landingTargets.empty())
 			{
 				ship.SetTargetStellar(landingTargets[Random::Int(landingTargets.size())]);
 				MoveToPlanet(ship, command);
@@ -3727,7 +3728,7 @@ bool AI::TargetMinable(Ship &ship) const
 
 
 
-void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommands)
+void AI::MovePlayer(Ship &ship, Command &activeCommands)
 {
 	Command command;
 	firingCommands.SetHardpoints(ship.Weapons().size());
@@ -4175,7 +4176,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 	{
 		Orders newOrders;
 		newOrders.type = Orders::HARVEST;
-		IssueOrders(player, newOrders, "preparing to harvest.");
+		IssueOrders(newOrders, "preparing to harvest.");
 	}
 	else if(activeCommands.Has(Command::NEAREST_ASTEROID))
 	{
@@ -4496,7 +4497,7 @@ void AI::CacheShipLists()
 
 
 
-void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const string &description)
+void AI::IssueOrders(const Orders &newOrders, const string &description)
 {
 	string who;
 

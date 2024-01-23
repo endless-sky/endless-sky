@@ -64,8 +64,7 @@ protected:
 	virtual void ToggleForSale() override;
 	virtual void ToggleStorage() override;
 	virtual void ToggleCargo() override;
-
-
+	virtual int FindItem(const std::string &text) const override;
 
 
 private:

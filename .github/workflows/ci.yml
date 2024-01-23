@@ -200,6 +200,8 @@ jobs:
       with:
         name: windows-dlls
     - name: Parse Datafiles
-      run: .\utils\test_parse.ps1 'Endless Sky.exe'
+      run: "'./Endless Sky.exe' -p"
+      shell: bash
     - name: Parse Integration Test Data
-      run: .\utils\test_parse.ps1 'Endless Sky.exe' tests/integration/config
+      run: "'./Endless Sky.exe' -p --config 'tests/integration/config'"
+      shell: bash

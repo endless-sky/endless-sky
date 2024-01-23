@@ -104,6 +104,10 @@ protected:
 	virtual bool Release(int x, int y) override;
 	virtual bool Scroll(double dx, double dy) override;
 
+	void DoFind(const std::string &text);
+	virtual int FindItem(const std::string &text) const = 0;
+	static int Search(const std::string &str, const std::string &sub);
+
 	int64_t LicenseCost(const Outfit *outfit, bool onlyOwned = false) const;
 
 	void CheckSelection();

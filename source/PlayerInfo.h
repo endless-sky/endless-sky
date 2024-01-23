@@ -167,7 +167,7 @@ public:
 	// In the case of a gift, return a pointer to the newly instantiated ship.
 	void BuyShip(const Ship *model, const std::string &name);
 	const Ship *GiftShip(const Ship *model, const std::string &name, const std::string &id);
-	void SellShip(const Ship *selected);
+	void SellShip(const Ship *selected, bool storeOutfits = false);
 	// Take the ship from the player, if a model is specified this will permanently remove outfits in said model,
 	// instead of allowing the player to buy them back by putting them in the stock.
 	void TakeShip(const Ship *shipToTake, const Ship *model = nullptr, bool takeOutfits = false);

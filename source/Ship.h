@@ -267,6 +267,10 @@ public:
 	bool IsUsingJumpDrive() const;
 	// Check if this ship is currently able to enter hyperspace to it target.
 	bool IsReadyToJump(bool waitingIsReady = false) const;
+	// Check if this ship is allowed to land on this planet, accounting for its personality.
+	bool IsRestrictedFrom(const Planet &planet) const;
+	// Check if this ship is allowed to enter this system, accounting for its personality.
+	bool IsRestrictedFrom(const System &system) const;
 	// Get this ship's custom swizzle.
 	int CustomSwizzle() const;
 
@@ -346,8 +350,11 @@ public:
 	double MaximumHeat() const;
 	// Calculate the multiplier for cooling efficiency.
 	double CoolingEfficiency() const;
-	// Calculate the ship's drag after accounting for drag reduction.
+	// Calculate the drag on this ship. The drag can be no greater than the mass.
 	double Drag() const;
+	// Calculate the drag force that this ship experiences. The drag force is the drag
+	// divided by the mass, up to a value of 1.
+	double DragForce() const;
 
 	// Access how many crew members this ship has or needs.
 	int Crew() const;

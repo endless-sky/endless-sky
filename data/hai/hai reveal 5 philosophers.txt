@@ -14,7 +14,7 @@
 mission "Hai Reveal [B01] Information Blackout"
 	landing
 	name "Information Blackout"
-	description "Meet the Syndicate Security Captain in the spaceport on <origin> when you're ready."
+	description "Meet the Syndicated Security Captain in the spaceport on <origin> when you're ready."
 	source "Sunracer"
 	clearance
 	to offer

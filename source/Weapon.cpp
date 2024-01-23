@@ -512,6 +512,22 @@ double Weapon::DamageDropoff(double distance) const
 
 
 
+// Return the weapon's damage dropoff at maximum range.
+double Weapon::MaxDropoff() const
+{
+	return damageDropoffModifier;
+}
+
+
+
+// Return the ranges at which the weapon's damage dropoff begins and ends.
+const pair<double, double> &Weapon::DropoffRanges() const
+{
+	return damageDropoffRange;
+}
+
+
+
 // Legacy support: allow turret outfits with no turn rate to specify a
 // default turnrate.
 void Weapon::SetTurretTurn(double rate)

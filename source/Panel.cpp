@@ -108,13 +108,6 @@ bool Panel::ZoneClick(const Point &point)
 
 
 
-// Forward the given TestContext to the Engine under MainPanel.
-void Panel::SetTestContext(TestContext &testContext)
-{
-}
-
-
-
 // Panels will by default not allow fast-forward. The ones that do allow
 // it will override this (virtual) function and return true.
 bool Panel::AllowsFastForward() const noexcept

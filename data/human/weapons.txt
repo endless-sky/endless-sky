@@ -669,7 +669,7 @@ outfit "Flamethrower"
 		"lifetime" 5
 		"reload" 1
 		"firing energy" .1
-		"firing fuel" .25
+		"firing fuel" .4
 		"firing heat" 4
 	description "A crude but impressive-looking weapon, the Flamethrower ignites your hyperspace fuel and directs a stream of it towards your adversaries. The damage it does is relatively minor, but it can be useful for causing a target that is already operating near its thermal capacity to overheat, temporarily taking it out of the fight."
 
@@ -687,7 +687,7 @@ outfit "Flamethrower Projectile"
 		"dropoff modifier" .5
 		"shield damage" .8
 		"hull damage" .7
-		"heat damage" 150
+		"heat damage" 125
 
 effect "flamethrower die"
 	sprite "effect/explosion/small"
