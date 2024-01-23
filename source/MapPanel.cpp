@@ -339,12 +339,12 @@ void MapPanel::FinishDrawing(const string &buttonCondition)
 		info.SetCondition("max zoom");
 	if(player.MapZoom() <= static_cast<int>(mapInterface->GetValue("min zoom")))
 		info.SetCondition("min zoom");
-	if(player.StarryMap() == true)
+	if(player.StarryMap())
 	{
 		info.SetCondition("is starry");
 		isStarry = true;
 	}
-	if(player.StarryMap() == false)
+	else
 	{
 		info.SetCondition("!is starry");
 		isStarry = false;
@@ -579,9 +579,9 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 			this, &MapPanel::Find, "Search for:", "", Truncate::NONE, true));
 		return true;
 	}
-	else if(key == ']' && isStarry == false)
+	else if(key == ']' && !isStarry)
 		player.SetStarryMap(true);
-	else if(key == '[' && isStarry == true)
+	else if(key == '[' && isStarry)
 		player.SetStarryMap(false);
 	else if(key == SDLK_PLUS || key == SDLK_KP_PLUS || key == SDLK_EQUALS)
 		player.SetMapZoom(min(static_cast<float>(mapInterface->GetValue("max zoom")), player.MapZoom() + 0.5f));
@@ -1104,13 +1104,15 @@ void MapPanel::UpdateCache()
 			}
 		}
 
-		vector<string> unmappedSystem = {"map/unexplored-star"};
+		static const vector<string> unmappedSystem = {"map/unexplored-star"};
 
+
+		const bool canViewSystem = player.CanView(system);
 		nodes.emplace_back(system.Position(), color,
 			player.KnowsName(system) ? system.Name() : "",
 			(&system == &playerSystem) ? closeNameColor : farNameColor,
-			player.CanView(system) ? system.GetGovernment() : nullptr,
-			player.CanView(system) ? system.GetMapIcon() : unmappedSystem);
+			canViewSystem ? system.GetGovernment() : nullptr,
+			canViewSystem ? system.GetMapIcon() : unmappedSystem);
 	}
 
 	// Now, update the cache of the links.
@@ -1402,7 +1404,7 @@ void MapPanel::DrawSystems()
 	float spin;
 	Point starOffset;
 
-	float ringFade = isStarry ? 1.5 - 1.25 * zoom : 1.;
+	const float ringFade = isStarry ? 1.5 - 1.25 * zoom : 1.;
 	for(const Node &node : nodes)
 	{
 		Point pos = zoom * (node.position + center);
@@ -1459,7 +1461,7 @@ void MapPanel::DrawNames()
 	// Draw names for all systems you have visited.
 	bool useBigFont = (zoom > 2.);
 	const Font &font = FontSet::Get(useBigFont ? 18 : 14);
-	double zoomFactor = zoom / 2;
+	const double zoomFactor = zoom / 2;
 	for(const Node &node : nodes)
 	{
 		Point offset(useBigFont ? 10. : 8., -.5 * font.Height());
