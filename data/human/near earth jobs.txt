@@ -60,7 +60,7 @@ mission "To Earth Day celebration [0]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	destination
 		system "Sol"
-		planet "Earth"
+		attributes "urban"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -96,7 +96,7 @@ mission "To Earth Day celebration [1]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	destination
 		system "Sol"
-		planet "Earth"
+		attributes "urban"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -133,7 +133,7 @@ mission "To Earth Day celebration [2]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	destination
 		system "Sol"
-		planet "Earth"
+		attributes "urban"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
