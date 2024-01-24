@@ -2700,9 +2700,7 @@ event "fwc pug invasion"
 	"tribute: Furnace" /= 1200
 	government "Pug"
 		"attitude toward"
-			"Free Worlds" -.01
-			"Free Worlds (Anti-Pug)" -.01
-	
+			"Free Worlds" -.01	
 	system "Zeta Aquilae"
 		government "Pug"
 		fleet "Small Southern Merchants" 1000
@@ -2788,16 +2786,11 @@ event "fwc pug peaceful"
 	government "Pug"
 		"attitude toward"
 			"Free Worlds" 0
-			"Free Worlds (Anti-Pug)" 0
-
 
 
 event "fwc navy retakes cebalrai"
 	unvisit "Cebalrai"
 	unvisit "Menkent"
-	government "Free Worlds (Anti-Pug)"
-		"attitude toward"
-			"Pug" -.01
 	system "Cebalrai"
 		government "Republic"
 		fleet "Small Southern Merchants" 1000
