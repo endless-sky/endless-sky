@@ -4250,7 +4250,7 @@ system As-75
 	fleet "Small Aberrant" 12000
 	fleet "Large Aberrant" 18000
 	object
-		sprite planet/browndwarf-l-rouge
+		sprite planet/browndwarf-l-rogue
 		period 10
 	object
 		sprite planet/gas7-hot
