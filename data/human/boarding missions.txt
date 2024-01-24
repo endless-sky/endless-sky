@@ -954,9 +954,9 @@ mission "Boarding Derelict"
 			label unlucky
 			branch pirate
 				random < 20
-			`	You attempt to search the ship for more valuables but to avail. However, the hull begins to creak and groan, prompting a hasty return to your ship.`
+			`	You attempt to search the ship for more valuables but to no avail. However, the hull begins to creak and groan, prompting a hasty return to your ship.`
 			`	Not a moment too soon, as the <origin> begins to violently fall apart the moment your ship detaches.`
 				depart
 			label pirate
-			`	You make your way to the cockpit in the hopes of finding any valuables, initially finding nothing you turn to leave and search more of the ship.`
+			`	You make your way to the cockpit in the hopes of finding any valuables. Initially finding nothing, you turn to leave and search more of the ship.`
 				goto beacon

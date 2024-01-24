@@ -6895,7 +6895,7 @@ mission "Derelict Family Investment 1"
 	on offer
 		conversation
 			`Upon landing on <origin> you take out the text log you recovered alongside the case of <payment> from the derelict ship. The log reveals the credits were the result of a risky investment in an attempt to buy a better life for the captain of the ship, Colin Sawyer, and his family. You assume that the captain never made it home, and looking further into the personal log you find that the family used to reside on <destination>.`
-			`	Perhaps the family still live there.`
+			`	Perhaps the family still lives there.`
 			choice
 				`	(Attempt to return the credits.)`
 					accept
@@ -6918,7 +6918,7 @@ mission "Derelict Family Investment 2"
 			choice
 				`	"Do you know a Colin Sawyer?"`
 				`	"Do the Sawyers live here?"`
-			`	"Sawyer? Yeah, that's the family that sold me this here farm. If you're looking for them I believe they moved to a more populated planet, own some big corporation now." The man gives you the Sawyer's new place of residence on <destination> and bids you farewell.`
+			`	"Sawyer? Yeah, that's the family that sold me this here farm. If you're looking for them I believe they moved to a more populated planet, own some big corporation now." The man gives you the Sawyers' new place of residence on <destination> and bids you farewell.`
 	on complete
 		payment 500000
 		conversation
