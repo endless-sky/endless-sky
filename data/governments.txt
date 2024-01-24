@@ -264,7 +264,6 @@ government "Free Worlds"
 	"player reputation" 1
 	"attitude toward"
 		"Alpha" -.4
-		"Free Worlds (Anti-Pug)" 1
 		"Free Worlds that won't enter wormhole" 1
 		"Merchant" .3
 		"Militia" .3
@@ -276,26 +275,6 @@ government "Free Worlds"
 	"friendly hail" "friendly free worlds"
 	"hostile hail" "hostile free worlds"
 	raid "pirate raid"
-
-government "Free Worlds (Anti-Pug)"
-	"display name" "Free Worlds"
-	swizzle 2
-	color "governments: Free"
-
-	"player reputation" 1
-	"attitude toward"
-		"Free Worlds" 1
-		"Free Worlds that won't enter wormhole" 1
-		"Merchant" .3
-		"Militia" .3
-		"Pirate" -.4
-		"Pirate (Devil-Run Gang)" -.4
-		"Smuggler (Hai Trafficker)" .05
-		"Neutral" .1
-	"bribe" .1
-	"friendly hail" "friendly free worlds"
-	"hostile hail" "hostile free worlds"
-	"raid" "pirate raid"
 
 government "Free Worlds that won't enter wormhole"
 	"display name" "Free Worlds"
