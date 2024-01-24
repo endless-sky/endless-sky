@@ -3772,6 +3772,15 @@ void PlayerInfo::RegisterDerivedConditions()
 	visitedSystemProvider.SetGetFunction(visitedSystemFun);
 	visitedSystemProvider.SetHasFunction(visitedSystemFun);
 
+	auto &&landingAccessProvider = conditions.GetProviderPrefixed("landing access: ");
+	auto landingAccessFun = [this](const string &name) -> bool
+	{
+		const Planet *planet = GameData::Planets().Find(name.substr(strlen("landing access: ")));
+		return planet && flagship ? planet->CanLand(*flagship) : false;
+	};
+	landingAccessProvider.SetGetFunction(landingAccessFun);
+	landingAccessProvider.SetHasFunction(landingAccessFun);
+
 	auto &&pluginProvider = conditions.GetProviderPrefixed("installed plugin: ");
 	auto pluginFun = [](const string &name) -> bool
 	{
