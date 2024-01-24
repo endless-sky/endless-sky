@@ -82,7 +82,7 @@ Version 0.10.5
     * Other:
       * Removed the Quarg atrocity mission and added the proper atrocities to the Quarg governments. (@TomGoodIdea)
       * Reworked and removed some overly-wordy and complex hails. (@bene-dictator)
-      * Locelace Labs will now sell Typhoon Torpedo outfits shortly after they are introduced. (@Quantumshark)
+      * Lovelace Labs will now sell Typhoon Torpedo outfits shortly after they are introduced. (@Quantumshark)
       * Small wording tweaks in the intro mission set. (@Hurleveur)
       * Various adjustments to intro Gegno content. (@Saugia, @bene-dictator)
   * Game mechanics:
@@ -118,7 +118,7 @@ Version 0.10.5
     * The "u" and "c" keys can now be used to sell a ship while sending all of its outfits to storage. (@kaol)
     * Added search functionality to the shops with the "f" key. (@Ember369)
     * Added a button on the load panel that opens the saves file folder. (@alexrovw)
-    * The keyboard can now be used to navigate the plug-ins menu. (@Koranir)
+    * The keyboard can now be used to navigate the plugins menu. (@Koranir)
     * Shop keyboard navigation now remembers the selected column when moving between differently sized rows. (@Koranir)
     * The "u" and "e" keys can now be used as shortcuts to "buy all" or "sell all" on the trading panel. (@AntimatterReactor)
     * Added scrolling to the plugins panel for both the plugins list and plugin descriptions. (@thewierdnut)
@@ -145,7 +145,7 @@ Version 0.10.5
     * Shipyard help message no longer shows for integration tests. (@quyykk)
     * Updated the new screenshots in the AppStream file. (@quyykk)
     * Integration tests now run without OpenGL. (@quyykk)
-    * Integration test have been made to be more deterministic. (@quyykk)
+    * Integration tests have been made to be more deterministic. (@quyykk)
     * The data files CI no longer needs the test_parse scripts. (@quyykk)
     * A new commit will no longer cancel the Actions running for previous commits. (@quyykk)
     * Integration tests are now allowed to run on every platform. (@quyykk)
