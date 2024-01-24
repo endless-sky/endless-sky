@@ -2788,6 +2788,7 @@ event "fwc pug peaceful"
 			"Free Worlds" 0
 
 
+
 event "fwc navy retakes cebalrai"
 	unvisit "Cebalrai"
 	unvisit "Menkent"
@@ -2878,6 +2879,8 @@ event "fwc battle for rasalhague"
 		"attitude toward"
 			"Republic" -.01
 			"Navy (Oathkeeper)" -.01
+
+
 
 
 
