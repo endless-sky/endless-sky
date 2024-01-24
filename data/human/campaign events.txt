@@ -2700,7 +2700,7 @@ event "fwc pug invasion"
 	"tribute: Furnace" /= 1200
 	government "Pug"
 		"attitude toward"
-			"Free Worlds" -.01	
+			"Free Worlds" -.01
 	system "Zeta Aquilae"
 		government "Pug"
 		fleet "Small Southern Merchants" 1000
