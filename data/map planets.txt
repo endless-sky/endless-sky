@@ -1095,8 +1095,7 @@ planet "Dwelling of Speloog"
 	security 0.4
 
 planet Earth
-	# Earth attribute is required for earth day job location filters to filter out planets that you cannot land on. A better option is for "planet Earth" to not be replaced with a fixed destination.
-	attributes factory "near earth" research tourism urban earth
+	attributes factory "near earth" research tourism urban
 	landscape land/city20
 	description `The ancestral home world of humanity, Earth has a population twice that of any other inhabited planet. Sprawling cities cover large portions of its surface, many of them overcrowded and dangerous. Some people work to scrape together enough money to leave, while at the same time others, born on distant worlds, make a pilgrimage of sorts to see this planet that once cradled the entirety of the human species.`
 	description `	Earth is also the capital of the Republic. Representative government becomes complicated when one planet has a greater population than a hundred planets elsewhere. As a result, settlements of less than a million are grouped together into planetary districts that elect a single representative between them - a source of much frustration in the frontier worlds.`
