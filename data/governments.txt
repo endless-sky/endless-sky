@@ -284,7 +284,6 @@ government "Free Worlds that won't enter wormhole"
 	"player reputation" 1
 	"attitude toward"
 		"Free Worlds" 1
-		"Free Worlds (Anti-Pug)" 1
 		"Merchant" .3
 		"Militia" .3
 		"Pirate" -.4
