@@ -2871,6 +2871,8 @@ event "fwc defend oblivion"
 		"attitude toward"
 			"Free Worlds" -.01
 
+
+
 event "fwc battle for rasalhague"
 	link "Rasalhague" "Cebalrai"
 	system "Rasalhague"
@@ -2879,8 +2881,6 @@ event "fwc battle for rasalhague"
 		"attitude toward"
 			"Republic" -.01
 			"Navy (Oathkeeper)" -.01
-
-
 
 
 
