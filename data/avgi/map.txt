@@ -4749,7 +4749,7 @@ system N-14
 	fleet "Small Aberrant" 12000
 	fleet "Large Aberrant" 18000
 	object
-		sprite planet/browndwarf-t-rouge
+		sprite planet/browndwarf-t-rogue
 		period 10
 	object
 		sprite planet/gas3-b
