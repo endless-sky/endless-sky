@@ -53,15 +53,16 @@ mission "To Earth Day celebration [0]"
 				month == 4
 				day < 22
 		"days until year end" - 2 * "hyperjumps to system: Sol" > 253
+		or
+			has "tribute: Earth"
+			"reputation: Republic" > 0
 	to fail
 		month * 100 + day >= 422
 	source
 		near "Sol" 1 15
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	destination
-		system "Sol"
-		# Replace with planet Earth and remove attribute from Earth when doing so would not result in the game turning it into a fixed destination. This way Earth is filtered out if you cannot land there.
-		attributes "earth"
+		planet "Earth"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -90,15 +91,16 @@ mission "To Earth Day celebration [1]"
 				month == 4
 				day < 22
 		"days until year end" - 2 * "hyperjumps to system: Sol" > 253
+		or
+			has "tribute: Earth"
+			"reputation: Republic" > 0
 	to fail
 		month * 100 + day >= 422
 	source
 		near "Sol" 1 15
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	destination
-		system "Sol"
-		# Replace with planet Earth and remove attribute from Earth when doing so would not result in the game turning it into a fixed destination. This way Earth is filtered out if you cannot land there.
-		attributes "earth"
+		planet "Earth"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -128,15 +130,16 @@ mission "To Earth Day celebration [2]"
 				month == 4
 				day < 22
 		"days until year end" - 2 * "hyperjumps to system: Sol" > 253
+		or
+			has "tribute: Earth"
+			"reputation: Republic" > 0
 	to fail
 		month * 100 + day >= 422
 	source
 		near "Sol" 1 15
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	destination
-		system "Sol"
-		# Replace with planet Earth and remove attribute from Earth when doing so would not result in the game turning it into a fixed destination. This way Earth is filtered out if you cannot land there.
-		attributes "earth"
+		planet "Earth"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
