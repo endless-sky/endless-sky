@@ -781,9 +781,14 @@ void MapDetailPanel::DrawInfo()
 		bool isSelected = false;
 		if(static_cast<unsigned>(this->commodity) < GameData::Commodities().size())
 			isSelected = (&commodity == &GameData::Commodities()[this->commodity]);
-		const Color &color = isSelected ? medium : dim;
+		const Color &poscolor = *GameData::Colors().Get("map trade price positive");
+		const Color &negcolor = *GameData::Colors().Get("map trade price negative");
+		const Color *dyncolor = &dim;
 
-		font.Draw(commodity.name, uiPoint, color);
+		if(isSelected)
+			font.Draw(commodity.name, uiPoint, medium);
+		else
+			font.Draw(commodity.name, uiPoint, dim);
 
 		string price;
 		if(canView && selectedSystem->IsInhabited(player.Flagship()))
@@ -794,27 +799,46 @@ void MapDetailPanel::DrawInfo()
 			// thus has no prices to compare to.
 			bool noCompare = (!player.GetSystem() || !player.GetSystem()->IsInhabited(player.Flagship()));
 			if(!value)
+			{
 				price = "----";
+				dyncolor = &dim;
+
+			}
 			else if(noCompare || player.GetSystem() == selectedSystem || !localValue)
+			{
 				price = to_string(value);
+				dyncolor = &dim;
+			}
 			else
 			{
 				value -= localValue;
 				price += "(";
 				if(value > 0)
+				{
 					price += '+';
+					dyncolor = &poscolor;
+				}
+				else
+					dyncolor = &negcolor;
 				price += to_string(value);
 				price += ")";
 			}
 		}
 		else
+		{
 			price = (canView ? "n/a" : "?");
+			dyncolor = &dim;
+		}
 
 		const auto alignRight = Layout(140, Alignment::RIGHT, Truncate::BACK);
-		font.Draw({price, alignRight}, uiPoint, color);
 
 		if(isSelected)
-			PointerShader::Draw(uiPoint + Point(0., 7.), Point(1., 0.), 10.f, 10.f, 0.f, color);
+		{
+			font.Draw({price, alignRight}, uiPoint, medium);
+			PointerShader::Draw(uiPoint + Point(0., 7.), Point(1., 0.), 10.f, 10.f, 0.f, medium);
+		}
+		else
+			font.Draw({price, alignRight}, uiPoint, *dyncolor);
 
 		uiPoint.Y() += 20.;
 	}

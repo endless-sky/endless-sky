@@ -187,6 +187,8 @@ color "map travel ok none" .55 .1 0. 0.
 color "map wormhole" .5 .2 .9 1.
 color "map orbits fleet destination" 1. 1. 1. 1.
 color "map danger none" .1 .6 0. .4
+color "map trade price positive" .44 .58 .35 1.
+color "map trade price negative" .65 .34 .7 1.
 
 # Miscellaneous colors
 color "wormholes: Ember Waste" .7 .1 .3
