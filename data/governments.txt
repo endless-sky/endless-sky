@@ -647,6 +647,8 @@ government "Hai (Unfettered Challenger)"
 	"bribe" .001
 	"fine" 0
 
+	"travel restrictions"
+		system "Wah Ki"
 	"friendly hail" "unfettered challenger"
 	"friendly disabled hail" "friendly disabled unfettered"
 	"hostile hail" "hostile unfettered challenger"

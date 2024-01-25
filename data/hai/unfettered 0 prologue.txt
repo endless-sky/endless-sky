@@ -989,7 +989,7 @@ mission "<uhai> 2: Prove Your Strength"
 			action
 				payment 250000
 			`	"Hopefully we see each other again, sometime." He and his crew seem quite busy with the repairs. "I transferred yer booty of <payment> to pay to repair any damage I may have done to yer ship. I be landing on the surface soon, to drown the sorrow of this humiliating defeat I have just suffered. I do not need nor want yer assistance in repairing, for that is a task best suited for the vanquished. I suppose ye may board me old ship to claim yer right o' salvage on me but ye wouldn't do that to a friend, would ye?"`
-			`	"If ye be feeling up to the challenge, there be other captains that would be willing to duel ye, if ye keep fighting fair, of course. None accept to fight more than a pair o' heavy men-o-war, some others, like me, still prefer fighting with a single vessel. Like me, they will wish to fight to test the strength of yer exotic technologies or strategies, savvy?"`
+			`	"If ye be feeling up to the challenge, there be other captains that would be willing to duel ye, if ye keep fighting fair, of course. None accept to fight more than a pair o' heavy men-o-war, some others, like me, still prefer fighting with a single vessel, when appropriate. Like me, they will wish to fight to test the strength of yer exotic technologies or strategies, savvy?"`
 			``
 			`	"Now land at once, we must officially conclude this duel, matey, else it will be worth no more than an empty chest!"`
 	to fail
@@ -1128,7 +1128,7 @@ mission "<uhai> 3: Recover Jump Drives"
 			label cut
 			`	"Ye humans always be obsessed with yer doubloons... So many much greater a variety of booty ye could be seeking. Rest assured, it be quite the coffer. I be taking half of the total bounty, and ye should well remember how well ye were paid for the ones ye've already delivered to me brethren."`
 			label leave
-			`	"One last warning for ye: Ye should sail the skies with a hyperdrive, especially with the dangers of where we be headed. A jump drive won't do us any favors getting there, but 'twill bring more than a mite of unwanted company. Nor should we risk whether or not the perrots up north would decide to fit ye with a hempen halter from yer association with us."`
+			`	"One last warning for ye: Ye should sail the skies with a hyperdrive, especially with the dangers of where we be headed. A jump drive won't do us any favors getting there, but 'twill bring more than a mite of unwanted company. Nor should we risk whether or not the parrots up north would decide to fit ye with a hempen halter from yer association with us."`
 			choice
 				`	(Show him to your ship.)`
 					goto ship

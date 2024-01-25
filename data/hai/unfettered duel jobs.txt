@@ -11,52 +11,6 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-event "unfettered: challengers arrive"
-	"unfettered: challengers" ++
-	"unfettered: total challengers" += 5
-	system "Wah Yoot"
-		add fleet "Shield Beetle Challenger" 5000
-		add fleet "Sea Scorpion Challenger" 7500
-	system "Ehma Ti"
-		add fleet "Sea Scorpion Challenger" 7500
-		add fleet "Shield Beetle Challenger" 7500
-	system "Hi Yahr"
-		add fleet "Sea Scorpion Challenger" 5000
-
-# the maximum amounts you can stack up these fleets is 5
-event "unfettered: challengers leave"
-	"unfettered: total challengers" -= "unfettered: challengers" * 5
-	clear "unfettered: challengers"
-	system "Wah Yoot"
-		remove fleet "Shield Beetle Challenger"
-		remove fleet "Sea Scorpion Challenger"
-		remove fleet "Shield Beetle Challenger"
-		remove fleet "Sea Scorpion Challenger"
-		remove fleet "Shield Beetle Challenger"
-		remove fleet "Sea Scorpion Challenger"
-		remove fleet "Shield Beetle Challenger"
-		remove fleet "Sea Scorpion Challenger"
-		remove fleet "Shield Beetle Challenger"
-	system "Ehma Ti"
-		remove fleet "Sea Scorpion Challenger"
-		remove fleet "Shield Beetle Challenger"
-		remove fleet "Shield Beetle Challenger"
-		remove fleet "Sea Scorpion Challenger"
-		remove fleet "Shield Beetle Challenger"
-		remove fleet "Sea Scorpion Challenger"
-		remove fleet "Shield Beetle Challenger"
-		remove fleet "Sea Scorpion Challenger"
-		remove fleet "Shield Beetle Challenger"
-		remove fleet "Sea Scorpion Challenger"
-	system "Hi Yahr"
-		remove fleet "Sea Scorpion Challenger"
-		remove fleet "Sea Scorpion Challenger"
-		remove fleet "Sea Scorpion Challenger"
-		remove fleet "Sea Scorpion Challenger"
-		remove fleet "Sea Scorpion Challenger"
-
-
-
 mission "Unfettered: Challengers Arrive"
 	landing
 	invisible
@@ -65,9 +19,10 @@ mission "Unfettered: Challengers Arrive"
 		has "unfettered: duel ready"
 	on offer
 		conversation
+			# the first time you speak wit him is presumably shortly after the duel, he is just done fixing his ship
 			branch fixing
 				not "Unfettered: Challengers Arrive: deferred"
-			`Do you want to go see the Captain in the spaceport now?`
+			`Do you want to go see the Captain in the spaceport now? He may have more to tell you about the duels.`
 			choice
 				`	(Yes.)`
 					goto explain
@@ -101,16 +56,15 @@ mission "Unfettered: Trigger The Challengers"
 	job
 	repeat
 	name "Ready for more spontaneous challengers"
-	description "Mark yourself as ready for more spontaneous challengers to come in all Unfettered systems. You have already done this &[unfettered: challengers] times."
+	description "Mark yourself as ready for more spontaneous challengers to come in all Unfettered systems, up to three of them at once."
 	source "Darkcloak"
 	to offer
 		has "unfettered: duel ready"
-		"unfettered: challengers" < 5
+		"unfettered: challengers" < 3
 	to fail
 		has "Unfettered: Trigger The Challengers: active"
 	on accept
-		clear "event: unfettered: challengers arrive"
-		event "unfettered: challengers arrive"
+		"unfettered: challengers" ++
 		dialog "Even more spontaneous challengers will come, hopefully you are ready for them! Do remember you need to board them to claim your reward, and in no circumstances are you allowed to destroy or capture their ships."
 
 mission "Unfettered: Remove The Challengers"
@@ -126,9 +80,6 @@ mission "Unfettered: Remove The Challengers"
 		has "Unfettered: Remove The Challengers: active"
 	on accept
 		clear "unfettered: challengers"
-		clear "event: unfettered: challengers arrive"
-		clear "event: unfettered: challengers leave"
-		event "unfettered: challengers leave"
 		dialog "No more spontaneous challengers will come by themselves in space, no matter how many there were. You can still change your mind by accepting the other job, or any specific duelling job."
 
 
@@ -185,21 +136,17 @@ phrase "unfettered challenger defeat message"
 	word
 		` `
 	word
-		`For now, here are the agreed <payment>. This is a credit chip that will only be exchanged upon landing. Hopefully the money will allows you to improve your flagship before our next battle..`
-		`I am in no rush to provide you the <payment>, you will receive it when you land but not before`
-		`You will receive <payment> upon landing, captain. Next time I will not underestimate you`
-		`You must have had an edge! I'm in no condition to give you your payment, but it will be delivered to you upon landing, but don't expect to see us again anytime soon`
-		`You will receive the agreed <payment> upon landing`
-		`Here is your <payment>, captain, to be received upon landing`
-		`Whatever the case, you have earned my blade, and my respect, captain. You will be able to exchange it for <payment> when you land`
-		`We will analyze the fight to make sure you have not cheated. If that is the case, you will receive the <payment> upon landing. If this was a fair fight, you may have gained my respect`
+		`For now, here are the agreed <payment>. Hopefully it will allows you to improve your flagship before our next battle..`
+		`I am in no rush to provide you the <payment>, but honor forces me to give it to you either way`
+		`Here are your well deserved <payment>, captain. Next time I will not underestimate you`
+		`You must have had an edge! I'm in no condition to argue about giving you your payment, however don't expect to see us again anytime soon`
+		`Here is your <payment>, captain, well earned`
+		`Whatever the case, you have earned my blade, and my respect, captain. You will be able to exchange it for <payment> the next time you land`
+		`We will analyze the fight to make sure you have not cheated. If that is the case, you will receive the <payment> shortly. If this was a fair fight, you may have gained my respect`
 	word
 		`."`
 	word
-		"	<boarding message>"
-
-substitutions
-	"<boarding message>" "(Winning the duel has increased your reputation with the Unfettered. You are in no way allowed to do any more than plundering the ship.)"
+		"	(Winning the duel has increased your reputation with the Unfettered. You are in no way allowed to do any more than plundering the ship.)"
 
 mission "Unfettered Challenge [0]"
 	job
@@ -224,12 +171,12 @@ mission "Unfettered Challenge [0]"
 		government "Hai (Unfettered Challenger)"
 		personality disables plunders staying heroic target
 		fleet "Sea Scorpion Challenger"
-		dialog phrase "unfettered challenger defeated"
+		on disable
+			dialog phrase "unfettered challenger defeated"
+			payment 200000
+			"unfettered challenger defeated" ++
+			fail
 	on fail
-		"unfettered: total challengers" -= 9
-	on complete
-		payment 200000
-		"unfettered challenger defeated" ++
 		"unfettered: total challengers" -= 9
 
 mission "Unfettered Challenge [1A]"
@@ -255,12 +202,12 @@ mission "Unfettered Challenge [1A]"
 		government "Hai (Unfettered Challenger)"
 		personality disables plunders staying heroic target
 		fleet "Sea Scorpion Challenger" 2
-		dialog phrase "unfettered challenger defeated"
+		on disable
+			dialog phrase "unfettered challenger defeated"
+			payment 500000
+			"unfettered challenger defeated" += 2
+			fail
 	on fail
-		"unfettered: total challengers" -= 15
-	on complete
-		payment 500000
-		"unfettered challenger defeated" += 2
 		"unfettered: total challengers" -= 15
 
 mission "Unfettered Challenge [1B]"
@@ -286,12 +233,12 @@ mission "Unfettered Challenge [1B]"
 		government "Hai (Unfettered Challenger)"
 		personality disables plunders staying heroic target
 		fleet "Shield Beetle Challenger"
-		dialog phrase "unfettered challenger defeated"
+		on disable
+			dialog phrase "unfettered challenger defeated"
+			payment 500000
+			"unfettered challenger defeated" += 2
+			fail
 	on fail
-		"unfettered: total challengers" -= 15
-	on complete
-		payment 500000
-		"unfettered challenger defeated" += 2
 		"unfettered: total challengers" -= 15
 
 mission "Unfettered Challenge [2]"
@@ -318,51 +265,82 @@ mission "Unfettered Challenge [2]"
 		personality disables plunders staying heroic target
 		fleet "Shield Beetle Challenger"
 		fleet "Sea Scorpion Challenger"
-		dialog phrase "unfettered challenger defeated"
+		on disable
+			dialog phrase "unfettered challenger defeated"
+			payment 1000000
+			"unfettered challenger defeated" += 3
+			fail
 	on fail
 		"unfettered: total challengers" -= 21
-	on complete
-		payment 1000000
-		"unfettered challenger defeated" += 3
-		"unfettered: total challengers" -= 21
 
 
 
-# when you board the generic challengers
-mission "Unfettered Space Challenge Small"
+# random challengers that move around
+mission "Unfettered Spontaneous Challenge"
 	minor
-	boarding
 	repeat
-	name "Collect your payment on <destination>"
-	description `An Unfettered captain has offered you a payment of <payment> for beating them in battle, land on <destination> to collect it.`
-	substitutions
-		<payment> "200,000 credits"
-		"<boarding message>" "Do you want to accept the payment offer or plunder the ship? Keep in mind that you are in no way allowed to capture or destroy the ship."
+	landing
+	invisible
 	source
+		attributes "unfettered"
+	to offer
+		has "unfettered: duel ready"
+		not "Unfettered Spontaneous Challenge: active"
+		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 <= 15
+	to fail
+		# make sure these dont interfere with other duels
+		or
+			has "unfettered: total challengers"
+			not "unfettered: challengers"
+			has "<uhai> 2: Prove Your Strength: active"
+			has "<uhai> 15: Modified Beetle"
+			has "<uhai> 16: Strength Of A Leader: Si-Ra: active"
+			has "<uhai> 16: Strength Of A Leader: He-Yi: active"
+	npc save disable
 		government "Hai (Unfettered Challenger)"
-		not category "Heavy Warship"
-	on offer
-		dialog phrase "unfettered challenger boarded"
-	destination "Darkcloak"
-	on complete
-		payment 200000
-
-mission "Unfettered Space Challenge Big"
-	minor
-	boarding
-	repeat
-	name "Collect your payment on <destination>"
-	description "An Unfettered captain has offered you a payment of <payment> for beating them in battle, land on <destination> to collect it."
-	substitutions
-		<payment> "500,000 credits"
-		"<boarding message>" "Do you want to accept the payment offer or plunder the ship? Keep in mind that you are in no way allowed to capture or destroy the ship."
-	source
+		personality disables plunders waiting target timid
+		to spawn
+			random < "unfettered: challengers" * 20
+		system
+			government "Hai (Unfettered)"
+		fleet "Sea Scorpion Challenger"
+		on disable
+			dialog phrase "unfettered challenger defeated"
+			payment 200000
+	npc save disable
 		government "Hai (Unfettered Challenger)"
-	on offer
-		dialog phrase "unfettered challenger boarded"
-	destination "Darkcloak"
-	on complete
-		payment 500000
+		personality disables plunders waiting target timid
+		to spawn
+			random < "unfettered: challengers" * 10
+		system
+			government "Hai (Unfettered)"
+		fleet "Sea Scorpion Challenger" 2
+		on disable
+			dialog phrase "unfettered challenger defeated"
+			payment 500000
+	npc save disable
+		government "Hai (Unfettered Challenger)"
+		personality disables plunders waiting target timid
+		to spawn
+			random < "unfettered: challengers" * 10
+		system
+			government "Hai (Unfettered)"
+		fleet "Shield Beetle Challenger"
+		on disable
+			dialog phrase "unfettered challenger defeated"
+			payment 500000
+	npc save disable
+		government "Hai (Unfettered Challenger)"
+		personality disables plunders waiting target timid
+		to spawn
+			random < "unfettered: challengers" * 5
+		system
+			government "Hai (Unfettered)"
+		fleet "Sea Scorpion Challenger"
+		fleet "Shield Beetle Challenger"
+		on disable
+			dialog phrase "unfettered challenger defeated"
+			payment 500000
 
 
 

@@ -1081,11 +1081,10 @@ mission "<uhai> 15: Modified Beetle"
 				defer
 			label fight
 			`	"Launch your ship whenever you feel ready for the fight, I will be waiting for you in space, trying some of these new fancy toys. I may not be a warlord, or a captain even, but I will give you my best!"`
-			`	"And don't forget to disable the extra challengers from the job board, except if you really want a challenge."`
 			choice
 				`	"Get ready to launch."`
 					accept
-				`	"Can you refresh my mind about the rules of the dual?"`
+				`	"Can you refresh my mind about the rules of the duel?"`
 			`	"Of course! You may not destroy or capture my ship, and looting it is not encouraged - in this case due to the limit stock of these weapons I'd be quite disappointed if you were to do it."`
 				accept
 	on enter
@@ -1323,7 +1322,6 @@ mission "<uhai> 16: Strength Of A Leader: Si-Ra"
 					"midas: wronged" > 1
 					"unfettered rep: Si-Ra" < 0
 			`	"And may you die ready as well. Let us fight, on the same terms of honor as before. Take off when you're ready, I will be waiting for you. Once you defeat me you will be able to fight the Tejolis."`
-			`	"I would highly advise you mark yourself as not ready for spontaneous challenges from the job board, for they may disrupt the fight."`
 				accept
 			label "mad Si-Ra"
 			action
