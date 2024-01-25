@@ -54,7 +54,7 @@ conversation "unfettered outcast"
 	label "no license"
 	action
 		event "unfettered: outcast"
-		event "unfettered: challengers leave"
+		clear "unfettered: challengers"
 	`The local authorities hail you immediately after the destruction of the Alpha ship with a code purple message.`
 		to display
 			has "unfettered: destroyed auxiliary"

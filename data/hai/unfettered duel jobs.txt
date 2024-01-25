@@ -48,7 +48,7 @@ mission "Unfettered: Challengers Arrive"
 			label ok
 			`	"And may ye die ready as well," he responds in the blink of an eye.`
 			action
-				event "unfettered: challengers arrive"
+				"unfettered: challengers" ++
 	on defer
 		set "Unfettered: Challengers Arrive: deferred"
 
@@ -298,7 +298,7 @@ mission "Unfettered Spontaneous Challenge"
 			has "<uhai> 16: Strength Of A Leader: He-Yi: active"
 	npc save disable
 		government "Hai (Unfettered Challenger)"
-		personality disables plunders waiting target timid
+		personality disables plunders waiting target timid restricted
 		to spawn
 			random < "unfettered: challengers" * 20
 		system
@@ -309,7 +309,7 @@ mission "Unfettered Spontaneous Challenge"
 			payment 200000
 	npc save disable
 		government "Hai (Unfettered Challenger)"
-		personality disables plunders waiting target timid
+		personality disables plunders waiting target timid restricted
 		to spawn
 			random < "unfettered: challengers" * 10
 		system
@@ -320,7 +320,7 @@ mission "Unfettered Spontaneous Challenge"
 			payment 500000
 	npc save disable
 		government "Hai (Unfettered Challenger)"
-		personality disables plunders waiting target timid
+		personality disables plunders waiting target timid restricted
 		to spawn
 			random < "unfettered: challengers" * 10
 		system
@@ -331,7 +331,7 @@ mission "Unfettered Spontaneous Challenge"
 			payment 500000
 	npc save disable
 		government "Hai (Unfettered Challenger)"
-		personality disables plunders waiting target timid
+		personality disables plunders waiting target timid restricted
 		to spawn
 			random < "unfettered: challengers" * 5
 		system
