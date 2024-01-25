@@ -336,7 +336,7 @@ public:
 	float MapZoom() const;
 	void SetMapZoom(float level);
 	// Get or set the map display mode.
-	float StarryMap() const;
+	bool StarryMap() const;
 	void SetStarryMap(bool state);
 	// Get the set of collapsed categories for the named panel.
 	std::set<std::string> &Collapsed(const std::string &name);

@@ -1396,11 +1396,11 @@ interface "map buttons (small screen)" bottom right
 	sprite "ui/zoom"
 		from 0 -80 to -90 -130
 	active if "!max zoom"
-	button +
+	button + "_+"
 		from -10 -90 to -40 -120
 		size 18
 	active if "!min zoom"
-	button -
+	button - "_-"
 		from -50 -90 to -80 -120
 		size 18
 

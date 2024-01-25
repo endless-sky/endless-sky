@@ -551,7 +551,7 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 {
 	const Interface *mapInterface = GameData::Interfaces().Get("map");
 	if(command.Has(Command::MAP) || key == 'd' || key == SDLK_ESCAPE
-		|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
+			|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		GetUI()->Pop(this);
 	else if(key == 's' && buttonCondition != "is shipyards")
 	{
@@ -1400,9 +1400,6 @@ void MapPanel::DrawSystems()
 	double zoom = Zoom();
 	float ringInner = INNER;
 	float ringOuter = OUTER;
-	float starAngle;
-	float spin;
-	Point starOffset;
 
 	const float ringFade = isStarry ? 1.5 - 1.25 * zoom : 1.;
 	for(const Node &node : nodes)
@@ -1416,9 +1413,9 @@ void MapPanel::DrawSystems()
 		if(isStarry)
 		{
 			// Ensures every multiple-star system has a characteristic, deterministic rotation.
-			starAngle = node.name.length() + node.position.Length();
-			spin = 4 * acos(0.0) / node.mapIcon.size();
-			starOffset = (node.mapIcon.size() == 1) ? Point(0, 0) : node.mapIcon.size() * Point(2, 2);
+			float starAngle = node.name.length() + node.position.Length();
+			float spin = 4 * acos(0.0) / node.mapIcon.size();
+			Point starOffset = (node.mapIcon.size() == 1) ? Point(0, 0) : node.mapIcon.size() * Point(2, 2);
 
 			// Draw the star sprites
 			for(string star : node.mapIcon)
@@ -1462,13 +1459,11 @@ void MapPanel::DrawNames()
 	bool useBigFont = (zoom > 2.);
 	const Font &font = FontSet::Get(useBigFont ? 18 : 14);
 	const double zoomFactor = zoom / 2;
+	Point offset(useBigFont ? 10. : 8., -.5 * font.Height());
 	for(const Node &node : nodes)
-	{
-		Point offset(useBigFont ? 10. : 8., -.5 * font.Height());
 		font.Draw(node.name, zoom * (node.position + center) + offset,
 			(isStarry ? Color::Combine(1. - zoomFactor, node.nameColor, zoomFactor, node.color)
-				: node.nameColor).Additive(.9));
-	}
+			: node.nameColor).Additive(.9));
 
 }
 

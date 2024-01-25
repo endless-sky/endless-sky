@@ -2961,7 +2961,7 @@ void PlayerInfo::SetMapZoom(float level)
 
 
 // Get the map display mode.
-float PlayerInfo::StarryMap() const
+bool PlayerInfo::StarryMap() const
 {
 	return isStarry;
 }
