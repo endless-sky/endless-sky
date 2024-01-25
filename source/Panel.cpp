@@ -24,9 +24,28 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "Preferences.h"
 #include "Screen.h"
+#include "Sprite.h"
+#include "SpriteShader.h"
 #include "UI.h"
 
 using namespace std;
+
+
+
+// Draw a sprite repeatedly to make a vertical edge.
+void Panel::DrawEdgeSprite(const Sprite *edgeSprite, int posX)
+{
+	if(edgeSprite->Height())
+	{
+		// If the screen is high enough, the edge sprite should repeat.
+		double spriteHeight = edgeSprite->Height();
+		Point pos(
+			posX + .5 * edgeSprite->Width(),
+			Screen::Top() + .5 * spriteHeight);
+		for( ; pos.Y() - .5 * spriteHeight < Screen::Bottom(); pos.Y() += spriteHeight)
+			SpriteShader::Draw(edgeSprite, pos);
+	}
+}
 
 
 

@@ -163,7 +163,7 @@ public:
 	int64_t Cost() const;
 	int64_t ChassisCost() const;
 	int64_t Strength() const;
-	// Get the attraction and deterrance of this ship, for pirate raids.
+	// Get the attraction and deterrence of this ship, for pirate raids.
 	// This is only useful for the player's ships.
 	double Attraction() const;
 	double Deterrence() const;
@@ -536,7 +536,7 @@ private:
 	void CreateSparks(std::vector<Visual> &visuals, const std::string &name, double amount);
 	void CreateSparks(std::vector<Visual> &visuals, const Effect *effect, double amount);
 
-	// Calculate the attraction and deterrance of this ship, for pirate raids.
+	// Calculate the attraction and deterrence of this ship, for pirate raids.
 	// This is only useful for the player's ships.
 	double CalculateAttraction() const;
 	double CalculateDeterrence() const;

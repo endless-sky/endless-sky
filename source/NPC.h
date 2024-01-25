@@ -61,8 +61,9 @@ public:
 		BOARD,
 		CAPTURE,
 		DESTROY,
+		ENCOUNTER,
 		// Can be triggered by either the CAPTURE or DESTROY events.
-		KILL
+		KILL,
 	};
 
 

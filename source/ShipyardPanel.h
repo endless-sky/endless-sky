@@ -46,7 +46,7 @@ protected:
 	virtual void DrawItem(const std::string &name, const Point &point) override;
 	virtual int DividerOffset() const override;
 	virtual int DetailWidth() const override;
-	virtual int DrawDetails(const Point &center) override;
+	virtual double DrawDetails(const Point &center) override;
 	virtual BuyResult CanBuy(bool onlyOwned = false) const override;
 	virtual void Buy(bool onlyOwned = false) override;
 	virtual bool CanSell(bool toStorage = false) const override;
