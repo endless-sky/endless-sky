@@ -48,7 +48,7 @@ ShipInfoDisplay::ShipInfoDisplay(const Ship &ship, const PlayerInfo &player, boo
 // Panels that have scrolling abilities are not limited by space, allowing more detailed attributes.
 void ShipInfoDisplay::Update(const Ship &ship, const PlayerInfo &player, bool descriptionCollapsed, bool scrollingPanel)
 {
-	UpdateDescription(ship.Description(), ship.Attributes().Licenses(), true);
+	UpdateDescription(ship.Description(), ship.BaseAttributes().Licenses(), true);
 	UpdateAttributes(ship, player, descriptionCollapsed, scrollingPanel);
 	const Depreciation &depreciation = ship.IsYours() ? player.FleetDepreciation() : player.StockDepreciation();
 	UpdateOutfits(ship, player, depreciation);
