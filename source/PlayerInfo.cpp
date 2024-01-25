@@ -1221,18 +1221,34 @@ const Ship *PlayerInfo::GiftShip(const Ship *model, const string &name, const st
 
 
 // Sell the given ship (if it belongs to the player).
-void PlayerInfo::SellShip(const Ship *selected)
+void PlayerInfo::SellShip(const Ship *selected, bool storeOutfits)
 {
 	for(auto it = ships.begin(); it != ships.end(); ++it)
 		if(it->get() == selected)
 		{
 			int day = date.DaysSinceEpoch();
-			int64_t cost = depreciation.Value(*selected, day);
+			int64_t cost;
+
+			// Passing a pointer to Value gets only the hull cost. Passing a reference
+			// gets hull and outfit costs.
+			if(storeOutfits)
+				cost = depreciation.Value(selected, day);
+			else
+				cost = depreciation.Value(*selected, day);
 
 			// Record the transfer of this ship in the depreciation and stock info.
-			stockDepreciation.Buy(*selected, day, &depreciation);
-			for(const auto &it : selected->Outfits())
-				stock[it.first] += it.second;
+			stockDepreciation.Buy(*selected, day, &depreciation, storeOutfits);
+			if(storeOutfits)
+			{
+				CargoHold &storage = Storage();
+				for(const auto &it : selected->Outfits())
+					storage.Add(it.first, it.second);
+			}
+			else
+			{
+				for(const auto &it : selected->Outfits())
+					stock[it.first] += it.second;
+			}
 
 			accounts.AddCredits(cost);
 			ForgetGiftedShip(*it->get());
@@ -1295,11 +1311,11 @@ vector<shared_ptr<Ship>>::iterator PlayerInfo::DisownShip(const Ship *selected)
 // flying with the player, and requires no daily crew payments.
 void PlayerInfo::ParkShip(const Ship *selected, bool isParked)
 {
-	for(auto it = ships.begin(); it != ships.end(); ++it)
-		if(it->get() == selected)
+	for(auto &ship : ships)
+		if(ship.get() == selected)
 		{
-			isParked &= !(*it)->IsDisabled();
-			(*it)->SetIsParked(isParked);
+			isParked &= !ship->IsDisabled();
+			ship->SetIsParked(isParked);
 			UpdateCargoCapacities();
 			flagship.reset();
 			return;
@@ -1311,10 +1327,10 @@ void PlayerInfo::ParkShip(const Ship *selected, bool isParked)
 // Rename the given ship.
 void PlayerInfo::RenameShip(const Ship *selected, const string &name)
 {
-	for(auto it = ships.begin(); it != ships.end(); ++it)
-		if(it->get() == selected)
+	for(auto &ship : ships)
+		if(ship.get() == selected)
 		{
-			(*it)->SetName(name);
+			ship->SetName(name);
 			return;
 		}
 }
@@ -1555,6 +1571,10 @@ void PlayerInfo::Land(UI *ui)
 
 	// Cargo management needs to be done after updating ship locations (above).
 	UpdateCargoCapacities();
+	// If the player is actually landing (rather than simply loading the game),
+	// new fines may be levied.
+	if(!freshlyLoaded)
+		Fine(ui);
 	// Ships that are landed with you on the planet should pool all their cargo together.
 	PoolCargo();
 	// Adjust cargo cost basis for any cargo lost due to a ship being destroyed.
@@ -1569,15 +1589,9 @@ void PlayerInfo::Land(UI *ui)
 	StepMissions(ui);
 	UpdateCargoCapacities();
 
-	// If the player is actually landing (rather than simply loading the game),
-	// new missions are created and new fines may be levied.
+	// Create whatever missions this planet has to offer.
 	if(!freshlyLoaded)
-	{
-		// Create whatever missions this planet has to offer.
 		CreateMissions();
-		// Check if the player is doing anything illegal.
-		Fine(ui);
-	}
 	// Upon loading the game, prompt the player about any paused missions, but if there are many
 	// do not name them all (since this would overflow the screen).
 	else if(ui && !inactiveMissions.empty())
@@ -2146,10 +2160,10 @@ void PlayerInfo::HandleBlockedMissions(Mission::Location location, UI *ui)
 	if(ships.empty() || missionList.empty())
 		return;
 
-	for(auto it = missionList.begin(); it != missionList.end(); ++it)
-		if(it->IsAtLocation(location) && it->CanOffer(*this) && !it->CanAccept(*this))
+	for(auto &it : missionList)
+		if(it.IsAtLocation(location) && it.CanOffer(*this) && !it.CanAccept(*this))
 		{
-			string message = it->BlockedMessage(*this);
+			string message = it.BlockedMessage(*this);
 			if(!message.empty())
 			{
 				ui->Push(new Dialog(message));
@@ -2250,10 +2264,10 @@ void PlayerInfo::RemoveMission(Mission::Trigger trigger, const Mission &mission,
 // Mark a mission as failed, but do not remove it from the mission list yet.
 void PlayerInfo::FailMission(const Mission &mission)
 {
-	for(auto it = missions.begin(); it != missions.end(); ++it)
-		if(&*it == &mission)
+	for(auto &it : missions)
+		if(&it == &mission)
 		{
-			it->Fail();
+			it.Fail();
 			return;
 		}
 }
@@ -2383,7 +2397,12 @@ int64_t PlayerInfo::GetTributeTotal() const
 // they have actually visited it).
 bool PlayerInfo::HasSeen(const System &system) const
 {
-	if(seen.count(&system))
+	if(&system == this->system)
+		return true;
+
+	// Shrouded systems have special considerations as to whether they're currently seen or not.
+	bool shrouded = system.Shrouded();
+	if(!shrouded && seen.count(&system))
 		return true;
 
 	auto usesSystem = [&system](const Mission &m) noexcept -> bool
@@ -2395,14 +2414,37 @@ bool PlayerInfo::HasSeen(const System &system) const
 		for(auto &&p : m.Stopovers())
 			if(p->IsInSystem(&system))
 				return true;
-		return false;
+		return m.Destination()->IsInSystem(&system);
 	};
 	if(any_of(availableJobs.begin(), availableJobs.end(), usesSystem))
 		return true;
 	if(any_of(missions.begin(), missions.end(), usesSystem))
 		return true;
 
+	if(shrouded)
+	{
+		// All systems linked to a system the player can view are visible.
+		if(any_of(system.Links().begin(), system.Links().end(),
+				[&](const System *s) noexcept -> bool { return CanView(*s); }))
+			return true;
+		// A shrouded system not linked to a viewable system must be visible from the current system.
+		if(!system.VisibleNeighbors().count(this->system))
+			return false;
+		// If a shrouded system is in visible range, then it can be seen if it is not also hidden.
+		return !system.Hidden();
+	}
+
 	return KnowsName(system);
+}
+
+
+
+// Check if the player can view the contents of the given system.
+bool PlayerInfo::CanView(const System &system) const
+{
+	// A player can always view the contents of the system they are in. Otherwise,
+	// the system must have been visited before and not be shrouded.
+	return (HasVisited(system) && !system.Shrouded()) || &system == this->system;
 }
 
 
@@ -2427,7 +2469,7 @@ bool PlayerInfo::HasVisited(const Planet &planet) const
 // because a job or active mission includes the name of that system.
 bool PlayerInfo::KnowsName(const System &system) const
 {
-	if(HasVisited(system))
+	if(CanView(system))
 		return true;
 
 	for(const Mission &mission : availableJobs)
@@ -2498,7 +2540,6 @@ void PlayerInfo::Map(int mapSize)
 	for(const System *system : distance.Systems())
 		if(!HasVisited(*system))
 			Visit(*system);
-	return;
 }
 
 
@@ -2968,8 +3009,8 @@ void PlayerInfo::ApplyChanges()
 	destroyedPersons.clear();
 
 	// Check which planets you have dominated.
-	for(auto it = tributeReceived.begin(); it != tributeReceived.end(); ++it)
-		GameData::GetPolitics().DominatePlanet(it->first);
+	for(auto &it : tributeReceived)
+		GameData::GetPolitics().DominatePlanet(it.first);
 
 	// Issue warnings for any data which has been mentioned but not actually defined, and
 	// ensure that all "undefined" data is appropriately named.
@@ -4357,7 +4398,7 @@ void PlayerInfo::Save(DataWriter &out) const
 	map<string, map<string, int>> offWorldMissionPassengers;
 	for(const auto &it : ships)
 	{
-		const Ship &ship = *it.get();
+		const Ship &ship = *it;
 		// If the ship is at the player's planet, its mission cargo allocation does not need to be saved.
 		if(ship.GetPlanet() == planet)
 			continue;
@@ -4366,7 +4407,7 @@ void PlayerInfo::Save(DataWriter &out) const
 		for(const auto &passengers : ship.Cargo().PassengerList())
 			offWorldMissionPassengers[passengers.first->UUID().ToString()][ship.UUID().ToString()] = passengers.second;
 	}
-	auto SaveMissionCargoDistribution = [&out](map<string, map<string, int>> toSave, bool passengers) -> void
+	auto SaveMissionCargoDistribution = [&out](const map<string, map<string, int>> &toSave, bool passengers) -> void
 	{
 		if(passengers)
 			out.Write("mission passengers");

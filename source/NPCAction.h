@@ -36,7 +36,7 @@ class NPCAction {
 public:
 	NPCAction() = default;
 	// Construct and Load() at the same time.
-	NPCAction(const DataNode &node);
+	explicit NPCAction(const DataNode &node);
 
 	void Load(const DataNode &node);
 	// Note: the Save() function can assume this is an instantiated mission, not

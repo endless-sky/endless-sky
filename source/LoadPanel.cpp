@@ -320,6 +320,8 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 				"Any progress will be lost, unless you have saved other snapshots. "
 				"Are you sure you want to do that?"));
 	}
+	else if(key == 'o')
+		Files::OpenUserSavesFolder();
 	else if(key == 'b' || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		GetUI()->Pop(this);
 	else if((key == SDLK_DOWN || key == SDLK_UP) && !files.empty())

@@ -180,7 +180,7 @@ EscortDisplay::Icon::Icon(const Ship &ship, bool isHere, bool fleetIsJumping, bo
 	isSelected(isSelected),
 	cost(ship.Cost()),
 	system((!isHere && ship.GetSystem()) ? ship.GetSystem()->Name() : ""),
-	low{ship.Shields(), ship.Hull(), ship.Energy(), ship.Heat(), ship.Fuel()},
+	low{ship.Shields(), ship.Hull(), ship.Energy(), min(ship.Heat(), 1.), ship.Fuel()},
 	high(low),
 	ships(1, &ship)
 {
