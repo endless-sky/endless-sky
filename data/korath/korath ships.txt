@@ -1051,8 +1051,8 @@ ship "Kasichara A'awoj"
 	explode "large explosion" 40
 	explode "huge explosion" 50
 	"final explode" "final explosion large"
-	description "Originally designed as a luxury habitat for those wealthy enough to escape living on the polluted surface of Korath worlds, when the Korath were exiled, it was into these gargantuan 'world-ships' they first crammed themselves into and fled to the core on. Nostalgically, the class was then renamed after the devastated and now forbidden Korath homeworld."
-	description "	Since the introduction of purpose-built city ships, these ancient vessels have mostly been decommissioned, turned into stations, or reconfigured into smaller, specialized vessels. Yet a few still ply the starlanes, crewed by those too restless to live on stations yet not bold enough to go on raids."
+	description `Originally designed as a luxury habitat for those wealthy enough to escape living on the polluted surface of Korath worlds, when the Korath were exiled, it was into these gargantuan "world-ships" they first crammed themselves into and fled to the core on. Nostalgically, the class was then renamed after the devastated and now forbidden Korath homeworld.`
+	description `	Since the introduction of purpose-built city ships, these ancient vessels have mostly been decommissioned, turned into stations, or reconfigured into smaller, specialized vessels. Yet a few still ply the starlanes, crewed by those too restless to live on stations yet not bold enough to go on raids.`
 
 
 ship "Korsmanath A'awoj"
