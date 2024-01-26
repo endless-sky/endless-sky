@@ -668,10 +668,7 @@ const Sprite *Outfit::FlotsamSprite() const
 // Add the license with the given name to the licenses required by this outfit, if it is not already present.
 void Outfit::AddLicense(const string &name)
 {
-	auto isNewLicense = [](const vector<string> &c, const string &val) noexcept -> bool {
-		return find(c.begin(), c.end(), val) == c.end();
-	};
-
-	if(isNewLicense(licenses, name))
+	const auto it = find(licenses.begin(), licenses.end(), name);
+	if(it == licenses.end())
 		licenses.push_back(name);
 }
