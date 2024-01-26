@@ -233,7 +233,7 @@ mission "Wanderers: Translation Machine"
 				`	(Ask her what they are talking about.)`
 				`	(Wait for a break in the conversation.)`
 			`	She holds up a paw to you while speaking a few more sentences to them, then says, "They are saying that the Hai are attacking them, and they want to know why. It must be the Unfettered who are raiding them, and I am trying to explain that the Unfettered do not represent the Hai people as a whole."`
-			`	They continue talking for a while, and then the Wanderers ask you a question. Sayari translates, "They want to know what human beings want, and why you have come to their territory."`
+			`	They continue talking for a while, and then the Wanderers ask you a question. Sayari translates, "They want to know what humans want, and why you have come to their territory."`
 			choice
 				`	"I'm just an individual explorer. I don't represent my species or their governments."`
 					goto explorer

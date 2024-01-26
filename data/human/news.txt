@@ -603,7 +603,7 @@ news "tour guide"
 			"Before the hyperdrive, rich people paid large sums of credits to be very visible going into space. Nowadays they pay large sums of credits to be invisible on-planet."
 			"One time, I gave a tour to a bunch of shady individuals in longcoats and wide-brimmed hats. I think they might have been pirates."
 			"Antigrav boards for rent! You break it, you pay."
-			"I sometimes misread 'wine tasting' as 'time wasting'. The worst part is that nobody's noticed so far."
+			"I sometimes misread 'wine tasting' as 'time wasting.' The worst part is that nobody's noticed so far."
 			"Looking for some company for tonight? No questions asked, no strings attached. Just contact me if you need anything."
 		word
 			`"`
@@ -1169,7 +1169,7 @@ news "chef"
 			"Hey, don't just hang around over there! Help me load this stuff; these 50 catering containers aren't going to move themselves."
 			"Be careful what you transport; another chef once tried to poison my supplies during transport. Both that chef and the transporting captain are in jail now."
 			"A customer recently ordered a cheeseburger without the meat. Funny way to order a cheese sandwich."
-			"If you ever start a restaurant near a spaceport, then don't call it 'The Space Bar'. You might think you're funny, but so did hundreds of other new restaurant owners before you."
+			"If you ever start a restaurant near a spaceport, then don't call it 'The Space Bar.' You might think you're funny, but so did hundreds of other new restaurant owners before you."
 		word
 			`"`
 
@@ -1604,7 +1604,7 @@ news "lawyer"
 		word
 			"The Dereliction and Salvage Act of 2976 states unmanned vessels gain abandoned status as soon as their owners leave the system. This makes drones a prime target for pirates and scavengers."
 			"The Capable Rescue Act of 2318 requires all manned vessels to be capable of individual spaceflight in case of an emergency. This is the oldest interstellar law still recognized today, predating the Republic by four centuries."
-			"In 2937, the Parliament voted to classify crewing spaceships as hazardous duty, raising the crew's minimum wage to a 100 credits. Their salary has not changed since."
+			"In 2937, the Parliament voted to classify crewing spaceships as hazardous duty, raising the crew's minimum wage to 100 credits. Their salary has not changed since."
 			"I'm reviewing a case on the destruction of an abandoned drone. The owner argues it was a personal hyperspace relay, which exempts it from salvage law."
 			"My client is accused of destroying a landing pad and flooding the surrounding area with leaked reactor plasma. Really, it's the spaceport's fault for not verifying whether he had a pilot's license in the first place."
 			"I was involved in a case of an out-of-spec Syndicate nuclear reactor. Allegedly, the Syndicate threatened the inspector to prevent him from publishing his results, but he didn't give in."
@@ -1789,7 +1789,7 @@ news "spaceport video advertisement"
 			"Spaceport video screen"
 	message
 		word
-			`You see a video of stuntmen making a jump from the edge of space. The "do not try this at home", "illegal on many planets", and "high risk/deadly" warnings at the end of the video suggest that this might become quite a popular sport.`
+			`You see a video of stuntmen making a jump from the edge of space. The "do not try this at home," "illegal on many planets," and "high risk/deadly" warnings at the end of the video suggest that this might become quite a popular sport.`
 			"A video of fast spaceships racing around a three dimensional course in space is shown on the screen, interwoven with clips of very luxurious ships where people appear to be watching the race."
 			"An action-packed advertisement about joining the Navy is playing on the screen. It shows impressive video-fragments of carriers, gunships, dropships and heroic marines."
 			"Some video is showing Syndicate equipment. The video ends with the slogan, 'Just what's needed to get the job done.'"
