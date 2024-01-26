@@ -79,6 +79,7 @@ mission "Unfettered: Remove The Challengers"
 	to fail
 		has "Unfettered: Remove The Challengers: active"
 	on accept
+		fail "Unfettered Spontaneous Challenge"
 		clear "unfettered: challengers"
 		dialog "No more spontaneous challengers will come by themselves in space, no matter how many there were. You can still change your mind by accepting the other job, or any specific duelling job."
 
@@ -139,7 +140,7 @@ phrase "unfettered challenger defeat message"
 		`For now, here are the agreed <payment>. Hopefully it will allows you to improve your flagship before our next battle..`
 		`I am in no rush to provide you the <payment>, but honor forces me to give it to you either way`
 		`Here are your well deserved <payment>, captain. Next time I will not underestimate you`
-		`You must have had an edge! I'm in no condition to argue about giving you your payment, however don't expect to see us again anytime soon`
+		`You must have had an edge! I'm in no condition to argue about giving you your payment of <payment>, however don't expect to see us again anytime soon`
 		`Here is your <payment>, captain, well earned`
 		`Whatever the case, you have earned my blade, and my respect, captain. You will be able to exchange it for <payment> the next time you land`
 		`We will analyze the fight to make sure you have not cheated. If that is the case, you will receive the <payment> shortly. If this was a fair fight, you may have gained my respect`
@@ -151,8 +152,6 @@ phrase "unfettered challenger defeat message"
 mission "Unfettered Challenge [0]"
 	job
 	repeat
-	substitutions
-		<payment> "200,000 credits"
 	name `Defeat a young Unfettered captain`
 	description `A young Unfettered captain wants to challenge you into a small duel. Disable his ship for <payment>.`
 	source
@@ -182,8 +181,6 @@ mission "Unfettered Challenge [0]"
 mission "Unfettered Challenge [1A]"
 	job
 	repeat
-	substitutions
-		<payment> "500,000 credits"
 	name `Defeat an escorted Unfettered captain`
 	description `An Unfettered captain wants to challenge you into a fair duel with his escort. Disable his ships for <payment>.`
 	source
@@ -213,8 +210,6 @@ mission "Unfettered Challenge [1A]"
 mission "Unfettered Challenge [1B]"
 	job
 	repeat
-	substitutions
-		<payment> "500,000 credits"
 	name `Defeat an Unfettered captain`
 	description `An Unfettered captain wants to challenge you into a reasonable duel. Disable his ship for <payment>.`
 	source
@@ -244,8 +239,6 @@ mission "Unfettered Challenge [1B]"
 mission "Unfettered Challenge [2]"
 	job
 	repeat
-	substitutions
-		<payment> "1 million credits"
 	name `Defeat an old Unfettered captain`
 	description `An experienced Unfettered captain wants to challenge you into a duel with his escort, provided you are not overwhelmingly strong. Disable his ships for <payment>.`
 	source
@@ -283,6 +276,7 @@ mission "Unfettered Spontaneous Challenge"
 	invisible
 	source
 		attributes "unfettered"
+	deadline 2
 	to offer
 		has "unfettered: duel ready"
 		not "Unfettered Spontaneous Challenge: active"
@@ -293,12 +287,14 @@ mission "Unfettered Spontaneous Challenge"
 			has "unfettered: total challengers"
 			not "unfettered: challengers"
 			has "<uhai> 2: Prove Your Strength: active"
-			has "<uhai> 15: Modified Beetle"
+			has "<uhai> 15: Modified Beetle: active"
 			has "<uhai> 16: Strength Of A Leader: Si-Ra: active"
 			has "<uhai> 16: Strength Of A Leader: He-Yi: active"
+	on enter
+		set "unfettered: stop spawning"
 	npc save disable
 		government "Hai (Unfettered Challenger)"
-		personality disables plunders waiting target timid restricted
+		personality disables plunders waiting target timid restricted opportunistic merciful uninterested merciful daring
 		to spawn
 			random < "unfettered: challengers" * 20
 		system
@@ -307,9 +303,10 @@ mission "Unfettered Spontaneous Challenge"
 		on disable
 			dialog phrase "unfettered challenger defeated"
 			payment 200000
+			fail
 	npc save disable
 		government "Hai (Unfettered Challenger)"
-		personality disables plunders waiting target timid restricted
+		personality disables plunders waiting target timid restricted opportunistic merciful uninterested merciful daring
 		to spawn
 			random < "unfettered: challengers" * 10
 		system
@@ -318,9 +315,10 @@ mission "Unfettered Spontaneous Challenge"
 		on disable
 			dialog phrase "unfettered challenger defeated"
 			payment 500000
+			fail
 	npc save disable
 		government "Hai (Unfettered Challenger)"
-		personality disables plunders waiting target timid restricted
+		personality disables plunders waiting timid restricted opportunistic merciful uninterested merciful daring
 		to spawn
 			random < "unfettered: challengers" * 10
 		system
@@ -329,9 +327,10 @@ mission "Unfettered Spontaneous Challenge"
 		on disable
 			dialog phrase "unfettered challenger defeated"
 			payment 500000
+			fail
 	npc save disable
 		government "Hai (Unfettered Challenger)"
-		personality disables plunders waiting target timid restricted
+		personality disables plunders waiting timid restricted opportunistic merciful uninterested merciful daring
 		to spawn
 			random < "unfettered: challengers" * 5
 		system
@@ -341,6 +340,7 @@ mission "Unfettered Spontaneous Challenge"
 		on disable
 			dialog phrase "unfettered challenger defeated"
 			payment 500000
+			fail
 
 
 
@@ -758,7 +758,7 @@ phrase "defeated unfettered challenger"
 		"pathetic "
 		"exceptional "
 		"grandiose "
-		"quick "
+		"fast-paced "
 		"strategic "
 	word
 		"battle"
