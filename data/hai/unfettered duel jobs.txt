@@ -97,12 +97,24 @@ phrase "beaten in duel"
 		`You have been bested`
 		`You have found your match`
 		`Finally beaten`
-		`There will be tales of this`
+		`Tales will be told of this fight`
 		`You have fought well`
+		`Can't you do better than that?`
 	word
 		`! `
 	word
-		`Now if you will only give me the symbolic fee of 1000 credits I will repair your ship, the next time you hail me.`
+		`First, I will take`
+	word
+		`a small compensation`
+		`what is rightfully mine`
+		`what is owed`
+		`what you owe me`
+		`my reward`
+		`my prize`
+	word
+		`: <fine>. `
+	word
+		`Now, if you will only give me the symbolic fee of 1000 credits I will repair your ship, the next time you hail me.`
 
 phrase "unfettered challenger defeated"
 	word
@@ -165,6 +177,7 @@ mission "Unfettered Challenge [0]"
 		"unfettered: total challengers" += 9
 	on disabled
 		dialog phrase "beaten in duel"
+		fine 100000
 		fail
 	npc save disable
 		government "Hai (Unfettered Challenger)"
@@ -194,6 +207,7 @@ mission "Unfettered Challenge [1A]"
 		"unfettered: total challengers" += 15
 	on disabled
 		dialog phrase "beaten in duel"
+		fine 100000
 		fail
 	npc save disable
 		government "Hai (Unfettered Challenger)"
@@ -223,6 +237,7 @@ mission "Unfettered Challenge [1B]"
 		"unfettered: total challengers" += 15
 	on disabled
 		dialog phrase "beaten in duel"
+		fine 100000
 		fail
 	npc save disable
 		government "Hai (Unfettered Challenger)"
@@ -252,6 +267,7 @@ mission "Unfettered Challenge [2]"
 		"unfettered: total challengers" += 21
 	on disabled
 		dialog phrase "beaten in duel"
+		fine 100000
 		fail
 	npc save disable
 		government "Hai (Unfettered Challenger)"
@@ -290,8 +306,10 @@ mission "Unfettered Spontaneous Challenge"
 			has "<uhai> 15: Modified Beetle: active"
 			has "<uhai> 16: Strength Of A Leader: Si-Ra: active"
 			has "<uhai> 16: Strength Of A Leader: He-Yi: active"
-	on enter
-		set "unfettered: stop spawning"
+	on disabled
+		dialog phrase "beaten in duel"
+		fine 100000
+		fail
 	npc save disable
 		government "Hai (Unfettered Challenger)"
 		personality disables plunders waiting target timid restricted opportunistic merciful uninterested merciful daring
@@ -439,6 +457,7 @@ mission "Unfettered Red Blue Shield Beetle Duel"
 
 
 
+# idea: add spaceport news with challengers talking about interesting new weapons
 phrase "unfettered weapon delivery"
 	word
 		`The Unfettered captain is delighted that you were able to give him <weapons>`
