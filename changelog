@@ -17,7 +17,7 @@ Version 0.10.5
       * "Evacuate Lunarium" rescue jobs no longer overlap locations. (@Arachi-lover)
       * Fixed location filters for some of the new Hai missions. (@bene-dictator)
       * "Hai Wormhole Warning" is now correctly restricted from offering if you've started the Hai Reveal storyline. (@ziproot)
-      * "Remnant: Void Sprites 3" now lists all possible mission objectives, now informing the player why the mission doesn't complete if they don't meet the objectives. (@roadrunner56)
+      * "Remnant: Void Sprites 3" now lists all possible mission objectives, informing the player why the mission doesn't complete if they don't meet the objectives. (@roadrunner56)
       * Added proper location attributes to Clink and Mutiny. (@roadrunner56)
     * Engine bugs:
       * The drag value for a ship used in calculations has been capped to the ship's mass to avoid problematic behavior. (@warp-core)
@@ -111,7 +111,7 @@ Version 0.10.5
     * Added an "on hit" mode for status overlays, causing the overlay to display only after a ship has taken damage and fade away shortly after. (@Koranir, @warp-core, @quyykk)
     * Added a new map key that displays the relative danger of visited systems. (@flowers9)
     * The regions for the lists in the load panel are now defined in the interfaces file. (@warp-core)
-    * Added a wider dialog box for longer dialog text. (@theweirdnut)
+    * Added a wider dialog box for longer dialog text. (@thewierdnut)
     * The click zones in the escort display are now much larger. (@warp-core)
     * Fixed a zoom mismatch with landing zoom and zooming in/out. (@quyykk)
     * All map panels now show how many jumps away the selected system is, not just the mission panel. (@VeryGoodDog)
