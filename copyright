@@ -12,6 +12,18 @@ Files: images/*
 Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
 
+Files: images/land/*
+Copyright: Various
+License: public-domain
+ Taken from morgue-file.com, a collection of photographs that have been donated
+ and placed in the public domain. (Exceptions noted below.)
+
+Files: images/scene/*
+Copyright: Various
+License: public-domain
+ Taken from morguefile.com, a collection of photographs that have been donated
+ and placed in the public domain. (Exceptions noted below.)
+
 Files:
  images/outfit/*battery?hai*
  images/outfit/anti-missile?hai*
@@ -193,12 +205,6 @@ License: public-domain
  From NASA, and therefore in the public domain because they were created by
  government employees while doing work for the government.
 
-Files: images/scene/*
-Copyright: Various
-License: public-domain
- Taken from morguefile.com, a collection of photographs that have been donated
- and placed in the public domain. (Exceptions noted below.)
-
 Files: images/scene/geoscan*
 Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
@@ -226,12 +232,6 @@ Copyright: NASA
 License: public-domain
  From NASA, and therefore in the public domain because they were created by
  government employees while doing work for the government.
-
-Files: images/land/*
-Copyright: Various
-License: public-domain
- Taken from morgue-file.com, a collection of photographs that have been donated
- and placed in the public domain. (Exceptions noted below.)
 
 Files:
  images/land/mercury1*
@@ -554,12 +554,6 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
- sounds/pincer*
-Copyright: Michael Zahniser
-License: GPL-2
-Comment: Created by a past contributor modified from Battle for Wesnoth (https://www.wesnoth.org/) sounds, which are copyright David White [dave@whitevine.net](mailto:dave@whitevine.net) under GPL 2 or later. Rights relinquished to Michael Zahniser.
-
-Files:
  images/*/pincer*
 Copyright: None; CC0 (Public Domain)
 License: CC0
@@ -832,6 +826,12 @@ Files: sounds/*
 Copyright: Various
 License: public-domain
 Comment: Based on public domain sounds taken from freesound.org.
+
+Files:
+ sounds/pincer*
+Copyright: Michael Zahniser
+License: GPL-2
+Comment: Created by a past contributor modified from Battle for Wesnoth (https://www.wesnoth.org/) sounds, which are copyright David White [dave@whitevine.net](mailto:dave@whitevine.net) under GPL 2 or later. Rights relinquished to Michael Zahniser.
 
 Files: sounds/heavy?rocket?hit.wav
 Copyright: Copyright Mike Koenig
@@ -3250,7 +3250,7 @@ License: CC-BY-SA-3.0
  .
  a. This License and the rights granted hereunder will terminate
  automatically upon any breach by You of the terms of this License.
- Individuals or entities who have received Adaptations or Collections
+ Individuals or entities who have received Adaptations or Collectionsoutfit
  from You under this License, however, will not have their licenses
  terminated provided such individuals or entities remain in full
  compliance with those licenses. Sections 1, 2, 5, 6, 7, and 8 will
