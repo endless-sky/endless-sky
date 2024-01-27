@@ -124,6 +124,7 @@ Version 0.10.5
     * The "u" and "e" keys can now be used as shortcuts to "buy all" or "sell all" on the trading panel. (@AntimatterReactor)
     * Added scrolling to the plugins panel for both the plugins list and plugin descriptions. (@thewierdnut)
     * The state of the caps lock key is now tied to the state of fast-forward if caps lock is used for fast-forward. (@RisingLeaf)
+    * Added a new message log panel that displays past hails and status messages. (@TomGoodIdea)
   * Under the hood:
     * Added support for formatting non-finite values. (@tibetiroka)
     * Minor tweaks, refactors, and code style changes. (@tibetiroka)
@@ -131,7 +132,6 @@ Version 0.10.5
     * Migrated to C++17. (@tibetiroka, @quyykk)
     * Renamed confusingly named variables in the engine. (@Koranir)
     * ShopPanel now uses ScrollVar for its scrolling panes. (@thewierdnut)
-    * Added a new message log panel that displays past hails and status messages. (@TomGoodIdea)
   * CI/CD and development environment:
     * Added a missing word exclusion to the spellcheck CI. (@tibetiroka)
     * Fixed some failing integration tests. (@Hurleveur)
