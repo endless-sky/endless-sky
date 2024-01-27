@@ -23,13 +23,11 @@ namespace
 {
 	Angle g_cursor_angle(0.0);
 	const Angle ANGLE_SPEED(.2);
-
-	Animate<Point> g_cursor_animate;
 }
 
 
 
-Point GamepadCursor::s_position{};
+Animate<Point> GamepadCursor::s_position;
 bool GamepadCursor::s_enabled = false;
 
 
@@ -38,18 +36,18 @@ void GamepadCursor::SetPosition(const Point& pos, bool enable)
 {
 	if(!s_enabled)
 	{
-		g_cursor_animate.Set(s_position, 0);
+		s_position.Set(pos, 0);
+		s_position.EndAnimation();
 		s_enabled = enable;
 	}
 	else
 	{
-		if(s_position.DistanceSquared(pos) > 300*300)
-			g_cursor_animate.Set(s_position, 15);
+		if(s_position.Value().DistanceSquared(pos) > 300*300)
+			s_position.Set(pos, 15);
 		else
-			g_cursor_animate.Set(s_position, 7);
+			s_position.Set(pos, 7);
 	}
 
-	s_position = pos;
 }
 
 
@@ -57,7 +55,7 @@ void GamepadCursor::SetPosition(const Point& pos, bool enable)
 void GamepadCursor::SetEnabled(bool enabled)
 {
 	s_enabled = enabled;
-	g_cursor_animate.Set(s_position, 0);
+	s_position.EndAnimation();
 }
 
 
@@ -68,16 +66,16 @@ void GamepadCursor::Draw()
 	if(s_enabled)
 	{
 		// animate the cursor moving in the direction of the new position
-		g_cursor_animate.Step(s_position);
+		s_position.Step();
 
 		// For now, just drawing a rotating set of four pointers.
 		g_cursor_angle += Angle(.2);
 		const Color* color = GameData::Colors().Get("medium");
 		PointerShader::Bind();
-		PointerShader::Add(g_cursor_animate, g_cursor_angle.Unit(), 12, 20, -20, *color);
-		PointerShader::Add(g_cursor_animate, (g_cursor_angle + Angle(90.)).Unit(), 12, 20, -20, *color);
-		PointerShader::Add(g_cursor_animate, (g_cursor_angle + Angle(180.)).Unit(), 12, 20, -20, *color);
-		PointerShader::Add(g_cursor_animate, (g_cursor_angle + Angle(270.)).Unit(), 12, 20, -20, *color);
+		PointerShader::Add(s_position.AnimatedValue(), g_cursor_angle.Unit(), 12, 20, -20, *color);
+		PointerShader::Add(s_position.AnimatedValue(), (g_cursor_angle + Angle(90.)).Unit(), 12, 20, -20, *color);
+		PointerShader::Add(s_position.AnimatedValue(), (g_cursor_angle + Angle(180.)).Unit(), 12, 20, -20, *color);
+		PointerShader::Add(s_position.AnimatedValue(), (g_cursor_angle + Angle(270.)).Unit(), 12, 20, -20, *color);
 		PointerShader::Unbind();
 	}
 }

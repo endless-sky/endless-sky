@@ -51,6 +51,7 @@ public:
 	static const int SHOW_SPECIAL = -4;
 	static const int SHOW_GOVERNMENT = -5;
 	static const int SHOW_REPUTATION = -6;
+	static const int SHOW_DANGER = -7;
 
 	static const float OUTER;
 	static const float INNER;
@@ -102,6 +103,7 @@ protected:
 	static Color MapColor(double value);
 	static Color ReputationColor(double reputation, bool canLand, bool hasDominated);
 	static Color GovernmentColor(const Government *government);
+	static Color DangerColor(double danger);
 	static Color UninhabitedColor();
 	static Color UnexploredColor();
 
@@ -116,9 +118,6 @@ protected:
 	// been satisfied.
 	bool IsSatisfied(const Mission &mission) const;
 	static bool IsSatisfied(const PlayerInfo &player, const Mission &mission);
-
-	// Function for the "find" dialogs:
-	static int Search(const std::string &str, const std::string &sub);
 
 	// Returns if previous->next can be done with a known travel type.
 	bool GetTravelInfo(const System *previous, const System *next, double jumpRange, bool &isJump,
@@ -167,11 +166,17 @@ protected:
 	std::string tooltip;
 	WrappedText hoverText;
 
+	// An X offset in pixels to be applied to the selected system UI if something
+	// else gets in the way of its default position.
+	int selectedSystemOffset = 0;
+
 	enum {FOCUS_DETAIL, FOCUS_MAP, FOCUS_BUTTONS} controllerFocus = FOCUS_MAP;
 
 
 private:
 	void DrawTravelPlan();
+	// Display the name of and distance to the selected system.
+	void DrawSelectedSystem();
 	// Indicate which other systems have player escorts.
 	void DrawEscorts();
 	void DrawWormholes();
@@ -215,8 +220,7 @@ private:
 	};
 	std::vector<Link> links;
 
-	double mapZoom = 1.0;
-	Animate<double> mapZoomAnimate;
+	Animate<double> mapZoom;
 	ZoomGesture zoomGesture;
 
 	size_t controllerSelected = -1;

@@ -88,6 +88,7 @@ void Interface::Load(const DataNode &node)
 	elements.clear();
 	points.clear();
 	values.clear();
+	lists.clear();
 
 	// First, figure out the anchor point of this interface.
 	Point anchor = ParseAlignment(node, 2);
@@ -106,6 +107,12 @@ void Interface::Load(const DataNode &node)
 			// This node specifies a named point where custom drawing is done.
 			points[child.Token(1)].Load(child, anchor);
 		}
+		else if(child.Token(0) == "list" && child.Size() >= 2)
+		{
+			auto &list = lists[child.Token(1)];
+			for(const auto &grand : child)
+				list.emplace_back(grand.Value(0));
+		}
 		else if(child.Token(0) == "visible" || child.Token(0) == "active")
 		{
 			// This node alters the visibility or activation of future nodes.
@@ -120,7 +127,8 @@ void Interface::Load(const DataNode &node)
 			// Check if this node specifies a known element type.
 			if(child.Token(0) == "sprite" || child.Token(0) == "image" || child.Token(0) == "outline")
 				elements.push_back(new ImageElement(child, anchor));
-			else if(child.Token(0) == "label" || child.Token(0) == "string" || child.Token(0) == "button")
+			else if(child.Token(0) == "label" || child.Token(0) == "string" || child.Token(0) == "button"
+					|| child.Token(0) == "dynamic button")
 			{
 				TextElement* te = new TextElement(child, anchor);
 				elements.push_back(te);
@@ -197,6 +205,16 @@ double Interface::GetValue(const string &name) const
 {
 	auto it = values.find(name);
 	return (it == values.end() ? 0. : it->second);
+}
+
+
+
+// Get a named list.
+const vector<double> &Interface::GetList(const string &name) const
+{
+	static vector<double> EMPTY;
+	auto it = lists.find(name);
+	return (it == lists.end() ? EMPTY : it->second);
 }
 
 
@@ -523,8 +541,8 @@ Interface::TextElement::TextElement(const DataNode &node, const Point &globalAnc
 	if(node.Size() < 2)
 		return;
 
-	isDynamic = (node.Token(0) == "string");
-	if(node.Token(0) == "button")
+	isDynamic = (node.Token(0) == "string" || node.Token(0) == "dynamic button");
+	if(node.Token(0) == "button" || node.Token(0) == "dynamic button")
 	{
 		const std::string& token = node.Token(1);
 		if (token.size() == 1)

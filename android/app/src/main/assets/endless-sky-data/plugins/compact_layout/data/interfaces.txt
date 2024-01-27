@@ -31,7 +31,7 @@ interface "planet"
 		align right
 		pad 10 0
 
-	visible if "is inhabited"
+	visible if "has job board"
 	sprite "ui/planet dialog button"
 		center -400 9
 	button j "_Job Board"
@@ -40,6 +40,7 @@ interface "planet"
 		size 18
 		align left
 		pad 10 0
+	visible if "can hire crew"
 	sprite "ui/planet dialog button"
 		center 280 69
 	button h "_Hire Crew"
@@ -59,7 +60,7 @@ interface "planet"
 		align left
 		pad 10 0
 
-	visible if "no trade"
+	visible if "!has trade"
 	sprite "ui/planet dialog button"
 		center -400 -51
 	button "View star map" "Map"
@@ -79,17 +80,17 @@ interface "planet"
 		align left
 		pad 10 0
 
-	visible if "has spaceport"
+	visible if "has port"
 	sprite "ui/planet dialog button"
 		center -400 129
-	button p "Space_port"
+	"dynamic button" p "port name"
 		center -400 129
 		dimensions 140 40
 		size 18
 		align left
 		pad 10 0
 
-	visible if "no spaceport"
+	visible if "!has port"
 	sprite "ui/planet dialog button"
 		center -400 129
 	button "View player info" "Info"
@@ -99,7 +100,8 @@ interface "planet"
 		align left
 		pad 10 0
 
-	visible if "has ship"
+	visible
+	active if "has ship"
 	sprite "ui/planet dialog button"
 		center 280 129
 	button d "_Depart"
@@ -257,7 +259,7 @@ interface "trade"
 	active if "can buy"
 	sprite "ui/dialog cancel"
 		center 40 214
-	button B "Buy All"
+	button u "B_uy All"
 		center 40 214
 		dimensions 70 30
 
@@ -266,13 +268,13 @@ interface "trade"
 
 	active if "can sell"
 	visible if "!can sell outfits"
-	button S "Sell All"
+	button e "S_ell All"
 		center 130 214
 		dimensions 90 30
 
 	active if "can sell outfits"
 	visible if "can sell outfits"
-	button S "Sell Outfits"
+	button e "S_ell Outfits"
 		center 130 214
 		dimensions 90 30
 

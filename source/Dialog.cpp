@@ -38,6 +38,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <SDL2/SDL_keyboard.h>
 #include <cmath>
+#include <utility>
 
 using namespace std;
 
@@ -175,7 +176,7 @@ void Dialog::Draw()
 	string okText = isMission ? "Accept" : "OK";
 	okPos = pos + Point(isWide ? 190. : 90., 0.);
 	Point labelSize(font.Width(okText), font.Height());
-	Point labelPos = okPos - (labelSize / 2);
+	Point labelPos = okPos - .5 * labelSize;
 	font.Draw(okText, labelPos, isOkDisabled ? inactive : (okIsActive ? bright : dim));
 	AddZone(Rectangle(okPos, labelSize), [this]() { Click(okPos.X(), okPos.Y(), 1); });
 
@@ -381,6 +382,7 @@ void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool
 	this->isMission = isMission;
 	this->canCancel = canCancel;
 	okIsActive = true;
+	isWide = false;
 
 	text.SetAlignment(Alignment::JUSTIFIED);
 	text.SetWrapWidth(Width() - 20);
@@ -389,8 +391,8 @@ void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool
 
 	text.Wrap(message);
 
-	// If the dialog is too tall, then switch to wide mode
-	int maxHeight = Screen::Height() * 3/4;
+	// If the dialog is too tall, then switch to wide mode.
+	int maxHeight = Screen::Height() * 3 / 4;
 	if(text.Height() > maxHeight)
 	{
 		isWide = true;
@@ -398,9 +400,10 @@ void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool
 		text.SetWrapWidth(Width() - 20);
 		text.Wrap(message);
 
-		if(text.Width() <= WIDTH)
+		if(text.LongestLineWidth() <= WIDTH)
 		{
-			// text is long and skinny. Not worth a wide dialog
+			// Formatted text is long and skinny (e.g. scan result dialog). Go back
+			// to using the default width, since the wide width doesn't help.
 			isWide = false;
 			text.SetWrapWidth(Width() - 20);
 			text.Wrap(message);
@@ -458,7 +461,7 @@ void Dialog::DoCallback(const bool isOk) const
 
 
 
-const int Dialog::Width() const
+int Dialog::Width() const
 {
 	return isWide ? WIDE_WIDTH : WIDTH;
 }

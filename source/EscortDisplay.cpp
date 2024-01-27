@@ -77,7 +77,7 @@ void EscortDisplay::Draw(const Rectangle &bounds) const
 	// using bounding rect instead of icon zone
 	//	const Point iconZoneOffset = element->GetBox("icon click zone").Center();
 	const Point iconZoneSize = { element->GetValue("width"), element->GetValue("basic height") };
-
+	bool isFirstIcon = true;
 	for(const Icon &escort : icons)
 	{
 		if(!escort.sprite)
@@ -87,11 +87,11 @@ void EscortDisplay::Draw(const Rectangle &bounds) const
 
 		corner.Y() -= escort.Height();
 		// Show only as many escorts as we have room for on screen.
-		if(corner.Y() <= bounds.Top())
+		if(corner.Y() <= bounds.Top() && !isFirstIcon)
 		{
 			corner.X() += width;
-			if(corner.X() + width > bounds.Right())
-				break;
+			// if(corner.X() + width > bounds.Right())
+			// 	break;
 			corner.Y() = bounds.Bottom() - escort.Height();
 		}
 
@@ -152,6 +152,8 @@ void EscortDisplay::Draw(const Rectangle &bounds) const
 		info.SetRegion(Rectangle(center, dimensions));
 
 		element->Draw(info);
+
+		isFirstIcon = false;
 	}
 }
 
@@ -182,7 +184,7 @@ EscortDisplay::Icon::Icon(const Ship &ship, bool isHere, bool fleetIsJumping, bo
 	isSelected(isSelected),
 	cost(ship.Cost()),
 	system((!isHere && ship.GetSystem()) ? ship.GetSystem()->Name() : ""),
-	low{ship.Shields(), ship.Hull(), ship.Energy(), ship.Heat(), ship.Fuel()},
+	low{ship.Shields(), ship.Hull(), ship.Energy(), min(ship.Heat(), 1.), ship.Fuel()},
 	high(low),
 	ships(1, &ship)
 {
@@ -243,6 +245,7 @@ void EscortDisplay::MergeStacks(int columns, int maxHeight) const
 
 	int height = 0;
 	int column = 0;
+	int iconsInLastColumn = 0;
 	auto RecomputeSize = [&]()
 	{
 		// Note that when merging items, we can't incrementally decrease the
@@ -251,14 +254,17 @@ void EscortDisplay::MergeStacks(int columns, int maxHeight) const
 		// column boundary.
 		height = 0;
 		column = 0;
+		iconsInLastColumn = 0;
 		for(Icon &icon : icons)
 		{
 			height += icon.Height();
-			if(height > maxHeight)
+			if(height >= maxHeight && iconsInLastColumn > 0)
 			{
+				iconsInLastColumn = 0;
 				++column;
 				height = icon.Height();
 			}
+			++iconsInLastColumn;
 		}
 	};
 

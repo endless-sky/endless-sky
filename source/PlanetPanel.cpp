@@ -28,11 +28,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "HiringPanel.h"
 #include "Interface.h"
 #include "MapDetailPanel.h"
+#include "MessageLogPanel.h"
 #include "MissionPanel.h"
 #include "OutfitterPanel.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "PlayerInfoPanel.h"
+#include "Port.h"
 #include "Ship.h"
 #include "ShipyardPanel.h"
 #include "SpaceportPanel.h"
@@ -108,24 +110,23 @@ void PlanetPanel::Draw()
 	if(flagship && flagship->CanBeFlagship())
 		info.SetCondition("has ship");
 
-	bool has_spaceport = false;
-	bool has_trade = false;
-
 	if(planet.CanUseServices())
 	{
-		if(planet.IsInhabited())
-		{
-			info.SetCondition("is inhabited");
-			info.SetCondition("has bank");
-			if(flagship)
-			{
-				if(system.HasTrade())
-					has_trade = true;
-			}
-		}
+		const Port &port = planet.GetPort();
 
-		if(flagship && planet.HasSpaceport())
-			has_spaceport = true;
+		if(port.HasService(Port::ServicesType::Bank))
+			info.SetCondition("has bank");
+		if(port.HasService(Port::ServicesType::JobBoard))
+			info.SetCondition("has job board");
+		if(port.HasService(Port::ServicesType::HireCrew))
+			info.SetCondition("can hire crew");
+		if(port.HasService(Port::ServicesType::Trading) && system.HasTrade())
+			info.SetCondition("has trade");
+		if(planet.HasNamedPort())
+		{
+			info.SetCondition("has port");
+			info.SetString("port name", port.Name());
+		}
 
 		if(planet.HasShipyard())
 			info.SetCondition("has shipyard");
@@ -133,8 +134,7 @@ void PlanetPanel::Draw()
 		if(planet.HasOutfitter())
 			info.SetCondition("has outfitter");
 	}
-	info.SetCondition(has_spaceport ? "has spaceport" : "no spaceport");
-	info.SetCondition(has_trade ? "has trade" : "no trade");
+
 	ui.Draw(info, this);
 
 	if(!selectedPanel)
@@ -165,17 +165,18 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	}
 	else if(key == 'l')
 		selectedPanel = nullptr;
-	else if(key == 't' && hasAccess && planet.IsInhabited() && system.HasTrade())
+	else if(key == 't' && hasAccess
+			&& planet.GetPort().HasService(Port::ServicesType::Trading) && system.HasTrade())
 	{
 		selectedPanel = trading.get();
 		GetUI()->Push(trading);
 	}
-	else if(key == 'b' && hasAccess && planet.IsInhabited())
+	else if(key == 'b' && hasAccess && planet.GetPort().HasService(Port::ServicesType::Bank))
 	{
 		selectedPanel = bank.get();
 		GetUI()->Push(bank);
 	}
-	else if(key == 'p' && hasAccess && planet.HasSpaceport())
+	else if(key == 'p' && hasAccess && planet.HasNamedPort())
 	{
 		selectedPanel = spaceport.get();
 		if(isNewPress)
@@ -192,12 +193,12 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 		GetUI()->Push(new OutfitterPanel(player));
 		return true;
 	}
-	else if(key == 'j' && hasAccess && planet.IsInhabited())
+	else if(key == 'j' && hasAccess && planet.GetPort().HasService(Port::ServicesType::JobBoard))
 	{
 		GetUI()->Push(new MissionPanel(player));
 		return true;
 	}
-	else if(key == 'h' && hasAccess && planet.IsInhabited())
+	else if(key == 'h' && hasAccess && planet.GetPort().HasService(Port::ServicesType::HireCrew))
 	{
 		selectedPanel = hiring.get();
 		GetUI()->Push(hiring);
@@ -210,6 +211,11 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	else if(command.Has(Command::INFO))
 	{
 		GetUI()->Push(new PlayerInfoPanel(player));
+		return true;
+	}
+	else if(command.Has(Command::MESSAGE_LOG))
+	{
+		GetUI()->Push(new MessageLogPanel());
 		return true;
 	}
 	else
@@ -351,7 +357,7 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 		|| !leftUniques.empty())
 	{
 		ostringstream out;
-		auto ListUniques = [&out] (const map<const Outfit *, int> uniques)
+		auto ListUniques = [&out] (const map<const Outfit *, int> &uniques)
 		{
 			const int detailedSize = (uniques.size() > 5 ? 4 : uniques.size());
 			auto it = uniques.begin();

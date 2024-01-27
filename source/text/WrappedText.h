@@ -71,8 +71,9 @@ public:
 
 	// Get the height of the wrapped text.
 	int Height() const;
-	// Return the width of the wrapped text.
-	int Width() const { return longestWidth; }
+
+	// Return the width of the longest line of the wrapped text.
+	int LongestLineWidth() const;
 
 	// Draw the text.
 	void Draw(const Point &topLeft, const Color &color) const;
@@ -86,6 +87,7 @@ public:
 	void DoScroll(int dY) { SetScroll(scrollY + dY); }
 	bool CanScrollUp() const { return scrollY > 0; }
 	bool CanScrollDown() const { return visibleHeight != -1 && scrollY < height - visibleHeight; }
+
 
 private:
 	void SetText(const char *it, size_t length);
@@ -127,10 +129,9 @@ private:
 	std::vector<Word> words;
 	int height = 0;
 	int visibleHeight = -1;
-	int scrollY = 0;
-	mutable Animate<int> animateScrollY;
+	mutable Animate<int> scrollY;
 	
-	int longestWidth = 0;
+	int longestLineWidth = 0;
 };
 
 

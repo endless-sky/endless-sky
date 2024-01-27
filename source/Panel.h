@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <SDL2/SDL.h>
 
 class Point;
+class Sprite;
 class TestContext;
 class UI;
 
@@ -37,6 +38,11 @@ class UI;
 // default, a panel allows the panels under it to show through, but does not
 // allow them to receive any events that it does not know how to handle.
 class Panel {
+public:
+	// Draw a sprite repeatedly to make a vertical edge.
+	static void DrawEdgeSprite(const Sprite *edgeSprite, int posX);
+
+
 public:
 	Panel() noexcept;
 
@@ -73,9 +79,6 @@ public:
 	// Check if a click at the given coordinates is within a clicakble zone. If
 	// so, forward the event and return true.
 	bool ZoneMouseUp(const Point &point);
-
-	// Forward the given TestContext to the Engine under MainPanel.
-	virtual void SetTestContext(TestContext &testContext);
 
 	// Is fast-forward allowed to be on when this panel is on top of the GUI stack?
 	virtual bool AllowsFastForward() const noexcept;

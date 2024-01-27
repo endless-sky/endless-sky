@@ -53,6 +53,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Plugins.h"
 #include "PointerShader.h"
 #include "Politics.h"
+#include "RenderBuffer.h"
 #include "RingShader.h"
 #include "Ship.h"
 #include "Sprite.h"
@@ -136,8 +137,11 @@ namespace {
 
 
 
-future<void> GameData::BeginLoad(bool onlyLoadData, bool debugMode)
+future<void> GameData::BeginLoad(bool onlyLoadData, bool debugMode, bool preventUpload)
 {
+	if(preventUpload)
+		spriteQueue.SetPreventUpload();
+
 	// Initialize the list of "source" folders based on any active plugins.
 	LoadSources();
 
@@ -199,11 +203,8 @@ void GameData::CheckReferences()
 
 
 
-void GameData::LoadShaders()
+void GameData::LoadSettings()
 {
-	FontSet::Add(Files::Images() + "font/ubuntu14r", 14); // extension auto-detected
-	FontSet::Add(Files::Images() + "font/ubuntu18r", 18); // extension auto-detected
-
 	// If there is no user-defined config, then set some defaults
 	Command::SetGesture(Command::STOP, Gesture::CARET_DOWN);
 	Command::SetGesture(Command::BOARD, Gesture::CARET_UP);
@@ -229,10 +230,20 @@ void GameData::LoadShaders()
 	Command::SetControllerTrigger(Command::NEAREST, SDL_CONTROLLER_AXIS_RIGHTX, true);
 	Command::SetControllerTrigger(Command::PRIMARY, SDL_CONTROLLER_AXIS_TRIGGERLEFT, true);
 	Command::SetControllerTrigger(Command::SECONDARY, SDL_CONTROLLER_AXIS_TRIGGERRIGHT, true);
-
-
+	
+	// Load the key settings.
 	Command::LoadSettings(Files::Resources() + "keys.txt");
 	Command::LoadSettings(Files::Config() + "keys.txt");
+
+	GamePad::Init();
+}
+
+
+
+void GameData::LoadShaders()
+{
+	FontSet::Add(Files::Images() + "font/ubuntu14r", 14);
+	FontSet::Add(Files::Images() + "font/ubuntu18r", 18);
 
 	FillShader::Init();
 	FogShader::Init();
@@ -242,14 +253,13 @@ void GameData::LoadShaders()
 	RingShader::Init();
 	SpriteShader::Init();
 	BatchShader::Init();
+	RenderBuffer::Init();
 	
 	UiRectShader::Init(
 		*GameData::Colors().Get("medium"),
 		*GameData::Colors().Get("dim"),
 		*GameData::Colors().Get("bright")
 	);
-
-	GamePad::Init();
 
 	background.Init(16384, 4096);
 }

@@ -22,11 +22,16 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ClickZone.h"
 #include "Command.h"
 #include "Point.h"
+#include "ScrollVar.h"
 #include "text/WrappedText.h"
 
 #include <SDL2/SDL.h>
+#include <memory>
 #include <string>
 #include <vector>
+
+class RenderBuffer;
+struct Plugin;
 
 
 
@@ -34,6 +39,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class PreferencesPanel : public Panel {
 public:
 	PreferencesPanel();
+	virtual ~PreferencesPanel();
 
 	// Draw this panel.
 	virtual void Draw() override;
@@ -45,6 +51,7 @@ protected:
 	virtual bool Click(int x, int y, int clicks) override;
 	virtual bool Hover(int x, int y) override;
 	virtual bool Scroll(double dx, double dy) override;
+	virtual bool Drag(double dx, double dy) override;
 	virtual bool Gesture(Gesture::GestureEnum gesture) override;
 	virtual bool FingerDown(int x, int y, int fid) override;
 	virtual bool FingerUp(int x, int y, int fid) override;
@@ -53,17 +60,26 @@ protected:
 
 	virtual void EndEditing() override;
 
-	
-	
 
 private:
 	void DrawControls();
 	void DrawSettings();
 	void DrawPlugins();
+	void RenderPluginDescription(const std::string &pluginName);
+	void RenderPluginDescription(const Plugin &plugin);
 
 	void DrawTooltips();
 
 	void Exit();
+
+	void HandleSettingsString(const std::string &str, Point cursorPosition);
+
+	void HandleUp();
+	void HandleDown();
+	void HandleConfirm();
+
+	// Scroll the plugin list until the selected plugin is visible.
+	void ScrollSelectedPlugin();
 
 
 private:
@@ -79,6 +95,7 @@ private:
 
 	Point hoverPoint;
 	int hoverCount = 0;
+	std::string selectedItem;
 	std::string hoverItem;
 	std::string tooltip;
 	WrappedText hoverText;
@@ -90,6 +107,12 @@ private:
 	std::vector<ClickZone<Command>> zones;
 	std::vector<ClickZone<std::string>> prefZones;
 	std::vector<ClickZone<std::string>> pluginZones;
+
+	std::unique_ptr<RenderBuffer> pluginListClip;
+	std::unique_ptr<RenderBuffer> pluginDescriptionBuffer;
+	ScrollVar<double> pluginListScroll;
+	ScrollVar<double> pluginDescriptionScroll;
+	int pluginListHeight = 0;
 
 	Dropdown controlTypeDropdown;
 };

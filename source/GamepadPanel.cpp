@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Dialog.h"
 #include "FillShader.h"
 #include "GamePad.h"
+#include "Preferences.h"
 #include "RingShader.h"
 #include "Screen.h"
 
@@ -329,17 +330,20 @@ void GamepadPanel::Draw()
 	triggerThresholdList.Draw(this);
 
 	// This is probably temporary debug code.
-	Point textPos = triggerThresholdListRect.TopLeft();
-	textPos.X() -= 200;
-	textPos.Y() += triggerThresholdListRect.Height() * 2;
-
-	GamePad::DebugStrings debugStrings;
-	GamePad::DebugEvents(debugStrings);
-	const Font &font = FontSet::Get(18);
-	for(size_t i = 0; i < sizeof(debugStrings) / sizeof(*debugStrings); ++i)
+	if (Preferences::Has("Show CPU / GPU load"))
 	{
-		font.Draw(debugStrings[i], textPos, Color(.8));
-		textPos.Y() += triggerThresholdListRect.Height();
+		Point textPos = triggerThresholdListRect.TopLeft();
+		textPos.X() -= 200;
+		textPos.Y() += triggerThresholdListRect.Height() * 2;
+
+		GamePad::DebugStrings debugStrings;
+		GamePad::DebugEvents(debugStrings);
+		const Font &font = FontSet::Get(18);
+		for(size_t i = 0; i < sizeof(debugStrings) / sizeof(*debugStrings); ++i)
+		{
+			font.Draw(debugStrings[i], textPos, Color(.8));
+			textPos.Y() += triggerThresholdListRect.Height();
+		}
 	}
 }
 

@@ -149,13 +149,21 @@ int WrappedText::Height() const
 
 
 
+// Return the width of the longest line of the wrapped text.
+int WrappedText::LongestLineWidth() const
+{
+	return longestLineWidth;
+}
+
+
+
 // Draw the text.
 void WrappedText::Draw(const Point &topLeft, const Color &color) const
 {
 	if(words.empty())
 		return;
 	
-	animateScrollY.Step(scrollY);
+	scrollY.Step();
 
 	if(truncate == Truncate::NONE)
 	{
@@ -165,7 +173,7 @@ void WrappedText::Draw(const Point &topLeft, const Color &color) const
 			Point pos = w.Pos() + topLeft;
 			if(visibleHeight != -1)
 			{
-				pos.Y() -= animateScrollY;
+				pos.Y() -= scrollY.AnimatedValue();
 				if(pos.Y() < topLeft.Y() || pos.Y() > maxY)
 					continue;
 			}
@@ -212,7 +220,6 @@ int WrappedText::VisibleHeight() const
 
 void WrappedText::SetScroll(int offsetY)
 {
-	animateScrollY.Set(scrollY, 7);
 	if(offsetY < 0)
 		scrollY = 0;
 	else if(offsetY > height - visibleHeight)
@@ -252,7 +259,7 @@ void WrappedText::SetText(const char *it, size_t length)
 void WrappedText::Wrap()
 {
 	height = 0;
-	longestWidth = 0;
+	longestLineWidth = 0;
 
 	if(text.empty() || !font)
 		return;
@@ -294,8 +301,6 @@ void WrappedText::Wrap()
 
 				// Adjust the spacing of words in the now-complete line.
 				AdjustLine(lineBegin, lineWidth, false);
-				// This is a full width line, so mark it as such.
-				longestWidth = lineWidth;
 			}
 			// Store this word, then advance the x position to the end of it.
 			words.push_back(word);
@@ -307,9 +312,6 @@ void WrappedText::Wrap()
 		// If that whitespace was a newline, we must handle that, too.
 		if(c == '\n')
 		{
-			if(word.x > longestWidth)
-				longestWidth = word.x;
-
 			// The next word will begin on a new line.
 			word.y += lineHeight + paragraphBreak;
 			word.x = 0;
@@ -336,8 +338,6 @@ void WrappedText::Wrap()
 		const int width = font->Width(text.c_str() + word.index);
 		if(word.x + width > wrapWidth)
 		{
-			if(word.x > longestWidth)
-				longestWidth = word.x;
 			// If adding this word would overflow the length of the line,
 			// this final word will be the first (and only) on the next line.
 			word.y += lineHeight;
@@ -356,8 +356,6 @@ void WrappedText::Wrap()
 	if(currentLineHasWords)
 		word.y += lineHeight + paragraphBreak;
 
-	if(word.x > longestWidth)
-		longestWidth = word.x;
 	// Adjust the spacing of words in the final line of text.
 	AdjustLine(lineBegin, lineWidth, true);
 
@@ -370,6 +368,9 @@ void WrappedText::AdjustLine(size_t &lineBegin, int &lineWidth, bool isEnd)
 {
 	int wordCount = static_cast<int>(words.size() - lineBegin);
 	int extraSpace = wrapWidth - lineWidth;
+
+	if(lineWidth > longestLineWidth)
+		longestLineWidth = lineWidth;
 
 	// Figure out how much space is left over. Depending on the alignment, we
 	// will add that space to the left, to the right, to both sides, or to the

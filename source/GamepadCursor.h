@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define GAMEPAD_CURSOR_INCLUDED
 
 
+#include "Animate.h"
 #include "Point.h"
 
 #include <vector>
@@ -33,7 +34,7 @@ public:
 	static int MoveDir(const Point& dir, const std::vector<Point>& options);
 
 private:
-	static Point s_position;
+	static Animate<Point> s_position;
 	static bool s_enabled;
 };
 
