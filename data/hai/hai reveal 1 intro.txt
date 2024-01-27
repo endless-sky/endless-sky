@@ -123,7 +123,7 @@ mission "Hai Reveal Exploration Period: Human Population Feeling Pressured"
 				`	"Well, uh, good luck?"`
 					goto luck
 				`	"What's going on here?"`
-			`	The gentleman rolls his eyes and draws in a long, exasperated, breath. "Madness is what's going on here. Collective madness. Some Hai got burned by some shady sorts that were new through the wormhole. Suddenly everyone's got to be vetted by a human before the Hai here will deal with them, but then there were a hundred extra people trying to cram in so every place of business could have one, and there weren't enough chairs, so some bright spark decided someone would have to follow the Portmaster around and check everyone when they came in."`
+			`	The gentleman rolls his eyes and draws in a long, exasperated breath. "Madness is what's going on here. Collective madness. Some Hai got burned by some shady sorts that were new through the wormhole. Suddenly everyone's got to be vetted by a human before the Hai here will deal with them, but then there were a hundred extra people trying to cram in so every place of business could have one, and there weren't enough chairs, so some bright spark decided someone would have to follow the Portmaster around and check everyone when they came in."`
 			`	He huffs a slight wheeze. "I tell you, this is my first day and my last doing this. Goodness knows how that lump is still faster than me."`
 				goto "firmly departs"
 			label luck
