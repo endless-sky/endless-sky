@@ -839,7 +839,7 @@ planet Darkrest
 	attributes hai station uninhabited
 	landscape land/station34
 	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere, and a status panel indicates that the station's generators are functional but shut down, with standby mechanisms running on solar power alone.`
-	description `	The original purpose of this station was to house Hai who had migrated from beyond the wormhole once it became clear that the Hai's empire was no longer tenable. However, today it is most notorious for an engineering malfunction that occurred when this station was still inhabited. In a freak accident, an entire habitation section of Darkrest lost power and depressurized, causing the deaths of countless civilians. Thousands of years later, no one knows for sure what caused the incident. Legends, stories, and conspiracy theories have blossomed from the event.`
+	description `	An immediately obvious difference between this station and the others in Hai space is the presence of a solemn plaque that takes up a sizable portion of the nearest wall. Upon further inspection, it seems to commemorate an engineering malfunction that occurred thousands of years ago, when this station was still inhabited. In a freak accident, an entire habitation section of Darkrest lost power and depressurized, causing the deaths of countless civilians. Thousands of years later, no one knows for sure what caused the incident. Legends, stories, and conspiracy theories have blossomed from the event.`
 	government Uninhabited
 	bribe 0
 	security 0
