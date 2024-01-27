@@ -100,7 +100,7 @@ Version 0.10.5
       * Escorts now only pathfind through systems that the player has visited before. (@quyykk)
       * Projectiles can now be given a new "penetration count" attribute that allows them to penetrate through ships and deal damage multiple times. (@Amazinite)
       * Added the ability to trigger an action when encountering an NPC. (@danaris)
-      * Ship variants can now add licenses onto the base model using a "licenses" node under "add attributes". (@UnorderedSigh)
+      * Ship variants can now add licenses onto the base model using a "licenses" node under "add attributes". (@UnorderedSigh, @warp-core)
     * Mechanic changes:
       * It is now possible to provide a single swizzle mask for an animated sprite, instead of needing one for each frame of sprite. (@RisingLeaf)
       * Adjusted the scaling of scan times with an increased amount of scanners. (@UnorderedSigh)
