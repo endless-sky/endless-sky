@@ -1498,7 +1498,7 @@ planet Firefall
 	attributes hai station uninhabited
 	landscape land/station36
 	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere, and a status panel indicates that the station's generators are functional but shut down, with standby mechanisms running on solar power alone.`
-	description `	Dwarfed by the nearby Quarg ringworld, Firefall is nevertheless capable of holding countless Hai. The station, like most others in Hai space, was once used to house those who migrated from the Hai's crumbling galactic empire without placing undue strain on their planets' natural resources. As their society adjusted to living within their systems behind the wormhole, residents moved planetside, and the once-massive population of this station slowly dwindled. Now it is quite literally a shell of its former self, having been emptied out of all non-essential equipment long ago.`
+	description `	Dwarfed by the nearby Quarg ringworld, Firefall is nevertheless capable of holding countless Hai. The station, like others of its type in Hai space, was once used to house those who migrated from the Hai's crumbling galactic empire. Now it is quite literally a shell of its former self, having been emptied out of all non-essential equipment long ago.`
 	government Uninhabited
 	bribe 0
 	security 0
@@ -2271,7 +2271,7 @@ planet Iritoroost
 	attributes hai station uninhabited
 	landscape land/station23
 	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere, and a status panel indicates that the station's generators are functional but shut down, with standby mechanisms running on solar power alone.`
-	description `	Due to Iritoroost's relative isolation from any inhabited planets, the station has become something of a destination for those looking to do shady business deals or otherwise participate in unsavory activities without getting caught. As virtually all but the most basic systems are inactive, the lack of surveillance has proven attractive to those looking for an extra measure of privacy, whether that be for legal or illegal enterprises.`
+	description `	Despite Iritoroost's relative isolation from any inhabited planets, the station appears to be visited with remarkable frequency. It may have become something of a destination for those looking to do shady business, but the evidence left behind by visitors is eclectic. As virtually all but the most basic systems are inactive, it seems the lack of continuous surveillance has proven attractive to those looking for an extra measure of privacy, for whatever reasons they may have.`
 	government Uninhabited
 	bribe 0
 	security 0
@@ -3717,7 +3717,7 @@ planet Sandsnap
 	attributes hai station uninhabited
 	landscape land/station40
 	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere, and a status panel indicates that the station's generators are functional but shut down, with standby mechanisms running on solar power alone.`
-	description `	After the opening of the wormhole in Waypoint, Sandsnap was briefly considered as a possible destination for humans looking to settle in Hai space. Reopening the station would have provided ample room for millions of potential migrants, without disturbing planetary ecosystems. Ultimately it was decided that the slow trickle of human settlers to Hai space did not justify the costs of bringing Sandsnap back online, and that it would be better for both humans and Hai if the two species weren't sequestered off from each other.`
+	description `	A tourist FAQ in the docking area cheerily informs any visitors that after the opening of the wormhole in Waypoint, Sandsnap was briefly considered as a possible destination for humans looking to settle in Hai space. Reopening the station would have provided ample room for millions of potential migrants, without disturbing planetary ecosystems. Ultimately it was decided that the slow trickle of human settlers to Hai space did not justify the costs of bringing Sandsnap back online, and that it would be better for both humans and Hai if the two species weren't sequestered off from each other.`
 	government Uninhabited
 	bribe 0
 	security 0
