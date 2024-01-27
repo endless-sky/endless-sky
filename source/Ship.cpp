@@ -696,6 +696,7 @@ void Ship::FinishLoading(bool isNewInstance)
 		// Store attributes from an "add attributes" node in the ship's
 		// baseAttributes so they can be written to the save file.
 		baseAttributes.Add(attributes);
+		baseAttributes.AddLicenses(attributes);
 		addAttributes = false;
 	}
 	// Add the attributes of all your outfits to the ship's base attributes.
