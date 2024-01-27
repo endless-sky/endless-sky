@@ -59,6 +59,20 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release version="0.10.5" date="2024-1-24" type="development" urgency="low">
+      <description>
+        <p></p>
+        <ul>
+          <li></li>
+        </ul>
+        <p></p>
+        <ul>
+          <li></li>
+        </ul>
+        <p></p>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.10.5/changelog</url>
+    </release>
     <release version="0.10.4" date="2023-10-21">
       <description>
         <p>This is a stable release, focused on fixing bugs and making some other small improvements.</p>
