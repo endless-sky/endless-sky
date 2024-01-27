@@ -31,7 +31,7 @@ Version 0.10.5
       * Fixed a segmentation fault when opening the message log. (@RisingLeaf)
       * The player's ship now faces its flight direction on takeoff from a planet. (@TomGoodIdea)
       * The zoom modifier is now reset if the landing zoom setting is disabled. (@TomGoodIdea)
-	  * Fixed a segfault on losing your ship during boarding. (@warp-core)
+      * Fixed a segfault on losing your ship during boarding. (@warp-core)
   * Game content:
     * New content:
       * Added a new culture conversation about Earth Day. (@bene-dictator)
