@@ -91,7 +91,7 @@ mission "Heliarch Investigation 2"
 				`	"Why are they doing all that?"`
 			`	"Uncertain to us, that still remains. Those that arrested and interrogated, we have, no more than simple pawns in the outlaw organizations appear to be." she considers her words for a few seconds. "Warning our civilians about the thugs' actions, we have been, and asking them for support with any information of suspicious activity. Investigate reports of such activity, what you can help us with is."`
 			label what
-			`	"Six worlds, we have marked. Each, we'd like you to 'visit'. Those three tourists, you will be transporting," an Arach says as they point to Iplora, Kirrie and Tugroob.`
+			`	"Six worlds, we have marked. Each, we'd like you to 'visit.' Those three tourists, you will be transporting," an Arach says as they point to Iplora, Kirrie and Tugroob.`
 			choice
 				`	"Sounds easy enough. Where should I start?"`
 				`	"Whether they go undercover or not, this seems a bit risky for me. Sorry, you'll have to find someone else."`
@@ -779,7 +779,7 @@ mission "Quarg Interrogation"
 			`	"And why did you agree? Do you wish to join their ranks, perhaps?" it asks.`
 			choice
 				`	"I just wanted to help. It's not like I destroyed your ships or something."`
-				`	"They told me that the Quarg keep others in 'separate boxes', and that you hinder their development."`
+				`	"They told me that the Quarg keep others in 'separate boxes,' and that you hinder their development."`
 					goto hinder
 			`	"Perhaps not, but you agreed to collect information on us and our worlds, which hold countless civilians, and deliver the findings to a group that despises us."`
 				goto end
@@ -1594,7 +1594,7 @@ mission "Heliarch Containment 5"
 		"assisted heliarch" ++
 		payment 1320000
 		conversation
-			`Though you never managed to find out if there were any hostages on board, the Heliarchs stationed at <planet> still herald you as a hero for "detaining the bandits". They immediately set to repair your ship. You're still on alert for a few hours in case any more ships come through, but nothing appears to be out of the ordinary. Near the end of the day, the station returns to normal as well; communications and other functions are restored.`
+			`Though you never managed to find out if there were any hostages on board, the Heliarchs stationed at <planet> still herald you as a hero for "detaining the bandits." They immediately set to repair your ship. You're still on alert for a few hours in case any more ships come through, but nothing appears to be out of the ordinary. Near the end of the day, the station returns to normal as well; communications and other functions are restored.`
 			`	As soon as the commlinks are back, the Heliarchs contact Consul Plortub and inform him of what happened. Shortly after, <payment> are added to your account, and you're put on a call with the consul.`
 			`	"Humiliating, it would be, had under such circumstances, the criminal ships escaped. Done well, you have, Captain." He discusses with you the outfits that the ships were using, and is alarmed to learn that they not only had Heliarch equipment, but had acquired human weapons as well. He lets out something you can't quite get, resembling a gasp or a roar; you only know that your ears don't want to hear it again.`
 			`	"Bring this report to the other consuls, at once I will. Ask further tasks of you, we may, but for now, done your work is, Captain." He ends the transmission after a short salute. Heliarch ships rush back in as the local garrison returns from Remote Blue. Many of the ship captains come to personally congratulate you for stopping the fleeing ships.`
