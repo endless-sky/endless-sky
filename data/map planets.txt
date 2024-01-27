@@ -1498,7 +1498,7 @@ planet Firefall
 	attributes hai station uninhabited
 	landscape land/station36
 	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere, and a status panel indicates that the station's generators are functional but shut down, with standby mechanisms running on solar power alone.`
-	description `	Dwarfed by the nearby Quarg ringworld, Firefall is nevertheless capable of holding countless Hai. The station, like others of its type in Hai space, was once used to house those who migrated from the Hai's crumbling galactic empire. Now it is quite literally a shell of its former self, having been emptied out of all non-essential equipment long ago.`
+	description `	Dwarfed by the nearby Quarg ringworld, Firefall is nevertheless capable of holding countless Hai. The station, like others of its type in Hai space, was once used to house those who migrated from the Hai's crumbling galactic empire. Now it is quite literally a shell of its former self, having been emptied of all non-essential equipment long ago.`
 	government Uninhabited
 	bribe 0
 	security 0
@@ -2516,7 +2516,7 @@ planet Limejog
 	attributes hai station uninhabited
 	landscape land/station45
 	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere, and a status panel indicates that the station's generators are functional but shut down, with standby mechanisms running on solar power alone.`
-	description `	Though it had long since been abandoned by the time the raids began, this station came under repeated attack during the Hai-Korath war and still bears the marks to this day. Even so, the station is remarkably intact, a testament to Hai engineering's durability and longevity, if not necessarily beauty.`
+	description `	Though it had long since been abandoned by the time the raids began, this station came under repeated attack during the Hai-Korath war and still bears the marks to this day. Even so, the station is remarkably intact, a testament to the durability and longevity, if not necessarily the beauty, of Hai engineering.`
 	government Uninhabited
 	bribe 0
 	security 0
@@ -3532,7 +3532,7 @@ planet Redwatch
 	attributes hai station uninhabited
 	landscape land/station6
 	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere, and a status panel indicates that the station's generators are functional but shut down, with standby mechanisms running on solar power alone.`
-	description `	In contrast to the Hai's normally durable engineering, this station appears to have sustained substantial damage since it was abandoned. Given its proximity to Unfettered space, the station's scars are most likely a reflection of the current war taking place between the Hai and their northern brethren.`
+	description `	Despite the Hai's notably durable engineering, this station appears to have sustained substantial damage since it was abandoned. Given its proximity to Unfettered space, the station's scars are most likely a reflection of the current war taking place between the Hai and their northern brethren.`
 	government Uninhabited
 	bribe 0
 	security 0
@@ -3717,7 +3717,7 @@ planet Sandsnap
 	attributes hai station uninhabited
 	landscape land/station40
 	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere, and a status panel indicates that the station's generators are functional but shut down, with standby mechanisms running on solar power alone.`
-	description `	A tourist FAQ in the docking area cheerily informs any visitors that after the opening of the wormhole in Waypoint, Sandsnap was briefly considered as a possible destination for humans looking to settle in Hai space. Reopening the station would have provided ample room for millions of potential migrants, without disturbing planetary ecosystems. Ultimately it was decided that the slow trickle of human settlers to Hai space did not justify the costs of bringing Sandsnap back online, and that it would be better for both humans and Hai if the two species weren't sequestered off from each other.`
+	description `	A tourist FAQ in the docking area cheerily informs any visitors that after the opening of the wormhole in Waypoint, Sandsnap was briefly considered as a possible destination for humans looking to settle in Hai space. Reopening the station would have provided ample room for millions of potential migrants without disturbing planetary ecosystems. Ultimately it was decided that the slow trickle of human settlers to Hai space did not justify the costs of bringing Sandsnap back online and that it would be better for both humans and Hai if the two species weren't sequestered from each other.`
 	government Uninhabited
 	bribe 0
 	security 0
@@ -4824,7 +4824,7 @@ planet Violetwake
 	attributes hai station uninhabited
 	landscape land/space6
 	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere, and a status panel indicates that the station's generators are functional but shut down, with standby mechanisms running on solar power alone.`
-	description `	The sheer size of this station is striking. Millions of Hai must have been housed here in Violetwake's heyday, which makes the lonely, isolated atmosphere here all the more jarring. The darkened corridors of the station remind you of some immense cave whose insides have still not been entirely mapped.`
+	description `	The sheer size of this station is striking. Millions of Hai must have been housed here in Violetwake's heyday, which makes the lonely, isolated atmosphere here all the more jarring. The darkened corridors of the station remind one of an immense cave whose insides have still not been entirely mapped.`
 	government Uninhabited
 	bribe 0
 	security 0
