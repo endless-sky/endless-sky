@@ -152,7 +152,7 @@ int WrappedText::Height() const
 // Return the width of the longest line of the wrapped text.
 int WrappedText::LongestLineWidth() const
 {
-	return longesLineWidth;
+	return longestLineWidth;
 }
 
 
@@ -213,7 +213,7 @@ void WrappedText::SetText(const char *it, size_t length)
 void WrappedText::Wrap()
 {
 	height = 0;
-	longesLineWidth = 0;
+	longestLineWidth = 0;
 
 	if(text.empty() || !font)
 		return;
@@ -323,8 +323,8 @@ void WrappedText::AdjustLine(size_t &lineBegin, int &lineWidth, bool isEnd)
 	int wordCount = static_cast<int>(words.size() - lineBegin);
 	int extraSpace = wrapWidth - lineWidth;
 
-	if(lineWidth > longesLineWidth)
-		longesLineWidth = lineWidth;
+	if(lineWidth > longestLineWidth)
+		longestLineWidth = lineWidth;
 
 	// Figure out how much space is left over. Depending on the alignment, we
 	// will add that space to the left, to the right, to both sides, or to the

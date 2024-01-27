@@ -6,15 +6,13 @@ cmake_dependent_option(ES_GLES "Build the game with OpenGL ES" OFF UNIX OFF)
 cmake_dependent_option(ES_FLATPAK "Build the game inside the Flatpak runtime" OFF UNIX OFF)
 cmake_dependent_option(ES_STEAM "Build the game for the Steam Linux runtime" OFF UNIX OFF)
 cmake_dependent_option(ES_USE_SYSTEM_LIBRARIES "Use system libraries instead of the vcpkg ones." ON UNIX OFF)
-cmake_dependent_option(ES_USE_OFFSCREEN
-	"Use SDL's offscreen backend instead of Xvfb for the integration tests" OFF UNIX OFF)
 cmake_dependent_option(ES_CREATE_BUNDLE "Create a Bundle instead of an executable. Not suitable for development purposes." OFF APPLE OFF)
 
 # Support Debug and Release configurations.
 set(CMAKE_CONFIGURATION_TYPES "Debug" "Release" CACHE STRING "" FORCE)
 
-# Use C++11 without any compiler specific extensions.
-set(CMAKE_CXX_STANDARD 11 CACHE STRING "")
+# Use C++17 without any compiler specific extensions.
+set(CMAKE_CXX_STANDARD 17 CACHE STRING "")
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 # Use LTO for Release builds only.

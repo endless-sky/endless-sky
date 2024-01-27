@@ -9,7 +9,7 @@ on:
     types: [opened, synchronize]
 
 concurrency:
-  group: ${{ github.ref }}-${{ github.workflow }}-${{ github.event_name }}
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
   cancel-in-progress: true
 
 jobs:
@@ -33,7 +33,7 @@ jobs:
   check_cmake:
     name: CMake
     needs: changed
-    if: ${{ needs.changed.outputs.cmake_files == 'true' || needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' }}
+    if: ${{ needs.changed.outputs.cmake_files == 'true' || needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.integration_tests == 'true' }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
