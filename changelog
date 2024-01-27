@@ -151,6 +151,7 @@ Version 0.10.5
     * A new commit will no longer cancel the Actions running for previous commits. (@quyykk)
     * Integration tests are now allowed to run on every platform. (@quyykk)
     * If an integration test fails due to a segfault, a reason is now given so that the error is more clear. (@quyykk)
+    * Update the Steam workflow to use the "-p" argument with Endless Sky to test parse instead of the old, now deleted test parse script. (@MCOfficer, @warp-core)
 
 Version 0.10.4
   * Bug fixes:
