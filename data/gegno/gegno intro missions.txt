@@ -313,7 +313,7 @@ mission "Giaru Gegno: Quarg Contact"
 			`	Soon enough, a few Quarg start to rush towards you much faster than the others and begin a conversation between themselves. You aren't sure what language they are speaking, but judging by the tones and pronunciations, it sounds similar to the one you've heard the aliens speaking before. After a moment or so, one of them motions you to follow them.`
 			
 			label "walking"
-			`	You walk with the Quarg, occasionally having trouble keeping pace with their silent yet brisk steps, as you head towards an area that appears devoid of the other aliens. Eventually, you are led to a smaller room with two more Quarg in waiting, silently sitting at the end of it. They talk, but this time you can hear a few familiar sounding terms, one being "Huema". Despite speaking to each other for several minutes, the Quarg still look at each other in what you assume is something like bewilderment.`
+			`	You walk with the Quarg, occasionally having trouble keeping pace with their silent yet brisk steps, as you head towards an area that appears devoid of the other aliens. Eventually, you are led to a smaller room with two more Quarg in waiting, silently sitting at the end of it. They talk, but this time you can hear a few familiar sounding terms, one being "Huema." Despite speaking to each other for several minutes, the Quarg still look at each other in what you assume is something like bewilderment.`
 			`	One of the Quarg waiting in the room finally turns towards you and motions you to take a seat. Its look of confusion disappears when they turn their gaze back upon you. Meanwhile, the other Quarg that was seated has left the room, along with the ones that first brought you here.`
 			choice
 				`	"Is there a problem?"`
