@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.0)
 
 project(endless_mobile)
 
+set(CMAKE_CXX_STANDARD 17 CACHE STRING "")
 
 option(ENABLE_SHARED "" FALSE)
 option(ENABLED_STATIC "" TRUE)
@@ -85,6 +86,7 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/CargoHold.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/CategoryList.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/CrashState.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/Collision.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/CollisionSet.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Color.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Command.cpp
@@ -160,6 +162,7 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/MaskManager.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/MenuAnimationPanel.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/MenuPanel.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/MessageLogPanel.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Messages.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Minable.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Mission.cpp
@@ -188,6 +191,7 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/Point.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/PointerShader.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Politics.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/Port.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Preferences.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/PreferencesPanel.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/PrintData.cpp
@@ -197,6 +201,7 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/RadialSelectionPanel.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Random.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Rectangle.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/RenderBuffer.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/RingShader.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/SavedGame.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Screen.cpp

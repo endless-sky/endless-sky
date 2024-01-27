@@ -49,6 +49,7 @@ public:
 		std::ifstream in(path, std::ios::binary);
 		if (!in)
 			throw std::runtime_error("Unable to open " + path);
+
 		in.seekg(0, std::ios::end);
 		size_t file_size = in.tellg();
 		in.seekg(0, std::ios::beg);
@@ -129,6 +130,20 @@ public:
 		m_width = new_width;
 		m_height = new_height;
 		m_pixels.swap(new_pixels);
+	}
+
+	static uint64_t Checksum(const std::string& path)
+	{
+		std::ifstream in(path, std::ios::binary);
+		if (!in)
+			throw std::runtime_error("Unable to open " + path);
+
+		// TODO: Use a real checksum?
+		uint64_t checksum = 0;
+		uint64_t value = 0;
+		while (in.read((char*)&value, sizeof(value)))
+			checksum ^= value;
+		return checksum;
 	}
 
 protected:
@@ -362,9 +377,9 @@ public:
 				// for all premultiply modes, go ahead and multiply the color
 				// components by alpha/255, then convert to floating point by
 				// dividing by 255 again to get it to a 0.0 to 1.0 range
-				rgba.fR = static_cast<unsigned int>(c.c.r) * c.c.a / 255 / 255.0;
-				rgba.fG = static_cast<unsigned int>(c.c.g) * c.c.a / 255 / 255.0;
-				rgba.fB = static_cast<unsigned int>(c.c.b) * c.c.a / 255 / 255.0;
+				rgba.fR = static_cast<unsigned int>(c.c.r) * c.c.a / 255.0 / 255.0;
+				rgba.fG = static_cast<unsigned int>(c.c.g) * c.c.a / 255.0 / 255.0;
+				rgba.fB = static_cast<unsigned int>(c.c.b) * c.c.a / 255.0 / 255.0;
 
 				if (m_mode == ADDITIVE)
 				{
@@ -377,7 +392,7 @@ public:
 					// I have no clue what the intended effect is here. It would
 					// have an effect somewhere between normal blending and additive
 					// blending.
-					rgba.fA = c.c.a / 4 / 255.0;
+					rgba.fA = c.c.a / 4. / 255.0;
 				}
 				else if (m_mode == PREMULTIPLY)
 				{
@@ -400,6 +415,109 @@ public:
 		AddRawData(image.GetEncodingBits(), image.GetEncodingBitsBytes());
 	}
 
+	static bool MatchesChecksum(uint64_t checksum, const std::string& path, size_t frames, Etc::Image::Format format)
+	{
+		std::ifstream in(path, std::ios::binary);
+		if (!in)
+			return false;
+		KtxHeader header{};
+		if (in.read((char*)&header, sizeof(header)).gcount() != sizeof(header))
+			return false;
+
+		static constexpr uint8_t KTX_MAGIC[] = {0xAB, 0x4B, 0x54, 0x58, 0x20, 0x31, 0x31, 0xBB, 0x0D, 0x0A, 0x1A, 0x0A};
+		if (0 != memcmp(KTX_MAGIC, header.magic, sizeof(KTX_MAGIC)))
+			return false;
+
+		if (header.swap != 0x04030201)
+			return false;
+
+		if (header.format != 0)
+			return false;
+
+		if (header.mipmaps > 1) return false;
+		if (header.faces > 1) return false;
+		if (header.depth > 1) return false;
+		if (header.array_elements != frames) return false;
+
+		switch(format)
+		{
+		case Etc::Image::Format::RGB8:
+			if (header.internal_format != GL_COMPRESSED_RGB8_ETC2) return false;
+			if (header.base_internal_format != 0x1907) return false; // GL_RGB
+			break;
+		case Etc::Image::Format::RGBA8:
+			if (header.internal_format != GL_COMPRESSED_RGBA8_ETC2_EAC) return false;
+			if (header.base_internal_format != 0x1908) return false; // GL_RGBA
+			break;
+		case Etc::Image::Format::RGB8A1:
+			if (header.internal_format != GL_COMPRESSED_RGB8_PUNCHTHROUGH_ALPHA1_ETC2) return false;
+			if (header.base_internal_format != 0x1908) return false; // GL_RGBA
+			break;
+		case Etc::Image::Format::SRGB8:
+			if (header.internal_format != GL_COMPRESSED_SRGB8_ETC2) return false;
+			if (header.base_internal_format != 0x1907) return false; // GL_RGB
+			break;
+		case Etc::Image::Format::SRGBA8:
+			if (header.internal_format != GL_COMPRESSED_SRGB8_ALPHA8_ETC2_EAC) return false;
+			if (header.base_internal_format != 0x1908) return false; // GL_RGBA
+			break;
+		case Etc::Image::Format::SRGB8A1:
+			if (header.internal_format != GL_COMPRESSED_SRGB8_PUNCHTHROUGH_ALPHA1_ETC2) return false;
+			if (header.base_internal_format != 0x1908) return false; // GL_RGBA
+			break;
+		default:
+			return false;
+		}
+
+		if (header.key_value_data == 0)
+			return false;
+
+		// read key/value pairs
+		std::vector<char> data(header.key_value_data);
+		if (in.read(data.data(), data.size()).gcount() != data.size()) return false;
+		const char* p = data.data();
+		const char* pend = data.data() + data.size();
+		while (p + sizeof(uint32_t) < pend)
+		{
+			uint32_t kv_size = *reinterpret_cast<const uint32_t*>(p);
+			if (p + kv_size > pend)
+				return false;
+			p += sizeof(uint32_t);
+			const char* kvend = p + kv_size;
+
+			// key is null-terminated string
+			std::string key;
+			while (p < pend && *p) key += *p++;
+
+			if (p < pend)
+			{
+				++p;
+				// value is arbitrary data, but likely is also
+				// a null terminated string. constructing it this way preserves the
+				// null within the string (it likely has two nulls, not one)
+				std::string value(p, kvend);
+
+				if (key == "source_checksum")
+				{
+					try
+					{
+						if (checksum == std::stoull(value))
+							return true;
+					}
+					catch(...)
+					{
+						return false;
+					}
+				}
+
+				p = kvend;
+				p += 3 - ((kv_size + 3) % 4); // padding
+			}
+		}
+		// Didn't find the embedded checksum.
+		return false;
+	}
+
 protected:
 
 	void AddRawData(const void* data, size_t size)
@@ -416,7 +534,7 @@ protected:
 	}
 
 private:
-	struct
+	struct KtxHeader
 	{
 		uint8_t     magic[12] = {0xAB, 0x4B, 0x54, 0x58, 0x20, 0x31, 0x31, 0xBB, 0x0D, 0x0A, 0x1A, 0x0A};
 		uint32_t    swap = 0x04030201;
@@ -567,6 +685,7 @@ public:
 	void WriteTextures(const std::string& output_path, int reduce_factor)
 	{
 		int done_count = 0;
+		int skipped_count = 0;
 		std::cout << "[0/" << m_file_count << "]" << std::flush;
 		for (auto& kv: m_ktx_files)
 		{
@@ -577,45 +696,58 @@ public:
 				throw std::runtime_error("Unable to create " + target_path + " directory");
 			}
 			std::sort(kv.second.frames.begin(), kv.second.frames.end());
-			auto it = kv.second.frames.begin();
-			Image img(*it);
-			int original_width = img.Width();
-			int original_height = img.Height();
-			bool do_reduce = false;
-			// Don't reduce ui or menu panels, or the fonts. They look like
-			// garbage if we mess with them. Explicitly reduce the haze though
-			if (kv.first.substr(0, 10) == "_menu/haze")
+
+			uint64_t checksum = 0;
+			for (auto& frame: kv.second.frames)
+				checksum ^= Image::Checksum(frame);
+
+			if (KtxFile::MatchesChecksum(checksum, target_file, kv.second.frames.size(), kv.second.format))
 			{
-				if (reduce_factor > 1 && img.Width() > 8 && img.Height() > 8)
-				{
-					img.Reduce(reduce_factor);
-					do_reduce = true;
-				}
+				skipped_count += kv.second.frames.size();
 			}
-			else if(kv.first.substr(0, 3) != "ui/" &&
-				kv.first.substr(0, 6) != "_menu/" &&
-				kv.first.substr(0, 5) != "font/")
+			else
 			{
-				if (reduce_factor > 1 && img.Width() * img.Height() > 250000)
-				{
-					img.Reduce(reduce_factor);
-					do_reduce = true;
-				}
-			}
-			KtxFile ktx(target_file, kv.second.format, kv.second.mode);
-			ktx.AddKeyValue("original_width", std::to_string(original_width));
-			ktx.AddKeyValue("original_height", std::to_string(original_height));
-			ktx.AddImage(img);
-			++done_count;
-			for (++it; it != kv.second.frames.end(); ++it)
-			{
+				auto it = kv.second.frames.begin();
 				Image img(*it);
-				if (do_reduce)
-					img.Reduce(reduce_factor);
+				int original_width = img.Width();
+				int original_height = img.Height();
+				bool do_reduce = false;
+				// Don't reduce ui or menu panels, or the fonts. They look like
+				// garbage if we mess with them. Explicitly reduce the haze though
+				if (kv.first.substr(0, 10) == "_menu/haze")
+				{
+					if (reduce_factor > 1 && img.Width() > 8 && img.Height() > 8)
+					{
+						img.Reduce(reduce_factor);
+						do_reduce = true;
+					}
+				}
+				else if(kv.first.substr(0, 3) != "ui/" &&
+					kv.first.substr(0, 6) != "_menu/" &&
+					kv.first.substr(0, 5) != "font/")
+				{
+					if (reduce_factor > 1 && img.Width() * img.Height() > 250000)
+					{
+						img.Reduce(reduce_factor);
+						do_reduce = true;
+					}
+				}
+				KtxFile ktx(target_file, kv.second.format, kv.second.mode);
+				ktx.AddKeyValue("original_width", std::to_string(original_width));
+				ktx.AddKeyValue("original_height", std::to_string(original_height));
+				ktx.AddKeyValue("source_checksum", std::to_string(checksum));
 				ktx.AddImage(img);
 				++done_count;
+				for (++it; it != kv.second.frames.end(); ++it)
+				{
+					Image img(*it);
+					if (do_reduce)
+						img.Reduce(reduce_factor);
+					ktx.AddImage(img);
+					++done_count;
+				}
 			}
-			std::cout << "\r[" << done_count << "/" << m_file_count << "]" << std::flush;
+			std::cout << "\r[" << done_count << "+" << skipped_count << "/" << m_file_count << "]" << std::flush;
 		}
 		std::cout << '\n';
 	}
@@ -883,6 +1015,7 @@ int main(int argc, char** argv)
 			KtxFile output_file(output_path, compression_mode, mode);
 			output_file.AddKeyValue("original_width", std::to_string(frames.front()->Width()));
 			output_file.AddKeyValue("original_height", std::to_string(frames.front()->Height()));
+
 			// Compress and pack all frames into a ktx file.
 			for (auto& f: frames)
 			{
