@@ -67,7 +67,7 @@ jobs:
     - name: Execute data parsing test
       run: ./steam-container-runtime/depot/run-in-sniper ./build/steam-${{ matrix.arch }}/endless-sky -- -p
     - name: Execute integration data parsing test
-      run: ./steam-container-runtime/depot/run-in-sniper "./build/steam-${{ matrix.arch }}/endless-sky -p --config tests/integration/config"
+      run: ./steam-container-runtime/depot/run-in-sniper ./build/steam-${{ matrix.arch }}/endless-sky -- -p --config tests/integration/config
     - name: Execute tests
       run: |
         cd steam
