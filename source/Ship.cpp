@@ -696,6 +696,7 @@ void Ship::FinishLoading(bool isNewInstance)
 		// Store attributes from an "add attributes" node in the ship's
 		// baseAttributes so they can be written to the save file.
 		baseAttributes.Add(attributes);
+		baseAttributes.AddLicenses(attributes);
 		addAttributes = false;
 	}
 	// Add the attributes of all your outfits to the ship's base attributes.
@@ -1305,7 +1306,8 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 {
 	this->position = position;
 	this->velocity = velocity;
-	this->Turn(angle);
+	this->angle = Angle();
+	Turn(angle);
 
 	// If landed, place the ship right above the planet.
 	// Escorts should take off a bit behind their flagships.

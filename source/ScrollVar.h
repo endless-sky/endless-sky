@@ -28,10 +28,13 @@ template <typename T>
 class ScrollVar: public Animate<T>
 {
 public:
-	ScrollVar(const T &maxVal = T{}, const T &displaySize = T{});
+	ScrollVar() = default;
+	ScrollVar(const T &maxVal, const T &displaySize);
 
 	// Set the maximum size of the scroll content.
 	void SetMaxValue(const T &value);
+	// Get the maximum size of the scroll content.
+	const T &MaxValue() const;
 	// Set the size of the displayable scroll area.
 	void SetDisplaySize(const T &size);
 	// Returns true if scroll buttons are needed.
@@ -46,13 +49,16 @@ public:
 	// Sets the scroll value directly, then clamps it to a suitable range.
 	virtual void Set(const T &current, int steps = 5) override;
 
+	// Shortcut mathematical operators for convenience.
+	ScrollVar &operator=(const T &v);
+
 
 private:
 	// Makes sure the animation value stays in range.
 	void Clamp(int steps);
 
-	T maxVal;
-	T displaySize;
+	T maxVal{};
+	T displaySize{};
 };
 
 
@@ -70,6 +76,14 @@ void ScrollVar<T>::SetMaxValue(const T &value)
 {
 	maxVal = value;
 	Clamp(0);
+}
+
+
+
+template <typename T>
+const T &ScrollVar<T>::MaxValue() const
+{
+	return maxVal;
 }
 
 
@@ -94,7 +108,7 @@ bool ScrollVar<T>::Scrollable() const
 template <typename T>
 bool ScrollVar<T>::IsScrollAtMin() const
 {
-	return this->Value() >= T{};
+	return this->Value() <= T{};
 }
 
 
@@ -102,7 +116,7 @@ bool ScrollVar<T>::IsScrollAtMin() const
 template <typename T>
 bool ScrollVar<T>::IsScrollAtMax() const
 {
-	return this->Value() <= displaySize - maxVal;
+	return this->Value() >= maxVal - displaySize;
 }
 
 
@@ -127,11 +141,20 @@ void ScrollVar<T>::Set(const T &current, int steps)
 template <typename T>
 void ScrollVar<T>::Clamp(int steps)
 {
-	int minScroll = displaySize - maxVal;
-	if(this->Value() > T{} || maxVal < displaySize)
+	int maxScroll = maxVal - displaySize;
+	if(this->Value() < T{} || maxVal < displaySize)
 		Animate<T>::Set(T{}, steps);
-	else if(this->Value() < minScroll)
-		Animate<T>::Set(minScroll, steps);
+	else if(this->Value() > maxScroll)
+		Animate<T>::Set(maxScroll, steps);
+}
+
+
+
+template <typename T>
+ScrollVar<T> &ScrollVar<T>::operator=(const T &v)
+{
+	Set(v);
+	return *this;
 }
 
 

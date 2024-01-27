@@ -577,12 +577,12 @@ void Engine::Step(bool isActive)
 			else if(zoom.base > zoomTarget)
 				nextZoom.base = max(zoomTarget, zoom.base * (1. / (1. + zoomRatio)));
 		}
-		if(flagship && flagship->Zoom() < 1. && Preferences::Has("Landing zoom"))
+		if(flagship && flagship->Zoom() < 1.)
 		{
-			// Update the current zoom modifier if the flagship is landing or taking off.
 			if(!nextZoom.base)
 				nextZoom.base = zoom.base;
-			nextZoom.modifier = 1. + pow(1. - flagship->Zoom(), 2);
+			// Update the current zoom modifier if the flagship is landing or taking off.
+			nextZoom.modifier = Preferences::Has("Landing zoom") ? 1. + pow(1. - flagship->Zoom(), 2) : 1.;
 		}
 	}
 
@@ -1093,25 +1093,7 @@ void Engine::Draw() const
 		if(messagePoint.Y() < messageBox.Top())
 			break;
 		float alpha = (it->step + 1000 - step) * .001f;
-		const Color *color = nullptr;
-		switch(it->importance)
-		{
-			case Messages::Importance::Highest:
-				color = GameData::Colors().Find("message importance highest");
-				break;
-			case Messages::Importance::High:
-				color = GameData::Colors().Find("message importance high");
-				break;
-			case Messages::Importance::Info:
-				color = GameData::Colors().Find("message importance info");
-				break;
-			case Messages::Importance::Low:
-				color = GameData::Colors().Find("message importance low");
-				break;
-		}
-		if(!color)
-			color = GameData::Colors().Get("message importance default");
-		messageLine.Draw(messagePoint, color->Additive(alpha));
+		messageLine.Draw(messagePoint, Messages::GetColor(it->importance, false)->Additive(alpha));
 	}
 
 	// Draw crosshairs around anything that is targeted.
@@ -1278,7 +1260,7 @@ void Engine::EnterSystem()
 
 	Messages::Add("Entering the " + system->Name() + " system on "
 		+ today.ToString() + (system->IsInhabited(flagship) ?
-			"." : ". No inhabited planets detected."), Messages::Importance::High);
+			"." : ". No inhabited planets detected."), Messages::Importance::Daily);
 
 	// Preload landscapes and determine if the player used a wormhole.
 	// (It is allowed for a wormhole's exit point to have no sprite.)
@@ -1461,10 +1443,27 @@ void Engine::CalculateStep()
 
 	// Keep track of the flagship to see if it jumps or enters a wormhole this turn.
 	const Ship *flagship = player.Flagship();
+	bool flagshipWasUntargetable = (flagship && !flagship->IsTargetable());
 	bool wasHyperspacing = (flagship && flagship->IsEnteringHyperspace());
-	// Move all the ships.
+	// First, move the player's flagship.
+	if(flagship)
+		MoveShip(player.FlagshipPtr());
+	const System *flagshipSystem = (flagship ? flagship->GetSystem() : nullptr);
+	bool flagshipIsTargetable = (flagship && flagship->IsTargetable());
+	bool flagshipBecameTargetable = flagshipWasUntargetable && flagshipIsTargetable;
+	// Then, move the other ships.
 	for(const shared_ptr<Ship> &it : ships)
+	{
+		if(it == player.FlagshipPtr())
+			continue;
+		bool wasUntargetable = !it->IsTargetable();
 		MoveShip(it);
+		bool isTargetable = it->IsTargetable();
+		if(flagshipSystem == it->GetSystem()
+			&& ((wasUntargetable && isTargetable) || flagshipBecameTargetable)
+			&& isTargetable && flagshipIsTargetable)
+				eventQueue.emplace_back(player.FlagshipPtr(), it, ShipEvent::ENCOUNTER);
+	}
 	// If the flagship just began jumping, play the appropriate sound.
 	if(!wasHyperspacing && flagship && flagship->IsEnteringHyperspace())
 	{
@@ -2316,7 +2315,7 @@ void Engine::DoCollection(Flotsam &flotsam)
 	// pull it.
 	if(!collector)
 	{
-		// Keep track of the the net effect of all the tractor beams pulling on
+		// Keep track of the net effect of all the tractor beams pulling on
 		// this flotsam.
 		Point pullVector;
 		// Also determine the average velocity of the ships pulling on this flotsam.
@@ -2337,8 +2336,8 @@ void Engine::DoCollection(Flotsam &flotsam)
 		{
 			// If any tractor beams successfully fired on this flotsam, also drag the flotsam with
 			// the average velocity of each ship.
-			// When dealing with individual ships, this makes tractor beams feel more more capable of
-			// dragging flotsams to the ship. Otherwise, a ship could be drifting away from a flotsam
+			// When dealing with individual ships, this makes tractor beams feel more capable of
+			// dragging flotsam to the ship. Otherwise, a ship could be drifting away from a flotsam
 			// at the same speed that the tractor beam is pulling the flotsam toward the ship,
 			// which looks awkward and makes the tractor beam feel pointless; the whole point of
 			// a tractor beam should be that it collects flotsam for you.
