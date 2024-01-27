@@ -1363,7 +1363,7 @@ mission "Remnant: Deep Surveillance"
 			label next
 			action
 				set "remnant: got deep wormhole and sprite research"
-			`	He presses a button on the desk. "Abigail, could you please make a copy of the encrypted folders 'TAB-RP,' 'WLT-RP', and 'GGA-RP' on the Institute network under my name and bring them to my office in a data chip? Thank you."`
+			`	He presses a button on the desk. "Abigail, could you please make a copy of the encrypted folders 'TAB-RP,' 'WLT-RP,' and 'GGA-RP' on the Institute network under my name and bring them to my office in a data chip? Thank you."`
 				goto reencrypt
 			
 			label remnant
