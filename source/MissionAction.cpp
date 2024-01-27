@@ -168,6 +168,10 @@ void MissionAction::LoadSingle(const DataNode &child)
 		else
 			child.PrintTrace("Error: Skipping invalid \"require\" count:");
 	}
+	else if(key == "require" && !hasValue && child.HasChildren())
+	{
+		requiredConditions.Load(child);
+	}
 	// The legacy syntax "outfit <outfit> 0" means "the player must have this outfit installed."
 	else if(key == "outfit" && child.Size() >= 3 && child.Token(2) == "0")
 	{
@@ -229,6 +233,15 @@ void MissionAction::SaveBody(DataWriter &out) const
 		conversation->Save(out);
 	for(const auto &it : requiredOutfits)
 		out.Write("require", it.first->TrueName(), it.second);
+	if(!requiredConditions.IsEmpty())
+	{
+		out.Write("require");
+		out.BeginChild();
+		{
+			requiredConditions.Save(out);
+		}
+		out.EndChild();
+	}
 
 	action.Save(out);
 }
@@ -341,6 +354,9 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, bool isFailed, const sha
 		}
 	}
 
+	if(!requiredConditions.Test(player.Conditions()))
+		return false;
+
 	// An `on enter` MissionAction may have defined a LocationFilter that
 	// specifies the systems in which it can occur.
 	if(!systemFilter.IsEmpty() && !systemFilter.Matches(player.GetSystem()))
@@ -420,6 +436,7 @@ MissionAction MissionAction::Instantiate(const ConditionsStore &store, map<strin
 	result.systemFilter = systemFilter.SetOrigin(origin);
 
 	result.requiredOutfits = requiredOutfits;
+	result.requiredConditions = requiredConditions;
 
 	string previousPayment = subs["<payment>"];
 	string previousFine = subs["<fine>"];

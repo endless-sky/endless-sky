@@ -1352,7 +1352,13 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 		has "Sheragi Archaeology: The Emerald Sword 2: active"
 	
 	on offer
-		require "Jump Drive" 2
+		require
+			or
+				and
+					has "flagship attribute: jump drive"
+					has "outfit (cargo): Jump Drive"
+				"flagship attribute: jump drive" > 1500
+				"outfit (cargo): Jump Drive" >= 2
 		conversation
 			`You have a spare jump drive in your possession. Would you like to give it to Albert's crew?`
 			choice

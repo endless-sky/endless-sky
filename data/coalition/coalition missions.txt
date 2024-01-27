@@ -160,7 +160,8 @@ mission "lost in coalition"
 	to offer
 		has "license: Coalition"
 	on offer
-		require "Jump Drive" 0
+		require
+			not "flagship attribute: jump drive"
 		event "lost in coalition" 14
 		fail
 
@@ -2357,7 +2358,8 @@ mission "Coalition: Expeditions Past 1"
 		government "Coalition"
 	destination "Ring of Friendship"
 	on offer
-		require "Jump Drive"
+		require
+			has "flagship attribute: jump drive"
 		conversation
 			`As you exit your ship and start heading to the spaceport, you hear a rushed galloping getting closer. As you turn you see a Saryd Heliarch coming to you, gesturing for you to wait. She slows down once she sees you're obliging, and slowly walks to you while glancing at your ship.`
 			`	"Apologize for cutting you off, I must, Captain <last>, but in need of extended transport services, I am," she says. "Sedlitaris Quatcid, my name is, and a Heliarch tribune, I am. Brought to <destination>, I must be. A petition to the council, I am to make."`

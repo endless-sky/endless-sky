@@ -1837,8 +1837,9 @@ mission "Hai Reveal [A13] A New Elder"
 	on stopover
 		dialog `It seems Teeneep has got the Elders to agree to the deal with the Unfettered. A large Unfettered fleet joins you here.`
 	on complete
-		require "Quantum Keystone"
-		# Apparently I can't make this either Keystones *or* Key Stones, so it'll have to be a Hai one.
+		require
+			has "flagship attribute: quantum keystone"
+			# Covers Quantum Keystone, Quantum Key Stone, Shield Beetle Pendant and Tree Skeleton Key Stone
 	on visit
 		dialog `You have either not stopped on Everhope as instructed, or you have left Sayari behind. Remember, her superstition has gotten the better of her under these pressing circumstances, so you must have a Quantum Keystone installed for her to travel with you.`
 	on fail
