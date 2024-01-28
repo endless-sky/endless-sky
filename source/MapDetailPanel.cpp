@@ -672,6 +672,7 @@ void MapDetailPanel::DrawKey()
 // details, trade prices, and details about the selected object.
 void MapDetailPanel::DrawInfo()
 {
+	const Color &dimmer = *GameData::Colors().Get("dimmer");
 	const Color &dim = *GameData::Colors().Get("dim");
 	const Color &medium = *GameData::Colors().Get("medium");
 
@@ -781,9 +782,7 @@ void MapDetailPanel::DrawInfo()
 		bool isSelected = false;
 		if(static_cast<unsigned>(this->commodity) < GameData::Commodities().size())
 			isSelected = (&commodity == &GameData::Commodities()[this->commodity]);
-		const Color &poscolor = *GameData::Colors().Get("map trade price positive");
-		const Color &negcolor = *GameData::Colors().Get("map trade price negative");
-		const Color *dyncolor = &dim;
+		const Color *dynamiccolor = &dim;
 
 		if(isSelected)
 			font.Draw(commodity.name, uiPoint, medium);
@@ -799,16 +798,9 @@ void MapDetailPanel::DrawInfo()
 			// thus has no prices to compare to.
 			bool noCompare = (!player.GetSystem() || !player.GetSystem()->IsInhabited(player.Flagship()));
 			if(!value)
-			{
 				price = "----";
-				dyncolor = &dim;
-
-			}
 			else if(noCompare || player.GetSystem() == selectedSystem || !localValue)
-			{
 				price = to_string(value);
-				dyncolor = &dim;
-			}
 			else
 			{
 				value -= localValue;
@@ -816,19 +808,16 @@ void MapDetailPanel::DrawInfo()
 				if(value > 0)
 				{
 					price += '+';
-					dyncolor = &poscolor;
+					dynamiccolor = &dim;
 				}
 				else
-					dyncolor = &negcolor;
+					dynamiccolor = &dimmer;
 				price += to_string(value);
 				price += ")";
 			}
 		}
 		else
-		{
 			price = (canView ? "n/a" : "?");
-			dyncolor = &dim;
-		}
 
 		const auto alignRight = Layout(140, Alignment::RIGHT, Truncate::BACK);
 
@@ -838,7 +827,7 @@ void MapDetailPanel::DrawInfo()
 			PointerShader::Draw(uiPoint + Point(0., 7.), Point(1., 0.), 10.f, 10.f, 0.f, medium);
 		}
 		else
-			font.Draw({price, alignRight}, uiPoint, *dyncolor);
+			font.Draw({price, alignRight}, uiPoint, *dynamiccolor);
 
 		uiPoint.Y() += 20.;
 	}
