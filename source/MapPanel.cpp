@@ -1395,8 +1395,6 @@ void MapPanel::DrawSystems()
 
 	// Draw the circles for the systems.
 	double zoom = Zoom();
-	float ringInner = INNER;
-	float ringOuter = OUTER;
 
 	const float ringFade = isStarry ? 1.5 - 1.25 * zoom : 1.;
 	for(const Node &node : nodes)
