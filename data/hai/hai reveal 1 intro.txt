@@ -854,8 +854,9 @@ mission "Hai Leaks Response 3"
 	source "Hai-home"
 	destination "Allhome"
 	to offer
-		has "Hai Leaks Response 2: done"
-		has "Hai Leaks Response 2: aborted"
+	        or
+		        has "Hai Leaks Response 2: done"
+		        has "Hai Leaks Response 2: aborted"
 	on offer
 		conversation
 			`You are directed to an official landing pad on your return to Hai-home.`
