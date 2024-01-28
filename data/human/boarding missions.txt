@@ -150,9 +150,9 @@ phrase "assist merchant 3"
 	word
 		`captain `
 	word
-		`gives you`
-		`offers you`
-		`rewards you with`
+		`gives you `
+		`offers you `
+		`rewards you with `
 
 phrase "assist merchant 4"
 	word
