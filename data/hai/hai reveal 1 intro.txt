@@ -443,6 +443,8 @@ mission "Hai Leaks Response 1"
 			`	The only other detail you are able to glean is that this appears evenly spread between known pilots and newcomers. The spoken part is all in Hai though, leaving you with nothing more than the dual-language annotations to go off.`
 				decline
 
+event "hr: pirate uptick"
+
 
 
 mission "Hai Reveal Concern Period: Humans Going Home"
