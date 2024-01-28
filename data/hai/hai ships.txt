@@ -1072,7 +1072,7 @@ ship "Sea Scorpion" "Sea Scorpion (Ion)"
 		"Boulder Reactor"
 		"Hai Fissure Batteries"
 		"Hai Diamond Regenerator"
-		"Hai Conundrum Regenerator" 2
+		"Hai Corundum Regenerator" 2
 		"Hai Williwaw Cooling" 2
 		`"Bondir" Atomic Thruster`
 		`"Bondir" Atomic Steering`
@@ -1099,7 +1099,7 @@ ship "Sea Scorpion" "Sea Scorpion (Ionic)"
 		"Ionic Turret Prototype"
 		"Pulse Rifle" 36
 
-# doesnt regen that well/weak to missiles
+# doesn't regen that well/weak to missiles
 ship "Sea Scorpion" "Sea Scorpion (Shredder)"
 	outfits
 		`"Bondir" Atomic Steering`
@@ -1128,7 +1128,7 @@ ship "Sea Scorpion" "Sea Scorpion (Shields, Trackers)"
 		"Hai Ravine Batteries"
 		"Hai Tracker" 280
 		"Hai Tracker Pod" 4
-		"Hai Tracker Storage Pod" 2
+		"Tracker Storage Pod" 2
 		Hyperdrive
 		"Outfits Expansion" 2
 		"Pulse Rifle" 30
