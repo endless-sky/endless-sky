@@ -1043,21 +1043,26 @@ ship "Sea Scorpion" "Sea Scorpion (Tracker)"
 		"Value Detector"
 		"Hyperdrive"
 
+# somewhat too high energy usage, not so fast
 ship "Sea Scorpion" "Sea Scorpion (Pulse)"
 	outfits
 		"Pulse Cannon" 4
 		"Pulse Turret" 2
 		"Boulder Reactor"
+		"Supercapacitor"
 		"Hai Williwaw Cooling" 2
 		"Hai Ravine Batteries"
-		"Supercapacitor" 5
+		"Hai Octopus Jammer"
+		"Hai Cuttlefish Jammer"
+		"Quantum Keystone"
 		"Hai Diamond Regenerator" 2
 		`"Biroo" Atomic Thruster`
 		`"Bondir" Atomic Steering`
 		"Value Detector"
 		"Hyperdrive"
-		"Pulse Rifle" 15
+		"Pulse Rifle" 30
 
+# bad dps
 ship "Sea Scorpion" "Sea Scorpion (Ion)"
 	outfits
 		"Ion Cannon" 3
@@ -1066,40 +1071,48 @@ ship "Sea Scorpion" "Sea Scorpion (Ion)"
 		"Hai Tracker" 84
 		"Boulder Reactor"
 		"Hai Fissure Batteries"
-		"Hai Diamond Regenerator" 2
+		"Hai Diamond Regenerator"
+		"Hai Conundrum Regenerator" 2
+		"Hai Williwaw Cooling" 2
 		`"Bondir" Atomic Thruster`
 		`"Bondir" Atomic Steering`
 		"Value Detector"
 		"Hyperdrive"
-		"Pulse Rifle" 15
+		"Pulse Rifle" 30
 
+# overheated easily
 ship "Sea Scorpion" "Sea Scorpion (Ionic)"
 	outfits
 		`"Biroo" Atomic Steering`
 		`"Bondir" Atomic Thruster`
 		"Boulder Reactor"
 		"Chameleon Anti-Missile"
-		"Hai Corundum Regenerator"
+		"Hai Corundum Regenerator" 3
 		"Hai Diamond Regenerator"
 		"Hai Valley Batteries"
+		"Supercapacitor"
+		"Outfits Expansion" 2
+		"Quantum Keystone"
 		"Hyperdrive"
 		"Ion Cannon"
 		"Ionic Blaster Prototype" 2
 		"Ionic Turret Prototype"
-		"Pulse Rifle" 15
+		"Pulse Rifle" 36
 
+# doesnt regen that well/weak to missiles
 ship "Sea Scorpion" "Sea Scorpion (Shredder)"
 	outfits
-		`"Biroo" Atomic Steering`
+		`"Bondir" Atomic Steering`
 		`"Biroo" Atomic Thruster`
-		"Boulder Reactor"
+		"Geode Reactor" 2
 		"Bullfrog Anti-Missile"
-		"Hai Diamond Regenerator" 2
+		"Hai Diamond Regenerator"
 		"Hai Gorge Batteries"
-		"Hai Williwaw Cooling" 4
+		"Hai Williwaw Cooling" 5
+		"Hai Octopus Jammer"
 		"Hyperdrive"
 		"Pulse Cannon" 2
-		"Pulse Rifle" 15
+		"Pulse Rifle" 36
 		"Pulse Turret"
 		"Quantum Keystone"
 		"Tripulse Shredder" 2
@@ -1108,19 +1121,21 @@ ship "Sea Scorpion" "Sea Scorpion (Shields, Trackers)"
 	outfits
 		`"Biroo" Atomic Steering`
 		`"Biroo" Atomic Thruster`
-		"Boulder Reactor"
+		"Geode Reactor"
+		"Sand Cell"
 		"Bullfrog Anti-Missile" 2
 		"Hai Diamond Regenerator" 4
 		"Hai Ravine Batteries"
-		"Hai Tracker" 224
+		"Hai Tracker" 280
 		"Hai Tracker Pod" 4
-		"Hai Williwaw Cooling"
+		"Hai Tracker Storage Pod" 2
 		Hyperdrive
 		"Outfits Expansion" 2
-		"Pulse Rifle" 15
+		"Pulse Rifle" 30
 
 ship "Sea Scorpion" "Sea Scorpion (Disruptor Slicer)"
 	add attributes
+		# so it can follow you along easier
 		"fuel capacity" 300
 		"cargo space" -5
 		"engine capacity" -24

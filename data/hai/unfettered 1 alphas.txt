@@ -292,6 +292,10 @@ mission "<uhai> 5: Scan Auxiliary"
 			choice
 				`	"I will land, as you ask."`
 					accept
+				`	"I will land, once I'm done plundering it."`
+					to display
+						has "disabled auxiliary"
+					accept
 				`	"But I can jump away without risk."`
 					to display
 						not "disabled auxiliary"

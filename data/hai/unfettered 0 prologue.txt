@@ -901,8 +901,6 @@ mission "<uhai> 2: Prove Your Strength"
 			`	"Let us prove our worth in battle then, the time for words is over. I will be waiting for you in orbit."`
 				accept
 			label "too many ships"
-			action
-				set "unfettered: brought too many ships"
 			`	"Ye cannot run a rig on me, monkey! First ye must park some of those ships, or show up with some smaller ones! I will not be facing an armada. A heavy man-o-war is already over compensating, after all. When ye are ready for a fair duel, see me in orbit."`
 			``
 			`	(The Unfettered captain will only show up if you have a small enough fleet for the duel to be fair; you are currently bringing too many ships.)`

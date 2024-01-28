@@ -149,7 +149,7 @@ phrase "unfettered challenger defeat message"
 	word
 		` `
 	word
-		`For now, here are the agreed <payment>. Hopefully it will allows you to improve your flagship before our next battle..`
+		`For now, here are the agreed <payment>. Hopefully it will allow you to improve your flagship before our next battle..`
 		`I am in no rush to provide you the <payment>, but honor forces me to give it to you either way`
 		`Here are your well deserved <payment>, captain. Next time I will not underestimate you`
 		`You must have had an edge! I'm in no condition to argue about giving you your payment of <payment>, however don't expect to see us again anytime soon`
