@@ -1402,7 +1402,7 @@ void MapPanel::DrawSystems()
 		Point pos = zoom * (node.position + center);
 
 		// System rings fade as you zoom in.
-		RingShader::Draw(pos, ringOuter, ringInner, node.color.Additive(max(ringFade,
+		RingShader::Draw(pos, OUTER, INNER, node.color.Additive(max(ringFade,
 			node.mapIcon.size() == 0 ? .9f : 0)));
 
 		if(isStarry)
