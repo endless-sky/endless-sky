@@ -823,7 +823,7 @@ mission "Hai Leaks Response 2"
 	source
 		government "Hai"
 		attributes "spaceport"
-		not "Hai-home"
+		not planet "Hai-home"
 	destination "Hai-home"
 	to offer
 		has "event: hr: concern period"
@@ -858,7 +858,7 @@ mission "Hai Leaks Response 3"
 		conversation
 			`You are directed to an official landing pad on your return to Hai-home.`
 			`	A functionary leads you to what appears to be a situation room, filled with monitors, holoprojectors, and other equipment. All of the diplomats are here except for Remington, who arrives moments behind you. Sayari gestures for you to take a seat as she switches on a massive holoprojector embedded in the table.`
-			`	She nods to you and says, "Other plans are proceeding but I asked for you to come back and join the discussion for this. It seems the increase in pirate activity is only worsening over time since the media retraction, and while innocents may be keeping away, that helps us very little."
+			`	She nods to you and says, "Other plans are proceeding but I asked for you to come back and join the discussion for this. It seems the increase in pirate activity is only worsening over time since the media retraction, and while innocents may be keeping away, that helps us very little."`
 			choice
 				`	"I don't recall there being so many pirates even in human space."`
 				`	"It is getting out of hand. Where are they all coming from?."`
