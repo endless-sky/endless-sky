@@ -462,7 +462,7 @@ private:
 	// Currently selected coloring, in the map panel (defaults to reputation):
 	int mapColoring = -6;
 	float mapZoom = 0;
-	bool isStarry;
+	bool isStarry = false;
 
 	// Currently collapsed categories for various panels.
 	std::map<std::string, std::set<std::string>> collapsed;
