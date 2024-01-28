@@ -1657,12 +1657,11 @@ ship "Shield Beetle" "Shield Beetle (Thunderhead)"
 		`"Biroo" Atomic Thruster`
 		`"Bondir" Atomic Steering`
 		"Boulder Reactor"
-		"Fuel Pod" 2
 		"Hai Williwaw Cooling" 2
 		"Hai Diamond Regenerator" 5
 		"Hai Ravine Batteries"
 		"Hyperdrive"
-		"Outfit Scanner" 2
+		"Outfit Scanner" 4
 		"Pulse Rifle" 80
 		"Pulse Turret" 2
 		"Thunderhead Launcher" 8
