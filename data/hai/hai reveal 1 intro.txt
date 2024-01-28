@@ -461,7 +461,7 @@ mission "Hai Reveal Concern Period: Humans Going Home"
 		"passenger space" > 9
 	on offer
 		conversation
-			`As you land you are hailed separately by one of the Hai in the local control center. "Captain, apologies for calling you on a non-control related matter, but I noticed that you've got capacity to potentially help resolve a situation that's developing."`
+`As you land you are hailed separately by one of the Hai in the local control center. "Captain, apologies for calling you on a non-control related matter, but I noticed that you may have the capacity to help resolve a situation that's developing."`
 			choice
 				`	"What's the matter?"`
 				`	"I'm sorry, I'm busy right now."`
@@ -812,8 +812,8 @@ mission "Hai Reveal Concern Period: Sandsnap Failed"
 	on offer
 		log `Failed to escort the convoy safely to Sandsnap. The station will not be reactivated any time soon.`
 		conversation
-			`The Stationkeeper is distraught and palms you off to her subordinate who confirms that there is no payment he can give you.`
-			`	He explains that without the initial convoy arriving safely, there are now loans that were available contingent on success and that they simply don't have the money. It will take some time to raise money for a second attempt, if there is one.`
+			`The Stationkeeper is distraught and palms you off to her subordinate, who confirms that there is no payment he can give you.`
+			`	He explains that, without the initial convoy arriving safely, there are now loans that were available contingent on success and that they simply don't have the credits. It will take some time to raise the capital for a second attempt, if there is one.`
 				decline
 
 
@@ -838,9 +838,8 @@ mission "Hai Leaks Response 2"
 			has "Hai Reveal Concern Period: Securing Sandsnap: failed"
 	on offer
 		conversation
-			`A brief announcement in the regular news feeds advises that the Hai government is close to taking next actionable steps towards resolving the current situation.`
-			`	After a moment you realize it's now been over two months since you last saw them.`
-			`	A moment later, almost as if the universe was responding to your line of thought, a message arrives for you from Sayari. It reads; "Please return to Hai-home if you are able."`
+			`A brief announcement in the regular news feeds advises that the Hai government and the human diplomats on Hai-home are close to taking next actionable steps towards resolving the current situation. As you listen, you realize it's now been over two months since you last saw them.`
+			`	A moment later, almost as if the universe was responding to your line of thought, a message arrives for you from Sayari. It reads: "Please return to Hai-home if you are able."`
 				accept
 
 
@@ -859,9 +858,8 @@ mission "Hai Leaks Response 3"
 			has "Hai Leaks Response 2: aborted"
 	on offer
 		conversation
-			`You are directed to an official landing pad on your return to Hai-home.`
-			`	A functionary leads you to what appears to be a situation room, filled with monitors, holoprojectors, and other equipment. All of the diplomats are here except for Remington, who arrives moments behind you. Sayari gestures for you to take a seat as she switches on a massive holoprojector embedded in the table.`
-			`	She nods to you and says, "Other plans are proceeding but I asked for you to come back and join the discussion for this. It seems the increase in pirate activity is only worsening over time since the media retraction, and while innocents may be keeping away, that helps us very little."`
+			`You are directed to an official landing pad on your return to Hai-home, and after securing the <ship>, a functionary leads you to what appears to be a situation room, filled with monitors, holoprojectors, and other equipment. All of the diplomats are here except for Remington, who arrives moments behind you.`
+			`	Sayari gestures for you to take a seat as she switches on a massive holoprojector embedded in the table. She nods to you and says, "Other plans are proceeding, but I asked for you to come back and join the discussion for this. It seems the increase in pirate activity has only worsened over time since the media retraction, and while innocents may be keeping away, that helps us very little."`
 			choice
 				`	"I don't recall there being so many pirates even in human space."`
 				`	"It is getting out of hand. Where are they all coming from?."`
@@ -884,9 +882,9 @@ mission "Hai Leaks Response 3"
 			`	He checks the date. "Our most optimistic estimates suggest the Republic will be forced to acknowledge the existence of the Hai within three months, or we would lose so much credibility as to compromise electoral stability. The actual time limit is probably sooner."`
 			choice
 				`	"Would that be so bad?"`
-			`	"It is always bad to be forced into acknowledging a secret. If we act sooner, we may control the manner of that secret's release," says Xilin. "This pirate situation is accelerating the timeline in an alarming way, we need to get on top of it."`
+			`	"It is always bad to be forced into acknowledging a secret. If we act sooner, we may control the manner of that secret's release," says Xilin. "This pirate situation is accelerating our timeline in an alarming way, and we need to get on top of it."`
 			`	Sayari looks at you. "We are developing and propagating cover stories for some artifacts, and quickly, but for the moment may I ask a favor of the war hero in the room? Please meet up with the extra security forces converging on Allhome and help them rout the pirates back to the other side of the wormhole. It will buy us some breathing room and options."`
-			`	Even were the entire diplomatic core not looking at you expectantly, it is so hard to say "no" to a Hai and their cute squirrelly features.`
+			`	Even if the combined diplomatic corps of humanity and Hai weren't looking at you expectantly, it is so hard to say "no" to a Hai and their cute squirrelly features.`
 			choice
 				`	"I'll do what I can."`
 					accept
