@@ -345,10 +345,7 @@ void MapPanel::FinishDrawing(const string &buttonCondition)
 		isStarry = true;
 	}
 	else
-	{
-		info.SetCondition("!is starry");
 		isStarry = false;
-	}
 	const Interface *mapButtonUi = GameData::Interfaces().Get(Screen::Width() < 1280
 		? "map buttons (small screen)" : "map buttons");
 	mapButtonUi->Draw(info, this);
