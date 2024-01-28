@@ -911,9 +911,9 @@ fleet "Shield Beetle Challenger"
 	variant 3
 		"Shield Beetle (Pulse)"
 	variant 3
-		"Shield Beetle"
-	variant 3
-		"Shield Beetle (Tracker)"
+		"Shield Beetle (Unfettered Shipyards)"
+	variant 2
+		"Shield Beetle (Ion-ic?)"
 	variant
 		"Shield Beetle (Ionic)"
 	variant

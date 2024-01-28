@@ -1593,6 +1593,26 @@ ship "Shield Beetle" "Shield Beetle (Tracker)"
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
 
+# low dps but huge ion dmg, use missiles
+ship "Shield Beetle" "Shield Beetle (Ion-ic?)"
+	outfits
+		`"Bondir" Atomic Steering`
+		`"Bondir" Atomic Thruster`
+		"Boulder Reactor"
+		"Geode Reactor"
+		"Hai Corundum Regenerator" 2
+		"Hai Diamond Regenerator" 3
+		"Hai Octopus Jammer" 2
+		"Hai Ravine Batteries"
+		"Hai Williwaw Cooling" 2
+		"Hai Zephyr Cooling" 2
+		Hyperdrive
+		"Ion Cannon" 6
+		"Ionic Blaster Prototype" 2
+		"Outfits Expansion" 6
+		"Pulse Rifle" 55
+
+# heat vulnerability (and low turning, but high speed)
 ship "Shield Beetle" "Shield Beetle (Ionic)"
 	outfits
 		`"Biroo" Atomic Steering`
@@ -1601,42 +1621,50 @@ ship "Shield Beetle" "Shield Beetle (Ionic)"
 		"Geode Reactor"
 		"Hai Diamond Regenerator" 2
 		"Hai Ravine Batteries"
-		"Hai Williwaw Cooling" 3
+		"Hai Williwaw Cooling" 2
 		"Hyperdrive"
 		"Ion Cannon" 2
 		"Ionic Blaster Prototype" 4
 		"Ionic Turret Prototype" 2
 		"Pulse Cannon" 2
-		"Pulse Rifle" 55
+		"Pulse Rifle" 95
+		"Hai Octopus Jammer"
+		"Value Detector"
 		"Quantum Keystone"
-		"Supercapacitor" 3
+		"Supercapacitor" 2
 
+# vulnerability: ion
 ship "Shield Beetle" "Shield Beetle (Sunbeam)"
 	outfits
 		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
-		"Boulder Reactor" 2
+		"Boulder Reactor"
+		"Sand Cell" 2
+		"Hai Octopus Jammer" 3
+		"Cargo Expansion"
+		"Quantum Keystone"
 		"Bullfrog Anti-Missile" 4
 		"Hai Diamond Regenerator"
 		"Hai Valley Batteries"
 		"Hai Williwaw Cooling" 3
 		"Hyperdrive"
-		"Pulse Rifle" 55
+		"Pulse Rifle" 90
 		"Sunbeam" 8
 
+# slow, waste ammo
 ship "Shield Beetle" "Shield Beetle (Thunderhead)"
 	outfits
-		`"Basrem" Reverse Thruster`
-		`"Bondir" Atomic Thruster`
-		`"Bufaer" Atomic Steering`
+		`"Biroo" Atomic Thruster`
+		`"Bondir" Atomic Steering`
 		"Boulder Reactor"
 		"Fuel Pod" 2
-		"Hai Diamond Regenerator" 3
+		"Hai Williwaw Cooling" 2
+		"Hai Diamond Regenerator" 5
 		"Hai Ravine Batteries"
 		"Hyperdrive"
 		"Outfit Scanner" 2
-		"Pulse Rifle" 55
-		"Pulse Turret" 3
+		"Pulse Rifle" 80
+		"Pulse Turret" 2
 		"Thunderhead Launcher" 8
 		"Thunderhead Missile" 160
 
