@@ -461,7 +461,7 @@ mission "Hai Reveal Concern Period: Humans Going Home"
 		"passenger space" > 9
 	on offer
 		conversation
-`As you land you are hailed separately by one of the Hai in the local control center. "Captain, apologies for calling you on a non-control related matter, but I noticed that you may have the capacity to help resolve a situation that's developing."`
+			`As you land you are hailed separately by one of the Hai in the local control center. "Captain, apologies for calling you on a non-control related matter, but I noticed that you may have the capacity to help resolve a situation that's developing."`
 			choice
 				`	"What's the matter?"`
 				`	"I'm sorry, I'm busy right now."`
