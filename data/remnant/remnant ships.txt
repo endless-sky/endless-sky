@@ -904,13 +904,13 @@ ship "Merganser"
 		"drag" 1.3
 		"heat dissipation" .9
 		"gaslining" 1
-		"outfit space" 180
+		"outfit space" 181
 		"weapon capacity" 60
 		"engine capacity" 60
 		"shield generation" 1.4
 		"shield energy" 1.2
-		"hull repair rate" 0.6
-		"hull energy" 0.4
+		"hull repair rate" 0.9
+		"hull energy" 0.6
 		"cloak" .03
 		"cloaking energy" 4
 		"cloaking fuel" .075
