@@ -269,7 +269,7 @@ outfit "Concentrating Solar Array"
 	"solar collection" 2.4
 	"solar heat" 1.02
 	description "This large set of concentrating solar cells efficiently collects sunlight, turning it into usable energy. Thin Fresnel lenses concentrate sunlight onto a small number of highly efficient solar cells, reducing weight and improving efficiency."
-	description "While much more efficient than a single cell alone, the Solar Array also produces more than a proportionate amount of heat."
+	description "While much more efficient than a single cell alone, the Solar Array also produces a disproportionate amount of heat."
 
 
 outfit "Photoelectric Scales"
@@ -374,7 +374,7 @@ outfit `Z-330 "Spark" Fusion Torch`
 	"thrust" 69
 	"thrusting energy" 12
 	"thrusting heat" 45
-	"thrusting fuel" 0.09
+	"thrusting fuel" 0.06
 	"drag reduction" 2
 	"energy generation" 3
 	"flare sprite" "effect/avgi flare/fusion"
@@ -398,7 +398,7 @@ outfit `Z-660 "Zap" Fusion Torch`
 	"thrust" 144
 	"thrusting energy" 24
 	"thrusting heat" 90
-	"thrusting fuel" 0.18
+	"thrusting fuel" 0.12
 	"drag reduction" 2
 	"energy generation" 6
 	"flare sprite" "effect/avgi flare/fusion"
@@ -421,7 +421,7 @@ outfit `Z-990 "Arc" Fusion Torch`
 	"thrust" 222
 	"thrusting energy" 36
 	"thrusting heat" 135
-	"thrusting fuel" 0.27
+	"thrusting fuel" 0.18
 	"drag reduction" 2
 	"energy generation" 9
 	"flare sprite" "effect/avgi flare/fusion"
@@ -459,12 +459,13 @@ outfit "Remass Injector"
 	thumbnail "outfit/unknown"
 	"mass" 3
 	"outfit space" -3
-	"engine capacity" -3
-	"afterburner thrust" 60
+	"afterburner thrust" 69
+	"afterburner energy" 3
+	"afterburner heat" -12
 	"afterburner fuel" 0.18
-	"afterburner heat" -24
 	"magnozzle rings" -1
-	description "Balance TBD"
+	description "A powerful magnetohydrodynamic turbopump forces a torrent of water into a fusion torch's magnetic nozzle, dramatically increasing thrust at the cost of a significant increase in propellant consumption. The additional mass flow helps reduce the waste heat imparted on a ship by the torch drive."
+	description "The Remass Injector is a component that can be installed into an Avgi fusion torch to give it afterburning capabilities. It requires a magnozzle ring slot to be installed."
 
 
 outfit "Inductive Extractor"
@@ -473,14 +474,14 @@ outfit "Inductive Extractor"
 		"Avgi Military"
 	"cost" 2760000
 	thumbnail "outfit/unknown"
-	"mass" 9
-	"outfit space" -9
-	"engine capacity" -9
+	"mass" 6
+	"outfit space" -6
 	"thrust" -6
 	"thrusting energy" -18
 	"thrusting heat" 6
 	"magnozzle rings" -1
-	description "Balance TBD"
+	description "A reinforced superconducting coil and power conditioning unit allows a significant amount of power to be extracted from a fusion torch's exhaust as it pushes against the drive's magnetic nozzle. This removes some energy from the exhaust plume and produces some heat, but is the primary means by which high performance Avgi starships generate power."
+	description "The Inductive Extractor is a component that can be installed into an Avgi fusion torch to turn a portion of its thrust into energy. It requires a magnozzle ring slot to be installed."
 
 
 outfit "XY-180 Radial Thrusters"
@@ -507,7 +508,7 @@ outfit "XY-180 Radial Thrusters"
 		"frame rate" 30
 		"scale" 0.125
 	"reverse flare sound" "plasma small"
-	description "Balance TBD"
+	description `"Avgi radial thrusters are hybrid thermal-electric thrusters, designed to allow translation in any direction. By using waste heat to expel superheated water vapor out of a set of nozzles, they can help a ship cool off, require the ship to have been "warmed up" in order to function.`
 
 
 outfit "XY-360 Radial Thrusters"
@@ -534,7 +535,7 @@ outfit "XY-360 Radial Thrusters"
 		"frame rate" 30
 		"scale" 0.25
 	"reverse flare sound" "plasma small"
-	description "Balance TBD"
+	description "The Avgi have designed their radial thrusters to synergize well with their fusion torches, tapping off waste heat and using it to superheat water for use in their reaction control systems. An additional magnetohydrodynamic accelerator around each thruster's nozzle improves efficiency at the cost of using some energy. These thrusters allow Avgi starships to easily dock with stations or other ships without igniting their highly radioactive fusion torches."
 
 
 outfit "XY-720 Radial Thrusters"
@@ -561,7 +562,7 @@ outfit "XY-720 Radial Thrusters"
 		"frame rate" 30
 		"scale" 0.5
 	"reverse flare sound" "plasma small"
-	description "Balance TBD"
+	description "This large set of radial thrusters can allow even the largest of Avgi starships to maneuver with ease, or even reverse course without needing to fully turn around. They also can be used to reject considerable amounts of waste heat by expelling superheated water vapor, boosted by an electromagnetic accelerator."
 
 
 outfit `Z-1200 "Beam" Antimatter Torch`

@@ -193,7 +193,6 @@ star "planet/rogue-radiating"
 	power .2
 	wind .6
 
-
 # Compact stellar objects.
 star "star/neutron"
 	power 4

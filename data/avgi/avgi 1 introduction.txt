@@ -524,7 +524,7 @@ mission "Avgi: Defend Ensemble 2"
 			`	"Now, I'm very interested in how exactly you managed to find your way here. Care to explain?" she asks.`
 			choice
 				`	(Explain.)`
-			`	You fill Sora in on how your travels brought you here, and how you were able to acquire a Jump Drive. Darius stays nothing throughout, standing by silently.`
+			`	You fill Sora in on how your travels brought you here, and how you were able to acquire a Jump Drive. Darius says nothing throughout, standing by silently.`
 			`	"Amazing. So, your Jump Drive can get us out of here then?"`
 			choice
 				`	"I'm afraid not. It can't return to human space for some reason."`
@@ -590,10 +590,11 @@ mission "Avgi: Defend Ensemble 2"
 
 mission "Avgi: Scout Rescue"
 	name "Scout Search and Rescue"
-	description "Find and evacuate the crew of the <npc>."
+	description "Find and evacuate the crew of the <npc>, which was last seen in the Twirl system."
 	source "Weledos"
 	passengers 12
 	destination "Peripheria"
+	waypoint "Twirl"
 	to offer
 		has "Avgi: Defend Ensemble 2: done"
 	to fail

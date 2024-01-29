@@ -455,7 +455,7 @@ outfit "Dart Launcher"
 		"fire effect" "speck fire"
 		"inaccuracy" 2.4
 		"velocity" 18
-		"lifetime" 30
+		"lifetime" 15
 		"reload" 45
 		"firing energy" 6
 		"firing heat" 3
@@ -513,9 +513,9 @@ outfit "Dart Active"
 		"die effect" "missile death"
 		"lifetime" 1800
 		"split range" 300
-		"acceleration" 0.09
-		"drag" .003
-		"turn" 6
+		"acceleration" 0.3
+		"drag" .009
+		"turn" 9
 		"homing" 4
 		"infrared tracking" 0.9
 		"hit force" 210
