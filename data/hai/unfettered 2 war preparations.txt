@@ -1371,7 +1371,7 @@ mission "<uhai> 16: Strength Of A Leader: Si-Ra"
 	# he'd get demoted for this anyway and runs away in an escape pod no matter what happens
 	npc disable
 		government "Hai (Unfettered Challenger)"
-		ship "Si-Ra' angry Beetle" "Hellfire"
+		ship "Si-Ra's angry Beetle" "Hellfire"
 		to spawn
 			has "unfettered: mad Si-Ra"
 			"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 <= 18

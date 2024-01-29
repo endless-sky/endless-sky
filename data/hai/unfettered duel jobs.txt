@@ -91,7 +91,7 @@ phrase "beaten in duel"
 	word
 		`very excited`
 		`all too happy`
-		`a bit disapointed`
+		`a bit disappointed`
 	word
 		` as they hail you, now that you are disabled, "`
 	word
@@ -316,7 +316,7 @@ mission "Unfettered Spontaneous Challenge"
 	invisible
 	source
 		attributes "unfettered"
-	deadline 2
+	deadline 1
 	to offer
 		has "unfettered: duel ready"
 		not "Unfettered Spontaneous Challenge: active"
@@ -791,6 +791,70 @@ phrase "hostile unfettered challenger"
 		"I am reasonable, if you wish to surrender, we can come to terms."
 		"You are lucky that I have to accept any ceasefire if you ask... You would do well not to attempt anything."
 
+phrase "hostile unfettered challenger"
+	word
+		"Here's a "
+	word
+		"free"
+		"useful"
+		"common"
+	word
+		" tip: "
+		" hint: "
+	word
+		"when feeling overwhelmed in duels you can always ${overwhelmed in duel}! Try it next time."
+		"the challengers have common weaknesses, and you should try to get an edge by ${advantage in duel}."
+		
+
+phrase "overwhelmed in duel"
+	word
+		"tactically retreat to the edge of the system"
+		"bribe the challengers"
+		"try to split the enemies apart"
+		"change system"
+		"upgrade your ship design"
+		"scan the enemy to find out their vulnerabilities"
+
+phrase "advantage in duel"
+	word
+		"figuring out if their engines are weak"
+		"trying to slide away whilst shooting them back"
+		"using your range advantage, beit in missiles, ion cannons or else"
+		"try to get your hands on powerful prototypes"
+		"go and acquire alien technology, even human ones has its use"
+		"overheat their ship"
+		"shoot them down with missiles if they lack sufficient jammers and anti-missiles"
+		"try to get at their batteries with ion weapons"
+
+phrase "hostile unfettered challenger"
+	word
+		"If you happen to know of "
+		"If you heard of "
+		"When you come to know about "
+		"Next time you get your hands on "
+		"If you 'find' "
+	word
+		"a strong"
+		"an interesting"
+		"a 'good'"
+		"an exotic"
+		"a respectable"
+		"a powerful"
+		"an overpowered"
+	word
+		" weapon combo"
+		" alien weapon"
+		" human junk-weapon"
+	word
+		", you should come and"
+	word
+		"demonstrate it to us in action"
+		"fight me with it"
+		"sell it to us, after a proper demonstration"
+		"you might find some of us willing to buy it, for the proper price"
+	word
+		"!"
+
 phrase "defeated unfettered challenger"
 	word
 		"You have "
@@ -840,10 +904,9 @@ phrase "defeated unfettered challenger"
 phrase "unfettered dueling"
 	word
 		"Do not presume to interrupt us"
-		"I am in the middle of a duel, there is no time for petty talk"
 		"This is an official challenge, do not intervene"
 		"Under no circumstances are you to interrupt us, or you will suffer the wrath of the Unfettered"
-		"Stop distracting me"
+		"Make sure you don't distracting me"
 		"If you try anything, the whole fleet will be on you"
 		"Careful, you do not want to know what happens to Kavakais"
 	word

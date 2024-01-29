@@ -771,7 +771,7 @@ ship "Modified Shield Beetle"
 
 # Si-Ra will use this modified beetle when provoked,
 # he risked everything to upgrade his ship and to kill you so that he can get back into Midas
-ship "Modified Shield Beetle" "Si-Ra' angry Beetle"
+ship "Modified Shield Beetle" "Si-Ra's angry Beetle"
 	add attributes
 		"shields" -2000
 		"heat dissipation" .05
