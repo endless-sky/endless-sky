@@ -342,7 +342,7 @@ mission "Sick of Acorn Bread"
 		random < 1
 	on offer
 		conversation
-			`With some time to kill while your ship is being serviced by the Hai spaceport workers, you enter the spaceport searching for a bite to eat. Restaurants advertise their menus in bright, attention-grabbing colors on their windows; amongst the selection you spot one that promises "authentic Hai cuisine," along with some large text printed in the Hai language which you don't understand. Next to it, you see a human street food vendor offering snacks and ready-made meals.`
+			`With some time to kill while your ship is being serviced by the Hai dockhands, you enter the spaceport searching for a bite to eat. Restaurants advertise their menus in bright, attention-grabbing colors on their windows. Amongst the selection, you spot one that promises "authentic Hai cuisine," along with some large text printed in the Hai language which you don't understand. Next to it, you see a human street food vendor offering snacks and ready-made meals.`
 			choice
 				`	(Enter the restaurant.)`
 					goto restaurant
