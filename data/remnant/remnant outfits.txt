@@ -675,11 +675,11 @@ outfit "Bellows-Class Afterburner"
 	"cost" 640000
 	thumbnail "outfit/remnant afterburner"
 	"mass" 8
-	"outfit space" -7
-	"engine capacity" -7
+	"outfit space" -11
+	"engine capacity" -11
 	"slowing resistance" 0.01
-	"afterburner thrust" 70
-	"afterburner fuel" 0.65
+	"afterburner thrust" 125
+	"afterburner fuel" 1.3
 	"afterburner energy" 6
 	"afterburner heat" 18
 	"afterburner effect" "remnant afterburner"
