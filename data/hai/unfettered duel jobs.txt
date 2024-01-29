@@ -87,7 +87,7 @@ mission "Unfettered: Remove The Challengers"
 
 phrase "beaten in duel"
 	word
-		`The duellist seems`
+		`The duellist seems `
 	word
 		`very excited`
 		`all too happy`
@@ -819,9 +819,9 @@ phrase "advantage in duel"
 	word
 		"figuring out if their engines are weak"
 		"trying to slide away whilst shooting them back"
-		"using your range advantage, beit in missiles, ion cannons or else"
+		"using your range advantage, be it in missiles, ion cannons or else"
 		"try to get your hands on powerful prototypes"
-		"go and acquire alien technology, even human ones has its use"
+		"go and acquire alien technology, even human ones have their uses"
 		"overheat their ship"
 		"shoot them down with missiles if they lack sufficient jammers and anti-missiles"
 		"try to get at their batteries with ion weapons"
@@ -846,7 +846,7 @@ phrase "hostile unfettered challenger"
 		" alien weapon"
 		" human junk-weapon"
 	word
-		", you should come and"
+		", you should come and "
 	word
 		"demonstrate it to us in action"
 		"fight me with it"
