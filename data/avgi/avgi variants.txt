@@ -122,9 +122,9 @@ ship "Difraktos" "Difraktos (Missile)"
 		"Dart Magazine" 6
 		`"Dart" Kinetic Missile` 1800
 
-		"Ultracapacitor Bank"
+		"Ultracapacitor Cell" 2
 		"Diffuse Deflector"
-		"Multispectral Scanner" 2
+		"Multispectral Scanner"
 		"Concealment Scales"
 		"Electrostatic Ramscoop"
 		
@@ -174,7 +174,7 @@ ship "Difraktos" "Difraktos (Atomic)"
 		"Electromotive Rifle" 42
 
 		`Z-660 "Zap" Fusion Torch`
-		"Inductive Extractor" 2
+		"Inductive Extractor" 4
 		"Remass Injector" 2
 		"XY-360 Radial Thrusters"
 		"Hyperdrive"
@@ -200,8 +200,8 @@ ship "Atenuatia" "Atenuatia (Atomic)"
 		"Multispectral Scanner" 6
 		
 		`Z-660 "Zap" Fusion Torch`
-		"Inductive Extractor" 2
-		"Remass Injector" 4
+		"Inductive Extractor" 4
+		"Remass Injector" 2
 		"XY-360 Radial Thrusters"
 		"Hyperdrive"
 

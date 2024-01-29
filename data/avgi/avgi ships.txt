@@ -1969,7 +1969,7 @@ ship "Vibratia"
 		zoom 0.5
 		right
 	gun 0 -27 "Speckle Railgun"
-	gun 0 -27 "Dart Launcher
+	gun 0 -27 "Dart Launcher"
 
 	explode "tiny explosion" 9
 

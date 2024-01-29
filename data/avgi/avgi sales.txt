@@ -96,7 +96,7 @@ outfitter "Avgi Advanced Systems"
 	"Diffuse Deflector"
 	"Spectrometer Array"
 	"Thermal Sink Partition"
-	"Dipole Ramscoop"
+	"Plasmadyne Ramscoop"
 	"Nanoceramic Scales"
 	"Concealment Scales"
 
@@ -124,7 +124,6 @@ outfitter "Avgi Basic Combat"
 	`"Dart" Kinetic Missile`
 	"Dart Magazine"
 	"Dart Launcher"
-	"Dart Pod"
 
 outfitter "Avgi Advanced Combat"
 	"Fleck Turret"
