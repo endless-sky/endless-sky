@@ -118,9 +118,9 @@ ship "Diaspersi" "Diaspersi (Atomic)"
 
 ship "Difraktos" "Difraktos (Missile)"
 	outfits
-		"Dart Launch Array" 6
-		"Dart Magazine" 6
-		`"Dart" Kinetic Missile` 1800
+		"Dart Launch Array" 4
+		"Dart Magazine" 9
+		`"Dart" Kinetic Missile` 1500
 
 		"Ultracapacitor Bank"
 		"Diffuse Deflector"
@@ -129,8 +129,8 @@ ship "Difraktos" "Difraktos (Missile)"
 		"Electrostatic Ramscoop"
 		
 		`Z-330 "Spark" Fusion Torch`
-		"Inductive Extractor"
-		"Remass Injector" 2
+		"Inductive Extractor" 2
+		"Remass Injector" 3
 		"XY-360 Radial Thrusters"
 		"Hyperdrive"
 

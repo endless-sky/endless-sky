@@ -475,8 +475,8 @@ outfit "Inductive Extractor"
 	"mass" 9
 	"outfit space" -9
 	"engine capacity" -3
-	"energy generation" 1
-	"heat generation" 1
+	"energy generation" 1.5
+	"heat generation" 1.5
 	"thrust" -6
 	"thrusting energy" -18
 	"thrusting heat" 6

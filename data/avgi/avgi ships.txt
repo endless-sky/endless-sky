@@ -1477,7 +1477,6 @@ ship "Difraktos"
 
 		"Lantern Fission Core"
 		"Ultracapacitor Bank"
-		"Ultracapacitor Cell"
 		"Diffuse Deflector"
 		"Optical Lasing Generator"
 		"Multispectral Scanner" 2
