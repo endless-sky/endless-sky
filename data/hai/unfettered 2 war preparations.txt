@@ -1310,7 +1310,7 @@ mission "<uhai> 16: Strength Of A Leader: Si-Ra"
 				to display
 					"midas: wronged" > 1
 					"unfettered rep: Si-Ra" <= -2
-			`	"I have managed to buy myself a ship with the money from our last business opportunity. It is much stronger than the old one! And as a warlord, He-Yi has a strong fleet as well, though he will not use it here - only his flagship. You may want to consider this seriously. You will first have to duel me and then him. Don't forget you can call the fight off and come back once you're ready, by giving us a symbolic fee." He then takes a pause before asking, "What do you say, <last>? Are you ready to fight us?"`
+			`	"I have managed to buy myself a ship with the money from our last business opportunity. It is much stronger than the old one! And as a warlord, He-Yi has a strong fleet as well, though he will not use it here - only his flagship. You may want to consider this seriously. You will first have to duel me and then him. Don't forget you can call the fight off and come back once you're ready, by giving us a symbolic bribe." He then takes a pause before asking, "What do you say, <last>? Are you ready to fight us?"`
 			choice
 				`	"I was born ready."`
 				`	"On second thought, I'll come back later."`
@@ -1397,7 +1397,7 @@ mission "<uhai> 16: Strength Of A Leader: Si-Ra"
 		ship "Shield Beetle (Jump)" "Ghost"
 		system "Prakacha'a"
 	on disabled
-		dialog `Si-Ra hails you, "It seems that you are not ready for war yet, <last>. Come back when you will be and we will see. In the meantime I will deduce a fee of <fine> from you for this fight. Oh, and you should give me the symbolic fee of 1000 credits if you want repairs."`
+		dialog `Si-Ra hails you, "It seems that you are not ready for war yet, <last>. Come back when you will be and we will see. In the meantime I will deduce a fee of <fine> from you for this fight. Oh, and you should give me the symbolic bribe, if you want repairs."`
 		fail
 		fine 250000
 	to fail
@@ -1455,7 +1455,7 @@ mission "<uhai> 16: Strength Of A Leader: He-Yi"
 		personality disables staying heroic target launching
 		conversation "unfettered war ready"
 	on disabled
-		dialog `He-Yi hails you, "It seems that my observation of your ship loadout payed well. I quite enjoyed the distraction, come back to me once you will truly be ready, and in the meantime you will have to give me the symbolic 1000 credits for losing."`
+		dialog `He-Yi hails you, "It seems that my observation of your ship loadout payed well. I quite enjoyed the distraction, come back to me once you will truly be ready, and in the meantime you will have to give me the symbolic bribe for losing."`
 		fail
 	to fail
 		has "unfettered: outcast"

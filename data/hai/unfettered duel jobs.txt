@@ -87,8 +87,18 @@ mission "Unfettered: Remove The Challengers"
 
 phrase "beaten in duel"
 	word
+		`The duellist seems`
+	word
+		`very excited`
+		`all too happy`
+		`a bit disapointed`
+	word
+		` as they hail you, now that you are disabled, "`
+	word
 		`Ha!`
+		`Haha!`
 		`Well...`
+		`It is over.`
 	word
 		` `
 	word
@@ -96,6 +106,8 @@ phrase "beaten in duel"
 		`I have beaten you`
 		`You have been bested`
 		`You have found your match`
+		`That was a close one`
+		`You almost got me there`
 		`Finally beaten`
 		`Tales will be told of this fight`
 		`You have fought well`
@@ -103,7 +115,7 @@ phrase "beaten in duel"
 	word
 		`! `
 	word
-		`First, I will take`
+		`First, I will take `
 	word
 		`a small compensation`
 		`what is rightfully mine`
@@ -114,21 +126,13 @@ phrase "beaten in duel"
 	word
 		`: <fine>. `
 	word
-		`Now, if you will only give me the symbolic fee of 1000 credits I will repair your ship, the next time you hail me.`
+		`Now, if you will only give me the symbolic bribe, I will repair your ship, the next time you hail me."`
 
 phrase "unfettered challenger defeated"
 	word
 		`You receive a message from the disabled challenger ship`
 		`The captain of the ship you just disabled hails you`
 		`Now that they are disabled, the challenging ship sends you a hail`
-	word
-		`: ${unfettered challenger defeat message}`
-
-phrase "unfettered challenger boarded"
-	word
-		`You receive a message from the ship that challenged you in space`
-		`The captain of the challenger ship hails you once boarded`
-		`Now that you board them, the challenged ship sends you a hail`
 	word
 		`: ${unfettered challenger defeat message}`
 
@@ -258,7 +262,7 @@ mission "Unfettered Challenge [1B]"
 		fleet "Shield Beetle Challenger"
 		on disable
 			dialog phrase "unfettered challenger defeated"
-			payment 500000
+			payment 600000
 			"unfettered challenger defeated" += 2
 			fail
 		on capture
@@ -320,8 +324,10 @@ mission "Unfettered Spontaneous Challenge"
 	to fail
 		# make sure these dont interfere with other duels
 		or
-			has "unfettered: total challengers"
-			not "unfettered: challengers"
+			has "Unfettered Challenge [0]: active"
+			has "Unfettered Challenge [1A]: active"
+			has "Unfettered Challenge [1B]: active"
+			has "Unfettered Challenge [2]: active"
 			has "<uhai> 2: Prove Your Strength: active"
 			has "<uhai> 15: Modified Beetle: active"
 			has "<uhai> 16: Strength Of A Leader: Si-Ra: active"
@@ -332,7 +338,7 @@ mission "Unfettered Spontaneous Challenge"
 		fail
 	npc save disable
 		government "Hai (Unfettered Challenger)"
-		personality disables plunders waiting target timid restricted opportunistic merciful uninterested merciful daring
+		personality disables plunders entering target timid restricted opportunistic merciful uninterested daring lingering
 		to spawn
 			random < "unfettered: challengers" * 20
 		system
@@ -347,11 +353,10 @@ mission "Unfettered Spontaneous Challenge"
 			"unfettered revenge fleet" ++
 	npc save disable
 		government "Hai (Unfettered Challenger)"
-		personality disables plunders waiting target timid restricted opportunistic merciful uninterested merciful daring
+		personality disables plunders entering target timid restricted opportunistic merciful uninterested daring lingering
 		to spawn
 			random < "unfettered: challengers" * 10
-		system
-			government "Hai (Unfettered)"
+		system "Hi Yahr"
 		fleet "Sea Scorpion Challenger" 2
 		on disable
 			dialog phrase "unfettered challenger defeated"
@@ -362,31 +367,29 @@ mission "Unfettered Spontaneous Challenge"
 			"unfettered revenge fleet" ++
 	npc save disable
 		government "Hai (Unfettered Challenger)"
-		personality disables plunders waiting timid restricted opportunistic merciful uninterested merciful daring
+		personality disables plunders entering target timid restricted opportunistic merciful uninterested daring lingering
 		to spawn
 			random < "unfettered: challengers" * 10
-		system
-			government "Hai (Unfettered)"
+		system "Ehma Ti"
 		fleet "Shield Beetle Challenger"
 		on disable
 			dialog phrase "unfettered challenger defeated"
-			payment 500000
+			payment 600000
 			fail
 		on capture
 			dialog phrase "unfettered challenger captured"
 			"unfettered revenge fleet" ++
 	npc save disable
 		government "Hai (Unfettered Challenger)"
-		personality disables plunders waiting timid restricted opportunistic merciful uninterested merciful daring
+		personality disables plunders entering target timid restricted opportunistic merciful uninterested daring lingering
 		to spawn
 			random < "unfettered: challengers" * 5
-		system
-			government "Hai (Unfettered)"
+		system "Wah Yoot"
 		fleet "Sea Scorpion Challenger"
 		fleet "Shield Beetle Challenger"
 		on disable
 			dialog phrase "unfettered challenger defeated"
-			payment 500000
+			payment 1000000
 			fail
 		on capture
 			dialog phrase "unfettered challenger captured"
@@ -782,7 +785,7 @@ phrase "hostile unfettered challenger"
 	word
 		"Do you wish to end the fight?"
 		"I can see you are having difficulties. Feel free to call this off for another time..."
-		"Remember, you only need to give me a symbolic fee for this to stop."
+		"Remember, you only need to give me a symbolic bribe for this to stop."
 		"This is not a duel to the death, or else only one of us would be able learn."
 		"Do you wish to surrender?"
 		"I am reasonable, if you wish to surrender, we can come to terms."
