@@ -457,7 +457,7 @@ outfit "Remass Injector"
 	"mass" 3
 	"outfit space" -3
 	"engine capacity" -3
-	"afterburner thrust" 72
+	"afterburner thrust" 60
 	"afterburner energy" 3
 	"afterburner heat" -12
 	"afterburner fuel" 0.18
