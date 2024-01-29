@@ -122,9 +122,9 @@ ship "Difraktos" "Difraktos (Missile)"
 		"Dart Magazine" 6
 		`"Dart" Kinetic Missile` 1800
 
-		"Ultracapacitor Cell" 2
+		"Ultracapacitor Bank"
 		"Diffuse Deflector"
-		"Multispectral Scanner"
+		"Multispectral Scanner" 2
 		"Concealment Scales"
 		"Electrostatic Ramscoop"
 		

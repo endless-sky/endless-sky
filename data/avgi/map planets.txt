@@ -122,7 +122,7 @@ planet Livolua
 	attributes avgi "avgi core" "aberrant siege" rich urban
 	landscape land/water24
 	description "Livolua was the first extrasolar planet to be colonized by the Avgi, through the use of multiple waves of slower than light starships over two hundred years ago. With its wide range of climates ideal for life, it boasts a population two thirds as large as Aviskir itself, and an equally impressive number of independent polities."
-	spaceport "The primary spaceport was built into the center of the first settlement to be established on the planet, which received incoming starships for decades. Since then, it was expanded upwards into a surprisingly tall cylinder of basalt and steel, itself housing millions of Avgi."
+	spaceport "The primary spaceport was built into the center of the first settlement to be established on the planet, which received incoming starships for decades. Since then, it was expanded upwards into a surprisingly tall cylinder of basalt and steel, itself housing over a million Avgi."
 	government Avgi
 	security 0
 	shipyard "Avgi Civilian Basics"
@@ -156,6 +156,7 @@ planet Saeketer
 	description "This large ice giant hosts a layer in its upper atmosphere where the pressure and temperature are both close to Aviskir's at sea level. Beyond this, the gravity at this altitude is only slightly stronger than what a typical Avgi is used to, creating a paradoxically habitable area in the skies of a gas planet."
 	description "If Saeketer was in the Anax system, it is likely some enterprising group of Avgi in the pre-hyperdrive era would have colonized its skies in aerostat habitats and floating colonies. The newly available real estate in the form of practically pristine terrestrial worlds has unfortunately devalued opportunities such as this, with there being less of a drive to colonize and exploit every body in a given star system."
 	government Uninhabited
+
 
 planet Naphir
 	attributes avgi moon uninhabited

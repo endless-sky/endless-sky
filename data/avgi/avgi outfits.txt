@@ -372,11 +372,10 @@ outfit `Z-330 "Spark" Fusion Torch`
 	"outfit space" -33
 	"engine capacity" -33
 	"thrust" 69
-	"thrusting energy" 12
+	"thrusting energy" 9
 	"thrusting heat" 45
 	"thrusting fuel" 0.06
-	"drag reduction" 2
-	"energy generation" 3
+	"drag reduction" 0.6
 	"flare sprite" "effect/avgi flare/fusion"
 		"frame rate" 15
 		"scale" 0.75
@@ -396,11 +395,10 @@ outfit `Z-660 "Zap" Fusion Torch`
 	"outfit space" -66
 	"engine capacity" -66
 	"thrust" 144
-	"thrusting energy" 24
+	"thrusting energy" 18
 	"thrusting heat" 90
 	"thrusting fuel" 0.12
-	"drag reduction" 2
-	"energy generation" 6
+	"drag reduction" 1.2
 	"flare sprite" "effect/avgi flare/fusion"
 		"frame rate" 15
 	"flare sound" "remnant afterburner"
@@ -419,11 +417,10 @@ outfit `Z-990 "Arc" Fusion Torch`
 	"outfit space" -99
 	"engine capacity" -99
 	"thrust" 222
-	"thrusting energy" 36
+	"thrusting energy" 27
 	"thrusting heat" 135
 	"thrusting fuel" 0.18
-	"drag reduction" 2
-	"energy generation" 9
+	"drag reduction" 1.8
 	"flare sprite" "effect/avgi flare/fusion"
 		"frame rate" 30
 		"scale" 2
@@ -459,7 +456,8 @@ outfit "Remass Injector"
 	thumbnail "outfit/unknown"
 	"mass" 3
 	"outfit space" -3
-	"afterburner thrust" 69
+	"engine capacity" -3
+	"afterburner thrust" 72
 	"afterburner energy" 3
 	"afterburner heat" -12
 	"afterburner fuel" 0.18
@@ -474,13 +472,16 @@ outfit "Inductive Extractor"
 		"Avgi Military"
 	"cost" 2760000
 	thumbnail "outfit/unknown"
-	"mass" 6
-	"outfit space" -6
+	"mass" 9
+	"outfit space" -9
+	"engine capacity" -3
+	"energy generation" 1
+	"heat generation" 1
 	"thrust" -6
 	"thrusting energy" -18
 	"thrusting heat" 6
 	"magnozzle rings" -1
-	description "A reinforced superconducting coil and power conditioning unit allows a significant amount of power to be extracted from a fusion torch's exhaust as it pushes against the drive's magnetic nozzle. This removes some energy from the exhaust plume and produces some heat, but is the primary means by which high performance Avgi starships generate power."
+	description "A reinforced superconducting solenoid and power conditioning unit allows a significant amount of power to be inductively extracted from a fusion torch's exhaust as it pushes against the drive's magnetic nozzle. This removes some energy from the exhaust plume and produces some heat, but is the primary means by which high performance Avgi starships generate power."
 	description "The Inductive Extractor is a component that can be installed into an Avgi fusion torch to turn a portion of its thrust into energy. It requires a magnozzle ring slot to be installed."
 
 
@@ -508,7 +509,7 @@ outfit "XY-180 Radial Thrusters"
 		"frame rate" 30
 		"scale" 0.125
 	"reverse flare sound" "plasma small"
-	description `"Avgi radial thrusters are hybrid thermal-electric thrusters, designed to allow translation in any direction. By using waste heat to expel superheated water vapor out of a set of nozzles, they can help a ship cool off, require the ship to have been "warmed up" in order to function.`
+	description `Avgi radial thrusters are hybrid thermal-electric thrusters, designed to allow translation in any direction. By using waste heat to expel superheated water vapor out of a set of nozzles, they can help a ship cool off, require the ship to have been "warmed up" in order to function.`
 
 
 outfit "XY-360 Radial Thrusters"
