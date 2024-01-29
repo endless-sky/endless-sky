@@ -821,7 +821,7 @@ mission "<uhai> 2: Prove Your Strength"
 	repeat
 	deadline 2
 	name `Defeat the captain`
-	description `A young Unfettered captain has provoked you into a duel. Disable his ship and then land back on <destination>. You only have one day, but this duel can happen multiple times.`
+	description `An Unfettered captain has provoked you into a duel. Disable his ship and then land back on <destination>. You only have one day, but this duel can happen multiple times.`
 	source "Darkcloak"
 	to offer
 		or
@@ -1024,7 +1024,7 @@ mission "<uhai> 2: Prove Your Strength"
 			`	After you raise your fist in response, he bows his head so slightly you barely notice it, and moves away. You wonder what you should do with the creature, but refusing the gift does not seem like an option.`
 			label end
 			action
-				log `Defeated a young Unfettered Captain in a duel, and took part in a surprisingly scary Unfettered martial ceremony.`
+				log `Defeated an Unfettered Captain in a duel, and took part in a surprisingly scary Unfettered martial ceremony.`
 				event "unfettered: JD raid plan ready" 5 15
 				set "unfettered: duel ready"
 				# there's no way to get these before the duel
@@ -1055,7 +1055,7 @@ mission "<uhai> 2: Prove Your Strength"
 				goto end
 			label run
 			action
-				log "Defeated a young Unfettered Captain in a duel, but it seems that was not the whole test. The second part involved a monstruous scorpion from which it felt like a good idea to run at the time. The Unfettered did not see it that way, however."
+				log "Defeated an Unfettered Captain in a duel, but it seems that was not the whole test. The second part involved a monstruous scorpion from which it felt like a good idea to run at the time. The Unfettered did not see it that way, however."
 			`	You start running away and hear the Captain speak to his crew, loud enough for you to hear, "The monkey is running away from danger. It would not be fit to join us indeed. It will not fight for us."`
 				decline
 			label shoot
@@ -1154,7 +1154,7 @@ mission "<uhai> 3: Recover Jump Drives"
 		outfit "Jump Drive" -4
 		payment 2000000
 		set "midas: tracker relay"
-		log `Helped a young Unfettered Captain to bring jump drives from a pirate world.`
+		log `Helped an Unfettered Captain to bring jump drives from a pirate world.`
 		log "People" "Si-Ra" `A young, impetuous Unfettered captain with a unique, if eccentric, grasp of your language, who seems to grow wiser by the day. He has impressive leadership and combat skills, yet always seeks to refine his tactics. He does seem to be also be a fan of acquiring bigger and bigger ships.`
 		conversation
 			`"Here be yer share: <payment>. Ye have saved me life<, unfettered title> <first>, and I shall never forget it. For this, ye have earned the right to know my name: 'Si-Ra.' It be one I earned and wear with pride. Come see me again soon if ye be up for a challenge. I'll surely be able to find one for ye even if me own ship not be ready to give ye one. In the meantime, make sure to check the job boards if ye just be looking for more runs like this one."`
