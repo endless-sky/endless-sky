@@ -6913,11 +6913,11 @@ mission "Adelita 1"
 		conversation
 			branch "has visited"
 				has "visited planet: Hope"
-			`Walking on the edges of <origin>'s spaceport district, you notice signage advertising an exhibition based on the planet Hope and the disaster and evacuation that happened on it in 2994; you vaguely remember it as being a planet in a system southwest of New Boston. But what makes it stand out from the typical advertisements that you see on notice boards and interactive screens is its colorful language - with phrases like "Considered Offensive by Paradisians," "Why We Can't Give Up Hope," and "Evicted by the Paradise Planets."`
+			`Walking on the edges of <origin>'s spaceport district, you notice signage advertising an exhibition about the planet Hope and the disaster and evacuation that happened on it in 2994; you vaguely remember it as being a planet in a system southwest of New Boston. But what makes it stand out from the typical advertisements that you see on notice boards and interactive screens is its colorful language - with phrases like "Considered Offensive by Paradisians," "Why We Can't Give Up Hope," and "Evicted by the Paradise Planets."`
 				goto directions
 
 			label "has visited"
-			`Walking on the edges of <origin>'s spaceport district, you notice signage advertising an exhibition based on the planet Hope and the disaster and evacuation that happened on it in 2994; you remember having been there once before on an excursion. But what makes it stand out from the typical advertisements that you see on notice boards and interactive screens is its colorful language - with phrases like "Considered Offensive by Paradisians," "Why We Can't Give Up Hope," and "Evicted by the Paradise Planets."`
+			`Walking on the edges of <origin>'s spaceport district, you notice signage advertising an exhibition about the planet Hope and the disaster and evacuation that happened on it in 2994; you remember having been there once before on an excursion. But what makes it stand out from the typical advertisements that you see on notice boards and interactive screens is its colorful language - with phrases like "Considered Offensive by Paradisians," "Why We Can't Give Up Hope," and "Evicted by the Paradise Planets."`
 
 			label directions
 			`	At the bottom of each sign are the directions to get to the exhibition. It appears to be located in a warehouse yard nearby, where the spaceport district borders the city that surrounds it.`
@@ -6925,7 +6925,7 @@ mission "Adelita 1"
 				`	(Check it out.)`
 				`	(Not interested.)`
 					decline
-			`	Following the signage you notice a significant group of people gathered in front in front of a large warehouse that stands out amongst the rest of the warehouses in the yard. As you wait in the queue a young woman lines up behind you with a readily apparent exuberance and asks you, "I'd like to know, out of interest, how much you know about Hope and its history?"`
+			`	Following the signage, you notice a substantial group of people gathered in front in front of a large warehouse that stands out amongst the rest of the warehouses in the yard. As you wait in the queue, a young woman lines up behind you with a readily apparent exuberance and asks you, "Just out of curiosity, how much do you know about Hope and its history?"`
 			choice
 				`	"Not much at all."`
 				`	"I come from the Dirt Belt, but I really don't know too much about what happened on Hope."`
@@ -6942,7 +6942,7 @@ mission "Adelita 1"
 						or
 							has "Expedition to Hope 2: done"
 							has "FW Katya 4: done"
-			`	"Well, then it's a good thing you're seeing Adelita's exhibition on Hope. You'll be surprised at how powerful it is, and you'll learn a lot about the whole sad tragedy that happened there and what Parliament and the Paradise Worlds did to everybody who tried to help," she says sullenly. "You know, this was their first work that really got them famous in the interplanetary scene, but they've been forced to close it and but today's their final day. I had to see it one more time before they went."`
+			`	"Well, then it's a good thing you're seeing Adelita's exhibition on Hope. You'll be surprised at how powerful it is, and you'll learn a lot about the whole sad tragedy that happened there and what Parliament and the Paradise Worlds did to everybody who tried to help," she adds somewhat sullenly. "You know, this was their first work that really got them famous in the interplanetary scene, but they've been forced to close it, so today's their final day. I had to see it one more time before they went."`
 				goto questions
 
 			label "been to hope"
@@ -6958,7 +6958,7 @@ mission "Adelita 1"
 				goto exhibition
 
 			label signage
-			`	"Well, this exhibition used to be permanent and it garnered a lot of attention, but the planetary government was pressured by the Paradise Planets to force Adelita to leave because it gave such a candid view of what they did to those poor people. Personally, I think what Parliament and the Paradise Planets have been doing to the people of Hope and their advocates like Adelita has been just abhorrent and wrong."`
+			`	"Well, this exhibition used to be permanent, and it garnered a lot of attention, but the planetary government was pressured by the Paradise Planets to force Adelita to leave, because it gave such a candid view of what they did to those poor people. Personally, I think what Parliament and the Paradise Planets have been doing to the people of Hope and their advocates like Adelita has just been abhorrent and wrong."`
 
 			label exhibition
 			`	You reach the entrance to the exhibition soon enough. Inside is a large room filled with photos, videos, interviews, and other mixed media. They focus on three groups: the refugees of Hope, the Navy that saved them, and the Paradise Worlds that protested the evacuation. At one end of the hangar, there is an installation with nearly a hundred original protest signs from rallies against the Dirt Belt and the Republic Navy; some of them are quite crude and tasteless. It's a strong rebuke to see those displayed here, so close to the Paradise Planets.`
@@ -6978,11 +6978,11 @@ mission "Adelita 1"
 			branch katya
 				has "FW Katya 4: done"
 
-			`	Inside houses you see families frantically gathering their belongings and running for the Navy ships. You walk down one of the lines of refugees, observing each person - their faces harried, frightened, resolute. From the corner of your eye, you notice that a Navy officer slips in the snow, and as you look around, a young man helps him up. Wandering around the exhibit gives you a sense of the desperation of the people as they evacuate, though it's a bit disconcerting when the occasional hologram walks through you.`
+			`	Inside houses, you see families frantically gathering their belongings and running for the Navy ships. You walk down one of the lines of refugees, observing each person - their faces harried, frightened, resolute. From the corner of your eye, you notice that a Navy officer slips in the snow, and as you look around, a young man helps him up. Wandering around the exhibit gives you a sense of the desperation of the people as they evacuate, though it's a bit disconcerting when the occasional hologram walks through you.`
 				goto "move on"
 
 			label katya
-			`	Inside houses you see families frantically gathering their belongings and running for the Navy ships; it strikes you that somewhere here is a young Katya leaving her doomed home. You walk down one of the lines of refugees, observing each person - their faces harried, frightened, resolute. From the corner of your eye, you notice that a Navy officer slips in the snow, and as you look around, a young man helps him up. Wandering around the exhibit gives you a sense of the desperation of the people as they evacuate, though it's a bit disconcerting when the occasional hologram walks through you.`
+			`	Inside houses, you see families frantically gathering their belongings and running for the Navy ships; it strikes you that somewhere here is a young Katya leaving her doomed home. You walk down one of the lines of refugees, observing each person - their faces harried, frightened, resolute. From the corner of your eye, you notice that a Navy officer slips in the snow, and as you look around, a young man helps him up. Wandering around the exhibit gives you a sense of the desperation of the people as they evacuate, though it's a bit disconcerting when the occasional hologram walks through you.`
 
 			label "move on"
 			`	As you move on, you're startled to find yourself face-to-face with the woman holding the baby, right where they were in the photo. She takes little steps toward the ship while bouncing the baby on her hip. A young woman with a camera and a respirator covering her face walks up to her, asks a question, and begins to take photos.`
@@ -7045,7 +7045,7 @@ mission "Adelita 2"
 	on offer
 		conversation
 			`It takes a while to navigate through the bustling spaceport and the almost viscous fog of <origin>, but after finding an information screen you're able to get to the Common Grounds Cafe, which has a funky vibe to it and is quite busy. Nobody seems to recognize you, so you take a seat at a booth and order something to eat.`
-			`	Before your meal arrives, however, a woman with dark hair, maybe in her late thirties, sits down across from you and hails the server. She cheerfully orders a smoothie with a long list of ingredients, many of which you have never heard of or can even pronounce.`
+			`	Before your meal arrives, however, a woman with dark hair, maybe in her late thirties, sits down across from you and hails the server. She cheerfully orders a smoothie with a long list of ingredients, many of which you have never heard of nor can even pronounce.`
 			`	"Sorry for the cloak and dagger bit," the woman says to you finally. "We have enemies in high places. So Captain <last>, what did you think of the exhibition?"`
 			choice
 				`	"I found it quite moving."`
@@ -7083,7 +7083,7 @@ mission "Adelita 2"
 				goto leave
 
 			label syndicate
-			`	"Well, I did say we had enemies in high places, didn't I? But don't worry, Bunker's a pro. We have an array of long-range stealth drones that do the spying. You won't be anywhere near them, though pirates do frequent the system, so you'll need to be quick."`
+			`	"Well, I did say we had enemies in high places, didn't I? But don't worry. Bunker's a pro. We have an array of long-range stealth drones that do the spying. You won't be anywhere near them, though pirates do frequent the system, so you'll need to be quick."`
 
 			label leave
 			`	She waves to the server for the bill as she finishes the last gulp of her smoothie. "Let's go. Everyone will be meeting at the landing pad shortly."`
@@ -7141,15 +7141,15 @@ mission "Adelita 4"
 			branch "player has a fleet"
 				"total ships" - ( "ships: Fighter" + "ships: Drone" ) > 1
 
-			`It's not hard to find a remote canyon within range of the target area. You keep the <ship> hovering in case you need to make a quick escape, but you are low enough that Bunker releases the drones from the open cargo bay without a pressure suit. The drones are so small you can't make them out from the cockpit, nor can you see them on your ship's scanners. When Bunker returns to the cockpit, he sets up a display and sits at the controller. "Okay, they're on autopilot to the rendezvous site."`
+			`It's not hard to find a remote canyon within range of the target area. You deactivate your shields but keep the <ship> hovering in case you need to make a quick escape. You are low enough that Bunker can release the drones from the open cargo bay without a pressure suit. The drones are so small you can't make them out from the cockpit, nor can you see them on your ship's scanners. When Bunker returns to the cockpit, he sets up a display and sits at the controller. "Okay, they're on autopilot to the rendezvous site."`
 				goto "on site"
 
 			label "player has a fleet"
-			`You carefully bring the <ship> into the atmosphere while the rest of your fleet stays in space so that the pirates won't catch wind of Adelita's operation. Luckily, it's not hard to find a remote canyon within range of the target area for you to lie low. You keep the <ship> hovering in case you need to make a quick escape while Bunker releases the drones from the open cargo bay. The drones are so small you can't make them out from the cockpit, nor can you see them on your ship's scanners. When Bunker returns to the cockpit, he sets up a display and sits at the controller. "Okay, they're on autopilot to the rendezvous site."`
+			`You carefully bring the <ship> into the atmosphere while the rest of your fleet stays in space so that the pirates won't catch wind of Adelita's operation. Luckily, it's not hard to find a remote canyon within range of the target area for you to lie low. You deactivate your shields but keep the <ship> hovering in case you need to make a quick escape while Bunker releases the drones from the open cargo bay. The drones are so small you can't make them out from the cockpit, nor can you see them on your ship's scanners. When Bunker returns to the cockpit, he sets up a display and sits at the controller. "Okay, they're on autopilot to the rendezvous site."`
 
 			label "on site"
-			`	Once the drones are on site, you can see a lone Syndicate-built freighter with a security detail posted in front of the loading ramp. "The pirates must be late," says Bunker, smirking. "Typical. I'm going to scatter the drones and set a proximity alert."`
-			`	He hums to himself for a while before he turns to you and starts talking again. "You know, there's a part of me that would much rather be liberating slaves instead of filming them, but for now it seems like this is the best way for me to help. Say we did liberate them right now; there's just going to be another slave ship tomorrow. But if we create political and social will, that could stop the slave ships forever."`
+			`	As you watch the display, the drones arrive on site, and you can see a lone Syndicate-built freighter with a security detail posted in front of the loading ramp. "The pirates must be late," says Bunker, smirking. "Typical. I'm going to scatter the drones and set a proximity alert."`
+			`	He hums to himself for a while before he turns to you and starts talking again. "You know, there's a part of me that would much rather be liberating slaves instead of filming them, but for now it seems like this is the best way for me to help. Say we did liberate them right now; there's just going to be another slave ship tomorrow. But if we create political and social pressure, that could stop the slave ships forever."`
 			choice
 				`	"I think you're right."`
 				`	"What about doing both?"`
@@ -7174,14 +7174,14 @@ mission "Adelita 4"
 				`	"Did he see us?"`
 					goto "see us"
 
-			`	"I don't know. I think we oughta' get going," says Bunker, grimacing.`
+			`	"I don't know. I think we oughta get going," says Bunker, grimacing.`
 			choice
 				`	"That's an order!"`
 				`	"Okay. Call the drones back."`
 					goto "call drones"
 
 			`	"You're the captain," Bunker responds in a sore tone. Meanwhile, you continue to watch the display. It takes a couple minutes before the last of the slaves are loaded, followed by the security team. The two men in the suit and hood are the last to board their ships.`
-			`	You barely notice the humming of thrusters from outside just as the <ship> receives a hail of particle cannon fire from a pirate Quicksilver, appearing seemingly from nowhere as they whittle the shields down in a split second. You shunt the <ship>'s repulsors to full blast to get into orbit, but another pair of Quicksilvers send another volley of particle fire that breaks through and takes the repulsors offline. The last thing you experience is the ship slowing to a halt, pausing in the air for just a moment before the pilot seat goes out underneath you, the cockpit filled with screams as the <ship> makes a one way trip towards the surface.`
+			`	You hear the sudden hum of thrusters from outside, just as the <ship> receives a hail of particle cannon fire from a pirate Quicksilver, appearing seemingly out of nowhere as it tears through your hull. You shunt the <ship>'s repulsors to full blast to get into orbit, but another pair of Quicksilvers sends a volley of particle fire that breaks through and takes the repulsors offline. The last thing you experience is the ship slowing to a halt, pausing in the air for just a moment before the pilot seat goes out from under you, the cockpit filled with screams as the <ship> makes a one way trip towards the surface.`
 				die
 
 			label "see us"
@@ -7211,15 +7211,15 @@ mission "Adelita 4"
 
 			label escape
 			`	Less than a minute later, you hear Bunker on the comms. "Drones are locked down and ready to go."`
-			`	The moment you pull out of the canyon, pirate Quicksilvers appear from every direction. You shunt the <ship>'s repulsors into full blast and accelerate into space with the pirates in hot pursuit.`
+			`	You immediately raise the shields and take off. The moment you pull out of the canyon, pirate Quicksilvers appear from every direction. You shunt the <ship>'s repulsors into full blast and accelerate into space with the pirates in hot pursuit.`
 				launch
 
 			label blaster
-			`	You get up and point your pistol at Bunker while ordering him to stand down. "Don't do this," he says, shrinking from you as he puts his hands up. As you are restraining him, you notice the humming of thrusters from outside - then the <ship> receives a hail of particle cannon fire out of nowhere! You turn around and see pirate Quicksilvers all converging towards you, whittling the <ship>'s shields down in a split second. You shunt the <ship>'s repulsors to full blast to get into orbit, but a volley of particle fire breaks through and takes the repulsors offline. The last thing you experience is the ship slowing to a halt, pausing in the air for just a moment before the pilot seat goes out underneath you, the cockpit filled with screams as the <ship> makes a one way trip towards the surface.`
+			`	You get up and point your pistol at Bunker while ordering him to stand down. "Don't do this," he says, shrinking from you as he puts his hands up. As you are restraining him, you notice the humming of thrusters from outside - then the <ship> receives a hail of particle cannon fire out of nowhere! You turn around and see pirate Quicksilvers all converging towards you, tearing through the <ship>'s hull. You shunt the <ship>'s repulsors to full blast to get into orbit, but a volley of particle fire breaks through and takes the repulsors offline. The last thing you experience is the ship slowing to a halt, pausing in the air for just a moment before the pilot seat goes out from under you, the cockpit filled with screams as the <ship> makes a one way trip towards the surface.`
 				die
 
 	npc
-		personality heroic nemesis vindictive launching
+		personality heroic nemesis vindictive launching marked
 		government "Pirate"
 		ship "Quicksilver" "Dog's Leash"
 		ship "Quicksilver" "Burning Whip"
@@ -7256,5 +7256,5 @@ mission "Adelita 5"
 		log `Helped the underground journalism collective "Adelita Zero" gather video evidence of Syndicate participation in the slave trade while escaping from pirates.`
 		conversation
 			`Ale, River, and Bunker look glad to be back on <planet>. "Being there in person was bad enough," Ale grumbles as she looks through a stack of folders on her datapad. "Now we have to watch it over and over again to edit it into something presentable."`
-			`	As they are leaving, Ale hands you a stack of credit chips totaling <payment>. "There's a bonus in there for you, we really couldn't have done it without you," she tells you with a bittersweet smile. "Of course, you'll be one of the first to know when it's done."`
+			`	As they are leaving, Ale hands you a stack of credit chips totaling <payment>. "There's a bonus in there for you. We really couldn't have done it without you," she tells you with a bittersweet smile. "Of course, you'll be one of the first to know when it's done."`
 			`	She starts off to join River and Bunker out in the spaceport, before turning around one last time in the doorway. "We might be in need of you for some future projects too, Captain <last>. But goodbye for now. Stay safe on the star lanes!"`
