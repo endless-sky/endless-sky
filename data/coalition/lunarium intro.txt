@@ -445,7 +445,7 @@ mission "Lunarium: Smuggling: Reactors"
 			choice
 				`	"Why is that a problem? I already delivered the grenades to that planet."`
 				`	"Did something change about <planet>?"`
-			`	"Larger than other equipment you've brought us, these generators are," the next message says. "The 'Armageddon Core,' 'Fusion Reactor' and 'Breeder Reactor', what we need are, but take a long time to move such large pieces, it will. Risk being seen, we cannot, so only in some days, delivered they may be. Switch every month, the rotating patrols do. Arrive on the fifth, new patrols usually do, so delivered during that window before the fifth, the reactors must be. Pay you well for this, we will, <payment>."`
+			`	"Larger than other equipment you've brought us, these generators are," the next message says. "The 'Armageddon Core,' 'Fusion Reactor' and 'Breeder Reactor,' what we need are, but take a long time to move such large pieces, it will. Risk being seen, we cannot, so only in some days, delivered they may be. Switch every month, the rotating patrols do. Arrive on the fifth, new patrols usually do, so delivered during that window before the fifth, the reactors must be. Pay you well for this, we will, <payment>."`
 			`	She signs off, the beeping stops, and your monitor screen returns to normal.`
 				accept
 	on accept

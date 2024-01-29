@@ -1666,7 +1666,8 @@ mission "Hai Film Crew 1"
 	cargo "film equipment" 50
 	passengers 80
 	source
-		attributes hai urban
+		attributes hai
+		attributes urban
 		not attributes "uninhabited" "station"
 	destination "Darkrest"
 	to offer
@@ -1762,7 +1763,8 @@ mission "Hai Film Crew 3"
 	passengers 80
 	source "Darkrest"
 	destination
-		attributes hai urban
+		attributes hai
+		attributes urban
 	to offer
 		has "Hai Film Crew 2: done"
 	on offer
@@ -1877,7 +1879,7 @@ mission "Station Exploration 2"
 	on complete
 		conversation
 			`Upon landing, you are accosted by the local police on <planet>.`
-			`	"Captain <last>?", says a Hai officer. "Could you come with me for a moment?"`
+			`	"Captain <last>?" says a Hai officer. "Could you come with me for a moment?"`
 			choice
 				`	"Am I in trouble?"`
 					goto normal
@@ -1912,7 +1914,7 @@ mission "Station Exploration Abandon Ship"
 		fine 70000
 		conversation
 			`Upon landing, you are accosted by the local police on <origin>. Behind your ship, you see your passengers disembarking from another Hai ship. Some of them are red-faced and crying, but they appear uninjured.`
-			`	"Captain <last>?", says a Hai officer. "Could you come with me for a moment?"`
+			`	"Captain <last>?" says a Hai officer. "Could you come with me for a moment?"`
 			choice
 				`	"Am I in trouble?"`
 					goto questions
