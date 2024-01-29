@@ -342,15 +342,13 @@ mission "Sick of Acorn Bread"
 		random < 1
 	on offer
 		conversation
-			`With some time to kill while your ship is being serviced by the Hai dockhands, you enter the spaceport searching for a bite to eat. Restaurants advertise their menus in bright, attention-grabbing colors on their windows. Amongst the selection, you spot one that promises "authentic Hai cuisine," along with some large text printed in the Hai language which you don't understand. Next to it, you see a human street food vendor offering snacks and ready-made meals.`
+			`With some time to kill while your ship is being serviced by the Hai dockhands, you enter the spaceport searching for a bite to eat. Restaurants advertise their menus in bright, attention-grabbing colors on their windows; amongst the selection, you spot one that promises "authentic Hai cuisine," along with some large text printed in the Hai language which you don't understand. Next to it, you see a human street food vendor offering snacks and ready-made meals.`
 			choice
 				`	(Enter the restaurant.)`
 					goto restaurant
 				`	(Choose the human food vendor instead.)`
-					goto humanfood
 				`	(On second thought, I'm not that hungry.)`
 					decline
-			label humanfood
 			action
 				payment -25
 			`	Food made by humans is certainly the safer option. The vendor sells you a dish comprised of steamed vegetables, along with a fillet of some yellow-tinged fish which she assures you is perfectly edible. The meal is somewhat bland, but the fish is buttery and tender. You dispose of the leftovers in a nearby garbage receptacle, and you watch as it beeps melodically, incinerating the refuse.`
