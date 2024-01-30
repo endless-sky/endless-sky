@@ -1772,6 +1772,7 @@ mission "Bulk Slave Transport [1]"
 	job
 	repeat
 	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves in secure cells and <cargo> to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
+	passengers 10 4 .1
 	# illegal -1 should be an atrocity, but it isn't
 	cargo "slave food" 1
 		illegal -1
