@@ -1111,8 +1111,8 @@ ship "Penguin"
 		"thrusting energy" 0.6
 		"thrusting heat" 0.55
 		"turn" 80.0
-		"turning energy" 0.15
-		"turning heat" 0.15
+		"turning energy" 0.2
+		"turning heat" 0.2
 		"reverse thrust" 4.2
 		"reverse thrusting energy" 0.55
 		"reverse thrusting heat" 0.55
