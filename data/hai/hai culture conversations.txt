@@ -337,6 +337,7 @@ mission "Sick of Acorn Bread"
 	source
 		government "Hai"
 		not attributes "station"
+		attributes "hai: human presence" "human tourism"
 	to offer
 		credits > 50
 		random < 1
