@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: ${{ github.ref }}-${{ github.workflow }}-${{ github.event_name }}
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
   cancel-in-progress: true
 
 jobs:
@@ -65,9 +65,9 @@ jobs:
     - name: Verify executable
       run: ./steam-container-runtime/depot/run-in-sniper ./build/steam-${{ matrix.arch }}/endless-sky -- -v
     - name: Execute data parsing test
-      run: ./steam-container-runtime/depot/run-in-sniper ./utils/test_parse.sh -- ./build/steam-${{ matrix.arch }}/endless-sky
+      run: ./steam-container-runtime/depot/run-in-sniper ./build/steam-${{ matrix.arch }}/endless-sky -- -p
     - name: Execute integration data parsing test
-      run: ./steam-container-runtime/depot/run-in-sniper ./utils/test_parse.sh -- ./build/steam-${{ matrix.arch }}/endless-sky tests/integration/config
+      run: ./steam-container-runtime/depot/run-in-sniper ./build/steam-${{ matrix.arch }}/endless-sky -- -p --config tests/integration/config
     - name: Execute tests
       run: |
         cd steam

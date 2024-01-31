@@ -238,12 +238,12 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 		{
 			// Skip the currently selected link, if any, and non valid system links. Also skip links to
 			// systems the player has not seen, and skip hyperspace links if the
-			// player has not visited either end of them.
+			// player cannot view either end of them.
 			if(!it->IsValid() || it == original)
 				continue;
 			if(!player.HasSeen(*it))
 				continue;
-			if(!(hasJumpDrive || player.HasVisited(*it) || player.HasVisited(*source)))
+			if(!(hasJumpDrive || player.CanView(*it) || player.CanView(*source)))
 				continue;
 
 			// Generate a sortable angle with vector length as a tiebreaker.
@@ -474,7 +474,7 @@ bool MapDetailPanel::RClick(int x, int y)
 		// Only issue movement orders if the player is in-flight.
 		if(player.GetPlanet())
 			GetUI()->Push(new Dialog("You cannot issue fleet movement orders while docked."));
-		else if(!player.HasVisited(*selectedSystem))
+		else if(!player.CanView(*selectedSystem))
 			GetUI()->Push(new Dialog("You must visit this system before you can send your fleet there."));
 		else
 			player.SetEscortDestination(selectedSystem, uiClick / scale);
@@ -687,11 +687,11 @@ void MapDetailPanel::DrawInfo()
 	const double bottomGovY = mapInterface->GetValue("government Y");
 	const Sprite *systemSprite = SpriteSet::Get("ui/map system");
 
-	bool hasVisited = player.HasVisited(*selectedSystem);
+	bool canView = player.CanView(*selectedSystem);
 
 	// Draw the panel for the planets. If the system was not visited, no planets will be shown.
 	const double minimumSize = max(minPlanetPanelHeight, Screen::Height() - bottomGovY - systemSprite->Height());
-	planetPanelHeight = hasVisited ? min(min(minimumSize, maxPlanetPanelHeight),
+	planetPanelHeight = canView ? min(min(minimumSize, maxPlanetPanelHeight),
 		(planetCards.size()) * planetCardHeight) : 0.;
 	Point size(planetWidth, planetPanelHeight);
 	// This needs to fill from the start of the screen.
@@ -702,7 +702,7 @@ void MapDetailPanel::DrawInfo()
 	Point uiPoint(Screen::Left() + startingX, Screen::Top());
 
 	// Draw the basic information for visitable planets in this system.
-	if(hasVisited && !planetCards.empty())
+	if(canView && !planetCards.empty())
 	{
 		uiPoint.Y() -= GetScroll();
 		maxScroll = 0.;
@@ -759,8 +759,7 @@ void MapDetailPanel::DrawInfo()
 	font.Draw({systemName, alignLeft}, uiPoint + Point(0., -7.), medium);
 
 	governmentY = uiPoint.Y() + textMargin;
-	string gov = player.HasVisited(*selectedSystem) ?
-		selectedSystem->GetGovernment()->GetName() : "Unknown Government";
+	string gov = canView ? selectedSystem->GetGovernment()->GetName() : "Unknown Government";
 	font.Draw({gov, alignLeft}, uiPoint + Point(0., 13.), (commodity == SHOW_GOVERNMENT) ? medium : dim);
 	if(commodity == SHOW_GOVERNMENT)
 		PointerShader::Draw(uiPoint + Point(0., 20.), Point(1., 0.),
@@ -787,9 +786,7 @@ void MapDetailPanel::DrawInfo()
 		font.Draw(commodity.name, uiPoint, color);
 
 		string price;
-
-		bool hasVisited = player.HasVisited(*selectedSystem);
-		if(hasVisited && selectedSystem->IsInhabited(player.Flagship()))
+		if(canView && selectedSystem->IsInhabited(player.Flagship()))
 		{
 			int value = selectedSystem->Trade(commodity.name);
 			int localValue = (player.GetSystem() ? player.GetSystem()->Trade(commodity.name) : 0);
@@ -811,7 +808,7 @@ void MapDetailPanel::DrawInfo()
 			}
 		}
 		else
-			price = (hasVisited ? "n/a" : "?");
+			price = (canView ? "n/a" : "?");
 
 		const auto alignRight = Layout(140, Alignment::RIGHT, Truncate::BACK);
 		font.Draw({price, alignRight}, uiPoint, color);
@@ -852,7 +849,7 @@ void MapDetailPanel::DrawOrbits()
 	SpriteShader::Draw(orbitSprite, Screen::TopRight() + .5 * Point(-orbitSprite->Width(), orbitSprite->Height()));
 	Point orbitCenter = Screen::TopRight() + Point(-120., 160.);
 
-	if(!player.HasVisited(*selectedSystem))
+	if(!player.CanView(*selectedSystem))
 		return;
 
 	const Font &font = FontSet::Get(14);
