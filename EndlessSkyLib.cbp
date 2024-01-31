@@ -369,6 +369,8 @@
 		<Unit filename="source/TestData.h" />
 		<Unit filename="source/TextReplacements.cpp" />
 		<Unit filename="source/TextReplacements.h" />
+		<Unit filename="source/Track.cpp" />
+		<Unit filename="source/Track.h" />
 		<Unit filename="source/Trade.cpp" />
 		<Unit filename="source/Trade.h" />
 		<Unit filename="source/TradingPanel.cpp" />
@@ -408,8 +410,6 @@
 		<Unit filename="source/text/Format.h" />
 		<Unit filename="source/text/Table.cpp" />
 		<Unit filename="source/text/Table.h" />
-		<Unit filename="source/text/Track.cpp" />
-		<Unit filename="source/text/Track.h" />
 		<Unit filename="source/text/Utf8.cpp" />
 		<Unit filename="source/text/Utf8.h" />
 		<Unit filename="source/text/WrappedText.cpp" />
