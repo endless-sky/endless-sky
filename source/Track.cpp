@@ -44,7 +44,7 @@ void Track::Load(const DataNode &node)
 	{
 		const string &key = child.Token(0);
 		bool hasValue = child.Size() >= 2;
-		if(key  == "volume" && hasValue)
+		if(key == "volume" && hasValue)
 			volumeModifier = clamp<double>(child.Value(1), -1., 1.);
 		else if(child.Token(0) == "idle" && child.Size() >= 2)
 			idleTitle = child.Token(1);
