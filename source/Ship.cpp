@@ -4531,7 +4531,8 @@ void Ship::StepTargeting()
 	shared_ptr<const Ship> target = GetTargetShip();
 	// If this is a fighter or drone and it is not assisting someone at the
 	// moment, its boarding target should be its parent ship.
-	if(CanBeCarried() && !(target && target == GetShipToAssist()))
+	// Unless the player uses a fighter as their flagship and is boarding an enemy ship.
+	if(CanBeCarried() && !(target && (target == GetShipToAssist() || isYours)))
 		target = GetParent();
 	if(target && !isDisabled)
 	{
@@ -4540,7 +4541,7 @@ void Ship::StepTargeting()
 		Point dv = (target->velocity - velocity);
 		double speed = dv.Length();
 		isBoarding = (distance < 50. && speed < 1. && commands.Has(Command::BOARD));
-		if(isBoarding && !CanBeCarried())
+		if(isBoarding && (!CanBeCarried() && !isYours))
 		{
 			if(!target->IsDisabled() && government->IsEnemy(target->government))
 				isBoarding = false;
