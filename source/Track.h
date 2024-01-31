@@ -57,8 +57,6 @@ private:
 	std::string landedTitle;
 
 	int wait = 0;
-
-	bool finishedLoading = false;
 };
 
 

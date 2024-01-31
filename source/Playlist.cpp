@@ -81,6 +81,8 @@ void Playlist::Load(const DataNode &node)
 				tracks.emplace_back(trackWeight, GameData::Tracks().Get(grand.Token(0)));
 			}
 		}
+		else
+			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 }
 

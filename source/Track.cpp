@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "DataNode.h"
 
+#include <algorithm>
 #include <iostream>
 
 using namespace std;
@@ -44,7 +45,7 @@ void Track::Load(const DataNode &node)
 		const string &key = child.Token(0);
 		bool hasValue = child.Size() >= 2;
 		if(key  == "volume" && hasValue)
-			volumeModifier = child.Value(1);
+			volumeModifier = clamp<double>(child.Value(1), -1., 1.);
 		else if(child.Token(0) == "idle" && child.Size() >= 2)
 			idleTitle = child.Token(1);
 		else if(child.Token(0) == "combat" && child.Size() >= 2)
@@ -53,8 +54,9 @@ void Track::Load(const DataNode &node)
 			landedTitle = child.Token(1);
 		else if(child.Token(0) == "wait" && child.Size() >= 2)
 			wait = max<int>(0, child.Value(1));
+		else
+			child.PrintTrace("Skipping unrecognized attribute:");
 	}
-	finishedLoading = true;
 }
 
 
@@ -70,18 +72,12 @@ const std::string &Track::GetTitle(GameState state) const
 {
 	switch(state)
 	{
-		case GameState::IDLE:
-			return idleTitle;
-			break;
 		case GameState::COMBAT:
 			return combatTitle;
-			break;
 		case GameState::LANDED:
 			return landedTitle;
-			break;
-		default:
+		case GameState::IDLE:
 			return idleTitle;
-			break;
 	}
 }
 
