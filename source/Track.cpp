@@ -77,6 +77,7 @@ const std::string &Track::GetTitle(GameState state) const
 		case GameState::LANDED:
 			return landedTitle;
 		case GameState::IDLE:
+		default:
 			return idleTitle;
 	}
 }

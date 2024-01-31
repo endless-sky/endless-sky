@@ -307,13 +307,11 @@ void Audio::UpdateMusic(PlayerInfo &player, Track::GameState state)
 		}
 	}
 	else
-	{
 		if(player.GetSystem() && !player.GetSystem()->MusicName().empty())
 		{
 			PlayMusic(player.GetSystem()->MusicName());
 			return;
 		}
-	}
 
 	// Wait for the time set by the track.
 	if(currentTrack->IsFinished() && currentPlaylistTrack)
