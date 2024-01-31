@@ -4541,7 +4541,7 @@ void Ship::StepTargeting()
 		Point dv = (target->velocity - velocity);
 		double speed = dv.Length();
 		isBoarding = (distance < 50. && speed < 1. && commands.Has(Command::BOARD));
-		if(isBoarding && !CanBeCarried() && !isYours)
+		if(isBoarding && !CanBeCarried())
 		{
 			if(!target->IsDisabled() && government->IsEnemy(target->government))
 				isBoarding = false;
