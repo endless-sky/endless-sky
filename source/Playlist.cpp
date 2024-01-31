@@ -26,6 +26,7 @@ using namespace std;
 
 namespace {
 	const Track *currentTrack = nullptr;
+	const std::set<std::string> PROGRESSION_STYLES = {"random", "linear", "pick"};
 }
 
 
@@ -55,23 +56,22 @@ void Playlist::Load(const DataNode &node)
 			if(child.Token(1) == "play")
 				toPlay.Load(child);
 		}
-		else if(child.Token(0) == "location")
+		else if(key == "location")
 			location.Load(child);
-		else if(child.Token(0) == "priority" && child.Size() >= 2)
-			priority = child.Value(1);
-		else if(child.Token(0) == "weight" && child.Size() >= 2)
+		else if(key == "priority" && hasValue)
+			priority = max<int>(0, child.Value(1));
+		else if(key == "weight" && hasValue)
 			weight = max<int>(1, child.Value(1));
-		else if(child.Token(0) == "tracks")
+		else if(key == "tracks")
 		{
-			std::vector<std::string> progressionStyles = {"random", "linear", "pick"};
-			bool validProgressionStyle = (child.Size() >= 2) ?
-					count(progressionStyles.begin(), progressionStyles.end(), child.Token(1)) :
+			bool validProgressionStyle = hasValue ?
+					PROGRESSION_STYLES.count(child.Token(1)) :
 					false;
 			if(validProgressionStyle)
 				progressionStyle = child.Token(1);
 			else
 			{
-				if(child.Size() >= 2)
+				if(hasValue)
 					child.PrintTrace("Warning: \"" + child.Token(1) + "\" is not a valid progression style so using linear:");
 				progressionStyle = "linear";
 			}
@@ -118,7 +118,7 @@ const Track *Playlist::GetCurrentTrack() const
 
 
 
-bool Playlist::MatchingConditions(PlayerInfo &player) const
+bool Playlist::MatchingConditions(const PlayerInfo &player) const
 {
 	if(player.GetPlanet())
 		if(!location.Matches(player.GetPlanet()))
