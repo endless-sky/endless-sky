@@ -39,13 +39,6 @@ Playlist::Playlist(const DataNode &node)
 
 void Playlist::Load(const DataNode &node)
 {
-	// All tracks need a name.
-	if(node.Size() < 2)
-	{
-		node.PrintTrace("Error: No name specified for playlist:");
-		return;
-	}
-
 	if(!name.empty())
 	{
 		node.PrintTrace("Error: Duplicate definition of playlist:");
@@ -55,7 +48,9 @@ void Playlist::Load(const DataNode &node)
 
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "to")
+		const string &key = child.Token(0);
+		bool hasValue = child.Size() >= 2;
+		if(key == "to")
 		{
 			if(child.Token(1) == "play")
 				toPlay.Load(child);
@@ -106,7 +101,7 @@ const Track *Playlist::GetCurrentTrack() const
 {
 	if(progressionStyle == "linear")
 	{
-		const Track * tmpTrack = currentTrack;
+		const Track *tmpTrack = currentTrack;
 		auto it = find(tracks.begin(), tracks.end(), tmpTrack);
 		++it;
 		if(it == tracks.end())
