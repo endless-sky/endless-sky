@@ -26,12 +26,14 @@ class DataNode;
 // Class to store a track of music that can be used in a playlist.
 class Track {
 public:
-	enum class GameState
+	enum class GameState : int_fast8_t
 	{
-		IDLE,
+		IDLE = 0,
 		COMBAT,
 		LANDED
 	};
+
+
 public:
 	Track() = default;
 
@@ -40,11 +42,12 @@ public:
 
 	void Load(const DataNode &node);
 
-	const std::string Name() const;
+	const std::string &Name() const;
 
-	const std::string GetTitle(GameState state) const;
+	const std::string &GetTitle(GameState state) const;
 	const double GetVolumeModifier() const;
 	const int Wait() const;
+
 
 private:
 	std::string name;

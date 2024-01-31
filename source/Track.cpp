@@ -21,6 +21,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
+
+
 Track::Track(const DataNode &node)
 {
 	Load(node);
@@ -30,13 +32,6 @@ Track::Track(const DataNode &node)
 
 void Track::Load(const DataNode &node)
 {
-	// All tracks need a name.
-	if(node.Size() < 2)
-	{
-		node.PrintTrace("Error: No name specified for track:");
-		return;
-	}
-
 	if(!name.empty())
 	{
 		node.PrintTrace("Error: Duplicate definition of track:");
@@ -46,7 +41,9 @@ void Track::Load(const DataNode &node)
 
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "volume" && child.Size() >= 2)
+		const string &key = child.Token(0);
+		bool hasValue = child.Size() >= 2;
+		if(key  == "volume" && hasValue)
 			volumeModifier = child.Value(1);
 		else if(child.Token(0) == "idle" && child.Size() >= 2)
 			idleTitle = child.Token(1);
@@ -62,14 +59,14 @@ void Track::Load(const DataNode &node)
 
 
 
-const std::string Track::Name() const
+const std::string &Track::Name() const
 {
 	return name;
 }
 
 
 
-const std::string Track::GetTitle(GameState state) const
+const std::string &Track::GetTitle(GameState state) const
 {
 	switch(state)
 	{

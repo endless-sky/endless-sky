@@ -21,7 +21,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Track.h"
 #include "WeightedList.h"
 
-
 #include <map>
 #include <string>
 #include <vector>
@@ -48,6 +47,7 @@ public:
 
 	int Priority() const;
 	int Weight() const;
+
 
 private:
 	std::string name;
