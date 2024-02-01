@@ -1667,11 +1667,10 @@ mission "Slave Transport [0]"
 	repeat
 	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves in secure cells and <cargo> to <destination> for <payment>. Slavery is punishable by death, so this may be a dangerous job to take."
 	passengers 2 10 .9
-	stealth
 	# illegal -1 should be an atrocity, but it isn't
 	cargo "slave food" 1
 		# This is put in the middle of a stock message that changes based on how you got the death sentence
-		illegal -1 `We have freed the slaves and confiscated the illegal cargo.`
+		illegal -1
 	to offer
 		random < 25
 		"reputation: Pirate" > 0
@@ -1702,7 +1701,7 @@ mission "Slave Transport [1]"
 	passengers 2 10 .9
 	# illegal -1 should be an atrocity, but it isn't
 	cargo "slave food" 1
-		illegal -1 `We have freed the slaves and confiscated the illegal cargo.`
+		illegal -1
 	to offer
 		random < 25
 		"reputation: Pirate" > 0
@@ -1731,10 +1730,9 @@ mission "Slave Transport [2]"
 	repeat
 	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves in secure cells and <cargo> to <destination> for <payment>. Slavery is punishable by death, so this may be a dangerous job to take."
 	passengers 2 10 .9
-	stealth
 	# illegal -1 should be an atrocity, but it isn't
 	cargo "slave food" 1
-		illegal -1 `We have freed the slaves and confiscated the illegal cargo.`
+		illegal -1
 	to offer
 		random < 25
 		"reputation: Pirate" > 0
@@ -1765,10 +1763,9 @@ mission "Bulk Slave Transport [0]"
 	repeat
 	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves in secure cells and <cargo> to <destination> for <payment>. Slavery is punishable by death, so this may be a dangerous job to take."
 	passengers 10 4 .1
-	stealth
 	# illegal -1 should be an atrocity, but it isn't
 	cargo "slave food" 1
-		illegal -1 `We have freed the slaves and confiscated the illegal cargo.`
+		illegal -1
 	to offer
 		random < 15
 		"reputation: Pirate" > 0
@@ -1797,10 +1794,9 @@ mission "Bulk Slave Transport [1]"
 	repeat
 	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves in secure cells and <cargo> to <destination> for <payment>. Slavery is punishable by death, so this may be a dangerous job to take."
 	passengers 10 4 .1
-	stealth
 	# illegal -1 should be an atrocity, but it isn't
 	cargo "slave food" 1
-		illegal -1 `We have freed the slaves and confiscated the illegal cargo.`
+		illegal -1
 	to offer
 		random < 15
 		"reputation: Pirate" > 0
