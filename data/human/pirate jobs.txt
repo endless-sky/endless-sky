@@ -1670,7 +1670,8 @@ mission "Slave Transport [0]"
 	stealth
 	# illegal -1 should be an atrocity, but it isn't
 	cargo "slave food" 1
-		illegal -1 `Upon scanning your vessel, law enforcement notice the slaves that you have on board. They immediately sentence you to death after freeing the slaves and confiscating the illegal cargo. If you survive, your reputation as a reliable, no-questions-asked transporter will be significantly diminished.`
+		# This is put in the middle of a stock message that changes based on how you got the death sentence
+		illegal -1 `We have freed the slaves and confiscated the illegal cargo.`
 	to offer
 		random < 25
 		"reputation: Pirate" > 0
@@ -1701,7 +1702,7 @@ mission "Slave Transport [1]"
 	passengers 2 10 .9
 	# illegal -1 should be an atrocity, but it isn't
 	cargo "slave food" 1
-		illegal -1 `Upon scanning your vessel, law enforcement notices the slaves that you have on board. They immediately sentence you to death after freeing the slaves and confiscating the illegal cargo. If you survive, your reputation as a reliable, no-questions-asked transporter will be significantly diminished.`
+		illegal -1 `We have freed the slaves and confiscated the illegal cargo.`
 	to offer
 		random < 25
 		"reputation: Pirate" > 0
@@ -1733,7 +1734,7 @@ mission "Slave Transport [2]"
 	stealth
 	# illegal -1 should be an atrocity, but it isn't
 	cargo "slave food" 1
-		illegal -1 `Upon scanning your vessel, law enforcement notices the slaves that you have on board. They immediately sentence you to death after freeing the slaves and confiscating the illegal cargo. If you survive, your reputation as a reliable, no-questions-asked transporter will be significantly diminished.`
+		illegal -1 `We have freed the slaves and confiscated the illegal cargo.`
 	to offer
 		random < 25
 		"reputation: Pirate" > 0
@@ -1767,7 +1768,7 @@ mission "Bulk Slave Transport [0]"
 	stealth
 	# illegal -1 should be an atrocity, but it isn't
 	cargo "slave food" 1
-		illegal -1 `Upon scanning your vessel, law enforcement notices the slaves that you have on board. They immediately sentence you to death after freeing the slaves and confiscating the illegal cargo. If you survive, your reputation as a reliable, no-questions-asked transporter will be significantly diminished.`
+		illegal -1 `We have freed the slaves and confiscated the illegal cargo.`
 	to offer
 		random < 15
 		"reputation: Pirate" > 0
@@ -1799,7 +1800,7 @@ mission "Bulk Slave Transport [1]"
 	stealth
 	# illegal -1 should be an atrocity, but it isn't
 	cargo "slave food" 1
-		illegal -1 `Upon scanning your vessel, law enforcement notices the slaves that you have on board. They immediately sentence you to death after freeing the slaves and confiscating the illegal cargo. If you survive, your reputation as a reliable, no-questions-asked transporter will be significantly diminished.`
+		illegal -1 `We have freed the slaves and confiscated the illegal cargo.`
 	illegal -1
 	to offer
 		random < 15
