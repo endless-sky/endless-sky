@@ -475,6 +475,17 @@ interface "load menu"
 	button d "_Delete"
 		center -285 155
 		dimensions 90 30
+	sprite "ui/wide button"
+		center -435 195
+	button x "E_xport..."
+		center -435 195
+		dimensions 120 30
+	active
+	sprite "ui/wide button"
+		center -285 195
+	button i "_Import..."
+		center -285 195
+		dimensions 90 30
 
 	active if "pilot alive"
 	button a "_Add Snapshot"
