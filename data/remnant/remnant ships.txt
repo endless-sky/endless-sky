@@ -1085,7 +1085,7 @@ ship "Penguin"
 		"drag" 1.25
 		"heat dissipation" 0.9
 		"fuel capacity" 800
-		"energy capacity" 300
+		"energy capacity" 1050
 		"ramscoop" 1.25
 		"cargo space" 19
 		"outfit space" 109
