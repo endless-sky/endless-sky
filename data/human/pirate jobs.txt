@@ -1801,7 +1801,6 @@ mission "Bulk Slave Transport [1]"
 	# illegal -1 should be an atrocity, but it isn't
 	cargo "slave food" 1
 		illegal -1 `We have freed the slaves and confiscated the illegal cargo.`
-	illegal -1
 	to offer
 		random < 15
 		"reputation: Pirate" > 0
