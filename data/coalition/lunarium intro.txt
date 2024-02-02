@@ -445,7 +445,7 @@ mission "Lunarium: Smuggling: Reactors"
 			choice
 				`	"Why is that a problem? I already delivered the grenades to that planet."`
 				`	"Did something change about <planet>?"`
-			`	"Larger than other equipment you've brought us, these generators are," the next message says. "The 'Armageddon Core,' 'Fusion Reactor' and 'Breeder Reactor', what we need are, but take a long time to move such large pieces, it will. Risk being seen, we cannot, so only in some days, delivered they may be. Switch every month, the rotating patrols do. Arrive on the fifth, new patrols usually do, so delivered during that window before the fifth, the reactors must be. Pay you well for this, we will, <payment>."`
+			`	"Larger than other equipment you've brought us, these generators are," the next message says. "The 'Armageddon Core,' 'Fusion Reactor' and 'Breeder Reactor,' what we need are, but take a long time to move such large pieces, it will. Risk being seen, we cannot, so only in some days, delivered they may be. Switch every month, the rotating patrols do. Arrive on the fifth, new patrols usually do, so delivered during that window before the fifth, the reactors must be. Pay you well for this, we will, <payment>."`
 			`	She signs off, the beeping stops, and your monitor screen returns to normal.`
 				accept
 	on accept
@@ -1917,7 +1917,7 @@ mission "Lunarium: Quarg Interview"
 			label fight
 			`	"Try and fool you, I will not. At a tremendous disadvantage, to say the least, we are," Pyakri answers. "Weaker, our ships are, and far less powerful weapons, we boast. Mostly human designs. Due to being simpler, easier to produce them in what factories we have, they are. Also lack experience, the troops do..."`
 			`	The mood around the table quickly dims as she goes on listing the ways the Lunarium is lacking in comparison to your opponents. Elirom stands up, putting both hands on the table to draw attention. "Smarter than us, they are not. Assure you of that, I can. Wanting in many areas we are, yes, but only because hoard our best materials, they do. Already preparing some deadlier weapons, we are. Finished, the blueprints have been. Only lacking the right materials, we are. When secured those, we have, move on to reforming our arsenal we can, and maybe get some better ships produced, too."`
-			`	"And suppose I do that, intend to tell me where to attack for such materials, you do?" Pyakri asks as she stands up herself. "Caught by 'the unforeseen' will my men again be? By an Arach batallion you forgot to mention, again?"`
+			`	"And suppose I do that, intend to tell me where to attack for such materials, you do?" Pyakri asks as she stands up herself. "Caught by 'the unforeseen' will my men again be? By an Arach battalion you forgot to mention, again?"`
 			`	Caught apparently off-guard by the question, Elirom looks at her for a few seconds, then resigns himself to sit back down.`
 				goto questions
 			label outsiders

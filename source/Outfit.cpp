@@ -277,20 +277,15 @@ void Outfit::Load(const DataNode &node)
 			mass = child.Value(1);
 		else if(child.Token(0) == "licenses" && (child.HasChildren() || child.Size() >= 2))
 		{
-			auto isNewLicense = [](const vector<string> &c, const string &val) noexcept -> bool {
-				return find(c.begin(), c.end(), val) == c.end();
-			};
 			// Add any new licenses that were specified "inline".
 			if(child.Size() >= 2)
 			{
 				for(auto it = ++begin(child.Tokens()); it != end(child.Tokens()); ++it)
-					if(isNewLicense(licenses, *it))
-						licenses.push_back(*it);
+					AddLicense(*it);
 			}
 			// Add any new licenses that were specified as an indented list.
 			for(const DataNode &grand : child)
-				if(isNewLicense(licenses, grand.Token(0)))
-					licenses.push_back(grand.Token(0));
+				AddLicense(grand.Token(0));
 		}
 		else if(child.Token(0) == "jump range" && child.Size() >= 2)
 		{
@@ -545,6 +540,14 @@ void Outfit::Add(const Outfit &other, int count)
 
 
 
+void Outfit::AddLicenses(const Outfit &other)
+{
+	for(const auto &license : other.licenses)
+		AddLicense(license);
+}
+
+
+
 // Modify this outfit's attributes.
 void Outfit::Set(const char *attribute, double value)
 {
@@ -658,4 +661,14 @@ const map<const Sound *, int> &Outfit::JumpOutSounds() const
 const Sprite *Outfit::FlotsamSprite() const
 {
 	return flotsamSprite;
+}
+
+
+
+// Add the license with the given name to the licenses required by this outfit, if it is not already present.
+void Outfit::AddLicense(const string &name)
+{
+	const auto it = find(licenses.begin(), licenses.end(), name);
+	if(it == licenses.end())
+		licenses.push_back(name);
 }

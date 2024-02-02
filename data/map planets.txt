@@ -702,7 +702,7 @@ planet Clark
 		fleet "Small Militia" 30
 
 planet Clink
-	attributes mining moon
+	attributes mining moon south
 	landscape land/desert3
 	description `About a decade ago, a mining corporation from Zug planted a colony on Clink for harvesting some rare earth minerals that are present in this moon's crust due to its unusually high rate of asteroid impacts. The atmosphere here is too thin to breathe without a respirator, and because of the low gravity, the dust raised by the mining operations hangs perpetually in the air.`
 	description `	The miners who work here are a tight-knit group, since most of them were part of the original colonization team. They are not particularly open to outsiders, and the facilities here are so rudimentary that they do not even stock fuel for visiting ships.`
@@ -1129,7 +1129,7 @@ planet Echo
 planet "Eeu Mnai"
 	attributes uninhabited
 	landscape land/canyon03
-	description `In contrast to the flourishing world of Mnai, Eeu Mnai is a dull dwarf planet composed mostly of rock and stone. While still within habitable range of the system's binary stars, the surface of this world is rough and jagged, and is dominated by cold fall and winter seasons. This environment is not inhospitable, however, as various forms of life. such as subterranean mammals and insectoid creatures, have adapted to these conditions.`
+	description `In contrast to the flourishing world of Mnai, Eeu Mnai is a dull dwarf planet composed mostly of rock and stone. While still within habitable range of the system's binary stars, the surface of this world is rough and jagged, and is dominated by cold fall and winter seasons. This environment is not inhospitable, however, as various forms of life, such as subterranean mammals and insectoid creatures, have adapted to these conditions.`
 	government Uninhabited
 
 planet "Ef Aourtdye"
@@ -1281,7 +1281,7 @@ planet Erabuthro
 	description `Erabuthro is the capital of the Bunrodean Hegemony, home to the throne of the Queen. Only those with the blessings of the Queen are allowed to set foot on the planet's surface, although receiving such blessing doesn't necessarily guarantee a warm welcome.`
 	description `	Much of the planet's land area is covered in a hexagonal pattern of city and wilderness, with every hexagonal urban area bordering an area of wilderness, as if the planet consisted of one giant city with hundreds or maybe even thousands of parks scattered across it.`
 	spaceport `The central hub of the spaceport is an engineering marvel of impossible looking structures, such as buildings with large unsupported overhangs that look as though they should collapse under their own weight. The spaceport includes many of the typical services that you would expect, but also has a number of buildings that seem to act as embassies or consulates from other worlds.`
-	spaceport `	Being an outsider on royal grounds, you are at all times escorted by a group of armed guards and a translator, although they seem to give you free reign to go wherever you want without any trouble. Only when approaching the royal palace without an invitation do they stop you.`
+	spaceport `	Being an outsider on royal grounds, you are at all times escorted by a group of armed guards and a translator, although they seem to give you free rein to go wherever you want without any trouble. Only when approaching the royal palace without an invitation do they stop you.`
 	shipyard "Bunrodea Basic"
 	shipyard "Bunrodea Advanced"
 	shipyard "Bunrodea Capital"
@@ -2877,7 +2877,7 @@ planet Muspel
 		fleet "Small Deep Security" 14
 
 planet Mutiny
-	attributes pirate
+	attributes core "core pirate" pirate
 	landscape land/badlands13
 	description `Centuries ago, Mutiny was used as a sort of prison world for a powerful band of pirates, a place where rivals could be marooned or held for ransom, rather than killing them outright. It is a cold, dark planet, and food is scarce, but over time several villages developed in the more hospitable regions. No longer prisoners, the inhabitants who remain do so because they prefer a simple life beyond the reach of any government, on a planet that will never be stolen from them because it carries nothing of value.`
 	security 0
@@ -3644,7 +3644,7 @@ planet Ruelogakk
 	attributes "gegno quarg" quarg station
 	landscape land/station5
 	description `This Quarg station, although pristine and kept in high order, has been constructed rather recently compared to the complete ringworld the next system over. It appears to be purposed as some sort of resting spot for tourists, though very few docking bays are in use. A hauntingly low number of Quarg are seen walking about the brightly lit abstract hallways of glass with only the faintest hum of machinery.`
-	spaceport `Only a few small alien transports can be seen docked with this station, hooked up to strange devices that seem to match the designs of their ships. Other than that, the alien's presence here seems to be kept at an extreme minimum, with at most one or two seen passing by occasionally.`
+	spaceport `Only a few small alien transports can be seen docked with this station, hooked up to strange devices that seem to match the designs of their ships. Other than that, the aliens' presence here seems to be kept at an extreme minimum, with at most one or two seen passing by occasionally.`
 	government "Quarg (Gegno)"
 	"required reputation" 1
 	bribe 0
@@ -4007,8 +4007,8 @@ planet Siedi
 planet "Sies Upi"
 	attributes gegno vi
 	landscape land/desert15
-	description `Sies Upi is one of the most recently colonized planets of the Gegno Vi. This hot, dry world with harsh living environments serves as more of an outpost than it does a colony, but nevertheless the Vi found ways to create manageable living conditions.`
-	spaceport `This spaceport seems a lot more militarized than other Gegno planet spaceports, full of geared up Vi with their ships parked close by. The roar of an enormous cruiser's engines can be heard just as often as the shutting down of another. There doesn't look to be very many non-military personnel here, and it feels somewhat claustrophobic with all of the guards standing around.`
+	description `Sies Upi is one of the most recently colonized planets of the Gegno Vi. This hot, dry, and harsh world serves as more of an outpost than it does a colony, but nevertheless the Vi have found ways to create manageable living conditions for their settlers.`
+	spaceport `This spaceport seems a lot more militarized than other Gegno planetary spaceports, full of geared up Vi with their ships parked close by. The roar of an enormous cruiser's engines can be heard just as often as the shutting down of another. There doesn't look to be very many non-military personnel here, and it feels somewhat claustrophobic with all of the guards standing around.`
 	government "Gegno Vi"
 	outfitter "Vi Basic"
 	"required reputation" 1
@@ -4784,7 +4784,7 @@ planet "Vibrant Water"
 planet Vigales
 	attributes uninhabited
 	landscape land/desert14
-	description `This hot desert world is home to several species of underground animals. These animals are very reptile-like, having appearances similar to that of lizards or salamanders from Earth, although much larger in size. It is believed that some indigenous species in Gegno space have originated from this world, or are descendants of ancestral species that once inhabited it.`
+	description `This hot desert world is home to several species of underground animals. These animals are very reptile-like, having appearances similar to that of lizards or salamanders from Earth, although much larger in size. It is believed that some indigenous species common across Gegno space originated from this world, or are descendants of ancestral species that once inhabited it.`
 	government Uninhabited
 
 planet Viminal
