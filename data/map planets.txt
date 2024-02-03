@@ -537,7 +537,7 @@ planet Byruca
 planet Caelian
 	attributes remnant "remnant primary"
 	landscape land/sky7
-	description `When the first members of the Remnant discovered this region of space, Caelian was the only habitable world they found with enough insolation to be able to operate solar-powered factories and bioreactors. The first settlements were scattered widely, with the houses hidden underground in order to be less visible from space, because they feared that the Alphas would overrun human space and eventually find their way into the Waste. Centuries later, when they learned that the Alpha Wars had ended, they began to expand the factories and settlements more openly.`
+	description `When the first members of the Remnant discovered this region of space, Caelian was the only habitable world they found with enough isolation to be able to operate solar-powered factories and bioreactors. The first settlements were scattered widely, with the houses hidden underground in order to be less visible from space, because they feared that the Alphas would overrun human space and eventually find their way into the Waste. Centuries later, when they learned that the Alpha Wars had ended, they began to expand the factories and settlements more openly.`
 	spaceport `Nearly all members of the Remnant are dark-skinned, either from exposure to high levels of ultraviolet radiation or because that is what their first ancestors who came here looked like. So, they walk around this spaceport village without much fear of the scorching desert sun, bringing supplies back and forth to the houses and to the flat clay pavement of the landing zone. Aside from some camels that the settlers brought with them, there are very few animals here.`
 	shipyard Remnant
 	outfitter Remnant
@@ -1034,7 +1034,7 @@ planet "Drekag Firask"
 planet "Dueitch Ae"
 	attributes gegno scin
 	landscape land/mountain1
-	description `In order to pursue biological and other important scientific research, this green, lush world was designated as the Gegno Scin's capital. Much unlike the heavy industry of the core Gegno worlds, Dueitch Ae's surface still supports many natural ecosystems, and most importantly, is home to a notable amount of water bodies. The Scin effectively limit their expansion on the planet, even at the cost of their population's growth, in order to preserve the flourshing life on it as long as possible.`
+	description `In order to pursue biological and other important scientific research, this green, lush world was designated as the Gegno Scin's capital. Much unlike the heavy industry of the core Gegno worlds, Dueitch Ae's surface still supports many natural ecosystems, and most importantly, is home to a notable amount of water bodies. The Scin effectively limit their expansion on the planet, even at the cost of their population's growth, in order to preserve the flourishing life on it as long as possible.`
 	description `	Although preservation is a primary goal, the Scin still manipulate the planet for the sake of research. Even if it's not harming the environment directly, patches of the planet have been converted into large experimentation grounds, some a bit less humane than others.`
 	spaceport `The spaceport you are staying at is one huge circular construction outfitted with strange looking devices and technology, very much in contrast to the surrounding natural environment. In an open section located at the center is a small forest being observed by the nearby Scin. Some of them, however, seem to be more interested in observing you.`
 	government "Gegno Scin"
@@ -3957,7 +3957,7 @@ planet "Shifting Sand"
 planet "Shih's Locker"
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/nasa16
-	description `This gas giant earned its name after the infamous Captain Shih "disposed" of a mutiny. Rather than simply ejecting her crew out of the airlock, she packed them into an escape pod that would survive the upper atmosphere of the planet. In the years that followed, many seeking to prove themselves the meanest pirate in the galaxy sought to emulate her example by making a pilgrimage to her Locker whenever a crewmember went too far out of line.`
+	description `This gas giant earned its name after the infamous Captain Shih "disposed" of a mutiny. Rather than simply ejecting her crew out of the airlock, she packed them into an escape pod that would survive the upper atmosphere of the planet. In the years that followed, many seeking to prove themselves the meanest pirate in the galaxy sought to emulate her example by making a pilgrimage to her Locker whenever a crew member went too far out of line.`
 	description `	This far within the planet's atmosphere, the sky is colored a murky blue-green, standing in contrast to the brownish haze that seems to extend for eternity. While legend on Greenrock holds that the ghosts of traitorous pirates haunt the depths of Shih's Locker, they seem to be keeping to themselves for now.`
 	government Uninhabited
 

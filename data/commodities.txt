@@ -322,7 +322,7 @@ trade
 		"aircraft hulls"
 		"alarm systems"
 		"bicycles"
-		"breadmaking machines"
+		"bread making machines"
 		"cameras"
 		"cargo containers"
 		"concrete mixers"
