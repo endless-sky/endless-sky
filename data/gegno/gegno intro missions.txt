@@ -75,7 +75,7 @@ mission "First Contact: Gegno Vi"
 					goto about
 				`	(Reject their request.)`
 					goto deny
-			`	You hesitantly take the device and turn to make your way to your ship. Before leaving, you take one last glimpse of the enormous creature in the background. Its head is very reptilian, close to dragon-like, with numerous eyes and a mane of spikes. A few small appendages are on either end of it, almost like a scaly salamander. The various signatures on your radar earlier must have been others of their kind. Glaring at you, then at the creature, the Vi warrior utters a single intelligible word in a very deep voice:`
+			`	You hesitantly take the device and turn to make your way to your ship. Before leaving, you take one last glimpse of the enormous creature in the background. Its head is very reptilian, close to dragon-like, with numerous eyes and a mane of spikes. A few small appendages are on either end of it, almost like a scaly salamander. The various signatures on your radar earlier must have been others of their kind. Glaring at you, then at the creature, the alien utters a single intelligible word in a very deep voice:`
 			`	"Voordt."`
 				accept
 			label about
