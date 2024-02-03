@@ -1933,6 +1933,7 @@ mission "Station Exploration Abandon Ship"
 			`	"You are being fined <fine> for abandoning your passengers without warning. You're lucky you didn't end up with a more serious punishment." After further chewing you out for endangering your passengers' safety, he walks away from you in a huff.`
 
 mission "Pilgrimage"
+	name "Hai spiritual leader to <destination>"
 	description "Bring a Hai spiritual leader to <destination>."
 	minor
 	source
@@ -1973,7 +1974,7 @@ mission "Pilgrimage"
 				`	"Unfettered space is too dangerous for me. You'll have to find someone else."`
 					goto dangerous
 			label preach
-			`	"That is an oversimplification, but it is not something I can explain adequately to a human." He turns away, looking into the fog. "There are portentious events occuring in the galaxy, and I must warn others of the turmoil I have forseen. The Unfettered crave turmoil, so naturally they are more inclined to believe me." He gives a wry smile.`
+			`	"That is an oversimplification, but it is not something I can explain adequately to a human." He turns away, looking into the fog. "There are portentious events occurring in the galaxy, and I must warn others of the turmoil I have forseen. The Unfettered crave turmoil, so naturally they are more inclined to believe me." He gives a wry smile.`
 			choice
 				`	"Alright, I can take you there."`
 					goto agree
