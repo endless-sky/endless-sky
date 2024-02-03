@@ -1963,13 +1963,13 @@ mission "Pilgrimage"
 				`	"Alright, I'll take you there."`
 					goto agree
 				`	"Unfettered space is too dangerous for me. You'll have to find someone else."`
-					goto danger
+					goto dangerous
 			label teachings
 			`	An unreadable expression appears on the Hai's face. "How do I explain this... You have your preachers and wise men among the humans, yes? I am something similar." He stops for a moment, realizing something. "Ah, apologies for my rudeness - you probably do not know who I am. My name is Hareek. Now, will you take me to <destination>?"`
 			choice
-				`	"So you're going to preach to the Unfettered?"
+				`	"So you're going to preach to the Unfettered?"`
 					goto preach
-				`	"I can take you."
+				`	"I can take you."`
 					goto agree
 				`	"Unfettered space is too dangerous for me. You'll have to find someone else."`
 					goto dangerous
