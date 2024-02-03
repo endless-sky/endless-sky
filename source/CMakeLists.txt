@@ -328,6 +328,8 @@ target_sources(EndlessSkyLib PRIVATE
 	TestData.h
 	TextReplacements.cpp
 	TextReplacements.h
+	Timer.cpp
+	Timer.h
 	Trade.cpp
 	Trade.h
 	TradingPanel.cpp
