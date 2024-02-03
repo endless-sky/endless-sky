@@ -537,7 +537,7 @@ planet Byruca
 planet Caelian
 	attributes remnant "remnant primary"
 	landscape land/sky7
-	description `When the first members of the Remnant discovered this region of space, Caelian was the only habitable world they found with enough isolation to be able to operate solar-powered factories and bioreactors. The first settlements were scattered widely, with the houses hidden underground in order to be less visible from space, because they feared that the Alphas would overrun human space and eventually find their way into the Waste. Centuries later, when they learned that the Alpha Wars had ended, they began to expand the factories and settlements more openly.`
+	description `When the first members of the Remnant discovered this region of space, Caelian was the only habitable world they found with enough insolation to be able to operate solar-powered factories and bioreactors. The first settlements were scattered widely, with the houses hidden underground in order to be less visible from space, because they feared that the Alphas would overrun human space and eventually find their way into the Waste. Centuries later, when they learned that the Alpha Wars had ended, they began to expand the factories and settlements more openly.`
 	spaceport `Nearly all members of the Remnant are dark-skinned, either from exposure to high levels of ultraviolet radiation or because that is what their first ancestors who came here looked like. So, they walk around this spaceport village without much fear of the scorching desert sun, bringing supplies back and forth to the houses and to the flat clay pavement of the landing zone. Aside from some camels that the settlers brought with them, there are very few animals here.`
 	shipyard Remnant
 	outfitter Remnant
