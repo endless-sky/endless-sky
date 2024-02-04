@@ -431,7 +431,7 @@ news "hai joining unfettered"
 		word
 			"Apparently our brothers and sisters to the north are in need of help. I may go there someday." 2
 			"Some very big things are going to happen in Unfettered space, and I wish to be a part of them!" 2
-			"I have lost everything... I knew I should not have taken that big loan. I will be heading to Unfettered space for a new life now." 2
+			"I have lost everything... I knew I should not have taken that big loan. There is nothing left for me now except to go to Unfettered space for a new life." 2
 			"I come from Unfettered space. The Hai there are quite energetic and friendly once you get to know them, but I could not stand the poor living conditions." 2
 			"Have you heard? The art in Unfettered space is ever-changing, never dull. I wish I could go there and see it in person." 2
 			"Art in Unfettered space is less stagnant than here. We could learn a lot from it."
