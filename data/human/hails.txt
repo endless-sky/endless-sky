@@ -2253,7 +2253,7 @@ phrase "miner advice: outfit"
 		"asteroid scanners so you can detect and target asteroids more easily"
 		"asteroid scanners. It makes it much easier to target asteroids"
 		"asteroid scanners. You won't regret the purchase"
-		"asteroid scanners. If you don't know your way around asteroids, one of these will highlight and analyse them for their mineral composition"
+		"asteroid scanners. If you don't know your way around asteroids, one of these will highlight and analyze them for their mineral composition"
 		"asteroid scanners" 4
 		"mining lasers. They're faster than other lasers for mining"
 		"mining lasers. They're specially designed to break apart asteroids rapidly"
@@ -2361,7 +2361,7 @@ phrase "miner advice: ship"
 	word
 		" a "
 	word
-		"specialised mining ship like a Sunder"
+		"specialized mining ship like a Sunder"
 		"ship fit for mining, like a Sunder"
 		"Syndicate Sunder"
 		"Sunder and two mining drones"
