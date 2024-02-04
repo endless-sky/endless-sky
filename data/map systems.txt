@@ -3133,61 +3133,6 @@ system "Al Hurr"
 			distance 216
 			period 11.1964
 
-system Aladfar
-	pos -461.111 204.074
-	government Republic
-	attributes "near earth"
-	habitable 8429.116
-	belt 1705 7
-	link Cebalrai
-	link Muphrid
-	link Sulafat
-	link Vega
-	asteroids "medium rock" 13 5.346
-	asteroids "large rock" 7 6.642
-	asteroids "medium metal" 10 7.047
-	asteroids "large metal" 4 4.86
-	minables aluminum 2 10.919
-	trade Clothing 295
-	trade Electronics 807
-	trade Equipment 613
-	trade Food 366
-	trade "Heavy Metals" 907
-	trade Industrial 721
-	trade "Luxury Goods" 1115
-	trade Medical 605
-	trade Metal 399
-	trade Plastic 341
-	fleet "Small Northern Merchants" 800
-	fleet "Large Northern Merchants" 3000
-	fleet "Small Southern Merchants" 600
-	fleet "Large Southern Merchants" 2000
-	fleet "Small Republic" 1600
-	fleet "Large Republic" 5000
-	fleet "Small Militia" 4000
-	fleet "Small Southern Pirates" 6000
-	object
-		sprite star/b3
-		distance 94.554
-		period 38.895
-	object
-		sprite star/b5
-		distance 84.603
-		period 38.895
-		offset 180
-	object
-		sprite planet/cloud0
-		distance 604.986
-		period 64.832
-	object
-		sprite planet/ocean3
-		distance 1568.707
-		period 270.696
-	object
-		sprite planet/dust6
-		distance 4186.556
-		period 1180.197
-
 system Albaldah
 	pos -350 484
 	government Republic
@@ -3393,7 +3338,7 @@ system Alcyone
 			period 24.8475
 
 system Aldebaran
-	pos -357 -32
+	pos -356 -26
 	government Republic
 	attributes "paradise"
 	arrival 625
@@ -4026,7 +3971,7 @@ system Alheka
 			period 11.3132
 
 system Alhena
-	pos -431 -86
+	pos -430 -80
 	government Republic
 	attributes "paradise"
 	arrival 995
@@ -4863,7 +4808,7 @@ system "Alpha Hydri"
 		period 1185.18
 
 system Alphard
-	pos -586 -50
+	pos -588 -47
 	government Republic
 	attributes "paradise"
 	arrival 1115
@@ -5115,77 +5060,6 @@ system Alpherg
 			distance 535.683
 			offset 13
 
-system Alshain
-	pos -309.222 180.63
-	government Republic
-	attributes "near earth"
-	habitable 1270.984
-	belt 1059 3
-	belt 2239 7
-	link Altair
-	link "Delta Capricorni"
-	asteroids "small rock" 6 6.474
-	asteroids "medium rock" 3 5.772
-	asteroids "large rock" 23 7.8
-	asteroids "small metal" 1 5.538
-	asteroids "medium metal" 6 6.396
-	asteroids "large metal" 36 6.63
-	minables lead 16 9.948
-	minables silver 9 13.896
-	trade Clothing 375
-	trade Electronics 783
-	trade Equipment 465
-	trade Food 461
-	trade "Heavy Metals" 769
-	trade Industrial 650
-	trade "Luxury Goods" 1101
-	trade Medical 514
-	trade Metal 352
-	trade Plastic 290
-	fleet "Small Core Merchants" 400
-	fleet "Large Core Merchants" 600
-	fleet "Small Northern Merchants" 1000
-	fleet "Large Northern Merchants" 3000
-	fleet "Small Republic" 3000
-	fleet "Large Republic" 6000
-	fleet "Republic Logistics" 6000
-	fleet "Small Syndicate" 9000
-	fleet "Small Core Pirates" 4000
-	fleet "Human Miners" 3000
-	object
-		sprite star/g5-old
-		distance 28.137
-		period 55.658
-		offset 180
-	object
-		sprite star/m3
-		distance 126.465
-		period 55.658
-	object
-		sprite planet/lava5
-		distance 545
-		period 142.753
-	object
-		sprite planet/gas16-b
-		distance 1134
-		period 428.459
-	object
-		sprite planet/gas13
-		distance 2559
-		period 1452.431
-		object
-			sprite planet/miranda
-			distance 269.893
-			period 158.593
-	object
-		sprite planet/gas1-b
-		distance 3615
-		period 2438.667
-		object
-			sprite planet/rock0
-			distance 508
-			period 432.809
-
 system Altair
 	pos -357 161
 	government Republic
@@ -5193,9 +5067,9 @@ system Altair
 	arrival 995
 	habitable 995
 	belt 1830
-	link Alshain
+	link "Delta Capricorni"
+	link Fomalhaut
 	link Sol
-	link "Van Maanen's Star"
 	link Vega
 	asteroids "large metal" 1 4.6748
 	trade Clothing 378
@@ -6553,45 +6427,6 @@ system Aya'k'k
 		sprite planet/gas11
 		distance 3009.66
 		period 2983.58
-
-system "Barnard's Star"
-	pos -416.222 59.269
-	government Republic
-	attributes "near earth"
-	habitable 160
-	belt 1499 5
-	link Sol
-	asteroids "small rock" 3 4.605
-	asteroids "medium rock" 23 4.756
-	asteroids "small metal" 2 3.795
-	asteroids "medium metal" 13 3.795
-	minables iron 7 4.293
-	minables silicon 14 4.15
-	trade Clothing 271
-	trade Electronics 744
-	trade Equipment 454
-	trade Food 495
-	trade "Heavy Metals" 780
-	trade Industrial 681
-	trade "Luxury Goods" 1216
-	trade Medical 486
-	trade Metal 400
-	trade Plastic 276
-	fleet "Small Northern Merchants" 1200
-	fleet "Small Republic" 2000
-	fleet "Large Republic" 3000
-	fleet "Human Miners" 3000
-	object
-		sprite star/m5
-		period 10
-	object
-		sprite planet/rock8
-		distance 570.868
-		period 431.323
-	object
-		sprite planet/ice6
-		distance 1777.07
-		period 2368.956
 
 system Beginning
 	pos -912.587 694.051
@@ -7967,7 +7802,7 @@ system Canopus
 		period 2315.96
 
 system Capella
-	pos -379 -19
+	pos -378 -13
 	government Republic
 	attributes "paradise"
 	arrival 500
@@ -7975,7 +7810,6 @@ system Capella
 	belt 1722
 	haze _menu/haze-67
 	link Aldebaran
-	link Epsilon Eridani
 	link Menkalinan
 	link Procyon
 	asteroids "small rock" 175 2.1204
@@ -8040,7 +7874,7 @@ system Capella
 			period 31.7666
 
 system Caph
-	pos -296 68
+	pos -295 77
 	government Syndicate
 	attributes "near earth"
 	arrival 700
@@ -8048,7 +7882,7 @@ system Caph
 	belt 1173
 	link Diphda
 	link Eteron
-	link "Tau Ceti"
+	link Sol
 	asteroids "small rock" 19 4.14
 	asteroids "medium rock" 15 2.925
 	asteroids "large rock" 104 3.6
@@ -8242,7 +8076,7 @@ system Cardea
 		period 2047.64
 
 system Castor
-	pos -452 -31
+	pos -452 -17
 	government Republic
 	attributes "paradise"
 	arrival 1570
@@ -8334,7 +8168,6 @@ system Cebalrai
 	arrival 625
 	habitable 625
 	belt 1955
-	link Aladfar
 	link Hintar
 	link "Kaus Borealis"
 	link Menkent
@@ -10364,7 +10197,7 @@ system "Delta Capricorni"
 	belt 1329
 	haze _menu/haze-133
 	link Alderamin
-	link Alshain
+	link Altair
 	link Markab
 	link Scheat
 	asteroids "small rock" 4 9.744
@@ -10604,7 +10437,7 @@ system Deneb
 		period 1210.08
 
 system Denebola
-	pos -478 72
+	pos -478 70
 	government Republic
 	attributes "near earth"
 	arrival 560
@@ -11772,57 +11605,6 @@ system "Ehma Ti"
 			sprite planet/ice0
 			distance 356
 			period 26.8467
-
-system "Epsilon Eridani"
-	pos -347.917 8.62
-	government Republic
-	attributes "paradise"
-	habitable 3000
-	belt 4091 4
-	link Capella
-	asteroids "small rock" 32 1.224
-	asteroids "medium rock" 13 1.428
-	asteroids "large rock" 4 1.877
-	asteroids "medium metal" 12 1.836
-	asteroids "large metal" 3 1.326
-	minables iron 6 1.672
-	minables silicon 34 2.641
-	trade Clothing 279
-	trade Electronics 694
-	trade Equipment 546
-	trade Food 488
-	trade "Heavy Metals" 1132
-	trade Industrial 724
-	trade "Luxury Goods" 1382
-	trade Medical 504
-	trade Metal 383
-	trade Plastic 492
-	fleet "Small Northern Merchants" 500
-	fleet "Large Northern Merchants" 800
-	fleet "Small Republic" 800
-	fleet "Large Republic" 2000
-	fleet "Small Northern Pirates" 3000
-	fleet "Republic Logistics" 2000
-	fleet "Human Miners" 2000
-	object
-		sprite star/k3
-		period 10
-	object
-		sprite planet/rock13
-		distance 579.783
-		period 39.475
-	object
-		sprite planet/rock0-b
-		distance 1176.713
-		period 138.161
-	object
-		sprite planet/gas3-b
-		distance 3957.419
-		period 1126.962
-		object
-			sprite planet/dust1-b
-			distance 289
-			period 152.801
 
 system Ek'kek'ru
 	pos -287.517 -727.738
@@ -14355,7 +14137,7 @@ system Ferukistek
 			period 13.6681
 
 system Fingol
-	pos -482 115
+	pos -482 113
 	government Republic
 	attributes "near earth"
 	arrival 500
@@ -14483,14 +14265,14 @@ system Flugbu
 			period 37.165
 
 system Fomalhaut
-	pos -284 144
+	pos -314 124
 	government Syndicate
 	attributes "near earth"
 	arrival 500
 	habitable 450
 	belt 1854
+	link Altair
 	link Markab
-	link "Van Maanen's Star"
 	asteroids "small rock" 3 7.1415
 	asteroids "medium rock" 2 9.2529
 	asteroids "large rock" 1 4.2228
@@ -19434,64 +19216,6 @@ system "Kaus Borealis"
 			distance 371
 			period 35.2227
 
-system Keid
-	pos -469.999 35.389
-	government Republic
-	habitable 490
-	belt 1575 9
-	link Procyon
-	asteroids "small rock" 14 1.619
-	asteroids "medium rock" 30 1.898
-	asteroids "large rock" 12 1.872
-	asteroids "small metal" 8 2.505
-	asteroids "medium metal" 22 1.619
-	asteroids "large metal" 4 2.328
-	minables iron 16 2.654
-	minables lead 8 2.909
-	minables silver 4 2.626
-	trade Clothing 346
-	trade Electronics 732
-	trade Equipment 487
-	trade Food 512
-	trade "Heavy Metals" 920
-	trade Industrial 648
-	trade "Luxury Goods" 1142
-	trade Medical 534
-	trade Metal 416
-	trade Plastic 321
-	fleet "Small Northern Merchants" 1200
-	fleet "Small Republic" 2000
-	fleet "Large Republic" 3000
-	fleet "Small Northern Pirates" 2000
-	fleet "Human Miners" 3000
-	object
-		sprite star/k0
-		period 10
-	object
-		sprite planet/rock13
-		distance 423
-		period 157.207
-		object
-			sprite planet/io
-			distance 173
-			period 86.014
-	object
-		sprite planet/rock13
-		distance 1247.798
-		period 796.487
-		object
-			sprite planet/ice0
-			distance 205
-			period 110.951
-	object
-		sprite planet/gas10
-		distance 2588.257
-		period 2379.431
-	object
-		sprite planet/gas17
-		distance 4628.816
-		period 5690.714
-
 system "Ki War Ek"
 	pos -1106.63 368.214
 	government Heliarch
@@ -22816,7 +22540,7 @@ system Men
 			period 14.0811
 
 system Menkalinan
-	pos -401 -67
+	pos -400 -61
 	government Republic
 	attributes "paradise"
 	arrival 5000
@@ -22950,14 +22674,16 @@ system Menkar
 		period 5485.83
 
 system Menkent
-	pos -500 227
+	pos -495 218
 	government Republic
 	attributes "dirt belt"
 	arrival 2340
 	habitable 2340
 	belt 1728
 	link Cebalrai
+	link Muphrid
 	link Rutilicus
+	link Vega
 	asteroids "small rock" 33 2.9328
 	asteroids "medium rock" 44 1.4144
 	asteroids "large rock" 32 1.04
@@ -23156,7 +22882,7 @@ system Mesuket
 			period 66.1613
 
 system Miaplacidus
-	pos -522 -72
+	pos -524 -69
 	government Republic
 	attributes "paradise"
 	arrival 500
@@ -24148,7 +23874,7 @@ system Muphrid
 	arrival 1570
 	habitable 1570
 	belt 1759
-	link Aladfar
+	link Menkent
 	link Porrima
 	asteroids "small rock" 10 4.7348
 	asteroids "medium rock" 7 3.192
@@ -24594,7 +24320,7 @@ system Nnaug
 			period 292.59
 
 system Nocte
-	pos -456 167
+	pos -467 172
 	government Republic
 	attributes "near earth"
 	arrival 500
@@ -26769,7 +26495,7 @@ system Polerius
 			period 28.7798
 
 system Pollux
-	pos -465 -9
+	pos -465 4
 	government Republic
 	attributes "paradise"
 	arrival 1080
@@ -27017,7 +26743,7 @@ system Prakacha'a
 			period 49.6561
 
 system Procyon
-	pos -416 17
+	pos -411 23
 	government Republic
 	attributes "near earth"
 	arrival 500
@@ -27025,7 +26751,6 @@ system Procyon
 	belt 1763
 	haze _menu/haze-67
 	link Capella
-	link Keid
 	link Pollux
 	link Sirius
 	asteroids "small rock" 9 4.4226
@@ -30527,7 +30252,7 @@ system Similisti
 			period 31.4243
 
 system Sirius
-	pos -376 37
+	pos -378 44
 	government Republic
 	attributes "near earth"
 	arrival 1850
@@ -30771,10 +30496,9 @@ system Sol
 	haze _menu/haze-67
 	link "Alpha Centauri"
 	link Altair
-	link "Barnard's Star"
+	link Caph
 	link Denebola
 	link Sirius
-	link "Tau Ceti"
 	link Vega
 	asteroids "small rock" 30 2.691
 	asteroids "large rock" 50 5.0508
@@ -31636,67 +31360,6 @@ system Suhail
 			distance 166
 			period 20.4528
 
-system Sulafat
-	pos -513.667 190.185
-	government Republic
-	habitable 11350
-	belt 1439 2
-	belt 1607
-	link Aladfar
-	asteroids "small rock" 4 3.113
-	asteroids "medium rock" 4 2.55
-	asteroids "large rock" 3 2.475
-	asteroids "small metal" 13 2.025
-	asteroids "medium metal" 50 3.675
-	asteroids "large metal" 7 1.913
-	minables gold 5 6.521
-	trade Clothing 299
-	trade Electronics 781
-	trade Equipment 643
-	trade Food 322
-	trade "Heavy Metals" 916
-	trade Industrial 676
-	trade "Luxury Goods" 1045
-	trade Medical 580
-	trade Metal 349
-	trade Plastic 323
-	fleet "Small Southern Merchants" 1500
-	fleet "Large Southern Merchants" 3500
-	fleet "Small Southern Pirates" 6000
-	fleet "Small Republic" 5000
-	fleet "Human Miners" 2000
-	object
-		sprite star/b-giant
-		period 10
-	object
-		sprite planet/gas4-b
-		distance 770.502
-		period 80.301
-		object
-			sprite planet/rock7-b
-			distance 239
-			period 174.787
-	object
-		sprite planet/oberon-b
-		distance 1692.577
-		period 261.448
-	object
-		sprite planet/gas2-b
-		distance 2777.894
-		period 549.713
-		object
-			sprite planet/dust5
-			distance 317
-			period 147.709
-		object
-			sprite planet/miranda
-			distance 430
-			period 421.808
-	object
-		sprite planet/dust6-b
-		distance 5241
-		period 1424.568
-
 system Sumar
 	pos -236 -273
 	government Republic
@@ -31886,7 +31549,7 @@ system Tais
 		period 762.383
 
 system Talita
-	pos -518 -34
+	pos -519 -26
 	government Republic
 	attributes "paradise"
 	arrival 1705
@@ -32090,61 +31753,6 @@ system Tarazed
 				scale 0.5
 			distance 228
 			period 16.9693
-
-system "Tau Ceti"
-	pos -341.481 85.963
-	government Republic
-	habitable 550
-	belt 1873 5
-	belt 2041 10
-	belt 2534 3
-	link Caph
-	link Sol
-	asteroids "medium rock" 52 5.502
-	asteroids "large rock" 1 4.664
-	asteroids "small metal" 15 3.708
-	asteroids "large metal" 50 5.741
-	asteroids "small rock" 401 1.411
-	minables lead 7 10.671
-	minables titanium 6 9.984
-	minables iron 24 9.608
-	trade Clothing 292
-	trade Electronics 753
-	trade Equipment 504
-	trade Food 512
-	trade "Heavy Metals" 852
-	trade Industrial 643
-	trade "Luxury Goods" 1259
-	trade Medical 535
-	trade Metal 341
-	trade Plastic 280
-	fleet "Small Northern Merchants" 300
-	fleet "Large Northern Merchants" 500
-	fleet "Small Republic" 1000
-	fleet "Large Republic" 3000
-	fleet "Republic Logistics" 2000
-	fleet "Small Core Merchants" 1000
-	fleet "Large Core Merchants" 2000
-	fleet "Human Miners" 1000
-	object
-		sprite star/g8
-		period 10
-	object
-		sprite planet/dust2
-		distance 289
-		period 83.796
-	object
-		sprite planet/venus
-		distance 937
-		period 489.202
-	object
-		sprite planet/gas3-b
-		distance 1841
-		period 1347.285
-	object
-		sprite planet/gas10-hot
-		distance 2758
-		period 2470.416
 
 system Tebuteb
 	pos -615.587 710.051
@@ -33563,51 +33171,6 @@ system Vanguwo
 		distance 7325
 		period 3940.43
 
-system "Van Maanen's Star"
-	pos -311.704 116.222
-	government Republic
-	habitable 355
-	belt 1021
-	link Altair
-	link Fomalhaut
-	asteroids "medium metal" 14 3.293
-	asteroids "large metal" 6 3.158
-	minables tungsten 2 3.049
-	minables lead 13 2.892
-	trade Clothing 336
-	trade Electronics 735
-	trade Equipment 401
-	trade Food 527
-	trade "Heavy Metals" 713
-	trade Industrial 626
-	trade "Luxury Goods" 1047
-	trade Medical 531
-	trade Metal 285
-	trade Plastic 267
-	fleet "Small Core Merchants" 1000
-	fleet "Large Core Merchants" 1200
-	fleet "Small Northern Merchants" 300
-	fleet "Large Northern Merchants" 500
-	fleet "Small Republic" 1000
-	fleet "Large Republic" 3000
-	fleet "Republic Logistics" 3000
-	fleet "Human Miners" 2000
-	object
-		sprite star/f-dwarf
-		period 10
-	object
-		sprite planet/dust2
-		distance 2031.608
-		period 1944.042
-	object
-		sprite planet/rhea
-		distance 3115.477
-		period 3691.753
-	object
-		sprite planet/gas1-b
-		distance 4406.953
-		period 6210.884
-
 system Vaticanus
 	pos 324 112
 	government Uninhabited
@@ -33671,8 +33234,8 @@ system Vega
 	arrival 1450
 	habitable 1450
 	belt 1744
-	link Aladfar
 	link Altair
+	link Menkent
 	link Nocte
 	link Sol
 	asteroids "small rock" 2 5.7596
