@@ -45,7 +45,7 @@ mission "Pact Recon 0"
 			`	"Because captains from around here don't rubberneck at an every-day occurrence. After seeing your first dozen or so damaged ships, you eventually get used to seeing them and just move on."`
 			`	"Are the pirates rough around these parts?" you ask.`
 			label pirates
-			`	"Rougher than you're probably used to if you're from farther up north. The Navy doesn't patrol these parts, not unless there's some high profile warlord that's on their radar. Because of that, pirates have more free reign to terrorize us down here." She pauses for a moment while turning back to the freighter. "And the pirate fleets keep getting stronger every year," she says with concern.`
+			`	"Rougher than you're probably used to if you're from farther up north. The Navy doesn't patrol these parts, not unless there's some high profile warlord that's on their radar. Because of that, pirates have more free rein to terrorize us down here." She pauses for a moment while turning back to the freighter. "And the pirate fleets keep getting stronger every year," she says with concern.`
 			choice
 				`	"Is there something I can do to help?"`
 				`	"I wish I could help, but my ship is not a warship."`

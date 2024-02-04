@@ -4606,7 +4606,7 @@ mission "Hai Wormhole Warning"
 			has "First Contact: Unfettered: declined"
 		not "Block Hai Wormhole Warning: offered"
 		not "Wanderers: Alpha Surveillance E: offered"
-		not "Hai Leaks Response 1: offered"
+		not "hr: meet the team"
 	on offer
 		log "Was pulled aside by a Navy officer and told to keep the wormhole to the Hai a secret. The Republic doesn't want the knowledge of the wormhole to be widespread, as that could cause chaos for both the Republic and the Hai."
 		conversation
@@ -4741,14 +4741,14 @@ mission "Saving Artifacts 2"
 			`	"The rotating exhibition was a new partnership with the Conservatory. Previously we had been hesitant to transport our valuables to frontier regions, but in this new partnership we decided to try shipping some of our artifacts to more distant planets, so that they too could benefit from seeing our collection. Those statues were part of that shipment. Evidently we were mistaken. Those statues are not safe as long as they're in the South."`
 				goto choice
 			label find
-			`	"Lucky for you, Lokust does not seem particularly attached to his 'booty'. If you must, offer him a large sum of money, and he will most likely be willing to part with them. However, if there is something you can do to get those statues back without allowing your money to fall into the hands of a criminal, I would suggest that course of action instead."`
+			`	"Lucky for you, Lokust does not seem particularly attached to his 'booty.' If you must, offer him a large sum of money, and he will most likely be willing to part with them. However, if there is something you can do to get those statues back without allowing your money to fall into the hands of a criminal, I would suggest that course of action instead."`
 				goto choice
 			label accept
 			`	"Excellent. You're doing a service to humanity's cultural memory."`
 				accept
 	on complete
 		conversation
-			`You hustle through the crowded markets, pistol by your side, looking for any sign of the statues. After a while you come across a storefront with a crudely painted sign that reads "Fine Art and Cultural Treasures". Not seeing any better leads, you go in.`
+			`You hustle through the crowded markets, pistol by your side, looking for any sign of the statues. After a while you come across a storefront with a crudely painted sign that reads "Fine Art and Cultural Treasures." Not seeing any better leads, you go in.`
 			`	The inside is damp and poorly lit, but you can make out various paintings, manuscripts, and other expensive-looking items. "How can I help you?" the store clerk asks in a disarmingly friendly voice.`
 			choice
 				`	"You don't happen to know of a local warlord named Lokust, do you?"`
@@ -4947,7 +4947,7 @@ mission "Dangerous Games 1"
 mission "Dangerous Games 2"
 	minor
 	name "Karengo's Galactic Adventures"
-	description `The adventurer Karengo and five others are traveling with you as part of his "Galactic Adventures". Bring Karengo and crew to <destination> for <payment>.`
+	description `The adventurer Karengo and five others are traveling with you as part of his "Galactic Adventures." Bring Karengo and crew to <destination> for <payment>.`
 	source
 		attributes "frontier" "pirate" "rim"
 	destination "Poseidos"
@@ -4961,7 +4961,7 @@ mission "Dangerous Games 2"
 			`A boisterous laugh sounds from somewhere behind you. You haven't heard that voice since your ship was attacked by dragons.`
 			`	"<first>!" A huge hand claps you on the shoulder and spins you around, where you find yourself facing a large, widely grinning man.`
 			`	"Remember me? Yer the best pilot I've had - that stunt to get us out of Skymoot, right out of the dragon's nest? Epic."`
-			`	A crude sign behind him reads, 'Dangerous Games - Karengo's Galactic Adventures'.`
+			`	A crude sign behind him reads, "Dangerous Games - Karengo's Galactic Adventures."`
 			`	"Like it?" Karengo follows your gaze. "Decided to make this an official thing. Well... an unofficial official thing. Feds wouldn't understand. Doesn't matter; I need a pilot again, and a good one. Your ship's waterproof, right?"`
 			choice
 				`	"Uh, yeah. I think so."`
@@ -4995,7 +4995,7 @@ mission "Dangerous Games 2"
 			`"Oiled skins flash and flicker"`
 			`"Razor spikes grow from the deep"`
 			`"Titanic walls crush and smash"`
-			`"Heed the beginnings to live".`
+			`"Heed the beginnings to live"`
 			choice
 				`	(Go east.)`
 					goto east
@@ -5268,7 +5268,7 @@ mission "Dangerous Games 2"
 			`	Once back to the surface, Karengo calls up someone on his receiver. Soon, a small flock of scientists arrive and haul the machine to a local lab for investigation. They quickly determine it to be non-functional and promise to extract as many secrets as possible.`
 			label end
 			`	After some time, the crystal-infected machine has been thoroughly inspected since being salvaged from the watery depths of <planet>. The crystals themselves are unlike anything anyone has seen before, but through somewhat questionable trial and error (although he insists it's genius), Karengo discovers that, when heated, they amplify the effect of the many recreational drugs he has on his person. However, they've proven to only grow near a power source that has been submerged in water from <planet>. Efforts to stimulate growth through other means have all failed. If cultivated, they could significantly boost the production of drugs for Karengo's operations.`
-			`	Before disappearing into the crowd, Karengo pays you <payment>. "Thanks for your help, <first>. Once I get this machine off of those pinheads over there, I'll be makin' a fortune in 'mind-altering experiences'. Watch for 'Karengo's Galactic Adventures' next time yer around here!"`
+			`	Before disappearing into the crowd, Karengo pays you <payment>. "Thanks for your help, <first>. Once I get this machine off of those pinheads over there, I'll be makin' a fortune in 'mind-altering experiences.' Watch for 'Karengo's Galactic Adventures' next time yer around here!"`
 				decline
 
 
@@ -6705,7 +6705,7 @@ mission "Southern Fiance 3"
 		set "visited tom and carl"
 		conversation
 			`As you approach for a landing, you are surprised when the spaceport controller diverts you to a special pad. When you land, you find Tom, the man you brought south from the Core, and his husband Carl, the Agricultural Minister of Cornucopia, waiting for you.`
-			`	They greet you like an old friend (despite never having talked with Carl before), and insist on serving you dinner. Rather than the grand mansions of other politicians, their house is a simple bungalow that wouldn't look out of place in a suburb. The meal, on the other hand, is anything but modest: there are plates of kebabs, pastas, stir fries, and cakes, made from ingredients sourced from all over the planet. You swap stories for a while - you with your "thrilling adventures in space", as Tom describes them, and them with their much more ordinary, but no less interesting, times here on Cornucopia. They also hint at some big things coming, but reveal nothing more than a knowing look.`
+			`	They greet you like an old friend (despite never having talked with Carl before), and insist on serving you dinner. Rather than the grand mansions of other politicians, their house is a simple bungalow that wouldn't look out of place in a suburb. The meal, on the other hand, is anything but modest: there are plates of kebabs, pastas, stir fries, and cakes, made from ingredients sourced from all over the planet. You swap stories for a while - you with your "thrilling adventures in space," as Tom describes them, and them with their much more ordinary, but no less interesting, times here on Cornucopia. They also hint at some big things coming, but reveal nothing more than a knowing look.`
 			`	After a while, you bid them farewell, and they promise once again that if you ever visit you'll be welcome.`
 				decline
 
@@ -6734,7 +6734,7 @@ mission "Southern Fiance 5"
 			branch already
 				has "visited tom and carl"
 			`As you approach for a landing, you are surprised when the spaceport controller diverts you to a special pad. When you land, you find Tom, the man you brought south from the Core, and his husband Carl, the new Governor of Cornucopia, waiting for you.`
-			`	They greet you like an old friend (despite never having talked with Carl before), and insist on serving you dinner. The Cornucopia governor's mansion is certainly befitting of the title, and Tom takes you on a tour through the premises while Carl fields some important phone calls. The meal is similarly grand: there are plates of kebabs, pastas, stir fries, and cakes, made from ingredients sourced from all over the planet. You swap stories for a while - you with your "thrilling adventures in space", as Tom describes them, and them with their much more ordinary, but no less interesting, times here on Cornucopia, including some of the challenges and highlights of their campaign. They also hint at something big coming, but reveal nothing more than a knowing look.`
+			`	They greet you like an old friend (despite never having talked with Carl before), and insist on serving you dinner. The Cornucopia governor's mansion is certainly befitting of the title, and Tom takes you on a tour through the premises while Carl fields some important phone calls. The meal is similarly grand: there are plates of kebabs, pastas, stir fries, and cakes, made from ingredients sourced from all over the planet. You swap stories for a while - you with your "thrilling adventures in space," as Tom describes them, and them with their much more ordinary, but no less interesting, times here on Cornucopia, including some of the challenges and highlights of their campaign. They also hint at something big coming, but reveal nothing more than a knowing look.`
 				goto end
 			
 			label already
@@ -6757,7 +6757,7 @@ mission "Southern Fiance 6"
 				has "visited tom and carl"
 			`As you approach for a landing, you are surprised when the spaceport controller diverts you to a special pad. When you land, you find Tom, the man you brought south from the Core, and his husband Carl, the new Governor of Cornucopia, waiting for you.`
 			`	They greet you like an old friend (despite never having talked with Carl before), and insist on serving you dinner. The Cornucopia governor's mansion is certainly befitting of the title, and Tom takes you on a tour through the premises while Carl fields some important phone calls. Partway through the tour, Tom gets a mischievous grin, and when he opens the next door, a small child races out and cannons into his legs, gripping them tightly with a glad cry of "Daddy!" Tom proudly introduces Nita, his and Carl's three-year-old daughter, who giggles and tries to run off with your communicator.`
-			`	When you sit down to dinner with the three of them, you're blown away: there are plates of kebabs, pastas, stir fries, and cakes, made from ingredients sourced from all over the planet. You swap stories for a while - you with your "thrilling adventures in space", as Tom describes them, and them with their much more ordinary, but no less interesting, times here on Cornucopia, including some of the challenges and highlights of their campaign and the joys and fears of fatherhood.`
+			`	When you sit down to dinner with the three of them, you're blown away: there are plates of kebabs, pastas, stir fries, and cakes, made from ingredients sourced from all over the planet. You swap stories for a while - you with your "thrilling adventures in space," as Tom describes them, and them with their much more ordinary, but no less interesting, times here on Cornucopia, including some of the challenges and highlights of their campaign and the joys and fears of fatherhood.`
 				goto end
 			
 			label already

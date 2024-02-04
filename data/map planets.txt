@@ -404,6 +404,7 @@ planet Bluerun
 	attributes hai station uninhabited
 	landscape land/station33
 	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere, and a status panel indicates that the station's generators are functional but shut down, with standby mechanisms running on solar power alone.`
+	description `	Bluerun seems to have been mainly built for civilian habitation, but extensive mineral processing facilities indicate that ore refining was once a sizable industry here. No doubt the designers of this station sought to take advantage of the large number of metallic asteroids in this system and process ores stationside.`
 	government Uninhabited
 	bribe 0
 	security 0
@@ -702,7 +703,7 @@ planet Clark
 		fleet "Small Militia" 30
 
 planet Clink
-	attributes mining moon
+	attributes mining moon south
 	landscape land/desert3
 	description `About a decade ago, a mining corporation from Zug planted a colony on Clink for harvesting some rare earth minerals that are present in this moon's crust due to its unusually high rate of asteroid impacts. The atmosphere here is too thin to breathe without a respirator, and because of the low gravity, the dust raised by the mining operations hangs perpetually in the air.`
 	description `	The miners who work here are a tight-knit group, since most of them were part of the original colonization team. They are not particularly open to outsiders, and the facilities here are so rudimentary that they do not even stock fuel for visiting ships.`
@@ -838,6 +839,7 @@ planet Darkrest
 	attributes hai station uninhabited
 	landscape land/station34
 	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere, and a status panel indicates that the station's generators are functional but shut down, with standby mechanisms running on solar power alone.`
+	description `	An immediately obvious difference between this station and the others in Hai space is the presence of a solemn plaque that takes up a sizable portion of the nearest wall. Upon further inspection, it seems to commemorate an engineering malfunction that occurred thousands of years ago, when this station was still inhabited. In a freak accident, an entire habitation section of Darkrest lost power and depressurized, causing the deaths of countless civilians. Thousands of years later, no one knows for sure what caused the incident. Legends, stories, and conspiracy theories have blossomed from the event.`
 	government Uninhabited
 	bribe 0
 	security 0
@@ -1281,7 +1283,7 @@ planet Erabuthro
 	description `Erabuthro is the capital of the Bunrodean Hegemony, home to the throne of the Queen. Only those with the blessings of the Queen are allowed to set foot on the planet's surface, although receiving such blessing doesn't necessarily guarantee a warm welcome.`
 	description `	Much of the planet's land area is covered in a hexagonal pattern of city and wilderness, with every hexagonal urban area bordering an area of wilderness, as if the planet consisted of one giant city with hundreds or maybe even thousands of parks scattered across it.`
 	spaceport `The central hub of the spaceport is an engineering marvel of impossible looking structures, such as buildings with large unsupported overhangs that look as though they should collapse under their own weight. The spaceport includes many of the typical services that you would expect, but also has a number of buildings that seem to act as embassies or consulates from other worlds.`
-	spaceport `	Being an outsider on royal grounds, you are at all times escorted by a group of armed guards and a translator, although they seem to give you free reign to go wherever you want without any trouble. Only when approaching the royal palace without an invitation do they stop you.`
+	spaceport `	Being an outsider on royal grounds, you are at all times escorted by a group of armed guards and a translator, although they seem to give you free rein to go wherever you want without any trouble. Only when approaching the royal palace without an invitation do they stop you.`
 	shipyard "Bunrodea Basic"
 	shipyard "Bunrodea Advanced"
 	shipyard "Bunrodea Capital"
@@ -1496,6 +1498,7 @@ planet Firefall
 	attributes hai station uninhabited
 	landscape land/station36
 	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere, and a status panel indicates that the station's generators are functional but shut down, with standby mechanisms running on solar power alone.`
+	description `	Dwarfed by the nearby Quarg ringworld, Firefall is nevertheless capable of holding countless Hai. The station, like others of its type in Hai space, was once used to house those who migrated from the Hai's crumbling galactic empire. Now it is quite literally a shell of its former self, having been emptied of all non-essential equipment long ago.`
 	government Uninhabited
 	bribe 0
 	security 0
@@ -2268,6 +2271,7 @@ planet Iritoroost
 	attributes hai station uninhabited
 	landscape land/station23
 	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere, and a status panel indicates that the station's generators are functional but shut down, with standby mechanisms running on solar power alone.`
+	description `	Despite Iritoroost's relative isolation from any inhabited planets, the station appears to be visited with remarkable frequency. It may have become something of a destination for those looking to do shady business, but the evidence left behind by visitors is eclectic. As virtually all but the most basic systems are inactive, it seems the lack of continuous surveillance has proven attractive to those looking for an extra measure of privacy, for whatever reasons they may have.`
 	government Uninhabited
 	bribe 0
 	security 0
@@ -2276,6 +2280,7 @@ planet Ironfirth
 	attributes hai station uninhabited
 	landscape land/station44
 	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere, and a status panel indicates that the station's generators are functional but shut down, with standby mechanisms running on solar power alone.`
+	description `	Judging by the size of the docking bay in this station, there appears to have been a substantial level of intra-system traffic between Ironfirth and Makerplace. The station's former population most likely commuted to the planet for work, filling up its factories and ballooning their output. Considering how busy it must have been in its prime, the docking bay is eerily quiet.`
 	government Uninhabited
 	bribe 0
 	security 0
@@ -2511,6 +2516,7 @@ planet Limejog
 	attributes hai station uninhabited
 	landscape land/station45
 	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere, and a status panel indicates that the station's generators are functional but shut down, with standby mechanisms running on solar power alone.`
+	description `	Though it had long since been abandoned by the time the raids began, this station came under repeated attack during the Hai-Korath war and still bears the marks to this day. Even so, the station is remarkably intact, a testament to the durability and longevity, if not necessarily the beauty, of Hai engineering.`
 	government Uninhabited
 	bribe 0
 	security 0
@@ -2877,7 +2883,7 @@ planet Muspel
 		fleet "Small Deep Security" 14
 
 planet Mutiny
-	attributes pirate
+	attributes core "core pirate" pirate
 	landscape land/badlands13
 	description `Centuries ago, Mutiny was used as a sort of prison world for a powerful band of pirates, a place where rivals could be marooned or held for ransom, rather than killing them outright. It is a cold, dark planet, and food is scarce, but over time several villages developed in the more hospitable regions. No longer prisoners, the inhabitants who remain do so because they prefer a simple life beyond the reach of any government, on a planet that will never be stolen from them because it carries nothing of value.`
 	security 0
@@ -3526,6 +3532,7 @@ planet Redwatch
 	attributes hai station uninhabited
 	landscape land/station6
 	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere, and a status panel indicates that the station's generators are functional but shut down, with standby mechanisms running on solar power alone.`
+	description `	Despite the Hai's notably durable engineering, this station appears to have sustained substantial damage since it was abandoned. Given its proximity to Unfettered space, the station's scars are most likely a reflection of the current war taking place between the Hai and their northern brethren.`
 	government Uninhabited
 	bribe 0
 	security 0
@@ -3710,6 +3717,7 @@ planet Sandsnap
 	attributes hai station uninhabited
 	landscape land/station40
 	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere, and a status panel indicates that the station's generators are functional but shut down, with standby mechanisms running on solar power alone.`
+	description `	A tourist FAQ in the docking area cheerily informs any visitors that after the opening of the wormhole in Waypoint, Sandsnap was briefly considered as a possible destination for humans looking to settle in Hai space. Reopening the station would have provided ample room for millions of potential migrants without disturbing planetary ecosystems. Ultimately, it was decided that the slow trickle of human settlers to Hai space did not justify the costs of bringing Sandsnap back online and that it would be better for both humans and Hai if the two species weren't sequestered from each other.`
 	government Uninhabited
 	bribe 0
 	security 0
@@ -4816,6 +4824,7 @@ planet Violetwake
 	attributes hai station uninhabited
 	landscape land/space6
 	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere, and a status panel indicates that the station's generators are functional but shut down, with standby mechanisms running on solar power alone.`
+	description `	The sheer size of this station is striking. Millions of Hai must have been housed here in Violetwake's heyday, which makes the lonely, isolated atmosphere here all the more jarring. The darkened corridors of the station remind one of an immense cave whose insides have still not been entirely mapped.`
 	government Uninhabited
 	bribe 0
 	security 0
