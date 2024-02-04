@@ -460,6 +460,8 @@ event "initial deployment 3"
 		fleet "Large Southern Merchants" 600
 		fleet "Small Free Worlds" 1000
 		fleet "Large Free Worlds" 1600
+		fleet "Small Southern Pirates" 5000
+		fleet "Large Southern Pirates" 8000
 	system "Aldhibain"
 		fleet "Small Southern Merchants" 400
 		fleet "Large Southern Merchants" 500
