@@ -7975,7 +7975,7 @@ system Capella
 	belt 1722
 	haze _menu/haze-67
 	link Aldebaran
-	link Epsilon Eridani
+	link "Epsilon Eridani"
 	link Menkalinan
 	link Procyon
 	asteroids "small rock" 175 2.1204
