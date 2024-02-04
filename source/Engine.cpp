@@ -2743,7 +2743,7 @@ void Engine::EmplaceStatusOverlay(const shared_ptr<Ship> &it, Preferences::Overl
 
 void Engine::HandleEvents()
 {
-	for(const auto &event: events)
+	for(const auto &event : events)
 		if(event.Type() ^ ShipEvent::DISABLE)
 			for(auto &projectile : projectiles)
 				if(projectile.Target() == event.Target().get())
