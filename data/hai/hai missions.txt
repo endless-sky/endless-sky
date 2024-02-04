@@ -1950,7 +1950,7 @@ mission "Hai Pilgrimage"
 	on offer
 		conversation
 			`It is an unusually foggy day on <origin>; the air is so thick with moisture that you cannot see more than a few paces in front of you. Perhaps that's why you're so startled when you turn around and see a Hai standing right next to you. He is so close you can see dewdrops on his whiskers, and you immediately notice the prominent jewelry that he is wearing. He appears to be quite old, judging by his stooped-over posture and the white fur around his muzzle.`
-			`	"I see that you are wiser than most humans here," he says, pointing towards your ship. "You carry a Keystone, a shield against the tempest of space. Let no one else tell you otherwise. My name is Hareek. Are you willing and able to take me to <destination>? I can pay <payment>."`
+			`	"I see that you are wiser than most humans here," he says, pointing towards your ship. "You carry a Keystone, a shield against the tempest of space. Let no one else tell you otherwise." He stops to catch his breath. "My name is Hareek. Are you willing and able to take me to <destination>? I can pay <payment>."`
 			choice
 				`	"I can take you there."`
 					goto agree
