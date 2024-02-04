@@ -395,6 +395,73 @@ news "hai advertisement in Hai space"
 		word
 			`"`
 
+news "hai attacked by pirates"
+	location
+		government "Hai"
+	to show
+		random < 1
+	name
+		word
+			"Hai civilian"
+			"Hai youth"
+	message
+		word
+			`"`
+		word
+			"The human ship carrying my family was attacked by pirates when they came back from human space. I guess I may as well join the Unfettered now that I have nothing to lose."
+			"Pirates destroyed the human ship my children were on. They were always curious about the humans, and look where that got them! I will join the Unfettered; they are right."
+			"Human ships are so frail... My sister was on one, and she told me it lost all of its shields in a few shots! Thankfully, human weapons are not that strong either, so they were able to escape."
+			"You call these human vessels ships? They just barely protect against the void. Given the danger of human space, I would expect humans to have more heavy transports that can at least try to defend themselves, such as the Behemoth!"
+			"No wonder you have so many pirates in your space, with those fragile freighters you have. So much cargo with so little protection is pure madness! That is why I love humans."
+		word
+			`"`
+
+news "hai joining unfettered"
+	location
+		government "Hai"
+	name
+		word
+			"Hai civilian"
+			"Hai youth"
+	to show
+		random < 5
+	message
+		word
+			`"`
+		word
+			"Apparently our brothers and sisters to the north are in need of help. I may go there someday."
+			"Some very big things are going to happen in Unfettered space, and I wish to be a part of them!"
+			"I have lost everything... I knew I should not have taken that big loan. I will be heading to Unfettered space for a new life now."
+			"I come from Unfettered space. The Hai there are quite energetic and friendly once you get to know them, but I could not stand the poor living conditions."
+			"Have you heard? The art in Unfettered space is ever-changing, never dull. I wish I could go there and see it in person."
+			"Art in Unfettered space is very different from here. We could learn a lot from it."
+			"My music is not appreciated here. I guess I'll be going to Unfettered space to see how they like it. I heard their taste is more... developed."
+		word
+			`"`
+
+news "hai joining unfettered"
+	location
+		government "Hai (Unfettered)"
+	name
+		word
+			"Hai merchant"
+	to show
+		has "Unfettered Jump Drive 1: done"
+		random < 30
+	message
+		word
+			`"`
+		word
+			"So many people need relocation. I have made it my job to carry them around, asking for little if anything in return. Some are Hai going into Unfettered space because they have lost themselves."
+			"With the rumors of action soon here in the north, the demand for transportation has greatly increased. I cannot possibly fit all of them. Time to buy a new ship, I guess."
+			"Many of those who transport Hai here ask for little - too little. Have you seen the increase in demand? I'm going to raise my price; I can't be transporting people around all day for nothing."
+			"Once I'm done transporting people, I will stay here and be a part of the action."
+			"I've just finished transporting some passengers to Unfettered space, and now I have to transport more? Maybe you could help us, Captain."
+			"Is it just me, or are there fewer merchants transporting Hai here?"
+		word
+			`"`
+
+
 news "unfettered hai no dialog"
 	location
 		government "Hai (Unfettered)"
