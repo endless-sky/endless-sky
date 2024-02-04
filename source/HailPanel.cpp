@@ -125,7 +125,8 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<
 
 
 HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
-	: player(player), planet(object->GetPlanet()), sprite(object->GetSprite()), facing(object->Facing())
+	: player(player), object(object), planet(object->GetPlanet()),
+		sprite(object->GetSprite()), facing(object->Facing())
 {
 	SetInterruptible(false);
 
@@ -214,6 +215,7 @@ void HailPanel::Draw()
 	Point center(-170., -10.);
 
 	DrawList draw;
+	draw.Clear(step);
 	// If this is a ship, copy its swizzle, animation settings, etc.
 	// Also draw its fighters and weapon hardpoints.
 	if(ship)
@@ -263,7 +265,7 @@ void HailPanel::Draw()
 					addFighter(bay);
 	}
 	else
-		draw.Add(Body(sprite, center, Point(), facing, zoom));
+		draw.Add(Body(*object, center, Point(), facing, zoom));
 
 	draw.Draw();
 
@@ -274,6 +276,8 @@ void HailPanel::Draw()
 	wrap.SetFont(FontSet::Get(14));
 	wrap.Wrap(message);
 	wrap.Draw(Point(-50., -50.), *GameData::Colors().Get("medium"));
+
+	++step;
 }
 
 
