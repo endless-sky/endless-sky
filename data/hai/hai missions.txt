@@ -1936,6 +1936,7 @@ mission "Hai Pilgrimage"
 	name "Hai spiritual leader to <planet>"
 	description "Bring a Hai spiritual leader to <destination>. He will pay you <payment>."
 	minor
+	clearance "You inform the authorities of the passenger you are transporting, and they quickly allow you to land."
 	source
 		government "Hai"
 		not attributes "station"
