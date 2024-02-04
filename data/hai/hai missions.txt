@@ -1932,9 +1932,9 @@ mission "Station Exploration Abandon Ship"
 			label fine
 			`	"You are being fined <fine> for abandoning your passengers without warning. You're lucky you didn't end up with a more serious punishment." After further chewing you out for endangering your passengers' safety, he walks away from you in a huff.`
 
-mission "Pilgrimage"
+mission "Hai Pilgrimage"
 	name "Hai spiritual leader to <planet>"
-	description "Bring a Hai spiritual leader to <destination>."
+	description "Bring a Hai spiritual leader to <destination>. He will pay you <payment>."
 	minor
 	source
 		government "Hai"
@@ -1948,7 +1948,7 @@ mission "Pilgrimage"
 		has "First Contact: Hai: offered"
 	on offer
 		conversation
-			`It is an unusually foggy day on <source>. The air is so thick with moisture that you cannot see more than a few paces in front of you. Perhaps that is why you are so startled when you turn around and see a Hai standing right next to you. He is so close you can see dewdrops on his whiskers, and you immediately notice the prominent jewelry that he is wearing. He appears to be quite old, judging by his stooped-over posture and the white fur around his muzzle.`
+			`It is an unusually foggy day on <source>; the air is so thick with moisture that you cannot see more than a few paces in front of you. Perhaps that's why you're so startled when you turn around and see a Hai standing right next to you. He is so close you can see dewdrops on his whiskers, and you immediately notice the prominent jewelry that he is wearing. He appears to be quite old, judging by his stooped-over posture and the white fur around his muzzle.`
 			`	"I see that you are wiser than most humans here," he says, pointing towards your ship. "You carry a Keystone, a shield against the tempest of space. Let no one else tell you otherwise. Are you willing and able to take me to <destination>? I can pay <payment>."`
 			choice
 				`	"I can take you there."`
@@ -1964,22 +1964,18 @@ mission "Pilgrimage"
 			`	The Hai pauses for a moment, as if unsure of what to say. "My teachings are more... appreciated among our northern brethren."`
 			choice
 				`	"Teachings?"`
-					goto teachings
 				`	"Alright, I'll take you there."`
 					goto agree
 				`	"Unfettered space is too dangerous for me. You'll have to find someone else."`
 					goto dangerous
-			label teachings
 			`	An unreadable expression appears on the Hai's face. "How do I explain this... You have your preachers and wise men among the humans, yes? I am somewhat similar." He stops for a moment, realizing something. "Ah, apologies for my rudeness - you probably do not know who I am. My name is Hareek. Now, will you take me to <destination>?"`
 			choice
 				`	"So you're going to preach to the Unfettered?"`
-					goto preach
 				`	"I can take you."`
 					goto agree
 				`	"Unfettered space is too dangerous for me. You'll have to find someone else."`
 					goto dangerous
-			label preach
-			`	"That is an oversimplification, but it is not something I can explain adequately to a human." He turns away, looking into the fog. "There are portentious events occurring in the galaxy, and I must warn others of the turmoil I have forseen. The Unfettered crave turmoil, so naturally they are more inclined to believe me." He gives a wry smile.`
+			`	"That is an oversimplification, but it is not something I can explain adequately to a human." He turns away, looking into the fog. "There are portentous events occurring in the galaxy, and I must warn others of the turmoil I have forseen. The Unfettered crave turmoil, so naturally they are more inclined to believe me." He gives a wry smile.`
 			choice
 				`	"Alright, I can take you there."`
 					goto agree
