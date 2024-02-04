@@ -2745,7 +2745,7 @@ void Engine::HandleEvents()
 {
 	for(const auto &event: events)
 		if(event.Type() ^ ShipEvent::DISABLE)
-			for (auto &projectile: projectiles)
+			for(auto &projectile : projectiles)
 				if(projectile.Target() == event.Target().get())
 					projectile.BreakTarget();
 
