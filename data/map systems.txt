@@ -28435,6 +28435,8 @@ system Sabik
 	fleet "Large Southern Merchants" 900
 	fleet "Small Militia" 1200
 	fleet "Large Militia" 2000
+	fleet "Small Southern Pirates" 3000
+	fleet "Large Southern Pirates" 5000
 	object
 		sprite star/g5
 		period 10
