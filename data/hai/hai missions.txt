@@ -2001,6 +2001,7 @@ mission "Hai Pilgrimage"
 		dialog `You look for Hareek, but realize that he took a ride on one of your escorts! Better depart and wait for your escorts to arrive in this star system.`
 	on complete
 		payment 20000
+		"reputation: Hai (Unfettered)" += 100
 		conversation
 			`Hareek was quite tight-lipped about what he planned to do once on <planet>. The most you could get out of him was more stories about his past as a military pilot. Once you land, Hareek jumps off your ship, moving surprisingly fast for his age.`
 			`"Thank you, Captain, for making this journey. I apologize for not telling you more about me; the work I do is not something that I can reveal to any human who asks." He hands you <payment> and moves away. The surrounding Unfettered appear almost awed by his presence and consequentially give you a wide berth.`
