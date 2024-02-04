@@ -3908,17 +3908,16 @@ system Algol
 		period 1056.95
 
 system Algorel
-	pos -631 145
+	pos -643 93
 	government Republic
 	attributes "dirt belt"
 	arrival 500
 	habitable 370
 	belt 1993
 	haze _menu/haze-67
-	link "Cor Caroli"
-	link "Delta Velorum"
+	link Fala
 	link Ipsing
-	link Mizar
+	link Phecda
 	asteroids "small rock" 2 3.094
 	asteroids "medium rock" 5 2.142
 	asteroids "large rock" 2 1.768
@@ -9057,8 +9056,8 @@ system "Cor Caroli"
 	arrival 1080
 	habitable 1080
 	belt 1474
-	link Algorel
 	link Gacrux
+	link Ipsing
 	link Mizar
 	link Vindemiatrix
 	asteroids "small rock" 24 3.2472
@@ -10454,8 +10453,8 @@ system "Delta Velorum"
 	habitable 1080
 	belt 1221
 	haze _menu/haze-67
-	link Algorel
 	link Gacrux
+	link Ipsing
 	link Turais
 	asteroids "small rock" 6 2.775
 	asteroids "medium rock" 39 2.8875
@@ -13419,7 +13418,7 @@ system Fala
 	arrival 1250
 	habitable 1250
 	belt 1264
-	link Ipsing
+	link Algorel
 	link Muscida
 	link Turais
 	asteroids "small rock" 2 3.0464
@@ -17908,7 +17907,7 @@ system "Io Mann"
 			period 24.0584
 
 system Ipsing
-	pos -639 99
+	pos -629 142
 	government Republic
 	attributes "dirt belt"
 	arrival 2585
@@ -17916,8 +17915,9 @@ system Ipsing
 	belt 1107
 	haze _menu/haze-67
 	link Algorel
-	link Fala
-	link Phecda
+	link "Cor Caroli"
+	link "Delta Velorum"
+	link Mizar
 	asteroids "large metal" 1 1.1424
 	trade Clothing 231
 	trade Electronics 712
@@ -23835,9 +23835,9 @@ system Mizar
 	belt 1876
 	haze _menu/haze-67
 	link Alcor
-	link Algorel
 	link Arcturus
 	link "Cor Caroli"
+	link Ipsing
 	asteroids "large metal" 1 2.6304
 	trade Clothing 187
 	trade Electronics 784
@@ -26402,8 +26402,8 @@ system Phecda
 	arrival 500
 	habitable 370
 	belt 1375
+	link Algorel
 	link Intercrus
-	link Ipsing
 	link Merak
 	asteroids "small rock" 182 3.2
 	asteroids "medium rock" 57 6.95
