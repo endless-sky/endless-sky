@@ -3268,6 +3268,71 @@ system Albireo
 		distance 2211.99
 		period 1509.48
 
+
+system Alcor
+	pos -554 156
+	government Republic
+	attributes "bright star" "dirt belt" "notable star"
+	habitable 3208.255
+	belt 1615 10
+	belt 1795 9
+	link Mizar
+	asteroids "medium rock" 6 2.064
+	asteroids "large rock" 1 1.602
+	asteroids "small metal" 2 2.741
+	asteroids "medium metal" 3 2.587
+	asteroids "large metal" 3 3.08
+	minables lead 3 4.053
+	trade Clothing 202
+	trade Electronics 797
+	trade Equipment 596
+	trade Food 294
+	trade "Heavy Metals" 907
+	trade Industrial 644
+	trade "Luxury Goods" 1211
+	trade Medical 727
+	trade Metal 475
+	trade Plastic 488
+	fleet "Small Southern Merchants" 2000
+	fleet "Small Southern Pirates" 3000
+	object
+		sprite star/m3
+		distance 78.946
+		period 46.83
+		offset 180
+	object
+		sprite star/a5
+		distance 21.7
+		period 46.83
+	object
+		sprite planet/lava4-b
+		distance 297
+		period 36.146
+	object
+		sprite planet/rock6
+		distance 721
+		period 136.719
+	object
+		sprite planet/gas4-b
+		distance 1715
+		period 501.559
+		object
+			sprite planet/tethys
+			distance 272
+			period 276.279
+		object
+			sprite planet/europa
+			distance 413
+			period 397.042
+	object
+		sprite planet/callisto
+		distance 4413
+		period 2070.267
+	object
+		sprite planet/gas12
+		distance 7491
+		period 4578.627
+
 system Alcyone
 	pos -80 -144
 	government Pirate
@@ -3709,14 +3774,14 @@ system Algenib
 			period 42.6838
 
 system Algieba
-	pos -691 -52
+	pos -673 -78
 	government Republic
 	attributes "deep"
 	arrival 2720
 	habitable 2720
 	belt 1070
 	link Alphard
-	link "Tania Australis"
+	link "Tania Borealis"
 	link Zosma
 	asteroids "small rock" 7 7.236
 	asteroids "medium rock" 1 3.726
@@ -3851,9 +3916,9 @@ system Algorel
 	belt 1993
 	haze _menu/haze-67
 	link "Cor Caroli"
+	link "Delta Velorum"
+	link Ipsing
 	link Mizar
-	link Phecda
-	link Turais
 	asteroids "small rock" 2 3.094
 	asteroids "medium rock" 5 2.142
 	asteroids "large rock" 2 1.768
@@ -4815,6 +4880,7 @@ system Alphard
 	habitable 1115
 	belt 1101
 	link Algieba
+	link Liesma
 	link Miaplacidus
 	link Talita
 	link Zosma
@@ -5303,6 +5369,66 @@ system "Ancient Hope"
 			sprite planet/dust4
 			distance 255
 			period 14.3618
+
+system Aniara
+	pos -743 -18
+	government Republic
+	attributes "dirt belt"
+	habitable 980
+	belt 1566
+	belt 2479 8
+	link Mora
+	link "Tania Australis"
+	asteroids "small rock" 3 1.985
+	asteroids "medium rock" 11 2.048
+	asteroids "large rock" 1 1.129
+	asteroids "small metal" 5 1.735
+	asteroids "medium metal" 18 1.463
+	asteroids "large metal" 11 1.254
+	minables titanium 1 2.471
+	minables lead 4 1.669
+	trade Clothing 344
+	trade Electronics 724
+	trade Equipment 508
+	trade Food 387
+	trade "Heavy Metals" 996
+	trade Industrial 699
+	trade "Luxury Goods" 1103
+	trade Medical 719
+	trade Metal 396
+	trade Plastic 418
+	fleet "Small Southern Merchants" 2000
+	fleet "Large Southern Merchants" 4000
+	fleet "Small Southern Pirates" 2000
+	fleet "Large Southern Pirates" 3000
+	fleet "Small Republic" 20000
+	object
+		sprite star/k0-old
+		period 10
+	object
+		sprite planet/gas7-hot
+		distance 954.135
+		period 376.584
+		object
+			sprite planet/europa-b
+			distance 234
+			period 169.331
+		object
+			sprite planet/tethys
+			distance 326
+			period 362.511
+	object
+		sprite planet/gas1
+		distance 5033.989
+		period 4563.682
+		object
+			sprite planet/callisto-b
+			distance 503
+			period 295.236
+		object
+			sprite planet/ice0
+			distance 628
+			period 594.895
 
 system Ankaa
 	pos -230 100
@@ -10321,15 +10447,15 @@ system "Delta Sagittarii"
 			period 28.9594
 
 system "Delta Velorum"
-	pos -740 90
+	pos -699 130
 	government Republic
 	attributes "dirt belt"
 	arrival 1080
 	habitable 1080
 	belt 1221
 	haze _menu/haze-67
-	link Fala
-	link Mora
+	link Algorel
+	link Gacrux
 	link Turais
 	asteroids "small rock" 6 2.775
 	asteroids "medium rock" 39 2.8875
@@ -13287,14 +13413,15 @@ system "Fah Soom"
 			period 22.2216
 
 system Fala
-	pos -690 64
+	pos -674 52
 	government Republic
 	attributes "dirt belt"
 	arrival 1250
 	habitable 1250
 	belt 1264
-	link "Delta Velorum"
-	link "Tania Australis"
+	link Ipsing
+	link Muscida
+	link Turais
 	asteroids "small rock" 2 3.0464
 	asteroids "medium rock" 91 2.8672
 	asteroids "large rock" 2 2.0832
@@ -14807,8 +14934,9 @@ system Gacrux
 	habitable 530
 	belt 1188
 	link "Cor Caroli"
+	link "Delta Velorum"
 	link Muhlifain
-	link Turais
+	remove link Turais
 	asteroids "medium rock" 20 1.8354
 	asteroids "large rock" 1 2.2862
 	asteroids "small metal" 7 2.8336
@@ -17537,6 +17665,90 @@ system Insitor
 		distance 4713.14
 		period 5518.79
 
+
+
+system Intercrus
+	pos -624 30
+	government Republic
+	attributes "dirt belt"
+	habitable 370
+	belt 1950 9
+	belt 2227 10
+	link Liesma
+	link Phecda
+	link "Tania Australis"
+	asteroids "small rock" 17 2.424
+	asteroids "medium rock" 9 2.424
+	asteroids "large rock" 14 3.48
+	asteroids "small metal" 34 3.128
+	asteroids "medium metal" 27 2.033
+	asteroids "large metal" 98 3.558
+	minables lead 12 5.083
+	minables silver 6 5.823
+	minables uranium 17 5.133
+	trade Clothing 375
+	trade Electronics 791
+	trade Equipment 477
+	trade Food 428
+	trade "Heavy Metals" 914
+	trade Industrial 577
+	trade "Luxury Goods" 1144
+	trade Medical 714
+	trade Metal 351
+	trade Plastic 357
+	fleet "Small Northern Merchants" 800
+	fleet "Large Northern Merchants" 3000
+	fleet "Small Republic" 4000
+	fleet "Small Southern Pirates" 3000
+	fleet "Human Miners" 1800
+	object
+		sprite star/k8
+		period 10
+	object
+		sprite planet/ice6-b
+		distance 1159.178
+		period 820.7
+		object
+			sprite planet/callisto-b
+			distance 190
+			period 68.541
+	object
+		sprite planet/dust5-b
+		distance 1978
+		period 1829.357
+	object
+		sprite planet/gas17
+		distance 4693
+		period 6685.516
+		object
+			sprite planet/europa
+			distance 242
+			period 178.088
+		object
+			sprite planet/dust4-b
+			distance 379
+			period 229.476
+	object
+		sprite planet/gas8-b
+		distance 7335
+		period 13063.493
+		object
+			sprite planet/rock14-b
+			distance 358
+			period 177.273
+		object
+			sprite planet/ice7
+			distance 534
+			period 322.946
+		object
+			sprite planet/ice8
+			distance 723
+			period 734.866
+	object
+		sprite planet/callisto
+		distance 10620
+		period 22758.619
+
 system "Io Lowe"
 	pos -94.7566 -527.728
 	government Hai
@@ -17696,14 +17908,16 @@ system "Io Mann"
 			period 24.0584
 
 system Ipsing
-	pos -549 160
+	pos -639 99
 	government Republic
 	attributes "dirt belt"
 	arrival 2585
 	habitable 2585
 	belt 1107
 	haze _menu/haze-67
-	link Mizar
+	link Algorel
+	link Fala
+	link Phecda
 	asteroids "large metal" 1 1.1424
 	trade Clothing 231
 	trade Electronics 712
@@ -17715,8 +17929,12 @@ system Ipsing
 	trade Medical 697
 	trade Metal 388
 	trade Plastic 416
-	fleet "Small Southern Merchants" 2000
-	fleet "Small Southern Pirates" 3000
+	fleet "Small Southern Merchants" 600
+	fleet "Small Northern Merchants" 800
+	fleet "Large Southern Merchants" 2000
+	fleet "Large Northern Merchants" 1500
+	fleet "Small Republic" 2000
+	fleet "Large Republic" 4000
 	object
 		sprite star/g0-old
 		distance 20.2927
@@ -20967,8 +21185,62 @@ system Levana
 			distance 391
 			period 38.521
 
+system Liesma
+	pos -581 4
+	government Republic
+	habitable 1080
+	belt 1291 3
+	link Alphard
+	link Intercrus
+	asteroids "small rock" 1 4.309
+	asteroids "medium rock" 24 5.613
+	asteroids "large rock" 13 4.026
+	asteroids "small metal" 13 5.386
+	asteroids "medium metal" 31 4.479
+	asteroids "large metal" 39 4.026
+	minables iron 12 6.157
+	minables gold 3 7.691
+	trade Clothing 362
+	trade Electronics 741
+	trade Equipment 614
+	trade Food 521
+	trade "Heavy Metals" 999
+	trade Industrial 596
+	trade "Luxury Goods" 1259
+	trade Medical 724
+	trade Metal 347
+	trade Plastic 461
+	fleet "Small Northern Merchants" 1000
+	fleet "Large Northern Merchants" 4000
+	fleet "Small Republic" 8000
+	fleet "Small Southern Pirates" 6000
+	fleet "Human Miners" 2000
+	object
+		sprite star/g0
+		period 10
+	object
+		sprite planet/lava1-b
+		distance 582.294
+		period 171.026
+	object
+		sprite planet/gas2
+		distance 1553.607
+		period 745.349
+		object
+			sprite planet/rock17
+			distance 197
+			period 170.292
+		object
+			sprite planet/ice0-b
+			distance 346
+			period 243.285
+	object
+		sprite planet/oberon
+		distance 3651
+		period 2685.133
+
 system Limen
-	pos -791.99 -12.2491
+	pos -815 -26
 	government Republic
 	attributes "dirt belt"
 	arrival 1715
@@ -21133,7 +21405,7 @@ system Lloloi
 		period 4348.06
 
 system Lolami
-	pos -628 -10
+	pos -637 -33
 	government Republic
 	attributes "dirt belt"
 	arrival 1215
@@ -22332,6 +22604,63 @@ system "Mego Seo"
 			distance 391
 			period 33.0323
 
+system Megrez
+	pos -809 39
+	government Republic
+	attributes "bright star" "dirt belt" "notable star"
+	habitable 3400
+	belt 1960 9
+	link Mora
+	asteroids "small rock" 4 6.316
+	asteroids "medium rock" 3 3.381
+	asteroids "large rock" 5 5.614
+	asteroids "small metal" 4 3.445
+	asteroids "medium metal" 8 4.019
+	asteroids "large metal" 19 3.19
+	minables neodymium 13 7.837
+	minables lead 6 6.659
+	trade Clothing 363
+	trade Electronics 723
+	trade Equipment 521
+	trade Food 353
+	trade "Heavy Metals" 869
+	trade Industrial 652
+	trade "Luxury Goods" 1096
+	trade Medical 788
+	trade Metal 398
+	trade Plastic 394
+	fleet "Small Southern Merchants" 4000
+	fleet "Small Southern Pirates" 1000
+	fleet "Large Southern Pirates" 2000
+	fleet "Human Miners" 1500
+	object
+		sprite star/a3
+		period 10
+	object
+		sprite planet/cloud1-b
+		distance 1654
+		period 461.449
+	object
+		sprite planet/gas11-b
+		distance 4145
+		period 1830.658
+		object
+			sprite planet/rock0
+			distance 277
+			period 174.269
+	object
+		sprite planet/gas16
+		distance 8640
+		period 5509.233
+		object
+			sprite planet/dust4
+			distance 235
+			period 112.042
+	object
+		sprite planet/gas4
+		distance 17828
+		period 16329.56
+
 system "Mei Yohn"
 	pos -106.757 -581.698
 	government Hai
@@ -22746,7 +23075,7 @@ system Menkent
 		period 1562.60
 
 system Merak
-	pos -553 60
+	pos -550 59
 	government Republic
 	attributes "near earth"
 	arrival 1115
@@ -23505,10 +23834,10 @@ system Mizar
 	habitable 1080
 	belt 1876
 	haze _menu/haze-67
+	link Alcor
 	link Algorel
 	link Arcturus
 	link "Cor Caroli"
-	link Ipsing
 	asteroids "large metal" 1 2.6304
 	trade Clothing 187
 	trade Electronics 784
@@ -23730,16 +24059,17 @@ system Moktar
 		period 1540.20
 
 system Mora
-	pos -755 23
+	pos -767 21
 	government Republic
 	attributes "dirt belt"
 	arrival 500
 	habitable 425
 	belt 1176
 	haze _menu/haze-67
-	link "Delta Velorum"
+	link Aniara
 	link Limen
-	link "Tania Australis"
+	link Megrez
+	link Muscida
 	asteroids "medium rock" 54 1.9305
 	asteroids "large rock" 33 1.9877
 	asteroids "medium metal" 3 1.287
@@ -23925,6 +24255,61 @@ system Muphrid
 		sprite planet/dust1
 		distance 2405.68
 		period 1191.15
+		
+system Muscida
+	pos -704 30
+	government Republic
+	attributes "dirt belt"
+	habitable 1250
+	belt 1323 3
+	belt 2082 7
+	belt 2512 5
+	link Fala
+	link Mora
+	link "Tania Australis"
+	link Turais
+	asteroids "small rock" 1 4.352
+	asteroids "medium rock" 3 5.189
+	asteroids "large rock" 8 8.37
+	asteroids "small metal" 1 6.361
+	asteroids "medium metal" 4 6.194
+	asteroids "large metal" 5 4.436
+	minables titanium 12 7.252
+	trade Clothing 346
+	trade Electronics 758
+	trade Equipment 503
+	trade Food 356
+	trade "Heavy Metals" 850
+	trade Industrial 666
+	trade "Luxury Goods" 1071
+	trade Medical 684
+	trade Metal 428
+	trade Plastic 402
+	fleet "Small Southern Merchants" 2000
+	fleet "Large Southern Merchants" 4000
+	fleet "Small Southern Pirates" 2000
+	fleet "Large Southern Pirates" 3000
+	fleet "Small Republic" 20000
+	fleet "Human Miners" 2000
+	object
+		sprite star/g5-old
+		period 10
+	object
+		sprite planet/gas17
+		distance 1229
+		period 487.453
+		object
+			sprite planet/rock17-b
+			distance 250
+			period 243.447
+		object
+			sprite planet/oberon
+			distance 369
+			period 436.55
+	object
+		sprite planet/gas13
+		distance 2822
+		period 1696.057
 
 system Naos
 	pos -653 -396
@@ -24850,7 +25235,7 @@ system Oosuoro
 		period 13480.5
 
 system Orbona
-	pos -735.99 -97.2491
+	pos -759 -111
 	government Republic
 	attributes "bright star" "dirt belt" "giant star" "notable star"
 	arrival 5000
@@ -26011,15 +26396,15 @@ system Phact
 		period 1691.25
 
 system Phecda
-	pos -607 88
+	pos -600 69
 	government Republic
 	attributes "dirt belt"
 	arrival 500
 	habitable 370
 	belt 1375
-	link Algorel
+	link Intercrus
+	link Ipsing
 	link Merak
-	link "Tania Australis"
 	asteroids "small rock" 182 3.2
 	asteroids "medium rock" 57 6.95
 	asteroids "large rock" 40 3.75
@@ -27851,7 +28236,7 @@ system Regor
 			period 49.3713
 
 system Regulus
-	pos -544 25
+	pos -540 24
 	government Republic
 	attributes "bright star" "near earth" "notable star"
 	arrival 5000
@@ -31616,17 +32001,17 @@ system Talita
 		period 995.049
 
 system "Tania Australis"
-	pos -671 7
+	pos -680 -12
 	government Republic
 	attributes "dirt belt"
 	arrival 1080
 	habitable 1080
 	belt 1738
-	link Algieba
-	link Fala
+	link Aniara
+	link Intercrus
 	link Lolami
-	link Mora
-	link Phecda
+	link Muscida
+	link "Tania Borealis"
 	asteroids "medium rock" 4 4.6656
 	asteroids "large rock" 13 5.2704
 	asteroids "medium metal" 1 2.5488
@@ -31688,6 +32073,55 @@ system "Tania Australis"
 			sprite planet/dust5-b
 			distance 577
 			period 68.3166
+
+system "Tania Borealis"
+	pos -706 -56
+	government Republic
+	attributes "bright star" "dirt belt" "notable star"
+	habitable 3400
+	belt 1248 8
+	belt 2306
+	link Algieba
+	link "Tania Australis"
+	asteroids "small rock" 3 4.125
+	asteroids "medium rock" 24 6.75
+	asteroids "large rock" 2 4.5
+	asteroids "small metal" 5 4.65
+	asteroids "medium metal" 5 4.275
+	asteroids "large metal" 1 5.55
+	minables gold 3 6.218
+	minables lead 9 8.022
+	trade Clothing 306
+	trade Electronics 723
+	trade Equipment 531
+	trade Food 505
+	trade "Heavy Metals" 1091
+	trade Industrial 630
+	trade "Luxury Goods" 1293
+	trade Medical 676
+	trade Metal 297
+	trade Plastic 411
+	fleet "Small Northern Merchants" 1000
+	fleet "Large Northern Merchants" 2000
+	fleet "Small Republic" 5000
+	fleet "Small Northern Pirates" 5000
+	fleet "Large Northern Pirates" 9000
+	fleet "Human Miners" 3000
+	object
+		sprite star/a3
+		period 10
+	object
+		sprite planet/lava6
+		distance 417
+		period 58.415
+	object
+		sprite planet/gas12
+		distance 1429.285
+		period 370.68
+	object
+		sprite planet/dust4-b
+		distance 2475
+		period 844.663
 
 system Tarazed
 	pos -194 448
@@ -31900,7 +32334,7 @@ system Tejat
 			period 22.9367
 
 system Terminus
-	pos -727.99 -23.2491
+	pos -752 -46
 	government Republic
 	attributes "dirt belt" "wormhole"
 	arrival 950
@@ -32276,15 +32710,15 @@ system Tscera
 		period 1576.32
 
 system Turais
-	pos -691 134
+	pos -740 96
 	government Republic
 	attributes "dirt belt"
 	arrival 500
 	habitable 135
 	belt 1471
-	link Algorel
 	link "Delta Velorum"
-	link Gacrux
+	link Fala
+	link Muscida
 	asteroids "small rock" 16 3.075
 	asteroids "medium rock" 37 4.2
 	asteroids "large rock" 7 4.35
