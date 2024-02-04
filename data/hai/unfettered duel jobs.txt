@@ -336,6 +336,7 @@ mission "Unfettered Spontaneous Challenge"
 		dialog phrase "beaten in duel"
 		fine 20000
 		fail
+	# TODO: add lightning bugs
 	npc save disable
 		government "Hai (Unfettered Challenger)"
 		personality disables plunders entering target timid restricted opportunistic merciful uninterested daring lingering
@@ -456,7 +457,7 @@ mission "Unfettered Red Blue Sea Scorpion Duel"
 	source
 		attributes "unfettered"
 	to offer
-		random < 8
+		random < 18
 	npc provoke
 		government "Hai (Unfettered Blue Challenger)"
 		personality disables merciful plunders staying heroic uninterested
@@ -477,7 +478,7 @@ mission "Unfettered Red Blue Shield Beetle Duel"
 	source
 		attributes "unfettered"
 	to offer
-		random < 4
+		random < 12
 	npc provoke
 		government "Hai (Unfettered Blue Challenger)"
 		personality disables merciful plunders staying heroic uninterested
