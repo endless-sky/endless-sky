@@ -1933,12 +1933,12 @@ mission "Station Exploration Abandon Ship"
 			`	"You are being fined <fine> for abandoning your passengers without warning. You're lucky you didn't end up with a more serious punishment." After further chewing you out for endangering your passengers' safety, he walks away from you in a huff.`
 
 mission "Pilgrimage"
-	name "Hai spiritual leader to <destination>"
+	name "Hai spiritual leader to <planet>"
 	description "Bring a Hai spiritual leader to <destination>."
 	minor
 	source
 		government "Hai"
-		not attributes "station" "unfettered"
+		not attributes "station"
 	destination
 		attributes "unfettered"
 	passengers 1
@@ -1948,14 +1948,19 @@ mission "Pilgrimage"
 		has "First Contact: Hai: offered"
 	on offer
 		conversation
-			`It is an unusually foggy day on <source>. The air is so thick with moisture that you cannot see more than a few paces in front of you. Perhaps that is why you are so startled when you turn around and see a Hai standing right next to you. He is so close you can see dewdrops on his whiskers, and you immediately notice the prominent jewelry that he is wearing.`
-			`	"I see that you are wiser than most humans here," he says, pointing towards your ship. "You carry a Keystone, a shield against the tempest of space. Let no one else tell you otherwise. Are you willing and able to take me to <destination>? I can pay <payment>." He appears quite old, judging by his stooped-over posture and the white fur around his muzzle.`
+			`It is an unusually foggy day on <source>. The air is so thick with moisture that you cannot see more than a few paces in front of you. Perhaps that is why you are so startled when you turn around and see a Hai standing right next to you. He is so close you can see dewdrops on his whiskers, and you immediately notice the prominent jewelry that he is wearing. He appears to be quite old, judging by his stooped-over posture and the white fur around his muzzle.`
+			`	"I see that you are wiser than most humans here," he says, pointing towards your ship. "You carry a Keystone, a shield against the tempest of space. Let no one else tell you otherwise. Are you willing and able to take me to <destination>? I can pay <payment>."`
 			choice
 				`	"I can take you there."`
 					goto agree
 				`	"I'm not going there. You'll have to ask someone else."`
 					decline
 				`	"Why would you want to go to <destination>? Isn't that an Unfettered planet?"`
+					to display
+						or
+							has "visited system: Wah Ki"
+							has "Wanderers: Translation Machine: offered"
+							has "First Contact: Unfettered: offered"
 			`	The Hai pauses for a moment, as if unsure of what to say. "My teachings are more... appreciated among our northern brethren."`
 			choice
 				`	"Teachings?"`
@@ -1965,7 +1970,7 @@ mission "Pilgrimage"
 				`	"Unfettered space is too dangerous for me. You'll have to find someone else."`
 					goto dangerous
 			label teachings
-			`	An unreadable expression appears on the Hai's face. "How do I explain this... You have your preachers and wise men among the humans, yes? I am something similar." He stops for a moment, realizing something. "Ah, apologies for my rudeness - you probably do not know who I am. My name is Hareek. Now, will you take me to <destination>?"`
+			`	An unreadable expression appears on the Hai's face. "How do I explain this... You have your preachers and wise men among the humans, yes? I am somewhat similar." He stops for a moment, realizing something. "Ah, apologies for my rudeness - you probably do not know who I am. My name is Hareek. Now, will you take me to <destination>?"`
 			choice
 				`	"So you're going to preach to the Unfettered?"`
 					goto preach
@@ -1982,14 +1987,14 @@ mission "Pilgrimage"
 					goto strange
 				`	"Unfettered space is too dangerous for me. You'll have to find someone else."`
 			label dangerous
-			`	He snorts. "Dangerous? I am approaching 300 years old, and yet I do not fear my own." He walks away, clearly disappointed.`
+			`	He snorts. "Dangerous? I am approaching 300 years old, and yet I do not fear a trip to Unfettered space." He walks away, clearly disappointed.`
 				decline
 			label strange
 			`	He sighs. "That's alright. I would not expect you to understand." He walks away, disappearing into the mist.`
 				decline
 			label agree
-			`	"Excellent. There are not many captains nowadays, Hai or human, that take proper precautions when travelling through space. I'm glad to see that you have some sense, at least." He lowers his voice.`
-			`	"Since you seem to be a trustworthy captain, I will tell you of some things I have seen. Many years ago, I defended our space against the Korath raids. We were hit by a massive fleet, and were caught unprepared. Every ship in my patrol group was destroyed, except for ours. Our ship was the only one with a Keystone. I learned two things in my time with the Korath - that the old legends are true, and that the stability we have enjoyed as a species is ending. Changes in the galaxy are inevitable, and those changes are arriving soon." He begins to move towards your ship. "But let us not speak of this now. I have business to attend to."`
+			`	"Excellent. There are not many captains nowadays, Hai or human, who take proper precautions when traveling through space. I'm glad to see that you have some sense, at least." He lowers his voice.`
+			`	"Since you seem to be a trustworthy captain, I will tell you of some things I have seen. Many years ago, I defended our space against the Korath raids. One day, we were hit by a massive fleet, and were caught unprepared. Every single ship in my patrol group was destroyed, except for ours - the only one with a Keystone. I learned two things in my time with the Korath: that the old legends are true, and that the stability we have enjoyed as a species is ending. Changes in the galaxy are inevitable, and those changes are arriving soon." He begins to move towards your ship. "But let us not speak of this now. I have business to attend to."`
 				accept
 
 	on visit
@@ -1997,7 +2002,7 @@ mission "Pilgrimage"
 	on complete
 		payment 20000
 		conversation
-			`Hareek was quite tight-lipped about what he planned to do once on <destination>. The most you could get out of him was more stories about his past as a military pilot. Once you land, Hareek jumps off your ship, moving surprisingly fast for his age.`
-			`"Thank you, captain, for making this journey. I apologize about not telling you more about me; the work I do is not something that I can reveal to any human who asks." He hands you <payment> and moves away. The surrounding Unfettered appear almost awed by his presence, and consequentially give you a wide berth.`
+			`Hareek was quite tight-lipped about what he planned to do once on <planet>. The most you could get out of him was more stories about his past as a military pilot. Once you land, Hareek jumps off your ship, moving surprisingly fast for his age.`
+			`"Thank you, Captain, for making this journey. I apologize for not telling you more about me; the work I do is not something that I can reveal to any human who asks." He hands you <payment> and moves away. The surrounding Unfettered appear almost awed by his presence and consequentially give you a wide berth.`
 		log "Minor People" "Hareek" `An old Hai who claims to foresee the future. Dropped him off in Unfettered space so he could spread his message there. He appears to be well-respected amongst the Unfettered.`
 
