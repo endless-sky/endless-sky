@@ -2195,14 +2195,7 @@ phrase "friendly civilian"
 		`Apparently they want me to pay 5% of my paycheck for union dues! I'm gonna keep it. My boss is a good guy; he'll look out for me.`
 		`I saved up and bought extra bunk space so my wife could come on trips with me, and now she says "we need to talk." That can't be a good sign, can it?`
 
-phrase "friendly miner"
-	phrase
-#		"friendly civilian" 42
-		"miner advice"
-		"miner comment"
-		"miner asteroid advice"
-
-phrase "miner advice"
+phrase "friendly civilian"
 	word
 		"If you want to "
 		"To "
@@ -2344,28 +2337,11 @@ phrase "miner advice: mineral"
 		"ore like iron"
 		"ore like lead"
 		"ore like aluminum"
-
-phrase "miner advice: mineral"
 	word
-		"you've got to "
-		"you should "
-		"you should learn to "
-		"you're better off to "
-		"it's best to"
-		""
-	word
-		"avoid mining "
-		"avoid picking up "
-		"avoid harvesting "
-		"avoid "
-	word
-		"silicon"
-		"iron"
-		"lead"
-		"aluminum"
-	word
-		" asteroids"
-		""
+		" and mine other asteroids"
+		" and find more valuable minerals"
+		" so you have space for more profitable minerals"
+		" because they don't sell for very much"
 
 phrase "miner advice: ship"
 	word
@@ -2412,12 +2388,15 @@ phrase "miner advice: other"
 		"you should learn to recognize what asteroids are worthless or expensive"
 		"mining in systems frequented by pirates may be risky, but they often have good minerals"
 
-phrase "miner comment"
+phrase "friendly civilian"
 	word
 		"I'm trying to improve my piloting skills without risking my life too much, so I've been mining asteroids."
 		"Mining can be a good way to improve your piloting skills."
+		"Mining is a safe career option for new interceptor pilots."
+		"Asteroid miners should be better appreciated by other captains. It takes a lot of effort to destroy asteroids, and just as much effort to scoop them up into your hold."
+		"I'm sick and tired of other ships stealing the minerals I've mined before I can get to them."
 
-phrase "miner comment"
+phrase "friendly civilian"
 	word
 		"I find that %"
 		"Often, %"
@@ -2460,7 +2439,7 @@ phrase "miner comment"
 		"worthwhile and worthwhile" "worthwhile"
 		"meditative and meditative" "meditative"
 
-phrase "miner comment"
+phrase "friendly civilian"
 	word
 		"It's becoming harder"
 		"It used to be much easier"
@@ -2487,7 +2466,7 @@ phrase "miner comment"
 		" I feel like all the taxes I pay when I sell my minerals goes to protecting the Paradise Worlds, and not for people like me who risk their lives against the pirates to get these minerals."
 		" These new Syndicate models of the Sunder just don't cut it compared to the old models, but it's impossible to find the parts to repair them."
 
-phrase "miner comment"
+phrase "friendly civilian"
 	word
 		"It's never been easier"
 		"It's quite easy"
@@ -2513,7 +2492,7 @@ phrase "miner comment"
 		" I can just sit back while my mining drones do the mining for me."
 		" I don't have to play chicken with my minerals when I have a tractor beam."
 
-phrase "miner asteroid advice"
+phrase "friendly civilian"
 	word
 		"I only ever"
 		"My strategy is to only"
@@ -2557,7 +2536,6 @@ phrase "miner asteroid advice"
 		"."
 	replace
 		"for in" "in"
-
 		"gold and gold" "gold"
 		"gold or gold" "gold"
 		"silver and silver" "silver"
