@@ -1943,7 +1943,7 @@ mission "Hai Pilgrimage"
 		attributes "unfettered"
 	passengers 1
 	to offer
-		random < 30
+		random < 10
 		has "outfit: Quantum Keystone"
 		has "First Contact: Hai: offered"
 	on offer
@@ -1953,14 +1953,16 @@ mission "Hai Pilgrimage"
 			choice
 				`	"I can take you there."`
 					goto agree
-				`	"I'm not going there. You'll have to ask someone else."`
-					decline
 				`	"Why would you want to go to <destination>? Isn't that an Unfettered planet?"`
+					goto ask
 					to display
 						or
 							has "visited system: Wah Ki"
 							has "Wanderers: Translation Machine: offered"
 							has "First Contact: Unfettered: offered"
+				`	"I'm not going there. You'll have to ask someone else."`
+					decline
+			label ask
 			`	The Hai pauses for a moment, as if unsure of what to say. "My teachings are more... appreciated among our northern brethren."`
 			choice
 				`	"Teachings?"`
