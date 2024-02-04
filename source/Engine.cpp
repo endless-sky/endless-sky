@@ -541,7 +541,7 @@ void Engine::Step(bool isActive)
 		else if(jumpCount > 0)
 			--jumpCount;
 	}
-	ai.UpdateEvents(events);
+	HandleEvents();
 	if(isActive)
 	{
 		HandleKeyboardInputs();
@@ -2737,4 +2737,17 @@ void Engine::EmplaceStatusOverlay(const shared_ptr<Ship> &it, Preferences::Overl
 	}
 	statuses.emplace_back(it->Position() - center, it->Shields(), it->Hull(),
 		min(it->Hull(), it->DisabledHull()), max(20., width * .5), type, alpha);
+}
+
+
+
+void Engine::HandleEvents()
+{
+	for(const auto &event: events)
+		if(event.Type() ^ ShipEvent::DISABLE)
+			for (auto &projectile: projectiles)
+				if(projectile.Target() == event.Target().get())
+					projectile.BreakTarget();
+
+	ai.UpdateEvents(events);
 }

@@ -171,6 +171,8 @@ private:
 	void CreateStatusOverlays();
 	void EmplaceStatusOverlay(const std::shared_ptr<Ship> &ship, Preferences::OverlayState overlaySetting, int value);
 
+	// Handle any events the engine is interested in.
+	void HandleEvents();
 
 private:
 	PlayerInfo &player;
