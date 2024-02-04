@@ -460,8 +460,8 @@ event "initial deployment 3"
 		fleet "Large Southern Merchants" 600
 		fleet "Small Free Worlds" 1000
 		fleet "Large Free Worlds" 1600
-		fleet "Small Southern Pirates" 5000
-		fleet "Large Southern Pirates" 8000
+		fleet "Small Southern Pirates" 4000
+		fleet "Large Southern Pirates" 6500
 	system "Aldhibain"
 		fleet "Small Southern Merchants" 400
 		fleet "Large Southern Merchants" 500
@@ -777,6 +777,8 @@ event "initial deployment 4"
 		fleet "Large Southern Merchants" 800
 		fleet "Small Free Worlds" 800
 		fleet "Large Free Worlds" 1200
+		fleet "Small Southern Pirates" 5000
+		fleet "Large Southern Pirates" 8000
 		fleet "Navy Surveillance" 800
 	system "Aldhibain"
 		fleet "Small Southern Merchants" 600
@@ -825,6 +827,8 @@ event "capture of Kornephoros"
 		fleet "Large Southern Merchants" 1000
 		fleet "Small Free Worlds" 400
 		fleet "Large Free Worlds" 600
+		fleet "Small Southern Pirates" 6000
+		fleet "Large Southern Pirates" 10000
 	planet "Clink"
 		description `The mining outpost is swarming with Navy guards; they seem to have turned this moon into a temporary base of operations. The mine has been shut down, and no one is being allowed in or out of the mining outpost. It is not clear whether the miners are prisoners, or merely under a very tight watch.`
 		security 1
@@ -881,6 +885,8 @@ event "recapture of Kornephoros"
 		fleet "Large Southern Merchants" 800
 		fleet "Small Free Worlds" 600
 		fleet "Large Free Worlds" 600
+		fleet "Small Southern Pirates" 1400
+		fleet "Large Southern Pirates" 3000
 	system "Kornephoros"
 		government "Free Worlds"
 		fleet "Small Southern Merchants" 800
