@@ -5845,7 +5845,7 @@ phrase "hostile pirate"
 		"Pirate captains are the most honest of captains. I honestly want to see you die!"
 		"Gimme yer booty, or ye will lose yer bootie!"
 		"It may be wise to part with your valuables."
-		"Drop your cargo and I may spare your miserable life."
+		"Drop your cargo, and I may spare your miserable life."
 		"Yield your haul and run before I get real mad!"
 		"If ye provide me yer coffer, ye may set sail."
 
