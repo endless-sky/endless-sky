@@ -2202,6 +2202,7 @@ phrase "friendly civilian"
 	word
 		"make"
 		"turn"
+		"earn"
 		"get"
 	word
 		" "
@@ -2251,11 +2252,11 @@ phrase "miner advice: outfit"
 		" a good set of "
 	word
 		"asteroid scanners so you can detect and target asteroids more easily"
-		"asteroid scanners. It makes it much easier to target asteroids"
+		"asteroid scanners. They make it much easier to target asteroids"
 		"asteroid scanners. You won't regret the purchase"
-		"asteroid scanners. If you don't know your way around asteroids, one of these will highlight and analyze them for their mineral composition"
+		"asteroid scanners. If you don't know your way around asteroids, these will highlight and analyze their mineral composition"
 		"asteroid scanners" 4
-		"mining lasers. They're faster than other lasers for mining"
+		"mining lasers. They're faster for mining than other lasers"
 		"mining lasers. They're specially designed to break apart asteroids rapidly"
 		"mining lasers. They yield you more minerals per asteroid"
 		"mining lasers. Your mineral yield will go up noticibly with a few of those"
@@ -2266,7 +2267,7 @@ phrase "miner advice: outfit"
 		"heavy lasers. Because they have a greater damage output, they're faster at destroying asteroids"
 		"heavy lasers" 2
 		"tractor beams so pirates and rival miners can't steal your hard-earned ore"
-		"tractor beams, which makes ore collection just that little bit easier"
+		"tractor beams, which make ore collection just that little bit easier"
 		"tractor beams so picking up ore takes less effort"
 		"tractor beams" 3
 
@@ -2386,14 +2387,15 @@ phrase "miner advice: other"
 		"you should stick to patrolled systems so you won't get extorted by pirates"
 		"you should avoid patrolled systems as they don't tend to have rare minerals"
 		"you should learn to recognize what asteroids are worthless or expensive"
-		"mining in systems frequented by pirates may be risky, but they often have good minerals"
+		"keep in mind that mining in systems frequented by pirates may be risky, but they often have good minerals"
+		"consider bribing pirates to leave you alone in systems with valuable asteroids"
 
 phrase "friendly civilian"
 	word
 		"I'm trying to improve my piloting skills without risking my life too much, so I've been mining asteroids."
 		"Mining can be a good way to improve your piloting skills."
-		"Mining is a safe career option for new interceptor pilots."
-		"Asteroid miners should be better appreciated by other captains. It takes a lot of effort to destroy asteroids, and just as much effort to scoop them up into your hold."
+		"Mining is a safe career option for new Sparrow pilots."
+		"Asteroid miners should be better appreciated by other captains. It takes a lot of effort to destroy asteroids and just as much effort to scoop them up into your hold."
 		"I'm sick and tired of other ships stealing the minerals I've mined before I can get to them."
 
 phrase "friendly civilian"
