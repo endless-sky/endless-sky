@@ -2432,7 +2432,7 @@ planet "Kraken Station"
 	landscape land/station8
 	music ambient/machinery
 	description `Kraken Station is seven centuries old; it was the first space station built outside of the Sol system. The station has been modified and repaired so often since that time that in all likelihood not a single deck panel or bulkhead that was part of the original station remains.`
-	description `	Four centuries ago it was nearly destroyed by an asteroid impact, but other than that it has been a working deuterium refinery for its entire lifetime.`
+	description `	Four centuries ago it was nearly destroyed by an asteroid impact, but other than that it has been a working deuterium refinery and trading outpost for its entire lifetime.`
 	spaceport `The main ring of the station consists of three different levels, with living quarters, repair shops, a few small cafeterias, and even a barber. The lower levels also house some of the refinery equipment, but much of the harvesting is done automatically by robotic drones.`
 	spaceport `	For a station that is so old, everything feels surprisingly sturdy; the bolts and beams that make up the station are much thicker than they probably need to be.`
 	security 0.3
@@ -4326,6 +4326,13 @@ planet Swiftsong
 	spaceport `The spaceport promenade runs around the interior of the station and is divided into the usual two levels, but has four additional ring levels rising up from the promenade into each of the station's main branches. Almost any business or service you could want can be found here - except for an outfitter or shipyard. Apparently there is simply no room, as the docking bay must take up nearly all the station's exterior space to accommodate its massive volume of daily traffic.`
 	bribe 0.1
 	security 0.5
+
+planet "Tau Ceti IV"
+	attributes "near earth" uninhabited
+	landscape land/canyon02
+	description "A system of considerable interest for many years, the prospect of a human colony in Tau Ceti began when, in 2083, astronomers on Earth discovered what they believed to be oxygen - and presumably, life - on Tau Ceti IV. In the model of the Alpha Centauri generation fleet, a fleet of generation ships was commissioned to colonize Tau Ceti."
+	description "	When the fleet arrived in the mid-2100s the planet was found to be totally uninhabitable, the oxygen having merely been the byproduct of extraneous chemical processes. With no way home, communications between Earth and the fleet broke down after an apparent internal conflict among the colonists. After humanity returned to Tau Ceti with hyperdrive-equipped ships in the 2200s, all that remained were the husks of the generation ships on the planet's surface."
+	"required reputation" -1000
 
 planet "Tebuteb's Table"
 	attributes arach farming longcows
