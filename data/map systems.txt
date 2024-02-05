@@ -8095,11 +8095,6 @@ system Caph
 		sprite planet/gas6
 		distance 1666.37
 		period 1028.41
-		object "Kraken Station"
-			sprite planet/station10
-				scale 0.5
-			distance 278
-			period 10.5056
 	object
 		sprite planet/gas10
 		distance 2434.98
@@ -32129,7 +32124,7 @@ system "Tau Ceti"
 	object
 		sprite star/g8
 		period 10
-	object
+	object "Tau Ceti IV"
 		sprite planet/dust2
 		distance 289
 		period 83.796
@@ -32141,6 +32136,11 @@ system "Tau Ceti"
 		sprite planet/gas3-b
 		distance 1841
 		period 1347.285
+		object "Kraken Station"
+			sprite planet/station10
+				scale 0.5
+			distance 298
+			period 10.5056
 	object
 		sprite planet/gas10-hot
 		distance 2758
