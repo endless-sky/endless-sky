@@ -2461,9 +2461,6 @@ phrase "friendly civilian"
 	word
 		"" 3
 		" Pirate extortion fees are becoming just another business expense."
-		" The pirate fleets get bolder and more aggressive every day, but the Navy only patrols in the Paradise Worlds."
-		" Pirates used to be few and far between, but now their warships terrorize the more profitable mining systems."
-		" I used to have faith in the Navy's protection, but now I'm starting to lose count the number of times pirates have extorted me."
 		" I've had to jettison my cargo hold of my hard earned ore to pirates a few times now."
 		" I feel like all the taxes I pay when I sell my minerals goes to protecting the Paradise Worlds, and not for people like me who risk their lives against the pirates to get these minerals."
 		" These new Syndicate models of the Sunder just don't cut it compared to the old models, but it's impossible to find the parts to repair them."
