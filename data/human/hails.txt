@@ -2267,7 +2267,7 @@ phrase "miner advice: outfit"
 		"heavy lasers. Because they have a greater damage output, they're faster at destroying asteroids"
 		"heavy lasers" 2
 		"tractor beams so pirates and rival miners can't steal your hard-earned ore"
-		"tractor beams, which make ore collection just that little bit easier"
+		"tractor beams. It makes ore collection just that little bit easier"
 		"tractor beams so picking up ore takes less effort"
 		"tractor beams" 3
 
