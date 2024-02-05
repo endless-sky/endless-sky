@@ -314,7 +314,7 @@ mission "Unfettered Jump Drive Trading"
 	source "Darkcloak"
 	substitutions
 		<hood> ""
-		<hood> ", with their face hidden"
+		<hood> ", with their face hidden,"
 			has "unfettered: blade rodeo"
 		<learned> ""
 		<learned> "It did take you two tries, but I am glad that you were able to learn from your mistake."
