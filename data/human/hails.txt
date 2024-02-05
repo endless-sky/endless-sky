@@ -2404,6 +2404,7 @@ phrase "friendly civilian"
 		"Often, %"
 		"While difficult, %"
 		"It looks difficult, but %"
+		""
 	word
 		"Mining"
 		"Harvesting"
