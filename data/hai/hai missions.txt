@@ -1945,12 +1945,20 @@ mission "Hai Pilgrimage"
 	passengers 1
 	to offer
 		random < 10
-		has "outfit: Quantum Keystone"
+		or
+			has "outfit: Quantum Keystone"
+			has "outfit: Quantum Key Stone"
 		has "First Contact: Hai: offered"
 	on offer
 		conversation
 			`It is an unusually foggy day on <origin>; the air is so thick with moisture that you cannot see more than a few paces in front of you. Perhaps that's why you're so startled when you turn around and see a Hai standing right next to you. He is so close you can see dewdrops on his whiskers, and you immediately notice the prominent jewelry that he is wearing. He appears to be quite old, judging by his stooped-over posture and the white fur around his muzzle.`
-			`	"I see that you are wiser than most humans here," he says, pointing towards your ship. "You carry a Keystone, a shield against the tempest of space. Let no one else tell you otherwise." He stops to catch his breath. "My name is Hareek. Are you willing and able to take me to <destination>? I can pay <payment>."`
+			branch remnant
+				has "outfit: Quantum Key Stone"
+			`	"I see that you are wiser than most humans here," he says, pointing towards your ship. "You carry a Keystone, a shield against the tempest of space. Let no one else tell you otherwise." He stops to catch his breath. "Now, onto more worldly things. My name is Hareek. Are you willing and able to take me to <destination> for <payment>?"`
+				goto choice
+			label remnant
+			`	"I see that you are wiser than most humans here," he says, pointing towards your ship. "You carry a Keystone, a shield against the tempest of space. Let no one else tell you otherwise." He stops to catch his breath. "I have noticed that the Keystone your ship bears is from beyond the wormhole. If your people have access to Keystones as well, then I hope they too become wise to its power. Now, onto more worldly things. My name is Hareek. Are you willing and able to take me to <destination> for <payment>?"`
+			label choice
 			choice
 				`	"I can take you there."`
 					goto agree
