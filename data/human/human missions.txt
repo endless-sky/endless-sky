@@ -6921,11 +6921,23 @@ mission "Hogshead's Dilemma"
 				`	ShippyMcShipFace`
 				`	Its Dark Here`
 				`	What Asteroid`
-			event "hogshead poll"
+			action
+				set "hogshead poll start"
 			`	Once you have made your selection, a 'thank you' message appears. The result of the poll will be broadcasted on the news once the voting period is over. Afterwards, you go back about your business.`
 				decline
 
-event "hogshead poll" 7
+mission "Hogshead's Dilemma Poll"
+	invisible
+	to complete
+		never
+	to offer
+		has "Hogshead's Dilemma: offered"
+		has "hogshead poll start"
+	on offer
+		fail
+		event "hogshead poll" 7
+
+event "hogshead poll"
 
 mission "Hogshead's Dilemma II"
 	invisible
@@ -6935,6 +6947,7 @@ mission "Hogshead's Dilemma II"
 		has "Hogshead's Dilemma: offered"
 		has "event: hogshead poll"
 	on offer
+		clear "hogshead poll start"
 		clear "hogshead poll"
 		conversation
 			`As you are walking around the spaceport, you see that more than a few pilots are watching the news on nearby displays. There are mixed emotions amongst the crowd - some pilots are having a good laugh, while others seem disappointed, or even confused. You aren't sure what this is about until, lo and behold, the result of that Hogshead naming poll from a while ago is clearly shown on a display - ShippyMcShipFace. The sheer ridiculousness of the situation is capturing the attention of almost anyone who catches a glimpse of the monitor. You can't say it's all that much worse than some of the names you've heard pirates give their ships before, but it still seems silly that the transport company is actually going through with the name.`
