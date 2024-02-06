@@ -1954,12 +1954,12 @@ mission "Hai Pilgrimage"
 	on offer
 		conversation
 			`It is an unusually foggy day on <origin>; the air is so thick with moisture that you cannot see more than a few paces in front of you. Perhaps that's why you're so startled when you turn around and see a Hai standing right next to you. He is so close you can see dewdrops on his whiskers, and you immediately notice the prominent jewelry that he is wearing. He appears to be quite old, judging by his stooped-over posture and the white fur around his muzzle.`
+			branch pendant
+				has "outfit: Shield Beetle Pendant"
 			branch normal
 				has "outfit: Quantum Keystone"
 			branch remnant
 				has "outfit: Quantum Key Stone"
-			branch pendant
-				has "outfit: Shield Beetle Pendant"
 			branch huh
 				has "outfit: Tree Skeleton Key Stone"
 			label normal
