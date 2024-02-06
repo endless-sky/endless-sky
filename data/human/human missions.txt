@@ -6907,23 +6907,23 @@ mission "Hogshead's Dilemma"
 				`	(Go see what this is about.)`
 				`	(Ignore it.)`
 					decline
-			`	You walk up to the computer terminal, and on it is displayed a news article with a title that reads 'Popular Votes For Ship Name Poll - Unexpected Results'. The article is about a small transport company harkening back to older times with a special transport voyage centered around a Hogshead space liner. Hogsheads have all but lost the charm they once had, however it seems a good amount of pilots are eager to join in on the fun.`
+			`	You walk up to the computer terminal, and on it is displayed a news article with a title that reads "Popular Votes For Ship Name Poll - Unexpected Results." The article is about a small transport company harkening back to older times with a special transport voyage centered around a Hogshead space liner. Hogsheads have all but lost the charm they once had, but it seems a good number of pilots are eager to join in on the fun.`
 			`	For the event, the transport company decided to have a public poll to name the ship, and while initial suggestions were casual names such as "Stark Lady" or "Timelight", some of the most popular ones are actually a collection of joke names - ones you would imagine a toddler would have made up. Apparently, the names have gotten enough attention and enjoyment out of pilots that the company decided to take the top five most popular results and hold a vote on them.`
 			`	Would you like to vote on the name as well?`
 			choice
 				`	(Yes.)`
 				`	(No.)`
-				decline
+					decline
 			`	You navigate the article until you are directed to the poll itself, presenting you with the top five options.`
 			choice
 				`	Star Empress`
 				`	Tycho's Legacy`
 				`	ShippyMcShipFace`
-				`	Its Dark Here`
+				`	It's Dark Here`
 				`	What Asteroid`
 			action
 				set "hogshead poll start"
-			`	Once you have made your selection, a 'thank you' message appears. The result of the poll will be broadcasted on the news once the voting period is over. Afterwards, you go back about your business.`
+			`	After you made your selection, a "thank you" message appears, telling you that the result of the poll will be broadcast on the news once the voting period has finished. Afterwards, you go back about your business.`
 				decline
 
 mission "Hogshead's Dilemma Poll"
@@ -6951,5 +6951,5 @@ mission "Hogshead's Dilemma II"
 		clear "hogshead poll"
 		conversation
 			`As you are walking around the spaceport, you see that more than a few pilots are watching the news on nearby displays. There are mixed emotions amongst the crowd - some pilots are having a good laugh, while others seem disappointed, or even confused. You aren't sure what this is about until, lo and behold, the result of that Hogshead naming poll from a while ago is clearly shown on a display - ShippyMcShipFace. The sheer ridiculousness of the situation is capturing the attention of almost anyone who catches a glimpse of the monitor. You can't say it's all that much worse than some of the names you've heard pirates give their ships before, but it still seems silly that the transport company is actually going through with the name.`
-			`	You recall that back in the day Hogsheads were a sort of a business fad thanks to a ton of discussion and nicknames based on the shape of their engine pods. In turn, this gave them a brief but strong popularity amongst organizations looking to grab the average passenger's attention. In the end, the transport company responsible for the naming poll got what they wanted, and a little bit of the Hogshead's spirit has been brought back. Perhaps the name 'ShippyMcShipFace' is fitting after all.`
+			`	You recall that, back in their day, Hogsheads were sort of a business fad thanks to a ton of discussion and nicknames based on the shape of their engine pods. In turn, this gave them a brief but strong popularity amongst organizations looking to grab the average passenger's attention. In the end, the transport company responsible for the naming poll got what they wanted, and a little bit of the Hogshead's spirit has been brought back. Perhaps the name "ShippyMcShipFace" is fitting after all.`
 				decline
