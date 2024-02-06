@@ -52,34 +52,34 @@ using namespace std;
 
 namespace {
 	// Return a pair containing settings to use for time formatting.
-	pair<pair<string, string>, size_t> TimestampFormatString(Preferences::DateFormat fmt)
+	pair<const char*, const char*> TimestampFormatString(Preferences::DateFormat fmt)
 	{
-		// pair<string, string>: Linux (1st) and Windows (2nd) format strings
-		// size_t: BUF_SIZE
-		if(fmt == Preferences::DateFormat::YMD)
-			return make_pair(make_pair("%F %T", "%F %T"), 26);
-		if(fmt == Preferences::DateFormat::MDY)
-			return make_pair(make_pair("%-I:%M %p on %b %-d, %Y", "%#I:%M %p on %b %#d, %Y"), 25);
-		if(fmt == Preferences::DateFormat::DMY)
-			return make_pair(make_pair("%-I:%M %p on %-d %b %Y", "%#I:%M %p on %#d %b %Y"), 24);
-
-		// Return YYYY-MM-DD by default.
-		return make_pair(make_pair("%F %T", "%F %T"), 26);
+		// pair<string, string>: Linux (1st) and Windows (2nd) format strings.
+		switch(fmt)
+		{
+		case Preferences::DateFormat::YMD:
+			return make_pair("%F %T", "%F %T");
+		case Preferences::DateFormat::MDY:
+			return make_pair("%-I:%M %p on %b %-d, %Y", "%#I:%M %p on %b %#d, %Y");
+		default:
+		case Preferences::DateFormat::DMY:
+			return make_pair("%-I:%M %p on %-d %b %Y", "%#I:%M %p on %#d %b %Y");
+		}
 	}
 
 	// Convert a time_t to a human-readable time and date.
 	string TimestampString(time_t timestamp)
 	{
-		pair<pair<string, string>, size_t> fmt = TimestampFormatString(Preferences::GetDateFormat());
+		pair<const char*, const char*> fmt = TimestampFormatString(Preferences::GetDateFormat());
 		stringstream ss;
 
 #ifdef _WIN32
 		tm date;
 		localtime_s(&date, &timestamp);
-    	ss << std::put_time(date, fmt.first.second.c_str());
+    	ss << std::put_time(date, fmt.second);
 #else
 		const tm *date = localtime(&timestamp);
-    	ss << std::put_time(date, fmt.first.first.c_str());
+    	ss << std::put_time(date, fmt.first);
 #endif
 		return ss.str();
 	}
