@@ -1948,16 +1948,29 @@ mission "Hai Pilgrimage"
 		or
 			has "outfit: Quantum Keystone"
 			has "outfit: Quantum Key Stone"
+			has "outfit: Shield Beetle Pendant"
+			has "outfit: Tree Skeleton Key Stone"
 		has "First Contact: Hai: offered"
 	on offer
 		conversation
 			`It is an unusually foggy day on <origin>; the air is so thick with moisture that you cannot see more than a few paces in front of you. Perhaps that's why you're so startled when you turn around and see a Hai standing right next to you. He is so close you can see dewdrops on his whiskers, and you immediately notice the prominent jewelry that he is wearing. He appears to be quite old, judging by his stooped-over posture and the white fur around his muzzle.`
 			branch remnant
 				has "outfit: Quantum Key Stone"
-			`	"I see that you are wiser than most humans here," he says, pointing towards your ship. "You carry a Keystone, a shield against the tempest of space. Let no one else tell you otherwise." He stops to catch his breath. "Now, onto more worldly things. My name is Hareek. Are you willing and able to take me to <destination> for <payment>?"`
+			branch pendant
+				has "outfit: Shield Beetle Pendant"
+			branch huh
+				has "outfit: Tree Skeleton Key Stone"
+			`	"I see that you are wiser than most humans here," he says, pointing towards your ship. Its hatch is open, prominently displaying your Keystone to any potential travellers. "You carry a shield against the tempest of space. Let no one else tell you otherwise." He stops to catch his breath. "Now, onto more worldly things. My name is Hareek. Are you willing and able to take me to <destination> for <payment>?"`
 				goto choice
 			label remnant
-			`	"I see that you are wiser than most humans here," he says, pointing towards your ship. "You carry a Keystone, a shield against the tempest of space. Let no one else tell you otherwise." He stops to catch his breath. "I have noticed that the Keystone your ship bears is from beyond the wormhole. If your people have access to Keystones as well, then I hope they too become wise to its power. Now, onto more worldly things. My name is Hareek. Are you willing and able to take me to <destination> for <payment>?"`
+			`	"The keystone you carry is a strange one, human," he says, pointing towards your ship. Its hatch is open, prominently displaying your Keystone to any potential travellers. He walks up to it to get a closer look. "Very unusual. No proper mounting either - must be a human design." He sighs. "Well, at least the Keystone itself looks authentic. It will have to do." He turns to you. "You carry a shield against the tempest of space. Let no one else tell you otherwise. If your people have access to Keystones as well, then I hope they too become wise to its power, and learn to treat them with more reverence. Now, onto more worldly things. My name is Hareek. Are you willing and able to take me to <destination> for <payment>?"`
+				goto choice
+			label pendant
+			`	"A unique design you have here, Captain," he says, pointing towards your ship. Its hatch is open, prominently displaying Nanachi's pendant to any potential travellers. "A gift, I presume? You are lucky you have someone looking out for you. You carry a shield against the tempest of space. Let no one else tell you otherwise." He stops to catch his breath. "Now, onto more worldly things. My name is Hareek. Are you willing and able to take me to <destination> for <payment>?"`
+				goto choice
+			label huh
+			`	"I've never seen anything like this... thing you have," he says, pointing towards your ship. Its hatch is open, prominently displaying the Tree Skeleton Key Stone to any potential travellers. The Hai sounds more than a little disgusted. "I hope you haven't done anything you'll regret."` 
+			`	He takes a closer look. "It seems to be made out of the same material as a Keystone, and yet it is entirely foreign to me. Where you got this, I have no idea. Well, at least the material itself looks authentic. It will have to do." He sighs and turns to you. "I suspect that whoever you got this from is not happy it is out of their hands. I would show more respect for Keystones if I were you." He stops to catch his breath. "Now, onto more worldly things. My name is Hareek. Are you willing and able to take me to <destination> for <payment>?"``
 			label choice
 			choice
 				`	"I can take you there."`
@@ -2001,7 +2014,7 @@ mission "Hai Pilgrimage"
 			`	He sighs. "That's alright. I would not expect you to understand." He walks away, disappearing into the mist.`
 				decline
 			label agree
-			`	"Excellent. There are not many captains nowadays, Hai or human, who take proper precautions when traveling through space. I'm glad to see that you have some sense, at least." He lowers his voice.`
+			`	"Excellent. There are not many human captains who take proper precautions when traveling through space. I'm glad to see that you have some sense, at least." He lowers his voice.`
 			`	"Since you seem to be a trustworthy captain, I will tell you of some things I have seen. Many years ago, I defended our space against the Korath raids. One day, we were caught unprepared and hit by a massive fleet. Every single ship in my patrol group was destroyed, except for ours - the only one with a Keystone. I learned two things in my time with the Korath: that the old legends are true, and that the stability we have enjoyed as a species is ending. Changes in the galaxy are inevitable, and those changes are arriving soon." He begins to move towards your ship. "But let us not speak of this now. I have business to attend to."`
 				accept
 
