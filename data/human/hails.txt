@@ -2227,7 +2227,8 @@ phrase "friendly civilian"
 		"miner advice: ship"
 		"miner advice: other"
 	word
-		"."
+		"." 3
+		"!"
 	replace
 		"turn some" "turn over some"
 		"turn good" "turn over good"
@@ -2371,6 +2372,7 @@ phrase "miner advice: ship"
 		"versatile ship like a Headhunter"
 		"multi-purpose ship like a Headhunter"
 		"carrier like an Aerie. You can use the fighters to mine for you"
+		"nice sturdy ship like a Scout. You can fly it to the back of beyond, then fill its cargo bay with your haul"
 		"ship with a large cargo hold"
 		"good freighter that can fit mining laser turrets"
 		"ship that can defend itself from pirates"
@@ -2391,7 +2393,7 @@ phrase "friendly civilian"
 	word
 		"I'm trying to improve my piloting skills without risking my life too much, so I've been mining asteroids."
 		"Mining can be a good way to improve your piloting skills."
-		"Mining is a safe career option for new Sparrow pilots."
+		"Mining is the only safe career option for new Sparrow pilots."
 		"Asteroid miners should be better appreciated by other captains. It takes a lot of effort to destroy asteroids and just as much effort to scoop them up into your hold."
 		"I'm sick and tired of other ships stealing the minerals I've mined before I can get to them."
 
