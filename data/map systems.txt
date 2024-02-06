@@ -19432,6 +19432,7 @@ system "Kaus Borealis"
 system Keid
 	pos -469.999 35.389
 	government Republic
+	attributes "near earth"
 	habitable 490
 	belt 1575 9
 	link Procyon
@@ -32089,6 +32090,7 @@ system Tarazed
 system "Tau Ceti"
 	pos -341.481 85.963
 	government Republic
+	attributes "near earth"
 	habitable 550
 	belt 1873 5
 	belt 2041 10
@@ -32124,12 +32126,12 @@ system "Tau Ceti"
 	object
 		sprite star/g8
 		period 10
-	object "Tau Ceti IV"
-		sprite planet/dust2
-		distance 289
-		period 83.796
 	object
 		sprite planet/venus
+		distance 289
+		period 83.796
+	object "Tau Ceti IV"
+		sprite planet/dust2
 		distance 937
 		period 489.202
 	object
@@ -33566,6 +33568,7 @@ system Vanguwo
 system "Van Maanen's Star"
 	pos -311.704 116.222
 	government Republic
+	attributes "near earth"
 	habitable 355
 	belt 1021
 	link Altair
