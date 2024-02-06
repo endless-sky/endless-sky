@@ -6908,7 +6908,7 @@ mission "Hogshead's Dilemma"
 				`	(Ignore it.)`
 					decline
 			`	You walk up to the computer terminal, and on it is displayed a news article with a title that reads 'Popular Votes For Ship Name Poll - Unexpected Results'. The article is about a small transport company harkening back to older times with a special transport voyage centered around a Hogshead space liner. Hogsheads have all but lost the charm they once had, however it seems a good amount of pilots are eager to join in on the fun.`
-			`	For the event, the transport company decided to have a public poll to name the ship, and while initial suggestions were typical names such as "" or "", some of the most popular ones are actually a collection of joke names - ones you would imagine a toddler would have made up. Apparently, the names have gotten enough attention and enjoyment out of pilots that the company decided to take the top five most popular results and hold a vote on them.`
+			`	For the event, the transport company decided to have a public poll to name the ship, and while initial suggestions were casual names such as "Stark Lady" or "Timelight", some of the most popular ones are actually a collection of joke names - ones you would imagine a toddler would have made up. Apparently, the names have gotten enough attention and enjoyment out of pilots that the company decided to take the top five most popular results and hold a vote on them.`
 			`	Would you like to vote on the name as well?`
 			choice
 				`	(Yes.)`
