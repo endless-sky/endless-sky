@@ -3132,7 +3132,7 @@ ship "Protector" "Protector (Quad Blaster)"
 
 ship "Protector" "Protector (Tractor Beam)"
 	outfits
-		"Torpedo Launcher" 2
+		"Torpedo Launcher"
 		"Torpedo" 30
 		"Quad Blaster Turret" 4
 		"Anti-Missile Turret" 2
