@@ -76,10 +76,10 @@ namespace {
 #ifdef _WIN32
 		tm date;
 		localtime_s(&date, &timestamp);
-    	ss << std::put_time(date, fmt.second);
+		ss << std::put_time(date, fmt.second);
 #else
 		const tm *date = localtime(&timestamp);
-    	ss << std::put_time(date, fmt.first);
+		ss << std::put_time(date, fmt.first);
 #endif
 		return ss.str();
 	}
