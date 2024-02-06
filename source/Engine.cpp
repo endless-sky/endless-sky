@@ -2744,7 +2744,7 @@ void Engine::EmplaceStatusOverlay(const shared_ptr<Ship> &it, Preferences::Overl
 void Engine::HandleEvents()
 {
 	for(const auto &event : events)
-		if(event.Type() ^ ShipEvent::DISABLE && event.Target()->CanBeCarried())
+		if(event.Type() & ShipEvent::DISABLE && event.Target()->CanBeCarried())
 			for(auto &projectile : projectiles)
 				if(projectile.Target() == event.Target().get())
 					projectile.BreakTarget();
