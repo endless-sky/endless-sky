@@ -588,7 +588,7 @@ mission "Exile: Boarding Worldship Korath"
 		not outfits "Microbot Grinder"
 	on offer
 		conversation
-			`Docking with the gargantuan vessel allows you a front-row seat to witness the sheer scale of this ship. Your sensors detect tens of thousands of life signs aboard, most of which read as likely intelligent, with many thousands more minor life signs alongside them.`
+			`Docking with the gargantuan vessel allows you a front-row seat to witness the sheer scale of this ship. Your sensors detect tens of thousands of life forms moving about the ship with many thousands more minor life signs alongside them.`
 			`	Some of these minor life signs are flora, such as the tree-like things you saw in the massive dome atop the craft, as well as a wide variety of fauna. The rest, though, seem to be large orbs found throughout the craft, mostly in large groupings. A crew member identifies the orbs as eggs - undoubtedly Korath eggs.`
 			`	As you continue to scan this massive vessel, your computer's analysis makes it clear that a ship of this scale would require an actual army spending weeks of constant fighting to even have a chance of capturing it and an equally large workforce to fully pilot it. A thorough and time-intensive sweep would be absolutely essential to prevent surviving Korath from engaging in guerrilla campaigns against your crew or even just sabotaging vital components.`
 			`	Destroying this ship would be equivalent to blowing up an entire city and would certainly upset the Korath a great deal. Depending on the Korath's total population and how their society is distributed amongst their vessels, it may even be considered an act of genocide.`
