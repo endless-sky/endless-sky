@@ -6400,6 +6400,8 @@ mission "Care Package to South 2b"
 	to offer
 		has "Care Package to South 1: done"
 		has "FW Pirates: Diplomacy 4: done"
+	to accept
+		has "FW Early Warning 1: offered"
 	on offer
 		conversation
 			`As you leave the quartermaster's building, you spot a familiar face coming in the other direction: Irene Brower, the gunnery sergeant you delivered a care package to before the war, though she seems to have master sergeant insignia now. She's on crutches, with what looks like a brand-new prosthetic leg. When she spots you, her pained face brightens. "Hey, I know you! You brought me that package from Tor before. Thanks!" She shifts her weight, then winces and shifts it back.`
