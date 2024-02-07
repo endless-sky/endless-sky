@@ -6412,13 +6412,13 @@ mission "Care Package to South 2b"
 				`	"So... that prosthetic is very new, then?"`
 					goto new
 				`	"With that prosthetic, soon you'll have a leg up on the rest of us, eh?"`
-			`	She grins broadly at your pun. "Yep! Just here to get a float chair for the first few weeks of adjustment."`
+			`	She grins broadly at your pun. "Yep! Just here to get a float chair for the first few weeks of adjustment.`
 				goto leave
 			label sorry
-			`	She waves it off, but her face softens. "Thanks. I'm here to pick up a float chair, for the first six weeks of adjustment."`
+			`	She waves it off, but her face softens. "Thanks. I'm here to pick up a float chair, for the first six weeks of adjustment.`
 				goto leave
 			label new
-			`	She nods. "Yep, just came from getting it fitted, and gotta check in at the quartermaster's to get myself a float chair for the first six weeks of adjustment to it."`
+			`	She nods. "Yep, just came from getting it fitted, and gotta check in at the quartermaster's to get myself a float chair for the first six weeks of adjustment to it.`
 			label leave
 			`	"Six months of medical leave, then I'll be back in action. And hopefully assigned to ships a little less eager to jump into the thick of it when it's not really necessary, eh?"`
 			`	You join in her wry chuckle, then she gives you a wave with one crutch and bids you farewell.`
