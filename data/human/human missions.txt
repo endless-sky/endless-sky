@@ -6895,6 +6895,7 @@ mission "Returning to Paradise"
 			`You're not sure if you've ever met a more pretentious and entitled family. The girls fought non-stop, but fortunately, the family was satisfied with the luxury accommodations on your ship. Once you land on <planet>, the lady gives you <payment> and the family leave without a word of thanks; they never even tell you their names. Nonetheless, you're happy to be rid of them.`
 
 mission "Hogshead's Dilemma"
+	minor
 	invisible
 	source
 		near Sol 1 10
