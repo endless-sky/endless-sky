@@ -1939,7 +1939,8 @@ mission "Hai Pilgrimage"
 	clearance "You inform the authorities of the passenger you are transporting, and they quickly allow you to land."
 	source
 		government "Hai"
-		not attributes "station"
+		not attributes "uninhabited" "station"
+		not planet "Darkmetal" "Dustmaker" "Stonebreak" "Skyfarm"
 	destination
 		attributes "unfettered"
 	passengers 1
