@@ -19,8 +19,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Panel.h"
 
 #include "Point.h"
-#include "text/truncate.hpp"
 #include "TextArea.h"
+#include "text/truncate.hpp"
 
 #include <functional>
 #include <string>

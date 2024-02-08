@@ -1,4 +1,4 @@
-/* TextArea.h
+/* TextArea.cpp
 Copyright (c) 2024 by thewierdnut
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -38,8 +38,7 @@ TextArea::TextArea()
 
 
 
-TextArea::TextArea(const Rectangle &r)
-	:TextArea()
+TextArea::TextArea(const Rectangle &r): TextArea()
 {
 	SetRect(r);
 }
@@ -112,7 +111,7 @@ void TextArea::SetTruncate(Truncate t)
 
 int TextArea::GetTextHeight()
 {
-	if (!textIsValid)
+	if(!textIsValid)
 	{
 		wrappedText.Wrap(text);
 		scroll.SetMaxValue(wrappedText.Height());
@@ -125,7 +124,7 @@ int TextArea::GetTextHeight()
 
 int TextArea::GetLongestLineWidth()
 {
-	if (!textIsValid)
+	if(!textIsValid)
 	{
 		wrappedText.Wrap(text);
 		scroll.SetMaxValue(wrappedText.Height());
@@ -138,16 +137,16 @@ int TextArea::GetLongestLineWidth()
 
 void TextArea::Draw()
 {
-	if (!buffer)
+	if(!buffer)
 		buffer = std::make_unique<RenderBuffer>(size);
 
-	if (!textIsValid)
+	if(!textIsValid)
 	{
 		wrappedText.Wrap(text);
 		scroll.SetMaxValue(wrappedText.Height());
 		textIsValid = true;
 	}
-	if (!bufferIsValid || !scroll.IsAnimationDone())
+	if(!bufferIsValid || !scroll.IsAnimationDone())
 	{
 		scroll.Step();
 
@@ -188,7 +187,7 @@ void TextArea::Draw()
 bool TextArea::Click(int x, int y, int clicks)
 {
 	assert(buffer);
-	if (!buffer)
+	if(!buffer)
 		return false;
 	Rectangle bounds(position, {buffer->Width(), buffer->Height()});
 	dragging = bounds.Contains(Point(x, y));
@@ -199,7 +198,7 @@ bool TextArea::Click(int x, int y, int clicks)
 
 bool TextArea::Drag(double dx, double dy)
 {
-	if (dragging)
+	if(dragging)
 	{
 		scroll.Scroll(-dy, 0);
 		bufferIsValid = false;
@@ -222,7 +221,7 @@ bool TextArea::Release(int x, int y)
 bool TextArea::Hover(int x, int y)
 {
 	assert(buffer);
-	if (!buffer)
+	if(!buffer)
 		return false;
 	Rectangle bounds(position, {buffer->Width(), buffer->Height()});
 	hovering = bounds.Contains(Point(x, y));
@@ -233,7 +232,7 @@ bool TextArea::Hover(int x, int y)
 
 bool TextArea::Scroll(double dx, double dy)
 {
-	if (hovering)
+	if(hovering)
 	{
 		scroll.Scroll(-dy * Preferences::ScrollSpeed());
 		bufferIsValid = false;

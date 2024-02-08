@@ -114,7 +114,7 @@ bool Panel::ZoneClick(const Point &point)
 {
 	for(auto it = children.rbegin(); it != children.rend(); ++it)
 	{
-		if ((*it)->ZoneClick(point))
+		if((*it)->ZoneClick(point))
 			return true;
 	}
 
@@ -144,16 +144,16 @@ bool Panel::AllowsFastForward() const noexcept
 
 void Panel::AddOrRemove()
 {
-	for(auto &panel: childrenToAdd)
-		if (panel)
+	for(auto &panel : childrenToAdd)
+		if(panel)
 			children.emplace_back(std::move(panel));
 	childrenToAdd.clear();
 
-	for(auto *panel: childrenToRemove)
+	for(auto *panel : childrenToRemove)
 	{
-		for (auto it = children.begin(); it != children.end(); ++it)
+		for(auto it = children.begin(); it != children.end(); ++it)
 		{
-			if (it->get() == panel)
+			if(it->get() == panel)
 			{
 				children.erase(it);
 				break;
@@ -162,7 +162,7 @@ void Panel::AddOrRemove()
 	}
 	childrenToRemove.clear();
 
-	for(auto &child: children)
+	for(auto &child : children)
 		child->AddOrRemove();
 }
 
@@ -270,7 +270,7 @@ bool Panel::DoScroll(double dx, double dy)
 void Panel::DoDraw()
 {
 	Draw();
-	for (auto &child: children)
+	for(auto &child : children)
 		child->DoDraw();
 }
 

@@ -116,7 +116,7 @@ protected:
 	// Add a child. Deferred until next frame.
 	void AddChild(const std::shared_ptr<Panel>& panel);
 	// Remove a child. Deferred until next frame.
-	void RemoveChild(const Panel* panel);
+	void RemoveChild(const Panel * panel);
 	// Handle deferred add/remove child operations.
 	void AddOrRemove();
 
@@ -169,8 +169,8 @@ template<typename ...FARGS, typename ...ARGS>
 bool Panel::EventVisit(bool (Panel::*f)(FARGS ...), ARGS ...args)
 {
 	// Check if a child panel will consume this event first.
-	for (auto it = children.rbegin(); it != children.rend(); ++it)
-		if ((*it)->EventVisit(f, args...))
+	for(auto it = children.rbegin(); it != children.rend(); ++it)
+		if((*it)->EventVisit(f, args...))
 			return true;
 
 	// If none of our children handled this event, then it could be for us

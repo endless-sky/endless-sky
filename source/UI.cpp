@@ -293,6 +293,6 @@ void UI::PushOrPop()
 	toPop.clear();
 
 	// Each panel potentially has its own children, which could be modified.
-	for (auto &panel: stack)
+	for(auto &panel : stack)
 		panel->AddOrRemove();
 }
