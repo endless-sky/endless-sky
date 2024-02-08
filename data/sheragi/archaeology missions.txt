@@ -303,7 +303,7 @@ ship "Timer Ship"
 		"heat dissipation" 1
 		"shields" 100
 		"shield generation" 100
-		"shield delay" 1200
+		"shield delay" 2000
 		"hull" 3
 		"mass" 100
 		"drag" 5
