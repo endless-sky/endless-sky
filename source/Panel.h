@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <memory>
 #include <mutex>
 #include <string>
+#include <vector>
 
 #include <SDL2/SDL.h>
 
