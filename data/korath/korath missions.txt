@@ -581,11 +581,11 @@ mission "Efreti: Distress Call 8"
 mission "Exile: Boarding Worldship Korath"
 	boarding
 	minor
-	destination "Earth"
 	source
 		government "Korath" "Korath (Civilian)"
 		category "Superheavy"
 		not outfits "Microbot Grinder"
+	destination "Earth"
 	on offer
 		conversation
 			`Docking with the gargantuan vessel allows you a front-row seat to witness the sheer scale of this ship. Your sensors detect tens of thousands of life forms moving about the ship with many thousands more minor life signs alongside them.`
