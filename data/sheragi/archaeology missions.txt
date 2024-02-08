@@ -301,14 +301,14 @@ mission "Deep Archaeology 5"
 ship "Timer Ship"
 	attributes
 		"heat dissipation" 1
-		"shields" 200
+		"shields" 100
 		"shield generation" 100
 		"shield delay" 1200
 		"hull" 3
 		"mass" 100
 		"drag" 5
 		"automaton" 1
-		"thrust" 10
+		"thrust" 100
 		"turn" 600
 	outfits
 		"Timer Weapon"
