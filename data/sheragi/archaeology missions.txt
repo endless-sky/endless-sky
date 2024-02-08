@@ -330,7 +330,7 @@ outfit "Timer Submunition"
 		"lifetime" 20
 		"trigger radius" 200
 		"blast radius" 20
-		"hull damage" 0.1
+		"hull damage" .1
 		"no damage scaling"
 
 mission "Sad Archie"
