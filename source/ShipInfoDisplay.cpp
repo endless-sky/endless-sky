@@ -469,5 +469,5 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship, const PlayerInfo &player, 
 	saleHeight += 20;
 	saleLabels.push_back("  + outfits:");
 	saleValues.push_back(Format::Credits(totalCost - chassisCost));
-	saleHeight += 5;
+	saleHeight += 20;
 }
