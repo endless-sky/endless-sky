@@ -52,6 +52,7 @@ protected:
 
 private:
 	void SetBribe(double scale);
+	void SetMessage(const std::string &text);
 
 
 private:
