@@ -301,7 +301,7 @@ mission "Deep Archaeology 5"
 ship "Timer Ship"
 	attributes
 		"heat dissipation" 1
-		"shields" 500
+		"shields" 200
 		"shield generation" 100
 		"shield delay" 1200
 		"hull" 3
