@@ -301,8 +301,10 @@ mission "Deep Archaeology 5"
 ship "Timer Ship"
 	attributes
 		"heat dissipation" 1
-		"hull" 25
-		"hull repair rate" .0000001
+		"shields" 500
+		"shield generation" 100
+		"shield delay" 1200
+		"hull" 3
 		"mass" 100
 		"drag" 5
 		"automaton" 1
@@ -329,7 +331,8 @@ outfit "Timer Submunition"
 		"lifetime" 20
 		"trigger radius" 200
 		"blast radius" 20
-		"hull damage" .15
+		"shield damage" 2
+		"hull damage" 2
 		"no damage scaling"
 
 mission "Sad Archie"
