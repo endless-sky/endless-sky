@@ -302,8 +302,7 @@ ship "Timer Ship"
 	attributes
 		"heat dissipation" 1
 		"hull" 3
-		"hull repair rate" .15
-		"repair delay" 2000
+		"hull repair rate" .001
 		"mass" 100
 		"drag" 5
 		"automaton" 1
