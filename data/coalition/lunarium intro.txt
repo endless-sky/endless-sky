@@ -1083,7 +1083,7 @@ mission "Lunarium: Evacuation 3"
 					decline
 			label talk
 			`	Once again you're brought to the Spire, but only the Saryds come in with you, unlike the Kimek from last time. You're all escorted through the corridors, and are all searched by the devices, before you're finally brought to Elirom. He greets you, thanking you for coming, "Some more problems, we've had, so in need of a contractor's help once more, the company is."`
-			`	"Contracted us for transport to <planet>, some Arach ranchers did. Attempting to start a longcow business on the deserts of Shifting Sand, they are, and hoping for a loan from a prestigious bank on <planet>, to start off a new expansion to the ranch they were. <bunks> they are, in total, both ranchers and their employees. Only..." He pauses for a moment, as if considering something. "Difficult, the Arachi can be at times. Once discovered they had, that originally from a rival Arach House, the captain of their original transport was, refuse to return with him, they did. Given us until <date> to find a new transport, before they cancel out on us, they have."`
+			`	"Contract us for transport to <planet>, some Arach ranchers did. Attempting to start a longcow business on the deserts of Shifting Sand, they are, and hoping for a loan from a prestigious bank on <planet>, to start off a new expansion to the ranch they were. <bunks> they are, in total, both ranchers and their employees. Only..." He pauses for a moment, as if considering something. "Difficult, the Arachi can be at times. Once discovered they had, that originally from a rival Arach House, the captain of their original transport was, refuse to return with him, they did. Given us until <date> to find a new transport, they have, before cancel out on us, they do."`
 			`	He says you'll receive <payment> once the ranchers are back on Shifting Sand, and urges you to hurry to <destination> before <date>, so that the Arachi don't cancel the transport. He wishes you good luck, and you're brought back out of the ship. The Saryds that went in with you stay inside, and the Spire departs not long after you've left.`
 				accept
 			label lunarium
@@ -1159,10 +1159,10 @@ mission "Lunarium: Evacuation 4"
 				`	"They didn't seem very happy to see you."`
 					goto happy1
 				`	"How come you're here? I thought you hired me because you didn't have any ships available."`
-			`	"Hmm? Ah, well returned to where we had met, one of the ships did. Made it in time to pick up the ranchers it could not, though, so very grateful for your service, the company is once again," he explains. "Delegated my own transport job to that ship instead, I did, for wished I had to apologize to the ranchers in person. Afraid I am, that hear my explanations they will not."`
+			`	"Hmm? Ah, well, return to where met you I had, one of the ships did. Make it in time to pick up the ranchers it could not, though, so very grateful for your service, the company is once again," he explains. "Delegate my own transport job to that ship instead, I did, for wish I did to apologize to the ranchers in person. Afraid I am, that hear my explanations they will not."`
 				goto end
 			label happy1
-			`	"No, they were not." He sighs. "Well, understandable it is, from their perspective. More careful about who I sent to transport them, I should have been."`
+			`	"Seem to be the case, that does." He sighs. "Well, understandable it is, from their perspective. More careful about who I sent to transport them, I should have been."`
 				goto end
 			label lunarium
 			choice
@@ -1198,19 +1198,19 @@ mission "Lunarium: Evacuation 5"
 		conversation
 			branch lunarium
 				has "joined the lunarium"
-			`You receive a call seconds after you've touched down on <origin>. It's from Elirom, the Saryd who had you help transport some of his company's clients. "Captain <last>! Your help again, we need," he begins. "Hired us to bring them to their new home on Ablub's Invention, some immigrants from <destination> did. <bunks> in total. Only..." he looks down, his mouth struggling for words. "Fallen ill, the captain of the ship we had arranged for them has. Supposed to leave by <date>, they were, but get to <planet> in time, we cannot. You, however, a jump drive possess. Help us now, only you can, Captain."`
+			`You receive a call seconds after you've touched down on <origin>. It's from Elirom, the Saryd who had you help transport some of his company's clients. "Captain <last>! Your help again, we need," he begins. "Hire us to bring them to their new home on Ablub's Invention, some immigrants from <destination> did. <bunks> in total. Only..." he looks down, his mouth struggling for words. "Fallen ill, the captain of the ship we had arranged for them has. Supposed to leave by <date>, they were, but get to <planet> in time, we cannot. You, however, a jump drive possess. Help us now, only you can, Captain."`
 			choice
 				`	"I'd be glad to help. I'll head there as quick as I can."`
 					goto glad
 				`	"Can't they just wait a bit longer for you to send another ship?"`
 				`	"I'm sorry, but I'm busy right now."`
-			`	"Please, Captain. Answer all your questions, I will, once safely here they are." He quickly types away at something close to the camera on his end, and you're notified of <payment> in total just having been transferred to your account. "Paid much more for bringing them to safety, you will be. To Ablub's Invention, you must bring them. Sending word for them to wait for you, I am. Please help us this one more time, <last>." He looks at you for a moment, then bows lightly before logging off.`
+			`	"Please, Captain. Answer all your questions, I will, once safely here they are." He quickly types away at something close to the camera on his end, and you're notified of <payment> in total just having been transferred to your account. "Paid much more for bringing them to safety, you will be. To Ablub's Invention, bring them you must. Sending word for them to wait for you, I am. Help us this one last time, please do, <last>." He looks at you for a moment, then bows lightly before logging off.`
 				accept
 			label glad
 			`	He sighs in relief, then quickly types away at something close to the camera on his end, and you're notified of <payment> in total just having been transferred to your account. "Paid much more you will be, once safe, the immigrants are. Bring them back to Ablub's Invention, you must. Send word for them to expect you, I shall." He bows lightly, then logs off.`
 				accept
 			label lunarium
-			`You receive a call seconds after you've touched down on <origin>. It's from Elirom, and he wastes no time giving you your next mission. "A particularly urgent matter, this is. Looking for our members on <planet>, the Heliarchs are. Found, dozens have already been, and even more Heliarchs by <date> will there arrive. Make it in time, none of our ships can, too far away it is. You, however, a jump drive possess. Rescue the <bunks> remaining, you must." He types away at something on his end for a bit, and you see <payment> have been transferred to your account. "Much more I will give you, once safely back on Ablub's Invention you are. If stopped by the Heliarchs you are..." He trails off for a while, and you can hear the increasingly hurried, repeated tapping of hooves on the floor. "If stopped you are, tell them that transporting immigrants to their new homes on Ablub's Invention, you will. Hired by House Idriss, they have been." He urges you to go to <destination> immediately, wishing you good luck, and logging off.`
+			`You receive a call seconds after you've touched down on <origin>. It's from Elirom, and he wastes no time giving you your next mission. "A particularly urgent matter, this is. Looking for our members on <planet>, the Heliarchs are. Found, dozens have already been, and even more Heliarchs by <date> will there arrive. Make it in time, none of our ships can, too far away it is. Possess a jump drive, however, you do. Rescue the <bunks> remaining, you must." He types away at something on his end for a bit, and you see <payment> have been transferred to your account. "Much more I will give you, once safely back on Ablub's Invention you are. If stopped by the Heliarchs you are..." He trails off for a while, and you can hear the increasingly hurried, repeated tapping of hooves on the floor. "If stopped you are, tell them that transporting immigrants to their new homes on Ablub's Invention, you will. Hired by House Idriss, they have been." He urges you to go to <destination> immediately, wishing you good luck, and logging off.`
 				accept
 	on accept
 		"assisting lunarium" ++
@@ -1274,7 +1274,7 @@ mission "Lunarium: Evacuation 6"
 		payment 7149832
 		conversation
 			`You receive a message from Elirom as you enter the planet's airspace, passing you some coordinates and instructing you to land there instead of the usual ports here. You come to a complex in the middle of a prairie, with a blue-ish metal building at its center. As you come down for a landing, you see Elirom's own ship is landed there.`
-			`	Just as quickly as they entered it, your passengers rush out of your ship, greeting and hugging some of the people waiting for them. One of them, Elirom, shyly watches from the Spire, not having come down the ramp yet. The older Saryd who was accompanying the crying Saryd girl leaves her side briefly once he sees him, walking at a quick pace toward Elirom. He grabs him by the shoulders and shouts something in the Saryd language, though no translators pick it up. When he lets go of his shoulders, he goes back to accompanying the girl, and Elirom stays put. You go to him, which prompts him to reach in a pocket and grab a bunch of credit chips, handing them to you. <payment>, in total. "Told you I did, that well paid you would be."`
+			`	Just as quickly as they entered it, your passengers rush out of your ship, greeting and hugging some of the people waiting for them. One of them, Elirom, shyly watches from the Spire, not having come down the ramp yet. The older Saryd who was accompanying the crying Saryd girl leaves her side briefly once he sees him, walking at a quick pace toward Elirom. He grabs him by the shoulders and shouts something in the Saryd language, though no translators pick it up. When he lets go of his shoulders, he goes back to accompanying the girl, and Elirom stays put. You go to him, which prompts him to reach in a pocket and grab a bunch of credit chips, handing them to you. <payment>, in total. "Tell you I did, that well paid you would be."`
 			branch lunarium
 				has "joined the lunarium"
 			choice
@@ -1285,20 +1285,20 @@ mission "Lunarium: Evacuation 6"
 				`	"Saving them? From what?"`
 					goto what
 				`	"I just flew them from one planet to another."`
-			`	"And in doing so, saved their lives, you have," he responds. "The truth, it was, that arrive to the planets I sent you in time, my other ships would not, but not in a hurry due to contracts, we were. Searching for them, the Heliarchs were, and on their way, Punisher fleets were. Captured, all those you rescued would have been, if arrived before you, those Punishers had."`
+			`	"And in doing so, saved their lives, you have," he responds. "The truth, it was, that arrive to the planets I sent you in time, my other ships would have not, but not in a hurry due to contracts, we were. Searching for them, the Heliarchs were, and on their way, Punisher fleets were. Captured, all those you rescued would have been, if arrived before you, those Punishers had."`
 				goto reveal
 			label what
-			`	"Why, the Heliarchs. Our so-called 'protectors.' Paranoid, self-decorated butchers in their rooms deep within the rings..." He looks to the ground, disgust written on his face. "Preying on us for many centuries, they have been. With what insanities they invent and worship, their actions they justify."`
+			`	"Why, the Heliarchs. Our so-called 'protectors.' Paranoid, self-decorated butchers in their rooms deep within the rings..." He looks to the ground, disgust written on his face. "Preying on us for many centuries, they have been. With whatever insanities they invent and worship, their actions they justify."`
 			label reveal
 			choice
 				`	"The Heliarchs were looking for them? So they... you all are criminals?"`
 				`	"Who are you?"`
-			`	"Elirom, I am. Born on Saros. Raised there, fascinated by the Heliarchs since my infancy. When of age I came, into the Academy of Cadets I enlisted. Served the Heliarchy for 67 years, I had, before finally the right thing, I did. For the last 18 of those years, an arbiter, I was." He brings his hands together, as if to warm them up. "The Lunarium Redoubt, I then joined. Belong to that group, those you rescued do. Or, at least, their parents do... did." He sighs. "Criminals, outlaws... whatever names the Heliarch call us, simply trying to save our Coalition from them, we are. Saving people from their mock hunts for terrorists, my job is. Believe me, you may not. Choose to see us as what the Heliarchs deem us, you can. In doing that, though, changing the things they do, the things that seen, I have, the things that..." he trails off. "But, dead to them for decades now, I have been."`
+			`	"Elirom, I am. Born on Saros. Raised there, fascinated by the Heliarchs since my infancy. When of age I came, into the Academy of Cadets I enlisted. Served the Heliarchy for 67 years, I had, before finally the right thing, I did. For the last 18 of those years, an arbiter, I was." He brings his hands together, as if to warm them up. "The Lunarium Redoubt, I then joined. Belong to that group, they do, the people whom rescue, you did. Or, at least, their parents do... did." He sighs. "Criminals, outlaws... call us whatever names the Heliarchs do, simply trying to save our Coalition from them, we are. Saving people from their mock hunts for terrorists, my job is. Believe me, you may not. Choose to see us, you can, as what deem us, the Heliarchs do. In doing that, though, changing the things they do, the things that seen, I have, the things that..." he trails off. "But dead to them for decades now, I have been."`
 			choice
 				`	"You want me to join your group in fighting the Heliarchs, is that it?"`
 					goto join
 				`	"Dead? What do you mean?"`
-			`	He thinks for a few minutes, oftentimes opening up his mouth as if deciding to speak, but ultimately going back to reflecting on what to say. "When decided to... desert, I had, work I did on covering up my fleeing of the facility I was stationed at. After forcing an... an incident, meant to erase all traces of mine, fled and hid in civilian ships for a while, I had, until found by the Lunarium I was." He smirks lightly, as if in bitterness. "Thought I did that aware enough of their patterns and method, I was, enough to locate them. Found me first, they did though. Taken in, I was, and helping them since, I have been."`
+			`	He thinks for a few minutes, oftentimes opening up his mouth as if deciding to speak, but ultimately going back to reflecting on what to say. "When decided to... desert, I had, work I did on covering up my escape of the facility where stationed, I was. After forcing an... an incident, meant to erase all traces of mine, fled and hid in civilian ships for a while, I had, until found by the Lunarium I was." He smirks lightly in self-deprecation. "Thought I had that aware enough of their patterns and methods, I was, enough to locate them. Find me first, they did though. Taken in, I was, and helping them since, I have been."`
 			choice
 				`	"What facility did you work at?"`
 				`	"An incident? What did you do?"`
@@ -1619,30 +1619,30 @@ mission "Lunarium: Combat Training 1"
 			`After wandering the spaceport for a while, you notice a crowd of dozens of individuals heading to the hangars, specifically in what looks like the direction of your ship. A roughly equal number of Kimek and Arachi, with some Saryds as well, they stand in front of the <ship>, looking around as if searching for its captain. You approach them, and one of the Kimek, whose thorax and abdomen are slimmer than the usual for her species, meets you to speak for their group.`
 			branch lunarium
 				has "joined the lunarium"
-			`	"There you are, Captain <last>," she greets you. "Pyakri, my name is, and looking for your transport services, me and my friends are. Talk in your ship, could we? Wish to discuss the details there, I do."`
+			`	"There you are, Captain <last>," she greets you. "Pyakri, my name is, and looking for your transport services, my friends and I are. Talk in your ship, could we? Wish to discuss the details there, I do."`
 			choice
 				`	"Sure, let me get the hatch."`
 				`	"You'll have to clear out, I'm not taking any passengers now."`
 					decline
-			`	You bring her aboard, and she continues when you close the hatch. "Thank you Captain. Now, assisted some of my colleagues, you already have, yes?" She waits for you to answer, but seeing your puzzled look, resumes her explanation. "The Lunarium Redoubt? Assisted us before, you have, even if aware of all the details beforehand you were not. Suppose I do that mostly hear of us as criminals or the like, you must. Petty in their propaganda, the Heliarchs are. Recommended you as trustworthy, some you've helped have, so that possible to get on with a special endeavor I've been planning, it is."`
+			`	You bring her aboard, and she continues when you close the hatch. "Thank you Captain. Now, assisted some of my colleagues, you already have, yes?" She waits for you to answer, but seeing your puzzled look, resumes her explanation. "The Lunarium Redoubt? Assisted us before, you have, even if aware of all the details beforehand you were not. Suppose I do that mostly heard of us as criminals or the like, you must have. Petty in their propaganda, the Heliarchs are. Recommend you as trustworthy, some people did whom helped you have, so possible it is, to go ahead with a special endeavor that planning, I have been."`
 			choice
 				`	"What's this 'endeavor' you need help with?"`
 					goto help
 				`	"Your friends only told me what I was really doing after I was done. I don't want to help you any further."`
-			`	"Why, interested are you in helping the Heliarchs instead? Worked with them, some of our members had. An arbiter, Elirom, one of them, was. One of the highest ranks, that is, second only to the consuls themselves," she responds, getting closer to you. "Change, for the better, the Coalition soon will. Difficult it will be, to take down the Heliarchy. Very strong they are, so greatly appreciated any help would be, and appropriately reward those who helped us, we will, once free from them we are."`
+			`	"Why, interested are you in helping the Heliarchs instead? Worked with them, some of our members have. An arbiter, Elirom, one of them, was. One of the highest ranks, that is, second only to the consuls themselves," she responds, getting closer to you. "Change for the better, the Coalition soon will. Difficult it will be, to take down the Heliarchy. Very strong it is, so greatly appreciated any help would be. Of course, once free from them we are, appropriately reward, we will, help us, those who did."`
 			choice
 				`	"And what would I have to do to help you?"`
 					goto help
 				`	"Why do you want to take down the Heliarchs? Seems to me the Coalition is doing very well under them."`
 				`	"Whether you and your friends win or lose, I want no part in it. I'm not helping you."`
 					decline
-			`	"Of course, only shown what they want to be shown, you are. An achievement of the current Heliarchs, what prosperity we have is not, and furthering that prosperity, they most certainly are not!" She quickly slows down her breathing after the exclamation, calming down. "Grown paranoid, they have. Seen a Quarg in millennia, nobody in the Coalition has, but think they do, that to fight the Quarg their purpose is. Making enemies, taking prisoners of their own people, they have been. Public arrests with no warning or cause, disappearances in the night..." She backs away slightly, her mandibles clicking in some low murmur. "Leave I will, if interested you are not, but in need of help we are, Captain."`
+			`	"Of course, only exposed to Heliarchy propaganda, you are. An achievement of the current Heliarchs, what prosperity we have is not, and furthering that prosperity, they most certainly are not!" She quickly slows down her breathing after the exclamation, calming down. "Grown paranoid, they have. Seen a Quarg in millennia, nobody in the Coalition has, but think they do, that to fight the Quarg their purpose is. Making enemies, taking prisoners of their own people, they have been. Public arrests with no warning or cause, disappearances in the night..." She backs away slightly, her mandibles clicking in a low murmur. "Leave I will, if interested you are not, but in need of help we are, Captain."`
 			choice
 				`	"Help with what, exactly?"`
 				`	"I'm sorry, but helping your group any further sounds too risky to me."`
 					decline
 			label help
-			`	"Difficult it is, to fight Heliarch ships, but fight them all the same we eventually will need to," she explains. "Not very... experienced in warfare, most of our members are, as avoiding any ship battles we have been. Seeing as a jump drive you have, thought we did that bring some of our regional fleet leaders to human space, you could. Train there against human pirates, we can."`
+			`	"Difficult it is, to fight Heliarch ships, but fight them all the same we will need to, eventually," she explains. "Not very... experienced in warfare, most of our members are, as avoiding any ship battles we have been. Seeing as a jump drive you have, think we did that bring some of our regional fleet leaders to human space, you could. Train there against human pirates, we can."`
 			choice
 				`	"Alright. I'll help you. How many people are you bringing along?"`
 				`	"I'm sorry, but helping your group any further sounds too risky to me."`
