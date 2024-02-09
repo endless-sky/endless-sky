@@ -2219,11 +2219,11 @@ phrase "Careless Ends Well"
 
 phrase "Careless Ends Poorly"
 	word
-		"ignores Spaceport Control and heads to the bar. "
-		"argues with Control about their landing. "
-		"turns around to reenter their ship, however %"
+		"ignores Spaceport Control and heads to the bar. The ship"
+		"argues with Control about their landing. The ship"
+		"turns around to reenter their ship, however it"
 	word
-		"The ship is "
+		"is "
 	word
 		"struck "
 		"caught "
@@ -2232,9 +2232,6 @@ phrase "Careless Ends Poorly"
 	word
 		"swept into the sea."
 		"pushed off the pad."
-	replace
-		"% The" "the"
-		"%" ""
 
 news "Careless Landing"
 	location
