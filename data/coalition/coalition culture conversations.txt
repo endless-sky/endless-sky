@@ -264,7 +264,7 @@ mission "Coalition Departing Trouble - B"
 	on enter
 		conversation
 			`Once you're a good distance from <origin>, your sensors alert you to danger in the system: several explosions and a torrent of projectiles are flying nearby. You swiftly ready yourself and prepare for the threat, only to find Coalition civilian ships blowing up near the middle of the system. Some Heliarch warships are in their midst, moving from one to the other, unbothered by the ship debris as vessels explode around them.`
-			`	They appear board the few ships that weren't damaged enough to have their hulls ruptured, and after a few short minutes, appear to have seized control of the vessels, having them follow the warships out of the system.`
+			`	They appear to be boarding the few ships that weren't damaged enough to have their hulls ruptured. After a few short minutes, they seem to have seized control of the vessels, and are having them follow the warships out of the system.`
 
 
 
