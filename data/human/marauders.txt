@@ -140,7 +140,7 @@ ship "Marauder Bounder"
 
 		"Dwarf Core"
 		"LP072a Battery Pack"
-		"S-270 Regenerator"
+		"Hai Corundum Regenerator"
 		"Outfits Expansion"
 		"Water Coolant System"
 		"Security Station"
@@ -169,12 +169,12 @@ ship "Marauder Bounder" "Marauder Bounder (Engines)"
 	add attributes
 		"engine capacity" 15
 	outfits
-		"Heavy Laser"
 		"Quad Blaster Turret" 2
 		
 		"Dwarf Core"
 		"LP072a Battery Pack"
-		"S-270 Regenerator"
+		"Supercapacitor" 3
+		"D23-QP Shield Generator"
 		"Water Coolant System"
 		"Outfits Expansion"
 		"Laser Rifle" 18
@@ -200,7 +200,7 @@ ship "Marauder Bounder" "Marauder Bounder (Weapons)"
 		
 		"Dwarf Core"
 		"LP072a Battery Pack"
-		"S-270 Regenerator"
+		"D14-RN Shield Generator"
 		"Water Coolant System"
 		"Outfits Expansion"
 		"Security Station"
@@ -246,11 +246,12 @@ ship "Marauder Falcon"
 			"hit force" 2750
 	outfits
 		"Plasma Cannon" 4
-		"Modified Blaster Turret" 4
+		"Quad Blaster Turret" 4
 		
 		"Fusion Reactor"
 		"LP288a Battery Pack"
-		"D67-TM Shield Generator"
+		"D23-QP Shield Generator"
+		"D94-YV Shield Generator"
 		"Large Radar Jammer"
 		"Liquid Helium Cooler"
 		"Outfits Expansion" 3
@@ -284,17 +285,16 @@ ship "Marauder Falcon" "Marauder Falcon (Engines)"
 	add attributes
 		"engine capacity" 25
 	outfits
-		"Electron Beam" 4
-		"Quad Blaster Turret" 2
-		"Modified Blaster Turret" 2
+		"Proton Gun" 3
+		"Heavy Laser Turret" 4
 		
 		"Fusion Reactor"
 		"LP144a Battery Pack"
 		"D94-YV Shield Generator"
-		"Large Radar Jammer"
-		"Liquid Helium Cooler"
-		"Outfits Expansion" 3
+		"Liquid Nitrogen Cooler"
+		"Outfits Expansion" 4
 		"Laser Rifle" 80
+		"Supercapacitor" 3
 		
 		"A860 Atomic Thruster"
 		"A525 Atomic Steering"
@@ -303,14 +303,14 @@ ship "Marauder Falcon" "Marauder Falcon (Engines)"
 	engine -23.5 140 .7
 	engine 0 151
 	engine 23.5 140 .7
-	gun -16 -86.5 "Electron Beam"
-	gun 16 -86.5 "Electron Beam"
-	gun -19 -76.5 "Electron Beam"
-	gun 19 -76.5 "Electron Beam"
-	turret -16 -29 "Modified Blaster Turret"
-	turret 16 -29 "Modified Blaster Turret"
-	turret -50 39.5 "Quad Blaster Turret"
-	turret 50 39.5 "Quad Blaster Turret"
+	gun -16 -86.5
+	gun 16 -86.5
+	gun -19 -76.5
+	gun 19 -76.5
+	turret -16 -29
+	turret 16 -29
+	turret -50 39.5
+	turret 50 39.5
 	description "Whoever modified this Falcon clearly valued speed above all else. Major sections of the hull have been reconfigured to accommodate the largest possible engines. If hot-rodding across the galaxy in a 1000-ton warship that handles like a Flivver is your dream, look no further."
 
 
@@ -321,7 +321,8 @@ ship "Marauder Falcon" "Marauder Falcon (Weapons)"
 		"weapon capacity" 35
 	outfits
 		"Plasma Cannon" 6
-		"Quad Blaster Turret" 4
+		"Heavy Anti-Missile Turret"
+		"Proton Turret" 3
 		
 		"Fusion Reactor"
 		"LP144a Battery Pack"
@@ -333,20 +334,21 @@ ship "Marauder Falcon" "Marauder Falcon (Weapons)"
 		
 		"A370 Atomic Thruster"
 		"A525 Atomic Steering"
+		"Afterburner"
 		"Hyperdrive"
 	
 	engine -16.5 143
 	engine 16.5 143
-	gun -16 -86.5 "Plasma Cannon"
-	gun 16 -86.5 "Plasma Cannon"
-	gun -19 -76.5 "Plasma Cannon"
-	gun 19 -76.5 "Plasma Cannon"
-	gun -24.5 -66.5 "Plasma Cannon"
-	gun 24.5 -66.5 "Plasma Cannon"
-	turret -16 -29 "Quad Blaster Turret"
-	turret 16 -29 "Quad Blaster Turret"
-	turret -50 39.5 "Quad Blaster Turret"
-	turret 50 39.5 "Quad Blaster Turret"
+	gun -16 -86.5
+	gun 16 -86.5
+	gun -19 -76.5
+	gun 19 -76.5
+	gun -24.5 -66.5
+	gun 24.5 -66.5
+	turret -16 -29
+	turret 16 -29
+	turret -50 39.5
+	turret 50 39.5
 	description "Whoever modified this Falcon clearly believed that firepower was everything. Two additional gun ports have been integrated into the hull, and the ship's interior space has been reconfigured to accommodate nearly any set of weapons you can imagine."
 
 
@@ -382,7 +384,7 @@ ship "Marauder Firebird"
 		
 		"Fusion Reactor"
 		"Supercapacitor"
-		"S-970 Regenerator"
+		"D41-HY Shield Generator"
 		"Liquid Helium Cooler"
 		"Outfits Expansion"
 		"Laser Rifle" 25
@@ -420,7 +422,7 @@ ship "Marauder Firebird" "Marauder Firebird (Engines)"
 		"Fusion Reactor"
 		"LP036a Battery Pack"
 		"Supercapacitor"
-		"S-970 Regenerator"
+		"D41-HY Shield Generator"
 		"Liquid Helium Cooler"
 		"Outfits Expansion"
 		"Security Station"
@@ -447,7 +449,7 @@ ship "Marauder Firebird" "Marauder Firebird (Weapons)"
 		
 		"Fusion Reactor"
 		"Supercapacitor"
-		"S-970 Regenerator"
+		"D41-HY Shield Generator"
 		"Liquid Helium Cooler"
 		"Outfits Expansion"
 		"Security Station"
@@ -499,6 +501,7 @@ ship "Marauder Leviathan"
 		"Fusion Reactor"
 		"LP144a Battery Pack"
 		"D94-YV Shield Generator"
+		"Hai Diamond Regenerator"
 		"Large Radar Jammer"
 		"Liquid Helium Cooler"
 		"Outfits Expansion" 2
@@ -533,15 +536,16 @@ ship "Marauder Leviathan" "Marauder Leviathan (Engines)"
 	add attributes
 		"engine capacity" 40
 	outfits
-		"Electron Beam" 4
-		"Quad Blaster Turret" 4
+		"Heavy Rocket Launcher" 4
+		"Heavy Rocket" 80
+		"Gatling Turret" 4
+		"Gatling Gun Ammo" 24000
 		
 		"Fusion Reactor"
 		"LP144a Battery Pack"
-		"D94-YV Shield Generator"
-		"D67-TM Shield Generator"
+		"D94-YV Shield Generator" 3
+		"Supercapacitor" 5
 		"Large Radar Jammer"
-		"Liquid Helium Cooler"
 		"Liquid Nitrogen Cooler"
 		"Outfits Expansion" 2
 		"Laser Rifle" 69
@@ -563,13 +567,15 @@ ship "Marauder Leviathan" "Marauder Leviathan (Weapons)"
 	add attributes
 		"weapon capacity" 35
 	outfits
-		"Particle Cannon" 4
-		"Heavy Laser Turret" 4
+		"Particle Cannon" 2
+		"Ion Cannon" 2
+		"Heavy Laser Turret" 3
+		"Anti-Missile Turret"
 
 		"Fusion Reactor"
 		"LP144a Battery Pack"
 		"D94-YV Shield Generator"
-		"Large Radar Jammer"
+		"Large Radar Jammer" 2
 		"Liquid Helium Cooler"
 		"Outfits Expansion" 2
 		"Laser Rifle" 69
@@ -579,11 +585,11 @@ ship "Marauder Leviathan" "Marauder Leviathan (Weapons)"
 		"Ionic Afterburner"
 		"Hyperdrive"
 	
-	gun -37.5 -41.5 "Particle Cannon"
-	gun 37.5 -41.5 "Particle Cannon"
+	gun -37.5 -41.5
+	gun 37.5 -41.5
 	gun -49.5 -29.5 "Particle Cannon"
 	gun 49.5 -29.5 "Particle Cannon"
-	turret -14.5 -11.5 "Heavy Laser Turret"
+	turret -14.5 -11.5
 	turret 14.5 -11.5 "Heavy Laser Turret"
 	turret -26 11.5 "Heavy Laser Turret"
 	turret 26 11.5 "Heavy Laser Turret"
@@ -747,15 +753,15 @@ ship "Marauder Quicksilver"
 		"Heavy Laser" 2
 		"Heavy Anti-Missile Turret"
 		
-		"Fission Reactor"
-		"LP036a Battery Pack"
-		"S-270 Regenerator"
-		"Liquid Nitrogen Cooler"
+		"NT-200 Nucleovoltaic"
+		"Hai Fissure Batteries"
+		"D41-HY Shield Generator"
+		"Water Coolant System"
 		"Security Station" 3
 		"Laser Rifle"
 		
 		"A250 Atomic Thruster"
-		"A375 Atomic Steering"
+		"A255 Atomic Steering"
 		"Hyperdrive"
 	
 	engine -15.5 54
@@ -784,8 +790,8 @@ ship "Marauder Quicksilver" "Marauder Quicksilver (Engines)"
 		"Anti-Missile Turret"
 		
 		"Fission Reactor"
-		"S-270 Regenerator"
-		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"Supercapacitor" 4
 		"Liquid Nitrogen Cooler"
 		"Security Station" 2
 		"Laser Rifle" 5
@@ -836,10 +842,10 @@ ship "Marauder Quicksilver" "Marauder Quicksilver (Weapons)"
 		"Heavy Laser" 2
 		"Heavy Laser Turret"
 		
-		"Fission Reactor"
-		"LP036a Battery Pack"
-		"S-270 Regenerator"
-		"Liquid Nitrogen Cooler"
+		"Dwarf Core"
+		"LP072a Battery Pack"
+		"D67-TM Shield Generator"
+		"Cooling Duct"
 		"Security Station" 4
 		"Laser Rifle"
 		
@@ -910,7 +916,7 @@ ship "Marauder Raven"
 		
 		"Breeder Reactor"
 		"Supercapacitor" 3
-		"S-270 Regenerator"
+		"Hai Corundum Regenerator"
 		"Liquid Nitrogen Cooler"
 		"Outfits Expansion"
 		
@@ -918,6 +924,7 @@ ship "Marauder Raven"
 		"A375 Atomic Steering"
 		"Volcano Afterburner"
 		"Hyperdrive"
+		"Laser Rifle" 14
 	
 	engine -9.5 63
 	engine 9.5 63
@@ -941,17 +948,18 @@ ship "Marauder Raven" "Marauder Raven (Engines)"
 		"engine capacity" 20
 	outfits
 		"Heavy Laser" 4
-		"Heavy Laser Turret"
+		"Quad Blaster Turret"
 		
 		"Breeder Reactor"
-		"Supercapacitor"
-		"S-270 Regenerator"
+		"Supercapacitor" 3
+		"D23-QP Shield Generator"
 		"Liquid Nitrogen Cooler"
 		"Outfits Expansion"
 		
 		"A370 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
+		"Laser Rifle" 14
 	
 	engine -10.5 63.5
 	engine 10.5 63.5
@@ -966,22 +974,23 @@ ship "Marauder Raven" "Marauder Raven (Weapons)"
 	add attributes
 		"weapon capacity" 30
 	outfits
-		"Plasma Cannon" 2
+		"Proton Gun" 2
 		"Pulse Cannon" 2
 		"Heavy Laser Turret"
 		
 		"Breeder Reactor"
-		"Supercapacitor" 2
-		"S-270 Regenerator"
+		"Supercapacitor" 3
 		"Liquid Nitrogen Cooler"
+		"Cooling Duct"
 		"Outfits Expansion"
 		
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
+		"Laser Rifle" 14
 	
-	gun -13.5 -35.5 "Plasma Cannon"
-	gun 13.5 -35.5 "Plasma Cannon"
+	gun -13.5 -35.5
+	gun 13.5 -35.5
 	gun -21 -28 "Pulse Cannon"
 	gun 21 -28 "Pulse Cannon"
 	turret 0 7.5 "Heavy Laser Turret"
