@@ -2150,3 +2150,167 @@ news "graffiti on spaceport wall"
 			"Veni, vidi, hyperjumped away."
 			"Those who dance will be called fools by those who cannot hear the music."
 			"Better half a sentence, "
+
+news "High Tension Situation"
+	location
+		attribute "ccor"
+name
+	"Standoff"
+message
+	word
+		"CCOR Guerrillas "
+		"Guerrillas in CCOR colors "
+	word
+		"are "
+	word
+		"distributing pampflets, "
+		"delivering aid, "
+		"rallying against the local authorities, "
+		"supporting local protests, "
+	word
+		"when "
+	word
+		"planetary authorities "
+		"local pirates "
+	word
+		"acost "
+		"confront "
+	word
+		"them to "
+	word
+		"dispurse. "
+		"abandon their objective. "
+		"come quietly. "
+	word
+		"The Guerrillas "
+	word
+		"bluster "
+		"saber-rattle "
+	word
+		"for a bit in response "
+	word
+		"but it all ends with them dispersing."
+		"and their opposition backs down."
+
+phrase "A Light Ship"
+	word
+		"A Sparrow"
+		"An Enforcer"
+		"A Shuttle"
+		"A Heavy Shuttle"
+		"A Star Barge"
+		"A Berserker"
+		"A Fury"
+		"A Hawk"
+		"A Wasp"
+
+phrase "Pronoun"
+	word
+		"his"
+		"hers"
+		"their"
+
+phrase "Careless Ends Well"
+	word
+		"turns around to reenter their ship, "
+	word
+		"as it's struck by a wave, nudging it off the platform. The captain then moves the ship to a lowerable pad."
+		"moving it to a lowerable pad before it could be caught by a wave."
+
+phrase "Careless Ends Poorly"
+	word
+		"ignores Spaceport Control and heads to the bar. "
+		"argues with Control about their landing. "
+		"turns around to reenter their ship, however %"
+	word
+		"The ship is "
+	word
+		"struck "
+		"caught "
+	word
+		"by a wave and "
+	word
+		"swept into the sea."
+		"pushed off the pad."
+	replace
+		"% The" "the"
+		"%" ""
+
+news "Careless Landing"
+	location
+		planet Jakobsen
+name
+	"Recklessness"
+message
+	phrase 
+		"A Light Ship"
+	word
+		" lands on a pad meant for heavier ships. Spaceport Control is immediately on the captain to move ${Pronoun} ship. The captain "
+	phrase
+		"Careless Ends Well"
+		"Careless Ends Poorly"
+
+phrase "CCOR Song Description"
+	word
+		"a song about "
+	word
+		"community, everyone pitching in where they can"
+		"the tyranny of a man name Bailey, until he was overthrown"
+		"CCOR, praising their acomplishments"
+		"resistance, oposition to the current planetary administration"
+
+phrase "Worker's Demands"
+	word
+		"safety regulations"
+		"increased pay"
+		"restoration of the CCOR"
+		"justice against planetary security brutality"
+		"immediate repositioning of the spaceport"
+
+news "Discontent"
+	location
+		planet Bailey
+name
+	"Conflict"
+message
+	word
+		"Allegations that planetary authorities will no longer move the spaceport has provoked "
+	word
+		"large scale "
+		"mass "
+		"medium "
+		"scattered "
+	word
+		"riots "
+		"protests %"
+	word
+		"the rioters are "
+	word
+		"singing, %{CCOR Song Description}. "
+		"chanting, a list of their demands including ${Worker's Demands}. "
+		"sizing up the planetary security forces. "
+	word
+		"Security eventually steps in "
+	word
+		"however they're pushed back. "
+		"but they're routed. "
+		"they disperse the demonstrators. "
+		"the demonstrators scatter but don't appear diswaded."
+	replace
+		"% the rioters" "the protesters"
+		"%" ""
+
+news "Clandestine"
+	location
+		planet Alvorada
+name
+	"Observation"
+message
+	word
+		"You can't escape the feeling of being watched it's "
+	word
+		"probably the security cameras, most of them are still running. "
+		"feels like there's eyes around every corner. "
+		"the pirates, a small number of them seem to be watching you. "
+	word
+		"The 
