@@ -306,7 +306,7 @@ ship "Timer Ship"
 		"mass" 100
 		"drag" 5
 		"automaton" 1
-		"thrust" 100
+		"thrust" 10
 		"turn" 600
 	outfits
 		"Timer Weapon"
