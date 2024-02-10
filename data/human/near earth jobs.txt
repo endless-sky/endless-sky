@@ -298,7 +298,7 @@ mission "Tycho Crater Shipyards Shipment [0]"
 
 mission "Tycho Crater Shipyards Shipment [1]"
 	name "Shipment to <planet>"
-	description "Deliver <cargo> to <destination>, the home of Tycho Crater Shipyards, a constituent shipbuilding company of the Republic Navy Yard and the main shipyard of Sol. Payment is <payment>."
+	description "Deliver <cargo> to <destination>, the home of Tycho Crater Shipyards, a constituent of the Republic Navy Yard. Payment is <payment>."
 	cargo "Ship Alloys" 5 2 .1
 	job
 	repeat
