@@ -2178,7 +2178,7 @@ message
 	word
 		"them to "
 	word
-		"dispurse. "
+		"disperse. "
 		"abandon their objective. "
 		"come quietly. "
 	word
