@@ -2291,7 +2291,7 @@ message
 	word
 		"however they're pushed back. "
 		"but they're routed. "
-		"they disperse the demonstrators. "
+		"and they disperse the demonstrators. "
 		"the demonstrators scatter but don't appear diswaded."
 	replace
 		"% the rioters" "the protesters"
