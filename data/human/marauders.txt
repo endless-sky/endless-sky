@@ -334,7 +334,7 @@ ship "Marauder Falcon" "Marauder Falcon (Weapons)"
 		
 		"A370 Atomic Thruster"
 		"A525 Atomic Steering"
-		"Afterburner"
+		"Volcano Afterburner"
 		"Hyperdrive"
 	
 	engine -16.5 143
