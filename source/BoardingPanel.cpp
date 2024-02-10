@@ -334,12 +334,13 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 				// Your chance of winning this round is equal to the ratio of
 				// your power to the enemy's power.
 				double attackPower = attackOdds.AttackerPower(yourCrew);
-				double defensePower = defenseOdds.DefenderPower(yourCrew);
-				double enemyAttackPower = attackOdds.DefenderPower(enemyCrew);
-				double enemyDefensePower = defenseOdds.AttackerPower(enemyCrew);
-
+				double enemyDefensePower = attackOdds.DefenderPower(enemyCrew);
 				double yourTotal = attackPower + enemyDefensePower;
+
+				double defensePower = defenseOdds.DefenderPower(yourCrew);
+				double enemyAttackPower = defenseOdds.AttackerPower(enemyCrew);
 				double enemyTotal = enemyAttackPower + defensePower;
+
 				if(!yourTotal || !enemyTotal)
 					break;
 
