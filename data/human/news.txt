@@ -2154,43 +2154,43 @@ news "graffiti on spaceport wall"
 news "High Tension Situation"
 	location
 		attribute "ccor"
-name
-	"Standoff"
-message
-	word
-		"CCOR Guerrillas "
-		"Guerrillas in CCOR colors "
-	word
-		"are "
-	word
-		"distributing pamphlets, "
-		"delivering aid, "
-		"rallying against the local authorities, "
-		"supporting local protests, "
-	word
-		"when "
-	word
-		"planetary authorities "
-		"local pirates "
-	word
-		"accost "
-		"confront "
-	word
-		"them and demand that they "
-	word
-		"disperse. "
-		"abandon their objective. "
-		"come quietly. "
-	word
-		"The Guerrillas "
-	word
-		"bluster "
-		"saber-rattle "
-	word
-		"for a bit in response "
-	word
-		"but it all ends with them dispersing."
-		"and their opposition backs down."
+	name
+		"Standoff"
+	message
+		word
+			"CCOR Guerrillas "
+			"Guerrillas in CCOR colors "
+		word
+			"are "
+		word
+			"distributing pamphlets, "
+			"delivering aid, "
+			"rallying against the local authorities, "
+			"supporting local protests, "
+		word
+			"when "
+		word
+			"planetary authorities "
+			"local pirates "
+		word
+			"accost "
+			"confront "
+		word
+			"them and demand that they "
+		word
+			"disperse. "
+			"abandon their objective. "
+			"come quietly. "
+		word
+			"The Guerrillas "
+		word
+			"bluster "
+			"saber-rattle "
+		word
+			"for a bit in response "
+		word
+			"but it all ends with them dispersing."
+			"and their opposition backs down."
 
 phrase "A Light Ship"
 	word
