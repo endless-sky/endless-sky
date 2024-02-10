@@ -2236,16 +2236,16 @@ phrase "Careless Ends Poorly"
 news "Careless Landing"
 	location
 		planet Jakobsen
-name
-	"Recklessness"
-message
-	phrase 
-		"A Light Ship"
-	word
-		" lands on a pad meant for heavier ships. Spaceport Control is immediately on the captain to move ${Pronoun} ship. The captain "
-	phrase
-		"Careless Ends Well"
-		"Careless Ends Poorly"
+	name
+		"Recklessness"
+	message
+		phrase 
+			"A Light Ship"
+		word
+			" lands on a pad meant for heavier ships. Spaceport Control is immediately on the captain to move ${Pronoun} ship. The captain "
+		phrase
+			"Careless Ends Well"
+			"Careless Ends Poorly"
 
 phrase "CCOR Song Description"
 	word
