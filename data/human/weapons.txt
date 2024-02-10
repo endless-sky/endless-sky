@@ -1097,6 +1097,7 @@ outfit "Javelin Turret"
 	"outfit space" -31
 	"weapon capacity" -31
 	"turret mounts" -1
+	"required crew" 1
 	"javelin capacity" 400
 	weapon
 		sprite "projectile/javelin"
@@ -1564,6 +1565,7 @@ outfit "Gatling Turret"
 	"outfit space" -23
 	"weapon capacity" -23
 	"turret mounts" -1
+	"required crew" 1
 	"gatling round capacity" 6000
 	weapon
 		sound "gatling"
