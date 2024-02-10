@@ -2176,7 +2176,7 @@ message
 		"accost "
 		"confront "
 	word
-		"them to "
+		"them and demand that they "
 	word
 		"disperse. "
 		"abandon their objective. "
