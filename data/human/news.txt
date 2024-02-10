@@ -2173,7 +2173,7 @@ message
 		"planetary authorities "
 		"local pirates "
 	word
-		"acost "
+		"accost "
 		"confront "
 	word
 		"them to "
