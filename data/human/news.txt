@@ -2304,10 +2304,10 @@ name
 	"Observation"
 message
 	word
-		"You can't escape the feeling of being watched it's "
+		"You can't escape the feeling of being watched. It"
 	word
-		"probably the security cameras, most of them are still running. "
-		"feels like there's eyes around every corner. "
-		"the pirates, a small number of them seem to be watching you. "
+		"'s probably the security cameras; most of them are still running."
+		" feels like there are eyes around every corner."
+		"'s the pirates; a small number of them seem to be observing you."
 	word
 		"The 
