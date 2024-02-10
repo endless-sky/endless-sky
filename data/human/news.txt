@@ -2163,7 +2163,7 @@ message
 	word
 		"are "
 	word
-		"distributing pampflets, "
+		"distributing pamphlets, "
 		"delivering aid, "
 		"rallying against the local authorities, "
 		"supporting local protests, "
