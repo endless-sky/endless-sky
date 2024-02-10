@@ -2267,35 +2267,35 @@ phrase "Worker's Demands"
 news "Discontent"
 	location
 		planet Bailey
-name
-	"Conflict"
-message
-	word
-		"Allegations that planetary authorities will no longer move the spaceport has provoked "
-	word
-		"large scale "
-		"mass "
-		"moderate "
-		"scattered "
-	word
-		"riots "
-		"protests %"
-	word
-		"the rioters are "
-	word
-		"singing, %{CCOR Song Description}. "
-		"chanting, a list of their demands including ${Worker's Demands}. "
-		"sizing up the planetary security forces. "
-	word
-		"Security eventually steps in, "
-	word
-		"however they're pushed back. "
-		"but they're routed. "
-		"and they disperse the demonstrators. "
-		"and the demonstrators scatter but don't appear dissuaded."
-	replace
-		"% the rioters" "the protesters"
-		"%" ""
+	name
+		"Conflict"
+	message
+		word
+			"Allegations that planetary authorities will no longer move the spaceport has provoked "
+		word
+			"large scale "
+			"mass "
+			"moderate "
+			"scattered "
+		word
+			"riots "
+			"protests %"
+		word
+			"the rioters are "
+		word
+			"singing, %{CCOR Song Description}. "
+			"chanting, a list of their demands including ${Worker's Demands}. "
+			"sizing up the planetary security forces. "
+		word
+			"Security eventually steps in, "
+		word
+			"however they're pushed back. "
+			"but they're routed. "
+			"and they disperse the demonstrators. "
+			"and the demonstrators scatter but don't appear dissuaded."
+		replace
+			"% the rioters" "the protesters"
+			"%" ""
 
 news "Clandestine"
 	location
