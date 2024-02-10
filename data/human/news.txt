@@ -2275,7 +2275,7 @@ message
 	word
 		"large scale "
 		"mass "
-		"medium "
+		"moderate "
 		"scattered "
 	word
 		"riots "
