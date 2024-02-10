@@ -974,6 +974,16 @@ void PreferencesPanel::DrawPlugins()
 			PointerShader::Draw(bottomRight.Center(), DOWN,
 				10.f, 10.f, 5.f, Color(pluginDescriptionScroll.IsScrollAtMax() ? .2f : .8f, 0.f));
 			AddZone(bottomRight, [&]() { pluginDescriptionScroll.Scroll(Preferences::ScrollSpeed()); });
+=======
+			string text = plugin.CreateDescription();
+
+			WrappedText wrap(font);
+			wrap.SetWrapWidth(MAX_TEXT_WIDTH);
+			static const string EMPTY = "(No description given.)";
+			text += plugin.aboutText.empty() ? EMPTY : plugin.aboutText;
+			wrap.Wrap(text);
+			wrap.Draw(top, medium);
+>>>>>>> parent of 30730c40 (Misc tweaks and formatting changes suggested by RisingLeaf and Amazinite.)
 		}
 	}
 }
