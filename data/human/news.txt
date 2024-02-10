@@ -2287,7 +2287,7 @@ message
 		"chanting, a list of their demands including ${Worker's Demands}. "
 		"sizing up the planetary security forces. "
 	word
-		"Security eventually steps in "
+		"Security eventually steps in, "
 	word
 		"however they're pushed back. "
 		"but they're routed. "
