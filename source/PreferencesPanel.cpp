@@ -977,6 +977,8 @@ void PreferencesPanel::DrawPlugins()
 =======
 			string text = plugin.CreateDescription();
 
+			string text = plugin.CreateDescription();
+
 			WrappedText wrap(font);
 			wrap.SetWrapWidth(MAX_TEXT_WIDTH);
 			static const string EMPTY = "(No description given.)";
