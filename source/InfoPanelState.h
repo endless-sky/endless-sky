@@ -33,7 +33,7 @@ class InfoPanelState {
 public:
 	using ShipComparator = bool(const std::shared_ptr<Ship> &, const std::shared_ptr<Ship> &);
 
-	explicit InfoPanelState(PlayerInfo &player);
+	InfoPanelState(PlayerInfo &player);
 
 	int SelectedIndex() const;
 	void SetSelectedIndex(int newSelectedIndex);

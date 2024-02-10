@@ -286,7 +286,7 @@ void UI::PushOrPop()
 		for(auto it = stack.begin(); it != stack.end(); ++it)
 			if(it->get() == panel)
 			{
-				stack.erase(it);
+				it = stack.erase(it);
 				break;
 			}
 	}

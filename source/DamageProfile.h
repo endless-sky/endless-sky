@@ -32,9 +32,9 @@ class Weapon;
 class DamageProfile {
 public:
 	// Constructor for damage taken from a weapon projectile.
-	explicit DamageProfile(Projectile::ImpactInfo info);
+	DamageProfile(Projectile::ImpactInfo info);
 	// Constructor for damage taken from a hazard.
-	explicit DamageProfile(Weather::ImpactInfo info);
+	DamageProfile(Weather::ImpactInfo info);
 
 	// Calculate the damage dealt to the given ship.
 	DamageDealt CalculateDamage(const Ship &ship, bool ignoreBlast = false) const;

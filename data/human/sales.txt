@@ -435,7 +435,7 @@ outfitter "Syndicate Advanced"
 	"Luxury Accommodations"
 	"Scram Drive"
 
-outfitter "Syndicated Security"
+outfitter "Syndicate Security"
 	"Meteor Missile"
 	"Meteor Missile Launcher"
 	"Meteor Missile Box"

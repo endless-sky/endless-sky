@@ -75,7 +75,7 @@ public:
 	~NPC() noexcept = default;
 
 	// Construct and Load() at the same time.
-	explicit NPC(const DataNode &node);
+	NPC(const DataNode &node);
 
 	void Load(const DataNode &node);
 	// Note: the Save() function can assume this is an instantiated mission, not

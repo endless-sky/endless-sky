@@ -178,8 +178,6 @@ namespace {
 		{"overheat damage threshold", 3},
 		{"high shield permeability", 3},
 		{"low shield permeability", 3},
-		{"acceleration multiplier", 3},
-		{"turn multiplier", 3},
 
 		{"burn protection", 4},
 		{"corrosion protection", 4},
@@ -473,21 +471,6 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	attributeLabels.emplace_back("range:");
 	attributeValues.emplace_back(Format::Number(outfit.Range()));
 	attributesHeight += 20;
-
-	// Identify the dropoff at range and inform the player.
-	double fullDropoff = outfit.MaxDropoff();
-	if(fullDropoff != 1.)
-	{
-		attributeLabels.emplace_back("dropoff modifier:");
-		attributeValues.emplace_back(Format::Number(100. * fullDropoff) + "%");
-		attributesHeight += 20;
-		// Identify the ranges between which the dropoff takes place.
-		attributeLabels.emplace_back("dropoff range:");
-		const pair<double, double> &ranges = outfit.DropoffRanges();
-		attributeValues.emplace_back(Format::Number(ranges.first)
-			+ " - " + Format::Number(ranges.second));
-		attributesHeight += 20;
-	}
 
 	static const vector<pair<string, string>> VALUE_NAMES = {
 		{"shield damage", ""},

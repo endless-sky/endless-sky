@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef ESCORT_DISPLAY_H_
 #define ESCORT_DISPLAY_H_
 
-#include "Rectangle.h"
+#include "Point.h"
 
 #include <cstdint>
 #include <list>
@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <vector>
 
 class Interface;
+class Rectangle;
 class Ship;
 class Sprite;
 
@@ -79,7 +80,7 @@ private:
 private:
 	mutable std::list<Icon> icons;
 	mutable std::vector<std::vector<const Ship *>> stacks;
-	mutable std::vector<Rectangle> zones;
+	mutable std::vector<Point> zones;
 
 	const Interface *element = nullptr;
 	int basicHeight = 0;

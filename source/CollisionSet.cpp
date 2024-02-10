@@ -45,7 +45,7 @@ namespace {
 	// than that.
 	class Closest {
 	public:
-		explicit Closest(double closestHit)
+		Closest(double closestHit)
 			: closest_dist(closestHit)
 			, closest_body(nullptr)
 		{}

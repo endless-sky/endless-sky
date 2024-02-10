@@ -44,7 +44,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Screen.h"
 #include "Ship.h"
 #include "ShipJumpNavigation.h"
-#include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "StellarObject.h"
 #include "System.h"
@@ -203,18 +202,6 @@ namespace {
 		}
 		return pair<bool, bool>(blink, daysLeft > 0);
 	}
-
-	// Return total value of raid fleet (if any) and 60 frames worth of system danger.
-	double DangerFleetTotal(const PlayerInfo &player, const System &system, const bool withRaids)
-	{
-		double danger = system.Danger() * 60.;
-		if(withRaids)
-			for(const auto &raidFleet : system.GetGovernment()->RaidFleets())
-				danger += 10. * player.RaidFleetAttraction(raidFleet, &system) *
-					raidFleet.GetFleet()->Strength();
-		return danger;
-	}
-
 }
 
 const float MapPanel::OUTER = 6.f;
@@ -319,7 +306,6 @@ void MapPanel::Draw()
 	DrawSystems();
 	DrawNames();
 	DrawMissions();
-	DrawSelectedSystem();
 }
 
 
@@ -728,18 +714,6 @@ Color MapPanel::GovernmentColor(const Government *government)
 
 
 
-Color MapPanel::DangerColor(const double danger)
-{
-	if(std::isnan(danger))
-		return *GameData::Colors().Get("map danger none");
-	else if(danger > .5)
-		return Color(.6, .4 * (2. - 2. * min(1., danger)), 0., .4);
-	else
-		return MapColor(2. * danger - 1.);
-}
-
-
-
 Color MapPanel::UninhabitedColor()
 {
 	return GovernmentColor(GameData::Governments().Get("Uninhabited"));
@@ -831,7 +805,7 @@ void MapPanel::Find(const string &name)
 		const System &system = it.second;
 		if(system.IsValid() && !system.Inaccessible() && player.HasVisited(system))
 		{
-			int index = Format::Search(it.first, name);
+			int index = Search(it.first, name);
 			if(index >= 0 && index < bestIndex)
 			{
 				bestIndex = index;
@@ -850,7 +824,7 @@ void MapPanel::Find(const string &name)
 		const Planet &planet = it.second;
 		if(planet.IsValid() && player.HasVisited(*planet.GetSystem()))
 		{
-			int index = Format::Search(it.first, name);
+			int index = Search(it.first, name);
 			if(index >= 0 && index < bestIndex)
 			{
 				bestIndex = index;
@@ -887,6 +861,15 @@ bool MapPanel::IsSatisfied(const Mission &mission) const
 bool MapPanel::IsSatisfied(const PlayerInfo &player, const Mission &mission)
 {
 	return mission.IsSatisfied(player) && !mission.HasFailed(player);
+}
+
+
+
+int MapPanel::Search(const string &str, const string &sub)
+{
+	auto it = search(str.begin(), str.end(), sub.begin(), sub.end(),
+		[](char a, char b) { return toupper(a) == toupper(b); });
+	return (it == str.end() ? -1 : it - str.begin());
 }
 
 
@@ -942,36 +925,6 @@ void MapPanel::UpdateCache()
 	cachedCommodity = commodity;
 	nodes.clear();
 
-	// Get danger level range so we can scale by it.
-	double dangerMax = 0.;
-	double dangerScale = 1.;
-	if(commodity == SHOW_DANGER)
-	{
-		// Scale danger to span [0, 1] based on known systems, without including raid fleets
-		// as those can greatly skew the range once they start having a chance of appearing,
-		// leading to silly (and not very useful) displays.
-		double dangerMin = numeric_limits<double>::max();
-		for(const auto &it : GameData::Systems())
-		{
-			const System &system = it.second;
-
-			// Only check displayed systems.
-			if(!system.IsValid() || system.Inaccessible() || !player.HasVisited(system))
-				continue;
-
-			const double danger = DangerFleetTotal(player, system, false);
-			if(danger > 0.)
-			{
-				if(dangerMax < danger)
-					dangerMax = danger;
-				if(dangerMin > danger)
-					dangerMin = danger;
-			}
-		}
-		if(dangerMax)
-			dangerScale = 1. / log(dangerMin / dangerMax);
-	}
-
 	// Draw the circles for the systems, colored based on the selected criterion,
 	// which may be government, services, or commodity prices.
 	const Color &closeNameColor = *GameData::Colors().Get("map name");
@@ -989,8 +942,7 @@ void MapPanel::UpdateCache()
 		Color color = UninhabitedColor();
 		if(!player.HasVisited(system))
 			color = UnexploredColor();
-		else if(system.IsInhabited(player.Flagship()) || commodity == SHOW_SPECIAL
-				|| commodity == SHOW_VISITED || commodity == SHOW_DANGER)
+		else if(system.IsInhabited(player.Flagship()) || commodity == SHOW_SPECIAL || commodity == SHOW_VISITED)
 		{
 			if(commodity >= SHOW_SPECIAL)
 			{
@@ -1048,14 +1000,6 @@ void MapPanel::UpdateCache()
 				const Government *gov = system.GetGovernment();
 				color = GovernmentColor(gov);
 			}
-			else if(commodity == SHOW_DANGER)
-			{
-				const double danger = DangerFleetTotal(player, system, true);
-				if(danger > 0.)
-					color = DangerColor(1. - dangerScale * log(danger / dangerMax));
-				else
-					color = DangerColor(numeric_limits<double>::quiet_NaN());
-			}
 			else
 			{
 				double reputation = system.GetGovernment()->Reputation();
@@ -1072,10 +1016,10 @@ void MapPanel::UpdateCache()
 					if(object.HasSprite() && object.HasValidPlanet())
 					{
 						const Planet *planet = object.GetPlanet();
-						hasSpaceport |= !planet->IsWormhole() && planet->HasServices();
+						hasSpaceport |= !planet->IsWormhole() && planet->HasSpaceport();
 						if(planet->IsWormhole() || !planet->IsAccessible(player.Flagship()))
 							continue;
-						canLand |= planet->CanLand() && planet->HasServices();
+						canLand |= planet->CanLand() && planet->HasSpaceport();
 						isInhabited |= planet->IsInhabited();
 						hasDominated &= (!planet->IsInhabited()
 							|| GameData::GetPolitics().HasDominated(planet));
@@ -1210,43 +1154,6 @@ void MapPanel::DrawTravelPlan()
 
 
 
-// Fill in the top-middle header bar that names the selected system, and indicates its distance.
-void MapPanel::DrawSelectedSystem()
-{
-	const Sprite *sprite = SpriteSet::Get("ui/selected system");
-	SpriteShader::Draw(sprite, Point(0. + selectedSystemOffset, Screen::Top() + .5f * sprite->Height()));
-
-	string text;
-	if(!player.KnowsName(*selectedSystem))
-		text = "Selected system: unexplored system";
-	else
-		text = "Selected system: " + selectedSystem->Name();
-
-	int jumps = 0;
-	const vector<const System *> &plan = player.TravelPlan();
-	auto it = find(plan.begin(), plan.end(), selectedSystem);
-	if(it != plan.end())
-		jumps = plan.end() - it;
-	else if(distance.HasRoute(selectedSystem))
-		jumps = distance.Days(selectedSystem);
-
-	if(jumps == 1)
-		text += " (1 jump away)";
-	else if(jumps > 0)
-		text += " (" + to_string(jumps) + " jumps away)";
-
-	const Font &font = FontSet::Get(14);
-	Point pos(-175. + selectedSystemOffset, Screen::Top() + .5 * (30. - font.Height()));
-	font.Draw({text, {350, Alignment::CENTER, Truncate::MIDDLE}},
-		pos, *GameData::Colors().Get("bright"));
-
-	// Reset the position of this UI element. If something is in the way, it will be
-	// moved back before it's drawn the next frame.
-	selectedSystemOffset = 0;
-}
-
-
-
 // Communicate the location of non-destroyed, player-owned ships.
 void MapPanel::DrawEscorts()
 {
@@ -1267,7 +1174,7 @@ void MapPanel::DrawEscorts()
 			if(squad.second.activeShips || squad.second.parkedShips)
 				RingShader::Draw(pos, INNER - 1.f, 0.f, squad.second.activeShips ? active : parked);
 
-			if(!squad.second.outfits.empty())
+			if(squad.second.outfits.size())
 				// Stored outfits are drawn/indicated by 8 short rays out of the system center.
 				for(int i = 0; i < 8; ++i)
 				{

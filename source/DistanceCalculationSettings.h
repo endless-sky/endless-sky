@@ -25,7 +25,7 @@ class DataNode;
 class DistanceCalculationSettings {
 public:
 	DistanceCalculationSettings() = default;
-	explicit DistanceCalculationSettings(const DataNode &node);
+	DistanceCalculationSettings(const DataNode &node);
 
 	bool operator!=(const DistanceCalculationSettings &other) const;
 

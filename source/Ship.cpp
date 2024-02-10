@@ -90,9 +90,6 @@ namespace {
 	// Formula for the scan outfit or cargo factor is:
 	// factor = pow(sqrt(scanEfficiency) * framesToFullScan / SCAN_TIME, 1.5) / referenceSize
 
-	// Total number of frames the damaged overlay is show, if any.
-	constexpr int TOTAL_DAMAGE_FRAMES = 40;
-
 	// Helper function to transfer energy to a given stat if it is less than the
 	// given maximum value.
 	void DoRepair(double &stat, double &available, double maximum)
@@ -314,8 +311,6 @@ void Ship::Load(const DataNode &node)
 					engine.zoom = grand.Value(1);
 				else if(grandKey == "angle" && grand.Size() >= 2)
 					engine.facing += Angle(grand.Value(1));
-				else if(grandKey == "gimbal" && grand.Size() >= 2)
-					engine.gimbal += Angle(grand.Value(1));
 				else
 				{
 					for(unsigned j = 1; j < ENGINE_SIDE.size(); ++j)
@@ -785,7 +780,7 @@ void Ship::FinishLoading(bool isNewInstance)
 	// If this ship is being instantiated for the first time, make sure its
 	// crew, fuel, etc. are all refilled.
 	if(isNewInstance)
-		Recharge();
+		Recharge(true);
 
 	// Ensure that all defined bays are of a valid category. Remove and warn about any
 	// invalid bays. Add a default "launch effect" to any remaining internal bays if
@@ -993,7 +988,6 @@ void Ship::Save(DataWriter &out) const
 			out.BeginChild();
 			out.Write("zoom", point.zoom);
 			out.Write("angle", point.facing.Degrees());
-			out.Write("gimbal", point.gimbal.Degrees());
 			out.Write(ENGINE_SIDE[point.side]);
 			out.EndChild();
 
@@ -1004,7 +998,6 @@ void Ship::Save(DataWriter &out) const
 			out.BeginChild();
 			out.Write("zoom", point.zoom);
 			out.Write("angle", point.facing.Degrees() - 180.);
-			out.Write("gimbal", point.gimbal.Degrees());
 			out.Write(ENGINE_SIDE[point.side]);
 			out.EndChild();
 		}
@@ -1014,7 +1007,6 @@ void Ship::Save(DataWriter &out) const
 			out.BeginChild();
 			out.Write("zoom", point.zoom);
 			out.Write("angle", point.facing.Degrees());
-			out.Write("gimbal", point.gimbal.Degrees());
 			out.Write(ENGINE_SIDE[point.side]);
 			out.Write(STEERING_FACING[point.steering]);
 			out.EndChild();
@@ -1306,7 +1298,7 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 {
 	this->position = position;
 	this->velocity = velocity;
-	this->Turn(angle);
+	this->angle = angle;
 
 	// If landed, place the ship right above the planet.
 	// Escorts should take off a bit behind their flagships.
@@ -1617,10 +1609,6 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	// Show afterburner flares unless the ship is being destroyed.
 	if(!isBeingDestroyed)
 		DoEngineVisuals(visuals, isUsingAfterburner);
-
-	// Start fading the damage overlay.
-	if(damageOverlayTimer)
-		--damageOverlayTimer;
 }
 
 
@@ -2132,40 +2120,6 @@ bool Ship::IsUsingJumpDrive() const
 
 
 
-// Check if this ship is allowed to land on this planet, accounting for its personality.
-bool Ship::IsRestrictedFrom(const Planet &planet) const
-{
-	// The player's ships have no travel restrictions.
-	if(isYours || !government)
-		return false;
-
-	bool restrictedByGov = government->IsRestrictedFrom(planet);
-	// Special ships (such as NPCs) are unrestricted by default and must be explicitly restricted
-	// by their government's travel restrictions in order to follow them.
-	if(isSpecial)
-		return personality.IsRestricted() && restrictedByGov;
-	return !personality.IsUnrestricted() && restrictedByGov;
-}
-
-
-
-// Check if this ship is allowed to enter this system, accounting for its personality.
-bool Ship::IsRestrictedFrom(const System &system) const
-{
-	// The player's ships have no travel restrictions.
-	if(isYours || !government)
-		return false;
-
-	bool restrictedByGov = government->IsRestrictedFrom(system);
-	// Special ships (such as NPCs) are unrestricted by default and must be explicitly restricted
-	// by their government's travel restrictions in order to follow them.
-	if(isSpecial)
-		return personality.IsRestricted() && restrictedByGov;
-	return !personality.IsUnrestricted() && restrictedByGov;
-}
-
-
-
 // Check if this ship is currently able to enter hyperspace to its target.
 bool Ship::IsReadyToJump(bool waitingIsReady) const
 {
@@ -2312,7 +2266,7 @@ void Ship::Restore()
 	explosionCount = 0;
 	explosionRate = 0;
 	UnmarkForRemoval();
-	Recharge();
+	Recharge(true);
 }
 
 
@@ -2334,23 +2288,23 @@ bool Ship::IsDestroyed() const
 
 
 // Recharge and repair this ship (e.g. because it has landed).
-void Ship::Recharge(int rechargeType, bool hireCrew)
+void Ship::Recharge(bool atSpaceport)
 {
 	if(IsDestroyed())
 		return;
 
-	if(hireCrew)
+	if(atSpaceport)
 		crew = min<int>(max(crew, RequiredCrew()), attributes.Get("bunks"));
 	pilotError = 0;
 	pilotOkay = 0;
 
-	if((rechargeType & Port::RechargeType::Shields) || attributes.Get("shield generation"))
+	if(atSpaceport || attributes.Get("shield generation"))
 		shields = MaxShields();
-	if((rechargeType & Port::RechargeType::Hull) || attributes.Get("hull repair rate"))
+	if(atSpaceport || attributes.Get("hull repair rate"))
 		hull = MaxHull();
-	if((rechargeType & Port::RechargeType::Energy) || attributes.Get("energy generation"))
+	if(atSpaceport || attributes.Get("energy generation"))
 		energy = attributes.Get("energy capacity");
-	if((rechargeType & Port::RechargeType::Fuel) || attributes.Get("fuel generation"))
+	if(atSpaceport || attributes.Get("fuel generation"))
 		fuel = attributes.Get("fuel capacity");
 
 	heat = IdleHeat();
@@ -2574,14 +2528,6 @@ double Ship::HullUntilDisabled() const
 
 
 
-// Returns the remaining damage timer, for the damage overlay.
-int Ship::DamageOverlayTimer() const
-{
-	return damageOverlayTimer;
-}
-
-
-
 const ShipJumpNavigation &Ship::JumpNavigation() const
 {
 	return navigation;
@@ -2695,23 +2641,10 @@ int Ship::Crew() const
 
 
 
-// Calculate the drag on this ship. The drag can be no greater than the mass.
+// Calculate drag, accounting for drag reduction.
 double Ship::Drag() const
 {
-	double drag = attributes.Get("drag") / (1. + attributes.Get("drag reduction"));
-	double mass = InertialMass();
-	return drag >= mass ? mass : drag;
-}
-
-
-
-// Calculate the drag force that this ship experiences. The drag force is the drag
-// divided by the mass, up to a value of 1.
-double Ship::DragForce() const
-{
-	double drag = attributes.Get("drag") / (1. + attributes.Get("drag reduction"));
-	double mass = InertialMass();
-	return drag >= mass ? 1. : drag / mass;
+	return attributes.Get("drag") / (1. + attributes.Get("drag reduction"));
 }
 
 
@@ -2729,10 +2662,7 @@ int Ship::RequiredCrew() const
 
 int Ship::CrewValue() const
 {
-	int crewEquivalent = attributes.Get("crew equivalent");
-	if(attributes.Get("use crew equivalent as crew"))
-		return crewEquivalent;
-	return max(Crew(), RequiredCrew()) + crewEquivalent;
+	return max(Crew(), RequiredCrew()) + attributes.Get("crew equivalent");
 }
 
 
@@ -2769,8 +2699,7 @@ double Ship::InertialMass() const
 
 double Ship::TurnRate() const
 {
-	return attributes.Get("turn") / InertialMass()
-		* (1. + attributes.Get("turn multiplier"));
+	return attributes.Get("turn") / InertialMass();
 }
 
 
@@ -2778,8 +2707,7 @@ double Ship::TurnRate() const
 double Ship::Acceleration() const
 {
 	double thrust = attributes.Get("thrust");
-	return (thrust ? thrust : attributes.Get("afterburner thrust")) / InertialMass()
-		* (1. + attributes.Get("acceleration multiplier"));
+	return (thrust ? thrust : attributes.Get("afterburner thrust")) / InertialMass();
 }
 
 
@@ -2797,8 +2725,7 @@ double Ship::MaxVelocity() const
 
 double Ship::ReverseAcceleration() const
 {
-	return attributes.Get("reverse thrust") / InertialMass()
-		* (1. + attributes.Get("acceleration multiplier"));
+	return attributes.Get("reverse thrust");
 }
 
 
@@ -2816,8 +2743,6 @@ double Ship::MaxReverseVelocity() const
 // Create any target effects as sparks.
 int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const Government *sourceGovernment)
 {
-	damageOverlayTimer = TOTAL_DAMAGE_FRAMES;
-
 	bool wasDisabled = IsDisabled();
 	bool wasDestroyed = IsDestroyed();
 
@@ -4052,7 +3977,7 @@ bool Ship::DoHyperspaceLogic(vector<Visual> &visuals)
 			{
 				for(const StellarObject &object : currentSystem->Objects())
 					if(object.HasSprite() && object.HasValidPlanet()
-							&& object.GetPlanet()->HasServices())
+							&& object.GetPlanet()->HasSpaceport())
 					{
 						target = object.Position();
 						break;
@@ -4172,7 +4097,7 @@ bool Ship::DoLandingLogic()
 	}
 	// Only refuel if this planet has a spaceport.
 	else if(fuel >= attributes.Get("fuel capacity")
-			|| !landingPlanet || !landingPlanet->GetPort().CanRecharge(Port::RechargeType::Fuel))
+			|| !landingPlanet || !landingPlanet->HasSpaceport())
 	{
 		zoom = min(1.f, zoom + landingSpeed);
 		SetTargetStellar(nullptr);
@@ -4248,11 +4173,10 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 	isUsingAfterburner = false;
 
 	double mass = InertialMass();
-	double dragForce = DragForce();
 	double slowMultiplier = 1. / (1. + slowness * .05);
 
 	if(isDisabled)
-		velocity *= 1. - dragForce;
+		velocity *= 1. - Drag() / mass;
 	else if(!pilotError)
 	{
 		if(commands.Turn())
@@ -4301,7 +4225,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 				slowness += scale * attributes.Get("turning slowing");
 				disruption += scale * attributes.Get("turning disruption");
 
-				Turn(commands.Turn() * TurnRate() * slowMultiplier);
+				angle += commands.Turn() * TurnRate() * slowMultiplier;
 			}
 		}
 		double thrustCommand = commands.Has(Command::FORWARD) - commands.Has(Command::BACK);
@@ -4360,7 +4284,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 					slowness += scale * attributes.Get(isThrusting ? "thrusting slowing" : "reverse thrusting slowing");
 					disruption += scale * attributes.Get(isThrusting ? "thrusting disruption" : "reverse thrusting disruption");
 
-					acceleration += angle.Unit() * thrustCommand * (isThrusting ? Acceleration() : ReverseAcceleration());
+					acceleration += angle.Unit() * (thrustCommand * thrust / mass);
 				}
 			}
 		}
@@ -4404,7 +4328,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 				slowness += slownessCost;
 				disruption += disruptionCost;
 
-				acceleration += angle.Unit() * (1. + attributes.Get("acceleration multiplier")) * thrust / mass;
+				acceleration += angle.Unit() * thrust / mass;
 
 				// Only create the afterburner effects if the ship is in the player's system.
 				isUsingAfterburner = !forget;
@@ -4414,8 +4338,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 	if(acceleration)
 	{
 		acceleration *= slowMultiplier;
-		// Acceleration multiplier needs to modify effective drag, otherwise it changes top speeds.
-		Point dragAcceleration = acceleration - velocity * dragForce * (1. + attributes.Get("acceleration multiplier"));
+		Point dragAcceleration = acceleration - velocity * (Drag() / mass);
 		// Make sure dragAcceleration has nonzero length, to avoid divide by zero.
 		if(dragAcceleration)
 		{
@@ -4527,22 +4450,15 @@ void Ship::StepTargeting()
 void Ship::DoEngineVisuals(vector<Visual> &visuals, bool isUsingAfterburner)
 {
 	if(isUsingAfterburner && !Attributes().AfterburnerEffects().empty())
-	{
-		double gimbalDirection = (Commands().Has(Command::FORWARD) || Commands().Has(Command::BACK))
-			* -Commands().Turn();
-
 		for(const EnginePoint &point : enginePoints)
 		{
-			Angle gimbal = Angle(gimbalDirection * point.gimbal.Degrees());
-			Angle afterburnerAngle = angle + point.facing + gimbal;
 			Point pos = angle.Rotate(point) * Zoom() + position;
 			// Stream the afterburner effects outward in the direction the engines are facing.
-			Point effectVelocity = velocity - 6. * afterburnerAngle.Unit();
+			Point effectVelocity = velocity - 6. * angle.Unit();
 			for(auto &&it : Attributes().AfterburnerEffects())
 				for(int i = 0; i < it.second; ++i)
-					visuals.emplace_back(*it.first, pos, effectVelocity, afterburnerAngle);
+					visuals.emplace_back(*it.first, pos, effectVelocity, angle);
 		}
-	}
 }
 
 
@@ -4672,43 +4588,9 @@ double Ship::CalculateDeterrence() const
 		if(hardpoint.GetOutfit())
 		{
 			const Outfit *weapon = hardpoint.GetOutfit();
-			// 1 DoT damage of type X = 100 damage of type X over an extended period of time
-			// (~95 damage after 5 seconds, ~99 damage after 8 seconds). Therefore, multiply
-			// DoT damage types by 100. Disruption, scrambling, and slowing don't have an
-			// analogous instantaneous damage type, but still just multiply them by 100 to
-			// stay consistent.
-
-			// Compare the relative damage types to the strength of the firing ship, since we
-			// have nothing else to reasonably compare against.
-
-			// Shield and hull damage are the primary damage types that dictate combat, so
-			// consider the full damage dealt by these types for the strength of a weapon.
-			double shieldFactor = weapon->ShieldDamage()
-					+ weapon->RelativeShieldDamage() * MaxShields()
-					+ weapon->DischargeDamage() * 100.;
-			double hullFactor = weapon->HullDamage()
-					+ weapon->RelativeHullDamage() * MaxHull()
-					+ weapon->CorrosionDamage() * 100.;
-
-			// Other damage types don't outright destroy ships, so they aren't considered
-			// as heavily in the strength of a weapon.
-			double energyFactor = weapon->EnergyDamage()
-					+ weapon->RelativeEnergyDamage() * attributes.Get("energy capacity")
-					+ weapon->IonDamage() * 100.;
-			double heatFactor = weapon->HeatDamage()
-					+ weapon->RelativeHeatDamage() * MaximumHeat()
-					+ weapon->BurnDamage() * 100.;
-			double fuelFactor = weapon->FuelDamage()
-					+ weapon->RelativeFuelDamage() * attributes.Get("fuel capacity")
-					+ weapon->LeakDamage() * 100.;
-			double scramblingFactor = weapon->ScramblingDamage() * 100.;
-			double slowingFactor = weapon->SlowingDamage() * 100.;
-			double disruptionFactor = weapon->DisruptionDamage() * 100.;
-
-			// Disabled and asteroid damage are ignored because they don't matter in combat.
-
-			double strength = shieldFactor + hullFactor + 0.2 * (energyFactor + heatFactor + fuelFactor
-					+ scramblingFactor + slowingFactor + disruptionFactor);
+			double strength = weapon->ShieldDamage() + weapon->HullDamage()
+				+ (weapon->RelativeShieldDamage() * MaxShields())
+				+ (weapon->RelativeHullDamage() * MaxHull());
 			tempDeterrence += .12 * strength / weapon->Reload();
 		}
 	return tempDeterrence;

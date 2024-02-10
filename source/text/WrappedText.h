@@ -71,9 +71,6 @@ public:
 	// Get the height of the wrapped text.
 	int Height() const;
 
-	// Return the width of the longest line of the wrapped text.
-	int LongestLineWidth() const;
-
 	// Draw the text.
 	void Draw(const Point &topLeft, const Color &color) const;
 
@@ -117,8 +114,6 @@ private:
 	std::string text;
 	std::vector<Word> words;
 	int height = 0;
-
-	int longestLineWidth = 0;
 };
 
 

@@ -69,7 +69,7 @@ string GameWindow::SDLVersions()
 
 
 
-bool GameWindow::Init(bool headless)
+bool GameWindow::Init()
 {
 #ifdef _WIN32
 	// Tell Windows this process is high dpi aware and doesn't need to get scaled.
@@ -78,14 +78,6 @@ bool GameWindow::Init(bool headless)
 	// Set the class name for the window on Linux. Used to set the application icon.
 	// This sets it for both X11 and Wayland.
 	setenv("SDL_VIDEO_X11_WMCLASS", "io.github.endless_sky.endless_sky", true);
-#endif
-
-	// When running the integration tests, don't create a window nor an OpenGL context.
-	if(headless)
-#if defined(__linux__) && !SDL_VERSION_ATLEAST(2, 0, 22)
-		setenv("SDL_VIDEODRIVER", "dummy", true);
-#else
-		SDL_SetHint(SDL_HINT_VIDEODRIVER, "dummy");
 #endif
 
 	// This needs to be called before any other SDL commands.
@@ -144,15 +136,6 @@ bool GameWindow::Init(bool headless)
 	{
 		ExitWithError("Unable to create window!");
 		return false;
-	}
-
-	// Bail out early if we are in headless mode; no need to initialize all the OpenGL stuff.
-	if(headless)
-	{
-		width = windowWidth;
-		height = windowHeight;
-		Screen::SetRaw(width, height);
-		return true;
 	}
 
 	// Settings that must be declared before the context creation.

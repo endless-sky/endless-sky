@@ -78,10 +78,8 @@ DistanceMap::DistanceMap(const PlayerInfo &player, const System *center)
 // Calculate the path for the given ship to get to the given system. The
 // ship will use a jump drive or hyperdrive depending on what it has. The
 // pathfinding will stop once a path to the destination is found.
-// If a player is given, the path will only include systems that the
-// player has visited.
-DistanceMap::DistanceMap(const Ship &ship, const System *destination, const PlayerInfo *player)
-	: player(player), source(ship.GetSystem()), center(destination)
+DistanceMap::DistanceMap(const Ship &ship, const System *destination)
+	: source(ship.GetSystem()), center(destination)
 {
 	if(!source || !destination)
 		return;
@@ -175,7 +173,7 @@ bool DistanceMap::Edge::operator<(const Edge &other) const
 // source system or the maximum count is reached.
 void DistanceMap::Init(const Ship *ship)
 {
-	if(!center || (ship && ship->IsRestrictedFrom(*center)))
+	if(!center)
 		return;
 
 	route[center] = Edge();
@@ -186,7 +184,6 @@ void DistanceMap::Init(const Ship *ship)
 	// hyperdrive capability and no jump drive.
 	if(ship)
 	{
-		this->ship = ship;
 		hyperspaceFuel = ship->JumpNavigation().HyperdriveFuel();
 		jumpFuel = ship->JumpNavigation().JumpDriveFuel();
 		jumpRange = ship->JumpNavigation().JumpRange();
@@ -252,8 +249,7 @@ void DistanceMap::Init(const Ship *ship)
 					// the wormhole and both endpoint systems. (If this is a
 					// multi-stop wormhole, you may know about some paths that
 					// it takes but not others.)
-					if(ship && (!object.GetPlanet()->IsAccessible(ship) ||
-							ship->IsRestrictedFrom(*object.GetPlanet())))
+					if(ship && !object.GetPlanet()->IsAccessible(ship))
 						continue;
 					if(player && !player->HasVisited(*object.GetPlanet()))
 						continue;
@@ -317,12 +313,12 @@ void DistanceMap::Add(const System &to, Edge edge)
 
 
 // Check whether the given link is travelable. If no player was given in the
-// constructor then this depends on travel restrictions; otherwise, the player must know
+// constructor then this is always true; otherwise, the player must know
 // that the given link exists.
 bool DistanceMap::CheckLink(const System &from, const System &to, bool useJump) const
 {
 	if(!player)
-		return !ship || !ship->IsRestrictedFrom(to);
+		return true;
 
 	if(!player->HasSeen(to))
 		return false;

@@ -56,9 +56,6 @@ public:
 	// Finish loading.
 	void Finish();
 
-	// Don't upload the images to the GPU using OpenGL. Used for the integration tests.
-	void SetPreventUpload();
-
 	// Thread entry point.
 	void operator()();
 
@@ -85,9 +82,6 @@ private:
 
 	// Worker threads for loading sprites from disk.
 	std::vector<std::thread> threads;
-
-	// Flag to control whether to upload the sprites to OpenGL.
-	bool uploadSprites = true;
 };
 
 #endif

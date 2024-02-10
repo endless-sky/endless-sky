@@ -6,11 +6,12 @@ file(COPY "${ES_CONFIG}" DESTINATION "${TEST_CONFIGS}")
 file(RENAME "${TEST_CONFIGS}/config" "${TEST_CONFIG}")
 
 # Run the integration test
-execute_process(COMMAND $ENV{ES_INTEGRATION_PREFIX} ${XFVB} "${ES}" --config "${TEST_CONFIG}" --resources "${RESOURCE_PATH}" --test "${test}" ${DEBUG}
+execute_process(COMMAND $ENV{ES_INTEGRATION_PREFIX} "${ES}" --config "${TEST_CONFIG}" --resources "${RESOURCE_PATH}" --test "${test}" ${DEBUG}
     OUTPUT_VARIABLE TEST_OUTPUT
     ERROR_VARIABLE TEST_OUTPUT
     RESULT_VARIABLE TEST_RESULT)
 
 if(TEST_RESULT)
-    message(FATAL_ERROR "Integration test failed with:\n${TEST_OUTPUT}")
+    string(STRIP "${TEST_OUTPUT}" TEST_OUTPUT_STRIPPED)
+    message(FATAL_ERROR "Integration test failed with '${TEST_RESULT}':\n${TEST_OUTPUT_STRIPPED}")
 endif()

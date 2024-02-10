@@ -108,7 +108,7 @@ void DataWriter::Write(const A &a, B... others)
 template <class A>
 void DataWriter::WriteToken(const A &a)
 {
-	static_assert(std::is_arithmetic_v<A>,
+	static_assert(std::is_arithmetic<A>::value,
 		"DataWriter cannot output anything but strings and arithmetic types.");
 
 	out << *before << a;

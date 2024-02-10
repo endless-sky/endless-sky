@@ -33,7 +33,7 @@ class Object {
 	// Some data that the object holds.
 	int value;
 public:
-	explicit Object(int value) : value(value) {}
+	Object(int value) : value(value) {}
 	int GetValue() const { return value; }
 	bool operator==(const Object &other) const { return this->value == other.value; }
 	int64_t GetConstant() const { return CONSTANT; }

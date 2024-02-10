@@ -27,7 +27,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Outfit.h"
 #include "Personality.h"
 #include "Point.h"
-#include "Port.h"
 #include "ship/ShipAICache.h"
 #include "ShipJumpNavigation.h"
 
@@ -105,7 +104,6 @@ public:
 
 		double zoom;
 		Angle facing;
-		Angle gimbal;
 	};
 
 
@@ -267,10 +265,6 @@ public:
 	bool IsUsingJumpDrive() const;
 	// Check if this ship is currently able to enter hyperspace to it target.
 	bool IsReadyToJump(bool waitingIsReady = false) const;
-	// Check if this ship is allowed to land on this planet, accounting for its personality.
-	bool IsRestrictedFrom(const Planet &planet) const;
-	// Check if this ship is allowed to enter this system, accounting for its personality.
-	bool IsRestrictedFrom(const System &system) const;
 	// Get this ship's custom swizzle.
 	int CustomSwizzle() const;
 
@@ -295,7 +289,7 @@ public:
 	// Check if this ship has been destroyed.
 	bool IsDestroyed() const;
 	// Recharge and repair this ship (e.g. because it has landed).
-	void Recharge(int rechargeType = Port::RechargeType::All, bool hireCrew = true);
+	void Recharge(bool atSpaceport = true);
 	// Check if this ship is able to give the given ship enough fuel to jump.
 	bool CanRefuel(const Ship &other) const;
 	// Give the other ship enough fuel for it to jump.
@@ -328,8 +322,6 @@ public:
 	// ship becomes disabled. Returns 0 if the ships hull is already below the
 	// disabled threshold.
 	double HullUntilDisabled() const;
-	// Returns the remaining damage timer, for the damage overlay.
-	int DamageOverlayTimer() const;
 	// Get this ship's jump navigation, which contains information about how
 	// much it costs for this ship to jump, how far it can jump, and its possible
 	// jump methods.
@@ -350,11 +342,8 @@ public:
 	double MaximumHeat() const;
 	// Calculate the multiplier for cooling efficiency.
 	double CoolingEfficiency() const;
-	// Calculate the drag on this ship. The drag can be no greater than the mass.
+	// Calculate the ship's drag after accounting for drag reduction.
 	double Drag() const;
-	// Calculate the drag force that this ship experiences. The drag force is the drag
-	// divided by the mass, up to a value of 1.
-	double DragForce() const;
 
 	// Access how many crew members this ship has or needs.
 	int Crew() const;
@@ -629,8 +618,6 @@ private:
 	// Delays for shield generation and hull repair.
 	int shieldDelay = 0;
 	int hullDelay = 0;
-	// Number of frames the damage overlay should be displayed, if any.
-	int damageOverlayTimer = 0;
 	// Acceleration can be created by engines, firing weapons, or weapon impacts.
 	Point acceleration;
 

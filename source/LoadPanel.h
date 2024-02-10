@@ -19,7 +19,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Panel.h"
 
 #include "Point.h"
-#include "Rectangle.h"
 #include "SavedGame.h"
 
 #include <ctime>
@@ -75,9 +74,6 @@ private:
 	std::string selectedFile;
 	// If the player enters a filename that exists, prompt before overwriting it.
 	std::string nameToConfirm;
-
-	const Rectangle pilotBox;
-	const Rectangle snapshotBox;
 
 	Point hoverPoint;
 	int hoverCount = 0;

@@ -187,13 +187,6 @@ bool MainPanel::AllowsFastForward() const noexcept
 
 
 
-Engine &MainPanel::GetEngine()
-{
-	return engine;
-}
-
-
-
 // Only override the ones you need; the default action is to return false.
 bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
@@ -215,6 +208,14 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		return false;
 
 	return true;
+}
+
+
+
+// Forward the given TestContext to the Engine under MainPanel.
+void MainPanel::SetTestContext(TestContext &testContext)
+{
+	engine.SetTestContext(testContext);
 }
 
 

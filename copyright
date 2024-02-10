@@ -330,12 +330,6 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
- images/ship/waverider*
-Copyright: Evan Fluharty (Evanfluharty@gmail.com)
-License: CC-BY-SA-4.0
-Comment: Derived from works by Michael Zahniser (under the same license) and detailed by Saugia (<https://github.com/Saugia>).
-
-Files:
  images/ship/modified?boxwing*
  images/thumbnail/modified?boxwing*
 Copyright: Evan Fluharty (Evanfluharty@gmail.com)
@@ -2091,7 +2085,6 @@ License: CC-BY-SA-4.0
 
 Files:
  images/outfit/android*
- images/outfit/mug*
  images/outfit/skadetear*
 Copyright: Anarchist2
 License: CC-BY-SA-4.0
@@ -2161,15 +2154,8 @@ Comment: Derived from _menu/haze-133 (no copyright given).
 
 Files:
  images/star/proto-planetary-disk*
- images/projectile/ionic turret*
 Copyright: RisingLeaf (https://github.com/RisingLeaf)
 License: CC-BY-SA-4.0
-
-Files:
- images/effect/ionic?impact*
-Copyright: RisingLeaf (https://github.com/RisingLeaf)
-License: CC-BY-SA-4.0
-Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
  images/land/hills11*
@@ -2177,22 +2163,10 @@ Copyright: CyberJudas (cyberjudas@dnmx.org)
 License: CC-BY-SA-4.0
 
 Files:
- images/ui/red?alert?grayed*
-Copyright: Dave Flowers
-License: CC-BY-SA-4.0
-Comment: grayscale version of images/ui/red alert, by Zitchas (zitchas.jma@gmail.com)
-
-Files:
  images/ui/sales?key*
 Copyright: Dave Flowers
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
-
-Files:
- images/ui/find?*
-Copyright: Daeridanii (https://github.com/Daeridanii1)
-License: CC0
-Comment: selected and unselected versions of images/ui/find, by Ember369 (https://github.com/Ember369)
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify

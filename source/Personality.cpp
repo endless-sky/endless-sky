@@ -62,7 +62,6 @@ namespace {
 		SECRETIVE,
 		RAMMING,
 		UNRESTRICTED,
-		RESTRICTED,
 		DECLOAKED,
 
 		// This must be last so it can be used for bounds checking.
@@ -104,7 +103,6 @@ namespace {
 		{"secretive", SECRETIVE},
 		{"ramming", RAMMING},
 		{"unrestricted", UNRESTRICTED},
-		{"restricted", RESTRICTED},
 		{"decloaked", DECLOAKED}
 	};
 
@@ -262,13 +260,6 @@ bool Personality::IsUnconstrained() const
 bool Personality::IsUnrestricted() const
 {
 	return flags.test(UNRESTRICTED);
-}
-
-
-
-bool Personality::IsRestricted() const
-{
-	return flags.test(RESTRICTED);
 }
 
 

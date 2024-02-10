@@ -56,12 +56,6 @@ private:
 
 	void Exit();
 
-	void HandleSettingsString(const std::string &str, Point cursorPosition);
-
-	void HandleUp();
-	void HandleDown();
-	void HandleConfirm();
-
 
 private:
 	int editing;
@@ -75,7 +69,6 @@ private:
 
 	Point hoverPoint;
 	int hoverCount = 0;
-	std::string selectedItem;
 	std::string hoverItem;
 	std::string tooltip;
 	WrappedText hoverText;

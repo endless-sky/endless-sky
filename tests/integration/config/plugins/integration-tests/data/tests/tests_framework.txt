@@ -28,6 +28,7 @@ test "Test-Framework - Conditions Arithmetic and Loops"
 	status "active"
 	description "Test condition-setting, condition-checking, additions, labels and branching."
 	sequence
+		watchdog 100
 		apply
 			"test: myFirstTestVariable" = 100
 			"test: mySecondTestVariable" = 200
@@ -52,6 +53,7 @@ test "Test-Framework - Conditions Arithmetic and Loops"
 			10 == "test: loopControl"
 			"test: myFirstTestVariable" == 200 - 50
 			400 * 1024 == "test: mySecondTestVariable"
+		watchdog 0
 
 
 test "Test-Framework - UI Keyboard controls"
@@ -109,8 +111,7 @@ test "Test-Framework - Load Depart Land"
 		# Re-check startup conditions.
 		assert
 			"ships: Light Freighter" == 3
-		navigate
-			"travel destination" Earth
+		watchdog 90000
 		call "Land"
 		assert
 			"flagship landed" > 0
@@ -120,6 +121,7 @@ test "Test-Framework - Recursive Calling"
 	status active
 	description "Test-Framework - Test for recursive calling of functions (initialize part)."
 	sequence
+		watchdog 10000
 		apply
 			"test: callLoopControl" = 1
 		call "Test-Framework - Recursive Call"
@@ -169,15 +171,18 @@ test "Test-Framework - Navigate"
 		# Give jump command.
 		input
 			command jump
-		# Wait loop while jumping to Alpha Centuari.
+		# Wait loop while jumping to Alpha Centuari (with a timeout for if this jump fails).
+		watchdog 12000
 		label notAlpha1
 		branch notAlpha1
 			not "flagship system: Alpha Centauri"
-		# Wait loop while jumping back to Sol.
+		# Wait loop while jumping back to Sol (with a timeout for if this jump fails).
+		watchdog 12000
 		label notSol
 		branch notSol
 			not "flagship system: Sol"
-		# Wait loop while jumping to Alpha Centauri again.
+		# Wait loop while jumping to Alpha Centauri again (with again a timeout for if this jump fails).
+		watchdog 12000
 		label notAlpha2
 		branch notAlpha2
 			not "flagship system: Alpha Centauri"
@@ -213,8 +218,6 @@ test "Test-Framework - Mission Injection"
 		call "Depart"
 		assert
 			"flagship landed" == 0
-		navigate
-			"travel destination" Earth
 		call "Land"
 		input
 			key "Return"

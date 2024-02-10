@@ -66,9 +66,7 @@ SCENARIO( "Test basic ByGivenOrder functionality." , "[ByGivenOrder]" ) {
 			std::vector<int> toSort = { 2, 4, 6, 8, 5, 1, 3 };
 			const std::vector<int> expectedOrder = { 4, 2, 8, 6, 1, 3, 5 };
 
-			std::random_device rd;
-			std::mt19937 gen(rd());
-			std::shuffle(toSort.begin(), toSort.end(), gen);
+			std::random_shuffle(toSort.begin(), toSort.end());
 			std::sort(toSort.begin(), toSort.end(), c);
 			CHECK( toSort == expectedOrder );
 		}

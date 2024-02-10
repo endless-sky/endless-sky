@@ -18,6 +18,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Weapon.h"
 
+#include "Point.h"
+
 
 // Hazards are environmental effects created within systems. They are able to create
 // visual effects and damage or apply status effects to any ships within the system
