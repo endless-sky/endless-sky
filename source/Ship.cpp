@@ -64,31 +64,30 @@ namespace {
 
 	const double MAXIMUM_TEMPERATURE = 100.;
 
-	// Scanning takes between 2 and 10 seconds (SCAN_TIME / MAX_SCAN_STEPS and SCAN_TIME / MIN_SCAN_STEPS)
+	// Scanning takes up to 10 seconds (SCAN_TIME / MIN_SCAN_STEPS)
 	// dependent on the range from the ship (among other factors).
 	// The scan speed uses a gaussian drop-off with the reported scan radius as the standard deviation.
 	const double SCAN_TIME = 600.;
 	// Always gain at least 1 step of scan progress for every frame spent scanning while in range.
 	// This ensures every scan completes within 600 frames (10 seconds) of being in range.
-	const double MIN_SCAN_STEPS = 1;
-	// Gain no more than 5 steps of scan progress for every frame spent scanning while in range.
-	// This ensures no scan takes fewer than 120 frames (2 seconds.)
-	const double MAX_SCAN_STEPS = 5; // minimum of 2 seconds to scan
+	const double MIN_SCAN_STEPS = 1.;
+	// Exponential dropoff of scan rate starts at scan rate of SCAN_TIME/LINEAR_RATE
+	// with an exponent of SCAN_DROPOFF_EXPONENT.
+	const double LINEAR_RATE = 5.;
+	const double SCAN_DROPOFF_EXPONENT = 5.;
 
-	// These numbers ensure it takes 10 seconds for a Cargo Scanner to scan
-	// a Bulk Freighter at point blank range. Any ship with less than 40
-	// cargo space takes as long as a ship with 40 cargo space.
-	const double SCAN_MIN_CARGO_SPACE = 40;
-	const double SCAN_CARGO_FACTOR = 3;
+	// In Ship::Scan, ships smaller than this are treated as being this size.
+	const double SCAN_MIN_CARGO_SPACE = 40.;
+	const double SCAN_MIN_OUTFIT_SPACE = 200.;
 
-	// This ensures it takes 10 seconds for an Outfit Scanner to scan a
-	// Bactrian at point blank range. Any ship with less than 200 outfit
-	// space takes as long as a ship with 200 outfit space.
-	const double SCAN_MIN_OUTFIT_SPACE = 200;
-	const double SCAN_OUTFIT_FACTOR = 10;
+	// Formula for calculating scan speed tuning factors:
+	// factor = pow(framesToFullScan / (SCAN_TIME * sqrt(scanEfficiency)), -1.5) / referenceSize
 
-	// Formula for the scan outfit or cargo factor is:
-	// factor = pow(sqrt(scanEfficiency) * framesToFullScan / SCAN_TIME, 1.5) / referenceSize
+	// Cargo scanner (5) takes 10 seconds (600/600=1.0) to scan a Bulk freighter (600 space) at 0 range.
+	const double SCAN_CARGO_FACTOR = pow(1.0 / sqrt(5.), -1.5) / 600.;
+
+	// Outfit scanner (15) takes 10 seconds (600/600=1.0) to scan a Bactrian (740 space) at 0 range.
+	const double SCAN_OUTFIT_FACTOR = pow(1.0 / sqrt(15.), -1.5) / 740.;
 
 	// Total number of frames the damaged overlay is show, if any.
 	constexpr int TOTAL_DAMAGE_FRAMES = 40;
@@ -697,6 +696,7 @@ void Ship::FinishLoading(bool isNewInstance)
 		// Store attributes from an "add attributes" node in the ship's
 		// baseAttributes so they can be written to the save file.
 		baseAttributes.Add(attributes);
+		baseAttributes.AddLicenses(attributes);
 		addAttributes = false;
 	}
 	// Add the attributes of all your outfits to the ship's base attributes.
@@ -1306,7 +1306,8 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 {
 	this->position = position;
 	this->velocity = velocity;
-	this->Turn(angle);
+	this->angle = Angle();
+	Turn(angle);
 
 	// If landed, place the ship right above the planet.
 	// Escorts should take off a bit behind their flagships.
@@ -1847,8 +1848,13 @@ int Ship::Scan(const PlayerInfo &player)
 
 		const double progress = exp(distanceExponent) * sqrt(speed) * depthFactor;
 
-		// Bound progress each step to limit minimum and maximum scan times.
-		elapsed += max<double>(MIN_SCAN_STEPS, min<double>(MAX_SCAN_STEPS, progress));
+		// For slow scan rates, ensure maximum of 10 seconds to scan.
+		if(progress <= LINEAR_RATE)
+			elapsed += max(MIN_SCAN_STEPS, progress);
+		// For fast scan rates, apply an exponential drop-off to prevent insta-scanning.
+		else
+			elapsed += SCAN_TIME - (SCAN_TIME - LINEAR_RATE) *
+				exp(-(progress - LINEAR_RATE) / SCAN_TIME / SCAN_DROPOFF_EXPONENT);
 
 		if(elapsed >= SCAN_TIME)
 			result |= event;
@@ -1931,10 +1937,10 @@ double Ship::OutfitScanFraction() const
 
 
 
-// Fire any weapons that are ready to fire. If an anti-missile is ready,
-// instead of firing here this function returns true and it can be fired if
-// collision detection finds a missile in range.
-bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
+// Fire any primary or secondary weapons that are ready to fire. Determines
+// if any special weapons (e.g. anti-missile, tractor beam) are ready to fire.
+// The firing of special weapons is handled separately.
+void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 {
 	isInSystem = true;
 	forget = 0;
@@ -1945,9 +1951,11 @@ bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 		projectiles.emplace_back(position, explosionWeapon);
 
 	if(CannotAct())
-		return false;
+		return;
 
 	antiMissileRange = 0.;
+	tractorBeamRange = 0.;
+	tractorFlotsam.clear();
 
 	double jamChance = CalculateJamChance(Energy(), scrambling);
 
@@ -1959,14 +1967,28 @@ bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 		{
 			if(weapon->AntiMissile())
 				antiMissileRange = max(antiMissileRange, weapon->Velocity() + weaponRadius);
+			else if(weapon->TractorBeam())
+				tractorBeamRange = max(tractorBeamRange, weapon->Velocity() + weaponRadius);
 			else if(firingCommands.HasFire(i))
 				armament.Fire(i, *this, projectiles, visuals, Random::Real() < jamChance);
 		}
 	}
 
 	armament.Step(*this);
+}
 
+
+
+bool Ship::HasAntiMissile() const
+{
 	return antiMissileRange;
+}
+
+
+
+bool Ship::HasTractorBeam() const
+{
+	return tractorBeamRange;
 }
 
 
@@ -1991,6 +2013,55 @@ bool Ship::FireAntiMissile(const Projectile &projectile, vector<Visual> &visuals
 	}
 
 	return false;
+}
+
+
+
+// Fire tractor beams at the given flotsam. Returns a Point representing the net
+// pull on the flotsam from this ship's tractor beams.
+Point Ship::FireTractorBeam(const Flotsam &flotsam, vector<Visual> &visuals)
+{
+	Point pullVector;
+	if(flotsam.Position().Distance(position) > tractorBeamRange)
+		return pullVector;
+	if(CannotAct())
+		return pullVector;
+	// Don't waste energy on flotsams that you can't pick up.
+	if(!CanPickUp(flotsam))
+		return pullVector;
+	if(IsYours())
+	{
+		const auto flotsamSetting = Preferences::GetFlotsamCollection();
+		if(flotsamSetting == Preferences::FlotsamCollection::OFF)
+			return pullVector;
+		if(!GetParent() && flotsamSetting == Preferences::FlotsamCollection::ESCORT)
+			return pullVector;
+		if(flotsamSetting == Preferences::FlotsamCollection::FLAGSHIP)
+			return pullVector;
+	}
+
+	double jamChance = CalculateJamChance(Energy(), scrambling);
+
+	bool opportunisticEscorts = !Preferences::Has("Turrets focus fire");
+	const vector<Hardpoint> &hardpoints = armament.Get();
+	for(unsigned i = 0; i < hardpoints.size(); ++i)
+	{
+		const Weapon *weapon = hardpoints[i].GetOutfit();
+		if(weapon && CanFire(weapon))
+			if(armament.FireTractorBeam(i, *this, flotsam, visuals, Random::Real() < jamChance))
+			{
+				Point hardpointPos = Position() + Zoom() * Facing().Rotate(hardpoints[i].GetPoint());
+				// Heavier flotsam are harder to pull.
+				pullVector += (hardpointPos - flotsam.Position()).Unit() * weapon->TractorBeam() / flotsam.Mass();
+				// Remember that this flotsam is being pulled by a tractor beam so that this ship
+				// doesn't try to manually collect it.
+				tractorFlotsam.insert(&flotsam);
+				// If this ship is opportunistic, then only fire one tractor beam at each flostam.
+				if(personality.IsOpportunistic() || (isYours && opportunisticEscorts))
+					break;
+			}
+	}
+	return pullVector;
 }
 
 
@@ -3378,6 +3449,13 @@ shared_ptr<Minable> Ship::GetTargetAsteroid() const
 shared_ptr<Flotsam> Ship::GetTargetFlotsam() const
 {
 	return targetFlotsam.lock();
+}
+
+
+
+const set<const Flotsam *> &Ship::GetTractorFlotsam() const
+{
+	return tractorFlotsam;
 }
 
 

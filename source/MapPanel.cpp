@@ -411,7 +411,7 @@ void MapPanel::FinishDrawing(const string &buttonCondition)
 		static const string UNKNOWN = "You have not yet mapped a route to this system.";
 		const Font &font = FontSet::Get(18);
 
-		const string &message = player.HasVisited(*selectedSystem) ? UNAVAILABLE : UNKNOWN;
+		const string &message = player.CanView(*selectedSystem) ? UNAVAILABLE : UNKNOWN;
 		Point point(-font.Width(message) / 2, Screen::Top() + 40);
 		font.Draw(message, point + Point(1, 1), black);
 		font.Draw(message, point, red);
@@ -447,14 +447,14 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 		// Draw the origin and destination systems, since they
 		// might not be linked via hyperspace.
 		Color color = Color(.5f * alpha, 0.f);
-		if(player.HasVisited(system) && system.IsInhabited(flagship) && gov)
+		if(player.CanView(system) && system.IsInhabited(flagship) && gov)
 			color = gov->GetColor().Additive(alpha);
 		RingShader::Draw(from, OUTER, INNER, color);
 
 		for(const System *link : system.Links())
 		{
 			// Only draw systems known to be attached to the jump systems.
-			if(!player.HasVisited(system) && !player.HasVisited(*link))
+			if(!player.CanView(system) && !player.CanView(*link))
 				continue;
 
 			// Draw the system link. This will double-draw the jump
@@ -469,7 +469,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 
 			gov = link->GetGovernment();
 			Color color = Color(.5f * alpha, 0.f);
-			if(player.HasVisited(*link) && link->IsInhabited(flagship) && gov)
+			if(player.CanView(*link) && link->IsInhabited(flagship) && gov)
 				color = gov->GetColor().Additive(alpha);
 			RingShader::Draw(to, OUTER, INNER, color);
 		}
@@ -829,7 +829,7 @@ void MapPanel::Find(const string &name)
 	for(const auto &it : GameData::Systems())
 	{
 		const System &system = it.second;
-		if(system.IsValid() && !system.Inaccessible() && player.HasVisited(system))
+		if(system.IsValid() && !system.Inaccessible() && player.CanView(system))
 		{
 			int index = Format::Search(it.first, name);
 			if(index >= 0 && index < bestIndex)
@@ -848,7 +848,7 @@ void MapPanel::Find(const string &name)
 	for(const auto &it : GameData::Planets())
 	{
 		const Planet &planet = it.second;
-		if(planet.IsValid() && player.HasVisited(*planet.GetSystem()))
+		if(planet.IsValid() && player.CanView(*planet.GetSystem()))
 		{
 			int index = Format::Search(it.first, name);
 			if(index >= 0 && index < bestIndex)
@@ -903,7 +903,7 @@ bool MapPanel::GetTravelInfo(const System *previous, const System *next, const d
 			if(object.HasSprite() && object.HasValidPlanet()
 				&& object.GetPlanet()->IsWormhole()
 				&& player.HasVisited(*object.GetPlanet())
-				&& player.HasVisited(*previous) && player.HasVisited(*next)
+				&& player.CanView(*previous) && player.CanView(*next)
 				&& &object.GetPlanet()->GetWormhole()->WormholeDestination(*previous) == next)
 			{
 				isWormhole = true;
@@ -987,7 +987,7 @@ void MapPanel::UpdateCache()
 			continue;
 
 		Color color = UninhabitedColor();
-		if(!player.HasVisited(system))
+		if(!player.CanView(system))
 			color = UnexploredColor();
 		else if(system.IsInhabited(player.Flagship()) || commodity == SHOW_SPECIAL
 				|| commodity == SHOW_VISITED || commodity == SHOW_DANGER)
@@ -1092,7 +1092,7 @@ void MapPanel::UpdateCache()
 		nodes.emplace_back(system.Position(), color,
 			player.KnowsName(system) ? system.Name() : "",
 			(&system == &playerSystem) ? closeNameColor : farNameColor,
-			player.HasVisited(system) ? system.GetGovernment() : nullptr);
+			player.CanView(system) ? system.GetGovernment() : nullptr);
 	}
 
 	// Now, update the cache of the links.
@@ -1111,9 +1111,9 @@ void MapPanel::UpdateCache()
 			if(link < system || !player.HasSeen(*link))
 			{
 				// Only draw links between two systems if one of the two is
-				// visited. Also, avoid drawing twice by only drawing in the
+				// viewable. Also, avoid drawing twice by only drawing in the
 				// direction of increasing pointer values.
-				if((!player.HasVisited(*system) && !player.HasVisited(*link)) || !link->IsValid())
+				if((!player.CanView(*system) && !player.CanView(*link)) || !link->IsValid())
 					continue;
 
 				bool isClose = (system == &playerSystem || link == &playerSystem);
@@ -1300,7 +1300,7 @@ void MapPanel::DrawWormholes()
 
 		for(auto &&link : it.second.Links())
 			if(!link.first->Inaccessible() && !link.second->Inaccessible() && p.IsInSystem(link.first)
-					&& player.HasVisited(*link.first) && player.HasVisited(*link.second))
+					&& player.CanView(*link.first) && player.CanView(*link.second))
 				arrowsToDraw.emplace_back(link.first, link.second, it.second.GetLinkColor());
 
 	}

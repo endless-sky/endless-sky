@@ -680,6 +680,11 @@ event "southern carriers 4"
 			"Roost"
 			"Lance (Gatling)" 4
 
+	fleet "Human Miners"
+		add variant 1
+			"Nest (Miner)"
+			"Barb (Miner)" 2
+
 event "initial deployment 4"
 	date 17 9 3014
 	planet "Geminus"
@@ -1846,6 +1851,22 @@ event "deep sky tech available"
 		"Typhoon Pod"
 		"Typhoon Storage Tube"
 		"Electron Turret"
+
+event "navy expand typhoon sales"
+	outfitter "Lovelace Advanced"
+		"Typhoon Torpedo"
+		"Typhoon Launcher"
+		"Typhoon Pod"
+		"Typhoon Storage Tube"
+
+mission "Navy expands typhoon sales"
+	invisible
+	landing
+	to offer
+		has "event: deep sky tech available"
+	on offer
+		event "navy expand typhoon sales" 120
+		fail
 
 
 

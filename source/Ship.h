@@ -163,7 +163,7 @@ public:
 	int64_t Cost() const;
 	int64_t ChassisCost() const;
 	int64_t Strength() const;
-	// Get the attraction and deterrance of this ship, for pirate raids.
+	// Get the attraction and deterrence of this ship, for pirate raids.
 	// This is only useful for the player's ships.
 	double Attraction() const;
 	double Deterrence() const;
@@ -228,12 +228,18 @@ public:
 	double CargoScanFraction() const;
 	double OutfitScanFraction() const;
 
-	// Fire any weapons that are ready to fire. If an anti-missile is ready,
-	// instead of firing here this function returns true and it can be fired if
-	// collision detection finds a missile in range.
-	bool Fire(std::vector<Projectile> &projectiles, std::vector<Visual> &visuals);
-	// Fire an anti-missile. Returns true if the missile was killed.
+	// Fire any primary or secondary weapons that are ready to fire. Determines
+	// if any special weapons (e.g. anti-missile, tractor beam) are ready to fire.
+	// The firing of special weapons is handled separately.
+	void Fire(std::vector<Projectile> &projectiles, std::vector<Visual> &visuals);
+	// Return true if any anti-missile or tractor beam systems are ready to fire.
+	bool HasAntiMissile() const;
+	bool HasTractorBeam() const;
+	// Fire an anti-missile at the given missile. Returns true if the missile was killed.
 	bool FireAntiMissile(const Projectile &projectile, std::vector<Visual> &visuals);
+	// Fire tractor beams at the given flotsam. Returns a Point representing the net
+	// pull on the flotsam from this ship's tractor beams.
+	Point FireTractorBeam(const Flotsam &flotsam, std::vector<Visual> &visuals);
 
 	// Get the system this ship is in. Set to nullptr if the ship is being carried.
 	const System *GetSystem() const;
@@ -446,6 +452,7 @@ public:
 	// Mining target.
 	std::shared_ptr<Minable> GetTargetAsteroid() const;
 	std::shared_ptr<Flotsam> GetTargetFlotsam() const;
+	const std::set<const Flotsam *> &GetTractorFlotsam() const;
 
 	// Mark this ship as fleeing.
 	void SetFleeing(bool fleeing = true);
@@ -513,7 +520,7 @@ private:
 	void CreateSparks(std::vector<Visual> &visuals, const std::string &name, double amount);
 	void CreateSparks(std::vector<Visual> &visuals, const Effect *effect, double amount);
 
-	// Calculate the attraction and deterrance of this ship, for pirate raids.
+	// Calculate the attraction and deterrence of this ship, for pirate raids.
 	// This is only useful for the player's ships.
 	double CalculateAttraction() const;
 	double CalculateDeterrence() const;
@@ -566,8 +573,9 @@ private:
 	int customSwizzle = -1;
 	double cloak = 0.;
 	double cloakDisruption = 0.;
-	// Cached values for figuring out when anti-missile is in range.
+	// Cached values for figuring out when anti-missiles or tractor beams are in range.
 	double antiMissileRange = 0.;
+	double tractorBeamRange = 0.;
 	double weaponRadius = 0.;
 	// Cargo and outfit scanning takes time.
 	double cargoScan = 0.;
@@ -680,6 +688,7 @@ private:
 	const System *targetSystem = nullptr;
 	std::weak_ptr<Minable> targetAsteroid;
 	std::weak_ptr<Flotsam> targetFlotsam;
+	std::set<const Flotsam *> tractorFlotsam;
 
 	// Links between escorts and parents.
 	std::vector<std::weak_ptr<Ship>> escorts;
