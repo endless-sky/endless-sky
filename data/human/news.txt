@@ -2158,39 +2158,48 @@ news "High Tension Situation"
 		"Standoff"
 	message
 		word
-			"CCOR Guerrillas "
-			"Guerrillas in CCOR colors "
+			"On the corner"
+			"By a landing pad"
+			"At the entrance to the spaceport market, "
 		word
-			"are "
+			"some CCOR guerrillas are "
+			"there's a group of people in CCOR colors "
 		word
-			"distributing pamphlets, "
-			"delivering aid, "
-			"rallying against the local authorities, "
-			"supporting local protests, "
+			"distributing pamphlets"
+			"handing out literature"
+			"delivering aid"
+			"rallying against the local authorities"
+			"supporting local protests"
 		word
-			"when "
+			". "
 		word
-			"planetary authorities "
-			"local pirates "
+			"When "
+		word
+			"the planetary authorities "
+			"a gang of local pirates "
 		word
 			"accost "
 			"confront "
 		word
 			"them and demand that they "
 		word
-			"disperse. "
-			"abandon their objective. "
-			"come quietly. "
+			"disperse"
+			"make themselves scarce"
+			"abandon their objective"
+			"come quietly"
 		word
-			"The Guerrillas "
+			", "
 		word
-			"bluster "
+			"the guerrillas "
+			"the group "
+		word
+			"bluster at them "
 			"saber-rattle "
 		word
-			"for a bit in response "
+			"in response "
 		word
-			"but it all ends with them dispersing."
-			"and their opposition backs down."
+			", but they end up dispersing."
+			", and the two groups back down."
 
 phrase "A Light Ship"
 	word
