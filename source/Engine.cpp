@@ -66,6 +66,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "System.h"
 #include "SystemEntry.h"
 #include "Test.h"
+#include "Track.h"
 #include "Visual.h"
 #include "Weather.h"
 #include "Wormhole.h"
@@ -555,6 +556,16 @@ void Engine::Step(bool isActive)
 
 	wasActive = isActive;
 	Audio::Update(center);
+
+	if(GameData::IsLoaded())
+	{
+		Track::GameState state = Track::GameState::IDLE;
+		// If there are hostile ships in the system, set the state to COMBAT.
+		if(hadHostiles)
+			state = Track::GameState::COMBAT;
+		Audio::UpdateMusic(player, state);
+	}
+
 
 	// Update the zoom value now that the calculation thread is paused.
 	if(nextZoom)
@@ -1255,7 +1266,6 @@ void Engine::EnterSystem()
 	const Date &today = player.GetDate();
 
 	const System *system = flagship->GetSystem();
-	Audio::PlayMusic(system->MusicName());
 	GameData::SetHaze(system->Haze(), false);
 
 	Messages::Add("Entering the " + system->Name() + " system on "

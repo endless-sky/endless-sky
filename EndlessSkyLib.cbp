@@ -287,6 +287,8 @@
 		<Unit filename="source/PlayerInfo.h" />
 		<Unit filename="source/PlayerInfoPanel.cpp" />
 		<Unit filename="source/PlayerInfoPanel.h" />
+		<Unit filename="source/Playlist.cpp" />
+		<Unit filename="source/Playlist.h" />
 		<Unit filename="source/Plugins.cpp" />
 		<Unit filename="source/Plugins.h" />
 		<Unit filename="source/Point.cpp" />
@@ -376,6 +378,8 @@
 		<Unit filename="source/TestData.h" />
 		<Unit filename="source/TextReplacements.cpp" />
 		<Unit filename="source/TextReplacements.h" />
+		<Unit filename="source/Track.cpp" />
+		<Unit filename="source/Track.h" />
 		<Unit filename="source/Trade.cpp" />
 		<Unit filename="source/Trade.h" />
 		<Unit filename="source/TradingPanel.cpp" />
