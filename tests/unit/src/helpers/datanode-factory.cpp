@@ -25,7 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 // Method to convert text input into consumable DataNodes.
-std::vector<DataNode> AsDataNodes(std::string text)
+std::vector<DataNode> AsDataNodes(const std::string &text)
 {
 	std::stringstream in;
 	in.str(text);

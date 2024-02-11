@@ -40,7 +40,7 @@ DataNode::DataNode(const DataNode *parent) noexcept(false)
 
 // Copy constructor.
 DataNode::DataNode(const DataNode &other)
-	: children(other.children), tokens(other.tokens), lineNumber(other.lineNumber)
+	: children(other.children), tokens(other.tokens), lineNumber(std::move(other.lineNumber))
 {
 	Reparent();
 }
@@ -52,7 +52,7 @@ DataNode &DataNode::operator=(const DataNode &other)
 {
 	children = other.children;
 	tokens = other.tokens;
-	lineNumber = other.lineNumber;
+	lineNumber = std::move(other.lineNumber);
 	Reparent();
 	return *this;
 }
@@ -60,7 +60,7 @@ DataNode &DataNode::operator=(const DataNode &other)
 
 
 DataNode::DataNode(DataNode &&other) noexcept
-	: children(std::move(other.children)), tokens(std::move(other.tokens)), lineNumber(std::move(other.lineNumber))
+	: children(std::move(other.children)), tokens(std::move(other.tokens)), lineNumber(other.lineNumber)
 {
 	Reparent();
 }
@@ -71,7 +71,7 @@ DataNode &DataNode::operator=(DataNode &&other) noexcept
 {
 	children.swap(other.children);
 	tokens.swap(other.tokens);
-	lineNumber = std::move(other.lineNumber);
+	lineNumber = other.lineNumber;
 	Reparent();
 	return *this;
 }

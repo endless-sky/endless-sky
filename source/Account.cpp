@@ -83,7 +83,7 @@ void Account::Save(DataWriter &out) const
 	out.BeginChild();
 	{
 		out.Write("credits", credits);
-		if(salariesIncome.size() > 0)
+		if(!salariesIncome.empty())
 		{
 			out.Write("salaries income");
 			out.BeginChild();
@@ -319,7 +319,7 @@ int64_t Account::SalariesIncomeTotal() const
 
 
 
-void Account::SetSalaryIncome(string name, int64_t amount)
+void Account::SetSalaryIncome(const string &name, int64_t amount)
 {
 	if(amount == 0)
 		salariesIncome.erase(name);

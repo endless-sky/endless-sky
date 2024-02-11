@@ -38,13 +38,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cmath>
+#include <utility>
 
 using namespace std;
 
 
 
 HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<void(const Government *)> bribeCallback)
-	: player(player), ship(ship), bribeCallback(bribeCallback), sprite(ship->GetSprite()), facing(ship->Facing())
+	: player(player), ship(ship), bribeCallback(std::move(bribeCallback)),
+		sprite(ship->GetSprite()), facing(ship->Facing())
 {
 	SetInterruptible(false);
 
