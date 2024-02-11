@@ -504,7 +504,7 @@ Version 0.10.2
       * New human news items. (@dorbarker)
       * New jobs in Free Worlds space during the war that involve Military cargo. (@dorbarker)
     * Mission changes:
-      * The "FW Pug 2C" missions now use autoconditions to ensure the appropriate one is offered instead of relying on MissionAction blocking. (@warp_core)
+      * The "FW Pug 2C" missions now use autoconditions to ensure the appropriate one is offered instead of relying on MissionAction blocking. (@warp-core)
       * The "Street Swindle" mission is now invisible, and uses conversation actions to take credits from the player and is always declined. (@lumbar527)
       * Small wording change to "Earth Retirement" mission. (@lumbar527)
       * Various wording changes to Gegno intro missions. (@Saugia)
