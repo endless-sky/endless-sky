@@ -3776,7 +3776,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	auto landingAccessFun = [this](const string &name) -> bool
 	{
 		const Planet *planet = GameData::Planets().Find(name.substr(strlen("landing access: ")));
-		return planet && flagship ? planet->CanLand(*flagship) : false;
+		return (planet && flagship) ? planet->CanLand(*flagship) : false;
 	};
 	landingAccessProvider.SetGetFunction(landingAccessFun);
 	landingAccessProvider.SetHasFunction(landingAccessFun);
