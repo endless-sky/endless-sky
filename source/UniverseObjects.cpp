@@ -18,19 +18,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataFile.h"
 #include "DataNode.h"
 #include "Files.h"
-#include "text/FontSet.h"
-#include "ImageSet.h"
 #include "Information.h"
 #include "Logger.h"
-#include "MaskManager.h"
-#include "Music.h"
-#include "PlayerInfo.h"
-#include "Politics.h"
-#include "Random.h"
 #include "Sprite.h"
-#include "SpriteQueue.h"
 #include "SpriteSet.h"
-#include "StarField.h"
 
 #include <algorithm>
 #include <iterator>
@@ -40,35 +31,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <vector>
 
 using namespace std;
-
-
-
-namespace {
-	// TODO (C++14): make these 3 methods generic lambdas visible only to the CheckReferences method.
-	// Log a warning for an "undefined" class object that was never loaded from disk.
-	void Warn(const string &noun, const string &name)
-	{
-		Logger::LogError("Warning: " + noun + " \"" + name + "\" is referred to, but not fully defined.");
-	}
-	// Class objects with a deferred definition should still get named when content is loaded.
-	template <class Type>
-	bool NameIfDeferred(const set<string> &deferred, pair<const string, Type> &it)
-	{
-		if(deferred.count(it.first))
-			it.second.SetName(it.first);
-		else
-			return false;
-
-		return true;
-	}
-	// Set the name of an "undefined" class object, so that it can be written to the player's save.
-	template <class Type>
-	void NameAndWarn(const string &noun, pair<const string, Type> &it)
-	{
-		it.second.SetName(it.first);
-		Warn(noun, it.first);
-	}
-}
 
 
 
@@ -229,6 +191,27 @@ void UniverseObjects::UpdateSystems()
 // planets) are written to the player's save and need a name to prevent data loss.
 void UniverseObjects::CheckReferences()
 {
+	// Log a warning for an "undefined" class object that was never loaded from disk.
+	auto Warn = [](const string &noun, const string &name)
+	{
+		Logger::LogError("Warning: " + noun + " \"" + name + "\" is referred to, but not fully defined.");
+	};
+	// Class objects with a deferred definition should still get named when content is loaded.
+	auto NameIfDeferred = [](const set<string> &deferred, auto &it)
+	{
+		if(deferred.count(it.first))
+			it.second.SetName(it.first);
+		else
+			return false;
+
+		return true;
+	};
+	// Set the name of an "undefined" class object, so that it can be written to the player's save.
+	auto NameAndWarn = [=](const string &noun, auto &it)
+	{
+		it.second.SetName(it.first);
+		Warn(noun, it.first);
+	};
 	// Parse all GameEvents for object definitions.
 	auto deferred = map<string, set<string>>{};
 	for(auto &&it : events)
@@ -299,9 +282,9 @@ void UniverseObjects::CheckReferences()
 			NameAndWarn("planet", it);
 	// Ship model names are used by missions and depreciation.
 	for(auto &&it : ships)
-		if(it.second.ModelName().empty())
+		if(it.second.TrueModelName().empty())
 		{
-			it.second.SetModelName(it.first);
+			it.second.SetTrueModelName(it.first);
 			Warn("ship", it.first);
 		}
 	// Shipyards are never serialized.

@@ -36,7 +36,7 @@ struct Plugin {
 
 	// Whether this plugin was enabled, i.e. if it was loaded by the game.
 	bool enabled = true;
-	// The current state state of the plugin.
+	// The current state of the plugin.
 	bool currentState = true;
 };
 
@@ -46,7 +46,7 @@ struct Plugin {
 // This object is updated by toggling plugins in the Preferences UI.
 class Plugins {
 public:
-	// Load a plugin at the given path.
+	// Attempt to load a plugin at the given path.
 	static const Plugin *Load(const std::string &path);
 
 	static void LoadSettings();

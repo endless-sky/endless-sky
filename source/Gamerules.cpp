@@ -42,6 +42,18 @@ void Gamerules::Load(const DataNode &node)
 			personSpawnPeriod = max<int>(1, child.Value(1));
 		else if(key == "no person spawn weight")
 			noPersonSpawnWeight = max<int>(0, child.Value(1));
+		else if(key == "npc max mining time")
+			npcMaxMiningTime = max<int>(0, child.Value(1));
+		else if(key == "universal frugal threshold")
+			universalFrugalThreshold = min<double>(1., max<double>(0., child.Value(1)));
+		else if(key == "depreciation min")
+			depreciationMin = min<double>(1., max<double>(0., child.Value(1)));
+		else if(key == "depreciation daily")
+			depreciationDaily = min<double>(1., max<double>(0., child.Value(1)));
+		else if(key == "depreciation grace period")
+			depreciationGracePeriod = max<int>(0, child.Value(1));
+		else if(key == "depreciation max age")
+			depreciationMaxAge = max<int>(0, child.Value(1));
 		else
 			child.PrintTrace("Skipping unrecognized gamerule:");
 	}
@@ -66,4 +78,46 @@ int Gamerules::PersonSpawnPeriod() const
 int Gamerules::NoPersonSpawnWeight() const
 {
 	return noPersonSpawnWeight;
+}
+
+
+
+int Gamerules::NPCMaxMiningTime() const
+{
+	return npcMaxMiningTime;
+}
+
+
+
+double Gamerules::UniversalFrugalThreshold() const
+{
+	return universalFrugalThreshold;
+}
+
+
+
+double Gamerules::DepreciationMin() const
+{
+	return depreciationMin;
+}
+
+
+
+double Gamerules::DepreciationDaily() const
+{
+	return depreciationDaily;
+}
+
+
+
+int Gamerules::DepreciationGracePeriod() const
+{
+	return depreciationGracePeriod;
+}
+
+
+
+int Gamerules::DepreciationMaxAge() const
+{
+	return depreciationMaxAge;
 }

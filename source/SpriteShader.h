@@ -33,6 +33,7 @@ public:
 	class Item {
 	public:
 		uint32_t texture = 0;
+		uint32_t swizzleMask = 0;
 		uint32_t swizzle = 0;
 		float frame = 0.f;
 		float frameCount = 1.f;
@@ -46,19 +47,17 @@ public:
 
 public:
 	// Initialize the shaders.
-	static void Init(bool useShaderSwizzle);
+	static void Init();
 
 	// Draw a sprite.
-	static void Draw(const Sprite *sprite, const Point &position, float zoom = 1.f, int swizzle = 0, float frame = 0.f);
-	static Item Prepare(const Sprite *sprite, const Point &position, float zoom = 1.f, int swizzle = 0, float frame = 0.f);
+	static void Draw(const Sprite *sprite, const Point &position, float zoom = 1.f, int swizzle = 0,
+		float frame = 0.f);
+	static Item Prepare(const Sprite *sprite, const Point &position, float zoom = 1.f, int swizzle = 0,
+		float frame = 0.f);
 
 	static void Bind();
 	static void Add(const Item &item, bool withBlur = false);
 	static void Unbind();
-
-
-private:
-	static bool useShaderSwizzle;
 };
 
 

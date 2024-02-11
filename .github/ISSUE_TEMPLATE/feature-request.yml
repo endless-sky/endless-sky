@@ -13,7 +13,6 @@ body:
         - [Steam Forum](https://steamcommunity.com/app/404410/discussions/)
         - [Discord Community](https://discord.gg/ZeuASSx)
         - [Reddit](https://reddit.com/r/endlesssky/)
-        - [Google Groups](https://groups.google.com/g/endless-sky)
   - type: textarea
     attributes:
       label: Problem Description
@@ -25,7 +24,7 @@ body:
     attributes:
       label: Related Issue Links
       description: |
-        Provide links to other topics that have sought to address the same issue, or discussed this same idea. Include links to Steam, GitHub, Google Groups, Reddit, or Discord.
+        Provide links to other topics that have sought to address the same issue, or discussed this same idea. Include links to Steam, GitHub, Reddit, or Discord.
         (You can also address these related issues, to help differentiate your idea from those that have been dismissed in the past.)
     validations:
       required: true

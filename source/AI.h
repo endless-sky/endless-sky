@@ -51,13 +51,14 @@ public:
 	// Any object that can be a ship's target is in a list of this type:
 template <class Type>
 	using List = std::list<std::shared_ptr<Type>>;
-	// Constructor, giving the AI access to various object lists.
-	AI(const List<Ship> &ships, const List<Minable> &minables, const List<Flotsam> &flotsam);
+	// Constructor, giving the AI access to the player and various object lists.
+	AI(const PlayerInfo &player, const List<Ship> &ships,
+			const List<Minable> &minables, const List<Flotsam> &flotsam);
 
 	// Fleet commands from the player.
-	void IssueShipTarget(const PlayerInfo &player, const std::shared_ptr<Ship> &target);
-	void IssueAsteroidTarget(const PlayerInfo &player, const std::shared_ptr<Minable> &targetAsteroid);
-	void IssueMoveTarget(const PlayerInfo &player, const Point &target, const System *moveToSystem);
+	void IssueShipTarget(const std::shared_ptr<Ship> &target);
+	void IssueAsteroidTarget(const std::shared_ptr<Minable> &targetAsteroid);
+	void IssueMoveTarget(const Point &target, const System *moveToSystem);
 	// Commands issued via the keyboard (mostly, to the flagship).
 	void UpdateKeys(PlayerInfo &player, Command &clickCommands);
 
@@ -69,7 +70,7 @@ template <class Type>
 	// but not when they jump from one system to another.
 	void ClearOrders();
 	// Issue AI commands to all ships for one game step.
-	void Step(const PlayerInfo &player, Command &activeCommands);
+	void Step(Command &activeCommands);
 
 	// Set the mouse position for turning the player's flagship.
 	void SetMousePosition(Point position);
@@ -78,13 +79,16 @@ template <class Type>
 	int64_t AllyStrength(const Government *government);
 	int64_t EnemyStrength(const Government *government);
 
+	// Find nearest landing location.
+	static const StellarObject *FindLandingLocation(const Ship &ship, const bool refuel = true);
+
 
 private:
 	// Check if a ship can pursue its target (i.e. beyond the "fence").
 	bool CanPursue(const Ship &ship, const Ship &target) const;
 	// Disabled or stranded ships coordinate with other ships to get assistance.
 	void AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship);
-	static bool CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel);
+	bool CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel) const;
 	bool HasHelper(const Ship &ship, const bool needsFuel);
 	// Pick a new target for the given ship.
 	std::shared_ptr<Ship> FindTarget(const Ship &ship) const;
@@ -97,6 +101,10 @@ private:
 	void MoveEscort(Ship &ship, Command &command) const;
 	static void Refuel(Ship &ship, Command &command);
 	static bool CanRefuel(const Ship &ship, const StellarObject *target);
+	// Set the ship's target system or planet in order to reach the
+	// next desired system. Will target a landable planet to refuel.
+	// If the ship is an escort it will only use routes known to the player.
+	void SelectRoute(Ship &ship, const System *targetSystem) const;
 	bool ShouldDock(const Ship &ship, const Ship &parent, const System *playerSystem) const;
 
 	// Methods of moving from the current position to a desired position / orientation.
@@ -104,7 +112,7 @@ private:
 	// Determine the value to use in Command::SetTurn() to turn the ship towards the desired facing.
 	// "precision" is an optional argument corresponding to a value of the dot product of the current and target facing
 	// vectors above which no turning should be attempting, to reduce constant, minute corrections.
-	static double TurnToward(const Ship &ship, const Point &vector, const double precision = 1.);
+	static double TurnToward(const Ship &ship, const Point &vector, const double precision = 0.9999);
 	static bool MoveToPlanet(Ship &ship, Command &command);
 	static bool MoveTo(Ship &ship, Command &command, const Point &targetPosition,
 		const Point &targetVelocity, double radius, double slow);
@@ -126,6 +134,7 @@ private:
 	void DoMining(Ship &ship, Command &command);
 	bool DoHarvesting(Ship &ship, Command &command) const;
 	bool DoCloak(Ship &ship, Command &command);
+	void DoPatrol(Ship &ship, Command &command) const;
 	// Prevent ships from stacking on each other when many are moving in sync.
 	void DoScatter(Ship &ship, Command &command);
 	bool DoSecretive(Ship &ship, Command &command);
@@ -141,7 +150,7 @@ private:
 	void AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic = false) const;
 	// Fire whichever of the given ship's weapons can hit a hostile target.
 	// Return a bitmask giving the weapons to fire.
-	void AutoFire(const Ship &ship, FireCommand &command, bool secondary = true) const;
+	void AutoFire(const Ship &ship, FireCommand &command, bool secondary = true, bool isFlagship = false) const;
 	void AutoFire(const Ship &ship, FireCommand &command, const Body &target) const;
 
 	// Calculate how long it will take a projectile to reach a target given the
@@ -149,7 +158,7 @@ private:
 	// projectile. If it cannot hit the target, this returns NaN.
 	static double RendezvousTime(const Point &p, const Point &v, double vp);
 
-	void MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommands);
+	void MovePlayer(Ship &ship, Command &activeCommands);
 
 	// True if found asteroid.
 	bool TargetMinable(Ship &ship) const;
@@ -196,12 +205,14 @@ private:
 
 
 private:
-	void IssueOrders(const PlayerInfo &player, const Orders &newOrders, const std::string &description);
+	void IssueOrders(const Orders &newOrders, const std::string &description);
 	// Convert order types based on fulfillment status.
 	void UpdateOrders(const Ship &ship);
 
 
 private:
+	// TODO: Figure out a way to remove the player dependency.
+	const PlayerInfo &player;
 	// Data from the game engine.
 	const List<Ship> &ships;
 	const List<Minable> &minables;
