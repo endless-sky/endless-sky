@@ -115,7 +115,9 @@ phrase "beaten in duel"
 	word
 		`! `
 	word
-		`First, I will take `
+		`You owe me `
+		`I deserve `
+		`You should give me`
 	word
 		`a small compensation`
 		`what is rightfully mine`
@@ -124,9 +126,7 @@ phrase "beaten in duel"
 		`my reward`
 		`my prize`
 	word
-		`: <fine>. `
-	word
-		`Now, if you will only give me the symbolic bribe, I will repair your ship, the next time you hail me."`
+		` in the form of a symbolic bribe. I expect it the next time you hail me, and I will repair your ship."`
 
 phrase "unfettered challenger defeated"
 	word
@@ -186,7 +186,6 @@ mission "Unfettered Challenge [0]"
 		"unfettered: total challengers" += 9
 	on disabled
 		dialog phrase "beaten in duel"
-		fine 20000
 		fail
 	npc save disable
 		government "Hai (Unfettered Challenger)"
@@ -208,7 +207,7 @@ mission "Unfettered Challenge [1A]"
 	repeat
 	name `Defeat an escorted Unfettered captain`
 	"apparent payment" 500000
-	description `An Unfettered captain wants to challenge you into a fair duel with his escort. Disable his ships for <payment>.`
+	description `An Unfettered captain wants to challenge you in a fair duel with his escort. Disable his ships for <payment>.`
 	source
 		attributes "unfettered"
 	to offer
@@ -220,7 +219,6 @@ mission "Unfettered Challenge [1A]"
 		"unfettered: total challengers" += 15
 	on disabled
 		dialog phrase "beaten in duel"
-		fine 50000
 		fail
 	npc save disable
 		government "Hai (Unfettered Challenger)"
@@ -242,7 +240,7 @@ mission "Unfettered Challenge [1B]"
 	repeat
 	name `Defeat an Unfettered captain`
 	"apparent payment" 500000
-	description `An Unfettered captain wants to challenge you into a reasonable duel. Disable his ship for <payment>.`
+	description `An Unfettered captain wants to challenge you in a fair duel. Disable his ship for <payment>.`
 	source
 		attributes "unfettered"
 	to offer
@@ -254,7 +252,6 @@ mission "Unfettered Challenge [1B]"
 		"unfettered: total challengers" += 15
 	on disabled
 		dialog phrase "beaten in duel"
-		fine 50000
 		fail
 	npc save disable
 		government "Hai (Unfettered Challenger)"
@@ -288,7 +285,6 @@ mission "Unfettered Challenge [2]"
 		"unfettered: total challengers" += 21
 	on disabled
 		dialog phrase "beaten in duel"
-		fine 100000
 		fail
 	npc save disable
 		government "Hai (Unfettered Challenger)"
@@ -334,7 +330,6 @@ mission "Unfettered Spontaneous Challenge"
 			has "<uhai> 16: Strength Of A Leader: He-Yi: active"
 	on disabled
 		dialog phrase "beaten in duel"
-		fine 20000
 		fail
 	# TODO: add lightning bugs
 	npc save disable
