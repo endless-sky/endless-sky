@@ -244,11 +244,11 @@ mission "Coalition Departing Trouble - A"
 		government "Coalition"
 		not attributes "coalition station"
 	on enter
+		fail
 		conversation
 			`Your ship narrowly avoids a few small Coalition vessels as you exit <origin>'s atmosphere. Not a second later, while you're still stunned by the near-crash, once again the <ship> is almost hit by incoming ships, this time Heliarch warships, in what looks like an intense chase after the ships from before.`
 			`	After they've all passed, you check your comms and radar, finding some other civilian ships nearby that seem to have experienced a similar shock of their own. Some of the ships linger over <origin> for a while, as if unsure of what to do. Others bolt away with engines at full power, leaving the system in a blink, and some eventually decide to land again, either too curious about the situation, or perhaps wanting to avoid any trouble.`
 			`	Some more minutes later, you see a select few of the Heliarch ships that passed close to you departing the planet. They pay you no mind, and much to your relief steer a safe distance from your ship this time.`
-				fail
 
 
 
@@ -261,10 +261,10 @@ mission "Coalition Departing Trouble - B"
 	source
 		government "Coalition"
 	on enter
+		fail
 		conversation
 			`Once you're a good distance from <origin>, your sensors alert you to danger in the system: several explosions and a torrent of projectiles are flying nearby. You swiftly ready yourself and prepare for the threat, only to find Coalition civilian ships blowing up near the middle of the system. Some Heliarch warships are in their midst, moving from one to the other, unbothered by the ship debris as vessels explode around them.`
 			`	They appear to be boarding the few ships that weren't damaged enough to have their hulls ruptured. After a few short minutes, they seem to have seized control of the vessels, and are having them follow the warships out of the system.`
-				fail
 
 
 
@@ -279,12 +279,12 @@ mission "Coalition Departing Trouble - C"
 	source
 		government "Coalition"
 	on enter
+		fail
 		conversation
 			`You depart to find something like a screen of Heliarch warships around <origin>, circling it and approaching all departing civilian ships. It's no different with your <ship>, and soon enough you're hailed by a Heliarch Punisher approaching your position.`
 			`	"Salutations, Captain <last>. Performing a routine inspection, we are. Board you momentarily we shall, to verify the safety of your vessel, then leave you to your business we shall."`
 			`	They sign off before you can respond, and the Punisher readies to board the <ship>, as more warships gather around the scene. Dozens of armed Heliarch agents march into your ship silently, diligently going about checking the bunks, cockpit, engine room...`
 			`	Within a few minutes, they appear satisfied with turning your ship upside down, and all march back to the Punisher. They thank you for "cooperating", and the ships clear the way for you to move out.`
-				fail
 
 
 
