@@ -323,7 +323,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 
 			// To speed things up, have multiple rounds of combat each time you
 			// click the button, if you started with a lot of crew.
-			int rounds = max(1, yourStartCrew / 5);
+			int rounds = max(1, yourStartCrew / 10);
 			for(int round = 0; round < rounds; ++round)
 			{
 				int yourCrew = you->Crew();
@@ -346,8 +346,16 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 
 				if(Random::Real() * yourTotal >= enemyDefensePower)
 					victim->AddCrew(-1);
+				else
+					you->AddCrew(-1);
+
+				if (!yourCrew || !enemyCrew)
+					break;
+
 				if(Random::Real() * enemyTotal >= defensePower)
 					you->AddCrew(-1);
+				else
+					victim->AddCrew(-1);
 			}
 
 			// Report how many casualties each side suffered.
