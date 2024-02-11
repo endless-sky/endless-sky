@@ -218,7 +218,8 @@ namespace {
 	}
 
 	// Check if the ship is escorted by the escort.
-	bool IsEscortedBy(shared_ptr<const Ship> ship, shared_ptr<Ship> escort) {
+	bool IsEscortedBy(shared_ptr<const Ship> ship, shared_ptr<Ship> escort)
+	{
 		if(!escort)
 			return false;
 
@@ -1290,7 +1291,7 @@ vector<string> Ship::FlightCheck() const
 	else if(!turn)
 		checks.emplace_back("no steering!");
 	else if(canBeCarried && GetSecondsToEmpty() < minimumOperatingTime && GetIdleEnergyPerFrame() <= 0)
-			checks.emplace_back("low battery!");
+		checks.emplace_back("low battery!");
 
 	// If no errors were found, check all warning conditions:
 	if(checks.empty())
@@ -2259,23 +2260,23 @@ bool Ship::IsEnergyLow() const
 // battery recharge based on current power state.
 void Ship::CalculateBatteryChargeDischargeTime()
 {
-		double frames = 60.;
-		double idleEnergy = frames * GetIdleEnergyPerFrame();
-		double maxEnergy = Attributes().Get("energy capacity");
-		double totalConsumption = frames * GetEnergyConsumptionPerFrame();
-		double currentEnergy = (CanBeCarried() && GetSystem() && !IsLanding()) ? GetCurrentEnergy() : maxEnergy * .75;
-		// Estimate number of seconds until batteries run out.
-		if(totalConsumption < 0.)
-			secondsToEmpty = currentEnergy / (-totalConsumption);
-		else
-			secondsToEmpty = numeric_limits<double>::infinity();
-		// Estimate number of seconds before batteries are fully charged.
-		if(maxEnergy == GetCurrentEnergy())
-			secondsToFullCharge = 0.;
-		else if(idleEnergy <= 0.)
-			secondsToFullCharge = numeric_limits<double>::infinity();
-		else
-			secondsToFullCharge = (maxEnergy - currentEnergy) / idleEnergy;
+	double frames = 60.;
+	double idleEnergy = frames * GetIdleEnergyPerFrame();
+	double maxEnergy = Attributes().Get("energy capacity");
+	double totalConsumption = frames * GetEnergyConsumptionPerFrame();
+	double currentEnergy = (CanBeCarried() && GetSystem() && !IsLanding()) ? GetCurrentEnergy() : maxEnergy * .75;
+	// Estimate number of seconds until batteries run out.
+	if(totalConsumption < 0.)
+		secondsToEmpty = currentEnergy / (-totalConsumption);
+	else
+		secondsToEmpty = numeric_limits<double>::infinity();
+	// Estimate number of seconds before batteries are fully charged.
+	if(maxEnergy == GetCurrentEnergy())
+		secondsToFullCharge = 0.;
+	else if(idleEnergy <= 0.)
+		secondsToFullCharge = numeric_limits<double>::infinity();
+	else
+		secondsToFullCharge = (maxEnergy - currentEnergy) / idleEnergy;
 }
 
 
@@ -2741,7 +2742,7 @@ bool Ship::CanRefuel(const Ship &other) const
 	else if(other.CanBeCarried() && other.GetParent() == shared_from_this())
 		return fuel - navigation.JumpFuel(targetSystem) > other.Attributes().Get("fuel capacity") - other.fuel;
 	return (!IsYours() || other.JumpFuelMissing() || other.GetParent() == this->shared_from_this())
-			&& (fuel - navigation.JumpFuel(targetSystem) >= other.JumpFuelMissing());
+		&& (fuel - navigation.JumpFuel(targetSystem) >= other.JumpFuelMissing());
 }
 
 
@@ -5254,7 +5255,8 @@ double Ship::GetPotentialIonEnergyLoss() const
 // Get the total energy consumption per frame combined from idle, moving, firing, shield regen, and hull regen.
 double Ship::GetEnergyConsumptionPerFrame() const
 {
-	return GetIdleEnergyPerFrame() - GetMovingTotalEnergyPerFrame() - GetFiringEnergyPerFrame() - GetRegenEnergyPerFrame();
+	return GetIdleEnergyPerFrame() - GetMovingTotalEnergyPerFrame()
+			- GetFiringEnergyPerFrame() - GetRegenEnergyPerFrame();
 }
 
 

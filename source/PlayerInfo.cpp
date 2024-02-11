@@ -1144,7 +1144,6 @@ map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
 				else
 					flightChecks.emplace(carriable, vector<string>{warning});
 			}
-
 		}
 	}
 	return flightChecks;

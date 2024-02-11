@@ -563,7 +563,8 @@ bool MainPanel::ShowHelp(bool force)
 		else if(DoHelp("fighters transfer cargo"))
 			return true;
 	}
-	if(Preferences::Has("Fighter fleet logistics")) {
+	if(Preferences::Has("Fighter fleet logistics"))
+	{
 		if(force)
 			forced.push_back("fighter fleet logistics");
 		else if(DoHelp("fighter fleet logistics"))
