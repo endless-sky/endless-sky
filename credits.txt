@@ -224,6 +224,7 @@ contributed to Endless Sky:
   fakepass
   fcfort
   Ferociousfeind
+  fingolfin
   finite-galaxy
   FixItYondu
   flaviojs
