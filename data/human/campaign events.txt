@@ -994,6 +994,12 @@ event "Tarazed neutrality"
 		government "Neutral"
 	system "Girtab"
 		government "Neutral"
+	system "Umbral"
+		government "Neutral"
+	system "Sadr"
+		government "Neutral"
+	system "Lurata"
+		government "Neutral"
 	planet "Wayfarer"
 		outfitter "Syndicate Assistance"
 
@@ -1473,6 +1479,8 @@ event "fw southern expansion"
 		fleet "Small Southern Pirates" 3000
 		fleet "Large Southern Pirates" 7000
 		fleet "Navy Surveillance" 3000
+	system "Eltanin"
+		government "Free Worlds"
 	system "Vega"
 		remove fleet "Republic Logistics"
 		add fleet "Republic Logistics" 2500
@@ -1542,6 +1550,12 @@ event "fw northern expansion"
 	system "Seginus"
 		government "Free Worlds"
 	system "Wei"
+		government "Free Worlds"
+	system "Alpha Arae"
+		government "Free Worlds"
+	system "Alnasl"
+		government "Free Worlds"
+	system "Eber"
 		government "Free Worlds"
 
 
@@ -1703,6 +1717,12 @@ event "fw expanded and cut"
 		government "Free Worlds"
 	system "Kaus Australis"
 		government "Free Worlds"
+	system "Orvala"
+		government "Free Worlds"
+	system "Tais"
+		government "Free Worlds"
+	system "Naper"
+		government "Free Worlds"
 	system "Delta Sagittarii"
 		government "Republic"
 		fleet "Small Southern Merchants" 2000
@@ -1826,6 +1846,12 @@ event "fw tarazed joins"
 		government "Free Worlds"
 	system "Albireo"
 		government "Free Worlds"
+	system "Umbral"
+		government "Free Worlds"
+	system "Sadr"
+		government "Free Worlds"
+	system "Lurata"
+		government "Free Worlds"
 
 
 
@@ -1835,6 +1861,12 @@ event "fw tarazed republic"
 	system "Dabih"
 		government "Republic"
 	system "Albireo"
+		government "Republic"
+	system "Umbral"
+		government "Republic"
+	system "Sadr"
+		government "Republic"
+	system "Lurata"
 		government "Republic"
 
 
@@ -3018,6 +3050,12 @@ event "fwc pug defeated"
 		tribute 1200
 			threshold 3500
 			fleet "Large Syndicate" 9
+
+
+
+event "fwc kaus borealis ceded back"
+	system "Kaus Borealis"
+		government "Republic"
 
 
 
