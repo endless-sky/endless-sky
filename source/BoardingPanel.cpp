@@ -344,10 +344,10 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 				if(!yourTotal || !enemyTotal)
 					break;
 
-				if(Random::Real() * yourTotal >= attackPower)
-					you->AddCrew(-1);
-				if(Random::Real() * enemyTotal >= enemyAttackPower)
+				if(Random::Real() * yourTotal >= enemyDefensePower)
 					victim->AddCrew(-1);
+				if(Random::Real() * enemyTotal >= defensePower)
+					you->AddCrew(-1);
 			}
 
 			// Report how many casualties each side suffered.
