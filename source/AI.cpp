@@ -1235,22 +1235,26 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 // Determine if the selected ship is physically able to render assistance.
 bool AI::CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel) const
 {
-	// A ship being assisted cannot assist.
-	if(helperList.find(&helper) != helperList.end())
-		return false;
-
-	bool shipIsDisabled = ship.IsDisabled();
-	// Carriers should help their own fighters.
-	if(ship.GetParent().get() == &helper)
-		return true;
-
 	// Some ships cannot repair others and disabled / absent ships can't offer assistance.
 	if(helper.Attributes().Get("cannot repair others") || helper.GetSystem() != ship.GetSystem()
 			|| (helper.Cloaking() == 1. && helper.GetGovernment() != ship.GetGovernment())
 			|| helper.IsDisabled() || helper.IsOverheated() || helper.IsHyperspacing())
 		return false;
 
+	// Carriers should help their own fighters.
+	if(ship.GetParent().get() == &helper)
+		return true;
+
+	// A ship being assisted cannot assist.
+	bool isBeingAssisted = helperList.find(&helper) != helperList.end();
+	// However, player-owned fighters should always have the option to find a
+	// faster helper.
+	isBeingAssisted &= !ship.IsYours() || !ship.CanBeCarried();
+	if(isBeingAssisted)
+		return false;
+
 	// An enemy cannot provide assistance, and only ships of the same government will repair disabled ships.
+	bool shipIsDisabled = ship.IsDisabled();
 	if(helper.GetGovernment()->IsEnemy(ship.GetGovernment())
 			|| (shipIsDisabled && helper.GetGovernment() != ship.GetGovernment()))
 		return false;
@@ -1283,7 +1287,7 @@ bool AI::HasHelper(const Ship &ship, const bool needsFuel)
 	if(helperList.find(&ship) != helperList.end())
 	{
 		shared_ptr<Ship> helper = helperList[&ship].lock();
-		if(helper && helper->GetShipToAssist().get() == &ship && CanHelp(ship, *helper, needsFuel))
+		if(helper && !helper->IsDisabled() && helper->GetShipToAssist().get() == &ship && CanHelp(ship, *helper, needsFuel))
 			return true;
 		else
 			helperList.erase(&ship);
