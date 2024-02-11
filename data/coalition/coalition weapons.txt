@@ -429,6 +429,7 @@ outfit "MCS Extractor"
 		"shield damage" .2
 		"hull damage" 1.4
 		"minable damage" 8.2
+		"prospecting" 9
 	description `Not legally a weapon under Heliarch definitions, the "Mineral Collection and Sorting" extraction unit consists of a set of sharp, durable blades designed to quickly break down minable asteroids. It also comes with an integrated scanning system that looks for asteroids rich in minerals to facilitate the mining efforts.`
 	description `	Especially popular with novice pilots looking to pay off their ships, the extractor has been a reliable tool of mining businesses in the Coalition for millennia.`
 

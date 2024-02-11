@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef CONDITION_SET_H_
 #define CONDITION_SET_H_
 
+#include <cstdint>
 #include <map>
 #include <set>
 #include <string>
@@ -36,7 +37,7 @@ public:
 	ConditionSet() = default;
 
 	// Construct and Load() at the same time.
-	ConditionSet(const DataNode &node);
+	explicit ConditionSet(const DataNode &node);
 
 	// Load a set of conditions from the children of this node. Prints a
 	// warning if an and/or node contains assignment expressions.
@@ -107,8 +108,8 @@ private:
 		// sequence of "Operations" is created for runtime evaluation.
 		class SubExpression {
 		public:
-			SubExpression(const std::vector<std::string> &side);
-			SubExpression(const std::string &side);
+			explicit SubExpression(const std::vector<std::string> &side);
+			explicit SubExpression(const std::string &side);
 
 			// Interleave tokens and operators to reproduce the initial string.
 			const std::string ToString() const;

@@ -18,12 +18,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ConditionSet.h"
 #include "Date.h"
+#include "DistanceCalculationSettings.h"
 #include "EsUuid.h"
 #include "LocationFilter.h"
 #include "MissionAction.h"
 #include "NPC.h"
 #include "TextReplacements.h"
-#include "WormholeStrategy.h"
 
 #include <list>
 #include <map>
@@ -58,7 +58,7 @@ public:
 	~Mission() noexcept = default;
 
 	// Construct and Load() at the same time.
-	Mission(const DataNode &node);
+	explicit Mission(const DataNode &node);
 
 	// Load a mission, either from the game data or from a saved game.
 	void Load(const DataNode &node);
@@ -154,7 +154,7 @@ public:
 	// information or show new UI panels. PlayerInfo::MissionCallback() will be
 	// used as the callback for an `on offer` conversation, to handle its response.
 	// If it is not possible for this change to happen, this function returns false.
-	enum Trigger {COMPLETE, OFFER, ACCEPT, DECLINE, FAIL, ABORT, DEFER, VISIT, STOPOVER, WAYPOINT, DAILY};
+	enum Trigger {COMPLETE, OFFER, ACCEPT, DECLINE, FAIL, ABORT, DEFER, VISIT, STOPOVER, WAYPOINT, DAILY, DISABLED};
 	bool Do(Trigger trigger, PlayerInfo &player, UI *ui = nullptr, const std::shared_ptr<Ship> &boardingShip = nullptr);
 
 	// Get a list of NPCs associated with this mission. Every time the player
@@ -167,6 +167,7 @@ public:
 	// If any event occurs between two ships, check to see if this mission cares
 	// about it. This may affect the mission status or display a message.
 	void Do(const ShipEvent &event, PlayerInfo &player, UI *ui);
+	bool RequiresGiftedShip(const std::string &shipId) const;
 
 	// Get the internal name used for this mission. This name is unique and is
 	// never modified by string substitution, so it can be used in condition
@@ -180,13 +181,6 @@ public:
 	// "Instantiate" a mission by replacing randomly selected values and places
 	// with a single choice, and then replacing any wildcard text as well.
 	Mission Instantiate(const PlayerInfo &player, const std::shared_ptr<Ship> &boardingShip = nullptr) const;
-
-
-private:
-	struct DistanceCalculationSettings {
-		WormholeStrategy wormholeStrategy = WormholeStrategy::NONE;
-		bool assumesJumpDrive = false;
-	};
 
 
 private:
@@ -217,6 +211,7 @@ private:
 	int deadlineMultiplier = 0;
 	DistanceCalculationSettings distanceCalcSettings;
 	std::string clearance;
+	bool ignoreClearance = false;
 	LocationFilter clearanceFilter;
 	bool hasFullClearance = true;
 

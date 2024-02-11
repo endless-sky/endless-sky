@@ -1,0 +1,75 @@
+# Copyright (c) 2015 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+mission "Ruin: Landing"
+	landing
+	source Ruin
+	
+	on offer
+		conversation
+			`You scan this planet's surface and pick up only a single, faint energy source. Cautiously, you approach it, and find an abandoned fueling depot: a ring of landing pads around a cluster of tanks of all different shapes and sizes. Some of the tanks must be cryogenic, because they are covered in ice. A few slow-moving insectoid robots are busy clearing off the ice and cleaning the tanks, but they do not appear to be armed and you see no sign of any other creatures or of any defense systems.`
+			`	You land your ship. Your sensors say the air is safe to breathe, but you wear a respirator just in case as you step off your ship and explore the depot. The spider robots pay no attention to you. From the fact that some of the tanks are covered in frost and others are not, you would guess that each one contains a different fuel, and each tank has dozens of different connectors branching off from it. With surprise, you discover that one of those connectors is the style used in human space, and you are able to use it to refuel your ship.`
+			`	Other than the robots and the fog swirling in the valley below you, there is no sign of life or motion here, and the air is uncomfortably moist and cold despite the hot steam rising up from a few nearby vents in the ground.`
+				decline
+
+mission "Pug Cease Hostilities"
+	landing
+	invisible
+	to offer
+		has "main plot completed"
+	on offer
+		"reputation: Pug" >?= 1
+		fail
+
+mission "Pug in Wanderer Space"
+	landing
+	to offer
+		has "main plot completed"
+		not "Wanderers Invaded 3C: offered"
+	source "Vara Pug"
+	on offer
+		conversation
+			`This world is populated by the Pug, the same enigmatic species that recently invaded human space - and left without giving you any clear answers about why they did so. Here, they appear peaceful enough, but they are ignoring you completely. Do you want to try to talk to one of them?`
+			choice
+				`	(Yes.)`
+				`	(No, don't risk it.)`
+					goto ship
+			`	You try to talk to several of the Pug who are walking by, but they do not respond or even look at you. If you stand to block their path, they step around you, and you determine by intentionally bumping into one of them that they are real and not just a holographic projection. From the brief eye contact that a few of them make before looking away from you, you get the feeling that they are intentionally ignoring you.`
+			`	The Pug are not terribly strong. You could probably grab one of them and demand that it answer your questions, without much risk of it hurting you.`
+			choice
+				`	(Grab one of them.)`
+				`	(Give up and leave.)`
+					goto ship
+			`	You grab one of the Pug by the arm. "You need to give me some answers," you say. It begins to babble in a language you do not know, and a crowd of Pug gather around you. Eventually a few more of them arrive holding some sort of staff that they point at you menacingly, while shouting commands at you, again in their own language. It is possible that none of the Pug here actually speak the human language, in which case trying to communicate with them will be fruitless.`
+			choice
+				`	(Let the Pug go, and walk away.)`
+					goto ship
+				`	(Threaten to shoot them.)`
+			`	The moment you reach for your gun, one of the armed Pug fires a burst of light from its staff, and a warm, pleasant feeling washes over you - the most wonderful feeling you have ever experienced. In a daze, you begin to wander back to your ship, stopping occasionally to marvel at the things around you that you had not noticed before: the glittering of sunlight on the water, the sparkling drops of ocean spray hanging from the tips of sea marsh grass, the sky that has the bluest blueness of all the blues you have ever seen. It is all so beautiful that you start to cry. Once you reach your ship, you sit in the cockpit fascinated by the blinking lights on the control panel and unable to remember what any of them are for.`
+			`	A few hours later, the wonderful feeling is replaced by a wave of nausea and a pounding headache.`
+				decline
+			
+			label ship
+			`	You decide to play it safe and return to your ship. The Pug remain as enigmatic as ever.`
+				decline
+
+mission "Pug Angry at Being Farmed"
+	landing
+	invisible
+	to offer
+		"reputation: Pug (Wanderer)" < -100
+	npc kill
+		government "Pug (Wanderer)"
+		personality nemesis unconstrained staying
+		system "Pug Iyik"
+		ship "Pug Arfecta" "Ayee Eee Eek"
