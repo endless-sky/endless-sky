@@ -245,17 +245,20 @@ ship "Marauder Falcon"
 			"hull damage" 900
 			"hit force" 2750
 	outfits
-		"Plasma Cannon" 4
-		"Quad Blaster Turret" 4
+		"Plasma Cannon" 2
+		"Proton Gun" 2
+		"Modified Blaster Turret" 2
+		"Proton Turret" 2
 		
 		"Fusion Reactor"
+		"Dwarf Core"
 		"LP288a Battery Pack"
-		"D23-QP Shield Generator"
 		"D94-YV Shield Generator"
 		"Large Radar Jammer"
 		"Liquid Helium Cooler"
 		"Outfits Expansion" 3
 		"Laser Rifle" 80
+		"Security Station"
 		
 		"A520 Atomic Thruster"
 		"A525 Atomic Steering"
@@ -265,12 +268,12 @@ ship "Marauder Falcon"
 	engine 16.5 143
 	gun -16 -86.5 "Plasma Cannon"
 	gun 16 -86.5 "Plasma Cannon"
-	gun -19 -76.5 "Plasma Cannon"
-	gun 19 -76.5 "Plasma Cannon"
+	gun -19 -76.5 "Proton Gun"
+	gun 19 -76.5 "Proton Gun"
 	turret -16 -29 "Modified Blaster Turret"
 	turret 16 -29 "Modified Blaster Turret"
-	turret -50 39.5 "Modified Blaster Turret"
-	turret 50 39.5 "Modified Blaster Turret"
+	turret -50 39.5 "Proton Turret"
+	turret 50 39.5 "Proton Turret"
 	explode "tiny explosion" 40
 	explode "small explosion" 55
 	explode "medium explosion" 60
@@ -285,16 +288,18 @@ ship "Marauder Falcon" "Marauder Falcon (Engines)"
 	add attributes
 		"engine capacity" 25
 	outfits
-		"Proton Gun" 3
-		"Heavy Laser Turret" 4
+		"Proton Gun" 4
+		"Modified Blaster Turret" 2
+		"Quad Blaster Turret" 2
 		
 		"Fusion Reactor"
 		"LP144a Battery Pack"
 		"D94-YV Shield Generator"
-		"Liquid Nitrogen Cooler"
+		"Liquid Helium Cooler"
+		"Large Radar Jammer"
 		"Outfits Expansion" 4
 		"Laser Rifle" 80
-		"Supercapacitor" 3
+		"Security Station" 3
 		
 		"A860 Atomic Thruster"
 		"A525 Atomic Steering"
@@ -307,10 +312,10 @@ ship "Marauder Falcon" "Marauder Falcon (Engines)"
 	gun 16 -86.5
 	gun -19 -76.5
 	gun 19 -76.5
-	turret -16 -29
-	turret 16 -29
-	turret -50 39.5
-	turret 50 39.5
+	turret -16 -29 "Modified Blaster Turret"
+	turret 16 -29 "Modified Blaster Turret"
+	turret -50 39.5 "Quad Blaster Turret"
+	turret 50 39.5 "Quad Blaster Turret"
 	description "Whoever modified this Falcon clearly valued speed above all else. Major sections of the hull have been reconfigured to accommodate the largest possible engines. If hot-rodding across the galaxy in a 1000-ton warship that handles like a Flivver is your dream, look no further."
 
 
