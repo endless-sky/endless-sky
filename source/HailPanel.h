@@ -60,7 +60,6 @@ private:
 	std::function<void(const Government *)> bribeCallback = nullptr;
 	const StellarObject *object = nullptr;
 	const Planet *planet = nullptr;
-	const Sprite *sprite = nullptr;
 	Angle facing;
 	int step = 0;
 

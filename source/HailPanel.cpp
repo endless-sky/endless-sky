@@ -45,8 +45,7 @@ using namespace std;
 
 
 HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<void(const Government *)> bribeCallback)
-	: player(player), ship(ship), bribeCallback(std::move(bribeCallback)),
-		sprite(ship->GetSprite()), facing(ship->Facing())
+	: player(player), ship(ship), bribeCallback(std::move(bribeCallback)), facing(ship->Facing())
 {
 	SetInterruptible(false);
 
@@ -125,8 +124,7 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<
 
 
 HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
-	: player(player), object(object), planet(object->GetPlanet()),
-		sprite(object->GetSprite()), facing(object->Facing())
+	: player(player), object(object), planet(object->GetPlanet()), facing(object->Facing())
 {
 	SetInterruptible(false);
 
@@ -209,6 +207,8 @@ void HailPanel::Draw()
 
 	const Interface *hailUi = GameData::Interfaces().Get("hail panel");
 	hailUi->Draw(info, this);
+
+	const Sprite *sprite = ship ? ship->GetSprite() : object->GetSprite();
 
 	// Draw the sprite, rotated, scaled, and swizzled as necessary.
 	float zoom = min(2.f, 400.f / max(sprite->Width(), sprite->Height()));
