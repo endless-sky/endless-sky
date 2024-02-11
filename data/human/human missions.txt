@@ -3754,7 +3754,7 @@ mission "Earth Retirement 2"
 					goto injuries
 				`"How could you leave them to rot...?"`
 					goto rot
-			`	"It was not nothing," Donna blurts out. "You were there for us when nobody else cared. You didn't even accept the agreed upon payment! Our former employers, our friends, even our children..." she trails off.`
+			`	"It was not nothing," Donna blurts out. "You were there for us when nobody else cared. You didn't even accept the agreed upon payment! Our former employers, our friends, even our children..." She trails off.`
 			label rot
 			`	"I've not been the best son," Abel interjects, staring down at his feet. "My parents are very dear to me, of course. But I was so busy with work. I thought they could take care of themselves. So, I left them to their own devices. I didn't even think to wonder about their financial position, and my father here was too proud to say it out loud." He turns to look his father in the eyes. "Still, I should have known better. I'm sorry, dad."`
 			label injuries
