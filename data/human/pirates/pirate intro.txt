@@ -489,7 +489,7 @@ conversation "Den Handoff"
 			goto interrogation
 		`	(Offer undying curses to the bastards what did this to you.)`
 		`	(Inquire as to what in the blazes is going on.)`
-	`	You open your mouth, emitting several unintelligble croaks and an undignified cough. As one, the assembled soldiers turn to face you.`
+	`	You open your mouth, emitting several unintelligible croaks and an undignified cough. As one, the assembled soldiers turn to face you.`
 	label interrogation
 	`	"Gabriel, give our friend some water. We've things to discuss," the officer instructs. One of the soldiers hurries over, unhooks a bottle from their belt, opens the stopper, and gently holds it to your lips.`
 	choice
