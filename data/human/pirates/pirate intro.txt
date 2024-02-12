@@ -507,7 +507,7 @@ conversation "Den Handoff"
 	label cool
 	`	You keep your hands where they are and wait for the officer to speak. "There's a listening device on your left hip. Pocket, perhaps. I want you to slowly withdraw it and place it on the table in front of us. Gabriel, get the coffee out of here." A soldier hastily scoops up the beverage and disappears into the gloom of the hangar.`
 	choice
-		`	(Check your pocket.)`
+		`	(Check my pocket.)`
 	`	As expected, you find something unexpected: a small device about the size of a fingernail. You gingerly remove it from your belongings and place it on the table. The officer across from you wastes no time in drawing his pistol and sharply smashing its butt against the device, crushing it to pieces.`
 	`	"Care to explain what that was doing on you?"`
 	label explanation
