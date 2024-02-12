@@ -2147,11 +2147,12 @@ void Engine::DoCollisions(Projectile &projectile)
 	// shields the ship (unless the projectile has a blast radius).
 	vector<Collision> collisions;
 	const Government *gov = projectile.GetGovernment();
+	bool canCollide = projectile.GetWeapon().CanCollide();
 
 	// If this "projectile" is a ship explosion, it always explodes.
 	if(!gov)
 		collisions.emplace_back(nullptr, CollisionType::NONE, 0.);
-	else if(projectile.GetWeapon().IsPhasing() && projectile.Target())
+	else if(canCollide && projectile.GetWeapon().IsPhasing() && projectile.Target())
 	{
 		// "Phasing" projectiles that have a target will never hit any other ship.
 		shared_ptr<Ship> target = projectile.TargetPtr();
@@ -2177,7 +2178,7 @@ void Engine::DoCollisions(Projectile &projectile)
 				}
 
 		// If nothing triggered the projectile, check for collisions with ships and asteroids.
-		if(collisions.empty())
+		if(canCollide && collisions.empty())
 		{
 			const vector<Collision> &newShipHits = shipCollisions.Line(projectile);
 			collisions.insert(collisions.end(), newShipHits.begin(), newShipHits.end());
