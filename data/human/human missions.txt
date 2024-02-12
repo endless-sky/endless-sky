@@ -6911,6 +6911,8 @@ mission "Adelita 1"
 
 	on offer
 		conversation
+			branch "know about disaster"
+				has "FW Katya 4: done"
 			branch "has visited"
 				has "visited planet: Hope"
 			`Walking on the edges of <origin>'s spaceport district, you notice signage advertising an exhibition about the planet Hope and the disaster and evacuation that happened on it in 2994; you vaguely remember it as being a planet in a system southwest of New Boston. But what makes it stand out from the typical advertisements that you see on notice boards and interactive screens is some of its colorful language: "Considered Offensive by Paradisians," "Why We Can't Give Up Hope," and "Evicted by the Paradise Planets."`
@@ -6918,6 +6920,10 @@ mission "Adelita 1"
 
 			label "has visited"
 			`Walking on the edges of <origin>'s spaceport district, you notice signage advertising an exhibition about the planet Hope and the disaster and evacuation that happened on it in 2994; you remember having been there once before on an excursion. But what makes it stand out from the typical advertisements that you see on notice boards and interactive screens is some of its colorful language: "Considered Offensive by Paradisians," "Why We Can't Give Up Hope," and "Evicted by the Paradise Planets."`
+				goto directions
+
+			label "know about disaster"
+			`Walking on the edges of <origin>'s spaceport district, you notice signage advertising an exhibition about the planet Hope and the disaster and evacuation that happened on it in 2994; you remember talking about it with Katya and Ijes while you were investigating the source of the nuclear bombings. But what makes it stand out from the typical advertisements that you see on notice boards and interactive screens is some of its colorful language: "Considered Offensive by Paradisians," "Why We Can't Give Up Hope," and "Evicted by the Paradise Planets."`
 
 			label directions
 			`	At the bottom of each sign are the directions to get to the exhibition. It appears to be located in a warehouse yard nearby, where the spaceport district borders the city that surrounds it.`
@@ -6990,19 +6996,27 @@ mission "Adelita 1"
 			`	"Oh, how rude of me," she says, offering her hand. "My name is Mariel. I organize these exhibitions and act as a spokesperson for Adelita. And you are?"`
 			choice
 				`	"Captain <last>."`
+				`	"<first> <last>, Captain of the <ship>."`
 
 			`	"Captain," she says, her eyes lighting up. "Well, as you may know, this is the last day of the exhibition. The captain I hired to transport everything back to <destination> is not only rude, but is now late. I would much rather have it in the hands of someone who appreciates the work. I was going to pay him 60,000 credits, but I'll pay you <payment> to take his contract instead given the short notice. What do you say?"`
 			choice
 				`	"I would love to."`
-				`	"Sorry, but I have more pressing matters at hand."`
+					goto accept
+				`	"I've got more pressing matters at hand."`
+
+			`	"Oh. I thought that would be a pretty good deal for you, especially given the chance to meet the artists. But it's your call."`
+			choice
+				`	"Okay, I'll do it."`
+				`	"I'm sorry, I can't take the job."`
 					goto decline
 
+			label accept
 			`	"Great!" Mariel says. "Bring your ship to this hangar, and I will have our crew get everything ready to load."`
 			`	After a couple hours, the whole exhibition is packed up and ready for transport to <planet>.`
 				accept
 
 			label decline
-			`	"Oh. I thought that would be a pretty good deal for you, especially given the chance to meet the artists. But it's your call." Mariel glances at her watch. "Well, anyway, the exhibition has closed. I'm going to have to ask you to leave."`
+			`	"That's unfortunate. I'll have to try my luck with another captain, then." Mariel glances at her watch. "Well, anyway, the exhibition has closed. I'm going to have to ask you to leave."`
 				decline
 
 			label exit
@@ -7141,13 +7155,14 @@ mission "Adelita 4"
 			branch "player has a fleet"
 				"total ships" - ( "ships: Fighter" + "ships: Drone" ) > 1
 
-			`It's not hard to find a remote canyon within range of the target area. You deactivate your shields but keep the <ship> hovering in case you need to make a quick escape. You are low enough that Bunker can release the drones from the open cargo bay without a pressure suit. The drones are so small you can't make them out from the cockpit, nor can you see them on your ship's scanners. When Bunker returns to the cockpit, he sets up a display and sits at the controller. "Okay, they're on autopilot to the rendezvous site."`
-				goto "on site"
+			`It's not hard to find a remote canyon within range of the target area. Being so close to the surface of <origin> you're forced to deactivate your shields, but you keep the <ship> hovering in case you need to make a quick escape.`
+				goto release
 
 			label "player has a fleet"
-			`You carefully bring the <ship> into the atmosphere while the rest of your fleet stays in space so that the pirates won't catch wind of Adelita's operation. Luckily, it's not hard to find a remote canyon within range of the target area for you to lie low. You deactivate your shields but keep the <ship> hovering in case you need to make a quick escape while Bunker releases the drones from the open cargo bay. The drones are so small you can't make them out from the cockpit, nor can you see them on your ship's scanners. When Bunker returns to the cockpit, he sets up a display and sits at the controller. "Okay, they're on autopilot to the rendezvous site."`
+			`You carefully bring the <ship> into the atmosphere while the rest of your fleet stays in space so that the pirates won't catch wind of Adelita's operation. Luckily, it's not hard to find a remote canyon within range of the target area for you to lie low. Being so close to the surface of <origin> you're forced to deactivate your shields, but you keep the <ship> hovering in case you need to make a quick escape.`
+			label release
+			`	After settling on a secure location within the canyon, Bunker releases the drones from the open cargo bay; the drones are so small you can't make them out from the cockpit, nor can you see them on your ship's scanners. When Bunker returns to the cockpit, he sets up a display and sits at the controller. "Okay, they're on autopilot to the rendezvous site."`
 
-			label "on site"
 			`	As you watch the display, the drones arrive on site, and you can see a lone Syndicate-built freighter with a security detail posted in front of the loading ramp. "The pirates must be late," says Bunker, smirking. "Typical. I'm going to scatter the drones and set a proximity alert."`
 			`	He hums to himself for a while before he turns to you and starts talking again. "You know, there's a part of me that would much rather be liberating slaves instead of filming them, but for now it seems like this is the best way for me to help. Say we did liberate them right now; there's just going to be another slave ship tomorrow. But if we create political and social pressure, that could stop the slave ships forever."`
 			choice
@@ -7166,19 +7181,19 @@ mission "Adelita 4"
 			`	"Pigs," blurts out Bunker. He zooms in on two men talking a few meters away from everyone else. One is in a suit, the other a black hooded robe. "Must be the leaders," he whispers as if they can hear him. Just then, the hooded man looks up to the sky as if he sees something. He motions, and the Quicksilvers fire up their engines.`
 			`	"Oh, I don't like the look of this," says Bunker.`
 			choice
-				`	"Keep filming."`
+				`	"Did he see us?"`
+					goto "see us"
 				`	"Call back the drones now."`
 					goto "call drones"
 				`	"I think we'll have to leave the drones behind."`
+				`	"Keep filming."`
 					goto "no can do"
-				`	"Did he see us?"`
-					goto "see us"
 
 			`	"I don't know. I think we oughta get going," says Bunker, grimacing.`
 			choice
-				`	"That's an order!"`
 				`	"Okay. Call the drones back."`
 					goto "call drones"
+				`	"That's an order!"`
 
 			`	"You're the captain," Bunker responds in a sore tone. Meanwhile, you continue to watch the display. It takes a couple minutes before the last of the slaves are loaded, followed by the security team. The two men in the suit and hood are the last to board their ships.`
 			`	You hear the sudden hum of thrusters from outside, just as the <ship> receives a hail of particle cannon fire from a pirate Quicksilver, appearing seemingly out of nowhere as it tears through your hull. You shunt the <ship>'s repulsors to full blast to get into orbit, but another pair of Quicksilvers sends a volley of particle fire that breaks through and takes the repulsors offline. The last thing you experience is the ship slowing to a halt, pausing in the air for just a moment before the pilot seat goes out from under you, the cockpit filled with screams as the <ship> makes a one way trip towards the surface.`
