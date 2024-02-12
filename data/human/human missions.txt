@@ -1101,7 +1101,7 @@ mission "There Might Be Riots part 3A"
 				not "event: hai-human resolution announced"
 			`	"Great," he says. "Now, the only question is where we'll go afterwards until the fuss dies down."`
 			`	"Didn't you say the Hai really liked you before?" you ask. "I think now might be the perfect opportunity to go back to the Hai."`
-			`	"Aww yeah!" he exlaims, "those squirrel people were rad cool. We go thumb our noses at the military industrial complex, then you take us to stay with the peaceful squirrel people where the government won't bother us."`
+			`	"Aww yeah!" he exclaims, "those squirrel people were rad cool. We go thumb our noses at the military industrial complex, then you take us to stay with the peaceful squirrel people where the government won't bother us."`
 			`	Once more, they begin loading their stuff onto your ship, while you chart a course to <destination>.`
 				accept
 			label notpublic
@@ -6089,7 +6089,7 @@ mission "Blind Man from Martini"
 			choice
 				`	"Hello."`
 				`	"Are you alright?"`
-				`	(Nevermind.)`
+				`	(Never mind.)`
 					decline
 			`	"Yes, hello, how are you doing?" the man responds, shifting his head toward your direction. "I'm here waiting for someone to pick me up," he says in a voice that sounds like he expects it at any moment.`
 
@@ -6327,7 +6327,7 @@ mission "Care Package to South 1"
 					decline
 			`	You make your way through the crowd to the edge of her bubble. As soon as you do, she extends her hand. "I'm Torrey. Torrey Dupont."`
 			`	You take the hand and shake it. "<first> <last>."`
-			`	"I can tell you're independent captain. I would like to hire you to transport a package." Torrey indicates the box beside her with a nudge of her toe.`
+			`	"I can tell you're an independent captain. I would like to hire you to transport a package." Torrey indicates the box beside her with a nudge of her toe.`
 			choice
 				`	"What's in the box?"`
 				`	"Wouldn't it be easier and cheaper to send it via a courier service?"`
