@@ -315,7 +315,7 @@ mission "<uhai> 13: Better Translator"
 		conversation
 			`	You climb on top of the greatest mountain for hours, having been told that using a ship or any other means of transportation would make you be judged unworthy. Choot'k is indeed there, on the top, admiring the view.`
 			scene "scene/chootk firelode"
-			`	He notices your arrival and invites you to admire the view as well with a geasture of the hand. He seems glad to see you. "<first>! I often come to this place, to meditate..." he says, before turning to take a good look at you. "It's been a while, but I keep hearing rumors about you. One day you may even threaten to take my place..." You see his grip around his blade tightening. For a few seconds you can feel some tension, but then he laughs.`
+			`	He notices your arrival and invites you to admire the view as well with a gesture of the hand. He seems glad to see you. "<first>! I often come to this place, to meditate..." he says, before turning to take a good look at you. "It's been a while, but I keep hearing rumors about you. One day you may even threaten to take my place..." You see his grip around his blade tightening. For a few seconds you can feel some tension, but then he laughs.`
 			`	"No, not yet, at least. Now, I would duel you if I had the time, but I have duties to attend to, which you may help me with, actually. I want to go to <stopovers> to get the records of Korath interactions before the raids. Mera has informed me that the translator we recovered - whilst better than nothing - is not sufficient for all the tasks we have in mind."`
 			`	"I am sure you have already noticed that communication with the Korath can be... difficult, since you met them."`
 				to display
@@ -596,7 +596,7 @@ mission "<uhai> 18: Hai Language"
 			`	"Perhaps you can go to them to get a translator, although that is not the preferred way. But maybe they are ready to meet the birds now.`
 				to display
 					has "event: hai-human resolution announced"
-			`	"In the meantime, you should go and meet the aliens up North and speak with them, representing us peacefully. They may not allow you to land on most of their planets. They may have grown distrusful of newcomers - probably because of our own actions. Go and see how pathethic these birds are, and then you should go to He-Yi about that translator."`
+			`	"In the meantime, you should go and meet the aliens up North and speak with them, representing us peacefully. They may not allow you to land on most of their planets. They may have grown distrustful of newcomers - probably because of our own actions. Go and see how pathetic these birds are, and then you should go to He-Yi about that translator."`
 			branch neutral
 				"reputation: Wanderer" >= 0
 			choice
@@ -736,7 +736,7 @@ mission "<uhai> 20: Bigeminate Sigil: Cloak"
 
 
 
-mission "<uhai> 20: Bigeminate Sigil: Boarding Equipement"
+mission "<uhai> 20: Bigeminate Sigil: Boarding Equipment"
 	minor
 	name `Close Quarter Fighting`
 	description `He-Yi wants you to bring twenty non-lethal weapons stronger than the pulse rifle for him to use in training with the other Unfettered. Deliver them to <destination>.`
@@ -898,7 +898,7 @@ mission "<uhai> 20: Boarding Equipement: Desperate Search"
 		attributes "unfettered"
 	to offer
 		has "main plot completed"
-		has "<uhai> 20: Bigeminate Sigil: Boarding Equipement: active"
+		has "<uhai> 20: Bigeminate Sigil: Boarding Equipment: active"
 	on offer
 		event "looking for a gun" 30
 
@@ -911,7 +911,7 @@ mission "<uhai> 20: Boarding Equipement: Staffs Hint"
 	destination "Farpoint"
 	to offer
 		has "event: looking for a gun"
-		has "<uhai> 20: Bigeminate Sigil: Boarding Equipement: active"
+		has "<uhai> 20: Bigeminate Sigil: Boarding Equipment: active"
 		not "outfit (all): Pug Peacekeeping Staff"
 	on offer
 		conversation
@@ -919,7 +919,7 @@ mission "<uhai> 20: Boarding Equipement: Staffs Hint"
 				accept
 	to fail
 		or
-			has "<uhai> 20: Bigeminate Sigil: Boarding Equipement: done"
+			has "<uhai> 20: Bigeminate Sigil: Boarding Equipment: done"
 			not "unfettered: outcast"
 	on complete
 		conversation
@@ -944,7 +944,7 @@ mission "<uhai> 20: Boarding Equipement: More Enforcer Staffs"
 	substitutions
 		<staff> "Enforcer"
 	to offer
-		has "<uhai> 20: Bigeminate Sigil: Boarding Equipement: offered"
+		has "<uhai> 20: Bigeminate Sigil: Boarding Equipment: offered"
 		not "<uhai> 20: Boarding Equipement: Enforcer Staffs: offered"
 		not "<uhai> 20: Boarding Equipement: Pug Staffs: offered"
 		not "unfettered: outcast"
@@ -960,7 +960,7 @@ mission "<uhai> 20: Boarding Equipement: More Pug Staffs"
 	substitutions
 		<staff> "Pug Peacekeeping"
 	to offer
-		has "<uhai> 20: Bigeminate Sigil: Boarding Equipement: offered"
+		has "<uhai> 20: Bigeminate Sigil: Boarding Equipment: offered"
 		not "<uhai> 20: Boarding Equipement: Pug Staffs: offered"
 		not "<uhai> 20: Boarding Equipement: Enforcer Staffs: offered"
 		not "unfettered: outcast"
@@ -974,7 +974,7 @@ mission "<uhai> 20: Boarding Equipement: Pug Staffs"
 	invisible
 	source "Warfeed"
 	to offer
-		has "<uhai> 20: Bigeminate Sigil: Boarding Equipement: offered"
+		has "<uhai> 20: Bigeminate Sigil: Boarding Equipment: offered"
 		not "unfettered: outcast"
 	on offer
 		dialog `Do you want to sell 20 Pug Peacekeeping Staffs to the Unfettered? He-Yi says they can give you <payment> for it.`
@@ -989,7 +989,7 @@ mission "<uhai> 20: Boarding Equipement: Enforcer Staffs"
 	invisible
 	source "Warfeed"
 	to offer
-		has "<uhai> 20: Bigeminate Sigil: Boarding Equipement: offered"
+		has "<uhai> 20: Bigeminate Sigil: Boarding Equipment: offered"
 		not "unfettered: outcast"
 	on offer
 		dialog `Do you want to sell 20 Enforcer Riot Staffs to the Unfettered? He-Yi says they can give you <payment> for it.`
@@ -1004,7 +1004,7 @@ mission "<uhai> 20: Boarding Equipement: Void Rifle"
 	invisible
 	source "Warfeed"
 	to offer
-		has "<uhai> 20: Bigeminate Sigil: Boarding Equipement: offered"
+		has "<uhai> 20: Bigeminate Sigil: Boarding Equipment: offered"
 		not "unfettered: outcast"
 	on offer
 		require "Void Rifle"

@@ -296,7 +296,7 @@ mission "Unfettered: Hunger Stories 2"
 
 			label laugh
 			`	You find yourself flat on your back looking up at the young Unfettered. He's holding your sidearm and is pointing it at you with the safety off. You later decide that he must have swept your legs with the staff and grabbed your weapon, but it happened so swiftly you never saw it.`
-			`	"I was wrong," he says as he secures your weapon inside his jacket. "I though you warrior. Have respect. You just monkey after all."`
+			`	"I was wrong," he says as he secures your weapon inside his jacket. "I thought you warrior. Have respect. You just monkey after all."`
 			`	He walks off causally, never bothering to turn around.`
 				decline
 
@@ -345,7 +345,7 @@ mission "Unfettered: Hunger Stories 3"
 				payment -5000
 			`	You reach for your sidearm only to find that it isn't there. It seems like a dozen pairs of paws are on you, some tearing at your clothes and some climbing on you. You spin around to try and shake them off. You end up rolling on the ground and then, as suddenly as it began, everything stops and you are alone in the street. You check yourself quickly and you seem to be uninjured. Your clothes are in tatters, though, and your sidearm, communicator, and bag are nowhere to be seen.`
 			`	You make your way back to the spaceport. For once, it's useful to be the alien. The guards are quickly able to quickly clear you even without documentation. You hear them laughing as you head for the safety of your ship. You have no doubt that the story of the monkey robbed by children is already making the rounds.`
-			`	As you are walking, you wonder if you should report the gang the the authorities and perhaps save some other merchants or travellers from being mugged.`
+			`	As you are walking, you wonder if you should report the gang to the authorities and perhaps save some other merchants or travellers from being mugged.`
 			choice
 				`	(Report them.)`
 					goto report
@@ -356,7 +356,7 @@ mission "Unfettered: Hunger Stories 3"
 			action
 				payment 5000
 			`	The Unfettered authorities surprise you by not only listening to your story, but pulling up surveillance video of your encounter with the gang. After consulting among themselves, they thank you for bringing this to their attention and give you <payment>.`
-			`	You ask if this is compentation for your stolen property and they laugh. "No, Human. We don't reward the weak and foolish," they answer. "This is a finder's fee. Those children show much promise. We will get them in training immediately."`
+			`	You ask if this is compensation for your stolen property and they laugh. "No, Human. We don't reward the weak and foolish," they answer. "This is a finder's fee. Those children show much promise. We will get them in training immediately."`
 			`	You take the credits and return to your ship.`
 				decline
 

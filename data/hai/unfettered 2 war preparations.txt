@@ -581,7 +581,7 @@ mission "<uhai> 12: Outfitter Upgrade"
 			`	He takes a look at the details of the ship that was following you, "Indeed, they must have found this activity [suspicious, worthy of attention], or maybe they were trailing you, looking for an opportunity to try and steal your cargo. Information is [power, potential]." He is interrupted by an engineer, before quickly addressing you again, "Here, <payment> for your trouble."`
 				accept
 			label heknows
-			`	You were leaving when he says something out-loud, probably not expecting an answer, "The [fire, flame] has been extinguished, why do you [conceil, hide] it?" When you look around again, he is gone.`
+			`	You were leaving when he says something out-loud, probably not expecting an answer, "The [fire, flame] has been extinguished, why do you [conceal, hide] it?" When you look around again, he is gone.`
 				to display
 					has "flagship base attribute: unfettered remote"
 
@@ -866,7 +866,7 @@ mission "<uhai> 14: Ion Materials"
 				has "unfettered: Si-Ra crazy"
 			action
 				set "unfettered: Si-Ra crazy"
-			`	"Friends?" He says with a rising tone. "You think we are FRIENDS? You would do well to stay out of my way, monkey <first>!" He says, getting unconfortably close to you before backing off.`
+			`	"Friends?" He says with a rising tone. "You think we are FRIENDS? You would do well to stay out of my way, monkey <first>!" He says, getting uncomfortably close to you before backing off.`
 				goto bloodshed
 			label crazy
 			action
@@ -1200,7 +1200,7 @@ mission "<uhai> 15: Modified Beetle"
 			label hera
 			action
 				set "unfettered: Hera"
-			`	She almost jumps of excitement, "I was hoping you would ask that! Listening to the Alphas, I gathered Hera is the goddess of protection. That is the best way to describe this ship: it has significantly improved shielding compared to a standard Shield Beetle, and its equipement is mostly defense focused, using ionic prototypes to scramble enemy weapons and even disable their reactor, after some time. It is also my hope that this ship will be used sparingly, avoiding casualties if possible. But let us go back to the outfit upgrades I mentioned," she says whilst looking around, distracted.`
+			`	She almost jumps of excitement, "I was hoping you would ask that! Listening to the Alphas, I gathered Hera is the goddess of protection. That is the best way to describe this ship: it has significantly improved shielding compared to a standard Shield Beetle, and its equipment is mostly defense focused, using ionic prototypes to scramble enemy weapons and even disable their reactor, after some time. It is also my hope that this ship will be used sparingly, avoiding casualties if possible. But let us go back to the outfit upgrades I mentioned," she says whilst looking around, distracted.`
 				goto suggestions
 			label dakka
 			action
@@ -1740,7 +1740,7 @@ mission "<uhai> 17: Spy On Hai B"
 			label steal
 			`	You manage to enter the ship discreetly. Some people will always notice, but you try to pose as a spaceport worker there to assist with the repairs, using equipment you find lying around. You should be able to go pretty much anywhere on the ship. You don't have any idea which part of the ship is actually damaged though, so your cover could easily be blown. There is no going back now, except maybe if you choose to provoke the pirate warlord into a fight to get the item.`
 			label search
-			`	You won't be able to search the ship forevever, and it would be wise to think carefully about your next course of action.`
+			`	You won't be able to search the ship forever, and it would be wise to think carefully about your next course of action.`
 			branch caught
 				"uhai choice: mistake" > 1 + "unfettered: disabled degenerate"
 			choice
@@ -2018,7 +2018,7 @@ mission "<uhai> 19: Scout Wanderer Systems"
 			label watching
 			action
 				set "uhai choice: watching"
-			`	They look around discreetely - more so than earlier - before speaking in a lower tone, "Come, let us have a walk." You follow them, and they continue talking on the way, "Why does the To'or fight to the death? Is it pride? Is it protection of their loved ones, or a matter character? There are often multiple reasons for why things happen the way they do, and we do not always know them all."`
+			`	They look around discreetly - more so than earlier - before speaking in a lower tone, "Come, let us have a walk." You follow them, and they continue talking on the way, "Why does the To'or fight to the death? Is it pride? Is it protection of their loved ones, or a matter character? There are often multiple reasons for why things happen the way they do, and we do not always know them all."`
 			`	They then look at you directly, "You should know that there are some among us that do not appreciate the status you have been given, or what happened with the Alphas."`
 			choice
 				`	"What was the task again?"`

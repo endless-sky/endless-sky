@@ -48,7 +48,7 @@ conversation "unfettered outcast"
 	branch "no license"
 		has "license: Unfettered"
 	action
-		# replace it by a wortless outfit
+		# replace it by a worthless outfit
 		clear "license: Unfettered"
 		outfit "Unfettered License"
 	label "no license"

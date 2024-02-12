@@ -12,7 +12,7 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 # SPOILER: concept: these contain fuel that comes from ancient space behemoths that have since almost all migrated
-# it is going to be used to power the dimensional eraser, a misused Pug engine that got distrupted by the gases emanating from the leviathan
+# it is going to be used to power the dimensional eraser, a misused Pug engine that got disrupted by the gases emanating from the leviathan
 # Midas would do anything to make sure they are safe.
 outfit "Gold Bars"
 	category "Special"
@@ -301,7 +301,7 @@ ship "Sea Dragon"
 	explode "medium explosion" 35
 	explode "large explosion" 18
 	"final explode" "final explosion medium"
-	description "The Sea Scorpion was designed to serve as a mobile platform to launch Trackers from. After decades of hard work, the Unfettered are finally able to mass produce them. The ever growing fleet of Sea Scorpions enables the Unfettered to employ new tactics against the other Hai which alleviate some of their numerical, technological, and logistical disadvantages."
+	description "The Sea Scorpion was designed to serve as a mobile platform to launch Trackers from. After decades of hard work, the Unfettered are finally able to mass produce them. The ever-growing fleet of Sea Scorpions enables the Unfettered to employ new tactics against the other Hai which alleviate some of their numerical, technological, and logistical disadvantages."
 	description "	This version was built from stronger materials, allowing for a stronger hull at the cost of heat dissipation. The owners also made modifications in order to make this ship more agile and flexible, with increased fuel and engine capacity. It is a terror on the battlefield, using its speed and high damage of the Tripulse Shredders to its advantage."
 
 
@@ -334,7 +334,7 @@ phrase "ancient script"
 		"Glorium" # glory
 		"Argentius" # silver
 		"Arcana" # secrets
-		"Culpa" # gulty
+		"Culpa" # guilty
 		"Fortuna" # luck
 
 fleet "Marauders"
@@ -544,7 +544,7 @@ mission "Midas: Betrayal For The Bars"
 					goto follow
 				`	(Shoot.)`
 					goto shoot
-			`	There is no doubt that you were heard, but the only reaction from the silouette is to run faster, and by another, more direct path. You cannot catch them, and you assume they escaped your ship, as later on you cannot find any intruders when doing a full search of your ship. Thankfully, they didn't manage to steal anything, surprisingly they only moved a few gold bars.`
+			`	There is no doubt that you were heard, but the only reaction from the silhouette is to run faster, and by another, more direct path. You cannot catch them, and you assume they escaped your ship, as later on you cannot find any intruders when doing a full search of your ship. Thankfully, they didn't manage to steal anything, surprisingly they only moved a few gold bars.`
 				defer
 			label follow
 			`	You can now clearly see it is indeed a member of your crew, not just a disguised mercenary or a stowaway, and you know them. The traitor is clearly heading to the exit, by another path than the one you came in by. You know your ship like your pocket, and you're aware it will take them a while. They haven't noticed you're following them yet.`
@@ -554,7 +554,7 @@ mission "Midas: Betrayal For The Bars"
 				`	(Order the crew member to stand down.)`
 				`	(Shoot.)`
 					goto shoot
-			`	There is no doubt that you were heard, but the only reaction from the silouette is to run faster, and by another, more direct path. You cannot catch them, and you assume they escaped your ship, as later on you cannot find any intruders when doing a full search of your ship. Thankfully, they didn't manage to steal anything, surprisingly they only moved a few gold bars.`
+			`	There is no doubt that you were heard, but the only reaction from the silhouette is to run faster, and by another, more direct path. You cannot catch them, and you assume they escaped your ship, as later on you cannot find any intruders when doing a full search of your ship. Thankfully, they didn't manage to steal anything, surprisingly they only moved a few gold bars.`
 				accept
 			label shoot
 			`	You hit the crew member in the shoulder and they fall. You remove their weapon to be safe and ask for an explanation, but the only answer you get is "nemo me impune lacessit" before they lose consciousness. Looking into their eyes, you could see terror. You put them at a nearby hospital, but when you come back later, the crew member is gone, and no one has seen or heard anything.`
@@ -574,7 +574,7 @@ mission "Midas: Betrayal For The Bars"
 				`	(I prefer not to stay in the dark. Wake them.)`
 					goto light
 			label bliss
-			`	You leave the traitor here on this world, and they seem thankful but deeply troubled by what happened. You wonder what could have attracted such attention to you. Whatever it was should probably be safely stashed away, or gotten rid off.`
+			`	You leave the traitor here on this world, and they seem thankful but deeply troubled by what happened. You wonder what could have attracted such attention to you. Whatever it was should probably be safely stashed away, or gotten rid of.`
 				accept
 			label light
 			`	You throw a bucket of water on the crew member. They wake up, but at first refuse to tell you anything. Once you reveal you're aware of their marking, they concede to reveal something to you. They seem to recognize the hopelessness of their situation, and may be willing to bargain. "This sign means that I hold my life to someone, and have to do one task, any task, to repay them. There is something here, on this ship, of the highest importance to some... I may not, and will not say anything else, no matter what you try to make me do it. I am dead already, and they own me."`
@@ -670,7 +670,7 @@ mission "<uhai> 6 B: To The Wolves"
 	on waypoint
 		"reputation: Midas" >?= 0
 		conversation
-			`One of the unindentified ships hail you. "You did well, Captain. Here is the first part of your reward: <payment>. You may help us by taking out these Hai ships, but it may be wise not to so that the rest of the Hai government will not suspect you for this unfortunate pirate attack.`
+			`One of the unidentified ships hail you. "You did well, Captain. Here is the first part of your reward: <payment>. You may help us by taking out these Hai ships, but it may be wise not to so that the rest of the Hai government will not suspect you for this unfortunate pirate attack.`
 			`	When this is done, go to <destination> for your reward. The Unfettered are going to be in high need of food, and you should bring them as much as you can to compensate for this small... delay in Hai food supplies."`
 			`	Right after that, the governor's ship hails you, and you hear her voice, between anger and confusion. "What have you done?!" You feel like she was about to continue, but before she could all communications are jammed.`
 			`	You can see some pirates present with the Midas fleets, probably to distract other Hai ships that happen to be in the system. It might be a good idea to bribe them.`
@@ -704,11 +704,11 @@ mission "<uhai> 6 B: To The Wolves"
 		"unfettered rep: Sookootow" -= 2
 		"reputation: Midas" <?= -1000
 		clear "unfettered: stopped on Greenbloom"
-		log `The plan was to escort a Hai fleet carying supplies and passengers into Unfettered space but an opportunity to feed them to the wolves instead was presented, and taken.`
+		log `The plan was to escort a Hai fleet carrying supplies and passengers into Unfettered space but an opportunity to feed them to the wolves instead was presented, and taken.`
 		payment 4000000
 		dialog
 			`As before, a voice addresses you once you are alone in your quarters. "We have transferred <payment> to your account, and made sure the Chief will not make your life difficult.`
-			`	"Do be aware, however, that a food situation has arrisen, not because of our small operation, but because of the bomb's presence in the first place, placed by our rivals.`
+			`	"Do be aware, however, that a food situation has arisen, not because of our small operation, but because of the bomb's presence in the first place, placed by our rivals.`
 			`	"The Unfettered will probably be busy for some time... As for the governor, if it can ease your conscience, we only captured her."`
 
 
@@ -755,7 +755,7 @@ mission "<uhai> 7: Duel"
 			set "midas: talon assassination"
 			"midas: wronged" += 2
 			event "midas: thorn talon vengeance" 180
-			log `Destroyed mysterious ships that serve the 'Sadow of Mintaka' in a duel. What's the worst that could happen? No idea if the Unfettered will forgive this act.`
+			log `Destroyed mysterious ships that serve the 'Shadow of Mintaka' in a duel. What's the worst that could happen? No idea if the Unfettered will forgive this act.`
 		conversation
 			`Seeing the fight is over, they hail you, "Indeed you know how to fight, <last>," the first one compliments you, "That was just luck!" the other one argues. "Whatever the case, you have gained the right to plunder our ships. But do not dare even think about trying to capture. We will be leaving once you land."`
 			action

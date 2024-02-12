@@ -428,7 +428,7 @@ mission "<uhai> 6 A: Loyal Escort"
 				`	"I'm busy right now, sorry."`
 					goto busy
 			`	"It is not that I do not trust the Hai not to fire on their own people, but a misunderstanding happens quickly. Someone of your expertise would be helpful, and I cannot simply trust any Unfettered captain with this, as they could easily be provoked into making a fatal mistake. I hope, though, that you will be able to make a rational decision.`
-			`	He gets closer to you, and looks around to make sure nobody listens, except for one Unfettered, moving as his shadow, that you assume to be his bodygard. "I also need your presence because I want someone that is quick to respond to danger, and with the right tools. Hearing of your duel with a fellow Unfettered captain, you strike me as such a person. We are worried that another party may interfere with our plans."`
+			`	He gets closer to you, and looks around to make sure nobody listens, except for one Unfettered, moving as his shadow, that you assume to be his bodyguard. "I also need your presence because I want someone that is quick to respond to danger, and with the right tools. Hearing of your duel with a fellow Unfettered captain, you strike me as such a person. We are worried that another party may interfere with our plans."`
 			choice
 				`	"Nothing would scare me, not even an Unfettered captain."`
 				`	"Those stories may have been slightly exaggerated..."`
@@ -628,10 +628,10 @@ mission "<uhai> 6: Taking Off With Hai Fleet"
 			label leave
 			branch otherships
 				"ships: Space Liner" + "ships: Transport" + "ships: Light Freighter" + "ships: Heavy Freighter" + "ships: Utility" + "ships: Interceptor" + "ships: Light Warship" + "ships: Medium Warship" + "ships: Heavy Warship" >= 1
-			`	The Hai bodygards now leave your ship, reassured that you are not of any threat for their fleet.`
+			`	The Hai bodyguards now leave your ship, reassured that you are not of any threat for their fleet.`
 				goto admiral
 			label otherships
-			`	The Hai bodygards now leave your ship, and proceed to check the other ships of your fleet, before reporting a green light.`
+			`	The Hai bodyguards now leave your ship, and proceed to check the other ships of your fleet, before reporting a green light.`
 			label admiral
 			`	An hour later, the admiral hails the fleet, "All ships are now ready to leave. All that is left is for me to wish you all safe trip. May the leaves flow our way." You depart with the fleet.`
 				flee
@@ -851,10 +851,10 @@ mission "<uhai> 7: Stolen Cargo"
 				`	"Thanks for the assistance."`
 					goto leaving
 				`	"Wait! I challenge you to a duel for those weapons!"`
-			`	They seem surprised, but not disappointed in the slightest, "A challenge, interesting," one says, "We would have much to learn from each others," the other one add. "But what do we have to gain? Our shredders are worth many millions, so I think it would be fair you repayed their value to us, should you lose."`
+			`	They seem surprised, but not disappointed in the slightest, "A challenge, interesting," one says, "We would have much to learn from each others," the other one add. "But what do we have to gain? Our shredders are worth many millions, so I think it would be fair you repaid their value to us, should you lose."`
 			choice
 				`	"Seems like a fair deal to me."`
-				`	"Nevermind, I'll let you be on your way."`
+				`	"Never mind, I'll let you be on your way."`
 					goto leaving
 			action
 				set "midas: accepted duel"
@@ -1166,7 +1166,7 @@ mission "<uhai> 8: It's The Alphas"
 			`	You order another drink and look at the mural in more detail. You nearly choke on your drink when you realize that the exposed face and hands of the knight are green.`
 				decline
 			label "dead, boy!"
-			`As soon as you set foot on the planet, a team of mercenaries comes out of the shadows, equippped with the same kind of armor Si-Ra had. Their weapons may be holstered, but you can feel the tension in the air. Their leader speaks up. "We know your query. Consider yourself lucky to not be killed on the spot. We do not guarantee that will not happen, should you land again."`
+			`As soon as you set foot on the planet, a team of mercenaries comes out of the shadows, equipped with the same kind of armor Si-Ra had. Their weapons may be holstered, but you can feel the tension in the air. Their leader speaks up. "We know your query. Consider yourself lucky to not be killed on the spot. We do not guarantee that will not happen, should you land again."`
 			`	They evaluate their surroundings before coming closer to you, and once they are a meter away they stop, clearly speaking their words as a threat, with a pause between each of them "Nemo. Me. Impune. Laccesit."`
 			choice
 				`	"Surely there is something you can tell me?"`
@@ -1199,7 +1199,7 @@ mission "<uhai> 9: Alpha Quest"
 				`	(Enter the stadium and go see them.)`
 				`	(I don't have time right now.)`
 					defer
-			`	Seeing you approach, one of the leaders steps forward, and you recognize Sookootow. "It seems you are an enemy of the unfettered humans. We cannot risk a disruption in our supply of jump drives. You may have provided some to us, but so did they," He says, speaking almost theatrically, with big geastures, "We have a task to ask of you. Should you accept, you would be able to join us - still not officially for now, but all good things come in time." You assume that by unfettered humans he means the Alphas.`
+			`	Seeing you approach, one of the leaders steps forward, and you recognize Sookootow. "It seems you are an enemy of the unfettered humans. We cannot risk a disruption in our supply of jump drives. You may have provided some to us, but so did they," He says, speaking almost theatrically, with big gestures, "We have a task to ask of you. Should you accept, you would be able to join us - still not officially for now, but all good things come in time." You assume that by unfettered humans he means the Alphas.`
 			choice
 				`	"What is it you want me to do? I don't like these Alphas."`
 					goto hate
@@ -1337,7 +1337,7 @@ mission "<uhai> 9: Capture The Alpha Auxiliary"
 		conversation
 			action
 				set "unfettered: captured the auxiliary"
-			`While capturing the ship, you noticed that only very few of the crew were actually Alphas. What little were Alphas seem to have disappeared in the middle of the fight. They probably used an escape pod to get away unoticed, or maybe they were never truly there in the first place. Whatever the case, you cannot find any trace of them. The crew was composed of a mix of mercenaries and indoctrinated pirates that would obey only to 'the Masters' and did not reveal anything useful.`
+			`While capturing the ship, you noticed that only very few of the crew were actually Alphas. What little were Alphas seem to have disappeared in the middle of the fight. They probably used an escape pod to get away unnoticed, or maybe they were never truly there in the first place. Whatever the case, you cannot find any trace of them. The crew was composed of a mix of mercenaries and indoctrinated pirates that would obey only to 'the Masters' and did not reveal anything useful.`
 			`	There was no doubt who was in command of this vessel, however. The jump drives don't seem to be aboard the ship. You should head to the Alpha base to see if you can find them or anything else of interest.`
 	npc
 		government "Cerberus"
@@ -1418,7 +1418,7 @@ mission "<uhai> 9: Capture The Alpha Auxiliary"
 			branch logs
 				has "<uhai> 9: Alpha Base: done"
 			# The Alpha logs self-destruct if you didn't make a copy of them earlier.
-			`	Having nothing more to show the Unfettered, you leave. This leaves you wondering if there was something hidden in the Auxiliary, but after a short inspection you summize that if there was, it is no longer there now.`
+			`	Having nothing more to show the Unfettered, you leave. This leaves you wondering if there was something hidden in the Auxiliary, but after a short inspection you surmise that if there was, it is no longer there now.`
 				decline
 			label logs
 			choice
