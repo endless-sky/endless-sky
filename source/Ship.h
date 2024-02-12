@@ -628,9 +628,6 @@ private:
 	int customSwizzle = -1;
 	double cloak = 0.;
 	double cloakDisruption = 0.;
-	// Variables for battery powered ships
-	double secondsToEmpty = std::numeric_limits<double>::infinity();
-	double secondsToFullCharge = 0.;
 	// Cached values for figuring out when anti-missiles or tractor beams are in range.
 	double antiMissileRange = 0.;
 	double tractorBeamRange = 0.;
@@ -640,6 +637,8 @@ private:
 	double outfitScan = 0.;
 	// Number of seconds a battery powered ship or fighter should be able to
 	// operate minimally.
+	double secondsToEmpty = std::numeric_limits<double>::infinity();
+	double secondsToFullCharge = 0.;
 	double minimumOperatingTime = 10.;
 	double lowOperatingTime = 15.;
 	double minimumHull = 0.;

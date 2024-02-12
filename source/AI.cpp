@@ -1178,7 +1178,9 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 			if(!helper.get()->IsYours() && (helper->GetTargetAsteroid() || helper->GetTargetFlotsam()))
 				continue;
 			// Your escorts only help other escorts, and your flagship never helps.
-			if((helper->IsYours() && !(ship.IsYours() || ship.GetPersonality().IsEscort())) || helper.get() == flagship)
+			if((helper->IsYours() && !(ship.IsYours()
+							|| (ship.GetPersonality().IsEscort() && !ship.GetGovernment()->IsEnemy())))
+					|| helper.get() == flagship)
 				continue;
 			// Your escorts should not help each other if already under orders.
 			auto foundOrders = orders.find(helper.get());

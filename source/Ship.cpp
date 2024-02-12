@@ -1304,7 +1304,8 @@ vector<string> Ship::FlightCheck() const
 			checks.emplace_back("reverse only?");
 		if(!generation && !solar && !consuming && !canBeCarried)
 			checks.emplace_back("battery only?");
-		if(canBeCarried && secondsToEmpty < lowOperatingTime)
+		if(canBeCarried && GetSecondsToEmpty() < lowOperatingTime
+				&& (Attributes().Get("energy capacity") / (GetIdleEnergyPerFrame() * 60.)) > lowOperatingTime)
 			checks.emplace_back("low battery?");
 		if(energy < thrustEnergy)
 			checks.emplace_back("limited thrust?");
@@ -2300,8 +2301,27 @@ bool Ship::IsOutOfEnergy() const
 {
 	bool closeToParent = false;
 	bool outOfEnergy = GetCurrentEnergy() <= 0. && GetMovingEnergyPerFrame() > 0.  && GetIdleEnergyPerFrame() <= 0.;
+	// The following only applies to fighters an drones with parent carriers.
 	if(canBeCarried && outOfEnergy)
 	{
+		// The docking behavior of fighters is counter intuitive.  A parent
+		// carrier will actually not transfer energy to its own carried fighter.
+		// It will attempt to pick up its own fighter instead of transferring
+		// energy.
+		//
+		// Docking behavior when carriers "pick up" fighters is opposite of what
+		// you'd expect.  Carriers do not "pick up" fighters.  When they are on
+		// top of fighters the fighter itself joins its parent carrier.
+		//
+		// Because of these two counter-intuitive points if a carrier is
+		// attempting to recover its own "out of energy" fighter and this
+		// distance calculation is not performed.  It is impossible for the
+		// carrier to recover its own fighter.  A fighter which `IsDisabled()`
+		// cannot dock with its parent.
+		//
+		// Distance must be accounted for in this IsDisabled calculation for
+		// IsLowEnergy in order for carriers to be able to recover their own
+		// direct children.
 		if(GetParent())
 		{
 			Point dp = GetParent().get()->Position() - position;
