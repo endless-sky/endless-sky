@@ -42,7 +42,7 @@ class Sprite;
 // string to double significantly reduces access time.
 class Weapon {
 public:
-	struct Submunition{
+	struct Submunition {
 		Submunition() noexcept = default;
 		explicit Submunition(const Weapon *weapon, std::size_t count) noexcept
 			: weapon(weapon), count(count) {};
@@ -53,6 +53,31 @@ public:
 		Angle facing;
 		// The base offset from the source projectile's position, relative to its current facing.
 		Point offset;
+	};
+
+	struct Emission {
+		Emission() noexcept = default;
+		explicit Emission(const DataNode &node) noexcept;
+
+		const Weapon *weapon = nullptr;
+		// The number of projectiles created each time the source projectile emits this weapon.
+		std::size_t projectileCount = 0;
+		// The number of times this emission can be activated over the lifetime of the source projectile.
+		std::size_t emissionCount = 0;
+		// The angular offset from the source projectile, relative to its current facing.
+		Angle facing;
+		// The base offset from the source projectile's position, relative to its current facing.
+		Point offset;
+		// If the source projectile has a target, the target must be within this range of the source
+		// projectile in order for an emission to occur. If zero, then fire the emission regardless
+		// of range.
+		double emissionRange = 0.;
+		// If true, the emitted projectile is aimed at the target ship of the source projectile.
+		// The above facing angle is added on top of that.
+		bool aimAtTarget = false;
+		// The number of frames that must pass after the source projectile is created in order
+		// for this emission to be spawned.
+		int armingTime = 0;
 	};
 
 
@@ -75,6 +100,7 @@ public:
 	const std::map<const Effect *, int> &TargetEffects() const;
 	const std::map<const Effect *, int> &DieEffects() const;
 	const std::vector<Submunition> &Submunitions() const;
+	const std::vector<Emission> &Emissions() const;
 
 	// Accessor functions for various attributes.
 	int Lifetime() const;
@@ -231,6 +257,7 @@ private:
 	std::map<const Effect *, int> targetEffects;
 	std::map<const Effect *, int> dieEffects;
 	std::vector<Submunition> submunitions;
+	std::vector<Emission> emissions;
 
 	// This stores whether or not the weapon has been loaded.
 	bool isWeapon = false;

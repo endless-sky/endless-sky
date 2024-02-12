@@ -20,7 +20,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Random.h"
 #include "Ship.h"
 #include "Visual.h"
-#include "Weapon.h"
 
 #include <algorithm>
 #include <cmath>
@@ -135,9 +134,47 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 		if(!Random::Int(it.second))
 			visuals.emplace_back(*it.first, position, velocity, angle);
 
+	const Ship *target = cachedTarget;
+	for(auto &emission : emissions)
+	{
+		const Weapon::Emission &sourceEmission = emission.sourceEmission;
+		const Weapon *const subWeapon = sourceEmission.weapon;
+		if(sourceEmission.emissionCount && emission.fired >= sourceEmission.emissionCount)
+			continue;
+
+		double range = sourceEmission.emissionRange;
+		if(emission.armingTime)
+			--emission.armingTime;
+		else if(emission.burstReload <= 0. && emission.burstCount 
+				&& (!range || (target && target->Position().DistanceSquared(position) < range * range)))
+		{
+			for(size_t i = 0; i < sourceEmission.projectileCount; ++i)
+			{
+				Angle inaccuracy = Distribution::GenerateInaccuracy(subWeapon->Inaccuracy(),
+						subWeapon->InaccuracyDistribution());
+				Angle facing = sourceEmission.facing + inaccuracy;
+				if(target && sourceEmission.aimAtTarget)
+					facing += Angle(target->Position() - position);
+				projectiles.emplace_back(*this, sourceEmission.offset, facing, subWeapon);
+			}
+			emission.reload += subWeapon->Reload();
+			emission.burstReload += subWeapon->BurstReload();
+			--emission.burstCount;
+			++emission.fired;
+		}
+		else
+		{
+			if(emission.reload > 0.)
+				--emission.reload;
+			if(emission.reload <= 0.)
+				emission.burstCount = subWeapon->BurstCount();
+			if(emission.burstReload > 0.)
+				--emission.burstReload;
+		}
+	}
+
 	// If the target has left the system, stop following it. Also stop if the
 	// target has been captured by a different government.
-	const Ship *target = cachedTarget;
 	if(target)
 	{
 		target = TargetPtr().get();

@@ -477,6 +477,13 @@ const vector<Weapon::Submunition> &Weapon::Submunitions() const
 
 
 
+const vector<Weapon::Emission> &Weapon::Emissions() const
+{
+	return emissions;
+}
+
+
+
 double Weapon::TotalLifetime() const
 {
 	if(rangeOverride)

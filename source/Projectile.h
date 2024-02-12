@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Angle.h"
 #include "Point.h"
+#include "Weapon.h"
 
 #include <cstdint>
 #include <memory>
@@ -28,7 +29,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class Government;
 class Ship;
 class Visual;
-class Weapon;
 
 
 
@@ -103,11 +103,27 @@ public:
 
 
 private:
+	class LiveEmission {
+	public:
+		LiveEmission(const Weapon::Emission &emission)
+			: sourceEmission(emission), armingTime(emission.armingTime), burstCount(emission.weapon->BurstCount()) {}
+
+		const Weapon::Emission &sourceEmission;
+		std::size_t fired = 0;
+		int armingTime = 0;
+		double reload = 0.;
+		double burstReload = 0.;
+		int burstCount = 1;
+	};
+
+
+private:
 	void CheckLock(const Ship &target);
 
 
 private:
 	const Weapon *weapon = nullptr;
+	std::vector<LiveEmission> emissions;
 
 	std::weak_ptr<Ship> targetShip;
 	const Ship *cachedTarget = nullptr;
