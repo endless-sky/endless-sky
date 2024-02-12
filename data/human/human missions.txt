@@ -1073,23 +1073,23 @@ mission "There Might Be Riots part 3A"
 			`	You've heard of that planet. "The weapons testing world for Lovelace Labs?" you ask. "I'm surprised you'd be able to find a big audience there."`
 			`	"Oh, we'll have an audience, all right," he says. "We've just put out a new album called 'Songs for the End of Civilization.' A war protest album. We want to film ourselves playing a concert right in the middle of the missile testing range. Of course, we'll probably end up running out of there with Republic Intelligence nipping at our heels. What do you say?"`
 			choice
-				`	"Sorry, that's further than I'm willing to go for you guys."`
-					goto no
 				`	"Sounds like a worthy cause. Count me in!"`
 					goto yes
 				`	"You're going to do a concert on ground that could be littered with unexploded ordnance?"`
-			`	"Yeah. What an adventure!" he says. "Come on, it will be worth it."`
-			choice
 				`	"Sorry, that's further than I'm willing to go for you guys."`
 					goto no
+			`	"Yeah. What an adventure!" he says. "Come on, it will be worth it."`
+			choice
 				`	"Sounds like a worthy cause. Count me in!"`
 					goto yes
+				`	"Sorry, that's further than I'm willing to go for you guys."`
+					goto no
 			label no
 			`	"Are you sure?" he asks. "We'll pay you with more than just money. Do this for us, and I'll share a story with you that very few have heard."`
 			choice
+				`	"Okay, I'm intrigued. But it still sounds risky."`
 				`	"Sorry, but it's still a 'no.'"`
 					decline
-				`	"Okay, I'm intrigued. But it still sounds risky."`
 			label yes
 			branch known
 				has "met hai before TMBR"
