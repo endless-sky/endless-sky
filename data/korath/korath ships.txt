@@ -667,7 +667,7 @@ ship "Lor'kas Ik 577"
 	explode "large explosion" 40
 	explode "huge explosion" 50
 	"final explode" "final explosion large"
-	description "The largest of Korath production vessels are derived from a common and ancient chassis. This simple ship has been adapted for hauling materials between refinery and factory stations. Its name is in memory of the Efreti, the industrious, peaceful ones."
+	description "The largest of Korath production vessels are derived from a common and ancient chassis. This version has been adapted for hauling materials between refinery and factory stations and is named for the original colony of the Efreti to honor their focus on peaceful industry."
 
 
 ship "Ra'gru Ik 618"
