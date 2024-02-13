@@ -167,6 +167,10 @@ const Plugin *Plugins::Load(const string &path)
 
 	string pluginFile = path + "plugin.txt";
 	string aboutText;
+	string version;
+	set<string> authors;
+	set<string> tags;
+	Plugin::PluginDependencies dependencies;
 
 	// Load plugin metadata from plugin.txt.
 	bool hasName = false;
@@ -178,7 +182,37 @@ const Plugin *Plugins::Load(const string &path)
 			hasName = true;
 		}
 		else if(child.Token(0) == "about" && child.Size() >= 2)
-			aboutText = child.Token(1);
+		{
+			aboutText += child.Token(1);
+			aboutText += '\n';
+		}
+		else if(child.Token(0) == "version" && child.Size() >= 2)
+			version = child.Token(1);
+		else if(child.Token(0) == "authors" && child.HasChildren())
+			for(const DataNode &grand : child)
+				authors.insert(grand.Token(0));
+		else if(child.Token(0) == "tags" && child.HasChildren())
+			for(const DataNode &grand : child)
+				tags.insert(grand.Token(0));
+		else if(child.Token(0) == "dependencies" && child.HasChildren())
+		{
+			for(const DataNode &grand : child)
+			{
+				if(grand.Token(0) == "game version")
+					dependencies.gameVersion = grand.Token(1);
+				else if(grand.Token(0) == "requires" && grand.HasChildren())
+					for(const DataNode &great : grand)
+						dependencies.required.insert(great.Token(0));
+				else if(grand.Token(0) == "optional" && grand.HasChildren())
+					for(const DataNode &great : grand)
+						dependencies.optional.insert(great.Token(0));
+				else if(grand.Token(0) == "conflicts" && grand.HasChildren())
+					for(const DataNode &great : grand)
+						dependencies.conflicted.insert(great.Token(0));
+				else
+					grand.PrintTrace("Skipping unrecognized attribute:");
+			}
+		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -197,10 +231,22 @@ const Plugin *Plugins::Load(const string &path)
 		return nullptr;
 	}
 
+	// Skip the plugin if the dependencies aren't valid.
+	if(!dependencies.IsValid())
+	{
+		Logger::LogError("Warning: Skipping plugin located at \"" + path
+			+ "\" because plugin has errors in its dependencies.");
+		return nullptr;
+	}
+
 	plugin->name = std::move(name);
 	plugin->path = path;
 	// Read the deprecated about.txt content if no about text was specified.
 	plugin->aboutText = aboutText.empty() ? Files::Read(path + "about.txt") : std::move(aboutText);
+	plugin->version = std::move(version);
+	plugin->authors = std::move(authors);
+	plugin->tags = std::move(tags);
+	plugin->dependencies = std::move(dependencies);
 
 	return plugin;
 }
