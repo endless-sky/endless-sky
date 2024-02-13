@@ -151,6 +151,8 @@ void Mission::Load(const DataNode &node)
 			description = child.Token(1);
 		else if(child.Token(0) == "blocked" && child.Size() >= 2)
 			blocked = child.Token(1);
+		else if(child.Token(0) == "abort message" && child.Size() >= 2)
+			abortMessage = child.Token(1);
 		else if(child.Token(0) == "deadline" && child.Size() >= 4)
 			deadline = Date(child.Value(1), child.Value(2), child.Value(3));
 		else if(child.Token(0) == "deadline")
@@ -347,6 +349,8 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("description", description);
 		if(!blocked.empty())
 			out.Write("blocked", blocked);
+		if(!abortMessage.empty())
+			out.Write("abort message", abortMessage);
 		if(deadline)
 			out.Write("deadline", deadline.Day(), deadline.Month(), deadline.Year());
 		if(cargoSize)
@@ -973,6 +977,30 @@ string Mission::BlockedMessage(const PlayerInfo &player)
 
 
 
+string Mission::AbortedMessage(const PlayerInfo &player) const
+{
+	string message = "Abort mission \"" + Name() + "\"?";
+	if(!abortMessage.empty())
+	{
+		message += " " + abortMessage;
+
+		map<string, string> subs;
+		GameData::GetTextReplacements().Substitutions(subs, player.Conditions());
+		substitutions.Substitutions(subs, player.Conditions());
+		subs["<first>"] = player.FirstName();
+		subs["<last>"] = player.LastName();
+		const Ship *flagship = player.Flagship();
+		if(flagship)
+			subs["<ship>"] = flagship->Name();
+
+		message = Format::Replace(message, subs);
+	}
+
+	return message;
+}
+
+
+
 // Check if this mission recommends that the game be autosaved when it is
 // accepted. This should be set for main story line missions that have a
 // high chance of failing, such as escort missions.
@@ -1494,6 +1522,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.description = Format::Replace(Phrase::ExpandPhrases(description), subs);
 	result.clearance = Format::Replace(Phrase::ExpandPhrases(clearance), subs);
 	result.blocked = Format::Replace(Phrase::ExpandPhrases(blocked), subs);
+	result.abortMessage = Format::Replace(Phrase::ExpandPhrases(abortMessage), subs);
 	result.clearanceFilter = clearanceFilter;
 	result.hasFullClearance = hasFullClearance;
 

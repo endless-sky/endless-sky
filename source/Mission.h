@@ -142,6 +142,8 @@ public:
 	// calling this function, any future calls to it will return an empty string
 	// so that you do not display the same message multiple times.
 	std::string BlockedMessage(const PlayerInfo &player);
+	// Get a string to show if this mission is being aborted.
+	std::string AbortedMessage(const PlayerInfo &player) const;
 	// Check if this mission recommends that the game be autosaved when it is
 	// accepted. This should be set for main story line missions that have a
 	// high chance of failing, such as escort missions.
@@ -195,6 +197,7 @@ private:
 	std::string displayName;
 	std::string description;
 	std::string blocked;
+	std::string abortMessage;
 	Location location = SPACEPORT;
 
 	EsUuid uuid;
