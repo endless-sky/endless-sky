@@ -369,7 +369,6 @@ mission "Sad Archie"
 			`	Then you wake up and find yourself back in your ship, in the Ildaria system. Weird.`
 	
 	on complete
-		event "readd pirates to Ildaria"
 		log `Experienced a strange vision while drifting in the Ildaria system that looked like the fall of a civilization of dragon-people. The terrain on the planet of Zug looks strikingly similar to this vision.`
 		conversation
 			# that event changes the fleet spawns so we need them to be reset to different values before and after it
