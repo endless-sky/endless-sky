@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 #include "Random.h"
 #include "Ship.h"
+#include "System.h"
 #include "UI.h"
 
 #include <cstdlib>
@@ -190,6 +191,8 @@ void GameAction::LoadSingle(const DataNode &child)
 			swap(minDays, maxDays);
 		events[GameData::Events().Get(child.Token(1))] = make_pair(minDays, maxDays);
 	}
+	else if(key == "unping" && child.Size() >= 2)
+		unping.insert(GameData::Systems().Get(child.Token(1)));
 	else if(key == "fail" && child.Size() >= 2)
 		fail.insert(child.Token(1));
 	else if(key == "fail")
@@ -235,6 +238,8 @@ void GameAction::Save(DataWriter &out) const
 		out.Write("fine", fine);
 	for(auto &&it : events)
 		out.Write("event", it.first->Name(), it.second.first, it.second.second);
+	for(const System *system : unping)
+		out.Write("unping", system->Name());
 	for(const string &name : fail)
 		out.Write("fail", name);
 	if(failCaller)
@@ -264,6 +269,11 @@ string GameAction::Validate() const
 	for(auto &&outfit : giftOutfits)
 		if(!outfit.first->IsDefined())
 			return "gift outfit \"" + outfit.first->TrueName() + "\"";
+
+	// Unpinged system must be valid.
+	for(auto &&system : unping)
+		if(!system->IsValid())
+			return "system \"" + system->Name() + "\"";
 
 	// It is OK for this action to try to fail a mission that does not exist.
 	// (E.g. a plugin may be designed for interoperability with other plugins.)
@@ -352,6 +362,9 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 
 	for(const auto &it : events)
 		player.AddEvent(*it.first, player.GetDate() + it.second.first);
+
+	for(const System *unping : unping)
+		caller->Unping(unping);
 
 	if(!fail.empty())
 	{

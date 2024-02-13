@@ -97,6 +97,9 @@ public:
 	const std::set<const System *> &VisitedWaypoints() const;
 	const std::set<const Planet *> &Stopovers() const;
 	const std::set<const Planet *> &VisitedStopovers() const;
+	const std::set<const System *> &Pings() const;
+	const std::set<const System *> &Unpinged() const;
+	void Unping(const System *system) const;
 	const std::string &Cargo() const;
 	int CargoSize() const;
 	int IllegalCargoFine() const;
@@ -248,6 +251,10 @@ private:
 	std::list<LocationFilter> stopoverFilters;
 	std::set<const Planet *> visitedStopovers;
 	std::set<const System *> visitedWaypoints;
+	// Systems that don't need to be visited, but which the mission still
+	// wants to highlight for the player.
+	mutable std::set<const System *> pings;
+	mutable std::set<const System *> unpinged;
 
 	// User-defined text replacements unique to this mission:
 	TextReplacements substitutions;

@@ -33,6 +33,7 @@ class Mission;
 class Outfit;
 class PlayerInfo;
 class Ship;
+class System;
 class UI;
 
 
@@ -86,6 +87,8 @@ private:
 	int64_t payment = 0;
 	int64_t paymentMultiplier = 0;
 	int64_t fine = 0;
+
+	std::set<const System *> unping;
 
 	// When this action is performed, the missions with these names fail.
 	std::set<std::string> fail;
