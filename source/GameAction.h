@@ -75,6 +75,15 @@ public:
 
 
 private:
+	struct Mortgage {
+		int64_t principal = 0;
+		double interest = 0.;
+		int term = 365;
+		bool useCreditScore = false;
+	};
+
+
+private:
 	bool isEmpty = true;
 	std::string logText;
 	std::map<std::string, std::map<std::string, std::string>> specialLogText;
@@ -86,6 +95,7 @@ private:
 	int64_t payment = 0;
 	int64_t paymentMultiplier = 0;
 	int64_t fine = 0;
+	std::vector<Mortgage> mortgages;
 
 	// When this action is performed, the missions with these names fail.
 	std::set<std::string> fail;

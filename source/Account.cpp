@@ -371,9 +371,18 @@ const vector<Mortgage> &Account::Mortgages() const
 
 // Add a new mortgage for the given amount, with an interest rate determined by
 // your credit score.
-void Account::AddMortgage(int64_t principal)
+void Account::AddMortgage(int64_t principal, int term)
 {
-	mortgages.emplace_back(principal, creditScore);
+	mortgages.emplace_back(principal, creditScore, term);
+	credits += principal;
+}
+
+
+
+// Add a new mortgage for the given amount with the given interest rate and term.
+void Account::AddMortgage(int64_t principal, double interest, int term)
+{
+	mortgages.emplace_back(principal, interest, term);
 	credits += principal;
 }
 

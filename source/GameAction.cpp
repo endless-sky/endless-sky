@@ -182,6 +182,29 @@ void GameAction::LoadSingle(const DataNode &child)
 		else
 			child.PrintTrace("Error: Skipping invalid \"fine\" with non-positive value:");
 	}
+	else if(key == "mortgage")
+	{
+		GameAction::Mortgage mortgage;
+		for(const DataNode &grand : child)
+		{
+			const string &grandKey = grand.Token(0);
+			bool grandHasValue = (grand.Size() < 2);
+			if(grandKey == "use credit score")
+				mortgage.useCreditScore = true;
+			else if(grandKey == "principal" && grandHasValue)
+				mortgage.principal = grand.Value(1);
+			else if(grandKey == "term" && grandHasValue)
+				mortgage.term = grand.Value(1);
+			else if(grandKey == "interest" && grandHasValue)
+				mortgage.interest = grand.Value(1);
+			else
+				grand.PrintTrace("Error: Skipping unrecognized \"mortgage\" attribute:");
+		}
+		if(!mortgage.principal)
+			child.PrintTrace("Error: Skipping game action mortgage without a principal.");
+		else
+			mortgages.emplace_back(mortgage);
+	}
 	else if(key == "event" && hasValue)
 	{
 		int minDays = (child.Size() >= 3 ? child.Value(2) : 0);
@@ -233,6 +256,20 @@ void GameAction::Save(DataWriter &out) const
 		out.Write("payment", payment);
 	if(fine)
 		out.Write("fine", fine);
+	for(const GameAction::Mortgage &mortgage : mortgages)
+	{
+		out.Write("mortgage");
+		out.BeginChild();
+		{
+			out.Write("principal", mortgage.principal);
+			if(mortgage.useCreditScore)
+				out.Write("use credit score");
+			else
+				out.Write("interest", mortgage.interest);
+			out.Write("term", mortgage.term);
+		}
+		out.EndChild();
+	}
 	for(auto &&it : events)
 		out.Write("event", it.first->Name(), it.second.first, it.second.second);
 	for(const string &name : fail)
@@ -349,6 +386,13 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 	}
 	if(fine)
 		player.Accounts().AddFine(fine);
+	for(const auto &mortgage : mortgages)
+	{
+		if(mortgage.useCreditScore)
+			player.Accounts().AddMortgage(mortgage.principal, mortgage.term);
+		else
+			player.Accounts().AddMortgage(mortgage.principal, mortgage.interest, mortgage.term);
+	}
 
 	for(const auto &it : events)
 		player.AddEvent(*it.first, player.GetDate() + it.second.first);

@@ -58,7 +58,11 @@ public:
 
 	// Liabilities:
 	const std::vector<Mortgage> &Mortgages() const;
-	void AddMortgage(int64_t principal);
+	// Add a new mortgage for the given amount, with an interest rate determined by
+	// your credit score.
+	void AddMortgage(int64_t principal, int term = 365);
+	// Add a new mortgage for the given amount with the given interest rate and term.
+	void AddMortgage(int64_t principal, double interest, int term = 365);
 	void AddFine(int64_t amount);
 	int64_t Prequalify() const;
 	// Assets:

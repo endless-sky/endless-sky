@@ -57,6 +57,17 @@ Mortgage::Mortgage(int64_t principal, int creditScore, int term)
 
 
 
+Mortgage::Mortgage(int64_t principal, double interest, int term)
+	: type("Mortgage"),
+	principal(principal),
+	interest(interest),
+	interestString("0." + to_string(interest) + "%"),
+	term(term)
+{
+}
+
+
+
 // Construct and Load() at the same time.
 Mortgage::Mortgage(const DataNode &node)
 {
