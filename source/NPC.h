@@ -63,6 +63,8 @@ public:
 		ENCOUNTER,
 		// Can be triggered by either the CAPTURE or DESTROY events.
 		KILL,
+		// Triggered when the mission is completed and this NPC is still alive.
+		SAVE,
 	};
 
 
@@ -99,6 +101,7 @@ public:
 	// Handle the given ShipEvent.
 	void Do(const ShipEvent &event, PlayerInfo &player, UI *ui = nullptr,
 		const Mission *caller = nullptr, bool isVisible = true);
+	void DoAction(Trigger trigger, PlayerInfo &player, UI *ui = nullptr, const Mission *caller = nullptr);
 	// Determine if the NPC is in a successful state, assuming the player is in the given system.
 	// (By default, a despawnable NPC has succeeded and is not actually checked.)
 	bool HasSucceeded(const System *playerSystem, bool ignoreIfDespawnable = true) const;

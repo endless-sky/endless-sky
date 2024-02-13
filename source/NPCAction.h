@@ -45,6 +45,8 @@ public:
 	// Determine if this NPCAction references content that is not fully defined.
 	std::string Validate() const;
 
+	// Determine if this action can be done.
+	bool CanBeDone(const PlayerInfo &player) const;
 	// Perform this action.
 	void Do(PlayerInfo &player, UI *ui = nullptr, const Mission *caller = nullptr);
 

@@ -222,32 +222,7 @@ const string &MissionAction::DialogText() const
 // if it takes away money or outfits that the player does not have.
 bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &boardingShip) const
 {
-	if(player.Accounts().Credits() < -Payment())
-		return false;
-
 	const Ship *flagship = player.Flagship();
-	for(auto &&it : action.Outfits())
-	{
-		// If this outfit is being given, the player doesn't need to have it.
-		if(it.second > 0)
-			continue;
-
-		// Outfits may always be taken from the flagship. If landed, they may also be taken from
-		// the collective cargo hold of any in-system, non-disabled escorts (player.Cargo()). If
-		// boarding, consider only the flagship's cargo hold. If in-flight, show mission status
-		// by checking the cargo holds of ships that would contribute to player.Cargo if landed.
-		int available = flagship ? flagship->OutfitCount(it.first) : 0;
-		available += boardingShip ? flagship->Cargo().Get(it.first)
-				: CountInCargo(it.first, player);
-
-		if(available < -it.second)
-			return false;
-	}
-
-	for(auto &&it : action.Ships())
-		if(!it.CanBeDone(player))
-			return false;
-
 	for(auto &&it : requiredOutfits)
 	{
 		// Maps are not normal outfits; they represent the player's spatial awareness.
@@ -292,7 +267,7 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 	// specifies the systems in which it can occur.
 	if(!systemFilter.IsEmpty() && !systemFilter.Matches(player.GetSystem()))
 		return false;
-	return true;
+	return action.CanBeDone(player, boardingShip);
 }
 
 
