@@ -268,7 +268,7 @@ tip "hull energy:"
 	`Energy consumed per second when repairing the hull.`
 
 tip "delayed hull energy:"
-	`Additional energy consumed per second when repairing the hull once no hull damage has been taken for longer than the value of hull delay.`
+	`Additional energy consumed per second when repairing the hull after the repair delay period.`
 
 tip "hull energy multiplier:"
 	`Modifies the energy consumed when repairing the hull by the given factor.`
