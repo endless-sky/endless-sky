@@ -1116,8 +1116,8 @@ ship "Penguin"
 		"reverse thrust" 4.2
 		"reverse thrusting energy" 0.55
 		"reverse thrusting heat" 0.55
-		"energy generation" 0.4
-		"heat generation" 0.67
+		"energy generation" 0.6
+		"heat generation" 1
 		"flare sprite" "effect/remnant flare/small"
 			"frame rate" 5
 		"flare sound" "plasma tiny"
