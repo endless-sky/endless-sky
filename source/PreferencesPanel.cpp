@@ -969,23 +969,10 @@ void PreferencesPanel::DrawPlugins()
 				10.f, 10.f, 5.f, Color(pluginDescriptionScroll.IsScrollAtMin() ? .2f : .8f, 0.f));
 			AddZone(topRight, [&]() { pluginDescriptionScroll.Scroll(-Preferences::ScrollSpeed()); });
 
-<<<<<<< HEAD
 			Rectangle bottomRight(descriptionBox.BottomRight() - POINTER_OFFSET, {20.0, 20.0});
 			PointerShader::Draw(bottomRight.Center(), DOWN,
 				10.f, 10.f, 5.f, Color(pluginDescriptionScroll.IsScrollAtMax() ? .2f : .8f, 0.f));
 			AddZone(bottomRight, [&]() { pluginDescriptionScroll.Scroll(Preferences::ScrollSpeed()); });
-=======
-			string text = plugin.CreateDescription();
-
-			string text = plugin.CreateDescription();
-
-			WrappedText wrap(font);
-			wrap.SetWrapWidth(MAX_TEXT_WIDTH);
-			static const string EMPTY = "(No description given.)";
-			text += plugin.aboutText.empty() ? EMPTY : plugin.aboutText;
-			wrap.Wrap(text);
-			wrap.Draw(top, medium);
->>>>>>> parent of 30730c40 (Misc tweaks and formatting changes suggested by RisingLeaf and Amazinite.)
 		}
 	}
 }
@@ -1024,7 +1011,7 @@ void PreferencesPanel::RenderPluginDescription(const Plugin &plugin)
 	WrappedText wrap(font);
 	wrap.SetWrapWidth(box.Width());
 	static const string EMPTY = "(No description given.)";
-	wrap.Wrap(plugin.aboutText.empty() ? EMPTY : plugin.aboutText);
+	wrap.Wrap(plugin.aboutText.empty() ? EMPTY : plugin.CreateDescription());
 
 	descriptionHeight += wrap.Height();
 

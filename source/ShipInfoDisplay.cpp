@@ -143,15 +143,6 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 
 	attributeHeaderLabels.push_back("model:");
 	attributeHeaderValues.push_back(ship.DisplayModelName());
-
-	// Only show the ship category on scrolling panels with no risk of overflow.
-	if(scrollingPanel)
-	{
-		attributeHeaderLabels.push_back("category:");
-		const string &category = ship.BaseAttributes().Category();
-		attributeHeaderValues.push_back(category.empty() ? "???" : category);
-	}
-
 	attributesHeight = 20;
 
 	attributeLabels.clear();
@@ -266,21 +257,19 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	currentMass /= reduction;
 	fullMass /= reduction;
 	attributeLabels.push_back("acceleration:");
-	double baseAccel = 3600. * forwardThrust * (1. + attributes.Get("acceleration multiplier"));
 	if(!isGeneric)
-		attributeValues.push_back(Format::Number(baseAccel / currentMass));
+		attributeValues.push_back(Format::Number(3600. * forwardThrust / currentMass));
 	else
-		attributeValues.push_back(Format::Number(baseAccel / fullMass)
-			+ " - " + Format::Number(baseAccel / emptyMass));
+		attributeValues.push_back(Format::Number(3600. * forwardThrust / fullMass)
+			+ " - " + Format::Number(3600. * forwardThrust / emptyMass));
 	attributesHeight += 20;
 
 	attributeLabels.push_back("turning:");
-	double baseTurn = 60. * attributes.Get("turn") * (1. + attributes.Get("turn multiplier"));
 	if(!isGeneric)
-		attributeValues.push_back(Format::Number(baseTurn / currentMass));
+		attributeValues.push_back(Format::Number(60. * attributes.Get("turn") / currentMass));
 	else
-		attributeValues.push_back(Format::Number(baseTurn / fullMass)
-			+ " - " + Format::Number(baseTurn / emptyMass));
+		attributeValues.push_back(Format::Number(60. * attributes.Get("turn") / fullMass)
+			+ " - " + Format::Number(60. * attributes.Get("turn") / emptyMass));
 	attributesHeight += 20;
 
 	// Find out how much outfit, engine, and weapon space the chassis has.

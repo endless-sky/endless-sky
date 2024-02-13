@@ -88,9 +88,6 @@ namespace {
 					state = Preferences::OverlayState::DAMAGED;
 					break;
 				case Preferences::OverlayState::DAMAGED:
-					state = Preferences::OverlayState::ON_HIT;
-					break;
-				case Preferences::OverlayState::ON_HIT:
 					state = Preferences::OverlayState::OFF;
 					break;
 				case Preferences::OverlayState::DISABLED:
@@ -108,7 +105,7 @@ namespace {
 		Preferences::OverlayState state = Preferences::OverlayState::OFF;
 	};
 
-	const vector<string> OverlaySetting::OVERLAY_SETTINGS = {"off", "always on", "damaged", "--", "on hit"};
+	const vector<string> OverlaySetting::OVERLAY_SETTINGS = {"off", "always on", "damaged", "--"};
 
 	map<Preferences::OverlayType, OverlaySetting> statusOverlaySettings = {
 		{Preferences::OverlayType::ALL, Preferences::OverlayState::OFF},
@@ -525,9 +522,9 @@ const string &Preferences::VSyncSetting()
 
 void Preferences::CycleStatusOverlays(Preferences::OverlayType type)
 {
-	// Calling OverlaySetting::Increment when the state is ON_HIT will cycle to off.
+	// Calling OverlaySetting::Increment when the state is DAMAGED will cycle to off.
 	// But, for the ALL overlay type, allow it to cycle to DISABLED.
-	if(type == OverlayType::ALL && statusOverlaySettings[OverlayType::ALL] == OverlayState::ON_HIT)
+	if(type == OverlayType::ALL && statusOverlaySettings[OverlayType::ALL] == OverlayState::DAMAGED)
 		statusOverlaySettings[OverlayType::ALL] = OverlayState::DISABLED;
 	// If one of the child types was clicked, but the all overlay state is the one currently being used,
 	// set the all overlay state to DISABLED but do not increment any of the child settings.

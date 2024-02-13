@@ -34,7 +34,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "PlayerInfoPanel.h"
-#include "Port.h"
 #include "Ship.h"
 #include "ShipyardPanel.h"
 #include "SpaceportPanel.h"
@@ -112,21 +111,16 @@ void PlanetPanel::Draw()
 
 	if(planet.CanUseServices())
 	{
-		const Port &port = planet.GetPort();
-
-		if(port.HasService(Port::ServicesType::Bank))
-			info.SetCondition("has bank");
-		if(port.HasService(Port::ServicesType::JobBoard))
-			info.SetCondition("has job board");
-		if(port.HasService(Port::ServicesType::HireCrew))
-			info.SetCondition("can hire crew");
-		if(port.HasService(Port::ServicesType::Trading) && system.HasTrade())
-			info.SetCondition("has trade");
-		if(planet.HasNamedPort())
+		if(planet.IsInhabited())
 		{
-			info.SetCondition("has port");
-			info.SetString("port name", port.Name());
+			info.SetCondition("is inhabited");
+			info.SetCondition("has bank");
+			if(system.HasTrade())
+				info.SetCondition("has trade");
 		}
+
+		if(planet.HasSpaceport())
+			info.SetCondition("has spaceport");
 
 		if(planet.HasShipyard())
 			info.SetCondition("has shipyard");
@@ -165,18 +159,17 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	}
 	else if(key == 'l')
 		selectedPanel = nullptr;
-	else if(key == 't' && hasAccess
-			&& planet.GetPort().HasService(Port::ServicesType::Trading) && system.HasTrade())
+	else if(key == 't' && hasAccess && planet.IsInhabited() && system.HasTrade())
 	{
 		selectedPanel = trading.get();
 		GetUI()->Push(trading);
 	}
-	else if(key == 'b' && hasAccess && planet.GetPort().HasService(Port::ServicesType::Bank))
+	else if(key == 'b' && hasAccess && planet.IsInhabited())
 	{
 		selectedPanel = bank.get();
 		GetUI()->Push(bank);
 	}
-	else if(key == 'p' && hasAccess && planet.HasNamedPort())
+	else if(key == 'p' && hasAccess && planet.HasSpaceport())
 	{
 		selectedPanel = spaceport.get();
 		if(isNewPress)
@@ -193,12 +186,12 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 		GetUI()->Push(new OutfitterPanel(player));
 		return true;
 	}
-	else if(key == 'j' && hasAccess && planet.GetPort().HasService(Port::ServicesType::JobBoard))
+	else if(key == 'j' && hasAccess && planet.IsInhabited())
 	{
 		GetUI()->Push(new MissionPanel(player));
 		return true;
 	}
-	else if(key == 'h' && hasAccess && planet.GetPort().HasService(Port::ServicesType::HireCrew))
+	else if(key == 'h' && hasAccess && planet.IsInhabited())
 	{
 		selectedPanel = hiring.get();
 		GetUI()->Push(hiring);

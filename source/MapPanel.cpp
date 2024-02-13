@@ -203,18 +203,6 @@ namespace {
 		}
 		return pair<bool, bool>(blink, daysLeft > 0);
 	}
-
-	// Return total value of raid fleet (if any) and 60 frames worth of system danger.
-	double DangerFleetTotal(const PlayerInfo &player, const System &system, const bool withRaids)
-	{
-		double danger = system.Danger() * 60.;
-		if(withRaids)
-			for(const auto &raidFleet : system.GetGovernment()->RaidFleets())
-				danger += 10. * player.RaidFleetAttraction(raidFleet, &system) *
-					raidFleet.GetFleet()->Strength();
-		return danger;
-	}
-
 }
 
 const float MapPanel::OUTER = 6.f;
@@ -728,18 +716,6 @@ Color MapPanel::GovernmentColor(const Government *government)
 
 
 
-Color MapPanel::DangerColor(const double danger)
-{
-	if(std::isnan(danger))
-		return *GameData::Colors().Get("map danger none");
-	else if(danger > .5)
-		return Color(.6, .4 * (2. - 2. * min(1., danger)), 0., .4);
-	else
-		return MapColor(2. * danger - 1.);
-}
-
-
-
 Color MapPanel::UninhabitedColor()
 {
 	return GovernmentColor(GameData::Governments().Get("Uninhabited"));
@@ -942,36 +918,6 @@ void MapPanel::UpdateCache()
 	cachedCommodity = commodity;
 	nodes.clear();
 
-	// Get danger level range so we can scale by it.
-	double dangerMax = 0.;
-	double dangerScale = 1.;
-	if(commodity == SHOW_DANGER)
-	{
-		// Scale danger to span [0, 1] based on known systems, without including raid fleets
-		// as those can greatly skew the range once they start having a chance of appearing,
-		// leading to silly (and not very useful) displays.
-		double dangerMin = numeric_limits<double>::max();
-		for(const auto &it : GameData::Systems())
-		{
-			const System &system = it.second;
-
-			// Only check displayed systems.
-			if(!system.IsValid() || system.Inaccessible() || !player.HasVisited(system))
-				continue;
-
-			const double danger = DangerFleetTotal(player, system, false);
-			if(danger > 0.)
-			{
-				if(dangerMax < danger)
-					dangerMax = danger;
-				if(dangerMin > danger)
-					dangerMin = danger;
-			}
-		}
-		if(dangerMax)
-			dangerScale = 1. / log(dangerMin / dangerMax);
-	}
-
 	// Draw the circles for the systems, colored based on the selected criterion,
 	// which may be government, services, or commodity prices.
 	const Color &closeNameColor = *GameData::Colors().Get("map name");
@@ -989,8 +935,7 @@ void MapPanel::UpdateCache()
 		Color color = UninhabitedColor();
 		if(!player.CanView(system))
 			color = UnexploredColor();
-		else if(system.IsInhabited(player.Flagship()) || commodity == SHOW_SPECIAL
-				|| commodity == SHOW_VISITED || commodity == SHOW_DANGER)
+		else if(system.IsInhabited(player.Flagship()) || commodity == SHOW_SPECIAL || commodity == SHOW_VISITED)
 		{
 			if(commodity >= SHOW_SPECIAL)
 			{
@@ -1048,14 +993,6 @@ void MapPanel::UpdateCache()
 				const Government *gov = system.GetGovernment();
 				color = GovernmentColor(gov);
 			}
-			else if(commodity == SHOW_DANGER)
-			{
-				const double danger = DangerFleetTotal(player, system, true);
-				if(danger > 0.)
-					color = DangerColor(1. - dangerScale * log(danger / dangerMax));
-				else
-					color = DangerColor(numeric_limits<double>::quiet_NaN());
-			}
 			else
 			{
 				double reputation = system.GetGovernment()->Reputation();
@@ -1072,10 +1009,10 @@ void MapPanel::UpdateCache()
 					if(object.HasSprite() && object.HasValidPlanet())
 					{
 						const Planet *planet = object.GetPlanet();
-						hasSpaceport |= !planet->IsWormhole() && planet->HasServices();
+						hasSpaceport |= !planet->IsWormhole() && planet->HasSpaceport();
 						if(planet->IsWormhole() || !planet->IsAccessible(player.Flagship()))
 							continue;
-						canLand |= planet->CanLand() && planet->HasServices();
+						canLand |= planet->CanLand() && planet->HasSpaceport();
 						isInhabited |= planet->IsInhabited();
 						hasDominated &= (!planet->IsInhabited()
 							|| GameData::GetPolitics().HasDominated(planet));

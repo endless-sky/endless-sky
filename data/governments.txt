@@ -174,10 +174,8 @@ government "Coalition"
 	"hostile disabled hail" "hostile disabled coalition"
 
 government "Deep"
-	"display name" "Deep Security"
 	swizzle 0
 	"player reputation" -1000
-	"hostile hail" "hostile deep"
 
 government "Deep Security"
 	swizzle 0

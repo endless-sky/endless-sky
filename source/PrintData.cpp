@@ -22,7 +22,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "LocationFilter.h"
 #include "Outfit.h"
 #include "Planet.h"
-#include "Port.h"
 #include "Ship.h"
 #include "System.h"
 
@@ -596,7 +595,7 @@ namespace {
 				cout << it.first << "::";
 				const Planet &planet = it.second;
 				cout << planet.Description() << "::";
-				cout << planet.GetPort().Description() << "\n";
+				cout << planet.SpaceportDescription() << "\n";
 			}
 		};
 

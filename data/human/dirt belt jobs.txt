@@ -279,7 +279,7 @@ mission "Food Convoy [0]"
 		attributes "dirt belt"
 	destination
 		distance 2 8
-		attributes "near earth" "paradise" "core"
+		attributes "near earth" "paradise"
 	npc
 		government "Pirate"
 		personality nemesis harvests plunders
@@ -308,8 +308,6 @@ mission "Food Convoy [0]"
 	npc accompany save
 		government "Merchant"
 		personality escort timid
-		"cargo settings"
-			commodities "Food"
 		fleet
 			names "civilian"
 			variant
@@ -334,7 +332,7 @@ mission "Food Convoy [1]"
 		attributes "dirt belt"
 	destination
 		distance 3 9
-		attributes "near earth" "paradise" "core"
+		attributes "near earth" "paradise"
 	npc
 		government "Pirate"
 		personality nemesis harvests plunders
@@ -354,8 +352,6 @@ mission "Food Convoy [1]"
 	npc accompany save
 		government "Merchant"
 		personality escort timid
-		"cargo settings"
-			commodities "Food"
 		fleet
 			names "civilian"
 			variant
@@ -381,7 +377,7 @@ mission "Food Convoy [2]"
 		attributes "dirt belt"
 	destination
 		distance 4 10
-		attributes "near earth" "paradise" "core"
+		attributes "near earth" "paradise"
 	npc
 		government "Pirate"
 		personality nemesis harvests plunders
@@ -403,8 +399,6 @@ mission "Food Convoy [2]"
 	npc accompany save
 		government "Merchant"
 		personality escort timid
-		"cargo settings"
-			commodities "Food"
 		fleet
 			names "civilian"
 			variant
