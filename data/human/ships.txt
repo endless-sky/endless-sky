@@ -1477,14 +1477,14 @@ ship "Dreadnought"
 			"hull damage" 1300
 			"hit force" 3900
 	outfits
-		"Torpedo Launcher" 3
-		"Torpedo" 90
+		"Torpedo Launcher" 4
+		"Torpedo" 120
 		"Plasma Turret" 3
 		"Heavy Anti-Missile Turret" 2
 		
 		"Breeder Reactor"
 		"S3 Thermionic"
-		"LP144a Battery Pack"
+		"LP072a Battery Pack"
 		"D41-HY Shield Generator"
 		"Small Radar Jammer"
 		"Liquid Helium Cooler"
@@ -1500,7 +1500,7 @@ ship "Dreadnought"
 	gun -9.5 -186 "Torpedo Launcher"
 	gun 9.5 -186 "Torpedo Launcher"
 	gun -18.5 -173.5 "Torpedo Launcher"
-	gun 18.5 -173.5
+	gun 18.5 -173.5 "Torpedo Launcher"
 	turret 0 -99.5 "Plasma Turret"
 	turret -39 -63.5 "Heavy Anti-Missile Turret"
 	turret 39 -63.5 "Heavy Anti-Missile Turret"
