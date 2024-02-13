@@ -1477,14 +1477,14 @@ ship "Dreadnought"
 			"hull damage" 1300
 			"hit force" 3900
 	outfits
-		"Torpedo Launcher" 3
-		"Torpedo" 90
+		"Torpedo Launcher" 4
+		"Torpedo" 120
 		"Plasma Turret" 3
 		"Heavy Anti-Missile Turret" 2
 		
 		"Breeder Reactor"
 		"S3 Thermionic"
-		"LP144a Battery Pack"
+		"LP072a Battery Pack"
 		"D41-HY Shield Generator"
 		"Small Radar Jammer"
 		"Liquid Helium Cooler"
@@ -1500,7 +1500,7 @@ ship "Dreadnought"
 	gun -9.5 -186 "Torpedo Launcher"
 	gun 9.5 -186 "Torpedo Launcher"
 	gun -18.5 -173.5 "Torpedo Launcher"
-	gun 18.5 -173.5
+	gun 18.5 -173.5 "Torpedo Launcher"
 	turret 0 -99.5 "Plasma Turret"
 	turret -39 -63.5 "Heavy Anti-Missile Turret"
 	turret 39 -63.5 "Heavy Anti-Missile Turret"
@@ -1562,6 +1562,57 @@ ship "Dropship"
 	explode "small explosion" 5
 	description "Dropships were designed with the Navy's Auxiliary in mind. Landed Auxiliaries often act as forward operating bases, so troops needing transport to another area often rely on their Dropships. This cramped and uncomfortable vessel is able to move a squad of Republic soldiers at great speed for its size."
 	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
+
+
+
+ship "Enforcer"
+	sprite "ship/enforcer"
+	thumbnail "thumbnail/enforcer"
+	attributes
+		category "Light Warship"
+		"cost" 490000
+		"shields" 2300
+		"hull" 1100
+		"required crew" 3
+		"bunks" 5
+		"mass" 130
+		"drag" 2.9
+		"heat dissipation" .7
+		"fuel capacity" 400
+		"cargo space" 30
+		"outfit space" 210
+		"weapon capacity" 55
+		"engine capacity" 60
+		weapon
+			"blast radius" 34
+			"shield damage" 340
+			"hull damage" 170
+			"hit force" 510
+	outfits
+		"Energy Blaster" 4
+		"Laser Turret"
+		
+		"nGVF-CC Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
+		"Hyperdrive"
+
+	engine 0 39
+	gun -11 -52
+	gun 11 -52
+	gun -5.5 -48
+	gun 5.5 -48
+	turret 0 -0.5
+	leak "leak" 40 30
+	leak "flame" 50 60
+	explode "tiny explosion" 8
+	explode "small explosion" 12
+	explode "medium explosion" 4
+	description `Prior to the formation of the galactic Republic, many star systems were owned by "governing corporate entities," with the vast majority of space being inaccessible to private citizens. The only exception to this rule were the pirate bands, whose few ships were often stolen or rebellious corporate fleets of their own, yet who had an outsized impact on interstellar trade. The necessity for corporations to protect their operations meant that Enforcer was one of the most common vessels used for security and defense. The ship boasts an armament of four gun ports and a turreted mount, all packed on a small but defensible frame that was powerful for its time.`
+	description `	Although no longer on the market, the Enforcer finds itself in the possession of a small number of merchants and, ironically, various groups of pirates, as an aging combat ship easily outperformed by other light warships or even interceptors of a similar size.`
 
 
 
@@ -2336,6 +2387,63 @@ ship "Heavy Shuttle"
 
 
 
+ship "Hogshead"
+	sprite "ship/hogshead"
+	thumbnail "thumbnail/hogshead"
+	attributes
+		category "Space Liner"
+		"cost" 3150000
+		"shields" 3200
+		"hull" 1900
+		"required crew" 18
+		"bunks" 84
+		"mass" 210
+		"drag" 4.3
+		"heat dissipation" .55
+		"fuel capacity" 600
+		"cargo space" 45
+		"outfit space" 320
+		"weapon capacity" 80
+		"engine capacity" 90
+		weapon
+			"blast radius" 51
+			"shield damage" 510
+			"hull damage" 255
+			"hit force" 765
+	outfits
+		"Heavy Anti-Missile Turret"
+		"Anti-Missile Turret"
+
+		"S3 Thermionic"
+		"KP-6 Photovoltaic Array" 2
+		"LP036a Battery Pack"
+
+		"D41-HY Shield Generator"
+		"Small Radar Jammer" 2
+		"Luxury Accommodations"
+		
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Hyperdrive"
+
+	engine 34 42
+	engine -34 42
+	gun -17.5 -79.5
+	gun 17.5 -79.5
+	turret 0 -44 "Heavy Anti-Missile Turret"
+	turret 0 63 "Anti-Missile Turret"
+	leak "leak" 50 40
+	leak "big leak" 70 40
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 25
+	explode "large explosion" 10
+	"final explode" "final explosion medium"
+	description `First manufactured by a forgotten shipyard many centuries ago, the Hogshead got its iconic name from the keg-like shape of its engine pods; its design was a hot topic of discussion for captains everywhere. The ship quickly became popular after first being released for consumer purchase and was commonly seen around various systems as the go-to "space bus" in human space.`
+	description `	Unfortunately, only a few decades after introducing the ship, the shipyard went bankrupt and was never heard from again, leaving the Hogshead to history as their one-hit-wonder. In the current era, Hogsheads are much less common; they are considered "unsightly" compared to modern vessels such as the Star Queen, though a few places in human space still sell them.`
+
+
+
 ship "Lance"
 	sprite "ship/lance"
 	thumbnail "thumbnail/lance"
@@ -2569,6 +2677,42 @@ ship "Manta"
 	explode "medium explosion" 15
 	"final explode" "final explosion small"
 	description "After their Quicksilver light warship with its armament of Particle Cannons became a large success with convoy escorts and planetary defense forces, Megaparsec decided to develop a larger ship with similar maneuverability but heavier firepower. The Manta is the result: a ship with enough long-range firepower that fleeing from a battle with it is almost impossible."
+
+
+
+ship "Mining Drone"
+	sprite "ship/mining drone"
+	thumbnail "thumbnail/mining drone"
+	attributes
+		category "Drone"
+		"cost" 58000
+		"hull" 300
+		"automaton" 1
+		"mass" 12
+		"drag" .55
+		"heat dissipation" .8
+		"outfit space" 62
+		"weapon capacity" 12
+		"engine capacity" 28
+		weapon
+			"blast radius" 3
+			"shield damage" 30
+			"hull damage" 15
+			"hit force" 45
+	outfits
+		"Mining Laser"
+
+		"nGVF-AA Fuel Cell"
+		"Supercapacitor"
+
+		"X1700 Ion Thruster"
+		"X1200 Ion Steering"
+		
+	engine 0 22 0.9
+	gun 0 -22
+	explode "tiny explosion" 10
+	description "The semi-autonomous Mining Drone is used by the Syndicate alongside the Sunder mining vessel in a supportive role. Not being much more than a Mining Laser with an engine stuck to the rear of it, these drones do not last long in combat with other ships due to how fragile they are."
+	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
 
 
 
@@ -3174,6 +3318,63 @@ ship "Roost"
 
 
 
+ship "Saber"
+	sprite "ship/saber"
+	thumbnail "thumbnail/saber"
+	attributes
+		category "Medium Warship"
+		"cost" 2200000
+		"shields" 4600
+		"hull" 2600
+		"required crew" 16
+		"bunks" 25
+		"mass" 370
+		"drag" 6
+		"heat dissipation" .5
+		"fuel capacity" 600
+		"cargo space" 30
+		"outfit space" 280
+		"weapon capacity" 105
+		"engine capacity" 90
+		weapon
+			"blast radius" 72
+			"shield damage" 720
+			"hull damage" 360
+			"hit force" 1080
+	outfits
+		"Beam Laser" 3
+		"Javelin Pod" 2
+		"Javelin" 600
+		"Javelin Storage Crate" 2
+		"Blaster Turret"
+		
+		"nGVF-CC Fuel Cell"
+		"LP072a Battery Pack"
+		"D23-QP Shield Generator"
+		
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+
+	engine 0 105
+	gun -10.5 -105 "Beam Laser"
+	gun 0 -105 "Beam Laser"
+	gun 10.5 -105 "Beam Laser"
+	gun -5 -104 "Javelin Pod"
+	gun 5 -104 "Javelin Pod"
+	turret 0 27.5 "Blaster Turret"
+	leak "leak" 60 60
+	leak "flame" 40 80
+	leak "big leak" 40 20
+	explode "tiny explosion" 10
+	explode "small explosion" 24
+	explode "medium explosion" 28
+	explode "large explosion" 10
+	"final explode" "final explosion medium"
+	description "During the caravan era, a boom of economic development spread along the paths of more heavily armed and technologically advanced merchant fleets originating from the Deep, which resulted in ships such as the Saber being developed. This medium warship was one of the powerhouses of military might in its time, armed to the teeth with five gun ports in the nose and a dorsal turret mount to fire at anything not in front of it. As pirates began to join together in larger war bands in response to the more heavily defended merchants, the Saber became popular amongst them as well. Unlike other ships such as the Firebird, it slowly faded out as competition rose, but it is nevertheless cherished by those who still own one."
+
+
+
 ship "Scout"
 	sprite "ship/scout"
 	thumbnail "thumbnail/scout"
@@ -3601,6 +3802,65 @@ ship "Star Queen"
 	"final explode" "final explosion medium"
 	description "The Star Queen is a relic of a more peaceful period of galactic history: a luxury liner for high-end tourists. Every cabin has its own mini-bar, and the bathrooms have marble tile and showers that use actual hot water instead of chemicals or sonic vibrations."
 	description "	In support of environmental movements across the galaxy, all Star Queens come standard with an array of solar panels as their only source of energy as opposed to more popular power generators such as fuel cells or nuclear reactors that produce some amount of waste. Although some argue that this is a pointless move given the prevalence of clean fusion reactors, others have applauded it and cited the prohibitive costs of fusion reactors as a reason for using solar panels."
+
+
+
+ship "Sunder"
+	sprite "ship/sunder"
+	thumbnail "thumbnail/sunder"
+	attributes
+		category "Utility"
+		"cost" 1000000
+		"shields" 1200
+		"hull" 1600
+		"required crew" 3
+		"bunks" 5
+		"mass" 160
+		"drag" 3.8
+		"heat dissipation" .7
+		"fuel capacity" 600
+		"cargo space" 80
+		"outfit space" 230
+		"weapon capacity" 50
+		"engine capacity" 90
+		weapon
+			"blast radius" 28
+			"shield damage" 280
+			"hull damage" 140
+			"hit force" 420
+	outfits
+		"Mining Laser" 2
+		"Tractor Beam"
+
+		"Asteroid Scanner"
+		"nGVF-CC Fuel Cell"
+		"LP036a Battery Pack"
+		"D23-QP Shield Generator"
+
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+
+	engine -11.5 54
+	engine 11.5 54
+	gun -9.5 -53
+	gun 9.5 -53
+	turret 0 28.5
+	bay "Drone" 0 -14
+		"under"
+		"launch effect" "human external"
+	bay "Drone" 0 38
+		"under"
+		"angle" 180
+		"launch effect" "human external"
+	leak "leak" 60 50
+	leak "flame" 50 80
+	explode "tiny explosion" 20
+	explode "small explosion" 15
+	explode "medium explosion" 15
+	"final explode" "final explosion small"
+	description "The Sunder is a versatile mining platform equipped with dedicated prospecting equipment, most notably an undercarriage that supports two Mining Drones. The lineage of this ship can be traced back to the old asteroid mining ships used in the Sol Main Belt centuries ago; however, because of recent Syndicate efforts to further exploit the Core's mineral wealth, the newest model of the Sunder is now manufactured by Syndicated Shipyards."
+
 
 
 

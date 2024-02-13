@@ -386,7 +386,7 @@ mission "Escort science vessel"
 		government "Merchant"
 		personality escort timid
 		fleet
-			names "deep"
+			names "deep science vessel"
 			variant
 				"Scout"
 			variant
