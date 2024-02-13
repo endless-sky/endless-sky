@@ -290,37 +290,6 @@ bool Hardpoint::FireAntiMissile(Ship &ship, const Projectile &projectile, vector
 	if(!strength)
 		return false;
 
-	// Get the anti-missile range. Anti-missile shots always last a single frame,
-	// so their range is equal to their velocity.
-	double range = outfit->Velocity();
-
-	// Check if the missile is within range of this hardpoint.
-	const Angle &facing = ship.Facing();
-	Point start = ship.Position() + facing.Rotate(point);
-	Point offset = projectile.Position() - start;
-	if(offset.Length() > range)
-		return false;
-
-	// Check if the missile is within the arc of fire.
-	Angle aim(offset);
-	if(!IsOmnidirectional())
-	{
-		Angle minArc = GetMinArc();
-		Angle maxArc = GetMaxArc();
-		minArc += facing;
-		maxArc += facing;
-		if(!aim.IsInRange(minArc, maxArc))
-			return false;
-	}
-
-	// Precompute the number of visuals that will be added.
-	visuals.reserve(visuals.size() + outfit->FireEffects().size()
-		+ outfit->HitEffects().size() + outfit->DieEffects().size());
-
-	// Firing effects are displayed at the anti-missile hardpoint that just fired.
-	angle = aim - facing;
-	start += aim.Rotate(outfit->HardpointOffset());
-	CreateEffects(outfit->FireEffects(), start, ship.Velocity(), aim, visuals);
 	// Check whether the projectile is within range and create any visuals.
 	if(!FireSpecialSystem(ship, projectile, visuals))
 		return false;
@@ -439,6 +408,18 @@ bool Hardpoint::FireSpecialSystem(Ship &ship, const Body &body, std::vector<Visu
 	Point offset = body.Position() - start;
 	if(offset.Length() > range)
 		return false;
+
+	// Check if the target is within the arc of fire.
+	Angle aim(offset);
+	if(!IsOmnidirectional())
+	{
+		Angle minArc = GetMinArc();
+		Angle maxArc = GetMaxArc();
+		minArc += facing;
+		maxArc += facing;
+		if(!aim.IsInRange(minArc, maxArc))
+			return false;
+	}
 
 	// Precompute the number of visuals that will be added.
 	visuals.reserve(visuals.size() + outfit->FireEffects().size()
