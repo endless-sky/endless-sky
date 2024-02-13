@@ -508,7 +508,7 @@ void Engine::Step(bool isActive)
 	{
 		center = flagship->Center();
 		centerVelocity = flagship->Velocity();
-		Preferences::ExtendedJumpEffects jumpEffectState = Preferences::GetExtendedJumpEffects();
+		Preferences::ExtendedJumpEffects jumpEffectState = Preferences::extendedJumpEffects.Get();
 		if(flagship->IsHyperspacing() && jumpEffectState != Preferences::ExtendedJumpEffects::OFF)
 			centerVelocity *= 1. + pow(flagship->GetHyperspacePercentage() /
 				(jumpEffectState == Preferences::ExtendedJumpEffects::MEDIUM ? 40. : 20.), 2);
@@ -2357,7 +2357,7 @@ void Engine::DoCollection(Flotsam &flotsam)
 	// Checks for player FlotsamCollection setting
 	if(collector->IsYours())
 	{
-		const auto flotsamSetting = Preferences::GetFlotsamCollection();
+		const auto flotsamSetting = Preferences::flotsamCollection.Get();
 		if(flotsamSetting == Preferences::FlotsamCollection::OFF)
 			return;
 		if(collector == player.Flagship() && flotsamSetting == Preferences::FlotsamCollection::ESCORT)
