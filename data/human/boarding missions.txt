@@ -12,7 +12,11 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 conversation "assisting merchant"
-	`When you repair the <origin>, the captain thanks you for your assistance and pays you <payment>.`
+	`${assist merchant 1} <origin>${assist merchant 2} ${assist merchant 3} <payment>${assist merchant 4}`
+		decline
+
+conversation "assisting merchant hazardous"
+	`${assist merchant 1 hazardous} <origin>${assist merchant 2} ${assist merchant 3} <payment>${assist merchant 4}`
 		decline
 
 mission "Assisting Merchant (Small)"
@@ -61,6 +65,105 @@ mission "Assisting Merchant (Large)"
 		payment 30000
 		conversation "assisting merchant"
 	destination "Earth"
+
+phrase "assist merchant 1"
+	phrase
+		"assist merchant 1-1"
+	phrase
+		"assist merchant 1-2"
+	phrase
+		"assist merchant 1-3"
+
+phrase "assist merchant 1 hazardous"
+	phrase
+		"assist merchant 1-1"
+	phrase
+		"assist merchant 1-2 hazardous"
+	phrase
+		"assist merchant 1-3"
+
+phrase "assist merchant 1-1"
+	word
+		`Knowing that `
+		`Since `
+		`Understanding that `
+		`Considering that `
+		`Seeing how `
+		`Knowing how `
+
+phrase "assist merchant 1-2"
+	word
+		`you altered course `
+		`you went out of your way `
+		`you may have altered your own flight plans `
+
+phrase "assist merchant 1-2 hazardous"
+	word
+		`you risked your life `
+		`you risked your ship `
+		`you risked your own ship `
+		`you braved enemy fire `
+		`you braved danger `
+
+phrase "assist merchant 1-3"
+	word
+		`to ` 4
+		`in order to ` 2
+		`so that you could `
+	word
+		`save `
+		`repair `
+		`rescue `
+		`secure `
+		`assist `
+		`help `
+	word
+		`the`
+
+phrase "assist merchant 2"
+	phrase
+		`assist merchant 2 simple` 2
+		`assist merchant 2 complex`
+
+phrase "assist merchant 2 simple"
+	word
+		`, `
+
+phrase "assist merchant 2 complex"
+	word
+		` and `
+	word
+		`save its cargo, `
+		`secure its cargo, `
+		`save its crew, `
+		`rescue its crew, `
+
+phrase "assist merchant 3"
+	word
+		`its `
+		`the `
+		`the ship's `
+		`the vessel's `
+	word
+		`` 4
+		`relieved `
+	word
+		`captain `
+	word
+		`gives you`
+		`offers you`
+		`rewards you with`
+
+phrase "assist merchant 4"
+	word
+		`.` 5
+		` in gratitude.`
+		` in appreciation.`
+		` as an expression of their gratitude.`
+		` in thanks.`
+		` as thanks.`
+		` for your assistance.`
+
 
 
 mission "Asteroid Course"

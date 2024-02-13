@@ -48,6 +48,7 @@ color "player info hardpoint turret hover" 0. .6 .8 1.
 color "logbook sidebar" .09 .09 .09 1.
 color "logbook background" .125 .125 .125 1.
 color "logbook line" .2 .2 .2 1.
+color "message log background" .125 .125 .125 1.
 color "item selected" 0. 0. 0. .3
 
 # Colors used to draw certain HUD elements in-flight.
@@ -170,7 +171,11 @@ color "warning no command" 0.16 0.16 0.13 1.
 # Colors used for messages
 color "message importance highest" 1. .5 0. 1.
 color "message importance info" 0. 1. .5 1.
-color "message importance default" 1. 1. 1. 1.
+color "message log importance highest" 1. .5 0. 1.
+color "message log importance high" .75 .75 .75 1.
+color "message log importance info" 0. 1. .5 1.
+color "message log importance daily" 0. .5 1. 1.
+color "message log importance low" .75 .75 .75 1.
 
 # Colors used when drawing the map (system names, links, and the player's desired route).
 # (The color of the ring that represents a given system is context-sensitive.)
@@ -537,6 +542,13 @@ interface "plugins"
 		from -225 -236
 		align top left
 		color bright
+	visible
+	line
+		from -230 -222 to -10 -221
+	box "plugin list"
+		from -250 -216 to -10 184
+	box "plugin description"
+		from 250 -244 to 10 184
 
 
 
@@ -1211,7 +1223,7 @@ interface "trade"
 	active if "can buy"
 	sprite "ui/dialog cancel"
 		center 40 355
-	button B "Buy All"
+	button u "B_uy All"
 		center 40 355
 		dimensions 70 30
 	
@@ -1220,13 +1232,13 @@ interface "trade"
 	
 	active if "can sell"
 	visible if "!can sell outfits"
-	button S "Sell All"
+	button e "S_ell All"
 		center 130 355
 		dimensions 90 30
 	
 	active if "can sell outfits"
 	visible if "can sell outfits"
-	button S "Sell Outfits"
+	button e "S_ell Outfits"
 		center 130 355
 		dimensions 90 30
 
@@ -1519,6 +1531,11 @@ interface "info panel"
 	button v "Sa_ve Order"
 		center -195 305
 		dimensions 90 30
+
+
+
+interface "message log"
+	value "width" 570
 
 
 

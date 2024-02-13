@@ -154,12 +154,12 @@ int ShipyardPanel::DetailWidth() const
 
 
 
-int ShipyardPanel::DrawDetails(const Point &center)
+double ShipyardPanel::DrawDetails(const Point &center)
 {
 	string selectedItem = "No Ship Selected";
 	const Font &font = FontSet::Get(14);
 
-	int heightOffset = 20;
+	double heightOffset = 20.;
 
 	if(selectedShip)
 	{

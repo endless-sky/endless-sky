@@ -24,6 +24,7 @@ target_sources(EndlessSkyLib PRIVATE
 	AmmoDisplay.h
 	Angle.cpp
 	Angle.h
+	Animate.h
 	Armament.cpp
 	Armament.h
 	AsteroidField.cpp
@@ -50,8 +51,11 @@ target_sources(EndlessSkyLib PRIVATE
 	CategoryList.h
 	CategoryTypes.h
 	ClickZone.h
+	Collision.cpp
+	Collision.h
 	CollisionSet.cpp
 	CollisionSet.h
+	CollisionType.h
 	Color.cpp
 	Color.h
 	Command.cpp
@@ -189,6 +193,8 @@ target_sources(EndlessSkyLib PRIVATE
 	MenuAnimationPanel.h
 	MenuPanel.cpp
 	MenuPanel.h
+	MessageLogPanel.cpp
+	MessageLogPanel.h
 	Messages.cpp
 	Messages.h
 	Minable.cpp
@@ -262,6 +268,8 @@ target_sources(EndlessSkyLib PRIVATE
 	RandomEvent.h
 	Rectangle.cpp
 	Rectangle.h
+	RenderBuffer.cpp
+	RenderBuffer.h
 	RingShader.cpp
 	RingShader.h
 	Sale.h
@@ -269,6 +277,7 @@ target_sources(EndlessSkyLib PRIVATE
 	SavedGame.h
 	Screen.cpp
 	Screen.h
+	ScrollVar.h
 	Set.h
 	Shader.cpp
 	Shader.h
