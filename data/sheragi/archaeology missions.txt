@@ -339,8 +339,8 @@ event "remove pirates from Ildaria"
 
 event "readd pirates to Ildaria"
 	system Ildaria
-		add fleet "Small Southern Pirates" 1000
-		add fleet "Large Southern Pirates" 2000
+		add fleet "Small Southern Pirates" 4000
+		add fleet "Large Southern Pirates" 7000
 
 mission "Sad Archie"
 	landing
