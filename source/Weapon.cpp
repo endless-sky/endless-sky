@@ -28,6 +28,39 @@ using namespace std;
 
 
 
+Weapon::Emission::Emission(const DataNode &node)
+{
+	weapon = GameData::Outfits().Get(node.Token(1));
+	projectileCount = node.Size() >= 3 ? node.Value(2) : 1;
+
+	for(const DataNode &child : node)
+	{
+		const string &key = child.Token(0);
+		if(key == "aim at target")
+			aimAtTarget = true;
+		else if(child.Size() < 2)
+			child.PrintTrace("Unrecognized attribute:");
+		else
+		{
+			double value = child.Value(1);
+			if(key == "facing")
+				facing = Angle(value);
+			else if(key == "offset" && child.Size() >= 3)
+				offset = Point(value, child.Value(2));
+			else if(key == "emission range")
+				emissionRange = value;
+			else if(key == "emission count")
+				emissionCount = static_cast<size_t>(value);
+			else if(key == "arming time")
+				armingTime = value;
+			else
+				child.PrintTrace("Unrecognized attribute:");
+		}
+	}
+}
+
+
+
 // Load from a "weapon" node, either in an outfit or in a ship (explosion).
 void Weapon::LoadWeapon(const DataNode &node)
 {
@@ -113,6 +146,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 					child.PrintTrace("Skipping unknown or incomplete submunition attribute:");
 			}
 		}
+		else if(key == "emission")
+			emissions.emplace_back(child);
 		else if(key == "inaccuracy")
 		{
 			inaccuracy = child.Value(1);

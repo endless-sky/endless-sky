@@ -57,7 +57,7 @@ public:
 
 	struct Emission {
 		Emission() noexcept = default;
-		explicit Emission(const DataNode &node) noexcept;
+		explicit Emission(const DataNode &node);
 
 		const Weapon *weapon = nullptr;
 		// The number of projectiles created each time the source projectile emits this weapon.

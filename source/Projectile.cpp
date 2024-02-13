@@ -67,6 +67,13 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const We
 	// If a random lifetime is specified, add a random amount up to that amount.
 	if(weapon->RandomLifetime())
 		lifetime += Random::Int(weapon->RandomLifetime() + 1);
+
+	for(const Weapon::Emission &emission : weapon->Emissions())
+	{
+		const Weapon *const weapon = emission.weapon;
+		if(weapon && weapon->IsWeapon())
+			emissions.emplace_back(emission);
+	}
 }
 
 
@@ -92,6 +99,13 @@ Projectile::Projectile(const Projectile &parent, const Point &offset, const Angl
 	// If a random lifetime is specified, add a random amount up to that amount.
 	if(weapon->RandomLifetime())
 		lifetime += Random::Int(weapon->RandomLifetime() + 1);
+
+	for(const Weapon::Emission &emission : weapon->Emissions())
+	{
+		const Weapon *const weapon = emission.weapon;
+		if(weapon && weapon->IsWeapon())
+			emissions.emplace_back(emission);
+	}
 }
 
 
@@ -146,7 +160,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 		if(emission.armingTime)
 			--emission.armingTime;
 		else if(emission.burstReload <= 0. && emission.burstCount 
-				&& (!range || (target && target->Position().DistanceSquared(position) < range * range)))
+				&& (!range || (target && position.DistanceSquared(target->Position()) < range * range)))
 		{
 			for(size_t i = 0; i < sourceEmission.projectileCount; ++i)
 			{
