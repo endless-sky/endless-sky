@@ -249,6 +249,8 @@ target_sources(EndlessSkyLib PRIVATE
 	PointerShader.h
 	Politics.cpp
 	Politics.h
+	Port.cpp
+	Port.h
 	Preferences.cpp
 	Preferences.h
 	PreferencesPanel.cpp

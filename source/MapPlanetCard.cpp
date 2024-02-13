@@ -44,7 +44,7 @@ MapPlanetCard::MapPlanetCard(const StellarObject &object, unsigned number, bool 
 	: number(number), hasVisited(hasVisited), planetName(object.Name())
 {
 	planet = object.GetPlanet();
-	hasSpaceport = planet->HasSpaceport();
+	hasSpaceport = planet->HasServices();
 	hasShipyard = planet->HasShipyard();
 	hasOutfitter = planet->HasOutfitter();
 	governmentName = planet->GetGovernment()->GetName();

@@ -186,6 +186,7 @@ color "map travel ok flagship" .5 .4 0. 0.
 color "map travel ok none" .55 .1 0. 0.
 color "map wormhole" .5 .2 .9 1.
 color "map orbits fleet destination" 1. 1. 1. 1.
+color "map danger none" .1 .6 0. .4
 
 # Miscellaneous colors
 color "wormholes: Ember Waste" .7 .1 .3
@@ -920,7 +921,7 @@ interface "planet"
 		align right
 		pad 10 0
 	
-	visible if "is inhabited"
+	visible if "has job board"
 	sprite "ui/planet dialog button"
 		center -400 150
 	button j "_Job Board"
@@ -929,6 +930,7 @@ interface "planet"
 		size 18
 		align left
 		pad 10 0
+	visible if "can hire crew"
 	sprite "ui/planet dialog button"
 		center 280 210
 	button h "_Hire Crew"
@@ -958,10 +960,10 @@ interface "planet"
 		align left
 		pad 10 0
 	
-	visible if "has spaceport"
+	visible if "has port"
 	sprite "ui/planet dialog button"
 		center -400 270
-	button p "Space_port"
+	"dynamic button" p "port name"
 		center -400 270
 		dimensions 140 40
 		size 18
