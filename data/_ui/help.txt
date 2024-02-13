@@ -63,7 +63,7 @@ help "lost 5"
 	`Or maybe you're just really, really bad at figuring out how to play this game.`
 
 help "lost 6"
-	`You slip deeper and deeper into the zenlike calm of outer space. The Tao which can be spoken is not the true Tao. The game that must be played is not the true game. You let go of all desire: your desire to press <Show main menu> and check the game's preferences to find out how to control your ship. The desire to view the other places you can travel to by pressing <View star map>. You release even the desire to press <Initiate hyperspace jump> and initiate a random hyperjump in whatever direction you are facing in. Enlightenment hovers on the edge of your consciousness, so close you can almost grasp it.`
+	`You slip deeper and deeper into the zen-like calm of outer space. The Tao which can be spoken is not the true Tao. The game that must be played is not the true game. You let go of all desire: your desire to press <Show main menu> and check the game's preferences to find out how to control your ship. The desire to view the other places you can travel to by pressing <View star map>. You release even the desire to press <Initiate hyperspace jump> and initiate a random hyperjump in whatever direction you are facing in. Enlightenment hovers on the edge of your consciousness, so close you can almost grasp it.`
 
 # Note to future proofreaders: "vasty nothingness" is a reference to Firefly, see http://signal.serenityfirefly.com/mmx/segment/view.php/2253
 help "lost 7"
