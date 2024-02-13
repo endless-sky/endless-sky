@@ -1085,7 +1085,7 @@ ship "Penguin"
 		"drag" 1.25
 		"heat dissipation" 0.9
 		"fuel capacity" 800
-		"energy capacity" 1050
+		"energy capacity" 300
 		"ramscoop" 1.25
 		"cargo space" 19
 		"outfit space" 109
@@ -1116,6 +1116,8 @@ ship "Penguin"
 		"reverse thrust" 4.2
 		"reverse thrusting energy" 0.55
 		"reverse thrusting heat" 0.55
+		"energy generation" 0.6
+		"heat generation" 1
 		"flare sprite" "effect/remnant flare/small"
 			"frame rate" 5
 		"flare sound" "plasma tiny"
