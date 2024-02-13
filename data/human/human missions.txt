@@ -6686,7 +6686,7 @@ mission "Southern Fiance 2"
 		has "event: tom and carl's wedding"
 	on offer
 		conversation
-			`After landing, you receive a message from Tom Ardwright and Carl Camberlain. Attached are photos of their wedding on Cornucopia, as well as a letter:`
+			`After landing, you receive a message from Tom Ardwright and Carl Chamberlain. Attached are photos of their wedding on Cornucopia, as well as a letter:`
 			``
 			`Dear <first> <last>,`
 			`	We are delighted to announce that despite the many hardships around us in these times, Tom Ardwright and Carl Chamberlain were married three days ago at the Hart's Hill Vineyard on Cornucopia. This would not have been possible without your willingness to help a man in need, so we thank you from the bottom of our hearts, and if you are ever on Cornucopia, we would be happy to host you. Please enjoy these photos from the wedding.`
