@@ -229,6 +229,8 @@ private:
 	int passengerLimit = 0;
 	double passengerProb = 0.;
 	int64_t paymentApparent = 0;
+	// The payment per escort per jump.
+	int64_t escortPayment = 0;
 
 	ConditionSet toOffer;
 	ConditionSet toAccept;

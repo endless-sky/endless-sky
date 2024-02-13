@@ -632,7 +632,7 @@ bool NPC::HasFailed() const
 // Create a copy of this NPC but with the fleets replaced by the actual
 // ships they represent, wildcards in the conversation text replaced, etc.
 NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const System *destination,
-		int jumps, int64_t payload) const
+		int jumps, int64_t payload, int64_t escortPayment) const
 {
 	NPC result;
 	result.government = government;
@@ -647,24 +647,6 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 	result.passedSpawnConditions = passedSpawnConditions;
 	result.toSpawn = toSpawn;
 	result.toDespawn = toDespawn;
-
-	// Instantiate the actions.
-	string reason;
-	auto ait = npcActions.begin();
-	for( ; ait != npcActions.end(); ++ait)
-	{
-		reason = ait->second.Validate();
-		if(!reason.empty())
-			break;
-	}
-	if(ait != npcActions.end())
-	{
-		Logger::LogError("Instantiation Error: Action \"" + TriggerToText(ait->first) +
-				"\" in NPC uses invalid " + std::move(reason));
-		return result;
-	}
-	for(const auto &it : npcActions)
-		result.npcActions[it.first] = it.second.Instantiate(subs, origin, jumps, payload);
 
 	// Pick the system for this NPC to start out in.
 	result.system = system;
@@ -724,6 +706,27 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 		subs["<npc>"] = result.ships.front()->Name();
 		subs["<npc model>"] = result.ships.front()->DisplayModelName();
 	}
+
+	// Instantiate the actions.
+	string reason;
+	auto ait = npcActions.begin();
+	for( ; ait != npcActions.end(); ++ait)
+	{
+		reason = ait->second.Validate();
+		if(!reason.empty())
+			break;
+	}
+	if(ait != npcActions.end())
+	{
+		Logger::LogError("Instantiation Error: Action \"" + TriggerToText(ait->first) +
+				"\" in NPC uses invalid " + std::move(reason));
+		return result;
+	}
+	if(personality.IsEscort())
+		payload += escortPayment * result.ships.size();
+	for(const auto &it : npcActions)
+		result.npcActions[it.first] = it.second.Instantiate(subs, origin, jumps, payload);
+
 	// Do string replacement on any dialog or conversation.
 	string dialogText = !dialogPhrase->IsEmpty() ? dialogPhrase->Get() : this->dialogText;
 	if(!dialogText.empty())
@@ -733,6 +736,13 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 		result.conversation = ExclusiveItem<Conversation>(conversation->Instantiate(subs));
 
 	return result;
+}
+
+
+
+const Personality &NPC::GetPersonality() const
+{
+	return personality;
 }
 
 
