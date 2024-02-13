@@ -277,7 +277,7 @@ tip "hull fuel:"
 	`Fuel consumed per second when repairing the hull.`
 
 tip "delayed hull fuel:"
-	`Additional fuel consumed per second when repairing the hull once no hull damage has been taken for longer than the value of hull delay.`
+	`Additional fuel consumed per second when repairing the hull after the repair delay period.`
 
 tip "hull fuel multiplier:"
 	`Modifies the fuel consumed when repairing the hull by the given factor.`
@@ -286,7 +286,7 @@ tip "hull heat:"
 	`Heat produced per second when repairing the hull.`
 
 tip "delayed hull heat:"
-	`Additional heat produced per second when repairing the hull once no hull damage has been taken for longer than the value of hull delay.`
+	`Additional heat produced per second when repairing the hull after the repair delay period.`
 
 tip "hull heat multiplier:"
 	`Modifies the heat produced when repairing the hull by the given factor.`
@@ -298,7 +298,7 @@ tip "hull repair rate:"
 	`Amount of hull strength that can be repaired per second. Repairs usually consume energy and may generate heat as well.`
 
 tip "delayed hull repair rate:"
-	`Additional hull strength that can be repaired per second once no hull damage has been taken for longer than the value of hull delay.`
+	`Additional hull strength that can be repaired per second after the repair delay period.`
 
 tip "repair delay:"
 	`The number of seconds it takes for additional hull repairs to begin after taking hull damage.`
@@ -541,7 +541,7 @@ tip "shield fuel:"
 	`Fuel consumed per second when recharging shields.`
 
 tip "delayed shield fuel:"
-	`Additional fuel consumed per second when recharging shields once no shield damage has been taken for longer than the value of shield delay.`
+	`Additional fuel consumed per second when recharging shields after the shield delay period.`
 
 tip "shield fuel multiplier:"
 	`Modifies the fuel consumed when recharging shields by the given factor.`
@@ -550,7 +550,7 @@ tip "shield heat:"
 	`Heat produced per second when recharging shields.`
 
 tip "delayed shield heat:"
-	`Additional heat produced per second when recharging shields once no shield damage has been taken for longer than the value of shield delay.`
+	`Additional heat produced per second when recharging shields after the shield delay period.`
 
 tip "shield heat multiplier:"
 	`Modifies the heat produced when recharging shields by the given factor.`
@@ -559,7 +559,7 @@ tip "shield generation:"
 	`Shield points recharged per second. Recharging shields usually consumes energy, and may also produce heat.`
 
 tip "delayed shield generation:"
-	`Additional shield points recharged per second once no shield damage has been taken for longer than the value of shield delay.`
+	`Additional shield points recharged per second after the shield delay period.`
 
 tip "shield generation multiplier:"
 	`Modifies the amount of shield points recharged per second by the given factor.`
