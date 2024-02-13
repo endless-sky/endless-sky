@@ -643,7 +643,7 @@ fleet "Large Hai Merchant (Human)"
 fleet "Unfettered Logistics"
 	government "Hai (Unfettered Civilians)"
 	names "hai"
-	cargo 1
+	cargo 3
 	commodities "Food" "Heavy Metals" "Medical"
 	personality
 		confusion 25
