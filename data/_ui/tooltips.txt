@@ -532,7 +532,7 @@ tip "shield energy:"
 	`Energy consumed per second when recharging shields.`
 
 tip "delayed shield energy:"
-	`Additional energy consumed per second when recharging shields once no shield damage has been taken for longer than the value of shield delay.`
+	`Additional energy consumed per second when recharging shields after the shield delay period.`
 
 tip "shield energy multiplier:"
 	`Modifies the energy consumed when recharging shields by the given factor.`
