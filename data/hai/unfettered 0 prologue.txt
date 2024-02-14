@@ -666,7 +666,7 @@ mission "<uhai> 0: Bring Hai"
 					goto action
 				`	"But I thought the Unfettered only split from the Hai a few hundred years ago?"`
 					to display
-						has "Ask the Hai about the Unfettered: oferred"
+						has "Ask the Hai about the Unfettered: offered"
 			`	He raises an eyebrow, "That is true, you seem to be well versed in Hai history. But there is never only one version of it. When I speak of the 'Unfettered' I mean more than what we are today, more than all the Hai in Unfettered space.`
 			`	"This word includes all those that are willing to fight for their values. Hai like that existed before the alien raids. They existed even before the coming of the great Hai empire. Ever since the Hai first drew breath they existed, and they always will, even if the Unfettered government falls. We Hai are not the only one that can be 'Unfettered', either. One cannot kill an idea. But let us go back to the matter at hand, shall we?"`
 			label action

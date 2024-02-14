@@ -677,7 +677,7 @@ mission "Unfettered: Bring Particles"
 	job
 	repeat
 	name "Sell <weapons>"
-	description "The captain you just duelled has taken interested in the range and damage of the Particle Cannon. Bring two to them for <payment>."
+	description "The captain you just duelled has taken interest in the range and damage of the Particle Cannon. Bring two to them for <payment>."
 	substitutions
 		<weapons> "two Particle Cannons"
 	source
