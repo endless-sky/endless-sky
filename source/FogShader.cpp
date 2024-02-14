@@ -174,7 +174,7 @@ void FogShader::Draw(const Point &center, double zoom, const PlayerInfo &player)
 		for(const auto &it : GameData::Systems())
 		{
 			const System &system = it.second;
-			if(!system.IsValid() || !player.HasVisited(system))
+			if(!system.IsValid() || !player.CanView(system))
 				continue;
 			Point pos = zoom * (system.Position() + center);
 

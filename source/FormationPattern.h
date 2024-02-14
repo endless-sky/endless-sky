@@ -34,7 +34,7 @@ public:
 	// Iterator that provides sequential access to all formation positions.
 	class PositionIterator {
 	public:
-		PositionIterator(const FormationPattern &pattern);
+		explicit PositionIterator(const FormationPattern &pattern);
 		PositionIterator() = delete;
 
 		// Iterator traits

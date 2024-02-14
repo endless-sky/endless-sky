@@ -3070,6 +3070,12 @@ phrase "civilian subphrase 15"
 
 
 
+phrase "deep science vessel"
+	word
+		"D.R.S. "
+	phrase
+		"intellectuals"
+
 # Law enforcement names:
 
 phrase "republic capital"
