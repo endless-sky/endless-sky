@@ -143,10 +143,13 @@ private:
 	// Retrieve a condition entry based on a condition name, the entry doesn't
 	// get created if it doesn't exist yet (the Set function will handle
 	// creation if required).
+	// Does not expand names further.
 	ConditionEntry *GetEntry(const std::string &name);
 	const ConditionEntry *GetEntry(const std::string &name) const;
 	bool VerifyProviderLocation(const std::string &name, DerivedProvider *provider) const;
 
+	// Expands the name of a condition to the full name based on the $[] blocks it contains.
+	std::string Expand(const std::string &name) const;
 
 
 private:

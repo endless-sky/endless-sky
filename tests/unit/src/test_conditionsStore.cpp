@@ -663,6 +663,49 @@ SCENARIO( "Providing multiple derived conditions", "[ConditionStore][DerivedMult
 }
 
 
+
+SCENARIO("Using expanded conditions", "[ConditionsStore][Expand]")
+{
+	GIVEN("A ConditionsStore with existing values")
+	{
+		auto store = ConditionsStore();
+		store["test"] = 10;
+		THEN("Conditions are expanded")
+		{
+			REQUIRE(store.Set("test$[test]test", 1));
+			REQUIRE(store.Get("test$[test]test") == 1);
+			REQUIRE(store.Get("test10test") == 1);
+			REQUIRE(store.PrimariesSize() == 2);
+			REQUIRE( store["test10test"] == 1 );
+			REQUIRE( store["test$[test]test"] == 1 );
+		}
+		AND_THEN("Multiple and nested expansions are possible")
+		{
+			REQUIRE( store.Set("$[test]a", 2) );
+			REQUIRE( store.Set("a$[test]", 3) );
+			REQUIRE( store.Set("$[test]", 4) );
+			REQUIRE( store.Get("10a") == 2);
+			REQUIRE( store.Get("a10") == 3);
+			REQUIRE( store.Get("10") == 4);
+			REQUIRE( store.Set("hello$[$[test]]", 5) );
+			REQUIRE( store.Get("hello4") == 5 );
+			REQUIRE( store.Set("$[test]$[test]", 100) );
+			REQUIRE( store.Set("1010", 100) );
+		}
+		THEN("Invalid expansions are ignored")
+		{
+			REQUIRE( store.Set("hello$[test", 1) );
+			REQUIRE( store.Get("hello$[test") == 1 );
+		}
+		THEN("Unbalanced expansions are handled")
+		{
+			REQUIRE( store.Set("hi$[test]]", 1) );
+			REQUIRE( store.Get("hi10]") == 1 );
+		}
+	}
+}
+
+
 // #endregion unit tests
 
 

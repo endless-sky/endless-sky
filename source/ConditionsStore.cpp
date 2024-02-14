@@ -204,28 +204,30 @@ void ConditionsStore::Save(DataWriter &out) const
 // derived from other data-structures (derived conditions).
 int64_t ConditionsStore::Get(const string &name) const
 {
-	const ConditionEntry *ce = GetEntry(name);
+	const string expanded = Expand(name);
+	const ConditionEntry *ce = GetEntry(expanded);
 	if(!ce)
 		return 0;
 
 	if(!ce->provider)
 		return ce->value;
 
-	return ce->provider->getFunction(name);
+	return ce->provider->getFunction(expanded);
 }
 
 
 
 bool ConditionsStore::Has(const string &name) const
 {
-	const ConditionEntry *ce = GetEntry(name);
+	const string expanded = Expand(name);
+	const ConditionEntry *ce = GetEntry(expanded);
 	if(!ce)
 		return false;
 
 	if(!ce->provider)
 		return true;
 
-	return ce->provider->hasFunction(name);
+	return ce->provider->hasFunction(expanded);
 }
 
 
@@ -234,17 +236,18 @@ bool ConditionsStore::Has(const string &name) const
 // and an int64_t which contains the value if the condition was set.
 pair<bool, int64_t> ConditionsStore::HasGet(const string &name) const
 {
-	const ConditionEntry *ce = GetEntry(name);
+	const string expanded = Expand(name);
+	const ConditionEntry *ce = GetEntry(expanded);
 	if(!ce)
 		return make_pair(false, 0);
 
 	if(!ce->provider)
 		return make_pair(true, ce->value);
 
-	bool has = ce->provider->hasFunction(name);
+	bool has = ce->provider->hasFunction(expanded);
 	int64_t val = 0;
 	if(has)
-		val = ce->provider->getFunction(name);
+		val = ce->provider->getFunction(expanded);
 
 	return make_pair(has, val);
 }
@@ -266,10 +269,11 @@ bool ConditionsStore::Add(const string &name, int64_t value)
 // a set on the provider.
 bool ConditionsStore::Set(const string &name, int64_t value)
 {
-	ConditionEntry *ce = GetEntry(name);
+	const string expanded = Expand(name);
+	ConditionEntry *ce = GetEntry(expanded);
 	if(!ce)
 	{
-		(storage[name]).value = value;
+		(storage[expanded]).value = value;
 		return true;
 	}
 	if(!ce->provider)
@@ -277,7 +281,7 @@ bool ConditionsStore::Set(const string &name, int64_t value)
 		ce->value = value;
 		return true;
 	}
-	return ce->provider->setFunction(name, value);
+	return ce->provider->setFunction(expanded, value);
 }
 
 
@@ -286,38 +290,40 @@ bool ConditionsStore::Set(const string &name, int64_t value)
 // an erase on the provider.
 bool ConditionsStore::Erase(const string &name)
 {
-	ConditionEntry *ce = GetEntry(name);
+	const string expanded = Expand(name);
+	ConditionEntry *ce = GetEntry(expanded);
 	if(!ce)
 		return true;
 
 	if(!(ce->provider))
 	{
-		storage.erase(name);
+		storage.erase(expanded);
 		return true;
 	}
-	return ce->provider->eraseFunction(name);
+	return ce->provider->eraseFunction(expanded);
 }
 
 
 
 ConditionsStore::ConditionEntry &ConditionsStore::operator[](const string &name)
 {
+	const string expanded = Expand(name);
 	// Search for an exact match and return it if it exists.
-	auto it = storage.find(name);
+	auto it = storage.find(expanded);
 	if(it != storage.end())
 		return it->second;
 
 	// Check for a prefix provider.
-	ConditionEntry *ceprov = GetEntry(name);
+	ConditionEntry *ceprov = GetEntry(expanded);
 	// If no prefix provider is found, then just create a new value entry.
 	if(ceprov == nullptr)
-		return storage[name];
+		return storage[expanded];
 
 	// Found a matching prefixed entry provider, but no exact match for the entry itself,
 	// let's create the exact match based on the prefix provider.
-	ConditionEntry &ce = storage[name];
+	ConditionEntry &ce = storage[expanded];
 	ce.provider = ceprov->provider;
-	ce.fullKey = name;
+	ce.fullKey = expanded;
 	return ce;
 }
 
@@ -395,6 +401,58 @@ int64_t ConditionsStore::PrimariesSize() const
 		++result;
 	}
 	return result;
+}
+
+
+
+// Expands the name of a condition to the full name based on the $[] blocks it contains.
+string ConditionsStore::Expand(const string &name) const
+{
+	using size_t = string::size_type;
+	size_t it = name.find("$[");
+
+	if(it == string::npos)
+		return name;
+
+	const size_t len = name.length();
+	string builder;
+	size_t end = -1;
+
+	while(it != string::npos)
+	{
+		builder.append(name.substr(end + 1, it - end - 1)); // does not append the iterator char
+		int depth = 1;
+
+		bool valid = true;
+		for(size_t i = it + 2;; i++)
+		{
+			if(i == len)
+			{
+				valid = false;
+				break;
+			}
+			if(i < len - 1 && name[i] == '$' && name[i + 1] == '[')
+			{
+				depth++;
+				i++;
+			}
+			else if(name[i] == ']')
+			{
+				depth--;
+				if(depth == 0)
+				{
+					end = i;
+					break;
+				}
+			}
+		}
+		if(!valid)
+			break;
+		builder.append(to_string(Get(name.substr(it + 2, end - it - 2))));
+		it = name.find("$[", end + 1);
+	}
+	builder.append(name.substr(end + 1, len - end));
+	return builder;
 }
 
 
