@@ -888,9 +888,9 @@ mission "<uhai> 2: Prove Your Strength"
 			label crush
 			action
 				"unfettered rep: Sira" --
-			`	You rush his way, fist raised, giving his friends in the crowd the exact excuse they were looking for to open fire on you, but thankfully they show restrain as he shouts to command them to stop. You sense your right arm is numb from the shots, but other than that you are fine.`
-			`	"Ye think yerself strong, eh mate? You better be ready to prove it in a proper duel with your ship, against me and me mateys!" He shouts, but he seems more disapointed than angry.`
-			`	Then he moves with frightnening speed, and somehow is in front of you with a blade on your neck before you can do anything about it. "And don't test me," he adds with a dark look, before putting his blade away once he's sure he got his point across. The crowd stays silent but you can tell they were prepared the support him, had the need arrisen.`
+			`	You rush his way, fist raised, giving his friends in the crowd the exact excuse they were looking for to open fire on you, but thankfully they show restrain as he shouts for them to stop. You sense your right arm is numb from the shots, but other than that you are fine.`
+			`	"Ye think yerself strong, eh mate? Ye better be ready to prove it in a proper duel with your ship, against me and me mateys!" He shouts, but he seems more disappointed than angry.`
+			`	He then moves with frightening speed, and is somehow in front of you with a blade on your neck before you could move a muscle. "And don't test me," he adds with a dark look, before putting his blade away once he's sure he got his point across. The crowd stays silent, but you can tell they were prepared to support him, had the need arisen.`
 				goto accept
 			label waiting
 			`Do you want to resume the duel with the Captain now?`
