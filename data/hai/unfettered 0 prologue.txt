@@ -886,8 +886,12 @@ mission "<uhai> 2: Prove Your Strength"
 				`	(Run away.)`
 					goto run
 			label crush
-			`	You rush his way, fist raised, giving his friends in the crowd the exact excuse they were looking for to open fire on you. You wake up later, left alone on the floor. Luckily their weapons only stunned you, but you can forget about doing any further business with the Unfettered.`
-				decline
+			action
+				"unfettered rep: Sira" --
+			`	You rush his way, fist raised, giving his friends in the crowd the exact excuse they were looking for to open fire on you, but thankfully they show restrain as he shouts to command them to stop. You sense your right arm is numb from the shots, but other than that you are fine.`
+			`	"Ye think yerself strong, eh mate? You better be ready to prove it in a proper duel with your ship, against me and me mateys!" He shouts, but he seems more disapointed than angry.`
+			`	Then he moves with frightnening speed, and somehow is in front of you with a blade on your neck before you can do anything about it. "And don't test me," he adds with a dark look, before putting his blade away once he's sure he got his point across. The crowd stays silent but you can tell they were prepared the support him, had the need arrisen.`
+				goto accept
 			label waiting
 			`Do you want to resume the duel with the Captain now?`
 			choice
@@ -934,7 +938,9 @@ mission "<uhai> 2: Prove Your Strength"
 		personality disables staying heroic target launching unconstrained
 		# note: this does not quite work as it should: it's only checked upon offering of the mission and entering a system, it should be as you launch and then we can set a condition for it
 		to spawn
-			"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 > 8
+			or
+				"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 > 8
+				"unfettered rep: Sira" < 0
 		ship "Grasshopper (Tracker)" "Rock"
 		ship "Grasshopper (Ion)" "Thunder"
 		on capture
@@ -943,7 +949,9 @@ mission "<uhai> 2: Prove Your Strength"
 		government "Hai (Unfettered Challenger)"
 		personality disables staying heroic target launching unconstrained
 		to spawn
-			"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 > 10
+			or
+				"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 > 10
+				"unfettered rep: Sira" < 0
 		ship "Lightning Bug (Pulse)" "Rain"
 		on capture
 			fail
