@@ -35,6 +35,20 @@ Give a summary of the various software capabilites.
 
 Give the highlights of the functions in various header files.
 
+class AI: controls all the ships in the game
+- void IssueShipTarget(const std::shared_ptr<Ship> &target); // Fleet commands from the player.
+- void IssueAsteroidTarget(const std::shared_ptr<Minable> &targetAsteroid); // Fleet commands from the player.
+- void IssueMoveTarget(const Point &target, const System *moveToSystem); // Fleet commands from the player.
+- void UpdateKeys(PlayerInfo &player, Command &clickCommands); // Commands issued via the keyboard (mostly, to the flagship).
+- void UpdateEvents(const std::list<ShipEvent> &events); // Allow the AI to track any events it is interested in.
+- void Clean(); // Reset the AI's memory of events.
+- void ClearOrders(); // Clear ship orders.
+- void Step(Command &activeCommands); // Issue AI commands to all ships for one game step.
+- void SetMousePosition(Point position); // Set the mouse position for turning the player's flagship.
+- int64_t AllyStrength(const Government *government); // Get the in-system strength of each government's allies and enemies.
+- int64_t EnemyStrength(const Government *government); // Get the in-system strength of each government's allies and enemies.	
+- static const StellarObject *FindLandingLocation(const Ship &ship, const bool refuel = true); // Find nearest landing location.
+
 ## Video Demo and Troubleshooting
 
 Demo Link:
