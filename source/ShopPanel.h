@@ -214,6 +214,10 @@ private:
 
 private:
 	bool delayedAutoScroll = false;
+
+	Point hoverPoint;
+	std::string shipName;
+	int hoverCount = 0;
 };
 
 
