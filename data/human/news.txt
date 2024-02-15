@@ -2229,7 +2229,7 @@ phrase "Careless Ends Well"
 phrase "Careless Ends Poorly"
 	word
 		"ignores air traffic control and heads to the bar. The ship"
-		"argues with Control about their landing. The ship"
+		"argues with the controller about their landing. The ship"
 		"turns around to reenter their ship, however it"
 	word
 		"is "
