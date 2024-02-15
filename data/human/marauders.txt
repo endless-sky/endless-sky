@@ -506,7 +506,7 @@ ship "Marauder Leviathan"
 		"Fusion Reactor"
 		"LP144a Battery Pack"
 		"D94-YV Shield Generator"
-		"Hai Diamond Regenerator"
+		"D67-TM Shield Generator"
 		"Large Radar Jammer"
 		"Liquid Helium Cooler"
 		"Outfits Expansion" 2
