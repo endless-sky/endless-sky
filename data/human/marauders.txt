@@ -252,7 +252,7 @@ ship "Marauder Falcon"
 		
 		"Fusion Reactor"
 		"Dwarf Core"
-		"LP288a Battery Pack"
+		"LP144a Battery Pack"
 		"D94-YV Shield Generator"
 		"Large Radar Jammer"
 		"Liquid Helium Cooler"
@@ -548,7 +548,7 @@ ship "Marauder Leviathan" "Marauder Leviathan (Engines)"
 		
 		"Fusion Reactor"
 		"LP144a Battery Pack"
-		"D94-YV Shield Generator" 3
+		"D94-YV Shield Generator" 2
 		"Supercapacitor" 5
 		"Large Radar Jammer"
 		"Liquid Nitrogen Cooler"
@@ -850,7 +850,7 @@ ship "Marauder Quicksilver" "Marauder Quicksilver (Weapons)"
 		"Dwarf Core"
 		"LP072a Battery Pack"
 		"D67-TM Shield Generator"
-		"Cooling Duct"
+		"Cooling Ducts"
 		"Security Station" 4
 		"Laser Rifle"
 		
@@ -986,7 +986,7 @@ ship "Marauder Raven" "Marauder Raven (Weapons)"
 		"Breeder Reactor"
 		"Supercapacitor" 3
 		"Liquid Nitrogen Cooler"
-		"Cooling Duct"
+		"Cooling Ducts"
 		"Outfits Expansion"
 		
 		"A250 Atomic Thruster"
