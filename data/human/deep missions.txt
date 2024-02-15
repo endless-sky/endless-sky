@@ -3414,7 +3414,7 @@ mission "Home for Skadenga 6"
 		has "Mani Refit: done"
 	on offer
 		conversation
-			`You arrive at the spaceport to see a Union Executive overseeing the final preparations of his fleet. After a moment, the last crewmembers leave his side and board their ships. He walks over to you. "The fleet is ready to launch. Your mission is to escort them to Nifel, pick up as many as they can hold from there, and drop them off on Asgard. The fleet should be able to head back to Nifel and perform the rest of the resettlement trips from there, but please, try to keep all of them in one piece."`
+			`You arrive at the spaceport to see a Union Executive overseeing the final preparations of his fleet. After a moment, the last crew members leave his side and board their ships. He walks over to you. "The fleet is ready to launch. Your mission is to escort them to Nifel, pick up as many as they can hold from there, and drop them off on Asgard. The fleet should be able to head back to Nifel and perform the rest of the resettlement trips from there, but please, try to keep all of them in one piece."`
 			choice
 				`	"Let's get this over with."`
 				`	"Don't worry, your ships are in good hands."`
