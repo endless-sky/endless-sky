@@ -549,7 +549,7 @@ ship "Marauder Leviathan" "Marauder Leviathan (Engines)"
 		"Fusion Reactor"
 		"LP144a Battery Pack"
 		"D94-YV Shield Generator" 2
-		"Supercapacitor" 5
+		"Security Station" 5
 		"Large Radar Jammer"
 		"Liquid Nitrogen Cooler"
 		"Outfits Expansion" 2
