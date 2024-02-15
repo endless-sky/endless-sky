@@ -45,7 +45,7 @@ jobs:
       - name: Package Application
         run: ./utils/build_appimage.sh build/release
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ env.OUTPUT }}
           path: ${{ env.OUTPUT }}
@@ -78,7 +78,7 @@ jobs:
           cmake --install build/release
           7z a ${{ env.OUTPUT }} "./install/release/*"
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ env.OUTPUT }}
           path: ${{ env.OUTPUT }}
@@ -110,7 +110,7 @@ jobs:
           cmake --install build/release
           7z a ${{ env.OUTPUT }} "./install/release/*"
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ env.OUTPUT }}
           path: ${{ env.OUTPUT }}
@@ -166,7 +166,7 @@ jobs:
               --pre-release
           fi
       - name: Download Artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           path: ${{ github.workspace }} # This will download all files to e.g `./EndlessSky-win64.zip/EndlessSky-win64.zip`
       - name: Add ${{ env.OUTPUT_APPIMAGE }} to release tag
