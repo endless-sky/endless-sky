@@ -260,8 +260,9 @@ ship "Marauder Fury"
 		"Hai Tracker Pod" 2
 		"Meteor Missile Launcher" 2
 		"Meteor Missile Pod" 2
+		"Meteor Missile Box"
 		"Hai Tracker" 112
-		"Meteor Missile" 94
+		"Meteor Missile" 109
 
 		"Systems Core (Small)"
 		"Red Sun Reactor"
