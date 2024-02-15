@@ -23,7 +23,7 @@ mission "Passive-Aggressive Observations"
 	on complete
 		"gegno: encounters" ++
 		conversation
-			`While navigating the skies of this desert world, you notice readings similar to the planet where you previously encountered a member of the Gegno Vi. It's likely this world is also home to the same or similar species of large, worm-like creatures you confronted back then. Eventually, you come across a large Gegno Vi vessel stationed on the surface, though unlike in your prior experience, the ship isn't sunken into the desert, likely having recently landed here. A group of Vi warriors are marching out and nearby the vessel, and while they do, your radar picks up two more ships descending from above.`
+			`While navigating the skies of this desert world, you notice readings similar to the planet where you previously encountered a member of the Gegno Vi. It's likely this world is also home to the same or a similar species of large, worm-like creatures you confronted back then. Eventually, you come across a large Gegno Vi vessel stationed on the surface, though unlike in your prior encounter, the ship isn't sunken into the desert - it has likely landed here recently. A group of Vi warriors are marching out and nearby the vessel, and while they do, your radar picks up two more ships descending from above.`
 			choice
 				`	(Leave.)`
 					goto leave
@@ -177,7 +177,7 @@ mission "Brief Bystander"
 	on complete
 		"gegno: encounters" ++
 		conversation
-			`The presence of scattered recording instruments on the surface of this planet contradicts what little interest the Gegno appear to be giving it nowadays, despite its location within the Gegno's home system of Heutesl. Still, since this planet isn't strictly owned by the Gegno, it makes for a convenient place to stop, and they seem to neither notice nor care that you have landed here.`
+			`The presence of scattered old recording instruments on the surface of this planet seems to contradict the apparent disinterest with which the Gegno appear to be treating it. Despite its location within the Gegno's home system of Heutesl, the planet is apparently deserted. Still, since this planet isn't strictly controlled by the Gegno, it makes for a convenient place to stop, and they seem to neither notice nor care that you have landed here.`
 			`	However, as you fly around, you notice a small Gegno shuttle parked on the ground. The tan coloration of its hull suggests that it's a civilian craft, but what it's doing here is unknown.`
 			choice
 				`	(Investigate.)`
@@ -219,7 +219,7 @@ mission "Scin on Cyife"
 				decline
 
 			label "boarded epidote"
-			`	Once you get close enough, the oblong object reveals itself to be one of the Gegno Scin's large research ships, the same kind that you entered during an interaction with the Scin a while ago. It's possible the Scin found the mysteriousness of Cyife worth traveling so far from their home space to investigate, but you'll never know, as, after a few seconds, the ship launches into the atmosphere and leaves the moon. They also didn't seem to leave anything behind, though the site the ship was parked at does appear to be one of the many strange regions of the moon.`
+			`	Once you get close enough, the oblong object reveals itself to be one of the Gegno Scin's large research ships, the same kind that you entered during an interaction with the Scin a while ago. It's possible the Scin found the mysteriousness of Cyife worth traveling so far from their home space to investigate. You'll never know for certain as after a few seconds, the ship launches into the atmosphere and disappears into space. They also didn't seem to leave anything behind, though the site the ship was parked at does appear to be one of the many strange regions of the moon.`
 				decline
 
 
@@ -330,7 +330,7 @@ mission "Gegno Suspicions"
 		not "Gegno Genocide Defense: offered"
 	on offer
 		conversation
-			`After you go through your post-docking routine and enter the ringworld, you can't help but feel that something is a bit off. Normally, the Quarg here would be swiftly walking about, focused on attending to their duties, but for some reason, there seem to be fewer of them around than usual. Moreover, those you do come across are occasionally having discussions with one another, sometimes looking in your direction even for the slightest moment. What stands out the most is the utter lack of any Gegno in the area you're visiting.`
+			`After you go through your post-docking routine and enter the ringworld, you can't help but feel that something is a bit off. Normally, the Quarg here would be swiftly walking about, focused on their duties, but for some reason, there seem to be fewer of them around than usual. Moreover, those you do come across are occasionally having discussions with one another, sometimes looking in your direction even for the slightest moment. What stands out the most is the utter lack of any Gegno in the area you're visiting.`
 			`	A few minutes later, while you are making your way through the pristine interior of the ring, you hear a voice call to you from down one of the various branching corridors. Turning around, you recognize the unique attire of the Quarg who has helped you in the past, along with a few others. "Circumstantial greetings once more, <first> <last>. Might we have a significant moment of your attention?"`
 			choice
 				`	"Sure."`
@@ -608,7 +608,7 @@ mission "Gegno Anticipation"
 				`	"I don't know."`
 					goto "unsure"
 
-			`	"Indeed, the Gegno are wary of you, who lack caution." A few seconds pass, and Adrauni gives a strange look towards the Gegno. You aren't sure what it's thinking. The Gegno seems to ask a question in their language, but receives no response. Adrauni pauses a while longer before speaking again. "Despite that, you have found yourself in precarious situations we have not. We as a species embraced contact with the Gegno, however, you remain the only human here. Perhaps therein lies a notable implication of distinction."`
+			`	"Indeed, the Gegno are wary of you, who lack caution." A few seconds pass, and Adrauni gives a strange look towards the Gegno. You aren't sure what it's thinking. The Gegno seems to ask a question in their language, but receives no response. Adrauni pauses a while longer before speaking again. "Despite that, you have found yourself in precarious situations we have not. We as a species embraced contact with the Gegno; however, you remain the only human here. Perhaps therein lies a notable implication of distinction."`
 			choice
 				`	"Are you saying there's something I can do?"`
 					goto "understand"
@@ -650,7 +650,7 @@ mission "Gegno Anticipation"
 				goto "visit a"
 
 			label "better"
-			`	Adrauni speaks to the Gegno once more, this time for an extended period of time. The strange architecture of the ringworld does little to comfort you, as it feels like you've walked down the same path several times now. A few moments later, you eventually begin following Adrauni and the Gegno down what appears to be a different section, though it is strangely wider than previous ones. "Yes, it may be that your timely departure is the most favorable outcome in this affair." A long, awkward silence ensues, at the end of which Adrauni briefly comes to a halt, still facing forward, now crossing its arms behind its back. "Though you and I figure that is... unlikely."`
+			`	Adrauni speaks to the Gegno once more for an extended period of time. The strange architecture of the ringworld does little to comfort you, as it feels like you've walked down the same path several times now. A few moments later, you eventually begin following Adrauni and the Gegno down what appears to be a different section, though it is strangely wider than previous ones. "Yes, it may be that your timely departure is the most favorable outcome in this affair." A long, awkward silence ensues, at the end of which Adrauni briefly comes to a halt, still facing forward, now crossing its arms behind its back. "Though you and I figure that is... unlikely."`
 				goto "visit a"
 
 			label "visit a"
@@ -777,7 +777,7 @@ mission "Gegno Anticipation"
 
 			
 			label "work"
-			`	You sit in silence for an uncomfortable amount of time, during which even the Quarg don't speak to one another. The strange structure and bright lights of the room do little to reassure you as the Quarg ponder to themselves. A few moments later, they begin talking amongst themselves once more, but you don't get a chance to get a word in. After several more minutes of deliberation and strange looks, the other Quarg stand up and flank you from both sides, while Adrauni finally addresses you once more. "Unfortunately, at this stage of events, not I, nor the Quarg, can give you an answer to your inquiry. We are of agreement in our strong opposition to further interaction between yourself and the Gegno." It then does what you think would be the equivalent of a Quarg sigh.`
+			`	You sit in silence for an uncomfortable amount of time, during which even the Quarg don't speak to one another. The strange structure and bright lights of the room do little to reassure you as the Quarg ponder to themselves. A few moments later, they begin talking amongst themselves once more, but you don't get a chance to get a word in. After several more minutes of deliberation and strange looks, the other Quarg stand up and flank you from both sides, while Adrauni finally addresses you once more. "Unfortunately, at this stage of events, not I, nor the Quarg, can give you an answer to your inquiry. We are of agreement in our strong opposition to further interaction between yourself and the Gegno." It then does what you think would be the Quarg equivalent of a sigh.`
 				goto "visit b"
 
 			label "alone"
@@ -902,7 +902,7 @@ mission "Gegno Intervention"
 		fail "Veering Vi B"
 		"reputation: Quarg (Gegno)" = 0
 		conversation
-			`While you are in the midst of docking with the ringworld, you notice a large tan-colored Gegno ship already present in your designated hangar, surrounded by several ships from both the factions of the Vi and Scin. Near them, a small group of Quarg seem to be "conversing" with a smaller group of Gegno who seem rather upset. As soon as you exit your ship, both groups stop and look your way as you recognize Adrauni swiftly approaching you alongside a Gegno that is wearing a very intricate set of armor, neither Scin nor Vi in appearance.`
+			`While you are in the midst of docking with the ringworld, you notice a large tan-colored Gegno ship already present in your designated hangar, surrounded by several ships from both the factions of the Vi and Scin. Near them, a small group of Quarg seem to be "conversing" with a smaller group of Gegno who seem rather upset. As soon as you exit your ship, both groups stop and look your way. You recognize Adrauni swiftly approaching you alongside a Gegno that is wearing a very intricate set of armor, neither Scin nor Vi in appearance.`
 			`	Adrauni does not hesitate to address you. "<first> <last>. I presume you understand the meaning of this affair."`
 			choice
 				`	"I'm not sure what's happening right now."`
@@ -935,7 +935,7 @@ mission "Gegno Intervention"
 				goto "end"
 
 			label "end"
-			`	Adrauni stands up to its full height before you one last time. "To keep what little relations we have with the Gegno, I must inform you we no longer can allow access to our worlds here in their space. Despite this misfortune, I aspire for wise decisions from you in your journey ahead, <first> <last>." Adrauni gives you a lengthy bow, then leaves the hangar, this likely being the last time you ever meet with it. It is now up to you to try and figure out some sort of common ground with the Gegno, if that's even still possible.`
+			`	Adrauni stands up to its full height before you one last time. "To keep what little relations we have with the Gegno, I must inform you we no longer can allow access to our worlds here in their space. Despite this misfortune, I aspire for wise decisions from you in your journey ahead, <first> <last>." Adrauni gives you a lengthy bow and leaves the hangar, this likely being the last time you ever meet with it. It is now up to you to try and figure out some sort of common ground with the Gegno, if that's even still possible.`
 				accept
 
 	npc
@@ -999,19 +999,19 @@ mission "Acquiescence"
 					goto exit
 			
 			`	You decide to remain in the safety of your ship. The Gegno hovering above you aren't helping anymore - simply watching you. Other than them, there are no other ships in the area, let alone any sort of vehicles. Before too long, you notice a shadowed figure in the smoke ahead, carrying a long staff of some sort. A lone Gegno exits the smoke cloud, takes a few more heavy steps, then stands their ground several meters away from your ship.`
-			`	Any action you take now would be solely at your own discretion, however there is only one choice left for you to make.`
+			`	Any action you take now would be solely at your own discretion. However, there is only one choice left for you to make.`
 			choice
 				`	(Meet with the Gegno.)`
 				`	(Leave the Gegno and their world.)`
 					goto "no more gegno"
 
-			`	You decide to continue in your endeavor. You've made it this far, considering you're back on their homeworld and they haven't shown any signs of wanting you gone as of yet. The outside environment appears to be "safe" for humans - being something similar to what is on Earth, if Earth were even more polluted than it is. Donning your sidearm in case of emergency, you exit your ship and cautiously approach the Gegno. Although it's a little hard to tell, you're almost certain this is the Gegno you first met on that desert planet from before. The only difference in their appearance is some kind of red band on their left arm. The ships above suddenly fly off, and the Gegno turns around, beginning to head for the massive tower that stands in front of you.`
+			`	You decide to continue in your endeavor. You've made it this far, considering you're back on their homeworld and they haven't shown any signs of wanting you gone as of yet. The outside environment appears to be "safe" for humans - being something similar to what is on Earth, if Earth were even more polluted than it already is. Donning your sidearm in case of emergency, you exit your ship and cautiously approach the Gegno. Although it's a little hard to tell, you're almost certain this is the Gegno you first met on that desert planet from before. The only difference in their appearance is some kind of red band on their left arm. The ships above suddenly fly off, and the Gegno turns around, beginning to head for the massive tower that stands in front of you.`
 				goto tower
 
 
 			label "exit"
-			`	The outside environment appears to be "safe" for humans - being something similar to what is on Earth, if it were even more polluted. Donning your sidearm in case of emergency, you exit your ship. The Gegno in the ships above intently watch your every move, and apart from the distant thrum of their engines, it's eerily quiet. Before too long, you notice a shadowed figure in the smoke ahead of your ship, carrying a long staff of some sort. A lone Gegno exits the smoke cloud, slowly approaching you. They stop a couple of meters away from you, and although it's a little hard to tell, you're almost certain this is the Gegno Vi that you first met on that desert planet from before. The only difference in their appearance is some kind of red band on their left arm.`
-			`	At this point, any action you take would be solely at your own discretion, however there is only one choice left for you to make.`
+			`	The outside environment appears to be "safe" for humans - being something similar to what is on Earth, if it were even more polluted than it already is. Donning your sidearm in case of emergency, you exit your ship. The Gegno in the ships above intently watch your every move, and apart from the distant thrum of their engines, it's eerily quiet. Before too long, you notice a shadowed figure in the smoke ahead of your ship, carrying a long staff of some sort. A lone Gegno exits the smoke cloud, slowly approaching you. They stop a couple of meters away from you, and although it's a little hard to tell, you're almost certain this is the Gegno Vi that you first met on that desert planet from before. The only difference in their appearance is some kind of red band on their left arm.`
+			`	At this point, any action you take would be solely at your own discretion. However, there is only one choice left for you to make.`
 			choice
 				`	(Meet with the Gegno.)`
 				`	(Leave the Gegno and their world.)`
@@ -1021,7 +1021,7 @@ mission "Acquiescence"
 
 
 			label "tower"
-			`	The tower ahead of you is truly a sight to behold. It appears to be larger and taller than anything in human architecture, yet it looks very old - noticeably so - compared to the portions you've seen higher up in the clouds of dark smog. The base, which grows larger the higher up the tower goes, is lined with rows of torch-like structures with flames reaching high above them. The interior is just as intriguing - the first area you enter looks like it almost came straight out of some old medieval fantasy story. Everything looks rocky and sculpted in appearance, although some entrances seem to be made of newer metallic materials.`
+			`	The tower ahead of you is truly a sight to behold. It appears to be larger and taller than anything in human architecture, yet it looks very old - noticeably so - compared to the portions you've seen higher up in the clouds of dark smog. The base, which grows larger the higher up the tower goes, is lined with rows of torch-like structures with flames reaching high above them. The interior is just as intriguing - the first area you enter looks like it almost came straight out of some old medieval fantasy. Everything looks rocky and sculpted in appearance, although some entrances seem to be made of newer metallic materials.`
 			`	You wonder if all Gegno architecture is built like this, but your curiosity is cut short when the Gegno, whom has been many steps ahead of you, grunts and gestures for you to enter a cage-like platform at the other side of an enormous room.`
 			choice
 				`	(Enter the cage.)`
@@ -1107,7 +1107,7 @@ mission "Acquiescence"
 
 
 			label "explain"
-			`	Walking up to the table, you try your hardest to explain each situation one by one. Since you can't read or do anything with the actual display on the monitor, you try picking up the models, which nobody seems to be bothered by. At the same time, you gesture using your hands, mainly representing your ship flying "away". You wonder if anything makes any sense to the Gegno, but they don't seem to be paying attention to your words or actions themselves, rather, they seem to respond to the tone and emotion of them. After doing your best to describe everything, you back away from the table, and the trio march back up to it, discussing your response amongst themselves. They start moving all of the models aside as if they're setting up for something.`
+			`	Walking up to the table, you try your hardest to explain each situation one by one. Since you can't read or do anything with the actual display on the monitor, you try picking up the models, which nobody seems to be bothered by. At the same time, you gesture using your hands, mainly representing your ship flying "away". You wonder if anything makes any sense to the Gegno, but they don't seem to be paying attention to your words or actions themselves; rather, they seem to respond to the tone and emotion of them. After doing your best to describe everything, you back away from the table, and the trio march back up to it, discussing your response amongst themselves. They start moving all of the models aside as if they're setting up for something.`
 				goto "what does home mean"
 
 
@@ -1152,7 +1152,7 @@ mission "Acquiescence"
 			label "decision"
 			action
 				"reputation: Gegno" = 1
-			`	With a sense of finality, the trio beckons to the crowd and begins another long speech. An image of a space station appears on the screen, and a large discussion begins between the other Gegno, whom have formed back up with each other. Some arguments between various Gegno in the audience start happening, meanwhile, your Gegno guide bumps into you and starts to direct you away from the discussion, back to the cage lift with nobody else batting an eye.`
+			`	With a sense of finality, the trio beckons to the crowd and begins another long speech. An image of a space station appears on the screen, and a large discussion begins between the other Gegno, whom have formed back up with each other. Some arguments between various Gegno in the audience start happening. Meanwhile, your Gegno guide bumps into you and starts to direct you away from the discussion, back to the cage lift with nobody else batting an eye.`
 			`	Several minutes later, you are escorted back to the base of the tower, which is now surrounded by a large group of Gegno civilians, all gawking at the two of you. You're led back to your ship with your head spinning slightly, unsure what to make of that whole encounter. As they did the first time you were with them on the one desert planet, the Gegno heads for your ship and hands you a small compass device, this time marking a different location on the map.`
 			`	At the very least, you can take this as an indication that they are not done with you yet, so you prepare to travel to your next destination.`
 				launch
@@ -1166,7 +1166,7 @@ mission "Acquiescence"
 
 
 			label "no more gegno"
-			`	You ultimately decide that pursuing this ruse with the Gegno is no longer worth the effort. Even if you did meet up with them, or ended up in some sort of debate with them, it would likely take an excessive amount of effort in order to get any amount of progress, if it's even possible. Perhaps even landing here was a mistake, as you could never guess what might happen if you continued this endeavor, given you are all alone on the home world of a species that has shown itself to be rather xenophobic, even to the Quarg.`
+			`	You ultimately decide that pursuing this ruse with the Gegno is no longer worth the effort. Even if you did end up in some sort of dialog with them, it would likely take an excessive amount of effort in order to get any amount of progress, assuming that is even possible. Perhaps even landing here was a mistake. You could never guess what might happen if you continued this endeavor, given you are all alone on the home world of a species that has shown itself to be rather xenophobic, even to the Quarg.`
 			`	As you prepare to depart, the Gegno, who was watching you all this time with a blank stare, lifts their staff weapon and flips it around. An explosive cloud of smoke follows, and a sizable crater appears just barely avoiding your ship on the ground. It seems they are, at the very least, unhappy with your decision to leave, which is a little odd considering they didn't want anything to do with you before. Though, the fact they intentionally missed such a large target might have other implications. Regardless, it could have been you on the other end of that blast.`
 			`	Despite the aggressive action, you are not followed as you leave the planet.`
 				flee
@@ -1196,7 +1196,7 @@ mission "Gegno Asteroid Mining Prologue"
 			`	You attempt to get the attention of some of the other Gegno present in the facility, but most of them give you strange glares or outright ignore you, until one seemingly annoyed Gegno gestures to the large cracked display.`
 
 			label "board"
-			`	The display, although cracked and beaten up, still appears otherwise functional. It presents a series of graphics in a list that seems to be updating in real-time. On the left side of each graphic are various types of mineable asteroids, and on the right are tally marks, which thankfully you can understand. It appears to be some sort of job list linked with the station, which implies that the Gegno are at least giving you a chance to work with them here, to "do your part", or perhaps "make up for what you've done."`
+			`	The display, although cracked and beaten up, still appears otherwise functional. It presents a series of graphics in a list that seems to be updating in real-time. On the left side of each graphic are various types of mineable asteroids, and on the right are tally marks. It appears to be some sort of job list linked with the station, which implies that the Gegno are at least giving you a chance to "do your part", or perhaps "make up for what you've done."`
 			choice
 				`	(Accept one of the jobs.)`
 				`	(Leave without doing anything.)`
