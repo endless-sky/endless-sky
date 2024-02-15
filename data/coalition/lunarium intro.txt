@@ -1298,7 +1298,7 @@ mission "Lunarium: Evacuation 6"
 				`	"You want me to join your group in fighting the Heliarchs, is that it?"`
 					goto join
 				`	"Dead? What do you mean?"`
-			`	He thinks for a few minutes, oftentimes opening up his mouth as if deciding to speak, but ultimately going back to reflecting on what to say. "When decided to... desert, I had, work I did on covering up my escape of the facility where stationed, I was. After forcing an... an incident, meant to erase all traces of mine, fled and hid in civilian ships for a while, I had, until found by the Lunarium I was." He smirks lightly in self-deprecation. "Thought I had that aware enough of their patterns and methods, I was, enough to locate them. Find me first, they did though. Taken in, I was, and helping them since, I have been."`
+			`	He thinks for a few minutes, oftentimes opening up his mouth as if deciding to speak, but ultimately going back to reflecting on what to say. "When decided to... desert, I had, work I did on covering up my escape of the facility where stationed, I was. After forcing an... an incident, meant to erase all traces of mine, fled and hid in civilian ships for a while, I had, until found by the Lunarium I was." He smirks lightly. "Thought I had that aware enough of their patterns and methods, I was, enough to locate them. Find me first, they did though. Taken in, I was, and helping them since, I have been."`
 			choice
 				`	"What facility did you work at?"`
 				`	"An incident? What did you do?"`
@@ -1629,7 +1629,7 @@ mission "Lunarium: Combat Training 1"
 				`	"What's this 'endeavor' you need help with?"`
 					goto help
 				`	"Your friends only told me what I was really doing after I was done. I don't want to help you any further."`
-			`	"Why, interested are you in helping the Heliarchs instead? Worked with them, some of our members have. An arbiter, Elirom, one of them, was. One of the highest ranks, that is, second only to the consuls themselves," she responds, getting closer to you. "Change for the better, the Coalition soon will. Difficult it will be, to take down the Heliarchy. Very strong it is, so greatly appreciated any help would be. Of course, once free from them we are, appropriately reward, we will, help us, those who did."`
+			`	"Why? Interested in helping the Heliarchs instead, are you? Worked with them, some of our members have. An arbiter, Elirom, one of them, was. One of the highest ranks, that is, second only to the consuls themselves," she responds, getting closer to you. "Change for the better, the Coalition soon will. Difficult it will be, to take down the Heliarchy. Very strong it is, so greatly appreciated any help would be. Of course, once free from them we are, rewarded appropriately shall be those, help us who do in our time of need."`
 			choice
 				`	"And what would I have to do to help you?"`
 					goto help
@@ -1735,7 +1735,7 @@ mission "Lunarium: Combat Training 2"
 		event "lunarium training: shaula back to normal"
 		event "lunarium training done" 96 148
 		conversation
-			`Pyakri contacts you right as you land, by a text message in your monitor. "A great help you were, Captain! More... inveterate members, if call them that you could, the crew with me are, so have much trouble with their morale, I did not, but still have me worried, the pirates did. Used to human ships, we are not, so fly them well enough to combat such fleets, we cannot. Not yet. Now that guided us through this first fight, you have, work on our own for a while - taking smaller, simpler bounties - we will. Contact you again, I shall, once done with our training, we are."`
+			`Pyakri contacts you right as you land, by a text message in your monitor. "A great help you were, Captain! More... battle-hardened, if call them that you could, the crew with me are, so have much trouble with their morale, I did not, but still have me worried, the pirates did. Used to human ships, we are not, so fly them well enough to combat such fleets, we cannot. Not yet. Now that guided us through this first fight, you have, work on our own for a while - taking smaller, simpler bounties - we will. Contact you again, I shall, once done with our training, we are."`
 	on complete
 		"assisting lunarium" --
 	on fail
