@@ -1732,12 +1732,11 @@ mission "Lunarium: Combat Training 2"
 		ship "Modified Argosy" "Taruntius"
 		ship "Manta" "Necho"
 	on complete
+		"assisting lunarium" --
 		event "lunarium training: shaula back to normal"
 		event "lunarium training done" 96 148
 		conversation
 			`Pyakri contacts you right as you land, by a text message in your monitor. "A great help you were, Captain! More... veteran members, if you could call them that, the crew I brought are, so much trouble with their morale, I had not, but still worried, the pirates had me. Used to human ships, we are not, so fly them well enough to combat such fleets, we cannot. Not yet. Now that guided us through this first fight, you have, work on our own for a while - taking smaller, simpler bounties - we will. Contact you again, I shall, once done with our training, we are."`
-	on complete
-		"assisting lunarium" --
 	on fail
 		"assisting lunarium" --
 
