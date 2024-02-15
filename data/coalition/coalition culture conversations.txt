@@ -258,7 +258,7 @@ mission "Coalition Departing Trouble - A"
 			`	Some more minutes later, you see a select few of the Heliarch ships that passed close to you departing the planet, steering a safe distance from your ship this time. The captain of one of the ships, a Heliarch Interdictor, hails you, apologizing for the earlier distress, briefly mentioning they've gotten the situation back in control. They wish you a good day, and prepare to leave the system.`
 				decline
 			label lunarium
-			`	Some more minutes later, you see a select few of the Heliarch ships that passed close to you departing the planet. They pay you no mind, and much to your relief steer a safe distance from your ship this time. You cannot help but wonder whether the ships they were chasing held any Lunarium members, or if they were simply more unfortunate civilians.`
+			`	Some more minutes later, you see a select few of the Heliarch ships that passed close to you departing the planet. They pay you no mind, and much to your relief steer a safe distance away from your ship this time. You cannot help but wonder whether the ships they were chasing held any Lunarium members, or if they were simply more unfortunate civilians.`
 	npc
 		personality launching fleeing uninterested
 		government "Heliarch"
