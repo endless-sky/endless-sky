@@ -405,58 +405,6 @@ int64_t ConditionsStore::PrimariesSize() const
 
 
 
-// Expands the name of a condition to the full name based on the $[] blocks it contains.
-string ConditionsStore::Expand(const string &name) const
-{
-	using size_t = string::size_type;
-	size_t it = name.find("$[");
-
-	if(it == string::npos)
-		return name;
-
-	const size_t len = name.length();
-	string builder;
-	size_t end = -1;
-
-	while(it != string::npos)
-	{
-		builder.append(name.substr(end + 1, it - end - 1)); // does not append the iterator char
-		int depth = 1;
-
-		bool valid = true;
-		for(size_t i = it + 2;; i++)
-		{
-			if(i == len)
-			{
-				valid = false;
-				break;
-			}
-			if(i < len - 1 && name[i] == '$' && name[i + 1] == '[')
-			{
-				depth++;
-				i++;
-			}
-			else if(name[i] == ']')
-			{
-				depth--;
-				if(depth == 0)
-				{
-					end = i;
-					break;
-				}
-			}
-		}
-		if(!valid)
-			break;
-		builder.append(to_string(Get(name.substr(it + 2, end - it - 2))));
-		it = name.find("$[", end + 1);
-	}
-	builder.append(name.substr(end + 1, len - end));
-	return builder;
-}
-
-
-
 ConditionsStore::ConditionEntry *ConditionsStore::GetEntry(const string &name)
 {
 	// Avoid code-duplication between const and non-const function.
@@ -516,4 +464,61 @@ bool ConditionsStore::VerifyProviderLocation(const string &name, DerivedProvider
 		throw runtime_error("Error: not adding provider for \"" + name + "\""
 				", because it is within range of prefixed derived provider \"" + ce.provider->name + "\".");
 	return true;
+}
+
+
+
+// Expands the name of a condition to the full name based on the $[] blocks it contains.
+string ConditionsStore::Expand(const string &name) const
+{
+	using size_t = string::size_type;
+	size_t it = name.find("$[");
+
+	// If there is nothing to expand, return.
+	if(it == string::npos)
+		return name;
+
+	const size_t len = name.length();
+	string builder;
+	size_t end = -1; // the end of the previous expansion
+
+	while(it != string::npos)
+	{
+		// add the section between the current expansion and the previous one
+		builder.append(name.substr(end + 1, it - end - 1)); // does not append the iterator char
+		int depth = 1;
+		// find the end of this expansion
+		bool valid = true;
+		for(size_t i = it + 2;; i++)
+		{
+			if(i == len)
+			{
+				// If there is no ] to close this expansion, end the lookup.
+				valid = false;
+				break;
+			}
+			if(i < len - 1 && name[i] == '$' && name[i + 1] == '[')
+			{
+				depth++;
+				i++;
+			}
+			else if(name[i] == ']')
+			{
+				depth--;
+				if(depth == 0)
+				{
+					end = i;
+					break;
+				}
+			}
+		}
+		if(!valid)
+			break;
+		// append the expanded condition, then restart from the next expansion
+		builder.append(to_string(Get(name.substr(it + 2, end - it - 2))));
+		it = name.find("$[", end + 1);
+	}
+	// append everything after the last expansion
+	builder.append(name.substr(end + 1, len - end));
+	return builder;
 }
