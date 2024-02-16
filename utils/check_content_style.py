@@ -388,7 +388,7 @@ def parse_line(line: str) -> TokenDict:
 					current_separator = word[0]
 					word = word[1:]
 				else:
-					types.append((word,  QuoteType.NONE))
+					types.append((word, QuoteType.NONE))
 					continue
 			if len(word) > 0 and word[-1] == current_separator:
 				contents.append(word[:-1])
@@ -458,6 +458,7 @@ def generate_line(tokens: TokenDict) -> str:
 		elif type == QuoteType.BACKTICK:
 			return '`' + text + '`'
 		return text
+
 	line = tokens[TokenType.INDENT]
 	if len(tokens[TokenType.NODE][0]) > 0:
 		line += quote_token(tokens[TokenType.NODE][0], tokens[TokenType.NODE][1])
@@ -483,12 +484,43 @@ def check_child_node_order(contents: list[str], parsed_lines: list[TokenDict], a
 	if ordering is None or len(ordering) == 0:
 		return result
 
+	# Moves a node up by one, and stores the changes in the result's fixed contents. Returns the index of the first line that is not edited after the node.
+	# Since this only moves a node up by one, it is possible / probable that it needs to be called multiple times to restore proper node order.
+	def move_node_up(line_index: int) -> int:
+		# Swaps two adjacent sublists.
+		# begin: beginning of the first sublist, inclusive
+		# mid: beginning of the second sublist, inclusive
+		# end: end of the second sublist, inclusive
+		def swap_sublists(to_swap: list, begin: int, mid: int, end: int):
+			to_swap[mid: end + 1], to_swap[begin: mid] = to_swap[begin: mid], to_swap[mid: end + 1]
+
+		# Find the end of the moved node
+		node_end = line_index
+		node_indent = count_indent(indentation, parsed_lines[line_index][TokenType.INDENT])
+		while node_end < len(contents) - 1:
+			if count_indent(indentation, parsed_lines[node_end + 1][TokenType.INDENT]) <= node_indent:
+				break
+			else:
+				node_end += 1
+		# Find the beginning of the previous node
+		for i in range(line_index - 1, -1, -1):
+			if count_indent(indentation, parsed_lines[i][TokenType.INDENT]) == node_indent:
+				# Switch the nodes
+				swap_sublists(result.new_file_contents, i, line_index, node_end)
+				swap_sublists(parsed_lines, i, line_index, node_end)
+				return node_end + 1
+		raise Exception("Could not move node.")
+
 	indentation = config["indentation"]
 	# Keep track of which nodes we are currently inside.
 	# We store the list of nodes, and the list of direct children for each node.
 	nodes = []
+	# Sometimes we want to skip lines until a specified point.
+	next_index = 0
 	# Also keep track of
-	for index, line, parsed_line in enumerate(zip(contents, parsed_lines)):
+	for index, (line, parsed_line) in enumerate(zip(contents, parsed_lines)):
+		if next_index > index:
+			continue
 		# Ignoring comments and empty lines
 		if len(parsed_line[TokenType.NODE][0]) == 0:
 			continue
@@ -506,19 +538,34 @@ def check_child_node_order(contents: list[str], parsed_lines: list[TokenDict], a
 				for expected_node in ruleset["nodes"]:
 					# Checking if this is the valid ruleset for this parent node
 					if re.fullmatch(expected_node, parent[0]):
-						if ruleset["alphabetical"]:
+						if "alphabetical" in ruleset:
 							if parent[1][-1] > node:
-								result.errors.append(Error(index + 1, f"child nodes of '{parent[0]}' are not in alphabetical order; '{node}' should precede '{parent[1][-1]}'"))
+								error = Error(index + 1, f"child nodes of '{parent[0]}' are not in alphabetical order: '{node}' should precede '{parent[1][-1]}'")
+								if auto_correct:
+									# Move the node up by one, and then skip to the beginning of the next node.
+									next_index = move_node_up(index)
+									result.fixed_errors.append(error)
+									break
+								else:
+									result.errors.append(error)
 						else:
 							if "order" in ruleset and node in ruleset["order"]:
-								(last_index, prev) = next(((ruleset["order"].index(prev), prev) for prev in reversed(parent[1]) if prev in ruleset["order"]), None)
+								(last_index, prev) = next(((ruleset["order"].index(prev), prev) for prev in reversed(parent[1]) if prev in ruleset["order"]), (None, None))
 								if last_index is not None and last_index > ruleset["order"].index(node):
-									result.errors.append(Error(index + 1, f"child nodes of '{parent[0]}' are not in the expected order; '{node}' should precede '{prev}'"))
+									error = Error(index + 1, f"child nodes of '{parent[0]}' are not in the expected order: '{node}' should precede '{prev}'")
+									if auto_correct:
+										# Move the node up by one, and then skip to the beginning of the next node.
+										next_index = move_node_up(index)
+										result.fixed_errors.append(error)
+										break
+									else:
+										result.errors.append(error)
 						break
 		# Storing the node
 		if parent is not None:
 			parent[-1].append(node)
 		nodes.append((parsed_line[TokenType.NODE][0], []))
+
 	return result
 
 
@@ -718,6 +765,7 @@ def check_content_style(file: str, auto_correct: bool, config: dict[str]) -> Che
 	issues = CheckResult()
 	fixed_errors = []
 	fixed_warnings = []
+
 	def do_reload():
 		nonlocal fixed_errors, fixed_warnings, issues
 		fixed_errors += issues.fixed_errors
