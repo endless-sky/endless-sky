@@ -1183,10 +1183,13 @@ tip "Toggle fullscreen"
 	`Toggle whether the game is in fullscreen mode.`
 
 tip "Toggle fast-forward"
-	`Toggle a 3x speed fast-forward. Fast-forward may be automatically deactivated by the "Interrupt fast-forward" setting.`
+	`Toggle a 3x speed fast-forward. Fast-forward may be automatically deactivated by the "Interrupt fast-forward" setting. If the key is set to caps-lock then the caps-lock state will be used to determine the fast-forward state.`
 
 tip "Show help"
 	`Display the help dialogs that are relevant to your current UI panel and situation. Uses the same help dialogs from the "Reactivate first-time help" setting, forcing them to appear even if they have already appeared before.`
+
+tip "View message log"
+	`Open the log panel containing status messages and hails from other ships received since the current pilot was loaded.`
 
 tip "Deploy / recall fighters"
 	`Deploy or recall carried ships (e.g. fighters, drones) in your fleet. Requires carriers with space to hold the carried ships.`
