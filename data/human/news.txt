@@ -2221,7 +2221,7 @@ phrase "Pronoun"
 
 phrase "Careless Ends Well"
 	word
-		"turns around to reenter their ship, "
+		"turns around to reenter the ship"
 	word
 		"as it's struck by a wave, nudging it off the platform. The captain then moves the ship to a lowerable pad."
 		"moving it to a lowerable pad before it could be caught by a wave."
