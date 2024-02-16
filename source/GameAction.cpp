@@ -331,7 +331,7 @@ const vector<ShipManager> &GameAction::Ships() const noexcept
 
 // Check if this action can be completed right now.
 bool GameAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &boardingShip) const
-{	
+{
 	if(player.Accounts().Credits() < -payment)
 		return false;
 
