@@ -159,7 +159,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 		double range = sourceEmission.emissionRange;
 		if(emission.armingTime)
 			--emission.armingTime;
-		else if(emission.burstReload <= 0. && emission.burstCount 
+		else if(emission.burstReload <= 0. && emission.burstCount
 				&& (!range || (target && position.DistanceSquared(target->Position()) < range * range)))
 		{
 			for(size_t i = 0; i < sourceEmission.projectileCount; ++i)
