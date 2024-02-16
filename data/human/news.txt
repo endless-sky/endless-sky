@@ -2232,7 +2232,7 @@ phrase "Careless Ends Poorly"
 		"argues with the controller about their landing. The ship"
 		"turns around to reenter the ship, however it"
 	word
-		"is "
+		" is "
 	word
 		"struck "
 		"caught "
