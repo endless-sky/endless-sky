@@ -2216,7 +2216,7 @@ phrase "A Light Ship"
 phrase "Pronoun"
 	word
 		"his"
-		"hers"
+		"her"
 		"their"
 
 phrase "Careless Ends Well"
