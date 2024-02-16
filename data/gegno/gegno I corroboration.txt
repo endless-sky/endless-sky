@@ -1082,7 +1082,7 @@ mission "Acquiescence"
 				to display
 					has "Scin on Cyife: offered"
 
-			`	You look up to see the trio of Gegno still intently staring at you, meanwhile all of others surrounding you are glaring at you intensely. On the display, two icons appear side by side, and under each of them is a long list of phrases. As they scroll, the Gegno break out in discussions with one another, some loud and some not. You almost jump when the trio address the crowd and begin a speech of sorts, sometimes gesturing to the crowd, and sometimes gesturing to you. Although most of the Gegno seem frustrated, the trio is able to calm the crowd.`
+			`	You look up to see the trio of Gegno still intently staring at you. All of the other Gegno surrounding you have a similar expression. On the display, two icons appear side by side, and under each of them is a long list of phrases. As they scroll, the Gegno break out in discussions with one another, some loud and some not. You almost jump when the trio address the crowd and begin a speech of sorts, sometimes gesturing to the crowd, and sometimes gesturing to you. Although most of the Gegno seem frustrated, the trio is able to calm the crowd.`
 				to display
 					or
 						"reputation: Gegno Vi" < 0
@@ -1153,7 +1153,7 @@ mission "Acquiescence"
 			action
 				"reputation: Gegno" = 1
 			`	With a sense of finality, the trio beckons to the crowd and begins another long speech. An image of a space station appears on the screen, and a large discussion begins between the other Gegno, whom have formed back up with each other. Some arguments between various Gegno in the audience start happening. Meanwhile, your Gegno guide bumps into you and starts to direct you away from the discussion, back to the cage lift with nobody else batting an eye.`
-			`	Several minutes later, you are escorted back to the base of the tower, which is now surrounded by a large group of Gegno civilians, all gawking at the two of you. You're led back to your ship with your head spinning slightly, unsure what to make of that whole encounter. As they did the first time you were with them on the one desert planet, the Gegno heads for your ship and hands you a small compass device, this time marking a different location on the map.`
+			`	Several minutes later, you are escorted back to the base of the tower, which is now surrounded by a large group of Gegno civilians all gawking at the two of you. You're led back to your ship with your head spinning slightly, unsure what to make of that whole encounter. As they did the first time you were with them on the one desert planet, the Gegno heads for your ship and hands you a small compass device, this time marking a different location on the map.`
 			`	At the very least, you can take this as an indication that they are not done with you yet, so you prepare to travel to your next destination.`
 				launch
 
