@@ -17,17 +17,17 @@ Version 0.10.6
       * Gave Dreadnought back their fourth Torpedo Launcher. (@warp-core)
         * And the 30 extra torpedoes this provides space for. They were previously removed when the launchers were made larger.
         * Replaced the LP144a battery with an LP072a battery to make space.
-      * Made the Lasher Pistol more defensive and less offfensive. (@Amazinite)
+      * Made the Lasher Pistol more defensive and less offensive. (@Amazinite)
         * Capture attack: 2.6 -> 1.1
         * Capture defense: 1.4 -> 2.8
     * Other:
       * Reduced the spawn rate of Astral Cetaceans and Embersylphs, and removed the large Embersylphs. (@Saugia)
-      * Added the "lingering" personality to the "Gegno Old" fleets, containing intra-systemm Protoliths. (@Saugia)
+      * Added the "lingering" personality to the "Gegno Old" fleets, containing intra-system Protoliths. (@Saugia)
   * User interface:
     * Increased the padding between the energy and heat table and the list of installed outfits in the ship info display in the shipyard and outfitter. (@warp-core)
     * Opening the menu panel with a credits scroll speed of 0 resets the scroll speed. (@TomGoodIdea)
   * Under the hood:
-    * Removed the declaration of an undefined mmethod. (@warp-core)
+    * Removed the declaration of an undefined method. (@warp-core)
     * Corrected the order of some copyright entries, and removed spaces from file patterns (as they are not allowed there). (@ziproot)
     * Added some missing color definitions for message text. (@TomGoodIdea, @Koranir, @warp-core)
   * CI/CD and development environment:
