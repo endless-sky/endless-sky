@@ -1,3 +1,39 @@
+Version 0.10.6
+  * Bug fixes:
+    * Content bugs:
+      * Typo fixes. (@AlexBassett, @alexrovw, @bene-dictator, @fingolfin, @opusforlife2, @tibetiroka, @warp-core)
+      * Gave the Gatling Turret and Javelin Turret 1 required crew each. (@Amazinite)
+      * The "Gemini Shipyards" jobs now check the correct conditions. (@bene-dictator)
+      * Uninhabited systems and Kaus Borealis will now correctly change governments in the course of the Free Worlds campaign. (@bene-dictator)
+      * Added the "ramming" personality to the timer ship in "Sad Archie" so it behaves more like it should. (@ziproot)
+    * Engine bugs:
+      * Animated ship and planet sprites are now correctly rendered in the hail panel. (@warp-core)
+  * Game content:
+    * New content:
+      * Expanded the descriptions of some Hai stations. (@roadrunner56)
+      * Some planet descriptions will now include references to abandoned Navy bases as they are captured in Free Worlds Checkmate. (@bene-dictator)
+      * Added Merchant hails about dumping cargo to distract pirates. (@tibetiroka)
+    * Balance:
+      * Gave Dreadnought back their fourth Torpedo Launcher. (@warp-core)
+        * And the 30 extra torpedoes this provides space for. They were previously removed when the launchers were made larger.
+        * Replaced the LP144a battery with an LP072a battery to make space.
+      * Made the Lasher Pistol more defensive and less offfensive. (@Amazinite)
+        * Capture attack: 2.6 -> 1.1
+        * Capture defense: 1.4 -> 2.8
+    * Other:
+      * Reduced the spawn rate of Astral Cetaceans and Embersylphs, and removed the large Embersylphs. (@Saugia)
+      * Added the "lingering" personality to the "Gegno Old" fleets, containing intra-systemm Protoliths. (@Saugia)
+  * User interface:
+    * Increased the padding between the energy and heat table and the list of installed outfits in the ship info display in the shipyard and outfitter. (@warp-core)
+    * Opening the menu panel with a credits scroll speed of 0 resets the scroll speed. (@TomGoodIdea)
+  * Under the hood:
+    * Removed the declaration of an undefined mmethod. (@warp-core)
+    * Corrected the order of some copyright entries, and removed spaces from file patterns (as they are not allowed there). (@ziproot)
+    * Added some missing color definitions for message text. (@TomGoodIdea, @Koranir, @warp-core)
+  * CI/CD and development environment:
+    * Added "GOG" as an option for "game source" in the bug report issue template. (@warp-core)
+    * Renamed the feature request issue template to "Feature/Balance/Change Request". (@Amazinite)
+
 Version 0.10.5
   * Big changes:
     * Expanded the mechanics behind asteroid mining, including the addition of mining lasers that increase the yield of asteroids, tractor beams that pull ores toward your ship, and dedicated mining ships in human space. (@Amazinite, @bene-dictator, @Quantumshark, @Saugia)
@@ -471,7 +507,7 @@ Version 0.10.2
       * New human news items. (@dorbarker)
       * New jobs in Free Worlds space during the war that involve Military cargo. (@dorbarker)
     * Mission changes:
-      * The "FW Pug 2C" missions now use autoconditions to ensure the appropriate one is offered instead of relying on MissionAction blocking. (@warp_core)
+      * The "FW Pug 2C" missions now use autoconditions to ensure the appropriate one is offered instead of relying on MissionAction blocking. (@warp-core)
       * The "Street Swindle" mission is now invisible, and uses conversation actions to take credits from the player and is always declined. (@lumbar527)
       * Small wording change to "Earth Retirement" mission. (@lumbar527)
       * Various wording changes to Gegno intro missions. (@Saugia)
