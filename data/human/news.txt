@@ -2319,7 +2319,7 @@ message
 		" feels like there are eyes around every corner."
 		"'s the pirates; a small number of them seem to be observing you."
 	word
-		"After some time of this "
+		" After some time of this "
 	word
 		"a silent alarm tells you that your should check on your ship. "
 		"it may be wise make sure no-one's tampering with your ship. "
