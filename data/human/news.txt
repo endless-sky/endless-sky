@@ -2459,4 +2459,4 @@ message
 		"pirates. "
 		"bootleggers. "
 	word
-		"Buy a genuine Betelgause ship today!' The message then displays a listing of nearby planets that sell 'genuine' Betelgause ships."
+		"Buy a genuine Betelgeuse ship today!' The message then displays a listing of nearby planets that sell 'genuine' Betelgeuse ships."
