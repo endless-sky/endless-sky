@@ -401,7 +401,7 @@ void HailPanel::SetBribe(double scale)
 void HailPanel::SetMessage(const string &text)
 {
 	message = text;
-	if(message.size())
+	if(!message.empty())
 		Messages::AddLog("(Response to your hail) " + header + " " + message,
 			Messages::Importance::High);
 }
