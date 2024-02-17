@@ -316,8 +316,6 @@ event "initial deployment 2"
 		fleet "Large Southern Merchants" 1800
 		fleet "Small Free Worlds" 2200
 		fleet "Large Free Worlds" 3600
-		fleet "Small Southern Pirates" 4000
-		fleet "Large Southern Pirates" 7000
 	
 	system "Mora"
 		fleet "Small Southern Merchants" 2800

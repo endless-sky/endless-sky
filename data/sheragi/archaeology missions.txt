@@ -332,28 +332,11 @@ outfit "Timer Submunition"
 		"hull damage" .15
 		"no damage scaling"
 
-event "remove pirates from Ildaria"
-	system Ildaria
-		remove fleet "Small Southern Pirates"
-		remove fleet "Large Southern Pirates"
-
-event "readd pirates to Ildaria pre-initial deployment"
-	system Ildaria
-		add fleet "Small Southern Pirates" 1000
-		add fleet "Large Southern Pirates" 2000
-
-event "readd pirates to Ildaria post-initial deployment"
-	system Ildaria
-		add fleet "Small Southern Pirates" 4000
-		add fleet "Large Southern Pirates" 7000
-
 mission "Sad Archie"
 	landing
 	invisible
 	to offer
 		has "There Might Be Riots part 3B: done"
-	on offer
-		event "remove pirates from Ildaria"
 	destination "Zug"
 	
 	npc disable
@@ -371,19 +354,8 @@ mission "Sad Archie"
 	on complete
 		log `Experienced a strange vision while drifting in the Ildaria system that looked like the fall of a civilization of dragon-people. The terrain on the planet of Zug looks strikingly similar to this vision.`
 		conversation
-			# that event changes the fleet spawns so we need them to be reset to different values before and after it
-			branch "initial deployment"
-				has "event: initial deployment 2"
-			action
-				event "readd pirates to Ildaria pre-initial deployment"
-			branch text
-				not "event: initial deployment 2"
-			label "initial deployment"
-			action
-				event "readd pirates to Ildaria post-initial deployment"
-			label text
 			`On a whim, as you're landing on Zug you pull up a geological map of the planet and find that the geography you dreamt of while drifting in the Ildaria system was surprisingly close to the real thing. There's even a massive basalt outcropping right where you saw a lava flow burying a city. There's no way your ship's sensors can tell what's underneath it, though.`
-				decline
+
 
 
 mission "Rim Archaeology 1"
