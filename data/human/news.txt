@@ -2426,7 +2426,7 @@ message
 
 news "IP Theft"
 	location
-		shipyard "Betelgause Basics" "Betelgause Advanced"
+		shipyard "Betelgeuse Basics" "Betelgeuse Advanced"
 		not government "Pirate"
 name
 	"Bootlegged Ships"
