@@ -2436,7 +2436,7 @@ message
 		"An audio broadcast playing in the spaceport recites "
 		"A televised message on one of the news screens broadcasts "
 	word
-		"'A public-service announcement from Betelgeuse Shipyards: How do you know that a Betelgause Ship TM"
+		"'A public-service announcement from Betelgeuse Shipyards: How do you know that a Betelgeuse Ship TM"
 	word
 		"has the time-tested quality? "
 		"will live up to your high expectations? "
