@@ -2446,7 +2446,7 @@ message
 	word
 		"you're not mislead by an inferior fascimily "
 		"duped with a douplicate "
-		"conned with a counterfit "
+		"conned with a counterfeit "
 	word
 		"ship assembled "
 	word
