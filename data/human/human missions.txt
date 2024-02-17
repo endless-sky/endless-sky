@@ -1087,9 +1087,9 @@ mission "There Might Be Riots part 3A"
 			label no
 			`	"Are you sure?" he asks. "We'll pay you with more than just money. Do this for us, and I'll share a story with you that very few have heard."`
 			choice
-				`	"Okay, I'm intrigued. But it still sounds risky."`
 				`	"Sorry, but it's still a 'no.'"`
 					decline
+				`	"Okay, I'm intrigued. But it still sounds risky."`
 			label yes
 			branch known
 				has "met hai before TMBR"
