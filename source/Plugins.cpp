@@ -146,6 +146,10 @@ string Plugin::CreateDescription() const
 		}
 		text += '\n';
 	}
+	if (!aboutText.empty())
+	{
+		text += aboutText;
+	}
 	return text;
 }
 
