@@ -2158,8 +2158,8 @@ news "High Tension Situation"
 		"Standoff"
 	message
 		word
-			"On the corner"
-			"By a landing pad"
+			"On the corner "
+			"By a landing pad "
 			"At the entrance to the spaceport market, "
 		word
 			"some CCOR guerrillas are "
