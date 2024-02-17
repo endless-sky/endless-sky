@@ -27,7 +27,7 @@ Version 0.10.6
     * Opening the menu panel with a credits scroll speed of 0 resets the scroll speed. (@TomGoodIdea)
   * Under the hood:
     * Removed the declaration of an undefined mmethod. (@warp-core)
-    * Corrected the order of some copyright entries, and remove spaces from file patterns (as they are not allowed there.) (@ziproot)
+    * Corrected the order of some copyright entries, and removed spaces from file patterns (as they are not allowed there). (@ziproot)
   * CI/CD and development environment:
     * Added "GOG" as an option for "game source" in the bug report issue template. (@warp-core)
     * Renamed the feature request issue template to "Feature/Balance/Change Request". (@Amazinite)
