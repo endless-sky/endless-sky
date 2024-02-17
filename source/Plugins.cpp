@@ -146,7 +146,7 @@ string Plugin::CreateDescription() const
 		}
 		text += '\n';
 	}
-	if (!aboutText.empty())
+	if(!aboutText.empty())
 	{
 		text += aboutText;
 	}
