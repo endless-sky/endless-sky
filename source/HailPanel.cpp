@@ -105,15 +105,15 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<
 			SetMessage("Hang on, we'll be there in a minute.");
 		else if(canGiveFuel || canRepair)
 		{
-			message = "Looks like you've gotten yourself into a bit of trouble. "
+			string helpOffer = "Looks like you've gotten yourself into a bit of trouble. "
 				"Would you like us to ";
 			if(canGiveFuel && canRepair)
-				message += "patch you up and give you some fuel?";
+				helpOffer += "patch you up and give you some fuel?";
 			else if(canGiveFuel)
-				message += "give you some fuel?";
+				helpOffer += "give you some fuel?";
 			else if(canRepair)
-				message += "patch you up?";
-			SetMessage(message);
+				helpOffer += "patch you up?";
+			SetMessage(helpOffer);
 		}
 		else if(playerNeedsHelp && !canAssistPlayer)
 			SetMessage("Sorry, my ship is too small to have the right equipment to assist you.");
