@@ -100,10 +100,8 @@ public:
 	double DistanceTraveled() const;
 	// Get the number of objects this projectile can still collide with.
 	uint16_t HitsRemaining() const;
-	// Get whether this projectile should explode on the next frame.
-	// This is true for ship explosions and projectiles from weapons with
-	// the "isExplodeOnDeath" set to true and that are on the last frame of
-	// their lifetime.
+	// Get whether this projectile should explode the next time collision
+	// detection is run.
 	bool ShouldExplode() const;
 
 

@@ -468,5 +468,5 @@ uint16_t Projectile::HitsRemaining() const
 
 bool Projectile::ShouldExplode() const
 {
-	return !government || (weapon->IsExplodeOnDeath() && lifetime == 1);
+	return !government || (weapon->IsFused() && lifetime == 1);
 }
