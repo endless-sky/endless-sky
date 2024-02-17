@@ -95,7 +95,7 @@ fleet "Gegno Old"
 	names "gegno vi"
 	cargo 2
 	personality
-		timid
+		timid lingering
 	variant
 		"Protolith"
 
