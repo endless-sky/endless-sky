@@ -29,6 +29,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "HailPanel.h"
 #include "LineShader.h"
 #include "MapDetailPanel.h"
+#include "MessageLogPanel.h"
 #include "Messages.h"
 #include "Mission.h"
 #include "Phrase.h"
@@ -79,6 +80,11 @@ void MainPanel::Step()
 	else if(show.Has(Command::INFO))
 	{
 		GetUI()->Push(new PlayerInfoPanel(player));
+		isActive = false;
+	}
+	else if(show.Has(Command::MESSAGE_LOG))
+	{
+		GetUI()->Push(new MessageLogPanel());
 		isActive = false;
 	}
 	else if(show.Has(Command::HAIL))
@@ -187,10 +193,17 @@ bool MainPanel::AllowsFastForward() const noexcept
 
 
 
+Engine &MainPanel::GetEngine()
+{
+	return engine;
+}
+
+
+
 // Only override the ones you need; the default action is to return false.
 bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	if(command.Has(Command::MAP | Command::INFO | Command::HAIL | Command::HELP))
+	if(command.Has(Command::MAP | Command::INFO | Command::MESSAGE_LOG | Command::HAIL | Command::HELP))
 		show = command;
 	else if(command.Has(Command::AMMO))
 	{
@@ -208,14 +221,6 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		return false;
 
 	return true;
-}
-
-
-
-// Forward the given TestContext to the Engine under MainPanel.
-void MainPanel::SetTestContext(TestContext &testContext)
-{
-	engine.SetTestContext(testContext);
 }
 
 

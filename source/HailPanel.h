@@ -19,7 +19,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Panel.h"
 
 #include "Angle.h"
-#include "Point.h"
 
 #include <cstdint>
 #include <memory>
@@ -59,9 +58,10 @@ private:
 	PlayerInfo &player;
 	std::shared_ptr<Ship> ship = nullptr;
 	std::function<void(const Government *)> bribeCallback = nullptr;
+	const StellarObject *object = nullptr;
 	const Planet *planet = nullptr;
-	const Sprite *sprite = nullptr;
 	Angle facing;
+	int step = 0;
 
 	std::string header;
 	std::string message;

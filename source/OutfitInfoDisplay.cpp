@@ -178,6 +178,8 @@ namespace {
 		{"overheat damage threshold", 3},
 		{"high shield permeability", 3},
 		{"low shield permeability", 3},
+		{"acceleration multiplier", 3},
+		{"turn multiplier", 3},
 
 		{"burn protection", 4},
 		{"corrosion protection", 4},
@@ -472,6 +474,21 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	attributeValues.emplace_back(Format::Number(outfit.Range()));
 	attributesHeight += 20;
 
+	// Identify the dropoff at range and inform the player.
+	double fullDropoff = outfit.MaxDropoff();
+	if(fullDropoff != 1.)
+	{
+		attributeLabels.emplace_back("dropoff modifier:");
+		attributeValues.emplace_back(Format::Number(100. * fullDropoff) + "%");
+		attributesHeight += 20;
+		// Identify the ranges between which the dropoff takes place.
+		attributeLabels.emplace_back("dropoff range:");
+		const pair<double, double> &ranges = outfit.DropoffRanges();
+		attributeValues.emplace_back(Format::Number(ranges.first)
+			+ " - " + Format::Number(ranges.second));
+		attributesHeight += 20;
+	}
+
 	static const vector<pair<string, string>> VALUE_NAMES = {
 		{"shield damage", ""},
 		{"hull damage", ""},
@@ -647,13 +664,15 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		"inaccuracy:",
 		"blast radius:",
 		"missile strength:",
-		"anti-missile:"
+		"anti-missile:",
+		"tractor beam:"
 	};
 	vector<double> otherValues = {
 		outfit.Inaccuracy(),
 		outfit.BlastRadius(),
 		static_cast<double>(outfit.MissileStrength()),
-		static_cast<double>(outfit.AntiMissile())
+		static_cast<double>(outfit.AntiMissile()),
+		outfit.TractorBeam() * 60.
 	};
 
 	for(unsigned i = 0; i < OTHER_NAMES.size(); ++i)

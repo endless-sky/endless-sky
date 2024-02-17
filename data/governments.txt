@@ -174,8 +174,10 @@ government "Coalition"
 	"hostile disabled hail" "hostile disabled coalition"
 
 government "Deep"
+	"display name" "Deep Security"
 	swizzle 0
 	"player reputation" -1000
+	"hostile hail" "hostile deep"
 
 government "Deep Security"
 	swizzle 0
@@ -293,6 +295,7 @@ government "Free Worlds that won't enter wormhole"
 	"hostile hail" "hostile free worlds"
 	raid "pirate raid"
 
+
 government "Gegno"
 	swizzle 0
 	language "Gegno"
@@ -308,6 +311,7 @@ government "Gegno"
 	"penalty for"
 		assist 0
 		provoke 10
+		destroy 10
 
 color "governments: Gegno Scin" .67 .73 .44
 
@@ -324,6 +328,9 @@ government "Gegno Scin"
 		"Gegno Vi" -0.01
 	"penalty for"
 		assist 0
+		disable 0.3
+		board 0.5
+		destroy 0.3
 
 color "governments: Gegno Vi" .68 .4 .4
 
@@ -337,10 +344,14 @@ government "Gegno Vi"
 	"crew defense" 1.5
 	"attitude toward"
 		"Gegno" 1
+		"Gegno Vi (Duelist A)" 1
+		"Gegno Vi (Duelist B)" 1
 		"Gegno Scin" -0.01
 	"penalty for"
 		assist 0
-
+		disable 0.3
+		board 0.5
+		destroy 0.3
 
 # Gegno Scin and Vi governments that do not fight each other.
 government "Gegno Scin (Neutral)"
@@ -356,10 +367,12 @@ government "Gegno Scin (Neutral)"
 		"Gegno" 1
 	"penalty for"
 		assist 0
+		disable 0.3
+		board 0.5
+		destroy 0.3
 	"foreign penalties for"
 		"Gegno"
 
-	
 government "Gegno Vi (Neutral)"
 	"display name" "Gegno Vi"
 	swizzle 0
@@ -373,9 +386,11 @@ government "Gegno Vi (Neutral)"
 		"Gegno" 1
 	"penalty for"
 		assist 0
+		disable 0.3
+		board 0.5
+		destroy 0.3
 	"foreign penalties for"
 		"Gegno"
-
 
 # Gegno Vi governments used for dueling.
 government "Gegno Vi (Duelist A)"
@@ -394,6 +409,9 @@ government "Gegno Vi (Duelist A)"
 		"Gegno Vi (Duelist B)" -0.01
 	"penalty for"
 		assist 0
+		disable 0.3
+		board 0.5
+		destroy 0.3
 
 government "Gegno Vi (Duelist B)"
 	swizzle 0
@@ -411,6 +429,10 @@ government "Gegno Vi (Duelist B)"
 		"Gegno Vi (Duelist A)" -0.01
 	"penalty for"
 		assist 0
+		disable 0.3
+		board 0.5
+		destroy 0.3
+
 
 color "governments: Hai" .86 .48 .79
 
@@ -729,21 +751,7 @@ government "Ka'het"
 	swizzle 0
 	language "Ka'het"
 
-	"attitude toward"
-		"Ka'het (Infighting)" -.01
-		"Remnant" -.01
-		"Quarg" -.01
-		"Pug" -.01
-		"Hai" -.01
-		"Hai (Wormhole Access)" -.01
-		"Korath" -.01
-		"Navy (Oathkeeper)" -.01
-		"Republic" -.01
-		"Free Worlds" -.01
-		"Hai (Unfettered)" -.01
-		"Wanderer" -.01
-		"Coalition" -.01
-		"Heliarch" -.01
+	"default attitude" -.01
 	
 	"player reputation" -1
 
@@ -753,21 +761,7 @@ government "Ka'het (Infighting)"
 	swizzle 0
 	language "Ka'het"
 
-	"attitude toward"
-		"Ka'het" -.01
-		"Remnant" -.01
-		"Quarg" -.01
-		"Pug" -.01
-		"Hai" -.01
-		"Hai (Wormhole Access)" -.01
-		"Korath" -.01
-		"Navy (Oathkeeper)" -.01
-		"Republic" -.01
-		"Free Worlds" -.01
-		"Hai (Unfettered)" -.01
-		"Wanderer" -.01
-		"Coalition" -.01
-		"Heliarch" -.01
+	"default attitude" -.01
 	
 	"player reputation" -1
 
@@ -1142,6 +1136,8 @@ government "Quarg"
 		"Medium Graviton Thruster"
 		"Medium Graviton Steering"
 		"Quantum Shield Generator"
+		ship "Quarg Skylark"
+		ship "Quarg Wardragon"
 
 government "Quarg (Hai)"
 	swizzle 0
@@ -1171,6 +1167,8 @@ government "Quarg (Hai)"
 		"Medium Graviton Thruster"
 		"Medium Graviton Steering"
 		"Quantum Shield Generator"
+		ship "Quarg Skylark"
+		ship "Quarg Wardragon"
 
 government "Quarg (Kor Efret)"
 	swizzle 0
@@ -1199,6 +1197,8 @@ government "Quarg (Kor Efret)"
 		"Medium Graviton Thruster"
 		"Medium Graviton Steering"
 		"Quantum Shield Generator"
+		ship "Quarg Skylark"
+		ship "Quarg Wardragon"
 
 government "Quarg (Gegno)"
 	swizzle 0
@@ -1225,6 +1225,8 @@ government "Quarg (Gegno)"
 		"Medium Graviton Thruster"
 		"Medium Graviton Steering"
 		"Quantum Shield Generator"
+		ship "Quarg Skylark"
+		ship "Quarg Wardragon"
 
 color "governments: Remnant" .89 .38 .62
 

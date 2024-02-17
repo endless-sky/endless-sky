@@ -49,17 +49,17 @@ If you want to build the libraries from source instead of using Homebrew, you ca
 
 ### Linux
 
-You will need at least CMake 3.21. You can get the latest version from the [offical website](https://cmake.org/download/).
+You can use your favorite package manager to install the needed dependencies. If you're using a slower moving distro like Ubuntu or Debian (or any derivatives thereof), make sure to use at least Ubuntu 22.04 LTS or Debian 12.
+If your distro does not provide up-to-date version of these libraries, you will need to tell CMake to build the libraries from source by passing `-DES_USE_SYSTEM_LIBRARIES=OFF` while configuring. Older versions of Ubuntu and Debian, for example, will need this. Additional dependencies will likely need to be installed to build the libraries from source as well.
 
-**Note**: If your distro does not provide up-to-date version of the needed libraries, you will need to tell CMake to build the libraries from source by passing `-DES_USE_SYSTEM_LIBRARIES=OFF` while configuring.
+In addition to the below dependencies, you will also need CMake 3.21 or newer. You can get the latest version from the [offical website](https://cmake.org/download/).
 
-If you use a reasonably up-to-date distro, then you can use your favorite package manager to install the needed dependencies.
 
 <details>
 <summary>DEB-based distros</summary>
 
 ```
-g++ cmake ninja-build libsdl2-dev libpng-dev libjpeg-dev libgl1-mesa-dev libglew-dev libopenal-dev libmad0-dev uuid-dev
+g++ cmake ninja-build curl libsdl2-dev libpng-dev libjpeg-dev libgl1-mesa-dev libglew-dev libopenal-dev libmad0-dev uuid-dev
 ```
 
 </details>
@@ -101,7 +101,9 @@ Replace `<preset>` with one of the following presets:
 
 - Windows: `clang-cl` (builds with Clang for Windows), `mingw` (builds with MinGW), `mingw32` (builds with x86 MinGW)
 - MacOS: `macos` or `macos-arm` (builds with the default compiler, for x64 and ARM64 respectively)
-- Linux: `linux` (builds with the default compiler)
+- Linux: `linux` (builds with the default compiler), `linux-gles` (compiles with GLES instead of OpenGL support)
+
+You can list all of available presets with `cmake --list-presets`.
 
 ### Using an IDE
 
