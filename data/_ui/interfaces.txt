@@ -170,10 +170,10 @@ color "warning no command" 0.16 0.16 0.13 1.
 
 # Colors used for messages
 color "message importance highest" 1. .5 0. 1.
-color "message importance high" .75 .75 .75 1.
+color "message importance high" 1. 1. 1. 1.
 color "message importance info" 0. 1. .5 1.
-color "message importance daily" 0. .5 1. 1.
-color "message importance low" .75 .75 .75 1.
+color "message importance daily" 1. 1. 1. 1.
+color "message importance low" 1. 1. 1. 1.
 
 color "message log importance highest" 1. .5 0. 1.
 color "message log importance high" .75 .75 .75 1.
