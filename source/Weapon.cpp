@@ -162,6 +162,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 				antiMissile = max(0., value);
 			else if(key == "tractor beam")
 				tractorBeam = max(0., value);
+			else if(key == "penetration count")
+				penetrationCount = static_cast<uint16_t>(value);
 			else if(key == "velocity")
 				velocity = value;
 			else if(key == "random velocity")

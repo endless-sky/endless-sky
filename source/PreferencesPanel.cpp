@@ -354,12 +354,12 @@ bool PreferencesPanel::Scroll(double dx, double dy)
 
 		if(pluginBox.Contains(hoverPoint))
 		{
-			pluginListScroll.Scroll(dy * Preferences::ScrollSpeed());
+			pluginListScroll.Scroll(-dy * Preferences::ScrollSpeed());
 			return true;
 		}
 		else if(descriptionBox.Contains(hoverPoint) && pluginDescriptionBuffer)
 		{
-			pluginDescriptionScroll.Scroll(dy * Preferences::ScrollSpeed());
+			pluginDescriptionScroll.Scroll(-dy * Preferences::ScrollSpeed());
 			return true;
 		}
 	}
@@ -379,13 +379,13 @@ bool PreferencesPanel::Drag(double dx, double dy)
 		if(pluginBox.Contains(hoverPoint))
 		{
 			// Steps is zero so that we don't animate mouse drags.
-			pluginListScroll.Scroll(dy, 0);
+			pluginListScroll.Scroll(-dy, 0);
 			return true;
 		}
 		else if(descriptionBox.Contains(hoverPoint))
 		{
 			// Steps is zero so that we don't animate mouse drags.
-			pluginDescriptionScroll.Scroll(dy, 0);
+			pluginDescriptionScroll.Scroll(-dy, 0);
 			return true;
 		}
 	}
@@ -468,6 +468,7 @@ void PreferencesPanel::DrawControls()
 		Command::FULLSCREEN,
 		Command::FASTFORWARD,
 		Command::HELP,
+		Command::MESSAGE_LOG,
 		Command::NONE,
 		Command::DEPLOY,
 		Command::FIGHT,
@@ -886,7 +887,7 @@ void PreferencesPanel::DrawPlugins()
 	table.SetUnderline(pluginListClip->Left() + box[0]->Width(), pluginListClip->Right());
 
 	int firstY = pluginListClip->Top();
-	table.DrawAt(Point(0, firstY + static_cast<int>(pluginListScroll.AnimatedValue())));
+	table.DrawAt(Point(0, firstY - static_cast<int>(pluginListScroll.AnimatedValue())));
 
 	for(const auto &it : Plugins::Get())
 	{
@@ -909,7 +910,7 @@ void PreferencesPanel::DrawPlugins()
 		topLeft.Y() += 7.;
 		Rectangle zoneBounds = Rectangle::FromCorner(pluginListBox.Center() + topLeft, {sprite->Width(), sprite->Height()});
 
-		// Only include the zone as clickable if its within the drawing area.
+		// Only include the zone as clickable if it's within the drawing area.
 		bool displayed = table.GetPoint().Y() > pluginListClip->Top() - 20 &&
 			table.GetPoint().Y() < pluginListClip->Bottom() - table.GetRowBounds().Height() + 20;
 		if(displayed)
@@ -940,12 +941,12 @@ void PreferencesPanel::DrawPlugins()
 		Rectangle topRight({pluginListBox.Right(), pluginListBox.Top() + POINTER_OFFSET.Y()}, {20.0, 20.0});
 		PointerShader::Draw(topRight.Center(), UP,
 			10.f, 10.f, 5.f, Color(pluginListScroll.IsScrollAtMin() ? .2f : .8f, 0.f));
-		AddZone(topRight, [&]() { pluginListScroll.Scroll(Preferences::ScrollSpeed()); });
+		AddZone(topRight, [&]() { pluginListScroll.Scroll(-Preferences::ScrollSpeed()); });
 
 		Rectangle bottomRight(pluginListBox.BottomRight() - POINTER_OFFSET, {20.0, 20.0});
 		PointerShader::Draw(bottomRight.Center(), DOWN,
 			10.f, 10.f, 5.f, Color(pluginListScroll.IsScrollAtMax() ? .2f : .8f, 0.f));
-		AddZone(bottomRight, [&]() { pluginListScroll.Scroll(-Preferences::ScrollSpeed()); });
+		AddZone(bottomRight, [&]() { pluginListScroll.Scroll(Preferences::ScrollSpeed()); });
 	}
 
 	// Draw the pre-rendered plugin description, if applicable.
@@ -962,7 +963,7 @@ void PreferencesPanel::DrawPlugins()
 		pluginDescriptionBuffer->Draw(
 			descriptionBox.Center(),
 			descriptionBox.Dimensions(),
-			Point(0, -static_cast<int>(pluginDescriptionScroll.AnimatedValue()))
+			Point(0, static_cast<int>(pluginDescriptionScroll.AnimatedValue()))
 		);
 
 		if(pluginDescriptionScroll.Scrollable())
@@ -973,12 +974,12 @@ void PreferencesPanel::DrawPlugins()
 			Rectangle topRight({descriptionBox.Right(), descriptionBox.Top() + POINTER_OFFSET.Y()}, {20.0, 20.0});
 			PointerShader::Draw(topRight.Center(), UP,
 				10.f, 10.f, 5.f, Color(pluginDescriptionScroll.IsScrollAtMin() ? .2f : .8f, 0.f));
-			AddZone(topRight, [&]() { pluginDescriptionScroll.Scroll(Preferences::ScrollSpeed()); });
+			AddZone(topRight, [&]() { pluginDescriptionScroll.Scroll(-Preferences::ScrollSpeed()); });
 
 			Rectangle bottomRight(descriptionBox.BottomRight() - POINTER_OFFSET, {20.0, 20.0});
 			PointerShader::Draw(bottomRight.Center(), DOWN,
 				10.f, 10.f, 5.f, Color(pluginDescriptionScroll.IsScrollAtMax() ? .2f : .8f, 0.f));
-			AddZone(bottomRight, [&]() { pluginDescriptionScroll.Scroll(-Preferences::ScrollSpeed()); });
+			AddZone(bottomRight, [&]() { pluginDescriptionScroll.Scroll(Preferences::ScrollSpeed()); });
 		}
 	}
 }
@@ -1250,8 +1251,8 @@ void PreferencesPanel::HandleConfirm()
 
 void PreferencesPanel::ScrollSelectedPlugin()
 {
-	while(selected * 20 + pluginListScroll < 0)
-		pluginListScroll += Preferences::ScrollSpeed();
-	while(selected * 20 + pluginListScroll > pluginListClip->Height())
-		pluginListScroll -= Preferences::ScrollSpeed();
+	while(selected * 20 - pluginListScroll < 0)
+		pluginListScroll.Scroll(-Preferences::ScrollSpeed());
+	while(selected * 20 - pluginListScroll > pluginListClip->Height())
+		pluginListScroll.Scroll(Preferences::ScrollSpeed());
 }
