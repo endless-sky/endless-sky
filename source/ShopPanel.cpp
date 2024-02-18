@@ -117,20 +117,33 @@ void ShopPanel::Draw()
 		const Color *backColor = nullptr;
 		if(!warningType.empty())
 		{
-			wrap.Wrap(shipName + "\n" + GameData::Tooltip(warningType));
+			string text = shipName + "\n" + GameData::Tooltip(warningType);
+			wrap.Wrap(text);
+			int longest = wrap.LongestLineWidth();
+			if(longest < wrap.WrapWidth())
+			{
+				wrap.SetWrapWidth(longest);
+				wrap.Wrap(text);
+			}
 			bool isError = (warningType.back() == '!');
 			backColor = GameData::Colors().Get(isError ? "error back" : "warning back");
 		}
 		else
 		{
 			wrap.Wrap(shipName);
+			int longest = wrap.LongestLineWidth();
+			if(longest < wrap.WrapWidth())
+			{
+				wrap.SetWrapWidth(longest);
+				wrap.Wrap(shipName);
+			}
 			backColor = GameData::Colors().Get("tooltip background");
 		}
 
-		Point size(WIDTH, wrap.Height() + 2 * PAD);
-		Point anchor = Point(hoverPoint.X(), min<double>(hoverPoint.Y() + size.Y(), Screen::Bottom()));
-		FillShader::Fill(anchor - .5 * size, size, *backColor);
-		wrap.Draw(anchor - size + Point(PAD, PAD), textColor);
+		Point textSize(wrap.WrapWidth() + 2 * PAD, wrap.Height() + 2 * PAD - wrap.ParagraphBreak());
+		Point anchor = Point(hoverPoint.X(), min<double>(hoverPoint.Y() + textSize.Y(), Screen::Bottom()));
+		FillShader::Fill(anchor - .5 * textSize, textSize, *backColor);
+		wrap.Draw(anchor - textSize + Point(PAD, PAD), textColor);
 	}
 
 	if(dragShip && isDraggingShip && dragShip->GetSprite())
@@ -761,7 +774,7 @@ void ShopPanel::DrawShipsSidebar()
 		}
 
 		shipZones.emplace_back(point, Point(ICON_TILE, ICON_TILE), ship.get());
-		
+
 		if(shipZones.back().Contains(mouse))
 		{
 			shipName = ship->Name();
@@ -932,19 +945,26 @@ void ShopPanel::DrawButtons()
 	{
 		WrappedText hoverText(font);
 		hoverText.SetWrapWidth(SIDEBAR_WIDTH - 20);
-		hoverText.Wrap(Format::Number(player.Accounts().Credits()) + " credits");
 		hoverText.SetAlignment(Alignment::LEFT);
 
-		Point textSize(hoverText.WrapWidth(), hoverText.Height() - hoverText.ParagraphBreak());
-		Point boxSize = textSize + Point(20., 20.);
+		string text = Format::Number(player.Accounts().Credits()) + " credits";
+		hoverText.Wrap(text);
+		int longest = hoverText.LongestLineWidth();
+		if(longest < hoverText.WrapWidth())
+		{
+			hoverText.SetWrapWidth(longest);
+			hoverText.Wrap(text);
+		}
+
+		Point textSize(hoverText.WrapWidth() + 20, hoverText.Height() + 20 - hoverText.ParagraphBreak());
 
 		Point topLeft = hoverPoint;
-		if(topLeft.X() + boxSize.X() > Screen::Right())
-			topLeft.X() -= boxSize.X();
-		if(topLeft.Y() + boxSize.Y() > Screen::Bottom())
-			topLeft.Y() -= boxSize.Y();
+		if(topLeft.X() + textSize.X() > Screen::Right())
+			topLeft.X() -= textSize.X();
+		if(topLeft.Y() + textSize.Y() > Screen::Bottom())
+			topLeft.Y() -= textSize.Y();
 
-		FillShader::Fill(topLeft + .5 * boxSize, boxSize, *GameData::Colors().Get("tooltip background"));
+		FillShader::Fill(topLeft + .5 * textSize, textSize, *GameData::Colors().Get("tooltip background"));
 		hoverText.Draw(topLeft + Point(10., 10.), dim);
 	}
 }
