@@ -977,7 +977,8 @@ string Mission::BlockedMessage(const PlayerInfo &player)
 
 
 
-string Mission::AbortedMessage(const PlayerInfo &player) const
+// Get a string to show if the player is about to abort this mission.
+string Mission::AbortMessage(const PlayerInfo &player) const
 {
 	string message = "Abort mission \"" + Name() + "\"?";
 	if(!abortMessage.empty())

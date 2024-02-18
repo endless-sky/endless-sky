@@ -142,8 +142,8 @@ public:
 	// calling this function, any future calls to it will return an empty string
 	// so that you do not display the same message multiple times.
 	std::string BlockedMessage(const PlayerInfo &player);
-	// Get a string to show if this mission is being aborted.
-	std::string AbortedMessage(const PlayerInfo &player) const;
+	// Get a string to show if the player is about to abort this mission.
+	std::string AbortMessage(const PlayerInfo &player) const;
 	// Check if this mission recommends that the game be autosaved when it is
 	// accepted. This should be set for main story line missions that have a
 	// high chance of failing, such as escort missions.
