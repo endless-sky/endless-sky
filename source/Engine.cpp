@@ -2743,11 +2743,13 @@ void Engine::EmplaceStatusOverlay(const shared_ptr<Ship> &it, Preferences::Overl
 
 void Engine::HandleEvents()
 {
+	set<const Ship*> disabledFighters;
 	for(const auto &event : events)
 		if(event.Type() & ShipEvent::DISABLE && event.Target()->CanBeCarried())
-			for(auto &projectile : projectiles)
-				if(projectile.Target() == event.Target().get())
-					projectile.BreakTarget();
+			disabledFighters.insert(event.Target().get());
+	for(auto &projectile : projectiles)
+		if(disabledFighters.count(projectile.Target()))
+			projectile.BreakTarget();
 
 	ai.UpdateEvents(events);
 }
