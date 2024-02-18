@@ -2194,6 +2194,13 @@ phrase "friendly civilian"
 		`I just found out that a "duck" is a type of bird from Earth! Now I wonder why "duck tape" is named after it?`
 		`Apparently they want me to pay 5% of my paycheck for union dues! I'm gonna keep it. My boss is a good guy; he'll look out for me.`
 		`I saved up and bought extra bunk space so my wife could come on trips with me, and now she says "we need to talk." That can't be a good sign, can it?`
+		`I bumped into some nasty pirates last week. I had to dump my cargo to get away, and my insurance is not paying me back.`
+		`If you are in a tight spot with some pirates, just throw everything out the airlock. They will be busy scavenging it, and you will be out of reach when they inevitably come back.`
+		`When I was hauling food in the South I ran into pirates every damn week. Half the time I had to bribe them with my salary or with a part of my freight.`
+		`My friend was boarded by pirates and they took his engines. It would have been cheaper to just let them have the cargo.`
+		`You can often distract pirates with some cargo until the Navy rescues you. My old captain taught me this trick when we were ferrying in the Far North.`
+		`Pirates will always try to take your cargo, but if you drop some scrap their way, they let you keep the real valuables.`
+		`Whenever I see pirates, I immediately dump my freight. They would get it either way, but at least this lets me get away.`
 
 phrase "friendly navy"
 	word
@@ -5836,6 +5843,11 @@ phrase "hostile pirate"
 		"I want to see your cargo!"
 		"Die already!"
 		"Pirate captains are the most honest of captains. I honestly want to see you die!"
+		"Gimme yer booty, or ye will lose yer bootie!"
+		"It may be wise to part with your valuables."
+		"Drop your cargo, and I may spare your miserable life."
+		"Yield your haul and run before I get real mad!"
+		"If ye provide me yer coffer, ye may set sail."
 
 phrase "hostile pirate"
 	word
