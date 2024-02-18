@@ -95,6 +95,9 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 
 	if(player.GetPlanet())
 		Audio::PlayMusic(player.GetPlanet()->MusicName());
+
+	if(!scrollSpeed)
+		scrollSpeed = 1;
 }
 
 
