@@ -994,6 +994,12 @@ event "Tarazed neutrality"
 		government "Neutral"
 	system "Girtab"
 		government "Neutral"
+	system "Umbral"
+		government "Neutral"
+	system "Sadr"
+		government "Neutral"
+	system "Lurata"
+		government "Neutral"
 	planet "Wayfarer"
 		outfitter "Syndicate Assistance"
 
@@ -1473,6 +1479,8 @@ event "fw southern expansion"
 		fleet "Small Southern Pirates" 3000
 		fleet "Large Southern Pirates" 7000
 		fleet "Navy Surveillance" 3000
+	system "Eltanin"
+		government "Free Worlds"
 	system "Vega"
 		remove fleet "Republic Logistics"
 		add fleet "Republic Logistics" 2500
@@ -1490,6 +1498,7 @@ event "fw southern expansion"
 		fleet "Republic Logistics" 4000
 	planet "New Iceland"
 		description `New Iceland is a perpetually hazy volcanic world, with a slightly caustic atmosphere but enough reserves of metal and petrochemicals to draw a large number of settlers. Some of those settlers also make a living as farmers, and a few well-developed factory towns produce goods for export to other worlds.`
+		description `	Many of the inhabitants wear dust masks to avoid letting the particulate matter from the volcanoes accumulate in their lungs.`
 		description `	In the wake of their defeat in the south, the Navy has begun to set up a massive new base here on New Iceland, in order to allow them to continue to have a strong presence in this sector.`
 
 
@@ -1541,6 +1550,12 @@ event "fw northern expansion"
 	system "Seginus"
 		government "Free Worlds"
 	system "Wei"
+		government "Free Worlds"
+	system "Alpha Arae"
+		government "Free Worlds"
+	system "Alnasl"
+		government "Free Worlds"
+	system "Eber"
 		government "Free Worlds"
 
 
@@ -1702,6 +1717,12 @@ event "fw expanded and cut"
 		government "Free Worlds"
 	system "Kaus Australis"
 		government "Free Worlds"
+	system "Orvala"
+		government "Free Worlds"
+	system "Tais"
+		government "Free Worlds"
+	system "Naper"
+		government "Free Worlds"
 	system "Delta Sagittarii"
 		government "Republic"
 		fleet "Small Southern Merchants" 2000
@@ -1825,6 +1846,12 @@ event "fw tarazed joins"
 		government "Free Worlds"
 	system "Albireo"
 		government "Free Worlds"
+	system "Umbral"
+		government "Free Worlds"
+	system "Sadr"
+		government "Free Worlds"
+	system "Lurata"
+		government "Free Worlds"
 
 
 
@@ -1834,6 +1861,12 @@ event "fw tarazed republic"
 	system "Dabih"
 		government "Republic"
 	system "Albireo"
+		government "Republic"
+	system "Umbral"
+		government "Republic"
+	system "Sadr"
+		government "Republic"
+	system "Lurata"
 		government "Republic"
 
 
@@ -2538,6 +2571,8 @@ event "fwc capture kaus borealis"
 		fleet "Large Republic" 2000
 	planet "New Iceland"
 		description `New Iceland is a perpetually hazy volcanic world, with a slightly caustic atmosphere but enough reserves of metal and petrochemicals to draw a large number of settlers. Some of those settlers also make a living as farmers, and a few well-developed factory towns produce goods for export to other worlds.`
+		description `	Many of the inhabitants wear dust masks to avoid letting the particulate matter from the volcanoes accumulate in their lungs.`
+		description `	The Navy had begun building a massive military base on New Iceland after they had been pushed out of the Southern Rim, but their defeat in this system by the Free Worlds has led to the base being abandoned prematurely.`
 
 
 
@@ -2664,8 +2699,9 @@ event "fwc capture menkent"
 		fleet "Human Miners" 2000
 	planet "New Austria"
 		description `New Austria is a rugged mountain world, full of snow-capped peaks and valleys so deep and so steep that they rarely see sunlight.`
-		description `The few settlements that have been built here were developed for mining sapphires and rubies. The sapphires found in New Austria range from blue to yellow to black to clear in color, and are used both for industrial abrasives and for jewelry.`
-		description `For centuries the locals have been trying to find a deposit of diamonds, which would sell for much higher prices than sapphires, and local folklore revolves around the prosperity that would come to this world if diamonds were ever discovered.`
+		description `	The few settlements that have been built here were developed for mining sapphires and rubies. The sapphires found in New Austria range from blue to yellow to black to clear in color, and are used both for industrial abrasives and for jewelry.`
+		description `	For centuries the locals have been trying to find a deposit of diamonds, which would sell for much higher prices than sapphires, and local folklore revolves around the prosperity that would come to this world if diamonds were ever discovered.`
+		description `	The Navy once had a military base here, but they vacated it when the Free Worlds captured this system as part of the "Checkmate" plan.`
 
 
 
@@ -3014,6 +3050,12 @@ event "fwc pug defeated"
 		tribute 1200
 			threshold 3500
 			fleet "Large Syndicate" 9
+
+
+
+event "fwc kaus borealis ceded back"
+	system "Kaus Borealis"
+		government "Republic"
 
 
 
