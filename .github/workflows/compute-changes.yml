@@ -55,7 +55,7 @@ jobs:
       with:
         fetch-depth: 2
         show-progress: false
-    - uses: dorny/paths-filter@v2
+    - uses: dorny/paths-filter@v3
       id: filter
       with:
         filters: .github/path-filters.yml
