@@ -632,7 +632,7 @@ bool NPC::HasFailed() const
 // Create a copy of this NPC but with the fleets replaced by the actual
 // ships they represent, wildcards in the conversation text replaced, etc.
 NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const System *destination,
-		int jumps, int64_t payload, int64_t escortPayment) const
+		int jumps, int64_t payload, int64_t escortPayload) const
 {
 	NPC result;
 	result.government = government;
@@ -723,7 +723,7 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 		return result;
 	}
 	if(personality.IsEscort())
-		payload += escortPayment * result.ships.size();
+		payload += escortPayload * result.ships.size();
 	for(const auto &it : npcActions)
 		result.npcActions[it.first] = it.second.Instantiate(subs, origin, jumps, payload);
 

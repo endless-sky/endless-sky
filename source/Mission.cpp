@@ -194,8 +194,8 @@ void Mission::Load(const DataNode &node)
 		}
 		else if(child.Token(0) == "apparent payment" && child.Size() >= 2)
 			paymentApparent = child.Value(1);
-		else if(child.Token(0) == "escort payment" && child.Size() >= 2)
-			escortPayment = child.Value(1);
+		else if(child.Token(0) == "escort payload" && child.Size() >= 2)
+			escortPayload = child.Value(1);
 		else if(ParseContraband(child))
 		{
 			// This was an "illegal" or "stealth" entry. It has already been
@@ -1443,11 +1443,11 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	for(const NPC &npc : npcs)
 	{
 		result.npcs.push_back(npc.Instantiate(subs, sourceSystem, result.destination->GetSystem(), jumps,
-			payload, escortPayment));
+			payload, escortPayload));
 		if(result.npcs.back().GetPersonality().IsEscort())
 			escortShips += result.npcs.back().Ships().size();
 	}
-	payload += escortShips * escortPayment;
+	payload += escortShips * escortPayload;
 
 	// Instantiate the actions. The "complete" action is always first so that
 	// the "<payment>" substitution can be filled in.

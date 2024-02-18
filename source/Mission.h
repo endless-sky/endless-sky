@@ -229,8 +229,10 @@ private:
 	int passengerLimit = 0;
 	double passengerProb = 0.;
 	int64_t paymentApparent = 0;
-	// The payment per escort per jump.
-	int64_t escortPayment = 0;
+	// How much each escort counts toward the mission payload per jump.
+	// For reference, each ton of cargo adds 1 payload while each passenger
+	// adds 10.
+	int64_t escortPayload = 0;
 
 	ConditionSet toOffer;
 	ConditionSet toAccept;
