@@ -65,11 +65,12 @@ namespace {
 
 	const int HOVER_TIME = 60;
 
-	void DrawTooltip(const string &text, const Point &hoverPoint, int width, int pad,
-			const Color &textColor, const Color &backColor)
+	void DrawTooltip(const string &text, const Point &hoverPoint, const Color &textColor, const Color &backColor)
 	{
+		constexpr int WIDTH = 250;
+		constexpr int PAD = 10;
 		WrappedText wrap(FontSet::Get(14));
-		wrap.SetWrapWidth(width - 2 * pad);
+		wrap.SetWrapWidth(WIDTH - 2 * PAD);
 		wrap.Wrap(text);
 		int longest = wrap.LongestLineWidth();
 		if(longest < wrap.WrapWidth())
@@ -78,10 +79,10 @@ namespace {
 			wrap.Wrap(text);
 		}
 
-		Point textSize(wrap.WrapWidth() + 2 * pad, wrap.Height() + 2 * pad - wrap.ParagraphBreak());
+		Point textSize(wrap.WrapWidth() + 2 * PAD, wrap.Height() + 2 * PAD - wrap.ParagraphBreak());
 		Point anchor = Point(hoverPoint.X(), min<double>(hoverPoint.Y() + textSize.Y(), Screen::Bottom()));
 		FillShader::Fill(anchor - .5 * textSize, textSize, backColor);
-		wrap.Draw(anchor - textSize + Point(pad, pad), textColor);
+		wrap.Draw(anchor - textSize + Point(PAD, PAD), textColor);
 	}
 }
 
@@ -134,7 +135,7 @@ void ShopPanel::Draw()
 		const Color &textColor = *GameData::Colors().Get("medium");
 		const Color &backColor = *GameData::Colors().Get(warningType.empty() ? "tooltip background"
 					: (warningType.back() == '!' ? "error back" : "warning back"));
-		DrawTooltip(text, hoverPoint, 250, 10, textColor, backColor);
+		DrawTooltip(text, hoverPoint, textColor, backColor);
 	}
 
 	if(dragShip && isDraggingShip && dragShip->GetSprite())
@@ -927,15 +928,15 @@ void ShopPanel::DrawButtons()
 
 	// Draw the tooltip for your full number of credits.
 	const Rectangle creditsBox = Rectangle::FromCorner(creditsPoint, Point(SIDEBAR_WIDTH - 20, 15));
-	if(hoverCount < HOVER_TIME && creditsBox.Contains(hoverPoint))
-		++hoverCount;
+	if(creditsBox.Contains(hoverPoint))
+		hoverCount += hoverCount < HOVER_TIME;
 	else if(hoverCount)
 		--hoverCount;
 
 	if(hoverCount == HOVER_TIME)
 	{
 		string text = Format::Number(player.Accounts().Credits()) + " credits";
-		DrawTooltip(text, hoverPoint, 250, 10, dim, *GameData::Colors().Get("tooltip background"));
+		DrawTooltip(text, hoverPoint, dim, *GameData::Colors().Get("tooltip background"));
 	}
 }
 
