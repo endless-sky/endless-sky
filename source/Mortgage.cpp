@@ -60,8 +60,8 @@ Mortgage::Mortgage(int64_t principal, int creditScore, int term)
 Mortgage::Mortgage(int64_t principal, double interest, int term)
 	: type("Mortgage"),
 	principal(principal),
-	interest(interest),
-	interestString("0." + to_string(interest) + "%"),
+	interest(interest * .01),
+	interestString("0." + to_string(static_cast<int>(1000. * interest)) + "%"),
 	term(term)
 {
 }

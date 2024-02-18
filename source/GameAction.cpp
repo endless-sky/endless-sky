@@ -188,15 +188,16 @@ void GameAction::LoadSingle(const DataNode &child)
 		for(const DataNode &grand : child)
 		{
 			const string &grandKey = grand.Token(0);
-			bool grandHasValue = (grand.Size() < 2);
-			if(grandKey == "use credit score")
-				mortgage.useCreditScore = true;
-			else if(grandKey == "principal" && grandHasValue)
-				mortgage.principal = grand.Value(1);
+			bool grandHasValue = (grand.Size() > 1);
+			if(grandKey == "principal" && grandHasValue)
+				mortgage.principal = max<int64_t>(0, grand.Value(1));
 			else if(grandKey == "term" && grandHasValue)
-				mortgage.term = grand.Value(1);
+				mortgage.term = max<int>(1, grand.Value(1));
 			else if(grandKey == "interest" && grandHasValue)
-				mortgage.interest = grand.Value(1);
+			{
+				mortgage.interest = max(0., min(.999, grand.Value(1)));
+				mortgage.useCreditScore = false;
+			}
 			else
 				grand.PrintTrace("Error: Skipping unrecognized \"mortgage\" attribute:");
 		}
@@ -256,15 +257,13 @@ void GameAction::Save(DataWriter &out) const
 		out.Write("payment", payment);
 	if(fine)
 		out.Write("fine", fine);
-	for(const GameAction::Mortgage &mortgage : mortgages)
+	for(auto &&mortgage : mortgages)
 	{
 		out.Write("mortgage");
 		out.BeginChild();
 		{
 			out.Write("principal", mortgage.principal);
-			if(mortgage.useCreditScore)
-				out.Write("use credit score");
-			else
+			if(!mortgage.useCreditScore)
 				out.Write("interest", mortgage.interest);
 			out.Write("term", mortgage.term);
 		}
@@ -439,6 +438,8 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 	result.fine = fine;
 	if(result.fine)
 		subs["<fine>"] = Format::CreditString(result.fine);
+
+	result.mortgages = mortgages;
 
 	if(!logText.empty())
 		result.logText = Format::Replace(logText, subs);

@@ -79,7 +79,7 @@ private:
 		int64_t principal = 0;
 		double interest = 0.;
 		int term = 365;
-		bool useCreditScore = false;
+		bool useCreditScore = true;
 	};
 
 
