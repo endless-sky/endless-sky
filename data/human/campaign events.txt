@@ -438,6 +438,21 @@ event "initial deployment 2"
 		fleet "Large Republic" 4000
 		fleet "Navy Surveillance" 1600
 
+# Compatibility patch event in case the pirates were added by the second deployment, pre-0.10.7
+event "remove pirates from Ildaria"
+	system Ildaria
+		remove fleet "Small Southern Pirates"
+		remove fleet "Large Southern Pirates"
+
+mission "Ildaria Pirates Compatibility"
+	invisible
+	landing
+	to offer
+		has "event: initial deployment 2"
+	on offer
+		event "remove pirates from Ildaria"
+		fail
+
 event "initial deployment 3"
 	date 29 8 3014
 	system "Zubenelgenubi"
