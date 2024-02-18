@@ -132,7 +132,7 @@ void ShopPanel::Draw()
 		if(!warningType.empty())
 			text += "\n" + GameData::Tooltip(warningType);
 		const Color &textColor = *GameData::Colors().Get("medium");
-		const Color &backColor = *GameData::Colors().Get(warningType.empty() ? "tooltip background" 
+		const Color &backColor = *GameData::Colors().Get(warningType.empty() ? "tooltip background"
 					: (warningType.back() == '!' ? "error back" : "warning back"));;
 		DrawTooltip(text, hoverPoint, 250, 10, textColor, backColor);
 	}
