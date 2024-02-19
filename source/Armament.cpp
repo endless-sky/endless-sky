@@ -68,7 +68,7 @@ int Armament::Add(const Outfit *outfit, int count)
 	// To start out with, check how many instances of this weapon are already
 	// installed. If "adding" a negative number of outfits, remove the installed
 	// instances until the given number have been removed.
-	for(Hardpoint &Hardpoint : hardpoints)
+	for(Hardpoint &hardpoint : hardpoints)
 	{
 		if(hardpoint.GetOutfit() == outfit)
 		{
@@ -149,7 +149,7 @@ void Armament::ReloadAll()
 // Uninstall all weapons (because the weapon outfits have potentially changed).
 void Armament::UninstallAll()
 {
-	for(Hardpoint &Hardpoint : hardpoints)
+	for(Hardpoint &hardpoint : hardpoints)
 		hardpoint.Uninstall();
 }
 
@@ -207,7 +207,7 @@ int Armament::TurretCount() const
 set<const Outfit *> Armament::RestockableAmmo() const
 {
 	auto restockable = set<const Outfit *>{};
-	for(Hardpoint &Hardpoint : hardpoints)
+	for(const Hardpoint &hardpoint : hardpoints)
 	{
 		const Weapon *weapon = hardpoint.GetOutfit();
 		if(weapon)
@@ -284,7 +284,7 @@ bool Armament::FireTractorBeam(unsigned index, Ship &ship, const Flotsam &flotsa
 // Update the reload counters.
 void Armament::Step(const Ship &ship)
 {
-	for(Hardpoint &Hardpoint : hardpoints)
+	for(Hardpoint &hardpoint : hardpoints)
 		hardpoint.Step();
 
 	for(auto &it : streamReload)
