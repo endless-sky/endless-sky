@@ -2374,54 +2374,46 @@ name
 	"Guerrilla Symbology"
 message
 	word
-		"It's an average day in a busy spaceport, "
+		"It's an average day in Gagarins busy spaceport, until "
 	word
-		"there's no real quiet anywhere in the port, "
-		"it's the expected amout of noisy crowd background noise, "
-		"with the normal buzz of activity with thousands of things happening every second, "
+		"your attention is grabbed by an oddity. A "
+		"an unusual commotion catches your attention. A "
 	word
-		"it can be a bit much but anyone who works with ships learns to tune it out. "
+		"squad "
+		"band "
+		"team "
 	word
-		"In spite of the drive to tune out the rumble of the crowds "
-		"However, against the drive to tune out the crowds "
-		"A rare and fleeting drop in the rumble allows% "
+		"of CCOR "
 	word
-		"you hear something that stands out "
+		"Geurrillas "
+		"Insurgents "
 	word
-		"turning your attention to the unexpected noise, "
-		"glancing over to the new commotion, "
+		"have entered the port "
 	word
-		"you see a squad of "
+		"almost none "
+		"few "
+		"some "
+		"all "
 	word
-		"CCOR irregulars "
-		"CCOR guerrillas "
+		"of them are armed, but it's their other equipment that stands out; paint, plaster, and ladders. They "
 	word
-		"a few of them are armed but most have paint, plaster, and ladders."
+		"aren't disrupting traffic "
+		"are leaving port traffic be "
 	word
-		"They "
+		"as they "
 	word
-		"leave the spaceport traffic alone,"
-		"aren't disrupting traffic,"
+		"scale the rear wall toward the giant crest of the local government "
+		"walk along the walls stopping at each local government crest% "
 	word
-		"rather "
-		"instead "
+		"they replace the crest then take down their ladders and leave."
 	word
-		"they are "
+		"Spaceport security "
 	word
-		"climbing the back wall toward the giant crest of the planetary government% "
-		"walking along the peripheral walls of the port focusing on the small government crests "
-		"returning to CCOR crests that have been covered with planetary government crests "
-	word
-		"they dilligently replace the government crests with CCOR's. "
-	word
-		"Spaceport security are "
-	word
-		"noticably absent."
-		"actively ignoring them."
-		"keeping their distance."
+		"is noticably absent the whole scene."
+		"watched but kept their distance."
+		"pointedly ignored it as it happened."
 	replace
-		"% you" " you to"
-		"% they dilligently replace the government crests" " they dilligently replace the large crest"
+		"% they replace the " "they replace each "
 		"%" ""
 
 news "IP Theft"
