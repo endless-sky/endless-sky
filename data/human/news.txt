@@ -2330,7 +2330,7 @@ message
 		"a few pirates watching but not apparently touching it. "
 		"no-one there, the area around your ship is almost suspiciously devioid of people. "
 	word
-		"Whatever's going on your ship appears unscathed."
+		"Whatever is going on, your ship appears unscathed."
 
 news "Microgravity"
 	location
