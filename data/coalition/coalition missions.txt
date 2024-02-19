@@ -1083,7 +1083,7 @@ mission "Saryd Couple 1"
 				`	(Go back to my ship and check if it was properly refueled.)`
 					goto ship
 			`	They pause their map-gazing and introduce themselves as Inturi and Aunaris, a young couple who are looking to move out of <origin> and build a home they've always dreamed of on another world.`
-			`	"Only, in need of money for that we are," Inturi says. "Worked in a ship as a crewmember, I did, before decided to stay here and work on ship repairs and maintenance, I had."`
+			`	"Only, in need of money for that we are," Inturi says. "Worked in a ship as a crew member, I did, before decided to stay here and work on ship repairs and maintenance, I had."`
 			`	"Much too far away, his old job took him, and well paid, crew members are not," Aunaris says, bringing up the map again and showing it to you. "Offered a job in Starlit University, on <destination>, I was. Not too distant from <origin>, it is, and a higher pay, it offers. Transport me there, would you, Captain? Once ready our house is, pay you we would."`
 			choice
 				`	"Of course, just come to my ship when you've finished preparing your luggage."`
