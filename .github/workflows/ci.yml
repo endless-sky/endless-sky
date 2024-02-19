@@ -41,6 +41,7 @@ jobs:
         ANDROID_SDK_ROOT: /path/to/sdk
         ARTIFACT: endless-mobile
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        DEBUG_CERTIFICATE: ${{ secrets.ANDROID_DEBUG_KEYSTORE }}
     steps:
     - uses: actions/checkout@v2
 
@@ -65,6 +66,11 @@ jobs:
     - name: Unit Tests
       run: |
         scons -Qj $(nproc) opengl=gles mode=debug test;
+    - name: Update Environment
+      env: 
+      run: |
+        mkdir -p ~/.android
+        echo $DEBUG_CERTIFICATE | base64 -d > ~/.android/debug.keystore
     - name: Compile Android
       run: |
         cd android/app && sh ./download_build_dependencies.sh
