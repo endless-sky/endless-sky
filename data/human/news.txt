@@ -2437,7 +2437,7 @@ message
 		"It's quite simple! Ensure that when buying new you do so from a reputable dealer or if you're interested in one that has itself withstood the test of time request the certificate of authenticity from the seller with your purchase. These simple precautions will ensure that "
 	word
 		"you're not mislead by an inferior facsimile "
-		"duped with a douplicate "
+		"duped with a duplicate "
 		"conned with a counterfeit "
 	word
 		"ship assembled "
