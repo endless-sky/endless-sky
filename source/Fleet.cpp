@@ -425,11 +425,10 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 // Do the randomization to make a ship enter or be in the given system.
 const System *Fleet::Enter(const System &system, Ship &ship, const System *source)
 {
-	bool unrestricted = ship.GetPersonality().IsUnrestricted();
-	bool canEnter = (source != nullptr || unrestricted || any_of(system.Links().begin(), system.Links().end(),
+	bool canEnter = (source != nullptr || any_of(system.Links().begin(), system.Links().end(),
 		[&ship](const System *link) noexcept -> bool
 		{
-			return !ship.GetGovernment()->IsRestrictedFrom(*link);
+			return !ship.IsRestrictedFrom(*link);
 		}
 	));
 
@@ -443,9 +442,8 @@ const System *Fleet::Enter(const System &system, Ship &ship, const System *sourc
 	if(!source)
 	{
 		vector<const System *> validSystems;
-		const Government *gov = ship.GetGovernment();
 		for(const System *link : system.Links())
-			if(unrestricted || !gov->IsRestrictedFrom(*link))
+			if(!ship.IsRestrictedFrom(*link))
 				validSystems.emplace_back(link);
 		auto it = validSystems.cbegin();
 		advance(it, Random::Int(validSystems.size()));
