@@ -1157,6 +1157,19 @@ void Engine::Draw() const
 		double ammoIconHeight = hud->GetValue("ammo icon height");
 		ammoDisplay.Draw(hud->GetBox("ammo"), Point(ammoIconWidth, ammoIconHeight));
 	}
+	else
+	{
+		// If we are using map buttons check if the map buttons ui wants to
+		// display the ammo display anyways.
+		const Interface *mapButtonUi = GameData::Interfaces().Get("main buttons");
+		auto ammo_box = mapButtonUi->GetBox("ammo");
+		if (ammo_box.Dimensions())
+		{
+			double ammoIconWidth = hud->GetValue("ammo icon width");
+			double ammoIconHeight = hud->GetValue("ammo icon height");
+			ammoDisplay.Draw(ammo_box, Point(ammoIconWidth, ammoIconHeight));
+		}
+	}
 
 	// Draw escort status.
 	escorts.Draw(hud->GetBox("escorts"));
