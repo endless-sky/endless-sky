@@ -2353,7 +2353,7 @@ message
 	word
 		"returning from a raid, "
 	word
-		"potmarked with laser burns but no apparent serious damage. "
+		"potmarked with laser burns but with no apparent serious damage. "
 		"battered with thousands of small perferations. Somebody's turned a mainstay of the pirate arsenal, gatling guns, back on them. "
 		"with substantial sections of hull heavily battered or missing altogether. Fair guess they didn't have enough anti-missle. "
 	word
