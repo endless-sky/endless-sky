@@ -67,7 +67,6 @@ jobs:
       run: |
         scons -Qj $(nproc) opengl=gles mode=debug test;
     - name: Update Environment
-      env: 
       run: |
         mkdir -p ~/.android
         echo $DEBUG_CERTIFICATE | base64 -d > ~/.android/debug.keystore
