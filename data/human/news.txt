@@ -2355,7 +2355,7 @@ message
 	word
 		"potmarked with laser burns but with no apparent serious damage. "
 		"battered with thousands of small perforations. Somebody's turned a mainstay of the pirate arsenal, gatling guns, back on them. "
-		"with substantial sections of hull heavily battered or missing altogether. Fair guess they didn't have enough anti-missle. "
+		"with substantial sections of hull heavily battered or missing altogether. Fair guess they didn't have enough anti-missile. "
 	word
 		"As it comes to a stop in the maitenance bay engineering shuttles begin "
 	word
