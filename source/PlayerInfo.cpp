@@ -410,7 +410,7 @@ void PlayerInfo::Load(const string &path)
 		else if(child.Token(0) == "favourites")
 			for(const DataNode &grand : child)
 				if(grand.Size() >= 1)
-					favouriteShips.emplace_back(EsUuid::FromString(grand.Token(0)));
+					lockedIds.emplace_back(EsUuid::FromString(grand.Token(0)));
 	}
 	// Modify the game data with any changes that were loaded from this file.
 	ApplyChanges();
@@ -2830,27 +2830,27 @@ set<Ship *> PlayerInfo::GetGroup(int group)
 
 
 
-bool PlayerInfo::IsFavouriteShip(const EsUuid &uuid) const
+bool PlayerInfo::UuidLocked(const EsUuid &uuid) const
 {
-	return find(favouriteShips.begin(), favouriteShips.end(), uuid) != favouriteShips.end();
+	return find(lockedIds.begin(), lockedIds.end(), uuid) != lockedIds.end();
 }
 
 
 
-void PlayerInfo::AddFavouriteShip(const EsUuid &uuid)
+void PlayerInfo::LockUuid(const EsUuid &uuid)
 {
-	if(!IsFavouriteShip(uuid))
+	if(!UuidLocked(uuid))
 	{
-		favouriteShips.emplace_back();
-		favouriteShips.back().clone(uuid);
+		lockedIds.emplace_back();
+		lockedIds.back().clone(uuid);
 	}
 }
 
 
 
-void PlayerInfo::RemoveFavouriteShip(const EsUuid &uuid)
+void PlayerInfo::UnlockUuid(const EsUuid &uuid)
 {
-	favouriteShips.erase(find(favouriteShips.begin(), favouriteShips.end(), uuid));
+	lockedIds.erase(find(lockedIds.begin(), lockedIds.end(), uuid));
 }
 
 
@@ -4596,7 +4596,7 @@ void PlayerInfo::Save(DataWriter &out) const
 	out.WriteComment("Favourited ships:");
 	out.Write("favourites");
 	out.BeginChild();
-	for(const auto &shipUuid : favouriteShips)
+	for(const auto &shipUuid : lockedIds)
 	{
 		out.Write(shipUuid.ToString());
 	}

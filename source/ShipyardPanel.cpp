@@ -307,11 +307,11 @@ void ShipyardPanel::Sell(bool toStorage)
 	static const int MAX_LIST = 20;
 
 	int count = playerShips.size();
-	if(count == 1 && player.IsFavouriteShip(playerShip->UUID()))
+	if(count == 1 && player.UuidLocked(playerShip->UUID()))
 	{
-		string message("Cannot sell the ");
+		string message("Could not sell the ");
 		message += playerShip->Name();
-		message += ", as it is marked as favourite.";
+		message += ", as it is marked as locked.\n(Alt+Click the ship icon to unlock the ship)";
 		GetUI()->Push(new Dialog(message));
 		return;
 	}
@@ -427,7 +427,7 @@ void ShipyardPanel::SellShipChassis()
 void ShipyardPanel::SellShip(bool toStorage)
 {
 	for(Ship *ship : playerShips)
-		if(!player.IsFavouriteShip(ship->UUID()))
+		if(!player.UuidLocked(ship->UUID()))
 			player.SellShip(ship, toStorage);
 
 	playerShips.clear();

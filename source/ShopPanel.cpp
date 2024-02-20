@@ -513,10 +513,10 @@ bool ShopPanel::Click(int x, int y, int /* clicks */)
 				{
 					if(favouriteClick)
 					{
-						if(player.IsFavouriteShip(ship->UUID()))
-							player.RemoveFavouriteShip(ship->UUID());
+						if(player.UuidLocked(ship->UUID()))
+							player.UnlockUuid(ship->UUID());
 						else
-							player.AddFavouriteShip(ship->UUID());
+							player.LockUuid(ship->UUID());
 						break;
 					}
 
@@ -744,7 +744,7 @@ void ShopPanel::DrawShipsSidebar()
 		if(isSelected && ShouldHighlight(ship.get()))
 			SpriteShader::Draw(background, point);
 		// If this is one of the favourite ships, draw a border around it to distinguish from the lesser ships.
-		if(player.IsFavouriteShip(ship->UUID()))
+		if(player.UuidLocked(ship->UUID()))
 			OutlineShader::Draw(background, point, Point(background->Width(), background->Height()),
 				Color(.9f, .9f, .9f, .4f));
 
