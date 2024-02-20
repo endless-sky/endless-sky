@@ -159,6 +159,7 @@ namespace {
 // Table columns and their starting x positions, end x positions, alignment and sort comparator.
 const PlayerInfoPanel::SortableColumn PlayerInfoPanel::columns[8] = {
 	SortableColumn("ship", 0, 216, {216, Truncate::MIDDLE}, CompareName),
+	// TODO: Actually sort by locked ships once #8529 lands, as playerinfo needs to be static.
 	SortableColumn("", 216, 217, {1, Truncate::MIDDLE}, CompareName),
 	SortableColumn("model", 220, 347, {127, Truncate::BACK}, CompareModelName),
 	SortableColumn("system", 350, 487, {137, Truncate::BACK}, CompareSystem),
