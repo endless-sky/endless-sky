@@ -311,6 +311,10 @@ public:
 	void SetGroup(int group, const std::set<Ship *> *newShips = nullptr);
 	std::set<Ship *> GetGroup(int group);
 
+	bool IsFavouriteShip(const EsUuid &uuid) const;
+	void AddFavouriteShip(const EsUuid &uuid);
+	void RemoveFavouriteShip(const EsUuid &uuid);
+
 	// Keep track of any outfits that you have sold since landing. These will be
 	// available to buy back until you take off.
 	const std::map<const Outfit*, int> &GetStock() const;
@@ -430,6 +434,7 @@ private:
 
 	ConditionsStore conditions;
 	std::map<std::string, EsUuid> giftedShips;
+	std::vector<EsUuid> favouriteShips;
 
 	std::set<const System *> seen;
 	std::set<const System *> visitedSystems;

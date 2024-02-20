@@ -503,6 +503,7 @@ bool ShopPanel::Click(int x, int y, int /* clicks */)
 		}
 
 	// Check for clicks in the sidebar zones.
+	auto favouriteClick = static_cast<bool>(SDL_GetModState() & SDL_Keymod::KMOD_ALT);
 	for(const ClickZone<const Ship *> &zone : shipZones)
 		if(zone.Contains(clickPoint))
 		{
@@ -510,6 +511,15 @@ bool ShopPanel::Click(int x, int y, int /* clicks */)
 			for(const shared_ptr<Ship> &ship : player.Ships())
 				if(ship.get() == clickedShip)
 				{
+					if(favouriteClick)
+					{
+						if(player.IsFavouriteShip(ship->UUID()))
+							player.RemoveFavouriteShip(ship->UUID());
+						else
+							player.AddFavouriteShip(ship->UUID());
+						break;
+					}
+
 					dragShip = ship.get();
 					dragPoint.Set(x, y);
 					SideSelect(dragShip);
@@ -733,6 +743,10 @@ void ShopPanel::DrawShipsSidebar()
 		// button (if any) applies to it. If so, brighten the background.
 		if(isSelected && ShouldHighlight(ship.get()))
 			SpriteShader::Draw(background, point);
+		// If this is one of the favourite ships, draw a border around it to distinguish from the lesser ships.
+		if(player.IsFavouriteShip(ship->UUID()))
+			OutlineShader::Draw(background, point, Point(background->Width(), background->Height()),
+				Color(.9f, .9f, .9f, .4f));
 
 		const Sprite *sprite = ship->GetSprite();
 		if(sprite)

@@ -407,6 +407,10 @@ void PlayerInfo::Load(const string &path)
 		}
 		else if(child.Token(0) == "start")
 			startData.Load(child);
+		else if(child.Token(0) == "favourites")
+			for(const DataNode &grand : child)
+				if(grand.Size() >= 1)
+					favouriteShips.emplace_back(EsUuid::FromString(grand.Token(0)));
 	}
 	// Modify the game data with any changes that were loaded from this file.
 	ApplyChanges();
@@ -2826,6 +2830,30 @@ set<Ship *> PlayerInfo::GetGroup(int group)
 
 
 
+bool PlayerInfo::IsFavouriteShip(const EsUuid &uuid) const
+{
+	return find(favouriteShips.begin(), favouriteShips.end(), uuid) != favouriteShips.end();
+}
+
+
+
+void PlayerInfo::AddFavouriteShip(const EsUuid &uuid)
+{
+	if(!IsFavouriteShip(uuid)) {
+		favouriteShips.emplace_back();
+		favouriteShips.back().clone(uuid);
+	}
+}
+
+
+
+void PlayerInfo::RemoveFavouriteShip(const EsUuid &uuid)
+{
+	favouriteShips.erase(find(favouriteShips.begin(), favouriteShips.end(), uuid));
+}
+
+
+
 // Keep track of any outfits that you have sold since landing. These will be
 // available to buy back until you take off.
 const map<const Outfit *, int> &PlayerInfo::GetStock() const
@@ -4560,6 +4588,15 @@ void PlayerInfo::Save(DataWriter &out) const
 		const auto &plugin = it.second;
 		if(plugin.IsValid() && plugin.enabled)
 			out.Write(plugin.name);
+	}
+	out.EndChild();
+
+	out.Write();
+	out.WriteComment("Favourited ships:");
+	out.Write("favourites");
+	out.BeginChild();
+	for(const auto &shipUuid : favouriteShips) {
+		out.Write(shipUuid.ToString());
 	}
 	out.EndChild();
 }

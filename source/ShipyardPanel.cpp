@@ -307,6 +307,15 @@ void ShipyardPanel::Sell(bool toStorage)
 	static const int MAX_LIST = 20;
 
 	int count = playerShips.size();
+	if(count == 1 && player.IsFavouriteShip(playerShip->UUID()))
+	{
+		string message("Cannot sell the ");
+		message += playerShip->Name();
+		message += ", as it is marked as favourite.";
+		GetUI()->Push(new Dialog(message));
+		return;
+	}
+	
 	int initialCount = count;
 	string message;
 	if(!toStorage)
@@ -418,7 +427,9 @@ void ShipyardPanel::SellShipChassis()
 void ShipyardPanel::SellShip(bool toStorage)
 {
 	for(Ship *ship : playerShips)
-		player.SellShip(ship, toStorage);
+		if(!player.IsFavouriteShip(ship->UUID()))
+			player.SellShip(ship, toStorage);
+
 	playerShips.clear();
 	playerShip = nullptr;
 	for(const shared_ptr<Ship> &ship : player.Ships())
