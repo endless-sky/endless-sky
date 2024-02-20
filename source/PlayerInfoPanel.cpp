@@ -158,10 +158,8 @@ namespace {
 
 // Table columns and their starting x positions, end x positions, alignment and sort comparator.
 const PlayerInfoPanel::SortableColumn PlayerInfoPanel::columns[8] = {
-	SortableColumn("ship", 0, 210, {210, Truncate::MIDDLE}, CompareName),
-	SortableColumn("", 210, 217, {7, Truncate::MIDDLE}, [](auto &a, auto &b) {
-		return a->UUID() == b->UUID();
-	}),
+	SortableColumn("ship", 0, 216, {216, Truncate::MIDDLE}, CompareName),
+	SortableColumn("", 216, 217, {1, Truncate::MIDDLE}, CompareName),
 	SortableColumn("model", 220, 347, {127, Truncate::BACK}, CompareModelName),
 	SortableColumn("system", 350, 487, {137, Truncate::BACK}, CompareSystem),
 	SortableColumn("shields", 550, 493, {57, Alignment::RIGHT, Truncate::BACK}, CompareShields),
@@ -772,7 +770,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 		// Indent the ship name if it is a fighter or drone.
 		auto shipName = ship.CanBeCarried() ? "    " + ship.Name() : ship.Name();
 		table.DrawTruncatedPair(shipName, rowColor, player.UuidLocked(ship.UUID()) ? "*" : "",
-			 rowColor, Truncate::BACK, false);
+			rowColor, Truncate::BACK, false);
 		table.Draw(ship.DisplayModelName());
 
 		const System *system = ship.GetSystem();
