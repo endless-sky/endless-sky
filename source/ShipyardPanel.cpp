@@ -315,7 +315,7 @@ void ShipyardPanel::Sell(bool toStorage)
 		GetUI()->Push(new Dialog(message));
 		return;
 	}
-	
+
 	int initialCount = count;
 	string message;
 	if(!toStorage)

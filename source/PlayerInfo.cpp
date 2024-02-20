@@ -2839,7 +2839,8 @@ bool PlayerInfo::IsFavouriteShip(const EsUuid &uuid) const
 
 void PlayerInfo::AddFavouriteShip(const EsUuid &uuid)
 {
-	if(!IsFavouriteShip(uuid)) {
+	if(!IsFavouriteShip(uuid))
+	{
 		favouriteShips.emplace_back();
 		favouriteShips.back().clone(uuid);
 	}
@@ -4595,7 +4596,8 @@ void PlayerInfo::Save(DataWriter &out) const
 	out.WriteComment("Favourited ships:");
 	out.Write("favourites");
 	out.BeginChild();
-	for(const auto &shipUuid : favouriteShips) {
+	for(const auto &shipUuid : favouriteShips)
+	{
 		out.Write(shipUuid.ToString());
 	}
 	out.EndChild();
