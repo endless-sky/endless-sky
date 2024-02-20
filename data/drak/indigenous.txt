@@ -264,13 +264,14 @@ ship "Embershade"
 ship "Embersylph"
 	noun "creature"
 	sprite "ship/embersylph/embersylph"
+		"center" 0 -80
 		"frame rate" 34
 		"random start frame"
 	"never disabled"
 	attributes
 		category "Light Warship"
-		"shields" 7200
-		"hull" 1800
+		"shields" 4400
+		"hull" 900
 		"required crew" 1
 		"bunks" 1
 		"mass" 140
@@ -278,9 +279,9 @@ ship "Embersylph"
 		"heat dissipation" .7
 		"cargo space" 0
 		"fuel capacity" 100
-		"thrust" 8
+		"thrust" 10
 		"reverse thrust" 3
-		"turn" 90
+		"turn" 100
 		"energy capacity" 800
 		"energy generation" 7
 		"hull repair rate" 2
@@ -298,21 +299,7 @@ ship "Embersylph"
 	turret 0 0 "Absorption Organ"
 	leak "blood" 2
 	explode "blood" 1
-	description "Ember Ray."
-
-
-
-ship "Embersylph" "Embersylph (Small)"
-	sprite "ship/embersylph/embersylph"
-		"frame rate" 36
-		"random start frame"
-		"scale" 0.5
-	"never disabled"
-	add attributes
-		"shields" -2800
-		"hull" -900
-		"thrust" 2
-		"turn" 10
+	description "Embersylphs are notably strange creatures, even compared to other known space fauna. Glowing in various hues while gracefully swinging several long appendages in a strangely methodical motion, the only consistent behavior these creatures are known to display is curiosity for other life."
 
 
 
@@ -463,26 +450,16 @@ fleet "Embershades"
 
 
 fleet "Embersylphs"
-	government "Indigenous Lifeform"
+	government "Ember Waste"
 	cargo 0
 	personality
 		timid mute swarming unconstrained
-	variant 11
-		"Embersylph (Small)" 2
-	variant 7
-		"Embersylph (Small)" 3
-	variant 5
-		"Embersylph (Small)" 2
-		"Embersylph"
-	variant 3
-		"Embersylph (Small)" 4
-	variant 2
-		"Embersylph (Small)" 5
-	variant 1
-		"Embersylph (Small)" 3
-		"Embersylph"
-	variant 1
+	variant 12
 		"Embersylph" 1
+	variant 4
+		"Embersylph" 2
+	variant 1
+		"Embersylph" 3
 
 
 
