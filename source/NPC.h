@@ -30,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <map>
 #include <memory>
 #include <string>
+#include <vector>
 
 class DataNode;
 class DataWriter;
@@ -110,8 +111,8 @@ public:
 
 	// Create a copy of this NPC but with the fleets replaced by the actual
 	// ships they represent, wildcards in the conversation text replaced, etc.
-	NPC Instantiate(std::map<std::string, std::string> &subs, const System *origin, const System *destination,
-			int jumps, int64_t payload) const;
+	NPC Instantiate(std::map<std::string, std::string> &subs, const System *origin, const Planet *destinationPlanet,
+		int jumps, int64_t payload) const;
 
 
 private:
@@ -133,7 +134,19 @@ private:
 	// Start out in a location matching this filter, or in a particular system:
 	LocationFilter location;
 	const System *system = nullptr;
+	const System *destination = nullptr;
 	bool isAtDestination = false;
+
+	// NPCs may have been given a waypoint or stopover.
+	std::vector<const System *> waypoints;
+	std::vector<const Planet *> stopovers;
+	bool needsWaypoint = false;
+	bool needsStopover = false;
+	std::list<LocationFilter> waypointFilters;
+	std::list<LocationFilter> stopoverFilters;
+	// Default behavior is to permanently land on the destination planet.
+	bool doStopover = false;
+
 	// Start out landed on this planet.
 	const Planet *planet = nullptr;
 

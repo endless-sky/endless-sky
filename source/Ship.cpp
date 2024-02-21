@@ -524,6 +524,8 @@ void Ship::Load(const DataNode &node)
 		}
 		else if(key == "destination system" && child.Size() >= 2)
 			targetSystem = GameData::Systems().Get(child.Token(1));
+		else if(key == "waypoint index" && child.Size() >= 2)
+			waypoint = child.Value(1);
 		else if(key == "parked")
 			isParked = true;
 		else if(key == "description" && child.Size() >= 2)
@@ -1092,6 +1094,8 @@ void Ship::Save(DataWriter &out) const
 			out.Write("planet", landingPlanet->TrueName());
 		if(targetSystem)
 			out.Write("destination system", targetSystem->Name());
+		if(waypoint > 0 && waypoint <= waypoints.size())
+			out.Write("waypoint index", waypoint);
 		if(isParked)
 			out.Write("parked");
 	}
@@ -1713,7 +1717,8 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 	hasBoarded = false;
 
 	shared_ptr<Ship> victim = GetTargetShip();
-	if(CannotAct() || !victim || victim->IsDestroyed() || victim->GetSystem() != GetSystem())
+	if(CannotAct() || !victim || victim->IsRemoved()
+		|| victim->GetSystem() != GetSystem())
 		return shared_ptr<Ship>();
 
 	// For a fighter or drone, "board" means "return to ship." Except when the ship is
@@ -2404,10 +2409,33 @@ bool Ship::IsDestroyed() const
 
 
 
-// Recharge and repair this ship (e.g. because it has landed).
+void Ship::LandForever()
+{
+	hasLanded = true;
+}
+
+
+
+// Check if this ship has permanently landed.
+bool Ship::HasLanded() const
+{
+	return hasLanded;
+}
+
+
+
+// Check if this ship has permanently landed or been destroyed.
+bool Ship::IsRemoved() const
+{
+	return (hull < 0. || hasLanded);
+}
+
+
+
+// Recharge and repair this ship (e.g. because it has landed temporarily).
 void Ship::Recharge(int rechargeType, bool hireCrew)
 {
-	if(IsDestroyed())
+	if(IsRemoved())
 		return;
 
 	if(hireCrew)
@@ -2527,6 +2555,9 @@ void Ship::ClearTargetsAndOrders()
 	targetFlotsam.reset();
 	hyperspaceSystem = nullptr;
 	landingPlanet = nullptr;
+	destinationSystem = nullptr;
+	travelDestinations.clear();
+	waypoints.clear();
 }
 
 
@@ -3503,6 +3534,85 @@ void Ship::SetTargetSystem(const System *system)
 
 
 
+// Persistent targets for mission NPCs.
+const bool Ship::HasTravelDirective() const
+{
+	return !travelDestinations.empty() || destinationSystem;
+}
+
+
+
+const std::map<const Planet *, bool> Ship::GetStopovers() const
+{
+	return travelDestinations;
+}
+
+
+
+const System *Ship::GetDestinationSystem() const
+{
+	return destinationSystem;
+}
+
+
+
+// Persistent targets for mission NPCs.
+void Ship::SetStopovers(const std::vector<const Planet *> planets, const bool shouldRelaunch)
+{
+	doStopover = shouldRelaunch;
+
+	// Mark each planet as not visited.
+	for(const auto &it : planets)
+		travelDestinations[it] = false;
+}
+
+
+
+void Ship::SetWaypoints(const std::vector<const System *> waypoints)
+{
+	// Ships loaded from save files may have an existing waypoint that
+	// indicates which systems have already been visited.
+	if(waypoint < waypoints.size())
+	{
+		this->waypoints = waypoints;
+		if(targetSystem && personality.IsEntering())
+		{
+			--waypoint;
+			destinationSystem = targetSystem;
+		}
+		else
+			destinationSystem = waypoints[waypoint];
+	}
+	else
+		destinationSystem = nullptr;
+}
+
+
+
+const System *Ship::NextWaypoint()
+{
+	++waypoint;
+
+	destinationSystem = (waypoint < waypoints.size()) ? waypoints[waypoint] : nullptr;
+	return destinationSystem;
+}
+
+
+
+void Ship::EraseWaypoint(const System *system)
+{
+	for(size_t i = 0; i < waypoints.size(); ++i)
+		if(waypoints[i] == system)
+		{
+			waypoints.erase(waypoints.begin() + i);
+			if(waypoint > i)
+				--waypoint;
+			destinationSystem = (waypoint < waypoints.size()) ? waypoints[waypoint] : nullptr;
+			break;
+		}
+}
+
+
 // Mining target.
 void Ship::SetTargetAsteroid(const shared_ptr<Minable> &asteroid)
 {
@@ -4216,8 +4326,9 @@ bool Ship::DoLandingLogic()
 
 	float landingSpeed = attributes.Get("landing speed");
 	landingSpeed = landingSpeed > 0 ? landingSpeed : .02f;
-	// Special ships do not disappear forever when they land; they
-	// just slowly refuel.
+	// Special ships do not disappear forever when they land; they just slowly refuel.
+	// Exception: mission NPCs given the 'destination' directive will be removed
+	// when they land on their target.
 	if(landingPlanet && zoom)
 	{
 		// Move the ship toward the center of the planet while landing.
@@ -4239,10 +4350,23 @@ bool Ship::DoLandingLogic()
 				SetTargetSystem(nullptr);
 				landingPlanet = nullptr;
 			}
-			else if(!isSpecial || personality.IsFleeing())
+			else if(isSpecial && !isYours && !travelDestinations.empty())
 			{
-				MarkForRemoval();
-				return true;
+				// This mission NPC has a directive to land on at least one specific planet.
+				// If this is one of them, this ship may land on a 'destination' (permanently),
+				// or have a 'stopover'.
+				auto it = travelDestinations.find(landingPlanet);
+				if(it != travelDestinations.end())
+				{
+					if(doStopover)
+						it->second = true;
+					else
+					{
+						MarkForRemoval();
+						LandForever();
+						return true;
+					}
+				}
 			}
 
 			zoom = 0.f;
@@ -4790,4 +4914,15 @@ double Ship::CalculateDeterrence() const
 			tempDeterrence += .12 * strength / weapon->Reload();
 		}
 	return tempDeterrence;
+}
+
+
+
+void Ship::ResetStopovers()
+{
+	if(travelDestinations.empty())
+		return;
+
+	for(auto &stopover : travelDestinations)
+		stopover.second = false;
 }

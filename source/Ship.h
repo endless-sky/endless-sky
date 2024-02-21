@@ -300,6 +300,11 @@ public:
 	bool IsDamaged() const;
 	// Check if this ship has been destroyed.
 	bool IsDestroyed() const;
+	// Land/Check if this ship has permanently landed.
+	void LandForever();
+	bool HasLanded() const;
+	// Check if this ship has permanently landed or been destroyed.
+	bool IsRemoved() const;
 	// Recharge and repair this ship (e.g. because it has landed).
 	void Recharge(int rechargeType = Port::RechargeType::All, bool hireCrew = true);
 	// Check if this ship is able to give the given ship enough fuel to jump.
@@ -449,6 +454,11 @@ public:
 	const StellarObject *GetTargetStellar() const;
 	// Get ship's target system (it should always be one jump / wormhole pass away).
 	const System *GetTargetSystem() const;
+	// Targets for persistent ships (i.e. mission NPCs).
+	const bool HasTravelDirective() const;
+	const std::map<const Planet *, bool> GetStopovers() const;
+	const System *GetDestinationSystem() const;
+
 	// Mining target.
 	std::shared_ptr<Minable> GetTargetAsteroid() const;
 	std::shared_ptr<Flotsam> GetTargetFlotsam() const;
@@ -463,6 +473,12 @@ public:
 	void SetTargetStellar(const StellarObject *object);
 	// Set ship's target system (it should always be one jump / wormhole pass away).
 	void SetTargetSystem(const System *system);
+	// Persistent targets associated with mission NPCs.
+	void SetStopovers(const std::vector<const Planet *> planets, const bool shouldRelaunch);
+	void SetWaypoints(const std::vector<const System *> waypoints);
+	const System *NextWaypoint();
+	void EraseWaypoint(const System *system);
+
 	// Mining target.
 	void SetTargetAsteroid(const std::shared_ptr<Minable> &asteroid);
 	void SetTargetFlotsam(const std::shared_ptr<Flotsam> &flotsam);
@@ -525,6 +541,8 @@ private:
 	double CalculateAttraction() const;
 	double CalculateDeterrence() const;
 
+	void ResetStopovers();
+
 
 private:
 	// Protected member variables of the Body class:
@@ -553,7 +571,8 @@ private:
 	int forget = 0;
 	bool isInSystem = true;
 	// "Special" ships cannot be forgotten, and if they land on a planet, they
-	// continue to exist and refuel instead of being deleted.
+	// continue to exist and refuel instead of being deleted, unless explicitly
+	// designed to do so by a mission's NPC specification.
 	bool isSpecial = false;
 	bool isYours = false;
 	bool isParked = false;
@@ -570,6 +589,7 @@ private:
 	bool neverDisabled = false;
 	bool isCapturable = true;
 	bool isInvisible = false;
+	bool hasLanded = false;
 	int customSwizzle = -1;
 	double cloak = 0.;
 	double cloakDisruption = 0.;
@@ -689,6 +709,18 @@ private:
 	std::weak_ptr<Minable> targetAsteroid;
 	std::weak_ptr<Flotsam> targetFlotsam;
 	std::set<const Flotsam *> tractorFlotsam;
+
+	// NPC travel directives
+	const System *destinationSystem = nullptr;
+	// The list of consecutive NPC destination systems.
+	std::vector<const System *> waypoints;
+	size_t waypoint = 0;
+	// The list of planets this NPC may land on, and if they have already
+	// been landed on in this sequence.
+	std::map<const Planet *, bool> travelDestinations;
+	// NPCs with a landing directive may only have a stopover, or land on
+	// a permanent destination planet.
+	bool doStopover = false;
 
 	// Links between escorts and parents.
 	std::vector<std::weak_ptr<Ship>> escorts;
