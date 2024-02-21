@@ -283,7 +283,6 @@ mission "Coalition Departing Trouble - B"
 		fail
 		conversation
 			`Once you're a good distance from <origin>, your sensors alert you to danger in the system: several explosions and a torrent of projectiles are flying nearby. You swiftly ready yourself and prepare for the threat, only to find Coalition civilian ships blowing up near the middle of the system. Some Heliarch warships are in their midst, moving from one to the other, unbothered by the ship debris as vessels explode around them.`
-			`	They appear to be boarding the few ships that weren't damaged enough to have their hulls ruptured. After a few short minutes, they seem to have seized control of the vessels, and are having them follow the warships out of the system.`
 			branch heliarch
 				has "joined the heliarchs"
 			branch lunarium
@@ -292,12 +291,15 @@ mission "Coalition Departing Trouble - B"
 				not "joined the heliarchs"
 				not "joined the lunarium"
 			label heliarch
+			`	They appear to be boarding the few ships that weren't damaged enough to have their hulls ruptured. After a few short minutes, they seem to have seized control of the vessels, and are having them follow the warships out of the system.`
 			`	One of the ships hails you briefly, apparently in a cheery mood as they celebrate having captured the criminals. They wish you a good day and good luck on your duties, and cut the comms as they prepare to leave.`
 				decline
 			label lunarium
+			`	They appear to be boarding the few ships that weren't damaged enough to have their hulls ruptured. After a few short minutes, they seem to have seized control of the vessels, and are having them follow the warships out of the system.`
 			`	As you glance at the wreckage of the civilian ships, you feel uneasy. Worse still is the thought that hits you soon after, of whether any of the Lunarium leaders you met were aboard any of the ships.`
 				decline
 			label neither
+			`	They appear to be boarding the few ships that weren't damaged enough to have their hulls ruptured. After a few short minutes, they seem to have seized control of the vessels, and are having them follow the warships out of the system.`
 				decline
 	npc
 		personality waiting fleeing uninterested
@@ -349,7 +351,7 @@ mission "Coalition Departing Trouble - C"
 				decline
 			label lunarium
 			`	They sign off before you can respond, and the Punisher readies to board the <ship>, as more warships gather around the scene. Although you're not currently performing any tasks for the Lunarium, you still grow increasingly worried as the Punisher approaches and connects to your ship. You do your best to keep a calm profile, as dozens of armed Heliarch agents march into your ship silently, diligently going about checking the bunks, cockpit, engine room...`
-			`	Within a few minutes, they appear satisfied with turning your ship upside down, and all march back to the Punisher. They thank you for "cooperating", and the ships clear the way for you to move out. Once they're well enough away from the <ship>, you take to scouring it for anything they might've left behind to keep tabs within your ship. Much later on in the day, after you've confirmed to have found nothing of the sort, you breath a sigh of relief.`
+			`	Within a few minutes, they appear satisfied with turning your ship upside down, and all march back to the Punisher. They thank you for "cooperating", and the ships clear the way for you to move out. Once they're well enough away from the <ship>, you take to scouring it for anything they might've left behind to keep tabs within your ship. Much later on in the day, after you've confirmed to have found nothing of the sort, you breathe a sigh of relief.`
 	npc
 		personality waiting staying uninterested surveillance
 		government "Heliarch"
