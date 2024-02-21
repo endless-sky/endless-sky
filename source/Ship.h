@@ -638,7 +638,7 @@ private:
 	int shieldDelay = 0;
 	int hullDelay = 0;
 	// Timer for a disabled ship to repair itself.
-	int disabledRepairCounter = 0;
+	int disabledRecoveryCounter = 0;
 	// Number of frames the damage overlay should be displayed, if any.
 	int damageOverlayTimer = 0;
 	// Acceleration can be created by engines, firing weapons, or weapon impacts.
