@@ -311,7 +311,7 @@ void ShipyardPanel::Sell(bool toStorage)
 	{
 		string message("Could not sell the ");
 		message += playerShip->Name();
-		message += ", as it is marked as locked.\n(Alt+Click the ship icon to unlock the ship)";
+		message += ", as it is marked as locked.\n(Alt+click the ship icon to unlock the ship.)";
 		GetUI()->Push(new Dialog(message));
 		return;
 	}

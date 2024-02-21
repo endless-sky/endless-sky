@@ -758,7 +758,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 		bool isDisabled = ship.IsDisabled();
 		bool isFlagship = &ship == player.Flagship();
 
-		auto rowColor =
+		Color rowColor =
 			isDead ? dead
 			: isHovered ? bright
 			: isFlagship ? flagship
@@ -768,7 +768,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 		table.SetColor(rowColor);
 
 		// Indent the ship name if it is a fighter or drone.
-		auto shipName = ship.CanBeCarried() ? "    " + ship.Name() : ship.Name();
+		string shipName = ship.CanBeCarried() ? "    " + ship.Name() : ship.Name();
 		table.DrawTruncatedPair(shipName, rowColor, player.UuidLocked(ship.UUID()) ? "*" : "",
 			rowColor, Truncate::BACK, false);
 		table.Draw(ship.DisplayModelName());
