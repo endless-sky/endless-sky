@@ -744,7 +744,8 @@ void ShopPanel::DrawShipsSidebar()
 			SpriteShader::Draw(background, point);
 		// If this is one of the locked ships, draw a border around it to distinguish from the unlocked ships.
 		if(player.UuidLocked(ship->UUID()))
-			font.Draw("*", point - background->Center() + Point(4, 4), medium);
+			font.Draw("*", point - Point(background->Width() / 2.0 - 2.0,
+				-background->Height() / 2.0 + font.Height() - 2.0), medium);
 
 		const Sprite *sprite = ship->GetSprite();
 		if(sprite)
