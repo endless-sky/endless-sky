@@ -745,8 +745,7 @@ void ShopPanel::DrawShipsSidebar()
 			SpriteShader::Draw(background, point);
 		// If this is one of the favourite ships, draw a border around it to distinguish from the lesser ships.
 		if(player.UuidLocked(ship->UUID()))
-			OutlineShader::Draw(background, point, Point(background->Width(), background->Height()),
-				Color(.9f, .9f, .9f, .4f));
+			font.Draw("*", point - background->Center() + Point(4, 4), medium);
 
 		const Sprite *sprite = ship->GetSprite();
 		if(sprite)
