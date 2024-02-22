@@ -407,7 +407,7 @@ void PlayerInfo::Load(const string &path)
 		}
 		else if(child.Token(0) == "start")
 			startData.Load(child);
-		else if(child.Token(0) == "favourites")
+		else if(child.Token(0) == "locked ships")
 			for(const DataNode &grand : child)
 				if(grand.Size() >= 1)
 					lockedIds.emplace_back(EsUuid::FromString(grand.Token(0)));
@@ -4593,8 +4593,7 @@ void PlayerInfo::Save(DataWriter &out) const
 	out.EndChild();
 
 	out.Write();
-	out.WriteComment("Favourited ships:");
-	out.Write("favourites");
+	out.Write("locked ships");
 	out.BeginChild();
 	for(const auto &shipUuid : lockedIds)
 	{
