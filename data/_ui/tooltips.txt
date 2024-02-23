@@ -313,7 +313,7 @@ tip "disabled recovery scrambling:"
 	`The scrambling damage applied when a disabled ship repairs itself.`
 
 tip "disabled recovery disruption:"
-	`The dosription damage applied when a disabled ship repairs itself.`
+	`The disruption damage applied when a disabled ship repairs itself.`
 
 tip "disabled recovery slowing:"
 	`The slowing damage applied when a disabled ship repairs itself.`
