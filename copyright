@@ -329,12 +329,14 @@ License: CC-BY-SA-4.0
 
 Files: images/land/lava11*
 Copyright: National Archives and Records Administration
-License: public-domain Taken from Wikimedia Commons. Cropped and edited.
+License: public-domain
+ Taken from Wikimedia Commons. Cropped and edited.
 
 Files:
  images/land/station12*
 Copyright: Office of War Information
-License: public-domain Taken from Wikimedia Commons. Cropped and edited.
+License: public-domain
+ Taken from Wikimedia Commons. Cropped and edited.
 
 Files: images/land/*-spfld*
 Copyright: Eric Denni (spfldsatellite@gmail.com)
@@ -1698,7 +1700,8 @@ Comment: Derived from works by NASA and Michael Zahniser.
 
 Files: sounds/*
 Copyright: Various
-License: public-domain Based on public domain sounds taken from freesound.org.
+License: public-domain
+ Based on public domain sounds taken from freesound.org.
 
 Files:
  sounds/pincer*
@@ -1713,7 +1716,8 @@ Comment: Taken from http://soundbible.com/1467-Grenade-Explosion.html
 
 Files: sounds/missile?hit.wav
 Copyright: Copyright "Nbs Dark"
-License: public-domain Taken from https://freesound.org/people/Nbs%20Dark/sounds/94185/
+License: public-domain
+ Taken from https://freesound.org/people/Nbs%20Dark/sounds/94185/
 
 Files: sounds/torpedo?hit.wav
 Copyright: Public Domain
@@ -1726,7 +1730,8 @@ Comment: Taken from https://freesound.org/people/18hiltc/sounds/202725/
 
 Files: sounds/sidewinder.wav
 Copyright: Copyright "NHMWretched"
-License: public-domain Taken from https://freesound.org/people/NHMWretched/sounds/151858/
+License: public-domain
+ Taken from https://freesound.org/people/NHMWretched/sounds/151858/
 
 Files: sounds/explosion?huge.wav
 Copyright: Copyright Mike Koenig
@@ -1737,7 +1742,8 @@ Files:
  sounds/asteroid?crunch?small.wav
  sounds/asteroid?crunch?medium.wav
 Copyright: Copyright AlanCat
-License: public-domain Derived from https://freesound.org/people/AlanCat/sounds/381645/
+License: public-domain
+ Derived from https://freesound.org/people/AlanCat/sounds/381645/
 
 Files: sounds/asteroid?crunch?large.wav
 Copyright: Copyright "BW_Clowes"
@@ -2312,11 +2318,13 @@ Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files: sounds/dragonflame*
 Copyright: TheHadnot
-License: public-domain Taken from https://freesound.org/people/TheHadnot/sounds/160880/
+License: public-domain
+ Taken from https://freesound.org/people/TheHadnot/sounds/160880/
 
 Files: sounds/pwave*
 Copyright: aust_paul
-License: public-domain Taken from https://freesound.org/people/aust_paul/sounds/30935/
+License: public-domain
+ Taken from https://freesound.org/people/aust_paul/sounds/30935/
 
 Files: sounds/hion*
 Copyright: michael_kur95
@@ -2570,7 +2578,8 @@ Comment: Derived from works by Michael Zahniser and Maximilian Korber (under the
 
 Files: sounds/ionball*
 Copyright: pluralz
-License: public-domain Taken from https://freesound.org/people/pluralz/sounds/475806/
+License: public-domain
+ Taken from https://freesound.org/people/pluralz/sounds/475806/
 
 Files:
  images/outfit/tiny?korath?engine*
@@ -2849,7 +2858,8 @@ Files:
  sounds/thorax?cannon*
  sounds/tractor?beam*
 Copyright: Saugia <https://github.com/Saugia>
-License: public-domain Based on public domain sounds taken from freesound.org, edits done by Saugia.
+License: public-domain
+ Based on public domain sounds taken from freesound.org, edits done by Saugia.
 
 Files:
  images/ship/hai?cicada*
@@ -2947,13 +2957,15 @@ Comment: Derived from works by Maximilian Korber (under the same license) and Am
 Files:
  sounds/remnant?afterburner.wav
 Copyright: Public Domain
-License: public-domain Based on public domain sounds taken from freesound.org, edit done by Saugia.
+License: public-domain
+ Based on public domain sounds taken from freesound.org, edit done by Saugia.
 
 Files:
  sounds/firelight.wav
  sounds/firelight?hit.wav
 Copyright: Public Domain
-License: public-domain Based on public domain sounds taken from freesound.org, edits done by Saugia and Lia Gerty.
+License: public-domain
+ Based on public domain sounds taken from freesound.org, edits done by Saugia and Lia Gerty.
 
 Files:
  images/effect/ember?tear/ember?tear?fire*
