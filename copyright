@@ -206,13 +206,6 @@ License: public-domain
  From NASA, and therefore in the public domain because they were created by
  government employees while doing work for the government.
 
-Files:
- images/land/snow15*
-Copyright: US NOAA
-License: public-domain
- From US NOAA, and therefore in the public domain because it was created by
- government employees while doing work for the government.
-
 Files: images/scene/geoscan*
 Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
@@ -1521,6 +1514,13 @@ Files:
 Copyright: USGS
 License: public-domain
  From the USGS, and therefore in the public domain because they were created by
+ government employees while doing work for the government.
+
+Files:
+ images/land/snow15*
+Copyright: US NOAA
+License: public-domain
+ From US NOAA, and therefore in the public domain because it was created by
  government employees while doing work for the government.
 
 Files:
