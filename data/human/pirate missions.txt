@@ -24,7 +24,7 @@ mission "Pirate Mining Guild Fleet"
 		ship "Mining Barge" "Edderkopp"
 	to complete
 		never
-	npc 
+	npc
 		government "Pirate"
 		personality mining disables
 		system "Nashira"

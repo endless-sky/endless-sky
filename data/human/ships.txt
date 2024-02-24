@@ -2717,7 +2717,7 @@ ship "Mining Barge"
 		"D41-HY Shield Generator"
 		"Large Radar Jammer"
 		"Laser Rifle" 9
-		"Fragmentation Grenades" 
+		"Fragmentation Grenades"
 
 		"X4700 Ion Thruster"
 		"X4200 Ion Steering"
