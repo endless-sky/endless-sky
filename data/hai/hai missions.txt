@@ -1953,8 +1953,8 @@ mission "Keystone Registration"
 				`	(Open the door.)`
 					goto open
 				`	(Ignore him.)`
-			`	Your deliberate disregard for the Hai at your door doesn't appear to stop him. "I saw you had a keystone installed!" His voice is muffled despite his shouting, but you can still hear what he says. "To advertise your ship's keystone in the spaceport, my advice is to mount it on the inside of your ship's main door. When you have it open, passerby can see you have a keystone and ask for transportation. You meet some funny people that way. Good luck, Captain!"`
+			`	Your deliberate disregard for the Hai at your door doesn't appear to stop him. "I saw you had a keystone installed!" His voice is muffled despite his shouting, but you can still hear what he says. "To advertise your ship's keystone in the spaceport, my advice is to mount it on the inside of your ship's main door. When you have it open, passersby can see you have a keystone and ask for transportation. You meet some funny people that way. Good luck, Captain!"`
 				decline
 			label open
-			`	The Hai wastes no time in getting to the point; the second you open your door, he begins to speak. "I saw you had a keystone installed! To advertise your ship's keystone in the spaceport, my advice is to mount it on the inside of your ship's main door. When you have it open, passerby can see you have a keystone and ask for transportation. You meet some funny people that way. Good luck, Captain!"`
+			`	The Hai wastes no time in getting to the point; the second you open your door, he begins to speak. "I saw you had a keystone installed! To advertise your ship's keystone in the spaceport, my advice is to mount it on the inside of your ship's main door. When you have it open, passersby can see you have a keystone and ask for transportation. You meet some funny people that way. Good luck, Captain!"`
 				decline
