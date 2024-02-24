@@ -11,6 +11,70 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+# Currently partly Behemoth.
+ship "Mining Barge"
+	sprite "ship/mining barge"
+	thumbnail "thumbnail/mining barge"
+	attributes
+		category "Utility"
+		"cost" 10800000
+		"shields" 7600
+		"hull" 6300
+		"required crew" 12
+		"bunks" 30
+		"mass" 910
+		"drag" 15.9
+		"heat dissipation" .4
+		"fuel capacity" 600
+		"cargo space" 490
+		"outfit space" 510
+		"weapon capacity" 280
+		"engine capacity" 90
+		weapon
+			"blast radius" 140
+			"shield damage" 1400
+			"hull damage" 700
+			"hit force" 2100
+	outfits
+		"Mining Laser" 2
+
+		"NT-200 Nucleovoltaic"
+		"LP144a Battery Pack"
+		"D41-HY Shield Generator"
+		"Small Radar Jammer"
+		"Laser Rifle" 3
+		
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"X1100 Ion Reverse Thruster" 2
+		"Scram Drive"
+
+	engine -36 218
+	engine 36 218
+	engine 0 220
+	gun -34 -200
+	gun 34 -200
+	turret -55.5 -71
+	turret 55.5 -71
+	turret -66 53
+	turret 66 53
+	bay "Fighter" 93 69
+		"angle" 70
+		"launch effect" "human internal"
+	bay "Fighter" -93 69
+		"angle" -70
+		"launch effect" "human internal"
+	leak "leak" 30 50
+	leak "flame" 30 80
+	leak "big leak" 50 30
+	explode "small explosion" 15
+	explode "medium explosion" 25
+	explode "large explosion" 35
+	explode "huge explosion" 20
+	"final explode" "final explosion large"
+	description "Test."
+
+
 ship "Aerie"
 	sprite "ship/aerie"
 	thumbnail "thumbnail/aerie"
