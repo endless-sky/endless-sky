@@ -1882,17 +1882,6 @@ phrase "friendly civilian"
 		"ship bad bands, than have your ship badly banned."
 		"be working hard at shipping, than have your ship hardly working."
 
-
-phrase "friendly civilian"
-	word
-		"Ey Comrade,"
-	word
-		" "
-	word
-		"your ship has loaded on a planet? I have loaded a planet onto my ship."
-		"you have cargo in your ship? I have ships in my cargo."
-		"you have fighters in your bays? We have bays in our fighters."
-
 phrase "friendly civilian"
 	word
 		"Somebody"
@@ -1959,8 +1948,13 @@ phrase "friendly civilian"
 		"I read a rumor"
 		"I found out"
 		"I've learned"
+		"I live by the mantra"
+		"If you always ensure"
+		"You should know"
+		"You'll learn from experience"
 	word
 		" that if you have "
+		" that if you keep "
 	word
 		"at least ten spare bunks"
 		"space for at least ten passengers"
@@ -1972,6 +1966,7 @@ phrase "friendly civilian"
 		"then you'll be ready for anything life throws at you"
 		"then there isn't an odd job from the spaceport that you won't be able to do"
 		"then you might get lucky and have just enough room to help out some celebrities"
+		", you'll have enough extra slack to pick up any job"
 	word
 		"."
 
@@ -1986,20 +1981,44 @@ phrase "friendly civilian"
 	word
 		"It's a fact"
 		"I've heard"
-		"I heard a rumor"
 		"You should know"
 		"They say"
 		"It's said"
+		"I know from experience"
+		"Once you've been on the starlanes long enough, you'll know"
 	word
 		" that "
 	word
-		"smugglers almost always get caught in the end."
-		"even the most powerful warship won't save you from a knife in the back."
-		"the Quarg will arrest you if they catch a whiff of any of their equipment on your ship."
-		"the Quarg imprison anyone they catch carrying their outfits."
-		"nine out of ten pirates die within their first year."
-		"Republic Intelligence has their eyes everywhere."
-		"the law will always catch up to those who try to bypass it."
+		"smuggling is a sure way to find yourself behind bars"
+		"even the most powerful warship won't save you from a knife in the back"
+		"nine out of ten pirates die within their first year"
+		"Republic Intelligence has their eyes everywhere"
+		"the law will always catch up to those who try to bypass it"
+	word
+		"."
+
+phrase "friendly civilian"
+	word
+		"Those Quargs are pretty strict with their technology. They"
+		"I wish the Quarg would share some of their technology with us, but they"
+		"You don't want to be caught with Quarg technology around Enif. The Quarg"
+		"The Quarg don't mess around with their technology. They"
+		"It's said that the Quarg"
+	word
+		" make it pretty clear that they"
+		" monitor their outfits meticulously, and they"
+		" don't want their outfits to proliferate, and they"
+		" restrict their outfits to their own ships, and"
+		" " 4
+	word
+		" will arrest you if they catch a whiff of any of their equipment on your ship"
+		" imprison anyone they catch carrying their outfits"
+		" will put you behind bars forever if you've stolen their outfits"
+		" won't ever let you step foot on a spaceship again if you've got one of their own ships"
+	word
+		"."
+	replace
+		"It's said that the Quarg make it pretty clear that they" "It's said that the Quarg"
 
 phrase "friendly civilian"
 	word
@@ -2201,24 +2220,23 @@ phrase "friendly civilian"
 		`You can often distract pirates with some cargo until the Navy rescues you. My old captain taught me this trick when we were ferrying in the Far North.`
 		`Pirates will always try to take your cargo, but if you drop some scrap their way, they let you keep the real valuables.`
 		`Whenever I see pirates, I immediately dump my freight. They would get it either way, but at least this lets me get away.`
+		"Ey Comrade, your ship has loaded on a planet? I have loaded a planet onto my ship."
+		"Ey Comrade, you have cargo in your ship? I have ships in my cargo."
+		"Ey Comrade, you have fighters in your bays? We have bays in our fighters."
+		"Ey Comrade, you have warships that fire missiles? We have missiles that fire warships."
+		"Ey Comrade, your ship has just fled from pirates? I have pirates who flee from me."
 
 phrase "friendly navy"
 	word
 		"The Navy"
 	word
 		" is here to"
-		" is obligated to"
 		" is always ready to"
 		" is always here to"
 		" will never hesitate to"
 		" will always be here to"
 		" will always"
-		" will always be ready to"
-		" exists to"
-		"'s mission is to"
-		"'s goal is to"
 		"'s duty is to"
-		"'s directive is to"
 	word
 		" "
 	word
@@ -2288,7 +2306,6 @@ phrase "friendly navy"
 		"greatest"
 		"most prestigious"
 		"most worthwhile"
-		"most honorable"
 		"most respected"
 		"most rewarding"
 	word
@@ -2309,8 +2326,6 @@ phrase "friendly navy"
 	word
 		"in the galaxy"
 		"in the Republic"
-		"of all humanity"
-		"of all mankind"
 	word
 		"!"
 		
@@ -2329,14 +2344,9 @@ phrase "friendly navy"
 	word
 		" "
 	word
-		"a firefight"
-		"a dogfight"
 		"a conflict"
-		"a confrontation"
 		"an engagement"
 		"battle"
-		"space battle"
-		"war"
 		"combat"
 	word
 		" is "
@@ -2354,42 +2364,23 @@ phrase "friendly navy"
 		"if it helps us to"
 		"if that sacrifice helps us to"
 		"when it helps your brothers and sisters in arms to"
-		"when on duty to"
 		"when it helps us to"
 		"when we are able to"
 		"when that sacrifice helps us to"
-		"but our duty is to"
-		"but our real job is to"
-		"but our goal is to"
-		"but we are duty-bound to"
-		"but we must"
-		"but our mission is to"
-		"but our directive is to"
-		"but we must focus on"
 		"but only when it helps us to"
-		"but our focus should be to"
 		"but only if it helps the Navy to"
-		"but my commander expects me to"
-		"but we are expected to"
-		"but it would be more efficient if we"
-		"but the universe expects us to"
-		"but that is for nought if it does not help to"
-		"but it is wasted if it does not help to"
+		"but that is for nought if it does not help us to"
+		"but that sacrifice is wasted if it does not help to"
 		"but that sacrifice has greater meaning when it helps us to"
-		"but that sacrifice only means something when it helps us to"
 	word
 		" "
 	word
-		"destroy"
 		"imprison"
-		"detain"
 		"eliminate"
 		"expel"
 		"fend off"
 		"drive back"
 		"defeat"
-		"prevail over"
-		"thwart"
 	word
 		" "
 	word
@@ -2399,8 +2390,6 @@ phrase "friendly navy"
 		"criminals"
 		"terrorists"
 		"insurrectionists"
-		"seperatists"
-		"our adversaries"
 		"our enemies"
 		"our foes"
 		"enemies of freedom"
@@ -2458,7 +2447,24 @@ phrase "friendly navy"
 	word
 		"three centuries"
 		"three hundred years"
-		"ten generations"
+	word
+		"."
+
+phrase "friendly navy"
+	word
+		"For "
+	word
+		"three centuries"
+		"three hundred years"
+	word
+		", "
+	word
+		"the Republic"
+		"the Navy"
+	word
+		" has "
+	phrase
+		"navy protection hail"
 	word
 		"."
 
@@ -2500,7 +2506,6 @@ phrase "navy protection hail"
 phrase "navy protection hail"
 	word
 		"protected"
-		"guarded"
 		"defended"
 	word
 		" "
@@ -2568,19 +2573,11 @@ phrase "navy protection hail"
 
 phrase "navy protection hail"
 	word
-		"kept you safe"
-		"kept humanity safe"
-		"assisted you"
-		"been the guardian of humanity"
-		"been the protector of humanity"
-		"been the defender of humanity"
-
-phrase "navy protection hail"
-	word
 		"promoted"
 		"encouraged"
 		"advanced"
 		"given you"
+		"given humanity"
 		"striven for"
 	word
 		" "
@@ -2590,15 +2587,15 @@ phrase "navy protection hail"
 		"unity"
 		"harmony"
 		"security"
-		"hope"
 		"peace"
 	word
-		"" 5
+		"" 6
 		" and order"
 		" and justice"
 		" and concord"
 		" and safety"
 		" and liberty"
+		" and hope"
 
 phrase "friendly navy"
 	word
@@ -2624,7 +2621,6 @@ phrase "friendly navy"
 		"Do you "
 	word
 		"want"
-		"wish"
 		"desire"
 		"aspire"
 	word
@@ -2640,12 +2636,10 @@ phrase "friendly navy"
 
 phrase "friendly navy"
 	word
-		"The Navy fights"
 		"The Navy is here"
 		"The Navy exists"
 		"The Navy's duty is"
 		"The Navy's purpose is"
-		"We fight"
 		"We are here"
 		"We exist"
 		"We patrol these skies"
@@ -2655,8 +2649,7 @@ phrase "friendly navy"
 	word
 		" to "
 	phrase
-		"navy purpose b" 4
-		"navy purpose c"
+		"navy purpose b"
 	word
 		"."
 	word
@@ -2806,23 +2799,6 @@ phrase "navy purpose b"
 		" and safety"
 		" and liberty"
 
-phrase "navy purpose c"
-	word
-		"ensure"
-		"maintain"
-		"uphold"
-		"defend"
-		"protect"
-	word
-		" the integrity of "
-		" the strength of "
-	word
-		"the Republic"
-		"Parliament's mandate"
-		"our laws"
-		"Republic law"
-		"Parliament"
-
 phrase "friendly navy"
 	word
 		"United, humanity stands. Divided we will fall."
@@ -2841,8 +2817,8 @@ phrase "friendly navy"
 		"The Republic"
 		"The Navy"
 	word
-		"'s goal:" 4
-		"'s motto:" 4
+		"'s goal:" 8
+		"'s motto:" 8
 		"'s goal is to create"
 		"'s goal is to ensure"
 		" wishes for"
@@ -2920,14 +2896,10 @@ phrase "friendly navy"
 		"border control officials"
 	word
 		" must "
+		" will "
 	word
 		"perform "
 		"conduct "
-		"run "
-	word
-		"random "
-		"regular "
-		""
 	word
 		"cargo"
 		"outfit"
@@ -2938,11 +2910,7 @@ phrase "friendly navy"
 		"scans"
 		"inspections"
 	word
-		" on "
-	word
-		"civilian"
-		"merchant"
-		"private"
+		" on all "
 	word
 		" "
 	word
@@ -2979,9 +2947,10 @@ phrase "navy illegal acts"
 	word
 		" "
 	word
-		"illegal"
+		"illicit"
 		"unauthorized"
 		"unlicenced"
+		"dangerous"
 	word
 		" "
 	word
@@ -2995,13 +2964,13 @@ phrase "navy illegal acts"
 		"smuggle"
 	word
 		" "
-	word
-		"${contraband}"
+	phrase
+		"contraband"
 
 phrase "navy illegal acts"
 	word
 		"engage in"
-		"become involved in"
+		"participate in"
 	word
 		" "
 	word
@@ -3011,21 +2980,8 @@ phrase "navy illegal acts"
 
 phrase "navy illegal acts"
 	word
-		"operate"
-		"pilot"
-		"own"
-	word
-		" "
-	word
-		"an unlicensed"
-		"an unauthorized"
-		"an illegal"
-	word
-		" "
-	word
-		"ship"
-		"warship"
-		"vessel"
+		"possess chemical weaponry for any reason"
+		"pilot a ship without a pilot's license"
 
 phrase "navy illegal acts"
 	word
@@ -3058,28 +3014,11 @@ phrase "navy illegal acts"
 
 phrase "navy illegal acts"
 	word
-		"interdict"
-		"attack"
-	word
-		" "
-	word
-		"merchant"
-		"civilian"
-	word
-		" "
-	word
-		"ships"
-		"activity"
-		"vessels"
-
-phrase "navy illegal acts"
-	word
 		"fly"
 		"display"
 	word
 		" "
 	word
-		"illegal"
 		"pirate"
 		"marauder"
 		"anarchist"
