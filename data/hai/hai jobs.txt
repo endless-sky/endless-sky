@@ -169,6 +169,7 @@ mission "Wealthy Hai [1]"
 	to accept
 		has "outfit (installed): Luxury Accommodations"
 		has "outfit (installed): Quantum Keystone"
+		has "Keystone Registration: declined"
 	source
 		government "Hai"
 	destination
@@ -197,6 +198,7 @@ mission "Wealthy Hai [2]"
 	to accept
 		has "outfit (installed): Luxury Accommodations"
 		has "outfit (installed): Quantum Keystone"
+		has "Keystone Registration: declined"
 	source
 		government "Hai"
 	destination

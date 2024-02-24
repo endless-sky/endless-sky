@@ -1934,7 +1934,7 @@ mission "Station Exploration Abandon Ship"
 
 
 
-mission "Keystone Display"
+mission "Keystone Registration"
 	invisible
 	source
 		government "Hai"
