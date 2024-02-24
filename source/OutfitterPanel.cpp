@@ -58,7 +58,7 @@ namespace {
 			{
 				const Outfit *weapon = it.GetOutfit();
 				armed.emplace(weapon);
-				if(weapon->Ammo() && weapon->AmmoUsage() > 0)
+				if(weapon->Ammo() && weapon->GetWeapon().AmmoUsage() > 0)
 					toRefill.emplace(weapon->Ammo());
 			}
 
@@ -69,7 +69,7 @@ namespace {
 		for(auto &&it : ship.Outfits())
 		{
 			const Outfit *outfit = it.first;
-			if(outfit->Ammo() && !outfit->IsWeapon() && !armed.count(outfit))
+			if(outfit->Ammo() && !outfit->GetWeapon().IsWeapon() && !armed.count(outfit))
 				toRefill.emplace(outfit->Ammo());
 		}
 		return toRefill;

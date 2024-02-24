@@ -2619,7 +2619,7 @@ void PlayerInfo::SelectNextSecondary()
 
 	// Find the next secondary weapon.
 	for( ; it != flagship->Outfits().end(); ++it)
-		if(it->first->Icon())
+		if(it->first->GetWeapon().Icon())
 		{
 			selectedWeapons.clear();
 			selectedWeapons.insert(it->first);
@@ -2634,7 +2634,7 @@ void PlayerInfo::SelectNextSecondary()
 	// Reached the end of the list. Select all possible secondary weapons here.
 	it = flagship->Outfits().begin();
 	for( ; it != flagship->Outfits().end(); ++it)
-		if(it->first->Icon())
+		if(it->first->GetWeapon().Icon())
 			selectedWeapons.insert(it->first);
 
 	// If we have only one weapon selected at this point, then the player

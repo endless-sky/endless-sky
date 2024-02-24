@@ -2548,10 +2548,10 @@ void Engine::DrawShipSprites(const Ship &ship)
 
 	auto drawHardpoint = [&drawObject, &ship](const Hardpoint &hardpoint) -> void
 	{
-		if(hardpoint.GetOutfit() && hardpoint.GetOutfit()->HardpointSprite().HasSprite())
+		if(hardpoint.GetWeapon() && hardpoint.GetWeapon()->HardpointSprite().HasSprite())
 		{
 			Body body(
-				hardpoint.GetOutfit()->HardpointSprite(),
+				hardpoint.GetWeapon()->HardpointSprite(),
 				ship.Position() + ship.Zoom() * ship.Facing().Rotate(hardpoint.GetPoint()),
 				ship.Velocity(),
 				ship.Facing() + hardpoint.GetAngle(),
