@@ -15,7 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ShipInfoDisplay.h"
 
-#include "Weapon.h"
 #include "text/alignment.hpp"
 #include "CategoryList.h"
 #include "CategoryTypes.h"

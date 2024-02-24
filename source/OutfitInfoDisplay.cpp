@@ -16,7 +16,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "OutfitInfoDisplay.h"
 
 #include "Depreciation.h"
-#include "Weapon.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "Outfit.h"

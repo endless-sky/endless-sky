@@ -25,7 +25,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Port.h"
 #include "Ship.h"
 #include "System.h"
-#include "Weapon.h"
 
 #include <iostream>
 #include <map>
