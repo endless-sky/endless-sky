@@ -19,13 +19,17 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "Files.h"
 #include "Information.h"
+#include "Interface.h"
 #include "Logger.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
+#include "TextReplacements.h"
+#include "Trade.h"
 
 #include <algorithm>
 #include <iterator>
 #include <map>
+#include <mutex>
 #include <set>
 #include <utility>
 #include <vector>
@@ -498,4 +502,53 @@ void UniverseObjects::DrawMenuBackground(Panel *panel) const
 {
 	lock_guard<mutex> lock(menuBackgroundMutex);
 	menuBackgroundCache.Draw(Information(), panel);
+}
+
+
+
+void UniverseObjects::Clear()
+{
+	colors.Clear();
+	conversations.Clear();
+	effects.Clear();
+	events.Clear();
+	fleets.Clear();
+	formations.Clear();
+	galaxies.Clear();
+	governments.Clear();
+	hazards.Clear();
+	interfaces.Clear();
+	minables.Clear();
+	missions.Clear();
+	news.Clear();
+	outfits.Clear();
+	persons.Clear();
+	phrases.Clear();
+	planets.Clear();
+	ships.Clear();
+	systems.Clear();
+	tests.Clear();
+	testDataSets.Clear();
+	shipSales.Clear();
+	outfitSales.Clear();
+	wormholes.Clear();
+	neighborDistances.clear();
+
+	gamerules = Gamerules();
+	substitutions = TextReplacements();
+	trade = Trade();
+	startConditions.clear();
+	ratings.clear();
+	landingMessages.clear();
+	solarPower.clear();
+	solarWind.clear();
+	categories.clear();
+
+	tooltips.clear();
+	helpMessages.clear();
+	disabled.clear();
+
+	// A local cache of the menu background interface for thread-safe access.
+	std::lock_guard<std::mutex> guard(menuBackgroundMutex);
+	menuBackgroundCache = Interface();
 }

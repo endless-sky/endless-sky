@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // whether it is looping (ends in '~') or not.
 class Sound {
 public:
+	~Sound();
 	bool Load(const std::string &path, const std::string &name);
 
 	const std::string &Name() const;

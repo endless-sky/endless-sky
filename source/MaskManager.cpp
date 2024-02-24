@@ -123,3 +123,12 @@ const std::vector<Mask> &MaskManager::GetMasks(const Sprite *sprite, double scal
 	}
 	return EMPTY;
 }
+
+
+
+void MaskManager::Clear()
+{
+	lock_guard<mutex> lock(spriteMutex);
+	spriteMasks.clear();
+	warned.clear();
+}

@@ -44,6 +44,8 @@ public:
 	// sprite has no masks, an empty mask is returned.
 	const std::vector<Mask> &GetMasks(const Sprite *sprite, double scale) const;
 
+	void Clear();
+
 
 private:
 	std::map<const Sprite *, std::map<double, std::vector<Mask>>> spriteMasks;

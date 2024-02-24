@@ -29,6 +29,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "FillShader.h"
 #include "Fleet.h"
 #include "FogShader.h"
+#include "TextReplacements.h"
 #include "text/FontSet.h"
 #include "FormationPattern.h"
 #include "Galaxy.h"
@@ -189,6 +190,39 @@ void GameData::FinishLoading()
 	playerGovernment = objects.governments.Get("Escort");
 
 	politics.Reset();
+}
+
+
+
+void GameData::Clear()
+{
+	objects.Clear();
+	defaultFleets.Clear();
+	defaultGovernments.Clear();
+	defaultPlanets.Clear();
+	defaultSystems.Clear();
+	defaultGalaxies.Clear();
+	defaultShipSales.Clear();
+	defaultOutfitSales.Clear();
+	defaultSubstitutions = TextReplacements();
+	defaultWormholes.Clear();
+	playerGovernment = nullptr;
+
+	politics.Reset();
+
+	background = StarField();
+
+	sources.clear();
+	deferred.clear();
+	preloaded.clear();
+
+	maskManager.Clear();
+
+	purchases.clear();
+
+	globalConditions.Clear();
+
+	SpriteSet::Clear();
 }
 
 

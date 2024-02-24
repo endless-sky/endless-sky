@@ -36,6 +36,13 @@ namespace {
 
 
 
+Sound::~Sound()
+{
+	alDeleteBuffers(1, &buffer);
+}
+
+
+
 bool Sound::Load(const string &path, const string &name)
 {
 	if(path.length() < 5 || path.compare(path.length() - 4, 4, ".wav"))
