@@ -1932,3 +1932,29 @@ mission "Station Exploration Abandon Ship"
 			label fine
 			`	"You are being fined <fine> for abandoning your passengers without warning. You're lucky you didn't end up with a more serious punishment." After further chewing you out for endangering your passengers' safety, he walks away from you in a huff.`
 
+
+
+mission "Keystone Display"
+	invisible
+	source
+		government "Hai"
+		not attributes "uninhabited"
+	to offer
+		or
+			has "outfit: Quantum Keystone"
+			has "outfit: Quantum Key Stone"
+			has "outfit: Shield Beetle Pendant"
+			has "outfit: Tree Skeleton Key Stone"
+		has "First Contact: Hai: offered"
+	on offer
+		conversation
+			`Upon landing, you recieve a message from the local port authority. "Hello, Captain <last>. We have been informed that you have recently installed a keystone, or its equivalent, onto your ship. We have registered you with the job board, which will allow you to take passengers that specifically request a keystone-equipped ship." Once the message ends, you can hear a quiet tapping on the door of your ship's hatch. You turn to see a short Hai in a spaceport uniform peeking through your window. He waves and smiles.`
+			choice
+				`	(Open the door.)`
+					goto open
+				`	(Ignore him.)`
+			`	Your deliberate disregard for the Hai at your door doesn't appear to stop him. "I saw you had a keystone installed!" His voice is muffled despite his shouting, but you can still hear what he says. "To advertise your ship's keystone in the spaceport, my advice is to place it on the inside of your ship's main door. When you have it open, passerby can see you have a keystone and ask for transportation. You meet some funny people that way. Good luck, Captain!"`
+				decline
+			label open
+			`	The Hai wastes no time in getting to the point; the second you open your door, he begins to speak. "I saw you had a keystone installed! To advertise your ship's keystone in the spaceport, my advice is to place it on the inside of your ship's main door. When you have it open, passerby can see you have a keystone and ask for transportation. You meet some funny people that way. Good luck, Captain!"`
+				decline
