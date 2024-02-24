@@ -1518,7 +1518,7 @@ bool Ship::CanSendHail(const PlayerInfo &player, bool allowUntranslated) const
 	if(!gov || IsYours())
 		return false;
 
-	// Make sure this ship is able to send a hail.
+	// Make sure this ship is able to send a hail message, unless it has the quiet or mute personality.
 	if(IsDisabled() || !Crew() || Cloaking() >= 1. || GetPersonality().IsMute() || GetPersonality().IsQuiet())
 		return false;
 
