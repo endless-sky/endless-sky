@@ -1519,7 +1519,7 @@ bool Ship::CanSendHail(const PlayerInfo &player, bool allowUntranslated) const
 		return false;
 
 	// Make sure this ship is able to send a hail.
-	if(IsDisabled() || !Crew() || Cloaking() >= 1. || GetPersonality().IsMute())
+	if(IsDisabled() || !Crew() || Cloaking() >= 1. || GetPersonality().IsMute() || GetPersonality().IsQuiet())
 		return false;
 
 	// Ships that don't share a language with the player shouldn't communicate when hailed directly.
