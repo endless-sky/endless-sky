@@ -1116,30 +1116,22 @@ phrase "friendly civilian"
 		"roomers"
 		"VIP passengers"
 	word
-		" " 4
-		" inexplicably "
-		" stupidly "
+		" "
 	word
-		"decided to eat"
-		"went and ate"
-		"decided they would have"
-		"made the bad choice of having"
-		"ate"
-		"had"
-	word
-		" " 4
-		" a meal of "
-		" a serving of "
-	word
-		"asparagus"
-		"garlic"
-		"beans"
+		"decided to eat asparagus"
+		"thought it would be a good idea to have a meal of garlic"
+		"made the bad choice of having a serving of beans"
+		"threw up after we exited hyperspace"
+		"made a big mess"
+		"couldn't keep the contents of their stomach inside them"
 	word
 		" "
 	word
-		"from my cargo hold."
-		"in the spaceport."
+		"in my cargo hold."
+		"in their room."
 		"in my ship."
+		"in the airlock."
+		"in the mess hall."
 	word
 		" "
 	word
@@ -1151,7 +1143,8 @@ phrase "friendly civilian"
 		"" 4
 		", let them reek in someone else's ship"
 		", I don't want them stinking my ship up"
-		", because the toilets are stinking, badly"
+		", I don't want to clean up after them again"
+		", and they better learn how to live on a spaceship"
 	word
 		"!"
 
@@ -1977,7 +1970,8 @@ phrase "friendly civilian"
 		"Don't get on the bad side of the authorities. "
 		"I always try to be an honest captain. "
 		"Crime doesn't pay in the end. "
-		""
+		"You've got to be careful if you associate yourself with the wrong sorts. "
+		"" 4
 	word
 		"It's a fact"
 		"I've heard"
@@ -1985,9 +1979,10 @@ phrase "friendly civilian"
 		"They say"
 		"It's said"
 		"I know from experience"
-		"Once you've been on the starlanes long enough, you'll know"
+		"Once you've been on the starlanes long enough you know"
 	word
 		" that "
+		", "
 	word
 		"smuggling is a sure way to find yourself behind bars"
 		"even the most powerful warship won't save you from a knife in the back"
@@ -2019,6 +2014,76 @@ phrase "friendly civilian"
 		"."
 	replace
 		"It's said that the Quarg make it pretty clear that they" "It's said that the Quarg"
+
+phrase "friendly civilian"
+	word
+		"What is with zero-g cricket?"
+		"I don't get that zero-g cricket they play in the Core."
+		"How are people into zero-g cricket?"
+		"How do people stay awake watching that zero-g cricket?"
+	word
+		" I mean, "
+		" Look, "
+		" Like, "
+	word
+		"all they're doing is"
+		"half the time they're just"
+		"they spend a week"
+		"you can't call a sport a sport if you're mostly "
+		"all you're watching is a bunch of guys"
+	word
+		" floating around "
+		" floating aimlessly "
+		" bouncing around a space station "
+	word
+		"trying to catch some damn near-invisible ball"
+		"hitting some damn near-invisible ball"
+		"throwing around some damn near-invisible ball"
+		"chucking some damn near-invisible ball"
+		"and boosting about twenty meters back and forth every now and again"
+		"trying to hit a couple sticks off a few other sticks"
+	word
+		"" 5
+		". I just don't get it, man"
+		". It makes no sense"
+		". Don't get me started on the rules"
+		". Innings, outings, overs, it's ridiculous"
+		". Who's in and who's out? They never tell you"
+		". It's too bloody convoluted, the way people go in and out all the time"
+		". It sounds like a sport only aliens would play"
+		". Couldn't they speed it up a bit?"
+		". How do they make a game out of that?"
+		". And all they're playing for is a bunch of old burnt wood"
+		`. And they're always up in arms about whether "underarm bowling" is legal`
+		". Zero-g lacrosse makes a lot more sense"
+	word
+		"!"
+	replace
+		"?!" "?"
+
+phrase "friendly civilian"
+	word
+		"I'm getting into zero-g cricket"
+		"I love watching zero-g cricket"
+		"You don't get a sport better than zero-g cricket"
+	word
+		". That adrenaline you get when the bowler boosts down the sphere to throw the ball"
+		". The exhilaration you feel when the batsman hits a perfect six"
+		". The way bowlers can control the ball to fool the batsman"
+		". That feeling you get when a fielder catches the batsman out with a well-timed boost"
+	word
+		" and the way the crowd roars as it happens"
+		", the crowd going wild"
+		", and the release you feel as you see the ball getting knocked right out of the sphere"
+		", how each test is full of tension and fortunes that are decided by each bowl and hit"
+		"" 6
+	word
+		"; there's nothing like it in the galaxy."
+		"; I don't get the hate for it."
+		"... There are some truly phenomenal players out there."
+		"... it's an amazing sport."
+		"... it's like chess played in space."
+		"..." 3
 
 phrase "friendly civilian"
 	word
@@ -2301,12 +2366,10 @@ phrase "friendly navy"
 	word
 		" the "
 	word
-		"biggest"
 		"largest"
 		"greatest"
 		"most prestigious"
 		"most worthwhile"
-		"most respected"
 		"most rewarding"
 	word
 		" "
@@ -2962,6 +3025,7 @@ phrase "navy illegal acts"
 		"traffic"
 		"transport"
 		"smuggle"
+		"profit from the trade of"
 	word
 		" "
 	phrase
@@ -3022,6 +3086,8 @@ phrase "navy illegal acts"
 		"pirate"
 		"marauder"
 		"anarchist"
+	word
+		" "
 	word
 		"markings"
 		"colors"
@@ -4296,8 +4362,8 @@ phrase "friendly pirate"
 		" Talk to me for a contact."
 		" You'll find some on the nearest pirate planet."
 		" You'll find some on the nearest anarchist planet."
-		" You'll find some on the nearest planet not oppressed by the man."
-		" You'll find some wherever the man does not go."
+		" You'll find some on the nearest planet not oppressed by the Man."
+		" You'll find some wherever the Man does not go."
 
 phrase "friendly pirate"
 	word
