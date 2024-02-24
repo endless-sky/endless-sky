@@ -20,7 +20,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Effect.h"
 #include "Flotsam.h"
 #include "Outfit.h"
-#include "Weapon.h"
 #include "pi.h"
 #include "Projectile.h"
 #include "Random.h"
