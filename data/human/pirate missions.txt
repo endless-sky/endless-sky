@@ -12,7 +12,7 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 
-mission "Pirate Mining Guild Fleet"
+mission "CMC Fleet"
 	invisible
 	landing
 	npc
