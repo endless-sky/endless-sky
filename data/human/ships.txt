@@ -11,69 +11,6 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-# Currently partly Behemoth.
-ship "Mining Barge"
-	sprite "ship/mining barge"
-	thumbnail "thumbnail/mining barge"
-	attributes
-		category "Utility"
-		"cost" 10800000
-		"shields" 7600
-		"hull" 6300
-		"required crew" 12
-		"bunks" 30
-		"mass" 910
-		"drag" 15.9
-		"heat dissipation" .4
-		"fuel capacity" 600
-		"cargo space" 490
-		"outfit space" 510
-		"weapon capacity" 280
-		"engine capacity" 90
-		weapon
-			"blast radius" 140
-			"shield damage" 1400
-			"hull damage" 700
-			"hit force" 2100
-	outfits
-		"Mining Laser" 2
-
-		"NT-200 Nucleovoltaic"
-		"LP144a Battery Pack"
-		"D41-HY Shield Generator"
-		"Small Radar Jammer"
-		"Laser Rifle" 3
-		
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
-		"X1100 Ion Reverse Thruster" 2
-		"Scram Drive"
-
-	engine -36 218
-	engine 36 218
-	engine 0 220
-	gun -34 -200
-	gun 34 -200
-	turret -55.5 -71
-	turret 55.5 -71
-	turret -66 53
-	turret 66 53
-	bay "Fighter" 93 69
-		"angle" 70
-		"launch effect" "human internal"
-	bay "Fighter" -93 69
-		"angle" -70
-		"launch effect" "human internal"
-	leak "leak" 30 50
-	leak "flame" 30 80
-	leak "big leak" 50 30
-	explode "small explosion" 15
-	explode "medium explosion" 25
-	explode "large explosion" 35
-	explode "huge explosion" 20
-	"final explode" "final explosion large"
-	description "Test."
-
 
 ship "Aerie"
 	sprite "ship/aerie"
@@ -2741,6 +2678,84 @@ ship "Manta"
 	explode "medium explosion" 15
 	"final explode" "final explosion small"
 	description "After their Quicksilver light warship with its armament of Particle Cannons became a large success with convoy escorts and planetary defense forces, Megaparsec decided to develop a larger ship with similar maneuverability but heavier firepower. The Manta is the result: a ship with enough long-range firepower that fleeing from a battle with it is almost impossible."
+
+
+
+ship "Mining Barge"
+	sprite "ship/mining barge"
+	thumbnail "thumbnail/mining barge"
+	attributes
+		category "Utility"
+		"cost" 13400000
+		"shields" 6000
+		"hull" 11600
+		"required crew" 47
+		"bunks" 82
+		"mass" 1760
+		"drag" 19.1
+		"heat dissipation" .36
+		"fuel capacity" 400
+		"cargo space" 760
+		"outfit space" 490
+		"weapon capacity" 240
+		"engine capacity" 140
+		weapon
+			"blast radius" 176
+			"shield damage" 1760
+			"hull damage" 880
+			"hit force" 2640
+	outfits
+		"Mining Laser" 4
+		"Modified Blaster Turret" 2
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret"
+
+		"nGVF-BB Fuel Cell"
+		"KP-6 Photovoltaic Array" 2
+		"KP-6 Photovoltaic Panel" 4
+		"LP144a Battery Pack"
+		"D41-HY Shield Generator"
+		"Large Radar Jammer"
+		"Laser Rifle" 9
+		"Fragmentation Grenades" 
+
+		"X4700 Ion Thruster"
+		"X4200 Ion Steering"
+		"X1100 Ion Reverse Thruster" 2
+
+	engine -32 204
+	engine 32 204
+	engine 0 206
+	turret -51.5 -65 "Quad Blaster Turret"
+	turret 51.5 -65 "Modified Blaster Turret"
+	turret -61.5 51 "Modified Blaster Turret"
+	turret 61.5 51 "Quad Blaster Turret"
+	turret 0 105.5 "Heavy Anti-Missile Turret"
+	gun -20 -182
+	gun -20 -182
+	gun 20 -182
+	gun 20 -182
+	bay "Drone" 88 66
+		"angle" 70
+		"launch effect" "human internal"
+	bay "Drone" 88 66
+		"angle" 70
+		"launch effect" "human internal"
+	bay "Drone" -88 66
+		"angle" -70
+		"launch effect" "human internal"
+	bay "Drone" -88 66
+		"angle" -70
+		"launch effect" "human internal"
+	leak "leak" 30 50
+	leak "flame" 30 80
+	leak "big leak" 50 30
+	explode "small explosion" 20
+	explode "medium explosion" 30
+	explode "large explosion" 40
+	explode "huge explosion" 25
+	"final explode" "final explosion large"
+	description "Test."
 
 
 

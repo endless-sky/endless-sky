@@ -12,12 +12,10 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 
-# Edderkopp Mining Barge
-
-mission "Edderkopp Mining Barge"
+mission "Pirate Mining Guild Fleet"
 	invisible
 	landing
-	npc save
+	npc
 		on kill
 			set "dead edderkopp"
 		government "Pirate"
@@ -26,5 +24,20 @@ mission "Edderkopp Mining Barge"
 		ship "Mining Barge" "Edderkopp"
 	to complete
 		never
-
-# Escort Fleet, System Spawns?
+	npc 
+		government "Pirate"
+		personality staying mining disables
+		system "Nashira"
+		fleet
+			variant
+				"Mining Drone" 4
+	npc
+		government "Pirate"
+		personality staying disables plunders harvests swarming
+		system "Nashira"
+		fleet
+			variant
+				"Protector"
+				"Splinter"
+				"Quicksilver" 2
+				"Wasp"

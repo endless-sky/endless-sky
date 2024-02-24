@@ -24079,8 +24079,14 @@ system Nashira
 	asteroids "small metal" 11 2.948
 	asteroids "medium metal" 13 2.22
 	asteroids "large metal" 12 1.893
-	minables iron 21 4.736
-	minables copper 16 2.997
+	minables iron 21 4.7
+	minables copper 12 2.9
+	minables lead 9 3.2
+	minables silicon 9 5.3
+	minables tungsten 13 7
+	fleet "Small Core Pirates" 900
+	fleet "Large Core Pirates" 2300
+	fleet "Large Syndicate" 9000
 	object
 		sprite star/b-giant
 		period 20
