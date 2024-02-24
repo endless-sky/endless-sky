@@ -26,9 +26,10 @@ mission "Pirate Mining Guild Fleet"
 		never
 	npc 
 		government "Pirate"
-		personality staying mining disables
+		personality mining disables
 		system "Nashira"
 		fleet
+			names "pirate"
 			variant
 				"Mining Drone" 4
 	npc
@@ -36,6 +37,7 @@ mission "Pirate Mining Guild Fleet"
 		personality staying disables plunders harvests swarming
 		system "Nashira"
 		fleet
+			names "pirate"
 			variant
 				"Protector"
 				"Splinter"
