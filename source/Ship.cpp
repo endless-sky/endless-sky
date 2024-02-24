@@ -23,7 +23,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataWriter.h"
 #include "Effect.h"
 #include "Flotsam.h"
-#include "Weapon.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
