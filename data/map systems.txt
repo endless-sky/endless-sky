@@ -24086,7 +24086,6 @@ system Nashira
 	minables tungsten 13 7
 	fleet "Small Core Pirates" 900
 	fleet "Large Core Pirates" 2300
-	fleet "Large Syndicate" 9000
 	object
 		sprite star/b-giant
 		period 20
