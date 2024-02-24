@@ -1948,7 +1948,7 @@ mission "Keystone Registration"
 		has "First Contact: Hai: offered"
 	on offer
 		conversation
-			`Upon landing, you receive a message from the local port authority. "Hello, Captain <last>. We have been informed that you have recently installed a keystone, or its equivalent, onto your ship. We have registered you with the job board, which will allow you to take passengers that specifically request a keystone-equipped ship." Once the message ends, you can hear a quiet tapping on the door of your ship's hatch. You turn to see a short Hai in a spaceport uniform peeking through your window. He waves and smiles.`
+			`Upon landing, you receive a message from the local port authority. "Hello, Captain <last>. We have been informed that you have recently installed a keystone, or its equivalent, onto your ship. We have registered you with the job board, which will allow you to take passengers that specifically request a keystone-equipped ship. However, be aware that most passengers will not board ships equipped with non-standard keystones." Once the message ends, you can hear a quiet tapping on the door of your ship's hatch. You turn to see a short Hai in a spaceport uniform peeking through your window. He waves and smiles.`
 			choice
 				`	(Open the door.)`
 					goto open
