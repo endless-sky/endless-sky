@@ -15,7 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "PreferencesPanel.h"
 
-#include "Messenger.h"
 #include "text/alignment.hpp"
 #include "Audio.h"
 #include "Color.h"
@@ -27,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
+#include "Messenger.h"
 #include "Plugins.h"
 #include "PointerShader.h"
 #include "Preferences.h"

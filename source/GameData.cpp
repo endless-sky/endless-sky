@@ -29,7 +29,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "FillShader.h"
 #include "Fleet.h"
 #include "FogShader.h"
-#include "TextReplacements.h"
 #include "text/FontSet.h"
 #include "FormationPattern.h"
 #include "Galaxy.h"
