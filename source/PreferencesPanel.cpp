@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "PreferencesPanel.h"
 
+#include "Messenger.h"
 #include "text/alignment.hpp"
 #include "Audio.h"
 #include "Color.h"
@@ -218,6 +219,11 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	{
 		if(zones[latest].Value().KeyName() != Command::MENU.KeyName())
 			Command::SetKey(zones[latest].Value(), 0);
+	}
+	else if(key == 'a' && page == 'p' && Plugins::HasChanged())
+	{
+		Messenger::SetReload(true);
+		GetUI()->Quit();
 	}
 	else
 		return false;

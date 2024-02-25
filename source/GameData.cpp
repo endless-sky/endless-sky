@@ -210,8 +210,6 @@ void GameData::Clear()
 
 	politics.Reset();
 
-	background = StarField();
-
 	sources.clear();
 	deferred.clear();
 	preloaded.clear();
@@ -220,9 +218,10 @@ void GameData::Clear()
 
 	purchases.clear();
 
-	globalConditions.Clear();
+	Plugins::Clear();
 
 	SpriteSet::Clear();
+	Music::Reset();
 }
 
 

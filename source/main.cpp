@@ -23,7 +23,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "Engine.h"
 #include "Files.h"
+#include "Messenger.h"
 #include "text/Font.h"
+#include "text/FontSet.h"
 #include "FrameTimer.h"
 #include "GameData.h"
 #include "GameLoadingPanel.h"
@@ -207,7 +209,27 @@ int main(int argc, char *argv[])
 			Audio::SetVolume(0);
 
 		// This is the main loop where all the action begins.
-		GameLoop(player, conversation, testToRunName, debugMode);
+		do {
+			Messenger::SetReload(false);
+			GameLoop(player, conversation, testToRunName, debugMode);
+			if(Messenger::GetReload())
+			{
+				glClear(GL_COLOR_BUFFER_BIT);
+				WrappedText wrap;
+				wrap.SetAlignment(Alignment::JUSTIFIED);
+				wrap.SetFont(FontSet::Get(18));
+				wrap.Wrap("Now reloading game data...");
+				wrap.Draw(Point(-100., 0.), *GameData::Colors().Get("medium"));
+				GameWindow::Step();
+				Plugins::Save();
+				Audio::Reset();
+				GameData::Clear();
+
+				Plugins::LoadSettings();
+				future<void> dataLoading = GameData::BeginLoad(isConsoleOnly, debugMode, isTesting && !debugMode);
+				Audio::Init(GameData::Sources());
+			}
+		} while(Messenger::GetReload());
 	}
 	catch(Test::known_failure_tag)
 	{

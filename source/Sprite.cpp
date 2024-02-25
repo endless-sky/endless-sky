@@ -67,10 +67,10 @@ Sprite::Sprite(const string &name)
 
 Sprite::~Sprite()
 {
-	glDeleteTextures(1, &texture[0]);
-	glDeleteTextures(1, &texture[1]);
-	glDeleteTextures(1, &swizzleMask[0]);
-	glDeleteTextures(1, &swizzleMask[1]);
+	if(texture[0]) glDeleteTextures(1, &texture[0]);
+	if(texture[1]) glDeleteTextures(1, &texture[1]);
+	if(swizzleMask[0]) glDeleteTextures(1, &swizzleMask[0]);
+	if(swizzleMask[1]) glDeleteTextures(1, &swizzleMask[1]);
 }
 
 

@@ -197,6 +197,8 @@ target_sources(EndlessSkyLib PRIVATE
 	MessageLogPanel.h
 	Messages.cpp
 	Messages.h
+	Messenger.cpp
+	Messenger.h
 	Minable.cpp
 	Minable.h
 	Mission.cpp

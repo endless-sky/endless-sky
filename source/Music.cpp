@@ -62,6 +62,13 @@ void Music::Init(const vector<string> &sources)
 
 
 
+void Music::Reset()
+{
+	paths.clear();
+}
+
+
+
 // Music constructor, which starts the decoding thread. Initially, the thread
 // has no file to read, so it will sleep until a file is specified.
 Music::Music()
