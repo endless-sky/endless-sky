@@ -211,9 +211,12 @@ int main(int argc, char *argv[])
 		// This is the main loop where all the action begins.
 		do {
 			Messenger::SetReload(false);
+
 			GameLoop(player, conversation, testToRunName, debugMode);
+
 			if(Messenger::GetReload())
 			{
+				// Show something to the player while game is reloading.
 				glClear(GL_COLOR_BUFFER_BIT);
 				WrappedText wrap;
 				wrap.SetAlignment(Alignment::JUSTIFIED);
@@ -221,11 +224,18 @@ int main(int argc, char *argv[])
 				wrap.Wrap("Now reloading game data...");
 				wrap.Draw(Point(-100., 0.), *GameData::Colors().Get("medium"));
 				GameWindow::Step();
+
+				// Save changes to plugin states.
 				Plugins::Save();
+
+				// Reset all data, including sprites and sounds.
 				Audio::Reset();
 				GameData::Clear();
 
+				// Load previously saved plugin data.
 				Plugins::LoadSettings();
+
+				// Load game data, sprites, and sounds again.
 				future<void> dataLoading = GameData::BeginLoad(isConsoleOnly, debugMode, isTesting && !debugMode);
 				Audio::Init(GameData::Sources());
 			}
