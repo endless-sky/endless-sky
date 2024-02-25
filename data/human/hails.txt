@@ -2036,12 +2036,11 @@ phrase "friendly civilian"
 		" floating aimlessly "
 		" bouncing around a space station "
 	word
-		"trying to catch some damn near-invisible ball"
-		"hitting some damn near-invisible ball"
-		"throwing around some damn near-invisible ball"
-		"chucking some damn near-invisible ball"
+		"trying to catch a ball"
+		"hitting a ball around a space station"
+		"while two of them go back and forth a bunch of times"
 		"and boosting about twenty meters back and forth every now and again"
-		"trying to hit a couple sticks off a few other sticks"
+		"trying to hit a couple sticks off a few other sticks with a ball"
 	word
 		"" 5
 		". I just don't get it, man"
@@ -2060,6 +2059,7 @@ phrase "friendly civilian"
 		"!"
 	replace
 		"?!" "?"
+		"around a space station hitting a ball around a space station" "around hitting a ball around a space station"
 
 phrase "friendly civilian"
 	word
