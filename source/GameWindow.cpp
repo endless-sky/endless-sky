@@ -82,7 +82,11 @@ bool GameWindow::Init(bool headless)
 
 	// When running the integration tests, don't create a window nor an OpenGL context.
 	if(headless)
+#if defined(__linux__) && !SDL_VERSION_ATLEAST(2, 0, 22)
+		setenv("SDL_VIDEODRIVER", "dummy", true);
+#else
 		SDL_SetHint(SDL_HINT_VIDEODRIVER, "dummy");
+#endif
 
 	// This needs to be called before any other SDL commands.
 	if(SDL_Init(SDL_INIT_VIDEO) != 0)
@@ -134,7 +138,7 @@ bool GameWindow::Init(bool headless)
 
 	// The main window spawns visibly at this point.
 	mainWindow = SDL_CreateWindow("Endless Sky", SDL_WINDOWPOS_UNDEFINED,
-		SDL_WINDOWPOS_UNDEFINED, windowWidth, windowHeight, flags);
+		SDL_WINDOWPOS_UNDEFINED, windowWidth, windowHeight, headless ? 0 : flags);
 
 	if(!mainWindow)
 	{

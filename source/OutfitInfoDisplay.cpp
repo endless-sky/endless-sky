@@ -664,13 +664,15 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		"inaccuracy:",
 		"blast radius:",
 		"missile strength:",
-		"anti-missile:"
+		"anti-missile:",
+		"tractor beam:"
 	};
 	vector<double> otherValues = {
 		outfit.Inaccuracy(),
 		outfit.BlastRadius(),
 		static_cast<double>(outfit.MissileStrength()),
-		static_cast<double>(outfit.AntiMissile())
+		static_cast<double>(outfit.AntiMissile()),
+		outfit.TractorBeam() * 60.
 	};
 
 	for(unsigned i = 0; i < OTHER_NAMES.size(); ++i)

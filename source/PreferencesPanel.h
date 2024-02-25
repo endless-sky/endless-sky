@@ -23,12 +23,18 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Plugins.h"
 #include "Point.h"
 #include "Sprite.h"
+#include "ScrollVar.h"
 #include "text/WrappedText.h"
 
 #include <future>
 #include <nlohmann/json.hpp>
+
+#include <memory>
 #include <string>
 #include <vector>
+
+class RenderBuffer;
+struct Plugin;
 
 
 
@@ -36,6 +42,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class PreferencesPanel : public Panel {
 public:
 	PreferencesPanel();
+	virtual ~PreferencesPanel();
 
 	// Draw this panel.
 	virtual void Draw() override;
@@ -48,6 +55,7 @@ protected:
 	virtual bool Click(int x, int y, int clicks) override;
 	virtual bool Hover(int x, int y) override;
 	virtual bool Scroll(double dx, double dy) override;
+	virtual bool Drag(double dx, double dy) override;
 
 	virtual void EndEditing() override;
 
@@ -57,6 +65,8 @@ private:
 	void DrawSettings();
 	void DrawPlugins();
 	void DrawPluginInstalls();
+	void RenderPluginDescription(const std::string &pluginName);
+	void RenderPluginDescription(const Plugin &plugin);
 
 	void DrawTooltips();
 
@@ -69,6 +79,9 @@ private:
 	void HandleConfirm();
 
 	void ProcessPluginIndex();
+	// Scroll the plugin list until the selected plugin is visible.
+	void ScrollSelectedPlugin();
+
 
 private:
 	int editing;
@@ -109,6 +122,12 @@ private:
 	std::vector<ClickZone<std::string>> prefZones;
 	std::vector<ClickZone<std::string>> pluginZones;
 	std::vector<ClickZone<Plugins::InstallData*>> pluginInstallZones;
+
+	std::unique_ptr<RenderBuffer> pluginListClip;
+	std::unique_ptr<RenderBuffer> pluginDescriptionBuffer;
+	ScrollVar<double> pluginListScroll;
+	ScrollVar<double> pluginDescriptionScroll;
+	int pluginListHeight = 0;
 };
 
 
