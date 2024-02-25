@@ -183,9 +183,6 @@ protected:
 	ShipInfoDisplay shipInfo;
 	OutfitInfoDisplay outfitInfo;
 
-	mutable Point warningPoint;
-	mutable std::string warningType;
-
 
 private:
 	void DrawShipsSidebar();
@@ -217,6 +214,7 @@ private:
 
 	Point hoverPoint;
 	std::string shipName;
+	std::string warningType;
 	int hoverCount = 0;
 };
 
