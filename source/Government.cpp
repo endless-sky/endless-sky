@@ -410,12 +410,6 @@ void Government::Load(const DataNode &node)
 	if(reputationMin > reputationMax)
 		reputationMin = reputationMax;
 	SetReputation(Reputation());
-
-	// Default to the standard disabled hail messages.
-	if(!friendlyDisabledHail)
-		friendlyDisabledHail = GameData::Phrases().Get("friendly disabled");
-	if(!hostileDisabledHail)
-		hostileDisabledHail = GameData::Phrases().Get("hostile disabled");
 }
 
 
