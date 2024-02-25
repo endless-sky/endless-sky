@@ -1028,7 +1028,9 @@ government "Pirate"
 	"bribe" .05
 	"fine" 0
 	"friendly hail" "friendly pirate"
+	"friendly disabled hail" "friendly disabled pirate"
 	"hostile hail" "hostile pirate"
+	"hostile disabled hail" "hostile disabled pirate"
 	raid "pirate raid"
 
 government "Pirate (Devil-Run Gang)"
@@ -1049,7 +1051,9 @@ government "Pirate (Devil-Run Gang)"
 	"bribe" .05
 	"fine" 0
 	"friendly hail" "friendly pirate"
+	"friendly disabled hail" "friendly disabled pirate"
 	"hostile hail" "hostile pirate"
+	"hostile disabled hail" "hostile disabled pirate"
 
 government "Pirate (Rival)"
 	"display name" "Pirate"
@@ -1067,7 +1071,9 @@ government "Pirate (Rival)"
 	"bribe" 0
 	"fine" 0
 	"friendly hail" "friendly pirate"
+	"friendly disabled hail" "friendly disabled pirate"
 	"hostile hail" "hostile pirate"
+	"hostile disabled hail" "hostile disabled pirate"
 	raid "pirate raid"
 
 color "governments: Pug" .99 .89 .70

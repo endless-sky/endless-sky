@@ -4459,6 +4459,38 @@ phrase "friendly pirate"
 		" I would have blasted them out of the sky if I could!"
 		" There were so many of them!"
 
+
+phrase "friendly disabled pirate"
+	word
+		"Could ya help a mate and"
+		"We've hit a snag, could ya"
+		"Friend, could ya"
+		"Can ya"
+	word
+		" "
+	word
+		"come over here"
+		"come to us"
+		"fly to us"
+		"take a minute"
+		"do us a favor? We need someone"
+		"get our ship online again? We need a ship"
+	word
+		" "
+	word
+		"to"
+		"and"
+	word
+		" "
+	word
+		"patch us up"
+		"make some repairs on us"
+		"give us a boost"
+		"get this ship back up so we can get the hell outta Dodge"
+		"get us back up and plunderin' again"
+	word
+		"?"
+
 phrase "friendly author"
 	word
 		"This game"
@@ -4865,12 +4897,6 @@ phrase "shakespearean insults"
 		"vassal"
 		"whey-face"
 		"wagtail"
-		
-phrase "hostile disabled pirate"
-	word
-		"Don't hurt me! Please!"
-		"Waaaaaa! Mommy!"
-		"Fire! Fire! Fire! Fire! Fire!"
 
 phrase "hostile civilian"
 	word
@@ -5650,6 +5676,8 @@ phrase "hostile pirate"
 	word
 		"."
 
+
+
 phrase "hostile pirate"
 	word
 		"Plundering"
@@ -6102,6 +6130,25 @@ phrase "hostile pirate"
 		" or get disintegrated"
 	word
 		"!"
+
+phrase "hostile disabled pirate"
+	word
+		"Why isn't the ship moving?!"
+		"Move, you goddamned ship!"
+		"Why aren't the guns firing?!"
+		"Come on, fire the bloody guns!"
+		"Fire! Fire! Fire the damn guns! Why aren't you firing?"
+		"Why aren't the guns firing?"
+
+phrase "hostile disabled pirate"
+	word
+		"Don't hurt me! Please!"
+		"Waaaaaa! Mommy!"
+		"We're dying here! Stop firing!"
+		"Help! Stop firing!"
+		"We surrender!"
+		"Stop it! We surrender!"
+		"We're going to die out here, aren't we?"
 
 phrase "hostile bounty"
 	word
