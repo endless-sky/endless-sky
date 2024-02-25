@@ -2000,16 +2000,16 @@ phrase "friendly civilian"
 		"The Quarg don't mess around with their technology. They"
 		"It's said that the Quarg"
 	word
-		" make it pretty clear that they"
-		" monitor their outfits meticulously, and they"
-		" don't want their outfits to proliferate, and they"
-		" restrict their outfits to their own ships, and"
+		" make it pretty clear that they "
+		" monitor their outfits meticulously, and they "
+		" don't want their outfits to proliferate, and they "
+		" restrict their outfits to their own ships, and "
 		" " 4
 	word
-		" will arrest you if they catch a whiff of any of their equipment on your ship"
-		" imprison anyone they catch carrying their outfits"
-		" will put you behind bars forever if you've stolen their outfits"
-		" won't ever let you step foot on a spaceship again if you've got one of their own ships"
+		"will arrest you if they catch a whiff of any of their equipment on your ship"
+		"imprison anyone they catch carrying their outfits"
+		"will put you behind bars forever if you've stolen their outfits"
+		"won't ever let you step foot on a spaceship again if you've got one of their own ships"
 	word
 		"."
 	replace
