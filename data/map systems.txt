@@ -3134,7 +3134,7 @@ system "Al Hurr"
 			period 11.1964
 
 system Aladfar
-	pos -461.111 204.074
+	pos -461 204
 	government Republic
 	attributes "near earth"
 	habitable 8429.116
@@ -5116,7 +5116,7 @@ system Alpherg
 			offset 13
 
 system Alshain
-	pos -309.222 180.63
+	pos -309 181
 	government Republic
 	attributes "near earth"
 	habitable 1270.984
@@ -6555,7 +6555,7 @@ system Aya'k'k
 		period 2983.58
 
 system "Barnard's Star"
-	pos -416.222 59.269
+	pos -416 59
 	government Republic
 	attributes "near earth"
 	habitable 160
@@ -11769,7 +11769,7 @@ system "Ehma Ti"
 			period 26.8467
 
 system "Epsilon Eridani"
-	pos -347.917 8.62
+	pos -348 9
 	government Republic
 	attributes "paradise"
 	habitable 3000
@@ -19430,7 +19430,7 @@ system "Kaus Borealis"
 			period 35.2227
 
 system Keid
-	pos -469.999 35.389
+	pos -470 35
 	government Republic
 	attributes "near earth"
 	habitable 490
@@ -31633,7 +31633,7 @@ system Suhail
 			period 20.4528
 
 system Sulafat
-	pos -513.667 190.185
+	pos -514 190
 	government Republic
 	habitable 11350
 	belt 1439 2
@@ -32088,7 +32088,7 @@ system Tarazed
 			period 16.9693
 
 system "Tau Ceti"
-	pos -341.481 85.963
+	pos -341 86
 	government Republic
 	attributes "near earth"
 	habitable 550
@@ -33566,7 +33566,7 @@ system Vanguwo
 		period 3940.43
 
 system "Van Maanen's Star"
-	pos -311.704 116.222
+	pos -312 116
 	government Republic
 	attributes "near earth"
 	habitable 355
