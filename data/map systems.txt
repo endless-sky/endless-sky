@@ -3277,7 +3277,6 @@ system Alcyone
 	haze _menu/haze-133
 	link Durax
 	link Oblate
-	link Zaurak
 	asteroids "small rock" 4 1.62
 	asteroids "medium rock" 16 1.3176
 	asteroids "large rock" 16 1.08
@@ -3828,7 +3827,7 @@ system Algieba
 			period 22.4237
 
 system Algol
-	pos -198 24
+	pos -190 19
 	government Syndicate
 	attributes "bright star" "core" "notable star"
 	arrival 3490
@@ -4802,7 +4801,7 @@ system "Alpha Centauri"
 		period 3022.55
 
 system "Alpha Hydri"
-	pos -115 100
+	pos -117 99
 	government Syndicate
 	attributes "core"
 	arrival 1450
@@ -4976,7 +4975,7 @@ system Alphecca
 		period 1008.95
 
 system Alpheratz
-	pos -170 116
+	pos -173 109
 	government Syndicate
 	attributes "core"
 	arrival 1115
@@ -8051,7 +8050,7 @@ system Capella
 			period 31.7666
 
 system Caph
-	pos -295 77
+	pos -296 68
 	government Syndicate
 	attributes "near earth"
 	arrival 700
@@ -8059,7 +8058,7 @@ system Caph
 	belt 1173
 	link Diphda
 	link Eteron
-	link Sol
+	link "Tau Ceti"
 	asteroids "small rock" 19 4.14
 	asteroids "medium rock" 15 2.925
 	asteroids "large rock" 104 3.6
@@ -10794,7 +10793,7 @@ system Diespiter
 			period 14
 
 system Diphda
-	pos -280 56
+	pos -282 39
 	government Syndicate
 	attributes "near earth"
 	arrival 585
@@ -14518,7 +14517,7 @@ system Flugbu
 			period 37.165
 
 system Fomalhaut
-	pos -275 160
+	pos -274 146
 	government Syndicate
 	attributes "near earth"
 	arrival 500
@@ -15131,7 +15130,6 @@ system "Gamma Cassiopeiae"
 	habitable 7000
 	belt 1779
 	haze _menu/haze-133
-	link Mirach
 	link Sadiradra
 	asteroids "small rock" 17 7.4936
 	asteroids "medium rock" 64 2.8101
@@ -20875,7 +20873,7 @@ system Kraz
 			period 26.5299
 
 system Kugel
-	pos -245 -23
+	pos -252 -31
 	government Syndicate
 	attributes "core"
 	arrival 625
@@ -21892,7 +21890,7 @@ system MS-219
 			period 80
 
 system Maia
-	pos -158 2
+	pos -150 -3
 	government Syndicate
 	attributes "core" "bright star" "notable star"
 	habitable 5000
@@ -22286,8 +22284,6 @@ system Matar
 	habitable 450
 	belt 1308
 	haze _menu/haze-133
-	link Persian
-	link Scheat
 	link Veritate
 	asteroids "large metal" 1 3.0888
 	trade Clothing 223
@@ -29982,7 +29978,7 @@ system Schedar
 			period 25.3563
 
 system Schemali
-	pos -257 94
+	pos -262 99
 	government Syndicate
 	attributes "core" "giant star" "notable star"
 	habitable 3000
@@ -31375,9 +31371,9 @@ system Sol
 	haze _menu/haze-67
 	link "Alpha Centauri"
 	link Altair
-	link Caph
 	link Denebola
 	link Sirius
+	link "Tau Ceti"
 	link Vega
 	asteroids "small rock" 30 2.691
 	asteroids "large rock" 50 5.0508
@@ -32632,6 +32628,62 @@ system Tarazed
 				scale 0.5
 			distance 228
 			period 16.9693
+
+system "Tau Ceti"
+	pos -341 86
+	government Republic
+	attributes "near earth"
+	habitable 550
+	belt 1873 5
+	belt 2041 10
+	belt 2534 3
+	link Caph
+	link Sol
+	asteroids "medium rock" 52 5.502
+	asteroids "large rock" 1 4.664
+	asteroids "small metal" 15 3.708
+	asteroids "large metal" 50 5.741
+	asteroids "small rock" 401 1.411
+	minables lead 7 10.671
+	minables titanium 6 9.984
+	minables iron 24 9.608
+	trade Clothing 292
+	trade Electronics 753
+	trade Equipment 504
+	trade Food 512
+	trade "Heavy Metals" 852
+	trade Industrial 643
+	trade "Luxury Goods" 1259
+	trade Medical 535
+	trade Metal 341
+	trade Plastic 280
+	fleet "Small Northern Merchants" 300
+	fleet "Large Northern Merchants" 500
+	fleet "Small Republic" 1000
+	fleet "Large Republic" 3000
+	fleet "Republic Logistics" 2000
+	fleet "Small Core Merchants" 1000
+	fleet "Large Core Merchants" 2000
+	fleet "Human Miners" 1000
+	object
+		sprite star/g8
+		period 10
+	object
+		sprite planet/venus
+		distance 289
+		period 83.796
+	object
+		sprite planet/dust2
+		distance 937
+		period 489.202
+	object
+		sprite planet/gas3-b
+		distance 1841
+		period 1347.285
+	object
+		sprite planet/gas10-hot
+		distance 2758
+		period 2470.416
 
 system Taygeta
 	pos -222 -6
