@@ -2019,7 +2019,7 @@ mission "Hai Pilgrimage"
 				decline
 			label agree
 			`	"Excellent. Arriving in a human ship would be an auspicious start to my journey, but there are not many human captains who take proper precautions when traveling through space. I'm glad to see that you have some sense, at least." He lowers his voice.`
-			`	"Since you seem to be a trustworthy captain, I will tell you of some things I have seen. Many years ago, I defended our space against the Korath raids. One day, we were caught unprepared and hit by a massive fleet. Every single ship in my patrol group was destroyed, except for ours - the only one with a keystone. I learned two things in my time with the Korath: that the old legends are true, and that the stability we have enjoyed as a species is ending. Changes in the galaxy are inevitable, and those changes are arriving soon." He begins to move toward your ship. "But let us not speak of this now. I have business to attend to."`
+			`	"Since you seem to be a trustworthy captain, I will tell you of some things I have seen. Many years ago, I defended our space against the Korath raids. One day, we were caught unprepared and hit by a massive fleet. Every single ship in my patrol group was destroyed, except for ours - the only one with a keystone. I learned two things in my time against the Korath: that the old legends are true, and that the stability we have enjoyed as a species is ending. Changes in the galaxy are inevitable, and those changes are arriving soon." He begins to move toward your ship. "But let us not speak of this now. I have business to attend to."`
 				accept
 
 	on visit
