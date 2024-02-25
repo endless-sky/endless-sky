@@ -107,7 +107,6 @@ protected:
 
 	void DoFind(const std::string &text);
 	virtual int FindItem(const std::string &text) const = 0;
-	static int Search(const std::string &str, const std::string &sub);
 
 	int64_t LicenseCost(const Outfit *outfit, bool onlyOwned = false) const;
 
@@ -184,9 +183,6 @@ protected:
 	ShipInfoDisplay shipInfo;
 	OutfitInfoDisplay outfitInfo;
 
-	mutable Point warningPoint;
-	mutable std::string warningType;
-
 
 private:
 	void DrawShipsSidebar();
@@ -215,6 +211,11 @@ private:
 
 private:
 	bool delayedAutoScroll = false;
+
+	Point hoverPoint;
+	std::string shipName;
+	std::string warningType;
+	int hoverCount = 0;
 };
 
 

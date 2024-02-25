@@ -474,7 +474,7 @@ news "Unfettered Regret"
 		word
 			`"`
 		word
-			"At first I thought that joining the Unfettered would be fun. Now I can't go back or my crewmembers will beat me."
+			"At first I thought that joining the Unfettered would be fun. Now I can't go back or my crew members will beat me."
 			"I feel like the only Hai on this planet who regrets joining the Unfettered."
 			"I want to go home."
 			"I don't know why the Fettered Hai keep giving us tribute. To be honest with you, I don't think we're much of a threat."
