@@ -1365,6 +1365,8 @@ government "Republic Intelligence"
 	"attitude toward"
 		"Pirate" -.3
 		"Pirate (Devil-Run Gang)" -.3
+	"friendly disabled hail" "friendly disabled"
+	"hostile disabled hail" "hostile disabled"
 
 government "Republic that won't enter wormhole"
 	"display name" Republic
