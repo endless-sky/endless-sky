@@ -12,10 +12,22 @@ Files: images/*
 Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
 
+Files: images/land/*
+Copyright: Various
+License: public-domain
+ Taken from morgue-file.com, a collection of photographs that have been donated
+ and placed in the public domain. (Exceptions noted below.)
+
+Files: images/scene/*
+Copyright: Various
+License: public-domain
+ Taken from morguefile.com, a collection of photographs that have been donated
+ and placed in the public domain. (Exceptions noted below.)
+
 Files:
  images/outfit/*battery?hai*
  images/outfit/anti-missile?hai*
- images/outfit/cooling ducts?hai*
+ images/outfit/cooling?ducts?hai*
  images/outfit/dwarf?core?hai*
  images/outfit/fission?hai*
  images/outfit/fusion?hai*
@@ -81,8 +93,8 @@ Comment: Derived from works by Matthew Smestad (under the same license).
 License: CC-BY-SA-4.0
 
 Files:
- images/outfit/luxury accommodations*
- images/hardpoint/proton turret*
+ images/outfit/luxury?accommodations*
+ images/hardpoint/proton?turret*
 Copyright: Nate Graham <pointedstick@zoho.com>
 License: CC-BY-SA-4.0
 
@@ -193,12 +205,6 @@ License: public-domain
  From NASA, and therefore in the public domain because they were created by
  government employees while doing work for the government.
 
-Files: images/scene/*
-Copyright: Various
-License: public-domain
- Taken from morguefile.com, a collection of photographs that have been donated
- and placed in the public domain. (Exceptions noted below.)
-
 Files: images/scene/geoscan*
 Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
@@ -226,12 +232,6 @@ Copyright: NASA
 License: public-domain
  From NASA, and therefore in the public domain because they were created by
  government employees while doing work for the government.
-
-Files: images/land/*
-Copyright: Various
-License: public-domain
- Taken from morgue-file.com, a collection of photographs that have been donated
- and placed in the public domain. (Exceptions noted below.)
 
 Files:
  images/land/mercury1*
@@ -562,12 +562,6 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
- sounds/pincer*
-Copyright: Michael Zahniser
-License: GPL-2
-Comment: Created by a past contributor modified from Battle for Wesnoth (https://www.wesnoth.org/) sounds, which are copyright David White [dave@whitevine.net](mailto:dave@whitevine.net) under GPL 2 or later. Rights relinquished to Michael Zahniser.
-
-Files:
  images/*/pincer*
 Copyright: None; CC0 (Public Domain)
 License: CC0
@@ -841,6 +835,12 @@ Copyright: Various
 License: public-domain
 Comment: Based on public domain sounds taken from freesound.org.
 
+Files:
+ sounds/pincer*
+Copyright: Michael Zahniser
+License: GPL-2
+Comment: Created by a past contributor modified from Battle for Wesnoth (https://www.wesnoth.org/) sounds, which are copyright David White [dave@whitevine.net](mailto:dave@whitevine.net) under GPL 2 or later. Rights relinquished to Michael Zahniser.
+
 Files: sounds/heavy?rocket?hit.wav
 Copyright: Copyright Mike Koenig
 License: CC-BY-SA-3.0
@@ -871,13 +871,13 @@ License: CC-BY-SA-3.0
 Comment: Taken from http://soundbible.com/1151-Grenade.html
 
 Files:
- sounds/asteroid crunch small.wav
- sounds/asteroid crunch medium.wav
+ sounds/asteroid?crunch?small.wav
+ sounds/asteroid?crunch?medium.wav
 Copyright: Copyright AlanCat
 License: public-domain
 Comment: Derived from https://freesound.org/people/AlanCat/sounds/381645/
 
-Files: sounds/asteroid crunch large.wav
+Files: sounds/asteroid?crunch?large.wav
 Copyright: Copyright "BW_Clowes"
 License: CC-BY-3.0
 Comment: Derived from https://freesound.org/people/BW_Clowes/sounds/128126/
@@ -933,7 +933,7 @@ Files:
  images/ship/hauler?i*
  images/ship/hauler?ii*
  images/ship/hauler?iii*
- images/ship/modified argosy*
+ images/ship/modified?argosy*
  images/ship/bastion*
  images/ship/behemoth*
  images/ship/heavy?shuttle*
@@ -955,7 +955,7 @@ Files:
  images/thumbnail/hauler?i*
  images/thumbnail/hauler?ii*
  images/thumbnail/hauler?iii*
- images/thumbnail/modified argosy*
+ images/thumbnail/modified?argosy*
  images/thumbnail/bastion*
  images/thumbnail/behemoth*
  images/thumbnail/heavy?shuttle*
@@ -994,7 +994,7 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and detailed by Becca Tommaso (tommasobecca03@gmail.com).
 
 Files:
- images/ship/pointedstick vanguard*
+ images/ship/pointedstick?vanguard*
 Copyright: Maximilian Korber
 License: CC-BY-SA-4.0
 Comment: Derived from works by Nate Graham (under the same license) and detailed by Becca Tommaso (tommasobecca03@gmail.com).
@@ -2098,7 +2098,7 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and Iaz Poolar (under the same license).
 
 Files:
- images/icon/gat turret*
+ images/icon/gat?turret*
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Maximilian Korber (under the same license) and Amazinite (under the same license).
@@ -2282,7 +2282,7 @@ Comment: Derived from _menu/haze-133 (no copyright given).
 
 Files:
  images/star/proto-planetary-disk*
- images/projectile/ionic turret*
+ images/projectile/ionic?turret*
 Copyright: RisingLeaf (https://github.com/RisingLeaf)
 License: CC-BY-SA-4.0
 
@@ -2314,6 +2314,14 @@ Files:
 Copyright: Daeridanii (https://github.com/Daeridanii1)
 License: CC0
 Comment: selected and unselected versions of images/ui/find, by Ember369 (https://github.com/Ember369)
+
+License: Unsplash License
+ Unsplash grants you an irrevocable, nonexclusive, worldwide copyright
+ license to download, copy, modify, distribute, perform, and use photos
+ from Unsplash for free, including for commercial purposes, without
+ permission  from or attributing the photographer or Unsplash. This
+ license does not include the right to compile photos from Unsplash to
+ replicate a similar or competing service.
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
