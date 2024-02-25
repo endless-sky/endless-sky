@@ -4466,30 +4466,26 @@ phrase "friendly pirate"
 phrase "friendly disabled pirate"
 	word
 		"Could ya help a mate and"
+		"Could ya help a fellow pirate out and"
+		"Friend, could you do us a favor? Could ya"
 		"We've hit a snag, could ya"
 		"Friend, could ya"
 		"Can ya"
 	word
 		" "
 	word
-		"come over here"
-		"come to us"
-		"fly to us"
-		"take a minute"
-		"do us a favor? We need someone"
-		"get our ship online again? We need a ship"
-	word
-		" "
-	word
-		"to"
-		"and"
+		"come over here and"
+		"come to us and"
+		"fly to us and"
+		"take a minute to"
 	word
 		" "
 	word
 		"patch us up"
 		"make some repairs on us"
 		"give us a boost"
-		"get this ship back up so we can get the hell outta Dodge"
+		"do some repairs"
+		"get this ship back online so we can get the hell outta Dodge"
 		"get us back up and plunderin' again"
 	word
 		"?"
