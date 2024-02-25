@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Messenger.h"
 
 namespace {
+	// Variable to determine if the game should quit or just reload.
 	bool reload = false;
 }
 

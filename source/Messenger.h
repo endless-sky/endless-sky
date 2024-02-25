@@ -18,8 +18,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
+// Static class to easily transfer small bits of data between spaces
+// without having to pass around a variable through tons of functions.
+// Each value needs its own getter and setter.
 class Messenger {
 public:
+	// Variable to determine if the game should quit or just reload.
 	static void SetReload(bool value);
 	static bool GetReload();
 };
