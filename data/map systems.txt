@@ -4333,7 +4333,7 @@ system Alnair
 	habitable 135
 	belt 1969
 	haze _menu/haze-133
-	link Persian
+	link Marakk
 	link Veritate
 	asteroids "small rock" 20 6.825
 	asteroids "medium rock" 242 4.355
@@ -6227,7 +6227,7 @@ system Atik
 		period 270.619
 
 system Atlas
-	pos -103 -55
+	pos -111 -59
 	government Syndicate
 	attributes "core" "bright star" "giant star" "multi-star" "notable star"
 	habitable 7507.33
@@ -10793,7 +10793,7 @@ system Diespiter
 			period 14
 
 system Diphda
-	pos -282 39
+	pos -270 36
 	government Syndicate
 	attributes "near earth"
 	arrival 585
@@ -22067,6 +22067,7 @@ system Marakk
 	habitable 6085.364
 	belt 1937 8
 	belt 2249 8
+	link Alnair
 	link Persian
 	asteroids "small rock" 4 8.12
 	asteroids "medium rock" 22 5.197
@@ -23724,7 +23725,7 @@ system Mintaka
 		period 4209.57
 
 system Mira
-	pos -230 43
+	pos -226 48
 	government Syndicate
 	attributes "core" "giant star" "notable star"
 	habitable 2327.235
@@ -26475,7 +26476,6 @@ system Persian
 	habitable 3920
 	belt 1308
 	haze _menu/haze-133
-	link Alnair
 	link Gienah
 	link Marakk
 	link Veritate
