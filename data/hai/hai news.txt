@@ -399,7 +399,7 @@ news "hai attacked by pirates"
 	location
 		government "Hai"
 	to show
-		random < 15
+		random < 30
 	name
 		word
 			"Hai civilian"
@@ -424,7 +424,7 @@ news "hai joining unfettered"
 			"Hai civilian"
 			"Hai youth"
 	to show
-		random < 30
+		random < 60
 	message
 		word
 			`"`
@@ -447,8 +447,8 @@ news "hai joining unfettered"
 		word
 			"Hai merchant"
 	to show
-		has "Unfettered Jump Drive 1: done"
-		random < 30
+		has "Unfettered Jump Drive 1: offered"
+		random < 60
 	message
 		word
 			`"`
@@ -532,7 +532,7 @@ news "Unfettered Regret"
 	location
 		government "Hai (Unfettered)"
 	to show
-		random < 10
+		random < 20
 	name
 		word
 			"Unfettered fighter"
@@ -545,8 +545,8 @@ news "Unfettered Regret"
 			"At first I thought that joining the Unfettered would be fun. Now I can't go back or my crewmembers will beat me."
 			"I feel like the only Hai on this planet who regrets joining the Unfettered."
 			"I want to go home."
-			"I don't know why the Fettered Hai keep giving us tribute. To be honest with you, I don't think we're much of a threat."
-			"My captain calls the food shipments we get from the Fettered 'tribute,' but anyone can see it's charity to keep us from starving."
+			"I don't know why the Fettered Hai keep giving us tribute. To be honest with you, I don't think we're much of a threat." 2
+			"My captain calls the food shipments we get from the Fettered 'tribute,' but anyone can see it's charity to keep us from starving." 2
 		word
 			`"`
 
@@ -584,7 +584,7 @@ news "unfettered hai after wanderers invasion regret"
 		government "Hai (Unfettered)"
 	to show
 		has "event: wanderers: unfettered invasion starts"
-		random < 10
+		random < 40
 	name
 		word
 			"Unfettered fighter"
@@ -596,13 +596,13 @@ news "unfettered hai after wanderers invasion regret"
 		word
 			"I had to shoot down a surrendering Wanderer ship when my captain decided to invade their space. It was small, and didn't pose a threat, but my captain made me do it anyways. I don't know if I can take this anymore."
 			"The birds hardly try to fight back. It makes me wonder if they want us to conquer their planets."
-			"I don't think it's right that we attack those that have surrendered. What honor is there in killing civilians?"
+			"I don't think it's right that we attack those that have surrendered. What honor is there in killing civilians?" 2
 			"I came here to do battle with warriors, not with merchants and cowardly birds."
 			"What challenge is there in killing the weak? I desire to battle with those who are worthy."
 			"What we're doing up north isn't right, but if I try to speak against it, others call me 'coward' and tell me to ship myself home."
-			"I was held prisoner on a Wanderer world. They fed me and took care of me. The only thing they asked me to do in return was to teach them the Hai language. If it were the other way around, I'd be dead."
-			"I was held prisoner on a Wanderer world. They said that we were welcome to take their planets, if it was their fate. It must be a trap."
+			"I was held prisoner on a Wanderer world. They fed me and took care of me. The only thing they asked me to do in return was to teach them the Hai language. If it were the other way around, I'd be dead." 2
+			"I was held prisoner on a Wanderer world. They said that we were welcome to take their planets, if it was their fate. It must be a trap." 2
 			"I was held prisoner on a Wanderer world. Even though I attacked them, they were so kind to me. I don't want to fight them anymore, I'd feel too guilty."
-			"I was held prisoner by the aliens up north. They call themselves the Wanderers, but everyone here just calls them 'birds.'"
+			"I was held prisoner by the aliens up north. They call themselves the Wanderers, but everyone here just calls them 'birds.'" 2
 		word
 			`"`
