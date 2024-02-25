@@ -1962,6 +1962,9 @@ phrase "friendly civilian"
 		", you'll have enough extra slack to pick up any job"
 	word
 		"."
+	replace
+		"If you always ensure that if you have" "If you always ensure that you have"
+		"If you always ensure that if you keep" "If you always ensure that you keep"
 
 phrase "friendly civilian"
 	word
