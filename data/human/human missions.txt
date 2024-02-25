@@ -1073,17 +1073,17 @@ mission "There Might Be Riots part 3A"
 			`	You've heard of that planet. "The weapons testing world for Lovelace Labs?" you ask. "I'm surprised you'd be able to find a big audience there."`
 			`	"Oh, we'll have an audience, all right," he says. "We've just put out a new album called 'Songs for the End of Civilization.' A war protest album. We want to film ourselves playing a concert right in the middle of the missile testing range. Of course, we'll probably end up running out of there with Republic Intelligence nipping at our heels. What do you say?"`
 			choice
-				`	"Sorry, that's further than I'm willing to go for you guys."`
-					goto no
 				`	"Sounds like a worthy cause. Count me in!"`
 					goto yes
 				`	"You're going to do a concert on ground that could be littered with unexploded ordnance?"`
-			`	"Yeah. What an adventure!" he says. "Come on, it will be worth it."`
-			choice
 				`	"Sorry, that's further than I'm willing to go for you guys."`
 					goto no
+			`	"Yeah. What an adventure!" he says. "Come on, it will be worth it."`
+			choice
 				`	"Sounds like a worthy cause. Count me in!"`
 					goto yes
+				`	"Sorry, that's further than I'm willing to go for you guys."`
+					goto no
 			label no
 			`	"Are you sure?" he asks. "We'll pay you with more than just money. Do this for us, and I'll share a story with you that very few have heard."`
 			choice
@@ -6686,7 +6686,7 @@ mission "Southern Fiance 2"
 		has "event: tom and carl's wedding"
 	on offer
 		conversation
-			`After landing, you receive a message from Tom Ardwright and Carl Camberlain. Attached are photos of their wedding on Cornucopia, as well as a letter:`
+			`After landing, you receive a message from Tom Ardwright and Carl Chamberlain. Attached are photos of their wedding on Cornucopia, as well as a letter:`
 			``
 			`Dear <first> <last>,`
 			`	We are delighted to announce that despite the many hardships around us in these times, Tom Ardwright and Carl Chamberlain were married three days ago at the Hart's Hill Vineyard on Cornucopia. This would not have been possible without your willingness to help a man in need, so we thank you from the bottom of our hearts, and if you are ever on Cornucopia, we would be happy to host you. Please enjoy these photos from the wedding.`

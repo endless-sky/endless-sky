@@ -64,6 +64,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 			isParallel = true;
 		else if(key == "gravitational")
 			isGravitational = true;
+		else if(key == "fused")
+			isFused = true;
 		else if(key == "no ship collisions")
 			canCollideShips = false;
 		else if(key == "no asteroid collisions")

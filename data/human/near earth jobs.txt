@@ -53,6 +53,7 @@ mission "To Earth Day celebration [0]"
 				month == 4
 				day < 22
 		"days until year end" - 2 * "hyperjumps to system: Sol" > 253
+		has "landing access: Earth"
 	to fail
 		month * 100 + day >= 422
 	source
@@ -87,6 +88,7 @@ mission "To Earth Day celebration [1]"
 				month == 4
 				day < 22
 		"days until year end" - 2 * "hyperjumps to system: Sol" > 253
+		has "landing access: Earth"
 	to fail
 		month * 100 + day >= 422
 	source
@@ -122,6 +124,7 @@ mission "To Earth Day celebration [2]"
 				month == 4
 				day < 22
 		"days until year end" - 2 * "hyperjumps to system: Sol" > 253
+		has "landing access: Earth"
 	to fail
 		month * 100 + day >= 422
 	source

@@ -2149,8 +2149,7 @@ void Engine::DoCollisions(Projectile &projectile)
 	const Government *gov = projectile.GetGovernment();
 	const Weapon &weapon = projectile.GetWeapon();
 
-	// If this "projectile" is a ship explosion, it always explodes.
-	if(!gov)
+	if(projectile.ShouldExplode())
 		collisions.emplace_back(nullptr, CollisionType::NONE, 0.);
 	else if(weapon.IsPhasing() && projectile.Target())
 	{
