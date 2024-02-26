@@ -1122,7 +1122,7 @@ phrase "friendly civilian"
 		"thought it would be a good idea to have a meal of garlic"
 		"made the bad choice of having a serving of beans"
 		"threw up after we exited hyperspace"
-		"made a big mess"
+		"puked up their dinner once we got into hyperspace"
 		"couldn't keep the contents of their stomach inside them"
 	word
 		" "
@@ -1131,7 +1131,7 @@ phrase "friendly civilian"
 		"in their room."
 		"in my ship."
 		"in the airlock."
-		"in the mess hall."
+		"in the ship's canteen."
 	word
 		" "
 	word
@@ -1144,7 +1144,7 @@ phrase "friendly civilian"
 		", let them reek in someone else's ship"
 		", I don't want them stinking my ship up"
 		", I don't want to clean up after them again"
-		", and they better learn how to live on a spaceship"
+		", they better learn how to live on a spaceship"
 	word
 		"!"
 
