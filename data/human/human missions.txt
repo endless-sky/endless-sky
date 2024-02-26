@@ -4057,7 +4057,7 @@ mission "Mafia Extortion"
 				`	"I don't need your credits, just forget it."`
 					goto zerodeal
 			label zerodeal
-			`The man walks away without saying a word.`
+			`	The man walks away without saying a word.`
 				decline
 			label much
 			`	"That's too much! 2,389 credits is all I have. Would that be enough?"`
