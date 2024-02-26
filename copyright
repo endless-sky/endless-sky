@@ -51,12 +51,6 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Christian Rhodes (under the same license).
 
 Files:
- images/ship/pointedstick?vanguard*
-Copyright: Maximilian Korber
-License: CC-BY-SA-4.0
-Comment: Derived from works by Nate Graham (under the same license).
-
-Files:
  images/effect/railspark*
  images/projectile/tinyflare*
  images/outfit/*engines?hai*
@@ -1821,7 +1815,6 @@ Files:
  images/outfit/savagery?pike*
  images/outfit/scrap?cell*
  images/outfit/skirmish?battery*
- images/outfit/*torch?thruster?vi*
  images/outfit/*torch?thruster?vi*
  images/outfit/tractor?beam*
  images/outfit/warforge?battery*
