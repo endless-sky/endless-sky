@@ -165,7 +165,7 @@ mission "Wealthy Hai [1]"
 	passengers 2 4 .8
 	deadline
 	to offer
-		random < 70
+		random < 55
 	to accept
 		has "outfit (installed): Luxury Accommodations"
 		has "outfit (installed): Quantum Keystone"
@@ -193,7 +193,7 @@ mission "Wealthy Hai [2]"
 	passengers 2 4 .8
 	deadline
 	to offer
-		random < 30
+		random < 15
 	to accept
 		has "outfit (installed): Luxury Accommodations"
 		has "outfit (installed): Quantum Keystone"
