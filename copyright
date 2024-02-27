@@ -25,19 +25,6 @@ License: public-domain
  and placed in the public domain. (Exceptions noted below.)
 
 Files:
- images/outfit/*battery?hai*
- images/outfit/anti-missile?hai*
- images/outfit/cooling?ducts?hai*
- images/outfit/dwarf?core?hai*
- images/outfit/fission?hai*
- images/outfit/fusion?hai*
- images/outfit/heavy?anti-missile?hai*
- images/ship/mfury*
-Copyright: Maximilian Korber
-License: CC-BY-SA-4.0
-Comment: Derived from works by Michael Zahniser (under the same license).
-
-Files:
  images/outfit/bullet*
  images/scene/sagittarius?a*
  images/ship/hai?solifuge*
@@ -49,17 +36,6 @@ Files:
 Copyright: Maximilian Korber
 License: CC-BY-SA-4.0
 Comment: Derived from works by Christian Rhodes (under the same license).
-
-Files:
- images/effect/railspark*
- images/projectile/tinyflare*
- images/outfit/*engines?hai*
- images/outfit/*steering?hai*
- images/outfit/*thruster?hai*
- images/outfit/tiny?ion?engines*
-Copyright: Iaz Poolar
-License: CC-BY-SA-4.0
-Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
  images/projectile/bullet*
@@ -356,13 +332,6 @@ License: public-domain
  placed in the public domain.
 
 Files:
- images/outfit/quarg?skylance*
- images/hardpoint/quarg?skylance*
-Copyright: Evan Fluharty (Evanfluharty@gmail.com)
-License: CC-BY-SA-4.0
-Comment: Derived and completed from works by Maximilian Korber (Wrzlprnft), @Karirawri, and originally drawn up by Tommy Thach (Bladewood) (all under the same license)
-
-Files:
  images/outfit/quarg*
  images/hardpoint/quarg*
  images/outfit/small?quarg*
@@ -374,6 +343,13 @@ Files:
  images/outfit/hai?geode*
 Copyright: Evan Fluharty (Evanfluharty@gmail.com)
 License: CC-BY-SA-4.0
+
+Files:
+ images/outfit/quarg?skylance*
+ images/hardpoint/quarg?skylance*
+Copyright: Evan Fluharty (Evanfluharty@gmail.com)
+License: CC-BY-SA-4.0
+Comment: Derived and completed from works by Maximilian Korber (Wrzlprnft), @Karirawri, and originally drawn up by Tommy Thach (Bladewood) (all under the same license)
 
 Files:
  images/outfit/enforcer?riot?staff*
@@ -1201,6 +1177,19 @@ Files:
  images/asteroid/large?space?flora*
  images/asteroid/yottrite*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
+ images/outfit/*battery?hai*
+ images/outfit/anti-missile?hai*
+ images/outfit/cooling?ducts?hai*
+ images/outfit/dwarf?core?hai*
+ images/outfit/fission?hai*
+ images/outfit/fusion?hai*
+ images/outfit/heavy?anti-missile?hai*
+ images/ship/mfury*
+Copyright: Maximilian Korber
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
@@ -2062,6 +2051,17 @@ Files:
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and Iaz Poolar (under the same license).
+
+Files:
+ images/effect/railspark*
+ images/projectile/tinyflare*
+ images/outfit/*engines?hai*
+ images/outfit/*steering?hai*
+ images/outfit/*thruster?hai*
+ images/outfit/tiny?ion?engines*
+Copyright: Iaz Poolar
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
  images/icon/gat?turret*
