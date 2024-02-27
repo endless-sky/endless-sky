@@ -900,7 +900,7 @@ mission "<uhai> 14: Ion Materials"
 		dialog "As you board the Mammoth, you realize it is a modified Behemoth, probably able to endure an attack from even a Cruiser for a while before having to disengage with relative ease, or to transport illegal cargo across long distances. All that is left to do now is to take the Loot!"
 	npc kill
 		government "Midas"
-		personality disables plunders harvests staying
+		personality disables plunders harvests staying quiet
 		system "Sumar"
 		ship "Marauder Firebird (Bars)" "Dark Angel"
 		to despawn

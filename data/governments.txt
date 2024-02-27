@@ -1097,6 +1097,10 @@ government "Shadow"
 	"penalty for"
 		capture 1.5
 		destroy 1.5
+	"friendly hail" "refuse to answer hail"
+	"friendly disabled hail" "friendly disabled unfettered"
+	"hostile hail" "refuse to answer hail"
+	"hostile disabled hail" "hostile disabled unfettered"
 
 government "Merchant"
 	swizzle 5

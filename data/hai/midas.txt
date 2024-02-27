@@ -820,7 +820,7 @@ mission "Midas: Daemons Unleashed"
 	npc kill
 		system "Wah Yoot"
 		government "Shadow"
-		personality heroic staying nemesis vindictive target mute
+		personality heroic staying nemesis vindictive target quiet
 		ship "Antlion" "Parmen"
 		conversation
 			`As soon as you destroy the flagship of this fleet, you can see confusion in the fleet, unsure whether to attack you or not. The new flagship hails you. "I am now in command of Midas.`
@@ -859,14 +859,14 @@ mission "Midas: Daemons Unleashed"
 	npc
 		system "Wah Yoot"
 		government "Shadow"
-		personality heroic staying nemesis mute
+		personality heroic staying nemesis quiet
 		ship "Tick" "Hell Unleashed"
 		ship "Tick" "Fire Incarnate"
 		ship "Far Lek 14" "Phoenix"
 	npc
 		system "Wah Yoot"
 		government "Shadow"
-		personality heroic staying nemesis mute
+		personality heroic staying nemesis quiet
 		ship "Sea Scorpion" "Thorn wishes Talon"
 		to spawn
 			or
@@ -878,7 +878,7 @@ mission "Midas: Daemons Unleashed"
 	npc kill
 		system "Wah Yoot"
 		government "Shadow"
-		personality disables plunders harvests staying
+		personality disables plunders harvests staying quiet
 		ship "Marauder Firebird (Bars)" "Dark Angel"
 		to spawn
 			not "midas: angel assassination"
@@ -991,3 +991,20 @@ phrase "enemy midas"
 	word
 		"!"
 		"."
+
+phrase "refuse to answer hail"
+	word
+		"This ship refuses to answer your hails."
+		"The ship is refusing any hails, and seems to be trying to run silent."
+		"It seems like they received our hails but do not wish to answer it."
+
+phrase "refuse to answer hail"
+	word
+		"Stop hailing us or else..."
+		"We will not answer you."
+		"You are undeserving of our attention."
+		"Stop these futile attempts to hail us at once."
+		"There is no time for talking."
+		"Now is the time for action, not talks!"
+		"Stop interrupting us in our plannings."
+		"What do you want?"
