@@ -210,10 +210,14 @@ int main(int argc, char *argv[])
 		if(isTesting && !noTestMute)
 			Audio::SetVolume(0);
 
-		// This is the main loop where all the action begins.
+		// In case the player wants to reload.
+		future<void> dataReloading;
+
+		// This loop is for the case of a data reload.
 		do {
 			Messenger::SetReload(false);
 
+			// This is the main loop where all the action begins.
 			GameLoop(player, conversation, testToRunName, debugMode);
 
 			if(Messenger::GetReload())
@@ -238,7 +242,7 @@ int main(int argc, char *argv[])
 				Plugins::LoadSettings();
 
 				// Load game data, sprites, and sounds again.
-				future<void> dataLoading = GameData::BeginLoad(isConsoleOnly, debugMode, isTesting && !debugMode);
+				dataReloading = GameData::BeginLoad(isConsoleOnly, debugMode, isTesting && !debugMode);
 				Audio::Init(GameData::Sources());
 			}
 		} while(Messenger::GetReload());

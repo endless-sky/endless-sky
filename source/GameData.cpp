@@ -73,6 +73,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
+	bool initiallyLoaded = false;
+
 	UniverseObjects objects;
 	Set<Fleet> defaultFleets;
 	Set<Government> defaultGovernments;
@@ -221,6 +223,8 @@ void GameData::Clear()
 
 	SpriteSet::Clear();
 	Music::Reset();
+
+	initiallyLoaded = false;
 }
 
 
@@ -265,7 +269,6 @@ double GameData::GetProgress()
 {
 	// Cache progress completion seen, so clients are
 	// isolated from the loading implementation details.
-	static bool initiallyLoaded = false;
 	if(initiallyLoaded)
 		return 1.;
 

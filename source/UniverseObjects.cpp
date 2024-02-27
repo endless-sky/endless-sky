@@ -527,14 +527,11 @@ void UniverseObjects::Clear()
 	planets.Clear();
 	ships.Clear();
 	systems.Clear();
-	tests.Clear();
-	testDataSets.Clear();
 	shipSales.Clear();
 	outfitSales.Clear();
 	wormholes.Clear();
 	neighborDistances.clear();
 
-	gamerules = Gamerules();
 	substitutions = TextReplacements();
 	trade = Trade();
 	startConditions.clear();
@@ -547,8 +544,4 @@ void UniverseObjects::Clear()
 	tooltips.clear();
 	helpMessages.clear();
 	disabled.clear();
-
-	// A local cache of the menu background interface for thread-safe access.
-	// std::lock_guard<std::mutex> guard(menuBackgroundMutex);
-	// menuBackgroundCache = Interface();
 }
