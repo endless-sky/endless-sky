@@ -256,6 +256,7 @@ planet Aspiration
 	spaceport `The spaceport on Aspiration is a spaceport in the same way that an airport at a regional town is an airport. It has the most minimal facilities to handle a ship landing without disturbance to the nearby town, and that is it. There are no shops or stalls. Aspiration is not on any trade routes and it does not expect visitors. A lone freighter is parked permanently on the outskirts.`
 
 planet Asterus
+	attributes moon uninhabited
 	landscape land/enceladus_2
 	description `The seas beneath the frozen surface of this ice moon are home to a thriving ecosystem full of species entirely unlike any observed on more conventionally habitable worlds. The best known of these is a species of large fish-like creatures with flowing bioluminescent fins that glow in ethereal pinks and purples, the beauty of which prompted many citizens of the Paradise Worlds to demand that the Republic designate this moon as a nature preserve.`
 	government Uninhabited
@@ -3065,6 +3066,12 @@ planet "New Kansas"
 	tribute 300
 		threshold 2500
 		fleet "Small Militia" 22
+
+planet "New Kola"
+	attributes uninhabited
+	landscape land/badlands7
+	description `Although from outside New Kola appears to be a gas giant, its thick, dense atmosphere obscures the rocky surface of a huge super-earth. Even if it were made of breathable gases, the pressure at the surface is beyond what humans can tolerate - only at the peaks of the highest mountains can you safely step outside wearing only oxygen gear, and even then the crushing gravity would cause serious problems if you stayed for long.`
+	government Uninhabited
 
 planet "New Portland"
 	attributes "dirt belt" farming
