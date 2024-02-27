@@ -220,7 +220,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		if(zones[latest].Value().KeyName() != Command::MENU.KeyName())
 			Command::SetKey(zones[latest].Value(), 0);
 	}
-	else if(key == 'a' && page == 'p' && Plugins::HasChanged())
+	else if(key == 'r' && page == 'p')
 	{
 		Messenger::SetReload(true);
 		GetUI()->Quit();

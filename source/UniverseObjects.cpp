@@ -549,6 +549,6 @@ void UniverseObjects::Clear()
 	disabled.clear();
 
 	// A local cache of the menu background interface for thread-safe access.
-	std::lock_guard<std::mutex> guard(menuBackgroundMutex);
-	menuBackgroundCache = Interface();
+	// std::lock_guard<std::mutex> guard(menuBackgroundMutex);
+	// menuBackgroundCache = Interface();
 }
