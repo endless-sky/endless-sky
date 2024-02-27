@@ -255,6 +255,11 @@ planet Aspiration
 	description `The world of Aspiration appears to be a mild, habitable world, but one currently in an advanced ice age now slowly retreating. The equatorial region of the planet is warm and comfortable, a cool temperate at the present time. The native biosphere seems to be mostly grasses and something resembling pine trees. In a few thousand years, it might look similar to Earth before it was paved over. For now, it's a sparse world with a single major town built on a promontory, overlooking a wide river mouth which carries runoff from continental scale glaciers to the sea.`
 	spaceport `The spaceport on Aspiration is a spaceport in the same way that an airport at a regional town is an airport. It has the most minimal facilities to handle a ship landing without disturbance to the nearby town, and that is it. There are no shops or stalls. Aspiration is not on any trade routes and it does not expect visitors. A lone freighter is parked permanently on the outskirts.`
 
+planet Asterus
+	landscape land/enceladus_2
+	description `The seas beneath the frozen surface of this ice moon are home to a thriving ecosystem full of species entirely unlike any observed on more conventionally habitable worlds. The best known of these is a species of large fish-like creatures with flowing bioluminescent fins that glow in ethereal pinks and purples, the beauty of which prompted many citizens of the Paradise Worlds to demand that the Republic designate this moon as a nature preserve.`
+	government Uninhabited
+
 planet Avalon
 	landscape land/sea22
 	description `This is a pristine and perfectly habitable world, with warm oceans and a temperate climate. The land is dominated by large reptiles similar to the dinosaurs that roamed the continents of ancient Earth. Some of the land reptiles are over twenty meters in length, and the sea holds monsters more than twice that size.`
