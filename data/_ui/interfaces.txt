@@ -537,9 +537,9 @@ interface "plugins"
 		center -195 210
 		dimensions 120 30
 	sprite "ui/wide button"
-		center 50 210
+		center -50 210
 	button r "_Reload Data"
-		center 50 210
+		center -50 210
 		dimensions 90 30
 	visible if "show plugins changed"
 	label "Reload to apply changes"
