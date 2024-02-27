@@ -24366,12 +24366,12 @@ system Nocte
 		sprite planet/gas17
 		distance 973.25
 		period 1045.27
-		object
-			sprite planet/dust2
+		object Asterus
+			sprite planet/europa
 			distance 219
 			period 13.075
 		object
-			sprite planet/europa
+			sprite planet/dust2
 			distance 363
 			period 27.9019
 	object
