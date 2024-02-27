@@ -696,6 +696,7 @@ void Ship::FinishLoading(bool isNewInstance)
 		// Store attributes from an "add attributes" node in the ship's
 		// baseAttributes so they can be written to the save file.
 		baseAttributes.Add(attributes);
+		baseAttributes.AddLicenses(attributes);
 		addAttributes = false;
 	}
 	// Add the attributes of all your outfits to the ship's base attributes.
@@ -1518,7 +1519,7 @@ bool Ship::CanSendHail(const PlayerInfo &player, bool allowUntranslated) const
 		return false;
 
 	// Make sure this ship is able to send a hail.
-	if(IsDisabled() || !Crew() || Cloaking() >= 1. || GetPersonality().IsMute())
+	if(!Crew() || Cloaking() >= 1. || GetPersonality().IsMute() || GetPersonality().IsQuiet())
 		return false;
 
 	// Ships that don't share a language with the player shouldn't communicate when hailed directly.
