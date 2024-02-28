@@ -74,8 +74,11 @@ namespace {
 
 void StarField::Init(int stars, int width)
 {
-	SetUpGraphics();
-	MakeStars(stars, width);
+	if(!shader.Object())
+	{
+		SetUpGraphics();
+		MakeStars(stars, width);
+	}
 
 	lastSprite = SpriteSet::Get("_menu/haze");
 	for(size_t i = 0; i < HAZE_COUNT; ++i)
