@@ -544,4 +544,6 @@ void UniverseObjects::Clear()
 	tooltips.clear();
 	helpMessages.clear();
 	disabled.clear();
+
+	progress.store(0., memory_order_release);
 }
