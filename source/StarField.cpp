@@ -105,6 +105,17 @@ void StarField::Init(int stars, int width)
 
 
 
+void StarField::Reset(int stars, int width)
+{
+	lastSprite = nullptr;
+	haze[0].clear();
+	haze[1].clear();
+
+	Init(stars, width);
+}
+
+
+
 void StarField::SetHaze(const Sprite *sprite, bool allowAnimation)
 {
 	// If no sprite is given, set the default one.

@@ -224,6 +224,9 @@ void GameData::Clear()
 	SpriteSet::Clear();
 	Music::Reset();
 
+	// Needs to be done after SpriteSet::Clear to avoid invalidating pointers.
+	background.Reset(16384, 4096);
+
 	initiallyLoaded = false;
 }
 
