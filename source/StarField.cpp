@@ -108,13 +108,14 @@ void StarField::Init(int stars, int width)
 
 
 
-void StarField::Reset(int stars, int width)
+void StarField::Reset()
 {
 	lastSprite = nullptr;
 	haze[0].clear();
 	haze[1].clear();
 
-	Init(stars, width);
+	// No need to set stars and width as that gets skipped.
+	Init(0, 0);
 }
 
 
