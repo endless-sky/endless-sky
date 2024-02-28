@@ -227,7 +227,7 @@ int main(int argc, char *argv[])
 				WrappedText wrap;
 				wrap.SetAlignment(Alignment::JUSTIFIED);
 				wrap.SetFont(FontSet::Get(18));
-				wrap.Wrap("Now reloading game data...");
+				wrap.Wrap("Reloading game data...");
 				wrap.Draw(Point(-100., 0.), *GameData::Colors().Get("medium"));
 				GameWindow::Step();
 
