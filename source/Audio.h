@@ -76,6 +76,8 @@ public:
 
 	// Resume Audio
 	static void Resume();
+
+	static std::vector<std::string> CurrentSounds();
 };
 
 
