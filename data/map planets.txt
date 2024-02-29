@@ -249,6 +249,12 @@ planet "Ashy Reach"
 	"required reputation" 15
 	security 0.1
 
+planet Asphodel
+	attributes uninhabited
+	landscape land/badlands3
+	description `Despite being nominally in the habitable zone, this planet's surface is continually scorched by flares from the system's stars, steadily blasting away its atmosphere. Although some small research stations are present in orbit, providing valuable insights into the nature and behaviour of flare stars, the researchers generally avoid descending to the planet's surface unnecessarily.`
+	government Uninhabited
+
 planet Aspiration
 	attributes pirate
 	landscape land/sea17-harro
