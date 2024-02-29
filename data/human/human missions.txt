@@ -3926,7 +3926,6 @@ mission "Mafia Extortion"
 			`	You notice that he is missing a finger on each hand.`
 			choice
 				`	"Thank you. My name is <first> <last>. To whom do I have the pleasure of speaking?"`
-					goto nameless
 				`	"Yes, I'm very happy with my ship."`
 					goto specifics
 				`	"What should I be afraid of happening to my ship?"`
@@ -3939,11 +3938,9 @@ mission "Mafia Extortion"
 					goto unnerved
 				`	"I don't have time to talk."`
 					goto funeral
-			label nameless
 			`	The man snorts. "Wow, telling everybody you meet your full name. That totally won't end up painting a huge target on your head if said name has a bounty on it. But I digress."`
 			choice
 				`	"What should I be afraid of happening to my ship?"`
-					goto specifics
 				`	"You sound like one of those mafia goons."`
 					goto mafia
 				`	"Are you trying to extort me?"`
@@ -3974,22 +3971,17 @@ mission "Mafia Extortion"
 				`	(Pay 200,000 credits.)`
 					goto payup
 				`	"How can I be sure the money is spent well?"`
-					goto impatient
 				`	"Sorry, I already made a donation to the 'Security Support Fund' earlier today, and I don't donate twice in one day."`
-					goto impatient
 				`	"I've already heard enough, I'm going to talk to the authorities."`
 					goto nextsteps
 				`	"And what dangers should I be afraid of?"`
-					goto impatient
 				`	"Listen, I see that you're missing a finger on each hand. You look like a goon, and not a very successful one."`
 					goto unnerved
-			label impatient
 			`	The man sounds annoyed. "Listen, I don't have all day to talk! Are you going to pay or not?!"`
 			choice
 				`	(Pay 200,000 credits.)`
 					goto payup
 				`	"I don't trust you. You aren't getting any money from me."`
-					goto funeral
 				`	"I've heard enough, I'm going to talk to the authorities."`
 					goto nextsteps
 				`	"Listen, I see that you're missing a finger on each hand. You look like a goon, and not a very successful one."`
@@ -4005,14 +3997,11 @@ mission "Mafia Extortion"
 				`	(Shrug off the whole thing and take no further action.)`
 					decline
 				`	(Find the closest thing to a police force that this planet has.)`
-					goto police
 				`	(Go to a bar and ask for whoever is in charge.)`
 					goto bar
-			label police
 			`	It's not long before you find the ruins of what used to be a police station... you think. The building has been thoroughly destroyed, hopefully not while anybody was inside.`
 			choice
 				`	(Go to a bar and ask for whoever is in charge.)`
-					goto bar
 				`	(Shrug off the whole thing and take no further action.)`
 					decline
 			label bar
@@ -4026,7 +4015,6 @@ mission "Mafia Extortion"
 			`	The man is starting to act a bit nervous. "Sorry I bothered you. Can we forget this happened?"`
 			choice
 				`	"Well, conversations like this are hard to forget."`
-					goto cornered
 				`	"Nice scam you have running here. Would be a shame if somebody told the local godfather about it."`
 					goto payback
 				`	(Agree.)`
@@ -4055,7 +4043,6 @@ mission "Mafia Extortion"
 				`	"1,000."`
 					goto counterdeal
 				`	"I don't need your credits, just forget it."`
-					goto zerodeal
 			label zerodeal
 			`	The man walks away without saying a word.`
 				decline
@@ -4063,7 +4050,6 @@ mission "Mafia Extortion"
 			`	"That's too much! 2,389 credits is all I have. Would that be enough?"`
 			choice
 				`	"Sure."`
-					goto counterdeal
 				`	"No way, I want a lot more."`
 					goto panicking
 			label counterdeal
@@ -4074,12 +4060,9 @@ mission "Mafia Extortion"
 			`	The man starts panicking and clumsily reaches into his jacket, maybe to get some money, but more likely reaching for a gun.`
 			choice
 				`	(Try to calm down the man.)`
-					goto draws
 				`	(Mock the man further.)`
-					goto draws
 				`	(Draw my sidearm and shoot the man.)`
 					goto shoot
-			label draws
 			`	The man manages to draw a weapon! You brace for impact, but after a few seconds of waiting, you realize his weapon is only making a clicking sound when he tries to shoot.`
 			choice
 				`	"Ha, ha, you really are a failure of a goon."`
