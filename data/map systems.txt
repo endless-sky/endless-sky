@@ -14843,8 +14843,8 @@ system Gacrux
 		sprite planet/lava5
 		distance 316.995
 		period 98.0619
-	object
-		sprite planet/ocean5
+	object Asphodel
+		sprite planet/cloud6-b
 		distance 698.285
 		period 320.605
 	object
