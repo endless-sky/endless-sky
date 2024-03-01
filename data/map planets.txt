@@ -2924,6 +2924,11 @@ planet Nepheritis
 	description `	While these diamonds are unfortunately not economical to collect with current human technology, if you were so inclined you could perhaps make an attempt at catching one as it fell, deep within the atmosphere where they are largest.`
 	government Uninhabited
 
+planet Neriene
+	attributes uninhabited
+	description `Other than its lack of the iconic red color, this planet is almost eerily similar in conditions to Humanity's second planet, Mars. The thin atmosphere of carbon dioxide, the polar ice caps, and the echoes of dried waterways across the surface all tell the tragic tale of the same fate that befell Mars in aeons past.`
+	description `But although, when they were confined to their home system, humanity eventually triumphed over the adverse conditions and made a home on the Red Planet, this near-identical world has been left totally barren, a mere afterthought to the now interstellar Human civilisation.`
+
 planet "New Argentina"
 	attributes "dirt belt" farming
 	landscape land/fields1
