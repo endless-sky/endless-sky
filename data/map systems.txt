@@ -4982,7 +4982,7 @@ system Alpheratz
 			sprite planet/rock14-b
 			distance 173
 			period 18.5791
-	object
+	object Neriene
 		sprite planet/dust0
 		distance 1246.89
 		period 527.429
