@@ -1599,63 +1599,25 @@ License: CC-BY-SA-4.0
 
 Files:
  images/asteroid/livecrystal/livecrystal*
- images/effect/atomic?flare/*
  images/effect/burning?spark*
- images/effect/coalition?flare/*
  images/effect/corrosion?spark*
  images/effect/efreti?flare/*
  images/effect/explosion/pug/*
  images/effect/finisher?impact*
- images/effect/ion?flare/*
- images/effect/korath?flare/*
  images/effect/plasma?cloud*
- images/effect/plasma?flare/*
  images/effect/plasma?fire*
  images/effect/plasma?impact*
  images/effect/pug?flare/*
- images/effect/tracker?cloud*
  images/effect/wanderer?flare/*
  images/effect/zapper?impact*
- images/hardpoint/dual?sunbeam?turret*
- images/hardpoint/moonbeam?turret*
  images/hardpoint/nuke*
- images/hardpoint/sunbeam?turret*
- images/hardpoint/wanderer?anti-missile*
  images/_menu/haze-coal*
  images/outfit/*?korath?afterburner*
- images/outfit/afterburner*
  images/outfit/asteroid?scanner*
- images/outfit/blue?sun*
- images/outfit/bright?cloud*
- images/outfit/caldera?afterburner*
- images/outfit/dark?storm*
- images/outfit/double?plasma?core*
- images/outfit/dual?sunbeam?turret*
  images/outfit/*efreti?steering*
  images/outfit/*efreti?thruster*
- images/outfit/finisher?maegrolain*
  images/outfit/fusion?cannon*
- images/outfit/moonbeam*
- images/outfit/moonbeam?turret*
  images/outfit/nuke*
- images/outfit/plasma?core*
- images/outfit/red?sun*
- images/outfit/sunbeam*
- images/outfit/sunbeam?turret*
- images/outfit/thunderhead?launcher*
- images/outfit/thunderhead?storage*
- images/outfit/triple?plasma?core*
- images/outfit/wanderer?anti-missile*
- images/outfit/wanderer?heat?sink*
- images/outfit/white?sun*
- images/outfit/yellow?sun*
- images/planet/ringworld*
- images/planet/ringworld?broken?debris*
- images/planet/ringworld?broken?debris?small*
- images/planet/ringworld?broken?left*
- images/planet/ringworld?broken?right*
- images/planet/ringworld?left*
- images/planet/ringworld?right*
  images/projectile/fire-lance*
  images/projectile/fusion?gun?bolt*
  images/projectile/blaze-pike*
@@ -1663,24 +1625,10 @@ Files:
  images/projectile/missile-0*
  images/projectile/missile-1*
  images/ship/battleship*
- images/ship/corvette*
- images/ship/dagger*
- images/ship/flivver*
- images/ship/mraven*
- images/ship/msplinter*
- images/ship/raven*
- images/ship/splinter*
  images/star/coal-black-hole*
  images/star/neutron*
  images/star/small-black-hole*
  images/thumbnail/battleship*
- images/thumbnail/corvette*
- images/thumbnail/dagger*
- images/thumbnail/flivver*
- images/thumbnail/mraven*
- images/thumbnail/msplinter*
- images/thumbnail/raven*
- images/thumbnail/splinter*
 Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
 License: CC-BY-SA-4.0
 
@@ -1694,8 +1642,12 @@ Comment: Derived from works by Michael Zahniser <mzahniser@gmail.com>, David Mon
 Files:
  images/ship/manta*
  images/ship/mmanta*
+ images/ship/mraven*
+ images/ship/msplinter*
  images/thumbnail/manta*
  images/thumbnail/mmanta*
+ images/thumbnail/mraven*
+ images/thumbnail/msplinter*
 Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser and Maximilian Korber (under the same license).
@@ -1734,22 +1686,70 @@ License: CC-BY-SA-3.0
 Comment: Derived from works by Becca Tommaso (under the same license).
 
 Files:
+ images/effect/atomic?flare/*
+ images/effect/coalition?flare/*
+ images/effect/ion?flare/*
+ images/effect/korath?flare/*
+ images/effect/plasma?flare/*
+ images/effect/tracker?cloud*
+ images/hardpoint/dual?sunbeam?turret*
+ images/hardpoint/moonbeam?turret*
+ images/hardpoint/sunbeam?turret*
+ images/hardpoint/wanderer?anti-missile*
+ images/outfit/afterburner*
+ images/outfit/blue?sun*
+ images/outfit/bright?cloud*
+ images/outfit/caldera?afterburner*
+ images/outfit/dark?storm*
+ images/outfit/double?plasma?core*
+ images/outfit/dual?sunbeam?turret*
+ images/outfit/finisher?maegrolain*
+ images/outfit/moonbeam*
+ images/outfit/moonbeam?turret*
+ images/outfit/plasma?core*
+ images/outfit/red?sun*
  images/outfit/shield?refactor?module*
+ images/outfit/sunbeam*
+ images/outfit/sunbeam?turret*
+ images/outfit/thunderhead?launcher*
+ images/outfit/thunderhead?storage*
+ images/outfit/triple?plasma?core*
+ images/outfit/wanderer?anti-missile*
+ images/outfit/wanderer?heat?sink*
+ images/outfit/white?sun*
+ images/outfit/yellow?sun*
+ images/planet/ringworld*
+ images/planet/ringworld?broken?debris*
+ images/planet/ringworld?broken?debris?small*
+ images/planet/ringworld?broken?left*
+ images/planet/ringworld?broken?right*
+ images/planet/ringworld?left*
+ images/planet/ringworld?right*
  images/ship/carrier*
  images/ship/combat?drone*
+ images/ship/corvette*
  images/ship/cruiser*
+ images/ship/dagger*
+ images/ship/flivver*
  images/ship/frigate*
  images/ship/gunboat*
  images/ship/lance*
  images/ship/rainmaker*
+ images/ship/raven*
+ images/ship/splinter*
  images/ship/surveillance?drone*
  images/thumbnail/carrier*
  images/thumbnail/combat?drone*
+ images/thumbnail/corvette*
  images/thumbnail/cruiser*
+ images/thumbnail/dagger*
+ images/thumbnail/flivver*
  images/thumbnail/frigate*
  images/thumbnail/gunboat*
  images/thumbnail/lance*
  images/thumbnail/rainmaker*
+ images/thumbnail/raven*
+ images/thumbnail/splinter*
  images/thumbnail/surveillance?drone*
 Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
 License: CC-BY-SA-4.0
