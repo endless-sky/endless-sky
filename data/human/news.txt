@@ -2288,7 +2288,7 @@ news "Discontent"
 			"scattered "
 		word
 			"riots "
-			"protests %"
+			"protests. %"
 		word
 			"the rioters are "
 		word
