@@ -2196,7 +2196,7 @@ news "High Tension Situation"
 			"bluster at them "
 			"saber-rattle "
 		word
-			"in response "
+			"in response"
 		word
 			", but they end up dispersing."
 			", and the two groups back down."
