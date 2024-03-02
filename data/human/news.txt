@@ -2374,7 +2374,7 @@ name
 	"Guerrilla Symbology"
 message
 	word
-		"It's an average day in Gagarins busy spaceport, until "
+		"It's an average day in Gagarin's busy spaceport, until "
 	word
 		"your attention is grabbed by an oddity. A "
 		"an unusual commotion catches your attention. A "
