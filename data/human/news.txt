@@ -2303,7 +2303,7 @@ news "Discontent"
 			"and they disperse the demonstrators. "
 			"and the demonstrators scatter but don't appear dissuaded."
 		replace
-			"% the rioters" "the protesters"
+			"% The rioters" "The protesters"
 			"%" ""
 
 news "Clandestine"
