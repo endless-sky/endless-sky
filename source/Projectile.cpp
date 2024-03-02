@@ -463,3 +463,10 @@ uint16_t Projectile::HitsRemaining() const
 {
 	return hitsRemaining;
 }
+
+
+
+bool Projectile::ShouldExplode() const
+{
+	return !government || (weapon->IsFused() && lifetime == 1);
+}
