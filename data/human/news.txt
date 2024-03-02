@@ -2388,7 +2388,7 @@ message
 		"guerillas "
 		"insurgents "
 	word
-		"have entered the port "
+		"have entered the port."
 	word
 		"almost none "
 		"few "
