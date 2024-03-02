@@ -43,7 +43,6 @@ jobs:
       run: ./utils/check_cmake.sh
 
 
-
   validate_copyright:
     name: Copyright
     needs: changed
