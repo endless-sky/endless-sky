@@ -2298,7 +2298,7 @@ news "Discontent"
 		word
 			"Security eventually steps in, "
 		word
-			"however they're pushed back. "
+			"but they're pushed back. "
 			"but they're routed. "
 			"and they disperse the demonstrators. "
 			"and the demonstrators scatter but don't appear dissuaded."
