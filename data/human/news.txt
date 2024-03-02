@@ -2386,7 +2386,7 @@ message
 		"of CCOR "
 	word
 		"guerillas "
-		"Insurgents "
+		"insurgents "
 	word
 		"have entered the port "
 	word
