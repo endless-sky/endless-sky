@@ -2390,7 +2390,7 @@ message
 	word
 		"have entered the port."
 	word
-		"almost none "
+		"Almost none "
 		"few "
 		"some "
 		"all "
