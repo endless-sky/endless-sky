@@ -264,7 +264,7 @@ planet Aspiration
 planet Asterus
 	attributes moon uninhabited
 	landscape land/enceladus_2
-	description `The seas beneath the frozen surface of this ice moon are home to a thriving ecosystem full of species entirely unlike any observed on more conventionally habitable worlds. The best known of these is a species of large fish-like creatures with flowing bioluminescent fins that glow in ethereal pinks and purples, the beauty of which prompted many citizens of the Paradise Worlds to demand that the Republic designate this moon as a nature preserve.`
+	description `The seas beneath the frozen surface of this ice moon are home to a thriving ecosystem full of species entirely unlike any observed on other, more habitable worlds. The best known of these is a species of large fish-like creatures with flowing bioluminescent fins that glow in ethereal pinks and purples, the beauty of which prompted many citizens of the Paradise Worlds to demand that Parliament designate the entire moon as a nature preserve in the 2900s.`
 	government Uninhabited
 
 planet Avalon
@@ -2927,8 +2927,8 @@ planet Nepheritis
 planet Neriene
 	attributes uninhabited
 	landscape land/canyon03
-	description `Other than its lack of the iconic red color, this planet is almost eerily similar in conditions to Humanity's second planet, Mars. The thin atmosphere of carbon dioxide, the polar ice caps, and the echoes of dried waterways across the surface all tell the tragic tale of the same fate that befell Mars in aeons past.`
-	description `But although, when they were confined to their home system, humanity eventually triumphed over the adverse conditions and made a home on the Red Planet, this near-identical world has been left totally barren, a mere afterthought to the now interstellar Human civilisation.`
+	description `While lacking its iconic ferrous-red color, this planet is almost eerily similar in conditions to the second planet humanity set foot on, Mars. The thin atmosphere of carbon dioxide, the polar ice caps, and the echoes of dried waterways across the surface all tell the tragic tale of the same fate that befell Mars in aeons past.`
+	description `	Even though humanity eventually triumphed over the adverse conditions and made a home on the Red Planet, this near-identical world has been left totally barren, a mere afterthought in the now interstellar human civilisation.`
 	government Uninhabited
 
 planet "New Argentina"
