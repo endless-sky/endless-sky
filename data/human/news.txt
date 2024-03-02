@@ -2290,7 +2290,7 @@ news "Discontent"
 			"riots "
 			"protests. %"
 		word
-			"the rioters are "
+			"The rioters are "
 		word
 			"singing, ${CCOR Song Description}. "
 			"chanting, a list of their demands including ${Worker's Demands}. "
