@@ -3083,7 +3083,7 @@ planet "New Kansas"
 planet "New Kola"
 	attributes uninhabited
 	landscape land/badlands7
-	description `At a distance, New Kola appears to be a gas giant; yet upon approach you notices that the its thick, dense atmosphere obscures the rocky surface of a huge super-earth. Even if it were made of breathable gases, the pressure at the surface is beyond what humans can tolerate - only at the peaks of the highest mountains can you safely step outside wearing only a breathing apparatus, and even then the crushing gravity would cause serious problems if you stayed for long.`
+	description `At a distance, New Kola appears to be a gas giant; yet upon approach you notice that the thick, dense atmosphere obscures the rocky surface of a huge super-earth. Even if it were made of breathable gases, the pressure at the surface is beyond what humans can tolerate - only at the peaks of the highest mountains can you safely step outside wearing only a breathing apparatus, and even then the crushing gravity would cause serious problems if you stayed for long.`
 	government Uninhabited
 
 planet "New Portland"
