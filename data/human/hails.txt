@@ -1997,7 +1997,7 @@ phrase "friendly civilian"
 
 phrase "friendly civilian"
 	word
-		"Those Quargs are pretty strict with their technology. They"
+		"Those Quarg are pretty strict with their technology. They"
 		"I wish the Quarg would share some of their technology with us, but they"
 		"You don't want to be caught with Quarg technology around Enif. The Quarg"
 		"The Quarg don't mess around with their technology. They"
@@ -6129,6 +6129,8 @@ phrase "hostile pirate"
 		" or get disintegrated"
 	word
 		"!"
+
+
 
 phrase "hostile disabled pirate"
 	word
