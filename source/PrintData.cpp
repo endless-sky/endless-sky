@@ -259,7 +259,7 @@ namespace {
 				for(const auto &oit : ship.Outfits())
 				{
 					const Weapon &weapon = oit.first->GetWeapon();
-					if(weapon.IsWeapon() && weapon.Reload())
+					if(oit.first->IsWeapon() && weapon.Reload())
 					{
 						double reload = weapon.Reload();
 						energyConsumed += oit.second * weapon.FiringEnergy() / reload;
@@ -363,7 +363,7 @@ namespace {
 			{
 				// Skip non-weapons and submunitions.
 				const Weapon &weapon = it.second.GetWeapon();
-				if(!weapon.IsWeapon() || it.second.Category().empty())
+				if(!it.second.IsWeapon() || it.second.Category().empty())
 					continue;
 
 				const Outfit &outfit = it.second;

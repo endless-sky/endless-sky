@@ -376,6 +376,14 @@ bool Outfit::IsDefined() const
 
 
 
+// Check if this Outfit has a weapon assigned to it.
+bool Outfit::IsWeapon() const
+{
+	return weapon.IsWeapon();
+}
+
+
+
 // When writing to the player's save, the reference name is used even if this
 // outfit was not fully defined (i.e. belongs to an inactive plugin).
 const string &Outfit::TrueName() const

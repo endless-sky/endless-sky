@@ -51,7 +51,7 @@ void Armament::AddTurret(const Point &point, bool isUnder, const Outfit *outfit)
 int Armament::Add(const Outfit *outfit, int count)
 {
 	// Make sure this really is a weapon.
-	if(!count || !outfit || !outfit->GetWeapon().IsWeapon())
+	if(!count || !outfit || !outfit->IsWeapon())
 		return 0;
 
 	int existing = 0;
@@ -213,7 +213,7 @@ set<const Outfit *> Armament::RestockableAmmo() const
 		if(weapon)
 		{
 			const Outfit *ammo = weapon->Ammo();
-			if(ammo && !ammo->GetWeapon().IsWeapon())
+			if(ammo && !ammo->IsWeapon())
 				restockable.emplace(ammo);
 		}
 	}

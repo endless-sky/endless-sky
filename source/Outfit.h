@@ -49,6 +49,7 @@ public:
 	// "attributes" node.
 	void Load(const DataNode &node);
 	bool IsDefined() const;
+	bool IsWeapon() const;
 
 	const std::string &TrueName() const;
 	const std::string &DisplayName() const;

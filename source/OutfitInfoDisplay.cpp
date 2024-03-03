@@ -446,7 +446,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		hasNormalAttributes = true;
 	}
 	const Weapon &weapon = outfit.GetWeapon();
-	if(!weapon.IsWeapon())
+	if(!outfit.IsWeapon())
 		return;
 
 	// Insert padding if any normal attributes were listed above.

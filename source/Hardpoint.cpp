@@ -306,7 +306,7 @@ void Hardpoint::Install(const Outfit *outfit)
 {
 	// If the given outfit is not a valid weapon, this hardpoint becomes empty.
 	// Also check that the type of the weapon (gun or turret) is right.
-	if(!outfit || !outfit->GetWeapon().IsWeapon() || (isTurret == !outfit->Get("turret mounts")))
+	if(!outfit || !outfit->IsWeapon() || (isTurret == !outfit->Get("turret mounts")))
 		Uninstall();
 	else
 	{

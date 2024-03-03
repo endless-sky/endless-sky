@@ -366,7 +366,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	for(const auto &it : ship.Outfits())
 	{
 		const Weapon &weapon = it.first->GetWeapon();
-		if(weapon.IsWeapon() && weapon.Reload())
+		if(it.first->IsWeapon() && weapon.Reload())
 		{
 			firingEnergy += it.second * weapon.FiringEnergy() / weapon.Reload();
 			firingHeat += it.second * weapon.FiringHeat() / weapon.Reload();

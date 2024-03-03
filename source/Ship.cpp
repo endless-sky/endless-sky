@@ -675,7 +675,7 @@ void Ship::FinishLoading(bool isNewInstance)
 			LogWarning(VariantName(), Name(),
 					"outfit \"" + it.first->TrueName() + "\" equipped but not included in outfit list.");
 		}
-		else if(!it.first->GetWeapon().IsWeapon())
+		else if(!it.first->IsWeapon())
 			// This ship was specified with a non-weapon outfit in a
 			// hardpoint. Hardpoint::Install removes it, but issue a
 			// warning so the definition can be fixed.
@@ -713,7 +713,7 @@ void Ship::FinishLoading(bool isNewInstance)
 		// Some ship variant definitions do not specify which weapons
 		// are placed in which hardpoint. Add any weapons that are not
 		// yet installed to the ship's armament.
-		if(it.first->GetWeapon().IsWeapon())
+		if(it.first->IsWeapon())
 		{
 			int count = it.second;
 			auto eit = equipped.find(it.first);
@@ -1282,7 +1282,7 @@ vector<string> Ship::FlightCheck() const
 				checks.emplace_back("no fuel?");
 		}
 		for(const auto &it : outfits)
-			if(it.first->GetWeapon().IsWeapon() && it.first->GetWeapon().FiringEnergy() > energy)
+			if(it.first->IsWeapon() && it.first->GetWeapon().FiringEnergy() > energy)
 			{
 				checks.emplace_back("insufficient energy to fire?");
 				break;
@@ -3277,7 +3277,7 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 		}
 		int after = outfits.count(outfit);
 		attributes.Add(*outfit, count);
-		if(outfit->GetWeapon().IsWeapon())
+		if(outfit->IsWeapon())
 		{
 			armament.Add(outfit, count);
 			// Only the player's ships make use of attraction and deterrence.

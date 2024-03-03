@@ -69,7 +69,7 @@ namespace {
 		for(auto &&it : ship.Outfits())
 		{
 			const Outfit *outfit = it.first;
-			if(outfit->Ammo() && !outfit->GetWeapon().IsWeapon() && !armed.count(outfit))
+			if(outfit->Ammo() && !outfit->IsWeapon() && !armed.count(outfit))
 				toRefill.emplace(outfit->Ammo());
 		}
 		return toRefill;
