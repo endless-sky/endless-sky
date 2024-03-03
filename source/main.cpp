@@ -94,7 +94,9 @@ int main(int argc, char *argv[])
 	bool hasErrors = false;
 	// Ensure that we log errors to the errors.txt file.
 	Logger::SetLogErrorCallback([&hasErrors](const string &errorMessage) {
-		hasErrors = true;
+		static const string PARSING_PREFIX = "Parsing: ";
+		if(errorMessage.substr(0, PARSING_PREFIX.length()) != PARSING_PREFIX)
+			hasErrors = true;
 		Files::LogErrorToFile(errorMessage);
 	});
 
