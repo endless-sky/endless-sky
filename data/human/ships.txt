@@ -318,9 +318,9 @@ ship "Bactrian"
 		"hull" 8600
 		"required crew" 70
 		"bunks" 245
-		"mass" 2620
-		"drag" 32.2
-		"heat dissipation" .2
+		"mass" 2450
+		"drag" 30.6
+		"heat dissipation" .22
 		"fuel capacity" 700
 		"cargo space" 530
 		"outfit space" 740
@@ -499,9 +499,9 @@ ship "Behemoth"
 		"hull" 6300
 		"required crew" 12
 		"bunks" 30
-		"mass" 1170
-		"drag" 18.7
-		"heat dissipation" .25
+		"mass" 1120
+		"drag" 18.2
+		"heat dissipation" .26
 		"fuel capacity" 600
 		"cargo space" 490
 		"outfit space" 510
@@ -1277,9 +1277,9 @@ ship "Cruiser"
 		"hull" 6400
 		"required crew" 81
 		"bunks" 136
-		"mass" 1980
-		"drag" 19.2
-		"heat dissipation" .24
+		"mass" 1910
+		"drag" 18.7
+		"heat dissipation" .25
 		"fuel capacity" 600
 		"cargo space" 60
 		"outfit space" 760
@@ -1463,9 +1463,9 @@ ship "Dreadnought"
 		"hull" 7300
 		"required crew" 84
 		"bunks" 147
-		"mass" 1900
-		"drag" 19.2
-		"heat dissipation" .35
+		"mass" 1840
+		"drag" 18.7
+		"heat dissipation" .36
 		"fuel capacity" 600
 		"cargo space" 100
 		"outfit space" 790
@@ -2561,9 +2561,9 @@ ship "Mammoth"
 		"hull" 7400
 		"required crew" 18
 		"bunks" 30
-		"mass" 1422
-		"drag" 19
-		"heat dissipation" .2
+		"mass" 1361
+		"drag" 18.5
+		"heat dissipation" .21
 		"fuel capacity" 1000
 		"cargo space" 400
 		"outfit space" 536
@@ -3753,9 +3753,9 @@ ship "Star Queen"
 		"hull" 2200
 		"required crew" 33
 		"bunks" 112
-		"mass" 500
-		"drag" 6.5
-		"heat dissipation" .45
+		"mass" 525
+		"drag" 6.7
+		"heat dissipation" .44
 		"fuel capacity" 700
 		"cargo space" 60
 		"outfit space" 360
