@@ -1801,9 +1801,9 @@ ship "Met Par Tek 53"
 		"hull" 22200
 		"automaton" 1
 		"crew equivalent" 25
-		"mass" 884
-		"drag" 8.3
-		"heat dissipation" .56
+		"mass" 935
+		"drag" 8.6
+		"heat dissipation" .54
 		"fuel capacity" 400
 		"cargo space" 26
 		"outfit space" 610
