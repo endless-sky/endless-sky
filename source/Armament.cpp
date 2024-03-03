@@ -160,9 +160,9 @@ void Armament::Swap(unsigned first, unsigned second)
 {
 	// Make sure both of the given indices are in range, and that both slots are
 	// the same type (gun vs. turret).
-	if(static_cast<unsigned>(first) >= hardpoints.size())
+	if(first >= hardpoints.size())
 		return;
-	if(static_cast<unsigned>(second) >= hardpoints.size())
+	if(second >= hardpoints.size())
 		return;
 	if(hardpoints[first].IsTurret() != hardpoints[second].IsTurret())
 		return;
