@@ -11,6 +11,20 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+mission "Incipias: Guardian of Incipias Space"
+	invisible
+	landing
+	repeat
+	to offer
+		not "The Silent Ones: active"
+	to complete
+		never
+	npc save
+		government Drak
+		personality heroic vindictive frugal forbearing
+		system Il'le
+		ship "Archon" "Guardian of Spring"
+
 mission "Incipias: First Contact I"
 	invisible
 	landing
