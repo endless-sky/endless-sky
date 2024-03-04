@@ -48,21 +48,21 @@ outfit "plasma particle"
 		"hull damage" 13
 		"minable damage" 18
 
-outfit "Tractor Beam"
+outfit "Stagnation Beam"
 	category "Turrets"
 	mass 30
 	"outfit space" -30
 	"weapon capacity" -30
 	"turret mounts" -1
-	thumbnail "outfit/tractor beam"
+	thumbnail "outfit/stagnation beam"
 	licenses
 		"Hicemus Conflict"
 	weapon
-		sprite "projectile/tractor beam"
+		sprite "projectile/stagnation beam"
 			"frame rate" 6
-		"hardpoint sprite" "hardpoint/tractor beam"
+		"hardpoint sprite" "hardpoint/stagnation beam"
 		sound "laser"
-		"hit effect" "tractor beam impact"
+		"hit effect" "stagnation beam impact"
 		"inaccuracy" .5
 		"turret turn" 7.5
 		"velocity" 600
@@ -75,13 +75,13 @@ outfit "Tractor Beam"
 		"hull damage" 0.1
 		"hit force" -40
 		"slowing damage" 0.2
-	description "The Tractor Beam is one of the few technologies of the Incipias that surpasses anything humanity has made thus far - in fact, the first prototypes were built before the Incipias dreamed of space travel. Giant reactors were constructed to pull asteroids out of their home planet's orbit for easy access to more resources. Naturally, a mechanism to slow the asteroids down was also implemented to prevent accidental asteroid strikes."
+	description "The Stagnation Beam is one of the few technologies of the Incipias that surpasses anything humanity has made thus far - in fact, the first prototypes were built before the Incipias even dreamed of space travel. Giant reactors were constructed to pull asteroids out of their home planet's orbit for easy access to more resources. Naturally, a mechanism to slow the asteroids down was also implemented to prevent accidental asteroid strikes."
 	description "As the Incipias' mastery of spaceflight grew, so did the generators' efficiency, which allowed for more compact, ship-based tractor beams. Resource collection was greatly streamlined by these new models, much to the benefit of the Incipias' otherwise sluggish ships."
 	description "Officially, these beams are used for mining operations; however, less scrupulous individuals have found they are equally valuable in combat, using the beams to lock down and pull in their opponents."
 	description "The secret of how these beams work is only known to a few scientists of the Incipias who are under the control of the state. Such knowledge, if made public, could have disastrous consequences."
 
-effect "tractor beam impact"
-	sprite "effect/tractor impact"
+effect "stagnation beam impact"
+	sprite "effect/stagnation beam impact"
 		"no repeat"
 		"frame rate" 30
 	"lifetime" 5
