@@ -130,7 +130,6 @@ private:
 
 	Dictionary attributes;
 	Weapon weapon;
-	std::pair<const Outfit*, int> ammo;
 
 	// The integers in these pairs/maps indicate the number of
 	// sprites/effects/sounds to be placed/played.

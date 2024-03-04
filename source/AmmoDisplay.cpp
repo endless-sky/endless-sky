@@ -49,8 +49,8 @@ void AmmoDisplay::Update(const Ship &flagship)
 			continue;
 
 		double ammoCount = -1.;
-		if(secWeapon->Ammo())
-			ammoCount = flagship.OutfitCount(secWeapon->Ammo());
+		if(secWeapon->GetWeapon().Ammo())
+			ammoCount = flagship.OutfitCount(secWeapon->GetWeapon().Ammo());
 		if(secWeapon->GetWeapon().FiringFuel())
 		{
 			double remaining = flagship.Fuel()

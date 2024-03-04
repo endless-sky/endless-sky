@@ -2019,7 +2019,7 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, const System *playerSy
 	auto requiredAmmo = set<const Outfit *>{};
 	for(const Hardpoint &hardpoint : ship.Weapons())
 	{
-		const Outfit *weapon = hardpoint.GetOutfit();
+		const Weapon *weapon = hardpoint.GetWeapon();
 		if(weapon && !hardpoint.IsSpecial())
 		{
 			const Outfit *ammo = weapon->Ammo();
@@ -3595,7 +3595,7 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, const Body &target) co
 	{
 		++index;
 		// Only auto-fire primary weapons that take no ammunition.
-		if(!hardpoint.IsReady() || hardpoint.GetWeapon()->Icon() || hardpoint.GetOutfit()->Ammo())
+		if(!hardpoint.IsReady() || hardpoint.GetWeapon()->Icon() || hardpoint.GetWeapon()->Ammo())
 			continue;
 
 		// Figure out where this weapon will fire from, but add some randomness
