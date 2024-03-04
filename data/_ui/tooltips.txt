@@ -967,7 +967,7 @@ tip "% minable damage / shot:"
 	`Minable damage dealt as a percentage of the target's total health, in lieu of relative hull damage being used.`
 
 tip "% fuel damage / shot:"
-	`Fuel loss caused per shot as a percentage of the the target's total fuel capacity. Only half as effective when the target's shields are up.`
+	`Fuel loss caused per shot as a percentage of the target's total fuel capacity. Only half as effective when the target's shields are up.`
 
 tip "% heat damage / shot:"
 	`Increases the target ship's heat as a percentage of its maximum heat capacity by this amount per shot. Only half as effective when the target's shields are up.`
@@ -1040,6 +1040,9 @@ tip "missile strength:"
 
 tip "anti-missile:"
 	`The power of the anti-missile shots. Higher values make it easier to destroy stronger projectiles.`
+
+tip "tractor beam:"
+	`The base velocity that this weapon pulls flotsam toward itself. Heavier flotsam is more difficult to pull.`
 
 
 
@@ -1180,10 +1183,13 @@ tip "Toggle fullscreen"
 	`Toggle whether the game is in fullscreen mode.`
 
 tip "Toggle fast-forward"
-	`Toggle a 3x speed fast-forward. Fast-forward may be automatically deactivated by the "Interrupt fast-forward" setting.`
+	`Toggle a 3x speed fast-forward. Fast-forward may be automatically deactivated by the "Interrupt fast-forward" setting. If the key is set to caps-lock then the caps-lock state will be used to determine the fast-forward state.`
 
 tip "Show help"
 	`Display the help dialogs that are relevant to your current UI panel and situation. Uses the same help dialogs from the "Reactivate first-time help" setting, forcing them to appear even if they have already appeared before.`
+
+tip "View message log"
+	`Open the log panel containing status messages and hails from other ships received since the current pilot was loaded.`
 
 tip "Deploy / recall fighters"
 	`Deploy or recall carried ships (e.g. fighters, drones) in your fleet. Requires carriers with space to hold the carried ships.`

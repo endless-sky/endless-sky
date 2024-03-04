@@ -22,6 +22,8 @@ government "Alpha"
 government "Author"
 	"player reputation" 1
 	"bribe" 0
+	"friendly disabled hail" "friendly disabled"
+	"hostile disabled hail" "hostile disabled"
 
 government "Bad Trip"
 	swizzle 0
@@ -124,6 +126,7 @@ government "Bounty"
 	"player reputation" -1000
 	"fine" 0
 	"hostile hail" "hostile bounty"
+	"hostile disabled hail" "hostile disabled"
 
 government "Bounty (Disguised)"
 	"display name" "Merchant"
@@ -131,7 +134,9 @@ government "Bounty (Disguised)"
 	"player reputation" 1
 	"fine" 0
 	"friendly hail" "friendly civilian"
+	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile bounty"
+	"hostile disabled hail" "hostile disabled"
 	"penalty for"
 		assist 0
 		disable 0
@@ -148,6 +153,7 @@ government "Bounty Hunter"
 	"bribe" .2
 	"fine" 0
 	"hostile hail" "hostile bounty hunter"
+	"hostile disabled hail" "hostile disabled"
 
 government "Bounty Hunter that Won't Enter Hai Space"
 	"display name" "Bounty Hunter"
@@ -158,6 +164,7 @@ government "Bounty Hunter that Won't Enter Hai Space"
 	"bribe" .2
 	"fine" 0
 	"hostile hail" "hostile bounty hunter"
+	"hostile disabled hail" "hostile disabled"
 
 government "Coalition"
 	swizzle 5
@@ -177,7 +184,9 @@ government "Deep"
 	"display name" "Deep Security"
 	swizzle 0
 	"player reputation" -1000
+	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile deep"
+	"hostile disabled hail" "hostile disabled"
 
 government "Deep Security"
 	swizzle 0
@@ -188,7 +197,9 @@ government "Deep Security"
 		"Pirate (Devil-Run Gang)" -.2
 		"Smuggler (Hai Trafficker)" .05
 	"friendly hail" "friendly deep"
+	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile deep"
+	"hostile disabled hail" "hostile disabled"
 
 government "Derelict"
 	"fine" 0
@@ -236,7 +247,9 @@ government "Escort (Betraying)"
 		"Korath" -.01
 	"fine" 0
 	"friendly hail" "friendly civilian"
+	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile pirate"
+	"hostile disabled hail" "hostile disabled"
 	
 government "Forest (Prey)"
 	# Indigenous creatures in large forest zones outside the Milky Way.
@@ -273,7 +286,9 @@ government "Free Worlds"
 		"Neutral" .1
 	"bribe" .1
 	"friendly hail" "friendly free worlds"
+	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile free worlds"
+	"hostile disabled hail" "hostile disabled"
 	raid "pirate raid"
 
 government "Free Worlds that won't enter wormhole"
@@ -292,8 +307,11 @@ government "Free Worlds that won't enter wormhole"
 		"Neutral" .1
 	"bribe" .1
 	"friendly hail" "friendly free worlds"
+	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile free worlds"
+	"hostile disabled hail" "hostile disabled"
 	raid "pirate raid"
+
 
 government "Gegno"
 	swizzle 0
@@ -310,6 +328,7 @@ government "Gegno"
 	"penalty for"
 		assist 0
 		provoke 10
+		destroy 10
 
 color "governments: Gegno Scin" .67 .73 .44
 
@@ -326,6 +345,9 @@ government "Gegno Scin"
 		"Gegno Vi" -0.01
 	"penalty for"
 		assist 0
+		disable 0.3
+		board 0.5
+		destroy 0.3
 
 color "governments: Gegno Vi" .68 .4 .4
 
@@ -339,10 +361,14 @@ government "Gegno Vi"
 	"crew defense" 1.5
 	"attitude toward"
 		"Gegno" 1
+		"Gegno Vi (Duelist A)" 1
+		"Gegno Vi (Duelist B)" 1
 		"Gegno Scin" -0.01
 	"penalty for"
 		assist 0
-
+		disable 0.3
+		board 0.5
+		destroy 0.3
 
 # Gegno Scin and Vi governments that do not fight each other.
 government "Gegno Scin (Neutral)"
@@ -358,10 +384,12 @@ government "Gegno Scin (Neutral)"
 		"Gegno" 1
 	"penalty for"
 		assist 0
+		disable 0.3
+		board 0.5
+		destroy 0.3
 	"foreign penalties for"
 		"Gegno"
 
-	
 government "Gegno Vi (Neutral)"
 	"display name" "Gegno Vi"
 	swizzle 0
@@ -375,9 +403,11 @@ government "Gegno Vi (Neutral)"
 		"Gegno" 1
 	"penalty for"
 		assist 0
+		disable 0.3
+		board 0.5
+		destroy 0.3
 	"foreign penalties for"
 		"Gegno"
-
 
 # Gegno Vi governments used for dueling.
 government "Gegno Vi (Duelist A)"
@@ -396,6 +426,9 @@ government "Gegno Vi (Duelist A)"
 		"Gegno Vi (Duelist B)" -0.01
 	"penalty for"
 		assist 0
+		disable 0.3
+		board 0.5
+		destroy 0.3
 
 government "Gegno Vi (Duelist B)"
 	swizzle 0
@@ -413,6 +446,10 @@ government "Gegno Vi (Duelist B)"
 		"Gegno Vi (Duelist A)" -0.01
 	"penalty for"
 		assist 0
+		disable 0.3
+		board 0.5
+		destroy 0.3
+
 
 color "governments: Hai" .86 .48 .79
 
@@ -536,7 +573,9 @@ government "Hai Merchant (Human)"
 		system "Wah Yoot"
 	"bribe" .02
 	"friendly hail" "friendly civilian"
+	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile civilian"
+	"hostile disabled hail" "hostile disabled"
 
 color "governments: Hai (Unfettered)" .55 .27 .76
 
@@ -704,7 +743,9 @@ government "Independent"
 	"bribe" .05
 	"fine" 0
 	"friendly hail" "friendly civilian"
+	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile civilian"
+	"hostile disabled hail" "hostile disabled"
 	raid "Large Southern Pirates"
 
 # A government used for "Independent" ships that the player is allowed to kill without consequences.
@@ -717,7 +758,9 @@ government "Independent (Killable)"
 	"bribe" .05
 	"fine" 0
 	"friendly hail" "friendly civilian"
+	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile civilian"
+	"hostile disabled hail" "hostile disabled"
 
 government "Indigenous Lifeform"
 	# Nothing you do permanently angers indigenous creatures, because they are
@@ -773,21 +816,7 @@ government "Ka'het"
 	swizzle 0
 	language "Ka'het"
 
-	"attitude toward"
-		"Ka'het (Infighting)" -.01
-		"Remnant" -.01
-		"Quarg" -.01
-		"Pug" -.01
-		"Hai" -.01
-		"Hai (Wormhole Access)" -.01
-		"Korath" -.01
-		"Navy (Oathkeeper)" -.01
-		"Republic" -.01
-		"Free Worlds" -.01
-		"Hai (Unfettered)" -.01
-		"Wanderer" -.01
-		"Coalition" -.01
-		"Heliarch" -.01
+	"default attitude" -.01
 	
 	"player reputation" -1
 
@@ -797,21 +826,7 @@ government "Ka'het (Infighting)"
 	swizzle 0
 	language "Ka'het"
 
-	"attitude toward"
-		"Ka'het" -.01
-		"Remnant" -.01
-		"Quarg" -.01
-		"Pug" -.01
-		"Hai" -.01
-		"Hai (Wormhole Access)" -.01
-		"Korath" -.01
-		"Navy (Oathkeeper)" -.01
-		"Republic" -.01
-		"Free Worlds" -.01
-		"Hai (Unfettered)" -.01
-		"Wanderer" -.01
-		"Coalition" -.01
-		"Heliarch" -.01
+	"default attitude" -.01
 	
 	"player reputation" -1
 
@@ -961,7 +976,9 @@ government "Marauder"
 	"player reputation" 1
 	"bribe" .1
 	"fine" 0
+	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile pirate"
+	"hostile disabled hail" "hostile disabled"
 
 government "Merchant"
 	swizzle 5
@@ -974,7 +991,9 @@ government "Merchant"
 	"bribe" .05
 	"fine" 0
 	"friendly hail" "friendly civilian"
+	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile civilian"
+	"hostile disabled hail" "hostile disabled"
 
 government "Merchant (Hijacked)"
 	"display name" "Merchant"
@@ -985,7 +1004,9 @@ government "Merchant (Hijacked)"
 	"player reputation" 1
 	"fine" 0
 	"friendly hail" "friendly civilian"
+	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile pirate"
+	"hostile disabled hail" "hostile disabled"
 	"penalty for"
 		assist 0
 		disable 0
@@ -1006,7 +1027,9 @@ government "Militia"
 		"Smuggler (Hai Trafficker)" .05
 	"bribe" .1
 	"friendly hail" "friendly militia"
+	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile militia"
+	"hostile disabled hail" "hostile disabled"
 
 government "Navy Intelligence"
 	swizzle 0
@@ -1016,6 +1039,8 @@ government "Navy Intelligence"
 		"Syndicate" -.1
 		"Pirate" -.3
 		"Pirate (Devil-Run Gang)" -.3
+	"friendly disabled hail" "friendly disabled"
+	"hostile disabled hail" "hostile disabled"
 
 government "Navy (Oathkeeper)"
 	swizzle 0
@@ -1036,7 +1061,9 @@ government "Navy (Oathkeeper)"
 		"Navy Intelligence" 1
 		"Republic Intelligence" 1
 	"friendly hail" "friendly navy"
+	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile navy"
+	"hostile disabled hail" "hostile disabled"
 
 color "governments: Neutral" .84 .61 .37
 
@@ -1052,13 +1079,17 @@ government "Neutral"
 		"Smuggler (Hai Trafficker)" .05
 	"bribe" .05
 	"friendly hail" "friendly civilian"
+	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile civilian"
+	"hostile disabled hail" "hostile disabled"
 	raid "pirate raid"
 
 government "Parrot"
 	swizzle 2
 	"player reputation" 1
 	"bribe" 0
+	"friendly disabled hail" "friendly disabled"
+	"hostile disabled hail" "hostile disabled"
 
 color "governments: Pirate" .78 0. 0.
 
@@ -1078,7 +1109,9 @@ government "Pirate"
 	"bribe" .05
 	"fine" 0
 	"friendly hail" "friendly pirate"
+	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile pirate"
+	"hostile disabled hail" "hostile disabled"
 	raid "pirate raid"
 
 government "Pirate (Devil-Run Gang)"
@@ -1099,7 +1132,9 @@ government "Pirate (Devil-Run Gang)"
 	"bribe" .05
 	"fine" 0
 	"friendly hail" "friendly pirate"
+	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile pirate"
+	"hostile disabled hail" "hostile disabled"
 
 government "Pirate (Rival)"
 	"display name" "Pirate"
@@ -1117,7 +1152,9 @@ government "Pirate (Rival)"
 	"bribe" 0
 	"fine" 0
 	"friendly hail" "friendly pirate"
+	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile pirate"
+	"hostile disabled hail" "hostile disabled"
 	raid "pirate raid"
 
 color "governments: Pug" .99 .89 .70
@@ -1355,7 +1392,9 @@ government "Remnant"
 			scan 0
 	"provoked on scan"
 	"friendly hail" "remnant uncontacted"
+	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "remnant uncontacted hostile"
+	"hostile disabled hail" "hostile disabled"
 
 government "Remnant (Research)"
 	"display name" "Remnant"
@@ -1379,7 +1418,9 @@ government "Remnant (Research)"
 	"foreign penalties for"
 		"Remnant"
 	"friendly hail" "remnant uncontacted"
+	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "remnant uncontacted hostile"
+	"hostile disabled hail" "hostile disabled"
 
 color "governments: Republic" .91 .42 .09
 
@@ -1403,7 +1444,9 @@ government "Republic"
 		"Navy (Oathkeeper)" 1
 		"Neutral" .1
 	"friendly hail" "friendly navy"
+	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile navy"
+	"hostile disabled hail" "hostile disabled"
 	raid "pirate raid"
 
 government "Republic Intelligence"
@@ -1413,6 +1456,8 @@ government "Republic Intelligence"
 	"attitude toward"
 		"Pirate" -.3
 		"Pirate (Devil-Run Gang)" -.3
+	"friendly disabled hail" "friendly disabled"
+	"hostile disabled hail" "hostile disabled"
 
 government "Republic that won't enter wormhole"
 	"display name" Republic
@@ -1435,7 +1480,9 @@ government "Republic that won't enter wormhole"
 		"Navy (Oathkeeper)" 1
 		"Neutral" .1
 	"friendly hail" "friendly navy"
+	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile navy"
+	"hostile disabled hail" "hostile disabled"
 	raid "pirate raid"
 
 government "Republic (Friendly)"
@@ -1455,7 +1502,9 @@ government "Republic (Friendly)"
 		"Navy (Oathkeeper)" .01
 		"Neutral" .01
 	"friendly hail" "friendly navy"
+	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile navy"
+	"hostile disabled hail" "hostile disabled"
 
 government "Rulei"
 	swizzle 0
@@ -1475,6 +1524,7 @@ government "Scar's Legion"
 	bribe 0
 	fine 0
 	"hostile hail" "hostile pirate"
+	"hostile disabled hail" "hostile disabled"
 
 government "Scar's Legion (Killable)"
 	"display name" "Scar's Legion"
@@ -1484,6 +1534,7 @@ government "Scar's Legion (Killable)"
 	bribe 0
 	fine 0
 	"hostile hail" "hostile pirate"
+	"hostile disabled hail" "hostile disabled"
 
 government "Sheragi"
 	swizzle 3
@@ -1513,7 +1564,9 @@ government "Smuggler (Hai Trafficker)"
 	"bribe" .1
 	"fine" 0
 	"friendly hail" "friendly civilian"
+	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile pirate"
+	"hostile disabled hail" "hostile disabled"
 
 	# They just want to pass through the system alive, so they
 	# won't attack anyone unless they have to.
@@ -1541,7 +1594,9 @@ government "Syndicate"
 		"Korath" -.5
 	"bribe" .08
 	"friendly hail" "friendly syndicate"
+	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile syndicate"
+	"hostile disabled hail" "hostile disabled"
 	raid "pirate raid"
 
 government "Syndicate (Extremist)"
@@ -1556,6 +1611,7 @@ government "Syndicate (Extremist)"
 	"bribe" 0
 	"fine" 0
 	"hostile hail" "hostile syndicate"
+	"hostile disabled hail" "hostile disabled"
 
 government "Team Blue"
 	swizzle 5

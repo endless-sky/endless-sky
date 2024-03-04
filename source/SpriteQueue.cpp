@@ -127,6 +127,14 @@ void SpriteQueue::Finish()
 
 
 
+// Don't upload the images to the GPU using OpenGL. Used for the integration tests.
+void SpriteQueue::SetPreventUpload()
+{
+	uploadSprites = false;
+}
+
+
+
 // Thread entry point.
 void SpriteQueue::operator()()
 {
@@ -198,7 +206,7 @@ void SpriteQueue::DoLoad(unique_lock<mutex> &lock)
 		lock.unlock();
 
 		readCondition.notify_one();
-		imageSet->Upload(SpriteSet::Modify(imageSet->Name()));
+		imageSet->Upload(SpriteSet::Modify(imageSet->Name()), uploadSprites);
 
 		lock.lock();
 		++completed;
