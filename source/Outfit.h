@@ -129,7 +129,7 @@ private:
 	std::vector<std::string> licenses;
 
 	Dictionary attributes;
-	Weapon weapon{};
+	Weapon weapon;
 	std::pair<const Outfit*, int> ammo;
 
 	// The integers in these pairs/maps indicate the number of
