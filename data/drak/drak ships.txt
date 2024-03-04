@@ -116,9 +116,11 @@ ship "Archon" "Archon (Cloaked)"
 	"final explode" "archon c teleport"
 
 ship "Archon" "Archon (Hyperdrive Only)"
-	"never disabled"
 	sprite "ship/archon b"
 		"frame rate" 0.87
+	"never disabled"
+	add attributes
+		"cloak" .04
 	"final explode" "archon b teleport"
 	outfits
 		"Drak Antimatter Cannon"

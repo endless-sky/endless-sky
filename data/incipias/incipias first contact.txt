@@ -16,14 +16,60 @@ mission "Incipias: Guardian of Incipias Space"
 	landing
 	repeat
 	to offer
-		not "The Silent Ones: active"
+		not "Incipias: Guardian of Incipias Space: active"
 	to complete
 		never
 	npc save
-		government Drak
+		government "Drak (Incipias)"
 		personality heroic vindictive frugal forbearing
 		system Il'le
-		ship "Archon" "Guardian of Spring"
+		ship "Archon (Hyperdrive Only)" "Guardian of Spring"
+
+mission "Incipias: Warning of the Guardian"
+	invisible
+	landing
+	to complete
+		never
+	on enter Il'le
+		conversation
+			`A presence sweeps over you leaving behind a sense of otherworldly power. A voice starts reverberate in your mind, "You have entered space that is not meant for humans, leave!"`
+			`	A quick look on your scanner tells you that only a few indigenous lifeforms are in the system.`
+			choice
+				`	"Who are you?"`
+					goto who
+				`	"I am just a traveler please let me pass."`
+					goto reasonable
+				`	"You have no right to command me."`
+			`	You suddenly get the feeling of your ship starting to shake, the stars in your window start to emit an unatural bright blue glow blinding you. "You better not challenge me human. There are powers in space your kind wont understand for millenias, arrogance will lead to your downfall."`
+			`	The unnatural feeling fades and your senses return to normal.`
+			choice
+				`	"Apologies, I never experienced something like this before."`
+					goto reasonable
+				`	"What the hell was that, die!"`
+			`	Crushing pressure overcomes you like a wave, "This is your last chance human, reconsider your choice."`
+			choice
+				`	"Apologies, I never experienced something like this before."`
+					goto reasonable
+				`	"Nobody messes with me!"`
+			action
+				"reputation: Drak (Incipias)" -= 10
+			`	"It seems like hope is lost on you!" The voice now echoes through your whole ship amplifying with each moment. A bolt of light appears in front of you as a creature appears in front of your ship.`
+				decline
+			label who
+			`	The voice sounds again with hint of determination in it, "I am the guardian of this region, here to keep anyone from harming a young species. I will stay here until they have grown to true greatness..."`
+			`	The voice pauses and continues more silently "...or until their downfall. Hence why I would prefer you to turn around, human."`
+			choice
+				`	"I promise I mean no harm."`
+					goto reasonable
+				`	"Can I not be a good influence?"`
+			`	"A cooperation between species is not unheard of, but the opposite is the more common fate for such a relation. I understand your goodwill and I do not want to destroy it." The voice disappears for a moment.`
+			`	"Well human it seems like I can not move you to leave this space, I will not keep you from passing through, but I will keep an eye on you."`
+				goto end
+			label reasonable
+			`	"Your confusion is understandable," the voice says with an annoyed tone, "your kind always wanted to expand. I will let you pass but be aware that I am watching you and should you come to any stupid idea I will end your wrong doing."`
+			label end
+			`	The presence fades leaving no sign of it ever talking to you.`
+				decline
 
 mission "Incipias: First Contact I"
 	invisible
@@ -117,4 +163,3 @@ mission "Incipias: The derelict"
 	on enter "Hui'uc"
 		conversation
 			`On entering the system you find an alien spaceship disabled and badly damaged. You remember your training as a captain when your teacher told you about something about a codex of captains, "A captain never leaves a ship in need behind."`
-

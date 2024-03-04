@@ -221,6 +221,16 @@ government "Drak (Hostile)"
 	"attitude toward"
 		"Indigenous Lifeform" 1
 
+government "Drak (Incipias)"
+	swizzle 0
+	color 1 1 1
+	"player reputation" 1
+	"fine" 0
+	"attitude toward"
+		"Hicemus" 1
+		"Conlatio" 1
+		"Incipias Civilian" 1
+
 government "Elenctic Commune"
 	swizzle 0
 	color "governments: Neutral"
