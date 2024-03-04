@@ -29,7 +29,7 @@ ship "Venta"
 		"drag" 6.
 		"heat dissipation" .7
 		"cargo space" 20
-		"outfit space" 520
+		"outfit space" 552
 		"weapon capacity" 240
 		"engine capacity" 130
 		"gaslining" 1
@@ -185,8 +185,8 @@ ship "Nimbo Cirrus"
 		"drag" 7
 		"heat dissipation" .75
 		"cargo space" 200
-		"outfit space" 100
-		"engine capacity" 50
+		"outfit space" 140
+		"engine capacity" 60
 		"gaslining" 1
 		"fuel capacity" 200
 	outfits
@@ -219,8 +219,8 @@ ship "Gero"
 		"drag" 6.5
 		"heat dissipation" .75
 		"cargo space" 20
-		"outfit space" 100
-		"engine capacity" 50
+		"outfit space" 138
+		"engine capacity" 54
 		"gaslining" 1
 		"fuel capacity" 200
 	outfits
