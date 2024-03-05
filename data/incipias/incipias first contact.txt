@@ -180,7 +180,7 @@ mission "Help the stranded: part 1"
 	landing
 	source
 		government "Quarg (Incipias)"
-	destination Dom'us
+	destination "Pon'tes"
 	to offer
 		has "incipias: helped the derelict"
 	on offer
@@ -194,7 +194,7 @@ mission "Help the stranded: part 2"
 	landing
 	source
 		planet Turra
-	destination Dom'us
+	destination "Pon'tes"
 	to offer
 		has "Help the stranded: part 1: completed"
 	on offer
