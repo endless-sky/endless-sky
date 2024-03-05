@@ -2327,7 +2327,7 @@ message
 		"You find "
 	word
 		"a lone pirate prodding the ship with rudimentary tools. "
-		"a few pirates watching but not apparently touching it. "
+		"there are a few pirates watching but not apparently touching it. "
 		"no-one there. The area around your ship is almost suspiciously devoid of people. "
 	word
 		"Whatever is going on, your ship appears unscathed."
@@ -2339,7 +2339,7 @@ name
 	"Repairs"
 message
 	word
-		"Watching the micro-gravity section of the spaceport from the bar, you "
+		"Watching the microgravity section of the spaceport from the bar, you "
 	word
 		"observe "
 		"notice "
@@ -2396,11 +2396,6 @@ message
 		"All "
 	word
 		"of them are armed, but it's their other equipment that stands out; paint, plaster, and ladders. They "
-	word
-		"aren't disrupting traffic "
-		"are leaving port traffic be "
-	word
-		"as they "
 	word
 		"scale the rear wall toward the giant crest of the local government and "
 		"walk along the walls, stopping at each local government crest and% "
