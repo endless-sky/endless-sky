@@ -2223,7 +2223,7 @@ phrase "Careless Ends Well"
 	word
 		"turns around to reenter the ship"
 	word
-		" as it's struck by a wave, nudging it off the platform. The captain then moves the ship to a lowerable pad."
+		" as it's struck by a wave, nudging it close to the edge of the platform. The captain then moves the ship to a lowerable pad."
 		", moving it to a lowerable pad before it could be caught by a wave."
 
 phrase "Careless Ends Poorly"
@@ -2353,11 +2353,11 @@ message
 	word
 		"returning from a raid, "
 	word
-		"potmarked with laser burns but with no apparent serious damage. "
+		"pockmarked with laser burns but with no apparent serious damage. "
 		"battered with thousands of small perforations. Somebody's turned a mainstay of the pirate arsenal, Gatling guns, back on them. "
 		"with substantial sections of hull heavily battered or missing altogether. Fair guess they didn't have enough anti-missile. "
 	word
-		"As it comes to a stop in the maintenance bay engineering shuttles begin "
+		"As it comes to a stop in the maintenance bay, engineering shuttles begin "
 	word
 		"buzzing "
 		"fluttering "
@@ -2402,10 +2402,10 @@ message
 	word
 		"as they "
 	word
-		"scale the rear wall toward the giant crest of the local government "
-		"walk along the walls stopping at each local government crest% "
+		"scale the rear wall toward the giant crest of the local government and "
+		"walk along the walls, stopping at each local government crest and% "
 	word
-		"they replace the crest, then take down their ladders and leave."
+		"replace the crest, then take down their ladders and leave."
 	word
 		"Spaceport security "
 	word
@@ -2413,7 +2413,7 @@ message
 		"watched but kept their distance."
 		"pointedly ignored it as it happened."
 	replace
-		"% they replace the " "they replace each "
+		"% they replace the crest" "replace them"
 		"%" ""
 
 news "Betelgeuse Stolen Ship Advisory"
