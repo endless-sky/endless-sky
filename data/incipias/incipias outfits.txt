@@ -112,8 +112,8 @@ outfit "Star Tail"
 		
 		# To make the AI fire even if the ship is not directly in front.
 		"homing" 1
-		"optical tracking" 1
-		"turn" 3
+		"radar tracking" 1
+		"turn" 0.5
 
 		ammo "Star Tail Cell"
 		"submunition" "Star Tail Projectile" 1
