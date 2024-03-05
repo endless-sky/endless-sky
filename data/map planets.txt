@@ -251,7 +251,7 @@ planet "Ashy Reach"
 
 planet Asphodel
 	attributes uninhabited
-	landscape land/badlands3
+	landscape land/haze0
 	description `Despite being nominally in the habitable zone, this planet's surface is continually scorched by the stars of Gacrux and their solar flares, steadily blasting away its atmosphere. A joint venture of three major universities from Chiron has placed some small research stations in orbit around Asphodel, and while they provide valuable insights into the nature and behavior of flare stars, the researchers generally avoid descending to the planet's surface unnecessarily. None of the stations appear to have the facilities to service your ship, however.`
 	government Uninhabited
 
@@ -263,7 +263,7 @@ planet Aspiration
 
 planet Asterus
 	attributes moon uninhabited
-	landscape land/enceladus_2
+	landscape land/snow23
 	description `The seas beneath the frozen surface of this ice moon are home to a thriving ecosystem full of species entirely unlike any observed on other, more habitable worlds. The best known of these is a species of large fish-like creatures with flowing bioluminescent fins that glow in ethereal pinks and purples, the beauty of which prompted many citizens of the Paradise Worlds to demand that Parliament designate the entire moon as a nature preserve in the 2900s.`
 	government Uninhabited
 
@@ -2926,7 +2926,7 @@ planet Nepheritis
 
 planet Neriene
 	attributes uninhabited
-	landscape land/canyon03
+	landscape land/haze1
 	description `While lacking its iconic ferrous-red color, this planet is almost eerily similar in conditions to the second planet humanity set foot on, Mars. The thin atmosphere of carbon dioxide, the polar ice caps, and the echoes of dried waterways across the surface all tell the tragic tale of the same fate that befell Mars in aeons past.`
 	description `	Even though humanity eventually triumphed over the adverse conditions and made a home on the Red Planet, this near-identical world has been left totally barren, a mere afterthought in the now interstellar human civilization.`
 	government Uninhabited
@@ -3082,7 +3082,7 @@ planet "New Kansas"
 
 planet "New Kola"
 	attributes uninhabited
-	landscape land/badlands7
+	landscape land/haze2
 	description `At a distance, New Kola appears to be a gas giant; yet upon approach you notice that the thick, dense atmosphere obscures the rocky surface of a huge super-earth. Even if it were made of breathable gases, the pressure at the surface is beyond what humans can tolerate - only at the peaks of the highest mountains can you safely step outside wearing only a breathing apparatus, and even then the crushing gravity would cause serious problems if you stayed for long.`
 	government Uninhabited
 
