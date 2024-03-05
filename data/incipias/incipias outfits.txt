@@ -96,6 +96,8 @@ outfit "Star Tail"
 	"gun ports" -1
 	thumbnail "outfit/star tail launcher"
 	"star tail capacity" 20
+	licenses
+		"Hicemus Conflict"
 	weapon
 		sprite "projectile/star tail upload"
 			"frame rate" 7
@@ -117,6 +119,8 @@ outfit "Star Tail"
 
 		ammo "Star Tail Cell"
 		"submunition" "Star Tail Projectile" 1
+	description "Little to no information about this weapon has ever reached the public. Rumors are that it shoots highly volatile plasma chunks."
+	description "Those who experienced the use of this weapon tell that the projectiles changed direction mid flight following their targets to deliver inevitable doom."
 
 outfit "Star Tail Projectile"
 	weapon
@@ -133,7 +137,7 @@ outfit "Star Tail Projectile"
 		"hull damage" 430
 		"homing" 1
 		"optical tracking" 1
-		"turn" 3
+		"turn" .5
 
 effect "star tail hit"
 	sprite "effect/star tail hit"
@@ -156,6 +160,8 @@ outfit "Star Tail Cell"
 	thumbnail "outfit/star tail cell"
 	"mass" .1
 	"star tail capacity" -1
+	licenses
+		"Hicemus Conflict"
 	description "A very dense gas contained in a small cell. The amounts of energy it can free are exceptional."
 
 outfit "Star Tail Storage"
@@ -164,6 +170,8 @@ outfit "Star Tail Storage"
 	thumbnail "outfit/star tail cell"
 	"mass" 10
 	"star tail capacity" 20
+	licenses
+		"Hicemus Conflict"
 	description "One layer of this easily expandable system is already shipped with the gun itself. More layers are just stacked on top."
 
 # Shields/Energy:
