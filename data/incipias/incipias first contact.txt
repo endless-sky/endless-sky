@@ -32,7 +32,7 @@ mission "Incipias: Warning of the Guardian"
 		never
 	on enter Il'le
 		conversation
-			`A presence sweeps over you leaving behind a sense of otherworldly power. A voice starts reverberate in your mind, "You have entered space that is not meant for humans, leave!"`
+			`A presence sweeps over you leaving behind a sense of otherworldly power. A voice starts to reverberate in your mind, "You have entered space that is not meant for humans, leave!"`
 			`	A quick look on your scanner tells you that only a few indigenous lifeforms are in the system.`
 			choice
 				`	"Who are you?"`
@@ -40,7 +40,7 @@ mission "Incipias: Warning of the Guardian"
 				`	"I am just a traveler please let me pass."`
 					goto reasonable
 				`	"You have no right to command me."`
-			`	You suddenly get the feeling of your ship starting to shake, the stars in your window start to emit an unatural bright blue glow blinding you. "You better not challenge me human. There are powers in space your kind wont understand for millenias, arrogance will lead to your downfall."`
+			`	You suddenly get the feeling of your ship starting to shake, the stars in your window start to emit an unatural bright blue light, blinding you. "You better not challenge me human. There are powers in space your kind wont understand for millenias, arrogance will lead to your downfall."`
 			`	The unnatural feeling fades and your senses return to normal.`
 			choice
 				`	"Apologies, I never experienced something like this before."`
@@ -53,6 +53,7 @@ mission "Incipias: Warning of the Guardian"
 				`	"Nobody messes with me!"`
 			action
 				"reputation: Drak (Incipias)" -= 10
+			`	You fire a shot on one of the lifeforms.`
 			`	"It seems like hope is lost on you!" The voice now echoes through your whole ship amplifying with each moment. A bolt of light appears in front of you as a creature appears in front of your ship.`
 				decline
 			label who
@@ -77,9 +78,15 @@ mission "Incipias: First Contact I"
 	to complete
 		never
 	on enter Dom'us
-		set "saw the Incipias"
 		conversation
 			`As you enter the system, you notice ships of a type you have never seen before. Hailing them only gives you static. After some more unsuccessful attempts, you give up. Maybe you can find some more information in nearby systems.`
+				to display
+					not "Incipias: Meet the Quarg: offered"
+			`As you enter the system, you notice ships of a type you have never seen before. Hailing them only gives you static. After some more unsuccessful attempts, you give up. This must be the species the Quarg talked about.`
+				to display
+					has "Incipias: Meet the Quarg: offered"
+
+
 
 mission "Incipias: Meet the Quarg"
 	invisible
@@ -115,6 +122,7 @@ mission "Incipias: Meet the Quarg"
 			`	After a short pause it continues talking, "Your presence here our kind accepts, although not very happy we are. Allowed to travel here you are, but conditions there are. Not too far from here another kind just starts growing, great plans for them our leaders have. Do not interrupt them, hostile actions against them we will revenge."`
 			`	With these words the Quarg turns around and leaves. It seems like you are free to use the local facilities now.`
 
+# Maybe add a version of the ships sprite that looks damaged/modded.
 ship "Nimbus" "Nimbus FTL"
 	add attributes
 		"bunks" -25
@@ -131,11 +139,13 @@ mission "Incipias: The derelict"
 	invisible
 	to offer
 		has "Incipias: Meet the Quarg: offered"
-	npc board
+	npc assist
 		government "Hicemus"
 		ship "Nimbus FTL" "HIC Veni #000001"
 		system "Hui'uc"
-		on board
+		to despawn
+			has "incipias: helped the derelict"
+		on assist
 			conversation
 				`When you approach the ship you get hailed and as you accept the hail color gradients start moving over your screen but your speakers stay silent. It seems like communication over these channels is doomed to fail, you continue your boarding maneuver.`
 				scene "scene/incipias message"
@@ -156,10 +166,40 @@ mission "Incipias: The derelict"
 				`	As the tension starts raising even further, you just drop the repair equipment and run back into your ship, you smash the button that closes the lock. You get a last look on the alien, blue and yellow tones are mixing on their skin, but they are not taking any action.`
 				label end
 				`	Apparently they figured how to use the repair equipment, as you fly away the engines of the ship are booting back up.`
-				`	Back on the bridge your eyes fall on the scanner log that is still open on your screen, notably this ship had no Hyperdrive or anything similar installed, how strange considering there is no inhabitated planet in this system.`
+				`	Back on the bridge your eyes fall on the scanner log that is still open on your screen, notably this ship had no Hyperdrive or anything similar installed, how strange considering there is no inhabitated planet in this system. Maybe you should talk to the Quarg and see if they can help.`
+				action
+					set "incipias: helped the derelict"
 		personality
 			confusion 50
-			derelict uninterested
+			derelict uninterested staying
 	on enter "Hui'uc"
 		conversation
 			`On entering the system you find an alien spaceship disabled and badly damaged. You remember your training as a captain when your teacher told you about something about a codex of captains, "A captain never leaves a ship in need behind."`
+
+mission "Help the stranded: part 1"
+	landing
+	source
+		government "Quarg (Incipias)"
+	destination Dom'us
+	to offer
+		has "incipias: helped the derelict"
+	on offer
+		conversation
+			`talk about the derelict, quarg lend you a translator`
+	on enter Dom'us
+		conversation
+			`you communicate with them for the first time, explain situation, they let you land and allow you to purchase one of their ship to retrieve the stranded ones.`
+
+mission "Help the stranded: part 2"
+	landing
+	source
+		planet Turra
+	destination Dom'us
+	to offer
+		has "Help the stranded: part 1: completed"
+	on offer
+		conversation
+			`you get the stranded ones on your ship`
+	on complete
+		conversation
+			`the incipias thank you, you made first contact`
