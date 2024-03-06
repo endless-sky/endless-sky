@@ -281,16 +281,16 @@ mission "Incipias: Help the stranded Part 2"
 		has "Incipias: Help the stranded Part 1: done"
 	on offer
 		conversation
-			`Your ship dives into the clouds of the gas giant an evironment of a scale you never experienced before giant clouds tower like castles. Sometimes the clouds open to giant caverns. Whirlwinds brush through the atmosphere like pillars holding the sky. Even though the winds are brutal your ship glides through them as if they had no effect at all.`
+			`Your ship dives into the clouds of the gas giant an environment of a scale you never experienced before giant clouds tower like castles. Sometimes the clouds open to giant caverns. Whirlwinds brush through the atmosphere like pillars holding the sky. Even though the winds are brutal your ship glides through them as if they had no effect at all.`
 			`	You activate your scanners looking for the stranded ship. Soon a small blip appears on your screen. You maneuver your ship to that point. The stranded ship looks even worse than the first time the storms seem to have damaged some of the hull. The shields must have broken when they ran out of fuel.`
-			`	As you hail them you recieve no answer, your scanners indicate that it ran out of energy.`
+			`	As you hail them you receive no answer, your scanners indicate that it ran out of energy.`
 			`	Through a complex maneuver you are able to dock their ship.`
 			`	When the lock opens five Incipias float in front of you, as they notice you they quickly back of, they were not expecting a human in one of their kind's ships. But then they seem to recognize you.`
 			choice
 				`	"Hello, I have come to save you."`
 				`	"I have been send by your people to get you home."`
 			`	They seem to switch from a tense state to a surprised one.`
-			`	One of them starts pulsating, "You [speak, light] our language? How [surpising, good]. We would not have survived [much longer, a single day] here. You are our savior. We would love to talk more, but a [storm, calamity] is coming, we should leave now."`
+			`	One of them starts pulsating, "You [speak, light] our language? How [surprising, good]. We would not have survived [much longer, a single day] here. You are our savior. We would love to talk more, but a [storm, calamity] is coming, we should leave now."`
 			`	You tell them to come aboard and launch away from the planet.`
 				accept
 	on complete
@@ -298,7 +298,7 @@ mission "Incipias: Help the stranded Part 2"
 			`When you land on the station your passengers thank you again and leave, probably to get some well deemed rest.`
 			`	As you step out of the an Incipias approaches you, "Follow me [stranger, helper] before a crowd gathers, we would like to talk."`
 			`	It guides you through the hallways avoiding larger groups, luckily it only chooses horizontal corridors. You arrive in a large room with a view over the entire station. Three Incipias are already in the room. One starts glowing.`
-			`	"Welcome, we are the leaders of the Hicemus the [reigning, most powerfu] goverment of the Incipias. If you agree we would like to ask you a few questions. In return we would be open for questions too."`
+			`	"Welcome, we are the leaders of the Hicemus the [reigning, most powerfu] government of the Incipias. If you agree we would like to ask you a few questions. In return we would be open for questions too."`
 			choice
 				`	"Sorry but I have other stuff to do."`
 					goto endNoTime
@@ -324,7 +324,7 @@ mission "Incipias: Help the stranded Part 2"
 				`	"Why do you call this station your capital?"`
 					goto capital
 				`	"Why can I not land on your home planet?"`
-			`	A flash of red appears for only a second, "Our [old home, origin] is not directly ruled by us, they may approach you separately at some point in the future, be [careful, disgusted] of their lights. They have outdated values long layed of by us, who are progressing fast.`
+			`	A flash of red appears for only a second, "Our [old home, origin] is not directly ruled by us, they may approach you separately at some point in the future, be [careful, disgusted] of their lights. They have outdated values long laid of by us, who are progressing fast.`
 				goto choice
 			label capital
 			`	The one pulsating now takes on a bright green color, "This station is our greatest achievement it is our [gate way, bridge] to the stars. In honor of our urge to [expand, explore] we made this station our capital to demonstrate the determination."`
