@@ -3456,7 +3456,7 @@ planet Poisonwood
 planet "Pon'tes"
 	government "Hicemus"
 	landscape land/station16
-	"required reputation" 1.0
+	"required reputation" 10
 	outfitter "Hicemus"
 	shipyard "Hicemus"
 	description "Pon'tes is uncomfortable, even by the standards of a station. As the Incipias are able to propel themselves through the air, there are no handles or surfaces for you to grip onto. The simulated gravity caused by the rotation of the station is not helping."
@@ -3560,7 +3560,7 @@ planet Rand
 planet "Redias"
 	landscape land/redias
 	attributes "requires: gaslining"
-	"required reputation" 1
+	"required reputation" 10
 	description "The home planet of the Incipias is reigned over by powerful storms. Lightning and thunder appear without pause and a powerful wind moves the clouds at a disorienting speed."
 	description "The Incipias have adjusted perfectly to this harsh environment. Their cities are built like them: large balloon-like structures which hold spheres of buildings in the air. The Incipias themselves can move freely through the atmosphere, so the cities have no roads. To travel larger distances, they use gliders that can fly against the powerful winds."
 	spaceport "Because of the size of their homeworld the Incipias built not one but four spaceports. These spaceports are the only platforms with fixed positions. They were built in heights where the storms are not so strong, but they still need a lot of energy to be held in place."

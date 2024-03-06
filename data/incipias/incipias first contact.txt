@@ -185,10 +185,79 @@ mission "Help the stranded: part 1"
 		has "incipias: helped the derelict"
 	on offer
 		conversation
-			`talk about the derelict, quarg lend you a translator`
+			`Right after you arrived on the planet you immedeatly go looking for a Quarg official to tell about the stranded ship. Luckily it does not take long before you find one.`
+			`	"Human, in quite a haste you seem to be. What the so pressing matter could be?" It asks as it clearly recognizes that you are a bit out of breath.`
+			choice
+				`	Explain the situation.`
+					goto explanation
+				`	"I need advice regarding the species in this region."`
+			`	It looks at you curiosly, "So you met them? I am suprised that you were able to communicate, it took a very long time even for us to decipher their way of communication."`
+			`	You quickly explain what happened and the Quarg seens very reliefed about the fact that you were not able to talk to them, it probably was a big achievement for them.`
+			label explanation
+			`	"A most peculiar situation you ran into, should not be able to cross the borders of their system yet this species..." It tilts it head for a moment considering what you just said. "To help them I would love, but no ships we have that on gas giants can land and too early it is for us to reveal ourselves to them, I fear nothing there is we can do." It shakes its head.`
+			choice
+				`	"Then let me help them."`
+					goto initiative
+				`	"How can you make such a cold hearted decision?"`
+			`	"This difficult for you to understand might be, but the greater good over the sole life I have to place. If ourselves show to them now by the shock of such and advanced species existing will be created chaos."`
+			choice
+				`	"Then let me help them."`
+					goto initiative
+				`	"You can deal with the consequences later, help them now!"`
+			`	"Insisting you sure are human, understand I can your point but intervention by us out of question it is. But a proposal for you I have, to you, a solo captain the means to help I will grant, of course some conditions there are."`
+			choice
+				`	"Sure let me do the work."`
+				`	"If you are too weak..."`
+			`	Something like a giggle comes from the Quarg, before continuing.`
+			label initiative
+			`	"Your initiative most welcome is human, but not the tools for such a mission you have. To my knowledge no vessels capable of landing on gas giants ever developed by your kind. And as said you, not capable of communicating with them you are."`
+			`	"But help you I can at one point, communication that is. I can provide you with a single one of our translators, which will allow you to contact the species in their homesystem. To sell you one of their ships ask to them, easy it wont be."`
+			`	It pauses before getting very serious, "but remember one thing you have to, do not to give them any advanced technology of yours. If you agree to that point help you we shall."`
+			choice
+				`	"If that is how I can help them."`
+					goto yes
+				`	"Yes, but why do you want me not to sell my tech?"`
+			`	"Interupting the natural grow of a species not predictable the consequences are even letting you contact them a great risk is. But that one willing to take I am for the lifes of these souls."`
+			label yes
+			`	"Happy I am  that you agree to that condition. Please for a moment wait here," it says and hurrilly walks away.`
+			`	It only takes it a moment to get back carrying a sleek silver box with a display on one side.`
+			`	"Our translator this is. Into your language it can translate thanks to our database. Be aware of the honour of me handing this you," it says reaching it to you.`
+			`	As you stow it away it explains how to use it. "Oh and captain one last thing, the complexety of their language even we can not express, the translator might not be able to translate some parts directly, when it happens you will notice."`
+			`	The quarg wishes you best of luck and leaves you alone. Time to head to Dom'us.`
+				accept
 	on enter Dom'us
+		"reputation: Hicemus" += 10
 		conversation
-			`you communicate with them for the first time, explain situation, they let you land and allow you to purchase one of their ship to retrieve the stranded ones.`
+			`Entering the system with the translator, you prepare to broadcast your first message.`
+			choice
+				`	"Hello I am the captain <first> <last> here to make contact."`
+				`	"Greetings strangers I seek to help you."`
+				# silly option will probably remove it but for now it is just funny
+				`	"Howdy aliens, I come in peace.`
+			`	For a minute, nothing happens at all, it seems like a communication went off.`
+			`	But then a motion goes through all ships in the system and then a channel opens from the space station. Colors rush over your display a mix of yellow and green, you point the translator on the display as the Quarg told you.`
+			`	"Welcome [stranger, danger] we greet you in [this space, our home]."`
+			`	The colors stop before rushing over your screen again.`
+			`	"What is your [intention, purpose] here?"`
+			choice
+				`	"I am here to make peaceful contact with you."`
+				`	"I want to help stranded ones of your kind."`
+			`	Again a long pause. "Your intentions are [kind, noble]. Please dock to [our station, our capital]."`
+			`	Along the message comes a small plan of the station with the docking ports highlighted.`
+	on complete
+		conversation
+			`Thanks to the plans you are easily able to dock the station. Your lock opens and you enter an environment like nothing you ever saw before. There are no visible pathways but foggy hallways some even going up vertical. A crowd of these beings gathered in front of your lock each pulsating in a multitude of colors. A group of five floats in front of the crowd, the middle one starts communicating with you pulsating in calm colors.`
+			`	"Welcome [otherwordly being, standing one] we are the Incipias, welcome to [our home, our capital]."`
+			`	It stops as if awaiting an answer.`
+			choice
+				` 	"Greetings Incipias I am a human."`
+				`	"I thank you for your hospitality."`
+			`	A movement goes through the crowd colors now going through them like waves.`
+			`	The speaker (or would you call him painter?) continues, "You are the first other being that ever [communicated, made friends]. Are you the only [danger, other being] out there?"`
+			choice
+				`	"No there are others too."`
+				`	"The galaxy is full of other beings."`
+			`	Another wave goes through the crowd.`
 
 mission "Help the stranded: part 2"
 	landing
