@@ -1107,6 +1107,7 @@ phrase "friendly civilian"
 		"Some"
 		"A couple"
 		"A few"
+		"A bunch"
 	word
 		" of my "
 	word
@@ -1118,22 +1119,22 @@ phrase "friendly civilian"
 	word
 		" "
 	word
-		"decided to eat asparagus"
-		"thought it would be a good idea to have a meal of garlic"
-		"made the bad choice of having a serving of beans"
+		"decided to eat some undeclared asparagus they brought with them"
+		"seemed to eat nothing but meals with garlic"
+		"must have been on a strict diet of beans"
 		"threw up after we exited hyperspace"
 		"puked up their dinner once we got into hyperspace"
 		"couldn't keep the contents of their stomach inside them"
+		"made a big mess in their rooms"
 	word
-		" "
+		" while I had them on my ship"
+		" while they stayed on my ship"
+		" and wouldn't admit to it"
+		" and tried to blame it on my crew"
+		" and tried to get out of cleaning it up"
+		"" 5
 	word
-		"in my cargo hold."
-		"in their room."
-		"in my ship."
-		"in the airlock."
-		"in the ship's canteen."
-	word
-		" "
+		". "
 	word
 		"I'm gonna leave them at the closest inhabited planet"
 		"I'm happy they're leaving on the next stop"
