@@ -219,7 +219,7 @@ mission "Incipias: Help the stranded Part 1"
 				`	"Yes, but why do you want me not to sell my tech?"`
 			`	"Interrupting the natural grow of a species not predictable the consequences are even letting you contact them a great risk is. But that one willing to take I am for the lives of these souls."`
 			label yes
-			`	"Happy I am  that you agree to that condition. Please for a moment wait here," it says and hurrilly walks away.`
+			`	"Happy I am that you agree to that condition. Please for a moment wait here," it says and hurrilly walks away.`
 			`	It only takes it a moment to get back carrying a sleek silver box with a display on one side.`
 			`	"Our translator this is. Into your language it can translate thanks to our database. Be aware of the honor of me handing this you," it says reaching it to you.`
 			`	As you stow it away it explains how to use it. "Oh and captain one last thing, the complexety of their language even we can not express, the translator might not be able to translate some parts directly, when it happens you will notice."`
@@ -250,7 +250,7 @@ mission "Incipias: Help the stranded Part 1"
 			`	"Welcome [otherworldly being, standing one] we are the Incipias, welcome to [our home, our capital]."`
 			`	It stops as if awaiting an answer.`
 			choice
-				` 	"Greetings Incipias I am a human."`
+				`	"Greetings Incipias I am a human."`
 				`	"I thank you for your hospitality."`
 			`	A movement goes through the crowd colors now going through them like waves.`
 			`	The speaker (or would you call him painter?) continues, "You are the first other being that ever [communicated, made friends]. Are you the only [danger, other being] out there?"`
