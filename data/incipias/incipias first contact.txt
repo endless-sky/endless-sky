@@ -176,7 +176,7 @@ mission "Incipias: The derelict"
 		conversation
 			`On entering the system you find an alien spaceship disabled and badly damaged. You remember your training as a captain when your teacher told you about something about a codex of captains, "A captain never leaves a ship in need behind."`
 
-mission "Help the stranded: part 1"
+mission "Incipias: Help the stranded Part 1"
 	landing
 	source
 		government "Quarg (Incipias)"
@@ -230,7 +230,7 @@ mission "Help the stranded: part 1"
 		conversation
 			`Entering the system with the translator, you prepare to broadcast your first message.`
 			choice
-				`	"Hello I am the captain <first> <last> here to make contact."`
+				`	"Hello I am captain <first> <last> here to make contact."`
 				`	"Greetings strangers I seek to help you."`
 				# silly option will probably remove it but for now it is just funny
 				`	"Howdy aliens, I come in peace.`
@@ -271,14 +271,14 @@ mission "Help the stranded: part 1"
 			`	The five float away but the crowd stays looking at you, probably out of interest.`
 			`	You should get yourself a ship and install a hyperdrive on it to save the stranded ones in the Hui'uc system.`
 
-mission "Help the stranded: part 2"
+mission "Incipias: Help the stranded Part 2"
 	landing
 	passengers 5
 	source
 		planet Turra
 	destination "Pon'tes"
 	to offer
-		has "Help the stranded: part 1: completed"
+		has "Incipias: Help the stranded Part 1: done"
 	on offer
 		conversation
 			`Your ship dives into the clouds of the gas giant an evironment of a scale you never experienced before giant clouds tower like castles. Sometimes the clouds open to giant caverns. Whirlwinds brush through the atmosphere like pillars holding the sky. Even though the winds are brutal your ship glides through them as if they had no effect at all.`
@@ -292,6 +292,7 @@ mission "Help the stranded: part 2"
 			`	They seem to switch from a tense state to a surprised one.`
 			`	One of them starts pulsating, "You [speak, light] our language? How [surpising, good]. We would not have survived [much longer, a single day] here. You are our savior. We would love to talk more, but a [storm, calamity] is coming, we should leave now."`
 			`	You tell them to come aboard and launch away from the planet.`
+				accept
 	on complete
 		conversation
 			`When you land on the station your passengers thank you again and leave, probably to get some well deemed rest.`

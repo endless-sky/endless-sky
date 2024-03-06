@@ -147,7 +147,7 @@ ship "Nimbo Stratus"
 		"drag" 7
 		"heat dissipation" .8
 		"cargo space" 50
-		"outfit space" 250
+		"outfit space" 270
 		"weapon capacity" 50
 		"engine capacity" 60
 		"gaslining" 1
@@ -185,7 +185,7 @@ ship "Nimbo Cirrus"
 		"drag" 7
 		"heat dissipation" .75
 		"cargo space" 200
-		"outfit space" 140
+		"outfit space" 160
 		"engine capacity" 60
 		"gaslining" 1
 		"fuel capacity" 200
@@ -219,7 +219,7 @@ ship "Gero"
 		"drag" 6.5
 		"heat dissipation" .75
 		"cargo space" 20
-		"outfit space" 138
+		"outfit space" 158
 		"engine capacity" 54
 		"gaslining" 1
 		"fuel capacity" 200

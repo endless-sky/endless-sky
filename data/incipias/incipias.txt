@@ -205,7 +205,7 @@ fleet "Incipias Standard Trade"
 
 outfitter "Hicemus"
 	"Plasma Discharger"
-	"Tractor Beam"
+	"Stagnation Beam"
 	"Gas-Class Shield"
 	"Liquid-Class Shield"
 	"Liquid Hydrogen Cell"
@@ -222,6 +222,7 @@ shipyard "Hicemus"
 	"Nimbo Cirrus"
 	"Nimbo Stratus"
 	"Nimbus"
+	"Gerro"
 
 news "Incipias common"
 	location
