@@ -191,8 +191,8 @@ mission "Help the stranded: part 1"
 				`	Explain the situation.`
 					goto explanation
 				`	"I need advice regarding the species in this region."`
-			`	It looks at you curiosly, "So you met them? I am suprised that you were able to communicate, it took a very long time even for us to decipher their way of communication."`
-			`	You quickly explain what happened and the Quarg seens very reliefed about the fact that you were not able to talk to them, it probably was a big achievement for them.`
+			`	It looks at you curiously, "So you met them? I am surprised that you were able to communicate, it took a very long time even for us to decipher their way of communication."`
+			`	You quickly explain what happened and the Quarg seens very relieved about the fact that you were not able to talk to them, it probably was a big achievement for them.`
 			label explanation
 			`	"A most peculiar situation you ran into, should not be able to cross the borders of their system yet this species..." It tilts it head for a moment considering what you just said. "To help them I would love, but no ships we have that on gas giants can land and too early it is for us to reveal ourselves to them, I fear nothing there is we can do." It shakes its head.`
 			choice
@@ -217,11 +217,11 @@ mission "Help the stranded: part 1"
 				`	"If that is how I can help them."`
 					goto yes
 				`	"Yes, but why do you want me not to sell my tech?"`
-			`	"Interupting the natural grow of a species not predictable the consequences are even letting you contact them a great risk is. But that one willing to take I am for the lifes of these souls."`
+			`	"Interrupting the natural grow of a species not predictable the consequences are even letting you contact them a great risk is. But that one willing to take I am for the lives of these souls."`
 			label yes
 			`	"Happy I am  that you agree to that condition. Please for a moment wait here," it says and hurrilly walks away.`
 			`	It only takes it a moment to get back carrying a sleek silver box with a display on one side.`
-			`	"Our translator this is. Into your language it can translate thanks to our database. Be aware of the honour of me handing this you," it says reaching it to you.`
+			`	"Our translator this is. Into your language it can translate thanks to our database. Be aware of the honor of me handing this you," it says reaching it to you.`
 			`	As you stow it away it explains how to use it. "Oh and captain one last thing, the complexety of their language even we can not express, the translator might not be able to translate some parts directly, when it happens you will notice."`
 			`	The quarg wishes you best of luck and leaves you alone. Time to head to Dom'us.`
 				accept
@@ -247,7 +247,7 @@ mission "Help the stranded: part 1"
 	on complete
 		conversation
 			`Thanks to the plans you are easily able to dock the station. Your lock opens and you enter an environment like nothing you ever saw before. There are no visible pathways but foggy hallways some even going up vertical. A crowd of these beings gathered in front of your lock each pulsating in a multitude of colors. A group of five floats in front of the crowd, the middle one starts communicating with you pulsating in calm colors.`
-			`	"Welcome [otherwordly being, standing one] we are the Incipias, welcome to [our home, our capital]."`
+			`	"Welcome [otherworldly being, standing one] we are the Incipias, welcome to [our home, our capital]."`
 			`	It stops as if awaiting an answer.`
 			choice
 				` 	"Greetings Incipias I am a human."`
@@ -257,10 +257,23 @@ mission "Help the stranded: part 1"
 			choice
 				`	"No there are others too."`
 				`	"The galaxy is full of other beings."`
-			`	Another wave goes through the crowd.`
+			`	Another wave goes through the crowd. "So there are more. But, stranger how can we [help, befriend] you?"`
+			choice
+				`	Tell them about the stranded and how you want to help them.`
+					goto stranded
+				`	"I want one of your ships."`
+			`	"[I, we] shall allow you to buy one. If that is all that it takes to make you a [friend, not danger]. If that is all please excuse us, we need to talk about what this new situation means for us, I hope we can [talk to, question] you more another time."`
+				goto end
+			label stranded
+			`	Another wave goes through the crowd but this time you notice an overflow in green tones.`
+			`	"So they [are still alive, made the big step]. We shall give you access to our [ships, achievements]. Let us prepare the shipyard, we hope to [speak to, question] you more on another occasion.`
+			label end
+			`	The five float away but the crowd stays looking at you, probably out of interest.`
+			`	You should get yourself a ship and install a hyperdrive on it to save the stranded ones in the Hui'uc system.`
 
 mission "Help the stranded: part 2"
 	landing
+	passengers 5
 	source
 		planet Turra
 	destination "Pon'tes"
@@ -268,7 +281,57 @@ mission "Help the stranded: part 2"
 		has "Help the stranded: part 1: completed"
 	on offer
 		conversation
-			`you get the stranded ones on your ship`
+			`Your ship dives into the clouds of the gas giant an evironment of a scale you never experienced before giant clouds tower like castles. Sometimes the clouds open to giant caverns. Whirlwinds brush through the atmosphere like pillars holding the sky. Even though the winds are brutal your ship glides through them as if they had no effect at all.`
+			`	You activate your scanners looking for the stranded ship. Soon a small blip appears on your screen. You maneuver your ship to that point. The stranded ship looks even worse than the first time the storms seem to have damaged some of the hull. The shields must have broken when they ran out of fuel.`
+			`	As you hail them you recieve no answer, your scanners indicate that it ran out of energy.`
+			`	Through a complex maneuver you are able to dock their ship.`
+			`	When the lock opens five Incipias float in front of you, as they notice you they quickly back of, they were not expecting a human in one of their kind's ships. But then they seem to recognize you.`
+			choice
+				`	"Hello, I have come to save you."`
+				`	"I have been send by your people to get you home."`
+			`	They seem to switch from a tense state to a surprised one.`
+			`	One of them starts pulsating, "You [speak, light] our language? How [surpising, good]. We would not have survived [much longer, a single day] here. You are our savior. We would love to talk more, but a [storm, calamity] is coming, we should leave now."`
+			`	You tell them to come aboard and launch away from the planet.`
 	on complete
 		conversation
-			`the incipias thank you, you made first contact`
+			`When you land on the station your passengers thank you again and leave, probably to get some well deemed rest.`
+			`	As you step out of the an Incipias approaches you, "Follow me [stranger, helper] before a crowd gathers, we would like to talk."`
+			`	It guides you through the hallways avoiding larger groups, luckily it only chooses horizontal corridors. You arrive in a large room with a view over the entire station. Three Incipias are already in the room. One starts glowing.`
+			`	"Welcome, we are the leaders of the Hicemus the [reigning, most powerfu] goverment of the Incipias. If you agree we would like to ask you a few questions. In return we would be open for questions too."`
+			choice
+				`	"Sorry but I have other stuff to do."`
+					goto endNoTime
+				`	"Sure, ask something."`
+			`	A green glow comes from all of them, "Thank you for taking the time. Can you tell us more about the [unknown territory, galaxy] surrounding us?"`
+			choice
+				`	Give them an exhausting story of what you have seen so far.`
+					goto detail
+				`	Give a rough overview of what you have seen.`
+			`	After watching your explanation a quickfire of colors that your translator can not follow is exchanged between them, you mostly see yellow tones mixed with green and red.`
+			`	"Thank you for this insight, all we [knew, gathered] until now was by observing stars to think that there is so much out there, it truly invokes determination to explore.`
+				goto yours
+			label detail
+			`	After watching your story a quickfire of colors that your translator can not follow is exchanged between them, you mostly see yellow tones mixed with green.`
+			`	"Thank you for this exhaustive insight, all we [knew, gathered] until now was by observing stars close to us. To think that there is so much out there, it truly invokes determination to explore.`
+			label yours
+			`	"But now to you, is there anything you would like to know?"`
+			# might add to this list over time
+			label choice
+			choice
+				`	"I do not have anymore questions."`
+					goto end
+				`	"Why do you call this station your capital?"`
+					goto capital
+				`	"Why can I not land on your home planet?"`
+			`	A flash of red appears for only a second, "Our [old home, origin] is not directly ruled by us, they may approach you separately at some point in the future, be [careful, disgusted] of their lights. They have outdated values long layed of by us, who are progressing fast.`
+				goto choice
+			label capital
+			`	The one pulsating now takes on a bright green color, "This station is our greatest achievement it is our [gate way, bridge] to the stars. In honor of our urge to [expand, explore] we made this station our capital to demonstrate the determination."`
+				goto choice
+			label end
+			`	"Thank you again for your time, you gave us a lot to [process, store away]. We hope you too had a benefit from this."`
+			`	You say goodbye and as you leave the room you can see a rush of colors reflecting on the walls.`
+				decline
+			label endNoTime
+			`	"[I, we] [understand, are confused], safe travels captain." the representative says, you can notice a slight blue color in his communication.`
+			`	One of them guides you back to your ship.`
