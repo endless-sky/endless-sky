@@ -151,6 +151,7 @@ Files:
  images/land/enceladus_2*
  images/land/enceladus_3*
  images/land/enceladus_4*
+ images/land/moon0*
  images/ui/galaxy*
  images/ui/pleiades*
  images/planet/callisto*
@@ -219,6 +220,18 @@ License: public-domain
  Taken from https://archive.is/qvHPl. This image was
  uploaded to unsplash.com before June 2017, so it is
  in the public domain.
+
+Files:
+ images/land/station49*
+Copyright: Andrea De Santis
+License: Unsplash License
+ Taken from unsplash.com and cropped.
+
+Files:
+ images/land/station50*
+Copyright: Mariia Ilina
+License: Unsplash License
+ Taken from unsplash.com, rotated and cropped.
 
 Files: images/land/bwerner*
 Copyright: Berthold Werner (commons.wikimedia.org/wiki/User:Berthold_Werner)
@@ -2276,7 +2289,13 @@ Copyright: Daeridanii (https://github.com/Daeridanii1)
 License: CC0
 Comment: selected and unselected versions of images/ui/find, by Ember369 (https://github.com/Ember369)
 
-License: Unsplash
+Files:
+ images/land/mars4*
+Copyright: NASA
+Licence: public-domain
+Comment: Derived from works by NASA/JPL-Caltech/Malin Space Science Systems.
+
+License: Unsplash License
  Unsplash grants you an irrevocable, nonexclusive, worldwide copyright
  license to download, copy, modify, distribute, perform, and use photos
  from Unsplash for free, including for commercial purposes, without
