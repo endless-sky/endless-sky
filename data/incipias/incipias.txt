@@ -222,7 +222,7 @@ shipyard "Hicemus"
 	"Nimbo Cirrus"
 	"Nimbo Stratus"
 	"Nimbus"
-	"Gerro"
+	"Gero"
 
 news "Incipias common"
 	location
