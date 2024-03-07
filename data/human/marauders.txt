@@ -169,11 +169,12 @@ ship "Marauder Bounder" "Marauder Bounder (Engines)"
 	add attributes
 		"engine capacity" 15
 	outfits
+		"Heavy Rocket Pod"
+		"Heavy Rocket" 2
 		"Quad Blaster Turret" 2
 		
 		"Dwarf Core"
 		"LP072a Battery Pack"
-		"Supercapacitor" 3
 		"D23-QP Shield Generator"
 		"Water Coolant System"
 		"Outfits Expansion"
@@ -326,7 +327,7 @@ ship "Marauder Falcon" "Marauder Falcon (Weapons)"
 		"weapon capacity" 35
 	outfits
 		"Plasma Cannon" 6
-		"Heavy Anti-Missile Turret"
+		"Chameleon Anti-Missile"
 		"Proton Turret" 3
 		
 		"Fusion Reactor"
@@ -575,7 +576,7 @@ ship "Marauder Leviathan" "Marauder Leviathan (Weapons)"
 		"Particle Cannon" 2
 		"Ion Cannon" 2
 		"Heavy Laser Turret" 3
-		"Anti-Missile Turret"
+		"Bullfrog Anti-Missile"
 
 		"Fusion Reactor"
 		"LP144a Battery Pack"
