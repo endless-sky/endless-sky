@@ -2186,7 +2186,7 @@ news "High Tension Situation"
 			"disperse"
 			"make themselves scarce"
 			"abandon their objective"
-			"come quietly"
+			"shut up and buzz off"
 		word
 			", "
 		word
