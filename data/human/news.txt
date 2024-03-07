@@ -2201,18 +2201,6 @@ news "High Tension Situation"
 			", but they end up dispersing."
 			", and the two groups back down."
 
-phrase "A Light Ship"
-	word
-		"A Sparrow"
-		"An Enforcer"
-		"A Shuttle"
-		"A Heavy Shuttle"
-		"A Star Barge"
-		"A Berserker"
-		"A Fury"
-		"A Hawk"
-		"A Wasp"
-
 phrase "Pronoun"
 	word
 		"his"
@@ -2248,8 +2236,16 @@ news "Careless Landing"
 	name
 		"Recklessness"
 	message
-		phrase 
-			"A Light Ship"
+		word 
+			"A Sparrow"
+			"An Enforcer"
+			"A Shuttle"
+			"A Heavy Shuttle"
+			"A Star Barge"
+			"A Berserker"
+			"A Fury"
+			"A Hawk"
+			"A Wasp"
 		word
 			" lands on a pad meant for heavier ships. Air traffic control is immediately upon the captain to move ${Pronoun} ship. The captain "
 		phrase
