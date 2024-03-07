@@ -2328,32 +2328,55 @@ message
 	word
 		"Whatever is going on, your ship appears unscathed."
 
-news "Microgravity"
+news "Raiders returning to Mordente-Bridi"
 	location
 		planet Mordente-Bridi
-name
-	"Repairs"
-message
+	name
+		"Repairs"
+	message
+		word
+			"Watching the microgravity section of the spaceport from the bar, you "
+		word
+			"observe "
+			"notice "
+			"spot "
+			"spy "
+		word
+			"a Bastion "
+			"a Firebird "
+			"a Falcon "
+			"a Leviathan "
+		word
+			"returning from a raid, "
+		phrase
+			"Raiders returning to Mordente-Bridi - serious damage"
+			"Raiders returning to Mordente-Bridi - light damage"
+
+phrase "Raiders returning to Mordente-Bridi - serious damage"
 	word
-		"Watching the microgravity section of the spaceport from the bar, you "
+		"battered with thousands of small perforations. Somebody's turned a mainstay of the pirate arsenal, Gatling guns, back on them."
+		"with substantial sections of hull heavily battered or missing altogether. Fair guess they didn't have enough anti-missile."
+		"its hull covered in gashes and burns from plasma cannons"
 	word
-		"observe "
-		"notice "
-		"spot "
-		"spy "
+		". "
 	word
-		"a Bastion "
-		"an Aerie "
-		"a Falcon "
-		"a Leviathan "
+		"As it comes to a stop in the maintenance bay, the Bridi engineering shuttles begin "
 	word
-		"returning from a raid, "
+		"buzzing "
+		"fluttering "
 	word
-		"pockmarked with laser burns but with no apparent serious damage. "
-		"battered with thousands of small perforations. Somebody's turned a mainstay of the pirate arsenal, Gatling guns, back on them. "
-		"with substantial sections of hull heavily battered or missing altogether. Fair guess they didn't have enough anti-missile. "
+		"around it, assessing the damage and beginning the work on repairs. "
 	word
-		"As it comes to a stop in the maintenance bay, engineering shuttles begin "
+		"They'll be working for the rest of the shift on this one."
+
+phrase "Raiders returning to Mordente-Bridi - light damage"
+	word
+		"pockmarked with laser burns but with no apparent serious damage"
+		"lightly dented in a way that suggests that a proton gun was to blame"
+	word
+		". "
+	word
+		"As it comes to a stop in the maintenance bay, the Bridi engineering shuttles begin "
 	word
 		"buzzing "
 		"fluttering "
@@ -2361,7 +2384,6 @@ message
 		"around it, assessing the damage and beginning the work on repairs. "
 	word
 		"The work won't take the shuttles long."
-		"They'll be working for the rest of the shift on this one."
 
 news "Symbol War"
 	location
