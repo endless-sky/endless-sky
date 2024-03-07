@@ -1050,6 +1050,7 @@ outfit "Crystal Projector"
 	"outfit space" -2
 	"gun ports" -1
 	"crystal projector" -1
+	"unique" 1
 	weapon
 		"hardpoint sprite" "hardpoint/shooting star flare/ss-rays"
 			"frame time" 3
@@ -1063,6 +1064,7 @@ outfit "Floating Crystal"
 	"outfit space" -3
 	"turret mounts" -1
 	"spinal mount" -1
+	"unique" 1
 	weapon
 		"turret turn" 6
 		"velocity" 250
@@ -1081,6 +1083,7 @@ outfit "Crystalline Formation"
 	"outfit space" -1
 	"turret mounts" -1
 	"shooting star" -1
+	"unique" 1
 	"core crystal" 1
 	weapon
 		sound "crunch"
@@ -1101,6 +1104,7 @@ outfit "Hexagonal Crystal"
 	"outfit space" -1
 	"turret mounts" -1
 	"shooting star" -1
+	"unique" 1
 	"core crystal" 1
 	weapon
 		sound "crunch"
@@ -1121,6 +1125,7 @@ outfit "Tree Skeleton Key Stone"
 	thumbnail "outfit/rock 1"
 	"mass" 1
 	"outfit space" -1
+	"unique" 1
 	"quantum keystone" 1
 	description "Although in appearance it may look somewhat similar to a tree, you don't know how it is supposed to resemble a skeleton. You aren't sure you want to find out either."
 
@@ -1850,3 +1855,186 @@ ship "Modified Ladybug"
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
 	description `This is an old war-torn Hai Ladybug with numerous modifications done on the hull. Apart from the additional turret mounts, the main adjustments on the vessel are three huge engine cells - two in the back replacing the old engine pods, and one in the front replacing the gun mounts. These push the Modified Ladybug to speeds only an insane captain would enjoy.`
+
+
+
+person "Patrol Team"
+	government "Author"
+	frequency 300
+	personality
+		mining harvests plunders
+	phrase
+		word
+#		Marksman
+			"If you're interested in helping out but don't have time, consider being a proofreader! You can take my job, and I get to laze around doing nothing!"
+			"The number of times someone breaks the fourth wall, it's mind-boggling!"
+			"Look, we aren't here for your money. We do all this for free and look where that gets us."
+			"If you're interested in helping out but don't have time, consider looking through the proposals on GitHub! Sometimes, a new perspective is needed!"
+			"What do you mean you don't have a save file for this pull request!?"
+			"This statement is, intentionally wrote wrongly to make point."
+
+#		Saugia
+			"Sometimes, a large amount of detail on a model can look less appealing."
+			"Sometimes, a small amount of detail on a model can look more appealing."
+			"Make sure to look at an image from a few steps back as well."
+			"Down with tangents, up with overlaps."
+			"Don't be afraid of adding more contrast."
+			"If you want to learn how to create artwork, start with a donut."
+
+#		tibetiroka
+			"It's just the Steam CI, no need to panic."
+			"Did you check for nullptr?"
+			"		How do we indent after line breaks again?"
+			"Please put the includes in alphabetical order."
+			"Always keep three empty lines between functions."
+			"Why do aliens speak English?"
+
+#		bene-dictator
+			"Just a syntax review. Hold on, I have to rewrite this whole paragraph for you quickly. Delay the merge!"
+			"I was requested for spelling? Oh my goodness, this needs a rewrite..."
+			"One more review. Pretty please?"
+			"Just one more review before merging."
+			"Capitalise that proper noun. Use American English for consistency. For goodness' sake, that needs a comma!"
+			"Comma here. Comma doesn't go there. I think that one needs a comma. Hold on, what was a comma again?"
+			"Unidentified sentence appears to be lacking a comma. Very dangerous, and highly likely to incite multiple suggestions on where the comma should go. Calling backup reviewers."
+			"Commas are your greatest friends."
+			"Commas are your greatest enemies."
+
+#		roadrunner56
+			"More semicolons!"
+			"...I think I broke something."
+			"Canadian spelling fails me again."
+			"This is my last review, I swear."
+			"Looks like school's starting back up again. See you in a few months."
+			"Typo detected. Initiating weapons engagement."
+			"Code non-functional. Destroy them."
+
+#		EjoThims
+	phrase
+		word
+			"If you want your pull request not to be merged"
+			"If you prefer that your pull request never be merged"
+			"If you prefer that your pull request sits idle"
+			"If you want your pull request to be closed"
+		word
+			", "
+		word
+			"make sure you keep adding content to it"
+			"always change unrelated things"
+			"do not ever test it and don't add integration tests. Whatever those even are, they're apparently important"
+			"try your best to avoid respecting existing syntax and conventions"
+			"just forget about it for a while"
+			"use the forbidden word: 'realism'"
+			"bury the new feature in semi-relevant data changes"
+			"do not, under any circumstances, ever be willing to compromise"
+			"make sure to completely ignore what the reviewers tell you to do"
+			"skip over writing an issue about it first"
+		word
+			"!"
+			"."
+			". Trust me! It works."
+			". You shouldn't do those things, though! I'm just kidding."
+
+	phrase
+		word
+			"You don't have to be a Reviewer to review pull requests"
+			"Anyone can review a pull request, even you"
+			"If you're unsure of how to help, try reviewing some pull requests"
+			"We welcome an alternative view to the reviews on the pull requests"
+			"If you spot a typo, do start a review"
+			"If you have an idea to make something better, do start a review"
+		word
+			"."
+			"!"
+
+	ship "Waverider" "Proofreader's Pain"
+		"never disabled"
+	ship "Waverider" "Art Critics' Regret"
+		"never disabled"
+	ship "Waverider" "Code Herders' Curse"
+		"never disabled"
+		add attributes
+			"required crew" 2
+	ship "Waverider" "Choreographers' Tears"
+		"never disabled"
+	ship "Waverider" "Adjuncators' Blood"
+		"never disabled"
+		outfits
+			"Particle Cannon" 4
+			"S-970 Regenerator"
+			"Dwarf Core"
+			"LP072a Battery Pack"
+			"Liquid Nitrogen Cooler"
+			"Catalytic Ramscoop"
+			"Tactical Scanner"
+			"Cargo Scanner"
+			"Outfit Scanner"
+			"Asteroid Scanner"
+
+			"A120 Atomic Thruster"
+			"A125 Atomic Steering" 2
+			"Scram Drive"
+
+			"Emotional Baggage"
+			"Tear of Skade" 2
+	ship "Waverider" "Balancers' Madness"
+		"never disabled"
+		add attributes
+			"shields" 12000
+			"hull" 5000
+			"mass" 100
+
+ship "Waverider"
+	sprite "ship/waverider"
+	attributes
+		category "Light Warship"
+		"cost" 3000000
+		"shields" 10000
+		"hull" 7000
+		"required crew" 1
+		"bunks" 1
+		"mass" 150
+		"drag" 1.5
+		"heat dissipation" 1
+		"fuel capacity" 1000
+		"cargo space" 100
+		"outfit space" 346
+		"weapon capacity" 120
+		"engine capacity" 54
+		weapon
+			"blast radius" 340
+			"shield damage" 3400
+			"hull damage" 1700
+			"hit force" 5000
+	outfits
+		"Particle Cannon" 4
+		"S-970 Regenerator"
+		"Dwarf Core"
+		"LP072a Battery Pack"
+		"Liquid Nitrogen Cooler"
+		"Catalytic Ramscoop"
+		"Tactical Scanner"
+		"Cargo Scanner"
+		"Outfit Scanner"
+		"Asteroid Scanner"
+
+		"A120 Atomic Thruster"
+		"A125 Atomic Steering" 2
+		"Scram Drive"
+
+		"Emotional Baggage"
+	engine 0 56
+	engine -23 64
+	engine 23 64
+	gun -22.5 -56.5 "Particle Cannon"
+	gun 22.5 -56.5 "Particle Cannon"
+	gun -31.5 -7 "Particle Cannon"
+	gun 31.5 -7 "Particle Cannon"
+	description `The Waverider was a ship that was first requested and never used for five years, seven months and twenty-seven days.`
+	description `	Its disappointment was so immense, it willed itself into being.`
+
+outfit "Emotional Baggage"
+	category "Unique"
+	thumbnail "outfit/unknown"
+	description `The physical embodiment of everything that makes the Reviewers who they are today.`
+	description `	Unfortunately, it's not for sale.`

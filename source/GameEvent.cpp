@@ -62,7 +62,7 @@ map<string, set<string>> GameEvent::DeferredDefinitions(const list<DataNode> &ch
 					definitions[key].emplace(name);
 			}
 			// Since this (or any other) event may be used to assign a planet to a system, we cannot
-			// do a robust "planet definition" check. Similarly, all other GameEvent-createable objects
+			// do a robust "planet definition" check. Similarly, all other GameEvent-creatable objects
 			// become valid once they appear as a root-level node that has at least one child node.
 			else
 				definitions[key].emplace(name);

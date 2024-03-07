@@ -72,19 +72,17 @@ void MaskManager::ScaleMasks()
 			continue;
 
 		const auto &baseMasks = baseIt->second;
-		for(auto it = scales.begin(); it != baseIt; ++it)
+		for(auto &it : scales)
 		{
-			auto &masks = it->second;
+			auto &masks = it.second;
+
+			// Skip mask generation for scales that have already been generated previously.
+			if(!masks.empty())
+				continue;
+
 			masks.reserve(baseMasks.size());
 			for(auto &&mask : baseMasks)
-				masks.push_back(mask * it->first);
-		}
-		for(auto it = next(baseIt); it != scales.end(); ++it)
-		{
-			auto &masks = it->second;
-			masks.reserve(baseMasks.size());
-			for(auto &&mask : baseMasks)
-				masks.push_back(mask * it->first);
+				masks.push_back(mask * it.first);
 		}
 	}
 }

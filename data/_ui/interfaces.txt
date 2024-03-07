@@ -48,6 +48,7 @@ color "player info hardpoint turret hover" 0. .6 .8 1.
 color "logbook sidebar" .09 .09 .09 1.
 color "logbook background" .125 .125 .125 1.
 color "logbook line" .2 .2 .2 1.
+color "message log background" .125 .125 .125 1.
 color "item selected" 0. 0. 0. .3
 
 # Colors used to draw certain HUD elements in-flight.
@@ -169,8 +170,16 @@ color "warning no command" 0.16 0.16 0.13 1.
 
 # Colors used for messages
 color "message importance highest" 1. .5 0. 1.
+color "message importance high" 1. 1. 1. 1.
 color "message importance info" 0. 1. .5 1.
-color "message importance default" 1. 1. 1. 1.
+color "message importance daily" 1. 1. 1. 1.
+color "message importance low" 1. 1. 1. 1.
+
+color "message log importance highest" 1. .5 0. 1.
+color "message log importance high" .75 .75 .75 1.
+color "message log importance info" 0. 1. .5 1.
+color "message log importance daily" 0. .5 1. 1.
+color "message log importance low" .75 .75 .75 1.
 
 # Colors used when drawing the map (system names, links, and the player's desired route).
 # (The color of the ring that represents a given system is context-sensitive.)
@@ -181,6 +190,7 @@ color "map travel ok flagship" .5 .4 0. 0.
 color "map travel ok none" .55 .1 0. 0.
 color "map wormhole" .5 .2 .9 1.
 color "map orbits fleet destination" 1. 1. 1. 1.
+color "map danger none" .1 .6 0. .4
 
 # Miscellaneous colors
 color "wormholes: Ember Waste" .7 .1 .3
@@ -399,8 +409,21 @@ interface "start conditions menu"
 interface "load menu"
 	sprite "_menu/side panel"
 		center -360 0
+	box "pilots"
+		center -360 -19
+		dimensions 230 280
+	
 	sprite "_menu/side panel"
 		center 0 0
+	box "snapshots"
+		center 0 -19
+		dimensions 230 280
+	
+	value "pilot horizontal text pad" 5
+	value "pilot fade out" 10
+	value "snapshot horizontal text pad" 5
+	value "snapshot fade out" 10
+	
 	sprite "_menu/side panel"
 		center 360 0
 	
@@ -411,6 +434,13 @@ interface "load menu"
 	button d "_Delete"
 		center -285 155
 		dimensions 90 30
+
+	sprite "ui/wide button"
+		center -435 195
+	active
+	button o "_Open Saves"
+		center -435 195
+		dimensions 120 30
 	
 	active if "pilot alive"
 	button a "_Add Snapshot"
@@ -516,6 +546,13 @@ interface "plugins"
 		from -225 -236
 		align top left
 		color bright
+	visible
+	line
+		from -230 -222 to -10 -221
+	box "plugin list"
+		from -250 -216 to -10 184
+	box "plugin description"
+		from 250 -244 to 10 184
 
 
 
@@ -717,14 +754,23 @@ interface "hud"
 		center 0 100
 
 
+interface "main view"
+	list "zooms"
+		.25
+		.35
+		.5
+		.7
+		1.
+		1.4
+		2.
+
+
 
 interface "escort element"
 	value "width" 120
 	value "basic height" 30
 	value "system label height" 15
 
-	box "icon click zone"
-		center 20 10
 	anchor top left
 	outline "icon"
 		center 20 10
@@ -879,7 +925,7 @@ interface "planet"
 		align right
 		pad 10 0
 	
-	visible if "is inhabited"
+	visible if "has job board"
 	sprite "ui/planet dialog button"
 		center -400 150
 	button j "_Job Board"
@@ -888,6 +934,7 @@ interface "planet"
 		size 18
 		align left
 		pad 10 0
+	visible if "can hire crew"
 	sprite "ui/planet dialog button"
 		center 280 210
 	button h "_Hire Crew"
@@ -917,10 +964,10 @@ interface "planet"
 		align left
 		pad 10 0
 	
-	visible if "has spaceport"
+	visible if "has port"
 	sprite "ui/planet dialog button"
 		center -400 270
-	button p "Space_port"
+	"dynamic button" p "port name"
 		center -400 270
 		dimensions 140 40
 		size 18
@@ -1180,7 +1227,7 @@ interface "trade"
 	active if "can buy"
 	sprite "ui/dialog cancel"
 		center 40 355
-	button B "Buy All"
+	button u "B_uy All"
 		center 40 355
 		dimensions 70 30
 	
@@ -1189,13 +1236,13 @@ interface "trade"
 	
 	active if "can sell"
 	visible if "!can sell outfits"
-	button S "Sell All"
+	button e "S_ell All"
 		center 130 355
 		dimensions 90 30
 	
 	active if "can sell outfits"
 	visible if "can sell outfits"
-	button S "Sell Outfits"
+	button e "S_ell Outfits"
 		center 130 355
 		dimensions 90 30
 
@@ -1488,6 +1535,11 @@ interface "info panel"
 	button v "Sa_ve Order"
 		center -195 305
 		dimensions 90 30
+
+
+
+interface "message log"
+	value "width" 570
 
 
 

@@ -1,5 +1,5 @@
 Welcome to Endless Sky!
-version 0.10.4-alpha
+version 0.10.7-alpha
 
 The player's manual and other
 resources are available at:
@@ -25,6 +25,7 @@ Developers
   Pointedstick
   Quyykk
   Saugia
+  warp-core
   W1zrad
   Zitchas
 
@@ -60,7 +61,9 @@ Storyline & Faction Authors
 
 Editors & Proofreaders
   Arrow2thekn33
+  bene-dictator
   Bladewood
+  EjoThims
   Fzzr
   jafdy
   Janaszar
@@ -68,8 +71,11 @@ Editors & Proofreaders
   MCOfficer
   Moonbeam
   RecursiveParadox
+  roadrunner56
   Tadrix
   temtemy
+  Terin
+  tibetiroka
   W1zrad
   Zearth Goh aka TheMarksman
 
@@ -141,6 +147,7 @@ contributed to Endless Sky:
   AlekSeaLion
   alex116
   AlexBassett
+  alexrovw
   alextd
   Alkallid
   Amacita
@@ -150,6 +157,7 @@ contributed to Endless Sky:
   anarcat
   Anarchist2
   Aneutronic
+  AntimatterReactor
   AraCaputDraco
   Arachi-Lover
   aradapilot
@@ -216,6 +224,7 @@ contributed to Endless Sky:
   fakepass
   fcfort
   Ferociousfeind
+  fingolfin
   finite-galaxy
   FixItYondu
   flaviojs
@@ -235,6 +244,7 @@ contributed to Endless Sky:
   Hecter94
   heirecka
   hexarobi
+  hexagonrecursion
   hmglasgow
   Hurleveur
   Hyugat
@@ -247,6 +257,7 @@ contributed to Endless Sky:
   JanErikAhrens
   janisozaur
   jarekchr
+  jarmokivekas
   jerith
   jjhankins
   jmathes
@@ -337,6 +348,7 @@ contributed to Endless Sky:
   real-dam
   realityforge
   Red-57
+  RedDeadUndead
   redschalken
   ReimeiSky
   reizbar
@@ -380,10 +392,12 @@ contributed to Endless Sky:
   strollcata
   SubstandardZeal
   Tadrix
+  Tangle10
   tboby
   tehhowch
   temtemy
   Terin
+  The-Legendary-M
   thebigh2014
   TheMarksman-ES
   thenerdfreak
@@ -407,6 +421,7 @@ contributed to Endless Sky:
   tux2603
   unjown
   UnorderedSigh
+  VeryGoodDog
   Vilhelm16
   vitalchip
   W1zrad

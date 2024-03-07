@@ -555,3 +555,202 @@ mission "Return Syndicate Prisoners [2]"
 	on complete
 		payment 5000 100
 		dialog "The labor organizers are almost skeletally thin from their imprisonment. One of them raises his face to the sky as though showering in sunlight. You receive your payment of <payment>."
+
+
+mission "Syndicated Shipyards Shipment [0]"
+	name "Shipment to <planet>"
+	description "Syndicated Shipyards, one of the largest shipyards in human space, requests an independent captain to deliver <cargo> to <destination> to ensure sufficient stocks. Payment is <payment>."
+	cargo "weapons" 5 2 .1
+	job
+	repeat
+	to offer
+		random < 10
+	source
+		near Achernar 2 10
+		attributes core factory
+	destination Foundry
+	npc
+		government Pirate
+		personality heroic harvests plunders
+		fleet "Small Core Pirates"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic cargo delivery payment"
+
+mission "Syndicated Shipyards Shipment [1]"
+	name "Shipment to <planet>"
+	description "Syndicated Shipyards, one of the largest shipyards in human space, requests an independent captain to deliver <cargo> to <destination> to ensure sufficient stocks. Payment is <payment>."
+	cargo "Ship Alloys" 5 2 .1
+	job
+	repeat
+	to offer
+		random < 10
+	source
+		near Achernar 2 10
+		attributes core mining
+	destination Foundry
+	npc
+		government Pirate
+		personality heroic harvests plunders
+		fleet "Small Core Pirates"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic cargo delivery payment"
+
+mission "Syndicated Shipyards Shipment [2]"
+	name "Shipment to <planet>"
+	description "Syndicated Shipyards, one of the largest shipyards in human space, requests an independent captain to deliver <cargo> to <destination> to ensure sufficient stocks. Payment is <payment>."
+	cargo "Ship Systems" 5 2 .1
+	job
+	repeat
+	to offer
+		random < 10
+	source
+		near Achernar 2 10
+		attributes core factory
+	destination Foundry
+	npc
+		government Pirate
+		personality heroic harvests plunders
+		fleet "Small Core Pirates"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic cargo delivery payment"
+
+mission "Syndicated Shipyards Shipment [3]"
+	name "Shipment to <planet>"
+	description "Deliver <cargo> to <destination>, where Syndicated Shipyards, one of the largest shipyards in human space, is located. Payment is <payment>."
+	cargo "Ship Alloys" 5 2 .1
+	job
+	repeat
+	to offer
+		random < 10
+	source
+		near Achernar 2 10
+		attributes core factory
+	destination Foundry
+	npc
+		government Pirate
+		personality heroic harvests plunders
+		fleet "Small Core Pirates"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic cargo delivery payment"
+
+mission "Syndicated Systems Shipment [0]"
+	name "Shipment to <planet>"
+	description "Deliver <cargo> to <destination>, the home of Syndicated Systems, the largest ship systems and outfits manufacturer in human space. Payment is <payment>."
+	cargo Electronics 5 2 .1
+	job
+	repeat
+	to offer
+		random < 10
+	source
+		near Markab 2 10
+		attributes core factory
+	destination Hephaestus
+	npc
+		government Pirate
+		personality heroic harvests plunders
+		fleet "Small Core Pirates"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic cargo delivery payment"
+
+mission "Syndicated Systems Shipment [1]"
+	name "Shipment to <planet>"
+	description "Deliver <cargo> to <destination>, the home of Syndicated Systems, the largest ship systems and outfits manufacturer in human space. Payment is <payment>."
+	cargo Metal 5 2 .1
+	job
+	repeat
+	to offer
+		random < 10
+	source
+		near Markab 2 10
+		attributes core mining factory
+	destination Hephaestus
+	npc
+		government Pirate
+		personality heroic harvests plunders
+		fleet "Small Core Pirates"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic cargo delivery payment"
+
+mission "Megaparsec Shipment [0]"
+	name "Shipment to <planet>"
+	description "Deliver <cargo> to <destination>, the home of Megaparsec Inc., a shipyard known for their lightweight designs. Payment is <payment>."
+	cargo "weapons" 5 2 .1
+	job
+	repeat
+	to offer
+		random < 10
+	source
+		near Mirfak 2 10
+		attributes core factory
+	destination Sunracer
+	npc
+		government Pirate
+		personality heroic harvests plunders
+		fleet "Small Core Pirates"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic cargo delivery payment"
+
+mission "Megaparsec Shipment [1]"
+	name "Shipment to <planet>"
+	description "Deliver <cargo> to <destination>, the home of Megaparsec Inc., a shipyard known for their lightweight designs. Payment is <payment>."
+	cargo "Ship Alloys" 5 2 .1
+	job
+	repeat
+	to offer
+		random < 10
+	source
+		near Mirfak 2 10
+		attributes core mining factory
+	destination Sunracer
+	npc
+		government Pirate
+		personality heroic harvests plunders
+		fleet "Small Core Pirates"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic cargo delivery payment"
+
+mission "Megaparsec Shipment [2]"
+	name "Shipment to <planet>"
+	description "Deliver <cargo> to <destination>, the home of Megaparsec Inc., a shipyard known for their lightweight designs. Payment is <payment>."
+	cargo "Ship Systems" 5 2 .1
+	job
+	repeat
+	to offer
+		random < 10
+	source
+		near Mirfak 2 10
+		attributes core mining factory
+	destination Sunracer
+	npc
+		government Pirate
+		personality heroic harvests plunders
+		fleet "Small Core Pirates"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic cargo delivery payment"
