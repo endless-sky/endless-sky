@@ -803,7 +803,7 @@ void MapDetailPanel::DrawInfo()
 				if(value > 0)
 					price += '+';
 				else if(value < 0)
-					price += '−';
+					price += '-';
 				value = abs(value);
 				price += to_string(value);
 			}
