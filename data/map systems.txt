@@ -32072,7 +32072,7 @@ system "Supra"
 			sprite planet/callisto-b
 			distance 297
 			period 133.953
-	object
+	object Humo
 		sprite planet/gas7-b
 		distance 1592
 		period 236.925
