@@ -25975,22 +25975,6 @@ system "Pedita Pri"
 		sprite planet/luna-b
 		distance 1943
 		period 342.585
-	object
-		sprite planet/saturn
-		distance 4534
-		period 1221.185
-		object
-			sprite planet/ice8-b
-			distance 268
-			period 165.845
-		object
-			sprite planet/rock17-b
-			distance 389
-			period 472.518
-		object
-			sprite planet/dust1
-			distance 520
-			period 368.794
 	object Gliese
 		sprite planet/gliese
 		distance 6037
