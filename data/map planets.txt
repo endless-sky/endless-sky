@@ -1780,6 +1780,12 @@ planet Glaze
 		threshold 3500
 		fleet "Large Militia" 25
 
+planet Gliese
+	attributes "requires: gaslining"
+	landscape land/gliese
+	description `At first sight this looks like a friendly gas giant. The blue tones invoke the feeling of an ocean world, but looks can be deceiving. The clouds contain countless small glass droplets moving at tremendous speeds, cutting through everything in their way. Your spaceship's hull is able to deflect most of them but it is advisable not to stay here for too long.`
+	government Uninhabited
+
 planet "Glittering Ice"
 	attributes frozen saryd
 	landscape land/snow7

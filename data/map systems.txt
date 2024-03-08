@@ -25991,8 +25991,8 @@ system "Pedita Pri"
 			sprite planet/dust1
 			distance 520
 			period 368.794
-	object
-		sprite planet/gas14-b
+	object Gliese
+		sprite planet/gliese
 		distance 6037
 		period 1876.25
 		object
