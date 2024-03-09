@@ -306,6 +306,27 @@ mission "FW Conservatory 2B"
 
 
 
+mission "FW Deep Memorial"
+	minor
+	landing
+	source "Deep"
+	to offer
+		has "event: memorial on Deep"
+	on offer
+		conversation
+			``
+			branch brower
+				has "
+				has "
+			label brower
+			`	`
+			label end
+			`	`
+				decline
+
+
+
+
 mission "FW Flamethrower 1"
 	landing
 	name "Weapon Testing"
