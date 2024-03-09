@@ -233,3 +233,229 @@ mission "Coalition Folklore: Kimek"
 				decline
 
 
+
+mission "Coalition Departing Trouble - A"
+	minor
+	invisible
+	to offer
+		has "Coalition: First Contact: done"
+		random < 2
+	source
+		government "Coalition"
+		not attributes "coalition station"
+	on enter
+		fail
+		conversation
+			`Your ship narrowly avoids a few small Coalition vessels as you exit <origin>'s atmosphere. Not a second later, while you're still stunned by the near-crash, once again the <ship> is almost hit by incoming ships, this time Heliarch warships, in what looks like an intense chase after the ships from before.`
+			`	After they've all passed, you check your comms and radar, finding some other civilian ships nearby that seem to have experienced a similar shock of their own. Some of the ships linger over <origin> for a while, as if unsure of what to do. Others bolt away with engines at full power, leaving the system in a blink, and some eventually decide to land again, either too curious about the situation, or perhaps wanting to avoid any trouble.`
+			branch heliarch
+				has "joined the heliarchs"
+			branch lunarium
+				has "joined the lunarium"
+			`	Some more minutes later, you see a select few of the Heliarch ships that passed close to you departing the planet. They pay you no mind, and much to your relief steer a safe distance from your ship this time.`
+				decline
+			label heliarch
+			`	Some more minutes later, you see a select few of the Heliarch ships that passed close to you departing the planet, steering a safe distance from your ship this time. The captain of one of the ships, a Heliarch Interdictor, hails you, apologizing for the earlier distress, briefly mentioning they've gotten the situation back under control. They wish you a good day, and prepare to leave the system.`
+				decline
+			label lunarium
+			`	Some more minutes later, you see a select few of the Heliarch ships that passed close to you departing the planet. They pay you no mind, and much to your relief steer a safe distance away from your ship this time. You cannot help but wonder whether the ships they were chasing held any Lunarium members, or if they were simply more unfortunate civilians.`
+	npc
+		personality launching fleeing uninterested
+		government "Heliarch"
+		fleet
+			names "heliarch"
+			variant
+				"Heliarch Hunter"
+				"Heliarch Interdictor"
+				"Heliarch Breacher"
+
+
+
+mission "Coalition Departing Trouble - B"
+	minor
+	invisible
+	to offer
+		has "Coalition: First Contact: done"
+		random < 2
+	source
+		government "Coalition"
+	on enter
+		fail
+		conversation
+			`Once you're a good distance from <origin>, your sensors alert you to danger in the system: several explosions and a torrent of projectiles are flying nearby. You swiftly ready yourself and prepare for the threat, only to find Coalition civilian ships blowing up near the middle of the system. Some Heliarch warships are in their midst, moving from one to the other, unbothered by the ship debris as vessels explode around them.`
+			branch heliarch
+				has "joined the heliarchs"
+			branch lunarium
+				has "joined the lunarium"
+			branch neither
+				not "joined the heliarchs"
+				not "joined the lunarium"
+			label heliarch
+			`	They appear to be boarding the few ships that weren't damaged enough to have their hulls ruptured. After a few short minutes, they seem to have seized control of the vessels, and are having them follow the warships out of the system.`
+			`	One of the ships hails you briefly, apparently in a cheery mood as they celebrate having captured the criminals. They wish you a good day and good luck on your duties, and cut the comms as they prepare to leave.`
+				decline
+			label lunarium
+			`	They appear to be boarding the few ships that weren't damaged enough to have their hulls ruptured. After a few short minutes, they seem to have seized control of the vessels, and are having them follow the warships out of the system.`
+			`	As you glance at the wreckage of the civilian ships, you feel uneasy. Worse still is the thought that hits you soon after, of whether any of the Lunarium leaders you met were aboard any of the ships.`
+				decline
+			label neither
+			`	They appear to be boarding the few ships that weren't damaged enough to have their hulls ruptured. After a few short minutes, they seem to have seized control of the vessels, and are having them follow the warships out of the system.`
+				decline
+	npc
+		personality waiting fleeing uninterested
+		government "Heliarch"
+		fleet
+			names "heliarch"
+			variant
+				"Heliarch Punisher"
+				"Heliarch Interdictor"
+				"Heliarch Hunter"
+				"Heliarch Neutralizer"
+		fleet
+			names "saryd"
+			variant
+				"Saryd Visitor"
+				"Saryd Runabout"
+		fleet
+			names "kimek"
+			variant
+				"Kimek Spire"
+				"Kimek Thistle"
+		fleet
+			names "arach"
+			variant
+				"Arach Spindle"
+				"Arach Transport"
+
+
+
+mission "Coalition Departing Trouble - C"
+	minor
+	invisible
+	to offer
+		has "Coalition: First Contact: done"
+		not "assisting lunarium"
+		not "joined the heliarchs"
+		random < 2
+	source
+		government "Coalition"
+	on enter
+		fail
+		conversation
+			`You depart to find something like a screen of Heliarch warships around <origin>, circling it and approaching all departing civilian ships. It's no different with your <ship>, and soon enough you're hailed by a Heliarch Punisher approaching your position.`
+			`	"Salutations, Captain <last>. Performing a routine inspection, we are. Board you momentarily we shall, to verify the safety of your vessel, then leave you to your business we shall."`
+			branch lunarium
+				has "joined the lunarium"
+			`	They sign off before you can respond, and the Punisher readies to board the <ship>, as more warships gather around the scene. Dozens of armed Heliarch agents march into your ship silently, diligently going about checking the bunks, cockpit, engine room...`
+			`	Within a few minutes, they appear satisfied with turning your ship upside down, and all march back to the Punisher. They thank you for "cooperating," and the ships clear the way for you to move out.`
+				decline
+			label lunarium
+			`	They sign off before you can respond, and the Punisher readies to board the <ship> as more warships gather around the scene. Although you're not currently performing any tasks for the Lunarium, you still grow increasingly worried as the Punisher approaches and connects to your ship. You do your best to keep a calm profile as dozens of armed Heliarch agents march into your ship silently, diligently going about checking the bunks, cockpit, engine room...`
+			`	Within a few minutes, they appear satisfied with turning your ship upside down, and all march back to the Punisher. They thank you for "cooperating", and the ships clear the way for you to move out. Once they're well enough away from the <ship>, you take to scouring it for anything they might've left behind to keep tabs within your ship. Much later on in the day, after you've confirmed to have found nothing of the sort, you breathe a sigh of relief.`
+	npc
+		personality waiting staying uninterested surveillance
+		government "Heliarch"
+		fleet
+			names "heliarch"
+			fighters
+				names "heliarch fighter"
+			variant
+				"Heliarch Punisher"
+				"Heliarch Punisher"
+				"Heliarch Interdictor"
+				"Heliarch Interdictor"
+				"Heliarch Hunter"
+				"Heliarch Hunter"
+				"Heliarch Judicator"
+				"Heliarch Judicator"
+				"Heliarch Pursuer" 4
+				"Heliarch Rover" 4
+				"Heliarch Stalker" 4
+				"Heliarch Neutralizer"
+				"Heliarch Neutralizer"
+				"Heliarch Neutralizer"
+				"Heliarch Breacher"
+				"Heliarch Breacher"
+				"Heliarch Breacher"
+
+
+
+mission "Coalition Incident: Secret Sky"
+	minor
+	invisible
+	to offer
+		has "Coalition: First Contact: done"
+		random < 3
+	source "Secret Sky"
+	on offer
+		conversation
+			`You see an Arach captain hurrying around the spaceport, speaking with anyone who will listen. He converses with each one briefly, showing something in a small monitor, and then moving on to the next shortly after. After a while, he gets to you.`
+			`	"Captain? A moment if free you are?" He asks, scrambling his legs to light up the monitor. It displays a picture of a young Kimek. "A passenger of mine. Stopped by here to drop a few Saryd pilgrims, we had, but after seen them off I had, find this Kimek back in my ship, I couldn't!" He exclaims, pointing to an Arach Transport parked just before the edge of where <origin>'s dense fog cuts off your view. "Seen him anywhere, have you?"`
+			choice
+				`	"Sorry, I haven't. Did you try getting in touch with the local Heliarchs?"`
+				`	"Sorry, but I haven't seen him either."`
+					goto end
+			`	He nods. "Contacted them a few hours ago, I had. Look for my passenger in the restricted sections, I wished to, but allowed there I am not, so figured that ask them for aid, I could." He sighs. "Filed a report and sent a few agents off to look for him, they did, but so far received any word from them, I have not."`
+			label end
+			`	He thanks you all the same for listening to him, and moves on to the next person in the spaceport to inquire about the missing Kimek.`
+				decline
+
+
+
+mission "Coalition Incident: Hunger Tower"
+	minor
+	invisible
+	to offer
+		has "Coalition: First Contact: done"
+		random < 1
+	source
+		government "Coalition"
+		attributes "kimek"
+		not attributes "coalition station"
+		not attributes "farming"
+	on offer
+		conversation
+			`The spaceport here on <origin> is in something of an uproar. Thousands of Kimek are seemingly organized in what, strangely enough for a world in the Coalition, resembles a protest. Some carry devices repeatedly displaying a message in the Kimek language. Others hold signs depicting the usual Kimek diet, with their many crops sharing space with a few fish. Strangest of all, however, is how the local Heliarchs are handling the situation: they appear almost hesitant, defensively speaking to the civilians in attempts to calm them down, sometimes apologizing or simply being forced to listen to the complaints as several Kimek pile up around them.`
+			`	When you finally manage to find a Heliarch who isn't occupied trying to keep the area in order, a Saryd, he explains the situation. "Missed its delivery, a food convoy has. Still investigating the issue, we are; know only that, somehow, gone missing, the entire fleet has..." He sighs, shaking his head. "Keep the locals calm we must." He goes on to help the other Heliarchs, without another word.`
+			`	Within a few minutes that must've felt like hours for the stationed Heliarch agents, battalions of drones start making their way from the tallest building in the city - the hunger tower. Ferrying around several meals each, with impressive precision, the drones fly throughout the civilian mass, distributing the meals. Hundreds of larger ones head to the residential areas of the city, presumably to provide the necessary supplies for the citizens until the next food convoy arrives. Seemingly satisfied, for the moment at least, the Kimek gradually dissipate out of the spaceport and back to their homes, leaving the spaceport to the now exhausted Heliarch agents.`
+				decline
+
+
+
+mission "Coalition Incident: Arach Store"
+	minor
+	invisible
+	to offer
+		has "Coalition: First Contact: done"
+		random < 2
+	source
+		government "Coalition"
+		attributes "arach"
+		not attributes "coalition station"
+		not planet "Ahr"
+	on offer
+		conversation
+			`A Heliarch patrol seems to be discussing with an Arach shop worker in front of a large, prestigious looking Arach clothing store in the spaceport. Other agents prevent you and other bystanders from approaching the scene, but you can still make out some context from their gesturing. It seems the Heliarchs are there to confiscate some pieces from the shop that you guess don't abide by their laws, while the shop worker keeps worryingly attempting to answer what questions they pose him.`
+			`	Eventually, the shop owner arrives. Judging by her fine clothes, and from the reactions of the local Arachi, you figure she must either be really famous here on <origin>, or possibly belong to one of the Arach Houses, though nothing on her attire seems to indicate any specific house. She helps the worker calm down, and then she engages in conversation with the Heliarch agents as he heads back inside.`
+			`	She tries to diffuse the situation, speaking calmly and attempting to take the items back into the shop, but the Heliarch agents do not budge. Running out of patience, the Heliarch in charge of the patrol cuts the Arach lady off as she's speaking, forcibly taking all the items in question, and having the agents rip apart what you guess must've been the offending parts of the cloth pieces. Stunned, the Arach simply watches as they render most of the items into unusable rags, keeping the bits they hacked away, and handing her back the other tattered remains. Without another word, they leave the scene. The Arach heads inside, and you can hear the door slam from where you're standing.`
+				decline
+
+
+
+mission "Coalition Incident: Ring of Wisdom"
+	minor
+	invisible
+	to offer
+		has "Coalition: First Contact: done"
+		random < 1
+	source "Ring of Wisdom"
+	on offer
+		conversation
+			`A few minutes into your walk around the spaceport of the <origin>, the lighting suddenly shifts from the usual, comfortable tones to a cacophony of flashing warnings. Diagnostic warning messages display on all sorts of screens, and siren blasts are interrupted only by alarm messages in all three Coalition languages on repeat. You notice that not only are the civilians in the ring as alarmed as you, but every Heliarch agent you can see begins moving in a hurried, albeit organized pace, towards restricted sections, Heliarch-only rooms and warehouses.`
+			`	It doesn't take long before hundreds of other Heliarchs come pouring in from other sections of the ring. When the stream finally stops, you see them take control of the machinery near the edge of the ring section, activating a huge retractable barrier that seals this section off from the rest of the ring. Ship traffic is also cut off entirely, with Heliarch squadrons keeping any ship from departing, and warships visibly walling off the hangar entrances. The Heliarchs organize the civilians swiftly, moving them away from an area where most of the agents are gathering.`
+			`	As you too are herded away by the agents, you manage to get some context out of one of them - a Heliarch team that was exploring one of the ring's unknown sections had some sort of accident, and one of the members is expected to return at the area where most of the agents are gathering. The Heliarchs stand armed and ready, pointing their weapons toward a door leading to the restricted sections, and as if rendered mute by anticipation, all in the quarantined ring section appear to hold their breath, waiting.`
+			`	Sure enough, the many minutes of silence are disrupted by echoing, increasingly louder screaming - one scream, incessant, coming from the shut passageway watched over by the sights of what must be a hundred Heliarch guns. A thud at the shut door briefly peaks out amidst the continuous shout. It opens to a lone, frantic Saryd, with a deeply perturbed look in his eyes. He doesn't stop at the sight of the several gun barrels pointed at him, instead drawing his own weapon, only to point it back to where he came from, firing wildly at the dark passage.`
+			`	Then it stops. The screaming, and the gunshots, both stop abruptly, and the Saryd drops the gun, then collapses to the ground. He lays there, unresponsive, catatonic, as the Heliarch agents head closer to inspect him, eventually blocking him out entirely from view. A few seconds later, some of the Heliarchs back up, then bolt to a restricted room. Others stand firmly on guard, with their guns pointed either at the Saryd, or at the passageway from which he came.`
+			`	Eventually, a team comes with what vaguely resembles a very large gurney, and some sort of large sack. The Heliarch agents surrounding the Saryd shuffle out of the way for those carrying the equipment to pass, and within a few minutes they're taking the Saryd away, encased in the sack as if in a body bag, carried on the gurney. Halfway to the shut down section doors, they stop as the Saryd moves erratically inside the sack, kicking and flailing wildly. It stops within a few seconds, and they resume their way out of the quarantined ring portion.`
+			`	Several minutes pass before the Heliarch agents deem the passageway from where the Saryd ran from to be secure, sending some squads inside while others move to resume the ring section to normal. Once the quarantine is lifted, nearly all civilians rush to their ships, departing immediately.`
+				decline
