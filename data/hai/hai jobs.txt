@@ -1720,7 +1720,7 @@ mission "Superstitious Hai [1]"
 	name "Superstitious Hai to <planet>"
 	job
 	repeat
-	description "This family of <bunks> Hai will pay <payment> for a journey on a keystone-equipped ship to <planet> by <date>."
+	description "This family of <bunks> Hai will pay <payment> for a journey on a keystone-equipped ship to <destination> by <date>. They have requested that their ship have an authentic Hai keystone installed."
 	passengers 2 4 .8
 	deadline
 	to offer
@@ -1747,7 +1747,7 @@ mission "Superstitious Hai [2]"
 	name "Superstitious Hai to <planet>"
 	job
 	repeat
-	description "This family of <bunks> Hai will pay <payment> for a journey on a keystone-equipped ship to <planet> by <date>."
+	description "This family of <bunks> Hai will pay <payment> for a journey on a keystone-equipped ship to <destination> by <date>. They have requested that their ship have an authentic Hai keystone installed."
 	passengers 2 4 .8
 	deadline
 	to offer
@@ -1775,7 +1775,7 @@ mission "Superstitious Hai [3]"
 	name "Superstitious Hai to <planet>"
 	job
 	repeat
-	description "This family of <bunks> Hai will pay <payment> for a journey on a keystone-equipped ship to <planet> by <date>."
+	description "This family of <bunks> Hai will pay <payment> for a journey on a keystone-equipped ship to <destination> by <date>."
 	passengers 2 4 .8
 	deadline
 	to offer
@@ -1806,7 +1806,7 @@ mission "Superstitious Hai [4]"
 	name "Superstitious Hai to <planet>"
 	job
 	repeat
-	description "This family of <bunks> Hai will pay <payment> for a journey on a keystone-equipped ship to <planet> by <date>."
+	description "This family of <bunks> Hai will pay <payment> for a journey on a keystone-equipped ship to <destination> by <date>."
 	passengers 2 4 .8
 	deadline
 	to offer
