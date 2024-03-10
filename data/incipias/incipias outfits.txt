@@ -104,7 +104,7 @@ outfit "Star Tail"
 		sound "star tail"
 		"hit effect" "blaster impact"
 		"velocity" 1
-		"lifetime" 60
+		"lifetime" 58
 		"reload" 180
 		"firing energy" 60
 		"firing heat" 30

@@ -16,12 +16,14 @@ outfit "Strange Ray"
 	"outfit space" -20
 	"gun ports" -1
 	weapon
-		sprite "projectile/strange ray/ray"
-			"frame rate" 2
-		"inaccuracy" 0
-		"velocity" 1
-		"lifetime" 20
-		"reload" 3
+		sprite "projectile/strange ray"
+			"frame rate" 60
+			"no repeat"
+		"inaccuracy" 20
+		"velocity" 6
+		"lifetime" 10
+		"fade out" 2
+		"reload" 1
 		"firing energy" 8
 		"firing heat" 4
 		"shield damage" 50
@@ -33,7 +35,7 @@ outfit "Internal Plasma Exhaust"
 	"outfit space" -25
 	"engine capacity" -25
 	"thrust" 24
-	"turn" 2000
+	"turn" 1000
 	"flare sprite" "effect/plasma exhaust"
 		"frame rate" 16
 

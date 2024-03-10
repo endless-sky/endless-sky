@@ -90,7 +90,7 @@ ship "Nimbus"
 		"Liquid-Class Shield"
 		"Liquid Hydrogen Cell"
 		"Plasma Discharger" 4
-		"Tractor Beam"
+		"Stagnation Beam"
 		"Heavy Machine Gun" 20
 
 		"MH Red-Class Engine"
@@ -125,7 +125,7 @@ ship "Nimbus" "Nimbus (Mining)"
 		"Liquid-Class Shield"
 		"Liquid Hydrogen Cell"
 		"Plasma Discharger" 4
-		"Tractor Beam" # to be replaced with a floatsam tractor beam
+		"Stagnation Beam" # to be replaced with a floatsam tractor beam
 		"Heavy Machine Gun" 20
 
 		"MH Red-Class Engine"
