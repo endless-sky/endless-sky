@@ -301,6 +301,12 @@ const vector<Collision> &CollisionSet::Line(const Point &from, const Point &to,
 			const Government *iGov = it->body->GetGovernment();
 			if(it->body != target && iGov && pGov && !iGov->IsEnemy(pGov))
 				continue;
+			if(collisionType == CollisionType::SHIP)
+			{
+				Ship *ship = reinterpret_cast<Ship *>(it->body);
+				if(ship != target && ship->CanBeCarried() && ship->IsDisabled())
+					continue;
+			}
 
 			const Mask &mask = it->body->GetMask(step);
 			Point offset = from - it->body->Position();
