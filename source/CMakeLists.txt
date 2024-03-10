@@ -37,6 +37,8 @@ target_sources(EndlessSkyLib PRIVATE
 	BatchDrawList.h
 	BatchShader.cpp
 	BatchShader.h
+	BayType.cpp
+	BayType.h
 	Bitset.cpp
 	Bitset.h
 	BoardingPanel.cpp

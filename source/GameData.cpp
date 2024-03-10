@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Audio.h"
 #include "BatchShader.h"
+#include "BayType.h"
 #include "CategoryList.h"
 #include "Color.h"
 #include "Command.h"
@@ -790,6 +791,13 @@ const string &GameData::Rating(const string &type, int level)
 const CategoryList &GameData::GetCategory(const CategoryType type)
 {
 	return objects.categories[type];
+}
+
+
+
+const BayType *GameData::GetBayType(const string &type)
+{
+	return objects.bayTypes.Get(type);
 }
 
 

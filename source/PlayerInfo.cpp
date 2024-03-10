@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "AI.h"
 #include "Audio.h"
+#include "BayType.h"
 #include "ConversationPanel.h"
 #include "DataFile.h"
 #include "DataWriter.h"
@@ -1076,7 +1077,9 @@ const vector<shared_ptr<Ship>> &PlayerInfo::Ships() const
 // Returns a mapping of ships to the reason their flight check failed.
 map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
 {
-	// Count of all bay types in the active fleet.
+	// The total number of bays in the active fleet.
+	int totalBays = 0;
+	// The total number of each category of ship that can be carried by the fleet.
 	auto bayCount = map<string, size_t>{};
 	// Classification of the present ships by category. Parked ships are ignored.
 	auto categoryCount = map<string, vector<shared_ptr<Ship>>>{};
@@ -1102,9 +1105,17 @@ map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
 			if(ship->CanBeCarried() || !ship->HasBays())
 				continue;
 
-			for(auto &bay : ship->Bays())
+			auto &bays = ship->Bays();
+			totalBays += bays.size();
+			for(auto &bay : bays)
 			{
-				++bayCount[bay.category];
+				if(!bay.bayType)
+					++bayCount[bay.name];
+				else
+				{
+					for(const string &category : bay.bayType->Categories())
+						++bayCount[category];
+				}
 				// The bays should always be empty. But if not, count that ship too.
 				if(bay.ship)
 				{
@@ -1127,8 +1138,11 @@ map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
 				// This ship can travel between systems and does not require a bay.
 			}
 			// This ship requires a bay to travel between systems.
-			else if(bayType.second > 0)
+			else if(bayType.second > 0 && totalBays > 0)
+			{
 				--bayType.second;
+				--totalBays;
+			}
 			else
 			{
 				// Include the lack of bay availability amongst any other

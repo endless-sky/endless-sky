@@ -50,7 +50,7 @@ SCENARIO( "Creating a Ship::Bay instance", "[ship][bay]" ) {
 		std::string value = "any string value";
 		auto bay = Ship::Bay(0., 0., value);
 		THEN( "the category is stored" ) {
-			CHECK( bay.category == value );
+			CHECK( bay.name == value );
 		}
 	}
 }
@@ -67,7 +67,7 @@ SCENARIO( "A Ship::Bay instance is being copied", "[ship][bay]") {
 			THEN( "the copy has the correct attributes" ) {
 				CHECK( copy.point.X() == source.point.X() );
 				CHECK( copy.point.Y() == source.point.Y() );
-				CHECK( copy.category == source.category );
+				CHECK( copy.name == source.name );
 				CHECK( copy.side == source.side );
 				CHECK( copy.facing.Degrees() == source.facing.Degrees() );
 				CHECK( copy.launchEffects == source.launchEffects );
@@ -84,7 +84,7 @@ SCENARIO( "A Ship::Bay instance is being copied", "[ship][bay]") {
 			THEN( "the copy has the correct attributes" ) {
 				CHECK( copy.point.X() == source.point.X() );
 				CHECK( copy.point.Y() == source.point.Y() );
-				CHECK( copy.category == source.category );
+				CHECK( copy.name == source.name );
 				CHECK( copy.side == source.side );
 				CHECK( copy.facing.Degrees() == source.facing.Degrees() );
 				CHECK( copy.launchEffects == source.launchEffects );

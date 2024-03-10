@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Sale.h"
 #include "Set.h"
 
+#include "BayType.h"
 #include "CategoryList.h"
 #include "Color.h"
 #include "Conversation.h"
@@ -98,6 +99,7 @@ private:
 
 
 private:
+	Set<BayType> bayTypes;
 	Set<Color> colors;
 	Set<Conversation> conversations;
 	Set<Effect> effects;
