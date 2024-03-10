@@ -800,7 +800,7 @@ void Ship::FinishLoading(bool isNewInstance)
 	for(auto it = bays.begin(); it != bays.end(); )
 	{
 		Bay &bay = *it;
-		if(!bay.bayType->IsValid())
+		if(bay.bayType && !bay.bayType->IsValid())
 		{
 			// No need to print a warning, as the bay type being invalid will
 			// already have created one.
@@ -810,7 +810,7 @@ void Ship::FinishLoading(bool isNewInstance)
 		// If the bay type matching the name of this bay hasn't been loaded, then
 		// assume that the name of the bay is the category of ship that it stores
 		// for backwards compatibility.
-		if(!bay.bayType->IsLoaded())
+		if(!bay.bayType || !bay.bayType->IsLoaded())
 		{
 			// Set the bay type to nullptr to identify that the name of this bay
 			// is the category of ship that it stores.
