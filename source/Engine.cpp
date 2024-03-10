@@ -2743,7 +2743,7 @@ void Engine::EmplaceStatusOverlay(const shared_ptr<Ship> &it, Preferences::Overl
 
 void Engine::HandleEvents()
 {
-	set<const Ship*> disabledFighters;
+	set<const Ship *> disabledFighters;
 	for(const auto &event : events)
 		if(event.Type() & ShipEvent::DISABLE && event.Target()->CanBeCarried())
 			disabledFighters.insert(event.Target().get());
