@@ -302,7 +302,7 @@ const vector<Collision> &CollisionSet::Line(const Point &from, const Point &to,
 				continue;
 			seen[it->seenIndex] = seenEpoch;
 
-			if(!canHit(it))
+			if(!CanHit(it))
 				continue;
 
 			const Mask &mask = it->body->GetMask(step);
