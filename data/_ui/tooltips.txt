@@ -294,7 +294,7 @@ tip "repair delay:"
 tip "disabled repair delay:"
 	`The number of seconds it takes for hull repairs to begin after being disabled.`
 	
-tip "disabled recovery timer:"
+tip "disabled recovery time:"
 	`The number of seconds it takes for a disabled ship to repair itself.`
 	
 tip "disabled recovery energy:"
