@@ -177,14 +177,16 @@ namespace {
 		{
 			for(Ship *ship : toDeploy)
 				ship->SetDeployOrder(true);
-			Messages::Add("Deployed " + to_string(toDeploy.size()) + " carried ships.", Messages::Importance::High);
+			string ship = (toDeploy.size() == 1 ? "ship" : "ships");
+			Messages::Add("Deployed " + to_string(toDeploy.size()) + " carried " + ship + ".", Messages::Importance::High);
 		}
 		// Otherwise, instruct the carried ships to return to their berth.
 		else if(!toRecall.empty())
 		{
 			for(Ship *ship : toRecall)
 				ship->SetDeployOrder(false);
-			Messages::Add("Recalled " + to_string(toRecall.size()) + " carried ships", Messages::Importance::High);
+			string ship = (toDeploy.size() == 1 ? "ship" : "ships");
+			Messages::Add("Recalled " + to_string(toRecall.size()) + " carried " + ship + ".", Messages::Importance::High);
 		}
 	}
 
