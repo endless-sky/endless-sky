@@ -1998,22 +1998,24 @@ phrase "friendly civilian"
 
 phrase "friendly civilian"
 	word
-		"Those Quarg are pretty strict with their technology. They"
+		"The Quarg are pretty strict with their technology. They"
 		"I wish the Quarg would share some of their technology with us, but they"
 		"You don't want to be caught with Quarg technology around Enif. The Quarg"
 		"The Quarg don't mess around with their technology. They"
+		"I'd love to get my hands on some Quarg tech, but they"
 		"It's said that the Quarg"
 	word
 		" make it pretty clear that they "
-		" monitor their outfits meticulously, and they "
-		" don't want their outfits to proliferate, and they "
+		" monitor their ships and outfits meticulously. They "
+		" don't want their advanced technology to proliferate, and they "
 		" restrict their outfits to their own ships, and "
 		" " 4
 	word
 		"will arrest you if they catch a whiff of any of their equipment on your ship"
-		"imprison anyone they catch carrying their outfits"
-		"will put you behind bars forever if you've stolen their outfits"
+		"imprison anyone they catch with their outfits"
+		"will put you behind bars forever if you've got one of their ships or outfits without their permission"
 		"won't ever let you step foot on a spaceship again if you've got one of their own ships"
+		"don't take any chances when it comes to a misplaced ship or outfit of theirs"
 	word
 		"."
 	replace
@@ -2088,6 +2090,40 @@ phrase "friendly civilian"
 		"... it's an amazing sport."
 		"... it's like chess played in space."
 		"..." 3
+
+phrase "friendly civilian"
+	word
+		"If you ever get the chance, you should"
+		"One thing I'd like to do before I kick the bucket is to"
+		"Before you die, you've got to"
+		"For my next trip, I'm going to"
+	word
+		" "
+	word
+		"see the Quarg ringworld in Enif. Isn't it amazing what they can do and we can't?"
+		"see the Quarg ringworld down south. It's such a magnificent feat of engineering."
+		"see the dragons of Skymoot"
+		"ski the slopes on Vail"
+		"go to Vail and do some skiing"
+		"go to Vail for a hoverboard course"
+		"go to New Switzerland. The slopes are much better there than Vail"
+		"go skiing on Antipode. It's not as busy as those overpriced resorts in Vail, not to mention cheaper"
+		"do some extreme rock climbing on Maelstrom"
+		"see the ancient cities of old Earth"
+		"tour through the megacities on Earth"
+		"see where our ancestors came from on old Earth"
+		"do a jungle trek through Amazon"
+		"tour the continents of Pearl and experience the biospheres of a hundred different planets"
+		"meet some of the Quarg around Tarazed"
+		"visit Luna and its enormous shipyard"
+		"see where the Niel Armstrong, one of the first men to leave Earth, stepped foot on Luna"
+		"see the Plot Memorial on Chiron and take a look at the first hyperdrive ever made"
+		"watch the hovercraft races on Sunracer"
+		"relax at the hot springs on Calda"
+		"take a boat up the fjords of Flood"
+		"one of the pirate worlds, like Greenrock or Freedom, and experience life the way anarchists do it"
+	word
+		"."
 
 phrase "friendly civilian"
 	word
