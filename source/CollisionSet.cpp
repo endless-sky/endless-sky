@@ -201,7 +201,7 @@ const vector<Collision> &CollisionSet::Line(const Point &from, const Point &to,
 	Closest closer_result(1.);
 	lineResult.clear();
 
-	const auto canHit = [&](vector<Entry>::const_iterator &it){
+	const auto CanHit = [this, pGov, target](vector<Entry>::const_iterator &it) {
 		// Check if this projectile can hit this object. If either the
 		// projectile or the object has no government, it will always hit.
 		const Government *iGov = it->body->GetGovernment();
