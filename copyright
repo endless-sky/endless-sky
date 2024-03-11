@@ -25,19 +25,6 @@ License: public-domain
  and placed in the public domain. (Exceptions noted below.)
 
 Files:
- images/outfit/*battery?hai*
- images/outfit/anti-missile?hai*
- images/outfit/cooling?ducts?hai*
- images/outfit/dwarf?core?hai*
- images/outfit/fission?hai*
- images/outfit/fusion?hai*
- images/outfit/heavy?anti-missile?hai*
- images/ship/mfury*
-Copyright: Maximilian Korber
-License: CC-BY-SA-4.0
-Comment: Derived from works by Michael Zahniser (under the same license).
-
-Files:
  images/outfit/bullet*
  images/scene/sagittarius?a*
  images/ship/hai?solifuge*
@@ -49,23 +36,6 @@ Files:
 Copyright: Maximilian Korber
 License: CC-BY-SA-4.0
 Comment: Derived from works by Christian Rhodes (under the same license).
-
-Files:
- images/ship/pointedstick?vanguard*
-Copyright: Maximilian Korber
-License: CC-BY-SA-4.0
-Comment: Derived from works by Nate Graham (under the same license).
-
-Files:
- images/effect/railspark*
- images/projectile/tinyflare*
- images/outfit/*engines?hai*
- images/outfit/*steering?hai*
- images/outfit/*thruster?hai*
- images/outfit/tiny?ion?engines*
-Copyright: Iaz Poolar
-License: CC-BY-SA-4.0
-Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
  images/projectile/bullet*
@@ -368,13 +338,6 @@ Comment:
  are subject to additional restrictions.
 
 Files:
- images/outfit/quarg?skylance*
- images/hardpoint/quarg?skylance*
-Copyright: Evan Fluharty (Evanfluharty@gmail.com)
-License: CC-BY-SA-4.0
-Comment: Derived and completed from works by Maximilian Korber (Wrzlprnft), @Karirawri, and originally drawn up by Tommy Thach (Bladewood) (all under the same license)
-
-Files:
  images/outfit/quarg*
  images/hardpoint/quarg*
  images/outfit/small?quarg*
@@ -386,6 +349,13 @@ Files:
  images/outfit/hai?geode*
 Copyright: Evan Fluharty (Evanfluharty@gmail.com)
 License: CC-BY-SA-4.0
+
+Files:
+ images/outfit/quarg?skylance*
+ images/hardpoint/quarg?skylance*
+Copyright: Evan Fluharty (Evanfluharty@gmail.com)
+License: CC-BY-SA-4.0
+Comment: Derived and completed from works by Maximilian Korber (Wrzlprnft), @Karirawri, and originally drawn up by Tommy Thach (Bladewood) (all under the same license)
 
 Files:
  images/outfit/enforcer?riot?staff*
@@ -1510,17 +1480,54 @@ License: public-domain
  Taken from Wikimedia Commons. Cropped and edited.
 
 Files:
- images/land/lava0*
-Copyright: USGS
+ images/land/station46*
+Copyright: Bruno Thethe
+License: Unsplash
+Comment:
+ Taken from https://archive.is/FpG3p. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
+ images/land/station47*
+Copyright: Adrien Olichon
+License: Unsplash
+Comment:
+ Taken from https://archive.is/zTEVA. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
+ images/land/station48*
+Copyright: Miquel Parera
+License: Unsplash
+Comment:
+ Taken from https://archive.is/UjGht. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files: images/land/lava11*
+Copyright: National Archives and Records Administration
 License: public-domain
- From the USGS, and therefore in the public domain because they were created by
- government employees while doing work for the government.
+ Taken from Wikimedia Commons. Cropped and edited.
 
 Files:
  images/land/snow15*
 Copyright: US NOAA
 License: public-domain
  From US NOAA, and therefore in the public domain because it was created by
+
+Files:
+ images/land/lava0*
+Copyright: USGS
+License: public-domain
+ From the USGS, and therefore in the public domain because they were created by
  government employees while doing work for the government.
 
 Files:
@@ -1602,6 +1609,7 @@ License: public-domain
 Files: sounds/torpedo?hit.wav
 Copyright: Public Domain
 License: public-domain
+ Taken from a now-defunct public domain sharing site. Please contact Pointedstick (Nate Graham <pointedstick@zoho.com>) for legal enquires.
 
 Files: sounds/meteor.wav
 Copyright: Copyright "18hiltc"
@@ -2085,6 +2093,19 @@ Files:
  images/asteroid/large?space?flora*
  images/asteroid/yottrite*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
+ images/outfit/*battery?hai*
+ images/outfit/anti-missile?hai*
+ images/outfit/cooling?ducts?hai*
+ images/outfit/dwarf?core?hai*
+ images/outfit/fission?hai*
+ images/outfit/fusion?hai*
+ images/outfit/heavy?anti-missile?hai*
+ images/ship/mfury*
+Copyright: Maximilian Korber
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
@@ -2700,7 +2721,6 @@ Files:
  images/outfit/scrap?cell*
  images/outfit/skirmish?battery*
  images/outfit/*torch?thruster?vi*
- images/outfit/*torch?thruster?vi*
  images/outfit/tractor?beam*
  images/outfit/warforge?battery*
  images/outfit/warzone?core*
@@ -2947,6 +2967,17 @@ Files:
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and Iaz Poolar (under the same license).
+
+Files:
+ images/effect/railspark*
+ images/projectile/tinyflare*
+ images/outfit/*engines?hai*
+ images/outfit/*steering?hai*
+ images/outfit/*thruster?hai*
+ images/outfit/tiny?ion?engines*
+Copyright: Iaz Poolar
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
  images/icon/gat?turret*
