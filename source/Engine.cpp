@@ -2751,9 +2751,10 @@ void Engine::HandleEvents()
 	for(const auto &event : events)
 		if(event.Type() & ShipEvent::DISABLE && event.Target()->CanBeCarried())
 			disabledFighters.insert(event.Target().get());
-	for(auto &projectile : projectiles)
-		if(disabledFighters.count(projectile.Target()))
-			projectile.BreakTarget();
+	if(!disabledFighters.empty())
+		for(auto &projectile : projectiles)
+			if(disabledFighters.count(projectile.Target()))
+				projectile.BreakTarget();
 
 	ai.UpdateEvents(events);
 }
