@@ -471,7 +471,6 @@ bool ConditionsStore::VerifyProviderLocation(const string &name, DerivedProvider
 // Expands the name of a condition to the full name based on the $[] blocks it contains.
 string ConditionsStore::Expand(const string &name) const
 {
-	using size_t = string::size_type;
 	size_t it = name.find("$[");
 
 	// If there is nothing to expand, return.
