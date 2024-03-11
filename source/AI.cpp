@@ -185,7 +185,7 @@ namespace {
 		{
 			for(Ship *ship : toRecall)
 				ship->SetDeployOrder(false);
-			string ship = (toDeploy.size() == 1 ? "ship" : "ships");
+			string ship = (toRecall.size() == 1 ? "ship" : "ships");
 			Messages::Add("Recalled " + to_string(toRecall.size()) + " carried " + ship + ".", Messages::Importance::High);
 		}
 	}
