@@ -201,6 +201,21 @@ const vector<Collision> &CollisionSet::Line(const Point &from, const Point &to,
 	Closest closer_result(1.);
 	lineResult.clear();
 
+	const auto canHit = [&](vector<Entry>::const_iterator &it){
+		// Check if this projectile can hit this object. If either the
+		// projectile or the object has no government, it will always hit.
+		const Government *iGov = it->body->GetGovernment();
+		if(it->body != target && iGov && pGov && !iGov->IsEnemy(pGov))
+			return false;
+		if(collisionType == CollisionType::SHIP)
+		{
+			Ship *ship = reinterpret_cast<Ship *>(it->body);
+			if(ship != target && ship->CanBeCarried() && ship->IsDisabled())
+				return false;
+		}
+		return true;
+	};
+
 	// Special case, very common: the projectile is contained in one grid cell.
 	// In this case, all the complicated code below can be skipped.
 	if(gx == endGX && gy == endGY)
@@ -216,17 +231,8 @@ const vector<Collision> &CollisionSet::Line(const Point &from, const Point &to,
 			if(it->x != gx || it->y != gy)
 				continue;
 
-			// Check if this projectile can hit this object. If either the
-			// projectile or the object has no government, it will always hit.
-			const Government *iGov = it->body->GetGovernment();
-			if(it->body != target && iGov && pGov && !iGov->IsEnemy(pGov))
+			if(!canHit(it))
 				continue;
-			if(collisionType == CollisionType::SHIP)
-			{
-				Ship *ship = reinterpret_cast<Ship *>(it->body);
-				if(ship != target && ship->CanBeCarried() && ship->IsDisabled())
-					continue;
-			}
 
 			const Mask &mask = it->body->GetMask(step);
 			Point offset = from - it->body->Position();
@@ -296,17 +302,8 @@ const vector<Collision> &CollisionSet::Line(const Point &from, const Point &to,
 				continue;
 			seen[it->seenIndex] = seenEpoch;
 
-			// Check if this projectile can hit this object. If either the
-			// projectile or the object has no government, it will always hit.
-			const Government *iGov = it->body->GetGovernment();
-			if(it->body != target && iGov && pGov && !iGov->IsEnemy(pGov))
+			if(!canHit(it))
 				continue;
-			if(collisionType == CollisionType::SHIP)
-			{
-				Ship *ship = reinterpret_cast<Ship *>(it->body);
-				if(ship != target && ship->CanBeCarried() && ship->IsDisabled())
-					continue;
-			}
 
 			const Mask &mask = it->body->GetMask(step);
 			Point offset = from - it->body->Position();
