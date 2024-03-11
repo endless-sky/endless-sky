@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef BODY_H_
@@ -54,6 +57,7 @@ public:
 	// Positional attributes.
 	const Point &Position() const;
 	const Point &Velocity() const;
+	const Point Center() const;
 	const Angle &Facing() const;
 	Point Unit() const;
 	double Zoom() const;
@@ -74,6 +78,7 @@ public:
 	// Set the color swizzle.
 	void SetSwizzle(int swizzle);
 
+	double Alpha() const;
 
 protected:
 	// Adjust the frame rate.
@@ -84,6 +89,9 @@ protected:
 	void MarkForRemoval();
 	// Mark that this object should not be removed (e.g. a launched fighter).
 	void UnmarkForRemoval();
+	// Turn this object around its center of rotation.
+	void Turn(double amount);
+	void Turn(const Angle &amount);
 
 
 protected:
@@ -91,10 +99,14 @@ protected:
 	Point position;
 	Point velocity;
 	Angle angle;
+	Point center;
+	Point rotatedCenter;
 	// A zoom of 1 means the sprite should be drawn at half size. For objects
 	// whose sprites should be full size, use zoom = 2.
 	float zoom = 1.f;
 	float scale = 1.f;
+
+	double alpha = 1.;
 
 	// Government, for use in collision checks.
 	const Government *government = nullptr;

@@ -7,24 +7,23 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Audio.h"
 
 #include "Files.h"
+#include "Logger.h"
 #include "Music.h"
 #include "Point.h"
 #include "Random.h"
 #include "Sound.h"
 
-#ifndef __APPLE__
 #include <AL/al.h>
 #include <AL/alc.h>
-#else
-#include <OpenAL/al.h>
-#include <OpenAL/alc.h>
-#endif
 
 #include <algorithm>
 #include <cmath>
@@ -83,7 +82,7 @@ namespace {
 	// This queue keeps track of sounds that have been requested to play. Each
 	// added sound is "deferred" until the next audio position update to make
 	// sure that all sounds from a given frame start at the same time.
-	map<const Sound *, QueueEntry> queue;
+	map<const Sound *, QueueEntry> soundQueue;
 	map<const Sound *, QueueEntry> deferred;
 	thread::id mainThreadID;
 
@@ -185,13 +184,13 @@ void Audio::CheckReferences()
 {
 	if(!isInitialized)
 	{
-		Files::LogError("Warning: audio could not be initialized. No audio will play.");
+		Logger::LogError("Warning: audio could not be initialized. No audio will play.");
 		return;
 	}
 
 	for(auto &&it : sounds)
 		if(it.second.Name().empty())
-			Files::LogError("Warning: sound \"" + it.first + "\" is referred to, but does not exist.");
+			Logger::LogError("Warning: sound \"" + it.first + "\" is referred to, but does not exist.");
 }
 
 
@@ -250,7 +249,7 @@ void Audio::Update(const Point &listenerPosition)
 	listener = listenerPosition;
 
 	for(const auto &it : deferred)
-		queue[it.first].Add(it.second);
+		soundQueue[it.first].Add(it.second);
 	deferred.clear();
 }
 
@@ -274,7 +273,7 @@ void Audio::Play(const Sound *sound, const Point &position)
 	// Place sounds from the main thread directly into the queue. They are from
 	// the UI, and the Engine may not be running right now to call Update().
 	if(this_thread::get_id() == mainThreadID)
-		queue[sound].Add(position - listener);
+		soundQueue[sound].Add(position - listener);
 	else
 	{
 		unique_lock<mutex> lock(audioMutex);
@@ -288,6 +287,10 @@ void Audio::Play(const Sound *sound, const Point &position)
 void Audio::PlayMusic(const string &name)
 {
 	if(!isInitialized)
+		return;
+
+	// Skip changing music if the requested music is already playing.
+	if(name == currentTrack->GetSource())
 		return;
 
 	// Don't worry about thread safety here, since music will always be started
@@ -314,12 +317,12 @@ void Audio::Step()
 	{
 		if(source.GetSound()->IsLooping())
 		{
-			auto it = queue.find(source.GetSound());
-			if(it != queue.end())
+			auto it = soundQueue.find(source.GetSound());
+			if(it != soundQueue.end())
 			{
 				source.Move(it->second);
 				newSources.push_back(source);
-				queue.erase(it);
+				soundQueue.erase(it);
 			}
 			else
 			{
@@ -364,7 +367,7 @@ void Audio::Step()
 
 	// Now, what is left in the queue is sounds that want to play, and that do
 	// not correspond to an existing source.
-	for(const auto &it : queue)
+	for(const auto &it : soundQueue)
 	{
 		// Use a recycled source if possible. Otherwise, create a new one.
 		unsigned source = 0;
@@ -393,7 +396,7 @@ void Audio::Step()
 		sources.back().Move(it.second);
 		alSourcePlay(source);
 	}
-	queue.clear();
+	soundQueue.clear();
 
 	// Queue up new buffers for the music, if necessary.
 	int buffersDone = 0;
@@ -600,7 +603,7 @@ namespace {
 
 			// Unlock the mutex for the time-intensive part of the loop.
 			if(!sound->Load(path, name))
-				Files::LogError("Unable to load sound \"" + name + "\" from path: " + path);
+				Logger::LogError("Unable to load sound \"" + name + "\" from path: " + path);
 		}
 	}
 }

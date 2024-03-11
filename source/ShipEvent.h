@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef SHIP_EVENT_H_
@@ -63,7 +66,9 @@ public:
 		// you had with the given government, first.
 		ATROCITY = (1 << 8),
 		// This ship just jumped into a different system.
-		JUMP = (1 << 9)
+		JUMP = (1 << 9),
+		// This ship just met another ship for the first time
+		ENCOUNTER = (1 << 10),
 	};
 
 

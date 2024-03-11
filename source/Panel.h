@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef PANEL_H_
@@ -23,6 +26,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 class Command;
 class Point;
+class Sprite;
 class TestContext;
 class UI;
 
@@ -34,6 +38,11 @@ class UI;
 // default, a panel allows the panels under it to show through, but does not
 // allow them to receive any events that it does not know how to handle.
 class Panel {
+public:
+	// Draw a sprite repeatedly to make a vertical edge.
+	static void DrawEdgeSprite(const Sprite *edgeSprite, int posX);
+
+
 public:
 	// Make the destructor virtual just in case any derived class needs it.
 	virtual ~Panel() = default;
@@ -61,9 +70,6 @@ public:
 	// Check if a click at the given coordinates triggers a clickable zone. If
 	// so, apply that zone's action and return true.
 	bool ZoneClick(const Point &point);
-
-	// Forward the given TestContext to the Engine under MainPanel.
-	virtual void SetTestContext(TestContext &testContext);
 
 	// Is fast-forward allowed to be on when this panel is on top of the GUI stack?
 	virtual bool AllowsFastForward() const noexcept;
@@ -100,9 +106,9 @@ protected:
 	// A lot of different UI elements allow a modifier to change the number of
 	// something you are buying, so the shared function is defined here:
 	static int Modifier();
-	// Display the given help message if it has not yet been shown. Return true
-	// if the message was displayed.
-	bool DoHelp(const std::string &name) const;
+	// Display the given help message if it has not yet been shown
+	// (or if force is set to true). Return true if the message was displayed.
+	bool DoHelp(const std::string &name, bool force = false) const;
 
 
 private:

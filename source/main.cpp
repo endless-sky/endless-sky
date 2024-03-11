@@ -9,7 +9,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Audio.h"
@@ -18,21 +21,22 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ConversationPanel.h"
 #include "DataFile.h"
 #include "DataNode.h"
-#include "Dialog.h"
+#include "Engine.h"
 #include "Files.h"
 #include "text/Font.h"
 #include "FrameTimer.h"
 #include "GameData.h"
-#include "GameWindow.h"
 #include "GameLoadingPanel.h"
-#include "Hardpoint.h"
+#include "GameWindow.h"
+#include "Logger.h"
+#include "MainPanel.h"
 #include "MenuPanel.h"
-#include "Outfit.h"
 #include "Panel.h"
 #include "PlayerInfo.h"
+#include "Plugins.h"
 #include "Preferences.h"
+#include "PrintData.h"
 #include "Screen.h"
-#include "Ship.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "Test.h"
@@ -56,15 +60,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <mmsystem.h>
 #endif
 
+
 using namespace std;
 
 void PrintHelp();
 void PrintVersion();
 void GameLoop(PlayerInfo &player, const Conversation &conversation, const string &testToRun, bool debugMode);
 Conversation LoadConversation();
-void PrintShipTable();
 void PrintTestsTable();
-void PrintWeaponTable();
 #ifdef _WIN32
 void InitConsole();
 #endif
@@ -82,10 +85,20 @@ int main(int argc, char *argv[])
 	Conversation conversation;
 	bool debugMode = false;
 	bool loadOnly = false;
-	bool printShips = false;
 	bool printTests = false;
-	bool printWeapons = false;
-	string testToRunName = "";
+	bool printData = false;
+	bool noTestMute = false;
+	string testToRunName;
+
+	// Whether the game has encountered errors while loading.
+	bool hasErrors = false;
+	// Ensure that we log errors to the errors.txt file.
+	Logger::SetLogErrorCallback([&hasErrors](const string &errorMessage) {
+		static const string PARSING_PREFIX = "Parsing: ";
+		if(errorMessage.substr(0, PARSING_PREFIX.length()) != PARSING_PREFIX)
+			hasErrors = true;
+		Files::LogErrorToFile(errorMessage);
+	});
 
 	for(const char *const *it = argv + 1; *it; ++it)
 	{
@@ -110,37 +123,41 @@ int main(int argc, char *argv[])
 			testToRunName = *it;
 		else if(arg == "--tests")
 			printTests = true;
-		else if(arg == "-s" || arg == "--ships")
-			printShips = true;
-		else if(arg == "-w" || arg == "--weapons")
-			printWeapons = true;
+		else if(arg == "--nomute")
+			noTestMute = true;
 	}
+	printData = PrintData::IsPrintDataArgument(argv);
 	Files::Init(argv);
 
+	// Whether we are running an integration test.
+	const bool isTesting = !testToRunName.empty();
 	try {
+		// Load plugin preferences before game data if any.
+		Plugins::LoadSettings();
+
 		// Begin loading the game data.
-		bool isConsoleOnly = loadOnly || printShips || printTests || printWeapons;
-		future<void> dataLoading = GameData::BeginLoad(isConsoleOnly, debugMode);
+		bool isConsoleOnly = loadOnly || printTests || printData;
+		future<void> dataLoading = GameData::BeginLoad(isConsoleOnly, debugMode, isTesting && !debugMode);
 
 		// If we are not using the UI, or performing some automated task, we should load
 		// all data now. (Sprites and sounds can safely be deferred.)
-		if(isConsoleOnly || !testToRunName.empty())
+		if(isConsoleOnly || isTesting)
 			dataLoading.wait();
 
-		if(!testToRunName.empty() && !GameData::Tests().Has(testToRunName))
+		if(isTesting && !GameData::Tests().Has(testToRunName))
 		{
-			Files::LogError("Test \"" + testToRunName + "\" not found.");
+			Logger::LogError("Test \"" + testToRunName + "\" not found.");
 			return 1;
 		}
 
-		if(printShips || printTests || printWeapons)
+		if(printData)
 		{
-			if(printShips)
-				PrintShipTable();
-			if(printTests)
-				PrintTestsTable();
-			if(printWeapons)
-				PrintWeaponTable();
+			PrintData::Print(argv);
+			return 0;
+		}
+		if(printTests)
+		{
+			PrintTestsTable();
 			return 0;
 		}
 
@@ -154,8 +171,8 @@ int main(int argc, char *argv[])
 			// then check the default state of the universe.
 			if(!player.LoadRecent())
 				GameData::CheckReferences();
-			cout << "Parse completed." << endl;
-			return 0;
+			cout << "Parse completed with " << (hasErrors ? "at least one" : "no") << " error(s)." << endl;
+			return hasErrors;
 		}
 		assert(!isConsoleOnly && "Attempting to use UI when only data was loaded!");
 
@@ -167,24 +184,41 @@ int main(int argc, char *argv[])
 
 		Preferences::Load();
 
-		if(!GameWindow::Init())
+		// Load global conditions:
+		DataFile globalConditions(Files::Config() + "global conditions.txt");
+		for(const DataNode &node : globalConditions)
+			if(node.Token(0) == "conditions")
+				GameData::GlobalConditions().Load(node);
+
+		if(!GameWindow::Init(isTesting && !debugMode))
 			return 1;
 
-		GameData::LoadShaders(!GameWindow::HasSwizzle());
+		GameData::LoadSettings();
 
-		// Show something other than a blank window.
-		GameWindow::Step();
+		if(!isTesting || debugMode)
+		{
+			GameData::LoadShaders();
+
+			// Show something other than a blank window.
+			GameWindow::Step();
+		}
 
 		Audio::Init(GameData::Sources());
+
+		if(isTesting && !noTestMute)
+			Audio::SetVolume(0);
 
 		// This is the main loop where all the action begins.
 		GameLoop(player, conversation, testToRunName, debugMode);
 	}
+	catch(Test::known_failure_tag)
+	{
+		// This is not an error. Simply exit successfully.
+	}
 	catch(const runtime_error &error)
 	{
 		Audio::Quit();
-		bool doPopUp = testToRunName.empty();
-		GameWindow::ExitWithError(error.what(), doPopUp);
+		GameWindow::ExitWithError(error.what(), !isTesting);
 		return 1;
 	}
 
@@ -193,6 +227,7 @@ int main(int argc, char *argv[])
 	Preferences::Set("fullscreen", GameWindow::IsFullscreen());
 	Screen::SetRaw(GameWindow::Width(), GameWindow::Height());
 	Preferences::Save();
+	Plugins::Save();
 
 	Audio::Quit();
 	GameWindow::Quit();
@@ -238,14 +273,11 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	if(!testToRunName.empty())
 		testContext = TestContext(GameData::Tests().Get(testToRunName));
 
-	// IsDone becomes true when the game is quit.
-	while(!menuPanels.IsDone())
-	{
-		if(toggleTimeout)
-			--toggleTimeout;
-		chrono::steady_clock::time_point start = chrono::steady_clock::now();
+	const bool isHeadless = (testContext.CurrentTest() && !debugMode);
 
-		// Handle any events that occurred in this frame.
+	auto ProcessEvents = [&menuPanels, &gamePanels, &player, &cursorTime, &toggleTimeout, &debugMode, &isPaused,
+			&isFastForward]
+	{
 		SDL_Event event;
 		while(SDL_PollEvent(&event))
 		{
@@ -256,9 +288,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 				cursorTime = 0;
 
 			if(debugMode && event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_BACKQUOTE)
-			{
 				isPaused = !isPaused;
-			}
 			else if(event.type == SDL_KEYDOWN && menuPanels.IsEmpty()
 					&& Command(event.key.keysym.sym).Has(Command::MENU)
 					&& !gamePanels.IsEmpty() && gamePanels.Top()->IsInterruptible())
@@ -268,128 +298,172 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 					new MenuPanel(player, gamePanels)));
 			}
 			else if(event.type == SDL_QUIT)
-			{
 				menuPanels.Quit();
-			}
 			else if(event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED)
 			{
 				// The window has been resized. Adjust the raw screen size
 				// and the OpenGL viewport to match.
 				GameWindow::AdjustViewport();
 			}
-			else if(activeUI.Handle(event))
-			{
-				// The UI handled the event.
-			}
 			else if(event.type == SDL_KEYDOWN && !toggleTimeout
 					&& (Command(event.key.keysym.sym).Has(Command::FULLSCREEN)
 					|| (event.key.keysym.sym == SDLK_RETURN && (event.key.keysym.mod & KMOD_ALT))))
 			{
 				toggleTimeout = 30;
-				GameWindow::ToggleFullscreen();
+				Preferences::ToggleScreenMode();
+			}
+			else if(activeUI.Handle(event))
+			{
+				// The UI handled the event.
 			}
 			else if(event.type == SDL_KEYDOWN && !event.key.repeat
-					&& (Command(event.key.keysym.sym).Has(Command::FASTFORWARD)))
+					&& (Command(event.key.keysym.sym).Has(Command::FASTFORWARD))
+					&& !Command(SDLK_CAPSLOCK).Has(Command::FASTFORWARD))
 			{
 				isFastForward = !isFastForward;
 			}
 		}
-		SDL_Keymod mod = SDL_GetModState();
-		Font::ShowUnderlines(mod & KMOD_ALT);
 
-		// In full-screen mode, hide the cursor if inactive for ten seconds,
-		// but only if the player is flying around in the main view.
-		bool inFlight = (menuPanels.IsEmpty() && gamePanels.Root() == gamePanels.Top());
-		++cursorTime;
-		bool shouldShowCursor = (!GameWindow::IsFullscreen() || cursorTime < 600 || !inFlight);
-		if(shouldShowCursor != showCursor)
+		// Special case: If fastforward is on capslock, update on mod state and not
+		// on keypress.
+		if(Command(SDLK_CAPSLOCK).Has(Command::FASTFORWARD))
+			isFastForward = SDL_GetModState() & KMOD_CAPS;
+	};
+
+	// Game loop when running the game normally.
+	if(!testContext.CurrentTest())
+	{
+		while(!menuPanels.IsDone())
 		{
-			showCursor = shouldShowCursor;
-			SDL_ShowCursor(showCursor);
-		}
+			if(toggleTimeout)
+				--toggleTimeout;
+			chrono::steady_clock::time_point start = chrono::steady_clock::now();
 
-		// Switch off fast-forward if the player is not in flight or flight-related screen
-		// (for example when the boarding dialog shows up or when the player lands). The player
-		// can switch fast-forward on again when flight is resumed.
-		bool allowFastForward = !gamePanels.IsEmpty() && gamePanels.Top()->AllowsFastForward();
-		if(Preferences::Has("Interrupt fast-forward") && !inFlight && isFastForward && !allowFastForward)
-			isFastForward = false;
+			ProcessEvents();
 
-		// Tell all the panels to step forward, then draw them.
-		((!isPaused && menuPanels.IsEmpty()) ? gamePanels : menuPanels).StepAll();
+			SDL_Keymod mod = SDL_GetModState();
+			Font::ShowUnderlines(mod & KMOD_ALT);
 
-		// All manual events and processing done. Handle any test inputs and events if we have any.
-		const Test *runningTest = testContext.CurrentTest();
-		if(runningTest && dataFinishedLoading)
-		{
-			// When flying around, all test processing must be handled in the
-			// thread-safe section of Engine. When not flying around (and when no
-			// Engine exists), then it is safe to execute the tests from here.
-			auto mainPanel = gamePanels.Root().get();
-			if(!isPaused && inFlight && menuPanels.IsEmpty() && mainPanel)
-				mainPanel->SetTestContext(testContext);
+			// In full-screen mode, hide the cursor if inactive for ten seconds,
+			// but only if the player is flying around in the main view.
+			bool inFlight = (menuPanels.IsEmpty() && gamePanels.Root() == gamePanels.Top());
+			++cursorTime;
+			bool shouldShowCursor = (!GameWindow::IsFullscreen() || cursorTime < 600 || !inFlight);
+			if(shouldShowCursor != showCursor)
+			{
+				showCursor = shouldShowCursor;
+				SDL_ShowCursor(showCursor);
+			}
+
+			// Switch off fast-forward if the player is not in flight or flight-related screen
+			// (for example when the boarding dialog shows up or when the player lands). The player
+			// can switch fast-forward on again when flight is resumed.
+			bool allowFastForward = !gamePanels.IsEmpty() && gamePanels.Top()->AllowsFastForward();
+			if(Preferences::Has("Interrupt fast-forward") && !inFlight && isFastForward && !allowFastForward)
+				isFastForward = false;
+
+			// Tell all the panels to step forward, then draw them.
+			((!isPaused && menuPanels.IsEmpty()) ? gamePanels : menuPanels).StepAll();
+
+			// Caps lock slows the frame rate in debug mode.
+			// Slowing eases in and out over a couple of frames.
+			if((mod & KMOD_CAPS) && inFlight && debugMode)
+			{
+				if(frameRate > 10)
+				{
+					frameRate = max(frameRate - 5, 10);
+					timer.SetFrameRate(frameRate);
+				}
+			}
 			else
 			{
-				// The command will be ignored, since we only support commands
-				// from within the engine at the moment.
-				Command ignored;
-				runningTest->Step(testContext, player, ignored);
-			}
-			// Skip drawing 29 out of every 30 in-flight frames during testing to speedup testing (unless debug mode is set).
-			// We don't skip UI-frames to ensure we test the UI code more.
-			if(inFlight && !debugMode)
-			{
-				skipFrame = (skipFrame + 1) % 30;
-				if(skipFrame)
-					continue;
-			}
-			else
-				skipFrame = 0;
-		}
-		// Caps lock slows the frame rate in debug mode.
-		// Slowing eases in and out over a couple of frames.
-		else if((mod & KMOD_CAPS) && inFlight && debugMode)
-		{
-			if(frameRate > 10)
-			{
-				frameRate = max(frameRate - 5, 10);
-				timer.SetFrameRate(frameRate);
-			}
-		}
-		else
-		{
-			if(frameRate < 60)
-			{
-				frameRate = min(frameRate + 5, 60);
-				timer.SetFrameRate(frameRate);
+				if(frameRate < 60)
+				{
+					frameRate = min(frameRate + 5, 60);
+					timer.SetFrameRate(frameRate);
+				}
+
+				if(isFastForward && inFlight)
+				{
+					skipFrame = (skipFrame + 1) % 3;
+					if(skipFrame)
+						continue;
+				}
 			}
 
-			if(isFastForward && inFlight)
-			{
-				skipFrame = (skipFrame + 1) % 3;
-				if(skipFrame)
-					continue;
-			}
-		}
+			Audio::Step();
 
-		Audio::Step();
+			// Events in this frame may have cleared out the menu, in which case
+			// we should draw the game panels instead:
+			(menuPanels.IsEmpty() ? gamePanels : menuPanels).DrawAll();
+			if(isFastForward)
+				SpriteShader::Draw(SpriteSet::Get("ui/fast forward"), Screen::TopLeft() + Point(10., 10.));
 
-		// Events in this frame may have cleared out the menu, in which case
-		// we should draw the game panels instead:
-		(menuPanels.IsEmpty() ? gamePanels : menuPanels).DrawAll();
-		if(isFastForward)
-			SpriteShader::Draw(SpriteSet::Get("ui/fast forward"), Screen::TopLeft() + Point(10., 10.));
+			GameWindow::Step();
 
-		GameWindow::Step();
-
-		// When we perform automated testing, then we run the game by default as quickly as possible.
-		// Except when debug-mode is set.
-		if(!testContext.CurrentTest() || debugMode)
+			// Lock the game loop to 60 FPS.
 			timer.Wait();
 
-		// If the player ended this frame in-game, count the elapsed time as played time.
-		if(menuPanels.IsEmpty())
-			player.AddPlayTime(chrono::steady_clock::now() - start);
+			// If the player ended this frame in-game, count the elapsed time as played time.
+			if(menuPanels.IsEmpty())
+				player.AddPlayTime(chrono::steady_clock::now() - start);
+		}
+	}
+	// Game loop when running the game as part of an integration test.
+	else
+	{
+		int integrationStepCounter = 0;
+		while(!menuPanels.IsDone())
+		{
+			ProcessEvents();
+
+			// Handle any integration test steps.
+			if(dataFinishedLoading)
+			{
+				// Run a single integration step every 30 frames.
+				integrationStepCounter = (integrationStepCounter + 1) % 30;
+				if(!integrationStepCounter)
+				{
+					assert(!gamePanels.IsEmpty() && "main panel missing?");
+
+					// The main panel is always at the root of the game panels.
+					MainPanel *mainPanel = static_cast<MainPanel *>(gamePanels.Root().get());
+
+					// The engine needs to have finished calculating the current frame so
+					// that it is safe to run any additional processing here.
+					if(menuPanels.IsEmpty())
+						mainPanel->GetEngine().Wait();
+
+					// The current test that is running, if any.
+					const Test *runningTest = testContext.CurrentTest();
+					assert(runningTest && "no running test while running an integration test?");
+					Command command;
+					runningTest->Step(testContext, player, command);
+
+					// Send any commands to the engine, if it is active.
+					if(menuPanels.IsEmpty())
+						mainPanel->GetEngine().GiveCommand(command);
+				}
+			}
+
+			// Tell all the panels to step forward, then draw them.
+			(menuPanels.IsEmpty() ? gamePanels : menuPanels).StepAll();
+
+			if(!isHeadless)
+			{
+				Audio::Step();
+
+				// Events in this frame may have cleared out the menu, in which case
+				// we should draw the game panels instead:
+				(menuPanels.IsEmpty() ? gamePanels : menuPanels).DrawAll();
+
+				GameWindow::Step();
+
+				// When we perform automated testing, then we run the game by default as quickly as possible.
+				// Except when not in headless mode so that the user can follow along.
+				timer.Wait();
+			}
+		}
 	}
 
 	// If player quit while landed on a planet, save the game if there are changes.
@@ -405,15 +479,15 @@ void PrintHelp()
 	cerr << "Command line options:" << endl;
 	cerr << "    -h, --help: print this help message." << endl;
 	cerr << "    -v, --version: print version information." << endl;
-	cerr << "    -s, --ships: print table of ship statistics, then exit." << endl;
-	cerr << "    -w, --weapons: print table of weapon statistics, then exit." << endl;
 	cerr << "    -t, --talk: read and display a conversation from STDIN." << endl;
 	cerr << "    -r, --resources <path>: load resources from given directory." << endl;
 	cerr << "    -c, --config <path>: save user's files to given directory." << endl;
 	cerr << "    -d, --debug: turn on debugging features (e.g. Caps Lock slows down instead of speeds up)." << endl;
-	cerr << "    -p, --parse-save: load the most recent saved game and inspect it for content errors" << endl;
+	cerr << "    -p, --parse-save: load the most recent saved game and inspect it for content errors." << endl;
 	cerr << "    --tests: print table of available tests, then exit." << endl;
-	cerr << "    --test <name>: run given test from resources directory" << endl;
+	cerr << "    --test <name>: run given test from resources directory." << endl;
+	cerr << "    --nomute: don't mute the game while running tests." << endl;
+	PrintData::Help();
 	cerr << endl;
 	cerr << "Report bugs to: <https://github.com/endless-sky/endless-sky/issues>" << endl;
 	cerr << "Home page: <https://endless-sky.github.io>" << endl;
@@ -425,7 +499,7 @@ void PrintHelp()
 void PrintVersion()
 {
 	cerr << endl;
-	cerr << "Endless Sky ver. 0.9.15-alpha" << endl;
+	cerr << "Endless Sky ver. 0.10.7-alpha" << endl;
 	cerr << "License GPLv3+: GNU GPL version 3 or later: <https://gnu.org/licenses/gpl.html>" << endl;
 	cerr << "This is free software: you are free to change and redistribute it." << endl;
 	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;
@@ -473,142 +547,10 @@ Conversation LoadConversation()
 // (active/missing feature/known failure)..
 void PrintTestsTable()
 {
-	cout << "status" << '\t' << "name" << '\n';
 	for(auto &it : GameData::Tests())
-	{
-		const Test &test = it.second;
-		cout << test.StatusText() << '\t';
-		cout << "\"" << test.Name() << "\"" << '\n';
-	}
-	cout.flush();
-}
-
-
-
-void PrintShipTable()
-{
-	cout << "model" << '\t' << "cost" << '\t' << "shields" << '\t' << "hull" << '\t'
-		<< "mass" << '\t' << "crew" << '\t' << "cargo" << '\t' << "bunks" << '\t'
-		<< "fuel" << '\t' << "outfit" << '\t' << "weapon" << '\t' << "engine" << '\t'
-		<< "speed" << '\t' << "accel" << '\t' << "turn" << '\t'
-		<< "energy generation" << '\t' << "max energy usage" << '\t' << "energy capacity" << '\t'
-		<< "idle/max heat" << '\t' << "max heat generation" << '\t' << "max heat dissipation" << '\t'
-		<< "gun mounts" << '\t' << "turret mounts" << '\n';
-	for(auto &it : GameData::Ships())
-	{
-		// Skip variants and unnamed / partially-defined ships.
-		if(it.second.ModelName() != it.first)
-			continue;
-
-		const Ship &ship = it.second;
-		cout << it.first << '\t';
-		cout << ship.Cost() << '\t';
-
-		const Outfit &attributes = ship.Attributes();
-		auto mass = attributes.Mass() ? attributes.Mass() : 1.;
-		cout << attributes.Get("shields") << '\t';
-		cout << attributes.Get("hull") << '\t';
-		cout << mass << '\t';
-		cout << attributes.Get("required crew") << '\t';
-		cout << attributes.Get("cargo space") << '\t';
-		cout << attributes.Get("bunks") << '\t';
-		cout << attributes.Get("fuel capacity") << '\t';
-
-		cout << ship.BaseAttributes().Get("outfit space") << '\t';
-		cout << ship.BaseAttributes().Get("weapon capacity") << '\t';
-		cout << ship.BaseAttributes().Get("engine capacity") << '\t';
-		cout << (attributes.Get("drag") ? (60. * attributes.Get("thrust") / attributes.Get("drag")) : 0) << '\t';
-		cout << 3600. * attributes.Get("thrust") / mass << '\t';
-		cout << 60. * attributes.Get("turn") / mass << '\t';
-
-		double energyConsumed = attributes.Get("energy consumption")
-			+ max(attributes.Get("thrusting energy"), attributes.Get("reverse thrusting energy"))
-			+ attributes.Get("turning energy")
-			+ attributes.Get("afterburner energy")
-			+ attributes.Get("fuel energy")
-			+ (attributes.Get("hull energy") * (1 + attributes.Get("hull energy multiplier")))
-			+ (attributes.Get("shield energy") * (1 + attributes.Get("shield energy multiplier")))
-			+ attributes.Get("cooling energy")
-			+ attributes.Get("cloaking energy");
-
-		double heatProduced = attributes.Get("heat generation") - attributes.Get("cooling")
-			+ max(attributes.Get("thrusting heat"), attributes.Get("reverse thrusting heat"))
-			+ attributes.Get("turning heat")
-			+ attributes.Get("afterburner heat")
-			+ attributes.Get("fuel heat")
-			+ (attributes.Get("hull heat") * (1 + attributes.Get("hull heat multiplier")))
-			+ (attributes.Get("shield heat") * (1 + attributes.Get("shield heat multiplier")))
-			+ attributes.Get("solar heat")
-			+ attributes.Get("cloaking heat");
-
-		for(const auto &oit : ship.Outfits())
-			if(oit.first->IsWeapon() && oit.first->Reload())
-			{
-				double reload = oit.first->Reload();
-				energyConsumed += oit.second * oit.first->FiringEnergy() / reload;
-				heatProduced += oit.second * oit.first->FiringHeat() / reload;
-			}
-		cout << 60. * (attributes.Get("energy generation") + attributes.Get("solar collection")) << '\t';
-		cout << 60. * energyConsumed << '\t';
-		cout << attributes.Get("energy capacity") << '\t';
-		cout << ship.IdleHeat() / max(1., ship.MaximumHeat()) << '\t';
-		cout << 60. * heatProduced << '\t';
-		// Maximum heat is 100 degrees per ton. Bleed off rate is 1/1000 per 60th of a second, so:
-		cout << 60. * ship.HeatDissipation() * ship.MaximumHeat() << '\t';
-
-		int numTurrets = 0;
-		int numGuns = 0;
-		for(auto &hardpoint : ship.Weapons())
-		{
-			if(hardpoint.IsTurret())
-				++numTurrets;
-			else
-				++numGuns;
-		}
-		cout << numGuns << '\t' << numTurrets << '\n';
-	}
-	cout.flush();
-}
-
-
-
-void PrintWeaponTable()
-{
-	cout << "name" << '\t' << "cost" << '\t' << "space" << '\t' << "range" << '\t'
-		<< "energy/s" << '\t' << "heat/s" << '\t' << "recoil/s" << '\t'
-		<< "shield/s" << '\t' << "hull/s" << '\t' << "push/s" << '\t'
-		<< "homing" << '\t' << "strength" <<'\n';
-	for(auto &it : GameData::Outfits())
-	{
-		// Skip non-weapons and submunitions.
-		if(!it.second.IsWeapon() || it.second.Category().empty())
-			continue;
-
-		const Outfit &outfit = it.second;
-		cout << it.first << '\t';
-		cout << outfit.Cost() << '\t';
-		cout << -outfit.Get("weapon capacity") << '\t';
-
-		cout << outfit.Range() << '\t';
-
-		double energy = outfit.FiringEnergy() * 60. / outfit.Reload();
-		cout << energy << '\t';
-		double heat = outfit.FiringHeat() * 60. / outfit.Reload();
-		cout << heat << '\t';
-		double firingforce = outfit.FiringForce() * 60. / outfit.Reload();
-		cout << firingforce << '\t';
-
-		double shield = outfit.ShieldDamage() * 60. / outfit.Reload();
-		cout << shield << '\t';
-		double hull = outfit.HullDamage() * 60. / outfit.Reload();
-		cout << hull << '\t';
-		double hitforce = outfit.HitForce() * 60. / outfit.Reload();
-		cout << hitforce << '\t';
-
-		cout << outfit.Homing() << '\t';
-		double strength = outfit.MissileStrength() + outfit.AntiMissile();
-		cout << strength << '\n';
-	}
+		if(it.second.GetStatus() != Test::Status::PARTIAL
+				&& it.second.GetStatus() != Test::Status::BROKEN)
+			cout << it.second.Name() << '\n';
 	cout.flush();
 }
 
@@ -631,11 +573,26 @@ void InitConsole()
 		return;
 
 	// Perform console redirection.
-	if(redirectStdout && freopen("CONOUT$", "w", stdout))
-		setvbuf(stdout, nullptr, _IOFBF, 4096);
-	if(redirectStderr && freopen("CONOUT$", "w", stderr))
-		setvbuf(stderr, nullptr, _IOLBF, 1024);
-	if(redirectStdin && freopen("CONIN$", "r", stdin))
-		setvbuf(stdin, nullptr, _IONBF, 0);
+	if(redirectStdout)
+	{
+		FILE *fstdout = nullptr;
+		freopen_s(&fstdout, "CONOUT$", "w", stdout);
+		if(fstdout)
+			setvbuf(stdout, nullptr, _IOFBF, 4096);
+	}
+	if(redirectStderr)
+	{
+		FILE *fstderr = nullptr;
+		freopen_s(&fstderr, "CONOUT$", "w", stderr);
+		if(fstderr)
+			setvbuf(stderr, nullptr, _IOLBF, 1024);
+	}
+	if(redirectStdin)
+	{
+		FILE *fstdin = nullptr;
+		freopen_s(&fstdin, "CONIN$", "r", stdin);
+		if(fstdin)
+			setvbuf(stdin, nullptr, _IONBF, 0);
+	}
 }
 #endif

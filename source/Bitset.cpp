@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Bitset.h"
@@ -80,6 +83,15 @@ void Bitset::Set(size_t index) noexcept
 	const auto blockIndex = index / BITS_PER_BLOCK;
 	const auto pos = index % BITS_PER_BLOCK;
 	bits[blockIndex] |= (uint64_t(1) << pos);
+}
+
+
+
+// Resets all bits in the bitset.
+void Bitset::Reset() noexcept
+{
+	for(auto &it : bits)
+		it = uint64_t(0);
 }
 
 

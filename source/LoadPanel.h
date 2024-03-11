@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef LOAD_PANEL_H_
@@ -16,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Panel.h"
 
 #include "Point.h"
+#include "Rectangle.h"
 #include "SavedGame.h"
 
 #include <ctime>
@@ -71,6 +75,9 @@ private:
 	std::string selectedFile;
 	// If the player enters a filename that exists, prompt before overwriting it.
 	std::string nameToConfirm;
+
+	const Rectangle pilotBox;
+	const Rectangle snapshotBox;
 
 	Point hoverPoint;
 	int hoverCount = 0;

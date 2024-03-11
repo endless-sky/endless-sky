@@ -1,0 +1,29 @@
+name: Documentation Issue
+description: There is an error in documentation, such as documentation being wrong or outdated. Documentation may include the wiki on GitHub, RFCs, style guides, or other such pages/documents.
+labels: [documentation]
+
+body:
+  - type: markdown
+    attributes:
+      value: Thank you for filing a wiki report!
+  - type: input
+    attributes:
+      label: Location
+      description: Where the issue is.
+      placeholder: wiki, style guide, etc.
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the issue
+      description: Provide a clear and concise description of what the issue is.
+    validations:
+      required: true
+  - type: textarea
+    id: content
+    attributes:
+      label: Expected content
+      description: Provide content you expected that is missing.
+    validations:
+      required: true

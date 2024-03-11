@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef PERSONALITY_H_
@@ -15,6 +18,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Angle.h"
 #include "Point.h"
+
+#include <bitset>
 
 class DataNode;
 class DataWriter;
@@ -32,12 +37,15 @@ public:
 	void Load(const DataNode &node);
 	void Save(DataWriter &out) const;
 
+	bool IsDefined() const;
+
 	// Who a ship decides to attack:
 	bool IsPacifist() const;
 	bool IsForbearing() const;
 	bool IsTimid() const;
-	bool IsHeroic() const;
+	bool IsHunting() const;
 	bool IsNemesis() const;
+	bool IsDaring() const;
 
 	// How they fight:
 	bool IsFrugal() const;
@@ -45,9 +53,13 @@ public:
 	bool Plunders() const;
 	bool IsVindictive() const;
 	bool IsUnconstrained() const;
+	bool IsUnrestricted() const;
+	bool IsRestricted() const;
 	bool IsCoward() const;
 	bool IsAppeasing() const;
 	bool IsOpportunistic() const;
+	bool IsMerciful() const;
+	bool IsRamming() const;
 
 	// Mission NPC states:
 	bool IsStaying() const;
@@ -63,12 +75,16 @@ public:
 	bool IsMining() const;
 	bool Harvests() const;
 	bool IsSwarming() const;
+	bool IsLingering() const;
+	bool IsSecretive() const;
 
 	// Special flags:
 	bool IsEscort() const;
 	bool IsTarget() const;
 	bool IsMarked() const;
 	bool IsMute() const;
+	bool IsDecloaked() const;
+	bool IsQuiet() const;
 
 	// Current inaccuracy in this ship's targeting:
 	const Point &Confusion() const;
@@ -76,6 +92,7 @@ public:
 
 	// Personality to use for ships defending a planet from domination:
 	static Personality Defender();
+	static Personality DefenderFighter();
 
 
 private:
@@ -83,7 +100,13 @@ private:
 
 
 private:
-	int flags;
+	// Make sure this matches the number of items in PersonalityTrait,
+	// or the build will fail.
+	static const int PERSONALITY_COUNT = 37;
+
+	bool isDefined = false;
+
+	std::bitset<PERSONALITY_COUNT> flags;
 	double confusionMultiplier;
 	double aimMultiplier;
 	Point confusion;

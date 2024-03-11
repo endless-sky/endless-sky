@@ -7,12 +7,16 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef MORTGAGE_H_
 #define MORTGAGE_H_
 
+#include <cstdint>
 #include <string>
 
 class DataNode;
@@ -29,7 +33,7 @@ class Mortgage {
 public:
 	// Find out how much you can afford to borrow with the given annual revenue
 	// and the given credit score (which should be between 200 and 800).
-	static int64_t Maximum(int64_t annualRevenue, int creditScore, int64_t currentPayments);
+	static int64_t Maximum(int64_t annualRevenue, int creditScore, double currentPayments);
 
 
 public:
@@ -65,6 +69,8 @@ public:
 	int Term() const;
 	// Check the amount of the next payment due (rounded to the nearest credit).
 	int64_t Payment() const;
+	// Check the amount of the next payment due.
+	double PrecisePayment() const;
 
 
 private:

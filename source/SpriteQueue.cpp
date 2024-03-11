@@ -7,14 +7,15 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "SpriteQueue.h"
 
-#include "ImageBuffer.h"
 #include "ImageSet.h"
-#include "Mask.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 
@@ -22,6 +23,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <functional>
 
 using namespace std;
+
+namespace {
+	// The maximum number of loaded images in the queue that are
+	// waiting to be uploaded to the GPU.
+	constexpr int MAX_QUEUE = 100;
+}
 
 
 
@@ -107,13 +114,23 @@ void SpriteQueue::Finish()
 
 		// Load whatever is already queued up for loading.
 		DoLoad(lock);
+		lock.unlock();
 		if(GetProgress() == 1.)
 			break;
+		lock.lock();
 
 		// We still have sprites to upload, but none of them have been read from
 		// disk yet. Wait until one arrives.
-		loadCondition.wait(lock);
+		loadCondition.wait(lock, [this] { return !toLoad.empty(); });
 	}
+}
+
+
+
+// Don't upload the images to the GPU using OpenGL. Used for the integration tests.
+void SpriteQueue::SetPreventUpload()
+{
+	uploadSprites = false;
 }
 
 
@@ -132,6 +149,12 @@ void SpriteQueue::operator()()
 				return;
 			if(toRead.empty())
 				break;
+			{
+				// Stop loading images so that the main thread can keep up.
+				unique_lock<mutex> lock(loadMutex);
+				if(toLoad.size() > MAX_QUEUE)
+					break;
+			}
 
 			// Extract the one item we should work on reading right now.
 			shared_ptr<ImageSet> imageSet = toRead.front();
@@ -155,7 +178,7 @@ void SpriteQueue::operator()()
 			lock.lock();
 		}
 
-		readCondition.wait(lock);
+		readCondition.wait(lock, [this] { return added < 0 || !toRead.empty(); });
 	}
 }
 
@@ -173,7 +196,7 @@ void SpriteQueue::DoLoad(unique_lock<mutex> &lock)
 		lock.lock();
 	}
 
-	for(int i = 0; !toLoad.empty() && i < 100; ++i)
+	for(int i = 0; !toLoad.empty() && i < MAX_QUEUE; ++i)
 	{
 		// Extract the one item we should work on uploading right now.
 		shared_ptr<ImageSet> imageSet = toLoad.front();
@@ -182,7 +205,8 @@ void SpriteQueue::DoLoad(unique_lock<mutex> &lock)
 		// It's now safe to modify the lists.
 		lock.unlock();
 
-		imageSet->Upload(SpriteSet::Modify(imageSet->Name()));
+		readCondition.notify_one();
+		imageSet->Upload(SpriteSet::Modify(imageSet->Name()), uploadSprites);
 
 		lock.lock();
 		++completed;

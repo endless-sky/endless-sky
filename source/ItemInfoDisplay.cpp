@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "ItemInfoDisplay.h"
@@ -158,8 +161,10 @@ void ItemInfoDisplay::UpdateDescription(const string &text, const vector<string>
 		description.Wrap(fullText);
 	}
 
-	// Pad by 10 pixels on the top and bottom.
-	descriptionHeight = description.Height() + 20;
+	// If there is a description, pad by 10 pixels on the top and bottom.
+	descriptionHeight = description.Height();
+	if(descriptionHeight)
+		descriptionHeight += 20;
 }
 
 

@@ -7,20 +7,21 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "SpaceportPanel.h"
 
 #include "text/alignment.hpp"
-#include "Color.h"
 #include "text/FontSet.h"
 #include "GameData.h"
 #include "Interface.h"
 #include "News.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
-#include "Point.h"
 #include "Random.h"
 #include "UI.h"
 
@@ -29,14 +30,14 @@ using namespace std;
 
 
 SpaceportPanel::SpaceportPanel(PlayerInfo &player)
-	: player(player)
+	: player(player), port(player.GetPlanet()->GetPort()), ui(*GameData::Interfaces().Get("spaceport"))
 {
 	SetTrapAllEvents(false);
 
 	text.SetFont(FontSet::Get(14));
 	text.SetAlignment(Alignment::JUSTIFIED);
-	text.SetWrapWidth(480);
-	text.Wrap(player.GetPlanet()->SpaceportDescription());
+	text.SetWrapWidth(ui.GetBox("content").Width());
+	text.Wrap(port.Description());
 
 	// Query the news interface to find out the wrap width.
 	// TODO: Allow Interface to handle wrapped text directly.
@@ -70,7 +71,7 @@ void SpaceportPanel::UpdateNews()
 
 void SpaceportPanel::Step()
 {
-	if(GetUI()->IsTop(this))
+	if(GetUI()->IsTop(this) && port.HasService(Port::ServicesType::OffersMissions))
 	{
 		Mission *mission = player.MissionToOffer(Mission::SPACEPORT);
 		// Special case: if the player somehow got to the spaceport before all
@@ -91,7 +92,8 @@ void SpaceportPanel::Draw()
 	if(player.IsDead())
 		return;
 
-	text.Draw(Point(-300., 80.), *GameData::Colors().Get("bright"));
+	Rectangle box = ui.GetBox("content");
+	text.Draw(box.TopLeft(), *GameData::Colors().Get("bright"));
 
 	if(hasNews)
 	{
@@ -110,6 +112,9 @@ void SpaceportPanel::Draw()
 // If there is no applicable news, this returns null.
 const News *SpaceportPanel::PickNews() const
 {
+	if(!port.HasNews())
+		return nullptr;
+
 	vector<const News *> matches;
 	const Planet *planet = player.GetPlanet();
 	const auto &conditions = player.Conditions();

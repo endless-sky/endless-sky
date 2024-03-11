@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef SPRITE_QUEUE_H_
@@ -53,6 +56,9 @@ public:
 	// Finish loading.
 	void Finish();
 
+	// Don't upload the images to the GPU using OpenGL. Used for the integration tests.
+	void SetPreventUpload();
+
 	// Thread entry point.
 	void operator()();
 
@@ -79,6 +85,9 @@ private:
 
 	// Worker threads for loading sprites from disk.
 	std::vector<std::thread> threads;
+
+	// Flag to control whether to upload the sprites to OpenGL.
+	bool uploadSprites = true;
 };
 
 #endif

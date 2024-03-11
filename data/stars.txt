@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 # Star attributes (solar power and solar wind). In general, a star either
 # provides a lot of solar power or a lot of solar wind (ramscoop recharge rate)
@@ -157,10 +160,10 @@ star "star/g-supergiant"
 	wind 2.9
 star "star/k-supergiant"
 	power 1.8
-	wind 2
+	wind 3
 star "star/m-supergiant"
 	power 1.6
-	wind 2
+	wind 3.1
 
 # Special stars.
 star "star/carbon"
@@ -172,12 +175,24 @@ star "star/nova"
 star "star/nova-old"
 	power 0.3
 	wind 6
-star "star/wr0"
-	power 0.4
+star "star/nova-small"
+	power 0.2
 	wind 4
-star "star/wr1"
-	power 0.4
+star "star/wr"
+	power 5
 	wind 4
+star "star/protostar-orange"
+	power 0.5
+	wind 3
+star "star/protostar-yellow"
+	power 0.4
+	wind 5
+
+# Rogue planet with unusual properties
+star "planet/rogue-radiating"
+	power .2
+	wind .6
+
 star "star/neutron"
 	power 4
 	wind 0.4
@@ -214,19 +229,19 @@ star "star/l-dwarf"
 star "planet/browndwarf-l"
 	power 0.4
 	wind 0.5
-star "planet/browndwarf-l-rouge"
+star "planet/browndwarf-l-rogue"
 	power 0.4
 	wind 0.5
 star "planet/browndwarf-t"
 	power 0.3
 	wind 0.4
-star "planet/browndwarf-t-rouge"
+star "planet/browndwarf-t-rogue"
 	power 0.3
 	wind 0.4
 star "planet/browndwarf-y"
 	power 0.1
 	wind 0.3
-star "planet/browndwarf-y-rouge"
+star "planet/browndwarf-y-rogue"
 	power 0.1
 	wind 0.3
 

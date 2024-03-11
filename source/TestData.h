@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef ENDLESS_SKY_AC_TESTDATA_H_
@@ -15,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <string>
 
+class DataFile;
 class DataNode;
 
 
@@ -24,19 +28,23 @@ class TestData {
 public:
 	const std::string &Name() const;
 	void Load(const DataNode &node, const std::string &sourceDataFilePath);
-	// Function to inject the test-data into the game or into the games
+	// Function to inject the test-data into the game or into the game's
 	// environment.
 	bool Inject() const;
 
 	// Types of datafiles that can be stored.
-	enum class Type {UNSPECIFIED, SAVEGAME};
+	enum class Type {UNSPECIFIED, SAVEGAME, MISSION};
 
 
 
 private:
+	const DataNode *GetContentsNode(const DataFile &sourceData) const;
+
 	// Writes out testdata as savegame file.
 	bool InjectSavegame() const;
 
+	// Loads a mission stored in testdata into a Mission through GameData.
+	bool InjectMission() const;
 
 
 private:

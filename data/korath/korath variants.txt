@@ -1,0 +1,1487 @@
+# Copyright (c) 2014-2016 by Michael Zahniser
+# Copyright (c) 2022 by Lia Gerty, EjoThims, Saugia, and Zitchas
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+
+ship "Rano'erek" "Rano'erek (Civilian)"
+	add attributes
+		"atmosphere scan" 1
+	outfits
+		"Digger Mining Turret" 2
+		"Shunt-Strike Turret"
+		"Langrage Hyper-Heaver"
+		"Banisher Grav-Turret"
+		"Warder Anti-Missile" 2
+		
+		"Liquid Sodium Cooler"
+		"Fuel Processor" 2
+		"Systems Core (Large)"
+		"Triple Plasma Core"
+		"Thermal Repeater Rifle" 206
+		"Microbot Defense Station" 8
+		
+		"Afterburner (Asteroid Class)"
+		"Steering (Planetary Class)"
+		"Reverser (Lunar Class)"
+		"Thruster (Planetary Class)"
+		"Scram Drive"
+	
+	turret "Digger Mining Turret"
+	turret "Shunt-Strike Turret"
+	turret "Digger Mining Turret"
+	turret "Warder Anti-Missile"
+	turret "Langrage Hyper-Heaver"
+	turret "Banisher Grav-Turret"
+	turret "Warder Anti-Missile"
+
+
+ship "Rano'erek" "Rano'erek (Crippled)"
+	outfits
+		"Banisher Grav-Turret"
+		"Digger Mining Turret"
+		"Grab-Strike Turret"
+		"Warder Anti-Missile"
+		
+		"Triple Plasma Core"
+		"Large Heat Shunt"
+		"Small Heat Shunt" 4
+		"Fuel Processor"
+		"Thermal Repeater Rifle" 190
+		
+		"Reverser (Lunar Class)"
+		"Steering (Lunar Class)"
+		"Steering (Asteroid Class)"
+		"Thruster (Lunar Class)"
+		"Thruster (Asteroid Class)"
+		"Hyperdrive"
+		"Jump Drive (Broken)"
+		
+	turret
+	turret "Digger Mining Turret"
+	turret
+	turret "Grab-Strike Turret"
+	turret
+	turret "Warder Anti-Missile"
+	turret "Banisher Grav-Turret"
+
+
+ship "Rano'erek" "Rano'erek (Digger)"
+	outfits
+		"Digger Mining Turret" 5
+		"Warder Anti-Missile"
+		"Banisher Grav-Turret"
+		
+		"Large Heat Shunt" 2
+		"Small Heat Shunt" 3
+		"Fuel Processor"
+		"Systems Core (Medium)"
+		"Triple Plasma Core"
+		"Thermal Repeater Rifle" 206
+		"Cargo Expansion"
+		
+		"Reverser (Planetary Class)"
+		"Steering (Planetary Class)"
+		"Thruster (Stellar Class)"
+		"Jump Drive"
+		"Scram Drive"
+	
+	turret "Digger Mining Turret"
+	turret "Digger Mining Turret"
+	turret "Digger Mining Turret"
+	turret "Banisher Grav-Turret"
+	turret "Warder Anti-Missile"
+	turret "Digger Mining Turret"
+	turret "Digger Mining Turret"
+
+
+ship "Rano'erek" "Rano'erek (Shunt)"
+	outfits
+		"Shunt-Strike Turret" 4
+		"Banisher Grav-Turret"
+		"Warder Anti-Missile" 2
+		
+		"Liquid Sodium Cooler"
+		"Fuel Processor"
+		"Systems Core (Large)"
+		"Triple Plasma Core"
+		"Thermal Repeater Rifle" 206
+		
+		"Reverser (Asteroid Class)"
+		"Steering (Planetary Class)"
+		"Thruster (Planetary Class)"
+		"Jump Drive"
+		"Scram Drive"
+	
+	turret "Shunt-Strike Turret"
+	turret "Shunt-Strike Turret"
+	turret "Warder Anti-Missile"
+	turret "Shunt-Strike Turret"
+	turret "Shunt-Strike Turret"
+	turret "Banisher Grav-Turret"
+	turret "Warder Anti-Missile"
+
+
+ship "Rano'erek" "Rano'erek (Ground Assault)"
+	"crew" 449
+	add attributes
+		"bunks" 92
+		"mass" 115
+		"cargo space" -120
+		"outfit space" -248
+	outfits
+		"Banisher Grav-Turret" 2
+		"Warder Anti-Missile" 2
+		
+		"Double Plasma Core"
+		"Large Heat Shunt"
+		"Fuel Processor"
+		"Thermal Repeater Rifle" 449
+		
+		"Reverser (Asteroid Class)"
+		"Steering (Lunar Class)"
+		"Thruster (Lunar Class)"
+		"Hyperdrive"
+		"Jump Drive"
+
+	turret
+	turret
+	turret
+	turret "Warder Anti-Missile"
+	turret "Banisher Grav-Turret"
+	turret "Warder Anti-Missile"
+	turret "Banisher Grav-Turret"
+
+
+ship "Rano'erek" "Rano'erek (Heaver)"
+	outfits
+		"Langrage Hyper-Heaver" 4
+		"Warder Anti-Missile" 3
+
+		"Double Plasma Core"
+		"Generator (Furnace Class)"
+		"Large Heat Shunt"
+		"Systems Core (Large)"
+		"Fuel Processor" 5
+		"Thermal Repeater Rifle" 190
+
+		"Reverser (Asteroid Class)"
+		"Thruster (Planetary Class)"
+		"Steering (Planetary Class)"
+		"Jump Drive"
+
+	turret "Warder Anti-Missile"
+	turret "Langrage Hyper-Heaver"
+	turret "Langrage Hyper-Heaver"
+	turret "Warder Anti-Missile"
+	turret "Warder Anti-Missile"
+	turret "Langrage Hyper-Heaver"
+	turret "Langrage Hyper-Heaver"
+
+
+ship "Palavret" "Palavret (Blaze)"
+	outfits
+		"Blaze-Pike Turret" 4
+		"Digger Mining Turret"
+		"Warder Anti-Missile"
+		"Firelight Missile Bank" 2
+		"Firelight Missile" 40
+		
+		"Triple Plasma Core"
+		"Large Heat Shunt" 2
+		"Small Heat Shunt" 3
+		"Systems Core (Medium)"
+		"Fuel Processor"
+		"Thermal Repeater Rifle" 196
+		
+		"Reverser (Asteroid Class)"
+		"Steering (Planetary Class)"
+		"Thruster (Planetary Class)"
+		"Jump Drive"
+	
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
+	turret "Blaze-Pike Turret"
+	turret "Blaze-Pike Turret"
+	turret "Blaze-Pike Turret"
+	turret "Blaze-Pike Turret"
+	turret "Digger Mining Turret"
+	turret "Warder Anti-Missile"
+
+
+ship "Palavret" "Palavret (Crippled)"
+	outfits
+		"Grab-Strike Turret" 2
+		"Banisher Grav-Turret"
+		"Warder Anti-Missile"
+		"Firelight Missile Bank"
+		"Firelight Missile" 9
+		
+		"Triple Plasma Core"
+		"Liquid Sodium Cooler"
+		"Thermal Repeater Rifle" 196
+		"Outfits Expansion"
+		
+		"Bow Drive (Meteor Class)"
+		"Thruster (Asteroid Class)"
+		"Thruster (Lunar Class)"
+		"Steering (Asteroid Class)"
+		"Steering (Lunar Class)"
+		"Afterburner (Asteroid Class)"
+		"Jump Drive (Broken)"
+		"Hyperdrive"
+	
+	gun
+	gun "Firelight Missile Bank"
+	turret
+	turret
+	turret "Grab-Strike Turret"
+	turret "Grab-Strike Turret"
+	turret "Banisher Grav-Turret"
+	turret "Warder Anti-Missile"
+
+
+ship "Palavret" "Palavret (Ember)"
+	outfits
+		"Grab-Strike Turret" 4
+		"Banisher Grav-Turret"
+		"Warder Anti-Missile"
+		"Firelight Missile Bank" 2
+		"Firelight Missile" 50
+		"Firelight Storage Rack"
+		
+		"Triple Plasma Core"
+		"Systems Core (Medium)"
+		"Liquid Sodium Cooler"
+		"Small Heat Shunt"
+		"Fuel Processor"
+		"Thermal Repeater Rifle" 196
+		"Outfits Expansion" 2
+		
+		"Bow Drive (Meteor Class)"
+		"Thruster (Planetary Class)"
+		"Steering (Planetary Class)"
+		"Afterburner (Asteroid Class)"
+		"Jump Drive"
+		"Hyperdrive"
+	
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
+	turret "Grab-Strike Turret"
+	turret "Grab-Strike Turret"
+	turret "Grab-Strike Turret"
+	turret "Grab-Strike Turret"
+	turret "Banisher Grav-Turret"
+	turret "Warder Anti-Missile"
+
+
+ship "Palavret" "Palavret (Ember Blaze)"
+	outfits
+		"Blaze-Pike Turret" 4
+		"Digger Mining Turret"
+		"Warder Anti-Missile"
+		"Firelight Missile Bank" 2
+		"Firelight Storage Rack"
+		"Firelight Missile" 50
+		
+		"Triple Plasma Core"
+		"Large Heat Shunt" 3
+		"Systems Core (Medium)"
+		"Fuel Processor"
+		"Outfits Expansion" 2
+		"Thermal Repeater Rifle" 196
+		
+		"Reverser (Asteroid Class)"
+		"Steering (Planetary Class)"
+		"Thruster (Planetary Class)"
+		"Jump Drive"
+		"Hyperdrive"
+	
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
+	turret "Blaze-Pike Turret"
+	turret "Blaze-Pike Turret"
+	turret "Blaze-Pike Turret"
+	turret "Blaze-Pike Turret"
+	turret "Digger Mining Turret"
+	turret "Warder Anti-Missile"
+
+
+ship "Palavret" "Palavret (Ember Shunt)"
+	outfits
+		"Shunt-Strike Turret" 4
+		"Banisher Grav-Turret"
+		"Warder Anti-Missile"
+		"Firelight Missile Bank" 2
+		"Firelight Storage Rack"
+		"Firelight Missile" 50
+		
+		"Triple Plasma Core"
+		"Systems Core (Medium)"
+		"Systems Core (Small)"
+		"Liquid Sodium Cooler"
+		"Small Heat Shunt"
+		"Fuel Processor"
+		"Outfits Expansion"
+		"Thermal Repeater Rifle" 196
+		
+		"Reverser (Comet Class)"
+		"Thruster (Planetary Class)"
+		"Steering (Planetary Class)"
+		"Jump Drive"
+		"Hyperdrive"
+	
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
+	turret "Shunt-Strike Turret"
+	turret "Shunt-Strike Turret"
+	turret "Shunt-Strike Turret"
+	turret "Shunt-Strike Turret"
+	turret "Banisher Grav-Turret"
+	turret "Warder Anti-Missile"
+
+
+ship "Palavret" "Palavret (Hyperdrive)"
+	outfits
+		"Grab-Strike Turret" 4
+		"Banisher Grav-Turret"
+		"Warder Anti-Missile"
+		"Firelight Missile Bank" 2
+		"Firelight Missile" 36
+		"Firelight Storage Rack"
+		
+		"Triple Plasma Core"
+		"Systems Core (Medium)"
+		"Liquid Sodium Cooler"
+		"Fuel Processor"
+		"Thermal Repeater Rifle" 196
+		"Outfits Expansion"
+		
+		"Bow Drive (Meteor Class)"
+		"Thruster (Planetary Class)"
+		"Steering (Planetary Class)"
+		"Jump Drive (Broken)"
+		"Hyperdrive"
+	
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
+	turret "Grab-Strike Turret"
+	turret "Grab-Strike Turret"
+	turret "Grab-Strike Turret"
+	turret "Grab-Strike Turret"
+	turret "Banisher Grav-Turret"
+	turret "Warder Anti-Missile"
+
+
+
+ship "Tubfalet" "Tubfalet (Crippler)"
+	add attributes
+		"cargo space" -70
+		"outfit space" 70
+	outfits
+		"Grab-Strike Turret" 2
+		"Shield Disruptor Turret" 2
+		"Banisher Grav-Turret"
+		"Warder Anti-Missile"
+		"Korath Detainer"
+		"Firelight Missile Bank" 2
+		"Firelight Missile" 40
+		
+		"Triple Plasma Core"
+		"Generator (Furnace Class)"
+		"Systems Core (Large)"
+		"Large Heat Shunt" 2
+		"Small Heat Shunt" 3
+		"Fuel Processor"
+		"Thermal Repeater Rifle" 196
+		
+		"Thruster (Planetary Class)"
+		"Thruster (Lunar Class)"
+		"Steering (Planetary Class)"
+		"Jump Drive"
+
+	gun "Korath Detainer"
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
+	turret "Grab-Strike Turret"
+	turret "Shield Disruptor Turret"
+	turret "Grab-Strike Turret"
+	turret "Shield Disruptor Turret"
+	turret "Banisher Grav-Turret"
+
+
+ship "'nra'ret" "'nra'ret (Crippler)"
+	outfits
+		"Korath Detainer" 2
+		"Thermal Repeater Turret" 2
+		"Warder Anti-Missile"
+		"Korath Piercer Launcher" 2
+		"Korath Piercer" 62
+		"Firelight Missile Bank" 4
+		"Firelight Missile" 80
+
+		"Systems Core (Large)"
+		"Fuel Processor" 2
+		"Plasma Core"
+		"Triple Plasma Core"
+		"Liquid Sodium Cooler"
+		"Small Heat Shunt"
+		"Outfits Expansion"
+		"Thermal Repeater Rifle" 219
+
+		"Afterburner (Planetary Class)"
+		"Steering (Planetary Class)"
+		"Thruster (Lunar Class)"
+		"Jump Drive"
+
+	gun "Korath Detainer"
+	gun "Korath Detainer"
+	gun "Korath Piercer Launcher"
+	gun "Korath Piercer Launcher"
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
+	turret "Thermal Repeater Turret"
+	turret "Thermal Repeater Turret"
+	turret "Warder Anti-Missile"
+
+
+
+ship "'olofez" "'olofez (Expeller)"
+	outfits
+		"Expeller Grav-Ray"
+		
+		"Generator (Candle Class)"
+		"Systems Core (Tiny)"
+		"Thermal Repeater Rifle"
+		
+		"Thruster (Asteroid Class)"
+		"Bow Drive (Meteor Class)"
+
+
+ship "'olofez" "'olofez (Digger)"
+	outfits
+		"Digger Mining Beam"
+		
+		"Generator (Candle Class)"
+		"Systems Core (Tiny)"
+		"Thermal Repeater Rifle"
+		"Cargo Expansion"
+		"Interference Plating"
+		
+		"Engine (Meteor Class)"
+
+
+ship "'olofez" "'olofez (World-Ship)"
+	add attributes
+		"atmosphere scan" 1
+	outfits
+		"Generator (Candle Class)"
+		"Systems Core (Tiny)"
+		"Small Bunk Room"
+		"Thermal Repeater Rifle" 3
+		
+		"Steering (Asteroid Class)"
+		"Afterburner (Asteroid Class)"
+		"Hyperdrive"
+
+
+
+ship "Lor'kas Ik 577" "Lor'kas Ik 577 (Jump)"
+	outfits
+		"Banisher Grav-Turret" 2
+		"Warder Anti-Missile" 3
+		"Digger Mining Turret" 3
+		"Digger Mining Beam" 2
+		
+		"Triple Plasma Core"
+		"Systems Core (Large)"
+		"Systems Core (Small)"
+		"Large Heat Shunt" 2
+		"Small Heat Shunt" 2
+		"Fuel Processor" 3
+		"Thermal Repeater Rifle" 453
+		"Microbot Defense Station" 21
+		
+		"Thruster (Stellar Class)"
+		"Steering (Planetary Class)"
+		"Jump Drive"
+
+
+ship "Lor'kas Ik 577" "Lor'kas Ik 577 (Digger)"
+	outfits
+		"Banisher Grav-Turret" 2
+		"Warder Anti-Missile" 3
+		"Digger Mining Turret" 3
+		"Digger Mining Beam" 2
+		
+		"Triple Plasma Core"
+		"Systems Core (Medium)"
+		"Large Heat Shunt" 2
+		"Small Heat Shunt" 3
+		"Fuel Processor"
+		"Thermal Repeater Rifle" 239
+		"Microbot Defense Station" 13
+		
+		"Afterburner (Comet Class)"
+		"Bow Drive (Meteor Class)"
+		"Reverser (Planetary Class)"
+		"Thruster (Stellar Class)"
+		"Steering (Planetary Class)"
+		"Scram Drive"
+
+	gun "Digger Mining Beam"
+	gun "Digger Mining Beam"
+	turret "Digger Mining Turret"
+	turret "Digger Mining Turret"
+	turret "Warder Anti-Missile"
+	turret "Warder Anti-Missile"
+	turret "Banisher Grav-Turret"
+	turret "Banisher Grav-Turret"
+	turret "Digger Mining Turret"
+	turret "Warder Anti-Missile"
+
+
+ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Crippled)"
+	outfits
+		"Shunt-Strike Turret" 2
+		"Warder Anti-Missile"
+		"Banisher Grav-Turret"
+		"Blaze-Pike Turret"
+		"Fire-Lance" 2
+		"Firelight Missile Bank"
+		"Firelight Missile" 10
+		
+		"Triple Plasma Core"
+		"Liquid Sodium Cooler"
+		"Fuel Processor"
+		"Thermal Repeater Rifle" 627
+		"Microbot Defense Station" 21
+		"Systems Core (Medium)"
+		"Systems Core (Small)"
+		
+		"Thruster (Lunar Class)"
+		"Thruster (Asteroid Class)"
+		"Steering (Lunar Class)"
+		"Steering (Comet Class)"
+		"Steering (Asteroid Class)"
+		"Jump Drive (Broken)"
+		"Hyperdrive"
+	
+	gun "Fire-Lance"
+	gun "Fire-Lance"
+	gun
+	gun
+	gun "Firelight Missile Bank"
+	turret
+	turret "Shunt-Strike Turret"
+	turret
+	turret
+	turret "Warder Anti-Missile"
+	turret
+	turret "Shunt-Strike Turret"
+	turret
+	turret "Banisher Grav-Turret"
+	turret "Blaze-Pike Turret"
+
+
+ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Ember)"
+	outfits
+		"Shunt-Strike Turret" 5
+		"Blaze-Pike Turret" 2
+		"Banisher Grav-Turret" 1
+		"Warder Anti-Missile" 2
+		"Fire-Lance" 3
+		"Firelight Missile Bank" 2
+		"Firelight Missile" 40
+		
+		"Triple Plasma Core"
+		"Double Plasma Core"
+		"Systems Core (Large)"
+		"Liquid Sodium Cooler"
+		"Large Heat Shunt"
+		"Fuel Processor" 2
+		"Thermal Repeater Rifle" 627
+		"Microbot Defense Station" 21
+		
+		"Reverser (Lunar Class)"
+		"Thruster (Planetary Class)"
+		"Steering (Stellar Class)"
+		"Jump Drive"
+		"Hyperdrive"
+		
+	gun "Fire-Lance"
+	gun "Fire-Lance"
+	gun "Fire-Lance"
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
+	turret "Blaze-Pike Turret"
+	turret "Shunt-Strike Turret"
+	turret "Shunt-Strike Turret"
+	turret "Shunt-Strike Turret"
+	turret "Warder Anti-Missile"
+	turret "Warder Anti-Missile"
+	turret "Shunt-Strike Turret"
+	turret "Shunt-Strike Turret"
+	turret "Banisher Grav-Turret"
+	turret "Blaze-Pike Turret"
+
+
+ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Grab)"
+	outfits
+		"Firelight Missile" 80
+		"Firelight Missile Bank" 2
+		"Firelight Storage Rack" 4
+		"Banisher Grav-Turret" 2
+		"Fire-Lance" 3
+		"Grab-Strike Turret" 6
+		"Warder Anti-Missile" 2
+
+		"Triple Plasma Core"
+		"Systems Core (Large)" 2
+		"Fuel Processor"
+		"Small Heat Shunt" 2
+		"Liquid Sodium Cooler"
+		"Brig"
+		"Thermal Repeater Rifle" 794
+		"Microbot Defense Station" 11
+
+		"Afterburner (Planetary Class)"
+		"Steering (Stellar Class)"
+		"Thruster (Planetary Class)"
+		"Jump Drive"
+
+	gun "Fire-Lance"
+	gun "Fire-Lance"
+	gun "Fire-Lance"
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
+	turret "Grab-Strike Turret"
+	turret "Warder Anti-Missile"
+	turret "Grab-Strike Turret"
+	turret "Grab-Strike Turret"
+	turret "Warder Anti-Missile"
+	turret "Grab-Strike Turret"
+	turret "Grab-Strike Turret"
+	turret "Grab-Strike Turret"
+	turret "Banisher Grav-Turret"
+	turret "Banisher Grav-Turret"
+
+
+ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Storm)"
+	outfits
+		"Blaze-Pike Turret" 2
+		"Fire-Lance" 3
+		"Korath Inferno" 2
+		"Warder Anti-Missile" 2
+		"Shunt-Strike Turret" 2
+		"Firelight Missile" 40
+		"Firelight Missile Bank" 2
+		"Firestorm Torpedo" 26
+		"Firestorm Battery" 2
+
+		"Triple Plasma Core"
+		"Double Plasma Core"
+		"Systems Core (Large)"
+		"Liquid Sodium Cooler"
+		"Small Heat Shunt" 2
+		"Fuel Processor"
+		"Brig"
+		"Microbot Defense Station" 21
+		"Thermal Repeater Rifle" 794
+
+		"Steering (Stellar Class)"
+		"Thruster (Planetary Class)"
+		"Jump Drive"
+
+	gun "Fire-Lance"
+	gun "Fire-Lance"
+	gun "Fire-Lance"
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
+	turret "Korath Inferno"
+	turret "Warder Anti-Missile"
+	turret "Shunt-Strike Turret"
+	turret "Korath Inferno"
+	turret "Warder Anti-Missile"
+	turret "Shunt-Strike Turret"
+	turret "Firestorm Battery"
+	turret "Blaze-Pike Turret"
+	turret "Blaze-Pike Turret"
+	turret "Firestorm Battery"
+
+
+ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Mereti)"
+	outfits
+		"Husk-Slice" 3
+		"Husk-Slice Turret" 3
+		"Shield Disruptor Turret" 3
+		"Cluster Mine Layer" 2
+		"Cluster Mine" 34
+		"Warder Anti-Missile" 4
+		
+		"Triple Plasma Core"
+		"Double Plasma Core"
+		"Systems Core (Large)"
+		"Liquid Sodium Cooler"
+		"Large Heat Shunt"
+		"Small Heat Shunt" 2
+		"Fuel Processor"
+		"Thermal Repeater Rifle" 794
+		"Microbot Defense Station" 16
+		"Brig"
+		
+		"Afterburner (Comet Class)"
+		"Thruster (Planetary Class)"
+		"Steering (Planetary Class)"
+		"Jump Drive"
+		
+	gun "Husk-Slice"
+	gun "Husk-Slice"
+	gun "Husk-Slice"
+	gun "Cluster Mine Layer"
+	gun "Cluster Mine Layer"
+	turret "Husk-Slice Turret"
+	turret "Shield Disruptor Turret"
+	turret "Husk-Slice Turret"
+	turret "Warder Anti-Missile"
+	turret "Warder Anti-Missile"
+	turret "Shield Disruptor Turret"
+	turret "Warder Anti-Missile"
+	turret "Husk-Slice Turret"
+	turret "Shield Disruptor Turret"
+	turret "Warder Anti-Missile"
+
+
+ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Sestor)"
+	outfits
+		"Korath Detainer" 3
+		"Thermal Repeater Turret" 4
+		"Grab-Strike Turret" 2
+		"Banisher Grav-Turret"
+		"Korath Piercer Launcher" 2
+		"Korath Piercer" 62
+		"Warder Anti-Missile" 3
+		
+		"Triple Plasma Core"
+		"Double Plasma Core"
+		"Generator (Candle Class)"
+		"Systems Core (Large)"
+		"Liquid Sodium Cooler"
+		"Large Heat Shunt" 2
+		"Fuel Processor"
+		"Thermal Repeater Rifle" 794
+		"Microbot Defense Station" 11
+		"Brig"
+		
+		"Thruster (Planetary Class)"
+		"Steering (Planetary Class)"
+		"Jump Drive"
+		
+	gun "Korath Detainer"
+	gun "Korath Detainer"
+	gun "Korath Detainer"
+	gun "Korath Piercer Launcher"
+	gun "Korath Piercer Launcher"
+	turret "Thermal Repeater Turret"
+	turret "Grab-Strike Turret"
+	turret "Warder Anti-Missile"
+	turret "Thermal Repeater Turret"
+	turret "Thermal Repeater Turret"
+	turret "Warder Anti-Missile"
+	turret "Thermal Repeater Turret"
+	turret "Banisher Grav-Turret"
+	turret "Warder Anti-Missile"
+	turret "Grab-Strike Turret"
+
+
+
+ship "Kas'lor Ik 582" "Kas'lor Ik 582 (Jump)"
+	outfits
+		"Langrage Hyper-Heaver" 2
+		"Banisher Grav-Turret" 3
+		"Warder Anti-Missile" 3
+		
+		"Triple Plasma Core"
+		"Systems Core (Large)"
+		"Liquid Sodium Cooler"
+		"Fuel Processor" 6
+		"Microbot Defense Station" 7
+		"Thermal Repeater Rifle" 551
+		
+		"Thruster (Planetary Class)"
+		"Steering (Planetary Class)"
+		"Jump Drive"
+
+
+
+ship "Kas'lor Ik 582" "Kas'lor Ik 582 (Stranded)"
+	outfits
+		"Langrage Hyper-Heaver" 3
+		"Warder Anti-Missile" 2
+		"Banisher Grav-Turret" 3
+
+		"Triple Plasma Core"
+		"Systems Core (Large)"
+		"Liquid Sodium Cooler"
+		"Fuel Processor" 6
+		"Microbot Defense Station" 10
+		"Thermal Repeater Rifle" 351
+		
+		"Steering (Lunar Class)"
+		"Steering (Asteroid Class)"
+		"Thruster (Lunar Class)"
+		"Thruster (Asteroid Class)"
+		"Jump Drive (Broken)"
+
+	turret "Langrage Hyper-Heaver"
+	turret "Banisher Grav-Turret"
+	turret "Warder Anti-Missile"
+	turret "Langrage Hyper-Heaver"
+	turret "Langrage Hyper-Heaver"
+	turret "Banisher Grav-Turret"
+	turret "Banisher Grav-Turret"
+	turret "Warder Anti-Missile"
+
+
+
+ship "Kas'lor Ik 582" "Kas'lor Ik 582 (Ember)"
+	outfits
+		"Langrage Hyper-Heaver" 2
+		"Banisher Grav-Turret" 3
+		"Warder Anti-Missile" 3
+		
+		"Triple Plasma Core"
+		"Systems Core (Large)"
+		"Liquid Sodium Cooler"
+		"Fuel Processor" 5
+		"Microbot Defense Station" 5
+		"Thermal Repeater Rifle" 551
+		
+		"Thruster (Planetary Class)"
+		"Steering (Planetary Class)"
+		"Jump Drive"
+		Hyperdrive
+
+	turret "Banisher Grav-Turret"
+	turret "Warder Anti-Missile"
+	turret "Warder Anti-Missile"
+	turret "Banisher Grav-Turret"
+	turret "Langrage Hyper-Heaver"
+	turret "Langrage Hyper-Heaver"
+	turret "Banisher Grav-Turret"
+	turret "Warder Anti-Missile"
+
+
+
+ship "Lor'nag Ik 590" "Lor'nag Ik 590 (Grab)"
+	outfits
+		"Grab-Strike Turret" 2
+		"Banisher Grav-Turret" 2
+		"Warder Anti-Missile" 2
+		"Fire-Lance" 2
+		
+		"Triple Plasma Core"
+		"Systems Core (Large)"
+		"Liquid Sodium Cooler"
+		"Fuel Processor" 2
+		"Brig"
+		"Microbot Defense Station" 12
+		"Thermal Repeater Rifle" 493
+		
+		"Thruster (Planetary Class)"
+		"Steering (Planetary Class)"
+		"Afterburner (Comet Class)"
+		"Reverser (Lunar Class)"
+		"Scram Drive"
+	
+	gun -45 -253 "Fire-Lance"
+	gun 45 -253 "Fire-Lance"
+	turret -77 -116.5 "Grab-Strike Turret"
+	turret 77 -116.5 "Grab-Strike Turret"
+	turret -87 -83 "Warder Anti-Missile"
+	turret 87 -83 "Banisher Grav-Turret"
+	turret -51 276.5 "Banisher Grav-Turret"
+	turret 51 276.5 "Warder Anti-Missile"
+
+
+ship "Lor'nag Ik 590" "Lor'nag Ik 590 (Troop Transport)"
+	outfits
+		"Banisher Grav-Turret" 2
+		"Warder Anti-Missile" 2
+		"Shunt-Strike Turret" 2
+		"Fire-Lance" 2
+		
+		"Triple Plasma Core"
+		"Systems Core (Large)"
+		"Systems Core (Small)"
+		"Liquid Sodium Cooler"
+		"Fuel Processor" 2
+		"Brig"
+		"Microbot Defense Station" 8
+		"Thermal Repeater Rifle" 1492
+		
+		"Reverser (Lunar Class)"
+		"Thruster (Planetary Class)"
+		"Steering (Planetary Class)"
+		"Scram Drive"
+		"Jump Drive"
+	
+	gun -45 -253 "Fire-Lance"
+	gun 45 -253 "Fire-Lance"
+	turret -77 -116.5 "Shunt-Strike Turret"
+	turret 77 -116.5 "Shunt-Strike Turret"
+	turret -87 -83 "Warder Anti-Missile"
+	turret 87 -83 "Banisher Grav-Turret"
+	turret -51 276.5 "Banisher Grav-Turret"
+	turret 51 276.5 "Warder Anti-Missile"
+
+
+
+ship "Ra'at Ik 621" "Ra'at Ik 621 (Digger)"
+	outfits
+		"Digger Mining Beam" 3
+		"Digger Mining Turret" 2
+		"Shunt-Strike Turret" 3
+		"Warder Anti-Missile" 2
+
+		"Triple Plasma Core"
+		"Systems Core (Large)"
+		"Systems Core (Medium)"
+		"Large Heat Shunt" 2
+		"Small Heat Shunt" 2
+		"Fuel Processor" 2
+		"Cargo Expansion" 4
+		"Thermal Repeater Rifle" 799
+		"Scram Drive"
+		"Microbot Defense Station" 15
+
+		"Reverser (Lunar Class)"
+		"Bow Drive (Meteor Class)"
+		"Afterburner (Comet Class)"
+		"Thruster (Planetary Class)"
+		"Steering (Planetary Class)"
+
+	gun "Digger Mining Beam"
+	gun "Digger Mining Beam"
+	gun "Digger Mining Beam"
+	turret "Digger Mining Turret"
+	turret "Shunt-Strike Turret"
+	turret "Warder Anti-Missile"
+	turret "Shunt-Strike Turret"
+	turret "Digger Mining Turret"
+	turret "Shunt-Strike Turret"
+	turret "Warder Anti-Missile"
+
+
+ship "Ra'at Ik 621" "Ra'at Ik 621 (Storm)"
+	outfits
+		"Blaze-Pike Turret" 2
+		"Warder Anti-Missile" 3
+		"Fire-Lance" 3
+		"Firestorm Torpedo" 26
+		"Firestorm Battery" 2
+
+		"Triple Plasma Core"
+		"Systems Core (Large)"
+		"Large Heat Shunt" 2
+		"Small Heat Shunt" 3
+		"Fuel Processor"
+		"Brig"
+		"Thermal Repeater Rifle" 1037
+		"Microbot Defense Station" 16
+
+		"Reverser (Comet Class)"
+		"Steering (Stellar Class)"
+		"Thruster (Stellar Class)"
+		"Jump Drive"
+	
+	gun "Fire-Lance"
+	gun "Fire-Lance"
+	gun "Fire-Lance"
+	turret "Blaze-Pike Turret"
+	turret "Blaze-Pike Turret"
+	turret "Warder Anti-Missile"
+	turret "Warder Anti-Missile"
+	turret "Warder Anti-Missile"
+	turret "Firestorm Battery"
+	turret "Firestorm Battery"
+
+
+ship "Ra'at Ik 621" "Ra'at Ik 621 (Automata)"
+	outfits
+		"Korath Detainer"
+		"Thermal Repeater" 2
+		"Thermal Repeater Turret" 2
+		"Shield Disruptor Turret"
+		"Husk-Slice Turret"
+		"Warder Anti-Missile" 3
+
+		"Triple Plasma Core"
+		"Plasma Core"
+		"Systems Core (Large)"
+		"Liquid Sodium Cooler"
+		"Large Heat Shunt"
+		"Fuel Processor"
+		"Brig"
+		"Control Transceiver"
+		"Thermal Repeater Rifle" 1037
+		"Jump Drive"
+		"Microbot Defense Station" 13
+
+		"Afterburner (Comet Class)"
+		"Reverser (Lunar Class)"
+		"Thruster (Planetary Class)"
+		"Steering (Stellar Class)"
+
+	gun "Thermal Repeater"
+	gun "Korath Detainer"
+	gun "Thermal Repeater"
+	turret "Husk-Slice Turret"
+	turret "Shield Disruptor Turret"
+	turret "Thermal Repeater Turret"
+	turret "Warder Anti-Missile"
+	turret "Thermal Repeater Turret"
+	turret "Warder Anti-Missile"
+	turret "Warder Anti-Missile"
+	bay "Fighter" -100 -169
+		"launch effect" "korath internal"
+	bay "Fighter" 0 -169
+		"launch effect" "korath internal"
+	bay "Fighter" 100 -169
+		"launch effect" "korath internal"
+	bay "Fighter" -98 156 back
+		"launch effect" "korath internal"
+	bay "Fighter" 98 156 back
+		"launch effect" "korath internal"
+	bay "Fighter" -50 303 back
+		"launch effect" "korath internal"
+	bay "Fighter" -50 303 back
+		"launch effect" "korath internal"
+	bay "Fighter" 50 303 back
+		"launch effect" "korath internal"
+	bay "Fighter" 50 303 back
+		"launch effect" "korath internal"
+	bay "Drone" -100 -169
+		"launch effect" "korath internal"
+	bay "Drone" 100 -169
+		"launch effect" "korath internal"
+	bay "Drone" -98 156 back
+		"launch effect" "korath internal"
+	bay "Drone" 98 156 back
+		"launch effect" "korath internal"
+	bay "Drone" -50 303 back
+		"launch effect" "korath internal"
+	bay "Drone" 50 303 back
+		"launch effect" "korath internal"
+
+
+ship "Ra'at Ik 621" "Ra'at Ik 621 (Probes)"
+	outfits
+		"Shunt-Strike Turret" 3
+		"Warder Anti-Missile" 2
+		"Banisher Grav-Turret" 2
+		"Fire-Lance" 3
+		
+		"Triple Plasma Core"
+		"Generator (Furnace Class)"
+		"Systems Core (Large)"
+		"Systems Core (Medium)"
+		"Liquid Sodium Cooler"
+		"Fuel Processor"
+		"Microbot Defense Station" 14
+		"Thermal Repeater Rifle" 799
+		
+		"Reverser (Lunar Class)"
+		"Thruster (Planetary Class)"
+		"Steering (Stellar Class)"
+		"Scram Drive"
+
+	gun "Fire-Lance"
+	gun "Fire-Lance"
+	gun "Fire-Lance"
+	turret "Shunt-Strike Turret"
+	turret "Warder Anti-Missile"
+	turret "Banisher Grav-Turret"
+	turret "Shunt-Strike Turret"
+	turret "Shunt-Strike Turret"
+	turret "Warder Anti-Missile"
+	turret "Banisher Grav-Turret"
+	bay "Drone" -100 -169
+		"launch effect" "korath internal"
+	bay "Drone" 0 -169
+		"launch effect" "korath internal"
+	bay "Drone" 100 -169
+		"launch effect" "korath internal"
+	bay "Drone" -98 156 back
+		"launch effect" "korath internal"
+	bay "Drone" 98 156 back
+		"launch effect" "korath internal"
+	bay "Drone" -50 303 back
+		"launch effect" "korath internal"
+	bay "Drone" -50 303 back
+		"launch effect" "korath internal"
+	bay "Drone" 50 303 back
+		"launch effect" "korath internal"
+	bay "Drone" 50 303 back
+		"launch effect" "korath internal"
+
+
+
+ship "Korsmanath A'awoj" "Korsmanath A'awoj (Strike)"
+	"uncapturable"
+	outfits
+		"Banisher Grav-Turret" 7
+		"Grab-Strike Turret" 4
+		"Warder Anti-Missile" 5
+		"Shunt-Strike Turret" 4
+
+		"Firelight Missile Bank" 4
+		"Firelight Missile" 162
+		"Firelight Storage Rack" 10
+		"Firestorm Battery" 2
+		"Firestorm Torpedo" 39
+		"Firestorm Torpedo Rack" 2
+
+		"Triple Plasma Core" 3
+		"Systems Core (Large)" 2
+		"Fuel Processor" 7
+		"Liquid Sodium Cooler" 2
+		"Thermal Repeater Rifle" 1954
+		"Microbot Defense Station" 214
+		"Scram Drive"
+
+		"Afterburner (Stellar Class)"
+		"Reverser (Stellar Class)"
+		"Steering (Planetary Class)"
+		"Steering (Stellar Class)"
+		"Thruster (Planetary Class)"
+		"Thruster (Stellar Class)"
+
+	turret "Warder Anti-Missile"
+	turret "Banisher Grav-Turret"
+	turret "Banisher Grav-Turret"
+	turret "Warder Anti-Missile"
+	turret "Warder Anti-Missile"
+	turret "Banisher Grav-Turret"
+	turret "Grab-Strike Turret"
+	turret "Shunt-Strike Turret"
+	turret "Shunt-Strike Turret"
+	turret "Grab-Strike Turret"
+	turret "Banisher Grav-Turret"
+	turret "Shunt-Strike Turret"
+	turret "Firestorm Battery"
+	turret "Firestorm Battery"
+	turret "Warder Anti-Missile"
+	turret "Banisher Grav-Turret"
+	turret "Banisher Grav-Turret"
+	turret "Warder Anti-Missile"
+	turret "Grab-Strike Turret"
+	turret "Shunt-Strike Turret"
+	turret "Banisher Grav-Turret"
+	turret "Grab-Strike Turret"
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
+
+
+ship "Korsmanath A'awoj" "Korsmanath A'awoj (Special)"
+	"uncapturable"
+	outfits
+		"Banisher Grav-Turret" 4
+		"Digger Mining Turret" 6
+		"Warder Anti-Missile" 5
+		"Langrage Hyper-Heaver" 5
+		"Shunt-Strike Turret" 2
+
+		"Firelight Missile Bank" 4
+		"Firelight Missile" 108
+		"Firelight Storage Rack" 4
+
+		"Triple Plasma Core" 3
+		"Systems Core (Large)" 2
+		"Fuel Processor" 11
+		"Liquid Sodium Cooler" 2
+		"Thermal Repeater Rifle" 1954
+		"Microbot Defense Station" 214
+		"Luxury Accommodations"
+		"Brig"
+		"Cargo Expansion" 8
+		"Scram Drive"
+
+		"Afterburner (Stellar Class)"
+		"Reverser (Stellar Class)"
+		"Steering (Planetary Class)"
+		"Steering (Stellar Class)"
+		"Thruster (Planetary Class)"
+		"Thruster (Stellar Class)"
+
+	turret "Langrage Hyper-Heaver"
+	turret "Warder Anti-Missile"
+	turret "Banisher Grav-Turret"
+	turret "Langrage Hyper-Heaver"
+	turret "Langrage Hyper-Heaver"
+	turret "Banisher Grav-Turret"
+	turret "Digger Mining Turret"
+	turret "Digger Mining Turret"
+	turret "Digger Mining Turret"
+	turret "Digger Mining Turret"
+	turret "Warder Anti-Missile"
+	turret "Shunt-Strike Turret"
+	turret "Shunt-Strike Turret"
+	turret "Warder Anti-Missile"
+	turret "Langrage Hyper-Heaver"
+	turret "Banisher Grav-Turret"
+	turret "Banisher Grav-Turret"
+	turret "Langrage Hyper-Heaver"
+	turret "Warder Anti-Missile"
+	turret "Digger Mining Turret"
+	turret "Digger Mining Turret"
+	turret "Warder Anti-Missile"
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
+
+
+ship "Korsmanath A'awoj" "Korsmanath A'awoj (Blaze)"
+	"uncapturable"
+	outfits
+		"Banisher Grav-Turret" 4
+		"Grab-Strike Turret" 2
+		"Warder Anti-Missile" 8
+		"Blaze-Pike Turret" 6
+		"Korath Inferno" 2
+
+		"Firelight Missile Bank" 4
+		"Firelight Missile" 108
+
+		"Triple Plasma Core" 3
+		"Systems Core (Large)" 2
+		"Fuel Processor" 7
+		"Liquid Sodium Cooler" 2
+		"Thermal Repeater Rifle" 1954
+		"Microbot Defense Station" 214
+		"Scram Drive"
+
+		"Afterburner (Stellar Class)"
+		"Reverser (Stellar Class)"
+		"Steering (Planetary Class)"
+		"Steering (Stellar Class)"
+		"Thruster (Planetary Class)"
+		"Thruster (Stellar Class)"
+
+	turret "Blaze-Pike Turret"
+	turret "Warder Anti-Missile"
+	turret "Warder Anti-Missile"
+	turret "Blaze-Pike Turret"
+	turret "Blaze-Pike Turret"
+	turret "Warder Anti-Missile"
+	turret "Korath Inferno"
+	turret "Grab-Strike Turret"
+	turret "Grab-Strike Turret"
+	turret "Korath Inferno"
+	turret "Banisher Grav-Turret"
+	turret "Blaze-Pike Turret"
+	turret "Warder Anti-Missile"
+	turret "Banisher Grav-Turret"
+	turret "Warder Anti-Missile"
+	turret "Blaze-Pike Turret"
+	turret "Blaze-Pike Turret"
+	turret "Warder Anti-Missile"
+	turret "Warder Anti-Missile"
+	turret "Banisher Grav-Turret"
+	turret "Banisher Grav-Turret"
+	turret "Warder Anti-Missile"
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
+
+
+
+ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Offense)"
+	outfits
+		"Piercer Missile Launcher" 4
+		"Piercer Missile" 124
+		"Thermal Repeater Turret" 6
+		"Grab-Strike Turret" 2
+		
+		"Triple Plasma Core"
+		"Plasma Core"
+		"Systems Core (Large)"
+		"Systems Core (Medium)"
+		"Large Heat Shunt" 5
+		"Outfits Expansion"
+		"Control Transceiver"
+		
+		"Thruster (Planetary Class)"
+		"Thruster (Asteroid Class)"
+		"Steering (Stellar Class)"
+		Hyperdrive
+	
+	turret "Thermal Repeater Turret"
+	turret "Thermal Repeater Turret"
+	turret "Thermal Repeater Turret"
+	turret "Thermal Repeater Turret"
+	turret "Thermal Repeater Turret"
+	turret "Thermal Repeater Turret"
+	turret "Grab-Strike Turret"
+	turret "Grab-Strike Turret"
+
+
+ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Defense)"
+	outfits
+		"Piercer Missile Launcher" 4
+		"Piercer Missile" 140
+		"Piercer Missile Rack"
+		"Warder Anti-Missile" 3
+		"Grab-Strike Turret" 3
+		"Banisher Grav-Turret" 2
+		
+		"Triple Plasma Core"
+		"Plasma Core"
+		"Systems Core (Large)"
+		"Systems Core (Medium)"
+		"Large Heat Shunt" 3
+		"Outfits Expansion"
+		"Control Transceiver"
+		
+		"Thruster (Stellar Class)"
+		"Steering (Planetary Class)"
+		Hyperdrive
+	
+	turret "Warder Anti-Missile"
+	turret "Grab-Strike Turret"
+	turret "Grab-Strike Turret"
+	turret "Grab-Strike Turret"
+	turret "Banisher Grav-Turret"
+	turret "Banisher Grav-Turret"
+	turret "Warder Anti-Missile"
+	turret "Warder Anti-Missile"
+
+
+ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Trapper)"
+	outfits
+		"Korath Detainer" 2
+		"Grab-Strike Turret" 4
+		"Banisher Grav-Turret" 2
+		
+		"Triple Plasma Core"
+		"Double Plasma Core"
+		"Systems Core (Large)"
+		"Systems Core (Medium)"
+		"Large Heat Shunt" 3
+		"Small Heat Shunt"
+		"Outfits Expansion" 4
+		"Control Transceiver"
+		
+		"Thruster (Planetary Class)"
+		"Steering (Stellar Class)"
+		Hyperdrive
+	
+	gun "Korath Detainer"
+	gun "Korath Detainer"
+	gun
+	gun
+	turret "Grab-Strike Turret"
+	turret "Grab-Strike Turret"
+	turret "Grab-Strike Turret"
+	turret "Grab-Strike Turret"
+	turret "Banisher Grav-Turret"
+	turret "Banisher Grav-Turret"
+	turret
+	turret
+
+
+
+ship "Tek Far 71 - Lek" "Tek Far 71 - Lek (Close Quarters)"
+	outfits
+		"Korath Detainer"
+		"Thermal Repeater" 2
+		"Thermal Repeater Turret" 3
+		"Warder Anti-Missile"
+		
+		"Double Plasma Core"
+		"Generator (Furnace Class)"
+		"Systems Core (Medium)"
+		"Large Heat Shunt" 2
+		"Small Heat Shunt"
+		"Outfits Expansion"
+		"Control Transceiver"
+		
+		"Thruster (Lunar Class)"
+		"Steering (Lunar Class)"
+		"Hyperdrive"
+	
+	turret "Thermal Repeater Turret"
+	turret "Thermal Repeater Turret"
+	turret "Warder Anti-Missile"
+	turret "Thermal Repeater Turret"
+
+
+
+ship "Tek Far 78 - Osk" "Tek Far 78 - Osk (Close Quarters)"
+	outfits
+		"Korath Detainer"
+		"Warder Anti-Missile" 2
+		"Thermal Repeater Turret" 3
+		
+		"Triple Plasma Core"
+		"Systems Core (Medium)"
+		"Large Heat Shunt" 3
+		"Outfits Expansion"
+		"Control Transceiver"
+		
+		"Thruster (Lunar Class)"
+		"Steering (Planetary Class)"
+		Hyperdrive
+	
+	turret "Warder Anti-Missile"
+	turret "Thermal Repeater Turret"
+	turret "Thermal Repeater Turret"
+	turret "Thermal Repeater Turret"
+	turret "Warder Anti-Missile"
+
+
+
+ship "Met Par Tek 53" "Met Par Tek 53 (Sniper)"
+	outfits
+		"Korath Detainer"
+		"Piercer Missile Launcher" 2
+		"Piercer Missile" 62
+		"Grab-Strike Turret"
+		"Warder Anti-Missile"
+		
+		"Double Plasma Core"
+		"Generator (Inferno Class)"
+		"Generator (Candle Class)"
+		"Systems Core (Medium)"
+		"Large Heat Shunt"
+		"Control Transceiver"
+		
+		"Thruster (Lunar Class)"
+		"Steering (Planetary Class)"
+		"Steering (Comet Class)"
+		"Hyperdrive"
+	
+	gun "Korath Detainer"
+	gun "Piercer Missile Launcher"
+	gun "Piercer Missile Launcher"
+	turret "Grab-Strike Turret"
+	turret "Warder Anti-Missile"
+	turret
+	turret
+	turret
+	turret

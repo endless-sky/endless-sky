@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef GAME_EVENT_H_
@@ -46,7 +49,7 @@ public:
 public:
 	GameEvent() = default;
 	// Construct and Load() at the same time.
-	GameEvent(const DataNode &node);
+	explicit GameEvent(const DataNode &node);
 
 	void Load(const DataNode &node);
 	void Save(DataWriter &out) const;
@@ -58,12 +61,15 @@ public:
 
 	// Check if this GameEvent has been loaded (vs. simply referred to) and
 	// if it references any items that have not been defined.
-	bool IsValid() const;
+	// Returns an empty string if it is valid. If not, a reason will be given in the string.
+	std::string IsValid() const;
 
 	const Date &GetDate() const;
 	void SetDate(const Date &date);
 
-	void Apply(PlayerInfo &player);
+	// Apply this event's changes to the player. Returns a list of data changes that need to
+	// be applied in a batch with other events that are applied at the same time.
+	std::list<DataNode> Apply(PlayerInfo &player);
 
 	const std::list<DataNode> &Changes() const;
 

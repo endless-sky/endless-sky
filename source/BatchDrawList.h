@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef BATCH_DRAW_LIST_H_
@@ -55,8 +58,8 @@ private:
 
 	// Each sprite consists of six vertices (four vertices to form a quad and
 	// two dummy vertices to mark the break in between them). Each of those
-	// vertices has five attributes: (x, y) position in pixels, (s, t) texture
-	// coordinates, and the index of the sprite frame.
+	// vertices has six attributes: (x, y) position in pixels, (s, t) texture
+	// coordinates, the index of the sprite frame, and the alpha value.
 	std::map<const Sprite *, std::vector<float>> data;
 };
 

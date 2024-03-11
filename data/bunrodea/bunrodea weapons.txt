@@ -1,0 +1,270 @@
+# Copyright (c) 2021 by Amazinite
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+outfit "Locust Blaster"
+	category "Guns"
+	cost 284000
+	thumbnail "outfit/locust blaster"
+	"mass" 7
+	"outfit space" -7
+	"weapon capacity" -7
+	"gun ports" -1
+	weapon
+		sprite "projectile/locust blaster"
+		sound "locust blaster"
+		"hit effect" "bullet impact"
+		"hardpoint offset" 20
+		"inaccuracy" 5
+		"velocity" 10
+		"random velocity" 2
+		"lifetime" 40
+		"reload" 3
+		"firing energy" 4
+		"firing heat" 3
+		"shield damage" 5
+		"hull damage" 4
+	description "The Locust Blaster might look small, but its destructive potential for its size is nothing to scoff at. A single blaster is capable of sustaining 1,200 rounds per minute. While each individual projectile from the blaster deals rather insignificant damage, the sheer deluge of projectiles can rip even the largest of ships to shreds in due time."
+
+outfit "Locust Turret"
+	category "Turrets"
+	cost 1265000
+	thumbnail "outfit/locust turret"
+	"mass" 28
+	"outfit space" -28
+	"weapon capacity" -28
+	"turret mounts" -1
+	weapon
+		sprite "projectile/locust blaster"
+		"hardpoint sprite" "hardpoint/locust turret"
+		"hardpoint offset" 40
+		sound "locust blaster"
+		"hit effect" "bullet impact"
+		"inaccuracy" 5
+		"turret turn" 6
+		"velocity" 10
+		"random velocity" 2
+		"lifetime" 40
+		"reload" 1
+		"firing energy" 4
+		"firing heat" 3
+		"shield damage" 5
+		"hull damage" 4
+	description "Although Bunrodean ships typically rely on the power of their forward facing guns and fill any turret mounts with anti-missile systems, they have developed a turret mount for the Locust Blaster. This turret carries three Locust Blasters that all fire at once, resulting in an astonishing 3,600 projectiles per minute being thrown at the target."
+
+
+
+outfit "Mandible Cannon"
+	category "Guns"
+	cost 1170000
+	thumbnail "outfit/mandible cannon"
+	"mass" 29
+	"outfit space" -29
+	"weapon capacity" -29
+	"gun ports" -1
+	weapon
+		sprite "projectile/mandible cannon"
+			"frame rate" 10
+			"random start frame"
+		sound "mandible cannon"
+		"hit effect" "proton impact"
+		"inaccuracy" .1
+		"velocity" 34
+		"lifetime" 25
+		"reload" 30
+		"burst reload" 5
+		"burst count" 2
+		"firing energy" 111
+		"firing force" 20
+		"firing heat" 60
+		"hit force" 140
+		"shield damage" 152
+		"hull damage" 98
+	description "The Mandible Cannon is a significant part of the Bunrodean arsenal due to its versatility. Its range exceeds that of smaller weapons, and its size allows it to be used in numbers on most Bunrodean ships. However, the energy draw required to fire is rather significant, particularly for Bunrodean ships that rely on solar cells."
+
+
+
+outfit "Thorax Cannon"
+	category "Guns"
+	cost 3484000
+	thumbnail "outfit/thorax cannon"
+	"mass" 105
+	"outfit space" -105
+	"weapon capacity" -105
+	"gun ports" -1
+	"energy capacity" 7000
+	weapon
+		sprite "projectile/thorax cannon"
+			"frame rate" 15
+			"rewind"
+		sound "thorax cannon"
+		"fire effect" "torpedo fire"
+		"live effect" "yellow spark" 140
+		"live effect" "yellow spark trail" 840
+		"live effect" "yellow spark twinkle" 400
+		"hit effect" "finisher impact" 2
+		"hit effect" "yellow spark" 10
+		"hit effect" "yellow spark fragment" 150
+		"inaccuracy" 0
+		"velocity" 15
+		"lifetime" 120
+		"reload" 120
+		"firing energy" 3150
+		"firing force" 1250
+		"firing heat" 1905
+		"hit force" 2500
+		"shield damage" 2870
+		"hull damage" 3430
+	description "The Thorax Cannon is a massive, slow-firing weapon that few ships can even support, not only because of its size but also because of the energy needed to fire it. It comes with its own energy capacitors to help alleviate the steep energy cost."
+
+effect "yellow spark"
+	sprite "effect/yellow spark"
+		"no repeat"
+		"frame rate" 8
+	"lifetime" 30
+	"random angle" 360
+	"random spin" 3
+	"random velocity" 0.1
+	"velocity scale" -0.5
+
+effect "yellow spark trail"
+	sprite "effect/yellow spark"
+		"no repeat"
+		"frame rate" 2
+	"lifetime" 20
+	"random angle" 360
+	"random frame rate" 6
+	"random velocity" 5
+	"random spin" 10
+	"velocity scale" 0.2
+	
+effect "yellow spark twinkle"
+	sprite "effect/yellow spark"
+		"no repeat"
+		"frame rate" 6
+	"lifetime" 20
+	"random angle" 360
+	"random velocity" 3
+	"random spin" 10
+	"velocity scale" 0.1
+
+effect "yellow spark fragment"
+	sprite "effect/yellow spark"
+		"no repeat"
+		"frame rate" 4
+	"lifetime" 5
+	"random angle" 360
+	"random velocity" 6
+	"random spin" 10
+	"velocity scale" -0.1
+
+
+
+outfit "Swarm Clip"
+	category "Ammunition"
+	cost 24000
+	thumbnail "outfit/swarm storage"
+	"mass" 2
+	"outfit space" -10
+	"swarm capacity" 200
+	ammo "Swarm Missile"
+	description "Swarm Clips provide a sizeable increase in ammo capacity for Swarm Pods, holding a respectable 200 missiles able to be swiftly loaded into a launcher after its current clip is empty."
+
+outfit "Swarm Missile"
+	category "Ammunition"
+	cost 250
+	thumbnail "outfit/swarm missile"
+	"mass" 0.04
+	"swarm capacity" -1
+	description "Swarm missiles are small, fast moving munitions for the Swarm Pod."
+
+outfit "Swarm Pod"
+	category "Secondary Weapons"
+	cost 363000
+	thumbnail "outfit/swarm pod"
+	"mass" 5
+	"outfit space" -21
+	"weapon capacity" -21
+	"gun ports" -1
+	"swarm capacity" 400
+	weapon
+		sprite "effect/swarm"
+			"frame rate" .01
+		sound "swarm missile"
+		ammo "Swarm Missile"
+		icon "icon/meteor"
+		"die effect" "missile death"
+		"hit effect" "particle impact"
+		"live effect" "swarm flare" 1000000
+		"inaccuracy" 90
+		"velocity" 13
+		"lifetime" 460
+		"reload" 10
+		"firing energy" 2
+		"firing heat" 1
+		"acceleration" 1.3
+		"drag" .1
+		"turn" 5.35
+		"homing" 2
+		"radar tracking" 0.5
+		"optical tracking" 0.5
+		"shield damage" 46
+		"hull damage" 24
+		"missile strength" 8
+		"stream"
+	description "The Swarm Pod proved to be an effective weapon in early conflicts with the Korath by overpowering early Korath anti-missile defenses. But just as the Bunrodea developed technology to combat Korath weaponry, the Korath did the same, prompting them to create their own rapid-fire anti-missile turret that limited the usefulness of the Swarm Pod against some Korath targets."
+
+effect "swarm flare"
+	sprite "effect/swarm"
+		"no repeat"
+		"frame rate" 5
+	"lifetime" 40
+	"velocity scale" 0.1
+
+effect "swarm impact"
+	sprite "effect/particle impact"
+		"no repeat"
+		"frame rate" 30
+	sound "explosion tiny"
+	"lifetime" 20
+	"random angle" 2
+	"random spin" 10
+	"velocity scale" -.05
+
+
+outfit "Buzzer Anti-Missile"
+	category "Turrets"
+	cost 1195000
+	thumbnail "outfit/buzzer"
+	"mass" 19
+	"outfit space" -19
+	"weapon capacity" -19
+	"turret mounts" -1
+	weapon
+		"hardpoint sprite" "hardpoint/buzzer am"
+		"hardpoint offset" 5
+		"hit effect" "buzzer"
+		"anti-missile" 4
+		"velocity" 300
+		"lifetime" 1
+		"reload" 2.5
+		"firing energy" 16
+		"firing heat" 1
+	description "As the Korath began to saturate systems with mines, the effectiveness of Bunrodean fighters dropped substantially. In response, the Bunrodea developed this rapid-fire anti-missile turret, able to clear sections of a system of Korath mines at blinding speed."
+
+effect "buzzer"
+	sprite "effect/buzzer am"
+		"no repeat"
+		"frame rate" 10
+	sound "buzzer am"
+	"lifetime" 11
+	"velocity scale" 1

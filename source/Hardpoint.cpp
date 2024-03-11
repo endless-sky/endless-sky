@@ -7,13 +7,18 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Hardpoint.h"
 
 #include "Audio.h"
+#include "Body.h"
 #include "Effect.h"
+#include "Flotsam.h"
 #include "Outfit.h"
 #include "pi.h"
 #include "Projectile.h"
@@ -39,7 +44,8 @@ namespace {
 
 
 // Constructor.
-Hardpoint::Hardpoint(const Point &point, const Angle &baseAngle, bool isTurret, bool isParallel, bool isUnder, const Outfit *outfit)
+Hardpoint::Hardpoint(const Point &point, const Angle &baseAngle, bool isTurret,
+	bool isParallel, bool isUnder, const Outfit *outfit)
 	: outfit(outfit), point(point * .5), baseAngle(baseAngle), isTurret(isTurret), isParallel(isParallel), isUnder(isUnder)
 {
 }
@@ -131,10 +137,11 @@ bool Hardpoint::IsHoming() const
 
 
 
-// Find out if this hardpoint has an anti-missile installed.
-bool Hardpoint::IsAntiMissile() const
+// Find out if this hardpoint has a special weapon installed
+// (e.g. anti-missile, tractor beam).
+bool Hardpoint::IsSpecial() const
 {
-	return outfit && outfit->AntiMissile() > 0;
+	return outfit && (outfit->AntiMissile() || outfit->TractorBeam());
 }
 
 
@@ -221,7 +228,7 @@ void Hardpoint::Fire(Ship &ship, vector<Projectile> &projectiles, vector<Visual>
 
 	// Apply the weapon's inaccuracy to the aim. This allows firing effects
 	// to share the same inaccuracy as the projectile.
-	aim += Projectile::Inaccuracy(outfit->Inaccuracy());
+	aim += Distribution::GenerateInaccuracy(outfit->Inaccuracy(), outfit->InaccuracyDistribution());
 
 	// Create a new projectile, originating from this hardpoint.
 	// In order to get projectiles to start at the right position they are drawn
@@ -245,38 +252,29 @@ bool Hardpoint::FireAntiMissile(Ship &ship, const Projectile &projectile, vector
 	if(!strength)
 		return false;
 
-	// Get the anti-missile range. Anti-missile shots always last a single frame,
-	// so their range is equal to their velocity.
-	double range = outfit->Velocity();
-
-	// Check if the missile is within range of this hardpoint.
-	Point start = ship.Position() + ship.Facing().Rotate(point);
-	Point offset = projectile.Position() - start;
-	if(offset.Length() > range)
+	// Check whether the projectile is within range and create any visuals.
+	if(!FireSpecialSystem(ship, projectile, visuals))
 		return false;
-
-	// Precompute the number of visuals that will be added.
-	visuals.reserve(visuals.size() + outfit->FireEffects().size()
-		+ outfit->HitEffects().size() + outfit->DieEffects().size());
-
-	// Firing effects are displayed at the anti-missile hardpoint that just fired.
-	Angle aim(offset);
-	angle = aim - ship.Facing();
-	start += aim.Rotate(outfit->HardpointOffset());
-	CreateEffects(outfit->FireEffects(), start, ship.Velocity(), aim, visuals);
-
-	// Figure out where the effect should be placed. Anti-missiles do not create
-	// projectiles; they just create a blast animation.
-	CreateEffects(outfit->HitEffects(), start + (.5 * range) * aim.Unit(), ship.Velocity(), aim, visuals);
-
-	// Die effects are displayed at the projectile, whether or not it actually "dies."
-	CreateEffects(outfit->DieEffects(), projectile.Position(), projectile.Velocity(), aim, visuals);
-
-	// Update the reload and burst counters, and expend ammunition if applicable.
-	Fire(ship, start, aim);
 
 	// Check whether the missile was destroyed.
 	return (Random::Int(strength) > Random::Int(projectile.MissileStrength()));
+}
+
+
+
+// Fire a tractor beam. Returns true if the flotsam was hit.
+bool Hardpoint::FireTractorBeam(Ship &ship, const Flotsam &flotsam, std::vector<Visual> &visuals)
+{
+	// Make sure this hardpoint really is a tractor beam.
+	double strength = outfit->TractorBeam();
+	if(!strength)
+		return false;
+
+	// Check whether the flotsam is within range and create any visuals.
+	if(!FireSpecialSystem(ship, flotsam, visuals))
+		return false;
+
+	return true;
 }
 
 
@@ -341,6 +339,45 @@ void Hardpoint::Reload()
 void Hardpoint::Uninstall()
 {
 	outfit = nullptr;
+}
+
+
+
+// Check whether a projectile or flotsam is within the range of the anti-missile
+// or tractor beam system and create visuals if it is.
+bool Hardpoint::FireSpecialSystem(Ship &ship, const Body &body, std::vector<Visual> &visuals)
+{
+	// Get the weapon range. Anti-missile and tractor beam shots always last a
+	// single frame, so their range is equal to their velocity.
+	double range = outfit->Velocity();
+
+	// Check if the body is within range of this hardpoint.
+	Point start = ship.Position() + ship.Facing().Rotate(point);
+	Point offset = body.Position() - start;
+	if(offset.Length() > range)
+		return false;
+
+	// Precompute the number of visuals that will be added.
+	visuals.reserve(visuals.size() + outfit->FireEffects().size()
+		+ outfit->HitEffects().size() + outfit->DieEffects().size());
+
+	// Firing effects are displayed at the weapon hardpoint that just fired.
+	Angle aim(offset);
+	angle = aim - ship.Facing();
+	start += aim.Rotate(outfit->HardpointOffset());
+	CreateEffects(outfit->FireEffects(), start, ship.Velocity(), aim, visuals);
+
+	// Figure out where the hit effect should be placed. Anti-missile and tractor
+	// beam systems do not create projectiles; they just create a blast animation.
+	CreateEffects(outfit->HitEffects(), start + (.5 * range) * aim.Unit(), ship.Velocity(), aim, visuals);
+
+	// Die effects are displayed at the body, whether or not it actually "dies."
+	CreateEffects(outfit->DieEffects(), body.Position(), body.Velocity(), aim, visuals);
+
+	// Update the reload and burst counters, and expend ammunition if applicable.
+	Fire(ship, start, aim);
+
+	return true;
 }
 
 

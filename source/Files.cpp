@@ -7,12 +7,16 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Files.h"
 
 #include "File.h"
+#include "Logger.h"
 
 #include <SDL2/SDL.h>
 
@@ -21,12 +25,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define STRICT
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
-#endif
-
-#include <sys/stat.h>
+#else
 #include <dirent.h>
+#include <sys/stat.h>
 #include <unistd.h>
 #include <utime.h>
+#endif
 
 #include <algorithm>
 #include <cstdlib>
@@ -47,7 +51,6 @@ namespace {
 	string savePath;
 	string testPath;
 
-	mutex errorMutex;
 	File errorLog;
 
 	// Convert windows-style directory separators ('\\') to standard '/'.
@@ -59,6 +62,23 @@ namespace {
 				c = '/';
 	}
 #endif
+
+	// Open the given folder in a separate window.
+	void OpenFolder(const string &path)
+	{
+#if SDL_VERSION_ATLEAST(2, 0, 14)
+		if(SDL_OpenURL(("file://" + path).c_str()))
+			Logger::LogError("Warning: SDL_OpenURL failed with \"" + string(SDL_GetError()) + "\"");
+#elif defined(__linux__)
+		// Some supported distributions do not have an up-to-date SDL.
+		cout.flush();
+		if(int result = WEXITSTATUS(system(("xdg-open file://" + path).c_str())))
+			Logger::LogError("Warning: xdg-open failed with error code " + to_string(result) + ".");
+#else
+#warning SDL 2.0.14 or higher is needed for opening folders!
+		Logger::LogError("Warning: No handler found to open \"" + path + "\" in a new window.");
+#endif
+	}
 }
 
 
@@ -103,10 +123,6 @@ void Files::Init(const char * const *argv)
 		resources = LOCAL_PATH + RESOURCE_PATH;
 	else if(!resources.compare(0, STANDARD_PATH.length(), STANDARD_PATH))
 		resources = STANDARD_PATH + RESOURCE_PATH;
-#elif defined __APPLE__
-	// Special case for Mac OS X: the resources are in ../Resources relative to
-	// the folder the binary is in.
-	resources = resources + "../Resources/";
 #endif
 	// If the resources are not here, search in the directories containing this
 	// one. This allows, for example, a Mac app that does not actually have the
@@ -124,44 +140,37 @@ void Files::Init(const char * const *argv)
 
 	if(config.empty())
 	{
-		// Find the path to the directory for saved games (and create it if it does
-		// not already exist). This can also be overridden in the command line.
-		char *str = SDL_GetPrefPath("endless-sky", "saves");
+		// Create the directory for the saved games, preferences, etc., if necessary.
+		char *str = SDL_GetPrefPath(nullptr, "endless-sky");
 		if(!str)
-			throw runtime_error("Unable to get path to saves directory!");
-
-		savePath = str;
-#if defined _WIN32
-		FixWindowsSlashes(savePath);
-#endif
+			throw runtime_error("Unable to get path to config directory!");
+		config = str;
 		SDL_free(str);
-		if(savePath.back() != '/')
-			savePath += '/';
-		config = savePath.substr(0, savePath.rfind('/', savePath.length() - 2) + 1);
 	}
-	else
-	{
-#if defined _WIN32
-		FixWindowsSlashes(config);
+
+#ifdef _WIN32
+	FixWindowsSlashes(config);
 #endif
-		if(config.back() != '/')
-			config += '/';
-		savePath = config + "saves/";
-	}
+	if(config.back() != '/')
+		config += '/';
+
+	if(!Exists(config))
+		throw runtime_error("Unable to create config directory!");
+
+	savePath = config + "saves/";
+	CreateFolder(savePath);
 
 	// Create the "plugins" directory if it does not yet exist, so that it is
 	// clear to the user where plugins should go.
-	{
-		char *str = SDL_GetPrefPath("endless-sky", "plugins");
-		if(str != nullptr)
-			SDL_free(str);
-	}
+	CreateFolder(config + "plugins/");
 
 	// Check that all the directories exist.
 	if(!Exists(dataPath) || !Exists(imagePath) || !Exists(soundPath))
 		throw runtime_error("Unable to find the resource directories!");
 	if(!Exists(savePath))
-		throw runtime_error("Unable to create config directory!");
+		throw runtime_error("Unable to create save directory!");
+	if(!Exists(config + "plugins/"))
+		throw runtime_error("Unable to create plugins directory!");
 }
 
 
@@ -229,7 +238,7 @@ vector<string> Files::List(string directory)
 		return list;
 
 	do {
-		if(!ffd.cFileName || ffd.cFileName[0] == '.')
+		if(ffd.cFileName[0] == '.')
 			continue;
 
 		if(!(ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
@@ -286,7 +295,7 @@ vector<string> Files::ListDirectories(string directory)
 		return list;
 
 	do {
-		if(!ffd.cFileName || ffd.cFileName[0] == '.')
+		if(ffd.cFileName[0] == '.')
 			continue;
 
 		if(ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
@@ -354,7 +363,7 @@ void Files::RecursiveList(string directory, vector<string> *list)
 		return;
 
 	do {
-		if(!ffd.cFileName || ffd.cFileName[0] == '.')
+		if(ffd.cFileName[0] == '.')
 			continue;
 
 		if(!(ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
@@ -434,14 +443,14 @@ void Files::Copy(const string &from, const string &to)
 	// Preserve the timestamps of the original file.
 	struct stat buf;
 	if(stat(from.c_str(), &buf))
-		LogError("Error: Cannot stat \"" + from + "\".");
+		Logger::LogError("Error: Cannot stat \"" + from + "\".");
 	else
 	{
 		struct utimbuf times;
 		times.actime = buf.st_atime;
 		times.modtime = buf.st_mtime;
 		if(utime(to.c_str(), &times))
-			LogError("Error: Failed to preserve the timestamps for \"" + to + "\".");
+			Logger::LogError("Error: Failed to preserve the timestamps for \"" + to + "\".");
 	}
 #endif
 }
@@ -483,7 +492,9 @@ string Files::Name(const string &path)
 FILE *Files::Open(const string &path, bool write)
 {
 #if defined _WIN32
-	return _wfopen(Utf8::ToUTF16(path).c_str(), write ? L"w" : L"rb");
+	FILE *file = nullptr;
+	_wfopen_s(&file, Utf8::ToUTF16(path).c_str(), write ? L"w" : L"rb");
+	return file;
 #else
 	return fopen(path.c_str(), write ? "wb" : "rb");
 #endif
@@ -543,16 +554,46 @@ void Files::Write(FILE *file, const string &data)
 
 
 
-void Files::LogError(const string &message)
+void Files::CreateFolder(const std::string &path)
 {
-	lock_guard<mutex> lock(errorMutex);
-	cerr << message << endl;
+	if(Exists(path))
+		return;
+
+#ifdef _WIN32
+	CreateDirectoryW(Utf8::ToUTF16(path).c_str(), nullptr);
+#else
+	mkdir(path.c_str(), 0700);
+#endif
+}
+
+
+
+
+// Open this user's plugins directory in their native file explorer.
+void Files::OpenUserPluginFolder()
+{
+	OpenFolder(Config() + "plugins");
+}
+
+
+
+// Open this user's save file directory in their native file explorer.
+void Files::OpenUserSavesFolder()
+{
+	OpenFolder(savePath);
+}
+
+
+
+void Files::LogErrorToFile(const string &message)
+{
 	if(!errorLog)
 	{
 		errorLog = File(config + "errors.txt", true);
 		if(!errorLog)
 		{
-			cerr << "Unable to create \"errors.txt\" " << (config.empty() ? "in current directory" : "in \"" + config + "\"") << endl;
+			cerr << "Unable to create \"errors.txt\" " << (config.empty()
+				? "in current directory" : "in \"" + config + "\"") << endl;
 			return;
 		}
 	}

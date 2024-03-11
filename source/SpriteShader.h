@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef SPRITE_SHADER_H_
@@ -30,6 +33,7 @@ public:
 	class Item {
 	public:
 		uint32_t texture = 0;
+		uint32_t swizzleMask = 0;
 		uint32_t swizzle = 0;
 		float frame = 0.f;
 		float frameCount = 1.f;
@@ -43,18 +47,17 @@ public:
 
 public:
 	// Initialize the shaders.
-	static void Init(bool useShaderSwizzle);
+	static void Init();
 
 	// Draw a sprite.
-	static void Draw(const Sprite *sprite, const Point &position, float zoom = 1.f, int swizzle = 0, float frame = 0.f);
+	static void Draw(const Sprite *sprite, const Point &position, float zoom = 1.f, int swizzle = 0,
+		float frame = 0.f);
+	static Item Prepare(const Sprite *sprite, const Point &position, float zoom = 1.f, int swizzle = 0,
+		float frame = 0.f);
 
 	static void Bind();
 	static void Add(const Item &item, bool withBlur = false);
 	static void Unbind();
-
-
-private:
-	static bool useShaderSwizzle;
 };
 
 

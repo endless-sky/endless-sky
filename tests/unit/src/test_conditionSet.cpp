@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "es-test.hpp"
@@ -20,6 +23,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // Include a helper for capturing & asserting on logged output.
 #include "output-capture.hpp"
 
+// Include ConditionStore, to enable usage of them for testing ConditionSets.
+#include "../../../source/ConditionsStore.h"
+
 // ... and any system includes needed for the test file.
 #include <cstdint>
 #include <map>
@@ -28,6 +34,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 namespace { // test namespace
 using Conditions = std::map<std::string, int64_t>;
 // #region mock data
+
+
+
 // #endregion mock data
 
 
@@ -95,13 +104,13 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 		REQUIRE( emptySet.IsEmpty() );
 
 		AND_GIVEN( "an empty list of Conditions" ) {
-			const auto emptyConditionList = Conditions{};
+			const auto emptyConditionList = ConditionsStore{};
 			THEN( "the ConditionSet is satisfied" ) {
 				REQUIRE( emptySet.Test(emptyConditionList) );
 			}
 		}
 		AND_GIVEN( "a non-empty list of Conditions" ) {
-			const auto conditionList = Conditions{
+			const auto conditionList = ConditionsStore {
 				{"event: war begins", 1},
 			};
 			THEN( "the ConditionSet is satisfied" ) {
@@ -114,7 +123,7 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 		REQUIRE_FALSE( neverSet.IsEmpty() );
 
 		AND_GIVEN( "a condition list containing the literal 'never'" ) {
-			const auto listWithNever = Conditions{
+			const auto listWithNever = ConditionsStore {
 				{"never", 1},
 			};
 			THEN( "the ConditionSet is not satisfied" ) {
@@ -125,21 +134,21 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 }
 
 SCENARIO( "Applying changes to conditions", "[ConditionSet][Usage]" ) {
-	auto mutableList = Conditions{};
-	REQUIRE( mutableList.empty() );
+	auto store = ConditionsStore{};
+	REQUIRE( store.PrimariesSize() == 0 );
 
 	GIVEN( "an empty ConditionSet" ) {
 		const auto emptySet = ConditionSet{};
 		REQUIRE( emptySet.IsEmpty() );
 
 		THEN( "no conditions are added via Apply" ) {
-			emptySet.Apply(mutableList);
-			REQUIRE( mutableList.empty() );
+			emptySet.Apply(store);
+			REQUIRE( store.PrimariesSize() == 0 );
 
-			mutableList.emplace("event: war begins", 1);
-			REQUIRE( mutableList.size() == 1 );
-			emptySet.Apply(mutableList);
-			REQUIRE( mutableList.size() == 1 );
+			store.Set("event: war begins", 1);
+			REQUIRE( store.PrimariesSize() == 1 );
+			emptySet.Apply(store);
+			REQUIRE( store.PrimariesSize() == 1 );
 		}
 	}
 	GIVEN( "a ConditionSet with only comparison expressions" ) {
@@ -151,13 +160,13 @@ SCENARIO( "Applying changes to conditions", "[ConditionSet][Usage]" ) {
 		REQUIRE_FALSE( compareSet.IsEmpty() );
 
 		THEN( "no conditions are added via Apply" ) {
-			compareSet.Apply(mutableList);
-			REQUIRE( mutableList.empty() );
+			compareSet.Apply(store);
+			REQUIRE( store.PrimariesSize() == 0 );
 
-			mutableList.emplace("event: war begins", 1);
-			REQUIRE( mutableList.size() == 1 );
-			compareSet.Apply(mutableList);
-			REQUIRE( mutableList.size() == 1 );
+			store.Set("event: war begins", 1);
+			REQUIRE( store.PrimariesSize() == 1 );
+			compareSet.Apply(store);
+			REQUIRE( store.PrimariesSize() == 1 );
 		}
 	}
 	GIVEN( "a ConditionSet with an assignable expression" ) {
@@ -165,12 +174,10 @@ SCENARIO( "Applying changes to conditions", "[ConditionSet][Usage]" ) {
 		REQUIRE_FALSE( applySet.IsEmpty() );
 
 		THEN( "the condition list is updated via Apply" ) {
-			applySet.Apply(mutableList);
-			REQUIRE_FALSE( mutableList.empty() );
-
-			const auto &inserted = mutableList.find("year");
-			REQUIRE( inserted != mutableList.end() );
-			CHECK( inserted->second == 3013 );
+			applySet.Apply(store);
+			REQUIRE_FALSE( store.PrimariesSize() == 0 );
+			REQUIRE( store.Has("year") );
+			CHECK( store["year"] == 3013 );
 		}
 	}
 }

@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Planet.h"
@@ -16,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
+#include "Logger.h"
 #include "PlayerInfo.h"
 #include "Politics.h"
 #include "Random.h"
@@ -23,6 +27,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ShipEvent.h"
 #include "SpriteSet.h"
 #include "System.h"
+#include "Wormhole.h"
 
 #include <algorithm>
 
@@ -49,7 +54,7 @@ namespace {
 
 
 // Load a planet's description from a file.
-void Planet::Load(const DataNode &node)
+void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 {
 	if(node.Size() < 2)
 		return;
@@ -60,7 +65,7 @@ void Planet::Load(const DataNode &node)
 
 	// If this planet has been loaded before, these sets of items should be
 	// reset instead of appending to them:
-	set<string> shouldOverwrite = {"attributes", "description", "spaceport"};
+	set<string> shouldOverwrite = {"attributes", "description", "spaceport", "port"};
 
 	for(const DataNode &child : node)
 	{
@@ -98,8 +103,16 @@ void Planet::Load(const DataNode &node)
 				attributes.clear();
 			else if(key == "description")
 				description.clear();
-			else if(key == "spaceport")
-				spaceport.clear();
+			else if(key == "port" || key == "spaceport")
+			{
+				port = Port();
+				// Overwriting either port or spaceport counts as overwriting the other.
+				if(overwriteAll)
+				{
+					shouldOverwrite.erase("port");
+					shouldOverwrite.erase("spaceport");
+				}
+			}
 			else if(key == "shipyard")
 				shipSales.clear();
 			else if(key == "outfitter")
@@ -114,6 +127,8 @@ void Planet::Load(const DataNode &node)
 				security = 0.;
 			else if(key == "tribute")
 				tribute = 0;
+			else if(key == "wormhole")
+				wormhole = nullptr;
 
 			// If not in "overwrite" mode, move on to the next node.
 			if(overwriteAll)
@@ -122,8 +137,10 @@ void Planet::Load(const DataNode &node)
 				continue;
 		}
 
+		if(key == "port")
+			port.Load(child);
 		// Handle the attributes which can be "removed."
-		if(!hasValue)
+		else if(!hasValue)
 		{
 			child.PrintTrace("Error: Expected key to have a value:");
 			continue;
@@ -163,7 +180,11 @@ void Planet::Load(const DataNode &node)
 			music = value;
 		else if(key == "description" || key == "spaceport")
 		{
-			string &text = (key == "description") ? description : spaceport;
+			const bool isDescription = key == "description";
+			if(!isDescription)
+				port.LoadDefaultSpaceport();
+
+			string &text = isDescription ? description : port.Description();
 			if(!text.empty() && !value.empty() && value[0] > ' ')
 				text += '\t';
 			text += value;
@@ -210,12 +231,55 @@ void Planet::Load(const DataNode &node)
 					grand.PrintTrace("Skipping unrecognized tribute attribute:");
 			}
 		}
+		else if(key == "wormhole")
+		{
+			wormhole = wormholes.Get(value);
+			wormhole->SetPlanet(*this);
+		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 
-	static const vector<string> AUTO_ATTRIBUTES = {"spaceport", "shipyard", "outfitter"};
-	bool autoValues[3] = {!spaceport.empty(), !shipSales.empty(), !outfitSales.empty()};
+	// For reverse compatibility, if this planet has a spaceport but it was not custom loaded,
+	// and the planet has the "uninhabited" attribute, replace the spaceport with a special-case
+	// uninhabited spaceport.
+	if(attributes.count("uninhabited") && HasNamedPort() && !port.CustomLoaded())
+		port.LoadUninhabitedSpaceport();
+
+	// Apply any auto-attributes to this planet depending on what it has.
+	static const vector<string> AUTO_ATTRIBUTES = {
+		"spaceport",
+		"port",
+		"shipyard",
+		"outfitter",
+		"service: trading",
+		"service: jobs",
+		"service: bank",
+		"service: crew",
+		"service: missions",
+		"recharges: shields",
+		"recharges: hull",
+		"recharges: energy",
+		"recharges: fuel",
+		"spaceport news",
+	};
+	bool autoValues[14] = {
+		port.HasService(Port::ServicesType::All) && port.CanRecharge(Port::RechargeType::All)
+				&& port.HasNews() && HasNamedPort(),
+		HasNamedPort(),
+		!shipSales.empty(),
+		!outfitSales.empty(),
+		port.HasService(Port::ServicesType::Trading),
+		port.HasService(Port::ServicesType::JobBoard),
+		port.HasService(Port::ServicesType::Bank),
+		port.HasService(Port::ServicesType::HireCrew),
+		port.HasService(Port::ServicesType::OffersMissions),
+		port.CanRecharge(Port::RechargeType::Shields),
+		port.CanRecharge(Port::RechargeType::Hull),
+		port.CanRecharge(Port::RechargeType::Energy),
+		port.CanRecharge(Port::RechargeType::Fuel),
+		port.HasNews(),
+	};
 	for(unsigned i = 0; i < AUTO_ATTRIBUTES.size(); ++i)
 	{
 		if(autoValues[i])
@@ -225,8 +289,27 @@ void Planet::Load(const DataNode &node)
 	}
 
 	// Precalculate commonly used values that can only change due to Load().
-	inhabited = (HasSpaceport() || requiredReputation || !defenseFleets.empty()) && !attributes.count("uninhabited");
+	inhabited = (HasServices() || requiredReputation || !defenseFleets.empty()) && !attributes.count("uninhabited");
 	SetRequiredAttributes(Attributes(), requiredAttributes);
+}
+
+
+
+// Legacy wormhole do not have an associated Wormhole object so
+// we must auto generate one if we detect such legacy wormhole.
+void Planet::FinishLoading(Set<Wormhole> &wormholes)
+{
+	// If this planet is in multiple systems, then it is a wormhole.
+	if(!wormhole && systems.size() > 1)
+	{
+		wormhole = wormholes.Get(TrueName());
+		wormhole->LoadFromPlanet(*this);
+		Logger::LogError("Warning: deprecated automatic generation of wormhole \"" + name + "\" from a multi-system planet.");
+	}
+	// If the wormhole was autogenerated we need to update it to
+	// match the planet's state.
+	else if(wormhole && wormhole->IsAutogenerated())
+		wormhole->LoadFromPlanet(*this);
 }
 
 
@@ -244,11 +327,7 @@ bool Planet::IsValid() const
 // Get the name of the planet.
 const string &Planet::Name() const
 {
-	static const string UNKNOWN = "???";
-	if(IsWormhole())
-		return UNKNOWN;
-
-	return name;
+	return IsWormhole() ? wormhole->Name() : name;
 }
 
 
@@ -315,19 +394,27 @@ const string &Planet::Noun() const
 
 
 
-// Check whether there is a spaceport (which implies there is also trading,
-// jobs, banking, and hiring).
-bool Planet::HasSpaceport() const
+// Check whether this planet's port is named.
+bool Planet::HasNamedPort() const
 {
-	return !spaceport.empty();
+	return !port.Name().empty();
 }
 
 
 
-// Get the spaceport's descriptive text.
-const string &Planet::SpaceportDescription() const
+// Get this planet's port.
+const Port &Planet::GetPort() const
 {
-	return spaceport;
+	return port;
+}
+
+
+
+// Check whether there are port services (such as trading, jobs, banking, and hiring)
+// available on this planet.
+bool Planet::HasServices() const
+{
+	return port.HasServices();
 }
 
 
@@ -457,41 +544,24 @@ void Planet::RemoveSystem(const System *system)
 
 
 
+const vector<const System *> &Planet::Systems() const
+{
+	return systems;
+}
+
+
+
 // Check if this is a wormhole (that is, it appears in multiple systems).
 bool Planet::IsWormhole() const
 {
-	return (systems.size() > 1);
+	return wormhole;
 }
 
 
 
-const System *Planet::WormholeSource(const System *to) const
+const Wormhole *Planet::GetWormhole() const
 {
-	auto it = find(systems.begin(), systems.end(), to);
-	if(it == systems.end())
-		return to;
-
-	return (it == systems.begin() ? systems.back() : *--it);
-}
-
-
-
-
-const System *Planet::WormholeDestination(const System *from) const
-{
-	auto it = find(systems.begin(), systems.end(), from);
-	if(it == systems.end())
-		return from;
-
-	++it;
-	return (it == systems.end() ? systems.front() : *it);
-}
-
-
-
-const vector<const System *> &Planet::WormholeSystems() const
-{
-	return systems;
+	return wormhole;
 }
 
 
@@ -500,6 +570,9 @@ const vector<const System *> &Planet::WormholeSystems() const
 // land on this planet.
 bool Planet::IsAccessible(const Ship *ship) const
 {
+	// If this is a wormhole that leads to an inaccessible system, no ship can land here.
+	if(wormhole && ship && ship->GetSystem() && wormhole->WormholeDestination(*ship->GetSystem()).Inaccessible())
+		return false;
 	// If there are no required attributes, then any ship may land here.
 	if(IsUnrestricted())
 		return true;
@@ -525,7 +598,7 @@ bool Planet::IsUnrestricted() const
 // but do so with a less convoluted syntax:
 bool Planet::HasFuelFor(const Ship &ship) const
 {
-	return !IsWormhole() && HasSpaceport() && CanLand(ship);
+	return !IsWormhole() && port.CanRecharge(Port::RechargeType::Fuel) && CanLand(ship);
 }
 
 
@@ -540,6 +613,20 @@ bool Planet::CanLand(const Ship &ship) const
 bool Planet::CanLand() const
 {
 	return GameData::GetPolitics().CanLand(this);
+}
+
+
+
+Planet::Friendliness Planet::GetFriendliness() const
+{
+	if(GameData::GetPolitics().HasDominated(this))
+		return Friendliness::DOMINATED;
+	else if(GetGovernment()->IsEnemy())
+		return Friendliness::HOSTILE;
+	else if(CanLand())
+		return Friendliness::FRIENDLY;
+	else
+		return Friendliness::RESTRICTED;
 }
 
 
@@ -561,11 +648,12 @@ void Planet::Bribe(bool fullAccess) const
 // Demand tribute, and get the planet's response.
 string Planet::DemandTribute(PlayerInfo &player) const
 {
-	if(player.GetCondition("tribute: " + name))
+	const auto &playerTribute = player.GetTribute();
+	if(playerTribute.find(this) != playerTribute.end())
 		return "We are already paying you as much as we can afford.";
 	if(!tribute || defenseFleets.empty())
 		return "Please don't joke about that sort of thing.";
-	if(player.GetCondition("combat rating") < defenseThreshold)
+	if(player.Conditions().Get("combat rating") < defenseThreshold)
 		return "You're not worthy of our time.";
 
 	// The player is scary enough for this planet to take notice. Check whether
@@ -577,7 +665,8 @@ string Planet::DemandTribute(PlayerInfo &player) const
 		for(const auto &fleet : defenseFleets)
 			toProvoke.insert(fleet->GetGovernment());
 		for(const auto &gov : toProvoke)
-			gov->Offend(ShipEvent::PROVOKE);
+			if(gov)
+				gov->Offend(ShipEvent::PROVOKE);
 		// Terrorizing a planet is not taken lightly by it or its allies.
 		// TODO: Use a distinct event type for the domination system and
 		// expose syntax for controlling its impact on the targeted government
@@ -598,9 +687,8 @@ string Planet::DemandTribute(PlayerInfo &player) const
 	if(!isDefeated)
 		return "We're not ready to surrender yet.";
 
-	player.Conditions()["tribute: " + name] = tribute;
-	GameData::GetPolitics().DominatePlanet(this);
-	return "We surrender. We will pay you " + Format::Credits(tribute) + " credits per day to leave us alone.";
+	player.SetTribute(this, tribute);
+	return "We surrender. We will pay you " + Format::CreditString(tribute) + " per day to leave us alone.";
 }
 
 
@@ -612,13 +700,23 @@ void Planet::DeployDefense(list<shared_ptr<Ship>> &ships) const
 		return;
 
 	auto end = defenders.begin();
-	defenseFleets[defenseDeployed]->Enter(*GetSystem(), defenders, this);
+	if(defenseFleets[defenseDeployed]->IsValid())
+		defenseFleets[defenseDeployed]->Enter(*GetSystem(), defenders, this);
+	else
+		Logger::LogError("Warning: skipped an incomplete defense fleet of planet \"" + name + "\".");
 	ships.insert(ships.begin(), defenders.begin(), end);
 
 	// All defenders use a special personality.
 	Personality defenderPersonality = Personality::Defender();
+	Personality fighterPersonality = Personality::DefenderFighter();
 	for(auto it = defenders.begin(); it != end; ++it)
+	{
 		(**it).SetPersonality(defenderPersonality);
+		if((**it).HasBays())
+			for(auto bay = (**it).Bays().begin(); bay != (**it).Bays().end(); ++bay)
+				if(bay->ship)
+					bay->ship->SetPersonality(fighterPersonality);
+	}
 
 	++defenseDeployed;
 }
@@ -630,4 +728,11 @@ void Planet::ResetDefense() const
 	isDefending = false;
 	defenseDeployed = 0;
 	defenders.clear();
+}
+
+
+
+bool Planet::IsDefending() const
+{
+	return isDefending;
 }
