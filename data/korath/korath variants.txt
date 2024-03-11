@@ -498,7 +498,6 @@ ship "'olofez" "'olofez (World-Ship)"
 
 
 ship "Lor'kas Ik 577" "Lor'kas Ik 577 (Jump)"
-	"display name" "Karek A'awoj"
 	outfits
 		"Banisher Grav-Turret" 2
 		"Warder Anti-Missile" 3
@@ -520,7 +519,6 @@ ship "Lor'kas Ik 577" "Lor'kas Ik 577 (Jump)"
 
 
 ship "Lor'kas Ik 577" "Lor'kas Ik 577 (Digger)"
-	"display name" "Karek A'awoj"
 	outfits
 		"Banisher Grav-Turret" 2
 		"Warder Anti-Missile" 3
@@ -555,7 +553,6 @@ ship "Lor'kas Ik 577" "Lor'kas Ik 577 (Digger)"
 
 
 ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Crippled)"
-	"display name" "Sapira A'awoj"
 	outfits
 		"Shunt-Strike Turret" 2
 		"Warder Anti-Missile"
@@ -599,7 +596,6 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Crippled)"
 
 
 ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Ember)"
-	"display name" "Sapira A'awoj"
 	outfits
 		"Shunt-Strike Turret" 5
 		"Blaze-Pike Turret" 2
@@ -642,7 +638,6 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Ember)"
 
 
 ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Grab)"
-	"display name" "Sapira A'awoj"
 	outfits
 		"Firelight Missile" 80
 		"Firelight Missile Bank" 2
@@ -684,7 +679,6 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Grab)"
 
 
 ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Storm)"
-	"display name" "Sapira A'awoj"
 	outfits
 		"Blaze-Pike Turret" 2
 		"Fire-Lance" 3
@@ -728,7 +722,6 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Storm)"
 
 
 ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Mereti)"
-	"display name" "Sapira A'awoj"
 	outfits
 		"Husk-Slice" 3
 		"Husk-Slice Turret" 3
@@ -771,7 +764,6 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Mereti)"
 
 
 ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Sestor)"
-	"display name" "Sapira A'awoj"
 	outfits
 		"Korath Detainer" 3
 		"Thermal Repeater Turret" 4
@@ -815,7 +807,6 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Sestor)"
 
 
 ship "Kas'lor Ik 582" "Kas'lor Ik 582 (Jump)"
-	"display name" "Dathnak A'awoj"
 	outfits
 		"Langrage Hyper-Heaver" 2
 		"Banisher Grav-Turret" 3
@@ -835,7 +826,6 @@ ship "Kas'lor Ik 582" "Kas'lor Ik 582 (Jump)"
 
 
 ship "Kas'lor Ik 582" "Kas'lor Ik 582 (Stranded)"
-	"display name" "Dathnak A'awoj"
 	outfits
 		"Langrage Hyper-Heaver" 3
 		"Warder Anti-Missile" 2
@@ -866,7 +856,6 @@ ship "Kas'lor Ik 582" "Kas'lor Ik 582 (Stranded)"
 
 
 ship "Kas'lor Ik 582" "Kas'lor Ik 582 (Ember)"
-	"display name" "Dathnak A'awoj"
 	outfits
 		"Langrage Hyper-Heaver" 2
 		"Banisher Grav-Turret" 3
@@ -896,7 +885,6 @@ ship "Kas'lor Ik 582" "Kas'lor Ik 582 (Ember)"
 
 
 ship "Lor'nag Ik 590" "Lor'nag Ik 590 (Grab)"
-	"display name" "Anatrusk A'awoj"
 	outfits
 		"Grab-Strike Turret" 2
 		"Banisher Grav-Turret" 2
@@ -928,7 +916,6 @@ ship "Lor'nag Ik 590" "Lor'nag Ik 590 (Grab)"
 
 
 ship "Lor'nag Ik 590" "Lor'nag Ik 590 (Troop Transport)"
-	"display name" "Anatrusk A'awoj"
 	outfits
 		"Banisher Grav-Turret" 2
 		"Warder Anti-Missile" 2
@@ -962,7 +949,6 @@ ship "Lor'nag Ik 590" "Lor'nag Ik 590 (Troop Transport)"
 
 
 ship "Ra'at Ik 621" "Ra'at Ik 621 (Digger)"
-	"display name" "Ikfar A'awoj"
 	outfits
 		"Digger Mining Beam" 3
 		"Digger Mining Turret" 2
@@ -999,7 +985,6 @@ ship "Ra'at Ik 621" "Ra'at Ik 621 (Digger)"
 
 
 ship "Ra'at Ik 621" "Ra'at Ik 621 (Storm)"
-	"display name" "Ikfar A'awoj"
 	outfits
 		"Blaze-Pike Turret" 2
 		"Warder Anti-Missile" 3
@@ -1034,7 +1019,6 @@ ship "Ra'at Ik 621" "Ra'at Ik 621 (Storm)"
 
 
 ship "Ra'at Ik 621" "Ra'at Ik 621 (Automata)"
-	"display name" "Ikfar A'awoj"
 	outfits
 		"Korath Detainer"
 		"Thermal Repeater" 2
@@ -1103,7 +1087,6 @@ ship "Ra'at Ik 621" "Ra'at Ik 621 (Automata)"
 
 
 ship "Ra'at Ik 621" "Ra'at Ik 621 (Probes)"
-	"display name" "Ikfar A'awoj"
 	outfits
 		"Shunt-Strike Turret" 3
 		"Warder Anti-Missile" 2
