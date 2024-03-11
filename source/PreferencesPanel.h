@@ -20,9 +20,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ClickZone.h"
 #include "Command.h"
+#include "Plugins.h"
 #include "Point.h"
+#include "Sprite.h"
 #include "ScrollVar.h"
 #include "text/WrappedText.h"
+
+#include <future>
+#include <nlohmann/json.hpp>
 
 #include <memory>
 #include <string>
@@ -41,6 +46,7 @@ public:
 
 	// Draw this panel.
 	virtual void Draw() override;
+	virtual void Step() override;
 
 
 protected:
@@ -58,6 +64,7 @@ private:
 	void DrawControls();
 	void DrawSettings();
 	void DrawPlugins();
+	void DrawPluginInstalls();
 	void RenderPluginDescription(const std::string &pluginName);
 	void RenderPluginDescription(const Plugin &plugin);
 
@@ -71,6 +78,7 @@ private:
 	void HandleDown();
 	void HandleConfirm();
 
+	void ProcessPluginIndex();
 	// Scroll the plugin list until the selected plugin is visible.
 	void ScrollSelectedPlugin();
 
@@ -96,9 +104,24 @@ private:
 
 	std::string selectedPlugin;
 
+	Plugins::InstallData *latestPlugin = nullptr;
+
+	Plugins::InstallData *selecPluginInstall = nullptr;
+	Plugins::InstallData *oldSelecPluginInstall = nullptr;
+	Plugins::InstallData *clickedPluginInstall = nullptr;
+	Plugins::InstallData *oldClickedPluginInstall = nullptr;
+	Plugins::InstallData *hoverPluginInstall = nullptr;
+	unsigned int pluginInstallPages = 1;
+	unsigned int currentPluginInstallPage = 0;
+	bool downloadedInfo = false;
+	std::vector<std::future<void>> installFeedbacks;
+	std::vector<Plugins::InstallData> pluginInstallData;
+	Set<Sprite> icons;
+
 	std::vector<ClickZone<Command>> zones;
 	std::vector<ClickZone<std::string>> prefZones;
 	std::vector<ClickZone<std::string>> pluginZones;
+	std::vector<ClickZone<Plugins::InstallData*>> pluginInstallZones;
 
 	std::unique_ptr<RenderBuffer> pluginListClip;
 	std::unique_ptr<RenderBuffer> pluginDescriptionBuffer;
