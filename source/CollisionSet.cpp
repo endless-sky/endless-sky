@@ -231,7 +231,7 @@ const vector<Collision> &CollisionSet::Line(const Point &from, const Point &to,
 			if(it->x != gx || it->y != gy)
 				continue;
 
-			if(!canHit(it))
+			if(!CanHit(it))
 				continue;
 
 			const Mask &mask = it->body->GetMask(step);
