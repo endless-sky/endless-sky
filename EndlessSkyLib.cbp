@@ -70,6 +70,7 @@
 		<Unit filename="source/AlertLabel.h" />
 		<Unit filename="source/Angle.cpp" />
 		<Unit filename="source/Angle.h" />
+		<Unit filename="source/Animate.h" />
 		<Unit filename="source/Armament.cpp" />
 		<Unit filename="source/Armament.h" />
 		<Unit filename="source/AsteroidField.cpp" />
@@ -96,8 +97,11 @@
 		<Unit filename="source/CategoryList.h" />
 		<Unit filename="source/CategoryTypes.h" />
 		<Unit filename="source/ClickZone.h" />
+		<Unit filename="source/Collision.cpp" />
+		<Unit filename="source/Collision.h" />
 		<Unit filename="source/CollisionSet.cpp" />
 		<Unit filename="source/CollisionSet.h" />
+		<Unit filename="source/CollisionType.h" />
 		<Unit filename="source/Color.cpp" />
 		<Unit filename="source/Color.h" />
 		<Unit filename="source/Command.cpp" />
@@ -235,6 +239,8 @@
 		<Unit filename="source/MenuAnimationPanel.h" />
 		<Unit filename="source/MenuPanel.cpp" />
 		<Unit filename="source/MenuPanel.h" />
+		<Unit filename="source/MessageLogPanel.cpp" />
+		<Unit filename="source/MessageLogPanel.h" />
 		<Unit filename="source/Messages.cpp" />
 		<Unit filename="source/Messages.h" />
 		<Unit filename="source/Minable.cpp" />
@@ -308,6 +314,8 @@
 		<Unit filename="source/RandomEvent.h" />
 		<Unit filename="source/Rectangle.cpp" />
 		<Unit filename="source/Rectangle.h" />
+		<Unit filename="source/RenderBuffer.cpp" />
+		<Unit filename="source/RenderBuffer.h" />
 		<Unit filename="source/RingShader.cpp" />
 		<Unit filename="source/RingShader.h" />
 		<Unit filename="source/Sale.h" />
@@ -315,6 +323,7 @@
 		<Unit filename="source/SavedGame.h" />
 		<Unit filename="source/Screen.cpp" />
 		<Unit filename="source/Screen.h" />
+		<Unit filename="source/ScrollVar.h" />
 		<Unit filename="source/AmmoDisplay.cpp" />
 		<Unit filename="source/AmmoDisplay.h" />
 		<Unit filename="source/Set.h" />

@@ -123,7 +123,7 @@ namespace {
 		for(const Hardpoint &hardpoint : ship.Weapons())
 		{
 			const Weapon *weapon = hardpoint.GetOutfit();
-			if(weapon && !hardpoint.IsAntiMissile())
+			if(weapon && !hardpoint.IsSpecial())
 			{
 				if(weapon->Ammo() && !ship.OutfitCount(weapon->Ammo()))
 					continue;
@@ -495,6 +495,9 @@ void AI::Clean()
 	playerActions.clear();
 	swarmCount.clear();
 	fenceCount.clear();
+	cargoScans.clear();
+	outfitScans.clear();
+	scanTime.clear();
 	miningAngle.clear();
 	miningRadius.clear();
 	miningTime.clear();
@@ -645,6 +648,26 @@ void AI::Step(Command &activeCommands)
 		shared_ptr<Flotsam> targetFlotsam = it->GetTargetFlotsam();
 		if(isPresent && it->IsYours() && targetFlotsam && FollowOrders(*it, command))
 			continue;
+		// Determine if this ship was trying to scan its previous target. If so, keep
+		// track of this ship's scan time and count.
+		if(isPresent && !it->IsYours())
+		{
+			// Assume that if the target is friendly, not disabled, of a different
+			// government to this ship, and this ship has scanning capabilities
+			// then it was attempting to scan the target. This isn't a perfect
+			// assumption, but should be good enough for now.
+			bool cargoScan = it->Attributes().Get("cargo scan power");
+			bool outfitScan = it->Attributes().Get("outfit scan power");
+			if((cargoScan || outfitScan) && target && !target->IsDisabled()
+				&& !target->GetGovernment()->IsEnemy(gov) && target->GetGovernment() != gov)
+			{
+				++scanTime[&*it];
+				if(it->CargoScanFraction() == 1.)
+					cargoScans[&*it].insert(&*target);
+				if(it->OutfitScanFraction() == 1.)
+					outfitScans[&*it].insert(&*target);
+			}
+		}
 		if(isPresent && !personality.IsSwarming())
 		{
 			// Each ship only switches targets twice a second, so that it can
@@ -1257,7 +1280,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	double minRange = numeric_limits<double>::infinity();
 	double maxRange = 0.;
 	for(const Hardpoint &weapon : ship.Weapons())
-		if(weapon.GetOutfit() && !weapon.IsAntiMissile())
+		if(weapon.GetOutfit() && !weapon.IsSpecial())
 		{
 			minRange = min(minRange, weapon.GetOutfit()->Range());
 			maxRange = max(maxRange, weapon.GetOutfit()->Range());
@@ -1382,27 +1405,60 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 shared_ptr<Ship> AI::FindNonHostileTarget(const Ship &ship) const
 {
 	shared_ptr<Ship> target;
-	bool cargoScan = ship.Attributes().Get("cargo scan power");
-	bool outfitScan = ship.Attributes().Get("outfit scan power");
-	if(cargoScan || outfitScan)
+
+	// A ship may only make up to 6 successful scans (3 ships scanned if the ship
+	// is using both scanners) and spend up to 2.5 minutes searching for scan targets.
+	// After that, stop scanning targets. This is so that scanning ships in high spawn
+	// rate systems don't build up over time, as they always have a new ship they
+	// can try to scan.
+	// Ships with the surveillance personality may make up to 12 successful scans and
+	// spend 5 minutes searching.
+	bool isSurveillance = ship.GetPersonality().IsSurveillance();
+	int maxScanCount = isSurveillance ? 12 : 6;
+	int searchTime = isSurveillance ? 9000 : 18000;
+	// Ships will stop finding new targets to scan after the above scan time, but
+	// may continue to pursue a target that they already started scanning for an
+	// additional minute.
+	int forfeitTime = searchTime + 3600;
+
+	double cargoScan = ship.Attributes().Get("cargo scan power");
+	double outfitScan = ship.Attributes().Get("outfit scan power");
+	auto cargoScansIt = cargoScans.find(&ship);
+	auto outfitScansIt = outfitScans.find(&ship);
+	auto scanTimeIt = scanTime.find(&ship);
+	int shipScanCount = cargoScansIt != cargoScans.end() ? cargoScansIt->second.size() : 0;
+	shipScanCount += outfitScansIt != outfitScans.end() ? outfitScansIt->second.size() : 0;
+	int shipScanTime = scanTimeIt != scanTime.end() ? scanTimeIt->second : 0;
+	if((cargoScan || outfitScan) && shipScanCount < maxScanCount && shipScanTime < forfeitTime)
 	{
-		const auto allies = GetShipsList(ship, false);
-		// If this ship already has a target, and is in the process of scanning it, prioritise that.
+		// If this ship already has a target, and is in the process of scanning it, prioritise that,
+		// even if the scan time for this ship has exceeded 2.5 minutes.
 		shared_ptr<Ship> oldTarget = ship.GetTargetShip();
 		if(oldTarget && !oldTarget->IsTargetable())
 			oldTarget.reset();
 		if(oldTarget)
 		{
+			// If this ship started scanning this target then continue to scan it
+			// unless it has traveled too far outside of the scan range. Surveillance
+			// ships will continue to pursue targets regardless of range.
 			bool cargoScanInProgress = ship.CargoScanFraction() > 0. && ship.CargoScanFraction() < 1.;
 			bool outfitScanInProgress = ship.OutfitScanFraction() > 0. && ship.OutfitScanFraction() < 1.;
-			if(cargoScanInProgress || outfitScanInProgress)
+			// Divide the distance by 10,000 to normalize to the scan range that
+			// scan power provides.
+			double range = isSurveillance ? 0. : oldTarget->Position().DistanceSquared(ship.Position()) * .0001;
+			if((cargoScanInProgress && range < 2. * cargoScan)
+				|| (outfitScanInProgress && range < 2. * outfitScan))
 				target = std::move(oldTarget);
 		}
-		else
+		else if(shipScanTime < searchTime)
 		{
-			double closest = numeric_limits<double>::infinity();
+			// Don't try chasing targets that are too far away from this ship's scan range.
+			// Surveillance ships will still prioritize nearby targets here, but if there
+			// is no scan target nearby then they will pick a random target in the system
+			// to pursue in DoSurveillance.
+			double closest = max(cargoScan, outfitScan) * 2.;
 			const Government *gov = ship.GetGovernment();
-			for(const auto &it : allies)
+			for(const auto &it : GetShipsList(ship, false))
 				if(it->GetGovernment() != gov)
 				{
 					auto ptr = it->shared_from_this();
@@ -1411,7 +1467,9 @@ shared_ptr<Ship> AI::FindNonHostileTarget(const Ship &ship) const
 							&& (!outfitScan || Has(gov, ptr, ShipEvent::SCAN_OUTFITS)))
 						continue;
 
-					double range = it->Position().DistanceSquared(ship.Position());
+					// Divide the distance by 10,000 to normalize to the scan range that
+					// scan power provides.
+					double range = it->Position().DistanceSquared(ship.Position()) * .0001;
 					if(range < closest)
 					{
 						closest = range;
@@ -2020,7 +2078,7 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, const System *playerSy
 	for(const Hardpoint &hardpoint : ship.Weapons())
 	{
 		const Weapon *weapon = hardpoint.GetOutfit();
-		if(weapon && !hardpoint.IsAntiMissile())
+		if(weapon && !hardpoint.IsSpecial())
 		{
 			const Outfit *ammo = weapon->Ammo();
 			if(!ammo || ship.OutfitCount(ammo))
@@ -2708,14 +2766,15 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 		else if(!isStaying)
 			command |= Command::LAND;
 	}
-	else if(target && target->IsTargetable())
+	else if(target)
 	{
 		// Approach and scan the targeted, friendly ship's cargo or outfits.
 		bool cargoScan = ship.Attributes().Get("cargo scan power");
 		bool outfitScan = ship.Attributes().Get("outfit scan power");
 		// If the pointer to the target ship exists, it is targetable and in-system.
-		bool mustScanCargo = cargoScan && !Has(ship, target, ShipEvent::SCAN_CARGO);
-		bool mustScanOutfits = outfitScan && !Has(ship, target, ShipEvent::SCAN_OUTFITS);
+		const Government *gov = ship.GetGovernment();
+		bool mustScanCargo = cargoScan && !Has(gov, target, ShipEvent::SCAN_CARGO);
+		bool mustScanOutfits = outfitScan && !Has(gov, target, ShipEvent::SCAN_OUTFITS);
 		if(!mustScanCargo && !mustScanOutfits)
 			ship.SetTargetShip(shared_ptr<Ship>());
 		else
@@ -2732,26 +2791,35 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 		const System *system = ship.GetSystem();
 		const Government *gov = ship.GetGovernment();
 
-		// Consider scanning any non-hostile ship in this system that you haven't yet personally scanned.
+		// Consider scanning any non-hostile ship in this system that your government hasn't scanned.
+		// A surveillance ship may only make up to 12 successful scans (6 ships scanned
+		// if the ship is using both scanners) and spend up to 5 minutes searching for
+		// scan targets. After that, stop scanning ship targets. This is so that scanning
+		// ships in high spawn rate systems don't build up over time, as they always have
+		// a new ship they can try to scan.
 		vector<Ship *> targetShips;
 		bool cargoScan = ship.Attributes().Get("cargo scan power");
 		bool outfitScan = ship.Attributes().Get("outfit scan power");
-		if(cargoScan || outfitScan)
-			for(const auto &grit : governmentRosters)
-			{
-				if(gov == grit.first || gov->IsEnemy(grit.first))
-					continue;
-				for(const auto &it : grit.second)
+		auto cargoScansIt = cargoScans.find(&ship);
+		auto outfitScansIt = outfitScans.find(&ship);
+		auto scanTimeIt = scanTime.find(&ship);
+		int shipScanCount = cargoScansIt != cargoScans.end() ? cargoScansIt->second.size() : 0;
+		shipScanCount += outfitScansIt != outfitScans.end() ? outfitScansIt->second.size() : 0;
+		int shipScanTime = scanTimeIt != scanTime.end() ? scanTimeIt->second : 0;
+		if((cargoScan || outfitScan) && shipScanCount < 12 && shipScanTime < 18000)
+		{
+			for(const auto &it : GetShipsList(ship, false))
+				if(it->GetGovernment() != gov)
 				{
 					auto ptr = it->shared_from_this();
-					if((!cargoScan || Has(ship, ptr, ShipEvent::SCAN_CARGO))
-							&& (!outfitScan || Has(ship, ptr, ShipEvent::SCAN_OUTFITS)))
+					if((!cargoScan || Has(gov, ptr, ShipEvent::SCAN_CARGO))
+							&& (!outfitScan || Has(gov, ptr, ShipEvent::SCAN_OUTFITS)))
 						continue;
 
 					if(it->IsTargetable())
 						targetShips.emplace_back(it);
 				}
-			}
+		}
 
 		// Consider scanning any planetary object in the system, if able.
 		vector<const StellarObject *> targetPlanets;
@@ -2781,6 +2849,7 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 			DoPatrol(ship, command);
 			return;
 		}
+		// Pick one of the valid surveillance targets at random to focus on.
 		unsigned index = Random::Int(total);
 		if(index < targetShips.size())
 			ship.SetTargetShip(targetShips[index]->shared_from_this());
@@ -2853,7 +2922,9 @@ bool AI::DoHarvesting(Ship &ship, Command &command) const
 {
 	// If the ship has no target to pick up, do nothing.
 	shared_ptr<Flotsam> target = ship.GetTargetFlotsam();
-	if(target && !ship.CanPickUp(*target))
+	// Don't try to chase flotsam that are already being pulled toward the ship by a tractor beam.
+	const set<const Flotsam *> &avoid = ship.GetTractorFlotsam();
+	if(target && (!ship.CanPickUp(*target) || avoid.count(target.get())))
 	{
 		target.reset();
 		ship.SetTargetFlotsam(target);
@@ -2868,7 +2939,7 @@ bool AI::DoHarvesting(Ship &ship, Command &command) const
 		double bestTime = 600.;
 		for(const shared_ptr<Flotsam> &it : flotsam)
 		{
-			if(!ship.CanPickUp(*it))
+			if(!ship.CanPickUp(*it) || avoid.count(it.get()))
 				continue;
 			// Only pick up flotsam that is nearby and that you are facing toward. Player escorts should
 			// always attempt to pick up nearby flotsams when they are given a harvest order, and so ignore
@@ -3743,7 +3814,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 		for(const StellarObject &object : ship.GetSystem()->Objects())
 			if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->IsWormhole()
 				&& object.GetPlanet()->IsAccessible(&ship) && player.HasVisited(*object.GetPlanet())
-				&& player.HasVisited(*system))
+				&& player.CanView(*system))
 			{
 				const auto *wormhole = object.GetPlanet()->GetWormhole();
 				if(&wormhole->WormholeDestination(*ship.GetSystem()) != system)

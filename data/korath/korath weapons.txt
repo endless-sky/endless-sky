@@ -767,6 +767,7 @@ outfit "Digger Mining Turret"
 		"shield damage" 0.8
 		"hull damage" 1.3
 		"minable damage" 5.2
+		"prospecting" 4.2
 		"disruption damage" .08
 	description `When the Korath Exiles needed a cheap mining laser for their large vessels, they re-engineered this ancient, robust design and added a turret base. The mild shield disruption effect makes it somewhat useful in combat if required.`
 
@@ -793,6 +794,7 @@ outfit "Digger Mining Beam"
 		"shield damage" 0.5
 		"hull damage" 0.9
 		"minable damage" 4.6
+		"prospecting" 3.7
 		"disruption damage" .06
 	description `The gun version of the classic Korath mining laser allows a larger mothership to release a cloud of fighter-sized miners to harvest resources when working faster-moving or more dangerous asteroid fields.`
 

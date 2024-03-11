@@ -95,7 +95,9 @@ int main(int argc, char *argv[])
 	bool hasErrors = false;
 	// Ensure that we log errors to the errors.txt file.
 	Logger::SetLogErrorCallback([&hasErrors](const string &errorMessage) {
-		hasErrors = true;
+		static const string PARSING_PREFIX = "Parsing: ";
+		if(errorMessage.substr(0, PARSING_PREFIX.length()) != PARSING_PREFIX)
+			hasErrors = true;
 		Files::LogErrorToFile(errorMessage);
 	});
 
@@ -319,11 +321,17 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 				// The UI handled the event.
 			}
 			else if(event.type == SDL_KEYDOWN && !event.key.repeat
-					&& (Command(event.key.keysym.sym).Has(Command::FASTFORWARD)))
+					&& (Command(event.key.keysym.sym).Has(Command::FASTFORWARD))
+					&& !Command(SDLK_CAPSLOCK).Has(Command::FASTFORWARD))
 			{
 				isFastForward = !isFastForward;
 			}
 		}
+
+		// Special case: If fastforward is on capslock, update on mod state and not
+		// on keypress.
+		if(Command(SDLK_CAPSLOCK).Has(Command::FASTFORWARD))
+			isFastForward = SDL_GetModState() & KMOD_CAPS;
 	};
 
 	// Game loop when running the game normally.
@@ -495,7 +503,7 @@ void PrintHelp()
 void PrintVersion()
 {
 	cerr << endl;
-	cerr << "Endless Sky ver. 0.10.5-alpha" << endl;
+	cerr << "Endless Sky ver. 0.10.7-alpha" << endl;
 	cerr << "License GPLv3+: GNU GPL version 3 or later: <https://gnu.org/licenses/gpl.html>" << endl;
 	cerr << "This is free software: you are free to change and redistribute it." << endl;
 	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;
