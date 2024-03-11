@@ -146,6 +146,7 @@ mission "Unfettered Jump Drive 1"
 	to offer
 		has "First Contact: Unfettered: offered"
 		not "Wanderers: Jump Drive Source: active"
+		not "outfit (flagship installed): Hyperdrive"
 	to fail
 		has "event: wanderers: unfettered invasion starts"
 	to complete
@@ -198,6 +199,66 @@ mission "Unfettered Jump Drive 1"
 
 
 
+mission "Unfettered Jump Drive 1 (Hyperdrive installed)"
+	minor
+	landing
+	name "More Jump Drives"
+	description "The Unfettered Hai have promised you rich rewards if you bring them more jump drives."
+	to offer
+		has "First Contact: Unfettered: offered"
+		not "Wanderers: Jump Drive Source: active"
+		has "outfit (flagship installed): Hyperdrive"
+	to fail
+		has "event: wanderers: unfettered invasion starts"
+	to complete
+		has "Unfettered Jump Drive 2: offered"
+	source
+		attributes "unfettered"
+	on offer
+		conversation
+			`The Unfettered have clearly noticed that you have a jump drive installed; a large crowd of them has gathered around your ship. Do you want to talk with them, and perhaps arrange a sale of your jump drive?`
+			choice
+				`	(No.)`
+					defer
+				`	(Yes.)`
+			`	As soon as you approach the crowd, one of them steps forward and says, "One million credits, and the friendship of the true Hai people. This is our offer, for the jump drive."`
+			choice
+				`	"Sure, I will accept that deal."`
+					goto end
+				`	"Can you offer me more than that?"`
+					goto more
+				`	"How will my ship leave here without my jump drive?"`
+			
+			`	"you will be counted as our friend," they say, " so you will not need to leave here quickly, or under threat of violence." You can't help but wonder if they will try to take your ship by force if you do not agree to the deal.`
+			choice
+				`	"Okay, I accept your generous offer."`
+					goto end
+				`	"Sorry, but if I give you this jump drive, I will lose my ability to capture more of them. Be patient, and I will bring you several of them when I am able."`
+					goto refuse
+			
+			label refuse
+			`	They ponder this for a while, and says, "Very well. Our offer stands, whenever you choose to return." They allow you to return to your ship peacefully.`
+				defer
+			
+			label more
+			`	"Do not underestimate the value of our friendship," they say. "Soon we will become powerful once more, with many fruitful worlds under our control, and when that day comes you will benefit greatly from being our ally."`
+			choice
+				`	"Okay, as long as you give me a hyperdrive to take its place, I'll give you my jump drive."`
+					goto end
+				`	"Sorry, but if I give you this jump drive, I will lose my ability to capture more of them. Be patient, and I will bring you several of them when I am able."`
+					goto refuse
+			
+			label end
+			`	The Unfettered engineers quickly and carefully remove your jump drive. You sincerely hope that you are not making a mistake by giving them this new technology. "Remember," one of them says as they hand you your payment, "when you acquire more jump drives, return here with them and we will give you further rewards. Until then, may fortune favor you, human friend."`
+				accept
+	
+	on accept
+		outfit "Jump Drive" -1
+		payment 1000000
+		"reputation: Hai (Unfettered)" >?= 10
+
+
+
 mission "Unfettered Jump Drive 2"
 	minor
 	landing
@@ -206,6 +267,7 @@ mission "Unfettered Jump Drive 2"
 	to offer
 		has "Unfettered Jump Drive 1: offered"
 		not "Wanderers: Jump Drive Source: active"
+		not "outfit (flagship installed): Hyperdrive"
 	to fail
 		has "event: wanderers: unfettered invasion starts"
 	to complete
@@ -224,7 +286,7 @@ mission "Unfettered Jump Drive 2"
 				`	"Sorry, I need this jump drive right now, but I will come back later and sell it to you."`
 					defer
 				`	"Yes, I will sell you my jump drive."`
-			`	Once again, they swap your jump drive for a hyperdrive, and pay you far more than you could sell a jump drive for anywhere else. "We will tell the other true Hai to offer you jobs in our job boards," they tell you, "and remember that we need still more jump drives."`
+			`	Noticing that you don't have hyperdrive, they swap your jump drive for a hyperdrive, and pay you far more than you could sell a jump drive for anywhere else. "We will tell the other true Hai to offer you jobs in our job boards," they tell you, "and remember that we need still more jump drives."`
 			choice
 				`	"Then I will find more, and bring them to you."`
 					accept
@@ -241,6 +303,49 @@ mission "Unfettered Jump Drive 2"
 
 
 
+mission "Unfettered Jump Drive 2 (Hyperdrive installed)"
+	minor
+	landing
+	name "More Jump Drives"
+	description "The Unfettered Hai have promised you rich rewards, and more information about their plans, if you bring them more jump drives."
+	to offer
+		has "Unfettered Jump Drive 1: offered"
+		not "Wanderers: Jump Drive Source: active"
+		has "outfit (flagship installed): Hyperdrive"
+	to fail
+		has "event: wanderers: unfettered invasion starts"
+	to complete
+		has "Unfettered Jump Drive 3: offered"
+	source
+		attributes "unfettered"
+	on offer
+		conversation
+			`As before, when you land on this Unfettered world with a jump drive, a large crowd gathers around your ship. Clearly they are hoping that once again you will arrange a sale. Do you want to bargain with them?`
+			choice
+				`	(No.)`
+					defer
+				`	(Yes.)`
+			`	When you approach the crowd, one of them says, "Greetings, human friend. We have made you known to all our brothers and sisters as one of the few creatures who have chosen to help the true Hai to gain their freedom. If you give us another jump drive, we will pay you another million credits, and make you one of our emissaries to collect the payments with which our frail brothers seek to buy peace. Will you accept this exchange?"`
+			choice
+				`	"Sorry, I need this jump drive right now, but I will come back later and sell it to you."`
+					defer
+				`	"Yes, I will sell you my jump drive."`
+			`	Once again, they quickly and carefully remove your jump drive for a hyperdrive, and pay you far more than you could sell a jump drive for anywhere else. "We will tell the other true Hai to offer you jobs in our job boards," they tell you, "and remember that we need still more jump drives."`
+			choice
+				`	"Then I will find more, and bring them to you."`
+					accept
+				`	"Can you tell me what you are using them for?"`
+			`	"Not yet. If you further prove your friendship, perhaps we will." You assure them that you will continue to do your best to assist them.`
+				accept
+	
+	on accept
+		outfit "Jump Drive" -1
+		payment 1000000
+		"reputation: Hai (Unfettered)" >?= 20
+		fail "Unfettered Jump Drive 1"
+
+
+
 mission "Unfettered Jump Drive 3"
 	minor
 	landing
@@ -248,6 +353,7 @@ mission "Unfettered Jump Drive 3"
 	to offer
 		has "Unfettered Jump Drive 2: offered"
 		not "Wanderers: Jump Drive Source: active"
+		not "outfit (flagship installed): Hyperdrive"
 	source
 		attributes "unfettered"
 	on offer
@@ -257,7 +363,7 @@ mission "Unfettered Jump Drive 3"
 				`	(No.)`
 					defer
 				`	(Yes.)`
-			`	You meet up with some local Unfettered leaders, and they again pay you a million credits and arrange for your jump drive to be swapped out of your ship. "If you bring more, we will continue to pay you," they say.`
+			`	You meet up with some local Unfettered leaders, and they again pay you a million credits and arrange for your jump drive to be swapped out of your ship with a hyperdrive. "If you bring more, we will continue to pay you," they say.`
 			choice
 				`	"Can you tell me what you are using the jump drives for?"`
 				`	"Thank you, I will certainly bring more of them when I am able."`
@@ -305,6 +411,70 @@ mission "Unfettered Jump Drive 3"
 
 
 
+mission "Unfettered Jump Drive 3 (Hyperdrive installed)"
+	minor
+	landing
+	invisible
+	to offer
+		has "Unfettered Jump Drive 2: offered"
+		not "Wanderers: Jump Drive Source: active"
+		has "outfit (flagship installed): Hyperdrive"
+	source
+		attributes "unfettered"
+	on offer
+		conversation
+			`You have another jump drive, and the Unfettered will certainly be willing to pay you well for it. They also hinted that they might be willing to give you more information about what they plan to use the jump drives for. Do you want to sell them another drive?`
+			choice
+				`	(No.)`
+					defer
+				`	(Yes.)`
+			`	You meet up with some local Unfettered leaders, and they again pay you a million credits and arrange for your jump drive to be removed from your ship. "If you bring more, we will continue to pay you," they say.`
+			choice
+				`	"Can you tell me what you are using the jump drives for?"`
+				`	"Thank you, I will certainly bring more of them when I am able."`
+					goto job
+			action
+				set "unfettered know of wanderers"
+			`	After a brief and hushed discussion in their own language, one of the leaders says, "You have proven your worth, so we will share our secret. The Hai once owned many worlds on the galactic fringe, a territory we can only visit using the jump drive. Those worlds are fruitful and nearly uninhabited. We will reclaim them as our own, and there will be food there to feed the Unfettered for many thousands of years to come."`
+			branch know
+				has "First Contact: Wanderer: offered"
+			choice
+				`	"Is there any other way I can help you to reclaim those worlds?"`
+					goto help
+				`	"'Nearly uninhabited?' You mean another species inhabits some of those worlds now?"`
+					goto wanderers
+			
+			label know
+			`	You suspect that they are talking about the territory that is now inhabited by the Wanderers.`
+			choice
+				`	"Are you at war with the Wanderers? Can I help you to reclaim your territory?"`
+					goto help
+				`	"What are you going to do to the species that owns those worlds right now?"`
+					goto wanderers
+			
+			label help
+			`	"Your help may indeed be beneficial to us," says the leader. "I will tell the others to contact you if they have any particular missions you can undertake."`
+			choice
+				`	"I look forward to hearing from them."`
+					goto job
+				`	"What do you plan to do to the species that inhabits those worlds now?"`
+			
+			label wanderers
+			`	"Those worlds are now held by a species of scavengers, who feast on the ruin of proud civilizations. Our scouts tell us that these carrion-feeders have wiped away nearly every Hai artifact, melting down our cities to make metal for their ships and factories, and hiding the scars of our wars beneath newly planted forests. They are an old and strong species, but few in number, and those worlds are ours by right."`
+			`	You try to press them for more information, but they tell you nothing useful, aside from promising you that they will seek out your help when it is time to reclaim their territory.`
+			label job
+			`	"If you want to provide us with more jump drives, visit the job board from now on," says the leader. "We will have warriors ready to receive them from you for the usual pay."`
+				accept
+	
+	on accept
+		outfit "Jump Drive" -1
+		payment 1000000
+		"reputation: Hai (Unfettered)" >?= 30
+		fail "Unfettered Jump Drive 2"
+		fail
+
+
+
 mission "Unfettered Jump Drive Trading"
 	minor
 	landing
@@ -341,6 +511,7 @@ mission "Unfettered Jump Drive Trading"
 		# "Unfettered Jump Drive 4: failed" represents the amount of JD sold.
 		"unfettered: jd to sell" < "Unfettered Jump Drive 4: failed"
 		random < 20 + 8 * "Unfettered Jump Drive 4: failed"
+		not "outfit (flagship installed): Hyperdrive"
 	on offer
 		conversation
 			`The Unfettered are starting to know you by reputation for bringing jump drives to them. This time, one of them<hood> - an engineer, judging by the writing pad and equipment they have - is waiting for you at your hatch.`
@@ -511,6 +682,217 @@ mission "Unfettered Jump Drive Trading"
 		clear "choice: blaster"
 		outfit "Jump Drive" -1
 		outfit "Hyperdrive" 1
+		"reputation: Hai (Unfettered)" >?= 40
+		fail
+
+
+
+mission "Unfettered Jump Drive Trading (Hyperdrive installed)"
+	minor
+	landing
+	invisible
+	source "Darkcloak"
+	substitutions
+		<hood> ""
+		<hood> ", with their face hidden"
+			has "unfettered: blade rodeo"
+		<learned> ""
+		<learned> "It did take you two tries, but I am glad that you were able to learn from your mistake."
+			"unfettered: blade rodeo" == 1
+		<learned> "You finally learned from your mistakes. This is why our challenges are never fatal."
+			"unfettered: blade rodeo" == 2
+		"<The engineer>" "The engineer, who had stepped back during the fight,"
+		"<The engineer>" "The real engineer then moves out of the crowd,"
+			"unfettered: blade rodeo" == 1
+		"<The engineer>" "The engineer, who had stepped back during the fight, reveals their face and"
+			"unfettered: blade rodeo" == 2
+		"<as before (run)>" "You"
+		"<as before (run)>" "As before, you"
+			has "unfettered: dodged the blade"
+		"<as before (flee)>" "You"
+		"<as before (flee)>" "Just like last time, you"
+			has "unfettered: flee from the blade"
+		<leave> "She then leaves, to your surprise."
+		<leave> "She then leaves, her anger barely contained."
+			has "unfettered: blade rodeo"
+	to offer
+		has "Unfettered Jump Drive 3: offered"
+		not "Wanderers: Jump Drive Source: active"
+		not "Wanderers: Jump Drive Source: done"
+		# There is no minimum amount of JD to sell (other than the first 3), except if you failed to prove yourself the first time.
+		# "Unfettered Jump Drive 4: failed" represents the amount of JD sold.
+		"unfettered: jd to sell" < "Unfettered Jump Drive 4: failed"
+		random < 20 + 8 * "Unfettered Jump Drive 4: failed"
+		has "outfit (flagship installed): Hyperdrive"
+	on offer
+		conversation
+			`The Unfettered are starting to know you by reputation for bringing jump drives to them. This time, one of them<hood> - an engineer, judging by the writing pad and equipment they have - is waiting for you at your hatch.`
+			`	Maybe they mean to trade something other than money with you. Do you want to bargain for another drive with them?`
+				to display
+					not "unfettered: blade rodeo"
+			`	They probably mean to offer the same deal of exchanging jump drives for weapons as before. Do you want to try and see if you can prove yourself worthy this time, and bargain for a jump drive?`
+				to display
+					has "unfettered: blade rodeo"
+			choice
+				`	(No.)`
+					defer
+				`	(Yes.)`
+			`	As soon as you set foot on the world the supposed engineer drops her equipment and throws a blade at you just like before - it seems that she does not want to waste time with you anymore.`
+				to display
+					"unfettered: blade rodeo" == 1
+				goto blade
+			`	You exit your ship, but before you can even reach the engineer, another Unfettered shouts to attract your attention and then throws a blade at you, without any other warning or ceremony.`
+				to display
+					"unfettered: blade rodeo" > 1
+				goto blade
+			`	You exit your ship and immediately the engineer starts to lead you to the outfitter. "We have weapons to show you for your assistance in providing us with jump drives. For now you will only be allowed to trade for the one, but if you continue to provide assistance to us, you may prove yourself worthy to access the others." They never stop to ask if you are actually interested in new weapons.`
+			label repeat
+			choice
+				`	(Follow them.)`
+					goto next
+				`	"I'm not really interested in Hai weapons."`
+					to display
+						not "unfettered: uninterested in weapons"
+					goto uninterested
+				`	(Leave and come back another time.)`
+			action
+				clear "unfettered: uninterested in weapons"
+				"unfettered: jd to sell" ++
+			`	"How rude. You better hope there will be someone else to guide you, next time!" Says the engineer as you walk off and return to your ship.`
+				defer
+			label uninterested
+			action
+				set "unfettered: uninterested in weapons"
+			`	"These are not standard Hai weapons, Captain, trust me. Also, it would be ill-advised to judge before seeing them, would it not?"`
+				goto repeat
+			label next
+			`	They lead you through the usual outfitter but then go to an area you have never noticed before, probably because you were not meant to. As you are about to pass through what you assume to be a security check, an Unfettered throws a blade at your face!`
+			label blade
+			`	You recognize the same Unfettered from last time; she must fancy throwing blades at people.`
+				to display
+					has "unfettered: blade rodeo"
+			choice
+				`	(Try to grab it.)`
+					goto grab
+				`	(Try to dodge it.)`
+					goto dodge
+				`	(Leap to the side and use my own weapon.)`
+				`	(Flee.)`
+					goto flee
+			`	You leap to the side, grabbing your own weapon just in time to threaten the Unfettered that threw the blade at you. Seeming a bit surprised by your unconventional tactics, they lower their own weapon. "Well done! In truth, there is no higher honor than surviving on the field of battle, because only then can you bring loot back to those who need it! A tactic is only good if you can find and execute it quickly enough to give you an edge, which you did.<learned> I am Desneeparu, and it is my pleasure to meet you, Captain."`
+				goto meet
+			label grab
+			`	You manage to grab the weapon, just in time to deflect an incoming attack from the same Unfettered. They duel with you for what feels like an eternity. At first you are astonished by the fact you have managed to survive this long, but you soon realize that, as you have not managed to land a single successful blow, this must be some kind of deliberate test.`
+			`	Then, suddenly, you can feel the pace of your opponent change; the game is over. They strike a masterful blow that disarms you with ease before smiling and lowering their weapon. "It looks like you know what to do with a blade!<learned> I am Desneeparu, and it is a pleasure to meet you, Captain <last>!" she exclaims, before laughing at your surprised face. You realize she must have been toying with you from the beginning, but, nevertheless, she seems satisfied by your performance.`
+			label meet
+			action
+				log "Minor People" "Desneeparu" `An Unfettered warrior that knows how to handle a blade. Was tested by her before being given access to new Unfettered weapons. Would have been a goner had she not been holding back.`
+			`	She does some kind of salute with her fist before leaving. "I must go now. I hope you will find the weapon you need, Captain."`
+			`	<The engineer> proceeds to take you underground to what looks like a very basic weapon testing range. They explain, "We prefer to do most of our testing on the field of battle. Here we only make sure the weapon actually fires before Unfettered captains can get their hands on it." You keep walking until you enter the outfitter section of the facility, where you notice the items on display are much more advanced than anything you have seen available on the surface: so much so it could almost pass for a 'normal' Hai outfitter, were it not for the overcharged, oppressive feel of the testing grounds.`
+			`	"Welcome to the advanced section of the outfitter, Captain! It is only for our most distinguished guests. Now that you have sold us multiple jump drives, I can tell you that we offer something much more valuable than money. For now, I can only offer you the mighty Tripulse Shredder, but eventually we will give you access to all kinds of weapons. Two Tripulse Shredders and our sympathy for one jump drive is the deal I propose," they say, presenting the weapons to you. Now that you can take a closer look, you notice these weapons seem fairly similar to other Hai weaponry, but they are enhanced in one way or another. Alongside the Tripulses you can spot what look like a very small Ion Cannon and an Ion Cannon mounted turret.`
+			label weapons
+			choice
+				`	"Tell me more about those Tripulse Shredders I can buy."`
+					to display
+						not "choice: tripulse"
+					goto tripulse
+				`	"I'll settle for the tripulse, then."`
+					to display
+						has "choice: tripulse"
+					goto buytripulse
+				`	"Can you tell me more about that small ionic weapon?"`
+					to display
+						not "choice: blaster"
+				`	"I'd like to learn about this... ion cannon mounted on a turret?"`
+					to display
+						not "choice: turret"
+					goto turret
+				`	"I would just prefer the money, actually."`
+					goto money
+			action
+				set "choice: blaster"
+			scene "outfit/hai ionic blaster"
+			`	"Ah, the Blaster. It is favored by many Shield Beetle captains, because it can easily help them turn the tide of battle without needing to dedicate too much weapon space to it. Especially considering its other effects, its damage potential is serviceable. While it is true that it does not do enough ion damage to properly disable a ship on its own, it is able to jam their weapons and will give you the upper hand in a long fight."`
+				goto backtochoose
+			label turret
+			action
+				set "choice: turret"
+			scene "outfit/hai ionic turret"
+			`	"That is my preferred weapon out of all of them, by far. Unlike the Ion Cannon that is a hybrid weapon meant to damage the enemy from long range whilst applying a good deal of ionization, this one's role is mostly to disable enemy ships. Even a ship with many batteries will cower before this weapon! And due to its high range, small ships and even fighters will never bother you again!"`
+			label backtochoose
+			`	"However, we only have these weapons in very limited quantities, and as such we cannot afford to give these to you yet. So, about my offer, have you made up your mind?"`
+				goto weapons
+
+			label money
+			`	"Oh. Well, in that case, we will not bother you again with this weapon, or any other, Captain, here or in the job board."`
+			choice
+				`	"Sounds good to me."`
+				`	"Wait, what was that weapon again?"`
+					goto tripulse
+			action
+				payment 1000000
+				set "unfettered: money for drives"
+			`	"As you wish. Do remember that if you want to sell further jump drives to us for money you may go to the job board."`
+				accept
+
+			label tripulse
+			action
+				set "choice: tripulse"
+			scene "outfit/tripulse shredder"
+			`	"The Tripulse Shredder may seem crude, but it packs a punch! Its specialty is how it combines a lot of firepower in one gun slot, and, due to its burst nature, it's perfect for pilots who already use hit and run tactics. Some captains even say that a Sea Scorpion can take out a Shield Beetle when it uses four of them, if you know what you're doing, of course! As I said, I may offer you two of these in exchange for your jump drive."`
+				goto weapons
+			label buytripulse
+			action
+				outfit "Tripulse Shredder" 2
+			`	They order their crew to do the transfer and come to address you before leaving. "Do note that if you ever want more weapons, we will always be willing to trade them for jump drives in the job board. However, we can always offer money instead if that is of higher value to you. Of course, we can only do this exchange here on <origin>, given it is where these advanced weapons are produced and stocked."`
+				accept
+
+			label dodge
+			action
+				"unfettered: jd to sell" += 2
+				"unfettered: dodged the blade" ++
+			`	<as before (run)> manage to dodge the blade but are then left defenseless when the same Unfettered closes with another one and slashes down to strike. They stop at the last possible moment, dissatisfaction clear on their face.`
+			branch fail
+				has "unfettered: flee from the blade"
+			`	"So this is how you 'fight,' Captain? You hide? You dodge? You refuse to seize our weapons, so you will not have them."`
+				goto fail
+			label flee
+			action
+				"unfettered: jd to sell" += 4
+				"unfettered: flee from the blade" ++
+			`	<as before (flee)> run away from the blade without any difficulty, but the Hai that threw it catches up to you in mere seconds and immobilizes you with their blade on your throat.`
+			`	"You disappoint me, Captain. In battle it is of great importance that you identify your advantages over the enemy and not show weakness by running, else they will come in for the kill. You have failed in both ways here. Never would you have been able to outrun me. All you did was show fear."`
+				to display
+					not "unfettered: dodged the blade"
+			label fail
+			action
+				"unfettered: blade rodeo" ++
+			`	"You really keep on disappointing me, Captain. At one time you tried to avoid a fight you could not flee from, and the other to dodge a weapon that was so readily presented to you? Maybe you truly are no warrior and let most of your subordinates do the dirty work."`
+				to display
+					"unfettered: flee from the blade" == 1
+					"unfettered: dodged the blade" == 1
+			`	"I will not keep on teaching you the same lesson! You had your chance. We cannot accept one that does not learn from their mistakes. It seems that we cannot trust you with our most advanced weapons." She then leaves, visibly irritated.`
+				to display
+					or
+						"unfettered: dodged the blade" > 1
+						"unfettered: flee from the blade" > 1
+				decline
+			`	<leave> The engineer, who had watched the fight then explains, "Since you have failed the test we cannot give you access to our vault yet. Our weapons are only meant for the most capable of warriors. You will of course still be able to trade jump drives for money, but until you otherwise prove yourself, that is the extent of it."`
+			`	"This mistake is not permanent; I am sure she will happily forgive you, if you will only bring us more jump drives. Another engineer will be waiting for you at your hatch when that is the case."`
+				to display
+					"unfettered: jd to sell" < "Unfettered Jump Drive 4: failed"
+				defer
+			`	"In fact, your reputation for bringing us jump drives is so great she has no choice but to forgive you in the near future. Another engineer will be waiting for you at your hatch when that is the case."`
+				to display
+					"unfettered: jd to sell" > "Unfettered Jump Drive 4: failed"
+				defer
+	on accept
+		clear "unfettered: uninterested in weapons"
+		clear "unfettered: blade rodeo"
+		clear "choice: turret"
+		clear "choice: tripulse"
+		clear "choice: blaster"
+		outfit "Jump Drive" -1
 		"reputation: Hai (Unfettered)" >?= 40
 		fail
 
