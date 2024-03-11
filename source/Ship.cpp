@@ -4678,10 +4678,17 @@ void Ship::AddEscort(Ship &ship)
 {
 	escorts.push_back(ship.shared_from_this());
 
-	// Check to see if the escort wants and can be carried.
-	// The escort is maybe already carried.
-	if(!ship.CanBeCarried() || ship.reservedBay)
+	if(!ship.CanBeCarried())
 		return;
+
+	// If the ship has a bay reserved on another ship, then clear
+	// it, as the ship is now going to be docking to this ship.
+	if(ship.reservedBay)
+	{
+		ship.reservedBay->free = true;
+		ship.reservedBay = nullptr;
+	}
+
 	const string &category = ship.attributes.Category();
 
 	for(auto &bay : bays)
