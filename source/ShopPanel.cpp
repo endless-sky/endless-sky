@@ -296,7 +296,11 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	else if(command.Has(Command::HELP))
 	{
 		if(player.Ships().size() > 1)
+		{
+			if(isOutfitter)
+				DoHelp("outfitter with multiple ships", true);
 			DoHelp("multiple ships", true);
+		}
 		if(isOutfitter)
 		{
 			DoHelp("uninstalling and storage", true);
