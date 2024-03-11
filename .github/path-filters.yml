@@ -47,7 +47,6 @@ cmake_files:
 copyright:
   - copyright
   - utils/check_copyright.py
-  - .github/workflows/projects_check.yml
 
 changelog:
   - changelog
