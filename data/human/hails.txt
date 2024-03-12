@@ -2086,7 +2086,7 @@ phrase "friendly civilian"
 	word
 		"; there's nothing like it in the galaxy."
 		"; I don't get the hate for it."
-		"... There are some truly phenomenal players out there."
+		"... there are some truly phenomenal players out there."
 		"... it's an amazing sport."
 		"... it's like chess played in space."
 		"..." 3
@@ -2101,7 +2101,7 @@ phrase "friendly civilian"
 		" "
 	word
 		"see the Quarg ringworld in Enif. Isn't it amazing what they can do and we can't?"
-		"see the Quarg ringworld down south. It's such a magnificent feat of engineering."
+		"see the Quarg ringworld down south. It's such a magnificent feat of engineering"
 		"see the dragons of Skymoot"
 		"ski the slopes on Vail"
 		"go to Vail and do some skiing"
@@ -2121,9 +2121,11 @@ phrase "friendly civilian"
 		"watch the hovercraft races on Sunracer"
 		"relax at the hot springs on Calda"
 		"take a boat up the fjords of Flood"
-		"one of the pirate worlds, like Greenrock or Freedom, and experience life the way anarchists do it"
+		"visit one of the pirate worlds, like Greenrock or Freedom, and experience life the way anarchists do it"
 	word
 		"."
+	replace
+		"?." "?"
 
 phrase "friendly civilian"
 	word
