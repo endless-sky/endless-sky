@@ -587,7 +587,7 @@ void PlayerInfo::AddChanges(list<DataNode> &changes)
 void PlayerInfo::AddEvent(GameEvent event, const Date &date)
 {
 	event.SetDate(date);
-	gameEvents.insert(event);
+	gameEvents.insert(std::move(event));
 }
 
 
