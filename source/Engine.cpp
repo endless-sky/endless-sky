@@ -2213,6 +2213,11 @@ void Engine::DoCollisions(Projectile &projectile)
 		if(hit && collisionType == CollisionType::SHIP)
 			shipHit = reinterpret_cast<Ship *>(hit)->shared_from_this();
 
+		// Don't collide with carried ships that are disabled and not directly targeted.
+		if(shipHit && hit != projectile.Target()
+				&& shipHit->CanBeCarried() && shipHit->IsDisabled())
+			continue;
+
 		// Create the explosion the given distance along the projectile's
 		// motion path for this step.
 		projectile.Explode(visuals, range, hit ? hit->Velocity() : Point());
