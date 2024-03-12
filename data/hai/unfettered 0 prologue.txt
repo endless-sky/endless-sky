@@ -199,7 +199,7 @@ mission "Unfettered Jump Drive 1"
 
 
 
-mission "Unfettered Jump Drive 1 (Hyperdrive installed)"
+mission "Unfettered Jump Drive 1: Hyperdrive installed"
 	minor
 	landing
 	name "More Jump Drives"
@@ -303,7 +303,7 @@ mission "Unfettered Jump Drive 2"
 
 
 
-mission "Unfettered Jump Drive 2 (Hyperdrive installed)"
+mission "Unfettered Jump Drive 2: Hyperdrive installed"
 	minor
 	landing
 	name "More Jump Drives"
@@ -411,7 +411,7 @@ mission "Unfettered Jump Drive 3"
 
 
 
-mission "Unfettered Jump Drive 3 (Hyperdrive installed)"
+mission "Unfettered Jump Drive 3: Hyperdrive installed"
 	minor
 	landing
 	invisible
@@ -687,7 +687,7 @@ mission "Unfettered Jump Drive Trading"
 
 
 
-mission "Unfettered Jump Drive Trading (Hyperdrive installed)"
+mission "Unfettered Jump Drive Trading : Hyperdrive installed"
 	minor
 	landing
 	invisible
