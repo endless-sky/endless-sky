@@ -3115,44 +3115,59 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 	// transfer cargo if they set the AI preference.
 	const bool shouldTransferCargo = !IsYours() || Preferences::Has("Fighters transfer cargo");
 
+	// Find all bays that could hold this ship.
+	vector<Bay *> availableBays;
 	for(Bay &bay : bays)
 		if(BayContains(bay, category) && !bay.ship)
-		{
-			bay.ship = ship;
-			ship->SetSystem(nullptr);
-			ship->SetPlanet(nullptr);
-			ship->SetTargetSystem(nullptr);
-			ship->SetTargetStellar(nullptr);
-			ship->SetParent(shared_from_this());
-			ship->isThrusting = false;
-			ship->isReversing = false;
-			ship->isSteering = false;
-			ship->commands.Clear();
+			availableBays.push_back(&bay);
 
-			// If this fighter collected anything in space, try to store it.
-			if(shouldTransferCargo && cargo.Free() && !ship->Cargo().IsEmpty())
-				ship->Cargo().TransferAll(cargo);
+	if(availableBays.empty())
+		return false;
 
-			// Return unused fuel and ammunition to the carrier, so they may
-			// be used by the carrier or other fighters.
-			ship->TransferFuel(ship->fuel, this);
+	// Find the best bay to place this ship into. The best bay is the
+	// bay that is the most restrictive, i.e. is able to hold the fewest
+	// ship categories. By using the most restrictive bay, we prevent
+	// ships from hogging bays from other ships.
+	Bay &bay = **min_element(availableBays.begin(), availableBays.end(),
+		[](const Bay *a, const Bay *b) -> bool {
+			int aSize = !a->bayType ? 1 : a->bayType->Categories().size();
+			int bSize = !b->bayType ? 1 : b->bayType->Categories().size();
+			return aSize < bSize;
+		});
 
-			// Determine the ammunition the fighter can supply.
-			auto restockable = ship->GetArmament().RestockableAmmo();
-			auto toRestock = map<const Outfit *, int>{};
-			for(auto &&ammo : restockable)
-			{
-				int count = ship->OutfitCount(ammo);
-				if(count > 0)
-					toRestock.emplace(ammo, count);
-			}
-			TransferAmmo(toRestock, *ship, *this);
+	bay.ship = ship;
+	ship->SetSystem(nullptr);
+	ship->SetPlanet(nullptr);
+	ship->SetTargetSystem(nullptr);
+	ship->SetTargetStellar(nullptr);
+	ship->SetParent(shared_from_this());
+	ship->isThrusting = false;
+	ship->isReversing = false;
+	ship->isSteering = false;
+	ship->commands.Clear();
 
-			// Update the cached mass of the mothership.
-			carriedMass += ship->Mass();
-			return true;
-		}
-	return false;
+	// If this fighter collected anything in space, try to store it.
+	if(shouldTransferCargo && cargo.Free() && !ship->Cargo().IsEmpty())
+		ship->Cargo().TransferAll(cargo);
+
+	// Return unused fuel and ammunition to the carrier, so they may
+	// be used by the carrier or other fighters.
+	ship->TransferFuel(ship->fuel, this);
+
+	// Determine the ammunition the fighter can supply.
+	auto restockable = ship->GetArmament().RestockableAmmo();
+	auto toRestock = map<const Outfit *, int>{};
+	for(auto &&ammo : restockable)
+	{
+		int count = ship->OutfitCount(ammo);
+		if(count > 0)
+			toRestock.emplace(ammo, count);
+	}
+	TransferAmmo(toRestock, *ship, *this);
+
+	// Update the cached mass of the mothership.
+	carriedMass += ship->Mass();
+	return true;
 }
 
 
