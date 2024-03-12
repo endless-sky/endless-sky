@@ -39,7 +39,16 @@ void Messages::Add(const string &message, Importance importance)
 {
 	lock_guard<mutex> lock(incomingMutex);
 	incoming.emplace_back(message, importance);
-	if(message != logged.front().first)
+	AddLog(message, importance);
+}
+
+
+
+// Add a message to the log. For messages meant to be shown
+// also on the main panel, use Add instead.
+void Messages::AddLog(const string &message, Importance importance)
+{
+	if(logged.empty() || message != logged.front().first)
 	{
 		logged.emplace_front(message, importance);
 		if(logged.size() > MAX_LOG)

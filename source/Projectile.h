@@ -100,6 +100,9 @@ public:
 	double DistanceTraveled() const;
 	// Get the number of objects this projectile can still collide with.
 	uint16_t HitsRemaining() const;
+	// Get whether this projectile should explode the next time collision
+	// detection is run.
+	bool ShouldExplode() const;
 
 
 private:
