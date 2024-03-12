@@ -541,7 +541,7 @@ void Engine::Step(bool isActive)
 		else if(jumpCount > 0)
 			--jumpCount;
 	}
-	HandleEvents();
+	ai.UpdateEvents(events);
 	if(isActive)
 	{
 		HandleKeyboardInputs();
@@ -2746,22 +2746,4 @@ void Engine::EmplaceStatusOverlay(const shared_ptr<Ship> &it, Preferences::Overl
 	}
 	statuses.emplace_back(it->Position() - center, it->Shields(), it->Hull(),
 		min(it->Hull(), it->DisabledHull()), max(20., width * .5), type, alpha);
-}
-
-
-
-void Engine::HandleEvents()
-{
-	// When fighters are disabled, all projectiles targeting them should break targeting as to
-	// not impact the ship and increase its odds of survival.
-	set<const Ship *> disabledFighters;
-	for(const auto &event : events)
-		if(event.Type() & ShipEvent::DISABLE && event.Target()->CanBeCarried())
-			disabledFighters.insert(event.Target().get());
-	if(!disabledFighters.empty())
-		for(auto &projectile : projectiles)
-			if(disabledFighters.count(projectile.Target()))
-				projectile.BreakTarget();
-
-	ai.UpdateEvents(events);
 }
