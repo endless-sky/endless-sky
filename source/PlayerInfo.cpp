@@ -353,7 +353,7 @@ void PlayerInfo::Load(const string &path)
 				giftedShips[grand.Token(0)] = EsUuid::FromString(grand.Token(1));
 		}
 		else if(child.Token(0) == "event")
-			gameEvents.insert(GameEvent(child));
+			gameEvents.emplace(GameEvent(child));
 		else if(child.Token(0) == "changes")
 		{
 			for(const DataNode &grand : child)
