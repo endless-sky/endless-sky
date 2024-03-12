@@ -109,6 +109,10 @@ namespace {
 				return "unknown trigger";
 		}
 	}
+
+	const int HIDE_DESTINATION = 1;
+	const int HIDE_STOPOVERS = 2;
+	const int HIDE_WAYPOINTS = 4;
 }
 
 
@@ -153,6 +157,18 @@ void Mission::Load(const DataNode &node)
 			blocked = child.Token(1);
 		else if(child.Token(0) == "deadline" && child.Size() >= 4)
 			deadline = Date(child.Value(1), child.Value(2), child.Value(3));
+		else if(child.Token(0) == "hide")
+		{
+			for(int i = 1; i < child.Size() ; i++)
+				if(child.Token(i) == "destination")
+					mapHidingFlags |= HIDE_DESTINATION;
+				else if(child.Token(i) == "waypoints")
+					mapHidingFlags |= HIDE_WAYPOINTS;
+				else if(child.Token(i) == "stopovers")
+					mapHidingFlags |= HIDE_STOPOVERS;
+				else
+					child.PrintTrace("Unrecognized hide flag \"" + child.Token(i) + '\"');
+		}
 		else if(child.Token(0) == "deadline")
 		{
 			if(child.Size() == 1)
@@ -355,6 +371,12 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("passengers", passengers);
 		if(paymentApparent)
 			out.Write("apparent payment", paymentApparent);
+		if((mapHidingFlags & HIDE_DESTINATION))
+			out.Write("hide", "destination");
+		if((mapHidingFlags & HIDE_WAYPOINTS))
+			out.Write("hide", "waypoints");
+		if((mapHidingFlags & HIDE_STOPOVERS))
+			out.Write("hide", "stopovers");
 		if(illegalCargoFine)
 			out.Write("illegal", illegalCargoFine, illegalCargoMessage);
 		if(failIfDiscovered)
@@ -1094,6 +1116,27 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 
 
 
+bool Mission::HideDestination() const
+{
+	return mapHidingFlags & HIDE_DESTINATION;
+}
+
+
+
+bool Mission::HideStopovers() const
+{
+	return mapHidingFlags & HIDE_STOPOVERS;
+}
+
+
+
+bool Mission::HideWaypoints() const
+{
+	return mapHidingFlags & HIDE_WAYPOINTS;
+}
+
+
+
 bool Mission::RequiresGiftedShip(const string &shipId) const
 {
 	// Check if any uncompleted actions required for the mission needs this ship.
@@ -1246,6 +1289,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.repeat = repeat;
 	result.name = name;
 	result.waypoints = waypoints;
+	result.mapHidingFlags = mapHidingFlags;
 	// Handle waypoint systems that are chosen randomly.
 	const System *const sourceSystem = player.GetSystem();
 	for(const LocationFilter &filter : waypointFilters)

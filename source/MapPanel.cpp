@@ -483,7 +483,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 			if(!mission.IsVisible())
 				continue;
 
-			if(mission.Destination()->IsInSystem(&system))
+			if(!mission.HideDestination() && mission.Destination()->IsInSystem(&system))
 			{
 				pair<bool, bool> blink = BlinkMissionIndicator(player, mission, step);
 				if(!blink.first)
@@ -495,20 +495,22 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 					++missionCounter;
 			}
 
-			for(const System *waypoint : mission.Waypoints())
-			{
-				if(missionCounter >= MAX_MISSION_POINTERS_DRAWN)
-					break;
-				if(waypoint == &system)
-					DrawPointer(from, missionCounter, waypointColor, false);
-			}
-			for(const Planet *stopover : mission.Stopovers())
-			{
-				if(missionCounter >= MAX_MISSION_POINTERS_DRAWN)
-					break;
-				if(stopover->IsInSystem(&system))
-					DrawPointer(from, missionCounter, waypointColor, false);
-			}
+			if(!mission.HideWaypoints())
+				for(const System *waypoint : mission.Waypoints())
+				{
+					if(missionCounter >= MAX_MISSION_POINTERS_DRAWN)
+						break;
+					if(waypoint == &system)
+						DrawPointer(from, missionCounter, waypointColor, false);
+				}
+			if(!mission.HideStopovers())
+				for(const Planet *stopover : mission.Stopovers())
+				{
+					if(missionCounter >= MAX_MISSION_POINTERS_DRAWN)
+						break;
+					if(stopover->IsInSystem(&system))
+						DrawPointer(from, missionCounter, waypointColor, false);
+				}
 		}
 	}
 
@@ -1462,15 +1464,18 @@ void MapPanel::DrawMissions()
 		int reserved = min(MAX_MISSION_POINTERS_DRAWN / 2, it.available + it.unavailable);
 		if(it.drawn >= MAX_MISSION_POINTERS_DRAWN - reserved)
 			continue;
+		if(!mission.HideWaypoints())
+			for(const System *waypoint : mission.Waypoints())
+				DrawPointer(waypoint, missionCount[waypoint].drawn, waypointColor);
+		if(!mission.HideStopovers())
+			for(const Planet *stopover : mission.Stopovers())
+				DrawPointer(stopover->GetSystem(), missionCount[stopover->GetSystem()].drawn, waypointColor);
+		if(mission.HideDestination())
+			continue;
 
 		pair<bool, bool> blink = BlinkMissionIndicator(player, mission, step);
 		bool isSatisfied = IsSatisfied(player, mission) && blink.second;
 		DrawPointer(system, it.drawn, blink.first ? black : isSatisfied ? currentColor : blockedColor, isSatisfied);
-
-		for(const System *waypoint : mission.Waypoints())
-			DrawPointer(waypoint, missionCount[waypoint].drawn, waypointColor);
-		for(const Planet *stopover : mission.Stopovers())
-			DrawPointer(stopover->GetSystem(), missionCount[stopover->GetSystem()].drawn, waypointColor);
 	}
 	// Draw the available and unavailable jobs.
 	for(auto &&it : missionCount)
