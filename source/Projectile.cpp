@@ -82,11 +82,10 @@ Projectile::Projectile(const Projectile &parent, const Point &offset, const Angl
 {
 	government = parent.government;
 	targetGovernment = parent.targetGovernment;
+	targetDisabled = parent.targetDisabled;
 	hitsRemaining = weapon->PenetrationCount();
 
 	cachedTarget = TargetPtr().get();
-	if(cachedTarget)
-		targetDisabled = cachedTarget->IsDisabled();
 
 	// Given that submunitions inherit the velocity of the parent projectile,
 	// it is often the case that submunitions don't add any additional velocity.
