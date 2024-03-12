@@ -2174,7 +2174,7 @@ planet Humanika
 planet Humo
 	attributes "requires: gaslining"
 	landscape land/humo
-	description `Interestingly this gas giant is not only made from gaseus elements, sand is being pushed around in the air and cumulates on the windows of your ship. A constant updraft from the center of the planet seems to be the reason for sand to exist in the upper atmosphere. While the sand itself is not dangerous there is the risk of it getting into your ships mechanics.`
+	description `Interestingly this gas giant is not only made from gaseous elements, sand is being pushed around in the air and cumulates on the windows of your ship. A constant updraft from the center of the planet seems to be the reason for sand to exist in the upper atmosphere. While the sand itself is not dangerous there is the risk of it getting into your ships mechanics.`
 	government Uninhabited
 
 planet "Hydra Station"

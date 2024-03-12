@@ -110,7 +110,7 @@ ship "Nimbus"
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
 	description "The Nimbus is the first spaceship that the Incipias built that was really able to navigate through a system. Since it was first manufactured it has been loved among wealthier captains and a dream of captains just starting out."
-	description "Although the Nimbus is labeled as a medium warship, it is a multi-purpose ship. Whether one uses it for mining, passengers, or cargo, it will perform its job nicely. It is only occasionally used in combat because the Incipias are not currently fighting open wars."
+	description "Although the Nimbus is labeled as a medium warship, it is a multipurpose ship. Whether one uses it for mining, passengers, or cargo, it will perform its job nicely. It is only occasionally used in combat because the Incipias are not currently fighting open wars."
 
 ship "Nimbus" "Nimbus (Civil)"
 	outfits
@@ -125,7 +125,7 @@ ship "Nimbus" "Nimbus (Mining)"
 		"Liquid-Class Shield"
 		"Liquid Hydrogen Cell"
 		"Plasma Discharger" 4
-		"Stagnation Beam" # to be replaced with a floatsam tractor beam
+		"Stagnation Beam" # to be replaced with a flotsam tractor beam
 		"Heavy Machine Gun" 20
 
 		"MH Red-Class Engine"

@@ -120,7 +120,7 @@ outfit "Star Tail"
 		ammo "Star Tail Cell"
 		"submunition" "Star Tail Projectile" 1
 	description "Little to no information about this weapon has ever reached the public. Rumors are that it shoots highly volatile plasma chunks."
-	description "Those who experienced the use of this weapon tell that the projectiles changed direction mid flight following their targets to deliver inevitable doom."
+	description "Those who experienced the use of this weapon tell that the projectiles changed direction mid-flight following their targets to deliver inevitable doom."
 
 outfit "Star Tail Projectile"
 	weapon
