@@ -1377,12 +1377,12 @@ outfit "Heavy Rocket Launcher"
 		"acceleration" .2
 		"drag" .025
 		"trigger radius" 20
-		"blast radius" 50
-		"shield damage" 1060
-		"hull damage" 900
+		"blast radius" 90
+		"shield damage" 790
+		"hull damage" 670
 		"hit force" 600
 		"missile strength" 16
-	description "Heavy Rockets are the most powerful missile weapon available, but at a price: instead of having a homing system, they simply fire straight forward and rely on a proximity trigger to set them off. Once triggered, however, they damage all ships within their blast radius, making them highly effective against clusters of fighters."
+	description "Heavy Rockets are one of the most powerful missile weapons available, but at a price: instead of having a homing system, they simply fire straight forward and rely on a proximity trigger to set them off. Once triggered, however, they damage all ships within their blast radius, making them highly effective against clusters of fighters."
 
 outfit "Heavy Rocket Pod"
 	category "Secondary Weapons"
@@ -1414,12 +1414,12 @@ outfit "Heavy Rocket Pod"
 		"acceleration" .2
 		"drag" .025
 		"trigger radius" 20
-		"blast radius" 50
-		"shield damage" 1060
-		"hull damage" 900
+		"blast radius" 90
+		"shield damage" 790
+		"hull damage" 670
 		"hit force" 600
 		"missile strength" 16
-	description "Heavy Rockets are the most powerful missile weapon available, but at a price: instead of having a homing system, they simply fire straight forward and rely on a proximity trigger to set them off. Once triggered, however, they damage all ships within their blast radius, making them highly effective against clusters of fighters."
+	description "Heavy Rockets are one of the most powerful missile weapons available, but at a price: instead of having a homing system, they simply fire straight forward and rely on a proximity trigger to set them off. Once triggered, however, they damage all ships within their blast radius, making them highly effective against clusters of fighters."
 	description "	Pods enable fighters and other light craft to carry small quantities of rockets into battle while retaining enough space for other weapons. Large ships are better off with full-size launchers."
 
 effect "heavy rocket hit"
