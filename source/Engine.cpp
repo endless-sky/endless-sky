@@ -2752,7 +2752,8 @@ void Engine::EmplaceStatusOverlay(const shared_ptr<Ship> &it, Preferences::Overl
 
 void Engine::HandleEvents()
 {
-	// When fighters are disabled, all projectiles targeting them should seek out a new target.
+	// When fighters are disabled, all projectiles targeting them should break targeting as to
+	// not impact the ship and increase its odds of survival.
 	set<const Ship *> disabledFighters;
 	for(const auto &event : events)
 		if(event.Type() & ShipEvent::DISABLE && event.Target()->CanBeCarried())
