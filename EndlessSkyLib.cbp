@@ -83,6 +83,8 @@
 		<Unit filename="source/BatchDrawList.h" />
 		<Unit filename="source/BatchShader.cpp" />
 		<Unit filename="source/BatchShader.h" />
+		<Unit filename="source/BayType.cpp" />
+		<Unit filename="source/BayType.h" />
 		<Unit filename="source/Bitset.cpp" />
 		<Unit filename="source/Bitset.h" />
 		<Unit filename="source/BoardingPanel.cpp" />

@@ -92,6 +92,8 @@ void UniverseObjects::FinishLoading()
 	UpdateSystems();
 
 	// And, update the ships with the outfits we've now finished loading.
+	for(auto &&it : bayTypes)
+		it.second.FinishLoading();
 	for(auto &&it : ships)
 		it.second.FinishLoading(true);
 	for(auto &&it : persons)
@@ -487,6 +489,8 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 			else
 				node.PrintTrace("Invalid use of keyword \"disable\" for class \"" + category + "\"");
 		}
+		else if(key == "bay" && node.Size() >= 2 && node.HasChildren())
+			bayTypes.Get(node.Token(1))->Load(node);
 		else
 			node.PrintTrace("Skipping unrecognized root object:");
 	}
