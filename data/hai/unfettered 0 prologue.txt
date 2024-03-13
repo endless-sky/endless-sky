@@ -317,9 +317,9 @@ mission "Unfettered Jump Drive Trading"
 		<hood> ", with their face hidden,"
 			has "unfettered: blade rodeo"
 		<learned> ""
-		<learned> " It did take you two tries, but I am glad that you were able to learn from your mistake."
+		<learned> "It did take you two tries, but I am glad that you were able to learn from your mistake. "
 			"unfettered: blade rodeo" == 1
-		<learned> " You finally learned from your mistakes. This is why our challenges are never fatal."
+		<learned> "You finally learned from your mistakes. This is why our challenges are never fatal. "
 			"unfettered: blade rodeo" == 2
 		"<The engineer>" "The engineer, who had stepped back during the fight,"
 		"<The engineer>" "The real engineer then moves out of the crowd,"
@@ -398,11 +398,11 @@ mission "Unfettered Jump Drive Trading"
 				`	(Leap to the side and use my own weapon.)`
 				`	(Flee.)`
 					goto flee
-			`	You leap to the side, grabbing your own weapon just in time to threaten the Unfettered that threw the blade at you. Seeming a bit surprised by your unconventional tactics, they lower their own weapon. "Well done! In truth, there is no higher honor than surviving on the field of battle, because only then can you bring loot back to those who need it! A tactic is only good if you can find and execute it quickly enough to give you an edge, which you did.<learned> I am Desneeparu, and it is my pleasure to meet you, Captain."`
+			`	You leap to the side, grabbing your own weapon just in time to threaten the Unfettered that threw the blade at you. Seeming a bit surprised by your unconventional tactics, they lower their own weapon. "Well done! In truth, there is no higher honor than surviving on the field of battle, because only then can you bring loot back to those who need it! A tactic is only good if you can find and execute it quickly enough to give you an edge, which you did. <learned>I am Desneeparu, and it is my pleasure to meet you, Captain."`
 				goto meet
 			label grab
 			`	You manage to grab the weapon, just in time to deflect an incoming attack from the same Unfettered. They duel with you for what feels like an eternity. At first you are astonished by the fact you have managed to survive this long, but you soon realize that, as you have not managed to land a single successful blow, this must be some kind of deliberate test.`
-			`	Then, suddenly, you can feel the pace of your opponent change; the game is over. They strike a masterful blow that disarms you with ease before smiling and lowering their weapon. "It looks like you know what to do with a blade!<learned> I am Desneeparu, and it is a pleasure to meet you, Captain <last>!" she exclaims, before laughing at your surprised face. You realize she must have been toying with you from the beginning, but, nevertheless, she seems satisfied by your performance.`
+			`	Then, suddenly, you can feel the pace of your opponent change; the game is over. They strike a masterful blow that disarms you with ease before smiling and lowering their weapon. "It looks like you know what to do with a blade! <learned>I am Desneeparu, and it is a pleasure to meet you, Captain <last>!" she exclaims, before laughing at your surprised face. You realize she must have been toying with you from the beginning, but, nevertheless, she seems satisfied by your performance.`
 			label meet
 			action
 				log "Minor People" "Desneeparu" `An Unfettered warrior that knows how to handle a blade. Was tested by her before being given access to new Unfettered weapons. Would have been a goner had she not been holding back.`
