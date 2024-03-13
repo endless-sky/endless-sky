@@ -37,7 +37,7 @@ ship "Venta"
 	outfits
 		"Solid-Class Shield"
 		"Liquid-Class Shield"
-		"Liquid Hydrogen Cell"
+		"Metallic Hydrogen Cell"
 		"Plasma Discharger" 2
 		"Star Tail" 4
 		"Star Tail Cell" 80
@@ -88,7 +88,7 @@ ship "Nimbus"
 		"fuel capacity" 200
 	outfits
 		"Liquid-Class Shield"
-		"Liquid Hydrogen Cell"
+		"Metallic Hydrogen Cell"
 		"Plasma Discharger" 4
 		"Stagnation Beam"
 		"Heavy Machine Gun" 20
@@ -115,7 +115,7 @@ ship "Nimbus"
 ship "Nimbus" "Nimbus (Civil)"
 	outfits
 		"Liquid-Class Shield"
-		"Liquid Hydrogen Cell"
+		"Metallic Hydrogen Cell"
 
 		"MH Red-Class Engine"
 		"MH Red-Class Steering"
@@ -123,7 +123,7 @@ ship "Nimbus" "Nimbus (Civil)"
 ship "Nimbus" "Nimbus (Mining)"
 	outfits
 		"Liquid-Class Shield"
-		"Liquid Hydrogen Cell"
+		"Metallic Hydrogen Cell"
 		"Plasma Discharger" 4
 		"Stagnation Beam" # to be replaced with a flotsam tractor beam
 		"Heavy Machine Gun" 20
@@ -155,7 +155,7 @@ ship "Nimbo Stratus"
 
 	outfits
 		"Gas-Class Shield"
-		"Liquid Hydrogen Cell"
+		"Metallic Hydrogen Cell"
 		"Plasma Discharger" 2
 
 		"MH Blue-Class Engine"
@@ -191,7 +191,7 @@ ship "Nimbo Cirrus"
 		"fuel capacity" 200
 	outfits
 		"Gas-Class Shield"
-		"Liquid Hydrogen Cell"
+		"Metallic Hydrogen Cell"
 
 		"MH Green-Class Engine"
 		"MH Green-Class Steering"
@@ -225,7 +225,7 @@ ship "Gero"
 		"fuel capacity" 200
 	outfits
 		"Gas-Class Shield"
-		"Liquid Hydrogen Cell"
+		"Metallic Hydrogen Cell"
 
 		"MH Blue-Class Engine"
 		"MH Blue-Class Steering"

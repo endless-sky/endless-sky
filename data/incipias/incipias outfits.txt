@@ -204,13 +204,13 @@ outfit "Solid-Class Shield"
 	"heat generation" 8
 	description "This shield generator is the most efficient available to the Incipias. It burns its input in stages from solid in the center to a gaseous state in the outer hull. Sadly this efficiency requires a lot of adjusting systems to stabilize the process, and therefore only the heaviest warships make use of the Solid-Class Shield."
 
-outfit "Liquid Hydrogen Cell"
+outfit "Metallic Hydrogen Cell"
 	category "Power"
-	thumbnail "outfit/liquid hydrogen cell"
+	thumbnail "outfit/metallic hydrogen cell"
 	mass 20
 	"outfit space" -20
 	"energy capacity" 500
-	description "This form of energy storage was discovered early by the Incipias because of the great amount of hydrogen on their homeworld. Because Incipias ships mostly access their energy at the time it is produced, only a small amount of storage is needed. Most of their ships have only one cell installed as a consequence."
+	description "This form of energy storage was discovered early by the Incipias because of the great amount of metallic hydrogen on their homeworld. Because Incipias ships mostly access their energy at the time it is produced, only a small amount of storage is needed. Most of their ships have only one cell installed as a consequence."
 
 # Engines:
 outfit "MH Blue-Class Engine"

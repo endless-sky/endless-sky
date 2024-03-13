@@ -208,7 +208,7 @@ outfitter "Hicemus"
 	"Stagnation Beam"
 	"Gas-Class Shield"
 	"Liquid-Class Shield"
-	"Liquid Hydrogen Cell"
+	"Metallic Hydrogen Cell"
 	"Heavy Machine Gun"
 
 	"MH Blue-Class Engine"

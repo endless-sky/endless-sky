@@ -128,7 +128,7 @@ ship "Nimbus" "Nimbus FTL"
 		"bunks" -25
 	outfits
 		"Liquid-Class Shield"
-		"Liquid Hydrogen Cell"
+		"Metallic Hydrogen Cell"
 		"Heavy Machine Gun" 20
 
 		"MH Red-Class Engine"
