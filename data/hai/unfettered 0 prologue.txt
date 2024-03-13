@@ -317,9 +317,9 @@ mission "Unfettered Jump Drive Trading"
 		<hood> ", with their face hidden,"
 			has "unfettered: blade rodeo"
 		<learned> ""
-		<learned> "It did take you two tries, but I am glad that you were able to learn from your mistake."
+		<learned> " It did take you two tries, but I am glad that you were able to learn from your mistake."
 			"unfettered: blade rodeo" == 1
-		<learned> "You finally learned from your mistakes. This is why our challenges are never fatal."
+		<learned> " You finally learned from your mistakes. This is why our challenges are never fatal."
 			"unfettered: blade rodeo" == 2
 		"<The engineer>" "The engineer, who had stepped back during the fight,"
 		"<The engineer>" "The real engineer then moves out of the crowd,"
