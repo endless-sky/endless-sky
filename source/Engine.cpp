@@ -659,7 +659,8 @@ void Engine::Step(bool isActive)
 			if(!it->IsYours() && !it->CanBeCarried())
 			{
 				bool isSelected = (flagship && flagship->GetTargetShip() == it);
-				escorts.Add(*it, it->GetSystem() == currentSystem, fleetIsJumping, isSelected);
+				const System *system = it->GetSystem();
+				escorts.Add(*it, system == currentSystem, player.KnowsName(*system), fleetIsJumping, isSelected);
 			}
 	for(const shared_ptr<Ship> &escort : player.Ships())
 		if(!escort->IsParked() && escort != flagship && !escort->IsDestroyed())
@@ -672,7 +673,8 @@ void Engine::Step(bool isActive)
 					isSelected = true;
 					break;
 				}
-			escorts.Add(*escort, escort->GetSystem() == currentSystem, fleetIsJumping, isSelected);
+			const System *system = escort->GetSystem();
+			escorts.Add(*escort, system == currentSystem, player.KnowsName(*system), fleetIsJumping, isSelected);
 		}
 
 	statuses.clear();
