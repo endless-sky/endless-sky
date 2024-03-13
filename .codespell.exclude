@@ -95,3 +95,6 @@ planet "Sies Upi"
 		log "Minor People" "Torrey and Irene" `Torrey Dupont, an activist, is friends with SMDP militia NCO Irene Brower. You delivered a package for them.`
 		"Brin"
 		"exis"
+planet Independance
+	description `Independance, originally named for a document of emancipation for an ancient nation on old Earth, became of interest to the Confederated Councils when they began to consider plans for a defense against a foreign invasion. One such plan involved deploying thousands of "cloud bunkers" into the gas giants of the Outer Rim, which would act as a network of sleeper cells from which an uprising could be staged. Independance, given its fitting name and its position near Alvorada, was chosen as the testing site for this project.`
+	object Independance
