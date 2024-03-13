@@ -705,37 +705,34 @@ void PlayerInfo::AdvanceDate(int amount)
 {
 	if(amount <= 0)
 		return;
-	else
+	while(amount--)
 	{
-		while(amount--)
+		++date;
+
+		// Check if any special events should happen today.
+		auto it = gameEvents.begin();
+		list<DataNode> eventChanges;
+		while(it != gameEvents.end() && date >= it->GetDate())
 		{
-			++date;
-
-			// Check if any special events should happen today.
-			auto it = gameEvents.begin();
-			list<DataNode> eventChanges;
-			while(it != gameEvents.end() && date >= it->GetDate())
-			{
-				GameEvent event = *it;
-				eventChanges.splice(eventChanges.end(), event.Apply(*this));
-				it = gameEvents.erase(it);
-			}
-			if(!eventChanges.empty())
-				AddChanges(eventChanges);
-
-			// Check if any missions have failed because of deadlines and
-			// do any daily mission actions for those that have not failed.
-			for(Mission &mission : missions)
-			{
-				if(mission.CheckDeadline(date) && mission.IsVisible())
-					Messages::Add("You failed to meet the deadline for the mission \"" + mission.Name() + "\".",
-						Messages::Importance::Highest);
-				if(!mission.IsFailed())
-					mission.Do(Mission::DAILY, *this);
-			}
-
-			DoAccounting();
+			GameEvent event = *it;
+			eventChanges.splice(eventChanges.end(), event.Apply(*this));
+			it = gameEvents.erase(it);
 		}
+		if(!eventChanges.empty())
+			AddChanges(eventChanges);
+
+		// Check if any missions have failed because of deadlines and
+		// do any daily mission actions for those that have not failed.
+		for(Mission &mission : missions)
+		{
+			if(mission.CheckDeadline(date) && mission.IsVisible())
+				Messages::Add("You failed to meet the deadline for the mission \"" + mission.Name() + "\".",
+					Messages::Importance::Highest);
+			if(!mission.IsFailed())
+				mission.Do(Mission::DAILY, *this);
+		}
+
+		DoAccounting();
 	}
 	// Reset the reload counters for all your ships.
 	for(const shared_ptr<Ship> &ship : ships)
