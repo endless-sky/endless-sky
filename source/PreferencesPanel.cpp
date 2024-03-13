@@ -490,6 +490,7 @@ void PreferencesPanel::DrawControls()
 		Command::SCAN,
 		Command::NONE,
 		Command::PRIMARY,
+		Command::TURRET_TRACKING,
 		Command::SELECT,
 		Command::SECONDARY,
 		Command::CLOAK,
