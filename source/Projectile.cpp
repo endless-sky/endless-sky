@@ -147,7 +147,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 	{
 		target = TargetPtr().get();
 		if(!target || !target->IsTargetable() || target->GetGovernment() != targetGovernment ||
-				(!targetDisabled && target->IsDisabled()))
+				(!targetDisabled && target->IsDisabled() && target->CanBeCarried()))
 		{
 			BreakTarget();
 			target = nullptr;
