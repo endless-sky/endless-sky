@@ -77,6 +77,7 @@ namespace {
 	const string BACKGROUND_PARALLAX = "Parallax background";
 	const string EXTENDED_JUMP_EFFECTS = "Extended jump effects";
 	const string ALERT_INDICATOR = "Alert indicator";
+	const string COLOR_FILTER_SETTING = "Color blind mode";
 
 	// How many pages of controls and settings there are.
 	const int CONTROLS_PAGE_COUNT = 2;
@@ -631,6 +632,7 @@ void PreferencesPanel::DrawSettings()
 		VIEW_ZOOM_FACTOR,
 		SCREEN_MODE_SETTING,
 		VSYNC_SETTING,
+		COLOR_FILTER_SETTING,
 		"",
 		"Performance",
 		"Show CPU / GPU load",
@@ -878,6 +880,11 @@ void PreferencesPanel::DrawSettings()
 		{
 			isOn = Preferences::GetAlertIndicator() != Preferences::AlertIndicator::NONE;
 			text = Preferences::AlertSetting();
+		}
+		else if(setting == COLOR_FILTER_SETTING)
+		{
+			text = Preferences::ColorFilterSetting();
+			isOn = text != "off";
 		}
 		else
 			text = isOn ? "on" : "off";
@@ -1219,6 +1226,8 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 		Preferences::ToggleDateFormat();
 	else if(str == ALERT_INDICATOR)
 		Preferences::ToggleAlert();
+	else if(str == COLOR_FILTER_SETTING)
+		Preferences::ToggleColorFilterSetting();
 	// All other options are handled by just toggling the boolean state.
 	else
 		Preferences::Set(str, !Preferences::Has(str));

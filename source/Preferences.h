@@ -97,6 +97,13 @@ public:
 		BOTH
 	};
 
+	enum class ColorFilter : int {
+		NORMAL = 0,
+		PROTANOPIA,
+		DEUTERANOPIA,
+		TRITANOPIA
+	};
+
 
 public:
 	static void Load();
@@ -176,6 +183,11 @@ public:
 	static bool PlayAudioAlert();
 	static bool DisplayVisualAlert();
 	static bool DoAlertHelper(AlertIndicator toDo);
+
+	// Accessibility color filters.
+	static void ToggleColorFilterSetting();
+	static ColorFilter GetColorFilterMode();
+	static const std::string &ColorFilterSetting();
 
 	static int GetPreviousSaveCount();
 };

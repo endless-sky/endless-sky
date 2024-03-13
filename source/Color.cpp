@@ -15,6 +15,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Color.h"
 
+#include "Preferences.h"
+
+#include <algorithm>
+
+using namespace std;
+
 
 
 // Greyscale color constructor.
@@ -129,4 +135,63 @@ Color Color::Multiply(float scalar, const Color &base)
 			scalar * base.color[1],
 			scalar * base.color[2],
 			scalar * base.color[3]);
+}
+
+
+
+// Apply color blindness filters to this color.
+Color Color::Filter(const Color &c)
+{
+	Preferences::ColorFilter filter = Preferences::GetColorFilterMode();
+	// No color filters are enabled, so there's no need to adjust anything.
+	if(filter == Preferences::ColorFilter::NORMAL)
+		return c;
+
+	// Color blindness accessibility filters are enabled.
+	// LMS Daltonization is used to make the colors more distinct for
+	// color blind players.
+
+	float r = c.color[0];
+	float g = c.color[1];
+	float b = c.color[2];
+
+	// Convert the colors from RGB to LMS, a color space that represents the
+	// light received by the cones in the human eye better than RGB.
+	float l = (17.8824 * r) + (43.5161 * g) + (4.11935 * b);
+	float m = (3.45565 * r) + (27.1554 * g) + (3.86714 * b);
+	float s = (0.0299566 * r) + (0.184309 * g) + (1.46709 * b);
+
+	// Simulate color blindness.
+	switch(filter)
+	{
+		case Preferences::ColorFilter::PROTANOPIA:
+			l = (2.02344 * m) + (-2.52581 * s);
+			break;
+		case Preferences::ColorFilter::DEUTERANOPIA:
+			m = (0.494207 * l) + (1.24827 * s);
+			break;
+		case Preferences::ColorFilter::TRITANOPIA:
+			s = (-0.395913 * l) + (0.801109 * m);
+			break;
+		case Preferences::ColorFilter::NORMAL:
+			break;
+	}
+
+	// Convert the LMS colors back to RGB.
+	float convertedR = (0.0809444479 * l) + (-0.130504409 * m) + (0.116721066 * s);
+	float convertedG = (-0.0102485335 * l) + (0.0540193266 * m) + (-0.113614708 * s);
+	float convertedB = (-0.000365296938 * l) + (-0.00412161469 * m) + (0.693511405 * s);
+
+	// Compensate for invisible colors.
+	float finalR = r;
+	float finalG = 2 * g - convertedG + 0.7 * (r - convertedR);
+	float finalB = 2 * b - convertedB + 0.7 * (r - convertedR);
+
+	// Clamp the RGB colors to within the 0. to 1. range used by OpenGL.
+	finalR = clamp(finalR, 0.f, 1.f);
+	finalG = clamp(finalG, 0.f, 1.f);
+	finalB = clamp(finalB, 0.f, 1.f);
+
+
+	return Color(finalR, finalG, finalB, c.color[3]);
 }
