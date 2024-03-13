@@ -2174,7 +2174,7 @@ planet Humanika
 planet Humo
 	attributes "requires: gaslining"
 	landscape land/humo
-	description `Interestingly this gas giant is not only made from gaseous elements, sand is being pushed around in the air and cumulates on the windows of your ship. A constant updraft from the center of the planet seems to be the reason for sand to exist in the upper atmosphere. While the sand itself is not dangerous there is the risk of it getting into your ships mechanics.`
+	description `Interestingly, this gas giant is not only made from gaseous elements; sand is being pushed around in the air and cumulates on the windows of your ship. A constant updraft from the center of the planet seems to be the reason for getting the sand into the upper atmosphere. While the sand itself is not dangerous, there is the risk of it getting into your ships mechanics.`
 	government Uninhabited
 
 planet "Hydra Station"
@@ -4224,7 +4224,7 @@ planet "Spec Inci"
 	attributes "incipias quarg" quarg
 	landscape land/sky7
 	description "This small moon seems to be used as just a shipment and processing base. Ships are dropping off large amounts of raw ore that then get processed by machines. You wouldn't have even noticed them if it were not for their large size, as they are surprisingly silent when working. Other ships load the processed materials and fly away."
-	spaceport "The spaceport is fully automated. You can see no Quarg that is not part of a ship's crew. When a ship lands on one of the landing pads on the surface an elevator moves it underground into one of the many hangars. One section of the ship is restricted and a large amount of military ships can be seen."
+	spaceport "The spaceport is fully automated. You can see no Quarg that is not part of a ship's crew. When a ship lands on one of the landing pads on the surface an elevator moves it underground into one of the many hangars. One section of the spaceport is restricted and a large amount of military ships can be seen."
 	government "Quarg (Incipias)"
 	bribe 0
 	security 0.9

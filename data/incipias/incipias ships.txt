@@ -109,8 +109,8 @@ ship "Nimbus"
 	explode "large explosion" 40
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
-	description "The Nimbus is the first spaceship that the Incipias built that was really able to navigate through a system. Since it was first manufactured it has been loved among wealthier captains and a dream of captains just starting out."
-	description "Although the Nimbus is labeled as a medium warship, it is a multipurpose ship. Whether one uses it for mining, passengers, or cargo, it will perform its job nicely. It is only occasionally used in combat because the Incipias are not currently fighting open wars."
+	description "The Nimbus is the first spaceship that the Incipias built that was really able to navigate through a system. Since it was first manufactured it has been cherished among wealthier captains and a dream of captains just starting out."
+	description "Although the Nimbus is labeled as a medium warship, it is a multipurpose ship. Whether one uses it for mining, passenger transport or cargo, it will perform its job nicely. It is only occasionally used in combat because the Incipias are not currently fighting open wars."
 
 ship "Nimbus" "Nimbus (Civil)"
 	outfits
@@ -167,7 +167,7 @@ ship "Nimbo Stratus"
 	explode "medium explosion" 10
 	explode "large explosion" 20
 	"final explode" "final explosion medium"
-	description "Mining has always been a big business in Incipias society, which is why the Stratus is the most common ship for beginning captains. Its cheap price tag and its ability to bring money in quickly ensure its continuing popularity. While the Stratus could be used in combat, it stands no chance against the Nimbus and therefore has never been used by the Hicemus military forces."
+	description "Mining has always been a big business in Incipias society, which is why the Stratus is the most common ship for beginning captains. Its cheap price tag and ability to bring money in quickly ensure its continuing popularity. While the Stratus could be used in combat, it stands no chance against the Nimbus and therefore has never been used by the Hicemus military forces."
 
 ship "Nimbo Cirrus"
 	"plural" "Cirri"
