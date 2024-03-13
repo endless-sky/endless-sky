@@ -95,5 +95,3 @@ planet "Sies Upi"
 		log "Minor People" "Torrey and Irene" `Torrey Dupont, an activist, is friends with SMDP militia NCO Irene Brower. You delivered a package for them.`
 		"Brin"
 		"exis"
-		<learned> "It did take you two tries, but I am glad that you were able to learn from your mistake. "
-		<learned> "You finally learned from your mistakes. This is why our challenges are never fatal. "
