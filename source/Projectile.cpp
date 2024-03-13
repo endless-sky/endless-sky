@@ -141,7 +141,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 
 	// If the target has left the system, stop following it. Also stop if the
 	// target has been captured by a different government.
-	// Also stop targeting disabled ships, unless requested.
+	// Also stop targeting fighters that have become disabled after this projectile was fired.
 	const Ship *target = cachedTarget;
 	if(target)
 	{
