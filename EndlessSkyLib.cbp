@@ -243,6 +243,8 @@
 		<Unit filename="source/MessageLogPanel.h" />
 		<Unit filename="source/Messages.cpp" />
 		<Unit filename="source/Messages.h" />
+		<Unit filename="source/Messenger.cpp" />
+		<Unit filename="source/Messenger.h" />
 		<Unit filename="source/Minable.cpp" />
 		<Unit filename="source/Minable.h" />
 		<Unit filename="source/Mission.cpp" />

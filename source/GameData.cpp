@@ -73,6 +73,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
+	bool initiallyLoaded = false;
+
 	UniverseObjects objects;
 	Set<Fleet> defaultFleets;
 	Set<Government> defaultGovernments;
@@ -193,6 +195,43 @@ void GameData::FinishLoading()
 
 
 
+void GameData::Clear()
+{
+	objects.Clear();
+	defaultFleets.Clear();
+	defaultGovernments.Clear();
+	defaultPlanets.Clear();
+	defaultSystems.Clear();
+	defaultGalaxies.Clear();
+	defaultShipSales.Clear();
+	defaultOutfitSales.Clear();
+	defaultSubstitutions = TextReplacements();
+	defaultWormholes.Clear();
+	playerGovernment = nullptr;
+
+	politics.Reset();
+
+	sources.clear();
+	deferred.clear();
+	preloaded.clear();
+
+	maskManager.Clear();
+
+	purchases.clear();
+
+	Plugins::Clear();
+
+	SpriteSet::Clear();
+	Music::Reset();
+
+	// Needs to be done after SpriteSet::Clear to avoid invalidating pointers.
+	background.Reset();
+
+	initiallyLoaded = false;
+}
+
+
+
 void GameData::CheckReferences()
 {
 	objects.CheckReferences();
@@ -233,7 +272,6 @@ double GameData::GetProgress()
 {
 	// Cache progress completion seen, so clients are
 	// isolated from the loading implementation details.
-	static bool initiallyLoaded = false;
 	if(initiallyLoaded)
 		return 1.;
 

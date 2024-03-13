@@ -180,6 +180,31 @@ void Audio::Init(const vector<string> &sources)
 
 
 
+void Audio::Reset()
+{
+	isInitialized = false;
+
+
+	queue.clear();
+	deferred.clear();
+
+	sounds.clear();
+
+	sources.clear();
+	recycledSources.clear();
+	endingSources.clear();
+
+	loadQueue.clear();
+	loadThread.join();
+
+	alDeleteBuffers(MUSIC_BUFFERS, musicBuffers);
+	alDeleteSources(1, &musicSource);
+	alcDestroyContext(context);
+	alcCloseDevice(device);
+}
+
+
+
 void Audio::CheckReferences()
 {
 	if(!isInitialized)

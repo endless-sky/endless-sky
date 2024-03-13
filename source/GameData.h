@@ -77,6 +77,7 @@ class GameData {
 public:
 	static std::future<void> BeginLoad(bool onlyLoadData, bool debugMode, bool preventUpload);
 	static void FinishLoading();
+	static void Clear();
 	// Check for objects that are referred to but never defined.
 	static void CheckReferences();
 	static void LoadSettings();

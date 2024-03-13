@@ -1,5 +1,5 @@
-/* Sound.h
-Copyright (c) 2014 by Michael Zahniser
+/* Messenger.h
+Copyright (c) 2024 by RisingLeaf
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -13,32 +13,20 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SOUND_H_
-#define SOUND_H_
-
-#include <string>
+#ifndef MESSENGER_H_
+#define MESSENGER_H_
 
 
 
-// This is a sound that can be played. The sound's file name will determine
-// whether it is looping (ends in '~') or not.
-class Sound {
+// Static class to easily transfer small bits of data between spaces
+// without having to pass around a variable through tons of functions.
+// Each value needs its own getter and setter.
+class Messenger {
 public:
-	~Sound();
-	bool Load(const std::string &path, const std::string &name);
-
-	const std::string &Name() const;
-
-	unsigned Buffer() const;
-	bool IsLooping() const;
-
-
-private:
-	std::string name;
-	unsigned buffer = 0;
-	bool isLooped = false;
+	// Variable to determine if the game should quit or just reload.
+	static void SetReload(bool value);
+	static bool GetReload();
 };
-
 
 
 #endif

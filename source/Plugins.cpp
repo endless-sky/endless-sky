@@ -135,6 +135,13 @@ void Plugins::Save()
 
 
 
+void Plugins::Clear()
+{
+	plugins.Clear();
+}
+
+
+
 // Whether the path points to a valid plugin.
 bool Plugins::IsPlugin(const string &path)
 {

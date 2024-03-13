@@ -32,6 +32,7 @@ class ImageBuffer;
 class Sprite {
 public:
 	explicit Sprite(const std::string &name = "");
+	~Sprite();
 
 	const std::string &Name() const;
 

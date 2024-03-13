@@ -74,8 +74,11 @@ namespace {
 
 void StarField::Init(int stars, int width)
 {
-	SetUpGraphics();
-	MakeStars(stars, width);
+	if(!shader.Object())
+	{
+		SetUpGraphics();
+		MakeStars(stars, width);
+	}
 
 	lastSprite = SpriteSet::Get("_menu/haze");
 	for(size_t i = 0; i < HAZE_COUNT; ++i)
@@ -101,6 +104,18 @@ void StarField::Init(int stars, int width)
 		haze[0].emplace_back(lastSprite, next, Point(), Angle::Random(), 8.);
 	}
 	haze[1].assign(haze[0].begin(), haze[0].end());
+}
+
+
+
+void StarField::Reset()
+{
+	lastSprite = nullptr;
+	haze[0].clear();
+	haze[1].clear();
+
+	// No need to set stars and width as that gets skipped.
+	Init(0, 0);
 }
 
 
