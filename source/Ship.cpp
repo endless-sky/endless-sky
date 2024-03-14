@@ -4566,7 +4566,7 @@ void Ship::StepTargeting()
 			velocity += dv.Unit() * .1;
 			position += dp.Unit() * .5;
 
-			if(distance < 10. && speed < 1. && (CanBeCarried() || !turn))
+			if(distance < 10. && speed < 1. && ((CanBeCarried() && government == target->government) || !turn))
 			{
 				if(cloak)
 				{
