@@ -46,8 +46,9 @@ private:
 
 
 private:
-	Point objectPosition;
-	double objectRadius = 0.;
+	const StellarObject *object;
+
+	Point drawCenter;
 
 	// Used for overlap detection during label creation.
 	Rectangle box;
