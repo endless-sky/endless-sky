@@ -66,6 +66,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "UniverseObjects.h"
 
 #include <algorithm>
+#include <atomic>
 #include <iostream>
 #include <utility>
 #include <vector>
@@ -103,7 +104,7 @@ namespace {
 
 	// Tracks the progress of loading the sprites when the game starts.
 	int spriteLoadingProgress = 0;
-	int totalSprites = 0;
+	std::atomic<int> totalSprites = 0;
 
 	// Loads a sprite with total progress tracking.
 	void LoadSprite(TaskQueue &queue, const shared_ptr<ImageSet> &image)

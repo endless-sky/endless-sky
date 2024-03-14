@@ -37,7 +37,7 @@ namespace {
 	struct WorkerThreads {
 		WorkerThreads() noexcept
 		{
-			threads.resize(max(4u, thread::hardware_concurrency()));
+			threads.resize(max(100u, thread::hardware_concurrency()));
 			for(thread &t : threads)
 				t = thread(&TaskQueue::ThreadLoop);
 		}

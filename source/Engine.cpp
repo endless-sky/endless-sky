@@ -295,6 +295,15 @@ Engine::Engine(PlayerInfo &player)
 
 
 
+Engine::~Engine()
+{
+	// Wait for any outstanding task to finish to avoid race conditions when
+	// destroying the engine.
+	queue.Wait();
+}
+
+
+
 void Engine::Place()
 {
 	ships.clear();
