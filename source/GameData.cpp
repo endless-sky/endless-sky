@@ -250,7 +250,7 @@ void GameData::LoadShaders()
 double GameData::GetProgress()
 {
 	double spriteProgress = static_cast<double>(spriteLoadingProgress) / totalSprites;
-	return min(min(spriteProgress, Audio::GetProgress()), objects.GetProgress());
+	return min({spriteProgress, Audio::GetProgress(), objects.GetProgress()});
 }
 
 

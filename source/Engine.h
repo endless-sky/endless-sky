@@ -33,8 +33,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Radar.h"
 #include "Rectangle.h"
 #include "TaskQueue.h"
-#include "Visual.h"
-#include "Weather.h"
 
 #include <condition_variable>
 #include <list>
@@ -51,6 +49,8 @@ class PlayerInfo;
 class Ship;
 class ShipEvent;
 class Sprite;
+class Visual;
+class Weather;
 
 
 // Class representing the game engine: its job is to track all of the objects in
