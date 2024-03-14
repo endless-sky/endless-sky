@@ -221,18 +221,6 @@ License: public-domain
  uploaded to unsplash.com before June 2017, so it is
  in the public domain.
 
-Files:
- images/land/station49*
-Copyright: Andrea De Santis
-License: Unsplash
- Taken from unsplash.com and cropped.
-
-Files:
- images/land/station50*
-Copyright: Mariia Ilina
-License: Unsplash
- Taken from unsplash.com, rotated and cropped.
-
 Files: images/land/bwerner*
 Copyright: Berthold Werner (commons.wikimedia.org/wiki/User:Berthold_Werner)
 License: CC-BY-SA-3.0
@@ -615,6 +603,26 @@ Comment:
  Unsplash License. It was also uploaded after February 2018,
  so it is subject to an additional restriction limiting the
  sale of unaltered copies.
+
+Files:
+ images/land/station49*
+Copyright: Andrea De Santis
+License: Unsplash
+Comment: Taken from unsplash.com and cropped. This image was
+ uploaded to unsplash.com after June 2017, so it is subject 
+ to the Unsplash License. It was also uploaded after February 
+ 2018, so it is subject to an additional restriction limiting
+ the sale of unaltered copies.
+
+Files:
+ images/land/station50*
+Copyright: Mariia Ilina
+License: Unsplash
+Comment: Taken from unsplash.com, rotated and cropped. This image was
+ uploaded to unsplash.com after June 2017, so it is subject 
+ to the Unsplash License. It was also uploaded after February 
+ 2018, so it is subject to an additional restriction limiting
+ the sale of unaltered copies.
 
 Files: images/land/lava11*
 Copyright: National Archives and Records Administration
