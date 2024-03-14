@@ -547,18 +547,21 @@ void Ship::Load(const DataNode &node)
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 
-	if(displayModelName.empty())
-		displayModelName = trueModelName;
-
-	// If no plural model name was given, default to the model name with an 's' appended.
-	// If the model name ends with an 's' or 'z', print a warning because the default plural will never be correct.
-	// Variants will import their plural name from the base model in FinishLoading.
-	if(pluralModelName.empty() && variantName.empty())
+	// Variants will import their display and plural names from the base model in FinishLoading.
+	if(variantName.empty())
 	{
-		pluralModelName = displayModelName + 's';
-		if(displayModelName.back() == 's' || displayModelName.back() == 'z')
-			node.PrintTrace("Warning: explicit plural name definition required, but none is provided. Defaulting to \""
+		if(displayModelName.empty())
+			displayModelName = trueModelName;
+
+		// If no plural model name was given, default to the model name with an 's' appended.
+		// If the model name ends with an 's' or 'z', print a warning because the default plural will never be correct.
+		if(pluralModelName.empty())
+		{
+			pluralModelName = displayModelName + 's';
+			if(displayModelName.back() == 's' || displayModelName.back() == 'z')
+				node.PrintTrace("Warning: explicit plural name definition required, but none is provided. Defaulting to \""
 					+ pluralModelName + "\".");
+		}
 	}
 }
 
