@@ -110,11 +110,11 @@ namespace {
 	void LoadSprite(TaskQueue &queue, const shared_ptr<ImageSet> &image)
 	{
 		queue.Run([image] { image->Load(); },
-				[image]
-					{
-						image->Upload(SpriteSet::Modify(image->Name()), !preventSpriteUpload);
-						++spriteLoadingProgress;
-					});
+			[image]
+			{
+				image->Upload(SpriteSet::Modify(image->Name()), !preventSpriteUpload);
+				++spriteLoadingProgress;
+			});
 		++totalSprites;
 	}
 
