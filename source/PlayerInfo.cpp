@@ -886,7 +886,7 @@ void PlayerInfo::DoAccounting()
 			message += Format::CreditString(balance.assetsReturns) + " based on outfits and ships";
 		}
 		message += ".";
-		Messages::Add(message, Messages::Importance::High);
+		Messages::Add(message, Messages::Importance::High, true);
 		accounts.AddCredits(salariesIncome + tributeIncome + balance.assetsReturns);
 	}
 
@@ -900,7 +900,7 @@ void PlayerInfo::DoAccounting()
 	// summarizes the payments that were made.
 	string message = accounts.Step(assets, Salaries(), balance.maintenanceCosts);
 	if(!message.empty())
-		Messages::Add(message, Messages::Importance::High);
+		Messages::Add(message, Messages::Importance::High, true);
 }
 
 

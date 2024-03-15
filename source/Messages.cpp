@@ -35,20 +35,21 @@ namespace {
 
 
 // Add a message to the list along with its level of importance
-void Messages::Add(const string &message, Importance importance)
+// When forced, the message is forcibly added to the log, but not to the list.
+void Messages::Add(const string &message, Importance importance, bool force)
 {
 	lock_guard<mutex> lock(incomingMutex);
 	incoming.emplace_back(message, importance);
-	AddLog(message, importance);
+	AddLog(message, importance, force);
 }
 
 
 
 // Add a message to the log. For messages meant to be shown
 // also on the main panel, use Add instead.
-void Messages::AddLog(const string &message, Importance importance)
+void Messages::AddLog(const string &message, Importance importance, bool force)
 {
-	if(logged.empty() || message != logged.front().first)
+	if(force || logged.empty() || message != logged.front().first)
 	{
 		logged.emplace_front(message, importance);
 		if(logged.size() > MAX_LOG)
