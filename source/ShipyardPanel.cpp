@@ -315,9 +315,10 @@ void ShipyardPanel::Sell(bool toStorage)
 		GetUI()->Push(new Dialog(message));
 		return;
 	}
-	else if(all_of(playerShips.begin(), playerShips.end(), [this](Ship *ship){
-		return player.UuidLocked(ship->UUID());
-	}))
+	else if(all_of(playerShips.begin(), playerShips.end(), [this](Ship *ship)
+		{
+			return player.UuidLocked(ship->UUID());
+		}))
 	{
 		GetUI()->Push(new Dialog("Could not sell the selected ships, as they are all marked as locked.\n(Alt+click the ship icon to unlock the ship.)"));
 		return;
