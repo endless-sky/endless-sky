@@ -43,7 +43,7 @@ ship "Vyrmeid"
 		"thrust" 10
 		"turn" 120
 
-		"atmospheric scan" 1
+		"atmosphere scan" 1
 		"energy protection" 1
 		"ion protection" 1
 	outfits

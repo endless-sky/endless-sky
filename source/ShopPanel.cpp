@@ -780,7 +780,7 @@ void ShopPanel::DrawShipsSidebar()
 
 		shipZones.emplace_back(point, Point(ICON_TILE, ICON_TILE), ship.get());
 
-		if(shipZones.back().Contains(mouse))
+		if(mouse.Y() < Screen::Bottom() - BUTTON_HEIGHT && shipZones.back().Contains(mouse))
 		{
 			shipName = ship->Name();
 			hoverPoint = shipZones.back().TopLeft();
