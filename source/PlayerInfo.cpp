@@ -4342,6 +4342,17 @@ void PlayerInfo::Save(DataWriter &out) const
 		if(it != groups.end() && it->second)
 			out.Write("groups", it->second);
 	}
+	if(!lockedIds.empty())
+	{
+		out.Write();
+		out.Write("locked ships");
+		out.BeginChild();
+		for(const auto &shipUuid : lockedIds)
+		{
+			out.Write(shipUuid.ToString());
+		}
+		out.EndChild();
+	}
 	if(!planetaryStorage.empty())
 	{
 		out.Write("storage");
@@ -4589,15 +4600,6 @@ void PlayerInfo::Save(DataWriter &out) const
 		const auto &plugin = it.second;
 		if(plugin.IsValid() && plugin.enabled)
 			out.Write(plugin.name);
-	}
-	out.EndChild();
-
-	out.Write();
-	out.Write("locked ships");
-	out.BeginChild();
-	for(const auto &shipUuid : lockedIds)
-	{
-		out.Write(shipUuid.ToString());
 	}
 	out.EndChild();
 }
