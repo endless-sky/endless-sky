@@ -676,7 +676,7 @@ void AI::Step(Command &activeCommands)
 			// focus on damaging one particular ship.
 			targetTurn = (targetTurn + 1) & 31;
 			if(targetTurn == step || !target || target->IsDestroyed() || (target->IsDisabled() &&
-					(personality.Disables() || target->CanBeCarried()))
+					(personality.Disables() || (target->CanBeCarried() && !personality.IsVindictive())))
 					|| (target->IsFleeing() && personality.IsMerciful()) || !target->IsTargetable())
 			{
 				target = FindTarget(*it);
