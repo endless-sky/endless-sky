@@ -311,7 +311,7 @@ void ShipyardPanel::Sell(bool toStorage)
 	{
 		string message("Could not sell the ");
 		message += playerShip->Name();
-		message += ", as it is marked as locked.\n(Alt+click the ship icon to unlock the ship.)";
+		message += ", as it is marked as locked.\n(Alt+click the ship's icon to unlock the ship.)";
 		GetUI()->Push(new Dialog(message));
 		return;
 	}
@@ -320,7 +320,8 @@ void ShipyardPanel::Sell(bool toStorage)
 			return player.UuidLocked(ship->UUID());
 		}))
 	{
-		GetUI()->Push(new Dialog("Could not sell the selected ships, as they are all marked as locked.\n(Alt+click the ship icon to unlock the ship.)"));
+		GetUI()->Push(new Dialog("Could not sell the selected ships, as they are all marked as locked.\n"
+			"(Alt+click a ship's icon to unlock the ship.)"));
 		return;
 	}
 
