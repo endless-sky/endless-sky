@@ -1456,7 +1456,7 @@ mission "<uhai> 4: Scan Geocoris"
 			`	"You need to use at least one of our Value Detectors, the information provided by it should be sufficient, as it goes beyond a simple cargo scan. If you don't have one, you can install one here. You may want to get multiple scanners so you can scan the ship from a longer range, and faster. Please do actively scan it. Passive intel gathered on the fly will not do."`
 				goto choose
 			label agree
-			`	On the way back to your ship, Mera runs up to you. "One... last... thing!" You let her catch her breath. "We have noticed one Geocoris just entered <waypoints> as expected, but seems to have some special modifications. Please scan that one specifically. We have marked its signature for you to recognize it. We want to have a detailed scan of its cargo. Also, I've just found a captain willing to give you two of our scanners. They will be placed in your cargo hold if there is no space on your ship, but do go to the lab's outfitter to make sure they are installed them properly.`
+			`	On the way back to your ship, Mera runs up to you. "One... last... thing!" You let her catch her breath. "We have noticed one Geocoris just entered <waypoints> as expected, but seems to have some special modifications. Please scan that one specifically. We have marked its signature for you to recognize it. We want to have a detailed scan of its cargo. Also, I've just found a captain willing to give you two of our scanners. They will be placed in your cargo hold if there is no space on your ship, but do go to the lab's outfitter to make sure they are installed properly.`
 			action
 				outfit "Value Detector" 2
 				outfit "Cargo Scanner" 5

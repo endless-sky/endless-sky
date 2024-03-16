@@ -831,8 +831,8 @@ outfit "Dual Pulse Pistols"
 	plural "Dual Pulse Pistols"
 	cost 77777
 	thumbnail "outfit/dual pulse pistols"
-	"capture attack" 2.0
-	"capture defense" 1.4
+	"capture attack" 2.6
+	"capture defense" 1.6
 	"unplunderable" 1
 	description "A pair of modified heavy pulse pistols that are favored by some Unfettered and the occasional pirate captain. Dual wielding them adds more firepower during short raids against a ship's defenders. Individually, they lose their energy charge more quickly than a pulse rifle, making them a poor choice for holding a defensive position during a long siege."
 
