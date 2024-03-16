@@ -89,7 +89,7 @@ effect "stagnation beam impact"
 	"velocity scale" -.005
 
 outfit "Star Tail"
-	category "Guns"
+	category "Secondary Weapons"
 	mass 50
 	"outfit space" -50
 	"weapon capacity" -50
