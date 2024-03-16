@@ -19,8 +19,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Panel.h"
 
 #include "Point.h"
+#include "TextArea.h"
 #include "text/truncate.hpp"
-#include "text/WrappedText.h"
 
 #include <functional>
 #include <string>
@@ -107,7 +107,7 @@ private:
 
 
 protected:
-	WrappedText text;
+	std::shared_ptr<TextArea> text;
 	int height;
 
 	std::function<void(int)> intFun;
