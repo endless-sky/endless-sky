@@ -20,6 +20,9 @@ set(CMAKE_INTERPROCEDURAL_OPTIMIZATION_DEBUG FALSE)
 set(CMAKE_INTERPROCEDURAL_OPTIMIZATION_RELEASE TRUE)
 # On Linux use relative RPATH.
 set(CMAKE_BUILD_RPATH_USE_ORIGIN ON)
+# Export compile commands for ides that know what to do with it.
+set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
+
 
 # Setup vcpkg.
 if(ES_USE_VCPKG)
@@ -62,8 +65,9 @@ project("Endless Sky" VERSION 0.10.6
 	LANGUAGES CXX)
 
 # Keep the version string up to date
+include_directories(${CMAKE_BINARY_DIR})
 add_custom_target(GenerateVersionHeader ALL
-	cmake --trace -DOUTPUT_FILE="${CMAKE_BINARY_DIR}/version.h" -P "${CMAKE_SOURCE_DIR}/utils/generate_version.cmake"
+	cmake -DOUTPUT_FILE="${CMAKE_BINARY_DIR}/version.h" -P "${CMAKE_SOURCE_DIR}/utils/generate_version.cmake"
 	WORKING_DIRECTORY="${CMAKE_SOURCE_DIR}"
 )
 
