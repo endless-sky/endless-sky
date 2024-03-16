@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <cstring>
 
+#if defined(ES_GLES) || defined(_WIN32)
 namespace {
 	bool HasOpenGLExtension(const char *name)
 	{
@@ -44,6 +45,7 @@ namespace {
 #endif
 	}
 }
+#endif
 
 
 
@@ -59,11 +61,4 @@ bool OpenGL::HasAdaptiveVSyncSupport()
 #else
 	return GLX_EXT_swap_control_tear;
 #endif
-}
-
-
-
-bool OpenGL::HasSwizzleSupport()
-{
-	return HasOpenGLExtension("_texture_swizzle");
 }

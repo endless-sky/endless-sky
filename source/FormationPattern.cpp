@@ -15,7 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "FormationPattern.h"
 
-#include "Angle.h"
 #include "DataNode.h"
 
 #include <cmath>

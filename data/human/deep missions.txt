@@ -52,7 +52,8 @@ mission "Deep: Syndicate Convoy"
 		government "Merchant"
 		personality timid
 		fleet
-			fighters "civilian"
+			fighters
+				names "civilian"
 			variant
 				"Dagger"
 			variant
@@ -141,7 +142,8 @@ mission "Deep: Tarazed Convoy"
 		government "Merchant"
 		personality timid
 		fleet
-			fighters "civilian"
+			fighters
+				names "civilian"
 			variant
 				"Dagger" 2
 			variant
@@ -473,7 +475,8 @@ mission "Deep: Mystery Cubes 3: Escorts"
 		personality heroic escort vindictive
 		fleet
 			names "deep"
-			fighters "deep fighter"
+			fighters
+				names "deep fighter"
 			variant
 				"Mule"
 				"Raven" 2
@@ -490,7 +493,8 @@ mission "Deep: Mystery Cubes 3: Escorts"
 		government "Republic"
 		personality timid
 		fleet
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Combat Drone" 4
 
@@ -561,7 +565,8 @@ mission "Deep: Mystery Cubes 4"
 		personality heroic opportunistic escort entering
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier"
 				"Combat Drone" 6
@@ -581,7 +586,8 @@ mission "Deep: Mystery Cubes 4"
 		system destination
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser"
 				"Combat Drone" 4
@@ -592,7 +598,8 @@ mission "Deep: Mystery Cubes 4"
 		system destination
 		fleet
 			names "deep"
-			fighters "deep fighter"
+			fighters
+				names "deep fighter"
 			variant
 				"Aerie" 2
 				"Dagger" 4
@@ -603,7 +610,8 @@ mission "Deep: Mystery Cubes 4"
 		system Sol
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier"
 				"Cruiser" 2
@@ -2182,7 +2190,8 @@ mission "Deep: Scientist Rescue 1: Escorts"
 		personality heroic escort
 		fleet 3
 			names "deep"
-			fighters "deep fighter"
+			fighters
+				names "deep fighter"
 			variant
 				"Aerie"
 				"Dagger" 2
@@ -2222,7 +2231,8 @@ mission "Deep: Scientist Rescue 1: Reinforcements"
 		personality heroic escort
 		fleet 2
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser"
 				"Combat Drone" 4
@@ -2461,7 +2471,7 @@ mission "Stone of our Fathers 1"
 		conversation
 			`Helheim's spaceport has all the constant hustle and bustle of a boomtown. It's dirty, lively, and packed with workers. As you walk through the spaceport, an aged man in a worn and weathered roustabout jacket waves his arm toward you and approaches you.`
 			`	"You've got the look of one who knows a ship inside and out," he says. "Name's Skaldgar, ain't much for ships; earth, soil, and rock are my domain. But I do got a need to travel." He pauses as a wistful look briefly passes over his face. "I left, you see, decades ago. No goodbye. No note. Just... left. Living with others, taking care of others, hard on a man like me. I like solitude, peace, and work. But now my bones are brittle: the radiation, earth-rot as we call it, has taken hold and my time is running out. And I find, I don't want to be alone anymore."`
-			`	He stops and frowns. "Look at me, rambling like an ol' man. Ser, Captain, I'd like to pay you <payment> to take me home, to <destination>."`
+			`	He stops and frowns. "Look at me, rambling like an ol' man. Captain, I'd like to pay you <payment> to take me home, to <destination>."`
 			choice
 				`	"If you have coin, I have room."`
 				`	"I guess I can take a small detour."`
@@ -2531,7 +2541,7 @@ mission "Stone of our Fathers 3"
 	on offer
 		conversation
 			`As always, Helheim is packed to the brim with transient workers coming and going, with dreams of either getting rich or getting out. A youngish looking man in a dirty roustabout jacket waves at you and approaches.`
-			`	"Yer that Cap'n that Skaldgar always went on about, aren'tcha?" The young man attempts to imitate Skaldgar with a deep and ponderous voice, "Him that knows the currents of space like we know our stone, and the like." The man grins sheepishly, " Ol' Skaldgar always had a way with words, he did."`
+			`	"Yer that Cap'n that Skaldgar always went on about, aren'tcha?" The young man attempts to imitate Skaldgar with a deep and ponderous voice, "Him that knows the currents of space like we know our stone, and the like." The man grins sheepishly, "Ol' Skaldgar always had a way with words, he did."`
 			`	The young man then looks down, somberly, and pulls from his pocket a small, well-worn stone with some strange markings on it and holds it out to you.`
 			`	"He wanted," he begins haltingly, "he wanted you, only you, to take this back to his folk on Norn." He swallows. "It's the old ways, it is. This, it needs to be returned, and not by a stranger." The young man then shrugs. "Best to let'cha know, I ain't have no money to pay you. This would be a favor for the ol' man."`
 			choice
@@ -2777,20 +2787,20 @@ mission "Home for Skadenga 1"
 			`There is a feeling of deep melancholy in the nearly deserted spaceport. A few plaques adorn the walls, proudly boasting of earlier times when Nifel was a place of relevance in the galactic community. Most are old images of researchers and doctors and their miracle cures.`
 			`	But now this place is a ghost-town, and you walk its empty halls unsure of why you even bothered to explore it in the first place.`
 			`	You turn a corner and find a woman standing near a booth with blown up images of ice-covered scenery. She waves at you excitedly.`
-			`	"Hello, ser! I hope you've been enjoying your stay in our state of the art spaceport! But why stay cooped up in here, when you could be out there?" She gestures toward the windows.`
+			`	"Hello, Captain! I hope you've been enjoying your stay in our state of the art spaceport! But why stay cooped up in here, when you could be out there?" She gestures toward the windows.`
 			`	"Explore the breath-taking Glaesisvellir ice-plains, or the boiling Slidr river. We'll even take you to the Hrimbrimr valley where the famous Rigellian cure was discovered!`
-			`	"So ser," she continues, "what do you say? Should I sign you up for the VIP Winter-Wonder Excursion Package for a special time limited-only offer of 2,000 credits?"`
+			`	"So Captain," she continues, "what do you say? Should I sign you up for the VIP Winter-Wonder Excursion Package for a special time limited-only offer of 2,000 credits?"`
 			choice
 				`	"Sure, I'd love to see more of this world."`
 					goto excursion
 				`	"No, uh, thanks. Freezing to death in the frigid tundra doesn't sound like a good time to me."`
-			`	The woman frowns, but nods knowingly. "I am afraid, ser, most seem to think the way you do. Still, if you ever run into anyone out there who might be interested, let them know. We could really use the work." With that, she turns and walks briskly back to her booth.`
+			`	The woman frowns, but nods knowingly. "I am afraid, Captain, most seem to think the way you do. Still, if you ever run into anyone out there who might be interested, let them know. We could really use the work." With that, she turns and walks briskly back to her booth.`
 				decline
 			label excursion
 			action
 				payment -2000
-			`	The woman's face lights up, and you get the sense that she isn't used to hearing "yes" very often. "Oh, that is wonderful ser, just wonderful!"`
-			`	She puts her finger to her ear and says, "Hjlod, we have a customer! Get the crawler warmed up!" The woman then drops her hand and waves to you. "Right this way, ser! And might I add - you will not be disappointed." She chatters excitedly about the cultural, artistic and scientific merits of the trip as she leads you toward a large pressure hatch.`
+			`	The woman's face lights up, and you get the sense that she isn't used to hearing "yes" very often. "Oh, that is wonderful Captain, just wonderful!"`
+			`	She puts her finger to her ear and says, "Hjlod, we have a customer! Get the crawler warmed up!" The woman then drops her hand and waves to you. "Right this way, Captain! And might I add - you will not be disappointed." She chatters excitedly about the cultural, artistic and scientific merits of the trip as she leads you toward a large pressure hatch.`
 			`	She hits a switch and the hatch opens; she then escorts you into a frigid maintenance dock. A loud, ugly vehicle is whirring at the center of a mess of broken and discarded parts. "There she is!" The woman is nearly shouting as she speaks over the mechanical hum. "We call her Brunhilda, the Queen of the Ice, a most.. durable vehicle, capable of giving you an authentic ice-explorer experience!"`
 			`	The Ice-Crawler, Brunhilda, looks less than dependable to you. It appears to be a run-down, mishmash of parts and jury-rigged technology forced onto a three century old Ice-Crawler, probably used by the original colonists.`
 			choice
@@ -2808,7 +2818,7 @@ mission "Home for Skadenga 1"
 				`	(Key my signature.)`
 					goto yolo
 				`	"I've changed my mind. I am going to pass on this excursion."`
-			`	The woman's face, red with the cold, looks crest-fallen, but unsurprised, like she was half expecting this outcome. "Brunhilda can be an... intimidating vehicle, it's true. But she is safe ser, I assure you. Either way, I'll take you back to the spaceport."`
+			`	The woman's face, red with the cold, looks crest-fallen, but unsurprised, like she was half expecting this outcome. "Brunhilda can be an... intimidating vehicle, it's true. But she is safe Captain, I assure you. Either way, I'll take you back to the spaceport."`
 			`	With that, you follow the woman back to the warm and nearly empty spaceport, where she leaves you to return to her forlorn booth.`
 				decline
 			label yolo
@@ -3061,7 +3071,7 @@ mission "Home for Skadenga 1"
 			label useshuttle
 			`	You hear the familiar rumble of a shuttle overhead, you climb out of your bunk to go to meet it. From there, you head straight back to the spaceport. The trip is brief, and you have little time to consider all that has transpired since you decided to take the excursion. You worry you may need therapy.`
 			label onboard
-			`	The spaceport rises into to view, and before you know it you're back safely onboard your ship.`
+			`	The spaceport rises into view, and before you know it you're back safely onboard your ship.`
 				decline
 			label doit
 			`	The Ondurdis smiles. "Thank you." She nods toward the door. "Come with me."`
@@ -3070,7 +3080,7 @@ mission "Home for Skadenga 1"
 			`	The Ondurdis turns back to you. "You must find the ninth Setstokkr, the missing pillar. It was dropped in space long ago, and we believe based on where it started it could have only found its way to one of two worlds. It either on Windblain in the Regor system, or Asgard in the Naos system." Offering you a small storage device, the Ondurdis continues, "Setstokkr have... unusual properties. This drive contains information that will allow you to track them. Go to these worlds, see if you can find the Setstokkr, and return to us with news. We are eager to know where Skade will send us."`
 			`	The sky glows and the earth rumbles as a shuttle lands not far from the village. "That shuttle will return you to the spaceport and your ship. May Skade guide you." With that The Ondurdis leaves you.`
 			choice
-				`	(Head to the shuttle)`
+				`	(Head to the shuttle.)`
 					goto shuttle
 				`	(Take a moment to investigate Goddess-Stone.)`
 			`	You walk toward the park filled with stone cairns, wooden pillars and Goddess-Stone.`
@@ -3387,8 +3397,9 @@ mission "Mani Refit"
 	on offer
 		conversation
 			`Your inbox blinks with a new message from the Transport Union:`
-			`	"The fleet is ready for its inspirational journey. Please return to Mani.`
-			`		-Jayden, Mani Administrator, Transport Union"`
+			``
+			`	The fleet is ready for its inspirational journey. Please return to Mani.`
+			`				Jayden, Mani Administrator, Transport Union`
 				accept
 
 
@@ -3403,7 +3414,7 @@ mission "Home for Skadenga 6"
 		has "Mani Refit: done"
 	on offer
 		conversation
-			`You arrive at the spaceport to see a Union Executive overseeing the final preparations of his fleet. After a moment, the last crewmembers leave his side and board their ships. He walks over to you. "The fleet is ready to launch. Your mission is to escort them to Nifel, pick up as many as they can hold from there, and drop them off on Asgard. The fleet should be able to head back to Nifel and perform the rest of the resettlement trips from there, but please, try to keep all of them in one piece."`
+			`You arrive at the spaceport to see a Union Executive overseeing the final preparations of his fleet. After a moment, the last crew members leave his side and board their ships. He walks over to you. "The fleet is ready to launch. Your mission is to escort them to Nifel, pick up as many as they can hold from there, and drop them off on Asgard. The fleet should be able to head back to Nifel and perform the rest of the resettlement trips from there, but please, try to keep all of them in one piece."`
 			choice
 				`	"Let's get this over with."`
 				`	"Don't worry, your ships are in good hands."`
@@ -3506,15 +3517,15 @@ mission "Skadenga Call 2"
 				`	"What do you want from me?"`
 				`	"Who are these people?"`
 					goto who
-			`	Hjlod glares at you. "From you? Everything. For that is what you took from us.`
+			`	Hjlod glares at you. "From you? Everything. For that is vhat you took from us.`
 			`	"I do not know vhy you did it. Vhy you brought us here. If Skade really let us down. Or if you ignored her," she growls. "But it does not matter. All that matters is that ve leave, and that is vhy ve need you."`
 				goto here
 			label who
 			`	Hjlod laughs and tears run down her cheeks. "Do you not recognize us? Our great savior? Ve are the Skadenga, and this is your handivwork."`
-			`	She look away from you and continues. "The rest are not dead, no. But they have left us. Most are happy; happy to be fed, happy to be entertained, happy to forget vho they are, happy to be Skadenga in name, but not in practice. But those here cannot accept that. Ve refuse to become them.`
+			`	She looks away from you and continues. "The rest are not dead, no. But they have left us. Most are happy; happy to be fed, happy to be entertained, happy to forget who they are, happy to be Skadenga in name, but not in practice. But those here cannot accept that. Ve refuse to become them.`
 			`	"Ve hide now. From the social workers, from the service providers, from the government. They can still find us, they know ve are here, but vhat they don't know is that ve can leave. That you can take us avay from here."`
 			label here
-			`	Hjlod takes a deep, calming breath. "I call because you are our only hope. They vill not let us leave. They vill not let us be. They will steal our souls." She points a shaky finger at you. "Take us back to Nifel. All those who are left. Take us home. Ve know the cold vill get us eventually. But better to live on a dying vorld as Skadenga than to live here as nothing."`
+			`	Hjlod takes a deep, calming breath. "I call because you are our only hope. They vill not let us leave. They vill not let us be. They vill steal our souls." She points a shaky finger at you. "Take us back to Nifel. All those who are left. Take us home. Ve know the cold vill get us eventually. But better to live on a dying vorld as Skadenga than to live here as nothing."`
 			choice
 				`	"I will help you."`
 					goto help
@@ -3525,7 +3536,7 @@ mission "Skadenga Call 2"
 				`	(Return to Hjlod and help the Skadenga.)`
 					goto Hjlod
 				`	(Find Carla.)`
-			`	You leave Hjlod and her gang of stubborn savages behind, and return to the active parts of the thrumming spaceport. Carla's contact information, as a alleged real estate agent, is easy to find, and in a few minutes you have her on call. "Captain <last>, it is a pleasure to hear from you again. What-so-ever can I help you with?" she says with believable cheerfulness.`
+			`	You leave Hjlod and her gang of stubborn savages behind, and return to the active parts of the thrumming spaceport. Carla's contact information, as an alleged real estate agent, is easy to find, and in a few minutes you have her on call. "Captain <last>, it is a pleasure to hear from you again. What-so-ever can I help you with?" she says with believable cheerfulness.`
 			`	You tell her about the Skadenga hiding in the spaceport and their plans to escape to Nifel.`
 			`	"Oh dear!" Carla says. "How terrible. Those poor, foolish simpletons would surely suffer on that terrible frozen world. How misguided of them. We are aware that some have struggled to assimilate. It's quite tragic, but we will handle things from here. Hopefully, we can convince them to integrate eventually. It really is for the best. I wish their old leader could have seen that before she died. It would have been easier for everyone.`
 			`	"As always, we appreciate your valuable contributions. I'll authorize a generous sum of credits to be transferred to your account. I need to get some approvals so it may take a couple of days to come through. Thank you, and buh-bye!"`
@@ -3534,12 +3545,12 @@ mission "Skadenga Call 2"
 			`	You return to Hjlod, who is surprised that you came back at all, and let her know that you going to help them.`
 			label help
 			`	Hearing this, the slumped and depressed dredges in the hall stir and rise from their stupor. Hurriedly, some gather items while others race off further into the dark, unused parts of the spaceport.`
-			`	"Ve have 52 people that need off this vorld right now." Hjlod hesitates a moment, and then adds, "I know how much you like money. Ve have pooled all our savings together and will pay you <payment> for this job." She grabs a ragged duffle bag and a group gather around her. "The rest vill meet us at your ship. Ve move now."`
+			`	"Ve have 52 people that need off this vorld right now." Hjlod hesitates a moment, and then adds, "I know how much you like money. Ve have pooled all our savings together and vill pay you <payment> for this job." She grabs a ragged duffle bag and a group gather around her. "The rest vill meet us at your ship. Ve move now."`
 			choice
 				`	(Follow Hjlod.)`
 			`	Once you're back in the operational spaceport, you and your group move quickly, while drawing occasional glances from curious on-lookers. A large group of disheveled Skaldenga are waiting for you when you reach your ship. "Everyone on, quickly!" Hjlod barks at her people.`
 			`	A few moments later, they are all on board. "Asdis, headcount!" Hjlod orders. As you're waiting, two more dirty and gaunt Skadenga show up. Asdis adds them to her count and then addresses Hjlod. "Ondurdis, 48 total."`
-			`	Hjlod frowns. "It's Arnson's family isn't it? I told him he was too far."`
+			`	Hjlod frowns. "It's Arnson's family isn't it? I told him he vas too far."`
 			`	A commotion boils up from a few terminals down, and you see some civil servants and local police officers heading your way. Asdis is also watching. "They could still be coming."`
 			`	"It's too late for them." Hjlod shuts the hatch. "<first>, if ever ve vere friends. Take off, now."`
 			choice
@@ -3547,7 +3558,7 @@ mission "Skadenga Call 2"
 					goto takeoff
 				`	(Power down the ship and open the hatch.)`
 			`	You turn off your ship's ignition, pop open the hatch before Hjlod can react, and jump out. Carla Von Hausen, at least two civil service workers, and a squad of police officers arrive within seconds. Carla gives you a tight smile. "Decided to do the right thing in the end? We appreciate it."`
-			`	The police officers enter your ship and start restraining and removing the the Skadenga aboard it.`
+			`	The police officers enter your ship and start restraining and removing the Skadenga aboard it.`
 			`	"As always, we appreciate your help and value our continued working relationship. Expect a payment for your aid in the next couple days, after I've gotten it approved." Carla steps back to assess the Skadenga, most of which are sullen and reserved. One, however, is screaming, kicking, and biting.`
 			`	The unruly Skadenga is dragged past you, and spit splashes against your cheek. "I'll kill you, <first>. If ever ve meet again I'll kill you. You've killed me. You've killed me." Hjlod's red and tear-stained face recedes as officers drag her away.`
 			`	"Misguided girl," Carla says sadly. "We'll take it from here. Have a wonderful day, Captain <last>."`
@@ -3734,10 +3745,11 @@ mission "Home for Skadenga 10"
 	on offer
 		conversation
 			`Your inbox blinks with a new message from Hroar on <planet>.`
-			`	"Everything is ready. Get back here.`
-			`				-Hroar`
+			``
+			`	Everything is ready. Get back here.`
+			`				Hroar`
 			`			CEO of Hardy Hroar's Haulers`
-			`			'We're an unstoppable force that has never met an immovable object!'"`
+			`			We're an unstoppable force that has never met an immovable object!`
 				accept
 
 
@@ -3997,7 +4009,7 @@ mission "Stones of Skadenga 2"
 		has "Stones of Skadenga 1: done"
 	on offer
 		dialog
-			`A group of eight Skadenga approach you. They ask if you'd be willing to take them to <destination> so that they can return their loved-one's stones to their Family-Cairns, offering <payment> for their transportation.`
+			`A group of eight Skadenga approach you. They ask if you'd be willing to take them to <stopovers> so that they can return their loved-one's stones to their Family-Cairns, offering <payment> for their transportation.`
 	on stopover
 		dialog
 			`The eight Skadenga solmenly make their way off your ship and into the icy lands of Nifel. After a few hours they return, cold, and eager to return home to Windblaine.`
@@ -4058,9 +4070,10 @@ mission "Hjlod Remembers Windblain"
 	on offer
 		dialog
 			`Your inbox hums with a new message from <planet>:`
-			`	"Dear <first>,`
+			``
+			`Dear <first>,`
 			`	I never properly thanked you for saving my life on Nifel all those years ago. If you're ever in the neighborhood, please stop by <planet>.`
-			`				Signed, Hjlod"`
+			`				Signed, Hjlod`
 	on complete
 		outfit "Tear of Skade"
 		conversation
@@ -4088,9 +4101,10 @@ mission "Hjlod Remembers Nifel"
 	on offer
 		dialog
 			`Your inbox hums with a new message from Nifel.`
-			`	"Dear <first>,`
+			``
+			`Dear <first>,`
 			`	I never properly thanked you for saving my life all those years ago. If you're ever in the neighborhood, please stop by <planet>.`
-			`				Signed, Hjlod"`
+			`				Signed, Hjlod`
 			
 	on complete
 		outfit "Tear of Skade"
@@ -4112,12 +4126,11 @@ mission "The Book of Skadenga"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	to offer
 		random < 10
-		or
-			has "event: the book"
+		has "event: the book"
 	on offer
 		conversation
 			`As you wander through the spaceport, something catches your eye at a kiosk selling gifts, trinkets, and other odds and ends.`
-			`	There's an old-style book there, bound up in a ice-blue cover, titled: "The Skadenga Saga: Against All Odds, by Hjlod Hrimnirsdottir."`
+			`	There's an old-style book there, bound up in an ice-blue cover, titled: "The Skadenga Saga: Against All Odds, by Hjlod Hrimnirsdottir."`
 			choice
 				`	(Ignore the book and move on.)`
 					goto ignore
@@ -4140,4 +4153,3 @@ mission "The Book of Skadenga"
 			label ignore
 			`	You keep walking. You already know that story.`
 				decline
-

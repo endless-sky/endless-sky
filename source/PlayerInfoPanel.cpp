@@ -91,7 +91,7 @@ namespace {
 
 	bool CompareModelName(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
 	{
-		return lhs->ModelName() < rhs->ModelName();
+		return lhs->DisplayModelName() < rhs->DisplayModelName();
 	}
 
 	bool CompareSystem(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
@@ -282,6 +282,11 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 			|| key == 'i' || command.Has(Command::INFO))
 	{
 		GetUI()->Pop(this);
+	}
+	else if(command.Has(Command::HELP))
+	{
+		if(panelState.Ships().size() > 1)
+			DoHelp("multiple ships", true);
 	}
 	else if(key == 's' || key == SDLK_RETURN || key == SDLK_KP_ENTER || (control && key == SDLK_TAB))
 	{
@@ -542,11 +547,14 @@ bool PlayerInfoPanel::Click(int x, int y, int clicks)
 	}
 	else
 	{
+		const bool sameIndex = panelState.SelectedIndex() == hoverIndex;
+		panelState.SelectOnly(hoverIndex);
 		// If not landed, clicking a ship name takes you straight to its info.
-		panelState.SetSelectedIndex(hoverIndex);
-
-		GetUI()->Pop(this);
-		GetUI()->Push(new ShipInfoPanel(player, std::move(panelState)));
+		if(!panelState.CanEdit() || sameIndex)
+		{
+			GetUI()->Pop(this);
+			GetUI()->Push(new ShipInfoPanel(player, std::move(panelState)));
+		}
 	}
 
 	return true;
@@ -608,7 +616,7 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 	// Determine the player's combat rating.
 	int combatExperience = player.Conditions().Get("combat rating");
 	int combatLevel = log(max<int64_t>(1, combatExperience));
-	const string &combatRating = GameData::Rating("combat", combatLevel);
+	string combatRating = GameData::Rating("combat", combatLevel);
 	if(!combatRating.empty())
 	{
 		table.DrawGap(10);
@@ -632,8 +640,8 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 	auto factors = player.RaidFleetFactors();
 	double attractionLevel = max(0., log2(max(factors.first, 0.)));
 	double deterrenceLevel = max(0., log2(max(factors.second, 0.)));
-	const string &attractionRating = GameData::Rating("cargo attractiveness", attractionLevel);
-	const string &deterrenceRating = GameData::Rating("armament deterrence", deterrenceLevel);
+	string attractionRating = GameData::Rating("cargo attractiveness", attractionLevel);
+	string deterrenceRating = GameData::Rating("armament deterrence", deterrenceLevel);
 	if(!attractionRating.empty() && !deterrenceRating.empty())
 	{
 		double attraction = max(0., min(1., .005 * (factors.first - factors.second - 2.)));
@@ -744,7 +752,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 
 		const Ship &ship = **sit;
 		bool isElsewhere = (ship.GetSystem() != player.GetSystem());
-		isElsewhere |= (ship.CanBeCarried() && player.GetPlanet());
+		isElsewhere |= ((ship.CanBeCarried() || ship.GetPlanet() != player.GetPlanet()) && player.GetPlanet());
 		bool isDead = ship.IsDestroyed();
 		bool isDisabled = ship.IsDisabled();
 		bool isFlagship = &ship == player.Flagship();
@@ -760,10 +768,10 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 
 		// Indent the ship name if it is a fighter or drone.
 		table.Draw(ship.CanBeCarried() ? "    " + ship.Name() : ship.Name());
-		table.Draw(ship.ModelName());
+		table.Draw(ship.DisplayModelName());
 
 		const System *system = ship.GetSystem();
-		table.Draw(system ? system->Name() : "");
+		table.Draw(system ? (player.KnowsName(*system) ? system->Name() : "???") : "");
 
 		string shields = to_string(static_cast<int>(100. * max(0., ship.Shields()))) + "%";
 		table.Draw(shields);
@@ -908,6 +916,6 @@ PlayerInfoPanel::SortableColumn::SortableColumn(
 	Layout layout,
 	InfoPanelState::ShipComparator *shipSort
 )
-: name(name), offset(offset), endX(endX), layout(layout), shipSort(shipSort)
+	: name(name), offset(offset), endX(endX), layout(layout), shipSort(shipSort)
 {
 }
