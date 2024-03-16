@@ -532,18 +532,6 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 			if(isFastForward)
 				SpriteShader::Draw(SpriteSet::Get("ui/fast forward"), Screen::TopLeft() + Point(10., 10.));
 
-			if(Preferences::Has("Show CPU / GPU load"))
-			{
-				const Color &color = *GameData::Colors().Get("bright");
-
-				float ypos = -100;
-				for (auto &s : Audio::CurrentSounds())
-				{
-					FontSet::Get(14).Draw(s, Point(100., ypos), color);
-					ypos += 16;
-				}
-			}
-
 			GameWindow::Step();
 
 			// Lock the game loop to 60 FPS.

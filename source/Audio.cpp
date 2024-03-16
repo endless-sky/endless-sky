@@ -633,23 +633,3 @@ namespace {
 		}
 	}
 }
-
-
-std::vector<std::string> Audio::CurrentSounds()
-{
-	std::map<std::string, int> counts;
-	for (auto &s: sources)
-	{
-		++counts[s.GetSound()->Name()];
-	}
-	std::vector<std::string> ret;
-	for (auto &kv : counts)
-		ret.push_back(kv.first + ((kv.second > 1) ? (" " + std::to_string(kv.second)) : "" ));
-
-	if (!endingSources.empty())
-	{
-		ret.push_back("[" + std::to_string(endingSources.size()) + "]");
-	}
-	return ret;
-}
-
