@@ -162,16 +162,17 @@ outfit "Star Tail Cell"
 	"star tail capacity" -1
 	licenses
 		"Hicemus Conflict"
-	description "A very dense gas contained in a small cell. The amounts of energy it can free are exceptional."
+	description "The star tail gun needs an extreme amount of energy that the Incipias are not able to create in a short amount of time. The star tail cell contains a very energy rich substance that is able to free this energy in a blast. One of these cells holds enough energy to fire exactly one shot."
 
 outfit "Star Tail Storage"
 	category "Ammunition"
 	cost 500
-	thumbnail "outfit/star tail cell"
+	thumbnail "outfit/star tail cell storage"
 	"mass" 10
 	"star tail capacity" 20
 	licenses
 		"Hicemus Conflict"
+	description "Because the cells are highly volatile they need a robust storage system. This radial design is able to withstand minor explosions by using a variant of a shield that can be deployed temporarily."
 	description "One layer of this easily expandable system is already shipped with the gun itself. More layers are just stacked on top."
 
 # Shields/Energy:
@@ -194,15 +195,6 @@ outfit "Liquid-Class Shield"
 	"energy generation" 6.1
 	"heat generation" 6
 	description "This more advanced shield generator burns a liquid instead of a gas. This raises the efficiency considerably but also requires some extra structures, making this outfit popular only on larger ships."
-
-outfit "Solid-Class Shield"
-	category "Systems"
-	mass 100
-	"outfit space" -120
-	"shield generation" .45
-	"energy generation" 6
-	"heat generation" 8
-	description "This shield generator is the most efficient available to the Incipias. It burns its input in stages from solid in the center to a gaseous state in the outer hull. Sadly this efficiency requires a lot of adjusting systems to stabilize the process, and therefore only the heaviest warships make use of the Solid-Class Shield."
 
 outfit "Metallic Hydrogen Cell"
 	category "Power"

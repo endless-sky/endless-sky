@@ -35,7 +35,7 @@ ship "Venta"
 		"gaslining" 1
 		"fuel capacity" 200
 	outfits
-		"Solid-Class Shield"
+		"Liquid-Class Shield"
 		"Liquid-Class Shield"
 		"Metallic Hydrogen Cell"
 		"Plasma Discharger" 2
