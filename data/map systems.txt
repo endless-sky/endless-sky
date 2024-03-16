@@ -14320,7 +14320,7 @@ system Fomalhaut
 		distance 2203.28
 		period 1950.10
 		object "Dagon Station"
-			sprite planet/station10
+			sprite planet/station19
 				scale 0.5
 			distance 204
 			period 12.003
