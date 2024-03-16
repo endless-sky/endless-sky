@@ -200,7 +200,7 @@ mission "Duel Weapons"
 		attributes "unfettered"
 	to offer
 		has "Duel Rewards: offered"
-		"unfettered challenger defeated" >= ("unfettered: pistols received" + 3)
+		"unfettered challenger defeated" >= ( "unfettered: pistols received" + 3 )
 	on offer
 		outfit "Dual Pulse Pistols" 3
 		"unfettered: pistols received" += 3
