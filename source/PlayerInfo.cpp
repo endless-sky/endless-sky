@@ -1041,7 +1041,10 @@ void PlayerInfo::SetFlagship(Ship &other)
 
 	// Make sure your ships all know who the flagship is.
 	for(const shared_ptr<Ship> &ship : ships)
-		ship->SetParent(flagship);
+	{
+		bool shouldFollowFlagship = (ship != flagship && !ship->IsParked());
+		ship->SetParent(shouldFollowFlagship ? flagship : shared_ptr<Ship>());
+	}
 
 	// Move the flagship to the beginning to the list of ships.
 	MoveFlagshipBegin(ships, flagship);
