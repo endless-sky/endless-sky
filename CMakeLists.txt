@@ -64,12 +64,21 @@ project("Endless Sky" VERSION 0.10.6
 	HOMEPAGE_URL https://endless-sky.github.io/
 	LANGUAGES CXX)
 
-# Keep the version string up to date
-include_directories(${CMAKE_BINARY_DIR})
-add_custom_target(GenerateVersionHeader ALL
-	cmake -DOUTPUT_FILE="${CMAKE_BINARY_DIR}/version.h" -P "${CMAKE_SOURCE_DIR}/utils/generate_version.cmake"
-	WORKING_DIRECTORY="${CMAKE_SOURCE_DIR}"
-)
+# Generate the version.
+# Extract the version from the credits.txt
+set(version "")
+file(STRINGS "${CMAKE_SOURCE_DIR}/credits.txt" matched)
+if(matched)
+	string(REGEX MATCH "[0-9]+\\.[0-9]+\\.[0-9]+" version ${matched})
+endif()
+
+# Append the git tag
+execute_process(COMMAND git describe --tags
+						OUTPUT_VARIABLE mobile_version
+						OUTPUT_STRIP_TRAILING_WHITESPACE)
+
+set(ENDLESS_SKY_VERSION "${version}-${mobile_version}")
+add_definitions(-DENDLESS_SKY_VERSION="${ENDLESS_SKY_VERSION}")
 
 # Find the needed library dependencies.
 find_package(SDL2 CONFIG REQUIRED)
