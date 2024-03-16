@@ -158,7 +158,7 @@ phrase "unfettered challenger defeat message"
 		`Here are your well deserved <payment>, captain. Next time I will not underestimate you`
 		`You must have had an edge! I'm in no condition to argue about giving you your payment of <payment>, however don't expect to see us again anytime soon`
 		`Here is your <payment>, captain, well earned`
-		`Whatever the case, you have earned my weapon, and my respect, captain. I have transfered <payment> for you`
+		`Whatever the case, you have earned my weapon, and my respect, captain. I have transferred <payment> for you`
 		`We will analyze the fight to make sure you have not cheated. If that is the case, you will receive the <payment> shortly. If this was a fair fight, you may have gained my respect`
 	word
 		`."`
@@ -186,8 +186,8 @@ mission "Duel Rewards"
 				`	(Draw my weapon.)`
 			`	As you start to reach for your weapon the Unfettered gets closer to you, moving fast to put one of their pistols on your neck. "I like you," she says. "Ready to face danger, welcoming death! A shame you probably will not live that long with this attitude," she says before moving back slightly.`
 			label explain
-			`	She salutes you, pistol still in their hand, before presenting both weapons to you, as if making an offering. Seeing your apparent surprise, she starts speaking about the pistols, "Fascinating design, is it not? They come from the time of the raid. Even then, some of us decided it was better to take the initiative and attack them before they can, us! They developped this much more mobile version of the pulse rifle, and made it more deadly.`
-			`	You earned the right to have mine by defeating me in a duel. Of course we won't bother you every time you win one, but you'll be getting the pistols all the same, 3 by 3." She almost forcibly puts the pistols in your hand, and goes back to her ship, probably to supervise the repairs.`
+			`	She salutes you, pistol still in her hand, before presenting both weapons to you, as if making an offering. Seeing your apparent surprise, she starts speaking about the pistols, "Fascinating design, is it not? They come from the time of the Korath raids. Even then, some of us decided it was better to take the initiative and attack them before they can attack us! They developed this much more mobile version of the pulse rifle, and made it more deadly.`
+			`	You earned the right to have mine by defeating me in a duel. Of course we won't bother you every time you win one, but you'll be getting the pistols all the same, in sets of 3 per day at most." She almost forcibly puts the pistols in your hand, and goes back to her ship, probably to supervise the repairs.`
 			action
 				outfit "Dual Pulse Pistols"
 
