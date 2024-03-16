@@ -37,6 +37,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "StartConditionsPanel.h"
 #include "System.h"
 #include "UI.h"
+#include <version.h>
 
 #ifdef __ANDROID__
 #include "AndroidFile.h"
