@@ -21,22 +21,6 @@ set(CMAKE_INTERPROCEDURAL_OPTIMIZATION_RELEASE TRUE)
 # On Linux use relative RPATH.
 set(CMAKE_BUILD_RPATH_USE_ORIGIN ON)
 
-# Generate a version string
-# Extract the version from the credits.txt
-set(version "")
-file(STRINGS "${CMAKE_SOURCE_DIR}/credits.txt" matched)
-if(matched)
-	string(REGEX MATCH "[0-9]+\\.[0-9]+\\.[0-9]+" version ${matched})
-endif()
-
-# Append the git tag
-execute_process(COMMAND git describe --tags
-						OUTPUT_VARIABLE mobile_version
-						OUTPUT_STRIP_TRAILING_WHITESPACE)
-
-set(ENDLESS_SKY_VERSION "${version}-${mobile_version}")
-add_definitions(-DENDLESS_SKY_VERSION="${ENDLESS_SKY_VERSION}")
-
 # Setup vcpkg.
 if(ES_USE_VCPKG)
 	set(CMAKE_TOOLCHAIN_FILE "${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake"
@@ -76,6 +60,12 @@ project("Endless Sky" VERSION 0.10.6
 	DESCRIPTION "Space exploration, trading, and combat game."
 	HOMEPAGE_URL https://endless-sky.github.io/
 	LANGUAGES CXX)
+
+# Keep the version string up to date
+add_custom_target(GenerateVersionHeader ALL
+	cmake --trace -DOUTPUT_FILE="${CMAKE_BINARY_DIR}/version.h" -P "${CMAKE_SOURCE_DIR}/utils/generate_version.cmake"
+	WORKING_DIRECTORY="${CMAKE_SOURCE_DIR}"
+)
 
 # Find the needed library dependencies.
 find_package(SDL2 CONFIG REQUIRED)

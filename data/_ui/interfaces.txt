@@ -1900,84 +1900,136 @@ interface "hail panel"
 
 
 interface "main buttons" bottom right
-	sprite "ui/zoom"
-		from 0 -40 to -90 -90
-	active if "!max zoom"
-	button + "_+"
-		from -10 -40 to -40 -90
-		size 18
-	active if "!min zoom"
-	button - "_-"
-		from -50 -40 to -80 -90
-		size 18
+	active
+	sprite "ui/round_button_bg"
+		center -40 -40
+		dimensions 60 60
+	sprite "ui/icon_map"
+		center -40 -40
+		dimensions 50 50
+	button "View star map"
+		center -40 -40
+		radius 25
 
 	active
-	sprite "ui/dialog cancel"
-		from -90 -50 to 0 0
-	button "View star map" "_Map"
-		from -80 -40 to -10 -10
-
-	active
-	sprite "ui/dialog cancel"
-		from -170 -50 to -80 0
-	button "Initiate hyperspace jump" "_Jump"
-		from -160 -40 to -90 -10
+	sprite "ui/round_button_bg"
+		center -110 -40
+		dimensions 60 60
+	sprite "ui/icon_jump"
+		center -110 -40
+		dimensions 50 50
+	button "Initiate hyperspace jump"
+		center -110 -40
+		radius 25
 
 	visible if "can deploy"
-	sprite "ui/dialog cancel"
-		from -170 -80 to -80 -130
-	button "Deploy / recall fighters" "_Deploy"
-		from -160 -70 to -90 -140
+	sprite "ui/round_button_bg"
+		center -180 -40
+		dimensions 60 60
+	sprite "ui/icon_deploy"
+		center -180 -40
+		dimensions 50 50
+	button "Deploy / recall fighters"
+		center -180 -40
+		radius 25
 
 	visible if "can recall"
-	sprite "ui/dialog cancel"
-		from -170 -80 to -80 -130
-	button "Deploy / recall fighters" "_Recall"
-		from -160 -70 to -90 -140
+	sprite "ui/round_button_bg"
+		center -180 -40
+		dimensions 60 60
+	sprite "ui/icon_recall"
+		center -180 -40
+		dimensions 50 50
+	button "Deploy / recall fighters"
+		center -180 -40
+		radius 25
 
 	visible if "has secondary"
 	active if "secondary selected"
-	sprite "ui/ammo unselected"
-		from -145 -50 to -85 -80
-	button "Fire secondary weapon" "Fire"
-		from -145 -50 to -85 -80
+	sprite "ui/round_button_bg"
+		center -155 -110
+		dimensions 60 60
+	sprite "ui/icon_secondary"
+		center -155 -110
+		dimensions 50 50
+	button "Fire secondary weapon"
+		center -155 -110
+		radius 25
 	active
 	box "ammo icon"
-		from -164 -50 to -134 -80
+		center -185 -140
+		dimensions 30 30
 	button "Select secondary weapon"
-		from -164 -50 to -134 -80
+		center -185 -140
+		dimensions 30 30
 
+	visible
+	sprite "ui/round_button_bg"
+		center -75 -110
+		dimensions 80 80
+	sprite "ui/icon_fire"
+		center -75 -110
+		dimensions 64 64
+	button "Fire primary weapon"
+		center -75 -110
+		radius 40
 	visible if "can attack"
-	sprite "ui/dialog cancel"
-		from -250 -40 to -160 -90
-	button "Fire primary weapon" "Attack"
-		from -240 -40 to -170 -90
-		# also, order fleet to fire as well
-		command "Fleet: Fight my target"
-
-	visible if "targeting asteroid"
-	sprite "ui/dialog cancel"
-		from -250 -40 to -160 -90
-	button "Fire primary weapon" "Mine"
-		from -240 -40 to -170 -90
+	button "Fleet: Fight my target"
+		center -75 -110
+		radius 40
 
 	visible if "can hail"
-	sprite "ui/dialog cancel"
-		from -250 -50 to -160 0
-	button "Talk to selected ship" "_Talk"
-		from -240 -40 to -170 -10
-
-	visible if "can cloak"
-	sprite "ui/dialog cancel"
-		from -330 -50 to -240 0
-	button "Toggle cloaking device" "_Cloak"
-		from -320 -40 to -250 -10
+	sprite "ui/round_button_bg"
+		center -240 -30
+		dimensions 50 50
+	sprite "ui/icon_talk"
+		center -240 -30
+		dimensions 44 44
+	button "Talk to selected ship"
+		center -240 -30
+		radius 22
 
 	visible if "can scan"
-	sprite "ui/dialog cancel"
-		from -330 -50 to -240 0
-	button "Scan selected ship" "_Scan"
-		from -320 -40 to -250 -10
+	sprite "ui/round_button_bg"
+		center -240 -86
+		dimensions 50 50
+	sprite "ui/icon_scan"
+		center -240 -86
+		dimensions 40 40
+	button "Scan selected ship"
+		center -240 -86
+		radius 22
+
+
+	visible if "can cloak"
+	sprite "ui/round_button_bg"
+		center -296 -86
+		dimensions 50 50
+	sprite "ui/icon_cloak"
+		center -296 -86
+		dimensions 40 40
+	button "Toggle cloaking device"
+		center -296 -86
+		radius 22
+
+	visible if "has fleet"
+	sprite "ui/round_button_bg"
+		center -296 -30
+		dimensions 50 50
+	sprite "ui/icon_fleet"
+		center -296 -30
+		dimensions 40 40
+	radial "ui/icon_fleet"
+		center -296 -30
+		radius 22
+		selection_angles -1.5 1.5
+		selection_radius 150
+
+		"Fleet: Fight my target"
+		"Fleet: Gather around me"
+		"Fleet: Hold position"
+		"Fleet: Harvest flotsam"
+		"Fleet: Toggle ammo usage"
 
 	# Overlayed on target display, but the hud doesn't have a panel, so to
 	# handle input, we put it here instead.
@@ -2009,8 +2061,3 @@ interface "main buttons" bottom right
 	box "onscreen joystick"
 		center 128 -128
 		dimensions 192 192
-	# This button doesn't do anything. It is here to swallow any clicks on the
-	# onscreen joystick, in case some of these controls overlap
-	button ^ ""
-		center 128 -128
-		radius 96

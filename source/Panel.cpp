@@ -119,6 +119,16 @@ void Panel::AddZone(const Rectangle &rect, const function<void()> &fun)
 
 
 
+// Add a clickable zone to the panel.
+void Panel::AddZone(const Rectangle &rect, const function<void(const Event&)> &fun)
+{
+	// The most recently added zone will typically correspond to what was drawn
+	// most recently, so it should be on top.
+	zones.emplace_front(rect, fun);
+}
+
+
+
 void Panel::AddZone(const Rectangle &rect, SDL_Keycode key)
 {
 	AddZone(rect, [this, key](){ this->KeyDown(key, 0, Command(), true); });
@@ -143,6 +153,16 @@ void Panel::AddZone(const Point &center, float radius, const function<void()> &f
 
 
 
+// Add a clickable zone to the panel.
+void Panel::AddZone(const Point &center, float radius, const function<void(const Event &)> &fun)
+{
+	// The most recently added zone will typically correspond to what was drawn
+	// most recently, so it should be on top.
+	zones.emplace_front(center, radius, fun);
+}
+
+
+
 void Panel::AddZone(const Point &center, float radius, SDL_Keycode key)
 {
 	AddZone(center, radius, [this, key](){ this->KeyDown(key, 0, Command(), true); });
@@ -159,7 +179,7 @@ void Panel::AddZone(const Point &center, float radius, Command command)
 
 // Check if a click at the given coordinates triggers a clickable zone. If
 // so, apply that zone's action and return true.
-bool Panel::ZoneMouseDown(const Point &point)
+bool Panel::ZoneMouseDown(const Point &point, int id)
 {
 	for(const Zone &zone : zones)
 	{
@@ -169,8 +189,7 @@ bool Panel::ZoneMouseDown(const Point &point)
 			// click has broken it out of that mode, so it doesn't interpret a
 			// button press and a text character entered.
 			EndEditing();
-			zoneMousePos = point;
-			zone.MouseDown();
+			zone.MouseDown(point, id);
 			return true;
 		}
 	}
@@ -179,16 +198,34 @@ bool Panel::ZoneMouseDown(const Point &point)
 
 
 
-// Check if a click at the given coordinates is in a clickable zone. If
-// so, return true
-bool Panel::ZoneMouseUp(const Point &point)
+// Check if a click at the given coordinates triggers a clickable zone. If
+// so, apply that zone's action and return true.
+bool Panel::ZoneFingerDown(const Point &point, int id)
 {
 	for(const Zone &zone : zones)
 	{
 		if(zone.Contains(point))
 		{
+			// If the panel is in editing mode, make sure it knows that a mouse
+			// click has broken it out of that mode, so it doesn't interpret a
+			// button press and a text character entered.
+			EndEditing();
+			zone.FingerDown(point, id);
 			return true;
 		}
+	}
+	return false;
+}
+
+
+
+// Check if a click at the given coordinates are on a zone.
+bool Panel::HasZone(const Point &point)
+{
+	for(const Zone &zone : zones)
+	{
+		if(zone.Contains(point))
+			return true;
 	}
 	return false;
 }

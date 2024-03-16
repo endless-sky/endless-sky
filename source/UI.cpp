@@ -76,7 +76,7 @@ bool UI::Handle(const SDL_Event &event)
 			int y = Screen::Top() + event.button.y * 100 / Screen::Zoom();
 			if(event.button.button == 1)
 			{
-				handled = (*it)->ZoneMouseDown(Point(x, y));
+				handled = (*it)->ZoneMouseDown(Point(x, y), event.button.which);
 				if(!handled)
 					handled = (*it)->Click(x, y, event.button.clicks);
 			}
@@ -87,7 +87,7 @@ bool UI::Handle(const SDL_Event &event)
 		{
 			int x = Screen::Left() + event.button.x * 100 / Screen::Zoom();
 			int y = Screen::Top() + event.button.y * 100 / Screen::Zoom();
-			handled = (*it)->ZoneMouseUp(Point(x, y));
+			handled = (*it)->HasZone(Point(x, y));
 			if(!handled)
 				handled = (*it)->Release(x, y);
 		}
@@ -107,7 +107,7 @@ bool UI::Handle(const SDL_Event &event)
 			//   3. Clicks (fallback to mouse click)
 			if(!handled)
 			{
-				if((handled = (*it)->ZoneMouseDown(Point(x, y))))
+				if((handled = (*it)->ZoneFingerDown(Point(x, y), event.tfinger.fingerId)))
 					zoneFingerId = event.tfinger.fingerId;
 			}
 			if(!handled)
@@ -152,7 +152,7 @@ bool UI::Handle(const SDL_Event &event)
 			//   3. Clicks (fallback to mouse click)
 			if(!handled && zoneFingerId == event.tfinger.fingerId)
 			{
-				handled = (*it)->ZoneMouseUp(Point(x, y));
+				handled = (*it)->HasZone(Point(x, y));
 				zoneFingerId = -1;
 			}
 			if(!handled)
@@ -615,7 +615,7 @@ bool UI::DefaultControllerButtonDown(SDL_GameControllerButton button)
 			if(zone->Center().X() == GamepadCursor::Position().X() &&
 				zone->Center().Y() == GamepadCursor::Position().Y())
 			{
-				zone->MouseDown();
+				zone->ButtonDown(static_cast<int>(button));
 				return true;
 			}
 		}

@@ -300,7 +300,7 @@ void Files::Init(const char * const *argv)
 		SDL_Log("SDL_AndroidGetExternalStoragePath() == %s", SDL_AndroidGetExternalStoragePath());
 
 		// Use the external path if its available
-		if (SDL_AndroidGetExternalStorageState() & SDL_ANDROID_EXTERNAL_STORAGE_WRITE != 0)
+		if ((SDL_AndroidGetExternalStorageState() & SDL_ANDROID_EXTERNAL_STORAGE_WRITE) != 0)
 		{
 			const char* path = SDL_AndroidGetExternalStoragePath();
 			std::string old_path = config;

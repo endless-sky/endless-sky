@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Angle.h"
 #include "Command.h"
 #include "DataNode.h"
+#include "RadialSelectionPanel.h"
 #include "text/DisplayText.h"
 #include "FillShader.h"
 #include "text/Font.h"
@@ -146,6 +147,8 @@ void Interface::Load(const DataNode &node)
 				elements.push_back(new LineElement(child, anchor));
 			else if(child.Token(0) == "uirect")
 				elements.push_back(new UiRectElement(child, anchor));
+			else if(child.Token(0) == "radial")
+				elements.push_back(new RadialSelectionElement(child, anchor));
 			else
 			{
 				child.PrintTrace("Skipping unrecognized element:");
@@ -913,4 +916,93 @@ void Interface::UiRectElement::Draw(const Rectangle &rect, const Information &in
 	if(!from.Get() && !to.Get())
 		return;
 	UiRectShader::Fill(rect.Center(), rect.Dimensions(), *color);
+}
+
+
+
+Interface::RadialSelectionElement::RadialSelectionElement(const DataNode &node, const Point &globalAnchor)
+{
+	radial_selection = std::make_shared<RadialSelectionPanel>();
+
+	// This function will call ParseLine() for any line it does not recognize.
+	Load(node, globalAnchor);
+}
+
+
+
+Interface::RadialSelectionElement::~RadialSelectionElement()
+{
+	// Stub, so that the shared_ptr destructor is here.
+}
+
+
+
+// Parse the given data line: one that is not recognized by Element
+// itself. This returns false if it does not recognize the line, either.
+bool Interface::RadialSelectionElement::ParseLine(const DataNode &node)
+{
+	if(node.Token(0) == "selection_angles" && node.Size() >= 3)
+	{
+		radial_selection->SetStartAngle(node.Value(1));
+		radial_selection->SetStopAngle(node.Value(2));
+	}
+	else if(node.Token(0) == "selection_radius" && node.Size() >= 2)
+	{
+		radial_selection->SetRadius(node.Value(1));
+	}
+	else
+	{
+		Command cmd = Command::Get(node.Token(0));
+		if (cmd == Command::NONE)
+			return false;
+
+		// Optional second argument, override the icon.
+		if (node.Size() >= 2)
+		{
+			// Optional third argument. Description.
+			std::string description = cmd.Description();
+			if (node.Size() >= 3)
+				description = node.Token(2);
+			radial_selection->AddOption(
+				node.Token(1),
+				description,
+				[cmd]() { Command::InjectOnce(cmd, true); }
+			);
+		}
+		else
+			radial_selection->AddOption(cmd);
+	}
+
+	return true;
+}
+
+
+
+void Interface::RadialSelectionElement::Place(const Rectangle &bounds, Panel *panel) const
+{
+	if(!panel)
+		return;
+
+	auto OnTrigger = [=](const Panel::Event& e) {
+		switch (e.type)
+		{
+		case Panel::Event::MOUSE:
+			radial_selection->ReleaseWithMouseUp(e.pos, e.id);
+			break;
+		case Panel::Event::TOUCH:
+			radial_selection->ReleaseWithFingerUp(e.pos, e.id);
+			break;
+		case Panel::Event::BUTTON:
+			radial_selection->ReleaseWithButtonUp(static_cast<SDL_GameControllerButton>(e.id));
+			break;
+		case Panel::Event::AXIS:
+			radial_selection->ReleaseWithAxisZero(static_cast<SDL_GameControllerAxis>(e.id));
+			break;
+		}
+		panel->GetUI()->Push(radial_selection);
+	};
+	if(radius)
+		panel->AddZone(bounds.Center(), radius, OnTrigger);
+	else
+		panel->AddZone(bounds, OnTrigger);
 }

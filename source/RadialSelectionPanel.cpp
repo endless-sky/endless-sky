@@ -76,6 +76,7 @@ void RadialSelectionPanel::ReleaseWithMouseUp(const Point& position, int button)
 	m_position = position;
 	m_mouse_pos = position;
 	m_triggered_mouse_button = button;
+	MoveCursor(position);
 }
 
 
@@ -84,6 +85,7 @@ void RadialSelectionPanel::ReleaseWithFingerUp(const Point& position, int fid)
 {
 	m_position = position;
 	m_triggered_finger_id = fid;
+	MoveCursor(position);
 }
 
 
@@ -92,6 +94,7 @@ void RadialSelectionPanel::ReleaseWithButtonUp(SDL_GameControllerButton button)
 {
 	// position defaults to the center of the screen (0, 0)
 	m_triggered_button = button;
+	MoveCursor({0, 0});
 }
 
 
@@ -100,6 +103,7 @@ void RadialSelectionPanel::ReleaseWithAxisZero(SDL_GameControllerAxis axis)
 {
 	// position defaults to the center of the screen (0, 0)
 	m_triggered_axis = axis;
+	MoveCursor({0, 0});
 }
 
 

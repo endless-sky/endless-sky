@@ -20,9 +20,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Command.h"
 #include "Point.h"
 #include "Rectangle.h"
+#include "pi.h"
 #include "text/truncate.hpp"
 
 #include <map>
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -30,6 +32,7 @@ class DataNode;
 class Information;
 class Panel;
 class Sprite;
+class RadialSelectionPanel;
 
 
 
@@ -271,6 +274,23 @@ private:
 		const Color *color = nullptr;
 	};
 
+	// This class handles "radial" elements
+	class RadialSelectionElement : public Element {
+	public:
+		RadialSelectionElement(const DataNode &node, const Point &globalAnchor);
+		~RadialSelectionElement();
+
+	protected:
+		// Parse the given data line: one that is not recognized by Element
+		// itself. This returns false if it does not recognize the line, either.
+		virtual bool ParseLine(const DataNode &node) override;
+		// Add any click handlers needed for this element. This will only be
+		// called if the element is visible and active.
+		virtual void Place(const Rectangle &bounds, Panel *panel) const override;
+
+	private:
+		std::shared_ptr<RadialSelectionPanel> radial_selection;
+	};
 
 private:
 	std::vector<Element *> elements;

@@ -44,6 +44,13 @@ public:
 
 
 public:
+	struct Event
+	{
+		Point pos;
+		int id;
+		enum {MOUSE, TOUCH, BUTTON, AXIS} type;
+	};
+
 	Panel() noexcept;
 
 	// Make the destructor virtual just in case any derived class needs it.
@@ -68,17 +75,18 @@ public:
 	void ClearZones();
 	// Add a clickable zone to the panel.
 	void AddZone(const Rectangle &rect, const std::function<void()> &fun);
+	void AddZone(const Rectangle &rect, const std::function<void(const Event &)> &fun);
 	void AddZone(const Rectangle &rect, SDL_Keycode key);
 	void AddZone(const Rectangle &rect, Command command);
 	void AddZone(const Point& pos, float radius, const std::function<void()> &fun);
+	void AddZone(const Point& pos, float radius, const std::function<void(const Event &)> &fun);
 	void AddZone(const Point& pos, float radius, SDL_Keycode key);
 	void AddZone(const Point& pos, float radius, Command command);
 	// Check if a click at the given coordinates triggers a clickable zone. If
 	// so, forward the event and return true.
-	bool ZoneMouseDown(const Point &point);
-	// Check if a click at the given coordinates is within a clicakble zone. If
-	// so, forward the event and return true.
-	bool ZoneMouseUp(const Point &point);
+	bool ZoneMouseDown(const Point &point, int id);
+	bool ZoneFingerDown(const Point &point, int id);
+	bool HasZone(const Point &point);
 
 	// Is fast-forward allowed to be on when this panel is on top of the GUI stack?
 	virtual bool AllowsFastForward() const noexcept;
@@ -86,8 +94,6 @@ public:
 	// Return UI associated with this panel
 	UI *GetUI() const noexcept;
 
-	// Return the mouse position for the last zone click
-	const Point& ZoneMousePos() const { return zoneMousePos; }
 
 protected:
 	// Only override the ones you need; the default action is to return false.
@@ -145,6 +151,16 @@ private:
 			fun_down(fun_down),
 			radius(radius)
 		{}
+		Zone(const Rectangle &rect, const std::function<void(const Event&)> &fun):
+			Rectangle(rect),
+			fun_down_event(fun),
+			radius(0)
+		{}
+		Zone(const Point &pos, float radius, const std::function<void(const Event&)> &fun):
+			Rectangle(pos, Point()),
+			fun_down_event(fun),
+			radius(radius)
+		{}
 		Zone(const Rectangle &rect, Command command):
 			Rectangle(rect),
 			command(command),
@@ -160,7 +176,46 @@ private:
 			fun_down = [command]() { Command::InjectOnce(command); };
 		}
 
-		void MouseDown() const { fun_down(); }
+		void MouseDown(const Point& pos, int id) const
+		{
+			if (fun_down_event)
+			{
+				Event e{pos, id, Event::MOUSE};
+				fun_down_event(e);
+			}
+			else
+				fun_down();
+		}
+		void FingerDown(const Point& pos, int id) const
+		{
+			if (fun_down_event)
+			{
+				Event e{pos, id, Event::TOUCH};
+				fun_down_event(e);
+			}
+			else
+				fun_down();
+		}
+		void ButtonDown(int id) const
+		{
+			if (fun_down_event)
+			{
+				Event e{Center(), id, Event::BUTTON};
+				fun_down_event(e);
+			}
+			else
+				fun_down();
+		}
+		void AxisDown(int id) const
+		{
+			if (fun_down_event)
+			{
+				Event e{Center(), id, Event::AXIS};
+				fun_down_event(e);
+			}
+			else
+				fun_down();
+		}
 
 		bool Contains(const Point& p) const
 		{
@@ -174,6 +229,7 @@ private:
 
 	private:
 		std::function<void()> fun_down;
+		std::function<void(const Event&)> fun_down_event;
 		Command command;
 		float radius = 0;
 	};
@@ -191,8 +247,6 @@ private:
 	bool isInterruptible = true;
 
 	std::list<Zone> zones;
-
-	Point zoneMousePos;
 
 	friend class UI;
 };

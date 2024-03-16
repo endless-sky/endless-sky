@@ -147,15 +147,15 @@ void Dropdown::Draw(Panel* parent)
 	}
 
 	if(enabled)
-		parent->AddZone(position, [this, parent](){ DoDropdown(parent); });
+		parent->AddZone(position, [this, parent](const Panel::Event &e){ DoDropdown(parent, e.pos); });
 }
 
 
 
-void Dropdown::DoDropdown(Panel* parent)
+void Dropdown::DoDropdown(Panel* parent, const Point &pos)
 {
 	DroppedPanel *p = new DroppedPanel(this);
-	p->SetMousePos(parent->ZoneMousePos());
+	p->SetMousePos(pos);
 	parent->GetUI()->Push(p);
 }
 

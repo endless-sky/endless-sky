@@ -88,7 +88,7 @@ private:
 	Point m_labelPos;
 
 	// this control is meant to be triggered using a button press. We need to
-	// track which button it is, so that we can remove our selves on the button
+	// track which button it is, so that we can remove ourselves on the button
 	// release.
 	SDL_GameControllerAxis m_triggered_axis = SDL_CONTROLLER_AXIS_INVALID;
 	SDL_GameControllerButton m_triggered_button = SDL_CONTROLLER_BUTTON_INVALID;

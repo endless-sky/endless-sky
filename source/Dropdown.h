@@ -57,7 +57,7 @@ public:
 	void SetCallback(ChangedCallback cb) { changed_callback = cb; }
 
 protected:
-	void DoDropdown(Panel* parent);
+	void DoDropdown(Panel* parent, const Point& pos);
 
 private:
 	int IdxFromPoint(int x, int y) const;

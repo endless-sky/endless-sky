@@ -198,30 +198,33 @@ void MainPanel::Draw()
 
 			bool hasFighters = false;
 			bool hasReservedFighters = false;
+			bool hasFleet = false;
 			for (auto &ship: player.Ships())
 			{
-				if (ship->CanBeCarried() && !ship->IsParked() && !ship->IsDestroyed())
+				if (!ship->IsParked() && !ship->IsDestroyed())
 				{
-					hasFighters = true;
-
-					if (!(ship->HasDeployOrder()))
+					hasFleet = true;
+					if (ship->CanBeCarried() )
 					{
-						hasReservedFighters = true;
-						break; // found the reserve, no need to look further
+						hasFighters = true;
+
+						if (!(ship->HasDeployOrder()))
+						{
+							hasReservedFighters = true;
+							break; // found the reserve, no need to look further
+						}
 					}
 				}
 			}
 			if (hasFighters)
 			{
 				if (hasReservedFighters)
-				{
 					info.SetCondition("can deploy");
-				}
 				else
-				{
 					info.SetCondition("can recall");
-				}
 			}
+			if (hasFleet)
+				info.SetCondition("has fleet");
 
 
 			auto target = player.Flagship()->GetTargetShip();
