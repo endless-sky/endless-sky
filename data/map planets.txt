@@ -597,8 +597,8 @@ planet Cassandra
 	attributes paradise uninhabited
 	landscape land/mars4
 	description `In the late 2300s, Cassandra was the subject of one of the most ambitious terraforming projects performed by humanity until then; an attempt to rapidly modify its biosphere and jumpstart the process of making the planet more than perfect for human habitation.`
-	description `	However, it was eventually realized after a series of fatal missteps that the project was far too difficult for the technology available then. An ecological collapse soon followed: much of Cassandra's wildlife went extinct, and its forests and oceans soon shriveled up into deserts and salt flats. The project was abandoned within a generation.`
-	description `	While it taught valuable lessons to the studies of terraforming and planetary engineering then, Cassandra has largely been forgotten by humanity, overshadowed by the soon to be coming Turf Wars.`
+	description `The project never came to be. For an as-yet-unexplained reason, some collapse or chain of destruction occured during the terraforming project that made Cassandra uninhabitable, and ever since Cassandra has been discreetly left out of the public record by the terraforming industry.`
+	description `	This appeared to have been an ocean-covered planet when the terraforming project was initiated; almost everywhere the crust glistens with salt, though it occasionally rises steeply up into deserted, pale plains of cold soil where the surface must have once been.`
 	"required reputation" -1000
 
 planet "Ceaseless Toil"
