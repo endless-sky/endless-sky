@@ -30,9 +30,6 @@ namespace {
 	condition_variable asyncCondition;
 	bool shouldQuit = false;
 
-	// The maximum amount of sync tasks to execute in one go.
-	constexpr int MAX_SYNC_TASKS = 100;
-
 	// Worker threads for executing tasks.
 	struct WorkerThreads {
 		WorkerThreads() noexcept
@@ -92,7 +89,7 @@ std::shared_future<void> TaskQueue::Run(function<void()> asyncTask, function<voi
 
 
 // Process any tasks to be scheduled to be executed on the main thread.
-void TaskQueue::ProcessTasks()
+void TaskQueue::ProcessSyncTasks()
 {
 	unique_lock<mutex> lock(syncMutex);
 	for(int i = 0; !syncTasks.empty() && i < MAX_SYNC_TASKS; ++i)
@@ -118,6 +115,8 @@ bool TaskQueue::IsDone() const
 		if(!futures.empty())
 			return false;
 	}
+
+	lock_guard lock(syncMutex);
 	return syncTasks.empty();
 }
 
@@ -128,7 +127,7 @@ void TaskQueue::Wait()
 {
 	// Process tasks while any task is still being executed.
 	while(!IsDone())
-		ProcessTasks();
+		ProcessSyncTasks();
 }
 
 
@@ -154,23 +153,6 @@ void TaskQueue::ThreadLoop() noexcept
 
 			// Unlock the mutex so other threads can access the queue.
 			lock.unlock();
-
-			if(task.sync)
-			{
-				std::size_t size;
-				{
-					unique_lock<mutex> syncLock(task.queue->syncMutex);
-					size = task.queue->syncTasks.size();
-				}
-				// If the queue's sync task is full, push this task back into the queue
-				// to help reduce load on the main thread.
-				if(size > MAX_SYNC_TASKS)
-				{
-					lock.lock();
-					tasks.push(std::move(task));
-					continue;
-				}
-			}
 
 			// Execute the task.
 			try {

@@ -51,7 +51,7 @@ void GameLoadingPanel::Step()
 {
 	progress = static_cast<int>(GameData::GetProgress() * MAX_TICKS);
 
-	queue.ProcessTasks();
+	queue.ProcessSyncTasks();
 	if(GameData::IsLoaded())
 	{
 		// Now that we have finished loading all the basic sprites and sounds, we can look for invalid file paths,

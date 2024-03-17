@@ -68,6 +68,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <atomic>
 #include <iostream>
+#include <queue>
 #include <utility>
 #include <vector>
 
@@ -106,16 +107,44 @@ namespace {
 	int spriteLoadingProgress = 0;
 	std::atomic<int> totalSprites = 0;
 
-	// Loads a sprite with total progress tracking.
+	// List of image sets that are waiting to be uploaded to the GPU.
+	mutex imageQueueMutex;
+	queue<shared_ptr<ImageSet>> imageQueue;
+
+	// Loads a sprite and queues it for upload to the GPU.
 	void LoadSprite(TaskQueue &queue, const shared_ptr<ImageSet> &image)
 	{
 		queue.Run([image] { image->Load(); },
-			[image]
+			[image] { image->Upload(SpriteSet::Modify(image->Name()), !preventSpriteUpload); });
+	}
+
+	void LoadSpriteQueued(TaskQueue &queue, const shared_ptr<ImageSet> &image);
+	// Loads a sprite from the image queue, recursively.
+	void LoadSpriteQueued(TaskQueue &queue)
+	{
+		if(imageQueue.empty())
+			return;
+
+		// Start loading the next image in the list.
+		// This is done to save memory on startup.
+		LoadSpriteQueued(queue, imageQueue.front());
+		imageQueue.pop();
+	}
+
+	// Loads a sprite from the given image, with progress tracking.
+	// Recursively loads the next image in the queue, if any.
+	void LoadSpriteQueued(TaskQueue &queue, const shared_ptr<ImageSet> &image)
+	{
+		queue.Run([image] { image->Load(); },
+			[image, &queue]
 			{
 				image->Upload(SpriteSet::Modify(image->Name()), !preventSpriteUpload);
 				++spriteLoadingProgress;
+
+				// Start loading the next image in the queue, if any.
+				lock_guard lock(imageQueueMutex);
+				LoadSpriteQueued(queue);
 			});
-		++totalSprites;
 	}
 
 	void LoadPlugin(TaskQueue &queue, const string &path)
@@ -167,7 +196,7 @@ shared_future<void> GameData::BeginLoad(TaskQueue &queue, bool onlyLoadData, boo
 			map<string, shared_ptr<ImageSet>> images = FindImages();
 
 			// From the name, strip out any frame number, plus the extension.
-			for(const auto &it : images)
+			for(auto &it : images)
 			{
 				// This should never happen, but just in case:
 				if(!it.second)
@@ -177,9 +206,21 @@ shared_future<void> GameData::BeginLoad(TaskQueue &queue, bool onlyLoadData, boo
 				it.second->ValidateFrames();
 				// For landscapes, remember all the source files but don't load them yet.
 				if(ImageSet::IsDeferred(it.first))
-					deferred[SpriteSet::Get(it.first)] = it.second;
+					deferred[SpriteSet::Get(it.first)] = std::move(it.second);
 				else
-					LoadSprite(queue, it.second);
+				{
+					lock_guard lock(imageQueueMutex);
+					imageQueue.push(std::move(std::move(it.second)));
+					++totalSprites;
+				}
+			}
+
+			// Launch the tasks to actually load the images, making sure not to exceed the amount
+			// of tasks the main thread can handle in a single frame to limit peak memory usage.
+			{
+				lock_guard lock(imageQueueMutex);
+				for(int i = 0; i < TaskQueue::MAX_SYNC_TASKS; ++i)
+					LoadSpriteQueued(queue);
 			}
 
 			// Generate a catalog of music files.
@@ -304,9 +345,7 @@ void GameData::Preload(TaskQueue &queue, const Sprite *sprite)
 
 	// Now, load all the files for this sprite.
 	preloaded[sprite] = 0;
-	auto image = dit->second;
-	queue.Run([image] { image->Load(); },
-		[image] { image->Upload(SpriteSet::Modify(image->Name()), !preventSpriteUpload); });
+	LoadSprite(queue, dit->second);
 }
 
 

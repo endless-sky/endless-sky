@@ -47,6 +47,8 @@ public:
 		std::promise<void> futurePromise;
 	};
 
+	// The maximum amount of sync tasks to execute in one go.
+	static constexpr int MAX_SYNC_TASKS = 100;
 
 public:
 	// Initialize the threads used to execute the tasks.
@@ -62,7 +64,7 @@ public:
 	std::shared_future<void> Run(std::function<void()> asyncTask, std::function<void()> syncTask = {});
 
 	// Process any tasks to be scheduled to be executed on the main thread.
-	void ProcessTasks();
+	void ProcessSyncTasks();
 
 	// Whether there are any outstanding tasks left in this queue, including any outstanding tasks
 	// that need to be executed on the main thread.
@@ -82,7 +84,7 @@ private:
 
 	// Tasks from ths queue that need to be executed on the main thread.
 	std::queue<std::function<void()>> syncTasks;
-	std::mutex syncMutex;
+	mutable std::mutex syncMutex;
 };
 
 #endif
