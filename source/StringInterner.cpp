@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <mutex>
 #include <set>
+#include <shared_mutex>
 #include <string>
 
 using namespace std;
@@ -28,10 +29,18 @@ using namespace std;
 const char *StringInterner::Intern(const char *key)
 {
 	static set<string> interned;
-	static mutex m;
+	static shared_mutex m;
 
-	// Just in case this function is accessed from multiple threads:
-	lock_guard<mutex> lock(m);
+	// Search using a shared lock, allows parallel access by multiple threads.
+	{
+		shared_lock readLock(m);
+		auto it = interned.find(key);
+		if (it != interned.end())
+			return it->c_str();
+	}
+
+	// Insert using an exclusive lock, if needed. Blocks all parallel access.
+	unique_lock writeLock(m);
 	return interned.insert(key).first->c_str();
 }
 
