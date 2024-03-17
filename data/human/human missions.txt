@@ -6370,6 +6370,7 @@ mission "Care Package to South 2"
 				decline
 
 
+
 mission "Moving House 1"
 	minor
 	name "Moving House"
@@ -6449,6 +6450,7 @@ mission "Moving House Timer"
 	to offer
 		has "Moving House 1: done"
 		has "event: Thule becomes independent"
+		has "main plot completed"
 	on offer
 		event "kris gets frustrated" 20 60
 		fail
@@ -6470,7 +6472,11 @@ mission "Moving House 2"
 		conversation
 			`When you check your messages upon landing, you notice one from an unfamiliar source. At first, you think it's a scam, because it tries to redirect you through three different servers, but then you see it calls you "ally of the anti-statist movement."`
 			`	Sure enough, it's from Kris Brecht, the anarchist you transported to <planet>. "You have to come and get me. I can't stand living here any longer!" It includes directions to a home somewhere on <planet> where you last saw Kris, but nothing more.`
-				accept
+			choice
+				`	(Accept.)`
+					accept
+				`	(Decline.)`
+					decline
 	on complete
 		conversation
 			`You arrive on <planet>, rent a local transport, and make your way to the location specified. When you knock on the door, Kris bursts out almost instantly. This time, they've got on a ruffly skirt, a button-down shirt, and suspenders, and their hair is in a tight bun. "Finally!" they say. "Everything's packed already; we just need to load it in and get to the spaceport."`

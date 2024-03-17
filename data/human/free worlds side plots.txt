@@ -312,16 +312,25 @@ mission "FW Deep Memorial"
 	source "Deep"
 	to offer
 		has "event: memorial on Deep"
+		not "event: navy occupying the south"
 	on offer
 		conversation
-			``
-			branch brower
-				has "
-				has "
+			`As you disembark, you hear the sounds of warning sirens and heavy machinery coming from the edge of <planet>'s spaceport.`
+			choice
+				`	(Check it out.)`
+				`	(Ignore it.)`
+					decline
+			`	The source of the noise soon becomes clear: several large construction vehicles are paving a large clearing at the edge of a cliff. At its center are nine large walls covered in letters, with spaces reserved for an additional fourteen walls. The largest wall is emblazoned with the text "Free Worlds War Memorial." Already, there are friends and family paying their respects to the ever-growing number of fallen.`
+			branch brower end
+				has "FW Pirates: Attack 2: done"
+				has "Care Package to South 1: done"
 			label brower
-			`	`
+			`	As you look over the newest of the walls, you spot a name you recognise:`
+			``
+			`		MSGT BROWER, IRENE`
+			`			KILLED AT THE BATTLE OF GREENROCK`
 			label end
-			`	`
+			`	The sound of construction continues as you return to the main spaceport.`
 				decline
 
 
