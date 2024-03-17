@@ -35,7 +35,7 @@ const char *StringInterner::Intern(const char *key)
 	{
 		shared_lock readLock(m);
 		auto it = interned.find(key);
-		if (it != interned.end())
+		if(it != interned.end())
 			return it->c_str();
 	}
 
