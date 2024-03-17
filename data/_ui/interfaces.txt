@@ -1955,13 +1955,10 @@ interface "main buttons" bottom right
 	button "Fire secondary weapon"
 		center -155 -110
 		radius 25
-	active
-	box "ammo icon"
-		center -185 -140
-		dimensions 30 30
-	button "Select secondary weapon"
-		center -185 -140
-		dimensions 30 30
+	# The engine will draw the secondary weapons list here.
+	box "ammo"
+		from -200 -145 to -110 -300
+
 
 	visible
 	sprite "ui/round_button_bg"
@@ -1988,13 +1985,14 @@ interface "main buttons" bottom right
 	radial
 		center -240 -30
 		radius 22
-		selection_angles -1.5 1.5
-		selection_radius 150
+		selection_angles -1.5 1.1
+		selection_radius 175
 
 		"Show main menu"
 		"Toggle fast-forward"
 		"Stop"
 		"View player info"
+		"Land on planet / station"
 		visible if "can hail"
 		"Talk to selected ship"
 		visible if "can scan asteroids"
@@ -2034,7 +2032,7 @@ interface "main buttons" bottom right
 	radial
 		center -296 -30
 		radius 22
-		selection_angles -1.5 1.5
+		selection_angles -1.5 1.1
 		selection_radius 150
 
 		"Fleet: Fight my target"

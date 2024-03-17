@@ -264,24 +264,27 @@ void MainPanel::Draw()
 				// custom draw the missile icon in the provided rect.
 				info.SetCondition("has secondary");
 				Rectangle icon_box = mapButtonUi->GetBox("ammo icon");
-				auto& selectedWeapons = player.SelectedSecondaryWeapons();
-				// The weapons selection cycle goes through three states:
-				// 1. no weapons selected
-				// 2. one weapon selected. Each selection gets the next weapon in sequence
-				// 3. All weapons selected. It will fire all secondary weapons at once.
-				if (selectedWeapons.empty())
+				if(icon_box.Center())
 				{
-					SpriteShader::Draw(SpriteSet::Get("icon/none"), icon_box.Center());
-				}
-				else if (selectedWeapons.size() == 1)
-				{
-					info.SetCondition("secondary selected");
-					SpriteShader::Draw((*selectedWeapons.begin())->Icon(), icon_box.Center());
-				}
-				else
-				{
-					info.SetCondition("secondary selected");
-					SpriteShader::Draw(SpriteSet::Get("icon/all"), icon_box.Center());
+					auto& selectedWeapons = player.SelectedSecondaryWeapons();
+					// The weapons selection cycle goes through three states:
+					// 1. no weapons selected
+					// 2. one weapon selected. Each selection gets the next weapon in sequence
+					// 3. All weapons selected. It will fire all secondary weapons at once.
+					if (selectedWeapons.empty())
+					{
+						SpriteShader::Draw(SpriteSet::Get("icon/none"), icon_box.Center());
+					}
+					else if (selectedWeapons.size() == 1)
+					{
+						info.SetCondition("secondary selected");
+						SpriteShader::Draw((*selectedWeapons.begin())->Icon(), icon_box.Center());
+					}
+					else
+					{
+						info.SetCondition("secondary selected");
+						SpriteShader::Draw(SpriteSet::Get("icon/all"), icon_box.Center());
+					}
 				}
 			}
 		}
