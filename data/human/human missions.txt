@@ -6299,13 +6299,13 @@ mission "Care Package to South 1"
 		not planet "Glaze"
 	to offer
 		not "event: war begins"
-		random < 30
+		random < 65
 	cargo "care package" 1
 	on offer
 		conversation
 			`Among the bustle of the spaceport, one figure catches your attention. A woman stands alone on one side of the passageway with a bubble of space around her that is maintained by sheer force of personality. She doesn't seem to be saying anything, at least. As you get closer, you notice a large package at her feet. Something about you catches her attention, and she looks you in the eye and beckons.`
 			choice
-				`	(Go over to her and find out what this is about.)`
+				`	(Go over to her.)`
 				`	(Ignore her.)`
 					decline
 			`	You make your way through the crowd to the edge of her bubble. As soon as you do, she extends her hand. "I'm Torrey. Torrey Dupont."`
@@ -6313,18 +6313,18 @@ mission "Care Package to South 1"
 			`	"I can tell you're an independent captain. I would like to hire you to transport a package." Torrey indicates the box beside her with a nudge of her toe.`
 			choice
 				`	"What's in the box?"`
-				`	"Wouldn't it be easier and cheaper to send it via a courier service?"`
+				`	"Why can't you send it via the job board?"`
 					goto commercial
 			`	She glances down at it. "It's nothing too special - some local stuff from around here. Mostly foods and things that you just can't get made the same anywhere else."`
-			`	"Wouldn't it be easier and cheaper to send it via a courier service?" you ask.`
+			`	"Why can't you send it via the job board?" you ask.`
 			label commercial
 			`	Torrey gives a sardonic smile. "Well, yes; the thing is, I'm sending it to a friend who's an NCO in the militia for the Southern Mutual Defense Pact. Normally, of course, that would be fine, but... then there's who I am." She reaches into a pocket and pulls out a piece of paper - a printout of a news headline. "Protests Block Access To Council Chambers For Fourth Straight Day." Underneath the headline is a picture of Torrey holding up a sign decrying recent actions by the government.`
 			`	"So you see," she continues, "I'm already being watched by the Republic government. What with the rumors lately, I really don't want to do anything that would throw any suspicion onto Irene, but..." She glances down at the box. "She's really been missing some of the stuff from home, and I don't want to make her life less pleasant because of what I've been doing."`
 			choice
 				`	"All right; I'll deliver the package."`
 					goto deliver
-				`	"No; I don't support those protests, or the people who participate in them."`
-				`	"No, if you're being watched, then this might get me in trouble too. Sorry."`
+				`	"I don't support those protests, or the people who participate in them."`
+				`	"If you're being watched, then I might get in trouble too. Sorry."`
 			`	Torrey grimaces, but nods. "That's understandable. Well, have a good day, then." She turns back to looking out at the passing crowds, and you head back on your way.`
 				decline
 			label deliver
@@ -6384,7 +6384,7 @@ mission "Moving House 1"
 		government "Syndicate"
 	to offer
 		not "event: war begins"
-		random < 15
+		random < 25
 	passengers 1
 	cargo "personal belongings" 5
 	on offer
@@ -6404,12 +6404,12 @@ mission "Moving House 1"
 			choice
 				`	(Shake their hand.)`
 					goto shake
-				`	(Just stare at their odd outfit.)`
+				`	(Just stare.)`
 			`	You stare at Kris' unorthodox getup while they stand there with their hand out for a few beats. Then they sigh and take it back. "Will this be a problem?" They gesture to themselves.`
 			choice
 				`	"No, I was just surprised."`
 					goto surprised
-				`	"Yeah, I don't think I can carry someone like you."`
+				`	"I don't think I can carry someone like you."`
 			`	Their expression turns cold. "Right. I get it. Someone like me." They turn and stalk away.`
 				decline
 			
@@ -6497,7 +6497,7 @@ mission "Moving House 3"
 			choice
 				`	(Try to change the subject.)`
 					goto weather
-				`	(Just let it happen.)`
+				`	(Let them talk.)`
 			`	Surprisingly, Kris begins by talking about how uncomfortable the ever-damp weather on <origin> is, and how they'll be glad to be properly dry for the first time in weeks. This doesn't last, though, as soon talk of the planet brings up the other people there.`
 				goto fire
 			
@@ -6531,7 +6531,7 @@ mission "Stranded In Paradise 1"
 	to offer
 		has "event: war begins"
 		not "chosen sides"
-		random < 10
+		random < 30
 	on offer
 		conversation
 			`No sooner have you entered the spaceport than you are bowled over by a trio of adults, two women and a man, with a teenager trailing close behind them.`
@@ -6572,7 +6572,7 @@ mission "Stranded In Paradise 2"
 			choice
 				`	(Accept.)`
 					goto cafe
-				`	(Politely decline.)`
+				`	(Decline.)`
 			`	You apologize, and they reassure you it's fine and thank you once again.`
 				decline
 			
@@ -6594,7 +6594,7 @@ mission "Southern Fiance 1"
 	to offer
 		has "event: war begins"
 		not "chosen sides"
-		random < 15
+		random < 30
 	passengers 1
 	on offer
 		conversation
@@ -6672,7 +6672,7 @@ mission "FW Refugees to Humanika"
 			`	The parents introduce themselves as Penny Little and Rosa Perkins. Their young child is named Eduardo. Penny asks, "Any chance you're willing to take us and <tons> of our belongings to <destination>? We're concerned that the war between the Republic and the Free Worlds is going to get dangerous, so we want to raise Eduardo on a Quarg planet instead. We can pay <payment>."`
 			label "main choice"
 			choice
-				`	"Why were all those other captains refusing to take you?"`
+				`	"Why were those other captains refusing to take you?"`
 					to display
 						not "FW Refugees to Humanika: other captains"
 					goto "other captains"
