@@ -1781,6 +1781,40 @@ news "republic reporter in pirate space"
 
 
 
+news "conspiracy theorist"
+	location
+		government "Republic" "Free Worlds" "Neutral" "Independent" "Syndicate"
+	name
+		word
+			"Conspiracy Theorist"
+			"Free Thinker"
+			"Truth Seeker"
+	message
+		word
+			`"`
+		word
+			"The Rigellian Plague was a fake. The government used it to implant us with tracking microchips."
+			"If the Rigellian Plague really happened, how come we have so little quarantine facilities now?"
+			"The Quarg built the pyramids of Earth. There is simply no way the people could have constructed something so massive back then."
+			"Spaceship windows are really just screens designed to show planets as round. One day, I will build my own ship to prove they are flat."
+			"The Quarg are not aliens, just actors in body suits. There isn't enough sunlight near gas giants for a species to evolve."
+			"Hyperdrives were given to the government by the Quarg. If it was our technology, we would have improved it by now."
+			"Aliens took our people to the Deep before hyperdrives were invented to experiment on them. This is how they created the Alphas."
+			"Republic Intelligence has bird-like surveillance drones in every city. There is one in front of my window every morning."
+			"The Quarg are running the government. There is no way such a powerful species wouldn't be able to control us."
+			"A friend of mine caught a horrible disease after visiting a Quarg ring. She had rashes and carbuncles all over her face."
+		word
+			"" 2
+			" Wake up, sheeple!"
+			" Do your own research!"
+			" If you still don't see the truth, I feel sorry for you."
+			" Leave the Matrix!"
+			" You are being lied to!"
+		word
+			`"`
+
+
+
 news "spaceport video advertisement"
 	location
 		government "Republic"
