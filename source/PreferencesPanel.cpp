@@ -950,8 +950,6 @@ void PreferencesPanel::DrawPlugins()
 		Rectangle spriteBounds = Rectangle::FromCorner(topLeft, Point(sprite->Width(), sprite->Height()));
 		SpriteShader::Draw(sprite, spriteBounds.Center());
 
-		topLeft.X() += 6.;
-		topLeft.Y() += 7.;
 		Rectangle zoneBounds = spriteBounds + pluginListBox.Center();
 
 		// Only include the zone as clickable if it's within the drawing area.
