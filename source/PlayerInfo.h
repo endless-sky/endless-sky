@@ -66,6 +66,10 @@ public:
 
 
 public:
+	// Get the PlayerInfo object for the player that is presently playing the game.
+	// If no player has been selected yet, this will return an empty PlayerInfo.
+	static PlayerInfo &ActivePlayer();
+
 	PlayerInfo() = default;
 	// Don't allow copying this class.
 	PlayerInfo(const PlayerInfo &) = delete;
@@ -375,6 +379,8 @@ private:
 
 
 private:
+	static PlayerInfo activePlayer;
+
 	std::string firstName;
 	std::string lastName;
 	std::string filePath;

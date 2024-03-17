@@ -118,6 +118,13 @@ namespace {
 
 
 
+PlayerInfo &PlayerInfo::ActivePlayer()
+{
+	return activePlayer;
+}
+
+
+
 // Completely clear all loaded information, to prepare for loading a file or
 // creating a new pilot.
 void PlayerInfo::Clear()
@@ -4681,3 +4688,7 @@ bool PlayerInfo::CanBeSaved() const
 {
 	return (!isDead && planet && system && !firstName.empty() && !lastName.empty());
 }
+
+
+
+PlayerInfo PlayerInfo::activePlayer;
