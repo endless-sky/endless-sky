@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef MISSION_ACTION_H_
 #define MISSION_ACTION_H_
 
+#include "ConditionSet.h"
 #include "Conversation.h"
 #include "ExclusiveItem.h"
 #include "GameAction.h"
@@ -81,8 +82,11 @@ private:
 	std::string system;
 	LocationFilter systemFilter;
 
+	// Condition under which the dialog Decline button is visible
+	std::shared_ptr<ConditionSet> toDecline;
 	std::string dialogText;
 	ExclusiveItem<Phrase> dialogPhrase;
+	bool dialogOkCancel = false;
 	ExclusiveItem<Conversation> conversation;
 
 	// Outfits that are required to be owned (or not) for this action to be performable.

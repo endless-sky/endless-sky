@@ -77,6 +77,11 @@ public:
 	Dialog(T *t, void (T::*fun)(), const std::string &text,
 		Truncate truncate = Truncate::NONE, bool allowsFastForward = false);
 
+	void SetCanCancel(bool canCancel);
+
+	// true = use "Accept" and "Decline" instead of "Ok" and "Cancel"
+	void SetAcceptDecline(bool acceptDecline);
+
 	// Callback is always called with value user input to dialog (ok == true, cancel == false).
 	template <class T>
 	Dialog(T *t, void (T::*fun)(bool), const std::string &text,
@@ -119,6 +124,7 @@ protected:
 	bool canCancel;
 	bool okIsActive;
 	bool isMission;
+	bool acceptDecline;
 	bool isOkDisabled = false;
 	bool allowsFastForward = false;
 	bool isWide = false;
