@@ -203,7 +203,8 @@ void MainPanel::Draw()
 			{
 				if (!ship->IsParked() && !ship->IsDestroyed())
 				{
-					hasFleet = true;
+					if (ship != player.FlagshipPtr())
+						hasFleet = true;
 					if (ship->CanBeCarried() )
 					{
 						hasFighters = true;
@@ -231,11 +232,11 @@ void MainPanel::Draw()
 			if (target)
 			{
 				info.SetCondition("can hail");
-				info.SetCondition("can scan");
+				if (player.Flagship()->Attributes().Get("outfit scan power") ||
+				    player.Flagship()->Attributes().Get("cargo scan power"))
+					info.SetCondition("can scan");
 				if (!target->IsYours())
-				{
 					info.SetCondition("can attack");
-				}
 			}
 			else if (player.Flagship()->GetTargetAsteroid())
 			{
@@ -245,6 +246,8 @@ void MainPanel::Draw()
 			{
 				info.SetCondition("can cloak");
 			}
+			if (player.Flagship()->Attributes().Get("asteroid scan power"))
+				info.SetCondition("can scan asteroids");
 
 			bool hasSecondaryWeapon = false;
 			for (auto& outfit: player.Flagship()->Outfits())

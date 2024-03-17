@@ -127,7 +127,7 @@ private:
 		virtual void Draw(const Rectangle &rect, const Information &info, int state) const;
 		// Add any click handlers needed for this element. This will only be
 		// called if the element is visible and active.
-		virtual void Place(const Rectangle &bounds, Panel *panel) const;
+		virtual void Place(const Rectangle &bounds, Panel *panel, const Information &info) const;
 
 	protected:
 		AnchoredPoint from;
@@ -184,7 +184,7 @@ private:
 		virtual void Draw(const Rectangle &rect, const Information &info, int state) const override;
 		// Add any click handlers needed for this element. This will only be
 		// called if the element is visible and active.
-		virtual void Place(const Rectangle &bounds, Panel *panel) const override;
+		virtual void Place(const Rectangle &bounds, Panel *panel, const Information &info) const override;
 
 	private:
 		std::string GetString(const Information &info) const;
@@ -286,10 +286,21 @@ private:
 		virtual bool ParseLine(const DataNode &node) override;
 		// Add any click handlers needed for this element. This will only be
 		// called if the element is visible and active.
-		virtual void Place(const Rectangle &bounds, Panel *panel) const override;
+		virtual void Place(const Rectangle &bounds, Panel *panel, const Information &info) const override;
 
 	private:
-		std::shared_ptr<RadialSelectionPanel> radial_selection;
+		double start_angle = 0;
+		double stop_angle = 3.14159;
+		double selection_radius = 150;
+		std::string visible_if;
+
+		struct Option {
+			std::string visible_if;
+			Command cmd;
+			std::string icon;
+			std::string description;
+		};
+		std::vector<Option> options;
 	};
 
 private:

@@ -416,6 +416,14 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 				menuPanels.Push(shared_ptr<Panel>(
 					new MenuPanel(player, gamePanels)));
 			}
+			else if(event.type == Command::EventID() && menuPanels.IsEmpty()
+					&& (Command(event).Has(Command::MENU))
+					&& !gamePanels.IsEmpty() && gamePanels.Top()->IsInterruptible())
+			{
+				// User triggered the Menu via a command
+				menuPanels.Push(shared_ptr<Panel>(
+					new MenuPanel(player, gamePanels)));
+			}
 			else if(event.type == SDL_QUIT)
 				menuPanels.Quit();
 			else if(event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED)
@@ -456,11 +464,6 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 				}
 			}
 		}
-
-		// Special case: If fastforward is on capslock, update on mod state and not
-		// on keypress.
-		if(Command(SDLK_CAPSLOCK).Has(Command::FASTFORWARD))
-			isFastForward = SDL_GetModState() & KMOD_CAPS;
 	};
 
 	// Game loop when running the game normally.

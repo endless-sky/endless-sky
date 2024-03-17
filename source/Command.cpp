@@ -53,7 +53,7 @@ namespace {
 // Command enumeration, including the descriptive strings that are used for the
 // commands both in the preferences panel and in the saved key settings.
 const Command Command::NONE(0, "");
-const Command Command::MENU(ONE << 0, "Show main menu");
+const Command Command::MENU(ONE << 0, "Show main menu", "ui/icon_exit");
 const Command Command::FORWARD(ONE << 1, "Forward thrust");
 const Command Command::LEFT(ONE << 2, "Turn left");
 const Command Command::RIGHT(ONE << 3, "Turn right");
@@ -78,7 +78,7 @@ const Command Command::MAP(ONE << 21, "View star map", "ui/icon_map");
 const Command Command::INFO(ONE << 22, "View player info", "ui/icon_info");
 const Command Command::MESSAGE_LOG(ONE << 23, "View message log");
 const Command Command::FULLSCREEN(ONE << 24, "Toggle fullscreen");
-const Command Command::FASTFORWARD(ONE << 25, "Toggle fast-forward");
+const Command Command::FASTFORWARD(ONE << 25, "Toggle fast-forward", "ui/icon_fast_forward");
 const Command Command::HELP(ONE << 26, "Show help");
 const Command Command::FIGHT(ONE << 27, "Fleet: Fight my target", "ui/icon_fleet_fight");
 const Command Command::GATHER(ONE << 28, "Fleet: Gather around me", "ui/icon_fleet_gather");
@@ -87,7 +87,7 @@ const Command Command::HARVEST(ONE << 30, "Fleet: Harvest flotsam", "ui/icon_fle
 const Command Command::AMMO(ONE << 31, "Fleet: Toggle ammo usage");
 const Command Command::AUTOSTEER(ONE << 32, "Auto steer");
 const Command Command::WAIT(ONE << 33, "");
-const Command Command::STOP(ONE << 34, "Stop");
+const Command Command::STOP(ONE << 34, "Stop", "ui/icon_fleet_stop");
 const Command Command::SHIFT(ONE << 35, "");
 
 std::atomic<uint64_t> Command::simulated_command{};

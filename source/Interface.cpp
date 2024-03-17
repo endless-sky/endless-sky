@@ -367,7 +367,7 @@ void Interface::Element::Draw(const Information &info, Panel *panel) const
 	// Place buttons even if they are inactive, in case the UI wants to show a
 	// message explaining why the button is inactive.
 	if(panel)
-		Place(box, panel);
+		Place(box, panel, info);
 
 	// Figure out how the element should be aligned within its bounding box.
 	Point nativeDimensions = NativeDimensions(info, state);
@@ -430,7 +430,7 @@ void Interface::Element::Draw(const Rectangle &rect, const Information &info, in
 
 // Add any click handlers needed for this element. This will only be
 // called if the element is visible and active.
-void Interface::Element::Place(const Rectangle &bounds, Panel *panel) const
+void Interface::Element::Place(const Rectangle &bounds, Panel *panel, const Information &info) const
 {
 }
 
@@ -661,7 +661,7 @@ void Interface::TextElement::Draw(const Rectangle &rect, const Information &info
 
 // Add any click handlers needed for this element. This will only be
 // called if the element is visible and active.
-void Interface::TextElement::Place(const Rectangle &bounds, Panel *panel) const
+void Interface::TextElement::Place(const Rectangle &bounds, Panel *panel, const Information &info) const
 {
 	if(!panel)
 		return;
@@ -922,8 +922,6 @@ void Interface::UiRectElement::Draw(const Rectangle &rect, const Information &in
 
 Interface::RadialSelectionElement::RadialSelectionElement(const DataNode &node, const Point &globalAnchor)
 {
-	radial_selection = std::make_shared<RadialSelectionPanel>();
-
 	// This function will call ParseLine() for any line it does not recognize.
 	Load(node, globalAnchor);
 }
@@ -943,34 +941,40 @@ bool Interface::RadialSelectionElement::ParseLine(const DataNode &node)
 {
 	if(node.Token(0) == "selection_angles" && node.Size() >= 3)
 	{
-		radial_selection->SetStartAngle(node.Value(1));
-		radial_selection->SetStopAngle(node.Value(2));
+		start_angle = node.Value(1);
+		stop_angle = node.Value(2);
 	}
 	else if(node.Token(0) == "selection_radius" && node.Size() >= 2)
 	{
-		radial_selection->SetRadius(node.Value(1));
+		selection_radius = node.Value(1);
+	}
+	else if(node.Token(0) == "visible")
+	{
+		if(node.Size() >= 3 && node.Token(1) == "if")
+			visible_if = node.Token(2);
+		else
+			visible_if.clear();
 	}
 	else
 	{
-		Command cmd = Command::Get(node.Token(0));
-		if (cmd == Command::NONE)
+		Option o{};
+		o.cmd = Command::Get(node.Token(0));
+		if (o.cmd == Command::NONE)
 			return false;
+
+		o.description = o.cmd.Description();
+		o.icon = o.cmd.Icon();
+		o.visible_if = visible_if;
 
 		// Optional second argument, override the icon.
 		if (node.Size() >= 2)
 		{
+			o.icon = node.Token(1);
 			// Optional third argument. Description.
-			std::string description = cmd.Description();
 			if (node.Size() >= 3)
-				description = node.Token(2);
-			radial_selection->AddOption(
-				node.Token(1),
-				description,
-				[cmd]() { Command::InjectOnce(cmd, true); }
-			);
+				o.description = node.Token(2);
 		}
-		else
-			radial_selection->AddOption(cmd);
+		options.push_back(o);
 	}
 
 	return true;
@@ -978,12 +982,28 @@ bool Interface::RadialSelectionElement::ParseLine(const DataNode &node)
 
 
 
-void Interface::RadialSelectionElement::Place(const Rectangle &bounds, Panel *panel) const
+void Interface::RadialSelectionElement::Place(const Rectangle &bounds, Panel *panel, const Information &info) const
 {
 	if(!panel)
 		return;
 
 	auto OnTrigger = [=](const Panel::Event& e) {
+		RadialSelectionPanel* radial_selection = new RadialSelectionPanel;
+		radial_selection->SetPosition(bounds.Center());
+		radial_selection->SetStartAngle(start_angle);
+		radial_selection->SetStopAngle(stop_angle);
+		radial_selection->SetRadius(selection_radius);
+		for (auto &o: options)
+		{
+			if (o.visible_if.empty() || info.HasCondition(o.visible_if))
+			{
+				Command cmd = o.cmd;
+				radial_selection->AddOption(o.icon, o.description, [cmd]() {
+					Command::InjectOnce(cmd, true);
+				});
+			}
+		}
+
 		switch (e.type)
 		{
 		case Panel::Event::MOUSE:

@@ -1978,16 +1978,28 @@ interface "main buttons" bottom right
 		center -75 -110
 		radius 40
 
-	visible if "can hail"
+	visible
 	sprite "ui/round_button_bg"
 		center -240 -30
 		dimensions 50 50
-	sprite "ui/icon_talk"
+	sprite "ui/icon_menu"
 		center -240 -30
 		dimensions 44 44
-	button "Talk to selected ship"
+	radial
 		center -240 -30
 		radius 22
+		selection_angles -1.5 1.5
+		selection_radius 150
+
+		"Show main menu"
+		"Toggle fast-forward"
+		"Stop"
+		"View player info"
+		visible if "can hail"
+		"Talk to selected ship"
+		visible if "can scan asteroids"
+		"Select nearest asteroid" "asteroid/small rock/spin"
+
 
 	visible if "can scan"
 	sprite "ui/round_button_bg"
@@ -2019,7 +2031,7 @@ interface "main buttons" bottom right
 	sprite "ui/icon_fleet"
 		center -296 -30
 		dimensions 40 40
-	radial "ui/icon_fleet"
+	radial
 		center -296 -30
 		radius 22
 		selection_angles -1.5 1.5

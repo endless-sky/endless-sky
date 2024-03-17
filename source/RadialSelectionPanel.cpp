@@ -349,7 +349,7 @@ void RadialSelectionPanel::Draw()
 {
 	DrawBackdrop();
 	if(m_zoom < 1)
-		m_zoom += 8.0/60;
+		m_zoom = std::min(1.0, m_zoom + 8.0/60);
 	else
 		m_zoom = 1.0;
 	
