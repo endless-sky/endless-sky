@@ -946,7 +946,7 @@ void PreferencesPanel::DrawPlugins()
 			table.DrawHighlight(back);
 
 		const Sprite *sprite = box[plugin.currentState];
-		Point topLeft = table.GetRowBounds().TopLeft() - Point(sprite->Width(), 0.);
+		const Point topLeft = table.GetRowBounds().TopLeft() - Point(sprite->Width(), 0.);
 		Rectangle spriteBounds = Rectangle::FromCorner(topLeft, Point(sprite->Width(), sprite->Height()));
 		SpriteShader::Draw(sprite, spriteBounds.Center());
 
