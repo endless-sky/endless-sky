@@ -312,7 +312,7 @@ mission "FWC Cebalrai 1B"
 				names "republic fighter"
 			variant
 				"Cruiser"
-				"Lance" 4
+				"Combat Drone" 4
 				"Frigate" 2
 
 
