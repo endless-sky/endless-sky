@@ -78,8 +78,7 @@ std::shared_future<void> TaskQueue::Run(function<void()> asyncTask, function<voi
 
 		// Queue this task for execution and create a future to track its state.
 		tasks.push(Task{this, std::move(asyncTask), std::move(syncTask)});
-		futures.emplace_back(tasks.back().futurePromise.get_future());
-		result = futures.back();
+		result = futures.emplace_back(tasks.back().futurePromise.get_future());
 		tasks.back().futureIt = std::prev(futures.end());
 	}
 	asyncCondition.notify_one();
