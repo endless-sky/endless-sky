@@ -39,6 +39,11 @@ public:
 	// Find paths to the given system. The optional arguments put a limit on how
 	// many systems will be returned and how far away they are allowed to be.
 	explicit DistanceMap(const System *center, int maxCount = -1, int maxDistance = -1);
+	// Find paths to the ship's system, restricting the travel methods to
+	// what is possible with that ship. The optional arguments put a limit
+	// on how many systems will be returned and how far away they are
+	// allowed to be.
+	explicit DistanceMap(const Ship &ship, int maxCount = -1, int maxDistance = -1);
 	// Find paths to the given system, potentially using wormholes, a jump drive, or both.
 	// Optional arguments are as above.
 	explicit DistanceMap(const System *center, WormholeStrategy wormholeStrategy,

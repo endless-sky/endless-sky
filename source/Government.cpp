@@ -527,24 +527,26 @@ bool Government::Trusts(const Government *government) const
 
 
 
-// Returns true if this government has no enforcement restrictions, or if the
-// indicated system matches at least one enforcement zone.
-bool Government::CanEnforce(const System *system) const
+// Returns true if this government has no enforcement restrictions for
+// the given player at this system, or if the indicated system and
+// player matches at least one enforcement zone.
+bool Government::CanEnforce(const PlayerInfo &player, const System *system) const
 {
 	for(const LocationFilter &filter : enforcementZones)
-		if(filter.Matches(system))
+		if(filter.Matches(system, &player))
 			return true;
 	return enforcementZones.empty();
 }
 
 
 
-// Returns true if this government has no enforcement restrictions, or if the
-// indicated planet matches at least one enforcement zone.
-bool Government::CanEnforce(const Planet *planet) const
+// Returns true if this government has no enforcement restrictions for
+// the given player, or if the indicated planet matches at least one
+// enforcement zone for this player.
+bool Government::CanEnforce(const PlayerInfo &player, const Planet *planet) const
 {
 	for(const LocationFilter &filter : enforcementZones)
-		if(filter.Matches(planet))
+		if(filter.Matches(planet, &player))
 			return true;
 	return enforcementZones.empty();
 }
@@ -767,14 +769,14 @@ bool Government::IsProvokedOnScan() const
 
 
 
-bool Government::IsRestrictedFrom(const System &system) const
+bool Government::IsRestrictedFrom(const System &system, const PlayerInfo *player) const
 {
-	return !travelRestrictions.IsEmpty() && travelRestrictions.Matches(&system);
+	return !travelRestrictions.IsEmpty() && travelRestrictions.Matches(&system, player);
 }
 
 
 
-bool Government::IsRestrictedFrom(const Planet &planet) const
+bool Government::IsRestrictedFrom(const Planet &planet, const PlayerInfo *player) const
 {
-	return !travelRestrictions.IsEmpty() && travelRestrictions.Matches(&planet);
+	return !travelRestrictions.IsEmpty() && travelRestrictions.Matches(&planet, player);
 }

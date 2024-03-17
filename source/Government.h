@@ -81,8 +81,8 @@ public:
 	bool Trusts(const Government *other) const;
 	// A government might not exercise the ability to perform scans or fine
 	// the player in every system.
-	bool CanEnforce(const System *system) const;
-	bool CanEnforce(const Planet *planet) const;
+	bool CanEnforce(const PlayerInfo &player, const System *system) const;
+	bool CanEnforce(const PlayerInfo &player, const Planet *planet) const;
 	// Get the conversation that will be shown if this government gives a death
 	// sentence to the player (for carrying highly illegal cargo).
 	const Conversation *DeathSentence() const;
@@ -143,8 +143,8 @@ public:
 	bool IsProvokedOnScan() const;
 
 	// Determine if ships from this government can travel to the given system or planet.
-	bool IsRestrictedFrom(const System &system) const;
-	bool IsRestrictedFrom(const Planet &planet) const;
+	bool IsRestrictedFrom(const System &system, const PlayerInfo *player = nullptr) const;
+	bool IsRestrictedFrom(const Planet &planet, const PlayerInfo *player = nullptr) const;
 
 
 private:
