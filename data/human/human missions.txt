@@ -6015,6 +6015,8 @@ mission "Argosy Hijacking"
 			`	The hijackers, just a raucous group of young kids, are hauled out of the <npc model> by Syndicated Security personnel towards an armored van. Multiple times the kids try to run away, but after a few minutes they're finally detained; the van drives off towards the spaceport terminal.`
 			`	After the incident is wrapped up, the captain of the <npc> sends you <payment>, and a message thanking you for helping him recover his ship.`
 
+
+
 mission "Blind Man from Martini"
 	name "Transport a blind passenger to <planet>"
 	description "This blind man, Douglas, wishes to be transported to <destination>, so he can be with his daughter while she undergoes treatment there. He will pay you <payment>."
