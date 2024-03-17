@@ -59,6 +59,7 @@ public:
 	// Positional attributes.
 	const Point &Position() const;
 	const Point &Velocity() const;
+	const Point Center() const;
 	const Angle &Facing() const;
 	Point Unit() const;
 	double Zoom() const;
@@ -90,6 +91,9 @@ protected:
 	void MarkForRemoval();
 	// Mark that this object should not be removed (e.g. a launched fighter).
 	void UnmarkForRemoval();
+	// Turn this object around its center of rotation.
+	void Turn(double amount);
+	void Turn(const Angle &amount);
 
 
 protected:
@@ -98,6 +102,8 @@ protected:
 	Point velocity;
 	Angle angle;
 	Point scale = Point(1, 1);
+	Point center;
+	Point rotatedCenter;
 	// A zoom of 1 means the sprite should be drawn at half size. For objects
 	// whose sprites should be full size, use zoom = 2.
 	float zoom = 1.f;

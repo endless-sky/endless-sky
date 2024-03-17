@@ -817,6 +817,7 @@ outfit "Excavator"
 		"shield damage" 6
 		"hull damage" 14
 		"minable damage" 104
+		"prospecting" 145
 		"hit force" -4
 	description `Excavator Drills are large drills designed by the Gegno that rip materials out of asteroids in an efficient manner. These types of drill systems are only found on ships specifically designed around them as they require substantial infrastructure to be functional.`
 
@@ -860,6 +861,7 @@ outfit "Burrower"
 		"shield damage" .4
 		"hull damage" 6
 		"minable damage" 3
+		"prospecting" 10.5
 		"hit force" 4
 	description `Burrower Drills are longer, thinner, and more precise than the larger Excavator Drill system, although they are nowhere near as powerful. Burrowers can mine asteroids more carefully, preserving more materials in the process. Rather than constructing the spaceship around the base system, these drills are more compact and are mounted on self-sustaining drill spars, resulting in lower required internal space and machinery.`
 	description `	This mining outfit requires a drill spar port, in addition to a gun port, in order to be mounted.`
