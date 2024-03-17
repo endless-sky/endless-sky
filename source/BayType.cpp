@@ -50,7 +50,7 @@ void BayType::FinishLoading()
 		if(!bayCategories.Contains(category))
 		{
 			isValid = false;
-			Logger::LogError("The bay type \"" + name + "\" contains invalid carriable ship categories. " +
+			Logger::LogError("The bay type \"" + name + "\" contains categories of ships that are not carriable. " +
 				"All bays of this type on ships will be removed.");
 			return;
 		}
