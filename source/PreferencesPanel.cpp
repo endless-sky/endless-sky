@@ -952,7 +952,7 @@ void PreferencesPanel::DrawPlugins()
 
 		topLeft.X() += 6.;
 		topLeft.Y() += 7.;
-		Rectangle zoneBounds = Rectangle::FromCorner(pluginListBox.Center() + topLeft, {sprite->Width(), sprite->Height()});
+		Rectangle zoneBounds = spriteBounds + pluginListBox.Center();
 
 		// Only include the zone as clickable if it's within the drawing area.
 		bool displayed = table.GetPoint().Y() > pluginListClip->Top() - 20 &&
