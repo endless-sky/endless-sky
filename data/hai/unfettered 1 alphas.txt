@@ -422,9 +422,9 @@ mission "<uhai> 6 A: Loyal Escort"
 			`As you leave your ship, an Unfettered Chief approaches you. After some time you finally recognize Sookootow, the one you helped earlier with moving people and medical supplies. You have not yet seen him so worried, nor moving at such speed.`
 			`	"<first>! I asked to be notified of your arrival as soon as possible, as we need your services. A fleet of Hai needs your immediate assistance escorting them through Hai space, from <stopovers>. They may not be Unfettered, but their hearts beat true still. I would blame myself if anything was to happen to them, and I could have done anything to prevent it."`
 			choice
-				`	"Why do you need my help specifically?"`
 				`	"What are you even doing here?"`
 					goto purposehere
+				`	"Why do you need my help specifically?"`
 				`	"I'm busy right now, sorry."`
 					goto busy
 			`	"It is not that I do not trust the Hai not to fire on their own people, but a misunderstanding happens quickly. Someone of your expertise would be helpful, and I cannot simply trust any Unfettered captain with this, as they could easily be provoked into making a fatal mistake. I hope, though, that you will be able to make a rational decision.`
@@ -434,10 +434,9 @@ mission "<uhai> 6 A: Loyal Escort"
 				`	"Those stories may have been slightly exaggerated..."`
 					goto exaggerated
 			`	"I knew I could count on you! The stories must be true."`
-				goto choose
+				goto purposehere
 			label exaggerated
 			`	"What do you mean? Your ship is not as fast as a Mem'he, and as enduring as a To'or? I will not accept excuses or cowardice, if that is the case, the time to prove yourself worthy is now!"`
-				goto choose
 			label purposehere
 			`	"As a Chief I need to be seen by my people, else they would never come to respect me, or follow my instructions. In this specific case, I am here to talk with warlords and soldiers alike, to make sure nobody tries something stupid, else innocent Hai may get hurt," he says in an assertive tone.`
 			`	"Usually the Hai do not get this deep into our territory, even the ones who sympathize with us, and these are not part of that group. On top of that, some may have strong reactions when they realize who is on board one of these ships..."`

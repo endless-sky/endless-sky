@@ -1434,7 +1434,7 @@ mission "<uhai> 4: Scan Geocoris"
 					goto trouble
 				`	"I'm not interested in scanning ships for you."`
 					to display
-						"unfettered: hesitant question" == 2
+						"unfettered: hesitant question" >= 2
 					goto declining
 			action
 				set "unfettered: hesitant question"
