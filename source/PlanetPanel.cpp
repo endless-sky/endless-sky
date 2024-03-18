@@ -28,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "HiringPanel.h"
 #include "Interface.h"
 #include "MapDetailPanel.h"
+#include "MessageLogPanel.h"
 #include "MissionPanel.h"
 #include "OutfitterPanel.h"
 #include "Planet.h"
@@ -38,6 +39,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipyardPanel.h"
 #include "SpaceportPanel.h"
 #include "System.h"
+#include "TaskQueue.h"
 #include "TradingPanel.h"
 #include "UI.h"
 
@@ -64,8 +66,8 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 
 	// Since the loading of landscape images is deferred, make sure that the
 	// landscapes for this system are loaded before showing the planet panel.
-	GameData::Preload(planet.Landscape());
-	GameData::FinishLoadingSprites();
+	TaskQueue queue;
+	GameData::Preload(queue, planet.Landscape());
 }
 
 
@@ -210,6 +212,11 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	else if(command.Has(Command::INFO))
 	{
 		GetUI()->Push(new PlayerInfoPanel(player));
+		return true;
+	}
+	else if(command.Has(Command::MESSAGE_LOG))
+	{
+		GetUI()->Push(new MessageLogPanel());
 		return true;
 	}
 	else

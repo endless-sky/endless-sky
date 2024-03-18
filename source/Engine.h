@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define ENGINE_H_
 
 #include "AI.h"
+#include "AlertLabel.h"
 #include "AmmoDisplay.h"
 #include "AsteroidField.h"
 #include "BatchDrawList.h"
@@ -25,33 +26,31 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DrawList.h"
 #include "EscortDisplay.h"
 #include "Information.h"
+#include "PlanetLabel.h"
 #include "Point.h"
 #include "Preferences.h"
+#include "Projectile.h"
 #include "Radar.h"
 #include "Rectangle.h"
+#include "TaskQueue.h"
 
 #include <condition_variable>
 #include <list>
 #include <map>
 #include <memory>
-#include <thread>
 #include <utility>
 #include <vector>
 
-class AlertLabel;
 class Flotsam;
 class Government;
 class NPC;
 class Outfit;
-class PlanetLabel;
 class PlayerInfo;
-class Projectile;
 class Ship;
 class ShipEvent;
 class Sprite;
 class Visual;
 class Weather;
-
 
 
 // Class representing the game engine: its job is to track all of the objects in
@@ -142,7 +141,6 @@ private:
 private:
 	void EnterSystem();
 
-	void ThreadEntryPoint();
 	void CalculateStep();
 
 	void MoveShip(const std::shared_ptr<Ship> &ship);
@@ -195,9 +193,7 @@ private:
 
 	AI ai;
 
-	std::thread calcThread;
-	std::condition_variable condition;
-	std::mutex swapMutex;
+	TaskQueue queue;
 
 	// ES uses a technique called double buffering to calculate the next frame and render the current one simultaneously.
 	// To facilitate this, it uses two buffers for each list of things to draw - one for the next frame's calculations and
@@ -205,12 +201,10 @@ private:
 	// currently rendering buffer.
 	size_t currentCalcBuffer = 0;
 	size_t currentDrawBuffer = 0;
-	bool hasFinishedCalculating = true;
 	DrawList draw[2];
 	BatchDrawList batchDraw[2];
 	Radar radar[2];
 
-	bool terminate = false;
 	bool wasActive = false;
 	bool isMouseHoldEnabled = false;
 	bool isMouseTurningEnabled = false;

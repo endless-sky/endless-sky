@@ -342,7 +342,7 @@ mission "Sad Archie"
 	npc disable
 		government "Test Dummy"
 		system "Ildaria"
-		personality unconstrained heroic nemesis
+		personality unconstrained heroic nemesis ramming
 		ship "Timer Ship" "Timer"
 		conversation
 			`As your ship drifts through the cloud of dust that surrounds Ildaria, it occurs to you that this must be the "cloudy star out along the Rim" that Ulrich from There Might Be Riots told you about. Remembering his story, you shut your eyes and attempt to meditate. But instead, you just fall asleep.`

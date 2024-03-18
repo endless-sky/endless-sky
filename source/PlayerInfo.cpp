@@ -1039,11 +1039,10 @@ void PlayerInfo::SetFlagship(Ship &other)
 	// Set the new flagship pointer.
 	flagship = other.shared_from_this();
 
-	// Make sure your jump-capable ships all know who the flagship is.
+	// Make sure your ships all know who the flagship is.
 	for(const shared_ptr<Ship> &ship : ships)
 	{
-		bool shouldFollowFlagship = (ship != flagship && !ship->IsParked() &&
-			(!ship->CanBeCarried() || ship->JumpNavigation().JumpFuel()));
+		bool shouldFollowFlagship = (ship != flagship && !ship->IsParked());
 		ship->SetParent(shouldFollowFlagship ? flagship : shared_ptr<Ship>());
 	}
 
@@ -3771,6 +3770,15 @@ void PlayerInfo::RegisterDerivedConditions()
 	};
 	visitedSystemProvider.SetGetFunction(visitedSystemFun);
 	visitedSystemProvider.SetHasFunction(visitedSystemFun);
+
+	auto &&landingAccessProvider = conditions.GetProviderPrefixed("landing access: ");
+	auto landingAccessFun = [this](const string &name) -> bool
+	{
+		const Planet *planet = GameData::Planets().Find(name.substr(strlen("landing access: ")));
+		return (planet && flagship) ? planet->CanLand(*flagship) : false;
+	};
+	landingAccessProvider.SetGetFunction(landingAccessFun);
+	landingAccessProvider.SetHasFunction(landingAccessFun);
 
 	auto &&pluginProvider = conditions.GetProviderPrefixed("installed plugin: ");
 	auto pluginFun = [](const string &name) -> bool
