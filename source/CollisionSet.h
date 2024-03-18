@@ -16,12 +16,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef COLLISION_SET_H_
 #define COLLISION_SET_H_
 
+#include "Collision.h"
 #include "CollisionType.h"
 
 #include <vector>
 
 class Body;
-class Collision;
 class Government;
 class Point;
 class Projectile;
