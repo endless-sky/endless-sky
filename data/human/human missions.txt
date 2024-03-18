@@ -6292,6 +6292,7 @@ mission "Care Package to South 1"
 	source
 		government "Republic" "Syndicate"
 		attributes "near earth"
+		not attributes "station"
 	destination
 		attributes "rim" "south"
 		not government "Pirate"
@@ -6384,7 +6385,7 @@ mission "Moving House 1"
 		government "Syndicate"
 	to offer
 		not "event: war begins"
-		random < 25
+		random < 35
 	passengers 1
 	cargo "personal belongings" 5
 	on offer
