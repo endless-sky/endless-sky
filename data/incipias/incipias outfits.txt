@@ -90,7 +90,7 @@ effect "stagnation beam impact"
 
 outfit "Star Tail"
 	category "Secondary Weapons"
-	mass 50
+	mass 48
 	"outfit space" -50
 	"weapon capacity" -50
 	"gun ports" -1
