@@ -1006,26 +1006,6 @@ government "Merchant"
 	"hostile hail" "hostile civilian"
 	"hostile disabled hail" "hostile disabled"
 
-government "Merchant (Hijacked)"
-	"display name" "Merchant"
-	swizzle 5
-	"attitude toward"
-		"Republic" -.01
-		"Syndicate" -.01
-	"player reputation" 1
-	"fine" 0
-	"friendly hail" "friendly civilian"
-	"friendly disabled hail" "friendly disabled"
-	"hostile hail" "hostile pirate"
-	"hostile disabled hail" "hostile disabled"
-	"penalty for"
-		assist 0
-		disable 0
-		board 0
-		capture 0
-		destroy 0
-		atrocity 0
-
 government "Militia"
 	swizzle 2
 	color "governments: Free"

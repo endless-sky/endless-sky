@@ -33338,11 +33338,11 @@ system Umbral
 	fleet "Large Southern Pirates" 6000
 	object
 		sprite star/k0-old
-		distance 23.3222
+		distance 25
 		period 10.2313
 	object
 		sprite star/m0
-		distance 71.4243
+		distance 90
 		period 10.2313
 		offset 180
 	object
