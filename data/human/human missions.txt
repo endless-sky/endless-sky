@@ -6608,7 +6608,7 @@ mission "Southern Fiance 1"
 				`	"You're in luck; I'm the captain of the <ship>."`
 					goto take
 				`	"I can't help."`
-			`	Tom sighs and nods. "Thanks for hearing me. Best of luck, wherever you end up."`
+			`	Tom sighs and nods. "Thanks for hearing me out. Best of luck, wherever you end up."`
 				decline
 			
 			label take
