@@ -322,7 +322,7 @@ mission "FW Deep Memorial"
 			`	As you inspect the walls, you recognize one of the names:`
 			``
 			`		MSGT BROWER, IRENE`
-			`			KILLED IN THE ATTACK ON GREENROCK`
+			`			KILLED AT THE ATTACK ON GREENROCK`
 			``
 			label end
 			`	The sound of construction persists as you return to the main spaceport.`
