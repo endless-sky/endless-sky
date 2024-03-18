@@ -39,7 +39,7 @@ outfit "Internal Plasma Exhaust"
 	"flare sprite" "effect/plasma exhaust"
 		"frame rate" 16
 
-ship "Silent Harvester"
+ship "Tace Mesa"
 	sprite "ship/silent harvester"
 	swizzle 0
 	"never disabled"
@@ -83,19 +83,19 @@ mission "The Silent Ones"
 		government "Silent Ones"
 		personality timid mute mining harvests
 		system Il'le
-		ship "Silent Harvester" "???"
+		ship "Tace Mesa"
 	npc save
 		government "Silent Ones"
 		personality timid mute mining harvests
 		system Il'le
-		ship "Silent Harvester" "???"
+		ship "Tace Mesa"
 	npc save
 		government "Silent Ones"
 		personality timid mute mining harvests
 		system Il'le
-		ship "Silent Harvester" "???"
+		ship "Tace Mesa"
 	npc save
 		government "Silent Ones"
 		personality timid mute mining harvests
 		system Il'le
-		ship "Silent Harvester" "???"
+		ship "Tace Mesa" "???"
