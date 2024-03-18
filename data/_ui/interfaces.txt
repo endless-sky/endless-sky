@@ -1967,13 +1967,15 @@ interface "main buttons" bottom right
 	sprite "ui/icon_fire"
 		center -75 -110
 		dimensions 64 64
+	visible if "!can attack"
 	button "Fire primary weapon"
 		center -75 -110
 		radius 40
 	visible if "can attack"
-	button "Fleet: Fight my target"
+	button "Fire primary weapon"
 		center -75 -110
 		radius 40
+		command "Fleet: Fight my target"
 
 	visible
 	sprite "ui/round_button_bg"
@@ -2071,3 +2073,9 @@ interface "main buttons" bottom right
 	box "onscreen joystick"
 		center 128 -128
 		dimensions 192 192
+
+	# This button doesn't do anything. It is here to swallow any clicks on the
+	# onscreen joystick, in case some of these controls overlap
+	button ^ ""
+		center 128 -128
+		radius 96
