@@ -89,7 +89,7 @@ OutfitterPanel::OutfitterPanel(PlayerInfo &player)
 
 	if(player.GetPlanet())
 		outfitter = player.GetPlanet()->Outfitter();
-	
+
 	for(auto &ship : player.Ships())
 		if(ship->GetPlanet() == planet)
 			++shipsHere;
