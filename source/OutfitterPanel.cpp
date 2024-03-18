@@ -89,6 +89,10 @@ OutfitterPanel::OutfitterPanel(PlayerInfo &player)
 
 	if(player.GetPlanet())
 		outfitter = player.GetPlanet()->Outfitter();
+	
+	for(auto &ship : player.Ships())
+		if(ship->GetPlanet() == planet)
+			++shipsHere;
 }
 
 
@@ -102,7 +106,7 @@ void OutfitterPanel::Step()
 		// Use short-circuiting to only display one of them at a time.
 		// (The first valid condition encountered will make us skip the others.)
 		if(DoHelp("outfitter") || DoHelp("cargo management") || DoHelp("uninstalling and storage")
-				|| (player.Ships().size() > 1 && DoHelp("outfitter with multiple ships")) || true)
+				|| (shipsHere > 1 && DoHelp("outfitter with multiple ships")) || true)
 			// Either a help message was freshly displayed, or all of them have already been seen.
 			checkedHelp = true;
 }
