@@ -6351,7 +6351,7 @@ mission "Care Package to South 2"
 	on offer
 		conversation
 			`As you step out of your ship, you spot a familiar face: Irene Brower, the gunnery sergeant you delivered a care package to before the war, though she seems to have master sergeant insignia now. She's on crutches, with what looks like a brand-new prosthetic leg. When she spots you, her pained face brightens. "Hey, I know you! You brought me that package from Tor before. Thanks!" She shifts her weight, then winces and shifts it back.`
-			`	She notices you looking at her leg, and grins lopsidedly. "Yeah. My CO thought it was a good idea to follow Voigt's plan to attack Greenrock and eliminate the pirates there. To be honest, I agreed with him at the time." She pauses a moment. "Now, not so sure, and not just because a blown-out shield capacitor lost me a leg. I heard what happened on Thule, both the good and the bad of it."`
+			`	She notices you looking at her leg, and grins lopsidedly. "Yeah. My CO thought it was a good idea to follow Voigt's plan to suppress the pirates on Greenrock. To be honest, I agreed with him at the time." She pauses a moment. "Now, not so sure, and not just because a blown-out shield capacitor lost me a leg. I heard what happened on Thule, both the good and the bad of it."`
 			choice
 				`	"I'm so sorry for your loss."`
 					goto sorry
@@ -6451,9 +6451,9 @@ mission "Moving House Timer"
 	to offer
 		has "Moving House 1: done"
 		has "event: Thule becomes independent"
-		has "main plot completed"
+		has "fw first chapter done"
 	on offer
-		event "kris gets frustrated" 20 60
+		event "kris gets frustrated" 5 35
 		fail
 		
 event "kris gets frustrated"
@@ -6468,7 +6468,6 @@ mission "Moving House 2"
 	destination "Lichen"
 	to offer
 		has "event: kris gets frustrated"
-		random < 5
 	on offer
 		conversation
 			`When you check your messages upon landing, you notice one from an unfamiliar source. At first, you think it's a scam, because it tries to redirect you through three different servers, but then you see it calls you "ally of the anti-statist movement."`
