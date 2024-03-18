@@ -1783,7 +1783,6 @@ mission "Superstitious Hai [3]"
 	to accept
 		or
 			has "outfit: Quantum Keystone"
-			has "outfit: Quantum Key Stone"
 			has "outfit: Shield Beetle Pendant"
 			has "outfit: Tree Skeleton Key Stone"
 	source
@@ -1814,7 +1813,6 @@ mission "Superstitious Hai [4]"
 	to accept
 		or
 			has "outfit: Quantum Keystone"
-			has "outfit: Quantum Key Stone"
 			has "outfit: Shield Beetle Pendant"
 			has "outfit: Tree Skeleton Key Stone"
 	source
