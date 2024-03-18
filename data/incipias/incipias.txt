@@ -24,8 +24,8 @@ phrase "hicemus military"
 
 phrase "incipias civilian"
 	phrase
-		"vokal consonant (capitalized)" 5
-		"consonant vokal (capitalized)" 10
+		"vocal consonant (capitalized)" 5
+		"consonant vocal (capitalized)" 10
 	word
 		"'"
 	phrase
@@ -42,40 +42,40 @@ phrase "incipias civilian"
 
 phrase "latin name"
 	phrase
-		"vokal consonant (capitalized)" 5
-		"consonant vokal (capitalized)" 10
+		"vocal consonant (capitalized)" 5
+		"consonant vocal (capitalized)" 10
 	phrase
-		"vokal consonant" 10
-		"consonant vokal" 5
+		"vocal consonant" 10
+		"consonant vocal" 5
 	phrase
-		"vokal consonant" 5
-		"consonant vokal" 10
+		"vocal consonant" 5
+		"consonant vocal" 10
 
-phrase "vokal consonant"
+phrase "vocal consonant"
 	phrase
-		"vokal"
+		"vocal"
 	phrase
 		"consonant"
 
-phrase "consonant vokal"
+phrase "consonant vocal"
 	phrase
 		"consonant"
 	phrase
-		"vokal"
+		"vocal"
 
-phrase "vokal consonant (capitalized)"
+phrase "vocal consonant (capitalized)"
 	phrase
-		"vokal (capitalized)"
+		"vocal (capitalized)"
 	phrase
 		"consonant"
 
-phrase "consonant vokal (capitalized)"
+phrase "consonant vocal (capitalized)"
 	phrase
 		"consonant (capitalized)"
 	phrase
-		"vokal"
+		"vocal"
 
-phrase "vokal"
+phrase "vocal"
 	word
 		"a"
 		"e"
@@ -83,7 +83,7 @@ phrase "vokal"
 		"o"
 		"u"
 
-phrase "vokal (capitalized)"
+phrase "vocal (capitalized)"
 	word
 		"A"
 		"E"
@@ -285,7 +285,7 @@ phrase "incipias friendly disabled"
 		"in trouble"
 		"in need of repairs"
 		"[unable to fly, near death]"
-		"on the brink of getting useless"
+		"on the brink of uselessness"
 	word
 		","
 	word

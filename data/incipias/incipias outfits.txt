@@ -114,7 +114,7 @@ outfit "Star Tail"
 		
 		# To make the AI fire even if the ship is not directly in front.
 		"homing" 1
-		"radar tracking" 1
+		"optical tracking" 1
 		"turn" 0.5
 
 		ammo "Star Tail Cell"
@@ -162,7 +162,7 @@ outfit "Star Tail Cell"
 	"star tail capacity" -1
 	licenses
 		"Hicemus Conflict"
-	description "The star tail gun needs an extreme amount of energy that the Incipias are not able to create in a short amount of time. The star tail cell contains a very energy rich substance that is able to free this energy in a blast. One of these cells holds enough energy to fire exactly one shot."
+	description "The Star Tail Gun needs an extreme amount of energy that the Incipias are not able to create in a short amount of time. To accomodate this, the Star Tail Cell contains an energy-rich substance that releases this energy when fired. One of these cells holds enough energy to fire exactly one shot."
 
 outfit "Star Tail Storage"
 	category "Ammunition"
@@ -172,8 +172,8 @@ outfit "Star Tail Storage"
 	"star tail capacity" 20
 	licenses
 		"Hicemus Conflict"
-	description "Because the cells are highly volatile they need a robust storage system. This radial design is able to withstand minor explosions by using a variant of a shield that can be deployed temporarily."
-	description "One layer of this easily expandable system is already shipped with the gun itself. More layers are just stacked on top."
+	description "Because Star Tail Cells are highly volatile, they need a robust storage system. This radial design is able to withstand minor explosions by using a variant of a shield that can be deployed temporarily."
+	description "One layer of this easily expandable system is already shipped with the gun itself. To increase storage space, more layers are simply stacked on top."
 
 # Shields/Energy:
 outfit "Gas-Class Shield"
@@ -184,7 +184,7 @@ outfit "Gas-Class Shield"
 	"shield generation" .1
 	"energy generation" 4.2
 	"heat generation" 5
-	description "Shield technology is one of the most recent developments of the Incipias. While this shield appears similar to a human shield device, it works on a completely different base. In its core hydrogen is burned that provides energy for regeneration, but because scientists saw a more efficient use of this burning technology, the Incipias also made it the main power source of all of their ships."
+	description "Shield technology is one of the most recent developments of the Incipias. While this shield appears similar to a human shield device, it works on a completely different basis. In its core hydrogen is burned providing energy for regeneration. This proved so effective that it became the main power source of all of their ships."
 
 outfit "Liquid-Class Shield"
 	category "Systems"
@@ -202,7 +202,7 @@ outfit "Metallic Hydrogen Cell"
 	mass 20
 	"outfit space" -20
 	"energy capacity" 500
-	description "This form of energy storage was discovered early by the Incipias because of the great amount of metallic hydrogen on their homeworld. Because Incipias ships mostly access their energy at the time it is produced, only a small amount of storage is needed. Most of their ships have only one cell installed as a consequence."
+	description "Hydrogen energy storage was discovered early by the Incipias because of the great amount of metallic hydrogen on their homeworld. Because Incipias ships usually access their energy at the time it is produced, only a small amount of storage is needed. Most of their ships have only one cell installed as a consequence."
 
 # Engines:
 outfit "MH Blue-Class Engine"
@@ -243,7 +243,7 @@ outfit "MH Green-Class Engine"
 	"thrust" 20
 	"thrusting energy" 2
 	"thrusting heat" 2.5
-	description "Green is a color of balance for the Incipias. This engine is balanced between taking too much space and moving too slow."
+	description "Green is a color of balance for the Incipias. This engine balances the need for space with the need for powerful thrusters."
 
 outfit "MH Green-Class Steering"
 	category "Engines"

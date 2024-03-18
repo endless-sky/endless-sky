@@ -3472,7 +3472,7 @@ planet "Pon'tes"
 	outfitter "Hicemus"
 	shipyard "Hicemus"
 	description "Pon'tes is uncomfortable, even by the standards of a station. As the Incipias are able to propel themselves through the air, there are no handles or surfaces for you to grip onto. The simulated gravity caused by the rotation of the station is not helping."
-	description "The station is a bit larger than the most human ones and a lot of Incipias are living here. They all seem very busy as they float through the tube-like hallways."
+	description "Due to its rapidly increasing population, this station has undergone various expansions over the years. Almost every area is crowded with Incipias rushing through the tube-like hallways."
 	spaceport "The station has no normal spaceport - only a small docking area. Most of the people present appear to be workers, as opposed to visiting captains."
 	spaceport "Most of the ships are delivering minerals but some also deliver supplies from Redias. Only a few seem to transport people."
 

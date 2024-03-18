@@ -61,7 +61,7 @@ ship "Venta"
 	explode "large explosion" 40
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
-	description "When the Hicemus came to power they needed a ship to symbolize their strength. With six guns and one turret, the Venta is the most powerful ship in Incipias history. Thanks to its sleek and aerodynamic design it is able to hunt down outlaws in space as well as in the clouds of a gas giant."
+	description "When the Hicemus came to power they needed a ship to symbolize their strength. With six guns, the Venta is the most powerful ship in Incipias history. Thanks to its sleek and aerodynamic design it is as comfortable hunting down outlaws in space as in the clouds of a gas giant."
 
 ship "Nimbus"
 	"plural" "Nimbi"
@@ -109,7 +109,7 @@ ship "Nimbus"
 	explode "large explosion" 40
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
-	description "The Nimbus is the first spaceship that the Incipias built that was really able to navigate through a system. Since it was first manufactured it has been cherished among wealthier captains and a dream of captains just starting out."
+	description "The Nimbus is the first spaceship that the Incipias built that was truly able to navigate through a system. Since it was first manufactured it has been cherished among wealthier captains and a dream of captains just starting out."
 	description "Although the Nimbus is labeled as a medium warship, it is a multipurpose ship. Whether one uses it for mining, passenger transport or cargo, it will perform its job nicely. It is only occasionally used in combat because the Incipias are not currently fighting open wars."
 
 ship "Nimbus" "Nimbus (Civil)"
