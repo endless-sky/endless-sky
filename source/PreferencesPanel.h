@@ -92,6 +92,7 @@ private:
 	std::string tooltip;
 	WrappedText hoverText;
 
+	int currentControlsPage = 0;
 	int currentSettingsPage = 0;
 
 	std::string selectedPlugin;

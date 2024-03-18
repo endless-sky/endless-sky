@@ -18,10 +18,6 @@ codespell:
   - .codespell.exclude
   - .codespell.words.exclude
 
-codeblocks_files:
-  - '*.cbp'
-  - utils/check_codeblocks.sh
-
 editorconfig_files:
   - '**/!(*.mp3)'
 
