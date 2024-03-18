@@ -55,7 +55,7 @@ namespace {
 	int vsyncIndex = 1;
 
 	const vector<string> CAMERA_ACCELERATION_SETTINGS = {"off", "on", "reversed"};
-	int cameraAccelerationIndex = 0;
+	int cameraAccelerationIndex = 1;
 
 	class OverlaySetting {
 	public:
@@ -531,22 +531,21 @@ const string &Preferences::VSyncSetting()
 
 void Preferences::ToggleCameraAcceleration()
 {
-	cameraAccelerationIndex = cameraAccelerationIndex <
-		static_cast<int>(CAMERA_ACCELERATION_SETTINGS.size()) - 1 ? cameraAccelerationIndex + 1 : 0;
+	cameraAccelerationIndex = (cameraAccelerationIndex + 1) % CAMERA_ACCELERATION_SETTINGS.size();
 }
 
 
 
-const string &Preferences::CameraAccelerationName()
-{
-	return CAMERA_ACCELERATION_SETTINGS[cameraAccelerationIndex];
-}
-
-
-
-const Preferences::CameraAccel Preferences::CameraAcceleration()
+Preferences::CameraAccel Preferences::CameraAcceleration()
 {
 	return static_cast<CameraAccel>(cameraAccelerationIndex);
+}
+
+
+
+const string &Preferences::CameraAccelerationSetting()
+{
+	return CAMERA_ACCELERATION_SETTINGS[cameraAccelerationIndex];
 }
 
 

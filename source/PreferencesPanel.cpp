@@ -57,7 +57,7 @@ namespace {
 	const string AUTO_FIRE_SETTING = "Automatic firing";
 	const string SCREEN_MODE_SETTING = "Screen mode";
 	const string VSYNC_SETTING = "VSync";
-	const string CAMERA_ACCELERATION = "Camera Acceleration";
+	const string CAMERA_ACCELERATION = "Camera acceleration";
 	const string STATUS_OVERLAYS_ALL = "Show status overlays";
 	const string STATUS_OVERLAYS_FLAGSHIP = "   Show flagship overlay";
 	const string STATUS_OVERLAYS_ESCORT = "   Show escort overlays";
@@ -713,7 +713,7 @@ void PreferencesPanel::DrawSettings()
 		}
 		else if(setting == CAMERA_ACCELERATION)
 		{
-			text = Preferences::CameraAccelerationName();
+			text = Preferences::CameraAccelerationSetting();
 			isOn = text != "off";
 		}
 		else if(setting == STATUS_OVERLAYS_FLAGSHIP)

@@ -142,8 +142,8 @@ public:
 	static const std::string &VSyncSetting();
 
 	static void ToggleCameraAcceleration();
-	static const std::string &CameraAccelerationName();
-	static const CameraAccel CameraAcceleration();
+	static CameraAccel CameraAcceleration();
+	static const std::string &CameraAccelerationSetting();
 
 	static void CycleStatusOverlays(OverlayType type);
 	static OverlayState StatusOverlaysState(OverlayType type);

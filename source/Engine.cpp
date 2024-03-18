@@ -1055,7 +1055,7 @@ void Engine::Draw() const
 	Preferences::ExtendedJumpEffects jumpEffectState = Preferences::GetExtendedJumpEffects();
 	if(jumpEffectState != Preferences::ExtendedJumpEffects::OFF)
 		motionBlur *= 1. + pow(hyperspacePercentage *
-			(jumpEffectState == Preferences::ExtendedJumpEffects::MEDIUM ? 2.4 : 5.), 2);
+			(jumpEffectState == Preferences::ExtendedJumpEffects::MEDIUM ? 2.5 : 5.), 2);
 
 	GameData::Background().Draw(center, motionBlur, zoom,
 		(player.Flagship() ? player.Flagship()->GetSystem() : player.GetSystem()));
