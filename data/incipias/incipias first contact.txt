@@ -109,9 +109,9 @@ mission "Incipias: Meet the Quarg"
 			label "both planets"
 			`	"Welcome human, long ways came you. Kind of yours never here have been, your mission?"`
 			choice
-				`"I am just exploring the galaxy."`
+				`	"I am just exploring the galaxy."`
 					goto "explorer"
-				`"I am looking for new species."`
+				`	"I am looking for new species."`
 					goto "new species"
 			label "explorer"
 			`	"An obvious pursuit for the young that is," it nods, "if advice you I may, to not walk this way in a careless manner, the galaxy holds many dangers that your kind has yet to discover or even to understand." It straightens up to its full height, towering over you, "but in the end worth the trouble it will be."`
