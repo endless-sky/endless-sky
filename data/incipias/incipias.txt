@@ -209,7 +209,7 @@ outfitter "Hicemus"
 	"Gas-Class Shield"
 	"Liquid-Class Shield"
 	"Metallic Hydrogen Cell"
-	"Heavy Machine Gun"
+	"Cloud Piercer"
 
 	"MH Blue-Class Engine"
 	"MH Blue-Class Steering"

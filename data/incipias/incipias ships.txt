@@ -42,7 +42,7 @@ ship "Venta"
 		"Star Tail" 4
 		"Star Tail Cell" 80
 		"Star Tail Storage" 2
-		"Heavy Machine Gun" 40
+		"Cloud Piercer" 40
 
 		"MH Red-Class Engine"
 		"MH Red-Class Steering"
@@ -91,7 +91,7 @@ ship "Nimbus"
 		"Metallic Hydrogen Cell"
 		"Plasma Discharger" 4
 		"Stagnation Beam"
-		"Heavy Machine Gun" 20
+		"Cloud Piercer" 20
 
 		"MH Red-Class Engine"
 		"MH Red-Class Steering"
@@ -126,7 +126,7 @@ ship "Nimbus" "Nimbus (Mining)"
 		"Metallic Hydrogen Cell"
 		"Plasma Discharger" 4
 		"Stagnation Beam" # to be replaced with a flotsam tractor beam
-		"Heavy Machine Gun" 20
+		"Cloud Piercer" 20
 
 		"MH Red-Class Engine"
 		"MH Red-Class Steering"

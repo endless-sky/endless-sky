@@ -285,10 +285,10 @@ outfit "MH Red-Class Steering"
 
 
 # Hand to Hand
-outfit "Heavy Machine Gun"
+outfit "Cloud Piercer"
 	category "Hand to Hand"
 	cost 10000
-	thumbnail "outfit/heavy machine gun"
+	thumbnail "outfit/cloud piercer"
 	licenses
 		"Hicemus Conflict"
 	"capture attack" .55

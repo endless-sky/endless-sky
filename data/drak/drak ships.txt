@@ -121,6 +121,8 @@ ship "Archon" "Archon (Hyperdrive Only)"
 	"never disabled"
 	add attributes
 		"cloak" .04
+		"jump speed" 1
+		"hyperdrive" 1
 	"final explode" "archon b teleport"
 	outfits
 		"Drak Antimatter Cannon"
@@ -132,7 +134,6 @@ ship "Archon" "Archon (Hyperdrive Only)"
 		"Drak Distancer" 2
 		"Drak Turret" 3
 		"Drak Turret (Augmented)" 3
-		"Hyperdrive"
 
 
 effect "archon a teleport"

@@ -129,7 +129,7 @@ ship "Nimbus" "Nimbus FTL"
 	outfits
 		"Liquid-Class Shield"
 		"Metallic Hydrogen Cell"
-		"Heavy Machine Gun" 20
+		"Cloud Piercer" 20
 
 		"MH Red-Class Engine"
 		"MH Red-Class Steering"
