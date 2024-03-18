@@ -84,25 +84,7 @@ void MissionAction::LoadSingle(const DataNode &child)
 	bool hasValue = (child.Size() >= 2);
 
 	if(key == "dialog")
-	{
-		if(hasValue && child.Token(1) == "phrase")
-		{
-			if(!child.HasChildren() && child.Size() == 3)
-				dialogPhrase = ExclusiveItem<Phrase>(GameData::Phrases().Get(child.Token(2)));
-			else
-				child.PrintTrace("Skipping unsupported dialog phrase syntax:");
-		}
-		else if(!hasValue && child.HasChildren() && (*child.begin()).Token(0) == "phrase")
-		{
-			const DataNode &firstGrand = (*child.begin());
-			if(firstGrand.Size() == 1 && firstGrand.HasChildren())
-				dialogPhrase = ExclusiveItem<Phrase>(Phrase(firstGrand));
-			else
-				firstGrand.PrintTrace("Skipping unsupported dialog phrase syntax:");
-		}
-		else
-			Dialog::ParseTextNode(child, 1, dialogText);
-	}
+		LoadDialog(child);
 	else if(key == "conversation" && child.HasChildren())
 		conversation = ExclusiveItem<Conversation>(Conversation(child));
 	else if(key == "conversation" && hasValue)
@@ -159,14 +141,19 @@ void MissionAction::SaveBody(DataWriter &out) const
 		// LocationFilter indentation is handled by its Save method.
 		systemFilter.Save(out);
 	}
-	if(!dialogText.empty())
+	if(!dialog.empty())
 	{
 		out.Write("dialog");
 		out.BeginChild();
+		for(auto &item : dialog)
 		{
-			// Break the text up into paragraphs.
-			for(const string &line : Format::Split(dialogText, "\n\t"))
-				out.Write(line);
+			out.Write(item.first);
+			if(item.second)
+			{
+				out.BeginChild();
+				item.second->Save(out);
+				out.EndChild();
+			}
 		}
 		out.EndChild();
 	}
@@ -188,10 +175,6 @@ string MissionAction::Validate() const
 	if(!systemFilter.IsValid())
 		return "system location filter";
 
-	// Stock phrases that generate text must be defined.
-	if(dialogPhrase.IsStock() && dialogPhrase->IsEmpty())
-		return "stock phrase";
-
 	// Stock conversations must be defined.
 	if(conversation.IsStock() && conversation->IsEmpty())
 		return "stock conversation";
@@ -211,9 +194,29 @@ string MissionAction::Validate() const
 
 
 
-const string &MissionAction::DialogText() const
+const MissionAction::DialogList &MissionAction::GetDialogList() const
 {
-	return dialogText;
+	return dialog;
+}
+
+
+
+string MissionAction::MakeDialogText(const ConditionsStore &conditions, const map<string, string> &subs) const
+{
+	string result;
+	for(auto &item : dialog)
+		if(!item.second || item.second->Test(conditions))
+		{
+			string content = Format::Replace(Phrase::ExpandPhrases(item.first), subs);
+			if(!result.empty())
+			{
+				result += '\n';
+				if(!content.empty() && content[0] != '\t')
+					result += '\t';
+			}
+			result += content;
+		}
+	return result;
 }
 
 
@@ -311,6 +314,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const 
 	const shared_ptr<Ship> &ship, const bool isUnique) const
 {
 	bool isOffer = (trigger == "offer");
+	string dialogText;
 	if(!conversation->IsEmpty() && ui)
 	{
 		// Conversations offered while boarding or assisting reference a ship,
@@ -324,7 +328,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const 
 			panel->SetCallback(&player, &PlayerInfo::BasicCallback);
 		ui->Push(panel);
 	}
-	else if(!dialogText.empty() && ui)
+	else if(!dialog.empty() && ui)
 	{
 		map<string, string> subs;
 		GameData::GetTextReplacements().Substitutions(subs, player.Conditions());
@@ -332,7 +336,9 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const 
 		subs["<last>"] = player.LastName();
 		if(player.Flagship())
 			subs["<ship>"] = player.Flagship()->Name();
-		string text = Format::Replace(dialogText, subs);
+		string text = MakeDialogText(player.Conditions(), subs);
+		if(text.empty())
+			text = "(empty dialog)";
 
 		// Don't push the dialog text if this is a visit action on a nonunique
 		// mission; on visit, nonunique dialogs are handled by PlayerInfo as to
@@ -353,7 +359,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const 
 
 
 // Convert this validated template into a populated action.
-MissionAction MissionAction::Instantiate(map<string, string> &subs, const System *origin,
+MissionAction MissionAction::Instantiate(const ConditionsStore &store, map<string, string> &subs, const System *origin,
 	int jumps, int64_t payload) const
 {
 	MissionAction result;
@@ -369,9 +375,8 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 	result.action = action.Instantiate(subs, jumps, payload);
 
 	// Create any associated dialog text from phrases, or use the directly specified text.
-	string dialogText = !dialogPhrase->IsEmpty() ? dialogPhrase->Get() : this->dialogText;
-	if(!dialogText.empty())
-		result.dialogText = Format::Replace(Phrase::ExpandPhrases(dialogText), subs);
+	for(auto &item : dialog)
+		result.dialog.emplace_back(Format::Replace(Phrase::ExpandPhrases(item.first), subs), item.second);
 
 	if(!conversation->IsEmpty())
 		result.conversation = ExclusiveItem<Conversation>(conversation->Instantiate(subs, jumps, payload));
@@ -391,4 +396,40 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 int64_t MissionAction::Payment() const noexcept
 {
 	return action.Payment();
+}
+
+
+
+shared_ptr<ConditionSet> MissionAction::GetToDisplay(const DataNode &node)
+{
+	shared_ptr<ConditionSet> conditions;
+	for(auto &child : node)
+		if(child.Size() != 2 || child.Token(0) != "to" || child.Token(1) != "display" || !child.HasChildren())
+			child.PrintTrace("Ignoring unrecognized dialog token");
+		else if(!conditions)
+			conditions = make_shared<ConditionSet>(child);
+		else
+			conditions->Load(child);
+	return conditions;
+}
+
+
+
+void MissionAction::LoadDialog(const DataNode &node)
+{
+	// Parse the "dialog phrase whatever" and "dialog whatever" lines:
+	if(node.Size() == 3 && node.Token(1) == "phrase")
+		dialog.emplace_back("${" + node.Token(2) + "}", nullptr);
+	else if(node.Size() == 2)
+		dialog.emplace_back(node.Token(1), nullptr);
+	// Parse dialog in children:
+	for(auto &child : node)
+		if(child.Size() == 2 && child.Token(0) == "phrase")
+			dialog.emplace_back("${" + child.Token(1) + "}", GetToDisplay(child));
+		else
+		{
+			if(child.Size() > 1)
+				child.PrintTrace("Ignoring extra tokens.");
+			dialog.emplace_back(child.Token(0), GetToDisplay(child));
+		}
 }
