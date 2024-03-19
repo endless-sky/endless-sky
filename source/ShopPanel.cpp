@@ -1263,9 +1263,12 @@ void ShopPanel::MainUp()
 		return;
 
 	vector<Zone>::const_iterator it = Selected();
-	// Special case: nothing is selected.  Start from the first item.
+	// Special case: nothing is selected. Start from the first item.
 	if(it == zones.end())
+	{
 		it = zones.begin();
+		previousX = it->Center().X();
+	}
 
 	const double previousY = it->Center().Y();
 	while(it != zones.begin() && it->Center().Y() == previousY)
@@ -1298,8 +1301,10 @@ void ShopPanel::MainDown()
 	if(it == zones.end())
 	{
 		mainScroll = 0.;
-		selectedShip = zones.begin()->GetShip();
-		selectedOutfit = zones.begin()->GetOutfit();
+		it = zones.begin();
+		selectedShip = it->GetShip();
+		selectedOutfit = it->GetOutfit();
+		previousX = it->Center().X();
 		return;
 	}
 
