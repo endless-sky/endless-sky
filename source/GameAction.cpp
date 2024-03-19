@@ -195,7 +195,7 @@ void GameAction::LoadSingle(const DataNode &child)
 				mortgage.term = max<int>(1, grand.Value(1));
 			else if(grandKey == "interest" && grandHasValue)
 			{
-				mortgage.interest = max(0., min(.999, grand.Value(1)));
+				mortgage.interest = clamp(grand.Value(1), 0., 0.999);
 				mortgage.useCreditScore = false;
 			}
 			else
