@@ -599,7 +599,6 @@ planet Cassandra
 	description `In the late 2300s, Cassandra was the subject of one of the most ambitious terraforming projects performed by humanity until then; an attempt to rapidly modify its biosphere and jumpstart the process of making the planet more than perfect for human habitation.`
 	description `The project never came to be. For an as-yet-unexplained reason, some collapse or chain of destruction occurred during the terraforming project that made Cassandra uninhabitable, and ever since Cassandra has been discreetly left out of the public record by the terraforming industry.`
 	description `	This appeared to have been an ocean-covered planet when the terraforming project was initiated; almost everywhere you go is a dry and dead salt flat in every direction, occasionally rising steeply up into pale watersheds and ranges where rivers and islands once were.`
-	"required reputation" -1000
 
 planet "Ceaseless Toil"
 	attributes factory saryd uninhabited
@@ -815,7 +814,6 @@ planet "Dagon Station"
 	landscape land/station50
 	description `Originally built in the 25th century as a corporate military outpost, Dagon Station's notoriety stems from its past as a pirate base; its infamous mercenary fleets all but decided the victors in the constant wars of the mid-Core region during the 26th and 27th centuries. Dagon's influence only came to an end in the late 27th century when a fleet from Earth defeated the pirate base for good; after that, it became a military base for the fledgling Republic.`
 	description `	In the 29th century, control of Dagon Station was passed to the Syndicate, who eventually vacated the station due to its age and no-longer strategic position. Local laws prevent landing on Dagon Station without a permit, but the Syndicate doesn't pay close attention to whether or not anybody lands here anyway.`
-	"required reputation" -1000
 
 planet Dancer
 	attributes research south
@@ -3674,7 +3672,6 @@ planet "Rowark's Roost"
 	landscape land/moon1
 	description "Rowark's Roost was once the hideout of one of the most famous privateers of the Southern Rim, Rowark Balois. From this remote moon he built an empire in slave and drug running, near-monopolizing the Rim during the early 27th century. The Roost itself was a stronghold of hangars and tunnels that would become the model for pirate cells across human space."
 	description "In 2655, Rowark was flushed out of his Roost by a combined Rim and Deep fleet in a battle that continues to be studied by every aspirant Navy officer in their tutelage. As you fly over the moon you spy the wrecks of countless ships dotting its surface, but what is most striking is the truly impressive battleship-sized crater that marks the spot where Rowark met his end, doggedly choosing to fight to the very last."
-	"required reputation" -1000
 
 planet Ruelogakk
 	attributes "gegno quarg" quarg station
