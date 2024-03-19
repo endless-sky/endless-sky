@@ -147,11 +147,17 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Becca Tommaso, Darcy Manoel, and Michael Zahniser (under the same license). Incorporating texture made with JSPlacement by WindMillArt <https://windmillart.net/>.
 
 Files:
+ images/land/moon0*
+Copyright: NASA/GSFC/Arizona State University
+License: public-domain
+ From NASA, and therefore in the public domain because they were created by
+ government employees while doing work for the government.
+
+Files:
  images/land/enceladus_1*
  images/land/enceladus_2*
  images/land/enceladus_3*
  images/land/enceladus_4*
- images/land/moon0*
  images/land/moon1*
  images/ui/galaxy*
  images/ui/pleiades*
