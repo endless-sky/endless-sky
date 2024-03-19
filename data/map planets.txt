@@ -3672,6 +3672,7 @@ planet "Rowark's Roost"
 	landscape land/moon1
 	description "Rowark's Roost was once the hideout of one of the most famous privateers of the Southern Rim, Rowark Balois. From this remote moon he built an empire in slave and drug running, near-monopolizing the Rim during the early 27th century. The Roost itself was a stronghold of hangars and tunnels that would become the model for pirate cells across human space."
 	description "In 2655, Rowark was flushed out of his Roost by a combined Rim and Deep fleet in a battle that continues to be studied by every aspirant Navy officer in their tutelage. As you fly over the moon you spy the wrecks of countless ships dotting its surface, but what is most striking is the truly impressive battleship-sized crater that marks the spot where Rowark met his end, doggedly choosing to fight to the very last."
+	government Uninhabited
 
 planet Ruelogakk
 	attributes "gegno quarg" quarg station
