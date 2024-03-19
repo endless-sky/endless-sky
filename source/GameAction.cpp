@@ -182,29 +182,22 @@ void GameAction::LoadSingle(const DataNode &child)
 		else
 			child.PrintTrace("Error: Skipping invalid \"fine\" with non-positive value:");
 	}
-	else if(key == "mortgage")
+	else if(key == "mortgage" && hasValue)
 	{
 		GameAction::Mortgage mortgage;
+		mortgage.principal = max<int64_t>(0, child.Value(1));
 		for(const DataNode &grand : child)
 		{
 			const string &grandKey = grand.Token(0);
 			bool grandHasValue = (grand.Size() > 1);
-			if(grandKey == "principal" && grandHasValue)
-				mortgage.principal = max<int64_t>(0, grand.Value(1));
-			else if(grandKey == "term" && grandHasValue)
+			if(grandKey == "term" && grandHasValue)
 				mortgage.term = max<int>(1, grand.Value(1));
 			else if(grandKey == "interest" && grandHasValue)
-			{
 				mortgage.interest = clamp(grand.Value(1), 0., 0.999);
-				mortgage.useCreditScore = false;
-			}
 			else
 				grand.PrintTrace("Error: Skipping unrecognized \"mortgage\" attribute:");
 		}
-		if(!mortgage.principal)
-			child.PrintTrace("Error: Skipping game action mortgage without a principal.");
-		else
-			mortgages.emplace_back(mortgage);
+		mortgages.emplace_back(mortgage);
 	}
 	else if(key == "event" && hasValue)
 	{
@@ -259,12 +252,11 @@ void GameAction::Save(DataWriter &out) const
 		out.Write("fine", fine);
 	for(auto &&mortgage : mortgages)
 	{
-		out.Write("mortgage");
+		out.Write("mortgage", mortgage.principal);
 		out.BeginChild();
 		{
-			out.Write("principal", mortgage.principal);
-			if(!mortgage.useCreditScore)
-				out.Write("interest", mortgage.interest);
+			if(mortgage.interest)
+				out.Write("interest", *mortgage.interest);
 			out.Write("term", mortgage.term);
 		}
 		out.EndChild();
@@ -386,12 +378,7 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 	if(fine)
 		player.Accounts().AddFine(fine);
 	for(const auto &mortgage : mortgages)
-	{
-		if(mortgage.useCreditScore)
-			player.Accounts().AddMortgage(mortgage.principal, mortgage.term);
-		else
-			player.Accounts().AddMortgage(mortgage.principal, mortgage.interest, mortgage.term);
-	}
+		player.Accounts().AddMortgage(mortgage.principal, mortgage.interest, mortgage.term, false);
 
 	for(const auto &it : events)
 		player.AddEvent(*it.first, player.GetDate() + it.second.first);

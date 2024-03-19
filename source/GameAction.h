@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <cstdint>
 #include <map>
+#include <optional>
 #include <set>
 #include <string>
 #include <utility>
@@ -77,9 +78,8 @@ public:
 private:
 	struct Mortgage {
 		int64_t principal = 0;
-		double interest = 0.;
+		std::optional<double> interest;
 		int term = 365;
-		bool useCreditScore = true;
 	};
 
 

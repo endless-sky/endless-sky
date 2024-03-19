@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <cstdint>
 #include <map>
+#include <optional>
 #include <string>
 #include <vector>
 
@@ -58,11 +59,12 @@ public:
 
 	// Liabilities:
 	const std::vector<Mortgage> &Mortgages() const;
-	// Add a new mortgage for the given amount, with an interest rate determined by
-	// your credit score.
-	void AddMortgage(int64_t principal, int term = 365);
-	// Add a new mortgage for the given amount with the given interest rate and term.
-	void AddMortgage(int64_t principal, double interest, int term = 365);
+	// Add a new mortgage for the given amount with the given details. If no interest rate
+	// is given then the player's credit score is used to determine the interest rate.
+	// If addCredits is true then the principal is also added to the player's credits;
+	// otherwise, this is just debt.
+	void AddMortgage(int64_t principal, std::optional<double> interest = std::nullopt,
+		int term = 365, bool addCredits = true);
 	void AddFine(int64_t amount);
 	int64_t Prequalify() const;
 	// Assets:
