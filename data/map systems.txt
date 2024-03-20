@@ -11814,7 +11814,7 @@ system "Epsilon Eridani"
 		sprite planet/gas3-b
 		distance 3957.419
 		period 1126.962
-		object
+		object Hevring
 			sprite planet/dust1-b
 			distance 289
 			period 152.801
@@ -32130,7 +32130,7 @@ system "Tau Ceti"
 		sprite planet/venus
 		distance 289
 		period 83.796
-	object "Tau Ceti IV"
+	object Arcadia
 		sprite planet/dust2
 		distance 937
 		period 489.202
