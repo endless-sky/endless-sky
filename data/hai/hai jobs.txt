@@ -1784,6 +1784,7 @@ mission "Superstitious Hai [3]"
 		has "outfit (installed): Quantum Keystone"
 	source
 		government "Hai"
+		not attributes "retirement"
 	destination
 		government "Hai"
 		attributes "retirement"
@@ -1959,6 +1960,7 @@ mission "Superstitious Hai [9]"
 		has "outfit: Tree Skeleton Key Stone"
 	source
 		government "Hai"
+		not attributes "retirement"
 	destination
 		government "Hai"
 		attributes "retirement"
