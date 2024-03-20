@@ -1835,7 +1835,7 @@ mission "FW Albatross 2A"
 		personality staying plunders disables
 		system Orvala
 		government Pirate
-		fleet "Small Southern Pirates" 3
+		fleet "Large Southern Pirates" 2
 
 
 
