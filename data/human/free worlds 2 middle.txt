@@ -1828,7 +1828,7 @@ mission "FW Albatross 2A"
 		personality staying plunders disables heroic nemesis target
 		system Orvala
 		government Pirate
-		ship "Bastion (Heavy)" "Dread"
+		ship "Bulwark (Heavy)" "Dread"
 		dialog "You have destroyed Ryk Bartlett's ship. Hopefully now the elders on Albatross will be more inclined to bargain with the Free Worlds."
 	
 	npc
