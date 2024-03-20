@@ -252,16 +252,14 @@ Engine::Engine(PlayerInfo &player)
 	zoom.base = Preferences::ViewZoom();
 	zoom.modifier = Preferences::Has("Landing zoom") ? 2. : 1.;
 
-	// Start the thread for doing calculations.
-	calcThread = thread(&Engine::ThreadEntryPoint, this);
-
 	if(!player.IsLoaded() || !player.GetSystem())
 		return;
 
 	// Preload any landscapes for this system.
 	for(const StellarObject &object : player.GetSystem()->Objects())
 		if(object.HasSprite() && object.HasValidPlanet())
-			GameData::Preload(object.GetPlanet()->Landscape());
+			GameData::Preload(queue, object.GetPlanet()->Landscape());
+	queue.Wait();
 
 	// Figure out what planet the player is landed on, if any.
 	const StellarObject *object = player.GetStellarObject();
@@ -299,12 +297,9 @@ Engine::Engine(PlayerInfo &player)
 
 Engine::~Engine()
 {
-	{
-		unique_lock<mutex> lock(swapMutex);
-		terminate = true;
-	}
-	condition.notify_all();
-	calcThread.join();
+	// Wait for any outstanding task to finish to avoid race conditions when
+	// destroying the engine.
+	queue.Wait();
 }
 
 
@@ -483,8 +478,7 @@ void Engine::Place(const list<NPC> &npcs, shared_ptr<Ship> flagship)
 // Wait for the previous calculations (if any) to be done.
 void Engine::Wait()
 {
-	unique_lock<mutex> lock(swapMutex);
-	condition.wait(lock, [this] { return hasFinishedCalculating; });
+	queue.Wait();
 	currentDrawBuffer = currentCalcBuffer;
 }
 
@@ -987,13 +981,9 @@ void Engine::Step(bool isActive)
 // Begin the next step of calculations.
 void Engine::Go()
 {
-	{
-		unique_lock<mutex> lock(swapMutex);
-		++step;
-		currentCalcBuffer = currentCalcBuffer ? 0 : 1;
-		hasFinishedCalculating = false;
-	}
-	condition.notify_all();
+	++step;
+	currentCalcBuffer = currentCalcBuffer ? 0 : 1;
+	queue.Run([this] { CalculateStep(); });
 }
 
 
@@ -1153,10 +1143,6 @@ void Engine::Draw() const
 	// Draw escort status.
 	escorts.Draw(hud->GetBox("escorts"));
 
-	// Upload any preloaded sprites that are now available. This is to avoid
-	// filling the entire backlog of sprites before landing on a planet.
-	GameData::ProcessSprites();
-
 	if(Preferences::Has("Show CPU / GPU load"))
 	{
 		string loadString = to_string(lround(load * 100.)) + "% CPU";
@@ -1270,7 +1256,7 @@ void Engine::EnterSystem()
 	for(const StellarObject &object : system->Objects())
 		if(object.HasValidPlanet())
 		{
-			GameData::Preload(object.GetPlanet()->Landscape());
+			GameData::Preload(queue, object.GetPlanet()->Landscape());
 			if(object.GetPlanet()->IsWormhole() && !usedWormhole
 					&& flagship->Position().Distance(object.Position()) < 1.)
 				usedWormhole = &object;
@@ -1377,32 +1363,6 @@ void Engine::EnterSystem()
 	{
 		Messages::Add(GameData::HelpMessage("basics 1"), Messages::Importance::High);
 		Messages::Add(GameData::HelpMessage("basics 2"), Messages::Importance::High);
-	}
-}
-
-
-
-// Thread entry point.
-void Engine::ThreadEntryPoint()
-{
-	while(true)
-	{
-		{
-			unique_lock<mutex> lock(swapMutex);
-			condition.wait(lock, [this] { return !hasFinishedCalculating || terminate; });
-
-			if(terminate)
-				break;
-		}
-
-		// Do all the calculations.
-		CalculateStep();
-
-		{
-			unique_lock<mutex> lock(swapMutex);
-			hasFinishedCalculating = true;
-		}
-		condition.notify_one();
 	}
 }
 
@@ -2214,6 +2174,11 @@ void Engine::DoCollisions(Projectile &projectile)
 		shared_ptr<Ship> shipHit;
 		if(hit && collisionType == CollisionType::SHIP)
 			shipHit = reinterpret_cast<Ship *>(hit)->shared_from_this();
+
+		// Don't collide with carried ships that are disabled and not directly targeted.
+		if(shipHit && hit != projectile.Target()
+				&& shipHit->CanBeCarried() && shipHit->IsDisabled())
+			continue;
 
 		// Create the explosion the given distance along the projectile's
 		// motion path for this step.
