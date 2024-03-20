@@ -1923,9 +1923,7 @@ mission "Escort Stolen Vessel (Extra Large, North, Dangerous Path)"
 			variant 4
 				"Leviathan (Heavy)"
 				"Freighter"
-			variant 1
-				"Bactrian"
-				"Shuttle"
+
 	on complete
 		payment 375000
 		dialog phrase "generic safe escort completion dialog"

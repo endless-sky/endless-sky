@@ -13,8 +13,6 @@ on:
         value: ${{ jobs.changed.outputs.integration_tests }}
       codespell:
         value: ${{ jobs.changed.outputs.codespell }}
-      codeblocks_files:
-        value: ${{ jobs.changed.outputs.codeblocks_files }}
       editorconfig_files:
         value: ${{ jobs.changed.outputs.editorconfig_files }}
       content_style_check:
@@ -41,7 +39,6 @@ jobs:
       unit_tests: ${{ steps.filter.outputs.unit_tests }}
       integration_tests: ${{ steps.filter.outputs.integration_tests }}
       codespell: ${{ steps.filter.outputs.codespell }}
-      codeblocks_files: ${{ steps.filter.outputs.codeblocks_files }}
       editorconfig_files: ${{ steps.filter.outputs.editorconfig_files }}
       content_style_check: ${{ steps.filter.outputs.content_style_check }}
       code_style_check: ${{ steps.filter.outputs.code_style_check }}
@@ -55,7 +52,7 @@ jobs:
       with:
         fetch-depth: 2
         show-progress: false
-    - uses: dorny/paths-filter@v2
+    - uses: dorny/paths-filter@v3
       id: filter
       with:
         filters: .github/path-filters.yml
