@@ -1844,7 +1844,7 @@ mission "Superstitious Hai [5]"
 		government "Hai"
 	destination
 		government "Hai"
-		attributes "hai vacation"
+		attributes "hai tourism"
 		distance 4 8
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -2024,7 +2024,7 @@ mission "Superstitious Hai [11]"
 		government "Hai"
 	destination
 		government "Hai"
-		attributes "hai vacation"
+		attributes "hai tourism"
 		distance 4 8
 	on visit
 		dialog phrase "generic passenger on visit"
