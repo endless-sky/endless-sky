@@ -822,8 +822,11 @@ ship "Ibis"
 		"outfit space" 427
 		"weapon capacity" 147
 		"engine capacity" 109
-		"shield generation" 3.5
-		"shield energy" 3.1
+		"shield generation" 1.75
+		"shield energy" 1.55
+		"shield generation" 5.25
+		"shield energy" 3.65
+		"shield delay" 450
 		"hull repair rate" 1.2
 		"hull energy" 0.95
 		"outfit scan power" 18
@@ -905,8 +908,11 @@ ship "Merganser"
 		"heat dissipation" .9
 		"gaslining" 1
 		"outfit space" 219
-		"shield generation" 2.8
-		"shield energy" 1.2
+		"shield generation" 1.4
+		"shield energy" 0.6
+		"delayed shield generation" 2.8
+		"delayed shield energy" 1.2
+		"shield delay" 210
 		"hull repair rate" 1.8
 		"hull energy" 0.6
 		"cloak" .04
@@ -1009,8 +1015,11 @@ ship "Pelican"
 		"outfit space" 480
 		"weapon capacity" 157
 		"engine capacity" 144
+		"shield generation" 1.35
+		"shield energy" .9
 		"shield generation" 2.7
 		"shield energy" 1.8
+		"shield delay" 210
 		"hull repair rate" 1
 		"hull energy" 0.75
 		"outfit scan power" 12
@@ -1091,8 +1100,11 @@ ship "Penguin"
 		"outfit space" 109
 		"weapon capacity" 33
 		"engine capacity" 54
-		"shield generation" 1
-		"shield energy" 0.5
+		"shield generation" .5
+		"shield energy" 0.25
+		"delayed shield generation" 1
+		"delayed shield energy" .5
+		"shield delay" 210
 		"hull repair rate" 2
 		"hull energy" 1.0
 		"gaslining" 1
@@ -1196,8 +1208,11 @@ ship "Peregrine"
 		"outfit space" 552
 		"weapon capacity" 220
 		"engine capacity" 171
-		"shield generation" 4.9
-		"shield energy" 3.0
+		"shield generation" 2.45
+		"shield energy" 1.5
+		"delayed shield generation" 4.9
+		"delayed shield energy" 3.0
+		"shield delay" 210
 		"hull repair rate" 2.5
 		"hull energy" 0.90
 		"cloak" .04
@@ -1312,8 +1327,11 @@ ship "Petrel"
 		"outfit space" 133
 		"weapon capacity" 33
 		"engine capacity" 34
-		"shield generation" 0.36
-		"shield energy" 0.24
+		"shield generation" 0.18
+		"shield energy" 0.12
+		"delayed shield generation" 0.36
+		"delayed shield energy" 0.24
+		"shield delay" 210
 		"hull repair rate" 0.82
 		"hull energy" 0.54
 		"gaslining" 1
@@ -1509,8 +1527,11 @@ ship "Starling"
 		"outfit space" 316
 		"weapon capacity" 83
 		"engine capacity" 94
-		"shield generation" 1.8
-		"shield energy" 1.2
+		"shield generation" 0.9
+		"shield energy" 0.6
+		"delayed shield generation" 1.8
+		"delayed shield energy" 1.2
+		"shield delay" 210
 		"hull repair rate" 0.8
 		"hull energy" 0.6
 		"cloak" .02
@@ -1668,8 +1689,11 @@ ship "Tern"
 		"outfit space" 76
 		"weapon capacity" 16
 		"engine capacity" 26
-		"shield generation" 0.25
-		"shield energy" 0.16
+		"shield generation" 0.125
+		"shield energy" 0.08
+		"delayed shield generation" 0.25
+		"delayed shield energy" 0.16
+		"shield delay" 210
 		"hull repair rate" 0.55
 		"hull energy" 0.37
 		"gaslining" 1
