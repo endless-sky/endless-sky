@@ -2280,7 +2280,7 @@ mission "Wanderers Evacuation 1B"
 	on offer
 		conversation
 			`The Wanderer transports land in the spaceport and begin loading passengers. The village appears to be almost empty; all but the last few stragglers have already left. As on Varu Mer'ek before it was captured, they seem to have taken pains to leave their village as neat and tidy as possible. In similar circumstances, a human government would probably have chosen to burn everything of value to the ground rather than let it fall into enemy hands.`
-				accept
+				launch
 	npc accompany save
 		government "Wanderer"
 		personality timid escort
