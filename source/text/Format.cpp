@@ -24,6 +24,96 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
+	const int64_t K = 1000;
+	static const vector<pair<const char *, int64_t>> WORD_NUMBERS = {
+		{ "quintillion", K * K * K * K * K * K },
+		{ "quadrillion", K * K * K * K * K },
+		{ "trillion", K * K * K * K },
+		{ "billion", K * K * K },
+		{ "million", K * K },
+		{ "thousand", K }
+	};
+	static const vector<const char *> ONES_NAMES = {
+		"zero ", "one ", "two ", "three ", "four ", "five ",
+		"six ", "seven ", "eight ", "nine ", "ten ", "eleven ",
+		"twelve ", "thirteen ", "fourteen ", "fifteen ",
+		"sixteen ", "seventeen ", "eighteen ", "nineteen "
+	};
+	static const vector<const char *> TENS_NAMES = {
+		"error", "error", "twenty", "thirty", "forty",
+		"fifty", "sixty", "seventy", "eighty", "ninety"
+	};
+
+	// This struct exists just to allow the operator<< below.
+	struct Wrapped {
+		int64_t value;
+	};
+
+	// Implementation of WordForm. Outputs the word form of the wrapped number,
+	// followed by a space.
+	ostream &operator<< (ostream &o, const Wrapped &num)
+	{
+
+		if(num.value < 0)
+			return o << "negative " << Wrapped { -num.value };
+
+		Wrapped remaining { num };
+
+		if(remaining.value >= 1000)
+			for(auto &nameValue : WORD_NUMBERS)
+				if(remaining.value >= nameValue.second)
+				{
+					Wrapped above { remaining.value / nameValue.second };
+					remaining.value %= nameValue.second;
+					o << above << nameValue.first;
+					if(!remaining.value)
+						return o;
+					o << ' ';
+				}
+
+		if(remaining.value >= 100)
+		{
+			o << ONES_NAMES[(remaining.value / 100) % 10] << "hundred ";
+			remaining.value %= 100;
+			if(!remaining.value)
+				return o;
+		}
+
+		if(remaining.value < 20)
+			return o << ONES_NAMES[remaining.value];
+
+		o << TENS_NAMES[remaining.value / 10];
+		int64_t ones = remaining.value % 10;
+		if(ones)
+			return o << '-' << ONES_NAMES[ones];
+		return o << ' ';
+	}
+
+	string MLAShorthand(int64_t value)
+	{
+		bool negative = value < 0;
+		if(negative)
+			value = -value;
+		for(size_t magnitude = 0; magnitude < WORD_NUMBERS.size() - 1; ++magnitude)
+		{
+			int64_t above = value / WORD_NUMBERS[magnitude + 1].second;
+			int64_t below = value % WORD_NUMBERS[magnitude + 1].second;
+			if(above < 1000)
+				continue;
+			if(above >= 1000000 || !(above % 1000))
+				break;
+			if(below)
+				continue;
+			const size_t BUFLEN = 100;
+			char buf[BUFLEN] = { 0 };
+			snprintf(buf, BUFLEN, "%s%.3f %s",
+				negative ? "negative " : "", above / 1000.0, WORD_NUMBERS[magnitude].first);
+			buf[BUFLEN - 1] = '\0';
+			return string(buf);
+		}
+		return string();
+	}
+
 	// Format an integer value, inserting its digits into the given string in
 	// reverse order and then reversing the string.
 	void FormatInteger(int64_t value, bool isNegative, string &result)
@@ -75,6 +165,18 @@ namespace {
 			result.append(Format::MassString(value)); // X tons or X ton
 		else if(IsFormat("playtime"))
 			result.append(Format::PlayTime(value)); // 3d 19h 24m 8s
+		else if(IsFormat("chicago"))
+			result.append(Format::ChicagoForm(value, false)); // thirty-three or 101
+		else if(IsFormat("Chicago"))
+			result.append(Format::ChicagoForm(value, true)); // Thirty-three or One hundred one
+		else if(IsFormat("mla"))
+			result.append(Format::MLAForm(value, false)); // thirty-three or 101
+		else if(IsFormat("Mla"))
+			result.append(Format::MLAForm(value, true)); // Thirty-three or One hundred one
+		else if(IsFormat("words"))
+			result.append(Format::WordForm(value, false)); // thirty-three or one hundred one
+		else if(IsFormat("Words"))
+			result.append(Format::WordForm(value, true)); // Thirty-three or One hundred one
 		else
 			// "number" or unsupported format
 			result.append(Format::Number(value));
@@ -255,6 +357,74 @@ string Format::Decimal(double value, int places)
 		result += ('0' + static_cast<int>(integer));
 	}
 	return result;
+}
+
+
+
+string Format::WordForm(int64_t value, bool startOfSentence)
+{
+	ostringstream o;
+	o << Wrapped { value };
+	string result = o.str();
+	if(result.size() > 0 && result[result.size() - 1] == ' ')
+		result.resize(result.size() - 1);
+	if(!result.empty() && startOfSentence && result[0] >= 'a' && result[0] <= 'z')
+		result[0] -= 32;
+	return result;
+}
+
+
+
+// Chicago manual of style
+string Format::ChicagoForm(int64_t value, bool startOfSentence)
+{
+	if(startOfSentence)
+		return WordForm(value, true);
+	if(value < 1000 && value > -1000 && ! (value % 100))
+		return WordForm(value, startOfSentence);
+	int64_t above = value, below = 0;
+	for(int i = 0; above && i < 6; i++)
+	{
+		if(below)
+			break;
+		else if(above < 100 && above > -100)
+			return WordForm(value, startOfSentence);
+		else if(above < 1000 && above > -1000 && !(above % 100))
+			return WordForm(value, startOfSentence);
+		below = above % 1000;
+		above /= 1000;
+	}
+	return Format::Number(value);
+}
+
+
+
+// MLA Handbook style
+string Format::MLAForm(int64_t value, bool startOfSentence)
+{
+	if(startOfSentence)
+		return WordForm(value, true);
+	if(value >= -99 && value <= 99)
+		return WordForm(value, startOfSentence);
+
+	// 21350000 => 21.35 million
+	string shorthand = MLAShorthand(value);
+	if(!shorthand.empty())
+		return shorthand;
+
+	int64_t above = value, below = 0;
+	for(int i = 0; above && i < 6; i++)
+	{
+		if(below)
+			break;
+		else if(above <= 10 && above >= -10)
+			return WordForm(value, startOfSentence);
+		else if(above < 100 && above > -100 && !(above % 10))
+			return WordForm(value, startOfSentence);
+		below = above % 1000;
+		above /= 1000;
+	}
+	return Format::Number(value);
 }
 
 
