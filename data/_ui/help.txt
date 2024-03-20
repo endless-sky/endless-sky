@@ -162,7 +162,7 @@ help "uninstalling and storage"
 	`If you sell an outfit at an outfitter, then you can immediately buy it back for the same price that you sold it, so long as you do not leave the planet. This means that you do not necessarily need to worry about uninstalling outfits into planetary storage when you are changing outfits around.`
 
 help "outfitter with multiple ships"
-	`In the outfitter you can manage multiple ships at the same time. Ctrl+click a ship icon to add it to your selection. You can also use Shift+click to select a range of ships.`
+	`You can manage outfits on multiple ships at the same time. Ctrl+click a ship icon to add it to your selection. You can also use Shift+click to select a range of ships.`
 	`When you have more than one ship selected, you can install or remove outfits from all of those ships at once. Additionally, all selected ships with the currently selected outfit installed are marked with a pointer next to their sidebar icon.`
 
 help "stranded"
