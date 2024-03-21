@@ -1803,6 +1803,7 @@ news "conspiracy theorist"
 			"Republic Intelligence has bird-like surveillance drones in every city. There is one in front of my window every morning."
 			"The Quarg are running the government. There is no way such a powerful species wouldn't be able to control us."
 			"A friend of mine caught a horrible disease after visiting a Quarg ring. She had rashes and carbuncles all over her face."
+			"If spaceships have drag, there must be air in the 'vacuum of space'..."
 		word
 			"" 2
 			" Wake up, sheeple!"
