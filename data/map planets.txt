@@ -2107,7 +2107,7 @@ planet Hestia
 planet Hevring
 	attributes moon paradise uninhabited
 	landscape land/moon2
-	description `Hevring, moon of the gas giant AEgir, was once an extrasolar mining colony from a corporation of old Earth, established in the first hyperdrive-fuelled expansion of humanity amongst the stars.`
+	description `A moon of the gas giant Aegir, Hevring was once an extrasolar mining colony from a corporation of old Earth, established in the first hyperdrive-fueled expansion of humanity amongst the stars.`
 	description `	A century after its founding, a transport ship operating a routine resupply mission to Hevring discovered that a privateer had crashed into the colony's spacedock, preventing the miners from contacting the rest of human space. More oddly, there was no trace of the privateer crew or of the colonists, nor any sign that another ship had extracted them from the moon.`
 	description `	After the "Hevring incident" it was widely speculated that the Quarg had caused the disappearance of the colony, though no substantive evidence proving this has ever surfaced.`
 
