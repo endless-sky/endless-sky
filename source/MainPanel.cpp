@@ -242,10 +242,8 @@ void MainPanel::Draw()
 			{
 				info.SetCondition("targeting asteroid");
 			}
-			else if (player.Flagship()->Attributes().Get("cloak"))
-			{
+			if (player.Flagship()->Attributes().Get("cloak"))
 				info.SetCondition("can cloak");
-			}
 			if (player.Flagship()->Attributes().Get("asteroid scan power"))
 				info.SetCondition("can scan asteroids");
 
