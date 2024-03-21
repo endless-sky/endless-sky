@@ -1835,7 +1835,14 @@ mission "FW Albatross 2A"
 		personality staying plunders disables
 		system Orvala
 		government Pirate
-		fleet "Large Southern Pirates" 2
+		fleet
+			names pirate
+			variant
+				"Argosy (Proton)"
+				"Modified Argosy (Gatling)"
+				"Hawk (Plasma)"
+				"Hawk"
+				"Sparrow" 3
 
 
 
