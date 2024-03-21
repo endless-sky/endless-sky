@@ -184,8 +184,8 @@ void GameAction::LoadSingle(const DataNode &child)
 	}
 	else if(key == "mortgage" && hasValue)
 	{
-		GameAction::Mortgage mortgage;
-		mortgage.principal = max<int64_t>(0, child.Value(1));
+		mortgages.emplace_back(max<int64_t>(0, child.Value(1)));
+		GameAction::MortgageInfo &mortgage = mortgages.back();
 		for(const DataNode &grand : child)
 		{
 			const string &grandKey = grand.Token(0);
@@ -197,7 +197,6 @@ void GameAction::LoadSingle(const DataNode &child)
 			else
 				grand.PrintTrace("Error: Skipping unrecognized \"mortgage\" attribute:");
 		}
-		mortgages.emplace_back(mortgage);
 	}
 	else if(key == "event" && hasValue)
 	{

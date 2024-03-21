@@ -76,7 +76,9 @@ public:
 
 
 private:
-	struct Mortgage {
+	struct MortgageInfo {
+		MortgageInfo(int64_t principal) : principal(principal) {}
+
 		int64_t principal = 0;
 		std::optional<double> interest;
 		int term = 365;
@@ -95,7 +97,7 @@ private:
 	int64_t payment = 0;
 	int64_t paymentMultiplier = 0;
 	int64_t fine = 0;
-	std::vector<Mortgage> mortgages;
+	std::vector<MortgageInfo> mortgages;
 
 	// When this action is performed, the missions with these names fail.
 	std::set<std::string> fail;

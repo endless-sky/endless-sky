@@ -59,10 +59,9 @@ public:
 
 	// Liabilities:
 	const std::vector<Mortgage> &Mortgages() const;
-	// Add a new mortgage for the given amount with the given details. If no interest rate
-	// is given then the player's credit score is used to determine the interest rate.
-	// If addCredits is true then the principal is also added to the player's credits;
-	// otherwise, this is just debt.
+	// Add a new mortgage. If no interest rate is given then the player's credit score
+	// is used to determine the interest rate. If addCredits is true then the principal
+	// is also added to the player's credits; otherwise, this is just debt.
 	void AddMortgage(int64_t principal, std::optional<double> interest = std::nullopt,
 		int term = 365, bool addCredits = true);
 	void AddFine(int64_t amount);

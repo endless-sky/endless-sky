@@ -369,10 +369,9 @@ const vector<Mortgage> &Account::Mortgages() const
 
 
 
-// Add a new mortgage for the given amount with the given details. If no interest rate
-// is given then the player's credit score is used to determine the interest rate.
-// If addCredits is true then the principal is also added to the player's credits;
-// otherwise, this is just debt.
+// Add a new mortgage. If no interest rate is given then the player's credit score
+// is used to determine the interest rate. If addCredits is true then the principal
+// is also added to the player's credits; otherwise, this is just debt.
 void Account::AddMortgage(int64_t principal, optional<double> interest, int term, bool addCredits)
 {
 	if(interest)
