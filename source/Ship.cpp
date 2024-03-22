@@ -4820,7 +4820,7 @@ bool Ship::Carry(const shared_ptr<Ship> &ship, vector<Visual> &visuals)
 
 	// Apply any retrieve effects. If the ship was carried succesfully then
 	// it was assigned a bay with the effects to generate.
-	if(success && !ship->reservedBay->retrieveEffects.empty())
+	if(success)
 		for(const Effect *effect : ship->reservedBay->retrieveEffects)
 			visuals.emplace_back(*effect, ship->Position(), ship->Velocity(), ship->Facing());
 
