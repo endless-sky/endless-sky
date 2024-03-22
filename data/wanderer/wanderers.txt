@@ -866,6 +866,8 @@ event "wanderers: more systems lost"
 		fleet "Large Unfettered" 400
 		fleet "Small Unfettered" 400
 		fleet "Wanderer Defense" 600
+	system "Prakacha'a"
+		remove fleet "Wanderer Defense"
 	planet "Vara Ke'stai"
 		attributes "unfettered" "farming"
 		description `The Wanderers worked for years to make this desert world bloom: planting hardy shrubs and cacti that eventually transform the sand into a soil that can hold moisture. In some regions, especially closer to the poles, the deserts have given way to dense forests, but near the equator there are still large stretches of dry and barren sand, broken by the occasional belt of green where a narrow river winds between the dunes.`
@@ -901,6 +903,10 @@ event "wanderers: the eye begins to open"
 			period 2518.05
 
 event "wanderers: the eye opens"
+	system "Chirr'ay'akai"
+		remove fleet "Wanderer Defense"
+	system "Sich'ka'ara"
+		remove fleet "Wanderer Defense"
 	unvisit Sabriset
 	system Sabriset
 		add fleet "Wanderer Defense" 1200
@@ -947,6 +953,18 @@ event "wanderers: the eye opens"
 			period 2518.05
 	system Kaliptari
 		government "Wanderer"
+
+event "wanderers: patch defenses retreat"
+	system "Chirr'ay'akai"
+		remove fleet "Wanderer Defense"
+	system "Sich'ka'ara"
+		remove fleet "Wanderer Defense"
+	system "Prakacha'a"
+		remove fleet "Wanderer Defense"
+	system "Ik'kara'ka"
+		remove fleet "Wanderer Defense"
+	system "Chy'chra"
+		remove fleet "Wanderer Defense"
 
 event "wanderers: derecho mass production"
 	fleet "Wanderer Defense"
