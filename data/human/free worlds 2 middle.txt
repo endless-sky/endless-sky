@@ -1838,11 +1838,20 @@ mission "FW Albatross 2A"
 		fleet
 			names pirate
 			variant
-				"Argosy (Proton)"
 				"Modified Argosy (Gatling)"
 				"Hawk (Plasma)"
 				"Hawk"
 				"Sparrow" 3
+	npc
+		personality timid staying plunders coward disables
+		system Orvala
+		government Pirate
+		"cargo settings"
+			commodities "Heavy Metals"
+		fleet
+			names pirate
+			variant
+				"Argosy (Proton)"
 
 
 
