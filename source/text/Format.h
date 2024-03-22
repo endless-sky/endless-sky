@@ -66,6 +66,9 @@ public:
 	// Replace a set of "keys," which must be strings in the form "<name>", with
 	// a new set of strings, and return the result.
 	static std::string Replace(const std::string &source, const std::map<std::string, std::string> &keys);
+	// Recursively expand substitutions in all key/value pairs. Will detect
+	// infinite recursion; offending substitutions will not be expanded.
+	static void Expand(std::map<std::string, std::string> &keys);
 	// Replace all occurrences of "target" with "replacement" in-place.
 	static void ReplaceAll(std::string &text, const std::string &target, const std::string &replacement);
 
