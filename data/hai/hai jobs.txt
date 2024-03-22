@@ -1899,6 +1899,7 @@ mission "Superstitious Hai [7]"
 		or
 			has "outfit (installed): Quantum Keystone"
 			has "outfit (installed): Shield Beetle Pendant"
+			has "outfit (installed): Tree Skeleton Key Stone"
 	source
 		government "Hai"
 	destination
@@ -1928,6 +1929,7 @@ mission "Superstitious Hai [8]"
 		or
 			has "outfit (installed): Quantum Keystone"
 			has "outfit (installed): Shield Beetle Pendant"
+			has "outfit (installed): Tree Skeleton Key Stone"
 	source
 		government "Hai"
 	destination
@@ -1958,6 +1960,7 @@ mission "Superstitious Hai [9]"
 		or
 			has "outfit (installed): Quantum Keystone"
 			has "outfit (installed): Shield Beetle Pendant"
+			has "outfit (installed): Tree Skeleton Key Stone"
 	source
 		government "Hai"
 		not attributes "retirement"
@@ -1989,6 +1992,7 @@ mission "Superstitious Hai [10]"
 		or
 			has "outfit (installed): Quantum Keystone"
 			has "outfit (installed): Shield Beetle Pendant"
+			has "outfit (installed): Tree Skeleton Key Stone"
 	source
 		government "Hai"
 	destination
@@ -2020,6 +2024,7 @@ mission "Superstitious Hai [11]"
 		or
 			has "outfit (installed): Quantum Keystone"
 			has "outfit (installed): Shield Beetle Pendant"
+			has "outfit (installed): Tree Skeleton Key Stone"
 	source
 		government "Hai"
 	destination
@@ -2051,6 +2056,7 @@ mission "Superstitious Hai [12]"
 		or
 			has "outfit (installed): Quantum Keystone"
 			has "outfit (installed): Shield Beetle Pendant"
+			has "outfit (installed): Tree Skeleton Key Stone"
 	source
 		government "Hai"
 	destination
