@@ -2980,7 +2980,6 @@ planet "New China"
 	spaceport `	There are always locals hanging around the port, some of them mere children, who are trying to find a cheap ride off-planet.`
 	outfitter "Common Outfits"
 	outfitter "Ammo South"
-	outfitter "Delta V Basics"
 	security 0.1
 	tribute 1400
 		threshold 4000
