@@ -77,6 +77,8 @@ namespace {
 	const string BACKGROUND_PARALLAX = "Parallax background";
 	const string EXTENDED_JUMP_EFFECTS = "Extended jump effects";
 	const string ALERT_INDICATOR = "Alert indicator";
+	const string HUD_FLAGSHIP_OUTLINE = "Flagship outline in HUD";
+	const string HUD_TARGET_OUTLINE = "Target outline in HUD";
 
 	// How many pages of controls and settings there are.
 	const int CONTROLS_PAGE_COUNT = 2;
@@ -642,6 +644,8 @@ void PreferencesPanel::DrawSettings()
 		"Show hyperspace flash",
 		EXTENDED_JUMP_EFFECTS,
 		SHIP_OUTLINES,
+		HUD_FLAGSHIP_OUTLINE,
+		HUD_TARGET_OUTLINE,
 		"\t",
 		"HUD",
 		STATUS_OVERLAYS_ALL,
@@ -817,6 +821,16 @@ void PreferencesPanel::DrawSettings()
 		{
 			isOn = true;
 			text = Preferences::Has(SHIP_OUTLINES) ? "fancy" : "fast";
+		}
+		else if(setting == HUD_FLAGSHIP_OUTLINE)
+		{
+			isOn = true;
+			text = Preferences::Has(HUD_FLAGSHIP_OUTLINE) ? "fancy" : "fast";
+		}
+		else if(setting == HUD_TARGET_OUTLINE)
+		{
+			isOn = true;
+			text = Preferences::Has(HUD_TARGET_OUTLINE) ? "fancy" : "fast";
 		}
 		else if(setting == BOARDING_PRIORITY)
 		{
