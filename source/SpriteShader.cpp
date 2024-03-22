@@ -293,20 +293,21 @@ void SpriteShader::Init()
 
 
 
-void SpriteShader::Draw(const Sprite *sprite, const Point &position, float zoom, int swizzle, float frame)
+void SpriteShader::Draw(const Sprite *sprite, const Point &position,
+	float zoom, int swizzle, float frame, const Point &unit)
 {
 	if(!sprite)
 		return;
 
 	Bind();
-	Add(Prepare(sprite, position, zoom, swizzle, frame));
+	Add(Prepare(sprite, position, zoom, swizzle, frame, unit));
 	Unbind();
 }
 
 
 
 SpriteShader::Item SpriteShader::Prepare(const Sprite *sprite, const Point &position,
-	float zoom, int swizzle, float frame)
+	float zoom, int swizzle, float frame, const Point &unit)
 {
 	if(!sprite)
 		return {};
