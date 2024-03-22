@@ -416,7 +416,7 @@ public:
 	void UnloadBays();
 	// Get a list of any ships this ship is carrying.
 	const std::list<Bay> &Bays() const;
-	// Returns the bay this ship docks too if any.
+	// Returns the bay this ship docks to, if any.
 	const Bay *GetBay() const;
 	// Adjust the positions and velocities of any visible carried fighters or
 	// drones. If any are visible, return true.
@@ -559,7 +559,7 @@ private:
 	EsUuid uuid;
 	std::string name;
 	bool canBeCarried = false;
-	// The bay this ship docks too, if any.
+	// The bay this ship docks to, if any.
 	mutable Bay *reservedBay = nullptr;
 
 	int forget = 0;
