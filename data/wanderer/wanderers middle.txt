@@ -832,7 +832,7 @@ mission "Wanderers: Kor Efret 4"
 				goto end
 
 			label jump
-			`	Rek asks, and translates the response. "Yes, one thing that the exiles were unwilling to give up was the knowledge of how to create jump drives so they could raid other nearby species. Although..." She pauses to listen as one of the Korath says something else. "He says, the exiles would be far better off without them. The manufacturing process is precarious, and one wrong step can cause an explosion that destroys the ship or station where the drives are being constructed."`
+			`	Rek asks, and translates the response. "Yes, one thing that the Exiles were unwilling to give up was the knowledge of how to create jump drives so they could raid other nearby species. Although..." She pauses to listen as one of the Korath says something else. "He says, the Exiles would be far better off without them. The manufacturing process is precarious, and one wrong step can cause an explosion that destroys the ship or station where the drives are being constructed."`
 
 			label end
 			`	Rek tells you that she wants to return to <planet> to continue her work with the Korath community there. You agree to take her there before returning to report to Tele'ek.`
@@ -2978,38 +2978,38 @@ mission "Wanderers: Sestor: Scan Drones"
 mission "Wanderers: Sestor: Exiles 1"
 	landing
 	name "Pick up Rek"
-	description "Pick up Rek on <planet>. She will be helping you to attempt to open diplomatic negotiations with the Korath exiles."
+	description "Pick up Rek on <planet>. She will be helping you to attempt to open diplomatic negotiations with the Korath Exiles."
 	autosave
 	source "Desi Seledrak"
 	destination "Setar Fort"
 	to offer
 		has "Wanderers: Sestor: Scan Drones: done"
 	on offer
-		log "The Kor Sestor drones are still being produced by an automated factory, even though no one is controlling them and they seem to be acting on some sort of mindless autopilot. The Wanderers hope that the Korath exiles will help them to disable the factory."
+		log "The Kor Sestor drones are still being produced by an automated factory, even though no one is controlling them and they seem to be acting on some sort of mindless autopilot. The Wanderers hope that the Korath Exiles will help them to disable the factory."
 		conversation
 			`You give your scanner logs to the Wanderer scientists. A few hours later, you are called in to a meeting of the leaders. Sobari Tele'ek tells you, "Our scientists noted that the most recently constructed drones all have very similar [alloy composition?] and identification numbers. We suspect that means that they are all being produced on a single world, perhaps even a single [factory, facility]."`
 			`	He pulls up a star map and says, "Based on your previous geological scans, we [believe, deduce] that the factory is on this world, Sestor Ikfar. It would be easy enough to [destroy, eliminate] the facility, but Tema'a Iriket has a different proposal."`
-			`	Iriket stands up and says, "I propose that we use this as an [excuse, justification] for a visit to the Korath [exiles, outcasts]. We offer them the chance to [help, assist] us in ending the [scourge, plague] that they started. By [allying with, fighting alongside] us, they will come to view us as [friends, coworkers]."`
+			`	Iriket stands up and says, "I propose that we use this as an [excuse, justification] for a visit to the Korath Exiles. We offer them the chance to [help, assist] us in ending the [scourge, plague] that they started. By [allying with, fighting alongside] us, they will come to view us as [friends, coworkers]."`
 			choice
 				`	"Why get them involved if you think you can handle this on your own?"`
 				`	"Wait, you want to ask them for help just so they can feel good about themselves?"`
 					goto good
 				`	"That does sound like a good way to solve two problems at the same time."`
 					goto next
-			`	Tele'ek says, "The exiles must [feel, be aware of] their loss of [agency? significance?] in the galaxy. If we [plant, instill] a sense of purpose and [worth, importance] in them, they may become [peaceful, wise] just as the Kor Mereti collective did."`
+			`	Tele'ek says, "The Exiles must [feel, be aware of] their loss of [agency? significance?] in the galaxy. If we [plant, instill] a sense of purpose and [worth, importance] in them, they may become [peaceful, wise] just as the Kor Mereti collective did."`
 				goto next
 			label good
-			`	Tele'ek says, "Nothing [forges, solidifies] a friendship as quickly as fighting a [common foe?]. And, we [feel, perceive, project] that the reason the exiles engage in [raiding, piracy] is that their society has no greater [purpose, goal] than mere survival. By involving them in the [restoration, healing] of their lands, we will give them [agency? significance?] and they will be free to be [peaceful, wise]."`
+			`	Tele'ek says, "Nothing [forges, solidifies] a friendship as quickly as fighting a [common foe?]. And, we [feel, perceive, project] that the reason the Exiles engage in [raiding, piracy] is that their society has no greater [purpose, goal] than mere survival. By involving them in the [restoration, healing] of their lands, we will give them [agency? significance?] and they will be free to be [peaceful, wise]."`
 			label next
-			`	After more discussion the Wanderer leaders reach a consensus that they would like you to travel with Rek to the territory of the Korath exiles and seek to make contact with them. It seems like a very optimistic plan, but then again, the Wanderer approach of seeking friendship worked quite well with the Mereti drones.`
+			`	After more discussion the Wanderer leaders reach a consensus that they would like you to travel with Rek to the territory of the Korath Exiles and seek to make contact with them. It seems like a very optimistic plan, but then again, the Wanderer approach of seeking friendship worked quite well with the Mereti drones.`
 				accept
 
 
 
 mission "Wanderers: Sestor: Exiles 2"
 	landing
-	name "Contact the exiles"
-	description "Enter the territory of the Korath exiles. Do not fire on them. Instead, with Rek's help, try to find a way to speak with them or a place where they will meet with you."
+	name "Contact the Exiles"
+	description "Enter the territory of the Korath Exiles. Do not fire on them. Instead, with Rek's help, try to find a way to speak with them or a place where they will meet with you."
 	autosave
 	source "Setar Fort"
 	passengers 1
@@ -3019,7 +3019,7 @@ mission "Wanderers: Sestor: Exiles 2"
 		never
 	on offer
 		conversation
-			`Surprisingly, Rek is less enthusiastic about the diplomatic plan than the other Wanderer leaders were. "Of course I greatly desire to make contact with the exiles," she says, "but it is not safe to assume that the minds of an alien species works the same as our own. These Korath were exiled due to their endless, fruitless war-making. I'm not sure an offer of friendship and a small ego boost is all they need to make them become peaceful."`
+			`Surprisingly, Rek is less enthusiastic about the diplomatic plan than the other Wanderer leaders were. "Of course I greatly desire to make contact with the Exiles," she says, "but it is not safe to assume that the minds of an alien species works the same as our own. These Korath were exiled due to their endless, fruitless war-making. I'm not sure an offer of friendship and a small ego boost is all they need to make them become peaceful."`
 			choice
 				`	"Do you think we should cancel the mission and just deal with the Sestor ourselves?"`
 				`	"Perhaps not, but isn't it better to try for peace while we have the chance?"`
@@ -3027,12 +3027,12 @@ mission "Wanderers: Sestor: Exiles 2"
 			`	"No," says Rek, "the leaders are right, we must offer them our trust until they prove utterly unworthy of it. But you should not be surprised if they are more interested in destroying you than in listening to me."`
 				goto end
 			label better
-			`	"It is not only better," says Rek, "it is a moral imperative. Our first interaction with the exiles must be an offer of trust, not an act of war. But you should not be surprised if they are more interested in destroying you than in listening to me."`
+			`	"It is not only better," says Rek, "it is a moral imperative. Our first interaction with the Exiles must be an offer of trust, not an act of war. But you should not be surprised if they are more interested in destroying you than in listening to me."`
 			label end
-			`	Rek makes herself comfortable in one of your bunk rooms, and you prepare for a visit to the territory of the Korath exiles. "We must somehow earn their trust," she says, "so do not fire on any of their ships. Instead we must find a way to communicate with them or a place where they will meet with us peacefully."`
+			`	Rek makes herself comfortable in one of your bunk rooms, and you prepare for a visit to the territory of the Korath Exiles. "We must somehow earn their trust," she says, "so do not fire on any of their ships. Instead we must find a way to communicate with them or a place where they will meet with us peacefully."`
 				accept
 	on visit
-		dialog `You've returned to <planet>, but you haven't yet made contact with the Korath exiles. Travel to the core of the galaxy and look for a way to make contact with them.`
+		dialog `You've returned to <planet>, but you haven't yet made contact with the Korath Exiles. Travel to the core of the galaxy and look for a way to make contact with them.`
 	npc save
 		government "Korath"
 		system "Kor Fel'tar"
@@ -3078,7 +3078,7 @@ event "wanderers: exiles peaceful"
 
 mission "Wanderers: Sestor: Exiles 3"
 	landing
-	name "Diplomacy with the exiles"
+	name "Diplomacy with the Exiles"
 	description "Escort these three Korath exile world-ships to <planet> for a diplomatic meeting with the Wanderers."
 	source "Far'en Lai"
 	destination "Desi Seledrak"
@@ -3103,7 +3103,7 @@ mission "Wanderers: Sestor: Exiles 3"
 			`	Rek speaks with the Korath again, and then tells you, "They say that three of their 'world-ships' will travel with us to meet with the Wanderer leaders. If they are able to work out favorable terms, and are convinced that the Wanderers have peaceful intentions, they will go with us to the Sestor factory world and shut it down."`
 				accept
 	on accept
-		log "Succeeded in communicating with the Korath exiles, by landing on the one habitable planet in their territory. (It seems like the exiles might have a taboo against using weapons on that world.) The exiles agreed to send some ships to help disable the remaining Kor Sestor factory."
+		log "Succeeded in communicating with the Korath Exiles, by landing on the one habitable planet in their territory. (It seems like the Exiles might have a taboo against using weapons on that world.) The Exiles agreed to send some ships to help disable the remaining Kor Sestor factory."
 		fail "Wanderers: Sestor: Exiles 2"
 		event "wanderers: exiles peaceful"
 	npc accompany save
@@ -3197,7 +3197,7 @@ event "wanderers: asikafarnut battle"
 mission "Wanderers: Sestor: Factory 2"
 	landing
 	name "Defend <planet>"
-	description "Drive off the Kor Sestor drones and keep them from interfering with the Korath exiles who are shutting down their factories."
+	description "Drive off the Kor Sestor drones and keep them from interfering with the Korath Exiles who are shutting down their factories."
 	source "Sestor Ikfar"
 	clearance
 	infiltrating
@@ -3205,11 +3205,11 @@ mission "Wanderers: Sestor: Factory 2"
 	to offer
 		has "Wanderers: Sestor: Factory 1: done"
 	on visit
-		dialog `There are still Kor Sestor drones overhead. You should go fight them off so the Korath exiles are not attacked while trying to disable the factories.`
+		dialog `There are still Kor Sestor drones overhead. You should go fight them off so the Korath Exiles are not attacked while trying to disable the factories.`
 	on offer
 		event "wanderers: asikafarnut battle"
 		conversation
-			`The drones stop firing on the Korath ships the moment they enter the atmosphere, which is a good sign - it probably means that their command codes worked. While they begin scouting out the manufacturing center, the exiles tell you (through Rek) that they need you to return to orbit and keep the remaining drones from attacking them until they can be sure the factory is shut down for good; it might take them a while to accomplish that.`
+			`The drones stop firing on the Korath ships the moment they enter the atmosphere, which is a good sign - it probably means that their command codes worked. While they begin scouting out the manufacturing center, the Exiles tell you (through Rek) that they need you to return to orbit and keep the remaining drones from attacking them until they can be sure the factory is shut down for good; it might take them a while to accomplish that.`
 			`	You fire up your engines and blast off for one last battle against the Kor Sestor...`
 				launch
 	npc evade
@@ -3279,18 +3279,18 @@ event "wanderers: sestor shutdown"
 mission "Wanderers: Sestor: Factory 3"
 	landing
 	name "Return to <planet>"
-	description "Return to <planet> and report to the Wanderers that the exiles have shut down the Kor Sestor factory (and possibly stolen the equipment in the process)."
+	description "Return to <planet> and report to the Wanderers that the Exiles have shut down the Kor Sestor factory (and possibly stolen the equipment in the process)."
 	source "Sestor Ikfar"
 	destination "Desi Seledrak"
 	passengers 1
 	to offer
 		has "Wanderers: Sestor: Factory 2: done"
 	on offer
-		log "The Korath exiles have kept their bargain with the Wanderers and shut down the final Kor Sestor drone factory, although it may be some time before the last of the existing drones are eliminated."
+		log "The Korath Exiles have kept their bargain with the Wanderers and shut down the final Kor Sestor drone factory, although it may be some time before the last of the existing drones are eliminated."
 		fail "Wanderers: Sestor: Factory Escorts"
 		event "wanderers: sestor shutdown"
 		conversation
-			`As you come in for a landing, the Korath exiles inform you that they have succeeded in disabling the factories. They tell you that they will be returning to their territory on their own; now that their job is done, they no longer need you to "chaperone" them, as Rek translates it. You wish them luck, and they depart.`
+			`As you come in for a landing, the Korath Exiles inform you that they have succeeded in disabling the factories. They tell you that they will be returning to their territory on their own; now that their job is done, they no longer need you to "chaperone" them, as Rek translates it. You wish them luck, and they depart.`
 			`	The factory district does indeed seem to have been shut down: no more hum of machinery or flashes of arc-welders or smokestacks belching steam into the atmosphere. In fact, on closer inspection you realize that they did not merely shut down the factories; they have also removed some critical components from them.`
 			`	Rek asks, "Does it look like they succeeded?"`
 			choice
@@ -3403,7 +3403,7 @@ event "wanderers: sabira eseskrai colony"
 
 mission "Wanderers: Sestor: Final: Patched"
 	landing
-	name "Investigate the exiles"
+	name "Investigate the Exiles"
 	description "Visit the Korath exile territory to look for any signs that they plan to start constructing war drones of their own."
 	source "Desi Seledrak"
 	to offer
@@ -3413,17 +3413,17 @@ mission "Wanderers: Sestor: Final: Patched"
 		has "Wanderers: Sestor: Final: offered"
 	waypoint "Kor Fel'tar"
 	on enter "Kor Fel'tar"
-		dialog `There are several Kor Mereti and Kor Sestor drones in this system, and they don't look friendly. You should report to the Wanderers that the exiles have begun manufacturing drones of their own.`
+		dialog `There are several Kor Mereti and Kor Sestor drones in this system, and they don't look friendly. You should report to the Wanderers that the Exiles have begun manufacturing drones of their own.`
 	on offer
 		event "wanderers: exiles hostile" 4
 		conversation
 			`When you meet with the Wanderer leaders, Sobari Tele'ek tells you, "We have received word from our [scouts, observers] that the Sestor drones are [dwindling, reducing] in numbers and will soon be no more. We owe you our [gratitude, thanks]. But, the Mereti tell us a more worrisome [tale, story]."`
-			`	Meto Pa'aret says, "The Mereti [contacted, communicated with] me and said that one of their stations was [raided, infiltrated] by the Korath exiles, and some of their [machinery, equipment] was stolen. The Mereti did not [fight, attack] the exiles because they thought they were [friends, allies]. Captain <last>, can you bring Rek to visit the [exiles, outcasts] and learn what their plans are?"`
+			`	Meto Pa'aret says, "The Mereti [contacted, communicated with] me and said that one of their stations was [raided, infiltrated] by the Korath Exiles, and some of their [machinery, equipment] was stolen. The Mereti did not [fight, attack] the Exiles because they thought they were [friends, allies]. Captain <last>, can you bring Rek to visit the [exiles, outcasts] and learn what their plans are?"`
 			choice
 				`	"Sure, I would be glad to."`
 					accept
 				`	"Could the stolen equipment make it possible for them to build a drone fleet of their own?"`
-			`	"That is what we are afraid of," says Tele'ek. You agree to travel to the territory of the exiles and see if there is any evidence that they are building war drones there.`
+			`	"That is what we are afraid of," says Tele'ek. You agree to travel to the territory of the Exiles and see if there is any evidence that they are building war drones there.`
 				accept
 	npc
 		system "Kor Fel'tar"
@@ -3439,7 +3439,7 @@ mission "Wanderers: Sestor: Final: Patched"
 	on visit
 		dialog phrase "generic waypoint on visit"
 	on complete
-		log "Discovered that when the Korath exiles shut down the Kor Sestor factory, they also took enough technology from the factory to be able to begin producing war drones of their own. It is possible that the exiles have just become a whole lot more dangerous than they used to be."
+		log "Discovered that when the Korath Exiles shut down the Kor Sestor factory, they also took enough technology from the factory to be able to begin producing war drones of their own. It is possible that the Exiles have just become a whole lot more dangerous than they used to be."
 		log "Factions" "Wanderers" `After the Eye opened, creating a wormhole link between Wanderer territory and the region of space that harbors the devastated Korath worlds, the Wanderers have established several new colonies in the Korath sector and have begun to migrate to this area of Space. They have established formal relations with the Kor Efreti and were able to end the war between the Kor Mereti and the Kor Sestor.`
 		log "Factions" "Korath" `The Wanderers, who have begun to establish colonies on some deserted Korath systems, were able to end the war between the Kor Mereti and the Kor Sestor. The Kor Efreti have begun to rebuild their worlds and are tutored in this endeavor by the Wanderers.`
 		set "wanderers sestor done"
@@ -3450,9 +3450,9 @@ mission "Wanderers: Sestor: Final: Patched"
 		event "wanderers taking jobs from kor efreti" 5
 		event "wanderers: moonbeam mass production" 5
 		conversation
-			`You inform the Wanderers that the Korath exiles are now producing war drones. "This is [unfortunate, regrettable]," says Sobari Tele'ek. "Clearly they [anticipate, expect] further conflict in the future."`
+			`You inform the Wanderers that the Korath Exiles are now producing war drones. "This is [unfortunate, regrettable]," says Sobari Tele'ek. "Clearly they [anticipate, expect] further conflict in the future."`
 			`	Tema'a Iriket says, "Perhaps they are [afraid of, threatened by] us and seek only to have the means to [defend, protect] themselves. The important thing is that the drones in this [territory, area] have been [neutralized, pacified] and we can now focus on our true work."`
-			`	From there, the conversation shifts to an excited discussion about what worlds they will settle on next and what their next steps should be in building relationships with the Kor Efret and the Kor Mereti collective. The exiles may become a threat some time in the future, but for now the Wanderers are eager to pursue their peacetime calling in this new territory that the Eye has led them to.`
+			`	From there, the conversation shifts to an excited discussion about what worlds they will settle on next and what their next steps should be in building relationships with the Kor Efret and the Kor Mereti collective. The Exiles may become a threat some time in the future, but for now the Wanderers are eager to pursue their peacetime calling in this new territory that the Eye has led them to.`
 
 # This patch mission is necessary for people who got the older version of the "Sestor: Final" mission without the patches integrated.
 mission "Wanderers: Sestor: Combined Patch 1"
