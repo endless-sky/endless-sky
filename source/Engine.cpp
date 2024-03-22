@@ -859,6 +859,10 @@ void Engine::Step(bool isActive)
 			}
 		}
 	}
+	if(!Preferences::Has("Flagship outline in HUD"))
+		info.SetCondition("fast flagship sprite");
+	if(!Preferences::Has("Target outline in HUD"))
+		info.SetCondition("fast target sprite");
 	if(target && target->IsTargetable() && target->GetSystem() == currentSystem
 		&& (flagship->CargoScanFraction() || flagship->OutfitScanFraction()))
 	{
