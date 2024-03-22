@@ -1795,7 +1795,7 @@ news "conspiracy theorist"
 		word
 			"The Rigellian Plague was a fake. The government used it to implant us with tracking microchips."
 			"If the Rigellian Plague really happened, how come we have so little quarantine facilities now?"
-			"The Quarg built the pyramids of Earth. There is simply no way the people could have constructed something so massive back then."
+			"The Quarg built the pyramids of Earth. There is simply no way that humans could have constructed something so massive back then."
 			"Spaceship windows are really just screens designed to show planets as round. One day, I will build my own ship to prove they are flat."
 			"The Quarg are not aliens, just actors in body suits. There isn't enough sunlight near gas giants for a species to evolve."
 			"Hyperdrives were given to the government by the Quarg. If it was our technology, we would have improved it by now."
