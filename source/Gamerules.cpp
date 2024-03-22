@@ -121,3 +121,10 @@ int Gamerules::DepreciationMaxAge() const
 {
 	return depreciationMaxAge;
 }
+
+
+
+double Gamerules::DefaultLateralThrustRatio() const
+{
+	return defaultLateralThrustRatio;
+}

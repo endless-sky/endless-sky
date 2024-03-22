@@ -38,7 +38,8 @@ public:
 	double DepreciationDaily() const;
 	int DepreciationGracePeriod() const;
 	int DepreciationMaxAge() const;
-
+	double DefaultLateralThrustRatio() const;
+	
 
 private:
 	bool universalRamscoop = true;
