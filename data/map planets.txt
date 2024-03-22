@@ -1725,7 +1725,7 @@ planet Geyser
 	security 0.3
 	tribute 1300
 		threshold 3500
-		fleet "Large Militia" 20
+		fleet "Small Republic" 20
 
 planet Ghneoe
 	attributes uninhabited
@@ -2981,7 +2981,6 @@ planet "New China"
 	outfitter "Common Outfits"
 	outfitter "Ammo South"
 	outfitter "Delta V Basics"
-	outfitter "Kraz Basics"
 	security 0.1
 	tribute 1400
 		threshold 4000
