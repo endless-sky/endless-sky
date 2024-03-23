@@ -138,8 +138,8 @@ outfit "Large Shield Module"
 	"shield energy" 1.04
 	"shield heat" .4
 	"delayed shield generation" .65
-	"shield energy" .65
-	"shield heat" .25
+	"delayed shield energy" .65
+	"delayed shield heat" .25
 	"shield delay" 250
 	description "The Coalition manufactures heavy shield generators for their ships in case they ever face aggression from the Quarg or another species."
 
