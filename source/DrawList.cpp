@@ -80,14 +80,14 @@ bool DrawList::AddUnblurred(const Body &body)
 
 
 
-bool DrawList::AddSwizzled(const Body &body, int swizzle)
+bool DrawList::AddSwizzled(const Body &body, int swizzle, double cloak)
 {
 	Point position = body.Position() - center;
 	Point blur = body.Velocity() - centerVelocity;
 	if(Cull(body, position, blur))
 		return false;
 
-	Push(body, position, blur, 0., swizzle);
+	Push(body, position, blur, cloak, swizzle);
 	return true;
 }
 
