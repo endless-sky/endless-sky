@@ -2258,9 +2258,9 @@ phrase "CCOR Song Description"
 	word
 		"a song about "
 	word
-		"community, everyone pitching in where they can"
+		"community and everyone pitching in where they can"
 		"the tyranny of a man name Bailey, until he was overthrown"
-		"CCOR, praising their accomplishments"
+		"the CCOR, praising their accomplishments"
 		"resistance, opposition to the current planetary administration"
 
 phrase "Worker's Demands"
@@ -2291,8 +2291,8 @@ news "Discontent"
 		word
 			"The rioters are "
 		word
-			"singing, ${CCOR Song Description}. "
-			"chanting, a list of their demands including ${Worker's Demands}. "
+			"singing ${CCOR Song Description}. "
+			"chanting a list of their demands, including ${Worker's Demands}. "
 			"sizing up the planetary security forces. "
 		word
 			"Security eventually steps in, "
@@ -2361,7 +2361,7 @@ phrase "Raiders returning to Mordente-Bridi - serious damage"
 	word
 		"battered with thousands of small perforations. Somebody's turned a mainstay of the pirate arsenal, Gatling Guns, back on them."
 		"with substantial sections of hull heavily battered or missing altogether. Fair guess they didn't have enough anti-missile."
-		"its hull covered in gashes and burns from plasma cannons"
+		"its hull covered in gashes and burns from Plasma Cannons"
 	word
 		". "
 	word
@@ -2377,7 +2377,7 @@ phrase "Raiders returning to Mordente-Bridi - serious damage"
 phrase "Raiders returning to Mordente-Bridi - light damage"
 	word
 		"pockmarked with laser burns but with no apparent serious damage"
-		"lightly dented in a way that suggests that a proton gun was to blame"
+		"lightly dented in a way that suggests that a Proton Gun was to blame"
 	word
 		". "
 	word
