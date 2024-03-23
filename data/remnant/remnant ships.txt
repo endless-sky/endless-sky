@@ -824,8 +824,8 @@ ship "Ibis"
 		"engine capacity" 109
 		"shield generation" 1.75
 		"shield energy" 1.55
-		"shield generation" 5.25
-		"shield energy" 3.65
+		"delayed shield generation" 5.25
+		"delayed shield energy" 3.65
 		"shield delay" 450
 		"hull repair rate" 1.2
 		"hull energy" 0.95
