@@ -344,6 +344,7 @@ outfitter "Delta V Basics"
 	"Javelin Pod"
 	"Javelin Mini Pod"
 	"Javelin Storage Crate"
+	"Small Radar Jammer"
 
 outfitter "Delta V Advanced"
 	"Capybara Reverse Thruster"
