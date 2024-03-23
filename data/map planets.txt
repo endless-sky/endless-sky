@@ -812,7 +812,7 @@ planet Cyife
 planet "Dagon Station"
 	attributes core station uninhabited
 	landscape land/station50
-	description `Originally built in the 25th century as a corporate military outpost, Dagon Station's notoriety stems from its past as a pirate base; its infamous mercenary fleets all but decided the victors in the constant wars of the mid-Core region during the 26th and 27th centuries. Dagon's influence only came to an end in the late 27th century when a fleet from Earth defeated the pirate base for good; after that, it became a military base for the fledgling Republic.`
+	description `Originally built in the 25th century as a corporate military outpost, Dagon Station's notoriety stems from its past as a privateer base; its infamous mercenary fleets all but decided the victors in the constant wars of the mid-Core region during the 26th and 27th centuries. Dagon's influence only came to an end in the late 27th century when a fleet from Earth defeated the privateer base for good; after that, it became a military base for the fledgling Republic.`
 	description `	In the 29th century, control of Dagon Station was passed to the Syndicate, who eventually vacated the station due to its age and no-longer strategic position. Local laws prevent landing on Dagon Station without a permit, but the Syndicate doesn't pay close attention to whether or not anybody lands here anyway.`
 
 planet Dancer
