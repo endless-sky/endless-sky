@@ -407,8 +407,8 @@ bool Hardpoint::FireSpecialSystem(Ship &ship, const Body &body, std::vector<Visu
 	Point offset = body.Position() - start;
 	if(offset.Length() > range)
 		return false;
-  
-  // Check if the missile is within the arc of fire.
+
+	// Check if the missile is within the arc of fire.
 	Angle aim(offset);
 	if(!IsOmnidirectional())
 	{
