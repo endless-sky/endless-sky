@@ -2327,7 +2327,7 @@ mission "Wanderers Evacuation 1B Remove Refueling"
 	on offer
 		event "remove vara ke'stai refueling"
 
-event "remove vara ke'stai refuelling"
+event "remove vara ke'stai refueling"
 	planet "Vara Ke'stai"
 		remove spaceport
 
