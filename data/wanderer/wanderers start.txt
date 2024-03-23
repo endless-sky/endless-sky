@@ -2298,6 +2298,24 @@ mission "Wanderers Evacuation 1B"
 
 
 
+mission "Wanderers Evacuation 1B Remove Spaceport"
+	landing
+	invisible
+	source "Vara Ke'stai"
+	to offer
+		has "Wanderers Evacuation 1: done"
+	on offer
+		event "remove vara ke'stai facilities"
+
+event "remove vara ke'stai facilities"
+	planet "Vara Ke'stai"
+		remove spaceport
+		remove outfitter
+		remove "required reputation"
+		remove tribute
+
+
+
 mission "Wanderers Evacuation 1C"
 	landing
 	name "Escort to <planet>"
