@@ -1017,8 +1017,8 @@ ship "Pelican"
 		"engine capacity" 144
 		"shield generation" 1.35
 		"shield energy" .9
-		"shield generation" 2.7
-		"shield energy" 1.8
+		"delayed shield generation" 2.7
+		"delayed shield energy" 1.8
 		"shield delay" 210
 		"hull repair rate" 1
 		"hull energy" 0.75
