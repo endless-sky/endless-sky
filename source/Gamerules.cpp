@@ -54,6 +54,8 @@ void Gamerules::Load(const DataNode &node)
 			depreciationGracePeriod = max<int>(0, child.Value(1));
 		else if(key == "depreciation max age")
 			depreciationMaxAge = max<int>(0, child.Value(1));
+		else if(key == "default lateral thrust ratio")
+			defaultLateralThrustRatio = child.Value(1);
 		else
 			child.PrintTrace("Skipping unrecognized gamerule:");
 	}

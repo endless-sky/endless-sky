@@ -1,6 +1,7 @@
 Welcome to Endless Sky!
 version 0.10.7-delta
 
+
 The player's manual and other
 resources are available at:
 https://endless-sky.github.io
