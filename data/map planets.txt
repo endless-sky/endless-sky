@@ -2846,7 +2846,6 @@ planet Mordente-Bridi
 	shipyard "Southern Pirates"
 	outfitter "Ammo South"
 	outfitter "Basic Outfits"
-	outfitter "Basic Weapons"
 	outfitter "Common Outfits"
 	outfitter "Pirate Outfits"
 	outfitter "South Pirate Outfits Advanced"
