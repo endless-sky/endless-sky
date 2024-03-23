@@ -2540,6 +2540,7 @@ planet Longjump
 	spaceport `The spaceport consists of four large towers connected by bridges, with openings for hangars in the sides. The upper stories are for landing ships; business takes place down below, at street level.`
 	spaceport `	You can recognize the natives immediately because they are almost all taller than you, a result of growing up in a low-gravity environment.`
 	outfitter "Basic Outfits"
+	outfitter "Kraz Basics"
 	outfitter "Delta V Basics"
 	outfitter "Ammo South"
 	security 0.1
@@ -4133,7 +4134,7 @@ planet Solace
 	spaceport `	The spaceport serves not only for incoming and outgoing commerce, but also as a testing ground for the next generation of Delta V technology. On your way around the port you stop to watch some tests of engines so powerful that the ground shakes beneath them.`
 	spaceport `	At the heart of the spaceport are a few bars, plus restaurants representing nearly every style of cuisine that you are familiar with. All the buildings are well maintained; this strikes you as a quite prosperous world, for this section of the galaxy.`
 	outfitter "Delta V Advanced"
-	outfitter "Kraz Basics"
+	outfitter "Kraz Advanced"
 	outfitter "Common Outfits"
 	outfitter "Ammo South"
 	bribe 0.04
@@ -4477,6 +4478,7 @@ planet Trinket
 	spaceport `	Many of the starships parked here have scorch marks and dents on their hulls, a sure sign of recent battle. It is likely that some of the people walking through the port are in fact pirates, posing as civilians in order to sell stolen cargo or to take a vacation incognito.`
 	outfitter "Basic Outfits"
 	outfitter "Delta V Basics"
+	outfitter "Kraz Basics"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
 	outfitter "Pirate Outfits"
@@ -5048,7 +5050,7 @@ planet Zug
 	shipyard "Southbound Basics"
 	shipyard "Southbound Advanced"
 	outfitter "Delta V Advanced"
-	outfitter "Kraz Basics"
+	outfitter "Kraz Advanced"
 	outfitter "Common Outfits"
 	outfitter "Ammo South"
 	bribe 0.03
