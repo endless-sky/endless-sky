@@ -2313,6 +2313,8 @@ event "remove vara ke'stai facilities"
 		remove outfitter
 		remove "required reputation"
 		remove tribute
+		add port
+			recharges fuel
 
 
 
