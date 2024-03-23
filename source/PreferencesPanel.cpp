@@ -1230,7 +1230,7 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 		Preferences::ToggleDateFormat();
 	else if(str == ALERT_INDICATOR)
 		Preferences::ToggleAlert();
-	else if(zone.Value() == FLAGSHIP_VELOCITY_INDICATOR)
+	else if(str == FLAGSHIP_VELOCITY_INDICATOR)
 				Preferences::ToggleFlagshipVelocityIndicator();
 	// All other options are handled by just toggling the boolean state.
 	else

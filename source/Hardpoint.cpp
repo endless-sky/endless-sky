@@ -403,6 +403,7 @@ bool Hardpoint::FireSpecialSystem(Ship &ship, const Body &body, std::vector<Visu
 	double range = outfit->Velocity();
 
 	// Check if the body is within range of this hardpoint.
+	const Angle &facing = ship.Facing();
 	Point start = ship.Position() + ship.Facing().Rotate(point);
 	Point offset = body.Position() - start;
 	if(offset.Length() > range)
@@ -425,7 +426,6 @@ bool Hardpoint::FireSpecialSystem(Ship &ship, const Body &body, std::vector<Visu
 		+ outfit->HitEffects().size() + outfit->DieEffects().size());
 
 	// Firing effects are displayed at the weapon hardpoint that just fired.
-	Angle aim(offset);
 	angle = aim - ship.Facing();
 	start += aim.Rotate(outfit->HardpointOffset());
 	CreateEffects(outfit->FireEffects(), start, ship.Velocity(), aim, visuals);
