@@ -45,7 +45,7 @@ mission "Pact Recon 0"
 			`	"Because captains from around here don't rubberneck at an every-day occurrence. After seeing your first dozen or so damaged ships, you eventually get used to seeing them and just move on."`
 			`	"Are the pirates rough around these parts?" you ask.`
 			label pirates
-			`	"Rougher than you're probably used to if you're from farther up north. The Navy doesn't patrol these parts, not unless there's some high profile warlord that's on their radar. Because of that, pirates have more free reign to terrorize us down here." She pauses for a moment while turning back to the freighter. "And the pirate fleets keep getting stronger every year," she says with concern.`
+			`	"Rougher than you're probably used to if you're from farther up north. The Navy doesn't patrol these parts, not unless there's some high profile warlord that's on their radar. Because of that, pirates have more free rein to terrorize us down here." She pauses for a moment while turning back to the freighter. "And the pirate fleets keep getting stronger every year," she says with concern.`
 			choice
 				`	"Is there something I can do to help?"`
 				`	"I wish I could help, but my ship is not a warship."`
@@ -129,7 +129,7 @@ mission "Pact Recon 2"
 		not "event: war begins"
 	
 	on offer
-		dialog `You receive another message from Freya: "Hello, Captain! I've got a more challenging and lucrative mission for you this time. We need someone to do a flyby of all four pirate systems here in the South, to gauge their strength. Again, no fighting is required, just fly in and out of the systems as fast as possible, and we're willing to pay much more than the last job given the danger involved. What do you say?"`
+		dialog `You receive another message from Freya: "Hello, Captain! I've got a more challenging and lucrative mission for you this time. We need someone to do a flyby of four pirate systems bordering the South, to gauge their strength. Again, no fighting is required, just fly in and out of the systems as fast as possible, and we're willing to pay much more than the last job given the danger involved. What do you say?"`
 	
 	on visit
 		dialog phrase "generic waypoint on visit"
@@ -1552,8 +1552,8 @@ mission "FW Katya 2B"
 		log `Met up with a friend of Katya's named Mr. Eyes, who calls himself a "vigilante nuclear power plant inspector." He thinks he can help hunt down the people who bombed Geminus and Martini, to prove that the Free Worlds were not behind it.`
 	
 	npc
-		government "Pirate"
-		personality nemesis plunders waiting
+		government "Bounty Hunter"
+		personality nemesis plunders staying waiting
 		fleet "Small Core Pirates" 2
 	
 	on visit

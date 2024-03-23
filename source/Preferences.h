@@ -40,7 +40,8 @@ public:
 		OFF = 0,
 		ON,
 		DAMAGED,
-		DISABLED
+		DISABLED,
+		ON_HIT,
 	};
 
 	enum class OverlayType : int_fast8_t {
@@ -81,6 +82,12 @@ public:
 		OFF = 0,
 		FANCY,
 		FAST
+	};
+
+	enum class ExtendedJumpEffects : int {
+		OFF = 0,
+		MEDIUM,
+		HEAVY
 	};
 
 	enum class AlertIndicator : int_fast8_t {
@@ -153,6 +160,11 @@ public:
 	static void ToggleParallax();
 	static BackgroundParallax GetBackgroundParallax();
 	static const std::string &ParallaxSetting();
+
+	// Extended jump effects setting, either "off", "medium", or "heavy".
+	static void ToggleExtendedJumpEffects();
+	static ExtendedJumpEffects GetExtendedJumpEffects();
+	static const std::string &ExtendedJumpEffectsSetting();
 
 	// Boarding target setting, either "proximity", "value" or "mixed".
 	static void ToggleBoarding();

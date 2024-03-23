@@ -143,7 +143,7 @@ pair<JumpType, double> ShipJumpNavigation::GetCheapestJumpType(const System *fro
 	const double distance = from->Position().Distance(to->Position());
 	double jumpFuelNeeded = JumpDriveFuel((linked || from->JumpRange())
 			? 0. : distance);
-	bool canJump = jumpFuelNeeded && (!from->JumpRange() || from->JumpRange() >= distance);
+	bool canJump = jumpFuelNeeded && (linked || !from->JumpRange() || from->JumpRange() >= distance);
 	if(linked && hasHyperdrive && (!canJump || hyperFuelNeeded <= jumpFuelNeeded))
 		return make_pair(JumpType::HYPERDRIVE, hyperFuelNeeded);
 	else if(hasJumpDrive && canJump)

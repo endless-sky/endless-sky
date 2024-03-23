@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Logger.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
+#include "TaskQueue.h"
 
 #include <algorithm>
 #include <iterator>
@@ -34,43 +35,14 @@ using namespace std;
 
 
 
-namespace {
-	// TODO (C++14): make these 3 methods generic lambdas visible only to the CheckReferences method.
-	// Log a warning for an "undefined" class object that was never loaded from disk.
-	void Warn(const string &noun, const string &name)
-	{
-		Logger::LogError("Warning: " + noun + " \"" + name + "\" is referred to, but not fully defined.");
-	}
-	// Class objects with a deferred definition should still get named when content is loaded.
-	template <class Type>
-	bool NameIfDeferred(const set<string> &deferred, pair<const string, Type> &it)
-	{
-		if(deferred.count(it.first))
-			it.second.SetName(it.first);
-		else
-			return false;
-
-		return true;
-	}
-	// Set the name of an "undefined" class object, so that it can be written to the player's save.
-	template <class Type>
-	void NameAndWarn(const string &noun, pair<const string, Type> &it)
-	{
-		it.second.SetName(it.first);
-		Warn(noun, it.first);
-	}
-}
-
-
-
-future<void> UniverseObjects::Load(const vector<string> &sources, bool debugMode)
+shared_future<void> UniverseObjects::Load(TaskQueue &queue, const vector<string> &sources, bool debugMode)
 {
 	progress = 0.;
 
 	// We need to copy any variables used for loading to avoid a race condition.
 	// 'this' is not copied, so 'this' shouldn't be accessed after calling this
 	// function (except for calling GetProgress which is safe due to the atomic).
-	return async(launch::async, [this, sources, debugMode]() noexcept -> void
+	return queue.Run([this, sources, debugMode]() noexcept -> void
 		{
 			vector<string> files;
 			for(const string &source : sources)
@@ -220,6 +192,27 @@ void UniverseObjects::UpdateSystems()
 // planets) are written to the player's save and need a name to prevent data loss.
 void UniverseObjects::CheckReferences()
 {
+	// Log a warning for an "undefined" class object that was never loaded from disk.
+	auto Warn = [](const string &noun, const string &name)
+	{
+		Logger::LogError("Warning: " + noun + " \"" + name + "\" is referred to, but not fully defined.");
+	};
+	// Class objects with a deferred definition should still get named when content is loaded.
+	auto NameIfDeferred = [](const set<string> &deferred, auto &it)
+	{
+		if(deferred.count(it.first))
+			it.second.SetName(it.first);
+		else
+			return false;
+
+		return true;
+	};
+	// Set the name of an "undefined" class object, so that it can be written to the player's save.
+	auto NameAndWarn = [=](const string &noun, auto &it)
+	{
+		it.second.SetName(it.first);
+		Warn(noun, it.first);
+	};
 	// Parse all GameEvents for object definitions.
 	auto deferred = map<string, set<string>>{};
 	for(auto &&it : events)

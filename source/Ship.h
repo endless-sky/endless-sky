@@ -27,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Outfit.h"
 #include "Personality.h"
 #include "Point.h"
+#include "Port.h"
 #include "ship/ShipAICache.h"
 #include "ShipJumpNavigation.h"
 
@@ -105,6 +106,7 @@ public:
 
 		double zoom;
 		Angle facing;
+		Angle gimbal;
 	};
 
 
@@ -162,7 +164,7 @@ public:
 	int64_t Cost() const;
 	int64_t ChassisCost() const;
 	int64_t Strength() const;
-	// Get the attraction and deterrance of this ship, for pirate raids.
+	// Get the attraction and deterrence of this ship, for pirate raids.
 	// This is only useful for the player's ships.
 	double Attraction() const;
 	double Deterrence() const;
@@ -227,12 +229,18 @@ public:
 	double CargoScanFraction() const;
 	double OutfitScanFraction() const;
 
-	// Fire any weapons that are ready to fire. If an anti-missile is ready,
-	// instead of firing here this function returns true and it can be fired if
-	// collision detection finds a missile in range.
-	bool Fire(std::vector<Projectile> &projectiles, std::vector<Visual> &visuals);
-	// Fire an anti-missile. Returns true if the missile was killed.
+	// Fire any primary or secondary weapons that are ready to fire. Determines
+	// if any special weapons (e.g. anti-missile, tractor beam) are ready to fire.
+	// The firing of special weapons is handled separately.
+	void Fire(std::vector<Projectile> &projectiles, std::vector<Visual> &visuals);
+	// Return true if any anti-missile or tractor beam systems are ready to fire.
+	bool HasAntiMissile() const;
+	bool HasTractorBeam() const;
+	// Fire an anti-missile at the given missile. Returns true if the missile was killed.
 	bool FireAntiMissile(const Projectile &projectile, std::vector<Visual> &visuals);
+	// Fire tractor beams at the given flotsam. Returns a Point representing the net
+	// pull on the flotsam from this ship's tractor beams.
+	Point FireTractorBeam(const Flotsam &flotsam, std::vector<Visual> &visuals);
 
 	// Get the system this ship is in. Set to nullptr if the ship is being carried.
 	const System *GetSystem() const;
@@ -266,6 +274,10 @@ public:
 	bool IsUsingJumpDrive() const;
 	// Check if this ship is currently able to enter hyperspace to it target.
 	bool IsReadyToJump(bool waitingIsReady = false) const;
+	// Check if this ship is allowed to land on this planet, accounting for its personality.
+	bool IsRestrictedFrom(const Planet &planet) const;
+	// Check if this ship is allowed to enter this system, accounting for its personality.
+	bool IsRestrictedFrom(const System &system) const;
 	// Get this ship's custom swizzle.
 	int CustomSwizzle() const;
 
@@ -295,7 +307,7 @@ public:
 	// Check if this ship has been destroyed.
 	bool IsDestroyed() const;
 	// Recharge and repair this ship (e.g. because it has landed).
-	void Recharge(bool atSpaceport = true);
+	void Recharge(int rechargeType = Port::RechargeType::All, bool hireCrew = true);
 	// Check if this ship is able to give the given ship enough fuel to jump.
 	bool CanRefuel(const Ship &other) const;
 	// Give the other ship enough fuel for it to jump.
@@ -334,6 +346,8 @@ public:
 	// ship becomes disabled. Returns 0 if the ships hull is already below the
 	// disabled threshold.
 	double HullUntilDisabled() const;
+	// Returns the remaining damage timer, for the damage overlay.
+	int DamageOverlayTimer() const;
 	// Get this ship's jump navigation, which contains information about how
 	// much it costs for this ship to jump, how far it can jump, and its possible
 	// jump methods.
@@ -354,8 +368,11 @@ public:
 	double MaximumHeat() const;
 	// Calculate the multiplier for cooling efficiency.
 	double CoolingEfficiency() const;
-	// Calculate the ship's drag after accounting for drag reduction.
+	// Calculate the drag on this ship. The drag can be no greater than the mass.
 	double Drag() const;
+	// Calculate the drag force that this ship experiences. The drag force is the drag
+	// divided by the mass, up to a value of 1.
+	double DragForce() const;
 
 	// Access how many crew members this ship has or needs.
 	int Crew() const;
@@ -440,7 +457,7 @@ public:
 	// energy, ammo, and fuel to fire it).
 	bool CanFire(const Weapon *weapon) const;
 	// Fire the given weapon (i.e. deduct whatever energy, ammo, or fuel it uses
-	// and add whatever heat it generates. Assume that CanFire() is true.
+	// and add whatever heat it generates). Assume that CanFire() is true.
 	void ExpendAmmo(const Weapon &weapon);
 
 	// Each ship can have a target system (to travel to), a target planet (to
@@ -453,6 +470,7 @@ public:
 	// Mining target.
 	std::shared_ptr<Minable> GetTargetAsteroid() const;
 	std::shared_ptr<Flotsam> GetTargetFlotsam() const;
+	const std::set<const Flotsam *> &GetTractorFlotsam() const;
 
 	// Mark this ship as fleeing.
 	void SetFleeing(bool fleeing = true);
@@ -520,7 +538,7 @@ private:
 	void CreateSparks(std::vector<Visual> &visuals, const std::string &name, double amount);
 	void CreateSparks(std::vector<Visual> &visuals, const Effect *effect, double amount);
 
-	// Calculate the attraction and deterrance of this ship, for pirate raids.
+	// Calculate the attraction and deterrence of this ship, for pirate raids.
 	// This is only useful for the player's ships.
 	double CalculateAttraction() const;
 	double CalculateDeterrence() const;
@@ -576,8 +594,9 @@ private:
 	int customSwizzle = -1;
 	double cloak = 0.;
 	double cloakDisruption = 0.;
-	// Cached values for figuring out when anti-missile is in range.
+	// Cached values for figuring out when anti-missiles or tractor beams are in range.
 	double antiMissileRange = 0.;
+	double tractorBeamRange = 0.;
 	double weaponRadius = 0.;
 	// Cargo and outfit scanning takes time.
 	double cargoScan = 0.;
@@ -640,6 +659,8 @@ private:
 	// Delays for shield generation and hull repair.
 	int shieldDelay = 0;
 	int hullDelay = 0;
+	// Number of frames the damage overlay should be displayed, if any.
+	int damageOverlayTimer = 0;
 	// Acceleration can be created by engines, firing weapons, or weapon impacts.
 	Point acceleration;
 
@@ -689,6 +710,7 @@ private:
 	const System *targetSystem = nullptr;
 	std::weak_ptr<Minable> targetAsteroid;
 	std::weak_ptr<Flotsam> targetFlotsam;
+	std::set<const Flotsam *> tractorFlotsam;
 
 	// Links between escorts and parents.
 	std::vector<std::weak_ptr<Ship>> escorts;

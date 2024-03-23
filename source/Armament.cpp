@@ -151,20 +151,20 @@ void Armament::ReloadAll()
 // Uninstall all weapons (because the weapon outfits have potentially changed).
 void Armament::UninstallAll()
 {
-	for(auto &hardpoint : hardpoints)
+	for(Hardpoint &hardpoint : hardpoints)
 		hardpoint.Uninstall();
 }
 
 
 
 // Swap the weapons in the given two hardpoints.
-void Armament::Swap(int first, int second)
+void Armament::Swap(unsigned first, unsigned second)
 {
 	// Make sure both of the given indices are in range, and that both slots are
 	// the same type (gun vs. turret).
-	if(static_cast<unsigned>(first) >= hardpoints.size())
+	if(first >= hardpoints.size())
 		return;
-	if(static_cast<unsigned>(second) >= hardpoints.size())
+	if(second >= hardpoints.size())
 		return;
 	if(hardpoints[first].IsTurret() != hardpoints[second].IsTurret())
 		return;
@@ -209,7 +209,7 @@ int Armament::TurretCount() const
 set<const Outfit *> Armament::RestockableAmmo() const
 {
 	auto restockable = set<const Outfit *>{};
-	for(auto &&hardpoint : Get())
+	for(const Hardpoint &hardpoint : hardpoints)
 	{
 		const Weapon *weapon = hardpoint.GetOutfit();
 		if(weapon)
@@ -235,9 +235,11 @@ void Armament::Aim(const FireCommand &command)
 
 // Fire the given weapon, if it is ready. If it did not fire because it is
 // not ready, return false.
-void Armament::Fire(int index, Ship &ship, vector<Projectile> &projectiles, vector<Visual> &visuals, bool jammed)
+void Armament::Fire(unsigned index, Ship &ship, vector<Projectile> &projectiles, vector<Visual> &visuals, bool jammed)
 {
-	if(static_cast<unsigned>(index) >= hardpoints.size() || !hardpoints[index].IsReady())
+	// Don't check if the hardpoint jammed here, as the weapon may not even
+	// attempt to fire due to stream reloading.
+	if(!CheckHardpoint(index))
 		return;
 
 	// A weapon that has already started a burst ignores stream timing.
@@ -259,19 +261,24 @@ void Armament::Fire(int index, Ship &ship, vector<Projectile> &projectiles, vect
 
 
 
-bool Armament::FireAntiMissile(int index, Ship &ship, const Projectile &projectile,
+bool Armament::FireAntiMissile(unsigned index, Ship &ship, const Projectile &projectile,
 	vector<Visual> &visuals, bool jammed)
 {
-	if(static_cast<unsigned>(index) >= hardpoints.size() || !hardpoints[index].IsReady())
+	if(!CheckHardpoint(index, jammed))
 		return false;
-
-	if(jammed)
-	{
-		hardpoints[index].Jam();
-		return false;
-	}
 
 	return hardpoints[index].FireAntiMissile(ship, projectile, visuals);
+}
+
+
+
+bool Armament::FireTractorBeam(unsigned index, Ship &ship, const Flotsam &flotsam,
+	vector<Visual> &visuals, bool jammed)
+{
+	if(!CheckHardpoint(index, jammed))
+		return false;
+
+	return hardpoints[index].FireTractorBeam(ship, flotsam, visuals);
 }
 
 
@@ -289,4 +296,20 @@ void Armament::Step(const Ship &ship)
 		// Always reload to the quickest firing interval.
 		it.second = max(it.second, 1 - count);
 	}
+}
+
+
+
+bool Armament::CheckHardpoint(unsigned index, bool jammed)
+{
+	if(index >= hardpoints.size() || !hardpoints[index].IsReady())
+		return false;
+
+	if(jammed)
+	{
+		hardpoints[index].Jam();
+		return false;
+	}
+
+	return true;
 }

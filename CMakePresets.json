@@ -150,6 +150,7 @@
       "cacheVariables": {
         "CMAKE_CXX_COMPILER": "x86_64-w64-mingw32-g++",
         "CMAKE_RC_COMPILER": "windres",
+        "VCPKG_HOST_TRIPLET": "x64-mingw-dynamic",
         "VCPKG_TARGET_TRIPLET": "x64-mingw-dynamic"
       },
       "condition": {
@@ -170,6 +171,7 @@
       "cacheVariables": {
         "CMAKE_CXX_COMPILER": "i686-w64-mingw32-g++",
         "CMAKE_RC_COMPILER": "windres",
+        "VCPKG_HOST_TRIPLET": "x86-mingw-dynamic",
         "VCPKG_TARGET_TRIPLET": "x86-mingw-dynamic"
       },
       "condition": {
@@ -679,6 +681,12 @@
       "inherits": "benchmark"
     },
     {
+      "name": "macos-integration",
+      "displayName": "Integration Tests",
+      "configurePreset": "macos",
+      "inherits": "integration"
+    },
+    {
       "name": "macos-integration-debug",
       "displayName": "Integration Tests (Debug)",
       "configurePreset": "macos",
@@ -701,6 +709,12 @@
       "displayName": "Benchmarks",
       "configurePreset": "macos-arm",
       "inherits": "benchmark"
+    },
+    {
+      "name": "macos-arm-integration",
+      "displayName": "Integration Tests",
+      "configurePreset": "macos-arm",
+      "inherits": "integration"
     },
     {
       "name": "macos-arm-integration-debug",
@@ -727,6 +741,12 @@
       "inherits": "benchmark"
     },
     {
+      "name": "clang-cl-integration",
+      "displayName": "Integration Tests",
+      "configurePreset": "clang-cl",
+      "inherits": "integration"
+    },
+    {
       "name": "clang-cl-integration-debug",
       "displayName": "Integration Tests (Debug)",
       "configurePreset": "clang-cl",
@@ -749,6 +769,12 @@
       "displayName": "Benchmarks",
       "configurePreset": "mingw",
       "inherits": "benchmark"
+    },
+    {
+      "name": "mingw-integration",
+      "displayName": "Integration Tests",
+      "configurePreset": "mingw",
+      "inherits": "integration"
     },
     {
       "name": "mingw-integration-debug",
@@ -796,7 +822,7 @@
       "name": "linux-gles-ci",
       "displayName": "Linux GLES CI Tests",
       "configurePreset": "linux-gles-ci",
-      "inherits": "ci"
+      "inherits": "ci-integration"
     },
     {
       "name": "linux-gles-ci-benchmark",
@@ -808,7 +834,7 @@
       "name": "macos-ci",
       "displayName": "MacOS CI Tests",
       "configurePreset": "macos-ci",
-      "inherits": "ci"
+      "inherits": "ci-integration"
     },
     {
       "name": "macos-ci-benchmark",
@@ -820,7 +846,7 @@
       "name": "clang-cl-ci",
       "displayName": "VS CI Tests",
       "configurePreset": "clang-cl-ci",
-      "inherits": "ci"
+      "inherits": "ci-integration"
     },
     {
       "name": "clang-cl-ci-benchmark",
@@ -832,7 +858,7 @@
       "name": "mingw-ci",
       "displayName": "Mingw CI Tests",
       "configurePreset": "mingw-ci",
-      "inherits": "ci"
+      "inherits": "ci-integration"
     },
     {
       "name": "mingw-ci-benchmark",

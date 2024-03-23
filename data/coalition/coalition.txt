@@ -405,7 +405,7 @@ outfitter "Heliarch Basics"
 	"Local Map"
 
 outfitter "Lunarium Basics"
-	"Refuelling Module"
+	"Refueling Module"
 	"Decoy Plating"
 	"Shield Refactor Module"
 	"Small Recovery Module"

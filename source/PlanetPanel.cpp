@@ -28,15 +28,18 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "HiringPanel.h"
 #include "Interface.h"
 #include "MapDetailPanel.h"
+#include "MessageLogPanel.h"
 #include "MissionPanel.h"
 #include "OutfitterPanel.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "PlayerInfoPanel.h"
+#include "Port.h"
 #include "Ship.h"
 #include "ShipyardPanel.h"
 #include "SpaceportPanel.h"
 #include "System.h"
+#include "TaskQueue.h"
 #include "TradingPanel.h"
 #include "UI.h"
 
@@ -63,8 +66,8 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 
 	// Since the loading of landscape images is deferred, make sure that the
 	// landscapes for this system are loaded before showing the planet panel.
-	GameData::Preload(planet.Landscape());
-	GameData::FinishLoadingSprites();
+	TaskQueue queue;
+	GameData::Preload(queue, planet.Landscape());
 }
 
 
@@ -110,16 +113,21 @@ void PlanetPanel::Draw()
 
 	if(planet.CanUseServices())
 	{
-		if(planet.IsInhabited())
-		{
-			info.SetCondition("is inhabited");
-			info.SetCondition("has bank");
-			if(system.HasTrade())
-				info.SetCondition("has trade");
-		}
+		const Port &port = planet.GetPort();
 
-		if(planet.HasSpaceport())
-			info.SetCondition("has spaceport");
+		if(port.HasService(Port::ServicesType::Bank))
+			info.SetCondition("has bank");
+		if(port.HasService(Port::ServicesType::JobBoard))
+			info.SetCondition("has job board");
+		if(port.HasService(Port::ServicesType::HireCrew))
+			info.SetCondition("can hire crew");
+		if(port.HasService(Port::ServicesType::Trading) && system.HasTrade())
+			info.SetCondition("has trade");
+		if(planet.HasNamedPort())
+		{
+			info.SetCondition("has port");
+			info.SetString("port name", port.Name());
+		}
 
 		if(planet.HasShipyard())
 			info.SetCondition("has shipyard");
@@ -158,17 +166,18 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	}
 	else if(key == 'l')
 		selectedPanel = nullptr;
-	else if(key == 't' && hasAccess && planet.IsInhabited() && system.HasTrade())
+	else if(key == 't' && hasAccess
+			&& planet.GetPort().HasService(Port::ServicesType::Trading) && system.HasTrade())
 	{
 		selectedPanel = trading.get();
 		GetUI()->Push(trading);
 	}
-	else if(key == 'b' && hasAccess && planet.IsInhabited())
+	else if(key == 'b' && hasAccess && planet.GetPort().HasService(Port::ServicesType::Bank))
 	{
 		selectedPanel = bank.get();
 		GetUI()->Push(bank);
 	}
-	else if(key == 'p' && hasAccess && planet.HasSpaceport())
+	else if(key == 'p' && hasAccess && planet.HasNamedPort())
 	{
 		selectedPanel = spaceport.get();
 		if(isNewPress)
@@ -185,12 +194,12 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 		GetUI()->Push(new OutfitterPanel(player));
 		return true;
 	}
-	else if(key == 'j' && hasAccess && planet.IsInhabited())
+	else if(key == 'j' && hasAccess && planet.GetPort().HasService(Port::ServicesType::JobBoard))
 	{
 		GetUI()->Push(new MissionPanel(player));
 		return true;
 	}
-	else if(key == 'h' && hasAccess && planet.IsInhabited())
+	else if(key == 'h' && hasAccess && planet.GetPort().HasService(Port::ServicesType::HireCrew))
 	{
 		selectedPanel = hiring.get();
 		GetUI()->Push(hiring);
@@ -203,6 +212,11 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	else if(command.Has(Command::INFO))
 	{
 		GetUI()->Push(new PlayerInfoPanel(player));
+		return true;
+	}
+	else if(command.Has(Command::MESSAGE_LOG))
+	{
+		GetUI()->Push(new MessageLogPanel());
 		return true;
 	}
 	else
@@ -310,8 +324,18 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 	// Will you have to sell something other than regular cargo?
 	const int commoditiesToSell = cargo.CommoditiesSize();
 	int outfitsToSell = 0;
+	map<const Outfit *, int> uniquesToSell;
 	for(auto &it : cargo.Outfits())
+	{
 		outfitsToSell += it.second;
+		if(it.first->Attributes().Get("unique"))
+			uniquesToSell[it.first] = it.second;
+	}
+	// Have you left any unique items at the outfitter?
+	map<const Outfit *, int> leftUniques;
+	for(const auto &it : player.GetStock())
+		if(it.second > 0 && it.first->Attributes().Get("unique"))
+			leftUniques[it.first] = it.second;
 	// Count how many active ships we have that cannot make the jump (e.g. due to lack of fuel,
 	// drive, or carrier). All such ships will have been logged in the player's flightcheck.
 	size_t nonJumpCount = 0;
@@ -330,9 +354,30 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 				}
 	}
 
-	if(nonJumpCount > 0 || missionCargoToSell > 0 || outfitsToSell > 0 || commoditiesToSell > 0 || overbooked > 0)
+	if(nonJumpCount > 0 || missionCargoToSell > 0 || outfitsToSell > 0 || commoditiesToSell > 0 || overbooked > 0
+		|| !leftUniques.empty())
 	{
 		ostringstream out;
+		auto ListUniques = [&out] (const map<const Outfit *, int> &uniques)
+		{
+			const int detailedSize = (uniques.size() > 5 ? 4 : uniques.size());
+			auto it = uniques.begin();
+			for(int i = 0; i < detailedSize; ++i)
+			{
+				out << "\n" + to_string(it->second) + " "
+					+ (it->second == 1 ? it->first->DisplayName() : it->first->PluralName());
+				++it;
+			}
+			int otherUniquesCount = 0;
+			if(it != uniques.end())
+			{
+				for( ; it != uniques.end(); ++it)
+					otherUniquesCount += it->second;
+				out << "\nand " + to_string(otherUniquesCount) + " other unique outfits.";
+			}
+			else
+				out << ".";
+		};
 		out << "If you take off now, you will:";
 
 		// Warn about missions that will fail on takeoff.
@@ -357,6 +402,17 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 			out << (planet.HasOutfitter() ? "store " : "sell ") << outfitsToSell << " outfit";
 			out << (outfitsToSell > 1 ? "s" : "");
 			out << " that none of your ships can hold.";
+			if(!uniquesToSell.empty())
+			{
+				out << " Some of the outfits are unique:";
+				ListUniques(uniquesToSell);
+			}
+		}
+		// Warn about unique items you sold.
+		if(!leftUniques.empty())
+		{
+			out << "\n- not be able to re-purchase unique outfits you sold at the outfitter:";
+			ListUniques(leftUniques);
 		}
 		// Warn about ships that won't travel with you.
 		if(nonJumpCount > 0)

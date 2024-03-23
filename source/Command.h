@@ -60,8 +60,10 @@ public:
 	// UI controls:
 	static const Command MAP;
 	static const Command INFO;
+	static const Command MESSAGE_LOG;
 	static const Command FULLSCREEN;
 	static const Command FASTFORWARD;
+	static const Command HELP;
 	// Escort commands:
 	static const Command FIGHT;
 	static const Command GATHER;

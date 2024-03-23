@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 
 #include <cstddef>
+#include <cstdint>
 #include <map>
 #include <utility>
 #include <vector>
@@ -88,6 +89,8 @@ public:
 
 	int MissileStrength() const;
 	int AntiMissile() const;
+	double TractorBeam() const;
+	uint16_t PenetrationCount() const noexcept;
 	// Weapons of the same type will alternate firing (streaming) rather than
 	// firing all at once (clustering) if the weapon is not an anti-missile and
 	// is not vulnerable to anti-missile, or has the "stream" attribute.
@@ -152,6 +155,14 @@ public:
 	// Gravitational weapons deal the same amount of hit force to a ship regardless
 	// of its mass.
 	bool IsGravitational() const;
+	// True if this projectile should create an explosion at the end of its lifetime
+	// instead of simply disappearing or only creating a die effect. Blast radius
+	// weapons will cause a blast at the end of their lifetime.
+	bool IsFused() const;
+	// Whether projectiles from this weapon can directly collide with objects.
+	bool CanCollideShips() const;
+	bool CanCollideAsteroids() const;
+	bool CanCollideMinables() const;
 
 	// These values include all submunitions:
 	// Normal damage types:
@@ -185,6 +196,8 @@ public:
 
 	double Piercing() const;
 
+	double Prospecting() const;
+
 	double TotalLifetime() const;
 	double Range() const;
 
@@ -193,6 +206,10 @@ public:
 	// Calculate the percent damage that this weapon deals given the distance
 	// that the projectile traveled if it has a damage dropoff range.
 	double DamageDropoff(double distance) const;
+	// Return the weapon's damage dropoff at maximum range.
+	double MaxDropoff() const;
+	// Return the ranges at which the weapon's damage dropoff begins and ends.
+	const std::pair<double, double> &DropoffRanges() const;
 
 
 protected:
@@ -231,6 +248,10 @@ private:
 	bool isPhasing = false;
 	bool isDamageScaled = true;
 	bool isGravitational = false;
+	bool isFused = false;
+	bool canCollideShips = true;
+	bool canCollideAsteroids = true;
+	bool canCollideMinables = true;
 	// Guns and missiles are by default aimed a converged point at the
 	// maximum weapons range in front of the ship. When either the installed
 	// weapon or the gun-port (or both) have the isParallel attribute set
@@ -249,6 +270,11 @@ private:
 
 	int missileStrength = 0;
 	int antiMissile = 0;
+	double tractorBeam = 0.;
+	// Use of an unsigned integer allows explicit penetration count values of 0
+	// to result in a projectile that will hit 65k targets before being destroyed
+	// (which is effectively infinite under any reasonable balance).
+	uint16_t penetrationCount = 1U;
 
 	double velocity = 0.;
 	double randomVelocity = 0.;
@@ -258,7 +284,7 @@ private:
 
 	double turn = 0.;
 	double inaccuracy = 0.;
-	// A pair representing the disribution type of this weapon's inaccuracy
+	// A pair representing the distribution type of this weapon's inaccuracy
 	// and whether it is inverted
 	std::pair<Distribution::Type, bool> inaccuracyDistribution = {Distribution::Type::Triangular, false};
 	double turretTurn = 0.;
@@ -326,12 +352,14 @@ private:
 
 	double piercing = 0.;
 
+	double prospecting = 0.;
+
 	double rangeOverride = 0.;
 	double velocityOverride = 0.;
 
 	bool hasDamageDropoff = false;
 	std::pair<double, double> damageDropoffRange;
-	double damageDropoffModifier;
+	double damageDropoffModifier = 1.;
 
 	// Cache the calculation of these values, for faster access.
 	mutable bool calculatedDamage = true;
@@ -352,6 +380,8 @@ inline int Weapon::Homing() const { return homing; }
 
 inline int Weapon::MissileStrength() const { return missileStrength; }
 inline int Weapon::AntiMissile() const { return antiMissile; }
+inline double Weapon::TractorBeam() const { return tractorBeam; }
+inline uint16_t Weapon::PenetrationCount() const noexcept { return penetrationCount; }
 inline bool Weapon::IsStreamed() const { return isStreamed; }
 
 inline double Weapon::Velocity() const { return velocity; }
@@ -393,6 +423,8 @@ inline double Weapon::RelativeFiringShields() const{ return relativeFiringShield
 
 inline double Weapon::Piercing() const { return piercing; }
 
+inline double Weapon::Prospecting() const { return prospecting; }
+
 inline double Weapon::SplitRange() const { return splitRange; }
 inline double Weapon::TriggerRadius() const { return triggerRadius; }
 inline double Weapon::BlastRadius() const { return blastRadius; }
@@ -403,6 +435,10 @@ inline bool Weapon::IsSafe() const { return isSafe; }
 inline bool Weapon::IsPhasing() const { return isPhasing; }
 inline bool Weapon::IsDamageScaled() const { return isDamageScaled; }
 inline bool Weapon::IsGravitational() const { return isGravitational; }
+inline bool Weapon::IsFused() const { return isFused; }
+inline bool Weapon::CanCollideShips() const { return canCollideShips; }
+inline bool Weapon::CanCollideAsteroids() const { return canCollideAsteroids; }
+inline bool Weapon::CanCollideMinables() const { return canCollideMinables; }
 
 inline double Weapon::ShieldDamage() const { return TotalDamage(SHIELD_DAMAGE); }
 inline double Weapon::HullDamage() const { return TotalDamage(HULL_DAMAGE); }

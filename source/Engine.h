@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define ENGINE_H_
 
 #include "AI.h"
+#include "AlertLabel.h"
 #include "AmmoDisplay.h"
 #include "AsteroidField.h"
 #include "BatchDrawList.h"
@@ -25,34 +26,31 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DrawList.h"
 #include "EscortDisplay.h"
 #include "Information.h"
+#include "PlanetLabel.h"
 #include "Point.h"
 #include "Preferences.h"
+#include "Projectile.h"
 #include "Radar.h"
 #include "Rectangle.h"
+#include "TaskQueue.h"
 
 #include <condition_variable>
 #include <list>
 #include <map>
 #include <memory>
-#include <thread>
 #include <utility>
 #include <vector>
 
-class AlertLabel;
 class Flotsam;
 class Government;
 class NPC;
 class Outfit;
-class PlanetLabel;
 class PlayerInfo;
-class Projectile;
 class Ship;
 class ShipEvent;
 class Sprite;
-class TestContext;
 class Visual;
 class Weather;
-
 
 
 // Class representing the game engine: its job is to track all of the objects in
@@ -80,15 +78,15 @@ public:
 	// Begin the next step of calculations.
 	void Go();
 
+	// Give a command on behalf of the player, used for integration tests.
+	void GiveCommand(const Command &command);
+
 	// Get any special events that happened in this step.
 	// MainPanel::Step will clear this list.
 	std::list<ShipEvent> &Events();
 
 	// Draw a frame.
 	void Draw() const;
-
-	// Set the given TestContext in the next step of the Engine.
-	void SetTestContext(TestContext &newTestContext);
 
 	// Select the object the player clicked on.
 	void Click(const Point &from, const Point &to, bool hasShift, bool hasControl);
@@ -113,10 +111,10 @@ private:
 
 	class Status {
 	public:
-		Status(const Point &position, double outer, double inner,
-			double disabled, double radius, int type, double angle = 0.)
+		constexpr Status(const Point &position, double outer, double inner,
+			double disabled, double radius, int type, float alpha, double angle = 0.)
 			: position(position), outer(outer), inner(inner),
-				disabled(disabled), radius(radius), type(type), angle(angle) {}
+				disabled(disabled), radius(radius), type(type), alpha(alpha), angle(angle) {}
 
 		Point position;
 		double outer;
@@ -124,14 +122,25 @@ private:
 		double disabled;
 		double radius;
 		int type;
+		float alpha;
 		double angle;
+	};
+
+	class Zoom {
+	public:
+		constexpr Zoom() : base(0.) {}
+		explicit constexpr Zoom(double zoom) : base(zoom) {}
+
+		constexpr operator double() const { return base * modifier; }
+
+		double base;
+		double modifier = 1.;
 	};
 
 
 private:
 	void EnterSystem();
 
-	void ThreadEntryPoint();
 	void CalculateStep();
 
 	void MoveShip(const std::shared_ptr<Ship> &ship);
@@ -153,7 +162,7 @@ private:
 
 	void FillRadar();
 
-	void AddSprites(const Ship &ship);
+	void DrawShipSprites(const Ship &ship);
 
 	void DoGrudge(const std::shared_ptr<Ship> &target, const Government *attacker);
 
@@ -177,25 +186,29 @@ private:
 	std::list<std::shared_ptr<Flotsam>> newFlotsam;
 	std::vector<Visual> newVisuals;
 
-	// Track which ships currently have anti-missiles ready to fire.
+	// Track which ships currently have anti-missiles or
+	// tractor beams ready to fire.
 	std::vector<Ship *> hasAntiMissile;
+	std::vector<Ship *> hasTractorBeam;
 
 	AI ai;
 
-	std::thread calcThread;
-	std::condition_variable condition;
-	std::mutex swapMutex;
+	TaskQueue queue;
 
-	bool calcTickTock = false;
-	bool drawTickTock = false;
-	bool hasFinishedCalculating = true;
-	bool terminate = false;
-	bool wasActive = false;
-	bool isMouseHoldEnabled = false;
-	bool isMouseTurningEnabled = false;
+	// ES uses a technique called double buffering to calculate the next frame and render the current one simultaneously.
+	// To facilitate this, it uses two buffers for each list of things to draw - one for the next frame's calculations and
+	// one for rendering the current frame. A little synchronization is required to prevent mutable references to the
+	// currently rendering buffer.
+	size_t currentCalcBuffer = 0;
+	size_t currentDrawBuffer = 0;
 	DrawList draw[2];
 	BatchDrawList batchDraw[2];
 	Radar radar[2];
+
+	bool wasActive = false;
+	bool isMouseHoldEnabled = false;
+	bool isMouseTurningEnabled = false;
+
 	// Viewport position and velocity.
 	Point center;
 	Point centerVelocity;
@@ -230,6 +243,7 @@ private:
 	int alarmTime = 0;
 	double flash = 0.;
 	bool doFlash = false;
+	bool doEnterLabels = false;
 	bool doEnter = false;
 	bool hadHostiles = false;
 
@@ -257,14 +271,9 @@ private:
 	std::set<std::string> asteroidsScanned;
 	bool isAsteroidCatalogComplete = false;
 
-	// Input, Output and State handling for automated tests.
-	TestContext *testContext = nullptr;
-
-	double zoom = 1.;
-	double baseZoom = 1.;
+	Zoom zoom;
 	// Tracks the next zoom change so that objects aren't drawn at different zooms in a single frame.
-	double nextZoom = 0.;
-	double zoomMod = 2.;
+	Zoom nextZoom;
 
 	double load = 0.;
 	int loadCount = 0;

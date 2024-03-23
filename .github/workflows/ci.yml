@@ -32,7 +32,7 @@ on:
 
 
 concurrency:
-  group: ${{ github.ref }}-${{ github.workflow }}-${{ github.event_name }}
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
   cancel-in-progress: true
 
 jobs:
@@ -104,12 +104,12 @@ jobs:
     - name: Run Benchmarks
       run: ctest --preset mingw-ci-benchmark
     - name: Upload binary
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: binary-windows
         path: ./build/ci/Endless Sky.exe
     - name: Upload DLLs
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: windows-dlls
         path: ./build/ci/*.dll
@@ -194,15 +194,17 @@ jobs:
     # Otherwise download the binary from CI.
     - name: Download game binary from CI
       if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.cmake_files == 'true' }}
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: binary-windows
     - name: Download DLLs from CI
       if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.cmake_files == 'true' }}
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: windows-dlls
     - name: Parse Datafiles
-      run: .\utils\test_parse.ps1 'Endless Sky.exe'
+      run: "'./Endless Sky.exe' -p"
+      shell: bash
     - name: Parse Integration Test Data
-      run: .\utils\test_parse.ps1 'Endless Sky.exe' tests/integration/config
+      run: "'./Endless Sky.exe' -p --config 'tests/integration/config'"
+      shell: bash

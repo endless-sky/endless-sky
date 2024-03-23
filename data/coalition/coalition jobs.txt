@@ -1333,7 +1333,8 @@ mission "Coalition: From Games 3"
 mission "Heliarchs Buy Jump Drive Job 1"
 	job
 	name "Sell Jump Drive"
-	description "Sell a jump drive to the Heliarchs for <payment> credits."
+	"apparent payment" 5000000
+	description "Sell a jump drive to the Heliarchs for <payment>."
 	source
 		government "Heliarch"
 	to offer
@@ -1377,6 +1378,7 @@ mission "Heliarchs Buy Jump Drive Job 2"
 	job
 	repeat
 	name "Sell Jump Drive"
+	"apparent payment" 5000000
 	description "Sell a jump drive to the Heliarchs for <payment>."
 	source
 		government "Heliarch"
@@ -1417,7 +1419,7 @@ mission "Heliarch Contain True"
 	on complete
 		payment
 		payment 70000
-		dialog `You and the other agents converge on the marked area and quickly move to cut off any exits. After a brief firefight, the criminals surrender and a Heliarch ship swoops in to pick them up. You bid your Heliarch colleagues farewell and return to your ship, where you are happy to see that <payment> has already been transferred to your account.`
+		dialog `You and the other agents converge on the marked area and quickly move to cut off any exits. After a brief firefight, the criminals surrender and a Heliarch ship swoops in to pick them up. You bid your Heliarch colleagues farewell and return to your ship, where you are happy to see that <payment> have already been transferred to your account.`
 
 mission "Heliarch Contain Fail"
 	job
@@ -1495,7 +1497,7 @@ mission "Heliarch Investigate"
 	job
 	repeat
 	name `Investigate signs of criminal activity`
-	description `Land on <stopovers>, where you and <bunks> other Heliarch agents will investigate an area where suspicious activity was reported. Payment is <payment>.`
+	description `Land on <stopovers>, where you and <bunks> other Heliarch agents will investigate an area where suspicious activity was reported. When you've finished, return to <origin> to receive <payment>.`
 	passengers 6 11
 	to offer
 		random < 60
@@ -1523,21 +1525,21 @@ mission "Evacuate Lunarium True"
 	deadline
 	to offer
 		random < 10
-		has "Lunarium Evacuation 6: done"
+		has "Lunarium: Evacuation 6: done"
 		not "Heliarch Investigation 2: active"
-		not "Heliarch License: done"
+		not "joined the heliarchs"
 	to fail
 		has "Heliarch Investigation 2: active"
-		has "Heliarch License: done"
+		has "joined the heliarchs"
 	passengers 24 65
 	source
 		government "Coalition"
 	stopover
 		government "Coalition"
-		distance 2 6
+		distance 2 4
 	destination
 		government "Coalition"
-		distance 3 5
+		distance 5 6
 	on stopover
 		dialog `The Lunarium members rush to your ship once it touches down on the hangars, and you swiftly open your hatch for them to come in. One of the calmer members asks that you head to <destination> as soon as possible.`
 	on visit
@@ -1555,21 +1557,21 @@ mission "Evacuate Lunarium Fail"
 	deadline
 	to offer
 		random < 5
-		has "Lunarium Evacuation 6: done"
+		has "Lunarium: Evacuation 6: done"
 		not "Heliarch Investigation 2: active"
-		not "Heliarch License: done"
+		not "joined the heliarchs"
 	to fail
 		has "Heliarch Investigation 2: active"
-		has "Heliarch License: done"
+		has "joined the heliarchs"
 	passengers 24 65
 	source
 		government "Coalition"
 	stopover
 		government "Coalition"
-		distance 2 6
+		distance 2 4
 	destination
 		government "Coalition"
-		distance 3 5
+		distance 5 6
 	on stopover
 		dialog `You touch down on the hangars, and wait for a few minutes for the Lunarium members. Many minutes pass, however, and none arrive. Instead the docks become increasingly filled with Heliarch agents. A message appears on your monitor, saying that the Heliarchs got to the members here first, but thanking you for your efforts anyway.`
 		fail
@@ -1582,13 +1584,13 @@ mission "Lunarium: Armageddon Core Delivery"
 	description "The Lunarium is offering <payment> for you to deliver an Armageddon Core to <destination>."
 	to offer
 		random < 4
-		has "Lunarium: Reactors: done"
+		has "Lunarium: Smuggling: Reactors: done"
 		not "Lunarium: Armageddon Core Delivery: active"
 		not "Heliarch Investigation 2: active"
-		not "Heliarch License: done"
+		not "joined the heliarchs"
 	to fail
 		has "Heliarch Investigation 2: active"
-		has "Heliarch License: done"
+		has "joined the heliarchs"
 	source
 		government "Coalition"
 	destination
@@ -1609,13 +1611,13 @@ mission "Lunarium: Fusion Reactor Delivery"
 	description "The Lunarium is offering <payment> for you to deliver a Fusion Reactor to <destination>."
 	to offer
 		random < 7
-		has "Lunarium: Reactors: done"
+		has "Lunarium: Smuggling: Reactors: done"
 		not "Lunarium: Fusion Reactor Delivery: active"
 		not "Heliarch Investigation 2: active"
-		not "Heliarch License: done"
+		not "joined the heliarchs"
 	to fail
 		has "Heliarch Investigation 2: active"
-		has "Heliarch License: done"
+		has "joined the heliarchs"
 	source
 		government "Coalition"
 	destination
@@ -1636,13 +1638,13 @@ mission "Lunarium: Breeder Reactor Delivery"
 	description "The Lunarium is offering <payment> for you to deliver a Breeder Reactor to <destination>."
 	to offer
 		random < 10
-		has "Lunarium: Reactors: done"
+		has "Lunarium: Smuggling: Reactors: done"
 		not "Lunarium: Breeder Reactor Delivery: active"
 		not "Heliarch Investigation 2: active"
-		not "Heliarch License: done"
+		not "joined the heliarchs"
 	to fail
 		has "Heliarch Investigation 2: active"
-		has "Heliarch License: done"
+		has "joined the heliarchs"
 	source
 		government "Coalition"
 	destination
@@ -1663,13 +1665,13 @@ mission "Lunarium: Torpedo Delivery"
 	description "The Lunarium is offering <payment> for you to deliver a Torpedo Launcher, complete with 30 torpedoes, to <destination>."
 	to offer
 		random < 12
-		has "Lunarium: Torpedoes: done"
+		has "Lunarium: Smuggling: Torpedoes: done"
 		not "Lunarium: Torpedo Delivery: active"
 		not "Heliarch Investigation 2: active"
-		not "Heliarch License: done"
+		not "joined the heliarchs"
 	to fail
 		has "Heliarch Investigation 2: active"
-		has "Heliarch License: done"
+		has "joined the heliarchs"
 	source
 		government "Coalition"
 	destination
@@ -1690,13 +1692,13 @@ mission "Lunarium: Typhoon Delivery"
 	description "The Lunarium is offering <payment> for you to deliver a Typhoon Launcher, complete with 30 Typhoon Torpedoes, to <destination>."
 	to offer
 		random < 7
-		has "Lunarium: Torpedoes: done"
+		has "Lunarium: Smuggling: Torpedoes: done"
 		not "Lunarium: Typhoon Delivery: active"
 		not "Heliarch Investigation 2: active"
-		not "Heliarch License: done"
+		not "joined the heliarchs"
 	to fail
 		has "Heliarch Investigation 2: active"
-		has "Heliarch License: done"
+		has "joined the heliarchs"
 	source
 		government "Coalition"
 	destination
@@ -1715,13 +1717,13 @@ mission "Lunarium: Plasma Delivery"
 	description "The Lunarium is offering <payment> for you to deliver a Plasma Turret to <destination>."
 	to offer
 		random < 6
-		has "Lunarium: Heat: done"
+		has "Lunarium: Smuggling: Heat: done"
 		not "Lunarium: Plasma Delivery: active"
 		not "Heliarch Investigation 2: active"
-		not "Heliarch License: done"
+		not "joined the heliarchs"
 	to fail
 		has "Heliarch Investigation 2: active"
-		has "Heliarch License: done"
+		has "joined the heliarchs"
 	source
 		government "Coalition"
 	destination
@@ -1739,13 +1741,13 @@ mission "Lunarium: Flamethrower Delivery"
 	description "The Lunarium is offering <payment> for you to deliver a pair of Flamethrowers to <destination>."
 	to offer
 		random < 8
-		has "Lunarium: Heat: done"
+		has "Lunarium: Smuggling: Heat: done"
 		not "Lunarium: Flamethrower Delivery: active"
 		not "Heliarch Investigation 2: active"
-		not "Heliarch License: done"
+		not "joined the heliarchs"
 	to fail
 		has "Heliarch Investigation 2: active"
-		has "Heliarch License: done"
+		has "joined the heliarchs"
 	source
 		government "Coalition"
 	destination
@@ -1763,13 +1765,13 @@ mission "Lunarium: Grenade Delivery"
 	description "The Lunarium is offering <payment> for you to deliver a dozen Fragmentation Grenades to <destination>."
 	to offer
 		random < 11
-		has "Lunarium: Grenades: done"
+		has "Lunarium: Smuggling: Grenades: done"
 		not "Lunarium: Grenade Delivery: active"
 		not "Heliarch Investigation 2: active"
-		not "Heliarch License: done"
+		not "joined the heliarchs"
 	to fail
 		has "Heliarch Investigation 2: active"
-		has "Heliarch License: done"
+		has "joined the heliarchs"
 	source
 		government "Coalition"
 	destination
@@ -1787,13 +1789,13 @@ mission "Lunarium: Anti-Missile Delivery"
 	description "The Lunarium is are offering <payment> for you to deliver a Heavy Anti-Missile Turret to <destination>."
 	to offer
 		random < 10
-		has "Lunarium: AM: done"
+		has "Lunarium: Smuggling: AM: done"
 		not "Lunarium: Anti-Missile Delivery: active"
 		not "Heliarch Investigation 2: active"
-		not "Heliarch License: done"
+		not "joined the heliarchs"
 	to fail
 		has "Heliarch Investigation 2: active"
-		has "Heliarch License: done"
+		has "joined the heliarchs"
 	source
 		government "Coalition"
 	destination

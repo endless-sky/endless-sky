@@ -54,6 +54,12 @@ public:
 	// Format the given value as a number with exactly the given number of
 	// decimal places (even if they are all 0).
 	static std::string Decimal(double value, int places);
+	// Convert numbers to word forms. Capitalize the first letter if at the start of a sentence.
+	static std::string WordForm(int64_t value, bool startOfSentence = false);
+	// Conditionally convert numbers to word forms, based on the Chicago Manual of Style.
+	static std::string ChicagoForm(int64_t value, bool startOfSentence = false);
+	// Conditionally convert numbers to word forms, based on the MLA Style guide.
+	static std::string MLAForm(int64_t value, bool startOfSentence = false);
 	// Convert a string into a number. As with the output of Number(), the
 	// string can have suffixes like "M", "B", etc.
 	static double Parse(const std::string &str);
@@ -71,7 +77,10 @@ public:
 	static std::vector<std::string> Split(const std::string &str, const std::string &separator);
 
 	// Finds &[condition] and &[format@condition] in strings and expands them
-	static std::string ExpandConditions(const std::string &source, ConditionGetter getter);
+	static std::string ExpandConditions(const std::string &source, const ConditionGetter &getter);
+
+	// Function for the "find" dialogs:
+	static int Search(const std::string &str, const std::string &sub);
 };
 
 

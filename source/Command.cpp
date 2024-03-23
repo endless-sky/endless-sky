@@ -70,20 +70,22 @@ const Command Command::AFTERBURNER(ONE << 19, "Fire afterburner");
 const Command Command::CLOAK(ONE << 20, "Toggle cloaking device");
 const Command Command::MAP(ONE << 21, "View star map");
 const Command Command::INFO(ONE << 22, "View player info");
-const Command Command::FULLSCREEN(ONE << 23, "Toggle fullscreen");
-const Command Command::FASTFORWARD(ONE << 24, "Toggle fast-forward");
-const Command Command::FIGHT(ONE << 25, "Fleet: Fight my target");
-const Command Command::GATHER(ONE << 26, "Fleet: Gather around me");
-const Command Command::HOLD(ONE << 27, "Fleet: Hold position");
-const Command Command::HARVEST(ONE << 28, "Fleet: Harvest flotsam");
-const Command Command::AMMO(ONE << 29, "Fleet: Toggle ammo usage");
-const Command Command::AUTOSTEER(ONE << 30, "Auto steer");
-const Command Command::LATERALLEFT(ONE << 31, "Lateral left thrust");
-const Command Command::LATERALRIGHT(ONE << 32, "Lateral right thrust");
-const Command Command::WAIT(ONE << 33, "");
-const Command Command::STOP(ONE << 34, "");
-const Command Command::SHIFT(ONE << 35, "");
-const Command Command::CTRL(ONE << 36, "");
+const Command Command::MESSAGE_LOG(ONE << 23, "View message log");
+const Command Command::FULLSCREEN(ONE << 24, "Toggle fullscreen");
+const Command Command::FASTFORWARD(ONE << 25, "Toggle fast-forward");
+const Command Command::HELP(ONE << 26, "Show help");
+const Command Command::FIGHT(ONE << 27, "Fleet: Fight my target");
+const Command Command::GATHER(ONE << 28, "Fleet: Gather around me");
+const Command Command::HOLD(ONE << 29, "Fleet: Hold position");
+const Command Command::HARVEST(ONE << 30, "Fleet: Harvest flotsam");
+const Command Command::AMMO(ONE << 31, "Fleet: Toggle ammo usage");
+const Command Command::AUTOSTEER(ONE << 32, "Auto steer");
+const Command Command::LATERALLEFT(ONE << 33, "Lateral left thrust");
+const Command Command::LATERALRIGHT(ONE << 34, "Lateral right thrust");
+const Command Command::WAIT(ONE << 35, "");
+const Command Command::STOP(ONE << 36, "");
+const Command Command::SHIFT(ONE << 37, "");
+const Command Command::CTRL(ONE << 38, "");
 
 
 
