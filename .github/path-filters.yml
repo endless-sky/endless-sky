@@ -55,4 +55,4 @@ ci_config:
 projects_check_config:
   - '.github/workflows/projects_check.yml'
   - '.github/path-filters.yml'
-  - '.github/compute-changes.yml'
+  - '.github/workflows/compute-changes.yml'
