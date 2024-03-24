@@ -1786,9 +1786,9 @@ news "conspiracy theorist"
 		government "Republic" "Free Worlds" "Neutral" "Independent" "Syndicate"
 	name
 		word
-			"Conspiracy Theorist"
-			"Free Thinker"
-			"Truth Seeker"
+			"Conspiracy theorist"
+			"Free thinker"
+			"Truth seeker"
 	message
 		word
 			`"`
