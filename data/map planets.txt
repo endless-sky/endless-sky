@@ -1725,7 +1725,7 @@ planet Geyser
 	security 0.3
 	tribute 1300
 		threshold 3500
-		fleet "Large Militia" 20
+		fleet "Small Republic" 20
 
 planet Ghneoe
 	attributes uninhabited
@@ -2979,9 +2979,9 @@ planet "New China"
 	spaceport `The "new port" here was built several centuries ago, when the grand but impractical spaceport built by the original settlers had deteriorated to the point where it was no longer usable. This port is much simpler by comparison: just a ring of landing pads of various sizes around a large central building with ten levels of warehouse space accessible by freight elevator.`
 	spaceport `	There are always locals hanging around the port, some of them mere children, who are trying to find a cheap ride off-planet.`
 	outfitter "Common Outfits"
+	outfitter "Lovelace Basics"
+	outfitter "Syndicate Basics"
 	outfitter "Ammo South"
-	outfitter "Delta V Basics"
-	outfitter "Kraz Basics"
 	security 0.1
 	tribute 1400
 		threshold 4000
