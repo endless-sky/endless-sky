@@ -1786,7 +1786,7 @@ mission "Wanderers Invaded 3"
 		has "Wanderers Invaded 2: done"
 	on offer
 		log "Helped to defend a Wanderer planet from an Unfettered attack. But, the Wanderers now plan to abandon that planet. The Wanderers seem very hesitant to actually stand their ground and fight back."
-		event "remove vara mer'ek facilities"
+		event "remove varu mer'ek facilities"
 		conversation
 			`It appears that the very last of the civilians are ready for transport to <planet>; a large crowd is gathered in the spaceport, but nearly all the buildings are vacant. Incongruously, a few Wanderers are busy sweeping the sidewalks, watering plants, and making other efforts to tidy up the port, as if to make it as presentable as possible for the Unfettered when they land.`
 			`	Isai greets you and asks if she can ride along with you. "These are the last of the civilians," she says. "The [warriors, defenders] will remain behind until everyone is [safe, away], then they will join us on <planet>. But most important is that the transports reach <planet> unharmed. Will you escort them?"`
@@ -1820,8 +1820,8 @@ mission "Wanderers Invaded 3"
 
 
 
-event "remove vara mer'ek facilities"
-	planet "Vara Mer'ek"
+event "remove varu mer'ek facilities"
+	planet "Varu Mer'ek"
 		remove spaceport
 		remove outfitter
 		remove "required reputation"
