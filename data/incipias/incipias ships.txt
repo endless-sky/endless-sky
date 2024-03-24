@@ -137,7 +137,7 @@ ship "Nimbo Stratus"
 	"thumbnail" thumbnail/stratus
 	"swizzle" 0
 	attributes
-		"category" "Interceptor"
+		"category" "Utility"
 		"cost" 50000
 		"hull" 500
 		"shields" 700
