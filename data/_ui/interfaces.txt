@@ -453,7 +453,7 @@ interface "load menu"
 	
 	active
 	button b "_Back to Menu"
-		center 300 130
+		center 300 155
 		dimensions 120 30
 	active if "pilot loaded"
 	button l "_Load Game"
