@@ -2303,7 +2303,7 @@ mission "Wanderers Evacuation 1B Remove Facilities"
 	invisible
 	source "Vara Ke'stai"
 	to offer
-		has "Wanderers Evacuation 1: done"
+		has "Wanderers Evacuation 1B: offered"
 	on offer
 		event "remove vara ke'stai facilities"
 
@@ -2313,23 +2313,6 @@ event "remove vara ke'stai facilities"
 		remove outfitter
 		remove "required reputation"
 		remove tribute
-		add port
-			recharges fuel
-			description `This is a desert world, but the Wanderers are working little by little to make the desert bloom: planting hardy shrubs and cacti that eventually transform the sand into a soil that can hold moisture. In some regions, especially closer to the poles, the deserts have given way to dense forests, but near the equator there are still large stretches of dry and barren sand, broken by the occasional belt of green where a narrow river winds between the dunes.`
-
-mission "Wanderers Evacuation 1B Remove Refueling"
-	landing
-	invisible
-	source "Vara Ke'stai"
-	to offer
-		has "Wanderers Evacuation 1B Remove Facilities: offered"
-		not "event: wanderers: more systems lost"
-	on offer
-		event "remove vara ke'stai refueling"
-
-event "remove vara ke'stai refueling"
-	planet "Vara Ke'stai"
-		remove spaceport
 
 
 mission "Wanderers Evacuation 1C"
