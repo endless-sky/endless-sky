@@ -544,7 +544,7 @@ mission "<uhai> 0: Bring Hai"
 			has "language: Hai"
 		<secondgroup> "He does not seem pleased, speaking with contained anger. You are not sure if he is demanding something, or simply complaining."
 			not "language: Hai"
-		<secondgroup> `"Things are going [poorly, worse]. In all my life never has it been more [rough, unsustainable]. Never have there been so many in need. Never so little to harvest, worse [housing, sanitation]... Something needs to be done, and quickly. We, and our way of life, are dying."`
+		<secondgroup> `"Things are going [poorly, worse]. In all my life never has it been more [rough, unsustainable]! Never have there been so many in need! Never so little to harvest, worse [housing, sanitation]... Something needs to be done, and quickly! We, and our way of life, are dying!"`
 			has "language: Hai"
 		<thirdgroup> "seemingly heartbroken by this little one's words. Raising his voice for all to hear, he appears to be asking something to the gathered Hai."
 			not "language: Hai"
@@ -561,17 +561,17 @@ mission "<uhai> 0: Bring Hai"
 	on offer
 		conversation
 			`Looking outside, you see the sun is setting. You take a moment to admire the breathtaking view of the sun passing through some clouds of pollution and notice a large, white, square-shaped structure in the distance, perhaps some sort of stadium, which a growing crowd of Unfettered are streaming towards. Ships keep landing and unloading even more Hai all over the spaceport, so much so that, exiting your ship, you cannot avoid being caught up in the crowd, almost carried, as they head towards the building. It is grandiose compared to its surroundings, distinguished by its sheer length and pure white appearance. In contrast, most of the surrounding structures appear to be houses or bars, all with more dilapidated appearances.`
-			`	Something of great interest must be happening in this building, but not all the Unfettered in the crowd actually share your destination; many are instead breaking away to fill the nearby bars. Some simply wander aimlessly, others are sitting on the rocky ground, chatting. Quite a few of them appear to be trading a small quantity of goods between themselves.`
+			`	Something of great interest must be happening in this building, but not all the Unfettered in the crowd actually share your destination. Many are instead breaking away to fill the nearby bars. Some simply wander aimlessly. Others are sitting on the rocky ground, chatting. Quite a few of them appear to be trading small quantities of goods between themselves.`
 			choice
 				`	(Go into the stadium.)`
 				`	(Ignore them and go back to my ship.)`
 					defer
-			`	As you are moving with the crowd towards the nearest stadium entrance - a large wide open corridor leading directly into the seating areas around the main pavilion - you begin to hear words being spoken loudly, probably amplified by some kind of device. Given that the Hai are generally quite small in comparison to humans, you can already see some of what is going on inside over most of the crowd while waiting to filter inside. It seems much of the line is not for the seating itself; it instead heads directly to the central stage where a group of official-looking Unfettered Hai await.`
-			`	They are approached by the next in line, a couple towing four children with them, who begin to plead, <firstgroup> The officials, perhaps the "Chiefs", which you have heard lead the Unfettered, speak among themselves, then, together, close their hand and raise it up, before lowering it, as if presenting something, as they turn back to the petitioners. By the relief on their faces, you assume their request has been granted.`
+			`	You continue to move with the crowd towards the nearest stadium entrance. It's a large wide open corridor leading directly into the seating areas around the main pavilion. As you get closer you begin to hear a loud voice, probably amplified by some kind of device. You can already see some of what is going on inside, over most of the crowd still waiting to filter in, given that the Hai are generally quite small in comparison to humans. It seems much of the line is not for the seating itself, but instead heads directly to the central stage where a group of official looking Unfettered Hai await.`
+			`	When it is their turn in line, a couple towing four children with them, begin to plead. <firstgroup> The officials, perhaps the "Chiefs", which you have heard lead the Unfettered, speak among themselves. Then they turn back to the petitioners, and together, close their hand and raise it up, before lowering it, as if presenting something. By the relief on the couple's faces, you assume their request has been granted.`
 			choice
 				`	(Move a bit to see the next petitionners as they approach.)`
-			`	The next in line seems quite old, but he is moving around proudly, as if not limited by his age at all. <secondgroup> For him to speak this way, this one - probably a soldier of some kind - clearly has some special status or a reputation which has earned great respect. Or maybe he just exemplifies what you've heard about the ways of the Unfettered; they bow to no one.`
-			`	The soldier moves away, and a tense silence hangs in the air for a moment. The Chiefs turn from the audience to speak among themselves, while mutterings and debate seem to be spreading throughout the crowd. This subject appears to be something for which strong opinions are held. The volume increases as the Chiefs continue their aside, and you begin to notice some of the nearby Hai turning their attention towards you, some even pointing you out. It may be that you are not welcome here. One of the younger Hai to notice you, probably still an adolescent judging by her colors, approaches you directly. She speaks softly, in your language, but clearly enough to be heard over the back and forth murmuring in the crowd. "Hi," she says with a warm, somewhat embarrassed chuckle, "I have noticed you easily among Hai. Do you want me to help translate what they say?"`
+			`	The next in line seems quite old, but he still is moving around proudly, as if not limited by his age at all. <secondgroup> This one, probably a soldier of some kind, clearly has some special status or a reputation which has earned him great respect for him to speak this way. Or maybe he just exemplifies what you've heard about the ways of the Unfettered; they bow to no one.`
+			`	The soldier moves away, and a tense silence hangs in the air for a moment. The Chiefs turn from the audience to speak among themselves, while mutterings and debate seem to be spreading throughout the crowd. This subject appears to be something for which strong opinions are held. The volume increases as the Chiefs continue their aside, and you begin to notice some of the nearby Hai turning their attention towards you, some even pointing you out. It may be that you are not welcome here. One of the younger Hai to notice you, probably still an adolescent judging by her colors, approaches you directly. She speaks softly, in your language, but clearly enough to be heard over the back and forth murmuring of the crowd. "Hi," she says with a warm, somewhat embarrassed chuckle, "I have noticed you easily among Hai. Do you want me to help translate what they say?"`
 			choice
 				`	"Yes, thank you."`
 					goto translate
@@ -585,14 +585,14 @@ mission "<uhai> 0: Bring Hai"
 				`	(Ignore her.)`
 					goto headoff
 				`	(Go and speak with her.)`
-			`	You can see she's clearly happy you came to speak to her. You ask her why she seems alone, and she answers, looking at the ground with what seems to be contained sadness, "I have no family here. I lost my parents to a pirate raid, so I came here to find myself. I did not expect all of this, though. Did you change your mind about the translation?"`
+			`	You can see she's clearly happy you came to speak to her. You ask her why she seems alone. She answers, looking at the ground with what seems to be contained sadness, "I have no family here. I lost my parents to a pirate raid, so I came here to find myself. I did not expect all of this, though. Did you change your mind about the translation?"`
 			choice
 				`	"Yes, please."`
 					goto translate
 				`	"No, thank you."`
 					goto headoff
 				`	"No, but I did not mean to offend or sadden you in any way, so I came to excuse myself."`
-			`	"Thank you! No offense is taken. I knew humans were not like they are often depicted here..." she trails off without finishing the thought, instead turning back to the proceedings in the stadium as they continue.`
+			`	"Thank you! No offense is taken. I knew humans were not like they are often depicted here..." she trails off without finishing the thought, instead turning back to the continuing proceedings in the stadium.`
 			label headoff
 			`	She slowly moves away and you get back to looking at what is going on within the stadium.`
 				goto continue
