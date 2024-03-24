@@ -17,19 +17,6 @@ jobs:
     uses: ./.github/workflows/compute-changes.yml
 
 
-  check-codeblocks:
-    name: CodeBlocks
-    needs: changed
-    if: ${{ needs.changed.outputs.codeblocks_files == 'true' || needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' }}
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
-      with:
-        show-progress: false
-    - name: Validate Code::Blocks project files
-      run: ./utils/check_codeblocks.sh
-
-
   check_cmake:
     name: CMake
     needs: changed
@@ -43,7 +30,6 @@ jobs:
       run: ./utils/check_cmake.sh
 
 
-
   validate_copyright:
     name: Copyright
     needs: changed
@@ -55,8 +41,15 @@ jobs:
         show-progress: false
     - name: Install dependencies
       run: python3 -m pip install --user python-debian
-    - name: Validate copyright file
+    - name: Validate copyright file with python-debian
       run: python3 ./utils/check_copyright.py
+    - name: Validate copyright file with debian-control-linter
+      uses: tibetiroka/debian-control-linter-action@v1
+      with:
+        type: 'debian/copyright'
+        file: 'copyright'
+        preset: 'strict'
+        enable: 'trailingSpace,upstreamContactStyle,urlForceHttps,fieldNameCapitalization,maintainerNameFullStop,urlExists,copyrightSourceStyle'
 
 
   spellcheck:
