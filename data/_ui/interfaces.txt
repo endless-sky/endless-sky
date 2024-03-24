@@ -606,6 +606,7 @@ interface "hud"
 		color "medium"
 		align right
 	
+	visible if "!fast hud sprites"
 	outline "player sprite"
 		center -75 155
 		dimensions 70 70
@@ -617,6 +618,11 @@ interface "hud"
 		center -75 155
 		dimensions 140 140
 	value "flagship velocity radius" 50
+	visible if "fast hud sprites"
+	image "player sprite"
+		center -75 155
+		dimensions 70 70
+	visible
 	ring "shields"
 		center -75 155
 		dimensions 120 120
@@ -759,10 +765,16 @@ interface "hud"
 		center 75 315
 		dimensions 140 140
 	value "target radius" 70
+	visible if "!fast hud sprites"
 	outline "target sprite"
 		center 75 315
 		dimensions 70 70
 		colored
+	visible if "fast hud sprites"
+	image "target sprite"
+		center 75 315
+		dimensions 70 70
+	visible
 	ring "target shields"
 		center 75 315
 		dimensions 120 120
