@@ -409,12 +409,18 @@ void Ship::Load(const DataNode &node)
 			if(child.HasChildren())
 				for(const DataNode &grand : child)
 				{
-					// Load in the effect(s) to be displayed when the ship launches.
+					// Load in the effect(s) to be displayed when the ship launches/boards.
 					if(grand.Token(0) == "launch effect" && grand.Size() >= 2)
 					{
 						int count = grand.Size() >= 3 ? static_cast<int>(grand.Value(2)) : 1;
 						const Effect *e = GameData::Effects().Get(grand.Token(1));
 						bay.launchEffects.insert(bay.launchEffects.end(), count, e);
+					}
+					else if(grand.Token(0) == "retrieve effect" && grand.Size() >= 2)
+					{
+						int count = grand.Size() >= 3 ? static_cast<int>(grand.Value(2)) : 1;
+						const Effect *e = GameData::Effects().Get(grand.Token(1));
+						bay.retrieveEffects.insert(bay.retrieveEffects.end(), count, e);
 					}
 					else if(grand.Token(0) == "angle" && grand.Size() >= 2)
 						bay.facing = Angle(grand.Value(1));
@@ -1051,7 +1057,7 @@ void Ship::Save(DataWriter &out) const
 
 			out.Write("bay", bay.category, x, y);
 
-			if(!bay.launchEffects.empty() || bay.facing.Degrees() || bay.side)
+			if(!bay.launchEffects.empty() || !bay.retrieveEffects.empty() || bay.facing.Degrees() || bay.side)
 			{
 				out.BeginChild();
 				{
@@ -1061,6 +1067,8 @@ void Ship::Save(DataWriter &out) const
 						out.Write(BAY_SIDE[bay.side]);
 					for(const Effect *effect : bay.launchEffects)
 						out.Write("launch effect", effect->Name());
+					for(const Effect *effect : bay.retrieveEffects)
+						out.Write("retrieve effect", effect->Name());
 				}
 				out.EndChild();
 			}
@@ -1709,7 +1717,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 
 
 // Check if this ship is boarding another ship.
-shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
+shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking, vector<Visual> &visuals)
 {
 	if(!hasBoarded)
 		return shared_ptr<Ship>();
@@ -1725,7 +1733,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 	{
 		SetTargetShip(shared_ptr<Ship>());
 		if(!victim->IsDisabled() && victim->GetGovernment() == government)
-			victim->Carry(shared_from_this());
+			victim->Carry(shared_from_this(), visuals);
 		return shared_ptr<Ship>();
 	}
 
@@ -2502,12 +2510,13 @@ int Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 	for(const Bay &bay : bays)
 		if(bay.ship)
 			bay.ship->WasCaptured(capturer);
+
 	// If a flagship is captured, its escorts become independent.
 	for(const auto &it : escorts)
 	{
 		shared_ptr<Ship> escort = it.lock();
 		if(escort)
-			escort->parent.reset();
+			RemoveEscort(*escort);
 	}
 	// This ship should not care about its now-unallied escorts.
 	escorts.clear();
@@ -3013,7 +3022,7 @@ int Ship::BaysFree(const string &category) const
 {
 	int count = 0;
 	for(const Bay &bay : bays)
-		count += (bay.category == category) && !bay.ship;
+		count += bay.free && (bay.category == category);
 	return count;
 }
 
@@ -3039,24 +3048,10 @@ bool Ship::CanCarry(const Ship &ship) const
 	// Check only for the category that we are interested in.
 	const string &category = ship.attributes.Category();
 
-	int free = BaysTotal(category);
-	if(!free)
-		return false;
-
-	for(const auto &it : escorts)
-	{
-		auto escort = it.lock();
-		if(!escort)
-			continue;
-		if(escort == ship.shared_from_this())
-			break;
-		if(escort->attributes.Category() == category && !escort->IsDestroyed() &&
-				(!IsYours() || (IsYours() && escort->IsYours())))
-			--free;
-		if(!free)
-			break;
-	}
-	return (free > 0);
+	for(const auto &bay : bays)
+		if((bay.free || ship.reservedBay == &bay) && bay.category == category)
+			return true;
+	return false;
 }
 
 
@@ -3073,51 +3068,80 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 	if(!ship || !ship->CanBeCarried() || ship->IsDisabled())
 		return false;
 
-	// Check only for the category that we are interested in.
-	const string &category = ship->attributes.Category();
+	Bay *dockBay = ship->reservedBay;
+	if(!dockBay)
+	{
+		// The ship to carry has no bay assigned to it. Find one.
+
+		// Check only for the category that we are interested in.
+		const string &category = ship->attributes.Category();
+		for(Bay &bay : bays)
+			if(bay.free && bay.category == category)
+			{
+				dockBay = &bay;
+				break;
+			}
+
+		if(!dockBay)
+			return false;
+	}
+
+	dockBay->ship = ship;
+	dockBay->free = false;
+	ship->reservedBay = dockBay;
+	ship->SetSystem(nullptr);
+	ship->SetPlanet(nullptr);
+	ship->SetTargetSystem(nullptr);
+	ship->SetTargetStellar(nullptr);
+	ship->SetParent(shared_from_this());
+	ship->isThrusting = false;
+	ship->isReversing = false;
+	ship->isSteering = false;
+	ship->commands.Clear();
+	ship->firingCommands.Clear();
 
 	// NPC ships should always transfer cargo. Player ships should only
 	// transfer cargo if they set the AI preference.
 	const bool shouldTransferCargo = !IsYours() || Preferences::Has("Fighters transfer cargo");
+	// If this fighter collected anything in space, try to store it.
+	if(shouldTransferCargo && cargo.Free() && !ship->Cargo().IsEmpty())
+		ship->Cargo().TransferAll(cargo);
+	// Return unused fuel to the carrier, for any launching fighter that needs it.
+	ship->TransferFuel(ship->fuel, this);
 
-	for(Bay &bay : bays)
-		if((bay.category == category) && !bay.ship)
+	// Determine the ammunition the fighter can supply.
+	auto restockable = ship->GetArmament().RestockableAmmo();
+	auto toRestock = map<const Outfit *, int>{};
+	for(auto &&ammo : restockable)
+	{
+		int count = ship->OutfitCount(ammo);
+		if(count > 0)
+			toRestock.emplace(ammo, count);
+	}
+	TransferAmmo(toRestock, *ship, *this);
+
+	// Update the cached mass of the mothership.
+	carriedMass += ship->Mass();
+
+	return true;
+}
+
+
+
+// Reserve a bay for the given escort.
+void Ship::ReserveBay(const shared_ptr<Ship> &escort)
+{
+	if(!escort || !escort->CanBeCarried())
+		return;
+
+	const string &category = escort->attributes.Category();
+	for(auto &bay : bays)
+		if((bay.category == category) && bay.free)
 		{
-			bay.ship = ship;
-			ship->SetSystem(nullptr);
-			ship->SetPlanet(nullptr);
-			ship->SetTargetSystem(nullptr);
-			ship->SetTargetStellar(nullptr);
-			ship->SetParent(shared_from_this());
-			ship->isThrusting = false;
-			ship->isReversing = false;
-			ship->isSteering = false;
-			ship->commands.Clear();
-
-			// If this fighter collected anything in space, try to store it.
-			if(shouldTransferCargo && cargo.Free() && !ship->Cargo().IsEmpty())
-				ship->Cargo().TransferAll(cargo);
-
-			// Return unused fuel and ammunition to the carrier, so they may
-			// be used by the carrier or other fighters.
-			ship->TransferFuel(ship->fuel, this);
-
-			// Determine the ammunition the fighter can supply.
-			auto restockable = ship->GetArmament().RestockableAmmo();
-			auto toRestock = map<const Outfit *, int>{};
-			for(auto &&ammo : restockable)
-			{
-				int count = ship->OutfitCount(ammo);
-				if(count > 0)
-					toRestock.emplace(ammo, count);
-			}
-			TransferAmmo(toRestock, *ship, *this);
-
-			// Update the cached mass of the mothership.
-			carriedMass += ship->Mass();
-			return true;
+			bay.free = false;
+			escort->reservedBay = &bay;
+			break;
 		}
-	return false;
 }
 
 
@@ -3132,14 +3156,22 @@ void Ship::UnloadBays()
 			bay.ship->SetPlanet(landingPlanet);
 			bay.ship->UnmarkForRemoval();
 			bay.ship.reset();
+			bay.free = true;
 		}
 }
 
 
 
-const vector<Ship::Bay> &Ship::Bays() const
+const list<Ship::Bay> &Ship::Bays() const
 {
 	return bays;
+}
+
+
+
+const Ship::Bay *Ship::GetBay() const
+{
+	return reservedBay;
 }
 
 
@@ -3525,6 +3557,9 @@ void Ship::SetTargetFlotsam(const shared_ptr<Flotsam> &flotsam)
 void Ship::SetParent(const shared_ptr<Ship> &ship)
 {
 	shared_ptr<Ship> oldParent = parent.lock();
+	if(oldParent == ship)
+		return;
+
 	if(oldParent)
 		oldParent->RemoveEscort(*this);
 
@@ -3607,6 +3642,9 @@ int Ship::StepDestroyed(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flot
 
 	// Make sure the shields are zero, as well as the hull.
 	shields = 0.;
+
+	// Make sure that the parent is notified that the escort died.
+	SetParent(nullptr);
 
 	// Once we've created enough little explosions, die.
 	if(explosionCount == explosionTotal || forget)
@@ -4545,6 +4583,12 @@ void Ship::StepTargeting()
 	if(target && !isDisabled)
 	{
 		Point dp = (target->position - position);
+
+		// If a fighter/drone is boarding, we need to check whether it can board
+		// its bay instead of its target (i.e. parent).
+		if(CanBeCarried() && target == GetParent() && reservedBay)
+			dp += target->Facing().Rotate(reservedBay->point);
+
 		double distance = dp.Length();
 		Point dv = (target->velocity - velocity);
 		double speed = dv.Length();
@@ -4639,6 +4683,27 @@ void Ship::DoEngineVisuals(vector<Visual> &visuals, bool isUsingAfterburner)
 void Ship::AddEscort(Ship &ship)
 {
 	escorts.push_back(ship.shared_from_this());
+
+	if(!ship.CanBeCarried())
+		return;
+
+	// If the ship has a bay reserved on another ship, then clear
+	// it, as the ship is now going to be docking to this ship.
+	if(ship.reservedBay)
+	{
+		ship.reservedBay->free = true;
+		ship.reservedBay = nullptr;
+	}
+
+	const string &category = ship.attributes.Category();
+
+	for(auto &bay : bays)
+		if(bay.category == category && bay.free)
+		{
+			bay.free = false;
+			ship.reservedBay = &bay;
+			break;
+		}
 }
 
 
@@ -4650,8 +4715,16 @@ void Ship::RemoveEscort(const Ship &ship)
 		if(it->lock().get() == &ship)
 		{
 			escorts.erase(it);
-			return;
+			break;
 		}
+
+	// Mark the reserved bay in this ship for the removed escort as free.
+	if(ship.reservedBay)
+	{
+		ship.reservedBay->ship.reset();
+		ship.reservedBay->free = true;
+		ship.reservedBay = nullptr;
+	}
 }
 
 
@@ -4741,6 +4814,23 @@ void Ship::CreateSparks(vector<Visual> &visuals, const Effect *effect, double am
 		if(GetMask().Contains(point, Angle()))
 			visuals.emplace_back(*effect, angle.Rotate(point) + position, velocity, angle);
 	}
+}
+
+
+
+
+// Move the given ship into one of the bays (if possible) and generate any visuals.
+bool Ship::Carry(const shared_ptr<Ship> &ship, vector<Visual> &visuals)
+{
+	bool success = Carry(ship);
+
+	// Apply any retrieve effects. If the ship was carried succesfully then
+	// it was assigned a bay with the effects to generate.
+	if(success)
+		for(const Effect *effect : ship->reservedBay->retrieveEffects)
+			visuals.emplace_back(*effect, ship->Position(), ship->Velocity(), ship->Facing());
+
+	return success;
 }
 
 

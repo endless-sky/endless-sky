@@ -881,7 +881,7 @@ void AI::Step(Command &activeCommands)
 			// NPCs may take 30 seconds or longer to find a new parent. Player
 			// owned fighter shouldn't take more than a few seconds.
 			bool findNewParent = it->IsYours() ? !Random::Int(30) : !Random::Int(1800);
-			bool parentHasSpace = inParentSystem && parent->BaysFree(it->Attributes().Category());
+			bool parentHasSpace = inParentSystem && parent->CanCarry(*it);
 			if(findNewParent && parentHasSpace && it->IsYours())
 				parentHasSpace = parent->CanCarry(*it);
 			if(!hasParent || (!inParentSystem && !it->JumpNavigation().JumpFuel()) || (!parentHasSpace && findNewParent))
@@ -954,14 +954,25 @@ void AI::Step(Command &activeCommands)
 					it->SetParent(parent);
 			}
 			// Otherwise, check if this ship wants to return to its parent (e.g. to repair).
-			else if(parentHasSpace && ShouldDock(*it, *parent, playerSystem))
+			else if(ShouldDock(*it, *parent, playerSystem))
 			{
 				it->SetTargetShip(parent);
-				MoveTo(*it, command, parent->Position(), parent->Velocity(), 40., .8);
-				command |= Command::BOARD;
-				it->SetCommands(command);
-				it->SetCommands(firingCommands);
-				continue;
+
+				if(const auto *bay = it->GetBay())
+				{
+					Point exitPoint = parent->Position() + parent->Facing().Rotate(bay->point);
+					if(MoveTo(*it, command, exitPoint, parent->Velocity(), 15., .3))
+						command |= Command::BOARD;
+					it->SetCommands(command);
+					it->SetCommands(firingCommands);
+					continue;
+				}
+				else
+				{
+					// Try to see if the parent has a bay that is free.
+					if(parent->CanCarry(*it))
+						parent->ReserveBay(it);
+				}
 			}
 			// If we get here, it means that the ship has not decided to return
 			// to its mothership. So, it should continue to be deployed.
@@ -977,7 +988,7 @@ void AI::Step(Command &activeCommands)
 				shared_ptr<const Ship> escort = ptr.lock();
 				// Note: HasDeployOrder is always `false` for NPC ships, as it is solely used for player ships.
 				if(escort && escort->CanBeCarried() && !escort->HasDeployOrder() && escort->GetSystem() == it->GetSystem()
-						&& !escort->IsDisabled() && it->BaysFree(escort->Attributes().Category()))
+						&& !escort->IsDisabled() && it->CanCarry(*escort))
 				{
 					mustRecall = true;
 					break;
