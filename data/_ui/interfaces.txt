@@ -604,11 +604,11 @@ interface "hud"
 		color "medium"
 		align right
 	
-	visible if "!fast flagship sprite"
+	visible if "!fast hud sprites"
 	outline "player sprite"
 		center -75 155
 		dimensions 70 70
-	visible if "fast flagship sprite"
+	visible if "fast hud sprites"
 	image "player sprite"
 		center -75 155
 		dimensions 70 70
@@ -690,12 +690,12 @@ interface "hud"
 		center 75 315
 		dimensions 140 140
 	value "target radius" 70
-	visible if "!fast target sprite"
+	visible if "!fast hud sprites"
 	outline "target sprite"
 		center 75 315
 		dimensions 70 70
 		colored
-	visible if "fast target sprite"
+	visible if "fast hud sprites"
 	image "target sprite"
 		center 75 315
 		dimensions 70 70
