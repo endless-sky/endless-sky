@@ -78,6 +78,7 @@ namespace {
 	const string EXTENDED_JUMP_EFFECTS = "Extended jump effects";
 	const string ALERT_INDICATOR = "Alert indicator";
 	const string FLAGSHIP_VELOCITY_INDICATOR = "Flagship Velocity Indicator";
+	const string HUD_SHIP_OUTLINES = "Ship outlines in HUD";
 
 	// How many pages of controls and settings there are.
 	const int CONTROLS_PAGE_COUNT = 2;
@@ -645,6 +646,7 @@ void PreferencesPanel::DrawSettings()
 		"Show hyperspace flash",
 		EXTENDED_JUMP_EFFECTS,
 		SHIP_OUTLINES,
+		HUD_SHIP_OUTLINES,
 		"\t",
 		"HUD",
 		STATUS_OVERLAYS_ALL,
@@ -823,6 +825,11 @@ void PreferencesPanel::DrawSettings()
 		{
 			isOn = true;
 			text = Preferences::Has(SHIP_OUTLINES) ? "fancy" : "fast";
+		}
+		else if(setting == HUD_SHIP_OUTLINES)
+		{
+			isOn = true;
+			text = Preferences::Has(HUD_SHIP_OUTLINES) ? "fancy" : "fast";
 		}
 		else if(setting == BOARDING_PRIORITY)
 		{
