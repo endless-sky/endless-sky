@@ -50,7 +50,7 @@ changelog:
 ci_config:
   - '.github/workflows/ci.yml'
   - '.github/path-filters.yml'
-  - '.github/compute-changes.yml'
+  - '.github/workflows/compute-changes.yml'
 
 projects_check_config:
   - '.github/workflows/projects_check.yml'
