@@ -720,7 +720,7 @@ mission "Remnant: Void Sprites 3"
 			`	You also observe some void sprites leaving the planet, soaring upward on thermal updrafts. As they rise, their bodies swell to several times their original size, like an aerostat balloon gaining altitude. But clearly they have another form of propulsion as well, something akin to the antigravity repulsors that human ships use to travel from a planet's surface into orbit.`
 			`	After collecting some atmospheric samples for good measure, you prepare to return to <planet>. Hopefully the Archon will calm down once it sees that you have not attacked or disturbed the Sprites on either of these planets.`
 	on visit
-		dialog phrase "generic stopover on visit"
+		dialog phrase "generic missing stopover or cargo"
 	on complete
 		event "remnant: void sprite research" 20
 		log "Factions" "Void Sprites" `The "void sprites" are space-dwelling lifeforms. They are apparently not sentient. They evolved in the atmosphere of a gas giant, but have some biological mechanism for altering or reflecting gravity that allows them to fly into outer space, in the same way that human ships use antigravity to escape a planet's gravity well. The void sprites are not particularly powerful or dangerous creatures, but they are guarded by a Drak Archon.`
@@ -1363,7 +1363,7 @@ mission "Remnant: Deep Surveillance"
 			label next
 			action
 				set "remnant: got deep wormhole and sprite research"
-			`	He presses a button on the desk. "Abigail, could you please make a copy of the encrypted folders 'TAB-RP,' 'WLT-RP', and 'GGA-RP' on the Institute network under my name and bring them to my office in a data chip? Thank you."`
+			`	He presses a button on the desk. "Abigail, could you please make a copy of the encrypted folders 'TAB-RP,' 'WLT-RP,' and 'GGA-RP' on the Institute network under my name and bring them to my office in a data chip? Thank you."`
 				goto reencrypt
 			
 			label remnant
