@@ -660,6 +660,14 @@ const set<const System *> &Mission::Unpinged() const
 
 
 
+void Mission::Ping(const System *system) const
+{
+	pings.insert(system);
+	unpinged.erase(system);
+}
+
+
+
 void Mission::Unping(const System *system) const
 {
 	if(pings.erase(system))

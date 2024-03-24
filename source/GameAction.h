@@ -88,6 +88,7 @@ private:
 	int64_t paymentMultiplier = 0;
 	int64_t fine = 0;
 
+	std::set<const System *> ping;
 	std::set<const System *> unping;
 
 	// When this action is performed, the missions with these names fail.

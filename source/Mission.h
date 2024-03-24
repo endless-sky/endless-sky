@@ -99,6 +99,7 @@ public:
 	const std::set<const Planet *> &VisitedStopovers() const;
 	const std::set<const System *> &Pings() const;
 	const std::set<const System *> &Unpinged() const;
+	void Ping(const System *system) const;
 	void Unping(const System *system) const;
 	const std::string &Cargo() const;
 	int CargoSize() const;

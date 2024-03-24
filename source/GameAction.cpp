@@ -191,6 +191,8 @@ void GameAction::LoadSingle(const DataNode &child)
 			swap(minDays, maxDays);
 		events[GameData::Events().Get(child.Token(1))] = make_pair(minDays, maxDays);
 	}
+	else if(key == "ping" && child.Size() >= 2)
+		ping.insert(GameData::Systems().Get(child.Token(1)));
 	else if(key == "unping" && child.Size() >= 2)
 		unping.insert(GameData::Systems().Get(child.Token(1)));
 	else if(key == "fail" && child.Size() >= 2)
@@ -238,6 +240,8 @@ void GameAction::Save(DataWriter &out) const
 		out.Write("fine", fine);
 	for(auto &&it : events)
 		out.Write("event", it.first->Name(), it.second.first, it.second.second);
+	for(const System *system : ping)
+		out.Write("ping", system->Name());
 	for(const System *system : unping)
 		out.Write("unping", system->Name());
 	for(const string &name : fail)
@@ -270,7 +274,10 @@ string GameAction::Validate() const
 		if(!outfit.first->IsDefined())
 			return "gift outfit \"" + outfit.first->TrueName() + "\"";
 
-	// Unpinged system must be valid.
+	// Pinged and unpinged system must be valid.
+	for(auto &&system : ping)
+		if(!system->IsValid())
+			return "system \"" + system->Name() + "\"";
 	for(auto &&system : unping)
 		if(!system->IsValid())
 			return "system \"" + system->Name() + "\"";
@@ -363,8 +370,10 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 	for(const auto &it : events)
 		player.AddEvent(*it.first, player.GetDate() + it.second.first);
 
-	for(const System *unping : unping)
-		caller->Unping(unping);
+	for(const System *system : ping)
+		caller->Ping(system);
+	for(const System *system : unping)
+		caller->Unping(system);
 
 	if(!fail.empty())
 	{
@@ -419,6 +428,9 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 	result.failCaller = failCaller;
 
 	result.conditions = conditions;
+
+	result.ping = ping;
+	result.unping = unping;
 
 	return result;
 }
