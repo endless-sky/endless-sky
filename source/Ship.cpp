@@ -3732,31 +3732,37 @@ void Ship::DoGeneration()
 		// 4. Shields of carried fighters
 		// 5. Transfer of excess energy and fuel to carried fighters.
 
-		const double hullAvailable = attributes.Get("hull repair rate")
+		const double hullAvailable = (attributes.Get("hull repair rate")
+			+ (hullDelay ? 0 : attributes.Get("delayed hull repair rate")))
 			* (1. + attributes.Get("hull repair multiplier"));
 		const double hullEnergy = (attributes.Get("hull energy")
-			* (1. + attributes.Get("hull energy multiplier"))) / hullAvailable;
+			+ (hullDelay ? 0 : attributes.Get("delayed hull energy")))
+			* (1. + attributes.Get("hull energy multiplier")) / hullAvailable;
 		const double hullFuel = (attributes.Get("hull fuel")
-			* (1. + attributes.Get("hull fuel multiplier"))) / hullAvailable;
+			+ (hullDelay ? 0 : attributes.Get("delayed hull fuel")))
+			* (1. + attributes.Get("hull fuel multiplier")) / hullAvailable;
 		const double hullHeat = (attributes.Get("hull heat")
-			* (1. + attributes.Get("hull heat multiplier"))) / hullAvailable;
+			+ (hullDelay ? 0 : attributes.Get("delayed hull heat")))
+			* (1. + attributes.Get("hull heat multiplier")) / hullAvailable;
 		double hullRemaining = hullAvailable;
-		if(!hullDelay)
-			DoRepair(hull, hullRemaining, MaxHull(),
-				energy, hullEnergy, fuel, hullFuel, heat, hullHeat);
+		DoRepair(hull, hullRemaining, MaxHull(),
+			energy, hullEnergy, fuel, hullFuel, heat, hullHeat);
 
-		const double shieldsAvailable = attributes.Get("shield generation")
+		const double shieldsAvailable = (attributes.Get("shield generation")
+			+ (shieldDelay ? 0 : attributes.Get("delayed shield generation")))
 			* (1. + attributes.Get("shield generation multiplier"));
 		const double shieldsEnergy = (attributes.Get("shield energy")
-			* (1. + attributes.Get("shield energy multiplier"))) / shieldsAvailable;
+			+ (shieldDelay ? 0 : attributes.Get("delayed shield energy")))
+			* (1. + attributes.Get("shield energy multiplier")) / shieldsAvailable;
 		const double shieldsFuel = (attributes.Get("shield fuel")
-			* (1. + attributes.Get("shield fuel multiplier"))) / shieldsAvailable;
+			+ (shieldDelay ? 0 : attributes.Get("delayed shield fuel")))
+			* (1. + attributes.Get("shield fuel multiplier")) / shieldsAvailable;
 		const double shieldsHeat = (attributes.Get("shield heat")
-			* (1. + attributes.Get("shield heat multiplier"))) / shieldsAvailable;
+			+ (shieldDelay ? 0 : attributes.Get("delayed shield heat")))
+			* (1. + attributes.Get("shield heat multiplier")) / shieldsAvailable;
 		double shieldsRemaining = shieldsAvailable;
-		if(!shieldDelay)
-			DoRepair(shields, shieldsRemaining, MaxShields(),
-				energy, shieldsEnergy, fuel, shieldsFuel, heat, shieldsHeat);
+		DoRepair(shields, shieldsRemaining, MaxShields(),
+			energy, shieldsEnergy, fuel, shieldsFuel, heat, shieldsHeat);
 
 		if(!bays.empty())
 		{

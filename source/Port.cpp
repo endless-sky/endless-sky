@@ -45,8 +45,9 @@ namespace {
 void Port::Load(const DataNode &node)
 {
 	loaded = true;
-	if(node.Size() > 1)
-		name = node.Token(1);
+	const int nameIndex = 1 + (node.Token(0) == "add");
+	if(node.Size() > nameIndex)
+		name = node.Token(nameIndex);
 
 	for(const DataNode &child : node)
 	{
