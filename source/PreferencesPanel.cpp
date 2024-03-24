@@ -960,13 +960,11 @@ void PreferencesPanel::DrawPlugins()
 			table.DrawHighlight(back);
 
 		const Sprite *sprite = box[plugin.currentState];
-		Point topLeft = table.GetRowBounds().TopLeft() - Point(sprite->Width(), 0.);
+		const Point topLeft = table.GetRowBounds().TopLeft() - Point(sprite->Width(), 0.);
 		Rectangle spriteBounds = Rectangle::FromCorner(topLeft, Point(sprite->Width(), sprite->Height()));
 		SpriteShader::Draw(sprite, spriteBounds.Center());
 
-		topLeft.X() += 6.;
-		topLeft.Y() += 7.;
-		Rectangle zoneBounds = Rectangle::FromCorner(pluginListBox.Center() + topLeft, {sprite->Width(), sprite->Height()});
+		Rectangle zoneBounds = spriteBounds + pluginListBox.Center();
 
 		// Only include the zone as clickable if it's within the drawing area.
 		bool displayed = table.GetPoint().Y() > pluginListClip->Top() - 20 &&
