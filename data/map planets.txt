@@ -3670,8 +3670,8 @@ planet "Ring of Wisdom"
 planet "Rowark's Roost"
 	attributes moon uninhabited
 	landscape land/moon1
-	description "Rowark's Roost was once the hideout of one of the most famous privateers of the Southern Rim, Rowark Balois. From this remote moon he became one of the largest players in drug-running and slave trading in the Rim during the early 27th century. The extensive stronghold of hangars and tunnels he built here remain to this day."
-	description "In 2655, Rowark was flushed out of his Roost by a combined Rim and Deep fleet in a battle that continues to be studied by every aspirant Navy officer in their tutelage. As you fly over the moon you spy the wrecks of countless ships dotting its surface, but what is most striking is the truly impressive battleship-sized crater that marks the spot where Rowark met his end, doggedly choosing to fight to the very last."
+	description `Rowark's Roost was once the hideout of one of the most famous privateers of the Southern Rim, Rowark Balois. From this remote moon he became one of the largest players in drug-running and slave trading in the Rim during the early 27th century. The extensive stronghold of hangars and tunnels he built here remain to this day.`
+	description `	In 2655, Rowark was flushed out of his Roost by a combined Rim and Deep fleet in a battle that continues to be studied by every aspirant Navy officer in their tutelage. As you fly over the moon you spy the wrecks of countless ships dotting its surface, but what is most striking is the truly impressive battleship-sized crater that marks the spot where Rowark met his end, doggedly choosing to fight to the very last.`
 	government Uninhabited
 
 planet Ruelogakk
@@ -4357,9 +4357,9 @@ planet Swiftsong
 planet Taylor
 	landscape land/moon0
 	attributes research core moon military
-	description "Taylor is home to a large astronomical laboratory, with radio telescopes and other devices for studying the galactic core and the massive black hole that resides there. Because of the laboratory, Taylor has strict landing protocols that ensure your ship doesn't cross the path of the telescopes at any time."
-	description "	On the other side of the moon the Syndicate has established a substantial military base, as a guard against the pirates in nearby Alcyone."
-	description "	If you need to repair or refuel in this system, you will need to visit Sundive instead of this moon, as the military base is not open to ships that aren't affiliated with the Syndicate, and the laboratory's small spaceport does not have the facilities to service ships."
+	description `Taylor is home to a large astronomical laboratory, with radio telescopes and other devices for studying the galactic core and the massive black hole that resides there. Because of the laboratory, Taylor has strict landing protocols that ensure your ship doesn't cross the path of the telescopes at any time.`
+	description `	On the other side of the moon the Syndicate has established a substantial military base, as a guard against the pirates in nearby Alcyone.`
+	description `	If you need to repair or refuel in this system, you will need to visit Sundive instead of this moon, as the military base is not open to ships that aren't affiliated with the Syndicate, and the laboratory's small spaceport does not have the facilities to service ships.`
 	"required reputation" 10
 	bribe 0.05
 	security 0.1
