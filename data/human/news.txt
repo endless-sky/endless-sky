@@ -1811,6 +1811,7 @@ news "conspiracy theorist"
 			" If you still don't see the truth, I feel sorry for you."
 			" Leave the Matrix!"
 			" You are being lied to!"
+			" Break the conditioning!"
 		word
 			`"`
 
