@@ -182,20 +182,19 @@ void GameAction::LoadSingle(const DataNode &child)
 		else
 			child.PrintTrace("Error: Skipping invalid \"fine\" with non-positive value:");
 	}
-	else if(key == "mortgage" && hasValue)
+	else if(key == "debt" && hasValue)
 	{
-		mortgages.emplace_back(max<int64_t>(0, child.Value(1)));
-		GameAction::MortgageInfo &mortgage = mortgages.back();
+		GameAction::Debt &debtEntry = debt.emplace_back(max<int64_t>(0, child.Value(1)));
 		for(const DataNode &grand : child)
 		{
 			const string &grandKey = grand.Token(0);
 			bool grandHasValue = (grand.Size() > 1);
 			if(grandKey == "term" && grandHasValue)
-				mortgage.term = max<int>(1, grand.Value(1));
+				debtEntry.term = max<int>(1, grand.Value(1));
 			else if(grandKey == "interest" && grandHasValue)
-				mortgage.interest = clamp(grand.Value(1), 0., 0.999);
+				debtEntry.interest = clamp(grand.Value(1), 0., 0.999);
 			else
-				grand.PrintTrace("Error: Skipping unrecognized \"mortgage\" attribute:");
+				grand.PrintTrace("Error: Skipping unrecognized \"debt\" attribute:");
 		}
 	}
 	else if(key == "event" && hasValue)
@@ -249,14 +248,14 @@ void GameAction::Save(DataWriter &out) const
 		out.Write("payment", payment);
 	if(fine)
 		out.Write("fine", fine);
-	for(auto &&mortgage : mortgages)
+	for(auto &&debtEntry : debt)
 	{
-		out.Write("mortgage", mortgage.principal);
+		out.Write("debt", debtEntry.amount);
 		out.BeginChild();
 		{
-			if(mortgage.interest)
-				out.Write("interest", *mortgage.interest);
-			out.Write("term", mortgage.term);
+			if(debtEntry.interest)
+				out.Write("interest", *debtEntry.interest);
+			out.Write("term", debtEntry.term);
 		}
 		out.EndChild();
 	}
@@ -376,8 +375,8 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 	}
 	if(fine)
 		player.Accounts().AddFine(fine);
-	for(const auto &mortgage : mortgages)
-		player.Accounts().AddMortgage(mortgage.principal, mortgage.interest, mortgage.term, false);
+	for(const auto &debtEntry : debt)
+		player.Accounts().AddDebt(debtEntry.amount, debtEntry.interest, debtEntry.term);
 
 	for(const auto &it : events)
 		player.AddEvent(*it.first, player.GetDate() + it.second.first);
@@ -425,7 +424,7 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 	if(result.fine)
 		subs["<fine>"] = Format::CreditString(result.fine);
 
-	result.mortgages = mortgages;
+	result.debt = debt;
 
 	if(!logText.empty())
 		result.logText = Format::Replace(logText, subs);
