@@ -4305,7 +4305,7 @@ planet Sundive
 	landscape land/water9
 	description `Sundive is largely covered in tropical rainforests and savanna, but with enough open plains that it has also become a major agricultural world. For most of the year, the weather here is quite mild, but tornadoes and massive thunderstorms are not uncommon in the summer months.`
 	description `	Sundive is also home to a number of research facilities which study the data gathered from the astronomical laboratory on its moon, Taylor.`
-	spaceport `The spaceport is in a wide, open plain; most of the landing sites are just packed dirt. Surrounding it is nothing but farmland and forests; the nearest cities are kilometers away, presumably so that its inhabitants aren't subjected to the loud commotion of planetary spaceports and the noise pollution of ships coming and going.`
+	spaceport `The spaceport is in a wide, open plain; most of the landing sites are just packed dirt. Surrounding it is nothing but farmland and forests; the nearest cities are kilometers away, presumably so that its inhabitants aren't subjected to the loud commotion of planetary spaceports and ships coming and going.`
 	spaceport `	The buildings are short and made of wood; even the roofs are clapboard shingles rather than metal or rubber. Several farmers have brought in goods to sell; most of them came in trucks, but you also see a few horse-drawn wagons.`
 	security 0.3
 	tribute 300
