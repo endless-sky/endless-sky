@@ -646,7 +646,7 @@ outfit "Building Materials"
 	plural "Building Materials"
 	"mass" 1
 	installable -1
-	description "These are simple building materials, probably meant for the construction of houses."
+	description "These appear to be simple building materials, probably meant for the construction of houses. It seems weird to go trough all of this trouble just for these, but it might just be because of the Unfettered's pride."
 
 ship "Bactrian" "Bactrian (Cerberus)"
 	add attributes
@@ -674,11 +674,11 @@ ship "Bactrian" "Bactrian (Cerberus)"
 		"Hyperdrive"
 	cargo
 		outfits
-			"Building Materials" 142
+			"Building Materials" 190
 		commodities
 			"Equipment" 100
 			"Electronics" 100
-			"Food" 188
+			"Food" 100
 
 mission "<uhai> 7: Stolen Cargo Notification"
 	minor
@@ -701,7 +701,8 @@ mission "<uhai> 7: Stolen Cargo Notification"
 mission "<uhai> 7: Stolen Cargo"
 	job
 	name `Looking for stolen cargo (Sookootow)`
-	description `Apt captain required to find the <npc> that has stolen the materials needed for the development of the urban areas. Bring those materials back to <destination>, from northern pirate space, east or west.`
+	description `Apt captain required to find the pirate vessel that has stolen the materials needed for the development of the urban areas. Bring 142 tons back to <destination>, the ship may be found in north-east or north-west pirate space.`
+	clearance `As soon as you say that you are here on behalf of the Unfettered, you are cleared to land.`
 	source
 		attributes "unfettered"
 	to offer
@@ -712,7 +713,7 @@ mission "<uhai> 7: Stolen Cargo"
 			has "<uhai> 6 A: Loyal Escort: failed"
 	on accept
 		conversation
-			`	You go to see He-Yi in order to discuss this job in greater details, and easily find him by asking around, everyone seems to know him here. He was having a quite animated conversation with an elder, but he puts a stop to it when he notices you.`
+			`	You go to see Sookootow in order to discuss this job in greater details, and easily find him by asking around, everyone seems to know him here. He was having a quite animated conversation with an elder, but he puts a stop to it when he notices you.`
 			`	"<last>. I am still saddened by what happened to that governor you had to escort... She used to say that all Hai are together, by heart. I will continue to honor her memories."`
 				to display
 					has "<uhai> 6 A: Loyal Escort: failed"
@@ -749,7 +750,7 @@ mission "<uhai> 7: Stolen Cargo"
 			label cargo
 			`	"From what I was told, there are 2 main human factions in the area, as well as unfettered humans. The ship always maintains a low profile and poses as a merchant. The syndicate would not mind a bit of smuggling, and the navy could only take it in the unlikely event that their cover was blown and they could not escape.`
 			`	"Whoever stole this cargo would not be welcome in either of those spaces, meaning that they are likely to hide away in pirate space and wait for the trail to cool down, before selling the loot back. The pirates are by far not a united faction, so they could steal loot out of one another, but given the low value of this cargo it should not have attracted much attention... I do not understand what happened. Maybe they got intercepted on the way.`
-			`	"Whilst she never mentioned the exact location, I suspect that our contact has her base of operation located in the north-east of human space, so you should probably start looking in that general area. They could also be in the north-west."`
+			`	"Whilst she never mentioned the exact location, I suspect that our contact has her base of operation located in the north-east of human space, so you should probably start looking in that general area. They could also be in the north-west. Your ship will be able to identify the enemy vessel once you enter its system."`
 			label choose
 			choice
 				`	"I will try to bring the loot back without attracting too much attention."`
@@ -766,7 +767,7 @@ mission "<uhai> 7: Stolen Cargo"
 			label worthless
 			action
 				set "unfettered: worthless question"
-			`	"Our contact mentioned having to sometimes fight alien invaders, although they did not want to specify which. They also have to pass through the big no man's land that leads to the wormhole afterwards, which has some pirates here and there. However, maybe she exaggerated the risks, in order to increase the cost. We are quite desperate for materials, and thus ready to pay quite a hefty price."`
+			`	"Our contact mentioned having to sometimes fight alien invaders, although they did not want to specify which. They also have to pass through the big no man's land that leads to the wormhole afterwards, which has some pirates here and there. However, maybe she exaggerated the risks, in order to increase the cost. We are quite desperate for materials, and thus ready to pay quite a hefty price." There might be more to it than that, but he doesn't seem ready to divulge more information to you.`
 				goto choose
 			label whyhire
 			action
@@ -774,8 +775,9 @@ mission "<uhai> 7: Stolen Cargo"
 			`	"I do not trust them much, but the real reason is that it was our contact that dealt with these kind of preoccupations - we only provided the founds. Sometimes it is one faction that brings us the cargo, sometimes another, and we do not ask questions. So, what do you say? Can you find that cargo and bring it to us?"`
 				goto choose
 			label whatevercost
-			`	He seems a bit wary of your attitude, "Please, whatever you do, try to avoid needless bloodshed, these pirates are not our enemies. I would hardly recommend bribing those that can be. That said, I expect you to do what you must in order to bring back all 142 tons of materials, you can either fit all of that on a Shield Beetle, or bring them back in multiple trips, by storing them in an outfitter or on your other ships. And remember to look for it north-west of human space."`
+			`	He seems a bit wary of your attitude, "Please, whatever you do, try to avoid needless bloodshed, these pirates are not our enemies. I would hardly recommend bribing those that can be. That said, I expect you to do what you must in order to bring back all 142 tons of materials."`
 			label finalmention
+			`	"You can either fit all of the cargo on a Shield Beetle, or bring them back in multiple trips, by storing them in an outfitter or on your other ships. And remember to look for it north-east of human space."`
 			action
 				clear "unfettered: worthless question"
 				clear "unfettered: why not hire another question"
@@ -796,7 +798,7 @@ mission "<uhai> 7: Stolen Cargo"
 				`	"I demand you return the materials to me."`
 				`	(I have no need to talk with these scums. I shall take.)`
 					goto over
-			`	The first mate of the <npc> responds to your hail, "You talking about the cargo we just relieved that scum posing as a merchant of? That's ours, mate, always has been. You must have suffered a serious blow to the head to think otherwise. In fact we were the ones that these were stolen from before we could bring it to port! Well, after we stole them from an actual merchant, but that's irrelevant."`
+			`	The first mate of the <npc> responds to your hail, "You talking about the cargo we just relieved from that scum posing as a merchant? That's ours, mate, always has been. You must have suffered a serious blow to the head to think otherwise. In fact we were the ones that these were stolen from before we could bring it to port! Well, after we stole them from an actual merchant, but that's irrelevant."`
 			choice
 				`	"What do you intend to do with this cargo?"`
 					goto intention
@@ -819,7 +821,7 @@ mission "<uhai> 7: Stolen Cargo"
 		conversation
 			action
 				set "unfettered: boarded bactrian"
-			`Boarding the ship, you notice that they have other commodities than what you are looking for, but they do have the materials Sookootow talked to you about. Given the damage the ship has suffered, it seems it would require heavy works in the spaceport to get it running again, meaning they will not get repaired anytime soon. You should have some time to switch to a ship with more cargo space, should you need to in order to bring the materials back. Take all 142 tons of Building Materials when you can and bring them back to Sookootow.`
+			`Boarding the ship, you notice that they have other commodities than what you are looking for, but they do have the materials Sookootow talked to you about. Given the damage the ship has suffered, it seems it would require heavy works in the spaceport to get it running again, meaning they will not get repaired anytime soon. You should have some time to switch to a ship with more cargo space, should you need to in order to bring the materials back. You only need 142 tons of Building Materials, take them when you can and bring them back to Sookootow.`
 			branch "allies died"
 				has "<uhai> 7: Cavalry Arrives: failed"
 			`	Your surprise allies hail you. "Well done<, unfettered title>," the first one says. "You have truly impressed us today," the other one adds.`
@@ -892,10 +894,10 @@ mission "<uhai> 7: Stolen Cargo"
 				set "unfettered: Jiko true Si-Ra"
 			`	"He wishes that were his name! When we appoint a warlord, we also give him a name, indicative of his function. He may then wear it proudly, and that name protects him as well. Real names have power, you see... Do you not react when hearing your name, <first>? It identifies you, and a warlord is meant to become different when he earns the title. He must fit the task. To represent that, their names are changed, though they can still use their old names.`
 			`	"Si-Ra actually means the raging sea, it is a title appointed to the warlords that must stand against enemies, no matter how strong, and never give up or break. They may lose battles, but never the war. As the sea, they can be calm. However, in time of need, they can show sign of the flame burning within them, and let it out." He seems very passionate about it. It occurs to you he probably participated in the creation of some of the warlord titles. "The sea takes all kinds of punishment without real damage, and some think they may tame it, as space... They can't. Those named Si-Ra are the masters of the sea, the masters of space. They never give any information to the enemy when captured, and..."`
-			`	You just couldn't seem to stop him in his reasoning. He realizes it and pauses. "Right, the materials. I could talk about those names for hours, you know. You did well, and deserved the <payment>. I will post jobs in the job board if this event happens again."`
+			`	You just couldn't seem to stop him in his reasoning. He realizes it and pauses. "Right, the materials. I could talk about those names for hours, you know. You did well, and deserved the <payment>. I will post jobs in the job board if this event happens again. Unfortunately, I suspect it will. Oh, and if you have any materials still left you can sell them in the outfitter."`
 				decline
 			label cargo
-			`	"You well deserve these <payment> for it! I will post jobs in the job board if this event happens again. Unfortunately, I suspect it will."`
+			`	"You well deserve these <payment> for it! I will post jobs in the job board if this event happens again. Unfortunately, I suspect it will. Oh, and if you have any materials still left you can sell them in the outfitter."`
 
 conversation "cerberus reinforcements"
 	branch boardedship
@@ -930,8 +932,8 @@ mission "<uhai> 7: Cavalry Arrives"
 				launch
 	on enter
 		conversation
-			"As you enter the system it becomes clear: they have called for backup! Multiple pirate ships are arriving in the system. But you also see other ships arriving by jump drives. They do not appear to be pirates, maybe the 'contact' has provided help as well?"
-			`They hail you, "Listen carefully. You may have noticed a Korath drone in the area, and they don't like Alpha dogs around much. If some Korath come to help, do not open fire on them, understood?" The other one then speaks, "We'll let you deal with that bactrian, but I would recommend you make sure these pirate ships are on your side<, unfettered title>!" They then end the hail, making it clear they will not take no for an answer.`
+			"As you enter the system it becomes clear: Cerberus have called for backup! Multiple pirate ships are arriving in the system. But you also see other ships arriving by jump drives. They do not appear to be pirates, maybe the 'contact' has provided help as well?"
+			`	The 2 mysterious black ships hail you, "Listen carefully. You may have noticed a Korath drone in the area, and they don't like Alpha dogs' presence in our space. If some Korath come to help, do not open fire on them, understood?" The other one then speaks, "We'll let you deal with that bactrian, but I would recommend bribing 'neutral' pirates<, unfettered title>!" They then end the hail, making it clear they will not take no for an answer. They probably are allies of the 'contact' Sookootow refered to, but in the chaos the Unfettered would never know if something happened to the ships.`
 	npc save
 		government "Shadow"
 		personality entering heroic uninterested staying mute
@@ -1028,7 +1030,7 @@ mission "<uhai> 8: Wrong Planet"
 		not planet "New Tortuga"
 		not attributes uninhabited
 	to offer
-		has "<uhai> 8: active"
+		has "<uhai> 8: Unfettered Humans?: active"
 	on offer
 		conversation
 			"${dubious leads about an Auxiliary}"
@@ -1110,6 +1112,9 @@ mission "<uhai> 8: Unfettered Humans? Hint"
 			`	"Congratulations. It seemed that you did not need our help to find these Alphas."`
 				to display
 					has "unfettered: it's the Alphas!"
+			`	Shortly after, you receive a second message, "You need to handle the matter of the supplies first, however."`
+				to display
+					has "<uhai> 7: Stolen Cargo: active"
 	to complete
 		never
 
