@@ -32,7 +32,7 @@ start "default"
 	set "human space start"
 
 
-# Patch for if the player started a game before 0.10.5
+# Patch for if the player started a game before 0.10.6
 mission "Default Start Patch"
 	invisible
 	landing
@@ -60,7 +60,7 @@ conversation "default intro"
 start "hai space"
 	name "New Hai"
 	description `You grew up on Greenwater, a world with a very rich and mixed culture. You've dreamed of owning your own fleet since you were given toy spaceships as a small child. In order to reach that goal, you worked hard at a travel company, recommending mostly locations in human space.`
-	description `	Now, as you enter the shipyard, you feel like this is the start of a new life, in space.`
+	description `	Now, as you enter the shipyard, you feel like this is the start of a new life in space.`
 	thumbnail "scene/hai start"
 	system "Fah Soom"
 	planet "Greenwater"
@@ -112,7 +112,7 @@ conversation "hai intro"
 	`	This "Aphid" could suit your needs. It is fast and able to carry a respectable amount of cargo.`
 	scene "thumbnail/hai aphid"
 	`	That is, unless you want to get adventurous and try out the impetuous Grasshopper. Surely the interceptor would be able to beat the smaller human warships, provided a competent pilot is at the helm.`
-	`	You have, after all, heard tales of pirates and quick money from the many newcomers, for those willing to take big risks, that is.`
+	`	You have, after all, heard tales of pirates and quick money from the many newcomers to Hai space, for those willing to take big risks, that is.`
 	`	Alternatively, up north you can find the 'Unfettered'. Maybe they would come to like you, if you were to show them the strength and cunning they respect.`
 	choice
 		`	(Go to the bank.)`

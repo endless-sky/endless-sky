@@ -1244,7 +1244,7 @@ mission "Deep: Project Hawking: Prime"
 			`	You tell Pierre about your life on <origin planet>, and how you saved up your money working at the textile mill from the age of fifteen until you were able to buy a pilot's license and finally leave your home world for the stars.`
 				to display
 					has "human space start"
-			`	You tell Pierre about your life on <origin planet>, but make sure to change the name to a more normal human planet's, given the Republic's warning. You tell him about your work in a travel agency, where you did your best to get to the stars as quick as possible.`
+			`	You tell Pierre about your life on <origin planet>, but make sure to change the name to a more normal human planet's, given the Republic's warning. You tell him about your work in a travel agency, where you did your best to get to the stars as quickly as possible.`
 				to display
 					has "hai space start"
 			`	"We aren't too different then," Pierre remarks. "We both worked hard to get where we are today. Thanks for sharing, <first>."`

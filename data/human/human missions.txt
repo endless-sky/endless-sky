@@ -3859,7 +3859,7 @@ mission "Human to Hai Space"
 		conversation
 			`	A young man carrying luggage approaches you. "You look like a knowledgeable captain," he says. "In all your travels, have you ever heard tell of any... intelligent rodents?"`
 			choice
-				`	"'Heard tell'? That is where I come from!"`
+				`	"'Heard tell'? That's where I come from!"`
 					to display
 						has "hai space start"
 					goto origin
@@ -3935,12 +3935,12 @@ mission "Human to Hai Space"
 			choice
 				`	"I was partly-adopted as well."`
 			`	They look a bit confused, so you clarify, "My mother was human, but my father was Hai... It took me some time to understand it wasn't my original father. He was loyal to the stars."`
-			`	Benjamin answers, softly, "Who knows? Maybe he is still out there, somewhere." His mother then speaks up, "If you want, you could come to our home and have a chat. And some pickled acorns, too," she adds with a bright smile.`
+			`	Benjamin answers softly, "Who knows? Maybe he is still out there, somewhere." His mother then speaks up, "If you want, you could come to our home and have a chat. And some pickled acorns, too," she adds with a bright smile.`
 			choice
 				`	"Sure."`
 				`	"Sorry, I have other pressing matters."`
 					goto end
-			`	You spend a wonderful evening with them, talking about your experience in human space and what you did here, before going. "You are sort of like your father," Yeerto comments, before telling you about the local news here.`
+			`	You spend a long evening with them, talking about your experience in human space and what you did here before going. "You are sort of like your father," Yeerto comments, before telling you about the local news here.`
 			`	You almost feel sad when it is already time to go back to your ship.`
 
 
