@@ -3387,9 +3387,9 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 						rendezvousTime += 2. * weapon->TotalLifetime();
 
 						// Point to the nearer edge of the arc.
-						const double degree1 = (minArc - angleToPoint).Degrees();
-						const double degree2 = (maxArc - angleToPoint).Degrees();
-						if(fabs(degree1) < fabs(degree2))
+						const double minDegree = (minArc - angleToPoint).Degrees();
+						const double maxDegree = (maxArc - angleToPoint).Degrees();
+						if(fabs(minDegree) < fabs(maxDegree))
 							angleToPoint = minArc;
 						else
 							angleToPoint = maxArc;
