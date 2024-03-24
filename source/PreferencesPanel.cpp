@@ -77,6 +77,7 @@ namespace {
 	const string BACKGROUND_PARALLAX = "Parallax background";
 	const string EXTENDED_JUMP_EFFECTS = "Extended jump effects";
 	const string ALERT_INDICATOR = "Alert indicator";
+	const string HUD_SHIP_OUTLINES = "Ship outlines in HUD";
 
 	// How many pages of controls and settings there are.
 	const int CONTROLS_PAGE_COUNT = 2;
@@ -642,6 +643,7 @@ void PreferencesPanel::DrawSettings()
 		"Show hyperspace flash",
 		EXTENDED_JUMP_EFFECTS,
 		SHIP_OUTLINES,
+		HUD_SHIP_OUTLINES,
 		"\t",
 		"HUD",
 		STATUS_OVERLAYS_ALL,
@@ -818,6 +820,11 @@ void PreferencesPanel::DrawSettings()
 			isOn = true;
 			text = Preferences::Has(SHIP_OUTLINES) ? "fancy" : "fast";
 		}
+		else if(setting == HUD_SHIP_OUTLINES)
+		{
+			isOn = true;
+			text = Preferences::Has(HUD_SHIP_OUTLINES) ? "fancy" : "fast";
+		}
 		else if(setting == BOARDING_PRIORITY)
 		{
 			isOn = true;
@@ -946,13 +953,11 @@ void PreferencesPanel::DrawPlugins()
 			table.DrawHighlight(back);
 
 		const Sprite *sprite = box[plugin.currentState];
-		Point topLeft = table.GetRowBounds().TopLeft() - Point(sprite->Width(), 0.);
+		const Point topLeft = table.GetRowBounds().TopLeft() - Point(sprite->Width(), 0.);
 		Rectangle spriteBounds = Rectangle::FromCorner(topLeft, Point(sprite->Width(), sprite->Height()));
 		SpriteShader::Draw(sprite, spriteBounds.Center());
 
-		topLeft.X() += 6.;
-		topLeft.Y() += 7.;
-		Rectangle zoneBounds = Rectangle::FromCorner(pluginListBox.Center() + topLeft, {sprite->Width(), sprite->Height()});
+		Rectangle zoneBounds = spriteBounds + pluginListBox.Center();
 
 		// Only include the zone as clickable if it's within the drawing area.
 		bool displayed = table.GetPoint().Y() > pluginListClip->Top() - 20 &&

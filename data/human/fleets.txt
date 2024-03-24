@@ -2095,6 +2095,13 @@ fleet "Large CCOR"
 		"Saber (CCOR Gatling)"
 		"Enforcer (CCOR)"
 		"Berserker (CCOR)"
+
+fleet "CCOR Logistics"
+	government "Pirate"
+	names "pirate"
+	cargo 1
+	personality
+		timid secretive coward appeasing
 	variant 1
 		"Hauler II"
 	variant 1
