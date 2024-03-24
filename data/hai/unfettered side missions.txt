@@ -1,4 +1,4 @@
-# Copyright (c) 2023 by Hurleveur
+# Copyright (c) 2015 by Michael Zahniser, 2024 by Hurleveur
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
@@ -11,11 +11,9 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-
-
 mission "Unfettered returning home"
-	description "This Hai has asked you to smuggle him out of Unfettered space and bring him to <destination>."
 	minor
+	description "This Hai has asked you to smuggle him out of Unfettered space and bring him to <destination>."
 	source
 		attributes "unfettered"
 	destination "Hai-home"
@@ -37,7 +35,7 @@ mission "Unfettered returning home"
 				`	"I think it is true. The Hai who gave this tribute said they hoped the Unfettered would turn from violence and be reconciled with them."`
 					goto true
 				`	"I'm sorry, but I don't think they will ever let you live among them, if it is your nature to be prone to violence."`
-			`	You have little experience reading Hai emotion, but the youth seems crestfallen. "You are certain?" he asks.`
+			`	You have little experience reading Hai emotions, but the youth seems crestfallen. "You are certain?" he asks.`
 			choice
 				`	"I am certain. I can do nothing for you."`
 					goto refuse
@@ -55,7 +53,7 @@ mission "Unfettered returning home"
 			label end
 			`	You show the youth to one of your bunk rooms, and tell him to stay hidden there until you reach Hai-home.`
 				accept
-	
+
 	on visit
 		dialog `You look for the young Hai, but realize that he took a ride on one of your escorts! Better depart and wait for your escorts to arrive in this star system.`
 	on complete
