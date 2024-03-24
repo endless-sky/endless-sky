@@ -1823,6 +1823,7 @@ mission "Wanderers Invaded 3"
 event "remove varu mer'ek facilities"
 	planet "Varu Mer'ek"
 		remove spaceport
+		remove shipyard
 		remove outfitter
 		remove "required reputation"
 		remove tribute
