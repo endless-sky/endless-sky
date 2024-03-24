@@ -23,6 +23,7 @@ enum class SystemEntry {
 	TAKE_OFF,
 	HYPERDRIVE,
 	JUMP,
+	RELOCATION,
 	WORMHOLE
 };
 

@@ -88,6 +88,15 @@ ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &con
 
 
 
+ConversationPanel::~ConversationPanel()
+{
+	// Finish the PlayerInfo transaction so any changes get saved again.
+	if(useTransactions)
+		player.FinishTransaction();
+}
+
+
+
 void ConversationPanel::SetCallback(function<void(int)> fun)
 {
 	callback = std::move(fun);
@@ -389,7 +398,9 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 			// Action nodes are able to perform various actions, e.g. changing
 			// the player's conditions, granting payments, triggering events,
 			// and more. They are not allowed to spawn additional UI elements.
-			conversation.GetAction(node).Do(player, nullptr, caller);
+			if(conversation.GetAction(node).HasRelocation())
+				Exit();
+			conversation.GetAction(node).Do(player, nullptr, caller, true);
 		}
 		else if(conversation.ShouldDisplayNode(player.Conditions(), node))
 		{
@@ -427,10 +438,6 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 // Exit this panel and do whatever needs to happen next.
 void ConversationPanel::Exit()
 {
-	// Finish the PlayerInfo transaction so any changes get saved again.
-	if(useTransactions)
-		player.FinishTransaction();
-
 	GetUI()->Pop(this);
 	// Some conversations may be offered from an NPC, e.g. an assisting or
 	// boarding mission's `on offer`, or from completing a mission's NPC

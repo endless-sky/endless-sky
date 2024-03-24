@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameEvent.h"
 #include "Messages.h"
 #include "Outfit.h"
+#include "Planet.h"
 #include "PlayerInfo.h"
 #include "Random.h"
 #include "Ship.h"
@@ -194,6 +195,20 @@ void GameAction::LoadSingle(const DataNode &child)
 		fail.insert(child.Token(1));
 	else if(key == "fail")
 		failCaller = true;
+	else if(key == "relocate")
+	{
+		for(const DataNode &grand : child)
+		{
+			if(grand.Token(0) == "location" && grand.HasChildren())
+			{
+				relocateAction.relocateFilter.Load(grand);
+				if(relocateAction.relocateFilter.IsValid())
+					relocateAction.isDefined = true;
+			}
+			else if(grand.Token(0) == "flagship only")
+				relocateAction.relocateFlagshipOnly = true;
+		}
+	}
 	else
 		conditions.Add(child);
 }
@@ -237,6 +252,19 @@ void GameAction::Save(DataWriter &out) const
 		out.Write("event", it.first->Name(), it.second.first, it.second.second);
 	for(const string &name : fail)
 		out.Write("fail", name);
+	if(relocateAction.isDefined)
+	{
+		out.Write("relocate");
+		relocateAction.relocateFilter.Save(out);
+		if(relocateAction.relocateFlagshipOnly)
+		{
+			out.BeginChild();
+			{
+				out.Write("flagship only");
+			}
+			out.EndChild();
+		}
+	}
 	if(failCaller)
 		out.Write("fail");
 
@@ -300,6 +328,13 @@ const map<const Outfit *, int> &GameAction::Outfits() const noexcept
 
 
 
+bool GameAction::HasRelocation() const
+{
+	return relocateAction.isDefined;
+}
+
+
+
 const vector<ShipManager> &GameAction::Ships() const noexcept
 {
 	return giftShips;
@@ -308,7 +343,7 @@ const vector<ShipManager> &GameAction::Ships() const noexcept
 
 
 // Perform the specified tasks.
-void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
+void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, bool immediateRelocation) const
 {
 	if(!logText.empty())
 		player.AddLogEntry(logText);
@@ -365,6 +400,14 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 	if(failCaller && caller)
 		player.FailMission(*caller);
 
+	if(relocateAction.isDefined)
+	{
+		player.QueueRelocation(relocateAction.relocateFilter.PickPlanet(player.GetSystem()),
+							relocateAction.relocateFlagshipOnly);
+		if(immediateRelocation)
+			player.DoQueuedRelocation();
+	}
+
 	// Check if applying the conditions changes the player's reputations.
 	conditions.Apply(player.Conditions());
 }
@@ -404,6 +447,8 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 
 	result.fail = fail;
 	result.failCaller = failCaller;
+
+	result.relocateAction = relocateAction;
 
 	result.conditions = conditions;
 

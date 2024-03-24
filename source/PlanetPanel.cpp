@@ -49,9 +49,9 @@ using namespace std;
 
 
 
-PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
+PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback, const Planet &planet)
 	: player(player), callback(callback),
-	planet(*player.GetPlanet()), system(*player.GetSystem()),
+	planet(planet), system(*planet.GetSystem()),
 	ui(*GameData::Interfaces().Get("planet"))
 {
 	trading.reset(new TradingPanel(player));
@@ -76,6 +76,22 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 
 void PlanetPanel::Step()
 {
+	UI *ui = GetUI();
+
+	// If the player is relocating, simulate a TakeOff followed
+	// by a forced landing. No transition will be noticeable.
+	if((ui->IsTop(this) || ui->IsTop(selectedPanel)) &&
+		player.RelocationStatus() == PlayerInfo::RelocateStatus::IN_PROGRESS)
+	{
+		player.SetRelocationStatus(PlayerInfo::RelocateStatus::COMPLETE);
+		player.Save();
+		player.Relocate(ui);
+		if(callback)
+			callback();
+		if(selectedPanel)
+			ui->Pop(selectedPanel);
+		ui->PopThrough(this);
+	}
 	// If the previous mission callback resulted in a "launch", take off now.
 	const Ship *flagship = player.Flagship();
 	if(flagship && flagship->CanBeFlagship() && (player.ShouldLaunch() || requestedLaunch))
@@ -89,13 +105,13 @@ void PlanetPanel::Step()
 	// handle the intro mission in the event the player moves away
 	// from the landing before buying a ship.
 	const Panel *activePanel = selectedPanel ? selectedPanel : this;
-	if(activePanel != spaceport.get() && GetUI()->IsTop(activePanel))
+	if(activePanel != spaceport.get() && ui->IsTop(activePanel))
 	{
 		Mission *mission = player.MissionToOffer(Mission::LANDING);
 		if(mission)
-			mission->Do(Mission::OFFER, player, GetUI());
+			mission->Do(Mission::OFFER, player, ui);
 		else
-			player.HandleBlockedMissions(Mission::LANDING, GetUI());
+			player.HandleBlockedMissions(Mission::LANDING, ui);
 	}
 }
 

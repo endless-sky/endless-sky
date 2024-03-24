@@ -75,6 +75,7 @@ public:
 		const System *origin, int jumps, int64_t payload) const;
 
 	int64_t Payment() const noexcept;
+	bool HasRelocation() const;
 
 private:
 	std::string trigger;

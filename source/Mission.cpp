@@ -997,6 +997,10 @@ bool Mission::IsUnique() const
 // used as the callback for any UI panel that returns a value.
 bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<Ship> &boardingShip)
 {
+	// This can only be done while not relocating.
+	if(player.RelocationStatus() != PlayerInfo::RelocateStatus::NONE)
+		return false;
+
 	if(trigger == STOPOVER)
 	{
 		// If this is not one of this mission's stopover planets, or if it is
@@ -1068,6 +1072,7 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 		--player.Conditions()[name + ": active"];
 		++player.Conditions()[name + ": done"];
 	}
+
 
 	// "Jobs" should never show dialogs when offered, nor should they call the
 	// player's mission callback.

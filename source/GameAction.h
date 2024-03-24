@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define GAME_ACTION_H_
 
 #include "ConditionSet.h"
+#include "LocationFilter.h"
 #include "ShipManager.h"
 
 #include <cstdint>
@@ -31,6 +32,7 @@ class DataWriter;
 class GameEvent;
 class Mission;
 class Outfit;
+class Planet;
 class PlayerInfo;
 class Ship;
 class UI;
@@ -45,6 +47,15 @@ class UI;
 // added to GameAction should be able to be safely executed while in a
 // Conversation.
 class GameAction {
+private:
+	struct RelocateAction {
+		bool isDefined = false;
+
+		LocationFilter relocateFilter;
+		bool relocateFlagshipOnly = false;
+	};
+
+
 public:
 	GameAction() = default;
 	// Construct and Load() at the same time.
@@ -64,10 +75,11 @@ public:
 	int64_t Payment() const noexcept;
 	int64_t Fine() const noexcept;
 	const std::map<const Outfit *, int> &Outfits() const noexcept;
+	bool HasRelocation() const;
+
 	const std::vector<ShipManager> &Ships() const noexcept;
 
-	// Perform this action.
-	void Do(PlayerInfo &player, UI *ui, const Mission *caller) const;
+	void Do(PlayerInfo &player, UI *ui, const Mission *caller, bool immediateRelocation = false) const;
 
 	// "Instantiate" this action by filling in the wildcard data for the actual
 	// payment, event delay, etc.
@@ -91,6 +103,8 @@ private:
 	std::set<std::string> fail;
 	// When this action is performed, the mission that called this action is failed.
 	bool failCaller = false;
+
+	RelocateAction relocateAction;
 
 	ConditionSet conditions;
 };

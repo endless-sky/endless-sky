@@ -64,6 +64,23 @@ public:
 		int64_t assetsReturns = 0;
 	};
 
+	enum class RelocateStatus : int {
+		NONE = 0,
+		IN_PROGRESS,
+		COMPLETE
+	};
+
+	class Relocation {
+	public:
+		Relocation() = default;
+		Relocation(const Planet *relocationPlanet, bool relocateFlagshipOnly = false)
+		: relocationPlanet(relocationPlanet), relocateFlagshipOnly(relocateFlagshipOnly) {}
+
+		const Planet *relocationPlanet;
+		bool relocateFlagshipOnly;
+		RelocateStatus relocationStatus = RelocateStatus::NONE;
+	};
+
 
 public:
 	PlayerInfo() = default;
@@ -195,12 +212,14 @@ public:
 	void UpdateCargoCapacities();
 	// Switch cargo from being stored in ships to being stored here.
 	void Land(UI *ui);
-	// Make ships ready for take off. This may require selling excess cargo.
+	bool EnterPlanet(UI *ui);
+	// Load the cargo back into your ships. This may require selling excess.
 	bool TakeOff(UI *ui, bool distributeCargo);
 	// Pool cargo from local ships.
 	void PoolCargo();
 	// Distribute cargo to local ships. Returns a reference to the player's cargo.
 	const CargoHold &DistributeCargo();
+	bool LeavePlanet(bool distributeCargo);
 
 	// Get or add to pilot's playtime.
 	double GetPlayTime() const noexcept;
@@ -293,6 +312,12 @@ public:
 	// Get or set the planet to land on at the end of the travel path.
 	const Planet *TravelDestination() const;
 	void SetTravelDestination(const Planet *planet);
+
+	void QueueRelocation(const Planet *destination, bool flagshipOnly = false);
+	void DoQueuedRelocation();
+	void Relocate(UI *ui);
+	RelocateStatus RelocationStatus() const;
+	void SetRelocationStatus(RelocateStatus status);
 
 	// Toggle which secondary weapon the player has selected.
 	const std::set<const Outfit *> &SelectedSecondaryWeapons() const;
@@ -443,6 +468,8 @@ private:
 	Depreciation depreciation;
 	Depreciation stockDepreciation;
 	std::set<std::pair<const System *, const Outfit *>> harvested;
+
+	Relocation relocation;
 
 	// Changes that this PlayerInfo wants to make to the global galaxy state:
 	std::vector<std::pair<const Government *, double>> reputationChanges;

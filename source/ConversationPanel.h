@@ -46,6 +46,7 @@ public:
 	ConversationPanel(PlayerInfo &player, const Conversation &conversation,
 		const Mission *caller = nullptr, const System *system = nullptr,
 		const std::shared_ptr<Ship> &ship = nullptr, bool useTransactions = false);
+	~ConversationPanel();
 
 template <class T>
 	void SetCallback(T *t, void (T::*fun)(int));
