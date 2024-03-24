@@ -16,12 +16,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef COLLISION_SET_H_
 #define COLLISION_SET_H_
 
+#include "Collision.h"
 #include "CollisionType.h"
 
 #include <vector>
 
 class Body;
-class Collision;
 class Government;
 class Point;
 class Projectile;
@@ -45,15 +45,14 @@ public:
 	// Finish adding objects (and organize them into the final lookup table).
 	void Finish();
 
-	// Get all collisions for the given projectile. Collisions are not necessarily
-	// sorted by distance. If the projectile is incapable if impacting multiple ships
-	// in the same frame then only the closest collision is returned.
+	// Get all possible collisions for the given projectile. Collisions are not necessarily
+	// sorted by distance.
 	const std::vector<Collision> &Line(const Projectile &projectile) const;
 
-	// Get all collisions along a line. Collisions are not necessarily sorted by
-	// distance. If the all variable is false then only the closest collision is returned.
+	// Get all possible collisions along a line. Collisions are not necessarily sorted by
+	// distance.
 	const std::vector<Collision> &Line(const Point &from, const Point &to,
-		const Government *pGov = nullptr, const Body *target = nullptr, bool all = true) const;
+		const Government *pGov = nullptr, const Body *target = nullptr) const;
 
 	// Get all objects within the given range of the given point.
 	const std::vector<Body *> &Circle(const Point &center, double radius) const;

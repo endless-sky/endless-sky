@@ -41,8 +41,15 @@ jobs:
         show-progress: false
     - name: Install dependencies
       run: python3 -m pip install --user python-debian
-    - name: Validate copyright file
+    - name: Validate copyright file with python-debian
       run: python3 ./utils/check_copyright.py
+    - name: Validate copyright file with debian-control-linter
+      uses: tibetiroka/debian-control-linter-action@v1
+      with:
+        type: 'debian/copyright'
+        file: 'copyright'
+        preset: 'strict'
+        enable: 'trailingSpace,upstreamContactStyle,urlForceHttps,fieldNameCapitalization,maintainerNameFullStop,urlExists,copyrightSourceStyle'
 
 
   spellcheck:
