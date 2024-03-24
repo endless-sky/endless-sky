@@ -862,6 +862,8 @@ void Engine::Step(bool isActive)
 			}
 		}
 	}
+	if(!Preferences::Has("Ship outlines in HUD"))
+		info.SetCondition("fast hud sprites");
 	if(target && target->IsTargetable() && target->GetSystem() == currentSystem
 		&& (flagship->CargoScanFraction() || flagship->OutfitScanFraction()))
 	{
