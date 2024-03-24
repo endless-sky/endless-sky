@@ -15,7 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "SpriteShader.h"
 
-#include "Point.h"
 #include "Screen.h"
 #include "Shader.h"
 #include "Sprite.h"
