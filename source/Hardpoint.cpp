@@ -114,7 +114,6 @@ bool Hardpoint::IsTurret() const
 
 
 
-
 bool Hardpoint::IsParallel() const
 {
 	return isParallel;
