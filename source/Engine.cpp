@@ -241,6 +241,30 @@ namespace {
 
 	const double RADAR_SCALE = .025;
 	const double MAX_FUEL_DISPLAY = 5000.;
+
+	const double CAMERA_VELOCITY_TRACKING = 0.1;
+	const double CAMERA_POSITION_CENTERING = 0.01;
+
+	pair<Point, Point> NewCenter(const Point &oldCenter, const Point &oldCenterVelocity,
+		const Point &baseCenter, const Point &baseVelocity)
+	{
+		if(Preferences::CameraAcceleration() == Preferences::CameraAccel::OFF)
+			return make_pair(baseCenter, baseVelocity);
+
+		double cameraAccelMultiplier = Preferences::CameraAcceleration() == Preferences::CameraAccel::REVERSED ? -1. : 1.;
+
+		// Flip the velocity offset if cameraAccelMultiplier is negative to simplify logic.
+		const Point absoluteOldCenterVelocity = baseVelocity.Lerp(oldCenterVelocity, cameraAccelMultiplier);
+
+		const Point newAbsVelocity = absoluteOldCenterVelocity.Lerp(baseVelocity, CAMERA_VELOCITY_TRACKING);
+
+		const Point newCenter = (oldCenter + newAbsVelocity).Lerp(baseCenter, CAMERA_POSITION_CENTERING);
+
+		// Flip the velocity back over the baseVelocity
+		const Point newVelocity = baseVelocity.Lerp(newAbsVelocity, cameraAccelMultiplier);
+
+		return make_pair(newCenter, newVelocity);
+	}
 }
 
 
@@ -503,12 +527,21 @@ void Engine::Step(bool isActive)
 	}
 	else if(flagship)
 	{
-		center = flagship->Center();
-		centerVelocity = flagship->Velocity();
-		Preferences::ExtendedJumpEffects jumpEffectState = Preferences::GetExtendedJumpEffects();
-		if(flagship->IsHyperspacing() && jumpEffectState != Preferences::ExtendedJumpEffects::OFF)
-			centerVelocity *= 1. + pow(flagship->GetHyperspacePercentage() /
-				(jumpEffectState == Preferences::ExtendedJumpEffects::MEDIUM ? 40. : 20.), 2);
+		const auto newCamera = NewCenter(center, centerVelocity,
+			flagship->Center(), flagship->Velocity());
+
+		if(flagship->IsHyperspacing())
+		{
+			hyperspacePercentage = flagship->GetHyperspacePercentage() / 100.;
+			center = newCamera.first.Lerp(flagship->Center(), pow(hyperspacePercentage, .5));
+			centerVelocity = flagship->Velocity();
+		}
+		else if(isActive)
+		{
+			center = newCamera.first;
+			centerVelocity = newCamera.second;
+		}
+
 		if(doEnterLabels)
 		{
 			doEnterLabels = false;
@@ -589,6 +622,7 @@ void Engine::Step(bool isActive)
 		highlightSprite = flagship->GetSprite();
 		highlightUnit = flagship->Unit() * zoom;
 		highlightFrame = flagship->GetFrame();
+		highlightLocation = flagship->Center();
 	}
 	else
 		highlightSprite = nullptr;
@@ -1013,8 +1047,15 @@ list<ShipEvent> &Engine::Events()
 // Draw a frame.
 void Engine::Draw() const
 {
-	GameData::Background().Draw(center, Preferences::Has("Render motion blur") ? centerVelocity : Point(),
-		zoom, (player.Flagship() ? player.Flagship()->GetSystem() : player.GetSystem()));
+	Point motionBlur = Preferences::Has("Render motion blur") ? centerVelocity : Point();
+
+	Preferences::ExtendedJumpEffects jumpEffectState = Preferences::GetExtendedJumpEffects();
+	if(jumpEffectState != Preferences::ExtendedJumpEffects::OFF)
+		motionBlur *= 1. + pow(hyperspacePercentage *
+			(jumpEffectState == Preferences::ExtendedJumpEffects::MEDIUM ? 2.5 : 5.), 2);
+
+	GameData::Background().Draw(center, motionBlur, zoom,
+		(player.Flagship() ? player.Flagship()->GetSystem() : player.GetSystem()));
 	static const Set<Color> &colors = GameData::Colors();
 	const Interface *hud = GameData::Interfaces().Get("hud");
 
@@ -1067,8 +1108,8 @@ void Engine::Draw() const
 	{
 		Point size(highlightSprite->Width(), highlightSprite->Height());
 		const Color &color = *colors.Get("flagship highlight");
-		// The flagship is always in the dead center of the screen.
-		OutlineShader::Draw(highlightSprite, Point(), size, color, highlightUnit, highlightFrame);
+		OutlineShader::Draw(highlightSprite, (highlightLocation - center) * zoom,
+			size, color, highlightUnit, highlightFrame);
 	}
 
 	if(flash)
@@ -1362,6 +1403,10 @@ void Engine::EnterSystem()
 	newVisuals.clear();
 	newFlotsam.clear();
 
+
+	center = flagship->Center();
+	centerVelocity = flagship->Velocity();
+
 	// Help message for new players. Show this message for the first four days,
 	// since the new player ships can make at most four jumps before landing.
 	if(today <= player.StartData().GetDate() + 4)
@@ -1544,8 +1589,10 @@ void Engine::CalculateStep()
 	Point newCenterVelocity;
 	if(flagship)
 	{
-		newCenter = flagship->Center();
-		newCenterVelocity = flagship->Velocity();
+		const auto newCamera = NewCenter(center, centerVelocity,
+			flagship->Center(), flagship->Velocity());
+		newCenter = newCamera.first;
+		newCenterVelocity = newCamera.second;
 	}
 	draw[currentCalcBuffer].SetCenter(newCenter, newCenterVelocity);
 	batchDraw[currentCalcBuffer].SetCenter(newCenter);

@@ -226,9 +226,11 @@ private:
 	std::vector<std::pair<const Outfit *, int>> ammo;
 	int jumpCount = 0;
 	const System *jumpInProgress[2] = {nullptr, nullptr};
+	Point highlightLocation;
 	const Sprite *highlightSprite = nullptr;
 	Point highlightUnit;
 	float highlightFrame = 0.f;
+	double hyperspacePercentage = 0.;
 
 	int step = 0;
 
