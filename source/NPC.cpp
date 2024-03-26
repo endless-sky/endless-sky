@@ -61,6 +61,8 @@ namespace {
 				return "on kill";
 			case NPC::Trigger::ENCOUNTER:
 				return "on encounter";
+			case NPC::Trigger::SAVE:
+				return "on save";
 			default:
 				return "unknown trigger";
 		}
@@ -201,6 +203,7 @@ void NPC::Load(const DataNode &node)
 				{"destroy", Trigger::DESTROY},
 				{"kill", Trigger::KILL},
 				{"encounter", Trigger::ENCOUNTER},
+				{"save", Trigger::SAVE},
 			};
 			auto it = trigger.find(child.Token(1));
 			if(it != trigger.end())
@@ -529,6 +532,54 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, const Mission *
 
 
 
+void NPC::DoAction(Trigger trigger, PlayerInfo &player, UI *ui, const Mission *caller)
+{
+	auto ait = npcActions.find(trigger);
+	if(ait == npcActions.end() || !ait->second.CanBeDone(player))
+		return;
+
+	static const map<Trigger, int> triggerRequirements = {
+		{Trigger::ASSIST, ShipEvent::ASSIST},
+		{Trigger::SCAN_CARGO, ShipEvent::SCAN_CARGO},
+		{Trigger::SCAN_OUTFITS, ShipEvent::SCAN_OUTFITS},
+		{Trigger::PROVOKE, ShipEvent::PROVOKE},
+		{Trigger::DISABLE, ShipEvent::DISABLE},
+		{Trigger::BOARD, ShipEvent::BOARD},
+		{Trigger::CAPTURE, ShipEvent::CAPTURE},
+		{Trigger::DESTROY, ShipEvent::DESTROY},
+		{Trigger::KILL, ShipEvent::CAPTURE | ShipEvent::DESTROY},
+		{Trigger::ENCOUNTER, ShipEvent::ENCOUNTER},
+	};
+
+	// Some Triggers cannot be met if any of the ships in this NPC have certain events.
+	static const map<Trigger, int> triggerExclusions = {
+		// If any of the ships were captured, the DESTROY trigger will not run.
+		{Trigger::DESTROY, ShipEvent::CAPTURE},
+		// If any of the ships were captured or destroyed, the SAVE trigger will not run.
+		{Trigger::SAVE, ShipEvent::DESTROY | ShipEvent::CAPTURE}
+	};
+
+	const auto requiredIt = triggerRequirements.find(trigger);
+	const int requiredEvents = requiredIt == triggerRequirements.end() ? 0 : requiredIt->second;
+	const auto excludedIt = triggerExclusions.find(trigger);
+	const int excludedEvents = excludedIt == triggerExclusions.end() ? 0 : excludedIt->second;
+
+	// The PROVOKE and ENCOUNTER Triggers only requires a single ship to receive the
+	// event in order to run. All other Triggers require that all ships
+	// be affected.
+	if(trigger == Trigger::ENCOUNTER || trigger == Trigger::PROVOKE || all_of(ships.begin(), ships.end(),
+			[&](const shared_ptr<Ship> &ship) -> bool
+			{
+				auto it = shipEvents.find(ship.get());
+				return it != shipEvents.end() && (it->second & requiredEvents) && !(it->second & excludedEvents);
+			}))
+	{
+		ait->second.Do(player, ui, caller);
+	}
+}
+
+
+
 bool NPC::HasSucceeded(const System *playerSystem, bool ignoreIfDespawnable) const
 {
 	// If this NPC has not yet spawned, or has fully despawned, then ignore its
@@ -768,46 +819,5 @@ void NPC::DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, U
 			triggers.insert(it.second.begin(), it.second.end());
 
 	for(Trigger trigger : triggers)
-	{
-		auto it = npcActions.find(trigger);
-		if(it == npcActions.end())
-			continue;
-
-		static const map<Trigger, int> triggerRequirements = {
-			{Trigger::ASSIST, ShipEvent::ASSIST},
-			{Trigger::SCAN_CARGO, ShipEvent::SCAN_CARGO},
-			{Trigger::SCAN_OUTFITS, ShipEvent::SCAN_OUTFITS},
-			{Trigger::PROVOKE, ShipEvent::PROVOKE},
-			{Trigger::DISABLE, ShipEvent::DISABLE},
-			{Trigger::BOARD, ShipEvent::BOARD},
-			{Trigger::CAPTURE, ShipEvent::CAPTURE},
-			{Trigger::DESTROY, ShipEvent::DESTROY},
-			{Trigger::KILL, ShipEvent::CAPTURE | ShipEvent::DESTROY},
-			{Trigger::ENCOUNTER, ShipEvent::ENCOUNTER},
-		};
-
-		// Some Triggers cannot be met if any of the ships in this NPC have certain events.
-		// If any of the ships were captured, the DESTROY trigger will not run.
-		static const map<Trigger, int> triggerExclusions = {
-			{Trigger::DESTROY, ShipEvent::CAPTURE}
-		};
-
-		const auto requiredIt = triggerRequirements.find(trigger);
-		const int requiredEvents = requiredIt == triggerRequirements.end() ? 0 : requiredIt->second;
-		const auto excludedIt = triggerExclusions.find(trigger);
-		const int excludedEvents = excludedIt == triggerExclusions.end() ? 0 : excludedIt->second;
-
-		// The PROVOKE and ENCOUNTER Triggers only requires a single ship to receive the
-		// event in order to run. All other Triggers require that all ships
-		// be affected.
-		if(trigger == Trigger::ENCOUNTER || trigger == Trigger::PROVOKE || all_of(ships.begin(), ships.end(),
-				[&](const shared_ptr<Ship> &ship) -> bool
-				{
-					auto it = shipEvents.find(ship.get());
-					return it != shipEvents.end() && (it->second & requiredEvents) && !(it->second & excludedEvents);
-				}))
-		{
-			it->second.Do(player, ui, caller);
-		}
-	}
+		DoAction(trigger, player, ui, caller);
 }

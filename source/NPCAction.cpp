@@ -77,12 +77,18 @@ string NPCAction::Validate() const
 
 
 
+// Determine if this action can be done.
+bool NPCAction::CanBeDone(const PlayerInfo &player) const
+{
+	return !triggered && action.CanBeDone(player);
+}
+
+
+
 void NPCAction::Do(PlayerInfo &player, UI *ui, const Mission *caller)
 {
 	// All actions are currently one-time-use. Actions that are used
 	// are marked as triggered, and cannot be used again.
-	if(triggered)
-		return;
 	triggered = true;
 	action.Do(player, ui, caller);
 }
