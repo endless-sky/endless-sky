@@ -528,6 +528,15 @@ bool ShopPanel::Click(int x, int y, int /* clicks */)
 			for(const shared_ptr<Ship> &ship : player.Ships())
 				if(ship.get() == clickedShip)
 				{
+					if(SDL_GetModState() & KMOD_ALT)
+					{
+						if(player.UuidLocked(ship->UUID()))
+							player.UnlockUuid(ship->UUID());
+						else
+							player.LockUuid(ship->UUID());
+						break;
+					}
+
 					dragShip = ship.get();
 					dragPoint.Set(x, y);
 					SideSelect(dragShip);
@@ -752,6 +761,10 @@ void ShopPanel::DrawShipsSidebar()
 		// button (if any) applies to it. If so, brighten the background.
 		if(isSelected && ShouldHighlight(ship.get()))
 			SpriteShader::Draw(background, point);
+		// If this ship is locked, draw a star on it to distinguish from the unlocked ships.
+		if(player.UuidLocked(ship->UUID()))
+			font.Draw("*", point - Point(background->Width() / 2.0 - 2.0,
+				-background->Height() / 2.0 + font.Height() - 2.0), medium);
 
 		const Sprite *sprite = ship->GetSprite();
 		if(sprite)

@@ -150,6 +150,7 @@ help "shipyard"
 	`Here, you can buy new ships.`
 	`Use your scroll wheel or click and drag, to scroll the view.`
 	`As in the trading and outfitter panels, you can hold down Shift, Control, or Alt to buy 5, 20, or 500 ships at once, or multiple keys for larger amounts.`
+	`Clicking on a ship while holding the Alt key will lock it, preventing it from being sold. Alt+clicking a locked ship will unlock it.`
 	`You can also press F to search the shipyard for a specific ship.`
 
 help "cargo management"
