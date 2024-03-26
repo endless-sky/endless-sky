@@ -3105,7 +3105,7 @@ ship "Quicksilver"
 		"fuel capacity" 400
 		"cargo space" 15
 		"outfit space" 240
-		"weapon capacity" 60
+		"weapon capacity" 80
 		"engine capacity" 70
 		weapon
 			"blast radius" 40
@@ -3117,8 +3117,8 @@ ship "Quicksilver"
 		
 		"nGVF-DD Fuel Cell"
 		"LP036a Battery Pack"
-		"D23-QP Shield Generator"
-		
+
+		"Capybara Reverse Thruster"
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"
