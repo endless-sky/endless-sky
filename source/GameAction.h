@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <cstdint>
 #include <map>
+#include <optional>
 #include <set>
 #include <string>
 #include <utility>
@@ -75,6 +76,16 @@ public:
 
 
 private:
+	struct Debt {
+		Debt(int64_t amount) : amount(amount) {}
+
+		int64_t amount = 0;
+		std::optional<double> interest;
+		int term = 365;
+	};
+
+
+private:
 	bool isEmpty = true;
 	std::string logText;
 	std::map<std::string, std::map<std::string, std::string>> specialLogText;
@@ -86,6 +97,7 @@ private:
 	int64_t payment = 0;
 	int64_t paymentMultiplier = 0;
 	int64_t fine = 0;
+	std::vector<Debt> debt;
 
 	// When this action is performed, the missions with these names fail.
 	std::set<std::string> fail;
