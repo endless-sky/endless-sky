@@ -2680,6 +2680,84 @@ ship "Manta"
 
 
 
+ship "Mining Barge"
+	sprite "ship/mining barge"
+	thumbnail "thumbnail/mining barge"
+	attributes
+		category "Utility"
+		"cost" 13400000
+		"shields" 6000
+		"hull" 11600
+		"required crew" 47
+		"bunks" 82
+		"mass" 1760
+		"drag" 19.1
+		"heat dissipation" .36
+		"fuel capacity" 400
+		"cargo space" 760
+		"outfit space" 490
+		"weapon capacity" 240
+		"engine capacity" 140
+		weapon
+			"blast radius" 176
+			"shield damage" 1760
+			"hull damage" 880
+			"hit force" 2640
+	outfits
+		"Mining Laser" 4
+		"Modified Blaster Turret" 2
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret"
+
+		"nGVF-BB Fuel Cell"
+		"KP-6 Photovoltaic Array" 2
+		"KP-6 Photovoltaic Panel" 4
+		"LP144a Battery Pack"
+		"D41-HY Shield Generator"
+		"Large Radar Jammer"
+		"Laser Rifle" 9
+		"Fragmentation Grenades"
+
+		"X4700 Ion Thruster"
+		"X4200 Ion Steering"
+		"X1100 Ion Reverse Thruster" 2
+
+	engine -32 204
+	engine 32 204
+	engine 0 206
+	turret -51.5 -65 "Quad Blaster Turret"
+	turret 51.5 -65 "Modified Blaster Turret"
+	turret -61.5 51 "Modified Blaster Turret"
+	turret 61.5 51 "Quad Blaster Turret"
+	turret 0 105.5 "Heavy Anti-Missile Turret"
+	gun -20 -182
+	gun -20 -182
+	gun 20 -182
+	gun 20 -182
+	bay "Drone" 88 66
+		"angle" 70
+		"launch effect" "human internal"
+	bay "Drone" 88 66
+		"angle" 70
+		"launch effect" "human internal"
+	bay "Drone" -88 66
+		"angle" -70
+		"launch effect" "human internal"
+	bay "Drone" -88 66
+		"angle" -70
+		"launch effect" "human internal"
+	leak "leak" 30 50
+	leak "flame" 30 80
+	leak "big leak" 50 30
+	explode "small explosion" 20
+	explode "medium explosion" 30
+	explode "large explosion" 40
+	explode "huge explosion" 25
+	"final explode" "final explosion large"
+	description "Test."
+
+
+
 ship "Mining Drone"
 	sprite "ship/mining drone"
 	thumbnail "thumbnail/mining drone"
