@@ -1,0 +1,197 @@
+# Copyright (c) 2023-2024 by Alex Rowan
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+mission "Transport Lusk"
+	minor
+	name "Transport Lusk to <planet>"
+	description "Transport entrepreneur Johann Lusk to a business meeting on <destination>."
+	passengers 1
+	source
+		attributes "dirt belt"
+	destination "Ada"
+#	to offer
+#		random < 10
+	on offer
+		conversation
+			`As you enter the spaceport, your attention is immediately drawn to a somewhat disheveled man wearing a cheap black suit with a red and black checkered tie. He scrabbles on the floor on his hands and knees, desperately gathering a pile of loose papers into a briefcase. While others seem to be watching him, nobody has done anything to help.`
+			choice
+				`	(Help the man gather his belongings.)`
+					goto help
+				`	(Watch him struggle.)`
+				`	(Ignore him and move on.)`
+					decline
+
+			`	You watch the somewhat comical display of a grown man rummaging about on the floor as he finishes collecting his papers and rises shakily to his feet. He looks around, somewhat flustered, before focusing in on you and starting to walk in your direction. It seems it's too late to pretend that you weren't watching; he waves at you as he approaches.`
+				goto introduction
+			
+			label help
+			`	You join the man on the floor and help him gather the messy papers. He looks up and grunts at you appreciatively as he finishes cleaning up his mess, and you both stand up.`
+			label introduction
+			`	"Johann Lusk," the man says, by way of greeting. He smiles at you and extends a sweaty hand, evidently expecting you to shake it.`
+			choice
+				`	(Shake his hand.)`
+					goto shake
+				`	(Wave to him instead.)`
+					goto wave
+
+			label shake
+			`	You grasp the man's hand and give it a firm shake. It's clammy and a bit unpleasant, but he seems relieved that you didn't leave him hanging. You take a moment to introduce yourself as well.`
+				goto pitch
+			label wave
+			`	There's no way you're touching that greasy hand. You give him a wave instead and introduce yourself. Looking only a little crestfallen, Johann returns your wave.`
+			label pitch
+			`	"I hope I'm not being too forward here, but you have the look of a merchant captain about you," Johann says. "I hear your type is always looking for odd jobs, and it just so happens that I have one for you." He takes a moment to slick back his hair a bit before continuing. "You see, I'm in a bit of a pickle. I'm an entrepreneur of sorts and on my way to a very important investor meeting on <destination>. My previously arranged transport has abandoned me here for some reason, and I would thus be much obliged if you were to take me there." He looks at you hopefully, then adds, "there might be a very lucrative opportunity for you if you agree to take me to where I'm going. Also, I can pay you 15,000 credits."`
+			choice
+				`"Sure, I can help you out."`
+					accept
+				`"Sorry, I'm not interested."`
+					decline
+
+	on visit
+		dialog `You arrive on <planet>, but realize that your escort carrying Johann Lusk has not arrived yet. Better depart and wait for your escorts to enter the system.`
+	on complete
+		log `Transported a certain "entrepreneur" named Johann Lusk to a business meeting on Ada. Got stiffed on the payment.`
+		conversation
+			`	As soon as you land on <planet>, Lusk is already ready to go. He thanks you profusely as he rushes out of your ship, promising to return in one hour with your payment. There's no way you can catch him without sprinting.`
+			choice
+				`	(Wait and hope that he returns when he promised.)`
+					goto wait
+				`	(Sprint out after him.)`
+			`	Determined not to let your fare escape, you immediately give chase, but he is surprisingly quick and navigates the spaceport masterfully. Hot on his heels, you almost crash headlong into an old woman with a small dog in her arms. She shrieks, and you draw dirty looks from members of the crowd. In the commotion, you seem to have lost track of Lusk, but you spot him again as he darts to and fro, zigzagging between passengers and leaping over the cordons meant to keep people in orderly lines. Eventually, out of breath, you have no choice but to stop as the black speck that remains of Johann Lusk's cheap suit disappears into the distance. Defeated, you walk back to your ship and resolve to wait for his return.`
+			label wait
+			`	Three hours go by and you're just about to write off this boondoggle as a total loss. As you begin to prepare your ship to depart, you manage to spot a severely downcast Lusk reluctantly trudging toward your ship. When he finally reaches your vessel, he seems to invite himself in and walk right past you to collapse into a chair just past the airlock.`
+			choice
+				`	"I take it your meeting didn't go so well?"`
+				`	"Well, 'hello' to you too."`
+				`	"Where's my money?"`
+					goto nopay
+			label rant
+			action
+				set "bam: ranted"
+			`	Lusk emits a long, almost exaggerated sigh. "They didn't go for it. This was supposed to be my big break. Those fools don't understand anything. Those idiots. Those... those..." he seems to be working himself up into a lather. "Those... invertebrates don't know the first thing about mining, and yet they see fit to lecture me about prospecting and mineral rights! As if I didn't do my homework? As if I haven't been planning this endeavor for the past six months? I should have known better than to trust these posh clowns with my idea!"`
+			`	You quietly watch what appears to be a man having a breakdown.`
+			`	He suddenly pauses his rant and gives you a wild-eyed look. "You! You would understand, right? I'm sure you've mined plenty of asteroids in your time. You know what it's like to have a surefire cash cow." He doesn't stop to let you correct him. "Why wouldn't they listen? You know what? It doesn't matter. You're a reasonable fellow, aren't you? Will you hear me out?" He finally pauses long enough for you to get a word in edgewise.`
+			choice
+				`	"Listen, Johann. If you just pay me what you owe me, I'll be on my way."`
+					goto nopay
+					to display
+						not "bam: demanded payment"
+				`	"Uh, sure. I'll listen."`
+					goto hearmore
+			label nopay
+			action
+				set "bam: demanded payment"
+			`	For the first time since you met him, Lusk looks somewhat meek. "I... don't have it. The investors at the Ada Entrepreneurial Foundation were supposed to invest in my project. I was going to use some of that money to pay you." He looks down at his feet. "Listen, if you insist on payment right now, I will give you everything that I have." He looks at you with pleading eyes.`
+			choice
+				`	"It's okay. We can discuss that later. What happened at your meeting?"`
+					goto rant
+					to display
+						not "bam: ranted"
+				`	"It's okay. We can discuss that later. I'll hear you out."`
+					goto hearmore
+					to display
+						has "bam: ranted"
+				`	"I'm afraid I must insist."`
+				`	"If you don't pay me immediately, I'm calling the police."`
+			action
+				payment 9486
+				clear "bam: ranted"
+				clear "bam: demanded payment"
+			`	The contrite look on Lusk's face immediately morphs into one of rage. "You want your money, you mewling buffoon? Fine! Here! Take it, and I hope I never see you again!" He rummages hastily through his pockets and pulls out a grimy credit chip before flinging it at your face. You react quickly enough to catch it, but by the time you look back at him, he is already rushing out the door.`
+			`	Upon accessing the credit chip, you find that he only paid you <payment>.`
+				decline
+			label hearmore
+			action
+				clear "bam: ranted"
+				clear "bam: demanded payment"
+			`	"Wonderful! Meet me in the spaceport in one hour. I'll tell you everything. Trust me - you're going to want to hear this." He scrambles out of his chair and rushes out of your ship, muttering something about emeralds on his way out. You take note that he still has not paid you what he promised for the trip to <planet>.`
+
+
+
+mission "An Investment Opportunity"
+	description "Take Johann Lusk to <destination> to tour an emerald mine."
+	passengers 1
+	source "Ada"
+	destination "Gemstone"
+	to offer
+		has "Transport Lusk: done"
+	on offer
+		conversation
+			`You enter the spaceport and look around for Johann Lusk, but he is nowhere to be seen. Just as you're about to leave, you see him charging through the entryway with his briefcase clasped tight in his hands.`
+			`	"Thank you for meeting with me," Lusk says. "Let's find a table at that coffee shop nearby." He nods his head at a local cafe and the two of you make your way over to an available table.`
+			`	Once seated, Lusk opens his briefcase and spreads some papers out in front of you. They contain some barely comprehensible data regarding gravimetric analysis, EM sounding results, and some other technical jargon. After you've had a moment to look at everything, he grins wide and looks at you expectantly.`
+			choice
+				`	"Why are you showing me this?"`
+				`	"What exactly am I looking at here?"`
+			`	With only a slight twitch at the corners of his mouth, Lusk's smile falters for a moment. "Why, these are my survey results." He smooths the edges of his shirt as he continues. "This is why I came to <origin>. I found a - forgive the pun - golden opportunity lying in wait at an abandoned mine on an unassuming planet squarely in the galactic Dirt Belt."`
+			`	A waiter approaches to ask for your order, and Lusk shields his paperwork from view like a jealous dragon sheltering his hoard. Each of you orders a coffee, though Lusk asks for a bowl of sugar to go along with his. When the bemused waiter leaves to submit the order, Lusk turns to you and continues his explanation.`
+			`	"You see, I am a mineralogist by education. After I finished my doctoral thesis on the use of electromagnetic spectrography to detect chromium intrusion in a beryllium aluminum silicate substrate, I have been seeking a way to practically apply my work." He leans in close and whispers conspiratorially, "I found it on the planet <planet>."`
+			`	The waiter returns with your orders. This time, Lusk leaves his papers undefended, though he watches the server like a hawk until he's gone. You take a tentative sip of coffee and watch Lusk pick up his sugar bowl with two hands. Before your very eyes, Lusk empties the entire bowl into his coffee cup and stirs the concoction noisily with a metal spoon. Apparently satisfied, he slurps his beverage and continues the conversation.`
+			`	"I found a massive untapped emerald deposit on that planet," he says in a hushed tone of voice. "The land is owned by a defunct diamond mining corporation which has long since ceased operations." He struggles to keep the volume down as he speaks with barely restrained excitement. "They had no idea what they had right under their noses! We can purchase the mineral rights at a fraction of their worth and make a fortune." He leans back in his chair for a moment and gives you a nervous look. "The only thing is... I seem to be a bit short on credits. I'll need some investment capital."`
+			choice
+				`	"Why emeralds?"`
+					goto emeralds
+				`	"Are you asking me to fund this mining project?"`
+					goto funding
+				`	"How much do you need?"`
+					goto funding
+				`	(Sip your coffee.)`
+			`	You wordlessly sip your coffee as Lusk squirms under the weight of the awkward silence.`
+			label funding
+			`	"Please, consider the amount of money we could both make! For the paltry sum of only 150,000 Credits, you could have a stable asset, generating passive income for years to come. You wouldn't even have to do anything. Emeralds practically sell themselves!"`
+				goto hardsell
+			label emeralds
+			`	Lusk flashes you a sly smile. "Ah, you see, emeralds are a singularly important commodity. Tell me: do you know much about the manufacturing process by which we create hyperdrives?"`
+			`	You shake your head and he continues.`
+			`	"Naturally, the procedure itself is extremely complex, and I am not qualified to explain the details. However, it is within a particular refinement subprocess that emeralds prove extremely useful. Their unique chemical structure is absolutely integral to this subprocess. To put it simply: no emeralds, no hyperdrives." He pauses to let that sink in.`
+			choice
+				`	"And how much would this 'investment' cost?"`
+				`	"I don't think I'm interested."`
+			`	He takes a deep breath. "Please, just hear me out. It would only cost 150,000 Credits to rehabilitate the mine, re-hire its workforce, and turn its attention to the harvest of emeralds." He stares down at his feet and then gazes at you again.`
+			label hardsell
+			`	"You don't have to decide right now." As he looks into your eyes, you recognize that same desperation which you saw at your first meeting. "Just take me to <destination> and see the facility for yourself. I am certain you will agree that the plan is foolproof. What do you say, my friend?"`
+			choice
+				`	"No way."`
+					decline
+				`	"Okay, let's go to <planet>."`
+					accept
+	on accept
+		conversation
+			`	"Magnificent!"`
+			`	PLACEHOLDER`
+	on decline
+		conversation
+			`	ANGERY PLACEHOLDER`
+	on visit
+		dialog `You arrive on <planet>, but realize that your escort carrying Johann Lusk has not arrived yet. Better depart and wait for your escorts to enter the system.`
+	on complete
+	# PLACEHOLDER log entries
+		log `Transported Johann Lusk to Gemstone to visit an emerald mine. He is seeking investment capital. Still haven't been paid.`
+		log "People" "Johann Lusk" `An "entrepreneur" and mineralogist who seeks to build an emerald mine."`
+		conversation
+			`PLACEHOLDER`
+
+
+
+# PLACEHOLDER
+mission "Investment Collection 1"
+	name "PLACEHOLDER"
+	description "PLACEHOLDER"
+	source "Gemstone"
+	to offer
+		has "An Investment Opportunity: done"
+		"credits" > 150000
+	on offer
+		conversation
+			`You walk into the spaceport...`
+			`	PLACEHOLDER`
