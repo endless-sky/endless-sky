@@ -117,9 +117,13 @@ outfit "Small Shield Module"
 	thumbnail "outfit/small shield module"
 	"mass" 11
 	"outfit space" -11
-	"shield generation" .28
-	"shield energy" .28
-	"shield heat" .1
+	"shield generation" .224
+	"shield energy" .224
+	"shield heat" .08
+	"delayed shield generation" .28
+	"delayed shield energy" .28
+	"delayed shield heat" .1
+	"shield delay" 250
 	description "Although combat is almost unheard of in Coalition space, almost all of their ships are able to recharge their shields when necessary."
 
 outfit "Large Shield Module"
@@ -130,9 +134,13 @@ outfit "Large Shield Module"
 	thumbnail "outfit/large shield module"
 	"mass" 39
 	"outfit space" -39
-	"shield generation" 1.3
-	"shield energy" 1.3
-	"shield heat" .5
+	"shield generation" 1.04
+	"shield energy" 1.04
+	"shield heat" .4
+	"delayed shield generation" .65
+	"delayed shield energy" .65
+	"delayed shield heat" .25
+	"shield delay" 250
 	description "The Coalition manufactures heavy shield generators for their ships in case they ever face aggression from the Quarg or another species."
 
 outfit "Overcharged Shield Module"
@@ -257,9 +265,13 @@ outfit "Small Recovery Module"
 	thumbnail "outfit/small recovery module"
 	"mass" 25
 	"outfit space" -25
-	"shield generation" .97
-	"shield energy" .43
-	"shield heat" .7
+	"shield generation" .776
+	"shield energy" .344
+	"shield heat" .56
+	"delayed shield generation" .97
+	"delayed shield energy" .43
+	"delayed shield heat" .7
+	"shield delay" 180
 	"hull repair rate" .43
 	"hull energy" .97
 	"hull heat" .07
