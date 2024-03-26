@@ -1825,14 +1825,14 @@ mission "FW Albatross 2A"
 		dialog `You land on <planet>, but realize that you either haven't destroyed Ryk Bartlett's ship, the Dread, or your escort carrying JJ hasn't entered the system yet. Better depart and make sure that you've done everything you need to do to complete this mission.`
 	
 	npc kill
-		personality staying plunders disables heroic nemesis target
+		personality disables heroic marked plunders staying target
 		system Orvala
 		government Pirate
 		ship "Bastion (Heavy)" "Dread"
 		dialog "You have destroyed Ryk Bartlett's ship. Hopefully now the elders on Albatross will be more inclined to bargain with the Free Worlds."
 	
 	npc
-		personality staying plunders disables
+		personality disables marked plunders staying
 		system Orvala
 		government Pirate
 		fleet "Small Southern Pirates" 3
