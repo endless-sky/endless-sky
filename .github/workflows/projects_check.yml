@@ -33,7 +33,7 @@ jobs:
   validate_copyright:
     name: Copyright
     needs: changed
-    if: ${{ needs.changed.outputs.copyright == 'true' || needs.changed.outputs.projects_check_config }}
+    if: ${{ needs.changed.outputs.copyright == 'true' || needs.changed.outputs.projects_check_config == 'true' }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
