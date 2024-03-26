@@ -3859,6 +3859,10 @@ mission "Human to Hai Space"
 		conversation
 			`	A young man carrying luggage approaches you. "You look like a knowledgeable captain," he says. "In all your travels, have you ever heard tell of any... intelligent rodents?"`
 			choice
+				`	"'Heard tell'? That's where I come from!"`
+					to display
+						has "hai space start"
+					goto origin
 				`	"You mean the Hai? You'll have to go up north for that."`
 					goto hai
 				`	"Ah, I think I know of some large squirrels to the north of here."`
@@ -3869,14 +3873,25 @@ mission "Human to Hai Space"
 			`	"Oh, never mind then," he says, with a note of disappointment in his voice. You feel good knowing that you are helping to keep the Hai's existence a secret in human space. Better safe than sorry.`
 				decline
 			
+			label origin
+			`	He seems shocked, "You too? You're not joking with me, are you? I need to go to <destination>, and I can afford to give you <payment> for it."`
+				goto choice
 			label hai
 			`	"If that's the case, could you bring me to <destination>? I'll give you <payment>."`
+			label choice
 			choice
+				`	"<planet>? I come from there!"`
+					to display
+						has "hai space start"
 				`	"Alright, I'll take you there."`
 					accept
 				`	"Sorry, I'm too busy right now."`
 					decline
 				`	"Why would you want to go all the way out to <planet>?"`
+					goto explain
+			`	"No way, you as well?" He stops for a second to process what you just said, "They say the universe is a small place, but I never believed any of that, until now, that is. I grew up in the city of Darwin."`
+			`	"Me too," you reply. "Almost felt like human space; we did not even have to learn Hai. And those fluffy rodents always have a way to make you feel at home!"`
+			label explain
 			`	"I have family there," he says. "I came out here to do some traveling and see a bit of human space, but now I have to get back home. You see, I was born on <planet>, and this is my first time out of the wormhole."`
 			choice
 				`	"Really? How did you like human space?"`
@@ -3901,12 +3916,32 @@ mission "Human to Hai Space"
 			choice
 				`	(Leave.)`
 					decline
+				`	"May I come speak with them?"`
+					to display
+						has "hai space start"
+					goto haistart
 				`	"That's your family?"`
 			`	The man looks at you. "I'm adopted," he says. One of the Hai notices your confusion, and chitters. "Ah, you have not seen a human-Hai family, have you? Perhaps it is strange, but we are happy together nonetheless. Thank you for transporting our son safely."`
 			choice
 				`	"I didn't mean to be rude, I just didn't know that Hai adopted humans here."`
 				`	"No problem, I hope you enjoyed the trip."`
+			label end
 			`	After thanking you once again, they walk off. As they leave, you overhear Benjamin talk to his family about his trip. "They had so many kinds of food there, it was delicious! Although I did get homesick for pickled acorns..."`
+				decline
+			label haistart
+			`	"Of course, you did bring me all the way back here, after all." These are my parents, Yeerto and Taepip. His father Yeerto then speaks, "We heard about your travel agency, even went there at some point when we were thinking of relocating to human space. It ended up being a touch too expensive, though, so Elliot arranged a merchant to bring him on the way."`
+			`	"It feels nice to have my hard work be recognized," you answer.`
+			`	"Honest work always bears fruits." His mother, Taepip, picks up, looking at her son, "That's what we always told him after we adopted him."`
+			choice
+				`	"I was partly-adopted as well."`
+			`	They look a bit confused, so you clarify, "My mother was human, but my father was Hai... It took me some time to understand it wasn't my original father. He was loyal to the stars."`
+			`	Benjamin answers softly, "Who knows? Maybe he is still out there, somewhere." His mother then speaks up, "If you want, you could come to our home and have a chat. And some pickled acorns, too," she adds with a bright smile.`
+			choice
+				`	"Sure."`
+				`	"Sorry, I have other pressing matters."`
+					goto end
+			`	You spend a long evening with them, talking about your experience in human space and what you did here before going. "You are sort of like your father," Yeerto comments, before telling you about the local news here.`
+			`	You almost feel sad when it is already time to go back to your ship.`
 
 
 
@@ -4619,6 +4654,10 @@ mission "Hai Wormhole Warning"
 			`	"So what is it that you brought me here for?" you ask.`
 			`	The officer folds his hands together. "You've made contact with an alien species located to the north. Is this correct?"`
 			choice
+				`	"I did not exactly 'make contact'. I grew up there."`
+					to display
+						has "hai space start"
+					goto grewup
 				`	"It is. Is that a problem?"`
 					goto yes
 				`	"Perhaps. Why do you ask?"`
@@ -4629,6 +4668,10 @@ mission "Hai Wormhole Warning"
 				goto secret
 			label maybe
 			`	The officer chuckles. "I think the answer you're looking for is 'Yes,' not 'Perhaps.' The Republic is aware that you've made contact with the Hai.`
+				goto secret
+			label grewup
+			`	"Yes, you are <first> <last>, right?" He takes the look on your face as confirmation, and checks his pad. "You may not have been seen or heard from in human space for many years, but you were born here, on a spaceship: the 'Explorer', if my records are correct." He then looks back at you and stores his pad. "Trust me, they are.`
+			`	"Whilst we don't know every detail, the Republic is aware that you've had contact with the Hai."`
 				goto secret
 			label yes
 			`	"There is no problem, <last>. I am just letting you know that the Republic is aware that you've made contact with the Hai.`

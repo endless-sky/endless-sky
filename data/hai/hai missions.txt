@@ -298,14 +298,31 @@ mission "Returning Home"
 			`You are stopped by a human in the <origin> marketplace. He takes off his hat and asks, "You're from the outside, aren't you?"`
 			choice
 				`	"Yes, I am."`
+					to display
+						not "hai space start"
 					goto outsider
+				`	"Not really. I grew up here."`
+					to display
+						has "hai space start"
+					goto clothe
 				`	"What do you mean 'the outside?'"`
 			
 			`	"Outside of Hai space. You don't look quite like most humans who live here, unless there's some new fashion trend going on that I don't know about."`
 			choice
 				`	"Oh, yes. I do come from outside."`
+					to display
+						not "hai space start"
+				`	"Not really. I grew up here."`
+					to display
+						has "hai space start"
+					goto outsider
 			
+			label clothe
+			`	"That's weird. Your clothes don't look like most do here," he says.`
 			label outsider
+			`	You explain to him that these clothes used to belong to your father, who was a merchant from human space; your mother kept some for you when he left. You add that while you may not have been born in human space, your family made sure you learned about the origins of your species; you know human space like the back of your hand.`
+				to display
+					has "hai space start"
 			`	"Good. My name is Elliot." You introduce yourself to Elliot and shake hands.`
 			`	"Can you take me to <destination>?" Elliot asks.`
 			`	"That's all the way in the Dirt Belt," you say. "Why do you want to go that far?"`
