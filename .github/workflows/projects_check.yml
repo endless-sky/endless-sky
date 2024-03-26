@@ -73,7 +73,7 @@ jobs:
   style_check:
     name: Style
     needs: changed
-    if: ${{ needs.changed.outputs.editorconfig_files == 'true' || needs.changed.outputs.projects_check_config }}
+    if: ${{ needs.changed.outputs.editorconfig_files == 'true' || needs.changed.outputs.projects_check_config == 'true' }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
