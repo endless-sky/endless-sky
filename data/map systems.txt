@@ -17282,8 +17282,6 @@ system Ildaria
 	fleet "Large Southern Merchants" 2000
 	fleet "Small Militia" 3000
 	fleet "Large Militia" 6000
-	fleet "Small Southern Pirates" 1000
-	fleet "Large Southern Pirates" 2000
 	object
 		sprite star/nova-small
 		period 10

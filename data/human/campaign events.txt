@@ -316,8 +316,6 @@ event "initial deployment 2"
 		fleet "Large Southern Merchants" 1800
 		fleet "Small Free Worlds" 2200
 		fleet "Large Free Worlds" 3600
-		fleet "Small Southern Pirates" 4000
-		fleet "Large Southern Pirates" 7000
 	
 	system "Mora"
 		fleet "Small Southern Merchants" 2800
@@ -439,6 +437,21 @@ event "initial deployment 2"
 		fleet "Small Republic" 3000
 		fleet "Large Republic" 4000
 		fleet "Navy Surveillance" 1600
+
+# Compatibility patch event in case the pirates were added by the second deployment, pre-0.10.7
+event "remove pirates from Ildaria"
+	system Ildaria
+		remove fleet "Small Southern Pirates"
+		remove fleet "Large Southern Pirates"
+
+mission "Ildaria Pirates Compatibility"
+	invisible
+	landing
+	to offer
+		has "event: initial deployment 2"
+	on offer
+		event "remove pirates from Ildaria"
+		fail
 
 event "initial deployment 3"
 	date 29 8 3014
