@@ -28,7 +28,7 @@ on:
       content_style_script:
         value: ${{ jobs.changed.outputs.content_style_script }}
       ci_config:
-          value: ${{ jobs.changed.outputs.ci_config }}
+        value: ${{ jobs.changed.outputs.ci_config }}
       projects_check_config:
         value: ${{ jobs.changed.outputs.projects_check_config }}
 
