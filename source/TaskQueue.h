@@ -66,12 +66,13 @@ public:
 	// Process any tasks to be scheduled to be executed on the main thread.
 	void ProcessSyncTasks();
 
-	// Whether there are any outstanding tasks left in this queue, including any outstanding tasks
-	// that need to be executed on the main thread.
-	bool IsDone() const;
-
-	// Waits for all of this queue's task to finish while properly processing any outstanding main thread tasks.
+	// Waits for all of this queue's task to finish. Ignores any sync tasks to be processed.
 	void Wait();
+
+
+private:
+	// Whether there are any outstanding async tasks left in this queue.
+	bool IsDone() const;
 
 
 public:
