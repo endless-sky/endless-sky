@@ -672,6 +672,7 @@ void MapDetailPanel::DrawKey()
 // details, trade prices, and details about the selected object.
 void MapDetailPanel::DrawInfo()
 {
+	const Color &dimmer = *GameData::Colors().Get("dimmer");
 	const Color &dim = *GameData::Colors().Get("dim");
 	const Color &medium = *GameData::Colors().Get("medium");
 
@@ -781,9 +782,12 @@ void MapDetailPanel::DrawInfo()
 		bool isSelected = false;
 		if(static_cast<unsigned>(this->commodity) < GameData::Commodities().size())
 			isSelected = (&commodity == &GameData::Commodities()[this->commodity]);
-		const Color &color = isSelected ? medium : dim;
+		const Color *dynamiccolor = &dim;
 
-		font.Draw(commodity.name, uiPoint, color);
+		if(isSelected)
+			font.Draw(commodity.name, uiPoint, medium);
+		else
+			font.Draw(commodity.name, uiPoint, dim);
 
 		string price;
 		if(canView && selectedSystem->IsInhabited(player.Flagship()))
@@ -802,7 +806,12 @@ void MapDetailPanel::DrawInfo()
 				value -= localValue;
 				price += "(";
 				if(value > 0)
+				{
 					price += '+';
+					dynamiccolor = &dim;
+				}
+				else
+					dynamiccolor = &dimmer;
 				price += to_string(value);
 				price += ")";
 			}
@@ -811,10 +820,14 @@ void MapDetailPanel::DrawInfo()
 			price = (canView ? "n/a" : "?");
 
 		const auto alignRight = Layout(140, Alignment::RIGHT, Truncate::BACK);
-		font.Draw({price, alignRight}, uiPoint, color);
 
 		if(isSelected)
-			PointerShader::Draw(uiPoint + Point(0., 7.), Point(1., 0.), 10.f, 10.f, 0.f, color);
+		{
+			font.Draw({price, alignRight}, uiPoint, medium);
+			PointerShader::Draw(uiPoint + Point(0., 7.), Point(1., 0.), 10.f, 10.f, 0.f, medium);
+		}
+		else
+			font.Draw({price, alignRight}, uiPoint, *dynamiccolor);
 
 		uiPoint.Y() += 20.;
 	}
