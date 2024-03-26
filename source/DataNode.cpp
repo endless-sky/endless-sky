@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "DataNode.h"
 
+#include "DataWriter.h"
 #include "Logger.h"
 
 #include <algorithm>
@@ -286,41 +287,39 @@ list<DataNode>::const_iterator DataNode::end() const noexcept
 
 
 
-// Print a message followed by a "trace" of this node and its parents.
-int DataNode::PrintTrace(const string &message) const
+// Recrusively print a message followed by a "trace" of this node and its parents.
+int DataNode::PrintTrace(const string &message, DataWriter *writer) const
 {
+	if(!writer)
+	{
+		DataWriter w;
+		w.SetIndentation("  ");
+		int temp = PrintTrace(message, &w);
+		Logger::LogError(w.GetText());
+		return temp;
+	}
+
 	if(!message.empty())
-		Logger::LogError(message);
+	{
+		writer->WriteRaw(message);
+		if(parent || !tokens.empty())
+			writer->Write();
+	}
 
 	// Recursively print all the parents of this node, so that the user can
 	// trace it back to the right point in the file.
 	size_t indent = 0;
 	if(parent)
-		indent = parent->PrintTrace() + 2;
+		indent = parent->PrintTrace("", writer) + 2;
 	if(tokens.empty())
 		return indent;
-
 	// Convert this node back to tokenized text, with quotes used as necessary.
-	string line = !parent ? "" : "L" + to_string(lineNumber) + ": ";
-	line.append(string(indent, ' '));
-	for(const string &token : tokens)
-	{
-		if(&token != &tokens.front())
-			line += ' ';
-		bool hasSpace = any_of(token.begin(), token.end(), [](char c) { return isspace(c); });
-		bool hasQuote = any_of(token.begin(), token.end(), [](char c) { return (c == '"'); });
-		if(hasSpace)
-			line += hasQuote ? '`' : '"';
-		line += token;
-		if(hasSpace)
-			line += hasQuote ? '`' : '"';
-	}
-	Logger::LogError(line);
+	if(parent)
+		writer->Write().WriteRaw("L" + to_string(lineNumber) + ": ");
+	writer->WriteTokens(*this).BeginChild();
 
-	// Put an empty line in the log between each error message.
 	if(!message.empty())
-		Logger::LogError("");
-
+		writer->Write();
 	// Tell the caller what indentation level we're at now.
 	return indent;
 }

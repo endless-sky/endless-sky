@@ -21,6 +21,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+class DataWriter;
+
 
 
 // A DataNode is a single line of a DataFile. It consists of one or more tokens,
@@ -71,7 +73,7 @@ public:
 	std::list<DataNode>::const_iterator end() const noexcept;
 
 	// Print a message followed by a "trace" of this node and its parents.
-	int PrintTrace(const std::string &message = "") const;
+	int PrintTrace(const std::string &message = "", DataWriter *writer = nullptr) const;
 
 
 private:

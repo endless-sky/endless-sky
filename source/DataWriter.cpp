@@ -22,12 +22,6 @@ using namespace std;
 
 
 
-// This string constant is just used for remembering what string needs to be
-// written before the next token - either the full indentation or this, a space:
-const string DataWriter::space = " ";
-
-
-
 // Constructor, specifying the file to save.
 DataWriter::DataWriter(const string &path)
 	: DataWriter()
@@ -55,22 +49,41 @@ DataWriter::~DataWriter()
 
 
 
+// Gets the current contents of the DataWriter.
+string DataWriter::GetText()
+{
+	return out.str();
+}
+
+
+
 // Save the contents to a file.
-void DataWriter::SaveToPath(const std::string &filepath)
+void DataWriter::SaveToPath(const string &filepath)
 {
 	Files::Write(filepath, out.str());
 }
 
 
 
-// Write a DataNode with all its children.
-void DataWriter::Write(const DataNode &node)
+// Writes the string that separates two tokens. If no tokens are present on the current line,
+// it writes the indentation string instead.
+DataWriter &DataWriter::WriteSeparator()
 {
-	// Write all this node's tokens.
-	for(int i = 0; i < node.Size(); ++i)
-		WriteToken(node.Token(i).c_str());
-	Write();
+	if(before)
+	{
+		out << *before;
+		before = nullptr;
+	}
+	return *this;
+}
 
+
+
+// Write a DataNode with all its children.
+DataWriter &DataWriter::Write(const DataNode &node)
+{
+	WriteTokens(node);
+	Write();
 	// If this node has any children, call this function recursively on them.
 	if(node.HasChildren())
 	{
@@ -81,53 +94,61 @@ void DataWriter::Write(const DataNode &node)
 		}
 		EndChild();
 	}
+	return *this;
 }
 
 
 
 // Begin a new line of the file.
-void DataWriter::Write()
+DataWriter &DataWriter::Write()
 {
 	out << '\n';
 	before = &indent;
+	return *this;
 }
 
 
 
 // Increase the indentation level.
-void DataWriter::BeginChild()
+DataWriter &DataWriter::BeginChild()
 {
-	indent += '\t';
+	indent += indentString;
+	return *this;
 }
 
 
 
 // Decrease the indentation level.
-void DataWriter::EndChild()
+DataWriter &DataWriter::EndChild()
 {
-	indent.erase(indent.length() - 1);
+	indent.erase(indent.length() - indentString.length());
+	return *this;
 }
 
 
 
 // Write a comment line, at the current indentation level.
-void DataWriter::WriteComment(const string &str)
+DataWriter &DataWriter::WriteComment(const string &str)
 {
-	out << indent << "# " << str << '\n';
+	WriteSeparator();
+	out << "# " << str;
+	Write();
+	return *this;
 }
 
 
 
 // Write a token, given as a character string.
-void DataWriter::WriteToken(const char *a)
+DataWriter &DataWriter::WriteToken(const char *a)
 {
 	WriteToken(string(a));
+	return *this;
 }
 
 
 
 // Write a token, given as a string object.
-void DataWriter::WriteToken(const string &a)
+DataWriter &DataWriter::WriteToken(const string &a)
 {
 	// Figure out what kind of quotation marks need to be used for this string.
 	bool hasSpace = any_of(a.begin(), a.end(), [](char c) { return isspace(c); });
@@ -135,7 +156,7 @@ void DataWriter::WriteToken(const string &a)
 	// If the token is an empty string, it needs to be wrapped in quotes as if it had a space.
 	hasSpace |= a.empty();
 	// Write the token, enclosed in quotes if necessary.
-	out << *before;
+	WriteSeparator();
 	if(hasQuote)
 		out << '`' << a << '`';
 	else if(hasSpace)
@@ -145,5 +166,33 @@ void DataWriter::WriteToken(const string &a)
 
 	// The next token written will not be the first one on this line, so it only
 	// needs to have a single space before it.
-	before = &space;
+	before = &separator;
+	return *this;
+}
+
+
+
+// Write the tokens of this DataNode without writing its children.
+DataWriter &DataWriter::WriteTokens(const DataNode &node)
+{
+	for(int i = 0; i < node.Size(); ++i)
+		WriteToken(node.Token(i).c_str());
+	return *this;
+}
+
+
+// Changes the separator used between tokens. The default is a single space.
+DataWriter &DataWriter::SetSeparator(const string &sep)
+{
+	separator = sep;
+	return *this;
+}
+
+
+
+// Changes the indentation used before child tokens. The default is a single tabulator.
+DataWriter &DataWriter::SetIndentation(const string &indent)
+{
+	indentString = indent;
+	return *this;
 }
