@@ -21,9 +21,9 @@ ship "Pug Zibruka"
 		"hull" 1000
 		"required crew" 4
 		"bunks" 6
-		"mass" 240
-		"drag" 3.1
-		"heat dissipation" .8
+		"mass" 324
+		"drag" 3.7
+		"heat dissipation" .67
 		"fuel capacity" 600
 		"cargo space" 20
 		"outfit space" 180
@@ -71,9 +71,9 @@ ship "Pug Enfolta"
 		"hull" 1700
 		"required crew" 19
 		"bunks" 27
-		"mass" 410
-		"drag" 5.9
-		"heat dissipation" .7
+		"mass" 760
+		"drag" 7.1
+		"heat dissipation" .49
 		"fuel capacity" 600
 		"cargo space" 40
 		"outfit space" 360
@@ -126,9 +126,9 @@ ship "Pug Maboro"
 		"hull" 2700
 		"required crew" 54
 		"bunks" 87
-		"mass" 940
-		"drag" 9.8
-		"heat dissipation" .6
+		"mass" 1990
+		"drag" 16.7
+		"heat dissipation" .36
 		"fuel capacity" 600
 		"cargo space" 70
 		"outfit space" 560
@@ -183,9 +183,9 @@ ship "Pug Arfecta"
 		"hull" 80000
 		"required crew" 36
 		"bunks" 46
-		"mass" 670
-		"drag" 7.5
-		"heat dissipation" .8
+		"mass" 1325
+		"drag" 11.25
+		"heat dissipation" .54
 		"fuel capacity" 1200
 		"cargo space" 64
 		"outfit space" 640
@@ -199,7 +199,7 @@ ship "Pug Arfecta"
 		"hull repair rate" 5
 		"hull energy" 5
 		"cloaking fuel" -.2
-		"reverse thrust" 66
+		"reverse thrust" 99
 		"reverse thrusting energy" 4.9
 		"reverse thrusting heat" 6.9
 		weapon

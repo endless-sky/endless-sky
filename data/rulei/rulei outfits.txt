@@ -49,7 +49,7 @@ outfit "Fate Sealer Activated"
 		"blast radius" 100
 		"shield damage" 900
 		"hull damage" 300
-		"hit force" -800
+		"hit force" -1200
 		"slowing damage" 20
 		"safe"
 
@@ -91,7 +91,7 @@ outfit "Fate Divider Activated"
 		"blast radius" 100
 		"shield damage" 900
 		"hull damage" 300
-		"hit force" 800
+		"hit force" 1200
 		"discharge damage" 45
 		"safe"
 		
@@ -135,13 +135,13 @@ outfit "Abyssal Composer"
 		"reload" 1
 		"hardpoint offset" 20
 		"firing energy" -8
-		"firing force" 25
+		"firing force" 37.5
 		"firing heat" 25
 		"firing shields" -30
 		"firing hull" -8
 		"shield damage" 180
 		"hull damage" 180
-		"hit force" -125
+		"hit force" -187.5
 		"slowing damage" 10
 		"energy damage" 100
 		"piercing" 0.3
