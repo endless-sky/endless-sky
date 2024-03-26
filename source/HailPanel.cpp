@@ -224,10 +224,10 @@ void HailPanel::Draw()
 		bool hasFighters = ship->PositionFighters();
 		auto addHardpoint = [this, &draw, &center, zoom](const Hardpoint &hardpoint) -> void
 		{
-			if(hardpoint.GetOutfit() && hardpoint.GetOutfit()->HardpointSprite().HasSprite())
+			if(hardpoint.GetOutfit() && hardpoint.GetWeapon()->HardpointSprite().HasSprite())
 			{
 				Body body(
-					hardpoint.GetOutfit()->HardpointSprite(),
+					hardpoint.GetWeapon()->HardpointSprite(),
 					center + zoom * facing.Rotate(hardpoint.GetPoint()),
 					Point(),
 					facing + hardpoint.GetAngle(),

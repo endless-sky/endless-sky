@@ -58,7 +58,7 @@ namespace {
 			{
 				const Outfit *weapon = it.GetOutfit();
 				armed.emplace(weapon);
-				if(weapon->Ammo() && weapon->AmmoUsage() > 0)
+				if(weapon->Ammo() && weapon->GetWeapon().AmmoUsage() > 0)
 					toRefill.emplace(weapon->Ammo());
 			}
 

@@ -257,12 +257,15 @@ namespace {
 					+ attributes.Get("cloaking heat");
 
 				for(const auto &oit : ship.Outfits())
-					if(oit.first->IsWeapon() && oit.first->Reload())
+				{
+					const Weapon &weapon = oit.first->GetWeapon();
+					if(oit.first->IsWeapon() && weapon.Reload())
 					{
-						double reload = oit.first->Reload();
-						energyConsumed += oit.second * oit.first->FiringEnergy() / reload;
-						heatProduced += oit.second * oit.first->FiringHeat() / reload;
+						double reload = weapon.Reload();
+						energyConsumed += oit.second * weapon.FiringEnergy() / reload;
+						heatProduced += oit.second * weapon.FiringHeat() / reload;
 					}
+				}
 				cout << 60. * (attributes.Get("energy generation") + attributes.Get("solar collection")) << ',';
 				cout << 60. * energyConsumed << ',';
 				cout << attributes.Get("energy capacity") << ',';
@@ -290,7 +293,7 @@ namespace {
 				for(const Hardpoint &hardpoint : ship.Weapons())
 					if(hardpoint.GetOutfit())
 					{
-						const Outfit *weapon = hardpoint.GetOutfit();
+						const Weapon *weapon = hardpoint.GetWeapon();
 						if(weapon->Ammo() && !ship.OutfitCount(weapon->Ammo()))
 							continue;
 						double damage = weapon->ShieldDamage() + weapon->HullDamage()
@@ -359,6 +362,7 @@ namespace {
 			for(auto &it : GameData::Outfits())
 			{
 				// Skip non-weapons and submunitions.
+				const Weapon &weapon = it.second.GetWeapon();
 				if(!it.second.IsWeapon() || it.second.Category().empty())
 					continue;
 
@@ -368,23 +372,23 @@ namespace {
 				cout << outfit.Cost() << ',';
 				cout << -outfit.Get("weapon capacity") << ',';
 
-				cout << outfit.Range() << ',';
+				cout << weapon.Range() << ',';
 
-				double reload = outfit.Reload();
+				double reload = weapon.Reload();
 				cout << reload << ',';
-				cout << outfit.BurstCount() << ',';
-				cout << outfit.BurstReload() << ',';
-				cout << outfit.TotalLifetime() << ',';
+				cout << weapon.BurstCount() << ',';
+				cout << weapon.BurstReload() << ',';
+				cout << weapon.TotalLifetime() << ',';
 				double fireRate = 60. / reload;
 				cout << fireRate << ',';
 
-				double firingEnergy = outfit.FiringEnergy();
+				double firingEnergy = weapon.FiringEnergy();
 				cout << firingEnergy << ',';
 				firingEnergy *= fireRate;
-				double firingHeat = outfit.FiringHeat();
+				double firingHeat = weapon.FiringHeat();
 				cout << firingHeat << ',';
 				firingHeat *= fireRate;
-				double firingForce = outfit.FiringForce();
+				double firingForce = weapon.FiringForce();
 				cout << firingForce << ',';
 				firingForce *= fireRate;
 
@@ -392,42 +396,42 @@ namespace {
 				cout << firingHeat << ',';
 				cout << firingForce << ',';
 
-				double shieldDmg = outfit.ShieldDamage() * fireRate;
+				double shieldDmg = weapon.ShieldDamage() * fireRate;
 				cout << shieldDmg << ',';
-				double dischargeDmg = outfit.DischargeDamage() * 100. * fireRate;
+				double dischargeDmg = weapon.DischargeDamage() * 100. * fireRate;
 				cout << dischargeDmg << ',';
-				double hullDmg = outfit.HullDamage() * fireRate;
+				double hullDmg = weapon.HullDamage() * fireRate;
 				cout << hullDmg << ',';
-				double corrosionDmg = outfit.CorrosionDamage() * 100. * fireRate;
+				double corrosionDmg = weapon.CorrosionDamage() * 100. * fireRate;
 				cout << corrosionDmg << ',';
-				double heatDmg = outfit.HeatDamage() * fireRate;
+				double heatDmg = weapon.HeatDamage() * fireRate;
 				cout << heatDmg << ',';
-				double burnDmg = outfit.BurnDamage() * 100. * fireRate;
+				double burnDmg = weapon.BurnDamage() * 100. * fireRate;
 				cout << burnDmg << ',';
-				double energyDmg = outfit.EnergyDamage() * fireRate;
+				double energyDmg = weapon.EnergyDamage() * fireRate;
 				cout << energyDmg << ',';
-				double ionDmg = outfit.IonDamage() * 100. * fireRate;
+				double ionDmg = weapon.IonDamage() * 100. * fireRate;
 				cout << ionDmg << ',';
-				double scramblingDmg = outfit.ScramblingDamage() * 100. * fireRate;
+				double scramblingDmg = weapon.ScramblingDamage() * 100. * fireRate;
 				cout << scramblingDmg << ',';
-				double slowDmg = outfit.SlowingDamage() * fireRate;
+				double slowDmg = weapon.SlowingDamage() * fireRate;
 				cout << slowDmg << ',';
-				double disruptDmg = outfit.DisruptionDamage() * fireRate;
+				double disruptDmg = weapon.DisruptionDamage() * fireRate;
 				cout << disruptDmg << ',';
-				cout << outfit.Piercing() << ',';
-				double fuelDmg = outfit.FuelDamage() * fireRate;
+				cout << weapon.Piercing() << ',';
+				double fuelDmg = weapon.FuelDamage() * fireRate;
 				cout << fuelDmg << ',';
-				double leakDmg = outfit.LeakDamage() * 100. * fireRate;
+				double leakDmg = weapon.LeakDamage() * 100. * fireRate;
 				cout << leakDmg << ',';
-				double hitforce = outfit.HitForce() * fireRate;
+				double hitforce = weapon.HitForce() * fireRate;
 				cout << hitforce << ',';
 
-				cout << outfit.Homing() << ',';
-				double strength = outfit.MissileStrength() + outfit.AntiMissile();
+				cout << weapon.Homing() << ',';
+				double strength = weapon.MissileStrength() + weapon.AntiMissile();
 				cout << strength << ',';
 
-				double damage = outfit.ShieldDamage() + outfit.HullDamage();
-				double deterrence = .12 * damage / outfit.Reload();
+				double damage = weapon.ShieldDamage() + weapon.HullDamage();
+				double deterrence = .12 * damage / weapon.Reload();
 				cout << deterrence << '\n';
 			}
 

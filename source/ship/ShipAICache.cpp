@@ -41,9 +41,10 @@ void ShipAICache::Calibrate(const Ship &ship)
 
 	for(const Hardpoint &hardpoint : ship.Weapons())
 	{
-		const Outfit *weapon = hardpoint.GetOutfit();
-		if(weapon && !hardpoint.IsSpecial())
+		const Outfit *outfit = hardpoint.GetOutfit();
+		if(outfit && !hardpoint.IsSpecial())
 		{
+			const Weapon *weapon = hardpoint.GetWeapon();
 			hasWeapons = true;
 			bool lackingAmmo = (weapon->Ammo() && weapon->AmmoUsage() && !ship.OutfitCount(weapon->Ammo()));
 			// Weapons without ammo might as well not exist, so don't even consider them
