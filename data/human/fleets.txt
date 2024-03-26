@@ -1473,7 +1473,7 @@ fleet "Navy Surveillance"
 		"Cruiser"
 		"Surveillance Drone" 4
 	variant 10
-		"Gunboat" 2
+		"Gunboat (Scanner)" 2
 
 fleet "Small Deep Merchants"
 	government "Merchant"
