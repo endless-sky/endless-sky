@@ -104,7 +104,7 @@ jobs:
   check_content_style:
     name: Content Style
     needs: changed
-    if: ${{ needs.changed.outputs.data == 'true' || needs.changed.outputs.content_style_check == 'true' || needs.changed.outputs.integration_tests == 'true' || needs.changed.outputs.content_style_script == 'true' || needs.changed.outputs.projects_check_config }}
+    if: ${{ needs.changed.outputs.data == 'true' || needs.changed.outputs.content_style_check == 'true' || needs.changed.outputs.integration_tests == 'true' || needs.changed.outputs.content_style_script == 'true' || needs.changed.outputs.projects_check_config == 'true' }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
