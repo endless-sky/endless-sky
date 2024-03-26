@@ -3692,6 +3692,37 @@ void PlayerInfo::RegisterDerivedConditions()
 		return retVal;
 	});
 
+	// The following condition checks if the player has an outfit/ship with the given tag.
+	auto &&allTagsProdivder = conditions.GetProviderPrefixed("tag: ");
+	auto allTagsFun = [this](const string &name) -> int
+	{
+		string tag = name.substr(strlen("tag: "));
+		int count = 0;
+		for(const shared_ptr<Ship> &ship : ships)
+		{
+			if(ship->IsDestroyed())
+				continue;
+			if(ship->BaseAttributes().Tags().count(tag))
+				++count;
+			for(const auto &outfit : ship->Outfits())
+				if(outfit.first->Tags().count(tag))
+					count += outfit.second;
+			for(const auto &outfit : ship->Cargo().Outfits())
+				if(outfit.first->Tags().count(tag))
+					count += outfit.second;
+		}
+		for(const auto &outfit : Cargo().Outfits())
+			if(outfit.first->Tags().count(tag))
+				count += outfit.second;
+		for(const auto &storage : planetaryStorage)
+			for(const auto &outfit : storage.second.Outfits())
+				if(outfit.first->Tags().count(tag))
+					count += outfit.second;
+		return count;
+	};
+	allTagsProdivder.SetHasFunction(allTagsFun);
+	allTagsProdivder.SetGetFunction(allTagsFun);
+
 	// This condition corresponds to the method by which the flagship entered the current system.
 	auto &&systemEntryProvider = conditions.GetProviderPrefixed("entered system by: ");
 	auto systemEntryFun = [this](const string &name) -> bool

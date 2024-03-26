@@ -960,6 +960,16 @@ void Ship::Save(DataWriter &out) const
 			for(const auto &it : baseAttributes.HyperOutSounds())
 				for(int i = 0; i < it.second; ++i)
 					out.Write("hyperdrive out sound", it.first->Name());
+			if(!baseAttributes.Tags().empty())
+			{
+				out.Write("tag");
+				out.BeginChild();
+				{
+					for(const string &tag : baseAttributes.Tags())
+						out.Write(tag);
+				}
+				out.EndChild();
+			}
 			for(const auto &it : baseAttributes.Attributes())
 				if(it.second)
 					out.Write(it.first, it.second);
