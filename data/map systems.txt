@@ -4982,7 +4982,7 @@ system Alpheratz
 			sprite planet/rock14-b
 			distance 173
 			period 18.5791
-	object
+	object Neriene
 		sprite planet/dust0
 		distance 1246.89
 		period 527.429
@@ -14847,8 +14847,8 @@ system Gacrux
 		sprite planet/lava5
 		distance 316.995
 		period 98.0619
-	object
-		sprite planet/ocean5
+	object Asphodel
+		sprite planet/cloud6-b
 		distance 698.285
 		period 320.605
 	object
@@ -20598,7 +20598,7 @@ system Kugel
 		sprite planet/desert0-b
 		distance 155.36
 		period 30.9833
-	object
+	object "New Kola"
 		sprite planet/gas15-b
 		distance 506.61
 		period 182.444
@@ -24370,12 +24370,12 @@ system Nocte
 		sprite planet/gas17
 		distance 973.25
 		period 1045.27
-		object
-			sprite planet/dust2
+		object Asterus
+			sprite planet/europa
 			distance 219
 			period 13.075
 		object
-			sprite planet/europa
+			sprite planet/dust2
 			distance 363
 			period 27.9019
 	object
