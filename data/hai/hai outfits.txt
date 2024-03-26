@@ -462,6 +462,7 @@ outfit "Hai Diamond Regenerator"
 	"energy consumption" .9
 	description "The Hai Diamond Shield Regenerator is an advanced type of shield recharging technology. Unfortunately, its power needs are quite high, and the shifts it makes to your shield matrix causes intense heat at the regenerator when your shields are charging. The Hai usually employ Williwaw Cooling when they use this regenerator."
 
+
 outfit "Hai Williwaw Cooling"
 	category "Systems"
 	cost 15000
@@ -470,6 +471,17 @@ outfit "Hai Williwaw Cooling"
 	"outfit space" -8
 	"cooling" 11
 	description "While Hai technology is fairly heat efficient, occasionally they outfit their ships such that they sporadically overheat and shut down. When that happens, they install these."
+
+outfit "Hai Zephyr Cooling"
+	category "Systems"
+	cost 72000
+	thumbnail "outfit/hai zephyr"
+	"mass" 14
+	"outfit space" -14
+	"cooling" 24
+	description `This modern cooling system has been developed by the Unfettered with significant help from Korath scientists, who were highly amused that the Williwaw had such a "primitive" design yet simultaneously shared many similarities with a Korath heat shunt.`
+	description `	Although advanced for the Hai, the Korath meant this "simple" hydrogen-circulating cooler to be an easy-to-understand stopgap for immediate production, while they brought the Hai up to speed with "proper" heat shunt theory and design.`
+
 
 outfit "Quantum Keystone"
 	category "Systems"
@@ -480,6 +492,7 @@ outfit "Quantum Keystone"
 	"quantum keystone" 1
 	description "This chunk of rock from the mountains on the Hai homeworld is apparently nothing more than a good luck charm, but the Hai have decorated their ships with them since the height of their empire. More superstitious Hai claim that the stones somehow reduce the nausea induced by hyperspace jumps by making travel between star systems easier, and many wealthy Hai refuse to book passage on a ship without one."
 	description "	This keystone comes with a package including a holo-film certificate of authenticity certifying its origins on Hai-home, a decorative but robust frame, and a tiny plaque with the keystone logo and sale number stamped on it. The packaging suggests mounting the framed certificate in a prominent location near the main airlock or public common area."
+
 
 outfit "Value Detector"
 	category "Systems"
@@ -492,6 +505,7 @@ outfit "Value Detector"
 	"tactical scan power" 35
 	"heat generation" 2
 	description "The Unfettered developed this scanner in order to determine which ships are worth plundering, or which lack the capacity to stand up to their ion weapons. Some Hai consider it rather rudimentary, but it is sufficient to identify the cargo on a ship from afar and provide more detailed information about the tactical condition of enemy vessels. This dual function is useful when fielding experimental weaponry."
+
 
 outfit "Hai Chasm Batteries"
 	plural "Hai Chasm Batteries"
@@ -812,6 +826,45 @@ outfit "Pulse Rifle"
 	"unplunderable" 1
 	description "The Pulse Rifle was first developed by the Hai to help protect their ships from boarders during the Korath raids. While it has since been adapted to more effectively incapacitate its target, if several bolts land in quick succession, the accumulated charge has a lethal effect on most species' nervous systems."
 
+outfit "Dual Pulse Pistols"
+	category "Hand to Hand"
+	plural "Dual Pulse Pistols"
+	cost 77777
+	thumbnail "outfit/dual pulse pistols"
+	"capture attack" 2.6
+	"capture defense" 1.6
+	"unplunderable" 1
+	description "A pair of modified heavy pulse pistols that are favored by some Unfettered and the occasional pirate captain. Dual wielding them adds more firepower during short raids against a ship's defenders. Individually, they lose their energy charge more quickly than a pulse rifle, making them a poor choice for holding a defensive position during a long siege."
+
+
+outfit "Heshi"
+	category "Unique"
+	cost 10000
+	thumbnail "outfit/unknown"
+	"mass" 1
+	"capture attack" 4
+	"capture defense" 8
+	"maintenance costs" 100
+	"unplunderable" 1
+	description "This is an aquarium containing what the Hai call a 'Heshi' - a huge scorpion looking creature. It must be fed and cared for but can be very useful in damaging the morale of enemies attacking the ship."
+	description "	On the offensive it can be used to intimidate enemies into surrendering, when they are made aware that they could become its next meal if they do not cooperate... Furthermore, it is very useful in the event of an interrogation."
+
+outfit "Unfettered License"
+	category "Licenses"
+	thumbnail "outfit/true unfettered license"
+	"unplunderable" 1
+	description "This sword may be a bit of a strange license, but its intention is to inspire pride in the wearer, and when the Unfettered see it, they show respect. This was given by one of their warlords as a sign of trust, and it is quite handy in fights."
+	description "	When striking, somehow this blade feels very light, as though it was moving along with its wielder. The blade itself is mostly intended to be defensive and fits you quite well, despite clearly being meant for a Hai."
+
+outfit "Ionic Blade"
+	category "Unique"
+	cost 1000000
+	thumbnail "outfit/ionic blade"
+	"capture attack" 10
+	"capture defense" 10
+	"energy consumption" 0.1
+	"unplunderable" 1
+	description "This legendary blade is able to affect nearby electric fields, powering down any energy-based weapons the enemy may have. It generates a small EM pulse which can sometimes be wielded to stun enemies within reach, and it can even be used to open hatches or temporarily deactivate defenses. However, this blade needs to be recharged before each battle and is made useless once its power supply runs out. It also has magnetic properties - the more charged it is, the more repulsive it is to any metals, making it a lifesaver in some scenarios. The effect is almost akin to a temporary 'force field' around the wielder."
 
 outfit "Shield Beetle Pendant"
 	category "Unique"

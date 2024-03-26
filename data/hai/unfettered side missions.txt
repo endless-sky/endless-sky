@@ -1,4 +1,5 @@
-# Copyright (c) 2015 by Michael Zahniser
+# Copyright (c) 2015 by Michael Zahniser for the first mission
+# Copyright (c) 2022 by Hurleveur for the rest
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
@@ -53,7 +54,6 @@ mission "Unfettered returning home"
 			label end
 			`	You show the youth to one of your bunk rooms, and tell him to stay hidden there until you reach Hai-home.`
 				accept
-
 	on visit
 		dialog `You look for the young Hai, but realize that he took a ride on one of your escorts! Better depart and wait for your escorts to arrive in this star system.`
 	on complete
@@ -65,3 +65,960 @@ mission "Unfettered returning home"
 		"reputation: Hai Merchant" += 10
 		"reputation: Hai Merchant (Human)" += 10
 		"reputation: Hai Merchant (Sympathizers)" += 10
+
+
+
+mission "Unfettered: Neutral With The Hai"
+	name `Negotiate with the Hai`
+	description `The Unfettered have asked you to go negotiate with the Hai to stop your conflict with them. Go to <destination>.`
+	source
+		attributes "unfettered"
+	destination "Mirrorlake"
+	clearance `You speak with the local authorities and they agree to meet with you.`
+	to offer
+		"reputation: Hai" < 0
+		has "Unfettered Jump Drive 3: offered"
+	on offer
+		conversation
+			`While wandering near the spaceport, you find an Unfettered Chief who chastises you as a father would to a misbehaving child. "What have you done to anger our brethren?" You begin to answer, but he immediately interrupts you. "Never mind, it matters not. What matters is that you settle this petty dispute you have with the Elders right now! Or, in the future, cooperation with us will become difficult."`
+			choice
+				`	(Accept.)`
+					goto agree
+				`	"You have no place to tell me what to do."`
+				`	"I can manage your weak brethren. Bother me not with this again."`
+					decline
+			`	He looks at you gravely. "Your loss. Do not come here crying when the Hai are causing you difficulties."`
+			choice
+				`	"Wait, I have changed my mind!"`
+				`	(Leave.)`
+					decline
+			`	He makes a show of thinking it over before responding, "Well, I guess I can forgive your insolence, this time. But listen to what I am about to say."`
+			label agree
+			`	"Go to our home system and make your request. The Elders despise conflict, so they will most likely grant it. Given the circumstances, Hai-home will definitely not let you land though, so go to Mirrorlake instead."`
+				accept
+	on fail
+		dialog `You have chosen to stay hostile to the Hai. This may prevent you from doing some of the Unfettered missions.`
+	on complete
+		conversation
+			`You find the Hai leaders that agreed to meet you and express your request to settle the disputes between you. They consider this among themselves before responding, "You are not the first one coming to us, saying they have redeemed themselves... Long ago, when I was but a child, an 'ex'-pirate came, asking for forgiveness, so he could live a new life with us; that is what he promised. He betrayed us and stole our technology to use it against us! Back then we were not so... friendly, and he was pursued and killed. Tell us, <last>, captain of the <ship>, why should we grant you such a request? What guarantee can you give us that he did not?"`
+			choice
+				`	"Because otherwise you get shot!" (Draw your weapon.)`
+					goto death
+				`	"I give you access to my account. Should I betray you, you will automatically receive 100 million credits."`
+				`	"The Unfettered will reject me should I attack you again."`
+					goto emptypromise
+				`	"I have changed my mind. The Unfettered will have to accept I am hostile to you."`
+					goto refuse
+			label secondchance
+			action
+				"reputation: Hai" >?= 1
+				"reputation: Hai (Wormhole Access)" >?= 1
+				"reputation: Hai Merchant" >?= 1
+				"reputation: Hai Merchant (Sympathizers)" >?= 1
+				"reputation: Hai Merchant (Human)" >?= 1
+				log `Convinced the Hai to accept the offer of ceasefire with me, as requested by an Unfettered Chief. Should the word not be honored, a large sum will be due.`
+			`	They seem willing to give you a second chance. "You have convinced us, but we will not grant you this pardon twice."`
+				accept
+			label death
+			`	The leaders gasp, and then, in a moment that seems to last forever, there is silence while everyone is looking at you. The silence is shattered when the guards start shooting. They probably did not intend to kill you outright, but apparently they see you as enough of a threat that the result is the same.`
+				die
+			label emptypromise
+			`	An elder marches forward. "That is not enough." They clearly expect more of you.`
+			choice
+				`	"I give you access to my account. Should I betray you, you will automatically receive a large sum."`
+					goto secondchance
+				`	"I have changed my mind. The Unfettered will have to accept I am hostile to you."`
+			label refuse
+			action
+				fail "Unfettered: Neutral With The Hai"
+
+mission "Unfettered: Untrustable"
+	to offer
+		"reputation: Hai" < 0
+		has "Unfettered: Neutral With The Hai: done"
+		not "Unfettered: Neutral With The Hai: failed"
+	on offer
+		dialog `Since you have not respected your word to be neutral to the Hai, you have received the agreed fine of 100 million credits. Should you refuse to pay it, the Unfettered will no longer consider you a friend.`
+	on accept
+		fine 100000000
+	on decline
+		"reputation: Hai (Unfettered)" <?= -1
+
+
+
+mission "<uhai> 5 Annex: Carrier Analysis"
+	minor
+	invisible
+	landing
+	source "Firelode"
+	to offer
+		has "<uhai> 5: Auxiliary Scans: done"
+		has "ship model: Carrier"
+		random < 30
+		not "unfettered: outcast"
+	on offer
+		conversation
+			`As you finish the landing procedure you receive a warning from one of your first mates: a Lightning Bug is headed straight towards his Carrier, at full speed!`
+				to display
+					not "flagship model: Carrier"
+			`As you finish the landing procedure, a warning siren triggers on the bridge. One of your officers warns you that a Lightning Bug is headed straight towards you, at full speed!`
+				to display
+					has "flagship model: Carrier"
+			`	Fortunately it stops as soon as it enters scanning range, and begins a full sweep of your ship, before hailing you. You immediately recognize Mera. "Hey there, <first>! I was warned about a Carrier arriving," she looks to her side, probably at one member of her crew as she continues, "because someone thought it was the Giftbringer..." before looking back to you, with a smile, "Anyway, what a pleasant surprise to know it was you. I hope you dont mind me taking some scans, you'll be compensated for it naturally. In fact, I'll allow you to come with me to the lab and choose any item you desire!"`
+			choice
+				`	"That seems like a good deal, I'm in!"`
+					goto deal
+				`	"Would you like to buy it instead?"`
+					goto sell
+				`	"My privacy is very important to me. Stop that scan at once."`
+			`	She seems really surprised, but gives a sign to her officers to stop the scanning. "In that case we will erase the information collected. Truly I had no idea you would see it this way. Still, this is such a shame..."`
+				decline
+			label deal
+			action
+				set "unfettered: carrier scans"
+			`	The scan is finished in a record speed, and Mera invites you on her ship to get to the lab. When you arrive on the bridge she is alone. "I like to be able to speak freely, you see," she says as you look at the empty bridge. "You never know who is listening," she says as she sets a course. "I have something to show you. But first, tell me, how did you acquire this Carrier? We Unfettered like to share stories, sometimes around campfires..." she says before clapping her hands. Suddenly the atmosphere of the room changes, and you can see outside of the ship as if it was no longer there.`
+			choice
+				`	"There is not much to say, I simply bought it."`
+					goto bought
+				`	"I acquired it in a grand battle for freedom!"`
+					to display
+						has "Defend Sabik: done"
+					goto freedom
+				`	"How did you do that?"`
+					goto explain
+				`	"I prefer not to talk about it."`
+			`	"Suit yourself."`
+				goto testingsite
+			label bought
+			`	"I see you are very humble, Captain."`
+				goto testingsite
+			label freedom
+			`	"So you are already Unfettered in your heart!" She sighs. "I hope it means you understand that we do not all desire battle, but we do see it as a necessity."`
+				goto testingsite
+			label explain
+			`	"This?" She says, looking around. "It's just a few projectors, in truth. This was not their primary intended use, however," she says with a chuckle.`
+			label testingsite
+			`	You quickly arrive at a collection of craters, which remind you of the Earth's moon you could see on magazines as a child. She stops there and takes a deep breath.`
+			`	"I have a new gadget I wanted to show you. If you would like to do the honors, it has never been tested before!"`
+			choice
+				`	(Dewit!)`
+					goto dewit
+				`	"Are you sure it is safe?"`
+			`	"I am pretty confident it will not blow us up, if that is what you are wondering!"`
+			label dewit
+			`	You press the button and the huge turret mounted on the top of the ship begins firing bright pulses, exploding the rocks beneath in a thunder of fire, the power of the shots so big that the ship's thrusters are having a difficult time maintaining the ship in position. You can hear Mera laughing. "It works! It works!" The weapon appears to be pulse based, but the projectiles are much, much bigger, and more unstable as well, it seems.`
+			`	Suddenly alarms turn on and the ship is put in a yellow light. You can see Mera shouting something but you cannot hear her over the cacophony. She does not seem to be in panic at all, but you have not seen her move this fast yet. Suddenly you hear a loud click and the alarms turn off. She then stabilizes the ship and launches at full speed as you hear a loud bang. Turning around you see that she disconnected the turret from the ship. She goes over a mountaintop and then stays as close to the ground as possible.`
+			`	"I know I said it would not blow up, but..." she starts before being interrupted by a big explosion as the ship enters the bottom of a crater. "Well, this is why the tests are done here, after all." She seems a bit demotivated by this apparent failure. "This ship was simply not able to handle the sheer amount of heat produced! I should probably work more on stabilizing it, but that would cost energy..." she continues rambling, probably having forgotten your presence.`
+			choice
+				`	"Was that turret my reward?"`
+				`	"Can we get back to the lab?"`
+					goto lab
+				`	"I've seen enough for today, get me back to my ship."`
+					decline
+			`	"No, of course not."`
+			label lab
+			action
+				"unfettered rep: Mera" ++
+			scene "outfit/repeater turret"
+			scene "outfit/repeater"
+			`	She sets the next destination, staying quiet. You arrive at the lab in little time, and she shows you your reward. "These are very powerful weapons, however your ship must be able to handle a lot of heat to use them. They are called 'Thermal Repeaters'. I have a lot of cleanup to do after what happened, so I'll simply ask you to choose between two of these turrets, or five guns."`
+			choice
+				`	"The turrets."`
+				`	"The guns."`
+					goto guns
+			action
+				outfit "Thermal Repeater Turret" 2
+			`	"I knew you would say that. I'll pass the word to my engineers. Have fun with them."`
+				goto wornout
+			label guns
+			action
+				outfit "Thermal Repeater" 5
+			label wornout
+			`	"Really? I wasn't expecting you to choose the guns. But I guess they do have more total firepower, even if they lack the tracking."`
+			`	She seems quite worn out by what happened today, and lets you find your way back to your ship.`
+				decline
+
+			label sell
+			`	For a few seconds she just lays there, stunned, before answering, "Are.. You serious? I mean, of course you are, let me just think about this with my staff, I'll get back to you." She cuts the transmission for a few minutes, before reestablishing it with a formal offer, "I'll give you 10 million credits and a few extras from our cache of Korath technology, including dreaded Piercer Missiles!`
+			`	You will naturally be able to buy back the outfits that are currently equipped on your ship from the outfitter - only the hull is of interest to me."`
+			`	A member of her staff murmurs something to her, and she realizes she forgot something, "I am so silly! You only have this one ship, so you would be unable to leave the planet if I take it. I'll give you an old Aphid we have lying around, that should allow you to get to Darkcloak safely, to buy a proper ship!"`
+				to display
+					"total ships" == 1
+			choice
+				`	"Deal!"`
+				`	"Come to think of it, I'm not ready to separate myself from that ship yet, a scan is all I can give you."`
+					goto deal
+			action
+				take ship "Carrier"
+				set "unfettered: carrier"
+				"unfettered rep: Mera" ++
+				payment 10000000
+				outfit "Thermal Repeater Rifle" 25
+				outfit "Piercer Missile Launcher" 2
+				outfit "Piercer Missile" 126
+				outfit "Piercer Missile Rack" 4
+				outfit "Plasma Core"
+			branch "flag only"
+				"total ships" <= 1
+			`	They take the ship away whilst giving you the agreed payment and outfits, and invite you to head to the outfitter to get your outfits back if you so desire.`
+				decline
+			label "flag only"
+			action
+				give ship "Aphid (Unfettered)"
+			`	They take the flagship away and give you the agreed payment and outfits, in addition to an old Aphid.`
+
+
+
+mission "<uhai> 13: Better Translator Directions"
+	minor
+	name "Find Choot'k"
+	description "Go to <destination> to find Choot'k. He should be on top of the biggest mountain."
+	source "Darkcloak"
+	destination "Firelode"
+	to offer
+		has "salary: Unfettered"
+		has "Hai Reveal [C01] Cleanup: done"
+		or
+			has "<uhai> 13: Korath Specialty: offered"
+			random < 15
+	on offer
+		conversation
+			`Do you want to go see Choot'k, to talk with him of the past and maybe see if you could do something for him?`
+				to display
+					not "<uhai> 13: Korath Specialty: offered"
+			`Do you want to go see if Choot'k can do something to improve the translator, as Mera suggested?`
+				to display
+					has "<uhai> 13: Korath Specialty: offered"
+			choice
+				`	(Yes.)`
+				`	(Not now.)`
+					defer
+				`	(Never.)`
+					decline
+			`	You head to his throne room to see him, and this time the Unfettered guards have no issue with letting you pass. It is only once you enter the room that you see the void left by his absence. One of his aids comes your way, equipped with a translator. When you ask where he might be they think a bit and come up with the only logical answer, "Go look on Firelode, on top of the [biggest, most prominent] mountain. That is where he usually is at this [time, day]."`
+				accept
+	to fail
+		has "unfettered: outcast"
+
+mission "<uhai> 13: Better Translator"
+	landing
+	name "Speak Sestor"
+	description "Go to <stopovers> to acquire the records of Sestor language."
+	source "Firelode"
+	stopover "Hai-home"
+	destination "Darkcloak"
+	passengers 1
+	to offer
+		has "<uhai> 13: Better Translator Directions: offered"
+	on offer
+		conversation
+			`	You climb on top of the greatest mountain for hours, having been told that using a ship or any other means of transportation would make you be judged unworthy. Choot'k is indeed there, on the top, admiring the view.`
+			scene "scene/chootk firelode"
+			`	He notices your arrival and invites you to admire the view as well with a gesture of the hand. He seems glad to see you. "<first>! I often come to this place, to meditate..." he says, before turning to take a good look at you. "It's been a while, but I keep hearing rumors about you. One day you may even threaten to take my place..." You see his grip around his blade tightening. For a few seconds you can feel some tension, but then he laughs.`
+			`	"No, not yet, at least. Now, I would duel you if I had the time, but I have duties to attend to, which you may help me with, actually. I want to go to <stopovers> to get the records of Korath interactions before the raids. Mera has informed me that the translator we recovered - whilst better than nothing - is not sufficient for all the tasks we have in mind."`
+			`	"I am sure you have already noticed that communication with the Korath can be... difficult, since you met them."`
+				to display
+					has "<uhai> 13: Korath Specialty: offered"
+			label choice
+			choice
+				`	"Let's go then."`
+					accept
+				`	"Would they just give that information to you?"`
+					to display
+						not "unfettered: why give info"
+				`	"How would they even have such data, I thought you were at war with the Korath?"`
+					to display
+						not "unfettered: how got info"
+					goto war
+				`	"I don't have the time right now, but I'll come back once I do."`
+					defer
+			action
+				set "unfettered: why give info"
+			`	"Of course they would, that is information accessible by all Hai, it simply is only stored on the homeworld, for convenience. I will also give them all data collected from our translator in exchange."`
+				goto choice
+			label war
+			action
+				set "unfettered: how got info"
+			`	"We Hai have not always been in conflict with the Korath. At some point we were even friendly with the Sestor, before they started raiding us, that is. We refused to go to war, so war came to us."`
+				goto choice
+	on stopover
+		dialog `The Hai are more happy to give you this data in exchange for data on the translator itself.`
+		set "unfettered: stopped on hai-home"
+	npc evade
+		government "Cerberus"
+		personality waiting nemesis disables plunders vindictive
+		to spawn
+			has "unfettered: stopped on hai-home"
+		fleet "Large Northern Pirates" 3
+		fleet "Small Northern Pirates" 3
+	to fail
+		has "unfettered: outcast"
+	on fail
+		dialog `Choot'k managed to get out from the ship before it exploded, by heading to an escape hatch when it started getting messy. His suit protected him from space long enough for a Hai ship to pick him off. However, he will probably not attempt something like this again...`
+	on complete
+		"unfettered rep: Choot'k" ++
+		"unfettered rep: Mera" += 2
+		log `Went to Hai-home with Choot'k to gather some data on the Sestor language from before the raids started. We got attacked by Cerberus, they were probably after him.`
+		clear "unfettered: stopped on hai-home"
+		clear "unfettered: why give info"
+		clear "unfettered: how got info"
+		set "unfettered: better sestor"
+		dialog `Choot'k thanks you personally, "Next time I will take my warship! I hate relying on others for my own safety, but you have my gratitude for bringing me back in one piece. Back to the translator matter, we will be able to upgrade it translator so better communication with the Sestor is possible."`
+
+# SPOILER: they see this as an opportunity to get the leader and also don't want the Unfettered (and you) to be able to communicate too deeply with Sestor...
+mission "<uhai> 13: A Warlord's Reception"
+	landing
+	invisible
+	source "Hai-home"
+	destination "Darkcloak"
+	to offer
+		has "<uhai> 13: Better Translator: active"
+	on enter
+		# SPOILER: he doesn't want them to get destroyed by the Hai because that would damage Alpha-Unfettered reputations, also he takes it as a challenge to his strength (except he's on your ship)
+		dialog `Upon entering the system you see multiple Cerberus ships, ready to attack you. Choot'k sends a message to the Hai. "Do not interfere, it would damage both my honor and <last>'s!" He did not ask for your opinion, but thankfully you have seen worse than a bunch of pirates.`
+	to fail
+		has "unfettered: outcast"
+
+
+conversation "modified shield beetle prize"
+	action
+		set "unfettered: given the modified beetle"
+	`As promised by Mera, you find the unusual Shield Beetle that seems to be waiting for you. There is a projected message on the hull of the ship: "Here is your very special reward<, unfettered title>. As promised, it is equipped with plenty of prototype weapons and has some in particular which I am sure you will like, and includes a reinforced shield matrix. Please accept this as a way for me to thank you for your assistance so far!"`
+	`	When you enter the ship you realize that something is blinking red in the cockpit. Getting close you realize it is a communicator with a high priority message from Mera. Once the ship recognizes your identity, it displays the message. "This is for your eyes only. This ship is not just given to you for you to have fun shooting around. It includes a very advanced communicator, that we would not replace should you lose it. Eventually you will be able to use it to coordinate fleet actions, or even to call for reinforcements, I hope."`
+	branch "has communicator"
+		has "language: Hai"
+	`	"Once you acquire a translator, we will equip it on your ship so that you may easily communicate with any Hai."`
+		goto then
+	label "has communicator"
+	`	"Since you already have a translator, here are the instructions to equip it on your ship." You install it on your ship as requested, and do a little test to make sure it is working properly.`
+	label then
+	`	"As you may have guessed by now, this ship is way more than just a ship. It is a symbol. As such, it will grant you access to the ionic weaponry on Darkcloak. You can park it anywhere in the galaxy and we will know, using the communicator, but should you lose it you will also lose access to those weapons. It is a symbol of trust, like a license you humans use, if you will."`
+	`	The message ends. Time to try the new beetle to see what it can do.`
+
+mission "<uhai> 15: Modified Beetle: Normal Prize"
+	landing
+	invisible
+	source "Darkcloak"
+	to offer
+		has "<uhai> 15: Modified Beetle: done"
+		has "unfettered: prize right away"
+		not "unfettered: outcast"
+	on offer
+		conversation "modified shield beetle prize"
+		give ship "Modified Shield Beetle" "Cobra"
+			id "unfettered: personal beetle"
+
+mission "<uhai> 15: Modified Beetle: Custom Price Notification"
+	landing
+	invisible
+	destination "Darkcloak"
+	to offer
+		or
+			has "event: unfettered: more dakka"
+			has "event: unfettered: cooler"
+			has "event: unfettered: disable-er"
+			has "event: unfettered: syscore's got it"
+		not "unfettered: given the modified beetle"
+		not "unfettered: outcast"
+	on enter "Wah Yoot" "Hi Yahr" "Ehma Ti"
+		dialog `You receive a message from Mera, "The ship is ready and waiting for you on Darkcloak<, unfettered title>."`
+
+event "unfettered: more dakka"
+
+ship "Modified Shield Beetle" "Modified Shield Beetle (Blaster)"
+	outfits
+		"Ionic Blaster Prototype" 8
+		"Ionic Turret Prototype" 2
+		"Chameleon Anti-Missile"
+		"Boulder Reactor" 2
+		"Hai Ravine Batteries"
+		"Hai Diamond Regenerator" 3
+		"Hai Zephyr Cooling" 3
+		"Outfits Expansion"
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		"Hyperdrive"
+		"Quantum Keystone"
+
+mission "<uhai> 15: Modified Beetle: Custom Price A"
+	landing
+	source "Darkcloak"
+	to offer
+		has "<uhai> 15: Modified Beetle: done"
+		has "event: unfettered: more dakka"
+		not "unfettered: outcast"
+	on offer
+		conversation "modified shield beetle prize"
+		give ship "Modified Shield Beetle (Blaster)" "Basilisk (Ignis)"
+			id "unfettered: personal beetle"
+
+
+event "unfettered: cooler"
+
+ship "Modified Shield Beetle" "Modified Shield Beetle (Heat Shunt)"
+	outfits
+		"Ionic Blaster Prototype" 4
+		"Hai Tracker Pod" 4
+		"Ionic Turret Prototype" 2
+		"Chameleon Anti-Missile"
+		"Boulder Reactor" 2
+		"Hai Ravine Batteries"
+		"Hai Diamond Regenerator" 3
+		"Hai Zephyr Cooling"
+		"Large Heat Shunt"
+		"Hai Tracker" 224
+		"Outfits Expansion"
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		"Hyperdrive"
+		"Quantum Keystone"
+
+mission "<uhai> 15: Modified Beetle: Custom Price B"
+	landing
+	source "Darkcloak"
+	to offer
+		has "<uhai> 15: Modified Beetle: done"
+		has "event: unfettered: cooler"
+		not "unfettered: outcast"
+	on offer
+		conversation "modified shield beetle prize"
+		give ship "Modified Shield Beetle (Heat Shunt)" "Basilisk (Aether)"
+			id "unfettered: personal beetle"
+
+
+event "unfettered: disable-er"
+
+ship "Modified Shield Beetle" "Modified Shield Beetle (Ionic Turret)"
+	outfits
+		"Ionic Blaster Prototype" 4
+		"Hai Tracker Pod" 4
+		"Ionic Turret Prototype" 3
+		"Boulder Reactor" 2
+		"Hai Ravine Batteries"
+		"Hai Diamond Regenerator" 2
+		"Hai Zephyr Cooling" 3
+		"Hai Tracker" 224
+		"Outfits Expansion"
+		"Hai Octopus Jammer"
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		"Hyperdrive"
+		"Quantum Keystone"
+
+mission "<uhai> 15: Modified Beetle: Custom Price: C"
+	landing
+	source "Darkcloak"
+	to offer
+		has "<uhai> 15: Modified Beetle: done"
+		has "event: unfettered: disable-er"
+		not "unfettered: outcast"
+	on offer
+		conversation "modified shield beetle prize"
+		give ship "Modified Shield Beetle (Ionic Turret)" "Basilisk (Aqua)"
+			id "unfettered: personal beetle"
+
+
+event "unfettered: syscore's got it"
+
+ship "Modified Shield Beetle" "Modified Shield Beetle (Large Systems Core)"
+	outfits
+		"Ionic Blaster Prototype" 4
+		"Hai Tracker Pod" 4
+		"Ionic Turret Prototype" 2
+		"Chameleon Anti-Missile"
+		"Boulder Reactor" 2
+		"Hai Ravine Batteries"
+		"Hai Diamond Regenerator"
+		"Systems Core (Large)"
+		"Hai Octopus Jammer"
+		"Hai Zephyr Cooling" 3
+		"Hai Tracker" 224
+		"Outfits Expansion"
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		"Hyperdrive"
+		"Quantum Keystone"
+
+mission "<uhai> 15: Modified Beetle: Custom Price: D"
+	landing
+	source "Darkcloak"
+	to offer
+		has "<uhai> 15: Modified Beetle: done"
+		has "event: unfettered: syscore's got it"
+		not "unfettered: outcast"
+	on offer
+		conversation "modified shield beetle prize"
+		give ship "Modified Shield Beetle (Large Systems Core)" "Basilisk (Terra)"
+			id "unfettered: personal beetle"
+
+
+
+mission "<uhai> 18: Wanderer Homeworld"
+	invisible
+	source "Darkcloak"
+	destination "Vara K'chrai"
+	clearance "You manage to make the aliens understand you are here to talk, and they allow you to land."
+	to offer
+		has "<uhai> 12: Outfitter Upgrade: done"
+		not "language: Wanderer"
+		not "First Contact: Wanderer: offered"
+		not "First Contact: Wanderer (Before Hai): offered"
+		not "unfettered: outcast"
+	to fail
+		has "<uhai> 18: Hai Language: failed"
+	on enter "Ka'ch'chrai"
+		dialog `Judging by the population compared to the other worlds, this appears to be the capital of these aliens. You should land to introduce yourself as a diplomat between them and the Hai.`
+
+mission "<uhai> 18: Hai Language"
+	minor
+	name `Meet and understand the Wanderers`
+	description `You need to be able to act as a diplomat between the Hai and the aliens up north. First go and meet those aliens. Then go to <stopovers> to see if He-Yi will provide a translator for you, or get one through other means.`
+	source "Darkcloak"
+	stopover "Warfeed"
+	to offer
+		has "<uhai> 12: Outfitter Upgrade: done"
+		not "language: Wanderer"
+	on offer
+		conversation
+			`Moving through the spaceport, you notice some buildings do not seem as crumbling as before. You wonder if the Unfettered are the ones who invested into repairs, or if the new Hai arrivals brought this about. Whatever the case is, this does not look like a place of conflict anymore. It looks like a place of hope.`
+			`	An Unfettered Herald - recognizable with their peculiar bird mask - approaches and notices you looking around. "Incredible, is it not? To see hope on the face of buildings and on the face of people. I am here to say that it's time you learn how to communicate with us - with the True language of the Hai. You also need to be able to make demands to the birds, and there is only one appropriate language for it. We have learned that they too speak Hai, even if they disgrace our language by doing so."`
+			choice
+				`	"How can I learn Hai?"`
+				`	"Is there some kind of translator?"`
+					goto translator
+			`	"Well, to be frank, we don't have the ability to teach all of its nuances to you in time. However, we believe that our brethren do have some way of doing that, given how apt they are with languages and how keen they are to meet new races."`
+			label translator
+			`	"We think our Hai brethren may indeed have what we need, but we need to find a way to obtain it.`
+			`	"They are not ready to meet the birds yet.`
+				to display
+					not "event: hai-human resolution announced"
+			`	"Perhaps you can go to them to get a translator, although that is not the preferred way. But maybe they are ready to meet the birds now.`
+				to display
+					has "event: hai-human resolution announced"
+			`	"In the meantime, you should go and meet the aliens up North and speak with them, representing us peacefully. They may not allow you to land on most of their planets. They may have grown distrustful of newcomers - probably because of our own actions. Go and see how pathetic these birds are, and then you should go to He-Yi about that translator."`
+			branch neutral
+				"reputation: Wanderer" >= 0
+			choice
+				`	"But I am at war with them already."`
+			`	"We know. Here is a message in Hai that you will transmit to them. It says that you are our ambassador, so do not open fire on them for now."`
+			action
+				"reputation: Wanderer" = 0
+				"unfettered rep: Herald" --
+				"unfettered rep: He-Yi" --
+			label neutral
+			choice
+				`	"I have in fact met them and I am on friendly terms with them already."`
+					to display
+						or
+							has "First Contact: Wanderer: offered"
+							has "First Contact: Wanderer (Before Hai): offered"
+						"reputation: Wanderer" >= 0
+					goto met
+				`	"I guess I'll try to land on their planet."`
+					accept
+				`	"I am not interested in being able to communicate with them."`
+			`	"Well if you want to work with us, you'll have to set that preference aside. And don't forget: the translator is for communicating with us as well. Some among the most conservative of us despise speaking in your language. This will be a token of good faith on your part."`
+			choice
+				`	"I guess I'll try to land on their planet."`
+					accept
+			label met
+			action
+				"unfettered rep: He-Yi" += 2
+			`	"We suspected that to be the case, but you do well to be frank by telling us. You can go to Warfeed, where He-Yi will give you a mission to earn a translator."`
+				decline
+	to fail
+		has "unfettered: outcast"
+	on visit
+		dialog "You have not yet met the Wanderers and acquired a translator from <stopovers> to communicate with them."
+	to complete
+		has "language: Wanderer"
+	on complete
+		log `The Unfettered asked me to be able to speak like a True Hai, because that is the language in which demands to the Wanderers should be made.`
+		dialog `You land and find the herald you spoke to earlier. "We now know we can speak to you in the True language of the Hai, finally. And you can speak to us in Hai, through the translator. Most of us will be willing to continue communicating in your language, but expect to use the translator to speak and understand our Chiefs. They'll probably act like it's nothing, but trust me, they care."`
+
+
+
+# the detainer is not for him but for the Sigil, although he can get it through other means
+mission "<uhai> 18: Detainer For Translator"
+	landing
+	name `Recover a detainer`
+	description `He-Yi has asked you to earn a translation device by bringing back a powerful alien weapon, said to be able to neutralize the engines of its target. You should probably look east of Unfettered space.`
+	source "Warfeed"
+	to offer
+		or
+			has "<uhai> 18: Hai Language: active"
+			has "<uhai> 18: Hai Language: declined"
+		or
+			has "First Contact: Wanderer: offered"
+			has "First Contact: Wanderer (Before Hai): offered"
+		not "language: Wanderer"
+	on offer
+		conversation
+			`You go find He-Yi in his war room, who does not seem too surprised to see you. "I expected you to come here. You must want my translation device."`
+			`	You nod.`
+			`	"Well, giving is not our way. We do not ask, or give. We take, and we earn. Things need to be earned, in battle or otherwise, or they have no [meaning, value]. You must have noticed that I was using a translator to [communicate with, talk to] you. Such a device is able to translate your backwards language into ours, and in the other way as well. Because these birds speak Hai, you will be able to communicate with them later.`
+			`	"If you want my translator, you will have to earn it. There is something I want: I have heard tales of a weapon that would [neutralize, disable] one's engines. Such a weapon would be a very [useful, nice] addition to both my collection and arsenal during battle. Bring me one of these weapons, and you will have earned my translator."`
+			choice
+				`	"Sure. I'll go and bring it back for you."`
+					accept
+				`	"Where can I find said weapon?"`
+			`	"The [green humans, unfettered humans] told me of it, and we know that they were active in the territory to the east. You would do well to go and look there. There are legends speaking of an everlasting battlefield - one that never ends the carnage, never sleeps, as if gods were [laughing, toying] in the background, enjoying the endless [destruction, show]. The Alphas, as you call them, did not tell me much details about it though... I heard it in a bar, so it may be a bit [exaggerated, false]," he finishes with a smirk.`
+			choice
+				`	"Sure, I will go and bring it back for you."`
+					accept
+				`	"I doubt I have the strength to face the Korath machines."`
+			`	"If you cannot acquire the weapon, then you do not deserve this device. There should be other ways to get it than brute force, however. You could loot a ship while its allies are distracted. Use whatever tools you have at your disposal. What do you say?"`
+			choice
+				`	"Sure, I will go and bring it back for you."`
+					accept
+				`	"This is way too risky. I'm out."`
+	to fail
+		or
+			has "language: Wanderer"
+			has "unfettered: outcast"
+	on visit
+		dialog `You do not yet have the weapon He-Yi asked for. Investigate the battles of the Korath automata and you may see it in action.`
+	on complete
+		fail "First Contact: Wanderer"
+		outfit "Korath Detainer" -1
+		set "language: Wanderer"
+		set "language: Hai"
+		dialog `He-Yi is impressed that you managed to bring this detainer to him, and happily exchanges it for a translator. He says you should still go to his herald to bring him news of this, and the scans for a reward.`
+
+mission "<uhai> 18: Hai Language: Found Detainer"
+	boarding
+	to offer
+		has "<uhai> 18: Detainer For Translator: active"
+	source
+		outfits "Korath Detainer"
+	on offer
+		conversation
+			scene "outfit/detainer"
+			`The 'Detainer' on this ship matches He-Yi's description perfectly! Quickly, grab it and get out of here.`
+
+
+
+mission "<uhai> 20: Bigeminate Sigil: Cloak"
+	minor
+	invisible
+	source "Warfeed"
+	to offer
+		has "<uhai> 17: Mirror Spy: offered"
+		random < 20
+		not "unfettered: outcast"
+	on offer
+		require "Cloaking Device"
+		conversation
+			`A Herald tells you He-Yi wants to see you again in his war room for a very generous proposition. They also mention it's not urgent, so you can come back later if you're busy.`
+			choice
+				`	(Comply with the request.)`
+				`	(Later.)`
+					defer
+			`	You arrive to He-Yi standing proudly in front of a statue in his war room. "I had no idea you were a disciple of Tejolis as well."`
+			choice
+				`	"What do you mean?"`
+				`	(Let him continue.)`
+			`	"I have discovered that you have somehow acquired an item I myself thought only a thing of legends. Something so [precious, rare] and yet so evasive. I want it. I am of course referring to the 'cloaking device.' I consider this item of the highest [importance, priority], and I am willing to give you <payment> for it. I will not lie to you: this item nearly [guarantees, ensures] the survival of the one who has it if he knows how to use it properly. It would also allow new strategies in our war against the bird people."`
+			choice
+				`	"I accept."`
+					accept
+				`	"I don't want to trade now, but maybe later."`
+				`	"I refuse."`
+					decline
+			`	"Very well. I [would not, do not want to] take it from you, of course. If you change your mind, my offer still stands."`
+				defer
+	on accept
+		payment 50000000
+		outfit "Cloaking Device" -1
+		log `Gave a cloaking device to He-Yi for a very big sum. It should keep him safe.`
+		"unfettered rep: He-Yi" ++
+
+
+
+mission "<uhai> 20: Bigeminate Sigil: Boarding Equipment"
+	minor
+	name `Close Quarter Fighting`
+	description `He-Yi wants you to bring twenty non-lethal weapons stronger than the pulse rifle for him to use in training with the other Unfettered. Deliver them to <destination>.`
+	source "Warfeed"
+	to offer
+		has "<uhai> 15: Modified Beetle: done"
+		or
+			not "unfettered: offered close quarter"
+			random < 30
+	on defer
+		set "unfettered: offered close quarter"
+	on offer
+		conversation
+			`You can see movement in the spaceport. People seem to be heading to one place in particular, and you can hear some shouting coming from that direction. Do you want to go take a look?`
+			choice
+				`	(Of course.)`
+				`	(Not now.)`
+					defer
+			`	You see where all the Unfettered were going, and come across a large field where they seem to be practicing close-quarters combat, grouped in circles of different sizes. You don't understand all that is going on, but it seems like the bigger the circle, the more opponents you have to fight. He-Yi is standing in the biggest of them all.`
+			choice
+				`	(Go closer to see what's going on.)`
+				`	(Leave. This doesn't seem interesting.)`
+					decline
+			`	As you move closer, you realize that the circles in the dirt are colored differently, but you're not sure what significance they hold. The Unfettered aren't all fighting with the same weapons - they move between circles, like in a huge dance. Some of them seem to have standard Hai weapons, but it doesn't look like they're deadly.`
+			choice
+				`	(Join the fight!)`
+					goto fight
+				`	(Keep looking.)`
+			`	You keep looking around and are eventually attracted toward the bigger fight, the one He-Yi is in. He seems to be handling 6 younger Unfettered all by himself, and you most admit he is doing quite a good job at it.`
+			choice
+				`	(Challenge him.)`
+					goto challenge
+				`	(Try to speak to him.)`
+					goto speak
+				`	(Join another less risky fight.)`
+			label fight
+			`	You look at different fights and see one with less experienced, younger Unfettered who seem to be fighting in a less crowded area than the rest. As you come closer, they see your interest and propose you join them.`
+			choice
+				`	(Accept.)`
+				`	(Decline.)`
+					goto nope
+			`	One of them comes toward you. "I challenge you, <last>! Tales of your strength have been spread, I want to test it first-hand. If I win, I demand you tell me those stories yourself." You are surprised he knows your language so well. He is equipped with what looks to be a twin pistol version of the standard Hai rifles.`
+			choice
+				`	"I'm sure those tales don't do me justice. I accept!"`
+				`	"Very well. But if I win, I want your weapon."`
+					goto weapon
+			`	"I see the tales about your wisdom were exaggerated at least," he snarks, first in your language, then he translates for his friends.`
+			label weapon
+			`	He looks at his weapons, thinking. Then he nods and hands you one of the pistols. "I have set it on training. We wouldn't want any accidents to happen," he adds. He says something to his friends, apparently telling them to move away. Then he moves away to the edge of the blue circle. "Because this is your first time, I will let you choose your position and have the initiative. The rules are simple: once you shout, the fight begins." You understand why you heard so much of that earlier.`
+			choice
+				`	(Shout now to surprise him.)`
+					goto start
+				`	(Get into position and try to prepare.)`
+			`	You carefully observe your surroundings, and decide to head toward one of the smaller circles. Everything is simulated to resemble an urban environment, probably because the original Unfettered had to protect their cities from the Korath. You feel the adrenaline of the coming battle surging into your veins.`
+			label start
+			`	You shout and try to shoot him... Except you completely miss him; you weren't expecting so much recoil from such a small pistol. It also seems to be wildly inaccurate. Obviously, your opponent knew this, and he is already rushing your way.`
+			choice
+				`	(Stay here and get ready for your next shot.)`
+					goto ready
+				`	(Go for the cover on the right.)`
+			branch lucky
+				random < 20
+			`	You try to head for cover, but he's too fast, and you receive a shot on your leg, making you fall. It hurts, but nothing seems to be broken, and soon after you cannot feel anything in your leg at all. You opponent comes to you and helps you to get up. "Pain is a good teacher sometimes," he says.`
+				goto stories
+			label lucky
+			action
+				outfit "Dual Pulse Pistols"
+				set "unfettered: won the duel"
+			`	You actually manage to reach cover, thanks to him stumbling a bit on the approach. He was probably anxious to beat you... Now that you are behind cover, you have a strategic advantage, and he misses his shots. It seems that the pistol quickly runs out of power, and using this opportunity you shoot back at him. Most of your shots miss, but because he cannot shoot back and you are well protected anyway, you can take the time to aim precisely. You manage to shoot his arm and he drops his pistol. He does not shout at all when getting shot, simply sits on the ground on that position, showing he surrenders. You get out of your cover and grab the other pistol. He gets up and speaks loud enough for you to hear, "You can keep them; you've earned it. This was a fair fight<, unfettered title>! I'd like to try again some time, and maybe get my pistols back..." He then goes away and sits on the side, probably thinking about what mistakes he made.`
+				goto heyi
+			label ready
+			`	You try to shoot him, but he's too fast and you are too inexperienced. You have made yourself an easy target for him by standing still; you fall as you receive a shot to your shoulder. It hurts, but nothing seems to be broken, and soon after you cannot feel anything in your arm at all. You opponent comes to you and helps you to get up. "Pain is a good teacher sometimes," he says.`
+			label stories
+			`	As agreed, you tell him some of your many stories, including how you happened to find Hai space, and how you joined the Unfettered. He seems captivated by all of it, and so are his friends. Then he goes back to fight with his friends, seemingly in teams.`
+			label heyi
+			`	It seems like your fight has attracted the attention of many of the Unfettered, including He-Yi. He comes to speak to you. "That was a [nice, skillful] fight, especially considering this must be your first!"`
+			branch "lost fight"
+				not "unfettered: won the duel"
+			choice
+				`	"Can I help you with something?"`
+					goto speak
+				`	"Winning felt good."`
+					goto won
+				`	"It was quite fun. Do you do this often?"`
+					goto fun
+			label "lost fight"
+			choice
+				`	"Can I help you with something?"`
+					goto speak
+				`	"Well, I lost."`
+					goto lost
+				`	"It was quite fun. Do you do this often?"`
+			label fun
+			`	"Fun, that it is! This [practice, ritual] is part of life for most Unfettered. We must always be ready to [repel, lead] a ground assault, as we always were. To that end we need to try most weapons, and [ways of fighting, tactics], which we do here."`
+				goto speak
+			label won
+			`	"Yes indeed, that was quite impressive! I most say, I never expected that out of you. I don't know if you got lucky or it was just superior skill or experience but you showed that [young, inexperienced] one a lesson! I have something to ask of you."`
+				goto speak
+			label lost
+			`	"Oh, well I got distracted near the end, so I wouldn't know, but were you expecting to win the fight? Those of us who choose to fight are well trained to do so. You may not have won the [fight, battle], but you have won something else."`
+			choice
+				`	"And what is that?"`
+				`	"Can I help you with anything?"`
+					goto speak
+			`	"Experience? Fun? There is always something to be [gained, deserved], even when there is not the risk of losing your life."`
+				goto speak
+			label challenge
+			`	You try to get a challenge with him, but you are not experienced enough for them to allow it. You did attract his attention however, and he comes to speak to you.`
+				goto speak
+			label nope
+			`	You watch them battling for so long you don't notice time pass, but then you realize you are being watched. It is He-Yi. He looks satisfied of your interest in this fight. "You should try it someday," he says.`
+			label speak
+			`	"As you may have noticed, we do this [fighting, training] quite often. Because our rifles are not deadly on the first shots, we almost never have anyone get [killed, seriously wounded]. But it still happens sometimes, between some of the older, more fragile ones, and some young ones who can be too [enthusiastic, trigger-happy]... They shoot one too many times to make sure to [win, hit]. We have experimented with some less powerful versions of our rifles, but those don't reflect war well enough for our liking. Do you happen to know any weapons that would not have such weaknesses - any that would be non-lethal but still not meant for child's play? I would expect said weapons to be even [stronger, more useful] than ours."`
+			choice
+				`	"Yes, I think I do."`
+					goto idea
+				`	"I have no idea, sorry."`
+			`	"I've heard stories of weapons that could not ever kill anyone, no matter how much you shoot him," He-Yi muses.`
+			label idea
+			`	"If you ever find any weapon that's [safer, less risky] than ours, please bring it to me. I would be interested to use them in training fights. I have heard tales of some who journeyed too far, excited by their newly acquired jump drives, and who came into contact with such weapons far into bird [territory, space]. I would not have expected them to use weapons at all, but maybe they too have [Unfettered, true] people that want to change? Those would make for great allies. Regardless, if you ever find such a weapon, could you bring me, say, twenty of them?"`
+			choice
+				`	"I'll see what I can do."`
+					accept
+				`	"I have no interest in bringing you weapons, even the least deadly."`
+					decline
+	to fail
+		has "unfettered: outcast"
+	on fail
+		dialog phrase "Essential Unfettered Mission Fail"
+	to complete
+		or
+			has "<uhai> 20: Boarding Equipement: Pug Staffs: failed"
+			has "<uhai> 20: Boarding Equipement: Enforcer Staffs: failed"
+			has "<uhai> 20: Boarding Equipement: Void Rifle: failed"
+	on complete
+		"unfettered rep: He-Yi" ++
+		clear "unfettered: offered close quarter"
+		log `Brought powerful but non-lethal weapons to the Unfettered for training.`
+		conversation
+			`You go see He-Yi with the non-lethal weapons to see if he has anything else to ask you. He seems very happy you managed to find them, and says, "Great job! It will be [helpful, decisive] in the coming war."`
+			choice
+				`	"How can a few better-trained troops make a difference?"`
+				`	"Glad I could make a difference then."`
+					goto getrd
+			`	"Well... To be completely [true, honest] with you, these weapons are not only intended for training purposes, but I cannot tell you any more for now."`
+			label getrd
+			`	"We'll soon want your help with the upcoming invasion, so you best be [prepared, experienced]! Having a strong flagship is always an important asset, but it is not all." It is not clear whether he means more ships or better strategy, and knowing him, it could be either.`
+			choice
+				`	"The Modified Shield Beetle will not be enough, I take it?"`
+				`	"In that case, I'll go prepare myself."`
+					goto train
+			`	"That shield beetle may be strong, but it is only [a prototype, an experience]. It has its weaknesses."`
+			label train
+			`	"Remember, having a strong fleet and flagship does not matter much if you don't know how to [use it, fight] properly! If you want to [practice, learn], there are plenty of Unfettered captains looking forward to challenging you. Check the job board if you're interested. Do not that they are not interested in too [unfair, quick] fights!"`
+
+mission "<uhai> 20: Boarding Equipement: Desperate Search"
+	invisible
+	source
+		attributes "unfettered"
+	to offer
+		has "main plot completed"
+		has "<uhai> 20: Bigeminate Sigil: Boarding Equipment: active"
+	on offer
+		event "looking for a gun" 30
+
+event "looking for a gun"
+
+mission "<uhai> 20: Boarding Equipement: Staffs Hint"
+	minor
+	name `Learn more about the Pug.`
+	description `Go to <destination> to see if you can ask Admiral Danforth or the Oathkeepers about what kind of weapons the Pug used, which may be of interest to He-Yi.`
+	destination "Farpoint"
+	to offer
+		has "event: looking for a gun"
+		has "<uhai> 20: Bigeminate Sigil: Boarding Equipment: active"
+		not "outfit (all): Pug Peacekeeping Staff"
+	on offer
+		conversation
+			`As you land on this planet, you think back of the peculiar request He-Yi made to you: bring back non-deadly weapons. After thinking a while about it, you remember tales about the Pug having special weapons that could easily knock people out. Maybe you should go to <destination> and speak to the Oathkeepers about this.`
+				accept
+	to fail
+		or
+			has "<uhai> 20: Bigeminate Sigil: Boarding Equipment: done"
+			not "unfettered: outcast"
+	on complete
+		conversation
+			`You cannot find Admiral Danforth, and wager he's probably busy with the pirates above. You think of disturbing him, but another Oathkeeper sees you and asks what you're looking for. You start speaking with him of the Pug war, and recognizing you, he seems eager to share his experience.`
+			`	"I was a simple soldier fighting with the rest of the fleet, in the Republic, at that time. We managed to find an isolated and disabled Pug ship. That by itself seemed like an opportunity too good to let go. Given we were in a Cruiser, we did not fear the crew of such a small ship. But we were wrong: as soon as we boarded said ship, we knew something was wrong. But we were committed, so we went in anyway. Being a soldier, I was on the front line, and I saw things... Things you do not want to see, trust me. I saw people falling for no apparent reason. But that was not the worst of it. As you can see, I have survived, and that by itself is terrifying. They shot me! They shot me, and yet I lived."`
+			`	You thank him for telling you this story and then think to yourself. This means there is a good chance the Pug have the non-lethal weapons you are looking for. Now you just have to find the Pug, but they'll probably not give you these weapons willingly...`
+
+conversation "more staffs"
+	`As you wander in the spaceport, you see He-Yi's herald, or at least someone with the same mask. He seems interested to know your progress in acquiring weapons.`
+	choice
+		`	"Could you look at what I have here to tell me if it's what you're looking for?"`
+		`	"It's going fine, thank you for asking."`
+			goto fine
+	`	You bring him to your ship and he sees a weapon that appears to be interesting. "This... <staff> staff seems to be adequate for my master. We would only require more of these."`
+	label fine
+	`	He wishes you good luck and hopes you can find the staffs. He reminds you a large amount of them is requested - twenty, to be precise.`
+
+mission "<uhai> 20: Boarding Equipement: More Enforcer Staffs"
+	minor # so both staff conversations don't pop up at the same time
+	invisible
+	source "Warfeed"
+	substitutions
+		<staff> "Enforcer"
+	to offer
+		has "<uhai> 20: Bigeminate Sigil: Boarding Equipment: offered"
+		not "<uhai> 20: Boarding Equipement: Enforcer Staffs: offered"
+		not "<uhai> 20: Boarding Equipement: Pug Staffs: offered"
+		not "unfettered: outcast"
+	on offer
+		require "Enforcer Riot Staff"
+		conversation "more staffs"
+
+
+mission "<uhai> 20: Boarding Equipement: More Pug Staffs"
+	minor
+	invisible
+	source "Warfeed"
+	substitutions
+		<staff> "Pug Peacekeeping"
+	to offer
+		has "<uhai> 20: Bigeminate Sigil: Boarding Equipment: offered"
+		not "<uhai> 20: Boarding Equipement: Pug Staffs: offered"
+		not "<uhai> 20: Boarding Equipement: Enforcer Staffs: offered"
+		not "unfettered: outcast"
+	on offer
+		require "Pug Peacekeeping Staff"
+		conversation "more staffs"
+
+
+mission "<uhai> 20: Boarding Equipement: Pug Staffs"
+	landing
+	invisible
+	source "Warfeed"
+	to offer
+		has "<uhai> 20: Bigeminate Sigil: Boarding Equipment: offered"
+		not "unfettered: outcast"
+	on offer
+		dialog `Do you want to sell 20 Pug Peacekeeping Staffs to the Unfettered? He-Yi says they can give you <payment> for it.`
+	on accept
+		payment 2500000
+		outfit "Pug Peacekeeping Staff" -20
+		dialog `The Unfettered thank you for bringing these 20 staffs to them. They give you <payment>.`
+		fail
+
+mission "<uhai> 20: Boarding Equipement: Enforcer Staffs"
+	landing
+	invisible
+	source "Warfeed"
+	to offer
+		has "<uhai> 20: Bigeminate Sigil: Boarding Equipment: offered"
+		not "unfettered: outcast"
+	on offer
+		dialog `Do you want to sell 20 Enforcer Riot Staffs to the Unfettered? He-Yi says they can give you <payment> for it.`
+	on accept
+		payment 4000000
+		outfit "Enforcer Riot Staff" -20
+		dialog `The Unfettered thank you for bringing these 20 staffs to them. They give you <payment>.`
+		fail
+
+mission "<uhai> 20: Boarding Equipement: Void Rifle"
+	minor
+	invisible
+	source "Warfeed"
+	to offer
+		has "<uhai> 20: Bigeminate Sigil: Boarding Equipment: offered"
+		not "unfettered: outcast"
+	on offer
+		require "Void Rifle"
+		conversation
+			`He-Yi seems very, very interested in this weapon. "Where did you find it? Can you bring us more? We would gladly make you rich if you do. This is the perfect weapon for training."`
+			choice
+				`	"Sorry, this is one of a kind."`
+			`	"I can cancel the exchange then, if it is precious to your eyes."`
+			choice
+				`	"10 million credits is much more precious, thank you."`
+				`	"Yes, I have changed my mind. Cancel the exchange."`
+					decline
+			`	"This will be my personal weapon. Worry not, I will take good care of it!"`
+				accept
+	on accept
+		payment 10000000
+		outfit "Void Rifle" -1
+		fail
