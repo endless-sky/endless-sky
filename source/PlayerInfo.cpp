@@ -3168,11 +3168,11 @@ void PlayerInfo::RegisterDerivedConditions()
 
 	auto &&unpaidSalariesProvider = conditions.GetProviderNamed("unpaid salaries");
 	unpaidSalariesProvider.SetGetFunction([this](const string &name) {
-		return min(limit, accounts.CrewSalariesOwed()); });
+		return min(limit, accounts.OverdueCrewSalaries()); });
 
 	auto &&unpaidMaintenanceProvider = conditions.GetProviderNamed("unpaid maintenance");
 	unpaidMaintenanceProvider.SetGetFunction([this](const string &name) {
-		return min(limit, accounts.MaintenanceDue()); });
+		return min(limit, accounts.OverdueMaintenance()); });
 
 	auto &&creditScoreProvider = conditions.GetProviderNamed("credit score");
 	creditScoreProvider.SetGetFunction([this](const string &name) {
@@ -3192,12 +3192,12 @@ void PlayerInfo::RegisterDerivedConditions()
 	salaryIncomeProvider.SetGetFunction(salaryIncomeHasGetFun);
 	salaryIncomeProvider.SetSetFunction([this](const string &name, int64_t value) -> bool
 	{
-		accounts.SetSalaryIncome(name.substr(strlen("salary: ")), value);
+		accounts.SetSalariesIncome(name.substr(strlen("salary: ")), value);
 		return true;
 	});
 	salaryIncomeProvider.SetEraseFunction([this](const string &name) -> bool
 	{
-		accounts.SetSalaryIncome(name.substr(strlen("salary: ")), 0);
+		accounts.SetSalariesIncome(name.substr(strlen("salary: ")), 0);
 		return true;
 	});
 
