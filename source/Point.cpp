@@ -22,7 +22,6 @@ using namespace std;
 #endif
 
 
-
 Point::Point() noexcept
 #ifdef __SSE3__
 	: v(_mm_setzero_pd())
@@ -60,6 +59,35 @@ bool Point::operator!() const noexcept
 #else
 	return (!x & !y);
 #endif
+}
+
+
+
+bool Point::operator==(const Point &other) const noexcept
+{
+#ifdef __SSE3__
+	return (val.x == other.val.x) && (val.y == other.val.y);
+#else
+	return (x == other.x) && (y == other.y);
+#endif
+}
+
+
+
+bool Point::operator!=(const Point &other) const noexcept
+{
+#ifdef __SSE3__
+	return !((val.x == other.val.x) && (val.y == other.val.y));
+#else
+	return !((x == other.x) && (y == other.y));
+#endif
+}
+
+
+
+bool Point::operator<(const Point &other) const noexcept
+{
+	return LengthSquared() < other.LengthSquared();
 }
 
 

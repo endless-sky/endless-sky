@@ -301,7 +301,7 @@ void Ship::Load(const DataNode &node)
 
 			vector<EnginePoint> &editPoints = (!steering && !reverse) ? enginePoints :
 				(reverse ? reverseEnginePoints : steeringEnginePoints);
-			editPoints.emplace_back(0.5 * child.Value(1), 0.5 * child.Value(2),
+			editPoints.emplace_back(0.5 * child.Value(1) * Scale().X(), 0.5 * child.Value(2) * Scale().Y(),
 				(child.Size() > 3 ? child.Value(3) : 1.));
 			EnginePoint &engine = editPoints.back();
 			if(reverse)
@@ -338,7 +338,7 @@ void Ship::Load(const DataNode &node)
 			Point hardpoint;
 			if(child.Size() >= 3)
 			{
-				hardpoint = Point(child.Value(1), child.Value(2));
+				hardpoint = Point(child.Value(1), child.Value(2)) * Scale();
 				if(child.Size() >= 4)
 					outfit = GameData::Outfits().Get(child.Token(3));
 			}
@@ -2884,6 +2884,34 @@ double Ship::MaxReverseVelocity() const
 
 
 
+const uint_fast8_t Ship::ThrustHeldFrames() const
+{
+	return thrusterHeldFrames;
+}
+
+
+
+const uint_fast8_t Ship::ReverseHeldFrames() const
+{
+	return reverseHeldFrames;
+}
+
+
+
+const uint_fast8_t Ship::TurnRightHeldFrames() const
+{
+	return turnRightHeldFrames;
+}
+
+
+
+const uint_fast8_t Ship::TurnLeftHeldFrames() const
+{
+	return turnLeftHeldFrames;
+}
+
+
+
 // This ship just got hit by a weapon. Take damage according to the
 // DamageDealt from that weapon. The return value is a ShipEvent type,
 // which may be a combination of PROVOKED, DISABLED, and DESTROYED.
@@ -4338,6 +4366,15 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 	double dragForce = DragForce();
 	double slowMultiplier = 1. / (1. + slowness * .05);
 
+	if(thrusterHeldFrames > 0)
+		thrusterHeldFrames--;
+	if(reverseHeldFrames > 0)
+		reverseHeldFrames--;
+	if(turnRightHeldFrames > 0)
+		turnRightHeldFrames--;
+	if(turnLeftHeldFrames > 0)
+		turnLeftHeldFrames--;
+
 	if(isDisabled)
 		velocity *= 1. - dragForce;
 	else if(!pilotError)
@@ -4369,6 +4406,10 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 			{
 				isSteering = true;
 				steeringDirection = commands.Turn();
+				if(steeringDirection < 0.)
+					turnLeftHeldFrames = min(Ship::MaximumThrusterHeldframes(), static_cast<uint_fast8_t>(turnLeftHeldFrames + 2));
+				else
+					turnRightHeldFrames = min(Ship::MaximumThrusterHeldframes(), static_cast<uint_fast8_t>(turnRightHeldFrames + 2));
 				// If turning at a fraction of the full rate (either from lack of
 				// energy or because of tracking a target), only consume a fraction
 				// of the turning energy and produce a fraction of the heat.
@@ -4428,6 +4469,12 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 				isThrusting = (thrustCommand > 0.);
 				isReversing = !isThrusting && attributes.Get("reverse thrust");
 				thrust = attributes.Get(isThrusting ? "thrust" : "reverse thrust");
+
+				if(isReversing)
+					reverseHeldFrames = min(Ship::MaximumThrusterHeldframes(), static_cast<uint_fast8_t>(reverseHeldFrames + 2));
+				else
+					thrusterHeldFrames = min(Ship::MaximumThrusterHeldframes(), static_cast<uint_fast8_t>(thrusterHeldFrames + 2));
+
 				if(thrust)
 				{
 					double scale = fabs(thrustCommand);
