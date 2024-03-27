@@ -279,8 +279,13 @@ namespace {
 		// Ships not yet at their destination must go there before they can linger.
 		if(destination && destination != system)
 			return false;
+
+		int maxLinger = personality.LingerTime();
+		if(system && maxLinger < 0)
+			maxLinger = system->ActualLingerTime();
+
 		// Ship cannot linger any longer in this system.
-		if(!system || ship.GetLingerSteps() >= system->MinimumFleetPeriod() / 4)
+		if(ship.GetLingerSteps() >= maxLinger)
 			return false;
 
 		ship.Linger();
