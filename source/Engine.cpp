@@ -159,8 +159,7 @@ namespace {
 	void DrawFlareSprites(const Ship &ship, DrawList &draw, const vector<Ship::EnginePoint> &enginePoints,
 		const vector<pair<Body, int>> &flareSprites, uint8_t side)
 	{
-		double gimbalDirection = (ship.Commands().Has(Command::FORWARD) || ship.Commands().Has(Command::BACK))
-			* -ship.Commands().Turn();
+		double gimbalDirection = ship.Commands().Thrust() * -ship.Commands().Turn(); //  Commands().Thrust();
 
 		for(const Ship::EnginePoint &point : enginePoints)
 		{
