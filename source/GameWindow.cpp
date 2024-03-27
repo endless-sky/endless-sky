@@ -79,7 +79,7 @@ bool GameWindow::Init(bool headless)
 	// This sets it for both X11 and Wayland.
 	setenv("SDL_VIDEO_X11_WMCLASS", "io.github.endless_sky.endless_sky", true);
 #endif
-#if defined(__linux__) && !defined(ES_STEAM)
+#if defined(__linux__) && defined(ES_ENABLE_WAYLAND) && ES_ENABLE_WAYLAND
 	// Default to Wayland under Linux
 	SDL_SetHint(SDL_HINT_VIDEODRIVER, "wayland,x11");
 #endif
