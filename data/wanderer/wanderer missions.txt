@@ -10,3 +10,11 @@
 #
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
+
+mission "Wanderers: Check up on Mereti"
+	landing
+	name ""
+	description ""
+	source "Korbatri Eska"
+	to offer
+		has "event: wanderers: desi seledrak"
