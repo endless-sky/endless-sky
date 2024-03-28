@@ -5,7 +5,6 @@
 "Auto steer" 101
 "Reverse" 1073741905
 "Fire primary weapon" 9
-"Toggle turret tracking" 121
 "Fire secondary weapon" 113
 "Select secondary weapon" 119
 "Land on planet / station" 108
