@@ -3274,6 +3274,7 @@ system Alcor
 	government Republic
 	attributes "bright star" "dirt belt" "notable star"
 	habitable 3208.255
+	arrival 3208.255
 	belt 1615 10
 	belt 1795 9
 	link Mizar
@@ -5374,6 +5375,7 @@ system Aniara
 	government Republic
 	attributes "dirt belt"
 	habitable 980
+	arrival 980
 	belt 1566
 	belt 2479 8
 	link Mora
@@ -17671,6 +17673,7 @@ system Intercrus
 	government Republic
 	attributes "dirt belt"
 	habitable 370
+	arrival 500
 	belt 1950 9
 	belt 2227 10
 	link Liesma
@@ -21189,6 +21192,7 @@ system Liesma
 	pos -581 4
 	government Republic
 	habitable 1080
+	arrival 1080
 	belt 1291 3
 	link Alphard
 	link Intercrus
@@ -22609,6 +22613,7 @@ system Megrez
 	government Republic
 	attributes "bright star" "dirt belt" "notable star"
 	habitable 3400
+	arrival 3400
 	belt 1960 9
 	link Mora
 	asteroids "small rock" 4 6.316
@@ -24261,6 +24266,7 @@ system Muscida
 	government Republic
 	attributes "dirt belt"
 	habitable 1250
+	arrival 1250
 	belt 1323 3
 	belt 2082 7
 	belt 2512 5
@@ -32079,6 +32085,7 @@ system "Tania Borealis"
 	government Republic
 	attributes "bright star" "dirt belt" "notable star"
 	habitable 3400
+	arrival 3400
 	belt 1248 8
 	belt 2306
 	link Algieba
