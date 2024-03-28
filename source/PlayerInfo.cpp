@@ -248,6 +248,8 @@ void PlayerInfo::Load(const string &path)
 			mapColoring = child.Value(1);
 		else if(child.Token(0) == "map zoom" && child.Size() >= 2)
 			mapZoom = child.Value(1);
+		else if(child.Token(0) == "starry map" && child.Size() >= 2)
+			isStarry = child.Value(1);
 		else if(child.Token(0) == "collapsed" && child.Size() >= 2)
 		{
 			for(const DataNode &grand : child)
@@ -2942,7 +2944,7 @@ void PlayerInfo::SetMapColoring(int index)
 
 
 // Get the map zoom level.
-int PlayerInfo::MapZoom() const
+float PlayerInfo::MapZoom() const
 {
 	return mapZoom;
 }
@@ -2950,9 +2952,25 @@ int PlayerInfo::MapZoom() const
 
 
 // Set the map zoom level.
-void PlayerInfo::SetMapZoom(int level)
+void PlayerInfo::SetMapZoom(float level)
 {
 	mapZoom = level;
+}
+
+
+
+// Get the map display mode.
+bool PlayerInfo::StarryMap() const
+{
+	return isStarry;
+}
+
+
+
+// Set the map display mode.
+void PlayerInfo::SetStarryMap(bool state)
+{
+	isStarry = state;
 }
 
 
@@ -4266,6 +4284,7 @@ void PlayerInfo::Save(DataWriter &out) const
 	// Save the current setting for the map coloring;
 	out.Write("map coloring", mapColoring);
 	out.Write("map zoom", mapZoom);
+	out.Write("starry map", isStarry);
 	// Remember what categories are collapsed.
 	for(const auto &it : collapsed)
 	{

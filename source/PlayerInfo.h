@@ -333,8 +333,11 @@ public:
 	int MapColoring() const;
 	void SetMapColoring(int index);
 	// Get or set the map zoom level.
-	int MapZoom() const;
-	void SetMapZoom(int level);
+	float MapZoom() const;
+	void SetMapZoom(float level);
+	// Get or set the map display mode.
+	bool StarryMap() const;
+	void SetStarryMap(bool state);
 	// Get the set of collapsed categories for the named panel.
 	std::set<std::string> &Collapsed(const std::string &name);
 	// Should help dialogs relating to carriers be displayed?
@@ -458,7 +461,8 @@ private:
 	std::pair<const System *, Point> interstellarEscortDestination;
 	// Currently selected coloring, in the map panel (defaults to reputation):
 	int mapColoring = -6;
-	int mapZoom = 0;
+	float mapZoom = 0;
+	bool isStarry = false;
 
 	// Currently collapsed categories for various panels.
 	std::map<std::string, std::set<std::string>> collapsed;

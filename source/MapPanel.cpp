@@ -45,6 +45,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Ship.h"
 #include "ShipJumpNavigation.h"
 #include "SpriteSet.h"
+#include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "StellarObject.h"
 #include "System.h"
@@ -338,6 +339,13 @@ void MapPanel::FinishDrawing(const string &buttonCondition)
 		info.SetCondition("max zoom");
 	if(player.MapZoom() <= static_cast<int>(mapInterface->GetValue("min zoom")))
 		info.SetCondition("min zoom");
+	if(player.StarryMap())
+	{
+		info.SetCondition("is starry");
+		isStarry = true;
+	}
+	else
+		isStarry = false;
 	const Interface *mapButtonUi = GameData::Interfaces().Get(Screen::Width() < 1280
 		? "map buttons (small screen)" : "map buttons");
 	mapButtonUi->Draw(info, this);
@@ -568,10 +576,14 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 			this, &MapPanel::Find, "Search for:", "", Truncate::NONE, true));
 		return true;
 	}
+	else if(key == ']' && !isStarry)
+		player.SetStarryMap(true);
+	else if(key == '[' && isStarry)
+		player.SetStarryMap(false);
 	else if(key == SDLK_PLUS || key == SDLK_KP_PLUS || key == SDLK_EQUALS)
-		player.SetMapZoom(min(static_cast<int>(mapInterface->GetValue("max zoom")), player.MapZoom() + 1));
+		player.SetMapZoom(min(static_cast<float>(mapInterface->GetValue("max zoom")), player.MapZoom() + 0.5f));
 	else if(key == SDLK_MINUS || key == SDLK_KP_MINUS)
-		player.SetMapZoom(max(static_cast<int>(mapInterface->GetValue("min zoom")), player.MapZoom() - 1));
+		player.SetMapZoom(max(static_cast<float>(mapInterface->GetValue("min zoom")), player.MapZoom() - 0.5f));
 	else
 		return false;
 
@@ -655,9 +667,9 @@ bool MapPanel::Scroll(double dx, double dy)
 	Point anchor = mouse / Zoom() - center;
 	const Interface *mapInterface = GameData::Interfaces().Get("map");
 	if(dy > 0.)
-		player.SetMapZoom(min(static_cast<int>(mapInterface->GetValue("max zoom")), player.MapZoom() + 1));
+		player.SetMapZoom(min(static_cast<float>(mapInterface->GetValue("max zoom")), player.MapZoom() + 0.5f));
 	else if(dy < 0.)
-		player.SetMapZoom(max(static_cast<int>(mapInterface->GetValue("min zoom")), player.MapZoom() - 1));
+		player.SetMapZoom(max(static_cast<float>(mapInterface->GetValue("min zoom")), player.MapZoom() - 0.5f));
 
 	// Now, Zoom() has changed (unless at one of the limits). But, we still want
 	// anchor to be the same, so:
@@ -1089,10 +1101,15 @@ void MapPanel::UpdateCache()
 			}
 		}
 
+		static const vector<string> unmappedSystem = {"map/unexplored-star"};
+
+
+		const bool canViewSystem = player.CanView(system);
 		nodes.emplace_back(system.Position(), color,
 			player.KnowsName(system) ? system.Name() : "",
 			(&system == &playerSystem) ? closeNameColor : farNameColor,
-			player.CanView(system) ? system.GetGovernment() : nullptr);
+			canViewSystem ? system.GetGovernment() : nullptr,
+			canViewSystem ? system.GetMapIcon() : unmappedSystem);
 	}
 
 	// Now, update the cache of the links.
@@ -1374,12 +1391,40 @@ void MapPanel::DrawSystems()
 	if(commodity == SHOW_GOVERNMENT)
 		closeGovernments.clear();
 
+
+
 	// Draw the circles for the systems.
 	double zoom = Zoom();
+
+	const float ringFade = isStarry ? 1.5 - 1.25 * zoom : 1.;
 	for(const Node &node : nodes)
 	{
 		Point pos = zoom * (node.position + center);
-		RingShader::Draw(pos, OUTER, INNER, node.color);
+
+		// System rings fade as you zoom in.
+		RingShader::Draw(pos, OUTER, INNER, node.color.Additive(max(ringFade,
+			node.mapIcon.size() == 0 ? .9f : 0)));
+
+		if(isStarry)
+		{
+			// Ensures every multiple-star system has a characteristic, deterministic rotation.
+			float starAngle = node.name.length() + node.position.Length();
+			float spin = 4 * acos(0.0) / node.mapIcon.size();
+			Point starOffset = (node.mapIcon.size() == 1) ? Point(0, 0) : node.mapIcon.size() * Point(2, 2);
+
+			// Draw the star sprites
+			for(string star : node.mapIcon)
+			{
+				starAngle = starAngle + spin;
+				Point starRotate(cos(starAngle), sin(starAngle));
+				const Body starBody = Body(SpriteSet::Get(star), pos + zoom * starOffset * starRotate,
+					Point(0, 0), 0, sqrt(zoom) / 2, min(zoom + 0.2, 0.8));
+				batchDraw.Add(starBody);
+			}
+		}
+
+		batchDraw.Draw();
+		batchDraw.Clear();
 
 		if(commodity == SHOW_GOVERNMENT && node.government && node.government->GetName() != "Uninhabited")
 		{
@@ -1402,15 +1447,19 @@ void MapPanel::DrawNames()
 {
 	// Don't draw if too small.
 	double zoom = Zoom();
-	if(zoom <= 0.5)
+	if(zoom <= 0.66)
 		return;
 
 	// Draw names for all systems you have visited.
 	bool useBigFont = (zoom > 2.);
 	const Font &font = FontSet::Get(useBigFont ? 18 : 14);
-	Point offset(useBigFont ? 8. : 6., -.5 * font.Height());
+	const double zoomFactor = zoom / 2;
+	Point offset(useBigFont ? 10. : 8., -.5 * font.Height());
 	for(const Node &node : nodes)
-		font.Draw(node.name, zoom * (node.position + center) + offset, node.nameColor);
+		font.Draw(node.name, zoom * (node.position + center) + offset,
+			(isStarry ? Color::Combine(1. - zoomFactor, node.nameColor, zoomFactor, node.color)
+			: node.nameColor).Additive(.9));
+
 }
 
 
