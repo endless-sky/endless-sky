@@ -13934,6 +13934,10 @@ system Feraticus
 		sprite planet/lava0
 		distance 622.81
 		period 1390.20
+	object
+		sprite planet/gateway-frozen
+		distance 10000
+		period 126491
 
 system Fereti
 	pos -39 600

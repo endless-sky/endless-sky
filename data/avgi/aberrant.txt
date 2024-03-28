@@ -1,0 +1,138 @@
+# Copyright (c) 2023 by Azure
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+
+phrase "aberrant names"
+	phrase
+		"builder beginning"
+	word
+		"'si" 6
+		"'se" 6
+		"'sy" 5
+		"'sie" 2
+		"'sei"
+
+fleet "Small Aberrant"
+	government "Aberrant"
+	names "aberrant names"
+	"cargo settings"
+		cargo 0
+	personality
+		confusion 60
+		hunting coward vindictive unconstrained harvests mining secretive
+	variant 20
+		"Twilight Ka'sei 1A"
+	variant 5
+		"Twilight Ka'sei 1A (Disable-able)"
+	variant 20
+		"Twilight Ka'sei 1B"
+	variant 5
+		"Twilight Ka'sei 1B (Disable-able)"
+	variant 20
+		"Twilight Ka'sei 1C"
+	variant 5
+		"Twilight Ka'sei 1C (Disable-able)"
+	variant 20
+		"Twilight Ka'sei 1D"
+	variant 5
+		"Twilight Ka'sei 1D (Disable-able)"
+	variant 20
+		"Twilight Ka'sei 2A"
+	variant 5
+		"Twilight Ka'sei 2A (Disable-able)"
+	variant 20
+		"Twilight Ka'sei 2B"
+	variant 5
+		"Twilight Ka'sei 2B (Disable-able)"
+	variant 20
+		"Twilight Ka'sei 2C"
+	variant 5
+		"Twilight Ka'sei 2C (Disable-able)"
+	variant 20
+		"Twilight Ka'sei 2D"
+	variant 5
+		"Twilight Ka'sei 2D (Disable-able)"
+	variant 20
+		"Twilight Ka'sei 2E"
+	variant 5
+		"Twilight Ka'sei 2E (Disable-able)"
+	variant 10
+		"Twilight Ka'sei 1A" 2
+	variant 3
+		"Twilight Ka'sei 1A"
+		"Twilight Ka'sei 1A (Disable-able)"
+	variant 10
+		"Twilight Ka'sei 1B" 2
+	variant 3
+		"Twilight Ka'sei 1B"
+		"Twilight Ka'sei 1B (Disable-able)"
+	variant 10
+		"Twilight Ka'sei 1C" 2
+	variant 3
+		"Twilight Ka'sei 1C"
+		"Twilight Ka'sei 1C (Disable-able)"
+	variant 10
+		"Twilight Ka'sei 1D" 2
+	variant 3
+		"Twilight Ka'sei 1D"
+		"Twilight Ka'sei 1D (Disable-able)"
+	variant 10
+		"Twilight Ka'sei 2A" 2
+	variant 3
+		"Twilight Ka'sei 2A"
+		"Twilight Ka'sei 2A (Disable-able)"
+	variant 10
+		"Twilight Ka'sei 2B" 2
+	variant 3
+		"Twilight Ka'sei 2B"
+		"Twilight Ka'sei 2B (Disable-able)"
+	variant 10
+		"Twilight Ka'sei 2C" 2
+	variant 3
+		"Twilight Ka'sei 2C"
+		"Twilight Ka'sei 2C (Disable-able)"
+	variant 10
+		"Twilight Ka'sei 2D" 2
+	variant 3
+		"Twilight Ka'sei 2D"
+		"Twilight Ka'sei 2D (Disable-able)"
+	variant 10
+		"Twilight Ka'sei 2E" 2
+	variant 3
+		"Twilight Ka'sei 2E"
+		"Twilight Ka'sei 2E (Disable-able)"
+
+fleet "Large Aberrant"
+	government "Aberrant"
+	names "aberrant names"
+	"cargo settings"
+		cargo 0
+	personality
+		confusion 60
+		hunting coward vindictive unconstrained harvests mining secretive
+	variant 10
+		"Twilight Ka'sei 1E"
+	variant 5
+		"Twilight Ka'sei 1E (Disable-able)"
+	variant 15
+		"Twilight Ka'sei 1F"
+	variant 5
+		"Twilight Ka'sei 1F (Disable-able)"
+	variant 10
+		"Twilight Ka'sei 2F"
+	variant 5
+		"Twilight Ka'sei 2F (Disable-able)"
+	variant 2
+		"Twilight Ka'sei 2G"
+	variant 10
+		"Twilight Ka'sei 2G (Disable-able)"

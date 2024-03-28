@@ -1,0 +1,62 @@
+# Copyright (c) 2023 by Azure
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+
+mission "Avgi: Spawn Wandering Fleet"
+	invisible
+	landing
+	repeat
+	to offer
+		not "Avgi: Spawn Wandering Fleet: active"
+		not "Avgi: Wandering Fleet Upgrade: done"
+	to complete
+		never
+	npc save
+		government "Avgi (Wandering Fleet)"
+		personality timid coward uninterested unconstrained lingering secretive mute
+		system Kr-84
+		ship "Modified Tachytia" "Voyager"
+		ship "Undsyni (Tanker)" "Vitrified Carbon"
+		ship "Frequentia" "Blue Argon"
+		ship "Polari" "Forward Waves"
+		ship "Prismaios (Atomic)" "Serene Spin"
+		ship "Refraktos" "Penitent Albedo"
+		ship "Diaspersi" "Content Cloud"
+		ship "Optikon" "O-101"
+		ship "Optikon" "O-102"
+		ship "Optikon" "O-103"
+		ship "Optikon" "O-104"
+		ship "Optikon" "O-105"
+		ship "Optikon" "O-106"
+		ship "Sonikis (Tanker)" "S-201"
+		ship "Sonikis (Tanker)" "S-202"
+		ship "Sonikis (Tanker)" "S-203"
+		ship "Sonikis (Tanker)" "S-204"
+		ship "Akoustiki" "A-301"
+		ship "Akoustiki" "A-302"
+		ship "Akoustiki" "A-303"
+		ship "Akoustiki" "A-304"
+		ship "Akoustiki" "A-305"
+		ship "Akoustiki" "A-306"
+		ship "Akoustiki" "A-307"
+		ship "Akoustiki" "A-308"
+		ship "Akoustiki" "A-309"
+		ship "Photikon" "P-401"
+		ship "Photikon" "P-402"
+		ship "Photikon" "P-403"
+		ship "Undulon" "U-501"
+		ship "Undulon" "U-502"
+		ship "Undulon" "U-503"
+		ship "Undulon" "U-504"
+		ship "Undulon" "U-505"
+		ship "Undulon" "U-506"
