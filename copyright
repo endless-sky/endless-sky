@@ -169,6 +169,7 @@ Files:
  images/land/enceladus_2*
  images/land/enceladus_3*
  images/land/enceladus_4*
+ images/land/moon2*
  images/ui/galaxy*
  images/ui/pleiades*
  images/planet/callisto*
@@ -753,6 +754,17 @@ Copyright: Various
 License: public-domain
  Taken from unsplash.com, a collection of photographs that have been donated and
  placed in the public domain.
+
+Files:
+ images/land/badlands14*
+Copyright: Azzedine Rouichi
+License: Unsplash
+Comment:
+ This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
 
 Files:
  images/land/lava0*
