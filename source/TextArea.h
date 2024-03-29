@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef TEXTAREA_H
-#define TEXTAREA_H
+#ifndef TEXT_AREA_H
+#define TEXT_AREA_H
 
 #include "Color.h"
 #include "Panel.h"
@@ -27,6 +27,8 @@ class Font;
 class Rectangle;
 class RenderBuffer;
 class WrappedText;
+
+
 
 // Represents a rect on the screen that needs to display text. The text can be
 // larger than the display area, in which case the class will allow the text
@@ -48,6 +50,7 @@ public:
 	int GetTextHeight();
 	int GetLongestLineWidth();
 
+
 protected:
 	virtual void Draw() override;
 	virtual bool Click(int x, int y, int clicks) override;
@@ -57,6 +60,7 @@ protected:
 	virtual bool Scroll(double dx, double dy) override;
 
 	void Invalidate();
+
 
 private:
 	bool bufferIsValid = false;
@@ -72,5 +76,7 @@ private:
 	bool dragging = false;
 	bool hovering = false;
 };
+
+
 
 #endif
