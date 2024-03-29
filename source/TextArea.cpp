@@ -25,7 +25,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-
 TextArea::TextArea()
 {
 	SetInterruptible(true);

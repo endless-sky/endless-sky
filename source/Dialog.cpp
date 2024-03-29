@@ -265,6 +265,7 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 		if(boolFun)
 		{
 			DoCallback(okIsActive);
+			// Use PopThrough because the Dialog has spawned additional panels.
 			GetUI()->PopThrough(this);
 		}
 		else if(okIsActive || isMission)
