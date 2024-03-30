@@ -933,7 +933,7 @@ mission "<uhai> 7: Cavalry Arrives"
 	on enter
 		conversation
 			"As you enter the system it becomes clear: Cerberus have called for backup! Multiple pirate ships are arriving in the system. But you also see other ships arriving by jump drives. They do not appear to be pirates, maybe the 'contact' has provided help as well?"
-			`	The 2 mysterious black ships hail you, "Listen carefully. You may have noticed a Korath drone in the area, and they don't like Alpha dogs' presence in our space. If some Korath come to help, do not open fire on them, understood?" The other one then speaks, "We'll let you deal with that bactrian, but I would recommend bribing 'neutral' pirates<, unfettered title>!" They then end the hail, making it clear they will not take no for an answer. They probably are allies of the 'contact' Sookootow refered to, but in the chaos the Unfettered would never know if something happened to the ships.`
+			`	The 2 mysterious black ships hail you, "Listen carefully. You may have noticed a Korath drone in the area, and they don't like Alpha dogs' presence in our space. If some Korath come to help, do not open fire on them, understood?" The other one then speaks, "We'll let you deal with that bactrian, but I would recommend bribing 'neutral' pirates<, unfettered title>!" They then end the hail, making it clear they will not take no for an answer. They probably are allies of the 'contact' Sookootow referred to, but in the chaos the Unfettered would never know if something happened to the ships.`
 	npc save
 		government "Shadow"
 		personality entering heroic uninterested staying mute

@@ -608,7 +608,7 @@ mission "<uhai> 0: Bring Hai"
 				`	(Wait to see what happens.)`
 			`	Progressively, most of the Hai present stand up, the message from each to volunteer clear. The Chief seems very moved by this, as a parent would be to see their child succeed in life. He designates one of the first to stand, and gently sends the child walking over to them.`
 			`	The sun has almost set, and you can see that the Chiefs are beginning to grow impatient as the next Hai approaches and speaks to them. Merora tells you, "This request bothers the Chiefs quite a bit, as he is not asking for a child to be transported but a full family, and not from here to Hai space but the opposite. A lot more money can be required to bring Hai here, because whilst many captains agree to bring us food for free, they prefer not to bring us more Hai, since for some it would mean condemning them to know hunger as well. As such, there are not as many captains ready to do this. The Chief said that currently no one is available, at least not at a suitable price. Later, they will most probably go and personally ask captains if it can be arranged."`
-			`	While Merora was speaking, the Chiefs had spoken amongst themselves briefly, and now one has moved forward to address the crowd. Merora translates again, "It is over. Goodbye, <first>, I hope we meet again."`
+			`	While Merora was speaking, the Chiefs had spoken amongst themselves briefly, and now one has moved forward to address the crowd. Merora turns to you, "It is over. Goodbye, <first>, I hope we meet again."`
 			choice
 				`	"Could you help me translate again some time?"`
 				`	(Let her leave.)`
@@ -715,7 +715,7 @@ mission "<uhai> 1: Bring Medicine"
 	to offer
 		has "<uhai> 0: Bring Hai: done"
 	substitutions
-		<prioritymessage> `Unfortunately, because it's in Hai, you can only guess at the meaning out of it, but it is clearly important. You can see the Hai word for "Unfettered" repeated several times, as well as numbers in the hundreds.`
+		<prioritymessage> `Unfortunately, because it's in Hai, you can only guess at the meaning of it, but it is clearly important. You can see the Hai word for "Unfettered" repeated several times, as well as numbers in the hundreds.`
 			not "language: Hai"
 		<prioritymessage> `"Assistance requested from all available pilots, Unfettered or not. Local outbreak of broiling sickness has spread catastrophically in our space, and is now classified as an uncontrolled [epidemic, plague]. Hundreds of Hai are already critically ill and Unfettered hospitals have declared an emergency situation, fearing the consequences of current [medical, treatment] supply levels. Medical supplies are to be retrieved from Stonebreak for immediate return."`
 			has "language: Hai"
@@ -1138,9 +1138,9 @@ mission "<uhai> 3: Recover Jump Drives"
 			choice
 				`	(Show him to your ship.)`
 					goto ship
-				`	"parrots?"`
+				`	"Parrots?"`
 			label aliens
-			`	"The aliens we be raiding, ye swab! And don't be joining that party until we tell you so!"`
+			`	"The aliens we be raiding, ye swab! And don't be joining that party until we tell ya so!"`
 			label ship
 			`	You accompany him to your ship, and he seems actually impressed, even more so when seeing the interior. "Your ship indeed be... adequate, for a warrior and this task," he begrudges.`
 			`	"Hold up right there matey, the sea sooner be purple than I'd see ye can fit four drives in yer holds! Ya better make some space!"`
