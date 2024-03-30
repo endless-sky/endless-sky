@@ -127,7 +127,7 @@ conversation "hai intro"
 		`	(Go to the shipyard.)`
 			decline
 		`	(Go see what the captain has to offer first.)`
-	`	You head to the spaceport and easily find the captain selling off his ships. Thankfully they did not yet sell the Grasshopper.`
+	`	You head to the spaceport and easily find the captain selling off his ships. Thankfully he has not yet sold the Grasshopper.`
 	`	The captain greets you in Hai. You are embarrassed to have to explain to them that you never learned their language. Most Hai speak your language however, and, as usual, they are able to switch to speaking yours without much difficulty.`
 	`	"Hello, good fellow! I assume you come for the Grasshopper." Your interest for this ship must be apparent.`
 	choice
@@ -191,7 +191,7 @@ event "not from boston"
 
 event "grew up on greenwater"
 	planet "Greenwater"
-		add description `It feels good to be home.`
+		add description `This is also the place where you grew up.`
 
 substitutions
 	"<origin planet>" "New Boston"

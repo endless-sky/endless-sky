@@ -3890,7 +3890,7 @@ mission "Human to Hai Space"
 				`	"Why would you want to go all the way out to <planet>?"`
 					goto explain
 			`	"No way, you as well?" He stops for a second to process what you just said, "They say the universe is a small place, but I never believed any of that, until now, that is. I grew up in the city of Darwin."`
-			`	"Me too," you reply. "Almost felt like human space; we did not even have to learn Hai. And those fluffy rodents always have a way to make you feel at home!"`
+			`	Before you can say anything, he continues. "Almost felt like human space; we didn't even have to learn Hai. And those fluffy rodents always have a way to make you feel at home!"`
 			label explain
 			`	"I have family there," he says. "I came out here to do some traveling and see a bit of human space, but now I have to get back home. You see, I was born on <planet>, and this is my first time out of the wormhole."`
 			choice
@@ -3929,8 +3929,8 @@ mission "Human to Hai Space"
 			`	After thanking you once again, they walk off. As they leave, you overhear Benjamin talk to his family about his trip. "They had so many kinds of food there, it was delicious! Although I did get homesick for pickled acorns..."`
 				decline
 			label haistart
-			`	"Of course, you did bring me all the way back here, after all." These are my parents, Yeerto and Taepip. His father Yeerto then speaks, "We heard about your travel agency, even went there at some point when we were thinking of relocating to human space. It ended up being a touch too expensive, though, so Elliot arranged a merchant to bring him on the way."`
-			`	"It feels nice to have my hard work be recognized," you answer.`
+			`	"Of course. You did bring me all the way back here, after all. These are my parents, Yeerto and Taepip." His father Yeerto then speaks, "We heard about your travel agency, even went there at some point when we were thinking of relocating to human space. It ended up being a touch too expensive, though, so Benjamin arranged a merchant to bring him on the way."`
+			`	"Funny we almost found each other then," he adds with a smile on his face.`
 			`	"Honest work always bears fruits." His mother, Taepip, picks up, looking at her son, "That's what we always told him after we adopted him."`
 			choice
 				`	"I was partly-adopted as well."`
@@ -3941,7 +3941,7 @@ mission "Human to Hai Space"
 				`	"Sorry, I have other pressing matters."`
 					goto end
 			`	You spend a long evening with them, talking about your experience in human space and what you did here before going. "You are sort of like your father," Yeerto comments, before telling you about the local news here.`
-			`	You almost feel sad when it is already time to go back to your ship.`
+			`	It begins to get dark, and you realize that it may be time to head back to your ship.`
 
 
 
