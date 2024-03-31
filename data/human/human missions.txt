@@ -3859,7 +3859,7 @@ mission "Human to Hai Space"
 		conversation
 			`	A young man carrying luggage approaches you. "You look like a knowledgeable captain," he says. "In all your travels, have you ever heard tell of any... intelligent rodents?"`
 			choice
-				`	"'Heard tell'? That's where I come from!"`
+				`	"'Heard tell'? I'm from Hai space!"`
 					to display
 						has "hai space start"
 					goto origin
@@ -3874,7 +3874,7 @@ mission "Human to Hai Space"
 				decline
 			
 			label origin
-			`	He seems shocked, "You too? You're not joking with me, are you? I need to go to <destination>, and I can afford to give you <payment> for it."`
+			`	He seems shocked. "You too? You're not joking with me, are you? I need to go to <destination>, and I can afford to give you <payment> for it."`
 				goto choice
 			label hai
 			`	"If that's the case, could you bring me to <destination>? I'll give you <payment>."`
@@ -3889,8 +3889,8 @@ mission "Human to Hai Space"
 					decline
 				`	"Why would you want to go all the way out to <planet>?"`
 					goto explain
-			`	"No way, you as well?" He stops for a second to process what you just said, "They say the universe is a small place, but I never believed any of that, until now, that is. I grew up in the city of Darwin."`
-			`	Before you can say anything, he continues. "Almost felt like human space; we didn't even have to learn Hai. And those fluffy rodents always have a way to make you feel at home!"`
+			`	"No way, you as well?" He stops for a second to process what you just said. "They say the universe is a small place, but I never believed any of that. Until now, that is. I grew up in the city of Darwin."`
+			`	Before you can say anything, he continues. "Almost felt like human space; I didn't even have to learn Hai." He smiles. "They're a very welcoming species. Partially why I want to go back."`
 			label explain
 			`	"I have family there," he says. "I came out here to do some traveling and see a bit of human space, but now I have to get back home. You see, I was born on <planet>, and this is my first time out of the wormhole."`
 			choice
