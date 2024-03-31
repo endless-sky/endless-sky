@@ -1197,7 +1197,7 @@ ship "Peregrine"
 		"heat dissipation" 0.85
 		"fuel capacity" 900
 		"ramscoop" 3.25
-		"cargo space" 49
+		"cargo space" 59
 		"outfit space" 552
 		"weapon capacity" 220
 		"engine capacity" 171
@@ -1206,12 +1206,12 @@ ship "Peregrine"
 		"hull repair rate" 1.5
 		"hull energy" 0.90
 		"cloak" .03
-		"cloaking energy" 3
-		"cloaking fuel" .05
+		"cloaking energy" 4
+		"cloaking fuel" .075
 		"gaslining" 1
 		"outfit scan power" 18
 		"outfit scan efficiency" 22
-		"tactical scan power" 39
+		"tactical scan power" 50
 		"remnant node" 5
 		weapon
 			"blast radius" 240

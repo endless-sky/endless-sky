@@ -1423,7 +1423,7 @@ mission "Remnant: Cognizance 33"
 	stealth
 	source "Clink"
 	destination "Ssil Vida"
-	cargo "refined fuel" 48
+	cargo "refined fuel" 58
 	deadline 19
 	to offer
 		has "Remnant: Cognizance 32: done"
