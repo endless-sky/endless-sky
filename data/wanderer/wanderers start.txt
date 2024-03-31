@@ -2308,7 +2308,7 @@ mission "Wanderers Evacuation 1B"
 	on visit
 		dialog `You've landed on <planet>, but not all of the Riptide transports carrying the refugees are in the system. Better depart and wait for them all to arrive.`
 
-event "wanderers: vara ke'stai evacuated
+event "wanderers: vara ke'stai evacuated"
 	planet "Vara Ke'stai"
 		remove spaceport
 		remove outfitter
