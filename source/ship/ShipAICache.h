@@ -35,6 +35,8 @@ public:
 	bool IsArtilleryAI() const;
 	double ShortestRange() const;
 	double ShortestArtillery() const;
+	double GunRange() const;
+	double TurretRange() const;
 	double MinSafeDistance() const;
 	bool NeedsAmmo() const;
 
@@ -49,6 +51,8 @@ private:
 	double maxTurningRadius = 200.;
 	bool hasWeapons = false;
 	bool canFight = false;
+	double turretRange = 0.;
+	double gunRange = 0.;
 };
 
 
@@ -57,6 +61,8 @@ private:
 inline bool ShipAICache::IsArtilleryAI() const { return useArtilleryAI; }
 inline double ShipAICache::ShortestRange() const { return shortestRange; }
 inline double ShipAICache::ShortestArtillery() const { return shortestArtillery; }
+inline double ShipAICache::GunRange() const { return gunRange; }
+inline double ShipAICache::TurretRange() const { return turretRange; }
 inline double ShipAICache::MinSafeDistance() const { return minSafeDistance; }
 inline bool ShipAICache::NeedsAmmo() const { return hasWeapons != canFight; }
 

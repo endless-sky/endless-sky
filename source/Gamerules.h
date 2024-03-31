@@ -38,6 +38,7 @@ public:
 	double DepreciationDaily() const;
 	int DepreciationGracePeriod() const;
 	int DepreciationMaxAge() const;
+	double DefaultLateralThrustRatio() const;
 
 
 private:
@@ -50,6 +51,7 @@ private:
 	double depreciationDaily = 0.997;
 	int depreciationGracePeriod = 7;
 	int depreciationMaxAge = 1000;
+	double defaultLateralThrustRatio = 0.25;
 };
 
 
