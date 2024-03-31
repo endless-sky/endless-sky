@@ -23,7 +23,7 @@ ship "Maeri'het"
 		"hull" 23100
 		"required crew" 1
 		"bunks" 1
-		"mass" 390
+		"mass" 780
 		"drag" 3.8
 		"heat dissipation" .4
 		"overheat damage threshold" 0.2
@@ -126,7 +126,7 @@ ship "Telis'het"
 		"hull" 21300
 		"required crew" 1
 		"bunks" 1
-		"mass" 820
+		"mass" 3280
 		"drag" 6.9
 		"heat dissipation" .35
 		"overheat damage threshold" 0.2
@@ -265,7 +265,7 @@ ship "Vareti'het"
 		"hull" 25800
 		"required crew" 1
 		"bunks" 1
-		"mass" 1520
+		"mass" 12160
 		"drag" 11.9
 		"heat dissipation" 0.3
 		"overheat damage threshold" 0.2

@@ -29,7 +29,7 @@ ship "vyu-Ir"
 		"automaton" 1
 		"required crew" 1
 		"bunks" 100
-		"mass" 600
+		"mass" 2400
 		"drag" 20
 		"heat dissipation" 10
 		"fuel capacity" 1000
@@ -42,15 +42,15 @@ ship "vyu-Ir"
 		"energy generation" 80
 		"heat generation" 20
 		
-		"thrust" 50
+		"thrust" 75
 		"thrusting energy" 20
 		"thrusting heat" 10
 		"flare sound" "impulse engine"
-		"reverse thrust" 50
+		"reverse thrust" 100
 		"reverse thrusting energy" 20
 		"reverse thrusting heat" 10
 		"reverse flare sound" "impulse engine"
-		"turn" 600
+		"turn" 1200
 		"turning energy" 10
 		"turning heat" 5
 		"steering flare sound" "impulse engine"

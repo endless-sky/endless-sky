@@ -27,7 +27,7 @@ ship "Albatross"
 		"required crew" 44
 		"bunks" 75
 		"cargo space" 124
-		"mass" 610
+		"mass" 4880
 		"drag" 8.6
 		"heat dissipation" 0.6
 		"fuel capacity" 600
@@ -282,7 +282,7 @@ ship "Modified Dromedary"
 		"hull" 9600
 		"required crew" 95
 		"bunks" 300
-		"mass" 2140
+		"mass" 12840
 		"drag" 15.1
 		"heat dissipation" .4
 		"fuel capacity" 900
@@ -486,7 +486,7 @@ ship "Gull"
 		"hull" 2500
 		"required crew" 3
 		"bunks" 20
-		"mass" 270
+		"mass" 540
 		"drag" 6
 		"heat dissipation" 0.7
 		"fuel capacity" 600
@@ -646,7 +646,7 @@ ship "Heron"
 		"hull" 250500
 		"required crew" 1000
 		"bunks" 3000
-		"mass" 5000
+		"mass" 40000
 		"drag" 25
 		"heat dissipation" .80
 		"fuel capacity" 2500
@@ -813,7 +813,7 @@ ship "Ibis"
 		"hull" 6200
 		"required crew" 16
 		"bunks" 36
-		"mass" 350
+		"mass" 1400
 		"drag" 5.1
 		"heat dissipation" 0.7
 		"fuel capacity" 700
@@ -1001,8 +1001,8 @@ ship "Pelican"
 		"required crew" 14
 		"bunks" 35
 		"cargo space" 302
-		"mass" 320
-		"drag" 7.2
+		"mass" 1200
+		"drag" 7.0
 		"heat dissipation" 0.7
 		"fuel capacity" 600
 		"ramscoop" 2.75
@@ -1187,7 +1187,7 @@ ship "Peregrine"
 		"hull" 10600
 		"required crew" 9
 		"bunks" 25
-		"mass" 350
+		"mass" 1400
 		"drag" 4.3
 		"heat dissipation" 0.85
 		"fuel capacity" 1100
@@ -1500,7 +1500,7 @@ ship "Starling"
 		"hull" 4900
 		"required crew" 6
 		"bunks" 15
-		"mass" 270
+		"mass" 540
 		"drag" 3.8
 		"heat dissipation" 0.7
 		"fuel capacity" 900

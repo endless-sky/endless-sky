@@ -150,7 +150,7 @@ outfit "RG15 Torch Thruster"
 	"mass" 31
 	"outfit space" -31
 	"engine capacity" -31
-	"thrust" 11.57
+	"thrust" 17
 	"thrusting energy" 0.7
 	"thrusting heat" 1.5
 	"flare sprite" "effect/vi flare/small"
@@ -168,7 +168,7 @@ outfit "RG15 Torch Steering"
 	"mass" 25
 	"outfit space" -25
 	"engine capacity" -25
-	"turn" 287
+	"turn" 568
 	"turning energy" 0.4
 	"turning heat" 0.85
 	"steering flare sprite" "effect/vi flare/small"
@@ -186,7 +186,7 @@ outfit "RG18 Torch Thruster"
 	"mass" 51
 	"outfit space" -51
 	"engine capacity" -51
-	"thrust" 20.4
+	"thrust" 30
 	"thrusting energy" 1.25
 	"thrusting heat" 2.9
 	"flare sprite" "effect/vi flare/medium"
@@ -204,7 +204,7 @@ outfit "RG18 Torch Steering"
 	"mass" 39
 	"outfit space" -39
 	"engine capacity" -39
-	"turn" 523
+	"turn" 1046
 	"turning energy" 0.65
 	"turning heat" 1.5
 	"steering flare sprite" "effect/vi flare/medium"
@@ -225,7 +225,7 @@ outfit "RG3 Torch Thruster"
 	"mass" 83
 	"outfit space" -83
 	"engine capacity" -83
-	"thrust" 36
+	"thrust" 54
 	"thrusting energy" 2.2
 	"thrusting heat" 5.4
 	"flare sprite" "effect/vi flare/large"
@@ -246,7 +246,7 @@ outfit "RG3 Torch Steering"
 	"mass" 64
 	"outfit space" -64
 	"engine capacity" -64
-	"turn" 1004
+	"turn" 2008
 	"turning energy" 1.15
 	"turning heat" 2.8
 	"steering flare sprite" "effect/vi flare/large"
@@ -267,7 +267,7 @@ outfit "SC-1 Plasma Engines"
 	"mass" 21
 	"outfit space" -21
 	"engine capacity" -21
-	"thrust" 6.55
+	"thrust" 9
 	"thrusting energy" 0.4
 	"thrusting heat" 1
 	"flare sprite" "effect/scin flare/tiny"
@@ -292,7 +292,7 @@ outfit "SC-12 Plasma Thruster"
 	"mass" 25
 	"outfit space" -25
 	"engine capacity" -25
-	"thrust" 13.54
+	"thrust" 20
 	"thrusting energy" 0.85
 	"thrusting heat" 2.25
 	"flare sprite" "effect/scin flare/small"
@@ -311,7 +311,7 @@ outfit "SC-12 Plasma Steering"
 	"mass" 19
 	"outfit space" -19
 	"engine capacity" -19
-	"turn" 297
+	"turn" 594
 	"turning energy" 0.45
 	"turning heat" 1.15
 	"steering flare sprite" "effect/scin flare/small"
@@ -330,7 +330,7 @@ outfit "SC-14 Plasma Thruster"
 	"mass" 45
 	"outfit space" -45
 	"engine capacity" -45
-	"thrust" 26.4
+	"thrust" 39
 	"thrusting energy" 1.7
 	"thrusting heat" 4.95
 	"flare sprite" "effect/scin flare/med"
@@ -349,7 +349,7 @@ outfit "SC-14 Plasma Steering"
 	"mass" 34
 	"outfit space" -34
 	"engine capacity" -34
-	"turn" 638
+	"turn" 1276
 	"turning energy" 1
 	"turning heat" 2.95
 	"steering flare sprite" "effect/scin flare/med"
@@ -370,7 +370,7 @@ outfit "SC-15 Plasma Thrusters"
 	"mass" 112
 	"outfit space" -112
 	"engine capacity" -112
-	"thrust" 48.6
+	"thrust" 72
 	"thrusting energy" 3.1
 	"thrusting heat" 9.5
 	"flare sprite" "effect/scin flare/large"

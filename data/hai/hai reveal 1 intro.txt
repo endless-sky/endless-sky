@@ -257,7 +257,7 @@ ship "Geodesic Geocoris"
 		"hull" 7100
 		"required crew" 27
 		"bunks" 48
-		"mass" 955
+		"mass" 7640
 		"drag" 21.3
 		"heat dissipation" 0.4
 		"fuel capacity" 800
