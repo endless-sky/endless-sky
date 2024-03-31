@@ -93,9 +93,9 @@ phrase "assist merchant 1-1"
 
 phrase "assist merchant 1-2"
 	word
-		`you altered course`
-		`you went out of your way`
-		`you may have altered your own flight plans`
+		`you altered course `
+		`you went out of your way `
+		`you may have altered your own flight plans `
 
 phrase "assist merchant 1-2 hazardous"
 	word

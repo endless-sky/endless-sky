@@ -116,6 +116,11 @@ news "merchant in human space"
 			"I was doing some jobs in the Core, when an enormous alien warship jumped in and attacked! People say I'm crazy, but I'm lucky to have gotten out of there with my life!"
 			"The Syndicate tries to keep alien attacks under wraps, but if you've been around as long as I have, you'll see them eventually."
 			"I was working a Syndicate defense job once, expecting to only deal with some pirates. Instead, I had to drive off an alien warship that jumped in same way the Quarg do! They made us sign a non-disclosure agreement, so don't tell anyone I said that."
+			"I was doing some mining in the Core, when this massive ship came in out of nowhere and started attacking everything in sight! Must be some sort of new Syndicate tech they're testing."
+			"Don't believe the nonsense some captains spew about aliens in the Core. I guarantee you those ships are just some fancy new Syndicate tech."
+			"I don't think the Quarg are as peaceful as they say they are. Just last week I saw one of those jump-capable ships launch into some Core system and slaughter every other ship in sight!"
+			"The Syndicate must be getting pretty desperate with its pirate problem. I saw them unleash this massive attack ship in a pirate system. Probably some new defense initiative."
+			"Those alien ships in the Core are proof that the Syndicate is run by lizard-people! Where else would they get that level of technology?"
 			"Take caution when doing bounty jobs. After it's accepted, only the bounty hunter is allowed to attack the target. Not even the Navy can help out."
 			"I once got hired by someone in search for his true love; he didn't know which ship she left in, so we traveled to dozens of planets to search for her... until he ran out of credits."
 			"I once had a passenger that was returning to the spaceport where she met her true love. I still wonder if they ever got together again."
@@ -406,7 +411,7 @@ news "unemployed youth"
 			"Actually, I'm working on a novel. Well, right now I'm just doing world-building and research, so I haven't written much of the actual story yet."
 			"Do you know how lucky you are, that you can visit a different world every week if you want to? I've been stuck on this one filthy little planet my whole life."
 			"If I had enough money, I'd go up to a captain in the spaceport and ask for transport to anywhere else. Nowhere's as bad as this place."
-			"Are you hiring new crewmembers? And are you by chance planning to fly to the Paradise Worlds?"
+			"Are you hiring new crew members? And are you by chance planning to fly to the Paradise Worlds?"
 			"I'll get my act together someday. For now I'm just enjoying life one moment at a time."
 			"I'd love to get a job, but they all require so much experience, even for those so-called 'entry-level' positions."
 			"Beat it, old-timer. I've got more important things to do than chat with you."
@@ -603,7 +608,7 @@ news "tour guide"
 			"Before the hyperdrive, rich people paid large sums of credits to be very visible going into space. Nowadays they pay large sums of credits to be invisible on-planet."
 			"One time, I gave a tour to a bunch of shady individuals in longcoats and wide-brimmed hats. I think they might have been pirates."
 			"Antigrav boards for rent! You break it, you pay."
-			"I sometimes misread 'wine tasting' as 'time wasting'. The worst part is that nobody's noticed so far."
+			"I sometimes misread 'wine tasting' as 'time wasting.' The worst part is that nobody's noticed so far."
 			"Looking for some company for tonight? No questions asked, no strings attached. Just contact me if you need anything."
 		word
 			`"`
@@ -1169,7 +1174,7 @@ news "chef"
 			"Hey, don't just hang around over there! Help me load this stuff; these 50 catering containers aren't going to move themselves."
 			"Be careful what you transport; another chef once tried to poison my supplies during transport. Both that chef and the transporting captain are in jail now."
 			"A customer recently ordered a cheeseburger without the meat. Funny way to order a cheese sandwich."
-			"If you ever start a restaurant near a spaceport, then don't call it 'The Space Bar'. You might think you're funny, but so did hundreds of other new restaurant owners before you."
+			"If you ever start a restaurant near a spaceport, then don't call it 'The Space Bar.' You might think you're funny, but so did hundreds of other new restaurant owners before you."
 		word
 			`"`
 
@@ -1781,6 +1786,42 @@ news "republic reporter in pirate space"
 
 
 
+news "conspiracy theorist"
+	location
+		government "Republic" "Free Worlds" "Neutral" "Independent" "Syndicate"
+	name
+		word
+			"Conspiracy theorist"
+			"Free thinker"
+			"Truth seeker"
+	message
+		word
+			`"`
+		word
+			"The Rigellian Plague was a fake. The government used it to implant us with tracking microchips."
+			"If the Rigellian Plague really happened, how come we have so few spaceport quarantine facilities now?"
+			"The Quarg built the pyramids of Earth. There is simply no way that humans could have constructed something so massive back then."
+			"Spaceship windows are really just screens designed to show planets as round. One day, I'll build my own ship to prove they're flat."
+			"The Quarg are not aliens, just actors in body suits. There isn't enough sunlight near gas giants for complex life to evolve."
+			"Hyperdrives were given to the government by the Quarg. If it was our technology, we would have improved it by now."
+			"Aliens took our people to the Deep before hyperdrives were invented to experiment on them. This is how they created the Alphas."
+			"Republic Intelligence has bird-like surveillance drones in every city. There's one in front of my window every morning."
+			"The Quarg are running the government. There's no way such a powerful species wouldn't be able to control us."
+			"A friend of mine caught a horrible disease after visiting a Quarg ring. She had rashes and carbuncles all over her face."
+			"If spaceships have drag, there must be air in the 'vacuum of space'..."
+		word
+			"" 2
+			" Wake up, sheeple!"
+			" Do your own research!"
+			" If you still don't see the truth, I feel sorry for you."
+			" Leave the Matrix!"
+			" You are being lied to!"
+			" Break the conditioning!"
+		word
+			`"`
+
+
+
 news "spaceport video advertisement"
 	location
 		government "Republic"
@@ -1789,7 +1830,7 @@ news "spaceport video advertisement"
 			"Spaceport video screen"
 	message
 		word
-			`You see a video of stuntmen making a jump from the edge of space. The "do not try this at home", "illegal on many planets", and "high risk/deadly" warnings at the end of the video suggest that this might become quite a popular sport.`
+			`You see a video of stuntmen making a jump from the edge of space. The "do not try this at home," "illegal on many planets," and "high risk/deadly" warnings at the end of the video suggest that this might become quite a popular sport.`
 			"A video of fast spaceships racing around a three dimensional course in space is shown on the screen, interwoven with clips of very luxurious ships where people appear to be watching the race."
 			"An action-packed advertisement about joining the Navy is playing on the screen. It shows impressive video-fragments of carriers, gunships, dropships and heroic marines."
 			"Some video is showing Syndicate equipment. The video ends with the slogan, 'Just what's needed to get the job done.'"
