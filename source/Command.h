@@ -43,6 +43,7 @@ public:
 	static const Command LATERALLEFT;
 	static const Command LATERALRIGHT;
 	static const Command PRIMARY;
+	static const Command TURRET_TRACKING;
 	static const Command SECONDARY;
 	static const Command SELECT;
 	static const Command LAND;
