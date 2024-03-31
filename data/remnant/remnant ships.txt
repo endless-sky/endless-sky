@@ -1198,7 +1198,7 @@ ship "Peregrine"
 		"fuel capacity" 900
 		"ramscoop" 3.25
 		"cargo space" 59
-		"outfit space" 552
+		"outfit space" 522
 		"weapon capacity" 220
 		"engine capacity" 171
 		"shield generation" 3.9
@@ -1212,6 +1212,8 @@ ship "Peregrine"
 		"outfit scan power" 18
 		"outfit scan efficiency" 22
 		"tactical scan power" 50
+		"ion resistance" .15
+		"scrambling resistance" .15
 		"remnant node" 5
 		weapon
 			"blast radius" 240
