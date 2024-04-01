@@ -772,7 +772,7 @@ mission "Ka'het: Patir Mystery 6"
 			action
 				payment 300000
 			`After disembarking from the <ship>, you find yourself once again in the crowded, but quiet starport of <origin>. It doesn't take long for you to be noticed, however: only a few minutes later, you feel a tap on your shoulder and turn around to see Dusk, accompanied by a group of five people dressed in Remnant attire. "Good to see you here again, <first>! I have good news. Do you remember our exploration of the Patir black hole?"`
-			`	As he's speaking, one of the other Remnant shows you a hologram of Patir and its system, with what looks like the Builder settlement you visited earlier highlighted by a yellow light. "First of all, I want to thank you for the risks you took to save the data we gathered about the dome's atmosphere. If you check your logistics account, you will find we have transfered <payment> to it to thank you for your efforts. It is only thanks to you that we know about the structure's atmosphere, which presumably is also what the Builders themselves breathed to survive. A fantastic discovery."`
+			`	As he's speaking, one of the other Remnant shows you a hologram of Patir and its system, with what looks like the Builder settlement you visited earlier highlighted by a yellow light. "First of all, I want to thank you for the risks you took to save the data we gathered about the dome's atmosphere. If you check your logistics account, you will find we have transferred <payment> to it to thank you for your efforts. It is only thanks to you that we know about the structure's atmosphere, which presumably is also what the Builders themselves breathed to survive. A fantastic discovery."`
 			choice
 				`	"Thank you."`
 					goto skipdialog
@@ -1686,14 +1686,14 @@ ship "???" "Asteroid Adult (Patir 12A)"
 			"hit force" 1200
 	outfits
 		"Asteroid Anti-Missile"
-		
+
 		"Asteroid Jump Drive"
 		
 	engine 0 0
 		zoom 1
 		angle 0
 		over
-	turret 0 0 "Asteroid Anti-missile"
+	turret 0 0 "Asteroid Anti-Missile"
 	explode "tiny explosion" 10
 	explode "small explosion" 25
 	explode "medium explosion" 25
