@@ -595,6 +595,7 @@ outfit `Z-1200 "Beam" Antimatter Torch`
 # Special:
 
 outfit "Anomalous Mass"
+	plural "Anomalous Masses"
 	category "Special"
 	cost 600000
 	thumbnail "outfit/unknown"
