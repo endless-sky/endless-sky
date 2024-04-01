@@ -283,6 +283,9 @@ ship "Unknown Ship Type"
 		"outfit space" 810
 		"weapon capacity" 390
 		"engine capacity" 210
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 260
 			"shield damage" 2600
@@ -340,6 +343,9 @@ ship "Kestrel"
 		"outfit space" 810
 		"weapon capacity" 390
 		"engine capacity" 210
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 260
 			"shield damage" 2600

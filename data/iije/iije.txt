@@ -34,6 +34,9 @@ ship "Jje"
 		"outfit space" 10
 		"weapon capacity" 10
 		"engine capacity" 10
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		
 		"hull repair rate" 1
 		"atmosphere scan" 10
@@ -87,6 +90,9 @@ ship "Ayym"
 		"outfit space" 10
 		"weapon capacity" 10
 		"engine capacity" 10
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		
 		"hull repair rate" 2
 		"ramscoop" 10

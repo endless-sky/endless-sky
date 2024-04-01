@@ -265,6 +265,9 @@ ship "Geodesic Geocoris"
 		"outfit space" 555
 		"weapon capacity" 250
 		"engine capacity" 134
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"energy capacity" 5200
 		"shield generation" 6.0
 		"shield energy" 8.8

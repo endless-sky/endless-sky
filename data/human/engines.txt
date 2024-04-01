@@ -100,6 +100,9 @@ outfit "X1050 Ion Engines"
 	index 10
 	"cost" 20000
 	thumbnail "outfit/tiny ion engines"
+	"steering slot" -1
+	"thruster slot" -1
+	"afterburner slot" 1
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
@@ -125,6 +128,8 @@ outfit "X1700 Ion Thruster"
 	index 17
 	"cost" 12000
 	thumbnail "outfit/tiny ion thruster"
+	"thruster slot" -1
+	"afterburner slot" 1
 	"mass" 16
 	"outfit space" -16
 	"engine capacity" -16
@@ -143,6 +148,8 @@ outfit "X2700 Ion Thruster"
 	index 27
 	"cost" 26000
 	thumbnail "outfit/small ion thruster"
+	"thruster slot" -1
+	"afterburner slot" 1
 	"mass" 27
 	"outfit space" -27
 	"engine capacity" -27
@@ -161,6 +168,8 @@ outfit "X3700 Ion Thruster"
 	index 37
 	"cost" 58000
 	thumbnail "outfit/medium ion thruster"
+	"thruster slot" -1
+	"afterburner slot" 1
 	"mass" 46
 	"outfit space" -46
 	"engine capacity" -46
@@ -179,6 +188,8 @@ outfit "X4700 Ion Thruster"
 	index 47
 	"cost" 128000
 	thumbnail "outfit/large ion thruster"
+	"thruster slot" -1
+	"afterburner slot" 1
 	"mass" 79
 	"outfit space" -79
 	"engine capacity" -79
@@ -197,6 +208,8 @@ outfit "X5700 Ion Thruster"
 	index 57
 	"cost" 281000
 	thumbnail "outfit/huge ion thruster"
+	"thruster slot" -1
+	"afterburner slot" 1
 	"mass" 121
 	"outfit space" -121
 	"engine capacity" -121
@@ -216,6 +229,7 @@ outfit "X1200 Ion Steering"
 	index 12
 	"cost" 10000
 	thumbnail "outfit/tiny ion steering"
+	"steering slot" -1
 	"mass" 12
 	"outfit space" -12
 	"engine capacity" -12
@@ -234,6 +248,7 @@ outfit "X2200 Ion Steering"
 	index 22
 	"cost" 21000
 	thumbnail "outfit/small ion steering"
+	"steering slot" -1
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
@@ -252,6 +267,7 @@ outfit "X3200 Ion Steering"
 	index 32
 	"cost" 46000
 	thumbnail "outfit/medium ion steering"
+	"steering slot" -1
 	"mass" 35
 	"outfit space" -35
 	"engine capacity" -35
@@ -270,6 +286,7 @@ outfit "X4200 Ion Steering"
 	index 42
 	"cost" 102000
 	thumbnail "outfit/large ion steering"
+	"steering slot" -1
 	"mass" 59
 	"outfit space" -59
 	"engine capacity" -59
@@ -288,6 +305,7 @@ outfit "X5200 Ion Steering"
 	index 52
 	"cost" 225000
 	thumbnail "outfit/huge ion steering"
+	"steering slot" -1
 	"mass" 89
 	"outfit space" -89
 	"engine capacity" -89
@@ -307,6 +325,7 @@ outfit "X1100 Ion Reverse Thruster"
 	index 18
 	"cost" 12000
 	thumbnail "outfit/reverse thruster ion"
+	"reverse thruster slot" -1
 	"mass" 16
 	"outfit space" -16
 	"weapon capacity" -16
@@ -327,6 +346,8 @@ outfit "Chipmunk Plasma Thruster"
 	index 15
 	"cost" 20000
 	thumbnail "outfit/tiny plasma thruster"
+	"thruster slot" -1
+	"afterburner slot" 1
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
@@ -345,6 +366,8 @@ outfit "Greyhound Plasma Thruster"
 	index 25
 	"cost" 45000
 	thumbnail "outfit/small plasma thruster"
+	"thruster slot" -1
+	"afterburner slot" 1
 	"mass" 34
 	"outfit space" -34
 	"engine capacity" -34
@@ -363,6 +386,8 @@ outfit "Impala Plasma Thruster"
 	index 35
 	"cost" 99000
 	thumbnail "outfit/medium plasma thruster"
+	"thruster slot" -1
+	"afterburner slot" 1
 	"mass" 58
 	"outfit space" -58
 	"engine capacity" -58
@@ -381,6 +406,8 @@ outfit "Orca Plasma Thruster"
 	index 45
 	"cost" 217000
 	thumbnail "outfit/large plasma thruster"
+	"thruster slot" -1
+	"afterburner slot" 1
 	"mass" 98
 	"outfit space" -98
 	"engine capacity" -98
@@ -399,6 +426,8 @@ outfit "Tyrant Plasma Thruster"
 	index 55
 	"cost" 389000
 	thumbnail "outfit/huge plasma thruster"
+	"thruster slot" -1
+	"afterburner slot" 1
 	"mass" 129
 	"outfit space" -129
 	"engine capacity" -129
@@ -418,6 +447,7 @@ outfit "Chipmunk Plasma Steering"
 	index 12
 	"cost" 16000
 	thumbnail "outfit/tiny plasma steering"
+	"steering slot" -1
 	"mass" 15
 	"outfit space" -15
 	"engine capacity" -15
@@ -436,6 +466,7 @@ outfit "Greyhound Plasma Steering"
 	index 22
 	"cost" 36000
 	thumbnail "outfit/small plasma steering"
+	"steering slot" -1
 	"mass" 26
 	"outfit space" -26
 	"engine capacity" -26
@@ -454,6 +485,7 @@ outfit "Impala Plasma Steering"
 	index 32
 	"cost" 79000
 	thumbnail "outfit/medium plasma steering"
+	"steering slot" -1
 	"mass" 43
 	"outfit space" -43
 	"engine capacity" -43
@@ -472,6 +504,7 @@ outfit "Orca Plasma Steering"
 	index 42
 	"cost" 174000
 	thumbnail "outfit/large plasma steering"
+	"steering slot" -1
 	"mass" 74
 	"outfit space" -74
 	"engine capacity" -74
@@ -490,6 +523,7 @@ outfit "Tyrant Plasma Steering"
 	index 52
 	"cost" 324700
 	thumbnail "outfit/huge plasma steering"
+	"steering slot" -1
 	"mass" 101
 	"outfit space" -101
 	"engine capacity" -101
@@ -509,6 +543,7 @@ outfit "Capybara Reverse Thruster"
 	index 18
 	"cost" 20000
 	thumbnail "outfit/reverse thruster plasma"
+	"reverse thruster slot" -1
 	"mass" 20
 	"outfit space" -20
 	"weapon capacity" -20
@@ -529,6 +564,8 @@ outfit "A120 Atomic Thruster"
 	index 15
 	"cost" 140000
 	thumbnail "outfit/tiny atomic thruster"
+	"thruster slot" -1
+	"afterburner slot" 1
 	"mass" 22
 	"outfit space" -22
 	"engine capacity" -22
@@ -546,6 +583,8 @@ outfit "A250 Atomic Thruster"
 	index 25
 	"cost" 280000
 	thumbnail "outfit/small atomic thruster"
+	"thruster slot" -1
+	"afterburner slot" 1
 	"mass" 34
 	"outfit space" -34
 	"engine capacity" -34
@@ -563,6 +602,8 @@ outfit "A370 Atomic Thruster"
 	index 35
 	"cost" 560000
 	thumbnail "outfit/medium atomic thruster"
+	"thruster slot" -1
+	"afterburner slot" 1
 	"mass" 53
 	"outfit space" -53
 	"engine capacity" -53
@@ -580,6 +621,8 @@ outfit "A520 Atomic Thruster"
 	index 45
 	"cost" 1120000
 	thumbnail "outfit/large atomic thruster"
+	"thruster slot" -1
+	"afterburner slot" 1
 	"mass" 82
 	"outfit space" -82
 	"engine capacity" -82
@@ -597,6 +640,8 @@ outfit "A860 Atomic Thruster"
 	index 55
 	"cost" 2240000
 	thumbnail "outfit/huge atomic thruster"
+	"thruster slot" -1
+	"afterburner slot" 1
 	"mass" 127
 	"outfit space" -127
 	"engine capacity" -127
@@ -615,6 +660,7 @@ outfit "A125 Atomic Steering"
 	index 12
 	"cost" 120000
 	thumbnail "outfit/tiny atomic steering"
+	"steering slot" -1
 	"mass" 16
 	"outfit space" -16
 	"engine capacity" -16
@@ -632,6 +678,7 @@ outfit "A255 Atomic Steering"
 	index 22
 	"cost" 240000
 	thumbnail "outfit/small atomic steering"
+	"steering slot" -1
 	"mass" 25
 	"outfit space" -25
 	"engine capacity" -25
@@ -649,6 +696,7 @@ outfit "A375 Atomic Steering"
 	index 32
 	"cost" 480000
 	thumbnail "outfit/medium atomic steering"
+	"steering slot" -1
 	"mass" 38
 	"outfit space" -38
 	"engine capacity" -38
@@ -666,6 +714,7 @@ outfit "A525 Atomic Steering"
 	index 42
 	"cost" 960000
 	thumbnail "outfit/large atomic steering"
+	"steering slot" -1
 	"mass" 60
 	"outfit space" -60
 	"engine capacity" -60
@@ -683,6 +732,7 @@ outfit "A865 Atomic Steering"
 	index 52
 	"cost" 1920000
 	thumbnail "outfit/huge atomic steering"
+	"steering slot" -1
 	"mass" 92
 	"outfit space" -92
 	"engine capacity" -92
@@ -701,6 +751,7 @@ outfit "AR120 Reverse Thruster"
 	index 18
 	"cost" 140000
 	thumbnail "outfit/reverse thruster"
+	"reverse thruster slot" -1
 	"mass" 22
 	"outfit space" -22
 	"weapon capacity" -22

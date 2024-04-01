@@ -426,6 +426,8 @@ outfit "Type 1 Radiant Thruster"
 		"Wanderer Outfits"
 	"cost" 135000
 	thumbnail "outfit/tiny radiant thruster"
+	"thruster slot" -1
+	"afterburner slot" 1
 	"mass" 12
 	"outfit space" -12
 	"engine capacity" -12
@@ -444,6 +446,8 @@ outfit "Type 2 Radiant Thruster"
 		"Wanderer Outfits"
 	"cost" 390000
 	thumbnail "outfit/small radiant thruster"
+	"thruster slot" -1
+	"afterburner slot" 1
 	"mass" 27
 	"outfit space" -27
 	"engine capacity" -27
@@ -462,6 +466,8 @@ outfit "Type 3 Radiant Thruster"
 		"Wanderer Outfits"
 	"cost" 750000
 	thumbnail "outfit/medium radiant thruster"
+	"thruster slot" -1
+	"afterburner slot" 1
 	"mass" 42
 	"outfit space" -42
 	"engine capacity" -42
@@ -480,6 +486,8 @@ outfit "Type 4 Radiant Thruster"
 		"Wanderer Outfits"
 	"cost" 1370000
 	thumbnail "outfit/large radiant thruster"
+	"thruster slot" -1
+	"afterburner slot" 1
 	"mass" 65
 	"outfit space" -65
 	"engine capacity" -65
@@ -498,6 +506,7 @@ outfit "Type 1 Radiant Steering"
 		"Wanderer Outfits"
 	"cost" 115000
 	thumbnail "outfit/tiny radiant steering"
+	"steering slot" -1
 	"mass" 9
 	"outfit space" -9
 	"engine capacity" -9
@@ -516,6 +525,7 @@ outfit "Type 2 Radiant Steering"
 		"Wanderer Outfits"
 	"cost" 325000
 	thumbnail "outfit/small radiant steering"
+	"steering slot" -1
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
@@ -534,6 +544,7 @@ outfit "Type 3 Radiant Steering"
 		"Wanderer Outfits"
 	"cost" 590000
 	thumbnail "outfit/medium radiant steering"
+	"steering slot" -1
 	"mass" 30
 	"outfit space" -30
 	"engine capacity" -30
@@ -552,6 +563,7 @@ outfit "Type 4 Radiant Steering"
 		"Wanderer Outfits"
 	"cost" 1100000
 	thumbnail "outfit/large radiant steering"
+	"steering slot" -1
 	"mass" 47
 	"outfit space" -47
 	"engine capacity" -47

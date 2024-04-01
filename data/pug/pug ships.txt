@@ -29,6 +29,9 @@ ship "Pug Zibruka"
 		"outfit space" 180
 		"weapon capacity" 68
 		"engine capacity" 76
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"energy capacity" 1000
 		"energy generation" 10
 		"heat generation" 20
@@ -79,6 +82,9 @@ ship "Pug Enfolta"
 		"outfit space" 360
 		"weapon capacity" 184
 		"engine capacity" 106
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"energy capacity" 2000
 		"energy generation" 22
 		"heat generation" 32
@@ -134,6 +140,9 @@ ship "Pug Maboro"
 		"outfit space" 560
 		"weapon capacity" 309
 		"engine capacity" 148
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"energy capacity" 4000
 		"energy generation" 32
 		"heat generation" 48
@@ -191,6 +200,9 @@ ship "Pug Arfecta"
 		"outfit space" 640
 		"weapon capacity" 390
 		"engine capacity" 220
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"energy capacity" 10000
 		"energy generation" 200
 		"heat generation" 10

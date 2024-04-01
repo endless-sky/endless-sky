@@ -590,6 +590,9 @@ outfit `"Baellie" Atomic Engines`
 	category "Engines"
 	"cost" 230000
 	thumbnail "outfit/tiny atomic engines hai"
+	"steering slot" -1
+	"thruster slot" -1
+	"afterburner slot" 1
 	"mass" 22
 	"outfit space" -22
 	"engine capacity" -22
@@ -611,6 +614,8 @@ outfit `"Basrem" Atomic Thruster`
 	category "Engines"
 	"cost" 150000
 	thumbnail "outfit/tiny atomic thruster hai"
+	"thruster slot" -1
+	"afterburner slot" 1
 	"mass" 18
 	"outfit space" -18
 	"engine capacity" -18
@@ -626,6 +631,8 @@ outfit `"Benga" Atomic Thruster`
 	category "Engines"
 	"cost" 300000
 	thumbnail "outfit/small atomic thruster hai"
+	"thruster slot" -1
+	"afterburner slot" 1
 	"mass" 28
 	"outfit space" -28
 	"engine capacity" -28
@@ -641,6 +648,8 @@ outfit `"Biroo" Atomic Thruster`
 	category "Engines"
 	"cost" 610000
 	thumbnail "outfit/medium atomic thruster hai"
+	"thruster slot" -1
+	"afterburner slot" 1
 	"mass" 44
 	"outfit space" -44
 	"engine capacity" -44
@@ -656,6 +665,8 @@ outfit `"Bondir" Atomic Thruster`
 	category "Engines"
 	"cost" 1100000
 	thumbnail "outfit/large atomic thruster hai"
+	"thruster slot" -1
+	"afterburner slot" 1
 	"mass" 63
 	"outfit space" -63
 	"engine capacity" -63
@@ -671,6 +682,8 @@ outfit `"Bufaer" Atomic Thruster`
 	category "Engines"
 	"cost" 2400000
 	thumbnail "outfit/huge atomic thruster hai"
+	"thruster slot" -1
+	"afterburner slot" 1
 	"mass" 104
 	"outfit space" -104
 	"engine capacity" -104
@@ -686,6 +699,7 @@ outfit `"Basrem" Reverse Thruster`
 	category "Engines"
 	"cost" 150000
 	thumbnail "outfit/tiny atomic reverse hai"
+	"reverse thruster slot" -1
 	"mass" 18
 	"outfit space" -18
 	"weapon capacity" -18
@@ -701,6 +715,7 @@ outfit `"Benga" Reverse Thruster`
 	category "Engines"
 	"cost" 300000
 	thumbnail "outfit/small atomic reverse hai"
+	"reverse thruster slot" -1
 	"mass" 28
 	"outfit space" -28
 	"weapon capacity" -28
@@ -716,6 +731,7 @@ outfit `"Biroo" Reverse Thruster`
 	category "Engines"
 	"cost" 610000
 	thumbnail "outfit/medium atomic reverse hai"
+	"reverse thruster slot" -1
 	"mass" 44
 	"outfit space" -44
 	"weapon capacity" -44
@@ -731,6 +747,7 @@ outfit `"Basrem" Atomic Steering`
 	category "Engines"
 	"cost" 120000
 	thumbnail "outfit/tiny atomic steering hai"
+	"steering slot" -1
 	"mass" 12
 	"outfit space" -12
 	"engine capacity" -12
@@ -746,6 +763,7 @@ outfit `"Benga" Atomic Steering`
 	category "Engines"
 	"cost" 250000
 	thumbnail "outfit/small atomic steering hai"
+	"steering slot" -1
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
@@ -761,6 +779,7 @@ outfit `"Biroo" Atomic Steering`
 	category "Engines"
 	"cost" 530000
 	thumbnail "outfit/medium atomic steering hai"
+	"steering slot" -1
 	"mass" 32
 	"outfit space" -32
 	"engine capacity" -32
@@ -776,6 +795,7 @@ outfit `"Bondir" Atomic Steering`
 	category "Engines"
 	"cost" 950000
 	thumbnail "outfit/large atomic steering hai"
+	"steering slot" -1
 	"mass" 49
 	"outfit space" -49
 	"engine capacity" -49
@@ -791,6 +811,7 @@ outfit `"Bufaer" Atomic Steering`
 	category "Engines"
 	"cost" 2100000
 	thumbnail "outfit/huge atomic steering hai"
+	"steering slot" -1
 	"mass" 76
 	"outfit space" -76
 	"engine capacity" -76
