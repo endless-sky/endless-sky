@@ -1107,7 +1107,7 @@ mission "Ka'het: Patir Mystery 9"
 			label what
 			`	"I wish I knew. And the worst may have yet to come, if our reasoning is correct," Dusk replies. "Something is not right with the sky."`
 			label constellation
-			`	"Here, look," he adds, moving you to the other side of the projector. "Do you see those two triangular formations near the top of the star map? That is something we called the Ember Prism - a constellation of six stars of similar magnitude, located far from the Wastes and close enough to each other. While it is not visible from Earth, here it is recognizable from almost every system, Patir included; but no longer. And that's not all. Nothing in this star map is can be found anywhere in the sky." He stops for a second, giving an worried look to the rest of the team. "We are no longer in the Ember Waste."`
+			`	"Here, look," he adds, moving you to the other side of the projector. "Do you see those two triangular formations near the top of the star map? That is something we called the Ember Prism - a constellation of six stars of similar magnitude, located far from the Wastes and close enough to each other. While it is not visible from Earth, here it is recognizable from almost every system, Patir included; but no longer. And that's not all. Nothing in this star map can be found anywhere in the sky." He stops for a second, giving a worried look to the rest of the team. "We are no longer in the Ember Waste."`
 			choice
 				`	"How is that possible?"`
 				`	"Where are we then?"`
@@ -1131,7 +1131,7 @@ event "Patir moves"
 	system Patir
 		pos 10059.5 10.5
 	planet "Builder Settlement"
-		spaceport ` The Remnant laboratory merges oddly well with the rest of the environment, similar in color and design to the Builder structures around here. The spaceport amounts only of a flat strip of regolith near the settlement, hastily cleaned of the debris that covers most of the terrain.`
+		spaceport `The Remnant laboratory merges oddly well with the rest of the environment, similar in color and design to the Builder structures around here. The spaceport amounts only of a flat strip of regolith near the settlement, hastily cleaned of the debris that covers most of the terrain.`
 
 
 mission "Ka'het: Patir Mystery 10"
@@ -1516,7 +1516,7 @@ mission "Ka'het: Patir Mystery 12C"
 				`	"What about me?"`
 			`	"Given that you need to be able to shoot the target as quick as possible, you cannot return to the cockpit to keep an eye on the scan systems. So, we took the liberty of creating a small terminal here for you to keep an eye situation," he replies, indicating a small desk filled to the brim with Remnant machinery.`
 			label entrance
-			`	One by one, the scientists jump from your ship to the Fetri, moving toward a closed, circular hatch in between the two engines. As you watch them start the expedition, you sit down in the console they have prepared in the cargo bay, monitoring the movements in the system and any change in the slug. Though you can't see clearly what the five of them are doing, you distinguish someone inserting a rod inside an small aperture, followed by the hatch opening right after.`
+			`	One by one, the scientists jump from your ship to the Fetri, moving toward a closed, circular hatch in between the two engines. As you watch them start the expedition, you sit down in the console they have prepared in the cargo bay, monitoring the movements in the system and any change in the slug. Though you can't see clearly what the five of them are doing, you distinguish someone inserting a rod inside a small aperture, followed by the hatch opening right after.`
 			`	As the crew moves beyond your line of sight and the communications cease, your uneasiness about the mission keeps growing steadily. Time passes slowly as you wait for their return; as you split your attention between the various screens in front of you and the occasional glances out of the airlock, every minute seems to last an eternity. And then, it happened.`
 			`	All above the surface of the asteroid-looking creature a burst of rose tinted sparks appears in an instant, quickly growing in number and coverage; a clear sign that it is about to jump away, and that the Fetri'sei is about to awaken. The expedition must end right now, or the Remnant may not survive the encounter.`
 			choice
@@ -1562,7 +1562,7 @@ event "no Patir spaceport"
 
 event "Patir spaceport returns"
 	planet "Builder Settlement"
-		spaceport ` The Remnant laboratory merges oddly well with the rest of the environment, similar in color and design to the Builder structures around here. The spaceport amounts only of a flat strip of regolith near the settlement, hastily cleaned of the debris that covers most of the terrain.`
+		spaceport `The Remnant laboratory merges oddly well with the rest of the environment, similar in color and design to the Builder structures around here. The spaceport amounts only of a flat strip of regolith near the settlement, hastily cleaned of the debris that covers most of the terrain.`
 
 
 mission "Ka'het: Patir Mystery 12D"
@@ -1571,7 +1571,7 @@ mission "Ka'het: Patir Mystery 12D"
 	source "Builder Settlement"
 	to offer
 		has "Ka'het: Patir Mystery 12B: done"
-	npc assist 
+	npc assist
 		government "Magic Asteroid"
 		personality coward waiting pacifist harvests uninterested fleeing
 		fleet
