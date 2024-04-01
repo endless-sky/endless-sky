@@ -64,6 +64,7 @@ ship "???"
 	sprite "ship/asteroid adult"
 	attributes
 		category "Transport"
+		"uncapturable" 1
 		"cost" 1350000000
 		"hull" 965612
 		"required crew" 1
@@ -114,6 +115,7 @@ ship "???" "Asteroid Large 2"
 	sprite "ship/asteroid adult 2"
 	attributes
 		category "Transport"
+		"uncapturable" 1
 		"cost" 1350000000
 		"hull" 971519
 		"required crew" 1
@@ -166,6 +168,7 @@ ship "???" "Asteroid Large 3"
 	sprite "ship/asteroid adult 3"
 	attributes
 		category "Transport"
+		"uncapturable" 1
 		"cost" 1350000000
 		"hull" 951725
 		"required crew" 1
@@ -216,6 +219,7 @@ ship "???" "Asteroid Large 4"
 	sprite "ship/asteroid adult 4"
 	attributes
 		category "Transport"
+		"uncapturable" 1
 		"cost" 1350000000
 		"hull" 951725
 		"required crew" 1
@@ -266,6 +270,7 @@ ship "???" "Asteroid Large 5"
 	sprite "ship/asteroid adult 5"
 	attributes
 		category "Transport"
+		"uncapturable" 1
 		"cost" 1350000000
 		"hull" 967165
 		"required crew" 1
@@ -316,6 +321,7 @@ ship "???" "Asteroid Medium"
 	sprite "ship/asteroid medium"
 	attributes
 		category "Transport"
+		"uncapturable" 1
 		"cost" 950000000
 		"hull" 612486
 		"required crew" 1
@@ -365,6 +371,7 @@ ship "???" "Asteroid Young"
 	sprite "ship/asteroid young"
 	attributes
 		category "Transport"
+		"uncapturable" 1
 		"cost" 450000000
 		"hull" 214596
 		"required crew" 1
@@ -414,6 +421,7 @@ ship "???" "Asteroid Young 2"
 	sprite "ship/asteroid young 2"
 	attributes
 		category "Transport"
+		"uncapturable" 1
 		"cost" 450000000
 		"hull" 209842
 		"required crew" 1
@@ -463,6 +471,7 @@ ship "???" "Asteroid Young 3"
 	sprite "ship/asteroid young 3"
 	attributes
 		category "Transport"
+		"uncapturable" 1
 		"cost" 450000000
 		"hull" 220214
 		"required crew" 1
@@ -512,6 +521,7 @@ ship "???" "Asteroid Young 4"
 	sprite "ship/asteroid young 4"
 	attributes
 		category "Transport"
+		"uncapturable" 1
 		"cost" 450000000
 		"hull" 214623
 		"required crew" 1
