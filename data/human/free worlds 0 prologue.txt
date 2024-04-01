@@ -1662,8 +1662,8 @@ mission "FW Katya 4"
 	passengers 2
 	blocked `You need bunks for both Katya and Eyes in order to continue this mission.`
 	substitutions
-		<dirt belt origin> ""
-		<dirt belt origin> " like yourself"
+		"<dirt belt origin>" ""
+		"<dirt belt origin>" " like yourself"
 			has "human space start"
 	to offer
 		has "FW Katya 3: done"
