@@ -1237,7 +1237,6 @@ ship "Peregrine"
 		
 		"Bellows-Class Afterburner"
 		"Smelter-Class Thruster"
-		"Crucible-Class Thruster"
 		"Smelter-Class Steering"
 		"Scram Drive"
 		
@@ -1281,7 +1280,6 @@ ship "Peregrine" "Peregrine (II)"
 		
 		"Bellows-Class Afterburner"
 		"Smelter-Class Thruster"
-		"Crucible-Class Thruster"
 		"Smelter-Class Steering"
 		"Scram Drive"
 		
