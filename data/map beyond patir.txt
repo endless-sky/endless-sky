@@ -172,10 +172,12 @@ planet "One-Way Wormhole Exit"
 wormhole "One-Way Wormhole Entrance"
 	mappable
 	link Mitera Athiri
+	color .19 .27 .69
 
 wormhole "One-Way Wormhole Exit"
 	mappable
 	link Maithi Ghila
+	color .19 .27 .69
 
 planet "Chanai Structure"
 	government "Magic Asteroid"
