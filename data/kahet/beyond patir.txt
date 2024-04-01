@@ -84,6 +84,9 @@ ship "???"
 		"flare sprite" "effect/asteroid adult flare"
 			"frame rate" 1
 		"turn" 5931.4
+		"asteroid mount jd" 1
+		"asteroid mount am" 1
+		"asteroid mount" 1
 		weapon
 			"blast radius" 80
 			"shield damage" 800
@@ -131,6 +134,10 @@ ship "???" "Asteroid Large 2"
 		"flare sprite" "effect/asteroid adult 2 flare"
 			"frame rate" 1
 		"turn" 5931.4
+		"asteroid mount jd" 1
+		"asteroid mount am" 1
+		"asteroid mount" 1
+		"asteroid mount 4" 1
 		weapon
 			"blast radius" 80
 			"shield damage" 800
@@ -179,6 +186,9 @@ ship "???" "Asteroid Large 3"
 		"flare sprite" "effect/asteroid adult 3 flare"
 			"frame rate" 1
 		"turn" 5931.4
+		"asteroid mount jd" 1
+		"asteroid mount am" 1
+		"asteroid mount 4" 2
 		weapon
 			"blast radius" 80
 			"shield damage" 800
@@ -186,8 +196,7 @@ ship "???" "Asteroid Large 3"
 			"hit force" 1200
 	outfits
 		"Asteroid Anti-Missile"
-		"Asteroid Weapon Large 4"
-		"Asteroid Weapon Large 4"
+		"Asteroid Weapon Large 4" 2
 		"Asteroid Jump Drive"
 		
 	engine 0 0
@@ -227,6 +236,9 @@ ship "???" "Asteroid Large 4"
 		"flare sprite" "effect/asteroid adult 4 flare"
 			"frame rate" 1
 		"turn" 5931.4
+		"asteroid mount jd" 1
+		"asteroid mount am" 1
+		"asteroid mount 3" 2
 		weapon
 			"blast radius" 80
 			"shield damage" 800
@@ -234,8 +246,7 @@ ship "???" "Asteroid Large 4"
 			"hit force" 1200
 	outfits
 		"Asteroid Anti-Missile"
-		"Asteroid Weapon Large 3"
-		"Asteroid Weapon Large 3"
+		"Asteroid Weapon Large 3" 2
 		"Asteroid Jump Drive"
 		
 	engine 0 0
@@ -275,6 +286,9 @@ ship "???" "Asteroid Large 5"
 		"flare sprite" "effect/asteroid adult 5 flare"
 			"frame rate" 1
 		"turn" 5931.4
+		"asteroid mount jd" 1
+		"asteroid mount am" 1
+		"asteroid mount 2" 2
 		weapon
 			"blast radius" 80
 			"shield damage" 800
@@ -322,6 +336,9 @@ ship "???" "Asteroid Medium"
 		"flare sprite" "effect/asteroid medium flare"
 			"frame rate" 1
 		"turn" 4816.3
+		"asteroid mount jd" 1
+		"asteroid mount am 2" 1
+		"asteroid mount 2" 1
 		weapon
 			"blast radius" 80
 			"shield damage" 800
@@ -368,6 +385,9 @@ ship "???" "Asteroid Young"
 		"flare sprite" "effect/asteroid young flare"
 			"frame rate" 1
 		"turn" 4019.1
+		"asteroid mount jd" 1
+		"asteroid mount am 2" 1
+		"asteroid mount small" 1
 		weapon
 			"blast radius" 80
 			"shield damage" 800
@@ -414,6 +434,9 @@ ship "???" "Asteroid Young 2"
 		"flare sprite" "effect/asteroid young 2 flare"
 			"frame rate" 1
 		"turn" 4019.1
+		"asteroid mount jd" 1
+		"asteroid mount am 2" 1
+		"asteroid mount small" 1
 		weapon
 			"blast radius" 80
 			"shield damage" 800
@@ -460,6 +483,9 @@ ship "???" "Asteroid Young 3"
 		"flare sprite" "effect/asteroid young 3 flare"
 			"frame rate" 1
 		"turn" 4019.1
+		"asteroid mount jd" 1
+		"asteroid mount am 2" 1
+		"asteroid mount small" 1
 		weapon
 			"blast radius" 80
 			"shield damage" 800
@@ -506,6 +532,9 @@ ship "???" "Asteroid Young 4"
 		"flare sprite" "effect/asteroid young 4 flare"
 			"frame rate" 1
 		"turn" 4019.1
+		"asteroid mount jd" 1
+		"asteroid mount am 2" 1
+		"asteroid mount small" 1
 		weapon
 			"blast radius" 80
 			"shield damage" 800
@@ -536,6 +565,7 @@ outfit "Asteroid Anti-Missile"
 	"outfit space" -31
 	"weapon capacity" -31
 	"turret mounts" -1
+	"asteroid mount am" -1
 	weapon
 		"fire effect" "asteroid am fire"
 		"anti-missile" 420
@@ -562,6 +592,7 @@ outfit "Asteroid Anti-Missile 2"
 	"outfit space" -33
 	"weapon capacity" -33
 	"turret mounts" -1
+	"asteroid mount am 2" -1
 	weapon
 		"hardpoint sprite" "hardpoint/asteroid am circle"
 			"frame time" 30
@@ -589,6 +620,7 @@ outfit "Asteroid Weapon Small"
 	"outfit space" -76
 	"weapon capacity" -76
 	"gun ports" -1
+	"asteroid mount small" -1
 	weapon
 		sprite "projectile/asteroid weapon circle"
 			"frame time" 20
@@ -635,6 +667,7 @@ outfit "Asteroid Weapon Large"
 	"outfit space" -24
 	"weapon capacity" -24
 	"gun ports" -1
+	"asteroid mount" -1
 	weapon
 		sprite "effect/asteroid projectile print"
 			"frame rate" 21
@@ -1011,6 +1044,7 @@ outfit "Asteroid Weapon Large 2"
 	"outfit space" -31
 	"weapon capacity" -31
 	"gun ports" -1
+	"asteroid mount 2" -1
 	weapon
 		"velocity" 10
 		"drag" .1
@@ -1352,6 +1386,7 @@ outfit "Asteroid Weapon Large 3"
 	"outfit space" -16
 	"weapon capacity" -16
 	"gun ports" -1
+	"asteroid mount 3" -1
 	weapon
 		sprite "projectile/asteroid twin projectile"
 			"frame rate" 10
@@ -1476,6 +1511,7 @@ outfit "Asteroid Jump Drive"
 	"jump speed" 0.2
 	"jump fuel" 200
 	"jump drive" 1
+	"asteroid mount jd" -1
 	"jump effect" "jump drive circle"
 	"jump effect" "jump drive spark 1"
 	"jump effect" "jump drive spark 2"
@@ -1720,6 +1756,7 @@ outfit "Asteroid Weapon Large 4"
 	"outfit space" -33
 	"weapon capacity" -33
 	"gun ports" -1
+	"asteroid mount 4" -1
 	weapon
 		sprite "effect/asteroid projectile print"
 			"frame rate" 21
