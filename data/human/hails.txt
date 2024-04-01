@@ -1119,13 +1119,11 @@ phrase "friendly civilian"
 	word
 		" "
 	word
-		"decided to eat some undeclared asparagus they brought with them"
-		"seemed to eat nothing but meals with garlic"
-		"must have been on a strict diet of beans"
 		"threw up after we exited hyperspace"
 		"puked up their dinner once we got into hyperspace"
 		"couldn't keep the contents of their stomach inside them"
 		"made a big mess in their rooms"
+		"absolutely ruined their rooms"
 	word
 		" while I had them on my ship"
 		" while they stayed on my ship"
@@ -1141,9 +1139,8 @@ phrase "friendly civilian"
 		"I've told them to leave at my next stop"
 		"I've got no choice but to leave them at my next stop"
 	word
-		"" 4
-		", let them reek in someone else's ship"
-		", I don't want them stinking my ship up"
+		"" 3
+		", let them make a mess in someone else's ship instead"
 		", I don't want to clean up after them again"
 		", they better learn how to live on a spaceship"
 	word
