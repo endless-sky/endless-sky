@@ -161,6 +161,14 @@ system Thepa
 		sprite "star/big black hole"
 		period 1
 
+planet "One-Way Wormhole Entrance"
+	description ``
+	wormhole "One-Way Wormhole Entrance"
+
+planet "One-Way Wormhole Exit"
+	description ``
+	wormhole "One-Way Wormhole Exit"
+
 wormhole "One-Way Wormhole Entrance"
 	mappable
 	link Mitera Athiri
