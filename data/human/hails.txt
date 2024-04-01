@@ -1955,11 +1955,9 @@ phrase "friendly civilian"
 		"at least 50 spare tons of cargo space"
 		"enough space for 50 tons of cargo"
 	word
-		" "
-	word
-		"then you'll be ready for anything life throws at you"
-		"then there isn't an odd job from the spaceport that you won't be able to do"
-		"then you might get lucky and have just enough room to help out some celebrities"
+		" then you'll be ready for anything life throws at you"
+		" then there isn't an odd job from the spaceport that you won't be able to do"
+		" then you might get lucky and have just enough room to help out some celebrities"
 		", you'll have enough extra slack to pick up any job"
 	word
 		"."
@@ -1975,7 +1973,7 @@ phrase "friendly civilian"
 		"I always try to be an honest captain. "
 		"Crime doesn't pay in the end. "
 		"You've got to be careful if you associate yourself with the wrong sorts. "
-		"" 4
+		"" 6
 	word
 		"It's a fact"
 		"I've heard"
@@ -1986,39 +1984,69 @@ phrase "friendly civilian"
 		"Once you've been on the starlanes long enough you know"
 	word
 		" that "
+		", "
 	word
 		"smuggling is a sure way to find yourself behind bars"
 		"even the most powerful warship won't save you from a knife in the back"
 		"nine out of ten pirates die within their first year"
 		"Republic Intelligence has their eyes everywhere"
 		"the law will always catch up to those who try to bypass it"
+		"associating with the wrong sorts will get you dead or behind bars"
+		"just because it's risky doesn't mean it'll pay off"
+		"staying on the right side of the law is the better choice"
+	word
+		"."
+	replace
+		"enough you know," "enough, you know"
+
+phrase "friendly civilian"
+	word
+		"I've heard that the Quarg"
+		"It's said that the Quarg"
+		"It's a known fact that the Quarg"
+		"The Quarg are pretty strict with their technology. They"
+		"The Quarg don't mess around with their technology. They"
+		"The Quarg monitor their ships and outfits meticulously, and "
+		"The Quarg don't want their advanced technology to proliferate, and "
+		"The Quarg restrict their outfits to their own ships, and "
+		"You don't want to be caught with Quarg technology around Enif. The Quarg"
+		"You don't want to be caught near the Quarg with some of their technology. They"
+	word
+		" "
+	word
+		"will arrest you if they catch a whiff of any of their equipment on your ship"
+		"will put you behind bars forever if you've got one of their ships or outfits without permission"
+		"won't hesitate to take away your freedom if you've stolen one of their ships"
+		"don't take any chances when it comes to a misplaced ship or outfit of theirs"
 	word
 		"."
 
 phrase "friendly civilian"
 	word
-		"The Quarg are pretty strict with their technology. They"
-		"I wish the Quarg would share some of their technology with us, but they"
-		"You don't want to be caught with Quarg technology around Enif. The Quarg"
-		"The Quarg don't mess around with their technology. They"
-		"I'd love to get my hands on some Quarg tech, but they"
-		"It's said that the Quarg"
+		"Have you ever "
 	word
-		" make it pretty clear that they "
-		" monitor their ships and outfits meticulously. They "
-		" don't want their advanced technology to proliferate, and they "
-		" restrict their outfits to their own ships, and "
-		" " 4
+		"been down to Enif"
+		"stopped by Tarazed"
+		"gone to Tarazed"
+		"traveled through the Southern Rim"
 	word
-		"will arrest you if they catch a whiff of any of their equipment on your ship"
-		"imprison anyone they catch with their outfits"
-		"will put you behind bars forever if you've got one of their ships or outfits without their permission"
-		"won't ever let you step foot on a spaceship again if you've got one of their own ships"
-		"don't take any chances when it comes to a misplaced ship or outfit of theirs"
+		" and "
 	word
-		"."
-	replace
-		"It's said that the Quarg make it pretty clear that they" "It's said that the Quarg"
+		"witnessed a Quarg Wardragon jump in with one of their jump drives?"
+		"looked over one of the Quargs' sleek Skylarks"
+		"seen a Quarg Skylark up close?"
+		"seen the Quargs' Skylances in action?"
+		"seen how the Quarg decimate pirates with their Skylances?"
+		"seen how powerful those Quarg Skylances are?"
+	word
+		"" 3
+		" I wish the Quarg would share some of their technology with us."
+		" I'd love to get my hands on some Quarg tech."
+		" What I could do with some of that tech..."
+		" Maybe someday we'll reach their level of technology."
+		" It's scary how advanced their civilization is."
+		" There's no way humanity could stand up to the Quarg."
+		" I doubt the combined Navy Home Fleet at Sol could match the power of one of those."
 
 phrase "friendly civilian"
 	word
@@ -2047,23 +2075,20 @@ phrase "friendly civilian"
 		"and boosting about twenty meters back and forth every now and again"
 		"trying to hit a couple sticks off a few other sticks with a ball"
 	word
-		"" 5
-		". I just don't get it, man"
-		". It makes no sense"
-		". Don't get me started on the rules"
-		". Innings, outings, overs, it's ridiculous"
-		". Who's in and who's out? They never tell you"
-		". It's too bloody convoluted, the way people go in and out all the time"
-		". It sounds like a sport only aliens would play"
+		"!" 6
+		". I just don't get it, man!"
+		". It makes no sense!"
+		". Don't get me started on the rules!"
+		". Innings, outings, overs, it's ridiculous!"
+		". Who's in and who's out? They never tell you!"
+		". It's too bloody convoluted, the way people go in and out all the time!"
+		". It sounds like a sport only aliens would play!"
 		". Couldn't they speed it up a bit?"
 		". How do they make a game out of that?"
-		". And all they're playing for is a bunch of old burnt wood"
-		`. And they're always up in arms about whether "underarm bowling" is legal`
-		". Zero-g lacrosse makes a lot more sense"
-	word
-		"!"
+		". And all they're playing for is a bunch of old burnt wood!"
+		`. And they're always up in arms about whether "underarm bowling" is legal!`
+		". Zero-g lacrosse makes a lot more sense!"
 	replace
-		"?!" "?"
 		"around a space station hitting a ball around a space station" "around hitting a ball around a space station"
 
 phrase "friendly civilian"
