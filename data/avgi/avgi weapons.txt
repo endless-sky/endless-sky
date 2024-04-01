@@ -252,7 +252,7 @@ outfit "Phased Array Laser (Green)"
 	weapon
 		"hardpoint sprite" "hardpoint/green phaser"
 		"die effect" "laser ejecta" 4
-		"die effect" "green phaser return" 30
+		"die effect" "green phaser reflection" 30
 		"die effect" "green phaser scattering"
 		"fire effect" "green phaser fire"
 		"anti-missile" 3
@@ -283,7 +283,7 @@ outfit "Phased Array Laser (Blue)"
 		sprite "projectile/avgi phaser blue"
 			"frame rate" 1
 		"hit effect" "laser ejecta" 4
-		"hit effect" "blue phaser return" 30
+		"hit effect" "blue phaser reflection" 30
 		"hit effect" "blue phaser scattering"
 		"fire effect" "blue phaser fire"
 		"velocity" 3600
@@ -312,7 +312,7 @@ effect "laser ejecta"
 	"random velocity" -12
 	"velocity scale" -0.003
 
-effect "blue phaser return"
+effect "blue phaser reflection"
 	sprite "effect/skylance impact"
 		"no repeat"
 		"frame rate" 20
@@ -342,7 +342,7 @@ effect "green phaser scattering"
 	"lifetime" 1
 	"velocity scale" 0
 
-effect "green phaser return"
+effect "green phaser reflection"
 	sprite "effect/heavy laser impact"
 		"frame rate" 20
 		"random start frame"
@@ -362,23 +362,22 @@ outfit "Ultrarelativistic Electron Beam"
 		"Avgi Civilian"
 	cost 40000
 	thumbnail "outfit/unknown"
-	"mass" 30
-	"outfit space" -30
-	"weapon capacity" -30
+	"mass" 90
+	"outfit space" -90
+	"weapon capacity" -90
 	"gun ports" -1
 	weapon
 		sprite "projectile/ion rain"
 			"frame rate" 30
 			"no repeat"
-		sound "zapper"
-		"fire effect" "lightning flare"
-		"inaccuracy" 0.6
-		"reload" 60
-		"firing energy" 3600
-		"firing heat" 1800
-		"velocity override" 240
-		"submunition" "Electron Packet" 600
-
+		sound "slicer"
+		"fire effect" "electron flare"
+		"firing energy" 24
+		"firing heat" 12
+		"firing scramble" 0.6
+		"velocity override" 360
+		"piercing" 0.15
+		"submunition" "Electron Packet" 12
 
 outfit "Electron Packet"
 	weapon
@@ -387,14 +386,14 @@ outfit "Electron Packet"
 			"no repeat"
 		"hit effect" "bremsstrahlung"
 		"velocity" 360
-		"random velocity" -180
-		"inaccuracy" 0.3
-		"lifetime" 9
+		"random velocity" -240
+		"lifetime" 6
 		"random lifetime" 3
-		"shield damage" 12
-		"hull damage" 12
-		"ion damage" 0.06
-		"piercing" 0.3
+		"shield damage" 0.6
+		"hull damage" 0.9
+		"ion damage" 0.006
+		"piercing" 0.15
+		"penetration count" 3
 
 effect "bremsstrahlung"
 	sprite "effect/piercer impact"
@@ -405,6 +404,13 @@ effect "bremsstrahlung"
 	"random angle" 90
 	"random velocity" -15
 	"velocity scale" 0
+
+effect "electron flare"
+	sprite "effect/pwaveflare"
+		"frame rate" 60
+		"random start frame"
+	"lifetime" 1
+	"velocity scale" 1
 
 
 # Missiles:

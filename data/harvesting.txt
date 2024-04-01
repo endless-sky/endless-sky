@@ -429,7 +429,7 @@ minable "small droplet"
 	sprite "asteroid/small droplet/small droplet"
 	hull 60
 	"random hull" 30
-	payload "Boiled Fish" 1
+	payload "Boiled Voidfish" 1
 	explode puff
 
 minable "medium droplet"
@@ -438,7 +438,7 @@ minable "medium droplet"
 	sprite "asteroid/medium droplet/medium droplet"
 	hull 120
 	"random hull" 60
-	payload "Boiled Fish" 6
+	payload "Boiled Voidfish" 6
 	explode puff
 
 minable "large droplet"
@@ -447,10 +447,10 @@ minable "large droplet"
 	sprite "asteroid/large droplet/large droplet"
 	hull 300
 	"random hull" 120
-	payload "Boiled Fish" 12
+	payload "Boiled Voidfish" 12
 	explode puff
 
-outfit "Boiled Fish"
+outfit "Boiled Voidfish"
 	category Minerals
 	plural "Boiled Fish"
 	cost 2400

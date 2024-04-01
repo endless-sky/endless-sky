@@ -162,7 +162,7 @@ planet Naphir
 	attributes avgi moon uninhabited
 	landscape land/snow27
 	description "Naphir was the chosen destination, and ultimately the final resting place, of an ill-fated early interstellar expedition. The Avgi pioneers who volunteered for the mission knew well in advance that the system lacked any garden planets, but were well prepared to spend the rest of their lives in orbital habitats, setting out regardless. Finding a cool, airless moon around a gas giant, the colonists settled down and began constructing habitats and gathering essential resources."
-	description "Unfortunately, Span is prone to violent eruptions, and a coronal mass ejection struck after less than a year. Their precision machinery was still located on their orbiting starship, and was severely damaged; without that, the colony slowly succumbed to equipment failure until the last living Avgi recorded a farewell poem that remains famous to this day."
+	description "Unfortunately, Span is prone to violent eruptions, and a coronal mass ejection struck after less than a year. Their precision machining equipment was still located on their orbiting starship, and was severely damaged; without that, the colony slowly succumbed to equipment failure until the last living Avgi recorded a farewell poem that remains famous to this day."
 	government Uninhabited
 
 
@@ -515,9 +515,9 @@ planet "Outpost Enka"
 
 planet "Outpost Tekis"
 	attributes avgi "avgi diaspora" dissonance station asteroid
-	landscape land/station28
-	description "Outpost Tekis is a station built into a huge asteroid, with tunnels and habitats throughout its entire volume. Its surface is covered in tubes and habitat domes, many of which grow massive amounts of food in farms and gardens."
-	description "Outpost Tekis is a major exporter of titanium and other rare metals, which are otherwise very rare in the metal-poor Tangled Shroud. A local chapter of the Dissonance movement is openly headquartered there, often the public face of negotiations with the Consonance Assembly."
+	landscape land/station25
+	description "Outpost Tekis is a station built into a huge asteroid, with tunnels and habitats throughout its entire volume. Its surface is littered with pressurized tubes and habitat domes, many of which grow massive amounts of food in farms and gardens."
+	description "Outpost Tekis is a major exporter of titanium and other rare metals, which are otherwise very rare in the metal-poor Tangled Shroud. A local chapter of the Dissonance movement is openly headquartered there, often the public face of negotiations with the Consonance's Assembly."
 	spaceport "The spaceport is somewhat cramped, being mostly intended for the intrasystem ships used in asteroid mining. A flexible docking arm allows larger ships to be moored off the asteroid, but you are able to barely squeeze your ship into the main hangar."
 	government "Avgi (Dissonance)"
 	"required reputation" 10
@@ -532,6 +532,7 @@ planet "Outpost Tekis"
 
 planet "Outpost Lito"
 	attributes avgi "avgi diaspora" dissonance station asteroid
+	landscape land/station28
 	description "WIP"
 	"required reputation" 10
 	government "Avgi (Dissonance)"

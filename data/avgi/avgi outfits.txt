@@ -368,7 +368,7 @@ outfit `Z-330 "Spark" Fusion Torch`
 		"Avgi Military"
 	"cost" 660000
 	thumbnail "outfit/fusion engine small"
-	"mass" 33
+	"mass" 66
 	"outfit space" -33
 	"engine capacity" -33
 	"thrust" 69
@@ -391,7 +391,7 @@ outfit `Z-660 "Zap" Fusion Torch`
 		"Avgi Military"
 	"cost" 1440000
 	thumbnail "outfit/fusion engine medium"
-	"mass" 66
+	"mass" 132
 	"outfit space" -66
 	"engine capacity" -66
 	"thrust" 144
@@ -413,7 +413,7 @@ outfit `Z-990 "Arc" Fusion Torch`
 		"Avgi Military"
 	"cost" 2760000
 	thumbnail "outfit/fusion engine large"
-	"mass" 99
+	"mass" 198
 	"outfit space" -99
 	"engine capacity" -99
 	"thrust" 222
@@ -460,7 +460,7 @@ outfit "Remass Injector"
 	"afterburner thrust" 60
 	"afterburner energy" 3
 	"afterburner heat" -12
-	"afterburner fuel" 0.18
+	"afterburner fuel" 0.27
 	"magnozzle rings" -1
 	description "A powerful magnetohydrodynamic turbopump forces a torrent of water into a fusion torch's magnetic nozzle, dramatically increasing thrust at the cost of a significant increase in propellant consumption. The additional mass flow helps reduce the waste heat imparted on a ship by the torch drive."
 	description "The Remass Injector is a component that can be installed into an Avgi fusion torch to give it afterburning capabilities. It requires a magnozzle ring slot to be installed."
@@ -593,6 +593,14 @@ outfit `Z-1200 "Beam" Antimatter Torch`
 
 
 # Special:
+
+outfit "Anomalous Mass"
+	category "Special"
+	cost 600000
+	thumbnail "outfit/unknown"
+	"flotsam chance" 0.5
+	"unplunderable" 1
+	description "A collection of material shed by an Aberration. Found with various properties in different segments of an Aberration, it has been characterized by Avgi scientists by its unique composition: the material does not seem to be made of atomic matter as they know it, resisting any attempts to probe its makeup."
 
 
 outfit "Electromotive Rifle"
