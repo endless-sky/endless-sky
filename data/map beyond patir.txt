@@ -67,7 +67,6 @@ system Ghila
 
 system Lathia
 	pos 10107.5 -332.5
-	government "Weird Magic Asteroid Planet"
 	haze _menu/haze-lathia
 	habitable 1715
 	belt 1815
@@ -91,7 +90,7 @@ system Lathia
 			sprite planet/io
 			distance 196
 			period 14.607
-	object "Weird Magic Asteroid Planet"
+	object
 		sprite planet/base
 		distance 2723.62
 		period 1372.93
