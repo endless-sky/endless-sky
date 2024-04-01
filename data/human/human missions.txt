@@ -3929,7 +3929,7 @@ mission "Human to Hai Space"
 			`	After thanking you once again, they walk off. As they leave, you overhear Benjamin talk to his family about his trip. "They had so many kinds of food there, it was delicious! Although I did get homesick for pickled acorns..."`
 				decline
 			label haistart
-			`	"Of course. You did bring me all the way back here, after all. These are my parents, Yeerto and Taepip." His father Yeerto then speaks, "We heard about your travel agency, even went there at some point when we were thinking of relocating to human space. It ended up being a touch too expensive, though, so Benjamin arranged a merchant to bring him on the way."`
+			`	"Of course. You did bring me all the way back here, after all. These are my parents, Yeerto and Taepip." His father Yeerto then speaks, "We heard about your travel agency, even went there at some point when we were thinking of relocating to human space. It ended up being a touch too expensive, though, so Benjamin arranged for a merchant to bring him on the way."`
 			`	"Funny we almost found each other then," he adds with a smile on his face.`
 			`	"Honest work always bears fruits." His mother, Taepip, picks up, looking at her son, "That's what we always told him after we adopted him."`
 			choice
@@ -4654,7 +4654,7 @@ mission "Hai Wormhole Warning"
 			`	"So what is it that you brought me here for?" you ask.`
 			`	The officer folds his hands together. "You've made contact with an alien species located to the north. Is this correct?"`
 			choice
-				`	"I did not exactly 'make contact'. I grew up there."`
+				`	"I didn't exactly 'make contact'. I grew up there."`
 					to display
 						has "hai space start"
 					goto grewup

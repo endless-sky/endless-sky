@@ -108,7 +108,7 @@ start "hai space"
 
 conversation "hai intro"
 	scene "scene/hai shipyard"
-	`	You've never been to the shipyard before, and going to the North Pole already feels like you're traveling to another world. The pictures and videos you've seen of all these ships before simply don't do them justice; seeing them for real is something else entirely. Even though you know a lot of those ships must have been in service for many years, you are stunned by how new and shiny they look. You begin to wonder if you are ready to take the big leap.`
+	`You've never been to the shipyard before, and going to the North Pole already feels like you're traveling to another world. The pictures and videos you've seen of all these ships before simply don't do them justice; seeing them for real is something else entirely. Even though you know a lot of those ships must have been in service for many years, you are stunned by how new and shiny they look. You begin to wonder if you are ready to take the big leap.`
 	`	This "Aphid" could suit your needs. It is fast and able to carry a respectable amount of cargo.`
 	scene "thumbnail/hai aphid"
 	`	That is, unless you want to get adventurous and try out the impetuous Grasshopper. Surely the interceptor would be able to beat the smaller human warships, provided a competent pilot is at the helm.`
@@ -119,7 +119,7 @@ conversation "hai intro"
 	scene "scene/hai bank"
 	`	You head to the bank's lobby, hoping to get enough of a loan to be able to buy one of these pristine ships.`
 	`	To your disappointment, the only ship you could afford is an Aphid. You arrange the contract to loan as much money as you need in order to buy one, in what has to be the first seriously unwise act of your life.`
-	`	You've heard of new captains stripping down their ships to recoup the initial buy-in, which is crossing your mind as you see the financial burden you're about to take on. While waiting for paperwork to be processed, you scan over an Aphid pamphlet in the office. The pricey shield regenerator could be traded in if dangerous areas are avoided... and perhaps even the anti-missile system could be downgraded or outright removed... one of the Sand Cells could be sold back to make more space for cargo...`
+	`	You've heard of new captains stripping down their ships to recoup the initial buy-in, which is crossing your mind as you see the financial burden you're about to take on. As you wait for the paperwork to be processed, you passively scan over an Aphid pamphlet in the office. The pricey shield regenerator could be traded in if dangerous areas are avoided... and perhaps even the anti-missile system could be downgraded or outright removed... one of the Sand Cells could be sold back to make more space for cargo...`
 	`	Those anxious musings are interrupted when the bank employee finally lays it out to you, with a hesitant smile. "You are accepting a loan in the amount of 1,431,000 credits, due over the course of 2 years, with an interest rate of 0.3% per day. Please sign here."`
 	name
 	`	You head out of the bank, but on your way to buy the Aphid at the shipyard, you see a notice. A retiring captain is offering to sell some of his ships at an interesting price, including a Grasshopper... Maybe they could sell it to you.`
@@ -142,7 +142,7 @@ conversation "hai intro"
 		`	"Sold!"`
 		`	"Sorry, not interested."`
 			decline
-	`	As the two of you settle up the paperwork, the captain takes the time to explain, in great detail, why this ship is so marvelous. Because of how excited you are to finally fly, you miss everything other than repeated reference to the 'exceptional' reinforced armor.`
+	`	As the two of you settle up the paperwork, the captain takes the time to explain, in great detail, why this ship is so marvelous. In your excitement to buy the ship all you can hear from the Hai captain's speech is the repeated reference to the Grasshopper's 'exceptional' reinforced armor.`
 	`	Before you leave, they give you a final tip: "If you want to, you can always sell this ship and buy an Aphid instead. The shipyard authorities will give you a discount for having sold my ship."`
 	action
 		set "hai space start: Grasshopper"
@@ -183,11 +183,14 @@ mission "Greenwater start"
 		log "Factions" "Syndicate" `The Syndicate is a megacorporation, the largest employer in human space. People who cannot find steady work elsewhere flock to the Syndicate factory worlds, where they are almost guaranteed to find a job. Although the Syndicate is technically part of the Republic, Syndicate worlds are governed directly by the corporation.`
 			`The Syndicate is a central part of the Republic's economy, but they are also well known for selling shoddy products and for doing damage to the environment on the worlds they control. Their treatment of workers is questionable, and their opposition to organized labor is legendary. Some Syndicate factory towns have even been accused of human rights abuses.`
 		log "Factions" "Pirates" `In poorer and more remote star systems, where the Navy seldom patrols, pirate attacks on merchant ships are frequent. Pirates are also known to attack large, unguarded convoys of freighters even in more populated areas. Most pirate fleets come from lawless worlds on the outskirts of human space.`
-		
+		log "Factions" "Hai" `The Hai are a species of giant, intelligent rodents, who live to the north of human space. They allow any humans who discover their territory to live alongside them, and to trade with them and purchase their technology.`
+
+
 
 event "not from boston"
 	planet "New Boston"
-		description `Most of the land here is wet and marshy, and the coastal regions are prone to flooding. Some food crops are grown here, but most of the farmers instead plant flax and jute, which grow well in wet soil and are used to make linen and burlap cloth. The textile mills are hot and poorly ventilated, but they offer higher and more reliable income than farming.`
+		description `New Boston appears to be a completely unremarkable world... but as you fly through its atmosphere, you get a sense of deja vu, as if you had once been familiar with this planet before.`
+		description `	Most of the land here is wet and marshy, and the coastal regions are prone to flooding. Some food crops are grown here, but most of the farmers instead plant flax and jute, which grow well in wet soil and are used to make linen and burlap cloth. The textile mills are hot and poorly ventilated, but they offer higher and more reliable income than farming.`
 
 event "grew up on greenwater"
 	planet "Greenwater"
