@@ -899,7 +899,7 @@ ship "Merganser"
 		"bunks" 3
 		"cargo space" 11
 		"fuel capacity" 600
-		"ramscoop" 1.25
+		"ramscoop" 1.75
 		"mass" 90
 		"drag" 1.3
 		"heat dissipation" .9
