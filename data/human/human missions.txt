@@ -3921,6 +3921,8 @@ mission "Human to Hai Space"
 						has "hai space start"
 					goto haistart
 				`	"That's your family?"`
+					to display
+						not "hai space start"
 			`	The man looks at you. "I'm adopted," he says. One of the Hai notices your confusion, and chitters. "Ah, you have not seen a human-Hai family, have you? Perhaps it is strange, but we are happy together nonetheless. Thank you for transporting our son safely."`
 			choice
 				`	"I didn't mean to be rude, I just didn't know that Hai adopted humans here."`
