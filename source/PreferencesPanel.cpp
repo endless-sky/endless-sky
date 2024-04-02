@@ -77,8 +77,10 @@ namespace {
 	const string BACKGROUND_PARALLAX = "Parallax background";
 	const string EXTENDED_JUMP_EFFECTS = "Extended jump effects";
 	const string ALERT_INDICATOR = "Alert indicator";
+	const string HUD_SHIP_OUTLINES = "Ship outlines in HUD";
 
-	// How many pages of settings there are.
+	// How many pages of controls and settings there are.
+	const int CONTROLS_PAGE_COUNT = 2;
 	const int SETTINGS_PAGE_COUNT = 2;
 	// Hovering a preference for this many frames activates the tooltip.
 	const int HOVER_TIME = 60;
@@ -138,12 +140,18 @@ void PreferencesPanel::Draw()
 	info.SetBar("volume", Audio::Volume());
 	if(Plugins::HasChanged())
 		info.SetCondition("show plugins changed");
+	if(CONTROLS_PAGE_COUNT > 1)
+		info.SetCondition("multiple controls pages");
+	if(currentControlsPage > 0)
+		info.SetCondition("show previous controls");
+	if(currentControlsPage + 1 < CONTROLS_PAGE_COUNT)
+		info.SetCondition("show next controls");
 	if(SETTINGS_PAGE_COUNT > 1)
-		info.SetCondition("multiple pages");
+		info.SetCondition("multiple settings pages");
 	if(currentSettingsPage > 0)
-		info.SetCondition("show previous");
+		info.SetCondition("show previous settings");
 	if(currentSettingsPage + 1 < SETTINGS_PAGE_COUNT)
-		info.SetCondition("show next");
+		info.SetCondition("show next settings");
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
 	string pageName = (page == 'c' ? "controls" : page == 's' ? "settings" : "plugins");
 	GameData::Interfaces().Get(pageName)->Draw(info, this);
@@ -202,15 +210,24 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	}
 	else if(key == 'o' && page == 'p')
 		Files::OpenUserPluginFolder();
-	else if((key == 'n' || key == SDLK_PAGEUP) && currentSettingsPage < SETTINGS_PAGE_COUNT - 1)
+	else if((key == 'n' || key == SDLK_PAGEUP)
+		&& ((page == 'c' && currentControlsPage < CONTROLS_PAGE_COUNT - 1)
+		|| (page == 's' && currentSettingsPage < SETTINGS_PAGE_COUNT - 1)))
 	{
-		++currentSettingsPage;
+		if(page == 'c')
+			++currentControlsPage;
+		else
+			++currentSettingsPage;
 		selected = 0;
 		selectedItem.clear();
 	}
-	else if((key == 'r' || key == SDLK_PAGEDOWN) && currentSettingsPage > 0)
+	else if((key == 'r' || key == SDLK_PAGEDOWN)
+		&& ((page == 'c' && currentControlsPage > 0) || (page == 's' && currentSettingsPage > 0)))
 	{
-		--currentSettingsPage;
+		if(page == 'c')
+			--currentControlsPage;
+		else
+			--currentSettingsPage;
 		selected = 0;
 		selectedItem.clear();
 	}
@@ -427,13 +444,24 @@ void PreferencesPanel::DrawControls()
 	int firstY = -248;
 	table.DrawAt(Point(-130, firstY));
 
+	// About CONTROLS pagination
+	// * A NONE command means that a string from CATEGORIES should be drawn
+	//   instead of a command.
+	// * A '\t' category string indicates that the first column on this page has
+	//   ended, and the next line should be drawn at the start of the next
+	//   column.
+	// * A '\n' category string indicates that this page is complete, no further
+	//   lines should be drawn on this page.
+	// * The namespace variable CONTROLS_PAGE_COUNT should be updated to the max
+	//   page count (count of '\n' characters plus one).
 	static const string CATEGORIES[] = {
 		"Keyboard Navigation",
-		"Interface",
+		"Fleet",
+		"\t",
 		"Targeting",
 		"Weapons",
-		"Interface",
-		"Fleet"
+		"\n",
+		"Interface"
 	};
 	const string *category = CATEGORIES;
 	static const Command COMMANDS[] = {
@@ -447,8 +475,13 @@ void PreferencesPanel::DrawControls()
 		Command::LAND,
 		Command::JUMP,
 		Command::NONE,
-		Command::MAP,
-		Command::INFO,
+		Command::DEPLOY,
+		Command::FIGHT,
+		Command::GATHER,
+		Command::HOLD,
+		Command::AMMO,
+		Command::HARVEST,
+		Command::NONE,
 		Command::NONE,
 		Command::NEAREST,
 		Command::TARGET,
@@ -458,39 +491,59 @@ void PreferencesPanel::DrawControls()
 		Command::SCAN,
 		Command::NONE,
 		Command::PRIMARY,
+		Command::TURRET_TRACKING,
 		Command::SELECT,
 		Command::SECONDARY,
 		Command::CLOAK,
 		Command::MOUSE_TURNING_HOLD,
 		Command::NONE,
+		Command::NONE,
 		Command::MENU,
+		Command::MAP,
+		Command::INFO,
 		Command::FULLSCREEN,
 		Command::FASTFORWARD,
 		Command::HELP,
-		Command::MESSAGE_LOG,
-		Command::NONE,
-		Command::DEPLOY,
-		Command::FIGHT,
-		Command::GATHER,
-		Command::HOLD,
-		Command::AMMO,
-		Command::HARVEST
+		Command::MESSAGE_LOG
 	};
-	static const Command *BREAK = &COMMANDS[19];
+
+	int page = 0;
 	for(const Command &command : COMMANDS)
 	{
-		// The "BREAK" line is where to go to the next column.
-		if(&command == BREAK)
-			table.DrawAt(Point(130, firstY));
-
+		string categoryString;
 		if(!command)
 		{
-			table.DrawGap(10);
-			table.DrawUnderline(medium);
 			if(category != end(CATEGORIES))
-				table.Draw(*category++, bright);
+				categoryString = *category++;
 			else
 				table.Advance();
+			// Check if this is a page break.
+			if(categoryString == "\n")
+			{
+				++page;
+				continue;
+			}
+		}
+		// Check if this command is on the page being displayed.
+		// If this command isn't on the page being displayed, check if it is on an earlier page.
+		// If it is, continue to the next command.
+		// Otherwise, this command is on a later page,
+		// do not continue as no further commands are to be displayed.
+		if(page < currentControlsPage)
+			continue;
+		else if(page > currentControlsPage)
+			break;
+		if(!command)
+		{
+			// Check if this is a column break.
+			if(categoryString == "\t")
+			{
+				table.DrawAt(Point(130, firstY));
+				continue;
+			}
+			table.DrawGap(10);
+			table.DrawUnderline(medium);
+			table.Draw(categoryString, bright);
 			table.Draw("Key", bright);
 			table.DrawGap(5);
 		}
@@ -591,6 +644,7 @@ void PreferencesPanel::DrawSettings()
 		"Show hyperspace flash",
 		EXTENDED_JUMP_EFFECTS,
 		SHIP_OUTLINES,
+		HUD_SHIP_OUTLINES,
 		"\t",
 		"HUD",
 		STATUS_OVERLAYS_ALL,
@@ -767,6 +821,11 @@ void PreferencesPanel::DrawSettings()
 			isOn = true;
 			text = Preferences::Has(SHIP_OUTLINES) ? "fancy" : "fast";
 		}
+		else if(setting == HUD_SHIP_OUTLINES)
+		{
+			isOn = true;
+			text = Preferences::Has(HUD_SHIP_OUTLINES) ? "fancy" : "fast";
+		}
 		else if(setting == BOARDING_PRIORITY)
 		{
 			isOn = true;
@@ -895,13 +954,11 @@ void PreferencesPanel::DrawPlugins()
 			table.DrawHighlight(back);
 
 		const Sprite *sprite = box[plugin.currentState];
-		Point topLeft = table.GetRowBounds().TopLeft() - Point(sprite->Width(), 0.);
+		const Point topLeft = table.GetRowBounds().TopLeft() - Point(sprite->Width(), 0.);
 		Rectangle spriteBounds = Rectangle::FromCorner(topLeft, Point(sprite->Width(), sprite->Height()));
 		SpriteShader::Draw(sprite, spriteBounds.Center());
 
-		topLeft.X() += 6.;
-		topLeft.Y() += 7.;
-		Rectangle zoneBounds = Rectangle::FromCorner(pluginListBox.Center() + topLeft, {sprite->Width(), sprite->Height()});
+		Rectangle zoneBounds = spriteBounds + pluginListBox.Center();
 
 		// Only include the zone as clickable if it's within the drawing area.
 		bool displayed = table.GetPoint().Y() > pluginListClip->Top() - 20 &&
