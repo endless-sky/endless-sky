@@ -6902,67 +6902,75 @@ mission "Lost Dog"
 	destination "Hestia"
 	on offer
 		conversation
-			`Your walk from the <ship> takes you outside <planet>'s spaceport and into the surrounding open area around the spaceport town. Beyond every bend, over every horizon, lurks another breathtaking view. Strolling through Calda is like being inside painting; it's surreal.`
-			`	As you walk you eventually come across an immacluate and perfectly manicured garden park. Normally there is an exorbitant fee to enter, but today due to some promotion you can enter freely.`
+			`Your walk from the <ship> takes you outside <planet>'s spaceport and into the surrounding open area around the spaceport town. Beyond every bend, over every horizon, lurks another breathtaking view; it's surreal.`
+			`	As you walk you eventually come across an immaculate and perfectly manicured garden park. Normally there is an exorbitant fee to enter, but due to some promotion today you can enter freely.`
 			choice
 				`	(Go to the park.)`
-					goto dogpark
+					goto park
 				`	(Head back to the ship.)`
-			`	It was splendid walk, but it's time to head back. You have more important things to do than wander around an expensive terraformed beach.`
+
+			`	It was a splendid walk, but you decide it's time to head back. You have more important things to do than wander around an expensive terraformed beach.`
 				decline
-			label dogpark
+
+			label park
 			`	The park has been carefully sculpted so that no matter where you stand it appears as though you are in the center of a lush naturalist painting. Colorful comforting flora bleed away from you at all angles, and adorable yet inaccessible fauna seem to hug the very periphery of your every step.`
 			`	The air is clear and crisp, and even the crunch and thud of the ground beneath your feet seem somehow delicious and satifsying. Finally, the sun begins and set and it is time to head back.`
 			`	As you approach the exit to the park a small dog pads over to you and looks at you with morunful eyes. The dog seems to be alone with no owner anywhere in sight.`
 			`	"Come here." You call to the poodle-hybrid, who obediently does as you command. You see that its a male and check its collar;`
-			`	'Caesar Augustus - Property of the Mitchell's'`
-			`	You read further on and discover an address for the planet Hestia.`
+			``
+			`	"Caesar Augustus - Property of the Mitchell's"`
+			`	3 Mitchell Drive`
+			`	Avalonia District, Hestia`
+			``
 			`	"That's odd." You say to Caesar. "How did you get lost on the wrong planet, huh boy?"`
-			`	You pet Caesar, who seems glad of the attention, and decide what you'll do.`
+			`	You pet Caesar, who seems glad of the attention, and decide what to do.`
 			choice
 				`	(Take Caesar to his owners on Hestia.)`
 					goto takehim
 				`	(Leave Caesar here.)`
-			`	Although it's getting dark, and on one is around, you decide the best course of action to leave Caesar at the dog park. Perhaps his owners are on holiday and will be back looking for him any minute.`
-			`	As you leave, he whines a little, and looks at you, heartbroken and scared, but you've made your decision, and head back to your ship. Hopefully everything works out for the best.`
+			`	Perhaps his owners are on holiday and will be back looking for him any minute. Although it's getting dark and no one is around, you decide the best course of action to leave Caesar at the park.`
+			`	As you walk off you hear Caesar whining, and as you look back you notice him slink off into the park. But you've made your decision; hopefully everything works out for the best.`
 				decline
 			label takehim
 			`	"Well, come on boy. Let's go." Caesar eagerly follows you back to your ship. He seems greatly relieved to be wth you, and not left all alone at the park.`
-			`	Once on board your ship, you make sure he's fed and watered, and then pat his head, "Let's go find your owners."`
+			`	Once on board your ship, you make sure he's fed, watered, and settled in for the interstellar journey.`
+
 	on complete
 		payment 1000
 		conversation
-			`	Your ship sets down in a squalid urban landscape. The honeycombed homes of humble help. You rent a vehicle and take yourself, and Caesar beyond the blighted city and out into the pleasant picture-perfect paradise of the wealthy. One princely estate after another rolls past you as you drive deeper into the rural domains of the Republic's super-wealthy. Eventually, you come across a large metal gate that reads, 'Mitchell Ranch'.`
+			`	Your ship sets down in a squalid urban landscape. The honeycombed homes of humble help. You rent a vehicle and take yourself, and Caesar beyond the blighted city and out into the pleasant picture-perfect paradise of the wealthy. One princely estate after another rolls past you as you drive deeper into the rural domains of the Republic's super-wealthy. Eventually, you come across a large metal gate that reads, "Mitchell Ranch."`
 			`	It's another 45 minutes of driving down long winding roads, past various out buildings, lodges, retreats, guest houses, and hobby barns, before at long last you arrive at the massive central mansion. Waiting at the bottom of stone stairs is a footman who opens the door for you, and summons the senior butler. `
 			`	The butler arrives, and looks you over unhappily. "The lady of the manor is not expecting... guests. Perhaps, you've misread your appointment, or more likely, arrived at the wrong estate."`
 			choice
-				`	(Show the Butler Caesar, and ask to see the owner.)`
+				`	(Show the butler Caesar, and ask to see his owner.)`
+
 			`	The butler's frown deepens, and then sighs. "Card, please." He holds out a silver tray and awaits your calling card.`
 			choice
 				`	(Explain you don't have a calling card.)`
 					goto nocard
 				`	(Place your card on the tray.)`
+
 			`	The butler's eyebrows raise in the slightest hint of surprise when you place your card on the tray. He promptly turns and disappears into the overlarge house. You, Caesar, and the footman all wait for half an hour before a woman arrives at the front entrance, wearing an exceedingly complicated gown.`
-			`	"Mr. Boolinbrook says you've brought back my darling See-See", from down her nose she looks at you, and waits.`
-			`	But before you can respond, Caesar starts yapping happily and runs up to the lady.`
-			`	She snatches up the dog and draws it to her bosom. "Oh my darling See-See! It has been most dreadful waiting for news of you!"`
-			`	After a moment she turns her attention back to you, looking slightly softer than before. "See-See tires of the parks here, and so every Tuesday I send her to Calda for a change of pace. It's good for her constitution, you know. Anyways, the horrid man who normally ferries our dogs on these little excursions had some sort of episode. A stroke, or heart-attack, you get the idea. He had an assistant return the dogs, but in the confusion they forgot my little See-See. I was sure some gauche tourist would have snatched her up and eaten her by now."`
-			`	She turns her attention back to the dog, and speaks in a baby-voice, "But, instead, this gallant captain saved you!"`
-			`	She snaps her fingers, and the butler is immediately at her side. "We must make him whole. I can't be owing favors to vagabonds. Imagine the talk!`
-			`	She quickly signs a bank note and passes it to you. "I realize this is probably a fortune to you, I recommend you find a financial advisor and invest it well."`
-			`	With that she turns, and leaves, the butler likewise disappears, and you're escorted by the footman back to your vehicle.`
-			`	You look down at the check she's written and read; 1,000 credits.`
-				decline
+				goto boolinbrook
+
 			label nocard
 			`	The butler smiles smugly. "How unfortunate. In that case I have no choice but to bring you through the servant's entrance. It's only proper."`
 			`	Instead of taking you up the wide stairs to the beautifully inscribed wooden doors, he takes you around the side to a small plain door. He leaves you there with the footman to wait.`
 			`	A quarter of an hour later a woman wearing an exceedingly impractical dress arrives.`
-			`	"Mr. Boolinbrook says you've brought back my darling See-See", from down her nose she looks at you, and waits.`
+
+			label boolinbrook
+			`	"Mr. Boolinbrook says you've brought back my darling See-See?" From down her nose she looks at you and waits for your response.`
+			choice
+				`	"Your dog is safe and sound with me."`
+				`	"I found Caesar alone out on Calda, by the spaceport."`
+				`	"Here he is, you're welcome."`
+
 			`	But before you can respond, Caesar starts yapping happily and runs up to the lady.`
 			`	She snatches up the dog and draws it to her bosom. "Oh my darling See-See! It has been most dreadful waiting for news of you!"`
 			`	After a moment she turns her attention back to you, looking slightly softer than before. "See-See tires of the parks here, and so every Tuesday I send her to Calda for a change of pace. It's good for her constitution, you know. Anyways, the horrid man who normally ferries our dogs on these little excursions had some sort of episode. A stroke, or heart-attack, you get the idea. He had an assistant return the dogs, but in the confusion they forgot my little See-See. I was sure some gauche tourist would have snatched her up and eaten her by now."`
 			`	She turns her attention back to the dog, and speaks in a baby-voice, "But, instead, this gallant captain saved you!"`
-			`	She snaps her fingers, and the butler is immediately at her side. "We must make him whole. I can't be owing favors to vagabonds. Imagine the talk!`
+			`	The lady snaps her fingers, and the butler is immediately at her side. "We must make this person whole. I can't be owing favors to vagabonds. Imagine the talk!`
 			`	She quickly signs a bank note and passes it to you. "I realize this is probably a fortune to you, I recommend you find a financial advisor and invest it well."`
-			`	With that she turns, and leaves, the butler likewise disappears, and you're escorted by the footman back to your vehicle.`
+			`	With that she turns and leaves; the butler likewise disappears, and you're escorted by the footman back to your vehicle.`
 			`	You look down at the check she's written and read; 1,000 credits.`
+				decline
