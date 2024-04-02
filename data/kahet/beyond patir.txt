@@ -94,8 +94,8 @@ ship "???"
 		"weapon capacity" 150
 		"engine capacity" 95
 		"hull repair rate" 41
-		"cargo scan power" 100
-		"cargo scan efficiency" 0.1
+		"cargo scan power" 1
+		"cargo scan efficiency" 0.001
 		"thrust" 340.2
 		"flare sprite" "effect/asteroid adult flare"
 			"frame rate" 1
@@ -147,8 +147,8 @@ ship "???" "Asteroid Large 2"
 		"weapon capacity" 150
 		"engine capacity" 95
 		"hull repair rate" 41
-		"cargo scan power" 100
-		"cargo scan efficiency" 0.1
+		"cargo scan power" 1
+		"cargo scan efficiency" 0.001
 		"thrust" 340.2
 		"flare sprite" "effect/asteroid adult 2 flare"
 			"frame rate" 1
@@ -202,8 +202,8 @@ ship "???" "Asteroid Large 3"
 		"weapon capacity" 150
 		"engine capacity" 95
 		"hull repair rate" 41
-		"cargo scan power" 100
-		"cargo scan efficiency" 0.1
+		"cargo scan power" 1
+		"cargo scan efficiency" 0.001
 		"thrust" 340.2
 		"flare sprite" "effect/asteroid adult 3 flare"
 			"frame rate" 1
@@ -255,8 +255,8 @@ ship "???" "Asteroid Large 4"
 		"weapon capacity" 150
 		"engine capacity" 95
 		"hull repair rate" 41
-		"cargo scan power" 100
-		"cargo scan efficiency" 0.1
+		"cargo scan power" 1
+		"cargo scan efficiency" 0.001
 		"thrust" 340.2
 		"flare sprite" "effect/asteroid adult 4 flare"
 			"frame rate" 1
@@ -308,8 +308,8 @@ ship "???" "Asteroid Large 5"
 		"weapon capacity" 150
 		"engine capacity" 95
 		"hull repair rate" 41
-		"cargo scan power" 100
-		"cargo scan efficiency" 0.1
+		"cargo scan power" 1
+		"cargo scan efficiency" 0.001
 		"thrust" 340.2
 		"flare sprite" "effect/asteroid adult 5 flare"
 			"frame rate" 1
@@ -361,8 +361,8 @@ ship "???" "Asteroid Medium"
 		"weapon capacity" 150
 		"engine capacity" 95
 		"hull repair rate" 41
-		"cargo scan power" 100
-		"cargo scan efficiency" 0.1
+		"cargo scan power" 1
+		"cargo scan efficiency" 0.001
 		"thrust" 327.2
 		"flare sprite" "effect/asteroid medium flare"
 			"frame rate" 1
@@ -413,8 +413,8 @@ ship "???" "Asteroid Young"
 		"weapon capacity" 150
 		"engine capacity" 95
 		"hull repair rate" 41
-		"cargo scan power" 100
-		"cargo scan efficiency" 0.1
+		"cargo scan power" 1
+		"cargo scan efficiency" 0.001
 		"thrust" 203.9
 		"flare sprite" "effect/asteroid young flare"
 			"frame rate" 1
@@ -465,8 +465,8 @@ ship "???" "Asteroid Young 2"
 		"weapon capacity" 150
 		"engine capacity" 95
 		"hull repair rate" 41
-		"cargo scan power" 100
-		"cargo scan efficiency" 0.1
+		"cargo scan power" 1
+		"cargo scan efficiency" 0.001
 		"thrust" 203.9
 		"flare sprite" "effect/asteroid young 2 flare"
 			"frame rate" 1
@@ -517,8 +517,8 @@ ship "???" "Asteroid Young 3"
 		"weapon capacity" 150
 		"engine capacity" 95
 		"hull repair rate" 41
-		"cargo scan power" 100
-		"cargo scan efficiency" 0.1
+		"cargo scan power" 1
+		"cargo scan efficiency" 0.001
 		"thrust" 203.9
 		"flare sprite" "effect/asteroid young 3 flare"
 			"frame rate" 1
@@ -569,8 +569,8 @@ ship "???" "Asteroid Young 4"
 		"weapon capacity" 150
 		"engine capacity" 95
 		"hull repair rate" 41
-		"cargo scan power" 100
-		"cargo scan efficiency" 0.1
+		"cargo scan power" 1
+		"cargo scan efficiency" 0.001
 		"thrust" 203.9
 		"flare sprite" "effect/asteroid young 4 flare"
 			"frame rate" 1
