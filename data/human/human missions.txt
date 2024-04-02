@@ -6893,6 +6893,41 @@ mission "Hogshead's Dilemma II"
 
 
 
+mission "Stone to Hope"
+	name "Bring a stone to <planet>"
+	to offer
+		random < #???
+	source 
+		# government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "deep"
+	destination "Hope"
+	on offer
+		conversation
+			`Someone meets you in <source>'s spaceport.`
+			`	They ask you to take a stone to <destination>.`
+			choice
+				`	"Yes."`
+				`	"No."`
+			`	They put it on your ship.`
+
+
+
+# This leads on from Stone to Hope into Ice Queen, as an alternative but more visible entry.
+mission "Ice Queen Alt"
+	landing
+	name "Bring Ildico to <planet>"
+	source "Hope"
+	destination "Clark"
+	to offer
+		has "Stone to Hope: complete"
+	on offer
+		conversation
+			`You bring the stone to <source>. Then you run into Ildico.`
+			`	(Rest of Ice Queen follows...)`
+
+
+
+# This is the current "Ice Queen" mission, which is standalone; it doesn't require "Stone to Hope".
 mission "Ice Queen"
 	name "Taking Ildico to Clark"
 	to offer
@@ -6976,7 +7011,7 @@ mission "Ice Queen"
 				`	"It's karma. What goes around comes around."`
 				`	"One day you'll be able to pay me back."`
 			`	She nods slowly. "We'll see."`
-			apply
+			action
 				set "helpildico"
 			`	She pauses, and then shrugs, "It's not like I have anything to lose. Very well. I need to discover what happened to my father. I know he first went to Clark to meet with a terraforming firm there. That's where I start my search."`
 				launch
