@@ -6902,7 +6902,7 @@ mission "Lost Dog"
 	destination "Hestia"
 	on offer
 		conversation
-			`Your walk from the <ship> takes you outside <planet>'s busiling spaceport and into the overtly welcoming and carefully inoffensive tourist saturated streets of the spaceport town. Every path seems purpose built to whisk you further away from your ship and deeper into the unnatural radiance of this paradise world. The hand-crafted beauty is inescapable and as your hit with a never end sequence of breathtaking views. A new one awaits you beyond every bend, over every new horizon,; it's surreal.`
+			`Your walk from the <ship> takes you outside <planet>'s bustling spaceport and into the overtly welcoming and carefully inoffensive tourist-saturated streets of the spaceport town. Every path seems purpose-built to whisk you further away from your ship and deeper into the unnatural radiance of this Paradise World. The hand-crafted beauty is inescapable, a never-ending sequence of breathtaking views.`
 			`	As you walk you eventually come across an immaculate and perfectly manicured garden park. Normally there is an exorbitant fee to enter, but due to some promotion today you can enter freely.`
 			choice
 				`	(Go to the park.)`
