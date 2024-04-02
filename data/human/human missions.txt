@@ -6893,145 +6893,147 @@ mission "Hogshead's Dilemma II"
 
 
 
-mission "Best Friend 8"
-	destination "Rand"
+mission "Timothy Radrickson 1"
 	landing
-	to offer
-		random < 10
+	destination "Rand"
 	source
 		government "Republic"
+	to offer
+		random < 10
 	on offer
 		conversation
-			`	You hear a strange sound from the food storage on your ship.`
+			`You hear a strange sound from the food storage on your ship.` # Expand this with more of a lead in - maybe you're undergoing an inspection by Republic authorities and their sensors catch him.
 			choice
 				`	(Investigate.)`
 					goto check
 				`	(Ignore the sound.)`
 			`	What ship doesn't creak from time to time? No point checking out every little bump and thud.`
 				decline
+
 			label check
 			`	The source of the noise appears to be a foodstuff crate you recently took on. There is a light thumping coming from within it.`
 			choice
 				`	(Open the crate.)`
 					goto crate
-				`	(Dump the crate.)`
+				`	(Dump the crate outside.)`
 			`	As the crate tumbles out of your ship you're relieved to know that it is now someone else's problem.`
 				decline
+
 			label crate
 			`	You pry open the crate. It should be full of meals for you and your crew. However, after removing the lid you discover instead of food a dirty and disheveled man. .`
 			`	Before you have a chance to say anything the man looks up at you, and whimpers. "P-p-please. I just had to get away. I-I-It wasn't safe. I had to get away." He weakly holds up his hands.`
 			choice
-				`	(Who are you?)`
-				`	(Where's my food?)`
-			`	T-t-timothy Radrickson. I-I tossed your food out to make room. I am sorry. I am so sorry. I have no money to pay you back. I just h-h-had to leave. They were after me. I owned money. I had nothing. Please. Any other Republic world will do. I just need to get away. I just need to start anew. I'll p-p-pay you back I swear. I swear. I will. I swear.`
+				`	"Who are you?"`
+				`	"Where's my food?"`
+
+			`	T-T-Timothy Radrickson. I-I tossed your food out to make room. I am sorry. I am so sorry. I have no money to pay you back. I just h-h-had to leave. They were after me. I owned money. I had nothing. Please. Any other Republic world will do. I just need to get away. I just need to start anew. I'll p-p-pay you back I swear. I swear. I will. I swear.`
 			choice
 				`	"Fine. I'll drop you off at the next Republic port."`
 					goto republic
 				`	"Is there somewhere you'd like to go?"`
 					goto somewhere
 				`	"I know where you're going. The airlock."`
-			`	The feeble man screams as you drag him out of the crate and toward the airlock. The weakened man ineptly squirms as you shove him into the airlock. He falls to his knees, shudders with terror, and his face leaks tears. You close the airlock, silencing his shrill screams, and hit the button to open it on the outside. The man is promptly dumped out and back into the world from which he fled.`
+
+			`	The feeble man screams as you drag him out of the crate and toward the airlock. He ineptly squirms as you shove him into the airlock. He falls to his knees, shudders with terror, and his face leaks tears. You close the airlock, silencing his shrill screams, and hit the button to open it on the outside. The man is promptly dumped out and back into the world from which he fled.`
 				decline
+
 			label republic
 			action
-				event "republictim"
-			`	Alright, Tim. I'll drop you off at the next friendly port.`
+				set "timothy radrickson: republic port"
 			`	Tears squeeze out the man's sad eyes. "Thank you." He whispers, "Thank you."`
-			`	You get the man cleaned up, and settled and head back to your station.`
+			`	You get the man cleaned up and settled and head back to your station.`
 				decline
+
 			label somewhere
-			`	It's okay Timothy. You're safe here. Is there anywhere specifically you'd like to be dropped off at? I can take you where you need to go.`
 			`	Timothy looks at you, his eyes wide and full of tears. "R-r-rand," he whispers. "Rand. I can make good money there. I can turn my life around. B-b-but I'd be okay with anywhere. You d-d-don't have to.."`
-			`	You cut him off. "It's fine, Timothy. I'll take you to Rand."`
+			`	You cut him off. "It's fine, Timothy. I'll take you to Rand."` # Maybe add another choice node to affirm this, since it's possible Rand's quite far away from where the player is and they want to reconsider.
 			`	Timothy breaks down in tears. "Thank you. Thank you. Thank you," he mumbles over and over.`
 			`	You help him out of the crate and get him cleaned up.`
 				accept
+
 	on complete
 		conversation
 			`	During the trip Timothy's spirits and health improved, and by the time you arrive on Rand he's seems like a different man.`
 			`	"Thank you so much, Captain <last>." He shakes your hand."`
 			`	"I mean it. From the bottom of my heart. You've saved my life, and given me hope. I won't forget this, or you. I can never thank you enough."`
 			`	His eyes glistening, Timothy turns from you and exits your ship. Hopefully he finds what he is looking for on Rand.`
-		event "timdoneright" 340
+		event "timothy radrickson: doneright" 340
 
-event "timdoneright"
-				
-event `republictim`
+event "timothy radrickson: doneright"
 
-mission "Tim's Interlude"
+mission "Timothy Radrickson Interlude"
 	to offer
-		has "event: republictim"
+		has "timothy radrickson: republic port"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	landing
 	on offer
-		event "sadtim" 390
+		event "timothy radrickson: sad" 390
 		conversation
 			` 	Blinking at the light Timothy shuffles toward the exit. "Th-th-thank you. Thank you so much," Timothy mumbles.`
-			`	Timothy opens the hatch, and looks back at you, "You s-s-saved my life. I won't forget. I won't"`
+			`	Timothy opens the hatch, and looks back at you, "You s-s-saved my life. I won't forget. I won't."`
 			`	With that Timothy exits your ship and begins his new life. You hope everything works out for the best.`
 				decline
 
-event "sadtim"
+event "timothy radrickson: sad"
 
-mission "Tim's good interlude"
+mission "Timothy Radrickson Good Interlude"
 	to offer
 		has "event: timdoneright"
 	landing
 	invisible
 	on offer
 		payment 50000
-		event "happytim" 3600
+		event "timothy radrickson: happy" 3600
 		conversation
-			`	After your ship touches down you notice a light blinking on your dashboard. You have a cached message waiting for you to play.`
+			`After your ship touches down you notice a light blinking on your dashboard. You have a cached message waiting for you to play.`
 			choice
 				`	(Play the message.)`
 			`	The screen lights up with the familiar, fuller face of a healthy Timothy Radrickson.`
-			`	"Captain <last>. Let me just reiterate my thanks to you for what you did for me. Most Captains would have airlocked me, or dropped me off wherever, but you really gave me a chance."`
+			`	"Captain <last>. Let me just reiterate my thanks to you for what you did for me. Most captains would have airlocked me, or dropped me off wherever, but you really gave me a chance."`
 			`	He stops and grins at the camera for a moment. "And that chance, it really has made all the difference. It's been a year of hard work, but I've saved some money and made some investments, and things really are turning around."`
 			`	"As way of thanks", he continues," I've included 50,000 credits with this message. That should cover the cost of transporting to me to Rand, but it doesn't come to close to what I really owe. Which is, in all honesty, my very life."`
 			`	He pauses, as if he's trying to remember something, " Anyways, thank you again, and know I'll never forget what you did for me."`
 			`	Timothy waves and then the video ends.`
 				decline
 		
-event "happytim"
+event "timothy radrickson: happy"
 
-mission "Happy Tim"
+mission "Timothy Radrickson: Governor Notification"
 	to offer
-		has "event: happytim"
+		has "event: timothy radrickson: happy"
 	destination "Rand"
 	landing
 	on offer
 		conversation
-			`	An indicator light is blinking on your main panel. There is a cached message waiting for you to play.`
+			`An indicator light is blinking on your main panel. There is a cached message waiting for you to play.`
 			choice
 				`	(Play the message.)`
 			`	A young woman in very professional clothes appears on the screen. "Captain <last>, I am pleased to inform you that the Governor of Rand has invited you to attend an award ceremony in your honor. Please come to Rand at your earliest convenience.`
 	on complete
 		conversation 
-			`	Upon landing you are met by a squat heavy set woman in her late 40's. She reaches out a calloused hand to shake yours. "Welcome to Rand, Captain <last>. It is a pleasure, and honor, to have someone of your status here on our little world. I am Regina, the Mayor, and one of the major company-bosses here. I've been instructed to escort you to the Governor's mansion. I have a vehicle waiting for you just outside the spaceport. Meet me there when you're ready." `
+			`Upon landing you are met by a squat heavy set woman in her late 40s. She reaches out a calloused hand to shake yours. "Welcome to Rand, Captain <last>. It is a pleasure, and honor, to have someone of your status here on our little world. I am Regina, the Mayor, and one of the major company-bosses here. I've been instructed to escort you to the Governor's mansion. I have a vehicle waiting for you just outside the spaceport. Meet me there when you're ready." `
 
 
-mission "Hero of Rand"
+mission "Timothy Radrickson: Governor"
 	to offer
 		has "Happy Tim: done"
 	source "Rand"
 	on offer
 		conversation
-			`	Regina, her driver, and a black sleek vehicle are all waiting for you aside the warn down and substandard spaceport. You slide into the comfortable seating, and look out the window as the dry ugly landscape of Rand passes you by. From time to time you see a strip-mine, or some worker camps, but rarely anything else. Behind your vehicle there is a huge plume of half-frozen dust. Apparently low gravity and dust is a terrible combination.`
-			`	After an hour of driving you notice the landscape suddenly shift. The first tendrils of greenery invades the otherwise brown-yellow desert. Upon closer inspection, the green plants are accompanied by all manner of technology to help and promote their growth. Money, it seems, is turning this parched place green.`
-			`	Beyond the suddenly green hills, sits a huge sprawling complex. You recognize a few massive structures outside the building as artificial-gravity drives. The same ships would use to maintain gravity.`
+			`Regina, her driver, and a black sleek vehicle are all waiting for you aside the worn down and substandard spaceport. You slide into the comfortable seating and look out the window as the dry ugly landscape of Rand passes you by. From time to time you see a strip mine or a camp of workers' barracks, but rarely anything else. Behind your vehicle there is a huge plume of half-frozen dust. Apparently low gravity and dust is a terrible combination.`
+			`	After an hour of driving you notice the landscape suddenly shift. The first tendrils of greenery invades the otherwise brown-yellow desert. Upon closer inspection, the green plants are accompanied by all manner of technology to help and promote their growth. Money, it seems, is turning just a little bit of this parched place green.`
+			`	Beyond the suddenly green hills sits a huge sprawling complex. You recognize a few massive structures outside the building as artificial-gravity drives. The same ships would use to maintain gravity.` # Are the artificial gravity drives repulsors? May need to rewrite this as it may be incompatible with the lore, but not sure yet.
 			choice
 				`	(Say nothing.)`
 					goto nothing
 				`	(Ask about the artificial gravity drives.)`
-			` Regina flashes a toothy smile. "The gravity here, it is... taxing. The governor's mansion, and a few other important buildings and housing complexes, use artificial gravity drives to make things more manageable for us hard working servants of the state." She says 'servants of the state' as though its some kind of inside joke. She turns away from you before you have a chance to say anything else.`
+			`	Regina flashes a toothy smile. "The gravity here, it is... taxing. The governor's mansion, and a few other important buildings and housing complexes, use artificial gravity drives to make things more manageable for us hard working servants of the state." She says "servants of the state" as though its some kind of inside joke. She turns away from you before you have a chance to say anything else.`
 			label nothing
 			`	The vehicle pulls up to a grandiose entrance near the center of the huge structure. An attendant opens the door, and you're ushered outside the vehicle.`
 			`	Regina does not get out. She smiles politely through the opened door. "Only you were invited to enter the Governor's Mansion. I am afraid this as far as I am allowed to go. Take care, Captain <last>, it truly was an honor meeting you.`
 			`	With that the door shuts, and a few moments later the black vehicle departs, leaving you and the attendant at Mansion's entrance.`
-			`	The attendant bows deeply. "Please, Captain <last>. If you would follow me.`
-			`	The attendant turns, and heads into the building.`
+			`	The attendant bows deeply. "Please, Captain <last>. If you would follow me. He turns and heads into the building.`
 			choice
 				`	(Follow the attendant.)`
 			`	Upon entering the mansion you feel your weight shift. It's still a little less than 1g, but close. There's a young well-dressed woman, the same who you saw in your message, waiting for you inside. The attendant leaves you with her.`
@@ -7071,7 +7073,7 @@ mission "Hero of Rand"
 			choice
 				`	(Say a few words.)`
 					goto afewwords
-				`	(Mingle with the crowd).`
+				`	(Mingle with the crowd.)`
 					goto mingle
 			label afewwords
 			`	You walk up to the podium, past the governor and turn to address the assembled guests.`
@@ -7106,16 +7108,16 @@ mission "Hero of Rand"
 			label thanks
 			action
 				payment 1000000
-				event "governortim" 3496
+				event "timothy radrickson imprisoned" 3496
 			`	You thank Timothy for his hospitality, and for putting on such a grand event for your sake. You talk with him for hours. About his life on Rand, the hardships of the mines, how he clawed his way out of it. But also about you, the challenges of running a ship, the battles, the close calls, and the joys of triumph.`
 			`	As the sun rises your conversation winds to a close. Timothy escorts you back to a waiting vehicle and you say your farewells. The dark vehicle drives off into the bright desert, leaving behind an island of green, and warmth.`
 				decline
 
-event "governortim"
+event "timothy radrickson imprisoned"
 
-mission "Prison Tim"
+mission "Timothy Radrickson: Imprisoned"
 	to offer
-		has "event: governortim"
+		has "event: timothy radrickson imprisoned"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination "Oblivion"
@@ -7123,55 +7125,58 @@ mission "Prison Tim"
 	invisible
 	on offer
 		conversation
-			`	As you stroll through the spaceport, a name blaring on a nearby news screen catches your attention.`
+			`As you stroll through the spaceport, a name blaring on a nearby news screen catches your attention.`
 			choice
-				`	(Watch the News.)`
+				`	(Watch the news.)`
 					goto news
 				`	(Ignore it.)`
 			`	You keep walking. It's probably nothing, and if it isn't, well it isn't worth your time.`
 				decline
 			label news
 			`	You turn to check out the screen. The talking heads are discussing some sort of huge scandal and the arrest of a prominent governor.`
-			`	"That's right Ann." The Anchor says, "With 8 counts of tax evasion, racketeering, and various corruption charges, Timothy Radickson, former Governor of Rand, will likely spend the next 20 years behind bars."`
+			`	"That's right, Ann," the anchor on the screen says. "With 8 counts of tax evasion, racketeering, and various corruption charges, Timothy Radickson - former Governor of Rand - will likely spend the next 20 years behind bars."`
 			`	"Where he's going there will be no bars, Tom." Ann quips, "They plan to send him to a work detail on Oblivion."`
-			`	Tom laughs, "In that case, forget what I said about 20 years, anything more than 5 years on Oblivion is a life sentence."`
+			`	Tom gives that sort of news anchor laugh that's neither committal nor disrespectful. "In that case, forget what I said about 20 years, anything more than 5 years on Oblivion is a life sentence."`
 			`	Both news anchors laugh, and then segue into a story about highly intelligent ferrets that have learned to sing in German.`
 				accept
 	on complete
 		dialog
 			`	Your ship descends through the beautiful, toxic horizon and lands in the dirty, dismal spaceport outside of the provincial capitol city called Tukayyid.`
 
-mission "timshank redemption"
+mission "Timothy Radrickson: Timshank Redemption"
 	to offer
-		has "Prison Tim: done"
+		has "Timothy Radrickson: Imprisoned: done"
 	source "Oblivion"
 	invisible
 	on offer
 		conversation
-			`	The clumped together warehouses, liberally called a spaceport, are used as a central clearing house by all on-world industries. Workers from every industry filter in and out of this never-ending boom town. In the shadows, and on the fringes, the sick, and infirm linger, looking for a handout; the price of progress on such a hostile world.`
+			`The clumped together warehouses, liberally called a spaceport, are used as a central clearing house by all on-world industries. Workers from every industry filter in and out of this never-ending boom town. In the shadows, and on the fringes, the sick, and infirm linger, looking for a handout; the price of progress on such a hostile world.`
 			`	Among the crowd one face draws your attention. A worker, unsupervised, is heaving heavy equipment into a truck. His complexion is sallow, and his skin seem to droop off his bones. His blood red eyes, noticing your attention, languidly rise to look at you. Despite the damage, you realize, you recognize him.`
 			`	"Captain <last>." He says, suffering a coughing fit. There's now red specs on his lips.`
 			`	"It's me. Timothy, remember? Boy, it's been a while. I'm a prisoner now. Chain-ganged here. Probably until the end." He spits his words out in short bursts, careful not to start coughing again.`
 			choice
-				`	"I am sorry, Timothy."`
+				`	"I'm sorry, Timothy."`
 				`	"Is there any way I can help?"`
 				`	"Shouldn't have broken the law."`
+			
 			`	His red eyes glance side to side, conspiratorially, "I could use your help. Just to buy some things. Might help."`
 			choice
-				`	(Agree to help Timothy.)`
+				`	(Agree to help him.)`
 					goto agree
-				`	(Refuse to help Timothy.)`
-			`	You shake your head slowly. "I am sorry, Timothy. But you broke the law, and this is your punishment. My hands are tied. Maybe when you're out we'll reconnect."`
+				`	(Refuse to help him.)`
+			
+			`	You shake your head slowly. "I'm sorry, Timothy. But you broke the law, and this is your punishment. My hands are tied. Maybe when you're out we'll reconnect."` # Repetition from a choice before.
 			`	What little strength he has seems to deflate, a crimson tear winds down his cracked face. "When I'm out? I'll never be out. Goodbye, old friend."`
 			`	The weak, broken man returns to loading up the heavy equipment. Slower than before.`
 				decline
+			
 			label agree
-			`	Timothy hastily writes down a list of items he needs and hands it to you. "Ask around. Get it all here. They wouldn't sell to me. Even if I had credits."`
+			`	Looking sideways first, Timothy takes a piece of yellowed paper from his pocket and hastily writes something down on it before handing it to you. "Ask around. Get it all here. They wouldn't sell to me. Even if I had credits."`
 			`	He abruptly turns away from you and goes back to loading equipment, but slower now, buying for time.`
 			`	You look at his list. Initially it's various survival items, backpacking, camping equipment and the like. There's also some heavy duty detoxification medication here as well. More alarming though, are the industrial chemical compounds that would easily create a bomb, not to mention the gun at the bottom.`
 			`	You're not familiar exactly what his crimes were, but you seem to recall them being mostly white-collar. Yet, you could potentially be arming a terrorist with these items. What might he blow up, who might he shoot, given his obvious desperation?`
-			choice
-				`	(Buy the items for 500,000 credits)`
+			choice # We could make this all more involved. Perhaps you could go around instead and describe the places where you get the objects, or get a laser rifle from an outfitter, etc.
+				`	(Buy the items for 500,000 credits.)`
 					goto buy
 				`	(Don't buy the items.)`
 			`	It's not easy, walking away from the sad, shadow of a man that Timothy has become. But, you do it anyway. You toss the crumpled list into the trash, and leave Timothy to his fate.`
@@ -7179,7 +7184,7 @@ mission "timshank redemption"
 			label buy
 			action
 				payment -500000
-				event "timforever" 460
+				event "timothy radrickson forever" 460
 			`	It takes the better part of the day, a great deal of haggling, and meeting with some unsavory people. But you manage to collect all the equipment that Timothy requested. You have it packed into a crate, and loaded on Timothy's prison truck.`
 			`	Timothy's eyes are wide, rimmed with bloody tears, as he watches. "Always at my lowest."`
 			`	He swallows a cough, and then continues. "It's you who saves me. When I am at my lowest. It's you."`
@@ -7187,29 +7192,30 @@ mission "timshank redemption"
 			` 	"Captain." He says, and then he climbs aboard the truck and drives off.`
 				decline
 
-event "timforever"
+event "timothy radrickson forever"
 
-mission "News Tim"
+mission "Timothy Radrickson: News of Death"
 	source 
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	to offer
-		has "timshank redemption: decline"
+		has "Timothy Radrickson: Timshank Redemption: declined"
+		not "Timothy Radrickson: Monk"
 		random < 5
 	on offer
 		conversation
-			`	A spaceport is a symphony of smells, sounds, and images in constant motion. Somewhere in the din, a news report is playing, a familiar name leaps out at you. Your attention piqued, you turn to watch.`
+			`A spaceport is a symphony of smells, sounds, and images in constant motion. Somewhere in the din, a news report is playing, a familiar name leaps out at you. Your attention piqued, you turn to watch.`
 			`	An anchor is talking, "News out of Oblivion today. A minor explosion has the claimed the life of Timothy Radickson, former disgraced Governor of Rand. Sentenced to prison-labor on Oblivion, a hard, but fair justice for a man who..."`
 			`	The news broadcast continues to blare, but you aren't able to follow anymore than that.`
 				decline
 
-mission "Monk Tim"
+mission "Timothy Radrickson: Monk"
 	source "New Tibet"
 	to offer
-		has "event: timforever"
+		has "event: timothy radrickson forever"
 	invisible
 	on offer
 		conversation
-			`	A group of monks passes you by in the spaceport, and one stops to look at you curiously.`
+			`A group of monks passes you by in the spaceport, and one stops to look at you curiously.`
 			`	"Are you Captain <last>?" They ask.`
 			choice
 				`	"Why?"`
@@ -7228,8 +7234,8 @@ mission "Monk Tim"
 				`	"Why not. I got nothing to better to do."`
 					goto whyyes
 				`	"I don't have time for fans."`
-			`	"Of course." The monk says,"you are a busy person." He says goodbye and returns to his brothers.`
-			decline
+			`	"Of course," the monk says, "you are a busy person." He returns to his brothers.`
+				decline
 			label whyyes
 			`	The monk beams. "Wonderful. It'll be a bit of a hike, but the views are worth it."`
 			`	He leads you into the mountains beyond the spaceport. You travel up various narrow passes, and steep cliff sides. It's a difficult trail, but the scenery is remarkable. Your views are filled with broken mountains, jagged rocks, green vibrant life, and distant valleys.`
