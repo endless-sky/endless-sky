@@ -78,6 +78,7 @@ ship "???"
 	attributes
 		category "Transport"
 		"uncapturable" 1
+		"inscrutable" 1
 		"cost" 1350000000
 		"hull" 136561
 		"required crew" 1
@@ -130,6 +131,7 @@ ship "???" "Asteroid Large 2"
 	attributes
 		category "Transport"
 		"uncapturable" 1
+		"inscrutable" 1
 		"cost" 1350000000
 		"hull" 137151
 		"required crew" 1
@@ -184,6 +186,7 @@ ship "???" "Asteroid Large 3"
 	attributes
 		category "Transport"
 		"uncapturable" 1
+		"inscrutable" 1
 		"cost" 1350000000
 		"hull" 135172
 		"required crew" 1
@@ -236,6 +239,7 @@ ship "???" "Asteroid Large 4"
 	attributes
 		category "Transport"
 		"uncapturable" 1
+		"inscrutable" 1
 		"cost" 1350000000
 		"hull" 135172
 		"required crew" 1
@@ -288,6 +292,7 @@ ship "???" "Asteroid Large 5"
 	attributes
 		category "Transport"
 		"uncapturable" 1
+		"inscrutable" 1
 		"cost" 1350000000
 		"hull" 136716
 		"required crew" 1
@@ -340,6 +345,7 @@ ship "???" "Asteroid Medium"
 	attributes
 		category "Transport"
 		"uncapturable" 1
+		"inscrutable" 1
 		"cost" 950000000
 		"hull" 91248
 		"required crew" 1
@@ -391,6 +397,7 @@ ship "???" "Asteroid Young"
 	attributes
 		category "Transport"
 		"uncapturable" 1
+		"inscrutable" 1
 		"cost" 450000000
 		"hull" 36459
 		"required crew" 1
@@ -442,6 +449,7 @@ ship "???" "Asteroid Young 2"
 	attributes
 		category "Transport"
 		"uncapturable" 1
+		"inscrutable" 1
 		"cost" 450000000
 		"hull" 35984
 		"required crew" 1
@@ -493,6 +501,7 @@ ship "???" "Asteroid Young 3"
 	attributes
 		category "Transport"
 		"uncapturable" 1
+		"inscrutable" 1
 		"cost" 450000000
 		"hull" 37021
 		"required crew" 1
@@ -544,6 +553,7 @@ ship "???" "Asteroid Young 4"
 	attributes
 		category "Transport"
 		"uncapturable" 1
+		"inscrutable" 1
 		"cost" 450000000
 		"hull" 36462
 		"required crew" 1

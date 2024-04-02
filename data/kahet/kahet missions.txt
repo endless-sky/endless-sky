@@ -978,6 +978,7 @@ mission "Ka'het: Patir Mystery 7"
 				accept
 
 			label outfit
+			action
 				outfit "Ka'het Electric Stunner" 1
 			`	Dusk quickly explains how to use the Ka'het weapon; its short cylindrical shape is evidently not made for human hands and proves to be quite hard to use, but you eventually find out how to hold it while still being able to readily press the trigger. While they may not be the best weapon to capture an enemy ship, they're surely going to be very handy from a defensive position inside your own.`
 			label next
@@ -1168,7 +1169,7 @@ mission "Ka'het: Patir Mystery 10"
 			`	"Maybe, but it could also end up being an unnecessary risk. First things first, <first>, there's no need to rush anything."`
 				accept
 
-	npc assist
+	npc assist save
 		system "Patir"
 		government "Remnant"
 		personality derelict target pacifist mute
