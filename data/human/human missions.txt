@@ -6890,3 +6890,369 @@ mission "Hogshead's Dilemma II"
 			`As you are walking around the spaceport, you see that more than a few pilots are watching the news on nearby displays. There are mixed emotions amongst the crowd - some pilots are having a good laugh while others seem disappointed or even confused. You aren't sure what this is about until, lo and behold, the result of that Hogshead naming poll from a while ago is clearly shown on a display - Shippy McShipface. You can't say it's all that much worse than some of the names you've heard pirates give their ships before, but it still seems silly that the transport company is actually going through with the name.`
 			`	All of the hyped discussions around Hogsheads in the past gave them a brief but strong popularity amongst transport organizations looking to grab the average passenger's attention. In the end, the company responsible for this naming poll got what they wanted, and a little bit of the Hogshead's spirit has been brought back, along with the interest of several pilots. Perhaps the name "Shippy McShipface" is fitting after all.`
 				decline
+
+
+
+mission "Best Friend 8"
+	to offer
+		has "event: sagabark"
+	destination "Rand"
+	landing
+	on offer
+		require "Saga"
+	on enter
+	on enter
+		conversation
+			`	The narrow walls of your ship seem to vibrate with the ear-piercing barks of your dog, Saga. Saga, normally a very quiet dog, is clearly agitated or excited about something. Her barking continues unabated echoing all along the ship.`
+			choice
+				`	(Check on Saga.)`
+					goto check
+				`	(Ignore Saga.)`
+			`	She'll stop eventually, no reason to reward her bad behavior by reacting to it. You get back to your ship.`
+				decline
+			label check
+			`	You find Saga barking, whimpering and pawing at some foodstuff crates you recently took on. There is one crate in particular she is fiercely interested in.`
+			choice
+				`	(Open the create.)`
+					goto crate
+				`	(Give her a treat.)`
+			`	You figure she's just hungry and give her one her favorite treats. She excitedly takes it from your hand and runs off to eat it. Intent on her treat, she quiets down, and you return to your station.`
+				decline
+			label crate
+			`	You pry open the crate. It should be full of meals for you and your crew. However, after removing the lid you discover instead of food a dirty and disheveled man. .`
+			`	Before you have a chance to say anything the man looks up at you, and whimpers. "P-p-please. I just had to get away. I-I-It wasn't safe. I had to get away." He weakly holds up his hands.`
+			choice
+				`	(Who are you?)`
+				`	(Where's my food?)`
+			`	T-t-timothy Radrickson. I-I tossed your food out to make room. I am sorry. I am so sorry. I have no money to pay you back. I just h-h-had to leave. They were after me. I owned money. I had nothing. Please. Any other Republic world will do. I just need to get away. I just need to start anew. I'll p-p-pay you back I swear. I swear. I will. I swear.`
+			choice
+				`	"Fine. I'll drop you off at the next Republic port."`
+					goto republic
+				`	"Is there somewhere you'd like to go?"`
+					goto somewhere
+				`	"I know where you're going. The airlock."`
+			`	The feeble man screams as you drag him out of the crate and toward the airlock. Saga whimpers, and stays back as the man ineptly squirms. You shove the small malnourished man into the airlock. He falls to his knees, his shudders with terror, and face leaks tears. You close the airlock, silencing his shrill screams, and hit the button to open it on the outside. The man is promptly sucked out into space, and promptly becomes a tiny speck of space debris.`
+			`	You turn back to Saga and pet her for a job well done. "Good girl."`
+				decline
+			label republic
+			action
+				event "republictim"
+			`	Alright, Tim. I'll drop you off at the next friendly port.`
+			`	Tears squeeze out the man's sad eyes. "Thank you." He whispers, "Thank you."`
+			`	You get the man cleaned up, and settled and head back to your station. On your way you pass Saga, who has a curious glint in her eyes, you reach down and pet her. "Good girl, Saga. Good girl."`
+				decline
+			label somewhere
+			`	It's okay Timothy. You're safe here. Is there anywhere specifically you'd like to be dropped off at? I can take you where you need to go.`
+			`	Timothy looks at you, his eyes wide and full of tears. "R-r-rand," he whispers. "Rand. I can make good money there. I can turn my life around. B-b-but I'd be okay with anywhere. You d-d-don't have to.."`
+			`	You cut him off. "It's fine, Timothy. I'll take you Rand."`
+			`	Timothy breaks down in tears. "Thank you. Thank you. Thank you," he mumbles over and over.`
+			`	You help him out of the crate and get him cleaned up.`
+			`	Eventually, you head back to your station. On your way there you pass Saga who is watching you with a curious glint in her eyes. You reach down and pet her. "Good girl, Saga. Good girl!"`
+				accept
+	on complete
+		conversation
+			`	During the trip Timothy's spirits and health improved. Saga kept him company, and by the time you arrive on Rand he's seems like a different man.`
+			`	"Thank you so much, Captain <last>." He shakes your hand. He glances down and pats Saga's head. "And thank you little lady."`
+			`	Timothy straightens up. "I mean it though. From the bottom of my heart. You've saved my life, and given me hope. I won't forget this, or you. I can never thank you enough."`
+			`	His eyes glistening, Timothy turns from you and exits your ship. Hopefully he finds what he is looking for on Rand.`
+			` 	The hatch closes behind him, Saga whines a little and then rests her head against your knee. You stroke her head. `
+		event "timdoneright" 340
+
+event "timdoneright"
+				
+event `republictim`
+
+mission "Tim's Interlude"
+	to offer
+		has "event: republictim"
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	landing
+	on offer
+		event "sadtim" 390
+		conversation
+			` 	Blinking at the light Timothy shuffles toward the exit. "Th-th-thank you. Thank you so much," Timothy mumbles.`
+			`	Timothy opens the hatch, and looks back at you and Saga, "You s-s-saved my life. I won't forget. I won't"`
+			`	With that Timothy exits your ship and begins his new life. You hope everything works out for the best.`
+			`	Saga doesn't make a sound and pads back towards her favorite nook. With the stowaway gone she curls up and waits for the familiar rumble of your ship blasting into space.`
+				decline
+
+event "sadtim"
+
+mission "Tim's good interlude"
+	to offer
+		has "event: timdoneright"
+	landing
+	invisible
+	on offer
+		payment 50000
+		event "happytim" 3600
+		conversation
+			`	After your ship touches down you notice a light blinking on your dashboard. You have a cached message waiting for you to play.`
+			choice
+				`	(Play the message.)`
+			`	The screen lights up with the familiar, fuller, face of a healthy Timothy Radrickson.`
+			`	"Captain <last>. Let me just reiterate my thanks to you for what you did for me. Most Captains would have airlocked me, or dropped me off wherever, but you really gave me a chance."`
+			`	He stops and grins at the camera for a moment. "And that chance, it really has made all the difference. It's been a year of hard work, but I've saved some money and made some investments, and things really are turning around."`
+			`	"As way of thanks", he continues," I've included 50,000 credits with this message. That should cover the cost of transporting to me to Rand, but it doesn't come to close to what really owe. Which is, in all honesty, my very life."`
+			`	He pauses, as if he's trying to remember something, "Also, give Saga a treat for me. I am sure she's been a good girl. Anyways, thank you again, and know I'll never forget what you did for me."`
+			`	Timothy waves and then the video ends. Saga, who has been watching attentively from behind you, barks and wags her tail.`
+				decline
+		
+event "happytim"
+
+mission "Happy Tim"
+	to offer
+		has "event: happytim"
+	destination "Rand"
+	landing
+	on offer
+		require "Saga"
+		conversation
+			`	An indicator light is blinking on your main panel. There is a cached message waiting for you to play.`
+			choice
+				`	(Play the message.)`
+			`	A young woman in very professional clothes appears on the screen. "Captain <last>, I am pleased to inform you that the Governor of Rand has invited you to attend an award ceremony in your honor. Please come to Rand at your earliest convenience.`
+	on complete
+		conversation 
+			`	Upon landing you are met by a squat heavy set woman in her late 40's. She reaches out a calloused hand to shake yours. "Welcome to Rand, Captain <last>. It is a pleasure, and honor, to have someone of your status here on our little world. I am Regina, the Mayor, and one the major company-bosses here. I've been instructed to escort you to the Governor's mansion. I have a vehicle waiting for you just outside the spaceport. Meet me there when you're ready." `
+
+
+mission "Hero of Rand"
+	to offer
+		has "Happy Tim: done"
+	source "Rand"
+	on offer
+		conversation
+			`	Regina, her driver, and black sleek vehicle are all waiting for you aside the warn down and substandard spaceport. You slide into the comfortable seating, and look out the window as the dry ugly landscape of Rand passes you by. From time to time you see a strip-mine, or some worker camps, but rarely anything else. Behind your vehicle there is a huge plume of half-frozen dust. Apparently low gravity and dust is a terrible combination.`
+			`	After an hour driving you notice the landscape suddenly shift. The first tendrils of greenery invades the otherwise brown-yellow desert. Upon closer inspection, the green plants are accompanied by all manner of technology to help and promote their growth. Money, it seems, is turning this parched place green.`
+			`	Beyond the suddenly green hills, sits a huge sprawling complex. You recognize a few massive structures outside the building as artificial-gravity drives. The same ships would use to maintain gravity.`
+			choice
+				`	(Say nothing.)`
+					goto nothing
+				`	(Ask about the artificial gravity drives.)`
+			` Regina flashes a toothy smile. "The gravity here, it is... taxing. The governor's mansion, and a few other important buildings and housing complexes, use artificial gravity drives to make things more manageable for us hard working servants of the state." She says 'servants of the state' as though its some kind of inside joke. She turns away from you before you have a chance to say anything else.`
+			label nothing
+			`	The vehicle pulls up to a grandiose entrance near the center of the huge structure. An attendant opens the door, and you're ushered outside the vehicle.`
+			`	Regina does not get out. She smiles politely through the opened door. "Only you were invited to enter the Governor's Mansion. I am afraid this as far as I am allowed to go. Take care, Captain <last>, it truly was an honor meeting you.`
+			`	With that the door shuts, and a few moments later the black vehicle departs, leaving you and the attendant at Mansion's entrance.`
+			`	The attendant bows deeply. "Please, Captain <last>. If you would follow me.`
+			`	The attendant turns, and heads into the building.`
+			choice
+				`	(Follow the attendant.)`
+			`	Upon entering the mansion you feel your weight shift. It's still a little less than 1g, but close. There's a young well-dressed woman, the same who you saw in your message, waiting for you inside. The attendant leaves you with her.`
+			`	The woman smiles pleasantly. "We are all so pleased you could make it here. Forgive me for not meeting you outside, but I find the gravity of this world distressing. I am the governor's executive assistant, and will be pleased to announce that you are here.`
+			`	The young woman says a few quiet words into an intercom, and a door behind her opens. "The Governor is ready for you."`
+			choice
+				`	(Enter the room.)`
+			`	You enter a large richly furnished room. At the center of the room is an imposing desk, with a slightly graying man seated behind it. There is something immediately familiar about his face.`
+			`	"Ah, Captain <last>, at last, we can meet face to face, and I can thank you properly." The Governor stands. "You may not remember me, it has been some years since you last laid eyes on me, and," the governor gestures to himself, "I looked quite different back then."`
+			`	"I was a stowaway on your ship. Your lovely dog, Saga, found me, and you took me here. I'm Timothy Radickson, Governor Timothy Radickson now."`
+			`	Timothy sits back down and indicates that you should do the same. "It took me some time. But through some good decisions, and quite a bit of luck, I've been able to claw my way to a level of respectability and wealth. I've really been able to make something of myself."`
+			`	His face opens up into a large grin, "Then again, compared to what you've done in all this time, my successes hardly register. Still, as meager as they may be, I owe it all to you and your kind gesture. Which is why I've invited you here, to celebrate you, and to thank you, properly."`
+			`	"So, I was wondering if you would do me the favor of entertaining you, and your wonderful dog, tonight at dinner here in my mansion."`
+			choice
+				`	"That would be great."`
+					goto yes
+				`	"Saga would love it."`
+					goto yes
+				`	"I appreciate it. But I don't have time."`
+					goto nothankyou
+				`	"No. I don't care about your capitalist dream, or whatever else is going on here. I am out."`
+			`	Timothy frowns, and his head droops a little. "It is a hard place, Rand, and I will admit I live better than most now. But I earned it, and I will not make apologizes for working hard and smart. I am sorry this could not have been a joyful occasion. You gave me my start, and I will never forget it, but perhaps you've changed more than I have. Good luck, and goodbye."`
+			`	Timothy turns his chair from you, and says nothing as you exit his mansion. A new vehicle is waiting for you outside, and you ride it in silence through the blinding dust back to the spaceport.`
+				decline
+			label nothankyou
+			`	Timothy frowns sadly, "of course, of course, a person as busy as yourself has no time for get togethers and state dinners. I-I understand." Timothy stands. "Still, it was good seeing you again. And I do want you to know you changed my life. You made all of this possible, and you'll have a friend in me so long as I am breathing. Take care."`
+			`	With that the doors behind you open back up, and you are led back outside to a waiting vehicle. You ride it in silence through the dust-thick landscape back to the dirty shabby spaceport where your ship, and your dog await.`
+				decline
+			label yes
+			`	Timothy beams, "Yes, yes, lovely! It'll be a great evening!" He stands up, a little quickly. "I'll make sure everything is perfect. Return to your ship, collect your wonderful canine, and be back here in about 8 hours!" `
+			choice
+				`	(Prepare for the party.)`
+			`	Saga is thrilled to be leaving your ship. Despite being slower with age, her old mirth shines through. The lighter gravity seems to do her old bones good, as she watches the passing landscape with great intensity upon your return journey to the Governor's mansion.`
+			`	The mansion is lit up with dozens of flood lights. An army of valets, waiters, and attendants weave in and out of the various rooms and halls. You and Saga are immediately ushered to a table of honor. You meet a half dozen company-bosses, senior executives, political operatives, and the like. You notice Regina here as well, but she is seated at a table in the back, on the fringes of the upper crust of society.`
+			`	Saga is thrilled to see Timothy again. You weren't sure if she'd remember him, but clearly his brief stay aboard your ship left lasing impression. Her tail wags furiously, as she, forgetting her age, tries to jump up on him. To all this he laughs, pets her, and plies her with juicy treats.`
+			`	Eventually, the party settles down and Timothy steps up to a podium. He launches into a speech highlighting your career. The great changes you have wrought, the battles you have won, the legends of your ship. The crowd eats it all up, many having heard of some, or all of these exploits. But then Timothy takes a more somber note. He talks quietly about the troubles on his old world. On how as a starving, homeless fugitive he had recklessly hidden aboard the first ship he could find. How you had found him, half dead, in an empty crate. And how, instead of tossing him out an airlock, or dropping off at the nearest world, you took him where he asked. How you took care of him, and how through your generosity, you had given him a second chance.`
+			`	Light reflects off the tears that cling to Timothy's eyes as he tells the assembled crowd that, for him, that was your greatest moment, your most heroic action, that nothing you've done, or ever will do, compares to that simple act of mercy. And that this, to him, alone, is what makes you great.`
+			`	The assembled guests stand, clap and cheer. They look at you, at your seat of honor, and hold up glasses in your honor. Saga, excited by the wild attention, barks happily. Eventually as the cheers and hoots die down, the Governor, declares you a Hero of Rand, and thanks you for your service.`			
+			choice
+				`	(Say a few words.)`
+					goto afewwords
+				`	(Mingle with the crowd).`
+					goto mingle
+			label afewwords
+			`	You walk up to the podium, past the governor and turn to address the assembled guests.`
+			choice
+				`	(Humbly thank them.)`
+					goto thankthem
+				`	(Tell them it is well deserved.)`
+					goto deserved
+				`	(Dress them down for being capitalist pigs.)`
+			`	You address the crowd. You compliment them on how well dressed they all are, how lavish this mansion is, how wealthy they all appear. They clap, and laugh at your apt observations. But, then you talk about how poor, dirty, and shabby things are outside of this mansion. With its fake gravity, and fake greenery. You declare you want no praise from them, no flattery, and no accolades. There's a million Heroes of Rand, outside these baroque walls, toiling away in dirty, dangerous mines. All for what? So that these company-bosses and fat-cat politicians can pat each other on the back and live obscene luxary in the middle of a squalid world? You rail, you rant, you break them down, and you turn the crowd against you. Angry people are shouting back at you now, boos and hisses are rising up from all sides of the room. And yet, you see a glimmer of respect in the eyes of servants. The waiters, the attendants, the assistants, they clench their fists and nod as your speech goes on. They hear you. They agree with you. A plate crashes into the podium. Another slams into the pillar nearby you. The crowd bulging toward you. The esteemed guests with murder in their eyes.`
+			`	Before you have time to act, Timothy and his assistant have whisked you away from the angry crowd of the world's elites. Timothy, unhappy with your words, but still believing he owes you a debt, helps you and Saga get into an unmarked vehicle, that quickly takes you away from the party, and back toward the spaceport and your ship. Timothy's final words to you being that you should get off world as quickly as you can, and that he is sorry he invited you here.`
+				decline
+			label thankthem
+			`	You thank your host, and the assembled notables for their gracious fanfare. You note, however, you are just one person. And you've done nothing that any one else in your shoes wouldn't have done. Kindness is contagious, and everyone is hero in some way. You hope that the take away here is not that you are special, but instead that everyone should just do their part. The guests clap as you step away from the podium.`
+				goto mingle
+			label deserved
+			`	You launch into a speech about how you alone are special. How most people are cold, and empty robots, but that a fire burns inside your breast. That you are the lynchpin that the entire galaxy hinges on, and that every human from here to the rim owes their future to you. The crowd's excitement wanes and a smattering of lackluster applause punctuates the end of your speech.`
+			label mingle
+			`	With the speeches done. You mingle with the crowd. You notice off to the side that some dogs have been brought in to interact with Saga. Though she is too old to play long, or hard, with any of the guest dogs, she does seem to be enjoying herself.`
+			`	You make small talk with various dignitaries. You even say a few words to Regina. Everyone is pleased to meet you, and few people ask for your autograph.`
+			`	Finally, Timothy makes his way to you and takes you to a quieter room off to the side.`
+			`	"Captain <last>, I hope you've found the night agreeable. Saga seems to be happy with the playmates I found for her, and I've noticed you have your fair share of fans here. I also wanted to let you know, that there is a sum of cash associated with tonight's reward. That you will be given 1 million credits, as gift from Rand, and more specifically, from me."`
+			`	Timothy lifts his glass, "Just another way for me to thank you for saving me."`
+			`	You lift your glass, and your eyes scan the wall of his office. You see pictures of your ship, and you, from various news articles, printed and framed along the walls."`
+			choice
+				`	"Thanks for inviting me. I've had a great time."`
+					goto thanks
+				`	"Are you a stalker?"`
+			`	Timothy puts his glass down and holds his hands out pleading. "No, no. It's not like."`
+			`	He gestures towards the images on the wall. "I had no family, I had no.. past. My life, my life started with you. This is my way of celebrating my past. No, don't you worry, I am not infatuated or anything."`
+			`	You nod slowly. You have to admit, he hasn't really been creepy, and it's not like he's been writing you letters every week or anything. It's been almost a decade since you heard from him last. `
+			label thanks
+			action
+				payment 1000000
+				event "governortim" 3496
+			`	You thank Timothy for his hospitality, and for putting on such a grand event for your sake. You talk with him for hours. About his life on Rand, the hardships of the mines, how he clawed his way out of it. But also about you, the challenges of running a ship, the battles, the close calls, and the joys of spending much of that time with Saga. At some point in the night she found where you two were seated, and laid down fitfully at your feet.`
+			`	As the sun rises your conversation winds a close. Timothy escorts you back to a waiting vehicle and you say your farewells. The dark vehicle drives off into the bright desert, leaving behind an island of green, and warmth.`
+				decline
+
+event "governortim"
+
+mission "Prison Tim"
+	to offer
+		has "event: governortim"
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination "Oblivion"
+	deadline 1800
+	invisible
+	on offer
+		conversation
+			`	As you stroll through the spaceport, a name blaring on a nearby news screen catches your attention.`
+			choice
+				`	(Watch the News.)`
+					goto news
+				`	(Ignore it.)`
+			`	You keep walking. It's probably nothing, and if it isn't, well it isn't worth your time.`
+				decline
+			label news
+			`	You turn to check out the screen. The talking heads are discussing some sort of huge scandal and the arrest of a prominent governor.`
+			`	"That's right Ann." The Anchor says, "With 8 counts of tax evasion, racketeering, and various corruption charges, Timothy Radickson, former Governor of Rand, will likely spend the next 20 years behind bars."`
+			`	"Where he's going there will be no bars, Tom." Ann quips, "They plan to send him to a work detail on Oblivion."`
+			`	Tom laughs, "In that case, forget what I said about 20 years, anything more than 5 years on Oblivion is a life sentence."`
+			`	Both news anchors laugh, and then segue into a story about highly intelligent ferrets that have learned to sing in German.`
+				accept
+	on complete
+		dialog
+			`	Your ship descends the beautiful, toxic horizon and lands in the dirty, dismal spaceport outside of the provincial capitol city called Tukayyid.`
+
+mission "timshank redemption"
+	to offer
+		has "Prison Tim: done"
+	source "Oblivion"
+	invisible
+	on offer
+		conversation
+			`	The clumped together warehouses, liberally called a spaceport, are used as a central clearing house by all on-world industries. Workers from every industry filter in and out of this never-ending boom town. In the shadows, and on the fringes, the sick, and infirm linger, looking for a handout; the price of progress on such a hostile world.`
+			`	Among the crowd one face draws your attention. A worker, unsupervised, is heaving heavy equipment into a truck. His complexion is sallow, and his skin seem to droop off his bones. His blood red eyes, noticing your attention, languidly rise to look at you. Despite the damage, you realize, you recognize him.`
+			`	"Captain <last>." He says, suffering a coughing fit. There's now red specs on his lips.`
+			`	"It's me. Timothy, remember? Boy, it's been a while. I'm a prisoner now. Chain-ganged here. Probably until the end." He spits his words out in short bursts, careful not to start coughing again.`
+			choice
+				`	"I am sorry, Timothy."`
+				`	"Is there any way I can help?"`
+				`	"Shouldn't have broken the law."`
+			`	His red eyes glance side to side, conspiratorially, "I could use your help. Just to buy some things. Might help."`
+			choice
+				`	(Agree to help Timothy.)`
+					goto agree
+				`	(Refuse to help Timothy.)`
+			`	You shake your head slowly. "I am sorry, Timothy. But, you broke the law, and this is your punishment. My hands are tied. Maybe when you're out we'll reconnect."`
+			`	What little strength he has seems to deflate, a crimson tear winds down his cracked face. "When I'm out? I'll never be out. Goodbye, old friend."`
+			`	The weak, broken man returns to loading up the heavy equipment. Slower than before.`
+				decline
+			label agree
+			`	Timothy hastily writes down a list of items he needs and hands it to you. "Ask around. Get it all here. They wouldn't sell to me. Even if I had credits."`
+			`	He abruptly turns away from you and goes back to loading equipment, but slower now, buying for time.`
+			`	You look at his list. Initially it's various survival items, backpacking, camping equipment and the like. There's also some heavy duty detoxification medication here as well. More alarming though, are the industrial chemical compounds that would easily create a bomb, not to mention the gun at the bottom.`
+			`	You're not familiar exactly what his crimes were, but you seem to recall them being mostly white-collar. Yet, you could potentially be arming a terrorist with these items. What might he blow up, who might he shoot, given his obvious desperation?`
+			choice
+				`	(Buy the items for 500,000 credits)`
+					goto buy
+				`	(Don't buy the items.)`
+			`	It's not easy, walking away from the sad, shadow of a man that Timothy has become. But, you do it anyway. You toss the crumpled list into the trash, and leave Timothy to his fate.`
+				decline
+			label buy
+			action
+				payment -500000
+				event "timforever" 460
+			`	It takes the better part of the day, a great deal of haggling, and meeting with some unsavory people. But you manage to collect all the equipment that Timothy requested. You it packed into a crate, and loaded on Timothy's prison truck.`
+			`	Timothy's eyes are wide, rimmed with bloody tears, as he watches. "Always at my lowest."`
+			`	He swallows a cough, and then continues. "It's you who saves me. When I am at my lowest. It's you."`
+			`	Timothy looks like he wants to hug you, but he just nods.`
+			` 	"Captain." He says, and then he climbs aboard the truck and drives off.`
+				decline
+
+event "timforever"
+
+mission "News Tim"
+	source 
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	to offer
+		has "timshank redemption: decline"
+		random < 3
+	on offer
+		conversation
+			`	A spaceport is a symphony of smells, sounds, and images in constant motion. Somewhere in the din, a news report is playing, a familiar name leaps out at you. Your attention piqued, you turn to watch.`
+			`	An anchor is talking, "News out of Oblivion today. A minor explosion has the claimed the life of Timothy Radickson, former disgraced Governor of Rand. Sentenced to prison-labor on Oblivion, a hard, but fair justice for a man who..."`
+			`	The news broadcast continues to blare, but you aren't able to follow anymore than that.`
+				decline
+
+mission "Monk Tim"
+	source "New Tibet"
+	to offer
+		has "event: timforever"
+	invisible
+	on offer
+		conversation
+			`	A group of monks passes you by in the spaceport, and one stops to look at you curiously.`
+			`	"Are you Captain <last>?" They ask.`
+			choice
+				`	"Why?"`
+					goto why
+				`	"Yes."`
+					goto why
+				`	"None of your business."`
+			`	"Of course." The monk says, he drops his head and rejoins his brothers.`
+				decline
+			label why
+			`	The monk lowers his head in a sign of respect. "Although we live in the mountains and interact rarely with ours, we have heard much of your exploits. You are an agent of change, and worthy of consideration."`
+			`	"I thank you for giving us much to ponder on. I also have one small request, there is one within our monastery who is a great admirer of yours. It would mean much if you would be willing to meet him."`
+			choice
+				`	"I'd be honored to meet him."`
+					goto whyyes
+				`	"Why not. I got nothing to better to do."`
+					goto whyyes
+				`	"I don't have time for fans."`
+			`	"Of course." The monk says,"you are a busy person." He says goodbye and returns to his brothers.`
+			decline
+			label whyyes
+			`	The monk beams. "Wonderful. It'll be a bit of a hike, but the views are worth it."`
+			`	He leads you into the mountains beyond the spaceport. You travel up various narrow passes, and steep cliff sides. It's a difficult trail, but the scenery is remarkable. Your views are filled with broken mountains, jagged rocks, green vibrant life, and distant valleys.`
+			`	After several arduous hours, you clear a peak, and discover a vast stone building waiting for you.`
+			`	"We have arrived." Your guide says.`
+			`	Your guide leaves you outside the entrance, and disappears within for a few minutes, before returning with another monk.`
+			`	The new monk looks at you with an open, serene, expression, that quickly breaks into a wide grin. Although much about his face has changed, whether from wear or surgery, you recognize that grin.`
+			choice
+				`	"Timothy!"`
+				`	"Oh, it's you."`
+			`	Timothy Radickson, former prison-worker on Oblivion, Governor of Rand, and stowaway of your ship, hugs you.`
+			`	"Captain <last>. I always hoped I would see you again. Given my tenuous legal situation, I can't leave here, and I can't send any messages." He steps back to look at you.`
+			`	"The years have been kind to you Captain. You hardly look any different from when we first met. Perhaps I should have invested in ship life instead of terrestrial."`
+			`	"It was difficult for me to speak, when last we met on Oblivion, but you're my oldest and best friend. At my lowest points you were always there for me. I just wanted to thank you for that."`
+			`	You spend the day chatting with with Timothy, before finally having to leave.`
+			`	"Thank you for coming here. I wish I had something to give you, but I own nothing anymore, even though I owe you everything. Take care out there, and I'll do my best to keep out of trouble in here."`
+			`	He shakes your hand than walks back into the monastery. You begin your slow descent down the mountain, and back to civilization.`
+				decline
