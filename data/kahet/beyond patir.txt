@@ -714,7 +714,7 @@ outfit "Asteroid Weapon Large"
 		"turn" 0
 		"reload" 100
 		"firing heat" 5
-	description "By creating a circle of energy-based mines and then converting them into missiles at the same time, this weapon is capable of overthrowing anti-missile defences better than most."
+	description "By creating a circle of energy-based mines and then converting them into missiles at the same time, this weapon is capable of overthrowing anti-missile defenses better than most."
 	
 outfit "creeper1 print"
 	weapon
@@ -1815,7 +1815,7 @@ outfit "Asteroid Weapon Large 4"
 		"burst count" 7
 		"burst reload" 1
 		"firing heat" 5
-	description "An impressive defensive weapon, scaring off even the mightiest attackers by projecting enormous bubble-shaped mine fields all around itself. Though not rapid firing by any mean, it can continously maintain a field without issues."
+	description "An impressive defensive weapon, scaring off even the mightiest attackers by projecting enormous bubble-shaped mine fields all around itself. Though not rapid firing by any mean, it can continuously maintain a field without issues."
 	
 outfit "wep1 print"
 	weapon
