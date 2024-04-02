@@ -1398,7 +1398,6 @@ outfit "asteroid laser 1"
 		"velocity" 200
 		"lifetime" 1
 		"reload" 1
-		"firing heat" 1.4
 		"discharge damage" 1.7
 		"hull damage" 5.9
 
