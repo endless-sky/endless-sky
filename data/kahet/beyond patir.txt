@@ -714,7 +714,7 @@ outfit "Asteroid Weapon Large"
 		"turn" 0
 		"reload" 100
 		"firing heat" 5
-	description "By creating a circle of energy-based mines and then converting them into missiles at the same time, this weapon is capable of overthrowing anti-missile defenses better than most."
+	description "By creating a circle of energy-based mines and then converting them into missiles at the same time, this weapon is capable of breaking through anti-missile defenses better than most."
 	
 outfit "creeper1 print"
 	weapon
@@ -1443,7 +1443,7 @@ outfit "Asteroid Weapon Large 3"
 		"split range" 180
 		"reload" 100
 		"firing heat" 5
-	description "While it may be technically described as a missile, its specifics differ from the average rocket launcher. The heap of energy it releases continues shooting enemy-seeking bullets for some time, before finally exploding into a barrage of those same projectiles. Great for overthrowing an anti-missile, and impact a fair share of damage in the meantime"
+	description "While it may be technically described as a missile, its specifics differ from the average rocket launcher. The heap of energy created by this weapon's fire continuously releases projectiles which home in onto enemies, until finally exploding and breaking up into an enormous barrage of the same projectiles. These attributes make it very good at overwhelming anti-missiles enough to render them useless, then impacting a fair share of damage while they are down."
 
 outfit "asteroid missile"
 	weapon
@@ -1580,7 +1580,7 @@ outfit "Asteroid Jump Drive"
 	"jump effect" "jump drive 13"
 	"jump effect" "jump drive 14"
 	"jump effect" "jump drive 15"
-	description "Whatever the mechanism that hides beneath the translucent orb may be, its function is clear: a Jump Drive, connecting the different parts of the universe together for the mere cost of 200 fuel units."
+	description "Whatever the mechanism that hides beneath the translucent orb may be, it functions similarly to a jump drive, bridging different parts of the universe together for the cost of merely 200 units of fuel."
 
 # The "ajump drive" effect doesn't exist, but serve to reduce the number of effects spawned: as it always shows the same overall number, by showing empty ones it effectively reduces the visual bloat during the jump
 
@@ -1815,7 +1815,7 @@ outfit "Asteroid Weapon Large 4"
 		"burst count" 7
 		"burst reload" 1
 		"firing heat" 5
-	description "An impressive defensive weapon, scaring off even the mightiest attackers by projecting enormous bubble-shaped mine fields all around itself. Though not rapid firing by any mean, it can continuously maintain a field without issues."
+	description "An impressive defensive weapon, fending off even the mightiest attackers by projecting enormous bubble-shaped minefields all around itself. Though not a rapid-fire weapon by any means, it is able to maintain one of those fields continuously without issue."
 	
 outfit "wep1 print"
 	weapon
