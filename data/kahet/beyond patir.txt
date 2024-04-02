@@ -79,19 +79,20 @@ ship "???"
 		category "Transport"
 		"uncapturable" 1
 		"cost" 1350000000
-		"hull" 965612
+		"hull" 136561
 		"required crew" 1
 		"bunks" 1
 		"mass" 1174
 		"drag" 70.4
-		"heat dissipation" .7
+		"heat dissipation" 10
 		"fuel capacity" 1000
 		"energy capacity" 1
+		"fuel generation" 0.3
 		"cargo space" 40
 		"outfit space" 390
 		"weapon capacity" 150
 		"engine capacity" 95
-		"hull repair rate" 16
+		"hull repair rate" 41
 		"cargo scan power" 100
 		"cargo scan efficiency" 0.1
 		"thrust" 340.2
@@ -130,19 +131,20 @@ ship "???" "Asteroid Large 2"
 		category "Transport"
 		"uncapturable" 1
 		"cost" 1350000000
-		"hull" 971519
+		"hull" 137151
 		"required crew" 1
 		"bunks" 1
 		"mass" 1198
 		"drag" 70.4
-		"heat dissipation" .7
+		"heat dissipation" 10
 		"fuel capacity" 1000
 		"energy capacity" 1
+		"fuel generation" 0.3
 		"cargo space" 40
 		"outfit space" 390
 		"weapon capacity" 150
 		"engine capacity" 95
-		"hull repair rate" 16
+		"hull repair rate" 41
 		"cargo scan power" 100
 		"cargo scan efficiency" 0.1
 		"thrust" 340.2
@@ -183,19 +185,20 @@ ship "???" "Asteroid Large 3"
 		category "Transport"
 		"uncapturable" 1
 		"cost" 1350000000
-		"hull" 951725
+		"hull" 135172
 		"required crew" 1
 		"bunks" 1
 		"mass" 1131
 		"drag" 70.4
-		"heat dissipation" .7
+		"heat dissipation" 10
 		"fuel capacity" 1000
 		"energy capacity" 1
+		"fuel generation" 0.3
 		"cargo space" 40
 		"outfit space" 390
 		"weapon capacity" 150
 		"engine capacity" 95
-		"hull repair rate" 16
+		"hull repair rate" 41
 		"cargo scan power" 100
 		"cargo scan efficiency" 0.1
 		"thrust" 340.2
@@ -234,19 +237,20 @@ ship "???" "Asteroid Large 4"
 		category "Transport"
 		"uncapturable" 1
 		"cost" 1350000000
-		"hull" 951725
+		"hull" 135172
 		"required crew" 1
 		"bunks" 1
 		"mass" 1251
 		"drag" 70.4
-		"heat dissipation" .7
+		"heat dissipation" 10
 		"fuel capacity" 1000
 		"energy capacity" 1
+		"fuel generation" 0.3
 		"cargo space" 40
 		"outfit space" 390
 		"weapon capacity" 150
 		"engine capacity" 95
-		"hull repair rate" 16
+		"hull repair rate" 41
 		"cargo scan power" 100
 		"cargo scan efficiency" 0.1
 		"thrust" 340.2
@@ -285,19 +289,20 @@ ship "???" "Asteroid Large 5"
 		category "Transport"
 		"uncapturable" 1
 		"cost" 1350000000
-		"hull" 967165
+		"hull" 136716
 		"required crew" 1
 		"bunks" 1
 		"mass" 1215
 		"drag" 70.4
-		"heat dissipation" .7
+		"heat dissipation" 10
 		"fuel capacity" 1000
 		"energy capacity" 1
+		"fuel generation" 0.3
 		"cargo space" 40
 		"outfit space" 390
 		"weapon capacity" 150
 		"engine capacity" 95
-		"hull repair rate" 16
+		"hull repair rate" 41
 		"cargo scan power" 100
 		"cargo scan efficiency" 0.1
 		"thrust" 340.2
@@ -336,19 +341,20 @@ ship "???" "Asteroid Medium"
 		category "Transport"
 		"uncapturable" 1
 		"cost" 950000000
-		"hull" 612486
+		"hull" 91248
 		"required crew" 1
 		"bunks" 1
 		"mass" 762
 		"drag" 55.1
-		"heat dissipation" .7
+		"heat dissipation" 10
 		"fuel capacity" 1000
 		"energy capacity" 1
+		"fuel generation" 0.3
 		"cargo space" 40
 		"outfit space" 390
 		"weapon capacity" 150
 		"engine capacity" 95
-		"hull repair rate" 16
+		"hull repair rate" 41
 		"cargo scan power" 100
 		"cargo scan efficiency" 0.1
 		"thrust" 327.2
@@ -386,19 +392,20 @@ ship "???" "Asteroid Young"
 		category "Transport"
 		"uncapturable" 1
 		"cost" 450000000
-		"hull" 214596
+		"hull" 36459
 		"required crew" 1
 		"bunks" 1
 		"mass" 581
 		"drag" 39.7
-		"heat dissipation" .7
+		"heat dissipation" 10
 		"fuel capacity" 1000
 		"energy capacity" 1
+		"fuel generation" 0.3
 		"cargo space" 40
 		"outfit space" 390
 		"weapon capacity" 150
 		"engine capacity" 95
-		"hull repair rate" 16
+		"hull repair rate" 41
 		"cargo scan power" 100
 		"cargo scan efficiency" 0.1
 		"thrust" 203.9
@@ -436,19 +443,20 @@ ship "???" "Asteroid Young 2"
 		category "Transport"
 		"uncapturable" 1
 		"cost" 450000000
-		"hull" 209842
+		"hull" 35984
 		"required crew" 1
 		"bunks" 1
 		"mass" 578
 		"drag" 39.7
-		"heat dissipation" .7
+		"heat dissipation" 10
 		"fuel capacity" 1000
 		"energy capacity" 1
+		"fuel generation" 0.3
 		"cargo space" 40
 		"outfit space" 390
 		"weapon capacity" 150
 		"engine capacity" 95
-		"hull repair rate" 16
+		"hull repair rate" 41
 		"cargo scan power" 100
 		"cargo scan efficiency" 0.1
 		"thrust" 203.9
@@ -486,19 +494,20 @@ ship "???" "Asteroid Young 3"
 		category "Transport"
 		"uncapturable" 1
 		"cost" 450000000
-		"hull" 220214
+		"hull" 37021
 		"required crew" 1
 		"bunks" 1
 		"mass" 585
 		"drag" 39.7
-		"heat dissipation" .7
+		"heat dissipation" 10
 		"fuel capacity" 1000
 		"energy capacity" 1
+		"fuel generation" 0.3
 		"cargo space" 40
 		"outfit space" 390
 		"weapon capacity" 150
 		"engine capacity" 95
-		"hull repair rate" 16
+		"hull repair rate" 41
 		"cargo scan power" 100
 		"cargo scan efficiency" 0.1
 		"thrust" 203.9
@@ -536,19 +545,20 @@ ship "???" "Asteroid Young 4"
 		category "Transport"
 		"uncapturable" 1
 		"cost" 450000000
-		"hull" 214623
+		"hull" 36462
 		"required crew" 1
 		"bunks" 1
 		"mass" 591
 		"drag" 39.7
-		"heat dissipation" .7
+		"heat dissipation" 10
 		"fuel capacity" 1000
 		"energy capacity" 1
+		"fuel generation" 0.3
 		"cargo space" 40
 		"outfit space" 390
 		"weapon capacity" 150
 		"engine capacity" 95
-		"hull repair rate" 16
+		"hull repair rate" 41
 		"cargo scan power" 100
 		"cargo scan efficiency" 0.1
 		"thrust" 203.9
@@ -582,7 +592,7 @@ ship "???" "Asteroid Young 4"
 
 outfit "Asteroid Anti-Missile"
 	category "Turrets"
-	cost 87346105
+	cost 86346105
 	thumbnail "outfit/asteroid weapon 6"
 	"mass" 31
 	"outfit space" -31
@@ -596,6 +606,7 @@ outfit "Asteroid Anti-Missile"
 		"lifetime" 1
 		"reload" 1
 		"firing heat" 18
+	description "Though its specifics are essentially the same as its smaller variant, its bubble shield is far bigger and just as indestructible. Despite becoming more instable in the process, this does not seem to have affected its capabilities in any way."
 
 effect "asteroid am fire"
 	sprite "effect/asteroid am fire"
@@ -606,10 +617,8 @@ effect "asteroid am fire"
 
 outfit "Asteroid Anti-Missile 2"
 	category "Turrets"
-	licenses
-		Remnant
-	cost 1120000
-	thumbnail "outfit/asteroid weapon 3"
+	cost 21280000
+	thumbnail "outfit/asteroid weapon 8"
 	"mass" 33
 	"outfit space" -33
 	"weapon capacity" -33
@@ -624,18 +633,18 @@ outfit "Asteroid Anti-Missile 2"
 		"lifetime" 1
 		"reload" 1
 		"firing heat" 18
+	description "A nearly impenetrable anti-missile field, instantly eliminating even the strongest missile that tries to pass through. However, the size of this protective bubble leaves greatly limits its capabilities."
 
 effect "asteroid am circle defense"
 	sprite "effect/asteroid am circle defense"
 		"frame time" 60
 		"random start frame"
 	sound "point defense"
-
 	lifetime 2
 
 outfit "Asteroid Weapon Small"
 	category "Guns"
-	cost 19340000
+	cost 23460000
 	thumbnail "outfit/asteroid weapon 3"
 	"mass" 76
 	"outfit space" -76
@@ -648,8 +657,7 @@ outfit "Asteroid Weapon Small"
 			"start frame" 0
 			"no repeat"
 		sound "detainer"
-		"hit effect" "detainer impact" 3
-		"hit effect" "detainer smoke" 5
+		"hit effect" "large explosion"
 		"inaccuracy" .5
 		"submunition" "Asteroid Circle Submunition" 7
 		"velocity" 5
@@ -657,17 +665,19 @@ outfit "Asteroid Weapon Small"
 		"reload" 60
 		"firing force" 40
 		"firing heat" 400
-		"hit force" 80
-		"shield damage" 320
-		"hull damage" 240
-		"slowing damage" 40
+		"hit force" 3900
+		"shield damage" 3200
+		"hull damage" 2400
+		"slowing damage" -84
 		"blast radius" 20
+	description "Similar in appearance to the anti-missile used by some of these ships, this weapon was created with two functions in mind: slowing down an opponent until he gets close enough, and then eliminate it with heavy, direct damage to the hull of its target."
 
 outfit "Asteroid Circle Submunition"
 	weapon
 		sprite "projectile/asteroid weapon live"
 		"inaccuracy" 360
-		"hit effect" "large explosion"
+		"hit effect" "detainer impact" 3
+		"hit effect" "detainer smoke" 5
 		"die effect" "tiny explosion"
 		"turn" 6
 		"homing" 3
@@ -675,14 +685,15 @@ outfit "Asteroid Circle Submunition"
 		"acceleration" 1.5
 		"drag" 0.2
 		"lifetime" 390
-		"shield damage" 350
-		"hull damage" 280
-		"hit force" 200
+		"shield damage" 130
+		"hull damage" 110
+		"slowing damage" 12
+		"hit force" -600
 		"missile strength" 22
 
 outfit "Asteroid Weapon Large"
 	category "Guns"
-	cost 5971535
+	cost 8971535
 	thumbnail "outfit/asteroid weapon 2"
 	"mass" 24
 	"outfit space" -24
@@ -698,8 +709,11 @@ outfit "Asteroid Weapon Large"
 		"lifetime" 20
 		"turn" -6
 		"submunition" "creeper1 print"
+		"homing" 1
+		"turning" 0
 		"reload" 100
 		"firing heat" 5
+	description "By creating a circle of energy-based mines and then converting them into missiles at the same time, this weapon is capable of overthrowing anti-missile defences better than most."
 	
 outfit "creeper1 print"
 	weapon
@@ -1059,7 +1073,7 @@ outfit "asteroid missile"
 
 outfit "Asteroid Weapon Large 2"
 	category "Guns"
-	cost 71560239
+	cost 71670239
 	thumbnail "outfit/asteroid weapon 1"
 	"mass" 31
 	"outfit space" -31
@@ -1079,6 +1093,7 @@ outfit "Asteroid Weapon Large 2"
 		"split range" 180
 		"reload" 150
 		"firing heat" 5
+	description "A very peculiar weapon, capable of creating a whole army around a target armed with a laser weapon that consumes its host to fire. However, the precision it requires as well as the raw damage output limits its potential."
 	
 effect "asteroid glow"
 	sprite "effect/asteroid glow"
@@ -1374,7 +1389,7 @@ outfit "asteroid laser 1"
 		"reload" 1
 		"firing heat" 1.4
 		"discharge damage" 1.7
-		"hull damage" 2.9
+		"hull damage" 5.9
 
 effect "asteroid hit"
 	sprite "effect/point defense hit"
@@ -1401,7 +1416,7 @@ effect "asteroid circle trail"
 
 outfit "Asteroid Weapon Large 3"
 	category "Guns"
-	cost 28713449
+	cost 98713449
 	thumbnail "outfit/asteroid weapon 5"
 	"mass" 16
 	"outfit space" -16
@@ -1421,9 +1436,12 @@ outfit "Asteroid Weapon Large 3"
 		"submunition" "asteroid missile"
 			"facing" -30
 		"submunition" "magic deployer1"
+		"homing" 1
+		"turning" 0
 		"split range" 180
 		"reload" 100
 		"firing heat" 5
+	description "While it may be technically described as a missile, its specifics differ from the average rocket launcher. The heap of energy it releases continues shooting enemy-seeking bullets for some time, before finally exploding into a barrage of those same projectiles. Great for overthrowing an anti-missile, and impact a fair share of damage in the meantime"
 
 outfit "asteroid missile"
 	weapon
@@ -1438,7 +1456,9 @@ outfit "asteroid missile"
 		"homing" 4
 		"tracking" 0.95
 		"lifetime" 550
-		"inaccuracy" 20
+		"shield damage" 30
+		"hull damage" 25
+		"inaccuracy" 10
 
 outfit "magic deployer1"
 	weapon
@@ -1525,7 +1545,7 @@ outfit "magic deployer6"
 
 outfit "Asteroid Jump Drive"
 	category "Systems"
-	cost 1631456
+	cost 29631456
 	thumbnail "outfit/asteroid weapon 7"
 	"mass" 20
 	"outfit space" -20
@@ -1558,6 +1578,7 @@ outfit "Asteroid Jump Drive"
 	"jump effect" "jump drive 13"
 	"jump effect" "jump drive 14"
 	"jump effect" "jump drive 15"
+	description "Whatever the mechanism that hides beneath the translucent orb may be, its function is clear: a Jump Drive, connecting the different parts of the universe together for the mere cost of 200 fuel units."
 
 # The "ajump drive" effect doesn't exist, but serve to reduce the number of effects spawned: as it always shows the same overall number, by showing empty ones it effectively reduces the visual bloat during the jump
 
@@ -1771,7 +1792,7 @@ effect "jump drive spark 9"
 
 outfit "Asteroid Weapon Large 4"
 	category "Guns"
-	cost 1057165239
+	cost 57165239
 	thumbnail "outfit/asteroid weapon 4"
 	"mass" 33
 	"outfit space" -33
@@ -1792,6 +1813,7 @@ outfit "Asteroid Weapon Large 4"
 		"burst count" 7
 		"burst reload" 1
 		"firing heat" 5
+	description "An impressive defensive weapon, scaring off even the mightiest attackers by projecting enormous bubble-shaped mine fields all around itself. Though not rapid firing by any mean, it can continously maintain a field without issues."
 	
 outfit "wep1 print"
 	weapon
@@ -2391,11 +2413,12 @@ outfit "wep static"
 		"turn" 360
 		"homing" 2
 		"tracking" 1
-		"trigger radius" 440
-		"blast radius" 500
+		"trigger radius" 240
+		"blast radius" 400
 		"discharge damage" 1.7
 		"hull damage" 72.9
-		"hit force" 30
+		"slowing damage" 10
+		"hit force" 150
 		"hit effect" "circle defense"
 
 
