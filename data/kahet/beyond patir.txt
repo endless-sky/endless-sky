@@ -710,7 +710,8 @@ outfit "Asteroid Weapon Large"
 		"turn" -6
 		"submunition" "creeper1 print"
 		"homing" 1
-		"turning" 0
+		"optical tracking" 1
+		"turn" 0
 		"reload" 100
 		"firing heat" 5
 	description "By creating a circle of energy-based mines and then converting them into missiles at the same time, this weapon is capable of overthrowing anti-missile defences better than most."
@@ -1437,7 +1438,8 @@ outfit "Asteroid Weapon Large 3"
 			"facing" -30
 		"submunition" "magic deployer1"
 		"homing" 1
-		"turning" 0
+		"optical tracking" 1
+		"turn" 0
 		"split range" 180
 		"reload" 100
 		"firing heat" 5
