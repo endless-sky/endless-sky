@@ -2521,7 +2521,7 @@ mission "Terraforming 13"
 					decline
 			`	You're able to contact Amy. She has been continuing to monitor the status of Tundra's climate, alongside the researchers from the Deep who she worked with to terraform this world. You tell her you've encountered some alien terraformers who may share her philosophy. She is eager to learn more about them and agrees to meet you in the spaceport bar.`
 			`	Once she arrives, you explain about the Wanderers: that the work of their civilisation is to repair worlds left in ruin by their previous inhabitants. And their view that those worlds have their own identities that they must collaborate with them in order for terraforming to be successful.`
-			`	She has a slew of questions ranging from how the Wanderers' determine a planet's identity to "How often are asteroids used in their work?" Unfortunately, you are not able to offer much information about the specific details of how the Wanderers go about their terraforming work. Disappointed, but not defeated, Amy asks "Could you take me to visit these aliens?`
+			`	She has a slew of questions ranging from how the Wanderers' determine a planet's identity to "How often are asteroids used in their work?" Unfortunately, you are not able to offer much information about the specific details of how the Wanderers go about their terraforming work. Disappointed, but not defeated, Amy asks, "Could you take me to visit these aliens?`
 			`	Now that the Kor Mereti drones are peaceful, and the Kor Sestor drones have been eliminated, there is no longer an immediate threat to the Wanderers, and they will be focused much more on their work to repair the former Korath worlds. They would probably be happy to discuss some of that work with someone as enthused by the prospect as Amy.`
 			choice
 				`	"Alright. I'll prepare a bunk for you."`
@@ -2531,7 +2531,7 @@ mission "Terraforming 13"
 				accept
 	on complete
 		conversation
-			`As you approach <origin>, Amy is astounded by the magnitude of volcanic ash in the air. Far outweighing what was released by the volcano you triggered on Tundra. "This place makes Tundra seem temperate," Amy remarks after observing the glaciers that occupy most of the planet's polar regions.`
+			`As you approach <origin>, Amy is astounded by the magnitude of volcanic ash in the air, far outweighing what was released by the volcano you triggered on Tundra. "This place makes Tundra seem temperate," Amy remarks after observing the glaciers that occupy most of the planet's polar regions.`
 			`	Her fascination with the state of this world is temporarily forgotten when she exits your ship and sees the Wanderers for the first time. "I don't know what I was expecting them to be like, but it wasn't birds." However, she quickly returns to the reason for coming here. "Do you know how we can find someone who can answer my questions?"`
 			`	You approach one of the nearby Wanderers and ask if they could direct you to Tema'a Iriket, the terraforming director. They don't appear to understand the Hai language, but they seem to recognize the name and gesture for you to wait in the spaceport, before heading off in a different direction, presumably to fetch Iriket for you.`
 
@@ -2575,9 +2575,9 @@ mission "Terraforming 15"
 		conversation
 			`You fly across large swathes of the planet's surface, giving Amy a view of all the greenery and the oceans here. Meanwhile, Tema'a Iriket describes the condition of this world when the Wanderers first began working on it. "The atmosphere was [close to, nearing] a [runaway, uncontrolled] greenhouse effect. Many species had recently gone extinct, or were very close to it. The oceans were also quite toxic. Now, the atmosphere is [stable, sustainable], and many of the species that were [on the brink?] of extinction now flourish."`
 			`	Amy also explains about her recent experimental terraforming. "We believe the planet used to be temperate, or even tropical millions of years ago. We used an asteroid impact to trigger a supervolcano that was close to eruption. The greenhouse gases from the eruption have already begun to warm the climate."`
-			`	Iriket thinks for a moment before responding. "Using the planet's [features, assets] to restore more habitable conditions is an [admirable?] approach." The approval buoys Amy, but she is somewhat deflated by what comes next. "However, an asteroid would not be our [preferred, first] step." `
+			`	Iriket thinks for a moment before responding. "Using the planet's [features, assets] to restore more habitable conditions is an [admirable?] approach." The approval buoys Amy, but she is somewhat deflated by what comes next. "However, an asteroid would not be our [preferred, first] step."`
 			`	As you conclude your sightseeing, Tema'a Iriket says your next stop should be <planet>, where she will provide Amy with more detailed records of their terraforming activities than she can provide orally.`
-			`	Once Iriket has returned to her bunk, Amy says to you "I wonder what my professor would say about 'anthropamorphising planets' if he saw this," she gestures towards the images of <origin> on the monitors, "and you told him they believe planets have their own identities, too."`
+			`	Once Iriket has returned to her bunk, Amy says to you, "I wonder what my professor would say about 'anthropomorphizing planets' if he saw this," she gestures towards the images of <origin> on the monitors, "and you told him they believe planets have their own identities, too."`
 				accept
 	on complete
 		dialog "When you arrive on <planet>, Tema'a Iriket tells you to meet her in the spaceport in a few hours before heading off to prepare the data for Amy."
@@ -2601,7 +2601,7 @@ mission "Terraforming 16"
 				accept
 	on complete
 		conversation
-			`	Most of Amy's time on the return journey was spent with the Wanderer data, even still, she claims to have barely scratched the surface of what the Wanderers have done.`
+			`	Most of Amy's time on the return journey was spent with the Wanderer data. Even still, she claims to have barely scratched the surface of what the Wanderers have done.`
 			choice
 				`	"I'll leave you to your work here."`
 					goto done
