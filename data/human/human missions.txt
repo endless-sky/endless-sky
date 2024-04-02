@@ -6914,7 +6914,7 @@ mission "Lost Dog"
 
 			label park
 			`	The park has been meticulously sculpted so that no matter where you stand it appears as though you are in the center of a lush naturalist painting. Colorful, comforting flora bleed away from you at all angles, and adorable yet inaccessible fauna seem to hug the very periphery of your every step.`
-			`	The air is clear and crisp, and even the crunch and thud of the ground beneath your feet seem somehow delicious and satifsying. Finally, the sun begins and set and it is time to head back.`
+			`	The air is clear and crisp, and even the crunch and thud of the ground beneath your feet seem somehow delicious and satisfying. Finally, the sun begins and set and it is time to head back.`
 			`	As you approach the exit to the park a small dog pads over to you and looks at you with morunful eyes. The dog seems to be alone with no owner anywhere in sight.`
 			`	"Come here." You call to the poodle-hybrid, who obediently does as you command. You see that its a male and check its collar;`
 			``
@@ -6934,7 +6934,7 @@ mission "Lost Dog"
 				decline
 
 			label takehim
-			`	"Well, come on boy. Let's go." Caesar eagerly follows you back to your ship. He seems greatly relieved to be wth you, and not left all alone at the park.`
+			`	"Well, come on boy. Let's go." Caesar eagerly follows you back to your ship. He seems greatly relieved to be with you, and not left all alone at the park.`
 			`	Once on board your ship, you make sure he's fed, watered, and settled in for the interstellar journey.`
 
 	on complete
