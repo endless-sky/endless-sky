@@ -6896,20 +6896,54 @@ mission "Hogshead's Dilemma II"
 mission "Stone to Hope"
 	name "Bring a stone to <planet>"
 	to offer
-		random < #???
+		random < 15
+		has: "Stone of our Fathers 5: complete"
 	source 
 		# government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "deep"
 	destination "Hope"
 	on offer
 		conversation
-			`Someone meets you in <source>'s spaceport.`
-			`	They ask you to take a stone to <destination>.`
+			`A young unremarkable man in threadbare clothes approachs you in <source>'s spaceport.`
+			`"Captain <last>?" He says nervously, "I - I am sorry to be botering you, ser. But I am a friend of Thorlief and - and he said you might be someone who could help me?"`
+			`The young man, barely more than a boy, suddenly looks you intensely in the eyes. "I know this something far beneath someone like you, but you see, my well he's from Hope. Or he was until, well, recently when he, uh, well the thing is I heard you were real kind to folks like us, and maybe you'd be willing, seeing as how you have a ship an' all to, maybe..."`
 			choice
-				`	"Yes."`
+				`	"Spit it out."`
+					goto finish
+				`	(Wait for him to get the point.)`
+					goto finish
+				`	"Leave me alone. I'm not interested."`
+			`	Cresfallen the young man stumbles over his words attempting to apologize for the intrusion and slinks away from you in an ungraceful hurry.`
+				decline
+			label finish
+			`	He suddenly stops, and takes a deep breath. His face is red, and beads of sweat glisten on his brow, "We're from Hope, ser. My family we're refugees and we had to leave everything behind. But my dad, well, he never really left Hope in his heart, you see."`
+			`	The young refugee pulls out a stone crisscrossed in tiny chiseled letters. The familiar engraved story of a life now ended. "This is his stone, and well, he - he'd want his stone left on Hope. I was hoping that was something you could do."`
+			`	With the words out his eyes drop to the floor and he tenses up as though expecting a blow.`
+			choice
+				`	"I can take the stone to Hope."`
+					goto hopeyes
+				`	"I can take the stone to hope, for a price."`
+					goto hopeprice
+				`	"Hire a courier. I have more important things to do."`
 				`	"No."`
-			`	They put it on your ship.`
-
+			`	Cresfallen the young man stumbles over his words attempting to apologize for the intrusion and slinks away from you in an ungraceful hurry.`
+				decline
+			label hopeprice
+			`	He grimances as if punched in the gut, "I am sorry, ser. I am just a poor laborer. Work is hard to come by for us refugees. I thought - I thought I'd just ask. In case you were near. In case it was within your power is all."`
+			`	His eyes remain downcast and tears slide down his smooth face. His whole body seems to shake with the shame of what he just admitted.`
+			choice
+				`	"I might be in the area. No promises though.`
+					goto hopeyes
+				`	"Don't worry. I'll do it."`
+					goto hopeyes
+				`	"Sorry. I don't work for free."`
+				`	(Shake your head - no.)`
+			`	Cresfallen the young man stumbles over his words attempting to apologize for the intrusion and slinks away from you in an ungraceful hurry.`
+			label hopeyes
+			`	The young man's eyes light up as he drags them off the floor and focuses on your face once more. "Really? Truly? I didn't dare hope.."`
+			`	His body weight shifts and it looks as though he's about to hug you before he abruptly stops himself and tries to regain a little composure.`
+			`	"Thorleif was right about you." He presses the small cool stone into your hand. "The Family-Cairn is not far from where the Spaceport used to be. Just by the cliffs."`
+			`	With the stone firmly in your fist, he takes his leave from you, saying "thank you" over and over again before he's finally gone.
 
 
 # This leads on from Stone to Hope into Ice Queen, as an alternative but more visible entry.
