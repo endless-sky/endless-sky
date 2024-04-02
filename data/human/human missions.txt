@@ -6902,18 +6902,18 @@ mission "Lost Dog"
 	destination "Hestia"
 	on offer
 		conversation
-			`Your walk from the <ship> takes you outside <planet>'s spaceport and into the surrounding open area around the spaceport town. Beyond every bend, over every horizon, lurks another breathtaking view; it's surreal.`
+			`Your walk from the <ship> takes you outside <planet>'s busiling spaceport and into the overtly welcoming and carefully inoffensive tourist saturated streets of the spaceport town. Every path seems purpose built to whisk you further away from your ship and deeper into the unnatural radiance of this paradise world. The hand-crafted beauty is inescapable and as your hit with a never end sequence of breathtaking views. A new one awaits you beyond every bend, over every new horizon,; it's surreal.`
 			`	As you walk you eventually come across an immaculate and perfectly manicured garden park. Normally there is an exorbitant fee to enter, but due to some promotion today you can enter freely.`
 			choice
 				`	(Go to the park.)`
 					goto park
 				`	(Head back to the ship.)`
 
-			`	It was a splendid walk, but you decide it's time to head back. You have more important things to do than wander around an expensive terraformed beach.`
+			`	It was a splendid walk, but you decide it's time to head back. You have more important things to do than wander around an expensive terraformed garden.`
 				decline
 
 			label park
-			`	The park has been carefully sculpted so that no matter where you stand it appears as though you are in the center of a lush naturalist painting. Colorful comforting flora bleed away from you at all angles, and adorable yet inaccessible fauna seem to hug the very periphery of your every step.`
+			`	The park has been meticulously sculpted so that no matter where you stand it appears as though you are in the center of a lush naturalist painting. Colorful comforting flora bleed away from you at all angles, and adorable yet inaccessible fauna seem to hug the very periphery of your every step.`
 			`	The air is clear and crisp, and even the crunch and thud of the ground beneath your feet seem somehow delicious and satifsying. Finally, the sun begins and set and it is time to head back.`
 			`	As you approach the exit to the park a small dog pads over to you and looks at you with morunful eyes. The dog seems to be alone with no owner anywhere in sight.`
 			`	"Come here." You call to the poodle-hybrid, who obediently does as you command. You see that its a male and check its collar;`
