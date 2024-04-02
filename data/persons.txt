@@ -374,9 +374,9 @@ person "Captain Nate"
 			"outfit space" 1215
 			"weapon capacity" 450
 			"engine capacity" 330
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+			"reverse thruster slot" 1
+			"steering slot" 1
+			"thruster slot" 1
 			weapon
 				"blast radius" 160
 				"shield damage" 1600
