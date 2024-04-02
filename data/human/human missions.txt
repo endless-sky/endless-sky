@@ -6894,26 +6894,16 @@ mission "Hogshead's Dilemma II"
 
 
 mission "Lost Dog"
-	name "Lost Dog"
-	description "Find Caesar's owner on Hestia"
+	name "Bring a dog back to <planet>"
+	description "Bring Caesar, a dog you found lost on <source>, to their owner on <destination>."
 	to offer
 		random < 15
 	source "Calda"
 	destination "Hestia"
-	landing
 	on offer
-		require "Saga"
 		conversation
-			`	Just beyond cold lifeless walls of your ship a world rich in beauty beckons to you.`
-			choice
-				`	(Go for a walk.)`
-					goto walk
-				`	(Stay indoors.)`
-			`	Now is not the time for an idle stroll.`
-				decline
-			label walk
-			`	Beyond every bend, over every horizon, lurks another breathtaking view. Strolling through Calda is like being inside painting. It's surreal.`
-			`	As you walk you eventually come across an immacluate and perfectly manicured garden park. Normally there is an exorbient fee to enter, but today due to some promotion it is free to enter.`
+			`Your walk from the <ship> takes you outside <planet>'s spaceport and into the surrounding open area around the spaceport town. Beyond every bend, over every horizon, lurks another breathtaking view. Strolling through Calda is like being inside painting; it's surreal.`
+			`	As you walk you eventually come across an immacluate and perfectly manicured garden park. Normally there is an exorbitant fee to enter, but today due to some promotion you can enter freely.`
 			choice
 				`	(Go to the park.)`
 					goto dogpark
