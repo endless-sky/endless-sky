@@ -6905,7 +6905,7 @@ mission "Stone to Hope"
 	on offer
 		conversation
 			`A young unremarkable man in threadbare clothes approachs you in <source>'s spaceport.`
-			`"Captain <last>?" He says nervously, "I - I am sorry to be botering you, ser. But I am a friend of Thorlief and - and he said you might be someone who could help me?"`
+			`"Captain <last>?" He says nervously, "I - I am sorry to be bothering you, ser. But I am a friend of Thorlief and - and he said you might be someone who could help me?"`
 			`The young man, barely more than a boy, suddenly looks you intensely in the eyes. "I know this something far beneath someone like you, but you see, my well he's from Hope. Or he was until, well, recently when he, uh, well the thing is I heard you were real kind to folks like us, and maybe you'd be willing, seeing as how you have a ship an' all to, maybe..."`
 			choice
 				`	"Spit it out."`
