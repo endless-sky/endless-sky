@@ -230,6 +230,7 @@ outfit "Afterburner"
 	category "Engines"
 	"cost" 70000
 	thumbnail "outfit/afterburner"
+	"afterburner slot" -1
 	"mass" 10
 	"outfit space" -10
 	"engine capacity" -10

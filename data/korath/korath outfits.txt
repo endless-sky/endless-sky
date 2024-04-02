@@ -214,6 +214,7 @@ outfit "Afterburner (Asteroid Class)"
 	category "Engines"
 	"cost" 136000
 	thumbnail "outfit/tiny korath afterburner"
+	"afterburner slot" -1
 	"mass" 9
 	"outfit space" -9
 	"engine capacity" -5
@@ -232,6 +233,7 @@ outfit "Afterburner (Comet Class)"
 	category "Engines"
 	"cost" 299000
 	thumbnail "outfit/small korath afterburner"
+	"afterburner slot" -1
 	"mass" 19
 	"outfit space" -19
 	"engine capacity" -19
@@ -248,6 +250,7 @@ outfit "Afterburner (Lunar Class)"
 	category "Engines"
 	"cost" 647000
 	thumbnail "outfit/medium korath afterburner"
+	"afterburner slot" -1
 	"mass" 32
 	"outfit space" -32
 	"engine capacity" -32
@@ -264,6 +267,7 @@ outfit "Afterburner (Planetary Class)"
 	category "Engines"
 	"cost" 1459000
 	thumbnail "outfit/large korath afterburner"
+	"afterburner slot" -1
 	"mass" 55
 	"outfit space" -55
 	"engine capacity" -55
@@ -281,6 +285,7 @@ outfit "Afterburner (Stellar Class)"
 	category "Engines"
 	"cost" 3280000
 	thumbnail "outfit/huge korath afterburner"
+	"afterburner slot" -1
 	"mass" 94
 	"outfit space" -94
 	"engine capacity" -94

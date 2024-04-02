@@ -378,7 +378,7 @@ outfit "Small Steering Module"
 		Coalition
 	"cost" 60000
 	thumbnail "outfit/small steering module"
-	"steering slot" -1
+	"steering slot" -0.25
 	"mass" 7
 	"outfit space" -7
 	"engine capacity" -7
@@ -396,17 +396,18 @@ outfit "Large Steering Module"
 		Coalition
 	"cost" 269000
 	thumbnail "outfit/large steering module"
-	"steering slot" -1
+	"steering slot" -0.5
 	"mass" 25
 	"outfit space" -25
 	"engine capacity" -25
-	"turn" 747
-	"turning energy" 1.0
-	"turning heat" 6.5
+	"turn" 536.4
+	"turning energy" 0.78
+	"turning heat" 5.4
 	"steering flare sprite" "effect/coalition flare/large"
 		"frame rate" 7
 	"steering flare sound" "atomic small"
 	description "By focusing on small, modular engines rather than the massive capital ship drives that most other species develop, the Coalition loses some of the potential efficiency for very large ships, but gains a considerable amount of flexibility."
+	description "Like the large thruster module, the large steering module is actually trio of small steering modules with a mounting framework that takes up half a standard steering mounting slot."
 
 outfit "Enforcer Confrontation Gear"
 	category "Hand to Hand"

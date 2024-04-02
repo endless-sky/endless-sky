@@ -32,7 +32,7 @@ ship "Arach Courier"
 		"weapon capacity" 39
 		"engine capacity" 40
 		"reverse thruster slot" 1
-		"steering slot" 1
+		"steering slot" 1.5
 		"thruster slot" 1.5
 		weapon
 			"blast radius" 20
@@ -94,7 +94,7 @@ ship "Arach Freighter"
 		"weapon capacity" 132
 		"engine capacity" 92
 		"reverse thruster slot" 1
-		"steering slot" 1
+		"steering slot" 1.5
 		"thruster slot" 1.5
 		weapon
 			"blast radius" 80
@@ -167,7 +167,7 @@ ship "Arach Hulk"
 		"weapon capacity" 208
 		"engine capacity" 148
 		"reverse thruster slot" 1
-		"steering slot" 1
+		"steering slot" 1.5
 		"thruster slot" 1.5
 		weapon
 			"blast radius" 120
@@ -246,7 +246,7 @@ ship "Arach Spindle"
 		"weapon capacity" 138
 		"engine capacity" 148
 		"reverse thruster slot" 1
-		"steering slot" 1
+		"steering slot" 1.5
 		"thruster slot" 1.5
 		weapon
 			"blast radius" 100
@@ -360,7 +360,7 @@ ship "Arach Transport"
 		"weapon capacity" 96
 		"engine capacity" 70
 		"reverse thruster slot" 1
-		"steering slot" 1
+		"steering slot" 1.5
 		"thruster slot" 1.5
 		weapon
 			"blast radius" 40
@@ -432,7 +432,7 @@ ship "Heliarch Breacher"
 		"weapon capacity" 112
 		"engine capacity" 106
 		"reverse thruster slot" 1
-		"steering slot" 1
+		"steering slot" 1.5
 		"thruster slot" 1.5
 		weapon
 			"blast radius" 150
@@ -553,7 +553,7 @@ ship "Heliarch Hunter"
 		"weapon capacity" 201
 		"engine capacity" 141
 		"reverse thruster slot" 1
-		"steering slot" 1
+		"steering slot" 1.5
 		"thruster slot" 1.5
 		weapon
 			"blast radius" 200
@@ -742,7 +742,7 @@ ship "Heliarch Interdictor"
 		"weapon capacity" 179
 		"engine capacity" 135
 		"reverse thruster slot" 1
-		"steering slot" 1
+		"steering slot" 1.5
 		"thruster slot" 1.5
 		weapon
 			"blast radius" 250
@@ -918,7 +918,7 @@ ship "Heliarch Judicator"
 		"weapon capacity" 164
 		"engine capacity" 114
 		"reverse thruster slot" 1
-		"steering slot" 1
+		"steering slot" 1.5
 		"thruster slot" 1.5
 		weapon
 			"blast radius" 250
@@ -1105,7 +1105,7 @@ ship "Heliarch Neutralizer"
 		"weapon capacity" 72
 		"engine capacity" 102
 		"reverse thruster slot" 1
-		"steering slot" 1
+		"steering slot" 1.5
 		"thruster slot" 1.5
 		weapon
 			"blast radius" 150
@@ -1229,7 +1229,7 @@ ship "Heliarch Punisher"
 		"weapon capacity" 352
 		"engine capacity" 187
 		"reverse thruster slot" 1
-		"steering slot" 1
+		"steering slot" 1.5
 		"thruster slot" 1.5
 		weapon
 			"blast radius" 400
@@ -1473,7 +1473,7 @@ ship "Heliarch Pursuer"
 		"weapon capacity" 19
 		"engine capacity" 36
 		"reverse thruster slot" 1
-		"steering slot" 1
+		"steering slot" 1.5
 		"thruster slot" 1.5
 		weapon
 			"blast radius" 15
@@ -1535,7 +1535,7 @@ ship "Heliarch Rover"
 		"weapon capacity" 24
 		"engine capacity" 32
 		"reverse thruster slot" 1
-		"steering slot" 1
+		"steering slot" 1.5
 		"thruster slot" 1.5
 		weapon
 			"blast radius" 15
@@ -1596,7 +1596,7 @@ ship "Heliarch Stalker"
 		"weapon capacity" 43
 		"engine capacity" 16
 		"reverse thruster slot" 1
-		"steering slot" 1
+		"steering slot" 1.5
 		"thruster slot" 1.5
 		weapon
 			"blast radius" 15
@@ -1657,7 +1657,7 @@ ship "Kimek Briar"
 		"weapon capacity" 89
 		"engine capacity" 60
 		"reverse thruster slot" 1
-		"steering slot" 1
+		"steering slot" 1.5
 		"thruster slot" 1.5
 		weapon
 			"blast radius" 34
@@ -1721,7 +1721,7 @@ ship "Kimek Spire"
 		"weapon capacity" 256
 		"engine capacity" 129
 		"reverse thruster slot" 1
-		"steering slot" 1
+		"steering slot" 1.5
 		"thruster slot" 1.5
 		weapon
 			"blast radius" 140
@@ -1796,7 +1796,7 @@ ship "Kimek Thistle"
 		"weapon capacity" 118
 		"engine capacity" 87
 		"reverse thruster slot" 1
-		"steering slot" 1
+		"steering slot" 1.5
 		"thruster slot" 1.5
 		weapon
 			"blast radius" 60
@@ -1884,7 +1884,7 @@ ship "Kimek Thorn"
 		"weapon capacity" 40
 		"engine capacity" 38
 		"reverse thruster slot" 1
-		"steering slot" 1
+		"steering slot" 1.5
 		"thruster slot" 1.5
 		weapon
 			"blast radius" 14
@@ -1946,7 +1946,7 @@ ship "Saryd Runabout"
 		"weapon capacity" 44
 		"engine capacity" 42
 		"reverse thruster slot" 1
-		"steering slot" 1
+		"steering slot" 1.5
 		"thruster slot" 1.5
 		weapon
 			"blast radius" 22
@@ -2006,7 +2006,7 @@ ship "Saryd Sojourner"
 		"weapon capacity" 202
 		"engine capacity" 156
 		"reverse thruster slot" 1
-		"steering slot" 1
+		"steering slot" 1.5
 		"thruster slot" 1.5
 		weapon
 			"blast radius" 200
@@ -2103,7 +2103,7 @@ ship "Saryd Traveler"
 		"weapon capacity" 177
 		"engine capacity" 79
 		"reverse thruster slot" 1
-		"steering slot" 1
+		"steering slot" 1.5
 		"thruster slot" 1.5
 		"asteroid scan power" 36
 		"atmosphere scan" 100
@@ -2181,7 +2181,7 @@ ship "Saryd Visitor"
 		"weapon capacity" 90
 		"engine capacity" 57
 		"reverse thruster slot" 1
-		"steering slot" 1
+		"steering slot" 1.5
 		"thruster slot" 1
 		weapon
 			"blast radius" 42
