@@ -1104,7 +1104,7 @@ outfit "Asteroid Weapon Large 2"
 		"split range" 180
 		"reload" 150
 		"firing heat" 5
-	description "A very peculiar weapon, capable of creating a whole army around a target armed with a laser weapon that consumes its host to fire. However, the precision it requires as well as the raw damage output limits its potential."
+	description "This very peculiar weapon overwhelms its target by creating an array of short-living, laser-armed entities. However, the precision it requires, as well as its low raw damage output, limits its potential."
 	
 effect "asteroid glow"
 	sprite "effect/asteroid glow"
