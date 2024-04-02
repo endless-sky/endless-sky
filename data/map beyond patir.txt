@@ -89,7 +89,7 @@ system Lathia
 		period 1
 	object
 		sprite planet/rock11
-		distance 822.21
+		distance 1822.21
 		period 227.72
 	object
 		sprite planet/base
