@@ -21,6 +21,7 @@ mission "Avgi: Trapped in Twilight"
 		system
 			attributes "twilight" "tangled shroud"
 		fail
+		set "avgi: twilight trapped"
 		dialog phrase "twilight trapped"
 
 phrase "twilight trapped"
@@ -853,6 +854,7 @@ mission "Avgi: Twilight Escape"
 			`	As the purple flames of your Jump Drive fade, Darius, Sora, and Leon are all speechless. For the first time in six years, they are back in human space.`
 			`	"<first>," says Darius in a shaky voice. "Take us to Valhalla, please. I need to see my home."`
 	on complete
+		clear "avgi: twilight trapped"
 		"reputation: Avgi (Dissonance Aggressive)" <?= -10
 		conversation
 			`	You land in Valhalla's main spaceport, and Darius practically jumps out of your ship before it can even touch down. "I'll be in contact, <first>, but I have to tell someone that I'm still alive."`

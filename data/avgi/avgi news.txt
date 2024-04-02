@@ -323,9 +323,9 @@ news "avgi astronomer"
 			"Cosmologist"
 	message
 		word
-			`"Instructive. The Twilight nebula is a reflection nebula nearly a thousand lightyears wide. Illuminated by relatively young neutron stars, it is the remnants of multiple supernovae that occurred millions of years ago."`
+			`"Instructive. The Twilight nebula is a reflection nebula nearly a thousand light years wide. Illuminated by relatively young neutron stars, it is the remnants of multiple supernovae that occurred millions of years ago."`
 			`"Inquisitive. It is notable that the star cluster southeast of Stream is mostly made up of young, hot stars. That part of the Twilight nebula was likely once a dense molecular cloud, compact enough to collapse into giant stars millions of years ago"`
 			`"Tutelage. The Twilight nebula is not in hydrostatic equilibrium. It is slowly contracting as it cools, a stellar nursery on a massive scale."`
-
-
-
+			`"Frustration. The galaxy is three dimensional, but you wouldn't know it from the way everyone draws their maps!"`
+			`"Annoyance. Using cardinal directions like 'North' and 'West' to describe locations in the galaxy should be a crime! Polar coordinates for 'spinward' and 'rimward' would be far better."`
+			`"Curiosity. To this day, there is no explanation as to why some systems are linked by starways and others are not."`
