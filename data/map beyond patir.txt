@@ -88,21 +88,9 @@ system Lathia
 		sprite star/neutron
 		period 1
 	object
-		sprite planet/cloud3
-		distance 498.32
-		period 107.446
-	object
 		sprite planet/rock11
 		distance 822.21
 		period 227.72
-	object
-		sprite planet/gas8
-		distance 1621.46
-		period 630.648
-		object
-			sprite planet/io
-			distance 196
-			period 14.607
 	object
 		sprite planet/base
 		distance 2723.62
