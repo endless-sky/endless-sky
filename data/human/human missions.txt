@@ -6984,3 +6984,16 @@ mission "Lost Dog"
 			`	She procures a credit chip from somewhere in her gown and passes it to you. "I realize this is probably a fortune to you. I recommend you find a financial advisor and invest it well."`
 			`	With that she turns and leaves; the butler likewise disappears, and you're escorted by the footman back to your vehicle.`
 			`	You look down at the credit chip in your hand and read its value; 1,000 credits.`
+
+
+mission "Lost Dog: Homeward Bound"
+	to offer
+		random < 3
+		has "Lost Dog: declined"
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination "Hestia"
+	on offer
+		conversation
+			`As you're walking through the spaceport your eye is drawn to a marginally familiar figure on a nearby newsfeed. You can't quite make out exactly what it is saying over the din, but you're able to gather that little lost dog you ran into on Calda has become something of a minor celebrity after getting back home to Hestia all by himself. You see images of Caeser skiing, sneaking on transports, and riding automatic farming equipment.`
+			decline
