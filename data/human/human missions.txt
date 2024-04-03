@@ -6897,10 +6897,12 @@ mission "Timothy Radrickson 1"
 	landing
 	destination "Rand"
 	source
-		government "Republic"
+		near "Zeta Aquilae" 7
 	to offer
-		random < 10
-	on offer
+		# random < 10
+	on enter
+
+	on enter # You will see this conversation on the first jump you make.
 		conversation
 			`You hear a strange sound from the food storage on your ship.` # Expand this with more of a lead in - maybe you're undergoing an inspection by Republic authorities and their sensors catch him.
 			choice
