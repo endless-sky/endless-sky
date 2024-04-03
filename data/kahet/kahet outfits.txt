@@ -426,8 +426,8 @@ outfit "Ka'het Sustainer Nacelles"
 	category "Engines"
 	"cost" 357000
 	thumbnail "outfit/ka'het sustainer engine"
-	"steering slot" -1
-	"thruster slot" -1
+	"steering slot" -0.5
+	"thruster slot" -0.5
 	"afterburner slot" 1
 	"mass" 27
 	"outfit space" -34
