@@ -147,8 +147,9 @@ namespace {
 			cout << "model" << ',' << "category" << ',' << "chassis cost" << ',' << "loaded cost" << ',' << "shields" << ','
 				<< "hull" << ',' << "mass" << ',' << "drag" << ',' << "heat dissipation" << ','
 				<< "required crew" << ',' << "bunks" << ',' << "cargo space" << ',' << "fuel" << ','
-				<< "outfit space" << ',' << "weapon capacity" << ',' << "engine capacity" << ',' << "gun mounts" << ','
-				<< "turret mounts" << ',' << "fighter bays" << ',' << "drone bays" << '\n';
+				<< "outfit space" << ',' << "weapon capacity" << ',' << "engine capacity" << ','
+				<< "afterburner slot" << ',' << "reverse thruster slot" << ',' << "steering slot" << ',' << "thruster slot" << ',' 
+				<< "gun mounts" << ',' << "turret mounts" << ',' << "fighter bays" << ',' << "drone bays" << '\n';
 
 			for(auto &it : GameData::Ships())
 			{
@@ -178,6 +179,10 @@ namespace {
 				cout << attributes.Get("outfit space") << ',';
 				cout << attributes.Get("weapon capacity") << ',';
 				cout << attributes.Get("engine capacity") << ',';
+				cout << attributes.Get("afterburner slot") << ',';
+				cout << attributes.Get("reverse thruster slot") << ',';
+				cout << attributes.Get("steering slot") << ',';
+				cout << attributes.Get("thruster slot") << ',';
 
 				int numTurrets = 0;
 				int numGuns = 0;
@@ -201,7 +206,8 @@ namespace {
 			cout << "model" << ',' << "category" << ',' << "cost" << ',' << "shields" << ','
 				<< "hull" << ',' << "mass" << ',' << "required crew" << ',' << "bunks" << ','
 				<< "cargo space" << ',' << "fuel" << ',' << "outfit space" << ',' << "weapon capacity" << ','
-				<< "engine capacity" << ',' << "speed" << ',' << "accel" << ',' << "turn" << ','
+				<< "engine capacity" << "afterburner slot" << ',' << "reverse thruster slot" << ',' << "steering slot" << ','
+				<< "thruster slot" << ',' << "speed" << ',' << "accel" << ',' << "turn" << ','
 				<< "energy generation" << ',' << "max energy usage" << ',' << "energy capacity" << ','
 				<< "idle/max heat" << ',' << "max heat generation" << ',' << "max heat dissipation" << ','
 				<< "gun mounts" << ',' << "turret mounts" << ',' << "fighter bays" << ','
@@ -232,6 +238,10 @@ namespace {
 				cout << ship.BaseAttributes().Get("outfit space") << ',';
 				cout << ship.BaseAttributes().Get("weapon capacity") << ',';
 				cout << ship.BaseAttributes().Get("engine capacity") << ',';
+				cout << ship.BaseAttributes().Get("afterburner slot") << ',';
+				cout << ship.BaseAttributes().Get("reverse thruster slot") << ',';
+				cout << ship.BaseAttributes().Get("steering slot") << ',';
+				cout << ship.BaseAttributes().Get("thruster slot") << ',';
 				cout << (attributes.Get("drag") ? (60. * attributes.Get("thrust") / attributes.Get("drag")) : 0) << ',';
 				cout << 3600. * attributes.Get("thrust") / mass << ',';
 				cout << 60. * attributes.Get("turn") / mass << ',';
@@ -437,7 +447,8 @@ namespace {
 		auto PrintEngineStats = []() -> void
 		{
 			cout << "name" << ',' << "cost" << ',' << "mass" << ',' << "outfit space" << ','
-				<< "engine capacity" << ',' << "thrust/s" << ',' << "thrust energy/s" << ','
+				<< "engine capacity" << "afterburner slot" << ',' << "reverse thruster slot" << ',' << "steering slot" << ','
+				<< "thruster slot" << ',' << "thrust/s" << ',' << "thrust energy/s" << ','
 				<< "thrust heat/s" << ',' << "turn/s" << ',' << "turn energy/s" << ','
 				<< "turn heat/s" << ',' << "reverse thrust/s" << ',' << "reverse energy/s" << ','
 				<< "reverse heat/s" << ',' << "afterburner thrust/s" << ',' << "afterburner energy/s" << ','
@@ -455,6 +466,10 @@ namespace {
 				cout << outfit.Mass() << ',';
 				cout << outfit.Get("outfit space") << ',';
 				cout << outfit.Get("engine capacity") << ',';
+				cout << outfit.Get("afterburner slot") << ',';
+				cout << outfit.Get("reverse thruster slot") << ',';
+				cout << outfit.Get("steering slot") << ',';
+				cout << outfit.Get("thruster slot") << ',';
 				cout << outfit.Get("thrust") * 3600. << ',';
 				cout << outfit.Get("thrusting energy") * 60. << ',';
 				cout << outfit.Get("thrusting heat") * 60. << ',';

@@ -814,7 +814,8 @@ void Ship::FinishLoading(bool isNewInstance)
 
 	// Issue warnings if this ship has is misconfigured, e.g. is missing required values
 	// or has negative outfit, cargo, weapon, or engine capacity.
-	for(auto &&attr : set<string>{"outfit space", "cargo space", "weapon capacity", "engine capacity"})
+	for(auto &&attr : set<string>{"outfit space", "cargo space", "weapon capacity", "engine capacity",
+		"afterburner slot", "reverse thruster slot", "steering slot", "thruster slot"})
 	{
 		double val = attributes.Get(attr);
 		if(val < 0)
