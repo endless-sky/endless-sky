@@ -153,9 +153,21 @@ system Sarifa
 
 system Thepa
 	pos 9975.5 -2.5
-	haze _menu/haze-sarifa
+	haze _menu/haze-maithi
 	habitable 320
 	belt 1793
+	object
+		sprite "star/black hole 6 core"
+		period 1
+	object
+		sprite "star/black hole 6"
+		period 1
+
+system Balnii
+	pos 10285.3 -359.3
+	haze _menu/haze-sarifa
+	habitable 360
+	belt 1497
 	object
 		sprite "star/big black hole core"
 		period 1
