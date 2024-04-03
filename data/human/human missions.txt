@@ -6897,7 +6897,7 @@ mission "Timothy Radrickson 1"
 	landing
 	destination "Rand"
 	source
-		near "Zeta Aquilae" 7
+		near "Zeta Aquilae" 3 10
 	to offer
 		# random < 10
 	on enter
