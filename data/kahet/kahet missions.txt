@@ -756,6 +756,7 @@ mission "Ka'het: Patir Mystery 6"
 		government "Remnant"
 	destination "Builder Settlement"
 	passengers 5
+	blocked `As soon as you arrive, Dusk contacts you again. "Welcome back <first>! We should be ready for the next Patir expedition, but we need at least 5 free bunks to attempt it."`
 	to offer
 		random < 60
 		has "event: patir mystery timer"
