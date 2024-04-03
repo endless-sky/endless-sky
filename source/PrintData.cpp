@@ -148,7 +148,7 @@ namespace {
 				<< "hull" << ',' << "mass" << ',' << "drag" << ',' << "heat dissipation" << ','
 				<< "required crew" << ',' << "bunks" << ',' << "cargo space" << ',' << "fuel" << ','
 				<< "outfit space" << ',' << "weapon capacity" << ',' << "engine capacity" << ','
-				<< "afterburner slot" << ',' << "reverse thruster slot" << ',' << "steering slot" << ',' << "thruster slot" << ',' 
+				<< "afterburner slot" << ',' << "reverse thruster slot" << ',' << "steering slot" << ',' << "thruster slot" << ','
 				<< "gun mounts" << ',' << "turret mounts" << ',' << "fighter bays" << ',' << "drone bays" << '\n';
 
 			for(auto &it : GameData::Ships())
