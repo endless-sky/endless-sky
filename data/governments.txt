@@ -801,7 +801,7 @@ government "Ka'sei"
 
 color "governments: Korath Exiles" .8 .5 .1
 
-#Used only by the Patir Mystery mission in question
+# Used only by the Patir Mystery mission in question
 government "Ka'sei (12A)"
 	"display name" "Ka'sei"
 	swizzle 0
