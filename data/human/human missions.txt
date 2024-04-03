@@ -6894,7 +6894,7 @@ mission "Hogshead's Dilemma II"
 
 
 mission "Lost Dog"
-	name "Bring a dog back to <planet>"
+	name "Bring a dog to <planet>"
 	description "Bring Caesar, a dog you found lost on <source>, to their owner on <destination>."
 	to offer
 		random < 15
@@ -6916,7 +6916,7 @@ mission "Lost Dog"
 			`	The park has been meticulously sculpted so that no matter where you stand it appears as though you are in the center of a lush naturalist painting. Colorful, comforting flora bleed away from you at all angles, and adorable yet inaccessible fauna seem to hug the very periphery of your every step.`
 			`	The air is clear and crisp, and even the crunch and thud of the ground beneath your feet seem somehow delicious and satisfying. Finally, the sun begins and set and it is time to head back.`
 			`	As you approach the exit to the park a small dog pads over to you and looks at you with morunful eyes. The dog seems to be alone with no owner anywhere in sight.`
-			`	"Come here," you call to the poodle-hybrid, who obediently does as you command. You see that its a male and check its collar:`
+			`	"Come here," you call to the poodle-hybrid, who obediently does as you command. You see that it is a male and check its collar:`
 			``
 			`	"Caesar Augustus - Property of the Mitchells"`
 			`	3 Mitchell Drive`
@@ -6940,7 +6940,16 @@ mission "Lost Dog"
 	on complete
 		payment 1000
 		conversation
-			`Your ship sets down in a squalid urban landscape. The honeycombed homes of humble help. You rent a vehicle and take yourself and Caesar beyond the blighted city and out into the pleasant picture-perfect paradise of the wealthy. One princely estate after another rolls past you as you drive deeper into the rural domains of the Republic's super-wealthy. Eventually, you come across a large metal gate that reads, "Mitchell Ranch."`
+			branch "transported pookie"
+				has "Pookie, Part 2: done"
+				not `outfit: "Puny"`
+			`Caesar has been very obedient the whole trip, much to your convenience. He lays down by the airlock while your ship sets down in the local Avalonia spaceport, which is enclosed on all sides by a squalid urban landscape. The honeycombed homes of humble help. You rent a vehicle and take yourself and Caesar beyond the blighted city and out into the pleasant picture-perfect paradise of the wealthy. One princely estate after another rolls past you as you drive deeper into the rural domains of the Republic's super-wealthy. Eventually, you come across a large metal gate that reads, "Mitchell Ranch."`
+				goto ranch
+
+			label "transported pookie"
+			`Caesar has been very obedient the whole trip, unlike some other certain dogs you've transported in the past. He lays down by the airlock while your ship sets down in the local Avalonia spaceport, which is enclosed on all sides by a squalid urban landscape. The honeycombed homes of humble help. You rent a vehicle and take yourself and Caesar beyond the blighted city and out into the pleasant picture-perfect paradise of the wealthy. One princely estate after another rolls past you as you drive deeper into the rural domains of the Republic's super-wealthy. Eventually, you come across a large metal gate that reads, "Mitchell Ranch."`
+
+			label ranch
 			`	It's another 45 minutes of driving down long winding roads, past various out buildings, lodges, retreats, guest houses, and hobby barns, before at long last you arrive at the massive central mansion. Waiting at the bottom of stone stairs is a footman who opens the door for you and summons the senior butler.`
 			`	The butler arrives and looks you over unhappily. "The lady of the manor is not expecting... guests. Perhaps, you've misread your appointment, or more likely, arrived at the wrong estate."`
 			choice
@@ -6972,6 +6981,6 @@ mission "Lost Dog"
 			`	After a moment she turns her attention back to you, looking slightly softer than before. "See-See tires of the parks here, and so every Tuesday I send her to Calda for a change of pace. It's good for her constitution, you know. Anyways, the horrid man who normally ferries our dogs on these little excursions had some sort of episode. A stroke, or heart-attack, you get the idea. He had an assistant return the dogs, but in the confusion they forgot my little See-See. I was sure some gauche tourist would have snatched her up and eaten her by now."`
 			`	She turns her attention back to the dog, and speaks in a baby-voice, "But, instead, this gallant captain saved you!"`
 			`	The lady snaps her fingers, and the butler is immediately at her side. "We must make this person whole. I can't be owing favors to vagabonds. Imagine the talk!`
-			`	She procures a credit chip from somewhere in her gown and passes it to you. "I realize this is probably a fortune to you, I recommend you find a financial advisor and invest it well."`
+			`	She procures a credit chip from somewhere in her gown and passes it to you. "I realize this is probably a fortune to you. I recommend you find a financial advisor and invest it well."`
 			`	With that she turns and leaves; the butler likewise disappears, and you're escorted by the footman back to your vehicle.`
-			`	You look down at the credit chip she's given you and read its value; 1,000 credits.`
+			`	You look down at the credit chip in your hand and read its value; 1,000 credits.`
