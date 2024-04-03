@@ -6893,7 +6893,7 @@ mission "Hogshead's Dilemma II"
 
 
 
-mission "Timothy Radrickson 1"
+mission "Timothy Radrickson 1: Stowaway"
 	landing
 	destination "Rand"
 	source
@@ -6971,10 +6971,10 @@ event "timothy radrickson: doneright"
 event "timothy radrickson: mummy"
 
 
-mission "Timothy Radrickson: mummy"
+mission "Timothy Radrickson 2: mummy"
 	landing
 	to offer
-		has "Timothy Radrickson: 1: declined"
+		has "Timothy Radrickson 1: Stowaway: declined"
 		has "event: timothy radrickson: mummy"
 	on enter
 
@@ -6984,7 +6984,7 @@ mission "Timothy Radrickson: mummy"
 			`	Upon opening it you discovered that was in fact, not the case. Instead you discovered the decaying body of a dead and forgotten stowaway. The entire crate promtply found its way to your airlock. Despite the diligent work of your ship's airfilters, you can't quite rid the ship of the smell.`
 			decline
 
-mission "Timothy Radrickson Interlude"
+mission "Timothy Radrickson 2: Interlude"
 	to offer
 		has "timothy radrickson: republic port"
 	source
@@ -7000,7 +7000,7 @@ mission "Timothy Radrickson Interlude"
 
 event "timothy radrickson: sad"
 
-mission "Timothy Radrickson Good Interlude"
+mission "Timothy Radrickson 2: Good Interlude"
 	to offer
 		has "event: timdoneright"
 	landing
@@ -7022,7 +7022,7 @@ mission "Timothy Radrickson Good Interlude"
 		
 event "timothy radrickson: happy"
 
-mission "Timothy Radrickson: Governor Notification"
+mission "Timothy Radrickson 3: Governor Notification"
 	to offer
 		has "event: timothy radrickson: happy"
 	destination "Rand"
@@ -7038,7 +7038,7 @@ mission "Timothy Radrickson: Governor Notification"
 			`Upon landing you are met by a squat heavy set woman in her late 40s. She reaches out a calloused hand to shake yours. "Welcome to Rand, Captain <last>. It is a pleasure, and honor, to have someone of your status here on our little world. I am Regina, the Mayor, and one of the major company-bosses here. I've been instructed to escort you to the Governor's mansion. I have a vehicle waiting for you just outside the spaceport. Meet me there when you're ready." `
 
 
-mission "Timothy Radrickson: Governor"
+mission "Timothy Radrickson 3: Governor"
 	to offer
 		has "Happy Tim: done"
 	source "Rand"
@@ -7138,7 +7138,7 @@ mission "Timothy Radrickson: Governor"
 
 event "timothy radrickson imprisoned"
 
-mission "Timothy Radrickson: Imprisoned"
+mission "Timothy Radrickson 4: Imprisoned"
 	to offer
 		has "event: timothy radrickson imprisoned"
 	source
@@ -7159,70 +7159,186 @@ mission "Timothy Radrickson: Imprisoned"
 			`	You turn to check out the screen. The talking heads are discussing some sort of huge scandal and the arrest of a prominent governor.`
 			`	"That's right, Ann," the anchor on the screen says. "With 8 counts of tax evasion, racketeering, and various corruption charges, Timothy Radickson - former Governor of Rand - will likely spend the next 20 years behind bars."`
 			`	"Where he's going there will be no bars, Tom." Ann quips, "They plan to send him to a work detail on Oblivion."`
-			`	Tom gives that sort of news anchor laugh that's neither committal nor disrespectful. "In that case, forget what I said about 20 years, anything more than 5 years on Oblivion is a life sentence."`
+			`	Tom gives that sort of news anchor laugh that's neither committal nor haughty. "In that case, forget what I said about 20 years, anything more than 5 years on Oblivion is a life sentence."`
 			`	Both news anchors laugh, and then segue into a story about highly intelligent ferrets that have learned to sing in German.`
 				accept
-	on complete
-		dialog
-			`	Your ship descends through the beautiful, toxic horizon and lands in the dirty, dismal spaceport outside of the provincial capitol city called Tukayyid.`
 
-mission "Timothy Radrickson: Timshank Redemption"
+mission "Timothy Radrickson 5: Oblivion Meeting"
+	landing
 	to offer
-		has "Timothy Radrickson: Imprisoned: done"
+		has "Timothy Radrickson 4: Imprisoned: done"
 	source "Oblivion"
 	invisible
 	on offer
 		conversation
-			`The clumped together warehouses, liberally called a spaceport, are used as a central clearing house by all on-world industries. Workers from every industry filter in and out of this never-ending boom town. In the shadows, and on the fringes, the sick, and infirm linger, looking for a handout; the price of progress on such a hostile world.`
-			`	Among the crowd one face draws your attention. A worker, unsupervised, is heaving heavy equipment into a truck. His complexion is sallow, and his skin seem to droop off his bones. His blood red eyes, noticing your attention, languidly rise to look at you. Despite the damage, you realize, you recognize him.`
+			`Your ship descends through the beautiful, toxic horizon and lands in the dirty, dismal spaceport outside of the provincial capital, Tukayyid. The clumped together warehouses they liberally call a spaceport are used as a central clearing house by all on-world industries, and workers from every industry filter in and out of this never-ending boom town. In the shadows, and on the fringes, the sick, and infirm linger, looking for a handout; the price of progress on such a hostile world.`
+			`	Among the crowd one face draws your attention. A worker, unsupervised, is moving around a trolley of minerals by your ship as you have it refueled. His complexion is sallow, and his skin seem to droop off his bones. His blood red eyes, noticing your attention, languidly rise to look at you. Despite the damage, you realize you recognize him.`
 			`	"Captain <last>." He says, suffering a coughing fit. There's now red specs on his lips.`
 			`	"It's me. Timothy, remember? Boy, it's been a while. I'm a prisoner now. Chain-ganged here. Probably until the end." He spits his words out in short bursts, careful not to start coughing again.`
 			choice
 				`	"I'm sorry, Timothy."`
 				`	"Is there any way I can help?"`
 				`	"Shouldn't have broken the law."`
-			
-			`	His red eyes glance side to side, conspiratorially, "I could use your help. Just to buy some things. Might help."`
+
+			`	"I could use your help. Just to buy some things. Might help." His red eyes glance side to side before he says, conspiratorially, "Meet me tonight in the spaceport. At the back of the warehouse. Stephenson Heavy Industries. I'll tell you what I need."`
+			`	With that, he returns to moving the mineral trolley, leaving you to yourself.` 
+
+mission "Timothy Radrickson 5a: Timshank Redemption"
+	name "Meet Tim's contact on <planet>"
+	description "Tim asked you to meet someone on <destination> who could help him out. Tim said he has at most a month before he is reassigned to a camp down south."
+	deadline 14
+	source Oblivion
+	destination Rand
+	to offer
+		has "Timothy Radrickson 5: Oblivion Meeting: offered"
+	on offer
+		conversation
+			`Even after donning a particulate mask, Oblivion's toxic atmosphere is so thick it feels as if you could swallow it; it doesn't help that the air somehow seems even denser at night. The warehouse for Stephenson Heavy Industries turns out to be at the very edge of the spaceport boundaries, and all you see when you get there is a lone box truck parked in the warehouse loading bay.`
 			choice
-				`	(Agree to help him.)`
+				`	(Approach the truck.)`
+				`	(Leave. Tim doesn't deserve another chance.)`
+					goto leave
+
+			`	Approaching the truck, you make out the silouette of a man heaving heavy equipment in the dim light of the loading bay. He appears to notice you as you come closer.`
+			`	"Captain?"`
+			choice
+				`	"It's me, <last>."`
+				`	(Say nothing, turn away and leave.)`
+					goto leave
+
+			`	{{You meet Tim. He tells you about his position and asks if you could do a favour for him.}}`
+			choice
+				`	"Alright. What do you need?"`
 					goto agree
 				`	(Refuse to help him.)`
-			
-			`	You shake your head slowly. "I'm sorry, Timothy. But you broke the law, and this is your punishment. My hands are tied. Maybe when you're out we'll reconnect."` # Repetition from a choice before.
-			`	What little strength he has seems to deflate, a crimson tear winds down his cracked face. "When I'm out? I'll never be out. Goodbye, old friend."`
+
+			`	You shake your head slowly. "I'm sorry, Timothy. But you broke the law, and this is your punishment. My hands are tied. Maybe when you're out we'll reconnect."`
+			`	What little strength he has seems to deflate, a crimson tear winds down his cracked face. "When I'm out? I'll never be out..."`
+			`	He turns his face towards the truck, before looking back to look at you with a face that speaks of a thousand regrets. "Goodbye, old friend."`
 			`	The weak, broken man returns to loading up the heavy equipment. Slower than before.`
 				decline
-			
+
 			label agree
 			`	Looking sideways first, Timothy takes a piece of yellowed paper from his pocket and hastily writes something down on it before handing it to you. "Ask around. Get it all here. They wouldn't sell to me. Even if I had credits."`
 			`	He abruptly turns away from you and goes back to loading equipment, but slower now, buying for time.`
-			`	You look at his list. Initially it's various survival items, backpacking, camping equipment and the like. There's also some heavy duty detoxification medication here as well. More alarming though, are the industrial chemical compounds that would easily create a bomb, not to mention the gun at the bottom.`
+			`	"Actually, forget that," he says, still loading up the equipment. "I have some associates on Rand. They might still be around. Look up the Norwen Mines site, last I know they were still out there. Out on the other side of the planet to the main spaceport.`
+			`	"I've got at most a month before they reassign me to a work camp down south," he says. "After that, I'll surely die out there." He looks back at you one last time. "Good luck. {{Maybe a little bit more about him owing you again.}}"`
+			`	As you walk away from the Stephenson warehouse you take a look at his list. Initially it's various survival items; backpacks, camping equipment and the like. There's also some heavy duty detoxification medication here as well. More alarmingly, however, are the industrial chemical compounds that would easily create a bomb, not to mention the gun at the bottom.`
 			`	You're not familiar exactly what his crimes were, but you seem to recall them being mostly white-collar. Yet, you could potentially be arming a terrorist with these items. What might he blow up, who might he shoot, given his obvious desperation?`
-			choice # We could make this all more involved. Perhaps you could go around instead and describe the places where you get the objects, or get a laser rifle from an outfitter, etc.
-				`	(Buy the items for 500,000 credits.)`
-					goto buy
-				`	(Don't buy the items.)`
+			choice
+				`	(Keep the list.)`
+					goto keep
+				`	(Throw away the list.)`
+
 			`	It's not easy, walking away from the sad, shadow of a man that Timothy has become. But, you do it anyway. You toss the crumpled list into the trash, and leave Timothy to his fate.`
 				decline
-			label buy
-			action
-				payment -500000
-				event "timothy radrickson forever" 460
-			`	It takes the better part of the day, a great deal of haggling, and meeting with some unsavory people. But you manage to collect all the equipment that Timothy requested. You have it packed into a crate, and loaded on Timothy's prison truck.`
+
+			label keep
+			`	Timothy deserves another chance. You put the list back into your pocket and walk back to your ship.`
+				accept
+
+			label leave
+			`	As you walk away, you hear the sound of a large garage door shuttering, the racket reverberating around the yard, followed shortly by the sound of a truck starting up and leaving.`
+				decline
+
+mission "Timothy Radrickson 5a: Rand Contact"
+	landing
+	name "Return to <planet>"
+	description "When you've gathered as much of Tim's list as you can, return to <destination>. Tim said he has at most a month before he is reassigned to a camp down south."
+	cargo "Tim's equipment" 1
+	source Rand
+	destination Oblivion
+	deadline 14
+	to offer
+		has "Timothy Radrickson 5a: Timshank Redemption: accepted"
+	on offer
+		conversation
+			`Tim said to meet his associate at an old mining site on the far side of Rand. Do you want to go there now?`
+			choice
+				`	(Yes.)`
+				`	(No.)`
+					defer
+			`	{{You fly over to an abandoned mining site. You meet Tim's secretary. She gives you the ingredients and advice about where to get the goods.}}`
+
+
+mission "Timothy Radrickson 5b: New Britain"
+	description "Tim's secretary recommended that <destination> would be a good place to find detoxification medication for Tim."
+	landing
+	source Rand
+	destination "New Britain"
+	to offer
+		has "Timothy Radrickson 5a: Rand Contact: accepted"
+	on complete
+		conversation
+			"{{Land at New Britain's spaceport.}}"
+			label options
+			choice
+				`	(Get the medicine for Tim.)`
+					goto medicine
+					to display
+						not "timothy radrickson: medicine"
+			label medicine
+
+mission "Timothy Radrickson 5c: Dancer"
+	description "Tim's secretary recommended that <destination> would be a good place to find survival gear for Tim."
+	landing
+	source Rand
+	destination Dancer
+	to offer
+		has "Timothy Radrickson 5a: Rand Contact: accepted"
+
+mission "Timothy Radrickson 5d: Greenrock"
+	name "Supplies on <planet>"
+	description "Tim's secretary recommended that <destination> would be a good place to find a fake ID for Tim."
+	landing
+	source Rand
+	destination Greenrock
+	to offer
+		has "Timothy Radrickson 5a: Rand Contact: accepted"
+	on offer
+
+mission "Timothy Radrickson 5e: Back to Oblivion"
+	deadline 14
+	source Rand
+	destination Oblivion
+	on offer
+		conversation
+			branch unprepared
+				"timothy radrickson gear" < 6
+			branch "decently prepared"
+				"timothy radrickson gear" >= 6
+				"timothy radrickson gear" <= 7
+			branch "well prepared"
+				"timothy radrickson gear" > 7
+
+			label unprepared
+			`	...`
+				goto end
+
+			label "decently prepared"
+			`	...`
+				goto end
+
+			label "well prepared"
+			`	...`
+
+			label end # This is copied from the first mission, will need redoing.
+			`It takes the better part of the day, a great deal of haggling, and meeting with some unsavory people. But you manage to collect all the equipment that Timothy requested. You have it packed into a crate, and loaded on Timothy's prison truck.`
 			`	Timothy's eyes are wide, rimmed with bloody tears, as he watches. "Always at my lowest."`
 			`	He swallows a cough, and then continues. "It's you who saves me. When I am at my lowest. It's you."`
 			`	Timothy looks like he wants to hug you, but he just nods.`
-			` 	"Captain." He says, and then he climbs aboard the truck and drives off.`
+			` 	"Captain," he says in way of a farewell, and then he climbs aboard the truck and drives off.`
 				decline
+
 
 event "timothy radrickson forever"
 
-mission "Timothy Radrickson: News of Death"
+mission "Timothy Radrickson 6: News of Death"
 	source 
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	to offer
-		has "Timothy Radrickson: Timshank Redemption: declined"
-		not "Timothy Radrickson: Monk"
+		has "Timothy Radrickson: Timshank Redemption 5: declined"
+		not "Timothy Radrickson 7: Monk"
 		random < 5
 	on offer
 		conversation
@@ -7231,7 +7347,7 @@ mission "Timothy Radrickson: News of Death"
 			`	The news broadcast continues to blare, but you aren't able to follow anymore than that.`
 				decline
 
-mission "Timothy Radrickson: Monk"
+mission "Timothy Radrickson 7: Monk"
 	source "New Tibet"
 	to offer
 		has "event: timothy radrickson forever"
