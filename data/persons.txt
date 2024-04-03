@@ -642,6 +642,7 @@ ship "Modified Osprey"
 		"outfit space" 2172
 		"weapon capacity" 851
 		"engine capacity" 499
+		"afterburner slot" 4
 		"reverse thruster slot" 2
 		"steering slot" 4
 		"thruster slot" 2
@@ -829,7 +830,7 @@ ship "Ursa Polaris"
 		"engine capacity" 301
 		"reverse thruster slot" 2
 		"steering slot" 2
-		"thruster slot" 2
+		"thruster slot" 3
 		weapon
 			"blast radius" 1000
 			"shield damage" 4000

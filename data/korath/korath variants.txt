@@ -485,6 +485,7 @@ ship "'olofez" "'olofez (Digger)"
 ship "'olofez" "'olofez (World-Ship)"
 	add attributes
 		"atmosphere scan" 1
+		"afterburner slot" 1
 	outfits
 		"Generator (Candle Class)"
 		"Systems Core (Tiny)"
@@ -553,6 +554,8 @@ ship "Lor'kas Ik 577" "Lor'kas Ik 577 (Digger)"
 
 
 ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Crippled)"
+	add attributes
+		"steering slot" 1
 	outfits
 		"Shunt-Strike Turret" 2
 		"Warder Anti-Missile"

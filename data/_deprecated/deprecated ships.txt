@@ -693,6 +693,7 @@ ship "Korath Chaser" "Korath Chaser (Digger)"
 ship "Korath Chaser" "Korath Chaser (World-Ship)"
 	add attributes
 		"atmosphere scan" 1
+		"afterburner slot" 1
 	outfits
 		"Generator (Candle Class)"
 		"Systems Core (Tiny)"
