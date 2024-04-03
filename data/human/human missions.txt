@@ -6904,26 +6904,30 @@ mission "Timothy Radrickson 1"
 
 	on enter # You will see this conversation on the first jump you make.
 		conversation
-			`You hear a strange sound from the food storage on your ship.` # Expand this with more of a lead in - maybe you're undergoing an inspection by Republic authorities and their sensors catch him.
+			`Upon completeing your jump one of your internal sensors begins to beep. You flick off the siren and check the diagonistc report; apparently there is a non-negligable heat source detected in the food storage of your ship.`
+			`	As problems go it is not a particularly alarming one, there are plenty of reasons there may be a heat spike in storage, and most of them would not require the Captain of the ship to investigate.`
+			`	It is unusual, however.`
 			choice
 				`	(Investigate.)`
 					goto check
-				`	(Ignore the sound.)`
-			`	What ship doesn't creak from time to time? No point checking out every little bump and thud.`
+				`	(Ignore the sensor.)`
+			action
+				set "dead radrickson on board"
+			`	It's almost certainly nothing, and you have more important things to do than chase down every little sensor glitch on your ship.`
 				decline
 
 			label check
-			`	The source of the noise appears to be a foodstuff crate you recently took on. There is a light thumping coming from within it.`
+			`	After a short search, and the rearanging of quite a few deceptively heavy boxes, you are able to track the heat signature to a to be a foodstuff crate you recently took on. It has yet to be opened but you can already tell its seal has been tampered with. `
 			choice
 				`	(Open the crate.)`
 					goto crate
-				`	(Dump the crate outside.)`
-			`	As the crate tumbles out of your ship you're relieved to know that it is now someone else's problem.`
+				`	(Dump the crate out the airlock)`
+			`	As the crate tumbles out into lifeless space your onboard sensors quickly note the anamolyous heat signature disappear. Whatever was in that crate is no longer your problem, and probably won't be anyone else's either.`
 				decline
 
 			label crate
 			`	You pry open the crate. It should be full of meals for you and your crew. However, after removing the lid you discover instead of food a dirty and disheveled man. .`
-			`	Before you have a chance to say anything the man looks up at you, and whimpers. "P-p-please. I just had to get away. I-I-It wasn't safe. I had to get away." He weakly holds up his hands.`
+			`	Before you have a chance to say anything the man looks up at you narrowed pained eyes, and whimpers. "P-p-please. I just had to get away. I-I-It wasn't safe. I had to get away." He weakly holds up his hands.`
 			choice
 				`	"Who are you?"`
 				`	"Where's my food?"`
@@ -6936,7 +6940,7 @@ mission "Timothy Radrickson 1"
 					goto somewhere
 				`	"I know where you're going. The airlock."`
 
-			`	The feeble man screams as you drag him out of the crate and toward the airlock. He ineptly squirms as you shove him into the airlock. He falls to his knees, shudders with terror, and his face leaks tears. You close the airlock, silencing his shrill screams, and hit the button to open it on the outside. The man is promptly dumped out and back into the world from which he fled.`
+			`	The feeble man screams as you drag him out of the crate and toward the airlock. He ineptly squirms as you shove him pass breachhead seals. He falls to his knees, shudders with terror, and his face leaks tears. You close the airlock, silencing his shrill screams, and hit the button to open it on the outside. The man is promptly sucked out into cold cruel space, and crystalizes before becoming this system's newest comet.`
 				decline
 
 			label republic
@@ -6948,7 +6952,7 @@ mission "Timothy Radrickson 1"
 
 			label somewhere
 			`	Timothy looks at you, his eyes wide and full of tears. "R-r-rand," he whispers. "Rand. I can make good money there. I can turn my life around. B-b-but I'd be okay with anywhere. You d-d-don't have to.."`
-			`	You cut him off. "It's fine, Timothy. I'll take you to Rand."` # Maybe add another choice node to affirm this, since it's possible Rand's quite far away from where the player is and they want to reconsider.
+			`	You cut him off. "It's fine, Timothy. I'll take you to Rand."`
 			`	Timothy breaks down in tears. "Thank you. Thank you. Thank you," he mumbles over and over.`
 			`	You help him out of the crate and get him cleaned up.`
 				accept
@@ -6962,6 +6966,21 @@ mission "Timothy Radrickson 1"
 		event "timothy radrickson: doneright" 340
 
 event "timothy radrickson: doneright"
+event "dead radrickson on board" 41
+
+
+mission "Timothy Radrickson mummy"
+	landing
+	to offer
+  		has "Timothy Radrickson: 1: declined"
+  		has "dead radrickson on board"
+	on enter
+
+	on enter
+		conversation
+			`For days there's been an odd lingering scent filtering in from your pressuraized cargo. The smell has finally permeated your command deck and something had to be done. A ship wide search has led you to a unopened foodstuff crate. Although the crate was unopened the seal on it appeared tampered with and the conjecture was that the food had gone bad.`
+			`Upon opening it you discovered that was in fact, not the case. Instead you discovered the decaying body of a dead and forgotten stowaway. The entire crate promtply found its way to your airlock. Though despite the diligent work of your airfilters, you can't quite rid the ship of the smell.`
+			decline
 
 mission "Timothy Radrickson Interlude"
 	to offer
@@ -7256,3 +7275,4 @@ mission "Timothy Radrickson: Monk"
 			`	"Thank you for coming here. I wish I had something to give you, but I own nothing anymore, even though I owe you everything. Take care out there, and I'll do my best to keep out of trouble in here."`
 			`	He shakes your hand than walks back into the monastery. You begin your slow descent down the mountain, and back to civilization.`
 				decline
+
