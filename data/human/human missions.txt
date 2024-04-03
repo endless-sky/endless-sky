@@ -7065,10 +7065,10 @@ mission "Timothy Radrickson: Governor"
 			choice
 				`	(Enter the room.)`
 			`	You enter a large richly furnished room. At the center of the room is an imposing desk, with a slightly graying man seated behind it. There is something immediately familiar about his face.`
-			`	"Ah, Captain <last>, at last, we can meet face to face, and I can thank you properly." The Governor stands. "You may not remember me, it has been some years since you last laid eyes on me, and," the governor gestures to himself, "I looked quite different back then."`
+			`	"Ah, Captain <last>. At last we can meet face to face, and I can thank you properly." The Governor stands. "You may not remember me, it has been some years since you last laid eyes on me, and," the governor gestures to himself, "I looked quite different back then."`
 			`	"I was a stowaway on your ship. You found me in a foodcrate, and you took me here. I'm Timothy Radickson, Governor Timothy Radickson now."`
 			`	Timothy sits back down and indicates that you should do the same. "It took me some time. But through some good decisions, and quite a bit of luck, I've been able to claw my way to a level of respectability and wealth. I've really been able to make something of myself."`
-			`	His face opens up into a large grin, "Then again, compared to what you've done in all this time, my successes hardly register. Still, as meager as they may be, I owe it all to you and your kind gesture. Which is why I've invited you here, to celebrate you, and to thank you, properly."`
+			`	His face opens up into a large grin. "Then again, compared to what you've done in all this time, my successes hardly register. Still, as meager as they may be, I owe it all to you and your kind gesture. Which is why I've invited you here, to celebrate you, and to thank you, properly."`
 			`	"So, I was wondering if you would do me the favor of allowing me to entertain you tonight at dinner here in my mansion."`
 			choice
 				`	"That would be great."`
