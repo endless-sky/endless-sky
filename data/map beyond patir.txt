@@ -69,6 +69,7 @@ system Ghila
 		period 1
 	object
 		sprite "planet/penrose machine"
+			scale 0.5
 		period 1
 	object "One-Way Wormhole Exit"
 		distance 1626.8
