@@ -6898,36 +6898,39 @@ mission "Timothy Radrickson 1"
 	destination "Rand"
 	source
 		near "Zeta Aquilae" 3 10
+		not government "Free Worlds" "Independent" "Pirate" "Neutral"
 	to offer
-		# random < 10
+		random < 10
 	on enter
 
-	on enter # You will see this conversation on the first jump you make.
+	# You will see this conversation after the first jump you make.
+	on enter
 		conversation
 			`Upon completeing your jump one of your internal sensors begins to beep. You flick off the siren and check the diagonistc report; apparently there is a non-negligable heat source detected in the food storage of your ship.`
-			`	As problems go it is not a particularly alarming one, there are plenty of reasons there may be a heat spike in storage, and most of them would not require the Captain of the ship to investigate.`
+			`	As problems go it is not a particularly alarming one, there are plenty of reasons there may be a heat spike in storage, and most of them would not require the captain of the ship to investigate.`
 			`	It is unusual, however.`
 			choice
 				`	(Investigate.)`
 					goto check
 				`	(Ignore the sensor.)`
+
 			action
-				set "dead radrickson on board"
+				event "timothy radrickson: mummy" 41
 			`	It's almost certainly nothing, and you have more important things to do than chase down every little sensor glitch on your ship.`
 				decline
 
 			label check
-			`	After a short search, and the rearanging of quite a few deceptively heavy boxes, you are able to track the heat signature to a to be a foodstuff crate you recently took on. It has yet to be opened but you can already tell its seal has been tampered with. `
+			`	After a short search, and the rearranging of quite a few deceptively heavy boxes, you are able to track the heat signature to a to be a foodstuff crate you recently took on. It has yet to be opened but you can already tell its seal has been tampered with. `
 			choice
 				`	(Open the crate.)`
 					goto crate
-				`	(Dump the crate out the airlock)`
+				`	(Dump the crate out the airlock.)`
 			`	As the crate tumbles out into lifeless space your onboard sensors quickly note the anamolyous heat signature disappear. Whatever was in that crate is no longer your problem, and probably won't be anyone else's either.`
 				decline
 
 			label crate
-			`	You pry open the crate. It should be full of meals for you and your crew. However, after removing the lid you discover instead of food a dirty and disheveled man. .`
-			`	Before you have a chance to say anything the man looks up at you narrowed pained eyes, and whimpers. "P-p-please. I just had to get away. I-I-It wasn't safe. I had to get away." He weakly holds up his hands.`
+			`	You pry open the crate. It should be full of meals for you and your crew, but after removing the lid you discover a dirty and disheveled man.`
+			`	Before you have a chance to say anything the man looks up at you with narrowed, pained eyes, and whimpers. "P-p-please. I just had to get away. I-I-It wasn't safe. I had to get away." He weakly holds up his hands.`
 			choice
 				`	"Who are you?"`
 				`	"Where's my food?"`
@@ -6946,40 +6949,39 @@ mission "Timothy Radrickson 1"
 			label republic
 			action
 				set "timothy radrickson: republic port"
-			`	Tears squeeze out the man's sad eyes. "Thank you." He whispers, "Thank you."`
+			`	Tears squeeze out the man's sad eyes. "Thank you," he whispers, "thank you."`
 			`	You get the man cleaned up and settled and head back to your station.`
 				decline
 
 			label somewhere
-			`	Timothy looks at you, his eyes wide and full of tears. "R-r-rand," he whispers. "Rand. I can make good money there. I can turn my life around. B-b-but I'd be okay with anywhere. You d-d-don't have to.."`
+			`	Timothy looks at you, his eyes wide and full of tears. "Rand," he whispers. "Rand. I can make good money there. I can turn my life around. B-b-but I'd be okay with anywhere. You d-d-don't have to.."`
 			`	You cut him off. "It's fine, Timothy. I'll take you to Rand."`
-			`	Timothy breaks down in tears. "Thank you. Thank you. Thank you," he mumbles over and over.`
+			`	Timothy breaks down in tears. "Thank you. Thank you. Thank you..." he mumbles over and over again.`
 			`	You help him out of the crate and get him cleaned up.`
 				accept
 
 	on complete
 		conversation
-			`	During the trip Timothy's spirits and health improved, and by the time you arrive on Rand he's seems like a different man.`
-			`	"Thank you so much, Captain <last>." He shakes your hand."`
+			`During the trip Timothy's spirits and health improved, and by the time you arrive on Rand he seems like a different man. Before he steps out of the airlock he turns to you one more time. "Thank you so much, Captain <last>." He shakes your hand."`
 			`	"I mean it. From the bottom of my heart. You've saved my life, and given me hope. I won't forget this, or you. I can never thank you enough."`
 			`	His eyes glistening, Timothy turns from you and exits your ship. Hopefully he finds what he is looking for on Rand.`
 		event "timothy radrickson: doneright" 340
 
 event "timothy radrickson: doneright"
-event "dead radrickson on board" 41
+event "timothy radrickson: mummy"
 
 
-mission "Timothy Radrickson mummy"
+mission "Timothy Radrickson: mummy"
 	landing
 	to offer
-  		has "Timothy Radrickson: 1: declined"
-  		has "dead radrickson on board"
+		has "Timothy Radrickson: 1: declined"
+		has "event: timothy radrickson: mummy"
 	on enter
 
 	on enter
 		conversation
 			`For days there's been an odd lingering scent filtering in from your pressuraized cargo. The smell has finally permeated your command deck and something had to be done. A ship wide search has led you to a unopened foodstuff crate. Although the crate was unopened the seal on it appeared tampered with and the conjecture was that the food had gone bad.`
-			`Upon opening it you discovered that was in fact, not the case. Instead you discovered the decaying body of a dead and forgotten stowaway. The entire crate promtply found its way to your airlock. Though despite the diligent work of your airfilters, you can't quite rid the ship of the smell.`
+			`	Upon opening it you discovered that was in fact, not the case. Instead you discovered the decaying body of a dead and forgotten stowaway. The entire crate promtply found its way to your airlock. Despite the diligent work of your ship's airfilters, you can't quite rid the ship of the smell.`
 			decline
 
 mission "Timothy Radrickson Interlude"
