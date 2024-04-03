@@ -164,7 +164,7 @@ system Thepa
 		period 1
 
 system Balnii
-	pos 10285.3 -359.3
+	pos 10268.3 -359.3
 	haze _menu/haze-sarifa
 	habitable 360
 	belt 1497
