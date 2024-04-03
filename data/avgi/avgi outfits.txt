@@ -509,7 +509,7 @@ outfit "XY-180 Radial Thrusters"
 		"frame rate" 30
 		"scale" 0.125
 	"reverse flare sound" "plasma small"
-	description `Avgi radial thrusters are hybrid thermal-electric thrusters, designed to allow translation in any direction. By using waste heat to expel superheated water vapor out of a set of nozzles, they can help a ship cool off, require the ship to have been "warmed up" in order to function.`
+	description `Avgi radial thrusters are hybrid thermal-electric thrusters, designed to allow translation in any direction. By using reactor heat to expel superheated water vapor out of a set of nozzles, they can help a ship cool off, but require the ship to have been "warmed up" in order to function.`
 
 
 outfit "XY-360 Radial Thrusters"
@@ -536,7 +536,7 @@ outfit "XY-360 Radial Thrusters"
 		"frame rate" 30
 		"scale" 0.25
 	"reverse flare sound" "plasma small"
-	description "The Avgi have designed their radial thrusters to synergize well with their fusion torches, tapping off waste heat and using it to superheat water for use in their reaction control systems. An additional magnetohydrodynamic accelerator around each thruster's nozzle improves efficiency at the cost of using some energy. These thrusters allow Avgi starships to easily dock with stations or other ships without igniting their highly radioactive fusion torches."
+	description "The Avgi have designed their radial thrusters to synergize well with their fusion torches, tapping off high temperature waste heat and using it to superheat water for use in their reaction control systems. An additional magnetohydrodynamic accelerator around each thruster's nozzle improves efficiency at the cost of using some energy. These thrusters allow Avgi starships to easily dock with stations or other ships without igniting their highly radioactive fusion torches."
 
 
 outfit "XY-720 Radial Thrusters"

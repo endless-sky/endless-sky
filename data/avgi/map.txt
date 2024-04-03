@@ -1684,7 +1684,7 @@ system Soar
 			sprite planet/cloud5-b
 			distance 157.155
 			period 69
-		object Kalesi
+		object Calesi
 			sprite planet/lava4-b
 			distance 171.349
 			period 69

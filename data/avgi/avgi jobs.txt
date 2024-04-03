@@ -14,23 +14,23 @@
 
 # JD only rush delivery
 
-Government/military freight transport job
+# Government/military freight transport job
 
-Retrieval merchant jobs: can pick up cargo from any station in the shroud, as long as you return it in time
+# Retrieval merchant jobs: can pick up cargo from any station in the shroud, as long as you return it in time
 
-Private merchant hauling job
+# Private merchant hauling job
 
-Private crew transport job (fast)
+# Private crew transport job (fast)
 
-Private fleet escort job
+# Private fleet escort job
 
-Drakium loot recovery job
+# Drakium loot recovery job
 
-Search and rescue
+# Search and rescue
 
-Rescue pod recovery job
+# Rescue pod recovery job
 
-Heavy metal mining jobs
+# Heavy metal mining jobs
 
 
 
