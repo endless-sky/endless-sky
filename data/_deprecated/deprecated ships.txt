@@ -32,9 +32,9 @@ ship "Korath Dredger"
 		"outfit space" 763
 		"weapon capacity" 276
 		"engine capacity" 206
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 300
 			"shield damage" 4600
@@ -112,9 +112,9 @@ ship "Korath Raider"
 		"outfit space" 777
 		"weapon capacity" 339
 		"engine capacity" 159
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 250
 			"shield damage" 3600
@@ -185,9 +185,9 @@ ship "Korath Chaser"
 		"outfit space" 92
 		"weapon capacity" 25
 		"engine capacity" 30
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 48
 			"shield damage" 320
@@ -229,9 +229,9 @@ ship "Korath World-Ship"
 		"outfit space" 839
 		"weapon capacity" 314
 		"engine capacity" 165
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 400
 			"shield damage" 8000

@@ -29,9 +29,9 @@ ship "Aerie"
 		"outfit space" 390
 		"weapon capacity" 150
 		"engine capacity" 95
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 80
 			"shield damage" 800
@@ -96,9 +96,9 @@ ship "Argosy"
 		"outfit space" 270
 		"weapon capacity" 90
 		"engine capacity" 80
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 60
 			"shield damage" 600
@@ -160,9 +160,9 @@ ship "Arrow"
 		"outfit space" 180
 		"weapon capacity" 50
 		"engine capacity" 75
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 24
 			"shield damage" 240
@@ -218,9 +218,9 @@ ship "Auxiliary"
 		"outfit space" 720
 		"weapon capacity" 160
 		"engine capacity" 200
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 280
 			"shield damage" 2800
@@ -338,9 +338,9 @@ ship "Bactrian"
 		"outfit space" 740
 		"weapon capacity" 300
 		"engine capacity" 180
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 260
 			"shield damage" 2600
@@ -412,9 +412,9 @@ ship "Barb"
 		"outfit space" 85
 		"weapon capacity" 28
 		"engine capacity" 22
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 12
 			"shield damage" 120
@@ -461,9 +461,9 @@ ship "Bastion"
 		"outfit space" 470
 		"weapon capacity" 190
 		"engine capacity" 120
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 120
 			"shield damage" 1200
@@ -528,9 +528,9 @@ ship "Behemoth"
 		"outfit space" 510
 		"weapon capacity" 280
 		"engine capacity" 90
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 140
 			"shield damage" 1400
@@ -593,9 +593,9 @@ ship "Berserker"
 		"outfit space" 200
 		"weapon capacity" 35
 		"engine capacity" 65
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 30
 			"shield damage" 300
@@ -647,9 +647,9 @@ ship "Blackbird"
 		"outfit space" 350
 		"weapon capacity" 90
 		"engine capacity" 110
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 60
 			"shield damage" 600
@@ -703,9 +703,9 @@ ship "Bounder"
 		"outfit space" 220
 		"weapon capacity" 50
 		"engine capacity" 110
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 30
 			"shield damage" 300
@@ -751,9 +751,9 @@ ship "Boxwing"
 		"heat dissipation" .27
 		"outfit space" 45
 		"engine capacity" 28
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		"cargo space" 80
 		weapon
 			"blast radius" 12
@@ -795,9 +795,9 @@ ship "Bulk Freighter"
 		"outfit space" 410
 		"weapon capacity" 180
 		"engine capacity" 85
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 120
 			"shield damage" 1200
@@ -859,9 +859,9 @@ ship "Bulwark"
 		"outfit space" 521
 		"weapon capacity" 223
 		"engine capacity" 120
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		"threshold percentage" .08
 		weapon
 			"blast radius" 120
@@ -928,9 +928,9 @@ ship "Carrier"
 		"outfit space" 820
 		"weapon capacity" 370
 		"engine capacity" 210
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 300
 			"shield damage" 3000
@@ -1023,9 +1023,9 @@ ship "Class C Freighter"
 		"outfit space" 410
 		"weapon capacity" 150
 		"engine capacity" 85
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 200
 			"shield damage" 2000
@@ -1117,9 +1117,9 @@ ship "Clipper"
 		"outfit space" 260
 		"weapon capacity" 60
 		"engine capacity" 80
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 36
 			"shield damage" 360
@@ -1170,9 +1170,9 @@ ship "Combat Drone"
 		"outfit space" 58
 		"weapon capacity" 8
 		"engine capacity" 28
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 5
 			"shield damage" 50
@@ -1214,12 +1214,12 @@ ship "Container Transport"
 		"outfit space" 410
 		"weapon capacity" 180
 		"engine capacity" 85
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 120
 			"shield damage" 1200
@@ -1281,9 +1281,9 @@ ship "Corvette"
 		"outfit space" 420
 		"weapon capacity" 150
 		"engine capacity" 100
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 80
 			"shield damage" 800
@@ -1348,9 +1348,9 @@ ship "Cruiser"
 		"outfit space" 760
 		"weapon capacity" 320
 		"engine capacity" 170
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 260
 			"shield damage" 2600
@@ -1430,9 +1430,9 @@ ship "Cutthroat"
 		"outfit space" 282
 		"weapon capacity" 60
 		"engine capacity" 111
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 36
 			"shield damage" 360
@@ -1489,9 +1489,9 @@ ship "Dagger"
 		"outfit space" 90
 		"weapon capacity" 20
 		"engine capacity" 35
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 12
 			"shield damage" 120
@@ -1543,9 +1543,9 @@ ship "Dreadnought"
 		"outfit space" 790
 		"weapon capacity" 360
 		"engine capacity" 190
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 260
 			"shield damage" 2600
@@ -1612,9 +1612,9 @@ ship "Dropship"
 		"outfit space" 100
 		"weapon capacity" 16
 		"engine capacity" 40
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 12
 			"shield damage" 120
@@ -1661,9 +1661,9 @@ ship "Enforcer"
 		"outfit space" 210
 		"weapon capacity" 55
 		"engine capacity" 60
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 34
 			"shield damage" 340
@@ -1715,9 +1715,9 @@ ship "Falcon"
 		"outfit space" 560
 		"weapon capacity" 250
 		"engine capacity" 150
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 160
 			"shield damage" 1600
@@ -1782,9 +1782,9 @@ ship "Finch"
 		"outfit space" 110
 		"weapon capacity" 20
 		"engine capacity" 40
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 12
 			"shield damage" 120
@@ -1834,9 +1834,9 @@ ship "Firebird"
 		"outfit space" 400
 		"weapon capacity" 160
 		"engine capacity" 100
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 100
 			"shield damage" 1000
@@ -1896,9 +1896,9 @@ ship "Flivver"
 		"outfit space" 130
 		"weapon capacity" 16
 		"engine capacity" 45
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 16
 			"shield damage" 160
@@ -1945,9 +1945,9 @@ ship "Freighter"
 		"outfit space" 250
 		"weapon capacity" 80
 		"engine capacity" 70
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 40
 			"shield damage" 400
@@ -2002,9 +2002,9 @@ ship "Frigate"
 		"outfit space" 410
 		"weapon capacity" 170
 		"engine capacity" 100
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 100
 			"shield damage" 1000
@@ -2070,9 +2070,9 @@ ship "Fury"
 		"outfit space" 160
 		"weapon capacity" 40
 		"engine capacity" 60
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 24
 			"shield damage" 240
@@ -2127,9 +2127,9 @@ ship "Gunboat"
 		"outfit space" 270
 		"weapon capacity" 100
 		"engine capacity" 90
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 72
 			"shield damage" 720
@@ -2185,9 +2185,9 @@ ship "Hauler"
 		"outfit space" 350
 		"weapon capacity" 140
 		"engine capacity" 80
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 60
 			"shield damage" 600
@@ -2247,9 +2247,9 @@ ship "Hauler II"
 		"outfit space" 350
 		"weapon capacity" 140
 		"engine capacity" 80
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 80
 			"shield damage" 800
@@ -2311,9 +2311,9 @@ ship "Hauler III"
 		"outfit space" 350
 		"weapon capacity" 140
 		"engine capacity" 80
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 100
 			"shield damage" 1000
@@ -2375,9 +2375,9 @@ ship "Hawk"
 		"outfit space" 200
 		"weapon capacity" 50
 		"engine capacity" 70
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 30
 			"shield damage" 300
@@ -2426,9 +2426,9 @@ ship "Headhunter"
 		"outfit space" 250
 		"weapon capacity" 60
 		"engine capacity" 80
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 44
 			"shield damage" 440
@@ -2482,9 +2482,9 @@ ship "Heavy Shuttle"
 		"outfit space" 130
 		"weapon capacity" 16
 		"engine capacity" 65
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 12
 			"shield damage" 120
@@ -2528,9 +2528,9 @@ ship "Hogshead"
 		"outfit space" 320
 		"weapon capacity" 80
 		"engine capacity" 90
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 51
 			"shield damage" 510
@@ -2586,9 +2586,9 @@ ship "Lance"
 		"outfit space" 100
 		"weapon capacity" 20
 		"engine capacity" 30
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 12
 			"shield damage" 120
@@ -2638,9 +2638,9 @@ ship "Leviathan"
 		"outfit space" 620
 		"weapon capacity" 240
 		"engine capacity" 120
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 80
 			"shield damage" 800
@@ -2701,9 +2701,9 @@ ship "Mammoth"
 		"outfit space" 536
 		"weapon capacity" 294
 		"engine capacity" 114
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		"scan interference" 2
 		weapon
 			"blast radius" 140
@@ -2777,9 +2777,9 @@ ship "Manta"
 		"outfit space" 350
 		"weapon capacity" 140
 		"engine capacity" 100
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 80
 			"shield damage" 800
@@ -2832,9 +2832,9 @@ ship "Mining Drone"
 		"outfit space" 62
 		"weapon capacity" 12
 		"engine capacity" 28
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 3
 			"shield damage" 30
@@ -2876,9 +2876,9 @@ ship "Modified Argosy"
 		"outfit space" 340
 		"weapon capacity" 140
 		"engine capacity" 80
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 80
 			"shield damage" 800
@@ -2941,9 +2941,9 @@ ship "Mule"
 		"outfit space" 440
 		"weapon capacity" 170
 		"engine capacity" 110
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 100
 			"shield damage" 1000
@@ -3008,9 +3008,9 @@ ship "Nest"
 		"outfit space" 400
 		"weapon capacity" 140
 		"engine capacity" 80
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 60
 			"shield damage" 600
@@ -3074,9 +3074,9 @@ ship "Nighthawk"
 		"outfit space" 362
 		"weapon capacity" 102
 		"engine capacity" 123
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 60
 			"shield damage" 600
@@ -3135,9 +3135,9 @@ ship "Osprey"
 		"outfit space" 450
 		"weapon capacity" 180
 		"engine capacity" 130
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 80
 			"shield damage" 800
@@ -3199,9 +3199,9 @@ ship "Protector"
 		"outfit space" 590
 		"weapon capacity" 230
 		"engine capacity" 100
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 160
 			"shield damage" 1600
@@ -3266,9 +3266,9 @@ ship "Quicksilver"
 		"outfit space" 240
 		"weapon capacity" 60
 		"engine capacity" 70
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 40
 			"shield damage" 400
@@ -3317,9 +3317,9 @@ ship "Rainmaker"
 		"outfit space" 240
 		"weapon capacity" 70
 		"engine capacity" 50
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 40
 			"shield damage" 400
@@ -3376,9 +3376,9 @@ ship "Raven"
 		"outfit space" 280
 		"weapon capacity" 100
 		"engine capacity" 100
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 60
 			"shield damage" 600
@@ -3436,9 +3436,9 @@ ship "Roost"
 		"outfit space" 450
 		"weapon capacity" 140
 		"engine capacity" 80
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 80
 			"shield damage" 800
@@ -3507,9 +3507,9 @@ ship "Saber"
 		"outfit space" 280
 		"weapon capacity" 105
 		"engine capacity" 90
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 72
 			"shield damage" 720
@@ -3567,9 +3567,9 @@ ship "Scout"
 		"outfit space" 220
 		"weapon capacity" 40
 		"engine capacity" 100
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 16
 			"shield damage" 160
@@ -3622,9 +3622,9 @@ ship "Scrapper"
 		"outfit space" 125
 		"weapon capacity" 12
 		"engine capacity" 58
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 10
 			"shield damage" 80
@@ -3671,9 +3671,9 @@ ship "Shuttle"
 		"outfit space" 120
 		"weapon capacity" 10
 		"engine capacity" 60
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 12
 			"shield damage" 120
@@ -3719,9 +3719,9 @@ ship "Skein"
 		"outfit space" 500
 		"weapon capacity" 140
 		"engine capacity" 80
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 100
 			"shield damage" 1000
@@ -3796,9 +3796,9 @@ ship "Sparrow"
 		"outfit space" 130
 		"weapon capacity" 25
 		"engine capacity" 40
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 16
 			"shield damage" 160
@@ -3847,9 +3847,9 @@ ship "Splinter"
 		"outfit space" 400
 		"weapon capacity" 150
 		"engine capacity" 100
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 60
 			"shield damage" 600
@@ -3908,9 +3908,9 @@ ship "Star Barge"
 		"outfit space" 130
 		"weapon capacity" 20
 		"engine capacity" 40
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 16
 			"shield damage" 160
@@ -3956,9 +3956,9 @@ ship "Star Queen"
 		"outfit space" 360
 		"weapon capacity" 120
 		"engine capacity" 100
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 60
 			"shield damage" 600
@@ -4021,9 +4021,9 @@ ship "Sunder"
 		"outfit space" 230
 		"weapon capacity" 50
 		"engine capacity" 90
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 28
 			"shield damage" 280
@@ -4081,9 +4081,9 @@ ship "Surveillance Drone"
 		"outfit space" 53
 		"weapon capacity" 0
 		"engine capacity" 28
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 3
 			"shield damage" 30
@@ -4122,9 +4122,9 @@ ship "Valkyrie"
 		"outfit space" 400
 		"weapon capacity" 170
 		"engine capacity" 76
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 80
 			"shield damage" 800
@@ -4187,9 +4187,9 @@ ship "Vanguard"
 		"outfit space" 560
 		"weapon capacity" 220
 		"engine capacity" 120
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 160
 			"shield damage" 1600
@@ -4255,9 +4255,9 @@ ship "Wasp"
 		"outfit space" 150
 		"weapon capacity" 28
 		"engine capacity" 60
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 20
 			"shield damage" 200

@@ -35,9 +35,9 @@ ship "Albatross"
 		"outfit space" 672
 		"weapon capacity" 236
 		"engine capacity" 142
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		"shield generation" 5.2
 		"shield energy" 4.6
 		"hull repair rate" 1.5
@@ -293,9 +293,9 @@ ship "Modified Dromedary"
 		"outfit space" 740
 		"weapon capacity" 270
 		"engine capacity" 195
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		"solar collection" 1.1
 		"outfit scan power" 18
 		"outfit scan efficiency" 48
@@ -501,9 +501,9 @@ ship "Gull"
 		"outfit space" 311
 		"weapon capacity" 83
 		"engine capacity" 101
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		"shield generation" 1.6
 		"shield energy" 1.1
 		"hull repair rate" 0.7
@@ -664,7 +664,7 @@ ship "Heron"
 		"outfit space" 2150
 		"weapon capacity" 470
 		"engine capacity" 800
-		"reverse thruster slot" 1
+		"reverse thruster slot" 2
 		"steering slot" 5
 		"thruster slot" 5
 		"shield generation" 15
@@ -834,9 +834,9 @@ ship "Ibis"
 		"outfit space" 427
 		"weapon capacity" 147
 		"engine capacity" 109
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		"shield generation" 3.5
 		"shield energy" 3.1
 		"hull repair rate" 1.2
@@ -949,9 +949,9 @@ ship "Merganser"
 		"reverse flare sound" "plasma tiny"
 		"weapon capacity" 85
 		"engine capacity" 70
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 10
 			"shield damage" 100
@@ -1027,9 +1027,9 @@ ship "Pelican"
 		"outfit space" 480
 		"weapon capacity" 157
 		"engine capacity" 144
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		"shield generation" 2.7
 		"shield energy" 1.8
 		"hull repair rate" 1
@@ -1112,9 +1112,9 @@ ship "Penguin"
 		"outfit space" 109
 		"weapon capacity" 33
 		"engine capacity" 54
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		"shield generation" 1
 		"shield energy" 0.5
 		"hull repair rate" 2
@@ -1220,9 +1220,9 @@ ship "Peregrine"
 		"outfit space" 552
 		"weapon capacity" 220
 		"engine capacity" 171
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 2
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 3
 		"shield generation" 4.9
 		"shield energy" 3.0
 		"hull repair rate" 2.5
@@ -1339,9 +1339,9 @@ ship "Petrel"
 		"outfit space" 133
 		"weapon capacity" 33
 		"engine capacity" 34
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		"shield generation" 0.36
 		"shield energy" 0.24
 		"hull repair rate" 0.82
@@ -1401,9 +1401,9 @@ ship "Puffin"
 		"cargo space" 8
 		"outfit space" 80
 		"engine capacity" 26
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		"shield generation" 0.6
 		"shield energy" 0.4
 		"hull repair rate" 1.2
@@ -1456,9 +1456,9 @@ ship "Smew"
 		"outfit space" 80
 		"weapon capacity" 10
 		"engine capacity" 46
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		"energy capacity" 3000
 		"ion resistance" 0.002
 		"scramble resistance" 0.002
@@ -1545,9 +1545,9 @@ ship "Starling"
 		"outfit space" 316
 		"weapon capacity" 83
 		"engine capacity" 94
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		"shield generation" 1.8
 		"shield energy" 1.2
 		"hull repair rate" 0.8
@@ -1707,9 +1707,9 @@ ship "Tern"
 		"outfit space" 76
 		"weapon capacity" 16
 		"engine capacity" 26
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		"shield generation" 0.25
 		"shield energy" 0.16
 		"hull repair rate" 0.55

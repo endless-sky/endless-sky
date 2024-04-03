@@ -29,9 +29,9 @@ ship "Quarg Skylark"
 		"outfit space" 600
 		"weapon capacity" 200
 		"engine capacity" 120
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		"hull repair rate" 5
 		"hull energy" 5
 		"ramscoop" 10
@@ -86,9 +86,9 @@ ship "Quarg Wardragon"
 		"outfit space" 600
 		"weapon capacity" 200
 		"engine capacity" 120
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		"hull repair rate" 5
 		"hull energy" 5
 		"ramscoop" 10

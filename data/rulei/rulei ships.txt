@@ -37,9 +37,9 @@ ship "vyu-Ir"
 		"outfit space" 1000
 		"weapon capacity" 1000
 		"engine capacity" 1000
-		"reverse thruster slot" 1
-		"steering slot" 1
-		"thruster slot" 1
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		
 		"energy capacity" 60000
 		"energy generation" 80
