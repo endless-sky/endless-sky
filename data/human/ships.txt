@@ -2701,6 +2701,7 @@ ship "Mammoth"
 		"outfit space" 536
 		"weapon capacity" 294
 		"engine capacity" 114
+		"afterburner slot" 1
 		"reverse thruster slot" 2
 		"steering slot" 2
 		"thruster slot" 2
