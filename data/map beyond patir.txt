@@ -170,7 +170,7 @@ system Balnii
 	habitable 360
 	belt 1497
 	fleet "Magic Asteroid" 900
-	hazard "Black Hole Event Horizon" 1
+	hazard "Balnii Black Hole Event Horizon" 1
 	hazard "Black Hole Gravity" 2
 	object
 		sprite "star/big black hole core"
