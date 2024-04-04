@@ -7172,7 +7172,7 @@ mission "Timothy Radrickson 5: Oblivion Meeting"
 	on offer
 		conversation
 			`Your ship descends through the beautiful, toxic horizon and lands in the dirty, dismal spaceport outside of the provincial capital, Tukayyid. The clumped together warehouses they liberally call a spaceport are used as a central clearing house by all on-world industries, and workers from every industry filter in and out of this never-ending boom town. In the shadows, and on the fringes, the sick, and infirm linger, looking for a handout; the price of progress on such a hostile world.`
-			`	Among the crowd one face draws your attention. A worker, unsupervised, is moving around a trolley of minerals by your ship as you have it refueled. His complexion is sallow, and his skin seem to droop off his bones. His blood red eyes, noticing your attention, languidly rise to look at you. Despite the damage, you realize you recognize him.`
+			`	Among the crowd one face draws your attention. A worker, unsupervised, is moving around a trolley of minerals by your ship as you have it refueled. His complexion is sallow, and his skin seems to droop off his bones. His blood red eyes, noticing your attention, languidly rise to look at you. Despite the damage, you realize you recognize him.`
 			`	"Captain <last>." He says, suffering a coughing fit. There's now red specs on his lips.`
 			`	"It's me. Timothy, remember? Boy, it's been a while. I'm a prisoner now. Chain-ganged here. Probably until the end." He spits his words out in short bursts, careful not to start coughing again.`
 			choice
@@ -7206,23 +7206,24 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 				`	(Say nothing, turn away and leave.)`
 					goto leave
 
-			`	{{You meet Tim. He tells you about his position and asks if you could do a favour for him.}}`
+			`	Timothy leans against the nearest wall, and for a moment the only noise in the darkness is his ragged breathing. Finally he says, "In a week I go back south. Far side of the world. I'll last maybe months. Maybe less. I need a chance. I need to get out."`
+			`	His voice gets more animated as he speaks and he nearly launches into another coughing fit before catching himself and taking several uneven breaths, "They're watching me. I can't leave with you. But with the right supplies. Right tools. I can make it."`
+			`	His red eyes rimmed with bloody tears look directly into yours, "Please. Don't let me die here. Atleast.. give me a chance."`
 			choice
 				`	"Alright. What do you need?"`
 					goto agree
 				`	(Refuse to help him.)`
 
 			`	You shake your head slowly. "I'm sorry, Timothy. But you broke the law, and this is your punishment. My hands are tied. Maybe when you're out we'll reconnect."`
-			`	What little strength he has seems to deflate, a crimson tear winds down his cracked face. "When I'm out? I'll never be out..."`
-			`	He turns his face towards the truck, before looking back to look at you with a face of a last hope forfeit. "Goodbye, old friend."`
+			`	What little strength he has seems to deflate, a crimson tear winds down his cracked face. "When I'm out?" He almost laughs, "When I'm out!"`
+			`	He turns his face towards the truck, before looking back to look at you with a face of forfeited hope. "Goodbye, old friend."`
 			`	The weak, broken man returns to loading up the heavy equipment. Slower than before.`
 				decline
 
 			label agree
-			`	Looking sideways first, Timothy takes a piece of yellowed paper from his pocket and hastily writes something down on it before handing it to you. "Ask around. Get it all here. They wouldn't sell to me. Even if I had credits."`
+			`	Looking sideways first, Timothy takes a piece of yellowed paper from his pocket and hastily writes something down on it before handing it to you. "Have to go off world. Here's a list of what I need. Go to Rand first - address on paper. Norwen mines. Old friend. She will point you in right direction."`
 			`	He abruptly turns away from you and goes back to loading equipment, but slower now, buying for time.`
-			`	"Actually, forget that," he says, still loading up the equipment. "I have some associates on Rand. They might still be around. Look up the Norwen Mines site, last I know they were still out there. Out on the other side of the planet, from the main spaceport.`
-			`	"I've got at most a month before they reassign me to a work camp down south," he says. "After that, I'll surely die out there." He looks back at you one last time. "Good luck. {{Maybe a little bit more about him owing you again.}}"`
+			`	"Eighteen days." He says wearily," Then I go south. Lost in the maze of rigs." He pauses before saying more quietly," And then I die." He looks back at you one last time. "Always owe you." His face cracks in painful looking grin, "Good luck, my good friend."`
 			`	As you walk away from the Stephenson warehouse you take a look at his list. Initially it's various survival items; backpacks, camping equipment and the like. There's also some heavy duty detoxification medication here as well. More alarmingly, however, are the industrial chemical compounds that would easily create a bomb, not to mention the gun at the bottom.`
 			`	You're not familiar exactly what his crimes were, but you seem to recall them being mostly white-collar. Yet, you could potentially be arming a terrorist with these items. What might he blow up, who might he shoot, given his obvious desperation?`
 			choice
@@ -7238,13 +7239,13 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 				accept
 
 			label leave
-			`	As you walk away, you hear the sound of a large garage door shuttering, the racket reverberating around the yard, followed shortly by the sound of a truck starting up and leaving.`
+			`	As you walk away, you hear the sound of a large garage door shuttering, the racket reverberating around the yard, followed shortly by the rumble of a truck's unhealthy engine reving up for a one way trip.`
 				decline
 
 mission "Timothy Radrickson 5b: Rand Contact"
 	landing
 	name "Return to <planet>"
-	description "When you've gathered as much of Tim's list as you can, return to <destination>. Tim said he has at most a month before he is reassigned to a camp down south."
+	description "When you've gathered as much of Tim's list as you can, return to <destination>. Tim said he has 18 days before he is reassigned to a camp down south."
 	cargo "Tim's equipment" 1
 	source Rand
 	destination Oblivion
@@ -7253,8 +7254,84 @@ mission "Timothy Radrickson 5b: Rand Contact"
 		has "Timothy Radrickson 5a: Timshank Redemption: accepted"
 	on offer
 		conversation
-			`Tim said to meet his associate at an old mining site on the far side of Rand.`
-			`	{{You fly over to an abandoned mining site. You meet Tim's secretary. She gives you the ingredients and advice about where to get the goods.}}`
+			`	The Norwen mines are on no current map, and your initial searches for it come up empty. Eventually you're able to find an old news article about a company mining town by the name of Norwen that attempted to unionize, and how they authorities heroically and humanely put down the uprising. The article briefly mentions that the mine was closed down shortly afterward for unrelated reasons.`
+			`	You're able to use the information from the article, and shakily scrawn partial address that Timothy wrote down to get a good idea where to find the mine.`
+			`	As your ship approaches the mine you can't help but notice the burnt out remains of a gutted and abandoned town. A few minutes later your ship rattles as it sets down outside the mine's entrance.`
+			choice
+				(Leave your ship)
+			`It's dark and dusty outside. The planet's gravity makes you feel slow, and the air uncomfortably heavy in your lunges. The entrance to the mine looms large before you and seems suddenly quite menacing. Perhaps this wasn't the best idea...`	
+			`"Don't move or we will end you." An angry voice shouts from the dark edges of the mine. "Idenfify yourself, now!" `
+			choice
+				(Tell them you're the Hero of Rand)
+					goto Timsbud
+				(Tell them you're the famous Captain <last>)
+					goto Timsbud
+				(Tell them you're a friend of Timothy Radickson)
+					goto Timsbud
+				(Tell them to mind their own bussiness and that you answer to no one.)
+			`	You put these low life gangster in their place. They're lucky you're not glassing their entire world, let alone deigning to speak with them. This is followed by a short moment of stunned silence, a snicker, and then the click of a trigger.`
+			`	These are, unfortunately, the last sounds you hear as your body is riddled with blaster rounds. `
+				die
+			label Timsbud
+			` 	There is a brief low conversation, followed by what sounds like a voice on a radio, and then finally, "If you're who you say you are how did you first meet Governor Radickson?"`
+			choice
+				"I ran into him at the Rand spaceport."
+					goto wrong
+				"He sent me a message he wanted to meet."
+					goto wrong
+				"I found him in an old equipment locker."
+					goto wrong
+				"He was hiding in a foodcrate."
+					goto right
+			label wrong
+				`You hear someone swear and then say, "We gotta move now! Everything you we can't carry burn. They're onto us." There's some shuffling noises and it sounds like a few individuals run back deeper into the cave.`
+				`The remaining guard hears something on the radio and then says, "No loose ends. Got it."`
+				`There is a brief almost pleasent moment of calm as the inevtiablity of the situation sinks in, followed the click of a trigger, and the burning sensation of your body being shreded by multiple blaster rounds.`
+				die
+			label right
+			`Despite not being able to see your potential assailants you can feel an immediate shift in the tension.`
+			`"Good." One of them says more to themself then to you, "That's real good." You hear a loud sigh and then, "Alright, Hero of Rand, you're good to approach. The boss wants to see you."`
+			`Dark shapes matierlizes out of the corners of the entrance and one gently ushers you foward further into the opressive atmosphere of the mine.`
+			choice
+				(Follow them into the mine.)
+			`You walk in darkness over uneven terrain for what seems like hours before seeing the first glimmers of light.`
+			`The deeper you go the more people you see, and eventually you realize this is more than just a few people camping out in the cave. This is the sprawling apperatus of an illegal para-military organization. `
+			`You're surrounded by the hustle and bustle of soldiers laboring beneath the world's high gravity. Many of them eye you as you pass, but none say anything to you.`
+			`Finally your escort stop outside a door built into the cavern walls. "She's just in here. Behave."`
+			choice
+				(Walk inside.)
+			`The woman before you is middle-aged and somewhat squat with the hard-won muscles of a person adapted to Rand's grueling gravity. She's attractive though, and there is something very familar about her face. You've met her before..`
+			`"Captain <last>!" She says with genuine grin across her face, "I doubt you recognize me, but I was Wynnafrith, Governor Radickson's secretary. We met years back at your banquet."`
+			`She glances down at herself as if recognizing her body's tranformation from offworld waif to native Rander, "I dare say the world has changed me a bit away from the gravity generators."`
+			`"Although I am no longer a secretary, I am Red-Colonel Wynnfrith, one of the leaders of the people's revolution!" Her eyes sparkle as if she's making a joke, but the way she says 'people's revolution' rings with a deadly seriousness.`
+			` She tilts her head slightly, "But that's enough about me. What possible reason could you have for coming here?" Her face is open and friendly, but she casually rests her hand on her side arm.`
+			choice
+				(Tell her about Timothy.)
+					goto Timmy
+				(Tell her you just wanted to say hi.)
+				(Tell her it is none of her business.)
+			`She frowns and aims her gun squarely at your chest. "It's been too long since we've last seen you. And though you were once Governor Radickson's friend, things have changed quite a bit since then."`
+			`She gives you a nonchalant shrug, "If that's all you have to say, then I am afraid there is no good reason to let you leave here alive." She favors you with a brief smile, "Operation security, you know how it goes."`
+			`She switches off the safety.`
+			choice
+				"Wait! Timothy sent me!"
+					goto sayso
+				"Take your best shot."
+			`She does indeed, take her best shot, and the sudden hole in your torso proves to be quite terminal.`
+				die
+			label sayso
+				`She shakes her head, "Well why didn't you just say so!"`
+				`"Now, why don't you tell me about the Governor, from the start." She holsters her sidearm.`
+			label Timmy
+			`	Red-Colonel Wynnfrith's eyes get misty as you tell her about Timothy's plight. She shakes her head a few times and then takes the list from you and carefully scrutinzes it.`
+			`"Ya know, to us he's still the Governor. Don't believe what the Company-Bosses and their paid politians tell you. He was a good man." She wipes her eyes, "All he was trying to do was improve the conditions for workers here on Rand. He'd come up from the mines and he knew what it was like."`
+			` Her free hand tightens into ball, "They big men didn't like that. But what about the profit margins? They tried to bribe him, to offer him anything he wanted, to just leave things well enough alone. To let the exploitation continue." She says the last words through clenched teeth.`
+			`"But he never waivered, and he always labored for the common man." She looks up at you, "You were a good friend to him, it's true, but truth be told, while you may have been the Hero of Governor Radickson, he was the true Hero of Rand."`
+			`"And when he wouldn't budge they finally got him for trumped up charges and threw him to Oblivion to disappear and die." She shakes her head and looks at the list again.`
+			`"If it means helping the Govenor then we're in."`
+			``
+			`You meet Tim's secretary. She gives you the ingredients and advice about where to get the goods.}}`
+
 
 
 mission "Timothy Radrickson 5c: New Britain"
