@@ -15,37 +15,6 @@ phrase "magic asteroid"
 	word
 		"???"
 
-government "Magic Asteroid"
-	"display name" "???"
-	swizzle 0
-	language "???"
-	
-	"attitude toward"
-		"Ka'sei (12A)" -.01
-		"Uninhabited" -.01
-
-	"player reputation" 10
-	"friendly hail" "friendly ka'het"
-	"friendly disabled hail" "friendly disabled ka'het"
-	"hostile hail" "hostile ka'het"
-	"hostile disabled hail" "hostile disabled ka'het"
-
-government "Ka'sei (12A)"
-	"display name" "Ka'sei"
-	swizzle 0
-	language "???"
-	
-	"penalty for"
-		assist 0
-		disable 0
-		board 0
-		capture 0
-	"player reputation" 10
-	"friendly hail" "friendly ka'het"
-	"friendly disabled hail" "friendly disabled ka'het"
-	"hostile hail" "hostile ka'het"
-	"hostile disabled hail" "hostile disabled ka'het"
-
 fleet "Magic Asteroid"
 	government "Magic Asteroid"
 	names "magic asteroid"
@@ -2439,3 +2408,90 @@ effect "circle defense"
 		"random start frame"
 	sound "point defense"
 	lifetime 2
+
+# Invisible ship in Lathia, represents the power of the asteroid base in the system
+
+mission "Asteroid guarding Lathia"
+	invisible
+	landing
+	to complete
+		never
+	npc save
+		government "Magic Asteroid"
+		personality heroic vindictive staying frugal forbearing
+		system Lathia
+		ship "Asteroid Planet" "Queen Asteroid"
+
+ship "Asteroid Planet"
+	attributes
+		category "Transport"
+		"uncapturable" 1
+		"inscrutable" 1
+		"cost" 1350000000
+		"hull" 86135672193
+		"required crew" 1
+		"bunks" 1
+		"mass" 674
+		"drag" 30.4
+		"heat dissipation" 10
+		"energy capacity" 1
+		"fuel generation" 0.3
+		"cargo space" 40
+		"outfit space" 390
+		"weapon capacity" 150
+		"engine capacity" 95
+		"hull repair rate" 41
+		"cargo scan power" 1
+		"cargo scan efficiency" 0.001
+		"thrust" 340.2
+		"turn" 5931.4
+		"asteroid mount jd" 1
+		"asteroid mount am" 1
+		"asteroid mount" 1
+		weapon
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	outfits
+		"Asteroid Weapon Super"
+
+	gun 0 0 "Asteroid Weapon Super"
+
+outfit "Asteroid Weapon Super"
+	category "Guns"
+	cost 1861000000
+	thumbnail "outfit/unknown"
+	mass 1
+	"outfit space" -1
+	"weapon capacity" -1
+	"gun ports" -1
+	weapon
+		"submunition" "asteroid fragment" 180
+		"inaccuracy" 1
+		"velocity" 70
+		"lifetime" 2
+		"reload" 360
+		"safe"
+		"split range" 300
+		"blast radius" 400
+
+outfit "asteroid fragment"
+	weapon
+		sprite "projectile/lotus"
+			"frame time" 10
+			"start frame" 0
+			"no repeat"
+		"submunition" "spin1 print right"
+		"submunition" "spin1 print left"
+		"inaccuracy" 360
+		"velocity" -65
+		"random velocity" 20
+		"lifetime" 40
+		"random lifetime" 80
+		"shield damage" 90
+		"heat damage" 800
+		"ion damage" 3
+		"safe"
+		"hit force" 100
+		"blast radius" 200
