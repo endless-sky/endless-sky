@@ -166,8 +166,12 @@ system Thepa
 system Balnii
 	pos 10268.3 -359.3
 	haze _menu/haze-sarifa
+	arrival 1100
 	habitable 360
 	belt 1497
+	fleet "Magic Asteroid" 900
+	hazard "Black Hole Event Horizon" 1
+	hazard "Black Hole Gravity" 2
 	object
 		sprite "star/big black hole core"
 		period 1
