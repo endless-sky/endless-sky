@@ -1755,6 +1755,7 @@ mission "Ka'het: Patir Mystery 13A"
 			`	"There! Do you see it?" he continues, pointing at a spot in the sky with his hand. Between the mass of stars in front of you, a pattern leaps to the eye: two set of three stars, right next to each other, forming a prism-like structure. "We did it. We are back, finally."`
 	on complete
 		payment 370000
+		event "patir mystery 2 timer" 45
 		conversation
 			`A large crowd has quickly gathered around your landing pad, eagerly waiting your arrival. After all this time between the stars, setting foot on a planet with an actual atmosphere is incredibly refreshing. Ignoring the cold weather for a moment, you take the biggest breath you can to make up for the past weeks of recycled atmosphere, and you already start to feel reinvigorated.`
 			`	Before you've even reached the end of the ramp, the people on the ground have already reached you and the rest of the team to sign questions about your journey. You do your best to reply, but in the overall mix of confusion and excitement you aren't sure anyone understood what you just said.`
@@ -1832,6 +1833,7 @@ mission "Ka'het: Patir Mystery 13B"
 	on complete
 		payment 370000
 		clear "remnant: dusk busy"
+		event "patir mystery 2 timer" 45
 		conversation
 			`A large crowd has quickly gathered around your landing pad, eagerly waiting your arrival. After all this time between the stars, setting foot on a planet with an actual atmosphere is incredibly refreshing. Ignoring for a moment the cold weather, you take the biggest breath you can to make up for the past weeks of recycled atmosphere, and you already start to feel reinvigorated.`
 			`	Before you've even reached the end of the ramp, the people on the ground have already reached you and the rest of the team to sign questions about your journey. You do your best to reply, but in the overall mix of confusion and excitement you aren't sure anyone understood what you just said.`
@@ -1870,3 +1872,5 @@ mission "Ka'het: Patir Mystery 13B"
 			`	Dusk smiles. "It is my job, after all. The danger of the unknown is always a part of it, even in the simplest of missions. I do admit the risk in these past weeks was far beyond an acceptable level; but one day, we will know enough about the mess in which we have become tangled in to unravel it."`
 			label finish
 			`	The two of them accompany you to the <ship>, sitting alone in the now-quiet spaceport of <planet>. The cargo bay has been emptied of vast array of instruments that had been lying around for a while, and you guess the same has been done with the cockpit. As you walk once again up the stairway, the Remnant bid you farewell. "We have transferred <credits> credits as a way to express our gratitude. Of course, their worth is incomparable with the value of what you have done for us; without you, we would have never made it out alive. Goodbye for now, and may the Embers aid in your pursuits."`
+
+event "patir mystery 2 timer"
