@@ -11,10 +11,25 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-mission "Wanderers: Check up on Mereti"
+mission "Wanderers: Mereti: Plant 1"
 	landing
-	name ""
-	description ""
+	name "Plant to Vara Kehi'ki"
+	passengers 2
+	cargo "strange plant" 1
+	description "Bring this plant, which seems to be of some significance to the Mereti, to <planet>, along with two Wanderer 'mentors', so that the Wanderers can try to work out how to make it grow."
 	source "Korbatri Eska"
+	destination "Vara Kehi'ki"
 	to offer
 		has "event: wanderers: desi seledrak"
+	on offer
+		conversation
+			`The Mereti have clearly been expanding their greenhouses since you last visited this world. A few smaller drones gather around as your ship comes in to land, and they welcome you as you step out.`
+			`	Then, without giving you time to properly respond, they shepherd you into one particular greenhouse, slightly larger than the others. Within, a single plant sits in a majestic pot in the center, illuminated by a shaft of light through the windows above. It is small, with vibrant deep blue petals and teal leaves, and despite your lack of familiarity with it you can tell that it is not growing well.`
+			`	One of the drones speaks to you, much more quietly than the last time you spoke with them. "You are our friend. You helped to [defend, protect] us when we were attacked. You brought our [parents? ancestors?] to us. Please, help us again."`
+			choice
+				`	"I will help you."`
+				`	"What do you need me to do?"`
+			`	The drone speaks again. "This plant is important to us. It is our..." The drone pauses for a few seconds, and lights flash across it. "It is important to us. Our [teachers, mentors] say it is not [native, local] to this world, and cannot survive here." As it says this, you spot two Wanderers talking with each other in hushed tones in a dim corner of the room. They look up when it mentions them, and quickly approach you.`
+			choice
+				`	"Can you help them?"`
+				`	"What should we do?"`
