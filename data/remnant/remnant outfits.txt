@@ -674,7 +674,7 @@ outfit "Bellows-Class Afterburner"
 	category "Engines"
 	"cost" 640000
 	thumbnail "outfit/remnant afterburner"
-	"afterburner slot" -1
+	"thruster accessory slot" -1
 	"mass" 8
 	"outfit space" -7
 	"engine capacity" -7
@@ -700,7 +700,7 @@ outfit "Anvil-Class Engine"
 		Remnant
 	"cost" 290000
 	thumbnail "outfit/tiny remnant engine"
-	"afterburner slot" 1
+	"thruster accessory slot" 1
 	"mass" 26
 	"outfit space" -26
 	"engine capacity" -26
@@ -731,7 +731,7 @@ outfit "Crucible-Class Thruster"
 		Remnant
 	"cost" 200000
 	thumbnail "outfit/small remnant thruster"
-	"afterburner slot" 1
+	"thruster accessory slot" 1
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
@@ -756,7 +756,7 @@ outfit "Forge-Class Thruster"
 		Remnant
 	"cost" 441000
 	thumbnail "outfit/medium remnant thruster"
-	"afterburner slot" 1
+	"thruster accessory slot" 1
 	"mass" 39
 	"outfit space" -39
 	"engine capacity" -39
@@ -781,7 +781,7 @@ outfit "Smelter-Class Thruster"
 		Remnant
 	"cost" 984000
 	thumbnail "outfit/large remnant thruster"
-	"afterburner slot" 1
+	"thruster accessory slot" 1
 	"mass" 76
 	"outfit space" -76
 	"engine capacity" -76

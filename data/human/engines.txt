@@ -17,7 +17,7 @@ outfit "Volcano Afterburner"
 	index 10
 	"cost" 70000
 	thumbnail "outfit/afterburner"
-	"afterburner slot" -1
+	"thruster accessory slot" -1
 	"mass" 10
 	"outfit space" -10
 	"engine capacity" -10
@@ -44,7 +44,7 @@ outfit "Caldera Afterburner"
 	index 20
 	"cost" 390000
 	thumbnail "outfit/caldera afterburner"
-	"afterburner slot" -1
+	"thruster accessory slot" -1
 	"mass" 37
 	"outfit space" -37
 	"engine capacity" -37
@@ -72,7 +72,7 @@ outfit "Ionic Afterburner"
 	index 30
 	"cost" 340000
 	thumbnail "outfit/ionic afterburner"
-	"afterburner slot" -1
+	"thruster accessory slot" -1
 	"mass" 16
 	"outfit space" -16
 	"engine capacity" -16
@@ -103,7 +103,7 @@ outfit "X1050 Ion Engines"
 	index 10
 	"cost" 20000
 	thumbnail "outfit/tiny ion engines"
-	"afterburner slot" 1
+	"thruster accessory slot" 1
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
@@ -129,7 +129,7 @@ outfit "X1700 Ion Thruster"
 	index 17
 	"cost" 12000
 	thumbnail "outfit/tiny ion thruster"
-	"afterburner slot" 1
+	"thruster accessory slot" 1
 	"mass" 16
 	"outfit space" -16
 	"engine capacity" -16
@@ -148,7 +148,7 @@ outfit "X2700 Ion Thruster"
 	index 27
 	"cost" 26000
 	thumbnail "outfit/small ion thruster"
-	"afterburner slot" 1
+	"thruster accessory slot" 1
 	"mass" 27
 	"outfit space" -27
 	"engine capacity" -27
@@ -167,7 +167,7 @@ outfit "X3700 Ion Thruster"
 	index 37
 	"cost" 58000
 	thumbnail "outfit/medium ion thruster"
-	"afterburner slot" 1
+	"thruster accessory slot" 1
 	"mass" 46
 	"outfit space" -46
 	"engine capacity" -46
@@ -186,7 +186,7 @@ outfit "X4700 Ion Thruster"
 	index 47
 	"cost" 128000
 	thumbnail "outfit/large ion thruster"
-	"afterburner slot" 1
+	"thruster accessory slot" 1
 	"mass" 79
 	"outfit space" -79
 	"engine capacity" -79
@@ -205,7 +205,7 @@ outfit "X5700 Ion Thruster"
 	index 57
 	"cost" 281000
 	thumbnail "outfit/huge ion thruster"
-	"afterburner slot" 1
+	"thruster accessory slot" 1
 	"mass" 121
 	"outfit space" -121
 	"engine capacity" -121
@@ -336,7 +336,7 @@ outfit "Chipmunk Plasma Thruster"
 	index 15
 	"cost" 20000
 	thumbnail "outfit/tiny plasma thruster"
-	"afterburner slot" 1
+	"thruster accessory slot" 1
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
@@ -355,7 +355,7 @@ outfit "Greyhound Plasma Thruster"
 	index 25
 	"cost" 45000
 	thumbnail "outfit/small plasma thruster"
-	"afterburner slot" 1
+	"thruster accessory slot" 1
 	"mass" 34
 	"outfit space" -34
 	"engine capacity" -34
@@ -374,7 +374,7 @@ outfit "Impala Plasma Thruster"
 	index 35
 	"cost" 99000
 	thumbnail "outfit/medium plasma thruster"
-	"afterburner slot" 1
+	"thruster accessory slot" 1
 	"mass" 58
 	"outfit space" -58
 	"engine capacity" -58
@@ -393,7 +393,7 @@ outfit "Orca Plasma Thruster"
 	index 45
 	"cost" 217000
 	thumbnail "outfit/large plasma thruster"
-	"afterburner slot" 1
+	"thruster accessory slot" 1
 	"mass" 98
 	"outfit space" -98
 	"engine capacity" -98
@@ -412,7 +412,7 @@ outfit "Tyrant Plasma Thruster"
 	index 55
 	"cost" 389000
 	thumbnail "outfit/huge plasma thruster"
-	"afterburner slot" 1
+	"thruster accessory slot" 1
 	"mass" 129
 	"outfit space" -129
 	"engine capacity" -129
@@ -543,7 +543,7 @@ outfit "A120 Atomic Thruster"
 	index 15
 	"cost" 140000
 	thumbnail "outfit/tiny atomic thruster"
-	"afterburner slot" 1
+	"thruster accessory slot" 1
 	"mass" 22
 	"outfit space" -22
 	"engine capacity" -22
@@ -561,7 +561,7 @@ outfit "A250 Atomic Thruster"
 	index 25
 	"cost" 280000
 	thumbnail "outfit/small atomic thruster"
-	"afterburner slot" 1
+	"thruster accessory slot" 1
 	"mass" 34
 	"outfit space" -34
 	"engine capacity" -34
@@ -579,7 +579,7 @@ outfit "A370 Atomic Thruster"
 	index 35
 	"cost" 560000
 	thumbnail "outfit/medium atomic thruster"
-	"afterburner slot" 1
+	"thruster accessory slot" 1
 	"mass" 53
 	"outfit space" -53
 	"engine capacity" -53
@@ -597,7 +597,7 @@ outfit "A520 Atomic Thruster"
 	index 45
 	"cost" 1120000
 	thumbnail "outfit/large atomic thruster"
-	"afterburner slot" 1
+	"thruster accessory slot" 1
 	"mass" 82
 	"outfit space" -82
 	"engine capacity" -82
@@ -615,7 +615,7 @@ outfit "A860 Atomic Thruster"
 	index 55
 	"cost" 2240000
 	thumbnail "outfit/huge atomic thruster"
-	"afterburner slot" 1
+	"thruster accessory slot" 1
 	"mass" 127
 	"outfit space" -127
 	"engine capacity" -127
