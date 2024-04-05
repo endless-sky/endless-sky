@@ -1029,7 +1029,6 @@ mission "Ka'het: Patir Mystery 9"
 	description "Visit every system around Patir you can reach, then return to Dusk in <system>."
 	source "Builder Settlement"
 	waypoint "Athiri"
-	waypoint "Balnii"
 	waypoint "Chanai"
 	waypoint "Ghila"
 	waypoint "Lathia"
@@ -1470,7 +1469,7 @@ mission "Ka'het: Patir Mystery 12C"
 	to offer
 		has "Ka'het: Patir Mystery 12B: done"
 	on offer
-		event "no Patir spaceport"
+		event "no Patir spaceport and no Fetri spawn"
 		conversation
 			`Descending toward the settlement, you notice Dusk seems busier than usual, constantly communicating with the team on the ground and simultaneously checking the incoming telemetry. When you're hovering right above the landing pad, he turns to your console. "Keep the thrusters in standby, Captain," he signs hastily, "we are not here to stay. The satellites are working very well; in fact, the Thepa probe has just detected one of those beings jumping right in our direction. We have only a few hours to return in deep space, or we will waste this opportunity."`
 			`	Down on the ground, the whole team is standing outside of the lab, with hands full of strange equipment and unwieldy machinery. You set the ship's ramp to deploy and quickly walk down with Dusk to help them carry the instruments aboard. "The approaching asteroid is of the small or medium kind, as far as I can tell. Considering your past interactions, or lack of thereof, it is unlikely to cause any issue."`
@@ -1487,7 +1486,7 @@ mission "Ka'het: Patir Mystery 12C"
 			`	As the last container is brought inside, the cargo ramp moves back in its place and the exit door follows suit. Glancing at the scanner telemetry, you realize the alien being has already started to exit the hyperlane; with a button press the engines roar back to life, and the ship starts gaining altitude.`
 				launch
 	on enter
-		event "Patir spaceport returns"
+		event "Patir spaceport returns and Fetri spawn"
 	npc assist
 		government "Ka'sei (12A)"
 		personality derelict uninterested waiting plunders mining harvests
@@ -1559,11 +1558,15 @@ mission "Ka'het: Patir Mystery 12C"
 # - the other ships jump away right after the mission, and the one the player boarded returns to its normal functions.
 # In order to achieve this, the asteroid ship has just over 200 fuel and a negative fuel generation, meaning that it will be unable to jump essentially right after it spawns; removing the spaceport means that it won't be able to refuel on the Builder settlement, and so it remains in space doing nothing but waiting. When the player boards the disabled NPC, it is repaired and returns to its functions; as it is an enemy of the asteroid ship, it will shoot it with every available weapon, including what has been hidden under "Ka'het Machinery": a negative fuel damage weapon, that will instantly refill its fuel reserves and let it jump. Giving it just a capacity of 200 would mean that the game would always think it is just infinitesimally under the threshold to jump, so I gave it 250 and everything works as it should with surprising consistency. Two peculiarities of this are that the player will be able to board the asteroid ship to refuel it, and that the Ka'sei could shoot the asteroid with its ravagers for a split second before it jumps if the position of the two is just right. Both of them are harmless: the health of the asteroid is orders of magnitude higher than the damage the ka'sei can inflict in that time, and as the player boarding the asteroid will give it exactly 200 fuel because of game mechanics, 1 single frame later it will be already unable to jump. However, in order to account for their oddity I added a small dialog to the asteroid's boarding screen to make it as if you were flying by it, and described at the end of the previous mission how for an instant the Ravagers ignite when the Ka'sei returns online, as if in an unintended burst.
 
-event "no Patir spaceport"
+event "no Patir spaceport and no Fetri spawn"
+	system Patir
+		remove fleet "Ka'sei"
 	planet "Builder Settlement"
 		remove spaceport
 
-event "Patir spaceport returns"
+event "Patir spaceport returns and Fetri spawn"
+	system Patir
+		add fleet "Ka'sei" 300
 	planet "Builder Settlement"
 		spaceport `The Remnant laboratory merges oddly well with the rest of the environment, similar in color and design to the Builder structures around here. The spaceport amounts only of a flat strip of regolith near the settlement, hastily cleaned of the debris that covers most of the terrain.`
 
