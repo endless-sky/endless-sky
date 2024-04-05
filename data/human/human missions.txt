@@ -7354,7 +7354,7 @@ mission "Timothy Radrickson 5b: Rand Contact"
 
 
 mission "Timothy Radrickson 5c: New Britain"
-	description "Tim's secretary recommended that <destination> would be a good place to find detoxification medication for Tim."
+	description "Wynnafrith recommended that <destination> would be a good place to find detoxification medication for Tim."
 	landing
 	source Rand
 	destination "New Britain"
@@ -7362,7 +7362,10 @@ mission "Timothy Radrickson 5c: New Britain"
 		has "Timothy Radrickson 5b: Rand Contact: accepted"
 	on complete
 		conversation
-			"{{Land at New Britain's spaceport.}}"
+			"	With a little effort you're able to navigate New Britain's labyrinthian ziggurat masquerading as a spaceport. The lower levels are dedicated to a burstling trade sector where merchants, traders, and producers from all over the Dust Belt haggle to sell their raw materials, and purchase complex equipment and refined products."
+			`	You make your way to the pharmecutical wing where numerous representives from large conglomorates are haggling with representatives from various worlds all needing exotiic medicine for various plauges, blights, pandemics and the like.`
+			` 	There's a booth with a slick salesman selling expensive drugs promising to reverse and protect from the effect of Oblivion's toxic air and radiation.`
+			`	"There's no need to fear Oblivion's deleterious effects so long as you take one of these a day!" The salesman says brightly, "Why you could walk among your condemned workers unmasked, and demonstrate your superior executive prowess!" `
 			label options
 			choice
 				`	(Get the medicine for Tim.)`
