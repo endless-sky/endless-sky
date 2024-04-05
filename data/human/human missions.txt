@@ -7255,11 +7255,11 @@ mission "Timothy Radrickson 5b: Rand Contact"
 	on offer
 		conversation
 			`The Norwen mines are on no current map, and your initial searches for it come up empty. Eventually you're able to find an old news article about a company mining town by the name of Norwen that attempted to unionize, and how the authorities heroically and humanely put down the uprising. The article briefly mentions that the mine was closed down shortly afterward for unrelated reasons. You're able to use the information from the article and the shakily scrawn partial address that Timothy wrote down to get a good idea where to find the mine.`
-			`	As your ship approaches the mine you can't help but notice the burnt out remains of a gutted and abandoned town. A few minutes later your ship rattles as it sets down outside the mine's entrance.`
+			`	As your ship approaches the mine you can't help but notice the burnt out remains of a gutted and abandoned town. A few minutes later your ship rattles down outside the mine's entrance.`
 			choice
 				`	(Leave your ship.)`
 			`	It's dark and dusty outside. The planet's gravity makes you feel slow, and the air uncomfortably heavy in your lungs. The entrance to the mine looms large before you and seems suddenly quite menacing. Perhaps this wasn't the best idea...`	
-			`"	Don't move or we will end you." An angry voice shouts from the dark edges of the mine. "Idenfify yourself, now!" `
+			`"Don't move or we will end you." An angry voice shouts from the dark edges of the mine. "Idenfify yourself, now!" `
 			choice
 				`	"I'm the Hero of Rand!"`
 					goto timsbud
@@ -7281,12 +7281,12 @@ mission "Timothy Radrickson 5b: Rand Contact"
 			` 	There is a brief low conversation, followed by what sounds like a voice on a radio. Then finally, "If you're who you say you are, how did you first meet Governor Radrickson?"`
 			choice
 				`	"I ran into him at the Rand spaceport."`
-				`	"He sent me a message he wanted to meet."`
+				`	"He sent me a message that he wanted to meet."`
 				`	"I found him in an old equipment locker."`
 				`	"He was hiding in a foodcrate."`
 					goto right
 
-				`	You hear someone swear and then say, "We gotta move now! Everything you we can't carry burn. They're onto us." There's some shuffling noises and it sounds like a few individuals run back deeper into the cave.`
+				`	You hear someone swear and then say, "We gotta move now! Everything we can't carry burn. They're onto us." There's some shuffling noises and it sounds like a few individuals run back deeper into the cave.`
 				`	The remaining guard hears something on the radio and then says, "No loose ends. Got it."`
 				`	There is a brief, almost pleasent, moment of calm as the inevitablity of the situation sinks in... followed by the click of a trigger, and the burning sensation of your body being shreded by multiple bullet rounds.`
 					die
@@ -7299,23 +7299,22 @@ mission "Timothy Radrickson 5b: Rand Contact"
 				`	(Follow them into the mine.)`
 
 			`	You walk in darkness over uneven terrain for what seems like hours before seeing the first glimmers of light.`
-			`The deeper you go the more people you see, and eventually you realize this is more than just a few people camping out in the cave. This is the sprawling apperatus of an illegal para-military organization.`
-			`	You're surrounded by the hustle and bustle of soldiers laboring beneath the world's high gravity. Many of them eye you as you pass, but none say anything to you.`
+			`	The dull lights fluorescent reveal a small group of haggared young men and women moonlighting as soldiers. There is nothing uniform about costumes they are wearing, and what little equipment they have looks old, broken or cobbled together. Everything stinks, and the people themselves look stoned, miserable or both.`
 			`	Finally your escort stop outside a door built into the cavern walls. "She's just in here. Behave."`
 			choice
 				`	(Walk inside.)`
 			`	The woman before you is middle-aged and somewhat squat with the hard-won muscles of a person adapted to Rand's grueling gravity. She's attractive though, and there is something very familar about her face. You've met her before...`
-			`	"Captain <last>!" She says with a genuine grin across her face. "I doubt you recognize me, but I was Wynnafrith, Governor Radrickson's secretary. We met years back at your banquet."`
-			`	She glances down at herself as if recognizing her body's tranformation from offworld waif to native Rander. "I dare say the world has changed me a bit away from the gravity generators."`
-			`	"Although I am no longer a secretary, I am Red-Colonel Wynnfrith, one of the leaders of the people's revolution!" Her eyes sparkle as if she's making a joke, but the way she says 'people's revolution' rings with a deadly seriousness.`
+			`	"Captain <last>!" She says with a genuine grin. "I doubt you recognize me, but I was Governor Radrickson's secretary, Wynnafrith. We met years back at your banquet."`
+			`	She glances down at herself as if recognizing her body's tranformation from offworld waif to native Rander. "I dare say the world has changed me now that I'm away from the gravity generators."`
+			`	"Although I am no longer a secretary, I am Union-Colonel Wynnfrith, one of the leaders of the Underground Workers Union!" Her eyes sparkle and her words ring with a deadly seriousness.`
 			`	She tilts her head slightly, "But that's enough about me. What possible reason could you have for coming here?" Her face is open and friendly, but she casually rests her hand on her side arm.`
 			choice
 				`	(Tell her about Timothy.)`
 					goto Timmy
 				`	(Tell her you just wanted to say hi.)`
 				`	(Tell her it is none of her business.)`
-			`	She frowns and aims her gun squarely at your chest. "It's been too long since we've last seen you. And though you were once Governor Radrickson's friend, things have changed quite a bit since then."`
-			`	She gives you a nonchalant shrug. "If that's all you have to say, then I am afraid there is no good reason to let you leave here alive." She favors you with a brief smile. "Operation security, you know how it goes."`
+			`	She frowns and aims her gun squarely at your chest. "It's been too long since I've last seen you. And though you were once Governor Radrickson's friend, things have changed quite a bit since then."`
+			`	She gives you a nonchalant shrug. "If that's all you have to say, then I am afraid there is no good reason to let you leave here alive." She favors you with a brief smile. "Operational security, you know how it goes."`
 			`	She switches off the safety.`
 			choice
 				`	"Wait! Timothy sent me!"`
@@ -7324,10 +7323,10 @@ mission "Timothy Radrickson 5b: Rand Contact"
 			`	She does indeed take her best shot, and the sudden hole in your torso proves to be quite terminal.`
 				die
 			label sayso
-				`	She shakes her head. "Well why didn't you just say so! Now, why don't you tell me about the Governor, from the start." She holsters her sidearm.`
+				`	She shakes her head. "Well why didn't you just say so!. What does our Governor ask of us?" She holsters her sidearm.`
 			label Timmy
-			`	Red-Colonel Wynnfrith's eyes get misty as you tell her about Timothy's plight. She shakes her head a few times and then takes the list from you and carefully scrutinzes it.`
-			`	"Ya know, to us he's still the Governor. Don't believe what the Company-bosses and their paid politians tell you. He was a good man." She wipes her eyes, "All he was trying to do was improve the conditions for workers here on Rand. He'd come up from the mines and he knew what it was like."`
+			`	Union-Colonel Wynnfrith's eyes get misty as you tell her about Timothy's plight. She shakes her head a few times and then takes the list from you and carefully scrutinzes it.`
+			`	"Ya know, to us he's still the Governor. Don't believe what the Company-Bosses and their paid politician tell you. He was a good man." She wipes her eyes, "All he was trying to do was improve the conditions for workers here on Rand. He'd come up from the mines and he knew what it was like."`
 			`	Her free hand tightens into ball. "The big men didn't like that. But what about the profit margins? They tried to bribe him, to offer him anything he wanted, to just leave things well enough alone. To let the exploitation continue." She says the last words through clenched teeth.`
 			`	"But he never waivered, and he always labored for the common man." She looks up at you, "You were a good friend to him, it's true, but truth be told, while you may have been the Hero of Governor Radickson, he was the true Hero of Rand."`
 			`	"And when he wouldn't budge they finally got him for trumped up charges and threw him to Oblivion to disappear and die." She shakes her head and looks at the list again.`
