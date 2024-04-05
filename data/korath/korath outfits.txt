@@ -214,6 +214,7 @@ outfit "Afterburner (Asteroid Class)"
 	category "Engines"
 	"cost" 136000
 	thumbnail "outfit/tiny korath afterburner"
+	"afterburner slot" -1
 	"mass" 9
 	"outfit space" -9
 	"engine capacity" -5
@@ -232,6 +233,7 @@ outfit "Afterburner (Comet Class)"
 	category "Engines"
 	"cost" 299000
 	thumbnail "outfit/small korath afterburner"
+	"afterburner slot" -1
 	"mass" 19
 	"outfit space" -19
 	"engine capacity" -19
@@ -248,6 +250,7 @@ outfit "Afterburner (Lunar Class)"
 	category "Engines"
 	"cost" 647000
 	thumbnail "outfit/medium korath afterburner"
+	"afterburner slot" -1
 	"mass" 32
 	"outfit space" -32
 	"engine capacity" -32
@@ -264,6 +267,7 @@ outfit "Afterburner (Planetary Class)"
 	category "Engines"
 	"cost" 1459000
 	thumbnail "outfit/large korath afterburner"
+	"afterburner slot" -1
 	"mass" 55
 	"outfit space" -55
 	"engine capacity" -55
@@ -281,6 +285,7 @@ outfit "Afterburner (Stellar Class)"
 	category "Engines"
 	"cost" 3280000
 	thumbnail "outfit/huge korath afterburner"
+	"afterburner slot" -1
 	"mass" 94
 	"outfit space" -94
 	"engine capacity" -94
@@ -365,6 +370,7 @@ outfit "Engine (Meteor Class)"
 	category "Engines"
 	"cost" 187000
 	thumbnail "outfit/tiny korath engine"
+	"afterburner slot" 1
 	"mass" 18
 	"outfit space" -18
 	"engine capacity" -18
@@ -501,6 +507,7 @@ outfit "Thruster (Asteroid Class)"
 	category "Engines"
 	"cost" 113000
 	thumbnail "outfit/tiny korath thruster"
+	"afterburner slot" 1
 	"mass" 14
 	"outfit space" -14
 	"engine capacity" -14
@@ -517,6 +524,7 @@ outfit "Thruster (Comet Class)"
 	category "Engines"
 	"cost" 249000
 	thumbnail "outfit/small korath thruster"
+	"afterburner slot" 1
 	"mass" 24
 	"outfit space" -24
 	"engine capacity" -24
@@ -533,6 +541,7 @@ outfit "Thruster (Lunar Class)"
 	category "Engines"
 	"cost" 539000
 	thumbnail "outfit/medium korath thruster"
+	"afterburner slot" 1
 	"mass" 40
 	"outfit space" -40
 	"engine capacity" -40
@@ -549,6 +558,7 @@ outfit "Thruster (Planetary Class)"
 	category "Engines"
 	"cost" 1216000
 	thumbnail "outfit/large korath thruster"
+	"afterburner slot" 1
 	"mass" 68
 	"outfit space" -68
 	"engine capacity" -68
@@ -565,6 +575,7 @@ outfit "Thruster (Stellar Class)"
 	category "Engines"
 	"cost" 2733000
 	thumbnail "outfit/huge korath thruster"
+	"afterburner slot" 1
 	"mass" 118
 	"outfit space" -118
 	"engine capacity" -118
@@ -660,6 +671,7 @@ outfit "Arkrof GP Hybrid Thruster"
 	category "Engines"
 	"cost" 165000
 	thumbnail "outfit/tiny efreti thruster"
+	"afterburner slot" 1
 	"mass" 19
 	"outfit space" -19
 	"engine capacity" -19
@@ -675,6 +687,7 @@ outfit "Farves GP Hybrid Thruster"
 	category "Engines"
 	"cost" 405000
 	thumbnail "outfit/small efreti thruster"
+	"afterburner slot" 1
 	"mass" 33
 	"outfit space" -33
 	"engine capacity" -33
@@ -690,6 +703,7 @@ outfit "Gaktem GP Hybrid Thruster"
 	category "Engines"
 	"cost" 883000
 	thumbnail "outfit/medium efreti thruster"
+	"afterburner slot" 1
 	"mass" 57
 	"outfit space" -57
 	"engine capacity" -57
@@ -705,6 +719,7 @@ outfit "Nelmeb GP Hybrid Thruster"
 	category "Engines"
 	"cost" 1649000
 	thumbnail "outfit/large efreti thruster"
+	"afterburner slot" 1
 	"mass" 86
 	"outfit space" -86
 	"engine capacity" -86
