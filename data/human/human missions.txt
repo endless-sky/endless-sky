@@ -6895,7 +6895,7 @@ mission "Hogshead's Dilemma II"
 
 mission "Lost Dog"
 	name "Bring a dog to <planet>"
-	description "Bring Caesar, a dog you found lost on <source>, to their owner on <destination>."
+	description "Bring Caesar, a dog you found on <source>, to their owners on <destination>."
 	to offer
 		random < 15
 	source "Calda"
