@@ -205,6 +205,13 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 {
 	if(command.Has(Command::MAP | Command::INFO | Command::MESSAGE_LOG | Command::HAIL | Command::HELP))
 		show = command;
+	else if(command.Has(Command::TURRET_TRACKING))
+	{
+		bool newValue = !Preferences::Has("Turrets focus fire");
+		Preferences::Set("Turrets focus fire", newValue);
+		Messages::Add("Turret tracking mode set to: " + string(newValue ? "focused" : "opportunistic") + ".",
+			Messages::Importance::High);
+	}
 	else if(command.Has(Command::AMMO))
 	{
 		Preferences::ToggleAmmoUsage();
