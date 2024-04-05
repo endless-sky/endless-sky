@@ -7390,7 +7390,7 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 
 
 
-mission "Timothy Radrickson 5c: New Britain"
+mission "Timothy Radrickson 5b: New Britain"
 	description "Tim's old secretary Wynnafrith recommended that <destination> would be a good place to find detoxification medication for Tim."
 	landing
 	source Rand
@@ -7400,29 +7400,115 @@ mission "Timothy Radrickson 5c: New Britain"
 	on complete
 		conversation
 			`With a little effort you're able to navigate New Britain's labyrinthian ziggurat masquerading as a spaceport. The lower levels are dedicated to a burstling trade sector where merchants, traders, and producers from all over the Dirt Belt haggle to sell their raw materials, and purchase complex equipment and refined products.`
-			`	You make your way to the pharmecutical wing where numerous representives from large conglomorates are wrangling with representatives from various worlds all needing exotiic medicine for various plauges, blights, pandemics and the like. There's a booth with a slick salesman selling expensive drugs promising to reverse and protect from the effect of toxic air and radiation, and it just so happens Oblivion is their demonstration planet.`
-			`	"There's no need to fear Oblivion's deleterious effects so long as you take one of these a day!" the salesman says brightly. "Why you could walk among your condemned workers unmasked, and demonstrate your superior executive prowess!" `
 			label options
 			choice
-				`	(Get the medicine for Tim.)`
-					goto medicine
+				`	(Find the detoxification medicine.)`
+					goto med1
 					to display
-						not "timothy radrickson: medicine"
-				`	(Get the medicine for Tim.)`
-					goto medicine
+						not "timothy radrickson: new britain medicine 1"
+				`	(Haggle with the medicine salesman again.)`
+					goto med2
 					to display
-						not "timothy radrickson: new britain medicine"
-			label medicine
+						has "timothy radrickson: new britain medicine 1"
+						not "timothy radrickson: new britain medicine 2"
+				`	(Go and get the environmental gear.)`
+					goto gear1
+					to display
+						"timothy radrickson gear" <= 1
+						not "timothy radrickson: new britain gear 1"
+				`	(Return to the shop to buy the environmental gear.)`
+					goto gear2
+					to display
+						has "timothy radrickson: new britain gear 1"
+						not "timothy radrickson: new britain gear 2"
+				`	(Find someone that can procure a fake ID for you.)`
+					goto id1
+					to display
+						"timothy radrickson id" = 0
+						not "timothy radrickson: new britain id 1"
+				`	(Find the kids who said they'd procure a fake ID for you.)`
+					goto id2
+					to display
+						has "timothy radrickson: new britain id 1"
+						not "timothy radrickson: new britain id 2"
+
+			label med1
 			action
-				set "timothy radrickson: new britain medicine"
-				"timothy radrickson preparedness" += 3
-			`	{{You get the medicine at the spaceport pharmacy or something, it costs a lot.}}`
+				set "timothy radrickson: new britain medicine 1"
+			`	You make your way to the pharmecutical wing where numerous representives from large conglomorates are wrangling with representatives from various worlds, all needing exotic medicine for various plauges, blights, pandemics and the like. There's a booth with a slick salesman selling expensive drugs promising to reverse and protect from the effect of toxic air and radiation, and it just so happens that Oblivion is their demonstration planet.`
+			`	"There's no need to fear Oblivion's deleterious effects so long as you take one of these a day!" the salesman says brightly. "Why you could walk among your condemned workers unmasked, and demonstrate your superior executive prowess!"`
+			`	You listen on to the salesman, who reckons he can cut you in on a special deal for 140,000 credits.` # Not sure about price, but probably have the top-of-the-line stuff add up to ¢500,000 in the end.
+			choice
+				`	(Get the medicine for Tim.)`
+					goto getmed
+				`	(Pass.)`
+			`	That price is too exorbitant to consider. You return to the central atrium of the trade sector to consider your options.`
 				goto options
 
-			label end
-				clear "timothy radrickson: new britain medicine"
+			label med2
+			action
+				set "timothy radrickson: new britain medicine 2"
+			`	You decide to go back the pharmaceutical wing to reconsider the deal. "Here's the Captain again!" says the salesman.` # Incomplete. Perhaps you can try to haggle? Or just keep it simple and at the same price.
+			choice
+				`	(Get the medicine for Tim.)`
+					goto getmed
+				`	(Pass.)`
+			`	Again, the medicine just costs too much; Tim will have to survive with something less potent. You return to the central atrium of the trade sector to consider your options.`
+				goto options
 
-mission "Timothy Radrickson 5d: Dancer"
+			label getmed
+			action
+				set "timothy radrickson: new britain medicine 1"
+				"timothy radrickson medicine" = 3
+				payment -140000
+			`	{{You get the medicine at the spaceport, it costs <credits>, that's a lotta cash!}}`
+				goto options
+
+			label gear1
+			action
+				set "timothy radrickson: new britain gear 1"
+			`	{{Survival suit.}}`
+			choice
+				`	(Get the survival suit and gear for Tim.)`
+					goto getmed
+				`	(Pass.)`
+			`	{{The gear costs too much / the gear is inadequate.}} You return to the central atrium of the trade sector to consider your options.`
+				goto options
+
+			label gear2
+			action
+				set "timothy radrickson: new britain gear 2"
+			choice
+				`	(Get the survival suit and gear for Tim.)`
+					goto getmed
+				`	(Pass.)`
+			`	{{The gear costs too much / the gear is inadequate.}} You return to the terminal area to consider your options.`
+				goto options
+			
+			label getgear
+			action
+				"timothy radrickson gear" = 2
+				# payment -something
+			`	{{You get the gear at the spaceport, it costs <credits>.}}`
+				goto options
+
+			label id1
+			action
+				set "timothy radrickson: new britain id 1"
+
+			label id2
+			action
+				set "timothy radrickson: new britain id 2"
+
+			label end
+				clear "timothy radrickson: new britain medicine 1"
+				clear "timothy radrickson: new britain medicine 2"
+				clear "timothy radrickson: new britain gear 1"
+				clear "timothy radrickson: new britain gear 2"
+				clear "timothy radrickson: new britain id 1"
+				clear "timothy radrickson: new britain id 2"
+
+mission "Timothy Radrickson 5c: Dancer"
 	description "Tim's old secretary Wynnafrith recommended that <destination> would be a good place to find a survival suit for Tim."
 	landing
 	source Rand
@@ -7431,7 +7517,7 @@ mission "Timothy Radrickson 5d: Dancer"
 		has "Timothy Radrickson 5a: Timshank Redemption: active"
 	on offer
 
-mission "Timothy Radrickson 5e: Greenrock"
+mission "Timothy Radrickson 5d: Greenrock"
 	name "Supplies on <planet>"
 	description "Tim's old secretary Wynnafrith recommended that <destination> would be a good place to find a fake ID for Tim."
 	landing
@@ -7442,9 +7528,9 @@ mission "Timothy Radrickson 5e: Greenrock"
 	on offer
 
 mission "Timothy Radrickson 5e: Back to Oblivion"
-	deadline 14
-	source Rand
-	destination Oblivion
+	source Oblivion
+	to offer 
+		has "Timothy Radrickson 5a: Timshank Redemption: complete"
 	on offer
 		conversation
 			branch unprepared
