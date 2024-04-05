@@ -60,6 +60,7 @@ protected:
 	virtual bool Scroll(double dx, double dy) override;
 
 	void Invalidate();
+	void Validate();
 
 
 private:

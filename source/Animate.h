@@ -41,7 +41,7 @@ public:
 	const T &Value() const;
 	// Synonym for Value().
 	operator const T &() const;
-	// Returns true if there are no more animatation steps pending.
+	// Returns true if there are no more animation steps pending.
 	bool IsAnimationDone() const;
 
 	// Shortcut mathematical operators for convenience.

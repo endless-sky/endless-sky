@@ -115,9 +115,9 @@ protected:
 	bool DoHelp(const std::string &name, bool force = false) const;
 
 	// Add a child. Deferred until next frame.
-	void AddChild(const std::shared_ptr<Panel>& panel);
+	void AddChild(const std::shared_ptr<Panel> &panel);
 	// Remove a child. Deferred until next frame.
-	void RemoveChild(const Panel * panel);
+	void RemoveChild(const Panel *panel);
 	// Handle deferred add/remove child operations.
 	void AddOrRemove();
 
@@ -159,7 +159,7 @@ private:
 
 	std::vector<std::shared_ptr<Panel>> children;
 	std::vector<std::shared_ptr<Panel>> childrenToAdd;
-	std::vector<const Panel*> childrenToRemove;
+	std::vector<const Panel *> childrenToRemove;
 
 	friend class UI;
 };

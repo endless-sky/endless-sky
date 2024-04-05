@@ -374,14 +374,14 @@ void Panel::SetUI(UI *ui)
 
 
 
-void Panel::AddChild(const std::shared_ptr<Panel>& panel)
+void Panel::AddChild(const shared_ptr<Panel> &panel)
 {
 	childrenToAdd.push_back(panel);
 }
 
 
 
-void Panel::RemoveChild(const Panel* panel)
+void Panel::RemoveChild(const Panel *panel)
 {
 	childrenToRemove.push_back(panel);
 }

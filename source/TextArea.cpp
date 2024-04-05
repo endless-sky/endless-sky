@@ -110,12 +110,7 @@ void TextArea::SetTruncate(Truncate t)
 
 int TextArea::GetTextHeight()
 {
-	if(!textIsValid)
-	{
-		wrappedText.Wrap(text);
-		scroll.SetMaxValue(wrappedText.Height());
-		textIsValid = true;
-	}
+	Validate();
 	return wrappedText.Height();
 }
 
@@ -123,12 +118,7 @@ int TextArea::GetTextHeight()
 
 int TextArea::GetLongestLineWidth()
 {
-	if(!textIsValid)
-	{
-		wrappedText.Wrap(text);
-		scroll.SetMaxValue(wrappedText.Height());
-		textIsValid = true;
-	}
+	Validate();
 	return wrappedText.LongestLineWidth();
 }
 
@@ -139,12 +129,7 @@ void TextArea::Draw()
 	if(!buffer)
 		buffer = std::make_unique<RenderBuffer>(size);
 
-	if(!textIsValid)
-	{
-		wrappedText.Wrap(text);
-		scroll.SetMaxValue(wrappedText.Height());
-		textIsValid = true;
-	}
+	Validate();
 	if(!bufferIsValid || !scroll.IsAnimationDone())
 	{
 		scroll.Step();
@@ -245,4 +230,16 @@ void TextArea::Invalidate()
 {
 	bufferIsValid = false;
 	textIsValid = false;
+}
+
+
+
+void TextArea::Validate()
+{
+	if(!textIsValid)
+	{
+		wrappedText.Wrap(text);
+		scroll.SetMaxValue(wrappedText.Height());
+		textIsValid = true;
+	}
 }
