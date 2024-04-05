@@ -20,7 +20,7 @@ mission "Wanderers: Mereti: The Plant 1"
 	source "Korbatri Eska"
 	destination "Vara Kehi'ki"
 	to offer
-		has "event: wanderers: sestor eliminated"
+		has "event: wanderers: sestor planets unrestricted"
 	on offer
 		conversation
 			`The Mereti have clearly been expanding their greenhouses since you last visited this world. A few smaller drones gather around as your ship comes in to land, and they welcome you as you step out.`
