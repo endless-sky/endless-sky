@@ -918,8 +918,8 @@ ship "Merganser"
 		"outfit scan power" 12
 		"outfit scan efficiency" 12
 		"tactical scan power" 26
-		"ion resistance" 0.025
-		"scramble resistance" 0.025
+		"ion resistance" 0.035
+		"scramble resistance" 0.035
 		"thrust" 5.0
 		"turn" 60.0
 		"reverse thrust" 5.0
