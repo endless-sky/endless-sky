@@ -97,5 +97,32 @@ mission "Wanderers: Mereti: The Plant 4"
 	to offer
 		has "Wanderers: Mereti: The Plant 3: done"
 	on complete
+		dialog `The Mereti drones from earlier are still waiting at the spaceport when you arrive. Iriket quickly disembarks and starts conversing with the locals, pausing only briefly to tell you to meet her in the spaceport.`
+
+mission "Wanderers: Mereti: The Plant 5"
+	name "Plant to <planet>"
+	description "Escort this Wanderer ship, carrying the plant and a team of Wanderers ready to help it grow, to <destination>."
+	source "Vara Kehi'ki"
+	to offer
+		has "Wanderers: Mereti: The Plant 4: done"
+	on offer
 		conversation
-			`The Mereti drones from earlier are still waiting at the spaceport when you arrive.`
+			``
+	on complete
+		event "field of mereti plants" 400
+		conversation
+			``
+	npc accompany save
+		government Wanderer
+		personality escort
+		system Iyech'yek
+		fleet
+			variant
+				"Strong Wind"
+	npc
+		government "Kor Mereti"
+		personality timid launching
+		system Iyech'yek
+		fleet
+			variant
+				"Model 16" 3
