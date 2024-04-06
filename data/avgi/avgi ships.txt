@@ -1212,7 +1212,7 @@ ship "Prismaios"
 	attributes
 		category "Light Warship"
 		licenses
-			"Avgi Military"
+			"Twilight Guard"
 		"cost" 2640000
 		"shields" 1440
 		"hull" 7200
@@ -1223,7 +1223,7 @@ ship "Prismaios"
 		"heat dissipation" 1.8
 		"fuel capacity" 1200
 		"cargo space" 36
-		"outfit space" 333
+		"outfit space" 360
 		"weapon capacity" 96
 		"engine capacity" 96
 		"anchor point" 2
@@ -1422,7 +1422,7 @@ ship "Diaspersi"
 	attributes
 		category "Medium Warship"
 		licenses
-			"Avgi Military"
+			"Twilight Guard"
 		"cost" 3600000
 		"shields" 2400
 		"hull" 12000
@@ -1550,10 +1550,10 @@ ship "Difraktos"
 	attributes
 		category "Medium Warship"
 		licenses
-			"Avgi Military"
+			"Twilight Guard"
 		"cost" 5400000
 		"shields" 6000
-		"hull" 18600
+		"hull" 12000
 		"required crew" 15
 		"bunks" 42
 		"mass" 270
@@ -1711,7 +1711,7 @@ ship "Refraktos"
 	attributes
 		category "Medium Warship"
 		licenses
-			"Avgi Military"
+			"Twilight Guard"
 		"cost" 4560000
 		"shields" 3600
 		"hull" 8400
@@ -1807,7 +1807,7 @@ ship "Atenuatia"
 	attributes
 		category "Heavy Warship"
 		licenses
-			"Avgi Military"
+			"Twilight Guard"
 		"cost" 14400000
 		"shields" 4200
 		"hull" 27600
@@ -2032,7 +2032,7 @@ ship "Photikon"
 	attributes
 		category "Fighter"
 		licenses
-			"Avgi Military"
+			"Twilight Guard"
 		"cost" 138000
 		"shields" 240
 		"hull" 1800
@@ -2121,7 +2121,7 @@ ship "Vibratia"
 	attributes
 		category "Drone"
 		licenses
-			"Avgi Military"
+			"Twilight Guard"
 		"cost" 96000
 		"hull" 1500
 		"automaton" 1

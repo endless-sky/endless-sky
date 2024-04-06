@@ -3564,7 +3564,7 @@ system Glide
 	habitable 1328.533
 	belt 1057 10
 	haze _menu/haze-twilight-thin
-	link Circulate
+	link Pearl
 	link Lift
 	link Mote
 	link Torrent
@@ -3674,7 +3674,7 @@ system Aileron
 			distance 252
 			period 124.417
 
-system Circulate
+system Pearl
 	pos -517.737 857.458
 	government Uninhabited
 	attributes twilight

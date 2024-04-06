@@ -23,7 +23,7 @@ outfit "Speck Round"
 	"mass" 0.0015
 	"speck capacity" -1
 	"flotsam chance" 1
-	description "These dense metallic glass slugs are capable of inflicting a good amount of kinetic damage via hypervelocity impacts, but are easily stopped by momentum-repulsion shield systems."
+	description "These densely wound metallic glass slugs are capable of inflicting a good amount of kinetic damage via hypervelocity impacts, but are easily stopped by momentum-repulsion shield systems."
 
 
 outfit "Speck Magazine"

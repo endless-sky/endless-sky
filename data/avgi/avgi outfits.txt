@@ -33,7 +33,7 @@ outfit "Concealment Scales"
 	plural "Concealment Scales"
 	category "Systems"
 	licenses
-		"Avgi Military"
+		"Twilight Guard"
 	cost 200000
 	thumbnail "outfit/unknown"
 	"mass" 6
@@ -50,7 +50,7 @@ outfit "Nanoceramic Scales"
 	plural "Nanoceramic Scales"
 	category "Systems"
 	licenses
-		"Avgi Military"
+		"Twilight Guard"
 	cost 200000
 	thumbnail "outfit/unknown"
 	"mass" 36
@@ -65,7 +65,7 @@ outfit "Adamant Scales"
 	plural "Adamant Scales"
 	category "Systems"
 	licenses
-		"Avgi Military"
+		"Twilight Guard"
 	cost 200000
 	thumbnail "outfit/unknown"
 	"mass" 36
@@ -80,7 +80,7 @@ outfit "Warding Scales"
 	plural "Warding Scales"
 	category "Systems"
 	licenses
-		"Avgi Military"
+		"Twilight Guard"
 	cost 200000
 	thumbnail "outfit/unknown"
 	"mass" 42
@@ -216,7 +216,7 @@ outfit "Diffuse Deflector"
 outfit "Specular Deflector"
 	category "Systems"
 	licenses
-		"Avgi Military"
+		"Twilight Guard"
 	cost 2100000
 	thumbnail "outfit/unknown"
 	"mass" 72
@@ -365,7 +365,7 @@ outfit "Magnetoplasma Drive"
 outfit `Z-330 "Spark" Fusion Torch`
 	category "Engines"
 	licenses
-		"Avgi Military"
+		"Twilight Guard"
 	"cost" 660000
 	thumbnail "outfit/fusion engine small"
 	"mass" 66
@@ -388,7 +388,7 @@ outfit `Z-330 "Spark" Fusion Torch`
 outfit `Z-660 "Zap" Fusion Torch`
 	category "Engines"
 	licenses
-		"Avgi Military"
+		"Twilight Guard"
 	"cost" 1440000
 	thumbnail "outfit/fusion engine medium"
 	"mass" 132
@@ -410,7 +410,7 @@ outfit `Z-660 "Zap" Fusion Torch`
 outfit `Z-990 "Arc" Fusion Torch`
 	category "Engines"
 	licenses
-		"Avgi Military"
+		"Twilight Guard"
 	"cost" 2760000
 	thumbnail "outfit/fusion engine large"
 	"mass" 198
@@ -451,7 +451,7 @@ effect "large remass injection"
 outfit "Remass Injector"
 	category "Engines"
 	licenses
-		"Avgi Military"
+		"Twilight Guard"
 	"cost" 2760000
 	thumbnail "outfit/unknown"
 	"mass" 3
@@ -469,7 +469,7 @@ outfit "Remass Injector"
 outfit "Inductive Extractor"
 	category "Engines"
 	licenses
-		"Avgi Military"
+		"Twilight Guard"
 	"cost" 2760000
 	thumbnail "outfit/unknown"
 	"mass" 9
@@ -489,7 +489,7 @@ outfit "XY-180 Radial Thrusters"
 	plural "XY-180 Radial Thrusters"
 	category "Engines"
 	licenses
-		"Avgi Military"
+		"Twilight Guard"
 	"cost" 221000
 	thumbnail "outfit/rcs small"
 	"mass" 18
@@ -516,7 +516,7 @@ outfit "XY-360 Radial Thrusters"
 	plural "XY-360 Radial Thrusters"
 	category "Engines"
 	licenses
-		"Avgi Military"
+		"Twilight Guard"
 	"cost" 473000
 	thumbnail "outfit/rcs large"
 	"mass" 36
@@ -543,7 +543,7 @@ outfit "XY-720 Radial Thrusters"
 	plural "XY-720 Radial Thrusters"
 	category "Engines"
 	licenses
-		"Avgi Military"
+		"Twilight Guard"
 	"cost" 1077000
 	thumbnail "outfit/rcs huge"
 	"mass" 72
@@ -630,7 +630,7 @@ outfit "Avgi Civilian License"
 	category "Licenses"
 	thumbnail "outfit/unknown"
 
-outfit "Avgi Military License"
+outfit "Twilight Guard License"
 	category "Licenses"
 	thumbnail "outfit/unknown"
 
