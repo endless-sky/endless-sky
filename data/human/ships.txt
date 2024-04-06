@@ -2569,6 +2569,7 @@ ship "Mammoth"
 		"outfit space" 536
 		"weapon capacity" 294
 		"engine capacity" 114
+		"thruster accessory slot" 1
 		"scan interference" 2
 		weapon
 			"blast radius" 140
