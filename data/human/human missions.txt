@@ -7443,57 +7443,125 @@ mission "Timothy Radrickson 5b: New Britain"
 			`	"There's no need to fear Oblivion's deleterious effects so long as you take one of these a day!" the salesman says brightly. "Why, you could walk among your condemned workers unmasked, and demonstrate your superior executive prowess!"`
 			`	You listen on to the salesman, who reckons he can cut you in on a special deal for 140,000 credits.` # Not sure about price, but probably have the top-of-the-line stuff add up to ¢500,000 in the end.
 			choice
-				`	(Get the medicine for Tim.)`
+				`	(Purchase the medicine for Tim.)`
+					goto getmed
+				`	(Haggle for a lower the price)`
+					goto haggle
+				`	(Pass.)`
+				`	The Price is too steep. You return to the central atrium of the trade sector to consider your options.`
+				goto options
+			
+			label haggle
+				`The salesman's eyes narrow and his face suddenly looks vaguely reptillian, "I am already giving the best price. The literal shirt off my back!"`
+			choice
+				`	(Offer 40,000 for the drugs)`
+					goto toolow
+				` 	(Offer 120,000 for the drugs.)`
+					goto justright
+				`	(Agree to pay 140,000 for the drugs)`
+					goto getmed
+				
+			label toolow
+				`	The drug saleman's eyes flash with hostility before he breaks out in an angry laugh, "Who do you think you are? What do you think this is a charity? I already have a buyer lined up for more than twice that."`
+				`	He begins packing up his equipment, "For wasting my time I'm charging you full price, 140,000 or nothing. Last chance."`
+			choice
+				`	(Purchase the medcine for Tim.)`
 					goto getmed
 				`	(Pass.)`
-			`	That price is too exorbitant to consider. You return to the central atrium of the trade sector to consider your options.`
-				goto options
+				`	The Price is still too expensive. You'll have to see if you can purchase a less potent and cheaper drug elsehwere. You return to the central atrium of the trade sector to consider your other options. `
+				goto options # This time there should be no drug option
+
+			label justright
+				`	The saleman glowers, but nods his head slighty.`
+				`	"Fine! 120,000 it is. My family will starve, but at least you'll get your precious drugs."`
+				`	He begins packing them up for you. `
+					goto getmed
+
 
 			label med2
 			action
 				set "timothy radrickson: new britain medicine 2"
-			`	You decide to go back the pharmaceutical wing to reconsider the deal. "Here's the Captain again!" says the salesman.` # Incomplete. Perhaps you can try to haggle? Or just keep it simple and at the same price.
+			`	You decide to go back the pharmaceutical wing to reconsider the deal. "Here's the Captain again!" says the salesman.`
+			`	He leans in uncomfortably close to you, "I can tell you're a discerning customer, here's what I will do for; 120,000 credits. That's almost wholesale price! I'm barely making a cent, but I really need to unload all these drugs."`
+			`	He favors you with an unaturally white toothy grin.`
 			choice
-				`	(Get the medicine for Tim.)`
+				`	(Purchase the discounted medicine for Tim.)`
+					goto getmed2 # option to buy meds at 120k
+				`	(Haggle for an even lower price)`
+					goto haggle2
+				`	(Pass.)`
+			`	Again, the medicine just costs too much; Tim will have to survive with something less potent. `
+			`	The salesman frowns. His eyes bulge and his smooth face is suddenly crisscorssed on unattractive wrinkles.`
+			`	"Fine. I have another buyer anyways," he half-growls at you.`
+			`	He begins packing up his stall, muttering and shaking his head to himself as he does so.`
+			`	You return to the central atrium of the trade sector to consider your other options.`
+				goto options
+			
+			label haggle2
+			`	The salesman's eyes narrow and his face suddenly looks vaguely reptillian, "I am already giving the best price. The literal shirt off my back!"`
+			choice
+				`	(Offer 40,000 for the drugs.)`
+					goto toolow2
+				`	(Offer 100,000 for the drugs.)`
+					goto justright2
+				`	(Agree to pay 120,000 for the drugs.)`
+					goto getmed2 # option to buy meds at 120k
+
+			label toolow2
+			`	The drug saleman's eyes flash with hostility before he breaks out in an angry laugh, "Who do you think you are? What do you think this is a charity? I already have a buyer lined up for more than twice that."`
+			`	He begins packing up his equipment, "For wasting my time I'm charging you full price, 140,000 or nothing. Last chance."`
+			choice
+				`	(Purchase the medcine for Tim.)`
 					goto getmed
 				`	(Pass.)`
-			`	Again, the medicine just costs too much; Tim will have to survive with something less potent. You return to the central atrium of the trade sector to consider your options.`
-				goto options
+				`	The Price is still too expensive. You'll have to see if you can purchase a less potent and cheaper drug elsehwere. You return to the central atrium of the trade sector to consider your other options. `
+				goto options # This time there should be no drug option
+			
+			label justright2
+				`	The saleman bares his teeth and looks like he's about to bite you, but then nods his head ever so slighty.`
+				`	"Fine! 100,000 it is. You'll ruin me, but at least you'll get your precious drugs."`
+				`	He begins packing them up for you. `
+					goto getmed3 # option to buy meds at 100k
+
 
 			label getmed
 			action
 				set "timothy radrickson: new britain medicine 1"
 				"timothy radrickson medicine" = 3
 				payment -140000
-			`	{{You get the medicine at the spaceport, it costs <payment>, that's a lotta cash!}}`
+			`	The medicine is loaded up on your ship, it costs <payment>, which is no small amount. You hope it'll save Timothy.`
 				goto options
 
 			label gear1
 			action
 				set "timothy radrickson: new britain gear 1"
-			`	{{Survival suit.}}`
+			`	There are many flashy expensive clothes brands catering to the wealthy adventurous types. Hobbyists with something to prove. They are attractive, mass produced, and beneath the lifestyle veneer they give off; somewhat cheap.`
+			`	They might not be industrial grade, but maybe they'll be durable for Timothy. Maybe.`
+			` 	The advertised price is only 99,999, and there are numerous suits on the rack.`
 			choice
 				`	(Get the survival suit and gear for Tim.)`
-					goto getmed
+					goto getgear
 				`	(Pass.)`
-			`	{{The gear costs too much / the gear is inadequate.}} You return to the central atrium of the trade sector to consider your options.`
+			`	Whether it be the price, the quality, or both, you pass up on the option to buy the gear. You return to the central atrium of the trade sector to consider your options.`
 				goto options
 
 			label gear2
 			action
 				set "timothy radrickson: new britain gear 2"
+			`	You return to the sales rack filled with colorful suvivor suites for amateur hobbyists. The price is still 99,999 credits.`
 			choice
 				`	(Get the survival suit and gear for Tim.)`
-					goto getmed
+					goto getgear
 				`	(Pass.)`
-			`	{{The gear costs too much / the gear is inadequate.}} You return to the terminal area to consider your options.`
+			`	You just can't pull the trigger. You return to the terminal area to consider your other options.`
 				goto options
 			
 			label getgear
 			action
 				"timothy radrickson gear" = 2
-				# payment -40000
-			`	{{You get the gear at the spaceport, it costs <payment>.}}`
+				# payment -99999
+			`	The sales associate is delighted to remove the tags and wrap up your brand new survival suit. He tells you about how his cousin used one just last month to visit a mildly chilly beach a few hours north of the spaceport.`
+			`	You pay <payment>, and he hands you the bag.`
 				goto options
 
 			label id1
@@ -7513,6 +7581,32 @@ mission "Timothy Radrickson 5b: New Britain"
 			action
 				set "timothy radrickson: new britain id 1.5"
 			`	You get up and walk over to them. {{Ask them about the ID, who they know that could get one for you in the city, etc.}}`
+			`	They grin at you like fresh meat as you near them. "Whatdya need boss? Wanna get high? Wanna get low? Wanna get out?"`
+			`	Apparently this group is used to working with fruserated castouts from the overly legal spaceport emporium.`
+			choice
+				`	(Ask about Fake ID's)`
+					goto hookmeup
+				`	(Politely Decline and head back to your ship.)`
+					goto options
+				`	(Threaten to call the police.)`
+			`	They back away from you, and then frown. One of them lowers his hand to some concealed weapon, but stops him.`
+			`	"They ain't worth it. Let's roll." The prompetly set run off leaving you alone.`
+			choice
+				`	(Head back to your ship.)`
+					goto options
+			
+			label hookmeup
+				`	The three of them look at each other and then give you a carnivorous grin.`
+				`"Sure thing. Easy as rain. It'll cost ya 'bout 20,000 cred." They look at you expectantly. `
+			choice
+				`	(Buy a Fake ID from teenagers in the parkinglot of a giant mall.)`
+					goto buyid
+				`	(Turn them down and head back to your ship.)`
+			`	Collectively they frown, "Your loss." Before leaving you alone to return to your ship.`
+				goto options 
+
+			label buyid
+				`One of them pulls out a small printer and asks you a few questions about what to put on the ID.`
 
 			label id2
 			action
@@ -7521,8 +7615,8 @@ mission "Timothy Radrickson 5b: New Britain"
 			label getid
 			action
 				"timothy radrickson id" = 1
-				# payment -1200
-			`	{{You get the ID at the spaceport, it costs <payment>.}}`
+				# payment -20000
+			`	The Teenagers leave you with a thin, amateurish Fake ID which cost you <payment>.`
 				goto options
 
 			label end
