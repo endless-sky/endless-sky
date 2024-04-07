@@ -1373,7 +1373,7 @@ ship "Cutthroat"
 		"Twin Modified Blaster" 2
 		"Torpedo Pod" 2
 		"Torpedo Storage Rack"
-		"Torpedo" 23
+		"Torpedo" 21
 		
 		"Fission Reactor"
 		"LP036a Battery Pack"
