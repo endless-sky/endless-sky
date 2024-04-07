@@ -7406,29 +7406,29 @@ mission "Timothy Radrickson 5b: New Britain"
 				`	(Find the detoxification medicine.)`
 					goto med1
 					to display
-						not "timothy radrickson: new britain medicine 1"
+						not "med1"
 				`	(Haggle with the medicine salesman again.)`
 					goto med2
 					to display
 						has "med1"
 						not "med2"
-				`	(Go and get the survival gear.)`
-					goto gear1
+				`	(Go and get the survival suit.)`
+					goto suit1
 					to display
-						"timothy radrickson gear" <= 1
-						not "timothy radrickson: new britain gear 1"
+						"timothy radrickson suit" <= 1
+						not "suit1"
 				`	(Return to the shop to buy the survival gear.)`
-					goto gear2
+					goto suit2
 					to display
-						has "timothy radrickson: new britain gear 1"
-						not "timothy radrickson: new britain gear 2"
+						has "suit1"
+						not "suit2"
 				`	(Find someone that can procure a fake ID for you.)`
 					goto id1
 					to display
 						"timothy radrickson id" = 0
-						not "timothy radrickson: new britain id 1"
+						not "id1"
 				`	(Leave the trade sector.)`
-			`	After a long day of walking about the New British spaceport wading through the crowds of hustlers and travellers, you return to the relatively calmer terminal area at the top of the pyramid.`
+			`	After a long day of walking about the New British spaceport and wading through the crowds of hustlers and travellers, you return to the relatively calmer terminal area at the top of the pyramid.`
 				decline
 
 			label med1
@@ -7450,15 +7450,13 @@ mission "Timothy Radrickson 5b: New Britain"
 				`The salesman's eyes narrow and his face suddenly looks vaguely reptillian. "I'm already giving you the best price. The literal shirt off my back!"`
 			choice
 				`	(Offer 60,000 for the meds.)`
-					goto toolow
 				` 	(Offer 120,000 for the meds.)`
 					goto justright
 				`	(Agree to pay 140,000 for the meds.)`
 					goto "med 140"
 				
-			label toolow
-				`	The drug saleman's eyes flash with hostility before he breaks out in an angry laugh. "Who do you think you are? What do you think, this is a charity? I already have a buyer lined up for more than twice that!"`
-				`	He begins packing up his equipment. "I'm charging you full price, 140,000 or nothing. Last chance."`
+			`	The drug saleman's eyes flash with hostility before he breaks out in an angry laugh. "Who do you think you are? What do you think, this is a charity? I already have a buyer lined up for more than twice that!"`
+			`	He begins packing up his equipment. "I'm charging you full price, 140,000 or nothing. Last chance."`
 			choice
 				`	(Purchase the medcine for Tim.)`
 					goto "med 140"
@@ -7506,7 +7504,7 @@ mission "Timothy Radrickson 5b: New Britain"
 				set "med2"
 				"timothy radrickson medicine" = 3
 				payment -140000
-			`	After closing the deal, you hand over a credit chip for <payment> to the salesman and he hands you the medicine. You hope it'll save Timothy.`
+			`	After closing the deal, you hand over a credit chip for <payment> to the salesman and he gives you the medicine, boxed and in a bag. You hope it'll save Timothy.`
 				goto options
 
 			label "med 120"
@@ -7514,14 +7512,14 @@ mission "Timothy Radrickson 5b: New Britain"
 				set "med2"
 				"timothy radrickson medicine" = 3
 				payment -120000
-			`	After closing the deal, you hand over a credit chip for <payment> to the salesman and he hands you the medicine. You hope it'll save Timothy.`
+			`	After closing the deal, you hand over a credit chip for <payment> to the salesman and he gives you the medicine, boxed and in a bag. You hope it'll save Timothy.`
 				goto options
 
 			label suit1
 			action
 				set "suit1"
-			`	It doesn't take long for you to find stores stocked with flashy, expensive clothes brands. The ones catering to the wealthy, adventurous types; hobbyists with something to prove. The gear here is attractive, mass produced, and beneath the lifestyle veneer they give off, somewhat cheap. They might not be industrial grade, but maybe they'll be good enough for Timothy. Maybe.`
-			`	The advertised price for the most heavy-duty one the store stocks is only 99,999 credits, and there are numerous suits on the rack.`
+			`	It doesn't take long for you to find stores stocked with flashy, expensive clothes brands. The ones catering to the wealthy, adventurous types. Hobbyists with something to prove. The gear here is attractive, mass produced, and beneath the lifestyle veneer they give off, somewhat cheap. They might not be industrial grade, but maybe they'll be good enough for Timothy. Maybe.`
+			`	The advertised price for the most heavy-duty survival suit the store stocks is only 99,999 credits, and there are numerous suits on the rack.`
 			choice
 				`	(Get the survival suit for Tim.)`
 					goto getsuit
@@ -7532,7 +7530,7 @@ mission "Timothy Radrickson 5b: New Britain"
 			label suit2
 			action
 				set "suit2"
-			`	You return to the store and locate the rack filled with the hobbyist survivor suits. The price is still 99,999 credits.`
+			`	You return to the store and locate the rack filled with the hobbyist survival suits. The price is still 99,999 credits.`
 			choice
 				`	(Get the survival suit for Tim.)`
 					goto getsuit
@@ -7554,16 +7552,15 @@ mission "Timothy Radrickson 5b: New Britain"
 				set "id1"
 			`	The trade sector has all manner of ID services and consultants, but you find none of the respectable ones are willing to talk to you after you explain the ID has to be prepared "in absentia," and the unrespectable ones appear to be lacking in this spaceport given the presence of the spaceport gendarme at every corner. Frustrated, you decide to take a walk outside the spaceport proper.`
 			choice
-				`	(Give up and return to your ship.)`
+				`	(Give up and go get something else.)`
 					goto options
 				`	(Keep walking about.)`
 			`	You eventually reach a little forested garden area with a few benches, by one of the parking lots that serve the spaceport. Dabih's out in full force today, and you're glad to be in the shade.`
 			`	As you recover from the heat you notice that, sitting over in the parking lot, there's a few teenagers chatting amongst themselves. The sort that look like they'd know where to get a false ID if they needed one. Perhaps they could give you some pointers.`
 			choice
-				`	(Give up and return to your ship.)`
+				`	(Give up and go get something else.)`
 					goto options
 				`	(Approach the teenagers for help about the ID.)`
-			action
 			`	The teenagers, two of them guys and one a girl, grin at you like fresh meat as you near them.`
 			`	The guy in the middle says, "What'dya need, boss? Wanna get high? Wanna get low? Wanna get out?" Apparently this group is used to working with frustrated castouts from the overly legal spaceport emporium.`
 			choice
@@ -7575,7 +7572,7 @@ mission "Timothy Radrickson 5b: New Britain"
 			`	They back away from you, and then frown. The middle one lowers his hand to some concealed weapon, but stops himself when he notices your own holstered gun.`
 			`	The girl next to him mutters, "They ain't worth it. Let's roll." The kids promptly walk off, leaving you alone in the park.`
 			choice
-				`	(Head back to your ship.)`
+				`	(Head back to the spaceport.)`
 					goto options
 			
 			label hookmeup
@@ -7585,31 +7582,49 @@ mission "Timothy Radrickson 5b: New Britain"
 				`	(Give them the credits.)`
 					goto buyid
 				`	"Wait! Show me how you're going to do it first."`
-					goto show
-				`	(Turn them down and head back to your ship.)`
+				`	(Turn them down.)`
+					goto refuseid
 
-			`	Collectively they frown. "Your loss," the middle guy says, before leaving you alone to return to your ship.`
+			`	He sighs. "Fine. I know a guy in the city, he gets us fake IDs all the time, gets us into bars, clubs, allsorts. All we need is how ya want this false guy to look, we'll take it to him and get the ID, and you'll be sweet.`
+			`	"So, ya gonna take it?"`
+			choice
+				`	(Give them the credits.)`
+					goto buyid
+				`	(Turn them down.)`
+
+			label refuseid
+			`	Collectively they frown. "Your loss," the middle guy says, before leaving you alone to return to the spaceport.`
 				goto options 
 
-			label show
-			`	He sighs. "Fine. I know a guy in the city, he gets us fake IDs all the time to get into bars and clubs and allsorts. All we need is a description of what this guy looks like and a little bit of background, we'll take it to him and get the ID, and you'll be sweet. So, you gonna take it?"`
 			label buyid
-				`	He of them pulls out a datapad and asks you a few questions about what to put on the ID.`
-
-			label getid
 			action
-				"timothy radrickson id" = 1
-				# payment -20000
-			`	The teenagers leave you with a thin amateurish Fake ID which cost you <payment>.`
+				payment -20000
+			`	"Alrighty then, it's a done deal," he says, stashing the credit chip away. He then pulls out a datapad and asks you a few questions about what to put on the ID. You try to answer as best you can in regards to Timothy (and change a few of the more obviously incriminating details). They say to meet you here in a couple hours once they've got the ID sorted in the city.`
+			choice
+				`	(Wait.)`
+
+			`	Two and a half hours pass as you wait for the teens in the garden, but there's no sign of them yet. You wonder if you've just given 20,000 credits away for nothing.`
+			choice
+				`	(Leave.)`
+					goto leaveid
+				`	(Wait.)`
+
+			`	Another thirty minutes pass, and just as you are about to leave, the three teens show themselves again, ID in hand.`
+			`	"We thought you're gonna bail out on us for bein' late. Thankfully you got the sense not to. And now ya get the goods in exchange." The middle kid hands you the ID. "Good dealin' with ya," he says as they walk off.`
+			`	As you go back to the spaceport, you take a look at the ID for the first time.`
+			`	Whoever made this clearly wasn't a professional. It looks like they've somehow botched the bar code, given the smear on the print, and the duplication of the emblem of the planetary authority of New Britain on the back is rather dodgy. But it'll have to do.`
+				goto options
+
+			label leaveid
+			`	You sigh, having learnt a lesson that teenagers in parking lots probably aren't the most trustworthy of people. Back to the spaceport.`
 				goto options
 
 			label end
-				clear "timothy radrickson: new britain medicine 1"
-				clear "timothy radrickson: new britain medicine 2"
-				clear "timothy radrickson: new britain gear 1"
-				clear "timothy radrickson: new britain gear 2"
-				clear "timothy radrickson: new britain id 1"
-				clear "timothy radrickson: new britain id 2"
+				clear "med1"
+				clear "med2"
+				clear "suit1"
+				clear "suit2"
+				clear "id1"
 
 mission "Timothy Radrickson 5c: Dancer"
 	description "Tim's old secretary Wynnafrith recommended that <destination> would be a good place to find a survival suit for Tim."
