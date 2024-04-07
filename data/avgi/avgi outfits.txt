@@ -188,9 +188,9 @@ outfit "Diffuse Deflector"
 	thumbnail "outfit/unknown"
 	"mass" 48
 	"outfit space" -48
-	"shield generation" 0.6
-	"shield energy" 1.8
-	"shield heat" 4.8
+	"delayed shield generation" 0.6
+	"delayed shield energy" 1.8
+	"delayed shield heat" 4.8
 	"shield delay" 3
 	description "For its size, you would expect this shield generator to be far more powerful than it actually is. While it is nearly as large as the heaviest human shield generators, it is only about half as strong, while also consuming much more power. Much of this power ends up being shed as waste heat instead of being used to efficiently regenerate a shield."
 
@@ -201,9 +201,9 @@ outfit "Specular Deflector"
 	thumbnail "outfit/unknown"
 	"mass" 72
 	"outfit space" -72
-	"shield generation" 1.2
-	"shield energy" 3.6
-	"shield heat" 9.6
+	"delayed shield generation" 1.2
+	"delayed shield energy" 3.6
+	"delayed shield heat" 9.6
 	"shield delay" 3
 	description "The largest shield generator manufactured by the Avgi is impressive, if only because of how far the Avgi have pushed their limited theory of shielding principles. While their engineering ingenuity is admirable, there is a limit to how far you can take an incomplete understanding of the base physics behind shielding, and this generator approaches that limit."
 
