@@ -8088,7 +8088,7 @@ mission "Timothy Radrickson 5e: Back to Oblivion"
 			`	As he inspects the suit, drugs, and ID you can see his demeanor shift. He looks less weak, less sickly, and more confident.`
 			`	Finally, he straightens back up. "It's perfect." He eyes the gear with awe and shakes his head, "Don't know how you did it. But with this I can't fail."`
 
-			label end # This is copied from the first mission, will need redoing.
+			label end 
 			`	Timothy turns from you and uses the dolly to load the gear into one of the trucks in the warehouse.`
 			`	Once done he turns back to you, his eyes are wide, rimmed with bloody tears, "Always at my lowest."`
 			`	He swallows a cough, and then continues. "It's you who saves me. When I am at my lowest. It's you."`
