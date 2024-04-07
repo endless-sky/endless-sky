@@ -43,8 +43,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cstdlib>
-#include <iomanip>
-#include <sstream>
 #include <stdexcept>
 #include <utility>
 
@@ -52,36 +50,37 @@ using namespace std;
 
 namespace {
 	// Return a pair containing settings to use for time formatting.
-	pair<const char*, const char*> TimestampFormatString(Preferences::DateFormat format)
+	pair<pair<string, string>, size_t> TimestampFormatString(Preferences::DateFormat fmt)
 	{
-		// pair<string, string>: Linux (1st) and Windows (2nd) format strings.
-		switch(format)
-		{
-			case Preferences::DateFormat::YMD:
-				return make_pair("%F %T", "%F %T");
-			case Preferences::DateFormat::MDY:
-				return make_pair("%-I:%M %p on %b %-d, %Y", "%#I:%M %p on %b %#d, %Y");
-			case Preferences::DateFormat::DMY:
-			default:
-				return make_pair("%-I:%M %p on %-d %b %Y", "%#I:%M %p on %#d %b %Y");
-		}
+		// pair<string, string>: Linux (1st) and Windows (2nd) format strings
+		// size_t: BUF_SIZE
+		if(fmt == Preferences::DateFormat::YMD)
+			return make_pair(make_pair("%F %T", "%F %T"), 26);
+		if(fmt == Preferences::DateFormat::MDY)
+			return make_pair(make_pair("%-I:%M %p on %b %-d, %Y", "%#I:%M %p on %b %#d, %Y"), 25);
+		if(fmt == Preferences::DateFormat::DMY)
+			return make_pair(make_pair("%-I:%M %p on %-d %b %Y", "%#I:%M %p on %#d %b %Y"), 24);
+
+		// Return YYYY-MM-DD by default.
+		return make_pair(make_pair("%F %T", "%F %T"), 26);
 	}
 
 	// Convert a time_t to a human-readable time and date.
 	string TimestampString(time_t timestamp)
 	{
-		pair<const char*, const char*> format = TimestampFormatString(Preferences::GetDateFormat());
-		stringstream ss;
+		pair<pair<string, string>, size_t> fmt = TimestampFormatString(Preferences::GetDateFormat());
+		char* buf = static_cast<char*>(std::malloc(fmt.second));
 
 #ifdef _WIN32
 		tm date;
 		localtime_s(&date, &timestamp);
-		ss << std::put_time(&date, format.second);
+		auto str = string(buf, strftime(buf, fmt.second, fmt.first.second.c_str(), &date));
 #else
 		const tm *date = localtime(&timestamp);
-		ss << std::put_time(date, format.first);
+		auto str = string(buf, strftime(buf, fmt.second, fmt.first.first.c_str(), date));
 #endif
-		return ss.str();
+		std::free(buf);
+		return str;
 	}
 
 	// Extract the date from this pilot's most recent save.
