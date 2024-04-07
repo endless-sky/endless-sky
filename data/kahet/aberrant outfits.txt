@@ -40,8 +40,8 @@ outfit "Nucleolysis Beam"
 		"heat damage" -9.1
 		"fuel damage" 0.9
 		"corrosion damage" 0.15
-	description "This beam weapon somehow creates a field inside which otherwise stable atomic nuclei rapidly decay. This effect seems to be inversely proportional to the mass of the nucleus, causing isotopes like deuterium to break down at a higher rate than heavier elements. As the resultant fission products have a higher energy state than the original nucleus, this effectively cools the target ship, defying conventional thermodynamics."
-	description "In aggregate, this can rapidly deplete a ship's deuterium fuel while also causing the very matter of its hull to decay."
+	description "This beam weapon creates a field inside which otherwise stable atomic nuclei rapidly decay. This effect seems to be inversely proportional to the mass of the nucleus, causing isotopes like deuterium to break down at a higher rate than heavier elements. As the resultant products have a higher energy state than the original nucleus, the beam cools its target, defying conventional thermodynamics."
+	description "In practice, this beam can deplete a ship's deuterium fuel while causing the very matter of its hull to decay."
 
 outfit "Telescopic Antimissile"
 	category "Turrets"
@@ -79,7 +79,7 @@ outfit "Anomalous Shield Restorer"
 	"shield energy" 6
 	"flotsam chance" 0.1
 	"unplunderable" 1
-	description "This emitter produces no detectable fields of any kind, but a shield somehow springs into existence whenever something that could damage it comes near enough."
+	description "This emitter produces no detectable fields of any kind, but a shield springs into existence whenever something that could damage it comes near enough."
 
 
 # Power:
@@ -95,4 +95,4 @@ outfit "Antimatter Power Cell"
 	"heat generation" 4.9
 	"flotsam chance" 0.1
 	"unplunderable" 1
-	description "This strange device seems to be partially organic in nature, slowly leaking antiprotons through a constantly-regrowing spongelike structure to release energy. The amount of power produced is inconsistent with the amount of matter and antimatter being annihilated, inexplicably producing more than should be possible."
+	description "This strange device seems to be partially organic in nature, slowly leaking antiprotons through a constantly-regrowing spongelike structure to release energy. The amount of power produced is inconsistent with the amount of matter and antimatter annihilated, producing more than should be possible."
