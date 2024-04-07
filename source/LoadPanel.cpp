@@ -81,7 +81,7 @@ namespace {
 		const tm *date = localtime(&timestamp);
 		ss << std::put_time(date, format.first);
 #endif
-		return str;
+		return ss.str();
 	}
 
 	// Extract the date from this pilot's most recent save.
