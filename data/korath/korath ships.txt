@@ -825,7 +825,7 @@ ship "Kas'lor Ik 582"
 	explode "large explosion" 40
 	explode "huge explosion" 50
 	"final explode" "final explosion large"
-	description "The largest of Korath production vessels are derived from a common and ancient chassis. This relatively streamlined ship has been adapted to collect, refine, and transport hyperspace fuel. Its name is in memory of the delicious squids that lived in the gas giants of their home sector, in planets such as Deka Dathnak."
+	description "The largest of Korath production vessels are derived from a common and ancient chassis. This relatively streamlined ship has been adapted to collect, refine, and transport hyperspace fuel. Its name is in memory of the delicious squids that lived in gas giants of their home sector, such as Deka Dathnak."
 
 
 ship "Lor'nag Ik 590"
