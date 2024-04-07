@@ -69,7 +69,7 @@ namespace {
 	// Convert a time_t to a human-readable time and date.
 	string TimestampString(time_t timestamp)
 	{
-		char *format = TimestampFormatString(Preferences::GetDateFormat());
+		const char *format = TimestampFormatString(Preferences::GetDateFormat());
 		stringstream ss;
 
 #ifdef _WIN32
