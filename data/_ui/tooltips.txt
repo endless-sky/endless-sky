@@ -267,17 +267,26 @@ tip "hull:"
 tip "hull energy:"
 	`Energy consumed per second when repairing the hull.`
 
+tip "delayed hull energy:"
+	`Additional energy consumed per second when repairing the hull after the repair delay period.`
+
 tip "hull energy multiplier:"
 	`Modifies the energy consumed when repairing the hull by the given factor.`
 
 tip "hull fuel:"
 	`Fuel consumed per second when repairing the hull.`
 
+tip "delayed hull fuel:"
+	`Additional fuel consumed per second when repairing the hull after the repair delay period.`
+
 tip "hull fuel multiplier:"
 	`Modifies the fuel consumed when repairing the hull by the given factor.`
 
 tip "hull heat:"
 	`Heat produced per second when repairing the hull.`
+
+tip "delayed hull heat:"
+	`Additional heat produced per second when repairing the hull after the repair delay period.`
 
 tip "hull heat multiplier:"
 	`Modifies the heat produced when repairing the hull by the given factor.`
@@ -288,11 +297,14 @@ tip "hull multiplier:"
 tip "hull repair rate:"
 	`Amount of hull strength that can be repaired per second. Repairs usually consume energy and may generate heat as well.`
 
+tip "delayed hull repair rate:"
+	`Additional hull strength that can be repaired per second after the repair delay period.`
+
 tip "repair delay:"
-	`The number of seconds it takes for hull repairs to begin after taking hull damage.`
+	`The number of seconds it takes for additional hull repairs to begin after taking hull damage.`
 
 tip "disabled repair delay:"
-	`The number of seconds it takes for hull repairs to begin after being disabled.`
+	`The number of seconds it takes for additional hull repairs to begin after being disabled.`
 
 tip "absolute threshold:"
 	`The remaining hull strength at which the ship becomes disabled. This attribute takes priority over other attributes that change the disabled threshold.`
@@ -519,11 +531,17 @@ tip "sells for:"
 tip "shield energy:"
 	`Energy consumed per second when recharging shields.`
 
+tip "delayed shield energy:"
+	`Additional energy consumed per second when recharging shields after the shield delay period.`
+
 tip "shield energy multiplier:"
 	`Modifies the energy consumed when recharging shields by the given factor.`
 
 tip "shield fuel:"
 	`Fuel consumed per second when recharging shields.`
+
+tip "delayed shield fuel:"
+	`Additional fuel consumed per second when recharging shields after the shield delay period.`
 
 tip "shield fuel multiplier:"
 	`Modifies the fuel consumed when recharging shields by the given factor.`
@@ -531,11 +549,17 @@ tip "shield fuel multiplier:"
 tip "shield heat:"
 	`Heat produced per second when recharging shields.`
 
+tip "delayed shield heat:"
+	`Additional heat produced per second when recharging shields after the shield delay period.`
+
 tip "shield heat multiplier:"
 	`Modifies the heat produced when recharging shields by the given factor.`
 
 tip "shield generation:"
 	`Shield points recharged per second. Recharging shields usually consumes energy, and may also produce heat.`
+
+tip "delayed shield generation:"
+	`Additional shield points recharged per second after the shield delay period.`
 
 tip "shield generation multiplier:"
 	`Modifies the amount of shield points recharged per second by the given factor.`
@@ -556,10 +580,10 @@ tip "shield multiplier:"
 	`Modifies the ship's total shield strength by the given factor.`
 
 tip "shield delay:"
-	`The number of seconds it takes for shield generation to begin after taking shield damage.`
+	`The number of seconds it takes for additional shield generation to begin after taking shield damage.`
 
 tip "depleted shield delay:"
-	`The number of seconds it takes for shield generation to begin after your shields have been depleted.`
+	`The number of seconds it takes for additional shield generation to begin after your shields have been depleted.`
 
 tip "shield protection:"
 	`Protection against shield damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in shield damage, while a total value of 11 only results in a 10 percent reduction.`
@@ -1164,6 +1188,9 @@ tip "Scan selected ship"
 tip "Fire primary weapon"
 	`Fire all of your flagship's primary weapons. The "automatic firing" setting will fire only those weapons that are within your target's range.`
 
+tip "Toggle turret tracking"
+	`Toggle the "Turret tracking" setting.`
+
 tip "Select secondary weapon"
 	`Cycle to your flagship's next secondary weapon. After cycling through all secondary weapons individually, selects every secondary weapon at once, then selects no weapons.`
 
@@ -1183,10 +1210,13 @@ tip "Toggle fullscreen"
 	`Toggle whether the game is in fullscreen mode.`
 
 tip "Toggle fast-forward"
-	`Toggle a 3x speed fast-forward. Fast-forward may be automatically deactivated by the "Interrupt fast-forward" setting.`
+	`Toggle a 3x speed fast-forward. Fast-forward may be automatically deactivated by the "Interrupt fast-forward" setting. If the key is set to caps-lock then the caps-lock state will be used to determine the fast-forward state.`
 
 tip "Show help"
 	`Display the help dialogs that are relevant to your current UI panel and situation. Uses the same help dialogs from the "Reactivate first-time help" setting, forcing them to appear even if they have already appeared before.`
+
+tip "View message log"
+	`Open the log panel containing status messages and hails from other ships received since the current pilot was loaded.`
 
 tip "Deploy / recall fighters"
 	`Deploy or recall carried ships (e.g. fighters, drones) in your fleet. Requires carriers with space to hold the carried ships.`
@@ -1247,6 +1277,9 @@ tip "Extended jump effects"
 
 tip "Ship outlines in shops"
 	`Controls the display of your fleet ship icons when in the shipyard or outfitter. When fancy, applies a sobel filter to all ships. (This can result in high GPU load for large fleets.) When fast, just uses the ship's sprite.`
+
+tip "Ship outlines in HUD"
+	`Controls the display of your flagship and target ship icons in the HUD. When fancy, applies a sobel filter to the sprites. (This can result in high GPU load for some ships on very old or low performance computers.) When fast, just uses the ship's sprite.`
 
 tip "Show status overlays"
 	`Display status overlays over top of all ships when in flight. Status overlays display a ship's shields and hull. If the damaged option is chosen, overlays only appear on ships that have taken damage.`

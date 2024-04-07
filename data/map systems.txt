@@ -2345,7 +2345,7 @@ system "Ae Ce L-332"
 	asteroids "large metal" 1 2.1
 	asteroids "medium rock" 11 3.6
 	minables unknown 1 2.7
-	fleet Astral 45000
+	fleet Astral 50000
 	object
 		sprite star/f-dwarf
 		period 10
@@ -5019,6 +5019,7 @@ system Alpherg
 	fleet "Large Southern Pirates" 2000
 	fleet "Small CCOR" 3800
 	fleet "Large CCOR" 6000
+	fleet "CCOR Logistics" 9000
 	object
 		sprite star/g-giant
 		period 10
@@ -6522,6 +6523,7 @@ system Belenos
 	fleet "Large Southern Pirates" 2000
 	fleet "Small CCOR" 3800
 	fleet "Large CCOR" 5000
+	fleet "CCOR Logistics" 8000
 	object
 		sprite star/f8
 		period 10
@@ -8686,6 +8688,7 @@ system Citadelle
 	fleet "Large Southern Pirates" 2500
 	fleet "Small CCOR" 3800
 	fleet "Large CCOR" 4500
+	fleet "CCOR Logistics" 6000
 	object
 		sprite star/k0
 		period 15
@@ -14533,6 +14536,7 @@ system Fumalsamakah
 	fleet "Large Southern Pirates" 2000
 	fleet "Small CCOR" 3800
 	fleet "Large CCOR" 6000
+	fleet "CCOR Logistics" 9000
 	object
 		sprite star/b5
 		period 10
@@ -17784,7 +17788,7 @@ system "Is Ce B-139"
 	asteroids "medium metal" 5 3.41
 	asteroids "large metal" 2 4.402
 	fleet "Vyrmeid (Plankton)" 300
-	fleet Astral 50000
+	fleet Astral 55000
 	object
 		sprite star/g8
 		period 40
@@ -17808,7 +17812,7 @@ system "Is Ce F-422"
 	asteroids "large rock" 9 2.262
 	asteroids "large metal" 1 3.783
 	fleet "Vyrmeid (Plankton)" 400
-	fleet Astral 50000
+	fleet Astral 57000
 	object
 		sprite star/a5
 		distance 52.236
@@ -17882,7 +17886,7 @@ system "Is Ce G-460"
 	minables silicon 6 10.214
 	minables unknown 2 2.5
 	fleet "Vyrmeid (Plankton)" 700
-	fleet Astral 50000
+	fleet Astral 65000
 	object
 		sprite star/k-dwarf
 		period 10
@@ -17929,7 +17933,7 @@ system "Is Ce J-591"
 	asteroids "large metal" 3 1.664
 	minables silicon 8 3.635
 	fleet "Vyrmeid (Plankton)" 450
-	fleet Astral 50000
+	fleet Astral 60000
 	object
 		sprite star/f-giant
 		distance 60.57
@@ -18113,7 +18117,7 @@ system "Is Il V-263"
 	minables titanium 3 5.731
 	fleet "Vyrmeid (Plankton)" 500
 	fleet "Vyrmeid (Boomerang)" 700
-	fleet Astral 50000
+	fleet Astral 56000
 	object
 		sprite star/b-supergiant
 		period 10
@@ -18161,7 +18165,7 @@ system "Is Il X-626"
 	asteroids "large metal" 1 3.402
 	fleet "Vyrmeid (Plankton)" 500
 	fleet "Vyrmeid (Boomerang)" 800
-	fleet Astral 50000
+	fleet Astral 62000
 	object
 		sprite star/a8
 		distance 48.468
@@ -18204,7 +18208,7 @@ system "Is Il Z-59"
 	minables iron 14 4.93
 	fleet "Vyrmeid (Plankton)" 500
 	fleet "Vyrmeid (Cephalopod)" 600
-	fleet Astral 50000
+	fleet Astral 75000
 	object
 		sprite star/g3
 		distance 67.938
@@ -32664,11 +32668,11 @@ system Umbral
 	fleet "Large Southern Pirates" 6000
 	object
 		sprite star/k0-old
-		distance 23.3222
+		distance 25
 		period 10.2313
 	object
 		sprite star/m0
-		distance 71.4243
+		distance 90
 		period 10.2313
 		offset 180
 	object

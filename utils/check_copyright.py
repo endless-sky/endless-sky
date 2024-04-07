@@ -8,7 +8,7 @@ from debian import copyright
 def check_copyright() -> bool:
     with open('copyright', 'r', encoding='utf-8') as f:
         try:
-            copyright.Copyright(f)
+            copyright.Copyright(f, strict=True)
         except copyright.Error as e:
             print(e)
             return False

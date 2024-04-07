@@ -1073,17 +1073,17 @@ mission "There Might Be Riots part 3A"
 			`	You've heard of that planet. "The weapons testing world for Lovelace Labs?" you ask. "I'm surprised you'd be able to find a big audience there."`
 			`	"Oh, we'll have an audience, all right," he says. "We've just put out a new album called 'Songs for the End of Civilization.' A war protest album. We want to film ourselves playing a concert right in the middle of the missile testing range. Of course, we'll probably end up running out of there with Republic Intelligence nipping at our heels. What do you say?"`
 			choice
-				`	"Sorry, that's further than I'm willing to go for you guys."`
-					goto no
 				`	"Sounds like a worthy cause. Count me in!"`
 					goto yes
 				`	"You're going to do a concert on ground that could be littered with unexploded ordnance?"`
-			`	"Yeah. What an adventure!" he says. "Come on, it will be worth it."`
-			choice
 				`	"Sorry, that's further than I'm willing to go for you guys."`
 					goto no
+			`	"Yeah. What an adventure!" he says. "Come on, it will be worth it."`
+			choice
 				`	"Sounds like a worthy cause. Count me in!"`
 					goto yes
+				`	"Sorry, that's further than I'm willing to go for you guys."`
+					goto no
 			label no
 			`	"Are you sure?" he asks. "We'll pay you with more than just money. Do this for us, and I'll share a story with you that very few have heard."`
 			choice
@@ -1101,7 +1101,7 @@ mission "There Might Be Riots part 3A"
 				not "event: hai-human resolution announced"
 			`	"Great," he says. "Now, the only question is where we'll go afterwards until the fuss dies down."`
 			`	"Didn't you say the Hai really liked you before?" you ask. "I think now might be the perfect opportunity to go back to the Hai."`
-			`	"Aww yeah!" he exlaims, "those squirrel people were rad cool. We go thumb our noses at the military industrial complex, then you take us to stay with the peaceful squirrel people where the government won't bother us."`
+			`	"Aww yeah!" he exclaims, "those squirrel people were rad cool. We go thumb our noses at the military industrial complex, then you take us to stay with the peaceful squirrel people where the government won't bother us."`
 			`	Once more, they begin loading their stuff onto your ship, while you chart a course to <destination>.`
 				accept
 			label notpublic
@@ -3926,7 +3926,6 @@ mission "Mafia Extortion"
 			`	You notice that he is missing a finger on each hand.`
 			choice
 				`	"Thank you. My name is <first> <last>. To whom do I have the pleasure of speaking?"`
-					goto nameless
 				`	"Yes, I'm very happy with my ship."`
 					goto specifics
 				`	"What should I be afraid of happening to my ship?"`
@@ -3939,11 +3938,9 @@ mission "Mafia Extortion"
 					goto unnerved
 				`	"I don't have time to talk."`
 					goto funeral
-			label nameless
 			`	The man snorts. "Wow, telling everybody you meet your full name. That totally won't end up painting a huge target on your head if said name has a bounty on it. But I digress."`
 			choice
 				`	"What should I be afraid of happening to my ship?"`
-					goto specifics
 				`	"You sound like one of those mafia goons."`
 					goto mafia
 				`	"Are you trying to extort me?"`
@@ -3974,22 +3971,17 @@ mission "Mafia Extortion"
 				`	(Pay 200,000 credits.)`
 					goto payup
 				`	"How can I be sure the money is spent well?"`
-					goto impatient
 				`	"Sorry, I already made a donation to the 'Security Support Fund' earlier today, and I don't donate twice in one day."`
-					goto impatient
 				`	"I've already heard enough, I'm going to talk to the authorities."`
 					goto nextsteps
 				`	"And what dangers should I be afraid of?"`
-					goto impatient
 				`	"Listen, I see that you're missing a finger on each hand. You look like a goon, and not a very successful one."`
 					goto unnerved
-			label impatient
 			`	The man sounds annoyed. "Listen, I don't have all day to talk! Are you going to pay or not?!"`
 			choice
 				`	(Pay 200,000 credits.)`
 					goto payup
 				`	"I don't trust you. You aren't getting any money from me."`
-					goto funeral
 				`	"I've heard enough, I'm going to talk to the authorities."`
 					goto nextsteps
 				`	"Listen, I see that you're missing a finger on each hand. You look like a goon, and not a very successful one."`
@@ -4005,14 +3997,11 @@ mission "Mafia Extortion"
 				`	(Shrug off the whole thing and take no further action.)`
 					decline
 				`	(Find the closest thing to a police force that this planet has.)`
-					goto police
 				`	(Go to a bar and ask for whoever is in charge.)`
 					goto bar
-			label police
 			`	It's not long before you find the ruins of what used to be a police station... you think. The building has been thoroughly destroyed, hopefully not while anybody was inside.`
 			choice
 				`	(Go to a bar and ask for whoever is in charge.)`
-					goto bar
 				`	(Shrug off the whole thing and take no further action.)`
 					decline
 			label bar
@@ -4026,7 +4015,6 @@ mission "Mafia Extortion"
 			`	The man is starting to act a bit nervous. "Sorry I bothered you. Can we forget this happened?"`
 			choice
 				`	"Well, conversations like this are hard to forget."`
-					goto cornered
 				`	"Nice scam you have running here. Would be a shame if somebody told the local godfather about it."`
 					goto payback
 				`	(Agree.)`
@@ -4055,15 +4043,13 @@ mission "Mafia Extortion"
 				`	"1,000."`
 					goto counterdeal
 				`	"I don't need your credits, just forget it."`
-					goto zerodeal
 			label zerodeal
-			`The man walks away without saying a word.`
+			`	The man walks away without saying a word.`
 				decline
 			label much
 			`	"That's too much! 2,389 credits is all I have. Would that be enough?"`
 			choice
 				`	"Sure."`
-					goto counterdeal
 				`	"No way, I want a lot more."`
 					goto panicking
 			label counterdeal
@@ -4074,12 +4060,9 @@ mission "Mafia Extortion"
 			`	The man starts panicking and clumsily reaches into his jacket, maybe to get some money, but more likely reaching for a gun.`
 			choice
 				`	(Try to calm down the man.)`
-					goto draws
 				`	(Mock the man further.)`
-					goto draws
 				`	(Draw my sidearm and shoot the man.)`
 					goto shoot
-			label draws
 			`	The man manages to draw a weapon! You brace for impact, but after a few seconds of waiting, you realize his weapon is only making a clicking sound when he tries to shoot.`
 			choice
 				`	"Ha, ha, you really are a failure of a goon."`
@@ -4606,7 +4589,7 @@ mission "Hai Wormhole Warning"
 			has "First Contact: Unfettered: declined"
 		not "Block Hai Wormhole Warning: offered"
 		not "Wanderers: Alpha Surveillance E: offered"
-		not "Hai Leaks Response 1: offered"
+		not "hr: meet the team"
 	on offer
 		log "Was pulled aside by a Navy officer and told to keep the wormhole to the Hai a secret. The Republic doesn't want the knowledge of the wormhole to be widespread, as that could cause chaos for both the Republic and the Hai."
 		conversation
@@ -4741,14 +4724,14 @@ mission "Saving Artifacts 2"
 			`	"The rotating exhibition was a new partnership with the Conservatory. Previously we had been hesitant to transport our valuables to frontier regions, but in this new partnership we decided to try shipping some of our artifacts to more distant planets, so that they too could benefit from seeing our collection. Those statues were part of that shipment. Evidently we were mistaken. Those statues are not safe as long as they're in the South."`
 				goto choice
 			label find
-			`	"Lucky for you, Lokust does not seem particularly attached to his 'booty'. If you must, offer him a large sum of money, and he will most likely be willing to part with them. However, if there is something you can do to get those statues back without allowing your money to fall into the hands of a criminal, I would suggest that course of action instead."`
+			`	"Lucky for you, Lokust does not seem particularly attached to his 'booty.' If you must, offer him a large sum of money, and he will most likely be willing to part with them. However, if there is something you can do to get those statues back without allowing your money to fall into the hands of a criminal, I would suggest that course of action instead."`
 				goto choice
 			label accept
 			`	"Excellent. You're doing a service to humanity's cultural memory."`
 				accept
 	on complete
 		conversation
-			`You hustle through the crowded markets, pistol by your side, looking for any sign of the statues. After a while you come across a storefront with a crudely painted sign that reads "Fine Art and Cultural Treasures". Not seeing any better leads, you go in.`
+			`You hustle through the crowded markets, pistol by your side, looking for any sign of the statues. After a while you come across a storefront with a crudely painted sign that reads "Fine Art and Cultural Treasures." Not seeing any better leads, you go in.`
 			`	The inside is damp and poorly lit, but you can make out various paintings, manuscripts, and other expensive-looking items. "How can I help you?" the store clerk asks in a disarmingly friendly voice.`
 			choice
 				`	"You don't happen to know of a local warlord named Lokust, do you?"`
@@ -4948,7 +4931,7 @@ mission "Dangerous Games 1"
 mission "Dangerous Games 2"
 	minor
 	name "Karengo's Galactic Adventures"
-	description `The adventurer Karengo and five others are traveling with you as part of his "Galactic Adventures". Bring Karengo and crew to <destination> for <payment>.`
+	description `The adventurer Karengo and five others are traveling with you as part of his "Galactic Adventures." Bring Karengo and crew to <destination> for <payment>.`
 	source
 		attributes "frontier" "pirate" "rim"
 	destination "Poseidos"
@@ -4962,7 +4945,7 @@ mission "Dangerous Games 2"
 			`A boisterous laugh sounds from somewhere behind you. You haven't heard that voice since your ship was attacked by dragons.`
 			`	"<first>!" A huge hand claps you on the shoulder and spins you around, where you find yourself facing a large, widely grinning man.`
 			`	"Remember me? Yer the best pilot I've had - that stunt to get us out of Skymoot, right out of the dragon's nest? Epic."`
-			`	A crude sign behind him reads, 'Dangerous Games - Karengo's Galactic Adventures'.`
+			`	A crude sign behind him reads, "Dangerous Games - Karengo's Galactic Adventures."`
 			`	"Like it?" Karengo follows your gaze. "Decided to make this an official thing. Well... an unofficial official thing. Feds wouldn't understand. Doesn't matter; I need a pilot again, and a good one. Your ship's waterproof, right?"`
 			choice
 				`	"Uh, yeah. I think so."`
@@ -4996,7 +4979,7 @@ mission "Dangerous Games 2"
 			`"Oiled skins flash and flicker"`
 			`"Razor spikes grow from the deep"`
 			`"Titanic walls crush and smash"`
-			`"Heed the beginnings to live".`
+			`"Heed the beginnings to live"`
 			choice
 				`	(Go east.)`
 					goto east
@@ -5269,7 +5252,7 @@ mission "Dangerous Games 2"
 			`	Once back to the surface, Karengo calls up someone on his receiver. Soon, a small flock of scientists arrive and haul the machine to a local lab for investigation. They quickly determine it to be non-functional and promise to extract as many secrets as possible.`
 			label end
 			`	After some time, the crystal-infected machine has been thoroughly inspected since being salvaged from the watery depths of <planet>. The crystals themselves are unlike anything anyone has seen before, but through somewhat questionable trial and error (although he insists it's genius), Karengo discovers that, when heated, they amplify the effect of the many recreational drugs he has on his person. However, they've proven to only grow near a power source that has been submerged in water from <planet>. Efforts to stimulate growth through other means have all failed. If cultivated, they could significantly boost the production of drugs for Karengo's operations.`
-			`	Before disappearing into the crowd, Karengo pays you <payment>. "Thanks for your help, <first>. Once I get this machine off of those pinheads over there, I'll be makin' a fortune in 'mind-altering experiences'. Watch for 'Karengo's Galactic Adventures' next time yer around here!"`
+			`	Before disappearing into the crowd, Karengo pays you <payment>. "Thanks for your help, <first>. Once I get this machine off of those pinheads over there, I'll be makin' a fortune in 'mind-altering experiences.' Watch for 'Karengo's Galactic Adventures' next time yer around here!"`
 				decline
 
 
@@ -5884,19 +5867,8 @@ mission "Quicksilver Mixup 3"
 
 
 
-
-mission "Argosy Hijacking (Trigger)"
-	landing
-	invisible
-	source
-		government "Syndicate"
-	to offer
-		"combat rating" > 200
-		random < 5
-	on offer
-		fail
-
 mission "Argosy Hijacking"
+	minor
 	landing
 	name "Stop Ship Hijacking"
 	description "The <npc> was hijacked on <origin>; disable it and return to <origin>. Do not board, capture, or destroy it; Syndicated Security will deal with the hijackers in space after you have disabled it."
@@ -5905,7 +5877,8 @@ mission "Argosy Hijacking"
 		not attributes "station"
 		not near "Sol" 3
 	to offer
-		has "Argosy Hijacking (Trigger): offered"
+		"combat rating" > 200
+		random < 5
 	on offer
 		conversation
 			`You're signing the standard Syndicate landing papers with an officer on <origin>. "Everything seems to be in order. And of course, we'll have your ship refueled promptly. Have a good day, Captain <last>." He nods his head at you and starts to move off towards the next ship.`
@@ -5962,7 +5935,7 @@ mission "Argosy Hijacking"
 			fail
 		on kill
 			set "destroyed hijacked argosy"
-			dialog `You have destroyed the Moonshake Express. Its captain won't be impressed.`
+			dialog `You have destroyed the Moonshake Express. The ship's captain won't be impressed.`
 
 	on fail
 		conversation
@@ -6043,32 +6016,6 @@ mission "Argosy Hijacking"
 			`	The hijackers, just a raucous group of young kids, are hauled out of the <npc model> by Syndicated Security personnel towards an armored van. Multiple times the kids try to run away, but after a few minutes they're finally detained; the van drives off towards the spaceport terminal.`
 			`	After the incident is wrapped up, the captain of the <npc> sends you <payment>, and a message thanking you for helping him recover his ship.`
 
-mission "Argosy Hijacking (Declined)"
-	invisible
-	landing
-	source
-		government "Syndicate"
-		not attributes "station"
-		not near "Sol" 3
-	deadline 1
-	to offer
-		has "Argosy Hijacking (Trigger): offered"
-	to complete
-		never
-	npc
-		personality launching daring uninterested
-			confusion 40
-		government "Merchant (Hijacked)"
-		ship "Argosy (Blaster)" "Moonshake Express"
-		to spawn
-			has "Argosy Hijacking: declined"
-	npc
-		personality launching disables uninterested
-		government "Syndicate"
-		fleet "Small Syndicate"
-		to spawn
-			has "Argosy Hijacking: declined"
-
 
 
 mission "Blind Man from Martini"
@@ -6090,7 +6037,7 @@ mission "Blind Man from Martini"
 			choice
 				`	"Hello."`
 				`	"Are you alright?"`
-				`	(Nevermind.)`
+				`	(Never mind.)`
 					decline
 			`	"Yes, hello, how are you doing?" the man responds, shifting his head toward your direction. "I'm here waiting for someone to pick me up," he says in a voice that sounds like he expects it at any moment.`
 
@@ -6328,7 +6275,7 @@ mission "Care Package to South 1"
 					decline
 			`	You make your way through the crowd to the edge of her bubble. As soon as you do, she extends her hand. "I'm Torrey. Torrey Dupont."`
 			`	You take the hand and shake it. "<first> <last>."`
-			`	"I can tell you're independent captain. I would like to hire you to transport a package." Torrey indicates the box beside her with a nudge of her toe.`
+			`	"I can tell you're an independent captain. I would like to hire you to transport a package." Torrey indicates the box beside her with a nudge of her toe.`
 			choice
 				`	"What's in the box?"`
 				`	"Wouldn't it be easier and cheaper to send it via a courier service?"`
@@ -6687,7 +6634,7 @@ mission "Southern Fiance 2"
 		has "event: tom and carl's wedding"
 	on offer
 		conversation
-			`After landing, you receive a message from Tom Ardwright and Carl Camberlain. Attached are photos of their wedding on Cornucopia, as well as a letter:`
+			`After landing, you receive a message from Tom Ardwright and Carl Chamberlain. Attached are photos of their wedding on Cornucopia, as well as a letter:`
 			``
 			`Dear <first> <last>,`
 			`	We are delighted to announce that despite the many hardships around us in these times, Tom Ardwright and Carl Chamberlain were married three days ago at the Hart's Hill Vineyard on Cornucopia. This would not have been possible without your willingness to help a man in need, so we thank you from the bottom of our hearts, and if you are ever on Cornucopia, we would be happy to host you. Please enjoy these photos from the wedding.`
@@ -6706,7 +6653,7 @@ mission "Southern Fiance 3"
 		set "visited tom and carl"
 		conversation
 			`As you approach for a landing, you are surprised when the spaceport controller diverts you to a special pad. When you land, you find Tom, the man you brought south from the Core, and his husband Carl, the Agricultural Minister of Cornucopia, waiting for you.`
-			`	They greet you like an old friend (despite never having talked with Carl before), and insist on serving you dinner. Rather than the grand mansions of other politicians, their house is a simple bungalow that wouldn't look out of place in a suburb. The meal, on the other hand, is anything but modest: there are plates of kebabs, pastas, stir fries, and cakes, made from ingredients sourced from all over the planet. You swap stories for a while - you with your "thrilling adventures in space", as Tom describes them, and them with their much more ordinary, but no less interesting, times here on Cornucopia. They also hint at some big things coming, but reveal nothing more than a knowing look.`
+			`	They greet you like an old friend (despite never having talked with Carl before), and insist on serving you dinner. Rather than the grand mansions of other politicians, their house is a simple bungalow that wouldn't look out of place in a suburb. The meal, on the other hand, is anything but modest: there are plates of kebabs, pastas, stir fries, and cakes, made from ingredients sourced from all over the planet. You swap stories for a while - you with your "thrilling adventures in space," as Tom describes them, and them with their much more ordinary, but no less interesting, times here on Cornucopia. They also hint at some big things coming, but reveal nothing more than a knowing look.`
 			`	After a while, you bid them farewell, and they promise once again that if you ever visit you'll be welcome.`
 				decline
 
@@ -6735,7 +6682,7 @@ mission "Southern Fiance 5"
 			branch already
 				has "visited tom and carl"
 			`As you approach for a landing, you are surprised when the spaceport controller diverts you to a special pad. When you land, you find Tom, the man you brought south from the Core, and his husband Carl, the new Governor of Cornucopia, waiting for you.`
-			`	They greet you like an old friend (despite never having talked with Carl before), and insist on serving you dinner. The Cornucopia governor's mansion is certainly befitting of the title, and Tom takes you on a tour through the premises while Carl fields some important phone calls. The meal is similarly grand: there are plates of kebabs, pastas, stir fries, and cakes, made from ingredients sourced from all over the planet. You swap stories for a while - you with your "thrilling adventures in space", as Tom describes them, and them with their much more ordinary, but no less interesting, times here on Cornucopia, including some of the challenges and highlights of their campaign. They also hint at something big coming, but reveal nothing more than a knowing look.`
+			`	They greet you like an old friend (despite never having talked with Carl before), and insist on serving you dinner. The Cornucopia governor's mansion is certainly befitting of the title, and Tom takes you on a tour through the premises while Carl fields some important phone calls. The meal is similarly grand: there are plates of kebabs, pastas, stir fries, and cakes, made from ingredients sourced from all over the planet. You swap stories for a while - you with your "thrilling adventures in space," as Tom describes them, and them with their much more ordinary, but no less interesting, times here on Cornucopia, including some of the challenges and highlights of their campaign. They also hint at something big coming, but reveal nothing more than a knowing look.`
 				goto end
 			
 			label already
@@ -6758,7 +6705,7 @@ mission "Southern Fiance 6"
 				has "visited tom and carl"
 			`As you approach for a landing, you are surprised when the spaceport controller diverts you to a special pad. When you land, you find Tom, the man you brought south from the Core, and his husband Carl, the new Governor of Cornucopia, waiting for you.`
 			`	They greet you like an old friend (despite never having talked with Carl before), and insist on serving you dinner. The Cornucopia governor's mansion is certainly befitting of the title, and Tom takes you on a tour through the premises while Carl fields some important phone calls. Partway through the tour, Tom gets a mischievous grin, and when he opens the next door, a small child races out and cannons into his legs, gripping them tightly with a glad cry of "Daddy!" Tom proudly introduces Nita, his and Carl's three-year-old daughter, who giggles and tries to run off with your communicator.`
-			`	When you sit down to dinner with the three of them, you're blown away: there are plates of kebabs, pastas, stir fries, and cakes, made from ingredients sourced from all over the planet. You swap stories for a while - you with your "thrilling adventures in space", as Tom describes them, and them with their much more ordinary, but no less interesting, times here on Cornucopia, including some of the challenges and highlights of their campaign and the joys and fears of fatherhood.`
+			`	When you sit down to dinner with the three of them, you're blown away: there are plates of kebabs, pastas, stir fries, and cakes, made from ingredients sourced from all over the planet. You swap stories for a while - you with your "thrilling adventures in space," as Tom describes them, and them with their much more ordinary, but no less interesting, times here on Cornucopia, including some of the challenges and highlights of their campaign and the joys and fears of fatherhood.`
 				goto end
 			
 			label already
@@ -6894,3 +6841,53 @@ mission "Returning to Paradise"
 			action
 				payment 120000
 			`You're not sure if you've ever met a more pretentious and entitled family. The girls fought non-stop, but fortunately, the family was satisfied with the luxury accommodations on your ship. Once you land on <planet>, the lady gives you <payment> and the family leave without a word of thanks; they never even tell you their names. Nonetheless, you're happy to be rid of them.`
+
+mission "Hogshead's Dilemma"
+	minor
+	invisible
+	source
+		near Sol 1 10
+	to offer
+		random < 5
+	on offer
+		conversation
+			`While passing through the spaceport, you notice a few energetic pilots gathered around a computer terminal, invested in some sort of conversation. One of the pilots speaks louder than the rest, sometimes getting looks from others in the spaceport. "You've fooled me before, and I reckoned you were this time! And here I thought them dang things were old news!" The pilot lets out a hearty chuckle. "Even nowadays them Firkins are still getting names!" After another minute or two, the group walks away from the terminal and out of your sight.`
+			choice
+				`	(Go see what this is about.)`
+				`	(Ignore it.)`
+					decline
+			scene "thumbnail/hogshead"
+			`	You walk up to the computer terminal, and on it is displayed a news article with a title that reads "Popular Votes For Ship Name Poll - Unexpected Results." The article is about a small transport company hearkening back to older times with a special transport voyage centered around a Hogshead space liner. You recall that, back in their day, Hogsheads were sort of a business fad because of endless discussion and nicknames based on the shape of their engine pods. Nowadays, the ship has all but lost the charm it once had, but it seems a good number of pilots are interested in this ordeal.`
+			`	For the event, the transport company decided to have a public poll to name the ship, and while initial suggestions were casual names such as "Stark Lady" or "Timelight", some of the most popular ones are actually a collection of joke names - ones you would imagine a toddler would have come up with. Apparently, the names have gotten enough attention and enjoyment out of pilots that the company decided to take the top five most popular results and hold a vote on them.`
+			`	Would you like to vote on the name as well?`
+			choice
+				`	(Yes.)`
+				`	(No.)`
+					decline
+			`	You navigate the article until you are directed to the poll itself, presenting you with the top five options.`
+			choice
+				`	Star Empress`
+				`	Tycho's Legacy`
+				`	Shippy McShipface`
+				`	It's Dark Here`
+				`	What Asteroid`
+			action
+				event "hogshead poll" 7
+			`	After you made your selection, a "thank you" message appears, telling you that the result of the poll will be broadcast on the news once the voting period has finished. Afterwards, you go back about your business.`
+				decline
+
+event "hogshead poll"
+
+mission "Hogshead's Dilemma II"
+	invisible
+	source
+		near Sol 1 10
+	to offer
+		has "Hogshead's Dilemma: offered"
+		has "event: hogshead poll"
+	on offer
+		clear "hogshead poll"
+		conversation
+			`As you are walking around the spaceport, you see that more than a few pilots are watching the news on nearby displays. There are mixed emotions amongst the crowd - some pilots are having a good laugh while others seem disappointed or even confused. You aren't sure what this is about until, lo and behold, the result of that Hogshead naming poll from a while ago is clearly shown on a display - Shippy McShipface. You can't say it's all that much worse than some of the names you've heard pirates give their ships before, but it still seems silly that the transport company is actually going through with the name.`
+			`	All of the hyped discussions around Hogsheads in the past gave them a brief but strong popularity amongst transport organizations looking to grab the average passenger's attention. In the end, the company responsible for this naming poll got what they wanted, and a little bit of the Hogshead's spirit has been brought back, along with the interest of several pilots. Perhaps the name "Shippy McShipface" is fitting after all.`
+				decline
