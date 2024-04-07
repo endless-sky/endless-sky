@@ -1,4 +1,4 @@
-# Copyright (c) 2019 by Tommaso Becca
+# Copyright (c) 2024 by Tommaso Becca
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
