@@ -8044,21 +8044,55 @@ mission "Timothy Radrickson 5e: Back to Oblivion"
 				"timothy radrickson preparedness" > 7
 
 			label unprepared
-			`	...`
+			`	Your ship touches down beneath Oblivion's toxic ammonia-blue sky. Night or day there is a constant flurry of workers loading, unloading, building, and expanding the ever growing boom-town of Tukayyid. You unload all of Timothy's gear onto a dolly and push it out into the busy street.`
+			`	Your presence goes unnoticed among the general ruckus and you're able to slip into the off-loading warehouses unseen. You find frail Timothy there, leaning over a pile of hose hookups, breathing heavily. His blood red eyes rise to meet yours and despite their bloody milky gloss a glimmer of hope burns within them.`	
+			`	"You did it?" His words more strained than the last time you spoke, "You got the gear?"`
+			`	He looks down at your dolly expectantly.`
+			choice
+				`	(It's all here.)`
+				`	(Of course I did.)`
+				` 	(Yep, but you owe me big.)`
+			`	He nearly drops to his knees and starts sorting through the gear. He takes heart when you tell him about Wynnfrith's gun and bomb, and how highly she still thinks of him.`
+			`	"Good secretary. Better friend." He wheezes as he checks out the rest of your gear.`
+			`	As he inspects the suit, drugs, and ID you can see his demeanor shift. He seems to inflate a little.`
+			`	Finally, he straightens back up. "You did best you could. I am sure." He eyes the gear wearily, "At least it's a chance."`
+
 				goto end
 
 			label "decently prepared"
-			`	...`
+			`	Your ship touches down beneath Oblivion's toxic ammonia-blue sky. Night or day there is a constant flurry of workers loading, unloading, building, and expanding the ever growing boom-town of Tukayyid. You unload all of Timothy's gear onto a dolly and push it out into the busy street.`
+			`	Your presence goes unnoticed among the general ruckus and you're able to slip into the off-loading warehouses unseen. You find frail Timothy there, leaning over a pile of hose hookups, breathing heavily. His blood red eyes rise to meet yours and despite their bloody milky gloss a glimmer of hope burns within them.`	
+			`	"You did it?" His words more strained than the last time you spoke, "You got the gear?"`
+			`	He looks down at your dolly expectantly.`
+			choice
+				`	(It's all here.)`
+				`	(Of course I did.)`
+				` 	(Yep, but you owe me big.)`
+			`	He nearly drops to his knees and starts sorting through the gear. He takes heart when you tell him about Wynnfrith's gun and bomb, and how highly she still thinks of him.`
+			`	"Good secretary. Better friend." He wheezes as he checks out the rest of your gear.`
+			`	As he inspects the suit, drugs, and ID you he nods to himself satisfactorialy.`
+			`	Finally, he straightens back up. "It'll do." He eyes the gear, "It'll do."`
 				goto end
 
 			label "well prepared"
-			`	...`
+			`	Your ship touches down beneath Oblivion's toxic ammonia-blue sky. Night or day there is a constant flurry of workers loading, unloading, building, and expanding the ever growing boom-town of Tukayyid. You unload all of Timothy's gear onto a dolly and push it out into the busy street.`
+			`	Your presence goes unnoticed among the general ruckus and you're able to slip into the off-loading warehouses unseen. You find frail Timothy there, leaning over a pile of hose hookups, breathing heavily. His blood red eyes rise to meet yours and despite their bloody milky gloss a glimmer of hope burns within them.`	
+			`	"You did it?" His words more strained than the last time you spoke, "You got the gear?"`
+			`	He looks down at your dolly expectantly.`
+			choice
+				`	(It's all here.)`
+				`	(Of course I did.)`
+				` 	(Yep, but you owe me big.)`
+			`	He nearly drops to his knees and starts sorting through the gear. He takes heart when you tell him about Wynnfrith's gun and bomb, and how highly she still thinks of him.`
+			`	"Good secretary. Better friend." He wheezes as he checks out the rest of your gear.`
+			`	As he inspects the suit, drugs, and ID you can see his demeanor shift. He looks less weak, less sickly, and more confident.`
+			`	Finally, he straightens back up. "It's perfect." He eyes the gear with awe and shakes his head, "Don't know how you did it. But with this I can't fail."`
 
 			label end # This is copied from the first mission, will need redoing.
-			`It takes the better part of the day, a great deal of haggling, and meeting with some unsavory people. But you manage to collect all the equipment that Timothy requested. You have it packed into a crate, and loaded on Timothy's prison truck.`
-			`	Timothy's eyes are wide, rimmed with bloody tears, as he watches. "Always at my lowest."`
+			`	Timothy turns from you and uses the dolly to load the gear into one of the trucks in the warehouse.`
+			`	Once done he turns back to you, his eyes are wide, rimmed with bloody tears, "Always at my lowest."`
 			`	He swallows a cough, and then continues. "It's you who saves me. When I am at my lowest. It's you."`
-			`	Timothy looks like he wants to hug you, but he just nods.`
+			`	Timothy looks like he wants to hug you, but he just nods. He hits a button on the wall and garage opens exposing the warehouse to the night air.`
 			` 	"Captain," he says in way of a farewell, and then he climbs aboard the truck and drives off.`
 
 mission "Timothy Radrickson 6: News of Death"
