@@ -1,4 +1,4 @@
-# Copyright (c) 2019 by Tommaso Becca
+# Copyright (c) 2024 by Tommaso Becca
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
@@ -754,6 +754,7 @@ mission "Ka'het: Patir Mystery 6"
 	description "Return to <system> with Dusk and four other xenoarchaeologists to continue your exploration of the <planet>. You will need to be cloaked as you enter to avoid alerting the Ka'sei."
 	source
 		government "Remnant"
+		attributes "remnant primary"
 	destination "Builder Settlement"
 	passengers 5
 	blocked `As soon as you arrive, Dusk contacts you again. "Welcome back <first>! We should be ready for the next Patir expedition, but we need at least 5 free bunks to attempt it."`
@@ -763,16 +764,15 @@ mission "Ka'het: Patir Mystery 6"
 		not "ka'het: attacked ka'sei"
 	on offer
 		conversation
+			`It doesn't take long for you to be noticed in the crowded, yet quiet, starport of <origin>. You feel a tap on your shoulder and turn around to see Dusk, accompanied by a group of four. "Good to see you here again, <first>! Do you remember our exploration of the Patir black hole?"`
 			branch "atmospheric data"
 				has "atmospheric scan intact"
-			`It doesn't take long for you to be noticed in the crowded, yet quiet, starport of <origin>. You feel a tap on your shoulder and turn around to see Dusk, accompanied by a group of four. "Good to see you here again, <first>! Do you remember our exploration of the Patir black hole?"`
 			`	One of the other Remnant shows you a hologram of the system, with what looks like the Builder settlement you visited earlier highlighted by a yellow glow. "After studying the data we gathered during our last visit, we may have devised a way to enter the structure undisturbed! Based on our recordings, the Fetri'sei that attacked us in the structure was gathering materials from the asteroid belt with its fellow Ka'sei, and only moved inside the dome when they spotted us.`
 				goto proposal
 
 			label "atmospheric data"
 			action
 				payment 300000
-			`After disembarking from the <ship>, you find yourself once again in the crowded, but quiet starport of <origin>. It doesn't take long for you to be noticed, however: only a few minutes later, you feel a tap on your shoulder and turn around to see Dusk, accompanied by a group of five people dressed in Remnant attire. "Good to see you here again, <first>! I have good news. Do you remember our exploration of the Patir black hole?"`
 			`	One of the other Remnant shows you a hologram of the system, with what looks like the Builder settlement you visited earlier highlighted by a yellow light. "First of all, we have transferred <payment> to your logistics account for saving the data on the dome's atmosphere. It is only thanks to you that we were able to learn more about what kind of atmosphere the Builders may have lived in."`
 			choice
 				`	"Thank you."`
@@ -810,7 +810,7 @@ mission "Ka'het: Patir Mystery 6"
 		set "remnant: dusk busy"
 	on fail
 		dialog
-			`The Ka'sei saw your ship and started following you, making exploration impossible. You have failed this mission.`
+			`As soon as you approach the <planet>, you see that the Ka'sei are following your ship. You won't be able to enter the settlement safely anymore.`
 	npc save
 		government "Test Dummy"
 		personality unconstrained heroic nemesis
@@ -821,7 +821,7 @@ mission "Ka'het: Patir Mystery 6"
 
 mission "Ka'het: Patir Mystery 7"
 	landing
-	name "Return to <system>"
+	name "Return to <planet>"
 	description "Take Dusk and the other researchers, as well as <cargo>, back to <destination>."
 	source "Builder Settlement"
 	destination "Aventine"
@@ -849,7 +849,7 @@ mission "Ka'het: Patir Mystery 7"
 				goto entrance
 
 			label dusk
-			`	"It depends. Here, look," he says, passing you a data pad showing a rather blurry picture. "It is a still image taken from the recording of our encounter with the Fetri'sei. The strong lights ruined most of the video, so we will to have to settle for this picture, but look at the background: do you see that curved board on the left? The quality of the video is too low to be sure, but I think it could be a map of the complex. If I am right, we could split into groups and cover more ground in the few hours we are going to spend here." "What if you aren't?" you ask. "Well, in that case we will just proceed with our mission one building at a time. But I really do think that is a map that we are seeing here; it would be the perfect place to put one."`
+			`	"It depends. Here, look," he says, passing you a data pad with a rather blurry picture. "It is a still image taken from the recording of our encounter with the Fetri'sei. The strong lights ruined most of the video, so we will to have to settle for this picture, but look at the background: do you see that curved board on the left? The quality of the video is too low to be sure, but I think it could be a map of the complex. If I am right, we could split into groups and cover more ground in the few hours we are going to spend here."`
 				goto entrance
 
 			label kasei
@@ -926,17 +926,17 @@ mission "Ka'het: Patir Mystery 7"
 			label gardens
 				action
 					"patir: builder seeds" ++
-			`	"I agree, it feels the most interesting of the two." The two of you follow the route indicated on the map for a while before reaching the entrance: a slender, sturdy-looking pillar roughly two meters wide with a circular opening on one side. Moving closer you can see the end of a shallow slide right beyond the door, swirling upwards inside of the column and likely reaching the top of the dome.`
+			`	"I agree, it feels the most interesting of the two." The two of you follow the route indicated on the map for a while before reaching the entrance: a slender, sturdy-looking pillar roughly two meters wide with a circular opening on one side. Moving closer you can see the end of a shallow ramp right beyond the door, swirling upwards inside of the column and likely reaching the top of the dome.`
 			`	"If this is supposed to be the exit of the garden," Dusk says, "I fail to see where the entrance should be. We are going to have to walk up it instead."`
 			choice
 				`	"Alright, let's go."`
-					goto slide
+					goto ramp
 				`	"I would rather keep searching for the entrance."`
-			`	You and Dusk keep walking around the structure for almost half an hour to no avail; with no other choices left but going up the slide, you give up and decide to follow it up the pillar. Going through it is simpler than it looked, as the surface of the floor is ribbed in a peculiar way so that gripping onto it becomes rather effortless. Despite this, it takes half an hour to reach the garden, and the roof of the dome still lies well above.`
+			`	You and Dusk keep walking around the structure for almost half an hour to no avail; with no other choices left but going up the ramp, you give up and decide to follow it up the pillar. Going through it is simpler than it looked, as the surface of the floor is ribbed in a peculiar way so that gripping onto it becomes rather effortless. Despite this, it takes half an hour to reach the garden, and the roof of the dome still lies well above.`
 				goto top
 
-			label slide
-			`	You follow Dusk up along the slide; the inside of the pillar is just as dark as the rest, and the length of it alone makes the ascent quite tiresome. Going through it is simpler than it looked, as the surface of the floor is ribbed in a peculiar way so that gripping onto it becomes rather effortless. It still takes a while to reach the end: even so, though the garden is nowhere near the top of the dome it takes another half an hour to reach it.`
+			label ramp
+			`	You follow Dusk up along the ramp; the inside of the pillar is just as dark as the rest, and the length of it alone makes the ascent quite tiresome. Going through it is simpler than it looked, as the surface of the floor is ribbed in a peculiar way so that gripping onto it becomes rather effortless. It still takes a while to reach the end: even so, though the garden is nowhere near the top of the dome it takes another half an hour to reach it.`
 			label top
 			`	The view at the top is disappointing. In front of you, there are only rows upon rows of long racks with a dry, light gray material on the top and bottom of each shelf; interspersed between the rows there is some Builder equipment, in which you only recognize large unlit lamps connected to the rest of the structure. Despite all of this, there are no plants anywhere, as far as the eye can see. "I believe we have stumbled upon some kind of hydroponics facility," Dusk says. "I think I have mistranslated the label on the map; this is more like a field than a simple garden."`
 			choice
@@ -958,7 +958,7 @@ mission "Ka'het: Patir Mystery 7"
 			`	It doesn't take long for Dusk to reach you. "Great find, <first>." After glancing at the boxes on the various piles here, he finally settles for one on the top of a nearby stack and brings it down. "From the labels on its back, it seems to contain three different kinds of seeds."`
 			label continue
 			`	"As you awkwardly scoot down the slide with the seeds, the same corrugated texture that made it possible to climb now working against you, Dusk continues his explanation. "It seems odd how none of the boxes you found were empty, or even unsealed. The hydroponics fields were in a similar situation; you would expect to find at least traces indicating the place used to be full of plants, but there was nothing of that sort. I am starting to believe this place was never inhabited in first place, but assembling this facility would go far beyond the known capabilities of the Ka'sei."`
-			`	Shortly after reaching the end of the slide, you meet up with the rest of the team, who all describe situations similar to the one you found. It takes a while to reach your ship outside the dome, but finally everything is ready to return to Remnant space. Next stop: <planet>.`
+			`	Shortly after reaching the end, you meet up with the rest of the team, who all describe situations similar to the one you found. It takes a while to reach your ship outside the dome, but finally everything is ready to return to Remnant space. Next stop: <planet>.`
 				accept
 	on complete
 		payment 50000
@@ -991,17 +991,15 @@ mission "Ka'het: Patir Mystery 8A"
 	stopover "Babiali"
 	destination "Builder Settlement"
 	passengers 5
-	cargo "research laboratory and tracker probe" 97
+	cargo "research lab and satellite" 97
 	blocked `Dusk contacts you soon after you reach the spaceport. "<first>, I advise you that the next mission is going to require <capacity>.`
 	to offer
 		has "Ka'het: Patir Mystery 7: done"
 	on offer
 		conversation
 			`It doesn't take long for you to see Dusk; he's waiting for you under a canopy next to your landing pad, right at the edge of Aventine's starport. "We are almost ready to go," he says, "but I have run into a problem. My plan for our next mission was to have a repeat of the last expedition, but this time carrying a temporary laboratory to the Builder site. I was able to gather most of the instruments I was looking for in the local scientific facilities, but none of the mobile laboratories I am authorized to requisition by default were in good enough condition to fly."`
-			`	"Because of that, before we can start our mission, you are going to need to make a stopover at <stopovers> - I was able to convince the prefects on Viminal to reallocate one of the outposts that they had just delivered there to our mission, given it has higher priority status compared to the mining expeditions they are setting up. Is your ship ready?"`
-			choice
-				`	"It is. Let's go."`
-			`	You help Dusk transport the chosen instruments to your ship; even if, on their own, they only occupy a small portion of the <ship>'s cargo bay, you also make sure to leave enough space for the facilities you're going to take from <stopovers>. As you're walking back toward the ship's controls, Dusk reminds you to bring as many ramscoops with you as possible - you're going to need them in order to complete the mission plan while cloaked.`
+			`	"Because of that, before we can start our mission, you are going to need to make a stopover at <stopovers> - I was able to convince the prefects on Viminal to reallocate one of the outposts that they had just delivered there to our mission, given it has higher priority status compared to the mining expeditions they are setting up."`
+			`	You help Dusk transport the chosen instruments to your ship; you also make sure to leave enough space for the facilities you're going to take from <stopovers>. As you're walking back toward the ship's controls, Dusk reminds you to bring as many ramscoops with you as possible - you're going to need them in order to complete the mission plan while cloaked.`
 				accept
 	on stopover
 		dialog
@@ -1009,7 +1007,7 @@ mission "Ka'het: Patir Mystery 8A"
 			`	The local crew assist in loading the modular laboratory split across three pallets; with them arrives a separate package, containing a surveillance satellite to be deployed near Patir to scan the Ka'sei from orbit.`
 	on fail
 		dialog
-			`The Ka'sei saw your ship and started following you, making the exploration impossible. You failed the mission.`
+			`As soon as you approach the <planet>, you see that the Ka'sei are following your ship. You won't be able to enter the settlement safely anymore.`
 	on enter Patir
 		dialog
 			`The probe slowly moves away from your ship, opening its external panels and the instrumentation; as you watch it turn into a dim point of light, the Remnant team confirms that it is functioning correctly. Time to land on the asteroid.`
@@ -1040,7 +1038,7 @@ mission "Ka'het: Patir Mystery 9"
 	on offer
 		event "Patir moves"
 		conversation
-			`Approaching the settlement from northeast, you park the <ship> once again next to airlock array; it's almost starting to become a familiar sight by now. With the cargo ramp pointed toward the entrance and the post-flight checklist completed, the deployment of the lab can finally commence; the Remnant team disembarks quickly and starts working on the first pallet, while you remain in the cockpit keeping an eye on the Ka'sei activity in the area. The researchers work quickly and nearly without issues in the light gravity of the asteroid, besides the occasional lost screw, but the construction job still takes nearly the entire day.`
+			`Approaching the settlement from the northeast, you park the <ship> once again next to airlock array; it's almost starting to become a familiar sight by now. With the cargo ramp pointed toward the entrance and the post-flight checklist completed, the Remnant team begins to deploy the lab while you remain in the cockpit, keeping an eye on Ka'sei activity. The researchers work quickly and nearly without issue in the light gravity of the asteroid, besides the occasional lost screw. However, the construction job still takes nearly the entire day.`
 			`	With the Ka'sei still oblivious, and the lab set up, you take advantage of the opportunity to stretch your legs and pay a visit to the researchers in the new outpost. "So, Captain," asks Dusk, meeting you at the entrance, "what do you think of it?"`
 			scene "scene/lab scene"
 			choice
@@ -1118,7 +1116,7 @@ mission "Ka'het: Patir Mystery 9"
 				accept
 	on enter Chanai
 		dialog
-			`As soon as you jump in, your sensors detect a massive structure of artificial nature, apparently a station of some kind. Given its strange structure and its proximity to Patir, the Remnant will be definitely interested in it.`
+			`As soon as you enter Chanai, your sensors detect a massive structure of artificial nature, apparently a station of some kind.`
 	on enter Athiri
 		dialog
 			`As you enter the system, your sensors lose any trace of the wormhole you passed from. There doesn't seem to be a way to pass through it again from this end.`
@@ -1834,6 +1832,7 @@ mission "Ka'het: Patir Mystery 13B"
 	on complete
 		payment 370000
 		clear "remnant: dusk busy"
+		set "initial patir exploration"
 		event "patir mystery 2 timer" 45
 		conversation
 			`A large crowd has quickly gathered around your landing pad, eagerly waiting your arrival. After all this time between the stars, setting foot on a planet with an actual atmosphere is incredibly refreshing. Ignoring for a moment the cold weather, you take the biggest breath you can to make up for the past weeks of recycled atmosphere, and you already start to feel reinvigorated.`
