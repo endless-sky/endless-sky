@@ -7637,7 +7637,7 @@ mission "Timothy Radrickson 5c: Dancer"
 		has "Timothy Radrickson 5a: Timshank Redemption: active"
 	on complete
 		conversation
-			`	Your ship shakes as it descends into Dancer's mad weather. Lightning crackles beyond your sturdy bulkheads and a panoply of colorful clouds rushes past as you boost down into in the dull light overcast light of a subdued day on Dancer.`
+			`Your ship shakes as it descends into Dancer's mad weather. Lightning crackles beyond your sturdy bulkheads and a panoply of colorful clouds rushes past as you boost down into in the dull light overcast light of a subdued day on Dancer.`
 			`	Around the quiet spaceport, there's a smattering of low reinforced buildings, linked together by weather worn trails dug into the ground with protective earth on either side. You see one leading to a spacious, if squat, clearing house.`
 			choice
 				`	(Enter the clearing house.)`
@@ -7810,51 +7810,50 @@ mission "Timothy Radrickson 5d: Greenrock"
 	on offer
 	on complete
 		conversation
-			`You feel the pressure of unseen eyes watching you as you leave the spaceport and enter into the sprawling stalls of Greenrock's rowdy emporium. Where everything and everyone is for sale.`
+			`You feel the pressure of many unseen eyes watching you as you leave the spaceport and enter into the sprawling stalls of Greenrock's rowdy emporium. Where everything and everyone is for sale.`
 			`	The civic infrastructure leaves something to be desired; you can pretty much taste the city's squalid sewer in the air. While trying to get a sense of the area, you weave past various hucksters all trying to get your attention for whatever or whoever they're selling.`
 			`	Finally you reach the center of the emporium and discover a crudely drawn map of the emporium. It's not much, but at least it tells you where you can find what you're looking for.`
 			label greenoptions
 			choice
-				`	(Find someone that can procure a fake ID for you.)`
+				`	(Find someone that can produce a fake ID for you.)`
 					goto id1
 					to display
-						not "timothy radrickson: greenrock id 1"
-				`	(Haggle with the medicine salesman again.)`
+						not "id1"
+				`	(Go back to Ivaldur's forging stall for the fake ID.)`
 					goto id2
 					to display
-						has "timothy radrickson: greenrock id 1"
-						not "timothy radrickson: greenrock id 2"
+						has "id1"
+						not "id2"
 				`	(Look for environmental gear.)`
-					goto gear1
+					goto suit1
 					to display
-						"timothy radrickson gear" <= 1 #??????
-						not "timothy radrickson: greenrock gear 1"
+						"timothy radrickson gear" = 0
+						not "suit1"
 				`	(Return to the shop to buy the environmental gear.)`
-					goto gear2
+					goto suit2
 					to display
-						has "timothy radrickson: greenrock gear 1"
-						not "timothy radrickson: greenrock gear 2"
+						has "suit1"
+						not "suit2"
 				`	(Find the detoxification medicine.)`
 					goto med1
 					to display
-						"timothy radrickson id" = 0 #????
-						not "timothy radrickson: greenrock id 1"
-				`	(Find the kids who said they'd procure a fake ID for you.)`
+						"timothy radrickson id" <= 1
+						not "id1"
+				`	(Go back to the drug dealer to get the detoxification medicine.)`
 					goto med2
 					to display
-						has "timothy radrickson: greenrock id 1.5"
-						not "timothy radrickson: greenrock id 2" #??????????????
+						has "med1"
+						not "med2"
 				`	(Leave the emporium.)`
-			`	It's never wise to linger in a place like this, especially aimlessly. With your business concluded you leave Greenrock's stalls behind.`
-				decline
+					goto end
 			
 			label id1
 			action
-				set "timothy radrickson: greenrock id 1"
+				set "id1"
 			`	There's more than a half dozen stalls all advertising their high skills and production value when it comes to the art of crafting fake IDs. Most the stalls and their employees have a garish, sloppy, and boostful manner, but one with a more professional and constrained feel attracts your attention; it's run by an older gentleman who has all the looks of a respectable watchmaker.`
 			`	He nods at you politely as you approach. "Good day to you. I am Ivaldur the Forger, and what can I do for you?"`
 			choice
-				`	(Ask about procuring a fake ID.)`
+				`	(Ask about producing a fake ID.)`
 					goto ask
 				`	(Turn around and leave.)`
 			`	For whatever reason you are not interested in doing business with Ivaldur the Forger, and promptly head back out into the emporium.`
@@ -7862,8 +7861,8 @@ mission "Timothy Radrickson 5d: Greenrock"
 			
 			label ask
 			`	The old man smiles at you good naturedly. "Simple enough request. I can provide you with an ID, and a complex matching background that will pass all but the most exhasustive of checks."`
-			`	He gives off an aura of quiet confidence as he speaks. "My service is thorough and, as you'll find, quite unmatched. Unless your friend is a war criminal being hunted by Navy Intelligence he will be able to seamlessly integrate into life on any human world."`
-			`	He pauses as if considering something, and then adds, "If he is a war criminal on the run from someone like, I don't know, Deep Security or Republic Intelligence... I could also come up with something, but that would be a premium service I doubt you need at the moment."`
+			`	He gives off an aura of quiet confidence as he speaks. "My service is thorough and, as you'll find, quite unmatched. Unless your friend is someone being hunted by Navy Intelligence, he will be able to seamlessly integrate into life on any human world."`
+			`	He pauses as if considering something, and then adds, "If he is also a war criminal on the run from someone like, I don't know, Deep Security or Republic Intelligence... I could also come up with something, but that would be a premium service I doubt you need at the moment."`
 			`	Ivaldur adjusts his spectacles thoughtfully. "The going rate for my basic service is 350,000 credits."`
 			`	He looks at you expectantly and waits.`
 			choice
@@ -7876,7 +7875,7 @@ mission "Timothy Radrickson 5d: Greenrock"
 
 			label id2
 			action
-				set "timothy radrickson: greenrock id 2"
+				set "id2"
 			`	Your return to Ivaldur the Forger's stall, and the old man gives you a curt nod as you approach. "Back so soon? I hope you have made your decision."`
 			choice
 				`	(Pay 350,000 credits for a fake ID and history for Tim.)`
@@ -7887,8 +7886,9 @@ mission "Timothy Radrickson 5d: Greenrock"
 
 			label getid
 			action
+				set "id2"
 				"timothy radrickson id" = 3
-				# payment -350000
+				payment -350000
 			`	Ivaldur's eyes light up and he immediately gets to work. From his panel he backdoors his way into various databases, diving into the code with an obvious alacrity and unbridled joy.`
 			`	Whole histories, lives, records and attachments burst into existence in a dozen corners of official networks and reports. It becomes apparent that he is not really creating a fake ID; the ID he creates is real. It is sanctioned, stamped, and endorsed by multiple governing bodies, uploaded to and referenced by institutional records, and given the appropriate checks and markers.`
 			`	In fact, what Ivaldur has done is create a fake person, and this is that person's real ID.`
@@ -7896,129 +7896,120 @@ mission "Timothy Radrickson 5d: Greenrock"
 			`	"It was a pleasure," he says in a satisfied voice, and bids you well.`
 				goto greenoptions
 		
-			label gear1
+			label suit1
 			action
-				set "timothy radrickson: greenrock gear 1"
+				set "suit1"
 			`	You find a large stall boasting all the survival equipment an enterprising pirate could ever need. Inside there's various used gear, some more used than others, and only a few well weathered survival suits.`
 			`	The proprietor appears out of nowhere and immediately begins flogging his goods to you. "Ah! Yes. With any of these you can survive the harshest of climates!"`
-			`	He takes one suit off the rack and begins, "Notice the intricate mesh weave on this state of the art..." until the suit comes apart at its seams in his hands. The proprietor frowns, but then quickly tosses it to the side.`
+			`	He takes one suit off the rack and begins, "Notice the intricate mesh weave on this state of the art..." the suit comes apart at its seams in his hands. The proprietor frowns, but then quickly tosses it to the side.`
 			`	"A, uh, defunt specimen. Happens from time to time. Rest assured I never would have sold it to you." He looks at you unconvincingly.`
 			`	He pulls another suit down which, to his obvious relief, doesn't simply fall apart in his hands.`
-			`	"Now as I was saying, top of the line mesh weaves. Great comfortable and breathability. For tough spots..."`
+			`	"Now as I was saying, top of the line mesh weaves. Great comfort and breathability. For tough spots..."`
 			`	You look carefully at the suit as the proprietor's words drift uselessly out of his mouth. It has patches on top of patches, and its seals look worn and corroded. It looks like a death trap.`
-			`	"...and look just how clean it looks inside." The proprietor opens up one the seals revealing quite a bit of dried blood staining its insides. He quickly closes the seal, and wipes some sweat from his brow.`
-			`	"Perfectly normal to find in a suit. Totally unrelated to its operation. You know, pirates, just bleed a lot in general. Part of the lifestyle and all that.`
-			`	He looks at you with earnest bulging eyes. "So what do you think? I'd be willing to sell this baby to you for 400,000 credits?"`
+			`	"...and look just how clean it looks inside." The proprietor opens up one the seals, revealing quite a bit of dried blood staining its insides. He quickly closes the seal and wipes some sweat from his brow.`
+			`	"Perfectly normal to find in a suit. Totally unrelated to its operation. You know, pirates, just bleed a lot in general. Part of the lifestyle and all that."`
+			`	He looks at you with earnest, bulging eyes. "So what do you think? I'd be willing to sell this baby to you for 400,000 credits."`
 			choice
 				`	(Purchase the patched survival suit for Tim.)`
 					goto getgear
 				`	(Haggle for a lower price.)`
 					goto haggle
 				`	(Pass.)`
-
-			`	That death trap might hasten Tim's demise, not guard against it. You leave the sweating proprietor behind and head back into the emporium at large. `
+			`	That death trap might hasten Tim's demise, not guard against it. You leave the sweating proprietor behind and head back into the emporium at large.`
 				goto greenoptions
 			
 			label haggle
+			`	The proprietor's eyes dart back and forth, and then he nods vigorously.`
+			`	"Of course. Of course. Given it's... condition. It only makes sense that a discerning privateer such as yourself get a discount."`
+			`	But, uh, if anyone asks about where you got this suit from. Given the obscene value you're getting from me, do me the favor of not disclosing where you got it. I wouldn't want anyone thinking they could get a deal like this."`
+			`	He gives a nervous yet earnest smile.`
+			choice
 				`	(Offer 20,000 for the suit.)`
 					goto getgear2
 				`	(Offer 100,000 for the suit.)`
 					goto getgear3
 				`	(Offer 250,000 for the suit.)`
-			`	The proprietor's eyes dart back and forth, and then he nods vigerously.`
-			`	"Of course. Of course. Given it's... condition. It only makes sense that a discerning privateer such as yourself get a discount."`
-			`	But, uh, if anyone asks about where you got this suit from. Given the obscene value you're getting from me, do me the favor of not disclosing where you got it. I wouldn't want anyone thinking they could get a deal like this."`
-			`	He gives a nervous earnest smile.`
-				goto getgear4
+					goto getgear4
+				`	(Pass.)`
+			`	That death trap might hasten Tim's demise, not guard against it. You leave the sweating proprietor behind and head back into the emporium at large.`
+				goto greenoptions
 				
+			label suit2
+			action
+				set "suit2"
+			`	You return to the clothing stall, where the proprietor immediately hounds you again for the suit.` # Here and the pass choices might do with a little more writing.
 			choice
 				`	(Purchase the patched survival suit for Tim.)`
 					goto getgear
-				`	(Haggle for a lower the price)`
-					goto haggle1
+				`	(Haggle for a lower price.)`
+					goto haggle
 				`	(Pass.)`
-			`	That death trap might hasten Tim's demise, not guard against it. You leave the sweating proprietor behind and head back into the emporium at large. `
+			`	That death trap might hasten Tim's demise, not guard against it. You leave the sweating proprietor behind and head back into the emporium at large.`
 				goto greenoptions
-			
-			label haggle1
-			choice
-				`	(Offer 20,000 for the suit.)`
-					goto getgrear2
-				`	(Offer 100,000 for the suit.)`
-					goto getgear3
-				`	(Offer 250,000 for the suit.)`
-			`	The proprietor's eyes dart back and forth, and then he nods vigerously.`
-			`	"Of course. Of course. Given it's... condition. It only makes sense that a discerning privateer such as yourself get a discount."`
-			`	But, uh, if anyone asks about where you got this suit from. Given the obscene value you're getting from me, do me the favor of not disclosing where you got it. I wouldn't want anyone thinking they could get a deal like this."`
-			`	He gives a nervous earnest smile.`
-				goto getgear4
 
 			label getgear
 			action
-				set "timothy radrickson: greenrock gear 1"
+				set "suit2"
 				"timothy radrickson surival suit" = 1
 				payment -400000
-			`	The proprietor quickly rings you up, as if worried you'll change your mind at any moment, and gleefully takes your <payment>.`
-			`	"Safe travels, privateer." He says as you leave his stall. `
+			`	The proprietor quickly rings you up as if worried you'll change your mind at any moment, and gleefully takes your <payment>.`
+			`	"Safe travels, privateer," he says as you leave his stall. `
 				goto greenoptions
 
 			label getgear2
 			action
-				set "timothy radrickson: greenrock gear 1"
+				set "suit2"
 				"timothy radrickson surival suit" = 1
 				payment -20000
-			`	The proprietor quickly rings you up, as if worried you'll change your mind at any moment, and gleefully takes your <payment>.`
-			`	"Safe travels, privateer." He says as you leave his stall. `
+			`	The proprietor quickly rings you up as if worried you'll change your mind at any moment, and gleefully takes your <payment>.`
+			`	"Safe travels, privateer," he says as you leave his stall. `
 				goto greenoptions
 
 			label getgear3
 			action
-				set "timothy radrickson: greenrock gear 1"
+				set "suit2"
 				"timothy radrickson surival suit" = 1
 				payment -100000
-			`	The proprietor quickly rings you up, as if worried you'll change your mind at any moment, and gleefully takes your <payment>.`
-			`	"Safe travels, privateer." He says as you leave his stall. `
+			`	The proprietor quickly rings you up as if worried you'll change your mind at any moment, and gleefully takes your <payment>.`
+			`	"Safe travels, privateer," he says as you leave his stall. `
 				goto greenoptions
 
 			label getgear4
 			action
-				set "timothy radrickson: greenrock gear 1"
+				set "suit2"
 				"timothy radrickson surival suit" = 1
 				payment -250000
-			`	The proprietor quickly rings you up, as if worried you'll change your mind at any moment, and gleefully takes your <payment>.`
-			`	"Safe travels, privateer." He says as you leave his stall. `
+			`	The proprietor quickly rings you up as if worried you'll change your mind at any moment, and gleefully takes your <payment>.`
+			`	"Safe travels, privateer," he says as you leave his stall. `
 				goto greenoptions
 
 
 			label med1
 			action
-				set "timothy radrickson: greenrock medicine 1"
-			`	There are many stalls loudly advertising all kinds of illegal drugs, and it takes some work to sift through them until you come across one selling legal drugs as well.`
-			`	The man running it is sallow and pock-marked, but his eyes seem keen.`
-			`	"Whatever you need." He almost hisses, "Wherver you're going. I have you covered."`
-
+				set "med1"
+			`	There are many stalls loudly advertising all kinds of illegal drugs, and it takes some work to sift through them until you come across one selling legal drugs as well. The man running it is sallow and pock-marked, but his eyes seem keen. He almost hisses as he greets you.`
+			`	"Whatever you need, wherever you're going. I have you covered."`
 			choice
-				`	(Ask about detoxification medicine.)`
+				`	(Ask about detoxification medicine for Oblivion.)`
 					goto askdrugs
 				`	(Leave.)`
 			`	This is not the place for you. You take your leave and return to the emporium at large.`
 				goto greenoptions
 
 			label askdrugs
-			`	The drug-dealer flashes you with his yellow teeth and unnerving smile. "For every kind of toxic environment under any sun." `
-			`	He pulls out a drawer labeled, "Oblivion detoxifiers," and picks one up checking it's label.`
-			`	"It says it expired a few years ago, but that's just so the corpo's can squeeze the common man, ya know? Stuff's still good."`
-			`	"So what'dya say? It'll costya a cool 50,000 credits. But trust me, that's way cheaper than whatchya will find elsewhere."`
+			`	The drug-dealer flashes you with his yellow teeth and unnerving smile. "For every kind of toxic environment under any sun." He jolts towards his little wall of drawers, pulling out one labeled "Oblivion detoxifiers." From the drawer he picks a bottle up, checking its label.`
+			`	"It says it expired a few years ago, but that's just so the corpo's can squeeze the common man, ya know? Stuff's still good." He shrugs.`
+			`	"So what'dya say? It'll cost'ya a cool 50,000 credits. But trust me, that's way cheaper than what you'll find elsewhere."`
 			choice
 				`	(Buy the expired detoxification medicine for Tim.)`
 					goto getmed
 				`	(Pass.)`
-				`	The drug-dealer watches you go, "You won't find a better deal than this. I'll be here if you change your mind."`
+				`	The drug-dealer says as you go away, "You won't find a better deal than this. I'll be here if you change your mind."`
 					goto greenoptions
 
 			label med2
 			action
-				set "timothy radrickson: greenrock medicine 2"
+				set "med2"
 			`	The drug-dealer's knowing smile is almost a sneer as you return to his stall. He waits to see if you're ready to buy something.`
 			choice
 				`	(Buy the expired detoxification medicine for Tim.)`
@@ -8029,10 +8020,22 @@ mission "Timothy Radrickson 5d: Greenrock"
 			
 			label getmed
 			action
+				set "med2"
 				"timothy radrickson	medicine" = 2
 				payment -50000
-			`	"Trust me. It's still good." The drug-dealer says as he takes your <payment>. He hands you the drugs with a smirk.`
+			`	"Trust me, it's still good," the drug-dealer says as he takes your <payment>. He hands you the drugs with a smirk.`
 				goto greenoptions
+
+			label end
+			action
+				clear "med1"
+				clear "med2"
+				clear "suit1"
+				clear "suit2"
+				clear "id1"
+				clear "id2"
+			`	It's never wise to linger in a place like this, especially aimlessly. With your business concluded you leave Greenrock's stalls behind.`
+				decline
 
 mission "Timothy Radrickson 5e: Back to Oblivion"
 	source Oblivion
@@ -8040,6 +8043,16 @@ mission "Timothy Radrickson 5e: Back to Oblivion"
 		has "Timothy Radrickson 5a: Timshank Redemption: complete"
 	on offer
 		conversation
+			`Your ship touches down beneath Oblivion's toxic ammonia-blue sky. Night or day, there is a constant flurry of workers loading, unloading, building, and expanding the ever growing boom-town of Tukayyid. You unload all of Timothy's gear onto a dolly and push it out into the busy street.`
+			`	Your presence goes unnoticed among the general ruckus and you're able to slip into the off-loading warehouses unseen. You find frail Timothy there, leaning over a pile of hose hookups, breathing heavily. His blood red eyes rise to meet yours, and despite their bloody, milky gloss, a glimmer of hope burns within them.`
+			`	"You did it?" His words more strained than the last time you spoke, "You got the gear?"`
+			`	He looks down at your dolly expectantly.`
+			choice
+				`	"It's all here."`
+				`	"Of course I did."`
+				` 	"Yep, but you owe me big."`
+			`	He nearly drops to his knees and starts sorting through the gear. He takes heart when you tell him about Wynnafirth's gun and bomb, and how highly she still thinks of him.`
+			`	"Good secretary. Better friend." He wheezes as he checks out the rest of your gear.`
 			branch unprepared
 				"timothy radrickson preparedness" < 6
 			branch "decently prepared"
@@ -8049,55 +8062,22 @@ mission "Timothy Radrickson 5e: Back to Oblivion"
 				"timothy radrickson preparedness" > 7
 
 			label unprepared
-			`	Your ship touches down beneath Oblivion's toxic ammonia-blue sky. Night or day there is a constant flurry of workers loading, unloading, building, and expanding the ever growing boom-town of Tukayyid. You unload all of Timothy's gear onto a dolly and push it out into the busy street.`
-			`	Your presence goes unnoticed among the general ruckus and you're able to slip into the off-loading warehouses unseen. You find frail Timothy there, leaning over a pile of hose hookups, breathing heavily. His blood red eyes rise to meet yours and despite their bloody milky gloss a glimmer of hope burns within them.`	
-			`	"You did it?" His words more strained than the last time you spoke, "You got the gear?"`
-			`	He looks down at your dolly expectantly.`
-			choice
-				`	(It's all here.)`
-				`	(Of course I did.)`
-				` 	(Yep, but you owe me big.)`
-			`	He nearly drops to his knees and starts sorting through the gear. He takes heart when you tell him about Wynnfrith's gun and bomb, and how highly she still thinks of him.`
-			`	"Good secretary. Better friend." He wheezes as he checks out the rest of your gear.`
 			`	As he inspects the suit, drugs, and ID you can see his demeanor shift. He seems to inflate a little.`
-			`	Finally, he straightens back up. "You did best you could. I am sure." He eyes the gear wearily, "At least it's a chance."`
-
+			`	Finally, he straightens back up. "You did the best you could. I'm sure." He eyes the gear wearily. "At least it's a chance."`
 				goto end
 
 			label "decently prepared"
-			`	Your ship touches down beneath Oblivion's toxic ammonia-blue sky. Night or day there is a constant flurry of workers loading, unloading, building, and expanding the ever growing boom-town of Tukayyid. You unload all of Timothy's gear onto a dolly and push it out into the busy street.`
-			`	Your presence goes unnoticed among the general ruckus and you're able to slip into the off-loading warehouses unseen. You find frail Timothy there, leaning over a pile of hose hookups, breathing heavily. His blood red eyes rise to meet yours and despite their bloody milky gloss a glimmer of hope burns within them.`	
-			`	"You did it?" His words more strained than the last time you spoke, "You got the gear?"`
-			`	He looks down at your dolly expectantly.`
-			choice
-				`	(It's all here.)`
-				`	(Of course I did.)`
-				` 	(Yep, but you owe me big.)`
-			`	He nearly drops to his knees and starts sorting through the gear. He takes heart when you tell him about Wynnfrith's gun and bomb, and how highly she still thinks of him.`
-			`	"Good secretary. Better friend." He wheezes as he checks out the rest of your gear.`
 			`	As he inspects the suit, drugs, and ID you he nods to himself satisfactorialy.`
-			`	Finally, he straightens back up. "It'll do." He eyes the gear, "It'll do."`
+			`	Finally, he straightens back up. "It'll do," he says as he eyes the gear. "It'll do."`
 				goto end
 
 			label "well prepared"
-			`	Your ship touches down beneath Oblivion's toxic ammonia-blue sky. Night or day there is a constant flurry of workers loading, unloading, building, and expanding the ever growing boom-town of Tukayyid. You unload all of Timothy's gear onto a dolly and push it out into the busy street.`
-			`	Your presence goes unnoticed among the general ruckus and you're able to slip into the off-loading warehouses unseen. You find frail Timothy there, leaning over a pile of hose hookups, breathing heavily. His blood red eyes rise to meet yours and despite their bloody milky gloss a glimmer of hope burns within them.`	
-			`	"You did it?" His words more strained than the last time you spoke, "You got the gear?"`
-			`	He looks down at your dolly expectantly.`
-			choice
-				`	(It's all here.)`
-				`	(Of course I did.)`
-				` 	(Yep, but you owe me big.)`
-			`	He nearly drops to his knees and starts sorting through the gear. He takes heart when you tell him about Wynnfrith's gun and bomb, and how highly she still thinks of him.`
-			`	"Good secretary. Better friend." He wheezes as he checks out the rest of your gear.`
 			`	As he inspects the suit, drugs, and ID you can see his demeanor shift. He looks less weak, less sickly, and more confident.`
-			`	Finally, he straightens back up. "It's perfect." He eyes the gear with awe and shakes his head, "Don't know how you did it. But with this I can't fail."`
+			`	Finally, he straightens back up. "It's perfect." He eyes the gear with awe and shakes his head. "Don't know how you did it. But with this I can't fail."`
 
 			label end 
-			`	Timothy turns from you and uses the dolly to load the gear into one of the trucks in the warehouse.`
-			`	Once done he turns back to you, his eyes are wide, rimmed with bloody tears, "Always at my lowest."`
-			`	He swallows a cough, and then continues. "It's you who saves me. When I am at my lowest. It's you."`
-			`	Timothy looks like he wants to hug you, but he just nods. He hits a button on the wall and garage opens exposing the warehouse to the night air.`
+			`	Timothy turns from you and uses the dolly to load the gear into one of the trucks in the warehouse. Once done he turns back to you, his eyes are wide, rimmed with bloody tears, "Always at my lowest." He swallows a cough, and then continues. "It's you who saves me. When I am at my lowest. It's you."`
+			`	Timothy looks like he wants to hug you, but he just nods. He hits a button on the wall and the garage door opens, exposing the warehouse to the night air.`
 			` 	"Captain," he says in way of a farewell, and then he climbs aboard the truck and drives off.`
 
 mission "Timothy Radrickson 6: News of Death"
@@ -8108,9 +8088,9 @@ mission "Timothy Radrickson 6: News of Death"
 		random < 5
 	on offer
 		event "timothy radrickson forever"
-		conversation # Will be variable based on how well you prepared Tim.
+		conversation
 			`A spaceport is a symphony of smells, sounds, and images in constant motion. Somewhere in the din, a news report is playing, and a familiar name leaps out at you. Your attention piqued, you turn to watch.`
-			`	"News out of Oblivion today. A minor explosion has the claimed the life of Timothy Radrickson, former disgraced Governor of Rand. Sentenced to prison-labor on Oblivion, a hard, but fair justice for a man who..."`
+			`	"News out of Oblivion today. A minor explosion has the claimed the life of Timothy Radrickson, former disgraced Governor of Rand. Sentenced to prison-labor on Oblivion, a hard but fair justice for a man who..."`
 			`	The news broadcast continues to blare, but you aren't able to follow anymore than that.`
 				decline
 
