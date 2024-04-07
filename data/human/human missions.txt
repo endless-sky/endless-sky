@@ -7428,8 +7428,7 @@ mission "Timothy Radrickson 5b: New Britain"
 						"timothy radrickson id" = 0
 						not "id1"
 				`	(Leave the trade sector.)`
-			`	After a long day of walking about the New British spaceport and wading through the crowds of hustlers and travellers, you return to the relatively calmer terminal area at the top of the pyramid.`
-				decline
+					goto end
 
 			label med1
 			action
@@ -7463,7 +7462,7 @@ mission "Timothy Radrickson 5b: New Britain"
 				`	(Pass.)`
 			action
 				set "med2"
-			`	That price is still too expensive; you'll have to see if you can purchase a less potent and cheaper drug elsewhere. You return to the central atrium of the trade sector to consider your other options. `
+			`	That price is too expensive; you'll have to see if you can purchase a less potent and cheaper drug elsewhere. You return to the central atrium of the trade sector to consider your other options. `
 				goto options
 
 			label justright
@@ -7519,7 +7518,7 @@ mission "Timothy Radrickson 5b: New Britain"
 			action
 				set "suit1"
 			`	It doesn't take long for you to find stores stocked with flashy, expensive clothes brands. The ones catering to the wealthy, adventurous types. Hobbyists with something to prove. The gear here is attractive, mass produced, and beneath the lifestyle veneer they give off, somewhat cheap. They might not be industrial grade, but maybe they'll be good enough for Timothy. Maybe.`
-			`	The advertised price for the most heavy-duty survival suit the store stocks is only 99,999 credits, and there are numerous suits on the rack.`
+			`	There's a store named "Explorers' Element" on the corner near the central atrium which looks promising. The advertised price for the most heavy-duty survival suit they stock is only 99,999 credits, and there are numerous suits on the rack.`
 			choice
 				`	(Get the survival suit for Tim.)`
 					goto getsuit
@@ -7555,7 +7554,7 @@ mission "Timothy Radrickson 5b: New Britain"
 				`	(Give up and go get something else.)`
 					goto options
 				`	(Keep walking about.)`
-			`	You eventually reach a little forested garden area with a few benches, by one of the parking lots that serve the spaceport. Dabih's out in full force today, and you're glad to be in the shade.`
+			`	You eventually reach a little forested garden area with a few benches, by one of the parking lots that serve the spaceport. The suns of Dabih are out in full force today, and you're glad to be in the shade.`
 			`	As you recover from the heat you notice that, sitting over in the parking lot, there's a few teenagers chatting amongst themselves. The sort that look like they'd know where to get a false ID if they needed one. Perhaps they could give you some pointers.`
 			choice
 				`	(Give up and go get something else.)`
@@ -7609,10 +7608,10 @@ mission "Timothy Radrickson 5b: New Britain"
 					goto leaveid
 				`	(Wait.)`
 
-			`	Another thirty minutes pass, and just as you are about to leave, the three teens show themselves again, ID in hand.`
+			`	Another thirty minutes pass, but just as you're about to leave the three teens show themselves again, ID in hand.`
 			`	"We thought you're gonna bail out on us for bein' late. Thankfully you got the sense not to. And now ya get the goods in exchange." The middle kid hands you the ID. "Good dealin' with ya," he says as they walk off.`
 			`	As you go back to the spaceport, you take a look at the ID for the first time.`
-			`	Whoever made this clearly wasn't a professional. It looks like they've somehow botched the bar code, given the smear on the print, and the duplication of the emblem of the planetary authority of New Britain on the back is rather dodgy. But it'll have to do.`
+			`	Whoever made this clearly wasn't a professional. It looks like they've somehow botched the bar code, given the smear on the print, and the duplication of the emblem of the planetary authority of New Britain on the back is rather dodgy. But unless you can find a better alternative, it'll have to do.`
 				goto options
 
 			label leaveid
@@ -7620,11 +7619,14 @@ mission "Timothy Radrickson 5b: New Britain"
 				goto options
 
 			label end
+			action
 				clear "med1"
 				clear "med2"
 				clear "suit1"
 				clear "suit2"
 				clear "id1"
+			`	After a long day of walking about the New British spaceport and wading through the crowds of hustlers and travellers, you return to the relatively calmer terminal area at the top of the pyramid.`
+				decline
 
 mission "Timothy Radrickson 5c: Dancer"
 	description "Tim's old secretary Wynnafrith recommended that <destination> would be a good place to find a survival suit for Tim."
@@ -7635,87 +7637,86 @@ mission "Timothy Radrickson 5c: Dancer"
 		has "Timothy Radrickson 5a: Timshank Redemption: active"
 	on complete
 		conversation
-			`	Your ship shakes as it descends into Dancer's mad weather. Lightning crackles beyond your sturdy bulkheads and a panoply of colorful clouds rushes past as you boost down into in the dull light overcast light of a Dancer's subdued day.`
-			`	Low reinforced buildings are smattered around the quiet spaceport. Weather worn trails are dug into the ground with protective earth on either side and lead from one building to another. You see one leading to a spacious, if squat, clearing house.`
+			`	Your ship shakes as it descends into Dancer's mad weather. Lightning crackles beyond your sturdy bulkheads and a panoply of colorful clouds rushes past as you boost down into in the dull light overcast light of a subdued day on Dancer.`
+			`	Around the quiet spaceport, there's a smattering of low reinforced buildings, linked together by weather worn trails dug into the ground with protective earth on either side. You see one leading to a spacious, if squat, clearing house.`
 			choice
 				`	(Enter the clearing house.)`
-			`	There is an ecclectic assortment of gear, goods, supplies and equipment here. Some new, some used to the point of ruin. Unsurprisingly, given the primary industry of this world, much of it of scientific.`
-			`	A middle aged woman with deep windburned scars, and a shock of white hair greets you, "Anything worth having on Dancer can be found here. Just take a look around and let ol' Bertha know if you find anything to your liking."`
+			`	There is an eclectic assortment of gear, goods, supplies and equipment here. Some new, some used to the point of ruin. Unsurprisingly, given the primary industry of this world, much of it of scientific.`
+			`	A middle aged woman with deep windburned scars and a shock of white hair greets you as you come in. "Anything worth having on Dancer can be found here. Just take a look around and let ol' Bertha know if you find anything to your liking."`
 			label danceroptions
 			choice
 				`	(Look at the survial suits.)`
-					goto gear1
+					goto suit1
 					to display
-						not "timothy radrickson: dancer gear 1"
+						not "suit1"
 				`	(Look at the survival suits again.)`
-					goto gear2
+					goto suit2
 					to display
-						has "timothy radrickson: dancer gear 1"
-						not "timothy radrickson: dancer gear 2"
-				`	(Check to the medicine shelves.)`
+						has "suit1"
+						not "suit2"
+				`	(Check the medicine shelves.)`
 					goto med1
 					to display
-						"timothy radrickson gear" <= 1 #???
-						not "timothy radrickson: dancer medicine 1"
+						"timothy radrickson medicine" = 0
+						not "med1"
 				`	(Return to the medicine shelves.)`
 					goto med2
 					to display
-						has "timothy radrickson: dancer medicine 1"
-						not "timothy radrickson: dancer medicine 2"
-				`	(Rummage around for old ID's)`
+						has "med1"
+						not "med2"
+				`	(Rummage around for old IDs.)`
 					goto id1
 					to display
-						"timothy radrickson id" = 0 #???????????
-						not "timothy radrickson: dancer id 1"
+						"timothy radrickson id" <= 1
+						not "id1"
 				`	(Go back to where you found the ID.)`
 					goto id2
 					to display
-						has "timothy radrickson:dancer id 1.5"
-						not "timothy radrickson: dancer id 2"
-				`	(Leave the clearning house.)`
-			`	Brtha gives you a friendly nod as you make your way back outside into Dancer's foreboding weather, and the rest of the spaceport.`
-				decline
+						has "id1"
+						not "id2"
+				`	(Leave the clearing house.)`
+					goto end
 
-			label gear1
+			label suit1
 			action
-				set "timothy radrickson: dancer gear 1"
+				set "suit1"
 			`	There are a handful of surrival suits on display here. These are durable, hand-crafted suits carefully checked and rated to ensure the highest chance of survival against the fierce uncaring winds of Dancer.`
 			`	Old Bertha notices your attention and walks up to you, "Going anywhere overland on Dancer without one of these beauties is a deathwish."`
 			`	She winks at you, "Worry not though, hun. We only sell the highest rated and well-tested suits here. I won't have any one's death on my conscience, 'sides, it's bad for business."`
 			`	She pinches of the dense microwoven fabric of the nearest suit, "It's not cheap, but neither is your life. I'll see ya one of these for 300,000 credits."`
 			choice
 				`	(Purchase a survival suit for Tim.)`
-					goto getgear
-				`	(Haggle for a lower the price)`
+					goto getsuit
+				`	(Haggle to try and lower the price.)`
 					goto haggle
 				`	(Pass.)`
-			`	The Price is too steep. The woman shrugs and steps away as you turn your attention back to the rest of the store.`
+			`	300,000 credits is way too much. The woman shrugs and steps away as you turn your attention back to the rest of the store.`
 				goto danceroptions
 			
 			label haggle
-				`	Bertha gives you a sad smile and shakes her head slowly, "No room here for haggling. These are the best of the best and they are worth every red cent. I am sure you can find bottom bin ones elsewhere, but here you pay for quality."`
-				`	She folds her arms, "Now, it's 300,000 credits or nothing." `
+				`	Bertha gives you a sad smile and shakes her head slowly. "No room here for haggling. These are the best of the best and they are worth every red cent. I am sure you can find bottom bin ones elsewhere, but here you pay for quality."`
+				`	She folds her arms. "Now, it's 300,000 credits or nothing." `
 			choice
 				`	(Purchase the survival suit for Tim.)`
-					goto getgear
+					goto getsuit
 				`	(Pass.)`
 			`	Bertha sighs and then shrugs, and leaves you alone to continue browsing through her clearning house.`
 				goto danceroptions
 				
-			label gear2
+			label suit2
 			action
-				set "timothy radrickson: dancer gear 2"
-			`	You loop back to where the well-crafted survial suits hang.`
+				set "suit2"
+			`	You loop back to where the well-crafted survial suits hang, the price still at 300,000 credits.`
 			choice
 				`	(Purchase a survival suit for Tim.)`
-					goto getgear
+					goto getsuit
 				`	(Go back to browsing.)`
 			`	Not ready to make a purchase, you return to perusing the store. `
 				goto danceroptions
 
-			label getgear
+			label getsuit
 			action
-				set "timothy radrickson: dancer gear 1"
+				set "suit2"
 				"timothy radrickson surival suit" = 3
 				payment -300000
 			`	Bertha is happy to ring you up, and gives you the carefully packaged and sealed survival suit for <payment>.`
@@ -7723,20 +7724,20 @@ mission "Timothy Radrickson 5c: Dancer"
 		
 			label med1
 			action
-				set "timothy radrickson: dancer medicine 1"
+				set "med1"
 			`	There's numerous shelves filled with all kinds of drugs, and it takes you a few minutes to find the detoxification medicine. By then Bertha is once more at your side.`
-			`	"Foul winds are known to kick up toxic dust in the atomosphere, if you plan on staying here long you're likely need to take a few of these." She looks at you curiously, and then adds, "However, you may find them less useful on other worlds."`
+			`	"Foul winds are known to kick up toxic dust in the atomosphere, and if you plan on staying here long you're likely going to need to take a few of these." She looks at you curiously, and then adds, "However, you may find them less useful on other worlds."`
 			`	"Still, if you think you could use them I'd sell them to you for 10,000 credits." She adds helpfully.`
 			choice
 				`	(Buy Dancer's medicine for Tim.)`
 					goto getmed
 				`	(Pass.)`
-			`	Bertha nods, "You have the windless look of a tourist. Best to leave these for those who are going to spend some real time on Dancer."`
+			`	Bertha nods. "You have the windless look of a tourist. Best to leave these for those who are going to spend some real time on Dancer."`
 				goto danceroptions
 
 			label med2
 			action
-				set "timothy radrickson: dancer medicine 2"
+				set "med2"
 			`	The shelves of medication are just where you left them. You can grab a kit of Dancer detoxification drugs for 10,000 credits.`
 			choice
 				`	(Buy Dancer's medicine for Tim.)`
@@ -7748,19 +7749,19 @@ mission "Timothy Radrickson 5c: Dancer"
 			label getmed
 			action
 				"timothy radrickson	medicine" = 1
-				# payment -10000
-			`	Bertha packages the drugs for you and looks at with mild concern, "Remember. These really are only rated for Dancer. I do not advise using them offworld."`
-			`	She takes your <payment>, and hands you drugs.`
+				payment -10000
+			`	Bertha packages the drugs for you and looks at with mild concern. "Remember. These really are only rated for Dancer. I do not advise using them offworld."`
+			`	She takes your <payment>, and hands you the drugs.`
 				goto danceroptions
 
 			label id1
 			action
-				set "timothy radrickson: dancer id 1"
+				set "id1"
 			`	Toward the back you find various bins that are filled with what look like the unsorted personal belongings of scientists.`
-			`	Bertha sees you in the back, but doesn't join you, instead she just hollars, "Scientists are always coming and going and sometimes leave a lot behind. I'd be as pleased as a wind vane on a calm day if took any of that off my hands. Whatever you find I'll give to ya for 1,000 credits."`
-			`	You sift through the items, which are mostly clothes, before coming across a scientist's ID badge, the name reads, 'Skounce Yarling' and the picture, to your surprise, looks a little like Timothy's.`
+			`	Bertha sees you in the back but doesn't join you. Instead she just hollers, "Scientists are always coming and going and sometimes leave a lot behind. I'd be as pleased as a wind vane on a calm day if you took any of that off my hands. Whatever you find I'll give to ya for 1,000 credits."`
+			`	You sift through the items - which are mostly clothes and old lab coats - before coming across a scientist's ID card. The name reads 'Skounce Yarling' and the picture, to your surprise, looks a little like Timothy's.`
 			choice
-				`	(Buy the old ID)`
+				`	(Buy the old ID.)`
 					goto buyid
 				`	(Pass.)`
 			`	The old ID might work, but it also would be quite a risk. You leave it where you found it and go back to wandering around the store.`
@@ -7768,26 +7769,34 @@ mission "Timothy Radrickson 5c: Dancer"
 
 			label id2
 			action
-				set "timothy radrickson: dancer id 2"
+				set "id2"
 			`	You return to the bin with the Skounce Yarling's ID sitting on the top of his forlorn refuse.`
 			choice
-				`	(Buy ID for Tim.)`
+				`	(Buy the ID for Tim.)`
 					goto getid
 				`	(Pass.)`
-			`	You let sleeping ID's lie, and return to the rest of the store.`
+			`	You let sleeping IDs lie, and return to the rest of the store.`
 				goto danceroptions
-
-			label buyid
-				`One of them pulls out a small printer and asks you a few questions about what to put on the ID.`
 
 			label getid
 			action
+				set "id2"
 				"timothy radrickson id" = 2
-				# payment -1000
-			`	Bertha favors you with a mischievous grin and combs her back behind her ears, "I must admit, I have a thing for danger."`
-			`	Her eyes sparkle and her voice is a little huskier than before, "I'm not sure whatchya need this for, and I certainly don't want you to tell me. But I hope you pull it off."`
-			`	She takes your <payment>, and hands you the old ID. Her eyes lingering on you.`
+				payment -1000
+			`	Bertha favors you with a mischievous grin and combs her back behind her ears. "I must admit, I have a thing for danger." Her eyes sparkle and her voice is a little huskier than before as she says, "I'm not sure whatchya need this for, and I certainly don't want you to tell me. But I hope you pull it off."`
+			`	She takes your <payment> and hands you the old ID, her eyes lingering on you.`
 				goto danceroptions
+
+			label end
+			action
+				clear "med1"
+				clear "med2"
+				clear "suit1"
+				clear "suit2"
+				clear "id1"
+				clear "id2"
+			`	Bertha gives you a friendly nod as you make your way back outside into Dancer's foreboding weather, and the rest of the spaceport.`
+				decline
 			
 
 mission "Timothy Radrickson 5d: Greenrock"
@@ -7926,12 +7935,13 @@ mission "Timothy Radrickson 5d: Greenrock"
 				`	(Purchase the patched survival suit for Tim.)`
 					goto getgear
 				`	(Haggle for a lower the price)`
-					goto haggle
+					goto haggle1
 				`	(Pass.)`
 			`	That death trap might hasten Tim's demise, not guard against it. You leave the sweating proprietor behind and head back into the emporium at large. `
 				goto greenoptions
 			
-			label haggle
+			label haggle1
+			choice
 				`	(Offer 20,000 for the suit.)`
 					goto getgrear2
 				`	(Offer 100,000 for the suit.)`
