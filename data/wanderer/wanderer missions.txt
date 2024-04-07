@@ -63,6 +63,10 @@ mission "Wanderers: Mereti: The Plant 2"
 		conversation
 			`The two Wanderers from earlier are waiting for you in the spaceport, but this time Iriket, the terraforming director, is with them. The other two leave as she starts explaining the situation.`
 			`	"The Korath do not seem to me to be the type to [create, engineer] such a plant. I suspect it originates on one of their worlds. If we are fortunate, it may [grow, prosper] there still. From an initial look, we [believe, suspect] that it is native to either <planet>, Sopi Leftarka, or possibly one of those worlds that is so [damaged, destroyed] that it is difficult to [see, imagine] what it might once have been like."`
+			choice
+				`	`
+				`	`
+			`	"Let us [search, visit] <planet> first. It is near to the worlds of the Mereti and not in the [territory, region] of their [rivals, foes], so it seems more likely that this plant [originated, grew] there."`
 				accept
 	on complete
 		dialog `Iriket guides you to an area of high, cool steppes as you approach. You find somewhere to land the ship, and she steps out. The air that blows in through the open door stings your eyes, but Iriket seems too deep in thought to notice. "It would have [grown, originated] here, I am certain of it. But it will do so no longer, not for many [years, cycles]." Iriket bows her head and holds one wing in front of herself silently for a moment before continuing. "We must find some world with similar [regions, environments] that we can introduce it to. Perhaps we will have better luck on Sopi Leftarka."`
@@ -103,13 +107,14 @@ mission "Wanderers: Mereti: The Plant 5"
 	name "Plant to <planet>"
 	description "Escort this Wanderer ship, carrying the plant and a team of Wanderers ready to help it grow, to <destination>."
 	source "Vara Kehi'ki"
+	destination "Sopi Leftarka"
 	to offer
 		has "Wanderers: Mereti: The Plant 4: done"
 	on offer
 		conversation
-			``
+			`You arrive in the spaceport just in time to see the plant being delicately loaded onto a Strong Wind.`
 	on complete
-		event "field of mereti plants" 400
+		event "field of mereti plants" 700
 		conversation
 			``
 	npc accompany save
@@ -126,3 +131,14 @@ mission "Wanderers: Mereti: The Plant 5"
 		fleet
 			variant
 				"Model 16" 3
+
+mission "Wanderers: Mereti: The Plant Epilogue"
+	minor
+	invisible
+	to offer
+		has "event: field of mereti plants"
+	source "Sopi Leftarka"
+	on offer
+		conversation
+			``
+				decline
