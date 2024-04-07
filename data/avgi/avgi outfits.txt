@@ -17,15 +17,13 @@
 outfit "Radiative Scales"
 	plural "Radiative Scales"
 	category "Systems"
-	licenses
-		"Avgi Civilian"
 	cost 200000
 	thumbnail "outfit/unknown"
 	"mass" 12
 	"anchor point" -1
 	"heat dissipation" 0.3
 	"solar heat" 3
-	description "This modular set of graphene microchannel radiators can be mounted conformally to a ship's hull, allowing it to radiate away waste heat."
+	description "This modular set of graphene microchannel radiators can be mounted conformally to a ship's hull, improving its ability to radiate away waste heat. The radiative power scales with the temperature of the waste heat being rejected, making Radiative Scales work better for hotter-running ships."
 	description "Scales take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
 
 
@@ -34,7 +32,7 @@ outfit "Concealment Scales"
 	category "Systems"
 	licenses
 		"Twilight Guard"
-	cost 200000
+	cost 2000000
 	thumbnail "outfit/unknown"
 	"mass" 6
 	"anchor point" -1
@@ -42,8 +40,8 @@ outfit "Concealment Scales"
 	"radar jamming" 12
 	"optical jamming" 12
 	"solar heat" 6
-	description "A specialized coating of quantum dot phased array antennas, grown molecule by molecule, forms a conformal film capable of interfering with any attempts to scan or detect a ship."
-	description "Concealment Scales take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
+	description "A specialized coating of quantum dot phased array antennas, grown molecule by molecule, forms a conformal film capable of interfering with and jamming any attempts to scan or detect a ship. Working in aggregate, the phased array can be used to jam the sensors of missiles from further away, or even blind them with a low-power beam. However, the density of quantum dots required to produce these effects considerably increases the amount of sunlight absorbed by a ship using Concealment Scales, and such an advanced material does not come cheap."
+	description "Scales take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
 
 
 outfit "Nanoceramic Scales"
@@ -56,9 +54,10 @@ outfit "Nanoceramic Scales"
 	"mass" 36
 	"anchor point" -1
 	"hull multiplier" 0.33
+	"shield generation multiplier" -0.33
 	"solar heat" 3
-	description "These extra armor platings can significantly reinforce a ship's hull, but are quite bulky."
-	description "Nanoceramic Scales take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
+	description "These extra armor plates can significantly reinforce a ship's hull, but are quite heavy. The added bulk in front of a ship's shield emitters can also interfere with shield generators, impairing their ability to recharge them."
+	description "Scales take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
 
 
 outfit "Adamant Scales"
@@ -73,7 +72,7 @@ outfit "Adamant Scales"
 	"hull multiplier" 1
 	"solar heat" 3
 	description "Thanks to recent breakthroughs in materials science, the Avgi have devised this retrofitting kit to allow older ships to take advantage of the increased hull strength offered by exotic materials. These armor plates and structural members reinforce both the skin and core strength of a ship, strengthening it without compromising its internal structure."
-	description "Adamant Scales take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
+	description "Scales take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
 
 
 outfit "Warding Scales"
@@ -93,8 +92,6 @@ outfit "Warding Scales"
 
 outfit "Electrostatic Ramscoop"
 	category "Systems"
-	licenses
-		"Avgi Civilian"
 	cost 720000
 	thumbnail "outfit/unknown"
 	"mass" 12
@@ -102,14 +99,12 @@ outfit "Electrostatic Ramscoop"
 	"ramscoop" 6
 	"fuel generation" 0.03
 	"energy consumption" 1.2
-	description "A powerful bank of lasers ionizes the interstellar medium around ships equipped with these ramscoops, allowing electromagnets to collect extra material on top of the naturally charged solar wind. This results in a predictable supply of fuel, even around stars with solar winds poor in deuterium."
-	description "Ramscoops like these were used in Avgi ram-augmented torchships, allowing them to sustain constant burns during their sublight interstellar journeys."
+	description "A powerful bank of lasers ionizes the interstellar medium around ships equipped with these ramscoops, allowing electromagnets to collect extra material on top of the naturally charged solar wind. This results in a more predictable supply of fuel, even around stars with solar winds poor in deuterium. Of course, the power required for the lasers can be quite considerable."
+
 
 
 outfit "Plasmadyne Ramscoop"
 	category "Systems"
-	licenses
-		"Avgi Civilian"
 	cost 60000000
 	thumbnail "outfit/unknown"
 	"mass" 60
@@ -121,13 +116,11 @@ outfit "Plasmadyne Ramscoop"
 	"energy consumption" 9
 	weapon
 		"hardpoint sprite" "hardpoint/plasmadyne ramscoop"
-	description "With massive banks of superconducting magnets, extremely powerful magnetic fields grab ambient hydrogen atoms by their magnetic dipoles, channeling them towards a collection point without needing to first ionize them. This results in a ramscoop that is far more efficient in both fuel collection and energy use than the Electrostatic Ramscoop, but which is utterly massive in size. The magnetic stresses involved are so huge that a dedicated spinal mount is needed to use this ramscoop without tearing the ship apart."
+	description "With massive banks of superconducting magnets, extremely powerful magnetic fields grab ambient hydrogen atoms by their magnetic dipoles, channeling them towards a collection point without needing to first ionize them. This results in a ramscoop that is far more efficient in both fuel collection and energy use than the Electrostatic Ramscoop, but which is utterly massive in size. The magnetic stresses involved are so huge that a dedicated spinal mount is needed to use this ramscoop without tearing the ship apart. Ramscoops like this one were once used in Avgi ram-augmented torchships, allowing them to reach incredible velocities during their sublight interstellar journeys."
 
 
 outfit "Deuterium Slush Tank"
 	category "Systems"
-	licenses
-		"Avgi Civilian"
 	cost 90000
 	thumbnail "outfit/deuterium slush tank"
 	"mass" 3
@@ -139,8 +132,6 @@ outfit "Deuterium Slush Tank"
 
 outfit "Cryogenic Deuterium Tank"
 	category "Systems"
-	licenses
-		"Avgi Civilian"
 	cost 30000
 	thumbnail "outfit/unknown"
 	"mass" 12
@@ -152,8 +143,6 @@ outfit "Cryogenic Deuterium Tank"
 
 outfit "Thermal Sink Partition"
 	category "Systems"
-	licenses
-		"Avgi Civilian"
 	cost 84000
 	thumbnail "outfit/densified fuel tank"
 	"mass" 9
@@ -165,8 +154,6 @@ outfit "Thermal Sink Partition"
 
 outfit "Multispectral Scanner"
 	category "Systems"
-	licenses
-		"Avgi Civilian"
 	cost 24000
 	thumbnail "outfit/multispectral scanner"
 	"mass" 3
@@ -181,8 +168,6 @@ outfit "Multispectral Scanner"
 
 outfit "Spectrometer Array"
 	category "Systems"
-	licenses
-		"Avgi Civilian"
 	cost 24000
 	thumbnail "outfit/spectrometer array"
 	"mass" 6
@@ -199,8 +184,6 @@ outfit "Spectrometer Array"
 
 outfit "Diffuse Deflector"
 	category "Systems"
-	licenses
-		"Avgi Civilian"
 	cost 1200000
 	thumbnail "outfit/unknown"
 	"mass" 48
@@ -214,8 +197,6 @@ outfit "Diffuse Deflector"
 
 outfit "Specular Deflector"
 	category "Systems"
-	licenses
-		"Twilight Guard"
 	cost 2100000
 	thumbnail "outfit/unknown"
 	"mass" 72
@@ -229,15 +210,13 @@ outfit "Specular Deflector"
 
 outfit "Optical Lasing Generator"
 	category "Systems"
-	licenses
-		"Avgi Civilian"
 	cost 120000
 	thumbnail "outfit/unknown"
 	"mass" 30
 	"outfit space" -30
 	"lasing power" 6
-	description "This coil of optical fiber is dozens of kilometers long, tightly wrapped around the generator that pumps the lasing medium with the power needed to produce an intense laser beam. The produced laser light, which starts in the infrared range, can be easily tapped and routed via optical fiber to a number of turrets on a ship, eliminating the need for the heavy lasing generator to be anywhere near the turret itself."
-	description "The infrared light produced in the coil can either be sent through a frequency doubling crystal to support up to three green Phased Array Lasers, or frequency tripled to support up to two blue Phasers."
+	description "A monolithic slab of semiconductor diode is used to efficiently pump a spool of doped optical fiber. Hundreds of kilometers long, the coiled fibers serve as a lasing medium with the power needed to produce an intense beam of light, and can be gain-switched to pulse at a variety of frequencies. The produced laser light, which can be converted to a number of wavelengths, can be easily tapped and routed via optical fibers or mirrors to a number of turrets on a ship, eliminating the need for the heavy lasing generator to be anywhere near the turret itself."
+	description "The light produced in the coil can either be sent through a frequency doubling crystal to support up to two Green Optical Lasers, or frequency tripled to support a single Blue Optical Lasers."
 
 
 
@@ -246,8 +225,6 @@ outfit "Optical Lasing Generator"
 
 outfit "Concentrating Solar Cell"
 	category "Power"
-	licenses
-		"Avgi Civilian"
 	cost 12600
 	thumbnail "outfit/unknown"
 	"mass" 1
@@ -259,8 +236,6 @@ outfit "Concentrating Solar Cell"
 
 outfit "Concentrating Solar Array"
 	category "Power"
-	licenses
-		"Avgi Civilian"
 	cost 114000
 	thumbnail "outfit/unknown"
 	"mass" 3
@@ -274,8 +249,6 @@ outfit "Concentrating Solar Array"
 outfit "Photoelectric Scales"
 	plural "Photoelectric Scales"
 	category "Power"
-	licenses
-		"Avgi Civilian"
 	cost 294000
 	thumbnail "outfit/photoelectric scales"
 	"mass" 24
@@ -288,8 +261,6 @@ outfit "Photoelectric Scales"
 
 outfit "Lantern Fission Core"
 	category "Power"
-	licenses
-		"Avgi Civilian"
 	cost 1200000
 	thumbnail "outfit/lantern fission core"
 	"mass" 24
@@ -301,8 +272,6 @@ outfit "Lantern Fission Core"
 
 outfit "Ultracapacitor Cell"
 	category "Power"
-	licenses
-		"Avgi Civilian"
 	cost 20400
 	thumbnail "outfit/unknown"
 	"mass" 1
@@ -315,8 +284,6 @@ outfit "Ultracapacitor Cell"
 	
 outfit "Ultracapacitor Bank"
 	category "Power"
-	licenses
-		"Avgi Civilian"
 	cost 200000
 	thumbnail "outfit/unknown"
 	"mass" 6
@@ -331,8 +298,6 @@ outfit "Ultracapacitor Bank"
 
 outfit "Magnetoplasma Drive"
 	category "Engines"
-	licenses
-		"Avgi Civilian"
 	"cost" 30000
 	thumbnail "outfit/magnetoplasma drive"
 	"mass" 12
@@ -625,22 +590,17 @@ outfit "Lancet Adamant"
 	description "A purely ceremonial weapon, this sleek shortspear is made from a continuous piece of adamantine, or nanodiamond. While not particularly useful in the realities of modern ranged combat, it certainly looks impressive."
 
 
-outfit "Avgi Civilian License"
-	category "Licenses"
-	thumbnail "outfit/unknown"
-
 outfit "Twilight Guard License"
 	category "Licenses"
 	thumbnail "outfit/unknown"
 
+# outfit "Avgi Starfarer License"
+# 	category "Licenses"
+# 	thumbnail "outfit/unknown"
 
-outfit "Avgi Starfarer License"
-	category "Licenses"
-	thumbnail "outfit/unknown"
-
-outfit "Avgi Starship License"
-	category "Licenses"
-	thumbnail "outfit/unknown"
+# outfit "Avgi Starship License"
+# 	category "Licenses"
+# 	thumbnail "outfit/unknown"
 
 outfit "Avgi Atomics License"
 	category "Licenses"

@@ -16,8 +16,6 @@
 
 outfit "Speck Round"
 	category "Ammunition"
-	licenses
-		"Avgi Civilian"
 	cost 6
 	thumbnail "outfit/speck round"
 	"mass" 0.0015
@@ -28,8 +26,6 @@ outfit "Speck Round"
 
 outfit "Speck Magazine"
 	category "Ammunition"
-	licenses
-		"Avgi Civilian"
 	cost 60000
 	thumbnail "outfit/unknown"
 	"mass" 1.2
@@ -40,8 +36,6 @@ outfit "Speck Magazine"
 
 outfit "Speckle Railgun"
 	category "Guns"
-	licenses
-		"Avgi Civilian"
 	cost 40000
 	thumbnail "outfit/speckle gun"
 	"mass" 3.6
@@ -71,8 +65,6 @@ outfit "Speckle Railgun"
 
 outfit "Speckle Turret"
 	category "Turrets"
-	licenses
-		"Avgi Civilian"
 	cost 40000
 	thumbnail "outfit/speckle turret"
 	"mass" 10.2
@@ -128,8 +120,6 @@ effect "speck fire"
 
 outfit "Fleck Round"
 	category "Ammunition"
-	licenses
-		"Avgi Military"
 	cost 6
 	thumbnail "outfit/fleck round"
 	"mass" 0.009
@@ -139,8 +129,6 @@ outfit "Fleck Round"
 
 outfit "Fleck Magazine"
 	category "Ammunition"
-	licenses
-		"Avgi Military"
 	cost 60000
 	thumbnail "outfit/unknown"
 	"mass" 4.2
@@ -151,8 +139,6 @@ outfit "Fleck Magazine"
 
 outfit "Fleck Coilgun"
 	category "Guns"
-	licenses
-		"Avgi Military"
 	cost 40000
 	thumbnail "outfit/fleck coilgun"
 	"mass" 7.2
@@ -181,7 +167,7 @@ outfit "Fleck Coilgun"
 outfit "Fleck Turret"
 	category "Turrets"
 	licenses
-		"Avgi Military"
+		"Twilight Guard"
 	cost 40000
 	thumbnail "outfit/fleck turret"
 	"mass" 17.4
@@ -236,56 +222,52 @@ effect "fleck fire"
 
 # Energy Weapons:
 
-outfit "Phased Array Laser (Green)"
-	plural "Phased Array Lasers (Green)"
+outfit "Green Optical Laser"
 	category "Turrets"
-	licenses
-		"Avgi Civilian"
 	cost 120000
-	thumbnail "outfit/green phaser"
+	thumbnail "outfit/avgi green laser"
 	"mass" 6
 	"outfit space" -6
 	"weapon capacity" -6
 	"turret mounts" -1
 	"optical jamming" 9
-	"lasing power" -2
+	"lasing power" -3
 	weapon
-		"hardpoint sprite" "hardpoint/green phaser"
+		"hardpoint sprite" "hardpoint/avgi green laser"
 		"die effect" "laser ejecta" 4
-		"die effect" "green phaser reflection" 30
-		"die effect" "green phaser scattering"
-		"fire effect" "green phaser fire"
+		"die effect" "green laser reflection" 30
+		"die effect" "green laser scattering"
+		"fire effect" "green laser fire"
 		"anti-missile" 3
 		"velocity" 1200
 		"lifetime" 1
 		"reload" 1
 		"firing energy" 12
 		"firing heat" 9
-	description "This phased array laser, or phaser, binds thousands of individual optical fibers together to create a single collimated beam precise enough to target projectiles in flight. A verdant glow strong enough to blind the naked eye is the only indication of this weapon firing."
-	description "The turret itself only contains the optics needed to synthesize and target the beam, allowing the laser light to be produced elsewhere. Because of this, an Optical Lasing Generator is needed to run this turret, providing enough power to support three Green Phasers."
+	description "This lightweight turret can be fed a beam of light from a lasing generator, which is then combined and focused to produce an intense beam suitable for targeting and destroying missiles. Unlike a typical pulsed-shot human antimissile system, this turret seems designed to hold a beam on target at an extreme distance for a longer period of time using its precise optics, making it better suited for defending and supporting other ships from afar."
+	description "The turret itself only contains the optics needed to synthesize, focus, and target the beam, allowing the laser light to be produced elsewhere. Because of this, an Optical Lasing Generator is needed to run this turret, providing enough power to support two Green Lasers."
 
 
-outfit "Phased Array Laser (Blue)"
-	plural "Phased Array Lasers (Blue)"
+outfit "Blue Optical Laser"
 	category "Turrets"
 	licenses
-		"Avgi Military"
+		"Twilight Guard"
 	cost 120000
-	thumbnail "outfit/blue phaser"
+	thumbnail "outfit/avgi blue laser"
 	"mass" 9
 	"outfit space" -9
 	"weapon capacity" -9
 	"turret mounts" -1
 	"optical jamming" 12
-	"lasing power" -3
+	"lasing power" -6
 	weapon
-		"hardpoint sprite" "hardpoint/blue phaser"
-		sprite "projectile/avgi phaser blue"
+		"hardpoint sprite" "hardpoint/avgi blue laser"
+		sprite "projectile/avgi laser blue"
 			"frame rate" 1
 		"hit effect" "laser ejecta" 4
-		"hit effect" "blue phaser reflection" 30
-		"hit effect" "blue phaser scattering"
-		"fire effect" "blue phaser fire"
+		"hit effect" "blue laser reflection" 30
+		"hit effect" "blue laser scattering"
+		"fire effect" "blue laser fire"
 		"velocity" 3600
 		"lifetime" 1
 		"reload" 1
@@ -296,9 +278,8 @@ outfit "Phased Array Laser (Blue)"
 		"hull damage" 4.2
 		"heat damage" 6
 		"damage dropoff" 0 3600
-	description "This phased array laser, or phaser, binds thousands of individual optical fibers together to create a single collimated beam precise enough to target projectiles in flight. An azure glow strong enough to blind the naked eye is the only indication of this weapon firing."
-	description "The turret itself only contains the optics needed to synthesize and target the beam, allowing the laser light to be produced elsewhere. Because of this, an Optical Lasing Generator is needed to run this turret, providing enough power to support two Blue Phasers."
-	description "Without the advanced insights needed to produce classical 'beam weapons' such as those used by humans and other species, the laser suffers from diffraction as it travels. This causes its damage to rapidly drop off with distance, becoming almost useless at its maximum range."
+	description "This lightweight turret can be fed a beam of light from a lasing generator, which is then combined and focused to produce an intense beam ideal for damaging other ships. By pulsing thousands of times each second, the beam can create thermal and mechanical shocks in the target material, enhancing its ability to drill through armor. Unlike the advanced beam weapons used by some other species, this laser is subject to the effects of diffraction, causing its damage to become less intense with distance while also rendering it invisible. However, precise optics allow the beam to be targeted from an exceptional range, despite the tenuous damage at the edge of the laser's reach."
+	description "The turret itself only contains the optics needed to synthesize, focus, and target the beam, allowing the laser light to be produced elsewhere. Because of this, an Optical Lasing Generator is needed to run this turret, providing enough power to support a single Blue Laser."
 
 
 effect "laser ejecta"
@@ -312,7 +293,7 @@ effect "laser ejecta"
 	"random velocity" -12
 	"velocity scale" -0.003
 
-effect "blue phaser reflection"
+effect "blue laser reflection"
 	sprite "effect/skylance impact"
 		"no repeat"
 		"frame rate" 20
@@ -322,27 +303,27 @@ effect "blue phaser reflection"
 	"random velocity" -12
 	"velocity scale" -0.0009
 
-effect "blue phaser scattering"
+effect "blue laser scattering"
 	sprite "effect/skylance impact"
 		"frame rate" 3
 		"scale" 0.5
 	"lifetime" 3
 	"velocity scale" 0
 	
-effect "blue phaser fire"
+effect "blue laser fire"
 	sprite "effect/ion rain impact"
 		"frame rate" 4
 		"random start frame"
 	"lifetime" 1
 
-effect "green phaser scattering"
+effect "green laser scattering"
 	sprite "effect/heavy laser impact"
 		"frame rate" 30
 		"random start frame"
 	"lifetime" 1
 	"velocity scale" 0
 
-effect "green phaser reflection"
+effect "green laser reflection"
 	sprite "effect/heavy laser impact"
 		"frame rate" 20
 		"random start frame"
@@ -351,15 +332,13 @@ effect "green phaser reflection"
 	"random lifetime" 2
 	"random velocity" -24
 	
-effect "green phaser fire"
+effect "green laser fire"
 	sprite "effect/heavy laser impact"
 		"frame rate" 5
 	"lifetime" 1
 
 outfit "Ultrarelativistic Electron Beam"
 	category "Guns"
-	licenses
-		"Avgi Civilian"
 	cost 40000
 	thumbnail "outfit/unknown"
 	"mass" 90
@@ -418,7 +397,7 @@ effect "electron flare"
 outfit `"Dart" Kinetic Missile`
 	category "Ammunition"
 	licenses
-		"Avgi Military"
+		"Twilight Guard"
 	cost 600
 	thumbnail "outfit/dart missile"
 	"mass" 0.15
@@ -429,7 +408,7 @@ outfit `"Dart" Kinetic Missile`
 outfit "Dart Magazine"
 	category "Ammunition"
 	licenses
-		"Avgi Military"
+		"Twilight Guard"
 	cost 1440000
 	thumbnail "outfit/unknown"
 	"mass" 3
@@ -442,7 +421,7 @@ outfit "Dart Magazine"
 outfit "Dart Launcher"
 	category "Secondary Weapons"
 	licenses
-		"Avgi Military"
+		"Twilight Guard"
 	cost 1370000
 	thumbnail "outfit/unknown"
 	"mass" 6
@@ -476,7 +455,7 @@ outfit "Dart Launcher"
 outfit "Dart Launch Array"
 	category "Secondary Weapons"
 	licenses
-		"Avgi Military"
+		"Twilight Guard"
 	cost 1370000
 	thumbnail "outfit/unknown"
 	"mass" 9

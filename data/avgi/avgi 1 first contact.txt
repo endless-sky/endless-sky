@@ -212,7 +212,7 @@ mission "Avgi: First Contact"
 				`	"Who are you?"`
 			`	The alien directly across from you, gray-white in color, begins speaking with the aid of another of the translator devices, this time taking on a feminine voice.`
 			`	"Invitation. I apologize for the inconvenience of traveling so far from your ship to meet us, but I was advised against being present for your arrival for fear of any unexpected hostilities, as small as such chances were estimated. My name, for lack of a direct translation, is 'Asime,' and with me are Speakers Prasinos and Galano. Together, we represent the Avgi Consonance as the First Speakers of the Assembly of Polities."`
-			`	Prasinos, in grass-green, and Galano, a milky-white Avgi that looks vaguely aged, both wave at you with their forelimbs in a surreal imitation of the human gesture.`
+			`	Prasinos, in grass-green, and Galano, a milky-white Avgi that looks vaguely aged somehow, both wave at you with their forelimbs in a surreal imitation of the human gesture.`
 			choice
 				`	"How can you speak my language?"`
 					goto humans

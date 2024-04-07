@@ -155,7 +155,7 @@ ship "Melodikos"
 			"hull damage" 360
 			"hit force" 270
 	outfits
-		"Phased Array Laser (Green)" 2
+		"Green Optical Laser" 2
 
 		"Ultracapacitor Bank" 2
 		"Diffuse Deflector"
@@ -412,7 +412,7 @@ ship "Harmonikos"
 			"hull damage" 360
 			"hit force" 270
 	outfits
-		"Phased Array Laser (Green)" 2
+		"Green Optical Laser" 2
 
 		"Ultracapacitor Bank" 2
 		"Diffuse Deflector"
@@ -692,8 +692,8 @@ ship "Polari"
 			"hull damage" 360
 			"hit force" 480
 	outfits
-		"Phased Array Laser (Blue)"
-		"Phased Array Laser (Green)"
+		"Blue Optical Laser"
+		"Green Optical Laser"
 
 		"Photoelectric Scales"
 		"Ultracapacitor Cell" 3
@@ -712,8 +712,8 @@ ship "Polari"
 		"XY-180 Radial Thrusters"
 		"Hyperdrive"
 
-	turret -14 27 "Phased Array Laser (Green)"
-	turret 14 27 "Phased Array Laser (Blue)"
+	turret -14 27 "Green Optical Laser"
+	turret 14 27 "Blue Optical Laser"
 
 	bay "Drone" -9 -25
 	bay "Drone" 9 -25
@@ -774,14 +774,14 @@ ship "Entasi"
 		"engine capacity" 42
 		"solar collection" 12
 		"solar heat" 3.6
-		"anchor point" 2
+		"anchor point" 1
 		weapon
 			"blast radius" 360
 			"shield damage" 1800
 			"hull damage" 1200
 			"hit force" 1200
 	outfits
-		"Phased Array Laser (Blue)" 2
+		"Blue Optical Laser" 2
 		"Dart Launcher" 2
 		`"Dart" Kinetic Missile` 120
 
@@ -799,8 +799,8 @@ ship "Entasi"
 	gun 36 9 "Dart Launcher"
 	gun -36 9
 	gun 36 9
-	turret -10 72 "Phased Array Laser (Blue)"
-	turret 10 72 "Phased Array Laser (Blue)"
+	turret -10 72 "Blue Optical Laser"
+	turret 10 72 "Blue Optical Laser"
 	turret 0 -4
 	bay "Fighter" 0 -30
 		over
@@ -901,13 +901,13 @@ ship "Undsyni"
 		"weapon capacity" 153
 		"engine capacity" 168
 		"spinal mount" 1
-		"anchor point" 3
+		"anchor point" 2
 			"blast radius" 540
 			"shield damage" 3600
 			"hull damage" 2400
 			"hit force" 4800
 	outfits
-		"Phased Array Laser (Green)" 3
+		"Green Optical Laser" 3
 		"Speckle Turret" 2
 		"Speck Round" 14400
 		"Dart Launcher" 2
@@ -936,9 +936,9 @@ ship "Undsyni"
 		angle 90
 	turret -33 -138 "Speckle Turret"
 	turret 33 -138 "Speckle Turret"
-	turret 0 -30 "Phased Array Laser (Green)"
-	turret 0 42 "Phased Array Laser (Green)"
-	turret 0 186 "Phased Array Laser (Green)"
+	turret 0 -30 "Green Optical Laser"
+	turret 0 42 "Green Optical Laser"
+	turret 0 186 "Green Optical Laser"
 
 	bay "Drone" -65.5 3
 	bay "Drone" 65.5 3
@@ -981,7 +981,7 @@ ship "Undsyni"
 
 ship "Undsyni" "Undsyni (Tanker)"
 	outfits
-		"Phased Array Laser (Green)" 3
+		"Green Optical Laser" 3
 		"Speckle Turret" 2
 		"Speck Round" 14400
 		"Dart Launcher" 2
@@ -1025,15 +1025,15 @@ ship "Modified Tachytia"
 		"weapon capacity" 180
 		"engine capacity" 420
 		"spinal mount" 1
-		"anchor point" 6
+		"anchor point" 3
 		weapon
 			"blast radius" 900
 			"shield damage" 14400
 			"hull damage" 14400
 			"hit force" 9000
 	outfits
-		"Phased Array Laser (Blue)" 6
-		"Phased Array Laser (Green)" 3
+		"Blue Optical Laser" 6
+		"Green Optical Laser" 3
 		"Plasmadyne Ramscoop"
 
 		"Lantern Fission Core" 3
@@ -1043,8 +1043,7 @@ ship "Modified Tachytia"
 		"Optical Lasing Generator" 4
 		"Multispectral Scanner" 9
 		"Electrostatic Ramscoop" 3
-		"Concealment Scales" 3
-		"Nanoceramic Scales"
+		"Concealment Scales"
 		"Radiative Scales"
 		"Electromotive Rifle" 600
 		
@@ -1052,15 +1051,15 @@ ship "Modified Tachytia"
 		"Inductive Extractor" 6
 		"Hyperdrive"
 
-	turret 36 183 "Phased Array Laser (Blue)"
-	turret -36 183 "Phased Array Laser (Blue)"
-	turret -44 354 "Phased Array Laser (Blue)"
-	turret 44 354 "Phased Array Laser (Blue)"
-	turret -28.5 -333 "Phased Array Laser (Blue)"
-	turret 28.5 -333 "Phased Array Laser (Blue)"
-	turret 0 6 "Phased Array Laser (Green)"
-	turret 0 -367 "Phased Array Laser (Green)"
-	turret 0 480 "Phased Array Laser (Green)"
+	turret 36 183 "Blue Optical Laser"
+	turret -36 183 "Blue Optical Laser"
+	turret -44 354 "Blue Optical Laser"
+	turret 44 354 "Blue Optical Laser"
+	turret -28.5 -333 "Blue Optical Laser"
+	turret 28.5 -333 "Blue Optical Laser"
+	turret 0 6 "Green Optical Laser"
+	turret 0 -367 "Green Optical Laser"
+	turret 0 480 "Green Optical Laser"
 	gun 0 -384 "Plasmadyne Ramscoop"
 
 	bay "Drone" -18 420
@@ -1226,14 +1225,14 @@ ship "Prismaios"
 		"outfit space" 360
 		"weapon capacity" 96
 		"engine capacity" 96
-		"anchor point" 2
+		"anchor point" 1
 		weapon
 			"blast radius" 240
 			"shield damage" 1500
 			"hull damage" 900
 			"hit force" 1200
 	outfits
-		"Phased Array Laser (Green)"
+		"Green Optical Laser"
 		"Speckle Turret" 2
 		"Speck Round" 14400
 		"Dart Launcher" 2
@@ -1278,7 +1277,7 @@ ship "Prismaios"
 		angle 90
 	turret -9 18 "Speckle Turret"
 	turret 9 18 "Speckle Turret"
-	turret 0 90 "Phased Array Laser (Green)"
+	turret 0 90 "Green Optical Laser"
 
 	leak "leak" 30 60
 	leak "flame" 30 90
@@ -1292,7 +1291,7 @@ ship "Prismaios"
 
 ship "Prismaios" "Prismaios (Coilgun)"
 	outfits
-		"Phased Array Laser (Green)"
+		"Green Optical Laser"
 		"Fleck Turret" 2
 		"Fleck Round" 4800
 
@@ -1311,7 +1310,7 @@ ship "Prismaios" "Prismaios (Coilgun)"
 
 ship "Prismaios" "Prismaios (Atomic)"
 	outfits
-		"Phased Array Laser (Green)"
+		"Green Optical Laser"
 		"Speckle Turret" 2
 		"Speck Round" 14400
 		"Rush Launcher" 2
@@ -1359,7 +1358,7 @@ ship "Interferos"
 			"hull damage" 450
 			"hit force" 900
 	outfits
-		"Phased Array Laser (Green)" 2
+		"Green Optical Laser" 2
 		"Dart Launcher" 4
 		`"Dart" Kinetic Missile` 240
 
@@ -1382,8 +1381,8 @@ ship "Interferos"
 		angle -60
 	gun 33 -42 "Dart Launcher"
 		angle 60
-	turret -21.5 -81 "Phased Array Laser (Green)"
-	turret 21.5 -81 "Phased Array Laser (Green)"
+	turret -21.5 -81 "Green Optical Laser"
+	turret 21.5 -81 "Green Optical Laser"
 	turret 0 -48
 
 	engine 0 99
@@ -1436,14 +1435,14 @@ ship "Diaspersi"
 		"outfit space" 420
 		"weapon capacity" 96
 		"engine capacity" 114
-		"anchor point" 2
+		"anchor point" 1
 		weapon
 			"blast radius" 360
 			"shield damage" 2400
 			"hull damage" 1800
 			"hit force" 2400
 	outfits
-		"Phased Array Laser (Green)" 2
+		"Green Optical Laser" 2
 		"Fleck Turret"
 		"Fleck Round" 2400
 		"Dart Launcher" 2
@@ -1470,8 +1469,8 @@ ship "Diaspersi"
 		angle -90
 	gun 18 -9 "Dart Launcher"
 		angle 90
-	turret -9 12 "Phased Array Laser (Green)"
-	turret 9 12 "Phased Array Laser (Green)"
+	turret -9 12 "Green Optical Laser"
+	turret 9 12 "Green Optical Laser"
 	turret 0 51 "Fleck Turret"
 
 	bay "Fighter" 0 -63
@@ -1520,7 +1519,7 @@ ship "Diaspersi"
 
 ship "Diaspersi" "Diaspersi (Atomic)"
 	outfits
-		"Phased Array Laser (Green)" 2
+		"Green Optical Laser" 2
 		"Fleck Turret"
 		"Fleck Round" 2400
 		"Rush Launcher" 2
@@ -1564,14 +1563,14 @@ ship "Difraktos"
 		"outfit space" 540
 		"weapon capacity" 252
 		"engine capacity" 132
-		"anchor point" 2
+		"anchor point" 1
 		weapon
 			"blast radius" 420
 			"shield damage" 4800
 			"hull damage" 3600
 			"hit force" 3600
 	outfits
-		"Phased Array Laser (Green)" 2
+		"Green Optical Laser" 2
 		"Fleck Turret" 2
 		"Fleck Round" 4800
 		"Dart Launch Array" 2
@@ -1603,8 +1602,8 @@ ship "Difraktos"
 	turret 9 -87 "Dart Launch Array"
 	turret -9 -66
 	turret 9 -66
-	turret 0 36 "Phased Array Laser (Green)"
-	turret 0 90 "Phased Array Laser (Green)"
+	turret 0 36 "Green Optical Laser"
+	turret 0 90 "Green Optical Laser"
 
 	bay "Drone" -21 -21
 	bay "Drone" 21 -21
@@ -1661,7 +1660,7 @@ ship "Difraktos" "Difraktos (Missile)"
 
 ship "Difraktos" "Difraktos (Kinetic)"
 	outfits
-		"Phased Array Laser (Green)" 2
+		"Green Optical Laser" 2
 		"Fleck Turret" 6
 		"Fleck Magazine"
 		"Fleck Round" 15600
@@ -1682,7 +1681,7 @@ ship "Difraktos" "Difraktos (Kinetic)"
 
 ship "Difraktos" "Difraktos (Atomic)"
 	outfits
-		"Phased Array Laser (Green)" 3
+		"Green Optical Laser" 3
 		"Fleck Turret" 2
 		"Fleck Round" 4800
 		"Rush Launch Array" 3
@@ -1732,8 +1731,8 @@ ship "Refraktos"
 			"hull damage" 440
 			"hit force" 1320
 	outfits
-		"Phased Array Laser (Blue)" 4
-		"Phased Array Laser (Green)" 3
+		"Blue Optical Laser" 4
+		"Green Optical Laser" 3
 
 		"Photoelectric Scales"
 		"Ultracapacitor Bank" 2
@@ -1758,13 +1757,13 @@ ship "Refraktos"
 		angle -90
 	gun 24 -9
 		angle 90
-	turret -18 -81 "Phased Array Laser (Blue)"
-	turret 18 -81 "Phased Array Laser (Blue)"
-	turret -18 -72 "Phased Array Laser (Blue)"
-	turret 18 -72 "Phased Array Laser (Blue)"
-	turret -21 -60 "Phased Array Laser (Green)"
-	turret 21 -60 "Phased Array Laser (Green)"
-	turret 0 54 "Phased Array Laser (Green)"
+	turret -18 -81 "Blue Optical Laser"
+	turret 18 -81 "Blue Optical Laser"
+	turret -18 -72 "Blue Optical Laser"
+	turret 18 -72 "Blue Optical Laser"
+	turret -21 -60 "Green Optical Laser"
+	turret 21 -60 "Green Optical Laser"
+	turret 0 54 "Green Optical Laser"
 
 	engine 0 150
 		gimbal 6
@@ -1821,7 +1820,7 @@ ship "Atenuatia"
 		"outfit space" 690
 		"weapon capacity" 180
 		"engine capacity" 174
-		"anchor point" 3
+		"anchor point" 2
 		weapon
 			"blast radius" 540
 			"shield damage" 6400
@@ -1830,8 +1829,8 @@ ship "Atenuatia"
 	outfits
 		"Fleck Turret"
 		"Fleck Round" 2400
-		"Phased Array Laser (Blue)" 2
-		"Phased Array Laser (Green)" 3
+		"Blue Optical Laser" 2
+		"Green Optical Laser" 3
 		"Dart Launch Array" 2
 		"Dart Magazine" 6
 		`"Dart" Kinetic Missile` 840
@@ -1876,13 +1875,13 @@ ship "Atenuatia"
 		angle -90
 	gun 15 -108
 		angle 90
-	turret 0 -252 "Phased Array Laser (Green)"
-	turret 60 -174 "Phased Array Laser (Blue)"
-	turret -60 -174 "Phased Array Laser (Blue)"
+	turret 0 -252 "Green Optical Laser"
+	turret 60 -174 "Blue Optical Laser"
+	turret -60 -174 "Blue Optical Laser"
 	turret 0 -96
 	turret 0 -36 "Dart Launch Array"
-	turret 0 30 "Phased Array Laser (Green)"
-	turret 0 96 "Phased Array Laser (Green)"
+	turret 0 30 "Green Optical Laser"
+	turret 0 96 "Green Optical Laser"
 	turret 0 160
 
 	bay "Drone" -24 -234
@@ -1933,8 +1932,8 @@ ship "Atenuatia" "Atenuatia (Atomic)"
 	outfits
 		"Fleck Turret"
 		"Fleck Round" 2400
-		"Phased Array Laser (Blue)" 2
-		"Phased Array Laser (Green)" 3
+		"Blue Optical Laser" 2
+		"Green Optical Laser" 3
 		"Rush Launch Array"
 		"Equinox Torpedo Stockpile" 6
 		"Equinox Torpedo" 72
