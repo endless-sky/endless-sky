@@ -8114,7 +8114,7 @@ event "timothy radrickson forever"
 mission "Timothy Radrickson 7: Monk"
 	source "New Tibet"
 	to offer
-		random < 5
+		random < 25
 		has "event: timothy radrickson forever"
 	on offer
 		conversation
