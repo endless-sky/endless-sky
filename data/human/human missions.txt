@@ -7984,6 +7984,51 @@ mission "Timothy Radrickson 5d: Greenrock"
 			`	"Safe travels, privateer." He says as you leave his stall. `
 				goto greenoptions
 
+
+			label med1
+			action
+				set "timothy radrickson: greenrock medicine 1"
+			`	There are many stalls loudly advertising all kinds of illegal drugs, and it takes some work to sift through them until you come across one selling legal drugs as well.`
+			`	The man running it is sallow and pock-marked, but his eyes seem keen.`
+			`	"Whatever you need." He almost hisses, "Wherver you're going. I have you covered."`
+
+			choice
+				`	(Ask about detoxification medicine.)`
+					goto askdrugs
+				`	(Leave.)`
+			`	This is not the place for you. You take your leave and return to the emporium at large.`
+				goto greenoptions
+
+			label askdrugs
+			`	The drug-dealer flashes you with his yellow teeth and unnerving smile. "For every kind of toxic environment under any sun." `
+			`	He pulls out a drawer labeled, "Oblivion detoxifiers," and picks one up checking it's label.`
+			`	"It says it expired a few years ago, but that's just so the corpo's can squeeze the common man, ya know? Stuff's still good."`
+			`	"So what'dya say? It'll costya a cool 50,000 credits. But trust me, that's way cheaper than whatchya will find elsewhere."`
+			choice
+				`	(Buy the expired detoxification medicine for Tim.)`
+					goto getmed
+				`	(Pass.)`
+				`	The drug-dealer watches you go, "You won't find a better deal than this. I'll be here if you change your mind."`
+					goto greenoptions
+
+			label med2
+			action
+				set "timothy radrickson: greenrock medicine 2"
+			`	The drug-dealer's knowing smile is almost a sneer as you return to his stall. He waits to see if you're ready to buy something.`
+			choice
+				`	(Buy the expired detoxification medicine for Tim.)`
+					goto getmed
+				`	(Pass.)`
+			`	You leave the drug-dealer behind and head back into the emporium.`
+				goto greenoptions
+			
+			label getmed
+			action
+				"timothy radrickson	medicine" = 2
+				payment -50000
+			`	"Trust me. It's still good." The drug-dealer says as he takes your <payment>. He hands you the drugs with a smirk.`
+				goto greenoptions
+
 mission "Timothy Radrickson 5e: Back to Oblivion"
 	source Oblivion
 	to offer 
