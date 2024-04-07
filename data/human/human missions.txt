@@ -7679,7 +7679,7 @@ mission "Timothy Radrickson 5c: Dancer"
 
 			label gear1
 			action
-				set "timothy radrickson: dancer gear1"
+				set "timothy radrickson: dancer gear 1"
 			`	There are a handful of surrival suits on display here. These are durable, hand-crafted suits carefully checked and rated to ensure the highest chance of survival against the fierce uncaring winds of Dancer.`
 			`	Old Bertha notices your attention and walks up to you, "Going anywhere overland on Dancer without one of these beauties is a deathwish."`
 			`	She winks at you, "Worry not though, hun. We only sell the highest rated and well-tested suits here. I won't have any one's death on my conscience, 'sides, it's bad for business."`
@@ -7785,7 +7785,7 @@ mission "Timothy Radrickson 5c: Dancer"
 			action
 				"timothy radrickson id" = 2
 				# payment -1000
-			`	Bertha favors you with a mischievous grin and combs her back behind her ears, "I must admit, I find dangerous types attractive"`
+			`	Bertha favors you with a mischievous grin and combs her back behind her ears, "I must admit, I have a thing for danger."`
 			`	Her eyes sparkle and her voice is a little huskier than before, "I'm not sure whatchya need this for, and I certainly don't want you to tell me. But I hope you pull it off."`
 			`	She takes your <payment>, and hands you the old ID. Her eyes lingering on you.`
 				goto danceroptions
@@ -7805,8 +7805,184 @@ mission "Timothy Radrickson 5d: Greenrock"
 			`	You feel the pressure of unseen eyes watching you as you leave the spaceport and enter into the sprawling stalls of Greenrock's rowdy emporium. Where everything and everyone is for sale.`
 			`	The civic inferstructure leaves something to be desired you can taste a squilid sewer related scent upon the air. You have to weave past various hucksters all trying to get your attention for whatever or whoever they're selling.`
 			`	Finally you reach the center of the emporium and discover a poorly designed map.`
+			label greenoptions
+			choice
+				`	(Find someone that can procure a fake ID for you.)`
+					goto id1
+					to display
+						not "timothy radrickson: greenrock id 1"
+				`	(Haggle with the medicine salesman again.)`
+					goto id2
+					to display
+						has "timothy radrickson: greenrock id 1"
+						not "timothy radrickson: greenrock id 2"
+				`	(Look for environmental gear.)`
+					goto gear1
+					to display
+						"timothy radrickson gear" <= 1 #??????
+						not "timothy radrickson: greenrock gear 1"
+				`	(Return to the shop to buy the environmental gear.)`
+					goto gear2
+					to display
+						has "timothy radrickson: greenrock gear 1"
+						not "timothy radrickson: greenrock gear 2"
+				`	(Find the detoxification medicine.)`
+					goto med1
+					to display
+						"timothy radrickson id" = 0 #????
+						not "timothy radrickson: greenrock id 1"
+				`	(Find the kids who said they'd procure a fake ID for you.)`
+					goto med2
+					to display
+						has "timothy radrickson: greenrock id 1.5"
+						not "timothy radrickson: greenrock id 2" #??????????????
+				`	(Leave the emporium.)`
+			`	It's never wise to linger in a place like this, especially aimlessly. With your business concluded you leave the Greenrock's stalls behind.`
+				decline
+			
+			label id1
+			action
+				set "timothy radrickson: greenrock id 1"
+			`	There's more than half dozen stalls all advertising their high skills and production value when it comes to the art of crafting Fake ID's.`
+			`	Most the stalls and their employees have a garish, sloppy, and boostful manner, but one with a more professional and constrained feel attracts your attention.`
+			`	It's ran by an older gentleman who has all the looked of a respectable watchmaker. He nods at you politely as you approach.`
+			`	"Good day to you. I am Ivaldur the Forger, and what can I do for you?"`
+			choice
+				`	(Ask about procuring a Fake ID)`
+					goto ask
+				`	(Turn around and leave.)`
+			`	For whatever reason you are not interested in doing business with Ivaldur the Forger and promptly head back out into the emporium.`
+				goto greenoptions
+			
+			label ask
+			`	The old man smiles at you good naturedly, "Simple enough request. I can provide you with an ID, and a complex matching background that will pass all but the most exhasustive of checks."`
+			`	He gives off an aura of quiet confidence as he speaks, "Unless your friend is a war criminal being hunted by Republic Intelligence he will be able to seamlessly integrate into life on human world."`
+			`	He paushes as if considering something, and then adds, "If he is a war criminal on the run from Republic Intelligence.. I could also come up with something, but that would be a premium service I doubt you need at the moment."`
+			`	Ivaldur adjusts spectacles, "The going rate for my basic service is 350,000 credits."`
+			`	He looks at you expectantly and waits.`
+			choice
+				`	(Pay 350,000 credits for a Fake ID and history for Tim.)`
+					goto getid
+				`	(Pass.)`
+			`	He simply nods and gives you a knowing look. "I acknowledge the fee seems high, but rest assured the service I provide is well worth it."`
+			`	"I'll be here if you change your mind." `
+				goto greenoptions
 
+			label id2
+			action
+				set "timothy radrickson: greenrock id 2"
+			`	Your return to Ivaldur the Forger's stall.`
+			`	The old man just gives a curt nod and awaits your decision.`
+			choice
+				`	(Pay 350,000 credits for a Fake ID and history for Tim.)`
+					goto getid
+				`	(Pass.)`
+			`	Without speaking you again leave Ivaldur's stall.`
+				goto greenoptions
+
+			label getid
+			action
+				"timothy radrickson id" = 3
+				# payment -350000
+			`	Ivaldur's eyes light up and he immediately gets to work. From his panel he backdoors his way into various databases, diving into the code with an obvious alacrity and unbridled joy.`
+			`	Whole histories, lives, records and attachments burst into existence in a dozen corners of official networks and reports. It becomes apparent that he is not creating a Fake ID, the ID he creates is real. It is sanctioned, stamped, and endorsed by multiple governing bodies. No, what Ivaldur has done is create a fake person, and this is that person's real ID.`
+			`	When he finishes he says nothing and instead basks in a job well done. Finally, he turns to you for payment. <payment> is transferred into his account, and he hands you brand new ID card.`
+			`	"It was a pleasure." He says in a satisfied voice.`
+				goto greenoptions
 		
+			label gear1
+			action
+				set "timothy radrickson: greenrock gear 1"
+			`	You find a large stall boasting all the survival equipment an enterprising pirate could ever need.`
+			`	Inside there's various used gear, some more used than others, and only a few well weathered survival suits.`
+			`	The proprietor appears out of nowhere, "Ah! Yes. With any of these you can survive the harshest of climates!"`
+			`	He take one suit off the rack, "Noice the intricate mesh weave on this state of the art..."`
+			`	The suit comes apart at its scenes in his hands, the proprietor frowns, but then quickly tosses it to the side.`
+			`	"A, uh, defunt specimen. Happens from time to time. Rest assured I never would have sold it to you." He looks at you unconvincingly.`
+			`	He pulls another suit down which, to his obvious relief, doesn't simply fall apart in his hands.`
+			`	"Now as I was saying, top of the line mesh weaves. Great comfortable and breathability. For tough spots..."`
+			`	You look carefully at the suit as the proprietor's words drift uselessly out of his mouth. It has patches on top of patches, and its seals look worn and corroded. It looks like a death trap.`
+			`	"...and look just how clean it looks inside." The proprietor opens up one the seals revealing quite a bit of dried blood staining its insides. He quickly closes the seal, and wipes some sweat from his brow.`
+			`	"Perfectly normal to find in a suit. Totally unrelated to its operation. You know, pirates, just bleed a lot in general. Part of the lifestyle and all that.`
+			`	He looks at you with earnest bulging eyes, "So what do you think? I'd be willing to sell this baby to you for 400,000 credits?"`
+
+			choice
+				`	(Purchase the patched survival suit for Tim.)`
+					goto getgear
+				`	(Haggle for a lower the price)`
+					goto haggle
+				`	(Pass.)`
+			`	That death trap might hasten Tim's demise, not guard against it. You leave the sweating proprietor behind and head back into the emporium at large. `
+				goto greenoptions
+			
+			label haggle
+				`	(Offer 20,000 for the suit.)`
+					goto getgear2
+				`	(Offer 100,000 for the suit.)`
+					goto getgear3
+				`	(Offer 250,000 for the suit.)`
+			`	The proprietor's eyes dart back and forth, and then he nods vigerously.`
+			`	"Of course. Of course. Given it's... condition. It only makes sense that a discerning privateer such as yourself get a discount."`
+			`	But, uh, if anyone asks about where you got this suit from. Given the obscene value you're getting from me, do me the favor of not disclosing where you got it. I wouldn't want anyone thinking they could get a deal like this."`
+			`	He gives a nervous earnest smile.`
+				goto getgear4
+				
+			choice
+				`	(Purchase the patched survival suit for Tim.)`
+					goto getgear
+				`	(Haggle for a lower the price)`
+					goto haggle
+				`	(Pass.)`
+			`	That death trap might hasten Tim's demise, not guard against it. You leave the sweating proprietor behind and head back into the emporium at large. `
+				goto greenoptions
+			
+			label haggle
+				`	(Offer 20,000 for the suit.)`
+					goto getgrear2
+				`	(Offer 100,000 for the suit.)`
+					goto getgear3
+				`	(Offer 250,000 for the suit.)`
+			`	The proprietor's eyes dart back and forth, and then he nods vigerously.`
+			`	"Of course. Of course. Given it's... condition. It only makes sense that a discerning privateer such as yourself get a discount."`
+			`	But, uh, if anyone asks about where you got this suit from. Given the obscene value you're getting from me, do me the favor of not disclosing where you got it. I wouldn't want anyone thinking they could get a deal like this."`
+			`	He gives a nervous earnest smile.`
+				goto getgear4
+
+			label getgear
+			action
+				set "timothy radrickson: greenrock gear 1"
+				"timothy radrickson surival suit" = 1
+				payment -400000
+			`	The proprietor quickly rings you up, as if worried you'll change your mind at any moment, and gleefully takes your <payment>.`
+			`	"Safe travels, privateer." He says as you leave his stall. `
+				goto greenoptions
+
+			label getgear2
+			action
+				set "timothy radrickson: greenrock gear 1"
+				"timothy radrickson surival suit" = 1
+				payment -20000
+			`	The proprietor quickly rings you up, as if worried you'll change your mind at any moment, and gleefully takes your <payment>.`
+			`	"Safe travels, privateer." He says as you leave his stall. `
+				goto greenoptions
+
+			label getgear3
+			action
+				set "timothy radrickson: greenrock gear 1"
+				"timothy radrickson surival suit" = 1
+				payment -100000
+			`	The proprietor quickly rings you up, as if worried you'll change your mind at any moment, and gleefully takes your <payment>.`
+			`	"Safe travels, privateer." He says as you leave his stall. `
+				goto greenoptions
+
+			label getgear4
+			action
+				set "timothy radrickson: greenrock gear 1"
+				"timothy radrickson surival suit" = 1
+				payment -250000
+			`	The proprietor quickly rings you up, as if worried you'll change your mind at any moment, and gleefully takes your <payment>.`
+			`	"Safe travels, privateer." He says as you leave his stall. `
+				goto greenoptions
 
 mission "Timothy Radrickson 5e: Back to Oblivion"
 	source Oblivion
