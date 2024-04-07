@@ -52,7 +52,7 @@ using namespace std;
 
 namespace {
 	// Return a format string containing settings to use for time formatting.
-	const char* TimestampFormatString(Preferences::DateFormat format)
+	const char * TimestampFormatString(Preferences::DateFormat format)
 	{
 		switch(format)
 		{
@@ -69,7 +69,7 @@ namespace {
 	// Convert a time_t to a human-readable time and date.
 	string TimestampString(time_t timestamp)
 	{
-		char* format = TimestampFormatString(Preferences::GetDateFormat());
+		char *format = TimestampFormatString(Preferences::GetDateFormat());
 		stringstream ss;
 
 #ifdef _WIN32
