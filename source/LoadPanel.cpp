@@ -59,7 +59,7 @@ namespace {
 			case Preferences::DateFormat::YMD:
 				return "%F %T";
 			case Preferences::DateFormat::MDY:
-				return "%I:%M %p on %b %d, %Y", "%I:%M %p on %b %d, %Y";
+				return "%I:%M %p on %b %d, %Y";
 			case Preferences::DateFormat::DMY:
 			default:
 				return "%I:%M %p on %d %b %Y";
