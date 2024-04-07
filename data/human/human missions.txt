@@ -7412,7 +7412,7 @@ mission "Timothy Radrickson 5b: New Britain"
 					to display
 						has "med1"
 						not "med2"
-				`	(Go and get the survival suit.)`
+				`	(Look for the survival suit.)`
 					goto suit1
 					to display
 						"timothy radrickson suit" <= 1
