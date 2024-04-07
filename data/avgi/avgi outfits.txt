@@ -26,7 +26,7 @@ outfit "Radiative Scales"
 	"heat dissipation" 0.3
 	"solar heat" 3
 	description "This modular set of graphene microchannel radiators can be mounted conformally to a ship's hull, allowing it to radiate away waste heat."
-	description "Radiant Scales take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
+	description "Scales take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
 
 
 outfit "Concealment Scales"
@@ -122,7 +122,6 @@ outfit "Plasmadyne Ramscoop"
 	weapon
 		"hardpoint sprite" "hardpoint/plasmadyne ramscoop"
 	description "With massive banks of superconducting magnets, extremely powerful magnetic fields grab ambient hydrogen atoms by their magnetic dipoles, channeling them towards a collection point without needing to first ionize them. This results in a ramscoop that is far more efficient in both fuel collection and energy use than the Electrostatic Ramscoop, but which is utterly massive in size. The magnetic stresses involved are so huge that a dedicated spinal mount is needed to use this ramscoop without tearing the ship apart."
-	description "Ramscoops like these were used in Avgi ram-augmented torchships, allowing them to sustain constant burns during their sublight interstellar journeys."
 
 
 outfit "Deuterium Slush Tank"
@@ -136,7 +135,7 @@ outfit "Deuterium Slush Tank"
 	"fuel capacity" 300
 	"energy consumption" 0.6
 	"heat generation" 0.6
-	description `This lightweight fuel pod stores an appreciable amount of hyperspace fuel as deuterium slush, a mix of liquid and solid deuterium. This allows fuel to be stored at higher densities than would otherwise be possible. The cryocooler required to run the zero boiloff system does require a small amount of energy, however.`
+	description `This lightweight fuel pod stores an appreciable amount of hyperspace fuel as deuterium slush, a mix of liquid and solid deuterium. This allows fuel to be stored at higher densities than would otherwise be possible. The cryocooler required to run the zero boiloff system requires a small amount of energy, however.`
 
 outfit "Cryogenic Deuterium Tank"
 	category "Systems"
