@@ -2042,7 +2042,7 @@ phrase "friendly civilian"
 		" What I could do with some of that tech..."
 		" Maybe someday we'll reach their level of technology."
 		" It's scary how advanced their civilization is."
-		" There's no way humanity could stand up to the Quarg."
+		" There's no way humanity could stand up to them."
 		" I doubt the combined Navy Home Fleet at Sol could match the power of one of those."
 
 phrase "friendly civilian"
