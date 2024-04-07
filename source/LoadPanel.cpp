@@ -51,7 +51,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	// Return format string containing settings to use for time formatting.
+	// Return a format string containing settings to use for time formatting.
 	const char* TimestampFormatString(Preferences::DateFormat format)
 	{
 		switch(format)
