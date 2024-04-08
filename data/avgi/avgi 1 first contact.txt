@@ -444,7 +444,8 @@ mission "Avgi: Defend Ensemble 2"
 		fleet
 			names "avgi military names"
 			variant
-				"Prismaios (Coilgun)"
+				"Interferos"
+				"Prismaios"
 				"Prismaios (Atomic)"
 				"Tremoros" 3
 	npc
@@ -457,7 +458,7 @@ mission "Avgi: Defend Ensemble 2"
 				"Difraktos (Missile)"
 				"Refraktos"
 				"Atenuatia (Atomic)"
-				"Vibratia" 18
+				"Vibratia" 22
 				"Photikon (Atomic)" 6
 	npc
 		government "Avgi (Twilight Guard)"
@@ -466,12 +467,12 @@ mission "Avgi: Defend Ensemble 2"
 		fleet
 			names "avgi military names"
 			variant
-				"Prismaios" 2
+				"Prismaios"
 				"Tremoros" 6
 				"Difraktos (Kinetic)"
 				"Refraktos"
 				"Diaspersi"
-				"Vibratia" 6
+				"Vibratia" 8
 				"Photikon" 2
 	npc evade
 		government "Aberrant"

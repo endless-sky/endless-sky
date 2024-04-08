@@ -393,7 +393,6 @@ outfit "Nettle Active"
 			"no repeat"
 			"frame rate" .25
 		"hit effect" "missile hit"
-		"live effect" "nettle trail" 1800
 		"live effect" "nettle exhaust" 1800
 		"die effect" "missile death"
 		"lifetime" 1800
@@ -533,7 +532,7 @@ outfit "Orchid Active"
 		"hit effect" "thermonuclear flash"
 		"hit effect" "prompt radiation" 9
 		"hit effect" "fission fragments" 240
-		"live effect" "Nettle trail" 1800
+		"live effect" "nettle exhaust" 1800
 		"die effect" "missile death"
 		"lifetime" 1800
 		"acceleration" 0.6
@@ -643,7 +642,6 @@ outfit "Snapfront"
 			narrow
 		"lifetime" 30
 		"random lifetime" 30
-		"velocity scale" 0
 		"velocity" 60
 		"random velocity" -60
 		"shield damage" 60
@@ -663,7 +661,6 @@ outfit "Snapback"
 			narrow
 			inverted
 		"random lifetime" 30
-		"velocity scale" 0
 		"random velocity" -60
 		"shield damage" 60
 		"hull damage" 90
