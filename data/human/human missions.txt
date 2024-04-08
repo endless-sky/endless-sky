@@ -7127,7 +7127,7 @@ mission "Timothy Radrickson 3: Governor"
 				payment 1000000
 				event "timothy radrickson imprisoned" 3496
 			`	With the speeches done, you mingle with the crowd, making small talk with various dignitaries and company-bosses. You even say a few words to Regina. Everyone is pleased to meet you, and a few people ask for your autograph. Finally, Timothy makes his way to you and takes you to a quieter room off to the side.`
-			`	"Captain <last>, I hope you've found the night agreeable. I've noticed you have your fair share of fans here. I also wanted to let you know, that there is a sum of cash associated with tonight's reward. That you will be given 1 million credits, as gift from Rand, and more specifically, from me."`
+			`	"Captain <last>, I hope you've found the night agreeable. I've noticed you have your fair share of fans here. I also wanted to let you know that there is a sum of cash associated with tonight's reward along with a small stipend. That you will be given 1 million credits and a daily stipend of 200 credits, as gift from Rand, and more specifically, from me."`
 			`	Timothy lifts his glass. "Just another way for me to thank you for saving me."`
 			`	You lift your glass, and your eyes scan the wall of his office. You see pictures of your ship, and you, from various news articles, printed and framed along the walls."`
 			choice
@@ -7160,7 +7160,7 @@ mission "Timothy Radrickson 3: Governor"
 			`	Timothy acquiesces and escorts you back to a waiting vehicle, and you say your farewells. The dark vehicle drives off into the bright desert, leaving behind an island of green, and warmth.`
 				decline
 
-event "timothy radrickson imprisoned"
+event "timothy radrickson imprisoned" 400
 
 mission "Timothy Radrickson 4: Imprisoned"
 	to offer
@@ -8142,10 +8142,40 @@ mission "Timothy Radrickson 7: Monk"
 			`	"Captain <last>. I always hoped I would see you again. Given my tenuous legal situation, I can't leave here, and I can't send any messages." He steps back to look at you.`
 			`	"The years have been kind to you, Captain; you hardly look any different from when we first met! Perhaps I should have invested in ship life, instead of terrestrial!" He laughs at his own joke, but only modestly.`
 			`	"It was difficult for me to speak, when last we met on Oblivion, but you're my oldest and best friend. At my lowest points you were always there for me. I just wanted to thank you for that."`
-			`	You spend the day chatting with with Timothy, before finally having to leave.`
+			`	You spend the day chatting with with Timothy, before it's time to leave.`
 			`	"Thank you for coming here. I wish I had something to give you, but I own nothing anymore, even though I owe you everything. Take care out there, and I'll do my best to keep out of trouble in here."`
-			`	He shakes your hand, then walks back into the monastery. You begin your slow descent down the mountain, and back to civilization.`
+			label goodbyes
+			choice
+				`	(Offer to transfer the Hero of Rand award and stipend to Timothy.)`
+					goto offer
+					to display
+						not "offers"
+				`	(Shake his hand and say goodbye.)`
+					goto shake
+				`	(Give him a hug and say goodbye.`
+			`	You lean in and give him a warm earnest bear hug. He wraps his arms around you and squeezes you back. When he finally breaks free you see a tear his eyes are blurry with tears. He nods to you once, and then walks back into the monastery. You begin your slow descent down the mountain, and back to civilization.`
 				decline
+			`	You shake his hand, he swallows and clears his throat, trying to keep himself from crying, nods to you one last time, and then walks back into the monastery. You begin your slow descent down the mountain, and back to civilization.`
+				decline
+		
+			label offer
+			action
+				set "offers"
+			`	Timothy's eyes go wide. "No, you couldn't. It's yours. You've given me too much already."`
+			choice
+				`	(Tell him about what Wynnafrith said, and how he is the real Hero of Rand.)`
+					goto offer2
+				`	(Tell him you don't need the money, but he does.)`
+					goto offer2
+				`	(Agree with him and rescind your offer.)`
+					goto goodbyes
+			
+			label offer2 # Remove the HERO OF RAND medal/title
+			`	As you speak Timothy shakes his head slowly, tears streaming down his face. Finally, as you finish, he wraps his arms around you in an earnest heartfelt hug.`
+			`	He tries to speak, but his voice fails him. Instead he just shakes his teary-eyed head at you and gives you a deep solemn bow.`
+			`	Timothy stays to watch as you begin your slow descent down the mountain, and back to civilization.`
+			decline
+
 
 
 mission "Timothy Radrickson 7: Hospice"
@@ -8176,7 +8206,7 @@ mission "Timothy Radrickson 7: Hospice"
 			choice
 				`	"I'd be honored to meet him."`
 					goto whyyes
-				`	"Why not. I got nothing to better to do."`
+				`	"Why not. I've got nothing to better to do."`
 					goto whyyes
 				`	"I don't have time for fans."`
 
@@ -8198,6 +8228,41 @@ mission "Timothy Radrickson 7: Hospice"
 			`	"It's still a little difficult for me to speak, but I feel much better than when last we met on Oblivion. I just wanted you to know you're my oldest and best friend. At my lowest points you were always there for me. So thank you for that."`
 			`	You spend the day in the hospital room chatting with with Timothy, before finally having to leave.`
 			`	"Thank you for coming here. I wish I had something to give you, but I own nothing anymore, even though I owe you everything. Take care out there, and I'll do my best to keep out of trouble in here."`
+			label goodbyes
+			choice
+				`	(Offer to transfer the Hero of Rand award and stipend to Timothy.)`
+					goto offer
+					to display
+						not "offers"
+				`	(Shake his hand and say goodbye.)`
+					goto shake
+				`	(Give him a hug and say goodbye.`
+			`	You lean over and give him partial hug in his sick bed. He wraps his one good arm around you and squeezes. When he finally breaks free you see a tear his eyes are blurry with tears.`
+			`	You leave him bedridden in the hospital, and to your surprise find your guide waiting for you outside the room. "His is a tough case. Perhaps one day he will recover enough to leave this place." The monk pauses, thoughtfully. "Or perhaps not."`
+			`	He leads you back to the train station, and from there you take brief journey back to New Tibet's spaceport.`
+				decline
+
+			`	You  lean in to shake his good hand, he swallows and clears his throat, trying to keep himself from crying.`
+			`	You leave him bedridden in the hospital, and to your surprise find your guide waiting for you outside the room. "His is a tough case. Perhaps one day he will recover enough to leave this place." The monk pauses, thoughtfully. "Or perhaps not."`
+			`	He leads you back to the train station, and from there you take brief journey back to New Tibet's spaceport.`
+				decline
+		
+			label offer
+			action
+				set "offers"
+			`	Timothy's eyes go wide. "No, you couldn't. It's yours. You've given me too much already."`
+			choice
+				`	(Tell him about what Wynnafrith said, and how he is the real Hero of Rand.)`
+					goto offer2
+				`	(Tell him you don't need the money, but he does.)`
+					goto offer2
+				`	(Agree with him and rescind your offer.)`
+					goto goodbyes
+			
+			label offer2 # Remove the HERO OF RAND medal/title
+			`	As you speak Timothy shakes his head slowly, tears streaming down his face. Finally, as you finish, he reaches out to you with his one good arm and pulls you in for an earnest heartfelt hug.`
+			`	He tries to speak, but his voice fails him. Instead he just shakes his teary-eyed head and bows it before you in deep respect.`
+			`	"Always." He manages to whisper through phlegm and weakened lungs as you turn to leave, "always you."`
 			`	You leave him bedridden in the hospital, and to your surprise find your guide waiting for you outside the room. "His is a tough case. Perhaps one day he will recover enough to leave this place." The monk pauses, thoughtfully. "Or perhaps not."`
 			`	He leads you back to the train station, and from there you take brief journey back to New Tibet's spaceport.`
 				decline
