@@ -7115,7 +7115,7 @@ mission "Timothy Radrickson 3: Governor"
 					goto deserved
 				`	(Dress them down for being capitalist pigs.)`
 
-			`	You address the crowd. You compliment them on how well dressed they all are, how lavish this mansion is, how wealthy they all appear. They clap, and laugh at your apt observations. But, then you talk about how poor, dirty, and shabby things are outside of this mansion. With its fake gravity, and fake greenery. You declare you want no praise from them, no flattery, and no accolades. There's a million Heroes of Rand, outside these baroque walls, toiling away in dirty, dangerous mines. All for what? So that these company-bosses and fat-cat politicians can pat each other on the back and live obscene luxary in the middle of a squalid world? You rail, you rant, you break them down, and you turn the crowd against you. Angry people are shouting back at you now, boos and hisses are rising up from all sides of the room. And yet, you see a glimmer of respect in the eyes of servants. The waiters, the attendants, the assistants, they clench their fists and nod as your speech goes on. They hear you. They agree with you. A plate crashes into the podium. Another slams into the pillar nearby you. The crowd bulging toward you. The esteemed guests with murder in their eyes.`
+			`	You address the crowd. You compliment them on how well dressed they all are, how lavish this mansion is, how wealthy they all appear. They clap, and laugh at your apt observations. But, then you talk about how poor, dirty, and shabby things are outside of this mansion. With its fake gravity, and fake greenery. You declare you want no praise from them, no flattery, and no accolades. There's a million Heroes of Rand, outside these baroque walls, toiling away in dirty, dangerous mines. All for what? So that these company-bosses and fat-cat politicians can pat each other on the back and live in obscene luxury in the middle of a squalid world? You rail, you rant, you break them down, and you turn the crowd against you. Angry people are shouting back at you now, boos and hisses are rising up from all sides of the room. And yet, you see a glimmer of respect in the eyes of servants. The waiters, the attendants, the assistants, they clench their fists and nod as your speech goes on. They hear you. They agree with you. A plate crashes into the podium. Another slams into the pillar nearby you. The crowd bulging toward you. The esteemed guests with murder in their eyes.`
 			`	Before you have time to act, Timothy and his assistant have whisked you away from the angry crowd of the world's elites. Timothy, unhappy with your words, but still believing he owes you a debt, helps you into an unmarked vehicle, that quickly takes you away from the party, and back toward the spaceport and your ship. Timothy's final words to you being that you should get off world as quickly as you can, and that he is sorry he invited you here.`
 				decline
 
@@ -7124,7 +7124,7 @@ mission "Timothy Radrickson 3: Governor"
 				goto mingle
 
 			label deserved
-			`	You launch into a speech about how you alone are special. How most people are cold, and empty robots, but that a fire burns inside your breast. That you are the lynchpin that the entire galaxy hinges on, and that every human from here to the rim owes their future to you. The crowd's excitement wanes and a smattering of lackluster applause punctuates the end of your speech.`
+			`	You launch into a speech about how you alone are special. How most people are cold, and empty robots, but that a fire burns inside your breast. That you are the lynchpin that the entire galaxy hinges on, and that every human from here to Farpoint owes their future to you. The crowd's excitement wanes and a smattering of lackluster applause punctuates the end of your speech.`
 
 			label mingle
 			action
@@ -7242,9 +7242,9 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 				`	(Say nothing, turn away and leave.)`
 					goto leave
 
-			`	Timothy leans against the nearest wall, and for a moment the only noise in the darkness is his ragged breathing. Finally he says, "In a week I go back south. Far side of the world. I'll last maybe months. Maybe less. I need a chance. I need to get out."`
+			`	Timothy leans against the nearest wall, and for a moment the only noise in the darkness is his ragged breathing. Finally he says, "In a week I go south. Far side of the world. I'll last maybe months. Maybe less. I need a chance. I need to get out."`
 			`	His voice gets more animated as he speaks and he nearly launches into another coughing fit before catching himself and taking several uneven breaths. "They're watching me. I can't leave with you. But with the right supplies. Right tools. I can make it."`
-			`	His red eyes rimmed with bloody tears look directly into yours, "Please. Don't let me die here. At least.. give me a chance."`
+			`	His red eyes rimmed with bloody tears look directly into yours. "Please. Don't let me die here. At least.. give me a chance."`
 			choice
 				`	"Alright. What do you need?"`
 					goto agree
@@ -7400,7 +7400,7 @@ mission "Timothy Radrickson 5b: New Britain"
 		has "Timothy Radrickson 5a: Timshank Redemption: active"
 	on complete
 		conversation
-			`With a little effort you're able to navigate New Britain's labyrinthian ziggurat masquerading as a spaceport. The lower levels are dedicated to a burstling trade sector where merchants, traders, and producers from all over the Dirt Belt haggle to sell their raw materials, and purchase complex equipment and refined products.`
+			`With a little effort you're able to navigate New Britain's labyrinthian ziggurat masquerading as a spaceport. The lower levels are dedicated to a bustling trade sector where merchants, traders, and producers from all over the Dirt Belt haggle to sell their raw materials, and purchase complex equipment and refined products.`
 			label options
 			choice
 				`	(Find the detoxification medicine.)`
@@ -7433,7 +7433,7 @@ mission "Timothy Radrickson 5b: New Britain"
 			label med1
 			action
 				set "med1"
-			`	You make your way to the pharmecutical wing, where numerous representives from large conglomorates are wrangling with representatives from various worlds, all needing exotic medicine for their innumerable plagues, blights, pandemics and the like. There's a booth with a slick salesman selling expensive drugs promising to reverse and protect from the effect of toxic air and radiation, and it just so happens that Oblivion is their demonstration planet.`
+			`	You make your way to the pharmecutical wing, through crowds of representives from large conglomorates in the process of wrangling with representatives from various worlds, all needing exotic medicine for their innumerable plagues, blights, pandemics, and the like. There's a booth with a slick salesman selling expensive drugs promising to reverse and protect from the effect of toxic air and radiation, and it just so happens that Oblivion is their demonstration planet.`
 			`	"There's no need to fear Oblivion's deleterious effects so long as you take one of these a day!" the salesman says brightly. "Why, you could walk among your condemned workers unmasked, and demonstrate your superior executive prowess!"`
 			`	You listen on to the salesman, who reckons he can cut you in on a special deal for 140,000 credits.`
 			choice
@@ -8056,9 +8056,11 @@ mission "Timothy Radrickson 5e: Back to Oblivion"
 			`	"Good secretary. Better friend." He wheezes as he checks out the rest of your gear.`
 			branch unprepared
 				"timothy radrickson preparedness" < 6
+
 			branch "decently prepared"
 				"timothy radrickson preparedness" >= 6
 				"timothy radrickson preparedness" <= 7
+
 			branch "well prepared"
 				"timothy radrickson preparedness" > 7
 
@@ -8102,7 +8104,7 @@ mission "Timothy Radrickson 7: Monk"
 	to offer
 		random < 25
 		has "event: timothy radrickson forever"
-		has branch "well prepared" # This must be wrong. 
+		"timothy radrickson preparedness" > 7
 	on offer
 		conversation
 			`A group of monks passes you by in the spaceport, and one stops to look at you curiously.`
@@ -8114,12 +8116,12 @@ mission "Timothy Radrickson 7: Monk"
 					goto why
 				`	"None of your business."`
 
-			`	"Of course." The monk says, he drops his head and rejoins his brothers.`
+			`	"Of course," the monk says, he drops his head and rejoins his brothers.`
 				decline
 
 			label why
 			`	The monk lowers his head in a sign of respect. "Although we live in the mountains and interact rarely with outsiders, we have heard much of your exploits. You are an agent of change, and worthy of consideration."`
-			`	"I thank you for giving us much to ponder on. I also have one small request, there is one within our monastery who is a great admirer of yours. It would mean much if you would be willing to meet him."`
+			`	"I thank you for giving us much to ponder on. I also have one small request; there is one within our monastery who is a great admirer of yours. It would mean much if you would be willing to meet him."`
 			choice
 				`	"I'd be honored to meet him."`
 					goto whyyes
@@ -8133,30 +8135,31 @@ mission "Timothy Radrickson 7: Monk"
 			label whyyes
 			`	The monk beams. "Wonderful. It'll be a bit of a hike, but the views are worth it."`
 			`	He leads you into the mountains beyond the spaceport. You travel up various narrow passes, and steep cliff sides. It's a difficult trail, but the scenery is remarkable. Your views are filled with broken mountains, jagged rocks, green vibrant life, and distant valleys.`
-			`	After several arduous hours, you clear a peak, and discover a vast stone building waiting for you.`
-			`	"We have arrived." Your guide says.`
-			`	Your guide leaves you outside the entrance, and disappears within for a few minutes, before returning with another monk.`
-			`	The new monk looks at you with an open, serene, expression, that quickly breaks into a wide grin. Although much about his face has changed, whether from wear or surgery, you recognize that grin.`
+			`	After several arduous hours, you clear a peak, and discover a vast stone building waiting for you. "We have arrived," the guide says almost anticlimactically. Perhaps the fact he lives here makes it less grand to him than it ought to be.`
+			`	Your guide leaves you outside the entrance, and disappears within for a few minutes before returning with another monk.`
+			`	The new monk looks at you with an open, serene expression, that quickly breaks into a wide grin. Although much about his face has changed, whether from wear or surgery, you recognize that grin.`
 			choice
 				`	"Timothy!"`
 				`	"Oh, it's you."`
 
 			`	Timothy Radrickson, former prison-worker on Oblivion, Governor of Rand, and stowaway of your ship, hugs you.`
 			`	"Captain <last>. I always hoped I would see you again. Given my tenuous legal situation, I can't leave here, and I can't send any messages." He steps back to look at you.`
-			`	"The years have been kind to you Captain. You hardly look any different from when we first met. Perhaps I should have invested in ship life instead of terrestrial."`
+			`	"The years have been kind to you, Captain; you hardly look any different from when we first met! Perhaps I should have invested in ship life, instead of terrestrial!" He laughs at his own joke, but only modestly.`
 			`	"It was difficult for me to speak, when last we met on Oblivion, but you're my oldest and best friend. At my lowest points you were always there for me. I just wanted to thank you for that."`
 			`	You spend the day chatting with with Timothy, before finally having to leave.`
 			`	"Thank you for coming here. I wish I had something to give you, but I own nothing anymore, even though I owe you everything. Take care out there, and I'll do my best to keep out of trouble in here."`
-			`	He shakes your hand than walks back into the monastery. You begin your slow descent down the mountain, and back to civilization.`
+			`	He shakes your hand, then walks back into the monastery. You begin your slow descent down the mountain, and back to civilization.`
 				decline
 
 
 mission "Timothy Radrickson 7: Hospice"
 	source "New Tibet"
 	to offer
+		or
+			"timothy radrickson preparedness" >= 6
+			"timothy radrickson preparedness" <= 7
 		random < 25
 		has "event: timothy radrickson forever"
-		has branch "decently prepared" # This must be wrong. 
 	on offer
 		conversation
 			`A group of monks passes you by in the spaceport, and one stops to look at you curiously.`
@@ -8168,7 +8171,7 @@ mission "Timothy Radrickson 7: Hospice"
 					goto why
 				`	"None of your business."`
 
-			`	"Of course." The monk says, he drops his head and rejoins his brothers.`
+			`	"Of course," the monk says, he drops his head and rejoins his brothers.`
 				decline
 
 			label why
@@ -8186,25 +8189,21 @@ mission "Timothy Radrickson 7: Hospice"
 
 			label whyyes
 			`	The monk beams. "Wonderful. It's not far from here."`
-			`	You take the spaceport train with him to a nearby hospital beneath the impressive jungled mountains of New Tibet. The hosptial is new, clean, and filled with active monks and patients.`
-			`	Your escort leads wildly past crowded bedsides and through diverse rooms until at last you arrive at a respiration and burn clinic situatuated deep in the hospital's guts.`
-			`	There you find a armed man with burn scars and slightly labored breathing. His face lights up when he looks at you, and despite his scars you recognize him.`
-			`	It's Timothy Radrickson.`
-			`	"We have arrived." Your guide says.`
-			`	Your guide leaves you outside with Timothy, and disappears back into the sprawling hospital.`
+			`	You take the spaceport train with him to a nearby hospital, beneath the impressive jungled mountains of New Tibet. In contrast with the other worlds of the Dirt Belt, this hospital is new, clean, and filled with a slew of monks, doctors, and patients. Your escort leads wildly past crowded bedsides and through diverse rooms until, at last, you arrive at a respiration and burns unit situated deep in the hospital's guts.`
+			`	"We have arrived," your guide says, and as soon as you look into the ward he seems to disappear into the crowds of the sprawling hospital.`
+			`	In the ward you find a maimed man with burn scars and slightly labored breathing. His face lights up when he looks at you, and despite his scars you recognize him. It's Timothy Radrickson.`
 			choice
 				`	"Timothy!"`
 				`	"Oh, it's you."`
 
 			`	Timothy Radrickson, former prison-worker on Oblivion, Governor of Rand, and stowaway of your ship, beckons you step closer to him with his good hand.`
 			`	"Captain <last>. I always hoped I would see you again. Given my tenuous legal situation, not to mention my health, I can't leave here, and I can't send any messages." His eyes linger on you, as though he is taking a mental picture. Or just enjoying the sight of a good friend returned.`
-			`	"The years have been kind to you Captain. You hardly look any different from when we first met. Perhaps I should have invested in ship life instead of terrestrial."`
-			`	He coughs a bit, and takes a few slow deep breaths before continuing.`
+			`	"The years have been kind to you, Captain; you hardly look any different from when we first met! Perhaps I should have invested in ship life, instead of terrestrial!" He laughs at his own joke, but only weakly given his condition. He coughs a bit, and takes a few slow deep breaths before continuing.`
 			`	"It's still a little difficult for me to speak, but I feel much better than when last we met on Oblivion. I just wanted you to know you're my oldest and best friend. At my lowest points you were always there for me. So thank you for that."`
 			`	You spend the day in the hospital room chatting with with Timothy, before finally having to leave.`
 			`	"Thank you for coming here. I wish I had something to give you, but I own nothing anymore, even though I owe you everything. Take care out there, and I'll do my best to keep out of trouble in here."`
-			`	You leave him bedridden in the hospital, and find your guide waiting for you just outside his room, "His is a tough case. Perhaps one day he will recover enough to leave this place." The monk pauses, "Or perhaps not".`
-			`	He leads you back to the train station and from there you take brief journey back to New Tibet's spaceport and your ship.`
+			`	You leave him bedridden in the hospital, and to your surprise find your guide waiting for you outside the room. "His is a tough case. Perhaps one day he will recover enough to leave this place." The monk pauses, thoughtfully. "Or perhaps not."`
+			`	He leads you back to the train station, and from there you take brief journey back to New Tibet's spaceport.`
 				decline
 
 
@@ -8213,54 +8212,43 @@ mission "Timothy Radrickson 7: Grave"
 	to offer
 		random < 25
 		has "event: timothy radrickson forever"
-		has branch "unprepared" # This must be wrong. 
-		or "Timothy Radrickson 5a: Timshank Redemption: failed" #This is wrong too.. but I think you get what I am trying to do. Either you were too slow or you were unprepared and you get this quest
+		or
+			"timothy radrickson preparedness" < 6
+			has "Timothy Radrickson 5a: Timshank Redemption: failed"
 	on offer
 		conversation
-			`	The Oblivion spaceport is the kind of place that despite being in constant motion, never really changes. Humanity, driven by it's thrist for resources scurry over this unremarkable world like a hive of angry bees, but for all their furious effort it looks no different than any of the previous times you've been here.`
+			`Oblivion's spaceport is the kind of place that, despite being in constant motion, never really changes. Humanity, driven by its constant thirst for resources, scurries over this unremarkable world like a hive of angry bees, but for all their furious effort it looks no different than any of the previous times you've been here.`
 			`	Except, of course, the lack of one familiar face. A doomed and disgraced ex-governor who had been sent here, and last you heard, had died here.`
-			`	With that heavy thought on your mind you notice a sign promising to lead you to the spaceport's graveyard.`
+			`	With that heavy thought on your mind you notice a sign which promises to lead you to the local graveyard.`
 			choice
 				`	(Head to the graveyard.)`
 					goto graveyard
 				`	(Head back to your ship.)`
-			`	You see no point in wasting your time at this world's graveyard and head back to your ships and the stars.`
+			`	You see no point in wasting your time at this place's graveyard, so you head back to your ship.`
 				decline
 			
 			label graveyard
-				`	Oblivion's evening sky is lit up by unnumbered rigs and natural gas burners that dot the region. These red fires turn the normally dark blue atmosphere a shade of smoldering purple.`
-				`	It's beneath that purple hue you see a countless expanse of small flat gravestones uniformally placed in Oblivion's sterile dirt. Despite the number of headstones there is no one else here, and only a few graves show any evidence of being visited.`
-				`	It seems as though those buried here are mostly forgotten.`
+			`	Oblivion's evening sky is lit up by unnumbered rigs and natural gas burners that dot the region. These red fires turn the normally dark blue atmosphere a shade of smoldering purple.`
+			`	It's beneath that purple hue you see a countless expanse of small flat gravestones uniformally placed in Oblivion's sterile dirt. Despite the number of headstones there is no one else here, and only a few graves show any evidence of being visited.`
+			`	It seems as though those buried here are mostly forgotten.`
 			choice
 				`	(Search for Timothy Radrickson's grave.)`
 					goto search
-				`	(Leave)`
-			`	You've seen all you wanted to see of this place, and leave this unloved graveyard to it's forlorn dead.`
+				`	(Leave.)`
+			`	You've seen all you wanted to see of this place, and leave this unloved graveyard to its forlorn dead.`
 				decline
 
 			label search
-				`	The index is easy to find, and has all the hallmarks of having never been used. The graveyard is set up in a carefully regimented grid system and despite the large numbres of graves it is surprisingly easy finding Timothy's.`
-				`	A small, flat unremarkable stone is pressed into the dead ground.`
-				` 	Laser-chisled into it reads, "Timothy Radrickson. Prisoner - 645631-4C"`
-				`	That's all. Nothing about his meteoric rise, about being a Governor on Rand, or even how or when his death occured here. Just another dead prisoner.`
+			`	The index is easy to find, and has all the hallmarks of having never been used. The graveyard is set up in a carefully regimented grid system and despite the large number of graves, it is surprisingly easy finding Timothy's.`
+			`	You walk across the forgotten memorial to find a small, flat unremarkable stone, hemmed in amongst other unremarkable stones, pressed into the dead ground. The text laser-chisled onto it reads, "Timothy Radrickson. Prisoner - 645631-4C"`
+			`	That's all. Nothing about his meteoric rise, about being the Governor of Rand, or even how or when his death occured here. Just another dead prisoner.`
 			choice
 				`	(Stay a while and contemplate.)`
-					goto stayawhile
-				`	(Leave)`
-			`	There is nothing else for you here. You leave Timothy and the graveyard behind and return your ship.`
-				decline
-			
-			label stayawhile
-				`	The slow moving evening clouds have cast the entire world in a strange purple twilight. Timothy's grave sits before you, nestled in the poision ground, and you alone in the vast empty graveyard.`
-				`	Your thoughts drift the man buried beneath your feet. `
-			choice
-				`	(Think about Timothy's past.)`
-					goto past
-				`	(Think about Timothy's rise.)`
-					goto rise
-				`	(Think about Timothy's demise.)`
-					goto demise
+				`	(Leave.)`
+					goto end
 
+				`	The slow moving evening clouds have cast the entire world in a strange purple twilight. Timothy's grave sits before you, nestled in the poision ground, and you alone in the vast empty graveyard.`
+				`	Your thoughts drift to the man buried beneath your feet.`
 			label stayawhile
 			choice
 				`	(Think about Timothy's past.)`
@@ -8281,14 +8269,14 @@ mission "Timothy Radrickson 7: Grave"
 			label past
 			action
 				set "past"
-			`	You never knew what Timothy had been fleeing when he first stowed away on your ship. Who he had been or what he had done that lead him to such a dire strait.`
+			`	You never knew what Timothy had been fleeing when he first stowed away on your ship. Who he had been, or what he had done that lead him to such dire straits.`
 			`	You recall how starved he had been when you first met him, and then how determined he was to pay you back for a simple ride to Rand. Most people would have never looked back, but not Timothy.`
 				goto stayawhile
 			
 			label rise
 			action
 				set "rise"
-			`	Despite starting with nothing Timothy had somehow become the powerful and well respected governor of an entire world. He made way own way on Rand and became it's civic ruler, but he also didn't forget your small gift. He invited you to a lavish celebration and named you the Hero of Rand.`
+			`	Despite starting with nothing, Timothy had somehow become the powerful and well respected governor of an entire world. He made way own way on Rand and became its civic ruler, but he also didn't forget your small gift. He invited you to a lavish celebration and named you the Hero of Rand.`
 			`	You recall his office wall covered in newspaper clippings of your own exploits, of how Timothy had quietly followed and cheered along your own career. And then there were the toasts, the speeches, and the rest of the dazzling night you spent as the most important person on Rand.`
 			`	Who knows how high Timothy could have climbed, who he could have been, had he not been sent to Oblivion.`
 				goto stayawhile
@@ -8297,9 +8285,9 @@ mission "Timothy Radrickson 7: Grave"
 			action
 				set "demise"
 			`	Oblivion had not been kind to Timothy. Last time you saw him alive he had been dying the slow toxic death this world is famed for. Yet in every memory you have of him here he was working hard and diligently. Even as a dying prisoner Timothy had worked hard.`
-			`	Maybe there was something you could have done. Maybe if you had been faster, or bought him better equipment, he wouldn't be here now. He wouldn't stuck on Oblivion forever.`
+			`	Maybe there was something you could have done. Maybe if you had been faster, or bought him better equipment, he wouldn't be here now. He wouldn't be stuck on Oblivion forever.`
 				goto stayawhile
 			
 			label end
-			`	The shadows grow a darker shade of purple as leave the abandoned graveyard of the forgotten dead for the familiar confines of your ship.`
+			`	The shadows turn a darker shade of purple as you leave the graveyard of the forgotten dead for the familiar confines of your ship.`
 			decline
