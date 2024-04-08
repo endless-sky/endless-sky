@@ -7035,7 +7035,7 @@ mission "Timothy Radrickson 3: Governor Notification"
 			`	A young woman in very professional clothing appears on the screen. "Captain <last>, I am pleased to inform you that the Governor of Rand has invited you to attend an award ceremony in your honor. Please come to Rand at your earliest convenience.`
 			# Probably have the player question it, something like "You're not sure why the Governor of Rand would host an award ceremony for you, but the message came from a verified, Republic/Free Worlds source."
 	on complete
-		conversation 
+		conversation
 			`Upon landing you are met by a squat, heavy-set woman in her late 40s. She reaches out a calloused hand to shake yours. "Welcome to Rand, Captain <last>. It is a pleasure, and honor, to have someone of your status here on our little world. I am Regina, the Mayor of the spaceport town, and one of the major company-bosses here. I've been instructed to escort you to the Governor's mansion. I have a vehicle waiting for you just outside the spaceport. Meet me there when you're ready."`
 
 
@@ -7101,7 +7101,7 @@ mission "Timothy Radrickson 3: Governor"
 			`	The mansion is lit up with dozens of flood lights. An army of valets, waiters, and attendants weave in and out of the various rooms and halls. You are immediately ushered to a table of honor. You meet a half dozen company-bosses, senior executives, political operatives, and the like. You notice Regina here as well, but she is seated at a table in the back, on the fringes of the upper crust of society.`
 			`	Eventually, the party settles down and Timothy steps up to a podium. He launches into a speech highlighting your career. The great changes you have wrought, the battles you have won, the legends of your ship. The crowd eats it all up, many having heard of some, or all of these exploits. But then Timothy takes a more somber note. He talks quietly about the troubles on his old world. On how as a starving, homeless fugitive he had recklessly hidden aboard the first ship he could find. How you had found him, half dead, in an empty crate. And how, instead of tossing him out an airlock, or dropping off at the nearest world, you took him where he asked. How you took care of him, and how through your generosity, you had given him a second chance.`
 			`	Light reflects off the tears that cling to Timothy's eyes as he tells the assembled crowd that, for him, that was your greatest moment, your most heroic action, that nothing you've done, or ever will do, compares to that simple act of mercy. And that this, to him, alone, is what makes you great.`
-			`	The assembled guests stand, clap and cheer. They look at you, at your seat of honor, and hold up glasses in your honor. Eventually as the cheers and hoots die down, the Governor, declares you a Hero of Rand, and thanks you for your service.`			
+			`	The assembled guests stand, clap and cheer. They look at you, at your seat of honor, and hold up glasses in your honor. Eventually as the cheers and hoots die down, the Governor, declares you a Hero of Rand, and thanks you for your service.`	
 			choice
 				`	(Say a few words.)`
 				`	(Mingle with the crowd.)`
@@ -7340,7 +7340,7 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 			choice
 				`	(Walk inside.)`
 
-			`	The woman before you is middle-aged and somewhat squat with the hard-won muscles of a person adapted to Rand's grueling gravity. She's attractive though, and there is something very familar about her face. You've met her before...`
+			`	The woman before you is middle-aged and somewhat squat with the hard-won muscles of a person adapted to Rand's grueling gravity. She's attractive though, and there is something very familiar about her face. You've met her before...`
 			`	"Captain <last>!" She says with a genuine grin. "I doubt you recognize me, but I was Governor Radrickson's secretary, Wynnafrith. We met years back at your banquet."`
 			`	She glances down at herself as if recognizing her body's transformation from offworld waif to native Rander. "I dare say the world has changed me now that I'm away from the gravity generators.`
 			`	"Although I am no longer a secretary, I am Union-Colonel Wynnfrith, one of the leaders of the Underground Workers Union!" Her eyes sparkle and her words ring with a deadly seriousness.`
@@ -7386,7 +7386,7 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 			`	Once again in the largern cavern she turns and points at the guard, "Grab our explosive and carefully accompany Captain <last> with it back to his ship."`
 			`	The guard frowns. "But it's our only one..."`
 			`	"Now!" She cuts him off, and watches as he sullenly slumps away.`
-			`	Without looking your way she continues, "It was a pleasure to see you, again Captain <last>, but it's time you were leaving. The govenor needs you, and my own glorious revolution needs some attention."`
+			`	Without looking your way she continues, "It was a pleasure to see you, again Captain <last>, but it's time you were leaving. The governor needs you, and my own glorious revolution needs some attention."`
 			`	You leave the dilapidated mines with a bomb, a pistol, and a plan.`
 
 
