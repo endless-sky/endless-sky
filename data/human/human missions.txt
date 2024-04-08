@@ -7637,12 +7637,12 @@ mission "Timothy Radrickson 5c: Dancer"
 		has "Timothy Radrickson 5a: Timshank Redemption: active"
 	on complete
 		conversation
-			`Your ship shakes as it descends into Dancer's mad weather. Lightning crackles beyond your sturdy bulkheads and a panoply of colorful clouds rushes past as you boost down into in the dull light overcast light of a subdued day on Dancer.`
-			`	Around the quiet spaceport, there's a smattering of low reinforced buildings, linked together by weather worn trails dug into the ground with protective earth on either side. You see one leading to a spacious, if squat, clearing house.`
+			`Your ship shakes as it descends into Dancer's mad weather. Lightning crackles beyond your sturdy bulkheads and a panoply of colorful clouds rushes past as you boost down into in the dull overcast light of a subdued day on Dancer.`
+			`	Around the quiet spaceport there's a smattering of low reinforced buildings linked together by weather worn trails dug into the ground with protective earth on either side. You see one leading to a spacious, if squat, clearing house.`
 			choice
 				`	(Enter the clearing house.)`
-			`	There is an eclectic assortment of gear, goods, supplies and equipment here. Some new, some used to the point of ruin. Unsurprisingly, given the primary industry of this world, much of it of scientific.`
-			`	A middle aged woman with deep windburned scars and a shock of white hair greets you as you come in. "Anything worth having on Dancer can be found here. Just take a look around and let ol' Bertha know if you find anything to your liking."`
+			`	There is an eclectic assortment of gear, goods, supplies and equipment here. Some new, some used to the point of ruin. Unsurprisingly, given the primary industry of this world, much of it is scientific.`
+			`	A middle aged woman with deep windburned scars and a striking shock of white between her otherwise dark hair greets you as you come in. "Anything worth having on Dancer can be found here. Just take a look around and let Bertha know if you find anything to your liking."`
 			label danceroptions
 			choice
 				`	(Look at the survial suits.)`
@@ -7683,7 +7683,7 @@ mission "Timothy Radrickson 5c: Dancer"
 			`	There are a handful of surrival suits on display here. These are durable, hand-crafted suits carefully checked and rated to ensure the highest chance of survival against the fierce uncaring winds of Dancer.`
 			`	Old Bertha notices your attention and walks up to you, "Going anywhere overland on Dancer without one of these beauties is a deathwish."`
 			`	She winks at you, "Worry not though, hun. We only sell the highest rated and well-tested suits here. I won't have any one's death on my conscience, 'sides, it's bad for business."`
-			`	She pinches of the dense microwoven fabric of the nearest suit, "It's not cheap, but neither is your life. I'll see ya one of these for 300,000 credits."`
+			`	She pinches some of the dense microwoven fabric of the nearest suit, "It's not cheap, but neither is your life. I'll sell ya one of these for 300,000 credits."`
 			choice
 				`	(Purchase a survival suit for Tim.)`
 					goto getsuit
@@ -7694,7 +7694,7 @@ mission "Timothy Radrickson 5c: Dancer"
 				goto danceroptions
 			
 			label haggle
-				`	Bertha gives you a sad smile and shakes her head slowly. "No room here for haggling. These are the best of the best and they are worth every red cent. I am sure you can find bottom bin ones elsewhere, but here you pay for quality."`
+				`	Bertha gives you a sad smile and shakes her head slowly. "No room here for haggling, hun. These are the best of the best and they are worth every red cent. I am sure you can find bottom bin ones elsewhere, but here you pay for quality."`
 				`	She folds her arms. "Now, it's 300,000 credits or nothing." `
 			choice
 				`	(Purchase the survival suit for Tim.)`
@@ -7706,7 +7706,7 @@ mission "Timothy Radrickson 5c: Dancer"
 			label suit2
 			action
 				set "suit2"
-			`	You loop back to where the well-crafted survial suits hang, the price still at 300,000 credits.`
+			`	You loop back to where the well-crafted survial suits hang. The price is still 300,000 credits.`
 			choice
 				`	(Purchase a survival suit for Tim.)`
 					goto getsuit
@@ -7725,7 +7725,7 @@ mission "Timothy Radrickson 5c: Dancer"
 			label med1
 			action
 				set "med1"
-			`	There's numerous shelves filled with all kinds of drugs, and it takes you a few minutes to find the detoxification medicine. By then Bertha is once more at your side.`
+			`	There's numerous shelves filled with all kinds of drugs, and it takes you a few minutes to find the detoxification medicine. By then Bertha is at your side.`
 			`	"Foul winds are known to kick up toxic dust in the atomosphere, and if you plan on staying here long you're likely going to need to take a few of these." She looks at you curiously, and then adds, "However, you may find them less useful on other worlds."`
 			`	"Still, if you think you could use them I'd sell them to you for 10,000 credits." She adds helpfully.`
 			choice
@@ -7764,7 +7764,7 @@ mission "Timothy Radrickson 5c: Dancer"
 				`	(Buy the old ID.)`
 					goto buyid
 				`	(Pass.)`
-			`	The old ID might work, but it also would be quite a risk. You leave it where you found it and go back to wandering around the store.`
+			`	The old ID might work, but it would also be quite a risk. You leave it where you found it and go back to wandering around the store.`
 				goto danceroptions
 
 			label id2
@@ -7783,7 +7783,7 @@ mission "Timothy Radrickson 5c: Dancer"
 				set "id2"
 				"timothy radrickson id" = 2
 				payment -1000
-			`	Bertha favors you with a mischievous grin and combs her back behind her ears. "I must admit, I have a thing for danger." Her eyes sparkle and her voice is a little huskier than before as she says, "I'm not sure whatchya need this for, and I certainly don't want you to tell me. But I hope you pull it off."`
+			`	Bertha favors you with a mischievous grin and combs her black hair behind her ears. "I must admit, I have a thing for danger." Her eyes sparkle and her voice is a little huskier than before as she says, "I'm not sure whatchya need this for, and I certainly don't want you to tell me. But I hope you pull it off."`
 			`	She takes your <payment> and hands you the old ID, her eyes lingering on you.`
 				goto danceroptions
 
@@ -7850,7 +7850,7 @@ mission "Timothy Radrickson 5d: Greenrock"
 			label id1
 			action
 				set "id1"
-			`	There's more than a half dozen stalls all advertising their high skills and production value when it comes to the art of crafting fake IDs. Most the stalls and their employees have a garish, sloppy, and boostful manner, but one with a more professional and constrained feel attracts your attention; it's run by an older gentleman who has all the looks of a respectable watchmaker.`
+			`	There's more than a half dozen stalls all advertising their high skills and production value when it comes to the art of crafting fake IDs. Most the stalls and their employees have a garish, sloppy, and boostful manner, but one with a more professional and constrained feel attracts your attention; it's run by an older gentleman who has the look of a respectable watchmaker.`
 			`	He nods at you politely as you approach. "Good day to you. I am Ivaldur the Forger, and what can I do for you?"`
 			choice
 				`	(Ask about producing a fake ID.)`
@@ -7902,7 +7902,7 @@ mission "Timothy Radrickson 5d: Greenrock"
 			`	You find a large stall boasting all the survival equipment an enterprising pirate could ever need. Inside there's various used gear, some more used than others, and only a few well weathered survival suits.`
 			`	The proprietor appears out of nowhere and immediately begins flogging his goods to you. "Ah! Yes. With any of these you can survive the harshest of climates!"`
 			`	He takes one suit off the rack and begins, "Notice the intricate mesh weave on this state of the art..." the suit comes apart at its seams in his hands. The proprietor frowns, but then quickly tosses it to the side.`
-			`	"A, uh, defunt specimen. Happens from time to time. Rest assured I never would have sold it to you." He looks at you unconvincingly.`
+			`	"A, uh, defunct specimen. Happens from time to time. Rest assured I never would have sold it to you." He looks at you unconvincingly.`
 			`	He pulls another suit down which, to his obvious relief, doesn't simply fall apart in his hands.`
 			`	"Now as I was saying, top of the line mesh weaves. Great comfort and breathability. For tough spots..."`
 			`	You look carefully at the suit as the proprietor's words drift uselessly out of his mouth. It has patches on top of patches, and its seals look worn and corroded. It looks like a death trap.`
@@ -7937,7 +7937,8 @@ mission "Timothy Radrickson 5d: Greenrock"
 			label suit2
 			action
 				set "suit2"
-			`	You return to the clothing stall, where the proprietor immediately hounds you again for the suit.` # Here and the pass choices might do with a little more writing.
+			`	You return to the clothing stall, where the proprietor immediately hounds you again for the suit. The suit you were shown before looks just as patched, worn and corroded as before. The few other options next to it are even worse.`
+			`	The proprietor reminds you the price is still 400,000 credits for this 'lightly used' and 'field tested' state of the art survival suit.`
 			choice
 				`	(Purchase the patched survival suit for Tim.)`
 					goto getgear
@@ -7987,7 +7988,7 @@ mission "Timothy Radrickson 5d: Greenrock"
 			label med1
 			action
 				set "med1"
-			`	There are many stalls loudly advertising all kinds of illegal drugs, and it takes some work to sift through them until you come across one selling legal drugs as well. The man running it is sallow and pock-marked, but his eyes seem keen. He almost hisses as he greets you.`
+			`	There are many stalls loudly advertising all kinds of illegal drugs, and it takes some work to sift through them until you come across one selling legal drugs as well. The man running it is sallow and pock-marked, but his eyes are keen. He almost hisses as he greets you.`
 			`	"Whatever you need, wherever you're going. I have you covered."`
 			choice
 				`	(Ask about detoxification medicine for Oblivion.)`
