@@ -200,4 +200,4 @@ wormhole "One-Way Wormhole Exit"
 planet "Chanai Structure"
 	government "Magic Asteroid"
 	landscape "land/station49"
-	description `The alien station is as vast as it is mysterious, concealing more secrets than you could ever hope to find. Its only dishernible feature is a giant barrel, but what it was built for - or what it could still do - is impossible to say.`
+	description `The alien station is as vast as it is mysterious, concealing more secrets than you could ever hope to find. Its only discernible feature is a giant barrel, but what it was built for - or what it could still do - is impossible to say.`

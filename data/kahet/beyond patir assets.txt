@@ -612,7 +612,7 @@ outfit "Asteroid Anti-Missile 2"
 		"lifetime" 1
 		"reload" 1
 		"firing heat" 18
-	description "A nearly impenetrable anti-missile field, instantly eliminating even the strongest missile that tries to pass through. However, the size of this protective bubble leaves greatly limits its capabilities."
+	description "A nearly impenetrable anti-missile field, instantly eliminating even the strongest missile that tries to pass through. However, the size of this protective bubble greatly limits its capabilities."
 
 effect "asteroid am circle defense"
 	sprite "effect/asteroid am circle defense"
@@ -649,7 +649,7 @@ outfit "Asteroid Weapon Small"
 		"hull damage" 2400
 		"slowing damage" -84
 		"blast radius" 20
-	description "Similar in appearance to the anti-missile used by some of these ships, this weapon was created with two functions in mind: slowing down an opponent until he gets close enough, and then eliminate it with heavy, direct damage to the hull of its target."
+	description "Similar in appearance to the anti-missile used by some of these ships, this weapon was created with two functions in mind: slowing down an opponent until it gets close enough, and then eliminating it with heavy, direct damage to the hull."
 
 outfit "Asteroid Circle Submunition"
 	weapon
@@ -1421,7 +1421,7 @@ outfit "Asteroid Weapon Large 3"
 		"split range" 180
 		"reload" 100
 		"firing heat" 5
-	description "While it may be technically described as a missile, its specifics differ from the average rocket launcher. The heap of energy created by this weapon's fire continuously releases projectiles which home in onto enemies, until finally exploding and breaking up into an enormous barrage of the same projectiles. These attributes make it very good at overwhelming anti-missiles enough to render them useless, then impacting a fair share of damage while they are down."
+	description "While it may be technically described as a missile, its specifics differ from the average rocket launcher. The heap of energy created by this weapon's fire continuously releases projectiles which home in onto enemies, until finally exploding and breaking up into an enormous barrage of similar projectiles. These attributes make it very good at overwhelming anti-missiles enough to render them useless, then impacting a fair share of damage while they are down."
 
 outfit "asteroid missile"
 	weapon
