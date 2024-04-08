@@ -6903,13 +6903,13 @@ mission "Lost Dog"
 	on offer
 		conversation
 			`Your walk from the <ship> takes you outside <planet>'s bustling spaceport and into the overtly welcoming and carefully inoffensive tourist-saturated streets of the spaceport town. Every path seems purpose-built to whisk you further away from your ship and deeper into the unnatural radiance of this Paradise World. The hand-crafted beauty is inescapable, a never-ending sequence of breathtaking views.`
-			`	As you walk you eventually come across an immaculate and perfectly manicured garden park. Normally there is an exorbitant fee to enter, but due to some promotion today you can enter freely.`
+			`	As you walk you eventually come across an immaculate and perfectly manicured garden park named "Parc Manifold." You walk towards the gates only to discover a ticket office, with signs advertising the price of entry being a mere 3,400 credits. But due to some promotion, tickets are free for this week.`
 			choice
 				`	(Go to the park.)`
 					goto park
 				`	(Head back to your ship.)`
 
-			`	It was a splendid walk, but you decide it's time to head back. You have more important things to do than wander around an expensive terraformed garden.`
+			`	You have more important things to do than wander around an expensive terraformed garden.`
 				decline
 
 			label park
@@ -6936,6 +6936,7 @@ mission "Lost Dog"
 			label takehim
 			`	"Well, come on boy. Let's go." Caesar eagerly follows you back to your ship. He seems greatly relieved to be with you, and not left all alone at the park.`
 			`	Once back on your ship, you make sure he's fed, watered, and settled in for his interstellar journey.`
+				accept
 
 	on complete
 		payment 1000
@@ -6943,7 +6944,7 @@ mission "Lost Dog"
 			branch "transported pookie"
 				has "Pookie, Part 2: done"
 				not `outfit: "Puny"`
-			`Caesar has been very obedient the whole trip, much to your convenience. He lays down by the airlock while your ship sets down in the local Avalonia spaceport, which is enclosed on all sides by a squalid urban landscape. The honeycombed homes of humble help. You rent a vehicle and take yourself and Caesar beyond the blighted city and out into the pleasant picture-perfect paradise of the wealthy. One princely estate after another rolls past you as you drive deeper into the rural domains of the Republic's super-wealthy. Eventually, you come across a large metal gate that reads, "Mitchell Ranch."`
+			`Caesar has been very obedient the whole trip, much to your convenience. He lays down by the airlock while your ship sets down in the local Avalonia spaceport, which is enclosed on all sides by a squalid urban landscape. The honeycombed homes of humble help. You rent a vehicle and take yourself and Caesar beyond the blighted city and out into the pleasant picture-perfect paradise of the wealthy. One princely estate after another rolls past you as you drive deeper into the rural domains of the Republic's super-wealthy. Eventually, you come across a large metal gate that reads "Mitchell Ranch."`
 				goto ranch
 
 			label "transported pookie"
@@ -6973,7 +6974,7 @@ mission "Lost Dog"
 			`	"Mr. Boolinbrook says you've brought back my darling See-See?" From down her nose she looks at you and waits for your response.`
 			choice
 				`	"Your dog is safe and sound with me."`
-				`	"I found Caesar alone out on Calda, by the spaceport."`
+				`	"I found Caesar alone, out in a park on Calda."`
 				`	"Here he is, you're welcome."`
 
 			`	Before you can respond, Caesar starts yapping happily and runs up to the lady.`
@@ -6992,7 +6993,6 @@ mission "Lost Dog: Homeward Bound"
 		has "Lost Dog: declined"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-	destination "Hestia"
 	on offer
 		conversation
 			`As you're walking through the spaceport, your eye is drawn to a marginally familiar figure on a nearby newsfeed. You can't quite make out exactly what it is saying over the din, but you're able to gather that little lost dog you ran into on Calda, Caesar, has become something of a minor celebrity after managing to get back home to Hestia all by himself. The newsfeed scrolls down to show images of Caesar skiing, sneaking on transports, and riding automatic farming equipment.`
