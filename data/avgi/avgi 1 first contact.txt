@@ -595,7 +595,7 @@ mission "Avgi: Scout Rescue"
 			choice
 				`	"Yes, I've found that exploration is often dangerous."`
 					goto exploration
-				`	"Sounds like you should build stronger scout ships."`	
+				`	"Sounds like you should build stronger scout ships."`
 			`	"Agreement. The Polari are a fine line of vessels, but not one made for the environment of war. We have experimented with using the Prismaios as an intelligence platform in more contested environments, but it lacks the versatility and drone bays that has made the Polari so venerable in the first place."`
 				goto point
 			label exploration
