@@ -63,7 +63,7 @@ mission "Wanderers: Mereti: The Plant 2"
 		conversation
 			`The two Wanderers from earlier are waiting for you in the spaceport, but this time Iriket, the terraforming director, is with them. The other two leave as she starts explaining the situation.`
 			`	"We have [restored, healed] the plant, and it is surviving here for now. But we will soon be moving out of these systems. This plant [originates, belongs] in Korath space, so we must find a way to return it there."`
-			`	Iriket pauses and thinks for a moment before continuing. "The Korath do not seem to me to be the type to [create, engineer] such a plant through [artificial, unnatural] means. I suspect it originates on one of their worlds. If we are fortunate, it may [grow, prosper] there still. From an initial look, we [believe, suspect] that it is native to either <planet>, Sopi Leftarka, or possibly one of those worlds that is so [damaged, destroyed] that it is difficult to [see, imagine] what it might once have been like."`
+			`	Iriket pauses and thinks for a moment before continuing. "The Korath do not seem to me to be the type to [create, engineer] such a flower through [artificial, unnatural] means. I suspect it originates on one of their worlds. If we are fortunate, it may [grow, prosper] there still. From an initial look, we [believe, suspect] that it is native to either <planet>, Sopi Leftarka, or possibly one of those worlds that is so [damaged, destroyed] that it is difficult to [see, imagine] what it might once have been like."`
 			choice
 				`	"You are really set on giving these worlds to the Unfettered, then?"`
 				`	"What do you suggest we do?"`
@@ -154,7 +154,21 @@ mission "Wanderers: Mereti: The Plant Epilogue"
 	to offer
 		has "event: field of mereti plants"
 	source "Sopi Leftarka"
+	destination "Sopi Leftarka"
 	on offer
 		conversation
-			``
+			`As you approach <planet>, you recall that this is the planet on which you and the Wanderers planted the flower that the Mereti gave you. As you descend through the clouds, you spot a tiny blue dot in the depths of a valley, exactly where you left the Wanderers years ago.`
+			choice
+				`	(Take a closer look.)`
+				`	(Not right now.)`
+					defer
+			`	The spot grows larger as you get closer, until you see the Strong Wind parked in the middle of a field of flowers, their petals gleaming a beautiful deep blue.`
+			`	You carefully set your ship down outside the field, and a small Mereti drone flies up to you, speaking in a voice that is far more subdued than you expect. "Thank you, <first> <last>. You have [saved, restored] the sitrasanir." Your translator makes no attempt at the last word, and it doesn't sound like any word you have heard in either the Hai or Wanderer language.`
+			choice
+				`	"Sitrasanir?"`
+				`	"You're welcome."`
+					goto end
+			`	"This flower is called the sitrasanir. Its [symbol, appearance] was of [importance, significance] to our creators when they were [present? alive?]. We [abandoned, ignored] it for years, but our [parents, ancestors] helped us to remember it."`
+			label end
+			`	The drone sits in a contemplative silence, looking out into the field. The sun rises higher into the sky, and the field shines in blue hues that almost exactly match the blue paints on the the Mereti ships in the sky above.`
 				decline
