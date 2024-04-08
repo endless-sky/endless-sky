@@ -2108,7 +2108,7 @@ ship "Vibratia"
 		"crew equivalent" 1
 		"threshold percentage" 0.12
 		"mass" 21
-		"drag" 0.15
+		"drag" 0.3
 		"heat dissipation" 0.99
 		"fuel capacity" 100
 		"outfit space" 72
@@ -2123,8 +2123,8 @@ ship "Vibratia"
 	outfits
 		"Speckle Coilgun"
 		"Speck Round" 1800
-		# "Dart Launcher"
-		# `"Dart" Kinetic Missile` 60
+		"Dart Launcher"
+		`"Dart" Kinetic Missile` 6
 	
 		"Concentrating Solar Array"
 		"Ultracapacitor Cell"

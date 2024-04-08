@@ -187,6 +187,7 @@ government "Avgi (Wandering Fleet)"
 	bribe 0
 	"travel restrictions"
 		system "Arche"
+		system "Ballad"
 
 government "Bad Trip"
 	swizzle 0

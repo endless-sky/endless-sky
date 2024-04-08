@@ -123,7 +123,6 @@ outfitter "Avgi Basic Combat"
 	"Dart Launcher"
 
 outfitter "Avgi Advanced Combat"
-	"Fleck Turret"
 	"Optical Lasing Generator"
 	"Green Optical Laser"
 	"Blue Optical Laser"

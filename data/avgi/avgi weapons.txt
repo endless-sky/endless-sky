@@ -59,7 +59,8 @@ outfit "Speckle Coilgun"
 		"firing heat" 30
 		"firing force" 12
 		"submunition" "Speck"
-	description "This compact coilgun fires a stream of hypervelocity projectiles, accelerating them on a traveling wave of magnetic energy as capacitors are discharged through a series of coils. Designed for drones and smaller ships, the Speckle is a deadly albeit relatively unsophisticated weapon."
+	description "This compact coilgun fires a stream of hypervelocity projectiles, accelerating them on a traveling wave of magnetic energy as capacitors are discharged through a series of coils. Designed primarily for drones and smaller ships, the Speckle is a deadly albeit relatively unsophisticated weapon."
+	description "Due to its limited range, the Speckle shines when a ship can sneak close enough to an enemy to bring it to bear, where it can begin tearing through armor and hull. However, its effectiveness is much more limited against shields, which shrug off the its mass driver rounds with relative ease."
 	
 
 outfit "Speckle Turret"
@@ -93,7 +94,7 @@ outfit "Speckle Turret"
 			"offset" -3 0
 		"submunition" "Speck"
 			"offset" 3 0
-	description "Designed for mid-sized ships, this variation on the Speckle Coilgun mounts a pair of coilguns onto a nimble turret. Its compact size allows even smaller ships to fit one, making it "
+	description "Designed for mid-sized ships, this variation on the Speckle Coilgun mounts a pair of coilguns onto a nimble turret. Its compact size allows even smaller ships to fit one, making it a versatile option for mid-ranged combat."
 	description "Of course, the inherently limited range and velocity of kinetic weapons makes the Speckle Turret a poor match for some of the longer ranged weapons used by the Avgi, but the sheer firepower it can put out makes it deadly in close range."
 
 
@@ -129,7 +130,7 @@ outfit "Green Optical Laser"
 	"outfit space" -6
 	"weapon capacity" -6
 	"turret mounts" -1
-	"optical jamming" 9
+	"optical jamming" 6
 	"lasing power" -3
 	weapon
 		"hardpoint sprite" "hardpoint/avgi green laser"
@@ -137,12 +138,12 @@ outfit "Green Optical Laser"
 		"die effect" "green laser reflection" 30
 		"die effect" "green laser scattering"
 		"fire effect" "green laser fire"
-		"anti-missile" 3
+		"anti-missile" 2
 		"velocity" 1200
 		"lifetime" 1
 		"reload" 1
-		"firing energy" 12
-		"firing heat" 9
+		"firing energy" 6
+		"firing heat" 6
 	description "This lightweight turret can be fed a beam of light from a lasing generator, which is then combined and focused to produce an intense beam suitable for targeting and destroying missiles. Unlike a typical pulsed-shot human antimissile system, this turret seems designed to hold a beam on target at an extreme distance for a longer period of time using its precise optics, making it better suited for defending and supporting other ships from afar."
 	description "The turret itself only contains the optics needed to synthesize, focus, and target the beam, allowing the laser light to be produced elsewhere. Because of this, an Optical Lasing Generator is needed to run this turret, providing enough power to support two Green Lasers."
 
