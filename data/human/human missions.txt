@@ -6896,27 +6896,46 @@ mission "Hogshead's Dilemma II"
 mission "Stone to Hope"
 	name "Bring a stone to <planet>"
 	to offer
-		random < 15
+		random < 60
 		has: "Stone of our Fathers 5: complete"
-	source 
-		# government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "deep"
+		has "event: Stone Waiting most"
+	source "Norn"
 	destination "Hope"
 	on offer
 		conversation
-			`A young unremarkable man in threadbare clothes approachs you in <source>'s spaceport.`
-			`"Captain <last>?" He says nervously, "I - I am sorry to be bothering you, ser. But I am a friend of Thorlief and - and he said you might be someone who could help me?"`
-			`The young man, barely more than a boy, suddenly looks you intensely in the eyes. "I know this something far beneath someone like you, but you see, my well he's from Hope. Or he was until, well, recently when he, uh, well the thing is I heard you were real kind to folks like us, and maybe you'd be willing, seeing as how you have a ship an' all to, maybe..."`
+			`There is a certain comfort to be found in the familiar swaying of Norn's spaceport. The creaking bridges no longer feel intimidating or threatening, only welcoming.`
+			`	There's never much staff here, but the few you do run into greet you warmly. Word has apparently spread that you've all but been adopted into the Hlewagasti family.`
+			`	Helm, with his sandy hair and short beard approaches you with a young man in tow. "<First>! It's well to see you again."`
+			`	"So..." He says conspiratorially,"...there is no date yet, but a certain red haired stoic and his exotic Alfheimian girlfriend may be looking at wedding dates."`
 			choice
-				`	"Spit it out."`
+				`	"That's great news!"`
+				`	"Do you know when?!"`
+				`	"Who are you talking about?"`
+					goto wedding
+				`	"I don't really care."`
+			`	Helm frowns and takes a step back like he's been struck. After a moment he regains his composure, "If you say so. In that case I have another matter to discuss with you."`
+				goto hopestone
+			
+			label wedding
+			`	"Like I said there is no date yet, and with those two it could be years before they finally land on a date. Time's different out on the Algea islands." He shrugs.`
+			`	"But I thought you'd appreciate a small update on Thorleif." He smiles and then glances at the young man next to him, "Anyways, that's not actually why I sought you out."`
+	
+			label hopestone
+			`	Standing beside Helm is a young unremarkable man with a sunburnt face, calloused hands, and threadbare garb, "Ca-Captain <last>?" He says nervously, "I'm sorry to be a bothering you, ser. But I heard tell what you did for Thorleif, and I thought maybe you were the like to do a good turn by me."`	
+			`	Helm puts an arm on the young man's shoulder, "It's already Tosti, we're all friends on Norn."`
+			`	The young man staightens up a bit at Helm's reassurance and looks you in the eyes, "My da well, he liked the waves well enough, but never really settled here, you see? In his heart that is. He never really left our hold home. We were refugees and were ever so glad to be taken in by the Norn, but he never felt so tall as when he thought about Hope, about home."`
+			choice
+				`	"What are you going on about?."`
 					goto finish
 				`	(Wait for him to get the point.)`
 					goto finish
 				`	"Leave me alone. I'm not interested."`
 			`	Cresfallen the young man stumbles over his words attempting to apologize for the intrusion and slinks away from you in an ungraceful hurry.`
+			`	Helm watches him go with an unhappy frown upon his face, "You could have at least heard him out."`
+			`	He shakes his head and turns from you, "I thought better of you." `
 				decline
 			label finish
-			`	He suddenly stops, and takes a deep breath. His face is red, and beads of sweat glisten on his brow, "We're from Hope, ser. My family we're refugees and we had to leave everything behind. But my dad, well, he never really left Hope in his heart, you see."`
+			`	Tosti suddenly stops, and takes a deep breath. His face is red, and beads of sweat glisten on his brow, "We're from Hope, ser. My family. We're refugees and we had to leave everything behind. But da, he never really left Hope."`
 			`	The young refugee pulls out a stone crisscrossed in tiny chiseled letters. The familiar engraved story of a life now ended. "This is his stone, and well, he - he'd want his stone left on Hope. I was hoping that was something you could do."`
 			`	With the words out his eyes drop to the floor and he tenses up as though expecting a blow.`
 			choice
@@ -6926,10 +6945,12 @@ mission "Stone to Hope"
 					goto hopeprice
 				`	"Hire a courier. I have more important things to do."`
 				`	"No."`
-			`	Cresfallen the young man stumbles over his words attempting to apologize for the intrusion and slinks away from you in an ungraceful hurry.`
+			`	Helm sighs and tries to pat the young man on the back before he entirely deflates in shame.	"Captain <last> is a very busy man. I am sure we can find someone else to make the journey. There is no shame in asking for help." `
+			`	Tosti is red and shaking and mumbles some apoligies before slinking away from you and Helm.`
+			`	Helm gives you a nod, "Thanks for listening, at least."`
 				decline
 			label hopeprice
-			`	He grimances as if punched in the gut, "I am sorry, ser. I am just a poor laborer. Work is hard to come by for us refugees. I thought - I thought I'd just ask. In case you were near. In case it was within your power is all."`
+			`	He grimances as if punched in the gut, "I am sorry, ser. We're just poor laborers. Work is hard to come by for us refugees. I thought - I thought I'd just ask. In case you were near. In case it was within your power is all."`
 			`	His eyes remain downcast and tears slide down his smooth face. His whole body seems to shake with the shame of what he just admitted.`
 			choice
 				`	"I might be in the area. No promises though.`
@@ -6938,12 +6959,17 @@ mission "Stone to Hope"
 					goto hopeyes
 				`	"Sorry. I don't work for free."`
 				`	(Shake your head - no.)`
-			`	Cresfallen the young man stumbles over his words attempting to apologize for the intrusion and slinks away from you in an ungraceful hurry.`
+			`	Helm sighs and tries to pat the young man on the back before he entirely deflates in shame.	"Captain <last> is a very busy man. I am sure we can find someone else to make the journey. There is no shame in asking for help." `
+			`	Tosti is red and shaking and mumbles some apoligies before slinking away from you and Helm.`
+			`	Helm gives you a nod, "Thanks for listening, at least."`
+				decline
 			label hopeyes
-			`	The young man's eyes light up as he drags them off the floor and focuses on your face once more. "Really? Truly? I didn't dare hope.."`
+			`	The young man's eyes light up as he drags them off the floor and focuses on your face once more. "Really? Truly? I didn't dare hope..."`
 			`	His body weight shifts and it looks as though he's about to hug you before he abruptly stops himself and tries to regain a little composure.`
-			`	"Thorleif was right about you." He presses the small cool stone into your hand. "The Family-Cairn is not far from where the Spaceport used to be. Just by the cliffs."`
+			`	"Thorleif was right about you." He presses the small cool stone into your hand. "The Family-Cairn is not far from where the Spaceport used to be. Just by the cliffs, family name was Snaiwaz."`
 			`	With the stone firmly in your fist, he takes his leave from you, saying "thank you" over and over again before he's finally gone.`
+			`	Helm silently watches him go and then turns back to you, shaking his head, "You're not like any off-worlder I've ever known. Most would have laughed in that boys face, let alone done him a good turn for free."`
+			`	He smiles at you, "You really are one of us."`
 
 
 # This leads on from Stone to Hope into Ice Queen, as an alternative but more visible entry.
