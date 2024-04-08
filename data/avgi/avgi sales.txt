@@ -118,15 +118,15 @@ outfitter "Avgi Basic Combat"
 	"Speck Magazine"
 	"Speckle Coilgun"
 	"Speckle Turret"
-	`"Dart" Kinetic Missile`
-	"Dart Magazine"
-	"Dart Launcher"
+	`"Nettle" Kinetic Missile`
+	"Nettle Magazine"
+	"Nettle Launcher"
 
 outfitter "Avgi Advanced Combat"
 	"Optical Lasing Generator"
 	"Green Optical Laser"
 	"Blue Optical Laser"
-	"Dart Launch Array"
+	"Nettle Launch Array"
 	"Diffuse Deflector"
 	"Specular Deflector"
 
@@ -134,11 +134,11 @@ outfitter "Avgi Atomics"
 	"Equinox Torpedo"
 	"Equinox Torpedo Pylon"
 	"Equinox Torpedo Stockpile"
-	`"Rush" Nuclear Missile`
-	"Rush Magazine"
-	"Rush Launcher"
-	"Rush Launch Array"
-	`"Snap" Nuclear Shaped Charge`
-	"Snap Magazine"
-	"Snap Launcher"
+	`"Orchid" Nuclear Missile`
+	"Orchid Magazine"
+	"Orchid Launcher"
+	"Orchid Launch Array"
+	`"Snapdragon" Nuclear Shaped Charge`
+	"Snapdragon Magazine"
+	"Snapdragon Launcher"
 

@@ -49,7 +49,7 @@ ship "Koryfi"
 		"Luxury Accommodations"
 		"Electromotive Rifle" 2
 
-		"Magnetoplasma Drive" 2
+		"Magnetoplasma Drive" 3
 		"Hyperdrive"
 
 	gun 0 -27
@@ -163,7 +163,7 @@ ship "Melodikos"
 		"Luxury Accommodations"
 		"Electromotive Rifle" 6
 
-		"Magnetoplasma Drive"
+		"Magnetoplasma Drive" 2
 		"Hyperdrive"
 
 	gun -96 -3
@@ -306,7 +306,7 @@ ship "Avlaki"
 		"Diffuse Deflector"
 		"Electromotive Rifle" 2
 
-		"Magnetoplasma Drive" 2
+		"Magnetoplasma Drive" 3
 		"Hyperdrive"
 
 	gun 0 -27
@@ -419,7 +419,7 @@ ship "Harmonikos"
 		"Optical Lasing Generator"
 		"Electromotive Rifle" 6
 
-		"Magnetoplasma Drive"
+		"Magnetoplasma Drive" 2
 		"Hyperdrive"
 
 	gun -96 -3
@@ -555,7 +555,7 @@ ship "Phononos"
 		"Concentrating Solar Array"
 		"Ultracapacitor Cell"
 		
-		"Magnetoplasma Drive"
+		"Magnetoplasma Drive" 2
 		"Hyperdrive"
 
 	engine -9 -19
@@ -782,8 +782,8 @@ ship "Entasi"
 			"hit force" 1200
 	outfits
 		"Blue Optical Laser" 2
-		"Dart Launcher" 2
-		`"Dart" Kinetic Missile` 120
+		"Nettle Launcher" 2
+		`"Nettle" Kinetic Missile` 120
 
 		"Ultracapacitor Bank" 3
 		"Diffuse Deflector"
@@ -792,11 +792,11 @@ ship "Entasi"
 		"Spectrometer Array" 6
 		"Electromotive Rifle" 9
 
-		"Magnetoplasma Drive" 2
+		"Magnetoplasma Drive" 3
 		"Hyperdrive"
 
-	gun -36 9 "Dart Launcher"
-	gun 36 9 "Dart Launcher"
+	gun -36 9 "Nettle Launcher"
+	gun 36 9 "Nettle Launcher"
 	gun -36 9
 	gun 36 9
 	turret -10 72 "Blue Optical Laser"
@@ -909,9 +909,9 @@ ship "Undsyni"
 	outfits
 		"Green Optical Laser" 3
 		"Speckle Turret" 2
-		"Speck Round" 7200
-		"Dart Launcher" 2
-		`"Dart" Kinetic Missile` 120
+		"Speck Round" 4800
+		"Nettle Launcher" 2
+		`"Nettle" Kinetic Missile` 120
 		"Electromotive Rifle" 24
 
 		"Lantern Fission Core"
@@ -930,9 +930,9 @@ ship "Undsyni"
 
 	gun 0 -213
 		over
-	gun -42 -139 "Dart Launcher"
+	gun -42 -139 "Nettle Launcher"
 		angle -90
-	gun 42 -139 "Dart Launcher"
+	gun 42 -139 "Nettle Launcher"
 		angle 90
 	turret -33 -138 "Speckle Turret"
 	turret 33 -138 "Speckle Turret"
@@ -983,9 +983,9 @@ ship "Undsyni" "Undsyni (Tanker)"
 	outfits
 		"Green Optical Laser" 3
 		"Speckle Turret" 2
-		"Speck Round" 7200
-		"Dart Launcher" 2
-		`"Dart" Kinetic Missile` 120
+		"Speck Round" 4800
+		"Nettle Launcher" 2
+		`"Nettle" Kinetic Missile` 120
 		"Electromotive Rifle" 24
 
 		"Lantern Fission Core"
@@ -1155,7 +1155,7 @@ ship "Tremoros"
 			"hit force" 720
 	outfits
 		"Speckle Coilgun" 4
-		"Speck Round" 4800
+		"Speck Round" 3600
 		
 		"Ultracapacitor Cell" 4
 		"Diffuse Deflector"
@@ -1234,9 +1234,9 @@ ship "Prismaios"
 	outfits
 		"Green Optical Laser"
 		"Speckle Turret" 2
-		"Speck Round" 7200
-		"Dart Launcher" 2
-		`"Dart" Kinetic Missile` 120
+		"Speck Round" 4800
+		"Nettle Launcher" 2
+		`"Nettle" Kinetic Missile` 120
 		"Electromotive Rifle" 6
 
 		"Ultracapacitor Bank"
@@ -1271,9 +1271,9 @@ ship "Prismaios"
 		right
 	gun -9 -48
 	gun 9 -48
-	gun -9 33 "Dart Launcher"
+	gun -9 33 "Nettle Launcher"
 		angle -90
-	gun 9 33 "Dart Launcher"
+	gun 9 33 "Nettle Launcher"
 		angle 90
 	turret -9 18 "Speckle Turret"
 	turret 9 18 "Speckle Turret"
@@ -1293,10 +1293,10 @@ ship "Prismaios" "Prismaios (Atomic)"
 	outfits
 		"Green Optical Laser"
 		"Speckle Turret" 2
-		"Speck Round" 7200
-		"Rush Launcher" 2
-		"Rush Magazine" 2
-		`"Rush" Nuclear Missile` 60
+		"Speck Round" 4800
+		"Orchid Launcher" 2
+		"Orchid Magazine" 2
+		`"Orchid" Nuclear Missile` 60
 
 		"Ultracapacitor Bank"
 		"Diffuse Deflector"
@@ -1340,8 +1340,8 @@ ship "Interferos"
 			"hit force" 900
 	outfits
 		"Green Optical Laser" 2
-		"Dart Launcher" 4
-		`"Dart" Kinetic Missile` 240
+		"Nettle Launcher" 4
+		`"Nettle" Kinetic Missile` 240
 
 		"Ultracapacitor Cell" 3
 		"Diffuse Deflector"
@@ -1354,13 +1354,13 @@ ship "Interferos"
 		"XY-180 Radial Thrusters"
 		"Hyperdrive"
 
-	gun -33 -57 "Dart Launcher"
+	gun -33 -57 "Nettle Launcher"
 		angle -60
-	gun 33 -57 "Dart Launcher"
+	gun 33 -57 "Nettle Launcher"
 		angle 60
-	gun -33 -42 "Dart Launcher"
+	gun -33 -42 "Nettle Launcher"
 		angle -60
-	gun 33 -42 "Dart Launcher"
+	gun 33 -42 "Nettle Launcher"
 		angle 60
 	turret -21.5 -81 "Green Optical Laser"
 	turret 21.5 -81 "Green Optical Laser"
@@ -1425,10 +1425,10 @@ ship "Diaspersi"
 	outfits
 		"Green Optical Laser" 2
 		"Speckle Turret"
-		"Speck Round" 3600
-		"Dart Launcher" 2
-		"Dart Magazine" 6
-		`"Dart" Kinetic Missile` 480
+		"Speck Round" 2400
+		"Nettle Launcher" 2
+		"Nettle Magazine" 6
+		`"Nettle" Kinetic Missile` 480
 		
 		"Ultracapacitor Bank"
 		"Diffuse Deflector"
@@ -1446,9 +1446,9 @@ ship "Diaspersi"
 		"Hyperdrive"
 
 	gun 0 -156
-	gun -18 -9 "Dart Launcher"
+	gun -18 -9 "Nettle Launcher"
 		angle -90
-	gun 18 -9 "Dart Launcher"
+	gun 18 -9 "Nettle Launcher"
 		angle 90
 	turret -9 12 "Green Optical Laser"
 	turret 9 12 "Green Optical Laser"
@@ -1502,9 +1502,9 @@ ship "Diaspersi" "Diaspersi (Atomic)"
 	outfits
 		"Green Optical Laser" 2
 		"Speckle Turret"
-		"Speck Round" 3600
-		"Rush Launcher" 2
-		`"Rush" Nuclear Missile` 36
+		"Speck Round" 2400
+		"Orchid Launcher" 2
+		`"Orchid" Nuclear Missile` 36
 		"Equinox Torpedo Stockpile" 3
 		"Equinox Torpedo" 36
 		
@@ -1553,10 +1553,10 @@ ship "Difraktos"
 	outfits
 		"Green Optical Laser" 2
 		"Speckle Turret" 2
-		"Speck Round" 7200
-		"Dart Launch Array" 2
-		"Dart Magazine" 2
-		`"Dart" Kinetic Missile` 600
+		"Speck Round" 4800
+		"Nettle Launch Array" 2
+		"Nettle Magazine" 2
+		`"Nettle" Kinetic Missile` 600
 
 		"Lantern Fission Core"
 		"Ultracapacitor Bank"
@@ -1579,8 +1579,8 @@ ship "Difraktos"
 		angle 90
 	turret -9 -111 "Speckle Turret"
 	turret 9 -111 "Speckle Turret"
-	turret -9 -87 "Dart Launch Array"
-	turret 9 -87 "Dart Launch Array"
+	turret -9 -87 "Nettle Launch Array"
+	turret 9 -87 "Nettle Launch Array"
 	turret -9 -66
 	turret 9 -66
 	turret 0 36 "Green Optical Laser"
@@ -1622,9 +1622,9 @@ ship "Difraktos"
 
 ship "Difraktos" "Difraktos (Missile)"
 	outfits
-		"Dart Launch Array" 4
-		"Dart Magazine" 9
-		`"Dart" Kinetic Missile` 1500
+		"Nettle Launch Array" 4
+		"Nettle Magazine" 9
+		`"Nettle" Kinetic Missile` 1500
 
 		"Ultracapacitor Bank"
 		"Diffuse Deflector"
@@ -1644,7 +1644,7 @@ ship "Difraktos" "Difraktos (Kinetic)"
 		"Green Optical Laser" 2
 		"Speckle Turret" 6
 		"Speck Magazine"
-		"Speck Round" 21600
+		"Speck Round" 14400
 
 		"Ultracapacitor Cell" 3
 		"Diffuse Deflector"
@@ -1664,10 +1664,10 @@ ship "Difraktos" "Difraktos (Atomic)"
 	outfits
 		"Green Optical Laser" 3
 		"Speckle Turret" 2
-		"Speck Round" 7200
-		"Rush Launch Array" 3
-		`"Rush" Nuclear Missile` 168
-		"Rush Magazine" 2
+		"Speck Round" 4800
+		"Orchid Launch Array" 3
+		`"Orchid" Nuclear Missile` 168
+		"Orchid Magazine" 2
 
 		"Ultracapacitor Cell" 3
 		"Diffuse Deflector"
@@ -1809,12 +1809,12 @@ ship "Atenuatia"
 			"hit force" 4200
 	outfits
 		"Speckle Turret"
-		"Speck Round" 3600
+		"Speck Round" 2400
 		"Blue Optical Laser" 2
 		"Green Optical Laser" 3
-		"Dart Launch Array" 2
-		"Dart Magazine" 6
-		`"Dart" Kinetic Missile` 840
+		"Nettle Launch Array" 2
+		"Nettle Magazine" 6
+		`"Nettle" Kinetic Missile` 840
 		
 		"Ultracapacitor Bank" 2
 		"Specular Deflector"
@@ -1860,7 +1860,7 @@ ship "Atenuatia"
 	turret 60 -174 "Blue Optical Laser"
 	turret -60 -174 "Blue Optical Laser"
 	turret 0 -96
-	turret 0 -36 "Dart Launch Array"
+	turret 0 -36 "Nettle Launch Array"
 	turret 0 30 "Green Optical Laser"
 	turret 0 96 "Green Optical Laser"
 	turret 0 160
@@ -1912,13 +1912,13 @@ ship "Atenuatia"
 ship "Atenuatia" "Atenuatia (Atomic)"
 	outfits
 		"Speckle Turret"
-		"Speck Round" 3600
+		"Speck Round" 2400
 		"Blue Optical Laser" 2
 		"Green Optical Laser" 3
-		"Rush Launch Array"
+		"Orchid Launch Array"
 		"Equinox Torpedo Stockpile" 6
 		"Equinox Torpedo" 72
-		`"Rush" Nuclear Missile` 48
+		`"Orchid" Nuclear Missile` 48
 		
 		"Ultracapacitor Bank" 2
 		"Specular Deflector"
@@ -1962,7 +1962,7 @@ ship "Akoustiki"
 			"hit force" 120
 	outfits
 		"Speckle Coilgun"
-		"Speck Round" 1800
+		"Speck Round" 900
 		
 		"Concentrating Solar Array"
 		"Ultracapacitor Cell" 3
@@ -1970,7 +1970,7 @@ ship "Akoustiki"
 		"Spectrometer Array"
 		"Electromotive Rifle" 2
 		
-		"Magnetoplasma Drive"
+		"Magnetoplasma Drive" 2
 
 	gun -18 -15 "Speckle Coilgun"
 	gun 18 -15
@@ -2032,7 +2032,7 @@ ship "Photikon"
 			"hit force" 180
 	outfits
 		"Speckle Turret"
-		"Speck Round" 7200
+		"Speck Round" 4800
 		
 		"Concentrating Solar Array"
 		"Ultracapacitor Cell" 3
@@ -2111,7 +2111,7 @@ ship "Vibratia"
 		"drag" 0.3
 		"heat dissipation" 0.99
 		"fuel capacity" 100
-		"outfit space" 72
+		"outfit space" 75
 		"weapon capacity" 24
 		"engine capacity" 24
 		"radar jamming" 3
@@ -2122,15 +2122,15 @@ ship "Vibratia"
 			"hit force" 120
 	outfits
 		"Speckle Coilgun"
-		"Speck Round" 1800
-		"Dart Launcher"
-		`"Dart" Kinetic Missile` 6
+		"Speck Round" 900
+		"Nettle Launcher"
+		`"Nettle" Kinetic Missile` 6
 	
 		"Concentrating Solar Array"
 		"Ultracapacitor Cell"
 		"Multispectral Scanner"
 	
-		"Magnetoplasma Drive"
+		"Magnetoplasma Drive" 2
 
 	engine 0 27
 	"reverse engine" -5 -12
@@ -2154,7 +2154,7 @@ ship "Vibratia"
 		zoom 0.5
 		right
 	gun 0 -27 "Speckle Coilgun"
-	gun 0 -27 "Dart Launcher"
+	gun 0 -27 "Nettle Launcher"
 
 	explode "tiny explosion" 9
 
@@ -2188,8 +2188,8 @@ ship "Undulon"
 			"hull damage" 120
 			"hit force" 90
 	outfits
-		"Rush Launcher"
-		`"Rush" Nuclear Missile` 6
+		"Orchid Launcher"
+		`"Orchid" Nuclear Missile` 6
 
 		"Concentrating Solar Cell" 3
 		"Ultracapacitor Cell"
@@ -2226,7 +2226,7 @@ ship "Undulon"
 		zoom 0.5
 		left
 
-	gun 0 -29 "Rush Launcher"
+	gun 0 -29 "Orchid Launcher"
 
 	explode "tiny explosion" 12
 
@@ -2343,7 +2343,7 @@ ship "Sonikis"
 ship "Sonikis" "Sonikis (Armed)"
 	outfits
 		"Speckle Coilgun"
-		"Speck Round" 3600
+		"Speck Round" 900
 
 		"Concentrating Solar Array"
 		"Ultracapacitor Cell" 2

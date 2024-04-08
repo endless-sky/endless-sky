@@ -182,13 +182,6 @@ fleet "Avgi Fleetgroup"
 		"Atenuatia"
 		"Vibratia" 18
 		"Photikon" 6
-		"Difraktos (Missile)"
-		"Prismaios (Coilgun)"
-		"Tremoros" 3
-	variant 5
-		"Atenuatia"
-		"Vibratia" 18
-		"Photikon" 6
 		"Difraktos (Kinetic)"
 		"Prismaios"
 		"Tremoros" 3
@@ -206,7 +199,7 @@ fleet "Avgi Fleetgroup"
 		"Difraktos (Missile)"
 		"Difraktos (Kinetic)"
 		"Refraktos"
-		"Prismaios (Coilgun)" 2
+		"Prismaios" 2
 		"Tremoros" 3
 	variant 2
 		"Atenuatia"

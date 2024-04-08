@@ -301,15 +301,15 @@ outfit "Magnetoplasma Drive"
 	"cost" 30000
 	thumbnail "outfit/magnetoplasma drive"
 	"mass" 12
-	"outfit space" -18
-	"engine capacity" -18
-	"thrust" 9
-	"thrusting energy" 1.2
+	"outfit space" -12
+	"engine capacity" -12
+	"thrust" 6
+	"thrusting energy" 0.6
 	"thrusting heat" 0.3
-	"reverse thrust" 9
-	"reverse thrusting energy" 1.2
+	"reverse thrust" 6
+	"reverse thrusting energy" 0.6
 	"reverse thrusting heat" 0.3
-	"turn" 210
+	"turn" 180
 	"turning energy" 0.6
 	"turning heat" 0.3
 	"drag reduction" 1
@@ -442,7 +442,7 @@ outfit "Inductive Extractor"
 	"energy generation" 1.5
 	"heat generation" 1.5
 	"thrust" -6
-	"thrusting energy" -36
+	"thrusting energy" -30
 	"thrusting heat" 6
 	"magnozzle rings" -1
 	description "A reinforced superconducting solenoid and power conditioning unit allows a significant amount of power to be inductively extracted from a fusion torch's exhaust as it pushes against the drive's magnetic nozzle. This removes some energy from the exhaust plume and produces some heat, but is the primary means by which high performance Avgi starships generate power."

@@ -37,17 +37,17 @@ outfit "Speck Magazine"
 outfit "Speckle Coilgun"
 	category "Guns"
 	cost 40000
-	thumbnail "outfit/speckle gun"
-	"mass" 5.4
+	thumbnail "outfit/speckle coilgun"
+	"mass" 6.3
 	"outfit space" -9
 	"weapon capacity" -9
 	"energy capacity" 90
 	"gun ports" -1
-	"speck capacity" 1200
+	"speck capacity" 900
 	weapon
 		sound "fleck"
 		ammo "Speck Round"
-		"fire effect" "speck fire"
+		"fire effect" "speckle fire"
 		"inaccuracy" 1.2
 		"velocity" 60
 		"lifetime" 0
@@ -67,21 +67,20 @@ outfit "Speckle Turret"
 	category "Turrets"
 	cost 40000
 	thumbnail "outfit/speckle turret"
-	"mass" 13.2
+	"mass" 16.8
 	"outfit space" -24
 	"weapon capacity" -24
 	"energy capacity" 180
 	"turret mounts" -1
-	"speck capacity" 3600
+	"speck capacity" 2400
 	weapon
 		sound "fleck"
-		ammo "Speck Round"
+		ammo "Speck Round" 2
 		"hardpoint sprite" "hardpoint/speckle turret"
 		"hardpoint offset" 6
-		"fire effect" "speck fire"
+		"fire effect" "speckle fire"
 		"inaccuracy" 0.9
 		"velocity" 60
-		"lifetime" 0
 		"reload" 20
 		"burst reload" 15
 		"burst count" 3
@@ -104,14 +103,14 @@ outfit "Speck"
 			"frame rate" 60
 			"no repeat"
 		"hit effect" "bullet impact"
-		"lifetime" 20
+		"lifetime" 15
 		"random lifetime" 3
-		"shield damage" 30
-		"hull damage" 72
+		"shield damage" 24
+		"hull damage" 48
 		"hit force" 12
 
 
-effect "speck fire"
+effect "speckle fire"
 	sprite "effect/emp torpedo fire"
 		"scale" 0.75
 		"random start frame"
@@ -294,18 +293,18 @@ effect "electron flare"
 
 # Missiles:
 
-outfit `"Dart" Kinetic Missile`
+outfit `"Nettle" Kinetic Missile`
 	category "Ammunition"
 	licenses
 		"Twilight Guard"
 	cost 600
-	thumbnail "outfit/dart missile"
+	thumbnail "outfit/Nettle missile"
 	"mass" 0.15
-	"dart capacity" -1
-	description "The Dart missile is a cheap, disposable kinetic kill vehicle designed for situations where a nuclear warhead would be unnecessary. Upon closing in on a target, the missile unwraps into dozens of thin tungsten rods to create a cone shaped area of effect. This makes it difficult to shoot down without very long ranged antimissile systems."
+	"nettle capacity" -1
+	description "The Nettle missile is a cheap, disposable kinetic kill vehicle designed for situations where a nuclear warhead would be unnecessary. Upon closing in on a target, the missile unwraps into dozens of thin tungsten rods to create a cone shaped area of effect. This makes it difficult to shoot down without very long ranged antimissile systems."
 
 
-outfit "Dart Magazine"
+outfit "Nettle Magazine"
 	category "Ammunition"
 	licenses
 		"Twilight Guard"
@@ -313,12 +312,12 @@ outfit "Dart Magazine"
 	thumbnail "outfit/unknown"
 	"mass" 3
 	"outfit space" -12
-	"dart capacity" 60
-	ammo `"Dart" Kinetic Missile`
-	description "Dart storage"
+	"nettle capacity" 60
+	ammo `"Nettle" Kinetic Missile`
+	description "Nettle storage"
 
 
-outfit "Dart Launcher"
+outfit "Nettle Launcher"
 	category "Secondary Weapons"
 	licenses
 		"Twilight Guard"
@@ -328,16 +327,16 @@ outfit "Dart Launcher"
 	"outfit space" -15
 	"weapon capacity" -15
 	"gun ports" -1
-	"dart capacity" 60
+	"nettle capacity" 60
 	weapon
 		sprite "projectile/shardactive"
 			"no repeat"
 			"frame rate" .25
 		sound "finisher"
-		ammo `"Dart" Kinetic Missile`
+		ammo `"Nettle" Kinetic Missile`
 		icon "icon/finisher"
 		"fire effect" "sidewinder fire"
-		"fire effect" "speck fire"
+		"fire effect" "speckle fire"
 		"inaccuracy" 2.4
 		"velocity" 6
 		"lifetime" 15
@@ -346,13 +345,13 @@ outfit "Dart Launcher"
 		"firing heat" 3
 		"infrared tracking" 0.9
 		"missile strength" 9
-		"submunition" "Dart Active"
-	description "Dart missiles are minimalist kinetic kill vehicles designed for use in situations where nuclear weapons are considered unnecessary. Little more than a payload of tungsten rods, a thruster package, and a nose mounted sensor array, they can be manufactured in bulk at minimal cost."
+		"submunition" "Nettle Active"
+	description "Nettle missiles are minimalist kinetic kill vehicles designed for use in situations where nuclear weapons are considered unnecessary. Little more than a payload of tungsten rods, a thruster package, and a nose mounted sensor array, they can be manufactured in bulk at minimal cost."
 	description "By splitting into a number of tungsten rods upon approaching a target, only a fraction of the payload actually impacts it, but the damage is also distributed over a large area of effect, making evasion difficult."
 	description "This is a standard modular launcher designed for use on light to medium warships. A coilgun launch system allows the missiles to be deployed with considerable initial velocity, making up for the limited fuel supply on the missile itself."
 
 
-outfit "Dart Launch Array"
+outfit "Nettle Launch Array"
 	category "Secondary Weapons"
 	licenses
 		"Twilight Guard"
@@ -362,13 +361,13 @@ outfit "Dart Launch Array"
 	"outfit space" -45
 	"weapon capacity" -45
 	"turret mounts" -1
-	"dart capacity" 240
+	"nettle capacity" 240
 	weapon
 		sprite "projectile/shardactive"
 			"no repeat"
 			"frame rate" .25
 		sound "finisher"
-		ammo `"Dart" Kinetic Missile`
+		ammo `"Nettle" Kinetic Missile`
 		icon "icon/finisher"
 		"fire effect" "sidewinder fire"
 		"inaccuracy" 90
@@ -381,23 +380,24 @@ outfit "Dart Launch Array"
 		"firing energy" 3
 		"infrared tracking" 0.9
 		"missile strength" 9
-		"submunition" "Dart Active"
+		"submunition" "Nettle Active"
 		"stream"
-	description "Dart missiles are minimalist kinetic kill vehicles designed for use in situations where nuclear weapons are considered unnecessary. Little more than a payload of tungsten rods, a thruster package, and a nose mounted sensor array, they can be manufactured in bulk at minimal cost."
+	description "Nettle missiles are minimalist kinetic kill vehicles designed for use in situations where nuclear weapons are considered unnecessary. Little more than a payload of tungsten rods, a thruster package, and a nose mounted sensor array, they can be manufactured in bulk at minimal cost."
 	description "By splitting into a number of tungsten rods upon approaching a target, only a fraction of the payload actually impacts it, but the damage is also distributed over a large area of effect, making evasion difficult."
-	description "This large Vertical Launch Cell array is made up of forty cells, each with Dart stacked six missiles deep. Designed for rapid vertical cold-launch, it needs an open space comparable to a turret mount to function properly."
+	description "This large Vertical Launch Cell array is made up of forty cells, each with Nettle stacked six missiles deep. Designed for rapid vertical cold-launch, it needs an open space comparable to a turret mount to function properly."
 
 
-outfit "Dart Active"
+outfit "Nettle Active"
 	weapon
 		sprite "projectile/shardactive"
 			"no repeat"
 			"frame rate" .25
 		"hit effect" "missile hit"
-		"live effect" "dart trail" 1800
+		"live effect" "nettle trail" 1800
+		"live effect" "nettle exhaust" 1800
 		"die effect" "missile death"
 		"lifetime" 1800
-		"split range" 300
+		"split range" 240
 		"acceleration" 0.3
 		"drag" .009
 		"turn" 9
@@ -405,17 +405,17 @@ outfit "Dart Active"
 		"infrared tracking" 0.9
 		"hit force" 210
 		"missile strength" 12
-		"submunition" "Dart Flack" 30
+		"submunition" "Fleck Flack" 30
 
 
-outfit "Dart Flack"
+outfit "Fleck Flack"
 	weapon
 		sprite "projectile/fleck"
 			"frame rate" 30
 			"no repeat"
 		"die effect" "missile death"
 		"hit effect" "bombardment impact"
-		"inaccuracy" 30
+		"inaccuracy" 18
 			narrow
 		"lifetime" 60
 		"random lifetime" 30
@@ -425,40 +425,26 @@ outfit "Dart Flack"
 		"hit force" 60
 		"missile strength" 3
 
-
-effect "dart exhaust"
-	sprite "effect/puff"
-		"no repeat"
-		"frame rate" 3
-		"scale" 0.5
-	"lifetime" 30
-	"random lifetime" 15
-	"random angle" 15
-	"random spin" 360
-	"random velocity" -6
-	"velocity scale" 0
-
-effect "dart trail"
+effect "nettle exhaust"
 	sprite "effect/avgi flare/rcs"
 		"random start frame"
 		"scale" 0.5
 	"lifetime" 0
-	"velocity scale" 0
 
 
-outfit `"Rush" Nuclear Missile`
+outfit `"Orchid" Nuclear Missile`
 	category "Ammunition"
 	licenses
 		"Avgi Atomics"
 	cost 660000
-	thumbnail "outfit/rush missile"
+	thumbnail "outfit/orchid missile"
 	"mass" 0.9
-	"rush capacity" -1
+	"orchid capacity" -1
 	description "Unlike humanity, the Avgi do not have a strong taboo against the use of nuclear weapons in space. To them, nuclear weapons are simply another tool, albeit one with a particularly high energy density, to be used when the occasion calls for it. Nuclear weapons have been the Avgi's trump card against the Aberrant, the one weapon they have capable of reliably breaking their advanced shields and atomizing their armor."
 	description "This particular missile carries a compact thermonuclear warhead, a geometrically complex staged device with a far higher yield density than anything humanity has developed. It seems to be the product of centuries of development of nuclear arms, as opposed to humanity's long abstentation from nuclear weapons research."
 
 
-outfit "Rush Magazine"
+outfit "Orchid Magazine"
 	category "Ammunition"
 	licenses
 		"Avgi Atomics"
@@ -466,31 +452,31 @@ outfit "Rush Magazine"
 	thumbnail "outfit/unknown"
 	"mass" 1.2
 	"outfit space" -12
-	"rush capacity" 12
-	ammo `"Rush" Nuclear Missile`
-	description "Rush storage"
+	"orchid capacity" 12
+	ammo `"Orchid" Nuclear Missile`
+	description "Orchid storage"
 
 
-outfit "Rush Launcher"
+outfit "Orchid Launcher"
 	category "Secondary Weapons"
 	licenses
 		"Avgi Atomics"
 	cost 1370000
-	thumbnail "outfit/rush missile launcher"
+	thumbnail "outfit/orchid missile launcher"
 	"mass" 4.5
 	"outfit space" -18
 	"weapon capacity" -18
 	"gun ports" -1
-	"rush capacity" 12
+	"orchid capacity" 12
 	weapon
 		sprite "projectile/thunderhead fragment"
 			"frame rate" 1
 			"no repeat"
 		sound "finisher"
-		ammo `"Rush" Nuclear Missile`
+		ammo `"Orchid" Nuclear Missile`
 		icon "icon/finisher"
 		"fire effect" "sidewinder fire"
-		"fire effect" "speck fire"
+		"fire effect" "speckle fire"
 		"inaccuracy" 2.4
 		"velocity" 9
 		"lifetime" 30
@@ -500,13 +486,13 @@ outfit "Rush Launcher"
 		"radar tracking" 0.6
 		"infrared tracking" 0.9
 		"missile strength" 36
-		"submunition" "Rush Active"
+		"submunition" "Orchid Active"
 		stream
 	description "Unlike humanity, the Avgi do not have a strong taboo against the use of nuclear weapons in space. To them, nuclear weapons are simply another tool, albeit one with a particularly high energy density, to be used when the occasion calls for it. Nuclear weapons have been the Avgi's trump card against the Aberrant, the one weapon they have capable of reliably breaking their advanced shields and atomizing their armor."
 	description "A standard modular launcher such as this one is designed to be easily installed on light to medium warships."
 
 
-outfit "Rush Launch Array"
+outfit "Orchid Launch Array"
 	category "Secondary Weapons"
 	licenses
 		"Avgi Atomics"
@@ -516,13 +502,13 @@ outfit "Rush Launch Array"
 	"outfit space" -48
 	"weapon capacity" -48
 	"turret mounts" -1
-	"rush capacity" 48
+	"orchid capacity" 48
 	weapon
 		sprite "projectile/thunderhead fragment"
 			"frame rate" 1
 			"no repeat"
 		sound "finisher"
-		ammo `"Rush" Nuclear Missile`
+		ammo `"Orchid" Nuclear Missile`
 		icon "icon/finisher"
 		"fire effect" "sidewinder fire"
 		"inaccuracy" 45
@@ -536,18 +522,18 @@ outfit "Rush Launch Array"
 		"radar tracking" 0.6
 		"infrared tracking" 0.9
 		"missile strength" 36
-		"submunition" "Rush Active"
+		"submunition" "Orchid Active"
 		"stream"
 
 
-outfit "Rush Active"
+outfit "Orchid Active"
 	weapon
 		sprite "projectile/thunderhead fragment"
 			"frame rate" 2.4
 		"hit effect" "thermonuclear flash"
 		"hit effect" "prompt radiation" 9
 		"hit effect" "fission fragments" 240
-		"live effect" "dart trail" 1800
+		"live effect" "Nettle trail" 1800
 		"die effect" "missile death"
 		"lifetime" 1800
 		"acceleration" 0.6
@@ -564,18 +550,18 @@ outfit "Rush Active"
 		"missile strength" 42
 
 
-outfit `"Snap" Nuclear Shaped Charge`
+outfit `"Snapdragon" Nuclear Shaped Charge`
 	category "Ammunition"
 	licenses
 		"Avgi Atomics"
 	cost 660000
 	thumbnail "outfit/casaba howitzer"
 	"mass" 1
-	"azimuth capacity" -1
+	"snapdragon capacity" -1
 	description "Casaba Howitzer (campaign unlock, not needed for initial PR)"
 
 
-outfit "Snap Magazine"
+outfit "Snapdragon Magazine"
 	category "Ammunition"
 	licenses
 		"Avgi Atomics"
@@ -583,12 +569,12 @@ outfit "Snap Magazine"
 	thumbnail "outfit/unknown"
 	"mass" 3
 	"outfit space" -18
-	"azimuth capacity" 12
-	ammo `"Snap" Nuclear Shaped Charge`
-	description "Snap storage"
+	"snapdragon capacity" 12
+	ammo `"Snapdragon" Nuclear Shaped Charge`
+	description "Snapdragon storage"
 
 
-outfit "Snap Launcher"
+outfit "Snapdragon Launcher"
 	category "Secondary Weapons"
 	licenses
 		"Avgi Atomics"
@@ -598,33 +584,31 @@ outfit "Snap Launcher"
 	"outfit space" -24
 	"weapon capacity" -24
 	"gun ports" -1
-	"azimuth capacity" 12
+	"snapdragon capacity" 12
 	weapon
 		sprite "projectile/finisher activating"
 			"frame rate" 1
 			"no repeat"
 		sound "finisher"
-		ammo `"Snap" Nuclear Shaped Charge`
+		ammo `"Snapdragon" Nuclear Shaped Charge`
 		icon "icon/finisher"
 		"fire effect" "finisher sparks" 8
 		"die effect" "finisher fragment" 6
-		"inaccuracy" 5
-		"velocity" 10
-		"lifetime" 60
-		"reload" 80
-		"firing energy" 120
-		"firing heat" 20
-		"acceleration" .8
-		"drag" .1
-		"turn" 0.1
-		"homing" 2
-		"radar tracking" .8
-		"missile strength" 12
-		"submunition" "Active Snap"
+		"hit effect" "medium explosion"
+		"inaccuracy" 3
+		"velocity" 6
+		"lifetime" 30
+		"reload" 90
+		"firing energy" 6
+		"firing heat" 3
+		"optical tracking" 0.9
+		"radar tracking" 0.6
+		"missile strength" 36
+		"submunition" "Active Snapdragon"
 	description `Casaba Howitzer`
 
 
-outfit "Active Snap"
+outfit "Active Snapdragon"
 	weapon
 		sprite "projectile/thunderhead"
 			"frame rate" 2.4
@@ -632,58 +616,58 @@ outfit "Active Snap"
 		"hit effect" "thermonuclear flash"
 		"hit effect" "prompt radiation" 12
 		"hit effect" "fission fragments" 60
-		"die effect" "missile death"
-		"lifetime" 500
-		"acceleration" 1
-		"drag" .1
-		"turn" 2
-		"homing" 4
-		"radar tracking" .8
-		"optical tracking" .5
-		"trigger radius" 36
-		"blast radius" 120
-		"shield damage" 4800
-		"hull damage" 3600
-		"hit force" 2100
-		"missile strength" 50
-		"submunition" "Snapfront" 600
-		"submunition" "Snapback" 300
+		"die effect" "medium explosion"
+		"lifetime" 1200
+		"acceleration" 0.6
+		"drag" .03
+		"turn" 6
+		"homing" 3
+		"optical tracking" 0.9
+		"radar tracking" 0.6
+		"split range" 900
+		"missile strength" 36
+		"submunition" "Snapfront" 150
+		"submunition" "Snapback" 240
 
 
 outfit "Snapfront"
 	weapon
-		sprite "effect/plasma impact"
-			"frame rate" 6
+		sprite "effect/korath afterburner"
+			"scale" 2
+			"frame rate" 12
+			"random start frame"
 			"no repeat"
-		"hit effect" "fusion cannon impact"
-		"live effect" "fusion cannon cloud" 600
-		"live effect" "fission fragments" 600
-		"inaccuracy" 15
+		"hit effect" "flamethrower hit" 9
+		"live effect" "korath afterburner medium" 60
+		"inaccuracy" 9
 			narrow
-		"lifetime" 60
+		"lifetime" 30
 		"random lifetime" 30
+		"velocity scale" 0
 		"velocity" 60
-		"random velocity" 30
-		"shield damage" 6
-		"hull damage" 9
-		"hit force" 60
+		"random velocity" -60
+		"shield damage" 60
+		"hull damage" 90
+		"hit force" 90
 
 
 outfit "Snapback"
 	weapon
-		sprite "projectile/speck"
-			"frame rate" 30
+		sprite "effect/korath afterburner"
+			"frame rate" 12
+			"random start frame"
 			"no repeat"
-		"hit effect" "fusion cannon impact"
-		"live effect" "fusion cannon cloud" 300
-		"live effect" "fission fragments" 300
-		"inaccuracy" 60
+		"hit effect" "heaver shard hit"
+		"live effect" "korath afterburner small" 90
+		"inaccuracy" 90
+			narrow
 			inverted
-		"random lifetime" 90
-		"random velocity" -30
-		"shield damage" 6
-		"hull damage" 9
-		"hit force" 60
+		"random lifetime" 30
+		"velocity scale" 0
+		"random velocity" -60
+		"shield damage" 60
+		"hull damage" 90
+		"hit force" 90
 
 
 outfit "Equinox Torpedo"
