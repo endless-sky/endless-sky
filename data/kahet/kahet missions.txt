@@ -792,19 +792,17 @@ mission "Ka'het: Patir Mystery 6"
 			`	After he finishes signing, he makes a few quick gestures toward the projector, enlarging the hologram of the Builder settlement and revealing what looks like a flight path. "You are going to land roughly where we did last time, carrying me and four other xenoarcheologists. If you accept, I should be able to allocate <payment> to help you buy the necessary equipment for this mission."`
 			choice
 				`	"I'm in."`
-					goto in
+					accept
 				`	"What if they detect us while inside the structure?"`
 				`	"Sorry, but I don't think it's a good idea to return there."`
 					decline
 			`	"It is a possibility, yes. It is also quite problematic because communication between the inside and the outside of the structure is impossible. I think the best course of action would be to place a scanner that controls the large airlocks on the upper side of the dome, the same ones the Ka'sei used last time. If I am right, it should give us around a quarter of an hour to get back in the airlock and escape."`
 			choice
 				`	"Alright, let's do it."`
+					accept
 				`	"Sorry, but I don't think it's a good idea to return there."`
 					decline
 
-			label in
-			`	"Perfect. Remember to equip as many ramscoops as you can - they are going to be very useful this time."`
-				accept
 	on accept
 		payment 100000
 		set "remnant: dusk busy"
