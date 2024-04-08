@@ -7194,7 +7194,7 @@ mission "Timothy Radrickson 4: Imprisoned"
 mission "Timothy Radrickson 5: Oblivion Meeting"
 	landing
 	to offer
-		# random < 25
+		random < 25
 		has "Timothy Radrickson 4: Imprisoned: active"
 	source "Oblivion"
 	deadline 1
