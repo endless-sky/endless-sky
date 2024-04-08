@@ -130,14 +130,14 @@ mission "Wanderers: Mereti: The Plant 5"
 	npc accompany save
 		government Wanderer
 		personality escort
-		system Iyech'yek
+		system "Iyech'yek"
 		fleet
 			variant
 				"Strong Wind"
 	npc
 		government "Kor Mereti"
 		personality timid launching
-		system Iyech'yek
+		system "Iyech'yek"
 		fleet
 			variant
 				"Model 16" 3
