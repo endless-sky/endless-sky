@@ -6920,7 +6920,7 @@ mission "Timothy Radrickson 1: Stowaway"
 				decline
 
 			label check
-			`	After a short search, and the rearranging of quite a few deceptively heavy boxes, you are able to track the heat signature to a to be a foodstuff crate you recently took on. It has yet to be opened, but you can already tell its seal has been tampered with. `
+			`	After a short search, and the rearranging of quite a few deceptively heavy boxes, you are able to track the heat signature to a to be a foodstuff crate you recently took on. It has yet to be opened, but you can already tell its seal has been tampered with.`
 			choice
 				`	(Open the crate.)`
 					goto crate
@@ -6943,7 +6943,7 @@ mission "Timothy Radrickson 1: Stowaway"
 					goto somewhere
 				`	"I know where you're going. The airlock."`
 
-			`	The feeble man screams as you drag him out of the crate and toward the airlock. He ineptly squirms as you shove him pass breachhead seals. He falls to his knees, shudders with terror, and his face leaks tears. You close the airlock, silencing his shrill screams, and hit the button to open it on the outside. The man is promptly sucked out into cold cruel space, and crystalizes before becoming this system's newest comet.`
+			`	The feeble man screams as you drag him out of the crate and toward the airlock. He ineptly squirms as you shove him pass breachhead seals. He falls to his knees, shudders with terror, and his face leaks tears. You close the airlock, silencing his shrill screams, and hit the button to open it on the outside. The man is promptly sucked out into cold cruel space, and crystallizes before becoming this system's newest comet.`
 				decline
 
 			label republic
@@ -6993,7 +6993,7 @@ mission "Timothy Radrickson 2: Interlude"
 	on offer
 		event "timothy radrickson: sad" 390
 		conversation
-			` 	Blinking at the light Timothy shuffles toward the exit. "Th-th-thank you. Thank you so much," Timothy mumbles.`
+			`	Blinking at the light Timothy shuffles toward the exit. "Th-th-thank you. Thank you so much," Timothy mumbles.`
 			`	Timothy opens the hatch, and looks back at you, "You s-s-saved my life. I won't forget. I won't."`
 			`	With that Timothy exits your ship and begins his new life. You hope everything works out for the best.`
 				decline
@@ -7015,8 +7015,8 @@ mission "Timothy Radrickson 2: Good Interlude"
 			`	The screen lights up with the familiar, fuller face of a healthy Timothy Radrickson.`
 			`	"Captain <last>. Let me just reiterate my thanks to you for what you did for me. Most captains would have airlocked me, or dropped me off wherever, but you really gave me a chance."`
 			`	He stops and grins at the camera for a moment. "And that chance, it really has made all the difference. It's been a year of hard work, but I've saved some money and made some investments, and things really are turning around."`
-			`	"As way of thanks," he continues," I've included 50,000 credits with this message. That should cover the cost of transporting to me to Rand, but it doesn't come to close to what I really owe. Which is, in all honesty, my very life."`
-			`	He pauses, as if he's trying to remember something, " Anyways, thank you again, and know I'll never forget what you did for me."`
+			`	"As way of thanks," he continues, "I've included 50,000 credits with this message. That should cover the cost of transporting to me to Rand, but it doesn't come to close to what I really owe. Which is, in all honesty, my very life."`
+			`	He pauses, as if he's trying to remember something. "Anyways, thank you again, and know I'll never forget what you did for me."`
 			`	Timothy waves and then the video ends.`
 				decline
 		
@@ -7094,7 +7094,7 @@ mission "Timothy Radrickson 3: Governor"
 				decline
 
 			label yes
-			`	Timothy beams. "Yes, yes, lovely! It'll be a great evening!" He stands up, a little quickly. "I'll make sure everything is perfect. Return to your ship, rest up, and be back here in about 8 hours!" `
+			`	Timothy beams. "Yes, yes, lovely! It'll be a great evening!" He stands up, a little quickly. "I'll make sure everything is perfect. Return to your ship, rest up, and be back here in about 8 hours!"`
 			choice
 				`	(Prepare for the party.)`
 
@@ -7284,8 +7284,8 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 			`	As your ship approaches the mine you can't help but notice the burnt out remains of a gutted and abandoned town. A few minutes later your ship rattles down outside the mine's entrance.`
 			choice
 				`	(Leave your ship.)`
-			`	It's dark and dusty outside. The planet's gravity makes you feel slow, and the air uncomfortably heavy in your lungs. The entrance to the mine looms large before you and seems suddenly quite menacing. Perhaps this wasn't the best idea...`	
-			`	"Don't move, or we will end you," comes a shout from within the darkness of the mine. "Idenfify yourself, now!"`
+			`	It's dark and dusty outside. The planet's gravity makes you feel slow, and the air uncomfortably heavy in your lungs. The entrance to the mine looms large before you and seems suddenly quite menacing. Perhaps this wasn't the best idea...`
+			`	"Don't move, or we will end you!" comes a shout from within the darkness of the mine. "Identify yourself, now!"`
 			choice
 				`	"I'm Captain <last>, veteran of the human civil war!"`
 					goto timsbud
@@ -7306,7 +7306,7 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 				die
 
 			label timsbud
-			` 	There is a brief, low conversation, followed by what sounds like a voice on a radio. Then finally, "If you're who you say you are, how did you first meet Governor Radrickson?"`
+			`	There is a brief, low conversation, followed by what sounds like a voice on a radio. Then finally, "If you're who you say you are, how did you first meet Governor Radrickson?"`
 			choice
 				`	"I ran into him at the Rand spaceport."`
 				`	"He sent me a message that he wanted to meet me."`
@@ -7330,7 +7330,7 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 			label right
 			`	Despite not being able to see your potential assailants you can feel an immediate shift in the tension.`
 			`	"Good," one of them says, seemingly more to themselves than to you. "That's real good." You hear a loud sigh and then, "Alright, Hero of Rand, you're good to approach. The boss wants to see you."`
-			`	Dark shapes materialize from the corners of the entrance, and one of them gently ushers you foward further into the oppressive atmosphere of the old mine.`
+			`	Dark shapes materialize from the corners of the entrance, and one of them gently ushers you forward further into the oppressive atmosphere of the old mine.`
 			choice
 				`	(Follow them into the mine.)`
 
@@ -7342,7 +7342,7 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 
 			`	The woman before you is middle-aged and somewhat squat with the hard-won muscles of a person adapted to Rand's grueling gravity. She's attractive though, and there is something very familar about her face. You've met her before...`
 			`	"Captain <last>!" She says with a genuine grin. "I doubt you recognize me, but I was Governor Radrickson's secretary, Wynnafrith. We met years back at your banquet."`
-			`	She glances down at herself as if recognizing her body's tranformation from offworld waif to native Rander. "I dare say the world has changed me now that I'm away from the gravity generators.`
+			`	She glances down at herself as if recognizing her body's transformation from offworld waif to native Rander. "I dare say the world has changed me now that I'm away from the gravity generators.`
 			`	"Although I am no longer a secretary, I am Union-Colonel Wynnfrith, one of the leaders of the Underground Workers Union!" Her eyes sparkle and her words ring with a deadly seriousness.`
 			`	She tilts her head slightly. "But that's enough about me. What possible reason could you have for coming here?" Her face is open and friendly, but she casually rests her hand on her side arm.`
 			choice
@@ -7370,7 +7370,7 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 			`	Her free hand tightens into a ball. "The big men didn't like that. But what about the profit margins? They tried to bribe him, to offer him anything he wanted, to just leave things well enough alone. To let the exploitation continue." She says the last words through clenched teeth.`
 			`	"But he never waivered, and he always labored for the common man." Wynnafirth looks up at you. "You were a good friend to him, it's true, but truth be told, while you may have been his hero, he was ours; he was the real Hero of Rand."`
 			`	"And when he wouldn't budge they finally got him for trumped up charges and threw him to Oblivion to disappear and die." She shakes her head. "There was nothing we could do. We're still in a..." she hesitates, "... a rebuild phase."`
-			`	She reads the list again. "A few weeks, you say? Well, we already thought he was dead, so if there's a chance we save the Govenor then we're in.`
+			`	She reads the list again. "A few weeks, you say? Well, we already thought he was dead, so if there's a chance we save the Governor then we're in.`
 			`	"We have a few left over exposives and detonators from when this mine was active. That should take care of the bomb he was hoping for." She then unholsters her sidearm and hands it to you.`
 			choice
 				`	(Take it.)`
@@ -7384,10 +7384,10 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 				`	(Follow her.)`
 
 			`	Once again in the largern cavern she turns and points at the guard, "Grab our explosive and carefully accompany Captain <last> with it back to his ship."`
-			` 	The guard frowns. "But it's our only one..."`
+			`	The guard frowns. "But it's our only one..."`
 			`	"Now!" She cuts him off, and watches as he sullenly slumps away.`
 			`	Without looking your way she continues, "It was a pleasure to see you, again Captain <last>, but it's time you were leaving. The govenor needs you, and my own glorious revolution needs some attention."`
-			`	You leave the delapidated mines with a bomb, a pistol, and a plan.`
+			`	You leave the dilapidated mines with a bomb, a pistol, and a plan.`
 
 
 
@@ -7433,7 +7433,7 @@ mission "Timothy Radrickson 5b: New Britain"
 			label med1
 			action
 				set "med1"
-			`	You make your way to the pharmecutical wing, through crowds of representives from large conglomorates in the process of wrangling with representatives from various worlds, all needing exotic medicine for their innumerable plagues, blights, pandemics, and the like. There's a booth with a slick salesman selling expensive drugs promising to reverse and protect from the effect of toxic air and radiation, and it just so happens that Oblivion is their demonstration planet.`
+			`	You make your way to the pharmecutical wing, through crowds of representatives from large conglomorates in the process of wrangling with representatives from various worlds, all needing exotic medicine for their innumerable plagues, blights, pandemics, and the like. There's a booth with a slick salesman selling expensive drugs promising to reverse and protect from the effect of toxic air and radiation, and it just so happens that Oblivion is their demonstration planet.`
 			`	"There's no need to fear Oblivion's deleterious effects so long as you take one of these a day!" the salesman says brightly. "Why, you could walk among your condemned workers unmasked, and demonstrate your superior executive prowess!"`
 			`	You listen on to the salesman, who reckons he can cut you in on a special deal for 140,000 credits.`
 			choice
@@ -7449,7 +7449,7 @@ mission "Timothy Radrickson 5b: New Britain"
 				`The salesman's eyes narrow and his face suddenly looks vaguely reptillian. "I'm already giving you the best price. The literal shirt off my back!"`
 			choice
 				`	(Offer 60,000 for the meds.)`
-				` 	(Offer 120,000 for the meds.)`
+				`	(Offer 120,000 for the meds.)`
 					goto justright
 				`	(Agree to pay 140,000 for the meds.)`
 					goto "med 140"
@@ -7462,11 +7462,11 @@ mission "Timothy Radrickson 5b: New Britain"
 				`	(Pass.)`
 			action
 				set "med2"
-			`	That price is too expensive; you'll have to see if you can purchase a less potent and cheaper drug elsewhere. You return to the central atrium of the trade sector to consider your other options. `
+			`	That price is too expensive; you'll have to see if you can purchase a less potent and cheaper drug elsewhere. You return to the central atrium of the trade sector to consider your other options.`
 				goto options
 
 			label justright
-				`	The saleman glowers, but nods his head slighty. "Fine! 120,000 credits it is. My family will starve, but at least you'll get your precious drugs." He begins packing them up for you.`
+				`	The saleman glowers, but nods his head slightly. "Fine! 120,000 credits it is. My family will starve, but at least you'll get your precious drugs." He begins packing them up for you.`
 					goto "med 120"
 
 			label med2
@@ -7494,7 +7494,7 @@ mission "Timothy Radrickson 5b: New Britain"
 					goto "med 140"
 				`	(Pass.)`
 			`	That price is still too expensive. You'll have to see if you can purchase a less potent and cheaper drug elsewhere.`
-			`	You return to the central atrium of the trade sector to consider your other options. `
+			`	You return to the central atrium of the trade sector to consider your other options.`
 				goto options
 
 
@@ -7593,7 +7593,7 @@ mission "Timothy Radrickson 5b: New Britain"
 
 			label refuseid
 			`	Collectively they frown. "Your loss," the middle guy says, before leaving you alone to return to the spaceport.`
-				goto options 
+				goto options
 
 			label buyid
 			action
@@ -7695,7 +7695,7 @@ mission "Timothy Radrickson 5c: Dancer"
 			
 			label haggle
 				`	Bertha gives you a sad smile and shakes her head slowly. "No room here for haggling, hun. These are the best of the best and they are worth every red cent. I am sure you can find bottom bin ones elsewhere, but here you pay for quality."`
-				`	She folds her arms. "Now, it's 300,000 credits or nothing." `
+				`	She folds her arms. "Now, it's 300,000 credits or nothing."`
 			choice
 				`	(Purchase the survival suit for Tim.)`
 					goto getsuit
@@ -7711,7 +7711,7 @@ mission "Timothy Radrickson 5c: Dancer"
 				`	(Purchase a survival suit for Tim.)`
 					goto getsuit
 				`	(Go back to browsing.)`
-			`	Not ready to make a purchase, you return to perusing the store. `
+			`	Not ready to make a purchase, you return to perusing the store.`
 				goto danceroptions
 
 			label getsuit
@@ -7762,7 +7762,7 @@ mission "Timothy Radrickson 5c: Dancer"
 			`	You sift through the items - which are mostly clothes and old lab coats - before coming across a scientist's ID card. The name reads 'Skounce Yarling' and the picture, to your surprise, looks a little like Timothy's.`
 			choice
 				`	(Buy the old ID.)`
-					goto buyid
+					goto getid
 				`	(Pass.)`
 			`	The old ID might work, but it would also be quite a risk. You leave it where you found it and go back to wandering around the store.`
 				goto danceroptions
@@ -7954,7 +7954,7 @@ mission "Timothy Radrickson 5d: Greenrock"
 				"timothy radrickson surival suit" = 1
 				payment -400000
 			`	The proprietor quickly rings you up as if worried you'll change your mind at any moment, and gleefully takes your <payment>.`
-			`	"Safe travels, privateer," he says as you leave his stall. `
+			`	"Safe travels, privateer," he says as you leave his stall.`
 				goto greenoptions
 
 			label getgear2
@@ -7963,7 +7963,7 @@ mission "Timothy Radrickson 5d: Greenrock"
 				"timothy radrickson surival suit" = 1
 				payment -20000
 			`	The proprietor quickly rings you up as if worried you'll change your mind at any moment, and gleefully takes your <payment>.`
-			`	"Safe travels, privateer," he says as you leave his stall. `
+			`	"Safe travels, privateer," he says as you leave his stall.`
 				goto greenoptions
 
 			label getgear3
@@ -7972,7 +7972,7 @@ mission "Timothy Radrickson 5d: Greenrock"
 				"timothy radrickson surival suit" = 1
 				payment -100000
 			`	The proprietor quickly rings you up as if worried you'll change your mind at any moment, and gleefully takes your <payment>.`
-			`	"Safe travels, privateer," he says as you leave his stall. `
+			`	"Safe travels, privateer," he says as you leave his stall.`
 				goto greenoptions
 
 			label getgear4
@@ -7981,7 +7981,7 @@ mission "Timothy Radrickson 5d: Greenrock"
 				"timothy radrickson surival suit" = 1
 				payment -250000
 			`	The proprietor quickly rings you up as if worried you'll change your mind at any moment, and gleefully takes your <payment>.`
-			`	"Safe travels, privateer," he says as you leave his stall. `
+			`	"Safe travels, privateer," he says as you leave his stall.`
 				goto greenoptions
 
 
@@ -8040,7 +8040,7 @@ mission "Timothy Radrickson 5d: Greenrock"
 
 mission "Timothy Radrickson 5e: Back to Oblivion"
 	source Oblivion
-	to offer 
+	to offer
 		has "Timothy Radrickson 5a: Timshank Redemption: complete"
 	on offer
 		conversation
@@ -8051,7 +8051,7 @@ mission "Timothy Radrickson 5e: Back to Oblivion"
 			choice
 				`	"It's all here."`
 				`	"Of course I did."`
-				` 	"Yep, but you owe me big."`
+				`	"Yep, but you owe me big."`
 			`	He nearly drops to his knees and starts sorting through the gear. He takes heart when you tell him about Wynnafirth's gun and bomb, and how highly she still thinks of him.`
 			`	"Good secretary. Better friend." He wheezes as he checks out the rest of your gear.`
 			branch unprepared
@@ -8078,13 +8078,13 @@ mission "Timothy Radrickson 5e: Back to Oblivion"
 			`	As he inspects the suit, drugs, and ID you can see his demeanor shift. He looks less weak, less sickly, and more confident.`
 			`	Finally, he straightens back up. "It's perfect." He eyes the gear with awe and shakes his head. "Don't know how you did it. But with this I can't fail."`
 
-			label end 
+			label end
 			`	Timothy turns from you and uses the dolly to load the gear into one of the trucks in the warehouse. Once done he turns back to you, his eyes are wide, rimmed with bloody tears, "Always at my lowest." He swallows a cough, and then continues. "It's you who saves me. When I am at my lowest. It's you."`
 			`	Timothy looks like he wants to hug you, but he just nods. He hits a button on the wall and the garage door opens, exposing the warehouse to the night air.`
-			` 	"Captain," he says in way of a farewell, and then he climbs aboard the truck and drives off.`
+			`	"Captain," he says in way of a farewell, and then he climbs aboard the truck and drives off.`
 
 mission "Timothy Radrickson 6: News of Death"
-	source 
+	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	to offer
 		has "Timothy Radrickson 5e: Back to Oblivion: offered"
@@ -8241,7 +8241,7 @@ mission "Timothy Radrickson 7: Grave"
 			label search
 			`	The index is easy to find, and has all the hallmarks of having never been used. The graveyard is set up in a carefully regimented grid system and despite the large number of graves, it is surprisingly easy finding Timothy's.`
 			`	You walk across the forgotten memorial to find a small, flat unremarkable stone, hemmed in amongst other unremarkable stones, pressed into the dead ground. The text laser-chisled onto it reads, "Timothy Radrickson. Prisoner - 645631-4C"`
-			`	That's all. Nothing about his meteoric rise, about being the Governor of Rand, or even how or when his death occured here. Just another dead prisoner.`
+			`	That's all. Nothing about his meteoric rise, about being the Governor of Rand, or even how or when his death occurred here. Just another dead prisoner.`
 			choice
 				`	(Stay a while and contemplate.)`
 				`	(Leave.)`
