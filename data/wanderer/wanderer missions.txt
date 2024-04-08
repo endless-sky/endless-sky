@@ -112,6 +112,8 @@ mission "Wanderers: Mereti: The Plant 5"
 	description "Escort this Wanderer ship, carrying the plant and a team of Wanderers ready to help it grow, to <destination>."
 	source "Vara Kehi'ki"
 	destination "Sopi Lefarkata"
+	on visit
+		dialog `You have arrived on <planet>, but you have left the <npc> behind. It's carrying the plant, so you ought to take off and wait for it to arrive.`
 	to offer
 		has "Wanderers: Mereti: The Plant 4: done"
 	on offer
