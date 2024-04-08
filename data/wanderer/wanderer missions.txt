@@ -116,11 +116,17 @@ mission "Wanderers: Mereti: The Plant 5"
 		has "Wanderers: Mereti: The Plant 4: done"
 	on offer
 		conversation
-			`You arrive in the spaceport just in time to see the plant being delicately loaded onto a Strong Wind.`
+			`You arrive in the spaceport just in time to see the plant being delicately loaded onto a Strong Wind. The Mereti drones sit stationary on the landing pad, and you get a distinct feeling that they are watching you intently.`
+			`	Iriket stands beside you as you watch, staring into the distance almost morosely, before speaking. "It is regrettable that we have been [forced, made] to use these ships for war. This is far closer to the purpose we originally [conceived, designed] them to [serve, fulfil]". You catch a glimpse of a feather falling to the ground as she speaks. Then, she interrupts herself. "No, I should not be so [disheartened?]. The Korath drones have turned their back on their creators' [wishes, design] and seek to [heal, tend] these worlds alongside us. That is something we can all appreciate."`
+			choice
+				`	"Are you sure this will work?"`
+			`	"It is a [fortunate, convenient] situation. <planet> needs relatively little healing, so [housing, growing] these plants here will not create [difficulties, inconveniences] for our work. We have sent a small specialist [group, team] to [cultivate, look after] the plants. I have the utmost confidence in their [knowledge, abilities]."`
 	on complete
+		event "mereti visiting eneremprukt" 5
 		event "field of mereti plants" 700
 		conversation
-			``
+			`The Mereti drones follow you and the <npc> down to the planet, landing nearby. You and Iriket watch as the plant is carefully, almost ceremoniously, taken and placed in the ground.`
+			`	After the plant has been suitably placed, Iriket turns to you. "I will stay here for some time to [supervise, observe] the work here, but it will soon be time for me to [depart, return] and oversee the healing of other worlds. I thank you most [gratefully, sincerely] for your help, <first>."`
 	npc accompany save
 		government Wanderer
 		personality escort
@@ -135,6 +141,12 @@ mission "Wanderers: Mereti: The Plant 5"
 		fleet
 			variant
 				"Model 16" 3
+
+event "mereti visiting eneremprukt"
+	system eneremprukt
+		fleet "small mereti" 800
+
+event "field of mereti plants"
 
 mission "Wanderers: Mereti: The Plant Epilogue"
 	minor
