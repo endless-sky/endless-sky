@@ -83,14 +83,12 @@ fleet "Avgi Patrol"
 			disables surveillance
 	personality
 		surveillance hunting
-	variant 10
+	variant 12
 		"Tremoros"
-	variant 8
+	variant 6
 		"Tremoros" 3
-	variant 5
+	variant 6
 		"Prismaios"
-	variant 5
-		"Prismaios (Coilgun)"
 	variant 2
 		"Diaspersi"
 		"Vibratia" 3
@@ -127,7 +125,7 @@ fleet "Avgi Scouts"
 	variant 1
 		"Polari" 2
 		"Optikon" 2
-		"Prismaios (Coilgun)"
+		"Prismaios"
 
 
 fleet "Avgi Strike Group"
@@ -143,8 +141,7 @@ fleet "Avgi Strike Group"
 		confusion 10
 		heroic disables
 	variant 10
-		"Prismaios" 2
-		"Prismaios (Coilgun)"
+		"Prismaios" 3
 	variant 10
 		"Diaspersi"
 		"Vibratia" 3

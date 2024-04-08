@@ -18,7 +18,7 @@ outfit "Speck Round"
 	category "Ammunition"
 	cost 6
 	thumbnail "outfit/speck round"
-	"mass" 0.0015
+	"mass" 0.003
 	"speck capacity" -1
 	"flotsam chance" 1
 	description "These densely wound metallic glass slugs are capable of inflicting a good amount of kinetic damage via hypervelocity impacts, but are easily stopped by momentum-repulsion shield systems."
@@ -28,192 +28,91 @@ outfit "Speck Magazine"
 	category "Ammunition"
 	cost 60000
 	thumbnail "outfit/unknown"
-	"mass" 1.2
-	"outfit space" -12
-	"speck capacity" 7200
-	description "While Speckle Railguns carry a considerable amount of ammunition in their internal magazines, for longer expeditions or for resupply operations the Avgi use these compact ammunition storages."
+	"mass" 2.4
+	"outfit space" -6
+	"speck capacity" 1200
+	description "While Speckle Coilguns carry a considerable amount of ammunition in their internal magazines, for longer expeditions or for resupply operations the Avgi use these compact ammunition storages."
 
 
-outfit "Speckle Railgun"
+outfit "Speckle Coilgun"
 	category "Guns"
 	cost 40000
 	thumbnail "outfit/speckle gun"
-	"mass" 3.6
+	"mass" 5.4
 	"outfit space" -9
 	"weapon capacity" -9
 	"energy capacity" 90
 	"gun ports" -1
-	"speck capacity" 3600
+	"speck capacity" 1200
 	weapon
-		sound "speckle"
+		sound "fleck"
 		ammo "Speck Round"
 		"fire effect" "speck fire"
-		"inaccuracy" 1.5
-		"velocity" 48
-		"lifetime" 1
-		"range override" 1200
-		"reload" 12
-		"burst reload" 2
-		"burst count" 15
-		"firing energy" 30
-		"firing heat" 12
+		"inaccuracy" 1.2
+		"velocity" 60
+		"lifetime" 0
+		"reload" 20
+		"burst reload" 15
+		"burst count" 3
+		"cluster"
+		"firing energy" 36
+		"firing heat" 30
 		"firing force" 12
 		"submunition" "Speck"
-	description "This compact railgun rapidly fires a stream of hypervelocity projectiles, trading accuracy for sheer rate of fire. Friction between the projectiles and the rails is reduced via advanced techniques, but still produces enough heat that the gun must cool down after a burst of fire to prevent rail ablation."
-	description "A small internal capacitor allows the Speckle Railgun to be trickle charged, even if a ship's power supply would otherwise be insufficient to fire a single shot."
+	description "This compact coilgun fires a stream of hypervelocity projectiles, accelerating them on a traveling wave of magnetic energy as capacitors are discharged through a series of coils. Designed for drones and smaller ships, the Speckle is a deadly albeit relatively unsophisticated weapon."
 	
 
 outfit "Speckle Turret"
 	category "Turrets"
 	cost 40000
 	thumbnail "outfit/speckle turret"
-	"mass" 10.2
-	"outfit space" -21
-	"weapon capacity" -21
+	"mass" 13.2
+	"outfit space" -24
+	"weapon capacity" -24
 	"energy capacity" 180
 	"turret mounts" -1
-	"speck capacity" 7200
+	"speck capacity" 3600
 	weapon
-		sound "speckle"
+		sound "fleck"
 		ammo "Speck Round"
 		"hardpoint sprite" "hardpoint/speckle turret"
 		"hardpoint offset" 6
 		"fire effect" "speck fire"
-		"inaccuracy" 1.2
-		"velocity" 48
-		"lifetime" 1
-		"range override" 1200
-		"reload" 12
-		"turret turn" 6
-		"firing energy" 48
-		"firing heat" 24
+		"inaccuracy" 0.9
+		"velocity" 60
+		"lifetime" 0
+		"reload" 20
+		"burst reload" 15
+		"burst count" 3
+		"cluster"
+		"turret turn" 3
+		"firing energy" 72
+		"firing heat" 60
 		"firing force" 24
 		"submunition" "Speck"
 			"offset" -3 0
 		"submunition" "Speck"
 			"offset" 3 0
-	description "The turreted version of the Speckle Railgun mounts a pair of railguns onto a nimble swiveling base. Its light weight and minimal size allows even small ships to engage much larger targets at extreme ranges. By alternating the fire of each railgun on the turret, the required cooldown period can be staggered to let the turret maintain a constant rate of fire."
-	description "A small internal capacitor allows the Speckle Turret to be trickle charged, even if a ship's power supply would otherwise be insufficient to fire a single shot."
+	description "Designed for mid-sized ships, this variation on the Speckle Coilgun mounts a pair of coilguns onto a nimble turret. Its compact size allows even smaller ships to fit one, making it "
+	description "Of course, the inherently limited range and velocity of kinetic weapons makes the Speckle Turret a poor match for some of the longer ranged weapons used by the Avgi, but the sheer firepower it can put out makes it deadly in close range."
 
 
 outfit "Speck"
 	weapon
 		sprite "projectile/speck"
-			"frame rate" 12
+			"frame rate" 60
 			"no repeat"
 		"hit effect" "bullet impact"
-		"lifetime" 30
-		"random lifetime" 9
-		"shield damage" 12
-		"hull damage" 18
+		"lifetime" 20
+		"random lifetime" 3
+		"shield damage" 30
+		"hull damage" 72
 		"hit force" 12
 
 
 effect "speck fire"
 	sprite "effect/emp torpedo fire"
 		"scale" 0.75
-		"random start frame"
-		"frame rate" 60
-	"lifetime" 3
-	"random angle" 30
-
-
-outfit "Fleck Round"
-	category "Ammunition"
-	cost 6
-	thumbnail "outfit/fleck round"
-	"mass" 0.009
-	"fleck capacity" -1
-	description "These copper slugs can inflict a large amount of kinetic damage via hypervelocity impacts, but are easily stopped by momentum-repulsion shield systems."
-
-
-outfit "Fleck Magazine"
-	category "Ammunition"
-	cost 60000
-	thumbnail "outfit/unknown"
-	"mass" 4.2
-	"outfit space" -15
-	"fleck capacity" 1200
-	description "Capital ships and artillery platforms can often benefit from expanding their ammunition capacity. This autoloading magazine allows ships to carry considerably more Fleck Rounds than their guns could store internally alone."
-
-
-outfit "Fleck Coilgun"
-	category "Guns"
-	cost 40000
-	thumbnail "outfit/fleck coilgun"
-	"mass" 7.2
-	"outfit space" -18
-	"weapon capacity" -18
-	"gun ports" -1
-	"fleck capacity" 1200
-	weapon
-		sound "fleck"
-		ammo "Fleck Round"
-		"hardpoint offset" 9
-		"fire effect" "fleck fire"
-		"hit effect" "bombardment impact"
-		"inaccuracy" 0.6
-		"velocity" 60
-		"range override" 1440
-		"lifetime" 1
-		"reload" 60
-		"firing energy" 210
-		"firing heat" 18
-		"firing force" 60
-		"submunition" "Fleck"
-	description "A powerful row of superconducting coils can accelerate a conductive metal projectile to impressive velocities while avoiding the friction associated with railguns. This fixed gun enables even modestly sized ships to provide precision artillery support at range, or bring to bear a powerful kinetic weapon for close quarter combat."
-
-
-outfit "Fleck Turret"
-	category "Turrets"
-	licenses
-		"Twilight Guard"
-	cost 40000
-	thumbnail "outfit/fleck turret"
-	"mass" 17.4
-	"outfit space" -39
-	"weapon capacity" -39
-	"turret mounts" -1
-	"fleck capacity" 2400
-	weapon
-		sound "fleck"
-		ammo "Fleck Round"
-		"hardpoint sprite" "hardpoint/fleck turret"
-		"hardpoint offset" 12
-		"fire effect" "fleck fire"
-		"hit effect" "bombardment impact"
-		"inaccuracy" 0.3
-		"velocity" 60
-		"range override" 1440
-		"lifetime" 1
-		"reload" 30
-		"turret turn" 3.6
-		"firing energy" 180
-		"firing heat" 12
-		"firing force" 60
-		"submunition" "Fleck"
-	description "A pair of Fleck Coilguns on a sturdy turret mount produces a powerful kinetic artillery piece capable of lobbing projectiles across an entire battlefield. An inductive energy recovery system allows the firing of one coilgun to prime the other instead of simply dissipating the charge as heat, making the turret more efficient compared to its single gun variant."
-
-
-outfit "Fleck"
-	weapon
-		sprite "projectile/fleck"
-			"frame rate" 6
-			"random start frame"
-			"rewind"
-		"hit effect" "bombardment impact"
-		"lifetime" 30
-		"random lifetime" 6
-		"inaccuracy" 0.3
-		"shield damage" 72
-		"hull damage" 150
-		"hit force" 60
-		"missile strength" 3
-
-
-effect "fleck fire"
-	sprite "effect/emp torpedo fire"
-		"scale" 1
 		"random start frame"
 		"frame rate" 60
 	"lifetime" 3
@@ -439,7 +338,7 @@ outfit "Dart Launcher"
 		"fire effect" "sidewinder fire"
 		"fire effect" "speck fire"
 		"inaccuracy" 2.4
-		"velocity" 18
+		"velocity" 6
 		"lifetime" 15
 		"reload" 45
 		"firing energy" 6
@@ -510,7 +409,7 @@ outfit "Dart Active"
 
 outfit "Dart Flack"
 	weapon
-		sprite "projectile/speck"
+		sprite "projectile/fleck"
 			"frame rate" 30
 			"no repeat"
 		"die effect" "missile death"
@@ -524,6 +423,7 @@ outfit "Dart Flack"
 		"hull damage" 9
 		"hit force" 60
 		"missile strength" 3
+
 
 effect "dart exhaust"
 	sprite "effect/puff"

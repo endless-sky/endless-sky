@@ -909,7 +909,7 @@ ship "Undsyni"
 	outfits
 		"Green Optical Laser" 3
 		"Speckle Turret" 2
-		"Speck Round" 14400
+		"Speck Round" 7200
 		"Dart Launcher" 2
 		`"Dart" Kinetic Missile` 120
 		"Electromotive Rifle" 24
@@ -983,7 +983,7 @@ ship "Undsyni" "Undsyni (Tanker)"
 	outfits
 		"Green Optical Laser" 3
 		"Speckle Turret" 2
-		"Speck Round" 14400
+		"Speck Round" 7200
 		"Dart Launcher" 2
 		`"Dart" Kinetic Missile` 120
 		"Electromotive Rifle" 24
@@ -1154,8 +1154,8 @@ ship "Tremoros"
 			"hull damage" 360
 			"hit force" 720
 	outfits
-		"Speckle Railgun" 4
-		"Speck Round" 14400
+		"Speckle Coilgun" 4
+		"Speck Round" 4800
 		
 		"Ultracapacitor Cell" 4
 		"Diffuse Deflector"
@@ -1168,10 +1168,10 @@ ship "Tremoros"
 		"XY-180 Radial Thrusters"
 		"Hyperdrive"
 
-	gun -6.5 -18 "Speckle Railgun"
-	gun 6.5 -18 "Speckle Railgun"
-	gun -6.5 -18 "Speckle Railgun"
-	gun 6.5 -18 "Speckle Railgun"
+	gun -6.5 -18 "Speckle Coilgun"
+	gun 6.5 -18 "Speckle Coilgun"
+	gun -6.5 -18 "Speckle Coilgun"
+	gun 6.5 -18 "Speckle Coilgun"
 	turret 0 39
 
 	engine 0 51
@@ -1234,7 +1234,7 @@ ship "Prismaios"
 	outfits
 		"Green Optical Laser"
 		"Speckle Turret" 2
-		"Speck Round" 14400
+		"Speck Round" 7200
 		"Dart Launcher" 2
 		`"Dart" Kinetic Missile` 120
 		"Electromotive Rifle" 6
@@ -1289,30 +1289,11 @@ ship "Prismaios"
 	description "The Prismaios-class Frigate is a recent, streamlined design, praised by many Twilight Guard captains as a highly successful addition to Avgi strike fleets. New construction techniques allow for unprecedented gains in structural integrity for such a lightweight frame, allowing the frigate to serve on the front lines against the Aberrant as a fast, versatile, multipurpose warship."
 
 
-ship "Prismaios" "Prismaios (Coilgun)"
-	outfits
-		"Green Optical Laser"
-		"Fleck Turret" 2
-		"Fleck Round" 4800
-
-		"Ultracapacitor Bank" 2
-		"Diffuse Deflector"
-		"Optical Lasing Generator"
-		"Multispectral Scanner"
-		"Electrostatic Ramscoop"
-		
-		`Z-330 "Spark" Fusion Torch`
-		"Inductive Extractor"
-		"Remass Injector" 2
-		"XY-360 Radial Thrusters"
-		"Hyperdrive"
-
-
 ship "Prismaios" "Prismaios (Atomic)"
 	outfits
 		"Green Optical Laser"
 		"Speckle Turret" 2
-		"Speck Round" 14400
+		"Speck Round" 7200
 		"Rush Launcher" 2
 		"Rush Magazine" 2
 		`"Rush" Nuclear Missile` 60
@@ -1443,8 +1424,8 @@ ship "Diaspersi"
 			"hit force" 2400
 	outfits
 		"Green Optical Laser" 2
-		"Fleck Turret"
-		"Fleck Round" 2400
+		"Speckle Turret"
+		"Speck Round" 3600
 		"Dart Launcher" 2
 		"Dart Magazine" 6
 		`"Dart" Kinetic Missile` 480
@@ -1471,7 +1452,7 @@ ship "Diaspersi"
 		angle 90
 	turret -9 12 "Green Optical Laser"
 	turret 9 12 "Green Optical Laser"
-	turret 0 51 "Fleck Turret"
+	turret 0 51 "Speckle Turret"
 
 	bay "Fighter" 0 -63
 		over
@@ -1520,8 +1501,8 @@ ship "Diaspersi"
 ship "Diaspersi" "Diaspersi (Atomic)"
 	outfits
 		"Green Optical Laser" 2
-		"Fleck Turret"
-		"Fleck Round" 2400
+		"Speckle Turret"
+		"Speck Round" 3600
 		"Rush Launcher" 2
 		`"Rush" Nuclear Missile` 36
 		"Equinox Torpedo Stockpile" 3
@@ -1571,8 +1552,8 @@ ship "Difraktos"
 			"hit force" 3600
 	outfits
 		"Green Optical Laser" 2
-		"Fleck Turret" 2
-		"Fleck Round" 4800
+		"Speckle Turret" 2
+		"Speck Round" 7200
 		"Dart Launch Array" 2
 		"Dart Magazine" 2
 		`"Dart" Kinetic Missile` 600
@@ -1596,8 +1577,8 @@ ship "Difraktos"
 		angle -90
 	gun 21 -63
 		angle 90
-	turret -9 -111 "Fleck Turret"
-	turret 9 -111 "Fleck Turret"
+	turret -9 -111 "Speckle Turret"
+	turret 9 -111 "Speckle Turret"
 	turret -9 -87 "Dart Launch Array"
 	turret 9 -87 "Dart Launch Array"
 	turret -9 -66
@@ -1661,9 +1642,9 @@ ship "Difraktos" "Difraktos (Missile)"
 ship "Difraktos" "Difraktos (Kinetic)"
 	outfits
 		"Green Optical Laser" 2
-		"Fleck Turret" 6
-		"Fleck Magazine"
-		"Fleck Round" 15600
+		"Speckle Turret" 6
+		"Speck Magazine"
+		"Speck Round" 21600
 
 		"Ultracapacitor Cell" 3
 		"Diffuse Deflector"
@@ -1682,8 +1663,8 @@ ship "Difraktos" "Difraktos (Kinetic)"
 ship "Difraktos" "Difraktos (Atomic)"
 	outfits
 		"Green Optical Laser" 3
-		"Fleck Turret" 2
-		"Fleck Round" 4800
+		"Speckle Turret" 2
+		"Speck Round" 7200
 		"Rush Launch Array" 3
 		`"Rush" Nuclear Missile` 168
 		"Rush Magazine" 2
@@ -1827,8 +1808,8 @@ ship "Atenuatia"
 			"hull damage" 4800
 			"hit force" 4200
 	outfits
-		"Fleck Turret"
-		"Fleck Round" 2400
+		"Speckle Turret"
+		"Speck Round" 3600
 		"Blue Optical Laser" 2
 		"Green Optical Laser" 3
 		"Dart Launch Array" 2
@@ -1930,8 +1911,8 @@ ship "Atenuatia"
 
 ship "Atenuatia" "Atenuatia (Atomic)"
 	outfits
-		"Fleck Turret"
-		"Fleck Round" 2400
+		"Speckle Turret"
+		"Speck Round" 3600
 		"Blue Optical Laser" 2
 		"Green Optical Laser" 3
 		"Rush Launch Array"
@@ -1980,7 +1961,7 @@ ship "Akoustiki"
 			"hull damage" 180
 			"hit force" 120
 	outfits
-		"Speckle Railgun"
+		"Speckle Coilgun"
 		"Speck Round" 1800
 		
 		"Concentrating Solar Array"
@@ -1991,7 +1972,7 @@ ship "Akoustiki"
 		
 		"Magnetoplasma Drive"
 
-	gun -18 -15 "Speckle Railgun"
+	gun -18 -15 "Speckle Coilgun"
 	gun 18 -15
 
 	engine -12 18
@@ -2140,10 +2121,10 @@ ship "Vibratia"
 			"hull damage" 150
 			"hit force" 120
 	outfits
-		"Speckle Railgun"
+		"Speckle Coilgun"
 		"Speck Round" 1800
-		"Dart Launcher"
-		`"Dart" Kinetic Missile` 60
+		# "Dart Launcher"
+		# `"Dart" Kinetic Missile` 60
 	
 		"Concentrating Solar Array"
 		"Ultracapacitor Cell"
@@ -2172,7 +2153,7 @@ ship "Vibratia"
 		angle -90
 		zoom 0.5
 		right
-	gun 0 -27 "Speckle Railgun"
+	gun 0 -27 "Speckle Coilgun"
 	gun 0 -27 "Dart Launcher"
 
 	explode "tiny explosion" 9
@@ -2361,7 +2342,7 @@ ship "Sonikis"
 
 ship "Sonikis" "Sonikis (Armed)"
 	outfits
-		"Speckle Railgun"
+		"Speckle Coilgun"
 		"Speck Round" 3600
 
 		"Concentrating Solar Array"

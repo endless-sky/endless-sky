@@ -313,13 +313,13 @@ outfit "Magnetoplasma Drive"
 	"turning energy" 0.6
 	"turning heat" 0.3
 	"drag reduction" 1
-	"flare sprite" "effect/ion flare/tiny"
+	"flare sprite" "effect/wanderer flare/tiny"
 		"frame rate" 5
 	"flare sound" "plasma tiny"
-	"steering flare sprite" "effect/ion flare/tiny"
+	"steering flare sprite" "effect/wanderer flare/tiny"
 		"frame rate" 5
 	"steering flare sound" "plasma tiny"
-	"reverse flare sprite" "effect/ion flare/tiny"
+	"reverse flare sprite" "effect/wanderer flare/tiny"
 		"frame rate" 5
 	"reverse flare sound" "plasma tiny"
 	description "This compact set of magnetoplasmadynamic thrusters can propel small ships to impressive speeds over time, but is also quite energy hungry."
@@ -442,7 +442,7 @@ outfit "Inductive Extractor"
 	"energy generation" 1.5
 	"heat generation" 1.5
 	"thrust" -6
-	"thrusting energy" -18
+	"thrusting energy" -36
 	"thrusting heat" 6
 	"magnozzle rings" -1
 	description "A reinforced superconducting solenoid and power conditioning unit allows a significant amount of power to be inductively extracted from a fusion torch's exhaust as it pushes against the drive's magnetic nozzle. This removes some energy from the exhaust plume and produces some heat, but is the primary means by which high performance Avgi starships generate power."
