@@ -7124,10 +7124,11 @@ mission "Timothy Radrickson 3: Governor"
 
 			label mingle
 			action
+				"salary: Hero of Rand" = 200
 				payment 1000000
-				event "timothy radrickson imprisoned" 3496
+				event "timothy radrickson imprisoned" 400
 			`	With the speeches done, you mingle with the crowd, making small talk with various dignitaries and company-bosses. You even say a few words to Regina. Everyone is pleased to meet you, and a few people ask for your autograph. Finally, Timothy makes his way to you and takes you to a quieter room off to the side.`
-			`	"Captain <last>, I hope you've found the night agreeable. I've noticed you have your fair share of fans here. I also wanted to let you know that there is a sum of cash associated with tonight's reward along with a small stipend. That you will be given 1 million credits and a daily stipend of 200 credits, as gift from Rand, and more specifically, from me."`
+			`	"Captain <last>, I hope you've found the night agreeable. I've noticed you have your fair share of fans here. I also wanted to let you know that there is cash associated with tonight's reward. You will be given 1 million credits and a daily stipend of 200 credits, as gift from Rand, and more specifically, from me."`
 			`	Timothy lifts his glass. "Just another way for me to thank you for saving me."`
 			`	You lift your glass, and your eyes scan the wall of his office. You see pictures of your ship, and you, from various news articles, printed and framed along the walls."`
 			choice
@@ -7160,7 +7161,7 @@ mission "Timothy Radrickson 3: Governor"
 			`	Timothy acquiesces and escorts you back to a waiting vehicle, and you say your farewells. The dark vehicle drives off into the bright desert, leaving behind an island of green, and warmth.`
 				decline
 
-event "timothy radrickson imprisoned" 400
+event "timothy radrickson imprisoned"
 
 mission "Timothy Radrickson 4: Imprisoned"
 	to offer
@@ -7820,12 +7821,12 @@ mission "Timothy Radrickson 5d: Greenrock"
 					to display
 						has "id1"
 						not "id2"
-				`	(Look for environmental gear.)`
+				`	(Look for a survival suit.)`
 					goto suit1
 					to display
 						"timothy radrickson gear" = 0
 						not "suit1"
-				`	(Return to the shop to buy the environmental gear.)`
+				`	(Return to the shop to buy the survival suit.)`
 					goto suit2
 					to display
 						has "suit1"
@@ -8152,10 +8153,16 @@ mission "Timothy Radrickson 7: Monk"
 						not "offers"
 				`	(Shake his hand and say goodbye.)`
 					goto shake
-				`	(Give him a hug and say goodbye.`
-			`	You lean in and give him a warm earnest bear hug. He wraps his arms around you and squeezes you back. When he finally breaks free you see a tear his eyes are blurry with tears. He nods to you once, and then walks back into the monastery. You begin your slow descent down the mountain, and back to civilization.`
+				`	(Give him a hug and say goodbye.)`
+			action
+				clear "offers"
+			`	You lean in and give him a warm, earnest bear hug. He wraps his arms around you and squeezes you back. When he finally breaks free you see a tear his eyes are blurry with tears. He nods to you once, and then walks back into the monastery. You begin your slow descent down the mountain, and back to civilization.`
 				decline
-			`	You shake his hand, he swallows and clears his throat, trying to keep himself from crying, nods to you one last time, and then walks back into the monastery. You begin your slow descent down the mountain, and back to civilization.`
+
+			label shake
+			action
+				clear "offers"
+			`	You shake his hand; he swallows and clears his throat, trying to keep himself from crying; nods to you one last time, and then walks back into the monastery. You begin your slow descent down the mountain, and back to civilization.`
 				decline
 		
 			label offer
@@ -8170,7 +8177,10 @@ mission "Timothy Radrickson 7: Monk"
 				`	(Agree with him and rescind your offer.)`
 					goto goodbyes
 			
-			label offer2 # Remove the HERO OF RAND medal/title
+			label offer2
+			action
+				clear "salary: Hero of Rand"
+				clear "offers"
 			`	As you speak Timothy shakes his head slowly, tears streaming down his face. Finally, as you finish, he wraps his arms around you in an earnest heartfelt hug.`
 			`	He tries to speak, but his voice fails him. Instead he just shakes his teary-eyed head at you and gives you a deep solemn bow.`
 			`	Timothy stays to watch as you begin your slow descent down the mountain, and back to civilization.`
@@ -8237,12 +8247,18 @@ mission "Timothy Radrickson 7: Hospice"
 				`	(Shake his hand and say goodbye.)`
 					goto shake
 				`	(Give him a hug and say goodbye.`
+
+			action
+				clear "offers"
 			`	You lean over and give him partial hug in his sick bed. He wraps his one good arm around you and squeezes. When he finally breaks free you see a tear his eyes are blurry with tears.`
 			`	You leave him bedridden in the hospital, and to your surprise find your guide waiting for you outside the room. "His is a tough case. Perhaps one day he will recover enough to leave this place." The monk pauses, thoughtfully. "Or perhaps not."`
 			`	He leads you back to the train station, and from there you take brief journey back to New Tibet's spaceport.`
 				decline
 
-			`	You  lean in to shake his good hand, he swallows and clears his throat, trying to keep himself from crying.`
+			label shake
+			action
+				clear "offers"
+			`	You lean in to shake his good hand, he swallows and clears his throat, trying to keep himself from crying.`
 			`	You leave him bedridden in the hospital, and to your surprise find your guide waiting for you outside the room. "His is a tough case. Perhaps one day he will recover enough to leave this place." The monk pauses, thoughtfully. "Or perhaps not."`
 			`	He leads you back to the train station, and from there you take brief journey back to New Tibet's spaceport.`
 				decline
@@ -8259,7 +8275,10 @@ mission "Timothy Radrickson 7: Hospice"
 				`	(Agree with him and rescind your offer.)`
 					goto goodbyes
 			
-			label offer2 # Remove the HERO OF RAND medal/title
+			label offer2
+			action
+				clear "salary: Hero of Rand"
+				clear "offers"
 			`	As you speak Timothy shakes his head slowly, tears streaming down his face. Finally, as you finish, he reaches out to you with his one good arm and pulls you in for an earnest heartfelt hug.`
 			`	He tries to speak, but his voice fails him. Instead he just shakes his teary-eyed head and bows it before you in deep respect.`
 			`	"Always." He manages to whisper through phlegm and weakened lungs as you turn to leave, "always you."`
@@ -8308,8 +8327,8 @@ mission "Timothy Radrickson 7: Grave"
 				`	(Leave.)`
 					goto end
 
-				`	The slow moving evening clouds have cast the entire world in a strange purple twilight. Timothy's grave sits before you, nestled in the poision ground, and you alone in the vast empty graveyard.`
-				`	Your thoughts drift to the man buried beneath your feet.`
+			`	The slow moving evening clouds have cast the entire world in a strange purple twilight. Timothy's grave sits before you, nestled in the poision ground, and you alone in the vast empty graveyard.`
+			`	Your thoughts drift to the man buried beneath your feet.`
 			label stayawhile
 			choice
 				`	(Think about Timothy's past.)`
@@ -8351,4 +8370,4 @@ mission "Timothy Radrickson 7: Grave"
 			
 			label end
 			`	The shadows turn a darker shade of purple as you leave the graveyard of the forgotten dead for the familiar confines of your ship.`
-			decline
+				decline
