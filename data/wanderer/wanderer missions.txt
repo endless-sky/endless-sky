@@ -38,7 +38,7 @@ mission "Wanderers: Mereti: The Plant 1"
 				accept
 	on complete
 		conversation
-			`The Mereti ships following you caused some alarm among the local population as you came in to land, particularly with the spaceport's traffic control, who are unaccustomed to the way they hurtle by mere feet from the Wanderers' ships at almost top speed on their way down.`
+			`The Mereti ships following you caused some alarm among the local population as you came in to land, particularly with the spaceport's traffic control, who are unaccustomed to the way they hurtle by less than a meter from the Wanderers' ships at almost top speed on their way down.`
 			`	Your passengers exit your ship almost immediately after you land, and the spaceport workers carefully unload the plant from your cargo hold. "Meet us in the spaceport in an hour, and we will inform you of our next [plans, steps]."`
 		
 	on enter Chimitarp
