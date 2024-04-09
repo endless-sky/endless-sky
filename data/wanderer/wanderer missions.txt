@@ -71,7 +71,7 @@ mission "Wanderers: Mereti: The Plant 2"
 					goto end
 			`	Iriket responds sharply. "That is our [purpose, way]. We heal worlds, and then we turn them over to other species. We would not [imagine, consider] any other course of action."`
 			label end
-			`	"Let us [search, visit] <planet> first. It is near to the worlds of the Mereti and not in the [territory, region] of their [rivals, foes], so it seems more likely that this plant [originated, grew] there."`
+			`	Iriket points at a map, marking out the <system> system. "Let us [search, visit] <planet> first. It is near to the worlds of the Mereti and not in the [territory, region] of their [rivals, foes], so it seems more likely that this plant [originated, grew] there."`
 				accept
 	on complete
 		dialog `Iriket guides you to an area of high, cool steppes as you approach. You find somewhere to land the ship, and she steps out. The air that blows in through the open door stings your eyes, but Iriket seems too deep in thought to notice. "It would have [grown, originated] here, I am certain of it. But it will do so no longer, not for many [years, cycles]." Iriket bows her head and holds one wing in front of herself silently for a moment before continuing. "We must find some world with similar [regions, environments] that we can introduce it to. Perhaps we will have better luck on Sopi Lefarkata."`
