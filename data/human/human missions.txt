@@ -7147,7 +7147,7 @@ mission "Ice Queen"
 			`	Ildico sighs. "A treasure hunter killed my brother a few years back. My mother... she is also dead, and I am starving. I have no way to contact anyone else, and no one else is left."`
 			`	"So, what do you say." She leans her head back, clearly exhausted by this exchange, and closes her eyes. "Will you kill me? Take advantage of me? Save me? Or leave me... to die."`		
 			choice
-				`	"Come with me. It's time you gave up on Hope."`
+				`	"Come with me. It's time you gave up on Hope."` 
 					goto comewithme
 				`	"I'll get you out of here. After that, no promises."`
 					goto comewithme
@@ -7202,26 +7202,25 @@ mission "Ice Queen 2"
 	destination "Glory"
 	passengers 1
 	on offer
-		require "Saga"
 		conversation
 			`	Pushing through the boomtown hustle and bustle you, and Ildico make your way to a series of kiosks, booths, and hastily constructed offices that serve a variety of needs and functions in the ever-growing world of Clark.`
 			`	Among these you find the offices of 'Clarke's Third Law Terraformists', Ildico steps in front of you and enters first.`
 			`	An older man with greying hair, and a bit of a paunch looks up from his desk. "Howdy friends, I am Eustice Goodfellow, and welcome to our cozy establishment. Do you have need of a little terraforming?" Eustice flashes a wide open smile.`
 			`	"Yes. I'd like to terraform the planet Hope." Ildico says flatly.`
-			`	"Well, uh, ma'am. We don't, that is to say, we're not that kind of terraforming firm. We do small jobs. Touch ups. We can't.. we can't terraform world, and I don't.." Eustice looks at her, and you carefully, "I don't think you could pay for it either."`
+			`	"Well, uh, ma'am. We don't, that is to say, we're not that kind of terraforming firm. We do small jobs. Touch ups. We can't.. we can't terraform a world, and I don't.." Eustice looks at her, and you carefully, "I don't think you could pay for it either."`
 			`	Ildico leaps over the desk and grabs Eustice by his collar, "Is that what you told my father, Lord of House Drifa? Did you send him away like some misbegotten pauper?"`
-			`	Eustice pales and holds out his hands, "Please. Let go. I meant no insult."`
+			`	Eustice pales and holds out his hands, "Please, Let me go. I meant no insult."`
 			choice
-				`	(Don't interfere.)`
+				`	(Don't interfere.)` 
 				`	(Tell Ildico to calm down.)`
-			`	Ildico releases his collar, but remains only inches from his face. "Did Deoric Drifa come here years ago, asking to terraform Hope?"`
-			`	Eustice takes a step back, and nods vigorously. "Yes, yes. I remember him. I have nothing to hide. He asked about terraforming Hope. As I said earlier, we aren't that kind of firm. I told him he'd have to talk to the Academy of Planetary Sciences on Glory for that kind work. And then he left."`
+			`	Ildico releases his collar, but remains only inches from his face. "Did Deoric Drifa come here years ago asking to terraform Hope?"`
+			`	Eustice takes a step back, and nods vigorously. "Yes, yes. I remember him. You don't forget a man like him, or a request like his. He asked about terraforming Hope. As I said earlier, we aren't that kind of firm. I told him he'd have to talk to the Academy of Planetary Sciences on Glory for that kind work. And then he left."`
 			`	"Please." Eustice says, backing up further. "That's all I know about him. I never saw him again."`
 			`	Ildico stares at him for a few more moments, and then turns and passes you on her way to the exit.`
 			`	She opens the door and nods to you. "We're going to Glory."`
 	on complete
 		conversation
-			`	To some Glory is a testament to human ingenuity, skill, and potential. It is the dream made real, the promise proven true. A world perfectly sculpted to suite the needs, desires, and tastes of humanity. Nothing here is left to chance, every inch carefully, artfully, manifested by man's will.`
+			`	To some Glory is a testament to human ingenuity, skill, and potential. It is the dream made real, the promise proven true. A world perfectly sculpted to suit the needs, desires, and tastes of humanity. Nothing here is left to chance, every inch carefully, artfully, manifested by man's will.`
 			`	And yet, to others, it is grotesque, a mockery of nature. A lie made into a monument. As you, and Ildico disembark and walk past each immaculate acre, past the plastic-perfect denizens, you consider which viewpoint you hold. It this place a triumph? Or a travesty? A dream, or nightmare?`
 			`	"There is no beauty here." Ildico says idly as you walk. "Only vanity."`
 			`	Together you head toward the spaceport, where you're hoping to find a representative of the Academy of Planetary Sciences, and what happened to Ildico's father.`
@@ -7237,7 +7236,7 @@ mission "Ice Queen 3"
 		conversation
 			`	The Academy of Planetary Sciences is a campus the size of a small nation-state on Earth. Various artificially created and maintained microclimates abound. You drive between small snow peaked mountains, and micro savannahs, between marshland and jungle, desert and forest. Impossible machines, some larger than skyscrapers, litter the twisted and ever-changing landscape. This is a place where anything is possible, and land bends eagerly to the whims of the terraforming wizards.`
 			`	Eventually, Ildico and you make it to the primary reception complex, where after hours of filling out inane forms, and waiting in different meaningless queues, you finally reach someone who can help you. An old visitor list shows that one Deoric Drifa had visited a Professor-Doctor Ian McGiven 2nd Degree Terraformer, and World-Warming specialist in JZ86 Cantos-B of Cooling Block 9 in the Everest Facility.`
-			`	The receptionist, helpfully, draws you a map to where you're going. She also lets you know that in order to visit him you'll need to fill out 6 other forums first. So, you get to work.`
+			`	The receptionist, helpfully, draws you a map to where you're going. She also lets you know that in order to visit him you'll need to fill out 6 other forums first. You get to work.`
 			choice
 				`	(Fill out forms.)`
 			`	A few painfully tedious hours later, all the right forms have been filled out and you've found your way to Ian McGiven's office.`
@@ -7246,8 +7245,8 @@ mission "Ice Queen 3"
 			`	Ildico doesn't blink, you're not sure you've ever seen her blink. "Hope. Yes, and could you warm it?"`
 			`	Ian laughs, "Oh, of course, a job like that would have been quite simple."`
 			`	"Then why didn't you?" The tension is obvious in Ildico's voice.`
-			`	Ian shrugs. "Oddly enough, he had enough money to afford it. But there were other concerns."`
-			`	Ildico steps forward and looms over Ian like an angry shadow. It appears that it is taking all of her will power to keep her from ripping this man apart. "Concerns?"`
+			`	Ian shrugs. "Though he could afford it there were other concerns."`
+			`	Ildico steps forward and looms over Ian like an angry shadow. It appears that it is taking all of her willpower to keep her from ripping this man apart. "Concerns?"`
 			`	"Y-yes. I don't know the specifics. You have to understand, here at the Academy it's not just about money. It's about politics, and power. I am just a 2nd Degree Terraformer. I wasn't privy to the details. But someone, or government, or corporation didn't want it. If you want to know more you'll have to ask him yourself."`
 			`	Ildico seems to deflate. "Ask him? Is he here?"`
 			`	The terraformer shakes his head. "Oh, no. He doesn't work for the Academy. But after the rejection he went to the heart of the Republic, I assume to find out why. He now works for them. I see his name from time to time. He, like all the real leaders of the Republic, is on Chiron. Just head to the main office for the Department of Migration."`
@@ -7266,15 +7265,15 @@ mission "Ice Queen 4"
 			`	It's easy to imagine Earth once look and felt much like Chiron does today. A vibrant world, full of engaged and motivated people, all in a hurry to change the universe, or at least, to run it.`
 			`	The Department of Migration, Stellar Populations and Advanced Interplanetary Economics is easy enough to find. What's surprising is how quickly you are ushered into a waiting room outside the office of one Mr. Drifa, Sub-Executive of Multiplanetary Pricing.`
 			`	After a brief wait, a young secretary announces that Mr. Drifa is ready to see you, and brings you and Ildico into his office.`
-			`	"So what can I help you with..." Deoric Drifa's voice trails off as he looks at Ildico.`
+			`	"So what can I help you with..." Deoric Drifa's voice trails off as he sees Ildico.`
 			`	Ildico tries to step forward than stops herself. She freezes up.`
 			`	"It can't be." The elder Drifa whispers.`
-			`	"Why. Didn't. You. Come." Ildico forces each word out.`
+			`	"Why. Didn't. You. Come." Ildico forces out each word.`
 			`	"I sent for you. They told me you were all dead. They found bodies... and the generator blown."`
-			`	"The accident." Ildico says more to herself than anyone else. And then in that instant she unfreezes, emotions roil through her, and she runs and embraces her father. Everything forgiven."`
+			`	"The accident." Ildico says more to herself than anyone else. And then in that instant she unfreezes, emotions roil through her, and she runs to her father. Everything forgiven.`
 			`	After a long tear-filled embrace she disengages and wipes her eyes. "Early on the generator blew and we had to evacuate the compound. Some people died.. including Hogne." She glances at you, "he was my older brother."`
 			`	She continues, "I salvaged what I could and set up at home. I've been at home the whole time."`
-			`	"It's my fault." Deoric says, "I should have looked myself. I would have known where to look."`
+			`	"It's my fault." Deoric says, "I should have gone and looked for you myself. I would have known where to look."`
 			`	They talk about family, the time apart, and what happened back on Hope. Finally, Ildico turns her attention back to you.`
 			`	"Thank you for bringing me here, <name>. For sticking with me. I appreciate it." She gives you the first real genuine smile you've seen on her face.`
 			choice
@@ -7315,7 +7314,7 @@ mission "Ice Queen 6"
 	stealth
 	on offer
 		conversation
-			`	The directions Ildico gave you take you beyond the bustling city and out into the the large estates owned by the Republic Political elite. Drifa Manor sits atop a low hill with what must be a very expensive view of Chiron's capitol. The architecture of the building is reminiscent of elite villa's you've seen in the Deep.`
+			`	The directions Ildico gave you take you beyond the bustling city and out into the the large estates owned by the Republic political elite. Drifa Manor sits atop a low hill with what must be a very expensive view of Chiron's capitol. The architecture of the building is reminiscent of elite villas you've seen in the Deep.`
 			`	As you approach the main gate you find it wide open, and the attached security booth is abandoned. You could just walk right in.`
 			choice
 				`	(Walk right in.)`
@@ -7330,13 +7329,13 @@ mission "Ice Queen 6"
 				`	(Say nothing.)`
 			`	She ignores you, her attention focused elsewhere.`	
 			`	"You thought," Ildico says, as she catches her breath. "That you could sell me? That you could give me to the bureaucrat who signed Hope's death warrant? That I would be your pawn, your tool, your object in order to gain favor and promotion?"`
-			`	The raven-haired woman laughs, as she cleans off her bloody dagger, and takes a step toward the figure cowering in the corner. The figure she's been addressing. The man you recognize as her father.`
+			`	The raven-haired woman laughs, as she cleans off her bloody dagger, and takes a step toward the figure cowering in the corner. The man you recognize as her father.`
 			`	"Wh-what have you done? You've ruined everything. I was so close. I would have had it all." Deoric blinks, his face sets in hard, and he straightens up, he looks as if he just remembered who he is.`
 			`	"You stupid, selfish, arrogant brat. You just needed to do as you were told. To play your pathetic part. You couldn't could you? You were always worthless. If only your brother had survived." Deoric picks up a broken furniture leg and confidently wields it like a club.`
 			`	At this Ildico's wicked grin widens deeper. "My brother? Dear Hogne. Father, I killed him. He couldn't handle the ice, the isolation, the hopelessness of Hope. He lost his mind. He tried to make me his wife. And mother? Mother, was no better. And, I? I needed to eat."`
 			`	The color drains out of Deoric's face. "Monster." He says. "I will put an end to you. I will start a new family, as I should have before."` 
-			`	Deoric lunges at Ildico, before he can take more then a single step, Ildico's wrist flicks and her knife slams into Deoric's throat. He falls to the ground, bleeding out, dying.`
-			`	Ildico stands over him. "You are coward. A miserable disgusting man." She spits on him, and pulls her dagger from his heaving neck. A moment later, he's dead."`
+			`	Deoric lunges at Ildico, but before he can take more then a single step, Ildico's wrist flicks and her knife slams into Deoric's throat. He falls to the ground, bleeding out, dying.`
+			`	Ildico stands over him. "You are coward. A miserable disgusting man." She spits on him, and pulls her dagger from his heaving neck. A moment later he's dead."`
 			`	She turns to you. "I am now a fugitive, and you are my only friend. I need you to get us out of here." `
 			`	Ildico walks back to corner far from any of the fighting, and retrieves a bundled baby you'd neglected to notice until now.`
 			choice
@@ -7351,7 +7350,7 @@ mission "Ice Queen 6"
 				`	"Stop right there. I am putting you under citizen's arrest until the police arrive."`
 			`	Ildico puts her baby back down, and for just a second you see agony in her eyes. Killing her father, or her arranged husband didn't break her mask, but somehow this does. A tear rolls down her cheek. She moves, too fast for you to react, and her dagger is in your throat.`
 			`	You lay on the ground, bleeding out, dying. Ildico standing above you, a broken expression on her face. "I thought I had one friend. What I fool I was. I'll never make that mistake again."`
-			`	She leaves you to die. The world grows dim, and hazy. You remember Saga, her eyes, her sweetness; and then you die.`
+			`	She leaves you to die. The world grows dim, and hazy. You remember... you remember... someone....`
 				die
 			label leave
 			`	Ildico puts her baby back down, and for just a second you see agony in her eyes. Killing her father, or her arranged husband didn't break her mask, but somehow this does. A tear rolls down her cheek.`
@@ -7371,10 +7370,10 @@ mission "Ice Queen 6"
 		event "pirateildy" 611
 		conversation
 			`	Having evaded Republic patrols on the look out for the Murderous Heiress, you make it to the pirate haven of Haven.`
-			`	Ildico watches the dismal landscape, as you land. "It'll do."`
+			`	Ildico watches the dismal landscape as you land. "It'll do."`
 			`	She opens the briefcase, revealing a storage device, and an oranate wooden box.`
-			`	She gives you a sly smile. "It took years, but the majority of the Drifa fortune has been smuggled into this storage device. They thought I meek, malleable, and pitiful. Not a threat. They were fools."`
-			`	She holds up the box, "And in this, well, this may take some explaining. Before we migrated to Hope, the Drifa were old nobility in The Deep, legend says we ruled Valhalla before the first ships came. Whatever the truth, my ancestors, had in their possession, as a sign of their royalty, this bauble."`
+			`	She gives you a sly smile. "It took years, but the majority of the Drifa fortune has been smuggled into this storage device. They thought I was meek, malleable, and pitiful. Not a threat. They were fools."`
+			`	She holds up the box, "And in this, well, this may take some explaining. Before we migrated to Hope, the Drifa were old nobility in The Deep, legend says we ruled Valhalla before the first ships came. Whatever the truth my ancestors had in their possession, as a sign of their royalty, this bauble."`
 			`	Ildico opens the rune-carved lid of the box, revealing a faintly glowing red rock. "It is called the Blood of Surtr, and it was said to have been symbol of our rulership, and more importantly, a source of power."`
 			`	She shrugs. "I know it sounds far-fetched. But I had this with me on Hope, and I don't think I would have survived without it. When the generators went down, this kept the lights on."`
 			`	"But, it's time with me is over. I want you, the last friend of House Drifa, and the only person whose shown me any kindness in 8 years, to have it."`
@@ -7405,7 +7404,7 @@ mission "Ice Queen 7"
 			`					Ildy"`			
 	on complete
 		dialog
-			`	Even from orbit, Haven looks ugly, and as you approach the planet, it doesn't get any better. Upon landing you're alerted Ildico is waiting for you in the spaceport.`
+			`	Even from orbit, Haven looks ugly, and as you approach the planet it doesn't get any better. Upon landing you're alerted Ildico is waiting for you in the spaceport.`
 
 mission "Ice Queen 8"
 	to offer
@@ -7415,7 +7414,7 @@ mission "Ice Queen 8"
 	on offer
 		conversation
 			`	You arrive at the address Ildico gave you. A large warehouse on the edge of the spaceport. You step into the dimly lit building, your eyes struggle to adjust, and when they've adapted you see a group of dirty burly men and women leveling a half-dozen weapons right at you.`
-			`	"Looks like someone's lost." Words rise out from the group, though you can't tell who speaking to who.`
+			`	"Looks like someone's lost." Words rise out from the group, though you can't tell whose speaking.`
 			`	"They look right fancy. Good thing we found them."`
 			`	"Whaddya say, Frank, kill 'em now? Or keep 'em for a bit?"`
 			choice
@@ -7433,7 +7432,7 @@ mission "Ice Queen 8"
 			`	You duck, startled by the attack, only to realize she wasn't aiming at you. The rotten-toothed man lay dead on the ground. A bullet hole in his head.`
 			`	She looks to the rest of her crew, "Only my friends call me Ildy. And I have only one friend."`
 			`	"Yes, boss." "Got it, boss." "Sure thing, Cap." "Whatever you say, boss." The group of pirates melts away into the warehouse, one of them dragging the dead body, leaving you and Ildy relatively alone.`
-			`	"I'm so glad you came, <name>." Ildico puts an hand on your shoulder and squeezes.`
+			`	"I'm so glad you came, <name>." Ildico puts a friendly hand on your shoulder and squeezes.`
 			`	She turns and waves toward the warehouse. "This is my temporary headquarters. I have few other safe-houses, and own part of a hanger elsewhere. Not to many ships yet, but I intend to change that soon."`
 			`	Ildico holsters her gun right next to where she keeps her dagger. "But making moves is hard. Everyone wants to be on a top. Which is why I need you."`
 			`	"There's a rival gang right next door to us, they have a lot more firepower, but if they could be removed, we could easily double our territory."`
@@ -7466,11 +7465,11 @@ mission "Ice Queen 8"
 		dialog "You have destroyed the fleet. You can now return to <planet> to and report the news to Ildico"
 	on complete
 		conversation
-			`	There's been some intense fighting around the district where Ildico's warehouse was located. A few gunshots echo, as you make your way through the rubble, and around the fire.`
+			`	There's been some intense fighting around the district where Ildico's warehouse was located. A few gunshots echo, as you make your way through the rubble and around the fire.`
 			`	A group of injured, but high-spirited pirates are set up outside the building, there are bodies littering the nearby streets. An unharmed, but bloody, Ilidco walks up to you smiling.`
 			`	"Perfect. They never had a chance." She wipes the blood off her dagger.`
 			`	"This is only the beginning, <name>." Her eyes blaze, "House Drifa will rise again. You'll see. You'll be there."`
-			`	She glances back toward her mulling forces. "Thanks again, for this, but I have to work do. Until next time."`
+			`	She glances back toward her mulling forces. "Thanks again, for this, it means a lot that I can count on you, but I have to work do. Until next time."`
 			`	Ildico returns to group, barking order, and gesturing at the rubble.`
 
 mission "News Queen"
@@ -7496,12 +7495,6 @@ mission "Stone Harmonization b"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination "Wayfarer"
 	to offer
-		or
-			has "Large Bone 3b: done"
-			has "event: welandstone"
-			and
-				not "Large Bone: offered"
-				has "event: sagaold"
 		random < 8
 	on offer
 		require "Tear of Skade"
@@ -7516,8 +7509,8 @@ mission "Stone Harmonization b"
 		conversation
 			conversation
 			`	It can be difficult to find your way in the labyrinthian spaceport of Wayfarer, with its curved walls, and alien flourishes. Around every round corner is another rounder corner.`
-			`	Eventually, you find your way to the bazaar. There are various exotic, mostly alien, items for sale, from a plethora of small, and shady storefronts.`
-			`	A blinking neon sign, attached to a shabby shop, catches your attention; "Weland's Xeno-Smithery: Lost Alien Artifacts! Reverse Engineered Technology! And other oddities!"`
+			`	Eventually, you find your way to the bazaar. There are various exotic, mostly alien, items for sale, from a plethora of small and shady storefronts.`
+			`	A blinking neon sign, attached to a shabby shop, catches your attention; "Weland's Xeno-Smithery: Lost Alien Artifacts! Reverse Engineered Technology! And Other Oddities!"`
 			`	Thus must be the place.`
 			choice
 				`	(Enter the store.)`
@@ -7540,7 +7533,7 @@ mission "Stone Harmonization b"
 			`	"I heard word, from someone whose done crew work on your ship, that you're in possession of a couple of Deep Stones." He nearly whispers the last the two words.`
 			`	"I've been told you call 'em, the 'Tear of Skade', and the 'Blood of Surtr'". He watches your eyes carefully as he names off the stones. "Now, if they are what I think they are, well, they're worth a lot of money. I never met nobody that has laid eyes on a Deep Stone, let alone owned one. It's phantom tech, kind of stuff you hear about from spooks, and conspiracy nuts. Most say it isn't even real, and if it is, only a few ever been found, and those the government holds under lock and key."`
 			`	"But, here you are, flying free with not one, but two, on your ship, doin' whatever it is these strange stones do. I'd offer to buy one of 'em off ya, but I don't have anywhere nears enough cash for one of those.`
-			`	"So, what if I borrowed one of the stones? Just, hear me out, alright. Give me three months to study it, learn what secrets from it I can. I'd pay you 3 million credits for the pleasure. After 3 months, you come collect the stone, and your payment. Everyone wins. Whatd'ya say?"`
+			`	"So, what if I borrowed one of the stones? Just, hear me out, alright. Give me three months to study it, learn what secrets from it I can. I'd pay you 3 million credits for the pleasure. After 3 months you come collect the stone, and your payment. Everyone wins. Whatd'ya say?"`
 			choice
 				`	(Let Weland study the Tear of Skade.)`
 					goto studyskadeweland
@@ -7555,13 +7548,13 @@ mission "Stone Harmonization b"
 				event "welandwait3skade" 90
 				outfit "Tear of Skade" -1
 			`	Weland grins. "A little time's better than no time. Put 'er there."`
-			`	He takes your hand and shakes it with great enthusiasm. "Imagine, what secrets await."`
-			`	Later on you transfer over the stone, 'Tear of Skade', to a feverishly eager Weland. You promise to back in three months, for stone and payment.`
+			`	He takes your hand and shakes it with great enthusiasm. "Imagine what secrets await."`
+			`	Later on you transfer over the stone, 'Tear of Skade', to a feverishly eager Weland. You promise to come back in three months for stone and payment.`
 				decline
 			label studysurtrweland
 			`	Weland grins. "A little time's better than no time. Put 'er there."`
 			`	He takes your hand and shakes it with great enthusiasm. "Imagine, what secrets await."`
-			`	Later on you transfer over the stone, 'Blood of Surtr', to a feverishly eager Weland. You promise to back in three months, for stone and payment.`
+			`	Later on you transfer over the stone, 'Blood of Surtr', to a feverishly eager Weland. You promise to come back in three months for stone and payment.`
 			action
 				event "welandwait3surtr" 90
 				outfit "Blood of Surtr" -1
@@ -7657,11 +7650,11 @@ mission "Stone Harmonization 3skade"
 	on offer
 		conversation
 			`	Weland's waiting for you outside a nearly empty eatery. He turns his wheelchair to face you as you approach.`
-			`	"Well, as you may have surmised," he nods toward his covered feet, that were until recently, chained, "I am someone else's property."`
+			`	"Well, as you may have surmised," he nods toward his covered feet that were until recently chained, "I am someone else's property."`
 			`	The injured man sighs, and looks away from you, "They let me do my own work, follow my own interests, pretend to be my own man, so long as I stay put, and do whatever they ask, when they ask it."`
 			`	"I shoulda known. Shoulda seen it. They weren't going to just let me give you back somethin' as valuable as a Deep Stone. Once I was done, once I had... uncovered.. what I did, they swooped in. Demanded I give it up." He turns back to you, his eyes blazing.`
 			`	"But, I did not comply. My word is my bond. I tried to stop 'em, I used means they were unaware I had." He flashes his teeth in a feral grin.`
-			`	"Still, they had their ways, the things they've implanted, those who survived rendered me immobile, and beat me like a dog." He shakes his head.`
+			`	"Still, they had their ways, the things they've implanted in me, those who survived rendered me immobile, and beat me like a dog." He shakes his head.`
 			`	"They took it. Took your stone. And this very minute they are hustling to get as far from Wayfarer as they can."`
 			`	He looks into your eyes, and says with firm resolve, "But, I know where they are, where they lay low. And if you're the sorta fella who doesn't shy from a fight, you can take back what is yours. So whatd'ya say?"`
 			choice
@@ -7676,7 +7669,7 @@ mission "Stone Harmonization 3skade"
 			`	He pulls out a keypad, and hits a few buttons. "I wager about 10 million will make you whole. If it doesn't, well it's all I got, alright. I've transferred over the money. Takeit, and get out of my sight. I don't deal with common."`
 			action
 				payment 10000000
-			`	Weland wheels away from you, leaving you alone on the muddy street.`
+			`	Weland wheels away from you, leaving you alone in the muddy street.`
 				decline
 			label no
 			`	Weland frowns. "Thought you a little less common than that. Well, my mistake."`
@@ -7687,8 +7680,8 @@ mission "Stone Harmonization 3skade"
 				decline
 			label doit
 			`	Weland grins. "I never took you for a lily livered captain of a paper ship, glad to see I was right."`
-			`	"The ship's called the 'Aotrou', and it's captained by the Marquis Corentin Gwesklin, of the Gwesklin Slaver-Dynasty. That family tricked me, and has held me in bondage longer than most folk's memories; though there is little enough you can do 'bout that now."`
-			`	Weland opens up a palm-display with star coordinates on it. "They are part of the Core Mining Concern. Semi-Sanctioned criminals, slavers, and all around bad guys. Led by the likes of the Marquis, and other hereditary slaver families. Though they can travel through civilized space unmolested, they do like to lay low in the Naper system, especially after altercations. That's where I'd wager you'd find Mr. Gwesklin, his ship, and the stone he stole from us."`
+			`	"The ship's called the 'Aotrou', and it's captained by Corentin Gwesklin, of the Gwesklin Slaver-Dynasty. That family tricked me, and has held me in bondage longer than most folk's memories; though there is little enough you can do 'bout that now."`
+			`	Weland opens up a palm-display with star coordinates on it. "They are part of the Core Mining Concern. Semi-Sanctioned criminals, slavers, and all around bad guys. Led by the likes of Gwekslin, and other hereditary slaver families. Though they can travel through civilized space unmolested, they do like to lay low in the Naper system, especially after altercations. That's where I'd wager you'd find Mr. Gwesklin, his ship, and the stone he stole from us."`
 			`	"Be warned, he most likely will scan as a friendly, the C.M.C. leadership don't find it profitable to run pirate transponders. So keep your eyes open. Now, I think that's 'bout all needs being said at this juncture, just be sure to come back here once you got the stone. I got a surprise for ya."`
 			`	Weland leans forward, and pats you on the arm, before turning his wheelchair around, and heading back in the direction of his shop. After a moment you're alone on a muddy street corner.`
 				accept
@@ -7699,12 +7692,12 @@ mission "Stone Harmonization 3skade"
 		personality timid fleeing uninterested entering target staying
 		ship ship "Falcon" "Falcon (Gwesklin Variant)" "C.M.C.S. Aotrou"
 		dialog
-			`	Looks like the Marquis Gwesklin took an escape pod, and abandoned the ship earlier in the battle. The stone is still here, though.`
+			`	Looks like Captain Gwesklin took an escape pod, and abandoned the ship earlier in the battle. The stone is still here, though.`
 	on visit
 		dialog   ` You haven't dealt with the Aotrou.`
 	on complete
 		conversation
-			`	Weland is waiting for you when you return. He's still wheelchair bound, but otherwise looking surprisingly better. He also doesn't seem too upset that the Marquis Corentin Gwesklin escaped. He tells you to quickly meet him at his shop with your reclaimed stone.`
+			`	Weland is waiting for you when you return. He's still wheelchair bound, but otherwise looking surprisingly better. He also doesn't seem too upset that Captain Corentin Gwesklin escaped. He tells you to quickly meet him at his shop with your reclaimed stone.`
 
 mission "Stone Harmonization 4skade"
 	source "Wayfarer"
@@ -7718,8 +7711,8 @@ mission "Stone Harmonization 4skade"
 		outfit "Tear of Skade (Harmonized)" 1
 		conversation
 			`	Weland's laboratory has mostly been cleaned up, and repaired. Weland's waiting for you at his work bench, and gently places the Tear of Skade on some sort of device.`
-			`	"It sings." Weland almost whispers, as a display shows acoustic waves emanating from within the stone. "The Crystalline lattice within has been re-arranged in ways no one has ever dreamt of in order to generate and produce waves that appear to alter the state of matter."`
-			`	Weland shakes his head, "Not only is far advanced beyond anything humans could create, or recreate, but its an entire untapped field of study." Weland trembles with awe, "It's remarkable. Neither we, nor humans, nor any other race I know of, has deigned to interact with rock, crystal, and matter in this fashion."`
+			`	"It sings." Weland whispers as a display shows acoustic waves emanating from within the stone. "The Crystalline lattice within has been re-arranged in ways no one has ever dreamt of in order to generate and produce waves that appear to alter the state of matter."`
+			`	Weland shakes his head, "Not only is this far advanced beyond anything humans could create, or recreate, but its an entire untapped field of study." Weland trembles with awe, "It's remarkable. Neither we, nor humans, nor any other race I know of, has deigned to interact with rock, crystal, and matter in this fashion."`
 			choice
 				`	"What do you mean, "we", aren't you human?"`
 			`	The man's head snaps up, to look at you through briefly narrowed eyes, before he smiles warmly, "Ah, well, just a slip of the tongue. I was so excited there, I was babblin' nonsense. Of course I'm human." He laughs.`
@@ -7731,7 +7724,7 @@ mission "Stone Harmonization 4skade"
 			`	Weland opens up a keypad, and begins tapping it. "I do believe I still owe you 3 million credits, which I have just transferred to your account. Also, consider your newly harmonized stone as a bonus for the unfortunate circumstances.`
 			label questions
 			choice
-				`	"If I find other stones, can you harmonize them as well?"`
+				`	"Could you harmonize another stone?"`
 					goto harmonize
 				`	"What will you do now?"`
 					goto next
@@ -7744,7 +7737,7 @@ mission "Stone Harmonization 4skade"
 			`	"I appreciate you comin' down here, and standin' for somethin'. I always thought there was somethin' right uncommon 'bout you. And you proved it in spades. Take care now, and hopefully we'll meet again."`
 				decline
 			label next
-			`	The injured man gets a distant look in eyes, "Well, I figure I'll just get back to doin' what I am doin'. Lots of things to figure, lots of cords to sell. Always work, and excitement for someone in my boots. I wager one of these days I'll shake loose of my masters. But until then I'll abide."`
+			`	The injured man gets a distant look in eyes, "Well, I figure I'll just get back to doin' what I am doin'. Lots of things to figure, lots of cords to sell. Always work and excitement for someone in my boots. I wager one of these days I'll shake loose of my masters. But until then I'll abide."`
 				goto questions
 			label harmonize
 			`	Weland looks at you wistfully, and then, with a tinge of sadness, shakes his head. "I wager it's a sight too dangerous for that. Each stone is grown, or sung differently, it would take me months to figure out how to harmonize another one. And in the meantime, I am still watched, still unable to leave, still the property of others. If you left somethin' that valuable with me again, they'd take it, and this time to somewhere you wouldn't find it."`
@@ -7766,11 +7759,11 @@ mission "Stone Harmonization 3surtr"
 	on offer
 		conversation
 			`	Weland's waiting for you outside a nearly empty eatery. He turns his wheelchair to face you as you approach.`
-			`	"Well, as you may have surmised," he nods toward his covered feet, that were until recently, chained, "I am some else's property."`
+			`	"Well, as you may have surmised," he nods toward his covered feet that were until recently chained, "I am some else's property."`
 			`	The injured man sighs, and looks away from you, "They let me do my own work, follow my own interests, pretend to be my own man, so long as I stay put, and do whatever they ask, when they ask it."`
 			`	"I shoulda known. Shoulda seen it. They weren't going to just let me give you back somethin' as valuable as a Deep Stone. Once I was done, once I had... uncovered.. what I did, they swooped in. Demanded I give it up." He turns back to you, his eyes blazing.`
 			`	"But, I did not comply. My word is my bond. I tried to stop 'em, I used means they were unaware I had." He flashes his teeth in a feral grin.`
-			`	"Still, they had their ways, the things they've implanted, those who survived rendered me immobile, and beat me like a dog." He shakes his head.`
+			`	"Still, they had their ways, the things they've implanted in me, those who survived rendered me immobile, and beat me like a dog." He shakes his head.`
 			`	"They took it. Took your stone. And this very minute they are hustling to get as far from Wayfarer as they can."`
 			`	He looks into your eyes, and says with firm resolve, "But, I know where they are, where they lay low. And if you're the sorta fella who doesn't shy from a fight, you can take back what is yours. So whatd'ya say?"`
 			choice
@@ -7796,8 +7789,8 @@ mission "Stone Harmonization 3surtr"
 				decline
 			label doit
 			`	Weland grins. "I never took you for a lily livered captain of a paper ship, glad to see I was right."`
-			`	"The ship's called the 'Aotrou', and it's captained by the Marquis Corentin Gwesklin, of the Gwesklin Slaver-Dynasty. That family tricked me, and has held me in bondage longer than most folk's memories; though there is little enough you can do 'bout that now."`
-			`	Weland opens up a palm-display with star coordinates on it. "They are part of the Core Mining Concern. Semi-Sanctioned criminals, slavers, and all around bad guys. Led by the likes of the Marquis, and other hereditary slaver families. Though they can travel through civilized space unmolested, they do like to lay low in the Naper system, especially after altercations. That's where I'd wager you'd find Mr. Gwesklin, his ship, and the stone he stole from us."`
+			`	"The ship's called the 'Aotrou', and it's captained by Captain Corentin Gwesklin, of the Gwesklin Slaver-Dynasty. That family tricked me, and has held me in bondage longer than most folk's memories; though there is little enough you can do 'bout that now."`
+			`	Weland opens up a palm-display with star coordinates on it. "They are part of the Core Mining Concern. Semi-Sanctioned criminals, slavers, and all around bad guys. Led by the likes of Gwesklin, and other hereditary slaver families. Though they can travel through civilized space unmolested, they do like to lay low in the Naper system, especially after altercations. That's where I'd wager you'd find Mr. Gwesklin, his ship, and the stone he stole from us."`
 			`	"Be warned, he most likely will scan as a friendly, the C.M.C. leadership don't find it profitable to run pirate transponders. So keep your eyes open. Now, I think that's 'bout all needs being said at this juncture, just be sure to come back here once you got the stone. I got a surprise for ya."`
 			`	Weland leans forward, and pats you on the arm, before turning his wheelchair around, and heading back in the direction of his shop. After a moment you're alone on a muddy street corner.`
 				accept
@@ -7808,12 +7801,12 @@ mission "Stone Harmonization 3surtr"
 		personality timid fleeing uninterested entering target staying
 		ship ship "Falcon" "Falcon (Corentin Variant)" "C.M.C.S. Aotrou"
 		dialog
-			`	Looks like the Marquis Gwesklin took an escape pod, and abandoned the ship earlier in the battle. The stone is still here, though.`
+			`	Looks like Captain Gwesklin took an escape pod, and abandoned the ship earlier in the battle. The stone is still here, though.`
 	on visit
 		dialog   ` You haven't dealt with the Aotrou.`
 	on complete
 		conversation
-			`	Weland is waiting for you when you return. He's still wheelchair bound, but otherwise looking surprisingly better. He also doesn't seem too upset that the Marquis Corentin Gwesklin escaped. He tells you to quickly meet him at his shop with your reclaimed stone.`
+			`	Weland is waiting for you when you return. He's still wheelchair bound, but otherwise looking surprisingly better. He also doesn't seem too upset that Captain Corentin Gwesklin escaped. He tells you to quickly meet him at his shop with your reclaimed stone.`
 
 mission "Stone Harmonization 4surtr"
 	source "Wayfarer"
@@ -7826,9 +7819,9 @@ mission "Stone Harmonization 4surtr"
 		outfit "Blood of Surtr" -1
 		outfit "Blood of Surtr (Harmonized)" 1
 		conversation
-			`	Weland's laboratory has mostly been cleaned up, and repaired. Weland's waiting for you at his work bench, and gently places the Blood of Surtr on some sort of device.`
+			`	Weland's laboratory has mostly been cleaned up and repaired. Weland's waiting for you at his work bench, and gently places the Blood of Surtr on some sort of device.`
 			`	"It sings." Weland almost whispers, as a display shows acoustic waves emanating from within the stone. "The crystal lattice within has been re-arranged in ways no one has ever dreamt of, in order to generate and produce waves that appear to alter the state of matter."`
-			`	Weland shakes his head, "Not only is far advanced beyond anything humans could create, or recreate, but its an entire untapped field of study." Weland trembles with awe, "It's remarkable. Neither we, nor humans, nor any other race I know of, has deigned to interact with rock, crystal, and matter in this fashion."`
+			`	Weland shakes his head, "Not only is it far advanced beyond anything humans could create, or recreate, but its an entire untapped field of study." Weland trembles with awe, "It's remarkable. Neither we, nor humans, nor any other race I know of, has deigned to interact with rock, crystal, and matter in this fashion."`
 			choice
 				`	"What do you mean, "we", aren't you human?"`
 			`	The man's head snaps up, to look at you through briefly narrowed eyes, before he smiles warmly, "Ah, well, just a slip of the tongue. I was so excited there, I was babblin' nonsense. Of course I'm human." He laughs.`
@@ -7840,7 +7833,7 @@ mission "Stone Harmonization 4surtr"
 			`	Weland opens up a keypad, and begins tapping it. "I do believe I still owe you 3 million credits, which I have just transferred to your account. Also, consider your newly harmonized stone as a bonus for unfortunate circumstances.`
 			label questions
 			choice
-				`	"If I find other stones, can you harmonize them as well?"`
+				`	"Could you harmonize another stone?"`
 					goto harmonize
 				`	"What will you do now?"`
 					goto next
