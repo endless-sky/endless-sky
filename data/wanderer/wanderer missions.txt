@@ -48,6 +48,7 @@ mission "Wanderers: Mereti: The Plant 1"
 		personality timid launching
 		system Chimitarp
 		fleet
+			names "kor mereti"
 			variant
 				"Model 16" 3
 
@@ -135,6 +136,7 @@ mission "Wanderers: Mereti: The Plant 5"
 		personality escort
 		system "Iyech'yek"
 		fleet
+			names "wanderer"
 			variant
 				"Strong Wind"
 	npc
@@ -142,6 +144,7 @@ mission "Wanderers: Mereti: The Plant 5"
 		personality timid launching
 		system "Iyech'yek"
 		fleet
+			names "kor mereti"
 			variant
 				"Model 16" 3
 
