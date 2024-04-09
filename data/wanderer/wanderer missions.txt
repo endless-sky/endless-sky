@@ -13,10 +13,10 @@
 
 mission "Wanderers: Mereti: The Plant 1"
 	landing
-	name "Plant to Vara Kehi'ki"
+	name "Plant to <planet>"
 	passengers 2
 	cargo "strange plant" 1
-	description "Bring this plant, which seems to be of some significance to the Mereti, to <planet>, along with two Wanderer 'mentors', so that the Wanderers can try to work out how to make it grow."
+	description "Bring this plant (which seems to be of some significance to the Mereti) and two Wanderer 'mentors' to <destination>, so that the Wanderers can try to work out how to make it grow."
 	source "Korbatri Eska"
 	destination "Vara Kehi'ki"
 	to offer
@@ -52,7 +52,7 @@ mission "Wanderers: Mereti: The Plant 1"
 				"Model 16" 3
 
 mission "Wanderers: Mereti: The Plant 2"
-	name "A home for the plant"
+	name "A Home for the Plant"
 	passengers 1
 	description "Bring Tema'a Iriket to the Korath planets she marked, to determine whether any of them is a suitable home for the plant from the Mereti."
 	source "Vara Kehi'ki"
@@ -77,7 +77,7 @@ mission "Wanderers: Mereti: The Plant 2"
 
 mission "Wanderers: Mereti: The Plant 3"
 	landing
-	name "A home for the plant"
+	name "A Home for the Plant"
 	passengers 1
 	description "Bring Tema'a Iriket to the Korath planets she marked, to determine whether any of them is a suitable home for the plant from the Mereti."
 	source "Solima Skarati"
@@ -86,7 +86,7 @@ mission "Wanderers: Mereti: The Plant 3"
 		has "Wanderers: Mereti: The Plant 2: done"
 	on complete
 		conversation
-			`This time, Iriket guides you down into an equatorial lowland - a dry grassy plain over which a cool wind blows. You can feel the similarity to the steppe you visited on Solima Skarati, but this time you can breathe freely without the air stinging your eyes and mouth. Iriket takes some soil and places it in a small device, looking at it for a moment before turning to you. "Here. It will [grow, prosper] here."`
+			`This time, Iriket guides you down into an equatorial lowland - a dry grassy plain over which a cool wind blows. You can feel its similarity to the steppe you visited on Solima Skarati, but this time you can breathe freely without the air stinging your eyes and mouth. Iriket takes some soil and places it in a small device, looking at it for a moment before turning to you. "Here. It will [grow, prosper] here."`
 			choice
 				`	"Is there anything else I can do to help?"`
 					goto nextsteps
@@ -119,7 +119,7 @@ mission "Wanderers: Mereti: The Plant 5"
 	on offer
 		conversation
 			`You arrive in the spaceport just in time to see the plant being delicately loaded onto a Strong Wind. The Mereti drones sit stationary on the landing pad, and you get a distinct feeling that they are watching you intently.`
-			`	Iriket stands beside you as you watch, staring into the distance almost morosely, before speaking. "It is regrettable that we have been [forced, made] to use these ships for war. This is far closer to the purpose we originally [conceived, designed] them to [serve, fulfill]". You catch a glimpse of a feather falling to the ground as she speaks. Then, she interrupts herself. "No, I should not be so [disheartened?]. The Korath drones have turned their back on their creators' [wishes, design] and seek to [heal, tend] these worlds alongside us. That is something we can all appreciate."`
+			`	Iriket stands beside you as you watch, staring into the distance almost morosely, before speaking. "It is regrettable that we have been [forced, made] to use these ships for war. This is far closer to the purpose we originally [conceived, designed] them to [serve, fulfill]." You catch a glimpse of a feather falling to the ground as she speaks. Then, she interrupts herself. "No, I should not be so [disheartened?]. The Korath drones have turned their back on their creators' [wishes, design] and seek to [heal, tend] these worlds alongside us. That is something we can all appreciate."`
 			choice
 				`	"Are you sure this will work?"`
 			`	"It is a [fortunate, convenient] situation. <planet> needs relatively little healing, so [housing, growing] these plants here will not create [difficulties, inconveniences] for our work. We have sent a small specialist [group, team] to [cultivate, look after] the plants. I have the utmost confidence in their [knowledge, abilities]."`
