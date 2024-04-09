@@ -29,7 +29,7 @@ mission "Wanderers: Mereti: The Plant 1"
 			choice
 				`	"I will help you."`
 				`	"What do you need me to do?"`
-			`	The drone speaks again. "This plant is important to us. It is our..." The drone pauses for a few seconds, and lights flash across it. "It is important to us. Our [teachers, mentors] say it is not [native, local] to this world, and cannot survive here." As it says this, you spot two Wanderers talking with each other in hushed tones in a dim corner of the room. They look up when it mentions them, and quickly approach you.`
+			`	The drone speaks again. "This plant is important to us. It is our..." The drone pauses for a few seconds, and lights flash across it. "It is important to us. Our [teachers, mentors] say it is not [native, local] to this world, and cannot survive here." As it says this, two Wanderers walk in accompanied by another Mereti drone, talking with each other in hushed tones. They look up when it mentions them, and quickly approach you.`
 			choice
 				`	"Can you help them?"`
 				`	"What should we do?"`
