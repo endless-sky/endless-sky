@@ -110,7 +110,7 @@ mission "Wanderers: Mereti: The Plant 4"
 
 mission "Wanderers: Mereti: The Plant 5"
 	name "Plant to <planet>"
-	description "Escort this Wanderer ship, carrying the plant and a team of Wanderers ready to help it grow, to <destination>."
+	description "Escort the Wanderer ship, carrying the plant and a team of Wanderers ready to help it grow, to <destination>."
 	source "Vara Kehi'ki"
 	destination "Sopi Lefarkata"
 	on visit
