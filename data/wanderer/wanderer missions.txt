@@ -100,7 +100,7 @@ mission "Wanderers: Mereti: The Plant 4"
 	landing
 	name "Return to <planet>"
 	passengers 1
-	description "Bring Iriket back to <destination>, in order to collect the Mereti plant and bring it to <origin>."
+	description "Bring Iriket back to <destination> in order to collect the Mereti plant and bring it to <origin>."
 	source "Sopi Lefarkata"
 	destination "Vara Kehi'ki"
 	to offer
