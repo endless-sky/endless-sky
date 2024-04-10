@@ -7920,20 +7920,31 @@ mission "Blood Skadenga"
 				`	(Take your leave.)`
 			`	Having gleamed all you could from the Ondurdis and Aldfrith you quickly take your leave from them and Hrithfjell and head back to your ship.`
 				decline
-			`	You thank The Ondurdis and Aldfrith for their gracious help and interesting stories and promise to keep them apprised of anything else you might discover about the stones. The Ondurdis hastily makes you a meal to take with you, believing it bad manners to let you leave unfed and wishes you well in your future travels among the lofty stars.`
+			`	You thank The Ondurdis and Aldfrith for their gracious help and interesting stories. The Ondurdis hastily makes you a meal to take with you, believing it bad manners to let you leave unfed and wishes you well in your future travels among the lofty stars.`
 				decline
 
-mission "Harmonize Skadenga"
-	source "Windblain"
+mission "Stone Thanks"
+	source "Norn"
 	on offer
-		or
-		require "Blood of Surtr (Harmonized)"
-		require "Tear of Skade (Harmonized)"
+		has "Ice Queen Alt: complete"
 		conversation
-				`As your ship descends through Windblain's familiar atmosphere you consider asking the Ondurdis about your harmonized stone.`
+			`In the quiet creaking spaceport it's easy enough to spot Helm doing some much needed maintenance.`
 			choice
-				`	(Visit Hrithfjall.)`
-					goto hrithland
-				`	(Don't visit Hrithfjall.)`
-					decline
-			`	You fly past the small settlement of Hjrithfjall without landing and continue on your way.`
+				`	(Tell Helm & Tosti about the stone.)`
+					goto tell
+				`	(Leave Helm alone)`		
+			`	Helm seems busy and there is no need to report to him or anyone else what you did.`
+				decline
+			
+			label tell
+			`	You accidently startle Helm, who is in the middle of replacing a fraying rope.`
+			`	"Woah! <first>! No need to sneak up on me!" He stands up to greet you.`
+			`	"What's new?"`
+			choice
+				`	"I found the Family-Cairn and left the stone there."`
+				`	"I chucked the stone out of a hatch, but it's at least on Hope now."`
+				`	"Where's Tosti?"`
+			`	"Ah, the lad's out on the seas. Got himself a job working on a fishing trawler. It'd likely be a few years before he'll call to port here again."`
+			`	Helm gives you a friendly smile, "Still, you've done him a good turn. I'll have a message sent to him so he knows he can rest easy."`
+			`	He returns to wrestling with the rope, "There's no money or reward, but word will spread and people here will appreciate it all the same. We on Norn, we have long memories."`
+				decline
