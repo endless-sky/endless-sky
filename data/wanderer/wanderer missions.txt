@@ -55,7 +55,7 @@ mission "Wanderers: Mereti: The Plant 1"
 mission "Wanderers: Mereti: The Plant 2"
 	name "A Home for the Plant"
 	passengers 1
-	description "Bring Tema'a Iriket to the Korath planets she marked, to determine whether any of them is a suitable home for the plant from the Mereti."
+	description "Bring Tema'a Iriket to the Korath planets she marked, to determine whether any of them are a suitable home for the plant from the Mereti."
 	source "Vara Kehi'ki"
 	destination "Solima Skarati"
 	to offer
@@ -80,7 +80,7 @@ mission "Wanderers: Mereti: The Plant 3"
 	landing
 	name "A Home for the Plant"
 	passengers 1
-	description "Bring Tema'a Iriket to the Korath planets she marked, to determine whether any of them is a suitable home for the plant from the Mereti."
+	description "Bring Tema'a Iriket to the Korath planets she marked, to determine whether any of them are a suitable home for the plant from the Mereti."
 	source "Solima Skarati"
 	destination "Sopi Lefarkata"
 	to offer
