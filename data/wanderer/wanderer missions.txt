@@ -66,7 +66,7 @@ mission "Wanderers: Mereti: The Plant 2"
 			`	"We have [restored, healed] the plant, and it is surviving here for now, but we will soon be moving out of these systems. This plant [originates, belongs] in Korath space, so we must find a way to return it there."`
 			`	Iriket pauses and thinks for a moment before continuing. "The Korath do not seem to me to be the type to [create, engineer] such a flower through [artificial, unnatural] means. I suspect it originates on one of their worlds. If we are fortunate, it may [grow, prosper] there still. From an initial look, we [believe, suspect] that it is native to either <planet>, Sopi Lefarkata, or possibly one of those worlds that is so [damaged, destroyed] that it is difficult to [see, imagine] what it might once have been like."`
 			choice
-				`	"You are really set on giving these worlds to the Unfettered, then?"`
+				`	"You really are set on giving these worlds to the Unfettered, then?"`
 				`	"What do you suggest we do?"`
 					goto end
 			`	Iriket responds sharply. "That is our [purpose, way]. We heal worlds, and then we turn them over to other species. We would not [imagine, consider] any other course of action."`
