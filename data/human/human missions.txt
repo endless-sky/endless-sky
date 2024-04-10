@@ -7856,3 +7856,84 @@ mission "Stone Harmonization 4surtr"
 			`	He gives you a patronizing smile. "Folks that did this to me. They've been doin' this kind of work for a while, and I, well, I am like the crown jewel of their collection. They have hooks into me, inside of me, all around me, that prevent me from leaving, at least alive. They like to give me the illusion of space, pretend they are.. gentile 'bout the whole thing. But make no mistake, I am not free, and I cannot go."`
 			`	His face briefly flashes with mirth, "For now, this is."`
 				goto questions
+
+
+mission "Blood Skadenga"
+	source "Windblain"
+	to offer
+		has "Ice Queen 6: done"
+		not "Stone Harmonization 4surtr: done"
+		not "Stone Harmonization 4skade: done"
+	on offer
+		require "Blood of Surtr"
+		conversation
+			`As your ship sails through Windblain's cloudy atmosphere you consider landing near Hrithfjall and asking the Ondurdis about the Blood of Surtr.`
+			choice
+				`	(Take the Blood of Surtr to Hrithfjall.)`
+					goto hrithland
+				`	(Don't visit Hrithfjall.)`
+					decline
+			`	You fly past the small settlement of Hjrithfjall without landing and continue on your way.`
+
+			label hrithland
+			`	The pass numerous new homes built of driftwood and sea-stone as you approach the old village center of Hrithfjall. There is laughter and song in the air and children running everywhere. It is happy prosperous settlement that always seems larger every time you visit it.`
+			`	At the old village hall you find the Ondurdis and Aldfrith in conversation with a band of people who stick out here, foreigners. `
+			`	The Ondurdis's old eyes light up and she gives you a grandmotherly smile as you approach.`
+			`	She turns and motions to Aldfrith who steps over to you and asks, "Did Ran ever cry cold tears"`
+				goto aldtime
+			choice
+				`	"who are they?"`
+					goto who
+				`	"I've come to show you something."`
+					goto something
+				`	"What do you know about other stones like the Tear of Skade?"`
+			`	"On Skade? Only Tears of Skade. But on other worlds? Maybe. Our Goddess cried, maybe others did as well? `
+				goto aldtime
+
+			label who
+			`	The Ondurdis steps away from the group, leaving Aldfrith to continue talking with them and takes you aside.`
+			`	"They are from Alfheim. They say their culture and world are dying and they look for new home before old one is gone." She pats your arm gently.`
+			`	"Word spreads of Hrithfjell and in some corners of Deep old ways still remembered. So they come." Her eyes gleam, "We are like fire on glacier. All see, all come. For warmth, for happiness, for life." `
+			`	"But, <first>, you have not come all this way to talk with old woman. What brings you here?"`
+				goto something
+
+			label something
+			`	You show her the Blood of Surtr, and tell her the story of House Drifa taking it from the Deep.`
+			`	The Ondurdis nods slowly, "I only know of Tears of Skade. Our Goddess cried, maybe others did as well?"`
+			`	She turns and motions to Aldfrith who steps over to you and asks, "Did Ran ever cry cold tears"`
+			
+			label aldtime
+			`	Aldfrith inspects the Blood of Surtr thoughtfully, and then considers The Ondurdis's words as he strokes his white beard, "The sea has no mercy, and no memory. Ran would never cry."`
+			`	He chews his lip and then says slowly, carefully, "But she did leave us scales."`
+			`	He nodes to himself and because more confident, "Long ago we would find the Scales of Rand on the beaches nearest her God-Stone. The stories say that they made a bubble of breathable air around those who carried them, and allowed us to explore the secrets of the depths."`
+			choice
+				`	"What happened to them?"`
+				`	"Where could I find them?"`
+			`	Aldfrith shakes his head slowly, "In the time of my grandfather the men from the Deep came and took them off world. They said they were too valuable to belong in the hands of savages, and since then we've never found another Scale of Ran. I think she was displeased we allowed them to be taken."`
+			`	The old man pauses for a moment and then says, "Although.. I do remember when I was a child the folk from the Deep coming and visiting us again. They had questions about.. our baubles. I think they said they did not work? They thought they were just useless charms. Perhaps the Scales stopped working?"`
+			`	He shrugs, "I am sorry <first>, that I cannot tell you more."`
+			`	The Ondurdis puts a hand on his back, "I value your stories." She turns her attention back to you, "Maybe all God-Stones once produced wonderous stones."`
+			`	She points at the Blood of Surtr, "Maybe that is where yours came from. But more than guess we cannot provide."`
+			choice
+				`	(Thank The Ondurdis and Aldfrith for sharing their stories with you.)`
+					goto thanks
+				`	(Take your leave.)`
+			`	Having gleamed all you could from the Ondurdis and Aldfrith you quickly take your leave from them and Hrithfjell and head back to your ship.`
+				decline
+			`	You thank The Ondurdis and Aldfrith for their gracious help and interesting stories and promise to keep them apprised of anything else you might discover about the stones. The Ondurdis hastily makes you a meal to take with you, believing it bad manners to let you leave unfed and wishes you well in your future travels among the lofty stars.`
+				decline
+
+mission "Harmonize Skadenga"
+	source "Windblain"
+	on offer
+		or
+		require "Blood of Surtr (Harmonized)"
+		require "Tear of Skade (Harmonized)"
+		conversation
+				`As your ship descends through Windblain's familiar atmosphere you consider asking the Ondurdis about your harmonized stone.`
+			choice
+				`	(Visit Hrithfjall.)`
+					goto hrithland
+				`	(Don't visit Hrithfjall.)`
+					decline
+			`	You fly past the small settlement of Hjrithfjall without landing and continue on your way.`
