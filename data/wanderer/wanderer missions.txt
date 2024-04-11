@@ -130,7 +130,7 @@ mission "Wanderers: Mereti: The Plant 5"
 		event "field of mereti plants" 700
 		conversation
 			`The Mereti drones follow you and the <npc> down to the planet, landing nearby. You and Iriket watch as the plant is carefully, almost ceremoniously, taken and placed in the ground.`
-			`	After the plant has been suitably placed, Iriket turns to you. "I will stay here for some time to [supervise, observe] the work here, but it will soon be time for me to [depart, return] and oversee the healing of other worlds. I thank you most [gratefully, sincerely] for your help, <first>."`
+			`	After the plant has been suitably placed, Iriket turns to you. "I will stay here for some time to [supervise, observe] the work, but it will soon be time for me to [depart, return] and oversee the healing of other worlds. I thank you most [gratefully, sincerely] for your help, <first>."`
 	npc accompany save
 		government Wanderer
 		personality escort
