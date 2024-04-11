@@ -21,7 +21,7 @@ ship "Jje"
 	swizzle 0
 	"never disabled"
 	attributes
-		category "Fighter"
+		category "Unclassified Minor"
 		"cost" 0
 		"hull" 4000
 		"required crew" 2
@@ -73,7 +73,7 @@ ship "Ayym"
 	swizzle 0
 	"never disabled"
 	attributes
-		category "Utility"
+		category "Unclassified"
 		"cost" 0
 		"hull" 6000
 		"required crew" 4
