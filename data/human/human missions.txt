@@ -6965,9 +6965,9 @@ mission "Timothy Radrickson 1: Stowaway"
 			`During the trip Timothy's spirits and health improved, and by the time you arrive on Rand he seems like a different man. Before he steps out of the airlock he turns to you one more time. "Thank you so much, Captain <last>." He shakes your hand."`
 			`	"I mean it. From the bottom of my heart. You've saved my life, and given me hope. I won't forget this, or you. I can never thank you enough."`
 			`	His eyes glistening, Timothy turns from you and exits your ship. Hopefully he finds what he is looking for on Rand.`
-		event "timothy radrickson: doneright" 340
+		event "timothy radrickson: on rand" 340
 
-event "timothy radrickson: doneright"
+event "timothy radrickson: on rand"
 event "timothy radrickson: mummy"
 
 
@@ -6998,12 +6998,12 @@ mission "Timothy Radrickson 2: Interlude"
 
 mission "Timothy Radrickson 2: Good Interlude"
 	to offer
-		has "event: timdoneright"
+		has "event: timothy radrickson: on rand"
 	landing
 	invisible
 	on offer
 		payment 50000
-		event "timothy radrickson: happy" 3600
+		event "timothy radrickson: governor" 3600
 		conversation
 			`After your ship touches down you notice a light blinking on your dashboard. You have a cached message waiting for you to play.`
 			choice
@@ -7016,11 +7016,13 @@ mission "Timothy Radrickson 2: Good Interlude"
 			`	Timothy waves and then the video ends.`
 				decline
 		
-event "timothy radrickson: happy"
+event "timothy radrickson: governor"
 
 mission "Timothy Radrickson 3: Governor Notification"
+	name "Award ceremony on <planet>"
+	description "The Governor of <planet> has apparently invited you to attend an award ceremony in your honor."
 	to offer
-		has "event: timothy radrickson: happy"
+		has "event: timothy radrickson: governor"
 	destination "Rand"
 	landing
 	on offer
@@ -7037,13 +7039,13 @@ mission "Timothy Radrickson 3: Governor Notification"
 
 mission "Timothy Radrickson 3: Governor"
 	to offer
-		has "Happy Tim: done"
+		has "Timothy Radrickson 3: Governor Notification: done"
 	source "Rand"
 	on offer
 		conversation
 			`Regina, her driver, and a black sleek vehicle are all waiting for you aside the worn down and substandard spaceport. You slide into the comfortable seating and look out the window as the dry, ugly landscape of Rand passes you by. From time to time you see a strip mine or a camp of workers' barracks, but rarely anything else. Behind your vehicle there is a huge plume of half-frozen dust. Apparently low gravity and dust is a terrible combination.`
 			`	After an hour of driving you notice the landscape suddenly shift. The first tendrils of greenery invades the otherwise brown-yellow desert. Upon closer inspection, the green plants are accompanied by all manner of technology to help and promote their growth. Money, it seems, is turning just a little bit of this parched place green.`
-			`	Beyond the suddenly green hills sits a huge sprawling complex. You recognize a few massive structures outside the building as artificial-gravity drives. The same ships would use to maintain gravity.` # Are the artificial gravity drives repulsors? May need to rewrite this as it may be incompatible with the lore, but not sure yet.
+			`	Beyond the suddenly green hills sits a huge sprawling complex. You recognize a few massive structures outside the building as artificial gravity drives; the same sort of drives ships use to maintain gravity onboard, but for an entire estate.`
 			choice
 				`	(Say nothing.)`
 					goto nothing
@@ -7332,7 +7334,7 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 				`	(Follow them into the mine.)`
 
 			`	You walk in darkness over uneven terrain for what seems like hours before seeing the first glimmers of light.`
-			`	The dull lights fluorescent reveal a small group of haggared young men and women moonlighting as soldiers. There is nothing uniform about costumes they are wearing, and what little equipment they have looks old, broken or cobbled together. Everything stinks, and the people themselves look stoned, miserable or both.`
+			`	The dull fluorescent lights reveal a small group of haggard young men and women moonlighting as soldiers. There is nothing uniform about costumes they are wearing, and what little equipment they have looks old, broken or cobbled together. Everything stinks, and the people themselves look stoned, miserable or both.`
 			`	Finally your escort stops outside a door built into the cavern walls. "She's just in here. Behave."`
 			choice
 				`	(Walk inside.)`
@@ -7363,9 +7365,9 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 
 			label Timmy
 			`	Union-Colonel Wynnfrith's eyes get misty as you tell her about Timothy's plight. She shakes her head a few times and then takes the list from you and carefully scrutinzes it.`
-			`	"Ya know, to us he's still the Governor. Don't believe what the Company-Bosses and their paid politicians tell you. He was a good man." She wipes her eyes for a moment. "All he was trying to do was improve the conditions for workers here on Rand. He'd come up from the mines and he knew what it was like."`
+			`	"Ya know, to us he's still the Governor. Don't believe what the company-bosses and their paid politicians tell you. He was a good man." She wipes her eyes for a moment. "All he was trying to do was improve the conditions for workers here on Rand. He'd come up from the mines and he knew what it was like."`
 			`	Her free hand tightens into a ball. "The big men didn't like that. But what about the profit margins? They tried to bribe him, to offer him anything he wanted, to just leave things well enough alone. To let the exploitation continue." She says the last words through clenched teeth.`
-			`	"But he never waivered, and he always labored for the common man." Wynnafirth looks up at you. "You were a good friend to him, it's true, but truth be told, while you may have been his hero, he was ours; he was the real Hero of Rand."`
+			`	"But he never waivered, and he always labored for the common man." Wynnafirth looks up at you. "You were a good friend to him, it's true, but truth be told, while you may have been his hero, he was ours; he was the real Hero of Rand.`
 			`	"And when he wouldn't budge they finally got him for trumped up charges and threw him to Oblivion to disappear and die." She shakes her head. "There was nothing we could do. We're still in a..." she hesitates, "... a rebuild phase."`
 			`	She reads the list again. "A few weeks, you say? Well, we already thought he was dead, so if there's a chance we save the Governor then we're in.`
 			`	"We have a few left over exposives and detonators from when this mine was active. That should take care of the bomb he was hoping for." She then unholsters her sidearm and hands it to you.`
@@ -7373,7 +7375,7 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 				`	(Take it.)`
 
 			`	"And this should take care of his need for a gun. As for the other items on there..." She turns to a torn and faded star chart taped on the rocky cavern wall.`
-			`	Grabbing a small stick leaning from the wall, she points to Rastaban. "Dancer would be the best world to find the gear and survival equipment rated for Oblivion's toxic environment. As for medication..." She looks over the chart for a moment, then points to Dabih. "Your best bet will be New Britain. One of the few worlds in the Belt that can produce complex pharmecuticals."`
+			`	Grabbing a small stick leaning from the wall, she points to Rastaban. "Dancer would be the best world to find a survival suit rated for Oblivion's toxic environment. As for medication..." She looks over the chart for a moment, then points to Dabih. "Your best bet will be New Britain. One of the few worlds in the Belt that can produce complex pharmecuticals."`
 			`	The pointing stick falls on Shaula next. "The best place for a fake ID would be the 'independent' world of Greenrock." She taps her chin before continuing, "It would be tight though getting to all three of these worlds and back to the governor in time. Any of these worlds may also have the other equipiment you need, but the quality likely wouldn't be as good."`
 			`	She turns back to you. "I am sorry we couldn't be more help, but hopefully it's enough."`
 			`	After putting the pointing stick back in its place, Wynnafrith steps through the door, indicating for you to follow her.`
@@ -7515,7 +7517,7 @@ mission "Timothy Radrickson 5b: New Britain"
 			action
 				set "suit1"
 			`	It doesn't take long for you to find stores stocked with flashy, expensive clothes brands. The ones catering to the wealthy, adventurous types. Hobbyists with something to prove. The gear here is attractive, mass produced, and beneath the lifestyle veneer they give off, somewhat cheap. They might not be industrial grade, but maybe they'll be good enough for Timothy. Maybe.`
-			`	There's a store named "Explorers' Element" on the corner near the central atrium which looks promising. The advertised price for the most heavy-duty survival suit they stock is only 99,999 credits, and there are numerous suits on the rack.`
+			`	There's a store named "Explorers Element" not far from the central atrium which looks promising. The advertised price for the most heavy-duty survival suit they stock is only 99,999 credits, and there are numerous suits on the rack.`
 			choice
 				`	(Get the survival suit for Tim.)`
 					goto getsuit
@@ -7678,7 +7680,7 @@ mission "Timothy Radrickson 5c: Dancer"
 			action
 				set "suit1"
 			`	There are a handful of surrival suits on display here. These are durable, hand-crafted suits carefully checked and rated to ensure the highest chance of survival against the fierce uncaring winds of Dancer.`
-			`	Old Bertha notices your attention and walks up to you, "Going anywhere overland on Dancer without one of these beauties is a deathwish."`
+			`	Old Bertha notices your attention and walks up to you. "Going anywhere overland on Dancer without one of these beauties is a deathwish."`
 			`	She winks at you, as if she knows something you don't. "Worry not though, hun. We only sell the highest rated and best-tested suits here. I won't have any one's death on my conscience, 'sides, it's bad for business."`
 			`	She pinches some of the dense microwoven fabric of the nearest suit. "It's not cheap, but neither is your life. I'll sell ya one of these for 300,000 credits."`
 			choice
@@ -8038,7 +8040,7 @@ mission "Timothy Radrickson 5d: Greenrock"
 mission "Timothy Radrickson 5e: Back to Oblivion"
 	source Oblivion
 	to offer
-		has "Timothy Radrickson 5a: Timshank Redemption: complete"
+		has "Timothy Radrickson 5a: Timshank Redemption: done"
 	on offer
 		conversation
 			`Your ship touches down beneath Oblivion's toxic ammonia-blue sky. Night or day, there is a constant flurry of workers loading, unloading, building, and expanding the ever growing boom-town of Tukayyid. You unload all of Timothy's gear onto a dolly and push it out into the busy street.`
@@ -8282,7 +8284,8 @@ mission "Timothy Radrickson 7: Hospice"
 			`	As you speak Timothy shakes his head slowly, tears streaming down his face. Finally, as you finish, he reaches out to you with his one good arm and pulls you in for an earnest heartfelt hug.`
 			`	He tries to speak, but his voice fails him. Instead he just shakes his teary-eyed head and bows it before you in deep respect.`
 			`	"Always." He manages to whisper through phlegm and weakened lungs as you turn to leave, "always you."`
-			`	You leave him bedridden in the hospital, and to your surprise find your guide waiting for you outside the room. "His is a tough case. Perhaps one day he will recover enough to leave this place." The monk pauses, thoughtfully. "Or perhaps not."`
+			`	You leave him bedridden in the hospital, and to your surprise find your guide waiting for you outside the room.`
+			`	"His is a tough case. Perhaps one day he will recover enough to leave this place." The monk pauses, thoughtfully. "Or perhaps not."`
 			`	He leads you back to the train station, and from there you take brief journey back to New Tibet's spaceport.`
 				decline
 
