@@ -6890,3 +6890,590 @@ mission "Hogshead's Dilemma II"
 			`As you are walking around the spaceport, you see that more than a few pilots are watching the news on nearby displays. There are mixed emotions amongst the crowd - some pilots are having a good laugh while others seem disappointed or even confused. You aren't sure what this is about until, lo and behold, the result of that Hogshead naming poll from a while ago is clearly shown on a display - Shippy McShipface. You can't say it's all that much worse than some of the names you've heard pirates give their ships before, but it still seems silly that the transport company is actually going through with the name.`
 			`	All of the hyped discussions around Hogsheads in the past gave them a brief but strong popularity amongst transport organizations looking to grab the average passenger's attention. In the end, the company responsible for this naming poll got what they wanted, and a little bit of the Hogshead's spirit has been brought back, along with the interest of several pilots. Perhaps the name "Shippy McShipface" is fitting after all.`
 				decline
+
+ission "Large Bone"
+	source
+		attributes "dust belt" "rim"
+	invisible
+	to offer
+		has "event: sagaann"
+		not "event: sagaold"
+		random < 20
+	on offer
+		require "Saga"
+		conversation
+			`	It's a remarkably pleasant day for a stroll, so you have Saga accompany you on your visit to the spaceport.`
+			`	Despite the people, action and abundant scents of the spaceport, Saga keeps trying to get you to follow her off the path, and into the surrounding rural landscape.`
+			choice
+				`	(Let Saga lead you.)`
+					goto sagalead
+				`	(Force Saga to follow you to the spaceport.)`
+			`	Saga gently whines, but then dutifully follows you to the spaceport. Soon she is immersed in the hustle and bustle of the spaceport, and seemingly forgets whatever had grabbed her attention beyond it.`
+				decline
+			label sagalead
+			`	You follow Saga off the beaten track, and after hours of walking, find yourself in one of <source>'s undeveloped parcels. Where the alien landscape has yet to be tamed by human hands for human purposes.`
+			`	Saga leads you into thick native foliage that gives way to a narrow cave entrance. She wants you to follow her into the cave.`
+			choice
+				`	(Enter the Cave.)`
+					goto entercave
+				`	(Turn around and head back to the ship.)`
+			`	This is getting a little too risky for your liking. You call Saga, who is unhappy, but dutiful, and the two of you head back to the spaceport together. Leaving whatever was lurking in that cave well alone.`
+				decline
+			label entercave
+			action
+				outfit "Large Bone" 1
+			`	Your portable light fills the cavern as you and Saga squeeze your way in. The space is tight, cool, and very uncomfortable. You quickly realize you will not be able to go very far, as the space rapidly narrows. Despite this, Saga pushes on ahead, moving beyond the edges of your light, and into an area too small for you to follow.`
+			`	After several moments of waiting, Saga returns to the light with something in her mouth, and the two of you hasten out of the cave and back into the light of day.`
+			`	Saga, her tail wagging excitedly, shows you the huge bone she's discovered. It looks like a claw of massive dimensions. With the ungainly bone in her mouth, the two of you return to your ship.`
+				decline
+
+ship "Small Asteroid"
+	noun "asteroid"
+	sprite "asteroid/medium rock/spin"
+		"frame rate" 10
+	uncapturable
+	outfits
+		"Ancient Alien Artifact"
+	attributes
+		"outfit space" 5
+		"fuel capacity" 1
+		"hull" 10000
+		"mass" 1000
+		"drag" 10
+		"heat dissipation" .1
+		"required crew" 0
+		"automaton" 1
+		"bunks" 0
+		"thrust" 10
+		"turn" 100
+		"thrusting energy" 1
+		"turning energy" 1
+		"energy generation" 3
+		"inscrutable" 1
+	explode "small explosion" 25
+	explode "medium explosion" 35
+	explode "large explosion" 45
+	explode "huge explosion" 30
+
+mission "Large Bone 2"
+	source "Twinstar"
+	waypoint "Beta Lupi"
+	destination "Wayfarer"
+	invisible
+	to offer
+	landing
+	on offer
+		require "Saga"
+		require "Large Bone"
+		conversation
+			`	The arid alien dust flies around your ship, unwilling, in the low-gravity, to settle. Like all visits to the nearly uninhabited interstellar gas station Twinstar, this should be a short, quick, trip. Yet, even as you step into the thick unsettled dust, Saga begins barking with reckless abandon.`
+			choice
+				`	(See what's got her excited.)`
+					goto excitedsaga
+				`	(Leave her in the ship.)`
+			`	You have no time for one of Saga's adventures, and leave her behind on your ship.`
+				decline
+			label excitedsaga
+			`	Saga, with the large bone in her mouth, darts out of the ship, and away from Twinstar's small spaceport depot.`
+			`	She quickly acclimates to the low gravity, and you struggle to keep up as you chase after her. Eventually, she slows down, and waits for you at the entrance to a large fissure slicing the landscape in half.`
+			`	A winding path descends before her, down into the deep, dark guts of the fissure, she looks to you, and down into the fissure. She wants to go down there.`
+			choice
+				`	(Head down into the fissure.)`
+					goto fissure
+				`	(Head back to your ship.)`
+			`	This is getting a little too risky for your liking. You call Saga, who is unhappy, but dutiful, and the two of you head back to the spaceport together. Leaving whatever was lurking in that fissure well alone.`
+			label fissure
+			`	Together the two of you descend into the very guts of Twinstar. The rocks around you change texture and color as different geological epochs pass you by. At last, after what felt like hours, you reach the bottom of the fissure, where you're forced to you use your own portable light to illuminate your surroundings.`
+			`	The first thing you notice is the light reflecting off fragments of glittering metal. At first you think it's just trash, but, upon closer inspection, you realize it is something older and more alien than any human detritus.`
+			`	Intertwined within the indecipherable clutter of ruined metal artifacts, are the bones of countless giant creatures. Huge, dinosaur like animals. They line the floor and walls of this fissure for as far as you can you see. Too many to be a coincidence.`
+			`	Saga, unawed, moves forward with her large bone in mouth, and carefully drops it near some well preserved bones. She then returns to you, and indicates she is ready to leave the fissure.`
+			choice
+				`	(Leave the bone.)`
+					goto leavethebone
+				`	(Retrieve the bone.)`
+			`	You're not yet ready to part with the large bone, and pick it up where Saga has dropped it. She whines a little at your decision, as if you've messed something up she had made tidy, but after a moment she stops, and the two of you continue out of the fissure, and back to your ship.`
+				decline
+			label leavethebone
+			action
+				outfit "Large Bone" -1
+			`	There is an air of satisfaction around Saga, as though she has made something tidy, that was once messy. You don't know what drove her to the bone in the first place, or why she felt like it belonged here, but you've decided not to intervene. If this is where she believes it belongs, then this is where it belongs.`
+			`	Saga licks your hand, and the two of you make your way back to the winding path out of the fissure. Just as you arrive back on the surface, you notice something glittering in the dirt at the fissure's edge.`
+			`	You sift through the sand, and discover a small rusted device.`
+			choice
+				`	(Take the device.)`
+					goto containertime
+				`	(Leave the device where you found it.)`
+			`	This place, and all its mysteries, belong to the dead. You have no interest in delving into their long kept secrets. You leave the device alone, and walk back to the depot with Saga.`
+				decline
+			label containertime
+			`	You pick up the device, it's small enough to sit comfortably in the palm of your hand, and take it with you back to the ship. Perhaps it'll be useful, or more likely, make for a nice paper weight.`
+				accept
+
+	on enter "Beta Lupi"
+		dialog
+			`	The small device you found on Twinstar suddenly whirrs to life. For one brief moment it fills the room with a brilliant display of shifting, changing light, before suddenly going dead with a pop. A few puffs of smoke leak out of the fused slag that was once an ancient device.` 
+			`	Despite it's demise, your instruments pick up something happening in system. The device appears to have sent a signal to a nearby asteroid.`
+
+	npc save board
+		government "Bounty"
+		system "Beta Lupi"
+		personality derelict pacifist mute
+		dialog
+			`	On closer inspection the asteroid is littered with detritus from some ancient battle. There are a few husks of blown out structures, that appear to have been storage, or resupply facilities. In one of the buildings, among the debris, you find an undisturbed artifact. A pristine Ancient Alien Artifact.`
+			`	Unfortunately, you have no idea what it is, how it works, or how to install it on your ship - assuming you'd even want to do that.`
+		ship "Small Asteroid" "Target Small Asteroid"
+
+mission "Large Bone 3a"
+	invisible
+	source "Wayfarer"
+	to offer
+		random < 35
+		not "Sheragi Archaeology: Epilogue: done"
+	on offer
+		require "Ancient Alien Artifact"
+		conversation
+			`	It can be difficult to find your way in the labyrinthian spaceport of Wayfarer with its curved walls and alien flourishes. Around every round corner is another rounder corner.`
+			`	Eventually, you find yourself in a bazaar. There are various exotic, mostly alien, items for sale from a plethora of small and shady storefronts.`
+			`	A blinking neon sign, attached to a shabby shop, catches your attention; "Weland's Xeno-Smithery: Lost Alien Artifacts! Reverse Engineered Technology! And other oddities!"`
+			`	Perhaps they could help you with the Ancient Alien Artifact you found.`
+			choice
+				`	(Enter the store.)`
+					goto enterstore
+				`	(Don't enter the store.)`
+			`	It's doubtful the run-down store has anything to offer you. You walk past it, and find your way back to the main spaceport.`
+				defer
+			label enterstore
+			`	The dingy run-down shop is filled with clutter, piles of unrecognizable technology, and miles of tangled cords.`
+			`	"Don't mind the mess." A gravelly voice interjects from somewhere deeper in the store.`
+			`	A few moments later, a well-built, graying man, painfully, hobbles into the front. "Name's Weland, what can I do you for?"`
+			choice
+				`	(Tell him about the Ancient Alien Artifact you found.)`
+					goto AA
+				`	(Ask him what he does.)`
+			`	"Bit of this, bit of that." Weland shrugs. "Gotta knack for figurin' things out, and the people, well, they bring me things they need some figurin' on. Sometimes I get'em workin'. Sometimes I buy 'em. Sometimes I even make somethin' new.`
+			`	"So, you need me to figure somethin' out? Or you lookin' to buy? I've got cords, lots of cords, cheap even. Colonial era cords, alien cords, cords from the Deep, cords that only work on two Paradise worlds. I even got a cord that'll charge up a thousand year old cell-phone. I mean, I have other stuff too, probably better, but I really need to unload some of these cords.`
+			choice
+				`	(Tell him about the Ancient Alien Artifact you found.)`
+					goto AA
+				`	(Ask him about Weapons.)`
+			`	Weland's face turns to stone, and his eyes glare hard at you. "No weapons."`
+			`	He limps a little closer to you. "Not anymore, at least. If you heard different, you heard wrong. Weland does not do weapons."`
+			`	"Now," he says leaning back, "There anything else I can help you with? Perhaps a cord? Everyone needs a cord.`
+			choice
+				`	(Tell him about the Ancient Alien Artifact you found.)`
+			label AA
+			`	Weland nods slowly as he listens to you recount your finding.`
+			`	"Well, isn't that somethin'. Sounds like you found dragon tech. That's a rare sight, alright."`
+			`	Weland strokes his beard for a moment, and then says, "Listen here. Maybe I can help. I'll need to take a look at it. Stories are great and all, but I gotta put eyeball to metal to know if what you're talking about is wortha damn, and then even if it is valuable and if there is anything I can do about it."`
+			choice
+				`	(Agree to leave the artifact with Weland.)`
+					goto agreetoweland
+				`	(Refuse to leave the artifact with Weland.)`
+			`	Weland holds up his hands. "Alright, now, just hold up, you really want to keep dragging around some useless cargo from port to port? I'm not going nowhere." Weland lifts up one his mangled feet, there's some sort of chain directly embedded into his ruined achilles heel. "Not as if I could run, even if I wanted to."`
+			`	"So, you sure you want to pass up on this? That you can't give me a few days to look at your artifact?"`
+			choice
+				`	(Agree to leave the artifact with Weland.)`
+					goto agreetoweland
+				`	(Refuse to leave the artifact with Weland.)`
+			`	Weland shrugs. "If that's how you feel. Well, before you go, any chance I could offer you some premium cords at crazy discount prices?"`
+			`	Weland then launches into another sales pitch on the utility of many of his useless cords. You politely nod, and edge toward the door, before promising him you'll come to him first should ever need a cord, and promptly leave.`
+				decline
+			label agreetoweland
+			action
+				event "welandwait1" 6
+			`	The old man grins brightly. "Good. Good. I 'spect it'll take me about a week to get my bearings on this artifact of yours. I'll also be needing your ship's schematics, it'll help me figure out how it can be installed, assumin' you want that.`
+			`	With the deal completed, you head back to the spaceport. You send the pertinent information about your ship to Weland, and have the outfit transferred to him as well. Hopefully, he and your artifact are still here when you return after a week.`
+			decline
+
+event "welandwait1"
+
+mission "Large Bone 3b"
+	invisible
+	to offer
+		random < 10
+		has "Sheragi Archaeology: Epilogue: done"
+	on offer
+		require "Ancient Alien Artifact"
+		event "welandstone" 99
+		outfit "Ancient Alien Artifact" -1
+		outfit "Electronic Warfare System" 1
+		conversation
+			`	You notice something familiar about the Ancient Alien Artifact, and study it during your trip. Eventually, you recognize it as a Sheragi Electronic Warfare System, remarkably similar to the one you found on the Emerald Sword.`
+			decline
+
+mission "Large Bone 4"
+	source "Wayfarer"
+	landing
+	to offer
+		has "event: welandwait1"
+	on offer
+		conversation
+			`	Weland should be done with his preliminary study of your artifact by now, you head back to the bazaar to check on him.`
+			`	The door to his seedy-looking store is unlocked, but there is no one among the piles of cords, dust, and junk. The place is empty.`
+			`	You search his cramped shop for clues, and behind a sagging dusty bookshelf you find a passage that leads into an adjacent building.`
+			`	The building, which on the outside looks like an abandoned warehouse, is in fact a sprawling laboratory.`
+			`	Exotic technology and strange artifacts fill the room and at its center is Weland, leaning over a sophisticated workbench.`
+			`	"Well, look what the cat dragged in. 'Bout time you showed up." Weland flicks his red-tinted goggles off his head and, slowly, stands.`
+			`	Weland nods toward a mass of technology, that you realize is incasing your artifact, and he limps over to it. As he's walking you notice thick surgically connected chains dragging behind his feet.`
+			`	The graying man pats your artifact, "Best kept Dragon tech I've ever seen. Usually folks, well, they bring me the ruined guts of half a Dragon toaster they dug up in their back yard. But, this, well, this is the real McCoy, alright.`
+			label questions
+			choice
+				`	"What next?"`
+					goto next
+				`	"Can you get it to work?"`
+					goto next
+				`	"Dragon tech?"`
+					goto dragon
+				`	"What happened to your feet?"`
+			`	Weland's eyes narrow, and then he sighs. "Suposin' its too obvious not to ask. Let's just say I ran afoul some nefarious individuals. Kinda folk that take what they want, even when what they want is people. They'd as tell ya that I work for them now, and that may be true, but I still work for me, too. So, don't you worry none. Our business is between you and me."`
+			choice
+				`	"Okay, I trust you."`
+					goto questions
+				`	"Fine, but you better not screw me over."`
+					goto questions
+				`	"Why not just cut the chains and leave? There's plenty of tools here."`
+			`	The large man shakes his head sadly. "These chains aren't what keep me here. They have other ways to watch me, to stop me, to own me. These are just a symbol, a reminder, a cruel jest. I could cut them easy as cuttin' bread, but before I left the door they'd be all over me, and who knows what they'd do to me next."`
+			`	He gives you a pained smile. "I know what you're thinking. Be a hero, help the old man, some such nonsense. This isn't that story, and you aren't that person. So, let it rest. These are my chains, and this my problem, and one way, or another, I'll deal with it. So, is your curiosity sated? Can we return to the matter at hand?"`
+				goto questions
+			label dragon
+			`	"Yep, Dragons. Well, not the kind from Earth stories, or, at least, Earth, probably. We find 'em in the Rim, the South, the Dust Belt, bits and pieces of them, that is. Reckon they must have lived here more than a hundred thousand years ago. Most their tech is in ruins, broken, delipidated, hard to piece much of it together. Suffice to say, they were big brutes, they had space ships, and they've been dead for a helluva long time."`
+			`	He looks over at your artifact, "And you, well, you found somethin' of theirs."`
+				goto questions
+			label next
+			`	"Getting somethin' like this up, and running, well, it's not quick, it's not easy, and it won't be cheap."`
+			`	He holds his hand up. "'Fore you say anythin', what I did was run a preliminary check. Had to make sure it wasn't trash, or useless, and waste both our time. You'd be surprised the nonsense folk drag in here. I still don't know it's function, let alone, how to integrate it with your ship. But, with time, I will."`
+			`	"So, here's what I can offer you. Give me 6 months. You might think that's long, but you won't find anybody who can do it faster. I got a few ideas, seen a few things, I am confident I can unravel this here little mystery. Now, my fee will be a million credits a month, which should come out to 6 million credits total. That may sound steep, but you will only have to pay if I get it workin'. So, whatd'ya say? You in?" `
+			choice
+				`	(Agree to his terms.)`
+					goto agree
+				`	(Refuse his terms.)`
+			`	Weland frowns. "Without me, this'll just be one heavy good luck charm. And, I will admit, I am plumb excited to get under the hood. I like me a challenge. Sure you won't reconsider?"`
+			choice
+				`	(Agree to his terms.)`
+					goto agree
+				`	(Refuse his terms.)`
+			`	"Well, can't say as I am not disappointed to hear you say that. But, it is your decision. I'll have the artifact moved back to your ship. Now, before you go, let me tell you about a few real nice cords I got for sale."`
+			action
+				outfit "Ancient Alien Artifact" 1
+			`	Weland then launches into sales pitch on the utility of many of his useless cords. You politely nod, and edge toward the door, before promising him you'll come to him first should ever need a cord, and promptly leave.`
+			`	Weland, is a man of his word, and your Ancient Alien Artifact is returned to your ship.`
+				decline
+			label agree
+			action
+				event "welandwait2"
+			`	Weland beams. "That's the spirit, now. Figurin' things out, well, that's what it means to be human, isn't it? Now, as I said, I reckon it'll take me near about 6 months to get this beauty figured out. I realize, being a fancy space hero an' all, you probably will need a little reminder, so when I am done I'll send you a message. As I promised, if I can't get it to work, you don't have to pay me a penny. But, well, wouldn't be betting on that happening, I haven't yet met a machine I couldn't crack."`
+			decline
+
+event "welandwait2" 183
+
+mission "Large Bone 5"
+	name "Return to Weland on Wayfarer"
+	description "Weland's done working on your artifact, and has requested you return to Wayfarer and meet him."
+	source 
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination "Wayfarer"
+	to offer
+		has "event: welandwait2"
+		not "Large Bone 5b: offered"
+		not "Large Bone 5c: offered"
+		not "Large Bone 5d: offered"
+	on offer
+#		require "Blood of Surtr" 0
+		require "Tear of Skade" 0
+		dialog
+			`	Your inbox blinks with a new message from Weland on Wayfarer.`
+			`	<name>, this is Weland. Just letting you know your artifact is ready.`
+			`	Come pick it up, and pay for it at your earliest convenience.`
+			`				-Xeno-Smith`
+			`					Weland`	
+			`	P.S. Make sure you have 5 tons of outfit space!`		
+	on complete
+		event "welandstone" 66
+		conversation
+			`	You find Weland inside his makeshift laboratory. Your artifact, covered in cords and various machinery, is no longer dull and inert, but whirred to life.`
+			`	"Take a moment. It's a rare sight, alright. Watchin' somethin's been dormant for longer than mankind's had words spur to life before ya, why, it's enough to give a man religion, or something near abouts." Weland pats you on the back.`
+			`	"Now, what we have here is an Electronic Warfare System, it's a radar jammer. From what I can tell, despite it's age, a pretty effective one too."`
+			`	Weland taps a datapad on his workbench. "And in here is everything you need to install it on your ship."`
+			`	"So, all of this will run you 6 million credits, as we discussed. But, I have another offer for you. Somethin' like this, well as I've said, it's damned rare. I'd be willing to offer you 40 million credits for it. With enough time, I imagine I could reverse engineer some of it. As it is now, while I gained a few insights working on it, the best I can do is turn it on and make it run. Whatd'ya say?"`
+			choice
+				`	(Keep the Electronic Warfare System.)`
+					goto keep
+				`	(Sell the Electronic Warfare System.)`
+			`	Weland looks feverish. "Hot damn. Know that this is just about every red cent I own, and in some cases don't. But I think it'll be worth it."`
+			action
+				payment 40000000
+			`	He hobbles over to you, and shakes your hand. "Pleasure doin' business. And perhaps we'll run into each other again."`
+				decline
+			label keep
+			`	"Ah, well, was worth a shot. Still, had 6 months to study it, so it's not a total bust. I'll have it dropped off at your ship, assumin' you have the space." He hobbles over to you, and shakes your hand.`
+			`	"I'll miss having it around. Made the place feel mysterious." You say your goodbyes, and head back to your ship.`
+			action
+				outfit "Retrofitted Electronic Warfare System" 1
+				payment -6000000
+
+
+event "welandstone"
+
+#mission "Large Bone 5b"
+#	name "Return to Weland on Wayfarer"
+#	description "Weland's done working on your artifact, and has requested return to Wayfarer and meet him."
+#	source 
+#		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+#	destination "Wayfarer"
+#	to offer
+#		has "event: welandwait2"
+#		not "Large Bone 5: offered"
+#		not "Large Bone 5c: offered"
+#		not "Large Bone 5d: offered"
+#	on offer
+#		require "Blood of Surtr" 
+#		require "Tear of Skade" 0
+#		dialog
+#			`	Your inbox blinks with a new message from Weland on Wayfarer.`
+#			`	<name>, this is Weland. Just letting you know your artifact is ready.`
+#			`	Come pick it up, and pay for it, at your earliest convenience.`
+#			`				-Xeno-Smith`
+#			`					Weland`	
+#			`	P.S. Make sure you have 5 tons of outfit space!`		
+#	on complete
+#		conversation
+#			`	You find Weland inside his makeshift laboratory. Your artifact, covered in cords and various machinery, is no longer dull and inert, but whirred to life.`
+#			`	"Take a moment. It's a rare sight, alright. Watchin' somethin's been dormant for longer than mankind's had words spur to life before ya, why, it's enough to give a man religion, or something near abouts." Weland pats you on the back.`
+#			`	"Now, what we have here is an Electronic Warfare System, it's a radar jammer. From what I can tell, despite it's age, a pretty effective one too."`
+#			`	Weland taps a datapad on his workbench. "And in here is everything you need to install it on your ship."`
+#			`	"So, all of this will run you 6 million credits, as we discussed. But, I have another offer for you. Somethin' like this, well as I've said, it's damned rare. I'd be willing to offer you 40 million credits for it. With enough time, I imagine I could reverse engineer some of it. As it is now, while I gained a few insights working on it, the best I can do is turn it on and make it run. Whatd'ya say?"`
+#			choice
+#				`	(Keep the Electronic Warfare System.)`
+#					goto keep
+#				`	(Sell the Electronic Warfare System.)`
+#			`	Weland looks feverish. "Hot damn. Know, that this is just about every red cent I own, and in some cases don't. But I think it'll be worth it."`
+#			action
+#				payment 5000000
+#			`	He hobbles over to you, and shakes your hand. "Pleasure doin' business."`
+#				goto money
+#			label keep
+#			`	"Ah, well, was worth a shot. Still, had 6 months to study it, so it's not a total bust. I'll have it dropped off at your ship, assumin' you have the space." He hobbles over to you, and shakes your hand.`
+#			`	"I'll miss having it around. Made the place feel mysterious." He shrugs.`
+#			action
+#				outfit "Retrofitted Electronic Warfare System" 1
+#			`	"Now that we got that all settled. There's one other item I was wantin' to discuss. Somethin' in the ship schematics you sent over caught my eye. I think you had it labeled, 'Blood of Surtr'. Now, if that is what I think it is, well, it's worth a lot of money. I never met nobody that has laid eyes on a Deep Stone, let alone owned one. It's phantom tech, kind of stuff you hear about from spooks, and conspiracy nuts. Most say it isn't even real, and if it is, only a few ever been found, and those the government holds under lock and key."`
+#			`	"But, here you are, flying free with one on your ship, doin' whatever it is these strange stones do. I'd as pay a pretty penny for somethin' like that. How about I waive the fee for fixin' up your artifact, and pay you 10 million credits for that 'Blood of Surtr' stone of yours?"`
+#			choice
+#				`	(Refuse to sell the Blood of Surtr.)`
+#					goto refuse
+#				`	(Agree to sell the Blood of Surtr.)`
+#			`	Weland's grins like hyena, "Hot damn. Know, that this is just about every red cent I own, and in some cases don't. But with this stone, the secrets it holds, who knows what I'll discover."`
+#			`	He laughs, maniacally, and transfers the credits over to you.`
+#			action
+#				payment 10000000
+#				outfit "Blood of Surtr" -1
+#			`	He hobbles over to you, and shakes your hand. "Pleasure doin' business. And perhaps we'll run into each other again."`
+#				decline
+#			label money
+#			`	"Now that we got that all settled. There's one other item I was wantin' to discuss. Somethin' in the ship schematics you sent over caught my eye. I think you had it labeled, 'Blood of Surtr'. Now, if that is what I think it is, well, it's worth a lot of money. I never met nobody that has laid eyes on a Deep Stone, let alone owned one. It's phantom tech kind of stuff you hear about from spooks, and conspiracy nuts. Most say it isn't even real, and if it is, only a few ever been found, and those the government holds under lock and key."`
+#			`	"But, here you are flying free with one on your ship doin' whatever it is these strange stones do. I'd offer to buy it off ya, but you just took most my cash.`
+#			`	"Well, what if I borrowed the stone? Just, hear me out, alright. Give me three months to study it, learn what secrets from it I can. I could probably scrounge up another 3 million to pay you for the pleasure. After 3 months, you come collect the stone, and your payment. Everyone wins. Whatd'ya say?"`
+#				goto choice
+#			label refuse
+#			action
+#				payment -6000000
+#			`	"Well, what if I borrowed the stone? Just, hear me out, alright. Give me three months to study it, learn what secrets from it if I can. I'd pay 3 million credits for the pleasure. After 3 months, you come collect the stone, and your payment. Everyone wins. Whatd'ya say?"`
+#			label choice
+#			choice
+#				`	(Let Weland study the stone.)`
+#					goto studyweland
+#				`	(Refuse him.)`
+#			`	Crestfallen, Weland turns away from you. "It's your stone, your call."`
+#			`	He says nothing more and limps away into some back room chains dragging after him. You show yourself out.`
+#				decline
+#			label studyweland
+#			`	Weland grins. "A little time's better than no time. Put 'er there."`
+#			`	He takes your hand and shakes it with great enthusiasm. "Imagine what secrets await."`
+#			`	Later on you transfer over the stone, 'Blood of Surtr', to a feverishly eager Weland. You promise to back in three months for stone and payment.`
+#			action
+#				outfit "Blood of Surtr" -1
+#				event "welandwait3surtr" 90
+
+event "welandwait3surtr"
+
+mission "Large Bone 5c"
+	name "Return to Weland on Wayfarer"
+	description "Weland's done working on your artifact, and has requested return to Wayfarer and meet him."
+	source 
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination "Wayfarer"
+	to offer
+		has "event: welandwait2"
+		not "Large Bone 5b: offered"
+		not "Large Bone 5: offered"
+		not "Large Bone 5d: offered"
+	on offer
+#		require "Blood of Surtr" 0
+		require "Tear of Skade" 
+		dialog
+			`	Your inbox blinks with a new message from Weland on Wayfarer.`
+			`	<name>, this is Weland. Just letting you know your artifact is ready.`
+			`	Come pick it up, and pay for it, at your earliest convenience.`
+			`				-Xeno-Smith`
+			`					Weland`	
+			`	P.S. Make sure you have 5 tons of outfit space!`		
+	on complete
+		conversation
+			`	You find Weland inside his makeshift laboratory. Your artifact, covered in cords and various machinery, is no longer dull and inert, but whirred to life.`
+			`	"Take a moment. It's a rare sight, alright. Watchin' somethin's been dormant for longer than mankind's had words spur to life before ya, why, it's enough to give a man religion, or something near abouts." Weland pats you on the back.`
+			`	"Now, what we have here is an Electronic Warfare System, it's a radar jammer. From what I can tell, despite it's age, a pretty effective one too."`
+			`	Weland taps a datapad on his workbench. "And in here is everything you need to install it on your ship."`
+			`	"So, all of this will run you 6 million credits, as we discussed. But, I have another offer for you. Somethin' like this, well as I've said, it's damned rare. I'd be willing to offer you 40 million credits for it. With enough time, I imagine I could reverse engineer some of it. As it is now, while I gained a few insights working on it, the best I can do is turn it on and make it run. Whatd'ya say?"`
+			choice
+				`	(Keep the Electronic Warfare System.)`
+					goto keep
+				`	(Sell the Electronic Warfare System.)`
+			`	Weland looks feverish. "Hot damn. Know that this is just about every red cent I own, and in some cases don't. But I think it'll be worth it."`
+			action
+				payment 40000000
+			`	He hobbles over to you, and shakes your hand. "Pleasure doin' business."`
+				goto money
+			label keep
+			`	"Ah, well, was worth a shot. Still, had 6 months to study it, so it's not a total bust. I'll have it dropped off at your ship assumin' you have the space." He hobbles over to you and shakes your hand.`
+			`	"I'll miss having it around. Made the place feel mysterious." He shrugs.`
+			action
+				outfit "Retrofitted Electronic Warfare System" 1
+			`	"Now that we got that all settled. There's one other item I was wantin' to discuss. Somethin' in the ship schematics you sent over caught my eye. I think you had it labeled, 'Tear of Skade'. Now, if that is what I think it is, well, it's worth a lot of money. I never met nobody that has laid eyes on a Deep Stone, let alone owned one. It's phantom tech kind of stuff you hear about from spooks, and conspiracy nuts. Most say it isn't even real, and if it is, only a few ever been found, and those the government holds under lock and key."`
+			`	"But, here you are flying free with one on your ship doin' whatever it is these strange stones do. I'd as pay a pretty penny for somethin' like that. How about I waive the fee for fixin' up your artifact, and pay you 10 million credits for that 'Tear of Skade' stone of yours?"`
+			choice
+				`	(Refuse to sell the Tear of Skade.)`
+					goto refuse
+				`	(Agree to sell the Tear of Skade.)`
+			`	Weland's grins like hyena, "Hot damn. Know that this is just about every red cent I own, and in some cases don't. But with this stone, and the secrets it holds, who knows what I'll discover."`
+			`	He laughs, maniacally, and transfers the credits over to you.`
+			action 
+				payment 10000000
+				outfit "Tear of Skade" -1
+			`	He hobbles over to you, and shakes your hand. "Pleasure doin' business. And perhaps we'll run into each other again."`
+				decline
+			label money
+			`	"Now that we got that all settled. There's one other item I was wantin' to discuss. Somethin' in the ship schematics you sent over caught my eye. I think you had it labeled, 'Tear of Skade'. Now, if that is what I think it is, well, it's worth a lot of money. I never met nobody that has laid eyes on a Deep Stone, let alone owned one. It's phantom tech kind of stuff you hear about from spooks, and conspiracy nuts. Most say it isn't even real, and if it is, only a few ever been found, and those the government holds under lock and key."`
+			`	"But, here you are flying free with one on your ship doin' whatever it is these strange stones do. I'd offer to buy it off ya, but you just took most my cash.`
+			`	"Well, what if I borrowed the stone? Just, hear me out, alright. Give me three months to study it, learn what secrets from it I can. I could probably scrounge up another 3 million to pay you for the pleasure. After 3 months, you come collect the stone, and your payment. Everyone wins. Whatd'ya say?"`
+				goto choice
+			label refuse
+			action
+				payment -6000000
+			`	"Well, what if I borrowed the stone? Just, hear me out, alright. Give me three months to study it, learn what secrets from it if I can. I'd pay 3 million credits for the pleasure. After 3 months, you come collect the stone, and your payment. Everyone wins. Whatd'ya say?"`
+			label choice
+			choice
+				`	(Let Weland study the stone.)`
+					goto studyweland
+				`	(Refuse him.)`
+			`	Crestfallen, Weland turns away from you. "It's your stone, your call."`
+			`	He says nothing more and limps away into some back room, chains dragging after him. You show yourself out.`
+				decline
+			label studyweland
+			`	Weland grins. "A little time's better than no time. Put 'er there."`
+			`	He takes your hand and shakes it with great enthusiasm. "Imagine what secrets await."`
+			`	Later on you transfer over the stone, 'Tear of Skade', to a feverishly eager Weland. You promise to back in three months for stone and payment.`
+			action
+				outfit "Tear of Skade" -1
+				event "welandwait3skade" 90
+
+event "welandwait3skade"
+
+#mission "Large Bone 5d"
+#	name "Return to Weland on Wayfarer"
+#	description "Weland's done working on your artifact, and has requested return to Wayfarer and meet him."
+#	source 
+#		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+#	destination "Wayfarer"
+#	to offer
+#		has "event: welandwait2"
+#		not "Large Bone 5b: offered"
+#		not "Large Bone 5c: offered"
+#		not "Large Bone 5: offered"
+#	on offer
+#		require "Blood of Surtr" 
+#		require "Tear of Skade" 
+#		dialog
+#			`	Your inbox blinks with a new message from Weland on Wayfarer.`
+#			`	<name>, this is Weland. Just letting you know your artifact is ready.`
+#			`	Come pick it up, and pay for it, at your earliest convenience.`
+#			`				-Xeno-Smith`
+#			`					Weland`	
+#			`	P.S. Make sure you have 5 tons of outfit space!`		
+#	on complete
+#		conversation
+#			`	You find Weland inside his makeshift laboratory. Your artifact, covered in cords and various machinery, is no longer dull and inert, but whirred to life.`
+#			`	"Take a moment. It's a rare sight, alright. Watchin' somethin's been dormant for longer than mankind's had words spur t#o life before ya, why, it's enough to give a man religion, or something near abouts." Weland pats you on the back.`
+#			`	"Now, what we have here is an Electronic Warfare System, it's a radar jammer. From what I can tell, despite it's age, a pretty effective one too."`
+#			`	Weland taps a datapad on his workbench. "And in here is everything you need to install it on your ship."`
+#			`	"So, all of this will run you 6 million credits, as we discussed. But, I have another offer for you. Somethin' like this, well as I've said, it's damned rare. I'd be willing to offer you 40 million credits for it. With enough time, I imagine I could reverse engineer some of it. As it is now, while I gained a few insights working on it, the best I can do is turn it on and make it run. Whatd'ya say?"`
+#			choice
+#				`	(Keep the Electronic Warfare System.)`
+#					goto keep
+#				`	(Sell the Electronic Warfare System.)`
+#			`	Weland looks feverish. "Hot damn. Know, that this is just about every red cent I own, and in some cases don't. But I think it'll be worth it."`
+#			action
+#				payment 40000000
+#			`	He hobbles over to you, and shakes your hand. "Pleasure doin' business."`
+#				goto money
+#			label keep
+#			`	"Ah, well, was worth a shot. Still, had 6 months to study it, so it's not a total bust. I'll have it dropped off at your ship, assumin' you have the space." He hobbles over to you, and shakes your hand.`
+#			`	"I'll miss having it around. Made the place feel mysterious." He shrugs.`
+#			action
+#				outfit "Retrofitted Electronic Warfare System" 1
+#			`	"Now that we got that all settled. There's one other item I was wantin' to discuss. Somethin' in the ship schematics you sent over caught my eye, two of 'em in fact. I think you had them labeled, 'Tear of Skade', and 'Blood of Surtr. Now, if they are what I think they are, well, they're worth a lot of money. I never met nobody that has laid eyes on a Deep Stone, let alone owned one. It's phantom tech, kind of stuff you hear about from spooks, and conspiracy nuts. Most say it isn't even real, and if it is, only a few ever been found, and those the government holds under lock and key."`
+#			`	"But, here you are, flying free with not one, but two, on your ship, doin' whatever it is these strange stones do. I'd as pay a pretty penny for somethin' like that. How about I waive the fee for fixin' up your artifact, and pay you 10 million credits for one of those stones of yours?"`
+#			choice
+#				`	(Refuse to sell either stone.)`
+#					goto refuse
+#				`	(Agree to sell the Tear of Skade.)`
+#					goto soldskade
+#				`	(Agree to sell the Blood of Surtr.)`
+#			`	Weland's grins like hyena, "Hot damn. Know, that this is just about every red cent I own, and in some cases don't. But with this stone, the secrets it holds, who knows what I'll discover."`
+#			`	He laughs, maniacally, and transfers the credits over to you.`
+#			action
+#				payment 10000000
+#				outfit "Blood of Surtr" -1
+#			`	He hobbles over to you, and shakes your hand. "Pleasure doin' business. And perhaps we'll run into each other again."`
+#				decline
+#			label soldskade
+#			`	Weland's grins like hyena, "Hot damn. Know, that this is just about every red cent I own, and in some cases don't. But with this stone, the secrets it holds, who knows what I'll discover."`
+#			`	He laughs, maniacally, and transfers the credits over to you.`
+#			action 
+#				payment 10000000
+#				outfit "Tear of Skade" -1
+#			`	He hobbles over to you, and shakes your hand. "Pleasure doin' business. And perhaps we'll run into each other again."`
+#				decline
+#			label money
+#			`	"Now that we got that all settled. There's one other item I was wantin' to discuss. Somethin' in the ship schematics you sent over caught my eye, two of 'em in fact. I think you had them labeled, 'Tear of Skade', and 'Blood of Surtr. Now, if they are what I think they are, well, they're worth a lot of money. I never met nobody that has laid eyes on a Deep Stone, let alone owned one. It's phantom tech, kind of stuff you hear about from spooks, and conspiracy nuts. Most say it isn't even real, and if it is, only a few ever been found, and those the government holds under lock and key."`
+#			`	"But, here you are flying free with not one, but two, on your ship doin' whatever it is these strange stones do. I'd offer to buy one of 'em off ya, but you just took most my cash.`
+#			`	"Well, what if I borrowed one of the stones? Just, hear me out, alright. Give me three months to study it, learn what secrets from it I can. I could probably scrounge up another 3 million to pay you for the pleasure. After 3 months, you come collect the stone, and your payment. Everyone wins. Whatd'ya say?"`
+#				goto choice
+#			label refuse
+#			action
+#				payment -6000000
+#			`	"Well, what if I borrowed one of the stones? Just, hear me out, alright. Give me three months to study it, learn what secrets from it if I can. I'd pay 3 million credits for the pleasure. After 3 months, you come collect the stone, and your payment. Everyone wins. Whatd'ya say?"`
+#			label choice
+#			choice
+#				`	(Let Weland study the Tear of Skade.)`
+#					goto studyskadeweland
+#				`	(Let Weland study the Blood of Surtr.)`
+#					goto studysurtrweland
+#				`	(Refuse him.)`
+#			`	Crestfallen, Weland turns away from you. "It's your stone, your call."`
+#			`	He says nothing more and limps off into some back room, chains dragging after him. You show yourself out.`
+#				decline
+#			label studyskadeweland
+#			action
+#				outfit "Tear of Skade" -1
+#				event "welandwait3skade" 90
+#			`	Weland grins. "A little time's better than no time. Put 'er there."`
+#			`	He takes your hand and shakes it with great enthusiasm. "Imagine what secrets await."`
+#			`	Later on you transfer over the stone, 'Tear of Skade', to a feverishly eager Weland. You promise to back in three months, for stone and payment.`
+#				decline
+#			label studysurtrweland
+#			`	Weland grins. "A little time's better than no time. Put 'er there."`
+#			`	He takes your hand and shakes it with great enthusiasm. "Imagine what secrets await."`
+#			`	Later on you transfer over the stone, 'Blood of Surtr', to a feverishly eager Weland. You promise to back in three months, for stone and payment.`
+#			action
+#				event "welandwait3surtr" 90
+#				outfit "Blood of Surtr" -1
