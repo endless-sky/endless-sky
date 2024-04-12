@@ -1319,7 +1319,6 @@ ship "Hallucination"
 		"random start frame"
 	"never disabled"
 	attributes
-		category "Unclassified"
 		"hull" 1000
 		"mass" 180
 		"drag" 2.1
@@ -2027,7 +2026,6 @@ ship "Asteroid"
 	sprite "asteroid/medium rock/spin"
 		"frame rate" 10
 	attributes
-		category "Unclassified"
 		"fuel capacity" 1
 		"hull" 10000
 		"mass" 1000
