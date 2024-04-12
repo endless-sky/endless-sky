@@ -7222,8 +7222,8 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 	stopover Rand
 	to complete
 		"timothy radrickson medicine" >= 1
-		"timothy radrickson survival suit" >= 1
-		"timothy radrickson fake id" >= 1
+		"timothy radrickson suit" >= 1
+		"timothy radrickson id" >= 1
 	to offer
 		has "Timothy Radrickson 5: Oblivion Meeting: active"
 	on offer
@@ -7416,7 +7416,7 @@ mission "Timothy Radrickson 5b: New Britain"
 					to display
 						"timothy radrickson suit" <= 1
 						not "suit1"
-				`	(Return to the shop to buy the survival gear.)`
+				`	(Return to the shop to buy the survival suit.)`
 					goto suit2
 					to display
 						has "suit1"
@@ -7716,7 +7716,7 @@ mission "Timothy Radrickson 5c: Dancer"
 			label getsuit
 			action
 				set "suit2"
-				"timothy radrickson surival suit" = 3
+				"timothy radrickson suit" = 3
 				payment -300000
 			`	Bertha is happy to ring you up, and gives you the carefully packaged and sealed survival suit for <payment>.`
 				goto danceroptions
@@ -7826,7 +7826,7 @@ mission "Timothy Radrickson 5d: Greenrock"
 				`	(Look for a survival suit.)`
 					goto suit1
 					to display
-						"timothy radrickson gear" = 0
+						"timothy radrickson suit" = 0
 						not "suit1"
 				`	(Return to the shop to buy the survival suit.)`
 					goto suit2
@@ -7950,7 +7950,7 @@ mission "Timothy Radrickson 5d: Greenrock"
 			label getgear
 			action
 				set "suit2"
-				"timothy radrickson surival suit" = 1
+				"timothy radrickson suit" = 1
 				payment -400000
 			`	The proprietor quickly rings you up as if worried you'll change your mind at any moment, and gleefully takes your <payment>.`
 			`	"Safe travels, privateer," he says as you leave his stall.`
@@ -7959,7 +7959,7 @@ mission "Timothy Radrickson 5d: Greenrock"
 			label getgear2
 			action
 				set "suit2"
-				"timothy radrickson surival suit" = 1
+				"timothy radrickson suit" = 1
 				payment -20000
 			`	The proprietor quickly rings you up as if worried you'll change your mind at any moment, and gleefully takes your <payment>.`
 			`	"Safe travels, privateer," he says as you leave his stall.`
@@ -7968,7 +7968,7 @@ mission "Timothy Radrickson 5d: Greenrock"
 			label getgear3
 			action
 				set "suit2"
-				"timothy radrickson surival suit" = 1
+				"timothy radrickson suit" = 1
 				payment -100000
 			`	The proprietor quickly rings you up as if worried you'll change your mind at any moment, and gleefully takes your <payment>.`
 			`	"Safe travels, privateer," he says as you leave his stall.`
@@ -7977,7 +7977,7 @@ mission "Timothy Radrickson 5d: Greenrock"
 			label getgear4
 			action
 				set "suit2"
-				"timothy radrickson surival suit" = 1
+				"timothy radrickson suit" = 1
 				payment -250000
 			`	The proprietor quickly rings you up as if worried you'll change your mind at any moment, and gleefully takes your <payment>.`
 			`	"Safe travels, privateer," he says as you leave his stall.`
@@ -8042,6 +8042,7 @@ mission "Timothy Radrickson 5e: Back to Oblivion"
 	to offer
 		has "Timothy Radrickson 5a: Timshank Redemption: done"
 	on offer
+		"timothy radrickson preparedness" = "timothy radrickson	medicine" + "timothy radrickson suit" + "timothy radrickson id"
 		conversation
 			`Your ship touches down beneath Oblivion's toxic ammonia-blue sky. Night or day, there is a constant flurry of workers loading, unloading, building, and expanding the ever growing boom-town of Tukayyid. You unload all of Timothy's gear onto a dolly and push it out into the busy street.`
 			`	Your presence goes unnoticed among the general ruckus and you're able to slip into the off-loading warehouses unseen. You find frail Timothy there, leaning over a pile of hose hookups, breathing heavily. His blood red eyes rise to meet yours, and despite their bloody, milky gloss, a glimmer of hope burns within them.`
@@ -8194,8 +8195,8 @@ mission "Timothy Radrickson 7: Hospice"
 	source "New Tibet"
 	to offer
 		or
-			"timothy radrickson preparedness" >= 6
-			"timothy radrickson preparedness" <= 7
+			"timothy radrickson preparedness" = 6
+			"timothy radrickson preparedness" = 7
 		random < 25
 		has "event: timothy radrickson forever"
 	on offer
