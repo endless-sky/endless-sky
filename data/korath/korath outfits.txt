@@ -226,7 +226,7 @@ outfit "Afterburner (Asteroid Class)"
 	"afterburner effect" "korath afterburner tiny"
 	description "The smallest of afterburners is as much Fuel Processor as it is afterburner. It allows Korath small craft operators to squeeze a hyperdrive into otherwise intrasystem ships and dispense with conventional thrusters entirely."
 	description "	Korath afterburners pump super-heated hyperspace fuel directly into a thruster's plasma stream, resulting in a phenomenal explosion that may nearly melt the thruster."
-	description "	Despite being labeled an afterburner and connected to that control system on ships, this outfit does not fill the afterburner slot on a thruster."
+	description "	Despite being labelled an afterburner and connected to that control system on ships, this outfit does not fill the afterburner slot on a thruster."
 
 outfit "Afterburner (Comet Class)"
 	plural "Afterburners (Comet Class)"
