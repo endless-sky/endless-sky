@@ -26,6 +26,7 @@ outfit "Volcano Afterburner"
 	"afterburner heat" 10.0
 	"afterburner effect" "afterburner"
 	description "An afterburner works by dumping hyperspace fuel into your engines and igniting it, producing a large amount of thrust. This can be very useful for dodging missiles or briefly escaping from faster opponents, but you must be careful to avoid using up so much fuel that you do not have enough left for hyperspace travel."
+	description "	Afterburners do not contain all the components required to be stand-alone propulsion, and thus must be installed on a thruster."
 
 effect "afterburner"
 	sprite "effect/afterburner"
@@ -53,6 +54,7 @@ outfit "Caldera Afterburner"
 	"afterburner heat" 42.0
 	"afterburner effect" "caldera afterburner" 5
 	description "The Caldera Afterburner is designed for heavy warships, allowing otherwise slow ships to gain a burst of speed to catch up to a faster target or flee from the heat of battle."
+	description "	Afterburners do not contain all the components required to be stand-alone propulsion, and thus must be installed on a thruster."
 
 effect "caldera afterburner"
 	sprite "effect/afterburner"
@@ -82,6 +84,7 @@ outfit "Ionic Afterburner"
 	"afterburner heat" 4.0
 	"afterburner effect" "ionic afterburner"
 	description "The Ionic Afterburner was designed by the Syndicate to compensate for the primary weakness of an ordinary afterburner: namely, that it consumes hyperspace fuel at a prodigious rate. Ionic afterburners instead use a small amount of fuel combined with a large burst of energy from your ship's batteries to achieve the same effect."
+	description "	Afterburners do not contain all the components required to be stand-alone propulsion, and thus must be installed on a thruster."
 
 effect "ionic afterburner"
 	sprite "effect/ionic afterburner"

@@ -214,7 +214,6 @@ outfit "Afterburner (Asteroid Class)"
 	category "Engines"
 	"cost" 136000
 	thumbnail "outfit/tiny korath afterburner"
-	"thruster accessory slot" -1
 	"mass" 9
 	"outfit space" -9
 	"engine capacity" -5
@@ -227,6 +226,7 @@ outfit "Afterburner (Asteroid Class)"
 	"afterburner effect" "korath afterburner tiny"
 	description "The smallest of afterburners is as much Fuel Processor as it is afterburner. It allows Korath small craft operators to squeeze a hyperdrive into otherwise intrasystem ships and dispense with conventional thrusters entirely."
 	description "	Korath afterburners pump super-heated hyperspace fuel directly into a thruster's plasma stream, resulting in a phenomenal explosion that may nearly melt the thruster."
+	description "	Despite being labeled an afterburner and connected to that control system on ships, this outfit does not fill the afterburner slot on a thruster."
 
 outfit "Afterburner (Comet Class)"
 	plural "Afterburners (Comet Class)"
@@ -244,6 +244,7 @@ outfit "Afterburner (Comet Class)"
 	"afterburner effect" "korath afterburner small"
 	description "Adding these afterburners to an interceptor allows it to reach absurd speeds; however, the heat produced ensures that running them for any substantial period of time will require some serious cooling."
 	description "	Korath afterburners pump super-heated hyperspace fuel directly into a thruster's plasma stream, resulting in a phenomenal explosion that nearly melts the thruster."
+	description "	Afterburners do not contain all the components required to be stand-alone propulsion, and thus must be installed on a thruster."
 
 outfit "Afterburner (Lunar Class)"
 	plural "Afterburners (Lunar Class)"
@@ -261,6 +262,7 @@ outfit "Afterburner (Lunar Class)"
 	"afterburner effect" "korath afterburner medium"
 	description "Although these afterburners produce an incredible amount of thrust for their fuel usage, the prospect of installing one brings to mind many safety concerns."
 	description "	Korath afterburners pump super-heated hyperspace fuel directly into a thruster's plasma stream, resulting in a phenomenal explosion that nearly melts the thruster."
+	description "	Afterburners do not contain all the components required to be stand-alone propulsion, and thus must be installed on a thruster."
 
 outfit "Afterburner (Planetary Class)"
 	plural "Afterburners (Planetary Class)"
@@ -279,6 +281,7 @@ outfit "Afterburner (Planetary Class)"
 	"heat capacity" 150
 	description "These enormous afterburners have dedicated reaction chambers with cooling vents to keep the fuel-plasma explosion from destroying the thruster."
 	description "	Korath afterburners pump super-heated hyperspace fuel directly into a thruster's plasma stream, resulting in a phenomenal explosion that nearly melts the thruster."
+	description "	Afterburners do not contain all the components required to be stand-alone propulsion, and thus must be installed on a thruster."
 
 outfit "Afterburner (Stellar Class)"
 	plural "Afterburners (Stellar Class)"
@@ -299,6 +302,7 @@ outfit "Afterburner (Stellar Class)"
 	"heat capacity" 150
 	description "The very largest of Korath afterburners have integrated active cooling systems, powered by the fuel-plasma explosion, in order to keep the reaction chambers from melting."
 	description "	Korath afterburners pump super-heated hyperspace fuel directly into a thruster's plasma stream, resulting in a phenomenal explosion that nearly melts the thruster."
+	description "	Afterburners do not contain all the components required to be stand-alone propulsion, and thus must be installed on a thruster."
 
 effect "korath afterburner tiny"
 	sprite "effect/korath afterburner"
