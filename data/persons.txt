@@ -1789,8 +1789,6 @@ ship "Modified Ladybug"
 		"ramscoop" 0.5
 		"cargo scan power" 5
 		"cargo scan efficiency" 16
-		"outfit scan power" 17
-		"outfit scan efficiency" 15
 		"tactical scan power" 25
 		"atmosphere scan" 100
 		"asteroid scan power" 30
