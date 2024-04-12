@@ -8194,9 +8194,8 @@ mission "Timothy Radrickson 7: Monk"
 mission "Timothy Radrickson 7: Hospice"
 	source "New Tibet"
 	to offer
-		or
-			"timothy radrickson preparedness" = 6
-			"timothy radrickson preparedness" = 7
+		"timothy radrickson preparedness" >= 6
+		"timothy radrickson preparedness" <= 7
 		random < 25
 		has "event: timothy radrickson forever"
 	on offer
