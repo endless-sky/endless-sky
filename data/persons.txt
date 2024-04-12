@@ -991,7 +991,7 @@ ship "Shooting Star"
 	sprite "ship/shooting star/shooting star"
 		"frame time" 3
 	attributes
-		category "Unclassified"
+		category "Heavy Warship"
 		"hull" 31500
 		"threshold percentage" 0.05
 		"automaton" 200
