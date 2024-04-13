@@ -16,7 +16,7 @@ mission "Wanderers: Mereti: The Plant 1"
 	name "Plant to <planet>"
 	passengers 2
 	cargo "strange plant" 1
-	description "Bring this plant (which seems to be of some significance to the Mereti) and two Wanderer 'mentors' to <destination>, so that the Wanderers can try to work out how to make it grow."
+	description "This plant seems to be of some significance to the Mereti. Bring the plant and two Wanderer 'mentors' to <destination> so that the Wanderers can try to work out how to make it grow."
 	source "Korbatri Eska"
 	destination "Vara Kehi'ki"
 	to offer
