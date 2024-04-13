@@ -72,7 +72,7 @@
         <p>There's much more in the changelog!</p>
         <p>Special thanks to the 13 people who contributed to this release!</p>
       </description>
-      <url>https://github.comm/endless-sky/endless-sky/blob/v0.10.6/changelog</url>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.10.6/changelog</url>
     </release>
     <release version="0.10.5" date="2024-1-27" type="development" urgency="low">
       <description>
