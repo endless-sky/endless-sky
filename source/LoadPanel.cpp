@@ -52,36 +52,39 @@ using namespace std;
 
 namespace {
 	// Return a pair containing settings to use for time formatting.
-	pair<const char*, const char*> TimestampFormatString(Preferences::DateFormat format)
+	pair<pair<const char*, const char*>, int> TimestampFormatString(Preferences::DateFormat format)
 	{
 		// pair<string, string>: Linux (1st) and Windows (2nd) format strings.
+		// size_t: Size of format string (required by strftime)
 		switch(format)
 		{
 			case Preferences::DateFormat::YMD:
-				return make_pair("%F %T", "%F %T");
+				return make_pair(make_pair("%F %T", "%F %T"), 26);
 			case Preferences::DateFormat::MDY:
-				return make_pair("%-I:%M %p on %b %-d, %Y", "%#I:%M %p on %b %#d, %Y");
+				return make_pair(make_pair("%-I:%M %p on %b %-d, %Y", "%#I:%M %p on %b %#d, %Y"), 25);
 			case Preferences::DateFormat::DMY:
 			default:
-				return make_pair("%-I:%M %p on %-d %b %Y", "%#I:%M %p on %#d %b %Y");
+				return make_pair(make_pair("%-I:%M %p on %-d %b %Y", "%#I:%M %p on %#d %b %Y"), 24);
 		}
 	}
 
 	// Convert a time_t to a human-readable time and date.
 	string TimestampString(time_t timestamp)
 	{
-		pair<const char*, const char*> format = TimestampFormatString(Preferences::GetDateFormat());
-		stringstream ss;
+		pair<pair<const char*, const char*>, size_t> format = TimestampFormatString(Preferences::GetDateFormat());
 
-#if defined(_WIN32) && !defined(__GNUC__)
+		char str[27]; // Will not be more than 27 bytes including the null terminator
+
+#if defined(_WIN32)
+		
 		tm date;
 		localtime_s(&date, &timestamp);
-		ss << std::put_time(&date, format.second);
+		std::strftime(str, format.second, &date, format.first.second);
 #else
 		const tm *date = localtime(&timestamp);
-		ss << std::put_time(date, format.first);
+		std::strftime(str, format.second, &date, format.first.second);
 #endif
-		return ss.str();
+		return str;
 	}
 
 	// Extract the date from this pilot's most recent save.
