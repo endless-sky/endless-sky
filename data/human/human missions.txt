@@ -7274,7 +7274,7 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 				accept
 
 			label leave
-			`	As you walk away, you hear the sound of a large garage door shuttering, the racket reverberating around the yard, followed shortly by the rumble of a truck's unhealthy engine reving up for a one way trip.`
+			`	As you walk away, you hear the sound of a large garage door shuttering, the racket reverberating around the yard, followed shortly by the rumble of a truck's unhealthy engine revving up for a one way trip.`
 				decline
 
 	on stopover
