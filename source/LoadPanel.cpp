@@ -52,7 +52,7 @@ using namespace std;
 
 namespace {
 	// Return a format string containing settings to use for time formatting.
-	const char * TimestampFormatString(Preferences::DateFormat format)
+	const char *TimestampFormatString(Preferences::DateFormat format)
 	{
 		switch(format)
 		{
