@@ -7432,7 +7432,7 @@ mission "Timothy Radrickson 5b: New Britain"
 			label med1
 			action
 				set "med1"
-			`	You make your way to the pharmecutical wing, through crowds of representatives from large conglomorates in the process of wrangling with representatives from various worlds, all needing exotic medicine for their innumerable plagues, blights, pandemics, and the like. There's a booth with a slick salesman selling expensive drugs promising to reverse and protect from the effect of toxic air and radiation, and it just so happens that Oblivion is their demonstration planet.`
+			`	You make your way to the pharmaceutical wing, through crowds of representatives from large conglomerates in the process of wrangling with representatives from various worlds, all needing exotic medicine for their innumerable plagues, blights, pandemics, and the like. There's a booth with a slick salesman selling expensive drugs promising to reverse and protect from the effect of toxic air and radiation, and it just so happens that Oblivion is their demonstration planet.`
 			`	"There's no need to fear Oblivion's deleterious effects so long as you take one of these a day!" the salesman says brightly. "Why, you could walk among your condemned workers unmasked, and demonstrate your superior executive prowess!"`
 			`	You listen on to the salesman, who reckons he can cut you in on a special deal for 140,000 credits.`
 			choice
