@@ -72,11 +72,9 @@ namespace {
 	string TimestampString(time_t timestamp)
 	{
 		pair<pair<const char*, const char*>, size_t> format = TimestampFormatString(Preferences::GetDateFormat());
-
 		char str[27]; // Will not be more than 27 bytes including the null terminator
 
-#if defined(_WIN32)
-		
+#ifdef _WIN32
 		tm date;
 		localtime_s(&date, &timestamp);
 		std::strftime(str, format.second, &date, format.first.second);
