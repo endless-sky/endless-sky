@@ -8330,7 +8330,7 @@ mission "Timothy Radrickson 7: Grave"
 				`	(Leave.)`
 					goto end
 
-			`	The slow moving evening clouds have cast the entire world in a strange purple twilight. Timothy's grave sits before you, nestled in the poision ground, and you alone in the vast empty graveyard.`
+			`	The slow moving evening clouds have cast the entire world in a strange purple twilight. Timothy's grave sits before you, nestled in the poison ground, and you alone in the vast empty graveyard.`
 			`	Your thoughts drift to the man buried beneath your feet.`
 			label stayawhile
 			choice
