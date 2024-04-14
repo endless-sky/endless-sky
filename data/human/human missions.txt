@@ -7725,7 +7725,7 @@ mission "Timothy Radrickson 5c: Dancer"
 			action
 				set "med1"
 			`	There's numerous shelves filled with all kinds of drugs, and it takes you a few minutes to find the detoxification medicine. By then Bertha is at your side.`
-			`	"Foul winds are known to kick up toxic dust in the atomosphere, and if you plan on staying here long you're likely going to need to take a few of these." She looks at you curiously, and then adds, "However, you may find them less useful on other worlds."`
+			`	"Foul winds are known to kick up toxic dust in the atmosphere, and if you plan on staying here long you're likely going to need to take a few of these." She looks at you curiously, and then adds, "However, you may find them less useful on other worlds."`
 			`	"Still, if you think you could use them I'd sell them to you for 10,000 credits." She adds helpfully.`
 			choice
 				`	(Buy Dancer's medicine for Tim.)`
