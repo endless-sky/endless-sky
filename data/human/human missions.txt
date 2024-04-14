@@ -7375,7 +7375,7 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 				`	(Take it.)`
 
 			`	"And this should take care of his need for a gun. As for the other items on there..." She turns to a torn and faded star chart taped on the rocky cavern wall.`
-			`	Grabbing a small stick leaning from the wall, she points to Rastaban. "Dancer would be the best world to find a survival suit rated for Oblivion's toxic environment. As for medication..." She looks over the chart for a moment, then points to Dabih. "Your best bet will be New Britain. One of the few worlds in the Belt that can produce complex pharmecuticals."`
+			`	Grabbing a small stick leaning from the wall, she points to Rastaban. "Dancer would be the best world to find a survival suit rated for Oblivion's toxic environment. As for medication..." She looks over the chart for a moment, then points to Dabih. "Your best bet will be New Britain. One of the few worlds in the Belt that can produce complex pharmaceuticals."`
 			`	The pointing stick falls on Shaula next. "The best place for a fake ID would be the 'independent' world of Greenrock." She taps her chin before continuing, "It would be tight though getting to all three of these worlds and back to the governor in time. Any of these worlds may also have the other equipiment you need, but the quality likely wouldn't be as good."`
 			`	She turns back to you. "I am sorry we couldn't be more help, but hopefully it's enough."`
 			`	After putting the pointing stick back in its place, Wynnafrith steps through the door, indicating for you to follow her.`
