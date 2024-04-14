@@ -160,7 +160,6 @@ mission "Wanderers: Mereti: The Plant Epilogue"
 	to offer
 		has "event: field of mereti plants"
 	source "Sopi Lefarkata"
-	destination "Sopi Lefarkata"
 	on offer
 		conversation
 			`As you approach <planet>, you recall that this is the planet on which you and the Wanderers planted the flower that the Mereti gave you. As you descend through the clouds, you spot a tiny blue dot in the depths of a valley, exactly where you left the Wanderers years ago.`
