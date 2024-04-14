@@ -51,34 +51,35 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	// Return a format string containing settings to use for time formatting.
-	const char *TimestampFormatString(Preferences::DateFormat format)
+	// Return a pair containing settings to use for time formatting.
+	pair<const char*, const char*> TimestampFormatString(Preferences::DateFormat format)
 	{
+		// pair<string, string>: Linux (1st) and Windows (2nd) format strings.
 		switch(format)
 		{
 			case Preferences::DateFormat::YMD:
-				return "%F %T";
+				return make_pair("%F %T", "%F %T");
 			case Preferences::DateFormat::MDY:
-				return "%I:%M %p on %b %d, %Y";
+				return make_pair("%-I:%M %p on %b %-d, %Y", "%#I:%M %p on %b %#d, %Y");
 			case Preferences::DateFormat::DMY:
 			default:
-				return "%I:%M %p on %d %b %Y";
+				return make_pair("%-I:%M %p on %-d %b %Y", "%#I:%M %p on %#d %b %Y");
 		}
 	}
 
 	// Convert a time_t to a human-readable time and date.
 	string TimestampString(time_t timestamp)
 	{
-		const char *format = TimestampFormatString(Preferences::GetDateFormat());
+		pair<const char*, const char*> format = TimestampFormatString(Preferences::GetDateFormat());
 		stringstream ss;
 
-#ifdef _WIN32
+#if defined(_WIN32) && !defined(__GNUC__)
 		tm date;
 		localtime_s(&date, &timestamp);
-		ss << std::put_time(&date, format);
+		ss << std::put_time(&date, format.second);
 #else
 		const tm *date = localtime(&timestamp);
-		ss << std::put_time(date, format);
+		ss << std::put_time(date, format.first);
 #endif
 		return ss.str();
 	}
