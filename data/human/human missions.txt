@@ -7234,7 +7234,7 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 				`	(Leave. Tim doesn't deserve another chance.)`
 					goto leave
 
-			`	By the truck you make out the silouette of a man heaving heavy equipment in the dim light of the loading bay. He turns to look at you as you come closer.`
+			`	By the truck you make out the silhouette of a man heaving heavy equipment in the dim light of the loading bay. He turns to look at you as you come closer.`
 			`	"Captain?"`
 			choice
 				`	"It's me, <last>."`
