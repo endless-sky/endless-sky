@@ -7301,7 +7301,7 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 					goto "to the ship"
 
 			`	You put these lowlife gangsters in their place. They're lucky you're not glassing their entire world, let alone deigning to speak with them. This is followed by a short moment of stunned silence, a snicker, and then the click of a trigger.`
-			`	There is a brief, almost pleasant, moment of calm as the inevitablity of the situation sinks in... unfortunately, that is the last moment of calm you ever experience, as your body is riddled with bullet rounds mere seconds later.`
+			`	There is a brief, almost pleasant, moment of calm as the inevitability of the situation sinks in... unfortunately, that is the last moment of calm you ever experience, as your body is riddled with bullet rounds mere seconds later.`
 				die
 
 			label timsbud
