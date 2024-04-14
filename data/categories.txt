@@ -27,6 +27,7 @@ category "ship"
 	"Drone"
 	"Unclassified"
 	"Unclassified Minor"
+	"Game Mechanics"
 
 
 # Ships of these types can be carried by other ships.
