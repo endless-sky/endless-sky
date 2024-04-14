@@ -1086,7 +1086,7 @@ mission "Deep: Project Hawking"
 	on complete
 		"reputation: Independent (Killable)" = 10
 		payment 1500000
-		log `Helped gather materials for "Project Hawking," an energy and weapons research project being conducted by scientists of the Deep. A pirate Quicksilver attacked the building where the supplies were being placed and crashlanded into the ground, triggering an earthquake.`
+		log `Helped gather materials for "Project Hawking," an energy and weapons research project being conducted by scientists of the Deep. A pirate Quicksilver attacked the building where the supplies were being placed and crash-landed into the ground, triggering an earthquake.`
 		conversation
 			`"Don't go to the spaceport," Garrison says. "We'll be dropping the supplies off elsewhere." He directs you toward the mountains.`
 			branch know
