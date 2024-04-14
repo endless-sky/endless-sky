@@ -7465,7 +7465,7 @@ mission "Timothy Radrickson 5b: New Britain"
 				goto options
 
 			label justright
-				`	The saleman glowers, but nods his head slightly. "Fine! 120,000 credits it is. My family will starve, but at least you'll get your precious drugs." He begins packing them up for you.`
+				`	The salesman glowers, but nods his head slightly. "Fine! 120,000 credits it is. My family will starve, but at least you'll get your precious drugs." He begins packing them up for you.`
 					goto "med 120"
 
 			label med2
