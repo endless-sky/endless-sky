@@ -7998,7 +7998,7 @@ mission "Timothy Radrickson 5d: Greenrock"
 
 			label askdrugs
 			`	The drug-dealer flashes you with his yellow teeth and unnerving smile. "For every kind of toxic environment under any sun." He jolts towards his little wall of drawers, pulling out one labeled "Oblivion detoxifiers." From the drawer he picks a bottle up, checking its label.`
-			`	"It says it expired a few years ago, but that's just so the corpo's can squeeze the common man, ya know? Stuff's still good." He shrugs.`
+			`	"It says it expired a few years ago, but that's just so the corpos can squeeze the common man, ya know? Stuff's still good." He shrugs.`
 			`	"So what'dya say? It'll cost'ya a cool 50,000 credits. But trust me, that's way cheaper than what you'll find elsewhere."`
 			choice
 				`	(Buy the expired detoxification medicine for Tim.)`
