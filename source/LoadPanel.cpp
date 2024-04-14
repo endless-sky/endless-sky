@@ -52,7 +52,7 @@ using namespace std;
 
 namespace {
 	// Return a pair containing settings to use for time formatting.
-	pair<pair<const char*, const char*>, int> TimestampFormatString(Preferences::DateFormat format)
+	pair<pair<const char*, const char*>, size_t> TimestampFormatString(Preferences::DateFormat format)
 	{
 		// pair<string, string>: Linux (1st) and Windows (2nd) format strings.
 		// size_t: Size of format string (required by strftime)
