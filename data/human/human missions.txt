@@ -7859,7 +7859,7 @@ mission "Timothy Radrickson 5d: Greenrock"
 				goto greenoptions
 			
 			label ask
-			`	The old man smiles at you good naturedly. "Simple enough request. I can provide you with an ID, and a complex matching background that will pass all but the most exhasustive of checks."`
+			`	The old man smiles at you good-naturedly. "Simple enough request. I can provide you with an ID, and a complex matching background that will pass all but the most exhaustive of checks."`
 			`	He gives off an aura of quiet confidence as he speaks. "My service is thorough and, as you'll find, quite unmatched. Unless your friend is someone being hunted by Navy Intelligence, he will be able to seamlessly integrate into life on any human world."`
 			`	He pauses as if considering something, and then adds, "If he is also a war criminal on the run from someone like, I don't know, Deep Security or Republic Intelligence... I could also come up with something, but that would be a premium service I doubt you need at the moment."`
 			`	Ivaldur adjusts his spectacles thoughtfully. "The going rate for my basic service is 350,000 credits."`
