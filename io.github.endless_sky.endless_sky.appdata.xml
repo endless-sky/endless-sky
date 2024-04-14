@@ -3,7 +3,6 @@
   <id>io.github.endless_sky.endless_sky</id>
   <launchable type="desktop-id">io.github.endless_sky.endless_sky.desktop</launchable>
   <name>Endless Sky</name>
-  <name xml:lang="hu">Végtelen égbolt</name>
   <summary>Space exploration and combat game</summary>
   <summary xml:lang="de">Weltraumhandels und Kampfsimulator</summary>
   <summary xml:lang="fr">Jeu d'exploration et de combat dans l'espace</summary>
