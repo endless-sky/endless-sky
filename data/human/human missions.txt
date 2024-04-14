@@ -7456,7 +7456,7 @@ mission "Timothy Radrickson 5b: New Britain"
 			`	The drug salesman's eyes flash with hostility before he breaks out in an angry laugh. "Who do you think you are? What do you think, this is a charity? I already have a buyer lined up for more than twice that!"`
 			`	He begins packing up his equipment. "I'm charging you full price, 140,000 or nothing. Last chance."`
 			choice
-				`	(Purchase the medcine for Tim.)`
+				`	(Purchase the medicine for Tim.)`
 					goto "med 140"
 				`	(Pass.)`
 			action
