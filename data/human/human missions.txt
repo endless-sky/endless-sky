@@ -7699,7 +7699,7 @@ mission "Timothy Radrickson 5c: Dancer"
 				`	(Purchase the survival suit for Tim.)`
 					goto getsuit
 				`	(Pass.)`
-			`	Bertha sighs and then shrugs, and leaves you alone to continue browsing through her clearning house.`
+			`	Bertha sighs and then shrugs, and leaves you alone to continue browsing through her clearing house.`
 				goto danceroptions
 				
 			label suit2
