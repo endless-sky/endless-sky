@@ -7644,7 +7644,7 @@ mission "Timothy Radrickson 5c: Dancer"
 			`	A middle aged woman with deep windburned scars and a striking shock of white between her otherwise dark hair greets you as you come in. "Anything worth having on Dancer can be found here. Just take a look around and let Bertha know if you find anything to your liking."`
 			label danceroptions
 			choice
-				`	(Look at the survial suits.)`
+				`	(Look at the survival suits.)`
 					goto suit1
 					to display
 						not "suit1"
