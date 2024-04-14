@@ -6906,7 +6906,7 @@ mission "Timothy Radrickson 1: Stowaway"
 	# You will see this conversation after the first jump you make.
 	on enter
 		conversation
-			`Upon completing your jump one of your internal sensors begins to beep. You flick off the siren and check the diagnostic report; apparently there is a non-negligable heat source detected in the food storage of your ship.`
+			`Upon completing your jump one of your internal sensors begins to beep. You flick off the siren and check the diagnostic report; apparently there is a non-negligible heat source detected in the food storage of your ship.`
 			`	As problems go it is not a particularly alarming one; there are plenty of reasons there may be a heat spike in storage, and most of them would not require the captain of the ship to investigate.`
 			`	It is unusual, however.`
 			choice
