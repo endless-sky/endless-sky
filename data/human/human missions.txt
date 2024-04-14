@@ -6925,7 +6925,7 @@ mission "Timothy Radrickson 1: Stowaway"
 				`	(Open the crate.)`
 					goto crate
 				`	(Dump the crate out the airlock.)`
-			`	As the crate tumbles out into lifeless space your onboard sensors quickly note the anamolyous heat signature disappear. Whatever was in that crate is no longer your problem, and probably won't be anyone else's either.`
+			`	As the crate tumbles out into lifeless space your onboard sensors quickly note the anomalous heat signature disappear. Whatever was in that crate is no longer your problem, and probably won't be anyone else's either.`
 				decline
 
 			label crate
