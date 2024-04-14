@@ -8312,7 +8312,7 @@ mission "Timothy Radrickson 7: Grave"
 			
 			label graveyard
 			`	Oblivion's evening sky is lit up by unnumbered rigs and natural gas burners that dot the region. These red fires turn the normally dark blue atmosphere a shade of smoldering purple.`
-			`	It's beneath that purple hue you see a countless expanse of small flat gravestones uniformally placed in Oblivion's sterile dirt. Despite the number of headstones there is no one else here, and only a few graves show any evidence of being visited.`
+			`	It's beneath that purple hue you see a countless expanse of small flat gravestones uniformly placed in Oblivion's sterile dirt. Despite the number of headstones there is no one else here, and only a few graves show any evidence of being visited.`
 			`	It seems as though those buried here are mostly forgotten.`
 			choice
 				`	(Search for Timothy Radrickson's grave.)`
