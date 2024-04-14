@@ -8070,7 +8070,7 @@ mission "Timothy Radrickson 5e: Back to Oblivion"
 				goto end
 
 			label "decently prepared"
-			`	As he inspects the suit, drugs, and ID you he nods to himself satisfactorialy.`
+			`	As he inspects the suit, drugs, and ID you he nods to himself satisfactorily.`
 			`	Finally, he straightens back up. "It'll do," he says as he eyes the gear. "It'll do."`
 				goto end
 
