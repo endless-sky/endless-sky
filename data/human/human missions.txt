@@ -7679,7 +7679,7 @@ mission "Timothy Radrickson 5c: Dancer"
 			label suit1
 			action
 				set "suit1"
-			`	There are a handful of surrival suits on display here. These are durable, hand-crafted suits carefully checked and rated to ensure the highest chance of survival against the fierce uncaring winds of Dancer.`
+			`	There are a handful of survival suits on display here. These are durable, hand-crafted suits carefully checked and rated to ensure the highest chance of survival against the fierce uncaring winds of Dancer.`
 			`	Old Bertha notices your attention and walks up to you. "Going anywhere overland on Dancer without one of these beauties is a deathwish."`
 			`	She winks at you, as if she knows something you don't. "Worry not though, hun. We only sell the highest rated and best-tested suits here. I won't have any one's death on my conscience, 'sides, it's bad for business."`
 			`	She pinches some of the dense microwoven fabric of the nearest suit. "It's not cheap, but neither is your life. I'll sell ya one of these for 300,000 credits."`
