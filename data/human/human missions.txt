@@ -7849,7 +7849,7 @@ mission "Timothy Radrickson 5d: Greenrock"
 			label id1
 			action
 				set "id1"
-			`	There's more than a half dozen stalls all advertising their high skills and production value when it comes to the art of crafting fake IDs. Most the stalls and their employees have a garish, sloppy, and boostful manner, but one with a more professional and constrained feel attracts your attention; it's run by an older gentleman who has the look of a respectable watchmaker.`
+			`	There's more than a half dozen stalls all advertising their high skills and production value when it comes to the art of crafting fake IDs. Most the stalls and their employees have a garish, sloppy, and boastful manner, but one with a more professional and constrained feel attracts your attention; it's run by an older gentleman who has the look of a respectable watchmaker.`
 			`	He nods at you politely as you approach. "Good day to you. I am Ivaldur the Forger, and what can I do for you?"`
 			choice
 				`	(Ask about producing a fake ID.)`
