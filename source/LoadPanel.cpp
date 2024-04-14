@@ -77,10 +77,10 @@ namespace {
 #ifdef _WIN32
 		tm date;
 		localtime_s(&date, &timestamp);
-		std::strftime(str, format.second, &date, format.first.second);
+		std::strftime(str, format.second, format.first.second, &date);
 #else
 		const tm *date = localtime(&timestamp);
-		std::strftime(str, format.second, &date, format.first.second);
+		std::strftime(str, format.second, format.first.second, &date);
 #endif
 		return str;
 	}
