@@ -6981,7 +6981,7 @@ mission "Timothy Radrickson 2: mummy"
 	on enter
 		conversation
 			`For days there's been an odd lingering scent filtering in from your pressurized cargo; the smell has finally permeated your command deck, and something had to be done. A ship wide search has led you to a unopened foodstuffs crate. Although the crate was unopened, the seal on it appeared tampered with and the conjecture was that the food had gone bad.`
-			`	Upon opening it you discovered that was in fact, not the case. Instead you discovered the decaying body of a dead and forgotten stowaway; the entire crate promptly found its way to your airlock. Despite the diligent work of your ship's airfilters, you can't quite rid the ship of the smell.`
+			`	Upon opening it you discovered that was in fact, not the case. Instead you discovered the decaying body of a dead and forgotten stowaway; the entire crate promptly found its way to your airlock. Despite the diligent work of your ship's air filters, you can't quite rid the ship of the smell.`
 			decline
 
 mission "Timothy Radrickson 2: Interlude"
