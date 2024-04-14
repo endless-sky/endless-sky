@@ -7370,7 +7370,7 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 			`	"But he never waivered, and he always labored for the common man." Wynnafirth looks up at you. "You were a good friend to him, it's true, but truth be told, while you may have been his hero, he was ours; he was the real Hero of Rand.`
 			`	"And when he wouldn't budge they finally got him for trumped up charges and threw him to Oblivion to disappear and die." She shakes her head. "There was nothing we could do. We're still in a..." she hesitates, "... a rebuild phase."`
 			`	She reads the list again. "A few weeks, you say? Well, we already thought he was dead, so if there's a chance we save the Governor then we're in.`
-			`	"We have a few left over exposives and detonators from when this mine was active. That should take care of the bomb he was hoping for." She then unholsters her sidearm and hands it to you.`
+			`	"We have a few left over explosives and detonators from when this mine was active. That should take care of the bomb he was hoping for." She then unholsters her sidearm and hands it to you.`
 			choice
 				`	(Take it.)`
 
