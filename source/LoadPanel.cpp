@@ -80,7 +80,7 @@ namespace {
 		std::strftime(str, format.second, format.first.second, &date);
 #else
 		const tm *date = localtime(&timestamp);
-		std::strftime(str, format.second, format.first.second, date);
+		std::strftime(str, format.second, format.first.first, date);
 #endif
 		return str;
 	}
