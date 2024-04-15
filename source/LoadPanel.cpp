@@ -77,12 +77,11 @@ namespace {
 #ifdef _WIN32
 		tm date;
 		localtime_s(&date, &timestamp);
-		std::strftime(str, BUF_SIZE, format.second, &date);
+		return string(str, std::strftime(str, BUF_SIZE, format.second, &date));
 #else
 		const tm *date = localtime(&timestamp);
-		std::strftime(str, BUF_SIZE, format.first, date);
+		return string(str, std::strftime(str, BUF_SIZE, format.first, date));
 #endif
-		return str;
 	}
 
 	// Extract the date from this pilot's most recent save.
