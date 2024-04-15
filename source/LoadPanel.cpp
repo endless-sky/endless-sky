@@ -71,8 +71,8 @@ namespace {
 	string TimestampString(time_t timestamp)
 	{
 		pair<const char*, const char*> format = TimestampFormatString(Preferences::GetDateFormat());
-		static const size_t BUF_SIZE = 26;
-		char str[BUF_SIZE + 1];
+		static const size_t BUF_SIZE = 25;
+		char str[BUF_SIZE];
 
 #ifdef _WIN32
 		tm date;
