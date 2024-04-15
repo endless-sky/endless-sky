@@ -71,7 +71,6 @@ namespace {
 	string TimestampString(time_t timestamp)
 	{
 		pair<const char*, const char*> format = TimestampFormatString(Preferences::GetDateFormat());
-		// size_t: Size of format string (required by strftime)
 		static const size_t BUF_SIZE = 26;
 		char str[BUF_SIZE + 1];
 
