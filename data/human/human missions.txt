@@ -6621,8 +6621,7 @@ mission "Southern Fiance 1"
 		event "tom and carl's wedding" 60
 		conversation
 			`During the trip to <destination>, you had several conversations with Tom on a wide range of topics, including his fiance, Carl, as well as his job as a marketer and designer for a division of Syndicated Systems - at least until he quit. "It'll be a shame to see my work for the Syndicate be replaced, but I don't regret leaving. Carl's got big plans in store for <planet>, now that we aren't stuck with the Republic's shoestring budget, and I wouldn't miss them for the galaxy."`
-			label landing
-			`	The trip south seems to fly by, and soon you are standing at the foot of the ramp accepting Tom's fare of <payment> and bidding him farewell as Carl runs across the tarmac toward you. You step back as they practically leap into each other's arms, reuniting in spite of these tumultuous times.`
+			`	You stand at the foot of the ramp accepting Tom's fare of <payment> and bidding him farewell as Carl runs across the tarmac toward you. You step back as they practically leap into each other's arms, reuniting in spite of these tumultuous times.`
 
 event "tom and carl's wedding"
 
