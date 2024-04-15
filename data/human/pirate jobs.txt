@@ -1667,7 +1667,6 @@ mission "Slave Transport [0]"
 	repeat
 	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves in secure cells to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
 	passengers 2 10 .9
-	# TODO: illegal -1 should be an atrocity, but it isn't
 	illegal -1
 	to offer
 		random < 25
@@ -1697,7 +1696,6 @@ mission "Slave Transport [1]"
 	repeat
 	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves in secure cells to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
 	passengers 2 10 .9
-	# TODO: illegal -1 should be an atrocity, but it isn't
 	illegal -1
 	to offer
 		random < 25
@@ -1727,7 +1725,6 @@ mission "Slave Transport [2]"
 	repeat
 	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves in secure cells to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
 	passengers 2 10 .9
-	# TODO: illegal -1 should be an atrocity, but it isn't
 	illegal -1
 	to offer
 		random < 25
@@ -1759,7 +1756,6 @@ mission "Bulk Slave Transport [0]"
 	repeat
 	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves in secure cells to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
 	passengers 10 4 .1
-	# TODO: illegal -1 should be an atrocity, but it isn't
 	illegal -1
 	to offer
 		random < 15
@@ -1789,7 +1785,6 @@ mission "Bulk Slave Transport [1]"
 	repeat
 	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves in secure cells to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
 	passengers 10 4 .1
-	# TODO: illegal -1 should be an atrocity, but it isn't
 	illegal -1
 	to offer
 		random < 15
