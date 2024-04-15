@@ -252,6 +252,12 @@ outfit "Pug Akfar Thruster"
 	"flare sprite" "effect/pug flare/medium"
 		"frame rate" 20
 	"flare sound" "ion medium"
+	"reverse thrust" 4.8
+	"reverse thrusting energy" 0.22
+	"reverse thrusting heat" 0.31
+	"reverse flare sprite" "effect/pug flare/medium"
+		"frame rate" 20
+	"reverse flare sound" "ion tiny"
 	description "This is a small thruster designed by the Pug. It is not quite as powerful as a similarly sized atomic engine, but it makes up for that by being almost as energy efficient as ion engines."
 
 outfit "Pug Akfar Steering"
@@ -282,6 +288,12 @@ outfit "Pug Cormet Thruster"
 	"flare sprite" "effect/pug flare/large"
 		"frame rate" 22
 	"flare sound" "ion large"
+	"reverse thrust" 7.1
+	"reverse thrusting energy" 0.33
+	"reverse thrusting heat" 0.46
+	"reverse flare sprite" "effect/pug flare/medium"
+		"frame rate" 20
+	"reverse flare sound" "ion tiny"
 	description "This is a medium-sized thruster designed by the Pug. It is not quite as powerful as a similarly sized atomic engine, but it makes up for that by being almost as energy efficient as ion engines."
 
 outfit "Pug Cormet Steering"
@@ -312,6 +324,12 @@ outfit "Pug Lohmar Thruster"
 	"flare sprite" "effect/pug flare/huge"
 		"frame rate" 23
 	"flare sound" "ion huge"
+	"reverse thrust" 10.3
+	"reverse thrusting energy" 0.49
+	"reverse thrusting heat" 0.69
+	"reverse flare sprite" "effect/pug flare/medium"
+		"frame rate" 20
+	"reverse flare sound" "ion tiny"
 	description "This is a large thruster designed by the Pug. It is not quite as powerful as a similarly sized atomic engine, but it makes up for that by being almost as energy efficient as ion engines."
 
 outfit "Pug Lohmar Steering"

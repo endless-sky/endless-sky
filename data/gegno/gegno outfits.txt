@@ -156,6 +156,12 @@ outfit "RG15 Torch Thruster"
 	"flare sprite" "effect/vi flare/small"
 		"frame rate" 2.5
 	"flare sound" "ion torch small"
+	"reverse thrust" 1.7
+	"reverse thrusting energy" 0.07
+	"reverse thrusting heat" 0.15
+	"reverse flare sprite" "effect/vi flare/small"
+		"frame rate" 2.5
+	"reverse flare sound" "ion torch small"
 	description `The RG15 Ion Torch Thruster is the Gegno Vi's smallest torch thruster, found almost exclusively on the Slate. It is somewhat inefficient, weighing more and producing more heat than most thrusters of a similar size in exchange for using slightly less energy.`
 
 
@@ -192,6 +198,12 @@ outfit "RG18 Torch Thruster"
 	"flare sprite" "effect/vi flare/medium"
 		"frame rate" 2.4
 	"flare sound" "ion torch medium"
+	"reverse thrust" 3.0
+	"reverse thrusting energy" 0.125
+	"reverse thrusting heat" 0.29
+	"reverse flare sprite" "effect/vi flare/small"
+		"frame rate" 2.5
+	"reverse flare sound" "ion torch small"
 	description `The RG18 is a moderately large thruster used by the Gegno Vi. Ion Torch Thrusters are similar to human ion thrusters, but their explosive exhaust causes them to run hotter. However, they also require slightly less energy.`
 
 
@@ -231,6 +243,12 @@ outfit "RG3 Torch Thruster"
 	"flare sprite" "effect/vi flare/large"
 		"frame rate" 2.3
 	"flare sound" "ion torch large"
+	"reverse thrust" 5.4
+	"reverse thrusting energy" 0.22
+	"reverse thrusting heat" 0.54
+	"reverse flare sprite" "effect/vi flare/small"
+		"frame rate" 2.5
+	"reverse flare sound" "ion torch small"
 	description `Derived from the massive thrusters that powered early Gegno generation ships, RG3 Ion Torch Thrusters are the Gegno's largest thrusters and the oldest still used. Smaller ships that attempt to use these engines often end up overheating themselves.`
 
 
@@ -279,6 +297,12 @@ outfit "SC-1 Plasma Engines"
 	"steering flare sprite" "effect/scin flare/tiny"
 		"frame rate" 0.6
 	"steering flare sound" "scplasma tiny"
+	"reverse thrust" 0.9
+	"reverse thrusting energy" 0.04
+	"reverse thrusting heat" 0.1
+	"reverse flare sprite" "effect/scin flare/tiny"
+		"frame rate" 0.6
+	"reverse flare sound" "scplasma tiny"
 	description `In order to power the tiny Halite frame, the Gegno Scin developed this smaller engine system. Based on their larger plasma thrusters, these engines are much more efficient than the Vi's bigger, more sluggish ion engines, which would never be compact or light enough to run on a fighter.`
 
 
@@ -298,6 +322,12 @@ outfit "SC-12 Plasma Thruster"
 	"flare sprite" "effect/scin flare/small"
 		"frame rate" 0.5
 	"flare sound" "scplasma small"
+	"reverse thrust" 2
+	"reverse thrusting energy" 0.085
+	"reverse thrusting heat" 0.225
+	"reverse flare sprite" "effect/scin flare/tiny"
+		"frame rate" 0.6
+	"reverse flare sound" "scplasma tiny"
 	description `Rather than developing on the Ion Torch design of the Vi, the Scin began work on a plasma-based thruster. They are more compact, weigh less, and produce significantly more thrust. However, since Ion Torches expel some of their heat in their thrust, the more stable and powerful SC thrusters tend to run hotter.`
 
 
@@ -336,6 +366,12 @@ outfit "SC-14 Plasma Thruster"
 	"flare sprite" "effect/scin flare/med"
 		"frame rate" 0.4
 	"flare sound" "scplasma medium"
+	"reverse thrust" 3.9
+	"reverse thrusting energy" 0.17
+	"reverse thrusting heat" 0.495
+	"reverse flare sprite" "effect/scin flare/tiny"
+		"frame rate" 0.6
+	"reverse flare sound" "scplasma tiny"
 	description `SC-14 class thrusters power the Scin's average gunboat or transport, giving their ships reliable speed. They can quickly propel any medium-sized ship forward with reasonable efficiency.`
 
 

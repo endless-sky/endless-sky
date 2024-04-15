@@ -380,6 +380,12 @@ outfit "Engine (Meteor Class)"
 	"steering flare sprite" "effect/korath flare/tiny"
 		"frame rate" 8
 	"steering flare sound" "plasma tiny"
+	"reverse thrust" 1.5
+	"reverse thrusting energy" 0.135
+	"reverse thrusting heat" 0.29
+	"reverse flare sprite" "effect/korath flare/tiny"
+		"frame rate" 8
+	"reverse flare sound" "plasma tiny"
 	description `Although the prevailing Korath attitude towards engine construction has always been with a focus on making things bigger, faster, and more powerful, the Exiles found it necessary to develop these engines to allow their fighters to carry larger weapons or more cargo, at the cost of some speed.`
 
 outfit "Bow Drive (Meteor Class)"
@@ -510,6 +516,12 @@ outfit "Thruster (Asteroid Class)"
 	"flare sprite" "effect/korath flare/tiny"
 		"frame rate" 8
 	"flare sound" "plasma tiny"
+	"reverse thrust" 2.1
+	"reverse thrusting energy" 0.15
+	"reverse thrusting heat" 0.34
+	"reverse flare sprite" "effect/korath flare/tiny"
+		"frame rate" 8
+	"reverse flare sound" "plasma tiny"
 	description "Given its size, this tiny Korath thruster produces quite a kick. But, it also draws a considerable amount of power."
 
 outfit "Thruster (Comet Class)"
@@ -526,6 +538,12 @@ outfit "Thruster (Comet Class)"
 	"flare sprite" "effect/korath flare/small"
 		"frame rate" 7.5
 	"flare sound" "plasma small"
+	"reverse thrust" 3.7
+	"reverse thrusting energy" 0.28
+	"reverse thrusting heat" 0.65
+	"reverse flare sprite" "effect/korath flare/tiny"
+		"frame rate" 8
+	"reverse flare sound" "plasma tiny"
 	description "Like most Korath technology, this thruster's power is offset by its energy requirements and heat output."
 
 outfit "Thruster (Lunar Class)"
@@ -542,6 +560,12 @@ outfit "Thruster (Lunar Class)"
 	"flare sprite" "effect/korath flare/medium"
 		"frame rate" 7
 	"flare sound" "plasma medium"
+	"reverse thrust" 6.6
+	"reverse thrusting energy" 0.49
+	"reverse thrusting heat" 1.19
+	"reverse flare sprite" "effect/korath flare/tiny"
+		"frame rate" 8
+	"reverse flare sound" "plasma tiny"
 	description "The Korath have the dubious distinction of relying on propulsion systems that produce more waste heat than the weapon systems of most other species."
 
 outfit "Thruster (Planetary Class)"
@@ -558,6 +582,12 @@ outfit "Thruster (Planetary Class)"
 	"flare sprite" "effect/korath flare/large"
 		"frame rate" 6.5
 	"flare sound" "plasma large"
+	"reverse thrust" 12.0
+	"reverse thrusting energy" 0.89
+	"reverse thrusting heat" 2.27
+	"reverse flare sprite" "effect/korath flare/tiny"
+		"frame rate" 8
+	"reverse flare sound" "plasma tiny"
 	description "The Quarg, who do all things efficiently, view the Korath propulsion systems with particular distaste."
 
 outfit "Thruster (Stellar Class)"
@@ -574,6 +604,12 @@ outfit "Thruster (Stellar Class)"
 	"flare sprite" "effect/korath flare/huge"
 		"frame rate" 6
 	"flare sound" "plasma huge"
+	"reverse thrust" 14.9
+	"reverse thrusting energy" 1.58
+	"reverse thrusting heat" 4.26
+	"reverse flare sprite" "effect/korath flare/tiny"
+		"frame rate" 8
+	"reverse flare sound" "plasma tiny"
 	description "A legend among the Korath claims that when they were first testing out their latest generation of plasma thrusters, a concerned Quarg fleet approached and volunteered to help evacuate the Korath crew from what they assumed was a dying ship. The Quarg were surprised to learn that the flames shooting out the back of the ship were in fact its intended mode of propulsion."
 
 outfit "Steering (Asteroid Class)"
@@ -669,6 +705,12 @@ outfit "Arkrof GP Hybrid Thruster"
 	"flare sprite" "effect/efreti flare/tiny"
 		"frame rate" 8
 	"flare sound" "ion tiny"
+	"reverse thrust" 2.8
+	"reverse thrusting energy" 0.26
+	"reverse thrusting heat" 0.3
+	"reverse flare sprite" "effect/efreti flare/tiny"
+		"frame rate" 8
+	"reverse flare sound" "ion tiny"
 	description "Efreti engineers have begun to grudgingly take inspiration from their not-entirely-welcome Quarg guardians. The incorporation of gravitational propulsion increases the thrust output for engines in this line, at the cost of even higher energy use. These are the smallest such gravitoplasma-based thrusters."
 
 outfit "Farves GP Hybrid Thruster"
@@ -684,6 +726,12 @@ outfit "Farves GP Hybrid Thruster"
 	"flare sprite" "effect/efreti flare/small"
 		"frame rate" 7.5
 	"flare sound" "ion small"
+	"reverse thrust" 5.3
+	"reverse thrusting energy" 0.505
+	"reverse thrusting heat" 0.59
+	"reverse flare sprite" "effect/efreti flare/tiny"
+		"frame rate" 8
+	"reverse flare sound" "ion tiny"
 	description "The forced retreat from research into interstellar jump drive technology has left the Efreti engineers with little else to tinker with than subluminal propulsion. These resulting thrusters are one important example of this effort. Synthesizing gravitational propulsion with more traditional plasma thrusters moderates the heat output from these engines."
 
 outfit "Gaktem GP Hybrid Thruster"
@@ -699,6 +747,12 @@ outfit "Gaktem GP Hybrid Thruster"
 	"flare sprite" "effect/efreti flare/medium"
 		"frame rate" 7
 	"flare sound" "ion medium"
+	"reverse thrust" 9.7
+	"reverse thrusting energy" 0.91
+	"reverse thrusting heat" 1.105
+	"reverse flare sprite" "effect/efreti flare/tiny"
+		"frame rate" 8
+	"reverse flare sound" "ion tiny"
 	description "The design of these engines suggests Efreti physicists appear to have gone considerably further than the mathematically self-consistent, but stubbornly unfalsifiable, conjectures of String Theory. Despite the Efreti's limited resources, these thrusters allow their engines to maintain the traditional Korath emphasis on speed in a small package while keeping heat output down."
 
 outfit "Nelmeb GP Hybrid Thruster"
@@ -714,6 +768,12 @@ outfit "Nelmeb GP Hybrid Thruster"
 	"flare sprite" "effect/efreti flare/large"
 		"frame rate" 6.5
 	"flare sound" "ion large"
+	"reverse thrust" 15.6
+	"reverse thrusting energy" 1.4
+	"reverse thrusting heat" 1.8
+	"reverse flare sprite" "effect/efreti flare/tiny"
+		"frame rate" 8
+	"reverse flare sound" "ion tiny"
 	description "Korath physicists have, for several centuries, understood concrete aspects of the unity that underlies both quantum gravity and the forces that bind quarks and gluons together. However, as Efreti efforts are comparatively recent, this technological synthesis lags behind comparable Quarg technology."
 	description "	These are the largest gravitoplasma thrusters that the Efreti have to offer, and as such are usually only found on their gargantuan civilian ships. Despite their size and thrusting power, the Quarg are still rather unimpressed with the inefficient nature of the design."
 

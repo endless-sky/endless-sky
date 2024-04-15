@@ -307,6 +307,12 @@ outfit "Small Thrust Module"
 	"flare sprite" "effect/coalition flare/small"
 		"frame rate" 10
 	"flare sound" "atomic tiny"
+	"reverse thrust" 1.1
+	"reverse thrusting energy" 0.046
+	"reverse thrusting heat" 0.3
+	"reverse flare sprite" "effect/coalition flare/small"
+		"frame rate" 10
+	"reverse flare sound" "atomic tiny"
 	description "This tiny thruster produces a considerable amount of thrust... but also a considerable amount of heat."
 
 outfit "Large Thrust Module"
@@ -324,7 +330,14 @@ outfit "Large Thrust Module"
 	"flare sprite" "effect/coalition flare/large"
 		"frame rate" 7
 	"flare sound" "atomic small"
-	description "Coalition engineers prefer to focus on perfecting a few versatile designs rather than producing a wide range of them. This thruster is quite efficient, but large ships will need several of them stacked together to produce sufficient thrust."
+	"reverse thrust" 3.3
+	"reverse thrusting energy" 0.138
+	"reverse thrusting heat" 0.9
+	"reverse flare sprite" "effect/coalition flare/small"
+		"frame rate" 10
+	"reverse flare sound" "atomic tiny"
+	description "Coalition engineers prefer to focus on perfecting a few versatile designs rather than producing a wide range of them. As their large ships would require many of them stacked together to produce sufficient thrust, they created an array installation that incorporates three modules into a single mounting framework. Since two of these modules can be installed in a typical slot, it allows ships that require large amounts of thrust to incorporate six modules in a standard slot."
+	description "In order to facilitate the utilization of their modular designs, most ships of Coalition design have additional mounting brackets beyond the typical single standard slot."
 
 outfit "Small Reverse Module"
 	category "Engines"

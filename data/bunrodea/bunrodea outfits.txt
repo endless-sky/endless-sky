@@ -234,6 +234,14 @@ outfit "Chiisana Rift Thruster"
 		"rewind"
 		"scale" 0.3
 	"flare sound" "ion tiny"
+	"reverse thrust" 1.1
+	"reverse thrusting energy" 0.115
+	"reverse thrusting heat" 0.065
+	"reverse flare sprite" "effect/bunrodea flare/large"
+		"frame rate" 1
+		"rewind"
+		"scale" 0.1
+	"reverse flare sound" "ion tiny"
 	description "While the Korath favor raw power in their engines, the Bunrodea favor efficiency, opting to make use of engines that produce less thrust for significantly less heat produced."
 
 outfit "Nami Rift Thruster"
@@ -251,6 +259,14 @@ outfit "Nami Rift Thruster"
 		"rewind"
 		"scale" 0.6
 	"flare sound" "ion small"
+	"reverse thrust" 2.1
+	"reverse thrusting energy" 0.23
+	"reverse thrusting heat" 0.13
+	"reverse flare sprite" "effect/bunrodea flare/large"
+		"frame rate" 1
+		"rewind"
+		"scale" 0.2
+	"reverse flare sound" "ion tiny"
 	description "Although rift engines are extremely heat efficient, their energy requirement is rather high compared to the thrust they produce, even next to terribly inefficient Korath engines."
 
 outfit "Ookii Rift Thruster"
@@ -268,6 +284,14 @@ outfit "Ookii Rift Thruster"
 		"rewind"
 		"scale" 0.8
 	"flare sound" "ion medium"
+	"reverse thrust" 3.7
+	"reverse thrusting energy" 0.44
+	"reverse thrusting heat" 0.25
+	"reverse flare sprite" "effect/bunrodea flare/large"
+		"frame rate" 1
+		"rewind"
+		"scale" 0.3
+	"reverse flare sound" "ion tiny"
 	description "Even though the energy drawn per unit thrust of rift engines is poorer than that of Korath engines, the overall energy requirement of rift engines is still far lesser by comparison."
 
 outfit "Subarashii Rift Thruster"
@@ -284,6 +308,14 @@ outfit "Subarashii Rift Thruster"
 		"frame rate" 1
 		"rewind"
 	"flare sound" "ion large"
+	"reverse thrust" 6.9
+	"reverse thrusting energy" 0.86
+	"reverse thrusting heat" 0.49
+	"reverse flare sprite" "effect/bunrodea flare/large"
+		"frame rate" 1
+		"rewind"
+		"scale" 0.4
+	"reverse flare sound" "ion tiny"
 	description "Given the lower size and thrust of rift engines, Bunrodean ships aren't well known for their pursuit capabilities. But there are rumors among some Bunrodea of an ancient cache of engines, more powerful than even those of the Korath, that would allow any ship to zip across the stars like a comet and chase down any potential target."
 
 outfit "Chiisana Rift Steering"

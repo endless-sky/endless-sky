@@ -416,6 +416,11 @@ outfit "Maeri Engine Nacelles"
 	"steering flare sprite" "effect/ka'het flare/large"
 		"frame rate" 30
 	"steering flare sound" "plasma medium"
+	"reverse thrust" 5.8
+	"reverse thrusting heat" 0.28
+	"reverse flare sprite" "effect/ka'het flare/medium"
+		"frame rate" 30
+	"reverse flare sound" "plasma small"
 	description "The Ka'het engines are peculiar in that they continuously draw large amounts of energy, but require no additional energy to activate: while this means that less power remains available for other subsystems, it is also somewhat more efficient than most types of propulsions, and generates only a tiny amount of heat."
 
 outfit "Ka'het Sustainer Nacelles"
@@ -438,6 +443,11 @@ outfit "Ka'het Sustainer Nacelles"
 	"steering flare sprite" "effect/ka'het flare/medium"
 		"frame rate" 30
 	"steering flare sound" "plasma small"
+	"reverse thrust" 2.5
+	"reverse thrusting heat" 0.1
+	"reverse flare sprite" "effect/ka'het flare/medium"
+		"frame rate" 30
+	"reverse flare sound" "plasma small"
 	description "While Ka'het vessels are already equipped with proper engines, most of them use a sustainer engine in addition to give the ship enough maneuverability to be useful in combat. Following the same design as its bigger cousins, the sustainer requires no power to function at the cost of constant energy consumption."
 
 outfit "Telis Engine Nacelles"
@@ -460,6 +470,11 @@ outfit "Telis Engine Nacelles"
 	"steering flare sprite" "effect/ka'het flare/large"
 		"frame rate" 30
 	"steering flare sound" "plasma medium"
+	"reverse thrust" 8.3
+	"reverse thrusting heat" 0.35
+	"reverse flare sprite" "effect/ka'het flare/medium"
+		"frame rate" 30
+	"reverse flare sound" "plasma small"
 	description "These nacelles used to comprise the entire engine block of a Telis'het. While their size is not impressive compared to other engines, if used in conjunction with a sustainer or two, they can be a powerful form of propulsion, combining both turning and thrusting engines in one."
 
 outfit "Vareti Engine Block"
@@ -481,6 +496,11 @@ outfit "Vareti Engine Block"
 	"steering flare sprite" "effect/ka'het flare/large"
 		"frame rate" 30
 	"steering flare sound" "plasma large"
+	"reverse thrust" 14.0
+	"reverse thrusting heat" 0.332
+	"reverse flare sprite" "effect/ka'het flare/medium"
+		"frame rate" 30
+	"reverse flare sound" "plasma small"
 	description "This is the largest single engine the Builders ever built, made for the most massive ships they were in control of. Due to its sheer size, it isn't as modular as its smaller equivalents, but it is more efficient and powerful as a result."
 
 outfit "Ka'het Compact Engine"
@@ -504,4 +524,9 @@ outfit "Ka'het Compact Engine"
 	"steering flare sprite" "effect/ka'het flare/medium"
 		"frame rate" 30
 	"steering flare sound" "plasma small"
+	"reverse thrust" 2.0
+	"reverse thrusting heat" 0.03
+	"reverse flare sprite" "effect/ka'het flare/medium"
+		"frame rate" 30
+	"reverse flare sound" "plasma small"
 	description "This tiny engine was developed as the main propulsion of the Ka'mar drones, long before the Ka'het were created and their nacelle design standardized. Improvements over time allowed it to maintain a comparable efficiency to the larger models, although unlike those, it requires some energy to activate the engines in addition to the constant energy drain that all Builder-designed engines have."

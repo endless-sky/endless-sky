@@ -115,6 +115,12 @@ outfit "X1050 Ion Engines"
 	"steering flare sprite" "effect/ion flare/tiny"
 		"frame rate" 1.2
 	"steering flare sound" "ion tiny"
+	"reverse thrust" 1
+	"reverse thrusting energy" .04
+	"reverse thrusting heat" .06
+	"reverse flare sprite" "effect/ion flare/tiny"
+		"frame rate" 1.2
+	"reverse flare sound" "ion tiny"
 	description `When designing the Barb, the Syndicate took the opportunity to integrate their smallest thruster models to create a more compact steering and thrusting engine. The result is not very useful on anything but a fighter, and is only "adequate" in that role. Still, if engine space is at a premium, this is the smallest set of engines that will still get you there (eventually).`
 
 
@@ -134,6 +140,12 @@ outfit "X1700 Ion Thruster"
 	"flare sprite" "effect/ion flare/tiny"
 		"frame rate" 1.2
 	"flare sound" "ion tiny"
+	"reverse thrust" 1.4
+	"reverse thrusting energy" .06
+	"reverse thrusting heat" .09
+	"reverse flare sprite" "effect/ion flare/tiny"
+		"frame rate" 1.2
+	"reverse flare sound" "ion tiny"
 	description "This is the smallest thruster that you can buy, so weak that anything larger than a drone will accelerate quite slowly when using this engine. On the other hand, it is also very energy-efficient."
 	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space for the same amount of thrust."
 
@@ -152,6 +164,12 @@ outfit "X2700 Ion Thruster"
 	"flare sprite" "effect/ion flare/small"
 		"frame rate" 1.1
 	"flare sound" "ion small"
+	"reverse thrust" 2.4
+	"reverse thrusting energy" .11
+	"reverse thrusting heat" .17
+	"reverse flare sprite" "effect/ion flare/tiny"
+		"frame rate" 1.2
+	"reverse flare sound" "ion tiny"
 	description "The X2700 Ion Thruster is intended mostly for use in small, single-person or two-person ships, as well as in fighters. It is also used in larger ships, such as freighters, that have very little space for propulsion systems or energy to drive them. But these larger ships move unbearably slowly as a result."
 	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space for the same amount of thrust."
 
@@ -170,6 +188,12 @@ outfit "X3700 Ion Thruster"
 	"flare sprite" "effect/ion flare/medium"
 		"frame rate" 1.0
 	"flare sound" "ion medium"
+	"reverse thrust" 4.3
+	"reverse thrusting energy" .19
+	"reverse thrusting heat" .32
+	"reverse flare sprite" "effect/ion flare/tiny"
+		"frame rate" 1.2
+	"reverse flare sound" "ion tiny"
 	description "The X3700 Ion Thruster is designed for heavy freighters and small capital ships. In theory, it could be installed in smaller ships too, if they have enough engine space, to attain almost ridiculous speeds."
 	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space for the same amount of thrust."
 
@@ -188,6 +212,12 @@ outfit "X4700 Ion Thruster"
 	"flare sprite" "effect/ion flare/large"
 		"frame rate" 0.9
 	"flare sound" "ion large"
+	"reverse thrust" 8
+	"reverse thrusting energy" .35
+	"reverse thrusting heat" .62
+	"reverse flare sprite" "effect/ion flare/tiny"
+		"frame rate" 1.2
+	"reverse flare sound" "ion tiny"
 	description "The X4700 Ion Thruster was developed when the Republic Navy began building warships so large that the X3700 was not sufficient for them. It allows even a capital ship to move at a respectable speed."
 	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space for the same amount of thrust."
 
@@ -206,6 +236,12 @@ outfit "X5700 Ion Thruster"
 	"flare sprite" "effect/ion flare/huge"
 		"frame rate" 0.8
 	"flare sound" "ion huge"
+	"reverse thrust" 13.4
+	"reverse thrusting energy" .63
+	"reverse thrusting heat" 1.17
+	"reverse flare sprite" "effect/ion flare/tiny"
+		"frame rate" 1.2
+	"reverse flare sound" "ion tiny"
 	description "The X5700 thruster is intended for only the largest of capital ships. When the Syndicate first began producing them, these engines were considered little more than a publicity stunt, because no ship at the time was large enough to hold one."
 	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space for the same amount of thrust."
 
@@ -336,6 +372,12 @@ outfit "Chipmunk Plasma Thruster"
 	"flare sprite" "effect/plasma flare/tiny"
 		"frame rate" 5
 	"flare sound" "plasma tiny"
+	"reverse thrust" 2.2
+	"reverse thrusting energy" 0.1
+	"reverse thrusting heat" 0.18
+	"reverse flare sprite" "effect/plasma flare/tiny"
+		"frame rate" 5
+	"reverse flare sound" "plasma tiny"
 	description "This is the smallest of the plasma propulsion systems produced by Delta V Corporation, suitable for very light fighters and interceptors."
 	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
 
@@ -354,6 +396,12 @@ outfit "Greyhound Plasma Thruster"
 	"flare sprite" "effect/plasma flare/small"
 		"frame rate" 6
 	"flare sound" "plasma small"
+	"reverse thrust" 3.8
+	"reverse thrusting energy" 0.18
+	"reverse thrusting heat" 0.34
+	"reverse flare sprite" "effect/plasma flare/tiny"
+		"frame rate" 5
+	"reverse flare sound" "plasma tiny"
 	description "This thruster is intended for small ships and for freighters. It comes in a crate decorated with a stylized cartoon of a running greyhound."
 	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
 
@@ -372,6 +420,12 @@ outfit "Impala Plasma Thruster"
 	"flare sprite" "effect/plasma flare/medium"
 		"frame rate" 7
 	"flare sound" "plasma medium"
+	"reverse thrust" 6.9
+	"reverse thrusting energy" 0.32
+	"reverse thrusting heat" 0.65
+	"reverse flare sprite" "effect/plasma flare/tiny"
+		"frame rate" 5
+	"reverse flare sound" "plasma tiny"
 	description "Impala class thrusters produce a significant amount of force, and are suitable for smaller capital ships. But, your ship may need extra cooling systems in order to handle them."
 	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
 
@@ -390,6 +444,12 @@ outfit "Orca Plasma Thruster"
 	"flare sprite" "effect/plasma flare/large"
 		"frame rate" 8
 	"flare sound" "plasma large"
+	"reverse thrust" 12.8
+	"reverse thrusting energy" 0.58
+	"reverse thrusting heat" 1.23
+	"reverse flare sprite" "effect/plasma flare/tiny"
+		"frame rate" 5
+	"reverse flare sound" "plasma tiny"
 	description "This engine draws enough power that a ship with anything short of a full-fledged nuclear reactor is unlikely to be able to use it, but the thrust it generates is impressive."
 	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
 
@@ -408,6 +468,12 @@ outfit "Tyrant Plasma Thruster"
 	"flare sprite" "effect/plasma flare/huge"
 		"frame rate" 9
 	"flare sound" "plasma huge"
+	"reverse thrust" 18.0
+	"reverse thrusting energy" 0.86
+	"reverse thrusting heat" 1.91
+	"reverse flare sprite" "effect/plasma flare/tiny"
+		"frame rate" 5
+	"reverse flare sound" "plasma tiny"
 	description "The enormous crate that this thruster is sold in comes decorated with a picture of a grinning Tyrannosaurus Rex with an improbable number of teeth. Only a handful of ships are large enough to require an engine of this size... or to have the capacity for one."
 	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
 
@@ -538,6 +604,12 @@ outfit "A120 Atomic Thruster"
 	"flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
 	"flare sound" "atomic tiny"
+	"reverse thrust" 2.9
+	"reverse thrusting energy" 0.18
+	"reverse thrusting heat" 0.35
+	"reverse flare sprite" "effect/atomic flare/tiny"
+		"frame rate" 14
+	"reverse flare sound" "atomic tiny"
 	description "If you're looking for the most powerful engine that will fit into your ship, and have plenty of money to burn, Deep Sky's atomic thrusters are your answer. Of course, the extra energy and cooling they require can easily offset the benefit of their small size."
 
 outfit "A250 Atomic Thruster"
@@ -555,6 +627,12 @@ outfit "A250 Atomic Thruster"
 	"flare sprite" "effect/atomic flare/small"
 		"frame rate" 13
 	"flare sound" "atomic small"
+	"reverse thrust" 4.5
+	"reverse thrusting energy" 0.31
+	"reverse thrusting heat" 0.61
+	"reverse flare sprite" "effect/atomic flare/tiny"
+		"frame rate" 14
+	"reverse flare sound" "atomic tiny"
 	description "Deep Sky's atomic thrusters have been in production for centuries, but remain a niche product due to their high prices and high energy requirements."
 
 outfit "A370 Atomic Thruster"
@@ -572,6 +650,12 @@ outfit "A370 Atomic Thruster"
 	"flare sprite" "effect/atomic flare/medium"
 		"frame rate" 12
 	"flare sound" "atomic medium"
+	"reverse thrust" 7.5
+	"reverse thrusting energy" 0.51
+	"reverse thrusting heat" 1.03
+	"reverse flare sprite" "effect/atomic flare/tiny"
+		"frame rate" 14
+	"reverse flare sound" "atomic tiny"
 	description "This thruster is small enough to fit in a light warship or freighter, but powerful enough to move any but the largest of ships. Naturally, such performance comes at an exorbitant price."
 
 outfit "A520 Atomic Thruster"
@@ -589,6 +673,12 @@ outfit "A520 Atomic Thruster"
 	"flare sprite" "effect/atomic flare/large"
 		"frame rate" 11
 	"flare sound" "atomic large"
+	"reverse thrust" 12.2
+	"reverse thrusting energy" 0.83
+	"reverse thrusting heat" 1.74
+	"reverse flare sprite" "effect/atomic flare/tiny"
+		"frame rate" 14
+	"reverse flare sound" "atomic tiny"
 	description "If your ship is sporting a set of Deep Sky's atomic engines, you will be the envy of every pilot in the galaxy. No other form of propulsion that humanity has discovered produces so much thrust from such a small engine."
 
 outfit "A860 Atomic Thruster"
@@ -606,6 +696,12 @@ outfit "A860 Atomic Thruster"
 	"flare sprite" "effect/atomic flare/huge"
 		"frame rate" 10
 	"flare sound" "atomic huge"
+	"reverse thrust" 19.9
+	"reverse thrusting energy" 1.33
+	"reverse thrusting heat" 2.91
+	"reverse flare sprite" "effect/atomic flare/tiny"
+		"frame rate" 14
+	"reverse flare sound" "atomic tiny"
 	description "The A860 Atomic Thruster is the most powerful engine sold in human space, and is much more compact than any of the alternatives. But, you may need to upgrade your ship's power and cooling systems to handle it."
 
 

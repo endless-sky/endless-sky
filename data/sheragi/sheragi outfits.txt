@@ -90,6 +90,13 @@ outfit "Fission Drive"
 		"frame rate" 30
 		"rewind"
 	"steering flare sound" "atomic tiny"
+	"reverse thrust" 2.7
+	"reverse thrusting energy" .15
+	"reverse thrusting heat" .286
+	"reverse flare sprite" "effect/fissionflare"
+		"frame rate" 30
+		"rewind"
+	"reverse flare sound" "atomic tiny"
 	description "A much smaller cousin of the Fusion Drive, it relies on fission instead of fusion to function, providing the necessary power generation and thrust to drive the Heavy Ion Cyclotron."
 
 outfit "Fusion Drive"
