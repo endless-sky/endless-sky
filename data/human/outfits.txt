@@ -441,14 +441,14 @@ outfit "Blood of Surtr"
 	thumbnail "outfit/bloodsurtr"
 	"energy generation" 1
 	"heat generation" 4
-	description "A strange glowing stone gifted to you by Ildico Drifa. It hums with energy, and heat."
+	description "A strange glowing stone gifted to you by Ildico Drifa. It hums with energy and heat."
 
 outfit "Blood of Surtr (Harmonized)"
 	category "Unique"
 	thumbnail "outfit/bloodsurtr"
 	"energy generation" 2
 	"heat generation" 6
-	description "A strange glowing stone gifted to you by Ildico Drifa, and harmonized by Weland. It hums with energy, and heat."
+	description "A strange glowing stone gifted to you by Ildico Drifa, and harmonized by Weland. It hums with energy and heat."
 
 outfit "Local Map"
 	category "Special"
