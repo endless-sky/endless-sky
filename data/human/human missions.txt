@@ -6898,14 +6898,14 @@ mission "Stone to Hope"
 	description "Take Tosti's family stone to <destination>, where they used to live before they immigrated to <origin>."
 	to offer
 		random < 60
-		has: "Stone of our Fathers 5: complete"
+		has "Stone of our Fathers 5: done"
 		has "event: Stone Waiting most"
 	source "Norn"
 	destination "Hope"
 	on offer
 		conversation
 			`There is a certain comfort to be found in the familiar swaying of Norn's spaceport. The creaking bridges no longer feel intimidating or threatening, only welcoming. There's never much staff here, but the few you do run into greet you warmly. Word has apparently spread that you've all but been adopted into the Hlewagasti family.`
-			`	Helm, with his sandy hair and short beard approaches you with a young man in tow. "<first>! It's well to see you again.`
+			`	Helm, with his sandy hair and short beard, approaches you with a young man in tow. "<first>! It's well to see you again.`
 			`	"So..." he says conspiratorially, "... there is no date yet, but a certain red haired stoic and his exotic Alfheimian girlfriend may be looking at wedding dates."`
 			choice
 				`	"That's great news!"`
@@ -6977,25 +6977,29 @@ mission "Stone to Hope"
 mission "Stone to Ice Queen"
 	landing
 	name "Bring Ildico to <planet>"
-	description ""
+	description "You found a woman named Ildico Drifa in an abandoned manor on <origin>. She has asked you to bring her to <destination> so she can escape the abandoned planet."
 	source "Hope"
 	destination "Clark"
+	passengers 1
 	to offer
-		has "Stone to Hope: complete"
+		has "Stone to Hope: done"
 	on offer
 		conversation "Ice Queen"
+	on complete
+		conversation "Ice Queen End"
 
 
 mission "Ice Queen"
-	name "Taking Ildico to Clark"
+	landing
+	name "Bring Ildico to <planet>"
+	description "You found a woman named Ildico Drifa in an abandoned manor on <origin>. She has asked you to bring her to <destination> so she can escape the abandoned planet."
+	source "Hope"
+	destination "Clark"
+	passengers 1
 	to offer
 		has "Expedition to Hope 2: done"
 		not "Stone to Ice Queen: offered"
 		random < 15
-	source "Hope"
-	passengers 1
-	landing
-	destination "Clark"
 	on offer
 		conversation "Ice Queen"
 	on complete
@@ -7015,7 +7019,7 @@ conversation "Ice Queen"
 
 	label explore
 	`	You break out the cold gear and dress yourself in warm layers with sturdy boots. Furtive frost cracks and breaks as your ship's door opens, and you step out into the cold air. This world's dim light reflects painfully off the ice and snow, momentarily blinding you.`
-	`	Once outside in the sharp crisp air it's easy to find the dismal ruins of this world's last spaceport. The trek is slow and clumsy in the unfamiliar gravity and granular snow."`
+	`	Once outside in the sharp, crisp air it's easy to find the dismal ruins of this world's last spaceport. The trek is slow and clumsy in the unfamiliar gravity and granular snow."`
 	`	You work around the silent spaceport, where the half-buried hangers are littered with the forgotten mementos of desperate refugees, and many of the buildings are lost beneath the encroaching ice. Eventually you see a cliff edge with dozens of cairns piled along it. Silent watchers of the churning glaciers.`
 	`	The sun begins to set, and you can already feel the temperature begining to plummet. There's not much else to see in this abandoned world, and it may be time to head back.`
 		goto building
@@ -7050,7 +7054,7 @@ conversation "Ice Queen"
 	`	The sun is setting and your task here is done. You start making your way back through ice and ruin to your ship.`
 
 	label building
-	`	As you pass around one corner of the sagging spaceport you notice an ice-free building in the distance with a light burning within.`
+	`	As you pass around one corner of the sagging spaceport towards your ship, you notice a large, ice-free building in the distance with a light burning within.`
 	choice
 		`	(Enter the building.)`
 			goto litbuilding
@@ -7061,8 +7065,8 @@ conversation "Ice Queen"
 	
 	label litbuilding
 	`	You enter into the sturdy and unfrozen building at the edge of the spaceport.`
-	`	Faded wealth still clings to peeling walls of this once some spacious manor. It is evident that it was once the heart and hearth of a wealthy family in an earlier, warmer time. The home feels like a tomb, or a museum, everything left in a certain way for all time, but as you work deeper into its nested walls you begin to see signs of much more recent life.`
-	`	You step into the kitchen which appears to be the epicenter of acitvity in this household. You see assorted survival rations and gear strewn about everywhere. More alarmingly, you also see a young woman sitting on the floor with her back against a counter.`
+	`	Faded wealth still clings to peeling walls of this once spacious manor. It is evident that it was once the heart and hearth of a wealthy family in an earlier, warmer time. The home feels like a tomb or a museum; it seems as if everything here has been left in a certain way for a long time. But as you work deeper into its nested walls you begin to see signs of much more recent life.`
+	`	Eventually you find your way to the kitchen, which appears to be the epicenter of acitvity in this household. You see assorted survival rations and gear strewn about everywhere. More alarmingly, you also see a young woman sitting on the floor with her back against a counter.`
 	choice
 		`	"Who are you?"`
 		`	"Are you okay?"`
@@ -7071,10 +7075,12 @@ conversation "Ice Queen"
 	`	The woman has short jet black hair. She's wearing a military grade, all-purpose survival suit. The kind you might see on deeply embedded special forces. The only weapon on her is a decorated knife at her belt. She looks pale, and frail, probably malnourished. But her icy eyes are clear, and she locks them onto you.`
 	`	"You come into my home, and expect me to answer your questions?" Her voice is steady.`
 	`	Slowly, awkwardly, she pulls herself to her feet, keeping one hand on the counter for balance. She rests her other hand over her knife.`
-	`	"You are lucky that you did not barge in here a year ago, or even a month ago." Despite her bravdo there is a deep wariness behind her words.`
-	`	"Now tell me, who are you, and what are you doing here?" she says, through grited teeth.` 
+	`	"You are lucky that you did not barge in here a year ago, or even a month ago." Despite her bravdo there is a deep wariness behind her words. "Now tell me, who are you, and what are you doing here?" she says, through gritted teeth.` 
 	choice
 		`	(Tell her who you are, and how you were just delivering a stone.)`
+			to display
+				has "Stone to Hope: done"
+		`	(Tell her who you are, and how you were just out exploring.)`
 
 	`	The woman nods slowly, and then painfully, slides back down to the ground.`
 	`	Her eyes fall to the floor. "I have no choice, but to trust you. I have lived here all my life, but my equipment has failed. I never wanted to leave, I was never meant to leave, but I won't let the ice win. I won't let it take me, too."`
@@ -7174,7 +7180,8 @@ mission "Ice Queen 2"
 
 
 mission "Ice Queen 3"
-	name "Finding Ildico's Father"
+	name "Find Ildico's Father"
+	description "Placeholder."
 	to offer
 		has "Ice Queen 2: done"
 	source "Glory"
@@ -7201,12 +7208,13 @@ mission "Ice Queen 3"
 			`	Without saying another word, Ildico turns and leaves. You thank Ian for his help, and follow her out.`
 
 mission "Ice Queen 4"
-	name "Finding Ildico's Father"
-	to offer
-		has "Ice Queen 2: done"
+	landing
+	name "Find Ildico's Father"
+	description "Placeholder."
 	source "Chiron"
 	passengers 1
-	landing
+	to offer
+		has "Ice Queen 2: done"
 	on offer
 		event "deoricdeeds" 1103
 		conversation
@@ -7236,32 +7244,36 @@ event "deoricdeeds"
 
 
 mission "Ice Queen 5"
+	landing
 	name "Visiting Ildico"
-	to offer
-		has "event: deoricdeeds"
+	description "Placeholder."
 	source 
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination "Chiron"
-	landing
+	to offer
+		has "event: deoricdeeds"
+
 	on offer
 		dialog
 			`	Your inbox blinks with a new message from Ildico on Chiron:`
 			`	"I need to see you. Please come. My address is attached.`
 			`				-your friend`
-			`					Ildy"`			
+			`					Ildy"`
+
 	on complete
 		dialog
 			`	The myriad lights of urban settlements twinkle in the dusk as you approach the capitol, and main spaceport, of Chiron. Crickets, brought from old Earth, chirp in the twilit air. Your ship parked, you'll need to make your way to main spaceport to hire transportation to Ildico's address.`
 
 
 mission "Ice Queen 6"
-	name "Taking Ildico to Safety"
-	to offer
-		has "Ice Queen 5: done"
+	name "Take Ildico to <planet>"
+	description "Placeholder."
 	source "Chiron"
 	destination "Haven"
 	illegal 1250000 `Ildico Drifa is dragged away in chains for high crimes against the Republic and its most honorable servants. Her infant child is taken into the custody of the Republic. You can only watch in sad silence as they are removed from your ship. You wind up quite a bit poorer through a combination of fines and bribes (the breakdown remains somewhat unclear).`
 	stealth
+	to offer
+		has "Ice Queen 5: done"
 	on offer
 		conversation
 			`The directions Ildico gave you take you beyond the bustling city and out into the the large estates owned by the Republic political elite; Drifa Manor sits atop a low hill with what must be a very expensive view of Chiron's capitol. The architecture of the building is reminiscent of elite villas you've seen in the Deep.`
@@ -7345,13 +7357,14 @@ event "pirateildy"
 
 
 mission "Ice Queen 7"
+	landing
 	name "Meet Ildy on <planet>"
-	to offer
-		has "event: pirateildy"
+	description "Placeholder."
 	source 
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination "Haven"
-	landing
+	to offer
+		has "event: pirateildy"
 	on offer
 		dialog
 			`	Your inbox blinks with a new message from Ildico on Haven:`
@@ -7365,10 +7378,11 @@ mission "Ice Queen 7"
 
 
 mission "Ice Queen 8"
+	name "Placeholder"
+	description "A fleet of Marauder ships, led by a vessel named the <npc>, has been seen near the <system> system. Destroy the whole fleet and return to <planet>."
+	source "Haven"
 	to offer
 		has "Ice Queen 7: done"
-	source "Haven"
-	description "A fleet of Marauder ships, led by a vessel named the <npc>, has been seen near the <system> system. Destroy the whole fleet and return to <planet>."
 	on offer
 		conversation
 			`You arrive at the address Ildico gave you. A large warehouse on the edge of the spaceport. You step into the dimly lit building, your eyes struggle to adjust, and when they've adapted you see a group of dirty burly men and women leveling a half-dozen weapons right at you.`
@@ -7460,8 +7474,8 @@ mission "Blood Skadenga"
 	source "Windblain"
 	to offer
 		has "Ice Queen 6: done"
+		has "outfit: Blood of Surtr"
 	on offer
-		require "Blood of Surtr"
 		conversation
 			`As your ship descends through Windblain's cloudy atmosphere you consider landing near Hrithfjall and asking the Ondurdis about the Blood of Surtr.`
 			choice
@@ -7524,17 +7538,17 @@ mission "Blood Skadenga"
 mission "Stone Thanks"
 	source "Norn"
 	on offer
-		has "Ice Queen Alt: complete"
+		has "Stone to Ice Queen: offered"
 		conversation
-			`In the quiet, creaking spaceport, it's easy enough to spot Helm doing some much needed maintenance.`
+			`In the quiet, creaking spaceport, it's easy enough to spot Helm doing some much needed maintenance on the ships that have landed here for the night. The last time you met him, he asked you to bring a stone to Hope. Do you want to check in with him?`
 			choice
-				`	(Tell Helm and Tosti about the stone.)`
+				`	(Go over to Helm and tell about the stone.)`
 					goto tell
 				`	(Leave Helm alone.)`
 					decline
 			
 			label tell
-			`	You accidently startle Helm, who is in the middle of replacing a fraying rope.`
+			`	As you say your hello you accidently startle Helm, who's in the middle of recalibrating a repulsor.`
 			`	"Woah! <first>! No need to sneak up on me!" He stands up to greet you. "What's new?"`
 			choice
 				`	"I found the Family-Cairn and left the stone there."`
