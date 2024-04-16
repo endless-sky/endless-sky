@@ -1006,9 +1006,6 @@ mission "Ka'het: Patir Mystery 8A"
 	on fail
 		dialog
 			`As soon as you approach the <planet>, you see that the Ka'sei are following your ship. You won't be able to enter the settlement safely anymore.`
-	on enter Patir
-		dialog
-			`The probe slowly moves away from your ship, opening its external panels and the instrumentation; as you watch it turn into a dim point of light, the Remnant team confirms that it is functioning correctly. Time to land on the asteroid.`
 
 	npc save
 		government "Test Dummy"
@@ -1017,6 +1014,16 @@ mission "Ka'het: Patir Mystery 8A"
 		fleet
 			variant
 				"Cloak Check" 10
+
+mission "Ka'het: Patir Mystery 8B"
+	invisible
+	source "Babiali"
+	destination "Builder Settlement"
+		has "Ka'het: Patir Mystery 8A: offered"
+	on enter Patir
+		dialog
+			`The probe slowly moves away from your ship, opening its external panels and the instrumentation; as you watch it turn into a dim point of light, the Remnant team confirms that it is functioning correctly. Time to land on the asteroid.`
+
 
 mission "Ka'het: Patir Mystery 9"
 	landing
