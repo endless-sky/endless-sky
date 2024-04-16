@@ -6934,7 +6934,7 @@ mission "Stone to Hope"
 				`	"Leave me alone. I'm not interested."`
 			`	Cresfallen, the young man stumbles over his words attempting to apologize for the intrusion and slinks away from you in an ungraceful hurry.`
 			`	Helm watches him go with an unhappy frown upon his face. "You could have at least heard him out."`
-			`	He shakes his head and turns from you before saying, "I thought better of you." `
+			`	He shakes his head and turns from you before saying, "I thought better of you."`
 				decline
 
 			label finish
@@ -6950,7 +6950,7 @@ mission "Stone to Hope"
 				`	"No."`
 
 			label hopeno
-			`	Helm sighs and tries to pat the young man on the back before he entirely deflates in shame.	"Captain <last> is a very busy man. I am sure we can find someone else to make the journey. There is no shame in asking for help." `
+			`	Helm sighs and tries to pat the young man on the back before he entirely deflates in shame.	"Captain <last> is a very busy man. I am sure we can find someone else to make the journey. There is no shame in asking for help."`
 			`	Tosti is red and shaking and mumbles some apologies before slinking away from you and Helm.`
 			`	Helm gives you a nod and says, "Thanks for listening, at least."`
 				decline
@@ -6983,122 +6983,7 @@ mission "Stone to Ice Queen"
 	to offer
 		has "Stone to Hope: complete"
 	on offer
-		conversation
-			`There is nothing here. Only unceasing desolation. The slow churning of hateful ice that swallowed the dream of a world. Yet, here you are. You've landed along the equator, where the environment is not quite so hostile, and where patches of unconquered ice-free rock still reign.`
-			`	Beyond your ship are the ruins of the last unfrozen city. Where the final refugees huddled together awaiting their saviors, the Republic Navy, and were whisked away to other more welcoming worlds.`
-			choice
-				`	(Search for the Snaiwaz Family-Cairn.)`
-					goto cairnsearch
-				`	(Toss the stone out your hatch and leave this world.)`
-			`	The stone of Tosti's father tumbles out of the ship and comes to rest in a heap of cluttered refuse. This is as close as it will get to its Family-Cairn, and far closer than Tosti could have gotten it on his own.`
-				decline
-
-			label cairnsearch
-			`	You break out the cold gear and dress yourself in warm layers with sturdy boots. Furtive frost cracks and breaks as your ship's door opens, and you step out into the cold air. This world's dim light reflects painfully off the ice and snow, momentarily blinding you.`
-			`	Once outside in the sharp, crisp air it's easy to find the dismal ruins of this world's last spaceport. The trek is slow and clumsy in the unfamiliar gravity and granular snow."`
-			`	You work around the silent spaceport, where the half-buried hangers are littered with the forgotten mementos of desperate refugees, and many of the buildings are lost beneath the encroaching ice. Eventually you find the cliffs that Tosti spoke of, and the many dozens of Family-Cairns piled along side it. Silent watchers of the churning glaciers.`
-			`	You see a nearly toppled Family-Cairn with the name "Snaiwaz" at its base.`
-			choice
-				`	(Place Tosti's Father's stone.)`
-					goto placestone
-				`	(Throw the stone off the side of the cliff.)`
-
-			`	You hurl the stone far beyond the cliff side and down into glacial slopes beneath it. Never to find rest by his kindred-stones.`
-				decline
-
-			label placestone
-			`	Carefully you place Tosti's stone with the others. The act is greated only by the deafening silence and the icy air of the abandoned world.`
-			choice
-				`	(Head back.)`
-
-			`	The sun is setting and your task here is done. You start making your way back through ice and ruin to your ship.`
-			`	As you pass around one corner of the sagging spaceport you notice an ice-free building in the distance with a light burning within.`
-			choice
-				`	(Enter the building.)`
-					goto litbuilding
-				`	(Keep heading toward your ship.)`
-
-			`	Whatever is going on in that building, it has nothing to do with you, and so you ignore it and return to your waiting ship.`
-				decline
-			
-			label litbuilding
-			`	You enter into the sturdy and unfrozen building at the edge of the spaceport.`
-			`	Faded wealth still clings to peeling walls of this once some spacious manor. It is evident that it was once the heart and hearth of a wealthy family in an earlier, warmer time. The home feels like a tomb, or a museum, everything left in a certain way for all time, but as you work deeper into its nested walls you begin to see signs of much more recent life.`
-			`	You step into the kitchen which appears to be the epicenter of acitvity in this household. You see assorted survival rations and gear strewn about everywhere. More alarmingly, you also see a young woman sitting on the floor with her back against a counter.`
-			choice
-				`	"Who are you?"`
-				`	"Are you okay?"`
-				`	"What are you doing here?"`
-
-			`	The woman has short jet black hair. She's wearing a military grade, all-purpose survival suit. The kind you might see on deeply embedded special forces. The only weapon on her is a decorated knife at her belt. She looks pale, and frail, probably malnourished. But her icy eyes are clear, and she locks them onto you.`
-			`	"You come into my home, and expect me to answer your questions?" Her voice is steady.`
-			`	Slowly, awkwardly, she pulls herself to her feet, keeping one hand on the counter for balance. She rests her other hand over her knife.`
-			`	"You are lucky that you did not barge in here a year ago, or even a month ago." Despite her bravdo there is a deep wariness behind her words.`
-			`	"Now tell me, who are you, and what are you doing here?" She says through grit teeth.` 
-			choice
-				`	(Tell her who you are, and how you were just delivering a stone.)`
-
-			`	The woman nods slowly, and then painfully, slides back down to the ground.`
-			`	Her eyes fall to the floor. "I have no choice, but to trust you. I have lived here all my life, but my equipment has failed. I never wanted to leave, I was never meant to leave, but I won't let the ice win. I won't let it take me, too."`
-			`	She looks back up at you with her piercing eyes, "I am Ildico, last of House Drifa, daughter of Deoric, once one of the most powerful men on Hope. Everyone fled the ice. The Republic Navy made it easy. Enter their ships and be shipped off to paradise, to live as nobodies at the sufferance of strangers."`
-			`	Ildico tries to spit, and her eyes blaze, "But we were House Drifa, more than anyone else, we built this world, and we would not abandon it to be someone else's dredges. My father bought supplies, equipment, necessities from the Navy. Enough so that me, my brother, and my mother could survive here."`
-			`	She pauses, as though unsure she wants continue, and then finally, in a less firm voice, "And then my father left. He said that dozens of worlds, worse off than ours, were terraformed every day. He said all they needed was a little convincing, and that he would come back with the support to terraform, and save, Hope. And then... he never came back."`
-			`	Ildico sighs. "A treasure hunter killed my brother a few years back. My mother... she is also dead, and I am starving. I have no way to contact anyone else, and no one else is left."`
-			`	"So, what do you say." She leans her head back, clearly exhausted by this exchange, and closes her eyes. "Will you kill me? Take advantage of me? Save me? Or leave me... to die."`		
-			choice
-				`	"Come with me. It's time you gave up on Hope."`
-					goto comewithme
-				`	"I'll get you out of here. After that, no promises."`
-					goto comewithme
-				`	"I don't have time for wretches. You're on your own."`
-				`	"How about I kill you, and take your stuff. `
-
-			`	Ildico, her eyes still closed, makes a swift motion with her hand and flicks her wrist toward you. Before you have a chance to react, her knife is embedded deep in your throat.`
-			`	You're on the ground now. Ruby red blood oozing out over the cold floor. You hear a strange moan escaping from your mouth, and Ildico's hands are in your pockets removing everything you have of value.`
-			`	As the world fades to black, you hear her talking, though her words sound as though they are coming from a great distance. "Like I said, I won't die here. Thanks for the ship."`
-			`	Your vision grows darker until only a single point of light remains. You don't feel cold, or pain, or anything at all. You just feel heavy. So heavy. Too heavy. So, you let go.`
-				die
-
-			label comewithme
-			`	You help her back onto her feet, and with her leaning on you, the two of you make your way back outside and through the perilous cold to your ship.`
-			`	Once aboard, after she's eaten and regained a little of her strength, she comes to talk with you.`
-			`	"Thank you for saving me. There are places I need to go. But I know I cannot force you to take me. And I have no credits to pay you. If you could take me to <planet>, I could make my own way from there."`
-			choice
-				`	"Anywhere you need to go, I can take you."`
-					goto wheresheneedstogo
-				`	"Okay, I'll just take you to <planet>."`
-					accept
-
-			label wheresheneedstogo
-			`	Ildico narrows her eyes. "Nothing is free. Especially not a trip around the galaxy."`
-			choice
-				`	"I just want to make the universe a better place."`
-				`	"It's karma. What goes around comes around."`
-				`	"One day you'll be able to pay me back."`
-				` 	"It's how they do things on Norn."`
-				`	"My reasons are my own."`
-
-			`	Ildico doesn't react for a moment, seemingly taking in your words.`
-			`	At length she nods slowly. "We'll see."`
-			action
-				set "helpildico"
-			`	She pauses again and then shrugs. "It's not like I have anything to lose... Very well. I need to discover what happened to my father. I know he first went to Clark to meet with a terraforming firm there. That's where I start my search."`
-				launch
-
-	on complete
-		conversation
-			branch helpildico
-				has "helpildico"
-			`	Your thrusters kick up fresh dust as you land on your assigned concrete pad in the sprawling spaceport.`
-			`	Ildico, looking less pale and significantly more sturdy, waits by the exit.`
-			`	"Thank you for getting me out of there. After all those years on the ice this place will be no challenge for me. Perhaps someday our paths will cross again. If they do, I will remember this small kindness."`
-			`	She gives you a stern nod, and then exits your ship and into the chaos of Clark.`
-				decline
-
-			label helpildico
-			`	Your thrusters kick up fresh dust as you land on your assigned concrete pad on the fringes of the sprawling spaceport.`
-			`	Ildico, looking less pale, and significantly more sturdy, waits by the exit.`
-			`	"The terraforming firm is certain to have an office, or booth, in the ramshackle spaceport here. Let's pay them a visit." `
+		conversation "Ice Queen"
 
 
 mission "Ice Queen"
@@ -7112,101 +6997,145 @@ mission "Ice Queen"
 	landing
 	destination "Clark"
 	on offer
-		conversation 
-			`There is nothing here. Only unceasing desolation. The slow churning of hateful ice that swallowed the dream of a world. Yet, here you are. You've landed along the equator, where the environment is not quite so hostile, and where patches of unconquered ice-free rock still reign.`
-			`	Beyond your ship are the ruins of the last unfrozen city. Where the final refugees huddled together awaiting their saviors, the Republic Navy, and were whisked away to other more welcoming worlds.`
-			choice
-				`	(Explore the area.)`
-					goto explore
-				`	(Leave this world.)`
-			`	There is nothing here anyone could want. You leave this abandoned world to its glaciers and ghosts.`
-				decline
-
-			label explore
-			`	You break out the cold gear and dress yourself in warm layers with sturdy boots. Furtive frost cracks and breaks as your ship's door opens, and you step out into the cold air. This world's dim light reflects painfully off the ice and snow, momentarily blinding you.`
-			`	Once outside in the sharp crisp air it's easy to find the dismal ruins of this world's last spaceport. The trek is slow and clumsy in the unfamiliar gravity and granular snow."`
-			`	You work around the silent spaceport, where the half-buried hangers are littered with the forgotten mementos of desperate refugees, and many of the buildings are lost beneath the encroaching ice. Eventually you see a cliff edge with dozens of cairns piled along it. Silent watchers of the churning glaciers.`
-			`	The sun begins to set, and you can already feel the temperature begining to plummet. There's not much else to see in this abandoned world, and it may be time to head back.`
-			choice
-				`	(Head back.)`
-			`	You start making your way back through ice and ruin to your ship.`
-			`	As you pass around one corner of the sagging spaceport you notice an ice-free building in the distance with a light burning within.`
-			choice
-				`	(Enter the building.)`
-					goto litbuilding
-				`	(Keep heading toward your ship.)`
-			`	Whatever is going on in that building, it has nothing to do with you, and so you ignore it and return to your waiting ship.)`
-				decline
-			
-			label litbuilding
-			`	You enter into the sturdy and unfrozen building at the edge of the spaceport.`
-			`	Faded wealth still clings to peeling walls of this once some spacious manor. It is evident that it was once the heart and hearth of a wealthy family in an earlier, warmer time. The home feels like a tomb, or a museum, everything left in a certain way for all time, but as you work deeper into its nested walls you begin to see signs of much more recent life.`
-			`	You step into the kitchen which appears to be the epicenter of acitvity in this household. You see assorted survival rations and gear strewn about everywhere. More alarmingly, you also see a young woman sitting on the floor with her back against a counter.`
-			choice
-				`	"Who are you?"`
-				`	"Are you okay?"`
-				`	"What are you doing here?"`
-			`	The woman has short jet black hair. She's wearing a military grade all-purpose survival suit. The kind you might see on deeply embedded special forces. The only weapon on her is a decorated knife at her belt. She looks pale, and frail, probably malnourished. But her icy eyes are clear, and she locks them onto you.`
-			`	"You come into my home, and expect me to answer your questions?" Her voice is steady.`
-			`	Slowly, awkwardly, she pulls herself to her feet, keeping one hand on the counter for balance. She rests her other hand over her knife.`
-			`	"You are lucky that you did not barge in here a year ago, or even a month ago." Despite her bravdo there is a deep wariness behind her words.`
-			`	"Now tell me, who are you, and what are you doing here?" She says through grit teeth.` 
-			choice
-				`	(Tell her who you are, and how you were just out exploring.)`
-			`	The woman nods slowly, and then painfully, slides back down to the ground.`
-			`	Her eyes fall to the floor. "I have no choice, but to trust you. I have lived here all my life, but my equipment has failed. I never wanted to leave, I was never meant to leave, but I won't let the ice win. I won't let it take me, too."`
-			`	She looks back up at you with her piercing eyes, "I am Ildico, last of House Drifa, daughter of Deoric, once one of the most powerful men on Hope. Everyone fled the ice. The Republic Navy made it easy. Enter their ships and be shipped off to paradise, to live as nobodies at the sufferance of strangers."`
-			`	Ildico tries to spit, and her eyes blaze, "But we were House Drifa, more than anyone else, we built this world, and we would not abandon it to be someone else's dredges. My father bought supplies, equipment, necessities from the Navy. Enough so that me, my brother, and my mother could survive here."`
-			`	She pauses, as though unsure she wants continue, and then finally, in a less firm voice, "And then my father left. He said that dozens of worlds, worse off than ours, were terraformed every day. He said all they needed was a little convincing, and that he would come back with the support to terraform, and save, Hope. And then... he never came back."`
-			`	Ildico sighs. "A treasure hunter killed my brother a few years back. My mother... she is also dead, and I am starving. I have no way to contact anyone else, and no one else is left."`
-			`	"So, what do you say." She leans her head back, clearly exhausted by this exchange, and closes her eyes. "Will you kill me? Take advantage of me? Save me? Or leave me... to die."`		
-			choice
-				`	"Come with me. It's time you gave up on Hope."` 
-					goto comewithme
-				`	"I'll get you out of here. After that, no promises."`
-					goto comewithme
-				`	"I don't have time for wretches. You're on your own."`
-				`	"How about I kill you, and take your stuff. `
-			`	Ildico, her eyes still closed, makes a swift motion with her hand and flicks her wrist toward you. Before you have a chance to react, her knife is embedded deep in your throat.`
-			`	You're on the ground now. Ruby red blood oozing out over the cold floor. You hear a strange moan escaping from your mouth, and Ildico's hands are in your pockets removing everything you have of value.`
-			`	As the world fades to black, you hear her talking, though her words sound as though they are coming from a great distance. "Like I said, I won't die here. Thanks for the ship."`
-			`	Your vision grows darker until only a single point of light remains. You don't feel cold, or pain, or anything at all. You just feel heavy. So heavy. Too heavy. So, you let go.`
-				die
-			label comewithme
-			`	You help her back onto her feet, and with her leaning on you, the two of you make your way back outside and through the perilous cold to your ship.`
-			`	Once aboard, after she's eaten and regained a little of her strength, she comes to talk with you.`
-			`	"Thank you for saving me. There are places I need to go. But I know I cannot force you to take me. And I have no credits to pay you. If you could take me to Clark, I could make my own way from there."`
-			choice
-				`	(Offer to take her where she needs to go.)`
-					goto wheresheneedstogo
-				`	(Agree to take her only as far as Clark.)`
-					accept
-			label wheresheneedstogo
-			`	Ildico narrows her eyes. "Nothing is free."`
-			choice
-				`	"I just want to make the universe a better place."`
-				`	"It's karma. What goes around comes around."`
-				`	"One day you'll be able to pay me back."`
-				` 	"It's how do things on Norn."`
-				`	"My reasons are my own.`
-			`	She nods slowly. "We'll see."`
-			action
-				set "helpildico"
-			`	She pauses, and then shrugs, "It's not like I have anything to lose. Very well. I need to discover what happened to my father. I know he first went to Clark to meet with a terraforming firm there. That's where I start my search."`
-				launch
+		conversation "Ice Queen"
 	on complete
-		conversation
-			branch helpildico
-				has "helpildico"
-			`	Your thrusters kick up fresh dust as you land on your assigned concrete pad in the sprawling spaceport.`
-			`	Ildico, looking less pale, and significantly more sturdy, waits by the exit.`
-			`	"Thank you for getting me out of there. After all those years on the ice this place will be no challenge for me. Perhaps someday our paths will cross again, if they do, I will remember this small kindness."`
-			`	She gives you a stern nod, and then exits your ship, and into the chaos of Clark.`
-				decline
-			label helpildico
-			`	Your thrusters kick up fresh dust as you land on your assigned concrete pad on the fringes of the sprawling spaceport.`
-			`	Ildico, looking less pale, and significantly more sturdy, waits by the exit.`
-			`	"The terraforming firm is certain to have an office, or booth, in the ramshackle spaceport here. Let's pay them a visit." `
+		conversation "Ice Queen End"
+
+
+conversation "Ice Queen"
+	branch "has stone"
+	`There is nothing here. Only unceasing desolation. The slow churning of hateful ice that swallowed the dream of a world. Yet, here you are. You've landed along the equator, where the environment is not quite so hostile, and where patches of unconquered ice-free rock still reign.`
+	`	Beyond your ship are the ruins of the last unfrozen city. Where the final refugees huddled together awaiting their saviors, the Republic Navy, and were whisked away to other more welcoming worlds.`
+	choice
+		`	(Explore the area.)`
+			goto explore
+		`	(Leave this world.)`
+	`	There is nothing here anyone could want. You leave this abandoned world to its glaciers and ghosts.`
+		decline
+
+	label explore
+	`	You break out the cold gear and dress yourself in warm layers with sturdy boots. Furtive frost cracks and breaks as your ship's door opens, and you step out into the cold air. This world's dim light reflects painfully off the ice and snow, momentarily blinding you.`
+	`	Once outside in the sharp crisp air it's easy to find the dismal ruins of this world's last spaceport. The trek is slow and clumsy in the unfamiliar gravity and granular snow."`
+	`	You work around the silent spaceport, where the half-buried hangers are littered with the forgotten mementos of desperate refugees, and many of the buildings are lost beneath the encroaching ice. Eventually you see a cliff edge with dozens of cairns piled along it. Silent watchers of the churning glaciers.`
+	`	The sun begins to set, and you can already feel the temperature begining to plummet. There's not much else to see in this abandoned world, and it may be time to head back.`
+		goto building
+
+	label "has stone"
+	`There is nothing here. Only unceasing desolation. The slow churning of hateful ice that swallowed the dream of a world. Yet, here you are. You've landed along the equator, where the environment is not quite so hostile, and where patches of unconquered ice-free rock still reign.`
+	`	Beyond your ship are the ruins of the last unfrozen city. Where the final refugees huddled together awaiting their saviors, the Republic Navy, and were whisked away to other more welcoming worlds.`
+	choice
+		`	(Search for the Snaiwaz Family-Cairn.)`
+			goto cairnsearch
+		`	(Toss the stone out your hatch and leave this world.)`
+	`	The stone of Tosti's father tumbles out of the ship and comes to rest in a heap of cluttered refuse. This is as close as it will get to its Family-Cairn, and far closer than Tosti could have gotten it on his own.`
+		decline
+
+	label cairnsearch
+	`	You break out the cold gear and dress yourself in warm layers with sturdy boots. Furtive frost cracks and breaks as your ship's door opens, and you step out into the cold air. This world's dim light reflects painfully off the ice and snow, momentarily blinding you.`
+	`	Once outside in the sharp, crisp air it's easy to find the dismal ruins of this world's last spaceport. The trek is slow and clumsy in the unfamiliar gravity and granular snow."`
+	`	You work around the silent spaceport, where the half-buried hangers are littered with the forgotten mementos of desperate refugees, and many of the buildings are lost beneath the encroaching ice. Eventually you find the cliffs that Tosti spoke of, and the many dozens of Family-Cairns piled along side it. Silent watchers of the churning glaciers.`
+	`	You see a nearly toppled Family-Cairn with the name "Snaiwaz" at its base.`
+	choice
+		`	(Place Tosti's father's stone.)`
+			goto placestone
+		`	(Throw the stone off the side of the cliff.)`
+
+	`	You hurl the stone far beyond the cliff side and down into glacial slopes beneath it. Never to find rest by his kindred-stones.`
+		decline
+
+	label placestone
+	`	Carefully you place Tosti's stone with the others. The act is greated only by the deafening silence and the icy air of the abandoned world.`
+	choice
+		`	(Head back.)`
+	`	The sun is setting and your task here is done. You start making your way back through ice and ruin to your ship.`
+
+	label building
+	`	As you pass around one corner of the sagging spaceport you notice an ice-free building in the distance with a light burning within.`
+	choice
+		`	(Enter the building.)`
+			goto litbuilding
+		`	(Keep heading toward your ship.)`
+
+	`	Whatever is going on in that building, it has nothing to do with you, and so you ignore it and return to your waiting ship.`
+		decline
+	
+	label litbuilding
+	`	You enter into the sturdy and unfrozen building at the edge of the spaceport.`
+	`	Faded wealth still clings to peeling walls of this once some spacious manor. It is evident that it was once the heart and hearth of a wealthy family in an earlier, warmer time. The home feels like a tomb, or a museum, everything left in a certain way for all time, but as you work deeper into its nested walls you begin to see signs of much more recent life.`
+	`	You step into the kitchen which appears to be the epicenter of acitvity in this household. You see assorted survival rations and gear strewn about everywhere. More alarmingly, you also see a young woman sitting on the floor with her back against a counter.`
+	choice
+		`	"Who are you?"`
+		`	"Are you okay?"`
+		`	"What are you doing here?"`
+
+	`	The woman has short jet black hair. She's wearing a military grade, all-purpose survival suit. The kind you might see on deeply embedded special forces. The only weapon on her is a decorated knife at her belt. She looks pale, and frail, probably malnourished. But her icy eyes are clear, and she locks them onto you.`
+	`	"You come into my home, and expect me to answer your questions?" Her voice is steady.`
+	`	Slowly, awkwardly, she pulls herself to her feet, keeping one hand on the counter for balance. She rests her other hand over her knife.`
+	`	"You are lucky that you did not barge in here a year ago, or even a month ago." Despite her bravdo there is a deep wariness behind her words.`
+	`	"Now tell me, who are you, and what are you doing here?" she says, through grited teeth.` 
+	choice
+		`	(Tell her who you are, and how you were just delivering a stone.)`
+
+	`	The woman nods slowly, and then painfully, slides back down to the ground.`
+	`	Her eyes fall to the floor. "I have no choice, but to trust you. I have lived here all my life, but my equipment has failed. I never wanted to leave, I was never meant to leave, but I won't let the ice win. I won't let it take me, too."`
+	`	She looks back up at you with her piercing eyes, "I am Ildico, last of House Drifa, daughter of Deoric, once one of the most powerful men on Hope. Everyone fled the ice. The Republic Navy made it easy. Enter their ships and be shipped off to paradise, to live as nobodies at the sufferance of strangers."`
+	`	Ildico tries to spit, and her eyes blaze, "But we were House Drifa, more than anyone else, we built this world, and we would not abandon it to be someone else's dredges. My father bought supplies, equipment, necessities from the Navy. Enough so that me, my brother, and my mother could survive here."`
+	`	She pauses, as though unsure she wants to continue; then finally, in a less firm voice, "And then my father left. He said that dozens of worlds, worse off than ours, were terraformed every day. He said all they needed was a little convincing, and that he would come back with the support to terraform, and save, Hope. And then... he never came back."`
+	`	Ildico sighs. "A treasure hunter killed my brother a few years back. My mother... she is also dead, and I am starving. I have no way to contact anyone else, and no one else is left."`
+	`	"So, what do you say." She leans her head back, clearly exhausted by this exchange, and closes her eyes. "Will you kill me? Take advantage of me? Save me? Or leave me... to die."`		
+	choice
+		`	"Come with me. It's time you gave up on Hope."`
+			goto comewithme
+		`	"I'll get you out of here. After that, no promises."`
+			goto comewithme
+		`	"I don't have time for wretches. You're on your own."`
+		`	"How about I kill you, and take your stuff.`
+
+	`	Ildico, her eyes still closed, makes a swift motion with her hand and flicks her wrist toward you. Before you have a chance to react, her knife is embedded deep in your throat.`
+	`	You're on the ground now. Ruby red blood oozing out over the cold floor. You hear a strange moan escaping from your mouth, and Ildico's hands are in your pockets removing everything you have of value.`
+	`	As the world fades to black, you hear her talking, though her words sound as though they are coming from a great distance. "Like I said, I won't die here. Thanks for the ship."`
+	`	Your vision grows darker until only a single point of light remains. You don't feel cold, or pain, or anything at all. You just feel heavy. So heavy. Too heavy. So, you let go.`
+		die
+
+	label comewithme
+	`	You help her back onto her feet, and with her leaning on you, the two of you make your way back outside and through the perilous cold to your ship.`
+	`	Once aboard, after she's eaten and regained a little of her strength, she comes to talk with you.`
+	`	"Thank you for saving me. There are places I need to go. But I know I cannot force you to take me. And I have no credits to pay you. If you could take me to <planet>, I could make my own way from there."`
+	choice
+		`	"Anywhere you need to go, I can take you."`
+			goto wheresheneedstogo
+		`	"Okay, I'll just take you to <planet>."`
+			accept
+
+	label wheresheneedstogo
+	`	Ildico narrows her eyes. "Nothing is free. Especially not a trip around the galaxy."`
+	choice
+		`	"I just want to make the universe a better place."`
+		`	"It's karma. What goes around comes around."`
+		`	"One day you'll be able to pay me back."`
+		` 	"It's how they do things on Norn."`
+		`	"My reasons are my own."`
+
+	action
+		set "helpildico"
+	`	Ildico doesn't react for a moment, seemingly taking in your words.`
+	`	At length she nods slowly. "We'll see."`
+	`	She pauses again and then shrugs. "It's not like I have anything to lose... Very well. I need to discover what happened to my father. I know he first went to Clark to meet with a terraforming firm there. That's where I start my search."`
+		launch
+
+conversation "Ice Queen End"
+	branch helpildico
+		has "helpildico"
+	`	Your thrusters kick up fresh dust as you land on your assigned concrete pad in the sprawling spaceport.`
+	`	Ildico, looking less pale and significantly more sturdy, waits by the exit.`
+	`	"Thank you for getting me out of there. After all those years on the ice this place will be no challenge for me. Perhaps someday our paths will cross again. If they do, I will remember this small kindness."`
+	`	She gives you a stern nod, and then exits your ship and into the chaos of Clark.`
+		decline
+
+	label helpildico
+	`	Your thrusters kick up fresh dust as you land on your assigned concrete pad on the fringes of the sprawling spaceport.`
+	`	Ildico, looking less pale, and significantly more sturdy, waits by the exit.`
+	`	"The terraforming firm is certain to have an office, or booth, in the ramshackle spaceport here. Let's pay them a visit."`
 
 
 mission "Ice Queen 2"
@@ -7357,7 +7286,7 @@ mission "Ice Queen 6"
 			`	The color drains out of Deoric's face. "Monster." He says. "I will put an end to you. I will start a new family, as I should have before."` 
 			`	Deoric lunges at Ildico, but before he can take more then a single step, Ildico's wrist flicks and her knife slams into Deoric's throat. He falls to the ground, bleeding out, dying.`
 			`	Ildico stands over him. "You are coward. A miserable disgusting man." She spits on him, and pulls her dagger from his heaving neck. A moment later he's dead."`
-			`	She turns to you. "I am now a fugitive, and you are my only friend. I need you to get us out of here." `
+			`	She turns to you. "I am now a fugitive, and you are my only friend. I need you to get us out of here."`
 			`	Ildico walks back to corner far from any of the fighting, and retrieves a bundled baby you'd neglected to notice until now.`
 			choice
 				`	"You got it. Let's go."`
@@ -7377,17 +7306,17 @@ mission "Ice Queen 6"
 
 			label leave
 			`	Ildico puts her baby back down, and for just a second you see agony in her eyes. Killing her father or her arranged husband didn't break her mask, but somehow this does. A tear rolls down her cheek.`
-			`	Her hand wavers, trembles, over her knife, and then she drops it, and her head. "So then go." `
+			`	Her hand wavers, trembles, over her knife, and then she drops it, and her head. "So then go."`
 				decline	
 
 			label ontherun
-			`	She nods, her face softens, and tears glitter around her eyes. "Thank you, I knew- I knew I could count on you." `
+			`	She nods, her face softens, and tears glitter around her eyes. "Thank you, I knew- I knew I could count on you."`
 			`	Ildico recollects herself for a moment before pointing to a briefcase lying by a table. "Grab that, and let's go."`
 			choice
 				`	"Go where?"`
 
 			`	She sighs. "Not the Republic. After tonight I will hunted for this. We need to go to Haven. And you should probably not let anyone scan your ship until we get there."`
-			`	The two of you escape out into the night, and onto your ship. `
+			`	The two of you escape out into the night, and onto your ship.`
 				launch
 
 	on complete
@@ -7405,7 +7334,7 @@ mission "Ice Queen 6"
 			scene "outfit/bloodsurtr"
 			choice
 				`	(Thank her.)`
-			`	I'll also transfer small sum of money for your troubles. I fear I will be needing most of my family's fortune, but hopefully what little I can offer will help. `
+			`	I'll also transfer a small sum of money for your troubles. I fear I will be needing most of my family's fortune, but hopefully what little I can offer will help.`
 			choice
 				` 	(Ask if it's wise for her and a child to be left alone in a place like Haven.)`
 			`	She laughs. "Haven better watch out for me. After Hope and Chiron, this place will be a cakewalk."`
@@ -7508,74 +7437,75 @@ mission "Ice Queen 8"
 			`	She glances back toward her mulling forces. "Thanks again, for this, it means a lot that I can count on you, but I have to work do. Until next time."`
 			`	Ildico returns to group, barking order, and gesturing at the rubble.`
 
+
 mission "News Queen"
 	source 
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-	invisible
+		near "Arneb" 10
 	to offer
 		has "Ice Queen 8: done"
 		random < 3
 	on offer
 		conversation
-			`	A news kiosk is doing a segment on the growing threat of pirates around Haven. A certain name catches your eye, and you read:`
-			`	Self-Styled Pirate-Queen Ilidco Drifa continues to expand her territory and reach. While there is some concern this growing centralization of power could result in greater pirate threats, most analysts think it is quite unlikely.`
-			`	Professor Grenwhich Millstone, foremost authority on the Economy & History of the Northern Pariah worlds, had this to say; "It is patently inconceivable that any single authority could consolidate power on Haven. It is culturally anathema, and economically impractical. Frankly, all this talk of a so-called Pirate-Queen is just sensationalist journalism trying to sell the news. In a few weeks another Pirate Captain will be the new boogieman, and then another."`
+			`A news kiosk is doing a segment on the growing threat of pirates around Haven. A certain name catches your eye, and you read:`
+			`	Self-styled "pirate queen" Ilidco Drifa continues to expand her territory and reach. While there is some concern this growing centralization of power could result in greater threats to trade and stability in the Far North, most analysts think it is quite unlikely.`
+			`	Professor Grenwhich Millstone, foremost authority on the Economy and History of the Northern Pariah worlds, had this to say about Drifa:`
+			`	"It is patently inconceivable that any single authority could consolidate power on Haven. It is culturally anathema, and economically impractical. Frankly, all this talk of a so-called 'pirate queen' is just sensationalist journalism trying to sell the news. In a few weeks another pirate captain will be the new boogieman, and then another."`
+			`	The segment ends, and news kiosk automatically scrolls down to the next article.`
 				decline
 
 
 mission "Blood Skadenga"
+	landing
 	source "Windblain"
 	to offer
 		has "Ice Queen 6: done"
 	on offer
 		require "Blood of Surtr"
 		conversation
-			`As your ship sails through Windblain's cloudy atmosphere you consider landing near Hrithfjall and asking the Ondurdis about the Blood of Surtr.`
+			`As your ship descends through Windblain's cloudy atmosphere you consider landing near Hrithfjall and asking the Ondurdis about the Blood of Surtr.`
 			choice
 				`	(Take the Blood of Surtr to Hrithfjall.)`
 					goto hrithland
 				`	(Don't visit Hrithfjall.)`
-					decline
-			`	You fly past the small settlement of Hjrithfjall without landing and continue on your way.`
+			`	You fly past Hjrithfjall without landing and continue on your way.`
+				decline
 
 			label hrithland
-			`	The pass numerous new homes built of driftwood and sea-stone as you approach the old village center of Hrithfjall. There is laughter and song in the air and children running everywhere. It is happy prosperous settlement that always seems larger every time you visit it.`
-			`	At the old village hall you find the Ondurdis and Aldfrith in conversation with a band of people who stick out here, foreigners. `
-			`	The Ondurdis's old eyes light up and she gives you a grandmotherly smile as you approach.`
-			`	She turns and motions to Aldfrith who steps over to you and asks, "Did Ran ever cry cold tears"`
-				goto aldtime
+			`	The pass numerous new homes built of driftwood and sea-stone as you approach the old village center of Hrithfjall. There is laughter and song in the air and children running everywhere; it always seems larger every time you visit it.`
+			`	At the old village hall you find the Ondurdis and Aldfrith in conversation with a band of people who quite stick out here, foreigners. The Ondurdis's old eyes light up and she gives you a grandmotherly smile as you approach.`
+			`	She turns and motions to Aldfrith who steps over to you and asks, "Did Ran ever cry cold tears?"` # Maybe needs to say hello? This is repeated later, which is confusing.
 			choice
-				`	"who are they?"`
+				`	"Who are they?"`
 					goto who
 				`	"I've come to show you something."`
 					goto something
 				`	"What do you know about other stones like the Tear of Skade?"`
-			`	"On Skade? Only Tears of Skade. But on other worlds? Maybe. Our Goddess cried, maybe others did as well? `
-				goto aldtime
+			`	"On Skade? Only Tears of Skade. But on other worlds? Maybe. Our Goddess cried, maybe others did as well?`
+				goto something
 
 			label who
-			`	The Ondurdis steps away from the group, leaving Aldfrith to continue talking with them and takes you aside.`
+			`	The Ondurdis steps away from the group and takes you aside, leaving Aldfrith to continue talking with them.`
 			`	"They are from Alfheim. They say their culture and world are dying and they look for new home before old one is gone." She pats your arm gently.`
-			`	"Word spreads of Hrithfjell and in some corners of Deep old ways still remembered. So they come." Her eyes gleam, "We are like fire on glacier. All see, all come. For warmth, for happiness, for life." `
+			`	"Word spreads of Hrithfjell and in some corners of Deep old ways still remembered. So they come." Her eyes gleam, "We are like fire on glacier. All see, all come. For warmth, for happiness, for life."`
 			`	"But, <first>, you have not come all this way to talk with old woman. What brings you here?"`
-				goto something
 
 			label something
 			`	You show her the Blood of Surtr, and tell her the story of House Drifa taking it from the Deep.`
 			`	The Ondurdis nods slowly, "I only know of Tears of Skade. Our Goddess cried, maybe others did as well?"`
-			`	She turns and motions to Aldfrith who steps over to you and asks, "Did Ran ever cry cold tears"`
+			`	She turns and motions to Aldfrith who steps over to you and asks, "did Ran ever cry cold tears?"`
 			
 			label aldtime
-			`	Aldfrith inspects the Blood of Surtr thoughtfully, and then considers The Ondurdis's words as he strokes his white beard, "The sea has no mercy, and no memory. Ran would never cry."`
-			`	He chews his lip and then says slowly, carefully, "But she did leave us scales."`
-			`	He nodes to himself and because more confident, "Long ago we would find the Scales of Rand on the beaches nearest her God-Stone. The stories say that they made a bubble of breathable air around those who carried them, and allowed us to explore the secrets of the depths."`
+			`	Aldfrith inspects the Blood of Surtr thoughtfully, and then considers the Ondurdis's words as he strokes his white beard, "The sea has no mercy, and no memory. Ran would never cry."`
+			`	He chews his lip and then says slowly and carefully, "But she did leave us scales."`
+			`	He nods to himself and becomes more confident. "Long ago we would find the Scales of Ran on the beaches nearest her God-Stone. The stories say that they made a bubble of breathable air around those who carried them, and allowed us to explore the secrets of the depths."`
 			choice
 				`	"What happened to them?"`
 				`	"Where could I find them?"`
 
-			`	Aldfrith shakes his head slowly, "In the time of my grandfather the men from the Deep came and took them off world. They said they were too valuable to belong in the hands of savages, and since then we've never found another Scale of Ran. I think she was displeased we allowed them to be taken."`
+			`	Aldfrith shakes his head slowly. "In the time of my grandfather the men from the Deep came and took them off world. They said they were too valuable to belong in the hands of savages, and since then we've never found another Scale of Ran. I think she was displeased we allowed them to be taken."`
 			`	The old man pauses for a moment and then says, "Although.. I do remember when I was a child the folk from the Deep coming and visiting us again. They had questions about.. our baubles. I think they said they did not work? They thought they were just useless charms. Perhaps the Scales stopped working?"`
-			`	He shrugs, "I am sorry <first>, that I cannot tell you more."`
+			`	He shrugs. "I am sorry, <first>, that I cannot tell you more."`
 			`	The Ondurdis puts a hand on his back, "I value your stories." She turns her attention back to you, "Maybe all God-Stones once produced wonderous stones."`
 			`	She points at the Blood of Surtr, "Maybe that is where yours came from. But more than guess we cannot provide."`
 			choice
@@ -7583,34 +7513,34 @@ mission "Blood Skadenga"
 					goto thanks
 				`	(Take your leave.)`
 
-			`	Having gleamed all you could from the Ondurdis and Aldfrith you quickly take your leave from them and Hrithfjell and head back to your ship.`
+			`	Having gleaned all you could from the Ondurdis and Aldfrith, you quickly take your leave from them and Hrithfjell and head back to your ship.`
 				decline
 
 			label thanks
 			`	You thank The Ondurdis and Aldfrith for their gracious help and interesting stories. The Ondurdis hastily makes you a meal to take with you, believing it bad manners to let you leave unfed and wishes you well in your future travels among the lofty stars.`
 				decline
 
+
 mission "Stone Thanks"
 	source "Norn"
 	on offer
 		has "Ice Queen Alt: complete"
 		conversation
-			`In the quiet creaking spaceport it's easy enough to spot Helm doing some much needed maintenance.`
+			`In the quiet, creaking spaceport, it's easy enough to spot Helm doing some much needed maintenance.`
 			choice
-				`	(Tell Helm & Tosti about the stone.)`
+				`	(Tell Helm and Tosti about the stone.)`
 					goto tell
-				`	(Leave Helm alone)`		
-			`	Helm seems busy and there is no need to report to him or anyone else what you did.`
-				decline
+				`	(Leave Helm alone.)`
+					decline
 			
 			label tell
 			`	You accidently startle Helm, who is in the middle of replacing a fraying rope.`
-			`	"Woah! <first>! No need to sneak up on me!" He stands up to greet you.`
-			`	"What's new?"`
+			`	"Woah! <first>! No need to sneak up on me!" He stands up to greet you. "What's new?"`
 			choice
 				`	"I found the Family-Cairn and left the stone there."`
 				`	"I chucked the stone out of a hatch, but it's at least on Hope now."`
 				`	"Where's Tosti?"`
+
 			`	"Ah, the lad's out on the seas. Got himself a job working on a fishing trawler. It'd likely be a few years before he'll call to port here again."`
 			`	Helm gives you a friendly smile, "Still, you've done him a good turn. I'll have a message sent to him so he knows he can rest easy."`
 			`	He returns to wrestling with the rope, "There's no money or reward, but word will spread and people here will appreciate it all the same. We on Norn, we have long memories."`
