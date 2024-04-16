@@ -1019,6 +1019,7 @@ mission "Ka'het: Patir Mystery 8B"
 	invisible
 	source "Babiali"
 	destination "Builder Settlement"
+	to offer
 		has "Ka'het: Patir Mystery 8A: offered"
 	on enter Patir
 		dialog
@@ -1797,7 +1798,7 @@ mission "Ka'het: Patir Mystery 13A"
 				`	"You want to return there?!"`
 			`	Dusk smiles. "It is my job, after all. The danger of the unknown is always a part of it, even in the simplest of missions. I do admit the risk in these past weeks was far beyond an acceptable level; but one day, we will know enough about the mess in which we have become tangled in to unravel it."`
 			label finish
-			`	The two of them accompany you to the <ship>, sitting alone in the now-quiet spaceport of <planet>. The cargo bay has been emptied of vast array of instruments that had been lying around for a while, and you guess the same has been done with the cockpit. As you walk once again up the stairway, the Remnant bid you farewell. "We have transferred <credits> as a way to express our gratitude. Of course, their worth is incomparable with the value of what you have done for us; without you, we would have never made it out alive. Goodbye for now, and may the Embers aid in your pursuits."`
+			`	The two of them accompany you to the <ship>, sitting alone in the now-quiet spaceport of <planet>. The cargo bay has been emptied of vast array of instruments that had been lying around for a while, and you guess the same has been done with the cockpit. As you walk once again up the stairway, the Remnant bid you farewell. "We have transferred <payment> as a way to express our gratitude. Of course, their worth is incomparable with the value of what you have done for us; without you, we would have never made it out alive. Goodbye for now, and may the Embers aid in your pursuits."`
 
 event "Patir returns"
 	system Patir
@@ -1876,6 +1877,6 @@ mission "Ka'het: Patir Mystery 13B"
 				`	"You want to return there?!"`
 			`	Dusk smiles. "It is my job, after all. The danger of the unknown is always a part of it, even in the simplest of missions. I do admit the risk in these past weeks was far beyond an acceptable level; but one day, we will know enough about the mess in which we have become tangled in to unravel it."`
 			label finish
-			`	The two of them accompany you to the <ship>, sitting alone in the now-quiet spaceport of <planet>. The cargo bay has been emptied of vast array of instruments that had been lying around for a while, and you guess the same has been done with the cockpit. As you walk once again up the stairway, the Remnant bid you farewell. "We have transferred <credits> credits as a way to express our gratitude. Of course, their worth is incomparable with the value of what you have done for us; without you, we would have never made it out alive. Goodbye for now, and may the Embers aid in your pursuits."`
+			`	The two of them accompany you to the <ship>, sitting alone in the now-quiet spaceport of <planet>. The cargo bay has been emptied of vast array of instruments that had been lying around for a while, and you guess the same has been done with the cockpit. As you walk once again up the stairway, the Remnant bid you farewell. "We have transferred <payment> credits as a way to express our gratitude. Of course, their worth is incomparable with the value of what you have done for us; without you, we would have never made it out alive. Goodbye for now, and may the Embers aid in your pursuits."`
 
 event "patir mystery 2 timer"
