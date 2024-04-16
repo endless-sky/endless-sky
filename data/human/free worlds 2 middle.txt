@@ -1832,7 +1832,7 @@ mission "FW Albatross 2A"
 		dialog "You have destroyed Ryk Bartlett's ship. Hopefully now the elders on Albatross will be more inclined to bargain with the Free Worlds."
 	
 	npc
-		personality disables marked plunders staying
+		personality disables plunders staying
 		system Orvala
 		government Pirate
 		fleet "Small Southern Pirates" 3
