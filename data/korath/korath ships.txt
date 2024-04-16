@@ -667,7 +667,7 @@ ship "Lor'kas Ik 577"
 	explode "large explosion" 40
 	explode "huge explosion" 50
 	"final explode" "final explosion large"
-	description "The largest of Korath production vessels are derived from a common and ancient chassis. Karek A'awoj are adapted to haul materials between refinery and factory stations. They're named after a productive colony of the Efreti, to honor their focus on peaceful industry."
+	description "The largest of Korath production vessels are derived from a common and ancient chassis. The simplest are adapted to haul materials between refinery and factory stations. Fittingly, they're named after a productive colony of the Efreti, to honor their focus on peaceful industry."
 
 
 ship "Ra'gru Ik 618"
