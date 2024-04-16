@@ -6193,10 +6193,9 @@ phrase "hostile disabled pirate"
 	word
 		"Why isn't the ship moving?!"
 		"Why aren't the engines working?"
-		"Move, you goddamned ship!"
+		"Move, you... ship!"
 		"Why aren't the guns firing?!"
-		"Come on, fire the bloody guns!"
-		"Fire! Fire! Fire the damn guns! Why aren't you firing?"
+		"Fire! Fire! Fire the stupid guns! Why aren't you firing?"
 		"The guns... they've stopped!"
 		"Weapons systems critical! What does that mean?"
 
