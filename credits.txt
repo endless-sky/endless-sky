@@ -326,6 +326,7 @@ contributed to Endless Sky:
   OverYrPaygrade
   pakyinw
   PaulBlay
+  PeacefulPotato
   pega3
   perey
   petervdmeer
