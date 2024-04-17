@@ -93,7 +93,7 @@ void MessageLogPanel::Draw()
 	pos += Point(30., -30.);
 	SpriteShader::Draw(box[importantOnly], pos);
 	Point off = Point(10., -.5 * font.Height());
-	font.Draw("Hide less important", pos + off, color[importantOnly]);
+	font.Draw("Hide less _important", pos + off, color[importantOnly]);
 	font.Draw("messages", pos + off + Point(0., 20.), color[importantOnly]);
 	AddZone(Rectangle(pos + Point(64., 10.), Point(140., 40.)), [this](){ importantOnly = !importantOnly; });
 }
@@ -120,6 +120,8 @@ bool MessageLogPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 		double direction = (key == SDLK_UP) - (key == SDLK_DOWN);
 		Drag(0., LINE_HEIGHT * direction);
 	}
+	else if(key == 'i')
+		importantOnly = !importantOnly;
 
 	return true;
 }
