@@ -519,6 +519,79 @@ event "initial deployment 3"
 		fleet "Large Republic" 800
 		fleet "Navy Surveillance" 1200
 
+
+
+mission "Central Outfitters Expansion Trigger"
+	landing
+	invisible
+	to offer
+		has "event: initial deployment 2"
+	on offer
+		event "central outfitters expansion" # 45
+
+event "central outfitters expansion"
+	planet "Earth"
+		add outfitter "Central Outfits Expansion"
+	planet "Luna"
+		add outfitter "Central Outfits Expansion"
+	planet "New China"
+		add outfitter "Central Outfits Expansion"
+	planet "New Wales"
+		add outfitter "Central Outfits Expansion"
+	planet "Heartland"
+		add outfitter "Central Outfits Expansion"
+
+mission "Central Outfitters Expansion"
+	outfitter
+	source
+		attributes "near earth" "dirt belt"
+		outfits "Tactical Scanner"
+		outfits "Volcano Afterburner"
+		outfits "Caldera Afterburner"
+		outfits "S3 Thermionic"
+		outfits "Heavy Rocket"
+		outfits "Meteor Missile"
+		outfits "Javelin"
+		outfits "Javelin Pod"
+		outfits "Javelin Mini Pod"
+		outfits "Javelin Storage Crate"
+		outfits "Small Radar Jammer"
+		outfits "Brig"
+	to offer
+		has "event: central outfitters expansion"
+		not "joined the free worlds"
+	on offer
+		conversation
+			`When you walk into <origin>'s spaceport outfitter you notice it has a raft of new outfits for sale; sensor equipment, afterburners, even new generators. To your surprise, almost all the new stock appears to be from Delta V - a company you'd usually see selling along the Southern Rim, not far up here so close to the center of the Republic. It is especially strange as Delta V Corporation is one of the major companies supporting the Free Worlds secessionists.`
+			choice
+				`	(Ask the proprietor about the new outfits.)`
+				`	(Move on.)`
+					decline
+
+			`	The proprietor's busy at his desk inside the outfitter's small office, but as you approach he gets up and acknowledges you. "Hi, how can I help you today?"`
+			choice
+				`	"How come you're selling Delta V outfits up here?"`
+				`	"It looks like you've got new stock."`
+					goto "new stock"
+				`	(Move on.)`
+					decline
+
+			`	"You're not the first to ask!" the proprietor responds overly brightly. "With piracy on the rise, the increased tensions, and - what everybody's assuming but not saying - impending conflict with the nuke-happy secessionists down in the Southern Rim, we've had a lot of requests to stock some more... specialized equipment."`
+			`	He walks you over to a crate of Javelins. "A load of this stuff comes from the Syndicate, you know. Apparently they already had a load of these missiles in production, but now that Delta V's no longer a company operating in the Republic, they've snapped up all the rights to manufacture their products!" He chuckles. "It's great for captains who rely on Delta V equipment but can't go down to the Southern Rim to restock their gear."`
+				goto end
+
+			label "new stock"
+			`	"Yes, yes we do!" He walks up to you. "Javelins, Heavy Rockets, radar jammers to ward off those pesky Lovelace Sidewinders, high-power afterburners, you name it. We've had a lot of requests to stock equipment from the Southern Rim, now with all the tension down there making it hard to do business."`
+			`	The proprietor leans in towards you a little and says in a softer tone, "But you know, it's wrong to get supplies from the people who did those bombings and killed tens of thousands of people. It's simply wrong. Morally and commercially.`
+			`	"Courtesy of Syndicated Systems, however, you can get southern gear here without supporting those secessionists! They saw an opportunity to get the rights for Delta V equipment and they took it. And you get to benefit," he chuckles.`
+
+			label end
+			`	He produces a brochure from his vest jacket and hands it to you. "Now, if you're interested in any of our new stock, just flag down one of our workers and we'll have it prepared and installed on your ship promptly.`
+			`	"I wish you safe travels," he says, and returns to his office.`
+				decline
+
+
+
 mission "Southern Carriers Trigger"
 	landing
 	invisible
