@@ -14,11 +14,11 @@
 mission "Wanderers: Mereti: The Plant 1"
 	landing
 	name "Plant to <planet>"
-	passengers 2
-	cargo "strange plant" 1
 	description "This plant seems to be of some significance to the Mereti. Bring the plant and two Wanderer 'mentors' to <destination> so that the Wanderers can try to work out how to make it grow."
 	source "Korbatri Eska"
 	destination "Vara Kehi'ki"
+	passengers 2
+	cargo "strange plant" 1
 	to offer
 		has "event: wanderers: sestor planets unrestricted"
 	on offer
@@ -54,10 +54,10 @@ mission "Wanderers: Mereti: The Plant 1"
 
 mission "Wanderers: Mereti: The Plant 2"
 	name "A Home for the Plant"
-	passengers 1
 	description "Bring Tema'a Iriket to the Korath planets she marked to determine whether any of them are a suitable home for the plant from the Mereti."
 	source "Vara Kehi'ki"
 	destination "Solima Skarati"
+	passengers 1
 	to offer
 		has "Wanderers: Mereti: The Plant 1: done"
 	on offer
@@ -79,10 +79,10 @@ mission "Wanderers: Mereti: The Plant 2"
 mission "Wanderers: Mereti: The Plant 3"
 	landing
 	name "A Home for the Plant"
-	passengers 1
 	description "Bring Tema'a Iriket to the Korath planets she marked to determine whether any of them are a suitable home for the plant from the Mereti."
 	source "Solima Skarati"
 	destination "Sopi Lefarkata"
+	passengers 1
 	to offer
 		has "Wanderers: Mereti: The Plant 2: done"
 	on complete
@@ -99,10 +99,10 @@ mission "Wanderers: Mereti: The Plant 3"
 mission "Wanderers: Mereti: The Plant 4"
 	landing
 	name "Return to <planet>"
-	passengers 1
 	description "Bring Iriket back to <destination> in order to collect the Mereti plant and bring it to <origin>."
 	source "Sopi Lefarkata"
 	destination "Vara Kehi'ki"
+	passengers 1
 	to offer
 		has "Wanderers: Mereti: The Plant 3: done"
 	on complete
@@ -157,9 +157,9 @@ event "field of mereti plants"
 mission "Wanderers: Mereti: The Plant Epilogue"
 	minor
 	invisible
+	source "Sopi Lefarkata"
 	to offer
 		has "event: field of mereti plants"
-	source "Sopi Lefarkata"
 	on offer
 		conversation
 			`As you approach <planet>, you recall that this is the planet on which you and the Wanderers planted the flower that the Mereti gave you. As you descend through the clouds, you spot a tiny blue dot in the depths of a valley, exactly where you left the Wanderers years ago.`
