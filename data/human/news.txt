@@ -2433,7 +2433,7 @@ news "Symbol War"
 			"pointedly ignored it as it happened."
 		replace
 			"%replace the crest" "replacing them"
-			"replacing them, then take down their ladders" "replacing them, then taking down their ladders"
+			"replacing them, then take down their ladders and leave" "replacing them, then taking down their ladders and leaving"
 			"%" ""
 
 news "Betelgeuse Stolen Ship Advisory"
