@@ -24,6 +24,96 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
+	const int64_t K = 1000;
+	static const vector<pair<const char *, int64_t>> WORD_NUMBERS = {
+		{ "quintillion", K * K * K * K * K * K },
+		{ "quadrillion", K * K * K * K * K },
+		{ "trillion", K * K * K * K },
+		{ "billion", K * K * K },
+		{ "million", K * K },
+		{ "thousand", K }
+	};
+	static const vector<const char *> ONES_NAMES = {
+		"zero ", "one ", "two ", "three ", "four ", "five ",
+		"six ", "seven ", "eight ", "nine ", "ten ", "eleven ",
+		"twelve ", "thirteen ", "fourteen ", "fifteen ",
+		"sixteen ", "seventeen ", "eighteen ", "nineteen "
+	};
+	static const vector<const char *> TENS_NAMES = {
+		"error", "error", "twenty", "thirty", "forty",
+		"fifty", "sixty", "seventy", "eighty", "ninety"
+	};
+
+	// This struct exists just to allow the operator<< below.
+	struct Wrapped {
+		int64_t value;
+	};
+
+	// Implementation of WordForm. Outputs the word form of the wrapped number,
+	// followed by a space.
+	ostream &operator<< (ostream &o, const Wrapped &num)
+	{
+
+		if(num.value < 0)
+			return o << "negative " << Wrapped { -num.value };
+
+		Wrapped remaining { num };
+
+		if(remaining.value >= 1000)
+			for(auto &nameValue : WORD_NUMBERS)
+				if(remaining.value >= nameValue.second)
+				{
+					Wrapped above { remaining.value / nameValue.second };
+					remaining.value %= nameValue.second;
+					o << above << nameValue.first;
+					if(!remaining.value)
+						return o;
+					o << ' ';
+				}
+
+		if(remaining.value >= 100)
+		{
+			o << ONES_NAMES[(remaining.value / 100) % 10] << "hundred ";
+			remaining.value %= 100;
+			if(!remaining.value)
+				return o;
+		}
+
+		if(remaining.value < 20)
+			return o << ONES_NAMES[remaining.value];
+
+		o << TENS_NAMES[remaining.value / 10];
+		int64_t ones = remaining.value % 10;
+		if(ones)
+			return o << '-' << ONES_NAMES[ones];
+		return o << ' ';
+	}
+
+	string MLAShorthand(int64_t value)
+	{
+		bool negative = value < 0;
+		if(negative)
+			value = -value;
+		for(size_t magnitude = 0; magnitude < WORD_NUMBERS.size() - 1; ++magnitude)
+		{
+			int64_t above = value / WORD_NUMBERS[magnitude + 1].second;
+			int64_t below = value % WORD_NUMBERS[magnitude + 1].second;
+			if(above < 1000)
+				continue;
+			if(above >= 1000000 || !(above % 1000))
+				break;
+			if(below)
+				continue;
+			const size_t BUFLEN = 100;
+			char buf[BUFLEN] = { 0 };
+			snprintf(buf, BUFLEN, "%s%.3f %s",
+				negative ? "negative " : "", above / 1000.0, WORD_NUMBERS[magnitude].first);
+			buf[BUFLEN - 1] = '\0';
+			return string(buf);
+		}
+		return string();
+	}
+
 	// Format an integer value, inserting its digits into the given string in
 	// reverse order and then reversing the string.
 	void FormatInteger(int64_t value, bool isNegative, string &result)
@@ -42,6 +132,54 @@ namespace {
 			result += '-';
 
 		reverse(result.begin(), result.end());
+	}
+
+	// Helper function for ExpandConditions.
+	//
+	// source.substr(formatStart, formatSize) contains the format (credits, mass, etc)
+	// source.substr(conditionStart, conditionSize) contains the condition name
+	//
+	// If formatStart or formatSize are string::npos, then there is no formatting.
+	//
+	// The getter() acts like ConditionsStore.Get(), providing condition values.
+	// These are passed through Format::Whatever(), and appended to the result.
+	void AppendCondition(string &result, const string &source, const Format::ConditionGetter &getter,
+		size_t formatStart, size_t formatSize, size_t conditionStart, size_t conditionSize)
+	{
+		int64_t value = getter(source, conditionStart, conditionSize);
+
+		auto IsFormat = [&source, formatStart, formatSize](const char *format)
+		{
+			return !source.compare(formatStart, formatSize, format);
+		};
+
+		if(formatStart == string::npos || formatSize == string::npos)
+			result.append(Format::Number(value));
+		else if(IsFormat("raw"))
+			result.append(to_string(value));
+		else if(IsFormat("credits"))
+			result.append(Format::CreditString(value)); // 1 credit, 2 credits, etc.
+		else if(IsFormat("scaled"))
+			result.append(Format::Credits(value)); // 35, 35k, 35M, etc.
+		else if(IsFormat("tons"))
+			result.append(Format::MassString(value)); // X tons or X ton
+		else if(IsFormat("playtime"))
+			result.append(Format::PlayTime(value)); // 3d 19h 24m 8s
+		else if(IsFormat("chicago"))
+			result.append(Format::ChicagoForm(value, false)); // thirty-three or 101
+		else if(IsFormat("Chicago"))
+			result.append(Format::ChicagoForm(value, true)); // Thirty-three or One hundred one
+		else if(IsFormat("mla"))
+			result.append(Format::MLAForm(value, false)); // thirty-three or 101
+		else if(IsFormat("Mla"))
+			result.append(Format::MLAForm(value, true)); // Thirty-three or One hundred one
+		else if(IsFormat("words"))
+			result.append(Format::WordForm(value, false)); // thirty-three or one hundred one
+		else if(IsFormat("Words"))
+			result.append(Format::WordForm(value, true)); // Thirty-three or One hundred one
+		else
+			// "number" or unsupported format
+			result.append(Format::Number(value));
 	}
 }
 
@@ -159,6 +297,10 @@ string Format::Number(double value)
 {
 	if(!value)
 		return "0";
+	else if(std::isnan(value))
+		return "???";
+	else if(std::isinf(value))
+		return value > 0. ? "infinity" : "-infinity";
 
 	string result;
 	bool isNegative = (value < 0.);
@@ -219,9 +361,78 @@ string Format::Decimal(double value, int places)
 
 
 
+string Format::WordForm(int64_t value, bool startOfSentence)
+{
+	ostringstream o;
+	o << Wrapped { value };
+	string result = o.str();
+	if(result.size() > 0 && result[result.size() - 1] == ' ')
+		result.resize(result.size() - 1);
+	if(!result.empty() && startOfSentence && result[0] >= 'a' && result[0] <= 'z')
+		result[0] -= 32;
+	return result;
+}
+
+
+
+// Chicago manual of style
+string Format::ChicagoForm(int64_t value, bool startOfSentence)
+{
+	if(startOfSentence)
+		return WordForm(value, true);
+	if(value < 1000 && value > -1000 && ! (value % 100))
+		return WordForm(value, startOfSentence);
+	int64_t above = value, below = 0;
+	for(int i = 0; above && i < 6; i++)
+	{
+		if(below)
+			break;
+		else if(above < 100 && above > -100)
+			return WordForm(value, startOfSentence);
+		else if(above < 1000 && above > -1000 && !(above % 100))
+			return WordForm(value, startOfSentence);
+		below = above % 1000;
+		above /= 1000;
+	}
+	return Format::Number(value);
+}
+
+
+
+// MLA Handbook style
+string Format::MLAForm(int64_t value, bool startOfSentence)
+{
+	if(startOfSentence)
+		return WordForm(value, true);
+	if(value >= -99 && value <= 99)
+		return WordForm(value, startOfSentence);
+
+	// 21350000 => 21.35 million
+	string shorthand = MLAShorthand(value);
+	if(!shorthand.empty())
+		return shorthand;
+
+	int64_t above = value, below = 0;
+	for(int i = 0; above && i < 6; i++)
+	{
+		if(below)
+			break;
+		else if(above <= 10 && above >= -10)
+			return WordForm(value, startOfSentence);
+		else if(above < 100 && above > -100 && !(above % 10))
+			return WordForm(value, startOfSentence);
+		below = above % 1000;
+		above /= 1000;
+	}
+	return Format::Number(value);
+}
+
+
+
 // Convert a string into a number. As with the output of Number(), the
 // string can have suffixes like "M", "B", etc.
 // It can also contain spaces or "," as separators like 1,000 or 1 000.
+// Does not support parsing NaN or infinite values.
 double Format::Parse(const string &str)
 {
 	double place = 1.;
@@ -388,4 +599,126 @@ vector<string> Format::Split(const string &str, const string &separator)
 			break;
 	}
 	return result;
+}
+
+
+
+string Format::ExpandConditions(const string &source, const ConditionGetter &getter)
+{
+	// Optimization for most common case: no conditions
+	if(source.find('&') == string::npos)
+		return source;
+
+	string result;
+	result.reserve(source.size());
+
+	size_t formatStart = string::npos;
+	size_t formatSize = string::npos;
+	size_t conditionStart = string::npos;
+	size_t conditionSize = string::npos;
+
+	// Hand-coded regular grammar parser for:
+	//	&[format@condition]
+	//	&[condition]
+	// Using these states:
+	//	state = _ ----- outside of all &[] regions
+	//	state = & ----- just read & and hoping to see a [
+	//	state = [ ----- read &[ but haven't seen @ or ] yet
+	//	state = N ----- inside a nested [] of depth `depth`
+	//	state = @ ----- read &[...@ but haven't seen ] yet. Have format start & size.
+
+	// Anything inside a &[...] is sent to AppendCondition
+
+	static const char OUTER = '_';
+	static const char PREFIX = '&';
+	static const char LPAREN = '[';
+	static const char RPAREN = ']';
+	static const char DIVIDER = '@';
+	static const char NESTED = 'N';
+
+	char state = OUTER;
+	// Depth of nested [] within the &[...]
+	int depth = 0;
+	// State before entering the nested []
+	char oldState = LPAREN;
+	// "start" is the beginning of the text that has not yet been sent to result.
+	size_t start = 0;
+	for(size_t look = 0; look < source.size(); ++look)
+	{
+		char next = source[look];
+		// This would be faster with a nested select, but that would be
+		// harder to read, and I don't expect this to be performance-critical.
+		if(state == OUTER && next == PREFIX)
+		{
+			if(look > start)
+			{
+				result.append(source, start, look - start);
+				start = look;
+			}
+			state = PREFIX;
+		}
+		else if(state == OUTER || (state == PREFIX && next != LPAREN))
+			// Accumulate one character to print outside of any &[@]
+			state = OUTER;
+		else if(state == PREFIX && next == LPAREN)
+		{
+			formatStart = formatSize = conditionStart = conditionSize = string::npos;
+			state = LPAREN;
+		}
+		else if(state == LPAREN && next == DIVIDER)
+		{
+			formatStart = start + 2;
+			formatSize = look - formatStart;
+			state = DIVIDER;
+		}
+		else if(state == DIVIDER && next == RPAREN)
+		{
+			conditionStart = formatStart + formatSize + 1;
+			conditionSize = look - conditionStart;
+			AppendCondition(result, source, getter, formatStart, formatSize,
+				conditionStart, conditionSize);
+			start = look + 1;
+			state = OUTER;
+		}
+		else if((state == LPAREN || state == DIVIDER) && next == LPAREN)
+		{
+			oldState = state;
+			state = NESTED;
+			depth = 1;
+		}
+		else if(state == NESTED && next == LPAREN)
+			depth++;
+		else if(state == NESTED && next == RPAREN && depth > 1)
+			depth--;
+		else if(state == NESTED && next == RPAREN && depth == 1)
+			state = oldState;
+		else if(state == LPAREN && next == RPAREN)
+		{
+			conditionStart = start + 2;
+			conditionSize = look - conditionStart;
+			AppendCondition(result, source, getter, formatStart, formatSize,
+				conditionStart, conditionSize);
+			start = look + 1;
+			state = OUTER;
+		}
+		else if(!(state == LPAREN || state == DIVIDER || state == NESTED))
+		{
+			// Error in format string.
+			result.append(source, start, look - start + 1);
+			start = look + 1;
+			state = OUTER;
+		}
+	}
+	if(start < source.size())
+		result.append(source, start, string::npos);
+	return result;
+}
+
+
+
+int Format::Search(const string &str, const string &sub)
+{
+	auto it = search(str.begin(), str.end(), sub.begin(), sub.end(),
+		[](char a, char b) { return toupper(a) == toupper(b); });
+	return (it == str.end() ? -1 : it - str.begin());
 }

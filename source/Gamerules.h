@@ -33,6 +33,11 @@ public:
 	int PersonSpawnPeriod() const;
 	int NoPersonSpawnWeight() const;
 	int NPCMaxMiningTime() const;
+	double UniversalFrugalThreshold() const;
+	double DepreciationMin() const;
+	double DepreciationDaily() const;
+	int DepreciationGracePeriod() const;
+	int DepreciationMaxAge() const;
 
 
 private:
@@ -40,6 +45,11 @@ private:
 	int personSpawnPeriod = 36000;
 	int noPersonSpawnWeight = 1000;
 	int npcMaxMiningTime = 3600;
+	double universalFrugalThreshold = .75;
+	double depreciationMin = 0.25;
+	double depreciationDaily = 0.997;
+	int depreciationGracePeriod = 7;
+	int depreciationMaxAge = 1000;
 };
 
 

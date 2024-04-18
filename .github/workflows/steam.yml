@@ -1,13 +1,10 @@
 name: Steam
 
 on:
-  push:
-    branches:
-      - master
-      - releases/v[0-9]+.[0-9]+.[0-9]+
+  workflow_dispatch:
 
 concurrency:
-  group: ${{ github.ref }}-${{ github.workflow }}-${{ github.event_name }}
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
   cancel-in-progress: true
 
 jobs:
@@ -27,7 +24,9 @@ jobs:
       runtime: steam-container-runtime.tar.gz
       platform: com.valvesoftware.SteamRuntime.Platform-amd64,i386-sniper-runtime.tar.gz
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
+      with:
+        show-progress: false
 
     # Build the binary
     - name: Save Steam runtime version
@@ -42,10 +41,13 @@ jobs:
 
     # Test the binary
     - name: Install runtime dependencies
-      run: sudo apt-get install -y --no-install-recommends libosmesa6 mesa-utils
+      run: |
+        sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
+        sudo apt-get update
+        sudo apt-get install -y --no-install-recommends libosmesa6 mesa-utils
     - name: Restore cached Steam Runtime environment
       id: cache-runtime
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: |
           ${{ env.runtime }}
@@ -63,15 +65,15 @@ jobs:
     - name: Verify executable
       run: ./steam-container-runtime/depot/run-in-sniper ./build/steam-${{ matrix.arch }}/endless-sky -- -v
     - name: Execute data parsing test
-      run: ./steam-container-runtime/depot/run-in-sniper ./utils/test_parse.sh -- ./build/steam-${{ matrix.arch }}/endless-sky
+      run: ./steam-container-runtime/depot/run-in-sniper ./build/steam-${{ matrix.arch }}/endless-sky -- -p
     - name: Execute integration data parsing test
-      run: ./steam-container-runtime/depot/run-in-sniper ./utils/test_parse.sh -- ./build/steam-${{ matrix.arch }}/endless-sky tests/integration/config
+      run: ./steam-container-runtime/depot/run-in-sniper ./build/steam-${{ matrix.arch }}/endless-sky -- -p --config tests/integration/config
     - name: Execute tests
       run: |
         cd steam
         docker-compose run test-steam-${{ matrix.arch }}
     - name: Upload artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: binary-steam-${{ matrix.arch }}
         path: build/steam-${{ matrix.arch }}/endless-sky

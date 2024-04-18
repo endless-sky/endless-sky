@@ -60,9 +60,9 @@ public:
 public:
 	Conversation() = default;
 	// Construct and Load() at the same time.
-	Conversation(const DataNode &node, const std::string &missionName = "");
+	Conversation(const DataNode &node);
 	// Read or write to files.
-	void Load(const DataNode &node, const std::string &missionName = "");
+	void Load(const DataNode &node);
 	void Save(DataWriter &out) const;
 	// Check if any data is loaded in this conversation object.
 	bool IsEmpty() const noexcept;
@@ -159,8 +159,7 @@ private:
 		std::vector<Element> elements;
 		// This distinguishes "choice" nodes from "branch" or text nodes. If
 		// this value is false, a one-element node is considered text, and a
-		// node with more than one element is considered is considered a
-		// "branch".
+		// node with more than one element is considered a "branch".
 		bool isChoice;
 		// Keep track of whether it's possible to merge future nodes onto this.
 		bool canMergeOnto;
