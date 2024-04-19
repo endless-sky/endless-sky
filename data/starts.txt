@@ -194,7 +194,7 @@ event "not from boston"
 
 event "grew up on greenwater"
 	planet "Greenwater"
-		description `Greenwater is unique among Hai worlds, not only in that it is home to a sizable human population, but also because it happens to be the world where you grew up. Most of the humans here live on the islands and archipelagoes across the equator of Greenrock where the Hai seldom visit on account of their fur coats, but from what you hear from humans who have come from "beyond the wormhole," the climate of Greenwater is like a "Paradise Planet", even without terraforming.`
+		description `Greenwater is unique among Hai worlds, not only in that it is home to a sizable human population, but also because it happens to be the world where you grew up. Most of the humans here live on the islands and archipelagoes across the equator of Greenrock where the Hai seldom visit on account of their fur coats. From what you hear from humans who have come from beyond the wormhole, the climate of Greenwater is like a "Paradise Planet", even though it lacks the extensive terraforming common to those worlds..`
 		description `	While farming and fishing make up most of the human-centered economy here, a few merchants trade with the Hai up in the poles where the spaceport is located.`
 
 substitutions
