@@ -2480,11 +2480,17 @@ mission "Stone of our Fathers 1"
 					goto ser
 					to display
 						not "Stone of our Fathers: ser"
+				`	"Does 'ser' just apply to men?"`
+					goto "ser 2"
+					to display
+						has "Stone of our Fathers: ser"
+						not "Stone of our Fathers: ser 2"
 				`	(Shake my head. I have better things to do than bus old men around.)`
 					goto decline
 
 			action
 				clear "Stone of our Fathers: ser"
+				clear "Stone of our Fathers: ser 2"
 			`	He nods, grunts, and heads to your ship with a small knapsack cradled under his arm, clearly ready to travel to <planet> at a moment's notice.`
 				accept
 
@@ -2495,9 +2501,16 @@ mission "Stone of our Fathers 1"
 			`	He pauses for a moment as if reflecting on this, then says, "Well, what do you say? <payment> for transportation to <planet>?"`
 				goto choice
 
+			label "ser 2"
+			action
+				set "Stone of our Fathers: ser 2"
+			`	The old man narrows his eyes at you and his mouth falls slightly open like he's trying to make sense of a puzzle. Finally he says, "What's the bits between a fella's legs gotta do with anything? I already said, 'Ser' is just what decent folk call each other; ain't nothing more to it. Don't matter if you're a guy, gal, or anything else. Hel, I reckon I'd even call an elf 'Ser' if they done me a good turn."`
+				goto choice
+
 			label decline
 			action
 				clear "Stone of our Fathers: ser"
+				clear "Stone of our Fathers: ser 2"
 			`	With a disappointed look on his face, he nods once and slides back into the endless sea of people.`
 				decline
 
