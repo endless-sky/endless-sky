@@ -2551,7 +2551,7 @@ mission "Terminus exploration"
 				`	"How strong of a threat is the pirate fleet?"`
 				`	"Sorry, I don't have time to help you."`
 					decline
-			`	"Just a couple of interceptors," he says. "We were in a scout ship, with no real weapons to speak of, and none of us on the ship have any combat experience. So, we felt it was safer to run away than to try to fight, even though we were leaving valuable equipment behind."`
+			`	"Just a couple of interceptors," he says. "We were in a Scout, with no real weapons to speak of, and none of us on the ship have any combat experience. So, we felt it was safer to run away than to try to fight, even though we were leaving valuable equipment behind."`
 			choice
 				`	"That doesn't sound like much of a threat. I'd be glad to help."`
 				`	"Sorry, I don't want to help with this."`
