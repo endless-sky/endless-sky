@@ -3943,7 +3943,7 @@ mission "Human to Hai Space"
 				`	"Sorry, I have other pressing matters."`
 					goto end
 			`	You spend a long evening with them, talking about your experience in human space and what you did here before going. "You are sort of like your father," Yeerto comments, before telling you about the local news here.`
-			`	It begins to get dark, and you realize that it may be time to head back to your ship.`
+			`	It begins to get dark, and after a final goodbye you head back to your ship.`
 
 
 
