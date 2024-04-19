@@ -6916,9 +6916,9 @@ mission "Timothy Radrickson 1: Stowaway"
 				`	(Ignore the sensor.)`
 
 			action
+				fail
 				event "timothy radrickson: mummy" 41
 			`	It's almost certainly nothing, and you have more important things to do than chase down every little sensor glitch on your ship.`
-				fail
 
 			label check
 			`	After a short search, and the rearranging of quite a few deceptively heavy boxes, you are able to track the heat signature to a to be a foodstuff crate you recently took on. It has yet to be opened, but you can already tell its seal has been tampered with.`
