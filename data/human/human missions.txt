@@ -7073,11 +7073,13 @@ mission "Timothy Radrickson 3a: Rescue the Convoy"
 		has "Timothy Radrickson 3: Invitation to Rand: done"
 	on offer
 		conversation
-			`...` # Meet Tim (maybe at his mansion), comment on his lifestyle, he talks about big convoy, oops convoy gets nabbed by some cheeky marauders
+			`...`
+			# Meet Tim (maybe at his mansion), comment on his lifestyle, he talks about big convoy, oops convoy gets nabbed by some cheeky marauders
 
 	on complete
 		conversation
-			`...` # Track down the place where the marauders hid the ships, maybe...
+			`...`
+			# Track down the place where the marauders hid the ships, maybe...
 
 	npc kill
 		system "Shaula"
@@ -7086,25 +7088,29 @@ mission "Timothy Radrickson 3a: Rescue the Convoy"
 		fleet "Marauder fleet X" 2
 
 
-mission "Timothy Radrickson 3d: Return to Rand"
+mission "Timothy Radrickson 3b: Escort the Convoy"
 	landing
 	source "Greenrock"
 	destination "Wayfarer"
 	to offer
 		has "Timothy Radrickson 3a: Rescue the Convoy: done"
-	on offer
-		conversation
-			`...` # Convoy got loaded up with new goods or something?
+#	on offer
+#		conversation
+#			`...`
+# Maybe not necessary; depends if you want this mission to be found from the spaceport after you complete 3a.
+
 	on complete
 		conversation
-			`...` # Probably here you could have someone tell you that you're invited to an awards ceremony.
+			`...`
+			# Convoy got loaded up with new goods or something?
+			# Probably here you could have someone tell you that you're invited to an awards ceremony.
 
 mission "Timothy Radrickson 3c: Return to Rand"
 	landing
 	source "Wayfarer"
 	destination "Rand"
 	to offer
-		has "Timothy Radrickson 3: Invitation to Rand: done"
+		has "Timothy Radrickson 3b: Escort the Convoy: done"
 	on complete
 		conversation
 			`...`
