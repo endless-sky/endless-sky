@@ -7049,20 +7049,23 @@ event "timothy radrickson: governor"
 # You fly off, find a marauder/pirate fleet, destroy them, save the freighter fleet, go back to Rand and then Tim holds a swanky dinner and names you Hero of Rand.
 
 
-mission "Timothy Radrickson 3: Invitation to Rand"
-	landing
-	name "Meet Tim on <planet>"
-	description "..."
+mission "Timothy Radrickson 3: Governor Notification"
+	name "Visit the Govenor on <planet>"
+	description "The Governor of <planet> has invited you to speak with them."
 	to offer
 		has "event: timothy radrickson: governor"
 	destination "Rand"
+	landing
 	on offer
 		conversation
-			`...`
+			`An indicator light is blinking on your main panel. There is a cached message waiting for you to play.`
+			choice
+				`	(Play the message.)`
+			`	A young woman in very professional clothing appears on the screen. "Captain <last>, I am pleased to inform you that the Governor of Rand requests your presence. Please come to Rand at your earliest convenience.`
 
 	on complete
 		conversation
-			`...` # Maybe just copy Regina from down there?
+			`Upon landing you are met by a squat, heavy-set woman in her late 40s. She reaches out a calloused hand to shake yours. "Welcome to Rand, Captain <last>. It is a pleasure, and honor, to have someone of your status here on our little world. I am Regina, the Mayor of the spaceport town, and one of the major company-bosses here. I've been instructed to escort you to the Governor's mansion. I have a vehicle waiting for you just outside the spaceport. Meet me there when you're ready."`
 
 mission "Timothy Radrickson 3a: Rescue the Convoy"
 	name "Rescue the <origin> convoy fleet"
@@ -7073,11 +7076,85 @@ mission "Timothy Radrickson 3a: Rescue the Convoy"
 		has "Timothy Radrickson 3: Invitation to Rand: done"
 	on offer
 		conversation
-			`...` # Meet Tim (maybe at his mansion), comment on his lifestyle, he talks about big convoy, oops convoy gets nabbed by some cheeky marauders
+			`Regina, her driver, and a black sleek vehicle are all waiting for you aside the worn down and substandard spaceport. You slide into the comfortable seating and look out the window as the dry, ugly landscape of Rand passes you by. From time to time you see a strip mine or a camp of workers' barracks, but rarely anything else. Behind your vehicle there is a huge plume of half-frozen dust. Apparently low gravity and dust is a terrible combination.`
+			`	After an hour of driving you notice the landscape suddenly shift. The first tendrils of greenery invades the otherwise brown-yellow desert. Upon closer inspection, the green plants are accompanied by all manner of technology to help and promote their growth. Money, it seems, is turning just a little bit of this parched place green.`
+			`	Beyond the suddenly green hills sits a huge sprawling complex. You recognize a few massive structures outside the building as artificial gravity drives; the same sort of drives ships use to maintain gravity onboard, but for an entire estate.`
+			choice
+				`	(Say nothing.)`
+					goto nothing
+				`	(Ask about the artificial gravity drives.)`
+
+			`	Regina flashes a toothy smile. "The gravity here, it is... taxing. The governor's mansion, and a few other important buildings and housing complexes, use artificial gravity drives to make things more manageable for us hard working servants of the state." The way she says, "servants of the state" makes it sound like some kind of inside joke. She turns away from you before you have a chance to say anything else.`
+			label nothing
+
+			`	The vehicle pulls up to a grandiose entrance near the center of the huge structure. An attendant opens the door, and you're ushered outside the vehicle.`
+			`	Regina does not get out. She smiles politely through the opened door. "Only you were invited to enter the Governor's Mansion. I am afraid this as far as I am allowed to go. Take care, Captain <last>, it truly was an honor meeting you.`
+			`	With that the door shuts, and a few moments later the black vehicle departs, leaving you and the attendant at Mansion's entrance.`
+			`	The attendant bows deeply. "Please, Captain <last>. If you would follow me." He turns and heads into the building.`
+			choice
+				`	(Follow the attendant.)`
+
+			`	Upon entering the mansion you feel your weight shift. It's still a little less than 1g, but close. There's a young well-dressed woman, the same who you saw in your message, waiting for you inside. The attendant leaves you with her.`
+			`	The woman smiles pleasantly. "We are all so pleased you could make it here. Forgive me for not meeting you outside, but I find the gravity of this world distressing. I am Wynnafrith, the governor's executive assistant, and will be pleased to announce that you are here.`
+			`	Wynnafrith says a few quiet words into an intercom, and a door behind her opens. "The Governor is ready for you."`
+			choice
+				`	(Enter the room.)`
+
+			`	You enter a large richly furnished room. At the center of the room is an imposing desk, with a slightly graying man seated behind it. There is something immediately familiar about his face.`
+			`	"Ah, Captain <last>. At last we can meet face to face, and I can thank you properly." The Governor stands. "You may not remember me, it has been some years since you last laid eyes on me, and," the governor gestures to himself, "I looked quite different back then."`
+			`	"I was a stowaway on your ship. You found me in a food crate, and you took me here. I'm Timothy Radrickson, Governor Timothy Radrickson now."`
+			`	Timothy sits back down and indicates that you should do the same. "It took me some time. But through some good decisions, and quite a bit of luck, I've been able to claw my way to a level of respectability and wealth. I've really been able to make something of myself."`
+			`	His face opens up into a large grin. "Then again, compared to what you've done in all this time, my successes hardly register. Still, as meager as they may be, I owe it all to you and your kind gesture. Which is why I've invited you here, to thank you and pay you back properly."`
+			`	Timothy taps a display on his desk, "First, I am trasnfering 125,000 credits to your account to pay you back for the crate of food, the fuel, and the additional expenses of taking care of me on your ship, plus interest, of course."`
+			choice
+				`	(Accept the money.)`
+					goto moneyaccept
+				`	(Refuse the money.)`
+			`	You begin to refuse the generous offer, but Timothy holds up a hand to stop you. "I am doing quite well, and this discharges a debt that has been weighing on me. Besides, the money's already been sent!"`
+			label moneyaccept
+			`	Timothy pulls out a bottle beneath his desk and two glass cups. "To celebrate our reunion."`
+			`	He pours the brown liquid in the cups and pushes one to you. "Things have gone well for me, and are only going to get better from here on out."`
+			`	He takes a sip, "We've just launched our largest freighter fleet to date." He sits back in his desk, relaxed, and gets a dreamy look in his eyes, "When it returns from Wayfarer the government of Rand will finally have enough credits to make some real changes around here. Give something back to the working man."`
+			choice
+				`	(Congratulate Timothy)`
+				`	(Take a sip from your glass.)`
+				`	(Complain about the living standards of workers on Rand.)`
+				`	(Complain about hand outs for the poor of Rand.)`
+			`	His eyes refocus on you, "You'd be proud, <first>. I am going to make a real difference here..."`
+			`	Timothy is suddenly interrupted by a blarring alarm coming from his desk. He glowers and then sits up straight, turns on his ear piece and answers the call. `
+			`	"What?!" He nearly shouts after a moment of listening, and then, "How can that be?" and finally, "What about the Navy, where are they!?"`
+			`	His face goes from red to white as the color drains out of him, and he finishes the call with a few unhappy, "uh huhs" before finally hanging up.`
+			`	"Nevermind." He rubs his forehead, "Rand's future is gone. It's just been hijacked by marauders."`
+			`	He stands up and starts pacing, "I am sorry. We're going to have to cut this reunion short. Our freighter fleet, filled to the brim with all of Rand's wealth has been taken. To make matters worse in order to make this shipment happen I had to hire a private outfit from the Deep, and the Republic Navy is not going to intervene on their behalf. Which means this entire world, and myself, are finished." `
+			`	He collapses back in his chair with his head in his hands. "I am sorry. There will be a car waiting for you at the entrance."`
+			choice
+				`	(Offer to help.)`
+					goto helptim
+				`	(Apologize for his perdiciment, and leave.)`
+				`	(Leave without saying anything.)`
+			`	With that the doors behind you open back up, and you are led back outside to a waiting vehicle. You ride it in silence through the dust-thick landscape back to the dirty, shabby spaceport where your ship awaits.`
+				decline
+			
+			label helptim
+			`	 Timothy jerks up to look at you, his eyes wide and searching, "Really? I... Rand... we don't have anything left to pay you, and who knows how dangerous those marauders are... but we'll take any help we can get if you're up for it."`
+			choice
+				`	(Agree to help.)`
+					goto agreehelp
+				`	(Back out.)`
+			`	The light drains from his eyes and he nods tiredly, "I understand."`
+			`	With that the doors behind you open back up, and you are led back outside to a waiting vehicle. You ride it in silence through the dust-thick landscape back to the dirty, shabby spaceport where your ship awaits.`
+				decline
+
+			label agreehelp
+			`	Color returns to Timothy's face and he immediately straightens up,"Hroar's Haulers were contracted to our freight to Wayfarer. We lost contact with them in the Peacock system. My best guess is they've taken the ships to Greenrock." `
+			`	He frowns as he considers something, "With a haul that big the system is likely swarming with pirates. But if you hurry you might be able to get there before they've had time to move the goods or deal with their crews."`
+			`	Timothy hits a few more buttons on his display screen, "I've just sent your ship tracking coordinates for our fleet. It should help you find them once you're in Greenrock's atmosphere."`
+			`	"I am sorry I can't offer you more help." He stands up and hits the button opening up the exit door. "But, please, save that fleet."`
+
 
 	on complete
 		conversation
-			`...` # Track down the place where the marauders hid the ships, maybe...
+			`	Your ship's computer picks up the fleet's tracking signal and identifies a large bay on the outskirts of their spaceport as their location.`
 
 	npc kill
 		system "Shaula"
@@ -7094,10 +7171,55 @@ mission "Timothy Radrickson 3d: Return to Rand"
 		has "Timothy Radrickson 3a: Rescue the Convoy: done"
 	on offer
 		conversation
-			`...` # Convoy got loaded up with new goods or something?
+			`The sky burns red as detritus from the fierce battle rains down on Greenrock. There is a wild panic in the spaceport as the majority of home pirate fleet was just anhilated over head.`
+			`	In the ensuing chaos no one notices as you approach the secluded bay.`
+			choice
+				`	(Enter the Bay.)`
+			`Inside the bay's walls you can make out the moored, and apparently intact freight fleet. The ships are surrounded by various loaders, but they appear to have been abandoned before they could begin the process of offloading the goods. The pirates must have all raced to their ships when you entered the system.`
+			`"And where do you think you're going?" A voice barks from what looks like a control room. A moment later there are three guards with guns trained on you.`
+			choice
+				`	"My mistake. I must have parked my ship somewhere else."`
+				`	"What a lovely little bay you have here. I was just telling my partner we should buy one just like this."`
+				`	"Didn't you guys hear what is going on? Let's loot this stuff before anyone comes looking for it!"`
+				`	"Is this where the bathroom is?"`
+				`	(Say nothing.)`
+			`	Before the pirate guards have a chance to respond there's the sound of thuds and they fall lifelessly to the floor. From behind them a woman and couple of men in red jackets appear.`
+			`	The woman, who is wearing a Captain's hat with two H's next to each other looks at you and then nods, "Thanks for the distraction. Been waitin' for the right moment to move."`
+			`	She flashes you relucent smile, "Name's Hrodny, Capt'n Hrodny of Hroar's Haulers." She looks back at the men accompanying her, whistles, and points toward the ships. They turn and run toward them."`
+			`	Hrodny turns her green piercing green eyes back on you, "We can get 'em in the air, but we can't fight past whatever is out there. I'm presuming you're not a lost tourist and are in fact our cavalry?"`
+			choice
+				`	"Don't worry. I took out the fleet, and I'll escort you to Wayfarer."`
+				`	"It's your lucky day, I'm Captain <last>, of the <ship>. Get you to Wayfarer will be a piece of cake."`
+				`	"I've been sent to get you to Wayfarer, and that's what I will do."`
+				`	"You do your job. I'll do mine."`
+
+			`	Hrodney gives you a feral grin, "Great. We weren't too keen on stickin' around these parts anyhow." `
+			`	She looks back at her ships, where there is now a flurry of activity. "Ya know, those pirates parked us right in the middle of their treasure chest. It'd be rude not take advantage of their hospitality." `
+			`	You notice the loaders behind Hrodny whirring around and moving all sorts of goods into the ships. `
+			`	Hrodny winks at you, "Hazard pay." `
+			`	"You head back your ship, by the time you get there we'll be ready to launch. We'll follow ya out."`
+			`	She gives you a final mock salute and then turns and jogs toward her ships.`
+			`	There's nothing for you to do but head back toward yours.`
+
 	on complete
 		conversation
-			`...` # Probably here you could have someone tell you that you're invited to an awards ceremony.
+			`The Freighter Fleet sets down to some minor fanfare. There are likely more than a few middlemen here who would have been hardpressed by the loss of the fleet.`
+			`	Not to long after setting down Captain Hrodny seeks you out.`
+			`	"Didn't have much time back there for pleasentries, but gotta say I am mighty thankful you showed up when you did."`
+			`	She extends her hand to you.`
+			choice
+				`	(Shake Hrodny's hand.)`
+					goto shake
+				`	(Don't shake her hand.)`
+			`	She shrugs and withdraws her hand, "different customs I suppose."`
+				goto nextup
+			label shake
+			`	Her hand vigorously shakes yours.`
+			label nextup
+			`	"Gotta say you handled yourself well out there. Always good to see a Capt'n worth more than dust on their boots." She gives you an approving nod.`
+			`	"I got word from Rand they are more than a little pleased with your heroics. They'd like you to head on over there when you can. Probably have some credits or a photo op or something waiting for you."`
+			`	She shrugs, and winks, "Anyways, I got plenty of work that needs doing. Take care of your self Capt'n."`
+			`	With that she heads back to her freight fleet.`
 
 mission "Timothy Radrickson 3c: Return to Rand"
 	landing
@@ -7125,7 +7247,6 @@ mission "Timothy Radrickson 3: Governor Notification"
 			choice
 				`	(Play the message.)`
 			`	A young woman in very professional clothing appears on the screen. "Captain <last>, I am pleased to inform you that the Governor of Rand has invited you to attend an award ceremony in your honor. Please come to Rand at your earliest convenience.`
-			# Probably have the player question it, something like "You're not sure why the Governor of Rand would host an award ceremony for you, but the message came from a verified, Republic/Free Worlds source."
 
 	on complete
 		conversation
