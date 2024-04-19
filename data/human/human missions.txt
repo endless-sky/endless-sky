@@ -7018,10 +7018,10 @@ mission "Timothy Radrickson 2: Interlude"
 
 
 mission "Timothy Radrickson 2: Good Interlude"
-	to offer
-		has "event: timothy radrickson: on rand"
 	landing
 	invisible
+	to offer
+		has "event: timothy radrickson: on rand"
 	on offer
 		payment 50000
 		event "timothy radrickson: governor" 3600
@@ -7042,6 +7042,76 @@ mission "Timothy Radrickson 2: Good Interlude"
 event "timothy radrickson: governor"
 
 
+# Plan:
+# Tim invites the PC to come and visit him on Rand. He takes you to his governor palace, thanks you for all you did, gives you 125,000 for giving him a ride all those years ago. 
+# He talks about how Rand just sent out the largest mineral freighter fleet ever to New Britain, and when it returns the colony will finally have enough money to start taking care of it self... 
+# When.. uh oh the frieghters have lost communication or sent out a distress signal or something, and you offer to help. 
+# You fly off, find a marauder/pirate fleet, destroy them, save the freighter fleet, go back to Rand and then Tim holds a swanky dinner and names you Hero of Rand.
+
+
+mission "Timothy Radrickson 3: Invitation to Rand"
+	landing
+	name "Meet Tim on <planet>"
+	description "..."
+	to offer
+		has "event: timothy radrickson: governor"
+	destination "Rand"
+	on offer
+		conversation
+			`...`
+
+	on complete
+		conversation
+			`...` # Maybe just copy Regina from down there?
+
+mission "Timothy Radrickson 3a: Rescue the Convoy"
+	name "Rescue the <origin> convoy fleet"
+	description "<origin>'s largest ever convoy was intercepted on its way to Tarazed. Merchants sighted a large pirate fleet in Delta Sagittarii."
+	source "Rand"
+	destination "Greenrock"
+	to offer
+		has "Timothy Radrickson 3: Invitation to Rand: done"
+	on offer
+		conversation
+			`...` # Meet Tim (maybe at his mansion), comment on his lifestyle, he talks about big convoy, oops convoy gets nabbed by some cheeky marauders
+
+	on complete
+		conversation
+			`...` # Track down the place where the marauders hid the ships, maybe...
+
+	npc kill
+		system "Shaula"
+		government "Pirate"
+		personality staying nemesis target
+		fleet "Marauder fleet X" 2
+
+
+mission "Timothy Radrickson 3d: Return to Rand"
+	landing
+	source "Greenrock"
+	destination "Wayfarer"
+	to offer
+		has "Timothy Radrickson 3a: Rescue the Convoy: done"
+	on offer
+		conversation
+			`...` # Convoy got loaded up with new goods or something?
+	on complete
+		conversation
+			`...` # Probably here you could have someone tell you that you're invited to an awards ceremony.
+
+mission "Timothy Radrickson 3c: Return to Rand"
+	landing
+	source "Wayfarer"
+	destination "Rand"
+	to offer
+		has "Timothy Radrickson 3: Invitation to Rand: done"
+	on complete
+		conversation
+			`...`
+			
+
+
+# This mission isn't in the new line
 mission "Timothy Radrickson 3: Governor Notification"
 	name "Award ceremony on <planet>"
 	description "The Governor of <planet> has apparently invited you to attend an award ceremony in your honor."
