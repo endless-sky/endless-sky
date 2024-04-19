@@ -16,9 +16,12 @@ mission "Kestrel Testing"
 	description "Travel to the <waypoints> system to fight and disable a prototype warship that Tarazed Corporation is testing. Do not destroy the ship, or you will lose your payment and your opportunity to buy one."
 	source "Wayfarer"
 	waypoint "Umbral"
+	# The Kestrel is a secret that can only be unlocked after completing the rest of the game. Combat rating is used to track gameplay progression.
+	# After finding the Kestrel once, the threshold is lowered so players can use the ship during the human campaign on a later playthrough.
+	# Any requests to reduce the requirements will be rejected.
 	to offer
 		or
-			"combat rating" > 8000
+			"combat rating" > 6000
 			and
 				"combat rating" > 2000
 				has "global: unlocked kestrel"
