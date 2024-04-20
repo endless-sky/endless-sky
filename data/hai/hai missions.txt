@@ -320,7 +320,7 @@ mission "Returning Home"
 			label clothe
 			`	"That's weird. Your clothes don't look like most do here," he says.`
 			label outsider
-			`	You explain to him that these clothes used to belong to your father, who was a merchant from human space; your mother kept some for you when he left. You add that while you may not have been born in human space, your family made sure you learned about the origins of your species; you know human space like the back of your hand.`
+			`	You explain to him that these clothes used to belong to your father, who was a merchant from human space; your mother kept some for you when he left.`
 				to display
 					has "hai space start"
 			`	"Good. My name is Elliot." You introduce yourself to Elliot and shake hands.`
