@@ -7199,9 +7199,8 @@ mission "Timothy Radrickson 3b: Escort the Convoy"
 				`	"I've been sent to get you to Wayfarer, and that's what I will do."`
 				`	"You do your job. I'll do mine."`
 
-			`	Hrodney gives you a feral grin. "Great. We weren't too keen on stickin' around these parts anyhow."`
-			`	She looks back at her ships, where there is now a flurry of activity. "Ya know, those pirates parked us right in the middle of their treasure chest. It'd be rude not take advantage of their hospitality."`
-			`	You notice the loaders behind Hrodny whirring around and moving all sorts of goods into the ships.`
+			`	Hrodny gives you a feral grin. "Great. We weren't too keen on stickin' around these parts anyhow."`
+			`	She looks back at her ships, where there is now a flurry of activity. "Ya know, those pirates parked us right in the middle of their treasure chest. It'd be rude not take advantage of their hospitality." You notice the loaders behind Hrodny whirring around and moving all sorts of goods into the ships.`
 			`	Hrodny winks at you. "Hazard pay.`
 			`	"You head back your ship, by the time you get there we'll be ready to launch. We'll follow ya out."`
 			`	She gives you a final mock salute and then turns and jogs toward her ships. There's nothing for you to do but head back toward yours.`
