@@ -7120,41 +7120,45 @@ mission "Timothy Radrickson 3a: Rescue the Convoy"
 				`	(Take a sip from your glass.)`
 				`	(Complain about the living standards of workers on Rand.)`
 				`	(Complain about hand outs for the poor of Rand.)`
-			`	His eyes refocus on you, "You'd be proud, <first>. I am going to make a real difference here..."`
-			`	Timothy is suddenly interrupted by a blarring alarm coming from his desk. He glowers and then sits up straight, turns on his ear piece and answers the call. `
+
+			`	His eyes refocus on you. "You'd be proud, <first>. I am going to make a real difference here..."`
+			`	Timothy is suddenly interrupted by a blarring alarm coming from his desk. He glowers and then sits up straight, turns on his ear piece and answers the call.`
 			`	"What?!" He nearly shouts after a moment of listening, and then, "How can that be?" and finally, "What about the Navy, where are they!?"`
-			`	His face goes from red to white as the color drains out of him, and he finishes the call with a few unhappy, "uh huhs" before finally hanging up.`
+			`	His face goes from red to white as the color drains out of him, and he finishes the call with a few unhappy "uh huhs" before finally hanging up.`
 			`	"Nevermind." He rubs his forehead, "Rand's future is gone. It's just been hijacked by marauders."`
-			`	He stands up and starts pacing, "I am sorry. We're going to have to cut this reunion short. Our freighter fleet, filled to the brim with all of Rand's wealth has been taken. To make matters worse in order to make this shipment happen I had to hire a private outfit from the Deep, and the Republic Navy is not going to intervene on their behalf. Which means this entire world, and myself, are finished." `
+			`	He stands up and starts pacing around the room. "I am sorry. We're going to have to cut this reunion short. Our freighter fleet, filled to the brim with all of Rand's wealth, has been taken. To make matters worse, in order to make this shipment happen I had to hire a private outfit from the Deep, and the Republic Navy is not going to intervene on their behalf. Which means this entire world, and myself, are finished."`
 			`	He collapses back in his chair with his head in his hands. "I am sorry. There will be a car waiting for you at the entrance."`
 			choice
 				`	(Offer to help.)`
 					goto helptim
-				`	(Apologize for his perdiciment, and leave.)`
+				`	(Apologize for his predicament, and leave.)`
 				`	(Leave without saying anything.)`
-			`	With that the doors behind you open back up, and you are led back outside to a waiting vehicle. You ride it in silence through the dust-thick landscape back to the dirty, shabby spaceport where your ship awaits.`
+
+			label nope
+			`	The doors behind you open back up, and you are led back outside to a waiting vehicle. You ride it in silence through the dust-thick landscape, back to the dirty, shabby spaceport where your ship awaits.`
 				decline
 			
 			label helptim
-			`	 Timothy jerks up to look at you, his eyes wide and searching, "Really? I... Rand... we don't have anything left to pay you, and who knows how dangerous those marauders are... but we'll take any help we can get if you're up for it."`
+			`	 Timothy jerks up to look at you, his eyes wide and searching. "Really? I... Rand... we don't have anything left to pay you, and who knows how dangerous those marauders are... but we'll take any help we can get if you're up for it."`
 			choice
 				`	(Agree to help.)`
 					goto agreehelp
 				`	(Back out.)`
+
 			`	The light drains from his eyes and he nods tiredly, "I understand."`
-			`	With that the doors behind you open back up, and you are led back outside to a waiting vehicle. You ride it in silence through the dust-thick landscape back to the dirty, shabby spaceport where your ship awaits.`
-				decline
+				goto nope
 
 			label agreehelp
-			`	Color returns to Timothy's face and he immediately straightens up,"Hroar's Haulers were contracted to our freight to Wayfarer. We lost contact with them in the Peacock system. My best guess is they've taken the ships to Greenrock." `
-			`	He frowns as he considers something, "With a haul that big the system is likely swarming with pirates. But if you hurry you might be able to get there before they've had time to move the goods or deal with their crews."`
-			`	Timothy hits a few more buttons on his display screen, "I've just sent your ship tracking coordinates for our fleet. It should help you find them once you're in Greenrock's atmosphere."`
+			`	Color returns to Timothy's face and he immediately straightens up. "Hroar's Haulers were contracted to our freight to Wayfarer. We lost contact with them in the Peacock system. My best guess is they've taken the ships to Greenrock."`
+			`	He frowns as he considers something, then says, "With a haul that big the system is likely swarming with pirates. But if you hurry you might be able to get there before they've had time to move the goods or deal with their crews." Timothy hits a few more buttons on his display screen, then he continues, "I've just sent your ship tracking coordinates for our fleet. It should help you find them once you're in Greenrock's atmosphere."`
 			`	"I am sorry I can't offer you more help." He stands up and hits the button opening up the exit door. "But, please, save that fleet."`
-
 
 	on complete
 		conversation
-			`	Your ship's computer picks up the fleet's tracking signal and identifies a large bay on the outskirts of their spaceport as their location.`
+			`Your ship's computer picks up the fleet's tracking signal and identifies a large bay on the outskirts of their spaceport as their location.`
+
+	on landing
+		dialog `There are still marauder ships flying overhead. Take off and defeat them before locating the missing fleet.`
 
 	npc kill
 		system "Shaula"
@@ -7171,20 +7175,22 @@ mission "Timothy Radrickson 3b: Escort the Convoy"
 		has "Timothy Radrickson 3a: Rescue the Convoy: done"
 	on offer
 		conversation
-			`The sky burns red as detritus from the fierce battle rains down on Greenrock. There is a wild panic in the spaceport as the majority of home pirate fleet was just anhilated over head.`
+			`The sky burns red as detritus from the fierce battle rains down on Greenrock. There is a wild panic in the spaceport as the majority of the home pirate fleet was just annihilated overhead.`
 			`	In the ensuing chaos no one notices as you approach the secluded bay.`
 			choice
-				`	(Enter the Bay.)`
-			`Inside the bay's walls you can make out the moored, and apparently intact freight fleet. The ships are surrounded by various loaders, but they appear to have been abandoned before they could begin the process of offloading the goods. The pirates must have all raced to their ships when you entered the system.`
-			`"And where do you think you're going?" A voice barks from what looks like a control room. A moment later there are three guards with guns trained on you.`
+				`	(Enter the bay.)`
+
+			`	Inside the bay's walls you can make out the moored, and apparently intact freight fleet. The ships are surrounded by various loaders, but they appear to have been abandoned before they could begin the process of offloading the goods. The pirates must have all raced to their ships when you entered the system.`
+			`	"And where do you think you're going?" A voice barks from what looks like a control room. A moment later there are three guards with guns trained on you.`
 			choice
 				`	"My mistake. I must have parked my ship somewhere else."`
 				`	"What a lovely little bay you have here. I was just telling my partner we should buy one just like this."`
 				`	"Didn't you guys hear what is going on? Let's loot this stuff before anyone comes looking for it!"`
 				`	"Is this where the bathroom is?"`
 				`	(Say nothing.)`
+
 			`	Before the pirate guards have a chance to respond there's the sound of thuds and they fall lifelessly to the floor. From behind them a woman and couple of men in red jackets appear.`
-			`	The woman, who is wearing a Captain's hat with two H's next to each other looks at you and then nods, "Thanks for the distraction. Been waitin' for the right moment to move."`
+			`	The woman, who is wearing a captain's hat with two H's next to each other looks at you and then nods, "Thanks for the distraction. Been waitin' for the right moment to move."`
 			`	She flashes you relucent smile, "Name's Hrodny, Capt'n Hrodny of Hroar's Haulers." She looks back at the men accompanying her, whistles, and points toward the ships. They turn and run toward them."`
 			`	Hrodny turns her green piercing green eyes back on you, "We can get 'em in the air, but we can't fight past whatever is out there. I'm presuming you're not a lost tourist and are in fact our cavalry?"`
 			choice
@@ -7193,17 +7199,16 @@ mission "Timothy Radrickson 3b: Escort the Convoy"
 				`	"I've been sent to get you to Wayfarer, and that's what I will do."`
 				`	"You do your job. I'll do mine."`
 
-			`	Hrodney gives you a feral grin, "Great. We weren't too keen on stickin' around these parts anyhow." `
-			`	She looks back at her ships, where there is now a flurry of activity. "Ya know, those pirates parked us right in the middle of their treasure chest. It'd be rude not take advantage of their hospitality." `
-			`	You notice the loaders behind Hrodny whirring around and moving all sorts of goods into the ships. `
-			`	Hrodny winks at you, "Hazard pay." `
+			`	Hrodney gives you a feral grin. "Great. We weren't too keen on stickin' around these parts anyhow."`
+			`	She looks back at her ships, where there is now a flurry of activity. "Ya know, those pirates parked us right in the middle of their treasure chest. It'd be rude not take advantage of their hospitality."`
+			`	You notice the loaders behind Hrodny whirring around and moving all sorts of goods into the ships.`
+			`	Hrodny winks at you. "Hazard pay.`
 			`	"You head back your ship, by the time you get there we'll be ready to launch. We'll follow ya out."`
-			`	She gives you a final mock salute and then turns and jogs toward her ships.`
-			`	There's nothing for you to do but head back toward yours.`
+			`	She gives you a final mock salute and then turns and jogs toward her ships. There's nothing for you to do but head back toward yours.`
 
 	on complete
 		conversation
-			`The Freighter Fleet sets down to some minor fanfare. There are likely more than a few middlemen here who would have been hardpressed by the loss of the fleet.`
+			`The freighter fleet sets down to some minor fanfare. There are likely more than a few middlemen here who would have been hardpressed by the loss of the fleet.`
 			`	Not to long after setting down Captain Hrodny seeks you out.`
 			`	"Didn't have much time back there for pleasentries, but gotta say I am mighty thankful you showed up when you did."`
 			`	She extends her hand to you.`
@@ -7211,15 +7216,26 @@ mission "Timothy Radrickson 3b: Escort the Convoy"
 				`	(Shake Hrodny's hand.)`
 					goto shake
 				`	(Don't shake her hand.)`
-			`	She shrugs and withdraws her hand, "different customs I suppose."`
+
+			`	She shrugs and withdraws her hand. "Different customs I suppose."`
+			`	Hrondy pauses for a moment, then says, "Gotta say you handled yourself well out there. Always good to see a Capt'n worth more than dust on their boots." She gives you an approving nod.`
 				goto nextup
+
 			label shake
-			`	Her hand vigorously shakes yours.`
+			`	Her hand vigorously shakes yours. "Gotta say you handled yourself well out there. Always good to see a Capt'n worth more than dust on their boots." She gives you an approving nod.`
+
 			label nextup
-			`	"Gotta say you handled yourself well out there. Always good to see a Capt'n worth more than dust on their boots." She gives you an approving nod.`
 			`	"I got word from Rand they are more than a little pleased with your heroics. They'd like you to head on over there when you can. Probably have some credits or a photo op or something waiting for you."`
-			`	She shrugs, and winks, "Anyways, I got plenty of work that needs doing. Take care of your self Capt'n."`
+			`	She shrugs, and winks, "Anyways, I got plenty of work that needs doing. Take care of yourself, Capt'n."`
 			`	With that she heads back to her freighter fleet.`
+
+	npc accompany save
+		government "Merchant"
+		personality escort timid
+		fleet
+			variant
+				"Bulk Freighter" 8
+
 
 mission "Timothy Radrickson 3c: Return to Rand"
 	landing
@@ -7229,7 +7245,7 @@ mission "Timothy Radrickson 3c: Return to Rand"
 		has "Timothy Radrickson 3b: Escort the Convoy: done"
 	on complete
 		conversation
-			` Instead of Regina you are met by Timothy's executive secretery, Wynnafrith. She is clearly a little uncomfortable in Rand's regular gravity, but is doing her best to push through it. `
+			` Instead of Regina you are met by Timothy's executive secretery, Wynnafrith. She is clearly a little uncomfortable in Rand's regular gravity, but is doing her best to push through it.`
 			`	"Captain <last>! You're the talk of the world! The savior of Rand." She gives you an open and earnest smile.`
 			`	"I've been sent by the Governor to drive you straight to his estate. Please come with me."`
 			choice
