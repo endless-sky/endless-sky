@@ -7043,9 +7043,9 @@ event "timothy radrickson: governor"
 
 
 # Plan:
-# Tim invites the PC to come and visit him on Rand. He takes you to his governor palace, thanks you for all you did, gives you 125,000 for giving him a ride all those years ago. 
-# He talks about how Rand just sent out the largest mineral freighter fleet ever to New Britain, and when it returns the colony will finally have enough money to start taking care of it self... 
-# When.. uh oh the frieghters have lost communication or sent out a distress signal or something, and you offer to help. 
+# Tim invites the PC to come and visit him on Rand. He takes you to his governor palace, thanks you for all you did, gives you 125,000 for giving him a ride all those years ago.
+# He talks about how Rand just sent out the largest mineral freighter fleet ever to New Britain, and when it returns the colony will finally have enough money to start taking care of it self...
+# When.. uh oh the frieghters have lost communication or sent out a distress signal or something, and you offer to help.
 # You fly off, find a marauder/pirate fleet, destroy them, save the freighter fleet, go back to Rand and then Tim holds a swanky dinner and names you Hero of Rand.
 
 
@@ -7163,7 +7163,7 @@ mission "Timothy Radrickson 3a: Rescue the Convoy"
 		fleet "Marauder fleet X" 2
 
 
-mission "Timothy Radrickson 3d: Return to Rand"
+mission "Timothy Radrickson 3b: Escort the Convoy"
 	landing
 	source "Greenrock"
 	destination "Wayfarer"
@@ -7226,7 +7226,7 @@ mission "Timothy Radrickson 3c: Return to Rand"
 	source "Wayfarer"
 	destination "Rand"
 	to offer
-		has "Timothy Radrickson 3: Invitation to Rand: done"
+		has "Timothy Radrickson 3b: Escort the Convoy: done"
 	on complete
 		conversation
 			`...`
@@ -8239,7 +8239,7 @@ mission "Timothy Radrickson 5d: Greenrock"
 				`	(Pass.)`
 
 			`	The drug-dealer says as you go away, "You won't find a better deal than this. I'll be here if you change your mind."`
-					goto greenoptions
+				goto greenoptions
 
 			label med2
 			action
