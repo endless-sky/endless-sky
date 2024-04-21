@@ -984,7 +984,7 @@ mission "FW Pirates 1"
 				`	"Sounds good."`
 					goto leave
 				`	"What about the pirate systems to the north of Men?"`
-			`	Tomek shrugs. "Simply put, those worlds aren't a threat to us right now. From what we can gather, most of the pirate factions there are focused on internal power struggles at the moment rather than piracy in the Rim. Those CCOR guerrillas are more than enough to keep any pirate warlords there busy for the immediate future."`
+			`	Tomek shrugs. "Simply put, those worlds aren't a threat to us right now. From what we can gather, most of the factions there are focused on internal power struggles at the moment rather than piracy in the Rim. Those CCOR guerrillas are more than enough to keep any pirate warlords there busy for the immediate future."`
 			choice
 				`	"CCOR?"`
 					goto ccor
