@@ -247,7 +247,7 @@ void GameAction::Save(DataWriter &out) const
 		out.Write("fail", name);
 	if(failCaller)
 		out.Write("fail");
-	if (playMusic)
+	if(playMusic)
 		out.Write("play", music);
 
 	conditions.Save(out);
