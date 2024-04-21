@@ -324,6 +324,11 @@ mission "Returning Home"
 				to display
 					has "hai space start"
 			`	"Good. My name is Elliot." You introduce yourself to Elliot and shake hands.`
+				to display
+					has "human space start"
+			`	He sighs. "I was hoping to get someone from human space. Well, a captain's a captain, I guess. My name is Elliot." You introduce yourself to Elliot and shake hands.
+				to display
+					has "hai space start"
 			`	"Can you take me to <destination>?" Elliot asks.`
 			`	"That's all the way in the Dirt Belt," you say. "Why do you want to go that far?"`
 			`	Elliot looks down at the ground for a second and takes a deep breath while gripping his hat in his hands. "You see, I haven't lived here all my life. I was born on <planet> to a poor farming family. Most of my days were spent working on the farm, which I hated with a passion. One day I just got fed up with things and I ran away.`
