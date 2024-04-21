@@ -401,6 +401,9 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 	result.giftShips = giftShips;
 	result.giftOutfits = giftOutfits;
 
+	result.music = music;
+	result.playMusic = playMusic;
+
 	result.payment = payment + (jumps + 1) * payload * paymentMultiplier;
 	if(result.payment)
 		subs["<payment>"] = Format::CreditString(abs(result.payment));
