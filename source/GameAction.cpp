@@ -251,7 +251,7 @@ void GameAction::Save(DataWriter &out) const
 	if(failCaller)
 		out.Write("fail");
 	if(playMusic)
-		out.Write("play", music);
+		out.Write("music", music);
 
 	conditions.Save(out);
 }
