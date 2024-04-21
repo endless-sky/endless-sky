@@ -375,7 +375,7 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 	if(failCaller && caller)
 		player.FailMission(*caller);
 	
-	if (playMusic)
+	if(playMusic)
 		Audio::PlayMusic(music);
 
 	// Check if applying the conditions changes the player's reputations.
