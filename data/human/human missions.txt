@@ -7050,7 +7050,7 @@ event "timothy radrickson: governor"
 
 
 mission "Timothy Radrickson 3: Governor Notification"
-	name "Visit the Govenor on <planet>"
+	name "Visit the Governor on <planet>"
 	description "The Governor of <planet> has invited you to speak with them."
 	to offer
 		has "event: timothy radrickson: governor"
@@ -7237,8 +7237,8 @@ mission "Timothy Radrickson 3b: Escort the Convoy"
 		ship "Hauler III" "H.H.H. Hroar's Heavy Hitter"
 		ship "Hauler II" "H.H.H. Fixed Income"
 		ship "Hauler II" "H.H.H. Iron Siren"
-		ship "Mule" "H.H.H. Herald of Vermillion"
-		ship "Freighter" "H.H.H. Cardinal Conveyer"
+		ship "Mule" "H.H.H. Herald of Vermilion"
+		ship "Freighter" "H.H.H. Cardinal Conveyor"
 		ship "Freighter" "H.H.H. Muspel Zipper"
 		ship "Star Barge" "H.H.H. Ruby Rails"
 		ship "Star Barge" "H.H.H. Bandwagon"
@@ -7252,7 +7252,7 @@ mission "Timothy Radrickson 3c: Return to Rand"
 		has "Timothy Radrickson 3b: Escort the Convoy: done"
 	on complete
 		conversation
-			`Instead of Regina you are met by Timothy's executive secretery, Wynnafrith. She is clearly a little uncomfortable in Rand's regular gravity, but is doing her best to push through it.`
+			`Instead of Regina you are met by Timothy's executive secretary, Wynnafrith. She is clearly a little uncomfortable in Rand's regular gravity, but is doing her best to push through it.`
 			`	"Captain <last>! You're the talk of the world! The savior of Rand." She gives you an open and earnest smile.`
 			`	"I've been sent by the Governor to drive you straight to his estate. Please come with me."`
 			choice
@@ -7271,7 +7271,7 @@ mission "Timothy Radrickson 3c: Return to Rand"
 				`	"What do mean?"`
 				`	"So you lied to me."`
 			`	He shrugs, "I just thought it would be more fun this way. Who doesn't like surprises?"`
-			`	"Without you the entire planet would have defaulted. Our creditors were circling like vultures eager to assume ownership of all our production capabilites, and turn population into endentured servents. The whole world would have been their debtor's prison."`
+			`	"Without you the entire planet would have defaulted. Our creditors were circling like vultures eager to assume ownership of all our production capabilities, and turn population into endentured servents. The whole world would have been their debtor's prison."`
 			`	He pauses to consider his words,"I mean, the language they would have used would be different, but that is what it would have amounted to. But you saved us, and more than that, we're now quite a bit more wealthy than we were before."`
 			`	Timothy snatches a glass and holds it up to you, "From ruin to riches! The Hero of Rand.!"`
 			`	A few others lift their glasses as well. They clink and Timothy then gulps the whole thing down, after that the group breaks a part into smaller conversations.`
