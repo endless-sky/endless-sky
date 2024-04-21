@@ -198,7 +198,7 @@ void GameAction::LoadSingle(const DataNode &child)
 			child.PrintTrace("Error: play doesn't have a specified file. If you want to stop music, do 'play \"\"'");
 		}
 	}
-	else if(key == "fail" && child.Size() >= 2)
+	else if(key == "fail" && hasValue)
 		fail.insert(child.Token(1));
 	else if(key == "fail")
 		failCaller = true;
