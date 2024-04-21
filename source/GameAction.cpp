@@ -193,6 +193,9 @@ void GameAction::LoadSingle(const DataNode &child)
 	} else if (key == "play" && hasValue) {
 		music = child.Token(1);
 		playMusic = true;
+	} else if (key == "quiet") {
+		music = "";
+		playMusic = true;
 	}
 	else if(key == "fail" && hasValue)
 		fail.insert(child.Token(1));
