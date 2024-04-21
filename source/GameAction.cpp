@@ -191,7 +191,7 @@ void GameAction::LoadSingle(const DataNode &child)
 			swap(minDays, maxDays);
 		events[GameData::Events().Get(child.Token(1))] = make_pair(minDays, maxDays);
 	}
-	else if(key == "play" && hasValue)
+	else if(key == "music" && hasValue)
 	{
 		music = child.Token(1);
 		playMusic = true;
