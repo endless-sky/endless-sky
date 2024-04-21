@@ -7139,7 +7139,7 @@ mission "Timothy Radrickson 3a: Rescue the Convoy"
 				decline
 			
 			label helptim
-			`	 Timothy jerks up to look at you, his eyes wide and searching. "Really? I... Rand... we don't have anything left to pay you, and who knows how dangerous those marauders are... but we'll take any help we can get if you're up for it."`
+			`	Timothy jerks up to look at you, his eyes wide and searching. "Really? I... Rand... we don't have anything left to pay you, and who knows how dangerous those marauders are... but we'll take any help we can get if you're up for it."`
 			choice
 				`	(Agree to help.)`
 					goto agreehelp
@@ -7157,14 +7157,14 @@ mission "Timothy Radrickson 3a: Rescue the Convoy"
 		conversation
 			`Your ship's computer picks up the fleet's tracking signal and identifies a large bay on the outskirts of their spaceport as their location.`
 
-	on landing
+	on visit
 		dialog `There are still marauder ships flying overhead. Take off and defeat them before locating the missing fleet.`
 
 	npc kill
 		system "Shaula"
 		government "Pirate"
 		personality staying nemesis target
-		fleet "Marauder fleet X" 2
+		fleet "Marauder fleet X" 2 # Subject to balancing
 
 
 mission "Timothy Radrickson 3b: Escort the Convoy"
@@ -7207,9 +7207,8 @@ mission "Timothy Radrickson 3b: Escort the Convoy"
 
 	on complete
 		conversation
-			`The freighter fleet sets down to some minor fanfare. There are likely more than a few middlemen here who would have been hardpressed by the loss of the fleet.`
-			`	Not to long after setting down Captain Hrodny seeks you out.`
-			`	"Didn't have much time back there for pleasentries, but gotta say I am mighty thankful you showed up when you did."`
+			`The freighter fleet sets down to some minor fanfare; there're likely to be more than a few middlemen here who would have been hard-pressed by the loss of the fleet.`
+			`	Not long after landing, Captain Hrodny seeks you out. "Didn't have much time back there for pleasantries, but gotta say I am mighty thankful you showed up when you did."`
 			`	She extends her hand to you.`
 			choice
 				`	(Shake Hrodny's hand.)`
@@ -7229,11 +7228,20 @@ mission "Timothy Radrickson 3b: Escort the Convoy"
 			`	With that she heads back to her freighter fleet.`
 
 	npc accompany save
-		government "Merchant"
+		government "Merchant" # 2520 cargo tons in total
 		personality escort timid
-		fleet
-			variant
-				"Bulk Freighter" 8
+		ship "Hauler" "H.H.H. Hard and Fast"
+		ship "Hauler" "H.H.H. Red Rambler"
+		ship "Hauler III" "H.H.H. Heavy Haulage"
+		ship "Hauler III" "H.H.H. Fimbulvintr"
+		ship "Hauler III" "H.H.H. Hroar's Heavy Hitter"
+		ship "Hauler II" "H.H.H. Fixed Income"
+		ship "Hauler II" "H.H.H. Iron Siren"
+		ship "Mule" "H.H.H. Herald of Vermillion"
+		ship "Freighter" "H.H.H. Cardinal Conveyer"
+		ship "Freighter" "H.H.H. Muspel Zipper"
+		ship "Star Barge" "H.H.H. Ruby Rails"
+		ship "Star Barge" "H.H.H. Bandwagon"
 
 
 mission "Timothy Radrickson 3c: Return to Rand"
@@ -7244,15 +7252,15 @@ mission "Timothy Radrickson 3c: Return to Rand"
 		has "Timothy Radrickson 3b: Escort the Convoy: done"
 	on complete
 		conversation
-			` Instead of Regina you are met by Timothy's executive secretery, Wynnafrith. She is clearly a little uncomfortable in Rand's regular gravity, but is doing her best to push through it.`
+			`Instead of Regina you are met by Timothy's executive secretery, Wynnafrith. She is clearly a little uncomfortable in Rand's regular gravity, but is doing her best to push through it.`
 			`	"Captain <last>! You're the talk of the world! The savior of Rand." She gives you an open and earnest smile.`
 			`	"I've been sent by the Governor to drive you straight to his estate. Please come with me."`
 			choice
 				`	(Go to the Governor's Mansion.)`
 
 			`	In the evening the pass landscape is too dark to see, so instead you focus on the glittering stars overhead. Eventually your ride slows as you seem to be caught up in traffic near the Governor's mansion. As you approach you pass streets crowded with parked personal vehicles.`
-			` 	The mansion is lit up with dozens of flood lights, and brimming with fabously dressed people. Wynnafrith turns her vehicle over to a valet and opens your door to let you out.`
-			` 	She gives you a mischievous smile, "Apologies, Captain <last>. I forgot to mention the Governor was holding a little get together. Please follow me."`
+			`	The mansion is lit up with dozens of flood lights, and brimming with fabously dressed people. Wynnafrith turns her vehicle over to a valet and opens your door to let you out.`
+			`	She gives you a mischievous smile. "Apologies, Captain <last>. I forgot to mention the Governor was holding a little get together. Please follow me."`
 			choice
 				`	(Follow Wynnafrith.)`
 			`	She leads you through an army of valets, waiters, and attendants as you weave in and out of the various rooms and halls. Many of the guests appear to recognize you and offer you earnest congratulations. Eventually you are ushered to the table of honor where Wynnafrith introduces you to a half dozen company-bosses, senior executives, political operatives, and the like. You notice Regina here as well, but she is seated at a table in the back, on the fringes of the upper crust of society.`
