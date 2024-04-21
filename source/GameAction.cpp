@@ -190,13 +190,9 @@ void GameAction::LoadSingle(const DataNode &child)
 		if(maxDays < minDays)
 			swap(minDays, maxDays);
 		events[GameData::Events().Get(child.Token(1))] = make_pair(minDays, maxDays);
-	} else if (key == "play") {
-		if (hasValue) {
-			music = child.Token(1);
-			playMusic = true;
-		} else {
-			child.PrintTrace("Error: play doesn't have a specified file. If you want to stop music, do 'play \"\"'");
-		}
+	} else if (key == "play" && hasValue) {
+		music = child.Token(1);
+		playMusic = true;
 	}
 	else if(key == "fail" && hasValue)
 		fail.insert(child.Token(1));
