@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "GameAction.h"
 
+#include "Audio.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Dialog.h"
@@ -189,6 +190,13 @@ void GameAction::LoadSingle(const DataNode &child)
 		if(maxDays < minDays)
 			swap(minDays, maxDays);
 		events[GameData::Events().Get(child.Token(1))] = make_pair(minDays, maxDays);
+	} else if (key == "play") {
+		if (hasValue) {
+			music = child.Token(1);
+			playMusic = true;
+		} else {
+			child.PrintTrace("Error: play doesn't have a specified file. If you want to stop music, do 'play \"\"'");
+		}
 	}
 	else if(key == "fail" && child.Size() >= 2)
 		fail.insert(child.Token(1));
@@ -239,6 +247,8 @@ void GameAction::Save(DataWriter &out) const
 		out.Write("fail", name);
 	if(failCaller)
 		out.Write("fail");
+	if (playMusic)
+		out.Write("play", music);
 
 	conditions.Save(out);
 }
@@ -364,6 +374,9 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 	}
 	if(failCaller && caller)
 		player.FailMission(*caller);
+	
+	if (playMusic)
+		Audio::PlayMusic(music);
 
 	// Check if applying the conditions changes the player's reputations.
 	conditions.Apply(player.Conditions());

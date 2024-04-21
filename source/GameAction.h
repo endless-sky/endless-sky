@@ -87,6 +87,9 @@ private:
 	int64_t paymentMultiplier = 0;
 	int64_t fine = 0;
 
+	bool playMusic = false;
+	std::string music;
+
 	// When this action is performed, the missions with these names fail.
 	std::set<std::string> fail;
 	// When this action is performed, the mission that called this action is failed.
