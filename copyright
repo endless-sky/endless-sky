@@ -3097,17 +3097,6 @@ Comment:
  before the additional restrictions were added.
 
 Files:
- images/scene/iceplains3*
-Copyright: Daniel Frank
-License: Unsplash
-Comment:
- Taken from https://archive.is/xK5Wu. This image was
- uploaded to unsplash.com after June 2017, so it is subject
- to the Unsplash License. It was also uploaded after
- February 2018, so it is subject to an additional restriction
- limiting the sale of unaltered copies.
-
-Files:
  images/scene/redrocks*
 Copyright: Joshua Gresham
 License: Unsplash
@@ -3454,13 +3443,15 @@ Comment:
 
 Files:
  images/land/snow23*
+ images/scene/iceplains3*
 Copyright: Daniel Frank
 License: Unsplash
- Taken from unsplash.com and cropped. This image was
+Comment:
+ Taken from https://archive.is/xK5Wu. This image was
  uploaded to unsplash.com after June 2017, so it is subject
- to the Unsplash License. It was also uploaded after February
- 2018, so it is subject to an additional restriction limiting
- the sale of unaltered copies.
+ to the Unsplash License. It was also uploaded after
+ February 2018, so it is subject to an additional restriction
+ limiting the sale of unaltered copies.
 
 Files:
  images/ui/red?alert*
