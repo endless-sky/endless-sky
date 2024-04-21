@@ -326,7 +326,7 @@ mission "Returning Home"
 			`	"Good. My name is Elliot." You introduce yourself to Elliot and shake hands.`
 				to display
 					has "human space start"
-			`	He sighs. "I was hoping to get someone from human space. Well, a captain's a captain, I guess. My name is Elliot." You introduce yourself to Elliot and shake hands.
+			`	He sighs. "I was hoping to get someone from human space. Well, a captain's a captain, I guess. My name is Elliot." You introduce yourself to Elliot and shake hands.`
 				to display
 					has "hai space start"
 			`	"Can you take me to <destination>?" Elliot asks.`
