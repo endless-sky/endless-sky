@@ -6903,7 +6903,7 @@ mission "Lost Dog"
 	on offer
 		conversation
 			`Your walk from the <ship> takes you outside <planet>'s bustling spaceport and into the overtly welcoming and carefully inoffensive tourist-saturated streets of the spaceport town. Every path seems purpose-built to whisk you further away from your ship and deeper into the unnatural radiance of this Paradise World. The hand-crafted beauty is inescapable, a never-ending sequence of breathtaking views.`
-			`	As you walk you eventually come across an immaculate and perfectly manicured garden park named "Parc Manifold." You walk towards the gates only to discover a ticket office, with signs advertising the price of entry being a mere 3,400 credits. But due to some promotion, tickets are free for this week.`
+			`	As you walk you eventually come across an immaculate and perfectly manicured garden park named "Parc Manifold." You walk towards the gates only to discover a ticket office, with signs advertizing the price of entry as a mere 3,400 credits. But due to some promotion, tickets are free for the week.`
 			choice
 				`	(Go to the park.)`
 					goto park
