@@ -3935,7 +3935,7 @@ mission "Human to Hai Space"
 			label haistart
 			`	"Of course. You did bring me all the way back here, after all. These are my parents, Yeerto and Taepip." His father Yeerto then speaks, "We heard about your travel agency, even went there at some point when we were thinking of relocating to human space. It ended up being a touch too expensive, though, so Benjamin arranged for a merchant to bring him on the way."`
 			`	"Funny we almost found each other then," he adds with a smile on his face.`
-			`	"Honest work always bears fruits." His mother, Taepip, picks up, looking at her son, "That's what we always told him after we adopted him."`
+			`	"And now look at you, a starship captain! Honest work always bears fruits." His mother, Taepip, tells you, before looking back at her son, "That's what we always told him."`
 			choice
 				`	"I was partly-adopted as well."`
 			`	They look a bit confused, so you clarify, "My mother was human, but my father was Hai... It took me some time to understand it wasn't my original father. He was loyal to the stars."`
