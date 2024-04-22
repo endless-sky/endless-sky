@@ -85,6 +85,8 @@ bool HiringPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 // Calculate statistics for the flagship and the fleet.
 void HiringPanel::Calculate()
 {
+	info = Information();
+
 	const Ship *flagship = player.Flagship();
 
 	int flagshipBunks = 0;
