@@ -24,9 +24,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameEvent.h"
 #include "Messages.h"
 #include "Outfit.h"
+#include "Planet.h"
 #include "PlayerInfo.h"
 #include "Random.h"
 #include "Ship.h"
+#include "System.h"
 #include "UI.h"
 
 #include <cstdlib>
@@ -379,7 +381,17 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 		player.FailMission(*caller);
 	
 	if(playMusic)
-		Audio::PlayMusic(music);
+	{
+		if (music == "<ambient>")
+		{
+			if (player.GetPlanet() != NULL)
+				Audio::PlayMusic(player.GetPlanet()->MusicName());
+			else
+				Audio::PlayMusic(player.GetSystem()->MusicName());
+		}
+		else
+			Audio::PlayMusic(music);
+	}
 
 	// Check if applying the conditions changes the player's reputations.
 	conditions.Apply(player.Conditions());
