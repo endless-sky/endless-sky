@@ -402,9 +402,10 @@ bool Hardpoint::FireSpecialSystem(Ship &ship, const Body &body, std::vector<Visu
 	// Get the weapon range. Anti-missile and tractor beam shots always last a
 	// single frame, so their range is equal to their velocity.
 	double range = outfit->Velocity();
+	Angle facing = ship.Facing();
 
 	// Check if the body is within range of this hardpoint.
-	Point start = ship.Position() + ship.Facing().Rotate(point);
+	Point start = ship.Position() + facing.Rotate(point);
 	Point offset = body.Position() - start;
 	if(offset.Length() > range)
 		return false;
@@ -425,9 +426,7 @@ bool Hardpoint::FireSpecialSystem(Ship &ship, const Body &body, std::vector<Visu
 	visuals.reserve(visuals.size() + outfit->FireEffects().size()
 		+ outfit->HitEffects().size() + outfit->DieEffects().size());
 
-	// Firing effects are displayed at the weapon hardpoint that just fired.
-	Angle aim(offset);
-	angle = aim - ship.Facing();
+	angle = aim - facing;
 	start += aim.Rotate(outfit->HardpointOffset());
 	CreateEffects(outfit->FireEffects(), start, ship.Velocity(), aim, visuals);
 
