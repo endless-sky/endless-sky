@@ -382,9 +382,9 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 	
 	if(playMusic)
 	{
-		if (music == "<ambient>")
+		if(music == "<ambient>")
 		{
-			if (player.GetPlanet() != NULL)
+			if(player.GetPlanet())
 				Audio::PlayMusic(player.GetPlanet()->MusicName());
 			else
 				Audio::PlayMusic(player.GetSystem()->MusicName());
