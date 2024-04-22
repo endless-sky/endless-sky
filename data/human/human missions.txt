@@ -7175,13 +7175,13 @@ mission "Timothy Radrickson 3b: Escort the Convoy"
 		has "Timothy Radrickson 3a: Rescue the Convoy: done"
 	on offer
 		conversation
-			`The sky burns red as detritus from the fierce battle rains down on Greenrock. There is a wild panic in the spaceport as the majority of the home pirate fleet was just annihilated overhead.`
-			`	In the ensuing chaos no one notices as you approach the secluded bay.`
+			`The sky burns red as detritus from the fierce battle rains down on Greenrock. The destruction of a major pirate gang's fleet has resulted into panic and chaos in the spaceport as rival pirate groups battle it out to claim the defeated's terf. No one pays you much mind. They don't care who took out the fleet; only that it was taken out.`
+			`	In the ensuing chaos you're practically ignored as you approach the secluded bay.`
 			choice
 				`	(Enter the bay.)`
 
 			`	Inside the bay's walls you can make out the moored, and apparently intact freight fleet. The ships are surrounded by various loaders, but they appear to have been abandoned before they could begin the process of offloading the goods. The pirates must have all raced to their ships when you entered the system.`
-			`	"And where do you think you're going?" A voice barks from what looks like a control room. A moment later there are three guards with guns trained on you.`
+			`	"And where do you think you're going?" A voice barks from the control room. A moment later three armed guards appears with their weapons trained on you.`
 			choice
 				`	"My mistake. I must have parked my ship somewhere else."`
 				`	"What a lovely little bay you have here. I was just telling my partner we should buy one just like this."`
@@ -7189,25 +7189,25 @@ mission "Timothy Radrickson 3b: Escort the Convoy"
 				`	"Is this where the bathroom is?"`
 				`	(Say nothing.)`
 
-			`	Before the pirate guards have a chance to respond there's the sound of thuds and they fall lifelessly to the floor. From behind them a woman and couple of men in red jackets appear.`
+			`	Before the pirate guards have a chance to respond there's three quick thud sounds in succession and they fall lifelessly to the floor. From behind them a woman and couple of men in red jackets appear.`
 			`	The woman, who is wearing a captain's hat with two H's next to each other looks at you and then nods, "Thanks for the distraction. Been waitin' for the right moment to move."`
 			`	She flashes you relucent smile, "Name's Hrodny, Capt'n Hrodny of Hroar's Haulers." She looks back at the men accompanying her, whistles, and points toward the ships. They turn and run toward them."`
 			`	Hrodny turns her green piercing green eyes back on you, "We can get 'em in the air, but we can't fight past whatever is out there. I'm presuming you're not a lost tourist and are in fact our cavalry?"`
 			choice
 				`	"Don't worry. I took out the fleet, and I'll escort you to Wayfarer."`
-				`	"It's your lucky day, I'm Captain <last>, of the <ship>. Get you to Wayfarer will be a piece of cake."`
+				`	"It's your lucky day, I'm Captain <last>, of the <ship>. Geting you to Wayfarer will be a piece of cake."`
 				`	"I've been sent to get you to Wayfarer, and that's what I will do."`
 				`	"You do your job. I'll do mine."`
 
 			`	Hrodny gives you a feral grin. "Great. We weren't too keen on stickin' around these parts anyhow."`
-			`	She looks back at her ships, where there is now a flurry of activity. "Ya know, those pirates parked us right in the middle of their treasure chest. It'd be rude not take advantage of their hospitality." You notice the loaders behind Hrodny whirring around and moving all sorts of goods into the ships.`
+			`	She looks back at her ships, where there is now a flurry of activity. "Ya know, those pirates parked us right in the middle of their treasure trove. It'd be rude not take advantage of their hospitality." You notice the loaders behind Hrodny whirring around and moving all sorts of goods into the ships.`
 			`	Hrodny winks at you. "Hazard pay.`
 			`	"You head back your ship, by the time you get there we'll be ready to launch. We'll follow ya out."`
 			`	She gives you a final mock salute and then turns and jogs toward her ships. There's nothing for you to do but head back toward yours.`
 
 	on complete
 		conversation
-			`The freighter fleet sets down to some minor fanfare; there're likely to be more than a few middlemen here who would have been hard-pressed by the loss of the fleet.`
+			`The freighter fleet sets down to some minor fanfare; there're likely more than a few middlemen here who would have been hard-pressed by the loss of the fleet's valuable cargo.`
 			`	Not long after landing, Captain Hrodny seeks you out. "Didn't have much time back there for pleasantries, but gotta say I am mighty thankful you showed up when you did."`
 			`	She extends her hand to you.`
 			choice
@@ -7223,7 +7223,7 @@ mission "Timothy Radrickson 3b: Escort the Convoy"
 			`	Her hand vigorously shakes yours. "Gotta say you handled yourself well out there. Always good to see a Capt'n worth more than dust on their boots." She gives you an approving nod.`
 
 			label nextup
-			`	"I got word from Rand they are more than a little pleased with your heroics. They'd like you to head on over there when you can. Probably have some credits or a photo op or something waiting for you."`
+			`	"I got word from Rand they are more than a little pleased with your heroics. They'd like you to head on over there when you can. Probably have some credits or a photo op or something fancy and tedious waiting for you."`
 			`	She shrugs, and winks, "Anyways, I got plenty of work that needs doing. Take care of yourself, Capt'n."`
 			`	With that she heads back to her freighter fleet.`
 
@@ -7233,15 +7233,15 @@ mission "Timothy Radrickson 3b: Escort the Convoy"
 		ship "Hauler" "H.H.H. Hard and Fast"
 		ship "Hauler" "H.H.H. Red Rambler"
 		ship "Hauler III" "H.H.H. Heavy Haulage"
-		ship "Hauler III" "H.H.H. Fimbulvintr"
+		ship "Hauler III" "H.H.H. Gullveig's Revenge"
 		ship "Hauler III" "H.H.H. Hroar's Heavy Hitter"
-		ship "Hauler II" "H.H.H. Fixed Income"
-		ship "Hauler II" "H.H.H. Iron Siren"
+		ship "Hauler II" "H.H.H. First Last Chance"
+		ship "Hauler II" "H.H.H. Lucky Hauler"
 		ship "Mule" "H.H.H. Herald of Vermilion"
 		ship "Freighter" "H.H.H. Cardinal Conveyor"
 		ship "Freighter" "H.H.H. Muspel Zipper"
 		ship "Star Barge" "H.H.H. Ruby Rails"
-		ship "Star Barge" "H.H.H. Bandwagon"
+		ship "Star Barge" "H.H.H. Dusty Boots"
 
 
 mission "Timothy Radrickson 3c: Return to Rand"
@@ -7258,9 +7258,9 @@ mission "Timothy Radrickson 3c: Return to Rand"
 			choice
 				`	(Go to the Governor's Mansion.)`
 
-			`	In the evening the pass landscape is too dark to see, so instead you focus on the glittering stars overhead. Eventually your ride slows as you seem to be caught up in traffic near the Governor's mansion. As you approach you pass streets crowded with parked personal vehicles.`
+			`	In the evening the passing landscape is too dark to see, so instead you focus on the glittering stars overhead. Eventually your ride slows as you seem to be caught up in traffic near the Governor's mansion. As you approach you pass streets crowded with parked personal vehicles.`
 			`	The mansion is lit up with dozens of flood lights, and brimming with fabously dressed people. Wynnafrith turns her vehicle over to a valet and opens your door to let you out.`
-			`	She gives you a mischievous smile. "Apologies, Captain <last>. I forgot to mention the Governor was holding a little get together. Please follow me."`
+			`	She gives you a mischievous grin. "Apologies, Captain <last>. I forgot to mention the Governor was holding a little get together. Please follow me."`
 			choice
 				`	(Follow Wynnafrith.)`
 			`	She leads you through an army of valets, waiters, and attendants as you weave in and out of the various rooms and halls. Many of the guests appear to recognize you and offer you earnest congratulations. Eventually you are ushered to the table of honor where Wynnafrith introduces you to a half dozen company-bosses, senior executives, political operatives, and the like. You notice Regina here as well, but she is seated at a table in the back, on the fringes of the upper crust of society.`
@@ -8000,6 +8000,7 @@ mission "Timothy Radrickson 5d: Greenrock"
 	on complete
 		conversation
 			`You feel the pressure of many unseen eyes watching you as you leave the spaceport and enter into the sprawling stalls of Greenrock's rowdy emporium. Where everything and everyone is for sale.`
+			`	Greenrock looks a little more civil than when you were racing around saving captured freighter fleets, but only just a little. There is a wildness here and violence simmers just beneath the surface of every interaction. Luckily, no one seems to remember or care about the fleet you destroyed.`
 			`	The civic infrastructure leaves something to be desired; you can pretty much taste the city's squalid sewer in the air. While trying to get a sense of the area, you weave past various hucksters all trying to get your attention for whatever or whoever they're selling.`
 			`	Finally you reach the center of the emporium and discover a crudely drawn map of the emporium. It's not much, but at least it tells you where you can find what you're looking for.`
 			label greenoptions
