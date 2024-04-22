@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef HIRING_PANEL_H_
 #define HIRING_PANEL_H_
 
+#include "Information.h"
 #include "Panel.h"
 
 class PlayerInfo;
@@ -39,10 +40,17 @@ protected:
 
 
 private:
+	// Calculate statistics for the flagship and the fleet.
+	void Calculate();
+
+
+private:
 	PlayerInfo &player;
 
 	int maxHire;
 	int maxFire;
+
+	Information info;
 };
 
 

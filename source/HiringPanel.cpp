@@ -17,7 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Command.h"
 #include "GameData.h"
-#include "Information.h"
 #include "Interface.h"
 #include "PlayerInfo.h"
 #include "Ship.h"
@@ -32,6 +31,7 @@ HiringPanel::HiringPanel(PlayerInfo &player)
 	: player(player), maxHire(0), maxFire(0)
 {
 	SetTrapAllEvents(false);
+	Calculate();
 }
 
 
@@ -45,9 +45,47 @@ void HiringPanel::Step()
 
 void HiringPanel::Draw()
 {
+	GameData::Interfaces().Get("hiring")->Draw(info, this);
+}
+
+
+
+bool HiringPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
+{
+	if(command.Has(Command::HELP))
+	{
+		DoHelp("hiring", true);
+		return true;
+	}
+
+	if(!player.Flagship())
+		return false;
+
+	if(key == 'h' || key == SDLK_EQUALS || key == SDLK_KP_PLUS || key == SDLK_PLUS
+		|| key == SDLK_RETURN || key == SDLK_SPACE)
+	{
+		player.Flagship()->AddCrew(min(maxHire, Modifier()));
+		player.UpdateCargoCapacities();
+		Calculate();
+	}
+	else if(key == 'f' || key == SDLK_MINUS || key == SDLK_KP_MINUS || key == SDLK_BACKSPACE || key == SDLK_DELETE)
+	{
+		player.Flagship()->AddCrew(-min(maxFire, Modifier()));
+		player.UpdateCargoCapacities();
+		Calculate();
+	}
+	else
+		return false;
+
+	return true;
+}
+
+
+
+// Calculate statistics for the flagship and the fleet.
+void HiringPanel::Calculate()
+{
 	const Ship *flagship = player.Flagship();
-	const Interface *hiring = GameData::Interfaces().Get("hiring");
-	Information info;
 
 	int flagshipBunks = 0;
 	int flagshipRequired = 0;
@@ -101,36 +139,4 @@ void HiringPanel::Draw()
 		info.SetCondition("can hire");
 	if(maxFire)
 		info.SetCondition("can fire");
-
-	hiring->Draw(info, this);
-}
-
-
-
-bool HiringPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
-{
-	if(command.Has(Command::HELP))
-	{
-		DoHelp("hiring", true);
-		return true;
-	}
-
-	if(!player.Flagship())
-		return false;
-
-	if(key == 'h' || key == SDLK_EQUALS || key == SDLK_KP_PLUS || key == SDLK_PLUS
-		|| key == SDLK_RETURN || key == SDLK_SPACE)
-	{
-		player.Flagship()->AddCrew(min(maxHire, Modifier()));
-		player.UpdateCargoCapacities();
-	}
-	else if(key == 'f' || key == SDLK_MINUS || key == SDLK_KP_MINUS || key == SDLK_BACKSPACE || key == SDLK_DELETE)
-	{
-		player.Flagship()->AddCrew(-min(maxFire, Modifier()));
-		player.UpdateCargoCapacities();
-	}
-	else
-		return false;
-
-	return true;
 }
