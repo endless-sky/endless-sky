@@ -690,7 +690,7 @@ bool NPC::HasFailed() const
 		// 2) it must evade, and is in the destination system.
 		if((it.second & ShipEvent::LAND) && !doStopover && it.first->GetSystem()
 				&& ((mustAccompany && it.first->GetSystem() != destination)
-					|| (mustEvade && it.first->GetSystem() == destination)))
+				|| (mustEvade && it.first->GetSystem() == destination)))
 			return true;
 	}
 

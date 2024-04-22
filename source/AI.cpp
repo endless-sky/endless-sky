@@ -1881,7 +1881,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 		{
 			// Route to the destination (either the parent ship's system or a system
 			// marked by the NPC's mission definition) by landing or jumping.
-			const System * destinationSystem = ship.GetDestinationSystem();
+			const System *destinationSystem = ship.GetDestinationSystem();
 			SelectRoute(ship, destinationSystem ? destinationSystem : parent.GetSystem());
 		}
 
@@ -4758,9 +4758,7 @@ void AI::IssueNPCOrders(Ship &ship, const System *targetSystem, const std::map<c
 				ship.SetTargetStellar(nullptr);
 				const System *nextSystem = ship.NextWaypoint();
 				if(nextSystem)
-				{
 					newOrders.targetSystem = nextSystem;
-				}
 				else
 					newOrders.type = 0;
 			}
@@ -4780,7 +4778,8 @@ void AI::IssueNPCOrders(Ship &ship, const System *targetSystem, const std::map<c
 
 	// Update the NPC's orders.
 	Orders &existing = orders[&ship];
-	existing = newOrders;
-	if(existing.type == 0)
+	if(newOrders.type == 0)
 		orders.erase(&ship);
+	else
+		existing = newOrders;
 }

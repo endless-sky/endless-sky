@@ -3545,7 +3545,7 @@ const bool Ship::HasTravelDirective() const
 
 
 
-const std::map<const Planet *, bool> Ship::GetStopovers() const
+const map<const Planet *, bool> Ship::GetStopovers() const
 {
 	return travelDestinations;
 }
@@ -3560,7 +3560,7 @@ const System *Ship::GetDestinationSystem() const
 
 
 // Persistent targets for mission NPCs.
-void Ship::SetStopovers(const std::vector<const Planet *> planets, const bool shouldRelaunch)
+void Ship::SetStopovers(const vector<const Planet *> planets, const bool shouldRelaunch)
 {
 	doStopover = shouldRelaunch;
 
@@ -3571,7 +3571,7 @@ void Ship::SetStopovers(const std::vector<const Planet *> planets, const bool sh
 
 
 
-void Ship::SetWaypoints(const std::vector<const System *> waypoints)
+void Ship::SetWaypoints(const vector<const System *> waypoints)
 {
 	// Ships loaded from save files may have an existing waypoint that
 	// indicates which systems have already been visited.
