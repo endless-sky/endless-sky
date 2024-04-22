@@ -1680,10 +1680,10 @@ mission "Slave Transport [0]"
 		distance 4 30
 		government "Pirate"
 	on abort
-		"reputation: Pirate" -= 12
+		"reputation: Pirate" -= 9
 		dialog phrase "generic aborted pirate slave mission"
 	on fail
-		"reputation: Pirate" -= 12
+		"reputation: Pirate" -= 9
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -1709,10 +1709,10 @@ mission "Slave Transport [1]"
 		distance 4 30
 		government "Pirate"
 	on abort
-		"reputation: Pirate" -= 12
+		"reputation: Pirate" -= 9
 		dialog phrase "generic aborted pirate slave mission"
 	on fail
-		"reputation: Pirate" -= 12
+		"reputation: Pirate" -= 9
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -1738,10 +1738,10 @@ mission "Slave Transport [2]"
 		distance 4 30
 		government "Pirate"
 	on abort
-		"reputation: Pirate" -= 12
+		"reputation: Pirate" -= 9
 		dialog phrase "generic aborted pirate slave mission"
 	on fail
-		"reputation: Pirate" -= 12
+		"reputation: Pirate" -= 9
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -1769,10 +1769,10 @@ mission "Bulk Slave Transport [0]"
 		distance 4 30
 		government "Pirate"
 	on abort
-		"reputation: Pirate" -= 12
+		"reputation: Pirate" -= 9
 		dialog phrase "generic aborted pirate slave mission"
 	on fail
-		"reputation: Pirate" -= 12
+		"reputation: Pirate" -= 9
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -1798,10 +1798,10 @@ mission "Bulk Slave Transport [1]"
 		distance 4 30
 		government "Pirate"
 	on abort
-		"reputation: Pirate" -= 12
+		"reputation: Pirate" -= 9
 		dialog phrase "generic aborted pirate slave mission"
 	on fail
-		"reputation: Pirate" -= 12
+		"reputation: Pirate" -= 9
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -2265,7 +2265,7 @@ mission "Eliminating Law Enforcement (North, Small)"
 		attributes "north pirate"
 	npc kill
 		government "Republic"
-		personality heroic staying target
+		personality heroic marked staying target
 		system
 			distance 1 3
 		fleet "Small Republic" 2
@@ -2317,6 +2317,8 @@ mission "Eliminating Law Enforcement (Core, Small)"
 		personality heroic marked staying target
 		system
 			distance 1 3
+			neighbor
+				not government "Pirate"
 		fleet "Small Syndicate" 2
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
@@ -2341,6 +2343,8 @@ mission "Eliminating Law Enforcement (Core, Large)"
 		personality heroic marked staying target
 		system
 			distance 1 3
+			neighbor
+				not government "Pirate"
 		fleet "Large Syndicate"
 		fleet "Small Syndicate" 2
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
@@ -2663,6 +2667,8 @@ mission "Raid on Merchants (North)"
 		personality heroic staying target
 		system
 			distance 1 3
+			neighbor
+				not government "Pirate"
 		fleet "Small Northern Merchants" 2
 		fleet "Large Northern Merchants"
 		dialog "The merchants have been eliminated. Return to <destination> for your cut of the loot."
