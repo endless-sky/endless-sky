@@ -3356,8 +3356,7 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 			{
 				// Get the index of this weapon.
 				int index = &hardpoint - &ship.Weapons().front();
-				Angle targetAngle = hardpoint.GetIdleAngle();
-				double offset = (targetAngle - hardpoint.GetAngle()).Degrees();
+				double offset = (hardpoint.GetIdleAngle() - hardpoint.GetAngle()).Degrees();
 				command.SetAim(index, offset / hardpoint.GetOutfit()->TurretTurn());
 			}
 		return;
@@ -3379,7 +3378,7 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 				Angle centerAngle = Angle(hardpoint.GetIdleAngle());
 				const Angle minArc = hardpoint.GetMinArc();
 				const Angle maxArc = hardpoint.GetMaxArc();
-				const auto arcMiddleDegrees = (minArc.AbsDegrees() + maxArc.AbsDegrees()) / 2.;
+				const double arcMiddleDegrees = (minArc.AbsDegrees() + maxArc.AbsDegrees()) / 2.;
 				double bias = (centerAngle - hardpoint.GetAngle()).Degrees() / min(arcMiddleDegrees, 180.);
 				double acceleration = Random::Real() - Random::Real() + bias;
 				command.SetAim(index, previous + .1 * acceleration);
@@ -3442,7 +3441,7 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 				}
 
 				// Determine how much the turret must turn to face that vector.
-				double degrees = 0.0;
+				double degrees = 0.;
 				Angle angleToPoint = Angle(p);
 				if(hardpoint.IsOmnidirectional())
 					degrees = (angleToPoint - aim).Degrees();
