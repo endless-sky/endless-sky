@@ -193,7 +193,7 @@ void GameAction::LoadSingle(const DataNode &child)
 			swap(minDays, maxDays);
 		events[GameData::Events().Get(child.Token(1))] = make_pair(minDays, maxDays);
 	}
-	else if(key == "music" && hasValue)
+	else if(key == "music" && hasValue && child.Token(1) != "")
 	{
 		music = child.Token(1);
 		playMusic = true;
@@ -253,7 +253,13 @@ void GameAction::Save(DataWriter &out) const
 	if(failCaller)
 		out.Write("fail");
 	if(playMusic)
-		out.Write("music", music);
+	{
+		if (music != "")
+			out.Write("music", music);
+		else
+			out.Write("quiet");
+	}
+		
 
 	conditions.Save(out);
 }
@@ -379,7 +385,6 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 	}
 	if(failCaller && caller)
 		player.FailMission(*caller);
-	
 	if(playMusic)
 	{
 		if(music == "<ambient>")
