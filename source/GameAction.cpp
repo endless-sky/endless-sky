@@ -254,12 +254,11 @@ void GameAction::Save(DataWriter &out) const
 		out.Write("fail");
 	if(playMusic)
 	{
-		if (!music.empty())
+		if(!music.empty())
 			out.Write("music", music);
 		else
 			out.Write("quiet");
 	}
-		
 
 	conditions.Save(out);
 }
