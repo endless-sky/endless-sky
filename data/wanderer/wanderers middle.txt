@@ -3489,6 +3489,7 @@ event "wanderers: sestor planets unrestricted"
 	planet "Sopi Lefarkata"
 		"required reputation" 0
 		spaceport clear
+		description `This is a cold and mountainous world, and most of its oceans are covered in ice. A handful of giant craters gouged out from the sides of mountains are the only sign that there were once Korath settlements here. But, the Kor Sestor robots have begun building settlements of their own, in caverns deep under the mountains where they are safe from orbital bombardment. Where the final set of Kor Mereti attacks collapsed one of the access tunnels, the swarms of robots that gathered to dig them out now sit motionless, slowly being buried under snow and dust.`
 
 event "wanderers taking jobs from kor efreti"
 	system "Sumprast"
