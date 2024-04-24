@@ -85,6 +85,9 @@ public:
 	// Check if this mission is a "minor" mission. Minor missions will only be
 	// offered if no other missions (minor or otherwise) are being offered.
 	bool IsMinor() const;
+	// Check if this mission is "no landing". "no landing" missions won't
+	// display landing notes ("you have missions that require landing on [planet]")
+	bool IsNoLanding() const;
 
 	// Find out where this mission is offered.
 	enum Location {SPACEPORT, LANDING, JOB, ASSISTING, BOARDING, SHIPYARD, OUTFITTER};
@@ -203,6 +206,7 @@ private:
 	bool isVisible = true;
 	bool hasPriority = false;
 	bool isMinor = false;
+	bool isNoLanding = false;
 	bool autosave = false;
 	bool overridesCapture = false;
 	Date deadline;

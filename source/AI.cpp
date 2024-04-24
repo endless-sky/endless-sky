@@ -27,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Mask.h"
 #include "Messages.h"
 #include "Minable.h"
+#include "Mission.h"
 #include "pi.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -3842,8 +3843,8 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 		size_t missions = 0;
 		for(const Mission &mission : player.Missions())
 		{
-			// Don't include invisible missions in the check.
-			if(!mission.IsVisible())
+			// Don't include invisible and "no landing" missions in the check.
+			if(!mission.IsVisible() || mission.IsNoLanding())
 				continue;
 
 			// If the accessible destination of a mission is in this system, and you've been

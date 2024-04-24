@@ -60,7 +60,7 @@ mission "Escort (Tiny, Northern, Dangerous Destination)"
 				"Berserker"
 			variant
 				"Scrapper"
-	
+
 	npc accompany save
 		government "Merchant"
 		personality escort timid
@@ -125,7 +125,7 @@ mission "Escort (Tiny, Northern, Dangerous Origin)"
 				"Berserker"
 			variant
 				"Scrapper"
-	
+
 	npc accompany save
 		government "Merchant"
 		personality escort timid
@@ -175,7 +175,7 @@ mission "Escort (Small, Northern, Dangerous Destination)"
 			confusion 30
 		system destination
 		fleet "Small Northern Pirates"
-	
+
 	npc accompany save
 		government "Merchant"
 		personality escort timid
@@ -224,7 +224,7 @@ mission "Escort (Small, Northern, Dangerous Origin)"
 		system
 			distance 1
 		fleet "Small Northern Pirates"
-	
+
 	npc accompany save
 		government "Merchant"
 		personality escort timid
@@ -278,7 +278,7 @@ mission "Escort (Medium, Northern, Dangerous Destination)"
 			confusion 20
 		system destination
 		fleet "Small Northern Pirates" 2
-	
+
 	npc accompany save
 		government "Merchant"
 		personality escort timid
@@ -332,7 +332,7 @@ mission "Escort (Medium, Northern, Dangerous Origin)"
 			confusion 20
 		system destination
 		fleet "Small Northern Pirates"
-	
+
 	npc accompany save
 		government "Merchant"
 		personality escort timid
@@ -377,7 +377,7 @@ mission "Escort (Large, Northern, Dangerous Destination)"
 		personality nemesis staying harvests plunders
 		system destination
 		fleet "Large Northern Pirates"
-	
+
 	npc accompany save
 		government "Merchant"
 		personality escort timid
@@ -423,7 +423,7 @@ mission "Escort (Large, Northern, Dangerous Origin)"
 		system
 			distance 1 2
 		fleet "Small Northern Pirates"
-	
+
 	npc accompany save
 		government "Merchant"
 		personality escort timid
@@ -470,7 +470,7 @@ mission "Escort (Extra Large, Northern, Dangerous Destination)"
 		system destination
 		fleet "Small Northern Pirates"
 		fleet "Large Northern Pirates"
-	
+
 	npc accompany save
 		government "Merchant"
 		personality escort timid
@@ -522,7 +522,7 @@ mission "Escort (Extra Large, Northern, Dangerous Origin)"
 		personality nemesis harvests plunders
 		system destination
 		fleet "Large Northern Pirates"
-	
+
 	npc accompany save
 		government "Merchant"
 		personality escort timid
@@ -586,7 +586,7 @@ mission "Escort (Tiny, Core, Dangerous Destination)"
 				"Berserker"
 			variant
 				"Scrapper"
-	
+
 	npc accompany save
 		government "Merchant"
 		personality escort timid
@@ -651,7 +651,7 @@ mission "Escort (Tiny, Core, Dangerous Origin)"
 				"Berserker"
 			variant
 				"Scrapper"
-	
+
 	npc accompany save
 		government "Merchant"
 		personality escort timid
@@ -701,7 +701,7 @@ mission "Escort (Small, Core, Dangerous Destination)"
 			confusion 30
 		system destination
 		fleet "Small Core Pirates"
-	
+
 	npc accompany save
 		government "Merchant"
 		personality escort timid
@@ -750,7 +750,7 @@ mission "Escort (Small, Core, Dangerous Origin)"
 		personality nemesis harvests plunders
 			confusion 30
 		fleet "Small Core Pirates"
-	
+
 	npc accompany save
 		government "Merchant"
 		personality escort timid
@@ -798,7 +798,7 @@ mission "Escort (Medium, Core, Dangerous Destination)"
 			confusion 20
 		system destination
 		fleet "Small Core Pirates" 2
-	
+
 	npc accompany save
 		government "Merchant"
 		personality escort timid
@@ -854,7 +854,7 @@ mission "Escort (Medium, Core, Dangerous Origin)"
 		personality nemesis harvests plunders
 			confusion 20
 		fleet "Small Core Pirates" 2
-	
+
 	npc accompany save
 		government "Merchant"
 		personality escort timid
@@ -899,7 +899,7 @@ mission "Escort (Large, Core, Dangerous Destination)"
 		personality nemesis staying harvests plunders
 		system destination
 		fleet "Large Core Pirates"
-	
+
 	npc accompany save
 		government "Merchant"
 		personality escort timid
@@ -945,7 +945,7 @@ mission "Escort (Large, Core, Dangerous Origin)"
 		government "Pirate"
 		personality nemesis harvests plunders
 		fleet "Large Core Pirates"
-	
+
 	npc accompany save
 		government "Merchant"
 		personality escort timid
@@ -992,7 +992,7 @@ mission "Escort (Extra Large, Core, Dangerous Destination)"
 		system destination
 		fleet "Large Core Pirates"
 		fleet "Small Core Pirates"
-	
+
 	npc accompany save
 		government "Merchant"
 		personality escort timid
@@ -1045,7 +1045,7 @@ mission "Escort (Extra Large, Core, Dangerous Origin)"
 		personality nemesis harvests plunders
 		fleet "Small Core Pirates"
 		fleet "Large Core Pirates"
-	
+
 	npc accompany save
 		government "Merchant"
 		personality escort timid
@@ -1108,7 +1108,7 @@ mission "Escort (Tiny, Southern, Dangerous Origin or Destination)"
 				"Hawk"
 			variant
 				"Scrapper"
-	
+
 	npc accompany save
 		government "Merchant"
 		personality escort timid
@@ -1151,7 +1151,7 @@ mission "Escort (Small, Southern, Dangerous Origin or Destination)"
 			confusion 30
 		system destination
 		fleet "Small Southern Pirates"
-	
+
 	npc accompany save
 		government "Merchant"
 		personality escort timid
@@ -1192,7 +1192,7 @@ mission "Escort (Medium, Southern, Dangerous Origin or Destination)"
 			confusion 20
 		system destination
 		fleet "Small Southern Pirates" 2
-	
+
 	npc accompany save
 		government "Merchant"
 		personality escort timid
@@ -1231,7 +1231,7 @@ mission "Escort (Large, Southern, Dangerous Origin or Destination)"
 		personality nemesis staying harvests plunders
 		system destination
 		fleet "Large Southern Pirates"
-	
+
 	npc accompany save
 		government "Merchant"
 		personality escort timid
@@ -1272,7 +1272,7 @@ mission "Escort (Extra Large, Southern, Dangerous Origin or Destination)"
 		system destination
 		fleet "Large Southern Pirates"
 		fleet "Small Southern Pirates"
-	
+
 	npc accompany save
 		government "Merchant"
 		personality escort timid
@@ -1450,7 +1450,7 @@ mission "Raider Attack 2"
 		government "Korath"
 		personality target timid unconstrained uninterested harvests plunders
 		fleet "Korath Raid" 3
-		
+
 	npc
 		government "Syndicate"
 		personality heroic staying vindictive
@@ -2934,6 +2934,7 @@ mission "Bounty Hunting (Very Tiny)"
 	job
 	deadline 14
 	"apparent payment" 25000
+	"no landing"
 	to offer
 		or
 			"combat rating" > 15
@@ -2979,6 +2980,7 @@ mission "Bounty Hunting (Very Tiny, Local)"
 	job
 	deadline 3
 	"apparent payment" 25000
+	"no landing"
 	to offer
 		or
 			"combat rating" > 15
@@ -3028,6 +3030,7 @@ mission "Bounty Hunting (Tiny)"
 	job
 	deadline 14
 	"apparent payment" 50000
+	"no landing"
 	to offer
 		or
 			"combat rating" > 30
@@ -3081,6 +3084,7 @@ mission "Bounty Hunting (Tiny, Local)"
 	job
 	deadline 3
 	"apparent payment" 50000
+	"no landing"
 	to offer
 		or
 			"combat rating" > 30
@@ -3132,6 +3136,7 @@ mission "Bounty Hunting (Very Small)"
 	job
 	deadline 14
 	"apparent payment" 95000
+	"no landing"
 	to offer
 		or
 			"combat rating" > 80
@@ -3183,6 +3188,7 @@ mission "Bounty Hunting (Very Small, Local)"
 	job
 	deadline 3
 	"apparent payment" 95000
+	"no landing"
 	to offer
 		or
 			"combat rating" > 80
@@ -3232,6 +3238,7 @@ mission "Bounty Hunting (Small)"
 	job
 	deadline 14
 	"apparent payment" 180000
+	"no landing"
 	to offer
 		"combat rating" > 200
 		"combat rating" < 500
@@ -3276,6 +3283,7 @@ mission "Bounty Hunting (Small, Local)"
 	job
 	deadline 3
 	"apparent payment" 180000
+	"no landing"
 	to offer
 		"combat rating" > 200
 		"combat rating" < 500
@@ -3318,6 +3326,7 @@ mission "Bounty Hunting (Medium)"
 	job
 	deadline 14
 	"apparent payment" 240000
+	"no landing"
 	to offer
 		"combat rating" > 350
 		"combat rating" < 1200
@@ -3356,6 +3365,7 @@ mission "Bounty Hunting (Medium, Local)"
 	job
 	deadline 3
 	"apparent payment" 240000
+	"no landing"
 	to offer
 		"combat rating" > 350
 		"combat rating" < 1200
@@ -3392,6 +3402,7 @@ mission "Bounty Hunting (Big)"
 	job
 	deadline 14
 	"apparent payment" 300000
+	"no landing"
 	to offer
 		"combat rating" > 500
 		"combat rating" < 2500
@@ -3434,6 +3445,7 @@ mission "Bounty Hunting (Big, Local)"
 	job
 	deadline 3
 	"apparent payment" 300000
+	"no landing"
 	to offer
 		"combat rating" > 500
 		"combat rating" < 2500
@@ -3474,6 +3486,7 @@ mission "Bounty Hunting (Small, Hidden)"
 	job
 	deadline 30
 	"apparent payment" 360000
+	"no landing"
 	to offer
 		"combat rating" > 200
 		or
@@ -3521,6 +3534,7 @@ mission "Bounty Hunting (Medium, Hidden)"
 	job
 	deadline 30
 	"apparent payment" 480000
+	"no landing"
 	to offer
 		"combat rating" > 350
 		or
@@ -3562,6 +3576,7 @@ mission "Bounty Hunting (Big, Hidden)"
 	job
 	deadline 30
 	"apparent payment" 600000
+	"no landing"
 	to offer
 		"combat rating" > 500
 		or
@@ -3687,6 +3702,7 @@ mission "Bounty Hunting (Solo Marauder I)"
 	job
 	deadline 14
 	"apparent payment" 130000
+	"no landing"
 	to offer
 		or
 			"combat rating" > 100
@@ -3716,6 +3732,7 @@ mission "Bounty Hunting (Solo Marauder II)"
 	job
 	deadline 14
 	"apparent payment" 200000
+	"no landing"
 	to offer
 		or
 			"combat rating" > 200
@@ -3745,6 +3762,7 @@ mission "Bounty Hunting (Solo Marauder III)"
 	job
 	deadline 14
 	"apparent payment" 310000
+	"no landing"
 	to offer
 		"combat rating" > 300
 		"combat rating" < 1200
@@ -3770,6 +3788,7 @@ mission "Bounty Hunting (Solo Marauder IV)"
 	job
 	deadline 14
 	"apparent payment" 500000
+	"no landing"
 	to offer
 		"combat rating" > 500
 		"combat rating" < 2500
@@ -3795,6 +3814,7 @@ mission "Bounty Hunting (Marauder I)"
 	job
 	deadline 14
 	"apparent payment" 360000
+	"no landing"
 	to offer
 		"combat rating" > 500
 		or
@@ -3823,6 +3843,7 @@ mission "Bounty Hunting (Marauder II)"
 	job
 	deadline 14
 	"apparent payment" 380000
+	"no landing"
 	to offer
 		"combat rating" > 600
 		or
@@ -3851,6 +3872,7 @@ mission "Bounty Hunting (Marauder III)"
 	job
 	deadline 14
 	"apparent payment" 400000
+	"no landing"
 	to offer
 		"combat rating" > 700
 		or
@@ -3879,6 +3901,7 @@ mission "Bounty Hunting (Marauder IV)"
 	job
 	deadline 14
 	"apparent payment" 480000
+	"no landing"
 	to offer
 		"combat rating" > 1200
 		or
@@ -3907,6 +3930,7 @@ mission "Bounty Hunting (Marauder V)"
 	job
 	deadline 14
 	"apparent payment" 500000
+	"no landing"
 	to offer
 		"combat rating" > 1400
 		or
@@ -3936,6 +3960,7 @@ mission "Bounty Hunting (Marauder VI)"
 	job
 	deadline 14
 	"apparent payment" 520000
+	"no landing"
 	to offer
 		"combat rating" > 1600
 		or
@@ -3964,6 +3989,7 @@ mission "Bounty Hunting (Marauder VII)"
 	job
 	deadline 14
 	"apparent payment" 620000
+	"no landing"
 	to offer
 		"combat rating" > 2500
 		random < 20
@@ -3988,6 +4014,7 @@ mission "Bounty Hunting (Marauder VIII)"
 	job
 	deadline 14
 	"apparent payment" 640000
+	"no landing"
 	to offer
 		"combat rating" > 2800
 		random < 15
@@ -4012,6 +4039,7 @@ mission "Bounty Hunting (Marauder IX)"
 	job
 	deadline 14
 	"apparent payment" 660000
+	"no landing"
 	to offer
 		"combat rating" > 3100
 		random < 10
@@ -4036,6 +4064,7 @@ mission "Bounty Hunting (Marauder X)"
 	job
 	deadline 14
 	"apparent payment" 1000000
+	"no landing"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
