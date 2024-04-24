@@ -886,7 +886,7 @@ bool MapPanel::IsSatisfied(const Mission &mission) const
 
 bool MapPanel::IsSatisfied(const PlayerInfo &player, const Mission &mission)
 {
-	return mission.IsSatisfied(player) && !mission.HasFailed(player);
+	return mission.IsSatisfied(player) && !mission.IsFailed(player);
 }
 
 
