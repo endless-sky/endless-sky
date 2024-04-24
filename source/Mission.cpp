@@ -205,8 +205,6 @@ void Mission::Load(const DataNode &node)
 			hasPriority = true;
 		else if(child.Token(0) == "minor")
 			isMinor = true;
-		else if(child.Token(0) == "no landing")
-			isNoLanding = true;
 		else if(child.Token(0) == "autosave")
 			autosave = true;
 		else if(child.Token(0) == "job")
@@ -367,8 +365,6 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("priority");
 		if(isMinor)
 			out.Write("minor");
-		if(isNoLanding)
-			out.Write("no landing");
 		if(autosave)
 			out.Write("autosave");
 		if(location == LANDING)
@@ -579,13 +575,6 @@ bool Mission::HasPriority() const
 bool Mission::IsMinor() const
 {
 	return isMinor;
-}
-
-// Check if this mission is "no landing". "no landing" missions won't
-// display landing notes ("you have missions that require landing on [planet]")
-bool Mission::IsNoLanding() const
-{
-	return isNoLanding;
 }
 
 
@@ -1250,7 +1239,6 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.isVisible = isVisible;
 	result.hasPriority = hasPriority;
 	result.isMinor = isMinor;
-	result.isNoLanding = isNoLanding;
 	result.autosave = autosave;
 	result.location = location;
 	result.overridesCapture = overridesCapture;

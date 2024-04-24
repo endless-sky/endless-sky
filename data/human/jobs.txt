@@ -2934,7 +2934,6 @@ mission "Bounty Hunting (Very Tiny)"
 	job
 	deadline 14
 	"apparent payment" 25000
-	"no landing"
 	to offer
 		or
 			"combat rating" > 15
@@ -2980,7 +2979,6 @@ mission "Bounty Hunting (Very Tiny, Local)"
 	job
 	deadline 3
 	"apparent payment" 25000
-	"no landing"
 	to offer
 		or
 			"combat rating" > 15
@@ -3030,7 +3028,6 @@ mission "Bounty Hunting (Tiny)"
 	job
 	deadline 14
 	"apparent payment" 50000
-	"no landing"
 	to offer
 		or
 			"combat rating" > 30
@@ -3084,7 +3081,6 @@ mission "Bounty Hunting (Tiny, Local)"
 	job
 	deadline 3
 	"apparent payment" 50000
-	"no landing"
 	to offer
 		or
 			"combat rating" > 30
@@ -3136,7 +3132,6 @@ mission "Bounty Hunting (Very Small)"
 	job
 	deadline 14
 	"apparent payment" 95000
-	"no landing"
 	to offer
 		or
 			"combat rating" > 80
@@ -3188,7 +3183,6 @@ mission "Bounty Hunting (Very Small, Local)"
 	job
 	deadline 3
 	"apparent payment" 95000
-	"no landing"
 	to offer
 		or
 			"combat rating" > 80
@@ -3238,7 +3232,6 @@ mission "Bounty Hunting (Small)"
 	job
 	deadline 14
 	"apparent payment" 180000
-	"no landing"
 	to offer
 		"combat rating" > 200
 		"combat rating" < 500
@@ -3283,7 +3276,6 @@ mission "Bounty Hunting (Small, Local)"
 	job
 	deadline 3
 	"apparent payment" 180000
-	"no landing"
 	to offer
 		"combat rating" > 200
 		"combat rating" < 500
@@ -3326,7 +3318,6 @@ mission "Bounty Hunting (Medium)"
 	job
 	deadline 14
 	"apparent payment" 240000
-	"no landing"
 	to offer
 		"combat rating" > 350
 		"combat rating" < 1200
@@ -3365,7 +3356,6 @@ mission "Bounty Hunting (Medium, Local)"
 	job
 	deadline 3
 	"apparent payment" 240000
-	"no landing"
 	to offer
 		"combat rating" > 350
 		"combat rating" < 1200
@@ -3402,7 +3392,6 @@ mission "Bounty Hunting (Big)"
 	job
 	deadline 14
 	"apparent payment" 300000
-	"no landing"
 	to offer
 		"combat rating" > 500
 		"combat rating" < 2500
@@ -3445,7 +3434,6 @@ mission "Bounty Hunting (Big, Local)"
 	job
 	deadline 3
 	"apparent payment" 300000
-	"no landing"
 	to offer
 		"combat rating" > 500
 		"combat rating" < 2500
@@ -3486,7 +3474,6 @@ mission "Bounty Hunting (Small, Hidden)"
 	job
 	deadline 30
 	"apparent payment" 360000
-	"no landing"
 	to offer
 		"combat rating" > 200
 		or
@@ -3534,7 +3521,6 @@ mission "Bounty Hunting (Medium, Hidden)"
 	job
 	deadline 30
 	"apparent payment" 480000
-	"no landing"
 	to offer
 		"combat rating" > 350
 		or
@@ -3576,7 +3562,6 @@ mission "Bounty Hunting (Big, Hidden)"
 	job
 	deadline 30
 	"apparent payment" 600000
-	"no landing"
 	to offer
 		"combat rating" > 500
 		or
@@ -3702,7 +3687,6 @@ mission "Bounty Hunting (Solo Marauder I)"
 	job
 	deadline 14
 	"apparent payment" 130000
-	"no landing"
 	to offer
 		or
 			"combat rating" > 100
@@ -3732,7 +3716,6 @@ mission "Bounty Hunting (Solo Marauder II)"
 	job
 	deadline 14
 	"apparent payment" 200000
-	"no landing"
 	to offer
 		or
 			"combat rating" > 200
@@ -3762,7 +3745,6 @@ mission "Bounty Hunting (Solo Marauder III)"
 	job
 	deadline 14
 	"apparent payment" 310000
-	"no landing"
 	to offer
 		"combat rating" > 300
 		"combat rating" < 1200
@@ -3788,7 +3770,6 @@ mission "Bounty Hunting (Solo Marauder IV)"
 	job
 	deadline 14
 	"apparent payment" 500000
-	"no landing"
 	to offer
 		"combat rating" > 500
 		"combat rating" < 2500
@@ -3814,7 +3795,6 @@ mission "Bounty Hunting (Marauder I)"
 	job
 	deadline 14
 	"apparent payment" 360000
-	"no landing"
 	to offer
 		"combat rating" > 500
 		or
@@ -3843,7 +3823,6 @@ mission "Bounty Hunting (Marauder II)"
 	job
 	deadline 14
 	"apparent payment" 380000
-	"no landing"
 	to offer
 		"combat rating" > 600
 		or
@@ -3872,7 +3851,6 @@ mission "Bounty Hunting (Marauder III)"
 	job
 	deadline 14
 	"apparent payment" 400000
-	"no landing"
 	to offer
 		"combat rating" > 700
 		or
@@ -3901,7 +3879,6 @@ mission "Bounty Hunting (Marauder IV)"
 	job
 	deadline 14
 	"apparent payment" 480000
-	"no landing"
 	to offer
 		"combat rating" > 1200
 		or
@@ -3930,7 +3907,6 @@ mission "Bounty Hunting (Marauder V)"
 	job
 	deadline 14
 	"apparent payment" 500000
-	"no landing"
 	to offer
 		"combat rating" > 1400
 		or
@@ -3960,7 +3936,6 @@ mission "Bounty Hunting (Marauder VI)"
 	job
 	deadline 14
 	"apparent payment" 520000
-	"no landing"
 	to offer
 		"combat rating" > 1600
 		or
@@ -3989,7 +3964,6 @@ mission "Bounty Hunting (Marauder VII)"
 	job
 	deadline 14
 	"apparent payment" 620000
-	"no landing"
 	to offer
 		"combat rating" > 2500
 		random < 20
@@ -4014,7 +3988,6 @@ mission "Bounty Hunting (Marauder VIII)"
 	job
 	deadline 14
 	"apparent payment" 640000
-	"no landing"
 	to offer
 		"combat rating" > 2800
 		random < 15
@@ -4039,7 +4012,6 @@ mission "Bounty Hunting (Marauder IX)"
 	job
 	deadline 14
 	"apparent payment" 660000
-	"no landing"
 	to offer
 		"combat rating" > 3100
 		random < 10
@@ -4064,7 +4036,6 @@ mission "Bounty Hunting (Marauder X)"
 	job
 	deadline 14
 	"apparent payment" 1000000
-	"no landing"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
