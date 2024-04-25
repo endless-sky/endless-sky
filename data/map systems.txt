@@ -2110,7 +2110,7 @@ system Acnanjo
 		period 1199.60
 
 system Titawin
-	pos -297.08377 146.935
+	pos -298.084 172.935
 	government Syndicate
 	link Fomalhaut
 	link Markab
@@ -10831,7 +10831,7 @@ system Delia
 		period 5611.94
 
 system "Delta Capricorni"
-	pos -287.22222 199.33333
+	pos -293.222 211.333
 	government Syndicate
 	attributes "core"
 	arrival 855
@@ -12585,7 +12585,7 @@ system "Elabi Choati"
 		period 745.253
 
 system "Gamma Ceti"
-	pos -275.77778 73.111113
+	pos -275.778 73.1111
 	government Syndicate
 	link "Alpha Scuti"
 	link Syrma
@@ -15231,7 +15231,7 @@ system Flugbu
 			period 37.165
 
 system Fomalhaut
-	pos -323.78 120
+	pos -325.78 125
 	government Syndicate
 	attributes "near earth"
 	arrival 500
@@ -18278,7 +18278,7 @@ system Ik'kara'ka
 			period 24.9998
 
 system Syrma
-	pos -291.11111 98.333335
+	pos -294.111 101.333
 	government Syndicate
 	link "Gamma Ceti"
 	link Marfik
@@ -33387,7 +33387,7 @@ system Sumprast
 			period 29.291
 
 system Marfik
-	pos -265.33333 126.33334
+	pos -276.333 143.333
 	government Syndicate
 	link Titawin
 	link Syrma
