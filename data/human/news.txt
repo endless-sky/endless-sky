@@ -2322,7 +2322,7 @@ news "Clandestine"
 			" After some time of this "
 		word
 			"a silent alarm tells you that your should check on your ship. "
-			"it may be wise make sure no one's tampering with your ship. "
+			"it may be wise to make sure no one's tampering with your ship. "
 		word
 			"You find "
 		word
@@ -2409,10 +2409,10 @@ news "Symbol War"
 		word
 			"of CCOR "
 		word
-			"guerillas "
+			"guerrillas "
 			"insurgents "
 		word
-			"have entered the port."
+			"have entered the port. "
 		word
 			"Almost none "
 			"Few "
@@ -2422,7 +2422,7 @@ news "Symbol War"
 			"of them are armed, but it's their other equipment that stands out; paint, plaster, and ladders. They "
 		word
 			"scale the rear wall toward the giant crest of the local government and "
-			"walk along the walls, stopping at each local government crest and% "
+			"walk along the walls, stopping at each local government crest and %"
 		word
 			"replace the crest, then take down their ladders and leave."
 		word
