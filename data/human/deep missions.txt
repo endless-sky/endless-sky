@@ -2504,7 +2504,8 @@ mission "Stone of our Fathers 1"
 			label "ser 2"
 			action
 				set "Stone of our Fathers: ser 2"
-			`	The old man narrows his eyes at you and his mouth falls slightly open like he's trying to make sense of a puzzle. Finally he says, "What's the bits between a fella's legs gotta do with anything? I already said, 'Ser' is just what decent folk call each other; ain't nothing more to it. Don't matter if you're a guy, gal, or anything else. Hel, I reckon I'd even call an elf 'Ser' if they done me a good turn."`
+			`	The old man narrows his eyes at you and his mouth falls slightly open like he's trying to make sense of a puzzle. Finally he says, "What's the bits between a fella's legs gotta do with anything? I already said, 'Ser' is just what decent folk call each other; ain't nothing more to it. Don't matter if you're a guy, gal, or anything else. Hel, I reckon I'd even call an elf 'Ser' if they done me a good turn.`
+			`	"Now, I'd like to know whether you can take me to <planet>."`
 				goto choice
 
 			label decline
