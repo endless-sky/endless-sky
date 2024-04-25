@@ -315,13 +315,14 @@ planet "Bank of Blugtad"
 planet "Basilisk Station"
 	attributes station uninhabited
 	landscape land/station8
-	description `Basilisk Station harks back to the caravan era, serving as an automatic fuel depot helping to connect the Deep and the galactic south. Over time the station's use and maintenance has dwindled as more of the Dirt Belt has been settled, providing better stopovers for captains.`
-	description `	At some point in its neglected history, something has struck the station, dealing significant damage to the exterior.`
+	description `Basilisk Station is a remnant of the old Caravan Era, when it served as an automatic fuel depot bridging the gap between the Deep and the galactic south.`
+	description `	During the early years of the Republic there was a large influx of colonists to the worlds in this part of the Dirt Belt, and for a time the station saw some of its heaviest traffic. However, those same Dirt Belt worlds eventually supplanted Basilisk Station as a fuel stop, and since then, the station has been left in disrepair.`
+	description `	At some point in its neglected history, something struck the fuel station and dealt significant damage to its exterior.`
 	port "Fuel Depot"
 		recharges
 			energy
 			fuel
-		description `Basilisk Station was never built to support people, as such it has no proper spaceport, just simple docking ports to connect and refuel.`
+		description `Basilisk Station was never built to support human habitation for an extended period of time. As such it has no proper spaceport, just an array of docking ports for refueling.`
 
 planet "Belug's Plunge"
 	attributes arach mining research
