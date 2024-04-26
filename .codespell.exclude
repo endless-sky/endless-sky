@@ -110,12 +110,18 @@ planet "Sies Upi"
 					to display
 						has "Stone of our Fathers: ser"
 						not "Stone of our Fathers: ser 2"
+						not "Stone of our Fathers: ser 3"
+				`	"Is 'ser' different from 'sir'?"`
+					goto "ser 3"
 				clear "Stone of our Fathers: ser"
 				clear "Stone of our Fathers: ser 2"
+				clear "Stone of our Fathers: ser 3"
 			label ser
 				set "Stone of our Fathers: ser"
 			`	"You're not from around here, are ya? Ser's just what decent folk call each other in the Deep. Sign of respect and the like. Though I am hearing it less and less these days. Old ways being forgotten, but ain't that the way of things?"`
 			label "ser 2"
 				set "Stone of our Fathers: ser 2"
 			`	The old man narrows his eyes at you and his mouth falls slightly open like he's trying to make sense of a puzzle. Finally he says, "What's the bits between a fella's legs gotta do with anything? I already said, 'Ser' is just what decent folk call each other; ain't nothing more to it. Don't matter if you're a guy, gal, or anything else. Hel, I reckon I'd even call an elf 'Ser' if they done me a good turn.`
-
+			label "ser 3"
+				set "Stone of our Fathers: ser 3"
+			`	The old man gives you a gruff nod and says, "Ah, I see. Can be confusing for a newcomer, I s'pose. What's 'tween a fella's legs gots nothing to do with it. Just like I said before, 'Ser' is just what decent folk call each other; ain't nothing more to it. Don't matter if you're a guy, gal, or anything else. Hel, I reckon I'd even call an elf 'Ser' if they done me a good turn."`
