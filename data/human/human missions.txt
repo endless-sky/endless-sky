@@ -7172,8 +7172,13 @@ mission "Timothy Radrickson 3b: Pirate Base"
 		has "Timothy Radrickson 3a: Rescue the Convoy: done"
 	on offer
 		conversation
-			``
+			`	Your ship skims Greenrock's choppy atmosphere and your terrestrial navigation computer suddenly hums to life as it picks up the lost freighter fleet's tracking beacon. It locks on to a large and well guarded underground bay on the very fringes of the spaceport. Close enough to do business, but far enough away to maintain strict security.`
+			`	As you approach the bay your computer is able to make out numerous parked pirate vessels, and large defensive turrets just outside the bay's underground blast doors. They haven't realized you're hostile yet and you have an opportunity to seize the initative and open fire on them.`
 
+			choice
+				`	(Open fire on the Pirate Bay Defenses.)`
+				`	(Hail the Pirates.)`
+				`	(Attempt to get closer without firing.)`
 	on visit
 		dialog `There are still marauder ships flying overhead. Take off and defeat them before finding the fleet.`
 
