@@ -7067,11 +7067,13 @@ mission "Timothy Radrickson 3: Governor Notification"
 		conversation
 			`Upon landing you are met by a squat, heavy-set woman in her late 40s. She reaches out a calloused hand to shake yours. "Welcome to Rand, Captain <last>. It is a pleasure, and honor, to have someone of your status here on our little world. I am Regina, the Mayor of the spaceport town, and one of the major company-bosses here. I've been instructed to escort you to the Governor's mansion. I have a vehicle waiting for you just outside the spaceport. Meet me there when you're ready."`
 
+
 mission "Timothy Radrickson 3a: Rescue the Convoy"
-	name "Rescue the <origin> convoy fleet"
-	description "<origin>'s largest ever convoy was intercepted on its way to Tarazed. Merchants report that a large pirate fleet escorting a freighter convoy passed by Delta Sagittarii."
+	name "Rescue <origin> convoy"
+	description "<origin>'s largest ever convoy was intercepted on its way to Tarazed. Merchants report that a large pirate fleet escorting a freighter convoy passed by Lesath, and it looks like they went to <destination>. Governor Tim has asked you to try and save it before the pirates can plunder it completely."
 	source "Rand"
 	destination "Greenrock"
+	deadline 7
 	clearance
 	to offer
 		has "Timothy Radrickson 3: Invitation to Rand: done"
@@ -7085,9 +7087,9 @@ mission "Timothy Radrickson 3a: Rescue the Convoy"
 					goto nothing
 				`	(Ask about the artificial gravity drives.)`
 
-			`	Regina flashes a toothy smile. "The gravity here, it is... taxing. The governor's mansion, and a few other important buildings and housing complexes, use artificial gravity drives to make things more manageable for us hard working servants of the state." The way she says, "servants of the state" makes it sound like some kind of inside joke. She turns away from you before you have a chance to say anything else.`
-			label nothing
+			`	Regina flashes a toothy smile. "The gravity here, it is... taxing. The governor's mansion, and a few other important buildings and housing complexes, use artificial gravity drives to make things more manageable for us hard working 'servants of the state.'" The way she says "servants of the state" makes it sound like some kind of inside joke. She turns away from you before you have a chance to say anything else.`
 
+			label nothing
 			`	The vehicle pulls up to a grandiose entrance near the center of the huge structure. An attendant opens the door, and you're ushered outside the vehicle.`
 			`	Regina does not get out. She smiles politely through the opened door. "Only you were invited to enter the Governor's Mansion. I am afraid this as far as I am allowed to go. Take care, Captain <last>, it truly was an honor meeting you.`
 			`	With that the door shuts, and a few moments later the black vehicle departs, leaving you and the attendant at Mansion's entrance.`
@@ -7126,10 +7128,10 @@ mission "Timothy Radrickson 3a: Rescue the Convoy"
 
 			`	His eyes refocus on you. "You'd be proud, <first>. I am going to make a real difference here..."`
 			`	Timothy is suddenly interrupted by an incessant notification coming from his desk. He glowers and says, "Excuse me for a moment, <last>," sits up straight, turns on his ear piece and answers the call.`
-			`	"What?!" He nearly shouts after a moment of listening, followed by "How can that be?" and finally, "What about the Navy, where are they!?" His face goes from red to white as the color drains out of him, and he finishes the call with a few unhappy "uh huhs" before finally hanging up.`
+			`	"What?!" He nearly shouts after ten seconds of listening, followed by "How can that be?" and finally, "What about the Navy or the militias, where are they!?" His face goes from red to white as the color drains out of him, and he finishes the call with a few unhappy "uh huhs" before finally hanging up.`
 			`	"Nevermind." He rubs his forehead and closes his eyes before saying, "Rand's future is gone. It's just been hijacked by marauders."`
-			`	He stands up and starts pacing around the room. "I'm sorry. We're going to have to cut this reunion short. Our freighter fleet, filled to the brim with all of Rand's mineral wealth, has been taken. To make matters worse, in order to make this shipment happen I had to hire a private outfit from the Deep, and the Republic Navy is not going to intervene on their behalf. Which means this entire world, and myself, are finished."`
-			`	He collapses back in his chair with his head in his hands. "I am sorry. There will be a car waiting for you at the entrance."`
+			`	He stands up and starts pacing around the room. "I'm sorry. We're going to have to cut this reunion short. Our freighter fleet, filled to the brim with all of Rand's mineral wealth, has been taken. To make matters worse, in order to make this shipment happen I had to hire a private outfit from the Deep, and neither the Navy nor the Free Worlds militias are going to intervene on their behalf. Which means this entire world, and myself, are finished."`
+			`	He collapses back in his chair with his head in his hands. "I'm sorry. There will be a car waiting for you at the entrance."`
 			choice
 				`	"I could help you recover the fleet."`
 					goto helptim
@@ -7151,16 +7153,29 @@ mission "Timothy Radrickson 3a: Rescue the Convoy"
 				goto nope
 
 			label agreehelp
-			`	Color returns to Timothy's face and he immediately straightens up. "Hroar's Haulers were contracted to deliver our freight to Wayfarer. We lost contact with them in the Peacock system. There was also a report from the local militias, who sighted a large group of marauders in Lesath escorting a freighter fleet in merchant colours. They tracked their movements to Shaula."`
-			`	He frowns as he considers something, then says, "With a haul that big, the system is likely swarming with pirates. But if you hurry you might be able to get there before they've had time to move the goods or deal with their crews." Timothy hits a few more buttons on his display screen, then he continues, "I've just sent your ship the tracking beacon for our fleet. It should help you find them once you're in Greenrock's atmosphere."`
+			`	Color returns to Timothy's face and he immediately straightens up. "Hroar's Haulers were contracted to deliver our freight to Wayfarer. We lost contact with them in the Peacock system. There was a report from some local merchants who sighted a large group of marauders in Lesath escorting a freighter fleet in merchant colors. They tracked their movements to Shaula."`
+			`	He frowns as he considers something, then says, "If you hurry, you might be able to get there before they've had time to move the goods or deal with their crews... but who knows, they're pirates." Timothy hits a few more buttons on his display screen, then he continues, "I've just sent your ship the tracking beacon for our fleet. It should help you find them once you're in Greenrock's atmosphere."`
 			`	"I am sorry I can't offer you more help." He stands up and hits the button opening up the exit door. "But, please, save that fleet."`
+				accept
 
-	on complete
+	on decline
+		event "timothy radrickson imprisoned" 400
+
+
+mission "Timothy Radrickson 3b: Pirate Base"
+	landing
+	name "Defeat the pirate fleet"
+	description "Destroy the pirate fleet that is holding Rand's fleet hostage, then try and recover the fleet."
+	source "Greenrock"
+	clearance
+	to offer
+		has "Timothy Radrickson 3a: Rescue the Convoy: done"
+	on offer
 		conversation
-			`Your ship's computer picks up the fleet's tracking beacon and identifies a large bay on the outskirts of their spaceport as their location.`
+			``
 
 	on visit
-		dialog `There are still marauder ships flying overhead. Take off and defeat them before locating the missing fleet.`
+		dialog `There are still marauder ships flying overhead. Take off and defeat them before finding the fleet.`
 
 	npc kill
 		system "Shaula"
@@ -7169,12 +7184,12 @@ mission "Timothy Radrickson 3a: Rescue the Convoy"
 		fleet "Marauder fleet X" 2 # Subject to balancing
 
 
-mission "Timothy Radrickson 3b: Escort the Convoy"
+mission "Timothy Radrickson 3c: Escort the Convoy"
 	landing
 	source "Greenrock"
 	destination "Wayfarer"
 	to offer
-		has "Timothy Radrickson 3a: Rescue the Convoy: done"
+		has "Timothy Radrickson 3b: Pirate Base: done"
 	on offer
 		conversation
 			`The sky burns red as detritus from the fierce battle rains down on Greenrock. The destruction of a major pirate gang's fleet has resulted in panic and chaos in the spaceport as rival pirate groups battle it out in the skies to claim the defeated's turf. No one pays you much mind. They don't care who took out the fleet; only that it was taken out.`
@@ -7197,7 +7212,7 @@ mission "Timothy Radrickson 3b: Escort the Convoy"
 			`	Hrodny turns her green piercing green eyes back on you. "We can get 'em in the air, but we can't fight past whatever is out there. I'm presuming you're not a lost tourist and are in fact our cavalry?"`
 			choice
 				`	"Don't worry. I took out the fleet, and I'll escort you to Wayfarer."`
-				`	"It's your lucky day, I'm Captain <last>, of the <ship>. Geting you to Wayfarer will be a piece of cake."`
+				`	"It's your lucky day, I'm Captain <last>, of the <ship>. Getting you to Wayfarer will be a piece of cake."`
 				`	"I've been sent to get you to Wayfarer, and that's what I will do."`
 				`	"You do your job. I'll do mine."`
 
@@ -7246,12 +7261,12 @@ mission "Timothy Radrickson 3b: Escort the Convoy"
 		ship "Star Barge" "H.H.H. Dusty Boots"
 
 
-mission "Timothy Radrickson 3c: Return to Rand"
+mission "Timothy Radrickson 3d: Return to Rand"
 	landing
 	source "Wayfarer"
 	destination "Rand"
 	to offer
-		has "Timothy Radrickson 3b: Escort the Convoy: done"
+		has "Timothy Radrickson 3c: Escort the Convoy: done"
 	on complete
 		conversation
 			`Instead of Regina you are met by Timothy's executive secretary, Wynnafrith. She is clearly a little uncomfortable in Rand's regular gravity, but is doing her best to push through it.`
