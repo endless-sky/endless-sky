@@ -232,6 +232,7 @@ outfitter "Central Outfits Expansion"
 	"Small Radar Jammer"
 	"Large Radar Jammer"
 	"Brig"
+	"Liquid Nitrogen Cooler"
 
 outfitter "Northern Explorers"
 	"Ramscoop"
