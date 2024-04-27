@@ -69,7 +69,6 @@ test "Condition Links"
 		# empty inputs to make time pass
 		input
 			command jump
-		watchdog 12000
 		label firstjump
 		branch firstjump
 			"flagship system: World's End" == 0
@@ -77,7 +76,6 @@ test "Condition Links"
 		# make sure we didn't end up in the wrong system
 		assert
 			"flagship system: Over the Rainbow" == 0
-		watchdog 12000
 		apply
 			"test: flagship system: World's End" = "flagship system: World's End"
 		input
