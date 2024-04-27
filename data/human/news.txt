@@ -2261,7 +2261,7 @@ phrase "CCOR Song Description"
 		"community and everyone pitching in where they can"
 		"the tyranny of a man name Bailey, until he was overthrown"
 		"the CCOR, praising their accomplishments"
-		"resistance, opposition to the current planetary administration"
+		"resistance and opposition to the current planetary administration"
 
 phrase "Worker's Demands"
 	word
