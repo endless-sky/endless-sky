@@ -1600,7 +1600,7 @@ mission "FWC Pug 3C"
 	destination Tundra
 	on enter Cebalrai
 		dialog
-			"As soon as you reenter human space, you contact the Navy and tell them to send an attack fleet to the Cebalrai system. Then, just for good measure, you contact the Free Worlds and ask them to do the same."
+			"As soon as you re-enter human space, you contact the Navy and tell them to send an attack fleet to the Cebalrai system. Then, just for good measure, you contact the Free Worlds and ask them to do the same."
 	to offer
 		has "FWC Pug 3B: done"
 	passengers 1
