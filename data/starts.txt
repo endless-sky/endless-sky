@@ -111,7 +111,7 @@ conversation "hai intro"
 	`You've never been to the shipyard before, and going to the North Pole already feels like you're traveling to another world. The pictures and videos you've seen of all these ships before simply don't do them justice; seeing them for real is something else entirely. Even though you know a lot of those ships must have been in service for many years, you are stunned by how new and shiny they look. You begin to wonder if you are ready to take the big leap.`
 	`	This "Aphid" could suit your needs. It is fast and able to carry a respectable amount of cargo.`
 	scene "thumbnail/hai aphid"
-	`	That is, unless you want to get adventurous and try out the impetuous Grasshopper. Surely the interceptor would be able to beat the smaller human warships, provided a competent pilot is at the helm.`
+	`	That is, unless you want to get adventurous and try out the impetuous "Grasshopper." Surely the Hai interceptor could take on any of the small, human warships here... provided a competent pilot is at the helm.`
 	`	You have, after all, heard tales of pirates and quick money from the many newcomers to Hai space - for those willing to take big risks, that is.`
 	`	Alternatively, up north you can go and meet the "Unfettered Hai." Maybe they would come to like you, if you were to show them the strength and cunning they respect.`
 	choice
@@ -119,23 +119,23 @@ conversation "hai intro"
 	scene "scene/hai bank"
 	`	You head to the bank's lobby, hoping to get enough of a loan to be able to buy one of these pristine ships.`
 	`	To your disappointment, the only ship you could afford is an Aphid. You arrange the contract to loan as much money as you need in order to buy one, in what has to be the first seriously unwise act of your life.`
-	`	You've heard of new captains stripping down their ships to recoup the initial buy-in, which is crossing your mind as you see the financial burden you're about to take on. As you wait for the paperwork to be processed, you passively scan over an Aphid pamphlet in the office. The pricey shield regenerator could be traded in if dangerous areas are avoided... and perhaps even the anti-missile system could be downgraded or outright removed... one of the Sand Cells could be sold back to make more space for cargo...`
+	`	You've heard of new captains stripping down their ships to recoup the initial buy-in, which is crossing your mind as you see the financial burden you're about to take on. As you wait for the paperwork to be processed, you passively scan over an Aphid pamphlet in the office. The pricey shield regenerator could be traded in if you can avoid combat... and perhaps even the anti-missile system could be downgraded or outright removed... one of the Sand Cells could be sold back to make more space for cargo...`
 	`	Those anxious musings are interrupted when the bank employee finally lays it out to you, with a hesitant smile. "You are accepting a loan in the amount of 1,431,000 credits, due over the course of 2 years, with an interest rate of 0.3% per day. Please sign here."`
 	name
-	`	You head out of the bank, but on your way to buy the Aphid at the shipyard, you see a notice. A retiring captain is offering to sell some of his ships at an interesting price, including a Grasshopper... Maybe they could sell it to you.`
+	`	You head out of the bank, but on your way to buy the Aphid at the shipyard, you see a notice. A retiring captain is selling off his fleet at a reduced price, and one of the ships he's offering is a Grasshopper... Maybe you could buy it.`
 	choice
 		`	(Go to the shipyard.)`
 			decline
 		`	(Go see what the captain has to offer first.)`
-	`	You head to the spaceport and easily find the captain selling off his ships. Thankfully he has not yet sold the Grasshopper.`
-	`	The captain greets you in Hai. You are embarrassed to have to explain to them that you never learned their language. Most Hai speak your language however, and, as usual, they are able to switch to speaking yours without much difficulty.`
+	`	You head to the spaceport and easily find the captain, a Hai, selling one of his Centipedes to another Hai. Thankfully it looks like he has not yet sold the Grasshopper.`
+	`	When he's finished selling the Centipede the captain turns and greets you in Hai. You are embarrassed to have to explain to them that you never learned their language. Most Hai speak your language however, and, as usual, they are able to switch to speaking yours without much difficulty.`
 	`	"Hello, good fellow! I assume you come for the Grasshopper." Your interest for this ship must be apparent.`
 	choice
 		`	"Yes indeed."`
 		`	"How did you know?"`
 		`	"Sorry, not interested."`
 			decline
-	`	"I can see the will to explore in your eyes, but it is not only that: I know that some humans want to head back to their space, now that it is safer to do so. I would be delighted to have you flying the 'Pristine Jewel'!" they say, taking you to the ship. It is clearly not brand new, but is still in a surprisingly good condition.`
+	`	"I can see the will to explore in your eyes, but it is not only that: I know that some humans want to head back to their space, now that it is safer to do so. I would be delighted to have you flying the 'Pristine Jewel'!" he says, taking you to the ship. It is clearly not brand new, but is still in a surprisingly good condition.`
 	scene "thumbnail/hai grasshopper"
 	`	"Because I like you I'll give you a friendly price. What do you say about... a bit over a million credits, for this wonderful ship? That's less than a third the price you would have to pay if you were to buy this model from the shipyard. Except you can't find a model like this in shipyards, trust me!"`
 	choice
@@ -143,7 +143,7 @@ conversation "hai intro"
 		`	"Sorry, not interested."`
 			decline
 	`	As the two of you settle up the paperwork, the captain takes the time to explain, in great detail, why this ship is so marvelous. In your excitement to buy the ship all you can hear from the Hai captain's speech is the repeated reference to the Grasshopper's 'exceptional' reinforced armor.`
-	`	Before you leave, they give you a final tip: "If you want to, you can always sell this ship and buy an Aphid instead. The shipyard authorities will give you a discount for having sold my ship."`
+	`	Before you leave, he gives you a final tip: "If you want to, you can always sell this ship and buy an Aphid instead. The shipyard authorities will give you a discount for having sold my ship."`
 	action
 		set "hai space start: Grasshopper"
 		give ship "Grasshopper (Expensive)" "Pristine Jewel"
@@ -189,13 +189,16 @@ mission "Greenwater start"
 
 event "not from boston"
 	planet "New Boston"
-		description `New Boston appears to be a completely unremarkable world... but as you fly through its atmosphere, you get a sense of deja vu, as if you had once been familiar with this planet before.`
-		description `	Most of the land here is wet and marshy, and the coastal regions are prone to flooding. Some food crops are grown here, but most of the farmers instead plant flax and jute, which grow well in wet soil and are used to make linen and burlap cloth. The textile mills are hot and poorly ventilated, but they offer higher and more reliable income than farming.`
+		description `New Boston appears to be a completely unremarkable world... but as you fly through its atmosphere, you get a sense of deja vu, as if you once knew this planet intimately.`
+		description `	Most of the land here is wet and marshy, and the coastal regions are prone to flooding. The planet's economy is largely agricultural; some of the farms here grow food for export to Earth and elsewhere, but a significant portion of farming land is devoted to growing fiber crops, which is then processed in the textile mills in the spaceport city.`
+	spaceport `New Boston's shabby spaceport is as about as basic as a spaceport can be. Many of the concrete landing pads are tilted and uneven, having sunk into the muddy soil since they were poured, and you have to be careful landing on them.`
+	spaceport `	The market where ship captains buy and sell cargo is a large tent rather than a permanent building, but it is sturdy enough to keep off the rain. Loads are brought in and out by trucks and the occasional hovercraft. Here some enterprising local mechanics have set up not only a repair shop and outfitter, but also a shipyard with several small, refurbished ships for sale.`
 
 event "grew up on greenwater"
 	planet "Greenwater"
-		description `Greenwater is unique among Hai worlds, not only in that it is home to a sizable human population, but also because it happens to be the world where you grew up. Most of the humans here live on the islands and archipelagoes across the equator of Greenrock where the Hai seldom visit on account of their fur coats. From what you hear from humans who have come from beyond the wormhole, the climate of Greenwater is like a "Paradise Planet", even though it lacks the extensive terraforming common to those worlds..`
-		description `	While farming and fishing make up most of the human-centered economy here, a few merchants trade with the Hai up in the poles where the spaceport is located.`
+		description `Greenwater is unique among Hai worlds, not only in that it is home to a sizable human population, but also because it happens to be the world where you grew up.`
+		description `	Most of the humans here live on the islands and archipelagoes across the equator of Greenwater, where the Hai seldom visit on account of their heavy fur coats. From what you hear from humans who have come from beyond the wormhole, the climate here is like a "Paradise Planet," even though it lacks the extensive terraforming common to those worlds.`
+		description `	While farming and fishing make up most of the human-centered economy, a few merchants trade with the Hai up in the poles where the spaceport is located.`
 
 substitutions
 	"<origin planet>" "New Boston"
