@@ -55,6 +55,8 @@ public:
 	void SetName(const std::string &name);
 	const std::string &PluralName() const;
 	const std::string &Category() const;
+	const std::string &Series() const;
+	const int Index() const;
 	const std::string &Description() const;
 	int64_t Cost() const;
 	double Mass() const;
@@ -74,6 +76,8 @@ public:
 	// For tracking a combination of outfits in a ship: add the given number of
 	// instances of the given outfit to this outfit.
 	void Add(const Outfit &other, int count = 1);
+	// Add the licenses required by the given outfit to this outfit.
+	void AddLicenses(const Outfit &outfit);
 	// Modify this outfit's attributes. Note that this cannot be used to change
 	// special attributes, like cost and mass.
 	void Set(const char *attribute, double value);
@@ -100,11 +104,20 @@ public:
 
 
 private:
+	// Add the license with the given name to the licenses required by this outfit, if it is not already present.
+	void AddLicense(const std::string &name);
+
+
+private:
 	bool isDefined = false;
 	std::string trueName;
 	std::string displayName;
 	std::string pluralName;
 	std::string category;
+	// The series that this outfit is a part of and its index within that series.
+	// Used for sorting within shops.
+	std::string series;
+	int index;
 	std::string description;
 	const Sprite *thumbnail = nullptr;
 	int64_t cost = 0;

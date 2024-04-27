@@ -1,5 +1,5 @@
 {
-	"dataRoots": ["data/**"],
+	"dataRoots": ["data/**", "tests/integration/config/plugins/integration-tests/data/**"],
 	"rules": {
 		"indentation": "\t",
 		"maxIndentationIncrease": 1,
@@ -7,7 +7,7 @@
 		"forceUnixLineSeparator": true,
 		"trailingEmptyLine": "always",
 		"checkCopyright": true,
-		"copyrightBlacklist": ["data/tooltips.txt"],
+		"copyrightBlacklist": ["tests/integration/config/plugins/integration-tests/data/disabling troublesome missions.txt"],
 		"copyrightFormats": [
 			{
 				"holder": "^# (Based on earlier text copyright|Copyright) \\(c\\) \\d{4}(?:(?:-|, )\\d{4})? (by )?.+$",
@@ -30,7 +30,7 @@
 		"regexChecks": [
 			{
 				"excludedNodes": [],
-				"checks":[
+				"checks": [
 					{
 						"description": "multiple consecutive space characters",
 						"regex": "(?<!^tip .*)([^ ])  +([^# ])",
@@ -43,39 +43,6 @@
 						"regex": "([\"'`]\t+) +",
 						"correction":{
 							"replaceWith": "\\1"
-						}
-					},
-					{
-						"description": "trailing whitespace",
-						"regex": "([^\\s])\\s+$",
-						"correction": {
-							"replaceWith": "\\1"
-						}
-					},
-					{
-						"description": "non-ASCII apostrophe",
-						"regex": "[’‘]",
-						"correction": {
-							"replaceWith": "'"
-						}
-					},
-					{
-						"description": "non-ASCII quotation mark",
-						"regex": "[“”]",
-						"correction": {
-							"replaceWith": "\""
-						}
-					},
-					{
-						"description": "non-ASCII character",
-						"regex": "[^\\x00-\\x7F]+"
-					},
-					{
-						"description": "missing space before commment",
-						"regex": "(^\\s*#+)([^\\s#])",
-						"isError": false,
-						"correction": {
-							"replaceWith": "\\1 \\2"
 						}
 					},
 					{
@@ -105,8 +72,61 @@
 				]
 			},
 			{
-				"excludedNodes": ["^word$", "^replace$"],
+				"excludedNodes": [],
+				"excludeComments": false,
+				"excludeKeywords": false,
 				"checks":[
+					{
+						"description": "trailing whitespace",
+						"regex": "([^\\s])\\s+$",
+						"correction": {
+							"replaceWith": "\\1"
+						}
+					},
+					{
+						"description": "non-ASCII apostrophe",
+						"regex": "[’‘]",
+						"correction": {
+							"replaceWith": "'"
+						}
+					},
+					{
+						"description": "non-ASCII quotation mark",
+						"regex": "[“”]",
+						"correction": {
+							"replaceWith": "\""
+						}
+					},
+					{
+						"description": "non-ASCII character",
+						"regex": "[^\\x00-\\x7F]+"
+					},
+					{
+						"description": "missing space before comment",
+						"regex": "(^\\s*#+)([^\\s#])",
+						"correction": {
+							"replaceWith": "\\1 \\2"
+						}
+					},
+					{
+						"description": "incorrect indefinite article",
+						"regex": "((?:\\sa|^A)) ((?!one|once|hour)[aeio](?!u))",
+						"correction": {
+							"replaceWith": "\\1n \\2"
+						}
+					},
+					{
+						"description": "incorrect indefinite article",
+						"regex": "((?:\\sa|^A))n ([^aeiouhA-Z\\[\\]\"\\'\\d<\\-])",
+						"correction": {
+							"replaceWith": "\\1 \\2"
+						}
+					}
+				]
+			},
+			{
+				"excludedNodes": ["^word$", "^replace$", "^substitutions$"],
+				"checks": [
 					{
 						"description": "whitespace before end of text",
 						"regex": "([^\"` ]+)\\s+([\"`'])$",
@@ -116,7 +136,14 @@
 					},
 					{
 						"description": "whitespace before beginning of text",
-						"regex": "^([^`\"]+[\"`]+)(?<!^tip .*) +(?! *[\"`]$)",
+						"regex": "^([^\"]*(?:(?:\"[^\"]*){2})*\")(?<!^tip .*) ",
+						"correction": {
+							"replaceWith": "\\1"
+						}
+					},
+					{
+						"description": "whitespace before beginning of text",
+						"regex": "^([^`]*(?:(?:`[^`]){2})*`)(?<!^tip .*) ",
 						"correction": {
 							"replaceWith": "\\1"
 						}

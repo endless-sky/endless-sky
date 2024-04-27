@@ -108,30 +108,30 @@ auto AsStrings = [](const std::vector<EsUuid> &container) -> std::vector<std::st
 TEST_CASE( "EsUuid class", "[uuid]" ) {
 	using T = EsUuid;
 	SECTION( "Class Traits" ) {
-		CHECK_FALSE( std::is_trivial<T>::value );
-		CHECK( std::is_standard_layout<T>::value );
-		CHECK( std::is_nothrow_destructible<T>::value );
-		CHECK( std::is_trivially_destructible<T>::value );
+		CHECK_FALSE( std::is_trivial_v<T> );
+		CHECK( std::is_standard_layout_v<T> );
+		CHECK( std::is_nothrow_destructible_v<T> );
+		CHECK( std::is_trivially_destructible_v<T> );
 	}
 	SECTION( "Construction Traits" ) {
-		CHECK( std::is_default_constructible<T>::value );
+		CHECK( std::is_default_constructible_v<T> );
 		// Ensuring the memory associated with the UUID is initialized means a non-trivial default constructor.
-		CHECK_FALSE( std::is_trivially_default_constructible<T>::value );
-		CHECK( std::is_nothrow_default_constructible<T>::value );
+		CHECK_FALSE( std::is_trivially_default_constructible_v<T> );
+		CHECK( std::is_nothrow_default_constructible_v<T> );
 		// TODO: enable after refactoring how we create ships from stock models.
-		// CHECK_FALSE( std::is_copy_constructible<T>::value );
-		CHECK( std::is_move_constructible<T>::value );
-		CHECK( std::is_trivially_move_constructible<T>::value );
-		CHECK( std::is_nothrow_move_constructible<T>::value );
+		// CHECK_FALSE( std::is_copy_constructible_v<T> );
+		CHECK( std::is_move_constructible_v<T> );
+		CHECK( std::is_trivially_move_constructible_v<T> );
+		CHECK( std::is_nothrow_move_constructible_v<T> );
 	}
 	// TODO: enable, as above.
 	// SECTION( "Copy Traits" ) {
-	// 	CHECK_FALSE( std::is_copy_assignable<T>::value );
+	// 	CHECK_FALSE( std::is_copy_assignable_v<T> );
 	// }
 	SECTION( "Move Traits" ) {
-		CHECK( std::is_move_assignable<T>::value );
-		CHECK( std::is_trivially_move_assignable<T>::value );
-		CHECK( std::is_nothrow_move_assignable<T>::value );
+		CHECK( std::is_move_assignable_v<T> );
+		CHECK( std::is_trivially_move_assignable_v<T> );
+		CHECK( std::is_nothrow_move_assignable_v<T> );
 	}
 }
 
@@ -375,6 +375,22 @@ SCENARIO( "Mapping identifiable collections", "[uuid][comparison][collections]" 
 		THEN( "item retrieval works correctly" ) {
 			CHECK( collection.at(first) == -1 );
 			CHECK( collection.at(second) == -2 );
+		}
+	}
+	GIVEN( "a collection of strings as ID comparator, with UUIDs, identifying items" ) {
+		auto collection = std::map<std::string, EsUuid>{};
+		Identifiable first;
+		Identifiable second;
+		std::string firstName = "one";
+		std::string secondName = "two";
+		collection.insert({ {firstName, EsUuid()}, {secondName, EsUuid()} });
+		WHEN( "we use strings to find the corresponding UUID in the collection" ) {
+			collection.at(firstName).clone(first.id);
+			collection.at(secondName).clone(second.id);
+			THEN( "we can use them to identify the items in a unique way" ) {
+				CHECK( collection.at(firstName) == first.id );
+				CHECK( collection.at(secondName) == second.id );
+			}
 		}
 	}
 }

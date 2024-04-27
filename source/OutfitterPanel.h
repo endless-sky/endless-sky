@@ -49,15 +49,13 @@ public:
 protected:
 	virtual int TileSize() const override;
 	virtual int VisibilityCheckboxesSize() const override;
-	virtual int DrawPlayerShipInfo(const Point &point) override;
 	virtual bool HasItem(const std::string &name) const override;
-	virtual void DrawItem(const std::string &name, const Point &point, int scrollY) override;
+	virtual void DrawItem(const std::string &name, const Point &point) override;
 	virtual int DividerOffset() const override;
 	virtual int DetailWidth() const override;
-	virtual int DrawDetails(const Point &center) override;
-	virtual bool CanBuy(bool checkAlreadyOwned = true) const override;
-	virtual void Buy(bool alreadyOwned = false) override;
-	virtual void FailBuy() const override;
+	virtual double DrawDetails(const Point &center) override;
+	virtual BuyResult CanBuy(bool onlyOwned = false) const override;
+	virtual void Buy(bool onlyOwned = false) override;
 	virtual bool CanSell(bool toStorage = false) const override;
 	virtual void Sell(bool toStorage = false) override;
 	virtual void FailSell(bool toStorage = false) const override;
@@ -66,8 +64,7 @@ protected:
 	virtual void ToggleForSale() override;
 	virtual void ToggleStorage() override;
 	virtual void ToggleCargo() override;
-
-
+	virtual int FindItem(const std::string &text) const override;
 
 
 private:
@@ -76,7 +73,7 @@ private:
 	static void DrawOutfit(const Outfit &outfit, const Point &center, bool isSelected, bool isOwned);
 	bool IsLicense(const std::string &name) const;
 	bool HasLicense(const std::string &name) const;
-	std::string LicenseName(const std::string &name) const;
+	std::string LicenseRoot(const std::string &name) const;
 	void CheckRefill();
 	void Refill();
 	// Shared code for reducing the selected ships to those that have the
@@ -97,6 +94,8 @@ private:
 
 	// Keep track of how many of the outfitter help screens have been shown
 	bool checkedHelp = false;
+
+	int shipsHere = 0;
 };
 
 

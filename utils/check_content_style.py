@@ -148,6 +148,8 @@ def print_config_help():
 		["", "", "", "", "", "notice", "An array of regexes matching each subsequent line of the copyright notice."],
 		["", "", "", "regexChecks", "An array of regex-based checks that are applied to individual lines. The checks are grouped by the lines they are applied to. Each entry is a JSON object with the following entries:"],
 		["", "", "", "", "", "excludedNodes", "An array of regexes matching data nodes that the checks are not applied to. Indentation is not taken into account. Defaults to an empty array."],
+		["", "", "", "", "", "excludeComments", "Whether to exclude comments. Defaults to true."],
+		["", "", "", "", "", "excludeKeywords", "Whether to exclude keyword lines. Defaults to true."],
 		["", "", "", "", "", "checks", "An array of regex checks. Each entry is a JSON object with the following entries:"],
 		["", "", "", "", "", "", "", "description", "The description of the check. This is displayed when it is found in a file."],
 		["", "", "", "", "", "", "", "regex", "The regex matching a formatting issue in a line."],
@@ -392,8 +394,10 @@ def check_with_regex(check_group, contents, auto_correct, config):
 # contents: the contents of the file
 # config: the script configuration rules.
 # excluded_nodes: the list of regexes that exclude nodes
+# exclude_comments: whether to exclude comments
+# exclude_keywords: whether to exclude keyword lines
 # Return value: the entries of 'contents' that contain text
-def find_text_lines(contents, config, excluded_nodes):
+def find_text_lines(contents, config, excluded_nodes, exclude_comments, exclude_keywords):
 	new_contents = []
 
 	indent = config["indentation"]
@@ -401,7 +405,9 @@ def find_text_lines(contents, config, excluded_nodes):
 	word_indent_level = 0
 
 	for line in contents:
-		if line.lstrip().startswith("#") or line == "" or line.isspace():
+		if ('#' in line and exclude_comments):
+			line = line.split("#")[0].strip()
+		if line == "" or line.isspace():
 			new_contents.append(None)
 			# Comment or empty line
 			continue
@@ -415,7 +421,9 @@ def find_text_lines(contents, config, excluded_nodes):
 					is_word = True
 					word_indent_level = count_indent(indent, line)
 					break
-		if not is_word and ("\"" in line or "`" in line):
+		if not is_word and ("\"" in line or "`" in line or (not exclude_keywords)):
+			new_contents.append(line)
+		elif line.strip().startswith("#"):
 			new_contents.append(line)
 		else:
 			new_contents.append(None)
@@ -490,7 +498,11 @@ def check_content_style(file, auto_correct, config):
 			continue
 
 		for check_group in config["regexChecks"]:
-			restricted_contents = find_text_lines(contents, config, [] if "excludedNodes" not in check_group else check_group["excludedNodes"])
+			excluded_nodes = [] if "excludedNodes" not in check_group else check_group["excludedNodes"]
+			exclude_comments = True if "excludeComments" not in check_group else check_group["excludeComments"]
+			exclude_keywords = True if "excludeKeywords" not in check_group else check_group["excludeKeywords"]
+
+			restricted_contents = find_text_lines(contents, config, excluded_nodes, exclude_comments, exclude_keywords)
 			issues.combine_with(check_with_regex(check_group, restricted_contents, auto_correct, config))
 			if issues.should_reload():
 				# Prevent deleting filtered lines
