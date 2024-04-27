@@ -92,6 +92,9 @@ private:
 	// When this action is performed, the mission that called this action is failed.
 	bool failCaller = false;
 
+	// When this action is performed, the missions with these names are accepted.
+	std::set<std::string> accept;
+
 	ConditionSet conditions;
 };
 

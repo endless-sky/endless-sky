@@ -194,6 +194,8 @@ void GameAction::LoadSingle(const DataNode &child)
 		fail.insert(child.Token(1));
 	else if(key == "fail")
 		failCaller = true;
+	else if(key == "accept" && child.Size() >= 2)
+		accept.insert(child.Token(1));
 	else
 		conditions.Add(child);
 }
@@ -239,6 +241,8 @@ void GameAction::Save(DataWriter &out) const
 		out.Write("fail", name);
 	if(failCaller)
 		out.Write("fail");
+	for(const string &name : accept)
+		out.Write("accept", name);
 
 	conditions.Save(out);
 }
