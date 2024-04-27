@@ -527,7 +527,7 @@ mission "Central Outfitters Expansion Trigger"
 	to offer
 		has "event: initial deployment 2"
 	on offer
-		event "central outfitters expansion" # 45
+		event "central outfitters expansion" 45
 
 event "central outfitters expansion"
 	planet "Earth"
