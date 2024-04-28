@@ -7596,7 +7596,7 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 mission "Timothy Radrickson 5b: New Britain"
 	description "Tim's old secretary Wynnafrith recommended that <destination> would be a good place to find detoxification medication for Tim."
 	landing
-	source Rand
+	source "Rand"
 	destination "New Britain"
 	to offer
 		has "Timothy Radrickson 5a: Timshank Redemption: active"
@@ -7836,8 +7836,8 @@ mission "Timothy Radrickson 5b: New Britain"
 mission "Timothy Radrickson 5c: Dancer"
 	description "Tim's old secretary Wynnafrith recommended that <destination> would be a good place to find a survival suit for Tim."
 	landing
-	source Rand
-	destination Dancer
+	source "Rand"
+	destination "Dancer"
 	to offer
 		has "Timothy Radrickson 5a: Timshank Redemption: active"
 	on complete
