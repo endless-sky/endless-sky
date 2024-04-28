@@ -6891,9 +6891,8 @@ mission "Hogshead's Dilemma II"
 			`	All of the hyped discussions around Hogsheads in the past gave them a brief but strong popularity amongst transport organizations looking to grab the average passenger's attention. In the end, the company responsible for this naming poll got what they wanted, and a little bit of the Hogshead's spirit has been brought back, along with the interest of several pilots. Perhaps the name "Shippy McShipface" is fitting after all.`
 				decline
 
-ission "Large Bone"
-	source
-		attributes "dust belt" "rim"
+mission "Burn After Weland"
+	source "New India"
 	invisible
 	to offer
 		has "event: sagaann"
@@ -6902,126 +6901,7 @@ ission "Large Bone"
 	on offer
 		require "Saga"
 		conversation
-			`	It's a remarkably pleasant day for a stroll, so you have Saga accompany you on your visit to the spaceport.`
-			`	Despite the people, action and abundant scents of the spaceport, Saga keeps trying to get you to follow her off the path, and into the surrounding rural landscape.`
-			choice
-				`	(Let Saga lead you.)`
-					goto sagalead
-				`	(Force Saga to follow you to the spaceport.)`
-			`	Saga gently whines, but then dutifully follows you to the spaceport. Soon she is immersed in the hustle and bustle of the spaceport, and seemingly forgets whatever had grabbed her attention beyond it.`
-				decline
-			label sagalead
-			`	You follow Saga off the beaten track, and after hours of walking, find yourself in one of <source>'s undeveloped parcels. Where the alien landscape has yet to be tamed by human hands for human purposes.`
-			`	Saga leads you into thick native foliage that gives way to a narrow cave entrance. She wants you to follow her into the cave.`
-			choice
-				`	(Enter the Cave.)`
-					goto entercave
-				`	(Turn around and head back to the ship.)`
-			`	This is getting a little too risky for your liking. You call Saga, who is unhappy, but dutiful, and the two of you head back to the spaceport together. Leaving whatever was lurking in that cave well alone.`
-				decline
-			label entercave
-			action
-				outfit "Large Bone" 1
-			`	Your portable light fills the cavern as you and Saga squeeze your way in. The space is tight, cool, and very uncomfortable. You quickly realize you will not be able to go very far, as the space rapidly narrows. Despite this, Saga pushes on ahead, moving beyond the edges of your light, and into an area too small for you to follow.`
-			`	After several moments of waiting, Saga returns to the light with something in her mouth, and the two of you hasten out of the cave and back into the light of day.`
-			`	Saga, her tail wagging excitedly, shows you the huge bone she's discovered. It looks like a claw of massive dimensions. With the ungainly bone in her mouth, the two of you return to your ship.`
-				decline
-
-ship "Small Asteroid"
-	noun "asteroid"
-	sprite "asteroid/medium rock/spin"
-		"frame rate" 10
-	uncapturable
-	outfits
-		"Ancient Alien Artifact"
-	attributes
-		"outfit space" 5
-		"fuel capacity" 1
-		"hull" 10000
-		"mass" 1000
-		"drag" 10
-		"heat dissipation" .1
-		"required crew" 0
-		"automaton" 1
-		"bunks" 0
-		"thrust" 10
-		"turn" 100
-		"thrusting energy" 1
-		"turning energy" 1
-		"energy generation" 3
-		"inscrutable" 1
-	explode "small explosion" 25
-	explode "medium explosion" 35
-	explode "large explosion" 45
-	explode "huge explosion" 30
-
-mission "Large Bone 2"
-	source "Twinstar"
-	waypoint "Beta Lupi"
-	destination "Wayfarer"
-	invisible
-	to offer
-	landing
-	on offer
-		require "Saga"
-		require "Large Bone"
-		conversation
-			`	The arid alien dust flies around your ship, unwilling, in the low-gravity, to settle. Like all visits to the nearly uninhabited interstellar gas station Twinstar, this should be a short, quick, trip. Yet, even as you step into the thick unsettled dust, Saga begins barking with reckless abandon.`
-			choice
-				`	(See what's got her excited.)`
-					goto excitedsaga
-				`	(Leave her in the ship.)`
-			`	You have no time for one of Saga's adventures, and leave her behind on your ship.`
-				decline
-			label excitedsaga
-			`	Saga, with the large bone in her mouth, darts out of the ship, and away from Twinstar's small spaceport depot.`
-			`	She quickly acclimates to the low gravity, and you struggle to keep up as you chase after her. Eventually, she slows down, and waits for you at the entrance to a large fissure slicing the landscape in half.`
-			`	A winding path descends before her, down into the deep, dark guts of the fissure, she looks to you, and down into the fissure. She wants to go down there.`
-			choice
-				`	(Head down into the fissure.)`
-					goto fissure
-				`	(Head back to your ship.)`
-			`	This is getting a little too risky for your liking. You call Saga, who is unhappy, but dutiful, and the two of you head back to the spaceport together. Leaving whatever was lurking in that fissure well alone.`
-			label fissure
-			`	Together the two of you descend into the very guts of Twinstar. The rocks around you change texture and color as different geological epochs pass you by. At last, after what felt like hours, you reach the bottom of the fissure, where you're forced to you use your own portable light to illuminate your surroundings.`
-			`	The first thing you notice is the light reflecting off fragments of glittering metal. At first you think it's just trash, but, upon closer inspection, you realize it is something older and more alien than any human detritus.`
-			`	Intertwined within the indecipherable clutter of ruined metal artifacts, are the bones of countless giant creatures. Huge, dinosaur like animals. They line the floor and walls of this fissure for as far as you can you see. Too many to be a coincidence.`
-			`	Saga, unawed, moves forward with her large bone in mouth, and carefully drops it near some well preserved bones. She then returns to you, and indicates she is ready to leave the fissure.`
-			choice
-				`	(Leave the bone.)`
-					goto leavethebone
-				`	(Retrieve the bone.)`
-			`	You're not yet ready to part with the large bone, and pick it up where Saga has dropped it. She whines a little at your decision, as if you've messed something up she had made tidy, but after a moment she stops, and the two of you continue out of the fissure, and back to your ship.`
-				decline
-			label leavethebone
-			action
-				outfit "Large Bone" -1
-			`	There is an air of satisfaction around Saga, as though she has made something tidy, that was once messy. You don't know what drove her to the bone in the first place, or why she felt like it belonged here, but you've decided not to intervene. If this is where she believes it belongs, then this is where it belongs.`
-			`	Saga licks your hand, and the two of you make your way back to the winding path out of the fissure. Just as you arrive back on the surface, you notice something glittering in the dirt at the fissure's edge.`
-			`	You sift through the sand, and discover a small rusted device.`
-			choice
-				`	(Take the device.)`
-					goto containertime
-				`	(Leave the device where you found it.)`
-			`	This place, and all its mysteries, belong to the dead. You have no interest in delving into their long kept secrets. You leave the device alone, and walk back to the depot with Saga.`
-				decline
-			label containertime
-			`	You pick up the device, it's small enough to sit comfortably in the palm of your hand, and take it with you back to the ship. Perhaps it'll be useful, or more likely, make for a nice paper weight.`
-				accept
-
-	on enter "Beta Lupi"
-		dialog
-			`	The small device you found on Twinstar suddenly whirrs to life. For one brief moment it fills the room with a brilliant display of shifting, changing light, before suddenly going dead with a pop. A few puffs of smoke leak out of the fused slag that was once an ancient device.` 
-			`	Despite it's demise, your instruments pick up something happening in system. The device appears to have sent a signal to a nearby asteroid.`
-
-	npc save board
-		government "Bounty"
-		system "Beta Lupi"
-		personality derelict pacifist mute
-		dialog
-			`	On closer inspection the asteroid is littered with detritus from some ancient battle. There are a few husks of blown out structures, that appear to have been storage, or resupply facilities. In one of the buildings, among the debris, you find an undisturbed artifact. A pristine Ancient Alien Artifact.`
-			`	Unfortunately, you have no idea what it is, how it works, or how to install it on your ship - assuming you'd even want to do that.`
-		ship "Small Asteroid" "Target Small Asteroid"
+			
 
 mission "Large Bone 3a"
 	invisible
