@@ -2485,20 +2485,17 @@ mission "Stone of our Fathers 1"
 					to display
 						has "Stone of our Fathers: ser"
 						not "Stone of our Fathers: ser 2"
-						not "Stone of our Fathers: ser 3"
 				`	"Is 'ser' different from 'sir'?"`
 					goto "ser 3"
 					to display
 						has "Stone of our Fathers: ser"
 						not "Stone of our Fathers: ser 2"
-						not "Stone of our Fathers: ser 3"
 				`	(Shake my head. I have better things to do than bus old men around.)`
 					goto decline
 
 			action
 				clear "Stone of our Fathers: ser"
 				clear "Stone of our Fathers: ser 2"
-				clear "Stone of our Fathers: ser 3"
 			`	He nods, grunts, and heads to your ship with a small knapsack cradled under his arm, clearly ready to travel to <planet> at a moment's notice.`
 				accept
 
@@ -2517,7 +2514,7 @@ mission "Stone of our Fathers 1"
 
 			label "ser 3"
 			action
-				set "Stone of our Fathers: ser 3"
+				set "Stone of our Fathers: ser 2"
 			`	The old man gives you a gruff nod and says, "Ah, I see. Can be confusing for a newcomer, I s'pose. What's 'tween a fella's legs gots nothing to do with it. Just like I said before, 'Ser' is just what decent folk call each other; ain't nothing more to it. Don't matter if you're a guy, gal, or anything else. Hel, I reckon I'd even call an elf 'Ser' if they done me a good turn."`
 
 			label "back to the point"
@@ -2528,7 +2525,6 @@ mission "Stone of our Fathers 1"
 			action
 				clear "Stone of our Fathers: ser"
 				clear "Stone of our Fathers: ser 2"
-				clear "Stone of our Fathers: ser 3"
 			`	With a disappointed look on his face, he nods once and slides back into the endless sea of people.`
 				decline
 
