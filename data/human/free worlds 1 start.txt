@@ -991,7 +991,7 @@ mission "FW Pirates 1"
 				`	"Understood."`
 					goto leave
 			label ccor
-			`	Tomek looks surprised. "I assumed you knew. The Confederated Councils of the Outer Rim was a government that wanted to practice its own particular flavor of communism outside of the Republic's influence. They fell around 50 years ago, and their former planets have since been under the control of a mixture of pirate gangs and CCOR guerrilla groups. I wouldn't worry about the latter too much either - at this point they're little more than a pirate gang themselves."`
+			`	Tomek looks surprised. "I assumed you knew. The Confederated Councils of the Outer Rim was a government that wanted to practice its own particular flavor of communism outside of the Republic's influence. They fell around 50 years ago, and their former planets are now under the control of either pirate gangs or guerrilla groups trying to restore the CCOR. I wouldn't worry about the guerrillas too much - at this point, they're little more than a pirate gang themselves."`
 			label leave
 			`	As you are about to leave, he says, "Oh, one other thing: you've been approved for a salary raise to 2,100 credits. We figure that helping you maintain a slightly larger ship is a worthwhile investment. Congratulations, Captain."`
 				accept
