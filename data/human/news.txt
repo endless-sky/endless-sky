@@ -2359,8 +2359,8 @@ news "Raiders returning to Mordente-Bridi"
 
 phrase "Raiders returning to Mordente-Bridi - serious damage"
 	word
-		"battered with thousands of small perforations. Somebody's turned a mainstay of the pirate arsenal, Gatling Guns, back on them."
-		"with substantial sections of hull heavily battered or missing altogether. Fair guess they didn't have enough anti-missile."
+		"battered with thousands of small perforations. Somebody's turned a mainstay of the pirate arsenal, Gatling Guns, back on them"
+		"with substantial sections of hull heavily battered or missing altogether. Fair guess they didn't have enough anti-missile"
 		"its hull covered in gashes and burns from Plasma Cannons"
 	word
 		". "
