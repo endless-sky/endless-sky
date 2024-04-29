@@ -1960,6 +1960,7 @@ mission "Terraforming 1"
 	passengers 2
 	
 	to offer
+		"reputation: Republic" >= 0
 		or
 			has "main plot completed"
 			and
