@@ -1380,7 +1380,7 @@ mission "Hai Reveal [A10] Demanding Satisfaction"
 			`	As you enter the room, a pair of Unfettered grab you. Teeneep draws a throwing knife, saying with intensity, "Let Captain <last> go. Now." The Unfettered let go immediately, and she nods for you to stay where you are, sheathing the knife.`
 				to display
 					not "salary: Unfettered"
-			`	As you enter the room, the Unfettered gards salute you with their fist, before letting you pass. They clearly know you.`
+			`	As you enter the room, the Unfettered guards salute you with their fist, before letting you pass.`
 				to display
 					has "salary: Unfettered"
 			label watch

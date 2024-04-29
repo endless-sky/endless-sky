@@ -538,9 +538,9 @@ mission "<uhai> 0: Bring Hai"
 		set "unfettered: offered bring hai"
 	substitutions
 		# Translate it if you have a translator, otherwise someone will offer to do it for you.
-		<firstgroup> "but because it is in Hai you cannot make sense of the words. However even from afar you can see how malnourished the children are."
+		<firstgroup> "Because it is in Hai, you cannot make sense of the words. However even from afar you can see how malnourished the children are."
 			not "language: Hai"
-		<firstgroup> `you use your translator device to make sense of what is said. "... and we fear the next season will be even more [rough, hard, taxing]. We need funding to restore the lands; very little grows on them anymore!"`
+		<firstgroup> `You use your translator device to make sense of what is said. "... and we fear the next season will be even more [rough, hard, taxing]. We need funding to restore the lands; very little grows on them anymore!"`
 			has "language: Hai"
 		<secondgroup> "He does not seem pleased, speaking with contained anger. You are not sure if he is demanding something, or simply complaining."
 			not "language: Hai"
@@ -560,25 +560,25 @@ mission "<uhai> 0: Bring Hai"
 			has "language: Hai"
 	on offer
 		conversation
-			`Looking outside, you see the sun is setting. You take a moment to admire the breathtaking view of the sun passing through some clouds of pollution and notice a large, white, square-shaped structure in the distance, perhaps some sort of stadium, which a growing crowd of Unfettered are streaming towards. Ships keep landing and unloading even more Hai all over the spaceport, so much so that, exiting your ship, you cannot avoid being caught up in the crowd, almost carried, as they head towards the building. It is grandiose compared to its surroundings, distinguished by its sheer length and pure white appearance. In contrast, most of the surrounding structures appear to be houses or bars, all with more dilapidated appearances.`
-			`	Something of great interest must be happening in this building, but not all the Unfettered in the crowd actually share your destination, many are instead breaking away to fill the nearby bars. Some simply wander aimlessly. Others are sitting on the rocky ground, chatting. Quite a few of them appear to be trading small quantities of goods between themselves.`
+			`Looking outside, you see the sun is setting. You take a moment to admire the breathtaking view of the sun passing through some clouds of pollution and notice a large, white, square-shaped structure in the distance, perhaps some sort of stadium, which a growing crowd of Unfettered are streaming towards. Ships keep landing and unloading even more Hai all over the spaceport, so much so that, exiting your ship, you cannot avoid being caught up in the crowd. You are almost carried towards the building, which is grandiose compared to its surroundings and distinguished by its sheer length and pure white facade. In contrast, most of the surrounding structures appear to be houses or bars, all with more dilapidated appearances.`
+			`	Something of great interest must be happening in this building, but not all the Unfettered in the crowd actually share your destination - many are instead breaking away to fill the nearby bars. Some simply wander aimlessly. Others are sitting on the rocky ground, chatting. Quite a few of them appear to be trading small quantities of goods between themselves.`
 			choice
 				`	(Go into the stadium.)`
 				`	(Ignore them and go back to my ship.)`
 					defer
-			`	As you are moving with the crowd towards the nearest stadium entrance - a large wide open corridor leading directly into the seating areas around the main pavilion - you begin to hear words being spoken loudly, probably amplified by some kind of device. Given that the Hai are generally quite small in comparison to humans, you can already see some of what is going on inside over most of the crowd while waiting to filter inside. It seems much of the line is not for the seating itself; it instead heads directly to the central stage where a group of official-looking Unfettered Hai await.`
+			`	As you are moving with the crowd towards the nearest stadium entrance - a large open corridor leading directly into the seating areas around the main pavilion - you begin to hear words being spoken loudly, probably amplified by some kind of device. Given that the Hai are generally quite small in comparison to humans, you can already see some of what is going on inside over most of the crowd while waiting to filter inside. It seems much of the line is not for the seating itself; it instead heads directly to the central stage where a group of official-looking Unfettered Hai await.`
 			`	When it is their turn in line, a couple towing four children with them, begin to plead. <firstgroup> The officials, perhaps the "Chiefs", which you have heard lead the Unfettered, speak among themselves. Then they turn back to the petitioners, and together, close their hand and raise it up, before lowering it, as if presenting something. By the relief on the couple's faces, you assume their request has been granted.`
 			choice
 				`	(Move a bit to see the next petitionners as they approach.)`
-			`	The next in line seems quite old, but he still is moving around proudly, as if not limited by his age at all. <secondgroup> This one, probably a soldier of some kind, clearly has some special status or a reputation which has earned him great respect for him to speak this way. Or maybe he just exemplifies what you've heard about the ways of the Unfettered; they bow to no one.`
+			`	The next in line seems quite old, but he still moves proudly as if not limited by his age. <secondgroup> This one, probably a soldier of some kind, evidently has some special status or a reputation which has earned the right for him to speak this way. Or maybe he just exemplifies what you've heard about the ways of the Unfettered; they bow to no one.`
 			`	The soldier moves away, and a tense silence hangs in the air for a moment. The Chiefs turn from the audience to speak among themselves, while mutterings and debate seem to be spreading throughout the crowd. This subject appears to be something for which strong opinions are held. The volume increases as the Chiefs continue their aside, and you begin to notice some of the nearby Hai turning their attention towards you, some even pointing you out. It may be that you are not welcome here. One of the younger Hai to notice you, probably still an adolescent judging by her colors, approaches you directly. She speaks softly, in your language, but clearly enough to be heard over the back and forth murmuring of the crowd. "Hi," she says with a warm, somewhat embarrassed chuckle, "I have noticed you easily among Hai. Do you want me to help translate what they say?"`
 			choice
 				`	"Yes, thank you."`
 					goto translate
 				`	"Thank you, but I already understand what I need to."`
 					goto polite
-				`	"I have no need of help."`
-			`	She seems a bit offended you do not wish her help.`
+				`	"I have no need for your help."`
+			`	She seems a bit offended that you do not want her help.`
 			label polite
 			`	She does not press the matter further and proceeds to move away. Most of the Hai here are with what seems to be families or groups of friends, but you do not see your would-be helper join anyone else as she returns to her previous spot in the shifting audience.`
 			choice
@@ -606,14 +606,14 @@ mission "<uhai> 0: Bring Hai"
 			choice
 				`	(Rise up.)`
 				`	(Wait to see what happens.)`
-			`	Progressively, most of the Hai present stand up, the message from each to volunteer clear. The Chief seems very moved by this, as a parent would be to see their child succeed in life. He designates one of the first to stand, and gently sends the child walking over to them.`
+			`	Progressively, most of the Hai present stand up, the message from each volunteer clear. The Chief designates one of the first to stand, and gently sends the child walking over to them.`
 			`	The sun has almost set, and you can see that the Chiefs are beginning to grow impatient as the next Hai approaches and speaks to them. Merora tells you, "This request bothers the Chiefs quite a bit, as he is not asking for a child to be transported but a full family, and not from here to Hai space but the opposite. A lot more money can be required to bring Hai here, because whilst many captains agree to bring us food for free, they prefer not to bring us more Hai, since for some it would mean condemning them to know hunger as well. As such, there are not as many captains ready to do this. The Chief said that currently no one is available, at least not at a suitable price. Later, they will most probably go and personally ask captains if it can be arranged."`
 			`	While Merora was speaking, the Chiefs had spoken amongst themselves briefly, and now one has moved forward to address the crowd. Merora turns to you, "It is over. Goodbye, <first>, I hope we meet again."`
 			choice
 				`	"Could you help me translate again some time?"`
 				`	(Let her leave.)`
 					goto leave
-			`	She blushes, "I am not even sure I will stay in Unfettered space, but if we meet again, I will try, although I cannot promise you more. Some among us are not too fond of humans; it may be hard to prove your worth here, and, if I do stay, I will not want to lose any status I have acquired by speaking with you if you have not yet done so."`
+			`	She looks down with a light smile, "I am not even sure I will stay in Unfettered space, but if we meet again, I will try, although I cannot promise you more. Some among us are not too fond of humans; it may be hard to prove your worth here, and, if I do stay, I will not want to lose any status I have acquired by speaking with you if you have not yet done so."`
 			branch leave
 				not "Unfettered Jump Drive 1: offered"
 			choice
@@ -1498,7 +1498,7 @@ mission "<uhai> 4: Scan Geocoris"
 			`You have scanned the Geocoris. You may now return to <destination> with the scanner logs.`
 				decline
 			label "didn't listen"
-			`You have scanned the Geocoris, but you did not use a Value Detector to do so. The scans will be of no value to Mera, you have failed the mission.`
+			`You have scanned the Geocoris, but you did not use a Value Detector to do so. The scans will be of no value to Mera. You have failed the mission.`
 			action
 				fail "<uhai> 4: Scan Geocoris"
 	npc
