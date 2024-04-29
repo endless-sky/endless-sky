@@ -19,7 +19,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Angle.h"
 #include "Point.h"
 
-#include <utility>
 #include <vector>
 
 class Body;
