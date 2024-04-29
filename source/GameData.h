@@ -53,6 +53,7 @@ class Panel;
 class Person;
 class Phrase;
 class Planet;
+class PlayerInfo;
 class Politics;
 class Ship;
 class Sprite;
@@ -107,7 +108,7 @@ public:
 	static void Change(const DataNode &node);
 	// Update the neighbor lists and other information for all the systems.
 	// This must be done any time that a change creates or moves a system.
-	static void UpdateSystems();
+	static void UpdateSystems(const PlayerInfo *player);
 	static void AddJumpRange(double neighborDistance);
 
 	// Re-activate any special persons that were created previously but that are
