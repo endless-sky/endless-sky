@@ -5202,6 +5202,7 @@ system Alpherg
 	fleet "Large Southern Pirates" 2000
 	fleet "Small CCOR" 3800
 	fleet "Large CCOR" 6000
+	fleet "CCOR Logistics" 9000
 	object
 		sprite star/g-giant
 		period 10
@@ -6906,6 +6907,7 @@ system Belenos
 	fleet "Large Southern Pirates" 2000
 	fleet "Small CCOR" 3800
 	fleet "Large CCOR" 5000
+	fleet "CCOR Logistics" 8000
 	object
 		sprite star/f8
 		period 10
@@ -9328,6 +9330,7 @@ system Citadelle
 	fleet "Large Southern Pirates" 2500
 	fleet "Small CCOR" 3800
 	fleet "Large CCOR" 4500
+	fleet "CCOR Logistics" 6000
 	object
 		sprite star/k0
 		period 15
@@ -15557,6 +15560,7 @@ system Fumalsamakah
 	fleet "Large Southern Pirates" 2000
 	fleet "Small CCOR" 3800
 	fleet "Large CCOR" 6000
+	fleet "CCOR Logistics" 9000
 	object
 		sprite star/b5
 		period 10
@@ -34725,11 +34729,11 @@ system Umbral
 	fleet "Large Southern Pirates" 6000
 	object
 		sprite star/k0-old
-		distance 23.3222
+		distance 25
 		period 10.2313
 	object
 		sprite star/m0
-		distance 71.4243
+		distance 90
 		period 10.2313
 		offset 180
 	object

@@ -6,6 +6,7 @@
   <summary>Space exploration and combat game</summary>
   <summary xml:lang="de">Weltraumhandels und Kampfsimulator</summary>
   <summary xml:lang="fr">Jeu d'exploration et de combat dans l'espace</summary>
+  <summary xml:lang="hu">Űrkutatási és harci játék</summary>
   <developer_name>Michael Zahniser</developer_name>
   <project_license>GPL-3.0-or-later</project_license>
   <metadata_license>CC0-1.0</metadata_license>
@@ -72,7 +73,7 @@
         <p>There's much more in the changelog!</p>
         <p>Special thanks to the 13 people who contributed to this release!</p>
       </description>
-      <url>https://github.comm/endless-sky/endless-sky/blob/v0.10.6/changelog</url>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.10.6/changelog</url>
     </release>
     <release version="0.10.5" date="2024-1-27" type="development" urgency="low">
       <description>
