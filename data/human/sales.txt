@@ -221,6 +221,7 @@ outfitter "Ammo South"
 
 outfitter "Central Outfits Expansion"
 	"Tactical Scanner"
+	"Volcano Afterburner"
 	"Caldera Afterburner"
 	"S3 Thermionic"
 	"Heavy Rocket"

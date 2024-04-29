@@ -544,23 +544,11 @@ event "central outfitters expansion"
 mission "Central Outfitters Expansion"
 	outfitter
 	source
-		attributes "near earth" "dirt belt"
-		outfits "Tactical Scanner"
-		outfits "Volcano Afterburner"
-		outfits "Caldera Afterburner"
-		outfits "S3 Thermionic"
-		outfits "Heavy Rocket"
-		outfits "Meteor Missile"
-		outfits "Javelin"
-		outfits "Javelin Pod"
-		outfits "Javelin Mini Pod"
-		outfits "Javelin Storage Crate"
-		outfits "Small Radar Jammer"
-		outfits "Brig"
-		outfits "Liquid Nitrogen Cooler"
+		planet "Earth" "Heartland" "Luna" "New China" "New Wales"
 	to offer
 		has "event: central outfitters expansion"
-		not "joined the free worlds"
+		not "event: joined the free worlds"
+		not "event: start of hostilities"
 	on offer
 		conversation
 			`When you walk into <origin>'s outfitter, you notice it has a raft of new outfits for sale; cooling equipment, afterburners, even new generators. Strangely, almost all the new stock appears to be from Kraz Cybernetics and Delta V - companies you'd usually see selling along the Southern Rim, not far up here so close to the center of the Republic. It is especially strange as those companies have been vocal supporters of the Free Worlds secessionists.`
