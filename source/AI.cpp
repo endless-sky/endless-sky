@@ -3447,11 +3447,9 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 					degrees = (angleToPoint - aim).Degrees();
 				else
 				{
-					Angle minArc = hardpoint.GetMinArc();
-					Angle maxArc = hardpoint.GetMaxArc();
 					const Angle facing = ship.Facing();
-					minArc += facing;
-					maxArc += facing;
+					const Angle minArc = hardpoint.GetMinArc() + facing;
+					const Angle maxArc = hardpoint.GetMaxArc() + facing;
 					if(!angleToPoint.IsInRange(minArc, maxArc))
 					{
 						// Decrease the priority of the target.

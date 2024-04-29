@@ -412,12 +412,10 @@ bool Hardpoint::FireSpecialSystem(Ship &ship, const Body &body, std::vector<Visu
 
 	// Check if the target is within the arc of fire.
 	Angle aim(offset);
-	if(!IsOmnidirectional())
+	if(!isOmnidirectional)
 	{
-		Angle minArc = GetMinArc();
-		Angle maxArc = GetMaxArc();
-		minArc += facing;
-		maxArc += facing;
+		const Angle minArc = GetMinArc() + facing;
+		const Angle maxArc = GetMaxArc() + facing;
 		if(!aim.IsInRange(minArc, maxArc))
 			return false;
 	}
