@@ -6913,9 +6913,10 @@ mission "Burn After Weland"
 					`	(Just sit and watch the people pass.)`
 					`	(Get up to leave.)`
 				`	Before you have time to make a decision the two men who entered the cafe seat themselves directly in front of you. One of them is short and wirey with bright twitchy eyes and dark mustache, and other is a giant of man with a trimmed red beard and hair pulled back into a pony tail. Both men looked overdressed in fine three piece suits.`
-				`	"Most serendipitous to find a Captain of your caliber in this obscure port of call." The shorter man says and tips his hat to you, "I am Dr. Julius Tavish and my effible comrad is the loquacious Dr. Gluniairn Kormakr. Don't worry, our friends just call us Tavish and Kormak, and you, my good fellow, have look of someone who is just about to become of one our friends."`
-				`	Throughout this introduction Kormak's face remains stoney, and he gives no hint outward hint of hospitality at the mentioning of his name or of your impending friendship.`
-				`	Tavish continues, "You see me and my fellow scholar here are in desperate need of your eminent services. We are on the very cusp of a monumental discovery here in the untamed wilds of New India," Tavish's leans in and gestures wildly with his hands," the sort of discovery certain to rewrite the entire history of this sector! Why, science as we know it will never be the same." `
+				`	"Most serendipitous to find a Captain of your caliber in this obscure port of call." The shorter man says and tips his hat to you, "I am Dr. Julius Tavish and my effible comrad is the loquacious Dr. Gluniairn Kormakr. Don't worry, our friends just call us Tavish and Kormak..."`
+				`	"Kormak and Tavish." Kormak's stoney inscruptable face remains emotionless as he interupts Tavish .`
+				`	"...and you, my good fellow, have look of someone who is just about to become of one our friends." Tavish finishes without missing a beat.`
+				`	"You see me and my fellow scholar are in desperate need of your eminent services. We are on the very cusp of a monumental discovery here in the untamed wilds of New India," Tavish's leans in and gestures wildly with his hands," the sort of discovery certain to rewrite the entire history of this sector! Why, science as we know it will never be the same." `
 				`	"Never be the same." Kormak's gruff voice repeats with a nod.`
 				`	"Yes! Yes! But first we need a capable Captain such as your self to ferry us over to Clark and back. A most trivial request for one of your talents, so trivial in fact you'd be willing to waive your normal fee and do it pro bono; for science that is."`
 				`	"For science." Kormak echos.`
