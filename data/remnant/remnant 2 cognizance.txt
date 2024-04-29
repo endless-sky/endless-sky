@@ -868,7 +868,7 @@ mission "Remnant: Cognizance 21"
 
 
 mission "remnant cognizance fix"  # gotta find out a name
-        invisible
+	invisible
 	to offer
 		has explorationinterest
 	on offer
