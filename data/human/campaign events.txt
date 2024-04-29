@@ -563,7 +563,7 @@ mission "Central Outfitters Expansion"
 		not "joined the free worlds"
 	on offer
 		conversation
-			`When you walk into <origin>'s spaceport outfitter you notice it has a raft of new outfits for sale; cooling equipment, afterburners, even new generators. To your surprise, almost all the new stock appears to be from Kraz Cybernetics and Delta V - companies you'd usually see selling along the Southern Rim, not far up here so close to the center of the Republic. It is especially strange as those companies have been vocal supporters of the Free Worlds secessionists.`
+			`When you walk into <origin>'s outfitter, you notice it has a raft of new outfits for sale; cooling equipment, afterburners, even new generators. Strangely, almost all the new stock appears to be from Kraz Cybernetics and Delta V - companies you'd usually see selling along the Southern Rim, not far up here so close to the center of the Republic. It is especially strange as those companies have been vocal supporters of the Free Worlds secessionists.`
 			choice
 				`	(Ask the proprietor about the new outfits.)`
 				`	(Move on.)`
