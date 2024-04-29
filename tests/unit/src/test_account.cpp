@@ -48,6 +48,8 @@ SCENARIO( "Create an Account" , "[Account][Creation]" ) {
 	}
 }
 
+// Test the SetCredits and AddCredits functions second to ensure that when we
+// set the balance for future tests, it is proven to work properly
 SCENARIO( "Operations on credits", "[Account][credits]" ) {
 	GIVEN( "An account" ) {
 		Account account;
@@ -77,6 +79,9 @@ SCENARIO( "Operations on credits", "[Account][credits]" ) {
 	}
 }
 
+// Tests to ensure proper adding of account balance to the history, as well
+// as proving that the history is maintaing the proper size and removing
+// the oldest entries as expected.
 SCENARIO( "Operations on history", "[Account][history]" ) {
 	GIVEN( "An account" ) {
 		Account account;
@@ -106,6 +111,8 @@ SCENARIO( "Operations on history", "[Account][history]" ) {
 	}
 }
 
+// Tests to ensure that mortgages and fines are being correctly manipulated 
+// by the helper functions created to handle them.
 SCENARIO( "Working with mortgages on an account", "[Account][mortgages]" ) {
 	GIVEN( "An account" ) {
 		Account account;
@@ -134,6 +141,7 @@ SCENARIO( "Working with mortgages on an account", "[Account][mortgages]" ) {
 	}
 }
 
+// Test to ensure salary payment behaviour is working as expected
 SCENARIO( "Paying crew salaries during Step", "[Account][Step]" ) {
 	GIVEN( "An account with no credits" ) {
 		Account account;
@@ -159,6 +167,7 @@ SCENARIO( "Paying crew salaries during Step", "[Account][Step]" ) {
 	}
 }
 
+// Test to ensure maintenance payment behaviour is working as expected
 SCENARIO( "Paying maintenance during Step", "[Account][Step]" ) {
 	GIVEN( "An account with no credits" ) {
 		Account account;
@@ -184,6 +193,7 @@ SCENARIO( "Paying maintenance during Step", "[Account][Step]" ) {
 	}
 }
 
+// Test to ensure mortgage payment behaviour is working as expected
 SCENARIO( "Paying Mortgages during Step", "[Account][Step]" ) {
 	GIVEN( "An account with a mortgage" ) {
 		Account account;
@@ -223,6 +233,7 @@ SCENARIO( "Paying Mortgages during Step", "[Account][Step]" ) {
 	}
 }
 
+// Test to ensure fine payment behaviour is working as expected
 SCENARIO( "Paying Fines during Step", "[Account][Step]" ) {
 	GIVEN( "An account with a fine" ) {
 		Account account;
@@ -263,6 +274,8 @@ SCENARIO( "Paying Fines during Step", "[Account][Step]" ) {
 	}
 }
 
+// Tests to ensure that overdueCrewSalaries is being correctly manipulated 
+// by the helper functions created to handle them.
 SCENARIO( "Operations on overdueCrewSalaries", "[Account][overdueCrewSalaries]" ) {
 	GIVEN( "An account" ) {
 		Account account;
@@ -287,6 +300,8 @@ SCENARIO( "Operations on overdueCrewSalaries", "[Account][overdueCrewSalaries]" 
 	}
 }
 
+// Tests to ensure that overdueMaintenance is being correctly manipulated 
+// by the helper functions created to handle them.
 SCENARIO( "Operations on overdueMaintenance", "[Account][overdueMaintenance]" ) {
 	GIVEN( "An account" ) {
 		Account account;
@@ -311,6 +326,8 @@ SCENARIO( "Operations on overdueMaintenance", "[Account][overdueMaintenance]" ) 
 	}
 }
 
+// Tests to ensure that salaries (e.g, Free Worlds pay, pirate tribute, etc.) is
+// being correctly manipulated by the helper functions created to handle them.
 SCENARIO( "Operations on player salaries", "[Account][salariesIncome]" ) {
 	GIVEN( "An account" ) {
 		Account account;
@@ -343,6 +360,9 @@ SCENARIO( "Operations on player salaries", "[Account][salariesIncome]" ) {
 	}
 }
 
+// Overarching tests of the Step function given various account states.
+// Ensures that all functions added and new logic matches the output of
+// Step()'s pre-refactor output.
 SCENARIO( "Step forward" , "[Account][Step]" ) {
 	GIVEN( "An account" ) {
 		Account account;
