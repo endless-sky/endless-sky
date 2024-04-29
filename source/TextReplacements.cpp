@@ -79,7 +79,7 @@ void TextReplacements::Revert(TextReplacements &other)
 
 
 
-// Add new text replacements to the given map after evaltuating all possible replacements.
+// Add new text replacements to the given map after evaluating all possible replacements.
 // This text replacement will overwrite the value of any existing keys in the given map
 // if the map and this TextReplacements share a key.
 void TextReplacements::Substitutions(map<string, string> &subs, const ConditionsStore &conditions) const

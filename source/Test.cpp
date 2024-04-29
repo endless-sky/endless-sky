@@ -54,7 +54,6 @@ namespace {
 		{Test::TestStep::Type::INPUT, "input"},
 		{Test::TestStep::Type::LABEL, "label"},
 		{Test::TestStep::Type::NAVIGATE, "navigate"},
-		{Test::TestStep::Type::WATCHDOG, "watchdog"},
 	};
 
 	template<class K, class... Args>
@@ -77,7 +76,7 @@ namespace {
 			+ "\", or \"" + lastValidIt->second + '"';
 	}
 
-	// Prepare an keyboard input to one of the UIs.
+	// Prepare a keyboard input to one of the UIs.
 	bool KeyInputToEvent(const char *keyName, Uint16 modKeys)
 	{
 		// Construct the event to send (from keyboard code and modifiers)
@@ -286,9 +285,6 @@ void Test::LoadSequence(const DataNode &node)
 					}
 				}
 				break;
-			case TestStep::Type::WATCHDOG:
-				step.watchdog = child.Size() >= 2 ? child.Value(1) : 0;
-				break;
 			default:
 				child.PrintTrace("Error: unknown step type in test");
 				status = Status::BROKEN;
@@ -433,12 +429,6 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 
 	while(context.callstack.back().step < steps.size() && !continueGameLoop)
 	{
-		// Fail if we encounter a watchdog timeout
-		if(context.watchdog == 1)
-			Fail(context, player, "watchdog timeout");
-		else if(context.watchdog > 1)
-			--(context.watchdog);
-
 		const TestStep &stepToRun = steps[context.callstack.back().step];
 		switch(stepToRun.stepType)
 		{
@@ -511,10 +501,6 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 				player.TravelPlan().clear();
 				player.TravelPlan() = stepToRun.travelPlan;
 				player.SetTravelDestination(stepToRun.travelDestination);
-				++(context.callstack.back().step);
-				break;
-			case TestStep::Type::WATCHDOG:
-				context.watchdog = stepToRun.watchdog;
 				++(context.callstack.back().step);
 				break;
 			default:
@@ -617,7 +603,7 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 	}
 
 	// Print all conditions that are used in the test.
-	string conditions = "";
+	string conditions;
 	for(const auto &it : RelevantConditions())
 	{
 		const auto &val = player.Conditions().HasGet(it);

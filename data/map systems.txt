@@ -2345,7 +2345,7 @@ system "Ae Ce L-332"
 	asteroids "large metal" 1 2.1
 	asteroids "medium rock" 11 3.6
 	minables unknown 1 2.7
-	fleet Astral 45000
+	fleet Astral 50000
 	object
 		sprite star/f-dwarf
 		period 10
@@ -2414,7 +2414,7 @@ system "Ae Il A-3"
 	government Uninhabited
 	attributes "giant star" "multi-star" "notable star" "supergiant star"
 	arrival 5000
-	habitable 15715
+	habitable 15705
 	belt 1031 5
 	belt 1674 6
 	haze _menu/haze-133
@@ -2450,7 +2450,7 @@ system "Ae Il A-3"
 	object
 		sprite planet/browndwarf-l
 		distance 9784.96
-		period 1100
+		period 3089.43
 		offset 270
 		object
 			sprite planet/lava4-b
@@ -2459,7 +2459,7 @@ system "Ae Il A-3"
 	object
 		sprite planet/gas1
 		distance 32407.6
-		period 18609.5
+		period 18621.3
 
 system "Ae Il B-11"
 	pos 397.635 -661.079
@@ -2850,7 +2850,7 @@ system Aescolanus
 		period 2870.08
 
 system Aierena
-	pos 1048.06 -348.956
+	pos 1045.83 -347.623
 	government Uninhabited
 	attributes "bright star" "notable star"
 	arrival 3000
@@ -3086,6 +3086,52 @@ system "Al Dhanab"
 		sprite planet/luna
 		distance 2298.15
 		period 1340.95
+
+system "Al Hurr"
+	hidden
+	pos -432 -491
+	government Uninhabited
+	arrival 1715
+	habitable 1715
+	belt 1312
+	haze _menu/haze-brown
+	trade Clothing 201
+	trade Electronics 658
+	trade Equipment 484
+	trade Food 280
+	trade "Heavy Metals" 850
+	trade Industrial 621
+	trade "Luxury Goods" 1134
+	trade Medical 582
+	trade Metal 339
+	trade Plastic 353
+	object
+		sprite star/f5
+		period 10
+	object
+		sprite planet/rock15
+		distance 382
+		period 72.1145
+	object
+		sprite planet/rock6
+		distance 686
+		period 173.545
+	object Aspiration
+		sprite planet/ice8-b
+		distance 980
+		period 296.324
+	object
+		sprite planet/dust6
+		distance 1299
+		period 452.211
+	object
+		sprite planet/gas1
+		distance 1706.99
+		period 681.199
+		object
+			sprite planet/dust1
+			distance 216
+			period 11.1964
 
 system Albaldah
 	pos -350 484
@@ -3994,50 +4040,6 @@ system Alhena
 			sprite planet/io-b
 			distance 275
 			period 12.2356
-
-system "Al Hurr"
-	hidden
-	pos -432 -491
-	government "Uninhabited"
-	belt 1312
-	haze _menu/haze-brown
-	trade "Clothing" 201
-	trade "Electronics" 658
-	trade "Equipment" 484
-	trade "Food" 280
-	trade "Heavy Metals" 850
-	trade "Industrial" 621
-	trade "Luxury Goods" 1134
-	trade "Medical" 582
-	trade "Metal" 339
-	trade "Plastic" 353
-	object
-		sprite star/f5
-		period 10
-	object
-		sprite planet/rock15
-		distance 382
-		period 52.6472
-	object
-		sprite planet/rock6
-		distance 686
-		period 77.7827
-	object Aspiration
-		sprite planet/ice8-b
-		distance 980
-		period 98.6622
-	object
-		sprite planet/dust6
-		distance 1299
-		period 119.0528
-	object
-		sprite planet/gas1
-		distance 1706.99
-		period 557.553
-		object
-			sprite planet/dust1
-			distance 216
-			period 11.1964
 
 system Alioth
 	pos -620 315
@@ -4992,6 +4994,72 @@ system Alpheratz
 			sprite planet/oberon
 			distance 285
 			period 12.909
+
+system Alpherg
+	pos -1009.44 272.194
+	government Pirate
+	attributes "ccor" "giant star" "notable star" "south"
+	arrival 4475
+	habitable 4475
+	haze _menu/haze-33
+	link Fumalsamakah
+	asteroids "medium rock" 3 2.97
+	asteroids "small metal" 3 3.195
+	trade Clothing 305
+	trade Electronics 878
+	trade Equipment 442
+	trade Food 221
+	trade "Heavy Metals" 860
+	trade Industrial 900
+	trade "Luxury Goods" 1280
+	trade Medical 869
+	trade Metal 280
+	trade Plastic 286
+	fleet "Small Southern Pirates" 1000
+	fleet "Large Southern Pirates" 2000
+	fleet "Small CCOR" 3800
+	fleet "Large CCOR" 6000
+	fleet "CCOR Logistics" 9000
+	object
+		sprite star/g-giant
+		period 10
+	object
+		sprite star/k5
+		distance 220
+		period 25
+	object "Mendez Station"
+		sprite planet/mendez
+			scale 0.5
+		distance 517.5
+		period 70.3929
+	object
+		sprite planet/cloud8-b
+		distance 1817.57
+		period 463.340
+	object Jakobsen
+		sprite planet/ocean3-b
+		distance 3164.1
+		period 1064.23
+	object
+		sprite planet/desert10-b
+		distance 3943.18
+		period 1480.58
+		object
+			sprite planet/dust1-b
+			distance 226.581
+			offset 180
+		object
+			sprite planet/dust3
+			distance 332.337
+			offset 40
+	object
+		sprite planet/gas13
+		distance 5672.61
+		period 2554.68
+		object
+			sprite planet/rhea
+			distance 535.683
+			offset 13
 
 system Altair
 	pos -357 161
@@ -5989,7 +6057,7 @@ system Aspidiske
 system Atik
 	pos -66 -52
 	government Uninhabited
-	attributes "bright star" "giant star" "multi-star" "notable star"
+	attributes "bright star" "core" "giant star" "multi-star" "notable star"
 	arrival 5000
 	habitable 15105
 	belt 1240
@@ -6427,6 +6495,63 @@ system Beginning
 			sprite planet/dust1
 			distance 256
 			period 11.563
+
+system Belenos
+	pos -901.111 279.139
+	government Pirate
+	attributes "ccor" "south"
+	arrival 1310
+	habitable 1310
+	haze _menu/haze-33
+	link Fumalsamakah
+	link Thuban
+	asteroids "small rock" 1 1.188
+	asteroids "large rock" 1 0.977
+	asteroids "small metal" 6 0.977
+	asteroids "medium metal" 6 0.871
+	trade Clothing 270
+	trade Electronics 805
+	trade Equipment 404
+	trade Food 243
+	trade "Heavy Metals" 900
+	trade Industrial 870
+	trade "Luxury Goods" 1330
+	trade Medical 833
+	trade Metal 265
+	trade Plastic 267
+	fleet "Small Southern Pirates" 600
+	fleet "Large Southern Pirates" 2000
+	fleet "Small CCOR" 3800
+	fleet "Large CCOR" 5000
+	fleet "CCOR Logistics" 8000
+	object
+		sprite star/f8
+		period 10
+	object
+		sprite planet/desert0-b
+		distance 238
+		period 40.5779
+	object
+		sprite planet/ice0-b
+		distance 658.6
+		period 186.791
+	object Gagarin
+		sprite planet/forest5
+		distance 1432.76
+		period 599.355
+		object Mordente-Bridi
+			sprite planet/station18
+				scale 0.5
+			distance 185
+			period 40
+	object
+		sprite planet/gas10-b
+		distance 2762.88
+		period 1604.97
+		object
+			sprite planet/ice0-b
+			distance 271.352
+			period 81
 
 system Bellatrix
 	pos -225 -82
@@ -8188,7 +8313,7 @@ system Chikatip
 	trade Medical 606
 	trade Metal 283
 	trade Plastic 278
-	fleet "Large Quarg" 2000
+	fleet "Large Quarg (Kor Efret)" 2000
 	fleet "Kor Efret Miners" 10800
 	object
 		sprite star/k5
@@ -8369,7 +8494,7 @@ system Chornifath
 	trade Medical 508
 	trade Metal 468
 	trade Plastic 373
-	fleet "Large Quarg" 1000
+	fleet "Large Quarg (Kor Efret)" 1000
 	object
 		sprite star/k0
 		period 10
@@ -8533,6 +8658,75 @@ system Cinxia
 			distance 270
 			period 16.6355
 
+system Citadelle
+	pos -980.667 225.917
+	government Pirate
+	attributes "ccor" "south"
+	arrival 1240
+	habitable 1240
+	haze _menu/haze-33
+	link Fumalsamakah
+	asteroids "small rock" 28 1.404
+	asteroids "medium rock" 7 1.24
+	asteroids "large rock" 15 2.059
+	asteroids "small metal" 1 1.287
+	asteroids "medium metal" 27 1.217
+	asteroids "large metal" 3 1.661
+	minables iron 6 1.7
+	minables lead 7 2.9
+	trade Clothing 260
+	trade Electronics 882
+	trade Equipment 470
+	trade Food 260
+	trade "Heavy Metals" 832
+	trade Industrial 911
+	trade "Luxury Goods" 1190
+	trade Medical 879
+	trade Metal 236
+	trade Plastic 278
+	fleet "Small Southern Pirates" 1000
+	fleet "Large Southern Pirates" 2500
+	fleet "Small CCOR" 3800
+	fleet "Large CCOR" 4500
+	fleet "CCOR Logistics" 6000
+	object
+		sprite star/k0
+		period 15
+	object
+		sprite star/a-dwarf
+		distance 102.423
+		period 15
+	object Bailey
+		sprite planet/lava0
+		distance 192.4
+		period 30.3149
+	object Alvorada
+		sprite planet/alvorada
+			scale 0.5
+		distance 1428.7
+		period 613.423
+	object
+		sprite planet/desert0-b
+		distance 2253.29
+		period 1214.99
+	object
+		sprite planet/gas14-b
+		distance 3916.23
+		period 2783.88
+		object
+			sprite planet/ice0-b
+			distance 254.677
+			period 214
+		object
+			sprite planet/ice8
+			distance 396.023
+			period 385
+			offset 54
+		object
+			sprite planet/desert9-b
+			distance 540.643
+			period 269
+
 system Coluber
 	pos 149.504 197.389
 	government Uninhabited
@@ -8605,6 +8799,7 @@ system Coluber
 system Companion
 	pos -1032.59 709.051
 	government Coalition
+	attributes "saryd"
 	arrival 500
 	habitable 425
 	belt 1786
@@ -9318,7 +9513,7 @@ system Debrugt
 system "Deep Space 19K12"
 	pos -1113 -747
 	government Uninhabited
-	attributes "proto-system" "notable star" "inaccessible"
+	attributes "inaccessible" "notable star" "proto-system"
 	arrival 500
 	habitable 135
 	belt 1977
@@ -9349,7 +9544,7 @@ system "Deep Space 19K12"
 system "Deep Space 19M1"
 	pos -895 -745
 	government Uninhabited
-	attributes "giant star" "notable star" "inaccessible"
+	attributes "giant star" "inaccessible" "notable star"
 	arrival 4050
 	habitable 4050
 	belt 2115
@@ -9479,7 +9674,7 @@ system "Deep Space 19M2"
 system "Deep Space 19M5"
 	pos -1133 -828
 	government Uninhabited
-	attributes "proto-system" "notable star" "inaccessible"
+	attributes "inaccessible" "notable star" "proto-system"
 	arrival 500
 	habitable 370
 	belt 1977
@@ -9536,7 +9731,7 @@ system "Deep Space 19M5"
 system "Deep Space 1Q"
 	pos -920 -668
 	government Uninhabited
-	attributes "bright star" "notable star" "inaccessible"
+	attributes "bright star" "inaccessible" "notable star"
 	arrival 3650
 	habitable 3650
 	belt 2577
@@ -9607,7 +9802,7 @@ system "Deep Space 1Q"
 system "Deep Space 1X"
 	pos -935 -695
 	government Uninhabited
-	attributes "notable star" "nova" "inaccessible"
+	attributes "inaccessible" "notable star" "nova"
 	arrival 500
 	habitable 100
 	belt 1751
@@ -10564,6 +10759,7 @@ system Dokdobaru
 	government "Quarg (Kor Efret)"
 	attributes "korath" "ringworld"
 	arrival 700
+	departure 1000
 	habitable 700
 	belt 1935
 	haze _menu/haze-133
@@ -13295,7 +13491,7 @@ system Farbutero
 	trade Medical 549
 	trade Metal 450
 	trade Plastic 403
-	fleet "Large Quarg" 2000
+	fleet "Large Quarg (Kor Efret)" 2000
 	fleet "Small Kor Mereti" 9400
 	fleet "Large Kor Mereti" 5000
 	object
@@ -13830,7 +14026,7 @@ system Feroteri
 	trade Medical 492
 	trade Metal 406
 	trade Plastic 451
-	fleet "Large Quarg" 3000
+	fleet "Large Quarg (Kor Efret)" 3000
 	fleet "Small Kor Mereti" 12000
 	fleet "Large Kor Mereti" 6400
 	object
@@ -14165,7 +14361,7 @@ system Fornarep
 	trade Medical 694
 	trade Metal 438
 	trade Plastic 375
-	fleet "Large Quarg" 2000
+	fleet "Large Quarg (Kor Efret)" 2000
 	fleet "Small Kor Mereti" 9000
 	fleet "Large Kor Mereti" 5800
 	object
@@ -14310,6 +14506,65 @@ system Fscher
 		distance 15894
 		period 10098.0
 
+system Fumalsamakah
+	pos -962.334 301.805
+	government Pirate
+	attributes "bright star" "ccor" "notable star" "south"
+	arrival 5000
+	habitable 5600
+	haze _menu/haze-33
+	link Alpherg
+	link Belenos
+	link Citadelle
+	link Thuban
+	asteroids "small rock" 4 12
+	trade Clothing 318
+	trade Electronics 808
+	trade Equipment 358
+	trade Food 217
+	trade "Heavy Metals" 954
+	trade Industrial 834
+	trade "Luxury Goods" 1220
+	trade Medical 882
+	trade Metal 245
+	trade Plastic 366
+	fleet "Small Southern Pirates" 1000
+	fleet "Large Southern Pirates" 2000
+	fleet "Small CCOR" 3800
+	fleet "Large CCOR" 6000
+	fleet "CCOR Logistics" 9000
+	object
+		sprite star/b5
+		period 10
+	object
+		sprite planet/dust1-b
+		distance 757.697
+		period 111.483
+	object
+		sprite planet/gas0-b
+		distance 3608.23
+		period 1158.53
+		object
+			sprite planet/cloud0
+			distance 314.164
+			period 83
+		object
+			sprite planet/rock11-b
+			distance 475.844
+			period 121
+	object
+		sprite planet/gas1
+		distance 6016.11
+		period 2494.24
+		object
+			sprite planet/ice1
+			distance 575.411
+			period 84
+		object
+			sprite planet/rock3
+			distance 846.619
+			period 120
+
 system Furmeliki
 	pos -35.5695 -281.812
 	government Uninhabited
@@ -14332,7 +14587,7 @@ system Furmeliki
 	trade Medical 536
 	trade Metal 346
 	trade Plastic 313
-	fleet "Large Quarg" 1000
+	fleet "Large Quarg (Kor Efret)" 1000
 	object
 		sprite star/k0
 		period 10
@@ -14745,13 +15000,13 @@ system "Gamma Corvi"
 		period 2076.63
 
 system Gaungu
-	pos 1097.72 -321.899
+	pos 1096.97 -320.418
 	government Uninhabited
 	arrival 500
 	habitable 400
 	belt 1072
 	"jump range" 80
-	haze _menu/haze-none
+	haze _menu/haze-brown
 	link Yranjiu
 	asteroids "small rock" 13 4.35
 	asteroids "medium rock" 19 3.9
@@ -16163,7 +16418,7 @@ system Hesselpost
 	trade Medical 484
 	trade Metal 536
 	trade Plastic 281
-	fleet "Large Quarg" 1000
+	fleet "Large Quarg (Kor Efret)" 1000
 	fleet "Kor Efret Miners" 7200
 	object
 		sprite star/k0
@@ -16806,7 +17061,7 @@ system Iigen
 	arrival 500
 	habitable 230
 	belt 1699
-	"jump range" 60
+	"jump range" 70
 	haze _menu/haze-brown
 	link Heutesl
 	link Oosuoro
@@ -17529,7 +17784,7 @@ system "Is Ce B-139"
 	asteroids "medium metal" 5 3.41
 	asteroids "large metal" 2 4.402
 	fleet "Vyrmeid (Plankton)" 300
-	fleet Astral 50000
+	fleet Astral 55000
 	object
 		sprite star/g8
 		period 40
@@ -17553,7 +17808,7 @@ system "Is Ce F-422"
 	asteroids "large rock" 9 2.262
 	asteroids "large metal" 1 3.783
 	fleet "Vyrmeid (Plankton)" 400
-	fleet Astral 50000
+	fleet Astral 57000
 	object
 		sprite star/a5
 		distance 52.236
@@ -17627,7 +17882,7 @@ system "Is Ce G-460"
 	minables silicon 6 10.214
 	minables unknown 2 2.5
 	fleet "Vyrmeid (Plankton)" 700
-	fleet Astral 50000
+	fleet Astral 65000
 	object
 		sprite star/k-dwarf
 		period 10
@@ -17674,7 +17929,7 @@ system "Is Ce J-591"
 	asteroids "large metal" 3 1.664
 	minables silicon 8 3.635
 	fleet "Vyrmeid (Plankton)" 450
-	fleet Astral 50000
+	fleet Astral 60000
 	object
 		sprite star/f-giant
 		distance 60.57
@@ -17858,7 +18113,7 @@ system "Is Il V-263"
 	minables titanium 3 5.731
 	fleet "Vyrmeid (Plankton)" 500
 	fleet "Vyrmeid (Boomerang)" 700
-	fleet Astral 50000
+	fleet Astral 56000
 	object
 		sprite star/b-supergiant
 		period 10
@@ -17906,7 +18161,7 @@ system "Is Il X-626"
 	asteroids "large metal" 1 3.402
 	fleet "Vyrmeid (Plankton)" 500
 	fleet "Vyrmeid (Boomerang)" 800
-	fleet Astral 50000
+	fleet Astral 62000
 	object
 		sprite star/a8
 		distance 48.468
@@ -17949,7 +18204,7 @@ system "Is Il Z-59"
 	minables iron 14 4.93
 	fleet "Vyrmeid (Plankton)" 500
 	fleet "Vyrmeid (Cephalopod)" 600
-	fleet Astral 50000
+	fleet Astral 75000
 	object
 		sprite star/g3
 		distance 67.938
@@ -18539,7 +18794,7 @@ system Kaliptari
 	trade Medical 675
 	trade Metal 334
 	trade Plastic 398
-	fleet "Large Quarg" 3000
+	fleet "Large Quarg (Kor Efret)" 3000
 	fleet "Small Kor Mereti" 10000
 	fleet "Large Kor Mereti" 4800
 	object
@@ -18587,7 +18842,7 @@ system Kaliptari
 			period 29.5684
 
 system Kanguwa
-	pos 990.137 -331.456
+	pos 995.47 -329.975
 	government Uninhabited
 	attributes "neutron" "notable star" "rulei"
 	music "ambient/rulei space"
@@ -19274,11 +19529,12 @@ system "Kifrana Terberah"
 		period 3488.63
 
 system Kilema
-	pos 1043.5 -472.08
+	pos 1039.94 -479.191
 	government Uninhabited
 	arrival 500
 	habitable 150
 	belt 612
+	"jump range" 70
 	haze _menu/haze-brown
 	link "Erba Yle"
 	asteroids "small rock" 4 1.9
@@ -19300,12 +19556,12 @@ system Kilema
 		distance 638
 		period 526.314
 		offset -10
-	object "Beryl"
+	object Beryl
 		sprite planet/beryl/beryl
-			"scale" 0.5
 			"frame rate" 4
+			scale 0.5
 		distance 1200
-		period 3000
+		period 1357.64
 		offset 75
 	object
 		sprite planet/rock17
@@ -19323,7 +19579,6 @@ system Kiluit
 	arrival 2430
 	habitable 2430
 	belt 1258
-	"jump range" 70
 	haze _menu/haze
 	link Jied
 	link Nnaug
@@ -20200,7 +20455,7 @@ system Korsmanath
 	trade Medical 479
 	trade Metal 427
 	trade Plastic 440
-	fleet "Large Quarg" 3000
+	fleet "Large Quarg (Kor Efret)" 3000
 	fleet "Small Kor Mereti" 8000
 	object
 		sprite star/k0
@@ -20432,12 +20687,13 @@ system Kursa
 		period 1517.13
 
 system L-118
-	pos 1085.78 -416.75
+	pos 1088.89 -408.306
 	government Uninhabited
 	attributes "bright star" "notable star" "umbral reach"
 	arrival 3000
 	habitable 3000
 	belt 1724
+	"jump range" 70
 	haze _menu/haze-coal
 	link H-9187
 	asteroids "small rock" 12 3.3
@@ -20511,6 +20767,7 @@ system L-6181
 system "Last Word"
 	pos -1145.59 495.051
 	government Coalition
+	attributes "saryd"
 	arrival 625
 	habitable 625
 	belt 1761
@@ -21869,7 +22126,7 @@ system Meftarkata
 	trade Medical 599
 	trade Metal 484
 	trade Plastic 334
-	fleet "Large Quarg" 1000
+	fleet "Large Quarg (Kor Efret)" 1000
 	fleet "Kor Efret Miners" 7200
 	object
 		sprite star/f5
@@ -22218,7 +22475,7 @@ system Mekislepti
 			period 30.4733
 
 system Men
-	pos -888 361
+	pos -900.2 366.4
 	government Pirate
 	attributes "south"
 	arrival 500
@@ -22226,6 +22483,7 @@ system Men
 	belt 1580
 	haze _menu/haze-33
 	link "Beta Lupi"
+	link Thuban
 	asteroids "small rock" 9 3.504
 	asteroids "medium rock" 2 5.376
 	asteroids "large rock" 5 5.952
@@ -23166,7 +23424,7 @@ system Mirzam
 system Misam
 	pos -9 -80
 	government Pirate
-	attributes "multi-star" "notable star"
+	attributes "core" "multi-star" "notable star"
 	arrival 3835
 	habitable 3835
 	belt 1091
@@ -23538,7 +23796,7 @@ system Mora
 			period 24.168
 
 system Msalbit
-	pos 978.348 -274.767
+	pos 986.052 -277.73
 	government Uninhabited
 	attributes "bright star" "notable star"
 	arrival 5000
@@ -24896,7 +25154,7 @@ system Paeli
 	object
 		sprite planet/gas2-b
 		distance 2010.84
-		period 8065.10
+		period 8065.12
 		offset 270.243
 		object Eavine
 			sprite planet/ice8-b
@@ -25128,7 +25386,7 @@ system Patir
 	hidden
 	pos -38 553
 	government Uninhabited
-	attributes "black hole" "ember waste" "notable star" "nova" "graveyard"
+	attributes "black hole" "ember waste" "graveyard" "notable star" "nova"
 	arrival 500
 	ramscoop
 		universal 0
@@ -26113,6 +26371,7 @@ system Plort
 system Polaris
 	pos -35 126
 	government Syndicate
+	attributes "core"
 	arrival 1715
 	habitable 1715
 	belt 1906
@@ -28227,7 +28486,7 @@ system Sabriset
 	trade Medical 621
 	trade Metal 275
 	trade Plastic 441
-	fleet "Large Quarg" 4000
+	fleet "Large Quarg (Kor Efret)" 4000
 	object
 		sprite star/g0
 		distance 34.3036
@@ -29144,7 +29403,7 @@ system Seketra
 	trade Medical 635
 	trade Metal 327
 	trade Plastic 286
-	fleet "Large Quarg" 3000
+	fleet "Large Quarg (Kor Efret)" 3000
 	object
 		sprite star/k5
 		period 10
@@ -29267,7 +29526,7 @@ system Sepriaptu
 	trade Medical 604
 	trade Metal 320
 	trade Plastic 449
-	fleet "Large Quarg" 4000
+	fleet "Large Quarg (Kor Efret)" 4000
 	object
 		sprite star/f5
 		distance 15.0211
@@ -30084,7 +30343,7 @@ system Skeruto
 	trade Medical 621
 	trade Metal 393
 	trade Plastic 333
-	fleet "Large Quarg" 2000
+	fleet "Large Quarg (Kor Efret)" 2000
 	object
 		sprite star/m0
 		period 10
@@ -30471,7 +30730,7 @@ system "Sol Kimek"
 	object "Ki Patek Ka"
 		sprite planet/ocean1
 		distance 466.11
-		period 291.452
+		period 195.253
 		object "Starting Rubin"
 			sprite planet/station1c
 				scale 0.5
@@ -30613,7 +30872,7 @@ system Solifar
 	trade Medical 678
 	trade Metal 285
 	trade Plastic 442
-	fleet "Large Quarg" 4000
+	fleet "Large Quarg (Kor Efret)" 4000
 	object
 		sprite star/m0
 		period 10
@@ -31803,6 +32062,36 @@ system "Thshybo Le"
 		distance 4964.03
 		period 2473.07
 
+system Thuban
+	pos -882.629 328.38
+	government Pirate
+	attributes "bright star" "ccor" "notable star" "south"
+	arrival 5000
+	habitable 7050
+	belt 200 1
+	belt 600 1
+	belt 1500 2
+	haze _menu/haze-33
+	link Belenos
+	link Fumalsamakah
+	link Men
+	asteroids "small metal" 14 7
+	asteroids "large rock" 25 4
+	minables uranium 9 1.3
+	minables titanium 11 1
+	fleet "Small Southern Pirates" 1500
+	fleet "Large Southern Pirates" 2500
+	fleet "Small CCOR" 6000
+	object
+		sprite star/a0
+		distance 100
+		period 50
+	object
+		sprite star/a3
+		distance 100
+		period 50
+		offset 180
+
 system Torbab
 	pos -949.587 490.051
 	government Coalition
@@ -32375,11 +32664,11 @@ system Umbral
 	fleet "Large Southern Pirates" 6000
 	object
 		sprite star/k0-old
-		distance 23.3222
+		distance 25
 		period 10.2313
 	object
 		sprite star/m0
-		distance 71.4243
+		distance 90
 		period 10.2313
 		offset 180
 	object
@@ -32853,7 +33142,7 @@ system Vaiov
 		offset 180
 
 system Vanguwo
-	pos 978.189 -237.686
+	pos 965.152 -237.39
 	government Uninhabited
 	attributes "giant star" "notable star"
 	arrival 4050
@@ -33028,8 +33317,8 @@ system Vesvii
 	minables gold 6 2.4
 	minables iron 9 1.7
 	minables lead 11 2.1
-	fleet "Vi Warfleet" 1100
-	fleet "Scin Warfleet" 1000
+	fleet "Vi Warfleet" 1200
+	fleet "Scin Warfleet" 1200
 	object
 		sprite star/k5-old
 		distance 81.5
@@ -33252,13 +33541,13 @@ system Vorsuke
 			period 320
 
 system Vulcuja
-	pos 1071.75 -263.767
+	pos 1072.04 -264.656
 	government Uninhabited
 	attributes "carbon" "notable star"
 	arrival 3000
 	habitable 3000
 	belt 1972
-	haze _menu/haze-coal
+	haze _menu/haze-33
 	link Yranjiu
 	asteroids "large rock" 1 1
 	asteroids "large metal" 1 1
@@ -34395,7 +34684,7 @@ system Yllke
 			period 242.1
 
 system Yranjiu
-	pos 1054.27 -298.942
+	pos 1056.34 -303.683
 	government Uninhabited
 	attributes "black hole" "notable star"
 	arrival 5000
