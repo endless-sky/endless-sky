@@ -111,7 +111,7 @@ SCENARIO( "Operations on history", "[Account][history]" ) {
 	}
 }
 
-// Tests to ensure that mortgages and fines are being correctly manipulated 
+// Tests to ensure that mortgages and fines are being correctly manipulated
 // by the helper functions created to handle them.
 SCENARIO( "Working with mortgages on an account", "[Account][mortgages]" ) {
 	GIVEN( "An account" ) {
@@ -274,7 +274,7 @@ SCENARIO( "Paying Fines during Step", "[Account][Step]" ) {
 	}
 }
 
-// Tests to ensure that overdueCrewSalaries is being correctly manipulated 
+// Tests to ensure that overdueCrewSalaries is being correctly manipulated
 // by the helper functions created to handle them.
 SCENARIO( "Operations on overdueCrewSalaries", "[Account][overdueCrewSalaries]" ) {
 	GIVEN( "An account" ) {
@@ -300,7 +300,7 @@ SCENARIO( "Operations on overdueCrewSalaries", "[Account][overdueCrewSalaries]" 
 	}
 }
 
-// Tests to ensure that overdueMaintenance is being correctly manipulated 
+// Tests to ensure that overdueMaintenance is being correctly manipulated
 // by the helper functions created to handle them.
 SCENARIO( "Operations on overdueMaintenance", "[Account][overdueMaintenance]" ) {
 	GIVEN( "An account" ) {
