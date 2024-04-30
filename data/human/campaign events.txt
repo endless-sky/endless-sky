@@ -528,6 +528,7 @@ mission "Central Outfitters Expansion Trigger"
 		has "event: initial deployment 2"
 	on offer
 		event "central outfitters expansion" 45
+		fail
 
 event "central outfitters expansion"
 	planet "Earth"
