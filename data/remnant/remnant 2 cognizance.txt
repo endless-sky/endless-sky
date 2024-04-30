@@ -872,8 +872,8 @@ mission "remnant cognizance fix 1"  # gotta find out a name
 	to offer
 		has explorationinterest
 	on offer
+		"exploration interest" = explorationinterest
 		clear explorationinterest
-		"exploration interest" ++
 		fail
 
 mission "remnant cognizance fix 2"  # gotta find out a name
@@ -881,8 +881,8 @@ mission "remnant cognizance fix 2"  # gotta find out a name
 	to offer
 		has scienceinterest
 	on offer
+		"science interest" = scienceinterest
 		clear scienceinterest
-		"science interest" ++
 		fail
 
 mission "Remnant: Cognizance 22"
