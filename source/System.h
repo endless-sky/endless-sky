@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef SYSTEM_H_
 #define SYSTEM_H_
 
+#include "ConditionSet.h"
 #include "Hazard.h"
 #include "Point.h"
 #include "RaidFleet.h"
@@ -34,6 +35,7 @@ class Fleet;
 class Government;
 class Minable;
 class Planet;
+class PlayerInfo;
 class Ship;
 class Sprite;
 
@@ -71,7 +73,8 @@ public:
 	void Load(const DataNode &node, Set<Planet> &planets);
 	// Update any information about the system that may have changed due to events,
 	// e.g. neighbors, solar wind and power, or if the system is inhabited.
-	void UpdateSystem(const Set<System> &systems, const std::set<double> &neighborDistances);
+	void UpdateSystem(const Set<System> &systems, const std::set<double> &neighborDistances,
+		const PlayerInfo *player);
 
 	// Modify a system's links.
 	void Link(System *other);
@@ -185,7 +188,7 @@ private:
 	// Once the star map is fully loaded or an event has changed systems
 	// or links, figure out which stars are "neighbors" of this one, i.e.
 	// close enough to see or to reach via jump drive.
-	void UpdateNeighbors(const Set<System> &systems, double distance);
+	void UpdateNeighbors(const Set<System> &systems, double distance, const PlayerInfo *player);
 
 
 private:
@@ -210,6 +213,8 @@ private:
 	const Government *government = nullptr;
 	std::string music;
 
+	// Hyperspace links to other systems and their conditions to exist.
+	std::map<const System *, ConditionSet> conditionLinks;
 	// All possible hyperspace links to other systems.
 	std::set<const System *> links;
 	// Only those hyperspace links to other systems that are accessible.
