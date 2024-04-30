@@ -174,7 +174,7 @@ bool Panel::EventVisit(bool (Panel::*f)(FARGS ...), ARGS ...args)
 		if((*it)->EventVisit(f, args...))
 			return true;
 
-	// If none of our children handled this event, then it could be for us
+	// If none of our children handled this event, then it could be for us.
 	return (this->*f)(args...);
 }
 
