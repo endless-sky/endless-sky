@@ -17,7 +17,7 @@ test-data "Checking For A Gifted Ship Test Save"
 		pilot Bobbi Bughunter
 		date 16 11 3013
 		system Sol
-		planet Earth
+		planet Luna
 		ship "Star Barge"
 			name "Buggy Barge"
 			sprite "ship/star barge"
@@ -56,9 +56,52 @@ test-data "Checking For A Gifted Ship Test Save"
 			explode "tiny explosion" 10
 			explode "small explosion" 10
 			system Sol
-			planet Earth
+			planet Luna
+		ship "Heavy Shuttle"
+			sprite "ship/heavy shuttle"
+			thumbnail "thumbnail/heavy shuttle"
+			attributes
+				category "Transport"
+				cost 470000
+				shields 700
+				hull 700
+				"required crew" 1
+				bunks 10
+				mass 90
+				drag 1.9
+				"heat dissipation" .8
+				"fuel capacity" 500
+				"cargo space" 40
+				"outfit space" 130
+				"weapon capacity" 16
+				"engine capacity" 65
+				weapon
+					"blast radius" 12
+					"shield damage" 120
+					"hull damage" 60
+					"hit force" 180
+			outfits
+				"nGVF-AA Fuel Cell"
+				"LP036a Battery Pack"
+				"D14-RN Shield Generator"
+				"X2700 Ion Thruster"
+				"X2200 Ion Steering"
+				"Hyperdrive"
+			crew 1
+			fuel 500
+			shields 700
+			hull 700
+			engine -6.5 38.5
+			engine 6.5 38.5
+			gun -3 -38.5
+			gun 3 -38.5
+			leak "leak" 60 50
+			explode "tiny explosion" 10
+			explode "small explosion" 5
+			system Sol
+			planet Luna
 		account
-			credits 0
+			credits 700000
 			score 400
 			history
 
@@ -92,6 +135,7 @@ test "Checking For A Gifted Ship"
 		call "Land"
 		call "Depart"
 		assert
+			"ship model: Heavy Shuttle" == 1
 			"ship model: Star Barge" == 0
 			"ship model: Sparrow" == 1
 			"%TEST%: Switch: offered" == 1
@@ -99,12 +143,12 @@ test "Checking For A Gifted Ship"
 		# Reload this to make sure the UUID is well stored into the savefile.
 		call "Open Menu"
 		call "Load First Savegame"
-		call "Wait 10 steps"
 		call "Depart"
 		navigate
 			"travel destination" Earth
 		call "Land"
 		assert
+			"ship model: Heavy Shuttle" == 1
 			"ship model: Star Barge" == 0
 			"ship model: Sparrow" == 0
 			"%TEST%: Switch: offered" == 1
@@ -238,7 +282,6 @@ test "Taking Ship With Outfits And Unconstrained"
 		navigate
 			"travel destination" Ingot
 		call "Land"
-		call "Wait 10 steps"
 		# The missions are checked by alphabetical order, meaning we know that if the third one triggered,
 		# the first two tried to trigger before it.
 		assert
