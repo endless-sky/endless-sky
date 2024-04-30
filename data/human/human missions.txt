@@ -6992,8 +6992,71 @@ mission "Tavish and Kormak"
 				`	"The <ship>."`
 			`	"Right, of course, a ship worthy of a Captain of your caliber, no doubt, no doubt." Tavish tips his hat to you and then he and Kormak make their way out of the cafe.`
 				accept
-				
+
 	on complete
+		conversation
+			`	Clarke's spaceport is overwhelemed with traffic and you end up waiting an additional hour before they can finally find room for your ship on one of the outlying conrete pads.`
+			`	Moments after touching down Tavish and Kormak, or Kormak and Tavish, are making their way toward your ship's exit.`
+			`	Tavish nods to you as they pass, "We're most apprehensive about the state of our equipment. We're headed to SpaceFork storage facility in the spaceport. Meet us there."`
+			`	"Apprehensive." Kormak echoes as he disappears out the hatch and onto Clark.`
+
+mission "Tavish and Kormak 2"
+	source "Clark"
+	destination "Deadman's Cove"
+	passengers 2
+	to offer
+		has "Tavish and Kormak: done"
+	on offer
+		conversation
+			`	The layout of the crowded spaceport is slipshod at best. It's robustly evident that it's growing needs have consistantly outpaced it's capacity and materials. Dead ends, unfinished pathways, incorrectly labeled buildings and maps all conspire to slow your progress.`
+			`	Despite the spaceport's best efforts you manage to successfully work your way to the SpaceFork storage facility, which has moved twice from it's earlier warehouses that each still bear it's name, and instead is now housed what is still being called the Pentacorps Mercentile Cooperative structure.`
+			`	You approach a clearly unhappy Tavish and Kormak arguing with a certified SpaceFork associate.`
+			`	"I am sorry, sirs. But without your SpaceFork Stop-N-Drop credentials there is no way I can provide you access to the facility. The employee handbook is very clear on the matter." The SpaceFork associate jabs a finger at the open manual in their hands.`
+			choice
+				`	(Attempt to intervene.)`
+				`	(Say nothing.)`
+					goto nothing
+
+			`	Kormaks thick meaty hand is suddenly on your shoulder. His grip is like iron, but he does not squeeze hard enough to hurt you. `
+			`	"Wait." Is all the lumbering giant says.`
+
+			label nothing
+			`	A subtle change seems sweep over Tavish. The whole way he carries himself as shifted and suddenly he seems taller, more dignified, more important. His bright eyes soften and somehow seems warmer than before.`
+			`	He steps closer to the SpaceFork associate, "Todd, believe me, I completely understand. I know you're the kind of chap who always follows the rules, because without rules there's chaos."`
+			`	Todd, the associate, nods slowly.`
+			`	"We need more good fellows like you, Todd. Imagine how much better run Clark would be if more people took their duties seriously." Tavish's says in a conspiritorial voice.`
+			`	Todd again nods, this time with some vigor.`
+			`	"You've seen me before, you know I me and my colleague here we dropped off our equipment." With a friendly smile Tavish inclines his head toward the silent Kormak, "It's especially hard to miss him."`
+			`	"But what you don't know Todd, is that I am the Dean-Praetor of the famed Oxford-Harvard Science & Research Institute on Chiron." Tavish pauses to let that sink in and then pulls an ID out of his pocket and hands it to the stunned associate.`
+			`	"Believe me when I tell you that I wish a few more of my associate-professors and primary investigators were like you." Tavish gives Todd a somber shrug. "Still, now that you know me better, I have to ask if you could consider just this once helping us out by following the spirit rather than the letter of the rules."`
+			`	Tavish holds up a finger before Todd can respond, "Systems, no matter how robust, are imperfect. Every once in a while they need the human element in order to supercede their arbitrary rules. Only someone careful, considerate and discerning such as yourself could be trusted with such a breach. But now I am putting myself in your wise hands."`
+			`	Tavish actually places his hands in Todd's and looks the name square in the eyes, "Todd. Be the human element in the machine, and take us to our storage container."`
+			`	Todd looks down at Tavish hands, his face a wash in conflciting emotions before at last a certain calm resolve takes over and he nods firmly, "Of course, Dean-Praetor. I am sure the executives at SpaceFork HQ would want me not to hinder you."`
+			`	With that he promptly turns and leads the three of you past a long line of storage containers. "Here it is."`
+			`	He taps the keypad until the door opens, awkwardly salutes and Tavish and then marches away from them with a fresh confidence.`
+			`	Tavish and Kormak enter the container.`
+			choice
+				`	(Follow them in.)`
+			`	"By Skoll's fang." Kormak rumbles. `
+			`	There are torn suitcases, clothes and various personal objects strewn throughout the container. The place has been ransacked and the equipment appears to be missing.`
+			`	Tavish rubs his nose and paces back and forth.`
+			`	"Stole it." Komark says dryly.`
+			`	"Yes, yes, I know. This is why we should have occumpanied him." Tavish says with irritation.`
+			`	"Should have listened." Kormak responds.`
+			`	"I know! But you have to admit the bird watching seminar we attended on New India instead was quite extraordinary!"`
+			`	"Lots of birds." Kormak admits.`
+			` 	Tavish takes a deep breath,"Okay we know the Captian's name and his ship's name. Matt Fuller and the Lucy's Delight. All we need to do is head to the spaceport administrative offices and check to see his registered flgith plan."`
+			`	"Confidential." Kormak says.`
+			`	"We'll see about that. Let's go." Tavish storms out of the ravished container, leaving his remaining items behind.`
+			choice
+				`	(Hurry after him.)`
+					goto hurry
+				`	(Stay.)`
+			`	Kormak's iron grip lands on your shoulder, "Come."`
+			`	He drags you along in Tavish's wake.`
+
+			label hurry
+			`	Before long you find Ta`
 
 
 
