@@ -6970,7 +6970,7 @@ mission "Lost Dog"
 			label nocard
 			`	The butler smiles smugly. "How unfortunate. In that case, I have no choice but to bring you in through the servant's entrance. It's only proper."`
 			`	Instead of taking you up the wide stairs to the beautifully inscribed wooden doors, he takes you around the side to a small plain door. He leaves you there with the footman to wait.`
-			`	A quarter of an hour later a woman wearing an exceedingly impractical dress arrives.`
+			`	A quarter of an hour later, a woman wearing an exceedingly impractical dress arrives.`
 
 			label boolinbrook
 			`	"Mr. Boolinbrook says you've brought back my darling See-See?" From down her nose she looks at you and waits for your response.`
