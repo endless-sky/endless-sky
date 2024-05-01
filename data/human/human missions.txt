@@ -6956,7 +6956,7 @@ mission "Lost Dog"
 			`	You spend another forty-five minutes of driving down long winding roads, past various outbuildings, lodges, retreats, guest houses, and hobby barns. At long last, you arrive at the massive central mansion. Waiting at the bottom of stone stairs is a footman who opens the door for you and summons the senior butler.`
 			`	The butler arrives and looks you over unhappily. "The lady of the manor is not expecting... guests. Perhaps, you've misread your appointment, or more likely, arrived at the wrong estate."`
 			choice
-				`	(Show the butler Caesar, and ask to see his owner.)`
+				`	(Show Caesar to the butler and ask to see his owner.)`
 
 			`	The butler's frown deepens, and then sighs. "Card, please." He holds out a silver tray and awaits your calling card.`
 			choice
