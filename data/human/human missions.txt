@@ -6916,7 +6916,7 @@ mission "Lost Dog"
 			`	The park has been meticulously sculpted so that no matter where you stand, it appears as though you are in the center of a lush naturalist painting. Colorful, comforting flora bleed away from you at all angles, and adorable yet inaccessible fauna seem to hug the very periphery of your every step.`
 			`	The air is clear and crisp, and even the crunch of leaves and thud of the earth beneath your feet seems somehow delicious and satisfying. Finally, the sun begins to set and it is time to head back.`
 			`	As you approach the exit to the park a small dog pads over to you and looks at you with mournful eyes. It seems to be alone, with no owner anywhere in sight.`
-			`	"Come here," you call to the poodle-hybrid, who obediently does as you command. You see that it is a male and check its collar:`
+			`	"Come here," you call to the dog, which looks to be a poodle mix, and it obediently does as you command. You see that the dog is a male and check his collar:`
 			``
 			`	"Caesar Augustus - Property of the Mitchells"`
 			`	3 Mitchell Drive`
