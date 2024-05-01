@@ -6920,7 +6920,8 @@ mission "Lost Dog"
 			``
 			`	"Caesar Augustus - Property of the Mitchells"`
 			`	3 Mitchell Drive`
-			`	Avalonia District, Hestia`
+			`	Avalonia District, Hestia City`
+			`	Planet Hestia, Talita System`
 			``
 			`	"That's odd," you say to Caesar. "How did you get lost on the wrong planet, huh boy?"`
 			`	You pet Caesar, who seems glad of the attention, and decide what to do.`
