@@ -130,21 +130,21 @@ outfit "Green Optical Laser"
 	"weapon capacity" -6
 	"turret mounts" -1
 	"optical jamming" 6
-	"lasing power" -3
+	"lasing power" -1
 	weapon
 		"hardpoint sprite" "hardpoint/avgi green laser"
+		sound "disruptor"
 		"die effect" "laser ejecta" 4
 		"die effect" "green laser reflection" 30
 		"die effect" "green laser scattering"
 		"fire effect" "green laser fire"
 		"anti-missile" 2
-		"velocity" 1200
+		"velocity" 1800
 		"lifetime" 1
-		"reload" 1
-		"firing energy" 6
-		"firing heat" 6
+		"firing energy" 9
+		"firing heat" 9
 	description "This lightweight turret can be fed a beam of light from a lasing generator, which is then combined and focused to produce an intense beam suitable for targeting and destroying missiles. Unlike a typical pulsed-shot human antimissile system, this turret seems designed to hold a beam on target at an extreme distance for a longer period of time using its precise optics, making it better suited for defending and supporting other ships from afar."
-	description "The turret itself only contains the optics needed to synthesize, focus, and target the beam, allowing the laser light to be produced elsewhere. Because of this, an Optical Lasing Generator is needed to run this turret, providing enough power to support two Green Lasers."
+	description "The turret itself only contains the optics needed to synthesize, focus, and target the beam, allowing the laser light to be produced elsewhere. Because of this, an Optical Lasing Generator is needed to run this turret, providing enough power to support three Green Lasers."
 
 
 outfit "Blue Optical Laser"
@@ -158,16 +158,17 @@ outfit "Blue Optical Laser"
 	"weapon capacity" -9
 	"turret mounts" -1
 	"optical jamming" 12
-	"lasing power" -6
+	"lasing power" -3
 	weapon
 		"hardpoint sprite" "hardpoint/avgi blue laser"
 		sprite "projectile/avgi laser blue"
 			"frame rate" 1
+		sound "disruptor"
 		"hit effect" "laser ejecta" 4
 		"hit effect" "blue laser reflection" 30
 		"hit effect" "blue laser scattering"
 		"fire effect" "blue laser fire"
-		"velocity" 3600
+		"velocity" 2400
 		"lifetime" 1
 		"reload" 1
 		"turret turn" 6
@@ -188,7 +189,7 @@ effect "laser ejecta"
 		scale 0.75
 	"random lifetime" 3
 	"random angle" 30
-	"random spin" 20
+	"random spin" 15
 	"random velocity" -12
 	"velocity scale" -0.003
 
@@ -223,7 +224,7 @@ effect "green laser scattering"
 	"velocity scale" 0
 
 effect "green laser reflection"
-	sprite "effect/heavy laser impact"
+	sprite "effect/typhoon fire"
 		"frame rate" 20
 		"random start frame"
 		scale 0.25
@@ -250,38 +251,52 @@ outfit "Ultrarelativistic Electron Beam"
 			"no repeat"
 		sound "slicer"
 		"fire effect" "electron flare"
-		"firing energy" 24
-		"firing heat" 12
-		"firing scramble" 0.6
-		"velocity override" 360
-		"piercing" 0.15
-		"submunition" "Electron Packet" 12
+		"firing energy" 540
+		"firing heat" 180
+		"firing scramble" 6
+		"reload" 18
+		"burst count" 1
+		"inaccuracy" 6
+			"narrow"
+		"velocity override" 300
+		"piercing" 0.3
+		"submunition" "Electron Packet" 180
 
 outfit "Electron Packet"
 	weapon
-		sprite "projectile/ion rain"
+		sprite "effect/mhd spark"
 			"frame rate" 30
 			"no repeat"
 		"hit effect" "bremsstrahlung"
-		"velocity" 360
+		"hit effect" "nuclear spallation"
+		"velocity" 300
 		"random velocity" -240
 		"lifetime" 6
 		"random lifetime" 3
-		"shield damage" 0.6
-		"hull damage" 0.9
+		"inaccuracy" 0.3
+		"shield damage" 1.8
+		"hull damage" 1.2
 		"ion damage" 0.006
-		"piercing" 0.15
-		"penetration count" 3
+		"piercing" 0.3
 
 effect "bremsstrahlung"
-	sprite "effect/piercer impact"
+	sprite "effect/skylance impact"
 		"frame rate" 30
 		"no repeat"
-		scale 0.25
+		scale 0.5
+	"random lifetime" 6
+	"velocity scale" 0.3
+
+effect "nuclear spallation"
+	sprite "effect/detainer sparks"
+		"frame rate" 60
+		"no repeat"
+		scale 0.5
+	"random angle" 15
+	"random spin" 15
 	"random lifetime" 12
-	"random angle" 90
-	"random velocity" -15
-	"velocity scale" 0
+	"random velocity" -6
+	"velocity scale" -0.03
 
 effect "electron flare"
 	sprite "effect/pwaveflare"
@@ -298,7 +313,7 @@ outfit `"Nettle" Kinetic Missile`
 	licenses
 		"Twilight Guard"
 	cost 600
-	thumbnail "outfit/Nettle missile"
+	thumbnail "outfit/nettle missile"
 	"mass" 0.15
 	"nettle capacity" -1
 	description "The Nettle missile is a cheap, disposable kinetic kill vehicle designed for situations where a nuclear warhead would be unnecessary. Upon closing in on a target, the missile unwraps into dozens of thin tungsten rods to create a cone shaped area of effect. This makes it difficult to shoot down without very long ranged antimissile systems."
@@ -615,7 +630,7 @@ outfit "Active Snapdragon"
 		"hit effect" "thermonuclear flash"
 		"hit effect" "prompt radiation" 12
 		"hit effect" "fission fragments" 60
-		"die effect" "medium explosion"
+		"die effect" "thermonuclear flash"
 		"lifetime" 1200
 		"acceleration" 0.6
 		"drag" .03
@@ -625,38 +640,36 @@ outfit "Active Snapdragon"
 		"radar tracking" 0.6
 		"split range" 900
 		"missile strength" 36
-		"submunition" "Snapfront" 150
-		"submunition" "Snapback" 240
+		"submunition" "Snapfront" 120
+		"submunition" "Snapback" 90
 
 
 outfit "Snapfront"
 	weapon
-		sprite "effect/korath afterburner"
-			"scale" 2
-			"frame rate" 12
-			"random start frame"
+		sprite "effect/plasma impact"
+			"frame rate" 30
 			"no repeat"
-		"hit effect" "flamethrower hit" 9
-		"live effect" "korath afterburner medium" 60
+			"scale" 0.5
+		"hit effect" "nuclear spallation"
+		"live effect" "casaba trail" 60
 		"inaccuracy" 9
 			narrow
 		"lifetime" 30
 		"random lifetime" 30
 		"velocity" 60
 		"random velocity" -60
-		"shield damage" 60
-		"hull damage" 90
-		"hit force" 90
+		"shield damage" 120
+		"hull damage" 180
+		"hit force" 180
 
 
 outfit "Snapback"
 	weapon
-		sprite "effect/korath afterburner"
-			"frame rate" 12
-			"random start frame"
+		sprite "effect/composed"
+			"frame rate" 60
 			"no repeat"
-		"hit effect" "heaver shard hit"
-		"live effect" "korath afterburner small" 90
+		"hit effect" "nuclear spallation"
+		"live effect" "casaba trail" 60
 		"inaccuracy" 90
 			narrow
 			inverted
@@ -665,6 +678,15 @@ outfit "Snapback"
 		"shield damage" 60
 		"hull damage" 90
 		"hit force" 90
+
+
+effect "casaba trail"
+	sprite "effect/flame"
+		"frame rate" 30
+		"no repeat"
+	"random angle" 30
+	"random lifetime" 12
+	"random velocity" -6
 
 
 outfit "Equinox Torpedo"

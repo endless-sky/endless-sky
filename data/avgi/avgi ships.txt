@@ -20,15 +20,13 @@ ship "Koryfi"
 	thumbnail "thumbnail/avgi koryfi"
 	attributes
 		category "Transport"
-		licenses
-			"Avgi Civilian"
 		"cost" 1860000
 		"shields" 600
 		"hull" 1800
 		"required crew" 2
 		"bunks" 24
 		"mass" 120
-		"drag" 0.9
+		"drag" 2.4
 		"heat dissipation" 0.9
 		"fuel capacity" 900
 		"cargo space" 60
@@ -131,16 +129,14 @@ ship "Melodikos"
 	thumbnail "thumbnail/avgi melodikos"
 	attributes
 		category "Space Liner"
-		licenses
-			"Avgi Civilian"
 		"cost" 5220000
 		"shields" 1200
 		"hull" 2400
 		"required crew" 6
 		"bunks" 144
 		"mass" 180
-		"drag" 1.2
-		"heat dissipation" 1.2
+		"drag" 3
+		"heat dissipation" 0.9
 		"fuel capacity" 1200
 		"cargo space" 120
 		"outfit space" 180
@@ -278,15 +274,13 @@ ship "Avlaki"
 	thumbnail "thumbnail/avgi avlaki"
 	attributes
 		category "Light Freighter"
-		licenses
-			"Avgi Civilian"
 		"cost" 1860000
 		"shields" 600
 		"hull" 1800
 		"required crew" 2
 		"bunks" 6
 		"mass" 120
-		"drag" 0.9
+		"drag" 2.4
 		"heat dissipation" 0.9
 		"fuel capacity" 900
 		"cargo space" 240
@@ -388,16 +382,14 @@ ship "Harmonikos"
 	thumbnail "thumbnail/avgi harmonikos"
 	attributes
 		category "Heavy Freighter"
-		licenses
-			"Avgi Civilian"
 		"cost" 5220000
 		"shields" 1200
 		"hull" 2400
 		"required crew" 6
 		"bunks" 12
 		"mass" 180
-		"drag" 1.2
-		"heat dissipation" 1.2
+		"drag" 3
+		"heat dissipation" 0.9
 		"fuel capacity" 1200
 		"cargo space" 600
 		"outfit space" 180
@@ -532,14 +524,12 @@ ship "Phononos"
 	thumbnail "thumbnail/avgi phononos"
 	attributes
 		category "Light Freighter"
-		licenses
-			"Avgi Civilian"
 		"cost" 144000
 		"shields" 240
 		"hull" 1500
 		"automaton" 1
 		"mass" 36
-		"drag" .24
+		"drag" 0.6
 		"heat dissipation" 0.9
 		"fuel capacity" 300
 		"cargo space" 240
@@ -588,8 +578,8 @@ ship "Phononos"
 	leak "leak" 30 60
 	explode "tiny explosion" 12
 
-	description "This retrofit of the Photikon is little more than a set of cargo pods joined to the front of the torpedo bomber, with struts taking the place of the hardpoints and pylons usually used to mount weapons. An expanded internal tank to fuel a hyperdrive has been barely crammed into the ship, at the cost of reduced space for other internal systems and a slightly weaker hull. Because of this, the Phononon is quite vulnerable to Dissonance piracy or even Abberant incursions, and is thus always part of a larger fleet convoy. Even still, as an automated freighter it experiences much higher rates of accidents and ship loss, a fact that has kept crewed vessels like the Avlaki competitive."
-	description "Using the same standard cargo containers as the Avlaki and Harmonikos allows it to carry an impressive amount of cargo, which can be quickly swapped out at the destination for an empty set of shipping containers."
+	description "This retrofit of a decommissioned Photikon is little more than a set of cargo pods joined to the front of the former torpedo bomber, with container mounts taking the place of the hardpoints and pylons usually used to mount weapons. An expanded internal tank to fuel a hyperdrive has been barely crammed into the ship, at the expense of other internal systems and armor. Because of this, the Phononon is quite vulnerable to Dissonance piracy or even Abberant incursions, and is thus always found as part of a larger fleet convoy. Even still, as an automated freighter it experiences much higher accident and loss rates in deep space, a fact that has kept crewed vessels like the Avlaki competitive."
+	description "The Phononos can carry an impressive amount of cargo with the same standardized containers used by the Avlaki and Harmonikos, which can be quickly swapped out at the destination for a set of empty ones without needing to unload them."
 
 
 ship "Frequentia"
@@ -597,15 +587,13 @@ ship "Frequentia"
 	thumbnail "thumbnail/avgi frequentia"
 	attributes
 		category "Utility"
-		licenses
-			"Avgi Civilian"
 		"cost" 1920000
 		"shields" 600
 		"hull"	1800
 		"required crew" 2
 		"bunks" 6
 		"mass" 90
-		"drag" 1.8
+		"drag" 3.6
 		"heat dissipation" 1.5
 		"fuel capacity" 2400
 		"cargo space" 240
@@ -659,7 +647,7 @@ ship "Frequentia"
 	explode "large explosion" 12
 	"final explode" "final explosion medium"
 
-	description "The Frequentia-class Freighter is most commonly found serving as a fuel tender for ships in larger fleets, taking advantage of its large and ungainly cargo receptacle to store enough cryogenic deuterium to satisfy a small fleet's needs."
+	description "The Frequentia-class Freighter is most commonly found serving as a fuel tender for ships in larger fleets, taking advantage of its large and ungainly cargo receptacle to store enough cryogenic deuterium to satisfy a small fleet's needs during long journeys. While its spherical fuel tank can be drained and used to transport dry goods and cargo, the cargo bay's notoriously small access door makes loading anything that can't be moved with a pump an exquisitely painful process."
 
 
 # Utility
@@ -669,15 +657,13 @@ ship "Polari"
 	thumbnail "thumbnail/avgi polari"
 	attributes
 		category "Utility"
-		licenses
-			"Avgi Civilian"
 		"cost" 2160000
 		"shields" 600
 		"hull"	2100
 		"required crew" 6
 		"bunks" 12
 		"mass" 120
-		"drag" 1.5
+		"drag" 3
 		"heat dissipation" 1.2
 		"fuel capacity" 1800
 		"cargo space" 42
@@ -757,15 +743,13 @@ ship "Entasi"
 	thumbnail "thumbnail/avgi entasi"
 	attributes
 		category "Utility"
-		licenses
-			"Avgi Civilian"
 		"cost" 3360000
 		"shields" 1500
 		"hull" 3600
 		"required crew" 6
 		"bunks" 12
 		"mass" 210
-		"drag" 0.6
+		"drag" 3.6
 		"heat dissipation" 0.9
 		"fuel capacity" 1200
 		"cargo space" 240
@@ -885,8 +869,6 @@ ship "Undsyni"
 	thumbnail "thumbnail/avgi undsyni"
 	attributes
 		category "Utility"
-		licenses
-			"Avgi Civilian"
 		"cost" 10400000
 		"shields" 2400
 		"hull" 15000
@@ -894,7 +876,7 @@ ship "Undsyni"
 		"bunks" 60
 		"cargo space" 600
 		"mass" 600
-		"drag" 4.2
+		"drag" 9
 		"heat dissipation" 1.8
 		"fuel capacity" 2400
 		"outfit space" 630
@@ -1132,15 +1114,13 @@ ship "Tremoros"
 	thumbnail "thumbnail/avgi tremoros"
 	attributes
 		category "Interceptor"
-		licenses
-			"Avgi Civilian"
 		"cost" 780000
 		"shields" 600
 		"hull" 2400
 		"automaton" 1
 		"crew equivalent" 1
 		"mass" 90
-		"drag" 0.9
+		"drag" 1.8
 		"heat dissipation" 0.9
 		"fuel capacity" 900
 		"cargo space" 12
@@ -1218,7 +1198,7 @@ ship "Prismaios"
 		"required crew" 2
 		"bunks" 6
 		"mass" 120
-		"drag" 1.2
+		"drag" 2.4
 		"heat dissipation" 1.8
 		"fuel capacity" 1200
 		"cargo space" 36
@@ -1317,15 +1297,13 @@ ship "Interferos"
 	thumbnail "thumbnail/avgi interferos"
 	attributes
 		category "Light Warship"
-		licenses
-			"Avgi Civilian"
 		"cost" 1380000
 		"shields" 900
 		"hull" 3600
 		"automaton" 1
 		"crew equivalent" 3
 		"mass" 90
-		"drag" 2.4
+		"drag" 4.8
 		"heat dissipation" 1.5
 		"fuel capacity" 600
 		"cargo space" 12
@@ -1409,7 +1387,7 @@ ship "Diaspersi"
 		"required crew" 15
 		"bunks" 36
 		"mass" 240
-		"drag" 3
+		"drag" 6
 		"heat dissipation" 1.8
 		"fuel capacity" 2400
 		"cargo space" 120
@@ -1537,7 +1515,7 @@ ship "Difraktos"
 		"required crew" 15
 		"bunks" 42
 		"mass" 270
-		"drag" 4.5
+		"drag" 9
 		"heat dissipation" 2.1
 		"fuel capacity" 1800
 		"cargo space" 60
@@ -1698,7 +1676,7 @@ ship "Refraktos"
 		"required crew" 12
 		"bunks" 24
 		"mass" 180
-		"drag" 2.4
+		"drag" 4.8
 		"heat dissipation" 2.4
 		"fuel capacity" 1800
 		"cargo space" 60
@@ -1716,12 +1694,12 @@ ship "Refraktos"
 		"Green Optical Laser" 3
 
 		"Photoelectric Scales"
-		"Ultracapacitor Bank" 2
+		"Ultracapacitor Bank" 3
 		"Diffuse Deflector"
-		"Optical Lasing Generator" 3
+		"Optical Lasing Generator" 5
 		"Multispectral Scanner" 3
 		"Electrostatic Ramscoop"
-		"Thermal Sink Partition" 3
+		"Thermal Sink Partition"
 		"Electromotive Rifle" 24
 		
 		`Z-660 "Zap" Fusion Torch`
@@ -1794,7 +1772,7 @@ ship "Atenuatia"
 		"required crew" 60
 		"bunks" 90
 		"mass" 600
-		"drag" 4.5
+		"drag" 9
 		"heat dissipation" 1.8
 		"fuel capacity" 2400
 		"cargo space" 120
@@ -1818,7 +1796,7 @@ ship "Atenuatia"
 		
 		"Ultracapacitor Bank" 2
 		"Specular Deflector"
-		"Optical Lasing Generator" 2
+		"Optical Lasing Generator" 3
 		"Electrostatic Ramscoop" 2
 		"Multispectral Scanner" 9
 		"Electromotive Rifle" 90
@@ -1922,7 +1900,7 @@ ship "Atenuatia" "Atenuatia (Atomic)"
 		
 		"Ultracapacitor Bank" 2
 		"Specular Deflector"
-		"Optical Lasing Generator" 2
+		"Optical Lasing Generator" 3
 		"Electrostatic Ramscoop"
 		"Multispectral Scanner" 6
 		
@@ -1940,17 +1918,15 @@ ship "Akoustiki"
 	thumbnail "thumbnail/avgi akoustiki"
 	attributes
 		category "Fighter"
-		licenses
-			"Avgi Civilian"
 		"cost" 126000
 		"shields" 180
 		"hull" 1200
 		"required crew" 1
 		"bunks" 2
 		"mass" 36
-		"drag" 0.9
+		"drag" 1.8
 		"heat dissipation" 0.9
-		"fuel capacity" 100
+		"fuel capacity" 120
 		"cargo space" 30
 		"outfit space" 96
 		"weapon capacity" 24
@@ -2018,9 +1994,9 @@ ship "Photikon"
 		"hull" 1800
 		"automaton" 1
 		"mass" 30
-		"drag" .18
+		"drag" 0.45
 		"heat dissipation" 0.96
-		"fuel capacity" 100
+		"fuel capacity" 90
 		"outfit space" 90
 		"weapon capacity" 27
 		"engine capacity" 24
@@ -2107,10 +2083,10 @@ ship "Vibratia"
 		"automaton" 1
 		"crew equivalent" 1
 		"threshold percentage" 0.12
-		"mass" 21
+		"mass" 18
 		"drag" 0.3
 		"heat dissipation" 0.99
-		"fuel capacity" 100
+		"fuel capacity" 30
 		"outfit space" 75
 		"weapon capacity" 24
 		"engine capacity" 24
@@ -2123,8 +2099,6 @@ ship "Vibratia"
 	outfits
 		"Speckle Coilgun"
 		"Speck Round" 900
-		"Nettle Launcher"
-		`"Nettle" Kinetic Missile` 6
 	
 		"Concentrating Solar Array"
 		"Ultracapacitor Cell"
@@ -2154,7 +2128,7 @@ ship "Vibratia"
 		zoom 0.5
 		right
 	gun 0 -27 "Speckle Coilgun"
-	gun 0 -27 "Nettle Launcher"
+	gun 0 -27
 
 	explode "tiny explosion" 9
 
@@ -2174,9 +2148,8 @@ ship "Undulon"
 		"hull" 600
 		"automaton" 1
 		"crew equivalent" 1
-		"bunks" 1
-		"mass" 15
-		"drag" 3.6
+		"mass" 30
+		"drag" 12
 		"heat dissipation" .6
 		"fuel capacity" 60
 		"outfit space" 84
@@ -2240,16 +2213,14 @@ ship "Optikon"
 	thumbnail "thumbnail/avgi optikon"
 	attributes
 		category "Drone"
-		licenses
-			"Avgi Civilian"
 		"cost" 54000
 		"hull" 600
 		"automaton" 1
 		"crew equivalent" 1
 		"mass" 12
-		"drag" .6
+		"drag" 1.2
 		"heat dissipation" .9
-		"fuel capacity" 100
+		"fuel capacity" 300
 		"outfit space" 60
 		"engine capacity" 24
 		"atmosphere scan" 36
@@ -2292,16 +2263,14 @@ ship "Sonikis"
 	thumbnail "thumbnail/avgi sonikis"
 	attributes
 		category "Drone"
-		licenses
-			"Avgi Civilian"
 		"cost" 66000
 		"hull" 600
 		"automaton" 1
 		"crew equivalent" 1
 		"mass" 18
-		"drag" .36
+		"drag" 0.9
 		"heat dissipation" .72
-		"fuel capacity" 100
+		"fuel capacity" 120
 		"cargo space" 60
 		"outfit space" 69
 		"weapon capacity" 18

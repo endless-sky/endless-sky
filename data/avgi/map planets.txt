@@ -62,7 +62,7 @@ planet Sela
 
 
 planet "Feo Platform"
-	attributes avgi station military uninhabited
+	attributes avgi station military
 	landscape land/station53
 	description "Hastily assembled from mothballed mass driver components, the Feo Platform is an enormous hypervelocity gun intended to provide fire support to Avgi fleets defending the Tangled Shroud from Aberrant invasion. While a few Aberrations sometimes manage to slip past, the gun together with the fleetgroup the platform supports have so far managed to hold the lines."
 	spaceport "The spaceport is designed to service an entire fleetgroup of Avgi warships at once, with drydocks large enough to repair mid-sized vessels without them needing to venture back into the Tangled Shroud."

@@ -99,6 +99,7 @@ outfit "Electrostatic Ramscoop"
 	"ramscoop" 6
 	"fuel generation" 0.03
 	"energy consumption" 1.2
+	"solar heat" 2.4
 	description "A powerful bank of lasers ionizes the interstellar medium around ships equipped with these ramscoops, allowing electromagnets to collect extra material on top of the naturally charged solar wind. This results in a more predictable supply of fuel, even around stars with solar winds poor in deuterium. Of course, the power required for the lasers can be quite considerable."
 
 
@@ -114,6 +115,7 @@ outfit "Plasmadyne Ramscoop"
 	"ramscoop" 90
 	"fuel generation" 0.6
 	"energy consumption" 9
+	"solar heat" 9
 	weapon
 		"hardpoint sprite" "hardpoint/plasmadyne ramscoop"
 	description "With massive banks of superconducting magnets, extremely powerful magnetic fields grab ambient hydrogen atoms by their magnetic dipoles, channeling them towards a collection point without needing to first ionize them. This results in a ramscoop that is far more efficient in both fuel collection and energy use than the Electrostatic Ramscoop, but which is utterly massive in size. The magnetic stresses involved are so huge that a dedicated spinal mount is needed to use this ramscoop without tearing the ship apart. Ramscoops like this one were once used in Avgi ram-augmented torchships, allowing them to reach incredible velocities during their sublight interstellar journeys."
@@ -214,9 +216,9 @@ outfit "Optical Lasing Generator"
 	thumbnail "outfit/unknown"
 	"mass" 30
 	"outfit space" -30
-	"lasing power" 6
+	"lasing power" 3
 	description "A monolithic slab of semiconductor diode is used to efficiently pump a spool of doped optical fiber. Hundreds of kilometers long, the coiled fibers serve as a lasing medium with the power needed to produce an intense beam of light, and can be gain-switched to pulse at a variety of frequencies. The produced laser light, which can be converted to a number of wavelengths, can be easily tapped and routed via optical fibers or mirrors to a number of turrets on a ship, eliminating the need for the heavy lasing generator to be anywhere near the turret itself."
-	description "The light produced in the coil can either be sent through a frequency doubling crystal to support up to two Green Optical Lasers, or frequency tripled to support a single Blue Optical Lasers."
+	description "The infrared light produced in the coil can either be passed through a frequency doubling crystal to support up to three Green Optical Lasers, or frequency tripled to support a single Blue Optical Lasers."
 
 
 
@@ -338,8 +340,8 @@ outfit `Z-330 "Spark" Fusion Torch`
 	"thrust" 69
 	"thrusting energy" 9
 	"thrusting heat" 45
-	"thrusting fuel" 0.06
-	"drag reduction" 0.6
+	"thrusting fuel" 0.09
+	"drag reduction" 0.3
 	"flare sprite" "effect/avgi flare/fusion"
 		"frame rate" 15
 		"scale" 0.75
@@ -361,8 +363,8 @@ outfit `Z-660 "Zap" Fusion Torch`
 	"thrust" 144
 	"thrusting energy" 18
 	"thrusting heat" 90
-	"thrusting fuel" 0.12
-	"drag reduction" 1.2
+	"thrusting fuel" 0.18
+	"drag reduction" 0.6
 	"flare sprite" "effect/avgi flare/fusion"
 		"frame rate" 15
 	"flare sound" "remnant afterburner"
@@ -383,15 +385,15 @@ outfit `Z-990 "Arc" Fusion Torch`
 	"thrust" 222
 	"thrusting energy" 27
 	"thrusting heat" 135
-	"thrusting fuel" 0.18
-	"drag reduction" 1.8
+	"thrusting fuel" 0.27
+	"drag reduction" 0.9
 	"flare sprite" "effect/avgi flare/fusion"
 		"frame rate" 30
 		"scale" 2
 	"flare sound" "remnant afterburner"
 	"afterburner effect" "large remass injection"
 	"magnozzle rings" 9
-	description "Balance TBD"
+	description "The largest of the standard fusion torches used by the Avgi "
 
 
 effect "small remass injection"
@@ -424,7 +426,7 @@ outfit "Remass Injector"
 	"afterburner thrust" 60
 	"afterburner energy" 3
 	"afterburner heat" -12
-	"afterburner fuel" 0.27
+	"afterburner fuel" 0.3
 	"magnozzle rings" -1
 	description "A powerful magnetohydrodynamic turbopump forces a torrent of water into a fusion torch's magnetic nozzle, dramatically increasing thrust at the cost of a significant increase in propellant consumption. The additional mass flow helps reduce the waste heat imparted on a ship by the torch drive."
 	description "The Remass Injector is a component that can be installed into an Avgi fusion torch to give it afterburning capabilities. It requires a magnozzle ring slot to be installed."
@@ -436,8 +438,8 @@ outfit "Inductive Extractor"
 		"Twilight Guard"
 	"cost" 2760000
 	thumbnail "outfit/unknown"
-	"mass" 9
-	"outfit space" -9
+	"mass" 12
+	"outfit space" -12
 	"engine capacity" -3
 	"energy generation" 1.5
 	"heat generation" 1.5
@@ -445,7 +447,7 @@ outfit "Inductive Extractor"
 	"thrusting energy" -30
 	"thrusting heat" 6
 	"magnozzle rings" -1
-	description "A reinforced superconducting solenoid and power conditioning unit allows a significant amount of power to be inductively extracted from a fusion torch's exhaust as it pushes against the drive's magnetic nozzle. This removes some energy from the exhaust plume and produces some heat, but is the primary means by which high performance Avgi starships generate power."
+	description "A reinforced superconducting loop and power conditioning unit allows a significant amount of power to be inductively extracted from a fusion torch's exhaust as it expands against the field produced by the magnetic nozzle. This removes some energy from the exhaust plume and reduces its produced thrust, but the liberated energy is great enough that this is the primary means by which high performance Avgi starships generate power."
 	description "The Inductive Extractor is a component that can be installed into an Avgi fusion torch to turn a portion of its thrust into energy. It requires a magnozzle ring slot to be installed."
 
 
