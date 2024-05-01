@@ -6934,7 +6934,8 @@ mission "Lost Dog"
 				decline
 
 			label takehim
-			`	"Well, come on boy. Let's go." Caesar eagerly follows you back to your ship. He seems greatly relieved to be with you, and not left all alone at the park.`
+			`	"Well, come on boy. Let's go."`
+			`	Caesar eagerly follows you back to your ship. He seems greatly relieved to be with you, and not left all alone at the park.`
 			`	Once back on your ship, you make sure he's fed, watered, and settled in for his interstellar journey.`
 				accept
 
