@@ -7269,7 +7269,7 @@ mission "Tavish and Kormak 3"
 			`	"The right words can unlock the universe itself, my good man. You should try them sometime." Tavish says with a grin.`
 			`	"Not where I from." Kormak says quietly.`
 				goto story
-
+				
 
 
 
