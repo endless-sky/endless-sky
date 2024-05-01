@@ -6973,7 +6973,7 @@ mission "Lost Dog"
 			`	A quarter of an hour later, a woman wearing an exceedingly impractical dress arrives.`
 
 			label boolinbrook
-			`	"Mr. Boolinbrook says you've brought back my darling See-See?" From down her nose she looks at you and waits for your response.`
+			`	"Mr. Boolinbrook says you've brought back my darling See-See?" She looks down her nose at you and waits for your response.`
 			choice
 				`	"Your dog is safe and sound with me."`
 				`	"I found Caesar alone, out in a park on Calda."`
