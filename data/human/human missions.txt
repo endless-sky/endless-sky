@@ -6953,7 +6953,7 @@ mission "Lost Dog"
 			`Caesar has been very obedient the whole trip, unlike certain other dogs you've transported in the past. He lays down by the airlock while your ship sets down in the local Avalonia spaceport, which is enclosed on all sides by a squalid urban landscape. You rent a vehicle and take yourself and Caesar beyond the blighted city and out into the pleasant picture-perfect paradise of the wealthy. One princely estate after another rolls past you as you drive deeper into the rural domains of the Republic's super-wealthy. Eventually, you come across a large metal gate that reads, "Mitchell Ranch."`
 
 			label ranch
-			`	It's another forty-five minutes of driving down long winding roads, past various outbuildings, lodges, retreats, guest houses, and hobby barns, before at long last you arrive at the massive central mansion. Waiting at the bottom of stone stairs is a footman who opens the door for you and summons the senior butler.`
+			`	You spend another forty-five minutes of driving down long winding roads, past various outbuildings, lodges, retreats, guest houses, and hobby barns. At long last, you arrive at the massive central mansion. Waiting at the bottom of stone stairs is a footman who opens the door for you and summons the senior butler.`
 			`	The butler arrives and looks you over unhappily. "The lady of the manor is not expecting... guests. Perhaps, you've misread your appointment, or more likely, arrived at the wrong estate."`
 			choice
 				`	(Show the butler Caesar, and ask to see his owner.)`
