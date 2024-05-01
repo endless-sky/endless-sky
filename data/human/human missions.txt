@@ -6931,7 +6931,7 @@ mission "Lost Dog"
 				`	(Leave Caesar here.)`
 
 			`	Perhaps his owners are on vacation and will be back looking for him any minute. Although it's getting dark and no one seems to be around, you decide the best course of action is to leave Caesar where you found him.`
-			`	As you turn away, Caesar begins to whine, but soon quiets down when you don't come back to pick him up. Looking back, you notice him slink off into the shadow of a perfectly manicured shrub.`
+			`	As you turn away, Caesar begins to whine, but he soon quiets down when you don't come back to pick him up. Looking back, you notice him slinking off into the shadow of a perfectly manicured shrub.`
 				decline
 
 			label takehim
