@@ -7166,7 +7166,110 @@ mission "Tavish and Kormak 2"
 			`	"Irreplaceable." Kormak confirms.`
 				goto questions2
 
+			label end
+			`	Tavish brightens, "I knew an erudite fellow such as yourself would see the value of our work. And for now on we will check with you before we do anthing too untoward, right Kormak?"`
+			`	The red-haired giant nods, "Ask first."`
+			`	"Grand." Tavish claps, "Now, let's see what we can discover at Deadman's Cove."`
 			
+	on complete
+		conversation
+			`	The foam surf crashes against the island only a few short meters from where your ship set down. The thundering waves make it hard to hear anything as you step outside your ship. If you're going to have any hope of finding what Hans Fuller and the stolen equipment your best bet will be the spaceport. At least there you can actually hear someone talk.`
+
+mission "Tavish and Kormak 3"
+	source "Deadman's Cove"
+	destination "Hephaestus"
+	passengers 2
+	to offer
+		has "Tavish and Kormak 2: done"
+	on offer
+		conversation
+			`Hospitality seems in short supply as most the pirates and free traders you pass seem to either ignore you entirely or give you menacing glares. The spaceport bar on the archipelago's main island seems to function as a sort of catchall for services you'd expect at a larger better organized spaceport. There's various fixers, vendors, mercenaries, and opportuntists plying their trades in cornders, booths and tables.`
+			`	Tavish makes a beeline for one of the bartenders, the closest thing to any sort of identifiable adminstrator, and waves him down.`
+			`	"What'll it be your lordship." The bartender says mockingly after seeing Tavish's overly formal getup.`
+			`	"I'll take a sidecar, my good man, and my large companion will have Scottish Ale, assuming you have any." Tavish says brightly.`
+			`	The bartender pours too glasses of rum and pushes them to Tavish. "My apologies me lord," he gives a ridiculous bow, "but we seem to be out your favored swill."`
+			`	The bartender flashes Tavish a yellow grin that's missing a few key teeth. "Anything else I can get you?"`
+			`	"Information." Kormak snaps, stepping closer now to the bartender, who despite Kormark's size does not flinch.`
+			`	Instead the bartender's smile only widens to give everyone a better look at his bloody gums, "Well, I sure a surf can give you information. But it will cost you a sight more than a couple glasses of rum."`
+			`	Tavish holds up his glass and looks in it, as if deciding if he's willing to drink it or not, "We need to find a ship that frequents this port of call."`
+			`	The bartender taps his overgrown moldy nails on the bar, "Ah, yes me lord. I can probably do that. For a mere 50,000 credits I'll tell what I know."`
+			`	Tavish flinches at the number and then turns to look at you, "Your call."`
+			label options
+			choice
+				`	(Have Tavish attempt to talk the barkeep into giving you the information.)`
+					goto tav1
+				`	(Have Tavish attempt to talk the barkeep into giving you the information.)`
+					goto tav2
+					to display
+						has "kormak1"
+				`	(Have Kormak intimidate the barkeep into giving you the information.)`
+					goto kormak1
+					to display
+						not "kormak1"
+				`	(Agree to pay 50,000 credits for the information.)`
+					to display
+						not "kormak1"
+					goto payupfront1
+				`	(Agree to pay 100,000 credits for the information.)`
+					to display
+						has "kormak1"
+					goto payupfront2
+			label tav1
+			`	Tavish's eyes sparkle and he turns back to the bartender, raising his glass and taking a deep swig of its contents.`
+			`	"My good man. You seem like a discerning fellow. Always looking to make a deal with an eye out for profit, am I right?"`
+			`	The bartender looks piqued and slowly nods, "Aye."`
+			`	"You're probably wondering what a pompous overdressed man like me is doing in your quaint out of the way boutique. Well, I was looking for just the sort of enterpising soul who knows a thing or two about making a shilling."`
+			`	Tavish procedes to describe a long and complex scam utilizing unwitting pirates, corrupt Syndicate trade officials, and fabulously wealthy marks from the paradise world. As he talks the barkeep leans further and further in, his eyes widening and a growing devious grin."`
+			`	Finally, Tavish concludes with, "We're kindred spirits, you and I, and that's why I know this will work. So what do you say? 25,000 credit buy in, plus the information on our first unwitting mark, and you're all set to be rich."`
+			`	"I'm in!" The Bartender can't move fast enough, he immeditetly begins transfering the funds. "Who are you looking for?"`
+			choice
+				`	"We're looking for Hans Fuller of the Broken Record."`
+			`	"Ha, that poor fool," the bartender can't help but chuckle to himself," Well last I heard he was picked up by the Syndies. If you're lucky you can still find him at Hephaestus trying to get his ship out of lockup."`
+			`	Tavish thanks the man and promises him he'll be seeing his first returns in the near future, and with that the three of you head out of the bar.`
+			label story
+			choice
+				`	"Tavish, what's your story?"`
+				`	"Tavish that was amazing! Where did you learn to do that?"`
+				`	"Tell me the truth, Tavish. Are you conning me too?"`
+			`	As you walk toward your ship Tavish shrugs, "Not everything I say is a fabrication. Why, I really am from Chiron, and was a highly placed scientist and researcher there. But the bureaucracy there was cut-throat, and anyone with a renegade idea was liable to be crushed by it."`
+			`	He shakes his head sadly, "In order to survive in that environment I had to become very good at working those around me. Make them believe I we were on the same side, believed the same things, had the very same lofty goals. I got very good at it."`
+			`	His voice becomes somber, "Perhaps too good.  I started to forget where the genunine Tavish began, and the counterfeit Tavish ended. So, I stopped hiding who I was and made my interests and studies known to all!"`
+			`	A wry grin spreads across his face, "And was promptly thrown out! So, now I am here with you and Kormak following my passion, on the forefront of discovery and adventure! And I am not too disconcerted that my old talents have some use."`
+			`	You've arrived back at your ship.`
+			`	"Now, shall see a man in Hephaestus about some misplaced equipement, hmm?" Tavish hops aboard. `
+				accept
+		
+			label kormak1
+				action "kormak1"
+			`	Kormak cracks a fist and steps right up to the bar. With deft movement Kormak has the barkeeps neck in his veiny hands.`
+			`	"Information." Kormak says.`
+			`	Despite the Bartenders alarming situation, he doesn't actually seem to phased. He gasps a little but doesn't say anything else. It's almost as if he's waiting...`
+			`	Just then three burly men plow into Kormak's side. Kormak drops the bartender as he crashes sideways into an occupied. This prompts more angry pirates to enter the fray as an all out bar brawl breaks out.`
+			`	Kormak is big, fast, and furious, and seems to have no qualms doing lasting damage. Fingers snap, eyes are gouged, arms snap, and blood splatters everywhere. Unfortunately the pirates seem to have an endless supply of bodies to throw at Kormac and eventually he's worn down enough for them to throw him out of the bar.`
+			`	With him gone the fighting dies down. Eventually the bartender gathers himself up well enough to look you in the eye and say, "Now it's 100,000 credits for that information."`
+				goto options
+	
+			label tav2
+			`	Tavish steps around the broken bar bottles and stools and gives the bartender his winningest smile.`
+			`	"My good man. You seem like a discerning fellow. Always looking to make a deal with an eye out for profit, am I right?"`
+			`	The bartender looks piqued and slowly nods, "Aye."`
+			`	"You're probably wondering what a pompous overdressed man like me is doing in your quaint out of the way boutique. Well, I was looking for just the sort of enterpising soul who knows a thing or two about making a shilling."`
+			`	Tavish procedes to describe a long and complex scam utilizing unwitting pirates, corrupt Syndicate trade officials, and fabulously wealthy marks from the paradise world. As he talks the barkeep leans further and further in, his eyes widening and a growing devious grin."`
+			`	Finally, Tavish concludes with, "We're kindred spirits, you and I, and that's why I know this will work. So what do you say? 25,000 credit buy in, plus the information on our first unwitting mark, and you're all set to be rich."`
+			`	"The bar tender rubs his still red neck. "Way I see it, lord. Is you still owe me for all this mess. How about this. My buy in is free, and I'll tell you where you can find your man?"`
+			`	Tavish shrugs, "Like I said! A discerning fellow! We agree, my associate will now provide you the details."`
+			choice
+				`	"We're looking for Hans Fuller of the Broken Record."`
+			`	"Ah, our first sucker," the bartender smiles and shakes his head, "Last I heard he was picked up by the Syndies. If you're lucky you can still find him at Hephaestus trying to get his ship out of lockup."`
+			`	Tavish thanks the man and promises him he'll be seeing his first returns in the near future, and with that he turns and heads out of the bar.`
+			choice
+				`(Follow him.)`
+			`	Not far outside an only slightly battered Kormak is waiting for you.`
+			`	"Words?" He says through a bloody lip.`
+			`	"The right words can unlock the universe itself, my good man. You should try them sometime." Tavish says with a grin.`
+			`	"Not where I from." Kormak says quietly.`
+				goto story
+
 
 
 
@@ -7624,236 +7727,3 @@ event "welandwait3skade"
 #			action
 #				event "welandwait3surtr" 90
 #				outfit "Blood of Surtr" -1
-
-
-
-
-
-label options
-			choice
-				`	(Find the detoxification medicine.)`
-					goto med1
-					to display
-						not "med1"
-				`	(Haggle with the medicine salesman again.)`
-					goto med2
-					to display
-						has "med1"
-						not "med2"
-				`	(Look for the survival suit.)`
-					goto suit1
-					to display
-						"timothy radrickson suit" <= 1
-						not "suit1"
-				`	(Return to the shop to buy the survival suit.)`
-					goto suit2
-					to display
-						has "suit1"
-						not "suit2"
-				`	(Find someone that can procure a fake ID for you.)`
-					goto id1
-					to display
-						"timothy radrickson id" = 0
-						not "id1"
-				`	(Leave the trade sector.)`
-					goto end
-
-			label med1
-			action
-				set "med1"
-			`	You make your way to the pharmaceutical wing, through crowds of representatives from large conglomerates in the process of wrangling with representatives from various worlds, all needing exotic medicine for their innumerable plagues, blights, pandemics, and the like. There's a booth with a slick salesman selling expensive drugs promising to reverse and protect from the effect of toxic air and radiation, and it just so happens that Oblivion is their demonstration planet.`
-			`	"There's no need to fear Oblivion's deleterious effects so long as you take one of these a day!" the salesman says brightly. "Why, you could walk among your condemned workers unmasked, and demonstrate your superior executive prowess!"`
-			`	You listen on to the salesman, who reckons he can cut you in on a special deal for 140,000 credits.`
-			choice
-				`	(Purchase the medicine for Tim.)`
-					goto "med 140"
-				`	(Haggle for a lower price.)`
-					goto haggle
-				`	(Pass.)`
-			`	That price is too steep. You return to the central atrium of the trade sector to consider your options.`
-				goto options
-			
-			label haggle
-				`The salesman's eyes narrow and his face suddenly looks vaguely reptilian. "I'm already giving you the best price. The literal shirt off my back!"`
-			choice
-				`	(Offer 60,000 for the meds.)`
-				`	(Offer 120,000 for the meds.)`
-					goto justright
-				`	(Agree to pay 140,000 for the meds.)`
-					goto "med 140"
-				
-			`	The drug salesman's eyes flash with hostility before he breaks out in an angry laugh. "Who do you think you are? What do you think, this is a charity? I already have a buyer lined up for more than twice that!"`
-			`	He begins packing up his equipment. "I'm charging you full price, 140,000 or nothing. Last chance."`
-			choice
-				`	(Purchase the medicine for Tim.)`
-					goto "med 140"
-				`	(Pass.)`
-			action
-				set "med2"
-			`	That price is too expensive; you'll have to see if you can purchase a less potent and cheaper drug elsewhere. You return to the central atrium of the trade sector to consider your other options.`
-				goto options
-
-			label justright
-				`	The salesman glowers, but nods his head slightly. "Fine! 120,000 credits it is. My family will starve, but at least you'll get your precious drugs." He begins packing them up for you.`
-					goto "med 120"
-
-			label med2
-			action
-				set "med2"
-			`	You decide to go back the pharmaceutical wing to reconsider the deal.`
-			`	"Here's the captain again!" says the salesman, as if he'd known you for years. He leans in uncomfortably close to you and says, "I can tell you're a discerning customer, so here's what I will let these go for: 120,000 credits. That's almost wholesale price! I'm barely making a cent, but I really need to unload all these drugs."`
-			`	He favors you with an unnaturally white, toothy grin.`
-			choice
-				`	(Purchase the discounted medicine for Tim.)`
-					goto "med 120"
-				`	(Haggle for an even lower price.)`
-					goto haggle2
-				`	(Pass.)`
-			`	Again, the medicine just costs too much; Tim will have to survive with something less potent.`
-			`	The salesman's eyes bulge, and his smooth face is suddenly crisscrossed on unattractive wrinkles. "Fine. I have another buyer anyways," he half-growls at you. He begins packing up his stall, muttering and shaking his head to himself as he does so.`
-			`	You return to the central atrium of the trade sector to consider your other options.`
-				goto options
-			
-			label haggle2
-			`	The drug salesman's eyes flash with hostility before he breaks out in an angry laugh. "Who do you think you are? What do you think, this is a charity? I already have a buyer lined up for more than twice what I've offered you!"`
-			`	He begins packing up his equipment. "For wasting my time I'm charging you full price, 140,000 or nothing. Last chance."`
-			choice
-				`	(Purchase the medcine for Tim.)`
-					goto "med 140"
-				`	(Pass.)`
-			`	That price is still too expensive. You'll have to see if you can purchase a less potent and cheaper drug elsewhere.`
-			`	You return to the central atrium of the trade sector to consider your other options.`
-				goto options
-
-
-			label "med 140"
-			action
-				set "med2"
-				"timothy radrickson medicine" = 3
-				payment -140000
-			`	After closing the deal, you hand over a credit chip for <payment> to the salesman and he gives you the medicine, boxed and in a bag. You hope it'll save Timothy.`
-				goto options
-
-			label "med 120"
-			action
-				set "med2"
-				"timothy radrickson medicine" = 3
-				payment -120000
-			`	After closing the deal, you hand over a credit chip for <payment> to the salesman and he gives you the medicine, boxed and in a bag. You hope it'll save Timothy.`
-				goto options
-
-			label suit1
-			action
-				set "suit1"
-			`	It doesn't take long for you to find stores stocked with flashy, expensive clothes brands. The ones catering to the wealthy, adventurous types. Hobbyists with something to prove. The gear here is attractive, mass produced, and beneath the lifestyle veneer they give off, somewhat cheap. They might not be industrial grade, but maybe they'll be good enough for Timothy. Maybe.`
-			`	There's a store named "Explorers Element" not far from the central atrium which looks promising. The advertised price for the most heavy-duty survival suit they stock is only 99,999 credits, and there are numerous suits on the rack.`
-			choice
-				`	(Get the survival suit for Tim.)`
-					goto getsuit
-				`	(Pass.)`
-			`	The suit's value is probably a good indicator of its usefulness, and you pass up on the option to buy it. You return to the central atrium of the trade sector to consider your options.`
-				goto options
-
-			label suit2
-			action
-				set "suit2"
-			`	You return to the store and locate the rack filled with the hobbyist survival suits. The price is still 99,999 credits.`
-			choice
-				`	(Get the survival suit for Tim.)`
-					goto getsuit
-				`	(Pass.)`
-			`	You just can't pull the trigger. You return to the terminal area to consider your other options.`
-				goto options
-			
-			label getsuit
-			action
-				set "suit2"
-				"timothy radrickson suit" = 2
-				payment -99999
-			`	The sales associate is delighted to remove the tags and wrap up your brand new survival suit. He tells you about how his cousin used one just last month to visit a mildly chilly beach a few hours north of the spaceport.`
-			`	You pay the <payment>, and he hands you the bag.`
-				goto options
-
-			label id1
-			action
-				set "id1"
-			`	The trade sector has all manner of ID services and consultants, but you find none of the respectable ones are willing to talk to you after you explain the ID has to be prepared "in absentia," and the unrespectable ones appear to be lacking in this spaceport given the presence of the spaceport gendarme at every corner. Frustrated, you decide to take a walk outside the spaceport proper.`
-			choice
-				`	(Give up and go get something else.)`
-					goto options
-				`	(Keep walking about.)`
-			`	You eventually reach a little forested garden area with a few benches, by one of the parking lots that serve the spaceport. The suns of Dabih are out in full force today, and you're glad to be in the shade.`
-			`	As you recover from the heat you notice that, sitting over in the parking lot, there's a few teenagers chatting amongst themselves. The sort that look like they'd know where to get a false ID if they needed one. Perhaps they could give you some pointers.`
-			choice
-				`	(Give up and go get something else.)`
-					goto options
-				`	(Approach the teenagers for help about the ID.)`
-
-			`	The teenagers, two of them guys and one a girl, grin at you like fresh meat as you near them.`
-			`	The guy in the middle says, "What'dya need, boss? Wanna get high? Wanna get low? Wanna get out?" Apparently this group is used to working with frustrated castouts from the overly legal spaceport emporium.`
-			choice
-				`	(Ask them about where you could get a fake ID.)`
-					goto hookmeup
-				`	(Politely decline and head back to your ship.)`
-					goto options
-				`	(Threaten to call the police.)`
-
-			`	They back away from you, and then frown. The middle one lowers his hand to some concealed weapon, but stops himself when he notices your own holstered gun.`
-			`	The girl next to him mutters, "They ain't worth it. Let's roll." The kids promptly walk off, leaving you alone in the park.`
-			choice
-				`	(Head back to the spaceport.)`
-					goto options
-			
-			label hookmeup
-				`	The three of them look at each other and then give you a carnivorous grin.`
-				`	"Sure thing," he smirks. "Easy as rain. It'll cost ya 'bout 20,000 cred." They look at you expectantly.`
-			choice
-				`	(Give them the credits.)`
-					goto buyid
-				`	"Wait! Show me how you're going to do it first."`
-				`	(Turn them down.)`
-					goto refuseid
-
-			`	He sighs. "Fine. I know a guy in the city, he gets us fake IDs all the time, gets us into bars, clubs, allsorts. All we need is how ya want this false guy to look, we'll take it to him and get the ID, and you'll be sweet.`
-			`	"So, ya gonna take it?"`
-			choice
-				`	(Give them the credits.)`
-					goto buyid
-				`	(Turn them down.)`
-
-			label refuseid
-			`	Collectively they frown. "Your loss," the middle guy says, before leaving you alone to return to the spaceport.`
-				goto options
-
-			label buyid
-			action
-				payment -20000
-			`	"Alrighty then, it's a done deal," he says, stashing the credit chip away. He then pulls out a datapad and asks you a few questions about what to put on the ID. You try to answer as best you can in regards to Timothy (and change a few of the more obviously incriminating details). They say to meet you here in a couple hours once they've got the ID sorted in the city.`
-			choice
-				`	(Wait.)`
-
-			`	Two and a half hours pass as you wait for the teens in the garden, but there's no sign of them yet. You wonder if you've just given 20,000 credits away for nothing.`
-			choice
-				`	(Leave.)`
-					goto leaveid
-				`	(Wait.)`
-
-			`	Another thirty minutes pass, but just as you're about to leave the three teens show themselves again, ID in hand.`
-			`	"We thought you're gonna bail out on us for bein' late. Thankfully you got the sense not to. And now ya get the goods in exchange." The middle kid hands you the ID. "Good dealin' with ya," he says as they walk off.`
-			`	As you go back to the spaceport, you take a look at the ID for the first time.`
-			`	Whoever made this clearly wasn't a professional. It looks like they've somehow botched the bar code, given the smear on the print, and the duplication of the emblem of the planetary authority of New Britain on the back is rather dodgy. But unless you can find a better alternative, it'll have to do.`
-				goto options
-
-			label leaveid
-			`	You sigh, having learnt a lesson that teenagers in parking lots probably aren't the most trustworthy of people. Back to the spaceport.`
-				goto options
-
-			label end
-			action
-				clear "med1"
-				clear "med2"
-				clear "suit1"
-				clear "suit2"
-				clear "id1"
-			`	After a long day of walking about the New British spaceport and wading through the crowds of hustlers and travellers, you return to the relatively calmer terminal area at the top of the pyramid.`
-				decline
