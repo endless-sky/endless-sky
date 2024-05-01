@@ -1680,7 +1680,7 @@ ship "Refraktos"
 		"heat dissipation" 2.4
 		"fuel capacity" 1800
 		"cargo space" 60
-		"outfit space" 510
+		"outfit space" 516
 		"weapon capacity" 150
 		"engine capacity" 144
 		"anchor point" 1
@@ -1697,7 +1697,7 @@ ship "Refraktos"
 		"Ultracapacitor Bank" 3
 		"Diffuse Deflector"
 		"Optical Lasing Generator" 5
-		"Multispectral Scanner" 3
+		"Multispectral Scanner"
 		"Electrostatic Ramscoop"
 		"Thermal Sink Partition"
 		"Electromotive Rifle" 24
@@ -1797,13 +1797,13 @@ ship "Atenuatia"
 		"Ultracapacitor Bank" 2
 		"Specular Deflector"
 		"Optical Lasing Generator" 3
-		"Electrostatic Ramscoop" 2
+		"Electrostatic Ramscoop"
 		"Multispectral Scanner" 9
 		"Electromotive Rifle" 90
 		
 		`Z-660 "Zap" Fusion Torch`
-		"Inductive Extractor" 4
-		"Remass Injector" 2
+		"Inductive Extractor" 3
+		"Remass Injector" 3
 		"XY-720 Radial Thrusters"
 		"Hyperdrive"
 
