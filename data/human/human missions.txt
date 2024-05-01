@@ -6977,7 +6977,7 @@ mission "Lost Dog"
 			choice
 				`	"Your dog is safe and sound with me."`
 				`	"I found Caesar alone, out in a park on Calda."`
-				`	"Here he is, you're welcome."`
+				`	"Here he is. You're welcome."`
 
 			`	Before you can respond, Caesar starts yapping happily and runs up to the lady.`
 			`	She snatches up the dog and draws it to her bosom. "Oh my darling See-See! It has been most dreadful waiting for news of you!"`
