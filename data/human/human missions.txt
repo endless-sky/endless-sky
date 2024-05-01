@@ -6985,7 +6985,7 @@ mission "Lost Dog"
 			`	The lady snaps her fingers, and the butler is immediately at her side. "We must make this person whole. I can't be owing favors to vagabonds. Imagine the talk!`
 			`	The butler quickly procures a credit chip and shows it to her, accepting a curt nod for approval. "I realize that this is probably a fortune to you," she says. "I recommend you find a financial advisor and invest it well."`
 			`	With that, she turns and leaves; the butler likewise disappears, and you're escorted by the footman back to your vehicle.`
-			`	You look down at the credit chip in your hand and read its value; <payment>.`
+			`	You look down at the credit chip in your hand and read its value: <payment>.`
 
 
 mission "Lost Dog: Homeward Bound"
