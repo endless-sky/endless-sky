@@ -222,6 +222,36 @@ License: public-domain
  a NASA mission, it is in the public domain.
 
 Files:
+ images/land/haze0*
+Copyright: Izaac Hewitt-Lawrence
+License: Unsplash
+ Taken from https://archive.is/LZQbZ and cropped. This image was
+ uploaded to unsplash.com after June 2017, so it is subject
+ to the Unsplash License. It was also uploaded after February
+ 2018, so it is subject to an additional restriction limiting
+ the sale of unaltered copies.
+
+Files:
+ images/land/haze1*
+Copyright: Tobias Rademacher
+License: Unsplash
+ Taken from https://archive.is/Rc9fs and cropped. This image was
+ uploaded to unsplash.com after June 2017, so it is subject
+ to the Unsplash License. It was also uploaded after February
+ 2018, so it is subject to an additional restriction limiting
+ the sale of unaltered copies.
+
+Files:
+ images/land/haze2*
+Copyright: Marek Piwnicki
+License: Unsplash
+ Taken from https://archive.is/iVNGc and cropped. This image was
+ uploaded to unsplash.com after June 2017, so it is subject
+ to the Unsplash License. It was also uploaded after February
+ 2018, so it is subject to an additional restriction limiting
+ the sale of unaltered copies.
+
+Files:
  images/land/sea23*
 Copyright: Dan Stark
 License: public-domain
@@ -3103,17 +3133,6 @@ Comment:
  before the additional restrictions were added.
 
 Files:
- images/scene/iceplains3*
-Copyright: Daniel Frank
-License: Unsplash
-Comment:
- Taken from https://archive.is/xK5Wu. This image was
- uploaded to unsplash.com after June 2017, so it is subject
- to the Unsplash License. It was also uploaded after
- February 2018, so it is subject to an additional restriction
- limiting the sale of unaltered copies.
-
-Files:
  images/scene/redrocks*
 Copyright: Joshua Gresham
 License: Unsplash
@@ -3457,6 +3476,18 @@ Comment:
  Unsplash License. It was also uploaded after February 2018,
  so it is subject to an additional restriction limiting the
  sale of unaltered copies.
+
+Files:
+ images/land/snow23*
+ images/scene/iceplains3*
+Copyright: Daniel Frank
+License: Unsplash
+Comment:
+ Taken from https://archive.is/xK5Wu. These images were
+ uploaded to unsplash.com after June 2017, so they are
+ subject to the Unsplash License. They were also uploaded
+ after February 2018, so they are subject to an additional
+ restriction limiting the sale of unaltered copies.
 
 Files:
  images/ui/red?alert*
