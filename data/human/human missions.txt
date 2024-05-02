@@ -7495,12 +7495,12 @@ mission "Blood Skadenga"
 				`	"I've come to show you something."`
 					goto something
 				`	"What do you know about other stones like the Tear of Skade?"`
-			`	"On Skade? Only Tears of Skade. But on other worlds? Maybe. Our Goddess cried, maybe others did as well?`
+			`	"On Skade? Only Tears of Skade. But on other worlds? Maybe.`
 				goto something
 
 			label who
 			`	The Ondurdis steps away from the group and takes you aside, leaving Aldfrith to continue talking with them.`
-			`	"They are from Alfheim. They say their culture and world are dying and they look for new home before old one is gone." She pats your arm gently.`
+			`	"They from Alfheim. They say their culture and world dying and they look for new home before old one gone." She pats your arm gently.`
 			`	"Word spreads of Hrithfjell and in some corners of Deep old ways still remembered. So they come." Her eyes gleam, "We are like fire on glacier. All see, all come. For warmth, for happiness, for life."`
 			`	"But, <first>, you have not come all this way to talk with old woman. What brings you here?"`
 
@@ -7520,14 +7520,14 @@ mission "Blood Skadenga"
 			`	Aldfrith shakes his head slowly. "In the time of my grandfather the men from the Deep came and took them off world. They said they were too valuable to belong in the hands of savages, and since then we've never found another Scale of Ran. I think she was displeased we allowed them to be taken."`
 			`	The old man pauses for a moment and then says, "Although.. I do remember when I was a child the folk from the Deep coming and visiting us again. They had questions about.. our baubles. I think they said they did not work? They thought they were just useless charms. Perhaps the Scales stopped working?"`
 			`	He shrugs. "I am sorry, <first>, that I cannot tell you more."`
-			`	The Ondurdis puts a hand on his back, "I value your stories." She turns her attention back to you, "Maybe all God-Stones once produced wonderous stones."`
-			`	She points at the Blood of Surtr, "Maybe that is where yours came from. But more than guess we cannot provide."`
+			`	The Ondurdis puts a hand on his back, "I value your stories." She turns her attention back to you, "Maybe all God-Stones once produced wonderous stones of power."`
+			`	She points at the Blood of Surtr, "Maybe that  where yours came from. But more than guess we cannot provide."`
 			choice
 				`	(Thank The Ondurdis and Aldfrith for sharing their stories with you.)`
 					goto thanks
 				`	(Take your leave.)`
 
-			`	Having gleaned all you could from the Ondurdis and Aldfrith, you quickly take your leave from them and Hrithfjell and head back to your ship.`
+			`	Having gleaned all you could from the Ondurdis and Aldfrith, you take your leave from them and Hrithfjell and head back to your ship.`
 				decline
 
 			label thanks
