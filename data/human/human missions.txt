@@ -7189,7 +7189,7 @@ mission "Tavish and Kormak 3"
 			`	"I'll take a sidecar, my good man, and my large companion will have Scottish Ale, assuming you have any." Tavish says brightly.`
 			`	The bartender pours too glasses of rum and pushes them to Tavish. "My apologies me lord," he gives a ridiculous bow, "but we seem to be out your favored swill."`
 			`	The bartender flashes Tavish a yellow grin that's missing a few key teeth. "Anything else I can get you?"`
-			`	"Information." Kormak snaps, stepping closer now to the bartender, who despite Kormark's size does not flinch.`
+			`	"Information." Kormak snaps, stepping closer now to the bartender, who despite Kormak's size does not flinch.`
 			`	Instead the bartender's smile only widens to give everyone a better look at his bloody gums, "Well, I sure a surf can give you information. But it will cost you a sight more than a couple glasses of rum."`
 			`	Tavish holds up his glass and looks in it, as if deciding if he's willing to drink it or not, "We need to find a ship that frequents this port of call."`
 			`	The bartender taps his overgrown moldy nails on the bar, "Ah, yes me lord. I can probably do that. For a mere 50,000 credits I'll tell what I know."`
@@ -7220,12 +7220,14 @@ mission "Tavish and Kormak 3"
 			`	The bartender looks piqued and slowly nods, "Aye."`
 			`	"You're probably wondering what a pompous overdressed man like me is doing in your quaint out of the way boutique. Well, I was looking for just the sort of enterpising soul who knows a thing or two about making a shilling."`
 			`	Tavish procedes to describe a long and complex scam utilizing unwitting pirates, corrupt Syndicate trade officials, and fabulously wealthy marks from the paradise world. As he talks the barkeep leans further and further in, his eyes widening and a growing devious grin."`
-			`	Finally, Tavish concludes with, "We're kindred spirits, you and I, and that's why I know this will work. So what do you say? 25,000 credit buy in, plus the information on our first unwitting mark, and you're all set to be rich."`
+			`	Finally, Tavish concludes with, "We're kindred spirits, you and I, and that's why I know this will work. So what do you say? 30,000 credit buy in, plus the information on our first unwitting mark, and you're all set to be rich."`
 			`	"I'm in!" The Bartender can't move fast enough, he immeditetly begins transfering the funds. "Who are you looking for?"`
 			choice
 				`	"We're looking for Hans Fuller of the Broken Record."`
-			`	"Ha, that poor fool," the bartender can't help but chuckle to himself," Well last I heard he was picked up by the Syndies. If you're lucky you can still find him at Hephaestus trying to get his ship out of lockup."`
+			`	"Ha, that poor fool," the bartender can't help but chuckle to himself," Well last I heard he was picked up by the Syndies. If you're lucky you can still find him at the main spaceport on Hephaestus trying to get his ship out of lockup."`
 			`	Tavish thanks the man and promises him he'll be seeing his first returns in the near future, and with that the three of you head out of the bar.`
+			payment 30000
+
 			label story
 			choice
 				`	"Tavish, what's your story?"`
@@ -7260,16 +7262,212 @@ mission "Tavish and Kormak 3"
 			`	Tavish shrugs, "Like I said! A discerning fellow! We agree, my associate will now provide you the details."`
 			choice
 				`	"We're looking for Hans Fuller of the Broken Record."`
-			`	"Ah, our first sucker," the bartender smiles and shakes his head, "Last I heard he was picked up by the Syndies. If you're lucky you can still find him at Hephaestus trying to get his ship out of lockup."`
+			`	"Ah, our first sucker," the bartender smiles and shakes his head, "Last I heard he was picked up by the Syndies. If you're lucky you can still find him at the main spaceport on Hephaestus trying to get his ship out of lockup."`
 			`	Tavish thanks the man and promises him he'll be seeing his first returns in the near future, and with that he turns and heads out of the bar.`
 			choice
-				`(Follow him.)`
+				`	(Follow him.)`
 			`	Not far outside an only slightly battered Kormak is waiting for you.`
 			`	"Words?" He says through a bloody lip.`
 			`	"The right words can unlock the universe itself, my good man. You should try them sometime." Tavish says with a grin.`
 			`	"Not where I from." Kormak says quietly.`
 				goto story
+
+			label payupfront1
+			payment -50000
+			`	The bartender hisses with excitement, "What can I help you with."`
+			choice
+				`	"We're looking for Captain Hans Fuller of the Broken Record."`
+			`	"Yeah, I know him." The bartender looks down at a monitor and types for a moment, "Looks like the Syndies picked him up recently. If you're lucky you can still find him at the main spaceport on Hephaestus trying to get his ship out of lockup."`
+			`	Tavish and Kormak stand to leave, and bartender gives you feral grin, "Pleasure doing bussiness."`
+			`	The three of you leave and head back to your ship.`
+				accept
+			
+			label payupfront2
+			payment -100000
+			`	The bartender nurses hid sore neck and flashes you a feral grin with his yellow teeth, "What can I help you with."`
+			choice
+				`	"We're looking for Captain Hans Fuller of the Broken Record."`
+			`	"Yeah, I know him." The bartender looks down at a monitor and types for a moment, "Looks like the Syndies picked him up recently. If you're lucky you can still find him at the main spaceport on Hephaestus trying to get his ship out of lockup."`
+			`	Tavish stands to leave, and bartender gives you an unsteady smirk, "Pleasure doing bussiness."`
+			`	Tavish and you step over broken furniture and injured pilots and make your way out of the bar.`
+			`	Not far outside an only slightly battered Kormak is waiting for you.`
+			`	"Words?" He says through a bloody lip.`
+			`	Tavish shakes his head, "Currency."`
+			`	Kormak joins up with you and Tavish and the three of you head to your ship.`
+				accept
+
+	on complete
+		conversation
+			`Your ship lands in the heart of the continent-consuming megatropolis Polyphron, the "only city" on Hephaestus.`
+			`	Finding a ship or a person here could well be impossible. Thankfully Tavish says he knows the area where recently impounded ships are housed.`
+			`	He and Kormak head toward the spaceport.`
+
+mission "Tavish and Kormak 4"
+	source "Hephaestus"
+	destination "Chiron"
+	passengers 2
+	to offer
+		has "Tavish and Kormak 3: done"
+	on offer
+		conversation
+			`	You get the feeling the sun never sets on Hephaestus as you navigate flocks of migrating workers all hurriedly moving from one shift change to next. The amount of ships being worked on, landing, taking off, or just sitting is staggering. It would be easy to believe this was the beating heart of the human expansion, and not Earth.`
+			`	Tavish leads you down one narrow corridor filled with ships after the next. You don't see any labels or signage that make sense, but somehow Tavish plows on with a quick step and unshakable confidence.`
+			`	Finally, he turns a corner starts gesticulating wildly, "There! There!" he hollars pointing at Heavy Shuttle with a man outside of it.`
+			choice
+				` (Chase after him.)`
+			`	You're suddenly jostled to the side as Kormak pushes past you barrels down on the surprised man. The frightened man tries to flee but Kormak moves faster than anyone his size has any right to and in a moment it's over.`
+			`	The man's groaning on the ground pinned by Kormak. Tavish and you catch up to the scene.`
+			`	"Salutations, Hans." Tavish says cheerfully.`
+			`	Hans grunts uncomfortably, "Professor."`
+			`	"Ah, lovely, you recall me. Perhaps you could also recall where our equipment is Hans?"`
+			`	"Where." Kormak's normally impassive voice is tinged with anger.`
+			`	"I don't know what you're talking about! I am never stole nothing. Let me go! I have my rights!"`
+			`	Kormak growls and Tavish looks to you.`
+			choice
+				`	(Have Tavish get the information out of him.)`
+					goto tavish
+				`	(Have Kormak get the information out of him.)`
+					goto kormak
+				`	(Offer him 25,000 credits for the information.)`
+					goto warbucks
+
+			label tavish
+			`	Tavish leans down until he's only a few inches above Hans' pinned face.`
+			`	"Do you remember Gerald?" Tavish asks.`
+			`	"The slow guy? Yeah." Hans says.`
+			`	"Do you remember what happened to him?"`
+			`	Hans pauses, then, "The trees got him."`
+			`	Tavish stands up. "Exactly, and unless you start talking. We're going to kidnap you, take you back to New India and feed you to those very same trees." `
+			`	"Good plan." Kormak says with a gleam in his eyes.`
+			`	"Fine! Fine. You guys are crazy you know that? But, whatever man, maybe I forgot to drop off some of your stuff, okay? Mistakes happen, ya know. But I don't got it anymore. Don't you see where we are? The Syndies gobbled it up. You want it back? Ask them."`
+			`	Tavish turns to you. "It's a sensible response. We'll have to ask the authorities here if they still have his confiscated cargo. I think I know the way."`
+			`	"What about trash?" Kormak says as he leans a little heavier on Hans. `
+			`	"He is no longer relevant. I say let him return to whatever repugnant hole he climbed out of. What do you say, Captain <last>?"`
+			choice
+				`	"We got what we needed. Let him go."`
+					goto letgo
+				`	"He's the whole reason we're on this wild goose chase. Kill him."`
+			label killhim
+			`	"Wai.." Tavish begins, but before he finishes there's a quick cracking sound and a suddenly dead body on the ground.`
+			`	Kormak stands up with a rare smile on his lips, "Finally."`
+			`	Tavish paces, "We need to hastily abscond from here. It goes without saying that being traced to a murder would not be in our best interests. Fortunately, I know the way to office that deals with confiscated goods. So please, follow me."`
+			`	Tavish turns and starts walking away from the dead body at a very rapid pace.`	
+				goto followtav
+
+			label letgo
+			`	Kormak sighs heavily and lets Hans up, who quickly scrambles to his feet runs for his ship's hatch.`
+			`	"You guys are crazy! Crazy!" He says as he disappears behind the safety of his ship's bulkheads.`
+			`	Tavish turns to you. "I know who to talk to about confiscated equipment, follow me."`
+				goto followtav
+			
+			label Kormak
+			`	Kormak wastes no time and twists Hans' arm in a very unnatural direction.`
+			`	Hans screams, "Stop! Stop! You're breaking it! You're breaking it."`
+			`	Kormak relents, but only little. "Where?"`
+			`	"I don't have it! I don't have it! The Syndies took everything in my hold! I swear they got it all. Not me! Not me! Stop!"`
+			`	Kormak releases the pressure, "Good."`
+			`	Tavish turns to you. "It's a sensible response. We'll have to ask the authorities here if they still have his confiscated cargo. I think I know the way."`
+			`	"What about trash?" Kormak says as he leans a little heavier on Hans. `
+			`	"He is no longer relevant. I say let him return to whatever repugnant hole he climbed out of. What do you say, Captain <last>?"`
+			choice
+				`	"We got what we needed. Let him go."`
+					goto letgo
+				`	"He's the whole reason we're on this wild goose chase. Kill him."`
+					goto killhim
+
+			label warbucks
+			`	Tavish and Kormak seem to deflate a little bit, but neither says anything. Kormak gets off the man, and Han's quickly rises and dusts himself off.`
+			`	"25,000 creds? Really? Man, I'd sell you mom for that much cash right about now. I am not nearly so desperate, but after the Syndies took my entire haul things are looking a little rough for me. Fiancially speaking, that is."`
+			`	"Listen, I wish I could just hand over that science junk to you right now. It's some weird stuff that most the regular fences and pawnbrokers aren't into. But I can't cuz the it was part of the haul the Syndies ate up. You gotta go to them. There's an office where you can argue for some of your stuff back, been there plenty, but take it from me it never goes anywhere. They aren't in the business of giving, if you catch me drift."`
+			`	"Sorry man, good luck with your science stuff or whatever. But that's all I know so I am out of here."`
+			`	Hans waits until you transfer the money over to him, and then hops behind the hard metal doors of his ship.`
+			payment -25000
+			`	Tavish watches him go, "I dare say he didn't deserve additional recompense after what he did to us." `
+			`	Kormak grunts in agreement.`
+			`	Tavish turns to look down a corridor of ships, "I know the way to office he spoke of. Follow me." `
+
+			label followtav
+			`	After four flights of stairs, three different elevators, and one very small trolly the three of you arrive at a bland corporate office with the words, "Repository of Confiscated Goods".`
+			`	There are no doors, and a single window that looks like it was made of reinforced glass. The tired looking agent on the other side of the glass hits a button and his voices buzzes over to you, "What can I help you with?"`
+			choice
+				`	"We're looking for stolen scientific research equipment that was recently confiscated aboard the Broken Record."`
+			`	The man looks down at his monitor and begins typing. After a while he stops and looks back up at you.`
+			`	"Ah yes, I found it. You'll be happy to know we did indeed confiscate some unusual equipment from the Broken Record." He looks at you expectantly.`
+			choice
+				`	"Great! Can it be returned to us?"`
+				`	"Finally. We're here to collect it."`
+				`	"Hand it over. It belongs to us."`
+			`	The man gives you a pained expression, "I am sorry, but it is no longer on Hephaestus."`
+			`	He says nothing else and waits.`
+			choice
+				`	"Okay. Where is it?"`
+				`	"Tell me where it is, right now."`
+				`	"Speak up! Where's our stuff?!"`
+			`	The agent's smile does not reach his eyes, "I am sorry, but that information is confidential."`
+			choice
+				`	"How are we supposed to reclaim our stolen goods?"`
+				`	"What do we have to do to get that information?"`
+				`	"Help me out here. What am I supposed to do."`
+			`	The agent sighs and presses a button and a form slips out of a crease in the wall and onto the floor in front of you, "That's a C-79 access for information pretaining to confiscated goods form. Fill that out with that attatched processing fee of 20,000 credits and we will be able to release that information to you."`
+			`	You turn to look at Tavish and Kormak who both give you hopeless shrugs.`
+
+			label options
+			choice
+				`	(Have Tavish attempt to get the information out of the agent.)`
+					goto tav
+					to display
+						not "tav"
+				`	(Have Kormak attempt to get the information out of the agent.)`
+					goto kor
+					to display
+						not "kor"
+				`	(Fill out the form and pay the 20,000 credit processing fee.)`
+					goto payup
+
+				label tav
+					action "tav"
+				`	Tavish steps up the window, "Saluations my good fellow. Of all the officials we've met today you're the only one who seems to get it. You're more than this place, more than a cog in the Syndicate's impressive machine."`
+				`	As Tavish talks the agent's eyes fall to his monitor and he begins tapping his keypad with a bored expression on his face. Here and there he responds to Tavish with unconvincing "Uh huh" or "Sure."`
+				`	Tavish eventually loses steam and ends with, "So, what do you say my good man? You ready help us out?"`
+				`	The agent looks up and blinks at him with a confused expression on his face, "I am sorry, what? Did you need something?"`
+				`	Tavish frowns, defeated, "Uh, no, nevermind."`
+				`	Tavish turns back to you and holds up his hands, "I tried."`
+					goto options
+
+				label kor
+					action "kor"
+				`	Kormak steps up to the window. He looks along the seams for anyone hint of weakness, and then puts his large hand against it. He then leans in and presses his ear against it.`
+				`	"Uh, sir, can I help you?" The agent asks.`
+				`	Kormak pulls his ear back and pushes on the glass with both hands. Nothing happens. He stops and looks at his fist, clearly considering punching it, but finally decides against it.`
+				`	He takes a step back and looks at you, "Can't."`
+					goto options
 				
+				label payup
+				`	You lean down and pick up the form. It's rather rudimentry and after a few moments you've successfull filled it out. You also attach the account information for a 20,000 credit transfer. You place the form in a tray that beneath the window that promptly swallows it up.`
+				`	The agent reads over the form and works at their keypad for a while before finally looking back up at you, "Thank you, the form and fee has been processed. I am now allowed to release the following information to you."`
+				`	They pause, as if for dramatic effect, and then continue, "Chiron Campus Oxford-Harvard Research Office. Department of Oddities. Doctor-Professor Dylan Hullen-Freeze. That is all the information I have. Good day."`
+				`	The window suddenly goes opaque.`
+				`	Tavish swallows, "This is most disconcerting."`
+				`	Without looking at you or Kormak he heads toward the exit.`
+				`	"Bad history." Kormak says, before following Tavish out.`
+				`	It seems Chiron is your next destination.`
+				payment -20000
+
+	on complete
+		conversation
+			`The journey to Chiron was more difficult than normal as Tavish 	`
+
+mission "Tavish and Kormak 5"
+	source "Chiron"
+	destination "New India"
+	passengers 2
+	to offer
+		has "Tavish and Kormak 4: done"
+	on offer
+		conversation
+		
+
+
 
 
 
