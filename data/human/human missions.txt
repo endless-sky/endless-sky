@@ -7181,7 +7181,7 @@ mission "Ice Queen 2"
 
 mission "Ice Queen 3"
 	name "Find Ildico's Father"
-	description "Placeholder."
+	description "Search for Ildico's Father on Chiron."
 	to offer
 		has "Ice Queen 2: done"
 	source "Glory"
@@ -7210,7 +7210,7 @@ mission "Ice Queen 3"
 mission "Ice Queen 4"
 	landing
 	name "Find Ildico's Father"
-	description "Placeholder."
+	description "Search for Ildico's Father on Chiron."
 	source "Chiron"
 	passengers 1
 	to offer
@@ -7246,7 +7246,7 @@ event "deoricdeeds"
 mission "Ice Queen 5"
 	landing
 	name "Visiting Ildico"
-	description "Placeholder."
+	description "Visti Ildico on Chiron."
 	source 
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination "Chiron"
@@ -7267,7 +7267,7 @@ mission "Ice Queen 5"
 
 mission "Ice Queen 6"
 	name "Take Ildico to <planet>"
-	description "Placeholder."
+	description "Smuggle Ildico and her Child to Haven."
 	source "Chiron"
 	destination "Haven"
 	illegal 1250000 `Ildico Drifa is dragged away in chains for high crimes against the Republic and its most honorable servants. Her infant child is taken into the custody of the Republic. You can only watch in sad silence as they are removed from your ship. You wind up quite a bit poorer through a combination of fines and bribes (the breakdown remains somewhat unclear).`
@@ -7359,7 +7359,7 @@ event "pirateildy"
 mission "Ice Queen 7"
 	landing
 	name "Meet Ildy on <planet>"
-	description "Placeholder."
+	description "See what Ildico needs on Haven."
 	source 
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination "Haven"
@@ -7378,7 +7378,7 @@ mission "Ice Queen 7"
 
 
 mission "Ice Queen 8"
-	name "Placeholder"
+	name "Defeat the Rival Pirate Gang"
 	description "A fleet of Marauder ships, led by a vessel named the <npc>, has been seen near the <system> system. Destroy the whole fleet and return to <planet>."
 	source "Haven"
 	to offer
