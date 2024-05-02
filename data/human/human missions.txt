@@ -7488,7 +7488,7 @@ mission "Blood Skadenga"
 			label hrithland
 			`	The pass numerous new homes built of driftwood and sea-stone as you approach the old village center of Hrithfjall. There is laughter and song in the air and children running everywhere; it always seems larger every time you visit it.`
 			`	At the old village hall you find the Ondurdis and Aldfrith in conversation with a band of people who quite stick out here, foreigners. The Ondurdis's old eyes light up and she gives you a grandmotherly smile as you approach.`
-			`	She turns and motions to Aldfrith who steps over to you and asks, "Did Ran ever cry cold tears?"` # Maybe needs to say hello? This is repeated later, which is confusing.
+			`	"<First>!" The Ondurdis exclaims happily, "My heart sings to see you." `
 			choice
 				`	"Who are they?"`
 					goto who
