@@ -585,9 +585,9 @@ mission "<uhai> 0: Bring Hai"
 				`	(Ignore her.)`
 					goto headoff
 				`	(Go and speak with her.)`
-			`	You can see she's clearly happy you came to speak to her. You ask her why she seems alone, and she answers, looking at the ground with what seems to be contained sadness, "I have no family here. I lost my parents to a pirate raid, so I came here to find myself. I did not expect all of this, though. Did you change your mind about the translation?"`
+			`	You can see she's clearly happy you came to speak to her. "Did you change your mind about the translation," she asks.`
 			choice
-				`	"Yes, please."`
+				`	"Yes, if you please."`
 					goto translate
 				`	"No, thank you."`
 					goto headoff
@@ -600,7 +600,7 @@ mission "<uhai> 0: Bring Hai"
 			action
 				"unfettered: Merora translate" ++
 				log "Minor People" "Merora" "A young adolescent Hai that came to Unfettered space after losing her parents to pirates. She is handling the loss very well, at least on the surface."
-			`	"Great! I am Merora, by the way." She looks around, noticing the way some people are staring at you. Surprisingly they seem to be staring at her almost as much as they do at you. She explains, "I came to Unfettered space when I had nowhere left to turn to, just a few weeks ago. I don't feel like I belong here yet, or anywhere for that matter. So trust me, I know what it feels like to be isolated here. What about you?" she asks.`
+			`	"Great! I am Merora, by the way." She looks around, noticing the way some people are staring at you. Surprisingly they seem to be staring at her almost as much as they do at you. She explains, "I came to Unfettered space just a few weeks ago. What about you," she asks.`
 			`	You begin to introduce yourself to her, but barely get your name out before you are both distracted as the proceedings resume. A child, younger - or at least smaller - than any other you've seen on stage so far, approaches the Chiefs. Also alone, the child seems scared and perhaps even lost as they speak, so softly even those on stage must be straining to hear. One of the Chiefs breaks ranks to kneel by the child, comforting them as they speak quietly to each other.`
 			`	The Chief rises and turns to those watching to share the child's words, and Merora then translates it to you, "The child wishes to return home, to Hai space. However, he cannot do that alone, and the Chief is asking for someone to escort him, or find him a suitable transport. All Hai captains, even those who do not otherwise sympathize with our cause, would easily accept taking a child back to Hai space, without ever asking for anything in return. It only needs to be arranged by someone, as the child does not know who to turn to."`
 			choice
@@ -859,7 +859,7 @@ mission "<uhai> 2: Prove Your Strength"
 					goto provoke
 				`	(Go. He's not worth it.)`
 					goto run
-			`	"Sink me! That flotsam really be your ship? Given the hornswoggle of your reputation, I pegged you for a fancier type. Your prowess is no lie, indeed then, if you land in such a scow, but can ye truly fight in it?" he says, and then he turns to address the crowd once again. "I wonder if it can even launch again. Perhaps we should scuttle it right here."`
+			`	"Sink me! That flotsam really be your ship? Given the hornswoggle of your reputation, I pegged you for a fancier type. Your prowess is no lie, indeed then, if you land in such a scow, but can ye truly fight in it," he asks in a disrespectful tone, before turning to address the crowd once again. "I wonder if it can even launch again. Perhaps we should scuttle it right here."`
 				goto lesson
 			label provoke
 			`	"So the space-monkey can speak? Let us see if it can fight as well," he says with a provocative tone.`
