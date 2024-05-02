@@ -873,7 +873,7 @@ mission "Remnant: Cognizance Exploration Patch"
 	to offer
 		has explorationinterest
 	on offer
-		"exploration interest" = explorationinterest
+		"exploration interest" += explorationinterest
 		clear explorationinterest
 		fail
 
