@@ -7455,7 +7455,76 @@ mission "Tavish and Kormak 4"
 
 	on complete
 		conversation
-			`The journey to Chiron was more difficult than normal as Tavish 	`
+			`Tavish directs you to set down in New Port, and head to spaceport's train station.`
+
+mission "Tavish Interlude"
+	invisible
+	landing
+	source "Hephaestus"
+	destination "Chiron"
+	to offer
+		has "Tavish and Kormak 3: done"
+	on enter
+
+	# You will see this conversation after the first jump you make.
+	on enter
+		conversation
+			`	Tavish approaches you on the bridge, "Captain <last>, I'd like a word?"`
+			choice
+				`	"Sure, what's up?"`
+				`	"Talk."`
+					goto talk
+				`	"Not now Tavish, I am busy."`
+			`	Tavish nods, "Of course. I understand, Captain."`
+			`	He turns and leaves you to your work.`
+				decline
+
+			label talk
+			`	Tavish removes his bowler hat and holds it in his hands, "If we're going to confront Dr. Hullen-Freeze then there are a few things you should made aware of." `
+			`	Tavish fidgets with his hat, "We are former... acquaintances, and we did not leave things on the best of terms. Whatever he says, whatever he may say about me, I just want to ensure you Captain that I have been forthright with you, at least where it counts."`
+			`	He pauses then says, "I am a member of the Society of Gentlemanly Exploration, and Kormak and I are on the hunt for Xeno-Cryptids. I have no tried to con you on that matter, and I do believe our work is vital to science and exploration."`
+			label options
+			choice
+				`	"What exactly is your relationship with Hullen-Freeze?"`
+					goto relation
+					to display
+						not "relation"
+				`	"Tell me more about the Society of Gentlemanly Exploration."`
+					goto soggy
+					to display
+						not "soggy"
+				`	"Don't worry. I trust you."`
+				`	"There's something about you I don't quite trust. But we've come this far and I intend to see this through."`
+			`"Thanks Captain. I appreciate you hearing me out. I will not abuse your trust." Tavish puts his hat back on and leaves the bridge.`
+				decline
+			
+			label relation
+				action "relation"
+				`	"I was his research assistant. I labored under him for years. He never respected me, and when I started to be successful he resented it. Ultimately he sabatoged my career and had me thrown out as a kook and a pariah. I doubt his opinion of me has changed much since then." `
+				`	Tavish gives you a somber shrug, "Everything else is irrelevant details." `
+					goto options
+			
+			label soggy
+				action "soggy"
+			`	"It's a real organization, although it's been in decline for quite sometime. Back in its hayday it was one of the most prestigous clubs for scientists and explorers. But these days it's something of a joke in most circles." Tavish sighs, " I am just glad Dr. Henry Forsyth isn't alive to see it in such a state." `
+			choice
+				`	"Dr. Henry Forsyth?"`
+					goto Henry
+				`	"So, it's a joke?"`
+			`	Tavish's face becomes very serious, "It's not a joke. Dr. Henry Forsyth saved millions, maybe bllions, of lives by going alone to the unexplored reaches of a hostile world. They all thought he was crazy, that there could be nothing of value in that frozen desolate place. But then he discovered the Ice-Witches of Nifel, and beguilded them with his stories of civilization. Their leader, someone called the Ornery-dress fell in love with him and unwittingly led him to the cure of the Rigellian Plague."`
+			`	He seems to inflate as he speaks, "That's the legacy of soggy, of the Society of Gentelmanly Explorers, and I may not ever live up to Dr. Forsyth, but I stil believe the spirit of his actions and am committed to following it."`
+			`	Tavish paushes, "Although, don't repeat that story to Kormak. It upsets him. I think the Ice-Witches of Nifel may be distant cousins of his."`
+				goto options
+			
+			label Henry
+			`	"Dr. Henry Forsyth saved millions, maybe billions of lives, by ignoring the academic consesus of the day, and putting his life on the line by leading a daring expedition into the frozen wastes of a desolate world. There he discovered the barbaric Ice-Witches of Nifel, and seduced their wild and beautiful leader, the Ornery-Dress. She would unwittingly lead him to the cure of the Rigellian Plague, and secure his position as a preeminent scholar, exlorer and hero of his time."`
+			`	He seems to inflate as he speaks, "That's the legacy of soggy, of the Society of Gentelmanly Explorers, and I may not ever live up to Dr. Forsyth, but I stil believe the spirit of his actions and am committed to following it."`
+			`	Tavish paushes, "Although, don't repeat that story to Kormak. It upsets him. I think the Ice-Witches of Nifel may be distant cousins of his."`
+				goto options
+
+
+
+
 
 mission "Tavish and Kormak 5"
 	source "Chiron"
