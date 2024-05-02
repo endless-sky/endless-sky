@@ -870,6 +870,7 @@ mission "Remnant: Cognizance 21"
 mission "Remnant: Cognizance Exploration Patch"
 	landing
 	invisible
+	repeat
 	to offer
 		has explorationinterest
 	on offer
@@ -880,6 +881,7 @@ mission "Remnant: Cognizance Exploration Patch"
 mission "Remnant: Cognizance Science Patch"
 	landing
 	invisible
+	repeat
 	to offer
 		has scienceinterest
 	on offer
