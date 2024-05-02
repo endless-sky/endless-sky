@@ -53,12 +53,14 @@ class Panel;
 class Person;
 class Phrase;
 class Planet;
+class PlayerInfo;
 class Politics;
 class Ship;
 class Sprite;
 class StarField;
 class StartConditions;
 class System;
+class TaskQueue;
 class Test;
 class TestData;
 class TextReplacements;
@@ -75,7 +77,7 @@ class Wormhole;
 // universe.
 class GameData {
 public:
-	static std::future<void> BeginLoad(bool onlyLoadData, bool debugMode, bool preventUpload);
+	static std::shared_future<void> BeginLoad(TaskQueue &queue, bool onlyLoadData, bool debugMode, bool preventUpload);
 	static void FinishLoading();
 	// Check for objects that are referred to but never defined.
 	static void CheckReferences();
@@ -86,10 +88,7 @@ public:
 	static bool IsLoaded();
 	// Begin loading a sprite that was previously deferred. Currently this is
 	// done with all landscapes to speed up the program's startup.
-	static void Preload(const Sprite *sprite);
-	static void ProcessSprites();
-	// Wait until all pending sprite uploads are completed.
-	static void FinishLoadingSprites();
+	static void Preload(TaskQueue &queue, const Sprite *sprite);
 
 	// Get the list of resource sources (i.e. plugin folders).
 	static const std::vector<std::string> &Sources();
@@ -109,7 +108,7 @@ public:
 	static void Change(const DataNode &node);
 	// Update the neighbor lists and other information for all the systems.
 	// This must be done any time that a change creates or moves a system.
-	static void UpdateSystems();
+	static void UpdateSystems(const PlayerInfo *player);
 	static void AddJumpRange(double neighborDistance);
 
 	// Re-activate any special persons that were created previously but that are
@@ -182,7 +181,7 @@ public:
 
 
 private:
-	static void LoadSources();
+	static void LoadSources(TaskQueue &queue);
 	static std::map<std::string, std::shared_ptr<ImageSet>> FindImages();
 };
 

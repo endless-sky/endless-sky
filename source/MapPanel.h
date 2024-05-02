@@ -75,7 +75,9 @@ public:
 	virtual void Step() override;
 	virtual void Draw() override;
 
-	// Draw map mode buttons, escort/storage tooltips, and the non-routable system warning.
+	// Draw elements common for all map panels that need to be placed
+	// on top of everything else. This includes distance info, map mode buttons,
+	// escort/storage tooltips, and the non-routable system warning.
 	void FinishDrawing(const std::string &buttonCondition);
 
 	static void DrawMiniMap(const PlayerInfo &player, float alpha, const System *const jump[2], int step);

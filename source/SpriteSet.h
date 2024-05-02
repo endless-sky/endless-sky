@@ -34,10 +34,6 @@ public:
 	// Inspect the sprite map and warn if some images contain no data.
 	static void CheckReferences();
 
-
-private:
-	// Only SpriteQueue is allowed to modify the sprites.
-	friend class SpriteQueue;
 	static Sprite *Modify(const std::string &name);
 };
 
