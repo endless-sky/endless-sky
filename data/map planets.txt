@@ -2946,7 +2946,7 @@ planet Nepheritis
 planet Neriene
 	attributes uninhabited
 	landscape land/haze1
-	description `While lacking its iconic ferrous-red color, this planet is almost eerily similar in conditions to the second planet humanity set foot on, Mars. The thin atmosphere of carbon dioxide, the polar ice caps, and the echoes of dried waterways across the surface all tell the tragic tale of the same fate that befell Mars in aeons past.`
+	description `While lacking its iconic ferrous-red color, this planet is eerily similar in conditions to the second planet humanity set foot on, Mars. The thin atmosphere of carbon dioxide, the polar ice caps, and the echoes of dried waterways across the surface all tell the tragic tale of the same fate that befell Mars in aeons past.`
 	description `	Even though humanity eventually triumphed over the adverse conditions and made a home on the Red Planet, this near-identical world has been left totally barren, a mere afterthought in the now interstellar human civilization.`
 	government Uninhabited
 
