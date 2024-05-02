@@ -7455,7 +7455,8 @@ mission "Tavish and Kormak 4"
 
 	on complete
 		conversation
-			`Tavish directs you to set down in New Port, and head to spaceport's train station.`
+			`Your ship comes to a landing in a croweded spaceport. Some sort of comencement ceremony is going on and the place is packed with off-world family and friends who have come to watch the graduation.`
+			`	It's obvious Tavish is uncomfortable here, but he does his best not to show it. He informs you that you'll need to get to the commuter rail deeper in the New Port spaceport to get to Huller-Freeze.`
 
 mission "Tavish Interlude"
 	invisible
@@ -7534,6 +7535,12 @@ mission "Tavish and Kormak 5"
 		has "Tavish and Kormak 4: done"
 	on offer
 		conversation
+			`	The three of you ride the rail in silence as it slitheres through Chiron's bright and beautiful landscape. Some minutes into the trip the obvious signs of the city give way to university campus scenery.`
+			`	For an hour you pass one educational building after another, only broken up by the occasional lacross court and dormintory, finally Tavish stands up.`
+			`	"Next stop is us." He says.`
+				choice
+					`	"How big exactly is this campus?"`
+				`	Tavish laughs, "You think this is big? You should see the campus `
 		
 
 
