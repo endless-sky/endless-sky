@@ -1927,7 +1927,7 @@ ship "Far Osk 27"
 	gun 13 -8
 	explode "tiny explosion" 25
 	explode "small explosion" 15
-	description "Because it is piloted by a computer and has no need for a cockpit or life support systems, the FS27 fighter is able to carry far more weaponry than any comparable human ship."
+	description "Because it is piloted by a computer and has no need for a cockpit or life support systems, the FS27 fighter is able to support a thicker hull, more shields, and more powerful guns than any comparable human ship."
 	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
 
 
