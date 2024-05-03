@@ -181,7 +181,7 @@ effect "ayym boom"
 # Fleets:
 
 fleet "Iije (Uninterested)"
-	government "Indigenous Lifeform"
+	government "Indigenous Lifeform (Acheron)"
 	cargo 0
 	personality
 		timid unconstrained uninterested mute
@@ -222,7 +222,7 @@ fleet "Iije (Uninterested)"
 		"Jje" 9
 		
 fleet "Iije (Swarming)"
-	government "Indigenous Lifeform"
+	government "Indigenous Lifeform (Acheron)"
 	cargo 0
 	personality
 		timid unconstrained swarming mute
@@ -263,7 +263,7 @@ fleet "Iije (Swarming)"
 		"Jje" 9
 		
 fleet "Iije (Surveillance)"
-	government "Indigenous Lifeform"
+	government "Indigenous Lifeform (Acheron)"
 	cargo 0
 	personality
 		timid unconstrained surveillance mute

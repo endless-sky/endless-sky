@@ -16,7 +16,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Sound.h"
 
 #include "File.h"
-#include "Files.h"
 
 #include <AL/al.h>
 

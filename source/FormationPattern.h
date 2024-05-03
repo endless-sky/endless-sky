@@ -36,7 +36,7 @@ public:
 	class PositionIterator
 	{
 	public:
-		PositionIterator(const FormationPattern &pattern,
+		explicit PositionIterator(const FormationPattern &pattern,
 			double diameterToPx, double widthToPx, double heightToPx,
 			double centerBodyRadius, unsigned int shipsToPlace);
 

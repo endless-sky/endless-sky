@@ -23,7 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class OutputSink {
 public:
 	// Redirect an ostream, such as std::cout or std::cerr.
-	OutputSink(std::ostream &toCapture)
+	explicit OutputSink(std::ostream &toCapture)
 		: captured(toCapture), original(toCapture.rdbuf())
 	{
 		// Store anything sent to the captured stream in our buffer.

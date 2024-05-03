@@ -32,7 +32,7 @@ class Ship;
 // A class for handling the secondary weapon icons displayed in the HUD.
 class AmmoDisplay {
 public:
-	AmmoDisplay(PlayerInfo &player);
+	explicit AmmoDisplay(PlayerInfo &player);
 	void Update(const Ship &flagship);
 	void Draw(const Rectangle &ammoBox, const Point &iconDimensions) const;
 	bool Click(const Point &clickPoint, bool control);

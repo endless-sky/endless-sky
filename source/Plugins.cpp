@@ -19,9 +19,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Files.h"
+#include "Logger.h"
 
 #include <algorithm>
-#include <cassert>
 #include <map>
 
 using namespace std;
@@ -58,17 +58,49 @@ bool Plugin::IsValid() const
 
 
 
-// Try to load a plugin at the given path. Returns true if loading succeeded.
+// Attempt to load a plugin at the given path.
 const Plugin *Plugins::Load(const string &path)
 {
 	// Get the name of the folder containing the plugin.
 	size_t pos = path.rfind('/', path.length() - 2) + 1;
 	string name = path.substr(pos, path.length() - 1 - pos);
 
+	string pluginFile = path + "plugin.txt";
+	string aboutText;
+
+	// Load plugin metadata from plugin.txt.
+	bool hasName = false;
+	for(const DataNode &child : DataFile(pluginFile))
+	{
+		if(child.Token(0) == "name" && child.Size() >= 2)
+		{
+			name = child.Token(1);
+			hasName = true;
+		}
+		else if(child.Token(0) == "about" && child.Size() >= 2)
+			aboutText = child.Token(1);
+		else
+			child.PrintTrace("Skipping unrecognized attribute:");
+	}
+
+	// 'name' is a required field for plugins with a plugin description file.
+	if(Files::Exists(pluginFile) && !hasName)
+		Logger::LogError("Warning: Missing required \"name\" field inside plugin.txt");
+
+	// Plugin names should be unique.
 	auto *plugin = plugins.Get(name);
+	if(plugin && plugin->IsValid())
+	{
+		Logger::LogError("Warning: Skipping plugin located at \"" + path
+			+ "\" because another plugin with the same name has already been loaded from: \""
+			+ plugin->path + "\".");
+		return nullptr;
+	}
+
 	plugin->name = std::move(name);
 	plugin->path = path;
-	plugin->aboutText = Files::Read(path + "about.txt");
+	// Read the deprecated about.txt content if no about text was specified.
+	plugin->aboutText = aboutText.empty() ? Files::Read(path + "about.txt") : std::move(aboutText);
 
 	return plugin;
 }
@@ -95,7 +127,8 @@ void Plugins::Save()
 	out.BeginChild();
 	{
 		for(const auto &it : plugins)
-			out.Write(it.first, it.second.currentState);
+			if(it.second.IsValid())
+				out.Write(it.first, it.second.currentState);
 	}
 	out.EndChild();
 }

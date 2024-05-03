@@ -73,7 +73,7 @@ outfit "Nanite Enhancer"
 	"hull repair rate" 0.25
 	"hull energy" 0.75
 	"nanite upgrades" -2
-	description "The Nanite Enhancer is a component that can be installed into a Bunrodean nanite fabricator in order to modify its effectiveness. Enhancers increase the strength of the hull repair of an fabricator, but at the cost of reduced energy efficiency."
+	description "The Nanite Enhancer is a component that can be installed into a Bunrodean nanite fabricator in order to modify its effectiveness. Enhancers increase the strength of the hull repair of a fabricator, but at the cost of reduced energy efficiency."
 
 outfit "Nanite Limiter"
 	category "Systems"
@@ -210,10 +210,11 @@ outfit "Dark Reactor"
 
 outfit "Lasher Pistol"
 	category "Hand to Hand"
-	cost 230000
+	cost 47000
 	thumbnail "outfit/lasher pistol"
-	"capture attack" 2.6
-	"capture defense" 1.4
+	"capture attack" 1.1
+	"capture defense" 2.8
+	"unplunderable" 1
 	description "During their wars with the Korath, it was not uncommon for Bunrodean vessels to be boarded by Korath raiders looking for technology and supplies to steal. As such, effective small arms weapons became an essential part of every Bunrodean crew that may need to fight off any boarding parties."
 
 
@@ -225,7 +226,7 @@ outfit "Chiisana Rift Thruster"
 	"mass" 11
 	"outfit space" -11
 	"engine capacity" -11
-	"thrust" 6.25
+	"thrust" 7.775
 	"thrusting energy" 1.15
 	"thrusting heat" 0.65
 	"flare sprite" "effect/bunrodea flare/large"
@@ -242,7 +243,7 @@ outfit "Nami Rift Thruster"
 	"mass" 19
 	"outfit space" -19
 	"engine capacity" -19
-	"thrust" 12.1
+	"thrust" 14.09
 	"thrusting energy" 2.3
 	"thrusting heat" 1.3
 	"flare sprite" "effect/bunrodea flare/large"
@@ -259,7 +260,7 @@ outfit "Ookii Rift Thruster"
 	"mass" 32
 	"outfit space" -32
 	"engine capacity" -32
-	"thrust" 22.9
+	"thrust" 24.97
 	"thrusting energy" 4.4
 	"thrusting heat" 2.5
 	"flare sprite" "effect/bunrodea flare/large"

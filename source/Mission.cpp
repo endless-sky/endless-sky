@@ -103,6 +103,8 @@ namespace {
 				return "on waypoint";
 			case Mission::Trigger::DAILY:
 				return "on daily";
+			case Mission::Trigger::DISABLED:
+				return "on disabled";
 			default:
 				return "unknown trigger";
 		}
@@ -285,7 +287,7 @@ void Mission::Load(const DataNode &node)
 		else if(child.Token(0) == "substitutions" && child.HasChildren())
 			substitutions.Load(child);
 		else if(child.Token(0) == "npc")
-			npcs.emplace_back(child, name);
+			npcs.emplace_back(child);
 		else if(child.Token(0) == "on" && child.Size() >= 2 && child.Token(1) == "enter")
 		{
 			// "on enter" nodes may either name a specific system or use a LocationFilter
@@ -293,10 +295,10 @@ void Mission::Load(const DataNode &node)
 			if(child.Size() >= 3)
 			{
 				MissionAction &action = onEnter[GameData::Systems().Get(child.Token(2))];
-				action.Load(child, name);
+				action.Load(child);
 			}
 			else
-				genericOnEnter.emplace_back(child, name);
+				genericOnEnter.emplace_back(child);
 		}
 		else if(child.Token(0) == "on" && child.Size() >= 2)
 		{
@@ -312,10 +314,11 @@ void Mission::Load(const DataNode &node)
 				{"stopover", STOPOVER},
 				{"waypoint", WAYPOINT},
 				{"daily", DAILY},
+				{"disabled", DISABLED},
 			};
 			auto it = trigger.find(child.Token(1));
 			if(it != trigger.end())
-				actions[it->second].Load(child, name);
+				actions[it->second].Load(child);
 			else
 				child.PrintTrace("Skipping unrecognized attribute:");
 		}
@@ -366,9 +369,13 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("autosave");
 		if(location == LANDING)
 			out.Write("landing");
-		if(location == ASSISTING)
+		else if(location == SHIPYARD)
+			out.Write("shipyard");
+		else if(location == OUTFITTER)
+			out.Write("outfitter");
+		else if(location == ASSISTING)
 			out.Write("assisting");
-		if(location == BOARDING)
+		else if(location == BOARDING)
 		{
 			out.Write("boarding");
 			if(overridesCapture)
@@ -380,7 +387,7 @@ void Mission::Save(DataWriter &out, const string &tag) const
 				out.EndChild();
 			}
 		}
-		if(location == JOB)
+		else if(location == JOB)
 			out.Write("job");
 		if(!clearance.empty())
 		{
@@ -1077,11 +1084,32 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	// mission dialog or conversation. Invisible missions don't show this
 	// marker.
 	if(it != actions.end())
-		it->second.Do(player, ui, (destination && isVisible) ? destination->GetSystem() : nullptr, boardingShip, IsUnique());
+		it->second.Do(player, ui, this, (destination && isVisible) ? destination->GetSystem() : nullptr,
+			boardingShip, IsUnique());
 	else if(trigger == OFFER && location != JOB)
 		player.MissionCallback(Conversation::ACCEPT);
 
 	return true;
+}
+
+
+
+bool Mission::RequiresGiftedShip(const string &shipId) const
+{
+	// Check if any uncompleted actions required for the mission needs this ship.
+	set<Trigger> requiredActions;
+	{
+		requiredActions.insert(Trigger::COMPLETE);
+		if(!stopovers.empty())
+			requiredActions.insert(Trigger::STOPOVER);
+		if(!waypoints.empty())
+			requiredActions.insert(Trigger::WAYPOINT);
+	}
+	for(const auto &it : actions)
+		if(requiredActions.count(it.first) && it.second.RequiresGiftedShip(shipId))
+			return true;
+
+	return false;
 }
 
 
@@ -1153,6 +1181,9 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 		}
 	}
 
+	if((event.Type() & ShipEvent::DISABLE) && event.Target().get() == player.Flagship())
+		Do(DISABLED, player, ui);
+
 	// Jump events are only created for the player's flagship.
 	if((event.Type() & ShipEvent::JUMP) && event.Actor())
 	{
@@ -1171,7 +1202,7 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 	}
 
 	for(NPC &npc : npcs)
-		npc.Do(event, player, ui, isVisible);
+		npc.Do(event, player, ui, this, isVisible);
 }
 
 
@@ -1321,6 +1352,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.illegalCargoMessage = Phrase::ExpandPhrases(illegalCargoMessage);
 	result.failIfDiscovered = failIfDiscovered;
 
+	result.distanceCalcSettings = distanceCalcSettings;
 	int jumps = result.CalculateJumps(sourceSystem);
 
 	int64_t payload = static_cast<int64_t>(result.cargoSize) + 10 * static_cast<int64_t>(result.passengers);
@@ -1530,7 +1562,7 @@ bool Mission::Enter(const System *system, PlayerInfo &player, UI *ui)
 	const auto originalSize = didEnter.size();
 	if(eit != onEnter.end() && !didEnter.count(&eit->second) && eit->second.CanBeDone(player))
 	{
-		eit->second.Do(player, ui);
+		eit->second.Do(player, ui, this);
 		didEnter.insert(&eit->second);
 	}
 	// If no specific `on enter` was performed, try matching to a generic "on enter,"
@@ -1539,7 +1571,7 @@ bool Mission::Enter(const System *system, PlayerInfo &player, UI *ui)
 		for(MissionAction &action : genericOnEnter)
 			if(!didEnter.count(&action) && action.CanBeDone(player))
 			{
-				action.Do(player, ui);
+				action.Do(player, ui, this);
 				didEnter.insert(&action);
 				break;
 			}

@@ -49,12 +49,12 @@ public:
 	void Init(const std::vector<std::shared_ptr<Ship>> &fleet, int day);
 
 	// Add a ship, and all its outfits, to the depreciation record.
-	void Buy(const Ship &ship, int day, Depreciation *source = nullptr);
+	void Buy(const Ship &ship, int day, Depreciation *source = nullptr, bool chassisOnly = false);
 	// Add a single outfit to the depreciation record.
 	void Buy(const Outfit *outfit, int day, Depreciation *source = nullptr);
 
 	// Get the value of an entire fleet.
-	int64_t Value(const std::vector<std::shared_ptr<Ship>> &fleet, int day) const;
+	int64_t Value(const std::vector<std::shared_ptr<Ship>> &fleet, int day, bool chassisOnly = false) const;
 	// Get the value of a ship, along with all its outfits.
 	int64_t Value(const Ship &ship, int day) const;
 	// Get the value just of the chassis of a ship.
@@ -66,7 +66,7 @@ public:
 private:
 	// "Sell" an item, removing it from the given record and returning the base
 	// day for its depreciation.
-	int Sell(std::map<int, int> &record);
+	int Sell(std::map<int, int> &record) const;
 	// Calculate depreciation:
 	double Depreciate(const std::map<int, int> &record, int day, int count = 1) const;
 	double Depreciate(int age) const;

@@ -40,7 +40,7 @@ public:
 	// Clear this TextReplacement's substitutions and insert the substitutions of other.
 	void Revert(TextReplacements &other);
 
-	// Add new text replacements to the given map after evaltuating all possible replacements.
+	// Add new text replacements to the given map after evaluating all possible replacements.
 	// This TextReplacements will overwrite the value of any existing keys in the given map
 	// if the map and this TextReplacements share a key.
 	void Substitutions(std::map<std::string, std::string> &subs, const ConditionsStore &conditions) const;
