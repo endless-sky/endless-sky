@@ -184,7 +184,7 @@ void FormationPattern::Load(const DataNode &node)
 			}
 		else if(child.Token(0) == "rotatable" && child.Size() >= 2)
 			rotatable = child.Value(1);
-		else if((child.Token(0) == "point" || child.Token(0) == "position") && child.Size() >= 3)
+		else if(child.Token(0) == "position" && child.Size() >= 3)
 		{
 			lines.emplace_back();
 			Line &line = lines.back();
