@@ -6975,7 +6975,7 @@ mission "Timothy Radrickson 1: Stowaway"
 mission "Timothy Radrickson 1a: Accepted"
 	landing
 	name "Stowaway to <planet>"
-	description "You found Timothy on your ship stowed away in a food crate, on the run from someone. He requests you to bring him to <destination>, where he can find work."
+	description "You have found Timothy on your ship stowed away in a foodstuff crate, on the run from somebody. He requests you to bring him to <destination>, where he can find work."
 	source
 		government "Republic" "Free Worlds" "Independent" "Pirate" "Neutral"
 	destination "Rand"
