@@ -43,7 +43,7 @@ void CategoryList::Load(const DataNode &node)
 			currentPrecedence = child.Value(1);
 		Category cat(child.Token(0), currentPrecedence++);
 
-		// If a given category name already exists, its prescedence will be updated.
+		// If a given category name already exists, its precedence will be updated.
 		auto it = find_if(list.begin(), list.end(),
 			[&cat](const Category &c) noexcept -> bool { return cat.name == c.name; });
 		if(it != list.end())

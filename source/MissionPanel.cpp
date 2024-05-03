@@ -29,7 +29,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
-#include "text/layout.hpp"
 #include "LineShader.h"
 #include "Mission.h"
 #include "Planet.h"
@@ -266,7 +265,6 @@ void MissionPanel::Draw()
 
 	// Now that the mission lists and map elements are drawn, draw the top-most UI elements.
 	DrawKey();
-	DrawSelectedSystem();
 	DrawMissionInfo();
 	DrawTooltips();
 	FinishDrawing("is missions");
@@ -277,7 +275,12 @@ void MissionPanel::Draw()
 // Only override the ones you need; the default action is to return false.
 bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	if(key == 'a' && CanAccept())
+	if(command.Has(Command::HELP))
+	{
+		DoHelp("jobs", true);
+		DoHelp("map advanced", true);
+	}
+	else if(key == 'a' && CanAccept())
 	{
 		Accept((mod & KMOD_CTRL));
 		return true;
@@ -588,7 +591,7 @@ bool MissionPanel::Hover(int x, int y)
 	if(oldSort != hoverSort)
 		tooltip.clear();
 
-	return dragSide ? true : MapPanel::Hover(x, y);
+	return dragSide || MapPanel::Hover(x, y);
 }
 
 
@@ -667,39 +670,6 @@ void MissionPanel::DrawKey() const
 		font.Draw(LABEL[i], pos + textOff, i == selected ? bright : dim);
 		pos.Y() += 20.;
 	}
-}
-
-
-
-// Fill in the top-middle header bar that names the selected system, and indicates its distance.
-void MissionPanel::DrawSelectedSystem() const
-{
-	const Sprite *sprite = SpriteSet::Get("ui/selected system");
-	SpriteShader::Draw(sprite, Point(0., Screen::Top() + .5f * sprite->Height()));
-
-	string text;
-	if(!player.KnowsName(*selectedSystem))
-		text = "Selected system: unexplored system";
-	else
-		text = "Selected system: " + selectedSystem->Name();
-
-	int jumps = 0;
-	const vector<const System *> &plan = player.TravelPlan();
-	auto it = find(plan.begin(), plan.end(), selectedSystem);
-	if(it != plan.end())
-		jumps = plan.end() - it;
-	else if(distance.HasRoute(selectedSystem))
-		jumps = distance.Days(selectedSystem);
-
-	if(jumps == 1)
-		text += " (1 jump away)";
-	else if(jumps > 0)
-		text += " (" + to_string(jumps) + " jumps away)";
-
-	const Font &font = FontSet::Get(14);
-	Point pos(-175., Screen::Top() + .5 * (30. - font.Height()));
-	font.Draw({text, {350, Alignment::CENTER, Truncate::MIDDLE}},
-		pos, *GameData::Colors().Get("bright"));
 }
 
 

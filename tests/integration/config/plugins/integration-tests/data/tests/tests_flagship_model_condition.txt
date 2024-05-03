@@ -23,11 +23,15 @@ test "Clear flagship model condition"
 		assert
 			"flagship model: Finch" == 1
 		# Landing clears the flagship's conditions.
+		navigate
+			"travel destination" "New Boston"
 		call "Land"
 		call "Sell first ship"
 		call "Depart"
 		assert
 			"flagship model: Finch" == 1
+		navigate
+			"travel destination" "New Boston"
 		call "Land"
 		call "Sell first ship"
 		call "Depart"
@@ -35,6 +39,8 @@ test "Clear flagship model condition"
 			and
 				"flagship model: Bactrian" == 1
 				"flagship model: Finch" == 0
+		navigate
+			"travel destination" "New Boston"
 		call "Land"
 		call "Sell first ship"
 		call "Depart"

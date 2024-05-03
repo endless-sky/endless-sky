@@ -45,7 +45,7 @@ ShipInfoDisplay::ShipInfoDisplay(const Ship &ship, const PlayerInfo &player, boo
 
 
 // Call this every time the ship changes.
-// Panels that have scrolling abilities are not limited by space, allowing more detailled attributes.
+// Panels that have scrolling abilities are not limited by space, allowing more detailed attributes.
 void ShipInfoDisplay::Update(const Ship &ship, const PlayerInfo &player, bool descriptionCollapsed, bool scrollingPanel)
 {
 	UpdateDescription(ship.Description(), ship.Attributes().Licenses(), true);
@@ -143,7 +143,17 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 
 	attributeHeaderLabels.push_back("model:");
 	attributeHeaderValues.push_back(ship.DisplayModelName());
+
 	attributesHeight = 20;
+
+	// Only show the ship category on scrolling panels with no risk of overflow.
+	if(scrollingPanel)
+	{
+		attributeHeaderLabels.push_back("category:");
+		const string &category = ship.BaseAttributes().Category();
+		attributeHeaderValues.push_back(category.empty() ? "???" : category);
+		attributesHeight += 20;
+	}
 
 	attributeLabels.clear();
 	attributeValues.clear();
@@ -183,7 +193,8 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	attributeLabels.push_back(string());
 	attributeValues.push_back(string());
 	attributesHeight += 10;
-	double shieldRegen = attributes.Get("shield generation")
+	double shieldRegen = (attributes.Get("shield generation")
+		+ attributes.Get("delayed shield generation"))
 		* (1. + attributes.Get("shield generation multiplier"));
 	bool hasShieldRegen = shieldRegen > 0.;
 	if(hasShieldRegen)
@@ -198,7 +209,8 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 		attributeValues.push_back(Format::Number(ship.MaxShields()));
 	}
 	attributesHeight += 20;
-	double hullRepair = attributes.Get("hull repair rate")
+	double hullRepair = (attributes.Get("hull repair rate")
+		+ attributes.Get("delayed hull repair rate"))
 		* (1. + attributes.Get("hull repair multiplier"));
 	bool hasHullRepair = hullRepair > 0.;
 	if(hasHullRepair)
@@ -251,25 +263,27 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	attributeValues.push_back(Format::Number(60. * forwardThrust / ship.Drag()));
 	attributesHeight += 20;
 
-	// Movement stats are influenced by inertia redeuction.
+	// Movement stats are influenced by inertia reduction.
 	double reduction = 1. + attributes.Get("inertia reduction");
 	emptyMass /= reduction;
 	currentMass /= reduction;
 	fullMass /= reduction;
 	attributeLabels.push_back("acceleration:");
+	double baseAccel = 3600. * forwardThrust * (1. + attributes.Get("acceleration multiplier"));
 	if(!isGeneric)
-		attributeValues.push_back(Format::Number(3600. * forwardThrust / currentMass));
+		attributeValues.push_back(Format::Number(baseAccel / currentMass));
 	else
-		attributeValues.push_back(Format::Number(3600. * forwardThrust / fullMass)
-			+ " - " + Format::Number(3600. * forwardThrust / emptyMass));
+		attributeValues.push_back(Format::Number(baseAccel / fullMass)
+			+ " - " + Format::Number(baseAccel / emptyMass));
 	attributesHeight += 20;
 
 	attributeLabels.push_back("turning:");
+	double baseTurn = 60. * attributes.Get("turn") * (1. + attributes.Get("turn multiplier"));
 	if(!isGeneric)
-		attributeValues.push_back(Format::Number(60. * attributes.Get("turn") / currentMass));
+		attributeValues.push_back(Format::Number(baseTurn / currentMass));
 	else
-		attributeValues.push_back(Format::Number(60. * attributes.Get("turn") / fullMass)
-			+ " - " + Format::Number(60. * attributes.Get("turn") / emptyMass));
+		attributeValues.push_back(Format::Number(baseTurn / fullMass)
+			+ " - " + Format::Number(baseTurn / emptyMass));
 	attributesHeight += 20;
 
 	// Find out how much outfit, engine, and weapon space the chassis has.
@@ -363,16 +377,20 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 
 	// Add energy and heat when doing shield and hull repair to the table.
 	attributesHeight += 20;
-	double shieldEnergy = (hasShieldRegen) ? attributes.Get("shield energy")
+	double shieldEnergy = (hasShieldRegen) ? (attributes.Get("shield energy")
+		+ attributes.Get("delayed shield energy"))
 		* (1. + attributes.Get("shield energy multiplier")) : 0.;
-	double hullEnergy = (hasHullRepair) ? attributes.Get("hull energy")
+	double hullEnergy = (hasHullRepair) ? (attributes.Get("hull energy")
+		+ attributes.Get("delayed hull energy"))
 		* (1. + attributes.Get("hull energy multiplier")) : 0.;
 	tableLabels.push_back((shieldEnergy && hullEnergy) ? "shields / hull:" :
 		hullEnergy ? "repairing hull:" : "charging shields:");
 	energyTable.push_back(Format::Number(-60. * (shieldEnergy + hullEnergy)));
-	double shieldHeat = (hasShieldRegen) ? attributes.Get("shield heat")
+	double shieldHeat = (hasShieldRegen) ? (attributes.Get("shield heat")
+		+ attributes.Get("delayed shield heat"))
 		* (1. + attributes.Get("shield heat multiplier")) : 0.;
-	double hullHeat = (hasHullRepair) ? attributes.Get("hull heat")
+	double hullHeat = (hasHullRepair) ? (attributes.Get("hull heat")
+		+ attributes.Get("delayed hull heat"))
 		* (1. + attributes.Get("hull heat multiplier")) : 0.;
 	heatTable.push_back(Format::Number(60. * (shieldHeat + hullHeat)));
 
@@ -457,5 +475,5 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship, const PlayerInfo &player, 
 	saleHeight += 20;
 	saleLabels.push_back("  + outfits:");
 	saleValues.push_back(Format::Credits(totalCost - chassisCost));
-	saleHeight += 5;
+	saleHeight += 20;
 }

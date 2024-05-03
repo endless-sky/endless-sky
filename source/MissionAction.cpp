@@ -233,7 +233,7 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 			continue;
 
 		// Outfits may always be taken from the flagship. If landed, they may also be taken from
-		// the collective cargohold of any in-system, non-disabled escorts (player.Cargo()). If
+		// the collective cargo hold of any in-system, non-disabled escorts (player.Cargo()). If
 		// boarding, consider only the flagship's cargo hold. If in-flight, show mission status
 		// by checking the cargo holds of ships that would contribute to player.Cargo if landed.
 		int available = flagship ? flagship->OutfitCount(it.first) : 0;

@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Angle.h"
 #include "Point.h"
 
+#include <cstdint>
 #include <memory>
 #include <vector>
 
@@ -67,10 +68,12 @@ public:
 	// Move the projectile. It may create effects or submunitions.
 	void Move(std::vector<Visual> &visuals, std::vector<Projectile> &projectiles);
 	// This projectile hit something. Create the explosion, if any. This also
-	// marks the projectile as needing deletion.
+	// marks the projectile as needing deletion if it has run out of penetrations.
 	void Explode(std::vector<Visual> &visuals, double intersection, Point hitVelocity = Point());
 	// Get the amount of clipping that should be applied when drawing this projectile.
 	double Clip() const;
+	// Get whether the lifetime on this projectile has run out.
+	bool IsDead() const;
 	// This projectile was killed, e.g. by an anti-missile system.
 	void Kill();
 
@@ -80,7 +83,7 @@ public:
 	// Get information on the weapon that fired this projectile.
 	const Weapon &GetWeapon() const;
 	// Get information on how this projectile impacted a ship.
-	ImpactInfo GetInfo() const;
+	ImpactInfo GetInfo(double intersection) const;
 
 	// Find out which ship or government this projectile is targeting. Note:
 	// this pointer is not guaranteed to be dereferenceable, so only use it
@@ -95,6 +98,11 @@ public:
 
 	// Get the distance that this projectile has traveled.
 	double DistanceTraveled() const;
+	// Get the number of objects this projectile can still collide with.
+	uint16_t HitsRemaining() const;
+	// Get whether this projectile should explode the next time collision
+	// detection is run.
+	bool ShouldExplode() const;
 
 
 private:
@@ -106,6 +114,7 @@ private:
 
 	std::weak_ptr<Ship> targetShip;
 	const Ship *cachedTarget = nullptr;
+	bool targetDisabled = false;
 	const Government *targetGovernment = nullptr;
 
 	// The change in velocity of all stages of this projectile
@@ -113,7 +122,8 @@ private:
 	Point dV;
 	double clip = 1.;
 	int lifetime = 0;
-	double distanceTraveled = 0;
+	double distanceTraveled = 0.;
+	uint16_t hitsRemaining = 1U;
 	bool hasLock = true;
 };
 
