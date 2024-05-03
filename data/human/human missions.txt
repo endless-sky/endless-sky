@@ -7680,7 +7680,7 @@ mission "Tavish and Kormak 5"
 					`	"This trash doesn't deserve to live. Kill him."`
 				`	Kormak doesn't even hesitate and stomps down on the back of the man's neck. Tavish's mouth opens in horror but nothing comes out.`
 				`	"Better without him." Kormak says gruffly, and then takes Tavish by the arm to help him toward the exit.`
-				`	The three of you leave together and head back to the spaceport where you finally pick up the scientific research equipment for the New India expedition.`
+				`	The three of you leave together and head back to the spaceport. Once there you finally pick up the scientific research equipment for the New India expedition.`
 					accept
 
 
@@ -7691,12 +7691,12 @@ mission "Tavish and Kormak 5"
 				`	Starla gasps, but it's unclear if she's horrified or impressed. She then presses something small in Kormak's hand.`
 				`	"If you're ever on Chiron. Give me a call." She then turns and hurries away.`
 				`	The up until now silent Tavish suddenly bursts out into laughter. Long uproarious belly laughter.`
-				`	The three of you leave together and Tavish laughes the entire way back to the spaceport where you finally pick up the scientific research equipment for the New India expedition.`
+				`	The three of you leave together and Tavish laughes the entire way back to the spaceport. Once there you finally pick up the scientific research equipment for the New India expedition.`
 					accept
 	on complete
 		event "Tavish and Kormak Expedition" 60
 		conversation 
-			`	You arrive on New India, fucking finally.`
+			`	`
 
 event "Tavish and Kormak Expedition"
 
