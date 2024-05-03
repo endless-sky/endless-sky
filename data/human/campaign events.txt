@@ -1513,7 +1513,7 @@ event "fw southern expansion"
 event "Deep memorial expansion 1"
 	planet "Deep"
 		spaceport `The spaceport is built on a large island, a now-extinct volcano with an elevation of several kilometers at its center. Most of the large-scale fishing here is done by a single company, Poseidon Industries, which also built and maintains the spaceport. Steep winding roads and sturdy concrete homes and warehouses line the mountain slopes, and below you in the harbor several massive trawling vessels are moored. On the outskirts of the spaceport are the ramshackle houses and open-air marketplace used by the smaller, independent fishing families.`
-		spaceport `	Positioned north of the spaceport is the Free Worlds War Memorial. The site has progressed from its original scale, with an outer ring being erected to hold fifty additional walls of names.`
+		spaceport `	Positioned north of the spaceport is the Free Worlds War Memorial, a series of granite walls engraved with the names of the fallen. The site has progressed from its original scale, with an outer ring being erected to hold fifty additional walls of names.`
 
 
 
