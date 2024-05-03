@@ -1963,6 +1963,7 @@ mission "Terraforming 1"
 	to offer
 		"reputation: Republic" >= 0
 		or
+			not "chosen sides"
 			has "main plot completed"
 			and
 				not "event: pug invasion"
@@ -2195,6 +2196,7 @@ mission "Terraforming 6"
 		"reputation: Republic" >= 0
 		has "event: terraforming timer"
 		or
+			not "chosen sides"
 			has "main plot completed"
 			and
 				not "event: pug invasion"
