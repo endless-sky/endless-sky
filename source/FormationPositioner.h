@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef FORMATION_POSITIONER_H_
@@ -32,7 +35,6 @@ public:
 	// Initializer based on the formation pattern to follow.
 	FormationPositioner(const Body *formationLead, const FormationPattern *pattern);
 
-	// TODO: Should we replace the Start() and NextPosition() by Add(Ship*), Remove(Ship*) and GetPosition(Ship*)? (and move some calculations now done every frame to the Add function?)
 	// Start/reset/initialize for a (new) round of formation position calculations
 	// for a formation around the ship given as parameter.
 	void Step();

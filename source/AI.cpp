@@ -399,10 +399,10 @@ void AI::IssueFormationChange(const PlayerInfo &player)
 			++it;
 		toSet = (it == formationPatterns.end() ? nullptr : &(it->second));
 	}
-	//else if (multiplePatternsSet) {
+	// else if (multiplePatternsSet) {
 	// If more than one formation was found on the ships, then we set the pattern it to the first one found.
 	// No code is needed here for this option, since all variables are already set to just apply the change below.
-	//}
+	// }
 	
 	// Now set the pattern on the selected ships.
 	for(Ship *ship : targetShips)
@@ -410,9 +410,11 @@ void AI::IssueFormationChange(const PlayerInfo &player)
 			ship->SetFormationPattern(toSet);
 
 	if(toSet)
-		Messages::Add(to_string(targetShips.size()) + " ships are now flying in " + toSet->Name() + " formation.", Messages::Importance::Low);
+		Messages::Add(to_string(targetShips.size()) + " ships are now flying in " + toSet->Name() + " formation.",
+			Messages::Importance::Low);
 	else
-		Messages::Add(to_string(targetShips.size()) + " ships are no longer flying in formation.", Messages::Importance::Low);
+		Messages::Add(to_string(targetShips.size()) + " ships are no longer flying in formation.",
+			Messages::Importance::Low);
 }
 
 
@@ -1748,7 +1750,8 @@ void AI::MoveInFormation(Ship &ship, Command &command)
 	// Aggressively try to match the position and velocity for the formation position.
 	const double PositionDeadband = ship.Radius() * 1.25;
 	constexpr double VELOCITY_DEADBAND = 0.1;
-	bool inPosition = MoveTo(ship, command, it->second.Position(&ship), formationLead->Velocity(), PositionDeadband, VELOCITY_DEADBAND);
+	bool inPosition = MoveTo(ship, command, it->second.Position(&ship), formationLead->Velocity(), PositionDeadband,
+		VELOCITY_DEADBAND);
 
 	// If we match the position and velocity, then also match the facing angle.
 	if(inPosition)
@@ -1980,7 +1983,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 
 
 
-// TODO: This function should be const, but formation flying needed write access to the FormationPositioner. (Since ships don't fly in formations alone)
+// TODO: Function should be const, but formation flying needed write access to the FormationPositioner.
 void AI::MoveEscort(Ship &ship, Command &command)
 {
 	const Ship &parent = *ship.GetParent();

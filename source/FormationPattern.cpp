@@ -260,7 +260,8 @@ bool FormationPattern::IsCentered(unsigned int lineNr) const
 
 
 // Get a formation position based on ring, line(or arc)-number and position on the line.
-Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigned int repeatNr, unsigned int linePosition, double diameterToPx, double widthToPx, double heightToPx) const
+Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigned int repeatNr,
+	unsigned int linePosition, double diameterToPx, double widthToPx, double heightToPx) const
 {
 	// First check if the inputs result in a valid line or arc position.
 	if(lineNr >= lines.size())
