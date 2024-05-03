@@ -987,7 +987,7 @@ outfit "Firelight Activated"
 		"lifetime" 140
 		"acceleration" 1.6
 		"drag" .1
-		"turn" 2
+		"turn" 1.7
 		"homing" 4
 		"infrared tracking" .5
 		"optical tracking" .7
