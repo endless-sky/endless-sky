@@ -6955,7 +6955,7 @@ mission "Timothy Radrickson 1: Stowaway"
 				fail
 				set "timothy radrickson: port"
 			`	Tears squeeze out the man's sad eyes. "Thank you", he whispers, "thank you."`
-			`	You get the man cleaned up and settled and head back to your station.`
+			`	You get the man cleaned up and settled, and head then go back to running your ship.`
 
 			label somewhere
 			`	Timothy looks at you, his eyes wide and full of tears. "Rand", he whispers. "Rand. I can make good money there. I can turn my life around. B-b-but I'd be okay with anywhere. You d-d-don't have to.."`
