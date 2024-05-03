@@ -6932,7 +6932,7 @@ mission "Timothy Radrickson 1: Stowaway"
 			`	As the crate tumbles out into lifeless space your onboard sensors quickly note the anomalous heat signature disappear. Whatever was in that crate is no longer your problem, and probably won't be anyone else's either.`
 
 			label crate
-			`	You pry open the crate. It should be full of meals for you and your crew, but after removing the lid you discover a dirty and disheveled man.`
+			`	You pry open the crate. It should be full of meals for you and your crew, but after removing the lid you discover a dirty disheveled man.`
 			`	Before you have a chance to say anything the man looks up at you with narrowed, pained eyes, and whimpers. "P-p-please. I just had to get away. I-I-It wasn't safe. I had to get away." He weakly holds up his hands.`
 			choice
 				`	"Who are you?"`
