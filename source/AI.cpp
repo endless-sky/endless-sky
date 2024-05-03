@@ -1980,6 +1980,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 
 
 
+// TODO: This function should be const, but formation flying needed write access to the FormationPositioner. (Since ships don't fly in formations alone)
 void AI::MoveEscort(Ship &ship, Command &command)
 {
 	const Ship &parent = *ship.GetParent();
