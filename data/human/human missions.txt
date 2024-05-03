@@ -7179,7 +7179,7 @@ mission "Timothy Radrickson 3b: Pirate Base"
 				`	(Open fire on the Pirate Bay Defenses.)`
 					goto fire
 				`	(Attempt to use diplomacy.)`
-			`	You hail the pirates imploring them to consider a diplomatic solution. There only response is to launch their entire fleet after you.`
+			`	You hail the pirates imploring them to consider a diplomatic solution. Their only response is to launch their entire fleet after you.`
 			`	Your forced back into space to fight them.`
 
 			label fire #Bene - I don't know how to connect the two different options to two different fleet spawns 
