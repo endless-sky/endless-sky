@@ -87,7 +87,7 @@ Point FormationPositioner::Position(const Ship *ship)
 		// ensure that this new ship also gets a valid position).
 		positionsTimer = 0;
 	}
-	
+
 	return formationLead->Position() + direction.Rotate(relPos);
 }
 

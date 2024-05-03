@@ -403,7 +403,7 @@ void AI::IssueFormationChange(const PlayerInfo &player)
 	// If more than one formation was found on the ships, then we set the pattern it to the first one found.
 	// No code is needed here for this option, since all variables are already set to just apply the change below.
 	// }
-	
+
 	// Now set the pattern on the selected ships.
 	for(Ship *ship : targetShips)
 		if(ship->GetFormationPattern() != toSet)
