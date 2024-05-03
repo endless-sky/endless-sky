@@ -107,16 +107,14 @@ SCENARIO( "Loading and using of a formation pattern", "[formationPattern][Positi
 		double centerBodyRadius = 0.;
 		WHEN( "positions are requested") {
 			auto it = emptyFormation.begin(diameterToPx, widthToPx, heightToPx, centerBodyRadius);
-			THEN ( "all returned positions are near Point(0,0) and on Ring 0" ) {
-				CHECK( Near(*it, Point(0, 0)) );
-				CHECK( it.Ring() == 0 );
-				++it;
+			THEN ( "all returned positions are near Point(0,0)" ) {
 				CHECK( Near(*it, Point(0, 0)) );
 				++it;
 				CHECK( Near(*it, Point(0, 0)) );
 				++it;
 				CHECK( Near(*it, Point(0, 0)) );
-				CHECK( it.Ring() == 0 );
+				++it;
+				CHECK( Near(*it, Point(0, 0)) );
 			}
 		}
 	}
@@ -131,16 +129,14 @@ SCENARIO( "Loading and using of a formation pattern", "[formationPattern][Positi
 		double centerBodyRadius = 0.;
 		WHEN( "positions are requested") {
 			auto it = emptyFormation.begin(diameterToPx, widthToPx, heightToPx, centerBodyRadius);
-			THEN ( "all returned positions are near Point(0,0) and on Ring 0" ) {
-				CHECK( Near(*it, Point(0, 0)) );
-				CHECK( it.Ring() == 0 );
-				++it;
+			THEN ( "all returned positions are near Point(0,0)" ) {
 				CHECK( Near(*it, Point(0, 0)) );
 				++it;
 				CHECK( Near(*it, Point(0, 0)) );
 				++it;
 				CHECK( Near(*it, Point(0, 0)) );
-				CHECK( it.Ring() == 0 );
+				++it;
+				CHECK( Near(*it, Point(0, 0)) );
 			}
 		}
 	}
@@ -189,61 +185,43 @@ SCENARIO( "Loading and using of a formation pattern", "[formationPattern][Positi
 				// the given points are very close to what they should be.
 				auto it = delta_px.begin(diameterToPx, widthToPx, heightToPx, centerBodyRadius);
 				REQUIRE( Near(*it, Point(-100, 200)) );
-				CHECK( it.Ring() == 0 );
 				++it;
 				REQUIRE( Near(*it, Point(100, 200)) );
-				CHECK( it.Ring() == 0 );
 				++it;
 				REQUIRE( Near(*it, Point(200, 400)) );
-				CHECK( it.Ring() == 1 );
 				++it;
 				REQUIRE( Near(*it, Point(0, 400)) );
-				CHECK( it.Ring() == 1 );
 				++it;
 				REQUIRE( Near(*it, Point(-200, 400)) );
-				CHECK( it.Ring() == 1 );
 				++it;
 				REQUIRE( Near(*it, Point(-300, 600)) );
-				CHECK( it.Ring() == 2 );
 				++it;
 				REQUIRE( Near(*it, Point(-100, 600)) );
-				CHECK( it.Ring() == 2 );
 				++it;
 				REQUIRE( Near(*it, Point(100, 600)) );
-				CHECK( it.Ring() == 2 );
 				++it;
 				REQUIRE( Near(*it, Point(300, 600)) );
-				CHECK( it.Ring() == 2 );
 			}
 			THEN ( "the correct positions are calculated when nr of ships is known" ) {
 				unsigned int shipsToPlace = 9;
 				auto it = delta_px.begin(diameterToPx, widthToPx, heightToPx, centerBodyRadius, shipsToPlace);
 				REQUIRE( Near(*it, Point(-100, 200)) );
-				CHECK( it.Ring() == 0 );
 				++it;
 				REQUIRE( Near(*it, Point(100, 200)) );
-				CHECK( it.Ring() == 0 );
 				++it;
 				REQUIRE( Near(*it, Point(200, 400)) );
-				CHECK( it.Ring() == 1 );
 				++it;
 				REQUIRE( Near(*it, Point(0, 400)) );
-				CHECK( it.Ring() == 1 );
 				++it;
 				REQUIRE( Near(*it, Point(-200, 400)) );
-				CHECK( it.Ring() == 1 );
 				++it;
 				REQUIRE( Near(*it, Point(-300, 600)) );
-				CHECK( it.Ring() == 2 );
 				++it;
 				REQUIRE( Near(*it, Point(-100, 600)) );
-				CHECK( it.Ring() == 2 );
 				++it;
 				REQUIRE( Near(*it, Point(100, 600)) );
-				CHECK( it.Ring() == 2 );
 				++it;
 				REQUIRE( Near(*it, Point(300, 600)) );
-				CHECK( it.Ring() == 2 );
 			}
 		}
 	}

@@ -56,9 +56,6 @@ public:
 		const Point &operator*();
 		PositionIterator &operator++();
 
-		// Additional operators for status retrieval.
-		unsigned int Ring() const;
-
 	private:
 		void MoveToValidPosition();
 

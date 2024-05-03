@@ -60,13 +60,6 @@ FormationPattern::PositionIterator &FormationPattern::PositionIterator::operator
 
 
 
-unsigned int FormationPattern::PositionIterator::Ring() const
-{
-	return ring;
-}
-
-
-
 void FormationPattern::PositionIterator::MoveToValidPosition()
 {
 	// If we cannot calculate any new positions, then just return center point.
