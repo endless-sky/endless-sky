@@ -7061,7 +7061,7 @@ mission "Timothy Radrickson 3: Governor Notification"
 			`An indicator light is blinking on your main panel. There is a cached message waiting for you to play.`
 			choice
 				`	(Play the message.)`
-			`	A young woman in very professional clothing appears on the screen. "Captain <last>, I am pleased to inform you that the Governor of Rand requests your presence. Please come to Rand at your earliest convenience.`
+			`	A young woman in very professional clothing appears on the screen. "Captain <last>, I am pleased to inform you that the governor of Rand requests your presence. Please come to Rand at your earliest convenience.`
 
 	on complete
 		conversation
