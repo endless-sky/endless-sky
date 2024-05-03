@@ -7014,7 +7014,7 @@ mission "Timothy Radrickson 2: Interlude"
 		conversation
 			`Blinking at the light, Timothy shuffles toward the exit. "Th-th-thank you. Thank you so much," Timothy mumbles.`
 			`	Timothy opens the hatch and looks back at you. "You s-s-saved my life. I won't forget. I won't."`
-			`	With that Timothy exits your ship and begins his new life. You hope everything works out for the best.`
+			`	With that, Timothy exits your ship and begins his new life. You hope everything works out for the best.`
 
 
 mission "Timothy Radrickson 2: Good Interlude"
