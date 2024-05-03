@@ -39,7 +39,7 @@ void FormationPositioner::Step()
 	CalculateDirection();
 
 	// Calculate the set of positions for the participating ships. This calculation
-	// can be performed once very 20 game-steps, because the positions are
+	// can be performed once every 20 game-steps, because the positions are
 	// relatively stable and slower changes don't impact the formation a lot.
 	constexpr int POSITIONS_INTERVAL = 20;
 	if(positionsTimer == 0)
