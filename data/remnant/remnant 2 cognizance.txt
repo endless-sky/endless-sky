@@ -885,7 +885,7 @@ mission "Remnant: Cognizance Science Patch"
 	to offer
 		has scienceinterest
 	on offer
-		"science interest" = scienceinterest
+		"science interest" += scienceinterest
 		clear scienceinterest
 		fail
 
