@@ -6954,7 +6954,7 @@ mission "Timothy Radrickson 1: Stowaway"
 			action
 				fail
 				set "timothy radrickson: port"
-			`	Tears squeeze out the man's sad eyes. "Thank you," he whispers, "thank you."`
+			`	Tears squeeze out the man's sad eyes. "Thank you", he whispers, "thank you."`
 			`	You get the man cleaned up and settled and head back to your station.`
 
 			label somewhere
