@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Angle.h"
 #include "DataNode.h"
+
 #include <cmath>
 
 using namespace std;
@@ -29,13 +30,6 @@ FormationPattern::PositionIterator::PositionIterator(const FormationPattern &pat
 		diameterToPx(diameterToPx), widthToPx(widthToPx), heightToPx(heightToPx)
 {
 	MoveToValidPosition();
-}
-
-
-
-const Point *FormationPattern::PositionIterator::operator->()
-{
-	return &currentPoint;
 }
 
 
@@ -130,20 +124,6 @@ void FormationPattern::PositionIterator::MoveToValidPosition()
 	else
 		currentPoint = pattern.Position(ring, line, repeat, position,
 			diameterToPx, widthToPx, heightToPx);
-}
-
-
-
-const string &FormationPattern::Name() const
-{
-	return name;
-}
-
-
-
-void FormationPattern::SetName(const std::string &name)
-{
-	this->name = name;
 }
 
 
@@ -247,6 +227,19 @@ void FormationPattern::Load(const DataNode &node)
 			child.PrintTrace("Skipping unrecognized attribute:");
 }
 
+
+
+const string &FormationPattern::Name() const
+{
+	return name;
+}
+
+
+
+void FormationPattern::SetName(const std::string &name)
+{
+	this->name = name;
+}
 
 
 // Get an iterator to iterate over the formation positions in this pattern.

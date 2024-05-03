@@ -16,7 +16,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef FORMATION_PATTERN_H_
 #define FORMATION_PATTERN_H_
 
-#include "DataNode.h"
 #include "Point.h"
 
 #include <string>
@@ -52,7 +51,6 @@ public:
 
 		// A subset of the default input_iterator operations. Limiting to
 		// only a subset, since not all operations are used in-game.
-		const Point *operator->();
 		const Point &operator*();
 		PositionIterator &operator++();
 
@@ -91,19 +89,25 @@ public:
 		bool atEnd = false;
 	};
 
+	// Load formation from a datafile.
+	void Load(const DataNode &node);
+
 	// Returns the name of this pattern.
 	const std::string &Name() const;
 	void SetName(const std::string &name);
-
-	// Load formation from a datafile.
-	void Load(const DataNode &node);
 
 	// Get an iterator to iterate over the formation positions in this pattern.
 	PositionIterator begin(double diameterToPx, double widthToPx, double heightToPx,
 		double centerBodyRadius, unsigned int shipsToPlace = 0) const;
 
+	// Information about allowed rotating and mirroring that still results in the same formation.
+	int Rotatable() const;
+	bool FlippableY() const;
+	bool FlippableX() const;
+
+private:
 	// Retrieve properties like number of lines and arcs, number of repeat sections and number of positions.
-	// TODO: Should we hide those properties and just provide a position iterator instead?
+	// Private, because we hide those properties and just provide a position iterator instead.
 	unsigned int Lines() const;
 	// Number of repeat sections on the current line.
 	unsigned int Repeats(unsigned int lineNr) const;
@@ -115,12 +119,6 @@ public:
 	// Calculate a position based on the current ring, line/arc, repeat-section and position on the line-repeat-section.
 	Point Position(unsigned int ring, unsigned int lineNr, unsigned int repeatNr,
 		unsigned int lineRepeatPosition, double diameterToPx, double widthToPx, double heightToPx) const;
-
-	// Information about allowed rotating and mirroring that still results in the same formation.
-	int Rotatable() const;
-	bool FlippableY() const;
-	bool FlippableX() const;
-
 
 private:
 	class MultiAxisPoint {
