@@ -2191,6 +2191,7 @@ mission "Terraforming 6"
 	deadline
 	deadline 2
 	to offer
+		"reputation: Republic" >= 0
 		has "event: terraforming timer"
 		or
 			has "main plot completed"
