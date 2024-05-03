@@ -546,5 +546,5 @@ void UniverseObjects::Clear()
 	helpMessages.clear();
 	disabled.clear();
 
-	progress.store(0., memory_order_release);
+	progress = 0.;
 }
