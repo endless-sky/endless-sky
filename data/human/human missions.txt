@@ -6938,7 +6938,7 @@ mission "Timothy Radrickson 1: Stowaway"
 				`	"Who are you?"`
 				`	"Where's my food?"`
 
-			`	T-T-Timothy Radrickson. I-I tossed your food out to make room. I am sorry. I am so sorry. I have no money to pay you back. I just h-h-had to leave. They were after me. I owned money. I had nothing. Please. Any other Republic world will do. I just need to get away. I just need to start anew. I'll p-p-pay you back I swear. I swear. I will. I swear.`
+			`	"T-T-Timothy Radrickson. I-I tossed your food out to make room. I am sorry. I am so sorry. I have no money to pay you back. I just h-h-had to leave. They were after me. I owed money. I had nothing. Please. Any other Republic world will do. I just need to get away. I just need to start anew. I'll p-p-pay you back I swear. I swear. I will. I swear."`
 			choice
 				`	"Fine. I'll drop you off at the next port."`
 					goto port
