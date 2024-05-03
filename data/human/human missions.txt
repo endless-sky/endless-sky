@@ -6948,7 +6948,7 @@ mission "Timothy Radrickson 1: Stowaway"
 
 			action
 				fail
-			`	The feeble man screams as you drag him out of the crate and toward the airlock. He ineptly squirms as you shove him pass the bulkhead seals. He falls to his knees, shudders with terror, and his face leaks tears. You close the airlock, silencing his shrill screams, and hit the button to open it on the outside. The man is promptly sucked out into cold, cruel space and crystallizes before becoming this system's newest comet.`
+			`	The feeble man screams as you drag him out of the crate and toward the airlock. He ineptly squirms as you shove him pass the bulkhead seals. He falls to his knees, shudders with terror, and his face leaks tears. You close the airlock, silencing his shrill screams, and hit the button to open the outside airlock. The man is promptly sucked out into cold, cruel space and crystallizes before becoming this system's newest comet.`
 
 			label port
 			action
