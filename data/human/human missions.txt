@@ -7177,8 +7177,15 @@ mission "Timothy Radrickson 3b: Pirate Base"
 
 			choice
 				`	(Open fire on the Pirate Bay Defenses.)`
-				`	(Hail the Pirates.)`
-				`	(Attempt to get closer without firing.)`
+					goto fire
+				`	(Attempt to use diplomacy.)`
+			`	You hail the pirates imploring them to consider a diplomatic solution. There only response is to launch their entire fleet after you.`
+			`	Your forced back into space to fight them.`
+
+			label fire #Bene - I don't know how to connect the two different options to two different fleet spawns 
+			`	Your ship lets loose a withering barrage that destroys or disables multiple pirate vessels. You then pull up back into space as the surviving ships are sent after you.`
+
+
 	on visit
 		dialog `There are still marauder ships flying overhead. Take off and defeat them before finding the fleet.`
 
