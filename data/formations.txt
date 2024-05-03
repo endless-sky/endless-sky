@@ -15,13 +15,13 @@ formation "Delta (tailing)"
 	line
 		start diameter -1 2
 		end diameter 1 2
-		slots 2
+		positions 2
 		centered
 		repeat
 			start diameter -1 2
 			end diameter 1 2
 			alternating
-			slots 1
+			positions 1
 
 
 
@@ -38,7 +38,7 @@ formation "Delta (centered)"
 		end polar diameter 150 1
 		end polar 90 40
 		end polar 150 40
-		slots 3
+		positions 3
 		repeat
 			start polar diameter 30 1
 			start polar diameter 330 1
@@ -48,7 +48,7 @@ formation "Delta (centered)"
 			end polar diameter 150 1
 			end polar 90 40
 			end polar 150 40
-			slots 3
+			positions 3
 	line
 		start polar diameter 150 1
 		start polar 150 40
@@ -56,7 +56,7 @@ formation "Delta (centered)"
 		end polar diameter 270 1
 		end polar 210 40
 		end polar 270 40
-		slots 3
+		positions 3
 		repeat
 			start polar diameter 90 1
 			start polar diameter 150 1
@@ -66,7 +66,7 @@ formation "Delta (centered)"
 			end polar diameter 270 1
 			end polar 210 40
 			end polar 270 40
-			slots 3
+			positions 3
 	line
 		start polar diameter 270 1
 		start polar 270 40
@@ -74,7 +74,7 @@ formation "Delta (centered)"
 		end polar 30 40
 		end polar diameter 330 1
 		end polar 330 40
-		slots 3
+		positions 3
 		repeat
 			start polar diameter 210 1
 			start polar diameter 270 1
@@ -84,7 +84,7 @@ formation "Delta (centered)"
 			end polar diameter 30 1
 			end polar 330 40
 			end polar 30 40
-			slots 3
+			positions 3
 
 
 
@@ -96,7 +96,7 @@ formation "Nabla"
 		start polar 330 40
 		end polar diameter 30 1
 		end polar 30 40
-		slots 2
+		positions 2
 	line
 		start polar diameter 30 1
 		start polar diameter 90 1
@@ -104,7 +104,7 @@ formation "Nabla"
 		start polar 90 40
 		end polar diameter 150 1
 		end polar 150 40
-		slots 3
+		positions 3
 		repeat
 			start polar diameter 90 2
 			start polar 90 80
@@ -112,7 +112,7 @@ formation "Nabla"
 			end polar diameter 210 2
 			end polar 150 80
 			end polar 210 80
-			slots 4
+			positions 4
 	line
 		start polar diameter 150 1
 		start polar diameter 210 1
@@ -122,7 +122,7 @@ formation "Nabla"
 		end polar diameter 330 1
 		end polar 270 40
 		end polar 330 40
-		slots 4
+		positions 4
 		repeat
 			start polar diameter 150 2
 			start polar diameter 210 2
@@ -130,7 +130,7 @@ formation "Nabla"
 			start polar 210 80
 			end polar diameter 270 2
 			end polar 270 80
-			slots 4
+			positions 4
 	line
 		start polar diameter 330 1
 		start polar diameter 270 2
@@ -140,7 +140,7 @@ formation "Nabla"
 		end polar diameter 150 1
 		end polar 210 80
 		end polar 150 40
-		slots 5
+		positions 5
 		repeat
 			start polar diameter 270 2
 			start polar 270 80
@@ -148,7 +148,7 @@ formation "Nabla"
 			end polar diameter 210 2
 			end polar 150 80
 			end polar 210 80
-			slots 4
+			positions 4
 	line
 		start polar diameter 210 2
 		start polar diameter 150 2
@@ -158,7 +158,7 @@ formation "Nabla"
 		end polar diameter 90 2
 		end polar 30 40
 		end polar 90 80
-		slots 6
+		positions 6
 		repeat
 			start polar diameter 150 2
 			start polar diameter 210 2
@@ -166,7 +166,7 @@ formation "Nabla"
 			start polar 210 80
 			end polar diameter 90 2
 			end polar 90 80
-			slots 4
+			positions 4
 
 
 
@@ -178,49 +178,49 @@ formation "Wedge"
 		end diameter -1 0
 		start -10 0
 		end -10 0
-		slots 1
+		positions 1
 		repeat
 			start diameter -2 0
 			end diameter 0 -2
 			start -20 0
 			end 0 -20
-			slots 2
+			positions 2
 	line
 		start diameter 0 -1
 		end diameter 1 0
 		start 0 -10
 		end 10 0
-		slots 2
+		positions 2
 		repeat
 			start diameter 0 -2
 			end diameter 2 0
 			start 0 -20
 			end 20 0
-			slots 2
+			positions 2
 	line
 		start diameter 2 0
 		end diameter 1 -1
 		start 20 0
 		end 10 -10
-		slots 2
+		positions 2
 		repeat
 			start diameter 2 0
 			end diameter 0 -2
 			start 20 0
 			end 0 -20
-			slots 2
+			positions 2
 	line
 		start diameter 0 -2
 		end diameter -2 0
 		start 0 -20
 		end -20 0
-		slots 3
+		positions 3
 		repeat
 			start diameter 0 -2
 			end diameter -2 0
 			start 0 -20
 			end -20 0
-			slots 2
+			positions 2
 
 
 
@@ -233,49 +233,49 @@ formation "Diamond"
 		start polar 45 40
 		end polar diameter 45 1
 		end polar 45 40
-		slots 1
+		positions 1
 		repeat
 			start polar diameter 0 1.414
 			start polar 0 56.569
 			end polar diameter 90 1.414
 			end polar 90 56.569
-			slots 2
+			positions 2
 	line
 		start polar diameter 90 1.414
 		start polar 90 56.569
 		end polar diameter 180 1.414
 		end polar 180 56.569
-		slots 3
+		positions 3
 		repeat
 			start polar diameter 90 1.414
 			start polar 90 56.569
 			end polar diameter 180 1.414
 			end polar 180 56.569
-			slots 2
+			positions 2
 	line
 		start polar diameter 225 1
 		start polar 225 40
 		end polar diameter 225 1
 		end polar 225 40
-		slots 1
+		positions 1
 		repeat
 			start polar diameter 180 1.414
 			start polar 180 56.569
 			end polar diameter 270 1.414
 			end polar 270 56.569
-			slots 2
+			positions 2
 	line
 		start polar diameter 270 1.414
 		start polar 270 56.569
 		end polar diameter 0 1.414
 		end polar 0 56.569
-		slots 3
+		positions 3
 		repeat
 			start polar diameter 270 1.414
 			start polar 270 56.569
 			end polar diameter 0 1.414
 			end polar 0 56.569
-			slots 2
+			positions 2
 
 
 
@@ -288,73 +288,73 @@ formation "Hexagon"
 		start polar 330 40
 		end polar diameter 330 1
 		end polar 330 40
-		slots 1
+		positions 1
 		repeat
 			start polar diameter 270 1
 			start polar 270 40
 			end polar diameter 330 1
 			end polar 330 40
-			slots 1
+			positions 1
 	line
 		start polar diameter 30 1
 		start polar 30 40
 		end polar diameter 30 1
 		end polar 30 40
-		slots 1
+		positions 1
 		repeat
 			start polar diameter 330 1
 			start polar 330 40
 			end polar diameter 30 1
 			end polar 30 40
-			slots 1
+			positions 1
 	line
 		start polar diameter 90 1
 		start polar 90 40
 		end polar diameter 90 1
 		end polar 90 40
-		slots 1
+		positions 1
 		repeat
 			start polar diameter 30 1
 			start polar 30 40
 			end polar diameter 90 1
 			end polar 90 40
-			slots 1
+			positions 1
 	line
 		start polar diameter 150 1
 		start polar 150 40
 		end polar diameter 150 1
 		end polar 150 40
-		slots 1
+		positions 1
 		repeat
 			start polar diameter 90 1
 			start polar 90 40
 			end polar diameter 150 1
 			end polar 150 40
-			slots 1
+			positions 1
 	line
 		start polar diameter 210 1
 		start polar 210 40
 		end polar diameter 210 1
 		end polar 210 40
-		slots 1
+		positions 1
 		repeat
 			start polar diameter 150 1
 			start polar 150 40
 			end polar diameter 210 1
 			end polar 210 40
-			slots 1
+			positions 1
 	line
 		start polar diameter 270 1
 		start polar 270 40
 		end polar diameter 270 1
 		end polar 270 40
-		slots 1
+		positions 1
 		repeat
 			start polar diameter 210 1
 			start polar 210 40
 			end polar diameter 270 1
 			end polar 270 40
-			slots 1
+			positions 1
 
 
 
@@ -364,7 +364,7 @@ formation "Block"
 	line
 		start diameter 0 -6.928
 		end diameter 0 -3.464
-		slots 2
+		positions 2
 		repeat
 			start diameter -2 0
 			end diameter -2 0
@@ -374,14 +374,14 @@ formation "Block"
 	line
 		start diameter 1 -5.196
 		end diameter 1 -1.732
-		slots 2
+		positions 2
 		repeat
 			start diameter 2 0
 			end diameter 2 0
 	line
 		start diameter -1 -5.196
 		end diameter -1 -1.732
-		slots 2
+		positions 2
 		repeat
 			start diameter -2 0
 			end diameter -2 0
@@ -482,19 +482,19 @@ formation "Claw"
 	line
 		start diameter -1 -0.5
 		end diameter -1 -1.5
-		slots 2
+		positions 2
 		repeat
 			start diameter -1 -0.5
 			end diameter -1 -1.5
-			slots 1
+			positions 1
 	line
 		start diameter 1 -0.5
 		end diameter 1 -1.5
-		slots 2
+		positions 2
 		repeat
 			start diameter 1 -0.5
 			end diameter 1 -1.5
-			slots 1
+			positions 1
 
 
 
@@ -505,19 +505,19 @@ formation "Bowtie"
 	line
 		start diameter -1 -0.5
 		end diameter -1 0.5
-		slots 2
+		positions 2
 		repeat
 			start diameter -1 -0.5
 			end diameter -1 0.5
-			slots 1
+			positions 1
 	line
 		start diameter 1 -0.5
 		end diameter 1 0.5
-		slots 2
+		positions 2
 		repeat
 			start diameter 1 -0.5
 			end diameter 1 0.5
-			slots 1
+			positions 1
 
 
 
@@ -527,14 +527,14 @@ formation "Wing"
 	line
 		start diameter -1 0.5
 		end diameter -1 1.5
-		slots 2
+		positions 2
 		repeat
 			start diameter -1 0.5
 			end diameter -1 0.5
 	line
 		start diameter 1 0.5
 		end diameter 1 1.5
-		slots 2
+		positions 2
 		repeat
 			start diameter 1 0.5
 			end diameter 1 0.5
@@ -595,11 +595,11 @@ formation "Sphere"
 		centered
 		# start and end positions overlap, so need to specify 7 instead of 6 and use skip first or skip last.
 		skip last
-		slots 7
+		positions 7
 		repeat
 			start polar diameter 180 1
 			start polar 180 40
-			slots 6
+			positions 6
 
 
 
@@ -610,29 +610,29 @@ formation "Atomic"
 		start polar diameter 330 1
 		start polar 330 40
 		angle 60
-		slots 2
+		positions 2
 		repeat
 			start polar diameter 330 1
 			start polar 330 40
-			slots 1
+			positions 1
 	arc
 		start polar diameter 90 1
 		start polar 90 40
 		angle 60
-		slots 2
+		positions 2
 		repeat
 			start polar diameter 90 1
 			start polar 90 40
-			slots 1
+			positions 1
 	arc
 		start polar diameter 210 1
 		start polar 210 40
 		angle 60
-		slots 2
+		positions 2
 		repeat
 			start polar diameter 210 1
 			start polar 210 40
-			slots 1
+			positions 1
 
 
 
@@ -643,7 +643,7 @@ formation "Trails"
 		anchor diameter 0 -3
 		start polar diameter 194 5
 		angle -28
-		slots 5
+		positions 5
 		repeat
 			alternating
 			start polar diameter 194 1.05

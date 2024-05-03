@@ -69,8 +69,10 @@ public:
 		// The location in the pattern.
 		unsigned int ring;
 		unsigned int line = 0;
+		// The active repeat-section on the line or arc. (Lines or arcs can have more than 1 repeat section)
 		unsigned int repeat = 0;
-		unsigned int slot = 0;
+		// The position on the current repeat section of the line or arc.
+		unsigned int position = 0;
 		// Number of ships that we expect to place using this iterator.
 		// The number of ships affects the last line that is placed in
 		// case the last line is centered. When zero is given then every
@@ -106,13 +108,16 @@ public:
 	// Retrieve properties like number of lines and arcs, number of repeat sections and number of positions.
 	// TODO: Should we hide those properties and just provide a position iterator instead?
 	unsigned int Lines() const;
+	// Number of repeat sections on the current line.
 	unsigned int Repeats(unsigned int lineNr) const;
-	unsigned int Slots(unsigned int ring, unsigned int lineNr, unsigned int repeatNr) const;
+	// Number of positions on the current repeat section of the active line or arc.
+	unsigned int Positions(unsigned int ring, unsigned int lineNr, unsigned int repeatNr) const;
+	// Tells if the current line or arc is centered.
 	bool IsCentered(unsigned int lineNr) const;
 
-	// Calculate a position based on the current ring, line/arc and slot on the line.
+	// Calculate a position based on the current ring, line/arc, repeat-section and position on the line-repeat-section.
 	Point Position(unsigned int ring, unsigned int lineNr, unsigned int repeatNr,
-		unsigned int lineSlot, double diameterToPx, double widthToPx, double heightToPx) const;
+		unsigned int lineRepeatPosition, double diameterToPx, double widthToPx, double heightToPx) const;
 
 	// Information about allowed rotating and mirroring that still results in the same formation.
 	int Rotatable() const;
@@ -153,8 +158,8 @@ private:
 
 		double repeatAngle = 0;
 
-		// Slots to add or remove in this repeat section.
-		int repeatSlots = 0;
+		// Positions to add or remove in this repeat section.
+		int repeatPositions = 0;
 
 		// Indicates if each odd repeat section should start from the end instead of the start.
 		bool alternating = false;
@@ -173,7 +178,7 @@ private:
 		std::vector<LineRepeat> repeats;
 
 		// The number of initial positions for this line.
-		int slots = 1;
+		int positions = 1;
 
 		// Properties of how the line behaves
 		bool centered = false;
