@@ -1908,7 +1908,7 @@ mission "Coalition: Pilgrimage 5"
 					goto shrine
 				`	"Sorry, but I'd rather rest in the ship."`
 			`	She takes a step back, looking down to the bangle again. "Alright. Yes, your responsibility, this is not. Meet you in the spaceport later, I shall."`
-			`	You open the hatch for her, and she heads to one of the Saryds nearby and begins to talk to them. A few seconds into the conversation, they tense up, crossing their arms and swiping them down as if refusing something, then running off. She tries again with some of the other Saryds, but continues to be rejected. She looks back at your ship dejectedly, then starts eyeing the other ships docked nearby before heading toward a Kimek Thorn that has just landed. As she talks to the captain, the Kimek seems confused, but after a moment he briefly reenters their ship, returning in a puffy coat to follow Vellorae to the railway hub.`
+			`	You open the hatch for her, and she heads to one of the Saryds nearby and begins to talk to them. A few seconds into the conversation, they tense up, crossing their arms and swiping them down as if refusing something, then running off. She tries again with some of the other Saryds, but continues to be rejected. She looks back at your ship dejectedly, then starts eyeing the other ships docked nearby before heading toward a Kimek Thorn that has just landed. As she talks to the captain, the Kimek seems confused, but after a moment he briefly re-enters their ship, returning in a puffy coat to follow Vellorae to the railway hub.`
 			`	Long after the sun has set, the Kimek returns, rushing to their ship while trying to shake off the cold. You ask them about Vellorae, and they tell you she headed for the spaceport to "clear her head."`
 				accept
 			label shrine

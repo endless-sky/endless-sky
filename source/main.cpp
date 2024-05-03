@@ -41,6 +41,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Screen.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
+#include "TaskQueue.h"
 #include "Test.h"
 #include "TestContext.h"
 #include "UI.h"
@@ -48,11 +49,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <chrono>
 #include <iostream>
 #include <map>
-#include <thread>
 
 #include <cassert>
 #include <future>
-#include <stdexcept>
+#include <exception>
 #include <string>
 
 #ifdef _WIN32
@@ -67,7 +67,8 @@ using namespace std;
 
 void PrintHelp();
 void PrintVersion();
-void GameLoop(PlayerInfo &player, const Conversation &conversation, const string &testToRun, bool debugMode);
+void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversation,
+	const string &testToRun, bool debugMode);
 Conversation LoadConversation();
 void PrintTestsTable();
 #ifdef _WIN32
@@ -137,14 +138,17 @@ int main(int argc, char *argv[])
 		// Load plugin preferences before game data if any.
 		Plugins::LoadSettings();
 
+		TaskQueue queue;
+
 		// Begin loading the game data.
 		bool isConsoleOnly = loadOnly || printTests || printData;
-		future<void> dataLoading = GameData::BeginLoad(isConsoleOnly, debugMode, isTesting && !debugMode);
+		auto dataFuture = GameData::BeginLoad(queue, isConsoleOnly, debugMode,
+			isConsoleOnly || (isTesting && !debugMode));
 
 		// If we are not using the UI, or performing some automated task, we should load
-		// all data now. (Sprites and sounds can safely be deferred.)
+		// all data now.
 		if(isConsoleOnly || isTesting)
-			dataLoading.wait();
+			dataFuture.wait();
 
 		if(isTesting && !GameData::Tests().Has(testToRunName))
 		{
@@ -211,14 +215,14 @@ int main(int argc, char *argv[])
 			Audio::SetVolume(0);
 
 		// In case the player wants to reload.
-		future<void> dataReloading;
+		shared_future<void> dataReloading;
 
 		// This loop is for the case of a data reload.
 		do {
 			Messenger::SetReload(false);
 
 			// This is the main loop where all the action begins.
-			GameLoop(player, conversation, testToRunName, debugMode);
+			GameLoop(player, queue, conversation, testToRunName, debugMode);
 
 			if(Messenger::GetReload())
 			{
@@ -242,7 +246,7 @@ int main(int argc, char *argv[])
 				Plugins::LoadSettings();
 
 				// Load game data, sprites, and sounds again.
-				dataReloading = GameData::BeginLoad(isConsoleOnly, debugMode, isTesting && !debugMode);
+				dataReloading = GameData::BeginLoad(queue, isConsoleOnly, debugMode, isTesting && !debugMode);
 				Audio::Init(GameData::Sources());
 			}
 		} while(Messenger::GetReload());
@@ -251,7 +255,7 @@ int main(int argc, char *argv[])
 	{
 		// This is not an error. Simply exit successfully.
 	}
-	catch(const runtime_error &error)
+	catch(const exception &error)
 	{
 		Audio::Quit();
 		GameWindow::ExitWithError(error.what(), !isTesting);
@@ -273,7 +277,8 @@ int main(int argc, char *argv[])
 
 
 
-void GameLoop(PlayerInfo &player, const Conversation &conversation, const string &testToRunName, bool debugMode)
+void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversation,
+		const string &testToRunName, bool debugMode)
 {
 	// gamePanels is used for the main panel where you fly your spaceship.
 	// All other game content related dialogs are placed on top of the gamePanels.
@@ -289,7 +294,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	// Whether the game data is done loading. This is used to trigger any
 	// tests to run.
 	bool dataFinishedLoading = false;
-	menuPanels.Push(new GameLoadingPanel(player, conversation, gamePanels, dataFinishedLoading));
+	menuPanels.Push(new GameLoadingPanel(player, queue, conversation, gamePanels, dataFinishedLoading));
 
 	bool showCursor = true;
 	int cursorTime = 0;
