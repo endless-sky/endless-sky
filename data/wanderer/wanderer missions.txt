@@ -159,6 +159,7 @@ event "field of mereti plants"
 
 mission "Wanderers: Mereti: The Plant Epilogue"
 	minor
+	landing
 	invisible
 	source "Sopi Lefarkata"
 	to offer
