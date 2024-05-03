@@ -328,7 +328,7 @@ void NPC::Load(const DataNode &node)
 
 
 	// NPCs given the "land" completion condition should also have a destination.
-	if ((succeedIf & ShipEvent::LAND) && !givenDestination)
+	if((succeedIf & ShipEvent::LAND) && !givenDestination)
 		node.PrintTrace("Warning: NPC mission objective to land is impossible without a destination.");
 }
 
