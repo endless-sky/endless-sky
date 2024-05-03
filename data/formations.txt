@@ -390,7 +390,7 @@ formation "Block"
 
 # Formation with two legs extending on a 45 degree angle behind the lead ship.
 # This formation is naturally used by birds due to energy efficiency and it
-# is realatively easy to fly for pilots, since they just look at 1 ship in
+# is relatively easy to fly for pilots, since they just look at 1 ship in
 # front of them.
 formation "Vee"
 	flippable y
