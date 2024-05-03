@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "FormationPositioner.h"
@@ -82,9 +85,9 @@ Point FormationPositioner::Position(const Ship *ship)
 
 		// Trigger immediate re-generation of the formation positions (to
 		// ensure that this new ship also gets a valid position).
-		positionsTimer = 0;		
+		positionsTimer = 0;
 	}
-	
+
 	return formationLead->Position() + direction.Rotate(relPos);
 }
 
@@ -177,7 +180,7 @@ void FormationPositioner::CalculateDirection()
 
 	// Change the desired direction according to rotational settings if that fits better.
 	double symRot = pattern->Rotatable();
-	if(symRot > 0 && fabs(deltaDir.Degrees()) > (symRot/2))
+	if(symRot > 0 && fabs(deltaDir.Degrees()) > (symRot / 2))
 	{
 		if(deltaDir.Degrees() > 0)
 			symRot = -symRot;
@@ -198,11 +201,13 @@ void FormationPositioner::CalculateDirection()
 	{
 		direction = desiredDir;
 		deltaDir = Angle(0.);
-		if(pattern->FlippableY()){
+		if(pattern->FlippableY())
+		{
 			flippedY = !flippedY;
 			positionsTimer = 0;
 		}
-		if(pattern->FlippableX()){
+		if(pattern->FlippableX())
+		{
 			flippedX = !flippedX;
 			positionsTimer = 0;
 		}
@@ -244,7 +249,7 @@ bool FormationPositioner::IsActiveInFormation(const Ship *ship) const
 	// the child/parent relationship.
 	auto targetShip = ship->GetTargetShip();
 	auto parentShip = ship->GetParent();
-	if ((!targetShip || &(*targetShip) != formationLead) &&
+	if((!targetShip || &(*targetShip) != formationLead) &&
 		(!parentShip || &(*parentShip) != formationLead))
 		return false;
 
