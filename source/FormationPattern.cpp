@@ -167,64 +167,8 @@ void FormationPattern::Load(const DataNode &node)
 			line.start.AddLoad(child);
 			line.endOrAnchor = line.start;
 		}
-		else if(child.Token(0) == "line" || child.Token(0) == "arc")
-		{
-			lines.emplace_back();
-			Line &line = lines.back();
-
-			if(child.Token(0) == "arc")
-				line.isArc = true;
-
-			for(const DataNode &grand : child)
-			{
-				if(grand.Token(0) == "start" && grand.Size() >= 3)
-					line.start.AddLoad(grand);
-				else if(grand.Token(0) == "end" && grand.Size() >= 3 && !line.isArc)
-					line.endOrAnchor.AddLoad(grand);
-				else if(grand.Token(0) == "anchor" && grand.Size() >= 3 && line.isArc)
-					line.endOrAnchor.AddLoad(grand);
-				else if(grand.Token(0) == "angle" && grand.Size() >= 2 && line.isArc)
-					line.angle = grand.Value(1);
-				else if(grand.Token(0) == "positions" && grand.Size() >= 2)
-					line.positions = static_cast<int>(grand.Value(1) + 0.5);
-				else if(grand.Token(0) == "centered")
-					line.centered = true;
-				else if(grand.Token(0) == "skip")
-					for(int i = 1; i < grand.Size(); ++i)
-					{
-						if(grand.Token(i) == "first")
-							line.skipFirst = true;
-						else if(grand.Token(i) == "last")
-							line.skipLast = true;
-						else
-							grand.PrintTrace("Skipping unrecognized attribute:");
-					}
-				else if(grand.Token(0) == "repeat")
-				{
-					line.repeats.emplace_back();
-					LineRepeat &repeat = line.repeats[line.repeats.size() - 1];
-					for(const DataNode &grandGrand : grand)
-						if (grandGrand.Token(0) == "start" && grandGrand.Size() >= 3)
-							repeat.repeatStart.AddLoad(grandGrand);
-						else if(grandGrand.Token(0) == "end" && grandGrand.Size() >= 3 && !line.isArc)
-							repeat.repeatEndOrAnchor.AddLoad(grandGrand);
-						else if(grandGrand.Token(0) == "anchor" && grandGrand.Size() >= 3 && line.isArc)
-							repeat.repeatEndOrAnchor.AddLoad(grandGrand);
-						else if(grandGrand.Token(0) == "angle" && grandGrand.Size() >= 2 && line.isArc)
-							repeat.repeatAngle = grandGrand.Value(1);
-						else if(grandGrand.Token(0) == "positions" && grandGrand.Size() >= 2)
-							repeat.repeatPositions = static_cast<int>(grandGrand.Value(1) + 0.5);
-						else if(grandGrand.Token(0) == "alternating")
-							repeat.alternating = true;
-						else
-							grandGrand.PrintTrace("Skipping unrecognized attribute:");
-				}
-				else
-					grand.PrintTrace("Skipping unrecognized attribute:");
-			}
-		}
 		else
-			child.PrintTrace("Skipping unrecognized attribute:");
+			child.PrintTrace("Skipping unrecognized or unsupported attribute:");
 }
 
 
@@ -442,48 +386,18 @@ void FormationPattern::MultiAxisPoint::AddLoad(const DataNode &node)
 	if(node.Size() < 3)
 		return;
 
-	// Track if we are parsing a polar coordinate.
-	bool parsePolar = false;
-
 	// By default we parse for pixels.
 	Axis axis = PIXELS;
 	double scalingFactor = 1.;
 
 	// Parse all the keywords before the coordinate
 	for(int i = 1; i < node.Size() - 2; ++i)
-	{
-		if(node.Token(i) == "polar")
-			parsePolar = true;
-		else if(node.Token(i) == "px")
-			axis = PIXELS;
-		else if(node.Token(i) == "diameter")
-			axis = DIAMETERS;
-		else if(node.Token(i) == "radius")
-		{
-			scalingFactor = 2.;
-			axis = DIAMETERS;
-		}
-		else if(node.Token(i) == "width")
-			axis = WIDTHS;
-		else if(node.Token(i) == "height")
-			axis = HEIGHTS;
-		else
-			node.PrintTrace("Skipping unrecognized token " + node.Token(i) + ":");
-	}
+		node.PrintTrace("Ignoring unrecognized token " + node.Token(i) + ":");
 
 	// The last 2 numbers are always the coordinate.
-	if(parsePolar)
-	{
-		Angle dir = Angle(node.Value(node.Size() - 2));
-		double len = node.Value(node.Size() - 1) * scalingFactor;
-		Add(axis, dir.Unit() * len);
-	}
-	else
-	{
-		double x = node.Value(node.Size() - 2);
-		double y = node.Value(node.Size() - 1);
-		Add(axis, Point(x, y) * scalingFactor);
-	}
+	double x = node.Value(node.Size() - 2);
+	double y = node.Value(node.Size() - 1);
+	Add(axis, Point(x, y) * scalingFactor);
 }
 
 
