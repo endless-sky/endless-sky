@@ -7524,13 +7524,11 @@ mission "Tavish Interlude"
 				goto options
 
 
-
-
-
 mission "Tavish and Kormak 5"
 	source "Chiron"
 	destination "New India"
 	passengers 2
+	cargo "Scientific Research Equipment " 5
 	to offer
 		has "Tavish and Kormak 4: done"
 	on offer
@@ -7540,7 +7538,179 @@ mission "Tavish and Kormak 5"
 			`	"Next stop is us." He says.`
 				choice
 					`	"How big exactly is this campus?"`
-				`	Tavish laughs, "You think this is big? You should see the campus `
+				`	Tavish manages a chuckle, "You think this is big? You should see the Academy of Planetary Sciences campus on Glory." `
+				`	He steps off the train as it stops, "Follow me, chaps. It'll still be a bit of a trek." `
+				choice
+					`	(Follow Tavish.)`
+				`	The three of you wind past, through, under, and on one occasion over, various academic buildings with obscure names and opaque functions. Constantly you're working your way around flocks of students and gaggles of professors as they mirgrate incessantly from one building to another.`
+				`	Finaly as Chrion's twin suns Rigil Kentaurus and Toliman begin to set you arrive a tall, wide, well-kept building with all the pomp of a campus administrative facility.`
+				`	Tavish leads you in until you're standing in front of a mousy receptionist in a red sweater with various bookish pins and a plaque that says "Starla" on it.`
+				`	"Can I help you."  She tries to maintain a professional demeanor but her eyes keep straying to Kormak. `
+				choice
+					`	"We're here to see Dr. Huller-Freeze."`
+					`	"Yeah, take us to Huller-Freeze."`
+					`	"Where can we find Huller-Freeze?"`
+				
+				`	"The Doctor-Professor has no appointments scheduled for this evening. He's a very busy and important man and I am afraid he has no time for dropins. If you'd like you can leave your contact info with me and I'll see if he's willing to schedule something with you in the next couple of months?"`
+				`	She gives you an apologetic look. "Sorry."`
+				label talk
+				choice
+					`	(Have Tavish talk to her.)`
+						goto tavgirl
+						to display
+							not "tavgirl"
+					`	(Have Kormak talk to her.)`
+						goto korgirl
+				
+				label tavgirl
+					action "tavgirl"
+				`	Tavish leans against her desk, "Starla, we're not pedestrian fans here to oogle your patron. No, we're members of the Society of Gentlemanly Explorers, and we've come at a time of the greatest dire need. I can already tell you're a keen observer of human behavior, and not some cog in the wheel. See us for what we are and make the liberating choice to let us through." `
+				`	Tavish added a few other flourishes about the great work they do here, and how her boss would be impressed with her ability to think for herself. Throughout all of this Starla's bored expression remained fixed.`
+				`	Finally she sighs and holds up a hand and says, "Enough! You think you're slick? You think you're smart? Do you know how many people like you come through these doors every day? So sure whatever pretensious project they are working and a few flashy words are all it takes to get past me?" She scowls at him.`
+				`	"You're lucky I am even willing to write your information down and pass it on. And I am starting to reconsider that offer." She crosses her arms.`
+				`	Tavish holds up both hands in defeat and backs away.`
+					goto talk
+
+				label korgirl
+					action "korgirl"
+				`	Kormak's face goes red and he reluctantly steps up to the desk. He immediately has Starla's full attention.`
+				`	He paushes and stares at his huge muscular hands like he's trying to figure out how to smash his way out of this. Finally he drops hands and looks at Starla.`
+				`	He opens his mouth and then shuts it and says nothing for a few long awkward moments, finally Starla says, "Is there something I can help you with, hon?"`
+				`	Kormak takes a deep breath and says, "Monsters killed my father."`
+				`	Starla is taken aback and puts a concerned hand on her chest, "Oh my, that sounds horrible. I am so sorry to hear that."`
+				`	"Where I from, is part of life." He lifts up his arm, "Strength, skill is all that matters." `
+				`	Starla's eyes widen as she watches him flex.`
+				`	"But I ask why. Why monsters. Why this way of life? Where I from there is no time, no place, to ask why. So I leave." He drops his arm back down and gets a whistful look on his face.`
+				`	"I go from planet to planet and ask why. And now I come here to ask why. I am Kormak and I need you to let me ask your chief; why. Please." Kormak puts his hands on the desk and leans in looking directly into Starla's eyes.`
+				`	Starla's eyes water, and she places her small hands on Kormak's, "Oh, oh my, I wouldn't dare get in the way of your quest Kormak."`
+				`	Her face firms up and suddenly she is standing, "I will help you, Kormak. For your father and your sacred quest."`
+				`	Kormak nods, "The stones will remember your bravery." he says resolutely, and lays a hand on her shoulder.`
+				`	Her face flashes red and she nearly shivers. "Oh, oh that is.. thank you."`
+				`	She turns and starts walking down the hallway with purpose. "Follow me."`
+				choice
+					`	(Follow her.)`
+				`	Starla stops outside a thick wooden door with a gilded plaque on it that says, "Doctor-Professor Hullen-Freeze. She looks at Kormak and whispers, "Good luck," before heading back to her desk.`
+				`	Tavish audibly gulps and then pushes through the door into the office. Kormak follows behind him.`
+				choice
+					`	(Enter the office.)`
+				`	The office is large and filled with trophies, awards, certificates, and books. Behind a large wooden desk sits older clean shaven man with gray hair, in a felty sweatervest.`
+				`	"What? Who are you? What is the... oh, it's you." The surprise in his voice quickly gives way to amusement.`
+				`	"I knew it was only a matter of time before you slithered your way back in here. Given up on your dreams, eh? No grand adventures for you? No Ice-Princesses or whatever? Ready to beg for my magnamonious scraps?"`
+				`	Tavish withers beneath Hullen-Freeze's barrage, "I.. No.." he stammers.`
+				`	"Oh, Julian. Who would have believed you once were so eloquent. Normally I'd just have you tossed out like the trash you are, but you caught me in a good mood. Get down on all fours, crawl to me in contrition, and I'll consider letting you back into my light."`
+				`	Kormak steps in front of Tavish as though he is shielding him from the verbal torrent, and rumbles, "Enough! Swollow your tongue, nithling."`
+				`	Hullen-Freeze flinches, clearly taken aback, it's as though he didn't even realize Tavish was not alone. He adjusts his purely cosmetic spectacles, and clears his throat.`
+				`	"Ni-Nithling, eh? W-what are you? One of those atavistic stone-agers from the Deep? I swear I heard they took care of all your kind." Hullen-Freeze's voice steadies as he speaks. Though he still eyes Kormak warily.`
+				`	"I'll give you this, Julian. You may not have found Forsyth's Ice-Princesses, but you did find yourself a troll." He takes his glasses off and wipes them.`
+				choice
+					`	"We're not here about Tavish's old positon. We're looking for scientific equipment that was confiscated on Hephaestus."`
+					`	"I don't care about you and whatever this thing you have going on with Tavish is. We're just here for the confiscated equipment from Hephaestus."`
+					`	"Do you know where the research equipment confiscated on Hephaestus is?"`
+				`	Hullen-Freeze narrows his eyes to peer at you as he continues to wipe his glasses, "What? Oh that eccletic junk?"`
+				`	He laughs, "Of course! Only Julian and his associates would use for such nonsensical tools. A metal ring that blazes fire? Really? This is too good."`
+				`	"You don't know who you're really working with do you? I bet he told you he was some sort of hot-shot Chiron professor? He's not. He's street-garbage. A common thief and conman. He thinks if he says a few big words and calls everyone chap they'll think he's somebody. That the only reason he isn't trash is because of me!"`
+				choice
+					`	"I don't care where Tavish came from, he's my friend. Now tell me where the equipment is!"`
+					`	"Just shut up. No one cares what you think. Just tell me where the equipment is."`
+					`	"Look. I am just here for the equipment. Tell me where it is and we'll go."`
+				`	"Fine. Why not? I don't need your worthless trinkets. But first I want to watch Julian crawl to me on all fours, and admit he's trash. Then I'll tell you where it's stored and you can be on your way." He holds up his palms, "Everyone wins."`
+				label gotime
+				choice
+					`	(Make Tavish crawl to him.)`
+						goto crawl
+					`	(Have Tavish try to convince him to turn over the equipment.)`
+						goto tavtalk
+						to display
+							not "tavtalk"
+					`	(Have Kormak try to convince him to turn over the equipment.)`
+						goto kortime
+					`	(Offer to pay him 100,000 credits for the equipment.)`
+						goto payme
+						to display
+							not "payme"
+
+				label tavtalk
+					action "tavtalk"
+				`	Tavish tries to speak, but his voice catches in his throat. Kormak puts a reassuring hand on his shoulder.`
+				`	"I... I am not trash. I saved you! You were in so much trouble when we first met. And then the research I did was good. It didn't matter... it doesn't matter where I am from. You stole it from me. Made me work in your shadow. I owe you nothing."`
+				`	Tavish balls his fist, "The least you can do is give us back our equipment. You owe it to me!"`
+				`	Tavish is breathing hard, twitching with indignant rage. `
+				`	Hullen-Freeze gives him a queer look and then chuckles, "No, no that will not do at all. If you want the equipment you're going to have to crawl for it like the refuse you are. Although after that outburst I am even more excited to see you properly humbled."`
+				`	He taps his wrist. "I don't have all day."`
+					goto gotime
+				
+				label payme
+					action "payme"
+				`	Hullen-Freeze blinks a few times and then gives you a pittying expression. "Your credits mean nothing to me. Who do you think I am that I can just be bought? I told you what I wanted now give me satisfaction, not bribes."`
+					goto gotime
+
+				label crawl
+				`	Tavish wilts when he hear's your command, but he does not argue. Numbly he nods to you, "It's my problem to resolve."`
+				`	Tavish's cheeks are wet as he drops to his knees. With painful awkward slowness he starts to bend over as to be on all fours.`
+				`	Before he is on his hands and knees though, he is stopped by the gentle hand of Kormak who pulls his companion to his feet.`
+				`	Kormak turns to you his face contorted in rage and says, "Bad friend."`
+				`	Kormak then stalks toward Hullen-Freeze.`
+				`	"Wa-wait! What is this? Stay back savage! Starla! Starla call secur..." Hullen-Freeze is cut off by the fist that slams into his face.`
+				`	Kormak wastes no time, and holds nothing back. Hullen-Freeze is dead within a few seconds. Kormak searches through drawer and finds a key to Hullen-Freeze's equipment storage.`
+				`	Kormak turns back to you a final time and says, "We find new Captain. Better Captain."`
+				`	Tazed Tavish holds onto Kormak's arm as he leads the two of them out of the office.`
+				`	The last thing you see is Starla running after them.`
+					decline
+				
+				label kortime
+				`	Kormak's grin is terrifying. He cracks his knuckles, and then takes off his suit jacket and places it on the chair. He rolls up his sleeves revealing swirling blue tattoos and red ragged scars.`
+				`	"I have killed monsters. Nightmares. Banshees. Horrors." He steps right up to Hullen-Freeze's desk. "But never have I killed creature as foul and twisted as you."`
+				`	All the color drains out of Hullen-Freeze's face, he stammers, and then savagely hits a button under his desk.`
+				`	Kormak reaches down and lifts the desk up over his head before sending it crashing down on the floor at Hullen-Freeze's feet.`
+				`	"I-idiot savage! There will be consquences! I am an important man! You-you can't do this!" Hullen-Freeze screams as he clamors back away from the frothing giant and splintered desk.`
+				`	With one wide swipe Kormak knocks all of Hullen-Freeze's trophies and awards to the floor. He then crushes them beneath his feet.`
+				`	Hullen-Freeze has his arms up with his back against the wall. "You'll-you'll pay for this."`
+				`	Just then four armed security with electric batons burst into the room. "Finally, you laggerds!" Hullen-Freeze shouts, "Subdue the madman! Now!"`
+				`	Kormak flows like water. Their batons flailing uselessly in the air. With an uncanny ease he incapacites each of them one at a time, until all three of them lay at his feet.`
+				`	He turns his attention back to Hullen-Freeze who is now groveling, "Yes. Yes! I'll give you what you want." He starts digging through the ruins of his desk until he finds a keycard and with a shaking arm holds it out.`
+				`	"Here it is. The storage unit is in the spaceport. Take it, and go. It's what you wanted!"`
+				`	Kormak ignores the keycard and instead grabs the man by his gray hair and forces him to the floor.`
+				`	"Crawl to Tavish. Tell Tavish who is garbage." Kormak growls in the horrified man's ear.`
+				`	"Yes, of course, anything." Hullen-Freeze whimpers as he proceeds to drag himself acorss to floor to Tavish's feet.`
+				`	"I am garbage. I am trash. I-I am trash. Please, please forgive me." He says tearfully into Tavish's shoes.`
+				`	Kormak picks up the keycard, and turns his attention back to you. "Done?"`
+				choice
+					`	"We got what we came for. Let's go."`
+						goto timetogo
+					`	"This trash doesn't deserve to live. Kill him."`
+				`	Kormak doesn't even hesitate and stomps down on the back of the man's neck. Tavish's mouth opens in horror but nothing comes out.`
+				`	"Better without him." Kormak says gruffly, and then takes Tavish by the arm to help him toward the exit.`
+				`	The three of you leave together and head back to the spaceport where you finally pick up the scientific research equipment for the New India expedition.`
+					accept
+
+
+				label timetogo
+				`	Kormak grabs his jacket and finds Starla waiting for him just outside the office. She'd seen the whole thing.`
+				`	"Wh-what's that smell?" She asks quietly.`
+				`	Kormak looks back, sniffs, and then shrugs, "He wet himself."`
+				`	Starla gasps, but it's unclear if she's horrified or impressed. She then presses something small in Kormak's hand.`
+				`	"If you're ever on Chiron. Give me a call." She then turns and hurries away.`
+				`	The up until now silent Tavish suddenly bursts out into laughter. Long uproarious belly laughter.`
+				`	The three of you leave together and Tavish laughes the entire way back to the spaceport where you finally pick up the scientific research equipment for the New India expedition.`
+					accept
+	on complete
+		event "Tavish and Kormak Expedition" 60
+		conversation 
+			`	You arrive on New India, fucking finally.`
+
+event "Tavish and Kormak Expedition"
+
+mission "Tavish and Kormak 6"
+	to offer
+		has "event: Tavish and Kormak Expedition"
+	source "New India"
+	destination "Wayfarer"
+		
+
+
+
+
+
 		
 
 
