@@ -204,7 +204,7 @@ void FormationPattern::Load(const DataNode &node)
 					line.repeats.emplace_back();
 					LineRepeat &repeat = line.repeats[line.repeats.size() - 1];
 					for(const DataNode &grandGrand : grand)
-						if (grandGrand.Token(0) == "start" && grandGrand.Size() >= 3)
+						if(grandGrand.Token(0) == "start" && grandGrand.Size() >= 3)
 							repeat.repeatStart.AddLoad(grandGrand);
 						else if(grandGrand.Token(0) == "end" && grandGrand.Size() >= 3 && !line.isArc)
 							repeat.repeatEndOrAnchor.AddLoad(grandGrand);
@@ -316,8 +316,8 @@ bool FormationPattern::IsCentered(unsigned int lineNr) const
 
 
 // Get a formation position based on ring, line(or arc)-number and position on the line.
-Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigned int repeatNr, unsigned int linePosition,
-	double diameterToPx, double widthToPx, double heightToPx) const
+Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigned int repeatNr,
+	unsigned int linePosition, double diameterToPx, double widthToPx, double heightToPx) const
 {
 	// First check if the inputs result in a valid line or arc position.
 	if(lineNr >= lines.size())
