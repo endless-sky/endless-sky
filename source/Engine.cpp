@@ -409,7 +409,7 @@ void Engine::Place(const list<NPC> &npcs, shared_ptr<Ship> flagship)
 		map<string, map<Ship *, int>> carriers;
 		for(const shared_ptr<Ship> &ship : npc.Ships())
 		{
-			// Skip ships that have been destroyed, have landed, or are disabled
+			// Skip ships that have been destroyed, have landed, or are disabled.
 			if(ship->IsRemoved() || ship->IsDisabled())
 				continue;
 
