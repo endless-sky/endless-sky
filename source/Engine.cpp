@@ -1427,6 +1427,10 @@ void Engine::EnterSystem()
 	// Remove expired bribes, clearance, and grace periods from past fines.
 	GameData::SetDate(today);
 	GameData::StepEconomy();
+
+	// Refresh random systems that could be linked to this one.
+	GameData::UpdateSystems(&player);
+
 	// SetDate() clears any bribes from yesterday, so restore any auto-clearance.
 	for(const Mission &mission : player.Missions())
 		if(mission.ClearanceMessage() == "auto")
@@ -2788,7 +2792,8 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 	string message;
 	if(target->GetPersonality().IsDaring())
 	{
-		message = "Please assist us in destroying ";
+		message = "Please assist us in ";
+		message += (target->GetPersonality().Disables() ? "disabling " : "destroying ");
 		message += (attackerCount == 1 ? "this " : "these ");
 		message += attacker->GetName();
 		message += (attackerCount == 1 ? " ship." : " ships.");

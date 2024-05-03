@@ -148,10 +148,18 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Becca Tommaso, Darcy Manoel, and Michael Zahniser (under the same license). Incorporating texture made with JSPlacement by WindMillArt <https://windmillart.net/>.
 
 Files:
+ images/land/moon0*
+Copyright: NASA/GSFC/Arizona State University
+License: public-domain
+ From NASA, and therefore in the public domain because they were created by
+ government employees while doing work for the government.
+
+Files:
  images/land/enceladus_1*
  images/land/enceladus_2*
  images/land/enceladus_3*
  images/land/enceladus_4*
+ images/land/moon1*
  images/ui/galaxy*
  images/ui/pleiades*
  images/planet/callisto*
@@ -212,6 +220,36 @@ License: public-domain
  artist's impression of the surface of Mercury, produced
  for the MESSENGER mission. Because it was produced for
  a NASA mission, it is in the public domain.
+
+Files:
+ images/land/haze0*
+Copyright: Izaac Hewitt-Lawrence
+License: Unsplash
+ Taken from https://archive.is/LZQbZ and cropped. This image was
+ uploaded to unsplash.com after June 2017, so it is subject
+ to the Unsplash License. It was also uploaded after February
+ 2018, so it is subject to an additional restriction limiting
+ the sale of unaltered copies.
+
+Files:
+ images/land/haze1*
+Copyright: Tobias Rademacher
+License: Unsplash
+ Taken from https://archive.is/Rc9fs and cropped. This image was
+ uploaded to unsplash.com after June 2017, so it is subject
+ to the Unsplash License. It was also uploaded after February
+ 2018, so it is subject to an additional restriction limiting
+ the sale of unaltered copies.
+
+Files:
+ images/land/haze2*
+Copyright: Marek Piwnicki
+License: Unsplash
+ Taken from https://archive.is/iVNGc and cropped. This image was
+ uploaded to unsplash.com after June 2017, so it is subject
+ to the Unsplash License. It was also uploaded after February
+ 2018, so it is subject to an additional restriction limiting
+ the sale of unaltered copies.
 
 Files:
  images/land/sea23*
@@ -1475,6 +1513,28 @@ Comment:
  so it is subject to an additional restriction limiting the
  sale of unaltered copies.
 
+Files:
+ images/land/station49*
+Copyright: Andrea De Santis
+License: Unsplash
+Comment:
+ Taken from https://archive.is/jIP5x and cropped. This image was
+ uploaded to unsplash.com after June 2017, so it is subject
+ to the Unsplash License. It was also uploaded after February
+ 2018, so it is subject to an additional restriction limiting
+ the sale of unaltered copies.
+
+Files:
+ images/land/station50*
+Copyright: Mariia Ilina
+License: Unsplash
+Comment:
+ Taken from https://archive.is/mQO7C, rotated and cropped. This
+ image was uploaded to unsplash.com after June 2017, so it is
+ subject to the Unsplash License. It was also uploaded after
+ February 2018, so it is subject to an additional restriction
+ limiting the sale of unaltered copies.
+
 Files: images/land/lava11*
 Copyright: National Archives and Records Administration
 License: public-domain
@@ -2631,6 +2691,12 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license), detailed by Saugia.
 
 Files:
+ images/planet/station19*
+Copyright: bene_dictator <benstaples8068@gmail.com>
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
  images/asteroid/*bioroid*
  images/effect/acuit?hit*
  images/effect/ast?hit*
@@ -3067,17 +3133,6 @@ Comment:
  before the additional restrictions were added.
 
 Files:
- images/scene/iceplains3*
-Copyright: Daniel Frank
-License: Unsplash
-Comment:
- Taken from https://archive.is/xK5Wu. This image was
- uploaded to unsplash.com after June 2017, so it is subject
- to the Unsplash License. It was also uploaded after
- February 2018, so it is subject to an additional restriction
- limiting the sale of unaltered copies.
-
-Files:
  images/scene/redrocks*
 Copyright: Joshua Gresham
 License: Unsplash
@@ -3423,6 +3478,18 @@ Comment:
  sale of unaltered copies.
 
 Files:
+ images/land/snow23*
+ images/scene/iceplains3*
+Copyright: Daniel Frank
+License: Unsplash
+Comment:
+ Taken from https://archive.is/xK5Wu. These images were
+ uploaded to unsplash.com after June 2017, so they are
+ subject to the Unsplash License. They were also uploaded
+ after February 2018, so they are subject to an additional
+ restriction limiting the sale of unaltered copies.
+
+Files:
  images/ui/red?alert*
  images/ui/tactical/acceleration*
  images/ui/tactical/gun?range*
@@ -3483,6 +3550,12 @@ Files:
 Copyright: Daeridanii (https://github.com/Daeridanii1)
 License: CC0
 Comment: selected and unselected versions of images/ui/find, by Ember369 (https://github.com/Ember369)
+
+Files:
+ images/land/mars4*
+Copyright: NASA
+License: public-domain
+ Derived from works by NASA/JPL-Caltech/Malin Space Science Systems.
 
 License: Depends
  Taken from unsplash.com. Until June 2017, this was a collection of photographs that had been donated and

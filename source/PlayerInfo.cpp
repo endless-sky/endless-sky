@@ -565,7 +565,7 @@ void PlayerInfo::AddChanges(list<DataNode> &changes)
 	if(changedSystems)
 	{
 		// Recalculate what systems have been seen.
-		GameData::UpdateSystems();
+		GameData::UpdateSystems(this);
 		seen.clear();
 		for(const System *system : visitedSystems)
 		{
