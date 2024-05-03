@@ -101,7 +101,7 @@ ship "Summer Leaf"
 		"hull" 6700
 		"required crew" 6
 		"bunks" 15
-		"mass" 110
+		"mass" 220
 		"drag" 2.6
 		"heat dissipation" .8
 		"fuel capacity" 800
@@ -151,7 +151,7 @@ ship "Autumn Leaf"
 		"hull" 7400
 		"required crew" 8
 		"bunks" 16
-		"mass" 130
+		"mass" 260
 		"drag" 2.9
 		"heat dissipation" .8
 		"fuel capacity" 1000
@@ -213,7 +213,7 @@ ship "Strong Wind"
 		"hull" 19600
 		"required crew" 17
 		"bunks" 39
-		"mass" 260
+		"mass" 1040
 		"drag" 4.7
 		"heat dissipation" .7
 		"fuel capacity" 600
@@ -271,7 +271,7 @@ ship "Tempest"
 		"hull" 25900
 		"required crew" 38
 		"bunks" 53
-		"mass" 320
+		"mass" 1280
 		"drag" 6.2
 		"heat dissipation" 0.65
 		"fuel capacity" 600
@@ -394,7 +394,7 @@ ship "Derecho"
 		"hull" 32700
 		"required crew" 53
 		"bunks" 82
-		"mass" 540
+		"mass" 4320
 		"drag" 8.7
 		"heat dissipation" 0.6
 		"fuel capacity" 500
@@ -524,7 +524,7 @@ ship "Hurricane"
 		"hull" 46500
 		"required crew" 76
 		"bunks" 117
-		"mass" 770
+		"mass" 6160
 		"drag" 11.9
 		"heat dissipation" 0.55
 		"fuel capacity" 500
@@ -721,7 +721,7 @@ ship "Winter Gale"
 		"hull" 14800
 		"required crew" 14
 		"bunks" 23
-		"mass" 240
+		"mass" 480
 		"drag" 5.6
 		"heat dissipation" .7
 		"fuel capacity" 600
@@ -824,7 +824,7 @@ ship "Deep River"
 		"hull" 47500
 		"required crew" 13
 		"bunks" 22
-		"mass" 750
+		"mass" 6000
 		"drag" 9.4
 		"heat dissipation" .6
 		"fuel capacity" 500
@@ -913,7 +913,7 @@ ship "Deep River Transport"
 		"hull" 47500
 		"required crew" 13
 		"bunks" 166
-		"mass" 750
+		"mass" 6000
 		"drag" 9.4
 		"heat dissipation" .6
 		"fuel capacity" 500
@@ -965,7 +965,7 @@ ship "Riptide"
 		"hull" 22350
 		"required crew" 47
 		"bunks" 233
-		"mass" 500
+		"mass" 2000
 		"drag" 7.3
 		"heat dissipation" .7
 		"fuel capacity" 800

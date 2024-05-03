@@ -21,7 +21,7 @@ ship "Pug Zibruka"
 		"hull" 1000
 		"required crew" 4
 		"bunks" 6
-		"mass" 240
+		"mass" 480
 		"drag" 3.1
 		"heat dissipation" .8
 		"fuel capacity" 600
@@ -71,7 +71,7 @@ ship "Pug Enfolta"
 		"hull" 1700
 		"required crew" 19
 		"bunks" 27
-		"mass" 410
+		"mass" 1640
 		"drag" 5.9
 		"heat dissipation" .7
 		"fuel capacity" 600
@@ -126,7 +126,7 @@ ship "Pug Maboro"
 		"hull" 2700
 		"required crew" 54
 		"bunks" 87
-		"mass" 940
+		"mass" 7520
 		"drag" 9.8
 		"heat dissipation" .6
 		"fuel capacity" 600
@@ -183,7 +183,7 @@ ship "Pug Arfecta"
 		"hull" 80000
 		"required crew" 36
 		"bunks" 46
-		"mass" 670
+		"mass" 2680
 		"drag" 7.5
 		"heat dissipation" .8
 		"fuel capacity" 1200

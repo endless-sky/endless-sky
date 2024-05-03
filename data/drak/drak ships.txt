@@ -44,7 +44,7 @@ ship "Archon"
 		"ion resistance" 1
 		"scramble resistance" 1
 		"ramscoop" 100
-		"thrust" 80
+		"thrust" 60
 		"thrusting energy" 20
 		"thrusting heat" 10
 		"turn" 1600

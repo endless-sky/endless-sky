@@ -29,7 +29,7 @@ person "Michael Zahniser"
 			"hull" 40000
 			"required crew" 400
 			"bunks" 500
-			"mass" 740
+			"mass" 5920
 			"drag" 12.5
 			"heat dissipation" 0.45
 			"fuel capacity" 500
@@ -360,7 +360,7 @@ person "Captain Nate"
 			"hull" 8000
 			"required crew" 23
 			"bunks" 45
-			"mass" 500
+			"mass" 4000
 			"drag" 8
 			"heat dissipation" .6
 			"fuel capacity" 400
@@ -472,7 +472,7 @@ ship "Lampyrid-Class Transport"
 		"hull" 4400
 		"required crew" 5
 		"bunks" 23
-		"mass" 240
+		"mass" 960
 		"drag" 8.5
 		"heat dissipation" .7
 		"fuel capacity" 700
@@ -622,7 +622,7 @@ ship "Modified Osprey"
 		"hull repair rate" 10
 		"required crew" 189
 		"bunks" 240
-		"mass" 220
+		"mass" 880
 		"drag" 15.1
 		"heat dissipation" .6
 		"fuel capacity" 625
@@ -794,7 +794,7 @@ ship "Ursa Polaris"
 		hull 27000
 		"required crew" 559
 		"bunks" 972
-		"mass" 1839
+		"mass" 7356
 		"drag" 12
 		"heat dissipation" .9
 		"fuel capacity" 600
@@ -1227,7 +1227,7 @@ ship "Marauder Bactrian"
 		"hull" 12000
 		"required crew" 70
 		"bunks" 93
-		"mass" 650
+		"mass" 5200
 		"drag" 15
 		"heat dissipation" 0.4
 		"fuel capacity" 800
@@ -1535,7 +1535,7 @@ ship "Modified Battleship"
 		"hull" 26000
 		"required crew" 160
 		"bunks" 212
-		"mass" 1010
+		"mass" 8080
 		"drag" 19.4
 		"heat dissipation" .35
 		"fuel capacity" 1000
@@ -1776,7 +1776,7 @@ ship "Modified Ladybug"
 		
 		"required crew" 16
 		"bunks" 33
-		"mass" 280
+		"mass" 1
 		"drag" 5.4
 		"heat dissipation" .85
 		"fuel capacity" 900
