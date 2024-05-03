@@ -79,6 +79,9 @@ NPC::NPC(const DataNode &node)
 
 void NPC::Load(const DataNode &node)
 {
+	// Keep track of whether a destination has been assigned.
+	bool givenDestination = false;
+
 	// Any tokens after the "npc" tag list the things that must happen for this
 	// mission to succeed.
 	for(int i = 1; i < node.Size(); ++i)
@@ -159,6 +162,7 @@ void NPC::Load(const DataNode &node)
 			// all stopovers are visited (no permanent landing on the stopovers). If no
 			// planet is passed to the node, the mission's destination will be used.
 			doStopover |= child.Token(0) == "stopover";
+			givenDestination |= child.Token(0) == "destination";
 			if(!child.HasChildren())
 			{
 				// Given "destination/stopover" or "destination/stopover <planet 1> ... <planet N>".
@@ -321,6 +325,11 @@ void NPC::Load(const DataNode &node)
 		if(!stopovers.empty())
 			ship->SetStopovers(stopovers, doStopover);
 	}
+
+
+	// NPCs given the "land" completion condition should also have a destination.
+	if ((succeedIf & ShipEvent::LAND) && !givenDestination)
+		node.PrintTrace("Warning: NPC mission objective to land is impossible without a destination.");
 }
 
 
