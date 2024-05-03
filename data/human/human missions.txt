@@ -6999,7 +6999,7 @@ mission "Timothy Radrickson 2: mummy"
 
 	on enter
 		conversation
-			`For days there's been an odd lingering scent filtering in from your pressurized cargo; the smell has finally permeated your command deck, and something had to be done. A ship wide search has led you to a unopened foodstuffs crate. Although the crate was unopened, the seal on it appeared tampered with and the conjecture was that the food had gone bad.`
+			`For days there's been an odd lingering scent filtering in from your pressurized cargo. The smell has finally permeated your command deck, and something had to be done. A ship-wide search has led you to a unopened foodstuff crate. Although the crate was unopened, the seal on it appeared tampered with and the conjecture was that the food had gone bad.`
 			`	Upon opening it you discovered that was in fact, not the case. Instead you discovered the decaying body of a dead and forgotten stowaway; the entire crate promptly found its way to your airlock. Despite the diligent work of your ship's air filters, you can't quite rid the ship of the smell.`
 
 
@@ -7664,7 +7664,7 @@ mission "Timothy Radrickson 5b: New Britain"
 				`	(Pass.)`
 			action
 				set "med2"
-			`	That price is too expensive; you'll have to see if you can purchase a less potent and cheaper drug elsewhere. You return to the central atrium of the trade sector to consider your other options.`
+			`	That price is too high; you'll have to see if you can purchase a less potent and cheaper drug elsewhere. You return to the central atrium of the trade sector to consider your other options.`
 				goto options
 
 			label justright
