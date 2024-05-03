@@ -7245,7 +7245,7 @@ mission "Timothy Radrickson 3c: Escort the Convoy"
 				`	(Don't shake her hand.)`
 
 			`	She shrugs and withdraws her hand. "Different customs I suppose."`
-			`	Hrondy pauses for a moment, then says, "Gotta say you handled yourself well out there. Always good to see a Capt'n worth more than dust on their boots." She gives you an approving nod.`
+			`	Hrodny pauses for a moment, then says, "Gotta say you handled yourself well out there. Always good to see a Capt'n worth more than dust on their boots." She gives you an approving nod.`
 				goto nextup
 
 			label shake
