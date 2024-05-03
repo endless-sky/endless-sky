@@ -7051,7 +7051,7 @@ event "timothy radrickson: governor"
 
 mission "Timothy Radrickson 3: Governor Notification"
 	name "Visit the Governor on <planet>"
-	description "The Governor of <planet> has invited you to speak with them."
+	description "The governor of <planet> has invited you to speak with them."
 	to offer
 		has "event: timothy radrickson: governor"
 	destination "Rand"
