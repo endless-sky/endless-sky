@@ -54,7 +54,7 @@ R"(formation "Empty By Skips"
 	line
 		start -100 200
 		end 100 200
-		slots 2
+		positions 2
 		skip first
 		skip last
 		repeat
@@ -69,13 +69,13 @@ R"'(formation "Delta Tail (px)"
 	line
 		start -100 200
 		end 100 200
-		slots 2
+		positions 2
 		centered
 		repeat
 			start -100 200
 			end 100 200
 			alternating
-			slots 1
+			positions 1
 )'";
 
 std::string formation_tail_px_point =
@@ -216,9 +216,8 @@ SCENARIO( "Loading and using of a formation pattern", "[formationPattern][Positi
 				CHECK( it.Ring() == 2 );
 			}
 			THEN ( "the correct positions are calculated when nr of ships is known" ) {
-				unsigned int startingRing = 0;
 				unsigned int shipsToPlace = 9;
-				auto it = delta_px.begin(diameterToPx, widthToPx, heightToPx, centerBodyRadius, startingRing, shipsToPlace);
+				auto it = delta_px.begin(diameterToPx, widthToPx, heightToPx, centerBodyRadius, shipsToPlace);
 				REQUIRE( Near(*it, Point(-100, 200)) );
 				CHECK( it.Ring() == 0 );
 				++it;
@@ -245,40 +244,6 @@ SCENARIO( "Loading and using of a formation pattern", "[formationPattern][Positi
 				++it;
 				REQUIRE( Near(*it, Point(300, 600)) );
 				CHECK( it.Ring() == 2 );
-			}
-		}
-		WHEN( "there is one ship on a centered line" ) {
-			unsigned int shipsToPlace = 1;
-			THEN ( "it is in the center spot on odd lines" ) {
-				unsigned int startingRing = 3;
-				auto it = delta_px.begin(diameterToPx, widthToPx, heightToPx, centerBodyRadius, startingRing, shipsToPlace);
-				REQUIRE ( it.Ring() == 3 );
-				CHECK( Near(*it, Point(0, 800)) );
-			}
-			THEN ( "it is near the center on even lines" ) {
-				unsigned int startingRing = 4;
-				auto it = delta_px.begin(diameterToPx, widthToPx, heightToPx, centerBodyRadius, startingRing, shipsToPlace);
-				REQUIRE ( it.Ring() == 4 );
-				// X can be left of center or right of center at a distance of
-				// 100 pixels, or can be in the exact center (depending on
-				// implementation).
-				// We just allow all those possible implementations in the test.
-				CHECK(( it->X() == Approx(0.) || abs(it->X()) == Approx(100.) ));
-				CHECK( it->Y() == Approx(1000.) );
-			}
-		}
-		WHEN( "there are two ships on a centered line" ) {
-			double diameterToPx = 0.;
-			double widthToPx = 0.;
-			double heightToPx = 0.;
-			double centerBodyRadius = 0.;
-			unsigned int startingRing = 2;
-			unsigned int numberOfShips = 2;
-			THEN ( "they are on the left and right spots near the center on even lines" ) {
-				auto it = delta_px.begin(diameterToPx, widthToPx, heightToPx, centerBodyRadius, startingRing, numberOfShips);
-				CHECK( Near(*it, Point(-100, 600)) );
-				++it;
-				CHECK( Near(*it, Point(100, 600)) );
 			}
 		}
 	}

@@ -24,8 +24,8 @@ using namespace std;
 
 FormationPattern::PositionIterator::PositionIterator(const FormationPattern &pattern,
 		double diameterToPx, double widthToPx, double heightToPx, double centerBodyRadius,
-		unsigned int startRing, unsigned int shipsToPlace)
-	: pattern(pattern), ring(startRing), shipsToPlace(shipsToPlace), centerBodyRadius(centerBodyRadius),
+		unsigned int shipsToPlace)
+	: pattern(pattern), shipsToPlace(shipsToPlace), centerBodyRadius(centerBodyRadius),
 		diameterToPx(diameterToPx), widthToPx(widthToPx), heightToPx(heightToPx)
 {
 	MoveToValidPosition();
@@ -259,10 +259,10 @@ void FormationPattern::Load(const DataNode &node)
 // Get an iterator to iterate over the formation positions in this pattern.
 FormationPattern::PositionIterator FormationPattern::begin(
 	double diameterToPx, double widthToPx, double heightToPx,
-	double centerBodyRadius, unsigned int startRing, unsigned int shipsToPlace) const
+	double centerBodyRadius, unsigned int shipsToPlace) const
 {
 	return FormationPattern::PositionIterator(*this, diameterToPx, widthToPx,
-		heightToPx, centerBodyRadius, startRing, shipsToPlace);
+		heightToPx, centerBodyRadius, shipsToPlace);
 }
 
 

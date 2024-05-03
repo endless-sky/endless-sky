@@ -53,18 +53,18 @@ private:
 	void CalculateDirection();
 
 	// Check if a ship is actually still participating in the current formation(ring).
-	bool IsActiveInFormation(unsigned int ring, const Ship *ship) const;
+	bool IsActiveInFormation(const Ship *ship) const;
 
-	// Remove a ship from the formation-ring (based on its index). The last ship
-	// in the ring will take the position of the removed ship (if the removed
+	// Remove a ship from the formation (based on its index). The last ship
+	// in the formation will take the position of the removed ship (if the removed
 	// ship itself is not the last ship).
-	void RemoveFromRing(unsigned int ring, unsigned int index);
+	void Remove(unsigned int index);
 
 
 private:
 	// Lists of ships on the rings. Used when (re)generating positions for the ring.
 	// The actual positions are stored in shipPositions.
-	std::map<unsigned int, std::vector<std::weak_ptr<const Ship>>> ringShips;
+	std::vector<std::weak_ptr<const Ship>> shipsInFormation;
 	// Lookup/cache of the ship coordinates in the formation, its ring-section and
 	// an indicator if it was seen since last generate loop.
 	std::map<const Ship *, std::pair<Point, bool>> shipPositions;

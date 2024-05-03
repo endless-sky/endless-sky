@@ -55,10 +55,6 @@ void FormationPositioner::Step()
 
 Point FormationPositioner::Position(const Ship *ship)
 {
-	// TODO: Remove formationRing completely (including the ringShips variable)
-	//unsigned int formationRing = ship->GetFormationRing();
-	unsigned int formationRing = 0;
-
 	Point relPos;
 
 	auto it = shipPositions.find(ship);
@@ -82,7 +78,7 @@ Point FormationPositioner::Position(const Ship *ship)
 		shipPositions[ship] = make_pair(relPos, tickTock);
 
 		// Add the ship to the ring.
-		ringShips[formationRing].push_back(ship->shared_from_this());
+		shipsInFormation.push_back(ship->shared_from_this());
 
 		// Trigger immediate re-generation of the formation positions (to
 		// ensure that this new ship also gets a valid position).
@@ -105,72 +101,56 @@ void FormationPositioner::CalculatePositions()
 	maxWidth = 0;
 	maxHeight = 0;
 
-	// Run the iterators for the ring sections.
-	unsigned int startRing = 0;
-	for(auto &itShips : ringShips)
+	// Run the position iterator for the ships in the formation.
+	auto itPos = pattern->begin(diameterToPx, widthToPx, heightToPx,
+		centerBodyRadius, shipsInFormation.size());
+
+	// Run the iterator.
+	size_t shipIndex = 0;
+	while(shipIndex < shipsInFormation.size())
 	{
-		unsigned int desiredRing = itShips.first;
-		auto &shipsInRing = itShips.second;
+		// If the ship is no longer valid or not or no longer part of this
+		// formation, then we need to remove it.
+		auto ship = (shipsInFormation[shipIndex]).lock();
+		bool removeShip = !ship || !IsActiveInFormation(ship.get());
 
-		// If a ring is completely empty, then we skip it.
-		if(shipsInRing.empty())
-			continue;
+		// Lookup the ship in the positions map.
+		auto itCoor = shipPositions.end();
+		if(ship)
+			itCoor = shipPositions.find(&(*ship));
 
-		// Set starting ring for current ring-section.
-		startRing = max(startRing, desiredRing);
+		// If the ship is not in the overall table or if it was not
+		// active since the last iteration, then we also remove it.
+		removeShip = removeShip || itCoor == shipPositions.end() ||
+				itCoor->second.second != tickTock;
 
-		// Initialize the new iterator for use for the current ring-section.
-		auto itPos = pattern->begin(diameterToPx, widthToPx, heightToPx,
-			centerBodyRadius, startRing, shipsInRing.size());
-
-		// Run the iterator.
-		size_t shipIndex = 0;
-		while(shipIndex < shipsInRing.size())
+		// Perform removes if we need to.
+		if(removeShip)
 		{
-			// If the ship is no longer valid or not or no longer part of this
-			// formation, then we need to remove it.
-			auto ship = (shipsInRing[shipIndex]).lock();
-			bool removeShip = !ship || !IsActiveInFormation(desiredRing, ship.get());
-
-			// Lookup the ship in the positions map.
-			auto itCoor = shipPositions.end();
-			if(ship)
-				itCoor = shipPositions.find(&(*ship));
-
-			// If the ship is not in the overall table or if it was not
-			// active since the last iteration, then we also remove it.
-			removeShip = removeShip || itCoor == shipPositions.end() ||
-					itCoor->second.second != tickTock;
-
-			// Perform removes if we need to.
-			if(removeShip)
-			{
-				// Remove the ship from the ring.
-				RemoveFromRing(desiredRing, shipIndex);
-				// And remove the ship from the shipsPositions map.
-				if(itCoor != shipPositions.end())
-					shipPositions.erase(itCoor);
-			}
-			else
-			{
-				// Set scaling for next round based on the sizes of the
-				// participating ships.
-				Tally(*ship);
-
-				// Calculate the new coordinate for the current ship.
-				Point &shipRelPos = itCoor->second.first;
-				shipRelPos = *itPos;
-				if(flippedY)
-					shipRelPos.Set(-shipRelPos.X(), shipRelPos.Y());
-				if(flippedX)
-					shipRelPos.Set(shipRelPos.X(), -shipRelPos.Y());
-				++itPos;
-				++shipIndex;
-			}
+			// Remove the ship from the ring.
+			Remove(shipIndex);
+			// And remove the ship from the shipsPositions map.
+			if(itCoor != shipPositions.end())
+				shipPositions.erase(itCoor);
 		}
-		// Store starting ring for next ring-positioner.
-		startRing = itPos.Ring() + 1;
+		else
+		{
+			// Set scaling for next round based on the sizes of the
+			// participating ships.
+			Tally(*ship);
+
+			// Calculate the new coordinate for the current ship.
+			Point &shipRelPos = itCoor->second.first;
+			shipRelPos = *itPos;
+			if(flippedY)
+				shipRelPos.Set(-shipRelPos.X(), shipRelPos.Y());
+			if(flippedX)
+				shipRelPos.Set(shipRelPos.X(), -shipRelPos.Y());
+			++itPos;
+			++shipIndex;
+		}
 	}
+
 	// Switch marker to detect stale/missing ships in the next iteration.
 	tickTock = !tickTock;
 }
@@ -245,7 +225,7 @@ void FormationPositioner::CalculateDirection()
 
 
 // Check if a ship is active in the current formation.
-bool FormationPositioner::IsActiveInFormation(unsigned int ring, const Ship *ship) const
+bool FormationPositioner::IsActiveInFormation(const Ship *ship) const
 {
 	// Ships need to be active, need to have the same formation pattern and
 	// need to be in the same system as their formation lead in order to
@@ -273,19 +253,18 @@ bool FormationPositioner::IsActiveInFormation(unsigned int ring, const Ship *shi
 
 
 
-// Remove a ship from the formation-ring (based on its index). The last ship
-// in the ring will take the position of the removed ship (if the removed
+// Remove a ship from the formation (based on its index). The last ship
+// in the formation will take the position of the removed ship (if the removed
 // ship itself is not the last ship).
-void FormationPositioner::RemoveFromRing(unsigned int ring, unsigned int index)
+void FormationPositioner::Remove(unsigned int index)
 {
-	auto &shipsInRing = ringShips[ring];
-	if(shipsInRing.empty())
+	if(shipsInFormation.empty())
 		return;
 
 	// Move the last element to the current position and remove the last
 	// element; this will let last ship take the position of the ship that
 	// we will remove.
-	if(index < (shipsInRing.size() - 1))
-		shipsInRing[index].swap(shipsInRing.back());
-	shipsInRing.pop_back();
+	if(index < (shipsInFormation.size() - 1))
+		shipsInFormation[index].swap(shipsInFormation.back());
+	shipsInFormation.pop_back();
 }

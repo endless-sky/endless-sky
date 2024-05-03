@@ -39,7 +39,7 @@ public:
 	public:
 		PositionIterator(const FormationPattern &pattern,
 			double diameterToPx, double widthToPx, double heightToPx,
-			double centerBodyRadius, unsigned int startRing, unsigned int shipsToPlace);
+			double centerBodyRadius, unsigned int shipsToPlace);
 
 		PositionIterator() = delete;
 
@@ -67,7 +67,7 @@ public:
 		const FormationPattern &pattern;
 
 		// The location in the pattern.
-		unsigned int ring;
+		unsigned int ring = 0;
 		unsigned int line = 0;
 		// The active repeat-section on the line or arc. (Lines or arcs can have more than 1 repeat section)
 		unsigned int repeat = 0;
@@ -103,7 +103,7 @@ public:
 
 	// Get an iterator to iterate over the formation positions in this pattern.
 	PositionIterator begin(double diameterToPx, double widthToPx, double heightToPx,
-		double centerBodyRadius, unsigned int startRing = 0, unsigned int shipsToPlace = 0) const;
+		double centerBodyRadius, unsigned int shipsToPlace = 0) const;
 
 	// Retrieve properties like number of lines and arcs, number of repeat sections and number of positions.
 	// TODO: Should we hide those properties and just provide a position iterator instead?
