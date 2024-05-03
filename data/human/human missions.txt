@@ -7176,14 +7176,20 @@ mission "Timothy Radrickson 3b: Pirate Base"
 			`	As you approach the bay your computer is able to make out numerous parked pirate vessels, and large defensive turrets just outside the bay's underground blast doors. They haven't realized you're hostile yet and you have an opportunity to seize the initative and open fire on them.`
 
 			choice
-				`	(Open fire on the Pirate Bay Defenses.)`
+				`	(Open fire on the parked pirate vessels.)`
 					goto fire
-				`	(Attempt to use diplomacy.)`
+				`	(Hail the pirates and use diplomacy.)`
+			action
+				set "big greenrock pirate fleet"
 			`	You hail the pirates imploring them to consider a diplomatic solution. Their only response is to launch their entire fleet after you.`
 			`	Your forced back into space to fight them.`
+				launch
 
-			label fire #Bene - I don't know how to connect the two different options to two different fleet spawns 
+			label fire 
+			action
+				set "diminished greenrock pirate fleet"
 			`	Your ship lets loose a withering barrage that destroys multiple pirate vessels and disables others. You then pull up back into space as the surviving ships are sent after you.`
+				launch
 
 
 	on visit
@@ -7191,9 +7197,19 @@ mission "Timothy Radrickson 3b: Pirate Base"
 
 	npc kill
 		system "Shaula"
+		to spawn 
+			has "big greenrock pirate fleet"
 		government "Pirate"
 		personality staying nemesis target
 		fleet "Marauder fleet X" 2 # Subject to balancing
+	
+		npc kill
+		system "Shaula"
+		to spawn
+			has "diminished greenrock pirate fleet"
+		government "Pirate"
+		personality staying nemesis target
+		fleet "Marauder fleet X" 1 # Subject to balancing
 
 
 mission "Timothy Radrickson 3c: Escort the Convoy"
