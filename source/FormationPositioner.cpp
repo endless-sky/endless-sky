@@ -249,7 +249,7 @@ bool FormationPositioner::IsActiveInFormation(const Ship *ship) const
 	// the child/parent relationship.
 	auto targetShip = ship->GetTargetShip();
 	auto parentShip = ship->GetParent();
-	if ((!targetShip || &(*targetShip) != formationLead) &&
+	if((!targetShip || &(*targetShip) != formationLead) &&
 		(!parentShip || &(*parentShip) != formationLead))
 		return false;
 
