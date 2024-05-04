@@ -1226,6 +1226,13 @@ event "Greenrock recovered"
 
 
 
+event "memorial on Deep"
+	planet "Deep"
+		spaceport `The spaceport is built on a large island, a now-extinct volcano with an elevation of several kilometers at its center. Most of the large-scale fishing here is done by a single company, Poseidon Industries, which also built and maintains the spaceport. Steep winding roads and sturdy concrete homes and warehouses line the mountain slopes, and below you in the harbor several massive trawling vessels are moored. On the outskirts of the spaceport are the ramshackle houses and open-air marketplace used by the smaller, independent fishing families.`
+		spaceport `	Positioned north of the spaceport is the Free Worlds War Memorial, a series of granite walls engraved with the names of the fallen. The nine completed walls are already filled on both sides; it seems unlikely the other fourteen walls will last the war.`
+
+
+
 event "flamethrower available"
 	outfitter "Kraz Advanced"
 		"Flamethrower"
@@ -1575,6 +1582,13 @@ event "fw southern expansion"
 		description `New Iceland is a perpetually hazy volcanic world, with a slightly caustic atmosphere but enough reserves of metal and petrochemicals to draw a large number of settlers. Some of those settlers also make a living as farmers, and a few well-developed factory towns produce goods for export to other worlds.`
 		description `	Many of the inhabitants wear dust masks to avoid letting the particulate matter from the volcanoes accumulate in their lungs.`
 		description `	In the wake of their defeat in the south, the Navy has begun to set up a massive new base here on New Iceland, in order to allow them to continue to have a strong presence in this sector.`
+
+
+
+event "Deep memorial expansion 1"
+	planet "Deep"
+		spaceport `The spaceport is built on a large island, a now-extinct volcano with an elevation of several kilometers at its center. Most of the large-scale fishing here is done by a single company, Poseidon Industries, which also built and maintains the spaceport. Steep winding roads and sturdy concrete homes and warehouses line the mountain slopes, and below you in the harbor several massive trawling vessels are moored. On the outskirts of the spaceport are the ramshackle houses and open-air marketplace used by the smaller, independent fishing families.`
+		spaceport `	Positioned north of the spaceport is the Free Worlds War Memorial, a series of granite walls engraved with the names of the fallen. The site has progressed from its original scale, with an outer ring being erected to hold fifty additional walls of names.`
 
 
 
@@ -3160,6 +3174,22 @@ event "syndicate tech available"
 		"Ionic Afterburner"
 		"S-270 Regenerator"
 		"S-970 Regenerator"
+
+
+
+event "Deep memorial completed"
+	planet "Deep"
+		spaceport `The spaceport is built on a large island, a now-extinct volcano with an elevation of several kilometers at its center. Most of the large-scale fishing here is done by a single company, Poseidon Industries, which also built and maintains the spaceport. Steep winding roads and sturdy concrete homes and warehouses line the mountain slopes, and below you in the harbor several massive trawling vessels are moored. On the outskirts of the spaceport are the ramshackle houses and open-air marketplace used by the smaller, independent fishing families.`
+		spaceport `	Positioned north of the spaceport is the Free Worlds War Memorial, a series of granite walls engraved with the names of the fallen. Two additional rings of walls have been constructed around both the first twenty-three walls and the fifty walls of the old outer ring.`
+
+mission "Deep Memorial Finished"
+	landing
+	invisible
+	to offer
+		has "main plot completed"
+	on offer
+		event "Deep memorial completed"
+		fail
 
 
 
