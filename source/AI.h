@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <list>
 #include <map>
 #include <memory>
+#include <set>
 #include <vector>
 
 class Angle;
@@ -254,6 +255,9 @@ private:
 	std::map<const Ship *, std::weak_ptr<Ship>> helperList;
 	std::map<const Ship *, int> swarmCount;
 	std::map<const Ship *, int> fenceCount;
+	std::map<const Ship *, std::set<const Ship *>> cargoScans;
+	std::map<const Ship *, std::set<const Ship *>> outfitScans;
+	std::map<const Ship *, int> scanTime;
 	std::map<const Ship *, Angle> miningAngle;
 	std::map<const Ship *, double> miningRadius;
 	std::map<const Ship *, int> miningTime;
