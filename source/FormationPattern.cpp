@@ -167,8 +167,7 @@ void FormationPattern::Load(const DataNode &node)
 			rotatable = child.Value(1);
 		else if(child.Token(0) == "position" && child.Size() >= 3)
 		{
-			lines.emplace_back();
-			Line &line = lines.back();
+			Line &line = lines.emplace_back();
 			// A point is a line with just 1 position on it.
 			line.positions = 1;
 			// The specification of the coordinates is on the same line as the keyword.
