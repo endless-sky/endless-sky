@@ -304,7 +304,43 @@ tip "repair delay:"
 	`The number of seconds it takes for additional hull repairs to begin after taking hull damage.`
 
 tip "disabled repair delay:"
-	`The number of seconds it takes for additional hull repairs to begin after being disabled.`
+	`The number of seconds it takes for hull repairs to begin after being disabled.`
+	
+tip "disabled recovery time:"
+	`The number of seconds it takes for a disabled ship to repair itself.`
+	
+tip "disabled recovery energy:"
+	`The energy cost required for a disabled ship to repair itself.`
+
+tip "disabled recovery fuel:"
+	`The fuel cost required for a disabled ship to repair itself.`
+	
+tip "disabled recovery heat:"
+	`The heat applied when a disabled ship repairs itself.`
+
+tip "disabled recovery ionization:"
+	`The ion damage applied when a disabled ship repairs itself.`
+
+tip "disabled recovery scrambling:"
+	`The scrambling damage applied when a disabled ship repairs itself.`
+
+tip "disabled recovery disruption:"
+	`The disruption damage applied when a disabled ship repairs itself.`
+
+tip "disabled recovery slowing:"
+	`The slowing damage applied when a disabled ship repairs itself.`
+
+tip "disabled recovery discharge:"
+	`The discharge damage applied when a disabled ship repairs itself.`
+
+tip "disabled recovery corrosion:"
+	`The corrosion damage applied when a disabled ship repairs itself.`
+
+tip "disabled recovery leak:"
+	`The leak damage applied when a disabled ship repairs itself.`
+	
+tip "disabled recovery burning:"
+	`The burning damage applied when a disabled ship repairs itself.`
 
 tip "absolute threshold:"
 	`The remaining hull strength at which the ship becomes disabled. This attribute takes priority over other attributes that change the disabled threshold.`
