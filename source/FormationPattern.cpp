@@ -45,8 +45,7 @@ FormationPattern::PositionIterator &FormationPattern::PositionIterator::operator
 {
 	if(!atEnd)
 	{
-		do
-		{
+		do {
 			position++;
 			MoveToValidPosition();
 		}
@@ -64,17 +63,14 @@ FormationPattern::PositionIterator &FormationPattern::PositionIterator::operator
 
 void FormationPattern::PositionIterator::MoveToValidPosition()
 {
+	unsigned int lines = pattern.Lines();
+
 	// If we cannot calculate any new positions, then just return center point.
-	if(atEnd)
+	if(atEnd || lines < 1)
 	{
 		currentPoint = Point();
 		return;
 	}
-
-	// Check if there are any lines available.
-	unsigned int lines = pattern.Lines();
-	if(lines < 1)
-		atEnd = true;
 
 	unsigned int ringsScanned = 0;
 	unsigned int startingRing = ring;
@@ -157,9 +153,9 @@ void FormationPattern::Load(const DataNode &node)
 			for(int i = 1; i < child.Size(); ++i)
 			{
 				if(child.Token(i) == "x")
-					flippable_x = true;
+					flippableX = true;
 				else if(child.Token(i) == "y")
-					flippable_y = true;
+					flippableY = true;
 				else
 					child.PrintTrace("Skipping unrecognized attribute:");
 			}
@@ -370,14 +366,14 @@ int FormationPattern::Rotatable() const
 
 bool FormationPattern::FlippableY() const
 {
-	return flippable_y;
+	return flippableY;
 }
 
 
 
 bool FormationPattern::FlippableX() const
 {
-	return flippable_x;
+	return flippableX;
 }
 
 
@@ -398,7 +394,9 @@ void FormationPattern::MultiAxisPoint::AddLoad(const DataNode &node)
 	Axis axis = PIXELS;
 	double scalingFactor = 1.;
 
-	// Parse all the keywords before the coordinate
+	// Parse all the keywords before the coordinate and warn if the datafiles
+	// use tokens used in other formation-pattern formats (that are not supported
+	// in this codebase at this moment).
 	for(int i = 1; i < node.Size() - 2; ++i)
 		node.PrintTrace("Ignoring unrecognized token " + node.Token(i) + ":");
 

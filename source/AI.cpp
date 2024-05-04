@@ -406,8 +406,7 @@ void AI::IssueFormationChange(const PlayerInfo &player)
 
 	// Now set the pattern on the selected ships.
 	for(Ship *ship : targetShips)
-		if(ship->GetFormationPattern() != toSet)
-			ship->SetFormationPattern(toSet);
+		ship->SetFormationPattern(toSet);
 
 	if(toSet)
 		Messages::Add(to_string(targetShips.size()) + " ships are now flying in " + toSet->Name() + " formation.",

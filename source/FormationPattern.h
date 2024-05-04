@@ -121,6 +121,9 @@ private:
 		unsigned int lineRepeatPosition, double diameterToPx, double widthToPx, double heightToPx) const;
 
 private:
+	// Helper class to allow formations to be built using coordinates that are in pixels, but also
+	// using coordinates based on the sizes of ships in the formation. (To allow formations to scale
+	// based on the size of participants in the formation.)
 	class MultiAxisPoint {
 	public:
 		// Coordinate axises for formations; in pixels (default) and heights, widths and diameters
@@ -196,9 +199,9 @@ private:
 	// 120 degrees and again get the same shape.
 	int rotatable = -1;
 	// Indicates if the formation is flippable along the longitudinal axis.
-	bool flippable_y = false;
+	bool flippableY = false;
 	// Indicates if the formation is flippable along the transverse axis.
-	bool flippable_x = false;
+	bool flippableX = false;
 	// The lines that define the formation.
 	std::vector<Line> lines;
 };
