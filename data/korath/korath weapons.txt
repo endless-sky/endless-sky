@@ -32,7 +32,7 @@ outfit "Grab-Strike Turret"
 		"hit effect" "grab-strike impact"
 		"die effect" "grab-strike impact"
 		"inaccuracy" 1
-		"turret turn" 1.
+		"turret turn" 1
 		"velocity" 10
 		"lifetime" 100
 		"reload" 20
@@ -293,7 +293,7 @@ outfit "Korath Inferno"
 		sound "korath inferno"
 		"hit effect" "korath inferno hit"
 		"inaccuracy" 0.5
-		"turret turn" 1.
+		"turret turn" 1
 		"velocity" 550
 		"lifetime" 1
 		"reload" 1
@@ -718,7 +718,7 @@ outfit "Husk-Slice Turret"
 		sound "slicer"
 		"hit effect" "slicer impact"
 		"inaccuracy" 0
-		"turret turn" 1.
+		"turret turn" 1
 		"velocity" 520
 		"lifetime" 1
 		"reload" 1.62

@@ -436,7 +436,7 @@ outfit "Irate Cannon Turret"
 		"live effect" "irate smoke" 12
 		"hit effect" "tiny explosion"
 		"inaccuracy" 2
-		"turret turn" 2.
+		"turret turn" 2
 		"velocity" 22
 		"lifetime" 15
 		"reload" 10

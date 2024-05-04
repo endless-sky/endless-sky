@@ -84,7 +84,7 @@ outfit "Blaster Turret"
 		sound "blaster"
 		"hit effect" "blaster impact"
 		"inaccuracy" 3
-		"turret turn" 2.
+		"turret turn" 2
 		"velocity" 10.625
 		"lifetime" 48
 		"reload" 6
@@ -202,7 +202,7 @@ outfit "Modified Blaster Turret"
 		sound "mod blaster"
 		"hit effect" "blaster impact"
 		"inaccuracy" 4
-		"turret turn" 2.
+		"turret turn" 2
 		"velocity" 10
 		"lifetime" 48
 		"reload" 6
@@ -683,7 +683,7 @@ outfit "Plasma Turret"
 		sound "plasma"
 		"hit effect" "plasma explosion"
 		"inaccuracy" 2
-		"turret turn" 1.
+		"turret turn" 1
 		"velocity" 12
 		"lifetime" 40
 		"reload" 9
@@ -1100,7 +1100,7 @@ outfit "Javelin Turret"
 		icon "icon/javelin turret"
 		"hit effect" "tiny explosion"
 		"inaccuracy" 4
-		"turret turn" 2.
+		"turret turn" 2
 		"velocity" 10
 		"lifetime" 60
 		"reload" 7.5
@@ -1561,7 +1561,7 @@ outfit "Gatling Turret"
 		ammo "Gatling Gun Ammo" 2
 		icon "icon/gat turret"
 		"inaccuracy" 2
-		"turret turn" 2.
+		"turret turn" 2
 		"velocity" 16
 		"lifetime" 1
 		"reload" 3
