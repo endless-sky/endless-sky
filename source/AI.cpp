@@ -155,7 +155,7 @@ namespace {
 			auto &playerShips = player.Ships();
 			targetShips.reserve(playerShips.size() - 1);
 			for(const shared_ptr<Ship> &it : player.Ships())
-				if(it != player.FlagshipPtr() && !it->IsParked()
+				if(it.get() != player.Flagship() && !it->IsParked()
 						&& !it->IsDestroyed())
 					targetShips.push_back(it.get());
 		}
