@@ -32,32 +32,32 @@ mission "Incipias: Warning of the Guardian"
 		never
 	on enter Il'le
 		conversation
-			`"You came to a dead end, maybe try another route," a voice with uncertain origin says.`
+			`"You have come to a dead end. Perhaps try another route," a voice with an uncertain origin says.`
 			`	Alarmed by the sudden appearance you turn around but nobody is there. You check your scanners but only a few indigenous lifeforms that showed no sign of communication appear. Also you notice that your mapping system found hyperlinks stretching out from this system.`
 			choice
-				`	(It was probably your imagiation, ignore it.)`
-				`	"You cant fool me, this is no dead end."`
+				`	(Ignore it. It was probably your imagination.)`
+				`	"You can't fool me. This is no dead end."`
 					goto reason
 				`	"Why should I listen to you?"`
 					goto reason
-			`	"Ignoring me wont help you, turn around," the same voice says, again with no indication of where it came from.`
+			`	"Ignoring me will not help you. Turn around," the same voice says, again with no indication of where it came from.`
 			choice
-				`	"You cant fool me, this is no dead end."`
+				`	"You can't fool me. This is no dead end."`
 				`	"Why should I listen to you?"`
 			label reason
-			`	"Here lie the unborn flowers yet to come to full bloom. There is nothing here for you to find, listen to my advice and turn back." The voice sounds more energetic this time and you get the impression that is coming out of your head.`
+			`	"Here lie the unborn flowers yet to come into full bloom. There is nothing here for you to find. Listen to my advice and turn back." The voice sounds more energetic this time and you feel as if it is coming out of your head.`
 			choice
-				`	"Unborn flowers, that sounds interesting."`
+				`	"Unborn flowers. That sounds interesting."`
 				`	"I will see for myself."`
-			`	A sigh seems to drif through the continuum, "Human, these unborn flowers," an impresion of euphoria comes over you, "would only be in danger by your presence, please respect the beauty of life and do not step into this region that will soon bring forth a new species. Your kind is much more advanced than everything that you could hope to find here, no merits await you."`
+			`	A sigh seems to drift through the continuum, "Human, these unborn flowers-" an impression of euphoria comes over you, "-would only be endangered by your presence. Please respect the beauty of life and do not step into this region that will soon bring forth a new species. Your kind is much more advanced than anything that you could hope to find here. No treasures here await you."`
 			choice
 				`	"Why do you care about these flowers?"`
 					goto care
-				`	"Maybe what I search is not technology."`
-			`	The voice now in what you might call an understanding and calm tone says, "Your persistence on this topic is admirable but allow me to explain my conviction with an example." You say nothing, so the voice continues.`
+				`	"Maybe what I search for is not technology."`
+			`	The voice now takes on a calm tone. "Your persistence on this topic is admirable, but allow me to explain my conviction with an example." You say nothing, so the voice continues.`
 			label care
-			`	"Why do humans care about art?" The voice now seems far away yet more present than ever, "Because it amazes you, the same way it amazes us to see another kind grow and overcome their burdens, life of species are like a painting that never stop being painted and when they do stop it is one of the sadest things to watch. That is why we try to protect these creations of life itself and see what heights they can reach."`
-			`	The voice pauses before continuing, "I see that you can not be convinced by me, even though I could just wipe you out here and now I do not favor violence, I will let you pass, but I will be watching you as I am," and you can hear the ultimate resolution in the voice, "the guardian of this space."`
+			`	"Why do humans care about art?" The voice now seems far away yet more present than ever. "Because it amazes you, the same way it amazes us to see another kind grow and overcome their burdens. The lives of species are like a painting that never stop being painted, but when they do stop it is a tragic thing to watch. That is why we try to protect these creations of life - so we can see what heights they reach."`
+			`	The voice pauses before continuing. "I see that you can not be convinced by me. Even though I could simply wipe you out here and now, I do not favor violence. I will let you pass, but I will be watching you as I am-" you can hear the ultimate resolution in the voice, "-the guardian of this space."`
 				`	The voice fades out leaving nothing behind but the feeling of being watched.`
 				decline
 
@@ -123,7 +123,7 @@ ship "Nimbus" "Nimbus FTL"
 		"MH Red-Class Engine"
 		"MH Red-Class Steering"
 
-mission "Incipias: The derelict"
+mission "Incipias: The Derelict"
 	landing
 	invisible
 	to offer
@@ -208,7 +208,7 @@ mission "Incipias: Help the stranded Part 1"
 				`	"Yes, but why do you want me not to sell my tech?"`
 			`	"Interrupting the natural grow of a species not predictable the consequences are even letting you contact them a great risk is. But that one willing to take I am for the lives of these souls."`
 			label yes
-			`	"Happy I am that you agree to that condition. Please for a moment wait here," it says and hurrilly walks away.`
+			`	"Happy I am that you agree to that condition. Please for a moment wait here," it says and walks away.`
 			`	It only takes it a moment to get back carrying a sleek silver box with a display on one side.`
 			`	"Our translator this is. Into your language it can translate thanks to our database. Be aware of the honor of me handing this you," it says, handing the translator over.`
 			`	As you stow it away it explains how to use it. "Oh and captain one last thing, the complexity of their language even we can not express, the translator might not be able to translate some parts directly, when it happens you will notice."`
