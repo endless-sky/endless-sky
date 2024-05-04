@@ -3139,7 +3139,7 @@ system Aladfar
 	attributes "near earth"
 	habitable 8429.116
 	belt 1705 7
-	link Cebalrai
+	link Menkent
 	link Muphrid
 	link Sulafat
 	link Vega
@@ -8329,7 +8329,6 @@ system Cebalrai
 	arrival 625
 	habitable 625
 	belt 1955
-	link Aladfar
 	link Hintar
 	link "Kaus Borealis"
 	link Menkent
@@ -22952,6 +22951,7 @@ system Menkent
 	arrival 2340
 	habitable 2340
 	belt 1728
+	link Aladfar
 	link Cebalrai
 	link Rutilicus
 	asteroids "small rock" 33 2.9328
