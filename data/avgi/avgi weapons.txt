@@ -60,7 +60,7 @@ outfit "Speckle Coilgun"
 		"firing force" 12
 		"submunition" "Speck"
 	description "This compact coilgun fires a stream of hypervelocity projectiles, accelerating them on a traveling wave of magnetic energy as capacitors are discharged through a series of coils. Designed primarily for drones and smaller ships, the Speckle is a deadly albeit relatively unsophisticated weapon."
-	description "Due to its limited range, the Speckle shines when a ship can sneak close enough to an enemy to bring it to bear, where it can begin tearing through armor and hull. However, its effectiveness is much more limited against shields, which shrug off the its mass driver rounds with relative ease."
+	description "Due to its limited range, the Speckle shines when a ship can sneak close enough to an enemy to bring it to bear, where it can begin tearing through armor and hull. However, its effectiveness is much more limited against shields, which shrug off its mass driver rounds with relative ease."
 	
 
 outfit "Speckle Turret"
@@ -316,7 +316,7 @@ outfit `"Nettle" Kinetic Missile`
 	thumbnail "outfit/nettle missile"
 	"mass" 0.15
 	"nettle capacity" -1
-	description "The Nettle missile is a cheap, disposable kinetic kill vehicle designed for situations where a nuclear warhead would be unnecessary. Upon closing in on a target, the missile unwraps into dozens of thin tungsten rods to create a cone shaped area of effect. This makes it difficult to shoot down without very long ranged antimissile systems."
+	description "The Nettle missile is a cheap, disposable kinetic kill vehicle designed for situations where a nuclear warhead would be unnecessary. Upon closing in on a target, the missile unwraps into dozens of thin tungsten rods to create a cone-shaped area of effect. This makes it difficult to shoot down without very long ranged antimissile systems."
 
 
 outfit "Nettle Magazine"

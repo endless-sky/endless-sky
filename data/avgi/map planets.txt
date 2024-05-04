@@ -65,7 +65,7 @@ planet "Feo Platform"
 	attributes avgi station military
 	landscape land/station53
 	description "Hastily assembled from mothballed mass driver components, the Feo Platform is an enormous hypervelocity gun intended to provide fire support to Avgi fleets defending the Tangled Shroud from Aberrant invasion. While a few Aberrations sometimes manage to slip past, the gun together with the fleetgroup the platform supports have so far managed to hold the lines."
-	spaceport "The spaceport is designed to service an entire fleetgroup of Avgi warships at once, with drydocks large enough to repair mid-sized vessels without them needing to venture back into the Tangled Shroud."
+	spaceport "The spaceport is designed to service an entire fleetgroup of Avgi warships at once, with dry docks large enough to repair mid-sized vessels without them needing to venture back into the Tangled Shroud."
 	government "Avgi (Twilight Guard)"
 	security 0.9
 	"required reputation" 10
@@ -179,7 +179,7 @@ planet Stilacrest
 	landscape land/myrabella4
 	description "This warm world, with its shallow freshwater seas, pleasant weather, and white limestone cliffs would be an ideal vacation world to any human. The mountain-born Avgi, however, were rather discomforted by its relatively flat landscape and sluggish winds, and permanent settlement has been sparse."
 	description "The oceans are rich in appetizing sea life, and Stilacrest is home to an abundance of independent fishing boats run by those seeking to build a new life away from the homeworld. The lure of the calm waves and mild weather is said to have attracted a meditative, laid back sort of personality."
-	spaceport "The largest spaceport is built on the edge of one of the smalller continents, with ample access to the sea. Unlike most Avgi spaceports, the city that grew around it has fairly few skyscrapers or tall buildings, with most structures being short and sprawling."
+	spaceport "The largest spaceport is built on the edge of one of the smaller continents, with ample access to the sea. Unlike most Avgi spaceports, the city that grew around it has fairly few skyscrapers or tall buildings, with most structures being short and sprawling."
 	government Avgi
 	security 0
 	shipyard "Avgi Civilian Basics"
@@ -228,8 +228,8 @@ planet Felorap
 planet Araio
 	attributes avgi "aberrant siege" farming frontier rich
 	landscape land/canyon3
-	description "Araio is a relatively small world dominated by a single supercontinent. Continental uplift has made much of this continent characterized by mountainous highland, scattered with numerous springs and lakes. Though the air is thin and the soil is rocky, hardy plants and woody trees cling to life, breaking up the landscape of rocky mountains with colorful meadows and bountiful forests."
-	description "Araio garnered a reputation as a frontier world ripe for plucky pioneers, being reminiscent of an often romanticized historical era on Aviskir. While rich in gemstones, natural stones have not been competitive with nanofabbed alternatives since long before the planet was settled, and thus the economy on the surface is almost completely dominated by homesteads and small frontier towns."
+	description "Araio is a relatively small world dominated by a single supercontinent. Continental uplift has made much of the land characterized by mountainous highland, scattered with numerous springs and lakes. Though the air is thin and the soil is rocky, hardy plants and woody trees cling to life, breaking up the landscape of rocky mountains with colorful meadows and bountiful forests."
+	description "Araio garnered a reputation as a frontier world ripe for plucky pioneers, being reminiscent of an often romanticized historical era on Aviskir. While rich in gemstones, natural stones have not been competitive with nanofabricated alternatives since long before the planet was settled, and thus the economy on the surface is almost completely dominated by homesteads and small frontier towns."
 	spaceport "Araio's spaceport was small, but well run, capable of efficiently moving small volume goods on and off the world. It was however razed from orbit by the Incursors shortly after the fall of Anax, and the few scouts that are able to sneak through the blockade are forced to use a variety of rocky plateaus instead."
 	spaceport "Though imports of advanced technology from other worlds, which the planet lacks the development to manufacture itself, were cut off with the Incursion, the planet is self-sufficient enough to get by for the foreseeable future, even if it means a slight regression in technology."
 	government Avgi
@@ -242,7 +242,7 @@ planet Araio
 planet Elthe
 	attributes avgi frontier mining shipping moon
 	landscape land/mars2
-	description "Elthe's parent gas giant, Sef, hosts a rich system of rings and moons chock full of valuable minerals. Lucrative returns made by independent miners attracted many settlers from Araio who became discontented with planetary life, leading to the rings of Sef becoming a wild frontier, one with orbital tether robberies and mass driver shootouts."
+	description "Elthe's parent gas giant, Sef, hosts a rich system of rings and moons chock-full of valuable minerals. Lucrative returns made by independent miners attracted many settlers from Araio who became discontented with planetary life, leading to the rings of Sef becoming a wild frontier, one with orbital tether robberies and mass driver shootouts."
 	description `	By unspoken agreement, the airless moon Elthe, which was found to contain the only significant deposits of fissiles around Sef, became something of a neutral ground. Settling old scores or resolving disputed claims the "usual" way is heavily frowned upon here, and as such offworld companies felt safe enough to establish trading posts here to ship out the vast quantities of minerals mined around Sef.`
 	government Uninhabited
 	security 0
@@ -262,7 +262,7 @@ planet Mabatham
 	attributes avgi "aberrant siege" frontier research
 	landscape land/sky1
 	description "Mabatham teeters on the line between ocean planet and hothouse world. With a surface largely covered with water, broken only by a handful of volcanic islands, its atmosphere is thick and humid, saturated with water vapor that works to trap the heat from its two parent stars. While temperate near the poles, the equator is inhospitably warm, with constant hurricanes dwarfing anything seen on either Earth or Aviskir raging in the tropics."
-	description "	Despite the constant rains and frequent storms, the planet's bountiful oceanic ecosystem is able to sustain a small community of particularly stuborn Avgi, who managed to eke out a life on a rocky island chain. They refused to be evacuated in the wake of the Incursion, and their outpost remains, weathering the wind and sea."
+	description "	Despite the constant rains and frequent storms, the planet's bountiful oceanic ecosystem is able to sustain a small community of particularly stubborn Avgi, who managed to eke out a life on a rocky island chain. They refused to be evacuated in the wake of the Incursion, and their outpost remains, weathering the wind and sea."
 	spaceport "The 'spaceport' is nothing more than a stony island mostly cleared of boulders and debris. A few small cranes and fuel tanks are strewn haphazardly along the edge, used to service the rare visiting starship."
 	government Avgi
 	security 0
@@ -324,7 +324,7 @@ planet Delodir
 planet Kapnos
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/clouds9
-	description `Kapnos is the heart of one of the most spectacular sights in the Milky Way. The gas giant is composed of largely molecular oxygen, despite the seeming impossibility of such an occurrence in nature. Its abnormally rapid spin, which causes the planet to bulge wildly at the equator, throws oxygen and water vapor off the top of its atmosphere to to form the famous Gossamer "gas torus," something that has sparked awe in the entire Avgi civilization from the moment of its discovery.`
+	description `Kapnos is the heart of one of the most spectacular sights in the Milky Way. The gas giant is composed of largely molecular oxygen, despite the seeming impossibility of such an occurrence in nature. Its abnormally rapid spin, which causes the planet to bulge wildly at the equator, throws oxygen and water vapor off the top of its atmosphere to form the famous Gossamer "gas torus," something that has sparked awe in the entire Avgi civilization from the moment of its discovery.`
 	description "The fact that there is more gas in the torus than one gas giant can account for has not been unnoticed, however, and many among the Avgi believe the entire system to be an artificial construct engineered by the long dead Predecessors."
 	government Uninhabited
 	security 0
@@ -400,7 +400,7 @@ planet Silwan
 	attributes predecessor forest uninhabited
 	landscape land/fog12
 	description "Silwan is a wet, misty world shrouded in a permanent blanket of fog, which covers the entire planet year-round. The little light that makes it to the surface reveals a bleak landscape, eroded to a nearly uniform flatness from the eons of constant rains. Only at the equator is the layer of fog burned off by sunlight, feeding humid forests of fern-like trees."
-	description "Even less evidence of the Predecessors has survived here than usual, thanks to the rains, but this world is one of the few in this region to still host a substantial ecosystem, stubbornly clinging to life. Mossy plantlife and small, lizard-like scavengers are common across the entire planet, while large apex predators thrive deep in the world's oceans."
+	description "Even less evidence of the Predecessors has survived here than usual, thanks to the rains, but this world is one of the few in this region to still host a substantial ecosystem, stubbornly clinging to life. Mossy plant life and small, lizard-like scavengers are common across the entire planet, while large apex predators thrive deep in the world's oceans."
 	government Uninhabited
 
 
@@ -437,9 +437,9 @@ planet "Peripheria"
 planet "Napigeo Station"
 	attributes avgi "avgi diaspora" station military
 	landscape land/station50
-	description "Napigeo Station is a dedicated shipyard, with dozens of modular drydocks capable of quickly building and repairing ships. Overall, more than two thirds of the large warships in service of the Twilight Guard are built here, though efforts are being made to decentralize warship production for the sake of survivability."
+	description "Napigeo Station is a dedicated shipyard, with dozens of modular dry docks capable of quickly building and repairing ships. Overall, more than two thirds of the large warships in service of the Twilight Guard are built here, though efforts are being made to decentralize warship production for the sake of survivability."
 	description "	Due to its importance and nature as a directly government operated shipyard, the station is managed by the Twilight Guard directly. An oversight board appointed by the Assembly maintains a level of civilian governance, but given the composition of the station's population, this is clearly a military installation first and foremost."
-	spaceport "The spaceport is closer to being a giant array of drydocks than it is a true port, with the available amenities confined to the bare essentials. You can easily see a dozen warships under construction, with Avgi workers and robotic arms alike working together to churn ships out every day."
+	spaceport "The spaceport is closer to being a giant array of dry docks than it is a true port, with the available amenities confined to the bare essentials. You can easily see a dozen warships under construction, with Avgi workers and robotic arms alike working together to churn ships out every day."
 	"required reputation" 100
 	government "Avgi (Twilight Guard)"
 	"required reputation" 10
@@ -498,7 +498,7 @@ planet "Aktina Cylinder"
 planet "Outpost Enka"
 	attributes avgi "avgi diaspora" dissonance station asteroid
 	landscape land/station27
-	description "Outpost Enka is a huge station built between two large asteroids, which are steadily being mined for the metals and minerals they contain. Most of the habitat is free standing, mounted on the spar that links both asteroids, but one of them also contains significant numbers of pressurized tunnels filled with farms and large green spaces."
+	description "Outpost Enka is a huge station built between two large asteroids, which are steadily being mined for the metals and minerals they contain. Most of the habitat is freestanding, mounted on the spar that links both asteroids, but one of them also contains significant numbers of pressurized tunnels filled with farms and large green spaces."
 	description "Outpost Enka is a major source of nickel-iron ore, which is common in the system despite the overall metal-poor state of the Tangled Shroud. The station is rumored to be a haven for rebels and dissidents even beyond the usual Dissonance supporters."
 	spaceport "The station's spaceport is spacious, with room for the many small drones used to harvest other asteroids in the belt. Several berths are also open to larger mining vessels, with a few occupied at the moment."
 	government "Avgi (Dissonance)"

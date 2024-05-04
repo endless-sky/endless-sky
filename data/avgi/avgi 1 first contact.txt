@@ -205,7 +205,7 @@ mission "Avgi: First Contact"
 				`	"Tell me about your civilization."`
 
 			`	"Reassurance. All of your questions will be answered in time, Captain <last>. Please, now follow."`
-			`	You are led through the hangar, an entourage of guards separating you from curious onlookers - pilots, mechanics, or soldiers, you aren't sure. It's a bit awkward to be corraled by a group of people whose height barely comes past your knees, but you allow yourself to be escorted nonetheless. You exit through a ramp set in the floor, sloping downwards, then follow a long passageway that seems to perpetually curve upwards. You're reminded of older model space stations, ones that relied on spin gravity before gravity plating became commonplace.`
+			`	You are led through the hangar, an entourage of guards separating you from curious onlookers - pilots, mechanics, or soldiers, you aren't sure. It's a bit awkward to be corralled by a group of people whose height barely comes past your knees, but you allow yourself to be escorted nonetheless. You exit through a ramp set in the floor, sloping downwards, then follow a long passageway that seems to perpetually curve upwards. You're reminded of older model space stations, ones that relied on spin gravity before gravity plating became commonplace.`
 			`	Eventually, after a number of turns and descents, you pass through an open archway into some kind of conference room. Large and circular, with a high ceiling, it is occupied by a trio of multicolored dragonfly aliens, each perched on a metal ring running around a circular table.`
 			choice
 				`	"Hello."`
@@ -298,7 +298,7 @@ mission "Avgi: First Contact"
 			choice
 				`	"While I'm here, can I buy your technology?"`
 			`	Galano says, "Interest. I would expect human technology to be superior to our own in most aspects, but we will of course allow you to purchase items with your human credits, which we will back with our own currency with the agreement of the Assembly. In the event that it becomes possible to open trade relations with your human government, we may find it useful to have a small stockpile of currency available."`
-			`	"Amusment. Not to mention the goodwill such a gesture could buy us," says Asime.`
+			`	"Amusement. Not to mention the goodwill such a gesture could buy us," says Asime.`
 			`	Prasinos says, more seriously, "Reservation. Our material resources are quite limited at the moment, so for now I would only support providing for the requisition of small items that do not strain the needs of the Guard. No military goods, at least not now."`
 			`	Asime looks like she wants to object, but then Galano says, "Agreement. A reasonable compromise, one I can sell to the Assembly fairly easily. Beyond that, we will provide you with a line of credit with which to purchase housing and nutrition. I cannot vouch for its usefulness among... certain elements that do not recognize the Consonance, but anywhere else, you should find no issues."`
 			action
@@ -370,7 +370,7 @@ mission "Avgi: Defend Ensemble 1"
 				goto next
 
 			label pug
-			`	"Deneb? There's no hyperlanes to that system, are there? Strange." He looks thoughtful for a moment. "I've heard stories before, of... nevermind, excuse me."`
+			`	"Deneb? There's no hyperlanes to that system, are there? Strange." He looks thoughtful for a moment. "I've heard stories before, of... never mind, excuse me."`
 				goto next
 
 			label unfettered
@@ -383,7 +383,7 @@ mission "Avgi: Defend Ensemble 1"
 
 			label next
 			`	Darius shakes his head for a moment, then looks back at you. "Well, since you're still here, I'm assuming your Jump Drive couldn't get you out of here?" You tell him about how you were unable to jump back to human space, and he nods along.`
-			`	"There has to be a way out, I just know it. But in six years, we've only been able to spend a few days at a time in the systems bordering human space, before those damn space shoggoths forced us back. And," he lowers his voice, looking around surreptitiously, "I don't think the Avgi are that enthusiastic about us trying to map the place either. I don't think they're exactly trying to keep us here or anything, but they've been pretty insistant on us humans not getting ourselves killed doing something stupid, like say, desperately trying to find a way back to our homes." He sounds frustrated.`
+			`	"There has to be a way out, I just know it. But in six years, we've only been able to spend a few days at a time in the systems bordering human space, before those damn space shoggoths forced us back. And," he lowers his voice, looking around surreptitiously, "I don't think the Avgi are that enthusiastic about us trying to map the place either. I don't think they're exactly trying to keep us here or anything, but they've been pretty insistent on us humans not getting ourselves killed doing something stupid, like say, desperately trying to find a way back to our homes." He sounds frustrated.`
 			choice
 				`	"Don't worry, I'm sure we'll find a way back home."`
 					goto reassuring
@@ -430,7 +430,7 @@ mission "Avgi: Defend Ensemble 2"
 		has "Avgi: Defend Ensemble 1: done"
 	on offer
 		conversation
-			`	Napigeo Station is buzzing with activity as you pull into one of the few open berths available. Avgi ships of all sizes, painted in the blue-green of the Twilight Guard, launch every few minutes, replaced moments later by battle-scarred warships that slip into drydock for repair.`
+			`	Napigeo Station is buzzing with activity as you pull into one of the few open berths available. Avgi ships of all sizes, painted in the blue-green of the Twilight Guard, launch every few minutes, replaced moments later by battle-scarred warships that slip into dry dock for repair.`
 			`	Parked a few kilometers from the station, a fleetgroup is assembling in a wide formation. You see a handful of cruiser sized ships, along with a dozen smaller ships congregated around them. You hail them, asking to join the formation, and a surprised Avgi admiral directs you to fly towards the Ensemble system.`
 			`	"Caution. Atomics will be used in the upcoming battle, so stay your distance from our warheads," she says.`
 			choice
@@ -628,7 +628,7 @@ mission "Avgi: Scout Rescue"
 
 	on complete
 		conversation
-			`You receive a warm welcome back on Peripheria Station, as the former crew of the Silver Albedo disembarks. Some of the more badly injured crewmembers are carried out on hammock-like stretchers, but most are able to walk or fly out of the <ship> on their own power.`
+			`You receive a warm welcome back on Peripheria Station, as the former crew of the Silver Albedo disembarks. Some of the more badly injured crew members are carried out on hammock-like stretchers, but most are able to walk or fly out of the <ship> on their own power.`
 			`	After a short celebration and many expressions of deep gratitude toward you, you find Darius and Sora waiting by the <ship> to speak with you.`
 			`	"<first>, I think we have a golden opportunity," he says. "I was just talking to an Assemblyman, Hriso, who's worried about the political situation in the eastern branch of the Tangled Shroud.`
 			`	"A bunch of selfish cowards, they are," says Sora disdainfully.`

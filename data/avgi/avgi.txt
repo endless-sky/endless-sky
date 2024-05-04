@@ -240,7 +240,6 @@ phrase "avgi virtues"
 		Poetic
 		Powerful
 		Precious
-		Precious
 		Promised
 		Protective
 		Qualified
@@ -278,12 +277,12 @@ phrase "avgi phases"
 		Gasified
 		Ionized
 		Liquid
-		Liquifacted
-		Liquified
+		Liquefacted
+		Liquefied
 		Melted
 		Precipitated
 		Solid
-		Solidifed
+		Solidified
 		Sublimated
 		Thawed
 		Vaporized
