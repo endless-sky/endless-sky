@@ -140,11 +140,11 @@ mission "Incipias: The derelict"
 				scene "scene/incipias message"
 				`	You manage to dock to the disabled ship quite easily. The lock opens and a hallway opens up before you, obviously not built for humans. The walls are strangely curved and the floor has nearly no grip at all. Your view gets caught by the five giant aliens half octopode, half jellyfish that are pulsating in bright colors, similar to the gradients that appeared on your screen earlier. One of them is floating behind a giant mounted gun, the two barrels are pointed right at you. The gunner flashes in an orange light, and you can feel the tension in the room rising.`
 				choice
-					"Try to convey that you intend no harm."
+					`	(Try to convey that you intend no harm.)`
 						goto peace
-					`(Drop the repair equipment and run back into your ship.)`
+					`	(Drop the repair equipment and run back into your ship.)`
 						goto flee
-					`(Try to make a non-lethal shot at the one behind the turret and run!)`
+					`	(Try to make a non-lethal shot at the one behind the turret and run!)`
 				`	You hit the creature manning the turret, causing it to explode with a strident sound. Before you can enjoy your short-lived victory, the other turret aims your way. Turning your head you see the gunner flashing in a deep red, before shooting you down, avenging their fallen comrade.`
 					die
 				label peace

@@ -231,6 +231,7 @@ news "Incipias common"
 		word
 			"Incipias Captain"
 			"Incipias Crew Member"
+			""
 	message
 		phrase
 			"incipias common hard defined"
@@ -273,6 +274,23 @@ phrase "incipias common praise"
 		"are very efficient."
 		"look very stylish."
 
+news "Hicemus official"
+	location
+		government "Hicemus"
+	name
+		word
+			"Hicemus Police Officer"
+			"Hicemus Executive"
+			"Hicemus Inspector"
+	message
+		word
+			"We go forward to [evolve, be superior]. No one can stop us."
+			"Have you seen our newest engines? They are much more efficient than anything before them."
+			"Our technology is superior. No one can question our authority."
+			"As long as we exist, we will progress."
+			"The beginning of a new age of space travel is near."
+
+
 phrase "incipias friendly disabled"
 	word
 		"Friend"
@@ -305,22 +323,7 @@ phrase "incipias hostile disabled"
 		"Stop your [rampage, chaos]!"
 		"Do you not value [life, the future]?"
 
-news "Hicemus official"
-	location
-		government "Hicemus"
-	name
-		word
-			"Hicemus Police Officer"
-			"Hicemus Executive"
-	message
-		word
-			"We go forward to [evolve, be superior]. No one can stop us."
-			"Have you seen our newest engines? They are much more efficient than anything before them."
-			"Our technology is superior. No one can question our authority."
-			"As long as we exist, we will progress."
-			"The beginning of a new age of space travel is near."
-
-# is this ok derpy? XD
+# is this ok? XD
 news "special"
 	location
 		planet "Pon'tes"
