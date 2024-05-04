@@ -155,8 +155,8 @@ namespace {
 			auto &playerShips = player.Ships();
 			targetShips.reserve(playerShips.size() - 1);
 			for(const shared_ptr<Ship> &it : player.Ships())
-				if(it.get() != player.Flagship() && !it->IsParked()
-					&& !it->IsDestroyed())
+				if(it != player.FlagshipPtr() && !it->IsParked()
+						&& !it->IsDestroyed())
 					targetShips.push_back(it.get());
 		}
 		else
@@ -399,10 +399,8 @@ void AI::IssueFormationChange(const PlayerInfo &player)
 			++it;
 		toSet = (it == formationPatterns.end() ? nullptr : &(it->second));
 	}
-	// else if (multiplePatternsSet) {
 	// If more than one formation was found on the ships, then we set the pattern it to the first one found.
 	// No code is needed here for this option, since all variables are already set to just apply the change below.
-	// }
 
 	// Now set the pattern on the selected ships.
 	for(Ship *ship : targetShips)

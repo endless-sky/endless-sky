@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 
+
 // Initializer based on the formation pattern to follow.
 FormationPositioner::FormationPositioner(const Body *formationLead, const FormationPattern *pattern)
 	: formationLead(formationLead), pattern(pattern), direction(formationLead->Facing())
@@ -120,7 +121,7 @@ void FormationPositioner::CalculatePositions()
 		// Lookup the ship in the positions map.
 		auto itCoor = shipPositions.end();
 		if(ship)
-			itCoor = shipPositions.find(&(*ship));
+			itCoor = shipPositions.find(ship.get());
 
 		// If the ship is not in the overall table or if it was not
 		// active since the last iteration, then we also remove it.
@@ -174,7 +175,7 @@ void FormationPositioner::CalculateDirection()
 	// Calculate new direction, if the formationLead is moving, then we use the movement vector.
 	// Otherwise we use the facing vector.
 	Point velocity = formationLead->Velocity();
-	auto desiredDir = velocity.Length() > 0.1 ? Angle(velocity) : formationLead->Facing();
+	Angle desiredDir = velocity.Length() > 0.1 ? Angle(velocity) : formationLead->Facing();
 
 	Angle deltaDir = desiredDir - direction;
 
@@ -250,7 +251,7 @@ bool FormationPositioner::IsActiveInFormation(const Ship *ship) const
 	auto targetShip = ship->GetTargetShip();
 	auto parentShip = ship->GetParent();
 	if((!targetShip || &(*targetShip) != formationLead) &&
-		(!parentShip || &(*parentShip) != formationLead))
+			(!parentShip || parentShip.get() != formationLead))
 		return false;
 
 	return true;
