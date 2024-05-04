@@ -51,7 +51,7 @@ FormationPattern::PositionIterator &FormationPattern::PositionIterator::operator
 			MoveToValidPosition();
 		}
 		// Skip positions too close to the center body
-		while(!atEnd && currentPoint.Length() <= centerBodyRadius)
+		while(!atEnd && currentPoint.Length() <= centerBodyRadius);
 	}
 
 	// Number of ships is used as number of remaining ships still to be placed.
