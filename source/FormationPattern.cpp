@@ -44,11 +44,20 @@ const Point &FormationPattern::PositionIterator::operator*()
 FormationPattern::PositionIterator &FormationPattern::PositionIterator::operator++()
 {
 	if(!atEnd)
+	{
 		position++;
+		MoveToValidPosition();
+	}
+	// Skip positions too close to the center body
+	while(!atEnd && currentPoint.Length() <= centerBodyRadius)
+	{
+		position++;
+		MoveToValidPosition();
+	}
+
 	// Number of ships is used as number of remaining ships still to be placed.
 	if(shipsToPlace > 0)
 		--shipsToPlace;
-	MoveToValidPosition();
 	return *this;
 }
 
