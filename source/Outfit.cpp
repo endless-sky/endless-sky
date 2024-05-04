@@ -486,13 +486,6 @@ const Weapon &Outfit::GetWeapon() const
 
 
 
-const Outfit *Outfit::Ammo() const
-{
-	return weapon.Ammo();
-}
-
-
-
 // Determine whether the given number of instances of the given outfit can
 // be added to a ship with the attributes represented by this instance. If
 // not, return the maximum number that can be added.

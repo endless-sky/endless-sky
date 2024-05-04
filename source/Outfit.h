@@ -70,7 +70,6 @@ public:
 	double Get(const std::string &attribute) const;
 	const Dictionary &Attributes() const;
 	const Weapon &GetWeapon() const;
-	const Outfit *Ammo() const;
 
 	// Determine whether the given number of instances of the given outfit can
 	// be added to a ship with the attributes represented by this instance. If
