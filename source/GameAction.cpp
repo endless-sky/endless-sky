@@ -196,12 +196,10 @@ void GameAction::LoadSingle(const DataNode &child)
 	else if(key == "music" && hasValue && !child.Token(1).empty())
 	{
 		music = child.Token(1);
-		playMusic = true;
 	}
-	else if(key == "quiet")
+	else if(key == "mute")
 	{
 		music = "";
-		playMusic = true;
 	}
 	else if(key == "fail" && hasValue)
 		fail.insert(child.Token(1));
@@ -252,12 +250,12 @@ void GameAction::Save(DataWriter &out) const
 		out.Write("fail", name);
 	if(failCaller)
 		out.Write("fail");
-	if(playMusic)
+	if(music.has_value())
 	{
-		if(!music.empty())
-			out.Write("music", music);
+		if(!music.value().empty())
+			out.Write("music", music.value());
 		else
-			out.Write("quiet");
+			out.Write("mute");
 	}
 
 	conditions.Save(out);
@@ -384,9 +382,9 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 	}
 	if(failCaller && caller)
 		player.FailMission(*caller);
-	if(playMusic)
+	if(music.has_value())
 	{
-		if(music == "<ambient>")
+		if(music.value() == "<ambient>")
 		{
 			if(player.GetPlanet())
 				Audio::PlayMusic(player.GetPlanet()->MusicName());
@@ -394,7 +392,7 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 				Audio::PlayMusic(player.GetSystem()->MusicName());
 		}
 		else
-			Audio::PlayMusic(music);
+			Audio::PlayMusic(music.value());
 	}
 
 	// Check if applying the conditions changes the player's reputations.
@@ -421,7 +419,6 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 	result.giftOutfits = giftOutfits;
 
 	result.music = music;
-	result.playMusic = playMusic;
 
 	result.payment = payment + (jumps + 1) * payload * paymentMultiplier;
 	if(result.payment)
