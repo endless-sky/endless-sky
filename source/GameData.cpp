@@ -48,6 +48,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Person.h"
 #include "Phrase.h"
 #include "Planet.h"
+#include "PlayerInfo.h"
 #include "Plugins.h"
 #include "PointerShader.h"
 #include "Politics.h"
@@ -329,14 +330,14 @@ void GameData::Preload(TaskQueue &queue, const Sprite *sprite)
 	// This sprite is not currently preloaded. Check to see whether we already
 	// have the maximum number of sprites loaded, in which case the oldest one
 	// must be unloaded to make room for this one.
-	const string &name = sprite->Name();
 	pit = preloaded.begin();
 	while(pit != preloaded.end())
 	{
 		++pit->second;
 		if(pit->second >= 20)
 		{
-			SpriteSet::Modify(name)->Unload();
+			// Unloading needs to be queued on the main thread.
+			queue.Run({}, [name = pit->first->Name()] { SpriteSet::Modify(name)->Unload(); });
 			pit = preloaded.erase(pit);
 		}
 		else
@@ -531,9 +532,9 @@ void GameData::Change(const DataNode &node)
 
 // Update the neighbor lists and other information for all the systems.
 // This must be done any time that a change creates or moves a system.
-void GameData::UpdateSystems()
+void GameData::UpdateSystems(const PlayerInfo *player)
 {
-	objects.UpdateSystems();
+	objects.UpdateSystems(player);
 }
 
 

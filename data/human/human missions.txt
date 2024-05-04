@@ -331,7 +331,7 @@ mission "Pookie, Part 3"
 			`	You silently observe the crowd's boos die when the announcer continues speaking.`
 			label second
 			`	"Now, our other two racers for the day are all-new." A murmur of anticipation sweeps through the audience. "Our first newcomer is a fine lady. Rumored to be from the wilderness of Zenith, can everyone put their hands together for Zinc!" The cover over the third cage is taken off to reveal a creature that is clearly not a dog. Her long, gray fur and piercing, golden eyes mark her as a far more graceful and feral beast, though underneath her coat, you spot atrophied muscles. Zinc initially stands unfazed by the crowd and the other dogs, calmly observing her surroundings. When Doom spots the wolf ignoring him, he begins to bark louder and louder, until she abruptly stares at him with an inscrutable expression.`
-			`	"Our final contestant for the day is a most... unorthodox choice. The merchant who graciously donated her to us came with a most facinating story. She said that the hound comes from the Paradise Worlds, and her owner wanted the pet to have a luxury flight to her holiday home. Well, let's see if she can pay her way to victory here, folks." The audience snickers. "Now, give your best welcomes to Puny!" Puny is easily the frailest of the dogs, barely more than skin and bones. White whispers of hair clump around her head, chest, and ankles, and the bottom of her cage is wet. None of the other racers acknowledge her, but the crowd is rearing to volley a variety of curses and slurs at her, as though an actual Paradise World baron was in the cage. As you look at the poodle, you can't help but feel a strange sense of familiarity.`
+			`	"Our final contestant for the day is a most... unorthodox choice. The merchant who graciously donated her to us came with a most fascinating story. She said that the hound comes from the Paradise Worlds, and her owner wanted the pet to have a luxury flight to her holiday home. Well, let's see if she can pay her way to victory here, folks." The audience snickers. "Now, give your best welcomes to Puny!" Puny is easily the frailest of the dogs, barely more than skin and bones. White whispers of hair clump around her head, chest, and ankles, and the bottom of her cage is wet. None of the other racers acknowledge her, but the crowd is rearing to volley a variety of curses and slurs at her, as though an actual Paradise World baron was in the cage. As you look at the poodle, you can't help but feel a strange sense of familiarity.`
 			`	You feel your back get nudged, and turn to see a woman dressed in rags holding four buckets filled with credits. The names of the racers are crudely written on each of them. "Betting is 3,000 credits," she says unusually sweetly.`
 			choice
 				`	(Bet on Bleedbug.)`
@@ -2551,7 +2551,7 @@ mission "Terminus exploration"
 				`	"How strong of a threat is the pirate fleet?"`
 				`	"Sorry, I don't have time to help you."`
 					decline
-			`	"Just a couple of interceptors," he says. "We were in a scoutship, with no real weapons to speak of, and none of us on the ship have any combat experience. So, we felt it was safer to run away than to try to fight, even though we were leaving valuable equipment behind."`
+			`	"Just a couple of interceptors," he says. "We were in a scout ship, with no real weapons to speak of, and none of us on the ship have any combat experience. So, we felt it was safer to run away than to try to fight, even though we were leaving valuable equipment behind."`
 			choice
 				`	"That doesn't sound like much of a threat. I'd be glad to help."`
 				`	"Sorry, I don't want to help with this."`
@@ -6255,7 +6255,8 @@ mission "Care Package to South 1"
 	description "An activist named Torrey has asked you to take a care package to her friend, an NCO named Irene in the Southern Mutual Defense Pact militia, stationed on <destination>. Payment is <payment>."
 	source
 		government "Republic" "Syndicate"
-		not attributes "rim" "south" "station"
+		attributes "near earth"
+		not attributes "station"
 	destination
 		attributes "rim" "south"
 		not government "Pirate"
@@ -6263,13 +6264,13 @@ mission "Care Package to South 1"
 		not planet "Glaze"
 	to offer
 		not "event: war begins"
-		random < 30
+		random < 65
 	cargo "care package" 1
 	on offer
 		conversation
 			`Among the bustle of the spaceport, one figure catches your attention. A woman stands alone on one side of the passageway with a bubble of space around her that is maintained by sheer force of personality. She doesn't seem to be saying anything, at least. As you get closer, you notice a large package at her feet. Something about you catches her attention, and she looks you in the eye and beckons.`
 			choice
-				`	(Go over to her and find out what this is about.)`
+				`	(Go over to her.)`
 				`	(Ignore her.)`
 					decline
 			`	You make your way through the crowd to the edge of her bubble. As soon as you do, she extends her hand. "I'm Torrey. Torrey Dupont."`
@@ -6277,18 +6278,18 @@ mission "Care Package to South 1"
 			`	"I can tell you're an independent captain. I would like to hire you to transport a package." Torrey indicates the box beside her with a nudge of her toe.`
 			choice
 				`	"What's in the box?"`
-				`	"Wouldn't it be easier and cheaper to send it via a courier service?"`
+				`	"Why can't you send it via the job board?"`
 					goto commercial
 			`	She glances down at it. "It's nothing too special - some local stuff from around here. Mostly foods and things that you just can't get made the same anywhere else."`
-			`	"Wouldn't it be easier and cheaper to send it via a courier service?" you ask.`
+			`	"Why can't you send it via the job board?" you ask.`
 			label commercial
 			`	Torrey gives a sardonic smile. "Well, yes; the thing is, I'm sending it to a friend who's an NCO in the militia for the Southern Mutual Defense Pact. Normally, of course, that would be fine, but... then there's who I am." She reaches into a pocket and pulls out a piece of paper - a printout of a news headline. "Protests Block Access To Council Chambers For Fourth Straight Day." Underneath the headline is a picture of Torrey holding up a sign decrying recent actions by the government.`
 			`	"So you see," she continues, "I'm already being watched by the Republic government. What with the rumors lately, I really don't want to do anything that would throw any suspicion onto Irene, but..." She glances down at the box. "She's really been missing some of the stuff from home, and I don't want to make her life less pleasant because of what I've been doing."`
 			choice
 				`	"All right; I'll deliver the package."`
 					goto deliver
-				`	"No; I don't support those protests, or the people who participate in them."`
-				`	"No, if you're being watched, then this might get me in trouble too. Sorry."`
+				`	"I don't support those protests, or the people who participate in them."`
+				`	"If you're being watched, then I might get in trouble too. Sorry."`
 			`	Torrey grimaces, but nods. "That's understandable. Well, have a good day, then." She turns back to looking out at the passing crowds, and you head back on your way.`
 				decline
 			label deliver
@@ -6303,54 +6304,18 @@ mission "Care Package to South 1"
 			`	You nod, introduce yourself, and briefly recount your meeting with her friend on <origin>. Irene laughs. "Yep, that's her. Well, thank you so much for bringing this." She hefts the heavy box with no apparent effort, gives you a firm nod, and turns to head back into the base.`
 			`	Before going more than three steps, she stops and turns back to you. "Oh, sorry - I'll authorize your payment as soon as I get back to my room. I don't have it with me."`
 			`	Sure enough, less than five minutes later, your communicator bleeps and reports that <payment> have been credited to your account.`
-
-mission "Care Package to South 2a"
-	landing
-	invisible
-	source "Greenrock"
-	to offer
-		has "FW Pirates: Attack 2: done"
-		has "Care Package to South 1: done"
-	on offer
-		conversation
-			`As Tomek heads toward Alondo's ship, you notice some other ships landing nearby - several of which look in much worse shape. Between them is a controlled panic, with militia soldiers setting up a large tent and bringing various supplies and tables into it. After a few minutes, it becomes clear that they are setting up a makeshift triage center.`
-			`	Staying carefully out of the way of the hurrying corpsmen and nurses, you watch as the triage tent begins to fill up with the walking wounded, the not-so-walking wounded... and a few gurneys that someone pulls a sheet over not long after they arrive. Before long, you spot someone you think you recognize: Irene Brower, the gunnery sergeant you delivered a care package to before the war.`
-			`	She is lying on a stretcher placed on what appears to be a folding cafeteria table, with an IV in one arm and a makeshift bandage over the other shoulder, already soaked through with blood. The lower half of her body is covered by a bloody sheet... and by the shape the sheet makes, you can tell immediately that there's something very wrong. Her eyelids flicker for a moment, then she opens her eyes and focuses on you. "Hey... I know you. You brought me that package from Tor... thanks. Meant a lot." She attempts to raise her head, then thinks better of it, though her eyes still flick downward. "Might be... the last of home I get to see." Her eyes close again, and a pair of nurses comes over and shoos you out of the way so they can start moving Irene. As they carry her off, careful to keep her IV bag held high, you hear her start coughing, and they head to what appears to be the largest of the ships nearby.`
-				decline
-
-mission "Care Package to South 3a"
-	landing
-	invisible
-	to offer
-		has "Care Package to South 2a: offered"
-		has "FW Pirates: Attack 3: done"
-	on offer
-		conversation
-			`Now that you have a minute to breathe, you stop to check your non-urgent messages. Among them you see the casualty lists from the Battle of Greenrock.`
-			choice
-				`	(Open the message.)`
-				`	(Delete it unread.)`
-					decline
-			`You only have to scroll through the lists for a few seconds before you see:`
-			`	`
-			`		MSGT BROWER, IRENE`
-			`			KILLED IN ACTION`
-			`			POSTHUMOUS MEDAL OF VALOR`
-			``
-			`	You kill the display and turn away.`
-				decline
 				
-mission "Care Package to South 2b"
+mission "Care Package to South 2"
 	landing
-	invisible
-	source "Deep"
+	source "Rust"
 	to offer
 		has "Care Package to South 1: done"
 		has "FW Pirates: Diplomacy 4: done"
+		not "event: navy occupying the north"
 	on offer
 		conversation
-			`As you leave the quartermaster's building, you spot a familiar face coming in the other direction: Irene Brower, the gunnery sergeant you delivered a care package to before the war, though she seems to have master sergeant insignia now. She's on crutches, with what looks like a brand-new prosthetic leg. When she spots you, her pained face brightens. "Hey, I know you! You brought me that package from Tor before. Thanks!" She shifts her weight, then winces and shifts it back.`
-			`	She notices you looking at her leg, and grins lopsidedly. "Yeah, I was a casualty of the Battle of Greenrock. My CO thought it was a good idea to follow Voigt's plan to suppress the pirates there. To be honest, I agreed with him at the time." She pauses a moment. "Now, not so sure, and not just because a blown-out shield capacitor lost me a leg. I heard what happened on Thule, both the good and the bad of it. I'm not sure force was the best answer now."`
+			`As you step out of your ship, you spot a familiar face: Irene Brower, the gunnery sergeant you delivered a care package to before the war, though she seems to have master sergeant insignia now. She's on crutches, with what looks like a brand-new prosthetic leg. When she spots you, her pained face brightens. "Hey, I know you! You brought me that package from Tor before. Thanks!" She shifts her weight, then winces and shifts it back.`
+			`	She notices you looking at her leg, and grins lopsidedly. "Yeah. My CO thought it was a good idea to follow Voigt's plan to suppress the pirates on Greenrock. To be honest, I agreed with him at the time." She pauses a moment. "Now, not so sure, and not just because a blown-out shield capacitor lost me a leg. I heard what happened on Thule, both the good and the bad of it."`
 			choice
 				`	"I'm so sorry for your loss."`
 					goto sorry
@@ -6367,6 +6332,8 @@ mission "Care Package to South 2b"
 			label leave
 			`	"Six months of medical leave, then I'll be back in action. And hopefully assigned to ships a little less eager to jump into the thick of it when it's not really necessary, eh?"`
 			`	You join in her wry chuckle, then she gives you a wave with one crutch and bids you farewell.`
+				decline
+
 
 
 mission "Moving House 1"
@@ -6375,14 +6342,14 @@ mission "Moving House 1"
 	description "An anarchist named Kris has asked you to help move them and <cargo> from <planet stopovers> to <destination>. Payment is <payment>."
 	source
 		government "Republic" "Syndicate"
-		not attributes "rim" "south"
+		attributes "near earth" "paradise" "core"
 	destination "Lichen"
 	stopover
 		distance 3 7
 		government "Syndicate"
 	to offer
 		not "event: war begins"
-		random < 30
+		random < 35
 	passengers 1
 	cargo "personal belongings" 5
 	on offer
@@ -6402,12 +6369,12 @@ mission "Moving House 1"
 			choice
 				`	(Shake their hand.)`
 					goto shake
-				`	(Just stare at their odd outfit.)`
+				`	(Just stare.)`
 			`	You stare at Kris' unorthodox getup while they stand there with their hand out for a few beats. Then they sigh and take it back. "Will this be a problem?" They gesture to themselves.`
 			choice
 				`	"No, I was just surprised."`
 					goto surprised
-				`	"Yeah, I don't think I can carry someone like you."`
+				`	"I don't think I can carry someone like you."`
 			`	Their expression turns cold. "Right. I get it. Someone like me." They turn and stalk away.`
 				decline
 			
@@ -6448,8 +6415,9 @@ mission "Moving House Timer"
 	to offer
 		has "Moving House 1: done"
 		has "event: Thule becomes independent"
+		has "fw first chapter done"
 	on offer
-		event "kris gets frustrated" 20 60
+		event "kris gets frustrated" 5 35
 		fail
 		
 event "kris gets frustrated"
@@ -6464,12 +6432,15 @@ mission "Moving House 2"
 	destination "Lichen"
 	to offer
 		has "event: kris gets frustrated"
-		has "event: Thule becomes independent"
 	on offer
 		conversation
 			`When you check your messages upon landing, you notice one from an unfamiliar source. At first, you think it's a scam, because it tries to redirect you through three different servers, but then you see it calls you "ally of the anti-statist movement."`
-			`	Sure enough, it's from Kris Brecht, the anarchist. "You have to come and get me. I can't stand living here any longer!" It includes directions to a home somewhere on <planet> where you last saw Kris, but nothing more.`
-				accept
+			`	Sure enough, it's from Kris Brecht, the anarchist you transported to <planet>. "You have to come and get me. I can't stand living here any longer!" It includes directions to a home somewhere on <planet> where you last saw Kris, but nothing more.`
+			choice
+				`	(Accept.)`
+					accept
+				`	(Decline.)`
+					decline
 	on complete
 		conversation
 			`You arrive on <planet>, rent a local transport, and make your way to the location specified. When you knock on the door, Kris bursts out almost instantly. This time, they've got on a ruffly skirt, a button-down shirt, and suspenders, and their hair is in a tight bun. "Finally!" they say. "Everything's packed already; we just need to load it in and get to the spaceport."`
@@ -6490,7 +6461,7 @@ mission "Moving House 3"
 			choice
 				`	(Try to change the subject.)`
 					goto weather
-				`	(Just let it happen.)`
+				`	(Let them talk.)`
 			`	Surprisingly, Kris begins by talking about how uncomfortable the ever-damp weather on <origin> is, and how they'll be glad to be properly dry for the first time in weeks. This doesn't last, though, as soon talk of the planet brings up the other people there.`
 				goto fire
 			
@@ -6527,10 +6498,10 @@ mission "Stranded In Paradise 1"
 		random < 30
 	on offer
 		conversation
-			`No sooner have you entered the spaceport than you are bowled over by a trio of adults, two women and a man, with a child trailing close behind them.`
+			`No sooner have you entered the spaceport than you are bowled over by a trio of adults, two women and a man, with a teenager trailing close behind them.`
 			`	"Oh - sorry!" the older of the two women exclaims. She puts out a hand to help you up, then gets a better look at you as you take it, stand, and dust yourself off. "Wait; are you a ship captain?" she says after a moment.`
 			`	"<first> <last>, captain of the <ship>," you reply. "Why?"`
-			`	"Oh! You may be the answer to our prayers, dearie!" She and the others have now gotten themselves a bit more organized, and you can tell that they must be a family. Confirming this, the woman says, "We're the Burnbecks; I'm Shirley, and this is my husband Darren." She gestures towards the other, younger woman, then the child. "These are our kids, Erin and Leigh." Leigh's features are softer than you'd expect a boy of his age would have. "We were on vacation here on <origin> when news of the secession and those awful bombings came out. Well, I don't need to tell you, it's caused us some trouble! Or, well, maybe I do, since I didn't say where we're from: <destination>, down in what they're now calling the Free Worlds!"`
+			`	"Oh! You may be the answer to our prayers, dearie!" She and the others have now gotten themselves a bit more organized, and you can tell that they must be a family. Confirming this, the woman says, "I'm Shirley Burnbeck, and this is my husband Darren. These are our children, Erin and Leigh." The other, younger woman, Erin, greets you with a smile, while the teen, Leigh, glances at you before turning their gaze towards the ground. "We were on vacation here on <origin> when news of the secession and those awful bombings came out. Well, I don't need to tell you, it's caused us some trouble! Or, well, maybe I do, because we're from <destination>, down in what they're now calling the Free Worlds!"`
 			`	Her husband cuts in, "Anyway, the short of it is that we really need to get home, and right now, none of the regular services are running from here to <planet> because of the likelihood of war. Could you possibly take the four of us back home? We... can't pay a lot, right now, but we can pay."`
 			choice
 				`	"Of course. I wouldn't leave people stranded like this."`
@@ -6565,7 +6536,7 @@ mission "Stranded In Paradise 2"
 			choice
 				`	(Accept.)`
 					goto cafe
-				`	(Politely decline.)`
+				`	(Decline.)`
 			`	You apologize, and they reassure you it's fine and thank you once again.`
 				decline
 			
@@ -6580,8 +6551,9 @@ mission "Southern Fiance 1"
 	name "Fiance to <planet>"
 	description "Tom, formerly a marketer for the Syndicate, is going to live with his fiance on <destination>. Payment is <payment>."
 	source
+		government "Syndicate"
 		attributes "core"
-		not government "Pirate"
+		attributes "urban"
 	destination "Cornucopia"
 	to offer
 		has "event: war begins"
@@ -6590,17 +6562,17 @@ mission "Southern Fiance 1"
 	passengers 1
 	on offer
 		conversation
-			`Walking through the spaceport, you see a man in a very neat suit standing by the side of the concourse holding a sign reading "Transport To <destination>" in beautiful lettering.`
+			`Walking through the spaceport, you see a man in a very neat suit standing by the side of the concourse holding a sign reading "Transport To <planet>" in beautiful lettering.`
 			choice
 				`	(Walk towards him.)`
 				`	(Ignore him.)`
 					decline
-			`	He turns a very professional smile on you and introduces himself. "My name is Tom Ardwright. My fiance is the Agriculture Minister on <destination>, down in the Free Worlds. We had planned to get married up here in a few months, but, well..." He gestures around at the general situation. "So I'm trying to get down to him, but I'm having trouble getting transport right now."`
+			`	He turns a very professional smile on you and introduces himself. "My name is Tom Ardwright. My fiance is the Agriculture Minister on <destination>, down in the Free Worlds. We had planned to get married up here in a few months, but, well..." He gestures around at the general situation. "So I'm heading down to <planet> instead. Can you help?"`
 			choice
-				`	"Well, I'm the captain of the <ship>; I can take you."`
+				`	"You're in luck; I'm the captain of the <ship>."`
 					goto take
-				`	"Wow, that sounds rough. Best of luck with that."`
-			`	Tom sighs and nods. "Thanks. Best of luck to you, too."`
+				`	"I can't help."`
+			`	Tom sighs and nods. "Thanks for hearing me out. Best of luck, wherever you end up."`
 				decline
 			
 			label take
@@ -6609,20 +6581,13 @@ mission "Southern Fiance 1"
 	on complete
 		payment
 		payment 10000
-		log "Minor People" "Tom and Carl" `Tom Ardwright was a marketer for the Syndicate, but moved south, with your help, to live with his government minister fiance Carl Chamberlain after war broke out.`
+		log "Minor People" "Tom and Carl" `Tom Ardwright was a marketer for the Syndicate, but moved south to live with his fiance Carl Chamberlain after war broke out.`
 		event "tom and carl's wedding" 60
-		event "carl elected governor" 150
-		event "tom and carl's child" 1500
 		conversation
-			`During the trip to <destination>, you had several conversations with Tom, on a wide range of topics. The most common topic was his fiance, named Carl Chamberlain, sharing dozens of pictures of them together. He also presented some of his own portfolio, as a marketer and designer for a division of Syndicated Systems - at least until he quit his job for this. "I'm not worried, though," he remarks. "Money's fun, of course, but it's nothing compared to what we can do down there on Cornucopia."`
-			`	The trip south seems to fly by, and soon you are standing at the foot of the ramp shaking Tom's hand and bidding him farewell as Carl runs across the tarmac toward you. You step back as they practically leap into each other's arms, reuniting in spite of these tumultuous times.`
-			`	When you're back on board, you see an incoming message that informs you <payment> have been transferred to your account, along with a heartfelt thank-you note from both men.`
+			`During the trip to <destination>, you had several conversations with Tom on a wide range of topics, including his fiance, Carl, as well as his job as a marketer and designer for a division of Syndicated Systems - at least until he quit. "It'll be a shame to see my work for the Syndicate be replaced, but I don't regret leaving. Carl's got big plans in store for <planet>, now that we aren't stuck with the Republic's shoestring budget, and I wouldn't miss them for the galaxy."`
+			`	You stand at the foot of the ramp accepting Tom's fare of <payment> and bidding him farewell as Carl runs across the tarmac toward you. You step back as they practically leap into each other's arms, reuniting in spite of these tumultuous times.`
 
 event "tom and carl's wedding"
-
-event "carl elected governor"
-
-event "tom and carl's child"
 
 mission "Southern Fiance 2"
 	minor
@@ -6633,99 +6598,13 @@ mission "Southern Fiance 2"
 		has "event: tom and carl's wedding"
 	on offer
 		conversation
-			`After landing, you receive a message from Tom Ardwright and Carl Chamberlain. Attached are photos of their wedding on Cornucopia, as well as a letter:`
+			`After landing, you receive a message from Tom and Carl. Attached are photos of their wedding on Cornucopia, as well as a letter:`
 			``
 			`Dear <first> <last>,`
-			`	We are delighted to announce that despite the many hardships around us in these times, Tom Ardwright and Carl Chamberlain were married three days ago at the Hart's Hill Vineyard on Cornucopia. This would not have been possible without your willingness to help a man in need, so we thank you from the bottom of our hearts, and if you are ever on Cornucopia, we would be happy to host you. Please enjoy these photos from the wedding.`
+			`	We are delighted to announce that despite the many hardships around us in these times, the two of us were married three days ago at the Hart's Hill Vineyard on Cornucopia. This would not have been possible without you, and we thank you from the bottom of our hearts. Please enjoy these photos from the wedding.`
 			`				Tom & Carl Ardwright-Chamberlain`
 			``
 			`	You recognize Tom's style in the design of the photo set, which includes a photo of them on the tarmac at the Cornucopia spaceport where they were reunited after the uncertainty of the war parted them.`
-				decline
-
-mission "Southern Fiance 3"
-	landing
-	source "Cornucopia"
-	to offer
-		has "Southern Fiance 2: offered"
-		not "event: carl elected governor"
-	on offer
-		set "visited tom and carl"
-		conversation
-			`As you approach for a landing, you are surprised when the spaceport controller diverts you to a special pad. When you land, you find Tom, the man you brought south from the Core, and his husband Carl, the Agricultural Minister of Cornucopia, waiting for you.`
-			`	They greet you like an old friend (despite never having talked with Carl before), and insist on serving you dinner. Rather than the grand mansions of other politicians, their house is a simple bungalow that wouldn't look out of place in a suburb. The meal, on the other hand, is anything but modest: there are plates of kebabs, pastas, stir fries, and cakes, made from ingredients sourced from all over the planet. You swap stories for a while - you with your "thrilling adventures in space," as Tom describes them, and them with their much more ordinary, but no less interesting, times here on Cornucopia. They also hint at some big things coming, but reveal nothing more than a knowing look.`
-			`	After a while, you bid them farewell, and they promise once again that if you ever visit you'll be welcome.`
-				decline
-
-mission "Southern Fiance 4"
-	minor
-	source
-		government "Free Worlds"
-	to offer
-		has "event: carl elected governor"
-	on offer
-		conversation
-			`In the spaceport, you notice a news bulletin announcing the election of a new governor on Cornucopia. To your surprise, you recognize the man in the picture: it's Carl Ardwright-Chamberlain.`
-			`	While he did increase crop yields by 17% during his tenure as Agricultural Minister, the new governor's election owes much to the brilliant work of his campaign manager: his husband Tom. The bulletin goes on to list the bold plans for new initiatives on Cornucopia and the good the new senator is doing for the people there.`
-				decline
-
-mission "Southern Fiance 5"
-	minor
-	landing
-	source "Cornucopia"
-	to offer
-		has "event: carl elected governor"
-		not "event: tom and carl's child"
-	on offer
-		"visited tom and carl" ++
-		conversation
-			branch already
-				has "visited tom and carl"
-			`As you approach for a landing, you are surprised when the spaceport controller diverts you to a special pad. When you land, you find Tom, the man you brought south from the Core, and his husband Carl, the new Governor of Cornucopia, waiting for you.`
-			`	They greet you like an old friend (despite never having talked with Carl before), and insist on serving you dinner. The Cornucopia governor's mansion is certainly befitting of the title, and Tom takes you on a tour through the premises while Carl fields some important phone calls. The meal is similarly grand: there are plates of kebabs, pastas, stir fries, and cakes, made from ingredients sourced from all over the planet. You swap stories for a while - you with your "thrilling adventures in space," as Tom describes them, and them with their much more ordinary, but no less interesting, times here on Cornucopia, including some of the challenges and highlights of their campaign. They also hint at something big coming, but reveal nothing more than a knowing look.`
-				goto end
-			
-			label already
-			`Like last time, the spaceport controller diverts you to the Governor's personal landing pad. Tom and Carl are waiting for you once more, and they greet you warmly. They take you in an official government vehicle to the governor's mansion, with a trying-to-be-subtle security detail always following just on the periphery.`
-			`	The official mansion is much more impressive than Carl's house as Agricultural Minister was, and Tom gives you a tour while Carl has to field some official phone calls. You're already looking forward to the food well before you sit down to dinner, and you are not disappointed: if anything, it's better than the last time you visited them. Carl confides that he's planning on pushing to open a government-sponsored culinary school in the capital, but he'll be sad to see his cook go: he knows it's been the woman's dream for ages to teach others to make food as amazing as this, too.`
-			`	After dinner, as before, you catch each other up on what you've been doing since your last visit, and once you've both shared most of what you can think of to tell, Tom and Carl once again hint that there's still something big in their plans.`
-			
-			label end
-			`	After a while, you bid them farewell, and they promise once again that if you ever visit you'll be welcome.`
-				decline
-				
-mission "Southern Fiance 6"
-	landing
-	source "Cornucopia"
-	to offer
-		has "event: tom and carl's child"
-	on offer
-		conversation
-			branch already
-				has "visited tom and carl"
-			`As you approach for a landing, you are surprised when the spaceport controller diverts you to a special pad. When you land, you find Tom, the man you brought south from the Core, and his husband Carl, the new Governor of Cornucopia, waiting for you.`
-			`	They greet you like an old friend (despite never having talked with Carl before), and insist on serving you dinner. The Cornucopia governor's mansion is certainly befitting of the title, and Tom takes you on a tour through the premises while Carl fields some important phone calls. Partway through the tour, Tom gets a mischievous grin, and when he opens the next door, a small child races out and cannons into his legs, gripping them tightly with a glad cry of "Daddy!" Tom proudly introduces Nita, his and Carl's three-year-old daughter, who giggles and tries to run off with your communicator.`
-			`	When you sit down to dinner with the three of them, you're blown away: there are plates of kebabs, pastas, stir fries, and cakes, made from ingredients sourced from all over the planet. You swap stories for a while - you with your "thrilling adventures in space," as Tom describes them, and them with their much more ordinary, but no less interesting, times here on Cornucopia, including some of the challenges and highlights of their campaign and the joys and fears of fatherhood.`
-				goto end
-			
-			label already
-			`Like last time, the spaceport controller diverts you to the Governor's personal landing pad. Tom and Carl are waiting for you once more, and they greet you warmly. They take you in an official government vehicle to the governor's mansion, with a trying-to-be-subtle security detail always following just on the periphery.`
-			branch already2
-				has "Southern Fiance 5: declined"
-				
-			`	The official mansion is much more impressive than Carl's house as Agricultural Minister was, and Tom gives you a tour while Carl has to field some official phone calls. Partway through the tour, Tom gets a mischievous grin, and when he opens the next door, a very small child races out and cannons into his legs, gripping them tightly with a glad cry of "Daddy!" Tom proudly introduces Nita, his and Carl's three-year-old daughter, who giggles and tries to run off with your communicator.`
-			`	You're already looking forward to the food well before you sit down to dinner, and you are not disappointed: if anything, it's better than the last time you visited them. Carl confides that it used to be even better, but a year ago his best cook left to become a star teacher at the new culinary institute whose funding he championed.`
-			`	After dinner, as before, you catch each other up on what you've been doing since your last visit. Tom and Carl's side of this, in between bouts of corralling their exuberant daughter, is mostly about the joys and fears of fatherhood, and their hopes for their, and Nita's, future.`
-				goto end
-			
-			label already2
-			`	Even having seen it once before, you're still impressed with the governor's mansion. This time, though Carl still has to take an official call, Tom gets a mischievous grin and takes you upstairs to one particular room that you recall on the previous tour was a guest bedroom. When he opens the door, though, you have just time to see that it's been expertly redecorated as a nursery, before a very small child races out and cannons into his legs, gripping them tightly with a glad cry of "Daddy!" Tom proudly introduces Nita, his and Carl's three-year-old daughter, who giggles and tries to run off with your communicator.`
-			`	You brace yourself for the food as dinner approaches, and while it's still amazing, it does seem to have lost some of the spark it had on your last visit. Carl sighs and says that his worst fears were realized: when he successfully got the government to approve funding for the new culinary institute a year or so ago, his cook went off to become its star teacher.`
-			`	After dinner, as before, you catch each other up on what you've been doing since your last visit. Tom and Carl's side of this, in between bouts of corralling their exuberant daughter, is mostly about the joys and fears of fatherhood, and their hopes for their, and Nita's, future.`
-			
-			label end
-			action
-				"visited tom and carl" ++
-			`	At length, you reluctantly say you have to get going, and you bid each other fond farewells (and reclaim your communicator from Nita), with a promise once again that if you ever visit you'll be welcome.`
 				decline
 
 
@@ -6756,7 +6635,7 @@ mission "FW Refugees to Humanika"
 			`	The parents introduce themselves as Penny Little and Rosa Perkins. Their young child is named Eduardo. Penny asks, "Any chance you're willing to take us and <tons> of our belongings to <destination>? We're concerned that the war between the Republic and the Free Worlds is going to get dangerous, so we want to raise Eduardo on a Quarg planet instead. We can pay <payment>."`
 			label "main choice"
 			choice
-				`	"Why were all those other captains refusing to take you?"`
+				`	"Why were those other captains refusing to take you?"`
 					to display
 						not "FW Refugees to Humanika: other captains"
 					goto "other captains"
