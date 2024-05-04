@@ -68,6 +68,7 @@ void FormationPattern::PositionIterator::MoveToValidPosition()
 	// If we cannot calculate any new positions, then just return center point.
 	if(atEnd || lines < 1)
 	{
+		atEnd = true;
 		currentPoint = Point();
 		return;
 	}

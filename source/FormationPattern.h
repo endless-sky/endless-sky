@@ -72,17 +72,17 @@ public:
 		// The number of ships affects the last line that is placed in
 		// case the last line is centered. When zero is given then every
 		// line is treated as if many more ships need to be placed.
-		unsigned int shipsToPlace;
+		unsigned int shipsToPlace = 0;
 		// Center radius that is to be kept clear. This is used to avoid
 		// positions of ships overlapping with the body around which the
 		// formation is formed.
-		double centerBodyRadius;
+		double centerBodyRadius = 0;
 		// Factors to convert coordinates based on ship sizes/dimensions to
 		// coordinates in pixels. Typically initialized with the maximum
 		// sizes/dimensions of the ships participating in the formation.
-		double diameterToPx;
-		double widthToPx;
-		double heightToPx;
+		double diameterToPx = 1;
+		double widthToPx = 1;
+		double heightToPx = 1;
 		// Currently calculated Point.
 		Point currentPoint;
 		// Internal status variable;
