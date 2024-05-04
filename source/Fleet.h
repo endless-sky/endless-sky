@@ -89,11 +89,7 @@ private:
 	const Phrase *names = nullptr;
 	const Phrase *fighterNames = nullptr;
 	const FormationPattern *formation = nullptr;
-	// The sum of all available variant weights.
-	int total = 0;
 	WeightedList<Variant> variants;
-	std::vector<std::string> commodities;
-	std::set<const Sale<Outfit> *> outfitters;
 	// The cargo ships in this fleet will carry.
 	FleetCargo cargo;
 
