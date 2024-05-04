@@ -654,7 +654,7 @@ outfit "Shield Disruptor Turret"
 		sound "disruptor"
 		"hit effect" "disruptor impact"
 		"inaccuracy" 1
-		"turret turn" 1.5
+		"turret turn" 1
 		"velocity" 480
 		"lifetime" 1
 		"reload" 1
@@ -718,7 +718,7 @@ outfit "Husk-Slice Turret"
 		sound "slicer"
 		"hit effect" "slicer impact"
 		"inaccuracy" 0
-		"turret turn" 1
+		"turret turn" 1.5
 		"velocity" 520
 		"lifetime" 1
 		"reload" 1.62
