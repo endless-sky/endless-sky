@@ -1457,10 +1457,8 @@ void MapPanel::DrawNames()
 	const Font &font = FontSet::Get(useBigFont ? 18 : 14);
 	const double zoomFactor = zoom / 2;
 	Point offset(useBigFont ? 10. : 8., -.5 * font.Height());
-	for(const Node &node : nodes)
-		font.Draw(node.name, zoom * (node.position + center) + offset,
-			(isStarry ? Color::Combine(1. - zoomFactor, node.nameColor, zoomFactor, node.color)
-			: node.nameColor).Additive(.9));
+	for (const Node& node : nodes)
+		font.Draw(node.name, zoom * (node.position + center) + offset, node.nameColor);
 
 }
 
