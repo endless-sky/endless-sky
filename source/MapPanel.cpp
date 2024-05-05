@@ -1455,7 +1455,6 @@ void MapPanel::DrawNames()
 	// Draw names for all systems you have visited.
 	bool useBigFont = (zoom > 2.);
 	const Font &font = FontSet::Get(useBigFont ? 18 : 14);
-	const double zoomFactor = zoom / 2;
 	Point offset(useBigFont ? 10. : 8., -.5 * font.Height());
 	for (const Node& node : nodes)
 		font.Draw(node.name, zoom * (node.position + center) + offset, node.nameColor);
