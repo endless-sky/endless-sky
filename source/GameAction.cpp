@@ -248,10 +248,10 @@ void GameAction::Save(DataWriter &out) const
 		out.Write("fail");
 	if(music.has_value())
 	{
-		if(!music->empty())
-			out.Write("music", music.value());
-		else
+		if(music->empty())
 			out.Write("mute");
+		else
+			out.Write("music", music.value());
 	}
 
 	conditions.Save(out);
