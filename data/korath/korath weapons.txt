@@ -293,7 +293,7 @@ outfit "Korath Inferno"
 		sound "korath inferno"
 		"hit effect" "korath inferno hit"
 		"inaccuracy" 0.5
-		"turret turn" 1
+		"turret turn" 0.6
 		"velocity" 550
 		"lifetime" 1
 		"reload" 1
