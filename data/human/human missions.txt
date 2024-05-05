@@ -1961,11 +1961,10 @@ mission "Terraforming 1"
 	passengers 2
 	
 	to offer
+		"reputation: Republic" >= 0
 		or
+			not "chosen sides"
 			has "main plot completed"
-			and
-				not "event: pug invasion"
-				not "event: fwc pug invasion"
 	on offer
 		conversation
 			`You stop in to the spaceport bar for a drink. The bar seems to be frequented mostly by the managers of the mining corporation; you suspect the workers don't earn enough to visit a bar very frequently. In one corner, two of the managers are having a very animated discussion. When they see you, they say, "Hello there, Captain! Interested in taking us on a business trip?"`
@@ -2191,12 +2190,11 @@ mission "Terraforming 6"
 	deadline
 	deadline 2
 	to offer
+		"reputation: Republic" >= 0
 		has "event: terraforming timer"
 		or
+			not "chosen sides"
 			has "main plot completed"
-			and
-				not "event: pug invasion"
-				not "event: fwc pug invasion"
 	
 	on offer
 		conversation
