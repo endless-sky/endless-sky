@@ -1420,7 +1420,7 @@ void MapPanel::DrawSystems()
 				starAngle = starAngle + spin;
 				Point starRotate(cos(starAngle), sin(starAngle));
 				const Body starBody = Body(SpriteSet::Get(star), pos + zoom * starOffset * starRotate,
-					Point(0, 0), 0, sqrt(zoom) / 2, min(zoom + 0.2, 0.8));
+					Point(0, 0), 0, sqrt(zoom) / 2, min(zoom + 0.3, 0.9));
 				batchDraw.Add(starBody);
 			}
 		}
@@ -1455,8 +1455,8 @@ void MapPanel::DrawNames()
 	// Draw names for all systems you have visited.
 	bool useBigFont = (zoom > 2.);
 	const Font &font = FontSet::Get(useBigFont ? 18 : 14);
-	Point offset(useBigFont ? 10. : 8., -.5 * font.Height());
-	for(const Node& node : nodes)
+	Point offset(useBigFont ? 8. : 6., -.5 * font.Height());
+	for(const Node &node : nodes)
 		font.Draw(node.name, zoom * (node.position + center) + offset, node.nameColor);
 
 }
