@@ -1761,6 +1761,7 @@ mission "Hai Film Crew 3"
 	description "Take Likeet's film crew home to their studio on <destination>, so that they can process the film they shot on <origin>. Payment is <payment>."
 	cargo "film equipment" 30
 	passengers 80
+	blocked "You have reached <origin>, but you need <capacity> in order to take on the next mission. Return here when you have the required space free."
 	source "Darkrest"
 	destination
 		attributes hai

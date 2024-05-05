@@ -296,7 +296,11 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	else if(command.Has(Command::HELP))
 	{
 		if(player.Ships().size() > 1)
+		{
+			if(isOutfitter)
+				DoHelp("outfitter with multiple ships", true);
 			DoHelp("multiple ships", true);
+		}
 		if(isOutfitter)
 		{
 			DoHelp("uninstalling and storage", true);
@@ -767,7 +771,7 @@ void ShopPanel::DrawShipsSidebar()
 
 		shipZones.emplace_back(point, Point(ICON_TILE, ICON_TILE), ship.get());
 
-		if(shipZones.back().Contains(mouse))
+		if(mouse.Y() < Screen::Bottom() - BUTTON_HEIGHT && shipZones.back().Contains(mouse))
 		{
 			shipName = ship->Name();
 			hoverPoint = shipZones.back().TopLeft();
@@ -1263,9 +1267,12 @@ void ShopPanel::MainUp()
 		return;
 
 	vector<Zone>::const_iterator it = Selected();
-	// Special case: nothing is selected.  Start from the first item.
+	// Special case: nothing is selected. Start from the first item.
 	if(it == zones.end())
+	{
 		it = zones.begin();
+		previousX = it->Center().X();
+	}
 
 	const double previousY = it->Center().Y();
 	while(it != zones.begin() && it->Center().Y() == previousY)
@@ -1298,8 +1305,10 @@ void ShopPanel::MainDown()
 	if(it == zones.end())
 	{
 		mainScroll = 0.;
-		selectedShip = zones.begin()->GetShip();
-		selectedOutfit = zones.begin()->GetOutfit();
+		it = zones.begin();
+		selectedShip = it->GetShip();
+		selectedOutfit = it->GetOutfit();
+		previousX = it->Center().X();
 		return;
 	}
 

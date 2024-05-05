@@ -114,6 +114,7 @@ private:
 
 	std::weak_ptr<Ship> targetShip;
 	const Ship *cachedTarget = nullptr;
+	bool targetDisabled = false;
 	const Government *targetGovernment = nullptr;
 
 	// The change in velocity of all stages of this projectile
