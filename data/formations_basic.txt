@@ -23,6 +23,7 @@ formation "Trailing line"
 	position 0 1000
 	position 0 1200
 	position 0 1400
+	position 0 1600
 	position 0 1800
 	position 0 2000
 	position 0 2200
