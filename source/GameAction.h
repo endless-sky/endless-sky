@@ -21,9 +21,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <cstdint>
 #include <map>
+#include <optional>
 #include <set>
 #include <string>
-#include <optional>
 #include <utility>
 #include <vector>
 
