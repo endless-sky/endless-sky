@@ -45,8 +45,7 @@ or harmful.
 
 Community leaders have the right and responsibility to remove, edit, or reject
 comments, commits, code, wiki edits, issues, and other contributions that are
-not aligned to this Code of Conduct, and will communicate reasons for moderation
-decisions when appropriate.
+not aligned to this Code of Conduct, and will communicate reasons for moderation.
 
 ## Scope
 
@@ -64,7 +63,7 @@ https://discord.gg/ZeuASSx.
 All complaints will be reviewed and investigated promptly and fairly.
 
 All community leaders are obligated to respect the privacy and security of the
-reporter of any incident.
+reporter and reportee of any incident.
 
 ## Enforcement Guidelines
 
@@ -89,7 +88,7 @@ of actions.
 interaction with the people involved, including unsolicited interaction with
 those enforcing the Code of Conduct, for a specified period of time. This
 includes avoiding interactions in community spaces as well as external channels
-like social media. Violating these terms may lead to a temporary or
+like social media (inc. Discord). Violating these terms may lead to a temporary or
 permanent ban.
 
 ### 3. Temporary Ban
