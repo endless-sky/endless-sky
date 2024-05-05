@@ -33,7 +33,7 @@ mission "Incipias: Warning of the Guardian"
 	on enter Il'le
 		conversation
 			`"You have come to a dead end. Perhaps try another route," a voice with an uncertain origin says.`
-			`	Alarmed by the sudden appearance you turn around but nobody is there. You check your scanners but only a few indigenous lifeforms that showed no sign of communication appear. Also you notice that your mapping system found hyperlinks stretching out from this system.`
+			`	Alarmed, you turn around but nobody is there. You check your scanners but only a few indigenous lifeforms that showed no sign of communication appear. You also notice that your mapping system found hyperlinks stretching out from this system.`
 			choice
 				`	(Ignore it. It was probably your imagination.)`
 				`	"You can't fool me. This is no dead end."`
@@ -51,9 +51,9 @@ mission "Incipias: Warning of the Guardian"
 				`	"I will see for myself."`
 			`	A sigh seems to drift through the continuum, "Human, these unborn flowers-" an impression of euphoria comes over you, "-would only be endangered by your presence. Please respect the beauty of life and do not step into this region that will soon bring forth a new species. Your kind is much more advanced than anything that you could hope to find here. No treasures here await you."`
 			choice
-				`	"Why do you care about these flowers?"`
+				`	"Why do you care about these 'flowers'?"`
 					goto care
-				`	"Maybe what I search for is not technology."`
+				`	"What I search for is not technology."`
 			`	The voice now takes on a calm tone. "Your persistence on this topic is admirable, but allow me to explain my conviction with an example." You say nothing, so the voice continues.`
 			label care
 			`	"Why do humans care about art?" The voice now seems far away yet more present than ever. "Because it amazes you, the same way it amazes us to see another kind grow and overcome their burdens. The lives of species are like a painting that never stop being painted, but when they do stop it is a tragic thing to watch. That is why we try to protect these creations of life - so we can see what heights they reach."`
@@ -103,10 +103,10 @@ mission "Incipias: Meet the Quarg"
 				`	"I am looking for new species."`
 					goto "new species"
 			label "explorer"
-			`	"An obvious pursuit for the young that is," it nods, "if advice you I may, to not walk this way in a careless manner, the galaxy holds many dangers that your kind has yet to discover or even to understand." It straightens up to its full height, towering over you, "but in the end worth the trouble it will be."`
+			`	"An obvious pursuit for the young that is," it nods, "if advice you I may, to not walk this way in a careless manner. The galaxy holds many dangers that your kind has yet to discover or even to understand." It straightens up to its full height, towering over you, "but in the end worth the trouble it will be."`
 				goto "end"
 			label "new species"
-			`	"What a peculiar task that is," it looks confused and tilts its head, "what to achieve by this you hope? That an incredible amount of dangers come with meeting other species you not know? For a reason invisible borders in space there are. To be careful and consider every last step I advise."`
+			`	"What a peculiar task that is." It looks confused and tilts its head. "What to achieve by this you hope? That an incredible amount of dangers come with meeting other species you not know? For a reason invisible borders in space there are. To be careful and consider every last step I advise."`
 			label "end"
 			`	After a short pause it continues talking, "Your presence here our kind accepts, although not very happy we are. Allowed to travel here you are, but conditions there are. Not too far from here another kind just starts growing, great plans for them our leaders have. Do not interrupt them, hostile actions against them we will revenge."`
 			`	With these words the Quarg turns around and leaves. It seems like you are free to use the local facilities now.`
@@ -136,9 +136,9 @@ mission "Incipias: The Derelict"
 			has "incipias: helped the derelict"
 		on assist
 			conversation
-				`When you approach the ship you get hailed and as you accept the hail color gradients start moving over your screen but your speakers stay silent. It seems like communication over these channels is doomed to fail, you continue your boarding maneuver.`
+				`The ship hails you as you approach it. Once you accept the hail, color gradients start moving over your screen in a dizzying fashion - curiously, your speakers remain silent. It soon becomes clear that you will not be able to understand whatever transmission you just witnessed without some sort of translator. You continue your boarding maneuver.`
 				scene "scene/incipias message"
-				`	You manage to dock to the disabled ship quite easily. The lock opens and a hallway opens up before you, obviously not built for humans. The walls are strangely curved and the floor has nearly no grip at all. Your view gets caught by the five giant aliens half octopode, half jellyfish that are pulsating in bright colors, similar to the gradients that appeared on your screen earlier. One of them is floating behind a giant mounted gun, the two barrels are pointed right at you. The gunner flashes in an orange light, and you can feel the tension in the room rising.`
+				`	You manage to dock to the disabled ship quite easily. The lock opens and a hallway opens up before you. It is immediately obvious that this ship was not designed for humans; the walls are strangely curved and the floor has nearly no grip at all. Your view gets caught by five giant aliens, half octopode, half jellyfish in appearance. They pulsate in bright colors similar to the gradients that appeared on your screen earlier. One of them is floating behind a giant mounted gun, and the two barrels are pointed right at you. The gunner flashes in an orange light, and you can feel the tension in the room rising.`
 				choice
 					`	(Try to convey that you intend no harm.)`
 						goto peace
@@ -148,11 +148,11 @@ mission "Incipias: The Derelict"
 				`	You hit the creature manning the turret, causing it to explode with a strident sound. Before you can enjoy your short-lived victory, the other turret aims your way. Turning your head you see the gunner flashing in a deep red, before shooting you down, avenging their fallen comrade.`
 					die
 				label peace
-				`	Feeling that the situation could escalate every moment, you slowly place the crate with the repair equipment on the ground, careful to not make any hasty movements and walk back a few steps. No side moves for a moment until one of the aliens slowly moves forward, tones of yellow are now mixing into the orange. Two of their tentacles wrap around the crate, the other four are backing of a little bit. The front one succeeds in finding the opening mechanism, right after it got a look inside, its colors shift to a weak green. The other four also seem to relax as they take on the same color.`
-				`	With the repair equipment delivered there is nothing else you can do and communication is not working so you turn around and leave. Just as you leave you can see how the aliens start pulsating in all colors of the spectrum, gradients are moving over their skin so fast that it almost looks white.`
+				`	Feeling that the situation could escalate any moment, you slowly place the crate with the repair equipment on the ground and walk back a few steps. You are careful not to make any hasty movements. No side moves for a moment until one of the aliens slowly floats forward. Tones of yellow are now mixing into the creature's orange color, and two of their tentacles wrap around the crate. The other four back off. Once the alien manages to open the crate and look inside, its colors shift to a weak green. The rest of the crew also seem to relax as they take on the same color.`
+				`	With the repair equipment delivered there is nothing else you can do, given the communication barrier. Just as you leave you can see how the aliens start pulsating in all colors of the spectrum; gradients are moving over their skin so fast that it almost looks white.`
 					goto end
 				label flee
-				`	As the tension starts raising even further, you just drop the repair equipment and run back into your ship, you smash the button that closes the lock. You get a last look on the alien, blue and yellow tones are mixing on their skin, but they are not taking any action.`
+				`	As the tension starts raising even further, you simply drop the repair equipment and run back into your ship, smashing the button that closes the lock. You get a last look on the alien: blue and yellow tones are mixing on their skin, but they are not taking any action.`
 				label end
 				`	As you fly away you see the engines of the ship slowly booting back up. Apparently they figured out how to use the repair equipment.`
 				`	Back on the bridge your eyes fall on the scanner log that is still open on your screen. Notably this ship had no hyperdrive or anything similar installed; strange considering there is no inhabited planet in this system. Maybe you should talk to the Quarg and see if they can help.`
@@ -163,7 +163,7 @@ mission "Incipias: The Derelict"
 			derelict uninterested staying
 	on enter "Hui'uc"
 		conversation
-			`On entering the system you find an alien spaceship disabled and badly damaged. You remember your training as a captain when your teacher told you about something about a codex of captains, "A captain never leaves a ship in need behind."`
+			`On entering the system you find an alien spaceship disabled and badly damaged. There does not appear to be any other ships or inhabited planets in the system.` 
 
 mission "Incipias: Help the stranded Part 1"
 	landing
@@ -175,12 +175,12 @@ mission "Incipias: Help the stranded Part 1"
 	on offer
 		conversation
 			`Right after you arrived on the planet you go looking for a Quarg official to tell about the stranded ship. Luckily it does not take long before you find one.`
-			`	"Human, in quite a haste you seem to be. What the so pressing matter could be?" It asks as it clearly recognizes that you are a bit out of breath.`
+			`	"Human, in quite a haste you seem to be. What the so pressing matter could be?" it asks.`
 			choice
 				`	(Explain the situation.)`
 					goto explanation
 				`	"I need advice regarding the species in this region."`
-			`	It looks at you curiously, "So you met them? I am surprised that you were able to communicate, it took a very long time even for us to decipher their way of communication."`
+			`	It looks at you curiously, "So you met them? I am surprised that you were able to communicate. It took a very long time even for us to decipher their way of communication."`
 			`	You quickly explain what happened and the Quarg seems very relieved about the fact that you were not able to talk to them, it probably was a big achievement for them.`
 			label explanation
 			`	"A most peculiar situation you ran into, should not be able to cross the borders of their system yet this species..." It tilts it head for a moment considering what you just said. "To help them I would love, but no ships we have that on gas giants can land and too early it is for us to reveal ourselves to them, I fear nothing there is we can do." It shakes its head.`
