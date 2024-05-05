@@ -343,11 +343,12 @@ mission "Hai Legacy 3"
 			label headingout
 			action
 				"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
-				set "unfettered: refused to sell the bug"
+				set "unfettered: fled with the relic"
 			`	Seeing as they are unlikely to cooperate you quickly head to your ship and launch before they have time to react, but it seems like you are being followed.`
 				launch
 	on decline
 		"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
+		clear "old reputation: Hai (Unfettered)"
 	on disabled
 		fail "Hai Legacy 3"
 		dialog
@@ -356,14 +357,14 @@ mission "Hai Legacy 3"
 			`	"Oh, and a word of advice: maybe you should have outfitted your ship differently, or used your range advantage by moving away at full thrust, before turning back to fire on us."`
 	on fail
 		"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
-		# I would deduce the reputation here but being on a planet that becomes hostile as you land seem to cause issues for the game.
+		clear "old reputation: Hai (Unfettered)"
 		dialog `The Unfettered hail you. "You failed to complete the duel, and as such, are no longer authorized to land on our worlds. You will not enjoy unwarranted respect any longer! It would be in your best interest to return the ship to us on Darkcloak, but any of our worlds will do."`
 	npc disable
 		government "Hai (Unfettered Challenger)"
 		to spawn
 			"total ships" == 1
 			has "flagship model: Anomalocaris"
-			not "unfettered: refused to sell the bug"
+			not "unfettered: fled with the relic"
 		to despawn
 			"total ships" != 1
 		personality unconstrained launching plunders staying target heroic disables marked
@@ -384,7 +385,7 @@ mission "Hai Legacy 3"
 	npc disable
 		government "Hai (Unfettered Challenger)"
 		to spawn
-			not "unfettered: refused to sell the bug"
+			not "unfettered: fled with the relic"
 			"old reputation: Hai (Unfettered)" < -2000
 			has "flagship model: Anomalocaris"
 			"total ships" == 1
@@ -406,7 +407,7 @@ mission "Hai Legacy 3"
 	npc
 		government "Hai (Unfettered)"
 		to spawn
-			not "unfettered: refused to sell the bug"
+			not "unfettered: fled with the relic"
 		ship "Lightning Bug (Unfettered Shipyards)"
 		personality launching staying surveillance marked
 		on disable
@@ -420,7 +421,7 @@ mission "Hai Legacy 3"
 	npc
 		government "Hai (Unfettered)"
 		to spawn
-			has "unfettered: refused to sell the bug"
+			has "unfettered: fled with the relic"
 		personality unconstrained nemesis launching heroic marked
 		fleet
 			names "hai"
@@ -429,7 +430,7 @@ mission "Hai Legacy 3"
 	on visit
 		dialog "You have not beaten all challenging ships yet. If they have not shown up it is probably because you have cheated and brought more ships into the fight. Load an earlier save and try again if you want to finish this mission."
 	to complete
-		not "unfettered: refused to sell the bug"
+		not "unfettered: fled with the relic"
 		has "unfettered: beaten the bugs"
 		has "flagship model: Anomalocaris"
 		or
