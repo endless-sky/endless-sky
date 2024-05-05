@@ -246,7 +246,7 @@ mission "Hai Legacy 2"
 		conversation
 			`Upon returning to the spaceport, one could say the cargo finds you more than you find it. A worker immediately greets you while others begin to fill your ship with crates, which a quick check shows have already been allocated for this ship in your name. All that is left to do is to bring it to <destination> by <date> for the promised sum of <payment>.`
 			choice
-				`(Prepare for takeoff.)`
+				`	(Prepare for takeoff.)`
 			`	As you head to the bridge, preparing to take off from the planet, you notice a message on the command panel, from your "associates," probably:`
 			`	"Use the Anomalocaris as your flagship.`
 			`	"Do not bring any other ships, as they are not needed for the cargo and would only be a liability at best in Unfettered space, when they could easily provoke them at worst."`
