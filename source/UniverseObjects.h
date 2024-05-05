@@ -48,15 +48,19 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Trade.h"
 #include "Wormhole.h"
 
+#include <atomic>
 #include <future>
 #include <map>
+#include <mutex>
 #include <set>
 #include <string>
 #include <vector>
 
 
 class Panel;
+class PlayerInfo;
 class Sprite;
+class TaskQueue;
 
 
 
@@ -68,7 +72,7 @@ class UniverseObjects {
 	friend class TestData;
 public:
 	// Load game objects from the given directories of definitions.
-	std::future<void> Load(const std::vector<std::string> &sources, bool debugMode = false);
+	std::shared_future<void> Load(TaskQueue &queue, const std::vector<std::string> &sources, bool debugMode = false);
 	// Determine the fraction of data files read from disk.
 	double GetProgress() const;
 	// Resolve every game object dependency.
@@ -78,7 +82,7 @@ public:
 	void Change(const DataNode &node);
 	// Update the neighbor lists and other information for all the systems.
 	// (This must be done any time a GameEvent creates or moves a system.)
-	void UpdateSystems();
+	void UpdateSystems(const PlayerInfo *player = nullptr);
 
 	// Check for objects that are referred to but never defined.
 	void CheckReferences();

@@ -547,18 +547,21 @@ void Ship::Load(const DataNode &node)
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 
-	if(displayModelName.empty())
-		displayModelName = trueModelName;
-
-	// If no plural model name was given, default to the model name with an 's' appended.
-	// If the model name ends with an 's' or 'z', print a warning because the default plural will never be correct.
-	// Variants will import their plural name from the base model in FinishLoading.
-	if(pluralModelName.empty() && variantName.empty())
+	// Variants will import their display and plural names from the base model in FinishLoading.
+	if(variantName.empty())
 	{
-		pluralModelName = displayModelName + 's';
-		if(displayModelName.back() == 's' || displayModelName.back() == 'z')
-			node.PrintTrace("Warning: explicit plural name definition required, but none is provided. Defaulting to \""
+		if(displayModelName.empty())
+			displayModelName = trueModelName;
+
+		// If no plural model name was given, default to the model name with an 's' appended.
+		// If the model name ends with an 's' or 'z', print a warning because the default plural will never be correct.
+		if(pluralModelName.empty())
+		{
+			pluralModelName = displayModelName + 's';
+			if(displayModelName.back() == 's' || displayModelName.back() == 'z')
+				node.PrintTrace("Warning: explicit plural name definition required, but none is provided. Defaulting to \""
 					+ pluralModelName + "\".");
+		}
 	}
 }
 
@@ -696,6 +699,7 @@ void Ship::FinishLoading(bool isNewInstance)
 		// Store attributes from an "add attributes" node in the ship's
 		// baseAttributes so they can be written to the save file.
 		baseAttributes.Add(attributes);
+		baseAttributes.AddLicenses(attributes);
 		addAttributes = false;
 	}
 	// Add the attributes of all your outfits to the ship's base attributes.
@@ -1329,6 +1333,7 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 	burning = 0.;
 	shieldDelay = 0;
 	hullDelay = 0;
+	disabledRecoveryCounter = 0;
 	isInvisible = !HasSprite();
 	jettisoned.clear();
 	hyperspaceCount = 0;
@@ -1518,7 +1523,7 @@ bool Ship::CanSendHail(const PlayerInfo &player, bool allowUntranslated) const
 		return false;
 
 	// Make sure this ship is able to send a hail.
-	if(IsDisabled() || !Crew() || Cloaking() >= 1. || GetPersonality().IsMute())
+	if(!Crew() || Cloaking() >= 1. || GetPersonality().IsMute() || GetPersonality().IsQuiet())
 		return false;
 
 	// Ships that don't share a language with the player shouldn't communicate when hailed directly.
@@ -2434,6 +2439,7 @@ void Ship::Recharge(int rechargeType, bool hireCrew)
 	burning = 0.;
 	shieldDelay = 0;
 	hullDelay = 0;
+	disabledRecoveryCounter = 0;
 }
 
 
@@ -3728,31 +3734,37 @@ void Ship::DoGeneration()
 		// 4. Shields of carried fighters
 		// 5. Transfer of excess energy and fuel to carried fighters.
 
-		const double hullAvailable = attributes.Get("hull repair rate")
+		const double hullAvailable = (attributes.Get("hull repair rate")
+			+ (hullDelay ? 0 : attributes.Get("delayed hull repair rate")))
 			* (1. + attributes.Get("hull repair multiplier"));
 		const double hullEnergy = (attributes.Get("hull energy")
-			* (1. + attributes.Get("hull energy multiplier"))) / hullAvailable;
+			+ (hullDelay ? 0 : attributes.Get("delayed hull energy")))
+			* (1. + attributes.Get("hull energy multiplier")) / hullAvailable;
 		const double hullFuel = (attributes.Get("hull fuel")
-			* (1. + attributes.Get("hull fuel multiplier"))) / hullAvailable;
+			+ (hullDelay ? 0 : attributes.Get("delayed hull fuel")))
+			* (1. + attributes.Get("hull fuel multiplier")) / hullAvailable;
 		const double hullHeat = (attributes.Get("hull heat")
-			* (1. + attributes.Get("hull heat multiplier"))) / hullAvailable;
+			+ (hullDelay ? 0 : attributes.Get("delayed hull heat")))
+			* (1. + attributes.Get("hull heat multiplier")) / hullAvailable;
 		double hullRemaining = hullAvailable;
-		if(!hullDelay)
-			DoRepair(hull, hullRemaining, MaxHull(),
-				energy, hullEnergy, fuel, hullFuel, heat, hullHeat);
+		DoRepair(hull, hullRemaining, MaxHull(),
+			energy, hullEnergy, fuel, hullFuel, heat, hullHeat);
 
-		const double shieldsAvailable = attributes.Get("shield generation")
+		const double shieldsAvailable = (attributes.Get("shield generation")
+			+ (shieldDelay ? 0 : attributes.Get("delayed shield generation")))
 			* (1. + attributes.Get("shield generation multiplier"));
 		const double shieldsEnergy = (attributes.Get("shield energy")
-			* (1. + attributes.Get("shield energy multiplier"))) / shieldsAvailable;
+			+ (shieldDelay ? 0 : attributes.Get("delayed shield energy")))
+			* (1. + attributes.Get("shield energy multiplier")) / shieldsAvailable;
 		const double shieldsFuel = (attributes.Get("shield fuel")
-			* (1. + attributes.Get("shield fuel multiplier"))) / shieldsAvailable;
+			+ (shieldDelay ? 0 : attributes.Get("delayed shield fuel")))
+			* (1. + attributes.Get("shield fuel multiplier")) / shieldsAvailable;
 		const double shieldsHeat = (attributes.Get("shield heat")
-			* (1. + attributes.Get("shield heat multiplier"))) / shieldsAvailable;
+			+ (shieldDelay ? 0 : attributes.Get("delayed shield heat")))
+			* (1. + attributes.Get("shield heat multiplier")) / shieldsAvailable;
 		double shieldsRemaining = shieldsAvailable;
-		if(!shieldDelay)
-			DoRepair(shields, shieldsRemaining, MaxShields(),
-				energy, shieldsEnergy, fuel, shieldsFuel, heat, shieldsHeat);
+		DoRepair(shields, shieldsRemaining, MaxShields(),
+			energy, shieldsEnergy, fuel, shieldsFuel, heat, shieldsHeat);
 
 		if(!bays.empty())
 		{
@@ -3809,6 +3821,36 @@ void Ship::DoGeneration()
 		// and hull repair have been skipped over.
 		shieldDelay = max(0, shieldDelay - 1);
 		hullDelay = max(0, hullDelay - 1);
+	}
+	// Let the ship repair itself when disabled if it has the appropriate attribute.
+	if(isDisabled && attributes.Get("disabled recovery time"))
+	{
+		disabledRecoveryCounter += 1;
+		double disabledRepairEnergy = attributes.Get("disabled recovery energy");
+		double disabledRepairFuel = attributes.Get("disabled recovery fuel");
+
+		// Repair only if the counter has reached the limit and if the ship can meet the energy and fuel costs.
+		if(disabledRecoveryCounter >= attributes.Get("disabled recovery time")
+			&& energy >= disabledRepairEnergy && fuel >= disabledRepairFuel)
+		{
+			energy -= disabledRepairEnergy;
+			fuel -= disabledRepairFuel;
+
+			heat += attributes.Get("disabled recovery heat");
+			ionization += attributes.Get("disabled recovery ionization");
+			scrambling += attributes.Get("disabled recovery scrambling");
+			disruption += attributes.Get("disabled recovery disruption");
+			slowness += attributes.Get("disabled recovery slowing");
+			discharge += attributes.Get("disabled recovery discharge");
+			corrosion += attributes.Get("disabled recovery corrosion");
+			leakage += attributes.Get("disabled recovery leak");
+			burning += attributes.Get("disabled recovery burning");
+
+			disabledRecoveryCounter = 0;
+			hull = min(max(hull, MinimumHull() * 1.5), MaxHull());
+			isDisabled = false;
+		}
+
 	}
 
 	// Handle ionization effects, etc.
@@ -4530,7 +4572,8 @@ void Ship::StepTargeting()
 	shared_ptr<const Ship> target = GetTargetShip();
 	// If this is a fighter or drone and it is not assisting someone at the
 	// moment, its boarding target should be its parent ship.
-	if(CanBeCarried() && !(target && target == GetShipToAssist()))
+	// Unless the player uses a fighter as their flagship and is boarding an enemy ship.
+	if(CanBeCarried() && !(target && (target == GetShipToAssist() || isYours)))
 		target = GetParent();
 	if(target && !isDisabled)
 	{
@@ -4564,7 +4607,7 @@ void Ship::StepTargeting()
 			velocity += dv.Unit() * .1;
 			position += dp.Unit() * .5;
 
-			if(distance < 10. && speed < 1. && (CanBeCarried() || !turn))
+			if(distance < 10. && speed < 1. && ((CanBeCarried() && government == target->government) || !turn))
 			{
 				if(cloak)
 				{

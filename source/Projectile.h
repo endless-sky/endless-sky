@@ -100,6 +100,9 @@ public:
 	double DistanceTraveled() const;
 	// Get the number of objects this projectile can still collide with.
 	uint16_t HitsRemaining() const;
+	// Get whether this projectile should explode the next time collision
+	// detection is run.
+	bool ShouldExplode() const;
 
 
 private:
@@ -111,6 +114,7 @@ private:
 
 	std::weak_ptr<Ship> targetShip;
 	const Ship *cachedTarget = nullptr;
+	bool targetDisabled = false;
 	const Government *targetGovernment = nullptr;
 
 	// The change in velocity of all stages of this projectile
