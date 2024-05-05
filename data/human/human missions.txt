@@ -7176,7 +7176,10 @@ mission "Tavish and Kormak 2"
 			`	The foam surf crashes against the island only a few short meters from where your ship set down. The thundering waves make it hard to hear anything as you step outside your ship. If you're going to have any hope of finding what Hans Fuller and the stolen equipment your best bet will be the spaceport. At least there you can actually hear someone talk.`
 
 mission "Tavish and Kormak 3"
+	name "Board the Broken Record"
+	description "Find the Broken Record, disable it, board it, and retrieve the stolen scientific equipment."
 	source "Deadman's Cove"
+	waypoint "Persian"
 	destination "Hephaestus"
 	passengers 2
 	to offer
@@ -7296,30 +7299,17 @@ mission "Tavish and Kormak 3"
 			`	Kormak joins up with you and Tavish and the three of you head to your ship.`
 				accept
 
-	on complete
+	npc board
+		government "Bounty (Disguised)"
+		system "Persian"
+		personality timid fleeing uninterested entering target staying
+		ship ship "Modified Argosy" "Modified Argosy" "Broken Record"
 		conversation
-			`Your ship lands in the heart of the continent-consuming megatropolis Polyphron, the "only city" on Hephaestus.`
-			`	Finding a ship or a person here could well be impossible. Thankfully Tavish says he knows the area where recently impounded ships are housed.`
-			`	He and Kormak head toward the spaceport.`
-
-mission "Tavish and Kormak 4"
-	source "Hephaestus"
-	destination "Chiron"
-	passengers 2
-	to offer
-		has "Tavish and Kormak 3: done"
-	on offer
-		conversation
-			`	You get the feeling the sun never sets on Hephaestus as you navigate flocks of migrating workers all hurriedly moving from one shift change to next. The amount of ships being worked on, landing, taking off, or just sitting is staggering. It would be easy to believe this was the beating heart of the human expansion, and not Earth.`
-			`	Tavish leads you down one narrow corridor filled with ships after the next. You don't see any labels or signage that make sense, but somehow Tavish plows on with a quick step and unshakable confidence.`
-			`	Finally, he turns a corner starts gesticulating wildly, "There! There!" he hollars pointing at Heavy Shuttle with a man outside of it.`
-			choice
-				` (Chase after him.)`
-			`	You're suddenly jostled to the side as Kormak pushes past you barrels down on the surprised man. The frightened man tries to flee but Kormak moves faster than anyone his size has any right to and in a moment it's over.`
-			`	The man's groaning on the ground pinned by Kormak. Tavish and you catch up to the scene.`
+			`With the crew subdued you scour the Broken Record's cargo hold. Unfortunately you find no trace of Tavish and Kormak's scientific equipment.`
+			`	Kormak drags the bruised and restrained Hans Fuller before you and Tavish.`
 			`	"Salutations, Hans." Tavish says cheerfully.`
 			`	Hans grunts uncomfortably, "Professor."`
-			`	"Ah, lovely, you recall me. Perhaps you could also recall where our equipment is Hans?"`
+			`	"Ah, lovely, you recall me. Perhaps you could also recall where our equipment is?"`
 			`	"Where." Kormak's normally impassive voice is tinged with anger.`
 			`	"I don't know what you're talking about! I am never stole nothing. Let me go! I have my rights!"`
 			`	Kormak growls and Tavish looks to you.`
@@ -7332,16 +7322,16 @@ mission "Tavish and Kormak 4"
 					goto warbucks
 
 			label tavish
-			`	Tavish leans down until he's only a few inches above Hans' pinned face.`
+			`	Tavish steps forward and leans in until his face is only a few inches from Hans.`
 			`	"Do you remember Gerald?" Tavish asks.`
 			`	"The slow guy? Yeah." Hans says.`
 			`	"Do you remember what happened to him?"`
 			`	Hans pauses, then, "The trees got him."`
-			`	Tavish stands up. "Exactly, and unless you start talking. We're going to kidnap you, take you back to New India and feed you to those very same trees." `
-			`	"Good plan." Kormak says with a gleam in his eyes.`
-			`	"Fine! Fine. You guys are crazy you know that? But, whatever man, maybe I forgot to drop off some of your stuff, okay? Mistakes happen, ya know. But I don't got it anymore. Don't you see where we are? The Syndies gobbled it up. You want it back? Ask them."`
-			`	Tavish turns to you. "It's a sensible response. We'll have to ask the authorities here if they still have his confiscated cargo. I think I know the way."`
-			`	"What about trash?" Kormak says as he leans a little heavier on Hans. `
+			`	Tavish straightens up. "Exactly, and unless you start talking. We're going to take you back to New India and feed you to those very same trees." `
+			`	"Good plan." Kormak says with a savage gleam in his eyes.`
+			`	"Not the trees! Fine! You guys are crazy you know that? But, whatever man, maybe I forgot to drop off some of your stuff, okay? Mistakes happen, ya know. But I don't got it anymore. The Syndies picked me up and gobbled it up, along with the rest of my cargo. You want it back? Go ask them! They confiscated it all on Hephaestus."`
+			`	Tavish turns to you. "It's a sensible response. We'll have to ask the authorities on Hephaestus if they still have his confiscated cargo."`
+			`	"What about trash?" Kormak says as he forces Hans onto his knees.`
 			`	"He is no longer relevant. I say let him return to whatever repugnant hole he climbed out of. What do you say, Captain <last>?"`
 			choice
 				`	"We got what we needed. Let him go."`
@@ -7350,24 +7340,22 @@ mission "Tavish and Kormak 4"
 			label killhim
 			`	"Wai.." Tavish begins, but before he finishes there's a quick cracking sound and a suddenly dead body on the ground.`
 			`	Kormak stands up with a rare smile on his lips, "Finally."`
-			`	Tavish paces, "We need to hastily abscond from here. It goes without saying that being traced to a murder would not be in our best interests. Fortunately, I know the way to office that deals with confiscated goods. So please, follow me."`
-			`	Tavish turns and starts walking away from the dead body at a very rapid pace.`	
-				goto followtav
+			`	Tavish sighs as the three of you return to your ship.`
+				accept
 
 			label letgo
-			`	Kormak sighs heavily and lets Hans up, who quickly scrambles to his feet runs for his ship's hatch.`
-			`	"You guys are crazy! Crazy!" He says as he disappears behind the safety of his ship's bulkheads.`
-			`	Tavish turns to you. "I know who to talk to about confiscated equipment, follow me."`
-				goto followtav
+			`	Kormak sighs heavily releases Hans, who quickly scrambles to his feet runs deeper into the ship.`
+			`	"You guys are crazy! Crazy!" He yells as he disappears behind the safety of his ship's bulkheads.`
+				accept
 			
 			label Kormak
 			`	Kormak wastes no time and twists Hans' arm in a very unnatural direction.`
 			`	Hans screams, "Stop! Stop! You're breaking it! You're breaking it."`
 			`	Kormak relents, but only little. "Where?"`
-			`	"I don't have it! I don't have it! The Syndies took everything in my hold! I swear they got it all. Not me! Not me! Stop!"`
+			`	"I don't have it! I don't have it! The Syndies picked me up and took everything in my hold! I swear they got it all on Hephaestus. Not me! Not me! Stop!"`
 			`	Kormak releases the pressure, "Good."`
-			`	Tavish turns to you. "It's a sensible response. We'll have to ask the authorities here if they still have his confiscated cargo. I think I know the way."`
-			`	"What about trash?" Kormak says as he leans a little heavier on Hans. `
+			`	Tavish turns to you. "It's a sensible response. We'll have to ask the authorities on Hephaestus if they still have his confiscated cargo."`
+			`	"What about trash?" Kormak says as he forces Hans onto his knees.`
 			`	"He is no longer relevant. I say let him return to whatever repugnant hole he climbed out of. What do you say, Captain <last>?"`
 			choice
 				`	"We got what we needed. Let him go."`
@@ -7376,18 +7364,37 @@ mission "Tavish and Kormak 4"
 					goto killhim
 
 			label warbucks
-			`	Tavish and Kormak seem to deflate a little bit, but neither says anything. Kormak gets off the man, and Han's quickly rises and dusts himself off.`
-			`	"25,000 creds? Really? Man, I'd sell you mom for that much cash right about now. I am not nearly so desperate, but after the Syndies took my entire haul things are looking a little rough for me. Fiancially speaking, that is."`
-			`	"Listen, I wish I could just hand over that science junk to you right now. It's some weird stuff that most the regular fences and pawnbrokers aren't into. But I can't cuz the it was part of the haul the Syndies ate up. You gotta go to them. There's an office where you can argue for some of your stuff back, been there plenty, but take it from me it never goes anywhere. They aren't in the business of giving, if you catch me drift."`
+			`	Tavish and Kormak seem to deflate a little bit, but neither says anything. Kormak releases the man, and Han's rubs his wrists.`
+			`	"25,000 creds? Really? Man, I'd sell you my ma for that much cash. The Syndies took my entire haul things are looking a little rough for me. Fiancially speaking, that is."`
+			`	"Listen, I wish I could just hand over that science junk to you right now. It's some weird stuff that most the regular fences and pawnbrokers aren't into. But I can't cuz the it was part of the haul the Syndies ate up. You gotta go to them on Hephaestus. There's an office where you can argue for some of your stuff back, been there plenty, but take it from me it never goes anywhere. They aren't in the business of giving, if you catch my drift."`
 			`	"Sorry man, good luck with your science stuff or whatever. But that's all I know so I am out of here."`
-			`	Hans waits until you transfer the money over to him, and then hops behind the hard metal doors of his ship.`
+			`	Hans waits until you transfer the money over to him, and then quickly retreats deeper in his ship.`
 			payment -25000
 			`	Tavish watches him go, "I dare say he didn't deserve additional recompense after what he did to us." `
 			`	Kormak grunts in agreement.`
-			`	Tavish turns to look down a corridor of ships, "I know the way to office he spoke of. Follow me." `
+				accept
 
-			label followtav
-			`	After four flights of stairs, three different elevators, and one very small trolly the three of you arrive at a bland corporate office with the words, "Repository of Confiscated Goods".`
+
+	on visit
+		dialog   ` You haven't found the Broken Record Yet.`
+	on complete
+		conversation
+			`Your ship lands in the heart of the continent-consuming megatropolis Polyphron, the "only city" on Hephaestus.`
+			`	Finding your way around here could well be impossible. Thankfully Tavish says he knows the area where recently impounded ships are housed.`
+			`	He and Kormak head toward the spaceport.`
+
+
+mission "Tavish and Kormak 4"
+	source "Hephaestus"
+	destination "Chiron"
+	passengers 2
+	to offer
+		has "Tavish and Kormak 3: done"
+	on offer
+		conversation
+			`	You get the feeling the sun never sets on Hephaestus as you navigate droves of itinerant workers all hurriedly moving from one shift change to next. The amount of ships being worked on, landing, taking off, or just sitting is staggering. It would be easy to believe this was the beating heart of the human expansion, and not Earth.`
+			`	Tavish leads you down one narrow corridor filled with endless ships. You don't see any labels or signage that make sense, but somehow Tavish plows on with a quick step and unshakable confidence.`
+			`	Eventually he leads you into a large administrative complex. After four flights of stairs, three different elevators, and one very small trolly the three of you arrive at a bland corporate office with the words, "Repository of Confiscated Goods".`
 			`	There are no doors, and a single window that looks like it was made of reinforced glass. The tired looking agent on the other side of the glass hits a button and his voices buzzes over to you, "What can I help you with?"`
 			choice
 				`	"We're looking for stolen scientific research equipment that was recently confiscated aboard the Broken Record."`
