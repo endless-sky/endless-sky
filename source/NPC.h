@@ -137,15 +137,16 @@ private:
 	const System *destination = nullptr;
 	bool isAtDestination = false;
 
-	// NPCs may have been given a waypoint or stopover.
+	// NPCs may have been given a waypoint, destination or stopover.
 	std::vector<const System *> waypoints;
 	std::vector<const Planet *> stopovers;
+	const Planet *finalDestination;
 	bool needsWaypoint = false;
 	bool needsStopover = false;
+	bool needsDestination = false;
 	std::list<LocationFilter> waypointFilters;
 	std::list<LocationFilter> stopoverFilters;
-	// Default behavior is to permanently land on the destination planet.
-	bool doStopover = false;
+	LocationFilter destinationFilter;
 
 	// Start out landed on this planet.
 	const Planet *planet = nullptr;

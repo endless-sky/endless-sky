@@ -3560,13 +3560,23 @@ const System *Ship::GetDestinationSystem() const
 
 
 // Persistent targets for mission NPCs.
-void Ship::SetStopovers(const vector<const Planet *> planets, const bool shouldRelaunch)
-{
-	doStopover = shouldRelaunch;
 
+void Ship::SetStopovers(const vector<const Planet *> stopovers, const Planet *destination)
+{
 	// Mark each planet as not visited.
-	for(const auto &it : planets)
-		travelDestinations[it] = false;
+	if(!stopovers.empty())
+		for(const auto &it : stopovers) {
+			travelDestinations[it] = false;
+			Logger::LogError("Stopover: " + it->Name());
+		}
+
+	if(destination)
+	{
+		travelDestinations[destination] = false;
+		continueAfterDestination = false;
+		Logger::LogError("Destination: " + destination->Name());
+	}
+
 }
 
 
@@ -4367,14 +4377,14 @@ bool Ship::DoLandingLogic()
 				auto it = travelDestinations.find(landingPlanet);
 				if(it != travelDestinations.end())
 				{
-					if(doStopover)
-						it->second = true;
-					else
+					if(it == prev(travelDestinations.end()) && !continueAfterDestination)
 					{
 						MarkForRemoval();
 						LandForever();
 						return true;
 					}
+					else
+						it->second = true;
 				}
 			}
 

@@ -474,7 +474,7 @@ public:
 	// Set ship's target system (it should always be one jump / wormhole pass away).
 	void SetTargetSystem(const System *system);
 	// Persistent targets associated with mission NPCs.
-	void SetStopovers(const std::vector<const Planet *> planets, const bool shouldRelaunch);
+	void SetStopovers(const std::vector<const Planet *> stopovers, const Planet *destination);
 	void SetWaypoints(const std::vector<const System *> waypoints);
 	const System *NextWaypoint();
 	void EraseWaypoint(const System *system);
@@ -718,9 +718,9 @@ private:
 	// The list of planets this NPC may land on, and if they have already
 	// been landed on in this sequence.
 	std::map<const Planet *, bool> travelDestinations;
-	// NPCs with a landing directive may only have a stopover, or land on
-	// a permanent destination planet.
-	bool doStopover = false;
+	// NPCs with a landing directive may stopover on their final destination
+	// planet, or land permanently.
+	bool continueAfterDestination = true;
 
 	// Links between escorts and parents.
 	std::vector<std::weak_ptr<Ship>> escorts;

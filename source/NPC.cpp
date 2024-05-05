@@ -79,9 +79,6 @@ NPC::NPC(const DataNode &node)
 
 void NPC::Load(const DataNode &node)
 {
-	// Keep track of whether a destination has been assigned.
-	bool givenDestination = false;
-
 	// Any tokens after the "npc" tag list the things that must happen for this
 	// mission to succeed.
 	for(int i = 1; i < node.Size(); ++i)
@@ -155,17 +152,32 @@ void NPC::Load(const DataNode &node)
 				for(const DataNode &grand : child)
 					waypointFilters.emplace_back(grand);
 		}
-		else if(child.Token(0) == "destination" || child.Token(0) == "stopover")
-		{
-			// Stopovers can be added one-by-one (e.g. if from LocationFilters) or
-			// from multiple "destination" / "stopover" nodes. If any nodes are "stopover",
-			// all stopovers are visited (no permanent landing on the stopovers). If no
-			// planet is passed to the node, the mission's destination will be used.
-			doStopover |= child.Token(0) == "stopover";
-			givenDestination |= child.Token(0) == "destination";
+		else if(child.Token(0) == "destination") {
+			// Only the last defined "destination" node is used to determine the final
+			// destination of the NPC. This destination is visited only after all stopovers
+			// have been, and landing on it completes the mission. If no planet
+			// is passed to the node, the mission's destination will be used.
 			if(!child.HasChildren())
 			{
-				// Given "destination/stopover" or "destination/stopover <planet 1> ... <planet N>".
+				// Given "destination" or "destination <planet>"
+				if(child.Size() == 1)
+					needsDestination = true;
+				else
+					finalDestination = GameData::Planets().Get(child.Token(1));
+			}
+			else
+				// Only the first destination filter is used, the rest are ignored.
+				destinationFilter.Load(child);
+		}
+		else if(child.Token(0) == "stopover")
+		{
+			// Stopovers can be added one-by-one (e.g. if from LocationFilters) or
+			// from multiple "stopover" nodes. All stopovers are visited (no permanent
+			// landing on the stopovers). If no planet is passed to the node, the
+			// mission's destination will be used.
+			if(!child.HasChildren())
+			{
+				// Given "stopover" or "destination <planet 1> ... <planet N>".
 				if(child.Size() == 1)
 					needsStopover = true;
 				else
@@ -322,13 +334,12 @@ void NPC::Load(const DataNode &node)
 		ship->FinishLoading(false);
 		if(!waypoints.empty())
 			ship->SetWaypoints(waypoints);
-		if(!stopovers.empty())
-			ship->SetStopovers(stopovers, doStopover);
+		ship->SetStopovers(stopovers, finalDestination);
 	}
 
 
 	// NPCs given the "land" completion condition should also have a destination.
-	if((succeedIf & ShipEvent::LAND) && !givenDestination)
+	if((succeedIf & ShipEvent::LAND) && !(destination || needsDestination) && destinationFilter.IsEmpty())
 		node.PrintTrace("Warning: NPC mission objective to land is impossible without a destination.");
 }
 
@@ -393,9 +404,16 @@ void NPC::Save(DataWriter &out) const
 			out.Write();
 		}
 
+		if(destination)
+		{
+			out.WriteToken("destination");
+			out.WriteToken(destination->Name());
+			out.Write();
+		}
+
 		if(!stopovers.empty())
 		{
-			out.WriteToken(doStopover ? "stopover" : "destination");
+			out.WriteToken("stopover");
 			for(const auto &stopover : stopovers)
 				out.WriteToken(stopover->Name());
 			out.Write();
@@ -697,7 +715,7 @@ bool NPC::HasFailed() const
 		// If this ship has landed permanently, the NPC has failed if
 		// 1) it must accompany and is not in the destination system, or
 		// 2) it must evade, and is in the destination system.
-		if((it.second & ShipEvent::LAND) && !doStopover && it.first->GetSystem()
+		if((it.second & ShipEvent::LAND) && it.first->GetPlanet() == finalDestination && it.first->GetSystem()
 				&& ((mustAccompany && it.first->GetSystem() != destination)
 				|| (mustEvade && it.first->GetSystem() == destination)))
 			return true;
@@ -724,8 +742,8 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Plan
 	result.mustEvade = mustEvade;
 	result.mustAccompany = mustAccompany;
 	result.waypoints = waypoints;
+	result.finalDestination = finalDestination;
 	result.stopovers = stopovers;
-	result.doStopover = doStopover;
 
 	result.passedSpawnConditions = passedSpawnConditions;
 	result.toSpawn = toSpawn;
@@ -778,6 +796,14 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Plan
 			result.stopovers.push_back(choice);
 	}
 
+	if(needsDestination)
+		result.finalDestination = destinationPlanet;
+	// The destination's "distance X Y" is calculated from the last stopover.
+	const Planet *choice = destinationFilter.PickPlanet(result.stopovers.empty() ?
+			origin : result.stopovers.back()->GetSystem(), true);
+	if(choice)
+		result.finalDestination = choice;
+
 	// If a planet was specified in the template, it must be in this system.
 	if(planet && result.system->FindStellar(planet))
 		result.planet = planet;
@@ -808,10 +834,9 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Plan
 			ship->Disable();
 
 		// Use the destinations stored in the NPC copy, in case they were auto-generated.
-		if(!result.stopovers.empty())
-			ship->SetStopovers(result.stopovers, result.doStopover);
 		if(!result.waypoints.empty())
 			ship->SetWaypoints(result.waypoints);
+		ship->SetStopovers(result.stopovers, result.finalDestination);
 
 		if(personality.IsEntering())
 			Fleet::Enter(*result.system, *ship);
