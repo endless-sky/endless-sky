@@ -1394,6 +1394,7 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 	burning = 0.;
 	shieldDelay = 0;
 	hullDelay = 0;
+	disabledRecoveryCounter = 0;
 	isInvisible = !HasSprite();
 	jettisoned.clear();
 	hyperspaceCount = 0;
@@ -2532,6 +2533,7 @@ void Ship::Recharge(int rechargeType, bool hireCrew)
 	burning = 0.;
 	shieldDelay = 0;
 	hullDelay = 0;
+	disabledRecoveryCounter = 0;
 }
 
 
@@ -3978,6 +3980,36 @@ void Ship::DoGeneration()
 		// and hull repair have been skipped over.
 		shieldDelay = max(0, shieldDelay - 1);
 		hullDelay = max(0, hullDelay - 1);
+	}
+	// Let the ship repair itself when disabled if it has the appropriate attribute.
+	if(isDisabled && attributes.Get("disabled recovery time"))
+	{
+		disabledRecoveryCounter += 1;
+		double disabledRepairEnergy = attributes.Get("disabled recovery energy");
+		double disabledRepairFuel = attributes.Get("disabled recovery fuel");
+
+		// Repair only if the counter has reached the limit and if the ship can meet the energy and fuel costs.
+		if(disabledRecoveryCounter >= attributes.Get("disabled recovery time")
+			&& energy >= disabledRepairEnergy && fuel >= disabledRepairFuel)
+		{
+			energy -= disabledRepairEnergy;
+			fuel -= disabledRepairFuel;
+
+			heat += attributes.Get("disabled recovery heat");
+			ionization += attributes.Get("disabled recovery ionization");
+			scrambling += attributes.Get("disabled recovery scrambling");
+			disruption += attributes.Get("disabled recovery disruption");
+			slowness += attributes.Get("disabled recovery slowing");
+			discharge += attributes.Get("disabled recovery discharge");
+			corrosion += attributes.Get("disabled recovery corrosion");
+			leakage += attributes.Get("disabled recovery leak");
+			burning += attributes.Get("disabled recovery burning");
+
+			disabledRecoveryCounter = 0;
+			hull = min(max(hull, MinimumHull() * 1.5), MaxHull());
+			isDisabled = false;
+		}
+
 	}
 
 	// Handle ionization effects, etc.
