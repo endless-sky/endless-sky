@@ -85,7 +85,7 @@ mission "Hai Legacy 1"
 		conversation
 			branch first
 				not "Hai Legacy 1: deferred"
-			`Do you want to head to the coordinates as the hooded figure suggested?`
+			`You recall a hooded figure offering a business opportunity in this shipyard. Do you want to follow their directions, and head to the specified coordinates?`
 			choice
 				`	(Sure.)`
 					goto go
@@ -95,7 +95,7 @@ mission "Hai Legacy 1"
 					decline
 			label first
 			`As you're browsing the shipyard, you are discreetly approached by a hooded figure. When you stop to see what they want to say, they grab and pull your arm to follow them. "Keep walking," the stranger hisses. After pointing at and commenting on random ships, as if to mimic the actions of a regular passerby, they address you again. "My associates and I have a lucrative business proposition for you. If you are interested, come find us at these coordinates." Without waiting for a response, they fold a piece of paper into your hand before quickly fading into the crowd. It lists only a location, that you cross-reference with the local maps: a beach on the other side of the planet.`
-			`	However, it also mentions you need to have at least 10 million in cash! It may be a good idea to save up or take a debt and then come back another day to head to the specified location.`
+			`	However, it also mentions you need to have at least 10 million credits in cash! It may be a good idea to save up or take a loan and then come back another day to head to the specified location.`
 				to display
 					"credits" < 10000000
 				defer
@@ -136,6 +136,8 @@ mission "Hai Legacy 1"
 				`	(Wait.)`
 					goto wait
 				`	(Try to contact my fleet for help!)`
+					to display
+						"total ships" > 1
 				`	(Shoot it!)`
 					goto foolish
 			`	As you try to react, the Hai closest to you firmly grabs your arm and shouts through the noise. "Wait! If this ship wanted to kill you, <last>, you would already be dead."`
@@ -254,7 +256,7 @@ mission "Hai Legacy 2"
 		system
 			attributes "unfettered"
 		conversation
-			branch "not moded bug"
+			branch "wrong flagship"
 				not "flagship model: Anomalocaris"
 			branch "not single ship"
 				"total ships" != 1
@@ -267,7 +269,7 @@ mission "Hai Legacy 2"
 			`You enter the system, and, for a brief moment, nobody is shooting you.`
 			`	The Unfettered quickly change their mind, however, as soon as your escorts enter the system. They happily head your way, weapons ready to loot your cargo. It becomes clear you should have come with only the Anomalocaris, as the associates suggested.`
 				decline
-			label "not moded bug"
+			label "wrong flagship"
 			`You enter the system, and the Unfettered open fire as usual. Perhaps they would have acted differently if you had used the Anomalocaris as a flagship, but it is too late to find out now.`
 				decline
 	on fail
@@ -301,7 +303,10 @@ mission "Hai Legacy 3"
 	on offer
 		conversation
 			`As you land, you realize your ship is the center of the spaceport crowd's attention, probably due to the ancient design. One Unfettered that looks like an engineer comes to speak to you, warmer than usual based on your experiences with the Unfettered. "Welcome. Although I do not know how you have obtained this ship, I imagine some of us will see it as a sign. It is a relic of our past, a past we are quite proud of.`
-			`	"As such, most will say that you need to prove to us you have a right to use that ship. Lucky for you, I don't believe in any of that. What matters to me is that this ship is very durable, and it's filled with valuable ancient technology, as well as Korath technology we have a right to salvage for."`
+			`	"As such, most will say that you need to prove to us you have a right to use that ship. Lucky for you, I don't believe in any of that. What matters to me is that this ship is very durable, and it's filled with valuable ancient technology.`
+			`	"I even see Korath technology we fought valiantly to recover, don't expect to get away with that!"`
+				to display
+					has "outfit (flagship installed): Korath Detainer"
 			`	Her tone suddenly changes as she raises her voice for everyone to hear. "I, Mera, challenge you! The winner will earn the right to own this honorable relic and its mighty weapons!"`
 			choice
 				`	"What do I get if I win?"`
@@ -348,7 +353,7 @@ mission "Hai Legacy 3"
 		dialog
 			`The enemy ships hail you. "You have failed the challenge. We will take the ship from you when we see fit. I'll fix your ship and leave you alone for a bribe, but I suggest you land on an Unfettered world and return the ship to us, with a most generous compensation. If you try to keep it from us, we'll do things the hard way."`
 			`	"Be warned, however, that your truce with us ends as soon as you land. This is not necessarily the end, <last>, you will simply have to prove yourself another way."`
-			`	"Oh and a word of advice: maybe you should have outfitted your ship differently, or used your range advantage by moving away at full thrust, before turning back to fire on us."`
+			`	"Oh, and a word of advice: maybe you should have outfitted your ship differently, or used your range advantage by moving away at full thrust, before turning back to fire on us."`
 	on fail
 		"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
 		# I would deduce the reputation here but being on a planet that becomes hostile as you land seem to cause issues for the game.
@@ -371,7 +376,7 @@ mission "Hai Legacy 3"
 			branch "good boy or bad boy enough"
 				or
 					has "unfettered: beaten extra bugs"
-					"old reputation: Hai (Unfettered)" < -2000
+					"old reputation: Hai (Unfettered)" >= -2000
 			`	"Do not declare victory too soon, however, for we were not the only ones you had to beat," another adds.`
 			label "good boy or bad boy enough"
 			action
@@ -432,6 +437,7 @@ mission "Hai Legacy 3"
 			has "unfettered: beaten extra bugs"
 	on complete
 		clear "unfettered: beaten the bugs"
+		clear "old reputation: Hai (Unfettered)"
 		conversation
 			`When you land in one piece, Mera approaches, shocked. "You really won? It was close until the end, was it not? Or did the captains already make stories to justify their incompetence, after they used their escape pods to get back here like cowards?"`
 			choice
@@ -500,7 +506,7 @@ mission "Undeserved Anomalocaris"
 				`	(Let them have it.)`
 				`	(Take off, now!)`
 					depart
-			`	You end your crew exit what was briefly your ship, and you inform the local Unfettered militia that it is now theirs. The Unfettered that were assembling around your ship happily disperse, except for one, probably the leader judging by their open display of rare weaponry: dual pulse pistols. They come to talk to you, weapons in hand but lowered. "We are happy you could see reason and decided to hand over the ship. For this, we have decided to provide you with a suitable replacement, that should hopefully allow you exit our space safely.`
+			`	You and your crew exit what was briefly your ship, and you inform the local Unfettered militia that it is now theirs. The Unfettered that were assembling around your ship happily disperse, except for one, probably the leader judging by their open display of rare weaponry: dual pulse pistols. They come to talk to you, weapons in hand but lowered. "We are happy you could see reason and decided to hand over the ship. For this, we have decided to provide you with a suitable replacement, that should hopefully allow you to exit our space safely.`
 			`	"Indeed that relic was not meant for you, but remember that there are other ways for you to prove yourself." The leader of these Unfettered continues with blatantly forced casualness. "Say, for example, bringing us a Jump Drive... or two... that for sure will be earning you favor, and prove you can fight.`
 			`	"For now, you have enough to worry about with all of the missiles that will be heading your way. If I were you I'd install a lot of jammers. You'll need them, ha!" A general laughter erupts, and they let you get comfortable in the new ship. You may want to get a better one, or at least upgrade this one in order to escape safely. You can also use bribes.`
 			action
