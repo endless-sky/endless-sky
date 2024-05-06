@@ -89,7 +89,7 @@ mission "Incipias: Meet the Quarg"
 			branch "ut divitas" "spec inci"
 				has "flagship planet: Ut Divitas"
 			label "ut divitas"
-			`Your spaceship lands with a soft jolt. A small group of Quarg quickly gathers around your ship, making some simple but clear gestures telling you to wait. After they noticed that you understood them, one of them walks away in a hurried manner.`
+			`Your spaceship lands with a soft jolt. A small group of Quarg quickly gathers around your ship, making some simple but clear gestures telling you to wait. After they've realized that you understood, one of them walks away in a hurried manner.`
 			`	Only a moment later the Quarg returns with another Quarg. The new one starts talking with a very strange accent.`
 				goto "both planets"
 			label "spec inci"
@@ -148,8 +148,8 @@ mission "Incipias: The Derelict"
 				`	You hit the creature manning the turret, causing it to explode with a strident sound. Before you can enjoy your short-lived victory, the other turret aims your way. Turning your head you see the gunner flashing in a deep red, before shooting you down, avenging their fallen comrade.`
 					die
 				label peace
-				`	Feeling that the situation could escalate any moment, you slowly place the crate with the repair equipment on the ground and walk back a few steps. You are careful not to make any hasty movements. No side moves for a moment until one of the aliens slowly floats forward. Tones of yellow are now mixing into the creature's orange color, and two of their tentacles wrap around the crate. The other four back off. Once the alien manages to open the crate and look inside, its colors shift to a weak green. The rest of the crew also seem to relax as they take on the same color.`
-				`	With the repair equipment delivered there is nothing else you can do, given the communication barrier. Just as you leave you can see how the aliens start pulsating in all colors of the spectrum; gradients are moving over their skin so fast that it almost looks white.`
+				`	Feeling that the situation could escalate any moment, you slowly place the crate with the repair equipment on the ground and walk back a few steps. You are careful not to make any hasty movements. No side moves for a moment until one of the aliens slowly floats forward. Tones of yellow are now mixing into the creature's orange color, and two of their tentacles wrap around the crate. The other four back off in response. Once the alien manages to open the crate and look inside, its colors shift to a weak green. The rest of the crew also seem to relax as they take on the same color.`
+				`	With the repair equipment delivered there is nothing else you can do, given the communication barrier. Just as you leave you can see how the aliens start pulsating in all colors of the spectrum; gradients are moving over their skin so fast that they almost looks white.`
 					goto end
 				label flee
 				`	As the tension starts raising even further, you simply drop the repair equipment and run back into your ship, smashing the button that closes the lock. You get a last look on the alien: blue and yellow tones are mixing on their skin, but they are not taking any action.`
@@ -163,7 +163,7 @@ mission "Incipias: The Derelict"
 			derelict uninterested staying
 	on enter "Hui'uc"
 		conversation
-			`On entering the system you find an alien spaceship disabled and badly damaged. There does not appear to be any other ships or inhabited planets in the system.` 
+			`On entering the system you find an alien spaceship disabled and badly damaged. There does not appear to be any other ships or inhabited planets in the system.`
 
 mission "Incipias: Help the stranded Part 1"
 	landing
@@ -181,7 +181,7 @@ mission "Incipias: Help the stranded Part 1"
 					goto explanation
 				`	"I need advice regarding the species in this region."`
 			`	It looks at you curiously, "So you met them? I am surprised that you were able to communicate. It took a very long time even for us to decipher their way of communication."`
-			`	You quickly explain what happened and the Quarg seems very relieved about the fact that you were not able to talk to them, it probably was a big achievement for them.`
+			`	You quickly explain what happened. The Quarg seems very relieved about the fact that you were not able to talk to them.`
 			label explanation
 			`	"A most peculiar situation you ran into, should not be able to cross the borders of their system yet this species..." It tilts it head for a moment considering what you just said. "To help them I would love, but no ships we have that on gas giants can land and too early it is for us to reveal ourselves to them, I fear nothing there is we can do." It shakes its head.`
 			choice
@@ -192,10 +192,10 @@ mission "Incipias: Help the stranded Part 1"
 			choice
 				`	"Then let me help them."`
 					goto initiative
-				`	"You can deal with the consequences later, help them now!"`
+				`	"You can deal with the consequences later. Help them now!"`
 			`	"Insisting you sure are human, understand I can your point but intervention by us out of question it is. But a proposal for you I have, to you, a solo captain the means to help I will grant, of course some conditions there are."`
 			choice
-				`	"Sure let me do the work."`
+				`	"Sure, let me do the work."`
 				`	"If you are too weak..."`
 			`	Something like a giggle comes from the Quarg, before continuing.`
 			label initiative
@@ -212,19 +212,18 @@ mission "Incipias: Help the stranded Part 1"
 			`	It only takes it a moment to get back carrying a sleek silver box with a display on one side.`
 			`	"Our translator this is. Into your language it can translate thanks to our database. Be aware of the honor of me handing this you," it says, handing the translator over.`
 			`	As you stow it away it explains how to use it. "Oh and captain one last thing, the complexity of their language even we can not express, the translator might not be able to translate some parts directly, when it happens you will notice."`
-			`	The quarg wishes you best of luck and leaves you alone. Time to head to Dom'us.`
+			`	The Quarg then walks away, leaving you alone.`
 				accept
 	on enter Dom'us
 		"reputation: Hicemus" += 10
 		conversation
 			`Entering the system with the translator, you prepare to broadcast your first message.`
 			choice
-				`	"Hello. I am captain <first> <last> here to make contact."`
+				`	"Hello. I am Captain <first> <last>, here to make contact."`
 				`	"Greetings, strangers. I seek to help you."`
-				# silly option will probably remove it but for now it is just funny
-				`	"Howdy aliens, I come in peace.`
-			`	For a minute, nothing happens at all, it seems like a communication went off.`
-			`	After some time, a motion goes through all ships in the system and then a channel opens from the space station. Colors rush over your display a mix of yellow and green, and you point the translator to the display as the Quarg told you.`
+				`	"I come in peace."`
+			`	For a minute, nothing happens at all.`
+			`	After some time, a wave of movement passes through all ships in the system, and a communication channel opens from the space station. Colors rush over your display: a mix of yellow and green. You point your translator towards the flashing lights and hope it is able to pick up whatever the Incipias are saying to you.`
 			`	"Welcome [stranger, danger] we greet you in [this space, our home]."`
 			`	The colors stop before rushing over your screen again.`
 			`	"What is your [intention, purpose] here?"`
@@ -323,5 +322,4 @@ mission "Incipias: Help the stranded Part 2"
 			`	You say goodbye and as you leave the room you can see a rush of colors reflecting on the walls.`
 				decline
 			label endNoTime
-			`	"[I, we] [understand, are confused]. Safe travels, captain." You notice a slight blue tone in the representative's communication.`
-			`	One of them guides you back to your ship.`
+			`	"[I, we] [understand, are confused]. Safe travels, captain." You notice a slight blue tone in the representative's communication as one of the Incipias guides you back to your ship.`
