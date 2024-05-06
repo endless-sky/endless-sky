@@ -867,27 +867,23 @@ mission "Remnant: Cognizance 21"
 			`	The <ship> settles into the current landing pattern for the main spaceport on <destination> as you flip through the exterior camera feeds. In the distance, you notice that one of the research hangars has some activity going on around it, but otherwise, the spaceport seems to be humming along as usual. Dusk stops by the cockpit as you settle the <ship> into its berth. "Thank you for helping us, <first>. It will take us some time to analyze this data, but we will likely be mounting another expedition to Ssil Vida in the near future." He pauses, then adds, "I do not think we ever mentioned it, but, as is appropriate for your assistance, a logistics adjustment of <payment> has been applied to your account to cover your costs and provide resources to prepare for future endeavors." Dusk gives you a polite nod before heading off to help the other researchers unload the equipment.`
 
 
-mission "Remnant: Cognizance Exploration Patch"
+
+mission "Remnant: Cognizance Interest Condition Patch"
 	landing
 	invisible
 	repeat
 	to offer
-		has explorationinterest
+		or
+			has "explorationinterest"
+			has "scienceinterest"
 	on offer
 		"exploration interest" += explorationinterest
-		clear explorationinterest
+		clear "explorationinterest"
+		"science interest" += scienceinterest
+		clear "scienceinterest"
 		fail
 
-mission "Remnant: Cognizance Science Patch"
-	landing
-	invisible
-	repeat
-	to offer
-		has scienceinterest
-	on offer
-		"science interest" += scienceinterest
-		clear scienceinterest
-		fail
+
 
 mission "Remnant: Cognizance 22"
 	name "Deliver Data Backups for Taely"
