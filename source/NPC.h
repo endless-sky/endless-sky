@@ -140,7 +140,7 @@ private:
 	// NPCs may have been given a waypoint, destination or stopover.
 	std::vector<const System *> waypoints;
 	std::vector<const Planet *> stopovers;
-	const Planet *finalDestination;
+	const Planet *finalDestination = nullptr;
 	bool needsWaypoint = false;
 	bool needsStopover = false;
 	bool needsDestination = false;

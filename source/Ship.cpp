@@ -3565,7 +3565,8 @@ void Ship::SetStopovers(const vector<const Planet *> stopovers, const Planet *de
 {
 	// Mark each planet as not visited.
 	if(!stopovers.empty())
-		for(const auto &it : stopovers) {
+		for(const auto &it : stopovers)
+		{
 			travelDestinations[it] = false;
 			Logger::LogError("Stopover: " + it->Name());
 		}
@@ -4346,7 +4347,7 @@ bool Ship::DoLandingLogic()
 	float landingSpeed = attributes.Get("landing speed");
 	landingSpeed = landingSpeed > 0 ? landingSpeed : .02f;
 	// Special ships do not disappear forever when they land; they just slowly refuel.
-	// Exception: mission NPCs given the 'destination' directive will be removed
+	// Exception: mission NPCs given the "destination" directive will be removed
 	// when they land on their target.
 	if(landingPlanet && zoom)
 	{
@@ -4369,7 +4370,7 @@ bool Ship::DoLandingLogic()
 				SetTargetSystem(nullptr);
 				landingPlanet = nullptr;
 			}
-			else if(isSpecial && !isYours && !travelDestinations.empty())
+			else if(isSpecial && !(isYours || travelDestinations.empty()))
 			{
 				// This mission NPC has a directive to land on at least one specific planet.
 				// If this is one of them, this ship may land on a 'destination' (permanently),
