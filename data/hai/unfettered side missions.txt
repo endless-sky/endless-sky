@@ -346,17 +346,22 @@ mission "Hai Legacy 3"
 				set "unfettered: fled with the relic"
 			`	Seeing as they are unlikely to cooperate you quickly head to your ship and launch before they have time to react, but it seems like you are being followed.`
 				launch
-	on disabled
-		fail "Hai Legacy 3"
+	on enter
 		conversation
-			# This is needed because the mission isn't removed until the next time you land
-			`The enemy ship hail you. "Thought you could get away from us so easily? You better bribe us and then land on our worlds promptly, before we value blowing you up higher than preserving that ship!"`
-				to display
-					has "unfettered: fled with the relic"
-				decline
+			branch fleeing
+				has "unfettered: fled with the relic"
+			`As you leave the planet's atmosphere, you see the challengers already waiting for you in the system. They hail you, "Luck has nothing to do with it. Show us what you got, monkey! But don't go all out either, for we can't learn if we're dead."`
+				accept
+			label fleeing
+			`The Unfettered don't seem too pleased to see you leaving with their prize. The challengers are already waiting for you in orbit, and hail you. "Where do you think you're going, monkey?"`
+			action
+				fail
+	on disabled
+		fail
+		dialog
 			`The enemy ships hail you. "You have failed the challenge. We will take the ship from you when we see fit. I'll fix your ship and leave you alone for a bribe, but I suggest you land on an Unfettered world and return the ship to us, with a most generous compensation. If you try to keep it from us, we'll do things the hard way."`
 			`	"Be warned, however, that your truce with us ends as soon as you land. This is not necessarily the end, <last>, you will simply have to prove yourself another way."`
-			`	"Oh, and a word of advice: maybe you should have outfitted your ship differently, or used your range advantage by moving away at full thrust, before turning back to fire on us."`
+			`	"Oh, and a word of advice: maybe you could have outfitted your ship differently, or used your range advantage by moving away at full thrust, before turning back to fire on us."`
 	to fail
 		not "flagship landed"
 		has "unfettered: fled with the relic"
@@ -416,7 +421,7 @@ mission "Hai Legacy 3"
 		ship "Lightning Bug (Unfettered Shipyards)"
 		personality launching staying surveillance marked
 		on disable
-			dialog `Mera hails you: "Stop! The duel will not be valid if you destroy us!"`
+			dialog `Mera hails you: "Stop! I am only here as an observer. If you destroy my ship the deal is off!"`
 		on kill
 			fail "Hai Legacy 3"
 			# This ship is not AI controlled because it's not her style. She wants to see it firsthand, but she will land before you do and pretend nothing happened.
