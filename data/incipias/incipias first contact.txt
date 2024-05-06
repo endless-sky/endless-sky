@@ -197,7 +197,7 @@ mission "Incipias: Help the stranded Part 1"
 			choice
 				`	"Sure, let me do the work."`
 				`	"If you are too weak..."`
-			`	Something like a giggle comes from the Quarg, before continuing.`
+			`	Something like a laugh comes from the Quarg, before continuing.`
 			label initiative
 			`	"Your initiative most welcome is human, but not the tools for such a mission you have. To my knowledge no vessels capable of landing on gas giants ever developed by your kind. And as said you, not capable of communicating with them you are."`
 			`	"But help you I can at one point, communication that is. I can provide you with a single one of our translators, which will allow you to contact the species in their home system. To sell you one of their ships ask to them, easy it won't be."`
