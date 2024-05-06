@@ -6920,7 +6920,7 @@ mission "Lost Dog"
 				`	(Call to the dog.)`
 					goto doglover
 				`	(Ignore the dog.)`
-			`	You ignore the dog and eventually it sulks away to interact with another patron of the park. Eventually it begins to get dark and your day of quite contemplation comes to a close.`
+			`	You ignore the dog and eventually it sulks away to interact with another patron of the park. Eventually it begins to get dark and your day of quiet contemplation comes to a close.`
 			`	You return to your ship.`
 				decline
 			
@@ -7007,5 +7007,5 @@ mission "Lost Dog: Homeward Bound"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on offer
 		conversation
-			`As you're walking through the spaceport, your eye is drawn to a marginally familiar figure on a nearby newsfeed. Although you can't make out exactly what it is saying over the din, you are able to gather that the little lost dog you ran into on Calda has become something of a minor celebrity after it managed to get back home to Glory all by itself. The newsfeed scrolls down to show images of the dog - whose name is Caesar - skiing, sneaking on transports, and riding automatic farming equipment.`
+			`As you're walking through the spaceport, your eye is drawn to a marginally familiar figure on a nearby newsfeed. Although you can't make out exactly what it is saying over the din, you are able to gather that Caesar, the little lost dog you ran into on Calda, has become something of a minor celebrity after it managed to get back home to Glory all by itself. The newsfeed scrolls down to show images of the dog skiing, sneaking on transports, and riding automatic farming equipment.`
 			decline
