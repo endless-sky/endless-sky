@@ -7227,7 +7227,7 @@ mission "Tavish and Kormak 3"
 			`	"I'm in!" The Bartender can't move fast enough, he immeditetly begins transfering the funds. "Who are you looking for?"`
 			choice
 				`	"We're looking for Hans Fuller of the Broken Record."`
-			`	"Ha, that poor fool," the bartender can't help but chuckle to himself," Well last I heard he was picked up by the Syndies. If you're lucky you can still find him at the main spaceport on Hephaestus trying to get his ship out of lockup."`
+			`	"Ha, that poor fool," the bartender can't help but chuckle to himself," Well last I heard he was picked up by the Syndies. By now he's probably limping his way back to his hole on Buccaneer Bay. I'd look for him around the Persian system."`
 			`	Tavish thanks the man and promises him he'll be seeing his first returns in the near future, and with that the three of you head out of the bar.`
 			payment 30000
 
@@ -7265,7 +7265,7 @@ mission "Tavish and Kormak 3"
 			`	Tavish shrugs, "Like I said! A discerning fellow! We agree, my associate will now provide you the details."`
 			choice
 				`	"We're looking for Hans Fuller of the Broken Record."`
-			`	"Ah, our first sucker," the bartender smiles and shakes his head, "Last I heard he was picked up by the Syndies. If you're lucky you can still find him at the main spaceport on Hephaestus trying to get his ship out of lockup."`
+			`	"Ah, our first sucker," the bartender smiles and shakes his head, "Last I heard he was picked up by the Syndies. By now he's probably limping his way back to his hole on Buccaneer Bay. I'd look for him around the Persian system."`
 			`	Tavish thanks the man and promises him he'll be seeing his first returns in the near future, and with that he turns and heads out of the bar.`
 			choice
 				`	(Follow him.)`
@@ -7280,7 +7280,7 @@ mission "Tavish and Kormak 3"
 			`	The bartender hisses with excitement, "What can I help you with."`
 			choice
 				`	"We're looking for Captain Hans Fuller of the Broken Record."`
-			`	"Yeah, I know him." The bartender looks down at a monitor and types for a moment, "Looks like the Syndies picked him up recently. If you're lucky you can still find him at the main spaceport on Hephaestus trying to get his ship out of lockup."`
+			`	"Yeah, I know him." The bartender looks down at a monitor and types for a moment, "Looks like the Syndies picked him up recently. By now he's probably limping his way back to his hole on Buccaneer Bay. I'd look for him around the Persian system."`
 			`	Tavish and Kormak stand to leave, and bartender gives you feral grin, "Pleasure doing bussiness."`
 			`	The three of you leave and head back to your ship.`
 				accept
@@ -7290,7 +7290,7 @@ mission "Tavish and Kormak 3"
 			`	The bartender nurses hid sore neck and flashes you a feral grin with his yellow teeth, "What can I help you with."`
 			choice
 				`	"We're looking for Captain Hans Fuller of the Broken Record."`
-			`	"Yeah, I know him." The bartender looks down at a monitor and types for a moment, "Looks like the Syndies picked him up recently. If you're lucky you can still find him at the main spaceport on Hephaestus trying to get his ship out of lockup."`
+			`	"Yeah, I know him." The bartender looks down at a monitor and types for a moment, "Looks like the Syndies picked him up recently. By now he's probably limping his way back to his hole on Buccaneer Bay. I'd look for him around the Persian system."`
 			`	Tavish stands to leave, and bartender gives you an unsteady smirk, "Pleasure doing bussiness."`
 			`	Tavish and you step over broken furniture and injured pilots and make your way out of the bar.`
 			`	Not far outside an only slightly battered Kormak is waiting for you.`
@@ -7743,7 +7743,7 @@ mission "Tavish and Kormak 6"
 			`	Thankfully thre trees do not appear to have eyes, however each time one of them loses a branch to Kormak's eletric sword they gasping orifices making a sharp hissing sound that could almost be confused for a scream.`
 			`	Unphased by the screams Kormak gleefully hacks away at vines, branches and small trees as he leads you, Tavish and the small caravan of mobile equipment deeper into the tall terrifying trees.`
 			`	By the end of the trek everyone is breathing heavily, and Kormak is covered in the blue sap or blood that leaks from the severed limbs of the trees.`
-			
+
 			
 
 
