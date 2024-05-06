@@ -6894,7 +6894,7 @@ mission "Hogshead's Dilemma II"
 
 
 mission "Lost Dog"
-	name "Bring a dog to <planet>"
+	name "Lost dog to <planet>"
 	description "Bring Caesar, a dog you found on <source>, to their owners on <destination>."
 	to offer
 		random < 15
@@ -6920,13 +6920,12 @@ mission "Lost Dog"
 			``
 			`	"Caesar Augustus - Property of the Mitchells"`
 			`	3 Mitchell Drive`
-			`	Avalonia District, Hestia City`
-			`	Planet Hestia, Talita System`
+			`	Avalonia District, Glory City`
+			`	Planet Glory, Wazn System`
 			``
 			`	"That's odd," you say to Caesar. "How did you get lost on the wrong planet, huh boy?"`
-			`	You pet Caesar, who seems glad of the attention, and decide what to do.`
 			choice
-				`	(Take Caesar to his owners on Hestia.)`
+				`	(Take Caesar to his owners on Glory.)`
 					goto takehim
 				`	(Leave Caesar here.)`
 
@@ -6950,7 +6949,7 @@ mission "Lost Dog"
 				goto ranch
 
 			label "transported pookie"
-			`Caesar has been very obedient the whole trip, unlike certain other dogs you've transported in the past. He lays down by the airlock while your ship sets down in the local Avalonia spaceport, which is enclosed on all sides by a squalid urban landscape. You rent a vehicle and take yourself and Caesar beyond the blighted city and out into the pleasant picture-perfect paradise of the wealthy. One princely estate after another rolls past you as you drive deeper into the rural domains of the Republic's super-wealthy. Eventually, you come across a large metal gate that reads, "Mitchell Ranch."`
+			`Caesar has been very obedient the whole trip, unlike certain other dogs you've transported in the past. He lays down by the airlock while your ship sets down in the local Avalonia spaceport, which is enclosed on all sides by a squalid urban landscape - the honeycombed homes of the humble help. You rent a vehicle and take yourself and Caesar beyond the blighted city and out into the pleasant picture-perfect paradise of the affluent. One princely estate after another rolls past you as you drive deeper into the rural domains of the Republic's super-wealthy. Eventually, you come across a large metal gate that reads, "Mitchell Ranch."`
 
 			label ranch
 			`	You spend another forty-five minutes of driving down long winding roads, past various outbuildings, lodges, retreats, guest houses, and hobby barns. At long last, you arrive at the massive central mansion. Waiting at the bottom of stone stairs is a footman who opens the door for you and summons the senior butler.`
@@ -6963,6 +6962,8 @@ mission "Lost Dog"
 				`	(Explain you don't have a calling card.)`
 					goto nocard
 				`	(Place your card on the tray.)`
+					to display 
+						"net worth" > 20000000
 
 			`	The butler's eyebrows rise in the slightest hint of surprise when you place your card on the tray. He promptly turns and disappears into the overlarge house. You, Caesar, and the footman all wait for half an hour before a woman arrives at the front entrance, wearing an exceedingly complicated gown.`
 				goto boolinbrook
@@ -6997,5 +6998,5 @@ mission "Lost Dog: Homeward Bound"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on offer
 		conversation
-			`As you're walking through the spaceport, your eye is drawn to a marginally familiar figure on a nearby newsfeed. Although you can't make out exactly what it is saying over the din, you are able to gather that the little lost dog you ran into on Calda has become something of a minor celebrity after it managed to get back home to Hestia all by itself. The newsfeed scrolls down to show images of the dog - whose name is Caesar - skiing, sneaking on transports, and riding automatic farming equipment.`
+			`As you're walking through the spaceport, your eye is drawn to a marginally familiar figure on a nearby newsfeed. Although you can't make out exactly what it is saying over the din, you are able to gather that the little lost dog you ran into on Calda has become something of a minor celebrity after it managed to get back home to Glory all by itself. The newsfeed scrolls down to show images of the dog - whose name is Caesar - skiing, sneaking on transports, and riding automatic farming equipment.`
 			decline
