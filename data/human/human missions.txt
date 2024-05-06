@@ -7707,7 +7707,7 @@ mission "Tavish and Kormak 5"
 					accept
 
 	on visit
-		dialog `You land on <planet>, but realize that Kormak and Tavish and their equipment is on one of your escorts who hasn't entered the system yet. Better depart and wait for them.`
+		dialog `You land on <planet>, but realize that Kormak and Tavish and their equipment are on one of your escorts who hasn't entered the system yet. Better depart and wait for them.`
 	on complete
 		event "Tavish and Kormak Expedition" 60
 		conversation 
@@ -7739,21 +7739,27 @@ mission "Tavish and Kormak 6"
 
 	on complete
 		conversation
-			`The remote continent of Ashoka races up to meet you as your ship descends over the thick jungle canopy. The coordinates Tavish gave you is densely forested, but you spot a relatively flat stony outcrop about a dozen miles from the site. You land your ship upon the stone.`
-			`	Tavish and Kormak's research equipment was much more extensive than they had initially let on. There was nearly a dozen roboic dollies, and a handful of mobile robotic drills and shovels. Along with a handful of computers, chemical sensors, and power generators.`
-			`	Tavish and Kormak have changed from their regular three piece suits and into khaki pants and jackets with wide brimmed hats. Tavish has a machette and Kormak has what loooks to be a sword.`
-			`	Kormak notices you looking and smiles, he presses a button his sword's pommel and it the whole blade suddenly crackles with electrity.`
-			`	"Equipment." He says with a grin and then walks to where the wall of trees begins, and waits.`
+			`The remote continent of Ashoka races up to meet you as your ship descends over the thick jungle canopy. The location for the coordinates Tavish gave you is densely forested, but you spot a relatively flat stony outcrop about a dozen miles from the site. You land your ship upon the stone.`
+			`	Tavish and Kormak's research equipment was much more extensive than they had initially let on. There are nearly a dozen robotic dollies, and a handful of mobile robotic drills and shovels. Along with a handful of computers, chemical sensors, and power generators.`
+			`	They've also changed from their regular three piece suits and into khaki pants and jackets with wide brimmed hats. Tavish has a machette and Kormak has what an axe.`
+			`	Kormak notices you looking and smiles, he presses a button his axe's handle and the blade suddenly crackles with electrity.`
+			`	"Equipment." He says with a grin and then walks to where the wall of trees begins.`
 			`	Tavish turns to you, "Shall we go?"`
 			choice
 				`(Go.)`
-			`	As long as you don't look too hard at any one aspect of the jungle if feels normal. Like you're in earth biome. But the moment concreate on any one feature too long the alienness of the evironment becomes unmistakable and unsettling. The trees here are nothing like the ones in the habitated continent of New India. They are covered in silver scales and pockmarked with gray gasping orifices.`
-			`	Thankfully thre trees do not appear to have eyes, however each time one of them loses a branch to Kormak's eletric sword they gasping orifices making a sharp hissing sound that could almost be confused for a scream.`
-			`	Unphased by the screams Kormak gleefully hacks away at vines, branches and small trees as he leads you, Tavish and the small caravan of mobile equipment deeper into the tall terrifying trees.`
+			`	As long as you don't look too hard at any one aspect of the jungle if feels normal. Like you're in an standard earth biome. But the moment you concreate on any one feature too long the alienness of the evironment becomes unmistakable and unsettling. The trees here are nothing like the ones on the habitated continent of New India. They are covered in silver scales and pockmarked with gray gasping orifices.`
+			`	Thankfully thre trees do not appear to have eyes, however each time one of them loses a branch to Kormak's eletric axe their gasping orifices making a sharp hissing sound that could almost be confused for a scream.`
+			`	Unphased by the incessant wailing Kormak gleefully hacks away at vines, branches and small trees as he leads you, Tavish and the small caravan of mobile equipment deeper into the terrifyingly unnatural trees.`
 			`	By the end of the trek everyone is breathing heavily, and Kormak is covered in the blue sap or blood that leaks from the severed limbs of the trees.`
+			`	Tavish annouces that you've made it. But to you it just looks like more forest with an black overgrown rock jutting out between two trees.`
+			`	Kormak begins clearing out the area while Tavish unloads the gear.`
+			choice
+				`	(Help Tavish unload the gear.)`
+				`	(Help Kormak clear the area.)`
+				`	(Sit and watch them work.)`
 
 	on visit
-		dialog `You land on <planet>, but realize that Kormak and Tavish and their equipment is on one of your escorts who hasn't entered the system yet. Better depart and wait for them.`
+		dialog `You land on <planet>, but realize that Kormak and Tavish and their equipment are on one of your escorts who hasn't entered the system yet. Better depart and wait for them.`
 			
 
 
