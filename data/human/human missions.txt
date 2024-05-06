@@ -7341,7 +7341,7 @@ mission "Tavish and Kormak 3"
 			`	"Wai.." Tavish begins, but before he finishes there's a quick cracking sound and a suddenly dead body on the ground.`
 			`	Kormak stands up with a rare smile on his lips, "Finally."`
 			`	Tavish sighs as the three of you return to your ship.`
-				accept
+				launch
 
 			label letgo
 			`	Kormak sighs heavily releases Hans, who quickly scrambles to his feet runs deeper into the ship.`
@@ -7463,7 +7463,7 @@ mission "Tavish and Kormak 4"
 	on complete
 		conversation
 			`Your ship comes to a landing in a croweded spaceport. Some sort of comencement ceremony is going on and the place is packed with off-world family and friends who have come to watch the graduation.`
-			`	It's obvious Tavish is uncomfortable here, but he does his best not to show it. He informs you that you'll need to get to the commuter rail deeper in the New Port spaceport to get to Huller-Freeze.`
+			`	It's obvious Tavish is uncomfortable here, but he does his best not to show it. He informs you that you'll need to get to the commuter rail deeper in the New Port spaceport to get to Hullen-Freeze.`
 
 mission "Tavish Interlude"
 	invisible
@@ -7554,9 +7554,9 @@ mission "Tavish and Kormak 5"
 				`	Tavish leads you in until you're standing in front of a mousy receptionist in a red sweater with various bookish pins and a plaque that says "Starla" on it.`
 				`	"Can I help you."  She tries to maintain a professional demeanor but her eyes keep straying to Kormak. `
 				choice
-					`	"We're here to see Dr. Huller-Freeze."`
-					`	"Yeah, take us to Huller-Freeze."`
-					`	"Where can we find Huller-Freeze?"`
+					`	"We're here to see Dr. Hullen-Freeze."`
+					`	"Yeah, take us to Hullen-Freeze."`
+					`	"Where can we find Hullen-Freeze?"`
 				
 				`	"The Doctor-Professor has no appointments scheduled for this evening. He's a very busy and important man and I am afraid he has no time for dropins. If you'd like you can leave your contact info with me and I'll see if he's willing to schedule something with you in the next couple of months?"`
 				`	She gives you an apologetic look. "Sorry."`
@@ -7707,7 +7707,9 @@ mission "Tavish and Kormak 5"
 
 mission "Tavish and Kormak 6"
 	source "New India"
-	destination 
+	destination "New India"
+	passengers 2
+	cargo "Scientific Research Equipment " 5
 	to offer
 		has "Tavish and Kormak 5: done"
 	on offer
@@ -7724,11 +7726,24 @@ mission "Tavish and Kormak 6"
 				`	"Adventure awaits!"`
 				`	"For Science!"`	
 				`	"Whatever."`
-			`	It takes a few hours to get from New India's busy spaceport to the remote continent of Ashoka. Once there Tavish gives you the coordinates for the site. It's mostly dense jungle, but you're able to find a relatively flat stony outcrop about a dozen miles from the site where you can land your ship.`
-			`	Tavish has a few robotic dollys set up to carry most of the gear.  He then suits up, arms himself with a machete, and announces he's ready to go. Kormak is simiarily attired, but instead of a machete he what looks like a long sword.`
-			`	Kormak notices you looking and smiles, he presses a button his sword's pommel and it the whole blade suddenly crackles with electrity.`
-			`	"Equipment." He says with a grin and then jumps out the hatch of your ship and onto the stony ground below.`
+				`	"For Gerald!"`
+				launch
 
+	on complete
+		conversation
+			`The remote continent of Ashoka races up to meet you as your ship descends over the thick jungle canopy. The coordinates Tavish gave you is densely forested, but you spot a relatively flat stony outcrop about a dozen miles from the site. You land your ship upon the stone.`
+			`	Tavish and Kormak's research equipment was much more extensive than they had initially let on. There was nearly a dozen roboic dollies, and a handful of mobile robotic drills and shovels. Along with a handful of computers, chemical sensors, and power generators.`
+			`	Tavish and Kormak have changed from their regular three piece suits and into khaki pants and jackets with wide brimmed hats. Tavish has a machette and Kormak has what loooks to be a sword.`
+			`	Kormak notices you looking and smiles, he presses a button his sword's pommel and it the whole blade suddenly crackles with electrity.`
+			`	"Equipment." He says with a grin and then walks to where the wall of trees begins, and waits.`
+			`	Tavish turns to you, "Shall we go?"`
+			choice
+				`(Go.)`
+			`	As long as you don't look too hard at any one aspect of the jungle if feels normal. Like you're in earth biome. But the moment concreate on any one feature too long the alienness of the evironment becomes unmistakable and unsettling. The trees here are nothing like the ones in the habitated continent of New India. They are covered in silver scales and pockmarked with gray gasping orifices.`
+			`	Thankfully thre trees do not appear to have eyes, however each time one of them loses a branch to Kormak's eletric sword they gasping orifices making a sharp hissing sound that could almost be confused for a scream.`
+			`	Unphased by the screams Kormak gleefully hacks away at vines, branches and small trees as he leads you, Tavish and the small caravan of mobile equipment deeper into the tall terrifying trees.`
+			`	By the end of the trek everyone is breathing heavily, and Kormak is covered in the blue sap or blood that leaks from the severed limbs of the trees.`
+			
 			
 
 
