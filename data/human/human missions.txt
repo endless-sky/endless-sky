@@ -6992,7 +6992,8 @@ mission "Tavish and Kormak"
 				`	"The <ship>."`
 			`	"Right, of course, a ship worthy of a Captain of your caliber, no doubt, no doubt." Tavish tips his hat to you and then he and Kormak make their way out of the cafe.`
 				accept
-
+	on visit
+		dialog `You land on <planet>, but realize that Kormak and Tavish were on one of your escorts who hasn't entered the system yet. Better depart and wait for them.`
 	on complete
 		conversation
 			`	Clarke's spaceport is overwhelemed with traffic and you end up waiting an additional hour before they can finally find room for your ship on one of the outlying conrete pads.`
@@ -7170,6 +7171,8 @@ mission "Tavish and Kormak 2"
 			`	Tavish brightens, "I knew an erudite fellow such as yourself would see the value of our work. And for now on we will check with you before we do anthing too untoward, right Kormak?"`
 			`	The red-haired giant nods, "Ask first."`
 			`	"Grand." Tavish claps, "Now, let's see what we can discover at Deadman's Cove."`
+	on visit
+		dialog `You land on <planet>, but realize that Kormak and Tavish were on one of your escorts who hasn't entered the system yet. Better depart and wait for them.`
 			
 	on complete
 		conversation
@@ -7376,7 +7379,7 @@ mission "Tavish and Kormak 3"
 
 
 	on visit
-		dialog   ` You haven't found the Broken Record Yet.`
+		dialog   ` You haven't found the Broken Record yet.`
 	on complete
 		conversation
 			`Your ship lands in the heart of the continent-consuming megatropolis Polyphron, the "only city" on Hephaestus.`
@@ -7459,6 +7462,8 @@ mission "Tavish and Kormak 4"
 				`	"Bad history." Kormak says, before following Tavish out.`
 				`	It seems Chiron is your next destination.`
 				payment -20000
+	on visit
+		dialog `You land on <planet>, but realize that Kormak and Tavish were on one of your escorts who hasn't entered the system yet. Better depart and wait for them.`
 
 	on complete
 		conversation
@@ -7700,6 +7705,9 @@ mission "Tavish and Kormak 5"
 				`	The up until now silent Tavish suddenly bursts out into laughter. Long uproarious belly laughter.`
 				`	The three of you leave together and Tavish laughes the entire way back to the spaceport. Once there you finally pick up the scientific research equipment for the New India expedition.`
 					accept
+
+	on visit
+		dialog `You land on <planet>, but realize that Kormak and Tavish and their equipment is on one of your escorts who hasn't entered the system yet. Better depart and wait for them.`
 	on complete
 		event "Tavish and Kormak Expedition" 60
 		conversation 
@@ -7744,6 +7752,8 @@ mission "Tavish and Kormak 6"
 			`	Unphased by the screams Kormak gleefully hacks away at vines, branches and small trees as he leads you, Tavish and the small caravan of mobile equipment deeper into the tall terrifying trees.`
 			`	By the end of the trek everyone is breathing heavily, and Kormak is covered in the blue sap or blood that leaks from the severed limbs of the trees.`
 
+	on visit
+		dialog `You land on <planet>, but realize that Kormak and Tavish and their equipment is on one of your escorts who hasn't entered the system yet. Better depart and wait for them.`
 			
 
 
