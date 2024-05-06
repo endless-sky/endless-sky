@@ -6973,6 +6973,8 @@ mission "Lost Dog"
 				`	(Place your card on the tray.)`
 					to display 
 						"net worth" > 20000000
+					to display 
+						"net worth" > 20000000
 
 			`	The butler's eyebrows rise in the slightest hint of surprise when you place your card on the tray. He promptly turns and disappears into the overlarge house. You, Caesar, and the footman all wait for half an hour before a woman arrives at the front entrance, wearing an exceedingly complicated gown.`
 				goto boolinbrook
