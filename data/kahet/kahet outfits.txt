@@ -416,7 +416,7 @@ outfit "Maeri Engine Nacelles"
 	"steering flare sprite" "effect/ka'het flare/large"
 		"frame rate" 30
 	"steering flare sound" "plasma medium"
-	description "The Ka'het engines are peculiar in that they continuously draw large amounts of energy, but require no additional energy to activate: while this means that less power remains available for other subsystems, it is also somewhat more efficient than most types of propulsions, and generates only a tiny amount of heat."
+	description "The Ka'het engines are peculiar in that they continuously draw large amounts of energy, but require no additional energy to activate: while this means that less power remains available for other subsystems, it is also somewhat more efficient than most types of propulsion, and generates only a tiny amount of heat."
 
 outfit "Ka'het Sustainer Nacelles"
 	plural "Ka'het Sustainer Nacelles"

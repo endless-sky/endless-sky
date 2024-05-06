@@ -161,7 +161,7 @@ ship "Arrow"
 			"hit force" 360
 	outfits
 		"Sidewinder Missile Pod" 2
-		"Sidewinder Missile" 8
+		"Sidewinder Missile" 12
 		"Anti-Missile Turret"
 		
 		"Dwarf Core"
@@ -577,7 +577,7 @@ ship "Berserker"
 	outfits
 		"Energy Blaster" 2
 		"Javelin Mini Pod" 2
-		"Javelin" 80
+		"Javelin" 60
 		
 		"nGVF-CC Fuel Cell"
 		"LP072a Battery Pack"
@@ -1077,7 +1077,7 @@ ship "Clipper"
 	outfits
 		"Beam Laser" 2
 		"Javelin Mini Pod" 2
-		"Javelin" 80
+		"Javelin" 60
 		
 		"nGVF-DD Fuel Cell"
 		"LP072a Battery Pack"
@@ -1428,7 +1428,7 @@ ship "Dagger"
 	outfits
 		"Beam Laser"
 		"Javelin Mini Pod" 2
-		"Javelin" 80
+		"Javelin" 60
 		
 		"nGVF-AA Fuel Cell"
 		"Supercapacitor"
@@ -1707,7 +1707,7 @@ ship "Finch"
 		"Beam Laser"
 		"Javelin Mini Pod" 2
 		"Javelin Storage Crate"
-		"Javelin" 180
+		"Javelin" 160
 		
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
@@ -2469,7 +2469,7 @@ ship "Lance"
 		"Energy Blaster"
 		"Sidewinder Missile Pod" 2
 		"Sidewinder Missile Rack"
-		"Sidewinder Missile" 31
+		"Sidewinder Missile" 35
 		
 		"nGVF-AA Fuel Cell"
 		"Supercapacitor" 4
@@ -3105,7 +3105,7 @@ ship "Quicksilver"
 		"fuel capacity" 400
 		"cargo space" 15
 		"outfit space" 240
-		"weapon capacity" 60
+		"weapon capacity" 80
 		"engine capacity" 70
 		weapon
 			"blast radius" 40
@@ -3117,8 +3117,8 @@ ship "Quicksilver"
 		
 		"nGVF-DD Fuel Cell"
 		"LP036a Battery Pack"
-		"D23-QP Shield Generator"
-		
+
+		"Capybara Reverse Thruster"
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"
@@ -3131,7 +3131,7 @@ ship "Quicksilver"
 	explode "tiny explosion" 12
 	explode "small explosion" 16
 	"final explode" "final explosion small"
-	description "The Megaparsec Quicksilver is a warship built around a single concept: to design the smallest and fastest ship capable of carrying two Particle Cannons. Because of its speed and long weapons range, the Quicksilver can keep a safe distance from most targets and bombard them with particle bursts until they are destroyed. Unfortunately the Headhunter eventually surpassed the original design intent, but the Quicksilver's better durability to cost ratio, and the existence of long-term contracts, has kept it in use with Syndicate security forces."
+	description "The Megaparsec Quicksilver is a warship built around a single concept: to design the smallest and fastest ship capable of carrying two Particle Cannons. Because of its speed, reverse thrusters, and long weapons range, the Quicksilver can keep a safe distance from most targets and bombard them with particle bursts until they are destroyed. The focus on its weaponry left the Quicksilver with no room for even the most basic shield generator. Unfortunately the Headhunter eventually surpassed the original design intent, but the Quicksilver's better durability to cost ratio, and the existence of long-term contracts, has kept it in use with Syndicate security forces."
 
 
 
@@ -4053,7 +4053,7 @@ ship "Wasp"
 	outfits
 		"Energy Blaster" 2
 		"Sidewinder Missile Pod"
-		"Sidewinder Missile" 4
+		"Sidewinder Missile" 6
 		
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"

@@ -58,6 +58,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 class Panel;
+class PlayerInfo;
 class Sprite;
 class TaskQueue;
 
@@ -81,7 +82,7 @@ public:
 	void Change(const DataNode &node);
 	// Update the neighbor lists and other information for all the systems.
 	// (This must be done any time a GameEvent creates or moves a system.)
-	void UpdateSystems();
+	void UpdateSystems(const PlayerInfo *player = nullptr);
 
 	// Check for objects that are referred to but never defined.
 	void CheckReferences();
