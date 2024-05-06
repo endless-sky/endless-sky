@@ -6899,7 +6899,7 @@ mission "Lost Dog"
 	to offer
 		random < 15
 	source "Calda"
-	destination "Hestia"
+	destination "Glory"
 	on offer
 		conversation
 			`Your walk from the <ship> takes you out of <planet>'s bustling spaceport and into the overtly welcoming and carefully inoffensive streets of the spaceport town. Each path seems to be saturated with tourists and purpose-built to whisk travelers further away from their ships and deeper into the preternatural radiance of this Paradise World. The hand-crafted beauty is inescapable, a never-ending sequence of breathtaking views.`
