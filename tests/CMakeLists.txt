@@ -59,6 +59,7 @@ list(APPEND INTEGRATION_TESTS
 	integration/config/plugins/integration-tests/data/tests/tests_framework.txt
 	integration/config/plugins/integration-tests/data/tests/tests_hyperjumps_to_autocondition.txt
 	integration/config/plugins/integration-tests/data/tests/tests_illegal_atrocity.txt
+	integration/config/plugins/integration-tests/data/tests/tests_random_links.txt
 	integration/config/plugins/integration-tests/data/tests/tests_landing.txt
 	integration/config/plugins/integration-tests/data/tests/tests_take_ships.txt
 	integration/config/plugins/integration-tests/data/tests/tests_save_load.txt

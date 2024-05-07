@@ -1370,6 +1370,7 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 	burning = 0.;
 	shieldDelay = 0;
 	hullDelay = 0;
+	disabledRecoveryCounter = 0;
 	isInvisible = !HasSprite();
 	jettisoned.clear();
 	hyperspaceCount = 0;
@@ -2475,6 +2476,7 @@ void Ship::Recharge(int rechargeType, bool hireCrew)
 	burning = 0.;
 	shieldDelay = 0;
 	hullDelay = 0;
+	disabledRecoveryCounter = 0;
 }
 
 
@@ -3857,6 +3859,36 @@ void Ship::DoGeneration()
 		shieldDelay = max(0, shieldDelay - 1);
 		hullDelay = max(0, hullDelay - 1);
 	}
+	// Let the ship repair itself when disabled if it has the appropriate attribute.
+	if(isDisabled && attributes.Get("disabled recovery time"))
+	{
+		disabledRecoveryCounter += 1;
+		double disabledRepairEnergy = attributes.Get("disabled recovery energy");
+		double disabledRepairFuel = attributes.Get("disabled recovery fuel");
+
+		// Repair only if the counter has reached the limit and if the ship can meet the energy and fuel costs.
+		if(disabledRecoveryCounter >= attributes.Get("disabled recovery time")
+			&& energy >= disabledRepairEnergy && fuel >= disabledRepairFuel)
+		{
+			energy -= disabledRepairEnergy;
+			fuel -= disabledRepairFuel;
+
+			heat += attributes.Get("disabled recovery heat");
+			ionization += attributes.Get("disabled recovery ionization");
+			scrambling += attributes.Get("disabled recovery scrambling");
+			disruption += attributes.Get("disabled recovery disruption");
+			slowness += attributes.Get("disabled recovery slowing");
+			discharge += attributes.Get("disabled recovery discharge");
+			corrosion += attributes.Get("disabled recovery corrosion");
+			leakage += attributes.Get("disabled recovery leak");
+			burning += attributes.Get("disabled recovery burning");
+
+			disabledRecoveryCounter = 0;
+			hull = min(max(hull, MinimumHull() * 1.5), MaxHull());
+			isDisabled = false;
+		}
+
+	}
 
 	// Handle ionization effects, etc.
 	shields -= discharge;
@@ -4577,7 +4609,8 @@ void Ship::StepTargeting()
 	shared_ptr<const Ship> target = GetTargetShip();
 	// If this is a fighter or drone and it is not assisting someone at the
 	// moment, its boarding target should be its parent ship.
-	if(CanBeCarried() && !(target && target == GetShipToAssist()))
+	// Unless the player uses a fighter as their flagship and is boarding an enemy ship.
+	if(CanBeCarried() && !(target && (target == GetShipToAssist() || isYours)))
 		target = GetParent();
 	if(target && !isDisabled)
 	{
@@ -4611,7 +4644,7 @@ void Ship::StepTargeting()
 			velocity += dv.Unit() * .1;
 			position += dp.Unit() * .5;
 
-			if(distance < 10. && speed < 1. && (CanBeCarried() || !turn))
+			if(distance < 10. && speed < 1. && ((CanBeCarried() && government == target->government) || !turn))
 			{
 				if(cloak)
 				{
