@@ -7755,8 +7755,129 @@ mission "Tavish and Kormak 6"
 			`	Kormak begins clearing out the area while Tavish unloads the gear.`
 			choice
 				`	(Help Tavish unload the gear.)`
+					goto helptav
 				`	(Help Kormak clear the area.)`
+					goto helpkor
 				`	(Sit and watch them work.)`
+			`	This isn't your expedition so you take a seat and relax while Kormak and Tavish prepare the camp site.`
+			`	A few hours pass and the twin suns of New India begin to set in the horizion. Kormak has returned to from hacking, and Tavish has begun making a campire.`
+				goto next
+			
+			label helptav
+			`	You help Tavish set up the ring of fire and the tents within it.`
+			`	"Captain <last>, I wanted to thank you for all your help. Without you this expedition would have been a total failure. We likely would have been kicked out of the S.O.G.E. for losing all their money and I may really have had to go crawling back to Chiron. Literally and figuratively." Tavish wipes some sweat off his brow.`
+			`	"Have no apprehension, I am fully cogniziant of the expense of transporting us around. In the end I will find a way to repay you." With that Tavish finishes his initial set up and starts making a campfire as the twin suns of New India begin to set.`
+				goto next
+			
+			label helpkor
+			`	You follow Kormak has he hacks and slashes at various alien flora and pick up oozing remains he leaves behind.`
+			`	"You did good." Kormak says without turning to look at you.`
+			`	"Good friend to Tavish. Honorable." He continues as trees crack before him.`
+			`	With the area around the designated campground clear he turns to you and give you a smallest nod, "We will not forget."`
+			`	Over to the side Tavish has also finished his work and his making a campfire.`
+			`	"Come." Kormak says.`
+			label next
+			choice
+				`(Take a seat around the Campfire.)`
+			`	As the night takes hold strange alien noises can be heard coming from the jungle. Tavish continues to tend the fire as Kormak starts roasting rations to pass around.`
+			`	Tavish takes a seat and a bite of the roasted ration that Kormak has put into his hand.`
+			`	"Good expedition." Kormak says beneath the emerging stars.`
+			`	Tavish nods, "Certainly more than any of us bargained for, but tomorrow the real work begins and who knows what wonders we will discovered in that ancient crashed ship."`
+			`	"Yes." Kormak says between bites, "Where I from songs would be sung of our deeds."`
+			choice
+				`	"Kormak, where are you from?"`
+				`	(Say nothing.)`
+					goto notathing
+			`	Kormak stops chewing and looks hard at you for a long moment before finally says, "It is forbidden for me to say."`
+			`	"Ah, about that," Tavish jumps in, "the thing is the Deep is more complex than most people realize. It is a society with three distinct layers."`
+			`	Tavish mimes peeling a fruit, "The top layer is the one everyone knows about. It's clean, fair, demoncratic, and technologically advanced. It's the Deep you hear about in holo-dramas, and see talked about on the news. Most of the Deep is a part of this layer.`
+			`	"And then," Tavish continues, "there's the middle layer. It is smaller and made up of people who practice what they call the old ways. Those who practice stone-funerals, or who pay some respect to the scattered God-Stones. It's people who still see themselves as the descendants of those first brave pilgrims that colonized the Deep."`
+			`	Tavish pinches his fingers together like he's holding his invisable fruit's core, "Finally, there's the lowest layer. Few are aware of it, and I think it may be an embarressment to leaders of the Deep. It's made up of people like Kormak, or the Ice-Witches of Nifel." `
+			`	"The Ui Skathi." Kormak says, "Granddaughters of Skathi."`
+			`	"Was that what they called themselves?" Tavish shrugs, "Kormak's always a little sensative about this. Anyways, they don't really make sense. How did they get to the Deep? Where did they come from? There's two prevailing theories. First, that there was a lost generational fleet that landed in the Deep earlier than anyone realized, that something went wrong, and that they degenerated in primitives. Or, well this is more of folklore than a theory, that thousands of years ago humans were brought to the Deep by... elves."`
+			`	"Not elves," Kormak interupts with a hint of annoyance,"the Dream Anuabhair. That how they are called in my clan's sagas. The exceedingly proud folk. Never to trust."`
+			`	Kormak sighs and turns back to you, "If ever you stand before gleaming high-timbered hall built in shadow of dark Sidhe-Stone with carved face of Skoll-Wolf. Know that is my home." `
+			`	"Enough about past. Only present matters." He says and then goes back to eating.`
+			`	Tavish laughs, "Of course. Let us discource about less weighty matters."`
+			label notathing
+			`	You talk a little of unimportant and unremarkable things beneath the glittering twilight stars in the midst of an untamed alien jungle.`
+			`	And then you head to bed.`
+			choice
+				`	(Sleep.)`
+			`	You are awoken by something warm and wet slowly sliding up your leg. Your tent has been perforated, and you can tell the blazing ring of fire is off.`
+			choice
+				`	(Kick whatever is on your leg.)`
+			`	With a few stiff kicks forces the grasping appendage lets go of your leg and slithers back out the tent hole. You follow after it to see the entire campground is writhing in tenticle like vines.`
+			choice
+			`	(Shout for Tavish to do something!)`
+				goto tavshout
+			`	(Shout for Kormak to do something!)`
+				goto korshout
+			`	(Shout for everyone to do something!)`
+		
+			label tavshout
+			`	Tavish lunges out of his tent in a robe and screams, "The damned trees have returned!"`
+			`	He briefly kicks ineffectively at them before finding one that was trying to steal his machette and wrestling it free.`
+			`	"Kormak sometimes has a point," he grunts as he mashes back the various tendrils, "words don't work against monsters."`
+				goto everyone
+
+			label korshout
+			`	Kormak flies of his tent completely naked. He rips and tears the vines with his bare hands and teeth. He finds his axe and tears into the grapsing tree limbs.`
+			`	"I am Gluniairn mac Kormakr!" He shouts into the night, "I am death!"`
+
+			label everyone
+			`	Everyone is now up and attacking the vines. Kormak is even laughing and starts singing in his bloodlust:`
+			`	"Axe-Edge, Bright-Pledge, Breaker of Blight's Dredge,`
+			`	Ash-born, Eagle-torn, Slayer of Earth's forlorn. `
+			`	Break before my battle axe, Flee before my thunder.`
+			`	Die beneath a stranger's sky, and feed my clan's hunger."`
+			`	Eventually all the alien vines have retreated back behind the tree line. As you watch them go you realize they weren't terribly formidable. They were slow, weak, and soft.`
+			choice
+				`	"That's it? How did those things manage to kill Gerald?"`
+					goto defeat
+				`	"Truly we've won a glorious victory today."`
+					goto victory
+				`	"I am going back to bed.`
+					goto bed
+
+			label defeat
+			`	Kormak and Tavish look at each other and then finally Tavish says, "He really was quite slow."`
+			`	Kormak nods, "Very slow."`
+			`	"And he may have aggresively afraid." Tavish adds.`
+			`	"Rolled up into ball" Kormak confirms. "Very sad. I kill trees in his memory."`
+			`	Tavish solmenly agrees and then tinkers with the ring of fire for a moment, "Ah, here's the problem." And switches it back on.`
+			`	"We'll be completely safe." He says and heads back into his tent.`
+			choice
+				`	(Go back to sleep.)`
+					goto wakeup
+			label victory
+			`	Both Kormak and Tavish cheer.`
+			`	"Youd handled yourself quite well, Captain <last>." Tavish says. "Much better than Gerald."`
+			`	Kormal gives you a solmn nod, "Very slow. Just rolled into ball. Said 'take me', and gone."`
+			`	Tavish nods, "We'll dedicate the paper we write on this expedition to his memory. Such are the risks we explorers must face."`
+			`	"Risks." Kormak agrees.`
+			`	Tavish tinkers with the ring of fire for a moment, "Ah, here's the problem." And switches it back on.`
+			`	"We'll be completely safe." He says and heads back into his tent.`
+			choice
+				`	(Go back to sleep.)`
+					goto wakeup
+			
+			label wakeup
+			`	The morning comes without further incident. You eat breakfast, trade a few more harrowing tales about your adeventures in the night and prepare your things to leave.`
+			`	Tavish approaches you before you make the trek back to your ship. "I have one final request before you go, Captain <last>.`
+			`	He nods back to jutting black rock he believes is part of an ancient ship. "We're going to spend two months here on our dig. If you could come back in that time to give us one final ride, we'd appreciate it."`
+			`	"Appreciate it." Kormak echoes.`
+			`	Tavish looks a little apprehensive, "We still don't have any money. So it may be difficult for us to convince another ship to transport us via radio. So please do come back in two months."`
+			choice
+				`	"I'll come back. Don't worry."`
+				`	"We'll see. No promises."`
+				`	"I do what I want."`
+			`	Tavish nods, "In that case we quite a bit of work to do, Captain. Take care."`
+			`	He working on prepping the dig site, while Kormak escorts you back to your ship.`
+			`	Kormak takes your hand in his, "May stone guide you." he says, and then disappears back into the jungle.`
+			
+
+
 
 	on visit
 		dialog `You land on <planet>, but realize that Kormak and Tavish and their equipment are on one of your escorts who hasn't entered the system yet. Better depart and wait for them.`
