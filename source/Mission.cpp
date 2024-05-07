@@ -1148,8 +1148,10 @@ bool Mission::HasShip(const shared_ptr<Ship> &ship) const
 // about it. This may affect the mission status or display a message.
 void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 {
-	if(!HasFailed(player)) {
-		if (event.TargetGovernment()->IsPlayer()) {
+	if(!HasFailed(player))
+	{
+		if(event.TargetGovernment()->IsPlayer())
+		{
 			bool failed = false;
 			string message = "Your ship \"" + event.Target()->Name() + "\" has been ";
 			if (event.Type() & ShipEvent::DESTROY) {
