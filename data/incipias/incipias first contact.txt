@@ -222,7 +222,7 @@ mission "Incipias: Help the stranded Part 1"
 				`	"Hello. I am Captain <first> <last>, here to make contact."`
 				`	"Greetings, strangers. I seek to help you."`
 				`	"I come in peace."`
-			`	For a minute, nothing happens at all.`
+			`	You notice that your translator starts to flash a sequence of lights, and you point it towards your ship's camera. For a minute, nothing happens at all.`
 			`	After some time, a wave of movement passes through all ships in the system, and a communication channel opens from the space station. Colors rush over your display: a mix of yellow and green. You point your translator towards the flashing lights and hope it is able to pick up whatever the Incipias are saying to you.`
 			`	"Welcome [stranger, danger] we greet you in [this space, our home]."`
 			`	The colors stop before rushing over your screen again.`
@@ -234,20 +234,20 @@ mission "Incipias: Help the stranded Part 1"
 			`	Along the message comes a small plan of the station with the docking ports highlighted.`
 	on complete
 		conversation
-			`Thanks to the plans you are easily able to dock with the station. Your airlock opens and you enter an environment like nothing you ever saw before. There are no visible pathways but foggy hallways some even going up vertically. A crowd of beings gathered in front of your airlock each pulsating in a multitude of colors. A group of five floats in front of the crowd. The middle one starts communicating with you pulsating in calm colors.`
+			`Thanks to the plans you are easily able to dock with the station. Your airlock opens and you enter an environment like nothing you ever saw before. There are no visible pathways, but instead foggy hallways, some of which even ascend vertically. A crowd of beings gathered in front of your airlock each flash a multitude of colors. A group of five floats in front of the crowd, and the middle one starts pulsating in calm tones.`
 			`	"Welcome [otherworldly being, standing one] we are the Incipias, welcome to [our home, our capital]."`
 			`	It stops as if awaiting an answer.`
 			choice
 				`	"Greetings, Incipias. I am a human."`
 				`	"I thank you for your hospitality."`
-			`	A movement goes through the crowd colors now going through them like waves.`
-			`	The speaker (or would you call him painter?) continues, "You are the first other being that ever [communicated, made friends]. Are you the only [danger, other being] out there?"`
+			`	Movement and colors go through the crowd like waves.`
+			`	The 'speaker' continues, "You are the first other being that ever [communicated, made friends]. Are you the only [danger, other being] out there?"`
 			choice
 				`	"No, there are others too."`
 				`	"The galaxy is full of other beings."`
 			`	Another wave goes through the crowd. "So there are more. But, stranger, how can we [help, befriend] you?"`
 			choice
-				`	(Tell them about the stranded and how you want to help them.)`
+				`	(Tell them about the stranded ship and how I want to help them.)`
 					goto stranded
 				`	"I want one of your ships."`
 			`	"[I, we] shall allow you to buy one. If that is all that it takes to make you a [friend, not danger]. If that is all please excuse us, we need to talk about what this new situation means for us, I hope we can [talk to, question] you more another time."`
@@ -270,10 +270,10 @@ mission "Incipias: Help the stranded Part 2"
 	on offer
 		conversation
 			`Your ship dives into the clouds of the gas giant, an environment on a scale you never experienced before. Giant clouds tower like castles, sometimes opening to giant caverns. Whirlwinds brush through the atmosphere like pillars holding the sky. Even though the winds are brutal your ship glides through them as if they had no effect at all.`
-			`	You activate your scanners looking for the stranded ship. Soon a small blip appears on your screen. You maneuver your ship to that point. The stranded ship looks even worse than the first time; the storms seem to have damaged some of the hull. The shields must have broken when they ran out of fuel.`
+			`	You activate your scanners looking for the stranded ship. Soon a small blip appears on your screen, and you maneuver your ship to that point. The stranded ship looks even worse than the first time; the storms seem to have damaged some of the hull, and the shields must have broke when they ran out of fuel.`
 			`	You receive no answer to your hail. Your scanners indicate that it ran out of energy.`
 			`	You carefully maneuver your ship closer, until you can dock with the Incipias ship.`
-			`	When the lock opens five Incipias float in front of you. Noticing your presence they quickly back off, they were clearly not expecting a human in one of their kind's ships. It takes a moment for them to recognize you.`
+			`	When the lock opens five Incipias float in front of you. Noticing your presence they quickly back off; they were clearly not expecting a human in one of their kind's ships. It takes a moment for them to recognize you.`
 			choice
 				`	"Hello, I have come to save you."`
 				`	"I have been sent by your people to get you home."`
@@ -285,7 +285,7 @@ mission "Incipias: Help the stranded Part 2"
 		conversation
 			`When you land on the station your passengers thank you again and leave, probably to get some well-earned rest.`
 			`	As you step out of the <ship> an Incipias approaches you. "Follow me [stranger, helper] before a crowd gathers, we would like to talk."`
-			`	It guides you through the hallways avoiding larger groups, only moving through horizontal corridors. You arrive in a large room with a view over the entire station. Three Incipias are already in the room. One starts glowing.`
+			`	They guide you through the hallways so that you avoid larger groups and move only through horizontal corridors. You arrive in a large room with a view over the entire station. Three Incipias are already in the room. One starts glowing.`
 			`	"Welcome. We are the leaders of the Hicemus, the [reigning, most powerful] government of the Incipias. If you agree we would like to ask you a few questions. In return we would be open for questions too."`
 			choice
 				`	"Sorry but I have other stuff to do."`
@@ -296,11 +296,11 @@ mission "Incipias: Help the stranded Part 2"
 				`	(Give them an exhausting story of what you have seen so far.)`
 					goto detail
 				`	(Give a rough overview of what you have seen.)`
-			`	After watching your explanation a quickfire of colors that your translator can not follow is exchanged between them, you mostly see yellow tones mixed with green and red.`
+			`	After watching your explanation a rapid-fire sequence of colors are exchanged between them. Your translator cannot follow, so you are left watching them flash in yellow tones mixed with green and red.`
 			`	"Thank you for this insight. All we [knew, gathered] until now was by observing stars. To think that there is so much out there, it truly invokes determination to explore.`
 				goto yours
 			label detail
-			`	After watching your story a quickfire of colors that your translator can not follow is exchanged between them, you mostly see yellow tones mixed with green.`
+			`	After watching your explanation a rapid-fire sequence of colors are exchanged between them. Your translator cannot follow, so you are left watching them flash in yellow tones mixed with green.`
 			`	"Thank you for this exhaustive insight. All we [knew, gathered] until now was by observing stars close to us. To think that there is so much out there, it truly invokes determination to explore.`
 			label yours
 			`	"But now to you, is there anything you would like to know?"`
