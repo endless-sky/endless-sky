@@ -170,15 +170,6 @@ namespace {
 			}
 		}
 
-		// This can happen when the player only has a flagship or when
-		// all selected escorts are disabled.
-		if(targetShips.empty())
-		{
-			if(fullFleet)
-				Messages::Add("No ships in the fleet to change formation for.", Messages::Importance::High);
-			else
-				Messages::Add("No ships selected that can change formation.", Messages::Importance::High);
-		}
 		return targetShips;
 	}
 
