@@ -1154,7 +1154,8 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 		{
 			bool failed = false;
 			string message = "Your ship \"" + event.Target()->Name() + "\" has been ";
-			if (event.Type() & ShipEvent::DESTROY) {
+			if(event.Type() & ShipEvent::DESTROY)
+			{
 				// Destroyed ships carrying mission cargo result in failed missions.
 				// Mission cargo may have a quantity of zero (i.e. 0 mass).
 				for (const auto &it: event.Target()->Cargo().MissionCargo())
