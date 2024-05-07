@@ -366,7 +366,7 @@ Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigne
 	if(positions > 1)
 		positionPx /= positions - 1;
 
-	// Calculate position of the current position.
+	// Calculate position in the formation based on the position in the line.
 	return startPx + positionPx * linePosition;
 }
 
