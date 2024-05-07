@@ -95,19 +95,19 @@ mission "Incipias: Meet the Quarg"
 			label "spec inci"
 			`	You only wait for a few minutes before three Quarg appear on the landing pad. The one in the middle is wearing clothing that makes clear that it is a military official. The two in the back are wearing full combat gear but do not seem to expect a fight. The one in the middle starts talking in a very strange accent.`
 			label "both planets"
-			`	"Welcome human, long ways came you. Kind of yours never here have been, your mission?"`
+			`	"Welcome human you came long ways. Your Kind never have been here, your mission?"`
 			choice
 				`	"I am just exploring the galaxy."`
 					goto "explorer"
 				`	"I am looking for new species."`
 					goto "new species"
 			label "explorer"
-			`	"An obvious pursuit for the young that is," it nods, "if advice you I may, to not walk this way in a careless manner. The galaxy holds many dangers that your kind has yet to discover or even to understand." It straightens up to its full height, towering over you, "but in the end worth the trouble it will be."`
+			`	"It is an obvious pursuit for the young," it nods, "if I may advice you, do not walk this way in a careless manner. The galaxy holds many dangers that your kind has yet to discover or even to understand." It straightens up to its full height, towering over you, "but in the end it will be worth the trouble."`
 				goto "end"
 			label "new species"
-			`	"What a peculiar task that is." It looks confused and tilts its head. "What to achieve by this you hope? That an incredible amount of dangers come with meeting other species you not know? For a reason invisible borders in space there are. To be careful and consider every last step I advise."`
+			`	"What a peculiar task that is." It looks confused and tilts its head. "What do you hope to achieve by this? That an incredible amount of dangers come with meeting other species, did you not know? There are invisible borders in space for a reason. I advise to be careful and consider every last step."`
 			label "end"
-			`	After a short pause it continues talking, "Your presence here our kind accepts, although not very happy we are. Allowed to travel here you are, but conditions there are. Not too far from here another kind just starts growing, great plans for them our leaders have. Do not interrupt them, hostile actions against them we will revenge."`
+			`	After a short pause it continues talking, "Our kind accepts your presence here, although we are not very happy. You are allowed to travel here, but there are conditions. Not too far from here another kind just starts growing, our leaders have great plans for them. Do not interrupt them, we will revenge hostile actions against them."`
 			`	With these words the Quarg turns around and leaves. It seems like you are free to use the local facilities now.`
 
 # Maybe add a version of the ships sprite that looks damaged/modded.
@@ -174,7 +174,7 @@ mission "Incipias: Help the stranded Part 1"
 	on offer
 		conversation
 			`Right after you arrived on the planet you go looking for a Quarg official to tell about the stranded ship. Luckily it does not take long before you find one.`
-			`	"Human, in quite a haste you seem to be. What the so pressing matter could be?" it asks.`
+			`	"Human, you seem to be in quite a haste. What could be the so pressing matter?" it asks.`
 			choice
 				`	(Explain the situation.)`
 					goto explanation
@@ -182,12 +182,12 @@ mission "Incipias: Help the stranded Part 1"
 			`	It looks at you curiously, "So you met them? I am surprised that you were able to communicate. It took a very long time even for us to decipher their way of communication."`
 			`	You quickly explain what happened. The Quarg seems very relieved about the fact that you were not able to talk to them.`
 			label explanation
-			`	"A most peculiar situation you ran into, should not be able to cross the borders of their system yet this species..." It tilts it head for a moment considering what you just said. "To help them I would love, but no ships we have that on gas giants can land and too early it is for us to reveal ourselves to them, I fear nothing there is we can do." It shakes its head.`
+			`	"You ran into a most peculiar situation, this species should not be able to cross the borders of their system yet..." It tilts it head for a moment considering what you just said. "I would love to help them, but we have no ships that can land on gas giants and it is too early for us to reveal ourselves to them, I fear there is nothing we can do." It shakes its head.`
 			choice
 				`	"Then let me help them."`
 					goto initiative
 				`	"How can you make such a cold-hearted decision?"`
-			`	"This difficult for you to understand might be, but the greater good over the sole life I have to place. If ourselves show to them now by the shock of such and advanced species existing will be created chaos."`
+			`	"This might be difficult for you to understand, but I have to place the greater good over the sole life. If we show ourselves to them now by the shock of such and advanced species existing chaos will be created."`
 			choice
 				`	"Then let me help them."`
 					goto initiative
@@ -313,7 +313,7 @@ mission "Incipias: Help the stranded Part 2"
 			`	A flash of red appears for only a second, "Our origin-world is not directly ruled by us. They may approach you separately at some point in the future, be careful of their lights. They have outdated values long laid off by us, who are progressing fast.`
 				goto choice
 			label capital
-			`	The one pulsating now takes on a bright green color, "This station is our greatest achievement, our [gateway, bridge] to the stars. In honor of our urge to expand we made this station our capital to demonstrate our determination."`
+			`	The one pulsating now takes on a bright green color, "This station is our greatest achievement, our star-bridge. In honor of our urge to expand we made this station our capital to demonstrate our determination."`
 				goto choice
 			label end
 			`	"Thank you again for your time, you gave us a lot to process. We hope you too had a benefit from this."`
