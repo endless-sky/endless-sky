@@ -33,8 +33,7 @@ class DataNode;
 class FormationPattern {
 public:
 	// Iterator that provides sequential access to all formation positions.
-	class PositionIterator
-	{
+	class PositionIterator {
 	public:
 		explicit PositionIterator(const FormationPattern &pattern,
 			double diameterToPx, double widthToPx, double heightToPx,
@@ -127,7 +126,7 @@ private:
 	// based on the size of participants in the formation.)
 	class MultiAxisPoint {
 	public:
-		// Coordinate axises for formations; in pixels (default) and heights, widths and diameters
+		// Coordinate axes for formations; in pixels (default) and heights, widths and diameters
 		// of ships.
 		enum Axis { PIXELS, DIAMETERS, WIDTHS, HEIGHTS };
 
@@ -145,7 +144,7 @@ private:
 
 
 	private:
-		// Position based on the possible axises.
+		// Position based on the possible axes.
 		Point position[4];
 	};
 
@@ -187,7 +186,6 @@ private:
 	};
 
 
-
 private:
 	// Name of the formation pattern.
 	std::string name;
@@ -206,6 +204,7 @@ private:
 	// The lines that define the formation.
 	std::vector<Line> lines;
 };
+
 
 
 #endif

@@ -175,7 +175,7 @@ void FormationPositioner::CalculateDirection()
 	// Calculate new direction, if the formationLead is moving, then we use the movement vector.
 	// Otherwise we use the facing vector.
 	Point velocity = formationLead->Velocity();
-	Angle desiredDir = velocity.Length() > 0.1 ? Angle(velocity) : formationLead->Facing();
+	Angle desiredDir = velocity.Length() > .1 ? Angle(velocity) : formationLead->Facing();
 
 	Angle deltaDir = desiredDir - direction;
 
@@ -217,7 +217,7 @@ void FormationPositioner::CalculateDirection()
 	{
 		// Turn max 1/4th degree per frame. The game runs at 60fps, so a turn of 180 degrees will take
 		// about 12 seconds.
-		constexpr double MAX_FORMATION_TURN = 0.25;
+		constexpr double MAX_FORMATION_TURN = .25;
 
 		if(deltaDir.Degrees() > MAX_FORMATION_TURN)
 			deltaDir = Angle(MAX_FORMATION_TURN);
@@ -250,7 +250,7 @@ bool FormationPositioner::IsActiveInFormation(const Ship *ship) const
 	// the child/parent relationship.
 	auto targetShip = ship->GetTargetShip();
 	auto parentShip = ship->GetParent();
-	if((!targetShip || &(*targetShip) != formationLead) &&
+	if((!targetShip || targetShip.get() != formationLead) &&
 			(!parentShip || parentShip.get() != formationLead))
 		return false;
 
@@ -270,7 +270,7 @@ void FormationPositioner::Remove(unsigned int index)
 	// Move the last element to the current position and remove the last
 	// element; this will let last ship take the position of the ship that
 	// we will remove.
-	if(index < (shipsInFormation.size() - 1))
+	if(index < shipsInFormation.size() - 1)
 		shipsInFormation[index].swap(shipsInFormation.back());
 	shipsInFormation.pop_back();
 }

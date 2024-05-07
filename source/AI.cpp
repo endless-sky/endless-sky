@@ -146,7 +146,7 @@ namespace {
 	// Helper function for selecting the ships for formation commands.
 	vector<Ship *> GetShipsForFormationCommand(const PlayerInfo &player)
 	{
-		// Figure out what ships we are giving orders to
+		// Figure out what ships we are giving orders to.
 		vector<Ship *> targetShips;
 		auto &selectedShips = player.SelectedShips();
 		bool fullFleet = selectedShips.empty();
@@ -406,11 +406,12 @@ void AI::IssueFormationChange(const PlayerInfo &player)
 	for(Ship *ship : targetShips)
 		ship->SetFormationPattern(toSet);
 
+	unsigned int count = targetShips.size();
 	if(toSet)
-		Messages::Add(to_string(targetShips.size()) + " ships are now flying in " + toSet->Name() + " formation.",
+		Messages::Add(to_string(count) + (count == 1 ? " ship" : " ships") + " are now flying in \"" + toSet->Name() + "\" formation.",
 			Messages::Importance::Low);
 	else
-		Messages::Add(to_string(targetShips.size()) + " ships are no longer flying in formation.",
+		Messages::Add(to_string(count) + (count == 1 ? " ship" : " ships") + " are no longer flying in formation.",
 			Messages::Importance::Low);
 }
 
@@ -1745,9 +1746,9 @@ void AI::MoveInFormation(Ship &ship, Command &command)
 	auto it = insert.first;
 
 	// Aggressively try to match the position and velocity for the formation position.
-	const double PositionDeadband = ship.Radius() * 1.25;
+	const double positionDeadband = ship.Radius() * 1.25;
 	constexpr double VELOCITY_DEADBAND = 0.1;
-	bool inPosition = MoveTo(ship, command, it->second.Position(&ship), formationLead->Velocity(), PositionDeadband,
+	bool inPosition = MoveTo(ship, command, it->second.Position(&ship), formationLead->Velocity(), positionDeadband,
 		VELOCITY_DEADBAND);
 
 	// If we match the position and velocity, then also match the facing angle.

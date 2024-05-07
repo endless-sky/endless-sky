@@ -110,7 +110,7 @@ void Fleet::Load(const DataNode &node)
 			cargo.LoadSingle(child);
 		else if(key == "personality")
 			personality.Load(child);
-		else if(key == "formation" && child.Size() >= 2)
+		else if(key == "formation" && hasValue)
 			formation = GameData::Formations().Get(child.Token(1));
 		else if(key == "variant" && !remove)
 		{

@@ -17,13 +17,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define FORMATION_POSITIONER_H_
 
 #include "Angle.h"
-#include "Body.h"
-#include "FormationPattern.h"
 
 #include <map>
 #include <memory>
 #include <vector>
 
+class Body;
+class FormationPattern;
 class Ship;
 
 
