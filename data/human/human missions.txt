@@ -7709,7 +7709,6 @@ mission "Tavish and Kormak 5"
 	on visit
 		dialog `You land on <planet>, but realize that Kormak and Tavish and their equipment are on one of your escorts who hasn't entered the system yet. Better depart and wait for them.`
 	on complete
-		event "Tavish and Kormak Expedition" 60
 		conversation 
 			`	You arrive in the dusty, rowdy frontier spaceport where it all began. Tavish lets you know that he and Kormak are going to purchase some supplies from a local outfitter and asked you to meet him in the spaceport later.`
 
@@ -7738,6 +7737,7 @@ mission "Tavish and Kormak 6"
 				launch
 
 	on complete
+		event "Tavish and Kormak Expedition" 60
 		conversation
 			`The remote continent of Ashoka races up to meet you as your ship descends over the thick jungle canopy. The location for the coordinates Tavish gave you is densely forested, but you spot a relatively flat stony outcrop about a dozen miles from the site. You land your ship upon the stone.`
 			`	Tavish and Kormak's research equipment was much more extensive than they had initially let on. There are nearly a dozen robotic dollies, and a handful of mobile robotic drills and shovels. Along with a handful of computers, chemical sensors, and power generators.`
@@ -7875,9 +7875,6 @@ mission "Tavish and Kormak 6"
 			`	Tavish nods, "In that case we quite a bit of work to do, Captain. Take care."`
 			`	He working on prepping the dig site, while Kormak escorts you back to your ship.`
 			`	Kormak takes your hand in his, "May stone guide you." he says, and then disappears back into the jungle.`
-			
-
-
 
 	on visit
 		dialog `You land on <planet>, but realize that Kormak and Tavish and their equipment are on one of your escorts who hasn't entered the system yet. Better depart and wait for them.`
@@ -7890,32 +7887,75 @@ mission "Tavish and Kormak 7"
 	to offer
 		has "event: Tavish and Kormak Expedition"
 	source "New India"
-	destination "Wayfarer"
-		
+	destination "Alexandria"
+	passengers 2
+	cargo "Scientific Research Equipment" 25
+	on offer
+		conversation
+			`	As you enter New India's atmosphere you pick up a faint signal from the Ashoka continent. It's a transport request from Tavish and Kormak.`
+			choice
+				`	(Land on Ashoka and pick up Travis and Kormak.)`
+					goto Ashoka
+				`	(Ignore the signal.)`
+			`	You ignore the signal and land in the regular New India Spaceport.`
+				defer
+
+			label Ashoka
+			`	Tavish and Kormak are waiting with all their equipment near the stony outcrop where you landed before. They seem more than a little relieved to see you.`
+			`	"Knew we could count on you." Tavish happily says as he oversees the loading up of the equipment.`
+			`	"Honorable." Kormak adds.`
+			`	Tavis gives you a serious look, "Captain <last>, old chap, we need you to take us to the esteemed headquarters of the Society of Gentlemanly Exploration on the Alexandria station in the Deep. Will you do us this last favor?"`
+			`	"We have no money." Kormak helpfully adds.`
+			choice
+				`	"Of course! To Alexandria we go!"`
+					goto yep
+				`	"Fine! But you owe me."`
+					goto yep
+				`	"No. I am done giving out free rides."`
+			`	With surprised, crestfallen faces, the two explorers just stare at you. They are both at a loss for words as they watch you abandon them to their fates on the dark side of New India.`
+				decline
+			
+			label yep
+			`	The two explorers give eachother a knowing nod. Clearly pleased they could depend on you, and then begin the process of loading up your ship.`
+			`	Along with their weathered equipment they have a few boxes of artifacts they managed to pull from the ship.`
+			`	"Can't wait for the Society to see what we found!" Tavish beams.`
+			`	Finally, there is a huge piece of ancient equipment that must weigh many tons being carried by most of the robotic dollies onto your ship.`
+			`	Tavish grins as he watches it get loaded. "The main ship itself was bricked. Old and mostly destroyed before it even hit the planet. But that piece broke off and was in slightly better shape. It's a little too big to show off to our fellows, but I do believe it will be worth a fair bit of credits to right buyer. But we can talk about that more when we arrive."`
+			`	With that everything and everyone is on board.`
+			`	"To Alexandria!" Tavish shouts with obvious excitement.`
+				accept
+	on visit
+		dialog `You land on <planet>, but realize that Kormak and Tavish and their equipment are on one of your escorts who hasn't entered the system yet. Better depart and wait for them.`
+	on complete
+		action
+			outfit "Salvaged Artifact" 1 #needs a name
+		conversation
+			`	Kormak and Tavish have changed back into their three piece suits and eagerly oversee the unloading of their instruments and artifacts into Alexandria. A handful of people dressed in a similar fashion come to watch the process. A few of them are eager to congratulate Tavish and Kormak.`
+			`	Tavish does not unload the large piece of alien equipment off your ship, and instead comes to speak with you.`
+			`	"This is where we part ways, Captain <last>." Tavish says with a hint of sadness. "It was truly an adventure. Perhaps some day we will meet again."`
+			`	Tavish's sniffs, "Apololgies. Allergies. Anyways, old chap, I just wanted you to know that Kormak and I, we pay our debts. And though we have no money to offer you we are instead bequeathing to you the salvaged equipment we found. We scanned it pretty thoroughly and we don't believe it as additional scientific value, but we believe a collector would pay well for it. Quite well."`
+			`	He hands you a piece of paper with a name on it, "We've had dealings with this fellow from time to time. He calls himself Weland and I am certain he'd be willing to buy it. You can find him on Wayfarer."`
+			choice
+				`	"Thanks, Tavish. It's been grand."`
+				`	"This better be worth it."`
+			`	A Tear edges it way down Tavish's nose. "Thanks again, Captain. And farewell."`
+			`	Tavish turns and leaves you to rejoin Kormak and the gawking members of the Society of Gentlemanly Exploration.`
 
 
 
 
 
-		
-
-
-
-
-
-mission "Large Bone 3a"
+mission "Weland"
 	invisible
 	source "Wayfarer"
 	to offer
-		random < 35
-		not "Sheragi Archaeology: Epilogue: done"
 	on offer
-		require "Ancient Alien Artifact"
+		require "Salvaged Artifact"
 		conversation
 			`	It can be difficult to find your way in the labyrinthian spaceport of Wayfarer with its curved walls and alien flourishes. Around every round corner is another rounder corner.`
 			`	Eventually, you find yourself in a bazaar. There are various exotic, mostly alien, items for sale from a plethora of small and shady storefronts.`
 			`	A blinking neon sign, attached to a shabby shop, catches your attention; "Weland's Xeno-Smithery: Lost Alien Artifacts! Reverse Engineered Technology! And other oddities!"`
-			`	Perhaps they could help you with the Ancient Alien Artifact you found.`
+			`	Hopefully they could help you with the Salvaged Artifact Tavish and Kormak gave you.`
 			choice
 				`	(Enter the store.)`
 					goto enterstore
@@ -7925,25 +7965,25 @@ mission "Large Bone 3a"
 			label enterstore
 			`	The dingy run-down shop is filled with clutter, piles of unrecognizable technology, and miles of tangled cords.`
 			`	"Don't mind the mess." A gravelly voice interjects from somewhere deeper in the store.`
-			`	A few moments later, a well-built, graying man, painfully, hobbles into the front. "Name's Weland, what can I do you for?"`
+			`	A few moments later, a well-built, graying man, painfully hobbles into the front. "Name's Weland, what can I do you for?"`
 			choice
-				`	(Tell him about the Ancient Alien Artifact you found.)`
+				`	(Tell him about the Salvaged Artifact.)`
 					goto AA
 				`	(Ask him what he does.)`
 			`	"Bit of this, bit of that." Weland shrugs. "Gotta knack for figurin' things out, and the people, well, they bring me things they need some figurin' on. Sometimes I get'em workin'. Sometimes I buy 'em. Sometimes I even make somethin' new.`
 			`	"So, you need me to figure somethin' out? Or you lookin' to buy? I've got cords, lots of cords, cheap even. Colonial era cords, alien cords, cords from the Deep, cords that only work on two Paradise worlds. I even got a cord that'll charge up a thousand year old cell-phone. I mean, I have other stuff too, probably better, but I really need to unload some of these cords.`
 			choice
-				`	(Tell him about the Ancient Alien Artifact you found.)`
+				`	(Tell him about the Salvaged Artifact.)`
 					goto AA
 				`	(Ask him about Weapons.)`
 			`	Weland's face turns to stone, and his eyes glare hard at you. "No weapons."`
 			`	He limps a little closer to you. "Not anymore, at least. If you heard different, you heard wrong. Weland does not do weapons."`
-			`	"Now," he says leaning back, "There anything else I can help you with? Perhaps a cord? Everyone needs a cord.`
+			`	"Now," he says leaning back, "There anything else I can help you with? Perhaps a cord? Everyone needs a cord".`
 			choice
-				`	(Tell him about the Ancient Alien Artifact you found.)`
+				`	(Tell him about the Salvaged Artifact.)`
 			label AA
-			`	Weland nods slowly as he listens to you recount your finding.`
-			`	"Well, isn't that somethin'. Sounds like you found dragon tech. That's a rare sight, alright."`
+			`	Weland nods slowly as he listens to you recount the Tavish and Kormak's expedition.`
+			`	"Well, isn't that somethin'. Knew those boys would make it big one of these days. Sounds like they found dragon tech. That's a rare sight, alright."`
 			`	Weland strokes his beard for a moment, and then says, "Listen here. Maybe I can help. I'll need to take a look at it. Stories are great and all, but I gotta put eyeball to metal to know if what you're talking about is wortha damn, and then even if it is valuable and if there is anything I can do about it."`
 			choice
 				`	(Agree to leave the artifact with Weland.)`
@@ -7967,35 +8007,22 @@ mission "Large Bone 3a"
 
 event "welandwait1"
 
-mission "Large Bone 3b"
-	invisible
-	to offer
-		random < 10
-		has "Sheragi Archaeology: Epilogue: done"
-	on offer
-		require "Ancient Alien Artifact"
-		event "welandstone" 99
-		outfit "Ancient Alien Artifact" -1
-		outfit "Electronic Warfare System" 1
-		conversation
-			`	You notice something familiar about the Ancient Alien Artifact, and study it during your trip. Eventually, you recognize it as a Sheragi Electronic Warfare System, remarkably similar to the one you found on the Emerald Sword.`
-			decline
 
-mission "Large Bone 4"
+mission "Weland 2"
 	source "Wayfarer"
 	landing
 	to offer
 		has "event: welandwait1"
 	on offer
 		conversation
-			`	Weland should be done with his preliminary study of your artifact by now, you head back to the bazaar to check on him.`
+			`	Weland should be done with his preliminary study of your artifact by now. You head back to the bazaar to check on him.`
 			`	The door to his seedy-looking store is unlocked, but there is no one among the piles of cords, dust, and junk. The place is empty.`
 			`	You search his cramped shop for clues, and behind a sagging dusty bookshelf you find a passage that leads into an adjacent building.`
 			`	The building, which on the outside looks like an abandoned warehouse, is in fact a sprawling laboratory.`
 			`	Exotic technology and strange artifacts fill the room and at its center is Weland, leaning over a sophisticated workbench.`
-			`	"Well, look what the cat dragged in. 'Bout time you showed up." Weland flicks his red-tinted goggles off his head and, slowly, stands.`
-			`	Weland nods toward a mass of technology, that you realize is incasing your artifact, and he limps over to it. As he's walking you notice thick surgically connected chains dragging behind his feet.`
-			`	The graying man pats your artifact, "Best kept Dragon tech I've ever seen. Usually folks, well, they bring me the ruined guts of half a Dragon toaster they dug up in their back yard. But, this, well, this is the real McCoy, alright.`
+			`	"Well, look what the cat dragged in. 'Bout time you showed up." Weland flicks his red-tinted goggles off his head and slowly stands.`
+			`	Weland nods toward a mass of technology, that you realize is incasing your artifact, and limps over to it. As he's walking you notice thick surgically connected chains dragging behind his feet.`
+			`	The graying man pats your artifact, "She's seen better days, but beneath the dented casing and corroded cords enough of her was still intact to save. I dare say she's some of the best Dragon tech I've ever seen. Usually folks, well, they bring me the ruined guts of half a Dragon toaster they dug up in their backyard. But, this, well, this is the real McCoy, alright.`
 			label questions
 			choice
 				`	"What next?"`
@@ -8016,7 +8043,7 @@ mission "Large Bone 4"
 			`	He gives you a pained smile. "I know what you're thinking. Be a hero, help the old man, some such nonsense. This isn't that story, and you aren't that person. So, let it rest. These are my chains, and this my problem, and one way, or another, I'll deal with it. So, is your curiosity sated? Can we return to the matter at hand?"`
 				goto questions
 			label dragon
-			`	"Yep, Dragons. Well, not the kind from Earth stories, or, at least, Earth, probably. We find 'em in the Rim, the South, the Dust Belt, bits and pieces of them, that is. Reckon they must have lived here more than a hundred thousand years ago. Most their tech is in ruins, broken, delipidated, hard to piece much of it together. Suffice to say, they were big brutes, they had space ships, and they've been dead for a helluva long time."`
+			`	"Yep, Dragons. Well, not the kind from Earth stories, or, at least, Earth, probably. We find 'em in the Rim, the South, the Dust Belt, bits and pieces of them, that is. Reckon they must have lived here more than a hundred thousand years ago. Most their tech is in ruins, broken, delipidated, hard to piece much of it together. Suffice to say, they were big brutes, they had big space ships, and they've been dead for a helluva long time."`
 			`	He looks over at your artifact, "And you, well, you found somethin' of theirs."`
 				goto questions
 			label next
@@ -8034,9 +8061,9 @@ mission "Large Bone 4"
 				`	(Refuse his terms.)`
 			`	"Well, can't say as I am not disappointed to hear you say that. But, it is your decision. I'll have the artifact moved back to your ship. Now, before you go, let me tell you about a few real nice cords I got for sale."`
 			action
-				outfit "Ancient Alien Artifact" 1
+				outfit "Salvaged Artifact" 1
 			`	Weland then launches into sales pitch on the utility of many of his useless cords. You politely nod, and edge toward the door, before promising him you'll come to him first should ever need a cord, and promptly leave.`
-			`	Weland, is a man of his word, and your Ancient Alien Artifact is returned to your ship.`
+			`	Weland, is a man of his word, and your Salvaged Artifact is returned to your ship.`
 				decline
 			label agree
 			action
@@ -8046,7 +8073,7 @@ mission "Large Bone 4"
 
 event "welandwait2" 183
 
-mission "Large Bone 5"
+mission "Weland 3"
 	name "Return to Weland on Wayfarer"
 	description "Weland's done working on your artifact, and has requested you return to Wayfarer and meet him."
 	source 
@@ -8072,7 +8099,7 @@ mission "Large Bone 5"
 		conversation
 			`	You find Weland inside his makeshift laboratory. Your artifact, covered in cords and various machinery, is no longer dull and inert, but whirred to life.`
 			`	"Take a moment. It's a rare sight, alright. Watchin' somethin's been dormant for longer than mankind's had words spur to life before ya, why, it's enough to give a man religion, or something near abouts." Weland pats you on the back.`
-			`	"Now, what we have here is an Electronic Warfare System, it's a radar jammer. From what I can tell, despite it's age, a pretty effective one too."`
+			`	"Now, what we have here is an Electronic Warfare System, it's an afterburner. From what I can tell, despite it's age, a pretty effective one too."`
 			`	Weland taps a datapad on his workbench. "And in here is everything you need to install it on your ship."`
 			`	"So, all of this will run you 6 million credits, as we discussed. But, I have another offer for you. Somethin' like this, well as I've said, it's damned rare. I'd be willing to offer you 40 million credits for it. With enough time, I imagine I could reverse engineer some of it. As it is now, while I gained a few insights working on it, the best I can do is turn it on and make it run. Whatd'ya say?"`
 			choice
@@ -8094,31 +8121,31 @@ mission "Large Bone 5"
 
 event "welandstone"
 
-#mission "Large Bone 5b"
-#	name "Return to Weland on Wayfarer"
-#	description "Weland's done working on your artifact, and has requested return to Wayfarer and meet him."
-#	source 
-#		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-#	destination "Wayfarer"
-#	to offer
-#		has "event: welandwait2"
-#		not "Large Bone 5: offered"
-#		not "Large Bone 5c: offered"
-#		not "Large Bone 5d: offered"
-#	on offer
-#		require "Blood of Surtr" 
-#		require "Tear of Skade" 0
-#		dialog
-#			`	Your inbox blinks with a new message from Weland on Wayfarer.`
-#			`	<name>, this is Weland. Just letting you know your artifact is ready.`
-#			`	Come pick it up, and pay for it, at your earliest convenience.`
-#			`				-Xeno-Smith`
-#			`					Weland`	
-#			`	P.S. Make sure you have 5 tons of outfit space!`		
-#	on complete
-#		conversation
-#			`	You find Weland inside his makeshift laboratory. Your artifact, covered in cords and various machinery, is no longer dull and inert, but whirred to life.`
-#			`	"Take a moment. It's a rare sight, alright. Watchin' somethin's been dormant for longer than mankind's had words spur to life before ya, why, it's enough to give a man religion, or something near abouts." Weland pats you on the back.`
+mission "Large Bone 5b"
+	name "Return to Weland on Wayfarer"
+	description "Weland's done working on your artifact, and has requested return to Wayfarer and meet him."
+	source 
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination "Wayfarer"
+	to offer
+		has "event: welandwait2"
+		not "Large Bone 5: offered"
+		not "Large Bone 5c: offered"
+		not "Large Bone 5d: offered"
+	on offer
+		require "Blood of Surtr" 
+		require "Tear of Skade" 0
+		dialog
+			`	Your inbox blinks with a new message from Weland on Wayfarer.`
+			`	<name>, this is Weland. Just letting you know your artifact is ready.`
+			`	Come pick it up, and pay for it, at your earliest convenience.`
+			`				-Xeno-Smith`
+			`					Weland`	
+			`	P.S. Make sure you have 5 tons of outfit space!`		
+	on complete
+		conversation
+			`	You find Weland inside his makeshift laboratory. Your artifact, covered in cords and various machinery, is no longer dull and inert, but whirred to life.`
+			`	"Take a moment. It's a rare sight, alright. Watchin' somethin's been dormant for longer than mankind's had words spur to life before ya, why, it's enough to give a man religion, or something near abouts." Weland pats you on the back.`
 #			`	"Now, what we have here is an Electronic Warfare System, it's a radar jammer. From what I can tell, despite it's age, a pretty effective one too."`
 #			`	Weland taps a datapad on his workbench. "And in here is everything you need to install it on your ship."`
 #			`	"So, all of this will run you 6 million credits, as we discussed. But, I have another offer for you. Somethin' like this, well as I've said, it's damned rare. I'd be willing to offer you 40 million credits for it. With enough time, I imagine I could reverse engineer some of it. As it is now, while I gained a few insights working on it, the best I can do is turn it on and make it run. Whatd'ya say?"`
