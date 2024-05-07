@@ -1163,38 +1163,43 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 				// If any mission passengers were present, this mission is failed.
 				for(const auto &it: event.Target()->Cargo().PassengerList())
 					failed |= (it.first == this && it.second);
-				if (failed)
+				if(failed)
 					message += "lost. ";
-			} else if (event.Type() & ShipEvent::BOARD) {
+			}
+			else if(event.Type() & ShipEvent::BOARD)
+			{
 				// Fail missions whose cargo is stolen by a boarding vessel.
-				for (const auto &it: event.Actor()->Cargo().MissionCargo())
+				for(const auto &it: event.Actor()->Cargo().MissionCargo())
 					failed |= (it.first == this);
-				if (failed)
+				if(failed)
 					message += "plundered. ";
 			}
 
-			if (failed) {
+			if(failed)
+			{
 				hasFailed = true;
 				if (isVisible)
 					Messages::Add(message + "Mission failed: \"" + displayName + "\".", Messages::Importance::Highest);
 			}
 		}
 
-		if ((event.Type() & ShipEvent::DISABLE) && event.Target().get() == player.Flagship())
+		if((event.Type() & ShipEvent::DISABLE) && event.Target() == player.FlagshipPtr())
 			Do(DISABLED, player, ui);
 
 		// Jump events are only created for the player's flagship.
-		if ((event.Type() & ShipEvent::JUMP) && event.Actor()) {
+		if((event.Type() & ShipEvent::JUMP) && event.Actor())
+		{
 			const System *system = event.Actor()->GetSystem();
 			// If this was a waypoint, clear it.
-			if (waypoints.erase(system)) {
+			if(waypoints.erase(system))
+			{
 				visitedWaypoints.insert(system);
 				Do(WAYPOINT, player, ui);
 			}
 
 			// Perform an "on enter" action for this system, if possible, and if
 			// any was performed, update this mission's NPC spawn states.
-			if (Enter(system, player, ui))
+			if(Enter(system, player, ui))
 				UpdateNPCs(player);
 		}
 
