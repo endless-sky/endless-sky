@@ -203,6 +203,7 @@ void FormationPattern::SetName(const std::string &name)
 }
 
 
+
 // Get an iterator to iterate over the formation positions in this pattern.
 FormationPattern::PositionIterator FormationPattern::begin(
 	double diameterToPx, double widthToPx, double heightToPx,
@@ -337,7 +338,7 @@ Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigne
 			endAngle /= positions - 1;
 		double positionAngle = startAngle + endAngle * linePosition;
 
-		// Get into the range of 0 to 360 for conversion to angle)
+		// Get into the range of 0 to 360 for conversion to angle.
 		if(positionAngle < 0)
 			positionAngle = -fmod(-positionAngle, 360) + 360;
 		else
@@ -391,7 +392,7 @@ bool FormationPattern::FlippableX() const
 }
 
 
-void FormationPattern::MultiAxisPoint::Add(Axis axis, const Point& toAdd)
+void FormationPattern::MultiAxisPoint::Add(Axis axis, const Point &toAdd)
 {
 	position[axis] += toAdd;
 }
