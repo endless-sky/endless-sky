@@ -7690,6 +7690,8 @@ mission "Tavish and Kormak 5"
 					`	"We got what we came for. Let's go."`
 						goto timetogo
 					`	"This trash doesn't deserve to live. Kill him."`
+				action
+					event "killhullen" 36
 				`	Kormak doesn't even hesitate and stomps down on the back of the man's neck. Tavish's mouth opens in horror but nothing comes out.`
 				`	"Better without him." Kormak says gruffly, and then takes Tavish by the arm to help him toward the exit.`
 				`	The three of you leave together and head back to the spaceport. Once there you finally pick up the scientific research equipment for the New India expedition.`
@@ -7711,6 +7713,8 @@ mission "Tavish and Kormak 5"
 	on complete
 		conversation 
 			`	You arrive in the dusty, rowdy frontier spaceport where it all began. Tavish lets you know that he and Kormak are going to purchase some supplies from a local outfitter and asked you to meet him in the spaceport later.`
+
+event "killhullen"
 
 mission "Tavish and Kormak 6"
 	source "New India"
@@ -8731,3 +8735,25 @@ mission "Stone Harmonization 4surtr"
 			`	He gives you a patronizing smile. "Folks that did this to me. They've been doin' this kind of work for a while, and I, well, I am like the crown jewel of their collection. They have hooks into me, inside of me, all around me, that prevent me from leaving, at least alive. They like to give me the illusion of space, pretend they are.. gentile 'bout the whole thing. But make no mistake, I am not free, and I cannot go."`
 			`	His face briefly flashes with mirth, "For now, this is."`
 				goto questions
+
+
+mission "Killing Folks"
+	source "Chiron"
+	to offer
+		has "event: killhullen"
+		random < 50
+	on offer
+		conversation
+			`	As you wander through the spaceport you notice someone is following you.`
+			choice
+				`	(Confront them.)`
+					goto confront
+				`	(Try to lose them.)`
+			`	You bob and weave through crowds, go up and down stairs, and finally duck into a vintage electronic shop. You notice they are selling an ancient lime green computer called an iMac. The clerk see you looking at it and explains to you it just has one working application, a game called Escape Velocity Nova. By now it's clear you've lost your tail. So you thank the clerk and return to the spaceport.`
+				decline
+			label confront
+			`	You turn to confront your pursuers. They quickly catch up to you. It's two men led by a tall hard faced gray hard woman.`
+			`	"Captain <last>, I'm detective Song of the Oxford-Harvard Campus police and I'd like a moment of your time to discuss a recent incident on campus."`
+			`	She fishes through her pocket and pulls out a picture of Dr. Hullen-Freeze, "Do recognize this man?"`
+			
+			
