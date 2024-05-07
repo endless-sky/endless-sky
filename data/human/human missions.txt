@@ -8737,7 +8737,7 @@ mission "Stone Harmonization 4surtr"
 				goto questions
 
 
-mission "Killing Folks"
+mission "Hullen-Freeze revenge"
 	source "Chiron"
 	to offer
 		has "event: killhullen"
@@ -8753,7 +8753,97 @@ mission "Killing Folks"
 				decline
 			label confront
 			`	You turn to confront your pursuers. They quickly catch up to you. It's two men led by a tall hard faced gray hard woman.`
-			`	"Captain <last>, I'm detective Song of the Oxford-Harvard Campus police and I'd like a moment of your time to discuss a recent incident on campus."`
-			`	She fishes through her pocket and pulls out a picture of Dr. Hullen-Freeze, "Do recognize this man?"`
+			`	"Captain <last>, I'm Detective Song of the Oxford-Harvard Campus police and I'd like a moment of your time to discuss a recent incident on campus. Would please follow me to a private room?"`
+			choice
+				`	"Sure, I've got nothing to hide."`
+					goto hide
+				`	"I demand a lawyer."`
+				`	"Sorry, I am really quite busy right now. Could we do this later?"`
+			`	She gives you a patronizing smile. "Absolutely. However, I really need you to answer a few questions."`
+			`	The two men with her each grab one of your arms. "Don't worry it'll quick and informal."`
+			`	They lead you to a small unadorned room in the spaceport. Dective Song and you enter it while the two men stand guard outside. There are two chairs in the room and Detective Song takes one and politely officers you the other.`
+				goto start
+			label hide
+			`	"Excellent. I promise to make this brief. Now please follow me." She leads you to a small unadorned room in the spaceport. Dective Song and you enter it while the two men stand guard outside. There are two chairs in the room and Detective Song takes one and politely officers you the other.`
+			label start
+			choice
+				`	(Take a Seat.)`
+				`	(Stand.)`			
+			`	She fishes through her pocket, pulls out a picture and hands to you "Do recognize this man?"`
+			`	It's Professor-Doctor Hullen-Freeze. He's stand in front of a some university wing named after him.`
+			choice
+				`	"Yes. I met with him sometime back."`
+					goto truth
+				`	"No. I've never seen him in my life."`
+				`	"I refuse to answer without my lawyer present."`
+			`	"Huh. That's so interesting, because we have footage of you entering the building he works in." She pulls out a small screen that shows you, Tavish and Kormak walking into a building.`
+			`	"Are you sure you didn't see him inside? Perhaps you just passed him in the hall?" She looks at you with a open concerned expression.`
+			choice
+				`	"Oh, that Dr. Hullen-Freeze. Yes I did meet with him."`
+					goto truth
+				`	"I enter lots of buildings. Doesn't meant I talk to everyone in them."`
+				`	"I refuse to answer without my lawyer present."`
+			`	"Maybe you ran into his executive secrety? A Ms. Starla Stearn?" She looks at you hopefully.`
+			choice
+				`	"Okay. Yes I did meet her, and I did see Dr. Hullen-Freeze."`
+					goto truth
+				`	"Hmm, no. Doesn't ring a bell. Sorry I can't be more help."`
+				`	"I refuse to answer without my lawer present."`
+			`	"You see the reason I ask is she has submitted a signed affidavit saying she met with you, two other men, and that you forced your way past her into Dr. Hullen-Freeze's office." She guves you a helpless expression, "Come on now, Captain <last>, I can't help you if you don't help yourself."`
+			choice
+				`	"Okay, okay. Yes I met her and him, but I didn't force my way anywhere. She lead me to his office."`
+					goto truth
+				`	"Sorry. She must have me confused for someone else. I just was in that building to use the restroom."`
+				`	"I refuse to answer without my lawer present."`
+			`	Detective Song rubs the bridge of her nose and sighs. "Fine. You can go. I am afraid you have not been terribly helpful. If you can think of anything that may help our investigation please let us know." She knocks on the door and one of the men opens it.`
+			`	"We're done here." She tells him, and they let you back out in the spaceport.`
+				decline
 			
+			label truth
+			`	"Ah, excellent. I really appreciate the cooperation. Could you tell me exactly what happened when you met with Ms. Starla and Dr. Hullen-Freeze?"`
+			choice
+				`	"Starla led us to his office where we briefly spoke and then left. Dr. Tavish was an old student of his and wanted to visit him."`
+					goto liebaby
+				`	"I thought I was escorting a former student of his to his office, but then Tavish and Kormak went crazy and Kormak killed him. They said they'd come after me next if I said anything."`
+			`	Her notebook is out in a flash. "That's Doctor Julian Tavish, and I don't really have any records on this Kormak individual, what was his full name?"`
+			choice
+				`	"Gluniairn mac Kormakr, he's from the Deep. But I am not sure where exactly."`
+				`	Tavish just called him Kormak. I don't know anything else about him."`
+			`	"And who actually carried out the murder?" She's furiously taking notes.`
+			choice
+				`	"Tavish ordered Kormak to do it."`
+				`	"Tavish did it."`
+			` 	"Perfect." she says, "Perfect." She closes her notebook.`
+			`	"Julian Tavish is a known element here. He's thief and a conman who we've locked up more than a few times. Some years back Hullen-Freeze gave him a shot. Let him work for him. In the end Julian couldn't hack it going straight and ran off to run some new scams. I am sorry that you got caught up in his vendetta, but with this information we'll be able to finally take him down." She abruptly stands up.`
+			`	"Thank you for your time, Captain <last>." She knocks on the door and one of the men opens it.`
+			`	"Your free to go." She says, and they let you back out into the spaceport.`
+			action
+				event "prisontavish" 200
+				decline
 			
+			label liebaby
+			`	"That's it? You didn't see or notice anything unusual? There were no arguments or tension between Hullen-Freeze and Julian Tavish?"`
+			choice
+				`	"That's it. It was cordial and we left. Starla was acting odd though. You might want to check up on her."`
+				`	"Nothing else happened. We went in and we left. I saw nothing suspicious." `
+			`	Detective Song sighs and stands up, "Very well. You've been most helpful. If you remember anything, anything at all, please do not hesitate to conact my office here on Chiron. Especially if it relates to Dr. Julian Tavish."`
+			`	"Thank you for your time, Captain <last>." She knocks on the door and one of the men opens it.`
+			`	"Your free to go." She says, and they let you back out into the spaceport.`
+				decline
+
+event "prisontavish"
+
+mission "Hullen-Freeze revenge 2"
+	source 
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	to offer
+		has "event:prisontavish"
+		random < 15
+	on offer
+		conversation
+			`	As you saunter through the spaceport you hear a familiar name playing on one of the video screens and look up.`
+			`	"After a month long manhunt Chiron authorities have captured the notrious murderer Julian Tavish. He is charged with the savage killing of beloved scientist and public speaker Dr. Hullen-Freeze. Dr. Hullen-Freeze had brought Julian in, despite his criminal past, in an attempt to rehabilitate the young man and was killed for it.`
+			`	The death of Dr. Hullen-Freeze is a tradgey not just for the Republic, but the entire human race. Stayed for more coverage after the break."`
+				decline
+
+
