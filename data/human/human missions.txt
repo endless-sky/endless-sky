@@ -8555,8 +8555,8 @@ mission "Stone Harmonization 3skade"
 				decline
 			label doit
 			`	Weland grins. "I never took you for a lily livered captain of a paper ship, glad to see I was right."`
-			`	"The ship's called the 'Aotrou', and it's captained by the Marquis Corentin Gwesklin, of the Gwesklin Slaver-Dynasty. That family tricked me, and has held me in bondage longer than most folk's memories; though there is little enough you can do 'bout that now."`
-			`	Weland opens up a palm-display with star coordinates on it. "They are part of the Core Mining Concern. Semi-Sanctioned criminals, slavers, and all around bad guys. Led by the likes of the Marquis, and other hereditary slaver families. Though they can travel through civilized space unmolested, they do like to lay low in the Naper system, especially after altercations. That's where I'd wager you'd find Mr. Gwesklin, his ship, and the stone he stole from us."`
+			`	"The ship's called the 'Aotrou', and it's captained by Corentin Gwesklin, of the Gwesklin Slaver-Dynasty. That family tricked me, and has held me in bondage longer than most folk's memories; though there is little enough you can do 'bout that now."`
+			`	Weland opens up a palm-display with star coordinates on it. "They are part of the Core Mining Concern. Semi-Sanctioned criminals, slavers, and all around bad guys. Led by the likes of the Gwesklin, and other hereditary slaver families. Though they can travel through civilized space unmolested, they do like to lay low in the Naper system, especially after altercations. That's where I'd wager you'd find Mr. Gwesklin, his ship, and the stone he stole from us."`
 			`	"Be warned, he most likely will scan as a friendly, the C.M.C. leadership don't find it profitable to run pirate transponders. So keep your eyes open. Now, I think that's 'bout all needs being said at this juncture, just be sure to come back here once you got the stone. I got a surprise for ya."`
 			`	Weland leans forward, and pats you on the arm, before turning his wheelchair around, and heading back in the direction of his shop. After a moment you're alone on a muddy street corner.`
 				accept
@@ -8567,12 +8567,12 @@ mission "Stone Harmonization 3skade"
 		personality timid fleeing uninterested entering target staying
 		ship ship "Falcon" "Falcon (Gwesklin Variant)" "C.M.C.S. Aotrou"
 		dialog
-			`	Looks like the Marquis Gwesklin took an escape pod, and abandoned the ship earlier in the battle. The stone is still here, though.`
+			`	Looks like Captain Gwesklin took an escape pod, and abandoned the ship earlier in the battle. The stone is still here, though.`
 	on visit
 		dialog   ` You haven't dealt with the Aotrou.`
 	on complete
 		conversation
-			`	Weland is waiting for you when you return. He's still wheelchair bound, but otherwise looking surprisingly better. He also doesn't seem too upset that the Marquis Corentin Gwesklin escaped. He tells you to quickly meet him at his shop with your reclaimed stone.`
+			`	Weland is waiting for you when you return. He's still wheelchair bound, but otherwise looking surprisingly better. He also doesn't seem too upset that Captain Corentin Gwesklin escaped. He tells you to quickly meet him at his shop with your reclaimed stone.`
 
 mission "Stone Harmonization 4skade"
 	source "Wayfarer"
@@ -8590,7 +8590,7 @@ mission "Stone Harmonization 4skade"
 			`	Weland shakes his head, "Not only is far advanced beyond anything humans could create, or recreate, but its an entire untapped field of study." Weland almost trembles with awe, "It's remarkable. Neither we, nor humans, nor any other race I know of, has deigned to interact with rock, crystal, and matter in this fashion."`
 			choice
 				`	"What do you mean, "we", aren't you human?"`
-			`	The man's head snaps up, to look at you through briefly narrowed eyes, before he smiles warmly, "Ah, well, just a trip of tongue. I was so excited there, I was babblin' nonsense. Of course I'm human." He laughs.`
+			`	The man's head snaps up to look at you through briefly narrowed eyes before he smiles warmly, "Ah, well, just a slip of tongue. I was so excited there, I was babblin' nonsense. Of course I'm human." He laughs.`
 			`	"But, this is more than just academic for you, because I do believe this stone has fallen out of, what I can only call, harmony. I didn't have a chance before, but now, by projecting just the right sound waves back at the stone..."`
 			`	Weland fiddles with his controls for a bit. "...I can return the stone to harmony."`
 			`	He hits a button, and it feels like for just a second the air is sucked out of the room into the stone, followed by a forceful gust of cold air.`
@@ -8664,8 +8664,8 @@ mission "Stone Harmonization 3surtr"
 				decline
 			label doit
 			`	Weland grins. "I never took you for a lily livered captain of a paper ship, glad to see I was right."`
-			`	"The ship's called the 'Aotrou', and it's captained by the Marquis Corentin Gwesklin, of the Gwesklin Slaver-Dynasty. That family tricked me, and has held me in bondage longer than most folk's memories; though there is little enough you can do 'bout that now."`
-			`	Weland opens up a palm-display with star coordinates on it. "They are part of the Core Mining Concern. Semi-Sanctioned criminals, slavers, and all around bad guys. Led by the likes of the Marquis, and other hereditary slaver families. Though they can travel through civilized space unmolested, they do like to lay low in the Naper system, especially after altercations. That's where I'd wager you'd find Mr. Gwesklin, his ship, and the stone he stole from us."`
+			`	"The ship's called the 'Aotrou', and it's captained by Corentin Gwesklin, of the Gwesklin Slaver-Dynasty. That family tricked me, and has held me in bondage longer than most folk's memories; though there is little enough you can do 'bout that now."`
+			`	Weland opens up a palm-display with star coordinates on it. "They are part of the Core Mining Concern. Semi-Sanctioned criminals, slavers, and all around bad guys. Led by the likes of the Gwesklin, and other hereditary slaver families. Though they can travel through civilized space unmolested, they do like to lay low in the Naper system, especially after altercations. That's where I'd wager you'd find Mr. Gwesklin, his ship, and the stone he stole from us."`
 			`	"Be warned, he most likely will scan as a friendly, the C.M.C. leadership don't find it profitable to run pirate transponders. So keep your eyes open. Now, I think that's 'bout all needs being said at this juncture, just be sure to come back here once you got the stone. I got a surprise for ya."`
 			`	Weland leans forward, and pats you on the arm, before turning his wheelchair around, and heading back in the direction of his shop. After a moment you're alone on a muddy street corner.`
 				accept
@@ -8676,12 +8676,12 @@ mission "Stone Harmonization 3surtr"
 		personality timid fleeing uninterested entering target staying
 		ship ship "Falcon" "Falcon (Corentin Variant)" "C.M.C.S. Aotrou"
 		dialog
-			`	Looks like the Marquis Gwesklin took an escape pod, and abandoned the ship earlier in the battle. The stone is still here, though.`
+			`	Looks like Captain Gwesklin took an escape pod, and abandoned the ship earlier in the battle. The stone is still here, though.`
 	on visit
 		dialog   ` You haven't dealt with the Aotrou.`
 	on complete
 		conversation
-			`	Weland is waiting for you when you return. He's still wheelchair bound, but otherwise looking surprisingly better. He also doesn't seem too upset that the Marquis Corentin Gwesklin escaped. He tells you to quickly meet him at his shop with your reclaimed stone.`
+			`	Weland is waiting for you when you return. He's still wheelchair bound, but otherwise looking surprisingly better. He also doesn't seem too upset that Captain Corentin Gwesklin escaped. He tells you to quickly meet him at his shop with your reclaimed stone.`
 
 mission "Stone Harmonization 4surtr"
 	source "Wayfarer"
@@ -8699,7 +8699,7 @@ mission "Stone Harmonization 4surtr"
 			`	Weland shakes his head, "Not only is far advanced beyond anything humans could create, or recreate, but its an entire untapped field of study." Weland almost trembles with awe, "It's remarkable. Neither we, nor humans, nor any other race I know of, has deigned to interact with rock, crystal, and matter in this fashion."`
 			choice
 				`	"What do you mean, "we", aren't you human?"`
-			`	The man's head snaps up, to look at you through briefly narrowed eyes, before he smiles warmly, "Ah, well, just a trip of tongue. I was so excited there, I was babblin' nonsense. Of course I'm human." He laughs.`
+			`	The man's head snaps up to look at you through briefly narrowed eyes before he smiles warmly, "Ah, well, just a slip of tongue. I was so excited there, I was babblin' nonsense. Of course I'm human." He laughs.`
 			`	"But, this is more than just academic for you, because I do believe this stone has fallen out of, what I can only call, harmony. I didn't have a chance before, but now, by projecting just the right sound waves back at the stone..."`
 			`	Weland fiddles with his controls for a bit. "...I can return the stone to harmony."`
 			`	He hits a button, and it feels like for just a second the air is sucked out of the room into the stone, followed by a forceful gust of crackling energized air.`
