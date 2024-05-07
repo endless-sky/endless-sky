@@ -43,7 +43,7 @@ void FormationPositioner::Step()
 	CalculateDirection();
 
 	// Calculate the set of positions for the participating ships. This calculation
-	// can be performed once very 20 game-steps, because the positions are
+	// can be performed once every 20 game-steps, because the positions are
 	// relatively stable and slower changes don't impact the formation a lot.
 	constexpr int POSITIONS_INTERVAL = 20;
 	if(positionsTimer == 0)
@@ -101,9 +101,9 @@ void FormationPositioner::CalculatePositions()
 	double diameterToPx = maxDiameter;
 	double widthToPx = maxWidth;
 	double heightToPx = maxHeight;
-	maxDiameter = 0;
-	maxWidth = 0;
-	maxHeight = 0;
+	maxDiameter = 1;
+	maxWidth = 1;
+	maxHeight = 1;
 
 	// Run the position iterator for the ships in the formation.
 	auto itPos = pattern->begin(diameterToPx, widthToPx, heightToPx,

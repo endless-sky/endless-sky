@@ -29,7 +29,7 @@ FormationPattern::PositionIterator::PositionIterator(const FormationPattern &pat
 	: pattern(pattern), shipsToPlace(shipsToPlace), centerBodyRadius(centerBodyRadius),
 		diameterToPx(diameterToPx), widthToPx(widthToPx), heightToPx(heightToPx)
 {
-	MoveToValidPosition();
+	MoveToValidPositionOutsideCenterBody();
 }
 
 
@@ -45,18 +45,31 @@ FormationPattern::PositionIterator &FormationPattern::PositionIterator::operator
 {
 	if(!atEnd)
 	{
-		do {
-			position++;
-			MoveToValidPosition();
-		}
-		// Skip positions too close to the center body
-		while(!atEnd && currentPoint.Length() <= centerBodyRadius);
+		position++;
+		MoveToValidPositionOutsideCenterBody();
 	}
 
 	// Number of ships is used as number of remaining ships still to be placed.
 	if(shipsToPlace > 0)
 		--shipsToPlace;
 	return *this;
+}
+
+
+
+void FormationPattern::PositionIterator::MoveToValidPositionOutsideCenterBody()
+{
+	MoveToValidPosition();
+	unsigned int maxTries = 50;
+	// Skip positions too close to the center body
+	while(!atEnd && currentPoint.Length() <= centerBodyRadius && maxTries > 0)
+	{
+		position++;
+		MoveToValidPosition();
+		maxTries--;
+	}
+	if(maxTries == 0)
+		atEnd = true;
 }
 
 

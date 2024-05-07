@@ -55,6 +55,7 @@ public:
 		PositionIterator &operator++();
 
 	private:
+		void MoveToValidPositionOutsideCenterBody();
 		void MoveToValidPosition();
 
 	private:
