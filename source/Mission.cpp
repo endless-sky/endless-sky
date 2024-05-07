@@ -1161,7 +1161,7 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 				for(const auto &it: event.Target()->Cargo().MissionCargo())
 					failed |= (it.first == this);
 				// If any mission passengers were present, this mission is failed.
-				for (const auto &it: event.Target()->Cargo().PassengerList())
+				for(const auto &it: event.Target()->Cargo().PassengerList())
 					failed |= (it.first == this && it.second);
 				if (failed)
 					message += "lost. ";
