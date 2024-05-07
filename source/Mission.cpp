@@ -1158,10 +1158,10 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 			{
 				// Destroyed ships carrying mission cargo result in failed missions.
 				// Mission cargo may have a quantity of zero (i.e. 0 mass).
-				for(const auto &it: event.Target()->Cargo().MissionCargo())
+				for(const auto &it : event.Target()->Cargo().MissionCargo())
 					failed |= (it.first == this);
 				// If any mission passengers were present, this mission is failed.
-				for(const auto &it: event.Target()->Cargo().PassengerList())
+				for(const auto &it : event.Target()->Cargo().PassengerList())
 					failed |= (it.first == this && it.second);
 				if(failed)
 					message += "lost. ";
@@ -1169,7 +1169,7 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 			else if(event.Type() & ShipEvent::BOARD)
 			{
 				// Fail missions whose cargo is stolen by a boarding vessel.
-				for(const auto &it: event.Actor()->Cargo().MissionCargo())
+				for(const auto &it : event.Actor()->Cargo().MissionCargo())
 					failed |= (it.first == this);
 				if(failed)
 					message += "plundered. ";
@@ -1178,7 +1178,7 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 			if(failed)
 			{
 				hasFailed = true;
-				if (isVisible)
+				if(isVisible)
 					Messages::Add(message + "Mission failed: \"" + displayName + "\".", Messages::Importance::Highest);
 			}
 		}
