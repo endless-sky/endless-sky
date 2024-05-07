@@ -1148,61 +1148,56 @@ bool Mission::HasShip(const shared_ptr<Ship> &ship) const
 // about it. This may affect the mission status or display a message.
 void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 {
-	if(event.TargetGovernment()->IsPlayer() && !hasFailed)
-	{
-		bool failed = false;
-		string message = "Your ship \"" + event.Target()->Name() + "\" has been ";
-		if(event.Type() & ShipEvent::DESTROY)
-		{
-			// Destroyed ships carrying mission cargo result in failed missions.
-			// Mission cargo may have a quantity of zero (i.e. 0 mass).
-			for(const auto &it : event.Target()->Cargo().MissionCargo())
-				failed |= (it.first == this);
-			// If any mission passengers were present, this mission is failed.
-			for(const auto &it : event.Target()->Cargo().PassengerList())
-				failed |= (it.first == this && it.second);
-			if(failed)
-				message += "lost. ";
-		}
-		else if(event.Type() & ShipEvent::BOARD)
-		{
-			// Fail missions whose cargo is stolen by a boarding vessel.
-			for(const auto &it : event.Actor()->Cargo().MissionCargo())
-				failed |= (it.first == this);
-			if(failed)
-				message += "plundered. ";
+	if(!HasFailed(player)) {
+		if (event.TargetGovernment()->IsPlayer()) {
+			bool failed = false;
+			string message = "Your ship \"" + event.Target()->Name() + "\" has been ";
+			if (event.Type() & ShipEvent::DESTROY) {
+				// Destroyed ships carrying mission cargo result in failed missions.
+				// Mission cargo may have a quantity of zero (i.e. 0 mass).
+				for (const auto &it: event.Target()->Cargo().MissionCargo())
+					failed |= (it.first == this);
+				// If any mission passengers were present, this mission is failed.
+				for (const auto &it: event.Target()->Cargo().PassengerList())
+					failed |= (it.first == this && it.second);
+				if (failed)
+					message += "lost. ";
+			} else if (event.Type() & ShipEvent::BOARD) {
+				// Fail missions whose cargo is stolen by a boarding vessel.
+				for (const auto &it: event.Actor()->Cargo().MissionCargo())
+					failed |= (it.first == this);
+				if (failed)
+					message += "plundered. ";
+			}
+
+			if (failed) {
+				hasFailed = true;
+				if (isVisible)
+					Messages::Add(message + "Mission failed: \"" + displayName + "\".", Messages::Importance::Highest);
+			}
 		}
 
-		if(failed)
-		{
-			hasFailed = true;
-			if(isVisible)
-				Messages::Add(message + "Mission failed: \"" + displayName + "\".", Messages::Importance::Highest);
+		if ((event.Type() & ShipEvent::DISABLE) && event.Target().get() == player.Flagship())
+			Do(DISABLED, player, ui);
+
+		// Jump events are only created for the player's flagship.
+		if ((event.Type() & ShipEvent::JUMP) && event.Actor()) {
+			const System *system = event.Actor()->GetSystem();
+			// If this was a waypoint, clear it.
+			if (waypoints.erase(system)) {
+				visitedWaypoints.insert(system);
+				Do(WAYPOINT, player, ui);
+			}
+
+			// Perform an "on enter" action for this system, if possible, and if
+			// any was performed, update this mission's NPC spawn states.
+			if (Enter(system, player, ui))
+				UpdateNPCs(player);
 		}
+
+		for(NPC &npc : npcs)
+			npc.Do(event, player, ui, this, isVisible);
 	}
-
-	if((event.Type() & ShipEvent::DISABLE) && event.Target().get() == player.Flagship())
-		Do(DISABLED, player, ui);
-
-	// Jump events are only created for the player's flagship.
-	if((event.Type() & ShipEvent::JUMP) && event.Actor())
-	{
-		const System *system = event.Actor()->GetSystem();
-		// If this was a waypoint, clear it.
-		if(waypoints.erase(system))
-		{
-			visitedWaypoints.insert(system);
-			Do(WAYPOINT, player, ui);
-		}
-
-		// Perform an "on enter" action for this system, if possible, and if
-		// any was performed, update this mission's NPC spawn states.
-		if(Enter(system, player, ui))
-			UpdateNPCs(player);
-	}
-
-	for(NPC &npc : npcs)
-		npc.Do(event, player, ui, this, isVisible);
 }
 
 
