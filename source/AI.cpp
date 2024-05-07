@@ -3447,6 +3447,8 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 					degrees = (angleToPoint - aim).Degrees();
 				else
 				{
+					// For turret with limited arc, determine the turn up to the nearest arc limit.
+					// Also reduce priority of target if it's not within the firing arc.
 					const Angle facing = ship.Facing();
 					const Angle minArc = hardpoint.GetMinArc() + facing;
 					const Angle maxArc = hardpoint.GetMaxArc() + facing;
