@@ -8750,7 +8750,7 @@ mission "Hullen-Freeze revenge"
 					goto confront
 				`	(Try to lose them.)`
 			`	You bob and weave through crowds, go up and down stairs, and finally duck into a vintage electronic shop. You notice they are selling an ancient lime green computer called an iMac. The clerk see you looking at it and explains to you it just has one working application, a game called Escape Velocity Nova. By now it's clear you've lost your tail. So you thank the clerk and return to the spaceport.`
-				decline
+				defer
 			label confront
 			`	You turn to confront your pursuers. They quickly catch up to you. It's two men led by a tall hard faced gray hard woman.`
 			`	"Captain <last>, I'm Detective Song of the Oxford-Harvard Campus police and I'd like a moment of your time to discuss a recent incident on campus. Would please follow me to a private room?"`
