@@ -6899,7 +6899,7 @@ mission "Tavish and Kormak"
 		random < 30
 	on offer
 		conversation
-			`You make your way through the makeshift spaceport breathing in the thick humid air, and feeling the relentless glare of New India's twin suns. The muddy streets are filled with a constant bustling stream of humans animals and vehicles fighting their way to either unload the raw materials of this world, or load up on the precious goods needed to tame it.`
+			`You make your way through the makeshift spaceport breathing in the thick humid air and feeling the relentless glare of New India's twin suns. The muddy streets are filled with a constant bustling stream of humans, animals, and vehicles fighting their way to either unload the raw materials of this world, or load up on the precious goods needed to tame it.`
 			`	You notice a small uncrowded cafe and bakery slightly off the beaten path where you can get some respite from the crowds and sun.`
 			choice
 				`	(Take a seat in the cafe.)`
