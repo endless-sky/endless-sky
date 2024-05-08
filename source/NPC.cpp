@@ -116,6 +116,8 @@ void NPC::Load(const DataNode &node)
 	// Check for incorrect objective combinations.
 	if(failIf & ShipEvent::DESTROY && (succeedIf & ShipEvent::DESTROY || succeedIf & ShipEvent::CAPTURE))
 		node.PrintTrace("Error: conflicting NPC mission objective to save and destroy or capture.");
+	if(succeedIf & ShipEvent::LAND && failIf & ShipEvent::LAND)
+		node.PrintTrace("Error: conflicting NPC mission objective to land and outrun.");
 	if(mustEvade && mustAccompany)
 		node.PrintTrace("Warning: NPC mission objective to accompany and evade is synonymous with kill.");
 	if(mustEvade && (succeedIf & ShipEvent::DESTROY || succeedIf & ShipEvent::CAPTURE))
