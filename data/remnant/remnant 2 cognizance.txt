@@ -877,9 +877,9 @@ mission "Remnant: Cognizance Interest Condition Patch"
 			has "explorationinterest"
 			has "scienceinterest"
 	on offer
-		"exploration interest" += explorationinterest
+		"exploration interest" += "explorationinterest"
 		clear "explorationinterest"
-		"science interest" += scienceinterest
+		"science interest" += "scienceinterest"
 		clear "scienceinterest"
 		fail
 
