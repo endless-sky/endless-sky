@@ -97,6 +97,8 @@ void NPC::Load(const DataNode &node)
 			succeedIf |= ShipEvent::SCAN_CARGO;
 		else if(node.Token(i) == "scan outfits")
 			succeedIf |= ShipEvent::SCAN_OUTFITS;
+		if(node.Token(i) == "outrun")
+			failIf |= ShipEvent::LAND;
 		else if(node.Token(i) == "land")
 			succeedIf |= ShipEvent::LAND;
 		else if(node.Token(i) == "capture")
@@ -339,9 +341,13 @@ void NPC::Load(const DataNode &node)
 	}
 
 
-	// NPCs given the "land" completion condition should also have a destination.
-	if((succeedIf & ShipEvent::LAND) && !(finalDestination || needsDestination) && destinationFilter.IsEmpty())
-		node.PrintTrace("Warning: NPC mission objective to land is impossible without a destination.");
+	// NPCs given the "land" or "outrun" completion criteria condition should also have a destination.
+	if(!(finalDestination || needsDestination) && destinationFilter.IsEmpty()) {
+		if (succeedIf & ShipEvent::LAND)
+			node.PrintTrace("Warning: NPC mission objective to land is impossible without a destination.");
+		else if (failIf & ShipEvent::LAND)
+			node.PrintTrace("Warning: NPC mission objective to outrun is impossible without a destination.");
+	}
 }
 
 
