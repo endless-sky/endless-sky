@@ -1202,10 +1202,10 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 			if(Enter(system, player, ui))
 				UpdateNPCs(player);
 		}
-
-		for(NPC &npc : npcs)
-			npc.Do(event, player, ui, this, isVisible);
 	}
+
+	for(NPC &npc : npcs)
+		npc.Do(event, player, ui, this, isVisible);
 }
 
 
