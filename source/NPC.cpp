@@ -97,7 +97,7 @@ void NPC::Load(const DataNode &node)
 			succeedIf |= ShipEvent::SCAN_CARGO;
 		else if(node.Token(i) == "scan outfits")
 			succeedIf |= ShipEvent::SCAN_OUTFITS;
-		if(node.Token(i) == "outrun")
+		else if(node.Token(i) == "outrun")
 			failIf |= ShipEvent::LAND;
 		else if(node.Token(i) == "land")
 			succeedIf |= ShipEvent::LAND;
