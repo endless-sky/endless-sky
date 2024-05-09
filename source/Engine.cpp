@@ -2192,7 +2192,7 @@ void Engine::DoCollisions(Projectile &projectile)
 			continue;
 
 		// If the ship is cloaked, and phasing, then skip this ship (during this step).
-		if(shipHit->Phases(projectile))
+		if(shipHit && shipHit->Phases(projectile))
 			continue;
 
 		// Create the explosion the given distance along the projectile's
