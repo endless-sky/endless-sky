@@ -6953,7 +6953,7 @@ mission "Lost Dog"
 		conversation
 			branch "transported pookie"
 				has "Pookie, Part 2: done"
-				not `outfit: "Puny"`
+				not "outfit: Puny"
 			`Caesar has been very obedient the whole trip, much to your relief. He lies down by the airlock while your ship sets down in the local Palmyra spaceport, which is enclosed on all sides by a squalid urban landscape - the honeycombed homes of the humble help. You rent a vehicle and take yourself and Caesar beyond the blighted city and out into the pleasant, picture-perfect paradise of the affluent. One princely estate after another rolls past you as you drive deeper into the rural domains of the Republic's super-wealthy. Eventually, you come across a large metal gate that reads, "Mitchell Ranch."`
 				goto ranch
 
