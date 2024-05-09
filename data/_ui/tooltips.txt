@@ -132,7 +132,7 @@ tip "cloaking fuel:"
 tip "cloaking heat:"
 	`Heat generated per second when cloaked.`
 
-tip "cloaking shield:"
+tip "cloaking shields:"
 	`Shields consumed per second while cloaked.`
 
 tip "cloaking shield delay:"

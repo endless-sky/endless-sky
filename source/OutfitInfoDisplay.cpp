@@ -53,7 +53,7 @@ namespace {
 		{"cloaking energy", 0},
 		{"cloaking fuel", 0},
 		{"cloaking heat", 0},
-		{"cloaking shield", 0},
+		{"cloaking shields", 0},
 		{"cloaked firing", 0},
 		{"cooling", 0},
 		{"cooling energy", 0},
