@@ -132,6 +132,15 @@ namespace {
 		{"slowing resistance heat", 0.},
 		{"crew equivalent", 0.},
 
+		{"cloaking energy", 0.},
+		{"cloaking fuel", 0.},
+		{"cloaking heat", 0.},
+		{"cloaking hull", 0.},
+		{"cloaking repair delay", 0.},
+		{"cloaking shields", 0.},
+		{"cloaking shield delay", 0.},
+		{"cloaked firing", 0.},
+
 		// "Protection" attributes appear in denominators and are incremented by 1.
 		{"shield protection", -0.99},
 		{"hull protection", -0.99},

@@ -259,12 +259,19 @@ public:
 	bool IsFleeing() const;
 	// Check if this ship is currently able to begin landing on its target.
 	bool CanLand() const;
+	// What kind of action this is we are trying to do.
+	enum class ActionType {AFTERBURNER, BOARD, COMMUNICATION, FIRE, PICKUP, SCAN};
 	// Check if some condition is keeping this ship from acting. (That is, it is
-	// landing, hyperspacing, cloaking, disabled, or under-crewed.)
-	bool CannotAct() const;
-	// Get the degree to which this ship is cloaked. 1 means invisible and
-	// impossible to hit or target; 0 means fully visible.
+	// landing, hyperspacing, cloaking without "cloaked ActionType", disabled, or under-crewed.)
+	bool CannotAct(ActionType actionType) const;
+	// Get the degree to which this ship is cloaked. 1 means fully cloaked; 0 means fully visible.
+	// Depending on its "cloaking ..." attributes the ship will be unable to shoot, will not be seen on radar...
 	double Cloaking() const;
+	bool IsCloaked() const;
+	// The amount of cloaking this ship can do, per frame.
+	double CloakingSpeed() const;
+	// If this ship should be immune to the next damage caused.
+	bool Phases(Projectile &projectile) const;
 	// Check if this ship is entering (rather than leaving) hyperspace.
 	bool IsEnteringHyperspace() const;
 	// Check if this ship is entering or leaving hyperspace.

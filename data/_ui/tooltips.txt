@@ -118,7 +118,10 @@ tip "cargo space needed:"
 	`Tons of cargo space this outfit uses up.`
 
 tip "cloak:"
-	`Allows your ship to cloak. The value represents how long it takes to fully activate or deactivate cloaking. Ships cannot fire while cloaked.`
+	`This outfit allows your ship to cloak. The value represents how long it takes to fully activate or deactivate cloaking. Ships cannot fire while cloaked, except if they have the related "cloaked action" attribute.`
+
+tip "cloak by mass:"
+	`This outfit allows your ship to cloak. The value represents how long it takes to fully activate or deactivate cloaking. Ships of mass above 1000 will cloak slower, and below will cloak faster. Ships cannot fire while cloaked, except if they have the related "cloaked action" attribute.`
 
 tip "cloaking energy:"
 	`Energy consumed per second when cloaked.`
@@ -128,6 +131,33 @@ tip "cloaking fuel:"
 	
 tip "cloaking heat:"
 	`Heat generated per second when cloaked.`
+
+tip "cloaking shields:"
+	`Shields consumed per second while cloaked.`
+
+tip "cloaking shield delay:"
+	`This ship is unable to regenerate shields whilst cloaked, instead its shield regeneration will suffer a delay that will grow the longer it is cloaked`
+
+tip "cloaking hull:"
+	`Hull consumed per second while cloaked.`
+
+tip "cloaking repair delay:"
+	`This ship is unable to regenerate hull whilst cloaked, instead its hull regeneration will suffer a delay that will grow the longer it is cloaked.`
+
+tip "cloak hull protection:"
+	`Protection against weapons that do hull damage when the cloak is active. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in hull damage, while a total value of 11 only results in a 10 percent reduction.`
+
+tip "cloak shield protection:"
+	`Protection against weapons that do shield damage when the cloak is active. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in shield damage, while a total value of 11 only results in a 10 percent reduction.`
+
+tip "cloak phasing:"
+	`When cloaked, weapons cannot affect this ship, and pass right through.`
+
+tip "cloaked firing:"
+	`This device is so efficient at hiding you that you may shoot when cloaking, losing this amount of cloaking in the process, before being cloaked again. A negative value means shooting does not even hinder your cloak.`
+
+tip "cloak hull threshold:"
+	`If you have hull lower than this value (seen as a % between 0 and 1) the cloaking device can no longer operate.`
 
 tip "cooling:"
 	`Heat dissipated per second. This is for when your ship's built-in heat dissipation is not sufficient to keep it from overheating.`
