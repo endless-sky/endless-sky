@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <cstdint>
 #include <memory>
+#include <set>
 #include <vector>
 
 class Government;
@@ -104,6 +105,11 @@ public:
 	// detection is run.
 	bool ShouldExplode() const;
 
+	// Once the projectile has come into contact with a phasing device, it
+	// will be decided if it should completely phase through or make contact.
+	bool Phases(const Ship &ship) const;
+	void SetPhases(const Ship *ship);
+
 
 private:
 	void CheckLock(const Ship &target);
@@ -125,6 +131,10 @@ private:
 	double distanceTraveled = 0.;
 	uint16_t hitsRemaining = 1U;
 	bool hasLock = true;
+
+	// This is safe to keep even if the ships die, because we don't actually call the ship,
+	// we just compare this pointer to other ship pointers.
+	const Ship *phasedShip;
 };
 
 
