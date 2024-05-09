@@ -6302,7 +6302,7 @@ mission "Care Package to South 1"
 			`	You nod, introduce yourself, and briefly recount your meeting with her friend on <origin>. Irene laughs. "Yep, that's her. Well, thank you so much for bringing this." She hefts the heavy box with no apparent effort, gives you a firm nod, and turns to head back into the base.`
 			`	Before going more than three steps, she stops and turns back to you. "Oh, sorry - I'll authorize your payment as soon as I get back to my room. I don't have it with me."`
 			`	Sure enough, less than five minutes later, your communicator bleeps and reports that <payment> have been credited to your account.`
-				
+
 mission "Care Package to South 2"
 	landing
 	source "Rust"
@@ -6848,7 +6848,7 @@ mission "Lost Dog"
 				`	(Explain you don't have a calling card.)`
 					goto nocard
 				`	(Place your card on the tray.)`
-					to display 
+					to display
 						"net worth" > 20000000
 
 			`	The butler's eyebrows rise in the slightest hint of surprise when you place your card on the tray. He promptly turns and disappears into the overlarge house. You, Caesar, and the footman all wait for half an hour before a woman arrives at the front entrance, wearing an exceedingly complicated gown.`
