@@ -2191,6 +2191,10 @@ void Engine::DoCollisions(Projectile &projectile)
 				&& shipHit->CanBeCarried() && shipHit->IsDisabled())
 			continue;
 
+		// If the ship is cloaked, and phasing, then skip this ship (during this step).
+		if(shipHit->Phases(projectile))
+			continue;
+
 		// Create the explosion the given distance along the projectile's
 		// motion path for this step.
 		projectile.Explode(visuals, range, hit ? hit->Velocity() : Point());

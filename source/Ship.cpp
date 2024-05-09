@@ -2806,11 +2806,25 @@ double Ship::CloakingSpeed() const
 
 bool Ship::Phases(Projectile &projectile) const
 {
-	bool phases = IsCloaked() && (projectile.Phases(*this) ||
-		attributes.Get("cloak phasing") >= Random::Real());
-	if(phases)
+	// No Phasing if we are not cloaked, or not having cloak phasing.
+	if(!IsCloaked() || attributes.Get("cloak phasing") == 0)
+		return false;
+
+	// Check for full phasing first, to avoid more expensive lookups.
+	if(attributes.Get("cloak phasing") >= 1 || projectile.Phases(*this))
+		return true;
+
+	// Perform the most expensive checks last.
+	// If multiple ships with partial phasing are stacked on top of eachother, then the chance of collision increases
+	// significantly, because each ship in the firing-line resets the SetPhase of the previous one. But such stacks
+	// are rare, so we are not going to do anything special for this.
+	if(attributes.Get("cloak phasing") >= Random::Real())
+	{
 		projectile.SetPhases(this);
-	return phases;
+		return true;
+	}
+
+	return false;
 }
 
 
