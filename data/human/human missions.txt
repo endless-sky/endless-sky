@@ -7135,9 +7135,9 @@ mission "Tavish and Kormak 2"
 			`	"Not boring ones." Kormak confirms.`
 			`	"Indeed. We're interested in the ones that live amongst us on our very worlds. Or at least used to. All these worlds we've colonized are teaming with life, and yet none of it is sentient? How could that be? How well have we really searched them? How well have we really looked? The colonists are always telling stories that the regular academics are too haughty to investigate."`
 			`	"Monsters. Elves. Dragons. Squirrels." Kormak says.`
-			`	"Although we are not entirely indepedent, oh no, we are proud members of, and modestly funded by, the Society of Gentlemanly Exploration which was founded by the esteemed Dr. Henry Forsyth who cured the Rigellian Plague. S.O.G.E for short.`
+			`	"Although we are not entirely indepedent, oh no, we are proud members of, and modestly funded by, the Society of Gentlemanly Exemplary Exploration which was founded by the esteemed Dr. Henry Forsyth who cured the Rigellian Plague. SOGEE for short.`
 			`	"Soggy." Kormak pronouces.`
-			`	Tavish makes a pained expression, "It is most unforunate pronunication for our a esteebed society, but yes, soggy is what most call it. Hopefully this has satisfactorily answered your question?"`
+			`	Tavish makes a pained expression, "It is most unforunate pronunication for our a esteebed society, but yes, SOGEE is what most call it. Hopefully this has satisfactorily answered your question?"`
 				goto questions2
 			
 			label India1
@@ -7495,14 +7495,14 @@ mission "Tavish Interlude"
 			label talk
 			`	Tavish removes his bowler hat and holds it in his hands, "If we're going to confront Dr. Hullen-Freeze then there are a few things you should made aware of." `
 			`	Tavish fidgets with his hat, "We are former... acquaintances, and we did not leave things on the best of terms. Whatever he says, whatever he may say about me, I just want to ensure you Captain that I have been forthright with you, at least where it counts."`
-			`	He pauses then says, "I am a member of the Society of Gentlemanly Exploration, and Kormak and I are on the hunt for Xeno-Cryptids. I have no tried to con you on that matter, and I do believe our work is vital to science and exploration."`
+			`	He pauses then says, "I am a member of the Society of Gentlemanly Exemplary Exploration, and Kormak and I are on the hunt for Xeno-Cryptids. I have no tried to con you on that matter, and I do believe our work is vital to science and exploration."`
 			label options
 			choice
 				`	"What exactly is your relationship with Hullen-Freeze?"`
 					goto relation
 					to display
 						not "relation"
-				`	"Tell me more about the Society of Gentlemanly Exploration."`
+				`	"Tell me more about the Society of Gentlemanly Exemplary Exploration."`
 					goto soggy
 					to display
 						not "soggy"
@@ -7525,13 +7525,13 @@ mission "Tavish Interlude"
 					goto Henry
 				`	"So, it's a joke?"`
 			`	Tavish's face becomes very serious, "It's not a joke. Dr. Henry Forsyth saved millions, maybe bllions, of lives by going alone to the unexplored reaches of a hostile world. They all thought he was crazy, that there could be nothing of value in that frozen desolate place. But then he discovered the Ice-Witches of Nifel, and beguilded them with his stories of civilization. Their leader, someone called the Ornery-dress fell in love with him and unwittingly led him to the cure of the Rigellian Plague."`
-			`	He seems to inflate as he speaks, "That's the legacy of soggy, of the Society of Gentelmanly Explorers, and I may not ever live up to Dr. Forsyth, but I stil believe the spirit of his actions and am committed to following it."`
+			`	He seems to inflate as he speaks, "That's the legacy of SOGEE, of the Society of Gentelmanly Exemplary Explorers, and I may not ever live up to Dr. Forsyth, but I stil believe the spirit of his actions and am committed to following it."`
 			`	Tavish paushes, "Although, don't repeat that story to Kormak. It upsets him. I think the Ice-Witches of Nifel may be distant cousins of his."`
 				goto options
 			
 			label Henry
 			`	"Dr. Henry Forsyth saved millions, maybe billions of lives, by ignoring the academic consesus of the day, and putting his life on the line by leading a daring expedition into the frozen wastes of a desolate world. There he discovered the barbaric Ice-Witches of Nifel, and seduced their wild and beautiful leader, the Ornery-Dress. She would unwittingly lead him to the cure of the Rigellian Plague, and secure his position as a preeminent scholar, exlorer and hero of his time."`
-			`	He seems to inflate as he speaks, "That's the legacy of soggy, of the Society of Gentelmanly Explorers, and I may not ever live up to Dr. Forsyth, but I stil believe the spirit of his actions and am committed to following it."`
+			`	He seems to inflate as he speaks, "That's the legacy of SOGEE, of the Society of Gentelmanly Exemplary Explorers, and I may not ever live up to Dr. Forsyth, but I stil believe the spirit of his actions and am committed to following it."`
 			`	Tavish paushes, "Although, don't repeat that story to Kormak. It upsets him. I think the Ice-Witches of Nifel may be distant cousins of his."`
 				goto options
 
@@ -7769,15 +7769,20 @@ mission "Tavish and Kormak 6"
 			
 			label helptav
 			`	You help Tavish set up the ring of fire and the tents within it.`
-			`	"Captain <last>, I wanted to thank you for all your help. Without you this expedition would have been a total failure. We likely would have been kicked out of the S.O.G.E. for losing all their money and I may really have had to go crawling back to Chiron. Literally and figuratively." Tavish wipes some sweat off his brow.`
-			`	"Have no apprehension, I am fully cogniziant of the expense of transporting us around. In the end I will find a way to repay you." With that Tavish finishes his initial set up and starts making a campfire as the twin suns of New India begin to set.`
+			`	After working quietly for a few moments Tavish says, "I was from Earth. Never knew my parents. Ran with street gangs for as long as I can recall. I stole, I lied, I did whatever it took to survive. Then one day I got my hands on tickets to Chiron. I should have taken them to my gangleader. She would have been made good money off of them. But, I left everything behind and boarded that ship."`
+			`	Tavish pauses in his work and wipes some sweat off his brow, "On Chiron I tried to be a different person. To rehabilitate myself. I wasn't perfect, my skill set was quite specific. But I tried."`
+			`	"I know Dr. Hullen-Freeze took advantage of me. He used me. But I did use him as well. I became more than a street-rat. I became, me." Tavish smiles sadly to himself.`
+			`	"I just wanted you to understand, Captain <last>, and to thank you." With that Tavish finishes his initial set up and starts making a campfire as the twin suns of New India begin to set.`
 				goto next
 			
 			label helpkor
 			`	You follow Kormak has he hacks and slashes at various alien flora and pick up oozing remains he leaves behind.`
 			`	"You did good." Kormak says without turning to look at you.`
 			`	"Good friend to Tavish. Honorable." He continues as trees crack before him.`
-			`	With the area around the designated campground clear he turns to you and give you a smallest nod, "We will not forget."`
+			`	"Skoll-Wolf ate my clan's sun, and brought them to new world with strange stars. It was hard, but my clan is hardy. They thought they tame strange world. But then monsters come, and everything changed. Where I from trust is all that keeps a person alive."`
+			` 	Kormak suddenly stops what he is doing to turn and look at you, "We have trust. You, Tavish, me. Remember that. All worlds have monsters."`
+			`	The large man turns from you and finishes chopping down the last wailing tree.`
+			`	With the area around the designated campground clear he turns to you and give you a smallest nod, "Trust."`
 			`	Over to the side Tavish has also finished his work and his making a campfire.`
 			`	"Come." Kormak says.`
 			label next
@@ -7908,7 +7913,7 @@ mission "Tavish and Kormak 7"
 			`	Tavish and Kormak are waiting with all their equipment near the stony outcrop where you landed before. They seem more than a little relieved to see you.`
 			`	"Knew we could count on you." Tavish happily says as he oversees the loading up of the equipment.`
 			`	"Honorable." Kormak adds.`
-			`	Tavis gives you a serious look, "Captain <last>, old chap, we need you to take us to the esteemed headquarters of the Society of Gentlemanly Exploration on the Alexandria station in the Deep. Will you do us this last favor?"`
+			`	Tavis gives you a serious look, "Captain <last>, old chap, we need you to take us to the esteemed headquarters of the Society of Gentlemanly Exemplary Exploration on the Alexandria station in the Deep. Will you do us this last favor?"`
 			`	"We have no money." Kormak helpfully adds.`
 			choice
 				`	"Of course! To Alexandria we go!"`
@@ -7943,7 +7948,7 @@ mission "Tavish and Kormak 7"
 				`	"Thanks, Tavish. It's been grand."`
 				`	"This better be worth it."`
 			`	A Tear edges it way down Tavish's nose. "Thanks again, Captain. And farewell."`
-			`	Tavish turns and leaves you to rejoin Kormak and the gawking members of the Society of Gentlemanly Exploration.`
+			`	Tavish turns and leaves you to rejoin Kormak and the gawking members of the Society of Gentlemanly Exemplary Exploration.`
 
 mission "Weland"
 	invisible
