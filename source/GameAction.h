@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <cstdint>
 #include <map>
+#include <optional>
 #include <set>
 #include <string>
 #include <utility>
@@ -86,6 +87,8 @@ private:
 	int64_t payment = 0;
 	int64_t paymentMultiplier = 0;
 	int64_t fine = 0;
+
+	std::optional<std::string> music;
 
 	// When this action is performed, the missions with these names fail.
 	std::set<std::string> fail;
