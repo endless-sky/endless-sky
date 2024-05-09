@@ -12720,10 +12720,10 @@ system Equus
 	minables silicon 9 4.092
 	minables aluminum 28 3.354
 	object
-		sprite "star/small neutron core"
+		sprite "star/neutron-small-core"
 		period 10
 		object
-			sprite "star/small neutron"
+			sprite "star/neutron-small"
 			period 10
 	object
 		sprite star/f-dwarf
