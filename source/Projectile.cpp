@@ -465,9 +465,23 @@ double Projectile::DistanceTraveled() const
 
 
 
+bool Projectile::Phases(const Ship &ship) const
+{
+	return phasedShip == &ship;
+}
+
+
+
 uint16_t Projectile::HitsRemaining() const
 {
 	return hitsRemaining;
+}
+
+
+
+void Projectile::SetPhases(const Ship *ship)
+{
+	phasedShip = ship;
 }
 
 

@@ -424,7 +424,7 @@ bool MainPanel::ShowHailPanel()
 
 	if(flagship->IsEnteringHyperspace())
 		Messages::Add("Unable to send hail: your flagship is entering hyperspace.", Messages::Importance::High);
-	else if(flagship->Cloaking() == 1.)
+	else if(flagship->IsCloaked() && !flagship->Attributes().Get("cloaked communication"))
 		Messages::Add("Unable to send hail: your flagship is cloaked.", Messages::Importance::High);
 	else if(target)
 	{
@@ -432,7 +432,7 @@ bool MainPanel::ShowHailPanel()
 		// because the player has no way of telling if it's presently jumping or
 		// not. If it's in system and jumping, report that.
 		if(target->Zoom() < 1. || target->IsDestroyed() || target->GetSystem() != player.GetSystem()
-				|| target->Cloaking() == 1.)
+				|| target->IsCloaked())
 			Messages::Add("Unable to hail target " + target->Noun() + ".", Messages::Importance::High);
 		else if(target->IsEnteringHyperspace())
 			Messages::Add("Unable to send hail: " + target->Noun() + " is entering hyperspace."
