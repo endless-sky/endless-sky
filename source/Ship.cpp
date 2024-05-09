@@ -4158,7 +4158,7 @@ void Ship::DoCloakDecision()
 	const double cloakingFuel = attributes.Get("cloaking fuel");
 	const double cloakingEnergy = attributes.Get("cloaking energy");
 	const double cloakingHull = attributes.Get("cloaking hull");
-	const double cloakingShield = attributes.Get("cloaking shield");
+	const double cloakingShield = attributes.Get("cloaking shields");
 	bool canCloak = (!isDisabled && cloakingSpeed > 0. && !cloakDisruption
 		&& fuel >= cloakingFuel && energy >= cloakingEnergy
 		&& MinimumHull() < hull - cloakingHull && shields >= cloakingShield);
