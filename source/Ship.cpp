@@ -3645,16 +3645,12 @@ void Ship::SetStopovers(const vector<const Planet *> stopovers, const Planet *de
 	// Mark each planet as not visited.
 	if(!stopovers.empty())
 		for(const auto &it : stopovers)
-		{
 			travelDestinations[it] = false;
-			Logger::LogError("Stopover: " + it->Name());
-		}
 
 	if(destination)
 	{
 		travelDestinations[destination] = false;
 		continueAfterDestination = false;
-		Logger::LogError("Destination: " + destination->Name());
 	}
 
 }
