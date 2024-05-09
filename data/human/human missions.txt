@@ -7788,8 +7788,8 @@ mission "Tavish and Kormak 6"
 			label helpkor
 			`	You follow Kormak has he hacks and slashes at various alien flora and pick up oozing remains he leaves behind.`
 			`	"You did good." Kormak says without turning to look at you.`
-			`	"Good friend to Tavish. Honorable." He continues as trees crack before him.`
-			`	"Skoll-Wolf ate my clan's sun, and brought them to new world with strange stars. It was hard, but my clan is hardy. They thought they tame strange world. But then monsters come, and everything changed. Where I from trust is all that keeps a person alive."`
+			`	"Was important thing. Standing by Tavish. Honorable. Valuable." He continues as trees crack before him.`
+			`	"Skoll-Wolf ate my clan's sun, and the lying Dream Anuabhair brought them to new world with strange stars. It was hard, but my clan is hardy. They thought they tame strange world. But then monsters come, and everything changed. Where I from trust is all that keeps a man alive."`
 			` 	Kormak suddenly stops what he is doing to turn and look at you, "We have trust. You, Tavish, me. Remember that. All worlds have monsters."`
 			`	The large man turns from you and finishes chopping down the last wailing tree.`
 			`	With the area around the designated campground clear he turns to you and give you a smallest nod, "Trust."`
