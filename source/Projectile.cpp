@@ -465,26 +465,28 @@ double Projectile::DistanceTraveled() const
 
 
 
-<<<<<<< HEAD
 bool Projectile::Phases(const Ship &ship) const
 {
 	return phasedShip == &ship;
-=======
-uint16_t Projectile::HitsRemaining() const
-{
-	return hitsRemaining;
->>>>>>> master
 }
 
 
 
-<<<<<<< HEAD
+uint16_t Projectile::HitsRemaining() const
+{
+	return hitsRemaining;
+}
+
+
+
 void Projectile::SetPhases(const Ship *ship)
 {
 	phasedShip = ship;
-=======
+}
+
+
+
 bool Projectile::ShouldExplode() const
 {
 	return !government || (weapon->IsFused() && lifetime == 1);
->>>>>>> master
 }
