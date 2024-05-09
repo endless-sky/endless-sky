@@ -1552,6 +1552,7 @@ government "Silent Ones"
 government "Smuggler (Hai Trafficker)"
 	swizzle 5
 	"display name" "Smuggler"
+
 	"bribe" .1
 	"fine" 0
 	"friendly hail" "friendly civilian"
