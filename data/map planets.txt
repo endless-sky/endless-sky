@@ -2814,7 +2814,7 @@ planet "Mereti Station"
 planet Methuselah
 	attributes "requires: gaslining"
 	landscape land/methuselah
-	description `This world feels acient, the air is calm as if the last storm ended millenias ago. A continuos deep sound from below seems to tell a story from the early days of the universe, memories of hotter and faster times.`
+	description `This world feels ancient, the air is calm as if the last storm ended millenias ago. A continuous deep sound from below seems to tell a story from the early days of the universe, memories of hotter and faster times.`
 	description `From time to time single giant creatures can be seen moving in total peace.`
 	government Uninhabited
 
