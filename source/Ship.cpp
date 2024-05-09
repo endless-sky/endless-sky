@@ -1956,7 +1956,7 @@ void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 		projectiles.emplace_back(position, explosionWeapon);
 
 	if(CannotAct(Ship::ActionType::FIRE))
-		return false;
+		return;
 
 	antiMissileRange = 0.;
 	tractorBeamRange = 0.;
@@ -2038,7 +2038,7 @@ Point Ship::FireTractorBeam(const Flotsam &flotsam, vector<Visual> &visuals)
 	Point pullVector;
 	if(flotsam.Position().Distance(position) > tractorBeamRange)
 		return pullVector;
-	if(CannotAct())
+	if(CannotAct(ActionType::FIRE))
 		return pullVector;
 	// Don't waste energy on flotsams that you can't pick up.
 	if(!CanPickUp(flotsam))
