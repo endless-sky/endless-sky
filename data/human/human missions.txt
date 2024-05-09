@@ -7273,20 +7273,20 @@ mission "Timothy Radrickson 3c: Escort the Convoy"
 			`	With that she heads back to her freighter fleet.`
 
 	npc accompany save
-		government "Merchant" # 2520 cargo tons in total
+		government "Merchant" # 3800 cargo capacity 
 		personality escort timid
+		ship "Behemoth" "H.H.H. Gullveig's Revenge"
 		ship "Hauler" "H.H.H. Hard and Fast"
 		ship "Hauler" "H.H.H. Red Rambler"
 		ship "Hauler III" "H.H.H. Heavy Haulage"
-		ship "Hauler III" "H.H.H. Gullveig's Revenge"
 		ship "Hauler III" "H.H.H. Hroar's Heavy Hitter"
 		ship "Hauler II" "H.H.H. First Last Chance"
 		ship "Hauler II" "H.H.H. Lucky Hauler"
 		ship "Mule" "H.H.H. Herald of Vermilion"
-		ship "Freighter" "H.H.H. Cardinal Conveyor"
-		ship "Freighter" "H.H.H. Muspel Zipper"
-		ship "Star Barge" "H.H.H. Ruby Rails"
-		ship "Star Barge" "H.H.H. Dusty Boots"
+		ship "Bulk Freighter" "H.H.H. Cardinal Conveyor"
+		ship "Bulk Freighter" "H.H.H. Muspel Zipper"
+		ship "Freighter" "H.H.H. Ruby Rails"
+		ship "Freighter" "H.H.H. Dusty Boots"
 
 
 mission "Timothy Radrickson 3d: Return to Rand"
