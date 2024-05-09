@@ -6843,7 +6843,8 @@ mission "Lost Dog"
 			choice
 				`	(Show Caesar to the butler and ask to see his owner.)`
 
-			`	The butler's frown deepens, and then sighs. "Card, please." He holds out a silver tray and awaits your calling card.`
+			`	The butler's frown deepens as you show Caesar to him.`
+			`	He sighs and says, "Card, please." He holds out a silver tray and awaits your calling card.`
 			choice
 				`	(Explain you don't have a calling card.)`
 					goto nocard
