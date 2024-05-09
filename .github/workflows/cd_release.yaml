@@ -37,7 +37,7 @@ jobs:
       - name: Package Application
         run: ./utils/build_appimage.sh build/release
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ env.OUTPUT }}
           path: ${{ env.OUTPUT }}
@@ -68,12 +68,12 @@ jobs:
           cmake --install build/release
           7z a ${{ env.OUTPUT }} "./install/release/*"
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ env.OUTPUT }}
           path: ${{ env.OUTPUT }}
       - name: Upload Steam Depot
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: steam-win64-depot
           path: |
@@ -124,7 +124,7 @@ jobs:
           ln -s /Applications "${{ env.OUTPUT }}"
           hdiutil create -ov -fs HFS+ -format UDZO -imagekey zlib-level=9 -srcfolder "${{ env.OUTPUT }}" "${{ github.workspace }}/${{ env.OUTPUT }}.dmg"
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ env.OUTPUT }}.dmg
           path: ${{ env.OUTPUT }}.dmg
@@ -137,7 +137,7 @@ jobs:
           mkdir depot/
           mv "Endless Sky.app/" depot/
       - name: Upload Steam Depot
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: steam-macos-depot
           path: depot
@@ -157,7 +157,7 @@ jobs:
     - name: Prepare binary
       run: cp build/steam-x64/endless-sky .
     - name: Upload Steam Depot
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: steam-linux64-depot
         path: endless-sky
@@ -179,7 +179,7 @@ jobs:
       with:
         show-progress: false
     - name: Upload Steam Data Depot
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: ${{ env.data }}
         path: |

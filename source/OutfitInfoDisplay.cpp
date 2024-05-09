@@ -78,6 +78,10 @@ namespace {
 		{"hull energy", 0},
 		{"hull fuel", 0},
 		{"hull heat", 0},
+		{"delayed hull repair rate", 0},
+		{"delayed hull energy", 0},
+		{"delayed hull fuel", 0},
+		{"delayed hull heat", 0},
 		{"ion resistance energy", 0},
 		{"ion resistance fuel", 0},
 		{"ion resistance heat", 0},
@@ -99,6 +103,10 @@ namespace {
 		{"shield energy", 0},
 		{"shield fuel", 0},
 		{"shield heat", 0},
+		{"delayed shield generation", 0},
+		{"delayed shield energy", 0},
+		{"delayed shield fuel", 0},
+		{"delayed shield heat", 0},
 		{"slowing resistance energy", 0},
 		{"slowing resistance fuel", 0},
 		{"slowing resistance heat", 0},
@@ -209,7 +217,8 @@ namespace {
 		{"disabled repair delay", 5},
 		{"shield delay", 5},
 		{"cloaking shield delay", 5},
-		{"depleted shield delay", 5}
+		{"depleted shield delay", 5},
+		{"disabled recovery time", 5}
 	};
 
 	const map<string, string> BOOLEAN_ATTRIBUTES = {
@@ -677,13 +686,15 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		"inaccuracy:",
 		"blast radius:",
 		"missile strength:",
-		"anti-missile:"
+		"anti-missile:",
+		"tractor beam:"
 	};
 	vector<double> otherValues = {
 		outfit.Inaccuracy(),
 		outfit.BlastRadius(),
 		static_cast<double>(outfit.MissileStrength()),
-		static_cast<double>(outfit.AntiMissile())
+		static_cast<double>(outfit.AntiMissile()),
+		outfit.TractorBeam() * 60.
 	};
 
 	for(unsigned i = 0; i < OTHER_NAMES.size(); ++i)
