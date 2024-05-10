@@ -7099,7 +7099,7 @@ conversation "Ice Queen"
 	`	Ildico tries to spit, and her eyes blaze, "But we were House Drifa, more than anyone else, we built this world, and we would not abandon it to be someone else's dredges. My father bought supplies, equipment, necessities from the Navy. Enough so that me, my brother, and my mother could survive here."`
 	`	She pauses, as though unsure she wants to continue; then finally, in a less firm voice, "And then my father left. He said that dozens of worlds, worse off than ours, were terraformed every day. He said all they needed was a little convincing, and that he would come back with the support to terraform, and save, Hope. And then... he never came back."`
 	`	Ildico sighs. "A treasure hunter killed my brother a few years back. My mother... she is also dead, and I am starving. I have no way to contact anyone else, and no one else is left."`
-	`	"So, what do you say." She leans her head back, clearly exhausted by this exchange, and closes her eyes. "Will you kill me? Take advantage of me? Save me? Or leave me... to die."`	
+	`	"So, what do you say." She leans her head back, clearly exhausted by this exchange, and closes her eyes. "Will you kill me? Take advantage of me? Save me? Or leave me... to die."`
 	choice
 		`	"Come with me. It's time you gave up on Hope."`
 			goto comewithme
