@@ -736,6 +736,14 @@ bool NPC::HasFailed() const
 
 
 
+// Check if the NPC has the "land" success criterion.
+bool NPC::SucceedsOnLanding() const
+{
+	return succeedIf & ShipEvent::LAND;
+}
+
+
+
 // Create a copy of this NPC but with the fleets replaced by the actual
 // ships they represent, wildcards in the conversation text replaced, etc.
 NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Planet *destinationPlanet,

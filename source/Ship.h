@@ -465,6 +465,7 @@ public:
 	const bool HasTravelDirective() const;
 	const std::map<const Planet *, bool> GetStopovers() const;
 	const System *GetDestinationSystem() const;
+	const bool ContinueAfterDestination() const;
 
 	// Mining target.
 	std::shared_ptr<Minable> GetTargetAsteroid() const;

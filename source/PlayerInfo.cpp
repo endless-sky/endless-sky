@@ -4120,7 +4120,8 @@ void PlayerInfo::StepMissions(UI *ui)
 				if(ship->IsDestroyed())
 					mission.Do(ShipEvent(nullptr, ship, ShipEvent::DESTROY), *this, ui);
 				else if(ship->GetSystem() == system && !ship->IsDisabled()
-					&& ship->GetStopovers().count(planet) && !ship->GetStopovers().at(planet))
+					&& prev(ship->GetStopovers().end()) == ship->GetStopovers().find(planet)
+					&& !ship->ContinueAfterDestination() && npc.SucceedsOnLanding())
 				{
 					ship->LandForever();
 					mission.Do(ShipEvent(nullptr, ship, ShipEvent::LAND), *this, ui);

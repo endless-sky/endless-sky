@@ -108,6 +108,8 @@ public:
 	// Determine if the NPC is in a failed state. A failed state is irrecoverable, except for
 	// NPCs which would despawn upon the player's next landing.
 	bool HasFailed() const;
+	// Determine if the NPC should has the land success criterion.
+	bool SucceedsOnLanding() const;
 
 	// Create a copy of this NPC but with the fleets replaced by the actual
 	// ships they represent, wildcards in the conversation text replaced, etc.

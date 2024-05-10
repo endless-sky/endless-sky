@@ -3638,6 +3638,13 @@ const System *Ship::GetDestinationSystem() const
 
 
 
+const bool Ship::ContinueAfterDestination() const
+{
+	return continueAfterDestination;
+}
+
+
+
 // Persistent targets for mission NPCs.
 
 void Ship::SetStopovers(const vector<const Planet *> stopovers, const Planet *destination)
