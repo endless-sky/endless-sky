@@ -7207,8 +7207,31 @@ mission "Ice Queen 3"
 			choice
 				`	(Fill out the forms.)`
 
-			`	A few painfully tedious hours later, all the right forms have been filled out and you've found your way to Ian McGiven's office.`
-			# Could be a little more descriptive, it sounds like McGiven appeared in front of you. Maybe describe the hallways you go through and finally the door that says "Prof. Ian McGiven"
+			`	A few painfully tedious hours later, all the right forms have been filled out and you're met by an intern in a small vehicle.`
+			`	She glances at her electronic clipboard, "Captain <last>? Lady Drifa? I am here to escort you to the Everest Facility."`
+			`	She opens a little door, "Please climb aboard, I know the confines are quite small, but the EF is only a few kilometers away.`
+			`	Ildico glares at the young woman suscupiously, "Can we trust her?"`
+			`	The intern looks confused, and a little hurt, but says nothing.`
+			choice
+				`	"We can trust her. We're not in danger here."`
+					goto nodanger
+				`	"I'll protect you. Don't worry."`
+					goto protect
+				`	"We have no choice if you answers."`
+			`	Ildico nods and then enters the vehicle and you follow behind her.`
+				goto ridealong
+			
+			label no danger
+			`	Ildico barks out a laugh, "So Naive. We are always in Danger. But for answers I will risk it."`
+			`	She carefully checks the inside of the vheicle before carefully climbing in. You follow her.`
+				goto protect
+			`	Ildico's laughs hard and sheds tears, "You? Protect me?" She wipes her tears as her mirth subsides and her cold intense coutenance reasserts itself. `
+			`	"No, <first>. I will protect you." Her voice is deadly serious. She then inspects the inside of the vehicle carfully and takes a seat, "It seems safe. And I need answers."`
+			`	You follow her in.`
+
+			label ridealong
+			`	After a brief ride through campus you are escourted deeper and deeper into the maze that is the Everest Facility. Another half an hour later of hallways, and turns, and stairs and ups and downs, you finally find yourself inside Ian McGiven's office.`
+			`	The man hears your inquiry and nods earnestly.`
 			`	"Ah, yes, of course I remember the fellow! What an interesting meeting that was," Ian says from behind his small desk.`
 			`	"Obviously, the details are proprietary, but in very broad generalities, he wanted me to warm up a freezing world."`
 			`	Ildico doesn't blink; on second thought, you're not sure you've ever seen her blink. "Hope. Yes, and could you warm it?"`
