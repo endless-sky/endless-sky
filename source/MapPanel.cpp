@@ -319,13 +319,15 @@ void MapPanel::Draw()
 	DrawSystems();
 	DrawNames();
 	DrawMissions();
-	DrawSelectedSystem();
 }
 
 
 
 void MapPanel::FinishDrawing(const string &buttonCondition)
 {
+	// Display the name of and distance to the selected system.
+	DrawSelectedSystem();
+
 	// Draw the buttons to switch to other map modes.
 
 	// Remember which buttons we're showing.
@@ -1210,7 +1212,7 @@ void MapPanel::DrawTravelPlan()
 
 
 
-// Fill in the top-middle header bar that names the selected system, and indicates its distance.
+// Display the name of and distance to the selected system.
 void MapPanel::DrawSelectedSystem()
 {
 	const Sprite *sprite = SpriteSet::Get("ui/selected system");

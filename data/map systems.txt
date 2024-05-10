@@ -4147,7 +4147,7 @@ system Alkaid
 		sprite planet/gas0
 		distance 1927.89
 		period 1030.31
-		object
+		object "Rowark's Roost"
 			sprite planet/dust3-b
 			distance 266
 			period 12.0683
@@ -4982,7 +4982,7 @@ system Alpheratz
 			sprite planet/rock14-b
 			distance 173
 			period 18.5791
-	object
+	object Neriene
 		sprite planet/dust0
 		distance 1246.89
 		period 527.429
@@ -8709,7 +8709,7 @@ system Citadelle
 		sprite planet/desert0-b
 		distance 2253.29
 		period 1214.99
-	object
+	object Independance
 		sprite planet/gas14-b
 		distance 3916.23
 		period 2783.88
@@ -14322,10 +14322,11 @@ system Fomalhaut
 		sprite planet/gas10-b
 		distance 2203.28
 		period 1950.10
-		object
-			sprite planet/oberon-b
-			distance 181
-			period 12.0027
+		object "Dagon Station"
+			sprite planet/station19
+				scale 0.5
+			distance 204
+			period 12.003
 		object
 			sprite planet/rock0-b
 			distance 320
@@ -14847,8 +14848,8 @@ system Gacrux
 		sprite planet/lava5
 		distance 316.995
 		period 98.0619
-	object
-		sprite planet/ocean5
+	object Asphodel
+		sprite planet/cloud6-b
 		distance 698.285
 		period 320.605
 	object
@@ -17282,8 +17283,6 @@ system Ildaria
 	fleet "Large Southern Merchants" 2000
 	fleet "Small Militia" 3000
 	fleet "Large Militia" 6000
-	fleet "Small Southern Pirates" 1000
-	fleet "Large Southern Pirates" 2000
 	object
 		sprite star/nova-small
 		period 10
@@ -24370,12 +24369,12 @@ system Nocte
 		sprite planet/gas17
 		distance 973.25
 		period 1045.27
-		object
-			sprite planet/dust2
+		object Asterus
+			sprite planet/europa
 			distance 219
 			period 13.075
 		object
-			sprite planet/europa
+			sprite planet/dust2
 			distance 363
 			period 27.9019
 	object
@@ -26784,7 +26783,7 @@ system Procyon
 	object
 		sprite star/k3
 		period 10
-	object
+	object Cassandra
 		sprite planet/rock4
 		distance 243.06
 		period 71.4535
@@ -29781,6 +29780,10 @@ system Sheratan
 		sprite planet/ocean1
 		distance 1329.34
 		period 424.581
+		object Taylor
+			sprite planet/dust0
+			distance 220
+			period 34.8
 	object
 		sprite planet/rhea-b
 		distance 1632.5
