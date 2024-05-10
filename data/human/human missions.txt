@@ -7277,7 +7277,7 @@ mission "Ice Queen 5"
 
 	on complete
 		dialog
-			`The myriad lights of urban settlements twinkle in the dusk as you approach the capitol, and main spaceport, of Chiron. Crickets, brought from old Earth, chirp in the twilit air. Your ship parked, you'll need to make your way to main spaceport to hire transportation to Ildico's address.`
+			`The myriad lights of urban settlements twinkle in the dusk as you approach the capitol, and main spaceport, of Chiron. Crickets, brought from old Earth, chirp in the twilight air. Your ship parked, you'll need to make your way to main spaceport to hire transportation to Ildico's address.`
 
 
 mission "Ice Queen 6"
@@ -7292,10 +7292,11 @@ mission "Ice Queen 6"
 
 	on offer
 		conversation
-			`The directions Ildico gave you take you beyond the bustling city and out into the the large estates owned by the Republic political elite; Drifa Manor sits atop a low hill with what must be a very expensive view of Chiron's capitol. The architecture of the building is reminiscent of elite villas you've seen in the Deep.`
+			`The directions Ildico gave you take you beyond the bustling city and out into the the large estates owned by the Republic political elite; Drifa Manor sits atop a low hill with what must be a very expensive view of New Sydney. The architecture of the building is reminiscent of elite villas you've seen in the Deep.`
 			`	As you approach the main gate you find it wide open, and the attached security booth is abandoned. You could just walk right in.`
 			choice
 				`	(Walk right in.)`
+
 			`	The spacious building is eerily empty of servants. Doors are left often, incomplete tasks clutter the floor. Whatever happened here, the people left in a hurry.`
 			`	There's a loud crashing noise in the floor above you. You ascend the central grand staircase following the noise.`
 			`	There are streaks of crimson blood across the opulent decor and a pool of it settles in the center of the room. Lavish baroque furniture is stained with the carnage.`
@@ -7305,6 +7306,7 @@ mission "Ice Queen 6"
 				`	"Are you hurt? Do you need help?"`
 				`	"What have you done?"`
 				`	(Say nothing.)`
+
 			`	She ignores you, her attention focused elsewhere.`
 			`	"You thought," Ildico says as she catches her breath, "that you could sell me? That you could give me to the bureaucrat who signed Hope's death warrant? That I would be your pawn, your tool, your object in order to gain favor and promotion?"`
 			`	The raven-haired woman laughs, as she cleans off her bloody dagger, and takes a step toward the figure cowering in the corner. The man you recognize as her father.`
@@ -7330,7 +7332,7 @@ mission "Ice Queen 6"
 			choice
 				`	"Go where?"`
 
-			`	She sighs. "Not the Republic. After tonight I will hunted for this. We need to go to <planet>. And you should probably not let anyone scan your ship until we get there."`
+			`	She sighs. "Not the Republic, nor the Free Worlds. After tonight I will hunted for this. We need to go to <planet>. And you should probably not let anyone scan your ship until we get there."`
 			`	The two of you escape out into the night and onto your ship.`
 				launch
 
