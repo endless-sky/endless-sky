@@ -114,7 +114,7 @@ ship "Argosy" "Argosy (Turret)"
 ship "Arrow" "Arrow (Hai)"
 	outfits
 		"Sidewinder Missile Pod" 2
-		"Sidewinder Missile" 8
+		"Sidewinder Missile" 12
 		"Bullfrog Anti-Missile"
 		"Pebble Core"
 		"Supercapacitor" 2
@@ -603,7 +603,7 @@ ship "Berserker" "Berserker (Afterburner)"
 	outfits
 		"Energy Blaster" 2
 		"Javelin Mini Pod" 2
-		"Javelin" 80
+		"Javelin" 60
 		"nGVF-CC Fuel Cell"
 		"LP036a Battery Pack"
 		"D23-QP Shield Generator"
@@ -619,7 +619,7 @@ ship "Berserker" "Berserker (Strike)"
 		"Heavy Rocket Pod"
 		"Heavy Rocket" 2
 		"Sidewinder Missile Pod"
-		"Sidewinder Missile" 4
+		"Sidewinder Missile" 6
 		"nGVF-CC Fuel Cell"
 		"Supercapacitor"
 		"D23-QP Shield Generator"
@@ -1013,7 +1013,7 @@ ship "Clipper" "Clipper (Hai Trafficker)"
 
 ship "Combat Drone" "Combat Drone (Sidewinder Missiles)"
 	outfits
-		"Sidewinder Missile" 50
+		"Sidewinder Missile" 52
 		"Sidewinder Missile Pod"
 		"Sidewinder Missile Rack" 2
 		"X1050 Ion Engines"
@@ -3259,7 +3259,7 @@ ship "Scout" "Scout (Speedy)"
 		"Meteor Missile Pod"
 		"Meteor Missile" 7
 		"Sidewinder Missile Pod"
-		"Sidewinder Missile" 4
+		"Sidewinder Missile" 6
 		"Anti-Missile Turret"
 		"NT-200 Nucleovoltaic"
 		"Supercapacitor"
