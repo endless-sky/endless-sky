@@ -264,7 +264,7 @@ outfit "Cloaking Device"
 	cost 1200000
 	"mass" 10
 	"outfit space" -10
-	"cloak" 0.01
+	"cloak" .01
 	"cloaking energy" 1
 	"cloaking fuel" .2
 	"unique" 1
