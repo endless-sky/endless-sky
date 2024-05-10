@@ -156,7 +156,7 @@ namespace {
 			targetShips.reserve(playerShips.size() - 1);
 			for(const shared_ptr<Ship> &it : player.Ships())
 				if(it.get() != player.Flagship() && !it->IsParked()
-						&& !it->IsDestroyed())
+						&& !it->IsDestroyed() && !it->IsDisabled())
 					targetShips.push_back(it.get());
 		}
 		else
@@ -1738,7 +1738,7 @@ void AI::MoveInFormation(Ship &ship, Command &command)
 
 	// Aggressively try to match the position and velocity for the formation position.
 	const double positionDeadband = ship.Radius() * 1.25;
-	constexpr double VELOCITY_DEADBAND = 0.1;
+	constexpr double VELOCITY_DEADBAND = .1;
 	bool inPosition = MoveTo(ship, command, it->second.Position(&ship), formationLead->Velocity(), positionDeadband,
 		VELOCITY_DEADBAND);
 

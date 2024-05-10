@@ -115,7 +115,7 @@ void FormationPositioner::CalculatePositions()
 	{
 		// If the ship is no longer valid or not or no longer part of this
 		// formation, then we need to remove it.
-		auto ship = (shipsInFormation[shipIndex]).lock();
+		auto ship = shipsInFormation[shipIndex].lock();
 		bool removeShip = !ship || !IsActiveInFormation(ship.get());
 
 		// Lookup the ship in the positions map.
@@ -125,7 +125,7 @@ void FormationPositioner::CalculatePositions()
 
 		// If the ship is not in the overall table or if it was not
 		// active since the last iteration, then we also remove it.
-		removeShip = removeShip || itCoor == shipPositions.end() ||
+		removeShip |= itCoor == shipPositions.end() ||
 				itCoor->second.second != tickTock;
 
 		// Perform removes if we need to.
@@ -181,7 +181,7 @@ void FormationPositioner::CalculateDirection()
 
 	// Change the desired direction according to rotational settings if that fits better.
 	double symRot = pattern->Rotatable();
-	if(symRot > 0 && fabs(deltaDir.Degrees()) > (symRot / 2))
+	if(symRot > 0 && fabs(deltaDir.Degrees()) > symRot / 2)
 	{
 		if(deltaDir.Degrees() > 0)
 			symRot = -symRot;

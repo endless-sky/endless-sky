@@ -35,8 +35,7 @@ public:
 	// Initializer based on the formation pattern to follow.
 	FormationPositioner(const Body *formationLead, const FormationPattern *pattern);
 
-	// Start/reset/initialize for a (new) round of formation position calculations
-	// for a formation around the ship given as parameter.
+	// Start/reset/initialize for a (new) round of formation position calculations.
 	void Step();
 
 	// Get the formation position for the ship given as parameter. If a given ship is

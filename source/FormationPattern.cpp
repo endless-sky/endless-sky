@@ -133,7 +133,7 @@ void FormationPattern::PositionIterator::MoveToValidPosition()
 	// If we are at the last line and we have less ships still to place than that
 	// would fit on the line, then perform centering if required.
 	if(!atEnd && position == 0 && shipsToPlace > 0 &&
-			(lineRepeatPositions - 1) > shipsToPlace && pattern.IsCentered(line))
+			lineRepeatPositions - 1 > shipsToPlace && pattern.IsCentered(line))
 		// Determine the amount to skip for centering and skip those.
 		position += (lineRepeatPositions - shipsToPlace) / 2;
 
