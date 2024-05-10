@@ -6773,10 +6773,10 @@ mission "Hogshead's Dilemma II"
 mission "Lost Dog"
 	name "Lost dog to <planet>"
 	description "Bring Caesar, a dog you found on <origin>, to their owners on <destination>."
-	to offer
-		random < 15
 	source "Calda"
 	destination "Glory"
+	to offer
+		random < 15
 	on offer
 		conversation
 			`Your walk from the <ship> takes you out of <planet>'s bustling spaceport and into the overtly welcoming and carefully inoffensive streets of the spaceport town. Each path seems to be saturated with tourists and purpose-built to whisk travelers further away from their ships and deeper into the preternatural radiance of this Paradise World. The hand-crafted beauty is inescapable, a never-ending sequence of breathtaking views.`
@@ -6883,10 +6883,12 @@ event "lost dog: homeward bound"
 
 
 mission "Lost Dog: Homeward Bound"
-	to offer
-		has "event: lost dog: homeward bound"
+	minor
+	invisible
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	to offer
+		has "event: lost dog: homeward bound"
 	on offer
 		conversation
 			`As you're walking through the spaceport, your eye is drawn to a marginally familiar figure on a nearby newsfeed. Although you can't make out exactly what it is saying over the din, you are able to gather that Caesar, the little lost dog you ran into on Calda, has become something of a minor celebrity after it managed to get back home to Glory all by itself. The newsfeed scrolls down to show images of the dog skiing, sneaking onto transports, and riding automatic farming equipment.`
