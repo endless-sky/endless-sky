@@ -6883,6 +6883,8 @@ event "lost dog: homeward bound"
 
 
 mission "Lost Dog: Homeward Bound"
+	minor
+	invisible
 	to offer
 		has "event: lost dog: homeward bound"
 	source
