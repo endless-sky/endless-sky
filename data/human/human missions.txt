@@ -7031,6 +7031,9 @@ conversation "Ice Queen"
 		`	(Search for the Snaiwaz Family-Cairn.)`
 			goto cairnsearch
 		`	(Toss the stone out your hatch and leave this world.)`
+
+	action
+		set "chucked tosti's stone"
 	`	The stone of Tosti's father tumbles out of the ship and comes to rest in a heap of cluttered refuse. This is as close as it will get to its Family-Cairn, and far closer than Tosti could have gotten it on his own.`
 		decline
 
@@ -7044,6 +7047,8 @@ conversation "Ice Queen"
 			goto placestone
 		`	(Throw the stone off the side of the cliff.)`
 
+	action
+		set "threw tosti's stone"
 	`	You hurl the stone far beyond the cliff side and down into glacial slopes beneath it. Never to find rest by his kindred-stones.`
 		decline
 
@@ -7132,56 +7137,57 @@ conversation "Ice Queen"
 conversation "Ice Queen End"
 	branch helpildico
 		has "helpildico"
-	`	Your thrusters kick up fresh dust as you land on your assigned concrete pad in the sprawling spaceport.`
-	`	Ildico, looking less pale and significantly more sturdy, waits by the exit.`
+	`Your thrusters kick up fresh dust as you land on your assigned concrete pad in the sprawling spaceport. Ildico, looking less pale and significantly more sturdy, waits by the exit.`
 	`	"Thank you for getting me out of there. After all those years on the ice this place will be no challenge for me. Perhaps someday our paths will cross again. If they do, I will remember this small kindness."`
 	`	She gives you a stern nod, and then exits your ship and into the chaos of Clark.`
 		decline
 
 	label helpildico
-	`	Your thrusters kick up fresh dust as you land on your assigned concrete pad on the fringes of the sprawling spaceport.`
-	`	Ildico, looking less pale, and significantly more sturdy, waits by the exit.`
+	`Your thrusters kick up fresh dust as you land on your assigned concrete pad on the fringes of the sprawling spaceport. Ildico, looking less pale, and significantly more sturdy, waits by the exit.`
 	`	"The terraforming firm is certain to have an office, or booth, in the ramshackle spaceport here. Let's pay them a visit."`
 
 
 mission "Ice Queen 2"
-	name "Finding Ildico's Father"
+	name "Find Ildico's Father"
+	description "Look for Ildico's father on <destination>, where he went after he left Clark."
+	source "Clark"
+	destination "Glory"
+	passengers 1
 	to offer
 		has "helpildico"
 		or
 			has "Ice Queen: done"
 			has "Stone to Ice Queen: done"
-	source "Clark"
-	destination "Glory"
-	passengers 1
+
 	on offer
 		conversation
-			`Pushing through the boomtown hustle and bustle you, and Ildico make your way to a series of kiosks, booths, and hastily constructed offices that serve a variety of needs and functions in the ever-growing world of Clark.`
-			`	Among these you find the offices of 'Clarke's Third Law Terraformists', Ildico steps in front of you and enters first.`
-			`	An older man with greying hair, and a bit of a paunch looks up from his desk. "Howdy friends, I am Eustice Goodfellow, and welcome to our cozy establishment. Do you have need of a little terraforming?" Eustice flashes a wide open smile.`
+			`Pushing through the boomtown hustle and bustle, you and Ildico make your way to a series of kiosks, booths, and hastily constructed offices that serve a variety of needs and functions in the ever-growing world of Clark.`
+			`	Among these you find the offices of "Clark's Third Law Terraformists." Ildico steps in front of you and enters first.`
+			`	An older man with greying hair and a bit of a paunch looks up from his desk. He stands up genially as both of you approach and says, "Howdy friends, I am Eustice Goodfellow, and welcome to our cozy establishment. Do you have need of a little terraforming?" Eustice flashes a wide open smile.`
 			`	"Yes. I'd like to terraform the planet Hope." Ildico says flatly.`
-			`	"Well, uh, ma'am. We don't, that is to say, we're not that kind of terraforming firm. We do small jobs. Touch ups. We can't.. we can't terraform a world, and I don't.." Eustice looks at her, and you carefully, "I don't think you could pay for it either."`
-			`	Ildico leaps over the desk and grabs Eustice by his collar, "Is that what you told my father, Lord of House Drifa? Did you send him away like some misbegotten pauper?"`
+			`	"Well, uh, ma'am. We don't, that is to say, we're not that kind of terraforming firm. We do small jobs. Touch ups. We can't.. we can't terraform a world, and I don't..." Eustice looks at her, and you carefully, "I don't think you could pay for it either."`
+			`	Ildico leaps over the desk and grabs Eustice by his collar. "Is that what you told my father, Lord of House Drifa? Did you send him away like some misbegotten pauper?"`
 			`	Eustice pales and holds out his hands, "Please, Let me go. I meant no insult."`
 			choice
 				`	(Don't interfere.)` 
 				`	(Tell Ildico to calm down.)`
 			`	Ildico releases his collar, but remains only inches from his face. "Did Deoric Drifa come here years ago asking to terraform Hope?"`
-			`	Eustice takes a step back, and nods vigorously. "Yes, yes. I remember him. You don't forget a man like him, or a request like his. He asked about terraforming Hope. As I said earlier, we aren't that kind of firm. I told him he'd have to talk to the Academy of Planetary Sciences on Glory for that kind work. And then he left."`
+			`	Eustice takes a step back, and nods vigorously. "Yes, yes. I remember him. You don't forget a man like him, or a request like his. He asked about terraforming Hope. As I said earlier, we aren't that kind of firm. I told him he'd have to talk to the Academy of Planetary Sciences on <planet> for that kinda work. And then he left.`
 			`	"Please." Eustice says, backing up further. "That's all I know about him. I never saw him again."`
 			`	Ildico stares at him for a few more moments, and then turns and passes you on her way to the exit.`
-			`	She opens the door and nods to you. "We're going to Glory."`
+			`	She opens the door and nods to you. "We're going to <planet>."`
+
 	on complete
 		conversation
-			`	To some Glory is a testament to human ingenuity, skill, and potential. It is the dream made real, the promise proven true. A world perfectly sculpted to suit the needs, desires, and tastes of humanity. Nothing here is left to chance, every inch carefully, artfully, manifested by man's will.`
-			`	And yet, to others, it is grotesque, a mockery of nature. A lie made into a monument. As you, and Ildico disembark and walk past each immaculate acre, past the plastic-perfect denizens, you consider which viewpoint you hold. It this place a triumph? Or a travesty? A dream, or nightmare?`
-			`	"There is no beauty here." Ildico says idly as you walk. "Only vanity."`
-			`	Together you head toward the spaceport, where you're hoping to find a representative of the Academy of Planetary Sciences, and what happened to Ildico's father.`
+			`To some Glory is a testament to human ingenuity, skill, and potential. It is the dream made real, the promise proven true. A world perfectly sculpted to suit the needs, desires, and tastes of humanity. Nothing here is left to chance; every inch carefully, artfully, manifested by man's will.`
+			`	And yet, to others, it is grotesque, a mockery of nature. A lie made into a monument. As you deal with the Republic spaceport officials you notice the plastic-perfect denizens walking around, staring at your defective face and your dirty ship, you consider which viewpoint you hold. It this place a triumph, or a travesty? A dream, or a nightmare?`
+			`	"There is no beauty here." Ildico says idly when you're finished with the officials. "Only vanity."`
+			`	The spaceport's transport terminal has a direct rail link to the Academy of Planetary Sciences. Perhaps you could find out what happened to Ildico's father in the Academy.`
 
 
 mission "Ice Queen 3"
 	name "Find Ildico's Father"
-	description "Search for Ildico's Father on Chiron."
+	description "Professor McGiven told you that Ildico's father now works for the Republic on <destination>. Bring Ildico there to see if you can visit him."
 	to offer
 		has "Ice Queen 2: done"
 	source "Glory"
@@ -7189,28 +7195,30 @@ mission "Ice Queen 3"
 	passengers 1
 	on offer
 		conversation
-			`	The Academy of Planetary Sciences is a campus the size of a small nation-state on Earth. Various artificially created and maintained microclimates abound. You drive between small snow peaked mountains, and micro savannahs, between marshland and jungle, desert and forest. Impossible machines, some larger than skyscrapers, litter the twisted and ever-changing landscape. This is a place where anything is possible, and land bends eagerly to the whims of the terraforming wizards.`
-			`	Eventually, Ildico and you make it to the primary reception complex, where after hours of filling out inane forms, and waiting in different meaningless queues, you finally reach someone who can help you. An old visitor list shows that one Deoric Drifa had visited a Professor-Doctor Ian McGiven 2nd Degree Terraformer, and World-Warming specialist in JZ86 Cantos-B of Cooling Block 9 in the Everest Facility.`
-			`	The receptionist, helpfully, draws you a map to where you're going. She also lets you know that in order to visit him you'll need to fill out 6 other forums first. You get to work.`
+			`The Academy of Planetary Sciences is a campus the size of a small nation-state on Earth. Various artificially created and maintained microclimates abound as you travel between miniature mountains and micro-savannahs; between marshland and jungle, desert and forest. Impossible machines - some larger than skyscrapers - litter the twisted and ever-changing landscape, and terraforming satellites make meteor showers overhead in the dawn light. This is a place where anything is possible, and land bends eagerly to the whims of the terraforming wizards.`
+			`	Eventually, Ildico and you make it to the primary reception complex, where after hours of filling out inane forms, and waiting in different meaningless queues, you finally reach someone who can help you. An old visitor list shows that one Deoric Drifa had visited a Professor Ian McGiven, Second Degree Terraformer and World Warming specialist in JZ86 Cantos-B of Cooling Block 9 in the Everest Facility.`
+			`	The receptionist helpfully draws you a map to where you're going. She also lets you know that in order to visit him you'll need to fill out six other forums first. You get to work.`
 			choice
-				`	(Fill out forms.)`
+				`	(Fill out the forms.)`
+
 			`	A few painfully tedious hours later, all the right forms have been filled out and you've found your way to Ian McGiven's office.`
+			# Could be a little more descriptive, it sounds like McGiven appreared in front of you. Maybe describe the hallways you go through and finally the door that says "Prof. Ian McGiven"
 			`	"Ah, yes, of course I remember the fellow! What an interesting meeting that was," Ian says from behind his small desk.`
 			`	"Obviously, the details are proprietary, but in very broad generalities, he wanted me to warm up a freezing world."`
-			`	Ildico doesn't blink, you're not sure you've ever seen her blink. "Hope. Yes, and could you warm it?"`
+			`	Ildico doesn't blink; on second thought, you're not sure you've ever seen her blink. "Hope. Yes, and could you warm it?"`
 			`	Ian laughs, "Oh, of course, a job like that would have been quite simple."`
 			`	"Then why didn't you?" The tension is obvious in Ildico's voice.`
 			`	Ian shrugs. "Though he could afford it there were other concerns."`
 			`	Ildico steps forward and looms over Ian like an angry shadow. It appears that it is taking all of her willpower to keep her from ripping this man apart. "Concerns?"`
-			`	"Y-yes. I don't know the specifics. You have to understand, here at the Academy it's not just about money. It's about politics, and power. I am just a 2nd Degree Terraformer. I wasn't privy to the details. But someone, or government, or corporation didn't want it. If you want to know more you'll have to ask him yourself."`
+			`	"Y-yes. I don't know the specifics. You have to understand, here at the Academy it's not just about money. It's about politics, and power. I am just a Second Degree Terraformer. I wasn't privy to the details. But someone, or some government or corporation didn't want it. If you want to know more you'll have to ask him yourself."`
 			`	Ildico seems to deflate. "Ask him? Is he here?"`
-			`	The terraformer shakes his head. "Oh, no. He doesn't work for the Academy. But after the rejection he went to the heart of the Republic, I assume to find out why. He now works for them. I see his name from time to time. He, like all the real leaders of the Republic, is on Chiron. Just head to the main office for the Department of Migration."`
-			`	Without saying another word, Ildico turns and leaves. You thank Ian for his help, and follow her out.`
+			`	The terraformer shakes his head. "Oh, no. He doesn't work for the Academy. But after the rejection he went to the heart of the Republic, I assume to find out why. He now works for them. I see his name from time to time. He, like all the real leaders of the Republic, is on Chiron. Just head to the main office for the Department of Migration."` # This is a rather huge precedent. Will need to either justify or restate.
+			`	Without saying another word, Ildico turns and leaves. You thank Ian for his help and follow her out.`
+
 
 mission "Ice Queen 4"
 	landing
-	name "Find Ildico's Father"
-	description "Search for Ildico's Father on Chiron."
+	invisible
 	source "Chiron"
 	passengers 1
 	to offer
@@ -7218,7 +7226,7 @@ mission "Ice Queen 4"
 	on offer
 		event "deoricdeeds" 1103
 		conversation
-			`	It's easy to imagine Earth once look and felt much like Chiron does today. A vibrant world, full of engaged and motivated people, all in a hurry to change the universe, or at least, to run it.`
+			`It's easy to imagine Earth once look and felt much like Chiron does today. A vibrant world, full of engaged and motivated people, all in a hurry to change the universe, or at least, to run it.`
 			`	The Department of Migration, Stellar Populations and Advanced Interplanetary Economics is easy enough to find. What's surprising is how quickly you are ushered into a waiting room outside the office of one Mr. Drifa, Sub-Executive of Multiplanetary Pricing.`
 			`	After a brief wait, a young secretary announces that Mr. Drifa is ready to see you, and brings you and Ildico into his office.`
 			`	"So what can I help you with..." Deoric Drifa's voice trails off as he sees Ildico.`
@@ -7234,7 +7242,7 @@ mission "Ice Queen 4"
 			`	"Thank you for bringing me here, <name>. For sticking with me. I appreciate it." She gives you the first real genuine smile you've seen on her face.`
 			choice
 				`	"No problem, Ildico."`
-				`	"You're welcome, Ildico"`
+				`	"You're welcome, Ildico."`
 			`	She looks at you for just a moment, as if in thought, and then says, "If we ever meet again, call me Ildy. It's what my friends call me."`
 			`	With that you take your leave.`
 				decline
@@ -7245,8 +7253,8 @@ event "deoricdeeds"
 
 mission "Ice Queen 5"
 	landing
-	name "Visiting Ildico"
-	description "Visti Ildico on Chiron."
+	name "Visit Ildico"
+	description "Ildico has asked you to visit her on <destination>."
 	source 
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination "Chiron"
@@ -7255,25 +7263,27 @@ mission "Ice Queen 5"
 
 	on offer
 		dialog
-			`	Your inbox blinks with a new message from Ildico on Chiron:`
+			`Your inbox blinks with a new message from Ildico on Chiron:`
+			``
 			`	"I need to see you. Please come. My address is attached.`
 			`				-your friend`
 			`					Ildy"`
 
 	on complete
 		dialog
-			`	The myriad lights of urban settlements twinkle in the dusk as you approach the capitol, and main spaceport, of Chiron. Crickets, brought from old Earth, chirp in the twilit air. Your ship parked, you'll need to make your way to main spaceport to hire transportation to Ildico's address.`
+			`The myriad lights of urban settlements twinkle in the dusk as you approach the capitol, and main spaceport, of Chiron. Crickets, brought from old Earth, chirp in the twilit air. Your ship parked, you'll need to make your way to main spaceport to hire transportation to Ildico's address.`
 
 
 mission "Ice Queen 6"
 	name "Take Ildico to <planet>"
-	description "Smuggle Ildico and her Child to Haven."
+	description "Smuggle Ildico and her child to <destination>."
 	source "Chiron"
 	destination "Haven"
 	illegal 1250000 `Ildico Drifa is dragged away in chains for high crimes against the Republic and its most honorable servants. Her infant child is taken into the custody of the Republic. You can only watch in sad silence as they are removed from your ship. You wind up quite a bit poorer through a combination of fines and bribes (the breakdown remains somewhat unclear).`
 	stealth
 	to offer
 		has "Ice Queen 5: done"
+
 	on offer
 		conversation
 			`The directions Ildico gave you take you beyond the bustling city and out into the the large estates owned by the Republic political elite; Drifa Manor sits atop a low hill with what must be a very expensive view of Chiron's capitol. The architecture of the building is reminiscent of elite villas you've seen in the Deep.`
@@ -7302,17 +7312,25 @@ mission "Ice Queen 6"
 			`	Ildico walks back to corner far from any of the fighting, and retrieves a bundled baby you'd neglected to notice until now.`
 			choice
 				`	"You got it. Let's go."`
-					goto ontherun
 				`	"Anything for you, Ildy."`
-					goto ontherun
 				`	"Sure, but you owe me. Big."`
-					goto ontherun
 				`	"No way. You're a murderer. I want nothing to do with you."`
 					goto leave
 				`	"Stop right there. I am putting you under citizen's arrest until the police arrive."`
+					goto arrest
 
+			`	She nods, her face softens, and tears glitter around her eyes. "Thank you, I knew- I knew I could count on you."`
+			`	Ildico recollects herself for a moment before pointing to a briefcase lying by a table. "Grab that, and let's go."`
+			choice
+				`	"Go where?"`
+
+			`	She sighs. "Not the Republic. After tonight I will hunted for this. We need to go to <planet>. And you should probably not let anyone scan your ship until we get there."`
+			`	The two of you escape out into the night and onto your ship.`
+				launch
+
+			label arrest
 			`	Ildico puts her baby back down, and for just a second you see agony in her eyes. Killing her father or her arranged husband didn't break her mask, but somehow this does. A tear rolls down her cheek. She moves, too fast for you to react, and her dagger is in your throat.`
-			`	You lay on the ground, bleeding out, dying. Ildico standing above you, a broken expression on her face. "I thought I had one friend. What I fool I was. I'll never make that mistake again."`
+			`	You lay on the ground, bleeding out, dying. Ildico standing above you, a broken expression on her face. "I thought I had one friend. What a fool I was. I'll never make that mistake again."`
 			`	She leaves you to die. The world grows dim, and hazy. You remember... you remember... someone....`
 				die
 
@@ -7321,35 +7339,32 @@ mission "Ice Queen 6"
 			`	Her hand wavers, trembles, over her knife, and then she drops it, and her head. "So then go."`
 				decline	
 
-			label ontherun
-			`	She nods, her face softens, and tears glitter around her eyes. "Thank you, I knew- I knew I could count on you."`
-			`	Ildico recollects herself for a moment before pointing to a briefcase lying by a table. "Grab that, and let's go."`
-			choice
-				`	"Go where?"`
-
-			`	She sighs. "Not the Republic. After tonight I will hunted for this. We need to go to Haven. And you should probably not let anyone scan your ship until we get there."`
-			`	The two of you escape out into the night, and onto your ship.`
-				launch
-
 	on complete
 		outfit "Blood of Surtr"
 		payment 500000
 		event "pirateildy" 611
 		conversation
 			`Having evaded Republic patrols on the lookout for the "Murderous Heiress," you make it to the pirate planet of Haven. Ildico watches the dismal landscape as you land and says, almost curtly, "It'll do."`
-			`	She opens the briefcase, revealing a storage device, and an oranate wooden box.`
-			`	She gives you a sly smile. "It took years, but the majority of the Drifa fortune has been smuggled into this storage device. They thought I was meek, malleable, and pitiful. Not a threat. They were fools."`
+			`	She opens the briefcase she took off Chiron, revealing a storage device and an oranate wooden box.`
+			`	Ildico gives you a sly smile. "It took years, but the majority of the Drifa fortune has been smuggled into this storage device. They thought I was meek, malleable, and pitiful. Not a threat. They were fools."`
 			`	She holds up the box. "And in this, well, this may take some explaining. Before we migrated to Hope, the Drifa were old nobility in The Deep. Legend says we ruled Valhalla before the first ships came. Whatever the truth, my ancestors had this in their possession as a sign of their royalty, this bauble."`
-			`	Ildico opens the rune-carved lid of the box, revealing a faintly glowing red rock. "It is called the Blood of Surtr, and it was said to have been symbol of our rulership, and more importantly, a source of power."`
-			`	She shrugs. "I know it sounds far-fetched. But I had this with me on Hope, and I don't think I would have survived without it. When the generators went down, this kept the lights on."`
-			`	"But, it's time with me is over. I want you, the last friend of House Drifa, and the only person whose shown me any kindness in 8 years, to have it."`
+			`	Ildico opens the rune-carved lid of the box, revealing a faintly glowing red rock. "It is called the Blood of Surtr, and it was said to have been the symbol of our rulership, and more importantly, a source of power."`
+			`	She shrugs. "I know it sounds far-fetched. But I had this with me on Hope, and I don't think I would have survived without it. When the generators went down, this kept the lights on.`
+			`	"But, it's time with me is over. I want you, the last friend of House Drifa, and the only person whose shown me any kindness in many years, to have it.`
 			scene "outfit/bloodsurtr"
+			`	"I'll also transfer a small sum of money for your troubles. I fear I will be needing most of my family's fortune, but hopefully what little I can offer will help."`
 			choice
-				`	(Thank her.)`
-			`	I'll also transfer a small sum of money for your troubles. I fear I will be needing most of my family's fortune, but hopefully what little I can offer will help.`
-			choice
-				` 	(Ask if it's wise for her and a child to be left alone in a place like Haven.)`
+				`	"Thank you."`
+					goto "gotta go"
+				` 	"Is it wise for you and your child to be left alone in a place like Haven?"`
+
 			`	She laughs. "Haven better watch out for me. After Hope and Chiron, this place will be a cakewalk."`
+				goto end
+
+			label "gotta go"
+			`	"No, it is my appreciation that has to be given. You have done what few would have the conviction to do."`
+
+			label end
 			`	She takes her child in one hand, and the briefcase in the other, and walks off your ship.`
 
 
@@ -7359,7 +7374,7 @@ event "pirateildy"
 mission "Ice Queen 7"
 	landing
 	name "Meet Ildy on <planet>"
-	description "See what Ildico needs on Haven."
+	description "See what Ildico needs on <destination>."
 	source 
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination "Haven"
@@ -7367,8 +7382,9 @@ mission "Ice Queen 7"
 		has "event: pirateildy"
 	on offer
 		dialog
-			`	Your inbox blinks with a new message from Ildico on Haven:`
-			`	"It's been too long, and I could use your help. Please, come to Haven.`
+			`Your inbox blinks with a new message from Ildico on Haven:`
+			``
+			`	"It's been too long, and I could use your help. Please, come to <planet>.`
 			`				-your friend`
 			`					Ildy"`
 
@@ -7469,7 +7485,7 @@ mission "News Queen"
 				decline
 
 
-mission "Blood Skadenga"
+mission "Skadenga: Blood of Surtr"
 	landing
 	source "Windblain"
 	to offer
@@ -7477,18 +7493,21 @@ mission "Blood Skadenga"
 		has "outfit: Blood of Surtr"
 	on offer
 		conversation
-			`As your ship descends through Windblain's cloudy atmosphere you consider landing near Hrithfjall and asking the Ondurdis about the Blood of Surtr.`
+			`As your ship descends through Windblain's cloudy atmosphere, you consider landing near Hrithfjall and asking the Ondurdis about the Blood of Surtr.`
 			choice
 				`	(Take the Blood of Surtr to Hrithfjall.)`
 					goto hrithland
+				`	(Ask about the Blood of Surtr another time.)`
 				`	(Don't visit Hrithfjall.)`
+					decline
+
 			`	You fly past Hjrithfjall without landing and continue on your way.`
-				decline
+				defer
 
 			label hrithland
 			`	The pass numerous new homes built of driftwood and sea-stone as you approach the old village center of Hrithfjall. There is laughter and song in the air and children running everywhere; it always seems larger every time you visit it.`
 			`	At the old village hall you find the Ondurdis and Aldfrith in conversation with a band of people who quite stick out here, foreigners. The Ondurdis's old eyes light up and she gives you a grandmotherly smile as you approach.`
-			`	"<First>!" The Ondurdis exclaims happily, "My heart sings to see you." `
+			`	"<first>!" the Ondurdis exclaims happily. "My heart sings to see you." `
 			choice
 				`	"Who are they?"`
 					goto who
@@ -7506,11 +7525,11 @@ mission "Blood Skadenga"
 
 			label something
 			`	You show her the Blood of Surtr, and tell her the story of House Drifa taking it from the Deep.`
-			`	The Ondurdis nods slowly, "I only know of Tears of Skade. Our Goddess cried, maybe others did as well?"`
+			`	The Ondurdis nods slowly. "I only know of Tears of Skade. Our Goddess cried, maybe others did as well?"`
 			`	She turns and motions to Aldfrith who steps over to you and asks, "did Ran ever cry cold tears?"`
 			
 			label aldtime
-			`	Aldfrith inspects the Blood of Surtr thoughtfully, and then considers the Ondurdis's words as he strokes his white beard, "The sea has no mercy, and no memory. Ran would never cry."`
+			`	Aldfrith inspects the Blood of Surtr thoughtfully, and then considers the Ondurdis's words as he strokes his white beard. "The sea has no mercy, and no memory. Ran would never cry."`
 			`	He chews his lip and then says slowly and carefully, "But she did leave us scales."`
 			`	He nods to himself and becomes more confident. "Long ago we would find the Scales of Ran on the beaches nearest her God-Stone. The stories say that they made a bubble of breathable air around those who carried them, and allowed us to explore the secrets of the depths."`
 			choice
@@ -7520,22 +7539,16 @@ mission "Blood Skadenga"
 			`	Aldfrith shakes his head slowly. "In the time of my grandfather the men from the Deep came and took them off world. They said they were too valuable to belong in the hands of savages, and since then we've never found another Scale of Ran. I think she was displeased we allowed them to be taken."`
 			`	The old man pauses for a moment and then says, "Although.. I do remember when I was a child the folk from the Deep coming and visiting us again. They had questions about.. our baubles. I think they said they did not work? They thought they were just useless charms. Perhaps the Scales stopped working?"`
 			`	He shrugs. "I am sorry, <first>, that I cannot tell you more."`
-			`	The Ondurdis puts a hand on his back, "I value your stories." She turns her attention back to you, "Maybe all God-Stones once produced wonderous stones of power."`
-			`	She points at the Blood of Surtr, "Maybe that  where yours came from. But more than guess we cannot provide."`
+			`	The Ondurdis puts a hand on his back. "I value your stories." She turns her attention back to you, "Maybe all God-Stones once produced wonderous stones of power."`
+			`	She points at the Blood of Surtr, "Maybe that is where yours came from. But more than guesses, we cannot provide."`
 			choice
-				`	(Thank The Ondurdis and Aldfrith for sharing their stories with you.)`
-					goto thanks
 				`	(Take your leave.)`
 
-			`	Having gleaned all you could from the Ondurdis and Aldfrith, you take your leave from them and Hrithfjell and head back to your ship.`
-				decline
-
-			label thanks
-			`	You thank The Ondurdis and Aldfrith for their gracious help and interesting stories. The Ondurdis hastily makes you a meal to take with you, believing it bad manners to let you leave unfed and wishes you well in your future travels among the lofty stars.`
+			`	You thank the Ondurdis and Aldfrith for their gracious help and interesting stories. The Ondurdis hastily makes you a meal to take with you, believing it bad manners to let you leave unfed and wishes you well in your future travels among the lofty stars.`
 				decline
 
 
-mission "Stone Thanks"
+mission "Stone to Hope: Thanks"
 	source "Norn"
 	on offer
 		has "Stone to Ice Queen: offered"
@@ -7553,6 +7566,11 @@ mission "Stone Thanks"
 			choice
 				`	"I found the Family-Cairn and left the stone there."`
 				`	"I chucked the stone out of a hatch, but it's at least on Hope now."`
+					to display
+						has "chucked tosti's stone"
+				`	"I threw the stone off a cliff, but it's at least on Hope now."`
+					to display
+						has "threw tosti's stone"
 				`	"Where's Tosti?"`
 
 			`	"Ah, the lad's out on the seas. Got himself a job working on a fishing trawler. It'd likely be a few years before he'll call to port here again."`
