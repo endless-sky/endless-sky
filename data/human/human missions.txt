@@ -7091,7 +7091,7 @@ mission "Timothy Radrickson 3a: Rescue the Convoy"
 
 			label nothing
 			`	The vehicle pulls up to a grandiose entrance near the center of the huge structure. An attendant opens the door, and you're ushered outside the vehicle.`
-			`	Regina does not get out. She smiles politely through the opened door. "Only you were invited to enter the Governor's Mansion. I am afraid this as far as I am allowed to go. Take care, Captain <last>, it truly was an honor meeting you.`
+			`	Regina does not get out. She smiles politely through the opened door. "Only you were invited to enter the Governor's Mansion. I am afraid this as far as I am allowed to go. Take care, Captain <last>, it truly was an honor meeting you."`
 			`	With that the door shuts, and a few moments later the black vehicle departs, leaving you and the attendant at Mansion's entrance.`
 			`	The attendant bows deeply. "Please, Captain <last>. If you would follow me." He turns and heads into the building.`
 			choice
@@ -7173,7 +7173,7 @@ mission "Timothy Radrickson 3b: Pirate Base"
 	on offer
 		conversation
 			`	Your ship skims Greenrock's choppy atmosphere and your terrestrial navigation computer suddenly hums to life as it picks up the lost freighter fleet's tracking beacon. It locks on to a large and well guarded underground bay on the very fringes of the spaceport. Close enough to do business, but far enough away to maintain strict security.`
-			`	As you approach the bay your computer is able to make out numerous parked pirate vessels, and large defensive turrets just outside the bay's underground blast doors. They haven't realized you're hostile yet and you have an opportunity to seize the initative and open fire on them.`
+			`	As you approach the bay your computer is able to make out numerous parked pirate vessels, and large defensive turrets just outside the bay's underground blast doors. They haven't realized you're hostile yet and you have an opportunity to seize the initiative and open fire on them.`
 
 			choice
 				`	(Open fire on the parked pirate vessels.)`
@@ -7182,13 +7182,13 @@ mission "Timothy Radrickson 3b: Pirate Base"
 			action
 				set "big greenrock pirate fleet"
 			`	You hail the pirates imploring them to consider a diplomatic solution. Their only response is to launch their entire fleet after you.`
-			`	Your forced back into space to fight them.`
+			`	You are forced back into space to fight them.`
 				launch
 
 			label fire 
 			action
 				set "diminished greenrock pirate fleet"
-			`	Your ship lets loose a withering barrage that destroys multiple pirate vessels and disables others. You then pull up back into space as the surviving ships are sent after you.`
+			`	Your ship lets loose a withering barrage that destroys multiple pirate vessels and disables others. You then pull back up into space as the surviving ships are sent after you.`
 				launch
 
 
@@ -7234,10 +7234,10 @@ mission "Timothy Radrickson 3c: Escort the Convoy"
 				`	"Is this where the bathroom is?"`
 				`	(Say nothing.)`
 
-			`	Before the pirate guards have a chance to respond there's three quick thud sounds in succession and they fall lifelessly to the floor. From behind them a woman and couple of men in red jackets appear.`
+			`	Before the pirate guards have a chance to respond there's three thuds in quick succession and they fall lifelessly to the floor. From behind them a woman and couple of men in red jackets appear.`
 			`	The woman, who is wearing a captain's hat with two H's next to each other looks at you and then nods. "Thanks for the distraction. Been waitin' for the right moment to move."`
 			`	She flashes you a reluctant smile. "Name's Hrodny, Capt'n Hrodny of Hroar's Haulers." She looks back at the men accompanying her, whistles, and points toward the ships. They turn and run toward them."`
-			`	Hrodny turns her green piercing green eyes back on you. "We can get 'em in the air, but we can't fight past whatever is out there. I'm presuming you're not a lost tourist and are in fact our cavalry?"`
+			`	Hrodny turns her piercing green eyes back on you. "We can get 'em in the air, but we can't fight past whatever is out there. I'm presuming you're not a lost tourist and are in fact our cavalry?"`
 			choice
 				`	"Don't worry. I took out the fleet, and I'll escort you to Wayfarer."`
 				`	"It's your lucky day, I'm Captain <last>, of the <ship>. Getting you to Wayfarer will be a piece of cake."`
@@ -7252,7 +7252,7 @@ mission "Timothy Radrickson 3c: Escort the Convoy"
 
 	on complete
 		conversation
-			`The freighter fleet sets down to some minor fanfare; there're likely more than a few middlemen here who would have been hard-pressed by the loss of the fleet's valuable cargo.`
+			`The freighter fleet sets down to some minor fanfare; there are likely more than a few middlemen here who would have been hard-pressed by the loss of the fleet's valuable cargo.`
 			`	Not long after landing, Captain Hrodny seeks you out. "Didn't have much time back there for pleasantries, but gotta say I am mighty thankful you showed up when you did."`
 			`	She extends her hand to you.`
 			choice
