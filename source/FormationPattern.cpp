@@ -392,6 +392,7 @@ bool FormationPattern::FlippableX() const
 }
 
 
+
 void FormationPattern::MultiAxisPoint::Add(Axis axis, const Point &toAdd)
 {
 	position[axis] += toAdd;
