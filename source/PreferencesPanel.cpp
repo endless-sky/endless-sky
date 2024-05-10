@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/alignment.hpp"
 #include "Audio.h"
 #include "Color.h"
+#include "Command.h"
 #include "Dialog.h"
 #include "Files.h"
 #include "FillShader.h"
@@ -211,8 +212,7 @@ void PreferencesPanel::Draw()
 
 void PreferencesPanel::Step()
 {
-	if(downloadedInfo)
-		GameData::ProcessSprites();
+	queue.ProcessSyncTasks();
 }
 
 
@@ -1512,7 +1512,7 @@ void PreferencesPanel::ProcessPluginIndex()
 			if(!Files::Exists(iconPath) && pluginInstall.contains("iconUrl"))
 				Plugins::Download(pluginInstall["iconUrl"], iconPath);
 			if(Files::Exists(iconPath))
-				GameData::LoadSprite(iconPath, pluginName + "-libicon");
+				GameData::RequestSpriteLoad(queue, iconPath, pluginName + "-libicon");
 		}
 		downloadedInfo = true;
 		GetUI()->Pop(GetUI()->Top().get());

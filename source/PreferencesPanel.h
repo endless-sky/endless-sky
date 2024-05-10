@@ -19,11 +19,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Panel.h"
 
 #include "ClickZone.h"
-#include "Command.h"
 #include "Plugins.h"
 #include "Point.h"
-#include "Sprite.h"
 #include "ScrollVar.h"
+#include "TaskQueue.h"
 #include "text/WrappedText.h"
 
 #include <future>
@@ -33,8 +32,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
-class RenderBuffer;
+class Command;
 struct Plugin;
+class Sprite;
+class RenderBuffer;
 
 
 
@@ -117,6 +118,7 @@ private:
 	bool downloadedInfo = false;
 	std::vector<std::future<void>> installFeedbacks;
 	std::vector<Plugins::InstallData> pluginInstallData;
+	TaskQueue queue;
 	Set<Sprite> icons;
 
 	std::vector<ClickZone<Command>> zones;
