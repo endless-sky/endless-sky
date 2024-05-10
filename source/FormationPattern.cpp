@@ -353,11 +353,7 @@ Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigne
 	// Swap start and end if we need to alternate in the repeat section.
 	// Apply repeat section if it is relevant.
 	if(ring % 2 && repeat && repeat->alternating)
-	{
-		Point tmpPx = endOrAnchorPx;
-		endOrAnchorPx = startPx;
-		startPx = tmpPx;
-	}
+		swap(startPx, endOrAnchorPx);
 
 	// Calculate the step from each position between start and end.
 	Point positionPx = endOrAnchorPx - startPx;
