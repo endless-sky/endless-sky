@@ -67,7 +67,7 @@ private:
 	void DrawPlugins();
 	void DrawPluginInstalls();
 	void RenderPluginDescription(const std::string &pluginName);
-	void RenderPluginDescription(const Plugin &plugin);
+	void RenderPluginDescription(const Sprite *sprite, const std::string &description);
 
 	void DrawTooltips();
 
@@ -113,8 +113,6 @@ private:
 	Plugins::InstallData *clickedPluginInstall = nullptr;
 	Plugins::InstallData *oldClickedPluginInstall = nullptr;
 	Plugins::InstallData *hoverPluginInstall = nullptr;
-	unsigned int pluginInstallPages = 1;
-	unsigned int currentPluginInstallPage = 0;
 	bool downloadedInfo = false;
 	std::vector<std::future<void>> installFeedbacks;
 	std::vector<Plugins::InstallData> pluginInstallData;
