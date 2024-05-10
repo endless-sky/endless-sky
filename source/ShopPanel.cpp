@@ -66,6 +66,28 @@ namespace {
 		return ship.GetPlanet() == here;
 	}
 
+	const int HOVER_TIME = 60;
+
+	void DrawTooltip(const string &text, const Point &hoverPoint, const Color &textColor, const Color &backColor)
+	{
+		constexpr int WIDTH = 250;
+		constexpr int PAD = 10;
+		WrappedText wrap(FontSet::Get(14));
+		wrap.SetWrapWidth(WIDTH - 2 * PAD);
+		wrap.Wrap(text);
+		int longest = wrap.LongestLineWidth();
+		if(longest < wrap.WrapWidth())
+		{
+			wrap.SetWrapWidth(longest);
+			wrap.Wrap(text);
+		}
+
+		Point textSize(wrap.WrapWidth() + 2 * PAD, wrap.Height() + 2 * PAD - wrap.ParagraphBreak());
+		Point anchor = Point(hoverPoint.X(), min<double>(hoverPoint.Y() + textSize.Y(), Screen::Bottom()));
+		FillShader::Fill(anchor - .5 * textSize, textSize, backColor);
+		wrap.Draw(anchor - textSize + Point(PAD, PAD), textColor);
+	}
+
 	// disposition menu options
 	const string INSTALL_IN_SHIP = "Install in ship";
 	const string MOVE_TO_CARGO = "Move to cargo";
@@ -132,23 +154,15 @@ void ShopPanel::Draw()
 	shipInfo.DrawTooltips();
 	outfitInfo.DrawTooltips();
 
-	if(!warningType.empty())
+	if(!shipName.empty())
 	{
-		constexpr int WIDTH = 250;
-		constexpr int PAD = 10;
-		const string &text = GameData::Tooltip(warningType);
-		WrappedText wrap(FontSet::Get(14));
-		wrap.SetWrapWidth(WIDTH - 2 * PAD);
-		wrap.Wrap(text);
-
-		bool isError = (warningType.back() == '!');
+		string text = shipName;
+		if(!warningType.empty())
+			text += "\n" + GameData::Tooltip(warningType);
 		const Color &textColor = *GameData::Colors().Get("medium");
-		const Color &backColor = *GameData::Colors().Get(isError ? "error back" : "warning back");
-
-		Point size(WIDTH, wrap.Height() + 2 * PAD);
-		Point anchor = Point(warningPoint.X(), min<double>(warningPoint.Y() + size.Y(), Screen::Bottom()));
-		FillShader::Fill(anchor - .5 * size, size, backColor);
-		wrap.Draw(anchor - size + Point(PAD, PAD), textColor);
+		const Color &backColor = *GameData::Colors().Get(warningType.empty() ? "tooltip background"
+					: (warningType.back() == '!' ? "error back" : "warning back"));
+		DrawTooltip(text, hoverPoint, textColor, backColor);
 	}
 
 	if(dragShip && isDraggingShip && dragShip->GetSprite())
@@ -309,7 +323,11 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	else if(command.Has(Command::HELP))
 	{
 		if(player.Ships().size() > 1)
+		{
+			if(isOutfitter)
+				DoHelp("outfitter with multiple ships", true);
 			DoHelp("multiple ships", true);
+		}
 		if(isOutfitter)
 		{
 			DoHelp("uninstalling and storage", true);
@@ -733,7 +751,7 @@ bool ShopPanel::Click(int x, int y, int clicks)
 
 bool ShopPanel::Hover(int x, int y)
 {
-	Point point(x, y);
+	hoverPoint = Point(x, y);
 	// Check that the point is not in the button area.
 	hoverButton = CheckButton(x, y);
 	if(hoverButton)
@@ -743,8 +761,8 @@ bool ShopPanel::Hover(int x, int y)
 	}
 	else
 	{
-		shipInfo.Hover(point);
-		outfitInfo.Hover(point);
+		shipInfo.Hover(hoverPoint);
+		outfitInfo.Hover(hoverPoint);
 	}
 
 	activePane = ShopPane::Main;
@@ -959,6 +977,7 @@ void ShopPanel::DrawShipsSidebar()
 	const auto flightChecks = player.FlightCheck();
 	Point mouse = UI::GetMouse();
 	warningType.clear();
+	shipName.clear();
 	shipZones.clear();
 
 	static const Color selected(.8f, 1.f);
@@ -1001,6 +1020,12 @@ void ShopPanel::DrawShipsSidebar()
 
 		shipZones.emplace_back(point, Point(ICON_TILE/2.0, ICON_TILE/2.0), ship.get());
 
+		if(mouse.Y() < Screen::Bottom() - BUTTON_HEIGHT && shipZones.back().Contains(mouse))
+		{
+			shipName = ship->Name();
+			hoverPoint = shipZones.back().TopLeft();
+		}
+
 		const auto checkIt = flightChecks.find(ship);
 		if(checkIt != flightChecks.end())
 		{
@@ -1008,10 +1033,7 @@ void ShopPanel::DrawShipsSidebar()
 			const Sprite *icon = SpriteSet::Get(check.back() == '!' ? "ui/error" : "ui/warning");
 			SpriteShader::Draw(icon, point + .5 * Point(ICON_TILE - icon->Width(), ICON_TILE - icon->Height()));
 			if(shipZones.back().Contains(mouse))
-			{
 				warningType = check;
-				warningPoint = shipZones.back().TopLeft();
-			}
 		}
 
 		if(isSelected && playerShips.size() > 1 && ship->OutfitCount(selectedOutfit))
@@ -1214,6 +1236,19 @@ void ShopPanel::DrawButtons()
 	const Point odCenter = Screen::BottomRight() - Point(65, 60);
 	outfit_disposition.SetPosition(Rectangle(odCenter, {110, 20}));
 	outfit_disposition.Draw(this);
+
+	// Draw the tooltip for your full number of credits.
+	const Rectangle creditsBox = Rectangle::FromCorner(creditsPoint, Point(SIDEBAR_WIDTH - 20, 15));
+	if(creditsBox.Contains(hoverPoint))
+		hoverCount += hoverCount < HOVER_TIME;
+	else if(hoverCount)
+		--hoverCount;
+
+	if(hoverCount == HOVER_TIME)
+	{
+		string text = Format::Number(player.Accounts().Credits()) + " credits";
+		DrawTooltip(text, hoverPoint, dim, *GameData::Colors().Get("tooltip background"));
+	}
 }
 
 
@@ -1566,9 +1601,12 @@ void ShopPanel::MainUp()
 		return;
 
 	vector<Zone>::const_iterator it = Selected();
-	// Special case: nothing is selected.  Start from the first item.
+	// Special case: nothing is selected. Start from the first item.
 	if(it == zones.end())
+	{
 		it = zones.begin();
+		previousX = it->Center().X();
+	}
 
 	const double previousY = it->Center().Y();
 	while(it != zones.begin() && it->Center().Y() == previousY)
@@ -1601,8 +1639,10 @@ void ShopPanel::MainDown()
 	if(it == zones.end())
 	{
 		mainScroll = 0.;
-		selectedShip = zones.begin()->GetShip();
-		selectedOutfit = zones.begin()->GetOutfit();
+		it = zones.begin();
+		selectedShip = it->GetShip();
+		selectedOutfit = it->GetOutfit();
+		previousX = it->Center().X();
 		return;
 	}
 

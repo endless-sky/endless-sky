@@ -218,7 +218,6 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/Sound.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/SpaceportPanel.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Sprite.cpp
-   ${CMAKE_SOURCE_DIR}/../../../source/SpriteQueue.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/SpriteSet.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/SpriteShader.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/StarField.cpp
@@ -226,6 +225,7 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/StartConditionsPanel.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/StellarObject.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/System.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/TaskQueue.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Test.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/TestContext.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/TestData.cpp

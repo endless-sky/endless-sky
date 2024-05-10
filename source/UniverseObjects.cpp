@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Logger.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
+#include "TaskQueue.h"
 
 #include <algorithm>
 #include <iterator>
@@ -34,14 +35,14 @@ using namespace std;
 
 
 
-future<void> UniverseObjects::Load(const vector<string> &sources, bool debugMode)
+shared_future<void> UniverseObjects::Load(TaskQueue &queue, const vector<string> &sources, bool debugMode)
 {
 	progress = 0.;
 
 	// We need to copy any variables used for loading to avoid a race condition.
 	// 'this' is not copied, so 'this' shouldn't be accessed after calling this
 	// function (except for calling GetProgress which is safe due to the atomic).
-	return async(launch::async, [this, sources, debugMode]() noexcept -> void
+	return queue.Run([this, sources, debugMode]() noexcept -> void
 		{
 			vector<string> files;
 			for(const string &source : sources)
@@ -167,14 +168,14 @@ void UniverseObjects::Change(const DataNode &node)
 
 // Update the neighbor lists and other information for all the systems.
 // (This must be done any time a GameEvent creates or moves a system.)
-void UniverseObjects::UpdateSystems()
+void UniverseObjects::UpdateSystems(const PlayerInfo *player)
 {
 	for(auto &it : systems)
 	{
 		// Skip systems that have no name.
 		if(it.first.empty() || it.second.Name().empty())
 			continue;
-		it.second.UpdateSystem(systems, neighborDistances);
+		it.second.UpdateSystem(systems, neighborDistances, player);
 
 		// If there were changes to a system there might have been a change to a legacy
 		// wormhole which we must handle.

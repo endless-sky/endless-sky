@@ -190,9 +190,6 @@ protected:
 	ShipInfoDisplay shipInfo;
 	OutfitInfoDisplay outfitInfo;
 
-	mutable Point warningPoint;
-	mutable std::string warningType;
-
 	Dropdown selected_quantity;
 	bool quantity_is_modifier = false;
 	Dropdown outfit_disposition;
@@ -225,6 +222,11 @@ private:
 
 private:
 	bool delayedAutoScroll = false;
+
+	Point hoverPoint;
+	std::string shipName;
+	std::string warningType;
+	int hoverCount = 0;
 
 	void DispositionChanged(const std::string& value);
 };
