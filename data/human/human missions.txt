@@ -7086,7 +7086,7 @@ conversation "Ice Queen"
 	`	The woman has short jet black hair. She's wearing a military grade, all-purpose survival suit. The kind you might see on deeply embedded special forces. The only weapon on her is a decorated knife at her belt. She looks pale, and frail, probably malnourished. But her icy eyes are clear, and she locks them onto you.`
 	`	"You come into my home, and expect me to answer your questions?" Her voice is steady.`
 	`	Slowly, awkwardly, she pulls herself to her feet, keeping one hand on the counter for balance. She rests her other hand over her knife.`
-	`	"You are lucky that you did not barge in here a year ago, or even a month ago." Despite her bravdo there is a deep wariness behind her words. "Now tell me, who are you, and what are you doing here?" she says, through gritted teeth.` 
+	`	"You are lucky that you did not barge in here a year ago, or even a month ago." Despite her bravdo there is a deep wariness behind her words. "Now tell me, who are you, and what are you doing here?" she says, through gritted teeth.`
 	choice
 		`	(Tell her who you are, and how you were just delivering a stone.)`
 			to display
@@ -7099,7 +7099,7 @@ conversation "Ice Queen"
 	`	Ildico tries to spit, and her eyes blaze, "But we were House Drifa, more than anyone else, we built this world, and we would not abandon it to be someone else's dredges. My father bought supplies, equipment, necessities from the Navy. Enough so that me, my brother, and my mother could survive here."`
 	`	She pauses, as though unsure she wants to continue; then finally, in a less firm voice, "And then my father left. He said that dozens of worlds, worse off than ours, were terraformed every day. He said all they needed was a little convincing, and that he would come back with the support to terraform, and save, Hope. And then... he never came back."`
 	`	Ildico sighs. "A treasure hunter killed my brother a few years back. My mother... she is also dead, and I am starving. I have no way to contact anyone else, and no one else is left."`
-	`	"So, what do you say." She leans her head back, clearly exhausted by this exchange, and closes her eyes. "Will you kill me? Take advantage of me? Save me? Or leave me... to die."`		
+	`	"So, what do you say." She leans her head back, clearly exhausted by this exchange, and closes her eyes. "Will you kill me? Take advantage of me? Save me? Or leave me... to die."`	
 	choice
 		`	"Come with me. It's time you gave up on Hope."`
 			goto comewithme
@@ -7130,7 +7130,7 @@ conversation "Ice Queen"
 		`	"I just want to make the universe a better place."`
 		`	"It's karma. What goes around comes around."`
 		`	"One day you'll be able to pay me back."`
-		` 	"It's how they do things on Norn."`
+		`	"It's how they do things on Norn."`
 		`	"My reasons are my own."`
 
 	action
@@ -7175,7 +7175,7 @@ mission "Ice Queen 2"
 			`	Ildico leaps over the desk and grabs Eustice by his collar. "Is that what you told my father, Lord of House Drifa? Did you send him away like some misbegotten pauper?"`
 			`	Eustice pales and holds out his hands, "Please, Let me go. I meant no insult."`
 			choice
-				`	(Don't interfere.)` 
+				`	(Don't interfere.)`
 				`	(Tell Ildico to calm down.)`
 			`	Ildico releases his collar, but remains only inches from his face. "Did Deoric Drifa come here years ago asking to terraform Hope?"`
 			`	Eustice takes a step back, and nods vigorously. "Yes, yes. I remember him. You don't forget a man like him, or a request like his. He asked about terraforming Hope. As I said earlier, we aren't that kind of firm. I told him he'd have to talk to the Academy of Planetary Sciences on <planet> for that kinda work. And then he left.`
@@ -7208,7 +7208,7 @@ mission "Ice Queen 3"
 				`	(Fill out the forms.)`
 
 			`	A few painfully tedious hours later, all the right forms have been filled out and you've found your way to Ian McGiven's office.`
-			# Could be a little more descriptive, it sounds like McGiven appreared in front of you. Maybe describe the hallways you go through and finally the door that says "Prof. Ian McGiven"
+			# Could be a little more descriptive, it sounds like McGiven appeared in front of you. Maybe describe the hallways you go through and finally the door that says "Prof. Ian McGiven"
 			`	"Ah, yes, of course I remember the fellow! What an interesting meeting that was," Ian says from behind his small desk.`
 			`	"Obviously, the details are proprietary, but in very broad generalities, he wanted me to warm up a freezing world."`
 			`	Ildico doesn't blink; on second thought, you're not sure you've ever seen her blink. "Hope. Yes, and could you warm it?"`
@@ -7261,7 +7261,7 @@ mission "Ice Queen 5"
 	landing
 	name "Visit Ildico"
 	description "Ildico has asked you to visit her on <destination>."
-	source 
+	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination "Chiron"
 	to offer
@@ -7305,13 +7305,13 @@ mission "Ice Queen 6"
 				`	"Are you hurt? Do you need help?"`
 				`	"What have you done?"`
 				`	(Say nothing.)`
-			`	She ignores you, her attention focused elsewhere.`	
+			`	She ignores you, her attention focused elsewhere.`
 			`	"You thought," Ildico says as she catches her breath, "that you could sell me? That you could give me to the bureaucrat who signed Hope's death warrant? That I would be your pawn, your tool, your object in order to gain favor and promotion?"`
 			`	The raven-haired woman laughs, as she cleans off her bloody dagger, and takes a step toward the figure cowering in the corner. The man you recognize as her father.`
 			`	"Wh-what have you done? You've ruined everything. I was so close. I would have had it all." Deoric blinks, his face sets in hard, and he straightens up, he looks as if he just remembered who he is.`
 			`	"You stupid, selfish, arrogant brat. You just needed to do as you were told. To play your pathetic part. You couldn't could you? You were always worthless. If only your brother had survived." Deoric picks up a broken furniture leg and confidently wields it like a club.`
 			`	At this Ildico's wicked grin widens deeper. "My brother? Dear Hogne. Father, I killed him. He couldn't handle the ice, the isolation, the hopelessness of Hope. He lost his mind. He tried to make me his wife. And mother? Mother, was no better. And, I? I needed to eat."`
-			`	The color drains out of Deoric's face. "Monster." He says. "I will put an end to you. I will start a new family, as I should have before."` 
+			`	The color drains out of Deoric's face. "Monster." He says. "I will put an end to you. I will start a new family, as I should have before."`
 			`	Deoric lunges at Ildico, but before he can take more then a single step, Ildico's wrist flicks and her knife slams into Deoric's throat. He falls to the ground, bleeding out, dying.`
 			`	Ildico stands over him. "You are coward. A miserable disgusting man." She spits on him, and pulls her dagger from his heaving neck. A moment later he's dead."`
 			`	She turns to you. "I am now a fugitive, and you are my only friend. I need you to get us out of here."`
@@ -7343,7 +7343,7 @@ mission "Ice Queen 6"
 			label leave
 			`	Ildico puts her baby back down, and for just a second you see agony in her eyes. Killing her father or her arranged husband didn't break her mask, but somehow this does. A tear rolls down her cheek.`
 			`	Her hand wavers, trembles, over her knife, and then she drops it, and her head. "So then go."`
-				decline	
+				decline
 
 	on complete
 		outfit "Blood of Surtr"
@@ -7362,7 +7362,7 @@ mission "Ice Queen 6"
 			choice
 				`	"Thank you."`
 					goto "gotta go"
-				` 	"Is it wise for you and your child to be left alone in a place like Haven?"`
+				`	"Is it wise for you and your child to be left alone in a place like Haven?"`
 
 			`	She laughs. "Haven better watch out for me. After Hope and Chiron, this place will be a cakewalk."`
 				goto end
@@ -7381,7 +7381,7 @@ mission "Ice Queen 7"
 	landing
 	name "Meet Ildy on <planet>"
 	description "See what Ildico needs on <destination>."
-	source 
+	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination "Haven"
 	to offer
@@ -7475,7 +7475,7 @@ mission "Ice Queen 8"
 
 
 mission "News Queen"
-	source 
+	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		near "Arneb" 10
 	to offer
