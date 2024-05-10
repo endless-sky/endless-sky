@@ -6879,6 +6879,9 @@ mission "Lost Dog"
 			`	You look down at the credit chip in your hand and read its value: <payment>.`
 
 
+"event: lost dog: homeward bound"
+
+
 mission "Lost Dog: Homeward Bound"
 	to offer
 		has "event: lost dog: homeward bound"
