@@ -6780,7 +6780,7 @@ mission "Lost Dog"
 	on offer
 		conversation
 			`Your walk from the <ship> takes you out of <planet>'s bustling spaceport and into the overtly welcoming and carefully inoffensive streets of the spaceport town. Each path seems to be saturated with tourists and purpose-built to whisk travelers further away from their ships and deeper into the preternatural radiance of this Paradise World. The hand-crafted beauty is inescapable, a never-ending sequence of breathtaking views.`
-			`	As you walk, you eventually come across a perfectly manicured garden park named "Parc Manifold." You walk toward the gates to discover a ticket office, with signs advertising a free entry promotion this week only, crossing out the 3,400 credit regular admission fee.`
+			`	As you walk, you eventually come across a perfectly manicured garden park named "Parc Manifold." You approach the gates to discover a ticket office, with signs advertising a free entry promotion this week only, crossing out the 3,400 credit regular admission fee.`
 			choice
 				`	(Go to the park.)`
 					goto park
@@ -6815,6 +6815,8 @@ mission "Lost Dog"
 					goto takehim
 				`	(Leave Caesar here.)`
 
+			action
+				event "lost dog: homeward bound" 90 180
 			`	Perhaps his owners are on vacation and will be back looking for him any minute. Although it's getting dark and no one seems to be around, you decide the best course of action is to leave Caesar where you found him.`
 			`	As you turn away, Caesar begins to whine, but he soon quiets down when you don't come back to pick him up. Looking back, you notice him slinking off into the shadow of a perfectly manicured shrub.`
 				decline
@@ -6856,7 +6858,7 @@ mission "Lost Dog"
 				goto boolinbrook
 
 			label nocard
-			`	The butler smiles smugly. "How unfortunate. In that case, I have no choice but to bring you in through the servant's entrance. It's only proper."`
+			`	The butler smiles smugly. "How unfortunate. In that case, I have no choice but to bring you in through the servants' entrance. It's only proper."`
 			`	Instead of taking you up the wide stairs to the beautifully inscribed wooden doors, he ushers you around the side to a small plain door. You are left there with the footman to wait.`
 			`	Three quarters of an hour later, a woman wearing an exceedingly impractical dress arrives.`
 
@@ -6879,8 +6881,7 @@ mission "Lost Dog"
 
 mission "Lost Dog: Homeward Bound"
 	to offer
-		random < 3
-		has "Lost Dog: declined"
+		has "event: lost dog: homeward bound"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on offer
