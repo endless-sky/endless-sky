@@ -7789,7 +7789,7 @@ mission "Tavish and Kormak 6"
 			`	You follow Kormak has he hacks and slashes at various alien flora and pick up oozing remains he leaves behind.`
 			`	"You did good." Kormak says without turning to look at you.`
 			`	"Was important thing. Standing by Tavish. Honorable. Valuable." He continues as trees crack before him.`
-			`	"Skoll-Wolf ate my clan's sun, and the lying Dream Anuabhair brought them to new world with strange stars. It was hard, but my clan is hardy. They thought they tame strange world. But then monsters come, and everything changed. Where I from trust is all that keeps a man alive."`
+			`	"Skoll-Wolf ate my clann's sun, and the lying Dream Anuabhair brought them to new world with strange stars. It was hard, but my clann is hardy. They thought they tame strange world. But then monsters come, and everything changed. Where I from trust is all that keeps a man alive."`
 			` 	Kormak suddenly stops what he is doing to turn and look at you, "We have trust. You, Tavish, me. Remember that. All worlds have monsters."`
 			`	The large man turns from you and finishes chopping down the last wailing tree.`
 			`	With the area around the designated campground clear he turns to you and give you a smallest nod, "Trust."`
@@ -7814,7 +7814,7 @@ mission "Tavish and Kormak 6"
 			`	Tavish pinches his fingers together like he's holding his invisable fruit's core, "Finally, there's the lowest layer. Few are aware of it, and I think it may be an embarressment to leaders of the Deep. It's made up of people like Kormak, or the Ice-Witches of Nifel." `
 			`	"The Ui Skathi." Kormak says, "Granddaughters of Skathi."`
 			`	"Was that what they called themselves?" Tavish shrugs, "Kormak's always a little sensative about this. Anyways, they don't really make sense. How did they get to the Deep? Where did they come from? There's two prevailing theories. First, that there was a lost generational fleet that landed in the Deep earlier than anyone realized, that something went wrong, and that they degenerated in primitives. Or, well this is more of folklore than a theory, that thousands of years ago humans were brought to the Deep by... elves."`
-			`	"Not elves," Kormak interupts with a hint of annoyance,"the Dream Anuabhair. That how they are called in my clan's sagas. The exceedingly proud folk. Never to trust."`
+			`	"Not elves," Kormak interupts with a hint of annoyance,"the Dream Anuabhair. That how they are called in my clann's sagas. The exceedingly proud folk. Never to trust."`
 			`	Kormak sighs and turns back to you, "If ever you stand before gleaming high-timbered hall built in shadow of dark Sidhe-Stone with carved face of Skoll-Wolf. Know that is my home." `
 			`	"Enough about past. Only present matters." He says and then goes back to eating.`
 			`	Tavish laughs, "Of course. Let us discource about less weighty matters."`
@@ -7849,7 +7849,7 @@ mission "Tavish and Kormak 6"
 			`	"Axe-Edge, Bright-Pledge, Breaker of Blight's Dredge,`
 			`	Ash-born, Eagle-torn, Slayer of Earth's forlorn. `
 			`	Break before my battle axe, Flee before my thunder.`
-			`	Die beneath a stranger's sky, and feed my clan's hunger."`
+			`	Die beneath a stranger's sky, and feed my clann's hunger."`
 			`	Eventually all the alien vines have retreated back behind the tree line. As you watch them go you realize they weren't terribly formidable. They were slow, weak, and soft.`
 			choice
 				`	"That's it? How did those things manage to kill Gerald?"`
