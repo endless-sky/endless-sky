@@ -297,7 +297,7 @@ Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigne
 
 	// Check if we have a valid repeat section and apply it to the common calculations if we have it.
 	const LineRepeat *repeat = nullptr;
-	if(ring > 0 && repeatNr < line.repeats.size())
+	if(ring > 0)
 	{
 		repeat = &(line.repeats[repeatNr]);
 		startPx += repeat->repeatStart.GetPx(diameterToPx, widthToPx, heightToPx) * ring;
