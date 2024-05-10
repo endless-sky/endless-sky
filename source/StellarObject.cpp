@@ -156,6 +156,7 @@ double StellarObject::Distance() const
 
 
 
+// Change the distances an object is visible from, based on ship attributes.
 void StellarObject::UpdateDistanceVisibility(const Ship *flagship)
 {
 	if(!flagship || trueDistanceInvisible)
