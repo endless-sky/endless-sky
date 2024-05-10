@@ -6893,13 +6893,16 @@ mission "Hogshead's Dilemma II"
 
 
 
+event "stone waiting most"
+
+
 mission "Stone to Hope"
 	name "Bring Tosti's stone to <planet>"
 	description "Take Tosti's family stone to <destination>, where they used to live before they immigrated to <origin>."
 	to offer
 		random < 60
 		has "Stone of our Fathers 5: done"
-		has "event: Stone Waiting most"
+		has "event: stone waiting most"
 	source "Norn"
 	destination "Hope"
 	on offer
@@ -7021,7 +7024,7 @@ conversation "Ice Queen"
 	`	You break out the cold gear and dress yourself in warm layers with sturdy boots. Furtive frost cracks and breaks as your ship's door opens, and you step out into the cold air. This world's dim light reflects painfully off the ice and snow, momentarily blinding you.`
 	`	Once outside in the sharp, crisp air it's easy to find the dismal ruins of this world's last spaceport. The trek is slow and clumsy in the unfamiliar gravity and granular snow."`
 	`	You work around the silent spaceport, where the half-buried hangers are littered with the forgotten mementos of desperate refugees, and many of the buildings are lost beneath the encroaching ice. Eventually you see a cliff edge with dozens of cairns piled along it. Silent watchers of the churning glaciers.`
-	`	The sun begins to set, and you can already feel the temperature begining to plummet. There's not much else to see in this abandoned world, and it may be time to head back.`
+	`	The sun begins to set, and you can already feel the temperature beginning to plummet. There's not much else to see in this abandoned world, and it may be time to head back.`
 		goto building
 
 	label "has stone"
@@ -7053,7 +7056,7 @@ conversation "Ice Queen"
 		decline
 
 	label placestone
-	`	Carefully you place Tosti's stone with the others. The act is greated only by the deafening silence and the icy air of the abandoned world.`
+	`	Carefully you place Tosti's stone with the others. The act is greeted only by the deafening silence and the icy air of the abandoned world.`
 	choice
 		`	(Head back.)`
 	`	The sun is setting and your task here is done. You start making your way back through ice and ruin to your ship.`
@@ -7071,7 +7074,7 @@ conversation "Ice Queen"
 	label litbuilding
 	`	You enter into the sturdy and unfrozen building at the edge of the spaceport.`
 	`	Faded wealth still clings to peeling walls of this once spacious manor. It is evident that it was once the heart and hearth of a wealthy family in an earlier, warmer time. The home feels like a tomb or a museum; it seems as if everything here has been left in a certain way for a long time. But as you work deeper into its nested walls you begin to see signs of much more recent life.`
-	`	Eventually you find your way to the kitchen, which appears to be the epicenter of acitvity in this household. You see assorted survival rations and gear strewn about everywhere. More alarmingly, you also see a young woman sitting on the floor with her back against a counter.`
+	`	Eventually you find your way to the kitchen, which appears to be the epicenter of activity in this household. You see assorted survival rations and gear strewn about everywhere. More alarmingly, you also see a young woman sitting on the floor with her back against a counter.`
 	choice
 		`	"Who are you?"`
 		`	"Are you okay?"`
@@ -7539,7 +7542,7 @@ mission "Skadenga: Blood of Surtr"
 			`	Aldfrith shakes his head slowly. "In the time of my grandfather the men from the Deep came and took them off world. They said they were too valuable to belong in the hands of savages, and since then we've never found another Scale of Ran. I think she was displeased we allowed them to be taken."`
 			`	The old man pauses for a moment and then says, "Although.. I do remember when I was a child the folk from the Deep coming and visiting us again. They had questions about.. our baubles. I think they said they did not work? They thought they were just useless charms. Perhaps the Scales stopped working?"`
 			`	He shrugs. "I am sorry, <first>, that I cannot tell you more."`
-			`	The Ondurdis puts a hand on his back. "I value your stories." She turns her attention back to you, "Maybe all God-Stones once produced wonderous stones of power."`
+			`	The Ondurdis puts a hand on his back. "I value your stories." She turns her attention back to you, "Maybe all God-Stones once produced wondrous stones of power."`
 			`	She points at the Blood of Surtr, "Maybe that is where yours came from. But more than guesses, we cannot provide."`
 			choice
 				`	(Take your leave.)`
@@ -7561,7 +7564,7 @@ mission "Stone to Hope: Thanks"
 					decline
 			
 			label tell
-			`	As you say your hello you accidently startle Helm, who's in the middle of recalibrating a repulsor.`
+			`	As you say your hello you accidentally startle Helm, who's in the middle of recalibrating a repulsor.`
 			`	"Woah! <first>! No need to sneak up on me!" He stands up to greet you. "What's new?"`
 			choice
 				`	"I found the Family-Cairn and left the stone there."`
