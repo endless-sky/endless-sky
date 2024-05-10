@@ -7079,7 +7079,7 @@ mission "Timothy Radrickson 3a: Rescue the Convoy"
 		has "Timothy Radrickson 3: Invitation to Rand: done"
 	on offer
 		conversation
-			`Regina, her driver, and a black sleek vehicle are all waiting for you aside the worn down and substandard spaceport. You slide into the comfortable seating and look out the window as the dry, ugly landscape of Rand passes you by. From time to time you see a strip mine or a camp of workers' barracks, but rarely anything else. Behind your vehicle there is a huge plume of half-frozen dust. Apparently low gravity and dust is a terrible combination.`
+			`Regina, her driver, and a black sleek vehicle are all waiting for you outside the worn down and substandard spaceport. You slide into the comfortable seating and look out the window as the dry, ugly landscape of Rand passes you by. From time to time you see a strip mine or a camp of workers' barracks, but rarely anything else. Behind your vehicle there is a huge plume of half-frozen dust. Apparently low gravity and dust is a terrible combination.`
 			`	After an hour of driving you notice the landscape suddenly shift. The first tendrils of greenery invades the otherwise brown-yellow desert. Upon closer inspection, the green plants are accompanied by all manner of technology to help and promote their growth. Money, it seems, is turning just a little bit of this parched place green.`
 			`	Beyond the suddenly green hills sits a huge sprawling complex. You recognize a few massive structures outside the building as artificial gravity drives; the same sort of drives ships use to maintain gravity onboard, but for an entire estate.`
 			choice
