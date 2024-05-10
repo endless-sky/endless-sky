@@ -7213,21 +7213,24 @@ mission "Ice Queen 3"
 			`	Ildico glares at the young woman suscupiously, "Can we trust her?"`
 			`	The intern looks confused, and a little hurt, but says nothing.`
 			choice
-				`	"We can trust her. We're not in danger here."`
+				`	"We can trust her. We're in no danger here."`
 					goto nodanger
 				`	"I'll protect you. Don't worry."`
 					goto protect
-				`	"We have no choice if you answers."`
+				`	"We have no choice if you want answers."`
 			`	Ildico nods and then enters the vehicle and you follow behind her.`
 				goto ridealong
 			
 			label no danger
 			`	Ildico barks out a laugh, "So Naive. We are always in Danger. But for answers I will risk it."`
-			`	She carefully checks the inside of the vheicle before carefully climbing in. You follow her.`
-				goto protect
+			`	She carefully checks the inside of the vheicle before carefully climbing in.`
+			choice
+				`	(Follow her in.)`
+			label protect
 			`	Ildico's laughs hard and sheds tears, "You? Protect me?" She wipes her tears as her mirth subsides and her cold intense coutenance reasserts itself. `
 			`	"No, <first>. I will protect you." Her voice is deadly serious. She then inspects the inside of the vehicle carfully and takes a seat, "It seems safe. And I need answers."`
-			`	You follow her in.`
+			choice
+				`	(Follow her in.)`
 
 			label ridealong
 			`	After a brief ride through campus you are escourted deeper and deeper into the maze that is the Everest Facility. Another half an hour later of hallways, and turns, and stairs and ups and downs, you finally find yourself inside Ian McGiven's office.`
