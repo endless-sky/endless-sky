@@ -477,10 +477,9 @@ void Hardpoint::UpdateArc()
 	if(!outfit)
 		return;
 
-	const BaseAttributes &attributes = baseAttributes;
-	// Restore the initial value.
-	isOmnidirectional = attributes.isOmnidirectional;
-	baseAngle = attributes.baseAngle;
+	// Restore the initial value (from baseAttributes).
+	isOmnidirectional = baseAttributes.isOmnidirectional;
+	baseAngle = baseAttributes.baseAngle;
 	if(isOmnidirectional)
 	{
 		const Angle opposite = baseAngle + Angle(180.);
@@ -489,8 +488,8 @@ void Hardpoint::UpdateArc()
 	}
 	else
 	{
-		minArc = attributes.minArc;
-		maxArc = attributes.maxArc;
+		minArc = baseAttributes.minArc;
+		maxArc = baseAttributes.maxArc;
 	}
 
 	// The installed weapon restricts the arc of fire.
