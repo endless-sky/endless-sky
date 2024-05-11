@@ -284,10 +284,10 @@ void Mission::Load(const DataNode &node)
 		}
 		else if(child.Token(0) == "stopover" && child.HasChildren())
 			stopoverFilters.emplace_back(child);
-		else if(child.Token(0) == "ping" && child.Size() >= 2)
+		else if(child.Token(0) == "mark" && child.Size() >= 2)
 		{
-			bool visited = child.Size() >= 3 && child.Token(2) == "visited";
-			set<const System *> &set = visited ? unpinged : pings;
+			bool unmarked = child.Size() >= 3 && child.Token(2) == "unmarked";
+			set<const System *> &set = unmarked ? unmarkedSystems : markedSystems;
 			set.insert(GameData::Systems().Get(child.Token(1)));
 		}
 		else if(child.Token(0) == "substitutions" && child.HasChildren())
@@ -457,10 +457,10 @@ void Mission::Save(DataWriter &out, const string &tag) const
 		for(const Planet *planet : visitedStopovers)
 			out.Write("stopover", planet->TrueName(), "visited");
 
-		for(const System *system : pings)
-			out.Write("ping", system->Name());
-		for(const System *system : unpinged)
-			out.Write("ping", system->Name(), "visited");
+		for(const System *system : markedSystems)
+			out.Write("mark", system->Name());
+		for(const System *system : unmarkedSystems)
+			out.Write("mark", system->Name(), "unmarked");
 
 		for(const NPC &npc : npcs)
 			npc.Save(out);
@@ -546,10 +546,10 @@ bool Mission::IsValid() const
 	for(auto &&system : VisitedWaypoints())
 		if(!system->IsValid())
 			return false;
-	for(auto &&system : Pings())
+	for(auto &&system : MarkedSystems())
 		if(!system->IsValid())
 			return false;
-	for(auto &&system : Unpinged())
+	for(auto &&system : UnmarkedSystems())
 		if(!system->IsValid())
 			return false;
 
@@ -646,32 +646,32 @@ const set<const Planet *> &Mission::VisitedStopovers() const
 
 
 
-const set<const System *> &Mission::Pings() const
+const set<const System *> &Mission::MarkedSystems() const
 {
-	return pings;
+	return markedSystems;
 }
 
 
 
-const set<const System *> &Mission::Unpinged() const
+const set<const System *> &Mission::UnmarkedSystems() const
 {
-	return unpinged;
+	return unmarkedSystems;
 }
 
 
 
-void Mission::Ping(const System *system) const
+void Mission::Mark(const System *system) const
 {
-	pings.insert(system);
-	unpinged.erase(system);
+	markedSystems.insert(system);
+	unmarkedSystems.erase(system);
 }
 
 
 
-void Mission::Unping(const System *system) const
+void Mission::Unmark(const System *system) const
 {
-	if(pings.erase(system))
-		unpinged.insert(system);
+	if(markedSystems.erase(system))
+		unmarkedSystems.insert(system);
 }
 
 
@@ -1293,7 +1293,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.repeat = repeat;
 	result.name = name;
 	result.waypoints = waypoints;
-	result.pings = pings;
+	result.markedSystems = markedSystems;
 	// Handle waypoint systems that are chosen randomly.
 	const System *const sourceSystem = player.GetSystem();
 	for(const LocationFilter &filter : waypointFilters)
@@ -1460,7 +1460,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		subs["<stopovers>"] = stopovers;
 		subs["<planet stopovers>"] = planets;
 	}
-	// Waypoints and pings: "<system name>" with "," and "and".
+	// Waypoints and marks: "<system name>" with "," and "and".
 	auto systemsReplacement = [](const set<const System *> &systemsSet) -> string {
 		string systems;
 		const System * const *last = &*--systemsSet.end();
@@ -1475,8 +1475,8 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	};
 	if(!result.waypoints.empty())
 		subs["<waypoints>"] = systemsReplacement(result.waypoints);
-	if(!result.pings.empty())
-		subs["<pings>"] = systemsReplacement(result.pings);
+	if(!result.markedSystems.empty())
+		subs["<marks>"] = systemsReplacement(result.markedSystems);
 
 	// Instantiate the NPCs. This also fills in the "<npc>" substitution.
 	string reason;

@@ -74,8 +74,8 @@ namespace {
 			if(stopover->IsInSystem(system))
 				return true;
 
-		for(const System *ping : mission.Pings())
-			if(ping == system)
+		for(const System *mark : mission.MarkedSystems())
+			if(mark == system)
 				return true;
 
 		return false;
@@ -683,11 +683,11 @@ void MissionPanel::DrawKey() const
 void MissionPanel::DrawMissionSystem(const Mission &mission, const Color &color) const
 {
 	auto toVisit = set<const System *>{mission.Waypoints()};
-	toVisit.insert(mission.Pings().begin(), mission.Pings().end());
+	toVisit.insert(mission.MarkedSystems().begin(), mission.MarkedSystems().end());
 	for(const Planet *planet : mission.Stopovers())
 		toVisit.insert(planet->GetSystem());
 	auto hasVisited = set<const System *>{mission.VisitedWaypoints()};
-	hasVisited.insert(mission.Unpinged().begin(), mission.Unpinged().end());
+	hasVisited.insert(mission.UnmarkedSystems().begin(), mission.UnmarkedSystems().end());
 	for(const Planet *planet : mission.VisitedStopovers())
 		hasVisited.insert(planet->GetSystem());
 
@@ -1118,10 +1118,10 @@ void MissionPanel::CycleInvolvedSystems(const Mission &mission)
 			return;
 		}
 
-	for(const System *ping : mission.Pings())
+	for(const System *mark : mission.MarkedSystems())
 		if(++index == cycleInvolvedIndex)
 		{
-			CenterOnSystem(ping);
+			CenterOnSystem(mark);
 			return;
 		}
 

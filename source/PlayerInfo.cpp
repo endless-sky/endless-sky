@@ -2394,7 +2394,7 @@ bool PlayerInfo::HasSeen(const System &system) const
 			return false;
 		if(m.Waypoints().count(&system))
 			return true;
-		if(m.Pings().count(&system))
+		if(m.MarkedSystems().count(&system))
 			return true;
 		for(auto &&p : m.Stopovers())
 			if(p->IsInSystem(&system))

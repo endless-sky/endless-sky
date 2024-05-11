@@ -197,10 +197,10 @@ void GameAction::LoadSingle(const DataNode &child)
 		music = child.Token(1);
 	else if(key == "mute")
 		music = "";
-	else if(key == "ping" && hasValue)
-		ping.insert(GameData::Systems().Get(child.Token(1)));
-	else if(key == "unping" && hasValue)
-		unping.insert(GameData::Systems().Get(child.Token(1)));
+	else if(key == "mark" && hasValue)
+		mark.insert(GameData::Systems().Get(child.Token(1)));
+	else if(key == "unmark" && hasValue)
+		unmark.insert(GameData::Systems().Get(child.Token(1)));
 	else if(key == "fail" && hasValue)
 		fail.insert(child.Token(1));
 	else if(key == "fail")
@@ -246,10 +246,10 @@ void GameAction::Save(DataWriter &out) const
 		out.Write("fine", fine);
 	for(auto &&it : events)
 		out.Write("event", it.first->Name(), it.second.first, it.second.second);
-	for(const System *system : ping)
-		out.Write("ping", system->Name());
-	for(const System *system : unping)
-		out.Write("unping", system->Name());
+	for(const System *system : mark)
+		out.Write("mark", system->Name());
+	for(const System *system : unmark)
+		out.Write("unmark", system->Name());
 	for(const string &name : fail)
 		out.Write("fail", name);
 	if(failCaller)
@@ -287,11 +287,11 @@ string GameAction::Validate() const
 		if(!outfit.first->IsDefined())
 			return "gift outfit \"" + outfit.first->TrueName() + "\"";
 
-	// Pinged and unpinged system must be valid.
-	for(auto &&system : ping)
+	// Marked and unmarked system must be valid.
+	for(auto &&system : mark)
 		if(!system->IsValid())
 			return "system \"" + system->Name() + "\"";
-	for(auto &&system : unping)
+	for(auto &&system : unmark)
 		if(!system->IsValid())
 			return "system \"" + system->Name() + "\"";
 
@@ -383,10 +383,10 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 	for(const auto &it : events)
 		player.AddEvent(*it.first, player.GetDate() + it.second.first);
 
-	for(const System *system : ping)
-		caller->Ping(system);
-	for(const System *system : unping)
-		caller->Unping(system);
+	for(const System *system : mark)
+		caller->Mark(system);
+	for(const System *system : unmark)
+		caller->Unmark(system);
 
 	if(!fail.empty())
 	{
@@ -456,8 +456,8 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 
 	result.conditions = conditions;
 
-	result.ping = ping;
-	result.unping = unping;
+	result.mark = mark;
+	result.unmark = unmark;
 
 	return result;
 }

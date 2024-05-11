@@ -91,8 +91,8 @@ private:
 
 	std::optional<std::string> music;
 
-	std::set<const System *> ping;
-	std::set<const System *> unping;
+	std::set<const System *> mark;
+	std::set<const System *> unmark;
 
 	// When this action is performed, the missions with these names fail.
 	std::set<std::string> fail;
