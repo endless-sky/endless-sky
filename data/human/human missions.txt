@@ -7033,7 +7033,7 @@ mission "Timothy Radrickson 2: Good Interlude"
 			choice
 				`	(Play the message.)`
 
-			`	The screen lights up with a somewhat familiar man, but it is only when you see the name of the sender that you realise that this is the fuller face of a healthy Timothy Radrickson, whom you last met as a stowaway on your ship.`
+			`	The screen lights up with a somewhat familiar man, but it is only when you see the name of the sender that you realize that this is the fuller face of a healthy Timothy Radrickson, whom you last met as a stowaway on your ship.`
 			`	"Captain <last>. Let me just reiterate my thanks to you for what you did for me. Most captains would have airlocked me, or dropped me off wherever, but you really gave me a chance."`
 			`	He stops and grins at the camera for a moment. "And that chance, it really has made all the difference. It's been a year of hard work, but I've saved some money and made some investments, and things really are turning around."`
 			`	"By way of thanks," he continues, "I've included 50,000 credits with this message. That should cover the cost of transporting to me to Rand, but it doesn't come close to what I really owe. Which is, in all honesty, my very life."`
@@ -7168,14 +7168,14 @@ mission "Timothy Radrickson 3a: Rescue the Convoy"
 mission "Timothy Radrickson 3b: Pirate Base"
 	landing
 	name "Defeat the pirate fleet"
-	description "Destroy the pirate fleet that is holding Rand's fleet hostage, then try and recover the fleet."
+	description "Destroy the pirate fleet that is holding Rand's convoy hostage, then try and recover it."
 	source "Greenrock"
 	clearance
 	to offer
 		has "Timothy Radrickson 3a: Rescue the Convoy: done"
 	on offer
 		conversation
-			`	Your ship skims Greenrock's choppy atmosphere and your terrestrial navigation computer suddenly hums to life as it picks up the lost freighter fleet's tracking beacon. It locks on to a large and well guarded underground bay on the very fringes of the spaceport. Close enough to do business, but far enough away to maintain strict security.`
+			`Your ship skims Greenrock's choppy atmosphere and your terrestrial navigation computer suddenly hums to life as it picks up the lost freighter fleet's tracking beacon. It locks on to a large and well guarded underground bay on the very fringes of the spaceport. Close enough to do business, but far enough away to maintain strict security.`
 			`	As you approach the bay your computer is able to make out numerous parked pirate vessels, and large defensive turrets just outside the bay's underground blast doors. They haven't realized you're hostile yet and you have an opportunity to seize the initiative and open fire on them.`
 
 			choice
@@ -7188,7 +7188,7 @@ mission "Timothy Radrickson 3b: Pirate Base"
 			`	You are forced back into space to fight them.`
 				launch
 
-			label fire 
+			label fire
 			action
 				set "diminished greenrock pirate fleet"
 			`	Your ship lets loose a withering barrage that destroys multiple pirate vessels and disables others. You then pull back up into space as the surviving ships are sent after you.`
@@ -7200,13 +7200,13 @@ mission "Timothy Radrickson 3b: Pirate Base"
 
 	npc kill
 		system "Shaula"
-		to spawn 
+		to spawn
 			has "big greenrock pirate fleet"
 		government "Pirate"
 		personality staying nemesis target
 		fleet "Marauder fleet X" 2 # Subject to balancing
 	
-		npc kill
+	npc kill
 		system "Shaula"
 		to spawn
 			has "diminished greenrock pirate fleet"
@@ -7276,7 +7276,7 @@ mission "Timothy Radrickson 3c: Escort the Convoy"
 			`	With that she heads back to her freighter fleet.`
 
 	npc accompany save
-		government "Merchant" # 3800 cargo capacity 
+		government "Merchant" # 3800 cargo capacity
 		personality escort timid
 		ship "Behemoth" "H.H.H. Gullveig's Revenge"
 		ship "Hauler" "H.H.H. Hard and Fast"
