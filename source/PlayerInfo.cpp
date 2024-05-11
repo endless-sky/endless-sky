@@ -586,7 +586,7 @@ void PlayerInfo::AddChanges(list<DataNode> &changes)
 // Add an event that will happen at the given date.
 void PlayerInfo::AddEvent(const GameEvent &event, const Date &date)
 {
-	// Check the event should be applied directly.
+	// Check if the event should be applied directly.
 	if(date <= this->date)
 	{
 		GameEvent eventCopy = event;
