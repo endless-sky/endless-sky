@@ -444,7 +444,7 @@ mission "Ask Quarg About Coalition Late"
 					to display
 						has "human space start"
 					goto planet
-				`	"I come from Greenwater, in hai space."`
+				`	"I come from Greenwater, in Hai space."`
 					to display
 						has "hai space start"
 					goto planet

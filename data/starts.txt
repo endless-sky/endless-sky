@@ -58,7 +58,7 @@ conversation "default intro"
 
 
 start "hai space"
-	name "New Hai"
+	name "Hai Space Start"
 	description `You grew up on Greenwater, a world with a very rich and mixed culture. You've dreamed of owning your own fleet since you were given toy spaceships as a small child. In order to reach that goal, you worked hard at a travel company, recommending mostly locations in human space.`
 	description `	Now, as you enter the shipyard, you feel like this is the start of a new life as a captain.`
 	thumbnail "scene/hai start"
@@ -119,11 +119,11 @@ conversation "hai intro"
 		`	(Go to the bank.)`
 	scene "scene/hai bank"
 	`	You head to the bank's lobby, hoping to get enough of a loan to be able to buy one of these pristine ships.`
-	`	To your disappointment, the only ship you could afford is an Aphid. You arrange the contract to loan as much money as you need in order to buy one, in what has to be the first seriously unwise act of your life.`
+	`	To your disappointment, the only ship you can afford is an Aphid. You arrange the contract to loan as much money as you need in order to buy one, in what has to be the first seriously unwise act of your life.`
 	`	You've heard of new captains stripping down their ships to recoup the initial buy-in, which is crossing your mind as you see the financial burden you're about to take on. As you wait for the paperwork to be processed, you passively scan over an Aphid pamphlet in the office. The pricey shield regenerator could be traded in if you can avoid combat... and perhaps even the anti-missile system could be downgraded or outright removed... one of the Sand Cells could be sold back to make more space for cargo...`
 	`	Those anxious musings are interrupted when the bank employee finally lays it out to you, with a hesitant smile. "You are accepting a loan in the amount of 1,431,000 credits, due over the course of 2 years, with an interest rate of 0.3% per day. Please sign here."`
 	name
-	`	You head out of the bank, but on your way to buy the Aphid at the shipyard, you see a notice. A retiring captain is selling off his fleet at a reduced price, and one of the ships he's offering is a Grasshopper... Maybe you could buy it.`
+	`	You head out of the bank, but on your way to buy the Aphid at the shipyard, you see a notice. A retiring captain is selling off his fleet at a reduced price, and one of the ships he's offering is a Grasshopper... maybe you could buy it.`
 	choice
 		`	(Go to the shipyard.)`
 			decline
