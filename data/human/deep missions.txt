@@ -802,7 +802,10 @@ mission "Deep: Interrogation"
 		attributes "spaceport"
 	to offer
 		has "Deep Archaeology 5: done"
-	
+		or
+			not "chosen sides"
+			has "main plot completed"
+
 	on offer
 		log `Was interrogated by the Deep for helping Albert Foster. The Deep now knows that Albert Foster thinks that there is an artificial singularity on Midgard.`
 		conversation "deep: questioning"
