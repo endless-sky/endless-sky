@@ -5018,5 +5018,7 @@ double Ship::CalculateDeterrence() const
 
 bool Ship::BayContains(const Bay &bay, const string &category) const
 {
-	return (bay.bayType && bay.bayType->Contains(category)) || (!bay.bayType && bay.name == category);
+	if(bay.bayType)
+		return bay.bayType->Contains(category);
+	return bay.name == category;
 }
