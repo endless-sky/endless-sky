@@ -716,6 +716,7 @@ mission "FW Southern Break"
 	on offer
 		log "Once again there is no immediate work to be done for the Free Worlds. This would be a good time to earn some money for an upgraded ship, if possible."
 		event "fw occupying the north" 50
+		event "Deep memorial expansion 1"
 		"salary: Free Worlds" >?= 2100
 		conversation
 			`You land on Dancer and report to Alondo and Freya that the prisoner transfer is complete. "What do we do now?" you ask.`
