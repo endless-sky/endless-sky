@@ -7220,14 +7220,16 @@ mission "Ice Queen 3"
 			`	Ildico nods and then enters the vehicle and you follow behind her.`
 				goto ridealong
 			
-			label no danger
-			`	Ildico barks out a laugh, "So Naive. We are always in Danger. But for answers I will risk it."`
+			label nodanger
+			`	Ildico barks out a laugh. "So naive. We are always in danger. But for answers I will risk it."`
 			`	She carefully checks the inside of the vheicle before carefully climbing in.`
 			choice
 				`	(Follow her in.)`
+					goto ridealong
+
 			label protect
-			`	Ildico's laughs hard and sheds tears, "You? Protect me?" She wipes her tears as her mirth subsides and her cold intense coutenance reasserts itself. `
-			`	"No, <first>. I will protect you." Her voice is deadly serious. She then inspects the inside of the vehicle carfully and takes a seat, "It seems safe. And I need answers."`
+			`	Ildico laughs heartily and sheds a couple tears. "You? Protect me?" She wipes her tears as her mirth subsides and her cold intense coutenance reasserts itself.`
+			`	"No, <first>. I will protect you." Her voice is deadly serious. She then inspects the inside of the vehicle carefully and takes a seat. "It seems safe. And I need answers."`
 			choice
 				`	(Follow her in.)`
 
