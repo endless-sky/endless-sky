@@ -121,7 +121,6 @@ void NPC::Load(const DataNode &node)
 	{
 		const string &key = child.Token(0);
 		bool hasValue = child.Size() >= 2;
-		
 		if(key == "system")
 		{
 			if(hasValue)
