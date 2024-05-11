@@ -7175,25 +7175,42 @@ mission "Timothy Radrickson 3b: Pirate Base"
 		has "Timothy Radrickson 3a: Rescue the Convoy: done"
 	on offer
 		conversation
-			`Your ship skims Greenrock's choppy atmosphere and your terrestrial navigation computer suddenly hums to life as it picks up the lost freighter fleet's tracking beacon. It locks on to a large and well guarded underground bay on the very fringes of the spaceport. Close enough to do business, but far enough away to maintain strict security.`
-			`	As you approach the bay your computer is able to make out numerous parked pirate vessels, and large defensive turrets just outside the bay's underground blast doors. They haven't realized you're hostile yet and you have an opportunity to seize the initiative and open fire on them.`
-
+			`Your ship skims Greenrock's choppy atmosphere and your terrestrial navigation computer suddenly hums to life as it picks up the lost freighter fleet's tracking beacon. It locks on to a large encampment situated in a valley a bit under fifty kilometers northeast of the planetary spaceport. Close enough to do business, but far enough away to maintain strict security.`
+			`	As you approach the beacon's ping you survey the base from afar. It clearly appears to be built around a set of underground blast doors, from where the beacon - and presumably the fleet - is located. Your ship also identifies numerous parked pirate vessels inside and outside the base.`
+			`	The pirates haven't realized you're hostile yet, and you have an opportunity to seize the initiative and do a surprise attack. Or, you could get closer and continue surveying the base to see if there's any way in.`
 			choice
-				`	(Open fire on the parked pirate vessels.)`
-					goto fire
+				`	(Do a surprise attack!)`
+					goto surprise
 				`	(Hail the pirates and use diplomacy.)`
-			action
-				set "big greenrock pirate fleet"
-			`	You hail the pirates imploring them to consider a diplomatic solution. Their only response is to launch their entire fleet after you.`
-			`	You are forced back into space to fight them.`
-				launch
+					goto diplomacy
+				`	(Get closer.)`
+				`	(This is too dangerous. Leave.)`
+					flee
 
-			label fire
+			`	Getting as far as you can to the base without compromising your position, you notice the base is surrounded by an array of laser turrets and ground-to-air missile systems, which makes further approach highly risky. Furthermore, the ships outside the base appear to be highly modified.`
+			choice
+				`	(Strafe the parked pirate vessels.)`
+				`	(Hail the pirates and use diplomacy.)`
+					goto diplomacy
+
 			action
 				set "diminished greenrock pirate fleet"
-			`	Your ship lets loose a withering barrage that destroys multiple pirate vessels and disables others. You then pull back up into space as the surviving ships are sent after you.`
+			`	Maneuvering into position, your ship flies out of the foothills that hid you and lets loose a withering barrage over the parked pirate vessels. You manage to destroy a number with their shields down, before the defense turrets force you to fly back up into space as the surviving ships are sent after you.`
 				launch
 
+			label diplomacy
+			action
+				set "big greenrock pirate fleet"
+			`	You broadcast a message to the parked ships, declaring that your wish no harm and inviting them to parley over the Rand convoy.`
+			`	Their only response is to launch their entire fleet after you. You're forced back into space to fight them.`
+				launch
+
+			label surprise
+			action
+				set "big greenrock pirate fleet"
+			`	You shunt your thrusters to full speed and fly into the valley, straight for the largest cluster of parked ships outside the blast doors.`
+			`	Unfortunately, without the protection of the foothills, they notice your approach before you're in position to attack, and you're forced to turn back as an entire fleet of marauders fire up their engines and chase you into space.`
+				launch
 
 	on visit
 		dialog `There are still marauder ships flying overhead. Take off and defeat them before finding the fleet.`
