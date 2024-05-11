@@ -620,6 +620,8 @@ private:
 	std::vector<Bay> bays;
 	// Cache the mass of carried ships to avoid repeatedly recomputing it.
 	double carriedMass = 0.;
+	// The count of each bay type that this ship has by the name of the bay.
+	std::map<std::string, int> bayTypeCounts;
 
 	std::vector<EnginePoint> enginePoints;
 	std::vector<EnginePoint> reverseEnginePoints;

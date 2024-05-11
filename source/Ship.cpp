@@ -864,6 +864,7 @@ void Ship::FinishLoading(bool isNewInstance)
 			}
 		}
 		++it;
+		++bayTypeCounts[bay.name];
 		if(bay.side == Bay::INSIDE && bay.launchEffects.empty() && Crew())
 			bay.launchEffects.emplace_back(GameData::Effects().Get("basic launch"));
 	}
@@ -3181,9 +3182,6 @@ int Ship::BaysTotal(const string &category) const
 // Get the types of bays that this ship has and the number of each.
 map<string, int> Ship::BayTypeCounts() const
 {
-	map<string, int> bayTypeCounts;
-	for(const Bay &bay : bays)
-		++bayTypeCounts[bay.name];
 	return bayTypeCounts;
 }
 
