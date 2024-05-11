@@ -108,7 +108,8 @@ start "hai space"
 
 conversation "hai intro"
 	scene "scene/hai shipyard"
-	`You've never been to the shipyard before, and going to the North Pole already feels like you're traveling to another world. The pictures and videos you've seen of all these ships before simply don't do them justice; seeing them for real is something else entirely. Even though you know a lot of those ships must have been in service for many years, you are stunned by how new and shiny they look. You begin to wonder if you are ready to take the big leap.`
+	`You've never been to the shipyard before, and going to the North Pole already makes you feel as if you're on another world. Though you've met some Hai in the past, you've never been among so many of them in one place; the pace of this Hai city far outstrips the muggy human town on the equator where you grew up.`
+	`	The pictures and videos you've seen of all these ships before simply don't do them justice; seeing them for real is something else entirely. Even though you know a lot of those ships must have been in service for many years, you are stunned by how new and shiny they look. You begin to wonder if you are ready to take the big leap.`
 	`	This "Aphid" could suit your needs. It is fast and able to carry a respectable amount of cargo.`
 	scene "thumbnail/hai aphid"
 	`	That is, unless you want to get adventurous and try out the impetuous "Grasshopper." Surely the Hai interceptor could take on any of the small, human warships here... provided a competent pilot is at the helm.`
