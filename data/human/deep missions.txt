@@ -1711,7 +1711,11 @@ mission "Deep: Remnant: Continue Research"
 	to offer
 		has "event: deep: remnant: rest period"
 		has "deep: did reveal remnant"
-		not "Deep: Remnant: Engines: done"
+
+# If the player finished the following missions prior to the addition of this one in v0.9.15, it will offer and lead to nothing.
+
+		not "Deep: Remnant: Engines: offer"
+
 	on offer
 		conversation
 			`You receive a message from Ivan, the Deep scientist who you helped to discover the Remnant in the Ember Waste. "Captain <last>, it's been so long. The Deep has finally finished reviewing our research in the Ember Waste, and we've been approved for further funding! Please meet us on <destination> if you wish to assist us again. Your help would be appreciated, but we will make progress even if you're unable to help."`
