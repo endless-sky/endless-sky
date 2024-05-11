@@ -89,7 +89,7 @@ start "hai space"
 		debt 1.431M
 	to unlock
 		has "main plot completed"
-		has "event: hai-human resolution announced"
+		#has "event: hai-human resolution announced"
 	conversation "hai intro"
 	account
 		credits 1431000
