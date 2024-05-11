@@ -536,9 +536,6 @@ private:
 	double CalculateAttraction() const;
 	double CalculateDeterrence() const;
 
-	// Determine if this bay can hold a ship of this category.
-	bool BayContains(const Bay &bay, const std::string &category) const;
-
 
 private:
 	// Protected member variables of the Body class:

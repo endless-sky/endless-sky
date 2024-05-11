@@ -217,6 +217,14 @@ namespace {
 		double scale = maxEnergy * 220.;
 		return scrambling > .1 ? min(0.5, scale ? scrambling / scale : 1.) : 0.;
 	}
+
+	// Determine if this bay can hold a ship of this category.
+	bool BayContains(const Ship::Bay &bay, const std::string &category)
+	{
+		if(bay.bayType)
+			return bay.bayType->Contains(category);
+		return bay.name == category;
+	}
 }
 
 
@@ -428,7 +436,7 @@ void Ship::Load(const DataNode &node)
 			}
 			bays.emplace_back(child.Value(1 + childOffset), child.Value(2 + childOffset), bayName);
 			Bay &bay = bays.back();
-			bay.bayType = GameData::GetBayType(bayName);
+			bay.bayType = GameData::BayTypes().Get(bayName);
 			for(int i = 3 + childOffset; i < child.Size(); ++i)
 			{
 				for(unsigned j = 1; j < BAY_SIDE.size(); ++j)
@@ -5012,13 +5020,4 @@ double Ship::CalculateDeterrence() const
 			tempDeterrence += .12 * strength / weapon->Reload();
 		}
 	return tempDeterrence;
-}
-
-
-
-bool Ship::BayContains(const Bay &bay, const string &category) const
-{
-	if(bay.bayType)
-		return bay.bayType->Contains(category);
-	return bay.name == category;
 }

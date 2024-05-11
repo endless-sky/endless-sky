@@ -566,6 +566,13 @@ void GameData::DestroyPersons(vector<string> &names)
 
 
 
+const Set<BayType> &GameData::BayTypes()
+{
+	return objects.bayTypes;
+}
+
+
+
 const Set<Color> &GameData::Colors()
 {
 	return objects.colors;
@@ -828,13 +835,6 @@ const string &GameData::Rating(const string &type, int level)
 const CategoryList &GameData::GetCategory(const CategoryType type)
 {
 	return objects.categories[type];
-}
-
-
-
-const BayType *GameData::GetBayType(const string &type)
-{
-	return objects.bayTypes.Get(type);
 }
 
 

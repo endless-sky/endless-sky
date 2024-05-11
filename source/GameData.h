@@ -118,6 +118,7 @@ public:
 	// Mark all persons in the given list as dead.
 	static void DestroyPersons(std::vector<std::string> &names);
 
+	static const Set<BayType> &BayTypes();
 	static const Set<Color> &Colors();
 	static const Set<Conversation> &Conversations();
 	static const Set<Effect> &Effects();
@@ -163,7 +164,6 @@ public:
 	static const std::string &Rating(const std::string &type, int level);
 	// Collections for ship, bay type, outfit, and other categories.
 	static const CategoryList &GetCategory(const CategoryType type);
-	static const BayType *GetBayType(const std::string &type);
 
 	static const StarField &Background();
 	static void SetHaze(const Sprite *sprite, bool allowAnimation);
