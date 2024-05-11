@@ -46,7 +46,7 @@ int64_t Mortgage::Maximum(int64_t annualRevenue, int creditScore, double current
 
 
 // Create a new mortgage of the given amount.
-Mortgage::Mortgage(const string &type, int64_t principal, int creditScore, int term)
+Mortgage::Mortgage(string type, int64_t principal, int creditScore, int term)
 	: type(std::move(type)),
 	principal(principal),
 	interest((600 - creditScore / 2) * .00001),
@@ -60,7 +60,7 @@ Mortgage::Mortgage(const string &type, int64_t principal, int creditScore, int t
 // Create a mortgage with a specific interest rate instead of using the player's
 // credit score. Due to how the class is set up, the interest rate must currently
 // be within the range [0, 1).
-Mortgage::Mortgage(const string &type, int64_t principal, double interest, int term)
+Mortgage::Mortgage(string type, int64_t principal, double interest, int term)
 	: type(std::move(type)),
 	principal(principal),
 	interest(interest * .01),

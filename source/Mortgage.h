@@ -40,11 +40,11 @@ public:
 	Mortgage() = default;
 	// Create a new mortgage of the given amount. If this is a fine, set the
 	// credit score to zero for a higher interest rate.
-	Mortgage(const std::string &type, int64_t principal, int creditScore, int term = 365);
+	Mortgage(std::string type, int64_t principal, int creditScore, int term = 365);
 	// Create a mortgage with a specific interest rate instead of using the player's
 	// credit score. Due to how the class is set up, the interest rate must currently
 	// be within the range [0, 1).
-	Mortgage(const std::string &type, int64_t principal, double interest, int term = 365);
+	Mortgage(std::string type, int64_t principal, double interest, int term = 365);
 	// Construct and Load() at the same time.
 	Mortgage(const DataNode &node);
 
