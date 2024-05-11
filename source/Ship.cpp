@@ -217,14 +217,16 @@ namespace {
 		double scale = maxEnergy * 220.;
 		return scrambling > .1 ? min(0.5, scale ? scrambling / scale : 1.) : 0.;
 	}
+}
 
-	// Determine if this bay can hold a ship of this category.
-	bool BayContains(const Ship::Bay &bay, const std::string &category)
-	{
-		if(bay.bayType)
-			return bay.bayType->Contains(category);
-		return bay.name == category;
-	}
+
+
+// Determine if this bay can hold a ship of this category.
+bool Ship::Bay::CanContain(const std::string &category) const
+{
+	if(bayType)
+		return bayType->Contains(category);
+	return name == category;
 }
 
 
@@ -3154,7 +3156,7 @@ int Ship::BaysFree(const string &category) const
 	int count = 0;
 	for(const Bay &bay : bays)
 	{
-		if(BayContains(bay, category) && !bay.ship)
+		if(bay.CanContain(category) && !bay.ship)
 			++count;
 	}
 	return count;
@@ -3168,7 +3170,7 @@ int Ship::BaysTotal(const string &category) const
 	int count = 0;
 	for(const Bay &bay : bays)
 	{
-		if(BayContains(bay, category))
+		if(bay.CanContain(category))
 			++count;
 	}
 	return count;
@@ -3240,7 +3242,7 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 	// Find all bays that could hold this ship.
 	vector<Bay *> availableBays;
 	for(Bay &bay : bays)
-		if(BayContains(bay, category) && !bay.ship)
+		if(bay.CanContain(category) && !bay.ship)
 			availableBays.push_back(&bay);
 
 	if(availableBays.empty())

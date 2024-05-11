@@ -75,6 +75,9 @@ public:
 			facing(b.facing), launchEffects(b.launchEffects) {}
 		Bay &operator=(const Bay &b) { return *this = Bay(b); }
 
+		// Determine if this bay can hold a ship of this category.
+		bool CanContain(const std::string &category) const;
+
 		Point point;
 		std::shared_ptr<Ship> ship;
 		std::string name;
