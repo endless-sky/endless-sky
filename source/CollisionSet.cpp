@@ -39,34 +39,6 @@ namespace {
 	constexpr int USED_MAX_VELOCITY = MAX_VELOCITY - 1;
 	// Warn the user only once about too-large projectile velocities.
 	bool warned = false;
-
-
-	// Keep track of the closest collision found so far. If an external "closest
-	// hit" value was given, there is no need to check collisions farther out
-	// than that.
-	class Closest {
-	public:
-		explicit Closest(double closestHit)
-			: closest_dist(closestHit)
-			, closest_body(nullptr)
-		{}
-
-		void TryNearer(double new_closest, Body *new_body)
-		{
-			if(new_closest >= closest_dist)
-				return;
-
-			closest_dist = new_closest;
-			closest_body = new_body;
-		}
-
-		double GetClosestDistance() const { return closest_dist; }
-		Body *GetClosestBody() const { return closest_body; }
-
-	private:
-		double closest_dist;
-		Body *closest_body;
-	};
 }
 
 
@@ -166,9 +138,8 @@ void CollisionSet::Finish()
 
 
 
-// Get all collisions for the given projectile. Collisions are not necessarily
-// sorted by distance. If the projectile is incapable if impacting multiple ships
-// in the same frame then only the closest collision is returned.
+// Get all possible collisions for the given projectile. Collisions are not necessarily
+// sorted by distance.
 const vector<Collision> &CollisionSet::Line(const Projectile &projectile) const
 {
 	// What objects the projectile hits depends on its government.
@@ -177,15 +148,15 @@ const vector<Collision> &CollisionSet::Line(const Projectile &projectile) const
 	// Convert the projectile to a line represented by its start and end points.
 	Point from = projectile.Position();
 	Point to = from + projectile.Velocity();
-	return Line(from, to, pGov, projectile.Target(), projectile.HitsRemaining() != 1);
+	return Line(from, to, pGov, projectile.Target());
 }
 
 
 
-// Get all collisions along a line. Collisions are not necessarily sorted by
-// distance. If the all variable is false then only the closest collision is returned.
+// Get all possible collisions along a line. Collisions are not necessarily sorted by
+// distance.
 const vector<Collision> &CollisionSet::Line(const Point &from, const Point &to,
-		const Government *pGov, const Body *target, bool all) const
+		const Government *pGov, const Body *target) const
 {
 	const int x = from.X();
 	const int y = from.Y();
@@ -198,7 +169,6 @@ const vector<Collision> &CollisionSet::Line(const Point &from, const Point &to,
 	const int endGX = endX >> SHIFT;
 	const int endGY = endY >> SHIFT;
 
-	Closest closer_result(1.);
 	lineResult.clear();
 
 	// Special case, very common: the projectile is contained in one grid cell.
@@ -226,13 +196,10 @@ const vector<Collision> &CollisionSet::Line(const Point &from, const Point &to,
 			Point offset = from - it->body->Position();
 			const double range = mask.Collide(offset, to - from, it->body->Facing());
 
-			closer_result.TryNearer(range, it->body);
-			if(range < 1. && all)
+			if(range < 1.)
 				lineResult.emplace_back(it->body, collisionType, range);
 		}
 
-		if(!all && closer_result.GetClosestDistance() < 1.)
-			lineResult.emplace_back(closer_result.GetClosestBody(), collisionType, closer_result.GetClosestDistance());
 		return lineResult;
 	}
 
@@ -247,7 +214,7 @@ const vector<Collision> &CollisionSet::Line(const Point &from, const Point &to,
 		}
 		Point newEnd = from + pVelocity.Unit() * USED_MAX_VELOCITY;
 
-		return Line(from, newEnd, pGov, target, all);
+		return Line(from, newEnd, pGov, target);
 	}
 
 	// When stepping from one grid cell to the next, we'll go in this direction.
@@ -300,13 +267,12 @@ const vector<Collision> &CollisionSet::Line(const Point &from, const Point &to,
 			Point offset = from - it->body->Position();
 			const double range = mask.Collide(offset, to - from, it->body->Facing());
 
-			closer_result.TryNearer(range, it->body);
-			if(range < 1. && all)
+			if(range < 1.)
 				lineResult.emplace_back(it->body, collisionType, range);
 		}
 
-		// Check if we've found a collision or reached the final grid cell.
-		if((closer_result.GetClosestBody() && !all) || (gx == endGX && gy == endGY))
+		// Check if we've reached the final grid cell.
+		if(gx == endGX && gy == endGY)
 			break;
 		// If not, move to the next one. Check whether rx / mx < ry / my.
 		const int64_t diff = rx * my - ry * mx;
@@ -342,8 +308,6 @@ const vector<Collision> &CollisionSet::Line(const Point &from, const Point &to,
 		}
 	}
 
-	if(!all && closer_result.GetClosestBody())
-		lineResult.emplace_back(closer_result.GetClosestBody(), collisionType, closer_result.GetClosestDistance());
 	return lineResult;
 }
 
