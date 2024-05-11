@@ -3180,7 +3180,7 @@ int Ship::BaysTotal(const string &category) const
 
 
 // Get the types of bays that this ship has and the number of each.
-map<string, int> Ship::BayTypeCounts() const
+const map<string, int> &Ship::BayTypeCounts() const
 {
 	return bayTypeCounts;
 }

@@ -410,7 +410,7 @@ public:
 	// Check how many bays this ship has of a given category.
 	int BaysTotal(const std::string &category) const;
 	// Get the types of bays this ship has and the number of each.
-	std::map<std::string, int> BayTypeCounts() const;
+	const std::map<std::string, int> &BayTypeCounts() const;
 	// Check if this ship has a bay free for the given other ship, and the
 	// bay is not reserved for one of its existing escorts.
 	bool CanCarry(const Ship &ship) const;
