@@ -7039,8 +7039,8 @@ mission "Adelita 1"
 		conversation
 			`After navigating the thick fog of Moonshake's atmosphere, you find a motley crew waiting on your landing pad. Once you sign your landing documents with the Syndicate officials, one of the crew walks up to you and hands you a credit chip for <payment> and a note. It reads:`
 			``
-			`Meet me at the Common Grounds Cafe in the spaceport if you're interested in assisting us with a new project. Make sure you're not followed.`
-			`	Adelita Zero`
+			`	Meet me at the Common Grounds Cafe in the spaceport if you're interested in assisting us with a new project. Make sure you're not followed.`
+			`		-Adelita Zero`
 
 
 
@@ -7097,6 +7097,7 @@ mission "Adelita 2"
 				`	"Hold on, pirates?"`
 				`	"Won't this get me in trouble with the Syndicate?"`
 					goto syndicate
+
 			`	"Don't worry, Bunker is a pro, and we have an array of long-range stealth drones that do the spying. You won't be anywhere near them. You might encounter some lone pirates on the way though, so you'll need to be quick."`
 				goto leave
 
@@ -7164,6 +7165,7 @@ mission "Adelita 4"
 
 			label "player has a fleet"
 			`You carefully bring the <ship> into the atmosphere while the rest of your fleet stays in space so that the pirates won't catch wind of Adelita's operation. Luckily, it's not hard to find a remote canyon within range of the target area for you to lie low. Being so close to the surface of <origin> you're forced to deactivate your shields, but you keep the <ship> hovering in case you need to make a quick escape.`
+
 			label release
 			`	After settling on a secure location within the canyon, Bunker releases the drones from the open cargo bay; the drones are so small you can't make them out from the cockpit, nor can you see them on your ship's scanners. When Bunker returns to the cockpit, he sets up a display and sits at the controller. "Okay, they're on autopilot to the rendezvous site."`
 
