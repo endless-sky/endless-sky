@@ -1599,13 +1599,16 @@ void Engine::CalculateStep()
 		const auto newCamera = NewCenter(center, centerVelocity,
 			flagship->Center(), flagship->Velocity());
 
-		if (flagship->IsHyperspacing()) {
+		if(flagship->IsHyperspacing())
+		{
 			hyperspacePercentage =
 				flagship->GetHyperspacePercentage() / 100.;
 			newCenter = newCamera.first.Lerp(
 				flagship->Center(), pow(hyperspacePercentage, .5));
 			newCenterVelocity = flagship->Velocity();
-		} else {
+		}
+		else
+		{
 			newCenter = newCamera.first;
 			newCenterVelocity = newCamera.second;
 		}
