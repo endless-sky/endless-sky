@@ -1714,7 +1714,7 @@ mission "Deep: Remnant: Continue Research"
 
 # If the player finished the following missions prior to the addition of this one in v0.9.15, it will offer and lead to nothing.
 
-		not "Deep: Remnant: Engines: offer"
+		not "Deep: Remnant: Engines: offered"
 
 	on offer
 		conversation
