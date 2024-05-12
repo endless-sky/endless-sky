@@ -7176,32 +7176,36 @@ mission "Timothy Radrickson 3b: Pirate Base"
 	on offer
 		conversation
 			`Your ship skims Greenrock's choppy atmosphere and your terrestrial navigation computer suddenly hums to life as it picks up the lost freighter fleet's tracking beacon. It locks on to a large encampment situated in a valley a bit under fifty kilometers northeast of the planetary spaceport. Close enough to do business, but far enough away to maintain strict security.`
-			`	As you approach the beacon's ping you survey the base from afar. It clearly appears to be built around a set of underground blast doors, from where the beacon - and presumably the fleet - is located. Your ship also identifies numerous parked pirate vessels inside and outside the base.`
+			`	As you approach the beacon's ping from the safety of the hills around the valley, you survey the base from afar. It clearly appears to be built around a set of underground blast doors, from where the beacon - and presumably the fleet - is located. Your ship also identifies numerous parked pirate vessels inside and outside the base.`
 			`	The pirates haven't realized you're hostile yet, and you have an opportunity to seize the initiative and do a surprise attack. Or, you could get closer and continue surveying the base to see if there's any way in.`
 			choice
 				`	(Do a surprise attack!)`
 					goto surprise
+				`	(Get closer.)`
 				`	(Hail the pirates and use diplomacy.)`
 					goto diplomacy
-				`	(Get closer.)`
 				`	(This is too dangerous. Leave.)`
 					flee
 
-			`	Getting as far as you can to the base without compromising your position, you notice the base is surrounded by an array of laser turrets and ground-to-air missile systems, which makes further approach highly risky. Furthermore, the ships outside the base appear to be highly modified.`
+			`	Getting as far as you can to the base without compromising your position, you notice the base is surrounded by an array of laser turrets and ground-to-air missile systems, which makes further approach highly risky. Furthermore, the ships outside the base appear to be highly modified. You don't see any other entrance to the base, however; it looks like you'll have to force the pirates out, one way or another.`
+			`	It still seems as if the pirates don't see you. With a little movement, you could strafe the encampment and take out a fair few of the parked ships if you can avoid the turrets.`
 			choice
 				`	(Strafe the parked pirate vessels.)`
 				`	(Hail the pirates and use diplomacy.)`
 					goto diplomacy
+				`	(This is too dangerous. Leave.)`
+					flee
 
 			action
 				set "diminished greenrock pirate fleet"
-			`	Maneuvering into position, your ship flies out of the foothills that hid you and lets loose a withering barrage over the parked pirate vessels. You manage to destroy a number with their shields down, before the defense turrets force you to fly back up into space as the surviving ships are sent after you.`
+			`	Carefully maneuvering into position, your ship flies out of the hills that hid it and lets loose a withering barrage over the parked pirate vessels. You manage to destroy a number of the ships while their shields are down, before the defense turrets force you to fly back up into space as the surviving ships sortie after you.`
 				launch
 
 			label diplomacy
 			action
 				set "big greenrock pirate fleet"
-			`	You broadcast a message to the parked ships, declaring that your wish no harm and inviting them to parley over the Rand convoy.`
+				set "Timothy Radrickson 3b: diplomacy"
+			`	You broadcast a message to the ships parked in the encampment, declaring that you wish them no harm and inviting them to parley over the Rand convoy.`
 			`	Their only response is to launch their entire fleet after you. You're forced back into space to fight them.`
 				launch
 
@@ -7209,27 +7213,52 @@ mission "Timothy Radrickson 3b: Pirate Base"
 			action
 				set "big greenrock pirate fleet"
 			`	You shunt your thrusters to full speed and fly into the valley, straight for the largest cluster of parked ships outside the blast doors.`
-			`	Unfortunately, without the protection of the foothills, they notice your approach before you're in position to attack, and you're forced to turn back as an entire fleet of marauders fire up their engines and chase you into space.`
+			`	That is, until your sensors run hot with a multitude of approaching enemy warnings and missile locks. Without the protection of the hills that were hiding your ship, it looks like the pirates' early warning system detected you before you could get into position to attack. You're forced to turn back as an entire fleet of marauders fire up their engines and chase you into space.`
 				launch
 
 	on visit
 		dialog `There are still marauder ships flying overhead. Take off and defeat them before finding the fleet.`
 
 	npc kill
-		system "Shaula"
 		to spawn
 			has "big greenrock pirate fleet"
 		government "Pirate"
-		personality staying nemesis target
-		fleet "Marauder fleet X" 2 # Subject to balancing
+		personality launching nemesis target plunders
+		fleet
+			names "pirate"
+			variant
+				"Marauder Falcon (Engines)"
+				"Falcon (Gatling)"
+				"Marauder Firebird (Weapons)"
+				"Firebird"
+
+				"Marauder Raven"
+				"Osprey (Missile)"
+				"Osprey (Laser)"
+
+				"Hawk (Plasma)"
+				"Quicksilver" 2
+				"Headhunter"
+				"Fury (Gatling)" 3
 	
 	npc kill
-		system "Shaula"
 		to spawn
 			has "diminished greenrock pirate fleet"
 		government "Pirate"
-		personality staying nemesis target
-		fleet "Marauder fleet X" 1 # Subject to balancing
+		personality launching nemesis target plunders
+		fleet
+			names "pirate"
+			variant
+				"Marauder Falcon (Engines)"
+				"Falcon (Gatling)"
+				"Marauder Firebird (Weapons)"
+				"Firebird"
+
+				"Osprey (Missile)"
+				"Osprey (Laser)"
+
+				"Hawk (Plasma)"
+				"Fury (Gatling)"
 
 
 mission "Timothy Radrickson 3c: Escort the Convoy"
@@ -7240,34 +7269,62 @@ mission "Timothy Radrickson 3c: Escort the Convoy"
 		has "Timothy Radrickson 3b: Pirate Base: done"
 	on offer
 		conversation
-			`The sky burns red as detritus from the fierce battle rains down on Greenrock. The destruction of a major pirate gang's fleet has resulted in panic and chaos in the spaceport as rival pirate groups battle it out in the skies to claim the defeated's turf. No one pays you much mind. They don't care who took out the fleet; only that it was taken out.`
-			`	In the ensuing chaos you're practically ignored as you approach the secluded bay.`
+			`The sky burns red as detritus from the fierce battle rains down on Greenrock. The destruction of a major pirate gang's fleet has resulted in panic and chaos over the region as rival pirate groups battle it out in the skies to claim the defeated's turf. Although a few ships take pot shots at you as you descend into the atmosphere, everybody is too busy brawling to notice you as you approach the pirates' encampment from where you still register the ping of the beacon.`
+			`	The valley where the encampment is located, however, is surprisingly quiet, though it's similarly littered with the remains of small ships. As you move towards it you notice that the blast doors of the underground base have been opened. What you also notice is that the defense turrets are all still working and are very much trained upon you.`
 			choice
-				`	(Enter the bay.)`
+				`	(Hail the occupants of the base.)`
+				`	(Approach the base.)`
+					goto approach
+				`	(Leave.)`
+					flee
 
+			`	"This is Captain <last>, commander of the <ship>," you say. "We have defeated the fleet that occupies this base and demand entry. Disable your turrets or we will fire upon them."`
+			branch "did it already"
+				has "Timothy Radrickson 3b: diplomacy"
+
+			`	You recieve a response promptly. "And what makes you think we will let ya' in?"`
+				goto next
+
+			label "did it already"
+			`	This time, you get a response promptly. "And what makes you think we will let ya' in?"`
+				goto next
+
+			label approach
+			`	You advance towards the encampment for about five seconds before you recieve a hail coming from behind the blast doors. "Hey, hey! What makes you think we'll let ya' in?"`
+
+			label next
+			choice
+				`	"Right of conquest."`
+					goto right
+				`	"Because I defeated your fleet."`
+					goto "defeated your fleet"
+				`	"Because I'm here to rescue to Rand convoy, and you can't stop me."`
+
+			`	You hear a hearty laugh from the other end. "What makes you think they're still here?" the voice replies.`
+				goto inside
+
+			label right
+			`	You hear a hearty laugh from the other end. "Right of conquest? I thought you were here to save us!" the voice replies.`
+				goto inside
+
+			label "defeated your fleet"
+			`	You hear a hearty laugh from the other end. "That fleet? Just a trifle. We've got the Sol Home Fleet behind these doors," the voice replies.`
+
+			label inside
+			`	A moment passes before it says, "We're just pulling your leg, <last>. We can see your tracking beacon reflecting our own, so we know it's you. Come on in." The turrets promptly depower and you gently put your ship down through the blast doors.`
 			`	Inside the bay's walls you can make out the moored and apparently intact freighter fleet. The ships are surrounded by various loaders, but they appear to have been abandoned before they could begin the process of offloading the goods. The pirates must have all raced to their ships when you entered the system.`
-			`	"And where do you think you're going?" a voice barks from the control room. Not a moment later, three armed guards appear with their weapons trained on you.`
+			`	As you exit your ship a woman wearing a captain's hat approaches you and then flashes a reluctant smile at you. "Name's Hrodny, Capt'n Hrodny of Hroar's Haulers. You probably heard Alan on the radio," she says, flicking her eyes to the control room.`
+			`	"Well, thanks for the distraction. Once you got the fleet out of here we overpowered what little detail they kept here and took control of the turrets." She looks around to the blast doors where the depowered turrets once guarded. "Been waitin' for the right moment to move outta this place."`
+			`	Hrodny turns her piercing green eyes back on you. "We got 'em in here easy, but we can't fight past whatever is out there. I'm presuming you're not just a lost mercenary and are in fact our cavalry?"`
 			choice
-				`	"My mistake. I must have parked my ship somewhere else."`
-				`	"What a lovely little bay you have here. I was just telling my partner we should buy one just like this."`
-				`	"Didn't you guys hear what's going on? Let's loot this stuff before anyone comes looking for it!"`
-				`	"Is this where the bathroom is?"`
-				`	(Say nothing.)`
-
-			`	Before the pirate guards have a chance to respond there's three thuds in quick succession and they fall lifelessly to the floor. From behind them a woman and couple of men in red jackets appear.`
-			`	The woman, who is wearing a captain's hat with two H's next to each other looks at you and then nods. "Thanks for the distraction. Been waitin' for the right moment to move."`
-			`	She flashes you a reluctant smile. "Name's Hrodny, Capt'n Hrodny of Hroar's Haulers." She looks back at the men accompanying her, whistles, and points toward the ships. They turn and run toward them."`
-			`	Hrodny turns her piercing green eyes back on you. "We can get 'em in the air, but we can't fight past whatever is out there. I'm presuming you're not a lost tourist and are in fact our cavalry?"`
-			choice
-				`	"Don't worry. I took out the fleet, and I'll escort you to Wayfarer."`
-				`	"It's your lucky day, I'm Captain <last>, of the <ship>. Getting you to Wayfarer will be a piece of cake."`
+				`	"Don't worry. I can escort your fleet to Wayfarer."`
+				`	"It's your lucky day. Getting you to Wayfarer will be a piece of cake."`
 				`	"I've been sent to get you to Wayfarer, and that's what I will do."`
 				`	"You do your job. I'll do mine."`
 
-			`	Hrodny gives you a feral grin. "Great. We weren't too keen on stickin' around these parts anyhow."`
-			`	She looks back at her ships, where there is now a flurry of activity. "Ya know, those pirates parked us right in the middle of their treasure trove. It'd be rude not take advantage of their hospitality." You notice the loaders behind Hrodny whirring around and moving all sorts of goods into the ships.`
-			`	Hrodny winks at you. "Hazard pay.`
-			`	"You head back your ship, by the time you get there we'll be ready to launch. We'll follow ya out."`
+			`	Hrodny grins. "Great. We weren't too keen on stickin' around these parts anyhow."`
+			`	She looks back at her ships, whistles, and points toward the ships. They turn and run toward them, preparing them for takeoff. She then looks back at you. "Ya know, those pirates parked us right in the middle of their treasure trove. It'd be rude not take advantage of their hospitality." You notice the loaders behind Hrodny whirring around and moving all sorts of goods into the ships, while a number of crew are draining the base's deuterium tanks and filling up the ships inside.`
+			`	"Hazard pay," Hrodny says, winking at you. "You head back your ship, by the time you get there we'll be ready to launch. We'll follow ya out."`
 			`	She gives you a final mock salute and then turns and jogs toward her ships. There's nothing for you to do but head back toward yours.`
 
 	on complete
