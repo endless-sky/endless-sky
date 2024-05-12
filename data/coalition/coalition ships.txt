@@ -82,7 +82,7 @@ ship "Arach Freighter"
 		"hull" 8500
 		"required crew" 3
 		"bunks" 10
-		"mass" 380
+		"mass" 1520
 		"drag" 10.6
 		"heat dissipation" .55
 		"fuel capacity" 500
@@ -152,7 +152,7 @@ ship "Arach Hulk"
 		"hull" 13800
 		"required crew" 8
 		"bunks" 14
-		"mass" 670
+		"mass" 5360
 		"drag" 18.9
 		"heat dissipation" .50
 		"fuel capacity" 500
@@ -228,7 +228,7 @@ ship "Arach Spindle"
 		"hull" 9700
 		"required crew" 4
 		"bunks" 14
-		"mass" 340
+		"mass" 1360
 		"drag" 10.8
 		"heat dissipation" .55
 		"fuel capacity" 500
@@ -339,7 +339,7 @@ ship "Arach Transport"
 		"hull" 4800
 		"required crew" 2
 		"bunks" 5
-		"mass" 280
+		"mass" 560
 		"drag" 7.2
 		"heat dissipation" .60
 		"fuel capacity" 400
@@ -406,7 +406,7 @@ ship "Heliarch Breacher"
 		"hull" 21500
 		"required crew" 11
 		"bunks" 15
-		"mass" 200
+		"mass" 400
 		"drag" 3.2
 		"heat dissipation" .77
 		"ion protection" .1
@@ -524,7 +524,7 @@ ship "Heliarch Hunter"
 		"hull" 45300
 		"required crew" 26
 		"bunks" 41
-		"mass" 420
+		"mass" 1680
 		"drag" 5.3
 		"heat dissipation" .71
 		"ion protection" .2
@@ -710,7 +710,7 @@ ship "Heliarch Interdictor"
 		"hull" 54600
 		"required crew" 42
 		"bunks" 70
-		"mass" 520
+		"mass" 2080
 		"drag" 7.4
 		"heat dissipation" .70
 		"ion protection" .2
@@ -883,7 +883,7 @@ ship "Heliarch Judicator"
 		"hull" 41900
 		"required crew" 31
 		"bunks" 110
-		"mass" 480
+		"mass" 1920
 		"drag" 7.9
 		"heat dissipation" .67
 		"ion protection" .2
@@ -1067,7 +1067,7 @@ ship "Heliarch Neutralizer"
 		"hull" 32800
 		"required crew" 17
 		"bunks" 24
-		"mass" 270
+		"mass" 540
 		"drag" 4.1
 		"heat dissipation" .75
 		"ion protection" .1
@@ -1188,7 +1188,7 @@ ship "Heliarch Punisher"
 		"hull" 85000
 		"required crew" 96
 		"bunks" 145
-		"mass" 780
+		"mass" 6240
 		"drag" 12.2
 		"heat dissipation" .60
 		"ion protection" .3
@@ -1550,12 +1550,18 @@ ship "Heliarch Stalker"
 		"hull" 5200
 		"required crew" 1
 		"bunks" 2
-		"mass" 80
+		"mass" 96
 		"drag" 2.1
 		"heat dissipation" 0.64
-		"outfit space" 133
+		"outfit space" 117
 		"weapon capacity" 43
-		"engine capacity" 16
+		"engine capacity" 0
+		"thrust" 4
+		"thrusting energy" 1.7
+		"thrusting heat" 11
+		"turn" 178.8
+		"turning energy" 0.26
+		"turning heat" 1.8
 		weapon
 			"blast radius" 15
 			"shield damage" 150
@@ -1570,8 +1576,7 @@ ship "Heliarch Stalker"
 		"Large Shield Module"
 		"Large Repair Module"
 		
-		"Small Steering Module"
-		"Small Thrust Module"
+		# This ship is supposed to be a more of a fortified independently mobile turret rather than a fighter. So it needs either un-fighterly mass, have its propulsion replaced with built-in stats that replicate the old engine stats, or a tiny thruster module added just for this ship. The "include the old propulsion stats built in" is the approach that has been taken here. Mass has been increased by 16 (equiv to the small thruster+steering), outfit space and engine capacity reduced by the same amount. So it should have exactly the same mobility as before Zitchas & Arkhne's mass & thrust revamp.
 	
 	engine 0 40 .8
 	turret 0 -1.5
@@ -1589,9 +1594,7 @@ ship "Heliarch Stalker" "Heliarch Stalker (Scrappy)"
 		"Small Shield Module"
 		"Small Repair Module" 2
 		"Cooling Module"
-		
-		"Small Thrust Module"
-		"Small Steering Module"
+
 
 
 ship "Kimek Briar"
@@ -1606,7 +1609,7 @@ ship "Kimek Briar"
 		"hull" 1700
 		"required crew" 3
 		"bunks" 38
-		"mass" 180
+		"mass" 360
 		"drag" 3.8
 		"heat dissipation" .75
 		"fuel capacity" 700
@@ -1667,7 +1670,7 @@ ship "Kimek Spire"
 		"hull" 4900
 		"required crew" 19
 		"bunks" 296
-		"mass" 570
+		"mass" 4560
 		"drag" 8.4
 		"heat dissipation" .60
 		"fuel capacity" 800
@@ -1739,7 +1742,7 @@ ship "Kimek Thistle"
 		"hull" 2800
 		"required crew" 7
 		"bunks" 78
-		"mass" 270
+		"mass" 540
 		"drag" 5.8
 		"heat dissipation" .70
 		"fuel capacity" 700
@@ -1883,7 +1886,7 @@ ship "Saryd Runabout"
 		"hull" 1400
 		"required crew" 2
 		"bunks" 14
-		"mass" 140
+		"mass" 280
 		"drag" 2.8
 		"heat dissipation" .70
 		"fuel capacity" 400
@@ -1940,7 +1943,7 @@ ship "Saryd Sojourner"
 		"hull" 7700
 		"required crew" 17
 		"bunks" 101
-		"mass" 640
+		"mass" 5120
 		"drag" 12.9
 		"heat dissipation" .50
 		"fuel capacity" 800
@@ -2034,7 +2037,7 @@ ship "Saryd Traveler"
 		"hull" 4000
 		"required crew" 10
 		"bunks" 54
-		"mass" 350
+		"mass" 1400
 		"drag" 5.5
 		"heat dissipation" .60
 		"fuel capacity" 600
@@ -2109,7 +2112,7 @@ ship "Saryd Visitor"
 		"hull" 2400
 		"required crew" 5
 		"bunks" 32
-		"mass" 270
+		"mass" 540
 		"drag" 4.4
 		"heat dissipation" .65
 		"fuel capacity" 400

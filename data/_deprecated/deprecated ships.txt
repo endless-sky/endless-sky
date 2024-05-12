@@ -24,7 +24,7 @@ ship "Korath Dredger"
 		"hull" 16500
 		"required crew" 137
 		"bunks" 357
-		"mass" 1503
+		"mass" 12024
 		"drag" 17.1
 		"heat dissipation" .45
 		"fuel capacity" 900
@@ -101,7 +101,7 @@ ship "Korath Raider"
 		"hull" 9000
 		"required crew" 145
 		"bunks" 250
-		"mass" 720
+		"mass" 2880
 		"drag" 12
 		"heat dissipation" .5
 		"fuel capacity" 600
@@ -212,7 +212,7 @@ ship "Korath World-Ship"
 		hull 34000
 		"required crew" 794
 		"bunks" 1492
-		"mass" 1735
+		"mass" 13880
 		"drag" 21
 		"heat dissipation" .4
 		"fuel capacity" 1000

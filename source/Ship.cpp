@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Flotsam.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "Gamerules.h"
 #include "Government.h"
 #include "JumpTypes.h"
 #include "Logger.h"
@@ -61,6 +62,7 @@ namespace {
 
 	const vector<string> ENGINE_SIDE = {"under", "over"};
 	const vector<string> STEERING_FACING = {"none", "left", "right"};
+	const vector<string> LATERAL_FACING = { "none", "left", "right" };
 
 	const double MAXIMUM_TEMPERATURE = 100.;
 
@@ -287,20 +289,23 @@ void Ship::Load(const DataNode &node)
 				attributes.Load(child);
 			}
 		}
-		else if((key == "engine" || key == "reverse engine" || key == "steering engine") && child.Size() >= 3)
+		else if((key == "engine" || key == "reverse engine" || key == "steering engine" || key == "lateral engine")
+			&& child.Size() >= 3)
 		{
 			if(!hasEngine)
 			{
 				enginePoints.clear();
 				reverseEnginePoints.clear();
 				steeringEnginePoints.clear();
+				lateralEnginePoints.clear();
 				hasEngine = true;
 			}
 			bool reverse = (key == "reverse engine");
 			bool steering = (key == "steering engine");
+			bool lateral = (key == "lateral engine");
 
-			vector<EnginePoint> &editPoints = (!steering && !reverse) ? enginePoints :
-				(reverse ? reverseEnginePoints : steeringEnginePoints);
+			vector<EnginePoint> &editPoints = (!steering && !reverse && !lateral) ? enginePoints :
+				(reverse ? reverseEnginePoints : steering ? steeringEnginePoints : lateralEnginePoints);
 			editPoints.emplace_back(0.5 * child.Value(1), 0.5 * child.Value(2),
 				(child.Size() > 3 ? child.Value(3) : 1.));
 			EnginePoint &engine = editPoints.back();
@@ -324,6 +329,10 @@ void Ship::Load(const DataNode &node)
 						for(unsigned j = 1; j < STEERING_FACING.size(); ++j)
 							if(grandKey == STEERING_FACING[j])
 								engine.steering = j;
+					if(lateral)
+						for(unsigned j = 1; j < LATERAL_FACING.size(); ++j)
+							if(grandKey == LATERAL_FACING[j])
+								engine.lateral = j;
 				}
 			}
 		}
@@ -637,6 +646,8 @@ void Ship::FinishLoading(bool isNewInstance)
 			reverseEnginePoints = base->reverseEnginePoints;
 		if(steeringEnginePoints.empty())
 			steeringEnginePoints = base->steeringEnginePoints;
+		if(lateralEnginePoints.empty())
+			lateralEnginePoints = base->lateralEnginePoints;
 		if(explosionEffects.empty())
 		{
 			explosionEffects = base->explosionEffects;
@@ -951,6 +962,9 @@ void Ship::Save(DataWriter &out) const
 			for(const auto &it : baseAttributes.FlareSprites())
 				for(int i = 0; i < it.second; ++i)
 					it.first.SaveSprite(out, "flare sprite");
+			for(const auto & it : baseAttributes.LateralFlareSprites())
+				for(int i = 0; i < it.second; ++i)
+					it.first.SaveSprite(out, "lateral flare sprite");
 			for(const auto &it : baseAttributes.FlareSounds())
 				for(int i = 0; i < it.second; ++i)
 					out.Write("flare sound", it.first->Name());
@@ -1050,6 +1064,16 @@ void Ship::Save(DataWriter &out) const
 			out.Write("gimbal", point.gimbal.Degrees());
 			out.Write(ENGINE_SIDE[point.side]);
 			out.Write(STEERING_FACING[point.steering]);
+			out.EndChild();
+		}
+		for(const EnginePoint &point : lateralEnginePoints)
+		{
+			out.Write("lateral engine", 2. * point.X(), 2. * point.Y());
+			out.BeginChild();
+			out.Write("zoom", point.zoom);
+			out.Write("angle", point.facing.Degrees());
+			out.Write(ENGINE_SIDE[point.side]);
+			out.Write(LATERAL_FACING[point.lateral]);
 			out.EndChild();
 		}
 		for(const Hardpoint &hardpoint : armament.Get())
@@ -1527,17 +1551,22 @@ string Ship::GetHail(map<string, string> &&subs) const
 
 
 
-ShipAICache &Ship::GetAICache()
+const ShipAICache &Ship::GetAICache() const
 {
 	return aiCache;
 }
 
 
 
-void Ship::UpdateCaches()
+void Ship::UpdateCaches(bool massLessChange)
 {
-	aiCache.Recalibrate(*this);
-	navigation.Recalibrate(*this);
+	if(massLessChange)
+		aiCache.Calibrate(*this);
+	else
+	{
+		aiCache.Recalibrate(*this);
+		navigation.Recalibrate(*this);
+	}
 }
 
 
@@ -2378,7 +2407,21 @@ int Ship::CustomSwizzle() const
 // Check if the ship is thrusting. If so, the engine sound should be played.
 bool Ship::IsThrusting() const
 {
-	return isThrusting;
+	return isThrusting && ThrustMagnitude() > 0.25;
+}
+
+
+
+bool Ship::IsLatThrusting() const
+{
+	return isLatThrusting;
+}
+
+
+
+double Ship::LateralDirection() const
+{
+	return lateralDirection;
 }
 
 
@@ -2404,6 +2447,13 @@ double Ship::SteeringDirection() const
 
 
 
+double Ship::ThrustMagnitude() const
+{
+	return thrustMagnitude;
+}
+
+
+
 // Get the points from which engine flares should be drawn.
 const vector<Ship::EnginePoint> &Ship::EnginePoints() const
 {
@@ -2422,6 +2472,13 @@ const vector<Ship::EnginePoint> &Ship::ReverseEnginePoints() const
 const vector<Ship::EnginePoint> &Ship::SteeringEnginePoints() const
 {
 	return steeringEnginePoints;
+}
+
+
+
+const vector<Ship::EnginePoint>& Ship::LateralEnginePoints() const
+{
+	return lateralEnginePoints;
 }
 
 
@@ -2638,6 +2695,47 @@ double Ship::Energy() const
 {
 	double maximum = attributes.Get("energy capacity");
 	return maximum ? min(1., energy / maximum) : (hull > 0.) ? 1. : 0.;
+}
+
+
+
+double Ship::DisplaySolar() const
+{
+	double scale = .2 + 1.8 / (.001 * position.Length() + 1);
+	double solarScaling = currentSystem->SolarPower() * scale;
+	double solarPower = solarScaling * attributes.Get("solar collection");
+	return solarPower;
+}
+
+
+
+double Ship::DisplayRamScoop() const
+{
+	double scale = .2 + 1.8 / (.001 * position.Length() + 1);
+	double ramScoop = currentSystem->SolarWind() * .03 * scale * (sqrt(attributes.Get("ramscoop")) + .05 * scale);
+	return ramScoop;
+}
+
+
+
+// These are for the thruster activity bars
+double Ship::DisplayThrust() const
+{
+	return -thrustMagnitude;
+}
+
+
+
+double Ship::DisplayTurn() const
+{
+	return -commands.Turn();
+}
+
+
+
+double Ship::DisplayLateralThrust() const
+{
+	return -commands.LateralThrust();
 }
 
 
@@ -2963,11 +3061,25 @@ double Ship::TurnRate() const
 
 
 
+double Ship::TrueTurnRate() const
+{
+	return TurnRate() * 1. / (1. + slowness * .05);
+}
+
+
+
 double Ship::Acceleration() const
 {
 	double thrust = attributes.Get("thrust");
 	return (thrust ? thrust : attributes.Get("afterburner thrust")) / InertialMass()
 		* (1. + attributes.Get("acceleration multiplier"));
+}
+
+
+
+double Ship::TrueAcceleration() const
+{
+	return Acceleration() * 1. / (1. + slowness * .05);
 }
 
 
@@ -2994,6 +3106,13 @@ double Ship::ReverseAcceleration() const
 double Ship::MaxReverseVelocity() const
 {
 	return attributes.Get("reverse thrust") / Drag();
+}
+
+
+
+double Ship::CurrentSpeed() const
+{
+	return Velocity().Length();
 }
 
 
@@ -3204,6 +3323,7 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 			ship->SetTargetStellar(nullptr);
 			ship->SetParent(shared_from_this());
 			ship->isThrusting = false;
+			ship->isLatThrusting = false;
 			ship->isReversing = false;
 			ship->isSteering = false;
 			ship->commands.Clear();
@@ -3696,9 +3816,11 @@ bool Ship::StepFlags()
 {
 	forget += !isInSystem;
 	isThrusting = false;
+	isLatThrusting = false;
 	isReversing = false;
 	isSteering = false;
 	steeringDirection = 0.;
+	lateralDirection = 0.;
 	if((!isSpecial && forget >= 1000) || !currentSystem)
 	{
 		MarkForRemoval();
@@ -4553,8 +4675,9 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 				Turn(commands.Turn() * TurnRate() * slowMultiplier);
 			}
 		}
-		double thrustCommand = commands.Has(Command::FORWARD) - commands.Has(Command::BACK);
+		double thrustCommand = commands.Thrust();
 		double thrust = 0.;
+		thrustMagnitude = 0.;
 		if(thrustCommand)
 		{
 			// Check if we are able to apply this thrust.
@@ -4582,6 +4705,8 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 				"thrusting heat" : "reverse thrusting heat");
 			if(cost > 0. && heat < cost * fabs(thrustCommand))
 				thrustCommand = copysign(heat / cost, thrustCommand);
+
+			thrustMagnitude = thrustCommand * slowMultiplier;
 
 			if(thrustCommand)
 			{
@@ -4613,6 +4738,48 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 				}
 			}
 		}
+		// Lateral Thrust functionality.
+		// This pulls "lateral thrust ratio" from the ship definition,
+		// and if there isn't one, it uses the default value of 0.25,
+		// which is listed as a gamerule value.
+		double latThrustCommand = commands.LateralThrust();
+		double latThrust = 0.;
+		double lateralThrustValue = 0.;
+		if(attributes.Get("lateral thrust ratio"))
+			lateralThrustValue = attributes.Get("lateral thrust ratio");
+		else if(!attributes.Get("lateral thrust ratio"))
+		{
+			// lateralThrustValue = GameData::GetGamerules().DefaultLateralThrustRatio();
+			if(mass < 2500)
+				lateralThrustValue = (3000 - mass) / 3500;
+			else
+				lateralThrustValue = 0.1;
+		}
+
+		if(latThrustCommand)
+		{
+			// Check if we are able to apply this thrust.
+			double cost = attributes.Get("thrusting energy") * lateralThrustValue;
+			if(energy < cost)
+				latThrustCommand *= energy / cost;
+
+			if(latThrustCommand)
+			{
+				// These area used for lateral thrusting flares.
+				isLatThrusting = true;
+				lateralDirection = latThrustCommand;
+				latThrust = attributes.Get("thrust") * lateralThrustValue;
+				if(latThrust)
+				{
+					double scale = fabs(latThrustCommand);
+					energy -= scale * cost;
+					heat += scale * attributes.Get("thrusting heat") * lateralThrustValue;
+					Point lateral(-angle.Unit().Y(), angle.Unit().X());
+					acceleration += lateral * (latThrustCommand * latThrust / mass);
+				}
+			}
+		}
+
 		bool applyAfterburner = (commands.Has(Command::AFTERBURNER) || (thrustCommand > 0. && !thrust))
 				&& !CannotAct(Ship::ActionType::AFTERBURNER);
 		if(applyAfterburner)
@@ -4688,7 +4855,10 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 				if((aNormal > 0.) != (vNormal > 0.) && fabs(aNormal) > fabs(vNormal))
 					dragAcceleration = -vNormal * angle.Unit();
 			}
-			velocity += dragAcceleration;
+			if(velocity.Length() > MaxVelocity() || velocity.Length() < 0.1)
+				velocity += dragAcceleration;
+			else
+				velocity += acceleration;
 		}
 		acceleration = Point();
 	}
@@ -4778,8 +4948,7 @@ void Ship::DoEngineVisuals(vector<Visual> &visuals, bool isUsingAfterburner)
 {
 	if(isUsingAfterburner && !Attributes().AfterburnerEffects().empty())
 	{
-		double gimbalDirection = (Commands().Has(Command::FORWARD) || Commands().Has(Command::BACK))
-			* -Commands().Turn();
+		double gimbalDirection = abs(Commands().Thrust()) * -Commands().Turn();
 
 		for(const EnginePoint &point : enginePoints)
 		{

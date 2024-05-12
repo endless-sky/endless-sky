@@ -21,7 +21,7 @@ ship "Quarg Skylark"
 		"hull" 70000
 		"required crew" 120
 		"bunks" 210
-		"mass" 460
+		"mass" 3680
 		"drag" 12.3
 		"heat dissipation" .7
 		"fuel capacity" 1000
@@ -75,7 +75,7 @@ ship "Quarg Wardragon"
 		"hull" 50000
 		"required crew" 160
 		"bunks" 185
-		"mass" 360
+		"mass" 2880
 		"drag" 9.3
 		"heat dissipation" .5
 		"fuel capacity" 800

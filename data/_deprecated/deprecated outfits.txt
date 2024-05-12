@@ -67,6 +67,12 @@ outfit "Korath Ark'torbal Thruster"
 	"flare sprite" "effect/plasma flare/tiny"
 		"frame rate" 5
 	"flare sound" "plasma tiny"
+	"reverse thrust" 8.9
+	"reverse thrusting energy" 0.11
+	"reverse thrusting heat" 0.1
+	"reverse flare sprite" "effect/korath flare/tiny"
+		"frame rate" 8
+	"reverse flare sound" "plasma tiny"
 	description "This engine is used by Korath fighters."
 
 outfit "Korath Ark'parat Steering"
@@ -94,6 +100,12 @@ outfit "Korath Jak'torbal Thruster"
 	"flare sprite" "effect/plasma flare/large"
 		"frame rate" 8
 	"flare sound" "plasma large"
+	"reverse thrust" 6.31
+	"reverse thrusting energy" 0.59
+	"reverse thrusting heat" 1.43
+	"reverse flare sprite" "effect/korath flare/tiny"
+		"frame rate" 8
+	"reverse flare sound" "plasma tiny"
 	description "This engine is used in the Korath capital ships."
 
 outfit "Korath Jak'parat Steering"
