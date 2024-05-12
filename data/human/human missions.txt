@@ -7416,7 +7416,7 @@ mission "Ice Queen 7"
 		has "event: pirateildy"
 	on offer
 		dialog
-			`Your inbox blinks with a new message from Ildico on Haven:`
+			`Your inbox blinks with a new message from Ildico from Haven:`
 			``
 			`	"It's been too long, and I could use your help. Please, come to <planet>.`
 			`				-your friend`
@@ -7428,57 +7428,65 @@ mission "Ice Queen 7"
 
 
 mission "Ice Queen 8"
-	name "Defeat the Rival Pirate Gang"
-	description "A fleet of Marauder ships, led by a vessel named the <npc>, has been seen near the <system> system. Destroy the whole fleet and return to <planet>."
+	name "Defeat Ildico's rival fleet"
+	description "Ildico has requested you to destroy a fleet of marauder ships near the <system> system. Once you're done, return to <planet>."
 	source "Haven"
 	to offer
 		has "Ice Queen 7: done"
 	on offer
 		conversation
-			`You arrive at the address Ildico gave you. A large warehouse on the edge of the spaceport. You step into the dimly lit building, your eyes struggle to adjust, and when they've adapted you see a group of dirty burly men and women leveling a half-dozen weapons right at you.`
-			`	"Looks like someone's lost." Words rise out from the group, though you can't tell whose speaking.`
+			`You arrive at the address Ildico gave you; a large warehouse on the edge of the spaceport. When you step into the dimly lit building, your eyes struggle to adjust, but when you're able to see clearly you find yourself face-to-face with a group of dirty burly men and women leveling a half-dozen weapons right at you.`
+			`	"Looks like someone's lost," a voice rises from the group, though you can't tell who's speaking.`
 			`	"They look right fancy. Good thing we found them."`
 			`	"Whaddya say, Frank, kill 'em now? Or keep 'em for a bit?"`
 			choice
 				`	"Ildy?"`
 				`	"Ildy asked me to come here."`
 				`	"Ildy, help!"`
+				`	(Grab your sidearm and shoot your way out.)`
+					goto why?
 
 			`	The band of cut-throats looks at you, confused, and then most of them lower their weapons.`
-			`	"Boss," One of them hollers, "this stranger says they are here for you, I think."`
+			`	"Boss," one of them hollers, "this stranger says they're here for you, I think."`
 			`	Footsteps echo on the opposite side of the warehouse as someone approaches.`
 			`	One of the men starts laughing. "Ildy?! Haha, never thought to call her that. Hey Ildy! How come you never told us to call you that? Or that some kind of special pet name?"`
-			`	The man flashes an unsavory grin at you. His rotting teeth full on display.`
+			`	The man flashes an unsavory grin at you. His rotting teeth on full display.`
 			`	In the dim light the footsteps materialize into a woman in her mid-thirties with hair darker than vacuum. Ildico Drifa gives you a warm smile, she then raises up her hand and fires her side-arm.`
 			choice
 				`	(Duck.)`
 
-			`	You duck, startled by the attack, only to realize she wasn't aiming at you. The rotten-toothed man lay dead on the ground. A bullet hole in his head.`
+			`	You duck, startled by the attack, only to realize she wasn't aiming at you. The rotten-toothed man lay dead on the ground, a bullet hole in his head.`
 			`	She looks to the rest of her crew, "Only my friends call me Ildy. And I have only one friend."`
-			`	"Yes, boss." "Got it, boss." "Sure thing, Cap." "Whatever you say, boss." The group of pirates melts away into the warehouse, one of them dragging the dead body, leaving you and Ildy relatively alone.`
+			`	"Yes, boss."`
+			`	"Got it, boss."`
+			`	"Sure thing, Cap."`
+			`	"Whatever you say, boss."`
+			`	The group of pirates melt away into the warehouse, one of them dragging the dead body, leaving you and Ildy relatively alone.`
 			`	"I'm so glad you came, <name>." Ildico puts a friendly hand on your shoulder and squeezes.`
-			`	She turns and waves toward the warehouse. "This is my temporary headquarters. I have few other safe-houses, and own part of a hanger elsewhere. Not to many ships yet, but I intend to change that soon."`
-			`	Ildico holsters her gun right next to where she keeps her dagger. "But making moves is hard. Everyone wants to be on a top. Which is why I need you."`
-			`	"There's a rival gang right next door to us, they have a lot more firepower, but if they could be removed, we could easily double our territory."`
-			`	"I don't have the ships." She glances at her gang in the distance, and then says quietly, "or the quality of crew, to deal with them."`
+			`	She turns and waves toward the warehouse. "This is my temporary headquarters. I have few other safe-houses, and own part of a hangar elsewhere. Not too many ships yet, but I intend to change that soon."`
+			`	Ildico holsters her gun right next to where she keeps her dagger and continues. "But making moves is hard. Everyone wants to be on top. Which is why I need you."`
+			`	She looks you in the eye and says, "There's a rival gang right next door to us. They have a lot more firepower, but if they could be removed, we could easily double our territory.`
+			`	"I don't have the ships," she glances at her gang in the distance, "or the quality of crew, to deal with them."`
 			`	"But, I think you do. I can't afford to pay you right now, things are pretty fluid, but I'll owe you. What do you say?"`
 			choice
 				`	"Sure, I'll help."`
-					goto sure
 				`	"Fine. But you're going to owe big when this is all over."`
-					goto sure
 				`	"Anything for you, Ildy."`
-					goto sure
 				`	"Not interested."`
+					goto unintrested
 
+			`	Her smile nearly lights up the dim room. "I always know I can count on you. And only you."`
+			`	"I fed the gang some false information. They have their entire fleet right now looking for some juicy merchant ships that don't actually exist, so they're not expecting a captain like you to take them on and blow them out of the sky.`
+			`	"Check out the nearby systems and look for a ship called the <npc>, that's their flagship. Kill them all, and come back here. To me."`
+				accept
+
+			label uninterested
 			`	Ildico frowns. She looks down at her feet for a moment, and when she looks back up her face is a mask of rage and hurt. "Then get out."`
 				decline
 
-			label sure
-			`	Her smile nearly lights up the dim room. "I always know I can count on you. And only you."`
-			`	"I fed the gang some false information. They have their entire fleet right now looking for some juicy merchant ships that don't actually exist.`
-			`	"Check out the nearby systems, look for ship called the <npc>, that's their flagship. Kill them all, and come back here. To me."`
-				accept
+			label why?
+			`	Acting defiantly in the face of so much danger, you reach for your sidearm. Unfortunately, it's in vain, because as soon as you feel the pistol grip in your hand you simultaneously feel the burning sensations of a flurry of bullets entering your body and tearing apart your insides.`
+				die
 
 	npc kill
 		government "Bounty"
@@ -7490,16 +7498,16 @@ mission "Ice Queen 8"
 
 	on visit
 		dialog phrase "generic fleet bounty hunting on visit"
-		dialog "You have destroyed the fleet. You can now return to <planet> to and report the news to Ildico"
+		dialog "You have destroyed the fleet. You can now return to <planet> to and report the news to Ildico."
 
 	on complete
 		conversation
-			`	There's been some intense fighting around the district where Ildico's warehouse was located. A few gunshots echo, as you make your way through the rubble and around the fire.`
-			`	A group of injured, but high-spirited pirates are set up outside the building, there are bodies littering the nearby streets. An unharmed, but bloody, Ilidco walks up to you smiling.`
+			`There's been some intense fighting around the district where Ildico's warehouse was located. A few gunshots echo as you make your way through the rubble and around the fire.`
+			`	A group of injured, but high-spirited pirates are set up outside the building, and there are bodies littering the nearby streets. An unharmed but bloody Ilidco walks up to you, smiling.`
 			`	"Perfect. They never had a chance." She wipes the blood off her dagger.`
-			`	"This is only the beginning, <name>." Her eyes blaze, "House Drifa will rise again. You'll see. You'll be there."`
-			`	She glances back toward her mulling forces. "Thanks again, for this, it means a lot that I can count on you, but I have to work do. Until next time."`
-			`	Ildico returns to group, barking order, and gesturing at the rubble.`
+			`	"This is only the beginning, <name>." Her eyes blaze as she says, "House Drifa will rise again. You'll see. You'll be there."`
+			`	She glances back toward her mulling forces. "Thanks again for this, it means a lot that I can count on you, but I have to work to do. Until next time."`
+			`	Ildico returns to her group, barking orders and gesturing at the rubble and leaving you to your own devices.`
 
 
 mission "News Queen"
