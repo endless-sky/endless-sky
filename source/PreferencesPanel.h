@@ -113,6 +113,8 @@ private:
 	Plugins::InstallData *clickedPluginInstall = nullptr;
 	Plugins::InstallData *oldClickedPluginInstall = nullptr;
 	Plugins::InstallData *hoverPluginInstall = nullptr;
+	unsigned pluginInstallPages = 1;
+	unsigned currentPluginInstallPage = 0;
 	bool downloadedInfo = false;
 	std::vector<std::future<void>> installFeedbacks;
 	std::vector<Plugins::InstallData> pluginInstallData;
