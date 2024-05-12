@@ -480,7 +480,7 @@ void Hardpoint::UpdateArc()
 	isOmnidirectional = baseAttributes.isOmnidirectional;
 	baseAngle = baseAttributes.baseAngle;
 
-  if(isOmnidirectional)
+	if(isOmnidirectional)
 	{
 		const Angle opposite = baseAngle + Angle(180.);
 		minArc = opposite;
