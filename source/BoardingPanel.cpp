@@ -333,7 +333,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 				if(!yourCrew || !enemyCrew)
 					break;
 
-				if (youAttack)
+				if(youAttack)
 				{
 					// Your chance of winning this round is equal to the ratio of
 					// your power to the enemy's power.
