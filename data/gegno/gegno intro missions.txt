@@ -776,16 +776,14 @@ mission "Gegno Genocide Defense"
 		event "gegno: unified defense"
 		conversation
 			branch "corroboration provocation"
-				has
-					or
-						"Gegno Anticipation: failed"
-						"Gegno Intervention: failed"
+				or
+					has "Gegno Anticipation: failed"
+					has "Gegno Intervention: failed"
 			branch "corroboration provocation homeworld"
-				has
-					or
-						"Gegno Anticipation: failed"
-						"Gegno Intervention: failed"
-				"flagship planet: Dueyu Eitch"
+				or
+					has "Gegno Anticipation: failed"
+					has "Gegno Intervention: failed"
+				has "flagship planet: Dueyu Eitch"
 
 			`As soon as you land your ship, you suddenly receive an incoming hail. "It was incredibly unwise to engage in the unnecessary destruction of noncombatants belonging to a species not of your own." You recognize the voice belonging to that of a Quarg, though it sounds quite displeased. "A species that is still learning from themselves is vulnerable to outside influence, and your aggressive actions against civilians of the Gegno have resulted in needless events."`
 			choice
@@ -806,8 +804,8 @@ mission "Gegno Genocide Defense"
 			label "corroboration provocation"
 			`As soon as you land your ship, you suddenly receive an incoming hail. "It was incredibly unwise to fire upon guardians of the Gegno homeworld." The voice belongs to that of a Quarg, though it sounds quite displeased. "They simply were present to quell unease of your foreign involvement, yet you chose hostility above their most sacred of planets. You shall find yourself no longer welcome in Gegno space, as well as at the end of our patience."`
 			choice
-				`	"I was worried they would attack me with their fleets!"
-				`	"I do not care."
+				`	"I was worried they would attack me with their fleets!"`
+				`	"I do not care."`
 					goto care
 			`	"Your concerns matter not when weighed against those of an entire species. As a result of such behavior, the Gegno have banded together to unite their fleets and deter any more presence from outsiders. It is a great shame. The time they would use to resolve their inner conflicts is now wasted upon hostility towards strangers due to your naivety. Leave Gegno space, for you no longer have reason to be here."`
 				accept
