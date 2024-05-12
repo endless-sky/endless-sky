@@ -1413,7 +1413,6 @@ void Engine::EnterSystem()
 
 
 	center = flagship->Center();
-	centerVelocity = flagship->Velocity();
 
 	// Help message for new players. Show this message for the first four days,
 	// since the new player ships can make at most four jumps before landing.
@@ -1599,8 +1598,17 @@ void Engine::CalculateStep()
 	{
 		const auto newCamera = NewCenter(center, centerVelocity,
 			flagship->Center(), flagship->Velocity());
-		newCenter = newCamera.first;
-		newCenterVelocity = newCamera.second;
+
+		if (flagship->IsHyperspacing()) {
+			hyperspacePercentage =
+				flagship->GetHyperspacePercentage() / 100.;
+			newCenter = newCamera.first.Lerp(
+				flagship->Center(), pow(hyperspacePercentage, .5));
+			newCenterVelocity = flagship->Velocity();
+		} else {
+			newCenter = newCamera.first;
+			newCenterVelocity = newCamera.second;
+		}
 	}
 	draw[currentCalcBuffer].SetCenter(newCenter, newCenterVelocity);
 	batchDraw[currentCalcBuffer].SetCenter(newCenter);
