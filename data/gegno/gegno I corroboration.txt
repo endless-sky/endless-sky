@@ -963,8 +963,6 @@ mission "Gegno Intervention"
 
 
 
-# Figure a workaround for removing clearance if player shoots the defense fleets.
-
 mission "Acquiescence"
 	name `Transport the Vi Warrior to <destination>.`
 	landing
