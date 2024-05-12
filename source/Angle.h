@@ -66,8 +66,7 @@ public:
 	// Judge whether this is inside from "base" to "limit."
 	// The range from "base" to "limit" is expressed by "clock" orientation.
 	bool IsInRange(const Angle &base, const Angle &limit) const;
-	// The "range" is a pair of "base" and "limit."
-	bool IsInRange(const std::pair<Angle, Angle>& range) const;
+
 
 
 private:

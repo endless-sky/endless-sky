@@ -401,22 +401,20 @@ bool Hardpoint::FireSpecialSystem(Ship &ship, const Body &body, std::vector<Visu
 	// Get the weapon range. Anti-missile and tractor beam shots always last a
 	// single frame, so their range is equal to their velocity.
 	double range = outfit->Velocity();
+	Angle facing = ship.Facing();
 
 	// Check if the body is within range of this hardpoint.
-	const Angle &facing = ship.Facing();
-	Point start = ship.Position() + ship.Facing().Rotate(point);
+	Point start = ship.Position() + facing.Rotate(point);
 	Point offset = body.Position() - start;
 	if(offset.Length() > range)
 		return false;
 
-	// Check if the missile is within the arc of fire.
+	// Check if the target is within the arc of fire.
 	Angle aim(offset);
-	if(!IsOmnidirectional())
+	if(!isOmnidirectional)
 	{
-		Angle minArc = GetMinArc();
-		Angle maxArc = GetMaxArc();
-		minArc += facing;
-		maxArc += facing;
+		const Angle minArc = GetMinArc() + facing;
+		const Angle maxArc = GetMaxArc() + facing;
 		if(!aim.IsInRange(minArc, maxArc))
 			return false;
 	}
@@ -425,8 +423,7 @@ bool Hardpoint::FireSpecialSystem(Ship &ship, const Body &body, std::vector<Visu
 	visuals.reserve(visuals.size() + outfit->FireEffects().size()
 		+ outfit->HitEffects().size() + outfit->DieEffects().size());
 
-	// Firing effects are displayed at the weapon hardpoint that just fired.
-	angle = aim - ship.Facing();
+	angle = aim - facing;
 	start += aim.Rotate(outfit->HardpointOffset());
 	CreateEffects(outfit->FireEffects(), start, ship.Velocity(), aim, visuals);
 
@@ -479,10 +476,10 @@ void Hardpoint::UpdateArc()
 	if(!outfit)
 		return;
 
-	const BaseAttributes &attributes = baseAttributes;
-	// Restore the initial value.
-	isOmnidirectional = attributes.isOmnidirectional;
-	baseAngle = attributes.baseAngle;
+	// Restore the initial value (from baseAttributes).
+	isOmnidirectional = baseAttributes.isOmnidirectional;
+	baseAngle = baseAttributes.baseAngle;
+
 	if(isOmnidirectional)
 	{
 		const Angle opposite = baseAngle + Angle(180.);
@@ -491,8 +488,8 @@ void Hardpoint::UpdateArc()
 	}
 	else
 	{
-		minArc = attributes.minArc;
-		maxArc = attributes.maxArc;
+		minArc = baseAttributes.minArc;
+		maxArc = baseAttributes.maxArc;
 	}
 
 	// The installed weapon restricts the arc of fire.

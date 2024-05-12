@@ -50,6 +50,8 @@ public:
 		Angle maxArc;
 	};
 
+
+
 public:
 	// Constructor. Hardpoints may or may not specify what weapon is in them.
 	Hardpoint(const Point &point, const BaseAttributes &attributes,
