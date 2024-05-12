@@ -1711,9 +1711,7 @@ mission "Deep: Remnant: Continue Research"
 	to offer
 		has "event: deep: remnant: rest period"
 		has "deep: did reveal remnant"
-
-# If the player finished the following missions prior to the addition of this one in v0.9.15, it will offer and lead to nothing.
-
+		# If the player received subsequent missions prior to the addition of this one in v0.9.15, do not offer this one.
 		not "Deep: Remnant: Engines: offered"
 
 	on offer
