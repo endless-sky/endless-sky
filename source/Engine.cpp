@@ -583,9 +583,9 @@ void Engine::Step(bool isActive)
 	outlines.clear();
 	const Color &cloakColor = *GameData::Colors().Get("cloak highlight");
 	if(Preferences::Has("Cloaked ship outlines"))
-		for(const auto &ship : ships)
+		for(const auto &ship : player.Ships())
 		{
-			if(!ship->IsYours() || ship->GetSystem() != player.GetSystem() || ship->Cloaking() == 0.)
+			if(ship->IsParked() || ship->GetSystem() != player.GetSystem() || ship->Cloaking() == 0.)
 				continue;
 
 			outlines.emplace_back(ship->GetSprite(), (ship->Position() - center) * zoom, ship->Unit() * zoom,
