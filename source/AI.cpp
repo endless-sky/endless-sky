@@ -559,7 +559,7 @@ void AI::Step(Command &activeCommands)
 		if(it->IsDestroyed() || !system)
 			continue;
 
-		// The player is their own AI.
+		// The players flagship is not controlled by the AI.
 		if(it.get() == flagship)
 		{
 			// Player cannot do anything if the flagship is landing.
