@@ -105,28 +105,20 @@ void TaskQueue::ProcessSyncTasks()
 
 
 
-// Whether there are any outstanding tasks left in this queue, including any outstanding tasks
-// that need to be executed on the main thread.
-bool TaskQueue::IsDone() const
+// Waits for all of this queue's task to finish. Ignores any sync tasks to be processed.
+void TaskQueue::Wait()
 {
-	{
-		lock_guard<mutex> lock(asyncMutex);
-		if(!futures.empty())
-			return false;
-	}
-
-	lock_guard lock(syncMutex);
-	return syncTasks.empty();
+	while(!IsDone())
+		this_thread::yield();
 }
 
 
 
-// Waits for all of this queue's task to finish while properly processing any outstanding main thread tasks.
-void TaskQueue::Wait()
+// Whether there are any outstanding async tasks left in this queue.
+bool TaskQueue::IsDone() const
 {
-	// Process tasks while any task is still being executed.
-	while(!IsDone())
-		ProcessSyncTasks();
+	lock_guard<mutex> lock(asyncMutex);
+	return futures.empty();
 }
 
 
@@ -155,7 +147,8 @@ void TaskQueue::ThreadLoop() noexcept
 
 			// Execute the task.
 			try {
-				task.async();
+				if(task.async)
+					task.async();
 			}
 			catch(...)
 			{

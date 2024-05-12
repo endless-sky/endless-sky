@@ -68,6 +68,8 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	// landscapes for this system are loaded before showing the planet panel.
 	TaskQueue queue;
 	GameData::Preload(queue, planet.Landscape());
+	queue.Wait();
+	queue.ProcessSyncTasks();
 }
 
 

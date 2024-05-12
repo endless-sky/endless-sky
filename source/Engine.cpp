@@ -137,7 +137,6 @@ namespace {
 		added.clear();
 	}
 
-
 	// Author the given message from the given ship.
 	void SendMessage(const shared_ptr<const Ship> &ship, const string &message)
 	{
@@ -490,6 +489,9 @@ void Engine::Step(bool isActive)
 	events.swap(eventQueue);
 	eventQueue.clear();
 
+	// Process any outstanding sprites that need to be uploaded to the GPU.
+	queue.ProcessSyncTasks();
+
 	// The calculation thread was paused by MainPanel before calling this function, so it is safe to access things.
 	const shared_ptr<Ship> flagship = player.FlagshipPtr();
 	const StellarObject *object = player.GetStellarObject();
@@ -812,7 +814,7 @@ void Engine::Step(bool isActive)
 	}
 	else
 	{
-		if(target->GetSystem() == player.GetSystem() && target->Cloaking() < 1.)
+		if(target->GetSystem() == player.GetSystem() && !target->IsCloaked())
 			targetUnit = target->Facing().Unit();
 		info.SetSprite("target sprite", target->GetSprite(), targetUnit, target->GetFrame(step));
 		info.SetString("target name", target->Name());
@@ -868,6 +870,8 @@ void Engine::Step(bool isActive)
 			}
 		}
 	}
+	if(!Preferences::Has("Ship outlines in HUD"))
+		info.SetCondition("fast hud sprites");
 	if(target && target->IsTargetable() && target->GetSystem() == currentSystem
 		&& (flagship->CargoScanFraction() || flagship->OutfitScanFraction()))
 	{
@@ -1272,6 +1276,10 @@ void Engine::EnterSystem()
 	// Remove expired bribes, clearance, and grace periods from past fines.
 	GameData::SetDate(today);
 	GameData::StepEconomy();
+
+	// Refresh random systems that could be linked to this one.
+	GameData::UpdateSystems(&player);
+
 	// SetDate() clears any bribes from yesterday, so restore any auto-clearance.
 	for(const Mission &mission : player.Missions())
 		if(mission.ClearanceMessage() == "auto")
@@ -2139,12 +2147,15 @@ void Engine::DoCollisions(Projectile &projectile)
 		double triggerRadius = weapon.TriggerRadius();
 		if(triggerRadius)
 			for(const Body *body : shipCollisions.Circle(projectile.Position(), triggerRadius))
+			{
+				const Ship *ship = reinterpret_cast<const Ship *>(body);
 				if(body == projectile.Target() || (gov->IsEnemy(body->GetGovernment())
-						&& reinterpret_cast<const Ship *>(body)->Cloaking() < 1.))
+						&& !ship->IsCloaked()))
 				{
 					collisions.emplace_back(nullptr, CollisionType::NONE, 0.);
 					break;
 				}
+			}
 
 		// If nothing triggered the projectile, check for collisions with ships and asteroids.
 		if(collisions.empty())
@@ -2181,6 +2192,15 @@ void Engine::DoCollisions(Projectile &projectile)
 		if(hit && collisionType == CollisionType::SHIP)
 			shipHit = reinterpret_cast<Ship *>(hit)->shared_from_this();
 
+		// Don't collide with carried ships that are disabled and not directly targeted.
+		if(shipHit && hit != projectile.Target()
+				&& shipHit->CanBeCarried() && shipHit->IsDisabled())
+			continue;
+
+		// If the ship is cloaked, and phasing, then skip this ship (during this step).
+		if(shipHit && shipHit->Phases(projectile))
+			continue;
+
 		// Create the explosion the given distance along the projectile's
 		// motion path for this step.
 		projectile.Explode(visuals, range, hit ? hit->Velocity() : Point());
@@ -2201,7 +2221,8 @@ void Engine::DoCollisions(Projectile &projectile)
 			{
 				Ship *ship = reinterpret_cast<Ship *>(body);
 				bool targeted = (projectile.Target() == ship);
-				if(isSafe && !targeted && !gov->IsEnemy(ship->GetGovernment()))
+				// Phasing cloaked ship will have a chance to ignore the effects of the explosion.
+				if((isSafe && !targeted && !gov->IsEnemy(ship->GetGovernment())) || ship->Phases(projectile))
 					continue;
 
 				// Only directly targeted ships get provoked by blast weapons.
@@ -2272,12 +2293,12 @@ void Engine::DoWeather(Weather &weather)
 // Check if any ship collected the given flotsam.
 void Engine::DoCollection(Flotsam &flotsam)
 {
-	// Check if any ship can pick up this flotsam. Cloaked ships cannot act.
+	// Check if any ship can pick up this flotsam. Cloaked ships without "cloaked pickup" cannot act.
 	Ship *collector = nullptr;
 	for(Body *body : shipCollisions.Circle(flotsam.Position(), 5.))
 	{
 		Ship *ship = reinterpret_cast<Ship *>(body);
-		if(!ship->CannotAct() && ship->CanPickUp(flotsam))
+		if(!ship->CannotAct(Ship::ActionType::PICKUP) && ship->CanPickUp(flotsam))
 		{
 			collector = ship;
 			break;
@@ -2440,9 +2461,9 @@ void Engine::FillRadar()
 	for(shared_ptr<Ship> &ship : ships)
 		if(ship->GetSystem() == playerSystem)
 		{
-			// Do not show cloaked ships on the radar, except the player's ships.
+			// Do not show cloaked ships on the radar, except the player's ships, and those who should show on radar.
 			bool isYours = ship->IsYours();
-			if(ship->Cloaking() >= 1. && !isYours)
+			if(ship->IsCloaked() && !isYours)
 				continue;
 
 			// Figure out what radar color should be used for this ship.
@@ -2623,7 +2644,8 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 	string message;
 	if(target->GetPersonality().IsDaring())
 	{
-		message = "Please assist us in destroying ";
+		message = "Please assist us in ";
+		message += (target->GetPersonality().Disables() ? "disabling " : "destroying ");
 		message += (attackerCount == 1 ? "this " : "these ");
 		message += attacker->GetName();
 		message += (attackerCount == 1 ? " ship." : " ships.");
