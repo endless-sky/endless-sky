@@ -7045,13 +7045,6 @@ mission "Timothy Radrickson 2: Good Interlude"
 event "timothy radrickson: governor"
 
 
-# Plan:
-# Tim invites the PC to come and visit him on Rand. He takes you to his governor palace, thanks you for all you did, gives you 125,000 for giving him a ride all those years ago.
-# He talks about how Rand just sent out the largest mineral freighter fleet ever to New Britain, and when it returns the colony will finally have enough money to start taking care of it self...
-# When.. uh oh the frieghters have lost communication or sent out a distress signal or something, and you offer to help.
-# You fly off, find a marauder/pirate fleet, destroy them, save the freighter fleet, go back to Rand and then Tim holds a swanky dinner and names you Hero of Rand.
-
-
 mission "Timothy Radrickson 3: Governor Notification"
 	name "Visit the Governor on <planet>"
 	description "The governor of <planet> has invited you to speak with them."
@@ -7228,13 +7221,13 @@ mission "Timothy Radrickson 3b: Pirate Base"
 			names "pirate"
 			variant
 				"Marauder Falcon (Engines)"
-				"Falcon (Gatling)"
+				"Falcon (Javelin)"
 				"Marauder Firebird (Weapons)"
 				"Firebird"
 
 				"Marauder Raven"
+				"Modified Argosy (Gatling)" 2
 				"Osprey (Missile)"
-				"Osprey (Laser)"
 
 				"Hawk (Plasma)"
 				"Quicksilver" 2
@@ -7250,12 +7243,12 @@ mission "Timothy Radrickson 3b: Pirate Base"
 			names "pirate"
 			variant
 				"Marauder Falcon (Engines)"
-				"Falcon (Gatling)"
+				"Falcon (Javelin)"
 				"Marauder Firebird (Weapons)"
 				"Firebird"
 
+				"Modified Argosy (Gatling)"
 				"Osprey (Missile)"
-				"Osprey (Laser)"
 
 				"Hawk (Plasma)"
 				"Fury (Gatling)"
@@ -7282,7 +7275,7 @@ mission "Timothy Radrickson 3c: Escort the Convoy"
 			branch "did it already"
 				has "Timothy Radrickson 3b: diplomacy"
 
-			`	You recieve a response promptly. "And what makes you think we will let ya' in?"`
+			`	You receive a response promptly. "And what makes you think we will let ya' in?"`
 				goto next
 
 			label "did it already"
@@ -7290,7 +7283,7 @@ mission "Timothy Radrickson 3c: Escort the Convoy"
 				goto next
 
 			label approach
-			`	You advance towards the encampment for about five seconds before you recieve a hail coming from behind the blast doors. "Hey, hey! What makes you think we'll let ya' in?"`
+			`	You advance towards the encampment for about five seconds before you receive a hail coming from behind the blast doors. "Hey, hey! What makes you think we'll let ya' in?"`
 
 			label next
 			choice
