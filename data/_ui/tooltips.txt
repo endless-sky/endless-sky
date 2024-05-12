@@ -1395,6 +1395,9 @@ tip "Ship outlines in shops"
 tip "Ship outlines in HUD"
 	`Controls the display of your flagship and target ship icons in the HUD. When fancy, applies a sobel filter to the sprites. (This can result in high GPU load for some ships on very old or low performance computers.) When fast, just uses the ship's sprite.`
 
+tip "Cloaked ship outlines"
+	`Controls the display of cloaked escorts. When fancy, causes the ship to become transparent and applies a red outline. When fast, simply shifts the ship to being red.`
+
 tip "Show status overlays"
 	`Display status overlays over top of all ships when in flight. Status overlays display a ship's shields and hull. If the damaged option is chosen, overlays only appear on ships that have taken damage.`
 

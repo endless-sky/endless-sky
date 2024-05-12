@@ -3878,7 +3878,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 		for(const Mission &mission : player.Missions())
 		{
 			// Don't include invisible and failed missions in the check.
-			if(!mission.IsVisible() || mission.HasFailed(player))
+			if(!mission.IsVisible() || mission.IsFailed(player))
 				continue;
 
 			// If the accessible destination of a mission is in this system, and you've been

@@ -154,6 +154,7 @@ void Preferences::Load()
 	// values for settings that are off by default.
 	settings["Landing zoom"] = true;
 	settings["Render motion blur"] = true;
+	settings["Cloaked ship outlines"] = true;
 	settings[FRUGAL_ESCORTS] = true;
 	settings[EXPEND_AMMO] = true;
 	settings["Damaged fighters retreat"] = true;
