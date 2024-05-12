@@ -98,7 +98,7 @@ namespace {
 	// The url to the plugins-list.
 	const string PLUGIN_LIST_URL =
 		"https://raw.githubusercontent.com/endless-sky/endless-sky-plugins/master/generated/plugins.json";
-	
+
 	const unsigned MAX_PLUGIN_INSTALLS_PER_PAGE = 18;
 }
 
@@ -292,7 +292,8 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		}
 
 		if(!pluginInstallData.empty())
-			RenderPluginDescription(SpriteSet::Get(pluginInstallData.front().name + "-libicon"), pluginInstallData.front().aboutText);
+			RenderPluginDescription(SpriteSet::Get(pluginInstallData.front().name + "-libicon"),
+				pluginInstallData.front().aboutText);
 	}
 	else if(key == 'i' && page == 'i' && latestPlugin && latestPlugin->url.size()
 		&& !latestPlugin->installed)
@@ -1167,7 +1168,7 @@ void PreferencesPanel::DrawPluginInstalls()
 		Plugins::InstallData &installData = pluginInstallData.at(x);
 		if(installData.name.empty())
 			continue;
-		
+
 		pluginInstallZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), &installData);
 
 		// Use url as that is more unique, just in case.
@@ -1196,7 +1197,7 @@ void PreferencesPanel::DrawPluginInstalls()
 
 	if(!selecPluginInstall && !pluginInstallZones.empty())
 		selecPluginInstall = pluginInstallZones.at(0).Value();
-	
+
 
 	const Point UP{0, -1};
 	const Point DOWN{0, 1};
