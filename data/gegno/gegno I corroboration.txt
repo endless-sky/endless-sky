@@ -215,7 +215,7 @@ mission "Scin on Cyife"
 				decline
 
 			label "saw epidote"
-			`	Once you get close enough, the oblong object is revealed to be a large Gegno Scin ship, similar to the one you encountered during an interaction with the Scin a while ago. What it's doing this far away from their home space is a mystery, much like the moon it's stationed on. Or at least, was stationed on, as after a few seconds it launches into the atmosphere and leaves the moon. Perhaps it was some sort of surveillance ship spying on the nearby Gegno Vi systems.`
+			`	Once you get close enough, the oblong object is revealed to be a large Gegno Scin ship, similar to the one you encountered during an interaction with the Scin a while ago. What it's doing this far away from their home space is a mystery, much like the moon it's stationed on. Or at least, was stationed on, as after a few seconds it launches into the atmosphere and leaves the moon.`
 				decline
 
 			label "boarded epidote"
