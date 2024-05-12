@@ -346,20 +346,18 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 						{
 							++yourAttackCasualties;
 							you->AddCrew(-1);
+							if(!you->Crew())
+								break;
 						}
 						else
 						{
 							++victimDefenseCasualties;
 							victim->AddCrew(-1);
+							if(!victim->Crew())
+								break;
 						}
 					}
 				}
-
-				yourCrew = you->Crew();
-				enemyCrew = victim->Crew();
-				if(!yourCrew || !enemyCrew)
-					break;
-
 				if(enemyAttacks)
 				{
 					double enemyAttackPower = defenseOdds.AttackerPower(enemyCrew);
@@ -369,11 +367,17 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 					{
 						if(Random::Real() * total >= yourDefensePower)
 						{
+							++yourDefenseCasualties;
 							you->AddCrew(-1);
+							if(!you->Crew())
+								break;
 						}
 						else
 						{
+							++victimAttackCasualties;
 							victim->AddCrew(-1);
+							if(!victim->Crew())
+								break;
 						}
 					}
 				}
@@ -394,7 +398,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 			}
 			if(enemyAttacks)
 			{
-				messages.push_back("They counter-attack. You defend. ");
+				messages.push_back("They attack. ");
 
 				if(yourDefenseCasualties && victimAttackCasualties)
 					messages.back() += "You lose " + to_string(yourDefenseCasualties)
