@@ -3156,10 +3156,8 @@ int Ship::BaysFree(const string &category) const
 {
 	int count = 0;
 	for(const Bay &bay : bays)
-	{
 		if(bay.CanContain(category) && !bay.ship)
 			++count;
-	}
 	return count;
 }
 
@@ -3170,10 +3168,8 @@ int Ship::BaysTotal(const string &category) const
 {
 	int count = 0;
 	for(const Bay &bay : bays)
-	{
 		if(bay.CanContain(category))
 			++count;
-	}
 	return count;
 }
 
