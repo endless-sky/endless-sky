@@ -228,7 +228,7 @@ outfit "Outfit Scanner"
 
 outfit "Asteroid Scanner"
 	category "Systems"
-	cost 122000
+	cost 61000
 	thumbnail "outfit/asteroid scanner"
 	"mass" 6
 	"outfit space" -6

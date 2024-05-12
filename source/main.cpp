@@ -140,7 +140,8 @@ int main(int argc, char *argv[])
 
 		// Begin loading the game data.
 		bool isConsoleOnly = loadOnly || printTests || printData;
-		auto dataFuture = GameData::BeginLoad(queue, isConsoleOnly, debugMode, isTesting && !debugMode);
+		auto dataFuture = GameData::BeginLoad(queue, isConsoleOnly, debugMode,
+			isConsoleOnly || (isTesting && !debugMode));
 
 		// If we are not using the UI, or performing some automated task, we should load
 		// all data now.
