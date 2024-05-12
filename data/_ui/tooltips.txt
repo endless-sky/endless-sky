@@ -990,6 +990,9 @@ tip "shots / second:"
 tip "turret turn rate:"
 	`Degrees this turret can turn per second.`
 
+tip "arc:"
+	`The angular range of protection provided by this weapon, in degrees.`
+
 tip "homing:"
 	`This projectile's ability to track its target. Weapons with better homing can adjust to the target's speed to plot a more effective intercept course.`
 
