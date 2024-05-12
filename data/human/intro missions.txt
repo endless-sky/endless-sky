@@ -12,11 +12,11 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 conversation "intro mission"
-	branch deep1
+	branch deep
 		has "start: deep"
-	branch paradise1
+	branch paradise
 		has "start: paradise"
-	branch syndicate1
+	branch syndicate
 		has "start: syndicate"
 	
 	`With some trepidation, you give the shipyard owner your money and take your new ship for a test drive, piloting it out of the shipyard and onto a spare landing pad by the spaceport. Then you get out and look the ship over a bit more closely. You are busy polishing out a few rust spots with a piece of steel wool when an old man in grease-stained coveralls walks up.`
@@ -35,8 +35,8 @@ conversation "intro mission"
 	`	He smiles. "I'm sure you will. But there's something nice to having a ship you can pilot all by yourself. Believe me, once you have to start managing crew and paying salaries, or keeping track of a whole fleet, you'll miss these days when everything was simple."`
 		goto captain
 	
-	label deep1
-	`With some trepidation, you hand one of the salespeople your money, and they give you the passcode to your starship, along with the number of the docking bay your ship is being transported to. By the time you arrive at the bay, your ship is already there, beckoning you aboard. You spend a minute admiring your ship until a man walks up to you. You recognize him as the old man who rode the train with you, and wave to him.`
+	label deep
+	`With some trepidation, you hand one of the salespeople your money, and they give you the passcode to your starship, along with the number of the docking bay your ship is being transported to. By the time you arrive at the bay, your ship is already there, beckoning you aboard. You spend a minute admiring your ship until a man walks up to you. You recognize him as the old man who rode the train with you and wave to him.`
 	`	He waves back, turns to look at your ship and says, "Nothing quite like buying your first starship, is there?"`
 	choice
 		`	"Yeah, it's a real beauty."`
@@ -49,7 +49,7 @@ conversation "intro mission"
 	`	He grins. "And I'm sure you'll be modifying it for hours on end to make it even more beautiful. God knows how long I spent tuning my own ships."`
 		goto captain
 	
-	label paradise1
+	label paradise
 	`With some trepidation, you hand a salesperson your money and take your new ship for a test drive, piloting it out of the shipyard and onto a spare landing pad in the spaceport. You disembark and spend a minute admiring your ship until an old man in grease-stained coveralls walks up to you.`
 	`	"Nothing quite like buying your first starship," he says.`
 	choice
@@ -57,21 +57,21 @@ conversation "intro mission"
 			goto galaxy
 		`	"Just you wait; I'll be flying an entire fleet soon."`
 			goto bigger
-		`	"If I wanted to talk with you, I would have said something. Now beat it."`
+		`	"If I wanted to talk, I would have said something. Beat it."`
 			decline
 	label galaxy
 	`	He grins. "Well, don't be too hasty. The galaxy is a big and scary place, and not for the fainthearted. It'll be quite a while until you can make the universe your oyster. Took me decades."`
 		goto captain
 	
-	label syndicate1
+	label syndicate
 	`With a strange sense of relief, you give the salesman your money and jump into your new ship. The flight from the shipyard to the landing bays has you navigate through tunnels with only centimeters of clearance in all directions. After reaching the safety of the bay and landing, you disembark, where an old man in grease-stained coveralls is waiting.`
 	`	"Nothing quite like buying your first starship," he says.`
 	choice
 		`	"I'm just glad to be free from working for someone else."`
 			goto freedom
-		`	"And there's nothing like going six thousand credits into debt."`
+		`	"And there's nothing quite like going six thousand credits into debt."`
 			goto money
-		`	"If I wanted to talk with you, I would have said something. Now beat it."`
+		`	"If I wanted to talk with you, I'd have said something. Leave me alone."`
 			decline
 	label freedom
 	`	He grins. "Well, I wouldn't be so sure yet. Often, the quickest way to fame and fortune is to curry favor with the big players. I always preferred to work by myself, though."`
@@ -106,21 +106,7 @@ conversation "intro mission"
 	`	"<first> <last>?" he stops for a moment. "I've heard that name before. Reminds me of someone famous, I think," says James. "Anyways, I'm looking forward to traveling with you."`
 	
 	label advice
-	branch deep2
-		has "start: deep"
-	branch paradise2
-		has "start: paradise"
-	branch syndicate2
-		has "start: syndicate"
-	`	As you're helping him wheel his luggage aboard and showing him his bunk, he says, "Before we take off, you might head on over to the trading center and stock up on medical goods; we can sell those for a good profit on <planet>. Also make sure to visit the local outfitter. While they don't sell much here compared to on the big manufacturing worlds, every world with an outfitter will at least carry a map with information on the neighboring systems. Buying them can help if you're not quite sure where you're going."`
-		accept
-	label deep2
-	`	As you're helping him wheel his luggage aboard and showing him his bunk, he says, "Before we take off, you might head on over to the trading center and load some clothing onto your ship; we can sell those for a good profit on <planet>. Also make sure to visit the local outfitter. While most of the outfits will be far outside your price range, every world with an outfitter will at least carry a map with information on the neighboring systems. Buying them can help if you're not quite sure where you're going."`
-		accept
-	label paradise2
-	`	As you're helping him wheel his luggage aboard and showing him his bunk, he says, "Before we take off, you might head on over to the trading center and load some heavy metals onto your ship; we can sell those for a good profit on <planet>. Also make sure to visit the local outfitter. While most of the outfits will be far outside your price range, every world with an outfitter will at least carry a map with information on the neighboring systems. Buying them can help if you're not quite sure where you're going."`
-	label syndicate2
-	`	As you're helping him wheel his luggage aboard and showing him his bunk, he says, "Before we take off, you might head on over to the trading center and stock up on medical goods; we can sell those for a good profit on <planet>. Also make sure to visit the local outfitter. While most of the outfits will be far outside your price range, every world with an outfitter will at least carry a map with information on the neighboring systems. Buying them can help if you're not quite sure where you're going."`
+	`	As you're helping him wheel his luggage aboard and showing him his bunk, he says, "Before we take off, you might head on over to the trading center and <trade>; we can sell those for a good profit on <planet>. Also make sure to visit the local outfitter. <while>, every world with an outfitter will at least carry a map with information on the neighboring systems. Buying them can help if you're not quite sure where you're going."`
 		accept
 
 
@@ -131,6 +117,77 @@ conversation "mission intro end"
 	`	Then he adds, "If you're okay with giving me a lift for a while longer, sell off any of that cargo you bought and then meet me in the spaceport. I'll see if I can rustle up any interesting work for you to do."`
 	``
 	`	(Click the "Spaceport" button to continue this mission.)`
+
+
+
+
+conversation "mining intro ingot"
+	`You find James waiting for you just outside the spaceport bar. Against the steady patter of micrometeorites against the roof he tells you, "Working here on <origin> is one of the few jobs in the galaxy more dangerous than fighting pirates. And worse, because if a big meteorite decides to strike this station, there's basically nothing the miners can do about it except hope they see it coming." He turns to you with a grin. "But nonetheless, I think you might be interested in this idea."`
+	`	James leads you down the side of the bar to a booth where a man with a half-eaten hamburger and a plate of fries is sitting, busily examining a star map of the local sector. He notices your arrival and stands up to greet you. "<first>, this is Captain Marshall," James says as you shake his hand. "I told him about your new ship and how it'd be a good idea for you to get a taste of asteroid mining. He mines in this part of space and says there's a good system nearby if you're willing to give it a try."`
+	choice
+		`	"I'll give it a shot."`
+			goto mining
+		`	"I think I'm ready to head out on my own."`
+			decline
+	
+	label "mining"
+	`	"That's good to hear," Captain Marshall says with a smile. "But be warned that mining isn't as easy as one might think. Especially without an asteroid scanner, mining can be just as much a test of your piloting skills as combat.`
+	`	"The first challenge," he continues, "will be finding which asteroids are valuable. The worthless asteroids are either brown and smooth or gray and spiky with no apparent orbit. It doesn't matter how long you shoot them, they won't be destroyed. Valuable asteroids will always orbit the star and have a range of colors and surface textures. If you're not sure which are which and you don't have an asteroid scanner to tell you, keep a look out for other miners to see what they're firing at.`
+	`	"Generally speaking, the more valuable minerals are tougher to mine, either because they're harder to break apart, or they're less common and in more dangerous regions of the galaxy. Silicon breaks up quickly; you'll fill your hold in a hurry and the stuff is everywhere. Platinum or gold asteroids are more work; they're not as common in areas where the Navy watches your back, but you make several times the number of credits for the effort.`
+	`	"I could go on, but I think you get the picture."`
+	`	You and James chat with Marshall a while longer, and he suggests trying your hand at mining in <system>. "It's a great place. You could throw a dart in that system and half the time you'd hit an asteroid worth at least something, and I've never been bothered by pirates while I've been there."`
+	`	"That does sound like a good place for a beginner pilot," James says. "How about we start small, <first>? Let's go mine at least five tons of silicon before landing on <planet> and we can call it a day."`
+		accept
+
+
+conversation "mining intro end"
+	`Once you've landed, you meet up with James and he asks you, "What did you think of mining?"`
+	choice
+		`	"I can't believe anyone would do that much work."`
+		`	"I love flying like that."`
+	`	James nods and says, "Chasing asteroids can be a challenge, but when you're starting off, mining can be a fast way to build cash for your next ship. It's also a great way to explore the galaxy. Jobs always follow the trade routes and settled areas. Mining makes it profitable to explore the nooks and crannies of the hyperlanes. If the place you end up landing has an economy, they'll buy the minerals in your hold. Mainly though, it's about how you like to spend your time. Some captains like managing a trading fleet while others like to strike out on their own.`
+	`	"Mining can be complex compared to running jobs or trading commodities. I learned that first hand after pirates disabled my ship when I was starting out and I worked aboard a mining ship while it was being repaired. Now that was a while back so I might be a little rusty, but I could try at answering any other questions you might have about mining."`
+
+	label choices
+	choice
+		`	"What equipment do I need to mine?"`
+		`	"How do you deal with pirates?"`
+			goto pirates
+		`	"How can I check the value of minerals?"`
+			goto value
+		`	"I think I have enough information."`
+			goto end
+
+	`	"Well, you need a weapon that does hull damage," James says. "A Beam Laser will get the job done, but it will take a while. If you want to optimize your mining operations, however, you'll want a Mining Laser. Not only does it cut through asteroids faster, it's also more precise and preserves more minerals when the asteroid breaks apart. Some miners like to have a bit of combat flexibility by mining with Heavy Lasers, however.`
+	`	"Aside from lasers, the most valuable tool is an asteroid scanner. They're expensive, but they connect into your navigation and targeting systems to point you towards minable asteroids. You can also set them to find the most valuable asteroids, which increases your profitability per run. After that, a tactical scanner will tell you how far away the asteroid is and show how much damage you're doing. An afterburner is good for chasing down fast moving asteroids or getting away from pirates without leaving the system. A ramscoop will let you refuel while mining, extend your exploration range, and allow you to be ready for a quick escape."`
+	choice
+		`	"I can't fit all that on my ship!"`
+		`	"That all makes sense."`
+			goto more
+
+	`	James gives you a knowing smile as he answers, "Not in a factory build, you won't. But you'd be surprised how much space you can free up even in a Sparrow if you're willing to be flexible. Do you really need that much power? If you've got an outfitter on the planet where you're mining, do you need a hyperdrive, or even a shield generator? Maybe a cargo expansion would be of more use." He pauses briefly, perhaps considering what liability he's opened himself up for, then adds, "I'm not saying you should, of course, but you have options.`
+		goto more
+
+	label pirates
+	`	"You can always bribe them to leave you alone. If the minerals are good enough and you have enough cargo capacity, you'll still turn a profit. Or if you have a fast ship, you can just run away. Of course, with enough of a fleet you just fight them off." He shakes his head. "Most pirates would be richer and live longer if they just mined instead of extorting merchants and plundering ships.`
+		goto more
+			
+	label value
+	`	"You will learn this by experience, but if the planet has an outfitter, you can check the price there before you sell.`
+
+	label more
+	`	"Anything else you want to ask me?"`
+		goto choices
+		
+	label end
+	branch first
+		has "start: paradise"
+	`	"If you're willing to take me on one more journey," James says, "meet me in the spaceport bar in a little while. Don't forget to sell off your minerals at the trading post, or if there is one, the outfitter."`
+		decline
+	label first
+	`	"If you've still got a hankering for some dangerous missions, come and find me in the spaceport before you leave." James picks up his suitcase and heads outside.`
+	``
+	`	(As before, click the "Spaceport" button to continue this mission.)`
 
 
 # Missions for the New Boston start
@@ -144,6 +201,9 @@ mission "Intro [0]"
 	destination "New Greenland"
 	to offer
 		has "start: default"
+	substitutions
+		<trade> "stock up on medical goods"
+		<while> "While they don't sell much here compared to on the big manufacturing worlds"
 	
 	on offer
 		log "Finally scraped together enough money to buy a pilot's license. The interest on the mortgage for my starship is exorbitant."
@@ -507,70 +567,14 @@ mission "Intro [2.1 Interceptor]"
 		not "Intro [3 Interceptor]: offered"
 	
 	on offer
-		conversation
-			`You find James waiting for you just outside the spaceport bar. Against the steady patter of micrometeorites against the roof he tells you, "Working here on <origin> is one of the few jobs in the galaxy more dangerous than fighting pirates. And worse, because if a big meteorite decides to strike this station, there's basically nothing the miners can do about it except hope they see it coming." He turns to you with a grin. "But nonetheless, I think you might be interested in this idea."`
-			`	James leads you down the side of the bar to a booth where a man with a half-eaten hamburger and a plate of fries is sitting, busily examining a star map of the local sector. He notices your arrival and stands up to greet you. "<first>, this is Captain Marshall," James says as you shake his hand. "I told him about your new ship and how it'd be a good idea for you to get a taste of asteroid mining. He mines in this part of space and says there's a good system nearby if you're willing to give it a try."`
-			choice
-				`	"I'll give it a shot."`
-					goto mining
-				`	"I think I'm ready to head out on my own."`
-					decline
-	
-			label "mining"
-			`	"That's good to hear," Captain Marshall says with a smile. "But be warned that mining isn't as easy as one might think. Especially without an asteroid scanner, mining can be just as much a test of your piloting skills as combat.`
-			`	"The first challenge," he continues, "will be finding which asteroids are valuable. The worthless asteroids are either brown and smooth or gray and spiky with no apparent orbit. It doesn't matter how long you shoot them, they won't be destroyed. Valuable asteroids will always orbit the star and have a range of colors and surface textures. If you're not sure which are which and you don't have an asteroid scanner to tell you, keep a look out for other miners to see what they're firing at.`
-			`	"Generally speaking, the more valuable minerals are tougher to mine, either because they're harder to break apart, or they're less common and in more dangerous regions of the galaxy. Silicon breaks up quickly; you'll fill your hold in a hurry and the stuff is everywhere. Platinum or gold asteroids are more work; they're not as common in areas where the Navy watches your back, but you make several times the number of credits for the effort.`
-			`	"I could go on, but I think you get the picture."`
-			`	You and James chat with Marshall a while longer, and he suggests trying your hand at mining in <system>. "It's a great place. You could throw a dart in that system and half the time you'd hit an asteroid worth at least something, and I've never been bothered by pirates while I've been there."`
-			`	"That does sound like a good place for a beginner pilot," James says. "How about we start small, <first>? Let's go mine at least five tons of silicon before landing on <planet> and we can call it a day."`
-				accept
+		conversation "mining intro ingot"
 	
 	on visit
 		dialog `You've reached <destination>, but you don't have at least five tons of silicon in your cargo hold. Locate and mine silicon asteroids in this system before returning.`
 	
 	on complete
 		require "Silicon" 5
-		conversation
-			`Once you've landed, you meet up with James and he asks you, "What did you think of mining?"`
-			choice
-				`	"I can't believe anyone would do that much work."`
-				`	"I love flying like that."`
-			`	James nods and says, "Chasing asteroids can be a challenge, but when you're starting off, mining can be a fast way to build cash for your next ship. It's also a great way to explore the galaxy. Jobs always follow the trade routes and settled areas. Mining makes it profitable to explore the nooks and crannies of the hyperlanes. If the place you end up landing has an economy, they'll buy the minerals in your hold. Mainly though, it's about how you like to spend your time. Some captains like managing a trading fleet while others like to strike out on their own.`
-			`	"Mining can be complex compared to running jobs or trading commodities. I learned that first hand after pirates disabled my ship when I was starting out and I worked aboard a mining ship while it was being repaired. Now that was a while back so I might be a little rusty, but I could try at answering any other questions you might have about mining."`
-
-			label choices
-			choice
-				`	"What equipment do I need to mine?"`
-				`	"How do you deal with pirates?"`
-					goto pirates
-				`	"How can I check the value of minerals?"`
-					goto value
-				`	"I think I have enough information."`
-					goto end
-
-			`	"Well, you need a weapon that does hull damage," James says. "A Beam Laser will get the job done, but it will take a while. If you want to optimize your mining operations, however, you'll want a Mining Laser. Not only does it cut through asteroids faster, it's also more precise and preserves more minerals when the asteroid breaks apart. Some miners like to have a bit of combat flexibility by mining with Heavy Lasers, however.`
-			`	"Aside from lasers, the most valuable tool is an asteroid scanner. They're expensive, but they connect into your navigation and targeting systems to point you towards minable asteroids. You can also set them to find the most valuable asteroids, which increases your profitability per run. After that, a tactical scanner will tell you how far away the asteroid is and show how much damage you're doing. An afterburner is good for chasing down fast moving asteroids or getting away from pirates without leaving the system. A ramscoop will let you refuel while mining, extend your exploration range, and allow you to be ready for a quick escape."`
-			choice
-				`	"I can't fit all that on my ship!"`
-				`	"That all makes sense."`
-					goto more
-
-			`	James gives you a knowing smile as he answers, "Not in a factory build, you won't. But you'd be surprised how much space you can free up even in a Sparrow if you're willing to be flexible. Do you really need that much power? If you've got an outfitter on the planet where you're mining, do you need a hyperdrive, or even a shield generator? Maybe a cargo expansion would be of more use." He pauses briefly, perhaps considering what liability he's opened himself up for, then adds, "I'm not saying you should, of course, but you have options.`
-				goto more
-
-			label pirates
-			`	"You can always bribe them to leave you alone. If the minerals are good enough and you have enough cargo capacity, you'll still turn a profit. Or if you have a fast ship, you can just run away. Of course, with enough of a fleet you just fight them off." He shakes his head. "Most pirates would be richer and live longer if they just mined instead of extorting merchants and plundering ships.`
-				goto more
-			
-			label value
-			`	"You will learn this by experience, but if the planet has an outfitter, you can check the price there before you sell.`
-
-			label more
-			`	"Anything else you want to ask me?"`
-				goto choices
-			
-			label end
-			`	"If you're willing to take me on one more journey," James says, "meet me in the spaceport bar in a little while. Don't forget to sell off your minerals at the trading post, or if there is one, the outfitter."`
+		conversation "mining intro end"
 
 
 
@@ -622,6 +626,9 @@ mission "Midgard Intro [0]"
 	destination "Asgard"
 	to offer
 		has "start: deep"
+	substitutions
+		<trade> "load some clothing onto your ship"
+		<while> "While most of the outfits will be far outside your price range"
 	
 	on offer
 		log "Applied for the Deep's starship captain loan program, and was accepted. The loan also came with a pilot's license."
@@ -696,22 +703,22 @@ mission "Midgard Intro [2 Transport]"
 	
 	on offer
 		conversation
-			`<origin>'s spaceport is far colder than anything you've experienced; you think about buying a winter coat for planets like these as you try to insulate yourself in other ways. Despite its size, the port is almost completely empty. Many storefronts have been shuttered closed, and the provided seating looks brand-new and outdated at the same time.`
+			`<origin>'s spaceport is far colder than anything you've experienced; you try to insulate yourself as nearby vendors peddle overpriced coats. Despite its size, the port is almost completely empty. Many storefronts have been shuttered, and the provided seating looks brand-new and outdated at the same time.`
 			`	By the time you see James, he's already got a small group of people with him: a middle-aged couple, and a teenage boy. "Hi there, Captain <last>!" says James. "Interested in carrying some tourists to <planet>?"`
 			choice
 				`	"Sure!"`
 				`	"No thanks, I think I'll strike off on my own now."`
 					decline
-			`	"Great," he says. "This is Simon, and Cameron, and their son Christopher. Let's help them carry their luggage to your ship." As you begin walking back, slightly ahead of them, James whispers to you, "Tourists are always a good way to make money. They're on vacation, so they don't mind paying a bit extra. But no point in your cargo space going to waste, so take a look at the job board and see if there are any delivery missions we can run at the same time. Make sure your jobs go to the same planet, though; Tejat has two habitable planets orbiting around it.`
-			`	"I'd also start taking more caution when flying about. We're about to leave the protection of the Deep, meaning that pirate attacks will only get more frequent. If you want to be a little safer should we be attacked, sell off any guns you might have. It might seem counterintuitive, but being unarmed makes you less of a target to pirates if there are others in the system that they could be defending themselves against."`
+			`	"Great," he says. "This is Simon, and Chuck, and their son Christopher. Let's help them carry their luggage to your ship." As you begin walking back, slightly ahead of them, James whispers to you, "Tourists are always a good way to make money. They're on vacation, so they don't mind paying a bit extra. But no point in your cargo space going to waste, so take a look at the job board and see if there are any delivery missions we can run at the same time. Make sure your jobs go to the same planet, though; Tejat has two habitable planets orbiting around it.`
+			`	"I'd also start taking more caution when flying about. We're about to leave the protection of the Deep, meaning that pirate attacks will only get more frequent. If you want to be a little safer should we be attacked, sell off any offensive weapons you might have. It might seem counterintuitive, but being unarmed makes you less of a target to pirates if there are others in the system that they could be defending themselves against."`
 				accept
 	
 	on complete
 		payment 22500
 		conversation
-			`Calda is everything Nifel is not. The planet is warm, wet, and filled to the brim with obnoxious tourists. Shortly after you disembark, you are approached by half a dozen salespeople that each begin to promote their company's luxury hotels and hot springs at the same time. When Simon, Cameron, and Charles step off, the marketeers realize their mistake and begin harassing them instead.`
-			`	While Cameron is busy talking, Simon hands you the payment for the trip. As they walk away, you see a spaceport cleaner accidentally back into Christopher while she's wiping down a bench. Before either of them are able to apologize, a nearby couple in swimsuits walks up and berates the cleaner for her incompetence. Christopher tries to get the couple to back down, but his parents pull him away.`
-			`	After the commotion clears up, James says, "What a shame. Some people will find any excuse to be angry." Then, he turns to you and says, "Same deal as before. If you want to keep traveling together, meet me in the spaceport."`
+			`Calda is everything Nifel is not. The planet is warm, wet, and filled to the brim with obnoxious tourists. Shortly after you disembark, you are approached by half a dozen salespeople talking over each other as they promote their company's luxury hotels and hot springs. When Simon, Chuck, and Christopher step off, the marketeers realize their mistake and begin harassing them instead.`
+			`	While Chuck is busy talking, Simon hands you the payment for the trip. As they walk away, you see a spaceport cleaner accidentally back into Christopher while she's wiping down a bench. A nearby couple in swimsuits spots the incident, and they start chewing out the cleaner, despite Christopher's efforts to explain that he doesn't mind.`
+			`	After the commotion clears, James shakes his head and says, "Some people will find any excuse to be angry." Then, he turns to you and says, "Same deal as before. If you want to keep traveling together, meet me in the spaceport."`
 
 
 
@@ -729,8 +736,8 @@ mission "Midgard Intro [3 Transport]"
 	
 	on offer
 		conversation
-			`By the time you find James, it is already night time. You find him overlooking a cliff face covered with hot tubs. Some of the tubs are coated in shimmering platinum; the rest must settle with mere gold. The patrons enjoying the tubs range from old couples enjoying their retirement to not-entirely-sober teenagers partying wildly and erratically. Overhead, an aerobatics show leaves streaks of light hanging in the air, forming shapes and names. In one of the tubs, you spot cleaners in drenched overalls draining a pool that has been stained puke-yellow. In another, you see a scantily-clad waitress being yelled at by a red-faced man in a business suit.`
-			`	"It's hardly a wonder why they call them the 'Paradise Worlds,'" James says. "A set of nine planets, including Calda, each terraformed to perfection. Life on one of these worlds is the most sought-after commodity in the galaxy. But behind the scenes on each of these worlds, millions of workers toil night and day to maintain a utopia that they will never enjoy."`
+			`By the time you find James, it is already night. You find him overlooking a cliff face covered with hot tubs. Some of the tubs are coated in shimmering platinum; the rest settle with mere gold. The patrons enjoying the tubs range from old couples enjoying their retirement to inebriated teenagers headbanging. Overhead, an aerobatics show leaves streaks of light in the air, forming shapes and names. Below, in one of the tubs, you spot cleaners in drenched overalls draining a pool stained puke-green. In another, you see a waitress accosted by a red-faced man in a red business suit.`
+			`	"It's hardly a wonder why they call them the 'Paradise Worlds,'" James says. "A set of nine planets, including Calda, each terraformed to perfection. Life on one of these worlds is the most sought-after commodity in the galaxy. But behind each of these worlds, millions of workers toil night and day to maintain a utopia that they will never enjoy."`
 			`	After taking one last glance at the cliff, he says, "But that's enough of an old man's hypocritical ramblings. Are you willing to take me on one last trip? I need to get to <destination>, and of course I'll pay you quite well to take me there."`
 			choice
 				`	"Of course."`
@@ -769,7 +776,7 @@ mission "Midgard Intro [1 Transport Alt]"
 	on offer
 		conversation
 			`You begin strolling through the spaceport, admiring the architecture and climate of <origin>, and how it is so similar, yet so distinct from your own homeworld. Eventually you find James, with someone else in tow.`
-			`	"Captain <last>!" he says. "Wonderful to see you again. Kath here is willing to pay <payment> if you bring them to <planet> so that she can skydive from the edge of space."`
+			`	"Captain <last>!" he says. "Wonderful to see you again. Kath here is willing to pay <payment> if you bring them to <planet> so that they can skydive from the edge of space."`
 			`	"Norn has a thick enough atmosphere and low enough gravity that you can get away with aerial stunts you wouldn't be able to on any other world," Kath says. "Don't worry about handling the procedure for the space jump; I've done it before."`
 			choice
 				`	"Sure, welcome aboard!"`
@@ -802,19 +809,20 @@ mission "Midgard Intro [2 Transport Alt]"
 	
 	on offer
 		conversation
-			`The smell of brine permeates <origin>'s spaceport. By the time you find James, you think that you'll never be able to eat seafood without gagging ever again. "Hi there, Captain <last>!" he says. "Interested in carrying a returning tourist to <planet>?" Behind him is a young-looking man wearing red sunglasses.`
+			`The smell of brine permeates <origin>'s spaceport. By the time you find James, it seems unlikely that you'll ever eat seafood without gagging again. "Hi there, Captain <last>!" he says. "Interested in carrying a returning tourist to <planet>?" Behind him is a young man in red sunglasses.`
 			choice
 				`	"Sure!"`
 				`	"No thanks, I think I'll strike off on my own now."`
 					decline
-			`	"Great," he says. "This is Martin. Let's help him carry his luggage to your ship." As you begin walking back, slightly ahead of them, James whispers to you, "Tourists are always a good way to make money, especially if you're low on bunk space. They're on vacation, so they don't mind paying a bit extra. But no point in your cargo space going to waste, so take a look at the job board and see if there are any delivery missions we can run at the same time. And if you want to be a little safer should we come across any pirates, sell off any guns you might have. It might seem counterintuitive, but being unarmed makes you less of a target to pirates if there are others in the system that they could be defending themselves against."`
+			`	"Great," he says. "This is Martin. Let's help him carry his luggage to your ship." As you begin walking back, slightly ahead of them, James whispers to you, "Tourists are always a good way to make money, especially if you're low on bunk space. They're on vacation, so they don't mind paying a bit extra. But no point in your cargo space going to waste, so take a look at the job board and see if there are any delivery missions we can run at the same time.`
+			`	And if you want to be a little safer should we come across any pirates, sell off any offensive weapons you might have. It might seem counterintuitive, but being unarmed makes you less of a target to pirates if there are others in the system that they could be defending themselves against."`
 				accept
 	
 	on complete
 		payment 12000
 		conversation
-			`As you make the final landing descent to the surface of Earth, Martin looks down on Earth's cluttered surface and begins listing off places he recognizes. James joins in by talking about some of the history of the cities you are flying over, and the two of them begin arguing and making jokes about which of the cities would be the worst to live in.`
-			`	As he steps off, Martin hands you <payment>. "Thanks for the fun times, but I'd best be going. I have to get back to work in a few hours."`
+			`As you make the final landing descent to the surface of Earth, Martin looks down on Earth's cluttered surface and begins listing off places he recognizes. James joins in by talking about the history of the cities you're flying over, and the two of them begin joking about which of the cities would be the worst to live in.`
+			`	As he steps off, Martin hands you <payment>. "Thanks for the fun times, but I'd best be going. I have work in a few hours."`
 			`	After he leaves, James says, "I must say that I haven't met too many people from Earth during my time. Even today, billions of people grow up and die on this planet without taking a single step on another world." Then, he picks up his luggage and adds, "Same deal as before. If you want to keep traveling together, meet me in the spaceport."`
 
 
@@ -833,7 +841,7 @@ mission "Midgard Intro [3 Transport Alt]"
 	on offer
 		conversation
 			`The spaceport on <origin> is so big and crowded that it takes a long time to find James. The sheer number of people here is almost overwhelming. Homeless men wrapped in old army blankets beg money from well-dressed businessmen. Soldiers in Navy uniforms walk by in groups of ten or twenty, all marching in unison. Starship captains haggle with merchants over trade goods and jobs. Flashes of light come from various landing bays as welders make repairs.`
-			`	When you find James, he's standing by a window, looking out at the city, watching the starships taking off and landing in a continuous stream. "This is it," he says, "where our race began. The world that all the tourists want to visit, and that no one wants to live on. Twenty billion people, more industry and exports than any other place in the galaxy. But underneath it all, poverty of a completely different sort from what they've got in the Dirt Belt."`
+			`	When you find James, he's standing by a window, looking out at the city, watching the starships taking off and landing in a continuous stream. "This is it," he says, "where our race began. The world that all the tourists want to visit, and that no one wants to live on. Twenty billion people, more industry and exports than any other place in the galaxy. But underneath it all, poverty of a completely different sort from what you've in the Dirt Belt."`
 			`	After taking one last glance out the window, he says, "I admit that I might have taken quite the detour going to <origin>. My destination is back on <destination>. Are you willing to take me on one last trip? Of course I'll pay you quite well to take me there."`
 			choice
 				`	"Of course."`
@@ -1005,22 +1013,22 @@ mission "Midgard Intro [1 Interceptor]"
 		not "Midgard Intro [1 Freighter]: offered"
 	npc
 		government "Merchant (Hostile)"
-		personality entering plunders
+		personality entering plunders nemesis
 		ship "Leviathan" "Arm of Odin"
 	
 	on offer
 		conversation
-			`You begin strolling through the spaceport, admiring the architecture and climate of <origin>, and how it is so similar, yet so distinct from your own homeworld. You end up finding James in one of the bars, talking to a woman wearing a military uniform. "Nice to see you, <first>," he says. "I've been talking to Lieutenant Helen over here, and I think we have a job on our hands."`
+			`You begin strolling through the spaceport, admiring the architecture and climate of <origin>, and how it is so similar, yet so distinct from your own homeworld. You end up finding James in one of the bars, talking to a woman wearing a military uniform. "Nice to see you, <first>," he says. "I've been talking to Lieutenant Engberg over here, and I think we have a job on our hands."`
 			choice
 				`	"What is it?"`
 					goto job
 				`	"You haven't drafted me into the Navy, have you?"`
 				`	"Actually, I want to go out on my own now."`
 					decline
-			`	Helen chuckles. "Firstly, I'm not part of the Navy, I'm with Deep Security. And secondly, not to disparage your abilities, but we only recruit experienced captains into our ranks."`
+			`	Engberg chuckles. "Firstly, I'm not part of the Navy, I'm with Deep Security. And secondly, not to disparage your abilities, but we only recruit experienced captains into our ranks."`
 			label job
 			`	James says, "Deep Security mainly acts as the Deep equivalent of the Navy, protecting merchants from pirates. However, they also deal with the transport of confidential documents and equipment, for both the private and government sector."`
-			`	Helen continues. "Recently, one of our logistics ships was attacked and damaged by a merchant warship named the Arm of Odin. We now believe that ship to be a pirate vessel in disguise, who specifically wanted the cargo onboard our ship. We're looking for a replacement ship capable of avoiding the threat while we track down the warlord. How fast would you say the <ship> is?"`
+			`	Engberg continues. "Recently, one of our logistics ships was attacked and damaged by a merchant warship named the Arm of Odin. We now believe that ship to be a pirate vessel in disguise, who specifically targeted the cargo onboard our ship. We're looking for a replacement ship capable of avoiding the threat while we track down the warlord. How fast would you say the <ship> is?"`
 			choice
 				`	"It'll outspeed anything short of a fighter."`
 				`	"Not fast enough. You'll have to find someone else for the job."`
@@ -1045,7 +1053,7 @@ mission "Midgard Intro [1 Interceptor]"
 			`	James lets out a laugh. "Now that's the spirit! Most Sparrow pilots get the wind knocked out of them after their first taste of danger, and decide to do some asteroid mining instead. It takes some time to find a system with good enough materials, but the lower risk is worth it. Anyway, I'll see if there's another mission in the spaceport for you. Meet me there."`
 				goto end
 			label pow
-			`	"That's just how it is," James says. "Don't forget that you're in a Sparrow; the very bottom of the food chain. You've got to respect any and all opponents, no matter how weak you think they are. Some Sparrow pilots realize how weak their ship is, and decide to take up asteroid mining instead. It takes some time to find a system with good enough materials, but the lower risk is worth it. Anyway, meet me in the spaceport if you want to do another job."`
+			`	"That's just how it is," James says. "Don't forget you're in a Sparrow; the very bottom of the food chain. You've got to respect any and all opponents, no matter how weak you think they are. Some Sparrow pilots realize how vulnerable their ship is, and decide to take up asteroid mining instead. It takes some time to find a system with good enough materials, but the lower risk is worth it. Anyway, meet me in the spaceport if you want to do another job."`
 			label end
 			``
 			`	(As before, click the "Spaceport" button to continue this mission.)`
@@ -1064,7 +1072,7 @@ mission "Midgard Intro [2 Interceptor]"
 		has "Midgard Intro [1 Interceptor]: done"
 	npc
 		government Pirate
-		system "Phecda"
+		system "Tania Australis"
 		personality plunders
 		ship "Sparrow" "Dagger of Blood"
 		ship "Fury" "Asmodan's Plunder"
@@ -1090,7 +1098,31 @@ mission "Midgard Intro [2 Interceptor]"
 		payment 40000
 		conversation
 			`The captain of the <npc> hands you <payment> and thanks you for your escort services. From the expression on their face, you'd guess that they're feeling lucky to still be alive after entrusting the safety of their fleet to a rookie pilot like yourself.`
-			`	After they are gone, James turns to you and says, "Not too bad for your first escort mission. I recognize that look on your face - it's the same one I had after my first job like this back when I was a beginner. If I recall, my first priority after touching down was replacing some of the ship's guns with missile launchers so I'd actually have a chance against pirates. It's a scandal how they sell interceptors with nothing but short-ranged energy weapons these days; trying to use them in combat on such a small ship is practically suicide. Keep your distance with some missiles and you can almost never go wrong. Anyway, I'll stop rambling. If you want to do one last job for me, come and find me in the spaceport before you leave." He picks up his suitcase and heads outside.`
+			`	After they are gone, James turns to you and says, "Not too bad for your first escort mission. I recognize that look on your face - it's the same one I had after my first job like this back when I was a beginner. If I recall, my first priority after touching down was replacing some of the ship's guns with missile launchers so I'd actually have a chance against pirates. It's a scandal how they sell interceptors with nothing but short-ranged energy weapons these days; trying to use them in combat on such a small ship is practically suicide. Keep your distance with some missiles and you can almost never go wrong. Anyway, I'll stop rambling.`
+			`	"I've got an idea for something you might want to try," says James. "Meet me in the spaceport bar in a little while."`
+
+
+
+mission "Midgard Intro [2.1 Interceptor]"
+	priority
+	name "Mine asteroids in <system>"
+	description "Go to the <system> system and mine 5 tons of Silicon, then land on <planet>."
+	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I think you'll find what I want to show you next very interesting, but you'll need to free up <capacity> first. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
+	passengers 1
+	source "Ingot"
+	destination "New Sahara"
+	to offer
+		has "Midgard Intro [2 Interceptor]: done"
+	
+	on offer
+		conversation "mining intro ingot"
+	
+	on visit
+		dialog `You've reached <destination>, but you don't have at least five tons of silicon in your cargo hold. Locate and mine silicon asteroids in this system before returning.`
+	
+	on complete
+		require "Silicon" 5
+		conversation "mining intro end"
 
 
 
@@ -1100,14 +1132,16 @@ mission "Midgard Intro [3 Interceptor]"
 	description "Drop James off on <destination>, where he has a spot reserved in a retirement home."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	passengers 1
-	source "Ingot"
+	source "New Sahara"
 	destination "Hestia"
 	to offer
-		has "Midgard Intro [2 Interceptor]: done"
+		has "Midgard Intro [2.1 Interceptor]: done"
 	
 	on offer
 		conversation
-			`You find James sitting at the spaceport's tiny bar, sipping a beer while listening to the steady patter of micrometeorites against the roof. "Working here," says James, "is one of the few jobs in the galaxy more dangerous than fighting pirates. And worse, because if a big meteorite decides to strike this station, there's basically nothing they can do about it except hope they see it coming. Care for a drink?"`
+			`You find James sitting at the spaceport's tiny bar, sipping a beer while watching the large displays that show the landing pads and the irrigated fields beyond. The displays are supposed to make the underground building feel less claustrophobic.`
+			`	"This is one of the least habitable planets in the galaxy. But if it doesn't kill us instantly, then someone's tried to settle it." He pauses for a moment while gazing at one of the displays. You spot a sandstorm picking up in the far distance as the workers in the fields hastily finish their work before it arrives.`
+			`	"Care for a drink?" he asks.`
 			choice
 				`	"Sure."`
 				`	"No thanks."`
@@ -1140,6 +1174,9 @@ mission "Mainsail Intro [0]"
 	destination "Glory"
 	to offer
 		has "start: paradise"
+	substitutions
+		<trade> "load some heavy metals onto your ship"
+		<while> "While most of the outfits will be far outside your price range"
 	
 	on offer
 		log "Got a pilot's license for my birthday, as well as a loan to purchase a starship. The galaxy is now at my fingertips."
@@ -1181,7 +1218,7 @@ mission "Mainsail Intro [1 Transport]"
 	
 	on offer
 		conversation
-			`The world of <origin> is in full bloom; the fields that the spaceport overlooks are filled with flowers of every color of the rainbow, and a sweet smell rests in the air. Eventually you find James with a small group in tow: four young-looking men and women.`
+			`The world of <origin> is in full bloom; the gardens the spaceport overlooks are filled with a spectrum of flowers, and a sweet smell rests in the air. Eventually you find James with a small group in tow: four young-looking men and women.`
 			`	"Captain <last>!" he says. "Wonderful to see you again. I was just talking to this group of engineers. Their original transport has been delayed, and they're looking for another ship to take them to <planet>. They can pay you <payment> to take them there. What do you say?"`
 			choice
 				`	"Sure, welcome aboard!"`
@@ -1221,7 +1258,7 @@ mission "Mainsail Intro [2 Transport]"
 				`	"Sure!"`
 				`	"No thanks, I think I'll strike off on my own now."`
 					decline
-			`	"Great," he says. "This is Elona, and Matthew, and their son Logan. Let's help them carry their luggage to your ship." As you begin walking back, slightly ahead of them, James whispers to you, "Tourists are always a good way to make money. They're on vacation, so they don't mind paying a bit extra. But no point in your cargo space going to waste, so take a look at the job board and see if there are any delivery missions we can run at the same time. And if you want to be a little safer should we be attacked, sell off any guns you might have. It might seem counterintuitive, but being unarmed makes you less of a target to pirates if there are others in the system that they could be defending themselves against."`
+			`	"Great," he says. "This is Elona, and Matthew, and their son Logan. Let's help them carry their luggage to your ship." As you begin walking back, slightly ahead of them, James whispers to you, "Tourists are always a good way to make money. They're on vacation, so they don't mind paying a bit extra. But no point in your cargo space going to waste, so take a look at the job board and see if there are any delivery missions we can run at the same time. And if you want to be a little safer should we be attacked, sell off any offensive weapons you might have. It might seem counterintuitive, but being unarmed makes you less of a target to pirates if there are others in the system that they could be defending themselves against."`
 				accept
 	
 	on complete
@@ -1285,7 +1322,7 @@ mission "Mainsail Intro [1 Transport Alt]"
 	
 	on offer
 		conversation
-			`The world of <origin> is in full bloom; the fields that the spaceport overlooks are filled with flowers of every color of the rainbow, and a sweet smell rests in the air. Eventually you find James, with someone else in tow.`
+			`The world of <origin> is in full bloom; the gardens the spaceport overlooks are filled with a spectrum of flowers, and a sweet smell rests in the air. Eventually you find James, with someone else in tow.`
 			`	"Captain <last>!" he says. "Wonderful to see you again. I was just talking to Jan over here. His original transport has been delayed, and he's looking for another ship to take him to <planet>. He can pay you <payment> to take him there. What do you say?"`
 			choice
 				`	"Sure, welcome aboard!"`
@@ -1325,7 +1362,7 @@ mission "Mainsail Intro [2 Transport Alt]"
 				`	"Sure!"`
 				`	"No thanks, I think I'll strike off on my own now."`
 					decline
-			`	"Great," he says. "This is Marshall. Let's help him carry his luggage to your ship." As you begin walking back, slightly ahead of him, James whispers to you, "Tourists are always a good way to make money, especially if you're low on bunk space. They're on vacation, so they don't mind paying a bit extra. But no point in your cargo space going to waste, so take a look at the job board and see if there are any delivery missions we can run at the same time. And if you want to be a little safer should we come across any pirates, sell off any guns you might have. It might seem counterintuitive, but being unarmed makes you less of a target to pirates if there are others in the system that they could be defending themselves against."`
+			`	"Great," he says. "This is Marshall. Let's help him carry his luggage to your ship." As you begin walking back, slightly ahead of him, James whispers to you, "Tourists are always a good way to make money, especially if you're low on bunk space. They're on vacation, so they don't mind paying a bit extra. But no point in your cargo space going to waste, so take a look at the job board and see if there are any delivery missions we can run at the same time. And if you want to be a little safer should we come across any pirates, sell off any offensive weapons you might have. It might seem counterintuitive, but being unarmed makes you less of a target to pirates if there are others in the system that they could be defending themselves against."`
 				accept
 	
 	on complete
@@ -1333,7 +1370,7 @@ mission "Mainsail Intro [2 Transport Alt]"
 		conversation
 			`As you make the final landing descent to the surface of Earth, Marshall looks down on Earth's cluttered surface, his eyes wide open. In an attempt to lighten the mood, James begins telling the both of you some of the history of the cities you are flying over, but Marshall wears a dour expression on his face up until he picks up his luggage and prepares to disembark.`
 			`	As you collect your payment, James pulls Marshall aside and says, "Watch out for pickpockets, okay? And take it from an experienced captain, you do not want to be out after dark here. Play it safe, and have a great time."`
-			`	After he leaves, James shakes his head ruefully. "He probably expected Earth to be a relaxing holiday planet, like Caldra or Farseer. I just hope that he's able to see past his misconceptions and use the opportunity to appreciate the planet's history." Then, he picks up his luggage and adds, "Same deal as before. If you want to keep traveling together, meet me in the spaceport."`
+			`	After he leaves, James shakes his head ruefully. "He probably expected Earth to be a relaxing holiday planet, like Caldra or Farseer. I just hope that he's able to see past his preconceptions and appreciate the planet's history." Then, he picks up his luggage and adds, "Same deal as before. If you want to keep traveling together, meet me in the spaceport."`
 
 
 
@@ -1351,7 +1388,7 @@ mission "Mainsail Intro [3 Transport Alt]"
 	on offer
 		conversation
 			`The spaceport on <origin> is so big and crowded that it takes a long time to find James. The sheer number of people here is almost overwhelming. Homeless men wrapped in old army blankets beg money from well-dressed businessmen. Soldiers in Navy uniforms walk by in groups of ten or twenty, all marching in unison. Starship captains haggle with merchants over trade goods and jobs. Flashes of light come from various landing bays as welders make repairs.`
-			`	When you find James, he's standing by a window, looking out at the city, watching the starships taking off and landing in a continuous stream. "This is it," he says, "where our race began. The world that all the tourists want to visit, and that no one wants to live on. Twenty billion people, more industry and exports than any other place in the galaxy. But underneath it all, poverty of a completely different sort from what they've got in the Dirt Belt."`
+			`	When you find James, he's standing by a window, looking out at the city, watching the starships taking off and landing in a continuous stream. "This is it," he says, "where our race began. The world that all the tourists want to visit, and that no one wants to live on. Twenty billion people, more industry and exports than any other place in the galaxy. But underneath it all, poverty of a completely different sort from what you've got in the Dirt Belt."`
 			`	After taking one last glance out the window, he says, "Anyway, we're nearing my destination. Are you willing to take me on one last trip? I need to get to <destination>, and of course I'll pay you quite well to take me there."`
 			choice
 				`	"Of course."`
@@ -1481,7 +1518,7 @@ mission "Mainsail Intro [3 Freighter]"
 	
 	on offer
 		conversation
-			`You find James talking with a group of scientists and dock workers, who seem to be old acquaintances of his. As you approach, he says, "Well guys, here comes my ride. I should probably say goodbye." They head back off to do their work. "Even after all my years as a captain," says James, "I still feel uncomfortable every time I land on <origin>. Every day, scientists on this planet work with pathogens capable of wiping out a planet within months. The risk of infection is such that you need a permit to live here. Can you imagine spending your life here?"`
+			`You find James talking with a group of scientists and dock workers, who seem to be old acquaintances of his. As you approach, he says, "Well guys, here comes my ride. I should probably say goodbye." They head back off to do their work. "Even after all my years as a captain," says James, "I still feel uncomfortable every time I land on <origin>. Every day, scientists on this planet work with pathogens capable of wiping out a planet within months. The danger of infection is such that you need a permit just to live here. Can you imagine spending your life on this planet?"`
 			choice
 				`	"Somebody has to do the dangerous stuff so that the rest of humanity can prosper."`
 				`	"It does seem awfully isolated. But some people might enjoy the solitude."`
@@ -1490,7 +1527,7 @@ mission "Mainsail Intro [3 Freighter]"
 				`	"Sure, I can take you there."`
 				`	"Sorry, I was thinking of heading in a different direction from here."`
 					decline
-			`	Once again you walk back to your ship with James. Once you get there, as he's stowing his luggage, you pull up the information your computer has on <planet>. It's one of the "Paradise Worlds," terraformed to have a perfect climate, accessible only to the very wealthy. You wonder whether James is going to be able to fit in there.`
+			`	Once again you walk back to your ship with James. Once you get there, as he's stowing his luggage, you pull up the information your computer has on <planet>. It's a Paradise World like Mainsail, terraformed to have a perfect climate, accessible only to the very wealthy. You wonder whether James is going to be able to fit in there.`
 				accept
 	
 	on complete
@@ -1500,15 +1537,14 @@ mission "Mainsail Intro [3 Freighter]"
 
 
 
-mission "Mainsail Intro [1 Interceptor]"
+mission "Mainsail Intro [0.1 Interceptor]"
 	priority
-	name "Delivery to <planet>"
-	description "Deliver <commodity>, along with your new friend James, to <destination>, while avoiding a pirate warship."
-	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
+	name "Mine asteroids in <system>"
+	description "Go to the <system> system and mine 5 tons of Silicon, then land on <planet>."
+	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I think you'll find what I want to show you next very interesting, but you'll need to free up <capacity> first. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	passengers 1
-	cargo "confidential documents" 2
 	source "Glory"
-	destination "Maelstrom"
+	destination "Pearl"
 	to offer
 		has "Mainsail Intro [0]: done"
 		or
@@ -1521,10 +1557,41 @@ mission "Mainsail Intro [1 Interceptor]"
 		not "Mainsail Intro [1 Transport]: offered"
 		not "Mainsail Intro [1 Transport Alt]: offered"
 		not "Mainsail Intro [1 Freighter]: offered"
+	
+	on offer
+		conversation
+			`The world of <origin> is in full bloom; the fields that the spaceport overlooks are filled with flowers of every color of the rainbow, and a sweet smell rests in the air. You end up finding James in one of the spaceport's gardens, talking to a man wearing a military uniform.
+	
+	on visit
+		dialog `You've reached <destination>, but you don't have at least five tons of silicon in your cargo hold. Locate and mine silicon asteroids in this system before returning.`
+	
+	on complete
+		require "Silicon" 5
+		conversation "mining intro end"
+
+
+
+mission "Mainsail Intro [1 Interceptor]"
+	priority
+	name "Escort convoy to <planet>"
+	description "Escort a merchant convoy to <destination>, along with James."
+	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
+	passengers 1
+	source "Pearl"
+	destination "Prime"
+	to offer
+		has "Mainsail Intro [0.1 Interceptor]: done"
 	npc
 		government Pirate
-		personality entering plunders
-		ship "Splinter" "Eye of Loki"
+		system "Mirzam"
+		personality plunders
+		ship "Sparrow" "egg"
+		ship "Fury" "nog"
+	npc save
+		government Merchant
+		personality timid escort
+		ship "Freighter" "e"
+		ship "Freighter" "f"
 	
 	on offer
 		conversation
@@ -1535,16 +1602,16 @@ mission "Mainsail Intro [1 Interceptor]"
 				`	"You haven't drafted me into the Navy, have you?"`
 				`	"Actually, I want to go out on my own now."`
 					decline
-			`	Helen chuckles. "Firstly, I'm not part of the Navy, I'm with Deep Security. And secondly, not to disparage your abilities, but we only recruit experienced captains into our ranks."`
+			`	Armen grins. "You'd have to do a lot more if you want to join the ranks of the Navy."`
 			label job
-			`	James says, "Deep Security mainly acts as the Deep equivalent of the Navy, protecting merchants from pirates. However, they also deal with the transport of confidential documents and equipment, for both the private and governmental sector."`
-			`	Helen continues. "Recently, one of our logistic ships was attacked and damaged by a heavy merchant warship named the Arm of Odin. We now believe that ship to be a pirate vessel in disguise, who specifically wanted the cargo onboard our ship. We're looking for a replacement ship that is able to avoid the pirate threat. How fast would you say the <ship> is?"`
+			`	James says, "More than ever, the Republic Navy is struggling to hold off the threat of piracy. While they are able to keep the Paradise Worlds safe, on the edges of the known galaxy, pirates readily outnumber Navy forces. There are more ways to stop piracy than sheer force, however."`
+			`	Armen continues. "Which is where you come in. Recently, we've come into contact with someone claiming to have information on pirate activity in the Core. If they're telling the truth, their knowledge could enable precision strikes against the pirates and let us redirect most of our ships elsewhere. The only problem is that word of the informant's existence has spread, and a hired ship named the Eye of Loki is trying to cover up this loose end. We're looking for a ship able to outspeed the Eye and bring the informant safely to Earth. How fast would you say the <ship> is?"`
 			choice
 				`	"It'll outspeed anything short of a fighter."`
 				`	"Not fast enough. You'll have to find someone else for the job."`
 					decline
-			`	"Good," she says. "I'll have the cargo loaded onto your ship by sundown."`
-			`	After she leaves, James says to you, "Now, get one thing clear. This is not your David and Goliath moment. The Arm's shields are a hundred times as strong as yours, and if it's able to bring its weapons to bear, we'll be dead in two seconds. So, the moment we're in the sky, we head straight for hyperspace. Don't even wait around to see if the Arm is coming or not. Got it?"`
+			`	"Good," he says. "I'll have the cargo loaded onto your ship by sundown."`
+			`	After he leaves, James says to you, "Now, get one thing clear. This is not your David and Goliath moment. The Eye's shields are a hundred times as strong as yours, and if it's able to bring its weapons to bear, we'll be dead in two seconds. So, the moment we're in the sky, we head straight for hyperspace. Don't even wait around to see if the Eye is coming or not. Got it?"`
 			choice
 				`	"Got it."`
 					accept
@@ -1572,25 +1639,18 @@ mission "Mainsail Intro [1 Interceptor]"
 
 mission "Mainsail Intro [2 Interceptor]"
 	priority
-	name "Escort convoy to <planet>"
-	description "Escort a merchant convoy to <destination>, along with James."
+	name "Transport to <planet>"
+	description "Transport an informant, along with your new friend James, to <destination>, while avoiding a pirate warship."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
-	passengers 1
-	source "Valhalla"
-	destination "Ingot"
+	passengers 2
+	source "Prime"
+	destination "Pearl"
 	to offer
 		has "Mainsail Intro [1 Interceptor]: done"
 	npc
 		government Pirate
-		system "Phecda"
-		personality plunders
-		ship "Sparrow" "Dagger of Blood"
-		ship "Fury" "Asmodan's Plunder"
-	npc save
-		government Merchant
-		personality timid escort
-		ship "Freighter" "Roots and Moonlight"
-		ship "Freighter" "Serenity Sparks"
+		personality entering plunders nemesis
+		ship "Splinter" "Eye of Loki"
 	
 	on offer
 		conversation
@@ -1616,7 +1676,7 @@ mission "Mainsail Intro [3 Interceptor]"
 	description "Drop James off on <destination>, where he has a spot reserved in a retirement home."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	passengers 1
-	source "Ingot"
+	source "Pearl"
 	destination "Hestia"
 	to offer
 		has "Mainsail Intro [2 Interceptor]: done"
@@ -1656,6 +1716,9 @@ mission "Delve Intro [0]"
 	destination "Burthen"
 	to offer
 		has "start: syndicate"
+	substitutions
+		<trade> "stock up on medical goods"
+		<while> "While most of the outfits will be far outside your price range"
 	
 	on offer
 		log "Bought a pilot's license and a ship, but had to take out a crushing mortgage. One last greedy stab by the Syndicate before I'm free."
@@ -1737,7 +1800,7 @@ mission "Mainsail Intro [2 Transport]"
 				`	"Sure!"`
 				`	"No thanks, I think I'll strike off on my own now."`
 					decline
-			`	"Great," he says. "This is Elona, and Matthew, and their son Logan. Let's help them carry their luggage to your ship." As you begin walking back, slightly ahead of them, James whispers to you, "Tourists are always a good way to make money. They're on vacation, so they don't mind paying a bit extra. But no point in your cargo space going to waste, so take a look at the job board and see if there are any delivery missions we can run at the same time. I'd also start taking more caution when flying about. We're about to leave the protection of Deep Security, meaning that pirate attacks will only get more frequent. If you want to be a little safer should we be attacked, sell off any guns you might have. It might seem counterintuitive, but being unarmed makes you less of a target to pirates if there are others in the system that they could be defending themselves against."`
+			`	"Great," he says. "This is Elona, and Matthew, and their son Logan. Let's help them carry their luggage to your ship." As you begin walking back, slightly ahead of them, James whispers to you, "Tourists are always a good way to make money. They're on vacation, so they don't mind paying a bit extra. But no point in your cargo space going to waste, so take a look at the job board and see if there are any delivery missions we can run at the same time. I'd also start taking more caution when flying about. We're about to leave the protection of Deep Security, meaning that pirate attacks will only get more frequent. If you want to be a little safer should we be attacked, sell off any offensive weapons you might have. It might seem counterintuitive, but being unarmed makes you less of a target to pirates if there are others in the system that they could be defending themselves against."`
 				accept
 	
 	on complete

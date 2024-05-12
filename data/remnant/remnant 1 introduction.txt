@@ -970,6 +970,16 @@ mission "Remnant: Deep Surveillance"
 				has "Terminus exploration: done"
 				not "Deep: Remnant 0: done"
 			has "Deep: Remnant Research: offered"
+	substitutions
+		<compared> "The complex looks pristine by <region> standards, but when compared"
+		<compared> "Compared"
+			or
+				has "start: deep"
+				has "start: paradise"
+		<region> "Dirt Belt"
+			has "start: default"
+		<region> "Earth, and even Syndicate"
+			has "start: syndicate"
 	on offer
 		conversation
 			branch "told before"
@@ -1255,7 +1265,7 @@ mission "Remnant: Deep Surveillance"
 			branch "retrieved before"
 				"retrieved information" == 2
 			
-			`	You look up the location of Ivan's office that he gave you back when you helped him save the science drone in Terminus and find that it is in a building just outside the spaceport, just one room among many in a massive office complex. The complex looks pristine by Dirt Belt standards, but when compared to architecture you've seen elsewhere in the Deep, it's rather brutalistic.`
+			`	You look up the location of Ivan's office that he gave you back when you helped him save the science drone in Terminus and find that it is in a building just outside the spaceport, just one room among many in a massive office complex. <compared> to architecture you've seen elsewhere in the Deep, it's rather brutalistic.`
 			branch gone
 				has "Deep: Remnant Research: offered"
 			
