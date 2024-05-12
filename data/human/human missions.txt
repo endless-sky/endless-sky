@@ -7473,7 +7473,7 @@ mission "Ice Queen 8"
 				`	"Fine. But you're going to owe big when this is all over."`
 				`	"Anything for you, Ildy."`
 				`	"Not interested."`
-					goto unintrested
+					goto uninterested
 
 			`	Her smile nearly lights up the dim room. "I always know I can count on you. And only you."`
 			`	"I fed the gang some false information. They have their entire fleet right now looking for some juicy merchant ships that don't actually exist, so they're not expecting a captain like you to take them on and blow them out of the sky.`
