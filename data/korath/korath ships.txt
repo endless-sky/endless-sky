@@ -829,7 +829,7 @@ ship "Kas'lor Ik 582"
 
 
 ship "Lor'nag Ik 590"
-	"display name" "Anatrusk A'awoj"
+	"display name" "Spera A'awoj"
 	sprite "ship/world-ship d"
 	thumbnail "thumbnail/world-ship d"
 	attributes
