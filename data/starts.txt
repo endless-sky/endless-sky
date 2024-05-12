@@ -108,7 +108,7 @@ start "hai space"
 
 conversation "hai intro"
 	scene "scene/hai shipyard"
-	`You've never been to the shipyard before, and going to the North Pole already makes you feel as if you're on another world. Though you've met some Hai in the past, you've never been among so many of them in one place; the pace of this Hai city far outstrips the muggy human town on the equator where you grew up.`
+	`You've never been to the shipyard before, and going to the North Pole already makes you feel as if you're on another world. Though you've met some Hai in the past, you've never been among so many of them in one place; the pace of this Hai city far outstrips the muggy human town near the equator where you grew up.`
 	`	The pictures and videos you've seen of all these ships before simply don't do them justice; seeing them for real is something else entirely. Even though you know a lot of those ships must have been in service for many years, you are stunned by how new and shiny they look. You begin to wonder if you are ready to take the big leap.`
 	`	This "Aphid" could suit your needs. It is fast and able to carry a respectable amount of cargo.`
 	scene "thumbnail/hai aphid"
@@ -123,16 +123,16 @@ conversation "hai intro"
 	`	You've heard of new captains stripping down their ships to recoup the initial buy-in, which is crossing your mind as you see the financial burden you're about to take on. As you wait for the paperwork to be processed, you passively scan over an Aphid pamphlet in the office. The pricey shield regenerator could be traded in if you can avoid combat... and perhaps even the anti-missile system could be downgraded or outright removed... one of the Sand Cells could be sold back to make more space for cargo...`
 	`	Those anxious musings are interrupted when the bank employee finally lays it out to you, with a hesitant smile. "You are accepting a loan in the amount of 1,431,000 credits, due over the course of 2 years, with an interest rate of 0.3% per day. Please sign here."`
 	name
-	`	You head out of the bank, but on your way to buy the Aphid at the shipyard, you see a notice. A retiring captain is selling off his fleet at a reduced price, and one of the ships he's offering is a Grasshopper... maybe you could buy it.`
+	`	You head out of the bank, but on your way to buy the Aphid at the shipyard, you see a notice. A retiring captain is selling off his fleet at a reduced price, and one of the ships he's offering is a Grasshopper... maybe you could get a deal on it.`
 	choice
 		`	(Go to the shipyard.)`
 			decline
 		`	(Go see what the captain has to offer first.)`
-	`	You head to the spaceport and easily find the captain, a Hai, selling one of his Centipedes to another Hai. Thankfully it looks like he has not yet sold the Grasshopper.`
+	`	You head to the spaceport and easily find the captain, a Hai, selling one of his Centipedes to another Hai. Thankfully it looks like he has not sold the Grasshopper yet.`
 	`	When he's finished selling the Centipede the captain turns and greets you in Hai. You are embarrassed to have to explain to them that you never learned their language. Most Hai speak your language however, and, as usual, they are able to switch to speaking yours without much difficulty.`
 	`	"Hello, good fellow! I assume you come for the Grasshopper." Your interest for this ship must be apparent.`
 	choice
-		`	"Yes indeed."`
+		`	"Indeed."`
 		`	"How did you know?"`
 		`	"Sorry, not interested."`
 			decline
