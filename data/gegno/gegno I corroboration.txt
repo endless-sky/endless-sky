@@ -941,9 +941,10 @@ mission "Gegno Intervention"
 	npc
 		on provoke
 			fail
-			"reputation: Gegno" = -100
 			"reputation: Gegno Vi" = -100
+			"reputation: Gegno Vi (Neutral)" = -100
 			"reputation: Gegno Scin" = -100
+			"reputation: Gegno Scin (Neutral)" = -100
 			dialog `After deciding to fire upon the Gegno fleet surveying your visit to their homeworld, you are met with aggressive opposition along with what sound like countless angry hails. Whatever chance you had left of associating with the Gegno is gone now.`
 		government "Gegno Vi (Neutral)"
 		personality heroic vindictive staying
@@ -952,14 +953,39 @@ mission "Gegno Intervention"
 	npc
 		on provoke
 			fail
-			"reputation: Gegno" = -100
 			"reputation: Gegno Vi" = -100
+			"reputation: Gegno Vi (Neutral)" = -100
 			"reputation: Gegno Scin" = -100
+			"reputation: Gegno Scin (Neutral)" = -100
 			dialog `After deciding to fire upon the Gegno fleet surveying your visit to their homeworld, you are met with aggressive opposition along with what sound like countless angry hails. Whatever chance you had left of associating with the Gegno is gone now.`
 		government "Gegno Scin (Neutral)"
 		personality heroic vindictive staying
 		system "Heutesl"
 		fleet "Scin Warfleet" 3
+
+
+# Still working out.
+
+mission "Intervention Defense Trigger"
+	invisible
+	landing
+	source "Dueyu Eitch"
+	to offer
+		has "Gegno Intervention: failed"
+	on offer
+		conversation
+			`Following your assault on the Gegno fleet, you still choose to descend to the Gegno homeworld, but a large number of hostile ships are already guarding the planet's surface, blocking you from any attempt to land. It seems there is nothing left here for you, or perhaps there never was.`
+				flee
+	npc
+		government "Gegno Vi (Neutral)"
+		personality heroic vindictive staying
+		system "Heutesl"
+		fleet "Vi Warfleet" 2
+	npc
+		government "Gegno Scin (Neutral)"
+		personality heroic vindictive staying
+		system "Heutesl"
+		fleet "Scin Warfleet" 2
 
 
 
