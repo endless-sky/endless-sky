@@ -219,7 +219,7 @@ mission "Scin on Cyife"
 				decline
 
 			label "boarded epidote"
-			`	Once you get close enough, the oblong object reveals itself to be one of the Gegno Scin's large research ships, the same kind that you entered during an interaction with the Scin a while ago. It's possible the Scin found the mysteriousness of Cyife worth traveling so far from their home space to investigate. You'll never know for certain as after a few seconds, the ship launches into the atmosphere and disappears into space. They didn't seem to leave anything behind.
+			`	Once you get close enough, the oblong object reveals itself to be one of the Gegno Scin's large research ships, the same kind that you entered during an interaction with the Scin a while ago. It's possible the Scin found the mysteriousness of Cyife worth traveling so far from their home space to investigate. You'll never know for certain as after a few seconds, the ship launches into the atmosphere and disappears into space. They didn't seem to leave anything behind.`
 				decline
 
 
