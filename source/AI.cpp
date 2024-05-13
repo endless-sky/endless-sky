@@ -4770,7 +4770,7 @@ void AI::IssueNPCOrders(Ship &ship, const System *targetSystem,
 
 	// If one of the planets in this system is a destination or stopover, it
 	// supercedes the order to travel to the next waypoint (unless already visited).
-	if(destination->IsInSystem(from))
+	if(destination && destination->IsInSystem(from))
 	{
 		newOrders.type = Orders::LAND_ON;
 		newOrders.targetPlanet = destination;
