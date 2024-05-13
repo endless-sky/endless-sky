@@ -25,8 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 // Represents information about a single plugin.
 struct Plugin {
-	struct PluginDependencies
-	{
+	struct PluginDependencies {
 		// Checks if there are any dependencies of any kind.
 		bool IsEmpty() const;
 		// Checks if there are any duplicate dependencies. E.g. the same dependency in both required and conflicted.
