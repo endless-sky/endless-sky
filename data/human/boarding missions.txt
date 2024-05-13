@@ -806,7 +806,6 @@ mission "Boarding Derelict"
 			`	With the repairs finished you head to the cockpit to see if the <origin> starts without exploding. Prepared to bolt for the airlock should things go wrong, you start the ship.`
 			branch fail
 				random < 5
-			action
 			`	The ship thrums to life. With bated breath you wait for the sound of some system exploding, but nothing happens. Success! The ship is yours.`
 				goto success
 			label power(h)
@@ -834,7 +833,6 @@ mission "Boarding Derelict"
 			`	With the repairs finished you head to the cockpit to see if the <origin> starts without exploding. Prepared to bolt for the airlock should things go wrong, you start the ship.`
 			branch fail
 				random < 25
-			action
 			`	The ship thrums to life. With bated breath you wait for the sound of some system exploding, but nothing happens. Success! The ship is yours.`
 				goto success
 			label powersurge
