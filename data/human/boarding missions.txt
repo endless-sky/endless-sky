@@ -928,7 +928,7 @@ mission "Boarding Derelict"
 					has "derelict family investment"
 			action
 				set "derelict family investment"
-			`	As you search the ship for anything valuable you find a large black case filled with 325000 credits. Investigating further you find a text log next to the case, and you decide to take both of them with you.`
+			`	As you search the ship for anything valuable you find a large black case filled with 325,000 credits. Investigating further you find a text log next to the case, and you decide to take both of them with you.`
 				goto detonate
 			label treasure
 			action
@@ -938,7 +938,7 @@ mission "Boarding Derelict"
 				goto detonate
 			label detonate
 			choice
-				`	(Detonate the ship and leave.)`
+				`	(Detonate the ship and leave so that others can't loot it.)`
 				`	(Try and find a bit more salvage.)`
 					goto continued
 			`	Before you depart you detonate the ship to prevent any other derelict hunters from scouring the now empty ship.`
