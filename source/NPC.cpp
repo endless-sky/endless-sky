@@ -857,7 +857,7 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Plan
 		if(result.personality.IsDerelict())
 			ship->Disable();
 
-		// Use the destinations stored in the NPC copy, in case they were auto-generated.
+		// Use the destinations stored in the instantiated NPC, in case they were auto-generated.
 		if(!result.waypoints.empty())
 			ship->SetWaypoints(result.waypoints);
 		if(!result.stopovers.empty())

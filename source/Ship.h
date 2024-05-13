@@ -462,12 +462,12 @@ public:
 	// Get ship's target system (it should always be one jump / wormhole pass away).
 	const System *GetTargetSystem() const;
 	// Targets for persistent ships (i.e. mission NPCs).
-	const bool HasTravelDirective() const;
+	bool HasTravelDirective() const;
 	const std::map<const Planet *, bool> &GetStopovers() const;
-	const bool AllStopoversVisited() const;
+	bool AllStopoversVisited() const;
 	const Planet *GetDestinationPlanet() const;
 	const System *GetDestinationSystem() const;
-	const bool ContinueAfterDestination() const;
+	bool ContinueAfterDestination() const;
 
 	// Mining target.
 	std::shared_ptr<Minable> GetTargetAsteroid() const;

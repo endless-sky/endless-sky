@@ -1722,8 +1722,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 	hasBoarded = false;
 
 	shared_ptr<Ship> victim = GetTargetShip();
-	if(CannotAct(Ship::ActionType::BOARD) || !victim || victim->IsRemoved()
-		|| victim->GetSystem() != GetSystem())
+	if(CannotAct(Ship::ActionType::BOARD) || !victim || victim->IsRemoved() || victim->GetSystem() != GetSystem())
 		return shared_ptr<Ship>();
 
 	// For a fighter or drone, "board" means "return to ship." Except when the ship is
@@ -3670,9 +3669,8 @@ void Ship::SetDestination(const Planet *destination)
 void Ship::SetStopovers(const vector<const Planet *> &stopovers)
 {
 	// Mark each planet as not visited.
-	if(!stopovers.empty())
-		for(const auto &it : stopovers)
-			this->stopovers[it] = false;
+	for(const auto &it : stopovers)
+		this->stopovers[it] = false;
 }
 
 
