@@ -3617,7 +3617,7 @@ void Ship::SetTargetSystem(const System *system)
 
 
 // Persistent targets for mission NPCs.
-const bool Ship::HasTravelDirective() const
+bool Ship::HasTravelDirective() const
 {
 	return !stopovers.empty() || destinationPlanet || destinationSystem;
 }
@@ -3631,7 +3631,7 @@ const map<const Planet *, bool> &Ship::GetStopovers() const
 
 
 
-const bool Ship::AllStopoversVisited() const
+bool Ship::AllStopoversVisited() const
 {
 	if(stopovers.empty())
 		return true;
