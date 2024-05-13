@@ -6899,9 +6899,9 @@ mission "Lost Dog: Homeward Bound"
 
 
 mission "Adelita 1"
+	minor
 	name "Exhibition installations to <planet>"
 	description `Transport <tons> of exhibition installations to <destination> for the Adelita collective. Payment is <payment>.`
-	minor
 	cargo "exhibition installations" 5
 	source "Follower"
 	destination "Moonshake"
@@ -6935,7 +6935,7 @@ mission "Adelita 1"
 				`	(Check it out.)`
 				`	(Not interested.)`
 					decline
-			`	Following the signage, you notice a substantial group of people gathered in front in front of a large warehouse that stands out amongst the rest of the warehouses in the yard. As you wait in the queue, a young woman lines up behind you with a readily apparent exuberance and asks you, "Just out of curiosity, how much do you know about Hope and its history?"`
+			`	Following the signage, you notice a substantial group of people gathered in front of a large warehouse that stands out amongst the rest of the warehouses in the yard. As you wait in the queue, a young woman lines up behind you with a readily apparent exuberance and asks you, "Just out of curiosity, how much do you know about Hope and its history?"`
 			choice
 				`	"Not much at all."`
 				`	"I come from the Dirt Belt, but I really don't know too much about what happened on Hope."`
@@ -6943,9 +6943,8 @@ mission "Adelita 1"
 					goto "been to hope"
 					to display
 						has "visited planet: Hope"
-						and
-							not "Expedition to Hope 2: done"
-							not "FW Katya 4: done"
+						not "Expedition to Hope 2: done"
+						not "FW Katya 4: done"
 				`	"I've been there myself, actually, and met some people affected by it."`
 					goto "been to hope"
 					to display
@@ -7120,9 +7119,9 @@ mission "Adelita 2"
 
 
 mission "Adelita 3"
+	landing
 	name "Film slave transaction"
 	description "Do a flyby of <destination> while Bunker spies on the slave transaction. You will be paid <payment> after you complete the entire job."
-	landing
 	cargo "stealth drones" 1
 	passengers 1
 	infiltrating
@@ -7143,9 +7142,9 @@ mission "Adelita 3"
 
 
 mission "Adelita 4"
+	landing
 	name "Take the film to <planet>"
 	description "Take the film to <destination>, where the rest of the Adelita group remained behind. You will be paid <payment> after you complete the entire job."
-	landing
 	passengers 1
 	cargo "stealth drones" 1
 	infiltrating
@@ -7168,7 +7167,6 @@ mission "Adelita 4"
 
 			label release
 			`	After settling on a secure location within the canyon, Bunker releases the drones from the open cargo bay; the drones are so small you can't make them out from the cockpit, nor can you see them on your ship's scanners. When Bunker returns to the cockpit, he sets up a display and sits at the controller. "Okay, they're on autopilot to the rendezvous site."`
-
 			`	As you watch the display, the drones arrive on site, and you can see a lone Syndicate-built freighter with a security detail posted in front of the loading ramp. "The pirates must be late," says Bunker, smirking. "Typical. I'm going to scatter the drones and set a proximity alert."`
 			`	He hums to himself for a while before he turns to you and starts talking again. "You know, there's a part of me that would much rather be liberating slaves instead of filming them, but for now it seems like this is the best way for me to help. Say we did liberate them right now; there's just going to be another slave ship tomorrow. But if we create political and social pressure, that could stop the slave ships forever."`
 			choice
@@ -7193,7 +7191,6 @@ mission "Adelita 4"
 					goto "call drones"
 				`	"I think we'll have to leave the drones behind."`
 				`	"Keep filming."`
-					goto "no can do"
 
 			`	"I don't know. I think we oughta get going," says Bunker, grimacing.`
 			choice
@@ -7252,9 +7249,9 @@ mission "Adelita 4"
 
 
 mission "Adelita 5"
+	landing
 	name "Return Adelita to <planet>"
 	description "Bring everyone back to <destination>. You will be paid <payment> after you complete the entire job."
-	landing
 	passengers 3
 	cargo "stealth drones" 1
 	"apparent payment" 200000
