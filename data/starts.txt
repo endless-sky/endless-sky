@@ -89,6 +89,7 @@ start "hai space"
 		debt 1.431M
 	to unlock
 		has "main plot completed"
+		# TODO: think about what point of HR should unlock this once it's back in the game
 		# has "event: hai-human resolution announced"
 	conversation "hai intro"
 	account
