@@ -463,7 +463,7 @@ public:
 	const System *GetTargetSystem() const;
 	// Targets for persistent ships (i.e. mission NPCs).
 	const bool HasTravelDirective() const;
-	const std::map<const Planet *, bool> GetStopovers() const;
+	const std::map<const Planet *, bool> &GetStopovers() const;
 	const bool AllStopoversVisited() const;
 	const Planet *GetDestinationPlanet() const;
 	const System *GetDestinationSystem() const;
@@ -485,8 +485,8 @@ public:
 	void SetTargetSystem(const System *system);
 	// Persistent targets associated with mission NPCs.
 	void SetDestination(const Planet *destination);
-	void SetStopovers(const std::vector<const Planet *> stopovers);
-	void SetWaypoints(const std::vector<const System *> waypoints);
+	void SetStopovers(const std::vector<const Planet *> &stopovers);
+	void SetWaypoints(const std::vector<const System *> &waypoints);
 	const System *NextWaypoint();
 	void EraseWaypoint(const System *system);
 
