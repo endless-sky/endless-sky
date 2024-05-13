@@ -1033,7 +1033,7 @@ mission "Acquiescence"
 				`	(Enter the cage.)`
 			`	Thankfully, the cage is not anything like a jail cell; with a clank of chains and other indeterminate sounds, you begin to ascend upwards to wherever your next destination may be. However, the shaking and clanging of the lift doesn't exactly ease your mind. All of a sudden, you start to hear a deep, methodical rumble coming from above you. In that same instant, you're hit with a gust of air. Your cage is outside the building, and it is rocketing upward with only the support of a few rails and pulleys. Surrounding the core of the tower in front of you are other large metal pulley systems, with the Gegno in one to your left in the distance. As you're ascending, you see that many Gegno are lined up on several balconies at different levels of the tower, playing large timpani-like drums in a steady rhythm. Occasionally they yell or play a horn-like instrument.`
 			`	A few more minutes of drumming, several layers of smog, and what feels like altitude sickness all assail you until the lift arrives at the very top of the tower - a huge, circular platform out in the open with a bunch of important-looking Gegno formed up around a large table, or display grid of sorts, with several models of planets and ships on top of it. A ring of electronic torches flanking each edge of the platform extends upward to the darkened sky.`
-			`	The Gegno that has guided you here gestures for you to go join them at their location amongst the others.`
+			`	The Gegno that has guided you here gestures for you to go join them at their location among the others.`
 			choice
 				`	(Go to the Gegno.)`
 					goto "meeting"
@@ -1059,12 +1059,12 @@ mission "Acquiescence"
 			`	"Eyuu udyom Gegno tyysis. Udiyh tei arrtes ofor tei piyepuo?"`
 			choice
 				`	"Are you asking me something about the Gegno?"`
-				`	"I would like to work out something with the Gegno."`
+				`	"I would like to work something out with the Gegno."`
 				`	"I'm sorry, I don't understand what you are saying."`
 
 			`	The Gegno stares at you, then looks at the display, which is slowly panning between the situations you've found yourself in:`
 
-			`	A more detailed image of a desert planet, different than the first one, comes onto the display. Alongside it are many graphics - one representing a platoon of Vi warriors, one of the unique Gegno ship type you saw there, and a few words scrolling by, possibly names of each warrior that was present that day. Next to the name of the planet is a smaller graphic of one of those giant sandworms you fought, suggesting that they're found on other desert worlds beyond the first one.`
+			`	A more detailed image of a desert planet, different than the first one, comes onto the display. Alongside it are many graphics - one representing a platoon of Vi warriors, the unique Gegno ship you saw there, and a few words scrolling by, possibly the names of each warrior that was present that day. Next to the name of the planet is a smaller graphic of one of those giant sandworms you fought, suggesting that they're found on other desert worlds beyond the first one.`
 				to display
 					has "Passive-Aggressive Observations: done"
 
@@ -1099,7 +1099,7 @@ mission "Acquiescence"
 					has "dead augen"
 
 
-			`	After having gone through all of the cases which involved you, the trio addresses the gathering once more with a big speech. Their voices echo through the outside air, and all of the Gegno respond with concurrent bellows or chants, followed by more silence. Oddly enough, you've been treated as an equal with all of the Gegno here. You suddenly feel as if you are standing amongst them as part of the gathering, rather than as some foreign alien. You aren't restricted at all, even with a weapon on you.`
+			`	After having gone through all of the cases which involved you, the trio addresses the gathering once more with a big speech. Their voices echo through the outside air, and all of the Gegno respond with concurrent bellows or chants, followed by more silence. Oddly enough, you've been treated as an equal with all of the Gegno here. You suddenly feel as if you are standing among them as part of the gathering, rather than as some foreign alien. You aren't restricted at all, even with a weapon on you.`
 			`	One of the smaller Gegno in the trio gestures back to you and speaks once more. You still don't understand a word they are saying, but it must have been important, as all of the other Gegno except your guide back away several steps. The trio member invites you with both arms to use the objects and the table, while all three of them back up themselves, leaving you alone in the open.`
 			choice
 				`	(Approach the table and try to explain the incidents you were involved in.)`
@@ -1193,7 +1193,7 @@ mission "Gegno Asteroid Mining Prologue"
 				has "Gegno Asteroid Mining Prologue: deferred"
 
 			`You arrive at your destination: a massive space station. Instead of standing directly behind you in your cockpit this time, the Gegno ended up taking a seat next to one of your open bunks, and didn't move a muscle up until now. Despite the grandiose nature of the Gegno's one and only space station, it seems very old and inactive. As you are escorted around the spacious interior, of which a majority is only a skeletal frame of pipes, bars, and supportive structures, you see a noticeable lack of personnel and running machinery. Some sections aren't even properly pressurized, but thankfully your spacesuit makes up for it. Occasionally, you come across some workers, but they appear very lethargic, or maybe just unmotivated.`
-			`	Eventually, you end up in a large docking bay where more workers and ships are present. Some of the workers are hauling crates of materials back and forth, with others talking amongst each other. The Gegno with you then motions over to a half-cracked display board on one of the walls across the room. With one last meaningful look, the Gegno leaves you to your own devices. You wonder if you'll ever see them again, considering the way they were treated back on Dueyu Eitch.`
+			`	Eventually, you end up in a large docking bay where more workers and ships are present. Some of the workers are hauling crates of materials back and forth, with others talking among each other. The Gegno with you then motions over to a half-cracked display board on one of the walls across the room. With one last meaningful look, the Gegno leaves you to your own devices. You wonder if you'll ever see them again, considering the way they were treated back on Dueyu Eitch.`
 			choice
 				`	(Go to the display.)`
 					goto "board"
@@ -1210,7 +1210,7 @@ mission "Gegno Asteroid Mining Prologue"
 			
 			label "accept"
 			`	You fiddle with the screen, trying to decipher how to use it. Some of the Gegno gaze at you for doing so. While they silently judge, you manage to figure out that it's a touch-sensitive interface, though it takes a lot of force for you to get it to work.`
-			`	The graphic that appears the first time you get the device to work is of an Iron asteroid, with five strange-looking tally marks next to it. Mining for them wasn't exactly the first thing you were expecting to do for the Gegno, but it is a start.`
+			`	The first time you get the device to work, you see an image of a hematite asteroid, rich in iron, with five strange-looking tally marks next to it. Mining for them wasn't exactly the first thing you were expecting to do for the Gegno, but it is a start.`
 				accept
 
 			label "nothing"
@@ -1230,5 +1230,5 @@ mission "Gegno Asteroid Mining Prologue"
 		payment 12000
 		outfit "Iron" -5
 		conversation
-			`You dock with the station at the facility's port, rather than on the other side of it. Waiting for you is a large group of Gegno workers, all in rusted or damaged gear. After a few moments of staring and discussion amongst one another, they unload the minerals from your ship, then go about their business as if nothing happened. Another approaches you, and to your surprise, pays you a sum of <payment> for your work. It seems that the Gegno value and reward effort no matter who does it, even a member of another species.`
+			`You dock with the station at the facility's port, rather than on the other side of it. Waiting for you is a large group of Gegno workers, all in rusted or damaged gear. After a few moments of staring and discussion among one another, they unload the minerals from your ship, then go about their business as if nothing happened. Another approaches you, and to your surprise, pays you a sum of <payment> for your work. It seems that the Gegno value and reward effort no matter who does it, even a member of another species.`
 			`	For the time being, the station remains accessible to you, as well as these small odd jobs for mining. Hopefully someday the Gegno will recognize that you're worth more than whatever they've labeled you for.`
