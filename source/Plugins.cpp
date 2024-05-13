@@ -71,10 +71,9 @@ bool Plugin::PluginDependencies::IsValid() const
 	for(const string &dependency : optional)
 	{
 		if(required.count(dependency))
-		{
 			Logger::LogError("Warning: Optional dependency with the name \"" + dependency
 				+ "\" was already found in required dependencies list.");
-		}
+		
 	}
 	for(const string &dependency : conflicted)
 	{
@@ -140,16 +139,15 @@ string Plugin::CreateDescription() const
 		}
 		if(!dependencies.conflicted.empty())
 		{
-			text += "  Conficts:\n";
+			text += "  Conflicts:\n";
 			for(const string &dependency : dependencies.conflicted)
 				text += "  - " + dependency + '\n';
 		}
 		text += '\n';
 	}
 	if(!aboutText.empty())
-	{
 		text += aboutText;
-	}
+	
 	return text;
 }
 
@@ -187,10 +185,7 @@ const Plugin *Plugins::Load(const string &path)
 			hasName = true;
 		}
 		else if(child.Token(0) == "about" && child.Size() >= 2)
-		{
-			aboutText += child.Token(1);
-			aboutText += '\n';
-		}
+			aboutText += child.Token(1) + '\n';
 		else if(child.Token(0) == "version" && child.Size() >= 2)
 			version = child.Token(1);
 		else if(child.Token(0) == "authors" && child.HasChildren())
