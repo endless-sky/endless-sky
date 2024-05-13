@@ -143,9 +143,9 @@ private:
 	std::vector<const System *> waypoints;
 	std::vector<const Planet *> stopovers;
 	const Planet *finalDestination = nullptr;
-	bool needsWaypoint = false;
-	bool needsStopover = false;
-	bool needsDestination = false;
+	bool missingWaypoint = false;
+	bool missingStopover = false;
+	bool missingDestination = false;
 	std::list<LocationFilter> waypointFilters;
 	std::list<LocationFilter> stopoverFilters;
 	LocationFilter destinationFilter;

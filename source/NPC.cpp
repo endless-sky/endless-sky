@@ -146,7 +146,7 @@ void NPC::Load(const DataNode &node)
 			{
 				// Given "waypoint" or "waypoint <system 1> .... <system N>"
 				if(child.Size() == 1)
-					needsWaypoint = true;
+					missingWaypoint = true;
 				else
 					for(int i = 1; i < child.Size(); ++i)
 						waypoints.push_back(GameData::Systems().Get(child.Token(i)));
@@ -165,7 +165,7 @@ void NPC::Load(const DataNode &node)
 			{
 				// Given "destination" or "destination <planet>"
 				if(child.Size() == 1)
-					needsDestination = true;
+					missingDestination = true;
 				else
 					finalDestination = GameData::Planets().Get(child.Token(1));
 			}
@@ -183,7 +183,7 @@ void NPC::Load(const DataNode &node)
 			{
 				// Given "stopover" or "destination <planet 1> ... <planet N>".
 				if(child.Size() == 1)
-					needsStopover = true;
+					missingStopover = true;
 				else
 					for(int i = 1; i < child.Size(); ++i)
 						stopovers.push_back(GameData::Planets().Get(child.Token(i)));
@@ -345,7 +345,7 @@ void NPC::Load(const DataNode &node)
 
 
 	// NPCs given the "land" or "outrun" completion criteria condition should also have a destination.
-	if(!(finalDestination || needsDestination) && destinationFilter.IsEmpty())
+	if(!(finalDestination || missingDestination) && destinationFilter.IsEmpty())
 	{
 		if(succeedIf & ShipEvent::LAND)
 			node.PrintTrace("Warning: NPC mission objective to land is impossible without a destination.");
@@ -793,7 +793,7 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Plan
 	if(!result.system)
 		result.system = (isAtDestination && destination) ? destination : origin;
 
-	if(needsWaypoint)
+	if(missingWaypoint)
 		result.waypoints.push_back(result.destination);
 	for(const LocationFilter &filter : waypointFilters)
 	{
@@ -804,7 +804,7 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Plan
 			result.waypoints.push_back(choice);
 	}
 
-	if(needsStopover)
+	if(missingStopover)
 		result.stopovers.push_back(destinationPlanet);
 	for(const LocationFilter &filter : stopoverFilters)
 	{
@@ -815,7 +815,7 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Plan
 			result.stopovers.push_back(choice);
 	}
 
-	if(needsDestination)
+	if(missingDestination)
 		result.finalDestination = destinationPlanet;
 	// The destination's "distance X Y" is calculated from the last stopover.
 	if(!destinationFilter.IsEmpty())
