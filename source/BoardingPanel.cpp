@@ -305,7 +305,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		// to your ship in peace. That is to allow the player to "cancel" if
 		// they did not really mean to try to capture the ship.
 		bool youAttack = (key == 'a' && (yourStartCrew > 1 || !victim->RequiredCrew()));
-		bool enemyAttacks = !isFirstCaptureAction && !youAttack && defenseOdds.Odds(enemyStartCrew, yourStartCrew) > .5;
+		bool enemyAttacks = !isFirstCaptureAction && defenseOdds.Odds(enemyStartCrew, yourStartCrew) > .5;
 		isFirstCaptureAction = false;
 
 		// If neither side attacks, combat ends.
