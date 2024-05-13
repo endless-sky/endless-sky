@@ -906,7 +906,7 @@ mission "Gegno Intervention"
 		fail "Veering Vi B"
 		"reputation: Quarg (Gegno)" = 0
 		conversation
-			`While you are in the midst of docking with the ringworld, you notice a large tan-colored Gegno ship already present in your designated hangar, surrounded by several ships from both the factions of the Vi and Scin. Near them, a small group of Quarg seem to be "conversing" with a smaller group of Gegno who seem rather upset. As soon as you exit your ship, both groups stop and look your way. You recognize Adrauni swiftly approaching you alongside a Gegno that is wearing a very intricate set of armor, neither Scin nor Vi in appearance.`
+			`While you are in the midst of docking with the ringworld, you notice a large tan-colored Gegno ship already present in your designated hangar, surrounded by several ships from both the factions of the Vi and Scin. Near them, a small group of Quarg are debating something with a smaller group of Gegno who seem rather upset. As soon as you exit your ship, both groups stop and look your way. You recognize Adrauni swiftly approaching you alongside a Gegno that is wearing a very intricate set of armor, neither Scin nor Vi in appearance.`
 			`	Adrauni does not hesitate to address you. "<first> <last>. I presume you understand the meaning of this affair."`
 			choice
 				`	"I'm not sure what's happening right now."`
@@ -1032,7 +1032,7 @@ mission "Acquiescence"
 			choice
 				`	(Enter the cage.)`
 			`	Thankfully, the cage is not anything like a jail cell; with a clank of chains and other indeterminate sounds, you begin to ascend upwards to wherever your next destination may be. However, the shaking and clanging of the lift doesn't exactly ease your mind. All of a sudden, you start to hear a deep, methodical rumble coming from above you. In that same instant, you're hit with a gust of air. Your cage is outside the building, and it is rocketing upward with only the support of a few rails and pulleys. Surrounding the core of the tower in front of you are other large metal pulley systems, with the Gegno in one to your left in the distance. As you're ascending, you see that many Gegno are lined up on several balconies at different levels of the tower, playing large timpani-like drums in a steady rhythm. Occasionally they yell or play a horn-like instrument.`
-			`	A few more minutes of drumming, several layers of smog, and what feels like altitude sickness all assail you until the lift arrives at the very top of the tower - a huge, circular platform out in the open with a bunch of important-looking Gegno formed up around a large table, or display grid of sorts, with several models of planets and ships on top of it. A ring of electronic torches flanking each edge of the platform extends upward to the darkened sky.`
+			`	A few more minutes of drumming, several layers of smog, and what feels like altitude sickness all assail you until the lift arrives at the very top of the tower - a huge, circular platform out in the open with a group of Gegno wearing various fashions of armor formed up around a large table, or display grid of sorts, with several models of planets and ships on top of it. A ring of electronic torches flanking each edge of the platform extends upward to the darkened sky.`
 			`	The Gegno that has guided you here gestures for you to go join them at their location among the others.`
 			choice
 				`	(Go to the Gegno.)`
@@ -1079,7 +1079,7 @@ mission "Acquiescence"
 					has "Foreign Spectator I: failed"
 
 
-			`	One of the more heavily represented situations is the one that involved a large battle between the Vi and Scin over a moon orbiting a forest world. A long list of phrases scrolls by with graphics of different Gegno ships next to them, probably those who took part in said battle. The Gegno around you murmur to each other, occasionally grunting.`
+			`	One of the more largely represented situations is the one that involved a large battle between the Vi and Scin over a moon orbiting a forest world. A long list of phrases scrolls by with graphics of different Gegno ships next to them, probably those who took part in said battle. The Gegno around you murmur to each other, occasionally grunting.`
 				to display
 					has "Battle over Zydee: offered"
 
@@ -1099,7 +1099,7 @@ mission "Acquiescence"
 					has "dead augen"
 
 
-			`	After having gone through all of the cases which involved you, the trio addresses the gathering once more with a big speech. Their voices echo through the outside air, and all of the Gegno respond with concurrent bellows or chants, followed by more silence. Oddly enough, you've been treated as an equal with all of the Gegno here. You suddenly feel as if you are standing among them as part of the gathering, rather than as some foreign alien. You aren't restricted at all, even with a weapon on you.`
+			`	After having gone through all of the cases which involved you, the trio addresses the gathering once more with a big speech. Their voices echo through the outside air, and all of the Gegno respond with concurrent bellows or chants, followed by more silence. Oddly enough, you feel as if you are standing among them as part of the gathering, rather than as some foreign alien. You aren't restricted at all, even with a weapon on you.`
 			`	One of the smaller Gegno in the trio gestures back to you and speaks once more. You still don't understand a word they are saying, but it must have been important, as all of the other Gegno except your guide back away several steps. The trio member invites you with both arms to use the objects and the table, while all three of them back up themselves, leaving you alone in the open.`
 			choice
 				`	(Approach the table and try to explain the incidents you were involved in.)`
