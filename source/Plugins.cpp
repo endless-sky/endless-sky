@@ -181,7 +181,7 @@ string Plugin::CreateDescription() const
 	}
 	if(!aboutText.empty())
 		text += aboutText;
-	
+
 	return text;
 }
 
