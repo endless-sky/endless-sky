@@ -214,7 +214,8 @@ private:
 	// Convert order types based on fulfillment status.
 	void UpdateOrders(const Ship &ship);
 	// Job / Mission NPC blocks may use keywords (waypoint, stopover, destination) to define travel plans.
-	void IssueNPCOrders(Ship &ship, const System *targetSystem, const std::map<const Planet *, bool> stopovers);
+	void IssueNPCOrders(Ship &ship, const System *targetSystem,
+		const std::map<const Planet *, bool> stopovers, const Planet *destination);
 
 
 private:

@@ -779,7 +779,8 @@ void AI::Step(Command &activeCommands)
 		}
 		// Update any orders NPCs may have been given by their associated mission.
 		else if(it->IsSpecial() && !it->IsYours() && it->HasTravelDirective())
-			IssueNPCOrders(*it, it->GetDestinationSystem(), it->GetStopovers());
+			IssueNPCOrders(*it, it->GetDestinationSystem(), it->GetStopovers(),
+			it->AllStopoversVisited() ? it->GetDestinationPlanet() : nullptr);
 
 		// This ship may have updated its target ship.
 		double targetDistance = numeric_limits<double>::infinity();
@@ -4740,7 +4741,8 @@ void AI::UpdateOrders(const Ship &ship)
 }
 
 // Job / Mission NPC blocks may use keywords (waypoint, stopover, destination) to define travel plans.
-void AI::IssueNPCOrders(Ship &ship, const System *targetSystem, const map<const Planet *, bool> stopovers)
+void AI::IssueNPCOrders(Ship &ship, const System *targetSystem,
+	const map<const Planet *, bool> stopovers, const Planet *destination)
 {
 	Orders newOrders;
 	const System *from = ship.GetSystem();
@@ -4768,6 +4770,12 @@ void AI::IssueNPCOrders(Ship &ship, const System *targetSystem, const map<const 
 
 	// If one of the planets in this system is a destination or stopover, it
 	// supercedes the order to travel to the next waypoint (unless already visited).
+	if(destination->IsInSystem(from))
+	{
+		newOrders.type = Orders::LAND_ON;
+		newOrders.targetPlanet = destination;
+	}
+
 	if(!stopovers.empty())
 		for(const auto &it : stopovers)
 			if(!it.second && it.first->IsInSystem(from))

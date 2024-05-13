@@ -464,6 +464,8 @@ public:
 	// Targets for persistent ships (i.e. mission NPCs).
 	const bool HasTravelDirective() const;
 	const std::map<const Planet *, bool> GetStopovers() const;
+	const bool AllStopoversVisited() const;
+	const Planet *GetDestinationPlanet() const;
 	const System *GetDestinationSystem() const;
 	const bool ContinueAfterDestination() const;
 
@@ -482,7 +484,8 @@ public:
 	// Set ship's target system (it should always be one jump / wormhole pass away).
 	void SetTargetSystem(const System *system);
 	// Persistent targets associated with mission NPCs.
-	void SetStopovers(const std::vector<const Planet *> stopovers, const Planet *destination);
+	void SetDestination(const Planet *destination);
+	void SetStopovers(const std::vector<const Planet *> stopovers);
 	void SetWaypoints(const std::vector<const System *> waypoints);
 	const System *NextWaypoint();
 	void EraseWaypoint(const System *system);
@@ -725,12 +728,11 @@ private:
 	// The list of consecutive NPC destination systems.
 	std::vector<const System *> waypoints;
 	size_t waypoint = 0;
-	// The list of planets this NPC may land on, and if they have already
-	// been landed on in this sequence.
-	std::map<const Planet *, bool> travelDestinations;
-	// NPCs with a landing directive may stopover on their final destination
-	// planet, or land permanently.
-	bool continueAfterDestination = true;
+	// The list of stopover planets this NPC should try to land on, and if
+	// they have already been landed on in this sequence.
+	std::map<const Planet *, bool> stopovers;
+	// The final destination of this NPC after it has landed on all its stopovers.
+	const Planet *destinationPlanet = nullptr;
 
 	// Links between escorts and parents.
 	std::vector<std::weak_ptr<Ship>> escorts;

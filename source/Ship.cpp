@@ -2599,7 +2599,8 @@ void Ship::ClearTargetsAndOrders()
 	hyperspaceSystem = nullptr;
 	landingPlanet = nullptr;
 	destinationSystem = nullptr;
-	travelDestinations.clear();
+	destinationPlanet = nullptr;
+	stopovers.clear();
 	waypoints.clear();
 }
 
@@ -3619,14 +3620,34 @@ void Ship::SetTargetSystem(const System *system)
 // Persistent targets for mission NPCs.
 const bool Ship::HasTravelDirective() const
 {
-	return !travelDestinations.empty() || destinationSystem;
+	return !stopovers.empty() || destinationPlanet || destinationSystem;
 }
 
 
 
 const map<const Planet *, bool> Ship::GetStopovers() const
 {
-	return travelDestinations;
+	return stopovers;
+}
+
+
+
+const bool Ship::AllStopoversVisited() const
+{
+	bool allVisited = true;
+	if(stopovers.empty())
+		return allVisited;
+
+	for(auto const &it : stopovers)
+		allVisited &= it.second;
+	return allVisited;
+}
+
+
+
+const Planet *Ship::GetDestinationPlanet() const
+{
+	return destinationPlanet;
 }
 
 
@@ -3638,28 +3659,20 @@ const System *Ship::GetDestinationSystem() const
 
 
 
-const bool Ship::ContinueAfterDestination() const
+// Persistent targets for mission NPCs.
+void Ship::SetDestination(const Planet *destination)
 {
-	return continueAfterDestination;
+	this->destinationPlanet = destination;
 }
 
 
 
-// Persistent targets for mission NPCs.
-
-void Ship::SetStopovers(const vector<const Planet *> stopovers, const Planet *destination)
+void Ship::SetStopovers(const vector<const Planet *> stopovers)
 {
 	// Mark each planet as not visited.
 	if(!stopovers.empty())
 		for(const auto &it : stopovers)
-			travelDestinations[it] = false;
-
-	if(destination)
-	{
-		travelDestinations[destination] = false;
-		continueAfterDestination = false;
-	}
-
+			this->stopovers[it] = false;
 }
 
 
@@ -4500,21 +4513,21 @@ bool Ship::DoLandingLogic()
 				SetTargetSystem(nullptr);
 				landingPlanet = nullptr;
 			}
-			else if(isSpecial && !(isYours || travelDestinations.empty()))
+			else if(isSpecial && !isYours)
 			{
 				// This mission NPC has a directive to land on at least one specific planet.
-				// If this is one of them, this ship may land on a 'destination' (permanently),
-				// or have a 'stopover'.
-				auto it = travelDestinations.find(landingPlanet);
-				if(it != travelDestinations.end())
+				// If this is one of them, this ship may land on a "destination" (permanently),
+				// or have a "stopover."
+				if(AllStopoversVisited() && destinationPlanet == landingPlanet)
 				{
-					if(it == prev(travelDestinations.end()) && !continueAfterDestination)
-					{
-						MarkForRemoval();
-						LandForever();
-						return true;
-					}
-					else
+					MarkForRemoval();
+					LandForever();
+					return true;
+				}
+				else if(!stopovers.empty())
+				{
+					auto it = stopovers.find(landingPlanet);
+					if(it != stopovers.end())
 						it->second = true;
 				}
 			}
@@ -5071,9 +5084,9 @@ double Ship::CalculateDeterrence() const
 
 void Ship::ResetStopovers()
 {
-	if(travelDestinations.empty())
+	if(stopovers.empty())
 		return;
 
-	for(auto &stopover : travelDestinations)
+	for(auto &stopover : stopovers)
 		stopover.second = false;
 }

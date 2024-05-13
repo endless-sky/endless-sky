@@ -339,7 +339,10 @@ void NPC::Load(const DataNode &node)
 		ship->FinishLoading(false);
 		if(!waypoints.empty())
 			ship->SetWaypoints(waypoints);
-		ship->SetStopovers(stopovers, finalDestination);
+		if(!stopovers.empty())
+			ship->SetStopovers(stopovers);
+		if(finalDestination)
+			ship->SetDestination(finalDestination);
 	}
 
 
@@ -857,7 +860,10 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Plan
 		// Use the destinations stored in the NPC copy, in case they were auto-generated.
 		if(!result.waypoints.empty())
 			ship->SetWaypoints(result.waypoints);
-		ship->SetStopovers(result.stopovers, result.finalDestination);
+		if(!result.stopovers.empty())
+			ship->SetStopovers(result.stopovers);
+		if(result.finalDestination)
+			ship->SetDestination(result.finalDestination);
 
 		if(personality.IsEntering())
 			Fleet::Enter(*result.system, *ship);
