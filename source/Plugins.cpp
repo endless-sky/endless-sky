@@ -65,30 +65,58 @@ bool Plugin::PluginDependencies::IsValid() const
 	// plugin developer to see all errors and not just the first.
 	bool isValid = true;
 
+	string dependencyCollisions;
+
 	// Required dependencies will already be valid due to sets not
 	// allowing duplicate values. Therefore we only need to check optional
 	// and conflicts.
+
+	// Check and log collisions between optional and required dependencies.
 	for(const string &dependency : optional)
 	{
 		if(required.count(dependency))
-			Logger::LogError("Warning: Optional dependency with the name \"" + dependency
-				+ "\" was already found in required dependencies list.");
-		
+			dependencyCollisions += dependency + ", ";		
 	}
-	for(const string &dependency : conflicted)
+	if(!dependencyCollisions.empty()) {
+		dependencyCollisions.pop_back();
+		dependencyCollisions.pop_back();
+		Logger::LogError("Warning: Dependencies named " + dependencyCollisions
+			+ " were found in both the required dependencies list and the optional dependencies list.");
+		dependencyCollisions.clear();
+	}
+
+	// Check and log collisions between conflicted and required dependencies.
+	for(const string& dependency : conflicted)
 	{
 		if(required.count(dependency))
 		{
 			isValid = false;
-			Logger::LogError("Warning: Conflicts dependency with the name \"" + dependency
-				+ "\" was already found in required dependencies list.");
+			dependencyCollisions += dependency + ", ";
 		}
+	}
+	if (!dependencyCollisions.empty()) {
+		dependencyCollisions.pop_back();
+		dependencyCollisions.pop_back();
+		Logger::LogError("Warning: Dependencies named " + dependencyCollisions
+			+ " were found in both the conflicting dependencies list and the required dependencies list.");
+		dependencyCollisions.clear();
+	}
+
+	// Check and log collisions between optional and conflicted dependencies.
+	for(const string& dependency : conflicted)
+	{
 		if(optional.count(dependency))
 		{
 			isValid = false;
-			Logger::LogError("Warning: Conflicts dependency with the name \"" + dependency
-				+ "\" was already found in optional dependencies list.");
+			dependencyCollisions += dependency + ", ";
 		}
+	}
+	if(!dependencyCollisions.empty()) {
+		dependencyCollisions.pop_back();
+		dependencyCollisions.pop_back();
+		Logger::LogError("Warning: Dependencies named " + dependencyCollisions
+			+ " were found in both the optional dependencies list and the conflicting dependencies list.");
+		dependencyCollisions.clear();
 	}
 
 	return isValid;
