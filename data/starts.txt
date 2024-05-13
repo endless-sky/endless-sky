@@ -113,7 +113,7 @@ conversation "hai intro"
 	`	This "Aphid" could suit your needs. It is fast and able to carry a respectable amount of cargo.`
 	scene "thumbnail/hai aphid"
 	`	That is, unless you want to get adventurous and try out the impetuous "Grasshopper." Surely the Hai interceptor could take on any of the small, human warships here... provided a competent pilot is at the helm.`
-	`	You have, after all, heard tales of pirates and quick money from the many newcomers to Hai space - for those willing to take big risks, that is.`
+	`	You have heard tales of pirates and quick money from the many newcomers to Hai space - for those willing to take big risks, that is.`
 	`	Alternatively, up north you can go and meet the "Unfettered Hai." Maybe they would come to like you, if you were to show them the strength and cunning they respect.`
 	choice
 		`	(Go to the bank.)`
