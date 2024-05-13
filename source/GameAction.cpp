@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "GameAction.h"
 
+#include "Audio.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Dialog.h"
@@ -23,9 +24,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameEvent.h"
 #include "Messages.h"
 #include "Outfit.h"
+#include "Planet.h"
 #include "PlayerInfo.h"
 #include "Random.h"
 #include "Ship.h"
+#include "System.h"
 #include "UI.h"
 
 #include <cstdlib>
@@ -190,7 +193,11 @@ void GameAction::LoadSingle(const DataNode &child)
 			swap(minDays, maxDays);
 		events[GameData::Events().Get(child.Token(1))] = make_pair(minDays, maxDays);
 	}
-	else if(key == "fail" && child.Size() >= 2)
+	else if(key == "music" && hasValue)
+		music = child.Token(1);
+	else if(key == "mute")
+		music = "";
+	else if(key == "fail" && hasValue)
 		fail.insert(child.Token(1));
 	else if(key == "fail")
 		failCaller = true;
@@ -239,6 +246,13 @@ void GameAction::Save(DataWriter &out) const
 		out.Write("fail", name);
 	if(failCaller)
 		out.Write("fail");
+	if(music.has_value())
+	{
+		if(music->empty())
+			out.Write("mute");
+		else
+			out.Write("music", music.value());
+	}
 
 	conditions.Save(out);
 }
@@ -364,6 +378,18 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 	}
 	if(failCaller && caller)
 		player.FailMission(*caller);
+	if(music.has_value())
+	{
+		if(*music == "<ambient>")
+		{
+			if(player.GetPlanet())
+				Audio::PlayMusic(player.GetPlanet()->MusicName());
+			else
+				Audio::PlayMusic(player.GetSystem()->MusicName());
+		}
+		else
+			Audio::PlayMusic(music.value());
+	}
 
 	// Check if applying the conditions changes the player's reputations.
 	conditions.Apply(player.Conditions());
@@ -387,6 +413,8 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 
 	result.giftShips = giftShips;
 	result.giftOutfits = giftOutfits;
+
+	result.music = music;
 
 	result.payment = payment + (jumps + 1) * payload * paymentMultiplier;
 	if(result.payment)

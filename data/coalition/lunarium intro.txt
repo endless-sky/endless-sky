@@ -1856,6 +1856,8 @@ mission "Lunarium: Questions"
 		not "joined the heliarchs"
 		not "assisting heliarchy"
 		not "assisting lunarium"
+	to complete
+		not "assisting heliarchy"
 	to fail
 		or
 			has "joined the heliarchs"
@@ -1865,6 +1867,8 @@ mission "Lunarium: Questions"
 			`As you prepare to land on <origin>, your monitor starts producing a low hum, stops, then starts again. This keeps up for nearly a minute until a message pops up. "Captain <last>, come to trust you our comrades have, thanks to your consistent help to our cause. Interested we are in your continuous support, so that free the Coalition, together we can. Come to <destination> you must. Meet with you, our leaders will, so that discuss an important task with them, you may. Have an available bunk in your ship, you should."`
 			`	The message cuts off shortly after you finish reading it. Your monitor is back to normal, and no humming sound can be heard. You mark <planet> on your map.`
 				accept
+	on visit
+		dialog `You are currently assisting the Heliarchy. Cancel or finish any missions you have for them if you want to join the Lunarium.`
 
 mission "Lunarium: Quarg Interview"
 	name "The Interview"

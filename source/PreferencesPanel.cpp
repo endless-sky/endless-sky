@@ -57,6 +57,7 @@ namespace {
 	const string AUTO_FIRE_SETTING = "Automatic firing";
 	const string SCREEN_MODE_SETTING = "Screen mode";
 	const string VSYNC_SETTING = "VSync";
+	const string CLOAK_OUTLINE = "Cloaked ship outlines";
 	const string STATUS_OVERLAYS_ALL = "Show status overlays";
 	const string STATUS_OVERLAYS_FLAGSHIP = "   Show flagship overlay";
 	const string STATUS_OVERLAYS_ESCORT = "   Show escort overlays";
@@ -77,6 +78,7 @@ namespace {
 	const string BACKGROUND_PARALLAX = "Parallax background";
 	const string EXTENDED_JUMP_EFFECTS = "Extended jump effects";
 	const string ALERT_INDICATOR = "Alert indicator";
+	const string HUD_SHIP_OUTLINES = "Ship outlines in HUD";
 
 	// How many pages of controls and settings there are.
 	const int CONTROLS_PAGE_COUNT = 2;
@@ -490,6 +492,7 @@ void PreferencesPanel::DrawControls()
 		Command::SCAN,
 		Command::NONE,
 		Command::PRIMARY,
+		Command::TURRET_TRACKING,
 		Command::SELECT,
 		Command::SECONDARY,
 		Command::CLOAK,
@@ -642,6 +645,8 @@ void PreferencesPanel::DrawSettings()
 		"Show hyperspace flash",
 		EXTENDED_JUMP_EFFECTS,
 		SHIP_OUTLINES,
+		HUD_SHIP_OUTLINES,
+		CLOAK_OUTLINE,
 		"\t",
 		"HUD",
 		STATUS_OVERLAYS_ALL,
@@ -781,6 +786,11 @@ void PreferencesPanel::DrawSettings()
 			text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::NEUTRAL);
 			isOn = text != "off" && text != "--";
 		}
+		else if(setting == CLOAK_OUTLINE)
+		{
+			text = Preferences::Has(CLOAK_OUTLINE) ? "fancy" : "fast";
+			isOn = true;
+		}
 		else if(setting == AUTO_AIM_SETTING)
 		{
 			text = Preferences::AutoAimSetting();
@@ -817,6 +827,11 @@ void PreferencesPanel::DrawSettings()
 		{
 			isOn = true;
 			text = Preferences::Has(SHIP_OUTLINES) ? "fancy" : "fast";
+		}
+		else if(setting == HUD_SHIP_OUTLINES)
+		{
+			isOn = true;
+			text = Preferences::Has(HUD_SHIP_OUTLINES) ? "fancy" : "fast";
 		}
 		else if(setting == BOARDING_PRIORITY)
 		{
@@ -946,13 +961,11 @@ void PreferencesPanel::DrawPlugins()
 			table.DrawHighlight(back);
 
 		const Sprite *sprite = box[plugin.currentState];
-		Point topLeft = table.GetRowBounds().TopLeft() - Point(sprite->Width(), 0.);
+		const Point topLeft = table.GetRowBounds().TopLeft() - Point(sprite->Width(), 0.);
 		Rectangle spriteBounds = Rectangle::FromCorner(topLeft, Point(sprite->Width(), sprite->Height()));
 		SpriteShader::Draw(sprite, spriteBounds.Center());
 
-		topLeft.X() += 6.;
-		topLeft.Y() += 7.;
-		Rectangle zoneBounds = Rectangle::FromCorner(pluginListBox.Center() + topLeft, {sprite->Width(), sprite->Height()});
+		Rectangle zoneBounds = spriteBounds + pluginListBox.Center();
 
 		// Only include the zone as clickable if it's within the drawing area.
 		bool displayed = table.GetPoint().Y() > pluginListClip->Top() - 20 &&
