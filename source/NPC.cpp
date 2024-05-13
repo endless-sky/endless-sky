@@ -153,8 +153,7 @@ void NPC::Load(const DataNode &node)
 			}
 			// Given "waypoint" and child nodes. These get processed during NPC instantiation.
 			else
-				for(const DataNode &grand : child)
-					waypointFilters.emplace_back(grand);
+				waypointFilters.emplace_back(child);
 		}
 		else if(child.Token(0) == "destination")
 		{
@@ -191,8 +190,7 @@ void NPC::Load(const DataNode &node)
 			}
 			// Given "stopover" and child nodes. These get processed during NPC instantiation.
 			else
-				for(const DataNode &grand : child)
-					stopoverFilters.emplace_back(grand);
+				stopoverFilters.emplace_back(child);
 		}
 		else if(child.Token(0) == "uuid" && child.Size() >= 2)
 			uuid = EsUuid::FromString(child.Token(1));
