@@ -1908,7 +1908,7 @@ int Ship::Scan(const PlayerInfo &player)
 
 	bool isImportant = false;
 	if(target->isYours)
-		isImportant = target.get() == player.Flagship() || government->FinesContents(target.get());
+		isImportant = target.get() == player.Flagship() || government->FinesContents(target.get(), player);
 
 	if(startedScanning && isYours)
 	{
