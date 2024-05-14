@@ -532,7 +532,7 @@ mission "First Contact: Gegno Scin"
 				`	(Approach the Scin.)`
 					goto "approach"
 				`	(Stay by your ship.)`
-			`	You take one or two steps forward but remain close by your ship, staying alert. The freighter is indeed large - maybe four times the size of a Hauler, or almost twice the size of a Behemoth. An elevator lowers from its undercarriage, and a group of Scin exit the ship, making their way towards you. Their attire is much different than that of the Vi; most of them are wearing what looks like segmented armor with many layers of plates, giving the appearance of scales. One of them, however, has a much lighter armor set focused mainly around their shoulders, with orange robe-like garments underneath. They are slightly thinner than the other Scin. Although they are nowhere near as bulky as the Vi, they all still appear slightly taller than any human. More importantly, they seem far more eager to interact with you, seeing as they left the comfort of their own ship to greet you.`
+			`	You take one or two steps forward but remain close by your ship, staying alert. The freighter is indeed large - maybe four times the size of a Hauler, or almost twice the size of a Behemoth. An elevator lowers from its undercarriage, and a group of Scin exit the ship, making their way towards you. Their attire is much different than that of the Vi; most of them are wearing what looks like segmented armor with many layers of plates, giving the appearance of scales. One of them, however, has a much lighter armor set focused mainly around their shoulders, with orange robe-like garments underneath. They are slightly thinner than the other Scin. Although they are nowhere near as bulky as the Vi, they all still appear taller than any human. More importantly, they seem far more eager to interact with you, seeing as they left the comfort of their own ship to greet you.`
 			`	Stopping about four meters from you, the Scin in heavier armor drop to the ground on one knee. The one wearing a robe takes a few more steps, then sits on the ground in front you, crossing their legs.`
 			choice
 				`	(Sit down.)`
@@ -554,7 +554,7 @@ mission "First Contact: Gegno Scin"
 			action
 				set "scin: gestures"
 			`	Reaching with your right hand, the Scin leans forward and carefully examines it, then makes another note on their device. After writing down a few more things, they get up from the ground and gesture strangely towards you, crossing their arms together to form a plus sign toward their left. The other heavier-armored Scin rise from their stances and begin heading back to their ships, and the one in front of you follows behind them.`
-			`	You return to your own ship after the bewildering encounter, wondering how to make sense of it, and the Scin do not follow you any further.`
+			`	You return to your own ship after the bewildering encounter, wondering what to make of it, and the Scin do not follow you any further.`
 				decline
 
 			label "imagery"
@@ -602,7 +602,7 @@ mission "First Contact: Gegno Scin"
 			label "reach"
 			action
 				set "scin: provocative"
-			`	It is rather alarming that the Scin are comfortable in approaching you casually, and considering how the encounter with the Vi went, anything could happen next. You decide to reach for your pistol, but as soon as you do, the first thing you feel is a curved blade around your neck, and a wave of sand flying past you. Slowly turning your head, your eyes are met with the cold, expressionless look of another Scin's face, who then motions for you to return to your ship. They follow you as you do, continuing to hold the blade to your throat. Two more Scin suddenly appear from the sand along the way, while the others you first met remain at their position. The armor of the Scin escorting you is considerably different from the rest, characterized by darker shades, sharper edges, and several gadgets.`
+			`	It is rather alarming that the Scin are comfortable in approaching you casually, and considering how the encounter with the Vi went, anything could happen next. You decide to reach for your pistol, but as soon as you do, the first thing you feel is a curved blade around your neck and a wave of sand flying past you. Slowly turning your head, your eyes are met with the cold, expressionless look of another Scin's face, who then motions for you to return to your ship. They follow you as you do, continuing to hold the blade to your throat. Two more Scin suddenly appear from the sand along the way, while the others you first met remain at their position. The armor of the Scin escorting you is considerably different from the rest, characterized by darker shades, sharper edges, and several gadgets.`
 			`	Once you are at your ship, they move their blade away from your neck. When you get a better look at it, you realize that the blade is shaped like a sickle as opposed to a sword, meaning there was little chance you could have avoided being decapitated if they chose to use it. Boarding your ship in a hurry, you prepare to take off, and you notice the two Scin warships also begin to power up. It's clear you've overstayed your welcome.`
 				flee
 
