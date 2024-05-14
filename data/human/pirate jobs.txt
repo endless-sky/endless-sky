@@ -2528,7 +2528,7 @@ mission "Eliminating Competition (South, Small)"
 		attributes "south pirate"
 	npc kill
 		government "Pirate (Rival)"
-		personality heroic staying target marked
+		personality heroic marked staying target
 		system
 			distance 1 2
 		fleet "Small Southern Pirates" 4
@@ -2553,7 +2553,7 @@ mission "Eliminating Competition (South, Large)"
 		attributes "south pirate"
 	npc kill
 		government "Pirate (Rival)"
-		personality heroic staying target marked
+		personality heroic marked staying target
 		system
 			distance 1 2
 		fleet "Large Southern Pirates" 2
@@ -2578,7 +2578,7 @@ mission "Eliminating Competition (Marauders, Small)"
 		government "Pirate"
 	npc kill
 		government "Pirate (Rival)"
-		personality heroic staying target marked
+		personality heroic marked staying target
 		system
 			distance 1 2
 		fleet "Marauder I" 2
@@ -2603,7 +2603,7 @@ mission "Eliminating Competition (Marauders, Medium)"
 		government "Pirate"
 	npc kill
 		government "Pirate (Rival)"
-		personality heroic staying target marked
+		personality heroic marked staying target
 		system
 			distance 1 2
 		fleet "Marauder I"
@@ -2629,7 +2629,7 @@ mission "Eliminating Competition (Marauders, Large)"
 		government "Pirate"
 	npc kill
 		government "Pirate (Rival)"
-		personality heroic staying target marked
+		personality heroic marked staying target
 		system
 			distance 1 2
 		fleet "Marauder I" 2
