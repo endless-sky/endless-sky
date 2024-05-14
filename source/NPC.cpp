@@ -344,7 +344,7 @@ void NPC::Load(const DataNode &node)
 	}
 
 
-	// NPCs given the "land" or "outrun" completion criteria condition should also have a destination.
+	// NPCs given the "land" or "outrun" completion conditions should also have a destination.
 	if(!(finalDestination || missingDestination) && destinationFilter.IsEmpty())
 	{
 		if(succeedIf & ShipEvent::LAND)
