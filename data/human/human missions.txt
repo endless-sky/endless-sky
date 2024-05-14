@@ -1195,6 +1195,7 @@ mission "Drug Running 1"
 	description "Bring a shipment of <cargo> to <destination>. Payment will be <payment>. If you are caught with this cargo, you may be fined."
 	minor
 	repeat
+	infiltrating
 	source
 		attributes "near earth" "dirt belt" "north"
 	destination
@@ -1230,6 +1231,7 @@ mission "Drug Running 2"
 	description "Bring a shipment of <cargo> to <destination>. Payment will be <payment>. If you are caught with this cargo, you may be fined."
 	minor
 	repeat
+	infiltrating
 	source
 		attributes "near earth" "dirt belt" "north"
 	destination
@@ -1260,6 +1262,7 @@ mission "Drug Running 3"
 	description "Bring a shipment of <cargo> to <destination>. Payment will be <payment>. If you are caught with this cargo, you may be fined."
 	minor
 	repeat
+	infiltrating
 	source
 		attributes "near earth" "dirt belt" "north"
 	destination
@@ -1374,6 +1377,7 @@ mission "Shady passenger transport 1"
 	description "Discreetly transport a passenger to <destination>. Payment will be <payment>. If you are caught with him, you may be fined."
 	minor
 	repeat
+	infiltrating
 	source
 		attributes "near earth" "core" "urban"
 	destination
@@ -1410,6 +1414,7 @@ mission "Shady passenger transport 2"
 	description "Discreetly transport two passengers to <destination>. Payment will be <payment>. If you are caught with them, you may be fined."
 	minor
 	repeat
+	infiltrating
 	source
 		attributes "near earth" core urban
 	destination
@@ -1456,6 +1461,7 @@ mission "Shady passenger transport 3"
 	description "Discreetly transport <bunks> passengers to <destination>. Payment will be <payment>. If you are caught with them, the legal consequences may be severe."
 	minor
 	repeat
+	infiltrating
 	source
 		attributes "frontier" "dirt belt" "rim" "north" "south" "pirate"
 	destination
