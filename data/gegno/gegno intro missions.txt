@@ -449,7 +449,7 @@ mission "Suspicious Scin"
 			action
 				set "gegno: mysterious device"
 			`As you're traveling through Gegno space, a faint signal starts emanating from somewhere in your ship. You aren't sure what it is, as it doesn't appear to originate from the ship itself, so you decide to take a look. After a few minutes of searching for the culprit, you come across a device not too dissimilar from the one that the Gegno you met on Var Oti had given you, arbitrarily shoved into some corner of your ship's infrastructure. You don't know how or when it got there, but at least it wasn't something more dangerous like an explosive.`
-			`	Once you retrieve the device, you notice that alongside with the signal it's emitting, there is some sort of map display that has several locations in the region marked in some way or another, along with various scribblings in a language you can't understand. Although it's hard to make sense of what any of it means, one particular planet displayed has several graphics around it, much more extravagant than the rest. Perhaps finding this planet will shed some light on this strange situation.`
+			`	Once you retrieve the device, you notice that along with the signal it's emitting, there is some sort of map display that has several locations in the region marked in some way or another, along with various scribblings in a language you can't understand. Although it's hard to make sense of what any of it means, one particular planet displayed has several graphics around it, much more extravagant than the rest. Perhaps finding this planet will shed some light on this strange situation.`
 	on enter
 		system
 			near "Pukako" 2
@@ -553,7 +553,7 @@ mission "First Contact: Gegno Scin"
 					goto "imagery"
 			action
 				set "scin: gestures"
-			`	Reaching with your right hand, the Scin leans forward and carefully examines it, then makes another note on their device. After writing down a few more things, they get up from the ground and gesture strangely towards you, crossing their arms together in a plus-shaped fashion towards their left. The other heavier-armored Scin rise from their stances and begin heading back to their ships, and the one in front of you follows behind them.`
+			`	Reaching with your right hand, the Scin leans forward and carefully examines it, then makes another note on their device. After writing down a few more things, they get up from the ground and gesture strangely towards you, crossing their arms together to form a plus sign toward their left. The other heavier-armored Scin rise from their stances and begin heading back to their ships, and the one in front of you follows behind them.`
 			`	You return to your own ship after the bewildering encounter, wondering how to make sense of it, and the Scin do not follow you any further.`
 				decline
 
