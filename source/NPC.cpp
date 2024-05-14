@@ -345,7 +345,7 @@ void NPC::Load(const DataNode &node)
 
 
 	// NPCs given the "land" or "outrun" completion conditions should also have a destination.
-	if(!(finalDestination || missingDestination) && destinationFilter.IsEmpty())
+	if(!finalDestination && !missingDestination && destinationFilter.IsEmpty())
 	{
 		if(succeedIf & ShipEvent::LAND)
 			node.PrintTrace("Warning: NPC mission objective to land is impossible without a destination.");
