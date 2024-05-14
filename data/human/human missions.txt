@@ -6910,15 +6910,20 @@ mission "Adelita 1"
 			random < 10
 			and
 				random < 60
-				has "Expedition to Hope 2: done"
+				or
+					has "Expedition to Hope 2: done"
+					has "FW Katya 4: done"
+					has "visited planet: Hope"
 		"combat rating" > 40
 
 	on offer
 		conversation
 			branch "know about disaster"
 				has "FW Katya 4: done"
+
 			branch "has visited"
 				has "visited planet: Hope"
+
 			`Walking on the edges of <origin>'s spaceport district, you notice signage advertising an exhibition about the planet Hope and the disaster and evacuation that happened on it in 2994; you vaguely remember it as being a planet in a system southwest of New Boston. But what makes it stand out from the typical advertisements that you see on notice boards and interactive screens is some of its colorful language: "Considered Offensive by Paradisians," "Why We Can't Give Up Hope," and "Evicted by the Paradise Planets."`
 				goto directions
 
@@ -6935,6 +6940,7 @@ mission "Adelita 1"
 				`	(Check it out.)`
 				`	(Not interested.)`
 					decline
+
 			`	Following the signage, you notice a substantial group of people gathered in front of a large warehouse that stands out amongst the rest of the warehouses in the yard. As you wait in the queue, a young woman lines up behind you with a readily apparent exuberance and asks you, "Just out of curiosity, how much do you know about Hope and its history?"`
 			choice
 				`	"Not much at all."`
@@ -6950,7 +6956,14 @@ mission "Adelita 1"
 					to display
 						or
 							has "Expedition to Hope 2: done"
-							has "FW Katya 4: done"
+							and
+								has "FW Katya 4: done"
+								has "visited planet: Hope"
+				`	"I haven't been there myself, but I know people who have been affected by it."`
+					to display
+						has "FW Katya 4: done"
+						not "visited planet: Hope"
+
 			`	"Well then it's a good thing you're seeing Adelita's exhibition on Hope. It's really moving. You'll learn a lot about the tragedy and what Parliament and the Paradise Worlds did to everybody who tried to help," she adds somewhat sullenly. "You know, this was their first work that really got them famous in the interplanetary scene, but they've been forced to close it, so today's their final day. I had to see it one more time before they went."`
 				goto questions
 
@@ -6970,20 +6983,27 @@ mission "Adelita 1"
 			`	"Well, this exhibition used to be permanent, but the planetary government was pressured by the Paradise Planets to force Adelita to leave. What Parliament and the Paradise Planets did to the people of Hope was abhorrent. Now Adelita's bringing light to it, and they're being silenced. It's wrong."`
 
 			label exhibition
-			`	You reach the entrance to the exhibition soon enough. Inside is a large room filled with photos, videos, interviews, and other mixed media. They focus on three groups: the refugees of Hope, the Navy that saved them, and the Paradise Worlds that protested the evacuation. At one end of the hangar, there is an installation with nearly a hundred original protest signs from rallies against the Dirt Belt and the Republic Navy; some of them are quite crude and tasteless. It's a strong rebuke to see those displayed here, so close to the Paradise Planets.`
+			`	You reach the entrance to the exhibition soon enough. Inside is a large room filled with photos, videos, interviews, and other mixed media. They focus on three groups: the refugees of Hope, the Navy that saved them, and the Paradise Worlds that protested the evacuation. At one end of the warehouse, there is an installation with nearly a hundred original protest signs from rallies against the Dirt Belt and the Republic Navy; some of them are quite crude and tasteless. It's a strong rebuke to see those displayed here, so close to the Paradise Planets.`
 			`	There are many, many photos, but one in particular catches your eye. It's of a woman standing in line to board a ship, a baby held at her hip and a look of sadness and determination on her face. The mother and child's cheeks, rosy and chapped, stand out in contrast with the cold blues in the background.`
 			`	You head toward the exit, but as the automatic doors open, an arctic blast pummels into you from out of nowhere. Instead of <origin>'s spaceport, you find yourself in a life-sized 3D representation of the evacuation of Hope, complete with simulated climate effects and a projected horizon. There are huge Navy Cruisers and Auxiliaries in a snowy field near a small town gradually being covered by ash as hundreds of refugees slowly board. But what stands out most is the massive volcano erupting in the background.`
 			`	"It's more of a collage than an exact rendering," says the young woman you met in line, having followed you all this way. "They took 3D recordings from different moments and areas of Hope and edited them together in various loops. The volcano was actually on the other side of the planet, for example. The magic of editing. What do you think?"`
 			choice
 				`	"Impressive."`
 				`	"It's alright."`
+				`	"Isn't that a bit deceptive?"`
+					goto deceptive
 
-			`	"I've been here ten times and I always manage to be awestruck," the woman replies. "Enjoy the exhibition. I think it's closing soon, and for the last time." She heads for the exit.`
+			`	"I've been here ten times and I always manage to be awestruck," the woman replies. "Enjoy the exhibition while you still can!" She heads for the exit.`
 			choice
 				`	(Continue wandering around the exhibit.)`
+					goto wander
 				`	(Go to the exit.)`
 					goto exit
 
+			label deceptive
+			``
+
+			label wander
 			branch katya
 				has "FW Katya 4: done"
 
@@ -6995,13 +7015,13 @@ mission "Adelita 1"
 
 			label "move on"
 			`	As you move on, you're startled to find yourself face-to-face with the woman holding the baby, right where they were in the photo. She takes little steps toward the ship while bouncing the baby on her hip. A young woman with a camera and a respirator covering her face walks up to her, asks a question, and begins to take photos.`
-			`	Suddenly, the entire projection disappears in a disorienting flash, leaving you in a cordoned-off section of the hangar bay. The exhibit is nearly empty as a woman walks up to you. "One of the authors loves that moment too. That's probably why she fought so hard to have that part left in." She mutters something about a "security risk" under her breath, and then turns her attention back to you.`
+			`	Suddenly, the entire projection disappears in a disorienting flash, leaving you in a cordoned-off section of the warehouse. The exhibit is nearly empty as a woman walks up to you. "One of the authors loves that moment too. That's probably why she fought so hard to have that part left in." She mutters something about a "security risk" under her breath, and then turns her attention back to you.`
 			`	"Oh, how rude of me," she says, offering her hand. "My name is Mariel. I organize these exhibitions and act as a spokesperson for Adelita. And you are?"`
 			choice
 				`	"Captain <last>."`
 				`	"<first> <last>, Captain of the <ship>."`
 
-			`	"Captain," she says, her eyes lighting up. "Well, as you may know, this is the last day of the exhibition. The captain I hired to transport everything back to <destination> is not only rude, but is now late. I would much rather have it in the hands of someone who appreciates the work. I was going to pay him 60,000 credits, but I'll pay you <payment> to take his contract instead given the short notice. What do you say?"`
+			`	"Captain," she says, her eyes lighting up. "Well, as you may know, this is the last day of the exhibition. The captain I hired to transport everything back to <planet> is not only rude, but is now late. I would much rather have it in the hands of someone who appreciates the work. I was going to pay him 60,000 credits, but I'll pay you <payment> to take his contract instead given the short notice. What do you say?"`
 			choice
 				`	"I would love to."`
 					goto accept
@@ -7014,7 +7034,7 @@ mission "Adelita 1"
 					goto decline
 
 			label accept
-			`	"Great!" Mariel says. "Bring your ship to this hangar, and I will have our crew get everything ready to load."`
+			`	"Great!" Mariel says. "I will have our crew get everything ready to load at your ship promptly."`
 			`	After a couple hours, the whole exhibition is packed up and ready for transport to <planet>.`
 				accept
 
@@ -7036,15 +7056,13 @@ mission "Adelita 1"
 		payment 80000
 		event "adelita 2 offer expired" 1
 		conversation
-			`After navigating the thick fog of Moonshake's atmosphere, you find a motley crew waiting on your landing pad. Once you sign your landing documents with the Syndicate officials, one of the crew walks up to you and hands you a credit chip for <payment> and a note. It reads:`
+			`After navigating the thick fog of Moonshake's atmosphere, you find a motley crew waiting on your landing pad. After they've done taking the equipment away, one of the crew walks up to you and hands you a credit chip for <payment> and a note. It reads:`
 			``
 			`	Meet me at the Common Grounds Cafe in the spaceport if you're interested in assisting us with a new project. Make sure you're not followed.`
 			`		-Adelita Zero`
 
 
-
 event "adelita 2 offer expired"
-
 
 
 mission "Adelita 2"
@@ -7104,6 +7122,11 @@ mission "Adelita 2"
 			`	"Well, I did say we had enemies in high places, didn't I? But don't worry. Bunker's a pro. We have an array of long-range stealth drones that do the spying. You won't be anywhere near them, though pirates do frequent the system, so you'll need to be quick."`
 
 			label leave
+			choice
+				`	"Alright."`
+				`	"Sorry, this sounds too risky for me."`
+					goto out
+
 			`	She waves to the server for the bill as she finishes the last gulp of her smoothie. "Let's go. Everyone will be meeting at the landing pad shortly."`
 			`	You go back to the <ship>'s landing pad, and sure enough, there are two people with backpacks and a few cases waiting for you. They introduce themselves as River and Bunker, and they enthusiastically stow their equipment away without a hitch.`
 			`	"Good. Now that that's done with, let's load up," says Bunker, before letting out a holler. "Taking down the Man. I love it!"`
@@ -7114,7 +7137,7 @@ mission "Adelita 2"
 				decline
 
 	on visit
-		dialog `You've landed on <planet>, but the filming equipment isn't in the system. Better depart and wait for your escorts to arrive in this star system.`
+		dialog phrase "generic cargo and passenger on visit"
 
 
 
@@ -7137,7 +7160,7 @@ mission "Adelita 3"
 				accept
 
 	on visit
-		dialog `You realize that your escort carrying the drones hasn't entered the system yet. Better depart and wait for it.`
+		dialog phrase "generic cargo and passenger on visit"
 
 
 
@@ -7173,8 +7196,14 @@ mission "Adelita 4"
 				`	"I think you're right."`
 				`	"What about doing both?"`
 					goto plan
+				`	"Are you sure it's that simple?"`
+					goto cynic
 
-			`	"And you know they'll use those poor people as human shields. Say we-" A chirp from the proximity alert cuts him off.`
+			`	"Thank you! Y'know, a lot of people are too ambivalent and unconscious about this. That slaves were used to make the toasters they use in the morning and the cars they go to work. We should-" A chirp from the proximity alert cuts him off.`
+				goto showtime
+
+			label cynic
+			`	"Of course not. And that's why I'm working here instead, to make sure there'll be a time and place in the future where we can finally declare the galaxy free of slavery. What if-" A chirp from the proximity alert cuts him off.`
 				goto showtime
 
 			label plan
@@ -7190,6 +7219,7 @@ mission "Adelita 4"
 				`	"Call back the drones now."`
 					goto "call drones"
 				`	"I think we'll have to leave the drones behind."`
+					goto "no can do"
 				`	"Keep filming."`
 
 			`	"I don't know. I think we oughta get going," says Bunker, grimacing.`
@@ -7199,13 +7229,13 @@ mission "Adelita 4"
 				`	"That's an order!"`
 
 			`	"You're the captain," Bunker responds in a sore tone. Meanwhile, you continue to watch the display. It takes a couple minutes before the last of the slaves are loaded, followed by the security team. The two men in the suit and hood are the last to board their ships.`
-			`	You hear the sudden hum of thrusters from outside, just as the <ship> receives a hail of particle cannon fire from a pirate Quicksilver, appearing seemingly out of nowhere as it tears through your hull. You shunt the <ship>'s repulsors to full blast to get into orbit, but another pair of Quicksilvers sends a volley of particle fire that breaks through and takes the repulsors offline. The last thing you experience is the ship slowing to a halt, pausing in the air for just a moment before the pilot seat goes out from under you, the cockpit filled with screams as the <ship> makes a one way trip towards the surface.`
+			`	You hear the sudden hum of thrusters from outside...` # TODO: Change this to be on the ground instead.
 				die
 
 			label "see us"
 			`	"I have no idea," says Bunker. "But it's probably time to go."`
 			choice
-				`	"Call back the drones immediately."`
+				`	"Call back the drones now."`
 					goto "call drones"
 				`	"I think we have to leave the drones behind."`
 
@@ -7219,7 +7249,7 @@ mission "Adelita 4"
 			`	"I can't let you do that, <first>," says Bunker, standing between you and the controls. "The drones are almost here. Just let me go to the cargo bay to lock them down and we're out of here.`
 			choice
 				`	(Force him to stand down.)`
-					goto blaster
+					goto pistol
 				`	(Let him go to the cargo bay and lock down the drones.)`
 					goto escape
 
@@ -7232,19 +7262,25 @@ mission "Adelita 4"
 			`	You immediately raise the shields and take off. The moment you pull out of the canyon, pirate Quicksilvers appear from every direction. You shunt the <ship>'s repulsors into full blast and accelerate into space with the pirates in hot pursuit.`
 				launch
 
-			label blaster
-			`	You get up and point your pistol at Bunker while ordering him to stand down. "Don't do this," he says, shrinking from you as he puts his hands up. As you are restraining him, you notice the humming of thrusters from outside - then the <ship> receives a hail of particle cannon fire out of nowhere! You turn around and see pirate Quicksilvers all converging towards you, tearing through the <ship>'s hull. You shunt the <ship>'s repulsors to full blast to get into orbit, but a volley of particle fire breaks through and takes the repulsors offline. The last thing you experience is the ship slowing to a halt, pausing in the air for just a moment before the pilot seat goes out from under you, the cockpit filled with screams as the <ship> makes a one way trip towards the surface.`
+			label pistol
+			`	You get up and point your pistol at Bunker while ordering him to stand down. "Don't do this," he says, shrinking from you as he puts his hands up. As you are restraining him, you notice the humming of thrusters from outside...` # TODO: Change this to be on the ground instead.
 				die
 
 	npc
-		personality heroic nemesis vindictive launching marked
+		personality heroic nemesis vindictive launching
 		government "Pirate"
 		ship "Quicksilver" "Dog's Leash"
 		ship "Quicksilver" "Burning Whip"
 		ship "Quicksilver" "Iron Chains"
+		ship "Vanguard" "Cat o' Nine Tails"
+
+	npc
+		personality fleeing uninterested launching
+		government "Merchant"
+		ship "Bulk Freighter" "Ramona"
 
 	on visit
-		dialog `Your escort carrying the spy drones was left behind. Better take off and wait for them to enter the system.`
+		dialog phrase "generic cargo and passenger on visit"
 
 
 
