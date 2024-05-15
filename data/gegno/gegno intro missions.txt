@@ -471,11 +471,9 @@ mission "Suspicious Scin"
 					has "gegno: mysterious device"
 
 	on enter "Ilirco"
+		clear "gegno: mysterious device"
 		conversation
 			`Once you enter the system, the mysterious device suddenly makes a loud noise. You aren't sure if that means you've found your destination, or if this whole situation was just a ruse. Either way, the only way to find out is to land on the planet and see if anything is there.`
-
-	on complete
-		clear "gegno: mysterious device"
 
 	npc
 		government "Gegno Scin (Neutral)"
