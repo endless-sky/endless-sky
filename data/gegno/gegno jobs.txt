@@ -18,19 +18,18 @@ mission "Gegno Asteroid Mining - Aluminum"
 	name "Gather 10 tons of aluminum"
 	description "Mine and collect 10 tons of aluminum, then bring the minerals back to the Gegno at <origin>."
 	source "Tschyss"
-	destination "Tschyss"
 	to offer
 		has "Gegno Asteroid Mining Prologue: done"
 		random < 10
 	to accept
-		"cargo space" > 5
+		"cargo space" > 10
 	on visit
 		dialog "You've returned to <origin>, but do not have 10 tons of aluminum in your cargo hold. Make sure to mine 10 tons of aluminum and collect it into your cargo before you land."
 	on complete
 		"gegno: mining jobs" ++
 		payment 36000
-		dialog phrase "gegno mining payment dialog"
 		outfit "Aluminum" -10
+		dialog phrase "gegno mining payment dialog"
 
 
 mission "Gegno Asteroid Mining - Copper"
@@ -39,19 +38,18 @@ mission "Gegno Asteroid Mining - Copper"
 	name "Gather 10 tons of copper"
 	description "Mine and collect 10 tons of copper, then bring the minerals back to the Gegno at <origin>."
 	source "Tschyss"
-	destination "Tschyss"
 	to offer
 		has "Gegno Asteroid Mining Prologue: done"
 		random < 10
 	to accept
-		"cargo space" > 5
+		"cargo space" > 10
 	on visit
 		dialog "You've returned to <origin>, but do not have 10 tons of copper in your cargo hold. Make sure to mine 10 tons of copper and collect it into your cargo before you land."
 	on complete
 		"gegno: mining jobs" ++
 		payment 60000
-		dialog phrase "gegno mining payment dialog"
 		outfit "Copper" -10
+		dialog phrase "gegno mining payment dialog"
 
 
 mission "Gegno Asteroid Mining - Iron"
@@ -60,19 +58,18 @@ mission "Gegno Asteroid Mining - Iron"
 	name "Gather 10 tons of iron"
 	description "Mine and collect 10 tons of iron, then bring the minerals back to the Gegno at <origin>."
 	source "Tschyss"
-	destination "Tschyss"
 	to offer
 		has "Gegno Asteroid Mining Prologue: done"
 		random < 10
 	to accept
-		"cargo space" > 5
+		"cargo space" > 10
 	on visit
 		dialog "You've returned to <origin>, but do not have 10 tons of iron in your cargo hold. Make sure to mine 10 tons of iron and collect it into your cargo before you land."
 	on complete
 		"gegno: mining jobs" ++
 		payment 24000
-		dialog phrase "gegno mining payment dialog"
 		outfit "Iron" -10
+		dialog phrase "gegno mining payment dialog"
 
 
 mission "Gegno Asteroid Mining - Lead"
@@ -81,19 +78,18 @@ mission "Gegno Asteroid Mining - Lead"
 	name "Gather 10 tons of lead"
 	description "Mine and collect 10 tons of lead, then bring the minerals back to the Gegno at <origin>."
 	source "Tschyss"
-	destination "Tschyss"
 	to offer
 		has "Gegno Asteroid Mining Prologue: done"
 		random < 10
 	to accept
-		"cargo space" > 5
+		"cargo space" > 10
 	on visit
 		dialog "You've returned to <origin>, but do not have 10 tons of lead in your cargo hold. Make sure to mine 10 tons of lead and collect it into your cargo before you land."
 	on complete
 		"gegno: mining jobs" ++
 		payment 18000
-		dialog phrase "gegno mining payment dialog"
 		outfit "Lead" -10
+		dialog phrase "gegno mining payment dialog"
 
 
 mission "Gegno Asteroid Mining - Silicon"
@@ -102,19 +98,18 @@ mission "Gegno Asteroid Mining - Silicon"
 	name "Gather 10 tons of silicon"
 	description "Mine and collect 10 tons of silicon, then bring the minerals back to the Gegno at <origin>."
 	source "Tschyss"
-	destination "Tschyss"
 	to offer
 		has "Gegno Asteroid Mining Prologue: done"
 		random < 10
 	to accept
-		"cargo space" > 5
+		"cargo space" > 10
 	on visit
 		dialog "You've returned to <origin>, but do not have 10 tons of silicon in your cargo hold. Make sure to mine 10 tons of silicon and collect it into your cargo before you land."
 	on complete
 		"gegno: mining jobs" ++
 		payment 8000
-		dialog phrase "gegno mining payment dialog"
 		outfit "Silicon" -10
+		dialog phrase "gegno mining payment dialog"
 
 
 mission "Gegno Asteroid Mining - Titanium"
@@ -123,16 +118,15 @@ mission "Gegno Asteroid Mining - Titanium"
 	name "Gather 10 tons of titanium"
 	description "Mine and collect 10 tons of titanium, then bring the minerals back to the Gegno at <origin>."
 	source "Tschyss"
-	destination "Tschyss"
 	to offer
 		has "Gegno Asteroid Mining Prologue: done"
 		random < 10
 	to accept
-		"cargo space" > 5
+		"cargo space" > 10
 	on visit
 		dialog "You've returned to <origin>, but do not have 10 tons of titanium in your cargo hold. Make sure to mine 10 tons of titanium and collect it into your cargo before you land."
 	on complete
 		"gegno: mining jobs" ++
 		payment 50000
-		dialog phrase "gegno mining payment dialog"
 		outfit "Titanium" -10
+		dialog phrase "gegno mining payment dialog"
