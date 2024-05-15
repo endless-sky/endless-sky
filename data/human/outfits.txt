@@ -430,25 +430,13 @@ outfit "Tear of Skade"
 	"unique" 1
 	description "A strange glowing stone gifted to you by the Skadenga. It lacks any power source, yet is quite cold."
 
-outfit "Tear of Skade (Harmonized)"
-	category "Unique"
-	thumbnail "outfit/skadetear"
-	"cooling" 8
-	description "A strange glowing stone gifted to you by the Skadenga, and harmonized by Weland. It lacks any power source, yet is quite cold."
-
 outfit "Blood of Surtr"
 	category "Unique"
 	thumbnail "outfit/bloodsurtr"
 	"energy generation" 1
 	"heat generation" 4
+	"unique"
 	description "A strange glowing stone gifted to you by Ildico Drifa. It hums with energy and heat."
-
-outfit "Blood of Surtr (Harmonized)"
-	category "Unique"
-	thumbnail "outfit/bloodsurtr"
-	"energy generation" 2
-	"heat generation" 6
-	description "A strange glowing stone gifted to you by Ildico Drifa, and harmonized by Weland. It hums with energy and heat."
 
 outfit "Local Map"
 	category "Special"

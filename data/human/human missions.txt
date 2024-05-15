@@ -6917,11 +6917,16 @@ mission "Stone to Hope"
 				`	"That's great news!"`
 				`	"Do you know when?!"`
 				`	"Who are you talking about?"`
+					goto who
 				`	"I don't really care."`
 					goto cold
 
 			`	"Like I said, there is no date yet, and with those two it could be years before they finally land on a date. Time's different out on the algae islands." He shrugs.`
 			`	"But I thought you'd appreciate a small update on Thorleif." He smiles and then glances at the young man next to him. "Anyways, that's not actually why I sought you out."`
+				goto hopestone
+
+			label who
+			`	"You don't remember Thorleif? My cousin out on the algae islands?" He frowns, but regains his composure and glances at the young man next to him. "Anyways, that's not actually why I sought you out."`
 				goto hopestone
 
 			label cold
@@ -7095,9 +7100,9 @@ conversation "Ice Queen"
 
 	`	The woman nods slowly, and then painfully, slides back down to the ground.`
 	`	Her eyes fall to the floor. "I have no choice, but to trust you. I have lived here all my life, but my equipment has failed. I never wanted to leave, I was never meant to leave, but I won't let the ice win. I won't let it take me, too."`
-	`	She looks back up at you with her piercing eyes, "I am Ildico, last of House Drifa, daughter of Deoric, once one of the most powerful men on Hope. Everyone fled the ice. The Republic Navy made it easy. Enter their ships and be shipped off to paradise, to live as nobodies at the sufferance of strangers."`
-	`	Ildico tries to spit, and her eyes blaze, "But we were House Drifa, more than anyone else, we built this world, and we would not abandon it to be someone else's dredges. My father bought supplies, equipment, necessities from the Navy. Enough so that me, my brother, and my mother could survive here."`
-	`	She pauses, as though unsure she wants to continue; then finally, in a less firm voice, "And then my father left. He said that dozens of worlds, worse off than ours, were terraformed every day. He said all they needed was a little convincing, and that he would come back with the support to terraform, and save, Hope. And then... he never came back."`
+	`	She looks back up at you with her piercing eyes. "I am Ildico, last of House Drifa, daughter of Deoric, once one of the most powerful men on Hope. Everyone fled the ice. The Republic Navy made it easy. Enter their ships and be shipped off to paradise, to live as nobodies at the sufferance of strangers.`
+	`	"But we were House Drifa. More than anyone else we built this world, and we would not abandon it to be someone else's dredges. My father bought supplies, equipment, necessities from the Navy. Enough so that me, my brother, and my mother could survive here."`
+	`	She pauses, as though unsure she wants to continue; then finally, in a less firm voice: "And then my father left. He said that dozens of worlds, worse off than ours, were terraformed every day. He said all they needed was a little convincing, and that he would come back with the support to terraform, and save, Hope. And then... he never came back."`
 	`	Ildico sighs. "A treasure hunter killed my brother a few years back. My mother... she is also dead, and I am starving. I have no way to contact anyone else, and no one else is left."`
 	`	"So, what do you say." She leans her head back, clearly exhausted by this exchange, and closes her eyes. "Will you kill me? Take advantage of me? Save me? Or leave me... to die."`
 	choice
@@ -7171,9 +7176,9 @@ mission "Ice Queen 2"
 			`	Among these you find the offices of "Clark's Third Law Terraformists." Ildico steps in front of you and enters first.`
 			`	An older man with greying hair and a bit of a paunch looks up from his desk. He stands up genially as both of you approach and says, "Howdy friends, I am Eustice Goodfellow, and welcome to our cozy establishment. Do you have need of a little terraforming?" Eustice flashes a wide open smile.`
 			`	"Yes. I'd like to terraform the planet Hope." Ildico says flatly.`
-			`	"Well, uh, ma'am. We don't, that is to say, we're not that kind of terraforming firm. We do small jobs. Touch ups. We can't.. we can't terraform a world, and I don't..." Eustice looks at her, and you carefully, "I don't think you could pay for it either."`
+			`	"Well, uh, ma'am. We don't, that is to say, we're not that kind of terraforming firm. We do small jobs. Touch ups. We can't.. we can't terraform a world, and I don't..." Eustice looks at both of you carefully before saying, "I don't think you could pay for it either."`
 			`	Ildico leaps over the desk and grabs Eustice by his collar. "Is that what you told my father, Lord of House Drifa? Did you send him away like some misbegotten pauper?"`
-			`	Eustice pales and holds out his hands, "Please, Let me go. I meant no insult."`
+			`	Eustice pales and holds out his hands. "Please, let me go. I meant no insult."`
 			choice
 				`	(Don't interfere.)`
 				`	(Tell Ildico to calm down.)`
@@ -7238,7 +7243,7 @@ mission "Ice Queen 3"
 			`	The man hears your inquiry and nods earnestly. "Ah, yes, of course I remember the fellow! What an interesting meeting that was," Ian says from behind his small desk.`
 			`	"Obviously, the details are proprietary, but in very broad generalities, he wanted me to warm up a freezing world."`
 			`	Ildico doesn't blink; on second thought, you're not sure you've ever seen her blink. "Hope. Yes, and could you warm it?"`
-			`	Ian laughs, "Oh, of course, a job like that would have been quite simple."`
+			`	Ian laughs. "Oh, of course, a job like that would have been quite simple."`
 			`	"Then why didn't you?" The tension is obvious in Ildico's voice.`
 			`	Ian shrugs. "Though he could afford it there were other concerns."`
 			`	Ildico steps forward and looms over Ian like an angry shadow. It appears that it is taking all of her willpower to keep her from ripping this man apart. "Concerns?"`
@@ -7263,18 +7268,19 @@ mission "Ice Queen 4"
 			`	After a brief wait, a young secretary announces that Mr. Drifa is ready to see you, and brings you and Ildico into his office.`
 			`	"So what can I help you with..." Deoric Drifa's voice trails off as he sees Ildico.`
 			`	Ildico tries to step forward than stops herself. She freezes up.`
-			`	"It can't be." The elder Drifa whispers.`
-			`	"Why. Didn't. You. Come." Ildico forces out each word.`
+			`	"It can't be," the elder Drifa whispers.`
+			`	"Why. Didn't. You. Come?" Ildico forces out each word.`
 			`	"I sent for you. They told me you were all dead. They found bodies... and the generator blown."`
-			`	"The accident." Ildico says more to herself than anyone else. And then in that instant she unfreezes, emotions roil through her, and she runs to her father. Everything forgiven.`
-			`	After a long tear-filled embrace she disengages and wipes her eyes. "Early on the generator blew and we had to evacuate the compound. Some people died.. including Hogne." She glances at you, "he was my older brother."`
+			`	"The accident..." Ildico says more to herself than anyone else. And then in that instant she unfreezes, emotions roil through her, and she runs to her father. Everything forgiven.`
+			`	After a long tear-filled embrace she disengages and wipes her eyes. "Early on the generator blew and we had to evacuate the compound. Some people died.. including Hogne." She glances at you and says, "he was my older brother."`
 			`	She continues, "I salvaged what I could and set up at home. I've been at home the whole time."`
-			`	"It's my fault." Deoric says, "I should have gone and looked for you myself. I would have known where to look."`
+			`	"It's my fault," Deoric says. "I should have gone and looked for you myself. I would have known where to look."`
 			`	They talk about family, the time apart, and what happened back on Hope. Finally, Ildico turns her attention back to you.`
 			`	"Thank you for bringing me here, <name>. For sticking with me. I appreciate it." She gives you the first real genuine smile you've seen on her face.`
 			choice
 				`	"No problem, Ildico."`
 				`	"You're welcome, Ildico."`
+
 			`	She looks at you for just a moment, as if in thought, and then says, "If we ever meet again, call me Ildy. It's what my friends call me."`
 			`	With that you take your leave.`
 				decline
@@ -7582,7 +7588,7 @@ mission "Skadenga: Blood of Surtr"
 			`	The old man pauses for a moment and then says, "Although.. I do remember when I was a child the folk from the Deep coming and visiting us again. They had questions about.. our baubles. I think they said they did not work? They thought they were just useless charms. Perhaps the Scales stopped working?"`
 			`	He shrugs. "I am sorry, <first>, that I cannot tell you more."`
 			`	The Ondurdis puts a hand on his back. "I value your stories." She turns her attention back to you, "Maybe all God-Stones once produced wondrous stones of power."`
-			`	She points at the Blood of Surtr, "Maybe that is where yours came from. But more than guesses, we cannot provide."`
+			`	She points at the Blood of Surtr. "Maybe that is where yours came from. But more than guesses, we cannot provide."`
 			choice
 				`	(Take your leave.)`
 
@@ -7616,6 +7622,6 @@ mission "Stone to Hope: Thanks"
 				`	"Where's Tosti?"`
 
 			`	"Ah, the lad's out on the seas. Got himself a job working on a fishing trawler. It'd likely be a few years before he'll call to port here again."`
-			`	Helm gives you a friendly smile, "Still, you've done him a good turn. I'll have a message sent to him so he knows he can rest easy."`
-			`	He returns to wrestling with the rope, "There's no money or reward, but word will spread and people here will appreciate it all the same. Here on Norn we have long memories."`
+			`	Helm gives you a friendly smile. "Still, you've done him a good turn. I'll have a message sent to him so he knows he can rest easy."`
+			`	He returns to wrestling with the rope but continues, "There's no money or reward, but word will spread and people here will appreciate it all the same. Here on Norn we have long memories."`
 				decline
