@@ -279,7 +279,7 @@ event "kestrel available: more bays"
 
 # Remove the Kestrel from Tarazed Advanced for saves that obtained it prior to 0.10.7.
 
-mission "Kestrel Sales Patch'
+mission "Kestrel Sales Patch"
 	invisible
 	landing
 	to offer
