@@ -7275,6 +7275,7 @@ system "Bore Fah"
 	fleet "Small Human Merchants (Hai)" 12000
 	fleet "Large Human Merchants (Hai)" 18000
 	fleet "Hai Surveillance" 5000
+	fleet "Hai Miners" 15000
 	object
 		sprite star/g5
 		period 10
@@ -9129,6 +9130,7 @@ system "Da Ent"
 	fleet "Small Human Merchants (Hai)" 9000
 	fleet "Large Human Merchants (Hai)" 10000
 	fleet "Hai Surveillance" 3000
+	fleet "Hai Miners" 9000
 	object
 		sprite star/m3
 		period 10
@@ -9208,6 +9210,7 @@ system "Da Lest"
 	fleet "Small Human Merchants (Hai)" 7000
 	fleet "Large Human Merchants (Hai)" 8000
 	fleet "Hai Surveillance" 5000
+	fleet "Hai Miners" 10000
 	object
 		sprite star/m0
 		period 10
@@ -17419,9 +17422,11 @@ system "Imo Dep"
 	asteroids "small metal" 98 4.4156
 	asteroids "medium metal" 124 5.9052
 	asteroids "large metal" 4 2.9792
-	minables silicon 18 10.1357
+	minables silicon 18 7.411
 	minables silver 12 6.77561
 	minables titanium 9 8.61292
+	minables tungsten 15 3.154
+	minables uranium 7 2.786
 	trade Clothing 331
 	trade Electronics 763
 	trade Equipment 528
@@ -17443,6 +17448,7 @@ system "Imo Dep"
 	fleet "Small Human Merchants (Hai)" 10000
 	fleet "Large Human Merchants (Hai)" 14000
 	fleet "Hai Surveillance" 3000
+	fleet "Hai Miners" 8000
 	object
 		sprite star/f5
 		period 10
@@ -17580,6 +17586,7 @@ system "Io Lowe"
 	fleet "Small Human Merchants (Hai)" 4000
 	fleet "Large Human Merchants (Hai)" 7000
 	fleet "Hai Surveillance" 5000
+	fleet "Hai Miners" 7000
 	object
 		sprite star/m8
 		period 10
@@ -33729,6 +33736,7 @@ system "Wah Oh"
 	fleet "Small Human Merchants (Hai)" 6000
 	fleet "Large Human Merchants (Hai)" 9000
 	fleet "Hai Surveillance" 5000
+	fleet "Hai Miners" 9000
 	object
 		sprite star/a0
 		period 10
