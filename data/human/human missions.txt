@@ -7050,13 +7050,11 @@ mission "Adelita 1"
 			`	Following her, you find the true exit of the warehouse and go back out onto the more familiar grounds of <origin>'s spaceport.`
 				decline
 
-	on accept
-		log `Saw an impressive exhibition on the Evacuation of Hope and ended up with a job taking the whole thing to Moonshake.`
-
 	on visit
 		dialog `You arrive on <planet>, but realize that your escort carrying the exhibition installations has not arrived yet. Better depart and wait for your escorts to enter the system.`
 
 	on complete
+		log `Saw an impressive exhibition on the Evacuation of Hope and ended up with a job taking the whole thing to Moonshake.`
 		payment 80000
 		event "adelita 2 offer expired" 1
 		conversation
@@ -7144,7 +7142,6 @@ mission "Adelita 2"
 		dialog phrase "generic cargo and passenger on visit"
 
 
-
 mission "Adelita 3"
 	landing
 	name "Film slave transaction"
@@ -7167,7 +7164,6 @@ mission "Adelita 3"
 		dialog phrase "generic cargo and passenger on visit"
 
 
-
 mission "Adelita 4"
 	landing
 	name "Take the film to <planet>"
@@ -7183,17 +7179,8 @@ mission "Adelita 4"
 
 	on offer
 		conversation
-			branch "player has a fleet"
-				"total ships" - ( "ships: Fighter" + "ships: Drone" ) > 1
-
-			`It's not hard to find a remote canyon within range of the target area. Being so close to the surface of <origin> you're forced to deactivate your shields, but you keep the <ship> hovering in case you need to make a quick escape.`
-				goto release
-
-			label "player has a fleet"
-			`You carefully bring the <ship> into the atmosphere while the rest of your fleet stays in space so that the pirates won't catch wind of Adelita's operation. Luckily, it's not hard to find a remote canyon within range of the target area for you to lie low. Being so close to the surface of <origin> you're forced to deactivate your shields, but you keep the <ship> hovering in case you need to make a quick escape.`
-
-			label release
-			`	After settling on a secure location within the canyon, Bunker releases the drones from the open cargo bay; the drones are so small you can't make them out from the cockpit, nor can you see them on your ship's scanners. When Bunker returns to the cockpit, he sets up a display and sits at the controller. "Okay, they're on autopilot to the rendezvous site."`
+			`As you enter <origin>'s atmosphere Bunker explains that you need to find a place to land in order for him to be able to release the drones. Luckily on this part of <origin>, it's not hard to find a remote canyon within range of the target area.`
+			`	Bunker locates a sheltered outcrop near the <ship> and releases the drones from a briefcase he took with him; the drones are so small you can't make them out. He then unpacks the drones' controller and display feed and sets it up on a flat boulder, using a smaller rock as a stool to sit on while he prepares the drones. "Okay, they're on autopilot to the rendezvous site."`
 			`	As you watch the display, the drones arrive on site, and you can see a lone Syndicate-built freighter with a security detail posted in front of the loading ramp. "The pirates must be late," says Bunker, smirking. "Typical. I'm going to scatter the drones and set a proximity alert."`
 			`	He hums to himself for a while before he turns to you and starts talking again. "You know, there's a part of me that would much rather be liberating slaves instead of filming them, but for now it seems like this is the best way for me to help. Say we did liberate them right now; there's just going to be another slave ship tomorrow. But if we create political and social pressure, that could stop the slave ships forever."`
 			choice
@@ -7203,7 +7190,7 @@ mission "Adelita 4"
 				`	"Are you sure it's that simple?"`
 					goto cynic
 
-			`	"Thank you! Y'know, a lot of people are too ambivalent and unconscious about this. That slaves were used to make the toasters they use in the morning and the cars they go to work. We should-" A chirp from the proximity alert cuts him off.`
+			`	"Thank you! It's good to hear someone who's optimistic about this. Way too many people are unconscious about slavery in our civilization, or they believe there's nothing anybody can do about it. If we can-" A chirp from the proximity alert cuts him off.`
 				goto showtime
 
 			label cynic
@@ -7232,8 +7219,8 @@ mission "Adelita 4"
 					goto "call drones"
 				`	"That's an order!"`
 
-			`	"You're the captain," Bunker responds in a sore tone. Meanwhile, you continue to watch the display. It takes a couple minutes before the last of the slaves are loaded, followed by the security team. The two men in the suit and hood are the last to board their ships.`
-			`	You hear the sudden hum of thrusters from outside...` # TODO: Change this to be on the ground instead.
+			`	"You're the captain, you decide whether we go or not," Bunker responds in a sore tone. Meanwhile, you continue to watch the display. It takes a couple minutes before the last of the slaves are loaded, followed by the security team. The two men in the suit and hood are the last to board their ships.`
+			`	You hear the sudden hum of repulsors overhead, replaced simultaneously by the reports of particle cannons from the Quicksilvers! You think you hear Bunker swear as he leaps off his seat, the both of you running towards the <ship>, dirt and rock kicking up around you from strafing particle fire- until you're engulfed by a searing yellow beam that splits your body apart as a Quicksilver finally finds its mark.`
 				die
 
 			label "see us"
@@ -7247,27 +7234,29 @@ mission "Adelita 4"
 			`	Bunker hits the recall button for the drones anyway. "This display is a low resolution proxy," explains Bunker. "If we leave the drones, we'll lose all the footage we need. It looks like the Quicksilvers aren't coming straight for us. We have time. The drones are less than two minutes out."`
 			choice
 				`	"We're leaving. Now!"`
-				`	"Fine. Get to the cargo bay and lock down the drones as soon as they land. We take off on your mark."`
-					goto escape
+				`	"Fine. Get to the <ship> and lock down the drones as soon as they land. We take off on your mark."`
+					goto "call drones"
 
-			`	"I can't let you do that, <first>," says Bunker, standing between you and the controls. "The drones are almost here. Just let me go to the cargo bay to lock them down and we're out of here.`
+			`	"I can't let you do that, <first>," says Bunker, standing between you and the controls. "The drones are almost here. It'll take me no time to lock them down once we're on the <ship>, then we're out of here.`
 			choice
 				`	(Force him to stand down.)`
 					goto pistol
-				`	(Let him go to the cargo bay and lock down the drones.)`
-					goto escape
+				`	(Get back to the <ship> and let Bunker lock down the drones.)`
+
+			`	You nod, and Bunker immediately packs up the entire controller and display set, packing it away in a briefcase in seconds.`
+				goto flee
 
 			label "call drones"
-			`	"Aye aye, Captain," he says as he hits a button. "Drone ETA: two minutes, fifteen seconds."`
-			`	"Get to the cargo bay," you say. "Lock down the drones as soon as they arrive and get belted in. We'll take off on your mark."`
+			`	"Aye aye, Captain," he says as he hits a button. "Drone ETA: two minutes, fifteen seconds." He packs up the entire controller and display set and has it packed away in a briefcase in seconds.`
 
-			label escape
-			`	Less than a minute later, you hear Bunker on the comms. "Drones are locked down and ready to go."`
-			`	You immediately raise the shields and take off. The moment you pull out of the canyon, pirate Quicksilvers appear from every direction. You shunt the <ship>'s repulsors into full blast and accelerate into space with the pirates in hot pursuit.`
+			label flee
+			`	The both of you race onboard the <ship> and you prepare it for take off while Bunker heads to the cargo bay to recieve the drones. "Lock down the drones as soon as they arrive and get belted in," you say over the comms to Bunker. "We'll take off on your mark."`
+			`	Less than a minute later, you hear Bunker's reply. "Drones are locked down and ready to go."`
+			`	You immediately raise the shields and take off. The moment you pull out of the canyon, pirate Quicksilvers appear from every direction; not far behind them, a Vanguard. You shunt the <ship>'s repulsors into full blast and accelerate into space with the pirates in hot pursuit.`
 				launch
 
 			label pistol
-			`	You get up and point your pistol at Bunker while ordering him to stand down. "Don't do this," he says, shrinking from you as he puts his hands up. As you are restraining him, you notice the humming of thrusters from outside...` # TODO: Change this to be on the ground instead.
+			`	You get up and point your pistol at Bunker while ordering him to stand down. "Don't do this," he says, shrinking from you as he puts his hands up. As you are restraining him you hear the sudden hum of repulsors overhead, replaced simultaneously by the reports of particle cannons from the Quicksilvers! You somehow find yourself letting go of Bunker, the both of you running towards the <ship>, dirt and rock kicking up around you from strafing particle fire- until you're engulfed by a searing yellow beam that splits your body apart as a Quicksilver finally finds its mark.`
 				die
 
 	npc
@@ -7276,6 +7265,10 @@ mission "Adelita 4"
 		ship "Quicksilver" "Dog's Leash"
 		ship "Quicksilver" "Burning Whip"
 		ship "Quicksilver" "Iron Chains"
+
+	npc
+		personality heroic fleeing nemesis vindictive launching forebearing
+		government "Pirate"
 		ship "Vanguard" "Cat o' Nine Tails"
 
 	npc
@@ -7285,7 +7278,6 @@ mission "Adelita 4"
 
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
-
 
 
 mission "Adelita 5"
@@ -7312,6 +7304,7 @@ mission "Adelita 5"
 	on complete
 		payment 220000
 		log `Helped the underground journalism collective "Adelita" gather video evidence of Syndicate participation in the slave trade while escaping from pirates.`
+		log ``
 		conversation
 			`Ale, River, and Bunker look glad to be back on <planet>. "Being there in person was bad enough," Ale grumbles as she looks through a stack of folders on her datapad. "Now we have to watch it over and over again to edit it into something presentable."`
 			`	As they are leaving, Ale hands you a stack of credit chips totaling <payment>. "There's a bonus in there for you. We really couldn't have done it without you," she tells you with a bittersweet smile. "Of course, you'll be one of the first to know when it's done."`
