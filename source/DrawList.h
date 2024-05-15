@@ -46,7 +46,7 @@ public:
 	// Add an object that should not be drawn with motion blur.
 	bool AddUnblurred(const Body &body);
 	// Add an object using a specific swizzle (rather than its own).
-	bool AddSwizzled(const Body &body, int swizzle);
+	bool AddSwizzled(const Body &body, int swizzle, double cloak = 0.);
 
 	// Draw all the items in this list.
 	void Draw() const;
