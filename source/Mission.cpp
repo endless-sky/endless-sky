@@ -879,7 +879,7 @@ bool Mission::IsSatisfied(const PlayerInfo &player) const
 
 
 
-bool Mission::HasFailed(const PlayerInfo &player) const
+bool Mission::IsFailed(const PlayerInfo &player) const
 {
 	if(!toFail.IsEmpty() && toFail.Test(player.Conditions()))
 		return true;
@@ -888,13 +888,6 @@ bool Mission::HasFailed(const PlayerInfo &player) const
 		if(npc.HasFailed())
 			return true;
 
-	return hasFailed;
-}
-
-
-
-bool Mission::IsFailed() const
-{
 	return hasFailed;
 }
 
@@ -1017,7 +1010,7 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 		if(!stopovers.empty())
 			return false;
 	}
-	if(trigger == ABORT && HasFailed(player))
+	if(trigger == ABORT && IsFailed(player))
 		return false;
 	if(trigger == WAYPOINT && !waypoints.empty())
 		return false;
