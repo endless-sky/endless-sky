@@ -734,13 +734,13 @@ mission "Gegno Exploration Nudge"
 			near "Ilirco" 1 100
 		fail
 		conversation
-			`	After leaving Ilirco, you recall that the map device showed markings for a few other planets throughout Gegno space as well. Perhaps there are other circumstances where you can encounter the Gegno in order to try and find a way to learn more about them.`
-				to display
-					not "scin: provocative"
-
+			branch provocative
+				has "scin: provocative"
+			`After leaving Ilirco, you recall that the map device showed markings for a few other planets throughout Gegno space as well. Perhaps there are other circumstances where you can encounter the Gegno in order to try and find a way to learn more about them.`
+				decline
+			
+			label provocative
 			`After the aggressive encounter on <origin>, you recall that the map device showed markings for a few other planets throughout Gegno space as well. There could be more situations where you run into the Gegno again, so it might be best to be cautious going forward.`
-				to display
-					has "scin: provocative"
 
 
 # Gegno Superheavy Missions
