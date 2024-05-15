@@ -7251,7 +7251,7 @@ mission "Adelita 4"
 			`	"Aye aye, Captain," he says as he hits a button. "Drone ETA: two minutes, fifteen seconds." He packs up the entire controller and display set and has it packed away in a briefcase in seconds.`
 
 			label flee
-			`	The both of you race onboard the <ship> and you prepare it for take off while Bunker heads to the cargo bay to recieve the drones. "Lock down the drones as soon as they arrive and get belted in," you say over the comms to Bunker. "We'll take off on your mark."`
+			`	The both of you race onboard the <ship> and you prepare it for take off while Bunker heads to the cargo bay to receive the drones. "Lock down the drones as soon as they arrive and get belted in," you say over the comms to Bunker. "We'll take off on your mark."`
 			`	Less than a minute later, you hear Bunker's reply. "Drones are locked down and ready to go."`
 			`	You immediately raise the shields and take off. The moment you pull out of the canyon, pirate Quicksilvers appear from every direction; not far behind them, a Vanguard. You shunt the <ship>'s repulsors into full blast and accelerate into space with the pirates in hot pursuit.`
 				launch
