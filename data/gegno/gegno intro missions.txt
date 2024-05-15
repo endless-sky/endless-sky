@@ -507,10 +507,19 @@ mission "First Contact: Gegno Scin"
 			choice
 				`	(Leave the planet.)`
 					goto "leave"
+				`	(Wait and see what they do.)`
+					goto wait
 				`	(Prepare for combat.)`
 			`	Engaging your weapon systems, you brace yourself for a hostile encounter as they approach. The Scin ship advances towards yours then slowly comes to a halt in front of you. They haven't fired any weapons, and they aren't displaying any aggressive behavior, so they might not be looking for conflict. Ever so slightly, the warship reverses backwards and comes to a stop. You decide to stop your ship as well, and you wonder what this is about. Once again, the Scin ship reverses, slowly drifting away from you. It appears they want you to follow them.`
+				goto interaction
+			
+			label wait
+			`	Bringing your ship to a hault, you decide to wait and see what the Scin ship does as it advances towards you. As it slowly approaches, it slows down and eventually stops for a brief moment. Ever so slightly, the warship then begins to reverse backwards, and continues to drift away from you while facing you. They don't seem to be cautious of you, rather, it's almost as if they're implying to follow them.`
+				goto interaction
+
+			label interaction
 			choice
-				`	(Follow.)`
+				`	(Follow them.)`
 					goto "follow"
 				`	(Leave.)`
 					goto "leave"
@@ -524,7 +533,7 @@ mission "First Contact: Gegno Scin"
 			action
 				set "scin: approached epidote"
 			`	You inch your ship forward in acknowledgment. All of a sudden, the second warship on the ground lifts off and forms up behind you, while the one in front of you turns around and begins to fly off into the distance. You follow them, curious where they might be leading you. To your rear, the remaining shuttle takes off, but instead of following you, it heads off into the atmosphere above.`
-			`	Although this planet initially appeared dull due to the several layers of thick clouds, the surface shows occasional signs of life such as plains of grass or occasional dried-up riverbeds, while patches of low fog cover various other locations. As the flight continues, the two Scin ships slowly start to move around so that one is on either side of you. Up ahead in the distance, a large structure comes into view from behind another wall of fog. After getting a bit closer to it, you make out the familiar green colors of the ships flying with you now. The two warships begin to descend towards what you assume to be a sizable Scin freighter sitting in a large open area of sand.`
+			`	Although this planet initially appeared dull due to the several layers of thick clouds, the surface shows occasional signs of life such as plains of grass or dried-up riverbeds, while patches of low fog cover various other locations. As the flight continues, the two Scin ships slowly start to move around so that one is on either side of you. Up ahead in the distance, a large structure comes into view from behind another wall of fog. After getting a bit closer to it, you make out the familiar green colors of the ships flying with you now. The two warships begin to descend towards what you assume to be a sizable Scin freighter sitting in a large open area of sand.`
 			`	Your previous encounter with a Vi warrior was chaotic and unpredictable, so it might be best to be extra cautious in this situation. As you set your ship down near the vessel, the two warships that guided you here also land nearby and power down. Other than the Gegno ships in front of you, there doesn't seem to be any strange activity on your radar at the moment. Environmental readings of the outside surprisingly indicate conditions safe for a human, but it's better to be safe than sorry. You equip your environment suit and your pistol just in case.`
 			choice
 				`	(Approach the Scin.)`
@@ -703,7 +712,7 @@ mission "Scin Intro Warships Hostile"
 			not "scin: gestures"
 			has "scin: provocative"
 		government "Gegno Scin (Combative)"
-		personality launching uninterested
+		personality launching
 		system "Ilirco"
 		fleet
 			names "gegno scin"
@@ -713,7 +722,6 @@ mission "Scin Intro Warships Hostile"
 		fail
 
 
-# Debating on removing this, as it seems to be a bit too hand-holdey, and the above is already reason for the player to explore more.
 mission "Gegno Exploration Nudge"
 	invisible
 	landing
