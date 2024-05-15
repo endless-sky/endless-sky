@@ -7001,7 +7001,12 @@ mission "Adelita 1"
 					goto exit
 
 			label deceptive
-			``
+			`	"Deceptive?! No," the woman responds in a ruffled manner. "If you call this deception you must have a distaste for the media," she chuckles. "This form of journalism is as authentic as journalism gets! Now, of course Adelita take creative liberties, but it's all in the pursuit of education and justice."`
+			`	"Well, for what it's worth, I've been here ten times and I always manage to be awestruck," the woman says. "Enjoy the exhibition while you still can." She heads for the exit.`
+			choice
+				`	(Continue wandering around the exhibit.)`
+				`	(Go to the exit.)`
+					goto exit
 
 			label wander
 			branch katya
@@ -7018,7 +7023,6 @@ mission "Adelita 1"
 			`	Suddenly, the entire projection disappears in a disorienting flash, leaving you in a cordoned-off section of the warehouse. The exhibit is nearly empty as a woman walks up to you. "One of the authors loves that moment too. That's probably why she fought so hard to have that part left in." She mutters something about a "security risk" under her breath, and then turns her attention back to you.`
 			`	"Oh, how rude of me," she says, offering her hand. "My name is Mariel. I organize these exhibitions and act as a spokesperson for Adelita. And you are?"`
 			choice
-				`	"Captain <last>."`
 				`	"<first> <last>, Captain of the <ship>."`
 
 			`	"Captain," she says, her eyes lighting up. "Well, as you may know, this is the last day of the exhibition. The captain I hired to transport everything back to <planet> is not only rude, but is now late. I would much rather have it in the hands of someone who appreciates the work. I was going to pay him 60,000 credits, but I'll pay you <payment> to take his contract instead given the short notice. What do you say?"`
@@ -7043,7 +7047,7 @@ mission "Adelita 1"
 				decline
 
 			label exit
-			`	Following where the woman went, you find the true exit of the warehouse and go back out onto the more familiar grounds of <origin>'s spaceport.`
+			`	Following her, you find the true exit of the warehouse and go back out onto the more familiar grounds of <origin>'s spaceport.`
 				decline
 
 	on accept
@@ -7056,7 +7060,7 @@ mission "Adelita 1"
 		payment 80000
 		event "adelita 2 offer expired" 1
 		conversation
-			`After navigating the thick fog of Moonshake's atmosphere, you find a motley crew waiting on your landing pad. After they've done taking the equipment away, one of the crew walks up to you and hands you a credit chip for <payment> and a note. It reads:`
+			`After navigating the thick fog of Moonshake's atmosphere, you find a motley crew waiting on your landing pad. After they're done taking Adelita's cargo away, one of the crew walks up to you and hands you a credit chip for <payment> and a note. It reads:`
 			``
 			`	Meet me at the Common Grounds Cafe in the spaceport if you're interested in assisting us with a new project. Make sure you're not followed.`
 			`		-Adelita Zero`
