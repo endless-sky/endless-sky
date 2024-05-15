@@ -233,4 +233,4 @@ phrase "gegno mining payment dialog"
 	word
 		" "
 	word
-		"and you are paid <payment> credits."
+		"and you are paid <payment>."

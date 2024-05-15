@@ -730,8 +730,7 @@ mission "Gegno Exploration Nudge"
 	to complete
 		never
 	on enter
-		system
-			near "Ilirco" 1 100
+	on enter
 		fail
 		conversation
 			branch provocative
