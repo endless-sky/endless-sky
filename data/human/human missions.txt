@@ -7090,6 +7090,7 @@ mission "Adelita 2"
 					goto wasok
 				`	"It was too political for me."`
 					goto political
+
 			`	"I'm glad you liked it," she says, smiling.`
 				goto choice
 
@@ -7125,8 +7126,8 @@ mission "Adelita 2"
 
 			label leave
 			choice
-				`	"Alright."`
-				`	"Sorry, this sounds too risky for me."`
+				`	"Got it."`
+				`	"Sorry, I don't like the sound of this."`
 					goto out
 
 			`	She waves to the server for the bill as she finishes the last gulp of her smoothie. "Let's go. Everyone will be meeting at the landing pad shortly."`
@@ -7256,7 +7257,7 @@ mission "Adelita 4"
 				launch
 
 			label pistol
-			`	You get up and point your pistol at Bunker while ordering him to stand down. "Don't do this," he says, shrinking from you as he puts his hands up. As you are restraining him you hear the sudden hum of repulsors overhead, replaced simultaneously by the reports of particle cannons from the Quicksilvers! You somehow find yourself letting go of Bunker, the both of you running towards the <ship>, dirt and rock kicking up around you from strafing particle fire- until you're engulfed by a searing yellow beam that splits your body apart as a Quicksilver finally finds its mark.`
+			`	You get up and point your pistol at Bunker while ordering him to stand down. "Don't do this," he says, shrinking from you as he puts his hands up. As you are restraining him you hear the sudden hum of repulsors overhead, replaced simultaneously by the reports of particle cannons from the Quicksilvers! You find yourself letting go of Bunker, the both of you running towards the <ship>, dirt and rock kicking up around you from strafing particle fire- until you're engulfed by a searing yellow beam that splits your body apart as a Quicksilver finally finds its mark.`
 				die
 
 	npc
@@ -7265,10 +7266,6 @@ mission "Adelita 4"
 		ship "Quicksilver" "Dog's Leash"
 		ship "Quicksilver" "Burning Whip"
 		ship "Quicksilver" "Iron Chains"
-
-	npc
-		personality heroic fleeing nemesis vindictive launching forebearing
-		government "Pirate"
 		ship "Vanguard" "Cat o' Nine Tails"
 
 	npc
