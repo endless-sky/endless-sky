@@ -277,6 +277,27 @@ event "kestrel available: more bays"
 		add shipyard "Kestrel"
 
 
+# Remove the Kestrel from Tarazed Advanced for saves that obtained it prior to 0.10.7.
+
+mission "Kestrel Sales Patch'
+	invisible
+	landing
+	to offer
+		has "kestrel available"
+	on offer
+		event "kestrel sales patch"
+		fail
+	
+event "kestrel sales patch"
+	planet Wayfarer
+		add shipyard "Kestrel"
+	shipyard "Tarazed Advanced"
+		remove "Kestrel (More Weapons)"
+		remove "Kestrel (More Enginess)"
+		remove "Kestrel (More Shields)"
+		remove "Kestrel (More Bays)"
+
+
 ship "Unknown Ship Type"
 	sprite "ship/kestrel"
 	thumbnail "thumbnail/kestrel"
