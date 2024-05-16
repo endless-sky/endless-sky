@@ -435,7 +435,7 @@ outfit "Blood of Surtr"
 	thumbnail "outfit/bloodsurtr"
 	"energy generation" 1
 	"heat generation" 4
-	"unique"
+	"unique" 1
 	description "A strange glowing stone gifted to you by Ildico Drifa. It hums with energy and heat."
 
 outfit "Local Map"
