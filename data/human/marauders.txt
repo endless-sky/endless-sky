@@ -29,6 +29,9 @@ ship "Marauder Arrow"
 		"outfit space" 210
 		"weapon capacity" 55
 		"engine capacity" 95
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"self destruct" .25
 		weapon
 			"blast radius" 27
@@ -128,6 +131,9 @@ ship "Marauder Bounder"
 		"outfit space" 240
 		"weapon capacity" 80
 		"engine capacity" 115
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"self destruct" .25
 		weapon
 			"blast radius" 35
@@ -239,6 +245,9 @@ ship "Marauder Falcon"
 		"outfit space" 620
 		"weapon capacity" 275
 		"engine capacity" 165
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"self destruct" .15
 		weapon
 			"blast radius" 170
@@ -377,6 +386,9 @@ ship "Marauder Firebird"
 		"outfit space" 450
 		"weapon capacity" 175
 		"engine capacity" 110
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"self destruct" .25
 		weapon
 			"blast radius" 110
@@ -493,6 +505,9 @@ ship "Marauder Leviathan"
 		"outfit space" 680
 		"weapon capacity" 265
 		"engine capacity" 140
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"self destruct" .15
 		weapon
 			"blast radius" 90
@@ -621,6 +636,9 @@ ship "Marauder Manta"
 		"outfit space" 400
 		"weapon capacity" 155
 		"engine capacity" 110
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"self destruct" .25
 		weapon
 			"blast radius" 90
@@ -749,6 +767,9 @@ ship "Marauder Quicksilver"
 		"outfit space" 265
 		"weapon capacity" 85
 		"engine capacity" 75
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"self destruct" .25
 		weapon
 			"blast radius" 45
@@ -910,6 +931,9 @@ ship "Marauder Raven"
 		"outfit space" 310
 		"weapon capacity" 115
 		"engine capacity" 110
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"self destruct" .25
 		weapon
 			"blast radius" 65
@@ -1022,6 +1046,9 @@ ship "Marauder Splinter"
 		"outfit space" 450
 		"weapon capacity" 165
 		"engine capacity" 110
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"self destruct" .25
 		weapon
 			"blast radius" 60

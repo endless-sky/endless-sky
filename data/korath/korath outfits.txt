@@ -214,6 +214,7 @@ outfit "Afterburner (Asteroid Class)"
 	category "Engines"
 	"cost" 136000
 	thumbnail "outfit/tiny korath afterburner"
+	"engine mod space" 0 # Intentionally zero as it is more a thruster than an afterburner, despite the name.
 	"mass" 9
 	"outfit space" -9
 	"engine capacity" -5
@@ -232,6 +233,7 @@ outfit "Afterburner (Comet Class)"
 	category "Engines"
 	"cost" 299000
 	thumbnail "outfit/small korath afterburner"
+	"engine mod space" -0.97
 	"mass" 19
 	"outfit space" -19
 	"engine capacity" -19
@@ -248,6 +250,7 @@ outfit "Afterburner (Lunar Class)"
 	category "Engines"
 	"cost" 647000
 	thumbnail "outfit/medium korath afterburner"
+	"engine mod space" -1.08
 	"mass" 32
 	"outfit space" -32
 	"engine capacity" -32
@@ -264,6 +267,7 @@ outfit "Afterburner (Planetary Class)"
 	category "Engines"
 	"cost" 1459000
 	thumbnail "outfit/large korath afterburner"
+	"engine mod space" -1.29
 	"mass" 55
 	"outfit space" -55
 	"engine capacity" -55
@@ -281,6 +285,7 @@ outfit "Afterburner (Stellar Class)"
 	category "Engines"
 	"cost" 3280000
 	thumbnail "outfit/huge korath afterburner"
+	"engine mod space" -1.40
 	"mass" 94
 	"outfit space" -94
 	"engine capacity" -94
@@ -365,6 +370,9 @@ outfit "Engine (Meteor Class)"
 	category "Engines"
 	"cost" 187000
 	thumbnail "outfit/tiny korath engine"
+	"steering slot" -1
+	"thruster slot" -1
+	"engine mod space" 1.08
 	"mass" 18
 	"outfit space" -18
 	"engine capacity" -18
@@ -393,6 +401,7 @@ outfit "Bow Drive (Meteor Class)"
 	category "Engines"
 	"cost" 187000
 	thumbnail "outfit/korath bow drive"
+	"reverse thruster slot" -1
 	"mass" 18
 	"outfit space" -18
 	"engine capacity" -15
@@ -416,6 +425,7 @@ outfit "Reverser (Asteroid Class)"
 	category "Engines"
 	"cost" 113000
 	thumbnail "outfit/tiny korath reverser"
+	"reverse thruster slot" -1
 	"mass" 14
 	"outfit space" -14
 	"engine capacity" -7
@@ -434,6 +444,7 @@ outfit "Reverser (Comet Class)"
 	category "Engines"
 	"cost" 249000
 	thumbnail "outfit/small korath reverser"
+	"reverse thruster slot" -1
 	"mass" 24
 	"outfit space" -24
 	"engine capacity" -12
@@ -452,6 +463,7 @@ outfit "Reverser (Lunar Class)"
 	category "Engines"
 	"cost" 539000
 	thumbnail "outfit/medium korath reverser"
+	"reverse thruster slot" -1
 	"mass" 40
 	"outfit space" -40
 	"engine capacity" -20
@@ -470,6 +482,7 @@ outfit "Reverser (Planetary Class)"
 	category "Engines"
 	"cost" 1216000
 	thumbnail "outfit/large korath reverser"
+	"reverse thruster slot" -1
 	"mass" 68
 	"outfit space" -68
 	"engine capacity" -34
@@ -488,6 +501,7 @@ outfit "Reverser (Stellar Class)"
 	category "Engines"
 	"cost" 2733000
 	thumbnail "outfit/huge korath reverser"
+	"reverse thruster slot" -1
 	"mass" 118
 	"outfit space" -118
 	"engine capacity" -59
@@ -507,6 +521,8 @@ outfit "Thruster (Asteroid Class)"
 	category "Engines"
 	"cost" 113000
 	thumbnail "outfit/tiny korath thruster"
+	"thruster slot" -1
+	"engine mod space" 1.08
 	"mass" 14
 	"outfit space" -14
 	"engine capacity" -14
@@ -529,6 +545,8 @@ outfit "Thruster (Comet Class)"
 	category "Engines"
 	"cost" 249000
 	thumbnail "outfit/small korath thruster"
+	"thruster slot" -1
+	"engine mod space" 1.16
 	"mass" 24
 	"outfit space" -24
 	"engine capacity" -24
@@ -551,6 +569,8 @@ outfit "Thruster (Lunar Class)"
 	category "Engines"
 	"cost" 539000
 	thumbnail "outfit/medium korath thruster"
+	"thruster slot" -1
+	"engine mod space" 1.32
 	"mass" 40
 	"outfit space" -40
 	"engine capacity" -40
@@ -573,6 +593,8 @@ outfit "Thruster (Planetary Class)"
 	category "Engines"
 	"cost" 1216000
 	thumbnail "outfit/large korath thruster"
+	"thruster slot" -1
+	"engine mod space" 1.4
 	"mass" 68
 	"outfit space" -68
 	"engine capacity" -68
@@ -595,6 +617,8 @@ outfit "Thruster (Stellar Class)"
 	category "Engines"
 	"cost" 2733000
 	thumbnail "outfit/huge korath thruster"
+	"thruster slot" -1
+	"engine mod space" 1.46
 	"mass" 118
 	"outfit space" -118
 	"engine capacity" -118
@@ -617,6 +641,7 @@ outfit "Steering (Asteroid Class)"
 	category "Engines"
 	"cost" 95000
 	thumbnail "outfit/tiny korath steering"
+	"steering slot" -1
 	"mass" 10
 	"outfit space" -10
 	"engine capacity" -10
@@ -633,6 +658,7 @@ outfit "Steering (Comet Class)"
 	category "Engines"
 	"cost" 221000
 	thumbnail "outfit/small korath steering"
+	"steering slot" -1
 	"mass" 18
 	"outfit space" -18
 	"engine capacity" -18
@@ -649,6 +675,7 @@ outfit "Steering (Lunar Class)"
 	category "Engines"
 	"cost" 473000
 	thumbnail "outfit/medium korath steering"
+	"steering slot" -1
 	"mass" 30
 	"outfit space" -30
 	"engine capacity" -30
@@ -665,6 +692,7 @@ outfit "Steering (Planetary Class)"
 	category "Engines"
 	"cost" 1077000
 	thumbnail "outfit/large korath steering"
+	"steering slot" -1
 	"mass" 52
 	"outfit space" -52
 	"engine capacity" -52
@@ -681,6 +709,7 @@ outfit "Steering (Stellar Class)"
 	category "Engines"
 	"cost" 2435000
 	thumbnail "outfit/huge korath steering"
+	"steering slot" -1
 	"mass" 89
 	"outfit space" -89
 	"engine capacity" -89
@@ -696,6 +725,8 @@ outfit "Arkrof GP Hybrid Thruster"
 	category "Engines"
 	"cost" 165000
 	thumbnail "outfit/tiny efreti thruster"
+	"thruster slot" -1
+	"engine mod space" 0.85
 	"mass" 19
 	"outfit space" -19
 	"engine capacity" -19
@@ -717,6 +748,8 @@ outfit "Farves GP Hybrid Thruster"
 	category "Engines"
 	"cost" 405000
 	thumbnail "outfit/small efreti thruster"
+	"thruster slot" -1
+	"engine mod space" 1.07
 	"mass" 33
 	"outfit space" -33
 	"engine capacity" -33
@@ -738,6 +771,8 @@ outfit "Gaktem GP Hybrid Thruster"
 	category "Engines"
 	"cost" 883000
 	thumbnail "outfit/medium efreti thruster"
+	"thruster slot" -1
+	"engine mod space" 1.24
 	"mass" 57
 	"outfit space" -57
 	"engine capacity" -57
@@ -759,6 +794,8 @@ outfit "Nelmeb GP Hybrid Thruster"
 	category "Engines"
 	"cost" 1649000
 	thumbnail "outfit/large efreti thruster"
+	"thruster slot" -1
+	"engine mod space" 1.40
 	"mass" 86
 	"outfit space" -86
 	"engine capacity" -86
@@ -781,6 +818,7 @@ outfit "Arkrof GP Hybrid Steering"
 	category "Engines"
 	"cost" 131000
 	thumbnail "outfit/tiny efreti steering"
+	"steering slot" -1
 	"mass" 12
 	"outfit space" -12
 	"engine capacity" -12
@@ -796,6 +834,7 @@ outfit "Farves GP Hybrid Steering"
 	category "Engines"
 	"cost" 413000
 	thumbnail "outfit/small efreti steering"
+	"steering slot" -1
 	"mass" 24
 	"outfit space" -24
 	"engine capacity" -24
@@ -812,6 +851,7 @@ outfit "Gaktem GP Hybrid Steering"
 	category "Engines"
 	"cost" 833000
 	thumbnail "outfit/medium efreti steering"
+	"steering slot" -1
 	"mass" 42
 	"outfit space" -42
 	"engine capacity" -42
@@ -828,6 +868,7 @@ outfit "Nelmeb GP Hybrid Steering"
 	category "Engines"
 	"cost" 1439000
 	thumbnail "outfit/large efreti steering"
+	"steering slot" -1
 	"mass" 67
 	"outfit space" -67
 	"engine capacity" -67

@@ -1,5 +1,5 @@
-/* ShipInfoPanel.h
-Copyright (c) 2017 by Michael Zahniser
+/* HardpointInfoPanel.h
+Copyright (c) 2024 by Zitchas
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SHIP_INFO_PANEL_H_
-#define SHIP_INFO_PANEL_H_
+#ifndef WEAPON_INFO_PANEL_H_
+#define WEAPON_INFO_PANEL_H_
 
 #include "Panel.h"
 
@@ -39,10 +39,10 @@ class Rectangle;
 // This panel displays detailed information about one of the player's ships. If
 // they are landed on a planet, it also allows the player to change weapon
 // hardpoints. In flight, this panel allows them to jettison cargo.
-class ShipInfoPanel : public Panel {
+class HardpointInfoPanel : public Panel {
 public:
-	explicit ShipInfoPanel(PlayerInfo &player);
-	explicit ShipInfoPanel(PlayerInfo &player, InfoPanelState state);
+	explicit HardpointInfoPanel(PlayerInfo &player);
+	explicit HardpointInfoPanel(PlayerInfo &player, InfoPanelState state);
 
 	virtual void Step() override;
 	virtual void Draw() override;
@@ -50,7 +50,7 @@ public:
 
 protected:
 	// Only override the ones you need; the default action is to return false.
-	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
+	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command & command, bool isNewPress) override;
 	virtual bool Click(int x, int y, int clicks) override;
 	virtual bool Hover(int x, int y) override;
 	virtual bool Drag(double dx, double dy) override;
@@ -63,16 +63,13 @@ private:
 	void ClearZones();
 
 	// Draw the ship tab (and its subsections).
-	void DrawShipStats(const Rectangle &bounds);
-	void DrawOutfits(const Rectangle &bounds, Rectangle &cargoBounds);
-	void DrawSprite(const Rectangle &bounds);
-	void DrawThumbnail(const Rectangle & bounds);
-	void DrawCargo(const Rectangle &bounds);
+	void DrawWeapons(const Rectangle & bounds);
+	void DrawAmmunition(const Rectangle &bounds, Rectangle & cargoBounds);
 
 	// Helper functions.
-	void DrawLine(const Point &from, const Point &to, const Color &color) const;
-	bool Hover(const Point &point);
-	void Rename(const std::string &name);
+	void DrawLine(const Point & from, const Point & to, const Color & color) const;
+	bool Hover(const Point & point);
+	void Rename(const std::string & name);
 	bool CanDump() const;
 	void Dump();
 	void DumpPlunder(int count);
@@ -81,18 +78,18 @@ private:
 
 
 private:
-	PlayerInfo &player;
+	PlayerInfo & player;
 	// This is the currently selected ship.
 	std::vector<std::shared_ptr<Ship>>::const_iterator shipIt;
 
 	// Information about the currently selected ship.
 	ShipInfoDisplay info;
-	std::map<std::string, std::vector<const Outfit *>> outfits;
+	std::map<std::string, std::vector<const Outfit*>> outfits;
 
 	// Track all the clickable parts of the UI (other than the buttons).
 	std::vector<ClickZone<int>> zones;
 	std::vector<ClickZone<std::string>> commodityZones;
-	std::vector<ClickZone<const Outfit *>> plunderZones;
+	std::vector<ClickZone<const Outfit*>> plunderZones;
 	// Keep track of which item the mouse is hovering over and which item is
 	// currently being dragged.
 	int hoverIndex = -1;
@@ -104,7 +101,15 @@ private:
 	Point hoverPoint;
 	// Track whether a commodity or plundered outfit is selected to jettison.
 	std::string selectedCommodity;
-	const Outfit *selectedPlunder = nullptr;
+	const Outfit * selectedPlunder = nullptr;
+
+	// Table variables
+	std::vector<std::string> attributeHeaderLabels;
+	std::vector<std::string> attributeHeaderValues;
+
+	std::vector<std::string> tableLabels;
+	std::vector<std::string> energyTable;
+	std::vector<std::string> heatTable;
 };
 
 

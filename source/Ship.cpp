@@ -855,7 +855,8 @@ void Ship::FinishLoading(bool isNewInstance)
 
 	// Issue warnings if this ship has is misconfigured, e.g. is missing required values
 	// or has negative outfit, cargo, weapon, or engine capacity.
-	for(auto &&attr : set<string>{"outfit space", "cargo space", "weapon capacity", "engine capacity"})
+	for(auto &&attr : set<string>{"outfit space", "cargo space", "weapon capacity", "engine capacity",
+		"engine mod space", "reverse thruster slot", "steering slot", "thruster slot"})
 	{
 		double val = attributes.Get(attr);
 		if(val < 0)
@@ -4750,10 +4751,11 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 		else if(!attributes.Get("lateral thrust ratio"))
 		{
 			// lateralThrustValue = GameData::GetGamerules().DefaultLateralThrustRatio();
-			if(mass < 2500)
-				lateralThrustValue = (3000 - mass) / 3500;
-			else
-				lateralThrustValue = 0.1;
+			double tempLateralThrustRatio = (3000 - mass) / 3500;
+			double defaultLateralThrustRatio = GameData::GetGamerules().DefaultLateralThrustRatio();
+			if(tempLateralThrustRatio > defaultLateralThrustRatio)
+				lateralThrustValue = tempLateralThrustRatio;
+			else lateralThrustValue = defaultLateralThrustRatio;
 		}
 
 		if(latThrustCommand)

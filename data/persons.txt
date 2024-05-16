@@ -37,6 +37,9 @@ person "Michael Zahniser"
 			"outfit space" 2400
 			"weapon capacity" 900
 			"engine capacity" 400
+			"reverse thruster slot" 1
+			"steering slot" 2
+			"thruster slot" 1
 		outfits
 			"Ion Cannon" 12
 			"Electron Turret" 4
@@ -250,6 +253,9 @@ ship "Marauder Fury"
 		"outfit space" 256
 		"weapon capacity" 96
 		"engine capacity" 100
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"ramscoop" 2
 		weapon
 			"blast radius" 36
@@ -368,6 +374,9 @@ person "Captain Nate"
 			"outfit space" 1215
 			"weapon capacity" 450
 			"engine capacity" 330
+			"reverse thruster slot" 1
+			"steering slot" 1
+			"thruster slot" 1
 			weapon
 				"blast radius" 160
 				"shield damage" 1600
@@ -479,6 +488,9 @@ ship "Lampyrid-Class Transport"
 		"cargo space" 160
 		"outfit space" 260
 		"engine capacity" 105
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 100
 			"shield damage" 1000
@@ -630,6 +642,10 @@ ship "Modified Osprey"
 		"outfit space" 2172
 		"weapon capacity" 851
 		"engine capacity" 499
+		"engine mod space" 4
+		"reverse thruster slot" 1
+		"steering slot" 4
+		"thruster slot" 2
 		"afterburner fuel" -.678
 		"afterburner heat" -30
 		"ramscoop" 6
@@ -788,7 +804,7 @@ ship "Ursa Polaris"
 	plural "Ursa Polaris"
 	sprite "ship/localworldship"
 	attributes
-		category "Heavy Warship"
+		category "Unclassified"
 		cost 142857
 		shields 39000
 		hull 27000
@@ -812,6 +828,9 @@ ship "Ursa Polaris"
 		"outfit space" 1768
 		"weapon capacity" 861
 		"engine capacity" 301
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 3
 		weapon
 			"blast radius" 1000
 			"shield damage" 4000
@@ -1235,6 +1254,9 @@ ship "Marauder Bactrian"
 		"outfit space" 1526
 		"weapon capacity" 1000
 		"engine capacity" 220
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 260
 			"shield damage" 2600
@@ -1437,6 +1459,9 @@ ship "Modified Boxwing"
 		"outfit space" 350
 		"weapon capacity" 130
 		"engine capacity" 100
+		"reverse thruster slot" 1
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 12
 			"shield damage" 120
@@ -1543,6 +1568,9 @@ ship "Modified Battleship"
 		"outfit space" 1152
 		"weapon capacity" 592
 		"engine capacity" 123
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"spinal mount" 1
 		weapon
 			"blast radius" 340
@@ -1784,6 +1812,9 @@ ship "Modified Ladybug"
 		"outfit space" 647
 		"weapon capacity" 206
 		"engine capacity" 153
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 2
 
 		# Features from original Ladybug:
 		"ramscoop" 0.5
@@ -1999,6 +2030,9 @@ ship "Waverider"
 		"outfit space" 346
 		"weapon capacity" 120
 		"engine capacity" 54
+		"reverse thruster slot" 1
+		"steering slot" 2
+		"thruster slot" 1
 		weapon
 			"blast radius" 340
 			"shield damage" 3400

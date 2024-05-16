@@ -342,6 +342,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Visual.h
 	Weapon.cpp
 	Weapon.h
+	HardpointInfoPanel.cpp
+	HardpointInfoPanel.h
 	Weather.cpp
 	Weather.h
 	WeightedList.h

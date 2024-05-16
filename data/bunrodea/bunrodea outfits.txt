@@ -223,6 +223,8 @@ outfit "Chiisana Rift Thruster"
 	category "Engines"
 	cost 130000
 	thumbnail "outfit/chiisana rift thruster"
+	"thruster slot" -1
+	"engine mod space" 0.76
 	"mass" 11
 	"outfit space" -11
 	"engine capacity" -11
@@ -248,6 +250,8 @@ outfit "Nami Rift Thruster"
 	category "Engines"
 	cost 262000
 	thumbnail "outfit/nami rift thruster"
+	"thruster slot" -1
+	"engine mod space" 0.86
 	"mass" 19
 	"outfit space" -19
 	"engine capacity" -19
@@ -273,6 +277,8 @@ outfit "Ookii Rift Thruster"
 	category "Engines"
 	cost 512000
 	thumbnail "outfit/ookii rift thruster"
+	"thruster slot" -1
+	"engine mod space" 1.05
 	"mass" 32
 	"outfit space" -32
 	"engine capacity" -32
@@ -298,6 +304,8 @@ outfit "Subarashii Rift Thruster"
 	category "Engines"
 	cost 1004000
 	thumbnail "outfit/subarashii rift thruster"
+	"thruster slot" -1
+	"engine mod space" 1.23
 	"mass" 55
 	"outfit space" -55
 	"engine capacity" -55
@@ -322,6 +330,7 @@ outfit "Chiisana Rift Steering"
 	category "Engines"
 	cost 201000
 	thumbnail "outfit/chiisana rift steering"
+	"steering slot" -1
 	"mass" 17
 	"outfit space" -17
 	"engine capacity" -17
@@ -334,6 +343,7 @@ outfit "Nami Rift Steering"
 	category "Engines"
 	cost 442000
 	thumbnail "outfit/nami rift steering"
+	"steering slot" -1
 	"mass" 31
 	"outfit space" -31
 	"engine capacity" -31
@@ -346,6 +356,7 @@ outfit "Ookii Rift Steering"
 	category "Engines"
 	cost 940000
 	thumbnail "outfit/ookii rift steering"
+	"steering slot" -1
 	"mass" 53
 	"outfit space" -53
 	"engine capacity" -53
@@ -358,6 +369,7 @@ outfit "Subarashii Rift Steering"
 	category "Engines"
 	cost 1577000
 	thumbnail "outfit/subarashii rift steering"
+	"steering slot" -1
 	"mass" 90
 	"outfit space" -90
 	"engine capacity" -90

@@ -19,7 +19,7 @@ ship "vyu-Ir"
 	swizzle 0
 	"never disabled"
 	attributes
-		category "Heavy Warship"
+		category "Unclassified"
 		"cost" 77777777
 		"shields" 68000
 		"shield generation" 13
@@ -37,6 +37,9 @@ ship "vyu-Ir"
 		"outfit space" 1000
 		"weapon capacity" 1000
 		"engine capacity" 1000
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		
 		"energy capacity" 60000
 		"energy generation" 80

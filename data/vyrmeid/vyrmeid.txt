@@ -20,7 +20,7 @@ ship "Vyrmeid"
 	swizzle 0
 	"never disabled"
 	attributes
-		"category" "Fighter"
+		"category" "Unclassified Minor"
 		"cost" 0
 		"shields" 0
 		"hull" 400
@@ -78,7 +78,7 @@ ship "Vyrmeid" "Vyrmeid (B)"
 	swizzle 0
 	"never disabled"
 	attributes
-		"category" "Fighter"
+		"category" "Unclassified Minor"
 		"cost" 0
 		"shields" 0
 		"hull" 1420
@@ -130,7 +130,7 @@ ship "Vyrmeid" "Vyrmeid (C)"
 	swizzle 0
 	"never disabled"
 	attributes
-		category "Fighter"
+		category "Unclassified Minor"
 		"cost" 0
 		"shields" 0
 		"hull" 860
@@ -185,7 +185,7 @@ ship "Astral Cetacean"
 	swizzle 0
 	"never disabled"
 	attributes
-		category "Transport"
+		category "Unclassified"
 		"cost" 0
 		"shields" 0
 		"hull" 11000

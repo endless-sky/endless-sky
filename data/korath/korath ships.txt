@@ -31,6 +31,9 @@ ship "Rano'erek"
 		"outfit space" 763
 		"weapon capacity" 276
 		"engine capacity" 206
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 300
 			"shield damage" 4600
@@ -114,6 +117,9 @@ ship "Palavret"
 		"outfit space" 777
 		"weapon capacity" 339
 		"engine capacity" 159
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 250
 			"shield damage" 3600
@@ -191,6 +197,9 @@ ship "Tubfalet"
 		"outfit space" 871
 		"weapon capacity" 377
 		"engine capacity" 212
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 250
 			"shield damage" 3700
@@ -212,7 +221,7 @@ ship "Tubfalet"
 		"Thermal Repeater Rifle" 196
 		
 		"Thruster (Planetary Class)"
-		"Thruster (Lunar Class)"
+		# "Thruster (Lunar Class)" # Extra thrustera
 		"Steering (Planetary Class)"
 		"Jump Drive"
 	
@@ -304,6 +313,9 @@ ship "'nra'ret"
 		"outfit space" 943
 		"weapon capacity" 407
 		"engine capacity" 177
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 300
 			"shield damage" 4400
@@ -377,6 +389,9 @@ ship "'olofez"
 		"outfit space" 92
 		"weapon capacity" 25
 		"engine capacity" 30
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 48
 			"shield damage" 320
@@ -417,6 +432,9 @@ ship "Kas'ik Tek 7"
 		"cargo space" 4
 		"outfit space" 48
 		"engine capacity" 18
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"atmosphere scan" 100
 		"outfit scan power" 18
 		"outfit scan efficiency" 20
@@ -462,6 +480,9 @@ ship "Rai'alorej"
 		"outfit space" 856
 		"weapon capacity" 237
 		"engine capacity" 195
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 600
 			"shield damage" 9000
@@ -543,6 +564,9 @@ ship "Ikatila'ej"
 		"outfit space" 1314
 		"weapon capacity" 440
 		"engine capacity" 259
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"spinal mount" 1
 		weapon
 			"blast radius" 600
@@ -620,6 +644,9 @@ ship "Lor'kas Ik 577"
 		"outfit space" 883
 		"weapon capacity" 338
 		"engine capacity" 238
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 400
 			"shield damage" 8000
@@ -696,6 +723,9 @@ ship "Ra'gru Ik 618"
 		"outfit space" 1278
 		"weapon capacity" 633
 		"engine capacity" 263
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 400
 			"shield damage" 8000
@@ -782,6 +812,9 @@ ship "Kas'lor Ik 582"
 		"outfit space" 839
 		"weapon capacity" 321
 		"engine capacity" 241
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 400
 			"shield damage" 8000
@@ -855,6 +888,9 @@ ship "Lor'nag Ik 590"
 		"outfit space" 856
 		"weapon capacity" 321
 		"engine capacity" 241
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 400
 			"shield damage" 8000
@@ -930,6 +966,9 @@ ship "Ra'at Ik 621"
 		"outfit space" 999
 		"weapon capacity" 407
 		"engine capacity" 277
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 400
 			"shield damage" 8000
@@ -1019,6 +1058,9 @@ ship "Kasichara A'awoj"
 		"outfit space" 1038
 		"weapon capacity" 331
 		"engine capacity" 251
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 400
 			"shield damage" 8000
@@ -1089,6 +1131,9 @@ ship "Korsmanath A'awoj"
 		"outfit space" 3180
 		"weapon capacity" 1148
 		"engine capacity" 480
+		"reverse thruster slot" 2
+		"steering slot" 2
+		"thruster slot" 2
 		"atmosphere scan" 100
 		weapon
 			"blast radius" 400
@@ -1324,6 +1369,9 @@ ship "Echo-Galleon"
 		"outfit space" 721
 		"weapon capacity" 285
 		"engine capacity" 155
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 1000
 			"shield damage" 4000
@@ -1386,6 +1434,9 @@ ship "Arch-Carrack"
 		"outfit space" 582
 		"weapon capacity" 193
 		"engine capacity" 147
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"disruption resistance" 0.24
 		"disruption resistance energy" 2.4
 		"disruption resistance heat" 2.4
@@ -1407,7 +1458,7 @@ ship "Arch-Carrack"
 		"Thermal Repeater Rifle" 55
 		
 		"Gaktem GP Hybrid Thruster"
-		"Farves GP Hybrid Thruster"
+		# "Farves GP Hybrid Thruster" # Extra thruster
 		"Gaktem GP Hybrid Steering"
 		"Scram Drive"
 
@@ -1450,6 +1501,9 @@ ship "Charm-Shallop"
 		"outfit space" 473
 		"weapon capacity" 158
 		"engine capacity" 129
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"disruption resistance" 0.2
 		"disruption resistance energy" 2
 		"disruption resistance heat" 2
@@ -1509,6 +1563,9 @@ ship "Kar Ik Vot 349"
 		"outfit space" 1054
 		"weapon capacity" 447
 		"engine capacity" 173
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"self destruct" .8
 		"ramscoop" 3
 		weapon
@@ -1577,6 +1634,9 @@ ship "Tek Far 71 - Lek"
 		"outfit space" 533
 		"weapon capacity" 235
 		"engine capacity" 102
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"self destruct" .7
 		"ramscoop" 3
 		weapon
@@ -1658,6 +1718,9 @@ ship "Tek Far 78 - Osk"
 		"outfit space" 611
 		"weapon capacity" 272
 		"engine capacity" 117
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"self destruct" .7
 		"ramscoop" 3
 		weapon
@@ -1739,6 +1802,9 @@ ship "Tek Far 109"
 		"outfit space" 491
 		"weapon capacity" 217
 		"engine capacity" 98
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"self destruct" .7
 		"ramscoop" 3
 		weapon
@@ -1828,6 +1894,9 @@ ship "Met Par Tek 53"
 		"outfit space" 610
 		"weapon capacity" 213
 		"engine capacity" 110
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"self destruct" .65
 		"ramscoop" 3
 		weapon
@@ -1886,6 +1955,9 @@ ship "Far Lek 14"
 		"outfit space" 65
 		"weapon capacity" 11
 		"engine capacity" 24
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"self destruct" .6
 		weapon
 			"blast radius" 5
@@ -1927,6 +1999,9 @@ ship "Far Osk 27"
 		"outfit space" 99
 		"weapon capacity" 33
 		"engine capacity" 24
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"self destruct" .6
 		weapon
 			"blast radius" 12
@@ -1971,6 +2046,9 @@ ship "Model 8"
 		"outfit space" 220
 		"weapon capacity" 49
 		"engine capacity" 60
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"self destruct" .60
 		"ramscoop" 3
 		weapon
@@ -2019,6 +2097,9 @@ ship "Model 16"
 		"outfit space" 426
 		"weapon capacity" 149
 		"engine capacity" 107
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"self destruct" .65
 		"ramscoop" 3
 		weapon
@@ -2074,6 +2155,9 @@ ship "Model 32"
 		"outfit space" 481
 		"weapon capacity" 205
 		"engine capacity" 110
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"self destruct" .70
 		"ramscoop" 3
 		weapon
@@ -2130,6 +2214,9 @@ ship "Model 64"
 		"outfit space" 567
 		"weapon capacity" 263
 		"engine capacity" 114
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"self destruct" .74
 		"ramscoop" 3
 		weapon
@@ -2150,7 +2237,7 @@ ship "Model 64"
 		"Reasoning Node" 2
 		
 		"Thruster (Lunar Class)"
-		"Thruster (Asteroid Class)"
+		# "Thruster (Asteroid Class)" # Extra thruster
 		"Steering (Planetary Class)"
 		Hyperdrive
 	
@@ -2188,6 +2275,9 @@ ship "Model 128"
 		"outfit space" 713
 		"weapon capacity" 344
 		"engine capacity" 132
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"self destruct" .77
 		"ramscoop" 3
 		weapon
@@ -2208,7 +2298,7 @@ ship "Model 128"
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
-		"Steering (Asteroid Class)"
+		# "Steering (Asteroid Class)" # Extra steering
 		Hyperdrive
 
 	engine -14 178
@@ -2247,6 +2337,9 @@ ship "Model 256"
 		"outfit space" 857
 		"weapon capacity" 393
 		"engine capacity" 145
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"self destruct" .79
 		"ramscoop" 3
 		weapon
@@ -2268,7 +2361,7 @@ ship "Model 256"
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
-		"Steering (Comet Class)"
+		# "Steering (Comet Class)" # Extra steering
 		Hyperdrive
 
 	engine -60 147
@@ -2308,6 +2401,9 @@ ship "Model 512"
 		"outfit space" 994
 		"weapon capacity" 440
 		"engine capacity" 161
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"self destruct" .80
 		"ramscoop" 3
 		weapon

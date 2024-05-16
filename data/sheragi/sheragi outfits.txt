@@ -70,6 +70,9 @@ outfit "Fission Drive"
 	category "Engines"
 	cost 2650000
 	thumbnail "outfit/fissiondrive"
+	"steering slot" -1
+	"thruster slot" -1
+	"engine mod space" 1.11
 	"mass" 71
 	"outfit space" -71
 	"engine capacity" -38
@@ -103,6 +106,10 @@ outfit "Fusion Drive"
 	category "Engines"
 	cost 80000000
 	thumbnail "outfit/fusiondrive"
+	"reverse thruster slot" -1
+	"steering slot" -1
+	"thruster slot" -1
+	"engine mod space" 1.5
 	"mass" 480
 	"outfit space" -480
 	"engine capacity" -230

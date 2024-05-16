@@ -265,6 +265,9 @@ ship "Geodesic Geocoris"
 		"outfit space" 555
 		"weapon capacity" 250
 		"engine capacity" 134
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"energy capacity" 5200
 		"shield generation" 6.0
 		"shield energy" 8.8
@@ -291,7 +294,7 @@ ship "Geodesic Geocoris"
 
 		"A525 Atomic Steering"
 		`"Biroo" Atomic Thruster`
-		"AR120 Reverse Thruster" 2
+		"AR120 Reverse Thruster" # Extra reverse thruster
 		Hyperdrive
 
 	turret 0 -82.5 "Pulse Turret"
@@ -318,7 +321,7 @@ ship "Geodesic Geocoris" "Geodesic Geocoris (Phylactery)"
 	outfits
 		"Electron Turret" 3
 		"Chameleon Anti-Missile" 2
-		"AR120 Reverse Thruster" 2
+		"AR120 Reverse Thruster"  # Extra reverse thruster
 		"Boulder Reactor"
 		"Hai Ravine Batteries"
 		"Outfits Expansion"

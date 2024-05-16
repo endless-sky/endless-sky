@@ -29,6 +29,9 @@ ship "Aphid"
 		"outfit space" 185
 		"weapon capacity" 37
 		"engine capacity" 48
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 30
 			"shield damage" 300
@@ -100,6 +103,9 @@ ship "Centipede"
 		"outfit space" 375
 		"weapon capacity" 78
 		"engine capacity" 88
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 60
 			"shield damage" 600
@@ -118,7 +124,7 @@ ship "Centipede"
 		"Quantum Keystone"
 		`"Biroo" Atomic Thruster`
 		`"Biroo" Atomic Steering`
-		`"Basrem" Atomic Steering`
+		# `"Basrem" Atomic Steering` # Extra steering
 		Hyperdrive
 		
 	engine -15 113
@@ -152,7 +158,7 @@ ship "Centipede" "Centipede (Pulse)"
 		"Quantum Keystone"
 		"Pulse Rifle" 24
 		`"Biroo" Atomic Thruster`
-		`"Basrem" Atomic Steering`
+		# `"Basrem" Atomic Steering` # Extra steering
 		`"Biroo" Atomic Steering`
 		Hyperdrive
 
@@ -162,7 +168,7 @@ ship "Centipede" "Centipede (Durable)"
 		Hyperdrive
 		"Outfits Expansion"
 		"Quantum Keystone"
-		`"Basrem" Atomic Steering`
+		# `"Basrem" Atomic Steering` # Extra steering
 		"Bullfrog Anti-Missile" 3
 		"Tracker Storage Pod" 2
 		"Hai Tracker Pod" 2
@@ -182,7 +188,7 @@ ship "Centipede" "Centipede (Refugees)"
 		Hyperdrive
 		"Outfits Expansion"
 		"Quantum Keystone"
-		`"Basrem" Atomic Steering`
+		# `"Basrem" Atomic Steering` # Extra steering
 		"Bullfrog Anti-Missile" 3
 		"Tracker Storage Pod" 2
 		"Hai Tracker Pod" 2
@@ -215,6 +221,9 @@ ship "Cicada"
 		"outfit space" 323
 		"weapon capacity" 89
 		"engine capacity" 64
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 80
 			"shield damage" 960
@@ -267,6 +276,9 @@ ship "Flea"
 		"outfit space" 63
 		"weapon capacity" 13
 		"engine capacity" 22
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"automaton" 1
 		weapon
 			"blast radius" 6
@@ -318,6 +330,9 @@ ship "Geocoris"
 		"outfit space" 582
 		"weapon capacity" 172
 		"engine capacity" 94
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 300
 			"shield damage" 3000
@@ -402,6 +417,9 @@ ship "Grasshopper"
 		"outfit space" 198
 		"weapon capacity" 47
 		"engine capacity" 61
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 36
 			"shield damage" 180
@@ -495,6 +513,9 @@ ship "Lightning Bug"
 		"outfit space" 278
 		"weapon capacity" 87
 		"engine capacity" 93
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 84
 			"shield damage" 840
@@ -597,6 +618,9 @@ ship "Ladybug"
 		"outfit space" 460
 		"weapon capacity" 170
 		"engine capacity" 120
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 
 		# Expensive features mentioned in description:
 		"ramscoop" 0.25
@@ -709,7 +733,7 @@ ship "Ladybug" "Ladybug (Tracker)"
 		"Boulder Reactor"
 		"Pulse Rifle" 7
 		
-		`"Basrem" Atomic Steering`
+		# `"Basrem" Atomic Steering` # Extra steering
 		`"Biroo" Atomic Steering`
 		`"Bondir" Atomic Thruster`
 		"Hyperdrive"
@@ -740,6 +764,9 @@ ship "Pond Strider"
 		"outfit space" 354
 		"weapon capacity" 144
 		"engine capacity" 76
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 200
 			"shield damage" 1500
@@ -890,6 +917,9 @@ ship "Sea Scorpion"
 		"outfit space" 510
 		"weapon capacity" 188
 		"engine capacity" 117
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 84
 			"shield damage" 840
@@ -1047,6 +1077,9 @@ ship "Scarab"
 		"outfit space" 231
 		"weapon capacity" 49
 		"engine capacity" 93
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 52
 			"shield damage" 540
@@ -1098,6 +1131,9 @@ ship "Shield Beetle"
 		"outfit space" 798
 		"weapon capacity" 333
 		"engine capacity" 150
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 400
 			"shield damage" 4000
@@ -1496,6 +1532,9 @@ ship "Emperor Beetle"
 		"cargo space" 27
 		"weapon capacity" 352
 		"engine capacity" 139
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		# Expensive features inherited from Ladybug-era technology, with some fuel (and improved heat dissipation):
 		"heat dissipation" 0.7
 		"tactical scan power" 30
@@ -1611,6 +1650,9 @@ ship "Solifuge"
 		"outfit space" 828
 		"weapon capacity" 342
 		"engine capacity" 166
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 450
 			"shield damage" 4500
@@ -1629,7 +1671,7 @@ ship "Solifuge"
 		"Hai Williwaw Cooling" 6
 		"Quantum Keystone"
 		"Pulse Rifle" 62
-		`"Benga" Atomic Steering`
+		# `"Benga" Atomic Steering` # Extra steering
 		`"Bufaer" Atomic Steering`
 		`"Bondir" Atomic Thruster`
 		"Hyperdrive"
@@ -1685,7 +1727,7 @@ ship "Solifuge" "Solifuge (Jump)"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 6
 		"Pulse Rifle" 86
-		`"Benga" Atomic Steering`
+		# `"Benga" Atomic Steering` # Extra steering
 		`"Bufaer" Atomic Steering`
 		`"Bondir" Atomic Thruster`
 		"Jump Drive"
@@ -1703,7 +1745,7 @@ ship "Solifuge" "Solifuge (Jump, Pulse)"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 8
 		"Pulse Rifle" 71
-		`"Benga" Atomic Steering`
+		# `"Benga" Atomic Steering` # Extra steering
 		`"Bufaer" Atomic Steering`
 		`"Bondir" Atomic Thruster`
 		"Jump Drive"
@@ -1727,7 +1769,7 @@ ship "Solifuge" "Solifuge (Jump, Tracker)"
 		"Hai Diamond Regenerator" 2
 		"Hai Williwaw Cooling" 6
 		"Pulse Rifle" 68
-		`"Benga" Atomic Steering`
+		# `"Benga" Atomic Steering` # Extra steering
 		`"Bufaer" Atomic Steering`
 		`"Bondir" Atomic Thruster`
 		"Jump Drive"
@@ -1745,7 +1787,7 @@ ship "Solifuge" "Solifuge (Pulse)"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 8
 		"Pulse Rifle" 62
-		`"Benga" Atomic Steering`
+		# `"Benga" Atomic Steering` # Extra steering
 		`"Bufaer" Atomic Steering`
 		`"Bondir" Atomic Thruster`
 		"Hyperdrive"
@@ -1769,7 +1811,7 @@ ship "Solifuge" "Solifuge (Tracker)"
 		"Hai Diamond Regenerator" 2
 		"Hai Williwaw Cooling" 6
 		"Pulse Rifle" 59
-		`"Benga" Atomic Steering`
+		# `"Benga" Atomic Steering` # Extra steering
 		`"Bufaer" Atomic Steering`
 		`"Bondir" Atomic Thruster`
 		"Hyperdrive"
@@ -1792,6 +1834,9 @@ ship "Violin Spider"
 		"outfit space" 92
 		"weapon capacity" 23
 		"engine capacity" 30
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 12
 			"shield damage" 120
@@ -1849,6 +1894,9 @@ ship "Water Bug"
 		"outfit space" 368
 		"weapon capacity" 145
 		"engine capacity" 64
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 124
 			"shield damage" 1240

@@ -86,8 +86,12 @@ gamerules
 
 	# All ships typically need some degree of station keeping lateral thrust capability,
 	# as such, while ships should have a defined ratio of how much lateral thrust they have
-	# as a portion of their regular thrust; a default value is required to ensure that
-	# plug-in ships and others that may not be updated to handle lateral thrust will have some.
+	# as a portion of their regular thrust; the engine will calculate a default value based on the
+	# higher of two values: THis default lateral thrust ratio, or "(3000-mass)/3500".
+	# As such, the game will try to calculate a scaling ratio that allows small ships higher lateral thrust,
+	# but this default value serves as a minimum.
+	# Note that in all cases, if a ship has a specified lateral thrust ratio,
+	# that overrides both calculation and the default specified here.
 	# DEFAULT: 0.25 (one quarter of their regular thrust)
 	# ALLOWABLE VALUES: any double (negatives will cause lateral left and right to be inverted,
 	# while values greater than 1 will result in ships that can go faster sideways than forwards)

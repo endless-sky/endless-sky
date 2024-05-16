@@ -243,6 +243,8 @@ outfit "Pug Akfar Thruster"
 	category "Engines"
 	"cost" 608000
 	thumbnail "outfit/pug akfar thruster"
+	"thruster slot" -1
+	"engine mod space" 1.15
 	"mass" 43
 	"outfit space" -43
 	"engine capacity" -43
@@ -264,6 +266,7 @@ outfit "Pug Akfar Steering"
 	category "Engines"
 	"cost" 472000
 	thumbnail "outfit/pug akfar steering"
+	"steering slot" -1
 	"mass" 33
 	"outfit space" -33
 	"engine capacity" -33
@@ -279,6 +282,8 @@ outfit "Pug Cormet Thruster"
 	category "Engines"
 	"cost" 1050000
 	thumbnail "outfit/pug cormet thruster"
+	"thruster slot" -1
+	"engine mod space" 1.27
 	"mass" 60
 	"outfit space" -60
 	"engine capacity" -60
@@ -300,6 +305,7 @@ outfit "Pug Cormet Steering"
 	category "Engines"
 	"cost" 880000
 	thumbnail "outfit/pug cormet steering"
+	"steering slot" -1
 	"mass" 46
 	"outfit space" -46
 	"engine capacity" -46
@@ -315,6 +321,8 @@ outfit "Pug Lohmar Thruster"
 	category "Engines"
 	"cost" 1740000
 	thumbnail "outfit/pug lohmar thruster"
+	"thruster slot" -1
+	"engine mod space" 1.39
 	"mass" 84
 	"outfit space" -84
 	"engine capacity" -84
@@ -336,6 +344,7 @@ outfit "Pug Lohmar Steering"
 	category "Engines"
 	"cost" 1580000
 	thumbnail "outfit/pug lohmar steering"
+	"steering slot" -1
 	"mass" 64
 	"outfit space" -64
 	"engine capacity" -64
