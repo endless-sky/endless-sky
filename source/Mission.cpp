@@ -990,7 +990,7 @@ bool Mission::IsUnique() const
 // used as the callback for any UI panel that returns a value.
 bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<Ship> &boardingShip)
 {
-	if(HasFailed(player))
+	if(IsFailed(player))
 		return false;
 
 	if(trigger == STOPOVER)
