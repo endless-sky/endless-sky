@@ -584,7 +584,7 @@ int64_t CargoHold::Value(const System *system) const
 // be charged for any illegal outfits plus the sum of the fines for all
 // missions. If the returned value is negative, you are carrying something so
 // bad that it warrants a death sentence.
-int CargoHold::IllegalCargoFine(const Government *government) const
+int CargoHold::IllegalCargoFine(const Government *government, const PlayerInfo &player) const
 {
 	int totalFine = 0;
 	// Carrying an illegal outfit is only half as bad as having it equipped.
@@ -613,7 +613,7 @@ int CargoHold::IllegalCargoFine(const Government *government) const
 		int fine = it.first->IllegalCargoFine();
 		if(fine < 0)
 			return fine;
-		if(!it.first->IsFailed())
+		if(!it.first->IsFailed(player))
 			totalFine += fine;
 	}
 
@@ -622,7 +622,7 @@ int CargoHold::IllegalCargoFine(const Government *government) const
 		int fine = it.first->IllegalCargoFine();
 		if(fine < 0)
 			return fine;
-		if(!it.first->IsFailed())
+		if(!it.first->IsFailed(player))
 			totalFine += fine;
 	}
 

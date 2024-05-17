@@ -132,8 +132,7 @@ public:
 	bool HasSpace(const Ship &ship) const;
 	bool CanComplete(const PlayerInfo &player) const;
 	bool IsSatisfied(const PlayerInfo &player) const;
-	bool HasFailed(const PlayerInfo &player) const;
-	bool IsFailed() const;
+	bool IsFailed(const PlayerInfo &player) const;
 	bool OverridesCapture() const;
 	// Mark a mission failed (e.g. due to a "fail" action in another mission).
 	void Fail();
