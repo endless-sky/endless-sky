@@ -802,6 +802,9 @@ mission "Deep: Interrogation"
 		attributes "spaceport"
 	to offer
 		has "Deep Archaeology 5: done"
+		or
+			not "chosen sides"
+			has "main plot completed"
 	
 	on offer
 		log `Was interrogated by the Deep for helping Albert Foster. The Deep now knows that Albert Foster thinks that there is an artificial singularity on Midgard.`
@@ -1711,6 +1714,9 @@ mission "Deep: Remnant: Continue Research"
 	to offer
 		has "event: deep: remnant: rest period"
 		has "deep: did reveal remnant"
+		# If the player received subsequent missions prior to the addition of this one in v0.9.15, do not offer this one.
+		not "Deep: Remnant: Engines: offered"
+
 	on offer
 		conversation
 			`You receive a message from Ivan, the Deep scientist who you helped to discover the Remnant in the Ember Waste. "Captain <last>, it's been so long. The Deep has finally finished reviewing our research in the Ember Waste, and we've been approved for further funding! Please meet us on <destination> if you wish to assist us again. Your help would be appreciated, but we will make progress even if you're unable to help."`
