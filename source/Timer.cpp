@@ -218,7 +218,7 @@ Timer Timer::Instantiate(map<string, string> &subs, const System *origin, int ju
 	result.idleMaxSpeed = idleMaxSpeed;
 	result.requirePeaceful = requirePeaceful;
 
-	// Validate all the actions attached to the timer, and if they're *all* valid, instantiate them too
+	// Validate all the actions attached to the timer, and if they're *all* valid, instantiate them too.
 	string reason;
 	auto ait = actions.begin();
 	for( ; ait != actions.end(); ++ait)
