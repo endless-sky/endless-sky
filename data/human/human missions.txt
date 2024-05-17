@@ -7001,7 +7001,7 @@ mission "Adelita 1"
 					goto exit
 
 			label deceptive
-			`	"Deceptive?! No," the woman responds in a ruffled manner. "If you call this deception you must have a distaste for the media," she chuckles. "This form of journalism is as authentic as journalism gets! Now, of course Adelita take creative liberties, but it's all in the pursuit of education and justice.`
+			`	"Deceptive?! No," the woman responds in a ruffled manner. "If you call this deception you must have a distaste for the media," she chuckles. "This form of journalism is as authentic as journalism gets! Now, of course Adelita takes creative liberties, but it's all in the pursuit of education and justice.`
 			`	"Well, for what it's worth, I've been here ten times and I always manage to be awestruck," the woman says. "Enjoy the exhibition while you still can." She heads for the exit.`
 			choice
 				`	(Continue wandering around the exhibit.)`
@@ -7023,9 +7023,23 @@ mission "Adelita 1"
 			`	Suddenly, the entire projection disappears in a disorienting flash, leaving you in a cordoned-off section of the warehouse. The exhibit is nearly empty as a woman walks up to you. "One of the authors loves that moment too. That's probably why she fought so hard to have that part left in." She mutters something about a "security risk" under her breath, and then turns her attention back to you.`
 			`	"Oh, how rude of me," she says, offering her hand. "My name is Mariel. I organize these exhibitions and act as a spokesperson for Adelita. And you are?"`
 			choice
-				`	"<first> <last>, Captain of the <ship>."`
+				`	"I'm <first> <last>."`
+					goto extended
+				`	"I'm Captain <last>."`
 
 			`	"Captain," she says, her eyes lighting up. "Well, as you may know, this is the last day of the exhibition. The captain I hired to transport everything back to <planet> is not only rude, but is now late. I would much rather have it in the hands of someone who appreciates the work. I was going to pay him 60,000 credits, but I'll pay you <payment> to take his contract instead given the short notice. What do you say?"`
+				goto choice
+
+			label extended
+			`	"Right," she says. "Hey, would you happen to know any ships which can take on <tons> of this exhibition equipment to <destination>? The captain I hired to transport everything seems to have been a no-show, and I need someone to take his contract on short notice."`
+			choice
+				`	"Well, I'm the captain of the <ship>."`
+				`	"Sorry, I can't help you."`
+					goto decline
+
+			`	Mariel's eyes light up. "Great! I was going to pay him 60,000 credits, but I'll pay you <payment> to take his contract instead. What do you say?"`
+
+			label choice
 			choice
 				`	"I would love to."`
 					goto accept
@@ -7043,7 +7057,7 @@ mission "Adelita 1"
 				accept
 
 			label decline
-			`	"That's unfortunate. I'll have to try my luck with another captain, then." Mariel glances at her watch. "Well, anyway, the exhibition has closed. I'm going to have to ask you to leave."`
+			`	"That's unfortunate. I'll have to find someone else, then." Mariel glances at her watch. "Well, anyway, the exhibition has closed. I'm going to have to ask you to leave."`
 				decline
 
 			label exit
