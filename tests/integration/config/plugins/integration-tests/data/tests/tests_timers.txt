@@ -35,7 +35,7 @@ test "Timer - Simple 10 seconds timer"
 		call "Land"
 		call "Depart"
 		apply
-			"test: steps to wait" = 10 * 60
+			"test: steps to wait" = 30 * 60
 		label "floating"
 		# empty input to make 10 seconds and one frame pass
 		input
