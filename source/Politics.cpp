@@ -169,7 +169,7 @@ bool Politics::CanLand(const Ship &ship, const Planet *planet) const
 
 	const Government *gov = ship.GetGovernment();
 	if(!gov->IsPlayer())
-		return (ship.GetPersonality().IsUnrestricted() || !gov->IsRestrictedFrom(*planet)) &&
+		return !ship.IsRestrictedFrom(*planet) &&
 			(!planet->IsInhabited() || !IsEnemy(gov, planet->GetGovernment()));
 
 	return CanLand(planet);
@@ -252,12 +252,15 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 			continue;
 		if(ship->GetSystem() != player.GetSystem())
 			continue;
+		const Planet *planet = player.GetPlanet();
+		if(planet && ship->GetPlanet() != planet)
+			continue;
 
 		int failedMissions = 0;
 
 		if((!scan || (scan & ShipEvent::SCAN_CARGO)) && !EvadesCargoScan(*ship))
 		{
-			int64_t fine = ship->Cargo().IllegalCargoFine(gov);
+			int64_t fine = ship->Cargo().IllegalCargoFine(gov, player);
 			if((fine > maxFine && maxFine >= 0) || fine < 0)
 			{
 				maxFine = fine;
@@ -265,7 +268,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 
 				for(const Mission &mission : player.Missions())
 				{
-					if(mission.IsFailed())
+					if(mission.IsFailed(player))
 						continue;
 
 					// Append the illegalCargoMessage from each applicable mission, if available

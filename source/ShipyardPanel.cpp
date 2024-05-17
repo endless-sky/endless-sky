@@ -107,6 +107,8 @@ void ShipyardPanel::Step()
 {
 	ShopPanel::Step();
 	ShopPanel::CheckForMissions(Mission::SHIPYARD);
+	if(GetUI()->IsTop(this))
+		DoHelp("shipyard");
 }
 
 
@@ -152,12 +154,12 @@ int ShipyardPanel::DetailWidth() const
 
 
 
-int ShipyardPanel::DrawDetails(const Point &center)
+double ShipyardPanel::DrawDetails(const Point &center)
 {
 	string selectedItem = "No Ship Selected";
 	const Font &font = FontSet::Get(14);
 
-	int heightOffset = 20;
+	double heightOffset = 20.;
 
 	if(selectedShip)
 	{
@@ -427,4 +429,24 @@ void ShipyardPanel::SellShip(bool toStorage)
 		}
 	if(playerShip)
 		playerShips.insert(playerShip);
+}
+
+int ShipyardPanel::FindItem(const string &text) const
+{
+	int bestIndex = 9999;
+	int bestItem = -1;
+	auto it = zones.begin();
+	for(unsigned int i = 0; i < zones.size(); ++i, ++it)
+	{
+		const Ship *ship = it->GetShip();
+		int index = Format::Search(ship->DisplayModelName(), text);
+		if(index >= 0 && index < bestIndex)
+		{
+			bestIndex = index;
+			bestItem = i;
+			if(!index)
+				return i;
+		}
+	}
+	return bestItem;
 }

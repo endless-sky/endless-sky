@@ -767,6 +767,7 @@ outfit "Digger Mining Turret"
 		"shield damage" 0.8
 		"hull damage" 1.3
 		"minable damage" 5.2
+		"prospecting" 4.2
 		"disruption damage" .08
 	description `When the Korath Exiles needed a cheap mining laser for their large vessels, they re-engineered this ancient, robust design and added a turret base. The mild shield disruption effect makes it somewhat useful in combat if required.`
 
@@ -793,6 +794,7 @@ outfit "Digger Mining Beam"
 		"shield damage" 0.5
 		"hull damage" 0.9
 		"minable damage" 4.6
+		"prospecting" 3.7
 		"disruption damage" .06
 	description `The gun version of the classic Korath mining laser allows a larger mothership to release a cloud of fighter-sized miners to harvest resources when working faster-moving or more dangerous asteroid fields.`
 
@@ -949,7 +951,7 @@ outfit "Firelight Missile Bank"
 		"trigger radius" 30
 		"blast radius" 60
 		"hit force" 100
-		"missile strength" 60
+		"missile strength" 30
 		submunition "Firelight Turning"
 		"stream"
 	description "As the Firestorm Torpedo does not require full reactor shielding or safety interlocks, Korath engineers were able to create the Firelight by further scaling down the reactor element to fit in a missile casing for use on and against smaller vessels."
@@ -971,7 +973,7 @@ outfit "Firelight Turning"
 		"trigger radius" 30
 		"blast radius" 60
 		"hit force" 60
-		"missile strength" 60
+		"missile strength" 30
 		"submunition" "Firelight Activated"
 
 outfit "Firelight Activated"
@@ -985,7 +987,7 @@ outfit "Firelight Activated"
 		"lifetime" 140
 		"acceleration" 1.6
 		"drag" .1
-		"turn" 2
+		"turn" 1.7
 		"homing" 4
 		"infrared tracking" .5
 		"optical tracking" .7
@@ -997,7 +999,7 @@ outfit "Firelight Activated"
 		"burn damage" 10
 		"corrosion damage" 2
 		"hit force" 400
-		"missile strength" 60
+		"missile strength" 30
 
 effect "firelight ring"
 	sprite "effect/firestorm ring"
