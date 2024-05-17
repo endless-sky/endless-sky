@@ -344,7 +344,7 @@ public:
 	// Should help dialogs relating to carriers be displayed?
 	bool DisplayCarrierHelp() const;
 
-	// Advance any active mission timers that meet the right criteria
+	// Advance any active mission timers that meet the right criteria.
 	void StepMissionTimers(UI *ui);
 
 
