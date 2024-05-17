@@ -156,7 +156,6 @@ outfitter "Hai Advanced"
 	`"Bondir" Atomic Steering`
 	`"Bufaer" Atomic Thruster`
 	`"Bufaer" Atomic Steering`
-	"Holovid Zone"
 	"Luxury Accommodations"
 	"Local Map"
 	"Quantum Keystone"
@@ -164,6 +163,10 @@ outfitter "Hai Advanced"
 	"Outfit Scanner"
 	"Cargo Scanner"
 	"Sand Cell"
+
+outfitter "Hai-home Only"
+	# You never know what naughty things those humans will watch.
+	"Holovid Zone"
 
 outfitter "Hai Security"
 	"Hai Tracker"
