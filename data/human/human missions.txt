@@ -1195,6 +1195,7 @@ mission "Drug Running 1"
 	description "Bring a shipment of <cargo> to <destination>. Payment will be <payment>. If you are caught with this cargo, you may be fined."
 	minor
 	repeat
+	infiltrating
 	source
 		attributes "near earth" "dirt belt" "north"
 	destination
@@ -1230,6 +1231,7 @@ mission "Drug Running 2"
 	description "Bring a shipment of <cargo> to <destination>. Payment will be <payment>. If you are caught with this cargo, you may be fined."
 	minor
 	repeat
+	infiltrating
 	source
 		attributes "near earth" "dirt belt" "north"
 	destination
@@ -1260,6 +1262,7 @@ mission "Drug Running 3"
 	description "Bring a shipment of <cargo> to <destination>. Payment will be <payment>. If you are caught with this cargo, you may be fined."
 	minor
 	repeat
+	infiltrating
 	source
 		attributes "near earth" "dirt belt" "north"
 	destination
@@ -1374,6 +1377,7 @@ mission "Shady passenger transport 1"
 	description "Discreetly transport a passenger to <destination>. Payment will be <payment>. If you are caught with him, you may be fined."
 	minor
 	repeat
+	infiltrating
 	source
 		attributes "near earth" "core" "urban"
 	destination
@@ -1410,6 +1414,7 @@ mission "Shady passenger transport 2"
 	description "Discreetly transport two passengers to <destination>. Payment will be <payment>. If you are caught with them, you may be fined."
 	minor
 	repeat
+	infiltrating
 	source
 		attributes "near earth" core urban
 	destination
@@ -1456,6 +1461,7 @@ mission "Shady passenger transport 3"
 	description "Discreetly transport <bunks> passengers to <destination>. Payment will be <payment>. If you are caught with them, the legal consequences may be severe."
 	minor
 	repeat
+	infiltrating
 	source
 		attributes "frontier" "dirt belt" "rim" "north" "south" "pirate"
 	destination
@@ -6302,7 +6308,7 @@ mission "Care Package to South 1"
 			`	You nod, introduce yourself, and briefly recount your meeting with her friend on <origin>. Irene laughs. "Yep, that's her. Well, thank you so much for bringing this." She hefts the heavy box with no apparent effort, gives you a firm nod, and turns to head back into the base.`
 			`	Before going more than three steps, she stops and turns back to you. "Oh, sorry - I'll authorize your payment as soon as I get back to my room. I don't have it with me."`
 			`	Sure enough, less than five minutes later, your communicator bleeps and reports that <payment> have been credited to your account.`
-				
+
 mission "Care Package to South 2"
 	landing
 	source "Rust"
@@ -6766,4 +6772,130 @@ mission "Hogshead's Dilemma II"
 		conversation
 			`As you are walking around the spaceport, you see that more than a few pilots are watching the news on nearby displays. There are mixed emotions amongst the crowd - some pilots are having a good laugh while others seem disappointed or even confused. You aren't sure what this is about until, lo and behold, the result of that Hogshead naming poll from a while ago is clearly shown on a display - Shippy McShipface. You can't say it's all that much worse than some of the names you've heard pirates give their ships before, but it still seems silly that the transport company is actually going through with the name.`
 			`	All of the hyped discussions around Hogsheads in the past gave them a brief but strong popularity amongst transport organizations looking to grab the average passenger's attention. In the end, the company responsible for this naming poll got what they wanted, and a little bit of the Hogshead's spirit has been brought back, along with the interest of several pilots. Perhaps the name "Shippy McShipface" is fitting after all.`
+				decline
+
+
+
+mission "Lost Dog"
+	name "Lost dog to <planet>"
+	description "Bring Caesar, a dog you found on <origin>, to their owners on <destination>."
+	source "Calda"
+	destination "Glory"
+	to offer
+		random < 15
+	on offer
+		conversation
+			`Your walk from the <ship> takes you out of <planet>'s bustling spaceport and into the overtly welcoming and carefully inoffensive streets of the spaceport town. Each path seems to be saturated with tourists and purpose-built to whisk travelers further away from their ships and deeper into the preternatural radiance of this Paradise World. The hand-crafted beauty is inescapable, a never-ending sequence of breathtaking views.`
+			`	As you walk, you eventually come across a perfectly manicured garden park named "Parc Manifold." You approach the gates to discover a ticket office, with signs advertising a free entry promotion this week only, crossing out the 3,400 credit regular admission fee.`
+			choice
+				`	(Go to the park.)`
+					goto park
+				`	(Head back to your ship.)`
+
+			`	You have more important things to do than wander around an expensive terraformed garden.`
+				decline
+
+			label park
+			`	The park has been meticulously sculpted so that no matter where you stand, it appears as though you are in the center of a lush naturalist painting. Colorful, comforting flora bleed away from you at all angles, and adorable yet inaccessible fauna seem to hug the very periphery of your every step.`
+			`	The air is clear and crisp, and even the crunch of leaves and thud of the earth beneath your feet seems somehow delicious and satisfying. Finally, the sun begins to set and you remember from the signs that the park closes soon.`
+			`	As you approach the exit to the park a small dog pads over to you and looks at you with mournful eyes. It seems to be alone, with no owner anywhere in sight.`
+			choice
+				`	(Call to the dog.)`
+					goto doglover
+				`	(Ignore the dog.)`
+
+			`	You ignore the dog and eventually it sulks away to interact with another patron of the park. As you return to your ship it begins to get dark, and you feel your day of quiet contemplation come to a close.`
+				decline
+
+			label doglover
+			`	"Come here," you call to the dog, which looks to be a poodle mix, and it obediently does as you command. You see that the dog is a male and check his collar:`
+			``
+			`	"Caesar Augustus - Property of the Mitchells"`
+			`	3 Mitchell Drive`
+			`	Palmyra City, Avalonia District,`
+			`	Glory, Wazn System`
+			``
+			`	"That's odd," you say to Caesar. "How did you get lost on the wrong planet, huh boy?"`
+			choice
+				`	(Take Caesar to his owners on Glory.)`
+					goto takehim
+				`	(Leave Caesar here.)`
+
+			action
+				event "lost dog: homeward bound" 30 60
+			`	Perhaps his owners are on vacation and will be back looking for him any minute. Although it's getting dark and no one seems to be around, you decide the best course of action is to leave Caesar where you found him.`
+			`	As you turn away, Caesar begins to whine, but he soon quiets down when you don't come back to pick him up. Looking back, you notice him slinking off into the shadow of a perfectly manicured shrub.`
+				decline
+
+			label takehim
+			`	"Well, come on boy," you say. "Let's go."`
+			`	Caesar eagerly follows you back to your ship. He seems greatly relieved to be with you, and not left all alone at the park.`
+			`	Once back on your ship, you make sure he's fed, watered, and settled in for his interstellar journey.`
+				accept
+
+	on complete
+		payment 1000
+		conversation
+			branch "transported pookie"
+				has "Pookie, Part 2: done"
+				not "outfit: Puny"
+			`Caesar has been very obedient the whole trip, much to your relief. He lies down by the airlock while your ship sets down in the local Palmyra spaceport, which is enclosed on all sides by a squalid urban landscape - the honeycombed homes of the humble help. You rent a vehicle and take yourself and Caesar beyond the blighted city and out into the pleasant, picture-perfect paradise of the affluent. One princely estate after another rolls past you as you drive deeper into the rural domains of the Republic's super-wealthy. Eventually, you come across a large metal gate that reads, "Mitchell Ranch."`
+				goto ranch
+
+			label "transported pookie"
+			`Caesar has been very obedient the whole trip, unlike certain other dogs you've transported in the past. He lays down by the airlock while your ship sets down in the local Palmyra spaceport, which is enclosed on all sides by a squalid urban landscape - the honeycombed homes of the humble help. You rent a vehicle and take yourself and Caesar beyond the blighted city and out into the pleasant picture-perfect paradise of the affluent. One princely estate after another rolls past you as you drive deeper into the rural domains of the Republic's super-wealthy. Eventually, you come across a large metal gate that reads, "Mitchell Ranch."`
+
+			label ranch
+			`	You spend another forty-five minutes of driving down long winding roads, past various outbuildings, lodges, retreats, guest houses, and hobby barns. At long last, you arrive at the massive central mansion. Waiting at the bottom of stone stairs is a footman who opens the door for you and summons the senior butler.`
+			`	The butler arrives and looks you over unhappily. "The lady of the manor is not expecting... guests. Perhaps, you've misread your appointment, or more likely, arrived at the wrong estate."`
+			choice
+				`	(Show Caesar to the butler and ask to see his owner.)`
+
+			`	The butler's frown deepens as you show Caesar to him.`
+			`	He sighs and says, "Card, please." He holds out a silver tray and awaits your calling card.`
+			choice
+				`	(Explain you don't have a calling card.)`
+					goto nocard
+				`	(Place your card on the tray.)`
+					to display
+						"net worth" > 20000000
+
+			`	The butler's eyebrows rise in the slightest hint of surprise when you place your card on the tray. He promptly turns and disappears into the overlarge house. You, Caesar, and the footman all wait for half an hour before a woman arrives at the front entrance, wearing an exceedingly complicated gown.`
+				goto boolinbrook
+
+			label nocard
+			`	The butler smiles smugly. "How unfortunate. In that case, I have no choice but to bring you in through the servants' entrance. It's only proper."`
+			`	Instead of taking you up the wide stairs to the beautifully inscribed wooden doors, he ushers you around the side to a small plain door. You are left there with the footman to wait.`
+			`	Three quarters of an hour later, a woman wearing an exceedingly impractical dress arrives.`
+
+			label boolinbrook
+			`	"Mr. Boolinbrook says you've brought back my darling See-See?" She looks down her nose at you and waits for your response.`
+			choice
+				`	"Your dog is safe and sound with me."`
+				`	"I found Caesar alone, out in a park on Calda."`
+				`	"Here he is. You're welcome."`
+
+			`	Before you can respond, Caesar starts yapping happily and runs up to the lady.`
+			`	She snatches up the dog and draws it to her bosom. "Oh my darling See-See! It has been most dreadful waiting for news of you!"`
+			`	After a moment she turns her attention back to you, looking slightly softer than before. "See-See tires of the parks here, and so every Tuesday I send him to Calda for a change of pace. It's good for his constitution, you know. Anyway, the horrid man who normally ferries our dogs on these little excursions had some sort of episode. A stroke, or a heart attack - you get the idea. He had an assistant return the dogs, but in the confusion, they forgot my little See-See. I was sure some gauche tourist would have snatched him up and eaten him by now."`
+			`	She turns her attention back to the dog and speaks to him in baby talk. "But, instead, this gallant captain saved you!"`
+			`	The lady snaps her fingers, and the butler is immediately at her side. "We must make this person whole. I can't be perceived as owing favors to vagabonds. Imagine the talk!`
+			`	The butler quickly procures a credit chip and shows it to her, accepting a curt nod for approval. "I realize that this is probably a fortune to you," she says. "I recommend you find a financial advisor and invest it well."`
+			`	With that, she turns and leaves; the butler likewise disappears, and you're escorted by the footman back to your vehicle.`
+			`	You look down at the credit chip in your hand and read its value: <payment>.`
+
+
+event "lost dog: homeward bound"
+
+
+mission "Lost Dog: Homeward Bound"
+	minor
+	invisible
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	to offer
+		has "event: lost dog: homeward bound"
+	on offer
+		conversation
+			`As you're walking through the spaceport, your eye is drawn to a marginally familiar figure on a nearby newsfeed. Although you can't make out exactly what it is saying over the din, you are able to gather that Caesar, the little lost dog you ran into on Calda, has become something of a minor celebrity after it managed to get back home to Glory all by itself. The newsfeed scrolls down to show images of the dog skiing, sneaking onto transports, and riding automatic farming equipment.`
 				decline
