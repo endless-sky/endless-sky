@@ -7001,7 +7001,7 @@ mission "Adelita 1"
 					goto exit
 
 			label deceptive
-			`	"Deceptive?! No," the woman responds in a ruffled manner. "If you call this deception you must have a distaste for the media," she chuckles. "This form of journalism is as authentic as journalism gets! Now, of course Adelita take creative liberties, but it's all in the pursuit of education and justice."`
+			`	"Deceptive?! No," the woman responds in a ruffled manner. "If you call this deception you must have a distaste for the media," she chuckles. "This form of journalism is as authentic as journalism gets! Now, of course Adelita take creative liberties, but it's all in the pursuit of education and justice.`
 			`	"Well, for what it's worth, I've been here ten times and I always manage to be awestruck," the woman says. "Enjoy the exhibition while you still can." She heads for the exit.`
 			choice
 				`	(Continue wandering around the exhibit.)`
