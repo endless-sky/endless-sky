@@ -442,9 +442,8 @@ mission "Suspicious Scin"
 		not "First Contact: Gegno Scin: offered"
 		not "Gegno Genocide Defense: offered"
 	on enter
-		system
-			near "Aleit" 4 100
-		set "gegno: mysterious device"
+	on enter
+	on enter
 		conversation
 			`As you're traveling through Gegno space, a faint signal starts emanating from somewhere in your ship. You aren't sure what it is, as it doesn't appear to originate from the ship itself, so you decide to take a look. After a few minutes of searching for the culprit, you come across a device not too dissimilar from the one that the Gegno you met on Var Oti had given you, arbitrarily shoved into some corner of your ship's infrastructure. You don't know how or when it got there, but at least it wasn't something more dangerous like an explosive.`
 			`	Once you retrieve the device, you notice that along with the signal it's emitting, there is some sort of map display that has several locations in the region marked in some way or another, along with various scribblings in a language you can't understand. Although it's hard to make sense of what any of it means, one particular planet displayed has several graphics around it, much more extravagant than the rest. Perhaps finding this planet will shed some light on this strange situation.`
@@ -453,27 +452,22 @@ mission "Suspicious Scin"
 			near "Pukako" 2
 		dialog
 			`The signal coming from the mysterious device is weak. You must be far away from the location marked on the device.`
-				to display
-					has "gegno: mysterious device"
+
 	on enter
 		system
 			near "Ptetubo" 2
 		dialog
 			`The signal coming from the mysterious device is weak. You must be far away from the location marked on the device.`
-				to display
-					has "gegno: mysterious device"
+
 	on enter
 		system
 			near "Ilirco" 1 2
 		dialog
 			`The signal coming from the mysterious device is stronger now. You seem to be getting close to the location marked on the device.`
-				to display
-					has "gegno: mysterious device"
 
 	on enter "Ilirco"
-		clear "gegno: mysterious device"
 		conversation
-			`Once you enter the system, the mysterious device suddenly makes a loud noise. You aren't sure if that means you've found your destination, or if this whole situation was just a ruse. Either way, the only way to find out is to land on the planet and see if anything is there.`
+			`Once you enter the system, the mysterious device suddenly makes a loud noise and shuts off. You aren't sure if that means you've found your destination, or if this whole situation was just a ruse. Either way, the only way to find out is to land on the planet and see if anything is there.`
 
 	npc
 		government "Gegno Scin (Neutral)"
