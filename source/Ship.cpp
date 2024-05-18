@@ -490,16 +490,16 @@ void Ship::Load(const DataNode &node)
 				autoExplosion.baseMult = 1.;
 			for(const auto &grand : child)
 			{
-				if(child.Size() >= 2)
+				if(grand.Size() >= 2)
 				{
-					if(child.Token(0) == "blast radius")
-						autoExplosion.radiusMult = child.Value(1);
-					else if(child.Token(0) == "shield damage")
-						autoExplosion.shieldMult = child.Value(1);
-					else if(child.Token(0) == "hull damage")
-						autoExplosion.hullMult = child.Value(1);
-					else if(child.Token(0) == "hit force")
-						autoExplosion.forceMult = child.Value(1);
+					if(grand.Token(0) == "blast radius")
+						autoExplosion.radiusMult = grand.Value(1);
+					else if(grand.Token(0) == "shield damage")
+						autoExplosion.shieldMult = grand.Value(1);
+					else if(grand.Token(0) == "hull damage")
+						autoExplosion.hullMult = grand.Value(1);
+					else if(grand.Token(0) == "hit force")
+						autoExplosion.forceMult = grand.Value(1);
 				}
 			}
 		}
