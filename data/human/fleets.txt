@@ -2263,6 +2263,8 @@ fleet "Small Core Pirates"
 	variant 1
 		"Headhunter (Particle)"
 	variant 1
+		"Headhunter (Tractor Beam)"
+	variant 1
 		"Quicksilver" 2
 	variant 1
 		"Quicksilver"
@@ -2335,12 +2337,16 @@ fleet "Large Core Pirates"
 		"Splinter (Laser)" 2
 	variant 1
 		"Splinter (Proton)" 2
+	variant 1
+		"Splinter (Tractor Beam)"
 	variant 2
 		"Falcon"
 	variant 1
 		"Falcon (Heavy)"
 	variant 1
 		"Falcon (Laser)"
+	variant 1
+		"Falcon (Tractor Beam)"
 	variant 2
 		"Firebird"
 	variant 2
@@ -2359,6 +2365,8 @@ fleet "Large Core Pirates"
 		"Protector (Laser)"
 	variant 1
 		"Protector (Proton)"
+	variant 1
+		"Protector (Tractor Beam)"
 	variant 1
 		"Protector"
 
