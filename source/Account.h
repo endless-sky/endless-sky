@@ -61,8 +61,6 @@ public:
 	const std::vector<Mortgage> &Mortgages() const;
 	void AddMortgage(int64_t principal);
 	void AddFine(int64_t amount);
-	// If no interest rate is given then the player's credit score is used
-	// to determine the interest rate.
 	void AddDebt(int64_t amount, std::optional<double> interest, int term);
 	int64_t Prequalify() const;
 	// Assets:
