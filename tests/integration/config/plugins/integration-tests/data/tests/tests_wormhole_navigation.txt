@@ -1,3 +1,16 @@
+# Copyright (c) 2020 by Peter van der Meer
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
 test-data "Wormhole Navigation Save"
 	category "savegame"
 	contents
@@ -44,12 +57,12 @@ test-data "Wormhole Navigation Save"
 				"gaslining" 1
 				"atmosphere scan" 100
 				"outfit scan power" 175
-				"outfit scan speed" 1
+				"outfit scan efficiency" 1
 				"tactical scan power" 350
 				"force protection" 1
 				"heat protection" 1.5
 				"ion resistance" 0.3
-				"scrambling resistance" 0.3
+				"scramble resistance" 0.3
 				"slowing resistance" 3
 				"remnant node" 11
 				weapon
@@ -161,12 +174,12 @@ test-data "Ember Wastes Navigation Save"
 				"gaslining" 1
 				"atmosphere scan" 100
 				"outfit scan power" 175
-				"outfit scan speed" 1
+				"outfit scan efficiency" 1
 				"tactical scan power" 350
 				"force protection" 1
 				"heat protection" 1.5
 				"ion resistance" 0.3
-				"scrambling resistance" 0.3
+				"scramble resistance" 0.3
 				"slowing resistance" 3
 				"remnant node" 11
 				weapon
@@ -265,51 +278,39 @@ test "Wormhole Navigation"
 		# Give jump command.
 		input
 			command jump
-		watchdog 12000
 		label notRigel1
 		branch notRigel1
 			not "flagship system: Rigel"
-		watchdog 12000
 		label notHassaleh1
 		branch notHassaleh1
 			not "flagship system: Hassaleh"
-		watchdog 12000
 		label notRajak1
 		branch notRajak1
 			not "flagship system: Rajak"
-		watchdog 12000
 		label notUltimaThule1
 		branch notUltimaThule1
 			not "flagship system: Ultima Thule"
-		watchdog 12000
 		label notWaypoint1
 		branch notWaypoint1
 			not "flagship system: Waypoint"
-		watchdog 12000
 		label notHeiaDue
 		branch notHeiaDue
 			not "flagship system: Heia Due"
-		watchdog 12000
 		label notWaypoint2
 		branch notWaypoint2
 			not "flagship system: Waypoint"
-		watchdog 12000
 		label notUltimaThule2
 		branch notUltimaThule2
 			not "flagship system: Ultima Thule"
-		watchdog 12000
 		label notRajak2
 		branch notRajak2
 			not "flagship system: Rajak"
-		watchdog 12000
 		label notHassaleh2
 		branch notHassaleh2
 			not "flagship system: Hassaleh"
-		watchdog 12000
 		label notRigel2
 		branch notRigel2
 			not "flagship system: Rigel"
-		watchdog 12000
 		label notBetelgeuse
 		branch notBetelgeuse
 			not "flagship system: Betelgeuse"
@@ -337,7 +338,6 @@ test "Ember Wastes Navigation"
 			travel Peragenor
 			"travel destination" "Remnant Wormhole"
 			travel Edusa
-			#"travel destination" Viminal
 			travel Arculus
 			travel Edusa
 			travel Peragenor
@@ -352,14 +352,10 @@ test "Ember Wastes Navigation"
 			travel Terminus
 			travel Limen
 			travel Mora
-		# Our test-savegames don't have the date conditions serialized. Need to
-		# have passed at least one date-transition to get the date conditions set
-		# (until PR https://github.com/endless-sky/endless-sky/pull/5244 removes
-		# this need to serialize the date conditions completely).
-		#assert
-		#	year == 3013
-		#	month == 12
-		#	day == 16
+		assert
+			year == 3013
+			month == 12
+			day == 16
 		call "Depart"
 		# Give jump command.
 		assert
@@ -368,7 +364,6 @@ test "Ember Wastes Navigation"
 			day == 17
 		input
 			command jump
-		watchdog 12000
 		label notMora1
 		branch notMora1
 			not "flagship system: Mora"
@@ -376,7 +371,6 @@ test "Ember Wastes Navigation"
 			year == 3013
 			month == 12
 			day == 18
-		watchdog 12000
 		label notLimen1
 		branch notLimen1
 			not "flagship system: Limen"
@@ -384,7 +378,6 @@ test "Ember Wastes Navigation"
 			year == 3013
 			month == 12
 			day == 19
-		watchdog 12000
 		label notTerminus1
 		branch notTerminus1
 			not "flagship system: Terminus"
@@ -392,7 +385,6 @@ test "Ember Wastes Navigation"
 			year == 3013
 			month == 12
 			day == 20
-		watchdog 12000
 		label notCardea1
 		branch notCardea1
 			not "flagship system: Cardea"
@@ -400,7 +392,6 @@ test "Ember Wastes Navigation"
 			year == 3013
 			month == 12
 			day == 21
-		watchdog 12000
 		label notInsitor1
 		branch notInsitor1
 			not "flagship system: Insitor"
@@ -408,7 +399,6 @@ test "Ember Wastes Navigation"
 			year == 3013
 			month == 12
 			day == 22
-		watchdog 12000
 		label notSegesta
 		branch notSegesta
 			not "flagship system: Segesta"
@@ -416,7 +406,6 @@ test "Ember Wastes Navigation"
 			year == 3013
 			month == 12
 			day == 23
-		watchdog 12000
 		label notStercutus1
 		branch notStercutus1
 			not "flagship system: Stercutus"
@@ -424,7 +413,6 @@ test "Ember Wastes Navigation"
 			year == 3013
 			month == 12
 			day == 24
-		watchdog 12000
 		label notPeragenor1
 		branch notPeragenor1
 			not "flagship system: Peragenor"
@@ -432,7 +420,6 @@ test "Ember Wastes Navigation"
 			year == 3013
 			month == 12
 			day == 25
-		watchdog 12000
 		label notEdusa1
 		branch notEdusa1
 			not "flagship system: Edusa"
@@ -440,7 +427,6 @@ test "Ember Wastes Navigation"
 			year == 3013
 			month == 12
 			day == 26
-		watchdog 12000
 		label notArculus
 		branch notArculus
 			not "flagship system: Arculus"
@@ -448,7 +434,6 @@ test "Ember Wastes Navigation"
 			year == 3013
 			month == 12
 			day == 27
-		watchdog 12000
 		label notEdusa2
 		branch notEdusa2
 			not "flagship system: Edusa"
@@ -456,7 +441,6 @@ test "Ember Wastes Navigation"
 			year == 3013
 			month == 12
 			day == 28
-		watchdog 12000
 		label notPeragenor2
 		branch notPeragenor2
 			not "flagship system: Peragenor"
@@ -464,7 +448,6 @@ test "Ember Wastes Navigation"
 			year == 3013
 			month == 12
 			day == 29
-		watchdog 12000
 		label notStercutus2
 		branch notStercutus2
 			not "flagship system: Stercutus"
@@ -472,7 +455,6 @@ test "Ember Wastes Navigation"
 			year == 3013
 			month == 12
 			day == 30
-		watchdog 12000
 		label notSegesta2
 		branch notSegesta2
 			not "flagship system: Segesta"
@@ -480,7 +462,6 @@ test "Ember Wastes Navigation"
 			year == 3013
 			month == 12
 			day == 31
-		watchdog 12000
 		label notAescolanus
 		branch notAescolanus
 			not "flagship system: Aescolanus"
@@ -488,7 +469,6 @@ test "Ember Wastes Navigation"
 			year == 3014
 			month == 1
 			day == 1
-		watchdog 12000
 		label notCardea2
 		branch notCardea2
 			not "flagship system: Cardea"
@@ -496,7 +476,6 @@ test "Ember Wastes Navigation"
 			year == 3014
 			month == 1
 			day == 2
-		watchdog 12000
 		label notTerminus2
 		branch notTerminus2
 			not "flagship system: Terminus"
@@ -504,7 +483,6 @@ test "Ember Wastes Navigation"
 			year == 3014
 			month == 1
 			day == 3
-		watchdog 12000
 		label notLimen2
 		branch notLimen2
 			not "flagship system: Limen"
@@ -512,11 +490,9 @@ test "Ember Wastes Navigation"
 			year == 3014
 			month == 1
 			day == 4
-		watchdog 12000
 		label notMora2
 		branch notMora2
 			not "flagship system: Mora"
-		watchdog 12000
 		assert
 			year == 3014
 			month == 1

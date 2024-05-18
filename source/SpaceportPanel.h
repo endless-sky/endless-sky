@@ -23,6 +23,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class News;
 class PlayerInfo;
+class Port;
+class Interface;
 
 
 // GUI panel to be shown when you are in a spaceport. This just draws the port
@@ -45,6 +47,8 @@ private:
 private:
 	PlayerInfo &player;
 	WrappedText text;
+	const Port &port;
+	const Interface &ui;
 
 	// Current news item (if any):
 	bool hasNews = false;

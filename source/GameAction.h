@@ -17,9 +17,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define GAME_ACTION_H_
 
 #include "ConditionSet.h"
+#include "ShipManager.h"
 
 #include <cstdint>
 #include <map>
+#include <optional>
 #include <set>
 #include <string>
 #include <utility>
@@ -28,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class DataNode;
 class DataWriter;
 class GameEvent;
+class Mission;
 class Outfit;
 class PlayerInfo;
 class Ship;
@@ -46,11 +49,11 @@ class GameAction {
 public:
 	GameAction() = default;
 	// Construct and Load() at the same time.
-	GameAction(const DataNode &node, const std::string &missionName);
+	GameAction(const DataNode &node);
 
-	void Load(const DataNode &node, const std::string &missionName);
+	void Load(const DataNode &node);
 	// Process a single sibling node.
-	void LoadSingle(const DataNode &child, const std::string &missionName);
+	void LoadSingle(const DataNode &child);
 	void Save(DataWriter &out) const;
 
 	// Determine if this GameAction references content that is not fully defined.
@@ -62,9 +65,10 @@ public:
 	int64_t Payment() const noexcept;
 	int64_t Fine() const noexcept;
 	const std::map<const Outfit *, int> &Outfits() const noexcept;
+	const std::vector<ShipManager> &Ships() const noexcept;
 
 	// Perform this action.
-	void Do(PlayerInfo &player, UI *ui) const;
+	void Do(PlayerInfo &player, UI *ui, const Mission *caller) const;
 
 	// "Instantiate" this action by filling in the wildcard data for the actual
 	// payment, event delay, etc.
@@ -77,15 +81,19 @@ private:
 	std::map<std::string, std::map<std::string, std::string>> specialLogText;
 
 	std::map<const GameEvent *, std::pair<int, int>> events;
-	std::vector<std::pair<const Ship *, std::string>> giftShips;
+	std::vector<ShipManager> giftShips;
 	std::map<const Outfit *, int> giftOutfits;
 
 	int64_t payment = 0;
 	int64_t paymentMultiplier = 0;
 	int64_t fine = 0;
 
+	std::optional<std::string> music;
+
 	// When this action is performed, the missions with these names fail.
 	std::set<std::string> fail;
+	// When this action is performed, the mission that called this action is failed.
+	bool failCaller = false;
 
 	ConditionSet conditions;
 };

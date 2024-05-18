@@ -776,7 +776,7 @@ mission "Wanderer Captured Unfettered"
 		not "event: wanderers: the eye opens"
 		random < 20
 	to accept
-		has "outfit: Brig"
+		has "outfit (installed): Brig"
 	on complete
 		payment 50000 180
 		dialog "Once you land on <planet>, several uniformed Wanderers drive the Unfettered prisoners off of your ship. You collect your payment of <payment>."
@@ -798,7 +798,7 @@ mission "Wanderer Governor Transport"
 		has "Wanderers Solifuge Recon 2: done"
 		random < 10
 	to accept
-		has "outfit: Luxury Accommodations"
+		has "outfit (installed): Luxury Accommodations"
 	on complete
 		payment 75000 220
 		dialog phrase "generic passenger dropoff payment"
