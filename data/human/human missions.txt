@@ -7031,7 +7031,7 @@ mission "Adelita 1"
 				goto choice
 
 			label extended
-			`	"Right," she says. "Hey, would you happen to know any ships which can take on <tons> of this exhibition equipment to <destination>? The captain I hired to transport everything seems to have been a no-show, and I need someone to take his contract on short notice."`
+			`	"Right," she says. "Hey, would you happen to know any ships which can take on <tons> of this exhibition's equipment to <destination>? As you may know, this is the last day of the exhibition. The captain I hired to transport everything is not only rude, but is now late, and I need someone to take his contract on short notice."`
 			choice
 				`	"Well, I'm the captain of the <ship>."`
 				`	"Sorry, I can't help you."`
