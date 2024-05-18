@@ -187,7 +187,7 @@ mission "Hai Legacy 1"
 					id "hai legacy"
 				fine 10000000
 			`	They give you access to the ship and proceed to explain the details. "It is of no real significance, but surely you understand we cannot go through standard means for this sale. We will instead present it as a fine. You'll be charged for carrying technology you had no idea was forbidden, and it will not go on your permanent record. These Korath weapons are suspicious-looking indeed."`
-			`	You quickly realize that they are not asking you for your opinion at all. In fact, you receive notice of the fine before they have even finished speaking. "We will need to make some modifications to the ship before you can use it. I also would strongly advise against repainting it; you will understand why later.`
+			`	You quickly realize that they are not asking you for your opinion at all. In fact, you receive notice of the fine before they have even finished speaking. "We will need to make some modifications to the ship before you can use it.`
 			`	"Oh, I almost forgot: make sure you return to the spaceport to get the cargo loaded onto your ship. You should use this ship and this ship alone to make these urgent deliveries. Arriving in a different ship or with a supporting fleet will unnerve the Unfettered."`
 			choice
 				`	(Go back to the shipyard.)`
@@ -199,11 +199,11 @@ mission "Hai Legacy 1"
 				random < 50
 			branch lucky?
 				random < 2
-			`	The shot reaches the ship, but the small weapon has no chance of doing anything to the heavy armor, even in its current state. The ship's speakers then activate, almost deafening you. "MY TURN!"`
-			`	The ship then shoots a warning shot on the ground with its Bullfrog Anti-Missiles, causing a geyser of sand to erupt on you and forcing you to drop your weapon. One of the two Hai approaches you, seemingly disappointed. "You're lucky it did not see you as a threat and kill you, but even so you are of no use to us if you think it wise to use your firearm on a spaceship. Farewell." They turn and leave without another word, and the ship flies off.`
+			`	The shot reaches the ship, but the small weapon has no chance of doing anything to the heavy armor, even in its current state.`
+			`	The ship then shoots a warning shot on the ground with its Bullfrog Anti-Missiles, causing a geyser of sand to erupt on you and forcing you to drop your weapon. One of the two Hai approaches you, seemingly disappointed. "You're lucky to still be alive, but even so you are of no use to us if you think it wise to use your firearm on a spaceship. Farewell." They turn and leave without another word, and the ship flies off.`
 				decline
 			label lucky?
-			`	You manage to land a shot on the ship, although it seems to do nothing to the large spacecraft before you. Its speakers then suddenly cry out, "MY REACTOR!" You aren't sure whether the damaged ship's systems failed on their own, or if by some stroke of luck, your shot did something to it.`
+			`	You manage to land a shot on the ship, although it seems to do nothing to the large spacecraft before you. Then you hear a small explosion. You aren't sure whether the damaged ship's systems failed on their own, or if by some stroke of luck, your shot did something to it.`
 			`	Unfortunately, you do not get a chance to ponder it, as the ship abruptly explodes, taking you and everyone else on the beach down with it.`
 				die
 			label miss
@@ -460,32 +460,20 @@ mission "Undeserved Anomalocaris"
 	minor
 	invisible
 	landing
+	source
+		attributes "unfettered"
 	to offer
 		has "ship model: Anomalocaris"
 		"reputation: Hai (Unfettered)" <= -1000
 		not "Hai Legacy 2: active"
-		# To make sure you are not stranded.
-		or
-			"total ships" > 1
-			has "flagship planet attribute: unfettered"
 	on offer
 		conversation
-			branch "unfet space"
-				has "flagship planet attribute: unfettered"
-			`As you land on this planet with the Anomalocaris, sirens and warning lights of all different types begin to go off; it seems the ancient ship is finally ready to completely fall apart!`
-			`	You order the evacuation of the ship, but as soon as every member of your crew has exited...`
-			action
-				take ship "Anomalocaris (Venerable)" "with outfits"
-					id "hai legacy"
-			`	It takes off, seemingly on its own! Looks like the Unfettered are getting this ship no matter what you do. It hails you, "You've had your chance, monkey."`
-				decline
-			label "unfet space"
 			`You land on this Unfettered world in possession of the Anomalocaris, and, as you do, countless Unfettered head to your ship, each armed as they always are.`
 			`	Except, this time, they seem even more intimidating than usual... They must want the ship.`
 			`	One of them sends you a private message. "You do not deserve to fly this relic of old, and you missed your opportunity for a glorious battle to earn that right!"`
 				to display
 					not "Hai Legacy 3: offered"
-			`	"We will give you another ship so you can leave, but you must surrender this one," one of them explains to you in a menacing tone.`
+			`	"We will give you another ship so you can leave, but you must surrender this one, and the savage Korath's weapons, if you did not already rob us of those," one of them explains to you in a menacing tone.`
 			`	Another one steps forward, "We will allow to keep the outfits, provided you give it to us on Darkcloak," they say in a somewhat diplomatic tone.`
 				to display
 					not "flagship planet: Darkcloak"
@@ -497,9 +485,17 @@ mission "Undeserved Anomalocaris"
 				`	(Take off, now!)`
 					depart
 			`	You and your crew exit what was briefly your ship, and you inform the local Unfettered militia that it is now theirs. The Unfettered that were assembling around your ship happily disperse, except for one, probably the leader judging by their rare dual pulse pistols. They come to talk to you, weapons in hand but lowered. "We are happy you could see reason and decided to hand over the ship. In exchange, we have decided to provide you with a suitable replacement, that should hopefully allow you to exit our space safely.`
-			`	"That relic was not meant for you, but remember that there are other ways for you to prove yourself." The leader of these Unfettered continues with blatantly forced casualness. "Say, for example, bringing us a Jump Drive... or two... that for sure will be earning you favor, and prove you can fight.`
+			`	"That relic was not meant for you, but remember that there are other ways for you to prove yourself." The leader of these Unfettered continues with blatantly forced casualness. "Say, for example, bringing us a Jump Drive... or two... that for sure will be earning you favor, and prove you can fight."`
 				to display
 					not "Unfettered Jump Drive 1: offered"
+			branch "has detainers"
+				"outfit: Korath Detainer" > 1
+			action
+				fine 5000000
+			`	As he takes a look at the ship manifest, he seems to notice something missing. "How dare you? You will incur a fine of <fine> for having kept that Korath technology to yourself."`
+			label "has detainers"
+			action
+				outfit "Korath Detainer" - 2
 			`	"For now, you have enough to worry about with all of the missiles that will be heading your way. If I were you I'd install a lot of jammers. You'll need them, ha!" A general laughter erupts, and they let you get comfortable in the new ship. You may want to get a better one, or at least upgrade this one in order to escape safely. It may be wise to bribes to get out in one piece.`
 			action
 				give ship "Lightning Bug (Unfettered Shipyards)" "Good Will"
@@ -513,12 +509,25 @@ mission "Unfettered Landing Permit Lost"
 		attributes "unfettered"
 	to offer
 		has "Hai Legacy 3: done"
-		not "outfit (all): Unfettered Landing Permit"
-		not "Unfettered Jump Drive 1: offered"
-		"reputation: Hai (Unfettered)" >= 0
+		not "ship model (all): Anomalocaris"
 	on offer
 		conversation
-			"As you land, the Unfettered tell you they have learned of the loss of the Anomalocaris, thereby ending your landing access and friendly relations with them. They also, very unsubtly, suggest you find and bring them a Jump Drive to atone for your carelessness."
-		log "Lost access to Unfettered space when they learned about the loss of the Anomalocaris."
-		"reputation: Hai (Unfettered)" <?= -500
+			`You see the sun slowly disappear into the horizon as you land on this planet, indicating it is already night there. Shortly after exiting your ship, you see a group of Unfettered Hai sitting on the side of the path, eating corn around a campfire. One of them, probably the youngest judging by his size, tries to get your attention by calling you repeatedly. "Captain, Captain! Can you tell me stories about how you used great cunning to beat a swarm of Lightning Bugs?" Another one, probably their parent, then speaks up. "Come, sit with us. I am sure there is much to be said about that great relic from our past."`
+			`	You start to explain how the fight went, but before you can explain much, the young one interrupts you, speaking to the others, "See? There is no way he lost the ship, if he could fight so well with it!" The parent speaks again, trying to console the child. "That great ship may be lost, but everything has to end at one point, and its time of glory was already behind it."`
+			choice
+				`	"How did you learn about the lost of the ship?"`
+				`	"Nonsense, I still have the ship."`
+			`	The elder of the group speaks, raising her hand to gather attention, her tone commanding respect. "That ship had a transmitter, a relic of an age where the Hai Empire was fighting wars on different fronts, and we needed a way to find a ship if its crew had been lost in battle. There is no signal anymore, meaning it was either taken appart or destroyed. Tell me, which is it?" As she says this she looks at you deep in the eye, as if she was gazing into your soul.`
+			choice
+				`	"It was lost in a great battle!"`
+				`	"I sold the ship."`
+					goto sold
+			`	She seems proud, "At least it got the end it deserved!"`
+				goto leave
+			label sold
+			`	"You... what? One of the most important relics of my people, and you just sold it? At least you have the guts to own it, young human.`
+			label leave
+			`	She looks around, and as she does you notice more Unfettered Hai than before, talking in little groups and looking your way regularly. She gets up, and continue, in a stronger tone, "It would be wise for you to leave now, wait for things to calm down." You head back to your ship, and thankfully nobody seems be following you.`
+		log "The Unfettered were not pleased to learn about the loss of the Anomalocaris."
+		"reputation: Hai (Unfettered)" -= -250
 
