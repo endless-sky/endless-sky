@@ -187,7 +187,7 @@ void GameAction::LoadSingle(const DataNode &child)
 	}
 	else if(key == "event" && hasValue)
 	{
-		int minDays = (child.Size() >= 3 ? child.Value(2) : 0);
+		int minDays = (child.Size() >= 3 ? child.Value(2) : 1);
 		int maxDays = (child.Size() >= 4 ? child.Value(3) : minDays);
 		if(maxDays < minDays)
 			swap(minDays, maxDays);
