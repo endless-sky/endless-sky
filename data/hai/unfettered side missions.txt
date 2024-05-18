@@ -203,8 +203,8 @@ mission "Hai Legacy 1"
 			`	The ship then shoots a warning shot on the ground with its Bullfrog Anti-Missiles, causing a geyser of sand to erupt on you and forcing you to drop your weapon. One of the two Hai approaches you, seemingly disappointed. "You're lucky it did not see you as a threat and kill you, but even so you are of no use to us if you think it wise to use your firearm on a spaceship. Farewell." They turn and leave without another word, and the ship flies off.`
 				decline
 			label lucky?
-			`	Probably thanks to the fact the ship's shields are down, and its depreciated state, you manage to land a very lucky shot, going through a layer of rust and severely damaging the reactor of the ship. The ship's speakers cry out, "MY REACTOR... NOT MY REACTOR!"`
-			`	It might have seemed lucky, that is, until it blows up, taking you and everyone else on the beach down with it.`
+			`	You manage to land a shot on the ship, although it seems to do nothing to the large spacecraft before you. Its speakers then suddenly cry out, "MY REACTOR!" You aren't sure whether the damaged ship's systems failed on their own, or if by some stroke of luck, your shot did something to it.`
+			`	Unfortunately, you do not get a chance to ponder it, as the ship abruptly explodes, taking you and everyone else on the beach down with it.`
 				die
 			label miss
 			`	You miss your shot. Neither the ship nor the two Hai react, probably not viewing you as a threat. You still have time to do something else or try again. You feel like you heard a chuckle, but you're not sure where it came from.`
@@ -278,10 +278,6 @@ mission "Hai Legacy 2"
 
 
 
-# No category, meaning you can't remove it from the Anomalocaris
-outfit "Unfettered Landing Permit"
-	"maintenance costs" 650
-	description "This item is needed in order to land on Unfettered planets, and its loss will cancel the arrangement."
 
 mission "Hai Legacy 3"
 	landing
@@ -375,13 +371,14 @@ mission "Hai Legacy 3"
 			"total ships" == 1
 			has "flagship model: Anomalocaris"
 			not "unfettered: fled with the relic"
-		to despawn
-			"total ships" != 1
 		personality unconstrained launching plunders staying target heroic disables marked
 		ship "Lightning Bug (Ionic)" "Eraser"
 		ship "Lightning Bug" "Thunder"
 		ship "Lightning Bug (Unfettered Shipyards)" "Lighting"
 		ship "Lightning Bug (Pulse)" "Struck"
+		on kill
+				dialog `When you destroy the last dueling ship, you receive a hail from Mera. She sounds angry, "Destroying one or two ships in the middle of the action could be understood. But all of them? That's either incompetence or evil intent, and I will not have either."`
+				fail
 		conversation
 			`You receive a message from the remaining Unfettered ships: "We surrender. If you land now, you will receive your reward, so long as you do not capture our ships."`
 			branch "good or bad enough"
@@ -395,12 +392,10 @@ mission "Hai Legacy 3"
 	npc disable
 		government "Hai (Unfettered Challenger)"
 		to spawn
+			"total ships" == 1
+			has "flagship model: Anomalocaris"
 			not "unfettered: fled with the relic"
 			"old reputation: Hai (Unfettered)" < -2000
-			has "flagship model: Anomalocaris"
-			"total ships" == 1
-		to despawn
-			"total ships" != 1
 		personality unconstrained entering plunders target heroic mute marked
 		ship "Sea Scorpion (Shredder)" "Requiem"
 		system "Hi Yahr"
@@ -425,7 +420,7 @@ mission "Hai Legacy 3"
 		on kill
 			fail "Hai Legacy 3"
 			set "unfettered: outcast"
-			dialog `As the Lightning Bug is destroyed you receive a hail from the local authorities, "You completely disrespected the rules of the duel and attempted to kill our most prominent researcher. You will not be welcome here anymore!"`
+			dialog `As the Lightning Bug is destroyed you receive a hail from the local authorities, "You completely disrespected the rules of the duel and killed our most prominent researcher. You will not be welcome here anymore!"`
 	npc
 		government "Hai (Unfettered)"
 		to spawn
@@ -436,7 +431,7 @@ mission "Hai Legacy 3"
 			variant
 				"Sea Scorpion (Ionic)"
 	on visit
-		dialog "You have not beaten all challenging ships yet. If they have not shown up it is probably because you have cheated and brought more ships into the fight, or maybe you angered the Unfettered enough that another ship was coming still."
+		dialog "Either you have not defeated all of the Unfettered challengers in orbit yet, or you have broken the terms of their duel."
 	to complete
 		not "unfettered: fled with the relic"
 		has "unfettered: beaten the bugs"
@@ -446,31 +441,22 @@ mission "Hai Legacy 3"
 			has "unfettered: beaten extra bugs"
 	on complete
 		clear "unfettered: beaten the bugs"
+		clear "unfettered: beaten extra bugs"
 		clear "old reputation: Hai (Unfettered)"
 		conversation
-			`When you land in one piece, Mera approaches, looking quite surprised. "You really won? At least it was close, right? Or did the captains make stories to justify their incompetence already, after using their escape pods to get back here like cowards?"`
+			`When you land in one piece, Mera approaches, looking quite surprised. "You really won! At least it was close, right? Or did the captains make stories to justify their incompetence already like the cowards they are?"`
 			choice
 				`	"It was fun."`
 					goto next
 				`	"What are you talking about? This was easy!"`
-			`	"Don't get overconfident, Captain. I am sure you know what happens to such people.`
+			`	"Don't get overconfident, Captain," she muses. I am sure you know what happens to such people.`
 			label next
-			`	"Congratulations, I did not think you had it in you. I will give you authorization to land, on the condition that you keep this relic from our past in one piece. You must make sure you do not lose it until you truly earn the right to call us friends, or we will consider you an enemy once again. Oh, and there are taxes on the daily fee, totaling 650 credits per day. I hope you don't mind.`
-			`	"Do keep in mind that if you lose this permit at any time and have not proven yourself another way, like by bringing us a Jump Drive, you will be treated like an outsider again."`
+			`	"Well, congratulations, I did not think you had it in you. I will give you authorization to land, on the condition that you keep this relic from our past in one piece. Remember, your reputation with us is solely due to to that ship. If you somehow lose it because of incompetence on your own end, it would look pretty bad to us!"`
+			`	Mera then walks off as she begins reviewing data from your fight on a small device. For now, it seems that the Unfettered Hai have some sort of respect for you, so long as you have the Anomalocaris.`
 			choice
 				`	"Thank you for your trust."`
-					goto trust
-				`	"No, thanks; I don't want to pay that much just to be friends with the Unfettered."`
-			action
-				"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
-				log "Won a fight against a few Lightning Bugs in an Anomalocaris, but decided against paying the daily fee to land."
-			`	"What? The winner of the challenge can always refuse the spoils, I suppose. In that case conflict will resume."`
-				decline
-			label trust
 			`	"No need to thank me. Trust is earned, like respect."`
-			action
-				outfit "Unfettered Landing Permit"
-				log "Managed to use an old Anomalocaris to beat a few Lightning Bugs, earning a place in Unfettered territory for a daily cost, as long as the Anomalocaris is kept intact."
+				log "Managed to use an old Anomalocaris to beat some Unfettered challengers, earning respect with the Unfettered Hai so long as the ship remains in your possession."
 
 
 mission "Undeserved Anomalocaris"
@@ -538,15 +524,4 @@ mission "Unfettered Landing Permit Lost"
 			"As you land, the Unfettered tell you they have learned of the loss of the Anomalocaris, thereby ending your landing access and friendly relations with them. They also, very unsubtly, suggest you find and bring them a Jump Drive to atone for your carelessness."
 		log "Lost access to Unfettered space when they learned about the loss of the Anomalocaris."
 		"reputation: Hai (Unfettered)" <?= -500
-
-mission "Free Permit"
-	invisible
-	landing
-	source
-		attributes "unfettered"
-	to offer
-		has "Unfettered Jump Drive 1: offered"
-	on offer
-		outfit "Unfettered Landing Permit" -1
-		fail
 
