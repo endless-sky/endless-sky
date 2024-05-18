@@ -3177,6 +3177,10 @@ void PlayerInfo::RegisterDerivedConditions()
 	unpaidFinesProvider.SetGetFunction([this](const string &name) {
 		return min(limit, accounts.TotalDebt("Fine")); });
 
+	auto &&unpaidDebtsProvider = conditions.GetProviderNamed("unpaid debts");
+	unpaidDebtsProvider.SetGetFunction([this](const string &name) {
+		return min(limit, accounts.TotalDebt("Debt")); });
+
 	auto &&unpaidSalariesProvider = conditions.GetProviderNamed("unpaid salaries");
 	unpaidSalariesProvider.SetGetFunction([this](const string &name) {
 		return min(limit, accounts.CrewSalariesOwed()); });

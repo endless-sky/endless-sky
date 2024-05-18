@@ -185,6 +185,21 @@ void GameAction::LoadSingle(const DataNode &child)
 		else
 			child.PrintTrace("Error: Skipping invalid \"fine\" with non-positive value:");
 	}
+	else if(key == "debt" && hasValue)
+	{
+		GameAction::Debt &debtEntry = debt.emplace_back(max<int64_t>(0, child.Value(1)));
+		for(const DataNode &grand : child)
+		{
+			const string &grandKey = grand.Token(0);
+			bool grandHasValue = (grand.Size() > 1);
+			if(grandKey == "term" && grandHasValue)
+				debtEntry.term = max<int>(1, grand.Value(1));
+			else if(grandKey == "interest" && grandHasValue)
+				debtEntry.interest = clamp(grand.Value(1), 0., 0.999);
+			else
+				grand.PrintTrace("Error: Skipping unrecognized \"debt\" attribute:");
+		}
+	}
 	else if(key == "event" && hasValue)
 	{
 		int minDays = (child.Size() >= 3 ? child.Value(2) : 1);
@@ -240,6 +255,17 @@ void GameAction::Save(DataWriter &out) const
 		out.Write("payment", payment);
 	if(fine)
 		out.Write("fine", fine);
+	for(auto &&debtEntry : debt)
+	{
+		out.Write("debt", debtEntry.amount);
+		out.BeginChild();
+		{
+			if(debtEntry.interest)
+				out.Write("interest", *debtEntry.interest);
+			out.Write("term", debtEntry.term);
+		}
+		out.EndChild();
+	}
 	for(auto &&it : events)
 		out.Write("event", it.first->Name(), it.second.first, it.second.second);
 	for(const string &name : fail)
@@ -363,6 +389,8 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 	}
 	if(fine)
 		player.Accounts().AddFine(fine);
+	for(const auto &debtEntry : debt)
+		player.Accounts().AddDebt(debtEntry.amount, debtEntry.interest, debtEntry.term);
 
 	for(const auto &it : events)
 		player.AddEvent(*it.first, player.GetDate() + it.second.first);
@@ -423,6 +451,8 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 	result.fine = fine;
 	if(result.fine)
 		subs["<fine>"] = Format::CreditString(result.fine);
+
+	result.debt = debt;
 
 	if(!logText.empty())
 		result.logText = Format::Replace(logText, subs);
