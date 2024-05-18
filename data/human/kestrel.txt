@@ -249,23 +249,32 @@ mission "Kestrel Available"
 				decline
 
 
+shipyard "Kestrel"
 
 event "kestrel available: more weapons"
 	set "kestrel available"
-	shipyard "Tarazed Advanced"
+	shipyard "Kestrel"
 		"Kestrel (More Weapons)"
+	planet Wayfarer
+		add shipyard "Kestrel"
 event "kestrel available: more engines"
 	set "kestrel available"
-	shipyard "Tarazed Advanced"
+	shipyard "Kestrel"
 		"Kestrel (More Engines)"
+	planet Wayfarer
+		add shipyard "Kestrel"
 event "kestrel available: more shields"
 	set "kestrel available"
-	shipyard "Tarazed Advanced"
+	shipyard "Kestrel"
 		"Kestrel (More Shields)"
+	planet Wayfarer
+		add shipyard "Kestrel"
 event "kestrel available: more bays"
 	set "kestrel available"
-	shipyard "Tarazed Advanced"
+	shipyard "Kestrel"
 		"Kestrel (More Bays)"
+	planet Wayfarer
+		add shipyard "Kestrel"
 
 
 ship "Unknown Ship Type"
