@@ -482,6 +482,27 @@ void Ship::Load(const DataNode &node)
 				leak.closePeriod = child.Value(3);
 			leaks.push_back(leak);
 		}
+		else if(key == "auto explosion")
+		{
+			if(child.Size() >= 2)
+				autoExplosion.baseMult = child.Value(1);
+			else
+				autoExplosion.baseMult = 1.;
+			for(const auto &grand : child)
+			{
+				if(child.Size() >= 2)
+				{
+					if(child.Token(0) == "blast radius")
+						autoExplosion.radiusMult = child.Value(1);
+					else if(child.Token(0) == "shield damage")
+						autoExplosion.shieldMult = child.Value(1);
+					else if(child.Token(0) == "hull damage")
+						autoExplosion.hullMult = child.Value(1);
+					else if(child.Token(0) == "hit force")
+						autoExplosion.forceMult = child.Value(1);
+				}
+			}
+		}
 		else if(key == "explode" && child.Size() >= 2)
 		{
 			if(!hasExplode)
@@ -603,16 +624,15 @@ void Ship::FinishLoading(bool isNewInstance)
 {
 	// Automatically create an explosion for this ship if requested
 	// only if the ship does not already have a defined explosion.
-	if(baseAttributes.Get("auto explosion") && !baseAttributes.IsWeapon())
+	if(autoExplosion.baseMult > 0. && !baseAttributes.IsWeapon())
 	{
-		double multiplier = baseAttributes.Get("auto explosion");
 		double baseShields = baseAttributes.Get("shields");
 		double baseHull = baseAttributes.Get("hull");
 		baseAttributes.LoadExplosion(
-				(baseShields + baseHull) * 0.01 * multiplier,
-				(baseShields + baseHull) * 0.10 * multiplier,
-				(baseShields + baseHull) * 0.05 * multiplier,
-				(baseShields + baseHull) * 0.15 * multiplier
+				(baseShields + baseHull) * autoExplosion.baseMult * autoExplosion.radiusMult,
+				(baseShields + baseHull) * autoExplosion.baseMult * autoExplosion.shieldMult,
+				(baseShields + baseHull) * autoExplosion.baseMult * autoExplosion.hullMult,
+				(baseShields + baseHull) * autoExplosion.baseMult * autoExplosion.forceMult
 			);
 	}
 

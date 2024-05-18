@@ -109,6 +109,19 @@ public:
 	};
 
 
+private:
+	// A class representing the values to calculate the ship explosion weapon
+	// from its base attributes.
+	class AutoExplosion {
+	public:
+		double baseMult = -1.;
+		double radiusMult = 0.01;
+		double shieldMult = 0.10;
+		double hullMult = 0.05;
+		double forceMult = 0.15;
+	};
+
+
 public:
 	// Functions provided by the Body base class:
 	// bool HasSprite() const;
@@ -606,6 +619,7 @@ private:
 	Outfit baseAttributes;
 	bool addAttributes = false;
 	const Outfit *explosionWeapon = nullptr;
+	AutoExplosion autoExplosion;
 	std::map<const Outfit *, int> outfits;
 	CargoHold cargo;
 	std::list<std::shared_ptr<Flotsam>> jettisoned;
