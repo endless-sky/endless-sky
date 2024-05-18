@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 
 #include <cstdint>
+#include <utility>
 
 
 
@@ -65,6 +66,7 @@ public:
 	// Judge whether this is inside from "base" to "limit."
 	// The range from "base" to "limit" is expressed by "clock" orientation.
 	bool IsInRange(const Angle &base, const Angle &limit) const;
+
 
 
 private:

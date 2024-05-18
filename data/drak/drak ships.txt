@@ -18,7 +18,7 @@ ship "Archon"
 	thumbnail "thumbnail/archon"
 	"never disabled"
 	attributes
-		category "Heavy Warship"
+		category "Unclassified"
 		"cost" 1000000000
 		"shields" 4000000
 		"hull" 1000000
@@ -32,6 +32,9 @@ ship "Archon"
 		"outfit space" 1300
 		"weapon capacity" 1125
 		"engine capacity" 200
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"energy capacity" 100000
 		"energy generation" 1000
 		"heat generation" 17
@@ -44,7 +47,7 @@ ship "Archon"
 		"ion resistance" 1
 		"scramble resistance" 1
 		"ramscoop" 100
-		"thrust" 80
+		"thrust" 60
 		"thrusting energy" 20
 		"thrusting heat" 10
 		"turn" 1600

@@ -21,7 +21,7 @@ ship "Aerie"
 		"hull" 1900
 		"required crew" 10
 		"bunks" 28
-		"mass" 130
+		"mass" 520
 		"drag" 4.1
 		"heat dissipation" .7
 		"fuel capacity" 500
@@ -29,6 +29,9 @@ ship "Aerie"
 		"outfit space" 390
 		"weapon capacity" 150
 		"engine capacity" 95
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 80
 			"shield damage" 800
@@ -79,13 +82,13 @@ ship "Argosy"
 	sprite "ship/argosy"
 	thumbnail "thumbnail/argosy"
 	attributes
-		category "Light Freighter"
+		category "Medium Freighter"
 		"cost" 1960000
 		"shields" 4200
 		"hull" 2600
 		"required crew" 4
 		"bunks" 14
-		"mass" 330
+		"mass" 1320
 		"drag" 5.9
 		"heat dissipation" .7
 		"fuel capacity" 400
@@ -93,6 +96,9 @@ ship "Argosy"
 		"outfit space" 270
 		"weapon capacity" 90
 		"engine capacity" 80
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 60
 			"shield damage" 600
@@ -146,7 +152,7 @@ ship "Arrow"
 		"hull" 400
 		"required crew" 1
 		"bunks" 5
-		"mass" 130
+		"mass" 260
 		"drag" 2.0
 		"heat dissipation" .85
 		"fuel capacity" 600
@@ -154,6 +160,9 @@ ship "Arrow"
 		"outfit space" 180
 		"weapon capacity" 50
 		"engine capacity" 75
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 24
 			"shield damage" 240
@@ -201,7 +210,7 @@ ship "Auxiliary"
 		"hull" 5900
 		"required crew" 87
 		"bunks" 250
-		"mass" 820
+		"mass" 6560
 		"drag" 13.3
 		"heat dissipation" .45
 		"fuel capacity" 900
@@ -209,6 +218,9 @@ ship "Auxiliary"
 		"outfit space" 720
 		"weapon capacity" 160
 		"engine capacity" 200
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 280
 			"shield damage" 2800
@@ -229,7 +241,7 @@ ship "Auxiliary"
 		"Ramscoop"
 		
 		"X4700 Ion Thruster"
-		"X1700 Ion Thruster"
+		# "X1700 Ion Thruster" # Extra thruster
 		"X5200 Ion Steering"
 		"Scram Drive"
 	engine -41. 180.5 0.45
@@ -318,7 +330,7 @@ ship "Bactrian"
 		"hull" 8600
 		"required crew" 70
 		"bunks" 245
-		"mass" 940
+		"mass" 7520
 		"drag" 16.1
 		"heat dissipation" .4
 		"fuel capacity" 700
@@ -326,6 +338,9 @@ ship "Bactrian"
 		"outfit space" 740
 		"weapon capacity" 300
 		"engine capacity" 180
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 260
 			"shield damage" 2600
@@ -397,6 +412,9 @@ ship "Barb"
 		"outfit space" 85
 		"weapon capacity" 28
 		"engine capacity" 22
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 12
 			"shield damage" 120
@@ -435,7 +453,7 @@ ship "Bastion"
 		"hull" 4700
 		"required crew" 17
 		"bunks" 40
-		"mass" 580
+		"mass" 2320
 		"drag" 10.3
 		"heat dissipation" .5
 		"fuel capacity" 500
@@ -443,6 +461,9 @@ ship "Bastion"
 		"outfit space" 470
 		"weapon capacity" 190
 		"engine capacity" 120
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 120
 			"shield damage" 1200
@@ -499,7 +520,7 @@ ship "Behemoth"
 		"hull" 6300
 		"required crew" 12
 		"bunks" 30
-		"mass" 540
+		"mass" 4320
 		"drag" 11.7
 		"heat dissipation" .4
 		"fuel capacity" 600
@@ -507,6 +528,9 @@ ship "Behemoth"
 		"outfit space" 510
 		"weapon capacity" 280
 		"engine capacity" 90
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 140
 			"shield damage" 1400
@@ -524,7 +548,7 @@ ship "Behemoth"
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
-		"X1100 Ion Reverse Thruster" 2
+		"X1100 Ion Reverse Thruster" 1 # Extra reverse thruster
 		"Scram Drive"
 		
 	engine -34 143 0.8
@@ -569,6 +593,9 @@ ship "Berserker"
 		"outfit space" 200
 		"weapon capacity" 35
 		"engine capacity" 65
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 30
 			"shield damage" 300
@@ -612,7 +639,7 @@ ship "Blackbird"
 		"hull" 900
 		"required crew" 3
 		"bunks" 28
-		"mass" 220
+		"mass" 880
 		"drag" 5.0
 		"heat dissipation" .7
 		"fuel capacity" 700
@@ -620,6 +647,9 @@ ship "Blackbird"
 		"outfit space" 350
 		"weapon capacity" 90
 		"engine capacity" 110
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 60
 			"shield damage" 600
@@ -665,7 +695,7 @@ ship "Bounder"
 		"hull" 700
 		"required crew" 1
 		"bunks" 17
-		"mass" 130
+		"mass" 260
 		"drag" 3.7
 		"heat dissipation" .8
 		"fuel capacity" 800
@@ -673,6 +703,9 @@ ship "Bounder"
 		"outfit space" 220
 		"weapon capacity" 50
 		"engine capacity" 110
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 30
 			"shield damage" 300
@@ -718,6 +751,9 @@ ship "Boxwing"
 		"heat dissipation" .27
 		"outfit space" 45
 		"engine capacity" 28
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"cargo space" 80
 		weapon
 			"blast radius" 12
@@ -751,7 +787,7 @@ ship "Bulk Freighter"
 		"hull" 7600
 		"required crew" 12
 		"bunks" 21
-		"mass" 870
+		"mass" 6960
 		"drag" 14
 		"heat dissipation" .4
 		"fuel capacity" 900
@@ -759,6 +795,9 @@ ship "Bulk Freighter"
 		"outfit space" 410
 		"weapon capacity" 180
 		"engine capacity" 85
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 120
 			"shield damage" 1200
@@ -812,7 +851,7 @@ ship "Bulwark"
 		"hull" 5600
 		"required crew" 19
 		"bunks" 31
-		"mass" 881
+		"mass" 3520
 		"drag" 13.4
 		"heat dissipation" .35
 		"fuel capacity" 500
@@ -820,6 +859,9 @@ ship "Bulwark"
 		"outfit space" 521
 		"weapon capacity" 223
 		"engine capacity" 120
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"threshold percentage" .08
 		weapon
 			"blast radius" 120
@@ -878,14 +920,17 @@ ship "Carrier"
 		"hull" 8300
 		"required crew" 111
 		"bunks" 184
-		"mass" 910
-		"drag" 17.7
+		"mass" 7580
+		"drag" 19
 		"heat dissipation" .45
 		"fuel capacity" 700
 		"cargo space" 100
 		"outfit space" 820
 		"weapon capacity" 370
 		"engine capacity" 210
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 300
 			"shield damage" 3000
@@ -970,7 +1015,7 @@ ship "Class C Freighter"
 		"hull" 7600
 		"required crew" 18
 		"bunks" 43
-		"mass" 880
+		"mass" 7040
 		"drag" 14
 		"heat dissipation" .4
 		"fuel capacity" 900
@@ -978,6 +1023,9 @@ ship "Class C Freighter"
 		"outfit space" 410
 		"weapon capacity" 150
 		"engine capacity" 85
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 200
 			"shield damage" 2000
@@ -1061,7 +1109,7 @@ ship "Clipper"
 		"hull" 800
 		"required crew" 3
 		"bunks" 9
-		"mass" 150
+		"mass" 300
 		"drag" 3.7
 		"heat dissipation" .8
 		"fuel capacity" 500
@@ -1069,6 +1117,9 @@ ship "Clipper"
 		"outfit space" 260
 		"weapon capacity" 60
 		"engine capacity" 80
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 36
 			"shield damage" 360
@@ -1119,6 +1170,9 @@ ship "Combat Drone"
 		"outfit space" 58
 		"weapon capacity" 8
 		"engine capacity" 28
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 5
 			"shield damage" 50
@@ -1152,7 +1206,7 @@ ship "Container Transport"
 		"hull" 8000
 		"required crew" 6
 		"bunks" 18
-		"mass" 880
+		"mass" 7040
 		"drag" 17.6
 		"heat dissipation" .6
 		"fuel capacity" 600
@@ -1160,6 +1214,12 @@ ship "Container Transport"
 		"outfit space" 410
 		"weapon capacity" 180
 		"engine capacity" 85
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 120
 			"shield damage" 1200
@@ -1213,7 +1273,7 @@ ship "Corvette"
 		"hull" 800
 		"required crew" 8
 		"bunks" 32
-		"mass" 150
+		"mass" 600
 		"drag" 3.5
 		"heat dissipation" .7
 		"fuel capacity" 500
@@ -1221,6 +1281,9 @@ ship "Corvette"
 		"outfit space" 420
 		"weapon capacity" 150
 		"engine capacity" 100
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 80
 			"shield damage" 800
@@ -1277,14 +1340,17 @@ ship "Cruiser"
 		"hull" 6400
 		"required crew" 81
 		"bunks" 136
-		"mass" 680
-		"drag" 10.1
+		"mass" 5440
+		"drag" 11
 		"heat dissipation" .45
 		"fuel capacity" 600
 		"cargo space" 60
 		"outfit space" 760
 		"weapon capacity" 320
 		"engine capacity" 170
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 260
 			"shield damage" 2600
@@ -1356,7 +1422,7 @@ ship "Cutthroat"
 		"hull" 600
 		"required crew" 4
 		"bunks" 6
-		"mass" 182
+		"mass" 364
 		"drag" 3.4
 		"heat dissipation" .8
 		"fuel capacity" 500
@@ -1364,6 +1430,9 @@ ship "Cutthroat"
 		"outfit space" 282
 		"weapon capacity" 60
 		"engine capacity" 111
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 36
 			"shield damage" 360
@@ -1420,6 +1489,9 @@ ship "Dagger"
 		"outfit space" 90
 		"weapon capacity" 20
 		"engine capacity" 35
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 12
 			"shield damage" 120
@@ -1463,14 +1535,17 @@ ship "Dreadnought"
 		"hull" 7300
 		"required crew" 84
 		"bunks" 147
-		"mass" 630
-		"drag" 10.1
+		"mass" 5040
+		"drag" 11
 		"heat dissipation" .65
 		"fuel capacity" 600
 		"cargo space" 100
 		"outfit space" 790
 		"weapon capacity" 360
 		"engine capacity" 190
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 260
 			"shield damage" 2600
@@ -1537,6 +1612,9 @@ ship "Dropship"
 		"outfit space" 100
 		"weapon capacity" 16
 		"engine capacity" 40
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 12
 			"shield damage" 120
@@ -1583,6 +1661,9 @@ ship "Enforcer"
 		"outfit space" 210
 		"weapon capacity" 55
 		"engine capacity" 60
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 34
 			"shield damage" 340
@@ -1626,14 +1707,17 @@ ship "Falcon"
 		"hull" 3700
 		"required crew" 52
 		"bunks" 91
-		"mass" 510
-		"drag" 6.7
+		"mass" 4080
+		"drag" 6.8
 		"heat dissipation" .7
 		"fuel capacity" 600
 		"cargo space" 130
 		"outfit space" 560
 		"weapon capacity" 250
 		"engine capacity" 150
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 160
 			"shield damage" 1600
@@ -1698,6 +1782,9 @@ ship "Finch"
 		"outfit space" 110
 		"weapon capacity" 20
 		"engine capacity" 40
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 12
 			"shield damage" 120
@@ -1739,7 +1826,7 @@ ship "Firebird"
 		"hull" 3400
 		"required crew" 7
 		"bunks" 22
-		"mass" 290
+		"mass" 1160
 		"drag" 4.5
 		"heat dissipation" .6
 		"fuel capacity" 400
@@ -1747,6 +1834,9 @@ ship "Firebird"
 		"outfit space" 400
 		"weapon capacity" 160
 		"engine capacity" 100
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 100
 			"shield damage" 1000
@@ -1806,6 +1896,9 @@ ship "Flivver"
 		"outfit space" 130
 		"weapon capacity" 16
 		"engine capacity" 45
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 16
 			"shield damage" 160
@@ -1844,7 +1937,7 @@ ship "Freighter"
 		"hull" 2000
 		"required crew" 2
 		"bunks" 7
-		"mass" 240
+		"mass" 960
 		"drag" 5.6
 		"heat dissipation" .6
 		"fuel capacity" 600
@@ -1852,6 +1945,9 @@ ship "Freighter"
 		"outfit space" 250
 		"weapon capacity" 80
 		"engine capacity" 70
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 40
 			"shield damage" 400
@@ -1898,7 +1994,7 @@ ship "Frigate"
 		"hull" 2500
 		"required crew" 21
 		"bunks" 44
-		"mass" 310
+		"mass" 1240
 		"drag" 5.2
 		"heat dissipation" .7
 		"fuel capacity" 500
@@ -1906,6 +2002,9 @@ ship "Frigate"
 		"outfit space" 410
 		"weapon capacity" 170
 		"engine capacity" 100
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 100
 			"shield damage" 1000
@@ -1971,6 +2070,9 @@ ship "Fury"
 		"outfit space" 160
 		"weapon capacity" 40
 		"engine capacity" 60
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 24
 			"shield damage" 240
@@ -2017,7 +2119,7 @@ ship "Gunboat"
 		"hull" 1400
 		"required crew" 7
 		"bunks" 12
-		"mass" 150
+		"mass" 300
 		"drag" 3.1
 		"heat dissipation" .8
 		"fuel capacity" 600
@@ -2025,6 +2127,9 @@ ship "Gunboat"
 		"outfit space" 270
 		"weapon capacity" 100
 		"engine capacity" 90
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 72
 			"shield damage" 720
@@ -2072,7 +2177,7 @@ ship "Hauler"
 		"hull" 3700
 		"required crew" 3
 		"bunks" 12
-		"mass" 250
+		"mass" 1000
 		"drag" 10.5
 		"heat dissipation" .6
 		"fuel capacity" 400
@@ -2080,6 +2185,9 @@ ship "Hauler"
 		"outfit space" 350
 		"weapon capacity" 140
 		"engine capacity" 80
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 60
 			"shield damage" 600
@@ -2125,13 +2233,13 @@ ship "Hauler II"
 	sprite "ship/hauler ii"
 	thumbnail "thumbnail/hauler ii"
 	attributes
-		category "Heavy Freighter"
+		category "Medium Freighter"
 		"cost" 2340000
 		"shields" 2900
 		"hull" 5200
 		"required crew" 3
 		"bunks" 12
-		"mass" 360
+		"mass" 1440
 		"drag" 11.5
 		"heat dissipation" .6
 		"fuel capacity" 400
@@ -2139,6 +2247,9 @@ ship "Hauler II"
 		"outfit space" 350
 		"weapon capacity" 140
 		"engine capacity" 80
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 80
 			"shield damage" 800
@@ -2192,7 +2303,7 @@ ship "Hauler III"
 		"hull" 6700
 		"required crew" 3
 		"bunks" 12
-		"mass" 470
+		"mass" 1880
 		"drag" 12.5
 		"heat dissipation" .6
 		"fuel capacity" 400
@@ -2200,6 +2311,9 @@ ship "Hauler III"
 		"outfit space" 350
 		"weapon capacity" 140
 		"engine capacity" 80
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 100
 			"shield damage" 1000
@@ -2261,6 +2375,9 @@ ship "Hawk"
 		"outfit space" 200
 		"weapon capacity" 50
 		"engine capacity" 70
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 30
 			"shield damage" 300
@@ -2301,7 +2418,7 @@ ship "Headhunter"
 		"hull" 700
 		"required crew" 2
 		"bunks" 4
-		"mass" 120
+		"mass" 240
 		"drag" 2.6
 		"heat dissipation" .8
 		"fuel capacity" 400
@@ -2309,6 +2426,9 @@ ship "Headhunter"
 		"outfit space" 250
 		"weapon capacity" 60
 		"engine capacity" 80
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 44
 			"shield damage" 440
@@ -2354,7 +2474,7 @@ ship "Heavy Shuttle"
 		"hull" 700
 		"required crew" 1
 		"bunks" 10
-		"mass" 90
+		"mass" 120
 		"drag" 1.9
 		"heat dissipation" .8
 		"fuel capacity" 500
@@ -2362,6 +2482,9 @@ ship "Heavy Shuttle"
 		"outfit space" 130
 		"weapon capacity" 16
 		"engine capacity" 65
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 12
 			"shield damage" 120
@@ -2397,7 +2520,7 @@ ship "Hogshead"
 		"hull" 1900
 		"required crew" 18
 		"bunks" 84
-		"mass" 210
+		"mass" 840
 		"drag" 4.3
 		"heat dissipation" .55
 		"fuel capacity" 600
@@ -2405,6 +2528,9 @@ ship "Hogshead"
 		"outfit space" 320
 		"weapon capacity" 80
 		"engine capacity" 90
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 51
 			"shield damage" 510
@@ -2460,6 +2586,9 @@ ship "Lance"
 		"outfit space" 100
 		"weapon capacity" 20
 		"engine capacity" 30
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 12
 			"shield damage" 120
@@ -2501,7 +2630,7 @@ ship "Leviathan"
 		"hull" 5000
 		"required crew" 43
 		"bunks" 64
-		"mass" 600
+		"mass" 4800
 		"drag" 8.1
 		"heat dissipation" .5
 		"fuel capacity" 500
@@ -2509,6 +2638,9 @@ ship "Leviathan"
 		"outfit space" 620
 		"weapon capacity" 240
 		"engine capacity" 120
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 80
 			"shield damage" 800
@@ -2561,7 +2693,7 @@ ship "Mammoth"
 		"hull" 7400
 		"required crew" 18
 		"bunks" 30
-		"mass" 688
+		"mass" 5504
 		"drag" 11.9
 		"heat dissipation" .32
 		"fuel capacity" 1000
@@ -2569,6 +2701,9 @@ ship "Mammoth"
 		"outfit space" 536
 		"weapon capacity" 294
 		"engine capacity" 114
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"scan interference" 2
 		weapon
 			"blast radius" 140
@@ -2590,7 +2725,7 @@ ship "Mammoth"
 		"Catalytic Ramscoop"
 		"Laser Rifle" 18
 		
-		"Volcano Afterburner" 2
+		"Volcano Afterburner" # Extra afterburner
 		"AR120 Reverse Thruster"
 		"A370 Atomic Thruster"
 		"A375 Atomic Steering"
@@ -2634,7 +2769,7 @@ ship "Manta"
 		"hull" 1500
 		"required crew" 6
 		"bunks" 10
-		"mass" 170
+		"mass" 680
 		"drag" 4.7
 		"heat dissipation" .8
 		"fuel capacity" 400
@@ -2642,6 +2777,9 @@ ship "Manta"
 		"outfit space" 350
 		"weapon capacity" 140
 		"engine capacity" 100
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 80
 			"shield damage" 800
@@ -2694,6 +2832,9 @@ ship "Mining Drone"
 		"outfit space" 62
 		"weapon capacity" 12
 		"engine capacity" 28
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 3
 			"shield damage" 30
@@ -2727,7 +2868,7 @@ ship "Modified Argosy"
 		"hull" 1900
 		"required crew" 5
 		"bunks" 12
-		"mass" 250
+		"mass" 500
 		"drag" 6.2
 		"heat dissipation" .6
 		"fuel capacity" 400
@@ -2735,6 +2876,9 @@ ship "Modified Argosy"
 		"outfit space" 340
 		"weapon capacity" 140
 		"engine capacity" 80
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 80
 			"shield damage" 800
@@ -2789,7 +2933,7 @@ ship "Mule"
 		"hull" 4400
 		"required crew" 14
 		"bunks" 43
-		"mass" 320
+		"mass" 1280
 		"drag" 5.7
 		"heat dissipation" .5
 		"fuel capacity" 600
@@ -2797,6 +2941,9 @@ ship "Mule"
 		"outfit space" 440
 		"weapon capacity" 170
 		"engine capacity" 110
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 100
 			"shield damage" 1000
@@ -2853,7 +3000,7 @@ ship "Nest"
 		"hull" 3700
 		"required crew" 5
 		"bunks" 14
-		"mass" 250
+		"mass" 1000
 		"drag" 10.5
 		"heat dissipation" .67
 		"fuel capacity" 500
@@ -2861,6 +3008,9 @@ ship "Nest"
 		"outfit space" 400
 		"weapon capacity" 140
 		"engine capacity" 80
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 60
 			"shield damage" 600
@@ -2916,7 +3066,7 @@ ship "Nighthawk"
 		"hull" 1100
 		"required crew" 4
 		"bunks" 28
-		"mass" 267
+		"mass" 1068
 		"drag" 5.2
 		"heat dissipation" .65
 		"fuel capacity" 700
@@ -2924,6 +3074,9 @@ ship "Nighthawk"
 		"outfit space" 362
 		"weapon capacity" 102
 		"engine capacity" 123
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 60
 			"shield damage" 600
@@ -2974,7 +3127,7 @@ ship "Osprey"
 		"hull" 1600
 		"required crew" 9
 		"bunks" 24
-		"mass" 270
+		"mass" 1080
 		"drag" 5.9
 		"heat dissipation" .8
 		"fuel capacity" 600
@@ -2982,6 +3135,9 @@ ship "Osprey"
 		"outfit space" 450
 		"weapon capacity" 180
 		"engine capacity" 130
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 80
 			"shield damage" 800
@@ -3035,7 +3191,7 @@ ship "Protector"
 		"hull" 7800
 		"required crew" 30
 		"bunks" 69
-		"mass" 500
+		"mass" 4000
 		"drag" 10.3
 		"heat dissipation" .6
 		"fuel capacity" 400
@@ -3043,6 +3199,9 @@ ship "Protector"
 		"outfit space" 590
 		"weapon capacity" 230
 		"engine capacity" 100
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 160
 			"shield damage" 1600
@@ -3099,7 +3258,7 @@ ship "Quicksilver"
 		"hull" 800
 		"required crew" 3
 		"bunks" 6
-		"mass" 120
+		"mass" 240
 		"drag" 2.7
 		"heat dissipation" .8
 		"fuel capacity" 400
@@ -3107,6 +3266,9 @@ ship "Quicksilver"
 		"outfit space" 240
 		"weapon capacity" 80
 		"engine capacity" 70
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 40
 			"shield damage" 400
@@ -3147,7 +3309,7 @@ ship "Rainmaker"
 		"hull" 1200
 		"required crew" 3
 		"bunks" 7
-		"mass" 180
+		"mass" 360
 		"drag" 3.8
 		"heat dissipation" .6
 		"fuel capacity" 500
@@ -3155,6 +3317,9 @@ ship "Rainmaker"
 		"outfit space" 240
 		"weapon capacity" 70
 		"engine capacity" 50
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 40
 			"shield damage" 400
@@ -3203,7 +3368,7 @@ ship "Raven"
 		"hull" 1400
 		"required crew" 6
 		"bunks" 13
-		"mass" 130
+		"mass" 260
 		"drag" 3.7
 		"heat dissipation" .8
 		"fuel capacity" 500
@@ -3211,6 +3376,9 @@ ship "Raven"
 		"outfit space" 280
 		"weapon capacity" 100
 		"engine capacity" 100
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 60
 			"shield damage" 600
@@ -3260,7 +3428,7 @@ ship "Roost"
 		"hull" 5200
 		"required crew" 7
 		"bunks" 16
-		"mass" 360
+		"mass" 1440
 		"drag" 11.5
 		"heat dissipation" .67
 		"fuel capacity" 600
@@ -3268,6 +3436,9 @@ ship "Roost"
 		"outfit space" 450
 		"weapon capacity" 140
 		"engine capacity" 80
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 80
 			"shield damage" 800
@@ -3336,6 +3507,9 @@ ship "Saber"
 		"outfit space" 280
 		"weapon capacity" 105
 		"engine capacity" 90
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 72
 			"shield damage" 720
@@ -3385,7 +3559,7 @@ ship "Scout"
 		"hull" 400
 		"required crew" 1
 		"bunks" 12
-		"mass" 110
+		"mass" 140
 		"drag" 3.4
 		"heat dissipation" .7
 		"fuel capacity" 800
@@ -3393,6 +3567,9 @@ ship "Scout"
 		"outfit space" 220
 		"weapon capacity" 40
 		"engine capacity" 100
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 16
 			"shield damage" 160
@@ -3445,6 +3622,9 @@ ship "Scrapper"
 		"outfit space" 125
 		"weapon capacity" 12
 		"engine capacity" 58
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 10
 			"shield damage" 80
@@ -3483,7 +3663,7 @@ ship "Shuttle"
 		"hull" 600
 		"required crew" 1
 		"bunks" 6
-		"mass" 70
+		"mass" 100
 		"drag" 1.7
 		"heat dissipation" .8
 		"fuel capacity" 400
@@ -3491,6 +3671,9 @@ ship "Shuttle"
 		"outfit space" 120
 		"weapon capacity" 10
 		"engine capacity" 60
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 12
 			"shield damage" 120
@@ -3528,7 +3711,7 @@ ship "Skein"
 		"hull" 6700
 		"required crew" 7
 		"bunks" 18
-		"mass" 470
+		"mass" 1880
 		"drag" 12.5
 		"heat dissipation" .71
 		"fuel capacity" 700
@@ -3536,6 +3719,9 @@ ship "Skein"
 		"outfit space" 500
 		"weapon capacity" 140
 		"engine capacity" 80
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 100
 			"shield damage" 1000
@@ -3610,6 +3796,9 @@ ship "Sparrow"
 		"outfit space" 130
 		"weapon capacity" 25
 		"engine capacity" 40
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 16
 			"shield damage" 160
@@ -3650,7 +3839,7 @@ ship "Splinter"
 		"hull" 1700
 		"required crew" 7
 		"bunks" 21
-		"mass" 250
+		"mass" 1000
 		"drag" 4.0
 		"heat dissipation" .7
 		"fuel capacity" 600
@@ -3658,6 +3847,9 @@ ship "Splinter"
 		"outfit space" 400
 		"weapon capacity" 150
 		"engine capacity" 100
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 60
 			"shield damage" 600
@@ -3708,7 +3900,7 @@ ship "Star Barge"
 		"hull" 1000
 		"required crew" 1
 		"bunks" 3
-		"mass" 70
+		"mass" 100
 		"drag" 2.1
 		"heat dissipation" .8
 		"fuel capacity" 300
@@ -3716,6 +3908,9 @@ ship "Star Barge"
 		"outfit space" 130
 		"weapon capacity" 20
 		"engine capacity" 40
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 16
 			"shield damage" 160
@@ -3753,7 +3948,7 @@ ship "Star Queen"
 		"hull" 2200
 		"required crew" 33
 		"bunks" 112
-		"mass" 230
+		"mass" 920
 		"drag" 4.5
 		"heat dissipation" .65
 		"fuel capacity" 700
@@ -3761,6 +3956,9 @@ ship "Star Queen"
 		"outfit space" 360
 		"weapon capacity" 120
 		"engine capacity" 100
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 60
 			"shield damage" 600
@@ -3815,7 +4013,7 @@ ship "Sunder"
 		"hull" 1600
 		"required crew" 3
 		"bunks" 5
-		"mass" 160
+		"mass" 320
 		"drag" 3.8
 		"heat dissipation" .7
 		"fuel capacity" 600
@@ -3823,6 +4021,9 @@ ship "Sunder"
 		"outfit space" 230
 		"weapon capacity" 50
 		"engine capacity" 90
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 28
 			"shield damage" 280
@@ -3880,6 +4081,9 @@ ship "Surveillance Drone"
 		"outfit space" 53
 		"weapon capacity" 0
 		"engine capacity" 28
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 3
 			"shield damage" 30
@@ -3910,7 +4114,7 @@ ship "Valkyrie"
 		"hull" 2800
 		"required crew" 9
 		"bunks" 26
-		"mass" 157
+		"mass" 628
 		"drag" 4.9
 		"heat dissipation" .63
 		"fuel capacity" 500
@@ -3918,6 +4122,9 @@ ship "Valkyrie"
 		"outfit space" 400
 		"weapon capacity" 170
 		"engine capacity" 76
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 80
 			"shield damage" 800
@@ -3972,7 +4179,7 @@ ship "Vanguard"
 		"hull" 6000
 		"required crew" 23
 		"bunks" 45
-		"mass" 500
+		"mass" 4000
 		"drag" 8
 		"heat dissipation" .6
 		"fuel capacity" 400
@@ -3980,6 +4187,9 @@ ship "Vanguard"
 		"outfit space" 560
 		"weapon capacity" 220
 		"engine capacity" 120
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 160
 			"shield damage" 1600
@@ -4045,6 +4255,9 @@ ship "Wasp"
 		"outfit space" 150
 		"weapon capacity" 28
 		"engine capacity" 60
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 20
 			"shield damage" 200

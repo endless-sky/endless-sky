@@ -27,7 +27,7 @@ ship "Albatross"
 		"required crew" 44
 		"bunks" 75
 		"cargo space" 124
-		"mass" 610
+		"mass" 4880
 		"drag" 8.6
 		"heat dissipation" 0.6
 		"fuel capacity" 600
@@ -35,6 +35,9 @@ ship "Albatross"
 		"outfit space" 672
 		"weapon capacity" 236
 		"engine capacity" 142
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"shield generation" 5.2
 		"shield energy" 4.6
 		"hull repair rate" 1.5
@@ -104,7 +107,7 @@ ship "Albatross" "Albatross (Sniper)"
 		"Tuning Rifle" 57
 
 		"Forge-Class Thruster"
-		"Crucible-Class Thruster"
+		# "Crucible-Class Thruster" # Extra thruster
 		"Smelter-Class Steering"
 		"Scram Drive"
 
@@ -162,9 +165,9 @@ ship "Albatross" "Albatross (Heavy)"
 		"Tuning Rifle" 65
 
 		"Forge-Class Thruster"
-		"Crucible-Class Thruster"
+		# "Crucible-Class Thruster" # Extra thruster
 		"Smelter-Class Steering"
-		"Forge-Class Steering"
+		# "Forge-Class Steering" # Extra steering
 		"Scram Drive"
 
 	gun "Inhibitor Cannon"
@@ -250,7 +253,7 @@ ship "Albatross" "Albatross (Sniper II)"
 		"Tuning Rifle" 57
 
 		"Forge-Class Thruster"
-		"Crucible-Class Thruster"
+		# "Crucible-Class Thruster" # Extra thruster
 		"Smelter-Class Steering"
 		"Scram Drive"
 
@@ -282,7 +285,7 @@ ship "Modified Dromedary"
 		"hull" 9600
 		"required crew" 95
 		"bunks" 300
-		"mass" 2140
+		"mass" 12840
 		"drag" 15.1
 		"heat dissipation" .4
 		"fuel capacity" 900
@@ -290,6 +293,9 @@ ship "Modified Dromedary"
 		"outfit space" 740
 		"weapon capacity" 270
 		"engine capacity" 195
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"solar collection" 1.1
 		"outfit scan power" 18
 		"outfit scan efficiency" 48
@@ -486,7 +492,7 @@ ship "Gull"
 		"hull" 2500
 		"required crew" 3
 		"bunks" 20
-		"mass" 270
+		"mass" 540
 		"drag" 6
 		"heat dissipation" 0.7
 		"fuel capacity" 600
@@ -495,6 +501,9 @@ ship "Gull"
 		"outfit space" 311
 		"weapon capacity" 83
 		"engine capacity" 101
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"shield generation" 1.6
 		"shield energy" 1.1
 		"hull repair rate" 0.7
@@ -646,7 +655,7 @@ ship "Heron"
 		"hull" 250500
 		"required crew" 1000
 		"bunks" 3000
-		"mass" 5000
+		"mass" 40000
 		"drag" 25
 		"heat dissipation" .80
 		"fuel capacity" 2500
@@ -655,6 +664,9 @@ ship "Heron"
 		"outfit space" 2150
 		"weapon capacity" 470
 		"engine capacity" 800
+		"reverse thruster slot" 1
+		"steering slot" 5
+		"thruster slot" 5
 		"shield generation" 15
 		"shield energy" 1.8
 		"hull repair rate" 15
@@ -813,7 +825,7 @@ ship "Ibis"
 		"hull" 6200
 		"required crew" 16
 		"bunks" 36
-		"mass" 350
+		"mass" 1400
 		"drag" 5.1
 		"heat dissipation" 0.7
 		"fuel capacity" 700
@@ -822,6 +834,9 @@ ship "Ibis"
 		"outfit space" 427
 		"weapon capacity" 147
 		"engine capacity" 109
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"shield generation" 3.5
 		"shield energy" 3.1
 		"hull repair rate" 1.2
@@ -849,7 +864,7 @@ ship "Ibis"
 		"Tuning Rifle" 20
 		
 		"Forge-Class Thruster"
-		"Forge-Class Steering" 2
+		"Forge-Class Steering" # Extra steering
 		"Scram Drive"
 		
 	bay "Drone" 0 30 over
@@ -934,6 +949,9 @@ ship "Merganser"
 		"reverse flare sound" "plasma tiny"
 		"weapon capacity" 85
 		"engine capacity" 70
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 10
 			"shield damage" 100
@@ -947,7 +965,7 @@ ship "Merganser"
 		"Small Heat Shunt"
 		"Quantum Key Stone"
 		
-		"Crucible-Class Thruster"
+		# "Crucible-Class Thruster" Extra thruster
 		"Anvil-Class Engine"
 		"Bellows-Class Afterburner"
 		"Scram Drive"
@@ -976,7 +994,7 @@ ship "Merganser" "Merganser (II)"
 		"Small Heat Shunt"
 		"Quantum Key Stone"
 		
-		"Crucible-Class Thruster"
+		# "Crucible-Class Thruster" Extra Thruster
 		"Anvil-Class Engine"
 		"Bellows-Class Afterburner"
 		"Scram Drive"
@@ -1001,14 +1019,17 @@ ship "Pelican"
 		"required crew" 14
 		"bunks" 35
 		"cargo space" 302
-		"mass" 320
-		"drag" 7.2
+		"mass" 1200
+		"drag" 7.0
 		"heat dissipation" 0.7
 		"fuel capacity" 600
 		"ramscoop" 2.75
 		"outfit space" 480
 		"weapon capacity" 157
 		"engine capacity" 144
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"shield generation" 2.7
 		"shield energy" 1.8
 		"hull repair rate" 1
@@ -1091,6 +1112,9 @@ ship "Penguin"
 		"outfit space" 109
 		"weapon capacity" 33
 		"engine capacity" 54
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"shield generation" 1
 		"shield energy" 0.5
 		"hull repair rate" 2
@@ -1187,7 +1211,7 @@ ship "Peregrine"
 		"hull" 10600
 		"required crew" 9
 		"bunks" 25
-		"mass" 350
+		"mass" 1400
 		"drag" 4.3
 		"heat dissipation" 0.85
 		"fuel capacity" 1100
@@ -1196,6 +1220,9 @@ ship "Peregrine"
 		"outfit space" 552
 		"weapon capacity" 220
 		"engine capacity" 171
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 2
 		"shield generation" 4.9
 		"shield energy" 3.0
 		"hull repair rate" 2.5
@@ -1312,6 +1339,9 @@ ship "Petrel"
 		"outfit space" 133
 		"weapon capacity" 33
 		"engine capacity" 34
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"shield generation" 0.36
 		"shield energy" 0.24
 		"hull repair rate" 0.82
@@ -1371,6 +1401,9 @@ ship "Puffin"
 		"cargo space" 8
 		"outfit space" 80
 		"engine capacity" 26
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"shield generation" 0.6
 		"shield energy" 0.4
 		"hull repair rate" 1.2
@@ -1423,6 +1456,9 @@ ship "Smew"
 		"outfit space" 80
 		"weapon capacity" 10
 		"engine capacity" 46
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"energy capacity" 3000
 		"ion resistance" 0.002
 		"scramble resistance" 0.002
@@ -1500,7 +1536,7 @@ ship "Starling"
 		"hull" 4900
 		"required crew" 6
 		"bunks" 15
-		"mass" 270
+		"mass" 540
 		"drag" 3.8
 		"heat dissipation" 0.7
 		"fuel capacity" 900
@@ -1509,6 +1545,9 @@ ship "Starling"
 		"outfit space" 316
 		"weapon capacity" 83
 		"engine capacity" 94
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"shield generation" 1.8
 		"shield energy" 1.2
 		"hull repair rate" 0.8
@@ -1537,7 +1576,7 @@ ship "Starling"
 		
 		"Forge-Class Thruster"
 		"Forge-Class Steering"
-		"Crucible-Class Steering"
+		# "Crucible-Class Steering" # Extra steering
 		"Hyperdrive"
 
 	engine -16 82 0.7
@@ -1668,6 +1707,9 @@ ship "Tern"
 		"outfit space" 76
 		"weapon capacity" 16
 		"engine capacity" 26
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"shield generation" 0.25
 		"shield energy" 0.16
 		"hull repair rate" 0.55

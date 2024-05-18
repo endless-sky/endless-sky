@@ -70,16 +70,19 @@ outfit "Fission Drive"
 	category "Engines"
 	cost 2650000
 	thumbnail "outfit/fissiondrive"
+	"steering slot" -1
+	"thruster slot" -1
+	"engine mod space" 1.11
 	"mass" 71
 	"outfit space" -71
 	"engine capacity" -38
 	"unique" 1
 	"energy generation" 5.2
 	"heat generation" 19.4
-	"thrust" 17.8
+	"thrust" 27
 	"thrusting energy" 1.508
 	"thrusting heat" 2.86
-	"turn" 319.8
+	"turn" 639.6
 	"turning energy" 0.585
 	"turning heat" 1.365
 	"flare sprite" "effect/fissionflare"
@@ -90,12 +93,23 @@ outfit "Fission Drive"
 		"frame rate" 30
 		"rewind"
 	"steering flare sound" "atomic tiny"
+	"reverse thrust" 2.7
+	"reverse thrusting energy" .15
+	"reverse thrusting heat" .286
+	"reverse flare sprite" "effect/fissionflare"
+		"frame rate" 30
+		"rewind"
+	"reverse flare sound" "atomic tiny"
 	description "A much smaller cousin of the Fusion Drive, it relies on fission instead of fusion to function, providing the necessary power generation and thrust to drive the Heavy Ion Cyclotron."
 
 outfit "Fusion Drive"
 	category "Engines"
 	cost 80000000
 	thumbnail "outfit/fusiondrive"
+	"reverse thruster slot" -1
+	"steering slot" -1
+	"thruster slot" -1
+	"engine mod space" 1.5
 	"mass" 480
 	"outfit space" -480
 	"engine capacity" -230
@@ -104,10 +118,10 @@ outfit "Fusion Drive"
 	"hyperdrive" 1
 	"energy generation" 54
 	"heat generation" 156
-	"turn" 2496.0
+	"turn" 4992
 	"turning energy" 4.55
 	"turning heat" 12.35
-	"thrust" 180.5
+	"thrust" 270
 	"thrusting energy" 11
 	"thrusting heat" 33
 	"reverse thrust" 42.6

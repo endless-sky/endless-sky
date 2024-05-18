@@ -58,6 +58,8 @@ outfit "Korath Ark'torbal Thruster"
 	category "Engines"
 	"cost" 40000
 	thumbnail "outfit/unknown"
+	"thruster slot" -1
+	"engine mod space" 0.81
 	"mass" 17
 	"outfit space" -17
 	"engine capacity" -17
@@ -67,12 +69,19 @@ outfit "Korath Ark'torbal Thruster"
 	"flare sprite" "effect/plasma flare/tiny"
 		"frame rate" 5
 	"flare sound" "plasma tiny"
+	"reverse thrust" 8.9
+	"reverse thrusting energy" 0.11
+	"reverse thrusting heat" 0.1
+	"reverse flare sprite" "effect/korath flare/tiny"
+		"frame rate" 8
+	"reverse flare sound" "plasma tiny"
 	description "This engine is used by Korath fighters."
 
 outfit "Korath Ark'parat Steering"
 	category "Engines"
 	"cost" 36000
 	thumbnail "outfit/unknown"
+	"steering slot" -1
 	"mass" 12
 	"outfit space" -12
 	"engine capacity" -12
@@ -85,6 +94,8 @@ outfit "Korath Jak'torbal Thruster"
 	category "Engines"
 	"cost" 317000
 	thumbnail "outfit/unknown"
+	"thruster slot" -1
+	"engine mod space" 1.42
 	"mass" 89
 	"outfit space" -89
 	"engine capacity" -89
@@ -94,12 +105,19 @@ outfit "Korath Jak'torbal Thruster"
 	"flare sprite" "effect/plasma flare/large"
 		"frame rate" 8
 	"flare sound" "plasma large"
+	"reverse thrust" 6.31
+	"reverse thrusting energy" 0.59
+	"reverse thrusting heat" 1.43
+	"reverse flare sprite" "effect/korath flare/tiny"
+		"frame rate" 8
+	"reverse flare sound" "plasma tiny"
 	description "This engine is used in the Korath capital ships."
 
 outfit "Korath Jak'parat Steering"
 	category "Engines"
 	"cost" 2740000
 	thumbnail "outfit/unknown"
+	"steering slot" -1
 	"mass" 67
 	"outfit space" -67
 	"engine capacity" -67
@@ -126,6 +144,7 @@ outfit "Reverse Thruster"
 	category "Engines"
 	"cost" 140000
 	thumbnail "outfit/reverse thruster"
+	"reverse thruster slot" -1
 	"mass" 22
 	"outfit space" -22
 	"weapon capacity" -22
@@ -223,6 +242,7 @@ outfit "Afterburner"
 	category "Engines"
 	"cost" 70000
 	thumbnail "outfit/afterburner"
+	"engine mod space" -0.76
 	"mass" 10
 	"outfit space" -10
 	"engine capacity" -10

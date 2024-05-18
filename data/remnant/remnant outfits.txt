@@ -674,11 +674,12 @@ outfit "Bellows-Class Afterburner"
 	category "Engines"
 	"cost" 640000
 	thumbnail "outfit/remnant afterburner"
+	"engine mod space" -0.76
 	"mass" 8
 	"outfit space" -7
 	"engine capacity" -7
 	"slowing resistance" 0.01
-	"afterburner thrust" 125.0
+	"afterburner thrust" 250
 	"afterburner fuel" 0.65
 	"afterburner energy" 6.0
 	"afterburner heat" 8.0
@@ -699,18 +700,21 @@ outfit "Anvil-Class Engine"
 		Remnant
 	"cost" 290000
 	thumbnail "outfit/tiny remnant engine"
+	"steering slot" -1
+	"thruster slot" -1
+	"engine mod space" 0.87
 	"mass" 26
 	"outfit space" -26
 	"engine capacity" -26
-	"thrust" 13.8
+	"thrust" 22
 	"thrusting energy" 2.05
 	"thrusting heat" 1.95
-	"turn" 369.6
+	"turn" 539.2
 	"turning energy" 1.05
 	"turning heat" 1.1
-	"reverse thrust" 10.3
-	"reverse thrusting energy" 1.5
-	"reverse thrusting heat" 1.45
+	"reverse thrust" 13.2
+	"reverse thrusting energy" 1.23
+	"reverse thrusting heat" 1.17
 	"slowing resistance" 0.02
 	"flare sprite" "effect/remnant flare/small"
 		"frame rate" 5
@@ -729,15 +733,17 @@ outfit "Crucible-Class Thruster"
 		Remnant
 	"cost" 200000
 	thumbnail "outfit/small remnant thruster"
+	"thruster slot" -1
+	"engine mod space" 0.87
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
-	"thrust" 16.55
+	"thrust" 25
 	"thrusting energy" 2.1
 	"thrusting heat" 2.0
-	"reverse thrust" 12.4
-	"reverse thrusting energy" 1.6
-	"reverse thrusting heat" 1.5
+	"reverse thrust" 15.0
+	"reverse thrusting energy" 1.26
+	"reverse thrusting heat" 1.2
 	"slowing resistance" 0.012
 	"flare sprite" "effect/remnant flare/small"
 		"frame rate" 5
@@ -753,10 +759,12 @@ outfit "Forge-Class Thruster"
 		Remnant
 	"cost" 441000
 	thumbnail "outfit/medium remnant thruster"
+	"thruster slot" -1
+	"engine mod space" 1.12
 	"mass" 39
 	"outfit space" -39
 	"engine capacity" -39
-	"thrust" 34
+	"thrust" 51
 	"thrusting energy" 4.4
 	"thrusting heat" 4.25
 	"reverse thrust" 25.5
@@ -777,15 +785,17 @@ outfit "Smelter-Class Thruster"
 		Remnant
 	"cost" 984000
 	thumbnail "outfit/large remnant thruster"
+	"thruster slot" -1
+	"engine mod space" 1.33
 	"mass" 76
 	"outfit space" -76
 	"engine capacity" -76
-	"thrust" 71.1
+	"thrust" 107
 	"thrusting energy" 9.5
 	"thrusting heat" 9.6
-	"reverse thrust" 53.3
-	"reverse thrusting energy" 7.1
-	"reverse thrusting heat" 7.2
+	"reverse thrust" 64.2
+	"reverse thrusting energy" 5.7
+	"reverse thrusting heat" 5.76
 	"slowing resistance" 0.048
 	"flare sprite" "effect/remnant flare/large"
 		"frame rate" 3
@@ -801,10 +811,11 @@ outfit "Crucible-Class Steering"
 		Remnant
 	"cost" 172000
 	thumbnail "outfit/small remnant steering"
+	"steering slot" -1
 	"mass" 14
 	"outfit space" -14
 	"engine capacity" -14
-	"turn" 456
+	"turn" 912
 	"turning energy" 1.32
 	"turning heat" 1.4
 	"slowing resistance" 0.008
@@ -819,10 +830,11 @@ outfit "Forge-Class Steering"
 		Remnant
 	"cost" 393000
 	thumbnail "outfit/medium remnant steering"
+	"steering slot" -1
 	"mass" 28
 	"outfit space" -28
 	"engine capacity" -28
-	"turn" 995
+	"turn" 1990
 	"turning energy" 2.64
 	"turning heat" 3.0
 	"slowing resistance" 0.016
@@ -837,10 +849,11 @@ outfit "Smelter-Class Steering"
 		Remnant
 	"cost" 880000
 	thumbnail "outfit/large remnant steering"
+	"steering slot" -1
 	"mass" 55
 	"outfit space" -55
 	"engine capacity" -55
-	"turn" 2123
+	"turn" 4246
 	"turning energy" 5.21
 	"turning heat" 6.2
 	"slowing resistance" 0.032
