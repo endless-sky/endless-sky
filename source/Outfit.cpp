@@ -268,7 +268,7 @@ void Outfit::Load(const DataNode &node)
 			thumbnail = SpriteSet::Get(child.Token(1));
 		else if(child.Token(0) == "weapon")
 			LoadWeapon(child);
-		else if(child.Token(0) == "auto blast")
+		else if(child.Token(0) == "auto explosion")
 			// Create an explosion that is fitting for this ship, will only work if
 			// shields and hull come before.
 			LoadExplosion(
