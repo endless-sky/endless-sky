@@ -6681,6 +6681,91 @@ mission "FW Refugees to Humanika"
 		dialog "Penny and Rosa thank you for getting them safely to <destination>, handing you <payment> for your troubles. You wish them and Eduardo the best of luck starting their new life away from a potential war in human space."
 		log "Minor People" "Penny Little, Rosa Perkins, and Eduardo" `A young family who wanted to escape a potential war in human space. Took them to the planet Humanika, where the Quarg let humans settle.`
 
+mission "Derelict Treasure Map: Ion Cannons"
+	landing
+	name "Derelict Treasure Map"
+	description "Follow the treasure map you found in a derelict ship to <destination>."
+	destination "New Argentina"
+	to offer
+		has "derelict treasure map: ion cannons"
+	on offer
+		conversation
+			`Upon landing on <origin> you take out the treasure map you recovered from the derelict ship. The map gives detailed instructions about where the treasure was buried on the sparsely populated world of <destination>. However, the map's creator claims to have obtained some kind of alien weapons that disrupts a ship's electrical systems. The outlandish claim seems to bring doubt to the validity of the map.`
+			choice
+				`	(Follow the map.)`
+					accept
+				`	(Throw the map away, it's probably fake.)`
+					decline
+	on complete
+		payment 386000
+		outfit "Ion Cannon" 2
+		conversation
+			`Flying low over <planet> you follow the instructions to an isolated valley where you promptly land and get to digging. After hours of shoveling the hard soil you're met with a thunk as you strike metal.`
+			branch hai
+				has "First Contact: Hai: offered"
+			`	Opening the cache reveals a large store of credits along with the alien weapons the map's owner wrote about. You marvel at their strange design and wonder at their power.`
+			choice
+				`	(Loot the treasure.)`
+					goto end
+			label hai
+			`	Opening the cache reveals a large store of credits along with two Hai Ion Cannons. These must be the alien weapons the map's owner wrote about.`
+			choice
+				`	(Loot the treasure.)`
+					goto end
+			label end
+			`	You grab the <payment> credits, and with the assistance of some machinery you bring the weapons back to your ship.`
+
+mission "Derelict Family Investment 1"
+	landing
+	name "Lost Family Investment"
+	description "Return the credits you found in a derelict ship to the family it belongs to by traveling to <destination>."
+	destination "Sundive"
+	to offer
+		has "derelict family investment"
+	"apparent payment" 325000
+	on offer
+		conversation
+			`Upon landing on <origin> you take out the text log you recovered alongside the case of <payment> from the derelict ship. The log reveals the credits were the result of a risky investment in an attempt to buy a better life for the captain of the ship, Colin Sawyer, and his family. You assume that the captain never made it home, and looking further into the personal log you find that the family used to reside on <destination>.`
+			`	Perhaps the family still lives there.`
+			choice
+				`	(Attempt to return the credits.)`
+					accept
+				`	(Keep the credits to myself.)`
+			action
+				payment 325000
+			`	You decide to keep the money. After all, it's not every day that you find a score worth <payment>.`
+				decline
+
+mission "Derelict Family Investment 2"
+	landing
+	name "Lost Family Investment"
+	description "Return the credits you found in a derelict ship to the family it belongs to by traveling to <destination>."
+	destination "Foundry"
+	to offer
+		has "Derelict Family Investment 1: done"
+	on offer
+		conversation
+			`Upon landing on <origin> you take a transport out to the small farm indicated in the log as the home of Captain Sawyer's family. After knocking on the door of the farmhouse a man opens the door and asks, "Can I help you?"`
+			choice
+				`	"Do you know a Colin Sawyer?"`
+				`	"Do the Sawyers live here?"`
+			`	"Sawyer? Yeah, that's the family that sold me this here farm. If you're looking for them I believe they moved to a more populated planet, own some big corporation now." The man gives you the Sawyers' new place of residence on <destination> and bids you farewell.`
+				accept
+			
+	on complete
+		payment 500000
+		conversation
+			`It doesn't take long to find the Sawyers' home on <planet>. The building makes it clear that the family has done well for themselves. After a quick explanation to the desk clerk that you have something important to give, you take an elevator ride to the penthouse. You ring the buzzer and are greeted by a woman in her late fifties. "A delivery?" she asks.`
+			choice
+				`	"Do you know a Colin Sawyer?"`
+			`	A scowl appears on her face as she spits out a response. "What do you know of my Da? That deadbeat left me and my family with next to nothing."`
+			choice
+				`	"I don't know what happened to him personally, but I found this case of credits and a log explaining how he was trying to invest in a better life for his family."`
+				`	"I believe he died before he was able to bring back his business investment to your family. Here's his personal log, it explains everything."`
+			`	She takes the log from you and quickly scrolls through it, emotion washing over her features as she reads. Eventually she looks up, and with all the anger towards her father gone, she speaks. "Thank you for this. All these years I had believed he had just taken our money and run off. But knowing he had been trying to help is worth more than all the credits in the galaxy. Take them and then some as a reward for bringing me this last piece of him."`
+			`	You leave the building with a total of <payment> credits from both the case and Ms. Sawyer.`
+
+
 mission "Returning to Paradise"
 	name "Transport family home to <planet>"
 	description `A family worried about the potential destruction within the Free Worlds wants to cut their vacation short and go home to <destination>. They promise to "pay you very well."`
