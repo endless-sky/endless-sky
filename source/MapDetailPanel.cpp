@@ -519,6 +519,7 @@ void MapDetailPanel::DrawKey()
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Font &font = FontSet::Get(14);
 
+	Point pos = Screen::TopRight() + Point(-130., 310.);
 	Point headerOff(-5., -.5 * font.Height());
 	Point textOff(10., -.5 * font.Height());
 
@@ -533,40 +534,6 @@ void MapDetailPanel::DrawKey()
 		"Danger level:"
 	};
 	const string &header = HEADER[-min(0, max(-7, commodity))];
-	const vector<Trade::Commodity> &commodities = GameData::Commodities();
-
-	int headerWidth = font.Width(header);
-	int maxWidth = headerWidth;
-	if(commodity >= 0)
-	{
-		const auto &range = commodities[commodity];
-		if(static_cast<unsigned>(commodity) >= commodities.size())
-			return;
-
-		for(int i = 0; i <= 3; ++i)
-		{
-			int price = range.low + ((range.high - range.low) * i) / 3;
-			maxWidth = max(maxWidth, font.Width(to_string(price)));
-		}
-	}
-
-    int longestCommodityWidth = 0;
-    for(const auto &commodity : commodities)
-    {
-        int commodityWidth = font.Width(commodity.name);
-        longestCommodityWidth = max(longestCommodityWidth, commodityWidth);
-    }
-
-    int longestHeaderWidth = 0;
-    for(const auto &header : HEADER)
-    {
-        int headerWidth = font.Width(header);
-        longestHeaderWidth = max(longestHeaderWidth, headerWidth);
-    }
-
-    maxWidth = std::max(maxWidth, std::max(longestCommodityWidth, longestHeaderWidth));
-
-	Point pos = Screen::TopRight() + Point(-20. - maxWidth, 310.);
 	font.Draw(header, pos + headerOff, medium);
 	pos.Y() += 20.;
 
