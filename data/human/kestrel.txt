@@ -255,25 +255,25 @@ event "kestrel available: more weapons"
 	set "kestrel available"
 	shipyard "Kestrel"
 		"Kestrel (More Weapons)"
-	planet Tarazed
+	planet Wayfarer
 		add shipyard "Kestrel"
 event "kestrel available: more engines"
 	set "kestrel available"
 	shipyard "Kestrel"
 		"Kestrel (More Engines)"
-	planet Tarazed
+	planet Wayfarer
 		add shipyard "Kestrel"
 event "kestrel available: more shields"
 	set "kestrel available"
 	shipyard "Kestrel"
 		"Kestrel (More Shields)"
-	planet Tarazed
+	planet Wayfarer
 		add shipyard "Kestrel"
 event "kestrel available: more bays"
 	set "kestrel available"
 	shipyard "Kestrel"
 		"Kestrel (More Bays)"
-	planet Tarazed
+	planet Wayfarer
 		add shipyard "Kestrel"
 
 
