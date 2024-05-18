@@ -55,7 +55,7 @@ namespace {
 	int vsyncIndex = 1;
 
 	const vector<string> CAMERA_ACCELERATION_SETTINGS = {"off", "on", "reversed"};
-	int cameraAccelerationIndex = 1;
+	int cameraAccelerationIndex = 0;
 
 	class OverlaySetting {
 	public:
