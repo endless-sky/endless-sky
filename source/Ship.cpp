@@ -601,6 +601,19 @@ void Ship::Load(const DataNode &node)
 // loaded yet. So, wait until everything has been loaded, then call this.
 void Ship::FinishLoading(bool isNewInstance)
 {
+	// Automatically create an explosion for this ship if requested:
+	if(baseAttributes.Get("auto explosion"))
+	{
+		double multiplier = baseAttributes.Get("auto explosion");
+		double baseShields = baseAttributes.Get("shields");
+		double baseHull = baseAttributes.Get("hull");
+		baseAttributes.LoadExplosion(
+				(baseShields + baseHull) * 0.01 * multiplier,
+				(baseShields + baseHull) * 0.10 * multiplier,
+				(baseShields + baseHull) * 0.05 * multiplier,
+				(baseShields + baseHull) * 0.15 * multiplier
+			);
+	}
 	// All copies of this ship should save pointers to the "explosion" weapon
 	// definition stored safely in the ship model, which will not be destroyed
 	// until GameData is when the program quits. Also copy other attributes of
