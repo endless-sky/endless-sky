@@ -249,11 +249,22 @@ planet "Ashy Reach"
 	"required reputation" 15
 	security 0.1
 
+planet Asphodel
+	attributes uninhabited
+	landscape land/haze0
+	description `Despite being nominally in the habitable zone, this planet's surface is continually scorched by the stars of Gacrux and their solar flares, steadily blasting away its atmosphere. A joint venture of three major universities from Chiron has placed some small research stations in orbit around Asphodel, and while they provide valuable insights into the nature and behavior of flare stars, the researchers generally avoid descending to the planet's surface unnecessarily. None of the stations appear to have the facilities to service your ship, however.`
+	government Uninhabited
+
 planet Aspiration
 	attributes pirate
 	landscape land/sea17-harro
 	description `The world of Aspiration appears to be a mild, habitable world, but one currently in an advanced ice age now slowly retreating. The equatorial region of the planet is warm and comfortable, a cool temperate at the present time. The native biosphere seems to be mostly grasses and something resembling pine trees. In a few thousand years, it might look similar to Earth before it was paved over. For now, it's a sparse world with a single major town built on a promontory, overlooking a wide river mouth which carries runoff from continental scale glaciers to the sea.`
 	spaceport `The spaceport on Aspiration is a spaceport in the same way that an airport at a regional town is an airport. It has the most minimal facilities to handle a ship landing without disturbance to the nearby town, and that is it. There are no shops or stalls. Aspiration is not on any trade routes and it does not expect visitors. A lone freighter is parked permanently on the outskirts.`
+
+planet Asterus
+	attributes moon uninhabited
+	landscape land/snow23
+	description `The seas beneath the frozen surface of this ice moon are home to a thriving ecosystem full of species entirely unlike any observed on other, more habitable worlds. The best known of these is a species of large fish-like creatures with flowing bioluminescent fins that glow in ethereal pinks and purples, the beauty of which prompted many citizens of the Paradise Worlds to demand that Parliament designate the entire moon as a nature preserve in the 2900s.`
 
 planet Avalon
 	landscape land/sea22
@@ -593,6 +604,13 @@ planet "Carbuncle Station"
 		threshold 5500
 		fleet "Large Republic" 10
 
+planet Cassandra
+	attributes paradise uninhabited
+	landscape land/mars4
+	description `In the late 2300s, Cassandra was the subject of one of the most ambitious terraforming projects performed by humanity up to that point; an attempt to rapidly modify its biosphere and jumpstart the process of making the planet more than perfect for human habitation.`
+	description `	The project never came to be. For an as-yet-unexplained reason, some collapse or chain of destruction occurred during the terraforming project that made Cassandra uninhabitable, and ever since Cassandra has been discreetly left out of the public record by the terraforming industry.`
+	description `	This appeared to have been an ocean-covered planet when the terraforming project was initiated; almost everywhere you go is a dry and dead salt flat in every direction, occasionally rising steeply up into pale watersheds and ranges where rivers and islands once were.`
+
 planet "Ceaseless Toil"
 	attributes factory saryd uninhabited
 	landscape land/canyon01
@@ -801,6 +819,12 @@ planet Cyife
 	landscape land/snow13
 	description `This lonely, icy moon is the only non-gaseous celestial body within this rather quiet star system. Although there are no signs of life here due to the extremely low temperatures, certain parts of the surface glimmer oddly compared to others, as if to imply something may once have been here before.`
 	government Uninhabited
+
+planet "Dagon Station"
+	attributes core station uninhabited
+	landscape land/station50
+	description `Originally built in the 25th century as a corporate military outpost, Dagon Station's notoriety stems from its past as a privateer base; its infamous mercenary fleets all but decided the victors in the constant wars in this region during the 26th and 27th centuries. As those conflicts subsided, those privateers began turning towards piracy. Their influence was brought to an end when a fleet from Earth took control of the station, later becoming a military base for the fledgling Republic.`
+	description `	In the 29th century, control of Dagon Station was passed to the Syndicate, who eventually vacated the station due to its age. Local laws prevent landing on Dagon Station without a permit, but the Syndicate doesn't pay close attention to whether or not anybody lands here, anyway.`
 
 planet Dancer
 	attributes research south
@@ -2238,6 +2262,13 @@ planet "Illbo Elo"
 	bribe 0
 	security 0
 
+planet Independance
+	attributes "gas giant" "requires: gaslining" uninhabited
+	landscape land/nasa20
+	description `Independance, originally named for a document of emancipation for an ancient nation on old Earth, became of interest to the Confederated Councils when they began to consider plans for a defense against an invasion. One such plan involved deploying "cloud bunkers" into the gas giants of the Outer Rim from which an uprising could be staged against a foreign occupier. Independance, given its fitting name and position near Alvorada, was chosen as the testing site for this project.`
+	description `	Of the few prototype bunkers that were deployed, none ever survived the surface of Independance; the Councils simply didn't have the technology for such an ambitious project. The official who proposed the plan was shortly shuffled out of the Politburo, and what remained of the bunkers were left quietly in the depths of the gas giant.`
+	government Uninhabited
+
 planet Ingot
 	attributes "dirt belt" mining moon volcanic
 	landscape land/mountain8
@@ -2429,7 +2460,7 @@ planet "Kort Vek'kri"
 
 planet "Kraken Station"
 	attributes "near earth" station
-	landscape land/station8
+	landscape land/station49
 	music ambient/machinery
 	description `Kraken Station is seven centuries old; it was the first space station built outside of the Sol system. The station has been modified and repaired so often since that time that in all likelihood not a single deck panel or bulkhead that was part of the original station remains.`
 	description `	Four centuries ago it was nearly destroyed by an asteroid impact, but other than that it has been a working deuterium refinery for its entire lifetime.`
@@ -2910,6 +2941,13 @@ planet Nepheritis
 	landscape land/clouds_08
 	description `An unusually large ice giant, Nepheritis is well-known among the denizens of the Paradise Planets for its prodigious rains of large diamonds. While this phenomenon is common on most ice giants of sufficient size, Nepheritis is a scientific curiosity due to the sheer size of the diamonds formed in its atmosphere, with some even becoming large boulders during their plummet into the depths.`
 	description `	While these diamonds are unfortunately not economical to collect with current human technology, if you were so inclined you could perhaps make an attempt at catching one as it fell, deep within the atmosphere where they are largest.`
+	government Uninhabited
+
+planet Neriene
+	attributes uninhabited
+	landscape land/haze1
+	description `While lacking its iconic ferrous-red color, this planet is eerily similar in conditions to the second planet humanity set foot on, Mars. The thin atmosphere of carbon dioxide, the polar ice caps, and the echoes of dried waterways across the surface all tell the tragic tale of the same fate that befell Mars in eons past.`
+	description `	Even though humanity eventually triumphed over the adverse conditions and made a home on the Red Planet, this near-identical world has been left totally barren, a mere afterthought in the now interstellar human civilization.`
 	government Uninhabited
 
 planet "New Argentina"
@@ -3647,6 +3685,13 @@ planet "Ring of Wisdom"
 	bribe 0
 	security 0.8
 
+planet "Rowark's Roost"
+	attributes moon uninhabited
+	landscape land/moon1
+	description `Rowark's Roost was once the hideout of one of the most famous privateers of the Southern Rim, Rowark Balois. From this remote moon he became one of the largest players in drug-running and slave trading in the Rim during the early 27th century. The extensive stronghold of hangars and tunnels he built here remains to this day.`
+	description `	In 2655, Rowark was flushed out of his Roost by a combined Rim and Deep fleet in a battle that continues to be studied by every aspirant Navy officer in their tutelage. As you fly over the moon you spy the wrecks of countless ships dotting its surface, but what is most striking is the truly impressive battleship-sized crater that marks the spot where Rowark met his end, doggedly choosing to fight to the very last.`
+	government Uninhabited
+
 planet Ruelogakk
 	attributes "gegno quarg" quarg station
 	landscape land/station5
@@ -4277,8 +4322,8 @@ planet Sundive
 	attributes core farming forest frontier research
 	landscape land/water9
 	description `Sundive is largely covered in tropical rainforests and savanna, but with enough open plains that it has also become a major agricultural world. For most of the year, the weather here is quite mild, but tornadoes and massive thunderstorms are not uncommon in the summer months.`
-	description `	Sundive is also home to a large astronomical laboratory with radio telescopes and other devices for studying the galactic core and the massive black hole that resides there.`
-	spaceport `The spaceport is in a wide, open plain; most of the landing sites are just packed dirt. Surrounding it is nothing but farmland and forests; the laboratory and telescopes are far beyond the horizon, where incoming ships will not interfere with their operation.`
+	description `	Sundive is also home to a number of research facilities which study the data gathered from the astronomical laboratory on its moon, Taylor.`
+	spaceport `The spaceport is in a wide, open plain; most of the landing sites are just packed dirt. Surrounding it is nothing but farmland and forests; the nearest cities are kilometers away, presumably so that its inhabitants aren't subjected to the loud commotion of planetary spaceports and ships coming and going.`
 	spaceport `	The buildings are short and made of wood; even the roofs are clapboard shingles rather than metal or rubber. Several farmers have brought in goods to sell; most of them came in trucks, but you also see a few horse-drawn wagons.`
 	security 0.3
 	tribute 300
@@ -4326,6 +4371,19 @@ planet Swiftsong
 	spaceport `The spaceport promenade runs around the interior of the station and is divided into the usual two levels, but has four additional ring levels rising up from the promenade into each of the station's main branches. Almost any business or service you could want can be found here - except for an outfitter or shipyard. Apparently there is simply no room, as the docking bay must take up nearly all the station's exterior space to accommodate its massive volume of daily traffic.`
 	bribe 0.1
 	security 0.5
+
+planet Taylor
+	landscape land/moon0
+	attributes research core moon military
+	description `Taylor is home to a large astronomical laboratory, with radio telescopes and other devices for studying the galactic core and the massive black hole that resides there. Because of the laboratory, Taylor has strict landing protocols that ensure your ship doesn't cross the path of the telescopes at any time.`
+	description `	On the other side of the moon the Syndicate has established a substantial military base, as a guard against the pirates in nearby Alcyone.`
+	description `	If you need to repair or refuel in this system, you will need to visit Sundive instead of this moon, as the military base is not open to ships that aren't affiliated with the Syndicate, and the laboratory's small spaceport does not have the facilities to service ships.`
+	"required reputation" 10
+	bribe 0.05
+	security 0.1
+	tribute 1200
+		threshold 3500
+		fleet "Large Syndicate" 7
 
 planet "Tebuteb's Table"
 	attributes arach farming longcows

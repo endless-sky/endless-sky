@@ -1885,7 +1885,7 @@ phrase "friendly civilian"
 	word
 		" "
 	word
-		"a blue phonebooth"
+		"a blue phone booth"
 		"a silver car"
 	word
 		" "
@@ -3025,7 +3025,7 @@ phrase "navy protection hail"
 
 phrase "navy protection hail"
 	word
-		"patroled"
+		"patrolled"
 		"policed"
 		"defended"
 		"guarded"
@@ -3131,7 +3131,7 @@ phrase "friendly navy"
 		"" 5
 		" Your cooperation is greatly valued."
 		" We thank you for your cooperation."
-		" We appreciate your complicance."
+		" We appreciate your compliance."
 		" Be thankful for our protection."
 		" Be grateful for our protection."
 		" Be thankful for our sacrifice."
@@ -4584,7 +4584,7 @@ phrase "friendly pirate"
 		"amazing "
 		"fantastic "
 		"incredible "
-		"facinating "
+		"fascinating "
 		""
 	phrase
 		"drugs"
