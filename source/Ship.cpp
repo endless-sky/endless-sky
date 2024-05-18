@@ -615,6 +615,7 @@ void Ship::FinishLoading(bool isNewInstance)
 				(baseShields + baseHull) * 0.15 * multiplier
 			);
 	}
+
 	// All copies of this ship should save pointers to the "explosion" weapon
 	// definition stored safely in the ship model, which will not be destroyed
 	// until GameData is when the program quits. Also copy other attributes of
