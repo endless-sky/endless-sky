@@ -101,6 +101,22 @@ TEST_CASE( "Angle::Random", "[angle][random]") {
 	}
 }
 
+TEST_CASE( "Angle::IsInRange", "[angle][isInRange]" ) {
+	Angle base = 0.;
+	Angle limit = 359.;
+	REQUIRE( Angle(0.).IsInRange(base, limit) );
+	REQUIRE( Angle(359.).IsInRange(base, limit) );
+	REQUIRE( Angle(180.).IsInRange(base, limit) );
+
+	base = -20.;
+	limit = 20.;
+	REQUIRE( Angle(0.).IsInRange(base, limit) );
+	REQUIRE( Angle(20.).IsInRange(base, limit) );
+	REQUIRE( Angle(-20.).IsInRange(base, limit) );
+	REQUIRE_FALSE( Angle(21.).IsInRange(base, limit) );
+	REQUIRE_FALSE( Angle(-21.).IsInRange(base, limit) );
+	REQUIRE_FALSE( Angle(180.).IsInRange(base, limit) );
+}
 // Test code goes here. Preferably, use scenario-driven language making use of the SCENARIO, GIVEN,
 // WHEN, and THEN macros. (There will be cases where the more traditional TEST_CASE and SECTION macros
 // are better suited to declaration of the public API.)

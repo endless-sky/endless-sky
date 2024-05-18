@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Hazard.h"
 #include "Minable.h"
 #include "Planet.h"
+#include "PlayerInfo.h"
 #include "Random.h"
 #include "SpriteSet.h"
 
@@ -100,7 +101,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 
 	// For the following keys, if this data node defines a new value for that
 	// key, the old values should be cleared (unless using the "add" keyword).
-	set<string> shouldOverwrite = {"asteroids", "attributes", "belt", "fleet", "link", "object", "hazard"};
+	set<string> shouldOverwrite = {"asteroids", "attributes", "belt", "fleet", "hazard", "link", "object"};
 
 	for(const DataNode &child : node)
 	{
@@ -140,7 +141,10 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			else if(key == "attributes")
 				attributes.clear();
 			else if(key == "link")
+			{
+				conditionLinks.clear();
 				links.clear();
+			}
 			else if(key == "asteroids" || key == "minables")
 				asteroids.clear();
 			else if(key == "haze")
@@ -230,9 +234,9 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		else if(key == "link")
 		{
 			if(remove)
-				links.erase(GameData::Systems().Get(value));
+				conditionLinks.erase(GameData::Systems().Get(value));
 			else
-				links.insert(GameData::Systems().Get(value));
+				conditionLinks[GameData::Systems().Get(value)].Load(child);
 		}
 		else if(key == "asteroids")
 		{
@@ -419,6 +423,14 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 
+	// For optimization put the links that have no conditions amongst the other links.
+	for(auto &link : conditionLinks)
+		if(link.second.IsEmpty())
+			links.insert(link.first);
+
+	for(const System *system : links)
+		conditionLinks.erase(system);
+
 	// Set planet messages based on what zone they are in.
 	for(StellarObject &object : objects)
 	{
@@ -475,7 +487,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 // Update any information about the system that may have changed due to events,
 // or because the game was started, e.g. neighbors, solar wind and power, or
 // if the system is inhabited.
-void System::UpdateSystem(const Set<System> &systems, const set<double> &neighborDistances)
+void System::UpdateSystem(const Set<System> &systems, const set<double> &neighborDistances,
+	const PlayerInfo *player)
 {
 	accessibleLinks.clear();
 	neighbors.clear();
@@ -498,15 +511,15 @@ void System::UpdateSystem(const Set<System> &systems, const set<double> &neighbo
 	// jump range that can be encountered.
 	if(jumpRange)
 	{
-		UpdateNeighbors(systems, jumpRange);
+		UpdateNeighbors(systems, jumpRange, player);
 		// Systems with a static jump range must also create a set for
 		// the DEFAULT_NEIGHBOR_DISTANCE to be returned for those systems
 		// which are visible from it.
-		UpdateNeighbors(systems, DEFAULT_NEIGHBOR_DISTANCE);
+		UpdateNeighbors(systems, DEFAULT_NEIGHBOR_DISTANCE, player);
 	}
 	else
 		for(const double distance : neighborDistances)
-			UpdateNeighbors(systems, distance);
+			UpdateNeighbors(systems, distance, player);
 
 	// Calculate the solar power and solar wind.
 	solarPower = 0.;
@@ -1054,12 +1067,18 @@ void System::LoadObjectHelper(const DataNode &node, StellarObject &object, bool 
 // Once the star map is fully loaded or an event has changed systems
 // or links, figure out which stars are "neighbors" of this one, i.e.
 // close enough to see or to reach via jump drive.
-void System::UpdateNeighbors(const Set<System> &systems, double distance)
+void System::UpdateNeighbors(const Set<System> &systems, double distance, const PlayerInfo *player)
 {
 	set<const System *> &neighborSet = neighbors[distance];
 
 	// Every accessible star system that is linked to this one is automatically a neighbor,
 	// even if it is farther away than the maximum distance.
+	// Add the neighbor systems if the links are active.
+	for(auto &link : conditionLinks)
+		// If we are not provided a player assume the link is not valid.
+		if(player && link.second.Test(player->Conditions()) && !link.first->Inaccessible())
+			links.insert(link.first);
+
 	for(const System *system : accessibleLinks)
 		neighborSet.insert(system);
 
