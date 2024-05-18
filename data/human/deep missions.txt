@@ -1993,6 +1993,7 @@ mission "Deep: Scientist Rescue 0"
 		unmark "Betelgeuse"
 		dialog `Upon entering Betelgeuse, you fail to see any trace of the Star Queen. The pirates must have captured it and escaped to a nearby system.`
 	on enter "Arneb"
+		unmark "Betelgeuse"
 		set "found star queen"
 		dialog `As you enter Arneb, your scanners pick up the Star Queen landing on Haven. Unfortunately, there are also a large number of pirate vessels headed in your direction. You should report back to Paris on <destination> for further instruction.`
 	on visit
