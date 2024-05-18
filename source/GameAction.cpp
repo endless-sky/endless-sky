@@ -212,6 +212,10 @@ void GameAction::LoadSingle(const DataNode &child)
 		music = child.Token(1);
 	else if(key == "mute")
 		music = "";
+	else if(key == "mark" && hasValue)
+		mark.insert(GameData::Systems().Get(child.Token(1)));
+	else if(key == "unmark" && hasValue)
+		unmark.insert(GameData::Systems().Get(child.Token(1)));
 	else if(key == "fail" && hasValue)
 		fail.insert(child.Token(1));
 	else if(key == "fail")
@@ -268,6 +272,10 @@ void GameAction::Save(DataWriter &out) const
 	}
 	for(auto &&it : events)
 		out.Write("event", it.first->Name(), it.second.first, it.second.second);
+	for(const System *system : mark)
+		out.Write("mark", system->Name());
+	for(const System *system : unmark)
+		out.Write("unmark", system->Name());
 	for(const string &name : fail)
 		out.Write("fail", name);
 	if(failCaller)
@@ -304,6 +312,14 @@ string GameAction::Validate() const
 	for(auto &&outfit : giftOutfits)
 		if(!outfit.first->IsDefined())
 			return "gift outfit \"" + outfit.first->TrueName() + "\"";
+
+	// Marked and unmarked system must be valid.
+	for(auto &&system : mark)
+		if(!system->IsValid())
+			return "system \"" + system->Name() + "\"";
+	for(auto &&system : unmark)
+		if(!system->IsValid())
+			return "system \"" + system->Name() + "\"";
 
 	// It is OK for this action to try to fail a mission that does not exist.
 	// (E.g. a plugin may be designed for interoperability with other plugins.)
@@ -395,6 +411,11 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 	for(const auto &it : events)
 		player.AddEvent(*it.first, player.GetDate() + it.second.first);
 
+	for(const System *system : mark)
+		caller->Mark(system);
+	for(const System *system : unmark)
+		caller->Unmark(system);
+
 	if(!fail.empty())
 	{
 		// If this action causes this or any other mission to fail, mark that
@@ -464,6 +485,9 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 	result.failCaller = failCaller;
 
 	result.conditions = conditions;
+
+	result.mark = mark;
+	result.unmark = unmark;
 
 	return result;
 }
