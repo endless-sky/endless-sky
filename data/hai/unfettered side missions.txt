@@ -443,6 +443,7 @@ mission "Hai Legacy 3"
 		clear "unfettered: beaten the bugs"
 		clear "unfettered: beaten extra bugs"
 		clear "old reputation: Hai (Unfettered)"
+		log "Managed to use an old Anomalocaris to beat some Unfettered challengers, earning respect with the Unfettered Hai so long as the ship remains in your possession."
 		conversation
 			`When you land in one piece, Mera approaches, looking quite surprised. "You really won! At least it was close, right? Or did the captains make stories to justify their incompetence already like the cowards they are?"`
 			choice
@@ -453,10 +454,6 @@ mission "Hai Legacy 3"
 			label next
 			`	"Well, congratulations, I did not think you had it in you. I will give you authorization to land, on the condition that you keep this relic from our past in one piece. Remember, your reputation with us is solely due to to that ship. If you somehow lose it because of incompetence on your own end, it would look pretty bad to us!"`
 			`	Mera then walks off as she begins reviewing data from your fight on a small device. For now, it seems that the Unfettered Hai have some sort of respect for you, so long as you have the Anomalocaris.`
-			choice
-				`	"Thank you for your trust."`
-			`	"No need to thank me. Trust is earned, like respect."`
-				log "Managed to use an old Anomalocaris to beat some Unfettered challengers, earning respect with the Unfettered Hai so long as the ship remains in your possession."
 
 
 mission "Undeserved Anomalocaris"
