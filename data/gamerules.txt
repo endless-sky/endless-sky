@@ -21,7 +21,7 @@ gamerules
 	# to the system center twice, meaning it falls off much more quickly than a normal ramscoop.
 	# DEFAULT: true
 	# ALLOWABLE VALUES: false, true, 0, 1
-	"universal ramscoop" true
+	"universal ramscoop" false
 	
 	# An attempt to spawn a person ship happens on average every this many frames.
 	# DEFAULT: 36000 frames (ten minutes)
