@@ -104,7 +104,8 @@ mission "Hai Legacy 1"
 				`	(Maybe another time.)`
 					defer
 			label go
-			`	While you're pondering whether there will be enough space to land your ship at the destination, you notice a train ticket has been placed in your pocket, with instructions written on the back. You proceed to take the train and hike a few hours to get the rest of the way there.`
+			`	While you're pondering whether or not there will be enough space to land your ship at the beach, you find instructions written on the back of a train ticket that give specific directions on how to get there. You proceed to take a train and hike a few hours to get the rest of the way there.`
+			`	To your surprise, the train station is located underground. At first, you can't begin to make sense of the enormity of it - it almost feels like you can reach the entire planet from here. You ask a Hai for directions, feeling embarrassed when you learn that all you had to do was scanning your ticket, and all relevant information would be displayed for you.`
 			`	Upon arriving, you take a look around for the stranger. Except for a cave, some sparse vegetation, and of course the beach itself, you cannot see anything significant in the vicinity. You double check that these are the right coordinates and look around some more.`
 			`	After waiting for some time, you spot two hooded figures further down the beach making their way toward you, and you start to doubt whether or not this was a good idea. Even when they're close enough to speak, their faces somehow remain impossible to glimpse beneath the hoods. "Hello, <last>," one says to you. "We are sorry for all the complications, but the truth is, we cannot afford to take risks. It is best for all if you do not know who we are, and we needed a secluded area to speak to you."`
 			choice
