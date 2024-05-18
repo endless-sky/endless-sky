@@ -601,8 +601,9 @@ void Ship::Load(const DataNode &node)
 // loaded yet. So, wait until everything has been loaded, then call this.
 void Ship::FinishLoading(bool isNewInstance)
 {
-	// Automatically create an explosion for this ship if requested:
-	if(baseAttributes.Get("auto explosion"))
+	// Automatically create an explosion for this ship if requested
+	// only if the ship does not already have a defined explosion.
+	if(baseAttributes.Get("auto explosion") && !baseAttributes.IsWeapon())
 	{
 		double multiplier = baseAttributes.Get("auto explosion");
 		double baseShields = baseAttributes.Get("shields");
