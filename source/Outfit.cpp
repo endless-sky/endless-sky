@@ -268,6 +268,16 @@ void Outfit::Load(const DataNode &node)
 			thumbnail = SpriteSet::Get(child.Token(1));
 		else if(child.Token(0) == "weapon")
 			LoadWeapon(child);
+		else if(child.Token(0) == "auto blast")
+			// Create an explosion that is fitting for this ship, will only work if
+			// shields and hull come before.
+			LoadExplosion(
+				(attributes["shields"] + attributes["hull"]) * 0.01,
+				(attributes["shields"] + attributes["hull"]) * 0.10,
+				(attributes["shields"] + attributes["hull"]) * 0.05,
+				(attributes["shields"] + attributes["hull"]) * 0.15
+
+			);
 		else if(child.Token(0) == "ammo" && child.Size() >= 2)
 		{
 			// Non-weapon outfits can have ammo so that storage outfits
