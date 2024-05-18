@@ -220,11 +220,9 @@ mission "FW Epilogue: Edward"
 		ship "Leviathan (Plasma Repeater)" "Hunk"
 	on decline
 		event "plasma repeater advanced" 95
-		event "plasma repeater basics" 155
 	on complete
 		log `Assisted Barmy Edward with another weapon test: this time, an impressive upgrade to the Plasma Cannon. Increased fire rate, even at lower damage per hit, comes out with better overall results.`
 		event "plasma repeater advanced" 45
-		event "plasma repeater basics" 105
 		conversation "edward epilogue"
 
 
@@ -298,8 +296,4 @@ conversation "edward epilogue"
 
 event "plasma repeater advanced"
 	outfitter "Kraz Advanced"
-		"Plasma Repeater"
-
-event "plasma repeater basics"
-	outfitter "Kraz Basics"
 		"Plasma Repeater"

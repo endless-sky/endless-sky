@@ -151,6 +151,7 @@ void Preferences::Load()
 	// values for settings that are off by default.
 	settings["Landing zoom"] = true;
 	settings["Render motion blur"] = true;
+	settings["Cloaked ship outlines"] = true;
 	settings[FRUGAL_ESCORTS] = true;
 	settings[EXPEND_AMMO] = true;
 	settings["Damaged fighters retreat"] = true;
@@ -165,6 +166,7 @@ void Preferences::Load()
 	settings["Hide unexplored map regions"] = true;
 	settings["Turrets focus fire"] = true;
 	settings["Ship outlines in shops"] = true;
+	settings["Ship outlines in HUD"] = true;
 	settings["Extra fleet status messages"] = true;
 	settings["Target asteroid based on"] = true;
 

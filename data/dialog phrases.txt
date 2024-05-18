@@ -139,3 +139,7 @@ phrase "generic aborted pirate cargo mission"
 phrase "generic completed pirate slave mission"
 	word
 		`After landing on <planet>, the pirates move the <bunks> slaves from your ship and pay you <payment>.`
+
+phrase "generic aborted pirate slave mission"
+	word
+		`Your slaves never arrived at <destination>. This doesn't help to establish your reputation as a reliable, no-questions-asked transporter.`

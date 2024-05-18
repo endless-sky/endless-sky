@@ -99,6 +99,8 @@ private:
 	int64_t fine = 0;
 	std::vector<Debt> debt;
 
+	std::optional<std::string> music;
+
 	// When this action is performed, the missions with these names fail.
 	std::set<std::string> fail;
 	// When this action is performed, the mission that called this action is failed.
