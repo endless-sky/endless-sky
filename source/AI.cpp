@@ -2206,8 +2206,11 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition,
 		command.SetTurn(TurnToward(ship, dp));
 	// Drag is not applied when not thrusting, so stop thrusting when close to max speed
 	// to save energy. Work with a slightly lower maximum velocity to avoid border cases.
-	double maxVelocity = ship.MaxVelocity() * ship.MaxVelocity() * .99;
-	if(isFacing && (velocity.LengthSquared() <= maxVelocity
+	// In order for a ship to use their afterburner, they must also have the forward
+	// command active. Therefore, if this ship should use its afterburner, use the
+	// max velocity with afterburner thrust included.
+	double maxVelocity = ship.MaxVelocity(ShouldUseAfterburner(ship)) * .99;
+	if(isFacing && (velocity.LengthSquared() <= maxVelocity * maxVelocity
 			|| dp.Unit().Dot(velocity.Unit()) < .95))
 		command |= Command::FORWARD;
 	else if(shouldReverse)
