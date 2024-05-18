@@ -2979,7 +2979,7 @@ double Ship::MaxVelocity(bool withAfterburner) const
 	// v = thrust / drag
 	double thrust = attributes.Get("thrust");
 	double afterburnerThrust = attributes.Get("afterburner thrust");
-	return (thrust ? thrust + afterburnerThrust * withAfterburner: afterburnerThrust) / Drag();
+	return (thrust ? thrust + afterburnerThrust * withAfterburner : afterburnerThrust) / Drag();
 }
 
 
