@@ -493,9 +493,11 @@ mission "Undeserved Anomalocaris"
 			action
 				fine 5000000
 			`	As he takes a look at the ship manifest, he seems to notice something missing. "How dare you? You will incur a fine of <fine> for having kept that Korath technology to yourself."`
+				goto nodetain
 			label "has detainers"
 			action
 				outfit "Korath Detainer" -2
+			label nodetain
 			`	"For now, you have enough to worry about with all of the missiles that will be heading your way. If I were you I'd install a lot of jammers. You'll need them, ha!" A general laughter erupts, and they let you get comfortable in the new ship. You may want to get a better one, or at least upgrade this one in order to escape safely. It may be wise to bribes to get out in one piece.`
 			action
 				give ship "Lightning Bug (Unfettered Shipyards)" "Good Will"
