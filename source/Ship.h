@@ -396,7 +396,7 @@ public:
 	double InertialMass() const;
 	double TurnRate() const;
 	double Acceleration() const;
-	double MaxVelocity() const;
+	double MaxVelocity(bool withAfterburner = false) const;
 	double ReverseAcceleration() const;
 	double MaxReverseVelocity() const;
 	// This is their potential acceleration right now

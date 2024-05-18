@@ -586,8 +586,19 @@ void PlayerInfo::AddChanges(list<DataNode> &changes)
 // Add an event that will happen at the given date.
 void PlayerInfo::AddEvent(const GameEvent &event, const Date &date)
 {
-	gameEvents.push_back(event);
-	gameEvents.back().SetDate(date);
+	// Check if the event should be applied directly.
+	if(date <= this->date)
+	{
+		GameEvent eventCopy = event;
+		list<DataNode> eventChanges = {eventCopy.Apply(*this)};
+		if(!eventChanges.empty())
+			AddChanges(eventChanges);
+	}
+	else
+	{
+		gameEvents.push_back(event);
+		gameEvents.back().SetDate(date);
+	}
 }
 
 
@@ -2394,6 +2405,8 @@ bool PlayerInfo::HasSeen(const System &system) const
 			return false;
 		if(m.Waypoints().count(&system))
 			return true;
+		if(m.MarkedSystems().count(&system))
+			return true;
 		for(auto &&p : m.Stopovers())
 			if(p->IsInSystem(&system))
 				return true;
@@ -3165,6 +3178,10 @@ void PlayerInfo::RegisterDerivedConditions()
 	auto &&unpaidFinesProvider = conditions.GetProviderNamed("unpaid fines");
 	unpaidFinesProvider.SetGetFunction([this](const string &name) {
 		return min(limit, accounts.TotalDebt("Fine")); });
+
+	auto &&unpaidDebtsProvider = conditions.GetProviderNamed("unpaid debts");
+	unpaidDebtsProvider.SetGetFunction([this](const string &name) {
+		return min(limit, accounts.TotalDebt("Debt")); });
 
 	auto &&unpaidSalariesProvider = conditions.GetProviderNamed("unpaid salaries");
 	unpaidSalariesProvider.SetGetFunction([this](const string &name) {

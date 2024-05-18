@@ -1087,7 +1087,7 @@ void PreferencesPanel::RenderPluginDescription(const Plugin &plugin)
 	WrappedText wrap(font);
 	wrap.SetWrapWidth(box.Width());
 	static const string EMPTY = "(No description given.)";
-	wrap.Wrap(plugin.aboutText.empty() ? EMPTY : plugin.aboutText);
+	wrap.Wrap(plugin.aboutText.empty() ? EMPTY : plugin.CreateDescription());
 
 	descriptionHeight += wrap.Height();
 

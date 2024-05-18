@@ -1136,10 +1136,10 @@ ship "Korsmanath A'awoj"
 		"thruster slot" 2
 		"atmosphere scan" 100
 		weapon
-			"blast radius" 400
-			"shield damage" 8000
-			"hull damage" 4000
-			"hit force" 12000
+			"blast radius" 800
+			"shield damage" 15000
+			"hull damage" 7500
+			"hit force" 22500
 	outfits
 		"Banisher Grav-Turret" 7
 		"Langrage Hyper-Heaver" 3
@@ -1373,10 +1373,10 @@ ship "Echo-Galleon"
 		"steering slot" 1
 		"thruster slot" 1
 		weapon
-			"blast radius" 1000
-			"shield damage" 4000
-			"hull damage" 2000
-			"hit force" 6000
+			"blast radius" 360
+			"shield damage" 7200
+			"hull damage" 3600
+			"hit force" 10800
 	outfits
 		"Digger Mining Beam" 4
 		"Grab-Strike Turret" 2
