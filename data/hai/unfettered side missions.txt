@@ -293,8 +293,7 @@ mission "Hai Legacy 3"
 		has "Hai Legacy 2: done"
 	on offer
 		conversation
-			`As you land, you realize your ship is the center of the spaceport crowd's attention, probably due to the ancient design. One Unfettered that looks like an engineer comes to speak to you, warmer than usual based on your experiences with the Unfettered. "Welcome. Although I do not know how you have obtained this ship, I imagine some of us will see it as a sign. It is a relic of our past, a past we are quite proud of.`
-			`	"As such, most will say that you need to prove to us you have a right to use that ship. Lucky for you, I don't believe in any of that. What matters to me is that this ship is very durable, and it's filled with valuable ancient technology.`
+			`As you land, you realize your ship is the center of the spaceport crowd's attention, probably due to the ancient design of your ship. One Unfettered that looks like an engineer comes to speak to you, warmer than usual based on your experiences with the Unfettered. "Welcome. Although I do not know how you have obtained this ship, I imagine some of us will see it as a sign. It is a relic of our past, a past we are quite proud of. As such, most will say that you need to prove to us you have a right to use that ship. Lucky for you, I don't believe in any of that. What matters to me is that this ship is very durable, and it's filled with valuable ancient technology.`
 			`	"I even see technology from those savage Korath that we fought valiantly to obtain!"`
 				to display
 					has "outfit (flagship installed): Korath Detainer"
@@ -341,15 +340,21 @@ mission "Hai Legacy 3"
 		conversation
 			branch fleeing
 				has "unfettered: fled with the relic"
+			branch "too many ships"
+				"total ships" > 1
 			`As you leave the planet's atmosphere, you see the challengers already waiting for you in the system. They hail you, "Luck has nothing to do with it. Show us what you got, monkey! But don't go all out either, for we can't learn if we're dead."`
 				accept
 			label fleeing
+			action
+				fail
 			`The Unfettered don't seem too pleased to see you leaving with their prize. The challengers are already waiting for you in orbit, and hail you. "Where do you think you're going, monkey?"`
+				decline
+			label "too many ships"
+			`As you take to join your fleet in orbit, You receive a hail from the Unfettered, "If you can't even count how many ships you have you're not worthy of our time, monkey!"`
 			action
 				fail
 	on disabled
 		fail
-		# This is needed because the mission isn't removed until the next time you land.
 		conversation
 			`The enemy ships hail you. "Thought you could get away from us so easily? You better bribe us and then land on our worlds quick, before we value blowing you up higher than preserving that ship!"`
 				to display
@@ -379,12 +384,12 @@ mission "Hai Legacy 3"
 		ship "Lightning Bug (Pulse)" "Struck"
 		conversation
 			`You receive a message from the remaining Unfettered ships: "We surrender. If you land now, you will receive your reward, so long as you do not capture our ships."`
-			branch "good boy or bad boy enough"
+			branch "good or bad enough"
 				or
 					has "unfettered: beaten extra bugs"
 					"old reputation: Hai (Unfettered)" >= -2000
 			`	"Do not declare victory too soon, however, for we were not the only ones you had to beat," another adds.`
-			label "good boy or bad boy enough"
+			label "good or bad enough"
 			action
 				set "unfettered: beaten the bugs"
 	npc disable
@@ -416,13 +421,11 @@ mission "Hai Legacy 3"
 		ship "Lightning Bug (Unfettered Shipyards)"
 		personality launching staying surveillance marked
 		on disable
-			dialog `Mera hails you: "Stop! I am only here as an observer. If you destroy my ship the deal is off!"`
+			dialog `Mera hails you: "Stop! I am only here as an observer. If you destroy my ship, the deal is off!"`
 		on kill
 			fail "Hai Legacy 3"
-			# This ship is not AI controlled because it's not her style. She wants to see it firsthand, but she will land before you do and pretend nothing happened.
 			set "unfettered: outcast"
 			dialog `As the Lightning Bug is destroyed you receive a hail from the local authorities, "You completely disrespected the rules of the duel and attempted to kill our most prominent researcher. You will not be welcome here anymore!"`
-	# If you refuse to sell the ship (you'll lose it later anyway)
 	npc
 		government "Hai (Unfettered)"
 		to spawn
@@ -433,7 +436,7 @@ mission "Hai Legacy 3"
 			variant
 				"Sea Scorpion (Ionic)"
 	on visit
-		dialog "You have not beaten all challenging ships yet. If they have not shown up it is probably because you have cheated and brought more ships into the fight. Load an earlier save and try again if you want to finish this mission."
+		dialog "You have not beaten all challenging ships yet. If they have not shown up it is probably because you have cheated and brought more ships into the fight, or maybe you angered the Unfettered enough that another ship was coming still."
 	to complete
 		not "unfettered: fled with the relic"
 		has "unfettered: beaten the bugs"
@@ -445,14 +448,14 @@ mission "Hai Legacy 3"
 		clear "unfettered: beaten the bugs"
 		clear "old reputation: Hai (Unfettered)"
 		conversation
-			`When you land in one piece, Mera approaches, shocked. "You really won? It was close until the end, was it not? Or did the captains already make stories to justify their incompetence, after they used their escape pods to get back here like cowards?"`
+			`When you land in one piece, Mera approaches, looking quite surprised. "You really won? At least it was close, right? Or did the captains make stories to justify their incompetence already, after using their escape pods to get back here like cowards?"`
 			choice
 				`	"It was fun."`
 					goto next
 				`	"What are you talking about? This was easy!"`
-			`	"Don't become overconfident now, Captain. I am sure you know what happens to such people.`
+			`	"Don't get overconfident, Captain. I am sure you know what happens to such people.`
 			label next
-			`	"Congratulations, I never expected you had it in you. I will give you authorization to land on the condition that you keep this relic from our past in one piece. Make sure you do not lose it until you truly earn the right to call us friends, or we will consider you a true enemy of the Unfettered. Oh, and there are taxes on the daily fee, totaling 650 credits per day. I hope you don't mind.`
+			`	"Congratulations, I did not think you had it in you. I will give you authorization to land, on the condition that you keep this relic from our past in one piece. You must make sure you do not lose it until you truly earn the right to call us friends, or we will consider you an enemy once again. Oh, and there are taxes on the daily fee, totaling 650 credits per day. I hope you don't mind.`
 			`	"Do keep in mind that if you lose this permit at any time and have not proven yourself another way, like by bringing us a Jump Drive, you will be treated like an outsider again."`
 			choice
 				`	"Thank you for your trust."`
@@ -461,13 +464,13 @@ mission "Hai Legacy 3"
 			action
 				"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
 				log "Won a fight against a few Lightning Bugs in an Anomalocaris, but decided against paying the daily fee to land."
-			`	"What? Oh, well the winner of the challenge can always refuse the spoils, I suppose. In that case our conflict will resume."`
+			`	"What? The winner of the challenge can always refuse the spoils, I suppose. In that case conflict will resume."`
 				decline
 			label trust
 			`	"No need to thank me. Trust is earned, like respect."`
 			action
 				outfit "Unfettered Landing Permit"
-				log "Managed to use an old Anomalocaris to beat a few Lightning Bugs, earning myself a place in Unfettered territory for a daily cost, as long as the Anomalocaris is kept intact."
+				log "Managed to use an old Anomalocaris to beat a few Lightning Bugs, earning a place in Unfettered territory for a daily cost, as long as the Anomalocaris is kept intact."
 
 
 mission "Undeserved Anomalocaris"
@@ -477,7 +480,6 @@ mission "Undeserved Anomalocaris"
 	to offer
 		has "ship model: Anomalocaris"
 		"reputation: Hai (Unfettered)" <= -1000
-		# No you can't keep the ship for free forever, nice try.
 		not "Hai Legacy 2: active"
 		# To make sure you are not stranded.
 		or
@@ -492,17 +494,16 @@ mission "Undeserved Anomalocaris"
 			action
 				take ship "Anomalocaris (Venerable)" "with outfits"
 					id "hai legacy"
-			# this ship also had an AI
-			`	It takes off, seemingly on its own! Looks like the Unfettered are getting this ship no matter what you do. It... hails you? You hear a robotic voice, "See you never, monkey. Don't attempt anything or I am programmed to self-destruct!"`
+			`	It takes off, seemingly on its own! Looks like the Unfettered are getting this ship no matter what you do. It hails you, "You've had your chance, monkey."`
 				decline
 			label "unfet space"
 			`You land on this Unfettered world in possession of the Anomalocaris, and, as you do, countless Unfettered head to your ship, each armed as they always are.`
 			`	Except, this time, they seem even more intimidating than usual... They must want the ship.`
-			`	One of them hails you on a private channel. "You do not deserve to fly this relic of old, and you missed your opportunity for a glorious battle to earn that right!"`
+			`	One of them sends you a private message. "You do not deserve to fly this relic of old, and you missed your opportunity for a glorious battle to earn that right!"`
 				to display
 					not "Hai Legacy 3: offered"
-			`	"We will give you another ship so you can leave, but you must surrender this one," one of them explains to you in a threatening tone.`
-			`	Another one steps forward, "We will even allow you to keep the outfits, provided you give it to us on Darkcloak," they say in a somewhat diplomatic tone.`
+			`	"We will give you another ship so you can leave, but you must surrender this one," one of them explains to you in a menacing tone.`
+			`	Another one steps forward, "We will allow to keep the outfits, provided you give it to us on Darkcloak," they say in a somewhat diplomatic tone.`
 				to display
 					not "flagship planet: Darkcloak"
 			`	Another one steps forward, "Since you so kindly came to Darkcloak to deliver the ship to us, we will allow you to buy back any outfits you may still desire, as a courtesy," they say in a somewhat diplomatic tone.`
@@ -512,9 +513,11 @@ mission "Undeserved Anomalocaris"
 				`	(Let them have it.)`
 				`	(Take off, now!)`
 					depart
-			`	You and your crew exit what was briefly your ship, and you inform the local Unfettered militia that it is now theirs. The Unfettered that were assembling around your ship happily disperse, except for one, probably the leader judging by their open display of rare weaponry: dual pulse pistols. They come to talk to you, weapons in hand but lowered. "We are happy you could see reason and decided to hand over the ship. For this, we have decided to provide you with a suitable replacement, that should hopefully allow you to exit our space safely.`
-			`	"Indeed that relic was not meant for you, but remember that there are other ways for you to prove yourself." The leader of these Unfettered continues with blatantly forced casualness. "Say, for example, bringing us a Jump Drive... or two... that for sure will be earning you favor, and prove you can fight.`
-			`	"For now, you have enough to worry about with all of the missiles that will be heading your way. If I were you I'd install a lot of jammers. You'll need them, ha!" A general laughter erupts, and they let you get comfortable in the new ship. You may want to get a better one, or at least upgrade this one in order to escape safely. You can also use bribes.`
+			`	You and your crew exit what was briefly your ship, and you inform the local Unfettered militia that it is now theirs. The Unfettered that were assembling around your ship happily disperse, except for one, probably the leader judging by their rare dual pulse pistols. They come to talk to you, weapons in hand but lowered. "We are happy you could see reason and decided to hand over the ship. In exchange, we have decided to provide you with a suitable replacement, that should hopefully allow you to exit our space safely.`
+			`	"That relic was not meant for you, but remember that there are other ways for you to prove yourself." The leader of these Unfettered continues with blatantly forced casualness. "Say, for example, bringing us a Jump Drive... or two... that for sure will be earning you favor, and prove you can fight.`
+				to display
+					not "Unfettered Jump Drive 1: offered"
+			`	"For now, you have enough to worry about with all of the missiles that will be heading your way. If I were you I'd install a lot of jammers. You'll need them, ha!" A general laughter erupts, and they let you get comfortable in the new ship. You may want to get a better one, or at least upgrade this one in order to escape safely. It may be wise to bribes to get out in one piece.`
 			action
 				give ship "Lightning Bug (Unfettered Shipyards)" "Good Will"
 				take ship "Anomalocaris"
@@ -533,9 +536,8 @@ mission "Unfettered Landing Permit Lost"
 	on offer
 		conversation
 			"As you land, the Unfettered tell you they have learned of the loss of the Anomalocaris, thereby ending your landing access and friendly relations with them. They also, very unsubtly, suggest you find and bring them a Jump Drive to atone for your carelessness."
-		# Since you had to have that ship as a flagship when you received the license that means that if you lose the license you lost the ship.
-		log "Lost the Anomalocaris and friendly access to Unfettered space with it."
-		"reputation: Hai (Unfettered)" <?= -1
+		log "Lost access to Unfettered space when they learned about the loss of the Anomalocaris."
+		"reputation: Hai (Unfettered)" <?= -500
 
 mission "Free Permit"
 	invisible
@@ -547,3 +549,4 @@ mission "Free Permit"
 	on offer
 		outfit "Unfettered Landing Permit" -1
 		fail
+
