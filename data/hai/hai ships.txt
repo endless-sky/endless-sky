@@ -38,23 +38,23 @@ ship "Anomalocaris"
 	outfits
 		`"Biroo" Atomic Thruster`
 		`"Bondir" Atomic Steering`
-		"Asteroid Scanner"
 		"Boulder Reactor"
-		"Bullfrog Anti-Missile"
-		"Chameleon Anti-Missile" 3
+		"Chameleon Anti-Missile" 2
 		"Hai Diamond Regenerator"
 		"Hai Ravine Batteries"
-		"Hai Williwaw Cooling"
-		"Fuel Pod"
-		"Quantum Keystone"
+		"Hai Williwaw Cooling" 3
 		Hyperdrive
-		"Ion Cannon" 2
+		"Ion Cannon"
+		"Pebble Core"
+		"Pulse Cannon"
 		"Pulse Rifle" 20
+		"Pulse Turret" 2
+		"Quantum Keystone"
 	gun -24 -89.5
 	gun 24 -89.5
 	turret -40 -28
 	turret 40 -28
-	turret 0 60 "Bullfrog Anti-Missile"
+	turret 0 60
 	turret 0 -32.5
 	engine -50 15
 	engine 50 15
@@ -595,21 +595,21 @@ ship "Lightning Bug"
 	"final explode" "final explosion small"
 	description "The Lightning Bug is a small defensive ship, mostly used by the Hai as a convoy escort. The Lightning Bug, as with many insects, works best in a swarm: even a small number of Lightning Bugs can manage to leave the largest of ships helpless with their stock-fitted Ion Cannons."
 
-# this design purposely lacks energy
+
 ship "Lightning Bug" "Lightning Bug (Ionic)"
 	outfits
 		"Ionic Blaster Prototype"
 		"Ionic Turret Prototype"
 		"Hai Corundum Regenerator"
+		"Hai Cuttlefish Jammer"
+		"Hai Gorge Batteries"
 		"Hai Williwaw Cooling"
 		"Quantum Keystone"
-		"Value Detector"
-		"Sand Cell" 3
-		"Hai Fissure Batteries"
-		"Pulse Rifle" 10
+		Hyperdrive
+		"Geode Reactor"
 		`"Benga" Atomic Thruster`
 		`"Biroo" Atomic Steering`
-		"Hyperdrive"
+		"Pulse Rifle" 10
 
 ship "Lightning Bug" "Lightning Bug (Pulse)"
 	outfits
