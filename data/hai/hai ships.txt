@@ -12,7 +12,6 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 ship "Anomalocaris"
-	swizzle 0
 	plural "Anomalocarises"
 	sprite "ship/hai anomalocaris"
 	thumbnail "thumbnail/hai anomalocaris"
@@ -20,22 +19,22 @@ ship "Anomalocaris"
 		category "Medium Warship"
 		"cost" 7400000
 		"shields" 14200
-		"hull" 6900
+		"hull" 6800
 		"required crew" 20
 		"bunks" 26
 		"mass" 440
 		"drag" 6
-		"heat dissipation" .75
+		"heat dissipation" .65
 		"fuel capacity" 400
 		"cargo space" 121
 		"outfit space" 533
 		"weapon capacity" 192
 		"engine capacity" 93
 		weapon
-			"blast radius" 84
-			"shield damage" 840
-			"hull damage" 420
-			"hit force" 1260
+			"blast radius" 210
+			"shield damage" 2100
+			"hull damage" 1050
+			"hit force" 3150
 	outfits
 		`"Biroo" Atomic Thruster`
 		`"Bondir" Atomic Steering`
@@ -72,11 +71,11 @@ ship "Anomalocaris"
 	explode "medium explosion" 30
 	explode "large explosion" 14
 	"final explode" "final explosion medium"
-	description "First created during the Hai's initial conflicts with the Sheragi, the Anomalocaris was supposedly one of the most agile Hai warships of its time. Its high cargo capacity and low engine space suggest the first designs of the ship were intended for mining or freighting, but also made it useful for looting enemy ships and carrying ammunition. Vessels from that time used a more expensive material, allowing this ship to take quite a pounding, especially from larger impacts."
+	description "First created during the Hai's initial conflicts with the Sheragi, the Anomalocaris was supposedly one of the more versatile Hai warships of its time. Its high cargo capacity and low engine space suggest the original purpose of the ship was use in mining or hauling, but also found use in looting enemy ships and carrying ammunition. Vessels from the time were manufactured out of more expensive materials, making the Anomalocaris more sturdy and able to take larger amounts of damage."
 
 ship "Anomalocaris" "Anomalocaris (Venerable)"
 	add attributes
-		# Disabled faster due to the ship's sea time, which the Unfettered know about
+		# Disabled faster due to the ship's sea time.
 		"threshold percentage" 0.4
 	outfits
 		"Korath Detainer" 2
@@ -91,7 +90,7 @@ ship "Anomalocaris" "Anomalocaris (Venerable)"
 		`"Bondir" Atomic Steering`
 		"Hyperdrive"
 		"Pulse Rifle" 20
-	description "First created during the Hai's initial conflicts with the Sheragi, the Anomalocaris was supposedly one of the most agile Hai warships of its time. Its high cargo capacity and low engine space suggest the first designs of the ship were intended for mining or freighting, but also made it useful for looting enemy ships and carrying ammunition. Vessels from that time used a more expensive material, allowing this ship to take quite a pounding, especially from larger impacts, although its time under water may have damaged it."
+	description "First created during the Hai's initial conflicts with the Sheragi, the Anomalocaris was supposedly one of the most versatile Hai warships of its time. Its high cargo capacity and low engine space suggest the original purpose of the ship was use in mining or hauling, but also found use in looting enemy ships and carrying ammunition. Vessels from the time were manufactured out of more expensive materials, making the Anomalocaris more sturdy and able to take larger amounts of damage, although this one has accrued damage being submerged underwater for a long period of time."
 
 ship "Aphid"
 	sprite "ship/hai aphid"
@@ -1063,8 +1062,7 @@ ship "Sea Scorpion" "Sea Scorpion (Ion)"
 		"Hyperdrive"
 		"Pulse Rifle" 15
 
-# These are prototype equipped ship that do not spawn normally, as such they are guarded against boarding,
-# although part of the crew on the ship are engineers monitoring the success of the weapons.
+# These variants don't spawn normally and have larger crew counts to represent experimentation with ionic weapons.
 ship "Sea Scorpion" "Sea Scorpion (Ionic)"
 	crew 30
 	outfits

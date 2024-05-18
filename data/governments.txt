@@ -615,13 +615,13 @@ government "Hai (Unfettered)"
 	"hostile disabled hail" "hostile disabled unfettered"
 
 government "Hai (Unfettered Challenger)"
-	"display name" "Unfettered Heshi"
+	"display name" "Hai (Unfettered)"
 	swizzle 5
 	"crew attack" 1.4
 	"crew defense" 2.2
 
 	"player reputation" -1000
-	"bribe" .00025
+	"bribe" .02
 	"fine" 0
 	"friendly hail" "friendly unfettered"
 	"friendly disabled hail" "friendly disabled unfettered"
