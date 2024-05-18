@@ -327,7 +327,7 @@ mission "Hai Legacy 3"
 			`	He suddenly looks at you intensively, straight in the eyes. "We sometimes bend the rules for our friends, but that is not the case with you," he says with a sudden change of tone before leaving.`
 				to display
 					"reputation: Hai (Unfettered)" < -2000
-			`	Mera comes back, looking a bit impatient. "Are you going to talk all day, or are you going to fight?" The Unfettered pilots immediately head to their ships. The engineer pulls you in close once they are far enough away. "I want this done by the end of the day, so do not try my patience. You are lucky I offered this deal in the first place, as they were planning to take the relic by force. Now, quick, get to your ship!" You see the contestants have already begun their launching procedures, so you prepare for take off as soon as you can.`
+			`	Mera comes back, looking a bit impatient. "Are you going to talk all day, or are you going to fight?" The Unfettered pilots immediately head to their ships. The engineer pulls you in close once they are far enough away. "I want this done by the end of the day, so do not try my patience. You are lucky I offered this deal in the first place, as they were planning to take the relic by force. Now, quick, get to your ship!" You see the contestants have already begun their launching procedures, so you prepare for takeoff as soon as you can.`
 			`	(Remember to park your other ships and make sure your flagship is the Anomalocaris.)`
 				accept
 			label headingout
