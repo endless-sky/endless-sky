@@ -25,9 +25,9 @@ ship "Venta"
 		"shields" 16000
 		"required crew" 40
 		"bunks" 45
-		"mass" 1200
-		"drag" 6.
-		"heat dissipation" .7
+		"mass" 2400
+		"drag" 10.2
+		"heat dissipation" .42
 		"cargo space" 20
 		"outfit space" 552
 		"weapon capacity" 240
@@ -77,9 +77,9 @@ ship "Nimbus"
 		"shields" 7500
 		"required crew" 20
 		"bunks" 40
-		"mass" 900
-		"drag" 7
-		"heat dissipation" .7
+		"mass" 1640
+		"drag" 10.8
+		"heat dissipation" .46
 		"cargo space" 75
 		"outfit space" 450
 		"weapon capacity" 120
@@ -143,9 +143,9 @@ ship "Nimbo Stratus"
 		"shields" 700
 		"required crew" 5
 		"bunks" 10
-		"mass" 400
-		"drag" 7
-		"heat dissipation" .8
+		"mass" 534
+		"drag" 8.4
+		"heat dissipation" .67
 		"cargo space" 50
 		"outfit space" 270
 		"weapon capacity" 50
@@ -181,9 +181,9 @@ ship "Nimbo Cirrus"
 		"shields" 1500
 		"required crew" 7
 		"bunks" 14
-		"mass" 600
-		"drag" 7
-		"heat dissipation" .75
+		"mass" 800
+		"drag" 8.7
+		"heat dissipation" .6
 		"cargo space" 200
 		"outfit space" 160
 		"engine capacity" 60
@@ -215,9 +215,9 @@ ship "Gero"
 		"shields" 1700
 		"required crew" 10
 		"bunks" 72
-		"mass" 550
-		"drag" 6.5
-		"heat dissipation" .75
+		"mass" 760
+		"drag" 8.4
+		"heat dissipation" .58
 		"cargo space" 20
 		"outfit space" 158
 		"engine capacity" 54

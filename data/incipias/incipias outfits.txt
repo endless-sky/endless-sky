@@ -214,7 +214,7 @@ outfit "MH Blue-Class Engine"
 	"flare sprite" "effect/incipias flare/metallic hydrogen small"
 		"frame rate" 24
 	"flare sound" "plasma huge"
-	"thrust" 16
+	"thrust" 24
 	"thrusting energy" 2
 	"thrusting heat" 2.5
 	description "In Incipian culture, blue is the weakest color. An engine labeled with blue does not bode well for the speed of any ship using it."
@@ -226,7 +226,7 @@ outfit "MH Blue-Class Steering"
 	"outfit space" -24
 	"engine capacity" -24
 	"steering flare sound" "plasma huge"
-	"turn" 332
+	"turn" 498
 	"turning energy" 1.
 	"turning heat" 3
 	description "This steering barely provides the minimum force needed to turn a ship, but it still used often because of how cheap it is."
@@ -240,7 +240,7 @@ outfit "MH Green-Class Engine"
 	"flare sprite" "effect/incipias flare/metallic hydrogen medium"
 		"frame rate" 24
 	"flare sound" "plasma huge"
-	"thrust" 20
+	"thrust" 30
 	"thrusting energy" 2
 	"thrusting heat" 2.5
 	description "Green is a color of balance for the Incipias. This engine balances the need for space with the need for powerful thrusters."
@@ -252,7 +252,7 @@ outfit "MH Green-Class Steering"
 	"outfit space" -28
 	"engine capacity" -28
 	"steering flare sound" "plasma huge"
-	"turn" 412
+	"turn" 618
 	"turning energy" 1.1
 	"turning heat" 3.1
 	description "The Incipias seem to have something against turning their ships. Even though this steering is supposed to be an upgrade from the Blue-Class steering, it is barely an improvement."
@@ -266,7 +266,7 @@ outfit "MH Red-Class Engine"
 	"flare sprite" "effect/incipias flare/metallic hydrogen large"
 		"frame rate" 24
 	"flare sound" "plasma huge"
-	"thrust" 32
+	"thrust" 48
 	"thrusting energy" 5
 	"thrusting heat" 10
 	description "The Incipias burn metallic hydrogen to move around in space. As a race that has easy access to metallic hydrogen on their home planet this allows for very efficient engines."
@@ -278,7 +278,7 @@ outfit "MH Red-Class Steering"
 	"mass" 41
 	"outfit space" -41
 	"engine capacity" -41
-	"turn" 756
+	"turn" 1134
 	"turning energy" 2.5
 	"turning heat" 12
 	description "Even the Incipias realize that ships need to turn towards their target to be able to shoot it. This steering is specifically designed for combat but captains with a lot of money find it very useful for mining."
