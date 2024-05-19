@@ -30545,7 +30545,8 @@ system Sol
 	pos -400 100
 	government Republic
 	attributes "near earth"
-	arrival 1600
+	arrival 4300
+	departure 4189
 	habitable 1496
 	belt 4189 100
 	haze _menu/haze-67
@@ -30559,7 +30560,10 @@ system Sol
 	# asteroids "large rock" 50 5.0508
 	# asteroids "medium metal" 4 2.8566
 	# asteroids "large metal" 1 2.2356
-	minables iron 800 4.64499
+	minables iron 500 4.64499
+	minables aluminum 200 3
+	minables gold 20 25
+	minables silicon 300 2
 	trade Clothing 282
 	trade Electronics 745
 	trade Equipment 491

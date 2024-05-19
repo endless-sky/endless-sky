@@ -935,13 +935,35 @@ interface "hud"
 
 interface "main view"
 	list "zooms"
+		.044
+		.053
+		.063
+		.074
+		.088
+		.105
+		.125
+		.149
+		.177
+		.21
 		.25
+		.30
 		.35
+		.42
 		.5
-		.7
+		.59
+		.71
+		.84
 		1.
-		1.4
+		1.19
+		1.41
+		1.68
 		2.
+		2.38
+		2.83
+		3.36
+		4.
+		4.76
+		5.66
 
 
 
@@ -1575,8 +1597,8 @@ interface "map buttons (small screen)" bottom right
 
 
 interface "map"
-	value "max zoom" 2
-	value "min zoom" -2
+	value "max zoom" 3
+	value "min zoom" -3
 
 
 
