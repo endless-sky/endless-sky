@@ -142,7 +142,7 @@ mission "Pact Recon 2"
 mission "Pact Recon 3"
 	landing
 	name "Pirate Reconnaissance"
-	description "Fly through the <waypoints> systems, searching for a gathering pirate fleet. Report to the Pact on <destination> when you are done."
+	description "Fly through the <marks> systems, searching for a gathering pirate fleet. Report to the Pact on <destination> once you have located them."
 	source
 		attributes "dirt belt" "near earth" "rim" "south"
 		not government "Pirate"
@@ -164,6 +164,7 @@ mission "Pact Recon 3"
 		system "Naper"
 		fleet "Small Southern Pirates" 3
 		fleet "Large Northern Pirates"
+
 	on enter "Boral"
 		unmark "Boral"
 	on enter "Hintar"
