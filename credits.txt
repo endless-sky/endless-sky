@@ -181,7 +181,7 @@ contributed to Endless Sky:
   bojidar-bg
   brendanjones
   Brick63
-  captain1947
+  captain0xff
   ChamEV
   comnom
   corecontingency
