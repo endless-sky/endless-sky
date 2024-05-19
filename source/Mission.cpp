@@ -768,19 +768,19 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 		return false;
 
 	auto it = actions.find(OFFER);
-	if(it != actions.end() && !it->second.CanBeDone(player, boardingShip))
+	if(it != actions.end() && !it->second.CanBeDone(player, IsFailed(player), boardingShip))
 		return false;
 
 	it = actions.find(ACCEPT);
-	if(it != actions.end() && !it->second.CanBeDone(player, boardingShip))
+	if(it != actions.end() && !it->second.CanBeDone(player, IsFailed(player), boardingShip))
 		return false;
 
 	it = actions.find(DECLINE);
-	if(it != actions.end() && !it->second.CanBeDone(player, boardingShip))
+	if(it != actions.end() && !it->second.CanBeDone(player, IsFailed(player), boardingShip))
 		return false;
 
 	it = actions.find(DEFER);
-	if(it != actions.end() && !it->second.CanBeDone(player, boardingShip))
+	if(it != actions.end() && !it->second.CanBeDone(player, IsFailed(player), boardingShip))
 		return false;
 
 	return true;
@@ -795,11 +795,11 @@ bool Mission::CanAccept(const PlayerInfo &player) const
 		return false;
 
 	auto it = actions.find(OFFER);
-	if(it != actions.end() && !it->second.CanBeDone(player))
+	if(it != actions.end() && !it->second.CanBeDone(player, IsFailed(player)))
 		return false;
 
 	it = actions.find(ACCEPT);
-	if(it != actions.end() && !it->second.CanBeDone(player))
+	if(it != actions.end() && !it->second.CanBeDone(player, IsFailed(player)))
 		return false;
 	return HasSpace(player);
 }
@@ -848,7 +848,7 @@ bool Mission::IsSatisfied(const PlayerInfo &player) const
 
 	// Determine if any fines or outfits that must be transferred, can.
 	auto it = actions.find(COMPLETE);
-	if(it != actions.end() && !it->second.CanBeDone(player))
+	if(it != actions.end() && !it->second.CanBeDone(player, IsFailed(player)))
 		return false;
 
 	// NPCs which must be accompanied or evaded must be present (or not),
@@ -990,9 +990,6 @@ bool Mission::IsUnique() const
 // used as the callback for any UI panel that returns a value.
 bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<Ship> &boardingShip)
 {
-	if(IsFailed(player))
-		return false;
-
 	if(trigger == STOPOVER)
 	{
 		// If this is not one of this mission's stopover planets, or if it is
@@ -1043,7 +1040,7 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	}
 
 	// Don't update any further conditions if this action exists and can't be completed.
-	if(it != actions.end() && !it->second.CanBeDone(player, boardingShip))
+	if(it != actions.end() && !it->second.CanBeDone(player, IsFailed(player), boardingShip))
 		return false;
 
 	if(trigger == ACCEPT)
@@ -1144,60 +1141,57 @@ bool Mission::HasShip(const shared_ptr<Ship> &ship) const
 // about it. This may affect the mission status or display a message.
 void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 {
-	if(!IsFailed(player))
+	if(event.TargetGovernment()->IsPlayer() && !IsFailed(player))
 	{
-		if(event.TargetGovernment()->IsPlayer())
+		bool failed = false;
+		string message = "Your ship \"" + event.Target()->Name() + "\" has been ";
+		if(event.Type() & ShipEvent::DESTROY)
 		{
-			bool failed = false;
-			string message = "Your ship \"" + event.Target()->Name() + "\" has been ";
-			if(event.Type() & ShipEvent::DESTROY)
-			{
-				// Destroyed ships carrying mission cargo result in failed missions.
-				// Mission cargo may have a quantity of zero (i.e. 0 mass).
-				for(const auto &it : event.Target()->Cargo().MissionCargo())
-					failed |= (it.first == this);
-				// If any mission passengers were present, this mission is failed.
-				for(const auto &it : event.Target()->Cargo().PassengerList())
-					failed |= (it.first == this && it.second);
-				if(failed)
-					message += "lost. ";
-			}
-			else if(event.Type() & ShipEvent::BOARD)
-			{
-				// Fail missions whose cargo is stolen by a boarding vessel.
-				for(const auto &it : event.Actor()->Cargo().MissionCargo())
-					failed |= (it.first == this);
-				if(failed)
-					message += "plundered. ";
-			}
-
+			// Destroyed ships carrying mission cargo result in failed missions.
+			// Mission cargo may have a quantity of zero (i.e. 0 mass).
+			for(const auto &it : event.Target()->Cargo().MissionCargo())
+				failed |= (it.first == this);
+			// If any mission passengers were present, this mission is failed.
+			for(const auto &it : event.Target()->Cargo().PassengerList())
+				failed |= (it.first == this && it.second);
 			if(failed)
-			{
-				hasFailed = true;
-				if(isVisible)
-					Messages::Add(message + "Mission failed: \"" + displayName + "\".", Messages::Importance::Highest);
-			}
+				message += "lost. ";
 		}
-
-		if((event.Type() & ShipEvent::DISABLE) && event.Target() == player.FlagshipPtr())
-			Do(DISABLED, player, ui);
-
-		// Jump events are only created for the player's flagship.
-		if((event.Type() & ShipEvent::JUMP) && event.Actor())
+		else if(event.Type() & ShipEvent::BOARD)
 		{
-			const System *system = event.Actor()->GetSystem();
-			// If this was a waypoint, clear it.
-			if(waypoints.erase(system))
-			{
-				visitedWaypoints.insert(system);
-				Do(WAYPOINT, player, ui);
-			}
-
-			// Perform an "on enter" action for this system, if possible, and if
-			// any was performed, update this mission's NPC spawn states.
-			if(Enter(system, player, ui))
-				UpdateNPCs(player);
+			// Fail missions whose cargo is stolen by a boarding vessel.
+			for(const auto &it : event.Actor()->Cargo().MissionCargo())
+				failed |= (it.first == this);
+			if(failed)
+				message += "plundered. ";
 		}
+
+		if(failed)
+		{
+			hasFailed = true;
+			if(isVisible)
+				Messages::Add(message + "Mission failed: \"" + displayName + "\".", Messages::Importance::Highest);
+		}
+	}
+
+	if((event.Type() & ShipEvent::DISABLE) && event.Target() == player.FlagshipPtr())
+		Do(DISABLED, player, ui);
+
+	// Jump events are only created for the player's flagship.
+	if((event.Type() & ShipEvent::JUMP) && event.Actor())
+	{
+		const System *system = event.Actor()->GetSystem();
+		// If this was a waypoint, clear it.
+		if(waypoints.erase(system))
+		{
+			visitedWaypoints.insert(system);
+			Do(WAYPOINT, player, ui);
+		}
+
+		// Perform an "on enter" action for this system, if possible, and if
+		// any was performed, update this mission's NPC spawn states.
+		if(Enter(system, player, ui))
+			UpdateNPCs(player);
 	}
 
 	for(NPC &npc : npcs)
@@ -1559,7 +1553,7 @@ bool Mission::Enter(const System *system, PlayerInfo &player, UI *ui)
 {
 	const auto eit = onEnter.find(system);
 	const auto originalSize = didEnter.size();
-	if(eit != onEnter.end() && !didEnter.count(&eit->second) && eit->second.CanBeDone(player))
+	if(eit != onEnter.end() && !didEnter.count(&eit->second) && eit->second.CanBeDone(player, IsFailed(player)))
 	{
 		eit->second.Do(player, ui, this);
 		didEnter.insert(&eit->second);
@@ -1568,7 +1562,7 @@ bool Mission::Enter(const System *system, PlayerInfo &player, UI *ui)
 	// which may use a LocationFilter to govern which systems it can be performed in.
 	else
 		for(MissionAction &action : genericOnEnter)
-			if(!didEnter.count(&action) && action.CanBeDone(player))
+			if(!didEnter.count(&action) && action.CanBeDone(player, IsFailed(player)))
 			{
 				action.Do(player, ui, this);
 				didEnter.insert(&action);

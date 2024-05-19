@@ -72,8 +72,18 @@ void MissionAction::Load(const DataNode &node)
 	if(node.Size() >= 3)
 		system = node.Token(2);
 
-	for(const DataNode &child : node)
-		LoadSingle(child);
+	if(node.HasChildren())
+	{
+		auto it = node.begin();
+		if(it->Token(0) == "triggers for failed missions")
+		{
+			runsWhenFailed = true;
+			it++;
+		}
+
+		for(const DataNode &child : node)
+			LoadSingle(child);
+	}
 }
 
 
@@ -220,8 +230,10 @@ const string &MissionAction::DialogText() const
 
 // Check if this action can be completed right now. It cannot be completed
 // if it takes away money or outfits that the player does not have.
-bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &boardingShip) const
+bool MissionAction::CanBeDone(const PlayerInfo &player, bool isFailed, const shared_ptr<Ship> &boardingShip) const
 {
+	if(isFailed && !runsWhenFailed)
+		return false;
 	if(player.Accounts().Credits() < -Payment())
 		return false;
 
