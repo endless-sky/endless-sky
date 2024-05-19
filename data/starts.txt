@@ -177,8 +177,8 @@ mission "Greenwater start"
 	to offer
 		has "hai space start"
 	on offer
-		event "not from boston"
-		event "grew up on greenwater"
+		event "not from boston" 0
+		event "grew up on greenwater" 0
 		log "Finally scraped together enough money for a down payment on a starship. The interest on the mortgage is exorbitant."
 		log "Factions" "Republic" `Hundreds of years ago, the independent territories in different parts of human space agreed to join together into a single democratic government, with Earth as its capital. The rise of the Republic ushered in a long period of peace and prosperity in human history.`
 			`Representation in the Republic Parliament is based on population. That means that some individual "Paradise Worlds" have more representatives than entire regions of space like the Dirt Belt that are more sparsely settled.`
