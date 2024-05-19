@@ -104,10 +104,10 @@ mission "Hai Legacy 1"
 				`	(Maybe another time.)`
 					defer
 			label go
-			`	While you're pondering whether or not there will be enough space to land your ship at the beach, you find instructions written on the back of a train ticket that give specific directions on how to get there. You proceed to take a train and hike a few hours to get the rest of the way there.`
+			`	While you're pondering whether or not there will be enough space to land your ship at the beach, a train ticket on the back, along with specific directions on how to get there, with a clear demand not to take your starship.`
 			`	To your surprise, the train station is located underground. At first, you can't begin to make sense of the enormity of it - it almost feels like you can reach the entire planet from here. You ask a Hai for directions, feeling embarrassed when you learn that all you had to do was scanning your ticket, and all relevant information would be displayed for you.`
-			`	Upon arriving, you take a look around for the stranger. Except for a cave, some sparse vegetation, and of course the beach itself, you cannot see anything significant in the vicinity. You double check that these are the right coordinates and look around some more.`
-			`	After waiting for some time, you spot two hooded figures further down the beach making their way toward you, and you start to doubt whether or not this was a good idea. Even when they're close enough to speak, their faces somehow remain impossible to glimpse beneath the hoods. "Hello, <last>," one says to you. "We are sorry for all the complications, but the truth is, we cannot afford to take risks. It is best for all if you do not know who we are, and we needed a secluded area to speak to you."`
+			`	You hike for a few hours until you reach your destination, and, upon arriving, you take a look around for the stranger. Except for a cave, some sparse vegetation, and of course the beach itself, you cannot see anything significant in the vicinity. You double check that these are the right coordinates and look around some more.`
+			`	After waiting for some time, you spot two hooded figures further down the beach making their way toward you, and you start to doubt whether or not this was a good idea. Even when they're close enough to speak, their faces somehow remain impossible to glimpse beneath the hoods. "Hello, <last>," one says to you. "We are sorry for the secrecy, but the truth is, we cannot afford to take risks. It is best for all if you do not know who we are, and we needed a secluded area to speak to you."`
 			choice
 				`	"Tell me more."`
 					goto "tell me"
@@ -149,7 +149,7 @@ mission "Hai Legacy 1"
 				`	"Why didn't you say anything before that happened?"`
 			`	The second one replies, "We could have, but where's the fun in that? We wanted to see how you would react.`
 			label explain
-			`	"This ship is our guarantee that nothing goes wrong. After all, we are still not sure if we can trust you."`
+			`	"This ship is our guarantee that nothing goes wrong, should you attempt something against us. After all, we are still not sure if we can trust you."`
 			`	The two Hai then take you to a nearby cave, showing you another ship. The first one speaks again. "That ship outside is not for sale. This ship, however, is a mighty relic of the past, intended for war from the times our empire used to control the stars - an Anomalocaris!"`
 			scene "scene/cave scene"
 			`	The second one now takes a step toward you to speak, almost interrupting the first. "We have a proposition for you: should you agree to bring much needed supplies to our brethren, the Unfettered Hai, we will sell you this ship for the modest price of 10 million credits, including 2 weapons of the savage Korath!" The first one seems surprised by this and tries to intervene, but the second resumes before they can speak up. "These legendary weapons can interfere with nearly any enemy engine system! Worry not, you'll be able to recuperate the cost of this ship with ease by bringing medical supplies to the Unfettered. This cargo is needed on short notice, on <destination>, and we lack the time and personnel to bring them.`
@@ -289,7 +289,7 @@ mission "Hai Legacy 3"
 		has "Hai Legacy 2: done"
 	on offer
 		conversation
-			`As you land, you realize your ship is the center of the spaceport crowd's attention, probably due to the ancient design of your ship. One Unfettered that looks like an engineer comes to speak to you, warmer than usual based on your experiences with the Unfettered. "Welcome. Although I do not know how you have obtained this ship, I imagine some of us will see it as a sign. It is a relic of our past, a past we are quite proud of. As such, most will say that you need to prove to us you have a right to use that ship. Lucky for you, I don't believe in any of that. What matters to me is that this ship is very durable, and it's filled with valuable ancient technology.`
+			`As you land, you realize your ship is the center of the spaceport crowd's attention, probably due to the ancient design of your ship. One Unfettered that looks like an engineer comes to speak to you, warmer than usual based on your experiences with the Unfettered. "Welcome. Although I do not know how you have obtained this ship, I imagine some of us will see it as a sign. It is a relic of our past, a past we are quite proud of. As such, most Unfettered warriors will say that you need to prove your right to use that ship to us. Lucky for you, I don't believe in any of that. What matters to me is that this ship is very durable, and it's filled with valuable ancient technology.`
 			`	"I even see technology from those savage Korath that we fought valiantly to obtain!"`
 				to display
 					has "outfit (flagship installed): Korath Detainer"
@@ -308,7 +308,7 @@ mission "Hai Legacy 3"
 				`	"I accept."`
 				`	"I have nothing to prove to you. If you want it, you'll have to chase me down. No duel."`
 					goto headingout
-			`	"Good! Of course, I won't be fighting you personally, as it is too risky to do so. I would also not want to deny my brethren the opportunity to prove themselves against a mighty human warrior!"`
+			`	"Good! Of course, I won't be fighting you personally, as it is too risky to do so. I am but an engineer, after all. I would also not want to deny my brethren the opportunity to prove themselves against a mighty human warrior!"`
 			`	You're not sure if Mera is being serious or not, but her friends seem to be in for it. Their leader approaches you. "So you think you deserve to fly this mighty ship of the Hai empire?"`
 			`	"Yeah, what makes you think that, human?" another one adds.`
 			choice
@@ -338,7 +338,7 @@ mission "Hai Legacy 3"
 				has "unfettered: fled with the relic"
 			branch "too many ships"
 				"total ships" > 1
-			`As you leave the planet's atmosphere, you see the challengers already waiting for you in the system. They hail you, "Luck has nothing to do with it. Show us what you got, monkey! But don't go all out either, for we can't learn if we're dead."`
+			`As you leave the planet's atmosphere, you see the challengers already waiting for you in the system. They hail you, "Luck has nothing to do with it. Show us what you got, monkey! Show us that you control your weapons well, as any warriors should. Prove to us that you have the strength to disable our ship, yet still have the restrain not to destroy them."`
 				accept
 			label fleeing
 			action
