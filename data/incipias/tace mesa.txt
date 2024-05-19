@@ -55,7 +55,7 @@ ship "Tace Mesa"
 		"solar collection" 200
 		"fuel capacity" 200
 
-		"heat dissipation" 0.7
+		"heat dissipation" 0.47
 		"energy capacity" 1000
 
 		"required crew" 1
