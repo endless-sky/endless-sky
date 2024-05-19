@@ -1321,7 +1321,7 @@ tip "VSync"
 	`Toggle vsync between off, on, and adaptive (should your computer support it).`
 
 tip "Camera acceleration"
-	`Toggle whether the flagship is fixed in the center of the screen, or moving around slightly when accelerating.`
+	`Toggle whether the flagship is fixed in the center of the screen, or begins to offset from the center when accelerating.`
 
 tip "Show CPU / GPU load"
 	`Display the CPU and GPU load at the top of the screen while in flight. Loads are presented as a percentage of a frame (1/60th of a second) that it takes to calculate or draw each frame. >100% load (or >33% when fast-forward is active) means the game will run slower.`
