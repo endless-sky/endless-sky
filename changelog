@@ -1,3 +1,193 @@
+version 0.10.7
+  * Bug fixes:
+    * Content bugs:
+      * Typo fixes. (@a4358, @TomGoodIdea, @bene_dictator, @tibetiroka, @Arachi-Lover, @enot888)
+      * Earth day jobs no longer offer unless you can land on Earth. (@ziproot)
+      * Make TMBR 3a dialogue choice order consistent. (@ziproot)
+      * Add blocked message to Hai Film Crew 3. (@neurotrope)
+      * Add missing indent, remove unnecessary labels and gotos to Mafia Extortion mission. (@Arachi-Lover)
+      * Fix overlapping stars in Umbral system. (@Saugia)
+      * Fix attribute on Vyrmeid lifeform. (@ziproot)
+      * Give Cruiser in "FWC Cebalrai 1B" Combat Drones instead of Lances. (@Quantumshark)
+      * Add new "CCOR Logistics" fleet for non-combat ships. (@bene_dictator)
+      * Allow quantum keystone jobs to offer properly. (@ziproot)
+      * Update New China and Geyser to have outfitters and tribute fleets that match their region. (@bene_dictator)
+      * Fix the attribution of various copyright entries. (@warp-core)
+      * Remove duplicate Korath phrase. (@tibetiroka)
+      * Clarify the description of the Far Osk 27. (@ziproot)
+      * Remove outfit scanning capabilities from Grey's person ship. (@mOctave)
+      * Block "Lunarium: Questions" from completing while assisting the Heliarchs. (@ziproot)
+      * Reword Deep's description. (@roadrunner56)
+      * List correct attributions for Unsplash images. (@ziproot)
+      * Add back instances of "ser" and explain what it means in the Skadenga and Stones of Our Fathers missions. (@bene_dictator)
+      * The Terraforming missions are no longer offered at non-sensical times. (@lumbar527)
+      * Fixed an inconsistency in condition names used by Patir Mystery and Cognizance. (@OcelotWalrus)
+      * Don't select Graffias as a target for Free Worlds "Scouting Run" jobs. (@warp-core)
+      * "Deep: Remnant: Continue Research" no longer offers if you've completed the missions after it. (@Saugia)
+      * Adjusted the explosion stats for the Korsmanath A'awoj and Echo-galleon. (@Quantumshark)
+    * Engine bugs:
+      * Fix edge case in code style checker. (@tibetiroka)
+      * Don't consider "Parsing: <file>" output when in debug mode as errors when test parsing. (@warp-core)
+      * Fix game crash on short error messages. (@tibetiroka)
+      * Don't draw name tooltips for ships hidden under the shop sidebar footer. (@TomGoodIdea)
+      * Variant ships correctly inherit display names from base ships. (@TomGoodIdea)
+      * Use singular "ship" in messages when recalling/deploying a single ship. (@tibetiroka)
+      * Fix errors in the copyright file. (@tibetiroka)
+      * Rename variable to avoid ambiguity with std::queue in some versions of clang. (@quyykk)
+      * Fix ship parenting on takeoff with fighter flagship. (@tibetiroka)
+      * Correctly handle arrow keys with no item selected in the shop. (@TomGoodIdea)
+      * Align plugin checkbox clickzones correctly. (@warp-core)
+      * Fix mission distance calculations with different settings. (@warp-core)
+      * Improvements to fix crashes when loading/unloading images. (@quyykk)
+      * Fix custom port button name when using "add port". (@warp-core)
+      * Corrected the parsing of the initial player repuptation grandchild node in Government. (@xxxyyyqqq12345)
+      * Draw distance to the selected system after mission markers. (@TomGoodIdea)
+      * Ships with "disables" personality ask for help disabling, instead of destroying, their enemies. (@TomGoodIdea)
+      * Suppress missions require landing in the next system messages from failed missions. (@OcelotWalrus)
+      * Remove outdated watchdog. (@petervdmeer)
+      * Properly check if a mission is failed. (@TomGoodIdea)
+      * Hardpoint labels and lines in the ship info panel will properly align to the "weapons" box from the interface definition. (@Zitchas)
+  * Game content:
+    * New content:
+      * Add a mission transporting a Hai to Unfettered space. (@roadrunner56)
+      * add Unfettered-related Hai news. (@Hurleveur)
+      * Add missions about Hogshead referencing Boaty McBoatface story. (@Saugia)
+      * Add Coalition culture conversations. (@Arachi-Lover)
+      * Add new human merchant hails about mining asteroids. (@bene_dictator)
+      * Create more passenger jobs requiring keystones in Hai space. (@roadrunner56)
+      * Add more human news referring to Korath attacks in the Core. (@roadrunner56)
+      * Conspiracy theorist spaceport news. (@tibetiroka)
+      * Add logbook entries for Alastair Korban. (@bene_dictator)
+      * A conversation about Kraz and Delta V outfits being stocked in the northern Dirt Belt and near Earth after the war begins. (@bene_dictator)
+      * A short set of missions involving the Wanderers and Mereti. (@Quantumshark)
+      * More new human planets and stations, update Kraken Station landing image. (@bene_dictator)
+      * Add new uninhabited landable planets to existing systems in Human space. (@Quantumshark)
+      * Sell normal blaster weapons on pirate planets. (@bene_dictator)
+      * Missions about bringing a lost dog to its owner on Glory. (@SpearDane, @bene_dictator)
+      * Core Pirate ship variants with Tractor Beams. (@Saugia)
+      * Added derelict ships that can randomly spawn in some human systems. (@Petersupes)
+      * A series of missions about a journalist in Syndicate space. (@bene_dictator)
+    * Mission changes:
+      * Refactor the Argosy Hijacking mission. (@bene_dictator)
+      * Reduce the requirements for unlocking the Kestrel the first time. (@brendanjones)
+      * Make the "Remnant: Cognizance 4" mission description more helpful. (@OcelotWalrus)
+      * Various improvements to pre-war missions. (@Anarchist2)
+        * Text changes to all chains.
+        * Care Package to South:
+          * Limit the source to near earth planets, increase offer rate to 65%. The reason I'm giving many of these missions more restricted location filters is to reduce how ubiquitous they are without making finding them on purpose a crapshoot.
+          * Reworked the way the follow-up missions are handled:
+          * Care Package 2a has been replaced with a new mission, FW Deep Memorial, a set of missions and events that offers regardless of the player's choices, but which has a branch if Brower dies during the attack.
+          * Care Package 2b has been moved from immediately after Diplomacy 4 to during the first FW break, and now offers on Rust instead of Deep. The flamethrower mission will likely bring players to Rust anyway, but it's no longer in the way of the main campaign.
+        * Moving House:
+          * Increase offer rate to 35%, limit source planets to near earth, core and paradise.
+          * Tie the second part of the chain to the FW chapter break instead of Thule's independence.
+          * Allow the player to decline the follow-up mission.
+        * Southern Fiance:
+          * Reduced the possible source planets to urban core Syndicate worlds.
+          * Cut all of the follow up missions except for the marriage letter. The only mission string that get multiple epilogue missions is the Free Worlds campaign; having this many follow-ups to a single mission is intrusive at best.
+          * Moved some of the information from the later missions up into the first mission to compensate.
+      * "Deep: Interrogation" no longer offers during the main campaign. (@Saugia)
+      * Various improvements to some pirate jobs. (@ziproot)
+        * "Drug Running" missions are now "infiltrating";
+        * Added (and used) generic aborted phrases for pirate slave jobs;
+        * Failing or aborting a pirate slave job causes a reduction in reputation with the "Pirate" government;
+        * Many jobs now have a minimum travel distance of 4, instead of 3, to prevent them from involving travelling between the Men system and a CCOR world, as this route does not involve any territory hostile to pirates. Affected jobs:
+          * "Cargo Smuggling", "Bulk", and "Stealth (South)" variations,
+          * "Drug Running", and "Stealth (South)" variation,
+          * "Slave Transport", and "Bulk" variation,
+          * "Escort Illegal Cargo" South variation, and
+          * "Escort Stolen Vessel" South variation;
+        * The targets NPCs in "Eliminating Law Enforcement" jobs have been given the "marked" personality;
+        * Alphabetized the list of personalities for the target NPCs in "Eliminating Competition" jobs;
+        * Various jobs will only place NPCs in systems neighbored by a non-Pirate system. Affected jobs are:
+          * "Eliminating Law Enforcement" Core and South variations,
+          * "Raid on Merchants" North and South variations, and
+          * "Cargo Theft (South)"; and
+        * Various jobs will only offer from systems neighbored by a non-Pirate system (that is, they will no longer offer from CCOR worlds). Affected jobs are:
+          * "Eliminating Law Enforcement (South)",
+          * "Southern Pirate Defense",
+          * "Cargo Theft (South)", and
+          * "FW Assassination".
+      * Mark Betelgeuse in "Deep Scientist Rescue 0" instead of making it a waypoint. (@roadrunner56)
+      * Use marks instead of waypoints in "Pact Recon 3". (@ziproot)
+    * Balance:
+      * Reduce the chances of finding Bactrians in random pirate fleet spawns by half. (@alexrovw)
+      * Nerf the Unfettered medical jobs. (@Hurleveur)
+      * Cut Wanderer sun reactor energy capacity in half + -20% energy generation on the biochemical cells. (@Quantumshark)
+      * Cut the asteroid scanner's price in half. (@AvianGeneticist)
+      * Revert old human missile initial velocity changes + additional tweaks. (@Anarchist2)
+      * Reduced the damage and increased the blast radius of the Heavy Rocket (and Pod). (@Quantumshark)
+        * "blast radius": 50 -> 90
+        * "shield dammage": 1060 -> 790
+        * "hull damage": 900 -> 670
+      * Tweak Marauder loadouts, including removing campaign unlocked outfits. (@Hurleveur)
+      * Reduced the missile strength and turn rate of the Firelight. (@Quantumshark)
+        * "missile strength": 60 -> 30
+        * "Firelight Activated" "turn rate": 2 -> 1.7
+      * Give the Quicksilver +20 weapon capacity & a Capybara Reverse Thruster in exchange for its shield generator. (@Quantumshark)
+    * Other:
+      * Give the harvest personality to Unfettered fleets. (@Hurleveur)
+      * edits to Unfettered missions. (@Hurleveur)
+      * Reworked the distribution of outfits in southern and pirate outfitters. (@bene_dictator)
+      * Remove facilities from evacuated Wanderer worlds. (@bene_dictator)
+      * Various improvements to human hails. (@bene_dictator)
+      * Update the descriptions of two Sestor worlds after the factories are shut down. (@Quantumshark)
+      * Add some additional mentions of how Tele'ek's Molt is progressing to the last few missions in Wanderers Middle. (@Quantumshark)
+      * Add mention of the CCOR in a FW pirate recon mission. (@roadrunner56)
+      * remove pirates from Ildaria. (@Hurleveur)
+      * Adjust Imo Dep Minables & Add Hai Mining fleets. (@Saugia)
+      * Separate the Kestrel from "Tarazed Advanced" shipyard. (@Saugia)
+  * Game mechanics:
+    * New mechanics:
+      * Autocondition for testing if you can land on a given planet. (@Amazinite)
+      * Added a "fused" weapon tag that causes projectiles to explode at the end of their life. (@Amazinite)
+      * Added tags that stop projectiles from colliding with different object types. (@Amazinite)
+      * Add a "quiet" personality that prevents passive hails but still allows direct hails. (@bene_dictator)
+      * Conditions to word-form numbers in conversations. (@UnorderedSigh)
+      * Disabled fighters and drones will no longer be hit by stray projectiles. (@tibetiroka)
+      * Separate delayed and non-delayed shield generation and hull repair attributes. (@Quantumshark)
+      * Rotate interface images. (@warp-core)
+      * Allow boarding (repair or capture) ships with a fighter flagship. (@tibetiroka)
+      * conditional links. (@Hurleveur)
+      * Game actions can now play music with a `music` node. (@eebop)
+      * Various new cloak related attributes. (@Hurleveur)
+      * Added the "disabled recovery time" attribute which allows a disabled ship to repair itself, with an optional energy and heat cost. (@Azure3141)
+      * Ability to limit turret firing arc. (@1010todd)
+      * Allow plugins to add more metadata to their plugin.txt file. (@Beed-git)
+      * Events can now be made to apply instantly with a delay of 0 days. (@RisingLeaf)
+      * Mission triggers and actions can now give the player debt. (@Amazinite)
+      * Missions can mark systems of importance. (@Amazinite)
+    * Mechanics changes:
+      * Remove the forced-default disabled hails from Government. (@Amazinite)
+      * NPC scan and surveillance personality behavior changes. (@Amazinite)
+      * Auto-pilot now stops thrusting upon reaching 99% of max speed to save energy. (@samrocketman)
+  * User interface:
+    * Include messages when hailing other ships in the message log. (@TomGoodIdea)
+    * The shop now has tooltips for viewing your unabbreviated credits and the names of your ships without needing to select them. (@Amazinite)
+    * Disabled hails are now sent passively. (@bene_dictator)
+    * Hide unknown system names in the escort HUD. (@TomGoodIdea)
+    * Allow multiple pages of controls. (@TomGoodIdea)
+    * A help message for managing multiple ships in the outfitter. (@TomGoodIdea)
+    * Added a preference to turn off the sobel filter on your flagship and target ship in the HUD. (@warp-core)
+    * Added a control for toggling the turret tracking setting. (@TomGoodIdea)
+    * "Fancy" cloaked ship outlines. (@Koranir)
+    * Expand the orbits key image to make space for all vanilla governments. (@lantzk)
+    * Added a camera acceleration setting that causes the camera to shift with the flagship's movement. (@Koranir)
+  * Under the hood:
+    * Improve load panel tooltip timestamp generation. (@RisingLeaf, @ziproot)
+    * Style updates to Armament. (@RisingLeaf)
+    * General purpose TaskQueue instead of SpriteQueue.. (@quyykk)
+    * Fix typo in and add Hungarian language description to Unix metadata file. (@ovari)
+    * Don't recalculate an escort's distance map every frame if its target system already matches the flagship. (@Koranir)
+  * CI/CD and development environment:
+    * Stricter copyright checking. (@tibetiroka)
+    * Don't check for leading/trailing spaces in substitutions defined in missions. (@tibetiroka)
+    * Support CodeBlocks no longer stand-alone, but only through CMake. (@quyykk)
+    * Check copyright with a linter. (@tibetiroka)
+    * Link GLEW::glew instead of GLEW::GLEW in CMakeLists.txt. (@Koranir)
+    * Simplify CMake build on Linux and MacOS. (@quyykk)
+    * Run CI workflows when their configuration file is changed. (@tibetiroka)
+
 Version 0.10.6
   * Bug fixes:
     * Content bugs:
