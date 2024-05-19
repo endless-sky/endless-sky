@@ -60,6 +60,22 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release version="0.10.7" date="2024-5-25" type="development" urgency="low">
+      <description>
+        <p>This is an unstable release, containing big changes that may introduce new bugs.</p>
+        <p>Some major changes and additions are:</p>
+        <ul>
+          <li></li>
+        </ul>
+        <p>Some notable bug fixes are:</p>
+        <ul>
+          <li></li>
+        </ul>
+        <p>You can find out more in the changelog.</p>
+        <p>A special thanks to the 37 people who contributed to this release!</p>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.10.7/changelog</url>
+    </release>
     <release version="0.10.6" date="2024-2-17">
       <description>
         <p>This is a stable release, focused on fixing bugs and making some other small improvements.</p>
