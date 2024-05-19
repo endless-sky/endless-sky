@@ -1786,6 +1786,7 @@ mission "Wanderers Invaded 3"
 		has "Wanderers Invaded 2: done"
 	on offer
 		log "Helped to defend a Wanderer planet from an Unfettered attack. But, the Wanderers now plan to abandon that planet. The Wanderers seem very hesitant to actually stand their ground and fight back."
+		event "wanderers: varu mer'ek evacuated"
 		conversation
 			`It appears that the very last of the civilians are ready for transport to <planet>; a large crowd is gathered in the spaceport, but nearly all the buildings are vacant. Incongruously, a few Wanderers are busy sweeping the sidewalks, watering plants, and making other efforts to tidy up the port, as if to make it as presentable as possible for the Unfettered when they land.`
 			`	Isai greets you and asks if she can ride along with you. "These are the last of the civilians," she says. "The [warriors, defenders] will remain behind until everyone is [safe, away], then they will join us on <planet>. But most important is that the transports reach <planet> unharmed. Will you escort them?"`
@@ -1802,7 +1803,7 @@ mission "Wanderers Invaded 3"
 			`	"Okay," you say, "I'll help protect the transports."`
 			label end
 			`	"Thank you," she says. "As before, do not [wait, tarry] or join in the fighting. Just bring our people safely to <planet>."`
-				accept
+				launch
 	on accept
 		event "capture of ik'kara'ka" 2
 	
@@ -1816,6 +1817,16 @@ mission "Wanderers Invaded 3"
 	on visit
 		dialog
 			`You have reached <planet>, but the Wanderer transports, or your ship carrying Isai, have not all arrived yet. You should take off and wait for them to catch up with you.`
+
+
+
+event "wanderers: varu mer'ek evacuated"
+	planet "Varu Mer'ek"
+		remove spaceport
+		remove shipyard
+		remove outfitter
+		remove "required reputation"
+		remove tribute
 
 
 
@@ -2278,9 +2289,10 @@ mission "Wanderers Evacuation 1B"
 	to offer
 		has "Wanderers Evacuation 1: done"
 	on offer
+		event "wanderers: vara ke'stai evacuated"
 		conversation
 			`The Wanderer transports land in the spaceport and begin loading passengers. The village appears to be almost empty; all but the last few stragglers have already left. As on Varu Mer'ek before it was captured, they seem to have taken pains to leave their village as neat and tidy as possible. In similar circumstances, a human government would probably have chosen to burn everything of value to the ground rather than let it fall into enemy hands.`
-				accept
+				launch
 	npc accompany save
 		government "Wanderer"
 		personality timid escort
@@ -2296,6 +2308,12 @@ mission "Wanderers Evacuation 1B"
 	on visit
 		dialog `You've landed on <planet>, but not all of the Riptide transports carrying the refugees are in the system. Better depart and wait for them all to arrive.`
 
+event "wanderers: vara ke'stai evacuated"
+	planet "Vara Ke'stai"
+		remove spaceport
+		remove outfitter
+		remove "required reputation"
+		remove tribute
 
 
 mission "Wanderers Evacuation 1C"

@@ -391,12 +391,12 @@ mission "Ask Quarg About Coalition Late"
 			choice
 				`	"Is that a threat?"`
 					goto threat
-						to display
-							not "ask quarg coalition late: threat"
+					to display
+						not "ask quarg coalition late: threat"
 				`	"What if I do want to aid the Heliarchs?"`
 					goto aid
-						to display
-							not "ask quarg coalition late: aid"
+					to display
+						not "ask quarg coalition late: aid"
 			label threat
 			action
 				set "ask quarg coalition late: threat"
@@ -416,12 +416,12 @@ mission "Ask Quarg About Coalition Late"
 			choice
 				`	"Will the Quarg help us fight the Heliarchs?"`
 					goto help
-						to display
-							not "ask quarg coalition late: help"
+					to display
+						not "ask quarg coalition late: help"
 				`	"Any tips on how to fight them?"`
 					goto tips
-						to display
-							not "ask quarg coalition late: tips"
+					to display
+						not "ask quarg coalition late: tips"
 			label help
 			action
 				set "ask quarg coalition late: help"
