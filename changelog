@@ -3,7 +3,7 @@ version 0.10.7
     * Content bugs:
       * Typo fixes. (@a4358, @TomGoodIdea, @bene_dictator, @tibetiroka, @Arachi-Lover, @enot888)
       * Earth day jobs no longer offer unless you can land on Earth. (@ziproot)
-      * Make TMBR 3a dialogue choice order consistent. (@ziproot)
+      * Make TMBR 3a dialog choice order consistent. (@ziproot)
       * Add blocked message to Hai Film Crew 3. (@neurotrope)
       * Add missing indent, remove unnecessary labels and gotos to Mafia Extortion mission. (@Arachi-Lover)
       * Fix overlapping stars in Umbral system. (@Saugia)
@@ -118,7 +118,7 @@ version 0.10.7
       * Revert old human missile initial velocity changes + additional tweaks. (@Anarchist2)
       * Reduced the damage and increased the blast radius of the Heavy Rocket (and Pod). (@Quantumshark)
         * "blast radius": 50 -> 90
-        * "shield dammage": 1060 -> 790
+        * "shield damage": 1060 -> 790
         * "hull damage": 900 -> 670
       * Tweak Marauder loadouts, including removing campaign unlocked outfits. (@Hurleveur)
       * Reduced the missile strength and turn rate of the Firelight. (@Quantumshark)
