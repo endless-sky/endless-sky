@@ -244,6 +244,7 @@ private:
 	std::vector<std::pair<const Outfit *, int>> ammo;
 	int jumpCount = 0;
 	const System *jumpInProgress[2] = {nullptr, nullptr};
+	double hyperspacePercentage = 0.;
 
 	int step = 0;
 
