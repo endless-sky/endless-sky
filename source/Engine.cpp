@@ -261,7 +261,7 @@ namespace {
 
 		// Flip the velocity back over the baseVelocity
 		Point newVelocity = baseVelocity.Lerp(newAbsVelocity, cameraAccelMultiplier);
-		
+
 		newCenter = newCenter.Lerp(baseCenter, pow(influence, .5));
 		newVelocity = killVelocity ? baseVelocity : newVelocity.Lerp(baseVelocity, pow(influence, .5));
 
@@ -532,7 +532,8 @@ void Engine::Step(bool isActive)
 	}
 	else if(flagship)
 	{
-		if(isActive) {
+		if(isActive)
+		{
 			const auto [newCenter, newCenterVelocity] = NewCenter(center, centerVelocity,
 				flagship->Center(), flagship->Velocity(), flagship->GetHyperspacePercentage() / 100.,
 				flagship->IsHyperspacing());
