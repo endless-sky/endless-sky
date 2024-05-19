@@ -59,7 +59,7 @@ ship "Tace Mesa"
 		"energy capacity" 1000
 
 		"required crew" 1
-		"drag" 13.3
+		"drag" 20
 		"bunks" 40
 	outfits
 		"Strange Ray"
