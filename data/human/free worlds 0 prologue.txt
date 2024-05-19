@@ -173,8 +173,8 @@ mission "Pact Recon 3"
 	on enter "Naper"
 		unmark "Boral"
 		unmark "Hintar"
-		unmark "Naper"
 		unmark "Orvala"
+		unmark "Naper"
 		set "fw located pirate fleet"
 		dialog `You have located the pirate fleet. Time to head back to <planet> to report to Freya what you found.`
 	on visit
