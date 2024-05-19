@@ -46,7 +46,7 @@ ship "Tace Mesa"
 	attributes
 		category Interceptor
 		cost 500000
-		"mass" 350
+		"mass" 525
 		"outfit space" 45
 		"weapon capacity" 20
 		"engine capacity" 25
