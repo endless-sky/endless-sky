@@ -34,8 +34,8 @@ outfit "Internal Plasma Exhaust"
 	"mass" 25
 	"outfit space" -25
 	"engine capacity" -25
-	"thrust" 24
-	"turn" 1000
+	"thrust" 36
+	"turn" 1500
 	"flare sprite" "effect/plasma exhaust"
 		"frame rate" 16
 
