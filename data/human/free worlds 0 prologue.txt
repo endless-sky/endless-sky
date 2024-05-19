@@ -178,7 +178,7 @@ mission "Pact Recon 3"
 		set "fw located pirate fleet"
 		dialog `You have located the pirate fleet. Time to head back to <planet> to report to Freya what you found.`
 	on visit
-		dialog `You have reached <planet>, but you haven't located the pirate fleet yet! Better depart and make sure you visit <marks>.`
+		dialog `You have reached <planet>, but you haven't located the pirate fleet yet! Better depart and make sure you have checked <marks>.`
 	to complete
 		has "fw located pirate fleet"
 	on complete
