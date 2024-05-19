@@ -6874,7 +6874,7 @@ mission "Lost Dog"
 		random < 15
 	on offer
 		conversation
-			`Your walk from the <ship> takes you out of <planet>'s bustling spaceport and into the overtly welcoming and carefully inoffensive streets of the spaceport town. Each path seems to be saturated with tourists and purpose-built to whisk travelers further away from their ships and deeper into the preternatural radiance of this Paradise World. The hand-crafted beauty is inescapable, a never-ending sequence of breathtaking views.`
+			`Your walk from the <ship> takes you out of <origin>'s bustling spaceport and into the overtly welcoming and carefully inoffensive streets of the spaceport town. Each path seems to be saturated with tourists and purpose-built to whisk travelers further away from their ships and deeper into the preternatural radiance of this Paradise World. The hand-crafted beauty is inescapable, a never-ending sequence of breathtaking views.`
 			`	As you walk, you eventually come across a perfectly manicured garden park named "Parc Manifold." You approach the gates to discover a ticket office, with signs advertising a free entry promotion this week only, crossing out the 3,400 credit regular admission fee.`
 			choice
 				`	(Go to the park.)`
@@ -6968,7 +6968,7 @@ mission "Lost Dog"
 			`	She snatches up the dog and draws it to her bosom. "Oh my darling See-See! It has been most dreadful waiting for news of you!"`
 			`	After a moment she turns her attention back to you, looking slightly softer than before. "See-See tires of the parks here, and so every Tuesday I send him to Calda for a change of pace. It's good for his constitution, you know. Anyway, the horrid man who normally ferries our dogs on these little excursions had some sort of episode. A stroke, or a heart attack - you get the idea. He had an assistant return the dogs, but in the confusion, they forgot my little See-See. I was sure some gauche tourist would have snatched him up and eaten him by now."`
 			`	She turns her attention back to the dog and speaks to him in baby talk. "But, instead, this gallant captain saved you!"`
-			`	The lady snaps her fingers, and the butler is immediately at her side. "We must make this person whole. I can't be perceived as owing favors to vagabonds. Imagine the talk!`
+			`	The lady snaps her fingers, and the butler is immediately at her side. "We must make this person whole. I can't be perceived as owing favors to vagabonds. Imagine the talk!"`
 			`	The butler quickly procures a credit chip and shows it to her, accepting a curt nod for approval. "I realize that this is probably a fortune to you," she says. "I recommend you find a financial advisor and invest it well."`
 			`	With that, she turns and leaves; the butler likewise disappears, and you're escorted by the footman back to your vehicle.`
 			`	You look down at the credit chip in your hand and read its value: <payment>.`

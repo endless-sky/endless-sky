@@ -2949,7 +2949,7 @@ bool Ship::Phases(Projectile &projectile) const
 		return true;
 
 	// Perform the most expensive checks last.
-	// If multiple ships with partial phasing are stacked on top of eachother, then the chance of collision increases
+	// If multiple ships with partial phasing are stacked on top of each other, then the chance of collision increases
 	// significantly, because each ship in the firing-line resets the SetPhase of the previous one. But such stacks
 	// are rare, so we are not going to do anything special for this.
 	if(attributes.Get("cloak phasing") >= Random::Real())
