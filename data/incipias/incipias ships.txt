@@ -202,7 +202,7 @@ ship "Nimbo Cirrus"
 	explode "medium explosion" 20
 	explode "large explosion" 30
 	"final explode" "final explosion medium"
-	description "When Pon'tes was built, the need arose for a ship that could carry large amounts of material and supplies into orbit, where Nimbus proved insufficient. The Cirrus is a specialized cargo ship, and the inhabitants of Pon'tes rely on its regular deliveries."
+	description "When Pon'tes was built, the need arose for a ship that could carry large amounts of material and supplies into orbit, where the Nimbus proved insufficient. The Cirrus is a specialized cargo ship, and the inhabitants of Pon'tes rely on its regular deliveries."
 
 ship "Gero"
 	"sprite" ship/gero
