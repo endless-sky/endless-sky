@@ -24,9 +24,9 @@ ship "Archon"
 		"hull" 1000000
 		"required crew" 1
 		"bunks" 1
-		"mass" 1000
-		"drag" 27
-		"heat dissipation" 40
+		"mass" 2150
+		"drag" 40.5
+		"heat dissipation" 27
 		"fuel capacity" 800
 		"cargo space" 0
 		"outfit space" 1300
@@ -47,10 +47,10 @@ ship "Archon"
 		"ion resistance" 1
 		"scramble resistance" 1
 		"ramscoop" 100
-		"thrust" 60
+		"thrust" 120
 		"thrusting energy" 20
 		"thrusting heat" 10
-		"turn" 1600
+		"turn" 2400
 		"turning energy" 10
 		"turning heat" 5
 		weapon

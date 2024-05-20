@@ -179,9 +179,9 @@ ship "Korath Chaser"
 		"hull" 900
 		"required crew" 1
 		"bunks" 1
-		"mass" 40
-		"drag" .9
-		"heat dissipation" .9
+		"mass" 106
+		"drag" 1.35
+		"heat dissipation" .6
 		"outfit space" 92
 		"weapon capacity" 25
 		"engine capacity" 30

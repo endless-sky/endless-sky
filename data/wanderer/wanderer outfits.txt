@@ -278,7 +278,7 @@ outfit "Thunderhead"
 		"radar tracking" .6
 		"shield damage" 110
 		"hull damage" 80
-		"hit force" 150
+		"hit force" 225
 		"missile strength" 3
 
 outfit "Thunderhead Storage Array"
@@ -534,7 +534,7 @@ outfit "Type 1 Radiant Steering"
 	"mass" 9
 	"outfit space" -9
 	"engine capacity" -9
-	"turn" 362
+	"turn" 271
 	"turning energy" .3
 	"turning heat" 0.6
 	"cooling" 1.0
@@ -553,7 +553,7 @@ outfit "Type 2 Radiant Steering"
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
-	"turn" 952
+	"turn" 714
 	"turning energy" .7
 	"turning heat" 1.5
 	"cooling" 2.1
@@ -572,7 +572,7 @@ outfit "Type 3 Radiant Steering"
 	"mass" 30
 	"outfit space" -30
 	"engine capacity" -30
-	"turn" 1650
+	"turn" 1237
 	"turning energy" 1.2
 	"turning heat" 2.6
 	"cooling" 3.9
@@ -591,7 +591,7 @@ outfit "Type 4 Radiant Steering"
 	"mass" 47
 	"outfit space" -47
 	"engine capacity" -47
-	"turn" 2932
+	"turn" 2199
 	"turning energy" 2.0
 	"turning heat" 4.5
 	"cooling" 6.7

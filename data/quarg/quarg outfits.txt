@@ -137,7 +137,7 @@ outfit "Medium Graviton Steering"
 	"mass" 50
 	"outfit space" -50
 	"engine capacity" -50
-	"turn" 3200
+	"turn" 2400
 	"turning energy" 10
 	"turning heat" 1
 	"force protection" 0.15

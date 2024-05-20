@@ -21,9 +21,9 @@ ship "Kaiken"
 		"hull" 800
 		"required crew" 1
 		"bunks" 1
-		"mass" 50
-		"drag" 1
-		"heat dissipation" 0.95
+		"mass" 60
+		"drag" 1.05
+		"heat dissipation" 0.91
 		"outfit space" 121
 		"weapon capacity" 35
 		"engine capacity" 45
@@ -69,9 +69,9 @@ ship "Sasumata"
 		"hull" 4200
 		"required crew" 10
 		"bunks" 72
-		"mass" 680
-		"drag" 4.7
-		"heat dissipation" 0.8
+		"mass" 710
+		"drag" 7.05
+		"heat dissipation" 0.54
 		"fuel capacity" 700
 		"cargo space" 32
 		"outfit space" 397
@@ -137,8 +137,8 @@ ship "Tanto"
 		"required crew" 3
 		"bunks" 7
 		"mass" 508
-		"drag" 3.1
-		"heat dissipation" 0.9
+		"drag" 3.9
+		"heat dissipation" 0.7
 		"fuel capacity" 600
 		"cargo space" 219
 		"outfit space" 231
@@ -192,8 +192,8 @@ ship "Ararebo"
 		"required crew" 15
 		"bunks" 43
 		"mass" 1780
-		"drag" 12.3
-		"heat dissipation" 0.85
+		"drag" 19.7
+		"heat dissipation" 0.53
 		"fuel capacity" 700
 		"cargo space" 414
 		"outfit space" 594
@@ -262,8 +262,8 @@ ship "Tekkan"
 		"required crew" 6
 		"bunks" 9
 		"mass" 500
-		"drag" 3.3
-		"heat dissipation" 0.9
+		"drag" 4.0
+		"heat dissipation" 0.75
 		"fuel capacity" 700
 		"cargo space" 21
 		"outfit space" 321
@@ -321,8 +321,8 @@ ship "Kunai"
 		"required crew" 15
 		"bunks" 37
 		"mass" 740
-		"drag" 5.2
-		"heat dissipation" 0.85
+		"drag" 6.8
+		"heat dissipation" 0.66
 		"fuel capacity" 700
 		"cargo space" 28
 		"outfit space" 407
@@ -382,8 +382,8 @@ ship "Kama"
 		"required crew" 39
 		"bunks" 43
 		"mass" 2320
-		"drag" 8.4
-		"heat dissipation" 0.75
+		"drag" 12.6
+		"heat dissipation" 0.5
 		"fuel capacity" 800
 		"cargo space" 56
 		"outfit space" 573
@@ -452,8 +452,8 @@ ship "Chigiriki"
 		"required crew" 49
 		"bunks" 69
 		"mass" 5200
-		"drag" 9.4
-		"heat dissipation" 0.7
+		"drag" 16.54
+		"heat dissipation" 0.4
 		"fuel capacity" 900
 		"cargo space" 102
 		"outfit space" 747

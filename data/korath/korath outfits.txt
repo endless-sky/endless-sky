@@ -237,7 +237,7 @@ outfit "Afterburner (Comet Class)"
 	"mass" 19
 	"outfit space" -19
 	"engine capacity" -19
-	"afterburner thrust" 124.8
+	"afterburner thrust" 124
 	"afterburner energy" 2.25
 	"afterburner heat" 22.75
 	"afterburner fuel" 0.125
@@ -271,7 +271,7 @@ outfit "Afterburner (Planetary Class)"
 	"mass" 55
 	"outfit space" -55
 	"engine capacity" -55
-	"afterburner thrust" 460.8
+	"afterburner thrust" 460
 	"afterburner energy" 7.1
 	"afterburner heat" 79.45
 	"afterburner fuel" 0.4
@@ -289,7 +289,7 @@ outfit "Afterburner (Stellar Class)"
 	"mass" 94
 	"outfit space" -94
 	"engine capacity" -94
-	"afterburner thrust" 883.2
+	"afterburner thrust" 883
 	"afterburner energy" 12.65
 	"afterburner heat" 148
 	"afterburner fuel" 0.725
@@ -376,10 +376,10 @@ outfit "Engine (Meteor Class)"
 	"mass" 18
 	"outfit space" -18
 	"engine capacity" -18
-	"thrust" 15
+	"thrust" 16
 	"thrusting energy" 1.35
 	"thrusting heat" 2.9
-	"turn" 480
+	"turn" 360
 	"turning energy" 0.65
 	"turning heat" 1.95
 	"flare sprite" "effect/korath flare/tiny"
@@ -406,7 +406,7 @@ outfit "Bow Drive (Meteor Class)"
 	"outfit space" -18
 	"engine capacity" -15
 	"weapon capacity" -3
-	"turn" 480
+	"turn" 360
 	"turning energy" 0.65
 	"turning heat" 1.95
 	"reverse thrust" 21
@@ -430,7 +430,7 @@ outfit "Reverser (Asteroid Class)"
 	"outfit space" -14
 	"engine capacity" -7
 	"weapon capacity" -7
-	"reverse thrust" 27.68
+	"reverse thrust" 27
 	"reverse thrusting energy" 1.5
 	"reverse thrusting heat" 3.4
 	"reverse flare sprite" "effect/korath flare/tiny"
@@ -449,7 +449,7 @@ outfit "Reverser (Comet Class)"
 	"outfit space" -24
 	"engine capacity" -12
 	"weapon capacity" -12
-	"reverse thrust" 50.04
+	"reverse thrust" 37
 	"reverse thrusting energy" 2.8
 	"reverse thrusting heat" 6.5
 	"reverse flare sprite" "effect/korath flare/small"
@@ -468,7 +468,7 @@ outfit "Reverser (Lunar Class)"
 	"outfit space" -40
 	"engine capacity" -20
 	"weapon capacity" -20
-	"reverse thrust" 88.26
+	"reverse thrust" 66
 	"reverse thrusting energy" 4.9
 	"reverse thrusting heat" 11.9
 	"reverse flare sprite" "effect/korath flare/medium"
@@ -487,7 +487,7 @@ outfit "Reverser (Planetary Class)"
 	"outfit space" -68
 	"engine capacity" -34
 	"weapon capacity" -34
-	"reverse thrust" 160
+	"reverse thrust" 120
 	"reverse thrusting energy" 8.9
 	"reverse thrusting heat" 22.7
 	"reverse flare sprite" "effect/korath flare/large"
@@ -506,7 +506,7 @@ outfit "Reverser (Stellar Class)"
 	"outfit space" -118
 	"engine capacity" -59
 	"weapon capacity" -59
-	"reverse thrust" 298.8
+	"reverse thrust" 224
 	"reverse thrusting energy" 15.8
 	"reverse thrusting heat" 42.6
 	"reverse flare sprite" "effect/korath flare/huge"
@@ -622,7 +622,7 @@ outfit "Thruster (Stellar Class)"
 	"mass" 118
 	"outfit space" -118
 	"engine capacity" -118
-	"thrust" 149
+	"thrust" 224
 	"thrusting energy" 15.8
 	"thrusting heat" 42.6
 	"flare sprite" "effect/korath flare/huge"
@@ -645,7 +645,7 @@ outfit "Steering (Asteroid Class)"
 	"mass" 10
 	"outfit space" -10
 	"engine capacity" -10
-	"turn" 560
+	"turn" 420
 	"turning energy" 0.7
 	"turning heat" 2.1
 	"steering flare sprite" "effect/korath flare/tiny"
@@ -662,7 +662,7 @@ outfit "Steering (Comet Class)"
 	"mass" 18
 	"outfit space" -18
 	"engine capacity" -18
-	"turn" 1137.6
+	"turn" 853
 	"turning energy" 1.4
 	"turning heat" 4.1
 	"steering flare sprite" "effect/korath flare/small"
@@ -679,7 +679,7 @@ outfit "Steering (Lunar Class)"
 	"mass" 30
 	"outfit space" -30
 	"engine capacity" -30
-	"turn" 2112
+	"turn" 1584
 	"turning energy" 2.5
 	"turning heat" 7.4
 	"steering flare sprite" "effect/korath flare/medium"
@@ -696,7 +696,7 @@ outfit "Steering (Planetary Class)"
 	"mass" 52
 	"outfit space" -52
 	"engine capacity" -52
-	"turn" 4139.2
+	"turn" 3104
 	"turning energy" 4.6
 	"turning heat" 14.2
 	"steering flare sprite" "effect/korath flare/large"
@@ -713,7 +713,7 @@ outfit "Steering (Stellar Class)"
 	"mass" 89
 	"outfit space" -89
 	"engine capacity" -89
-	"turn" 8010
+	"turn" 6007
 	"turning energy" 8.2
 	"turning heat" 26.7
 	"steering flare sprite" "effect/korath flare/huge"
@@ -730,7 +730,7 @@ outfit "Arkrof GP Hybrid Thruster"
 	"mass" 19
 	"outfit space" -19
 	"engine capacity" -19
-	"thrust" 28
+	"thrust" 29
 	"thrusting energy" 2.6
 	"thrusting heat" 3
 	"flare sprite" "effect/efreti flare/tiny"
@@ -822,7 +822,7 @@ outfit "Arkrof GP Hybrid Steering"
 	"mass" 12
 	"outfit space" -12
 	"engine capacity" -12
-	"turn" 690
+	"turn" 517
 	"turning energy" 1.25
 	"turning heat" 1.3
 	"steering flare sprite" "effect/efreti flare/tiny"
@@ -838,7 +838,7 @@ outfit "Farves GP Hybrid Steering"
 	"mass" 24
 	"outfit space" -24
 	"engine capacity" -24
-	"turn" 1600
+	"turn" 1200
 	"turning energy" 2.7
 	"turning heat" 2.95
 	"steering flare sprite" "effect/efreti flare/small"
@@ -855,7 +855,7 @@ outfit "Gaktem GP Hybrid Steering"
 	"mass" 42
 	"outfit space" -42
 	"engine capacity" -42
-	"turn" 3180
+	"turn" 2385
 	"turning energy" 4.9
 	"turning heat" 5.85
 	"steering flare sprite" "effect/efreti flare/medium"
@@ -872,7 +872,7 @@ outfit "Nelmeb GP Hybrid Steering"
 	"mass" 67
 	"outfit space" -67
 	"engine capacity" -67
-	"turn" 5600
+	"turn" 4200
 	"turning energy" 7.85
 	"turning heat" 10
 	"steering flare sprite" "effect/efreti flare/large"

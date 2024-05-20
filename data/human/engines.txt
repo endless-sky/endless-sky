@@ -21,7 +21,7 @@ outfit "Volcano Afterburner"
 	"mass" 10
 	"outfit space" -10
 	"engine capacity" -10
-	"afterburner thrust" 54.2
+	"afterburner thrust" 54
 	"afterburner fuel" .125
 	"afterburner heat" 10.0
 	"afterburner effect" "afterburner"
@@ -48,7 +48,7 @@ outfit "Caldera Afterburner"
 	"mass" 37
 	"outfit space" -37
 	"engine capacity" -37
-	"afterburner thrust" 240.0
+	"afterburner thrust" 240
 	"afterburner fuel" .5
 	"afterburner heat" 42.0
 	"afterburner effect" "caldera afterburner" 5
@@ -76,7 +76,7 @@ outfit "Ionic Afterburner"
 	"mass" 16
 	"outfit space" -16
 	"engine capacity" -16
-	"afterburner thrust" 62.8
+	"afterburner thrust" 62
 	"afterburner fuel" .03
 	"afterburner energy" 5.1
 	"afterburner heat" 4.0
