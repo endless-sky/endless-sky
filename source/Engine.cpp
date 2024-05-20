@@ -245,7 +245,7 @@ namespace {
 	const double CAMERA_POSITION_CENTERING = 0.01;
 
 	pair<Point, Point> NewCenter(const Point &oldCenter, const Point &oldCenterVelocity,
-		const Point &baseCenter, const Point &baseVelocity, const double influence, bool killVelocity)
+		const Point &baseCenter, const Point &baseVelocity, const double influence, const bool killVelocity)
 	{
 		if(Preferences::CameraAcceleration() == Preferences::CameraAccel::OFF)
 			return make_pair(baseCenter, baseVelocity);
@@ -1594,7 +1594,7 @@ void Engine::CalculateStep()
 	if(flagship)
 	{
 		const auto [newCameraCenter, newCameraVelocity] = NewCenter(center, centerVelocity,
-			flagship->Center(), flagship->Velocity(), flagship ->GetHyperspacePercentage() / 100.,
+			flagship->Center(), flagship->Velocity(), flagship->GetHyperspacePercentage() / 100.,
 			flagship->IsHyperspacing());
 		newCenter = newCameraCenter;
 		newCenterVelocity = newCameraVelocity;
