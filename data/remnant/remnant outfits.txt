@@ -674,11 +674,12 @@ outfit "Bellows-Class Afterburner"
 	category "Engines"
 	"cost" 640000
 	thumbnail "outfit/remnant afterburner"
+	"engine mod space" -0.76
 	"mass" 8
 	"outfit space" -7
 	"engine capacity" -7
 	"slowing resistance" 0.01
-	"afterburner thrust" 187.5
+	"afterburner thrust" 250
 	"afterburner fuel" 0.65
 	"afterburner energy" 6.0
 	"afterburner heat" 8.0
@@ -699,10 +700,13 @@ outfit "Anvil-Class Engine"
 		Remnant
 	"cost" 290000
 	thumbnail "outfit/tiny remnant engine"
+	"steering slot" -1
+	"thruster slot" -1
+	"engine mod space" 0.87
 	"mass" 26
 	"outfit space" -26
 	"engine capacity" -26
-	"thrust" 20.7
+	"thrust" 22
 	"thrusting energy" 2.05
 	"thrusting heat" 1.95
 	"turn" 554.4
@@ -729,10 +733,12 @@ outfit "Crucible-Class Thruster"
 		Remnant
 	"cost" 200000
 	thumbnail "outfit/small remnant thruster"
+	"thruster slot" -1
+	"engine mod space" 0.87
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
-	"thrust" 24.825
+	"thrust" 25
 	"thrusting energy" 2.1
 	"thrusting heat" 2.0
 	"reverse thrust" 18.6
@@ -753,6 +759,8 @@ outfit "Forge-Class Thruster"
 		Remnant
 	"cost" 441000
 	thumbnail "outfit/medium remnant thruster"
+	"thruster slot" -1
+	"engine mod space" 1.12
 	"mass" 39
 	"outfit space" -39
 	"engine capacity" -39
@@ -777,13 +785,15 @@ outfit "Smelter-Class Thruster"
 		Remnant
 	"cost" 984000
 	thumbnail "outfit/large remnant thruster"
+	"thruster slot" -1
+	"engine mod space" 1.33
 	"mass" 76
 	"outfit space" -76
 	"engine capacity" -76
-	"thrust" 106.65
+	"thrust" 107
 	"thrusting energy" 9.5
 	"thrusting heat" 9.6
-	"reverse thrust" 79.95
+	"reverse thrust" 80
 	"reverse thrusting energy" 7.1
 	"reverse thrusting heat" 7.2
 	"slowing resistance" 0.048
@@ -801,6 +811,7 @@ outfit "Crucible-Class Steering"
 		Remnant
 	"cost" 172000
 	thumbnail "outfit/small remnant steering"
+	"steering slot" -1
 	"mass" 14
 	"outfit space" -14
 	"engine capacity" -14
@@ -819,10 +830,11 @@ outfit "Forge-Class Steering"
 		Remnant
 	"cost" 393000
 	thumbnail "outfit/medium remnant steering"
+	"steering slot" -1
 	"mass" 28
 	"outfit space" -28
 	"engine capacity" -28
-	"turn" 1492.5
+	"turn" 1493
 	"turning energy" 2.64
 	"turning heat" 3.0
 	"slowing resistance" 0.016
@@ -837,10 +849,11 @@ outfit "Smelter-Class Steering"
 		Remnant
 	"cost" 880000
 	thumbnail "outfit/large remnant steering"
+	"steering slot" -1
 	"mass" 55
 	"outfit space" -55
 	"engine capacity" -55
-	"turn" 3184.5
+	"turn" 3185
 	"turning energy" 5.21
 	"turning heat" 6.2
 	"slowing resistance" 0.032
