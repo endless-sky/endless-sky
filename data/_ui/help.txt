@@ -141,7 +141,7 @@ help "navigation"
 
 help "outfitter"
 	`Here, you can buy new equipment for your ship. Your ship has a limited amount of "outfit space," and most outfits use up some of that space.`
-	`Some types of outfits have other requirements as well. For example, only some of your outfit space can be used for engines or weapons; this is your ship's "engine capacity" and "weapon capacity." Guns and missile launchers also require a free "gun port," and turrets require a free "turret mount." Also, missiles can only be bought if you have the right launcher installed.`
+	`Some types of outfits have other requirements as well. For example, only some of your outfit space can be used for engines or weapons; this is your ship's "engine capacity" and "weapon capacity." Propulsion systems will require an open slot to install them in, and most ships only have 1 slot for thrusters and another for steering. Guns and missile launchers also require a free "gun port," and turrets require a free "turret mount." Also, missiles can only be bought if you have the right launcher installed.`
 	`Use your scroll wheel or click and drag, to scroll the view.`
 	`As in the trading and shipyard panels, you can hold down Shift, Control, or Alt to buy 5, 20, or 500 of an outfit at once, or multiple keys for larger amounts.`
 	`You can also press F to search the outfitter for a specific item.`

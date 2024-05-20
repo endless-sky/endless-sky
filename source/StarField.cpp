@@ -137,6 +137,13 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom, const Syst
 	bool isParallax = (parallaxSetting == Preferences::BackgroundParallax::FANCY ||
 						parallaxSetting == Preferences::BackgroundParallax::FAST);
 
+	// This slows down the effect of the player's zoom when they go past 0.25 to prevent tiling
+	if(baseZoom < 0.25)
+		baseZoom = baseZoom + ((0.25 - baseZoom) / 2);
+	// This caps the baseZoom so that it no longer zooms at all past this point, preventing overloads
+	if(baseZoom < 0.022)
+		baseZoom = 0.1365;
+
 	// Draw the starfield unless it is disabled in the preferences.
 	if(Preferences::Has("Draw starfield") && density > 0.)
 	{

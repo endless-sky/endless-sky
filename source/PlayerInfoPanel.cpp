@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/FontSet.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "HardpointInfoPanel.h"
 #include "InfoPanelState.h"
 #include "Information.h"
 #include "Interface.h"
@@ -294,6 +295,14 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 		{
 			GetUI()->Pop(this);
 			GetUI()->Push(new ShipInfoPanel(player, std::move(panelState)));
+		}
+	}
+	else if(key == 'h')
+	{
+		if(!player.Ships().empty())
+		{
+			GetUI()->Pop(this);
+			GetUI()->Push(new HardpointInfoPanel(player, std::move(panelState)));
 		}
 	}
 	else if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
