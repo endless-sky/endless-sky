@@ -177,14 +177,16 @@ namespace {
 		{
 			for(Ship *ship : toDeploy)
 				ship->SetDeployOrder(true);
-			Messages::Add("Deployed " + to_string(toDeploy.size()) + " carried ships.", Messages::Importance::High);
+			string ship = (toDeploy.size() == 1 ? "ship" : "ships");
+			Messages::Add("Deployed " + to_string(toDeploy.size()) + " carried " + ship + ".", Messages::Importance::High);
 		}
 		// Otherwise, instruct the carried ships to return to their berth.
 		else if(!toRecall.empty())
 		{
 			for(Ship *ship : toRecall)
 				ship->SetDeployOrder(false);
-			Messages::Add("Recalled " + to_string(toRecall.size()) + " carried ships", Messages::Importance::High);
+			string ship = (toRecall.size() == 1 ? "ship" : "ships");
+			Messages::Add("Recalled " + to_string(toRecall.size()) + " carried " + ship + ".", Messages::Importance::High);
 		}
 	}
 
@@ -374,7 +376,7 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 	// Only toggle the "cloak" command if one of your ships has a cloaking device.
 	if(activeCommands.Has(Command::CLOAK))
 		for(const auto &it : player.Ships())
-			if(!it->IsParked() && it->Attributes().Get("cloak"))
+			if(!it->IsParked() && it->CloakingSpeed())
 			{
 				isCloaking = !isCloaking;
 				Messages::Add(isCloaking ? "Engaging cloaking device." : "Disengaging cloaking device."
@@ -426,8 +428,9 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 		{
 			shared_ptr<Ship> ship = it->second.target.lock();
 			shared_ptr<Minable> asteroid = it->second.targetAsteroid.lock();
-			// Check if the target ship itself is targetable.
-			bool invalidTarget = !ship || !ship->IsTargetable() || (ship->IsDisabled() && it->second.type == Orders::ATTACK);
+			// Check if the target ship itself is targetable, or if it is one of your ship that you targeted.
+			bool invalidTarget = !ship || (!ship->IsTargetable() && it->first->GetGovernment() != ship->GetGovernment()) ||
+				(ship->IsDisabled() && it->second.type == Orders::ATTACK);
 			// Alternately, if an asteroid is targeted, then not an invalid target.
 			invalidTarget &= !asteroid;
 			// Check if the target ship is in a system where we can target.
@@ -495,6 +498,9 @@ void AI::Clean()
 	playerActions.clear();
 	swarmCount.clear();
 	fenceCount.clear();
+	cargoScans.clear();
+	outfitScans.clear();
+	scanTime.clear();
 	miningAngle.clear();
 	miningRadius.clear();
 	miningTime.clear();
@@ -645,12 +651,33 @@ void AI::Step(Command &activeCommands)
 		shared_ptr<Flotsam> targetFlotsam = it->GetTargetFlotsam();
 		if(isPresent && it->IsYours() && targetFlotsam && FollowOrders(*it, command))
 			continue;
+		// Determine if this ship was trying to scan its previous target. If so, keep
+		// track of this ship's scan time and count.
+		if(isPresent && !it->IsYours())
+		{
+			// Assume that if the target is friendly, not disabled, of a different
+			// government to this ship, and this ship has scanning capabilities
+			// then it was attempting to scan the target. This isn't a perfect
+			// assumption, but should be good enough for now.
+			bool cargoScan = it->Attributes().Get("cargo scan power");
+			bool outfitScan = it->Attributes().Get("outfit scan power");
+			if((cargoScan || outfitScan) && target && !target->IsDisabled()
+				&& !target->GetGovernment()->IsEnemy(gov) && target->GetGovernment() != gov)
+			{
+				++scanTime[&*it];
+				if(it->CargoScanFraction() == 1.)
+					cargoScans[&*it].insert(&*target);
+				if(it->OutfitScanFraction() == 1.)
+					outfitScans[&*it].insert(&*target);
+			}
+		}
 		if(isPresent && !personality.IsSwarming())
 		{
 			// Each ship only switches targets twice a second, so that it can
 			// focus on damaging one particular ship.
 			targetTurn = (targetTurn + 1) & 31;
-			if(targetTurn == step || !target || target->IsDestroyed() || (target->IsDisabled() && personality.Disables())
+			if(targetTurn == step || !target || target->IsDestroyed() || (target->IsDisabled() &&
+					(personality.Disables() || (target->CanBeCarried() && !personality.IsVindictive())))
 					|| (target->IsFleeing() && personality.IsMerciful()) || !target->IsTargetable())
 			{
 				target = FindTarget(*it);
@@ -1200,9 +1227,9 @@ bool AI::CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel) con
 		return false;
 
 	// Fighters, drones, and disabled / absent ships can't offer assistance.
-	if(helper.CanBeCarried() || helper.GetSystem() != ship.GetSystem()
-			|| (helper.Cloaking() == 1. && helper.GetGovernment() != ship.GetGovernment())
-			|| helper.IsDisabled() || helper.IsOverheated() || helper.IsHyperspacing())
+	if(helper.CanBeCarried() || helper.GetSystem() != ship.GetSystem() ||
+			(helper.GetGovernment() != ship.GetGovernment() && helper.CannotAct(Ship::ActionType::COMMUNICATION))
+			|| helper.IsOverheated() || helper.IsHyperspacing())
 		return false;
 
 	// An enemy cannot provide assistance, and only ships of the same government will repair disabled ships.
@@ -1370,7 +1397,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	if(!target && person.IsVindictive())
 	{
 		target = ship.GetTargetShip();
-		if(target && (target->Cloaking() == 1. || target->GetSystem() != ship.GetSystem()))
+		if(target && (target->IsCloaked() || target->GetSystem() != ship.GetSystem()))
 			target.reset();
 	}
 
@@ -1382,27 +1409,60 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 shared_ptr<Ship> AI::FindNonHostileTarget(const Ship &ship) const
 {
 	shared_ptr<Ship> target;
-	bool cargoScan = ship.Attributes().Get("cargo scan power");
-	bool outfitScan = ship.Attributes().Get("outfit scan power");
-	if(cargoScan || outfitScan)
+
+	// A ship may only make up to 6 successful scans (3 ships scanned if the ship
+	// is using both scanners) and spend up to 2.5 minutes searching for scan targets.
+	// After that, stop scanning targets. This is so that scanning ships in high spawn
+	// rate systems don't build up over time, as they always have a new ship they
+	// can try to scan.
+	// Ships with the surveillance personality may make up to 12 successful scans and
+	// spend 5 minutes searching.
+	bool isSurveillance = ship.GetPersonality().IsSurveillance();
+	int maxScanCount = isSurveillance ? 12 : 6;
+	int searchTime = isSurveillance ? 9000 : 18000;
+	// Ships will stop finding new targets to scan after the above scan time, but
+	// may continue to pursue a target that they already started scanning for an
+	// additional minute.
+	int forfeitTime = searchTime + 3600;
+
+	double cargoScan = ship.Attributes().Get("cargo scan power");
+	double outfitScan = ship.Attributes().Get("outfit scan power");
+	auto cargoScansIt = cargoScans.find(&ship);
+	auto outfitScansIt = outfitScans.find(&ship);
+	auto scanTimeIt = scanTime.find(&ship);
+	int shipScanCount = cargoScansIt != cargoScans.end() ? cargoScansIt->second.size() : 0;
+	shipScanCount += outfitScansIt != outfitScans.end() ? outfitScansIt->second.size() : 0;
+	int shipScanTime = scanTimeIt != scanTime.end() ? scanTimeIt->second : 0;
+	if((cargoScan || outfitScan) && shipScanCount < maxScanCount && shipScanTime < forfeitTime)
 	{
-		const auto allies = GetShipsList(ship, false);
-		// If this ship already has a target, and is in the process of scanning it, prioritise that.
+		// If this ship already has a target, and is in the process of scanning it, prioritise that,
+		// even if the scan time for this ship has exceeded 2.5 minutes.
 		shared_ptr<Ship> oldTarget = ship.GetTargetShip();
 		if(oldTarget && !oldTarget->IsTargetable())
 			oldTarget.reset();
 		if(oldTarget)
 		{
+			// If this ship started scanning this target then continue to scan it
+			// unless it has traveled too far outside of the scan range. Surveillance
+			// ships will continue to pursue targets regardless of range.
 			bool cargoScanInProgress = ship.CargoScanFraction() > 0. && ship.CargoScanFraction() < 1.;
 			bool outfitScanInProgress = ship.OutfitScanFraction() > 0. && ship.OutfitScanFraction() < 1.;
-			if(cargoScanInProgress || outfitScanInProgress)
+			// Divide the distance by 10,000 to normalize to the scan range that
+			// scan power provides.
+			double range = isSurveillance ? 0. : oldTarget->Position().DistanceSquared(ship.Position()) * .0001;
+			if((cargoScanInProgress && range < 2. * cargoScan)
+				|| (outfitScanInProgress && range < 2. * outfitScan))
 				target = std::move(oldTarget);
 		}
-		else
+		else if(shipScanTime < searchTime)
 		{
-			double closest = numeric_limits<double>::infinity();
+			// Don't try chasing targets that are too far away from this ship's scan range.
+			// Surveillance ships will still prioritize nearby targets here, but if there
+			// is no scan target nearby then they will pick a random target in the system
+			// to pursue in DoSurveillance.
+			double closest = max(cargoScan, outfitScan) * 2.;
 			const Government *gov = ship.GetGovernment();
-			for(const auto &it : allies)
+			for(const auto &it : GetShipsList(ship, false))
 				if(it->GetGovernment() != gov)
 				{
 					auto ptr = it->shared_from_this();
@@ -1411,7 +1471,9 @@ shared_ptr<Ship> AI::FindNonHostileTarget(const Ship &ship) const
 							&& (!outfitScan || Has(gov, ptr, ShipEvent::SCAN_OUTFITS)))
 						continue;
 
-					double range = it->Position().DistanceSquared(ship.Position());
+					// Divide the distance by 10,000 to normalize to the scan range that
+					// scan power provides.
+					double range = it->Position().DistanceSquared(ship.Position()) * .0001;
 					if(range < closest)
 					{
 						closest = range;
@@ -1835,7 +1897,8 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 	// If the parent is in-system and planning to jump, non-staying escorts should follow suit.
 	else if(parent.Commands().Has(Command::JUMP) && parent.GetTargetSystem() && !isStaying)
 	{
-		SelectRoute(ship, parent.GetTargetSystem());
+		if(parent.GetTargetSystem() != ship.GetTargetSystem())
+			SelectRoute(ship, parent.GetTargetSystem());
 
 		if(ship.GetTargetSystem())
 		{
@@ -1944,6 +2007,7 @@ bool AI::CanRefuel(const Ship &ship, const StellarObject *target)
 
 	return true;
 }
+
 
 
 // Set the ship's target system or planet in order to reach the
@@ -2142,7 +2206,14 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition,
 	bool isFacing = (dp.Unit().Dot(angle.Unit()) > .95);
 	if(!isClose || (!isFacing && !shouldReverse))
 		command.SetTurn(TurnToward(ship, dp));
-	if(isFacing)
+	// Drag is not applied when not thrusting, so stop thrusting when close to max speed
+	// to save energy. Work with a slightly lower maximum velocity to avoid border cases.
+	// In order for a ship to use their afterburner, they must also have the forward
+	// command active. Therefore, if this ship should use its afterburner, use the
+	// max velocity with afterburner thrust included.
+	double maxVelocity = ship.MaxVelocity(ShouldUseAfterburner(ship)) * .99;
+	if(isFacing && (velocity.LengthSquared() <= maxVelocity * maxVelocity
+			|| dp.Unit().Dot(velocity.Unit()) < .95))
 		command |= Command::FORWARD;
 	else if(shouldReverse)
 	{
@@ -2708,14 +2779,15 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 		else if(!isStaying)
 			command |= Command::LAND;
 	}
-	else if(target && target->IsTargetable())
+	else if(target)
 	{
 		// Approach and scan the targeted, friendly ship's cargo or outfits.
 		bool cargoScan = ship.Attributes().Get("cargo scan power");
 		bool outfitScan = ship.Attributes().Get("outfit scan power");
 		// If the pointer to the target ship exists, it is targetable and in-system.
-		bool mustScanCargo = cargoScan && !Has(ship, target, ShipEvent::SCAN_CARGO);
-		bool mustScanOutfits = outfitScan && !Has(ship, target, ShipEvent::SCAN_OUTFITS);
+		const Government *gov = ship.GetGovernment();
+		bool mustScanCargo = cargoScan && !Has(gov, target, ShipEvent::SCAN_CARGO);
+		bool mustScanOutfits = outfitScan && !Has(gov, target, ShipEvent::SCAN_OUTFITS);
 		if(!mustScanCargo && !mustScanOutfits)
 			ship.SetTargetShip(shared_ptr<Ship>());
 		else
@@ -2732,26 +2804,35 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 		const System *system = ship.GetSystem();
 		const Government *gov = ship.GetGovernment();
 
-		// Consider scanning any non-hostile ship in this system that you haven't yet personally scanned.
+		// Consider scanning any non-hostile ship in this system that your government hasn't scanned.
+		// A surveillance ship may only make up to 12 successful scans (6 ships scanned
+		// if the ship is using both scanners) and spend up to 5 minutes searching for
+		// scan targets. After that, stop scanning ship targets. This is so that scanning
+		// ships in high spawn rate systems don't build up over time, as they always have
+		// a new ship they can try to scan.
 		vector<Ship *> targetShips;
 		bool cargoScan = ship.Attributes().Get("cargo scan power");
 		bool outfitScan = ship.Attributes().Get("outfit scan power");
-		if(cargoScan || outfitScan)
-			for(const auto &grit : governmentRosters)
-			{
-				if(gov == grit.first || gov->IsEnemy(grit.first))
-					continue;
-				for(const auto &it : grit.second)
+		auto cargoScansIt = cargoScans.find(&ship);
+		auto outfitScansIt = outfitScans.find(&ship);
+		auto scanTimeIt = scanTime.find(&ship);
+		int shipScanCount = cargoScansIt != cargoScans.end() ? cargoScansIt->second.size() : 0;
+		shipScanCount += outfitScansIt != outfitScans.end() ? outfitScansIt->second.size() : 0;
+		int shipScanTime = scanTimeIt != scanTime.end() ? scanTimeIt->second : 0;
+		if((cargoScan || outfitScan) && shipScanCount < 12 && shipScanTime < 18000)
+		{
+			for(const auto &it : GetShipsList(ship, false))
+				if(it->GetGovernment() != gov)
 				{
 					auto ptr = it->shared_from_this();
-					if((!cargoScan || Has(ship, ptr, ShipEvent::SCAN_CARGO))
-							&& (!outfitScan || Has(ship, ptr, ShipEvent::SCAN_OUTFITS)))
+					if((!cargoScan || Has(gov, ptr, ShipEvent::SCAN_CARGO))
+							&& (!outfitScan || Has(gov, ptr, ShipEvent::SCAN_OUTFITS)))
 						continue;
 
 					if(it->IsTargetable())
 						targetShips.emplace_back(it);
 				}
-			}
+		}
 
 		// Consider scanning any planetary object in the system, if able.
 		vector<const StellarObject *> targetPlanets;
@@ -2781,6 +2862,7 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 			DoPatrol(ship, command);
 			return;
 		}
+		// Pick one of the valid surveillance targets at random to focus on.
 		unsigned index = Random::Int(total);
 		if(index < targetShips.size())
 			ship.SetTargetShip(targetShips[index]->shared_from_this());
@@ -2919,18 +3001,18 @@ bool AI::DoCloak(Ship &ship, Command &command)
 {
 	if(ship.GetPersonality().IsDecloaked())
 		return false;
-
-	const Outfit &attributes = ship.Attributes();
-	if(!attributes.Get("cloak"))
+	double cloakingSpeed = ship.CloakingSpeed();
+	if(!cloakingSpeed)
 		return false;
-
 	// Never cloak if it will cause you to be stranded.
-	double fuelCost = attributes.Get("cloaking fuel") + attributes.Get("fuel consumption")
-		- attributes.Get("fuel generation");
-	if(attributes.Get("cloaking fuel") && !attributes.Get("ramscoop"))
+	const Outfit &attributes = ship.Attributes();
+	double cloakingFuel = attributes.Get("cloaking fuel");
+	double fuelCost = cloakingFuel
+		+ attributes.Get("fuel consumption") - attributes.Get("fuel generation");
+	if(cloakingFuel && !attributes.Get("ramscoop"))
 	{
 		double fuel = ship.Fuel() * attributes.Get("fuel capacity");
-		int steps = ceil((1. - ship.Cloaking()) / attributes.Get("cloak"));
+		int steps = ceil((1. - ship.Cloaking()) / cloakingSpeed);
 		// Only cloak if you will be able to fully cloak and also maintain it
 		// for as long as it will take you to reach full cloak.
 		fuel -= fuelCost * (1 + 2 * steps);
@@ -3284,7 +3366,7 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 			{
 				// Get the index of this weapon.
 				int index = &hardpoint - &ship.Weapons().front();
-				double offset = (hardpoint.HarmonizedAngle() - hardpoint.GetAngle()).Degrees();
+				double offset = (hardpoint.GetIdleAngle() - hardpoint.GetAngle()).Degrees();
 				command.SetAim(index, offset / hardpoint.GetOutfit()->TurretTurn());
 			}
 		return;
@@ -3302,8 +3384,12 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 				if(!previous && (Random::Int(60)))
 					continue;
 
-				Angle centerAngle = Angle(hardpoint.GetPoint());
-				double bias = (centerAngle - hardpoint.GetAngle()).Degrees() / 180.;
+				// Sweep between the min and max arc.
+				Angle centerAngle = Angle(hardpoint.GetIdleAngle());
+				const Angle minArc = hardpoint.GetMinArc();
+				const Angle maxArc = hardpoint.GetMaxArc();
+				const double arcMiddleDegrees = (minArc.AbsDegrees() + maxArc.AbsDegrees()) / 2.;
+				double bias = (centerAngle - hardpoint.GetAngle()).Degrees() / min(arcMiddleDegrees, 180.);
 				double acceleration = Random::Real() - Random::Real() + bias;
 				command.SetAim(index, previous + .1 * acceleration);
 			}
@@ -3365,7 +3451,32 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 				}
 
 				// Determine how much the turret must turn to face that vector.
-				double degrees = (Angle(p) - aim).Degrees();
+				double degrees = 0.;
+				Angle angleToPoint = Angle(p);
+				if(hardpoint.IsOmnidirectional())
+					degrees = (angleToPoint - aim).Degrees();
+				else
+				{
+					// For turret with limited arc, determine the turn up to the nearest arc limit.
+					// Also reduce priority of target if it's not within the firing arc.
+					const Angle facing = ship.Facing();
+					const Angle minArc = hardpoint.GetMinArc() + facing;
+					const Angle maxArc = hardpoint.GetMaxArc() + facing;
+					if(!angleToPoint.IsInRange(minArc, maxArc))
+					{
+						// Decrease the priority of the target.
+						rendezvousTime += 2. * weapon->TotalLifetime();
+
+						// Point to the nearer edge of the arc.
+						const double minDegree = (minArc - angleToPoint).Degrees();
+						const double maxDegree = (maxArc - angleToPoint).Degrees();
+						if(fabs(minDegree) < fabs(maxDegree))
+							angleToPoint = minArc;
+						else
+							angleToPoint = maxArc;
+					}
+					degrees = (angleToPoint - minArc).AbsDegrees() - (aim - minArc).AbsDegrees();
+				}
 				double turnTime = fabs(degrees) / weapon->TurretTurn();
 				// Always prefer targets that you are able to hit.
 				double score = turnTime + (180. / weapon->TurretTurn()) * rendezvousTime;
@@ -3390,7 +3501,7 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool isFlagship) const
 {
 	const Personality &person = ship.GetPersonality();
-	if(person.IsPacifist() || ship.CannotAct())
+	if(person.IsPacifist() || ship.CannotAct(Ship::ActionType::FIRE))
 		return;
 
 	bool beFrugal = (ship.IsYours() && !escortsUseAmmo);
@@ -3667,6 +3778,7 @@ double AI::RendezvousTime(const Point &p, const Point &v, double vp)
 }
 
 
+
 // Searches every asteroid within the ship scan limit and returns either the
 // asteroid closest to the ship or the asteroid of highest value in range, depending
 // on the player's preferences.
@@ -3770,8 +3882,8 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 		size_t missions = 0;
 		for(const Mission &mission : player.Missions())
 		{
-			// Don't include invisible missions in the check.
-			if(!mission.IsVisible())
+			// Don't include invisible and failed missions in the check.
+			if(!mission.IsVisible() || mission.IsFailed(player))
 				continue;
 
 			// If the accessible destination of a mission is in this system, and you've been

@@ -39,6 +39,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipyardPanel.h"
 #include "SpaceportPanel.h"
 #include "System.h"
+#include "TaskQueue.h"
 #include "TradingPanel.h"
 #include "UI.h"
 
@@ -61,12 +62,13 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	text.SetFont(FontSet::Get(14));
 	text.SetAlignment(Alignment::JUSTIFIED);
 	text.SetWrapWidth(480);
-	text.Wrap(planet.Description());
 
 	// Since the loading of landscape images is deferred, make sure that the
 	// landscapes for this system are loaded before showing the planet panel.
-	GameData::Preload(planet.Landscape());
-	GameData::FinishLoadingSprites();
+	TaskQueue queue;
+	GameData::Preload(queue, planet.Landscape());
+	queue.Wait();
+	queue.ProcessSyncTasks();
 }
 
 
@@ -141,10 +143,8 @@ void PlanetPanel::Draw()
 	{
 		Rectangle box = ui.GetBox("content");
 		if(box.Width() != text.WrapWidth())
-		{
 			text.SetWrapWidth(box.Width());
-			text.Wrap(planet.Description());
-		}
+		text.Wrap(planet.Description());
 		text.Draw(box.TopLeft(), *GameData::Colors().Get("bright"));
 	}
 }

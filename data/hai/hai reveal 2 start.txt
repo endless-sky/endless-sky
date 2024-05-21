@@ -394,7 +394,7 @@ mission "Hai Rescue: Prison Role-Players"
 				goto questions
 			label how
 			`	"There are prison role-play cruises in Hai space where we can ride in a brig with human security guards. My research group thought it would be a fun experience, so we all chartered one," she says.`
-			`	"Unfortunately, it was a trick! They were pirates and took us into human space instead. They didn't feed us much, so we all pretended to be too weak to stand. When one of the pirates came in to check on us, we overpowered him. I don't know if they got sloppy or if they were just new at this, but it seems they had forgotten how fast we can be. The other pirate set the ship to crash land and used an escape pod. Now we're stuck here."`
+			`	"Unfortunately, it was a trick! They were pirates and took us into human space instead. They didn't feed us much, so we all pretended to be too weak to stand. When one of the pirates came in to check on us, we overpowered him. I don't know if they got sloppy or if they were just new at this, but it seems they had forgotten how fast we can be. The other pirate set the ship to crash-land and used an escape pod. Now we're stuck here."`
 				goto questions
 			label pay
 			`	"Ah, well, we can give you what is left of our travel budget: <payment>. The money is on <planet> though, so you'll have to fly us there first."`

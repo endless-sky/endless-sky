@@ -137,7 +137,6 @@ namespace {
 		added.clear();
 	}
 
-
 	// Author the given message from the given ship.
 	void SendMessage(const shared_ptr<const Ship> &ship, const string &message)
 	{
@@ -241,6 +240,33 @@ namespace {
 
 	const double RADAR_SCALE = .025;
 	const double MAX_FUEL_DISPLAY = 5000.;
+
+	const double CAMERA_VELOCITY_TRACKING = 0.1;
+	const double CAMERA_POSITION_CENTERING = 0.01;
+
+	pair<Point, Point> NewCenter(const Point &oldCenter, const Point &oldCenterVelocity,
+		const Point &baseCenter, const Point &baseVelocity, const double influence, const bool killVelocity)
+	{
+		if(Preferences::CameraAcceleration() == Preferences::CameraAccel::OFF)
+			return make_pair(baseCenter, baseVelocity);
+
+		double cameraAccelMultiplier = Preferences::CameraAcceleration() == Preferences::CameraAccel::REVERSED ? -1. : 1.;
+
+		// Flip the velocity offset if cameraAccelMultiplier is negative to simplify logic.
+		const Point absoluteOldCenterVelocity = baseVelocity.Lerp(oldCenterVelocity, cameraAccelMultiplier);
+
+		const Point newAbsVelocity = absoluteOldCenterVelocity.Lerp(baseVelocity, CAMERA_VELOCITY_TRACKING);
+
+		Point newCenter = (oldCenter + newAbsVelocity).Lerp(baseCenter, CAMERA_POSITION_CENTERING);
+
+		// Flip the velocity back over the baseVelocity
+		Point newVelocity = baseVelocity.Lerp(newAbsVelocity, cameraAccelMultiplier);
+
+		newCenter = newCenter.Lerp(baseCenter, pow(influence, .5));
+		newVelocity = killVelocity ? baseVelocity : newVelocity.Lerp(baseVelocity, pow(influence, .5));
+
+		return make_pair(newCenter, newVelocity);
+	}
 }
 
 
@@ -252,16 +278,14 @@ Engine::Engine(PlayerInfo &player)
 	zoom.base = Preferences::ViewZoom();
 	zoom.modifier = Preferences::Has("Landing zoom") ? 2. : 1.;
 
-	// Start the thread for doing calculations.
-	calcThread = thread(&Engine::ThreadEntryPoint, this);
-
 	if(!player.IsLoaded() || !player.GetSystem())
 		return;
 
 	// Preload any landscapes for this system.
 	for(const StellarObject &object : player.GetSystem()->Objects())
 		if(object.HasSprite() && object.HasValidPlanet())
-			GameData::Preload(object.GetPlanet()->Landscape());
+			GameData::Preload(queue, object.GetPlanet()->Landscape());
+	queue.Wait();
 
 	// Figure out what planet the player is landed on, if any.
 	const StellarObject *object = player.GetStellarObject();
@@ -299,12 +323,9 @@ Engine::Engine(PlayerInfo &player)
 
 Engine::~Engine()
 {
-	{
-		unique_lock<mutex> lock(swapMutex);
-		terminate = true;
-	}
-	condition.notify_all();
-	calcThread.join();
+	// Wait for any outstanding task to finish to avoid race conditions when
+	// destroying the engine.
+	queue.Wait();
 }
 
 
@@ -396,6 +417,9 @@ void Engine::Place()
 	// that all special ships have been repositioned.
 	ships.splice(ships.end(), newShips);
 
+	center = flagship->Center();
+	centerVelocity = flagship->Velocity();
+
 	player.SetPlanet(nullptr);
 }
 
@@ -483,8 +507,7 @@ void Engine::Place(const list<NPC> &npcs, shared_ptr<Ship> flagship)
 // Wait for the previous calculations (if any) to be done.
 void Engine::Wait()
 {
-	unique_lock<mutex> lock(swapMutex);
-	condition.wait(lock, [this] { return hasFinishedCalculating; });
+	queue.Wait();
 	currentDrawBuffer = currentCalcBuffer;
 }
 
@@ -496,6 +519,9 @@ void Engine::Step(bool isActive)
 	events.swap(eventQueue);
 	eventQueue.clear();
 
+	// Process any outstanding sprites that need to be uploaded to the GPU.
+	queue.ProcessSyncTasks();
+
 	// The calculation thread was paused by MainPanel before calling this function, so it is safe to access things.
 	const shared_ptr<Ship> flagship = player.FlagshipPtr();
 	const StellarObject *object = player.GetStellarObject();
@@ -506,12 +532,16 @@ void Engine::Step(bool isActive)
 	}
 	else if(flagship)
 	{
-		center = flagship->Center();
-		centerVelocity = flagship->Velocity();
-		Preferences::ExtendedJumpEffects jumpEffectState = Preferences::GetExtendedJumpEffects();
-		if(flagship->IsHyperspacing() && jumpEffectState != Preferences::ExtendedJumpEffects::OFF)
-			centerVelocity *= 1. + pow(flagship->GetHyperspacePercentage() /
-				(jumpEffectState == Preferences::ExtendedJumpEffects::MEDIUM ? 40. : 20.), 2);
+		if(isActive)
+		{
+			const auto [newCenter, newCenterVelocity] = NewCenter(center, centerVelocity,
+				flagship->Center(), flagship->Velocity(), flagship->GetHyperspacePercentage() / 100.,
+				flagship->IsHyperspacing());
+
+			center = newCenter;
+			centerVelocity = newCenterVelocity;
+		}
+
 		if(doEnterLabels)
 		{
 			doEnterLabels = false;
@@ -586,15 +616,24 @@ void Engine::Step(bool isActive)
 		}
 	}
 
-	// Draw a highlight to distinguish the flagship from other ships.
+	outlines.clear();
+	const Color &cloakColor = *GameData::Colors().Get("cloak highlight");
+	if(Preferences::Has("Cloaked ship outlines"))
+		for(const auto &ship : player.Ships())
+		{
+			if(ship->IsParked() || ship->GetSystem() != player.GetSystem() || ship->Cloaking() == 0.)
+				continue;
+
+			outlines.emplace_back(ship->GetSprite(), (ship->Position() - center) * zoom, ship->Unit() * zoom,
+				ship->GetFrame(), Color::Multiply(ship->Cloaking(), cloakColor));
+		}
+
+	// Add the flagship outline last to distinguish the flagship from other ships.
 	if(flagship && !flagship->IsDestroyed() && Preferences::Has("Highlight player's flagship"))
 	{
-		highlightSprite = flagship->GetSprite();
-		highlightUnit = flagship->Unit() * zoom;
-		highlightFrame = flagship->GetFrame();
+		outlines.emplace_back(flagship->GetSprite(), (flagship->Center() - center) * zoom, flagship->Unit() * zoom,
+			flagship->GetFrame(), *GameData::Colors().Get("flagship highlight"));
 	}
-	else
-		highlightSprite = nullptr;
 
 	// Any of the player's ships that are in system are assumed to have
 	// landed along with the player.
@@ -659,7 +698,8 @@ void Engine::Step(bool isActive)
 			if(!it->IsYours() && !it->CanBeCarried())
 			{
 				bool isSelected = (flagship && flagship->GetTargetShip() == it);
-				escorts.Add(*it, it->GetSystem() == currentSystem, fleetIsJumping, isSelected);
+				const System *system = it->GetSystem();
+				escorts.Add(*it, system == currentSystem, player.KnowsName(*system), fleetIsJumping, isSelected);
 			}
 	for(const shared_ptr<Ship> &escort : player.Ships())
 		if(!escort->IsParked() && escort != flagship && !escort->IsDestroyed())
@@ -672,7 +712,8 @@ void Engine::Step(bool isActive)
 					isSelected = true;
 					break;
 				}
-			escorts.Add(*escort, escort->GetSystem() == currentSystem, fleetIsJumping, isSelected);
+			const System *system = escort->GetSystem();
+			escorts.Add(*escort, system == currentSystem, player.KnowsName(*system), fleetIsJumping, isSelected);
 		}
 
 	statuses.clear();
@@ -807,7 +848,7 @@ void Engine::Step(bool isActive)
 	}
 	else
 	{
-		if(target->GetSystem() == player.GetSystem() && target->Cloaking() < 1.)
+		if(target->GetSystem() == player.GetSystem() && !target->IsCloaked())
 			targetUnit = target->Facing().Unit();
 		info.SetSprite("target sprite", target->GetSprite(), targetUnit, target->GetFrame(step));
 		info.SetString("target name", target->Name());
@@ -863,6 +904,8 @@ void Engine::Step(bool isActive)
 			}
 		}
 	}
+	if(!Preferences::Has("Ship outlines in HUD"))
+		info.SetCondition("fast hud sprites");
 	if(target && target->IsTargetable() && target->GetSystem() == currentSystem
 		&& (flagship->CargoScanFraction() || flagship->OutfitScanFraction()))
 	{
@@ -985,13 +1028,9 @@ void Engine::Step(bool isActive)
 // Begin the next step of calculations.
 void Engine::Go()
 {
-	{
-		unique_lock<mutex> lock(swapMutex);
-		++step;
-		currentCalcBuffer = currentCalcBuffer ? 0 : 1;
-		hasFinishedCalculating = false;
-	}
-	condition.notify_all();
+	++step;
+	currentCalcBuffer = currentCalcBuffer ? 0 : 1;
+	queue.Run([this] { CalculateStep(); });
 }
 
 
@@ -1016,8 +1055,15 @@ list<ShipEvent> &Engine::Events()
 // Draw a frame.
 void Engine::Draw() const
 {
-	GameData::Background().Draw(center, Preferences::Has("Render motion blur") ? centerVelocity : Point(),
-		zoom, (player.Flagship() ? player.Flagship()->GetSystem() : player.GetSystem()));
+	Point motionBlur = Preferences::Has("Render motion blur") ? centerVelocity : Point();
+
+	Preferences::ExtendedJumpEffects jumpEffectState = Preferences::GetExtendedJumpEffects();
+	if(jumpEffectState != Preferences::ExtendedJumpEffects::OFF)
+		motionBlur *= 1. + pow(hyperspacePercentage *
+			(jumpEffectState == Preferences::ExtendedJumpEffects::MEDIUM ? 2.5 : 5.), 2);
+
+	GameData::Background().Draw(center, motionBlur, zoom,
+		(player.Flagship() ? player.Flagship()->GetSystem() : player.GetSystem()));
 	static const Set<Color> &colors = GameData::Colors();
 	const Interface *hud = GameData::Interfaces().Get("hud");
 
@@ -1065,13 +1111,10 @@ void Engine::Draw() const
 	for(const AlertLabel &label : missileLabels)
 		label.Draw();
 
-	// Draw the flagship highlight, if any.
-	if(highlightSprite)
+	for(const auto &outline : outlines)
 	{
-		Point size(highlightSprite->Width(), highlightSprite->Height());
-		const Color &color = *colors.Get("flagship highlight");
-		// The flagship is always in the dead center of the screen.
-		OutlineShader::Draw(highlightSprite, Point(), size, color, highlightUnit, highlightFrame);
+		Point size(outline.sprite->Width(), outline.sprite->Height());
+		OutlineShader::Draw(outline.sprite, outline.position, size, outline.color, outline.unit, outline.frame);
 	}
 
 	if(flash)
@@ -1150,10 +1193,6 @@ void Engine::Draw() const
 
 	// Draw escort status.
 	escorts.Draw(hud->GetBox("escorts"));
-
-	// Upload any preloaded sprites that are now available. This is to avoid
-	// filling the entire backlog of sprites before landing on a planet.
-	GameData::ProcessSprites();
 
 	if(Preferences::Has("Show CPU / GPU load"))
 	{
@@ -1268,7 +1307,7 @@ void Engine::EnterSystem()
 	for(const StellarObject &object : system->Objects())
 		if(object.HasValidPlanet())
 		{
-			GameData::Preload(object.GetPlanet()->Landscape());
+			GameData::Preload(queue, object.GetPlanet()->Landscape());
 			if(object.GetPlanet()->IsWormhole() && !usedWormhole
 					&& flagship->Position().Distance(object.Position()) < 1.)
 				usedWormhole = &object;
@@ -1369,38 +1408,15 @@ void Engine::EnterSystem()
 	newVisuals.clear();
 	newFlotsam.clear();
 
+
+	center = flagship->Center();
+
 	// Help message for new players. Show this message for the first four days,
 	// since the new player ships can make at most four jumps before landing.
 	if(today <= player.StartData().GetDate() + 4)
 	{
 		Messages::Add(GameData::HelpMessage("basics 1"), Messages::Importance::High);
 		Messages::Add(GameData::HelpMessage("basics 2"), Messages::Importance::High);
-	}
-}
-
-
-
-// Thread entry point.
-void Engine::ThreadEntryPoint()
-{
-	while(true)
-	{
-		{
-			unique_lock<mutex> lock(swapMutex);
-			condition.wait(lock, [this] { return !hasFinishedCalculating || terminate; });
-
-			if(terminate)
-				break;
-		}
-
-		// Do all the calculations.
-		CalculateStep();
-
-		{
-			unique_lock<mutex> lock(swapMutex);
-			hasFinishedCalculating = true;
-		}
-		condition.notify_one();
 	}
 }
 
@@ -1577,8 +1593,11 @@ void Engine::CalculateStep()
 	Point newCenterVelocity;
 	if(flagship)
 	{
-		newCenter = flagship->Center();
-		newCenterVelocity = flagship->Velocity();
+		const auto [newCameraCenter, newCameraVelocity] = NewCenter(center, centerVelocity,
+			flagship->Center(), flagship->Velocity(), flagship->GetHyperspacePercentage() / 100.,
+			flagship->IsHyperspacing());
+		newCenter = newCameraCenter;
+		newCenterVelocity = newCameraVelocity;
 	}
 	draw[currentCalcBuffer].SetCenter(newCenter, newCenterVelocity);
 	batchDraw[currentCalcBuffer].SetCenter(newCenter);
@@ -2147,13 +2166,15 @@ void Engine::DoCollisions(Projectile &projectile)
 	// shields the ship (unless the projectile has a blast radius).
 	vector<Collision> collisions;
 	const Government *gov = projectile.GetGovernment();
+	const Weapon &weapon = projectile.GetWeapon();
 
-	// If this "projectile" is a ship explosion, it always explodes.
-	if(!gov)
+	if(projectile.ShouldExplode())
 		collisions.emplace_back(nullptr, CollisionType::NONE, 0.);
-	else if(projectile.GetWeapon().IsPhasing() && projectile.Target())
+	else if(weapon.IsPhasing() && projectile.Target())
 	{
 		// "Phasing" projectiles that have a target will never hit any other ship.
+		// They also don't care whether the weapon has "no ship collisions" on, as
+		// otherwise a phasing projectile would never hit anything.
 		shared_ptr<Ship> target = projectile.TargetPtr();
 		if(target)
 		{
@@ -2166,29 +2187,34 @@ void Engine::DoCollisions(Projectile &projectile)
 	else
 	{
 		// For weapons with a trigger radius, check if any detectable object will set it off.
-		double triggerRadius = projectile.GetWeapon().TriggerRadius();
+		double triggerRadius = weapon.TriggerRadius();
 		if(triggerRadius)
 			for(const Body *body : shipCollisions.Circle(projectile.Position(), triggerRadius))
+			{
+				const Ship *ship = reinterpret_cast<const Ship *>(body);
 				if(body == projectile.Target() || (gov->IsEnemy(body->GetGovernment())
-						&& reinterpret_cast<const Ship *>(body)->Cloaking() < 1.))
+						&& !ship->IsCloaked()))
 				{
 					collisions.emplace_back(nullptr, CollisionType::NONE, 0.);
 					break;
 				}
+			}
 
 		// If nothing triggered the projectile, check for collisions with ships and asteroids.
 		if(collisions.empty())
 		{
-			const vector<Collision> &newShipHits = shipCollisions.Line(projectile);
-			collisions.insert(collisions.end(), newShipHits.begin(), newShipHits.end());
-
-			// "Phasing" projectiles can pass through asteroids. For all other
-			// projectiles, check if they've hit an asteroid.
-			if(!projectile.GetWeapon().IsPhasing())
+			if(weapon.CanCollideShips())
+			{
+				const vector<Collision> &newShipHits = shipCollisions.Line(projectile);
+				collisions.insert(collisions.end(), newShipHits.begin(), newShipHits.end());
+			}
+			if(weapon.CanCollideAsteroids())
 			{
 				const vector<Collision> &newAsteroidHits = asteroids.CollideAsteroids(projectile);
 				collisions.insert(collisions.end(), newAsteroidHits.begin(), newAsteroidHits.end());
-
+			}
+			if(weapon.CanCollideMinables())
+			{
 				const vector<Collision> &newMinableHits = asteroids.CollideMinables(projectile);
 				collisions.insert(collisions.end(), newMinableHits.begin(), newMinableHits.end());
 			}
@@ -2198,7 +2224,7 @@ void Engine::DoCollisions(Projectile &projectile)
 	// Sort the Collisions by increasing range so that the closer collisions are evaluated first.
 	sort(collisions.begin(), collisions.end());
 
-	// Run all collisiions until either the projectile dies or there are no more collisions left.
+	// Run all collisions until either the projectile dies or there are no more collisions left.
 	for(Collision &collision : collisions)
 	{
 		Body *hit = collision.HitBody();
@@ -2209,6 +2235,15 @@ void Engine::DoCollisions(Projectile &projectile)
 		if(hit && collisionType == CollisionType::SHIP)
 			shipHit = reinterpret_cast<Ship *>(hit)->shared_from_this();
 
+		// Don't collide with carried ships that are disabled and not directly targeted.
+		if(shipHit && hit != projectile.Target()
+				&& shipHit->CanBeCarried() && shipHit->IsDisabled())
+			continue;
+
+		// If the ship is cloaked, and phasing, then skip this ship (during this step).
+		if(shipHit && shipHit->Phases(projectile))
+			continue;
+
 		// Create the explosion the given distance along the projectile's
 		// motion path for this step.
 		projectile.Explode(visuals, range, hit ? hit->Velocity() : Point());
@@ -2218,18 +2253,19 @@ void Engine::DoCollisions(Projectile &projectile)
 		// If this projectile has a blast radius, find all ships within its
 		// radius. Otherwise, only one is damaged.
 		// TODO: Also deal blast damage to minables?
-		double blastRadius = projectile.GetWeapon().BlastRadius();
+		double blastRadius = weapon.BlastRadius();
 		if(blastRadius)
 		{
 			// Even friendly ships can be hit by the blast, unless it is a
 			// "safe" weapon.
 			Point hitPos = projectile.Position() + range * projectile.Velocity();
-			bool isSafe = projectile.GetWeapon().IsSafe();
+			bool isSafe = weapon.IsSafe();
 			for(Body *body : shipCollisions.Circle(hitPos, blastRadius))
 			{
 				Ship *ship = reinterpret_cast<Ship *>(body);
 				bool targeted = (projectile.Target() == ship);
-				if(isSafe && !targeted && !gov->IsEnemy(ship->GetGovernment()))
+				// Phasing cloaked ship will have a chance to ignore the effects of the explosion.
+				if((isSafe && !targeted && !gov->IsEnemy(ship->GetGovernment())) || ship->Phases(projectile))
 					continue;
 
 				// Only directly targeted ships get provoked by blast weapons.
@@ -2300,12 +2336,12 @@ void Engine::DoWeather(Weather &weather)
 // Check if any ship collected the given flotsam.
 void Engine::DoCollection(Flotsam &flotsam)
 {
-	// Check if any ship can pick up this flotsam. Cloaked ships cannot act.
+	// Check if any ship can pick up this flotsam. Cloaked ships without "cloaked pickup" cannot act.
 	Ship *collector = nullptr;
 	for(Body *body : shipCollisions.Circle(flotsam.Position(), 5.))
 	{
 		Ship *ship = reinterpret_cast<Ship *>(body);
-		if(!ship->CannotAct() && ship->CanPickUp(flotsam))
+		if(!ship->CannotAct(Ship::ActionType::PICKUP) && ship->CanPickUp(flotsam))
 		{
 			collector = ship;
 			break;
@@ -2468,9 +2504,9 @@ void Engine::FillRadar()
 	for(shared_ptr<Ship> &ship : ships)
 		if(ship->GetSystem() == playerSystem)
 		{
-			// Do not show cloaked ships on the radar, except the player's ships.
+			// Do not show cloaked ships on the radar, except the player's ships, and those who should show on radar.
 			bool isYours = ship->IsYours();
-			if(ship->Cloaking() >= 1. && !isYours)
+			if(ship->IsCloaked() && !isYours)
 				continue;
 
 			// Figure out what radar color should be used for this ship.
@@ -2521,13 +2557,14 @@ void Engine::DrawShipSprites(const Ship &ship)
 	bool hasFighters = ship.PositionFighters();
 	double cloak = ship.Cloaking();
 	bool drawCloaked = (cloak && ship.IsYours());
+	bool fancyCloak = Preferences::Has("Cloaked ship outlines");
 	auto &itemsToDraw = draw[currentCalcBuffer];
-	auto drawObject = [&itemsToDraw, cloak, drawCloaked](const Body &body) -> void
+	auto drawObject = [&itemsToDraw, cloak, drawCloaked, fancyCloak](const Body &body) -> void
 	{
-		// Draw cloaked/cloaking sprites swizzled red, and overlay this solid
-		// sprite with an increasingly transparent "regular" sprite.
+		// Draw cloaked/cloaking sprites swizzled red or transparent (depending on whether we are using fancy
+		// cloaking effects), and overlay this solid sprite with an increasingly transparent "regular" sprite.
 		if(drawCloaked)
-			itemsToDraw.AddSwizzled(body, 27);
+			itemsToDraw.AddSwizzled(body, fancyCloak ? 9 : 27, fancyCloak ? 0.5 : 0.25);
 		itemsToDraw.Add(body, cloak);
 	};
 
@@ -2650,7 +2687,8 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 	string message;
 	if(target->GetPersonality().IsDaring())
 	{
-		message = "Please assist us in destroying ";
+		message = "Please assist us in ";
+		message += (target->GetPersonality().Disables() ? "disabling " : "destroying ");
 		message += (attackerCount == 1 ? "this " : "these ");
 		message += attacker->GetName();
 		message += (attackerCount == 1 ? " ship." : " ships.");
@@ -2693,26 +2731,27 @@ void Engine::CreateStatusOverlays()
 
 	for(const auto &it : ships)
 	{
-		if(!it->GetGovernment() || it->GetSystem() != currentSystem || it->Cloaking() == 1.)
+		if(!it->GetGovernment() || it->GetSystem() != currentSystem || (!it->IsYours() && it->Cloaking() == 1.))
 			continue;
 		// Don't show status for dead ships.
 		if(it->IsDestroyed())
 			continue;
 
 		if(it == flagship)
-			EmplaceStatusOverlay(it, overlaySettings[Preferences::OverlayType::FLAGSHIP], 0);
+			EmplaceStatusOverlay(it, overlaySettings[Preferences::OverlayType::FLAGSHIP], 0, it->Cloaking());
 		else if(it->GetGovernment()->IsEnemy())
-			EmplaceStatusOverlay(it, overlaySettings[Preferences::OverlayType::ENEMY], 2);
+			EmplaceStatusOverlay(it, overlaySettings[Preferences::OverlayType::ENEMY], 2, it->Cloaking());
 		else if(it->IsYours() || it->GetPersonality().IsEscort())
-			EmplaceStatusOverlay(it, overlaySettings[Preferences::OverlayType::ESCORT], 1);
+			EmplaceStatusOverlay(it, overlaySettings[Preferences::OverlayType::ESCORT], 1, it->Cloaking());
 		else
-			EmplaceStatusOverlay(it, overlaySettings[Preferences::OverlayType::NEUTRAL], 3);
+			EmplaceStatusOverlay(it, overlaySettings[Preferences::OverlayType::NEUTRAL], 3, it->Cloaking());
 	}
 }
 
 
 
-void Engine::EmplaceStatusOverlay(const shared_ptr<Ship> &it, Preferences::OverlayState overlaySetting, int type)
+void Engine::EmplaceStatusOverlay(const shared_ptr<Ship> &it, Preferences::OverlayState overlaySetting,
+	int type, double cloak)
 {
 	if(overlaySetting == Preferences::OverlayState::OFF)
 		return;
@@ -2735,6 +2774,10 @@ void Engine::EmplaceStatusOverlay(const shared_ptr<Ship> &it, Preferences::Overl
 		else
 			alpha = 0.f;
 	}
+
+	if(it->IsYours())
+		cloak *= 0.6;
+
 	statuses.emplace_back(it->Position() - center, it->Shields(), it->Hull(),
-		min(it->Hull(), it->DisabledHull()), max(20., width * .5), type, alpha);
+		min(it->Hull(), it->DisabledHull()), max(20., width * .5), type, alpha * (1. - cloak));
 }

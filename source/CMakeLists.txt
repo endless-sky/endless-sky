@@ -307,8 +307,6 @@ target_sources(EndlessSkyLib PRIVATE
 	SpaceportPanel.h
 	Sprite.cpp
 	Sprite.h
-	SpriteQueue.cpp
-	SpriteQueue.h
 	SpriteSet.cpp
 	SpriteSet.h
 	SpriteShader.cpp
@@ -324,6 +322,8 @@ target_sources(EndlessSkyLib PRIVATE
 	System.cpp
 	System.h
 	SystemEntry.h
+	TaskQueue.cpp
+	TaskQueue.h
 	Test.cpp
 	Test.h
 	TestContext.cpp
