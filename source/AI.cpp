@@ -2009,6 +2009,7 @@ bool AI::CanRefuel(const Ship &ship, const StellarObject *target)
 }
 
 
+
 // Set the ship's target system or planet in order to reach the
 // next desired system. Will target a landable planet to refuel.
 // If the ship is an escort it will only use routes known to the player.
@@ -3778,6 +3779,7 @@ double AI::RendezvousTime(const Point &p, const Point &v, double vp)
 
 	return numeric_limits<double>::quiet_NaN();
 }
+
 
 
 // Searches every asteroid within the ship scan limit and returns either the

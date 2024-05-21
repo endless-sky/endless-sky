@@ -265,7 +265,7 @@ namespace {
 	const double CAMERA_POSITION_CENTERING = 0.01;
 
 	pair<Point, Point> NewCenter(const Point &oldCenter, const Point &oldCenterVelocity,
-		const Point &baseCenter, const Point &baseVelocity)
+		const Point &baseCenter, const Point &baseVelocity, const double influence, const bool killVelocity)
 	{
 		if(Preferences::CameraAcceleration() == Preferences::CameraAccel::OFF)
 			return make_pair(baseCenter, baseVelocity);
@@ -277,10 +277,13 @@ namespace {
 
 		const Point newAbsVelocity = absoluteOldCenterVelocity.Lerp(baseVelocity, CAMERA_VELOCITY_TRACKING);
 
-		const Point newCenter = (oldCenter + newAbsVelocity).Lerp(baseCenter, CAMERA_POSITION_CENTERING);
+		Point newCenter = (oldCenter + newAbsVelocity).Lerp(baseCenter, CAMERA_POSITION_CENTERING);
 
 		// Flip the velocity back over the baseVelocity
-		const Point newVelocity = baseVelocity.Lerp(newAbsVelocity, cameraAccelMultiplier);
+		Point newVelocity = baseVelocity.Lerp(newAbsVelocity, cameraAccelMultiplier);
+
+		newCenter = newCenter.Lerp(baseCenter, pow(influence, .5));
+		newVelocity = killVelocity ? baseVelocity : newVelocity.Lerp(baseVelocity, pow(influence, .5));
 
 		return make_pair(newCenter, newVelocity);
 	}
@@ -434,6 +437,9 @@ void Engine::Place()
 	// that all special ships have been repositioned.
 	ships.splice(ships.end(), newShips);
 
+	center = flagship->Center();
+	centerVelocity = flagship->Velocity();
+
 	player.SetPlanet(nullptr);
 }
 
@@ -546,19 +552,14 @@ void Engine::Step(bool isActive)
 	}
 	else if(flagship)
 	{
-		const auto newCamera = NewCenter(center, centerVelocity,
-			flagship->Center(), flagship->Velocity());
+		if(isActive)
+		{
+			const auto [newCenter, newCenterVelocity] = NewCenter(center, centerVelocity,
+				flagship->Center(), flagship->Velocity(), flagship->GetHyperspacePercentage() / 100.,
+				flagship->IsHyperspacing());
 
-		if(flagship->IsHyperspacing())
-		{
-			hyperspacePercentage = flagship->GetHyperspacePercentage() / 100.;
-			center = newCamera.first.Lerp(flagship->Center(), pow(hyperspacePercentage, .5));
-			centerVelocity = flagship->Velocity();
-		}
-		else if(isActive)
-		{
-			center = newCamera.first;
-			centerVelocity = newCamera.second;
+			center = newCenter;
+			centerVelocity = newCenterVelocity;
 		}
 
 		if(doEnterLabels)
@@ -1748,22 +1749,11 @@ void Engine::CalculateStep()
 	Point newCenterVelocity;
 	if(flagship)
 	{
-		const auto newCamera = NewCenter(center, centerVelocity,
-			flagship->Center(), flagship->Velocity());
-
-		if(flagship->IsHyperspacing())
-		{
-			hyperspacePercentage =
-				flagship->GetHyperspacePercentage() / 100.;
-			newCenter = newCamera.first.Lerp(
-				flagship->Center(), pow(hyperspacePercentage, .5));
-			newCenterVelocity = flagship->Velocity();
-		}
-		else
-		{
-			newCenter = newCamera.first;
-			newCenterVelocity = newCamera.second;
-		}
+		const auto [newCameraCenter, newCameraVelocity] = NewCenter(center, centerVelocity,
+			flagship->Center(), flagship->Velocity(), flagship->GetHyperspacePercentage() / 100.,
+			flagship->IsHyperspacing());
+		newCenter = newCameraCenter;
+		newCenterVelocity = newCameraVelocity;
 	}
 	draw[currentCalcBuffer].SetCenter(newCenter, newCenterVelocity);
 	batchDraw[currentCalcBuffer].SetCenter(newCenter);

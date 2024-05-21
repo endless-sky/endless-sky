@@ -639,7 +639,6 @@ const string &Preferences::AutoFireSetting()
 
 
 
-
 void Preferences::ToggleBoarding()
 {
 	int targetIndex = boardingIndex + 1;

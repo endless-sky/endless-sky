@@ -2405,6 +2405,7 @@ int Ship::CustomSwizzle() const
 }
 
 
+
 // Check if the ship is thrusting. If so, the engine sound should be played.
 bool Ship::IsThrusting() const
 {
