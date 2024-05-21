@@ -7398,6 +7398,8 @@ mission "Timothy Radrickson 3d: Return to Rand"
 				`	(Say a few words.)`
 				`	(Mingle with the crowd.)`
 					goto mingle
+				`	(Skip the party.)`
+					goto skip
 
 			`	You walk up to the podium, past the governor and turn to address the assembled guests.`
 			choice
@@ -7418,6 +7420,13 @@ mission "Timothy Radrickson 3d: Return to Rand"
 			label deserved
 			`	You launch into a speech about how you alone are special. How most people are cold, and empty robots, but that a fire burns inside your breast. That you are the linchpin that the entire galaxy hinges on, and that every human from here to Farpoint owes their future to you. The crowd's excitement wanes and a smattering of lackluster applause punctuates the end of your speech.`
 
+			label skip
+			`	You excuse your self from the table and duck into the first empty room you find. You sit in one of the comfortable chairs you notice a large wooden desk covered in screens and ledgers. From behind the walls you can still hear the muffled sounds of laughter, speeches, and general chatter. You sit for a while in dark meditative silence. `
+			`	After a while there's a gentle knock on the door and Timothy pushes his way into the room.`
+			`	"I see you've found my office, Captain <last>. I'd like to apologize, I was hoping you'd appreciate the party, but I realize it's not exactly everyone's scene. There's more then a few vipers in that crowd and there are things I've had to do for them I am not proud of..."`
+			`	He trails off, "But still I am glad you're here. Even tucked away in my office. I wanted to let you know that there is cash associated with tonight's reward. You will be given 1 million credits and a daily stipend of 200 credits, as a gift from Rand, and more specifically, from me. `
+				goto jumpskip
+
 			label mingle
 			action
 				"salary: Hero of Rand" = 200
@@ -7425,6 +7434,7 @@ mission "Timothy Radrickson 3d: Return to Rand"
 				event "timothy radrickson imprisoned" 400
 			`	With the speeches done, you mingle with the crowd, making small talk with various dignitaries and company-bosses. You even say a few words to Regina. Everyone is pleased to meet you, and a few people ask for your autograph. Finally, Timothy makes his way to you and takes you to a quieter room off to the side.`
 			`	"Captain <last>, I hope you've found the night agreeable. I've noticed you have your fair share of fans here. I also wanted to let you know that there is cash associated with tonight's reward. You will be given 1 million credits and a daily stipend of 200 credits, as a gift from Rand, and more specifically, from me."`
+			label jumpskip
 			`	Timothy pats you on the back. "Just another way for me to thank you for saving me all those years ago, and now my world as well."`
 			`	You nod politely, and your eyes scan the wall of his office. You see pictures of your ship, and you, from various news articles, printed and framed along the walls."`
 			choice
@@ -7448,6 +7458,7 @@ mission "Timothy Radrickson 3d: Return to Rand"
 					goto ship
 
 			`	You talk with him for hours. About his life on Rand, the hardships of the mines, how he clawed his way out of it. But also about you, the challenges of running a ship, the battles, the close calls, and the joys of triumph.`
+			`	As you talk you come to realize there is a sadness at the edges of Timothy's stories about being governor. His words seem tinged with regret, though he says nothing specifically regretful. You get the feeling he isn't telling you the whole story.`
 
 			label end
 			`	As the sun rises your conversation winds to a close. Timothy escorts you back to a waiting vehicle and you say your farewells. The dark vehicle drives off into the bright desert, leaving behind an island of green and warmth.`
@@ -7664,8 +7675,8 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 			`	Union-Colonel Wynnfrith's eyes get misty as you tell her about Timothy's plight. She shakes her head a few times and then takes the list from you and carefully scrutinizes it.`
 			`	"Ya know, to us he's still the Governor. Don't believe what the company-bosses and their paid politicians tell you. He was a good man." She wipes her eyes for a moment. "All he was trying to do was improve the conditions for workers here on Rand. He'd come up from the mines and he knew what it was like."`
 			`	Her free hand tightens into a ball. "The big men didn't like that. But what about the profit margins? They tried to bribe him, to offer him anything he wanted, to just leave things well enough alone. To let the exploitation continue." She says the last words through clenched teeth.`
-			`	"But he never wavered, and he always labored for the common man." Wynnafirth looks up at you. "You were a good friend to him, it's true, but truth be told, while you may have been his hero, he was ours; he was the real Hero of Rand.`
-			`	"And when he wouldn't budge they finally got him for trumped up charges and threw him to Oblivion to disappear and die." She shakes her head. "There was nothing we could do. We're still in a..." she hesitates, "... a rebuild phase."`
+			`	"Sure, he made some mistakes. No one becomes governor here without out getting a litle dirt of their hands. But in the end he refused to give into the company-bosses' demands, and throughout it all he was laboring for the common man." Wynnafirth looks up at you. "You were a good friend to him, it's true, but truth be told, while you may have been his hero, he was ours; he was the real Hero of Rand.`
+			`	"And when he wouldn't budge they finally got him for trumped up charges and threw him to Oblivion to disappear and die." She shakes her head. "There was nothing we could do. We're still in a..." she hesitates, "... a rebuilding phase."`
 			`	She reads the list again. "A few weeks, you say? Well, we already thought he was dead, so if there's a chance we save the Governor then we're in.`
 			`	"We have a few left over explosives and detonators from when this mine was active. That should take care of the bomb he was hoping for." She then unholsters her sidearm and hands it to you.`
 			choice
