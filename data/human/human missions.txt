@@ -7428,7 +7428,7 @@ mission "Timothy Radrickson 3d: Return to Rand"
 			`	You excuse yourself from the table and duck into the first empty room you find. You sit in one of the comfortable chairs; you notice a large wooden desk covered in screens and ledgers. You can still hear the muffled sounds of laughter, speeches, and general chatter from behind the walls. You sit for a while in a dark meditative silence. `
 			`	After a while, a gentle knock on the door and Timothy pushes his way into the room.`
 			`	"I see you've found my office, Captain <last>. I'd like to apologize. I was hoping you'd appreciate the party, but, I realize it's not exactly everyone's scene. There's more then a few vipers in that crowd and there are things I've had to do for them I am not proud of..."`
-			`	He trails off, "But still I am glad you're here. Even tucked away in my office. I wanted to let you know that there is cash associated with tonight's reward. You will be given 1 million credits and a daily stipend of 200 credits, as a gift from Rand, and more specifically, from me. `
+			`	He trails off, "But still, I'm glad you're here. Even tucked away in my office. I wanted to let you know that there are credits associated with tonight's prize. You will be given 1 million credits and a daily stipend of 200 credits, as a gift from Rand, and more specifically, from me. `
 				goto jumpskip
 
 			label mingle
