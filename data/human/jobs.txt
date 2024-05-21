@@ -4005,7 +4005,6 @@ mission "Rescue Slaves [0]"
 	to offer
 		random < 60
 	source
-		government "Independent (Korath-Allied) Port"
 		attributes "slavery ban"
 	stopover
 		government "Pirate"
@@ -4037,7 +4036,6 @@ mission "Rescue Slaves [1]"
 		random < 50
 		"passenger space" > 5
 	source
-		government "Independent (Korath-Allied) Port"
 		attributes "slavery ban"
 	stopover
 		government "Pirate"
@@ -4069,7 +4067,6 @@ mission "Rescue Slaves [2]"
 		random < 40
 		"passenger space" > 10
 	source
-		government "Independent (Korath-Allied) Port"
 		attributes "slavery ban"
 	stopover
 		government "Pirate"
@@ -4102,7 +4099,6 @@ mission "Escaped Slaves [0]"
 		government "Pirate"
 		not attributes "slavery ban"
 	destination
-		government "Independent (Korath-Allied) Port"
 		attributes "slavery ban"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -4129,7 +4125,6 @@ mission "Escaped Slaves [1]"
 		government "Pirate"
 		not attributes "slavery ban"
 	destination
-		government "Independent (Korath-Allied) Port"
 		attributes "slavery ban"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -4156,7 +4151,6 @@ mission "Escaped Slaves [2]"
 		government "Pirate"
 		not attributes "slavery ban"
 	destination
-		government "Independent (Korath-Allied) Port"
 		attributes "slavery ban"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -4179,9 +4173,7 @@ mission "Emancipation Raid Escort [0]"
 	to offer
 		"combat rating" > 50
 		random < 40
-	source
-		government "Independent (Korath-Allied) Port"
-		attributes "slavery ban"
+	source "New Tortuga"
 	stopover
 		government "Pirate"
 		not attributes "slavery ban"
@@ -4223,9 +4215,7 @@ mission "Emancipation Raid Escort [1]"
 	to offer
 		"combat rating" > 100
 		random < 40
-	source
-		government "Independent (Korath-Allied) Port"
-		attributes "slavery ban"
+	source "New Tortuga"
 	stopover
 		government "Pirate"
 		not attributes "slavery ban"
@@ -4267,9 +4257,7 @@ mission "Emancipation Raid Escort [2]"
 	to offer
 		"combat rating" > 150
 		random < 25
-	source
-		government "Independent (Korath-Allied) Port"
-		attributes "slavery ban"
+	source "New Tortuga"
 	stopover
 		government "Pirate"
 		not attributes "slavery ban"
@@ -4317,9 +4305,7 @@ mission "Emancipation Raid Escort [3]"
 	to offer
 		"combat rating" > 250
 		random < 15
-	source
-		government "Independent (Korath-Allied) Port"
-		attributes "slavery ban"
+	source "New Tortuga"
 	stopover
 		government "Pirate"
 		not attributes "slavery ban"
@@ -4374,9 +4360,7 @@ mission "Transport recruiters [0]"
 	deadline 5 3
 	to offer
 		random < 40
-	source
-		government "Independent (Korath-Allied) Port"
-		attributes research
+	source "New Tortuga"
 	destination
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		not attributes uninhabited
@@ -4397,9 +4381,7 @@ mission "Transport recruiters [1]"
 	deadline 5 3
 	to offer
 		random < 40
-	source
-		government "Independent (Korath-Allied) Port"
-		attributes research
+	source "New Tortuga"
 	destination
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		not attributes uninhabited
@@ -4422,9 +4404,7 @@ mission "Transport recruiters [2]"
 		random < 40
 		"cargo space" > 10
 		"passenger space" > 5
-	source
-		government "Independent (Korath-Allied) Port"
-		attributes research
+	source "New Tortuga"
 	destination
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		not attributes uninhabited
@@ -4444,9 +4424,7 @@ mission "Retrieve recruiters [0]"
 	deadline 5 3
 	to offer
 		random < 40
-	source
-		government "Independent (Korath-Allied) Port"
-		attributes research
+	source "New Tortuga"
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		attributes farming mining research factory urban
@@ -4468,9 +4446,7 @@ mission "Retrieve recruiters [1]"
 	deadline 5 3
 	to offer
 		random < 40
-	source
-		government "Independent (Korath-Allied) Port"
-		attributes research
+	source "New Tortuga"
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		attributes farming mining research factory urban
@@ -4493,9 +4469,7 @@ mission "Retrieve recruiters [2]"
 	to offer
 		random < 40
 		"passenger space" > 5
-	source
-		government "Independent (Korath-Allied) Port"
-		attributes research
+	source "New Tortuga"
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		attributes farming mining research factory urban
@@ -4509,7 +4483,7 @@ mission "Retrieve recruiters [2]"
 		dialog phrase "generic passenger stopover pickup"
 
 mission "Farming Employee Poaching"
-	name "Research farmer to <planet>"
+	name "Agronomist to <planet>"
 	job
 	repeat
 	description `A research farmer needs a ride to their lucrative new job. Fly them to <planet> before <date> for <payment>.`
@@ -4639,7 +4613,7 @@ mission "Urban Employee Poaching"
 		dialog phrase "generic passenger dropoff payment"
 
 mission "Farming Team Recruitment"
-	name "Research farmers to <planet>"
+	name "Agronomists to <planet>"
 	job
 	repeat
 	description `A team of <bunks> research farmers need a ride to their lucrative new jobs. Pick them up at <stopovers> and take them to <planet> before <date> for <payment>.`
@@ -4647,9 +4621,7 @@ mission "Farming Team Recruitment"
 	deadline 5 3
 	to offer
 		random < 40
-	source
-		government "Independent (Korath-Allied) Port"
-		attributes research
+	source "New Tortuga"
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		attributes farming
@@ -4674,9 +4646,7 @@ mission "Mining Team Recruitment"
 	deadline 5 3
 	to offer
 		random < 40
-	source
-		government "Independent (Korath-Allied) Port"
-		attributes research
+	source "New Tortuga"
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		attributes mining
@@ -4701,9 +4671,7 @@ mission "Science Team Recruitment"
 	deadline 5 3
 	to offer
 		random < 40
-	source
-		government "Independent (Korath-Allied) Port"
-		attributes research
+	source "New Tortuga"
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		attributes research
@@ -4728,9 +4696,7 @@ mission "Factory Team Recruitment"
 	deadline 5 3
 	to offer
 		random < 40
-	source
-		government "Independent (Korath-Allied) Port"
-		attributes research
+	source "New Tortuga"
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		attributes factory
@@ -4755,9 +4721,7 @@ mission "Urban Employee Team Recruitment"
 	deadline 5 3
 	to offer
 		random < 40
-	source
-		government "Independent (Korath-Allied) Port"
-		attributes research
+	source "New Tortuga"
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
 		attributes urban
@@ -4782,8 +4746,7 @@ mission "Banned Syndicate Items [0]"
 	illegal 50000
 	to offer
 		random < 50
-	source
-		government "Independent (Korath-Allied) Port"
+	source "New Tortuga"
 	destination
 		government Syndicate
 		not attributes uninhabited
@@ -4804,8 +4767,7 @@ mission "Banned Syndicate Items [1]"
 	to offer
 		random < 50
 		"cargo space" > 3
-	source
-		government "Independent (Korath-Allied) Port"
+	source "New Tortuga"
 	destination
 		government Syndicate
 		not attributes uninhabited
@@ -4826,8 +4788,7 @@ mission "Banned Syndicate Items [2]"
 	to offer
 		random < 50
 		"cargo space" > 5
-	source
-		government "Independent (Korath-Allied) Port"
+	source "New Tortuga"
 	destination
 		government Syndicate
 		not attributes uninhabited
@@ -4848,8 +4809,7 @@ mission "Banned Syndicate Items [3]"
 	to offer
 		random < 40
 		"cargo space" > 20
-	source
-		government "Independent (Korath-Allied) Port"
+	source "New Tortuga"
 	destination
 		government Syndicate
 		not attributes uninhabited
@@ -4870,8 +4830,7 @@ mission "Banned Syndicate Items [4]"
 	to offer
 		random < 40
 		"cargo space" > 40
-	source
-		government "Independent (Korath-Allied) Port"
+	source "New Tortuga"
 	destination
 		government Syndicate
 		not attributes uninhabited

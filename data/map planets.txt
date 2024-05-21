@@ -2413,7 +2413,7 @@ planet "La'ab Bamen"
 	tribute 1200
 		threshold 7000
 		fleet "Independent (Korath-Allied) Defense" 7
-		fleet "Korath Humanika Tribute Response" 3
+		fleet "Korath Tribute Response (Humanika Efreti)" 3
 
 planet Lagrange
 	attributes "human quarg" quarg station tourism

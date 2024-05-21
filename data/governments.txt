@@ -711,7 +711,6 @@ government "Independent (Korath-Allied) Port"
 		"Republic" -.01
 		"Republic that won't enter wormhole" -.01
 		"Navy Intelligence" -.01
-		"Republic Intelligence" -.01
 		"Independent (Korath-Allied)" 1
 		# Negative for Korath ensures the Korath raiding groups will not come
 		# from Independent (Korath-Allied) Port planets and stations.
@@ -744,9 +743,7 @@ government "Independent (Korath-Allied) Restricted"
 		"Navy (Oathkeeper)" -.01
 		"Free Worlds" -.01
 		"Wanderer" -.01
-		"Pirate (Devil-Run Gang)" -.01
 		"Navy Intelligence" -.01
-		"Republic Intelligence" -.01
 		"Independent (Korath-Allied)" 1
 
 government "Indigenous Lifeform"
@@ -844,7 +841,6 @@ government "Korath"
 		"Korath (Civilian)" 1
 		"Hai (Friendly Unfettered)" -.01
 		"Independent (Korath-Allied)" .1
-		"Pug (Wanderer)" -.01
 	"penalty for"
 		assist -0.25
 		disable 0.26
@@ -869,7 +865,6 @@ government "Korath (Civilian)"
 	"attitude toward"
 		"Korath" .01
 		"Independent (Korath-Allied)" .2
-		"Pug (Wanderer)" -.01
 	"penalty for"
 		assist -0.25
 		disable 0.26
@@ -892,7 +887,6 @@ government "Korath (Station)"
 	"attitude toward"
 		"Wanderer" -.01
 		"Remnant" -.01
-		"Pug (Wanderer)" -.01
 		"Remnant (Research)" -.01
 		"Korath" 1
 		"Korath (Civilian)" 1
@@ -948,7 +942,6 @@ government "Kor Isaha"
 		"Korath (Civilian)" 1
 		"Hai (Friendly Unfettered)" -.01
 		"Independent (Korath-Allied)" .05
-		"Pug (Wanderer)" -.01
 	"penalty for"
 		assist -0.25
 		disable 0.26

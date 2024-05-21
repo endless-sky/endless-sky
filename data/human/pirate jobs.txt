@@ -1675,11 +1675,11 @@ mission "Slave Transport [0]"
 	to accept
 		has "outfit (installed): Brig"
 	source
-		government "Pirate" "Independent (Korath-Allied) Port"
+		government "Pirate"
 		not attributes "slavery ban"
 	destination
 		distance 3 30
-		government "Pirate" "Independent (Korath-Allied) Port"
+		government "Pirate"
 		not attributes "slavery ban"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -1701,11 +1701,11 @@ mission "Slave Transport [1]"
 	to accept
 		has "outfit (installed): Brig"
 	source
-		government "Pirate" "Independent (Korath-Allied) Port"
+		government "Pirate"
 		not attributes "slavery ban"
 	destination
 		distance 3 30
-		government "Pirate" "Independent (Korath-Allied) Port"
+		government "Pirate"
 		not attributes "slavery ban"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -1727,11 +1727,11 @@ mission "Slave Transport [2]"
 	to accept
 		has "outfit (installed): Brig"
 	source
-		government "Pirate" "Independent (Korath-Allied) Port"
+		government "Pirate"
 		not attributes "slavery ban"
 	destination
 		distance 3 30
-		government "Pirate" "Independent (Korath-Allied) Port"
+		government "Pirate"
 		not attributes "slavery ban"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -1755,11 +1755,11 @@ mission "Bulk Slave Transport [0]"
 	to accept
 		has "outfit (installed): Brig"
 	source
-		government "Pirate" "Independent (Korath-Allied) Port"
+		government "Pirate"
 		not attributes "slavery ban"
 	destination
 		distance 3 30
-		government "Pirate" "Independent (Korath-Allied) Port"
+		government "Pirate"
 		not attributes "slavery ban"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -1781,7 +1781,7 @@ mission "Bulk Slave Transport [1]"
 	to accept
 		has "outfit (installed): Brig"
 	source
-		government "Pirate" "Independent (Korath-Allied) Port"
+		government "Pirate"
 		not attributes "slavery ban"
 	destination
 		distance 3 30
@@ -2982,7 +2982,7 @@ mission "Cargo Theft (South)"
 		"combat rating" > 3000
 	deadline 14
 	source
-		government "Pirate"
+		government Pirate
 		attributes "south pirate"
 	npc
 		government "Merchant"
@@ -3021,7 +3021,7 @@ mission "FW Assassination [1]"
 		"reputation: Pirate" > -100
 		has "event: war begins"
 	source
-		government "Pirate" "Independent (Korath-Allied) Port"
+		government "Pirate"
 		attributes "south pirate"
 		not attributes "slavery ban"
 	npc kill

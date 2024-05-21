@@ -217,10 +217,9 @@ news "textile worker"
 
 
 
-news "humanika worker"
+news "humanika efreti worker"
 	location
-		government "Independent (Korath-Allied) Port"
-		attributes "mining" "factory"
+		planet "New Tortuga"
 	name
 		word
 			"Worker"
@@ -722,10 +721,9 @@ news "loan officer"
 			`"`
 
 
-news "humanika engineer"
+news "humanika efreti engineer"
 	location
-		government "Independent (Korath-Allied) Port"
-		attributes research
+		planet "New Tortuga"
 	name
 		word
 			"Engineer"
@@ -752,10 +750,9 @@ news "humanika engineer"
 			`"We have a prototype ion engine that produces 50% more thrust, at triple the heat. Unfortunately, it tends to melt the ship's engine compartments and flies into the ship. I expect we'll have to cut down on thrust to compensate."`
 
 
-news "humanika researcher"
+news "humanika efreti researcher"
 	location
-		government "Independent (Korath-Allied) Port"
-		attributes research
+		planet "New Tortuga"
 	name
 		word
 			"Scientist"

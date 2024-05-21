@@ -396,7 +396,7 @@ fleet "Korath Defense"
 		"'olofez" 4
 		"'olofez (Expeller)" 2
 
-fleet "Korath Humanika Tribute Response"
+fleet "Korath Tribute Response (Humanika Efreti)"
 	government "Korath"
 	names "korath"
 	fighters
