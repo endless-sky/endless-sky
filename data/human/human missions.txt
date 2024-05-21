@@ -7421,6 +7421,10 @@ mission "Timothy Radrickson 3d: Return to Rand"
 			`	You launch into a speech about how you alone are special. How most people are cold, and empty robots, but that a fire burns inside your breast. That you are the linchpin that the entire galaxy hinges on, and that every human from here to Farpoint owes their future to you. The crowd's excitement wanes and a smattering of lackluster applause punctuates the end of your speech.`
 
 			label skip
+			action
+				"salary: Hero of Rand" = 200
+				payment 1000000
+				event "timothy radrickson imprisoned" 400
 			`	You excuse your self from the table and duck into the first empty room you find. You sit in one of the comfortable chairs you notice a large wooden desk covered in screens and ledgers. From behind the walls you can still hear the muffled sounds of laughter, speeches, and general chatter. You sit for a while in dark meditative silence. `
 			`	After a while there's a gentle knock on the door and Timothy pushes his way into the room.`
 			`	"I see you've found my office, Captain <last>. I'd like to apologize, I was hoping you'd appreciate the party, but I realize it's not exactly everyone's scene. There's more then a few vipers in that crowd and there are things I've had to do for them I am not proud of..."`
@@ -7434,6 +7438,7 @@ mission "Timothy Radrickson 3d: Return to Rand"
 				event "timothy radrickson imprisoned" 400
 			`	With the speeches done, you mingle with the crowd, making small talk with various dignitaries and company-bosses. You even say a few words to Regina. Everyone is pleased to meet you, and a few people ask for your autograph. Finally, Timothy makes his way to you and takes you to a quieter room off to the side.`
 			`	"Captain <last>, I hope you've found the night agreeable. I've noticed you have your fair share of fans here. I also wanted to let you know that there is cash associated with tonight's reward. You will be given 1 million credits and a daily stipend of 200 credits, as a gift from Rand, and more specifically, from me."`
+			
 			label jumpskip
 			`	Timothy pats you on the back. "Just another way for me to thank you for saving me all those years ago, and now my world as well."`
 			`	You nod politely, and your eyes scan the wall of his office. You see pictures of your ship, and you, from various news articles, printed and framed along the walls."`
