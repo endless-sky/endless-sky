@@ -40,12 +40,14 @@ event "remnant: surveillance begin"
 	system "Parca"
 		remove fleet "Korath Ember Waste Raid"
 		remove fleet "Kor Alaji Raid"
+		remove fleet "Kor Isaha Raid"
 
 
 event "remnant: surveillance end"
 	system "Parca"
-		add fleet "Kor Alaji Raid" 20000
-		add fleet "Korath Ember Waste Raid" 15000
+		add fleet "Kor Alaji Raid" 30000
+		add fleet "Korath Ember Waste Raid" 30000
+		add fleet "Kor Isaha Raid" 15000
 
 
 
