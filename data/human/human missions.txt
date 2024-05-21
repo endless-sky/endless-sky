@@ -7088,12 +7088,12 @@ mission "Timothy Radrickson 3a: Rescue the Convoy"
 			label nothing
 			`	The vehicle pulls up to a grandiose entrance near the center of the huge structure. An attendant opens the door, and you're ushered outside the vehicle.`
 			`	Regina does not get out. She smiles politely through the opened door. "Only you were invited to enter the Governor's Mansion. I am afraid this as far as I am allowed to go. Take care, Captain <last>, it truly was an honor meeting you."`
-			`	With that the door shuts, and a few moments later the black vehicle departs, leaving you and the attendant at Mansion's entrance.`
+			`	With that the door shuts, and a few moments later the black vehicle departs, leaving you and the attendant at the mansion's entrance.`
 			`	The attendant bows deeply. "Please, Captain <last>. If you would follow me." He turns and heads into the building.`
 			choice
 				`	(Follow the attendant.)`
 
-			`	Upon entering the mansion you feel your weight shift. It's still a little less than 1g, but close. There's a young well-dressed woman, the same who you saw in your message, waiting for you inside. The attendant leaves you with her.`
+			`	Upon entering the mansion you feel your weight shift. It's still a little less than 1 g, but close. There's a young well-dressed woman, the same who you saw in your message, waiting for you inside. The attendant leaves you with her.`
 			`	The woman smiles pleasantly. "We are all so pleased you could make it here. Forgive me for not meeting you outside, but I find the gravity of this world distressing. I am Wynnafrith, the governor's executive assistant, and will be pleased to announce that you are here.`
 			`	Wynnafrith says a few quiet words into an intercom, and a door behind her opens. "The Governor is ready for you."`
 			choice
@@ -7120,7 +7120,7 @@ mission "Timothy Radrickson 3a: Rescue the Convoy"
 				`	(Congratulate Timothy.)`
 				`	(Take a sip from your glass.)`
 				`	(Complain about the living standards of workers on Rand.)`
-				`	(Complain about hand outs for the poor of Rand.)`
+				`	(Complain about hand-outs for the poor of Rand.)`
 
 			`	His eyes refocus on you. "You'd be proud, <first>. I am going to make a real difference here..."`
 			`	Timothy is suddenly interrupted by an incessant notification coming from his desk. He glowers and says, "Excuse me for a moment, <last>," sits up straight, turns on his ear piece and answers the call.`
@@ -7168,7 +7168,7 @@ mission "Timothy Radrickson 3b: Pirate Base"
 		has "Timothy Radrickson 3a: Rescue the Convoy: done"
 	on offer
 		conversation
-			`Your ship skims Greenrock's choppy atmosphere and your terrestrial navigation computer suddenly hums to life as it picks up the lost freighter fleet's tracking beacon. It locks on to a large encampment situated in a valley a bit under fifty kilometers northeast of the planetary spaceport. Close enough to do business, but far enough away to maintain strict security.`
+			`Your ship skims Greenrock's choppy atmosphere and your terrestrial navigation computer suddenly hums to life as it picks up the lost freighter fleet's tracking beacon. It locks on to a large encampment situated in a valley a bit under fifty kilometers northeast of the planetary spaceport - close enough to do business, but far enough away to maintain strict security.`
 			`	As you approach the beacon's ping from the safety of the hills around the valley, you survey the base from afar. It clearly appears to be built around a set of underground blast doors, from where the beacon - and presumably the fleet - is located. Your ship also identifies numerous parked pirate vessels inside and outside the base.`
 			`	The pirates haven't realized you're hostile yet, and you have an opportunity to seize the initiative and do a surprise attack. Or, you could get closer and continue surveying the base to see if there's any way in.`
 			choice
@@ -7291,7 +7291,7 @@ mission "Timothy Radrickson 3c: Escort the Convoy"
 					goto right
 				`	"Because I defeated your fleet."`
 					goto "defeated your fleet"
-				`	"Because I'm here to rescue to Rand convoy, and you can't stop me."`
+				`	"Because I'm here to rescue the Rand convoy, and you can't stop me."`
 
 			`	You hear a hearty laugh from the other end. "What makes you think they're still here?" the voice replies.`
 				goto inside
@@ -7317,7 +7317,7 @@ mission "Timothy Radrickson 3c: Escort the Convoy"
 
 			`	Hrodny grins. "Great. We weren't too keen on stickin' around these parts anyhow."`
 			`	She looks back at her ships, whistles, and points toward the ships. They turn and run toward them, preparing them for takeoff. She then looks back at you. "Ya know, those pirates parked us right in the middle of their treasure trove. It'd be rude not take advantage of their hospitality." You notice the loaders behind Hrodny whirring around and moving all sorts of goods into the ships, while a number of crew are draining the base's deuterium tanks and filling up the ships inside.`
-			`	"Hazard pay," Hrodny says, winking at you. "You head back your ship, by the time you get there we'll be ready to launch. We'll follow ya out."`
+			`	"Hazard pay," Hrodny says, winking at you. "You head back your ship, and by the time you get there we'll be ready to launch. We'll follow ya out."`
 			`	She gives you a final mock salute and then turns and jogs toward her ships. There's nothing for you to do but head back toward yours.`
 
 	on complete
@@ -7331,11 +7331,11 @@ mission "Timothy Radrickson 3c: Escort the Convoy"
 				`	(Don't shake her hand.)`
 
 			`	She shrugs and withdraws her hand. "Different customs I suppose."`
-			`	Hrodny pauses for a moment, then says, "Gotta say you handled yourself well out there. Always good to see a Capt'n worth more than dust on their boots." She gives you an approving nod.`
+			`	Hrodny pauses for a moment, then says, "Gotta say you handled yourself well out there. Always good to see a Capt'n worth more than the dust on their boots." She gives you an approving nod.`
 				goto nextup
 
 			label shake
-			`	Her hand vigorously shakes yours. "Gotta say you handled yourself well out there. Always good to see a Capt'n worth more than dust on their boots." She gives you an approving nod.`
+			`	Her hand vigorously shakes yours. "Gotta say you handled yourself well out there. Always good to see a Capt'n worth more than the dust on their boots." She gives you an approving nod.`
 
 			label nextup
 			`	"I got word from Rand they are more than a little pleased with your heroics. They'd like you to head on over there when you can. Probably have some credits or a photo op or something fancy and tedious waiting for you."`
@@ -7379,21 +7379,21 @@ mission "Timothy Radrickson 3d: Return to Rand"
 			choice
 				`	(Follow Wynnafrith.)`
 			`	She leads you through an army of valets, waiters, and attendants as you weave in and out of the various rooms and halls. Many of the guests appear to recognize you and offer you earnest congratulations. Eventually you are ushered to the table of honor where Wynnafrith introduces you to a half dozen company-bosses, senior executives, political operatives, and the like. You notice Regina here as well, but she is seated at a table in the back, on the fringes of the upper crust of society.`
-			`	Not long after being seated Governor Timothy appears and after making small talk with many of the gathered illuminaries sits beside you, "I have something to admit." He says in quietly to you.`
+			`	Not long after being seated Governor Timothy appears and after making small talk with many of the gathered illuminaries sits beside you. "I have something to admit," he says quietly to you.`
 			`	He gives you a sheepish smile, "This is a celebration in your honor, Hero of Rand."`
 			choice
 				`	"Hero of Rand?"`
 				`	"What do mean?"`
 				`	"So you lied to me."`
 			`	He shrugs, "I just thought it would be more fun this way. Who doesn't like surprises?"`
-			`	"Without you the entire planet would have defaulted. Our creditors were circling like vultures eager to assume ownership of all our production capabilities, and turn population into endentured servents. The whole world would have been their debtor's prison."`
-			`	He pauses to consider his words,"I mean, the language they would have used would be different, but that is what it would have amounted to. But you saved us, and more than that, we're now quite a bit more wealthy than we were before."`
-			`	Timothy snatches a glass and holds it up to you, "From ruin to riches! The Hero of Rand.!"`
-			`	A few others lift their glasses as well. They clink and Timothy then gulps the whole thing down, after that the group breaks a part into smaller conversations.`
+			`	"Without you the entire planet would have defaulted. Our creditors were circling like vultures eager to assume ownership of all our production capabilities, and turn the population into indentured servants. The whole world would have been their debtor's prison."`
+			`	He pauses to consider his words. "I mean, the language they would have used would be different, but that is what it would have amounted to. But you saved us, and more than that, we're now quite a bit more wealthy than we were before."`
+			`	Timothy snatches a glass and holds it up to you, "From ruin to riches! The Hero of Rand!"`
+			`	A few others lift their glasses as well. They clink and Timothy then gulps the whole thing down, and after that the group breaks apart into smaller conversations.`
 			`	Eventually, the party settles down and Timothy leaves you to step up to the podium. He launches into a speech highlighting your career. The great changes you have wrought, the battles you have won, the legends of your ship. The crowd eats it all up, many having heard of some, or all of these exploits. But then Timothy takes a more somber note. He talks quietly about the troubles on his old world. On how as a starving, homeless fugitive he had recklessly hidden aboard the first ship he could find. How you had found him, half dead, in an empty crate. And how, instead of tossing him out an airlock, or dropping off at the nearest world, you took him where he asked. How you took care of him, and how through your generosity, you had given him a second chance.`
 			`	Light reflects off the tears that cling to Timothy's eyes as he tells the assembled crowd that, for him, that was your greatest moment, your most heroic action, that nothing you've done, or ever will do, compares to that simple act of mercy. And that this, to him, alone, is what makes you great.`
 			`	From here his story shifts to your selfless offer to help save Rand, even though they could promise no reward, of your stunning victory over Greenrock, and your daring liberation of the Fleet on the ground. He ends with you triumphant, and Rand saved.`
-			`	The assembled guests stand, clap and cheer. They look at you, at your seat of honor, and hold up glasses in your honor. Eventually as the cheers and hoots die down, the Governor, declares you a Hero of Rand, and thanks you for your service.`
+			`	The assembled guests stand, clap and cheer. They look at you, at your seat of honor, and hold up glasses in your honor. Eventually as the cheers and hoots die down, the Governor declares you a Hero of Rand, and thanks you for your service.`
 			choice
 				`	(Say a few words.)`
 				`	(Mingle with the crowd.)`
@@ -7408,15 +7408,15 @@ mission "Timothy Radrickson 3d: Return to Rand"
 				`	(Dress them down for being capitalist pigs.)`
 
 			`	You address the crowd. You compliment them on how well dressed they all are, how lavish this mansion is, how wealthy they all appear. They clap, and laugh at your apt observations. But, then you talk about how poor, dirty, and shabby things are outside of this mansion. With its fake gravity, and fake greenery. You declare you want no praise from them, no flattery, and no accolades. There's a million Heroes of Rand, outside these baroque walls, toiling away in dirty, dangerous mines. All for what? So that these company-bosses and fat-cat politicians can pat each other on the back and live in obscene luxury in the middle of a squalid world? You rail, you rant, you break them down, and you turn the crowd against you. Angry people are shouting back at you now, boos and hisses are rising up from all sides of the room. And yet, you see a glimmer of respect in the eyes of servants. The waiters, the attendants, the assistants, they clench their fists and nod as your speech goes on. They hear you. They agree with you. A plate crashes into the podium. Another slams into the pillar nearby you. The crowd bulging toward you. The esteemed guests with murder in their eyes.`
-			`	Before you have time to act, Timothy and Wynnafrith have whisked you away from the angry crowd of the world's elites. Timothy, unhappy with your words, but still believing he owes you a debt, helps you into an unmarked vehicle, that quickly takes you away from the party, and back toward the spaceport and your ship. Timothy's final words to you being that you should get off world as quickly as you can, and that he is sorry he invited you here.`
+			`	Before you have time to act, Timothy and Wynnafrith have whisked you away from the angry crowd of the world's elites. Timothy, unhappy with your words, but still believing he owes you a debt, helps you into an unmarked vehicle that quickly takes you away from the party, and back toward the spaceport and your ship. Timothy's final words to you were that you should get off-world as quickly as you can, and that he is sorry he invited you here.`
 				decline
 
 			label thankthem
-			`	You thank your host, and the assembled notables for their gracious fanfare. You note, however, you are just one person. And you've done nothing that any one else in your shoes wouldn't have done. Kindness is contagious, and everyone is hero in some way. You hope that the take away here is not that you are special, but instead that everyone should just do their part. The guests clap as you step away from the podium.`
+			`	You thank your host, and the assembled notables for their gracious fanfare. You note, however, that you are just one person. And you've done nothing that any one else in your shoes wouldn't have done. Kindness is contagious, and everyone is a hero in some way. You hope that the takeaway here is not that you are special, but instead that everyone should just do their part. The guests clap as you step away from the podium.`
 				goto mingle
 
 			label deserved
-			`	You launch into a speech about how you alone are special. How most people are cold, and empty robots, but that a fire burns inside your breast. That you are the lynchpin that the entire galaxy hinges on, and that every human from here to Farpoint owes their future to you. The crowd's excitement wanes and a smattering of lackluster applause punctuates the end of your speech.`
+			`	You launch into a speech about how you alone are special. How most people are cold, and empty robots, but that a fire burns inside your breast. That you are the linchpin that the entire galaxy hinges on, and that every human from here to Farpoint owes their future to you. The crowd's excitement wanes and a smattering of lackluster applause punctuates the end of your speech.`
 
 			label mingle
 			action
@@ -7424,7 +7424,7 @@ mission "Timothy Radrickson 3d: Return to Rand"
 				payment 1000000
 				event "timothy radrickson imprisoned" 400
 			`	With the speeches done, you mingle with the crowd, making small talk with various dignitaries and company-bosses. You even say a few words to Regina. Everyone is pleased to meet you, and a few people ask for your autograph. Finally, Timothy makes his way to you and takes you to a quieter room off to the side.`
-			`	"Captain <last>, I hope you've found the night agreeable. I've noticed you have your fair share of fans here. I also wanted to let you know that there is cash associated with tonight's reward. You will be given 1 million credits and a daily stipend of 200 credits, as gift from Rand, and more specifically, from me."`
+			`	"Captain <last>, I hope you've found the night agreeable. I've noticed you have your fair share of fans here. I also wanted to let you know that there is cash associated with tonight's reward. You will be given 1 million credits and a daily stipend of 200 credits, as a gift from Rand, and more specifically, from me."`
 			`	Timothy pats you on the back. "Just another way for me to thank you for saving me all those years ago, and now my world as well."`
 			`	You nod politely, and your eyes scan the wall of his office. You see pictures of your ship, and you, from various news articles, printed and framed along the walls."`
 			choice
@@ -7450,11 +7450,11 @@ mission "Timothy Radrickson 3d: Return to Rand"
 			`	You talk with him for hours. About his life on Rand, the hardships of the mines, how he clawed his way out of it. But also about you, the challenges of running a ship, the battles, the close calls, and the joys of triumph.`
 
 			label end
-			`	As the sun rises your conversation winds to a close. Timothy escorts you back to a waiting vehicle and you say your farewells. The dark vehicle drives off into the bright desert, leaving behind an island of green, and warmth.`
+			`	As the sun rises your conversation winds to a close. Timothy escorts you back to a waiting vehicle and you say your farewells. The dark vehicle drives off into the bright desert, leaving behind an island of green and warmth.`
 				decline
 
 			label ship
-			`	Timothy acquiesces and escorts you back to a waiting vehicle, and you say your farewells. The dark vehicle drives off into the bright desert, leaving behind an island of green, and warmth.`
+			`	Timothy acquiesces and escorts you back to a waiting vehicle, and you say your farewells. The dark vehicle drives off into the bright desert, leaving behind an island of green and warmth.`
 				decline
 
 
@@ -7482,7 +7482,7 @@ mission "Timothy Radrickson 4: Imprisoned"
 			`	You turn to check out the screen. The talking heads are discussing some sort of huge scandal and the arrest of a prominent governor.`
 			`	"That's right, Ann," the anchor on the screen says. "With 8 counts of tax evasion, racketeering, and various corruption charges, Timothy Radrickson - former Governor of Rand - will likely spend the next 20 years behind bars."`
 			`	"Where he's going there will be no bars, Tom," Ann quips. "They plan to send him to a work detail on Oblivion."`
-			`	Tom gives that sort of news anchor laugh that's neither committal nor haughty. "In that case, forget what I said about 20 years, anything more than 5 years on Oblivion is a life sentence."`
+			`	Tom gives that sort of news anchor laugh that's neither committal nor haughty. "In that case, forget what I said about 20 years. Anything more than 5 years on Oblivion is a life sentence."`
 			`	Both news anchors laugh, and then segue into a story about highly intelligent ferrets that have learned to sing in German.`
 				accept
 
@@ -7496,7 +7496,7 @@ mission "Timothy Radrickson 5: Oblivion Meeting"
 	invisible
 	on offer
 		conversation
-			`Your ship descends through the beautiful, toxic horizon and lands in the dirty, dismal spaceport outside of the provincial capital, Tukayyid. The clumped together warehouses they liberally call a spaceport are used as a central clearing house by all on-world industries, and workers from every industry filter in and out of this never-ending boom town. In the shadows, and on the fringes, the sick, and infirm linger, looking for a handout; the price of progress on such a hostile world.`
+			`Your ship descends through the beautiful, toxic horizon and lands in the dirty, dismal spaceport outside of the provincial capital, Tukayyid. The clumped together warehouses they liberally call a spaceport are used as a central clearing house by all on-world industries, and workers from every industry filter in and out of this never-ending boom town. In the shadows, and on the fringes, the sick and infirm linger, looking for a handout; the price of progress on such a hostile world.`
 			`	Among the crowd one face draws your attention. A worker, unsupervised, is moving around a trolley of minerals by your ship as you have it refueled. His complexion is sallow, and his skin seems to droop off his bones. His blood red eyes, noticing your attention, languidly rise to look at you. Despite the damage, you realize you recognize him.`
 			`	"Captain <last>." He says, suffering a coughing fit. There's now red specs on his lips.`
 			`	"It's me. Timothy, remember? Boy, it's been a while. I'm a prisoner now. Chain-ganged here. Probably until the end." He spits his words out in short bursts, careful not to start coughing again.`
@@ -7553,7 +7553,7 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 				decline
 
 			label agree
-			`	Looking sideways first, Timothy takes a piece of yellowed paper from his pocket and hastily writes something down on it before handing it to you. "Have to go off world. Here's a list of what I need. Go to Rand first - address on paper. Norwen mines. Old friend. She will point you in right direction."`
+			`	Looking sideways first, Timothy takes a piece of yellowed paper from his pocket and hastily writes something down on it before handing it to you. "Have to go off world. Here's a list of what I need. Go to Rand first - address on paper. Norwen mines. Old friend. She will point you in the right direction."`
 			`	He abruptly turns away from you and goes back to loading equipment, but slower now, buying for time.`
 			`	"Eighteen days," he says wearily. "Then I go south. Lost in the maze of rigs." He pauses before saying more quietly, "and then I die." He looks back at you one last time. "Always owe you." His face cracks in one painful looking grin. "Good luck, my good friend."`
 			`	As you walk away from the Stephenson warehouse you take a look at his list. Initially it's various survival items; backpacks, camping equipment and the like. There's also a specialized survival suit, and some heavy duty detoxification medication here as well. More alarmingly, however, are the industrial chemical compounds that would easily create a bomb, not to mention the gun at the bottom.`
