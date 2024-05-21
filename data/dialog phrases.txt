@@ -152,6 +152,10 @@ phrase "generic completed pirate slave mission"
 	word
 		`After landing on <planet>, the pirates move the <bunks> slaves from your ship and pay you <payment>.`
 
+phrase "generic aborted pirate slave mission"
+	word
+		`Your slaves never arrived at <destination>. This doesn't help to establish your reputation as a reliable, no-questions-asked transporter.`
+
 phrase "generic completed emancipation mission"
 	word
 		`Local authorities thank you with joyous words and <payment>. They lead the <bunks> people you helped emancipate to their newfound freedom.`

@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Mission.h"
 #include "OutfitInfoDisplay.h"
 #include "Point.h"
+#include "ScrollVar.h"
 #include "ShipInfoDisplay.h"
 
 #include <map>
@@ -82,7 +83,7 @@ protected:
 	virtual void DrawItem(const std::string &name, const Point &point) = 0;
 	virtual int DividerOffset() const = 0;
 	virtual int DetailWidth() const = 0;
-	virtual int DrawDetails(const Point &center) = 0;
+	virtual double DrawDetails(const Point &center) = 0;
 	virtual BuyResult CanBuy(bool onlyOwned = false) const = 0;
 	virtual void Buy(bool onlyOwned = false) = 0;
 	virtual bool CanSell(bool toStorage = false) const = 0;
@@ -106,7 +107,6 @@ protected:
 
 	void DoFind(const std::string &text);
 	virtual int FindItem(const std::string &text) const = 0;
-	static int Search(const std::string &str, const std::string &sub);
 
 	int64_t LicenseCost(const Outfit *outfit, bool onlyOwned = false) const;
 
@@ -164,15 +164,9 @@ protected:
 	const Outfit *selectedOutfit = nullptr;
 	// (It may be worth moving the above pointers into the derived classes in the future.)
 
-	double mainScroll = 0.;
-	double mainSmoothScroll = 0;
-	double sidebarScroll = 0.;
-	double sidebarSmoothScroll = 0.;
-	double infobarScroll = 0.;
-	double infobarSmoothScroll = 0.;
-	double maxMainScroll = 0.;
-	double maxSidebarScroll = 0.;
-	double maxInfobarScroll = 0.;
+	ScrollVar<double> mainScroll;
+	ScrollVar<double> sidebarScroll;
+	ScrollVar<double> infobarScroll;
 	ShopPane activePane = ShopPane::Main;
 	char hoverButton = '\0';
 
@@ -189,9 +183,6 @@ protected:
 	ShipInfoDisplay shipInfo;
 	OutfitInfoDisplay outfitInfo;
 
-	mutable Point warningPoint;
-	mutable std::string warningType;
-
 
 private:
 	void DrawShipsSidebar();
@@ -201,7 +192,7 @@ private:
 
 	int DrawPlayerShipInfo(const Point &point);
 
-	bool DoScroll(double dy);
+	bool DoScroll(double dy, int steps = 5);
 	bool SetScrollToTop();
 	bool SetScrollToBottom();
 	void SideSelect(int count);
@@ -220,6 +211,11 @@ private:
 
 private:
 	bool delayedAutoScroll = false;
+
+	Point hoverPoint;
+	std::string shipName;
+	std::string warningType;
+	int hoverCount = 0;
 };
 
 
