@@ -94,7 +94,7 @@ phrase "generic infiltrating emancipation stopover pickup"
 
 phrase "generic emancipation pickup"
 	word
-		`You move your ship to a remote location and load the <passengers>, who seem relieved to escape slavery.`
+		`You move your ship to a remote location and load the <passengers>, who are relieved to escape slavery.`
 
 
 phrase "generic hunted bounty eliminated and payment dialog"
