@@ -8527,8 +8527,7 @@ mission "Tavish and Kormak 7"
 	on visit
 		dialog `You land on <planet>, but realize that Kormak and Tavish and their equipment are on one of your escorts who hasn't entered the system yet. Better depart and wait for them.`
 	on complete
-		action
-			outfit "Salvaged Artifact" 1 #needs a name
+		outfit "Salvaged Artifact" 1 # needs a name
 		conversation
 			`	Kormak and Tavish have changed back into their three piece suits and eagerly oversee the unloading of their instruments and artifacts into Alexandria. A handful of people dressed in a similar fashion come to watch the process. A few of them are eager to congratulate Tavish and Kormak.`
 			`	Tavish does not unload the large piece of alien equipment off your ship, and instead comes to speak with you.`
