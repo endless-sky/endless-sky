@@ -1525,7 +1525,7 @@ mission "Shady passenger transport 3 - double cross"
 		attributes "near earth" "core" "urban"
 		distance 5 10
 	passengers 4 8
-
+	illegal 400000 `It's difficult to feign ignorance of your passengers' background during your questioning. You wind up having to pay a small fortune in fines and bribes to keep yourself from being charged as an accomplice to some very serious-sounding crimes.`
 	to offer
 		random < 5
 		"rejected illegal jobs" < 3
