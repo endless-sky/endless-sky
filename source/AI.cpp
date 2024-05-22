@@ -399,10 +399,10 @@ void AI::IssueFormationChange(const PlayerInfo &player)
 
 	unsigned int count = targetShips.size();
 	if(toSet)
-		Messages::Add(to_string(count) + (count == 1 ? " ship" : " ships") + " are now flying in \"" + toSet->Name() +
-			"\" formation.", Messages::Importance::Low);
+		Messages::Add(to_string(count) + (count == 1 ? " ship" : " ships") + " will assume a \"" + toSet->Name() +
+			"\" formation when idle.", Messages::Importance::Low);
 	else
-		Messages::Add(to_string(count) + (count == 1 ? " ship" : " ships") + " are no longer flying in formation.",
+		Messages::Add(to_string(count) + (count == 1 ? " ship" : " ships") + " will no longer fly in formation.",
 			Messages::Importance::Low);
 }
 
