@@ -7380,15 +7380,15 @@ mission "Timothy Radrickson 3d: Return to Rand"
 				`	(Follow Wynnafrith.)`
 			`	She leads you through an army of valets, waiters, and attendants as you weave in and out of the various rooms and halls. Many of the guests appear to recognize you and offer you earnest congratulations. Eventually you are ushered to the table of honor where Wynnafrith introduces you to a half dozen company-bosses, senior executives, political operatives, and the like. You notice Regina here as well, but she is seated at a table in the back, on the fringes of the upper crust of society.`
 			`	Not long after being seated Governor Timothy appears and after making small talk with many of the gathered illuminaries sits beside you. "I have something to admit," he says quietly to you.`
-			`	He gives you a sheepish smile, "This is a celebration in your honor, Hero of Rand."`
+			`	He gives you a sheepish smile and says, "This is a celebration in your honor, Hero of Rand."`
 			choice
 				`	"Hero of Rand?"`
 				`	"What do mean?"`
 				`	"So you lied to me."`
-			`	He shrugs, "I just thought it would be more fun this way. Who doesn't like surprises?"`
+			`	He shrugs. "I just thought it would be more fun this way. Who doesn't like surprises?"`
 			`	"Without you the entire planet would have defaulted. Our creditors were circling like vultures eager to assume ownership of all our production capabilities, and turn the population into indentured servants. The whole world would have been their debtor's prison."`
 			`	He pauses to consider his words. "I mean, the language they would have used would be different, but that is what it would have amounted to. But you saved us, and more than that, we're now quite a bit more wealthy than we were before."`
-			`	Timothy snatches a glass and holds it up to you, "From ruin to riches! The Hero of Rand!"`
+			`	Timothy snatches a glass and holds it up to you and says, "From ruin to riches! The Hero of Rand!"`
 			`	A few others lift their glasses as well. They clink and Timothy then gulps the whole thing down, and after that the group breaks apart into smaller conversations.`
 			`	Eventually, the party settles down and Timothy leaves you to step up to the podium. He launches into a speech highlighting your career. The great changes you have wrought, the battles you have won, the legends of your ship. The crowd eats it all up, many having heard of some, or all of these exploits. But then Timothy takes a more somber note. He talks quietly about the troubles on his old world. On how as a starving, homeless fugitive he had recklessly hidden aboard the first ship he could find. How you had found him, half dead, in an empty crate. And how, instead of tossing him out an airlock, or dropping off at the nearest world, you took him where he asked. How you took care of him, and how through your generosity, you had given him a second chance.`
 			`	Light reflects off the tears that cling to Timothy's eyes as he tells the assembled crowd that, for him, that was your greatest moment, your most heroic action, that nothing you've done, or ever will do, compares to that simple act of mercy. And that this, to him, alone, is what makes you great.`
@@ -7425,10 +7425,10 @@ mission "Timothy Radrickson 3d: Return to Rand"
 				"salary: Hero of Rand" = 200
 				payment 1000000
 				event "timothy radrickson imprisoned" 400
-			`	You excuse yourself from the table and duck into the first empty room you find. You sit in one of the comfortable chairs; you notice a large wooden desk covered in screens and ledgers. You can still hear the muffled sounds of laughter, speeches, and general chatter from behind the walls. You sit for a while in a dark meditative silence. `
+			`	You excuse yourself from the table and duck into the first empty room you find. You sit in one of the comfortable chairs; you notice a large wooden desk covered in screens and ledgers. You can still hear the muffled sounds of laughter, speeches, and general chatter from behind the walls. You sit for a while in a dark meditative silence.`
 			`	After a while, a gentle knock on the door and Timothy pushes his way into the room.`
-			`	"I see you've found my office, Captain <last>. I'd like to apologize. I was hoping you'd appreciate the party, but, I realize it's not exactly everyone's scene. There's more then a few vipers in that crowd and there are things I've had to do for them I am not proud of..."`
-			`	He trails off, "But still, I'm glad you're here. Even tucked away in my office. I wanted to let you know that there are credits associated with tonight's prize. You will be given 1 million credits and a daily stipend of 200 credits, as a gift from Rand, and more specifically, from me. `
+			`	"I see you've found my office, Captain <last>. I'd like to apologize. I was hoping you'd appreciate the party, but, I realize it's not exactly everyone's scene. There's more then a few vipers in that crowd, and there are things I've had to do for them I am not proud of..." he trails off.`
+			`	"But still, I'm glad you're here. Even tucked away in my office. I wanted to let you know that there are credits associated with tonight's prize. You will be given 1 million credits and a daily stipend of 200 credits, as a gift from Rand, and more specifically, from me.`
 				goto jumpskip
 
 			label mingle
@@ -7501,6 +7501,7 @@ mission "Timothy Radrickson 4: Imprisoned"
 			`	Tom gives that sort of news anchor laugh that's neither committal nor haughty. "In that case, forget what I said about 20 years. Anything more than 5 years on Oblivion is a life sentence."`
 			`	Both news anchors laugh, and then segue into a story about highly intelligent ferrets that have learned to sing in German.`
 				accept
+
 
 mission "Timothy Radrickson 5: Oblivion Meeting"
 	landing
