@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "AsteroidField.h"
 #include "BatchDrawList.h"
 #include "CollisionSet.h"
+#include "Color.h"
 #include "Command.h"
 #include "DrawList.h"
 #include "EscortDisplay.h"
@@ -100,6 +101,21 @@ public:
 
 
 private:
+	class Outline {
+	public:
+		constexpr Outline(const Sprite *sprite, const Point &position, const Point &unit,
+			const float frame, const Color &color)
+			: sprite(sprite), position(position), unit(unit), frame(frame), color(color)
+		{
+		}
+
+		const Sprite *sprite;
+		const Point position;
+		const Point unit;
+		const float frame;
+		const Color color;
+	};
+
 	class Target {
 	public:
 		Point center;
@@ -167,7 +183,8 @@ private:
 	void DoGrudge(const std::shared_ptr<Ship> &target, const Government *attacker);
 
 	void CreateStatusOverlays();
-	void EmplaceStatusOverlay(const std::shared_ptr<Ship> &ship, Preferences::OverlayState overlaySetting, int value);
+	void EmplaceStatusOverlay(const std::shared_ptr<Ship> &ship, Preferences::OverlayState overlaySetting,
+		int value, double cloak);
 
 
 private:
@@ -220,15 +237,14 @@ private:
 	int targetSwizzle = -1;
 	EscortDisplay escorts;
 	AmmoDisplay ammoDisplay;
+	std::vector<Outline> outlines;
 	std::vector<Status> statuses;
 	std::vector<PlanetLabel> labels;
 	std::vector<AlertLabel> missileLabels;
 	std::vector<std::pair<const Outfit *, int>> ammo;
 	int jumpCount = 0;
 	const System *jumpInProgress[2] = {nullptr, nullptr};
-	const Sprite *highlightSprite = nullptr;
-	Point highlightUnit;
-	float highlightFrame = 0.f;
+	double hyperspacePercentage = 0.;
 
 	int step = 0;
 

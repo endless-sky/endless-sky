@@ -126,7 +126,7 @@ mission "Wanderers: Mereti: The Plant 5"
 			`	Va'ika stands beside you as you watch, staring into the distance almost morosely, before speaking. "It is regrettable that we have been [forced, made] to use these ships for war. This is far closer to the purpose we originally [conceived, designed] them to [serve, fulfill]." You catch a glimpse of a feather falling to the ground as she speaks. Then, she interrupts herself. "No, I should not be so [disheartened?]. The Korath drones have turned their back on their creators' [wishes, design] and seek to [heal, tend] these worlds alongside us. That is something we can all appreciate."`
 			choice
 				`	"Are you sure this will work?"`
-			`	Va'ika straightens up, and speaks with clear confience. "It is a [fortunate, convenient] situation. <planet> needs relatively little healing, so [housing, growing] these plants here will not create [difficulties, inconveniences] for our work. We have sent a small specialist [group, team] to [cultivate, look after] the plants. I have the utmost confidence in their [knowledge, abilities]."`
+			`	Va'ika straightens up, and speaks with clear confidence. "It is a [fortunate, convenient] situation. <planet> needs relatively little healing, so [housing, growing] these plants here will not create [difficulties, inconveniences] for our work. We have sent a small specialist [group, team] to [cultivate, look after] the plants. I have the utmost confidence in their [knowledge, abilities]."`
 				accept
 	on complete
 		event "mereti visiting eneremprukt" 5
