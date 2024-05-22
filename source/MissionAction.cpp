@@ -81,7 +81,7 @@ void MissionAction::Load(const DataNode &node)
 			it++;
 		}
 
-		for(const DataNode &child : node)
+		for(const DataNode &child = *it; it != node.end(); it++)
 			LoadSingle(child);
 	}
 }
