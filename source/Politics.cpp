@@ -35,13 +35,18 @@ namespace {
 	// Check if the ship evades being cargo scanned.
 	bool EvadesCargoScan(const Ship &ship)
 	{
+		const CargoHold &cargo = ship.Cargo();
+		int illegalPassengers = 0;
+		for(const auto &it : cargo.PassengerList())
+			if(it.first->IllegalCargoFine())
+				illegalPassengers += it.second;
 		// Illegal goods can be hidden inside legal goods to avoid detection.
-		const int contraband = ship.Cargo().IllegalCargoAmount();
+		const int contraband = cargo.IllegalCargoAmount() + illegalPassengers;
 		const int netIllegalCargo = contraband - ship.Attributes().Get("scan concealment");
 		if(netIllegalCargo <= 0)
 			return true;
 
-		const int legalGoods = ship.Cargo().Used() - contraband;
+		const int legalGoods = cargo.Used() - contraband + cargo.Passengers() - illegalPassengers;
 		const double illegalRatio = legalGoods ? max(1., 2. * netIllegalCargo / legalGoods) : 1.;
 		const double scanChance = illegalRatio / (1. + ship.Attributes().Get("scan interference"));
 		return Random::Real() > scanChance;
