@@ -347,29 +347,59 @@ void Ship::Load(const DataNode &node)
 				if(child.Size() >= 2)
 					outfit = GameData::Outfits().Get(child.Token(1));
 			}
-			Angle gunPortAngle = Angle(0.);
-			bool gunPortParallel = false;
+			Hardpoint::BaseAttributes attributes;
+			attributes.baseAngle = Angle(0.);
+			attributes.isParallel = false;
+			attributes.isOmnidirectional = true;
 			bool drawUnder = (key == "gun");
 			if(child.HasChildren())
 			{
+				bool defaultBaseAngle = true;
 				for(const DataNode &grand : child)
 				{
+					bool needToCheckAngles = false;
 					if(grand.Token(0) == "angle" && grand.Size() >= 2)
-						gunPortAngle = grand.Value(1);
+					{
+						attributes.baseAngle = grand.Value(1);
+						needToCheckAngles = true;
+						defaultBaseAngle = false;
+					}
 					else if(grand.Token(0) == "parallel")
-						gunPortParallel = true;
+						attributes.isParallel = true;
+					else if(grand.Token(0) == "arc" && grand.Size() >= 3)
+					{
+						attributes.isOmnidirectional = false;
+						attributes.minArc = Angle(grand.Value(1));
+						attributes.maxArc = Angle(grand.Value(2));
+						needToCheckAngles = true;
+						if(!Angle(0.).IsInRange(attributes.minArc, attributes.maxArc))
+							grand.PrintTrace("Warning: Minimum arc is higher than maximum arc. Might not work as expected.");
+					}
 					else if(grand.Token(0) == "under")
 						drawUnder = true;
 					else if(grand.Token(0) == "over")
 						drawUnder = false;
 					else
-						grand.PrintTrace("Skipping unrecognized attribute:");
+						grand.PrintTrace("Warning: Child nodes of \"" + key
+							+ "\" tokens can only be \"angle\", \"parallel\", or \"arc\":");
+
+					if(needToCheckAngles && !defaultBaseAngle && !attributes.isOmnidirectional)
+					{
+						attributes.minArc += attributes.baseAngle;
+						attributes.maxArc += attributes.baseAngle;
+					}
+				}
+				if(!attributes.isOmnidirectional && defaultBaseAngle)
+				{
+					const Angle &first = attributes.minArc;
+					const Angle &second = attributes.maxArc;
+					attributes.baseAngle = first + (second - first).AbsDegrees() / 2.;
 				}
 			}
 			if(key == "gun")
-				armament.AddGunPort(hardpoint, gunPortAngle, gunPortParallel, drawUnder, outfit);
+				armament.AddGunPort(hardpoint, attributes, drawUnder, outfit);
 			else
-				armament.AddTurret(hardpoint, drawUnder, outfit);
+				armament.AddTurret(hardpoint, attributes, drawUnder, outfit);
 		}
 		else if(key == "never disabled")
 			neverDisabled = true;
@@ -640,7 +670,7 @@ void Ship::FinishLoading(bool isNewInstance)
 					while(nextGun != end && nextGun->IsTurret())
 						++nextGun;
 					const Outfit *outfit = (nextGun == end) ? nullptr : nextGun->GetOutfit();
-					merged.AddGunPort(bit->GetPoint() * 2., bit->GetBaseAngle(), bit->IsParallel(), bit->IsUnder(), outfit);
+					merged.AddGunPort(bit->GetPoint() * 2., bit->GetBaseAttributes(), bit->IsUnder(), outfit);
 					if(nextGun != end)
 						++nextGun;
 				}
@@ -649,7 +679,7 @@ void Ship::FinishLoading(bool isNewInstance)
 					while(nextTurret != end && !nextTurret->IsTurret())
 						++nextTurret;
 					const Outfit *outfit = (nextTurret == end) ? nullptr : nextTurret->GetOutfit();
-					merged.AddTurret(bit->GetPoint() * 2., bit->IsUnder(), outfit);
+					merged.AddTurret(bit->GetPoint() * 2., bit->GetBaseAttributes(), bit->IsUnder(), outfit);
 					if(nextTurret != end)
 						++nextTurret;
 				}
@@ -1030,13 +1060,18 @@ void Ship::Save(DataWriter &out) const
 					hardpoint.GetOutfit()->TrueName());
 			else
 				out.Write(type, 2. * hardpoint.GetPoint().X(), 2. * hardpoint.GetPoint().Y());
-			double hardpointAngle = hardpoint.GetBaseAngle().Degrees();
+			const auto &attributes = hardpoint.GetBaseAttributes();
+			const double baseDegree = attributes.baseAngle.Degrees();
+			const double firstArc = attributes.minArc.Degrees() - baseDegree;
+			const double secondArc = attributes.maxArc.Degrees() - baseDegree;
 			out.BeginChild();
 			{
-				if(hardpointAngle)
-					out.Write("angle", hardpointAngle);
-				if(hardpoint.IsParallel())
+				if(baseDegree)
+					out.Write("angle", baseDegree);
+				if(attributes.isParallel)
 					out.Write("parallel");
+				if(!attributes.isOmnidirectional)
+					out.Write("arc", firstArc, secondArc);
 				if(hardpoint.IsUnder())
 					out.Write("under");
 				else
@@ -1873,7 +1908,7 @@ int Ship::Scan(const PlayerInfo &player)
 
 	bool isImportant = false;
 	if(target->isYours)
-		isImportant = target.get() == player.Flagship() || government->FinesContents(target.get());
+		isImportant = target.get() == player.Flagship() || government->FinesContents(target.get(), player);
 
 	if(startedScanning && isYours)
 	{
@@ -2338,6 +2373,7 @@ int Ship::CustomSwizzle() const
 {
 	return customSwizzle;
 }
+
 
 
 // Check if the ship is thrusting. If so, the engine sound should be played.
@@ -2815,7 +2851,7 @@ bool Ship::Phases(Projectile &projectile) const
 		return true;
 
 	// Perform the most expensive checks last.
-	// If multiple ships with partial phasing are stacked on top of eachother, then the chance of collision increases
+	// If multiple ships with partial phasing are stacked on top of each other, then the chance of collision increases
 	// significantly, because each ship in the firing-line resets the SetPhase of the previous one. But such stacks
 	// are rare, so we are not going to do anything special for this.
 	if(attributes.Get("cloak phasing") >= Random::Real())
@@ -2937,13 +2973,14 @@ double Ship::Acceleration() const
 
 
 
-double Ship::MaxVelocity() const
+double Ship::MaxVelocity(bool withAfterburner) const
 {
 	// v * drag / mass == thrust / mass
 	// v * drag == thrust
 	// v = thrust / drag
 	double thrust = attributes.Get("thrust");
-	return (thrust ? thrust : attributes.Get("afterburner thrust")) / Drag();
+	double afterburnerThrust = attributes.Get("afterburner thrust");
+	return (thrust ? thrust + afterburnerThrust * withAfterburner : afterburnerThrust) / Drag();
 }
 
 
