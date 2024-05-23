@@ -3641,7 +3641,7 @@ mission "Pirate Duel"
 			`	The Vanguard powers up its weapons.`
 				decline
 			label "killed anglerfish"
-			`Out of curiosity, you enter Umbral. You continue to see no sign of the Esca.`
+			`Out of curiosity, you enter Umbral. As suspected, you continue to see no sign of the Esca.`
 	
 	npc kill
 		government "Independent (Killable)"
