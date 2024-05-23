@@ -1,4 +1,7 @@
 version 0.10.7
+  * Big changes:
+    * Rebalanced ship mass and engine performance across the game. (@Quantumshark)
+      * Increased thrust, turn, reverse thrust, and afterburner thrust by 50% for all engines.
   * Bug fixes:
     * Content bugs:
       * Typo fixes. (@a4358, @TomGoodIdea, @bene_dictator, @tibetiroka, @Arachi-Lover, @enot888)
@@ -25,6 +28,8 @@ version 0.10.7
       * Don't select Graffias as a target for Free Worlds "Scouting Run" jobs. (@warp-core)
       * "Deep: Remnant: Continue Research" no longer offers if you've completed the missions after it. (@Saugia)
       * Adjusted the explosion stats for the Korsmanath A'awoj and Echo-galleon. (@Quantumshark)
+      * Updated an outdated news item about human drones. (@tibetiroka)
+      * Pirate jobs with illegal cargo are now marked as "infiltrating". (@ziproot)
     * Engine bugs:
       * Fix edge case in code style checker. (@tibetiroka)
       * Don't consider "Parsing: <file>" output when in debug mode as errors when test parsing. (@warp-core)
@@ -141,6 +146,7 @@ version 0.10.7
       * Removed pirates from Ildaria. (@Hurleveur)
       * Adjust Imo Dep Minables & Add Hai Mining fleets. (@Saugia)
       * Separate the Kestrel from "Tarazed Advanced" shipyard. (@Saugia)
+      * Gave Korath world-ships new display names based on planets in the original Korath territory. (@ziproot)
   * Game mechanics:
     * New mechanics:
       * Autocondition for testing if you can land on a given planet. (@Amazinite)
