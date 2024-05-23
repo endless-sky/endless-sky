@@ -900,8 +900,8 @@ ship "Merganser"
 		"cargo space" 11
 		"fuel capacity" 600
 		"ramscoop" 1.75
-		"mass" 90
-		"drag" 1.3
+		"mass" 130
+		"drag" 1.6
 		"heat dissipation" .9
 		"gaslining" 1
 		"outfit space" 181
@@ -1192,7 +1192,7 @@ ship "Peregrine"
 		"hull" 8600
 		"required crew" 9
 		"bunks" 25
-		"mass" 350
+		"mass" 786
 		"drag" 4.3
 		"heat dissipation" 0.85
 		"fuel capacity" 900
