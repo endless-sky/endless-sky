@@ -4,7 +4,7 @@ version 0.10.7
       * Increased thrust, turn, reverse thrust, and afterburner thrust by 50% for all engines.
   * Bug fixes:
     * Content bugs:
-      * Typo fixes. (@a4358, @TomGoodIdea, @bene_dictator, @tibetiroka, @Arachi-Lover, @enot888)
+      * Typo fixes. (@a4358, @Arachi-Lover, @bene_dictator, @enot888, @tibetiroka, @TomGoodIdea)
       * Earth day jobs no longer offer unless you can land on Earth. (@ziproot)
       * Make TMBR 3a dialog choice order consistent. (@ziproot)
       * Add blocked message to Hai Film Crew 3. (@neurotrope)
