@@ -71,7 +71,7 @@ version 0.10.7
       * Added missions about bringing a lost dog to its owner on Glory. (@SpearDane, @bene-dictator)
       * Added Core Pirate ship variants with Tractor Beams. (@Saugia)
       * Added derelict ships that can randomly spawn in some human systems. (@Petersupes)
-      * Added a series of missions about a journalist in Syndicate space. (@bene-dictator)
+      * Added a series of missions about a journalist in Syndicate space. (@bene-dictator, @joshumu)
     * Mission changes:
       * Refactor the Argosy Hijacking mission. (@bene-dictator)
       * Reduce the requirements for unlocking the Kestrel the first time. (@brendanjones)
@@ -275,7 +275,7 @@ Version 0.10.5
       * Added a new person ship for the Github reviewers. (@bene-dictator, @DarcyManoel @EjoThims, @roadrunner56, @Saugia, @TheMarksman-ES, @tibetiroka, @1010todd)
       * Added new Deep hails and ship names. (@bene-dictator)
       * Added a new culture conversation about Burthen. (@bene-dictator)
-      * Added a new mission about transporting a stranded Paradise Worlds family back home. (@bene-dictator)
+      * Added a new mission about transporting a stranded Paradise Worlds family back home. (@bene-dictator, @joshumu)
       * Added a new conversation about Greenrock's reversion to piracy in the Free Worlds campaign. (@bene-dictator)
       * A new set of bounty jobs that make use of the "entering" personality. (@Quantumshark)
       * Added some larger Hai transport jobs. (@roadrunner56)
