@@ -43,12 +43,12 @@ version 0.10.7
       * Correctly handle arrow keys with no item selected in the shop. (@TomGoodIdea)
       * Align plugin checkbox clickzones correctly. (@warp-core)
       * Fix mission distance calculations with different settings. (@warp-core)
-      * Improvements to fix crashes when loading/unloading images. (@quyykk)
+      * Fix crashes when loading/unloading images. (@quyykk)
       * Fix custom port button name when using "add port". (@warp-core)
-      * Corrected the parsing of the initial player repuptation grandchild node in Government. (@xxxyyyqqq12345)
+      * Corrected the parsing of the initial player reputation grandchild node in Government. (@xxxyyyqqq12345)
       * Draw distance to the selected system after mission markers. (@TomGoodIdea)
       * Ships with "disables" personality ask for help disabling, instead of destroying, their enemies. (@TomGoodIdea)
-      * Suppress missions require landing in the next system messages from failed missions. (@OcelotWalrus)
+      * Suppress "missions require landing in the next system" messages from failed missions. (@OcelotWalrus)
       * Remove outdated watchdog. (@petervdmeer)
       * Properly check if a mission is failed. (@TomGoodIdea)
       * Hardpoint labels and lines in the ship info panel will properly align to the "weapons" box from the interface definition. (@Zitchas)
@@ -81,8 +81,8 @@ version 0.10.7
         * Care Package to South:
           * Limit the source to near earth planets, increase offer rate to 65%.
           * Reworked the way the follow-up missions are handled:
-          * Care Package 2a has been replaced with a new mission, FW Deep Memorial, a set of missions and events that offers regardless of the player's choices, but which has a branch if Brower dies during the attack.
-          * Care Package 2b has been moved from immediately after Diplomacy 4 to during the first FW break, and now offers on Rust instead of Deep. The flamethrower mission will likely bring players to Rust anyway, but it's no longer in the way of the main campaign.
+            * Care Package 2a has been replaced with a new mission, FW Deep Memorial, a set of missions and events that offers regardless of the player's choices, but which has a branch if Brower dies during the attack.
+            * Care Package 2b has been moved from immediately after Diplomacy 4 to during the first FW break, and now offers on Rust instead of Deep. The flamethrower mission will likely bring players to Rust anyway, but it's no longer in the way of the main campaign.
         * Moving House:
           * Increase offer rate to 35%, limit source planets to near earth, core and paradise.
           * Tie the second part of the chain to the FW chapter break instead of Thule's independence.
@@ -118,10 +118,10 @@ version 0.10.7
     * Balance:
       * Reduce the chances of finding Bactrians in random pirate fleet spawns by half. (@alexrovw)
       * Nerf the Unfettered medical jobs. (@Hurleveur)
-      * Cut Wanderer sun reactor energy capacity in half + -20% energy generation on the biochemical cells. (@Quantumshark)
+      * Cut Wanderer sun reactor energy capacity in half and -20% energy generation on the biochemical cells. (@Quantumshark)
       * Cut the asteroid scanner's price in half. (@AvianGeneticist)
-      * Reverted the changes to the acceleration and initial velocity of human missiles made in 0.10.0 (@Anarchist2)
-      * Tweaked the capacity of some human missile pods (@Anarchist2)
+      * Reverted the changes to the acceleration and initial velocity of human missiles made in 0.10.0. (@Anarchist2)
+      * Tweaked the capacity of some human missile pods. (@Anarchist2)
         * Javelin mini pod 40 -> 30
         * Sidewinder pod 4 -> 6
         * Typhoon pod 2 -> 3
@@ -152,7 +152,7 @@ version 0.10.7
       * Autocondition for testing if you can land on a given planet. (@Amazinite)
       * Added a "fused" weapon tag that causes projectiles to explode at the end of their life. (@Amazinite)
       * Added tags that stop projectiles from colliding with different object types. (@Amazinite)
-      * Add a "quiet" personality that prevents passive hails but still allows direct hails. (@bene_dictator)
+      * Added a "quiet" personality that prevents passive hails but still allows direct hails. (@bene_dictator)
       * Conditions to word-form numbers in conversations. (@UnorderedSigh)
       * Disabled fighters and drones will no longer be hit by stray projectiles. (@tibetiroka)
       * Separate delayed and non-delayed shield generation and hull repair attributes. (@Quantumshark)
