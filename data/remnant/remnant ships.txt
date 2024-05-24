@@ -920,9 +920,9 @@ ship "Merganser"
 		"tactical scan power" 26
 		"ion resistance" 0.06
 		"scramble resistance" 0.06
-		"thrust" 5.0
-		"turn" 60.0
-		"reverse thrust" 5.0
+		"thrust" 7.5
+		"turn" 90.0
+		"reverse thrust" 7.5
 		"thrusting energy" 0.75
 		"thrusting heat" 0.7
 		"turning energy" 0.15
