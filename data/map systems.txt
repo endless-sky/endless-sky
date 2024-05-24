@@ -13451,8 +13451,9 @@ system Fala
 	object
 		sprite star/g5-old
 		period 10
-	object
-		sprite planet/desert1-b
+	object "Basilisk Station"
+		sprite planet/station19
+			scale 0.5
 		distance 226.84
 		period 38.6531
 	object
