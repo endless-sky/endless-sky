@@ -196,7 +196,7 @@ version 0.10.7
     * Simplified CMake build on Linux and MacOS. (@quyykk)
     * Run CI workflows when their configuration file is changed. (@tibetiroka)
     * Updated codespell check exclusion list. (@tibetiroka)
-    * Update steam workflow to include necessary development libraries (@MCOfficer)
+    * Update Steam workflow to include necessary development libraries. (@MCOfficer)
 
 Version 0.10.6
   * Bug fixes:
