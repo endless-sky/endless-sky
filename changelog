@@ -5,7 +5,7 @@ version 0.10.7
     * Disabled fighters and drones will no longer be hit by stray projectiles. (@tibetiroka)
     * Reverted the changes to the acceleration and initial velocity of human missiles made in 0.10.0. (@Anarchist2)
     * Added many new uninhabited planets and stations to Human space. (@bene-dictator, @Quantumshark)
-    * Turret hardpoint can now have limited firing arcs. (@1010todd)
+    * Turret hardpoint can now have limited firing arcs. (@1010todd, @oo13, @tibetiroka)
   * Bug fixes:
     * Content bugs:
       * Typo fixes. (@a4358, @Arachi-Lover, @bene-dictator, @enot888, @tibetiroka, @TomGoodIdea)
@@ -47,7 +47,7 @@ version 0.10.7
       * Correctly handle arrow keys with no item selected in the shop. (@TomGoodIdea)
       * Aligned plugin checkbox clickzones correctly. (@warp-core)
       * Fixed mission distance calculations with different settings. (@warp-core)
-      * Fixed crashes when loading/unloading images. (@quyykk)
+      * Fixed issues with unloading landscape images. (@quyykk)
       * Fixed custom port button name when using "add port". (@warp-core)
       * Corrected the parsing of the initial player reputation grandchild node in Government. (@xxxyyyqqq12345)
       * Draw distance to the selected system after mission markers. (@TomGoodIdea)
@@ -67,7 +67,7 @@ version 0.10.7
       * Added conspiracy theorist spaceport news. (@tibetiroka)
       * Added logbook entries for Alastair Korban. (@bene-dictator)
       * Added a conversation about Kraz and Delta V outfits being stocked in the northern Dirt Belt and near Earth after the war begins. (@bene-dictator)
-      * Added a short set of missions involving the Wanderers and Mereti. (@bene-dictator, @LorenzoBolla, @Quantumshark)
+      * Added a short set of missions involving the Wanderers and Mereti. (@Quantumshark, @bene-dictator, @LorenzoBolla)
       * Updated Kraken Station landing image. (@bene-dictator)
       * Added normal blaster weapons to sales on pirate planets. (@bene-dictator)
       * Added missions about bringing a lost dog to its owner on Glory. (@SpearDane, @bene-dictator)
@@ -130,7 +130,7 @@ version 0.10.7
         * "blast radius": 50 -> 90
         * "shield damage": 1060 -> 790
         * "hull damage": 900 -> 670
-      * Tweak Marauder loadouts, including removing campaign unlocked outfits. (@EjoThims, @Hurleveur, @Quantumshark)
+      * Tweak Marauder loadouts, including removing campaign unlocked outfits. (@Hurleveur, @EjoThims, @Quantumshark)
       * Reduced the missile strength and turn rate of the Firelight. (@Quantumshark)
         * "missile strength": 60 -> 30
         * "Firelight Activated" "turn rate": 2 -> 1.7
@@ -147,7 +147,7 @@ version 0.10.7
       * Removed pirates from Ildaria. (@Hurleveur)
       * Adjusted Imo Dep Minables & Add Hai Mining fleets. (@Saugia)
       * Separated the Kestrel from "Tarazed Advanced" shipyard. (@Saugia)
-      * Gave Korath world-ships new display names based on planets in the original Korath territory. (@EjoThims, @ravenshining, @UnorderedSigh, @ziproot)
+      * Gave Korath world-ships new display names based on planets in the original Korath territory. (@ziproot, @EjoThims, @ravenshining, @UnorderedSigh)
   * Game mechanics:
     * New mechanics:
       * Autocondition for testing if you can land on a given planet. (@Amazinite)
@@ -159,7 +159,7 @@ version 0.10.7
       * "image" interface elements can now be rotated. (@warp-core)
       * Boarding (repair or capture) ships with a fighter flagship is now possible. (@tibetiroka)
       * Game actions can now play music with a "music" node. (@eebop)
-      * Various new cloak related attributes. (@EjoThims, @Hurleveur, @petervdmeer, @quyykk, @TomGoodIdea, @warp-core, @Zitchas)
+      * Various new cloak related attributes. (@Hurleveur, @petervdmeer)
       * Added the "disabled recovery time" attribute which allows a disabled ship to repair itself, with an optional energy and heat cost. (@Azure3141)
       * Plugins can now add more metadata to their plugin.txt file. (@Beed-git)
       * Events can now be made to apply instantly with a delay of 0 days. (@RisingLeaf)
@@ -173,7 +173,7 @@ version 0.10.7
     * Include messages when hailing other ships in the message log. (@TomGoodIdea)
     * The shop now has tooltips for viewing your unabbreviated credits and the names of your ships without needing to select them. (@Amazinite)
     * Disabled hails are now sent passively. (@bene-dictator)
-    * Hid unknown system names in the escort HUD. (@TomGoodIdea)
+    * Hide unknown system names in the escort HUD. (@TomGoodIdea)
     * There can now be multiple pages of controls. (@TomGoodIdea)
     * There is now a help message for managing multiple ships in the outfitter. (@TomGoodIdea)
     * Added a preference to turn off the sobel filter on your flagship and target ship in the HUD. (@warp-core)
