@@ -67,7 +67,7 @@ version 0.10.7
       * Added conspiracy theorist spaceport news. (@tibetiroka)
       * Added logbook entries for Alastair Korban. (@bene-dictator)
       * Added a conversation about Kraz and Delta V outfits being stocked in the northern Dirt Belt and near Earth after the war begins. (@bene-dictator)
-      * Added a short set of missions involving the Wanderers and Mereti. (@Quantumshark)
+      * Added a short set of missions involving the Wanderers and Mereti. (@Quantumshark, @bene-dictator, @LorenzoBolla)
       * Updated Kraken Station landing image. (@bene-dictator)
       * Added normal blaster weapons to sales on pirate planets. (@bene-dictator)
       * Added missions about bringing a lost dog to its owner on Glory. (@SpearDane, @bene-dictator)
@@ -81,12 +81,12 @@ version 0.10.7
       * Various improvements to pre-war missions. (@Anarchist2)
         * Text changes to all chains.
         * Care Package to South:
-          * Limit the source to near earth planets, increase offer rate to 65%.
+          * Limit the source to "near earth" planets, increase offer rate to 65%.
           * Reworked the way the follow-up missions are handled:
             * Care Package 2a has been replaced with a new mission, FW Deep Memorial, a set of missions and events that offers regardless of the player's choices, but which has a branch if Brower dies during the attack.
             * Care Package 2b has been moved from immediately after Diplomacy 4 to during the first FW break, and now offers on Rust instead of Deep. The flamethrower mission will likely bring players to Rust anyway, but it's no longer in the way of the main campaign.
         * Moving House:
-          * Increase offer rate to 35%, limit source planets to near earth, core and paradise.
+          * Increase offer rate to 35%, limit source planets to "near earth", "core" and "paradise".
           * Tie the second part of the chain to the FW chapter break instead of Thule's independence.
           * Allow the player to decline the follow-up mission.
         * Southern Fiance:
@@ -95,9 +95,9 @@ version 0.10.7
           * Moved some of the information from the later missions up into the first mission to compensate.
       * "Deep: Interrogation" no longer offers during the main campaign. (@Saugia)
       * Various improvements to some pirate jobs. (@ziproot)
-        * "Drug Running" missions are now "infiltrating";
-        * Added (and used) generic aborted phrases for pirate slave jobs;
-        * Failing or aborting a pirate slave job causes a reduction in reputation with the "Pirate" government;
+        * "Drug Running" missions are now "infiltrating".
+        * Added (and used) generic aborted phrases for pirate slave jobs.
+        * Failing or aborting a pirate slave job causes a reduction in reputation with the "Pirate" government.
         * Many jobs now have a minimum travel distance of 4, instead of 3, to prevent them from involving travelling between the Men system and a CCOR world, as this route does not involve any territory hostile to pirates. Affected jobs:
           * "Cargo Smuggling", "Bulk", and "Stealth (South)" variations,
           * "Drug Running", and "Stealth (South)" variation,
@@ -130,7 +130,7 @@ version 0.10.7
         * "blast radius": 50 -> 90
         * "shield damage": 1060 -> 790
         * "hull damage": 900 -> 670
-      * Tweak Marauder loadouts, including removing campaign unlocked outfits. (@Hurleveur)
+      * Tweak Marauder loadouts, including removing campaign unlocked outfits. (@Hurleveur, @Quantumshark, @EjoThims)
       * Reduced the missile strength and turn rate of the Firelight. (@Quantumshark)
         * "missile strength": 60 -> 30
         * "Firelight Activated" "turn rate": 2 -> 1.7
@@ -147,19 +147,19 @@ version 0.10.7
       * Removed pirates from Ildaria. (@Hurleveur)
       * Adjust Imo Dep Minables & Add Hai Mining fleets. (@Saugia)
       * Separate the Kestrel from "Tarazed Advanced" shipyard. (@Saugia)
-      * Gave Korath world-ships new display names based on planets in the original Korath territory. (@ziproot)
+      * Gave Korath world-ships new display names based on planets in the original Korath territory. (@ziproot, @EjoThims, @ravenshining, @UnorderedSigh)
   * Game mechanics:
     * New mechanics:
       * Autocondition for testing if you can land on a given planet. (@Amazinite)
       * Added a "fused" weapon tag that causes projectiles to explode at the end of their life. (@Amazinite)
       * Added tags that stop projectiles from colliding with different object types. (@Amazinite)
       * Added a "quiet" personality that prevents passive hails but still allows direct hails. (@bene-dictator)
-      * Conditions to word-form numbers in conversations. (@UnorderedSigh)
+      * Added support for substituting the values of conditions in word form within conversation text. (@UnorderedSigh)
       * Separate delayed and non-delayed shield generation and hull repair attributes. (@Quantumshark)
       * "image" interface elements can be rotated. (@warp-core)
       * Allow boarding (repair or capture) ships with a fighter flagship. (@tibetiroka)
       * Game actions can now play music with a `music` node. (@eebop)
-      * Various new cloak related attributes. (@Hurleveur)
+      * Various new cloak related attributes. (@Hurleveur, @quyykk, @petervdmeer, @EjoThims, @TomGoodIdea, @warp-core, @Zitchas)
       * Added the "disabled recovery time" attribute which allows a disabled ship to repair itself, with an optional energy and heat cost. (@Azure3141)
       * Allow plugins to add more metadata to their plugin.txt file. (@Beed-git)
       * Events can now be made to apply instantly with a delay of 0 days. (@RisingLeaf)
