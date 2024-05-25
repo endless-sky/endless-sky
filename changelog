@@ -2,6 +2,10 @@ version 0.10.7
   * Big changes:
     * Rebalanced ship mass and engine performance across the game. (@Quantumshark)
       * Increased thrust, turn, reverse thrust, and afterburner thrust by 50% for all engines.
+    * Disabled fighters and drones will no longer be hit by stray projectiles. (@tibetiroka)
+    * Reverted the changes to the acceleration and initial velocity of human missiles made in 0.10.0. (@Anarchist2)
+    * Added many new uninhabited planets and stations to Human space. (@bene-dictator, @Quantumshark)
+    * Turret hardpoint can have limited firing arcs. (@1010todd)
   * Bug fixes:
     * Content bugs:
       * Typo fixes. (@a4358, @Arachi-Lover, @bene-dictator, @enot888, @tibetiroka, @TomGoodIdea)
@@ -65,7 +69,6 @@ version 0.10.7
       * Added a conversation about Kraz and Delta V outfits being stocked in the northern Dirt Belt and near Earth after the war begins. (@bene-dictator)
       * Added a short set of missions involving the Wanderers and Mereti. (@Quantumshark)
       * Updated Kraken Station landing image. (@bene-dictator)
-      * Added new planets and stations to Human space. (@bene-dictator, @Quantumshark)
       * Added normal blaster weapons to sales on pirate planets. (@bene-dictator)
       * Added missions about bringing a lost dog to its owner on Glory. (@SpearDane, @bene-dictator)
       * Added Core Pirate ship variants with Tractor Beams. (@Saugia)
@@ -119,7 +122,6 @@ version 0.10.7
       * Nerf the Unfettered medical jobs. (@Hurleveur)
       * Cut Wanderer sun reactor energy capacity in half and -20% energy generation on the biochemical cells. (@Quantumshark)
       * Cut the asteroid scanner's price in half. (@AvianGeneticist)
-      * Reverted the changes to the acceleration and initial velocity of human missiles made in 0.10.0. (@Anarchist2)
       * Tweaked the capacity of some human missile pods. (@Anarchist2)
         * Javelin mini pod 40 -> 30
         * Sidewinder pod 4 -> 6
@@ -153,14 +155,12 @@ version 0.10.7
       * Added tags that stop projectiles from colliding with different object types. (@Amazinite)
       * Added a "quiet" personality that prevents passive hails but still allows direct hails. (@bene-dictator)
       * Conditions to word-form numbers in conversations. (@UnorderedSigh)
-      * Disabled fighters and drones will no longer be hit by stray projectiles. (@tibetiroka)
       * Separate delayed and non-delayed shield generation and hull repair attributes. (@Quantumshark)
       * "image" interface elements can be rotated. (@warp-core)
       * Allow boarding (repair or capture) ships with a fighter flagship. (@tibetiroka)
       * Game actions can now play music with a `music` node. (@eebop)
       * Various new cloak related attributes. (@Hurleveur)
       * Added the "disabled recovery time" attribute which allows a disabled ship to repair itself, with an optional energy and heat cost. (@Azure3141)
-      * Ability to limit turret firing arc. (@1010todd)
       * Allow plugins to add more metadata to their plugin.txt file. (@Beed-git)
       * Events can now be made to apply instantly with a delay of 0 days. (@RisingLeaf)
       * Mission triggers and actions can now give the player debt. (@Amazinite)
