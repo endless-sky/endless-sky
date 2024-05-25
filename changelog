@@ -158,7 +158,7 @@ version 0.10.7
       * Separate delayed and non-delayed shield generation and hull repair attributes. (@Quantumshark)
       * "image" interface elements can be rotated. (@warp-core)
       * Allow boarding (repair or capture) ships with a fighter flagship. (@tibetiroka)
-      * Game actions can now play music with a `music` node. (@eebop)
+      * Game actions can now play music with a "music" node. (@eebop)
       * Various new cloak related attributes. (@EjoThims, @Hurleveur, @petervdmeer, @quyykk, @TomGoodIdea, @warp-core, @Zitchas)
       * Added the "disabled recovery time" attribute which allows a disabled ship to repair itself, with an optional energy and heat cost. (@Azure3141)
       * Allow plugins to add more metadata to their plugin.txt file. (@Beed-git)
