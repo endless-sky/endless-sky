@@ -181,7 +181,7 @@ version 0.10.7
     * Added a control for toggling the turret tracking setting. (@TomGoodIdea)
     * "Fancy" cloaked ship outlines. (@Koranir)
     * Expand the orbits key image to make space for all vanilla governments. (@lantzk)
-    * Added a camera acceleration setting that causes the camera to shift with the flagship's movement. (@Koranir)
+    * Added a camera acceleration setting that causes the camera to shift with the flagship's movement. (@Koranir, @tibetiroka)
   * Under the hood:
     * Improve load panel tooltip timestamp generation. (@RisingLeaf, @ziproot)
     * Style updates to Armament. (@RisingLeaf)
