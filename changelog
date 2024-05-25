@@ -103,13 +103,13 @@ version 0.10.7
           * "Drug Running", and "Stealth (South)" variation,
           * "Slave Transport", and "Bulk" variation,
           * "Escort Illegal Cargo" South variation, and
-          * "Escort Stolen Vessel" South variation;
-        * The targets NPCs in "Eliminating Law Enforcement" jobs have been given the "marked" personality;
-        * Alphabetized the list of personalities for the target NPCs in "Eliminating Competition" jobs;
+          * "Escort Stolen Vessel" South variation.
+        * The targets NPCs in "Eliminating Law Enforcement" jobs have been given the "marked" personality.
+        * Alphabetized the list of personalities for the target NPCs in "Eliminating Competition" jobs.
         * Various jobs will only place NPCs in systems neighbored by a non-Pirate system. Affected jobs are:
           * "Eliminating Law Enforcement" Core and South variations,
           * "Raid on Merchants" North and South variations, and
-          * "Cargo Theft (South)"; and
+          * "Cargo Theft (South)".
         * Various jobs will only offer from systems neighbored by a non-Pirate system (that is, they will no longer offer from CCOR worlds). Affected jobs are:
           * "Eliminating Law Enforcement (South)",
           * "Southern Pirate Defense",
