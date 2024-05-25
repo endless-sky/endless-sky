@@ -155,7 +155,7 @@ version 0.10.7
       * Conditions to word-form numbers in conversations. (@UnorderedSigh)
       * Disabled fighters and drones will no longer be hit by stray projectiles. (@tibetiroka)
       * Separate delayed and non-delayed shield generation and hull repair attributes. (@Quantumshark)
-      * Rotate interface images. (@warp-core)
+      * "image" interface elements can be rotated. (@warp-core)
       * Allow boarding (repair or capture) ships with a fighter flagship. (@tibetiroka)
       * Game actions can now play music with a `music` node. (@eebop)
       * Various new cloak related attributes. (@Hurleveur)
