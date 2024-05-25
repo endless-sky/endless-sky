@@ -196,6 +196,7 @@ version 0.10.7
     * Link GLEW::glew instead of GLEW::GLEW in CMakeLists.txt. (@Koranir)
     * Simplify CMake build on Linux and MacOS. (@quyykk)
     * Run CI workflows when their configuration file is changed. (@tibetiroka)
+    * Update codespell check exclusion list. (@tibetiroka)
 
 Version 0.10.6
   * Bug fixes:
