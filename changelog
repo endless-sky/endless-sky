@@ -75,20 +75,20 @@ version 0.10.7
       * Added derelict ships that can randomly spawn in some human systems. (@Petersupes)
       * Added a series of missions about a journalist in Syndicate space. (@bene-dictator, @joshumu)
     * Mission changes:
-      * Refactor the Argosy Hijacking mission. (@bene-dictator)
-      * Reduce the requirements for unlocking the Kestrel the first time. (@brendanjones)
-      * Make the "Remnant: Cognizance 4" mission description more helpful. (@OcelotWalrus)
+      * Refactored the Argosy Hijacking mission. (@bene-dictator)
+      * Reduced the requirements for unlocking the Kestrel the first time. (@brendanjones)
+      * Made "Remnant: Cognizance 4" mission description more helpful. (@OcelotWalrus)
       * Various improvements to pre-war missions. (@Anarchist2)
         * Text changes to all chains.
         * Care Package to South:
-          * Limit the source to "near earth" planets, increase offer rate to 65%.
+          * Limited the source to "near earth" planets, increased offer rate to 65%.
           * Reworked the way the follow-up missions are handled:
             * Care Package 2a has been replaced with a new mission, FW Deep Memorial, a set of missions and events that offers regardless of the player's choices, but which has a branch if Brower dies during the attack.
             * Care Package 2b has been moved from immediately after Diplomacy 4 to during the first FW break, and now offers on Rust instead of Deep. The flamethrower mission will likely bring players to Rust anyway, but it's no longer in the way of the main campaign.
         * Moving House:
-          * Increase offer rate to 35%, limit source planets to "near earth", "core" and "paradise".
-          * Tie the second part of the chain to the FW chapter break instead of Thule's independence.
-          * Allow the player to decline the follow-up mission.
+          * Increased offer rate to 35%, limited source planets to "near earth", "core" and "paradise".
+          * Tied the second part of the chain to the FW chapter break instead of Thule's independence.
+          * The player can now choose to decline the follow-up mission.
         * Southern Fiance:
           * Reduced the possible source planets to urban core Syndicate worlds.
           * Cut all of the follow up missions except for the marriage letter. The only mission string that gets multiple epilogue missions is the Free Worlds campaign; having this many follow-ups to a single mission is intrusive at best.
@@ -106,17 +106,17 @@ version 0.10.7
           * "Escort Stolen Vessel" South variation.
         * The targets NPCs in "Eliminating Law Enforcement" jobs have been given the "marked" personality.
         * Alphabetized the list of personalities for the target NPCs in "Eliminating Competition" jobs.
-        * Various jobs will only place NPCs in systems neighbored by a non-Pirate system. Affected jobs are:
+        * Various jobs will now only place NPCs in systems neighbored by a non-Pirate system. Affected jobs are:
           * "Eliminating Law Enforcement" Core and South variations,
           * "Raid on Merchants" North and South variations, and
           * "Cargo Theft (South)".
-        * Various jobs will only offer from systems neighbored by a non-Pirate system (that is, they will no longer offer from CCOR worlds). Affected jobs are:
+        * Various jobs will now only offer from systems neighbored by a non-Pirate system (that is, they will no longer offer from CCOR worlds). Affected jobs are:
           * "Eliminating Law Enforcement (South)",
           * "Southern Pirate Defense",
           * "Cargo Theft (South)", and
           * "FW Assassination".
-      * Mark Betelgeuse in "Deep Scientist Rescue 0" instead of making it a waypoint. (@roadrunner56)
-      * Use marks instead of waypoints in "Pact Recon 3". (@ziproot)
+      * Use "mark" instead of "waypoint" in Betelgeuse in "Deep Scientist Rescue 0". (@roadrunner56)
+      * Use "mark" instead of "waypoint" in "Pact Recon 3". (@ziproot)
     * Balance:
       * Reduced the chances of finding Bactrians in random pirate fleet spawns by half. (@alexrovw)
       * Nerfed the Unfettered medical jobs. (@Hurleveur)
