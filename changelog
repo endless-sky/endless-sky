@@ -173,7 +173,7 @@ version 0.10.7
     * Include messages when hailing other ships in the message log. (@TomGoodIdea)
     * The shop now has tooltips for viewing your unabbreviated credits and the names of your ships without needing to select them. (@Amazinite)
     * Disabled hails are now sent passively. (@bene-dictator)
-    * The names unknown systems are now hidden in the escort HUD. (@TomGoodIdea)
+    * The names of unknown systems are now hidden in the escort HUD. (@TomGoodIdea)
     * There can now be multiple pages of controls. (@TomGoodIdea)
     * There is now a help message for managing multiple ships in the outfitter. (@TomGoodIdea)
     * Added a preference to turn off the sobel filter on your flagship and target ship in the HUD. (@warp-core)
