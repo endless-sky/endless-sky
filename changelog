@@ -89,7 +89,7 @@ version 0.10.7
           * Allow the player to decline the follow-up mission.
         * Southern Fiance:
           * Reduced the possible source planets to urban core Syndicate worlds.
-          * Cut all of the follow up missions except for the marriage letter. The only mission string that get multiple epilogue missions is the Free Worlds campaign; having this many follow-ups to a single mission is intrusive at best.
+          * Cut all of the follow up missions except for the marriage letter. The only mission string that gets multiple epilogue missions is the Free Worlds campaign; having this many follow-ups to a single mission is intrusive at best.
           * Moved some of the information from the later missions up into the first mission to compensate.
       * "Deep: Interrogation" no longer offers during the main campaign. (@Saugia)
       * Various improvements to some pirate jobs. (@ziproot)
