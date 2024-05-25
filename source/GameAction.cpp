@@ -209,9 +209,9 @@ void GameAction::LoadSingle(const DataNode &child)
 		events[GameData::Events().Get(child.Token(1))] = make_pair(minDays, maxDays);
 	}
 	else if(key == "music" && hasValue)
-		music = child.Token(1);
+		music.emplace(child.Tokens().begin() + 1, child.Tokens().end());
 	else if(key == "mute")
-		music = "";
+		music.emplace(1);
 	else if(key == "mark" && hasValue)
 		mark.insert(GameData::Systems().Get(child.Token(1)));
 	else if(key == "unmark" && hasValue)
@@ -285,7 +285,12 @@ void GameAction::Save(DataWriter &out) const
 		if(music->empty())
 			out.Write("mute");
 		else
-			out.Write("music", music.value());
+		{
+			out.WriteToken("music");
+			for(const auto &item : music.value())
+				out.WriteToken(item);
+			out.Write();
+		}
 	}
 
 	conditions.Save(out);
@@ -429,7 +434,8 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 		player.FailMission(*caller);
 	if(music.has_value())
 	{
-		if(*music == "<ambient>")
+		string chosen = music.value()[Random::Int(music->size())];
+		if(chosen == "<ambient>")
 		{
 			if(player.GetPlanet())
 				Audio::PlayMusic(player.GetPlanet()->MusicName());
@@ -437,7 +443,7 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 				Audio::PlayMusic(player.GetSystem()->MusicName());
 		}
 		else
-			Audio::PlayMusic(music.value());
+			Audio::PlayMusic(chosen);
 	}
 
 	// Check if applying the conditions changes the player's reputations.

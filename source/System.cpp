@@ -366,7 +366,10 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		else if(key == "government")
 			government = GameData::Governments().Get(value);
 		else if(key == "music")
-			music = value;
+		{
+			if(hasValue)
+				music = vector(node.Tokens().begin() + 1, node.Tokens().end());
+		}
 		else if(key == "habitable")
 			habitable = child.Value(valueIndex);
 		else if(key == "jump range")
@@ -594,9 +597,12 @@ const Government *System::GetGovernment() const
 
 
 // Get the name of the ambient audio to play in this system.
+// If there are multiple options available, returns a random one.
 const string &System::MusicName() const
 {
-	return music;
+	if(music.size() == 1)
+		return music[0];
+	return music[Random::Int(music.size())];
 }
 
 

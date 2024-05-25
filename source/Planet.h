@@ -73,6 +73,7 @@ public:
 	// Get the landscape sprite.
 	const Sprite *Landscape() const;
 	// Get the name of the ambient audio to play on this planet.
+	// If there are multiple options available, returns a random one.
 	const std::string &MusicName() const;
 
 	// Get the list of "attributes" of the planet.
@@ -162,7 +163,7 @@ private:
 	std::string description;
 	Port port;
 	const Sprite *landscape = nullptr;
-	std::string music;
+	std::vector<std::string> music = std::vector<std::string>(1);
 
 	std::set<std::string> attributes;
 

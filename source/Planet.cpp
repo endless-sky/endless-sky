@@ -177,7 +177,7 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 		else if(key == "landscape")
 			landscape = SpriteSet::Get(value);
 		else if(key == "music")
-			music = value;
+			music = vector(node.Tokens().begin() + 1, node.Tokens().end());
 		else if(key == "description" || key == "spaceport")
 		{
 			const bool isDescription = key == "description";
@@ -364,9 +364,12 @@ const Sprite *Planet::Landscape() const
 
 
 // Get the name of the ambient audio to play on this planet.
+// If there are multiple options available, returns a random one.
 const string &Planet::MusicName() const
 {
-	return music;
+	if(music.size() == 1)
+		return music[0];
+	return music[Random::Int(music.size())];
 }
 
 

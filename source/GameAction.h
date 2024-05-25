@@ -100,7 +100,7 @@ private:
 	int64_t fine = 0;
 	std::vector<Debt> debt;
 
-	std::optional<std::string> music;
+	std::optional<std::vector<std::string>> music;
 
 	std::set<const System *> mark;
 	std::set<const System *> unmark;
