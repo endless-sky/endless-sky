@@ -79,7 +79,7 @@ mission "Pact Recon 0"
 		dialog phrase "generic waypoint on visit"
 	on complete
 		payment 25000
-		event "pact recon 0" 1 6
+		event "pact recon 0" 1
 		dialog `When you land on <planet>, you're approached by Freya Winters. She gives you <payment> in exchange for your scanner logs of the Southern systems. "Thank you, Captain. I pray the pirates didn't give you too much trouble," she says. "I'll be in touch when we've got a new assignment for you, assuming you're still interested."`
 
 
@@ -110,7 +110,7 @@ mission "Pact Recon 1"
 		dialog phrase "generic waypoint on visit"
 	on complete
 		payment 35000
-		event "pact recon 1" 1 6
+		event "pact recon 1" 1
 		dialog `You transfer your sensor logs to Freya. She thanks you for your work and pays you <payment>. "I'll let you know when we need your services again," she says.`
 
 
@@ -141,7 +141,7 @@ mission "Pact Recon 2"
 		dialog phrase "generic waypoint on visit"
 	on complete
 		payment 70000
-		event "pact recon 2" 1 6
+		event "pact recon 2" 1
 		dialog `Freya Winters meets up with you in person soon after you land. "Glad to see you're still in one piece. I pray you didn't have much trouble," she says, as she hands you a credit chip for <payment>. "You've been a great help to us. I'll be sure to contact you next time we need a scout."`
 
 
