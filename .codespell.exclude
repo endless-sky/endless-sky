@@ -100,5 +100,5 @@ planet Independance
 	description `	Of the few prototype bunkers that were deployed, none ever survived the surface of Independance; the Councils simply didn't have the technology for such an ambitious project. The official who proposed the plan was shortly shuffled out of the Politburo, and what remained of the bunkers were left quietly in the depths of the gas giant.`
 	object Independance
 		"Mian"
-		"i' amazin"       # is amazing (mispronounced)
+		"i' amazin"         # is amazing (mispronounced)
             * Care Package 2a has been replaced with a new mission, FW Deep Memorial, a set of missions and events that offers regardless of the player's choices, but which has a branch if Brower dies during the attack.
