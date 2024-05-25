@@ -73,7 +73,7 @@
           <li>Various new short mission chains, including one involving the Wanderers and Mereti.</li>
           <li>The changes to initial velocity and acceleration of missiles in v0.10.0 have been reverted.</li>
           <li>There are now many new uninhabited planets and stations in human space.</li>
-          <li>Disabled Fighters and Drones will no longer be hit by stray projectiles; only weapons fire that specifically targets them.</li>
+          <li>Disabled fighters and drones will no longer be hit by stray projectiles; only weapons fire that specifically targets them.</li>
           <li>Missions can "mark" systems of importance without requiring the player to visit them, and leave them marked after the player has visited.</li>
           <li>Mission triggers and conversation actions can do various new things, including playing music, giving the player debt, and applying events immediately, instead of after at least one day.</li>
           <li>The firing arc for a turret hardpoint can be limited.</li>
