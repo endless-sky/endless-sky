@@ -49,7 +49,6 @@ version 0.10.7
       * Draw distance to the selected system after mission markers. (@TomGoodIdea)
       * Ships with "disables" personality ask for help disabling, instead of destroying, their enemies. (@TomGoodIdea)
       * Suppress "missions require landing in the next system" messages from failed missions. (@OcelotWalrus)
-      * Remove outdated watchdog. (@petervdmeer)
       * Properly check if a mission is failed. (@TomGoodIdea)
       * Hardpoint labels and lines in the ship info panel will properly align to the "weapons" box from the interface definition. (@Zitchas)
   * Game content:
