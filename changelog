@@ -197,6 +197,7 @@ version 0.10.7
     * Run CI workflows when their configuration file is changed. (@tibetiroka)
     * Updated codespell check exclusion list. (@tibetiroka)
     * Updated Steam workflow to include necessary development libraries. (@MCOfficer)
+    * The Steam workflow now always runs build steps when it is dispatched, regardless of file changes. (@warp-core)
 
 Version 0.10.6
   * Bug fixes:
