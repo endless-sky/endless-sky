@@ -64,6 +64,9 @@ namespace {
 	const vector<string> VSYNC_SETTINGS = {"off", "on", "adaptive"};
 	int vsyncIndex = 1;
 
+	const vector<string> CAMERA_ACCELERATION_SETTINGS = {"off", "on", "reversed"};
+	int cameraAccelerationIndex = 1;
+
 	class OverlaySetting {
 	public:
 		OverlaySetting() = default;
@@ -161,6 +164,7 @@ void Preferences::Load()
 	// values for settings that are off by default.
 	settings["Landing zoom"] = true;
 	settings["Render motion blur"] = true;
+	settings["Cloaked ship outlines"] = true;
 	settings[FRUGAL_ESCORTS] = true;
 	settings[EXPEND_AMMO] = true;
 	settings["Damaged fighters retreat"] = true;
@@ -218,6 +222,8 @@ void Preferences::Load()
 			viewZoom = max(ZOOM_MIN, min(node.Value(1), ZOOM_MAX));
 		else if(node.Token(0) == "vsync")
 			vsyncIndex = max<int>(0, min<int>(node.Value(1), VSYNC_SETTINGS.size() - 1));
+		else if(node.Token(0) == "camera acceleration")
+			cameraAccelerationIndex = max<int>(0, min<int>(node.Value(1), CAMERA_ACCELERATION_SETTINGS.size() - 1));
 		else if(node.Token(0) == "Show all status overlays")
 			statusOverlaySettings[OverlayType::ALL].SetState(node.Value(1));
 		else if(node.Token(0) == "Show flagship overlay")
@@ -303,6 +309,7 @@ void Preferences::Save()
 	out.Write("Flotsam collection", flotsamIndex);
 	out.Write("view zoom", viewZoom);
 	out.Write("vsync", vsyncIndex);
+	out.Write("camera acceleration", cameraAccelerationIndex);
 	out.Write("date format", dateFormatIndex);
 	out.Write("Show all status overlays", statusOverlaySettings[OverlayType::ALL].ToInt());
 	out.Write("Show flagship overlay", statusOverlaySettings[OverlayType::FLAGSHIP].ToInt());
@@ -560,6 +567,27 @@ const string &Preferences::VSyncSetting()
 
 
 
+void Preferences::ToggleCameraAcceleration()
+{
+	cameraAccelerationIndex = (cameraAccelerationIndex + 1) % CAMERA_ACCELERATION_SETTINGS.size();
+}
+
+
+
+Preferences::CameraAccel Preferences::CameraAcceleration()
+{
+	return static_cast<CameraAccel>(cameraAccelerationIndex);
+}
+
+
+
+const string &Preferences::CameraAccelerationSetting()
+{
+	return CAMERA_ACCELERATION_SETTINGS[cameraAccelerationIndex];
+}
+
+
+
 void Preferences::CycleStatusOverlays(Preferences::OverlayType type)
 {
 	// Calling OverlaySetting::Increment when the state is ON_HIT will cycle to off.
@@ -641,7 +669,6 @@ const string &Preferences::AutoFireSetting()
 {
 	return AUTO_FIRE_SETTINGS[autoFireIndex];
 }
-
 
 
 

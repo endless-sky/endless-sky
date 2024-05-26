@@ -1641,6 +1641,28 @@ ship "Falcon" "Falcon (Laser Chaser)"
 		"Heavy Laser" 4
 		"Armageddon Core"
 
+ship "Falcon" "Falcon (Tractor Beam)"
+	outfits
+		"Proton Gun" 4
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret"
+		"Tractor Beam"
+		"Breeder Reactor"
+		"LP144a Battery Pack"
+		"D67-TM Shield Generator"
+		"Cargo Expansion"
+		"Laser Rifle" 21
+		"Impala Plasma Thruster"
+		"Orca Plasma Steering"
+		"Hyperdrive"
+	gun "Proton Gun"
+	gun "Proton Gun"
+	gun "Proton Gun"
+	gun "Proton Gun"
+	turret "Heavy Anti-Missile Turret"
+	turret "Tractor Beam"
+	turret "Quad Blaster Turret"
+	turret "Quad Blaster Turret"
 
 ship "Falcon" "Falcon (Javelin)"
 	outfits
@@ -2347,6 +2369,22 @@ ship "Headhunter" "Headhunter (Strike)"
 		"RT-I Radiothermal"
 		"LP072a Battery Pack"
 		"D23-QP Shield Generator"
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Hyperdrive"
+
+
+ship "Headhunter" "Headhunter (Tractor Beam)"
+	outfits
+		"Twin Modified Blaster" 2
+		"Meteor Missile Pod" 2
+		"Meteor Missile" 29
+		"Meteor Missile Box"
+		"Tractor Beam"
+		"RT-I Radiothermal"
+		"LP072a Battery Pack"
+		"D23-QP Shield Generator"
+		"Cargo Expansion"
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"
@@ -3092,6 +3130,33 @@ ship "Protector" "Protector (Quad Blaster)"
 		"Hyperdrive"
 
 
+ship "Protector" "Protector (Tractor Beam)"
+	outfits
+		"Torpedo Launcher"
+		"Torpedo" 30
+		"Quad Blaster Turret" 4
+		"Anti-Missile Turret" 2
+		"Tractor Beam" 2
+		"Fusion Reactor"
+		"D94-YV Shield Generator"
+		"D67-TM Shield Generator"
+		"Water Coolant System"
+		"Large Radar Jammer"
+		"Cargo Expansion" 2
+		"Laser Rifle" 21
+		"Impala Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Hyperdrive"
+	turret "Tractor Beam"
+	turret "Quad Blaster Turret"
+	turret "Anti-Missile Turret"
+	turret "Quad Blaster Turret"
+	turret "Quad Blaster Turret"
+	turret "Anti-Missile Turret"
+	turret "Quad Blaster Turret"
+	turret "Tractor Beam"
+
+
 
 ship "Quicksilver" "Quicksilver (Mark II)"
 	outfits
@@ -3414,6 +3479,27 @@ ship "Splinter" "Splinter (Proton)"
 		"Hyperdrive"
 	turret "Proton Turret"
 	turret "Anti-Missile Turret"
+	turret "Proton Turret"
+	
+
+ship "Splinter" "Splinter (Tractor Beam)"
+	outfits
+	outfits
+		"Twin Modified Blaster" 2
+		"Proton Turret" 2
+		"Tractor Beam"
+		"Water Coolant System"
+		"Fission Reactor"
+		"LP036a Battery Pack"
+		"D94-YV Shield Generator"
+		"Small Radar Jammer"
+		"Cargo Expansion"
+		"Laser Rifle" 3
+		"X3700 Ion Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+	turret "Proton Turret"
+	turret "Tractor Beam"
 	turret "Proton Turret"
 
 
