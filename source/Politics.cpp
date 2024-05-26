@@ -46,7 +46,7 @@ namespace {
 		if(netIllegalCargo <= 0)
 			return true;
 
-		const int legalGoods = cargo.Used() - contraband + cargo.Passengers() - illegalPassengers;
+		const int legalGoods = cargo.Used() + cargo.Passengers() - contraband;
 		const double illegalRatio = legalGoods ? max(1., 2. * netIllegalCargo / legalGoods) : 1.;
 		const double scanChance = illegalRatio / (1. + ship.Attributes().Get("scan interference"));
 		return Random::Real() > scanChance;
