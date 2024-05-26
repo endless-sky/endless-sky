@@ -21,7 +21,7 @@ ship "Pug Zibruka"
 		"hull" 1000
 		"required crew" 4
 		"bunks" 6
-		"mass" 324
+		"mass" 480
 		"drag" 3.7
 		"heat dissipation" .67
 		"fuel capacity" 600
@@ -29,6 +29,9 @@ ship "Pug Zibruka"
 		"outfit space" 180
 		"weapon capacity" 68
 		"engine capacity" 76
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"energy capacity" 1000
 		"energy generation" 10
 		"heat generation" 20
@@ -71,7 +74,7 @@ ship "Pug Enfolta"
 		"hull" 1700
 		"required crew" 19
 		"bunks" 27
-		"mass" 760
+		"mass" 1640
 		"drag" 7.1
 		"heat dissipation" .49
 		"fuel capacity" 600
@@ -79,6 +82,9 @@ ship "Pug Enfolta"
 		"outfit space" 360
 		"weapon capacity" 184
 		"engine capacity" 106
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"energy capacity" 2000
 		"energy generation" 22
 		"heat generation" 32
@@ -126,7 +132,7 @@ ship "Pug Maboro"
 		"hull" 2700
 		"required crew" 54
 		"bunks" 87
-		"mass" 1990
+		"mass" 7520
 		"drag" 16.7
 		"heat dissipation" .36
 		"fuel capacity" 600
@@ -134,6 +140,9 @@ ship "Pug Maboro"
 		"outfit space" 560
 		"weapon capacity" 309
 		"engine capacity" 148
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"energy capacity" 4000
 		"energy generation" 32
 		"heat generation" 48
@@ -183,7 +192,7 @@ ship "Pug Arfecta"
 		"hull" 80000
 		"required crew" 36
 		"bunks" 46
-		"mass" 1325
+		"mass" 2680
 		"drag" 11.25
 		"heat dissipation" .54
 		"fuel capacity" 1200
@@ -191,6 +200,9 @@ ship "Pug Arfecta"
 		"outfit space" 640
 		"weapon capacity" 390
 		"engine capacity" 220
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"energy capacity" 10000
 		"energy generation" 200
 		"heat generation" 10
@@ -216,7 +228,7 @@ ship "Pug Arfecta"
 		"Pug Peacekeeping Staff" 36
 		
 		"Pug Lohmar Thruster"
-		"Pug Lohmar Steering" 2
+		"Pug Lohmar Steering" # Extra steering
 		"Jump Drive"
 	
 	engine -17.5 157.5
