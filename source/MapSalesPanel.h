@@ -90,6 +90,7 @@ protected:
 
 	const CategoryList &categories;
 	bool onlyShowSoldHere = false;
+	bool onlyShowStorageHere = false;
 
 
 private:

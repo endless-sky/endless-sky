@@ -54,7 +54,9 @@ public:
 	// Calculate the path for the given ship to get to the given system. The
 	// ship will use a jump drive or hyperdrive depending on what it has. The
 	// pathfinding will stop once a path to the destination is found.
-	DistanceMap(const Ship &ship, const System &destination);
+	// If a player is given, the path will only include systems that the
+	// player has visited.
+	DistanceMap(const Ship &ship, const System &destination, const PlayerInfo *player = nullptr);
 
 	// Find out if the given system is reachable.
 	bool HasRoute(const System &system) const;
@@ -114,6 +116,7 @@ private:
 	int jumpFuel = 0;
 	bool useWormholes = false;
 	double jumpRange = 0.;
+	const Ship *ship = nullptr;
 
 	friend class RoutePlan;
 };

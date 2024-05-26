@@ -283,6 +283,11 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 	{
 		GetUI()->Pop(this);
 	}
+	else if(command.Has(Command::HELP))
+	{
+		if(panelState.Ships().size() > 1)
+			DoHelp("multiple ships", true);
+	}
 	else if(key == 's' || key == SDLK_RETURN || key == SDLK_KP_ENTER || (control && key == SDLK_TAB))
 	{
 		if(!panelState.Ships().empty())
@@ -766,7 +771,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 		table.Draw(ship.DisplayModelName());
 
 		const System *system = ship.GetSystem();
-		table.Draw(system ? system->Name() : "");
+		table.Draw(system ? (player.KnowsName(*system) ? system->Name() : "???") : "");
 
 		string shields = to_string(static_cast<int>(100. * max(0., ship.Shields()))) + "%";
 		table.Draw(shields);
@@ -911,6 +916,6 @@ PlayerInfoPanel::SortableColumn::SortableColumn(
 	Layout layout,
 	InfoPanelState::ShipComparator *shipSort
 )
-: name(name), offset(offset), endX(endX), layout(layout), shipSort(shipSort)
+	: name(name), offset(offset), endX(endX), layout(layout), shipSort(shipSort)
 {
 }
