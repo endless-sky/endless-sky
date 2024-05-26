@@ -66,7 +66,7 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	// Since the loading of landscape images is deferred, make sure that the
 	// landscapes for this system are loaded before showing the planet panel.
 	TaskQueue queue;
-	GameData::Preload(queue, planet.Landscape());
+GameData::Preload(queue, planet.Landscape());
 	queue.Wait();
 	queue.ProcessSyncTasks();
 }
@@ -398,7 +398,7 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 		if(outfitsToSell > 0)
 		{
 			out << "\n- ";
-			out << (planet.HasOutfitter() ? "store " : "sell ") << outfitsToSell << " outfit";
+			out << (planet.HasOutfitter() ? "store " : ( planet.IsInhabited() && system.HasTrade() ? "sell " : "dump ")) << outfitsToSell << " outfit";
 			out << (outfitsToSell > 1 ? "s" : "");
 			out << " that none of your ships can hold.";
 			if(!uniquesToSell.empty())
@@ -426,7 +426,7 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 		// Warn about commodities you will have to sell.
 		if(commoditiesToSell > 0)
 		{
-			out << "\n- sell " << Format::CargoString(commoditiesToSell, "cargo");
+			out << "\n-  " << ( planet.IsInhabited() && system.HasTrade() ? "sell " : "dump ") << Format::CargoString(commoditiesToSell, "cargo");
 			out << " that you do not have space for.";
 		}
 		out << "\nAre you sure you want to continue?";
