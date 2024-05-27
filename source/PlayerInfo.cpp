@@ -1778,7 +1778,7 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 	int day = date.DaysSinceEpoch();
 	int64_t leftOver = cargo.Used();
 	int64_t totalBasis = 0;
-	if(left_over)
+	if(leftOver)
 	{
 		if(planet->IsInhabited() && planet->CanUseServices() && system->HasTrade())
 		{
