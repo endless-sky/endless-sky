@@ -1776,7 +1776,7 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 	// Any ordinary cargo left behind can be either sold, stored or dumped.
 	int64_t income = 0;
 	int day = date.DaysSinceEpoch();
-	int64_t left_over = cargo.Used();
+	int64_t leftOver = cargo.Used();
 	int64_t totalBasis = 0;
 	if(left_over)
 	{
