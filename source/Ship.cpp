@@ -625,12 +625,12 @@ void Ship::FinishLoading(bool isNewInstance)
 	{
 		double baseShields = baseAttributes.Get("shields");
 		double baseHull = baseAttributes.Get("hull");
-		baseAttributes.LoadExplosion(
-				(baseShields + baseHull) * autoExplosion.baseMult * autoExplosion.radiusMult,
-				(baseShields + baseHull) * autoExplosion.baseMult * autoExplosion.shieldMult,
-				(baseShields + baseHull) * autoExplosion.baseMult * autoExplosion.hullMult,
-				(baseShields + baseHull) * autoExplosion.baseMult * autoExplosion.forceMult
-			);
+		const double scale = (baseShields + baseHull) * autoExplosion.baseMult;
+		const double radius = scale * autoExplosion.radiusMult;
+		const double shieldDamage = scale * autoExplosion.shieldMult;
+		const double hullDamage = scale * autoExplosion.hullMult;
+		const double hitForce = scale * autoExplosion.forceMult;
+		baseAttributes.LoadExplosion(radius, shieldDamage, hullDamage, hitForce);
 	}
 
 	// All copies of this ship should save pointers to the "explosion" weapon
