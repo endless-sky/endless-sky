@@ -97,6 +97,10 @@ public:
 	const std::set<const System *> &VisitedWaypoints() const;
 	const std::set<const Planet *> &Stopovers() const;
 	const std::set<const Planet *> &VisitedStopovers() const;
+	const std::set<const System *> &MarkedSystems() const;
+	const std::set<const System *> &UnmarkedSystems() const;
+	void Mark(const System *system) const;
+	void Unmark(const System *system) const;
 	const std::string &Cargo() const;
 	int CargoSize() const;
 	int IllegalCargoFine() const;
@@ -247,6 +251,10 @@ private:
 	std::list<LocationFilter> stopoverFilters;
 	std::set<const Planet *> visitedStopovers;
 	std::set<const System *> visitedWaypoints;
+	// Systems that don't need to be visited, but which the mission still
+	// wants to highlight for the player.
+	mutable std::set<const System *> markedSystems;
+	mutable std::set<const System *> unmarkedSystems;
 
 	// User-defined text replacements unique to this mission:
 	TextReplacements substitutions;

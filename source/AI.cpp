@@ -1897,7 +1897,8 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 	// If the parent is in-system and planning to jump, non-staying escorts should follow suit.
 	else if(parent.Commands().Has(Command::JUMP) && parent.GetTargetSystem() && !isStaying)
 	{
-		SelectRoute(ship, parent.GetTargetSystem());
+		if(parent.GetTargetSystem() != ship.GetTargetSystem())
+			SelectRoute(ship, parent.GetTargetSystem());
 
 		if(ship.GetTargetSystem())
 		{
@@ -2006,6 +2007,7 @@ bool AI::CanRefuel(const Ship &ship, const StellarObject *target)
 
 	return true;
 }
+
 
 
 // Set the ship's target system or planet in order to reach the
@@ -2204,7 +2206,14 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition,
 	bool isFacing = (dp.Unit().Dot(angle.Unit()) > .95);
 	if(!isClose || (!isFacing && !shouldReverse))
 		command.SetTurn(TurnToward(ship, dp));
-	if(isFacing)
+	// Drag is not applied when not thrusting, so stop thrusting when close to max speed
+	// to save energy. Work with a slightly lower maximum velocity to avoid border cases.
+	// In order for a ship to use their afterburner, they must also have the forward
+	// command active. Therefore, if this ship should use its afterburner, use the
+	// max velocity with afterburner thrust included.
+	double maxVelocity = ship.MaxVelocity(ShouldUseAfterburner(ship)) * .99;
+	if(isFacing && (velocity.LengthSquared() <= maxVelocity * maxVelocity
+			|| dp.Unit().Dot(velocity.Unit()) < .95))
 		command |= Command::FORWARD;
 	else if(shouldReverse)
 	{
@@ -3767,6 +3776,7 @@ double AI::RendezvousTime(const Point &p, const Point &v, double vp)
 
 	return numeric_limits<double>::quiet_NaN();
 }
+
 
 
 // Searches every asteroid within the ship scan limit and returns either the

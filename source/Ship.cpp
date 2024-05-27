@@ -2413,6 +2413,7 @@ int Ship::CustomSwizzle() const
 }
 
 
+
 // Check if the ship is thrusting. If so, the engine sound should be played.
 bool Ship::IsThrusting() const
 {
@@ -2888,7 +2889,7 @@ bool Ship::Phases(Projectile &projectile) const
 		return true;
 
 	// Perform the most expensive checks last.
-	// If multiple ships with partial phasing are stacked on top of eachother, then the chance of collision increases
+	// If multiple ships with partial phasing are stacked on top of each other, then the chance of collision increases
 	// significantly, because each ship in the firing-line resets the SetPhase of the previous one. But such stacks
 	// are rare, so we are not going to do anything special for this.
 	if(attributes.Get("cloak phasing") >= Random::Real())
@@ -3010,13 +3011,14 @@ double Ship::Acceleration() const
 
 
 
-double Ship::MaxVelocity() const
+double Ship::MaxVelocity(bool withAfterburner) const
 {
 	// v * drag / mass == thrust / mass
 	// v * drag == thrust
 	// v = thrust / drag
 	double thrust = attributes.Get("thrust");
-	return (thrust ? thrust : attributes.Get("afterburner thrust")) / Drag();
+	double afterburnerThrust = attributes.Get("afterburner thrust");
+	return (thrust ? thrust + afterburnerThrust * withAfterburner : afterburnerThrust) / Drag();
 }
 
 
