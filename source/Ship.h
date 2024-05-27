@@ -619,7 +619,7 @@ private:
 	Outfit baseAttributes;
 	bool addAttributes = false;
 	const Outfit *explosionWeapon = nullptr;
-	AutoExplosion autoExplosion;
+	std::optional<AutoExplosion> autoExplosion;
 	std::map<const Outfit *, int> outfits;
 	CargoHold cargo;
 	std::list<std::shared_ptr<Flotsam>> jettisoned;

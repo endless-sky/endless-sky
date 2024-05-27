@@ -484,20 +484,26 @@ void Ship::Load(const DataNode &node)
 		}
 		else if(key == "auto explosion")
 		{
-			autoExplosion.baseMult = child.Size() >= 2 ? child.Value(1) : 1.;
+			autoExplosion = std::make_optional<AutoExplosion>();
+			autoExplosion->baseMult = child.Size() >= 2 ? child.Value(1) : 1.;
 			for(const auto &grand : child)
 			{
 				if(grand.Size() < 2)
+				{
+					grand.PrintTrace("Skipping node without value:");
 					continue;
+				}
 				const string &grandKey = grand.Token(0);
 				if(grandKey == "blast radius")
-					autoExplosion.radiusMult = grand.Value(1);
+					autoExplosion->radiusMult = grand.Value(1);
 				else if(grandKey == "shield damage")
-					autoExplosion.shieldMult = grand.Value(1);
+					autoExplosion->shieldMult = grand.Value(1);
 				else if(grandKey == "hull damage")
-					autoExplosion.hullMult = grand.Value(1);
+					autoExplosion->hullMult = grand.Value(1);
 				else if(grandKey == "hit force")
-					autoExplosion.forceMult = grand.Value(1);
+					autoExplosion->forceMult = grand.Value(1);
+				else
+					grand.PrintTrace("Skipping unrecognised token:");
 			}
 		}
 		else if(key == "explode" && child.Size() >= 2)
@@ -621,16 +627,16 @@ void Ship::FinishLoading(bool isNewInstance)
 {
 	// Automatically create an explosion for this ship if requested but
 	// only if the ship does not already have a defined explosion.
-	if(autoExplosion.baseMult > 0. && !baseAttributes.IsWeapon())
+	if(autoExplosion && !baseAttributes.IsWeapon())
 	{
 		double baseShields = baseAttributes.Get("shields");
 		double baseHull = baseAttributes.Get("hull");
-		const double scale = (baseShields + baseHull) * autoExplosion.baseMult;
-		const double radius = scale * autoExplosion.radiusMult;
-		const double shieldDamage = scale * autoExplosion.shieldMult;
-		const double hullDamage = scale * autoExplosion.hullMult;
-		const double hitForce = scale * autoExplosion.forceMult;
-		baseAttributes.LoadExplosion(radius, shieldDamage, hullDamage, hitForce);
+		const double scale = (baseShields + baseHull) * autoExplosion->baseMult;
+		const double radius = scale * autoExplosion->radiusMult;
+		const double shieldDamage = scale * autoExplosion->shieldMult;
+		const double hullDamage = scale * autoExplosion->hullMult;
+		const double hitForce = scale * autoExplosion->forceMult;
+		baseAttributes.SetExplosion(radius, shieldDamage, hullDamage, hitForce);
 	}
 
 	// All copies of this ship should save pointers to the "explosion" weapon
