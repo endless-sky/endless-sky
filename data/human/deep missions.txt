@@ -4210,6 +4210,8 @@ mission "The Book of Skadenga"
 			`	You keep walking. You already know that story.`
 				decline
 
+
+
 mission "Hroar's Haulers: Deal"
 	name "Hroar's Favor"
 	landing
@@ -4276,7 +4278,7 @@ mission "Hroar's Haulers: Deal 2"
 				`   "Not interested."`
 			label out
 			`   Hroar frowns and his eyes narrow. "I don't rightly know where you're from, but out here, a person's word means something. We don't casually make promises, and certainly don't go breaking oaths. We could've been good, you and, I, could've made a lot money. Could've helped some folks out even. But we ain't ever going work together now. You're only as good as your word, which makes you no good at all."`
-			`   Hroar spits on the floor. "Now, get the hel out of my booth, out of this saloon, and off this world before I do something you'll regret."`
+			`   Hroar spits on the floor. "Now, get the Hel out of my booth, out of this saloon, and off this world before I do something you'll regret."`
 				decline
 			label yes
 			`   "Clocked you for a person of their word. Glad, I was right, and happy to have you as the newest member of Hardy Hroar's Haulers." He lifts up his glass and nods to you.`
@@ -4594,6 +4596,7 @@ mission "Hroar's Haulers 4"
 			`	The <ship> enters Haze's dark sooty atmosphere, and you see little of its famous sprawling mega-cities and mega-refineries. At last your ship penetrates the thick smog coverage, and you can make out the dim smokey-lights of the capital city below. Once landed you head to the spaceport to meet your contact.`
 
 
+
 mission "Hroar's Haulers 5"
 	name "Hauling Haze"
 	cargo "Construction Material" 170
@@ -4624,9 +4627,10 @@ mission "Hroar's Haulers 5"
 	on complete
 		dialog
 			`   The Haulers, familiar with your ship, wave you into one of their dedicated docks. They begin unloading the Construction Material, and let you know that Hroar is waiting for you in his accustomed location within the spaceport.`
-
 	on visit
 		dialog phrase "generic cargo on visit"
+
+
 
 mission "Hroar's Haulers 6"
 	name "Midgard Equipment"
@@ -4703,7 +4707,7 @@ mission "Hroar's Haulers 7"
 	on complete
 		conversation
 		event "hroar waiting" 13
-			`   The Haulers, familiar with your ship, wave you into one of their dedicated docks. They begin unloading the Mining & Excavation Equipment. From the crowd of dockhands Hroar appears.`
+			`   The Haulers, familiar with your ship, wave you into one of their dedicated docks. They begin unloading the Mining & Excavation Equipment. Hroar's standing next to a crowd of dockhands.`
 			`	Hroar nods to your ship, "Appreciate the run. Good to finally have all that equipment collected."`
 			`	He abruptly looks past you and shouts, "Hey! Hey! Careful with that! That drill is worth more your entire pension!"`
 			`	The workers unloading behind you make some apologies and get back to the cargo.`
@@ -4795,7 +4799,7 @@ mission "Hroar's Haulers 9"
 			
 			label orders
 			`	His old wrinkled face rolls up into a deeply unimpressed frown. "Something wrong with you? I'm as sure as vacuum is cold that Hartha-Hroar told what my role is here."`
-			`	He leans in until his disapproving face is only a few inches from yours, "I am the logistics officer on this on Haul. Either get out of both our ways and help me get this Haul done. Or go find work somewhere else. Ain't no room in the Haulers for trumped up Captain's that think their exhaust don't stink." `
+			`	He leans in until his disapproving face is only a few inches from yours, "I am the logistics officer on this on Haul. Either get out of both our ways and help me get this Haul done. Or go find work somewhere else. Ain't no room in the Haulers for a trumped up Captain who thinks their exhaust don't stink." `
 			`	Yngvar leans back and his one good eye narrows, "Now, you gonna take us to Helheim, or you gonna keep making an ass out of yourself?"`
 			choice
 				`	"Alright, fine. I'll take you to Helheim."`
@@ -4804,13 +4808,13 @@ mission "Hroar's Haulers 9"
 				`	"Forget it. I am out."`
 			`	Yngvar looks like he's about to lose his temper, when suddenly he breaks into a loud hardy laughter. "Kid, you just saved us all a lot of hurt and time. Consider your time as a Hauler over."`
 			`	The old man turns away from you and makes his way to comms station.`
-			`	You're suddenly left alone, and no longer employeed by Hroar's Hardy Haulers.`
+			`	You're suddenly left alone, and no longer employeed by Hardy Hroar's Haulers.`
 				decline
 
 			label fine
 			`	Yngvar nods, "Ain't nothing wrong with asking questions. That's half the reason I am here."`
-			`	"We've been moving and storing all the cargo for the Long Haul to Muspel over the last few months. I'm sure Hartha-Hroar even had you moving some of it. Problem is some cargo doesn't store too good. The folk kind. Which is why we have to wait until everything else is ready to go before we start loading up the guest-workers on Helheim. Which is where we're at right now. We need to stop by Helheim, make sure them folks are loaded up, and then head to Muspel to pick up the rest of the caravan."`
-			`	The old man taps his watchless wrist, "Now, we're losing daylight somewhere, so what do you say we get out of his dump on our way to Helheim?"`
+			`	"We've been moving and storing all the cargo for the Long Haul to Muspel over the last few months. I'm sure Hartha-Hroar had you running all over collecting supplies. Problem is some cargo doesn't store too good. The folk kind. Which is why we have to wait until everything else is ready to go before we start loading up the guest-workers on Helheim. Which is where we're at in the timeline right now. We need to stop by Helheim, make sure them folks are loaded up, and then head to Muspel to pick up the rest of the caravan."`
+			`	The old man taps his watchless wrist, "Now, we're losing daylight somewhere, so what do you say we get out of this dump and on our way to Helheim?"`
 			choice
 				`	"Okay."`
 				`	"Let's go."`
@@ -4824,6 +4828,8 @@ mission "Hroar's Haulers 9"
 			`   Yngvar says little on your trip to Helheim, other than there will be plenty of time later for the two of you to get better aquainted. Once on Helheim he heads straight for the spaceport. You get the impression he expects you to follow him there.`
 	on visit
 		dialog phrase "generic passenger on visit"
+
+
 
 mission "Hroar's Haulers 10"
 	name "Hauling Yngvar to <destination>."
@@ -4848,10 +4854,11 @@ mission "Hroar's Haulers 10"
 				`	"Hail and well met Captain Unferth."`
 				`	"Howdy."`
 				`	"Don't you worry about me. I can handle myself."`
+					goto nicehello
 				`	"You should count yourself lucky to have me."`
 				`	"How dare you question me! I could destroy your fleet and force this world to kneel before me if I wanted. Learn your place, peon."`
 			`	Captain Unferth eyes go wide and then he glances at Yngvar. Yngvar just shrugs, "Just cuz they're a bit dramatic doesn't make them a bad hirthr."`
-			`	"Sure." the Captain says without any certainty. He then glances at the lines of workers beyond, "Anyways, I got to get back to it. Like I said, we're nearly ready to go. If you want to bring us in to Muspel that's fine, not like we really need the escort though."`
+			`	"Sure," the Captain says without any certainty. He then glances at the lines of workers beyond, "Anyways, I got to get back to it. Like I said, we're nearly ready to go. If you want to bring us in to Muspel that's fine, not like we really need the escort though."`
 			`	Yngvar waves as the Captain marches off and then turns back to you, "You're not much for polite conversation are ya?"`
 			choice
 				`	"I say what I feel."`
@@ -4872,9 +4879,33 @@ mission "Hroar's Haulers 10"
 				`	"And these Guest-Workers? You exploit them instead?"`
 					goto exploit
 				`	"Got it. So, we also transport guest-workers in the Long Haul."`
-			`	"Gotta maximize profits. Can't rightly tranverse the whole of human space without taking advantage of all `
-
+			`	"Gotta maximize profits. Can't rightly tranverse the whole of human space without taking advantage of lucrative stops along the way." `
+			`	Yngvar casts a quick glance at the shirking lines of workers, "Anyways, I am done here. Just needed to check in with Solvi. Didn't want us sitting around on Muspel twiddling our thumbs because of a loggerjam on Helheim. So how abouts you take us in to Muspel?"`
+				accept
 			
+			label exploit
+			`	Yngvar shakes his head, "Nothing of the sort. We pay 'em better wages then they'd ever see on Earth, and if they keep their noses clean and stick around for three seasons, we sponsor them and make them full fledged members of our organization. If they keep with it eventually mining crews can even pool together to get their own ship."`
+			`	He gets a wistful look in his eye, "Hel, nearly a quarter of the Haulers you see out there in the Gap started out as Guest-Workers. So, no, <last>, we don't exploit them. One might even argue that we save them."`
+			`	The old man jerks his head at the rapidly dwindling lines of miners, "But not this lot, they still belong to Earth. So we'll move them for a fee and make some extra money on the Long Haul. Can't rightly tranverse the whole of human space without taking advantage of lucrative stops along the way."`
+			`	Yngvar casts a quick glance at the shirking lines of workers, "Anyways, I am done here. Just needed to check in with Solvi. Didn't want us sitting around on Muspel twiddling our thumbs because of a loggerjam on Helheim. So how abouts you take us to Muspel? Our shipment is waiting for us there, assuming you got space for 430 tons of cargo. But then, what kind of Hauler would you be if you couldn't haul."`
+			
+				accept
+
+			label nicehello
+			`	Captain Unferth, who Yngvar seems to call Solvi, tips his hat to you. "I know better than to quaral to Hroar. Glad to have you on the Long Haul."`
+			`	He then glances at the lines of workers beyond, "Anyways, I got to get back to it. Like I said, we're nearly ready to go. If you want to bring us in to Muspel that's fine, not like we really need the escort though."`
+			`	Yngvar waves as the Captain marches off and then turns back to you, "He's a bit busy at the moment, but overall he's a good kid. His fleet is mostly made up of people movers. He's the one gonna be hauling the folks I mentioned before."`
+				goto points
+
+	npc accompany save
+		government "Merchant"
+		personality timid escort
+		ship "Leviathan" "H.H.H. Red Ruin"
+		ship "Hogshead" "H.H.H. Twilit Hope"
+		ship "Mule" "H.H.H. Cardinal Winsome"
+		ship "Star Queen" "H.H.H. Land of Plenty"
+		ship "Star Queen" "H.H.H. Red Roamer"
+		ship "Mule" "H.H.H. Dirty Destiny"
 
 	on complete
 		dialog
@@ -4882,33 +4913,30 @@ mission "Hroar's Haulers 10"
 	on visit
 		dialog phrase "generic passenger on visit"
 
-and go pick up our shipment at Muspel, assuming you got space for 430 tons of cargo. But then, what kind of Hauler would you be if you couldn't haul.
-
-nithingsverk
 
 
-mission "Hroar's Haulers 9"
+mission "Hroar's Haulers 10"
 	name "The Long Haul"
 	passengers 1
 	cargo "Long Haul Cargo" 430
 	source "Muspel"
 	to offer
-		has "Hroar's Haulers 8: done"
+		has "Hroar's Haulers 9: done"
 	stopover "Earth"
 	stopover "Maker"
 	stopover "Rand"
 	destination "Lagrange"
 	on offer
 		conversation
-			`   The dusty, red saloon is awash in grimy captains, officers and crew members. At the center of the crush of bodies is Hroar. He catches your eye as you enter and then he climbs on top of the bar.`
-			`   "I reckon it's about time we get this show on the road." Hroar hollars, and the room immedatly quiets down.`
-			`   "Now, as every rock-hopper 'tween here and the twice-cursed gap knows, we're fixing to go another Long Haul". A brief cheer rises from the crowded bar.` 
+			`   The dusty red saloon is awash in grimy captains, officers and crew members. At the center of the crush of bodies is Hroar. He catches your eye as you enter and then he climbs on top of the bar.`
+			`   "I reckon it's about time we get this here show on the road." Hroar hollars, and the room immedatly quiets down.`
+			`   "Now, as every rock-hopper 'tween here and the twice-cursed Gap knows, we're fixing to go another Long Haul". A brief cheer rises from the crowded bar.` 
 			`   "And everybody knows a Long Haul means we all get paid. So, let's make sure we get this done right."`
-			`   Hroar pulls brass specticals out of his breast pocket and balances them on his nose. He then carefully unfolds a brown stained piece of paper and reads, "This here run will be headed by Captain <last>."`
+			`   Hroar pulls brass specticals out of his breast pocket and balances them on his nose. He then carefully unfolds a brown stained piece of paper and reads, "This here run will be shepherded by Captain <last>. He'll be our hirthr from Lagrange and back."`
 			`   This news is followed by some unhappy grunts. "Now, now. Don't you fret over this greenhorn, he'll have ol' Yngvar on his ship to keep him in line." `
 			`   Hroar continues, "For this Long Haul we have three convoy's lined up that Captain <last> will escort; Captain Unferth of the Red Ruin's convoy, along with the convoys of Captain Boverka of the Iron Siren, and Captain Gunhilda's of the Fimbulvintr. Don't forget, Yngvar will be managing the caravan, materials and everything else. He's got the first word, and last, on any world and at any port you find yourselves in." `
 			`   Hroar folds up the brown paper, takes off his glases, and scans the crowd. "Haulers, you have your orders. May the Gap accept you, and the God-Stones watch over you. Now, get to your ships. It's time to haul.`
-			`   With that, the crowd disperses, and you find yourself alone in the bar with Yngvar.`
+			`   With that, the crowd cheers and disperses, and after a few hectic moments you find yourself alone in the bar with Yngvar.`
 			choice
 				`	"Guess you're in charge, ol' timer."`
 					goto westart
@@ -4930,20 +4958,20 @@ mission "Hroar's Haulers 9"
 					goto headed
 				`	"Anything I need to know about the escorts?"`
 					goto escorts
-				`	"Why do you refer to space as the gap?"`
+				`	"Why do you refer to space as the Gap?"`
 					goto gap
 				`	"That's all. I am ready."`
 					goto theend
 			label headed
-			`	"A right pertinent question." The gray spacer nods, "Our final destination, and ultimate goal is Lagrange Station in the Enif System. Long before Hroar was an egg in an infant's basket, the Long Haulers of Muspel have been making the Adhara-Enif run. In our day it's barely a milk run, despite the distance, but in the past it was nothing to laugh about. Slower ships, hostile governments, dangerous mauraders, malfunctioning drives. It was the kind of run most traders balked at. But the Quarg, they pay good for a bulk run like this, and it's been our life blood ever since the first Hauler struck out generations ago."  `
-			`	Yngvar gets a glossly look in his eye as he waxes about bygone space-ages, "Anyways, it's that top dollar that keeps us independent. Keeps us flush. Keeps the blue caps from absorbing us. But it's not the only stop. It'd be a waste of resources, time, and opportunity if we didn't make calls at other ports along the way. So we'll also be stopping at Maker, New Iceland, and Rand. Maker, in the Delta Capricorni system, being our first stop. It's a Syndie colony so we'll need to stay alert." `
+			`	"A right pertinent question." The gray spacer nods, "Our final destination, and ultimate goal is Lagrange Station in the Enif System. Long before Hroar was an ornery egg in his ma's basket, the Long Haulers of Muspel have been making the Adhara-Enif run. In our day it's barely a milk run, despite the distance, but in the past it was nothing to laugh about. Slower ships, hostile governments, dangerous mauraders, malfunctioning drives. It was the kind of run most traders balked at. But the Quarg, they pay good for a bulk run like this, and it's been our life blood ever since the first Hauler struck out generations ago."  `
+			`	Yngvar gets a glossly look in his eye as he waxes about bygone space-ages, "Anyways, it's that top dollar that keeps us independent. Keeps us flush. Keeps the blue caps from absorbing us. But it's not the only stop. It'd be a waste of resources, time, and opportunity if we didn't make calls at other ports along the way. So we'll also be stopping at Earth, Maker, and Rand. Earth, in the Sol system, being our first stop. I'm sure you've heard of it; it's blue and marlbe like." `
 					goto whatisthis
 			label escorts
-			`	The old man strokes his gray-white beard, "Any hauler worth their dust knows its best to travel together, especially on a Long Haul. The other ships have some supplies intended for the primary destination in the Enif System, but they also have cargo and contracts for systems we will be passing through on our way to Enif. The Iron Siren will be dropping off basic humanitarian supplies on Earth, The Red Ruin is transporting guest workers from New Iceland, and the Fimbulvintr has quality extraction equipment for Rand. I'll get in more detail at each port, if you have more questions. It's all about maximizing profits, and protection."`
+			`	The old man strokes his gray-white beard, "Any hauler worth their dust knows its best to travel together, especially on a Long Haul. The other ships have some supplies intended for the primary destination in the Enif System, but they also have cargo and contracts for systems we will be passing through on our way to Enif. Captain Unferth's fleet is transporting guest-workers to Earth, Maker and Rand. Meawnhile Captain Gunhilda has quality mining and extraction equipment for Maker and Rand. I'll get in more detail at each port if you have more questions. It's all about maximizing profits, and protection."`
 					goto whatisthis
 			label gap
-			`	"Ah, I sometimes forget you didn't come up on the red like the rest of us." He glances up toward the ceiling, as though he can see through it, past the weak athmosphere, and out into the black space beyond. "The Gap is just what we call the darkness between the Stars. Interstellar space. It comes from an old word, the Ginnungagap, the 'yawning gap', the primoridal darkness at the begining of time. Truth is, we hardly go there anymore, not like it was in the Caravan Era, not like it was with the Generation Ships. We flit from star to star, avoiding the true Gap. These days the Gap just means space in general. Anywhere beyond the atmosphere. But trust me, these star-lit islands where we huddle, they are nothing like the true Gap. Where the darkness clings to the very soul and drives folk mad."`
-			`	His stern face gives way to a hint of mirth, "But don't you be worrying none about an old sailor's fables. You know why we call it the Gap, and what's more than most can say. We'll make you a red jacket yet." `
+			`	"Ah, I sometimes forget you didn't come up on the red like the rest of us." He glances up toward the ceiling, as though he can see through it, past the weak athmosphere, and out into the black space beyond. "The Gap is just what we call the darkness between the stars. Interstellar space. It comes from an old word, the Ginnungagap, the 'yawning gap', the primoridal darkness at the begining of time. Truth is, we hardly go there anymore, not like it was in the Caravan Era, not like it was with the Generation Ships. We flit from star to star, avoiding the true Gap. These days the Gap just means space in general. Anywhere beyond the atmosphere. But trust me, these star-lit islands where we huddle, they are nothing like the true Gap. Where the darkness clings to the very soul and drives folk mad."`
+			`	His stern face gives way to a hint of mirth, "But don't you be worrying none about an old sailor's fables. You now know why we call it the Gap, and that's more than most can say. We'll make you a red jacket yet." `
 					goto whatisthis
 			label theend
 			`	"Good. We got places to be." He turns toward the exit. "I'll be waiting for you on your ship, Captain <last>. It'll be good to get back on the float."`
@@ -4983,12 +5011,46 @@ mission "Hroar's Haulers 9"
 
 
 
-mission "Hroar's Haulers 10"
+mission "Hroar's Haulers 11"
+	landing
+	name "The Long Haul"
+	source "Earth"
+	destination 
+	to offer
+		has "Hroar's Haulers 10: active"
+	on offer
+		dialog
+			`The Long Haul convory sets down in one of Earth's sprawling mega-cities. Most of the fleet focuses on refueling and minor repairs, while Captain Unferth's ships begin the unboard process. Yngvar tells you to meet him in the spaceport.`
+			decline
+
+mission "Hroar's Haulers 12"
+	name "The Long Haul"
+	source "Earth"
+	destination 
+	to offer
+		has "Hroar's Haulers 10: active"
+	on offer
+		conversation
+			`	You find Yngvar standing on a balcony overlooking the transfer of human cargo, what he calls 'folk'.`
+			`	He gives you a gruff nod as you arrive.`
+			`	"Smooth run so far. They mostly are. Pirate has to be a few stars short of a galaxy to take on a fleet as big as ours." Yngvar says as his eyes scan the crowd below.`
+			`	"Sometimes fights can break out between the guest-workers. Old scores, gambling gone bad on the trip, anything of the like. But so far everything looks good."`
+			choice
+				`	"So, what now?"`
+				`	"Where to next?"`
+				`	"We done here?"`
+				`	(Say nothing.)`
+			`	"Once all the folks are unloaded we'll be taking on another shipment of 'em. This time those who signed up for work on Maker. It's an old Syndie contract we picked up a few generations ago. They are so desperate for workers they pay us the full price to transport them. We'll also unload some of our quality mining equipment and take on more raw materials for Lagrange while we're there.`
+			
+
+
+
+mission "Hroar's Haulers 13"
 	name "The Long Haul"
 	source "Maker"
 	destination 
 	to offer
-		has "Hroar's Haulers 9: active"
+		has "Hroar's Haulers 10: active"
 	on offer
 		conversation
 		`	The large spaceport is remarkably easy to navigate. With clear signs and purpose-built walkways, you easily find yourway to the local pub, which is called the 'Watering Hole.'`
