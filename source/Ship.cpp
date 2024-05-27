@@ -484,7 +484,7 @@ void Ship::Load(const DataNode &node)
 		}
 		else if(key == "auto explosion")
 		{
-			autoExplosion = std::make_optional<AutoExplosion>();
+			autoExplosion = AutoExplosion();
 			autoExplosion->baseMult = child.Size() >= 2 ? child.Value(1) : 1.;
 			for(const auto &grand : child)
 			{
