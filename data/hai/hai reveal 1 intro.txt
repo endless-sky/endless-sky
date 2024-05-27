@@ -11,47 +11,836 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-disable mission
-	"Hai Rescue: Yeertle Family"
-	"Hai Rescue: Ooonem"
+########################################################################
 
-event "hr: media retraction"
+mission "Hai Reveal Exploration Period: Concerned Hai"
+	minor
+	landing
+	invisible
+	source
+		government "Hai"
+		not attributes "uninhabited" "retirement"
+	to offer
+		has "Hai Reveal: Meet the Team: Sayari 2: done"
+		not "event: hr: exploration period"
+		random < 20
+	on offer
+		conversation
+			`Upon arrival, your way is briefly blocked by a loud commotion with a small crowd of people. Two Hai, a shopkeeper and a merchant captain, are arguing loudly with each other outside the spaceport convenience outlet. You can't tell what they're saying - but the store, a chain whose name has been translated to "Spacorns" for the benefit of human visitors, has a big sign up in both languages that reads: "ONE Haycorn Snus pack per customer. No Exceptions. ID Required."`
+			`	It appears to be almost concluded, and a moment later the captain makes a disgusted noise, taps his pad, swipes his solitary pack, and stalks off into the spaceport looking altogether a lot like a frustrated predator.`
+			choice
+				`	(Ask someone what's going on.)`
+					goto "query an onlooker"
+				`	(Talk to the shopkeeper.)`
+			`	Stepping into the store, the Hai has only just returned to behind the counter where he's carefully putting back another pack of the Haycorn Snus. Now getting a closer look at him, his fur is mussed, and it seems that he might have had to wrestle the second pack away from the captain. He's certainly on edge, for he jumps with a little start as he hears you enter.`
+			`	"Ah, Captain, sorry about all that. What can I do for you?"`
+			choice
+				`	"Did you have to fight that man?"`
+				`	"What's with the sign?"`
+					goto "shop sign"
+			`	He takes a deep breath to steady himself before responding. "Unfortunately, yes. Fortunately for me, he was one of those captains who forget that walking up and down the length of your ship doesn't really qualify as regular exercise.`
+			label "shop sign"
+			`	"It's all a very unfortunate situation at the moment. With the increased appearance of humans in our space, and the uncertainty over what's going on, some merchants aren't plying the trade they usually do back and forth. The supplies of a few select things that are imported from the Republic have not been appearing quite as often, and so some Hai have taken to stockpiling certain commodities in case the supply shuts off entirely." He looks pointedly at the snus packs. "Tobacco is one of those commodities. Regulations prevent it from being grown on any Hai worlds. So, unless someone goes to the effort of setting up a greenhouse in space, that's entirely imported."`
+			`	He shrugs. "Personally, I think it's a gross habit, but it's far from being the only addictive substance around. It gives Hai a slightly improved intuition for math by the way, not quite the same effect as on humans. Which is why it's popular with merchants, but that captain has had some bad luck, and they'd been sold out at his last three stops."`
+			choice
+				`	"Sounds like the supply is short."`
+				`	"Sounds like a recipe for danger. Are you okay?"`
+					goto danger
+			`	He makes a very human-sounding tutting noise with his tongue and chuckles. "It's not that short. The brands are still manufactured here, and they have supply stockpiles because the imports are irregular anyway. It's just addicts being addicts.`
+			label danger
+			`	"As long as they don't start bringing weapons with them, things should be fine; and by the time it gets to that point, I imagine I'll have shut up shop and be staying home... either that, or I'll have joined a protest group somewhere for my own purposes." He winks.`
+			`	"Anyway, while you're here, can I interest you in any snacks? A beverage? Some holo-stickers? Probably not those, we've sold out of the ones with human memes."`
+			choice
+				`	"No thank you, have a nice day!"`
+					goto "no purchase"
+				`	"Just a snack, thanks."`
+				`	"Do you have coffee?"`
+			`	You make your purchase and go about your business.`
+				decline
+			label "no purchase"
+			`	He thanks you for concern and wishes you safe travels.`
+				decline
+			
+			label "query an onlooker"
+			`	Before the crowd disperses fully you spot a Hai waving goodbye to a human walking away from you, and quickly make your way over to him.`
+			`	"Ah, hello uh... Captain? Were you looking for me?"`
+			choice
+				`	"Could I ask you a question?"`
+				`	"What was all that about?"`
+					goto "crowd sign"
+			`	He smiles. "Oh, about what just happened? Sure, I've got time."`
+				goto "was polite"
+			label "crowd sign"
+			`	He seems a little affronted but, after squinting at you, evidently decides to humor you.`
+			label "was polite"
+			`	Gesturing to the sign he says, "Haycorn Snus is a tobacco product. All tobacco is imported from human space. Since more of you lot have been appearing and disrupting things, some of the merchants aren't doing the usual supply runs as much. It's got some Hai all in a panic, stockpiling in case the supply shuts off entirely.`
+			`	"The captain there," he says, gesturing to the now empty space where the argument took place, "was particularly upset over the restriction, and tried to get away with two packs. Turns out the clerk was actually pretty fit, took them both right back off him after a bit of a scuffle. Kinda hot actually."`
+			choice
+				`	"Sounds like the supply is short."`
+				`	"Sounds like a serious concern."`
+					goto concern
+			`	He makes a very human-sounding tutting noise with his tongue and barks out a loud laugh. "It's not that short, it's just addicts being addicts and panicking.`
+			label concern
+			`	"The older generation has too little trust, always jumping at shadows and portents. Especially with so many new humans arriving. It'll sort itself out. Anyway, are you done?"`
+			choice
+				`	"Yes, thank you."`
+					goto "dismissed"
+				`	"Shadows and portents?"`
+			`	He rolls his eyes. "Isn't that what you humans say? Hai oldies are almost always superstitious. The more things change the more they start arranging crystals and gnawing on sticks."`
+			label "dismissed"
+			`	"Now," he says, "good day to you. I'm getting a snack."`
+				decline
+
+
+mission "Hai Reveal Exploration Period: Human Population Feeling Pressured"
+	minor
+	landing
+	invisible
+	source
+		government "Hai"
+		not attributes "uninhabited" "retirement"
+		attributes "hai: human presence"
+	to offer
+		has "Hai Reveal Exploration Period: Concerned Hai: declined"
+		"reputation: Hai" > 0
+		not "event: hr: exploration period"
+		random < 30
+	on offer
+		conversation
+			`You have been landed for barely five minutes when the surprisingly portly Portmaster appears in front of you as you enter the spaceport.`
+			choice
+				`	"Can I help you?"`
+					goto polite
+				`	"What's this about?"`
+			`	The Hai just snorts in response.`
+			label polite
+			`	Glancing back over his shoulder he calls out. "Hurry up Sebastian, what do you make of this one then?"`
+			`	An older gentleman, who looks quite harried, hurriedly limps over to the both of you. In his hand is a pad which he briefly consults before holding it up, apparently comparing your face to an image. With a long-suffering sigh he says, "I told you this one is fine. It was the ship coming in through 5B that was new."`
+			`	The Portmaster squints at the tablet himself for a moment before giving out a huff. "Well, this one was on the way. You two, go make sure no one comes through 5B until they've been examined."`
+			`	Two Hai in security uniforms immediately dash off in the direction of the offending berth, and the Portmaster gives you a brief nod and a, "Captain," before toddling off in pursuit with remarkable speed.`
+			`	The human gentleman seems to be taking a second to catch his breath.`
+			choice
+				`	"Well, uh, good luck?"`
+					goto luck
+				`	"What's going on here?"`
+			`	The gentleman rolls his eyes and draws in a long, exasperated breath. "Madness is what's going on here. Collective madness. Some Hai got burned by some shady sorts that were new through the wormhole. Suddenly everyone's got to be vetted by a human before the Hai here will deal with them, but then there were a hundred extra people trying to cram in so every place of business could have one, and there weren't enough chairs, so some bright spark decided someone would have to follow the Portmaster around and check everyone when they came in."`
+			`	He huffs a slight wheeze. "I tell you, this is my first day and my last doing this. Goodness knows how that lump is still faster than me."`
+				goto "firmly departs"
+			label luck
+			`	He breathes deeply before responding. "Thanks, I'll need it. It's horribly unfair that that lump is still faster than me, and I've been pressed into helping him vet every human arrival today.`
+			`	"Honestly, if you see anyone concerning, it'd do me a great help if you could report them before I have to get dragged across the spaceport again."`
+			label "firmly departs"
+			`	He draws himself up straighter and firmly grips the tablet. "Anyway, best get on with it."`
+			`	Limping away with determination, he quickly disappears from your line of sight.`
+				decline
+
+
+
+mission "Hai Reveal Exploration Period: Local Human Merchants Speak Up"
+	minor
+	landing
+	invisible
+	source
+		government "Hai"
+		not attributes "uninhabited" "retirement"
+		attributes "hai: human presence"
+		not planet "Hai-home"
+	to offer
+		has "Hai Reveal: Meet the Team: Sayari 2: done"
+		not "event: hr: exploration period"
+		random < 30
+		"HREP: Local Human Merchants (defer count)" < 2
+	on defer
+		"HREP: Local Human Merchants (defer count)" ++
+	on offer
+		conversation
+			branch "last go"
+				"HREP: Local Human Merchants (defer count)" = 2
+			`While organizing for your ship to be refueled, a distinctly not-Hai conversation that the captain of the ship parked in the next bay is having with one of his crew can be heard.`
+			`	They look like they're almost ready to depart.`
+			choice
+				`	(Approach them.)`
+				`	(Call out to them.)`
+				`	(Leave them be.)`
+					defer
+			branch "roll the dice"
+				random < 50
+			`	They notice you but just wave you off and board their ship. They're clearly not in the mood for chatting this time.`
+				defer
+			
+			label "roll the dice"
+			branch "second"
+				"HREP: Local Human Merchants (defer count)" = 2
+			# First option on first encounter if the dice decide it is so, second encounter goes to second option.
+			`	The captain, who turns out to be an older guy, says to you, "Good day, Captain. You new in these parts?"`
+			choice
+				`	"Yes, came after the news broke."`
+				`	"No, I've known about the Hai for ages."`
+					goto "not new 1"
+			`	He glances back at his crewman. "See, this is exactly what I was talking about. All these new folks in their clunkers from Lionheart and whatnot. Filling up the space lanes and splitting the profits."`
+			choice
+				`	"You know I can hear you, right?"`
+				`	"But Hai space isn't even that profitable?"`
+					goto "not profitable"
+			`	"'Course I do, just don't care. This place ain't that profitable to start with. I'm here cause Greenwater's a nice place to live for three months of the year. Now all these new folks like yourself are just making it harder to earn a living and increasing the number of hazards I gotta pay to deal with."`
+				goto "stinkeye"
+			label "not profitable"
+			`	"'Course not, that's my whole point, genius. I'm here cause Greenwater's a nice place to live for three months of the year. Now all these new folks like yourself are just making it harder to earn a living and increasing the number of hazards I gotta pay to deal with."`
+			label "stinkeye"
+			`	His crewman cuts in, "Don't mind him, he's always like this."`
+			`	The captain gives you both the stink eye and harrumphs. "Get back on board, we're late."`
+			`	As he stomps off he points at you. "Just remember, your lot are making our lives harder. Keep it up and something's gonna go wrong." He seals the airlock behind himself before giving you a chance to respond.`
+				decline
+			
+			label "not new 1"
+			`	"Ah-ha, you'll know what I'm talking about then, Captain." He glances back at his crewman. "All these new folks in their clunkers from Lionheart and whatnot. Filling up the space lanes and splitting the already meager profits."`
+			choice
+				`	"I suppose..."`
+					goto "no callout"
+				`	"That's not very charitable."`
+			`	"I ain't never said I was charitable, genius. I'm here cause Greenwater's a nice place to live for three months of the year. Now all this is just making it harder to earn a living and increasing the number of hazards I gotta pay to deal with."`
+			label "no callout"
+			`	His crewman just rolls his eyes at you both. "Come on Captain, we're running late."`
+			`	The captain harrumphs. "Name this fella second in command and now he thinks he runs the ship. Mark my words though, if this keeps up something's gonna go wrong."`
+			`	As the other captain stomps off back to his ship his second in command just shrugs. "Guess we'll see eventually." They leave you there to your own thoughts.`
+				decline
+			
+			label "second" # Second option start.
+			`	The captain turns out to be a younger guy with a sleek, shiny and somewhat new-looking Clipper. He clasps your hand enthusiastically in greeting. "Hail, you're not a familiar face around here. You new in these parts?"`
+			choice
+				`	"Yes, I arrived recently after hearing the news."`
+				`	"No, I've been familiar with Hai space for quite some time."`
+					goto "not new 2"
+			`	The young captain nods. "Ah yeah, you look the part for a newcomer. I imagine you'll have noticed the pirates on the way here are a little bit more keen than most, but you should be aware that it's not just attacks on those in transit that are causing concerns at the moment. There are a lot more questionable characters in Hai space these days. Folks like you who've found the place following the news, and come back for less savory reasons. It's causing people some concerns, to say the least."`
+			choice
+				`	"I've seen; it's been getting worse lately."`
+				`	"I appreciate the heads-up."`
+			`	The young captain's tone takes on a more pressing note as he further explains, "It's not just the usual reaction though, it's more unsettling to the Hai than you might expect. It's not just a few humans that aren't great making us look bad to some of the more conservative Hai. Their attitudes are more group-oriented than we are. Humans might notice unusual or negative things more and assume that everyone in the group acts the same way, even if it's not true. We know that's not how it actually works though. For us that's just personal bias. Recognizable groups of Hai do actually tend to all act in similar ways. So, if they're not experienced with humans, it's hard for them to see the differences."`
+				goto "suspicion explained"
+			
+			label "not new 2"
+			`	"Ah, have you noticed it then?" He glances out at the broader docking area. "The suspicion? The uncertainty?"`
+			choice
+				`	"I suppose..."`
+				`	"Not really, no."`
+					goto "not seen"
+			`	"If you're not sure, you probably haven't really seen it yet."`
+			label "not seen"
+			`	The young captain sighs and shakes his head. "I suppose it's not obvious yet, maybe it's because I mostly transport passengers. Still, there are a lot more questionable characters in Hai space these days. Folks who've found the place following the news, and come back for less savory reasons. It's causing people some concerns, to say the least."`
+			choice
+				`	"It's causing problems then?"`
+				`	"I appreciate the heads-up."`
+			`	The young captain's tone takes on a more pressing note as he further explains, "It's not just the usual reaction though, it's more unsettling to the Hai than you might expect. It's not just a few humans that aren't great making us look bad to some of the more conservative Hai."`
+			`	He pauses. "Maybe you've seen, maybe not, but their attitudes are more group-oriented than we are. Humans might notice unusual or negative things more and assume that everyone in the group acts the same way, but it's usually not true. Recognizable groups of Hai do actually tend to all act in similar ways. So, those who aren't experienced with humans find it hard to see the differences."`
+			
+			label "suspicion explained"
+			choice
+				`	"I'll keep an eye out for any suspicious activity."`
+				`	"So it's up to us to find solutions?"`
+					goto "solutions"
+			`	He nods. "Good, and if you want my recommendation; either report it, or distance yourself from it. There's trouble brewing and I, for one, intend on staying on their good side."`
+				goto "second end"
+			label "solutions"
+			`	He offers you a warm smile before saying, "Well, at a minimum, to be visibly separate from the problem. Maybe that's a partial solution all by itself."`
+				goto "second end"
+			label "second end"
+			`	His crewperson finishes securing a crate and calls out, "Come on Captain, we're running late."`
+			`	"Well Captain, fly safe out there. Keep your eyes open." He departs with a friendly wave.`
+				decline
+			
+			label "last go" # Third option start.
+			# If the dice did not see fit to give you an encounter the first two times, the third time will trigger this.
+			`While briefly reviewing the job board, a woman sidles up next you and scans it with clear purpose. "Ah ha!" she says, tapping on her pad, and a moment later a passenger transport job that didn't pay particularly well changes status to 'claimed'.`
+			choice
+				`	"You seem very focused?"`
+				`	(Say nothing.)`
+					goto "bragging"
+			`	She turns to face you. "A girl gotta know both what she wants and how to make a good profit in this economy. Can't be lagging."`
+			choice
+				`	"Sure, good luck to you.`
+					goto "bragging"
+				`	"What business model makes that a good job?"`
+			`	With a certain swagger she leans in and taps her nose. "Let's just say that when you transport the oddballs around here, the trip tends to be more rewarding than is advertised up front. It all depends on who you know, if you know what I mean."`
+			choice
+				`	"Who do you need to know?"`
+					goto "need to know"
+				`	"I'm not interested in anything illegal."`
+				`	"Aren't Hai all a bit odd?"`
+					goto "oddballs"
+			`	"Bah," she scoffs. Illegal depends on what jurisdiction you answer to, profit is universal."`
+				goto "third end"
+			label "need to know"
+			`	"Let's just say that these groups tend to be pretty happy no matter where you take them along the way." She chuckles. "There are... opportunities... for unusual visitors in the right places."`
+				goto "third end"
+			label "oddballs"
+			`	"Nah, nah, the really odd ones. The cosplay spies and the danger tourists. That sort of thing." She rolls her eyes. "That lot are happy no matter where you take them along the way."`
+				goto "third end"
+			
+			label "bragging"
+			`	She winks at you. "More profit in those than you might think ya know, but hey, more for me."`
+			choice
+				`	"What are you on about?"`
+					goto "on about"
+				`	(Ignore her.)`
+			`	She leans in uncomfortably close to you. "You can take them anywhere," she breathes, barely audible but with distinct emphasis on 'anywhere'.`
+				goto "slip"
+			label "on about"
+			`	"Aha, wouldn't you like to know? But you'll have to take one to find out!"`
+			label slip
+			`	She immediately slips away, and you have a sudden compulsion to check all of your pockets for your belongings.`
+				goto "gone"
+			
+			label "third end"
+			`	She tips an imaginary hat towards you and departs with an unhurried swiftness that puts her out of your line of sight in an almost blink-and-you'd-miss-it moment that would most certainly deter any pursuit.`
+			label "gone"
+			choice
+				`	(Report this occurrence.)`
+				`	(Return to your ship.)`
+					goto "return to ship"
+			`	The local authorities thank you for the report and advise that they'll warn those who posted the job and look into the pilot who claimed it.`
+			`	The security person you're speaking to also mentions that some human pilots have been known to leverage the Hai rumor mill with 'psyops', by preying on outside captains like yourself. Supposedly, they drop enough hints at something to spur their target into making noise about a tip in just the right place that it'll get picked up by the curiosity seekers; thus leaving open other opportunities that they can subsequently profit from.`
+			`	It's unclear whether that's a genuine problem or an excuse for when security can't solve something.`
+			label "return to ship"
+			`	At length, you finish your business and return to your ship.`
+				decline
+
+
+
+mission "Hai Reveal Exploration Period: Hei Low Io Stocks Up"
+	landing
+	invisible
+	source
+		government "Hai"
+		not planet "Greenview"
+		not attributes "uninhabited" "station" "retirement"
+	to offer
+		has "Hai Reveal: Meet the Team: Sayari 2: done"
+		not "event: hr: exploration period"
+		random < 10
+	on offer
+		conversation
+			`The spaceport feels a little quiet as you enter, but it seems that everyone seems to be coming or going from the same direction.`
+			choice
+				`	(Check it out.)`
+				`	(Ignore it.)`
+					decline
+			`	Following along it becomes clear that there is a large gathering adjacent to the job services section. A number of Hai are clamoring for attention while several others appear to be in intense discussion. Notes are changing hands and numbers are being thrown up and you realize suddenly that, while the format is a little odd, this is an auction of some sort.`
+			`	A moment later there's a cry that rings out in Hai, followed by a second voice calling, "A done deal." As you watch, a human wearing very non-human clothing steps up, takes something, and proceeds into a room behind the podium this was being led from. There are a number of grumbles and the crowd immediately begins to disperse.`
+			choice
+				`	(Ask someone about the auction.)`
+				`	(Leave.)`
+					goto "depart"
+			`	You manage to flag down a younger Hai who doesn't appear to be too disappointed in the outcome. He looks at you and asks with a terrible accent, "What you want?"`
+			`	After briefly explaining that you want to know what the auction was about, he thinks for a second and answers. "In your worlds you have place called zuu, no, zoos. Yes, zoos, with animals and such? We have station called Greenview. Hei Low Io run special zoo there with rare species from everywhere. Current situation make them nervous about supply lines and trade with Republic, so they put out bounty for supplies, stock up in case of diplomatic catastrophe or war."`
+			choice
+				`	"They think there will be a war?"`
+				`	"How do you put a bounty on supplies?"`
+					goto "bounty on supplies"
+			`	He shakes his head, "No, not think war, they prepare for anything. They are vulnerable organization. Small disruption of supply for important thing make them lose many millions of credits if artificial ecosystem fails, or specific food nutrient cause species death. Very, very, sensitive to possible shocks they are. Always first to take action when politics is uncertain. Always first to prepare. Usually right to prepare.`
+			`	"They put out call for supplies to be stocked full as quickly as possible, but also, do not need more supplies than can be stored. So have an agency handle contracts, merchants bid for lucrative contracts to fill up Hei Low Io's supplies."`
+				goto "finish"
+			label "bounty on supplies"
+			`	"They put out call for supplies to be stocked full as quickly as possible. They are vulnerable organization, they always first to take action when politics is uncertain to ensure supplies. Because they do not need more supplies than can be stored they do not put open bounty. They hire agency to handle contracts. Agency holds auction for lucrative contracts to fill up Hei Low Io's supplies, without this they have many merchants bringing too much or too little of the things they need. Agency makes sure that all contracts are completed by due date."`
+			label "finish"
+			choice
+				`	"It's a shame that I missed it."`
+				`	"Will there be more auctions?"`
+					goto "more auctions"
+			`	"Not really," he shakes his head. "These contracts are fiddly. Often require knowledge of local contacts to make really good profit. Very strict timelines too. There was only one that I could bid on confidently, but my cargo was too small to compete with winner of that one. I will go now, but maybe visit Greenview some time, it very pretty."`
+				decline
+			label "more auctions"
+			`	"Unlikely," he shakes his head. "These contracts quite fiddly, quite hard, need to know contacts beforehand to make really good profit. Merchants take them only when very confident. If some small handful fall through, agency usually select specific captain from back-up list for fulfillment. Cost agency extra, but make sure job gets done properly and on time. I will go now, but maybe visit Greenview some time, it very pretty."`
+				decline
+			label "depart"
+			`	Whatever is happening isn't worth your time.`
+				decline
+
+
 
 mission "Hai Reveal: Media Retraction"
+	landing
+	invisible
+	to offer
+		has "event: hr: exploration period"
+	on offer
+		set "hr: media retraction"
+		event "hr: media retraction reaches hai" 25
+	# Sync reputations for aliases of governments:
+		"reputation: Republic that won't enter wormhole" = "reputation: Republic"
+		"reputation: Free Worlds that won't enter wormhole" = "reputation: Free Worlds"
+	# Make sure the new governments start with appropriate rep:
+		"reputation: Elenctic Commune" = 1000
+
+event "hr: media retraction reaches hai"
+
+
+mission "Hai Reveal: Media Retraction (Human)"
 	landing
 	invisible
 	source
 		government "Republic" "Syndicate" "Free Worlds" "Neutral"
 		attributes "spaceport"
 	to offer
-		has "event: hr: media retraction"
+		has "hr: media retraction"
+		not "Hai Reveal: Media Retraction (Hai): offered"
 	on offer
-	# Sync reputations for aliases of governments:
-		"reputation: Republic that won't enter wormhole" = "reputation: Republic"
-		"reputation: Free Worlds that won't enter wormhole" = "reputation: Free Worlds"
-		# Make sure the new governments start with appropriate rep:
-		"reputation: Elenctic Commune" = 1000
 		conversation
-			`News report that says that the guy who showed the video of the Hai ships five months prior was just a viral marketing stunt for an upcoming movie.`
+			`One of the usual short news segments between programming, typically present in most significant spaceports, brings up a familiar-looking broadcast. The logo on the bottom is the same program that originally broadcast the news of the Hai. In the short snippet the speaker is issuing a sincere apology for their promotion of a hoax, advising that the video of the Hai ships released five months prior was in fact nothing more than a viral marketing stunt for an upcoming movie.`
+			`	Afterwards, the snippet gives way to a teaser trailer that has a number of pretty combat scenes and says absolutely nothing.`
+				decline
+
+
+mission "Hai Reveal: Media Retraction (Hai)"
+	landing
+	invisible
+	source
+		government "Hai"
+		attributes "spaceport"
+	to offer
+		has "event: hr: media retraction reaches hai"
+	on offer
+		event "hr: pirates respond to leaks" 1
+		event "hr: concern period" 35
+		conversation
+			`One of the usual short news segments between programming, typically present in most significant spaceports, brings up a Hai reporting on a familiar-looking human broadcast. The logo on the bottom is the same program that originally broadcast the news of the Hai. In the short snippet the speaker is issuing a sincere apology for their promotion of a hoax, advising that the video of the Hai ships released five months prior was in fact nothing more than a viral marketing stunt for an upcoming movie.`
+			`	Afterwards, the snippet gives way to a teaser trailer that has a number of pretty combat scenes and says absolutely nothing.`
+			`	Immediately after this, a safety advisory plays advising all Hai to stay away from human space, and for human captains to avoid traveling beyond the wormhole with any Hai tech installed. As a final note, the safety advisory indicates that pirate activity has been increasing in the vicinity of the wormhole, and all pilots are advised to take care.`
+				decline
+
+
+event "hr: pirates respond to leaks"
+	# Add pirate spawns to Waypoint and Heia Due
+	system "Waypoint"
+		government "Pirate"
+		add fleet "Large Northern Pirates" 5000
+		add fleet "Small Northern Pirates" 2500
+		add fleet "Large Core Pirates" 6000
+		add fleet "Small Core Pirates" 3000
+		remove fleet "Small Hai"
+		remove fleet "Large Hai"
+	system "Heia Due"
+		add fleet "Marauder fleet IX" 15000
+		add fleet "Large Northern Pirates" 10000
+		add fleet "Large Core Pirates" 12000
+		add fleet "Anti-Pirate Hai (Wormhole Travel)" 2000
+
+event "hr: concern period"
+
+
+
+mission "Hai Leaks Response 1"
+	landing
+	invisible
+	source
+		government "Hai"
+		attributes "spaceport"
+	to offer
+		has "event: hr: pirates respond to leaks"
+	on offer
+		event "hr: pirate uptick" 1
+		conversation
+			`As you go about your business you catch sight, briefly, of a chart in a news segment reporting that Hai Security forces have recorded a day-on-day increase of eleven percent in the number of human pilots being detained for smuggling contraband.`
+			`	The only other detail you are able to glean is that this appears evenly spread between known pilots and newcomers. The spoken part is all in Hai though, leaving you with nothing more than the dual-language annotations to go off.`
+				decline
+
+event "hr: pirate uptick"
+
+
+
+mission "Hai Reveal Concern Period: Humans Going Home"
+	landing
+	passengers 5 10
+	source
+		government "Hai"
+		not attributes "uninhabited" "retirement"
+	destination
+		attributes "hai: human presence"
+	to offer
+		has "event: hr: pirate uptick"
+		random < 10
+		"passenger space" > 9
+	on offer
+		conversation
+			`As you land you are hailed separately by one of the Hai in the local control center. "Captain, apologies for calling you on a non-control related matter, but I noticed that you may have the capacity to help resolve a situation that's developing."`
+			choice
+				`	"What's the matter?"`
+				`	"I'm sorry, I'm busy right now."`
+					goto "not now"
+			`	"Well, there are a number of humans trying to get transport to somewhere else, but they're unwilling to book passage with any Hai captains. They've set up camp in the spaceport and they've been there long enough that it's causing some tension. We don't want to take direct action, but I think these <bunks> humans would be much better off if you could talk to them, and maybe at least take them to <destination>."`
+			choice
+				`	"I'll talk to them."`
+				`	"Sorry, I'm not going that way."`
+					goto "not ever"
+			`	As it turns out, it is almost impossible to miss these humans, as their camp is located directly in the crossroads of the spaceport's major thoroughfares. Judging by their expensive clothing and somewhat impatient attitude they are people of means, which makes this even more odd.`
+			`	As soon as it becomes apparent that you're approaching them, one comes forward to greet you. "Ah, I trust you are here because you've been encouraged to help us. I am Brin." You introduce yourself in response, and they continue. "We have run an import services business here for some time, but with the recent events suspicion of human captains has arisen. Some Hai seem to believe any human captain is potentially someone who will abduct them," they say with a chuckle. "As you can imagine, we've been here a long time, so when we were asked to vet a few arrivals first we were happy enough to do so. It's gotten out of hand, though. The other day we even had the Portmaster insisting that we vet every human captain to arrive, but we don't have time for that, and we don't have access to any services that would really let us do that reliably. So we had to put our foot down and refuse.`
+			`	"Naturally, business immediately suffered, and we got enough flak for it that we decided it was time to shut up shop and go elsewhere until this all blows over. This offended someone and then several Hai captains refused to take us. Now, well, they've relented since we started camping out, but I can't honestly say we trust them either right now. We will be more than happy to give you a just compensation of <payment> to take us somewhere we won't be nearly the only humans in town."`
+			`	Another one steps forward, "We were hoping that the small amount of humans was a good business opportunity, which was true... until recently. Indeed, my colleagues and I will return to a location where we used to do business in the past, but you understand we cannot just ask any captain to take us, even if we are willing to make do without proper accommodations due to the relative urgency of the situation."`
+			choice
+				`	"Of course, welcome aboard."`
+				`	"Sorry, you're on your own."`
+					goto "rejected"
+			`	You proceed to show them all their bunks, which they describe as "satisfactory".`
+				accept
+			label "not now"
+			`	The Hai seems disappointed. "Very well Captain, I understand. Hopefully someone else comes along."`
+				defer
+			label "not ever"
+			`	"Very well Captain, enjoy your stay." The Hai tuts before disconnecting the call.`
+				decline
+			label "rejected"
+			`	You leave Brin spluttering in shock and manage to draw a number of very dark looks from nearby Hai.`
+				decline
+	on complete
+		payment 100000
+		dialog `The little group of business partners depart from your ship, and their representative addresses you again, "Very pleasant little ride, Captain. We have transferred <payment> as agreed, and we were even able to conduct some lucrative business opportunities from within your ship. Until next time, <last>."`
+
+
+
+mission "Hai Reveal Concern Period: Raid on Allhome (local)"
+	landing
+	invisible
+	source "Allhome"
+	to offer
+		has "event: hr: hr: pirate uptick"
+		not "Hai Reveal Concern Period: Raid on Allhome (away): offered"
+	on offer
+		set "hr: allhome raided"
+		conversation
+			`Landing on <origin> you are greeted by an unexpected atmosphere of dread. Normally the Hai are very friendly, but here suddenly mothers are keeping tight grips on their children, and passers-by look upon you with a hint of wariness.`
+			`	You realize that the few humans who have settled here among the Hai are all wearing pink at the moment. When you catch the eye of one lady who looks friendly, you greet her to ask a few questions.`
+			choice
+				`	"Why does everyone seem so afraid?"`
+				`	"Why are you all wearing pink?"`
+					goto pink
+			`	She shakes her head and wrinkles her nose with a look of distaste. "Some marauder came here just yesterday, posing as a trader to investigate the rumors. We thought the Hai had means of keeping them out, but this one snuck in and landed at the spaceport without any opposition. Then his crew hijacked a ship straight off the landing pad! We're just... in shock, I suppose. It's completely unprecedented for something like that to happen in broad daylight."`
+			`	She sighs deeply and says, "Naturally they've ramped up security, but half the Hai crew were still on board and we have no idea what their fate has been. It's got everyone a bit shaken and distrustful at the moment."`
+			`	"Oh, that's awful!" you say.`
+			`	She nods and forces a little bit of false cheer into her voice, "This is why we're all wearing pink, just a little show of local solidarity.`
+				goto main
+			label pink
+			`	A sad smile crosses her face and her expression goes somber as she explains, "A pirate marauder recently snuck down onto the planet and hijacked a ship straight off the landing pad. The Hai are in shock, it's just completely unprecedented for something like that to happen in broad daylight. Naturally, they've ramped up security, but half the Hai crew were still on board and we have no idea what their fate has been. Everyone is a bit shaken up so us locals are wearing pink in solidarity... and so we're not mistaken for a security risk.`
+			label main
+			`	"Unfortunately, it's taking a while for them to redistribute an appropriately resourced security force thanks to the Unfettered. So far they've only been able to recall those on leave and up their vigilance."`
+			label questions
+			choice
+				`	"Could I do anything to help?"`
+					goto help
+					to display
+						not "Hai Reveal Concern Period: Raid on Allhome (local): label help"
+				`	"Who are the Unfettered?"`
+					goto unfettered
+					to display
+						not "First Contact: Unfettered: offered"
+						not "Hai Reveal Concern Period: Raid on Allhome (local): label unfettered"
+				`	"Thank you for your time."`
+					goto end
+					to display
+						or
+							has "Hai Reveal Concern Period: Raid on Allhome (local): label help"
+							has "Hai Reveal Concern Period: Raid on Allhome (local): label unfettered"
+			label unfettered
+			action
+				set "Hai Reveal Concern Period: Raid on Allhome (local): label unfettered"
+			`	She seems surprised that you asked and responds, "Oh, they're a sort of rebel Hai group. If you don't know you could go visit Cloudfire in the Wah Ki system up north, or maybe even Darkcloak if you dare. A short visit would explain it far better than I ever could.`
+			`	"Be very careful if you do though, they're very likely to shoot at you."`
+				goto questions
+			label help
+			action
+				set "Hai Reveal Concern Period: Raid on Allhome (local): label help"
+			`	She shrugs. "I've heard talk of some things that have been suggested to help, but I don't know myself. I guess you should just do the right thing, whatever that is."`
+			`	She seems to be at a loss for what else to say.`
+				goto questions
+			label end
+			`	"No, thank you for caring," she says. "Whatever you do, just be cautious about it. People are scared, and I have a hunch that when they're under pressure, the Hai are a little stranger than people think they are.`
+			`	"Safe travels, Captain."`
+				decline
+	on decline
+		clear "Hai Reveal Concern Period: Raid on Allhome (local): label help"
+		clear "Hai Reveal Concern Period: Raid on Allhome (local): label unfettered"
+
+mission "Hai Reveal Concern Period: Raid on Allhome (away)"
+	landing
+	invisible
+	source
+		government "Hai"
+		not planet "Allhome"
+		attributes "hai: human presence"
+		not attributes "uninhabited" "retirement"
+	to offer
+		has "event: hr: pirate uptick"
+		has "First Contact: Unfettered: offered"
+		not "Hai Reveal Concern Period: Raid on Allhome (local): offered"
+		random < 20
+	on offer
+		set "hr: allhome raided"
+		conversation
+			`A wall screen situated between two food stands just outside the docking area is playing through a news segment, and your ears suddenly perk up at the word "marauder".`
+			`	"Yesterday, a marauder terrorized the inhabitants of Allhome. They arrived by posing as a trader to investigate rumors currently circulating in human space about our existence. Hai security failed to identify the danger, and the individual snuck his ship in and landed at the spaceport without any opposition. Then his crew hijacked a vessel with some of the crew still on board and made off with it successfully. At this time it is unclear what has happened to those crewhai."`
+			`	At a table nearby, a Hai says, "Oh, that's awful!" and the human next to her responds, "Feels like being back on Solace."`
+			choice
+				`	(Approach the pair.)`
+				`	(Keep walking.)`
+					goto walking
+			
+			`	As you approach the human, a relatively young-looking man, he glances up at you. "Oh hello, just arrived, did you? You didn't happen to see an Argosy out there on your way in?"`
+			`	"Oh shush," says the Hai, "Your uncle will be here when he said he will, no need to bother random folks just going about their business."`
+			`	She looks at you with a wary eye, but then seems to relent. "Though I suppose you did come over here of your own volition, didn't you. Can we help you at all, Captain?"`
+			choice
+				`	"Is this a common problem for Allhome?"`
+				`	"I heard you say this happened on Solace?"`
+					goto solace
+					
+			`	"Oh imperishables, no, not at all. It's completely unprecedented for something like that to happen, and in broad daylight too from the looks of the footage," she says.`
+			`	"It's like I was saying before, Auntie, ever since the retraction and that advisory, I swear no one except pirates is trying to get through the wormhole anymore."`
+			`	He looks at you seriously. "It's getting so bad that it's starting to feel like it did during the war, when all the militia were away and before the Free Worlds got a handle on the pirates. It seemed like every new ship that arrived was there to try and rob us, and it's the same now. We came here to be safe, but now it feels like all the government has managed to do is make sure that no one friendly is willing to risk the journey..."`
+				goto resolve
+			
+			label solace
+			`	The young man sits up a little straighter. "When the war started and most of the militia went away to the front, before the Free Worlds got a handle on the pirates, Solace essentially came under siege. Other than the regular merchants that we were familiar with, it seemed like every new ship that arrived was there to try and rob us. Either raiding the regulars, or raiding the planet.`
+			`	"And now with all this," he says, gesturing to the screen. "It feels much the same now, and the Hai seem no better prepared for it than we were. Ever since the retraction and that advisory, it feels like pirates are the only ones showing up through the wormhole anymore. We came here to be safe, but now it feels like all the government has managed to do is make sure that no one friendly is willing to risk the journey..."`
+			
+			label resolve
+			`	His lip quivers, and she takes his hand firmly in her own. "You are safe with your uncle and I," she says, forcefully emphasizing the word 'are', "it will take far more than some pressure from a few pirates to threaten the peace here."`
+			`	He nods and stands up, heading towards the restroom. "Excuse me, Auntie, I need a minute."`
+			
+			choice
+				`	"I'll leave you in peace."`
+					goto peace
+				`	"Will he be okay?"`
+					goto "him ok"
+				`	"Are you okay?"`
+					goto "she ok"
+				`	"You're his aunt?"`
+			`	She gives you a strange look, as if unsure whether to dignify that with a response, and then answers. "His mother was in the militia during the war. She died. His father did not survive that loss. He came to be looked after by his uncle who had heard rumors of the Hai, and couldn't afford to both look after him and pay his debts in the Free Worlds. So they came here and found me."`
+				goto uncle
+			label "him ok"
+			`	"Rightfully, I do not know."`
+				goto uncle
+			label "she ok"
+			`	"I will be fine, though it is challenging adapting to how humans deal with crisis and trauma," she says. "No doubt they will be having a far worse time of things on Allhome. Still..."`
+			
+			label uncle
+			`	She looks wistfully towards the docks. "His uncle is meant to be returning from having gone to pay off the final sum on his debt and wrap up some final business in human space. With the current events, we are both very worried he will not return, though I am doing my best to pretend otherwise."`
+			`	She settles back in her seat with deliberate dignity.`
+				goto leave
+				
+			label peace
+			`	"Thank you, but it is okay, Captain.`
+			label leave
+			`	"Do not trouble yourself over having questioned us. There is no shortcut for processing trauma, and it does the boy no good to hide from the world."`
+			`	She gestures at the screen. "No doubt many people will have many ideas for how to help things soon enough. If it troubles you, lend them a hand. Now, be about your business and farewell."`
+			label walking
+			`	Barely ten minutes later there is already someone on the screen arguing for a range of measures to help with the pirate situation.`
 				decline
 
 
 
-event "pirates respond to leaks"
-	# Add pirate spawns to Waypoint and Heia Due
-	system "Waypoint"
+mission "HR: Call for Aid with Sandsnap"
+	name "Join an effort on <planet>"
+	job
+	description "Experienced combat pilots are requested to apply at the spaceport on <destination> for a project to reactivate the Sandsnap station."
+	to offer
+		has "hr: allhome raided"
+		not "hr: sandsnap project"
+		not "Hai Reveal Concern Period: Reactivating Sandsnap: declined"
+	source
+		government "Hai"
+		not planet "Makerplace"
+	destination "Makerplace"
+	to complete
+		has "hr: sandsnap project"
+	on complete
+		payment 1000 150
+		dialog `Having accepted the job, the initial retainer of <payment> appears in your account.`
+
+
+
+mission "Hai Reveal Concern Period: Reactivating Sandsnap"
+	priority
+	name "Transport the Stationkeeper to <planet>"
+	description "Safely bring the Stationkeeper to <destination> to reactivate the station."
+	source "Makerplace"
+	destination "Sandsnap"
+	passengers 1
+	to offer
+		has "HR: Call for Aid with Sandsnap: active"
+	blocked `You are advised that participation in the Sandsnap Project will require at least 1 bunk free for passengers.`
+	on offer
+		conversation
+			`	Entering the spaceport requires one to walk around a very large holosign giving directions to the Sandsnap Project's office.`
+			choice
+				`	(Check out the project.)`
+				`	(Come back later.)`
+					defer
+				`	(Ignore it, you've changed your mind.)`
+					decline
+			`	There is a greeter, or perhaps a security guard, at the door who appraises you as you approach. "You must be here for the project," he says. "Identification please."`
+			`	After a quick check of your ID he gives you a very professional Hai smile. "Welcome to the Sandsnap Project. Your credentials are sufficient to apply so please, do come in. We hope you'll find the project interesting and the effort rewarding."`
+			`	As you enter a harried Hai gestures you over with enthusiasm. "Greetings," he checks his tablet. "Captain <last>! Your presence in these dire times is greatly appreciated - it has been at least a hundred years since we have had such a threat to our way of life! You must have noticed the spike in pirate activity. Perhaps our northern brethren have had a point all these years."`
+			`	He stops himself. "Not that our politics probably concern you. Let us cut to the matter at hand, shall we?"`
+			choice
+				`	(Nod.)`
+					goto border
+				`	"What are you talking about?"`
+				`	"Not at all, I love politics."`
+			`	He seems surprised. "Oh. Well in that case, the Unfettered have been militarizing a lot in the last 20 years, forcing us to do the same in order to protect merchants from their raids. They may be right that we have grown weak, if the success of those pirate raids is any indication; security forces were simply not ready for them. We here are in the business of ensuring this will not happen again. Mark my words, nothing like an arms manufacturer setting up a support base to really wake a few people up.`
+			label border
+			`	"The raids have proven that we are not prepared to ensure true security on our borders. In order to address this we want to reactivate the mothballed station of <destination>, for which we have acquired the relevant paperwork and access codes. We have already hired a few mercenaries to help with the defense of our station, mostly local humans with experienced pasts. Once operational, the station should be a major strategic advantage for us, allowing resupply and repairs of ships at a location suitable for facilitating rapid response to detected threats."`
+			`	He indicates a door to another room and continues, "The Stationkeeper will be out shortly. We've almost completed our final preparations, but we've been held up trying to make do with the firepower that's signed up so far. Judging by your credentials, I suspect that Kelamursh will want to travel with you. You will need to escort them to the station and dock, so they can confirm the access codes function and that there are no critical errors in the initial restoration process, as well as assess if any additional supplies are required."`
+			`	As soon as he finishes, the door opens and a number of people file out, including a well-dressed Hai who immediately stops next to you.`
+			choice
+				`	(Greet the Stationkeeper.)`
+					goto greet
+				`	(Bow to the Stationkeeper.)`
+			`	She appears flattered in a Hai sort-of way. "There is no need, Captain, my station is not operational, and this is a business operation, not an appointed position. For now, anyway."`
+			label greet
+			`	You introduce yourself. "I am Kelamursh, but you should refer to me as Stationkeeper," she says in response. "Now, if you don't mind, I believe your arrival has solved our last remaining problems, putting us in good stead to depart momentarily. If I may see your ship's accommodation we'll make final preparations and depart in an hour or so."`
+			choice
+				`	"Let's go."`
+					goto depart
+				`	"We were getting paid for this, right?"`
+			`	She blinks in surprise. "Of course, didn't they tell you? Nevermind, you can confirm the details with Heyru after I've checked your vessel."`
+			label depart
+			`	You show her to her bunks. She seems satisfied, and immediately begins calling people to get things sorted. She does not seem to be the kind for casual conversation.`
+				accept
+	on accept
+		set "hr: sandsnap project"
+		log "People" "Stationkeeper Kelamursh" `Kelamursh is a high-ranking employee in an arms manufacturing company. With the concerns on Allhome, she was entrusted with the responsibility of reactivating Sandsnap Station and taking on the role of Stationkeeper.`
+
+
+mission "HRCP: Sandsnap Mercenaries"
+	landing
+	invisible
+	source "Makerplace"
+	to offer
+		has "Hai Reveal Concern Period: Reactivating Sandsnap: accepted"
+	to complete
+		never
+	npc
+		government "Hai Merchant (Human)"
+		personality escort coward opportunistic vindictive
+		fleet
+			names "hai (human)"
+			variant
+				"Grasshopper (Ion)"
+				"Grasshopper (Tracker)"
+				"Headhunter (Hai)" 2
+				"Firebird (Hai Shields)"
+				"Firebird (Hai Weapons)"
+				"Lightning Bug (Pulse)"
+				"Corvette (Hai)"
+				"Leviathan (Hai Weapons)"
+
+
+mission "Hai Reveal Concern Period: Securing Sandsnap"
+	name "Defend convoy arriving in <system>"
+	description "Keep <system> secure against pirates for the supply convoy so that they can reach <planet> safely."
+	landing
+	source "Sandsnap"
+	to offer
+		has "hr: sandsnap project"
+	on offer
+		conversation
+			`Upon arrival the Stationkeeper requests that you stay aboard your ship in case hostiles approach the station, while she suits up and goes aboard to run the access codes and start things up. You can see a selection of other Hai with various tools and equipment disembarking a few other ships in the process. Before long, the main lighting comes on in the docking section, and the team disappears inside.`
+			`	After a short while you receive a message requesting that you report to the operations center inside the main promenade. You proceed to equip your own suit and exit your ship. The station itself is well preserved, except for the lack of atmosphere. Nothing seems to have vented it, no big hole in the ceiling, but the expansive ceiling windows of the main promenade still provide a crystal clear view of the station's many decks towering above you. Exterior navigation lights are gradually flicking on up the height of the station, so that walking through feels like watching a ghost city slowly come to glittering life. Emergency floor lighting has been activated, showing you the way.`
+			`	Once through the operation center's security airlock you are able to remove your helmet. Kelamursh's subordinate, who briefed you in the offices and appears to be in charge in this area, swiftly approaches from the other side. "Captain <last>! It is splendid you could make it here so quickly. We have begun the re-powering process, but it will take time and supplies to re-pressurize more than the docking and operations areas. These stations are not small."`
+			`	He chuckles as if having made a joke, as if you hadn't just walked beneath the open view of over three hundred decks above you. He seems oblivious to the strangeness of this, so perhaps it is a Hai thing.`
+			`	"I am sure you have questions but they will have to wait until we're more established. We have supplies coming and they will be vulnerable to any pirates that may poke their noses in. We need you to get out there and ensure the supplies can all arrive here safely. Local security is still about, so it shouldn't be too problematic."`
+			`	He collects a device from a carry crate and hands it to you. "Now that we've got the basics up and running, the station is in safe mode. You'll need to plug this into your communications system to re-dock safely. The supply convoy has them pre-installed."`
+			choice
+				`	(Go immediately.)`
+					accept
+				`	(Loiter to find out more.)`
+					goto loiter
+				`	"What were we getting paid for this?"`
+			`	He frowns. "It was based on your ship's combat quality. I don't have that tablet with me right now though. Once the supply ships have arrived I should have access to that again. Now go on, you won't get paid at all if the supply ships don't make it."`
+				accept
+			label loiter
+			`	He blinks at you. "Well, what are you waiting for? Go! Come back when all the supply ships have arrived safely."`
+			`	You are left with little choice other than to nod and get on your way.`
+				accept
+	on accept
+		set "hr: sandsnap project"
+	on visit
+		dialog "The supply ships have not all arrived safely yet."
+	on fail
+		dialog "The supply convoy has been lost. The Stationkeeper will be disappointed."
+	npc accompany
+		government "Hai Merchant"
+		personality escort timid
+		system "Ula Mon"
+		fleet "Large Hai Merchant" 3
+	npc
 		government "Pirate"
-		add fleet "Large Northern Pirates" 3000
-		add fleet "Small Northern Pirates" 1000
-		add fleet "Large Core Pirates" 3000
-		add fleet "Small Core Pirates" 1000
-		remove fleet "Small Hai"
-		remove fleet "Large Hai"
-	system "Heia Due"
-		add fleet "Marauder fleet IX" 3000
-		add fleet "Large Northern Pirates" 3000
-		add fleet "Large Core Pirates" 3000
-		add fleet "Anti-Pirate Hai (Wormhole Travel)" 1000
+		personality coward opportunistic vindictive
+		system "Waypoint"
+		fleet "Marauder fleet IX" 2
+	on complete
+		"reputation: Hai" += 200
+		"reputation: Hai (Wormhole Access)" += 200
+		"reputation: Hai Merchant" += 200
+		"reputation: Hai Merchant (Human)" += 200
+		"reputation: Hai Merchant (Sympathizers)" += 200
+		event "hr: sandsnap awoken" 5
+		fail "HRCP: Sandsnap Mercenaries"
+		# Ideally eventually use: payment ( "armament deterrence" * 18000 - "cargo attractiveness" * 3000 )
+		payment 1200000
+		conversation
+			`As you're re-docking behind the supply convoy, a message pings on your console. It contains a short text from "Heyru" thanking you for your assistance and advising that you've been sent a payment of <payment> for your efforts.`
+			`	It seems that the security mechanisms in the docking section have been reactivated, so they no longer need their mercenaries to hang around.`
+
+
+event "hr: sandsnap awoken"
+	planet Sandsnap
+		government "Hai Merchant"
+		attributes hai station
+		landscape land/station35
+		music ambient/machinery
+		description `This station was recently re-powered by a private military contractor to serve as a resupply and repair base that Hai warships can be stationed at to respond more rapidly to pirates entering the system. There has been a constant presence here since it was set up shortly after the pirate raids on Allhome.`
+		spaceport `The operating model for the spaceport is evidently based on the military base at Everhope, but Sandsnap's layout makes restricting portions of the promenade unfeasible. While this leaves the dual-level promenade fully open to civilian access, security restrictions have been put in place at all access points to the higher levels.`
+		`	The floor has had new texturing laid down to prevent slipping, but nearly every other surface appears to be coated in a fine, sticky, metallic powder. Frequently touched surfaces have been polished clean, but otherwise any accidental contact with the powder results in fingerprints being left on any non-metallic surface until it is thoroughly wiped off.`
+		bribe 0.8
+		security 0.8
+
+
+mission "Hai Reveal Concern Period: Sandsnap Failed"
+	landing
+	invisible
+	source "Sandsnap"
+	to offer
+		has "Hai Reveal Concern Period: Securing Sandsnap: Failed"
+	on offer
+		log `Failed to escort the convoy safely to Sandsnap. The station will not be reactivated any time soon.`
+		conversation
+			`The Stationkeeper is distraught and palms you off to her subordinate, who confirms that there is no payment he can give you.`
+			`	He explains that, without the initial convoy arriving safely, there are now loans that were available contingent on success and that they simply don't have the credits. It will take some time to raise the capital for a second attempt, if there is one.`
+				decline
+
+
+
+mission "Hai Leaks Response 2"
+	name "Go to Hai-home"
+	description "Check in with the diplomats on <destination>."
+	landing
+	source
+		government "Hai"
+		attributes "spaceport"
+		not planet "Hai-home"
+	destination "Hai-home"
+	to offer
+		has "event: hr: concern period"
+		or
+			has "Hai Reveal Concern Period: Raid on Allhome (away): declined"
+			has "Hai Reveal Concern Period: Raid on Allhome (local): declined"
+		or
+			has "Hai Reveal Concern Period: Reactivating Sandsnap: declined"
+			has "Hai Reveal Concern Period: Securing Sandsnap: done"
+			has "Hai Reveal Concern Period: Securing Sandsnap: failed"
+	on offer
+		conversation
+			`A brief announcement in the regular news feeds advises that the Hai government and the human diplomats on Hai-home are close to taking next actionable steps towards resolving the current situation. As you listen, you realize it's now been over two months since you last saw them.`
+			`	A moment later, almost as if the universe was responding to your line of thought, a message arrives for you from Sayari. It reads: "Please return to Hai-home if you are able."`
+				accept
 
 
 
@@ -64,17 +853,20 @@ mission "Hai Leaks Response 3"
 	source "Hai-home"
 	destination "Allhome"
 	to offer
-		has "Hai Leaks Response 2: done"
+		or
+			has "Hai Leaks Response 2: done"
+			has "Hai Leaks Response 2: aborted"
 	on offer
 		conversation
-			`You are directed to an official landing pad on your return to Hai-home, and it is not long before you are introducing your entourage to Sayari. Alondo in particular seems excited to be here and seems to have a knack for charming Sayari with polite and insightful, if rather simple, questions throughout the diplomatic niceties.`
-			`	A functionary leads you to what appears to be a situation room, filled with monitors, holoprojectors, and other equipment. Everyone takes their seats at a semicircle-shaped table, and the functionary motions you to the middle seat. A massive holoprojector in front of the table turns on.`
+			`You are directed to an official landing pad on your return to Hai-home, and after securing the <ship>, a functionary leads you to what appears to be a situation room, filled with monitors, holoprojectors, and other equipment. All of the diplomats are here except for Remington, who arrives moments behind you.`
+			`	Sayari gestures for you to take a seat as she switches on a massive holoprojector embedded in the table. She nods to you and says, "Other plans are proceeding, but I asked for you to come back and join the discussion for this. It seems the increase in pirate activity has only worsened over time since the media retraction, and while innocents may be keeping away, that helps us very little."`
 			choice
-				`	"I don't recall there being nearly so many pirates before."`
+				`	"I don't recall there being so many pirates even in human space."`
+				`	"It is getting out of hand. Where are they all coming from?."`
 			`	Sayari frowns and exhales a long breath through her nose, "Yes. Well, it seems that the rumors making their way through your media have attracted every opportunist this side of the Deep."`
 			`	"Of course," she says, "some of the pirates were aware of us, and we were aware of them being aware of us. We had a quiet arrangement with a select few where we rewarded them for keeping the secret well contained within their own circles."`
-			`	Alondo looks surprised, and seems sufficiently taken aback to spare a questioning glance at Remington despite the deliberate lack of interaction between them so far. Remington's expression is unreadable though, and Mr. Yang and Ms. Adrianopolous both merely nod.`
-			`	Sayari does not appear to notice the exchange. "Extra security forces are being called in, but we've been busier than usual in Wah Ki with our northern brethren."`
+			`	Alondo looks surprised, and seems sufficiently taken aback to spare a questioning glance at Remington despite the apparently deliberate decision to sit as far from each other as possible. Remington's expression is unreadable though, and Mr. Yang and Ms. Adrianopolous both merely nod.`
+			`	Sayari does not appear to notice the exchange. "Extra security forces are being mobilized, but we've been busier than usual in Wah Ki with our northern brethren."`
 			choice
 				`	"Are the other Hai likely to be a problem here?"`
 				`	"How much longer can the Republic keep up the ruse?"`
@@ -90,9 +882,9 @@ mission "Hai Leaks Response 3"
 			`	He checks the date. "Our most optimistic estimates suggest the Republic will be forced to acknowledge the existence of the Hai within three months, or we would lose so much credibility as to compromise electoral stability. The actual time limit is probably sooner."`
 			choice
 				`	"Would that be so bad?"`
-			`	"It is always bad to be forced into acknowledging a secret. If we act sooner, we may control the manner of that secret's release," says Xilin. "Plus, while the Hai have let the trickle of humans that find the wormhole settle here peacefully, a massive influx is a problem nobody really wants to have to deal with."`
-			`	Sayari looks at you. "We will have to come up with a plan, and quickly, but for the moment may I ask a favor of the war hero in the room? Please meet up with the security forces converging on Allhome and help them rout the pirates back to the other side of the wormhole. It will buy us some breathing room and options."`
-			`	It is so hard to say "no" to a Hai and their cute squirrelly features.`
+			`	"It is always bad to be forced into acknowledging a secret. If we act sooner, we may control the manner of that secret's release," says Xilin. "This pirate situation is accelerating our timeline in an alarming way, and we need to get on top of it."`
+			`	Sayari looks at you. "We are developing and propagating cover stories for some artifacts, and quickly, but for the moment may I ask a favor of the war hero in the room? Please meet up with the extra security forces converging on Allhome and help them rout the pirates back to the other side of the wormhole. It will buy us some breathing room and options."`
+			`	Even if the combined diplomatic corps of humanity and Hai weren't looking at you expectantly, it is so hard to say "no" to a Hai and their cute squirrelly features.`
 			choice
 				`	"I'll do what I can."`
 					accept
@@ -257,7 +1049,7 @@ ship "Geodesic Geocoris"
 		"hull" 7100
 		"required crew" 27
 		"bunks" 48
-		"mass" 955
+		"mass" 7640
 		"drag" 21.3
 		"heat dissipation" 0.4
 		"fuel capacity" 800
@@ -265,6 +1057,9 @@ ship "Geodesic Geocoris"
 		"outfit space" 555
 		"weapon capacity" 250
 		"engine capacity" 134
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"energy capacity" 5200
 		"shield generation" 6.0
 		"shield energy" 8.8
@@ -291,7 +1086,7 @@ ship "Geodesic Geocoris"
 
 		"A525 Atomic Steering"
 		`"Biroo" Atomic Thruster`
-		"AR120 Reverse Thruster" 2
+		"AR120 Reverse Thruster" # Extra reverse thruster
 		Hyperdrive
 
 	turret 0 -82.5 "Pulse Turret"
@@ -318,7 +1113,7 @@ ship "Geodesic Geocoris" "Geodesic Geocoris (Phylactery)"
 	outfits
 		"Electron Turret" 3
 		"Chameleon Anti-Missile" 2
-		"AR120 Reverse Thruster" 2
+		"AR120 Reverse Thruster"  # Extra reverse thruster
 		"Boulder Reactor"
 		"Hai Ravine Batteries"
 		"Outfits Expansion"
