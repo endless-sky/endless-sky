@@ -1897,7 +1897,8 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 	// If the parent is in-system and planning to jump, non-staying escorts should follow suit.
 	else if(parent.Commands().Has(Command::JUMP) && parent.GetTargetSystem() && !isStaying)
 	{
-		SelectRoute(ship, parent.GetTargetSystem());
+		if(parent.GetTargetSystem() != ship.GetTargetSystem())
+			SelectRoute(ship, parent.GetTargetSystem());
 
 		if(ship.GetTargetSystem())
 		{
@@ -2006,6 +2007,7 @@ bool AI::CanRefuel(const Ship &ship, const StellarObject *target)
 
 	return true;
 }
+
 
 
 // Set the ship's target system or planet in order to reach the
@@ -3774,6 +3776,7 @@ double AI::RendezvousTime(const Point &p, const Point &v, double vp)
 
 	return numeric_limits<double>::quiet_NaN();
 }
+
 
 
 // Searches every asteroid within the ship scan limit and returns either the
