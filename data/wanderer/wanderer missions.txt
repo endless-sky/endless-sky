@@ -152,7 +152,7 @@ mission "Wanderers: Mereti: The Plant 5"
 				"Strong Wind"
 
 event "mereti visiting eneremprukt"
-	system eneremprukt
+	system Eneremprukt
 		fleet "Small Kor Mereti" 800
 
 event "field of mereti plants"
