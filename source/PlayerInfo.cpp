@@ -1839,14 +1839,13 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 			out << ".";
 		Messages::Add(out.str(), Messages::Importance::High);
 	}
-	else if(left_over)
-		{
-			// Report how much excess cargo was dumped.
-			ostringstream out;
-			out << "You dumped " << Format::CargoString(left_over, "excess cargo") << ".";
-			Messages::Add(out.str(), Messages::Importance::High);
-
-		}
+	else if(leftOver)
+	{
+		// Report how much excess cargo was dumped.
+		ostringstream out;
+		out << "You dumped " << Format::CargoString(leftOver, "excess cargo") << ".";
+		Messages::Add(out.str(), Messages::Importance::High);
+	}
 
 	return true;
 }
