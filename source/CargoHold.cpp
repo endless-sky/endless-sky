@@ -617,6 +617,14 @@ int CargoHold::IllegalCargoFine(const Government *government, const PlayerInfo &
 			totalFine += fine;
 	}
 
+	return totalFine;
+}
+
+
+
+int CargoHold::IllegalPassengersFine(const Government *government, const PlayerInfo &player) const
+{
+	int totalFine = 0;
 	for(const auto &it : passengers)
 	{
 		int fine = it.first->IllegalCargoFine();
