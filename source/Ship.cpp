@@ -484,10 +484,7 @@ void Ship::Load(const DataNode &node)
 		}
 		else if(key == "auto explosion")
 		{
-			if(child.Size() >= 2)
-				autoExplosion.baseMult = child.Value(1);
-			else
-				autoExplosion.baseMult = 1.;
+			autoExplosion.baseMult = child.Size() >= 2 ? child.Value(1) : 1.;
 			for(const auto &grand : child)
 			{
 				if(grand.Size() >= 2)
