@@ -938,7 +938,6 @@ government "Korath (Station)"
 	"attitude toward"
 		"Wanderer" -.01
 		"Remnant" -.01
-		"Remnant (Research)" -.01
 		"Korath" 1
 		"Korath (Civilian)" 1
 
