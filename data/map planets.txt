@@ -871,7 +871,7 @@ planet Darkrest
 	attributes hai station uninhabited
 	landscape land/station34
 	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere, and a status panel indicates that the station's generators are functional but shut down, with standby mechanisms running on solar power alone.`
-	description `	An immediately obvious difference between this station and the others in Hai space is the presence of a solemn plaque that takes up a sizable portion of the nearest wall. Upon further inspection, it seems to commemorate an engineering malfunction that occurred thousands of years ago, when this station was still inhabited. In a freak accident, an entire habitation section of Darkrest lost power and depressurized, causing the deaths of countless civilians. Thousands of years later, no one knows for sure what caused the incident. Legends, stories, and conspiracy theories have blossomed from the event.`
+	description `	The presence of a solemn plaque that takes up a sizable portion of the nearest wall seems to commemorate an engineering malfunction that occurred thousands of years ago, when this station was still inhabited. In a freak accident, an entire habitation section of Darkrest lost power and depressurized, causing the deaths of countless civilians. Thousands of years later, no one knows for sure what caused the incident. Legends, stories, and conspiracy theories have blossomed from the event.`
 	government Uninhabited
 	bribe 0
 	security 0
@@ -4377,7 +4377,7 @@ planet Stonebreak
 planet Stormhold
 	attributes core "core pirate" forest frontier pirate
 	landscape land/fog11
-	description `A cold planet, with dense, foggy atmosphere. As with many pirate outposts, Stormhold is home to an unknown number of villages and hidden outposts, each controlled by a different pirate faction. It is also said that some of the most dangerous fugitives in the galaxy live deep in the forests of this planet, escaping detection by living underground or by avoiding the use of electronic devices.`
+	description `Stormhold is a cold planet, with a dense, foggy atmosphere. As with many pirate outposts, Stormhold is home to an unknown number of villages and hidden outposts, each controlled by a different pirate faction. It is also said that some of the most dangerous fugitives in the galaxy live deep in the forests of this planet, escaping detection by living underground or by avoiding the use of electronic devices.`
 	spaceport `The spaceport is a large town, with a population of roughly thirty thousand. People of all races and cultures mingle freely, while keeping a wary eye open for off-worlders who may be Republic agents in disguise.`
 	outfitter "Basic Outfits"
 	outfitter "Ammo North"
