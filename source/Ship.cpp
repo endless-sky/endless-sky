@@ -487,17 +487,17 @@ void Ship::Load(const DataNode &node)
 			autoExplosion.baseMult = child.Size() >= 2 ? child.Value(1) : 1.;
 			for(const auto &grand : child)
 			{
-				if(grand.Size() >= 2)
-				{
-					if(grand.Token(0) == "blast radius")
-						autoExplosion.radiusMult = grand.Value(1);
-					else if(grand.Token(0) == "shield damage")
-						autoExplosion.shieldMult = grand.Value(1);
-					else if(grand.Token(0) == "hull damage")
-						autoExplosion.hullMult = grand.Value(1);
-					else if(grand.Token(0) == "hit force")
-						autoExplosion.forceMult = grand.Value(1);
-				}
+				if(grand.Size() < 2)
+					continue;
+				const string &grandKey = grand.Token(0);
+				if(grandKey == "blast radius")
+					autoExplosion.radiusMult = grand.Value(1);
+				else if(grandKey == "shield damage")
+					autoExplosion.shieldMult = grand.Value(1);
+				else if(grandKey == "hull damage")
+					autoExplosion.hullMult = grand.Value(1);
+				else if(grandKey == "hit force")
+					autoExplosion.forceMult = grand.Value(1);
 			}
 		}
 		else if(key == "explode" && child.Size() >= 2)
