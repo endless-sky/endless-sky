@@ -5035,13 +5035,22 @@ mission "Hroar's Haulers 12"
 			`	He gives you a gruff nod as you arrive.`
 			`	"Smooth run so far. They mostly are. Pirate has to be a few stars short of a galaxy to take on a fleet as big as ours." Yngvar says as his eyes scan the crowd below.`
 			`	"Sometimes fights can break out between the guest-workers. Old scores, gambling gone bad on the trip, anything of the like. But so far everything looks good."`
+			`	Yngvar takes in a deep breath, "Earth air. Doesn't smell like home. Just smells stale." `
 			choice
 				`	"So, what now?"`
-				`	"Where to next?"`
-				`	"We done here?"`
-				`	(Say nothing.)`
-			`	"Once all the folks are unloaded we'll be taking on another shipment of 'em. This time those who signed up for work on Maker. It's an old Syndie contract we picked up a few generations ago. They are so desperate for workers they pay us the full price to transport them. We'll also unload some of our quality mining equipment and take on more raw materials for Lagrange while we're there.`
-			
+					goto whatnow
+				`	"Not a fan of Earth?"`
+					goto earth
+				`	"If you're good here. I am going to head back my ship."`
+			`	"Sure, sure." Yngvar says and waves you away. "We just gotta get folks destined for Maker loaded up and then we'll be heading there next. It's a Syndie world so there might be little more gravel at the spaceport. Anyways, I'll finish up here and meet'chya back at the <ship>."`
+				decline
+
+			label earth
+			`	Yngvar shakes his head, "My people left here on a generation ship first chance they got, and never looked back. Earth's a world filled with the descendents of those who stayed behind."`
+
+			`	"Once all the folks are unloaded we'll be taking on another shipment of 'em. This time those who signed up for work on Maker. It's an old Syndie contract we picked up a few generations ago. They are so desperate for workers they pay us the full price to transport them. We'll also unload some of our quality mining equipment and take on more raw materials for Lagrange while we're there."`
+			`	`
+
 
 
 
