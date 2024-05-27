@@ -1783,26 +1783,26 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 		if(planet->IsInhabited() && planet->CanUseServices() && system->HasTrade())
 		{
 			for(const auto &commodity : cargo.Commodities())
-				{
-					if(!commodity.second)
-						continue;
+			{
+				if(!commodity.second)
+					continue;
 
-					// Figure out how much income you get for selling this cargo.
-					int64_t value = commodity.second * static_cast<int64_t>(system->Trade(commodity.first));
-					income += value;
+				// Figure out how much income you get for selling this cargo.
+				int64_t value = commodity.second * static_cast<int64_t>(system->Trade(commodity.first));
+				income += value;
 
-					int original = originalTotals[commodity.first];
-					auto it = costBasis.find(commodity.first);
-					if(!original || it == costBasis.end() || !it->second)
-						continue;
+				int original = originalTotals[commodity.first];
+				auto it = costBasis.find(commodity.first);
+				if(!original || it == costBasis.end() || !it->second)
+					continue;
 
-					// Now, figure out how much of that income is profit by calculating
-					// the cost basis for this cargo (which is just the total cost basis
-					// multiplied by the percent of the cargo you are selling).
-					int64_t basis = it->second * commodity.second / original;
-					it->second -= basis;
-					totalBasis += basis;
-				}
+				// Now, figure out how much of that income is profit by calculating
+				// the cost basis for this cargo (which is just the total cost basis
+				// multiplied by the percent of the cargo you are selling).
+				int64_t basis = it->second * commodity.second / original;
+				it->second -= basis;
+				totalBasis += basis;
+			}
 		}
 		if(!planet->HasOutfitter() && planet->IsInhabited() && planet->CanUseServices())
 			for(const auto &outfit : cargo.Outfits())
