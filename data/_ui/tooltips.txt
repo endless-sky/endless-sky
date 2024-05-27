@@ -583,7 +583,7 @@ tip "reverse thrusting disruption:"
 	`Accumulated shield interference per second when firing reverse thrusters.`
 
 tip "scan interference:"
-	`Ability to evade detection when a ship is carrying illegal outfits, cargo, or passengers. Interference of 1 blocks 50% of scan attempts; 3 blocks 75%, and 9 blocks 90%.`
+	`Ability to evade detection when a ship is carrying illegal outfits or cargo. Interference of 1 blocks 50% of scan attempts; 3 blocks 75%, and 9 blocks 90%.`
 
 tip "scram drive:"
 	`Allows you to jump without coming to a stop, as long as your velocity is within this range of being lined up with the direction you are jumping in.`
@@ -784,7 +784,7 @@ tip "scan brightness:"
 	`Modifies the likelihood of this illegal outfit appearing on a cargo scan. The higher the brightness, the more likely a scan will pick it up. A scan brightness of 5 has as much a chance of being scanned as an outfit that is 5 tons.`
 
 tip "scan concealment:"
-	`Hides an equivalent mass of illegal cargo or number of illegal passengers from cargo scans, preventing you from being fined for having it. A scan concealment of 10 would make up to 10 tons of illegal cargo not appear on cargo scans.`
+	`Hides an equivalent mass of illegal cargo from cargo scans, preventing you from being fined for having it. A scan concealment of 10 would make up to 10 tons of illegal cargo not appear on cargo scans.`
 
 
 
