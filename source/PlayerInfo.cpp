@@ -1832,7 +1832,7 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 	{
 		// Report how much excess cargo was left over, and what profit you earned.
 		ostringstream out;
-		out << "You sold " << Format::CargoString(left_over, "excess cargo") << " for " << Format::CreditString(income);
+		out << "You sold " << Format::CargoString(leftOver, "excess cargo") << " for " << Format::CreditString(income);
 		if(totalBasis && totalBasis != income)
 			out << " (for a profit of " << Format::CreditString(income - totalBasis) << ").";
 		else
