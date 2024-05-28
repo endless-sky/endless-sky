@@ -399,7 +399,7 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 		{
 			bool canSell = planet.CanUseServices() && system.HasTrade() && planet.GetPort().HasService(Port::ServicesType::Trading);
 			out << "\n- ";
-			out << (planet.HasOutfitter() ? "store " : (  canSell ? "sell " : "dump ")) << outfitsToSell << " outfit";
+			out << (planet.HasOutfitter() ? "store " : (canSell ? "sell " : "dump ")) << outfitsToSell << " outfit";
 			out << (outfitsToSell > 1 ? "s" : "");
 			out << " that none of your ships can hold.";
 			if(!uniquesToSell.empty())
@@ -428,7 +428,7 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 		if(commoditiesToSell > 0)
 		{
 			bool canSell = planet.CanUseServices() && system.HasTrade() && planet.GetPort().HasService(Port::ServicesType::Trading);
-			out << "\n- " << ( canSell ? "sell " : "dump ") << Format::CargoString(commoditiesToSell, "cargo");
+			out << "\n- " << (canSell ? "sell " : "dump ") << Format::CargoString(commoditiesToSell, "cargo");
 			out << " that you do not have space for.";
 		}
 		out << "\nAre you sure you want to continue?";

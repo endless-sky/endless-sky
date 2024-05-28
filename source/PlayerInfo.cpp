@@ -1780,7 +1780,8 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 	int64_t totalBasis = 0;
 	if(leftOver)
 	{
-		if(planet.CanUseServices() && system.HasTrade() && planet.GetPort().HasService(Port::ServicesType::Trading))
+		bool canSell = planet.CanUseServices() && system.HasTrade() && planet.GetPort().HasService(Port::ServicesType::Trading);
+		if(canSell)
 		{
 			for(const auto &commodity : cargo.Commodities())
 			{
@@ -1804,7 +1805,7 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 				totalBasis += basis;
 			}
 		}
-		if(!planet->HasOutfitter() && planet.CanUseServices() && system.HasTrade() && planet.GetPort().HasService(Port::ServicesType::Trading))
+		if(!planet->HasOutfitter() && canSell)
 			for(const auto &outfit : cargo.Outfits())
 			{
 				// Compute the total value for each type of excess outfit.
