@@ -5046,8 +5046,16 @@ mission "Hroar's Haulers 12"
 				decline
 
 			label earth
-			`	Yngvar shakes his head, "My people left here on a generation ship first chance they got, and never looked back. Earth's a world filled with the descendents of those who stayed behind."`
-
+			`	Yngvar shakes his head, "My people left here on a generation ship first chance they got, and never looked back. Earth's a world gone stale with the weight of its history, and the cowardice of ancestors. The stars called to us and these folks stayed home."`
+			choice
+				`	"Interesting, well what now?"`
+					goto whatnow
+				`	"Generation ship?"`
+			`	"That's right. I am from an old spacer family that came on one of the first generation ships to the Deep. For four generations my people lived and died in the depths of the uttermost Gap, only to barely beat the Hyperdrive ships by a decade or two." Yngvar laughs."`
+			`	Yngar's eyes gloss over as he talks,"Not that those Hyperspace jockeys had anything over my folks. What's a month or two in the Gap compared to several lifetimes? Ah, we could never quite kick the knack for it after that. Always felt most at home between worlds. Which is one of the reasons why we became Haulers."`
+			`	The old man shakes his head, "That's enough of my wobblin' jaw. Let's get back to the matter at hand."`
+				
+			label whatnow
 			`	"Once all the folks are unloaded we'll be taking on another shipment of 'em. This time those who signed up for work on Maker. It's an old Syndie contract we picked up a few generations ago. They are so desperate for workers they pay us the full price to transport them. We'll also unload some of our quality mining equipment and take on more raw materials for Lagrange while we're there."`
 			`	`
 
