@@ -8,13 +8,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  changed:
-    uses: ./.github/workflows/compute-changes.yml
-
   build_linux:
     name: Linux
-    needs: changed
-    if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.integration_tests == 'true' || needs.changed.outputs.cmake_files == 'true' }}
     runs-on: ubuntu-22.04
     strategy:
       matrix:

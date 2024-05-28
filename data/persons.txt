@@ -548,8 +548,7 @@ person "Power of the People"
 			"Take it from me: "
 			"A word of caution: "
 			"A piece of advice: "
-			""
-			""
+			"" 2
 		word
 			"If you think the other guy might have a blaster hidden under the table... bring two blasters."
 			"I'm a team player. As long as the rest of the team stays behind me."
