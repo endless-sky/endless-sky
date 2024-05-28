@@ -1773,14 +1773,14 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 	for(const Mission *mission : missionsToRemove)
 		RemoveMission(Mission::ABORT, *mission, ui);
 
-	// Any ordinary cargo left behind can be either sold, stored or dumped.
+	// Any ordinary cargo/outfits left behind can be either sold, stored or dumped.
 	int64_t income = 0;
 	int day = date.DaysSinceEpoch();
 	int64_t left_over = cargo.Used();
 	int64_t totalBasis = 0;
 	if(left_over)
 	{
-		if(planet->IsInhabited() && planet->CanUseServices() && system->HasTrade())
+		if(planet.CanUseServices() && system.HasTrade() && planet.GetPort().HasService(Port::ServicesType::Trading))
 		{
 			for(const auto &commodity : cargo.Commodities())
 				{
@@ -1804,7 +1804,7 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 					totalBasis += basis;
 				}
 		}
-		if(!planet->HasOutfitter() && planet->IsInhabited() && planet->CanUseServices())
+		if(!planet->HasOutfitter() && planet.CanUseServices() && system.HasTrade() && planet.GetPort().HasService(Port::ServicesType::Trading))
 			for(const auto &outfit : cargo.Outfits())
 			{
 				// Compute the total value for each type of excess outfit.
