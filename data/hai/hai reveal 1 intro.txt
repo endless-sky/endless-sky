@@ -789,7 +789,6 @@ mission "Hai Reveal Concern Period: Securing Sandsnap"
 			`As you're re-docking behind the supply convoy, a message pings on your console. It contains a short text from "Heyru" thanking you for your assistance and advising that you've been sent a payment of <payment> for your efforts.`
 			`	It seems that the security mechanisms in the docking section have been reactivated, so they no longer need their mercenaries to hang around.`
 
-
 event "hr: sandsnap awoken"
 	planet Sandsnap
 		government "Hai Merchant"
