@@ -1776,33 +1776,33 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 	// Any ordinary cargo/outfits left behind can be either sold, stored or dumped.
 	int64_t income = 0;
 	int day = date.DaysSinceEpoch();
-	int64_t left_over = cargo.Used();
+	int64_t leftOver = cargo.Used();
 	int64_t totalBasis = 0;
-	if(left_over)
+	if(leftOver)
 	{
 		if(planet.CanUseServices() && system.HasTrade() && planet.GetPort().HasService(Port::ServicesType::Trading))
 		{
 			for(const auto &commodity : cargo.Commodities())
-				{
-					if(!commodity.second)
-						continue;
+			{
+				if(!commodity.second)
+					continue;
 
-					// Figure out how much income you get for selling this cargo.
-					int64_t value = commodity.second * static_cast<int64_t>(system->Trade(commodity.first));
-					income += value;
+				// Figure out how much income you get for selling this cargo.
+				int64_t value = commodity.second * static_cast<int64_t>(system->Trade(commodity.first));
+				income += value;
 
-					int original = originalTotals[commodity.first];
-					auto it = costBasis.find(commodity.first);
-					if(!original || it == costBasis.end() || !it->second)
-						continue;
+				int original = originalTotals[commodity.first];
+				auto it = costBasis.find(commodity.first);
+				if(!original || it == costBasis.end() || !it->second)
+					continue;
 
-					// Now, figure out how much of that income is profit by calculating
-					// the cost basis for this cargo (which is just the total cost basis
-					// multiplied by the percent of the cargo you are selling).
-					int64_t basis = it->second * commodity.second / original;
-					it->second -= basis;
-					totalBasis += basis;
-				}
+				// Now, figure out how much of that income is profit by calculating
+				// the cost basis for this cargo (which is just the total cost basis
+				// multiplied by the percent of the cargo you are selling).
+				int64_t basis = it->second * commodity.second / original;
+				it->second -= basis;
+				totalBasis += basis;
+			}
 		}
 		if(!planet->HasOutfitter() && planet.CanUseServices() && system.HasTrade() && planet.GetPort().HasService(Port::ServicesType::Trading))
 			for(const auto &outfit : cargo.Outfits())
@@ -1828,25 +1828,24 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 	accounts.AddCredits(income);
 	cargo.Clear();
 	stockDepreciation = Depreciation();
-	if(left_over && income)
+	if(leftOver && income)
 	{
-		// Report how much excess cargo was left_over, and what profit you earned.
+		// Report how much excess cargo was left over, and what profit you earned.
 		ostringstream out;
-		out << "You sold " << Format::CargoString(left_over, "excess cargo") << " for " << Format::CreditString(income);
+		out << "You sold " << Format::CargoString(leftOver, "excess cargo") << " for " << Format::CreditString(income);
 		if(totalBasis && totalBasis != income)
 			out << " (for a profit of " << Format::CreditString(income - totalBasis) << ").";
 		else
 			out << ".";
 		Messages::Add(out.str(), Messages::Importance::High);
 	}
-	else if(left_over)
-		{
-			// Report how much excess cargo was dumped.
-			ostringstream out;
-			out << "You dumped " << Format::CargoString(left_over, "excess cargo") << ".";
-			Messages::Add(out.str(), Messages::Importance::High);
-
-		}
+	else if(leftOver)
+	{
+		// Report how much excess cargo was dumped.
+		ostringstream out;
+		out << "You dumped " << Format::CargoString(leftOver, "excess cargo") << ".";
+		Messages::Add(out.str(), Messages::Importance::High);
+	}
 
 	return true;
 }
