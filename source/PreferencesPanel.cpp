@@ -57,6 +57,8 @@ namespace {
 	const string AUTO_FIRE_SETTING = "Automatic firing";
 	const string SCREEN_MODE_SETTING = "Screen mode";
 	const string VSYNC_SETTING = "VSync";
+	const string CAMERA_ACCELERATION = "Camera acceleration";
+	const string CLOAK_OUTLINE = "Cloaked ship outlines";
 	const string STATUS_OVERLAYS_ALL = "Show status overlays";
 	const string STATUS_OVERLAYS_FLAGSHIP = "   Show flagship overlay";
 	const string STATUS_OVERLAYS_ESCORT = "   Show escort overlays";
@@ -633,6 +635,7 @@ void PreferencesPanel::DrawSettings()
 		VIEW_ZOOM_FACTOR,
 		SCREEN_MODE_SETTING,
 		VSYNC_SETTING,
+		CAMERA_ACCELERATION,
 		"",
 		"Performance",
 		"Show CPU / GPU load",
@@ -645,6 +648,7 @@ void PreferencesPanel::DrawSettings()
 		EXTENDED_JUMP_EFFECTS,
 		SHIP_OUTLINES,
 		HUD_SHIP_OUTLINES,
+		CLOAK_OUTLINE,
 		"\t",
 		"HUD",
 		STATUS_OVERLAYS_ALL,
@@ -764,6 +768,11 @@ void PreferencesPanel::DrawSettings()
 			text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::ALL);
 			isOn = text != "off";
 		}
+		else if(setting == CAMERA_ACCELERATION)
+		{
+			text = Preferences::CameraAccelerationSetting();
+			isOn = text != "off";
+		}
 		else if(setting == STATUS_OVERLAYS_FLAGSHIP)
 		{
 			text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::FLAGSHIP);
@@ -783,6 +792,11 @@ void PreferencesPanel::DrawSettings()
 		{
 			text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::NEUTRAL);
 			isOn = text != "off" && text != "--";
+		}
+		else if(setting == CLOAK_OUTLINE)
+		{
+			text = Preferences::Has(CLOAK_OUTLINE) ? "fancy" : "fast";
+			isOn = true;
 		}
 		else if(setting == AUTO_AIM_SETTING)
 		{
@@ -1068,7 +1082,7 @@ void PreferencesPanel::RenderPluginDescription(const Plugin &plugin)
 	WrappedText wrap(font);
 	wrap.SetWrapWidth(box.Width());
 	static const string EMPTY = "(No description given.)";
-	wrap.Wrap(plugin.aboutText.empty() ? EMPTY : plugin.aboutText);
+	wrap.Wrap(plugin.aboutText.empty() ? EMPTY : plugin.CreateDescription());
 
 	descriptionHeight += wrap.Height();
 
@@ -1188,6 +1202,8 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 			GetUI()->Push(new Dialog(
 				"Unable to change VSync state. (Your system's graphics settings may be controlling it instead.)"));
 	}
+	else if(str == CAMERA_ACCELERATION)
+		Preferences::ToggleCameraAcceleration();
 	else if(str == STATUS_OVERLAYS_ALL)
 		Preferences::CycleStatusOverlays(Preferences::OverlayType::ALL);
 	else if(str == STATUS_OVERLAYS_FLAGSHIP)
