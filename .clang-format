@@ -29,7 +29,7 @@ SpaceBeforeParensOptions:
 SeparateDefinitionBlocks: Leave
 AlwaysBreakTemplateDeclarations: true
 AlignAfterOpenBracket: DontAlign
-ColumnLimit: 100
+ColumnLimit: 110
 AlignOperands: true
 BreakBeforeBinaryOperators: NonAssignment
 BreakArrays: true
