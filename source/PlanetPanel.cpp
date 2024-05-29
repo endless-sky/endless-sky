@@ -397,7 +397,9 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 		// Warn about outfits that can't be carried.
 		if(outfitsToSell > 0)
 		{
-			bool canSell = planet.CanUseServices() && system.HasTrade() && planet.GetPort().HasService(Port::ServicesType::Trading);
+			bool canSell = planet.CanUseServices() && system.HasTrade()
+				&& planet.GetPort().HasService(Port::ServicesType::Trading);
+
 			out << "\n- ";
 			out << (planet.HasOutfitter() ? "store " : (canSell ? "sell " : "dump ")) << outfitsToSell << " outfit";
 			out << (outfitsToSell > 1 ? "s" : "");
@@ -427,7 +429,9 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 		// Warn about commodities you will have to sell.
 		if(commoditiesToSell > 0)
 		{
-			bool canSell = planet.CanUseServices() && system.HasTrade() && planet.GetPort().HasService(Port::ServicesType::Trading);
+			bool canSell = planet.CanUseServices() && system.HasTrade()
+				&& planet.GetPort().HasService(Port::ServicesType::Trading);
+
 			out << "\n- " << (canSell ? "sell " : "dump ") << Format::CargoString(commoditiesToSell, "cargo");
 			out << " that you do not have space for.";
 		}

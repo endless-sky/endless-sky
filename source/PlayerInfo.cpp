@@ -1780,7 +1780,9 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 	int64_t totalBasis = 0;
 	if(leftOver)
 	{
-		bool canSell = planet->CanUseServices() && system->HasTrade() && planet->GetPort().HasService(Port::ServicesType::Trading);
+		bool canSell = planet->CanUseServices() && system->HasTrade()
+			&& planet->GetPort().HasService(Port::ServicesType::Trading);
+
 		if(canSell)
 		{
 			for(const auto &commodity : cargo.Commodities())
