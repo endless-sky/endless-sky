@@ -501,7 +501,7 @@ mission "Hai Reveal Concern Period: Raid on Allhome (local)"
 	invisible
 	source "Allhome"
 	to offer
-		has "event: hr: hr: pirate uptick"
+		has "event: hr: pirate uptick"
 		not "Hai Reveal Concern Period: Raid on Allhome (away): offered"
 	on offer
 		set "hr: allhome raided"
@@ -713,7 +713,7 @@ mission "HRCP: Sandsnap Mercenaries"
 	invisible
 	source "Makerplace"
 	to offer
-		has "Hai Reveal Concern Period: Reactivating Sandsnap: accepted"
+		has "Hai Reveal Concern Period: Reactivating Sandsnap: active"
 	to complete
 		never
 	npc
@@ -743,7 +743,7 @@ mission "Hai Reveal Concern Period: Securing Sandsnap"
 		conversation
 			`Upon arrival the Stationkeeper requests that you stay aboard your ship in case hostiles approach the station, while she suits up and goes aboard to run the access codes and start things up. You can see a selection of other Hai with various tools and equipment disembarking a few other ships in the process. Before long, the main lighting comes on in the docking section, and the team disappears inside.`
 			`	After a short while you receive a message requesting that you report to the operations center inside the main promenade. You proceed to equip your own suit and exit your ship. The station itself is well preserved, except for the lack of atmosphere. Nothing seems to have vented it, no big hole in the ceiling, but the expansive ceiling windows of the main promenade still provide a crystal clear view of the station's many decks towering above you. Exterior navigation lights are gradually flicking on up the height of the station, so that walking through feels like watching a ghost city slowly come to glittering life. Emergency floor lighting has been activated, showing you the way.`
-			`	Once through the operation center's security airlock you are able to remove your helmet. Kelamursh's subordinate, who briefed you in the offices and appears to be in charge in this area, swiftly approaches from the other side. "Captain <last>! It is splendid you could make it here so quickly. We have begun the re-powering process, but it will take time and supplies to re-pressurize more than the docking and operations areas. These stations are not small."`
+			`	Once through the operation center's security airlock, you are able to remove your helmet. Kelamursh's subordinate, who briefed you in the offices and appears to be in charge in this area, swiftly approaches from the other side. "Captain <last>! It is splendid you could make it here so quickly. We have begun the re-powering process, but it will take time and supplies to re-pressurize more than the docking and operations areas. These stations are not small."`
 			`	He chuckles as if having made a joke, as if you hadn't just walked beneath the open view of over three hundred decks above you. He seems oblivious to the strangeness of this, so perhaps it is a Hai thing.`
 			`	"I am sure you have questions but they will have to wait until we're more established. We have supplies coming and they will be vulnerable to any pirates that may poke their noses in. We need you to get out there and ensure the supplies can all arrive here safely. Local security is still about, so it shouldn't be too problematic."`
 			`	He collects a device from a carry crate and hands it to you. "Now that we've got the basics up and running, the station is in safe mode. You'll need to plug this into your communications system to re-dock safely. The supply convoy has them pre-installed."`
