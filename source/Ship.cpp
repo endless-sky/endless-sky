@@ -631,11 +631,12 @@ void Ship::FinishLoading(bool isNewInstance)
 	{
 		double baseShields = baseAttributes.Get("shields");
 		double baseHull = baseAttributes.Get("hull");
-		const double scale = (baseShields + baseHull) * autoExplosion->baseMult;
-		const double radius = scale * autoExplosion->radiusMult;
-		const double shieldDamage = scale * autoExplosion->shieldMult;
-		const double hullDamage = scale * autoExplosion->hullMult;
-		const double hitForce = scale * autoExplosion->forceMult;
+		double scale = (baseShields + baseHull) * autoExplosion->baseMult;
+
+		double radius = scale * autoExplosion->radiusMult;
+		double shieldDamage = scale * autoExplosion->shieldMult;
+		double hullDamage = scale * autoExplosion->hullMult;
+		double hitForce = scale * autoExplosion->forceMult;
 		baseAttributes.SetExplosion(radius, shieldDamage, hullDamage, hitForce);
 	}
 
