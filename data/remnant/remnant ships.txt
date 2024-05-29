@@ -1083,7 +1083,7 @@ ship "Penguin"
 		"bunks" 3
 		"mass" 89
 		"drag" 1.37
-		"heat dissipation" 0.82
+		"heat dissipation" 0.88
 		"fuel capacity" 800
 		"energy capacity" 300
 		"ramscoop" 1.25
