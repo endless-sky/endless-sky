@@ -18,7 +18,7 @@ BraceWrapping:
     BeforeCatch: true
     BeforeElse: true
     BeforeLambdaBody: true
-    BeforeWhile: false
+    BeforeWhile: true
     SplitEmptyFunction: true
     SplitEmptyRecord: true
     SplitEmptyNamespace: true
@@ -29,6 +29,7 @@ SpaceBeforeParensOptions:
 SeparateDefinitionBlocks: Leave
 AlwaysBreakTemplateDeclarations: true
 AlignAfterOpenBracket: DontAlign
+BreakBeforeTernaryOperators: true
 ColumnLimit: 110
 AlignOperands: true
 BreakBeforeBinaryOperators: NonAssignment
