@@ -203,6 +203,6 @@ event "grew up on greenwater"
 		description `	While farming and fishing make up most of the human-centered economy, a few merchants trade with the Hai up in the poles where the spaceport is located.`
 
 substitutions
-	"<origin planet>" "New Boston"
-	"<origin planet>" "Greenwater"
+	"<starting planet>" "New Boston"
+	"<starting planet>" "Greenwater"
 		has "hai space start"
