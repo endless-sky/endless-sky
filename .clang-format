@@ -4,6 +4,7 @@ IndentWidth: 4
 TabWidth: 4
 UseTab: ForContinuationAndIndentation
 EmptyLineBeforeAccessModifier: Always
+SortIncludes: CaseInsensitive
 BreakBeforeBraces: Custom
 BraceWrapping:
     AfterCaseLabel: true
