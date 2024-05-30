@@ -56,8 +56,11 @@ public:
 	ConstIterator begin() const;
 	ConstIterator end() const;
 
+
 private:
 	ConditionalText text;
 };
+
+
 
 #endif

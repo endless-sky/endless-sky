@@ -13,12 +13,15 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
+#include "Paragraphs.h"
+
 #include "ConditionSet.h"
 #include "ConditionsStore.h"
 #include "DataNode.h"
-#include "Paragraphs.h"
 
 using namespace std;
+
+
 
 void Paragraphs::Load(const DataNode &node)
 {
@@ -49,7 +52,7 @@ bool Paragraphs::IsEmpty() const
 
 bool Paragraphs::IsEmptyFor(const ConditionsStore &vars) const
 {
-	for(auto &varsText : text)
+	for(const auto &varsText : text)
 		if(!varsText.second.empty() && (varsText.first.IsEmpty() || varsText.first.Test(vars)))
 			return false;
 	return true;
@@ -60,7 +63,7 @@ bool Paragraphs::IsEmptyFor(const ConditionsStore &vars) const
 string Paragraphs::ToString(const ConditionsStore &vars) const
 {
 	string result;
-	for(auto &varsText : text)
+	for(const auto &varsText : text)
 		if(!varsText.second.empty() && (varsText.first.IsEmpty() || varsText.first.Test(vars)))
 			result += varsText.second;
 	return result;
