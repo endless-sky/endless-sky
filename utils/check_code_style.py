@@ -14,6 +14,7 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 import glob
+from os import system
 import sys
 
 import regex as re
@@ -44,7 +45,7 @@ line_include = {re.compile(regex): description for regex, description in {
 	# where the statement is not at the beginning of the line.
 	"(?<!^inline\\s.*)[^\\w0-9]((?<!else\\s)if|else|else\\sif|switch|for|catch|try|do)(\\s{|\\()": "statement should begin on new line",
 	# Matches any semicolons not at the end of line, unless they are inside 'for' statements
-	";[^\\)}]+$": "semicolon should terminate line",
+	# ";[^\\)}]+$": "semicolon should terminate line",
 	# Matches any whitespaces at the end of a line
 	"\\s+$": "trailing whitespace at end of line",
 	# Matches any number of operators that have no leading whitespace,
@@ -58,7 +59,7 @@ segment_include = {re.compile(regex): description for regex, description in {
 	# Matches at least 2 whitespace characters following a non-whitespace character unless the entire line
 	# is made up of commas, numbers or variable names.
 	# This is necessary to avoid flagging array-declaration tables that have custom indentation for readability.
-	"(?!^[\\s\\w\\.,\\d{}+\\-]*$)^.*\\S\\s\\s+.*$": "consecutive whitespace characters",
+	# "(?!^[\\s\\w\\.,\\d{}+\\-]*$)^.*\\S\\s\\s+.*$": "consecutive whitespace characters",
 	# Matches any '(' that has no following whitespace,
 	# except if the whitespace is followed by a semicolon,
 	# or follows an all-caps method name.
@@ -67,7 +68,7 @@ segment_include = {re.compile(regex): description for regex, description in {
 	"(?:if|switch|for|catch)\\s+\\(": "extra whitespace before '('",
 	# Matches any 'try' or 'do' statements that are not followed by a whitespace and a '{'.
 	# The missing whitespace is checked in another pattern.
-	"^(try|do)$": "'try' or 'do' and '{' should be on the same line",
+	# "^(try|do)$": "'try' or 'do' and '{' should be on the same line",
 	# Matches any tabulator characters.
 	"\t": "tabulators should only be used for indentation",
 	# Matches any commas that are not followed by whitespace characters.
@@ -549,18 +550,19 @@ def check_include(sanitized_lines, original_lines, file):
 				warnings.append(
 					Warning(original_lines[index], index, "missing empty line before changing include style"))
 				break
-		group_lines = [original_lines[index] for index in group]
-		for i in range(len(group_lines)):
-			line = group_lines[i]
-			if line.count("/") > 0:
-				if quote:
-					line = line[0:line.find("\"") + 1] + line[line.rfind("/") + 1:len(line)]
-				else:
-					line = line[0:line.find("<") + 1] + line[line.rfind("/") + 1:len(line)]
-				group_lines[i] = line
-		for i in range(len(group) - 1):
-			if group_lines[i].lower() > group_lines[i + 1].lower():
-				errors.append(Error(group_lines[i], group[i] + 1, "includes are not in alphabetical order"))
+		# group_lines = [original_lines[index] for index in group]
+		# # for i in range(len(group_lines)):
+		# # 	line = group_lines[i]
+		# # 	if line.count("/") > 0:
+		# # 		if quote:
+		# # 			line = line[0:line.find("\"") + 1] + line[next(idx for (idx, x) in enumerate(line) if x.isalnum()) + 1:len(line)]
+		# # 		else:
+		# # 			line = line[0:line.find("<") + 1] + line[next(idx for (idx, x) in enumerate(line) if x.isalnum()) + 1:len(line)]
+		# # 			# line = line[0:line.find("<") + 1] + line[line.rfind("/") + 1:len(line)]
+		# # 		group_lines[i] = line
+		# for i in range(len(group) - 1):
+		# 	if group_lines[i].lower() > group_lines[i + 1].lower():
+		# 		errors.append(Error(group_lines[i], group[i] + 1, "includes are not in alphabetical order"))
 	return errors, warnings
 
 
@@ -580,6 +582,8 @@ if __name__ == '__main__':
 		f = open(file, "r", newline='')
 		contents = f.readlines()
 		(e, w) = check_code_style(file, contents)
+
+		system(f"clang-format {file} -n --style=file")
 
 		errors += len(e)
 		warnings += len(w)

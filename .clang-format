@@ -32,7 +32,7 @@ AlwaysBreakTemplateDeclarations: true
 AlignAfterOpenBracket: DontAlign
 BreakBeforeTernaryOperators: true
 ColumnLimit: 110
-AlignOperands: true
+AlignOperands: Align
 BreakBeforeBinaryOperators: NonAssignment
 BreakArrays: true
 MaxEmptyLinesToKeep: 3
