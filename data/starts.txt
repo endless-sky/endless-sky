@@ -71,7 +71,7 @@ start "hai space"
 			has "main plot completed"
 			has "Ask the Hai about the Unfettered"
 	on display
-		description "What if you had not grown up on New Boston? What if you had waited longer before taking to the skies?"
+		description "What if you had not grown up on New Boston?"
 		thumbnail ""
 		date "3013"
 		planet "Slightly too warm"
@@ -85,12 +85,12 @@ start "hai space"
 		description "	You could have started a different way, went a different path."
 		system "Somewhere far north"
 		planet "Mixed culture"
-		date "Same old one"
+		date "16 11 3013"
 		credits 1.431M
 		debt 1.431M
 	to unlock
 		has "main plot completed"
-		# TODO: think about what point of HR should unlock this once it's back in the game
+		# TODO: think about what point of HR should unlock this once it's back in the game, if any
 		# has "event: hai-human resolution announced"
 	conversation "hai intro"
 	account
@@ -105,7 +105,6 @@ start "hai space"
 	# need to set it here to not have it trigger alongside the invisible mission
 	set "First Contact: Hai: offered"
 	set "Intro [0]: offered"
-
 
 
 conversation "hai intro"
