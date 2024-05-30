@@ -818,6 +818,9 @@ void PlayerInfoPanel::SortShips(InfoPanelState::ShipComparator *shipComparator)
 	if(panelState.CurrentSort() == shipComparator)
 		shipComparator = GetReverseCompareFrom(*shipComparator);
 
+	if(panelState.Ships().empty())
+		return;
+
 	// Save selected ships to preserve selection after sort.
 	multiset<shared_ptr<Ship>, InfoPanelState::ShipComparator *> selectedShips(shipComparator);
 	shared_ptr<Ship> lastSelected = panelState.SelectedIndex() == -1
