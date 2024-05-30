@@ -295,40 +295,41 @@ mission "Returning Home"
 		random < 40
 	on offer
 		conversation
+			branch insider
+				has "hai space start"
 			`You are stopped by a human in the <origin> marketplace. He takes off his hat and asks, "You're from the outside, aren't you?"`
 			choice
 				`	"Yes, I am."`
-					to display
-						not "hai space start"
 					goto outsider
-				`	"Not really. I grew up here."`
-					to display
-						has "hai space start"
-					goto clothe
 				`	"What do you mean 'the outside?'"`
 			
 			`	"Outside of Hai space. You don't look quite like most humans who live here, unless there's some new fashion trend going on that I don't know about."`
 			choice
 				`	"Oh, yes. I do come from outside."`
-					to display
-						not "hai space start"
-				`	"Not really. I grew up here."`
-					to display
-						has "hai space start"
 					goto outsider
 			
-			label clothe
-			`	"That's strange. You don't look like most do here," he says.`
+			label insider
+			`You are stopped by a human in the <origin> marketplace. He takes off his hat and asks, "You wouldn't happen to be a captain from the outside, would you?"`
+			choice
+				`	"No, I grew up here."`
+				`	"Why? Do you need to go somewhere?"`
+					goto somewhere
+			
+			`	He sighs. "I figured as such. You can usually tell when people aren't from here by their clothing."`
+			`	The man thinks for a moment. "Would it be too much of a hassle for you to take a trip to human space?"`
+			choice
+				`	"I'd be happy to take you there."`
+				`	"Sorry, but no. You'll have to find another captain."`
+					goto decline
+			
 			label outsider
-			`	You explain to him that these clothes used to belong to your father, who was a merchant from human space; your mother kept some for you when he left.`
-				to display
-					has "hai space start"
 			`	"Good. My name is Elliot." You introduce yourself to Elliot and shake hands.`
-				to display
-					has "human space start"
-			`	He sighs. "I was hoping to get someone from human space. Well, a captain's a captain, I guess. My name is Elliot." You introduce yourself to Elliot and shake hands.`
-				to display
-					not "human space start"
+				goto offer
+			
+			label somewhere
+			`	"I do. My name is Elliot." You introduce yourself to Elliot and shake hands.`
+			
+			label offer
 			`	"Can you take me to <destination>?" Elliot asks.`
 			`	"That's all the way in the Dirt Belt," you say. "Why do you want to go that far?"`
 			`	Elliot looks down at the ground for a second and takes a deep breath while gripping his hat in his hands. "You see, I haven't lived here all my life. I was born on <planet> to a poor farming family. Most of my days were spent working on the farm, which I hated with a passion. One day I just got fed up with things and I ran away.`

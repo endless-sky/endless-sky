@@ -37,7 +37,8 @@ mission "Default Start Patch"
 	invisible
 	landing
 	to offer
-		not "hai space start"
+		has "Intro [0]: offered"
+		not "human space start"
 	on offer
 		set "species: human"
 		set "human space start"
@@ -72,7 +73,7 @@ start "hai space"
 	on display
 		description "What if you had not grown up on New Boston? What if you had waited longer before taking to the skies?"
 		thumbnail ""
-		date "3020"
+		date "3013"
 		planet "Slightly too warm"
 		credits "over a million"
 	to reveal
@@ -109,7 +110,7 @@ start "hai space"
 
 conversation "hai intro"
 	scene "scene/hai shipyard"
-	`You've never been to the shipyard before, and going to the North Pole already makes you feel as if you're on another world. Though you've met some Hai in the past, you've never been among so many of them in one place; the pace of this Hai city far outstrips the muggy human town near the equator where you grew up.`
+	`Going to the North Pole already makes you feel as if you're on another world. Though you've met some Hai in the past, you've never been among so many of them in one place; the movement of the crowd in this Hai city far outstrips the equatorial human town where you grew up.`
 	`	The pictures and videos you've seen of all these ships before simply don't do them justice; seeing them for real is something else entirely. Even though you know a lot of those ships must have been in service for many years, you are stunned by how new and shiny they look. You begin to wonder if you are ready to take the big leap.`
 	`	This "Aphid" could suit your needs. It is fast and able to carry a respectable amount of cargo.`
 	scene "thumbnail/hai aphid"
@@ -191,8 +192,7 @@ mission "Greenwater start"
 
 event "not from boston"
 	planet "New Boston"
-		description `New Boston appears to be a completely unremarkable world... but as you fly through its atmosphere, you get a sense of deja vu, as if you once knew this planet intimately.`
-		description `	Most of the land here is wet and marshy, and the coastal regions are prone to flooding. The planet's economy is largely agricultural; some of the farms here grow food for export to Earth and elsewhere, but a significant portion of farming land is devoted to growing fiber crops, which is then processed in the textile mills in the spaceport city.`
+		description `New Boston is a completely unremarkable world. Most of the land here is wet and marshy, and the coastal regions are prone to flooding. The planet's economy is largely agricultural; some of the farms here grow food for export to Earth and elsewhere, but a significant portion of farming land is devoted to growing fiber crops, which is then processed in the textile mills in the spaceport city.`
 		spaceport `New Boston's shabby spaceport is as about as basic as a spaceport can be. Many of the concrete landing pads are tilted and uneven, having sunk into the muddy soil since they were poured, and you have to be careful landing on them.`
 		spaceport `	The market where ship captains buy and sell cargo is a large tent rather than a permanent building, but it is sturdy enough to keep off the rain. Loads are brought in and out by trucks and the occasional hovercraft. Here some enterprising local mechanics have set up not only a repair shop and outfitter, but also a shipyard with several small, refurbished ships for sale.`
 

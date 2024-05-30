@@ -3878,13 +3878,13 @@ mission "Human to Hai Space"
 				decline
 			
 			label origin
-			`	He seems shocked. "You too? You're not joking with me, are you? I need to go to <destination>, and I can afford to give you <payment> for it."`
+			`	He seems shocked. "You too? I can give you <payment> to get to <destination>."`
 				goto choice
 			label hai
 			`	"If that's the case, could you bring me to <destination>? I'll give you <payment>."`
 			label choice
 			choice
-				`	"<planet>? I come from there!"`
+				`	"Actually, I'm from <planet>."`
 					to display
 						has "hai space start"
 				`	"Alright, I'll take you there."`
@@ -3893,8 +3893,7 @@ mission "Human to Hai Space"
 					decline
 				`	"Why would you want to go all the way out to <planet>?"`
 					goto explain
-			`	"No way, you as well?" He stops for a second to process what you just said. "They say the universe is a small place, but I never believed any of that. Until now, that is. I grew up in the city of Darwin."`
-			`	Before you can say anything, he continues. "Almost felt like human space; I didn't even have to learn Hai." He smiles. "They're a very welcoming species. Partially why I want to go back. You see, this was my first time out of the wormhole."`
+			`	"No way, you as well?" He stops for a second to process. "They say the universe is a small place, but I never believed any of that. Until now, that is. And to think I'd meet someone like you on my first time out of the wormhole."`
 				goto humanspace
 			label explain
 			`	"I have family there," he says. "I came out here to do some traveling and see a bit of human space, but now I have to get back home. You see, I was born on <planet>, and this is my first time out of the wormhole."`
@@ -3922,7 +3921,7 @@ mission "Human to Hai Space"
 			choice
 				`	(Leave.)`
 					decline
-				`	"May I come speak with them?"`
+				`	(Approach them.)`
 					to display
 						has "hai space start"
 					goto haistart
@@ -3940,15 +3939,12 @@ mission "Human to Hai Space"
 			`	"Of course. You did bring me all the way back here, after all. These are my parents, Yeerto and Taepip." His father Yeerto then says, "We heard about your travel agency, even went there at some point when we were thinking of relocating to human space. It ended up being a touch too expensive, though, so Benjamin arranged for a merchant to bring him on the way."`
 			`	"Funny we almost found each other then," he adds with a smile on his face.`
 			`	"And now look at you, a starship captain! Honest work always bears fruits," his mother Taepip tells you, before looking back at her son. "That's what we always told him."`
-			choice
-				`	"I was partly-adopted as well."`
-			`	They look a bit confused, so you clarify, "My mother was human, but my father was Hai... It took me some time to understand it wasn't my original father. He was loyal to the stars."`
-			`	Benjamin answers softly, "Who knows? Maybe he is still out there, somewhere." His mother then speaks up, "If you want, you could come to our home and have a chat. And some pickled acorns, too," she adds with a bright smile.`
+			`	She softly places her hand on her son's shoulder before continuing, "If you want, you could come to our home and have a chat. And some pickled acorns, too," she adds with a bright smile.`
 			choice
 				`	"Sure."`
 				`	"Sorry, I have other pressing matters."`
 					goto end
-			`	You spend a long evening with them, talking about your experience in human space and what you did here before going. "You are sort of like your father," Yeerto comments, before telling you about the local news here.`
+			`	You spend a long evening with them, talking about your experience in human space and what you did here before going. Yeerto then tells you about the local news here.`
 			`	It begins to get dark, and after a final goodbye you head back to your ship.`
 
 
