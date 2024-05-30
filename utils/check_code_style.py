@@ -583,7 +583,8 @@ if __name__ == '__main__':
 		contents = f.readlines()
 		(e, w) = check_code_style(file, contents)
 
-		system(f"clang-format {file} -n --style=file")
+		if not(system(f"clang-format {file} -n --style=file -Werror") == 0):
+			errors += 1
 
 		errors += len(e)
 		warnings += len(w)
