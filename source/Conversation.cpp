@@ -287,7 +287,7 @@ void Conversation::Save(DataWriter &out) const
 					out.Write(line);
 					// If the conditions are the same, output them for each
 					// paragraph. (We currently don't merge paragraphs with
-					// identical ConditionSets, but some day we might.
+					// identical ConditionSets, but some day we might.)
 					if(!it.conditions.IsEmpty())
 					{
 						out.BeginChild();

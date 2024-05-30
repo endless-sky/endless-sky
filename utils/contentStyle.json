@@ -117,7 +117,7 @@
 					},
 					{
 						"description": "incorrect indefinite article",
-						"regex": "((?:\\sa|^A))n ([^aAeEiIoOuUhH\\[\\]\"\\'\\d<\\-])",
+						"regex": "((?:\\sa|^A))n ([^aeiouhA-Z\\[\\]\"\\'\\d<\\-])",
 						"correction": {
 							"replaceWith": "\\1 \\2"
 						}
@@ -125,7 +125,7 @@
 				]
 			},
 			{
-				"excludedNodes": ["^word$", "^replace$"],
+				"excludedNodes": ["^word$", "^replace$", "^substitutions$"],
 				"checks": [
 					{
 						"description": "whitespace before end of text",

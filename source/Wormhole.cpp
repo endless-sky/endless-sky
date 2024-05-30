@@ -206,7 +206,6 @@ const System &Wormhole::WormholeSource(const System &to) const
 
 
 
-
 const System &Wormhole::WormholeDestination(const System &from) const
 {
 	auto it = links.find(&from);

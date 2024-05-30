@@ -15,15 +15,21 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Messages.h"
 
+#include "Color.h"
+#include "GameData.h"
+
 #include <mutex>
 
 using namespace std;
 
 namespace {
+	const int MAX_LOG = 10000;
+
 	mutex incomingMutex;
 
 	vector<pair<string, Messages::Importance>> incoming;
-	vector<Messages::Entry> list;
+	vector<Messages::Entry> recent;
+	deque<pair<string, Messages::Importance>> logged;
 }
 
 
@@ -33,6 +39,21 @@ void Messages::Add(const string &message, Importance importance)
 {
 	lock_guard<mutex> lock(incomingMutex);
 	incoming.emplace_back(message, importance);
+	AddLog(message, importance);
+}
+
+
+
+// Add a message to the log. For messages meant to be shown
+// also on the main panel, use Add instead.
+void Messages::AddLog(const string &message, Importance importance)
+{
+	if(logged.empty() || message != logged.front().first)
+	{
+		logged.emplace_front(message, importance);
+		if(logged.size() > MAX_LOG)
+			logged.pop_back();
+	}
 }
 
 
@@ -55,7 +76,7 @@ const vector<Messages::Entry> &Messages::Get(int step)
 		if(importance == Importance::Low)
 		{
 			bool skip = false;
-			for(const Messages::Entry &entry : list)
+			for(const Messages::Entry &entry : recent)
 				skip |= (entry.message == message);
 			if(skip)
 				continue;
@@ -63,22 +84,29 @@ const vector<Messages::Entry> &Messages::Get(int step)
 
 		// For each incoming message, if it exactly matches an existing message,
 		// replace that one with this new one.
-		auto it = list.begin();
-		while(it != list.end())
+		auto it = recent.begin();
+		while(it != recent.end())
 		{
 			// Each time a new message comes in, "age" all the existing ones to
 			// limit how many of them appear at once.
 			it->step -= 60;
 			// Also erase messages that have reached the end of their lifetime.
 			if((importance != Importance::Low && it->message == message) || it->step < step - 1000)
-				it = list.erase(it);
+				it = recent.erase(it);
 			else
 				++it;
 		}
-		list.emplace_back(step, message, importance);
+		recent.emplace_back(step, message, importance);
 	}
 	incoming.clear();
-	return list;
+	return recent;
+}
+
+
+
+const deque<pair<string, Messages::Importance>> &Messages::GetLog()
+{
+	return logged;
 }
 
 
@@ -88,5 +116,28 @@ void Messages::Reset()
 {
 	lock_guard<mutex> lock(incomingMutex);
 	incoming.clear();
-	list.clear();
+	recent.clear();
+	logged.clear();
+}
+
+
+
+// Get color that should be used for drawing messages of given importance.
+const Color *Messages::GetColor(Importance importance, bool isLogPanel)
+{
+	string prefix = isLogPanel ? "message log importance " : "message importance ";
+	switch(importance)
+	{
+		case Messages::Importance::Highest:
+			return GameData::Colors().Get(prefix + "highest");
+		case Messages::Importance::High:
+			return GameData::Colors().Get(prefix + "high");
+		case Messages::Importance::Info:
+			return GameData::Colors().Get(prefix + "info");
+		case Messages::Importance::Daily:
+			return GameData::Colors().Get(prefix + "daily");
+		case Messages::Importance::Low:
+		default:
+			return GameData::Colors().Get(prefix + "low");
+	}
 }

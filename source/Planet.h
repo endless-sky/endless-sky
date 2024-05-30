@@ -16,6 +16,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef PLANET_H_
 #define PLANET_H_
 
+#include "Paragraphs.h"
+#include "Port.h"
 #include "Sale.h"
 
 #include <list>
@@ -44,9 +46,6 @@ class Wormhole;
 // might choose it as a source or destination.
 class Planet {
 public:
-	using DescriptionStore = std::vector<std::pair<std::string, std::shared_ptr<ConditionSet>>>;
-	using DescriptionItem = DescriptionStore::value_type;
-
 	enum class Friendliness : int_fast8_t {
 		FRIENDLY,
 		RESTRICTED,
@@ -76,9 +75,8 @@ public:
 	bool HasDescription() const;
 	// Does description text have anything to display?
 	bool HasDescription(const ConditionsStore &vars) const;
-	// Concatinate all planet description text that should be displayed and return it.
-	std::string Description(const ConditionsStore &vars) const;
-	std::string Description() const;
+	// Return the description text for the planet, but not the spaceport:
+	const Paragraphs &Description() const;
 	// Get the landscape sprite.
 	const Sprite *Landscape() const;
 	// Get the name of the ambient audio to play on this planet.
@@ -90,14 +88,13 @@ public:
 	// Get planet's noun descriptor from attributes
 	const std::string &Noun() const;
 
-	// Check whether there is a spaceport (which implies there is also trading,
-	// jobs, banking, and hiring).
-	bool HasSpaceport() const;
-	// Does the planet have spaceport descriptive text to display?
-	bool HasSpaceportDescription(const ConditionsStore &vars) const;
-	// Concatinate all planet description text that should be displayed and return it.
-	std::string SpaceportDescription(const ConditionsStore &vars) const;
-	std::string SpaceportDescription() const;
+	// Check whether this planet's port is named.
+	bool HasNamedPort() const;
+	// Get this planet's port.
+	const Port &GetPort() const;
+	// Check whether there are port services (such as trading, jobs, banking, and hiring)
+	// available on this planet.
+	bool HasServices() const;
 
 	// Check if this planet is inhabited (i.e. it has a spaceport, and does not
 	// have the "uninhabited" attribute).
@@ -167,21 +164,10 @@ public:
 
 
 private:
-	// Loads a description or spaceport node and returns the result.
-	static DescriptionItem LoadDescription(const DataNode &node);
-	// Is there at least one description that isn't blocked by a
-	// false "to display"?
-	static bool CheckDescription(const DescriptionStore &content, const ConditionsStore &vars);
-	// Concatinates all DescriptionItems. If vars are provided, then
-	// items with a false "to display" are skipped.
-	static std::string ConcatinateDescription(const DescriptionStore &content, const ConditionsStore *vars);
-
-
-private:
 	bool isDefined = false;
 	std::string name;
-	DescriptionStore description;
-	DescriptionStore spaceport;
+	Paragraphs description;
+	Port port;
 	const Sprite *landscape = nullptr;
 	std::string music;
 

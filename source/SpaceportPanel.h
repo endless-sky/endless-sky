@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class News;
 class PlayerInfo;
+class Port;
 class Interface;
 
 
@@ -46,6 +47,7 @@ private:
 private:
 	PlayerInfo &player;
 	WrappedText text;
+	const Port &port;
 	const Interface &ui;
 
 	// Current news item (if any):
