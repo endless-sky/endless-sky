@@ -258,10 +258,9 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 
 		int failedMissions = 0;
 
+		// Illegal passengers can only be detected by planetary security.
 		if(!scan)
 		{
-			// Illegal passengers can only be detected by planetary security.
-
 			int64_t fine = ship->Cargo().IllegalPassengersFine(gov, player);
 			if((fine > maxFine && maxFine >= 0) || fine < 0)
 			{
