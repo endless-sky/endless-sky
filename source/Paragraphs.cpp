@@ -68,15 +68,6 @@ string Paragraphs::ToString(const ConditionsStore &vars) const
 
 
 
-Paragraphs Paragraphs::operator + (const Paragraphs &other) const
-{
-	Paragraphs result(*this);
-	result.text.insert(result.text.end(), other.text.begin(), other.text.end());
-	return result;
-}
-
-
-
 Paragraphs::ConstIterator Paragraphs::begin() const
 {
 	return text.begin();

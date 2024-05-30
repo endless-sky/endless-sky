@@ -47,9 +47,6 @@ public:
 	// Concatinate all lines which match these vars.
 	std::string ToString(const ConditionsStore &vars) const;
 
-	// Returns a new Paragraphs that contains both this object's lines and the other objects', in that order.
-	Paragraphs operator + (const Paragraphs &other) const;
-
 	// Iterate over all text. Needed to support PrintData.
 	// These must use standard naming conventions (begin, end) for compatibility with range-based for loops.
 	ConstIterator begin() const;
