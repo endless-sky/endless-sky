@@ -27,29 +27,29 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 namespace { // test namespace
 
-// #region mock data
-bool Near(const Point a, const Point b)
-{
-	if(!(a.Distance(b) == Approx(0.)))
+	// #region mock data
+	bool Near(const Point a, const Point b)
 	{
-		if(a.Distance(b) < 0.001)
+		if(!(a.Distance(b) == Approx(0.)))
 		{
-			INFO("Distance under 0.001, but beyond Approx range!");
-			return true;
+			if(a.Distance(b) < 0.001)
+			{
+				INFO("Distance under 0.001, but beyond Approx range!");
+				return true;
+			}
+			return false;
 		}
-		return false;
+		return true;
 	}
-	return true;
-}
 
 
 
-std::string formation_empty =
-R"(formation "Empty"
+	std::string formation_empty =
+		R"(formation "Empty"
 )";
 
-std::string formation_delta_tail_px =
-R"'(formation "Delta Tail (px)"
+	std::string formation_delta_tail_px =
+		R"'(formation "Delta Tail (px)"
 	position -100 200
 	position 100 200
 	position 200 400
@@ -61,8 +61,8 @@ R"'(formation "Delta Tail (px)"
 	position 300 600
 )'";
 
-std::string formation_tail_px_point =
-R"'(formation "Tail (px point)"
+	std::string formation_tail_px_point =
+		R"'(formation "Tail (px point)"
 	position -100 0
 	position -200 0
 	position -300 0
@@ -73,88 +73,98 @@ R"'(formation "Tail (px point)"
 	position -800 0
 )'";
 
-// #endregion mock data
+	// #endregion mock data
 
 
 
-// #region unit tests
-SCENARIO( "Loading and using of a formation pattern", "[formationPattern][Positioning]" ) {
-	GIVEN( "a completely empty formation pattern" ) {
-		auto emptyNode = AsDataNode(formation_empty);
-		FormationPattern emptyFormation;
-		emptyFormation.Load(emptyNode);
-		REQUIRE( emptyFormation.Name() == "Empty");
-		WHEN( "positions are requested") {
-			auto it = emptyFormation.begin();
-			THEN ( "all returned positions are near Point(0,0)" ) {
-				CHECK( Near(*it, Point(0, 0)) );
-				++it;
-				CHECK( Near(*it, Point(0, 0)) );
-				++it;
-				CHECK( Near(*it, Point(0, 0)) );
-				++it;
-				CHECK( Near(*it, Point(0, 0)) );
+	// #region unit tests
+	SCENARIO("Loading and using of a formation pattern", "[formationPattern][Positioning]")
+	{
+		GIVEN("a completely empty formation pattern")
+		{
+			auto emptyNode = AsDataNode(formation_empty);
+			FormationPattern emptyFormation;
+			emptyFormation.Load(emptyNode);
+			REQUIRE(emptyFormation.Name() == "Empty");
+			WHEN("positions are requested")
+			{
+				auto it = emptyFormation.begin();
+				THEN("all returned positions are near Point(0,0)")
+				{
+					CHECK(Near(*it, Point(0, 0)));
+					++it;
+					CHECK(Near(*it, Point(0, 0)));
+					++it;
+					CHECK(Near(*it, Point(0, 0)));
+					++it;
+					CHECK(Near(*it, Point(0, 0)));
+				}
+			}
+		}
+		GIVEN("a formation pattern specified in points")
+		{
+			auto tailNode = AsDataNode(formation_tail_px_point);
+			FormationPattern tailFormation;
+			tailFormation.Load(tailNode);
+			REQUIRE(tailFormation.Name() == "Tail (px point)");
+			WHEN("positions are requested")
+			{
+				auto it = tailFormation.begin();
+				THEN("all returned positions are as expected")
+				{
+					CHECK(Near(*it, Point(-100, 0)));
+					++it;
+					CHECK(Near(*it, Point(-200, 0)));
+					++it;
+					CHECK(Near(*it, Point(-300, 0)));
+					++it;
+					CHECK(Near(*it, Point(-400, 0)));
+					++it;
+					CHECK(Near(*it, Point(-500, 0)));
+					++it;
+					CHECK(Near(*it, Point(-600, 0)));
+					++it;
+					CHECK(Near(*it, Point(-700, 0)));
+					++it;
+					CHECK(Near(*it, Point(-800, 0)));
+				}
+			}
+		}
+		GIVEN("a formation pattern loaded in px")
+		{
+			auto delta_pxNode = AsDataNode(formation_delta_tail_px);
+			FormationPattern delta_px;
+			delta_px.Load(delta_pxNode);
+			REQUIRE(delta_px.Name() == "Delta Tail (px)");
+			WHEN("positions are requested")
+			{
+				THEN("the correct positions are calculated")
+				{
+					// No exact comparisons due to doubles, but we check if
+					// the given points are very close to what they should be.
+					auto it = delta_px.begin();
+					REQUIRE(Near(*it, Point(-100, 200)));
+					++it;
+					REQUIRE(Near(*it, Point(100, 200)));
+					++it;
+					REQUIRE(Near(*it, Point(200, 400)));
+					++it;
+					REQUIRE(Near(*it, Point(0, 400)));
+					++it;
+					REQUIRE(Near(*it, Point(-200, 400)));
+					++it;
+					REQUIRE(Near(*it, Point(-300, 600)));
+					++it;
+					REQUIRE(Near(*it, Point(-100, 600)));
+					++it;
+					REQUIRE(Near(*it, Point(100, 600)));
+					++it;
+					REQUIRE(Near(*it, Point(300, 600)));
+				}
 			}
 		}
 	}
-	GIVEN( "a formation pattern specified in points" ) {
-		auto tailNode = AsDataNode(formation_tail_px_point);
-		FormationPattern tailFormation;
-		tailFormation.Load(tailNode);
-		REQUIRE( tailFormation.Name() == "Tail (px point)");
-		WHEN( "positions are requested") {
-			auto it = tailFormation.begin();
-			THEN ( "all returned positions are as expected" ) {
-				CHECK( Near(*it, Point(-100, 0)) );
-				++it;
-				CHECK( Near(*it, Point(-200, 0)) );
-				++it;
-				CHECK( Near(*it, Point(-300, 0)) );
-				++it;
-				CHECK( Near(*it, Point(-400, 0)) );
-				++it;
-				CHECK( Near(*it, Point(-500, 0)) );
-				++it;
-				CHECK( Near(*it, Point(-600, 0)) );
-				++it;
-				CHECK( Near(*it, Point(-700, 0)) );
-				++it;
-				CHECK( Near(*it, Point(-800, 0)) );
-			}
-		}
-	}
-	GIVEN( "a formation pattern loaded in px" ) {
-		auto delta_pxNode = AsDataNode(formation_delta_tail_px);
-		FormationPattern delta_px;
-		delta_px.Load(delta_pxNode);
-		REQUIRE( delta_px.Name() == "Delta Tail (px)" );
-		WHEN( "positions are requested") {
-			THEN ( "the correct positions are calculated" ) {
-				// No exact comparisons due to doubles, but we check if
-				// the given points are very close to what they should be.
-				auto it = delta_px.begin();
-				REQUIRE( Near(*it, Point(-100, 200)) );
-				++it;
-				REQUIRE( Near(*it, Point(100, 200)) );
-				++it;
-				REQUIRE( Near(*it, Point(200, 400)) );
-				++it;
-				REQUIRE( Near(*it, Point(0, 400)) );
-				++it;
-				REQUIRE( Near(*it, Point(-200, 400)) );
-				++it;
-				REQUIRE( Near(*it, Point(-300, 600)) );
-				++it;
-				REQUIRE( Near(*it, Point(-100, 600)) );
-				++it;
-				REQUIRE( Near(*it, Point(100, 600)) );
-				++it;
-				REQUIRE( Near(*it, Point(300, 600)) );
-			}
-		}
-	}
-}
-// #endregion unit tests
+	// #endregion unit tests
 
 
 } // test namespace

@@ -26,32 +26,38 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 namespace { // test namespace
 
-// #region mock data
-// #endregion mock data
+	// #region mock data
+	// #endregion mock data
 
 
 
-// #region unit tests
-SCENARIO( "Creating an Account" , "[Account][Creation]" ) {
-	GIVEN( "an account" ) {
-		Account account;
-		WHEN( "money is added" ) {
-			REQUIRE( account.Credits() == 0. );
-			account.AddCredits(100);
-			THEN( "the balance is increased" ) {
-				REQUIRE( account.Credits() == 100 );
+	// #region unit tests
+	SCENARIO("Creating an Account", "[Account][Creation]")
+	{
+		GIVEN("an account")
+		{
+			Account account;
+			WHEN("money is added")
+			{
+				REQUIRE(account.Credits() == 0.);
+				account.AddCredits(100);
+				THEN("the balance is increased")
+				{
+					REQUIRE(account.Credits() == 100);
+				}
 			}
-		}
-		WHEN( "a fine is levied" ) {
-			REQUIRE( account.TotalDebt() == 0 );
-			account.AddFine(10000);
-			THEN ( "debt is incurred" ) {
-				REQUIRE( account.TotalDebt() == 10000 );
+			WHEN("a fine is levied")
+			{
+				REQUIRE(account.TotalDebt() == 0);
+				account.AddFine(10000);
+				THEN("debt is incurred")
+				{
+					REQUIRE(account.TotalDebt() == 10000);
+				}
 			}
 		}
 	}
-}
-// #endregion unit tests
+	// #endregion unit tests
 
 
 

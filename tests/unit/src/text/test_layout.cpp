@@ -22,64 +22,76 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <type_traits>
 
 namespace { // test namespace
-using T = Layout;
+	using T = Layout;
 
-// #region unit tests
-TEST_CASE( "Layout class", "[text][layout]" ) {
-	SECTION( "Class Traits" ) {
-		CHECK_FALSE( std::is_trivial_v<T> );
-		CHECK( std::is_standard_layout_v<T> );
-		CHECK( std::is_nothrow_destructible_v<T> );
-		CHECK( std::is_trivially_destructible_v<T> );
-	}
-	SECTION( "Construction Traits" ) {
-		CHECK( std::is_default_constructible_v<T> );
-		CHECK( std::is_nothrow_default_constructible_v<T> );
-		CHECK( std::is_copy_constructible_v<T> );
-		CHECK( std::is_trivially_copy_constructible_v<T> );
-		CHECK( std::is_nothrow_copy_constructible_v<T> );
-		CHECK( std::is_move_constructible_v<T> );
-		CHECK( std::is_trivially_move_constructible_v<T> );
-		CHECK( std::is_nothrow_move_constructible_v<T> );
-		SECTION( "Constructor Arguments" ) {
-			CHECK( std::is_constructible_v<T, int> );
-			CHECK( std::is_constructible_v<T, Alignment> );
-			CHECK( std::is_constructible_v<T, Truncate> );
-			CHECK( std::is_constructible_v<T, int, Alignment, Truncate> );
+	// #region unit tests
+	TEST_CASE("Layout class", "[text][layout]")
+	{
+		SECTION("Class Traits")
+		{
+			CHECK_FALSE(std::is_trivial_v<T>);
+			CHECK(std::is_standard_layout_v<T>);
+			CHECK(std::is_nothrow_destructible_v<T>);
+			CHECK(std::is_trivially_destructible_v<T>);
+		}
+		SECTION("Construction Traits")
+		{
+			CHECK(std::is_default_constructible_v<T>);
+			CHECK(std::is_nothrow_default_constructible_v<T>);
+			CHECK(std::is_copy_constructible_v<T>);
+			CHECK(std::is_trivially_copy_constructible_v<T>);
+			CHECK(std::is_nothrow_copy_constructible_v<T>);
+			CHECK(std::is_move_constructible_v<T>);
+			CHECK(std::is_trivially_move_constructible_v<T>);
+			CHECK(std::is_nothrow_move_constructible_v<T>);
+			SECTION("Constructor Arguments")
+			{
+				CHECK(std::is_constructible_v<T, int>);
+				CHECK(std::is_constructible_v<T, Alignment>);
+				CHECK(std::is_constructible_v<T, Truncate>);
+				CHECK(std::is_constructible_v<T, int, Alignment, Truncate>);
+			}
+		}
+		SECTION("Copy Traits")
+		{
+			CHECK(std::is_copy_assignable_v<T>);
+			CHECK(std::is_trivially_copyable_v<T>);
+			CHECK(std::is_trivially_copy_assignable_v<T>);
+			CHECK(std::is_nothrow_copy_assignable_v<T>);
+		}
+		SECTION("Move Traits")
+		{
+			CHECK(std::is_move_assignable_v<T>);
+			CHECK(std::is_trivially_move_assignable_v<T>);
+			CHECK(std::is_nothrow_move_assignable_v<T>);
 		}
 	}
-	SECTION( "Copy Traits" ) {
-		CHECK( std::is_copy_assignable_v<T> );
-		CHECK( std::is_trivially_copyable_v<T> );
-		CHECK( std::is_trivially_copy_assignable_v<T> );
-		CHECK( std::is_nothrow_copy_assignable_v<T> );
-	}
-	SECTION( "Move Traits" ) {
-		CHECK( std::is_move_assignable_v<T> );
-		CHECK( std::is_trivially_move_assignable_v<T> );
-		CHECK( std::is_nothrow_move_assignable_v<T> );
-	}
-}
-SCENARIO( "Creating a Layout", "[text][layout]" ) {
-	GIVEN( "No arguments" ) {
-		Layout layout;
-		THEN( "It has the right properties" ) {
-			CHECK( layout.width == -1 );
-			CHECK( layout.align == Alignment::LEFT );
-			CHECK( layout.truncate == Truncate::NONE );
+	SCENARIO("Creating a Layout", "[text][layout]")
+	{
+		GIVEN("No arguments")
+		{
+			Layout layout;
+			THEN("It has the right properties")
+			{
+				CHECK(layout.width == -1);
+				CHECK(layout.align == Alignment::LEFT);
+				CHECK(layout.truncate == Truncate::NONE);
+			}
 		}
-	}
-	GIVEN( "Individual arguments" ) {
-		WHEN( "the argument is an int" ) {
-			const int width = 123;
-			auto l = Layout{width};
-			THEN( "the width is set" ) {
-				CHECK( l.width == width );
+		GIVEN("Individual arguments")
+		{
+			WHEN("the argument is an int")
+			{
+				const int width = 123;
+				auto l = Layout{width};
+				THEN("the width is set")
+				{
+					CHECK(l.width == width);
+				}
 			}
 		}
 	}
-}
-// #endregion unit tests
+	// #endregion unit tests
 
 
 

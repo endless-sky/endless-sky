@@ -32,156 +32,187 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 
 namespace { // test namespace
-using Conditions = std::map<std::string, int64_t>;
-// #region mock data
+	using Conditions = std::map<std::string, int64_t>;
+	// #region mock data
 
 
 
-// #endregion mock data
+	// #endregion mock data
 
 
 
-// #region unit tests
-SCENARIO( "Creating a ConditionSet" , "[ConditionSet][Creation]" ) {
-	GIVEN( "no arguments" ) {
-		const auto set = ConditionSet{};
-		THEN( "no conditions are created" ) {
-			REQUIRE( set.IsEmpty() );
-		}
-	}
-	GIVEN( "a node with no children" ) {
-		auto childlessNode = AsDataNode("never");
-		const auto set = ConditionSet{childlessNode};
-
-		THEN( "no conditions are created" ) {
-			REQUIRE( set.IsEmpty() );
-		}
-	}
-	GIVEN( "a node with valid children" ) {
-		auto nodeWithChildren = AsDataNode("and\n\tnever");
-		const auto set = ConditionSet{nodeWithChildren};
-
-		THEN( "a non-empty ConditionSet is created" ) {
-			REQUIRE_FALSE( set.IsEmpty() );
-		}
-	}
-}
-
-SCENARIO( "Extending a ConditionSet", "[ConditionSet][Creation]" ) {
-	const std::string validationWarning = "Error: An expression must either perform a comparison or assign a value:\n";
-	OutputSink warnings(std::cerr);
-
-	GIVEN( "an empty ConditionSet" ) {
-		auto set = ConditionSet{};
-		REQUIRE( set.IsEmpty() );
-
-		THEN( "no expressions are added from empty nodes" ) {
-			set.Add(DataNode{});
-			REQUIRE( set.IsEmpty() );
-			AND_THEN( "a log message is printed to assist the user" ) {
-				REQUIRE( warnings.Flush() == validationWarning );
+	// #region unit tests
+	SCENARIO("Creating a ConditionSet", "[ConditionSet][Creation]")
+	{
+		GIVEN("no arguments")
+		{
+			const auto set = ConditionSet{};
+			THEN("no conditions are created")
+			{
+				REQUIRE(set.IsEmpty());
 			}
 		}
-		THEN( "no expressions are added from invalid nodes" ) {
-			const std::string invalidNodeText = "has";
-			set.Add(AsDataNode(invalidNodeText));
-			REQUIRE( set.IsEmpty() );
-			AND_THEN( "a log message is printed to assist the user" ) {
-				REQUIRE( warnings.Flush() == validationWarning + invalidNodeText + '\n' + '\n');
+		GIVEN("a node with no children")
+		{
+			auto childlessNode = AsDataNode("never");
+			const auto set = ConditionSet{childlessNode};
+
+			THEN("no conditions are created")
+			{
+				REQUIRE(set.IsEmpty());
 			}
 		}
-		THEN( "new expressions can be added from valid nodes" ) {
-			set.Add(AsDataNode("never"));
-			REQUIRE_FALSE( set.IsEmpty() );
-			REQUIRE( warnings.Flush() == "" );
-		}
-	}
-}
+		GIVEN("a node with valid children")
+		{
+			auto nodeWithChildren = AsDataNode("and\n\tnever");
+			const auto set = ConditionSet{nodeWithChildren};
 
-SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage]" ) {
-	GIVEN( "an empty ConditionSet" ) {
-		const auto emptySet = ConditionSet{};
-		REQUIRE( emptySet.IsEmpty() );
-
-		AND_GIVEN( "an empty list of Conditions" ) {
-			const auto emptyConditionList = ConditionsStore{};
-			THEN( "the ConditionSet is satisfied" ) {
-				REQUIRE( emptySet.Test(emptyConditionList) );
-			}
-		}
-		AND_GIVEN( "a non-empty list of Conditions" ) {
-			const auto conditionList = ConditionsStore {
-				{"event: war begins", 1},
-			};
-			THEN( "the ConditionSet is satisfied" ) {
-				REQUIRE( emptySet.Test(conditionList) );
+			THEN("a non-empty ConditionSet is created")
+			{
+				REQUIRE_FALSE(set.IsEmpty());
 			}
 		}
 	}
-	GIVEN( "a set containing 'never'" ) {
-		const auto neverSet = ConditionSet{AsDataNode("and\n\tnever")};
-		REQUIRE_FALSE( neverSet.IsEmpty() );
 
-		AND_GIVEN( "a condition list containing the literal 'never'" ) {
-			const auto listWithNever = ConditionsStore {
-				{"never", 1},
-			};
-			THEN( "the ConditionSet is not satisfied" ) {
-				REQUIRE_FALSE( neverSet.Test(listWithNever) );
+	SCENARIO("Extending a ConditionSet", "[ConditionSet][Creation]")
+	{
+		const std::string validationWarning =
+			"Error: An expression must either perform a comparison or assign a value:\n";
+		OutputSink warnings(std::cerr);
+
+		GIVEN("an empty ConditionSet")
+		{
+			auto set = ConditionSet{};
+			REQUIRE(set.IsEmpty());
+
+			THEN("no expressions are added from empty nodes")
+			{
+				set.Add(DataNode{});
+				REQUIRE(set.IsEmpty());
+				AND_THEN("a log message is printed to assist the user")
+				{
+					REQUIRE(warnings.Flush() == validationWarning);
+				}
+			}
+			THEN("no expressions are added from invalid nodes")
+			{
+				const std::string invalidNodeText = "has";
+				set.Add(AsDataNode(invalidNodeText));
+				REQUIRE(set.IsEmpty());
+				AND_THEN("a log message is printed to assist the user")
+				{
+					REQUIRE(warnings.Flush() == validationWarning + invalidNodeText + '\n' + '\n');
+				}
+			}
+			THEN("new expressions can be added from valid nodes")
+			{
+				set.Add(AsDataNode("never"));
+				REQUIRE_FALSE(set.IsEmpty());
+				REQUIRE(warnings.Flush() == "");
 			}
 		}
 	}
-}
 
-SCENARIO( "Applying changes to conditions", "[ConditionSet][Usage]" ) {
-	auto store = ConditionsStore{};
-	REQUIRE( store.PrimariesSize() == 0 );
+	SCENARIO("Determining if condition requirements are met", "[ConditionSet][Usage]")
+	{
+		GIVEN("an empty ConditionSet")
+		{
+			const auto emptySet = ConditionSet{};
+			REQUIRE(emptySet.IsEmpty());
 
-	GIVEN( "an empty ConditionSet" ) {
-		const auto emptySet = ConditionSet{};
-		REQUIRE( emptySet.IsEmpty() );
+			AND_GIVEN("an empty list of Conditions")
+			{
+				const auto emptyConditionList = ConditionsStore{};
+				THEN("the ConditionSet is satisfied")
+				{
+					REQUIRE(emptySet.Test(emptyConditionList));
+				}
+			}
+			AND_GIVEN("a non-empty list of Conditions")
+			{
+				const auto conditionList = ConditionsStore{
+					{"event: war begins", 1},
+				};
+				THEN("the ConditionSet is satisfied")
+				{
+					REQUIRE(emptySet.Test(conditionList));
+				}
+			}
+		}
+		GIVEN("a set containing 'never'")
+		{
+			const auto neverSet = ConditionSet{AsDataNode("and\n\tnever")};
+			REQUIRE_FALSE(neverSet.IsEmpty());
 
-		THEN( "no conditions are added via Apply" ) {
-			emptySet.Apply(store);
-			REQUIRE( store.PrimariesSize() == 0 );
-
-			store.Set("event: war begins", 1);
-			REQUIRE( store.PrimariesSize() == 1 );
-			emptySet.Apply(store);
-			REQUIRE( store.PrimariesSize() == 1 );
+			AND_GIVEN("a condition list containing the literal 'never'")
+			{
+				const auto listWithNever = ConditionsStore{
+					{"never", 1},
+				};
+				THEN("the ConditionSet is not satisfied")
+				{
+					REQUIRE_FALSE(neverSet.Test(listWithNever));
+				}
+			}
 		}
 	}
-	GIVEN( "a ConditionSet with only comparison expressions" ) {
-		std::string compareExpressions = "and\n"
-			"\thas \"event: war begins\"\n"
-			"\tnot b\n"
-			"\tc >= random\n";
-		const auto compareSet = ConditionSet{AsDataNode(compareExpressions)};
-		REQUIRE_FALSE( compareSet.IsEmpty() );
 
-		THEN( "no conditions are added via Apply" ) {
-			compareSet.Apply(store);
-			REQUIRE( store.PrimariesSize() == 0 );
+	SCENARIO("Applying changes to conditions", "[ConditionSet][Usage]")
+	{
+		auto store = ConditionsStore{};
+		REQUIRE(store.PrimariesSize() == 0);
 
-			store.Set("event: war begins", 1);
-			REQUIRE( store.PrimariesSize() == 1 );
-			compareSet.Apply(store);
-			REQUIRE( store.PrimariesSize() == 1 );
+		GIVEN("an empty ConditionSet")
+		{
+			const auto emptySet = ConditionSet{};
+			REQUIRE(emptySet.IsEmpty());
+
+			THEN("no conditions are added via Apply")
+			{
+				emptySet.Apply(store);
+				REQUIRE(store.PrimariesSize() == 0);
+
+				store.Set("event: war begins", 1);
+				REQUIRE(store.PrimariesSize() == 1);
+				emptySet.Apply(store);
+				REQUIRE(store.PrimariesSize() == 1);
+			}
+		}
+		GIVEN("a ConditionSet with only comparison expressions")
+		{
+			std::string compareExpressions = "and\n"
+											 "\thas \"event: war begins\"\n"
+											 "\tnot b\n"
+											 "\tc >= random\n";
+			const auto compareSet = ConditionSet{AsDataNode(compareExpressions)};
+			REQUIRE_FALSE(compareSet.IsEmpty());
+
+			THEN("no conditions are added via Apply")
+			{
+				compareSet.Apply(store);
+				REQUIRE(store.PrimariesSize() == 0);
+
+				store.Set("event: war begins", 1);
+				REQUIRE(store.PrimariesSize() == 1);
+				compareSet.Apply(store);
+				REQUIRE(store.PrimariesSize() == 1);
+			}
+		}
+		GIVEN("a ConditionSet with an assignable expression")
+		{
+			const auto applySet = ConditionSet{AsDataNode("and\n\tyear = 3013")};
+			REQUIRE_FALSE(applySet.IsEmpty());
+
+			THEN("the condition list is updated via Apply")
+			{
+				applySet.Apply(store);
+				REQUIRE_FALSE(store.PrimariesSize() == 0);
+				REQUIRE(store.Has("year"));
+				CHECK(store["year"] == 3013);
+			}
 		}
 	}
-	GIVEN( "a ConditionSet with an assignable expression" ) {
-		const auto applySet = ConditionSet{AsDataNode("and\n\tyear = 3013")};
-		REQUIRE_FALSE( applySet.IsEmpty() );
-
-		THEN( "the condition list is updated via Apply" ) {
-			applySet.Apply(store);
-			REQUIRE_FALSE( store.PrimariesSize() == 0 );
-			REQUIRE( store.Has("year") );
-			CHECK( store["year"] == 3013 );
-		}
-	}
-}
-// #endregion unit tests
+	// #endregion unit tests
 
 
 

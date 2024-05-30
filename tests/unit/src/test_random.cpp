@@ -22,15 +22,16 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 namespace { // test namespace
 
-// #region mock data
-// #endregion mock data
+	// #region mock data
+	// #endregion mock data
 
 
 
-// #region unit tests
-TEST_CASE( "Random::Int", "[random][int]") {
-	REQUIRE( Random::Int(1) == 0 );
-}
+	// #region unit tests
+	TEST_CASE("Random::Int", "[random][int]")
+	{
+		REQUIRE(Random::Int(1) == 0);
+	}
 // Test code goes here. Preferably, use scenario-driven language making use of the SCENARIO, GIVEN,
 // WHEN, and THEN macros. (There will be cases where the more traditional TEST_CASE and SECTION macros
 // are better suited to declaration of the public API.)
@@ -43,27 +44,34 @@ TEST_CASE( "Random::Int", "[random][int]") {
 
 // #region benchmarks
 #ifdef CATCH_CONFIG_ENABLE_BENCHMARKING
-TEST_CASE( "Benchmark Random::Int", "[!benchmark][random]" ) {
-	BENCHMARK( "Random::Int()" ) {
-		return Random::Int();
-	};
-	BENCHMARK( "Random::Int(60)" ) {
-		return Random::Int(60);
-	};
-	BENCHMARK( "Random::Int(600)" ) {
-		return Random::Int(600);
-	};
-	BENCHMARK( "Random::Int(10000)" ) {
-		return Random::Int(10000);
-	};
-}
-TEST_CASE( "Benchmark Random::Real", "[!benchmark][random]" ) {
-	BENCHMARK( "Random::Real" ) {
-		return Random::Real();
-	};
-}
+	TEST_CASE("Benchmark Random::Int", "[!benchmark][random]")
+	{
+		BENCHMARK("Random::Int()")
+		{
+			return Random::Int();
+		};
+		BENCHMARK("Random::Int(60)")
+		{
+			return Random::Int(60);
+		};
+		BENCHMARK("Random::Int(600)")
+		{
+			return Random::Int(600);
+		};
+		BENCHMARK("Random::Int(10000)")
+		{
+			return Random::Int(10000);
+		};
+	}
+	TEST_CASE("Benchmark Random::Real", "[!benchmark][random]")
+	{
+		BENCHMARK("Random::Real")
+		{
+			return Random::Real();
+		};
+	}
 #endif
-// #endregion benchmarks
+	// #endregion benchmarks
 
 
 

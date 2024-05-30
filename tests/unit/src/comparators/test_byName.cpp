@@ -22,36 +22,36 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 namespace { // test namespace
 
-// #region mock data
-class NamedObject {
-public:
-	NamedObject(int name) : name(name) {}
-	int Name() const { return name; };
-	int name;
-};
-// #endregion mock data
+	// #region mock data
+	class NamedObject {
+	public:
+		NamedObject(int name) : name(name) {}
+		int Name() const { return name; };
+		int name;
+	};
+	// #endregion mock data
 
 
 
-// #region unit tests
-SCENARIO( "Test basic ByName functionality." , "[ByName]" ) {
-	NamedObject values[3] = { 10, 20, 30 };
-	ByName<NamedObject> c;
+	// #region unit tests
+	SCENARIO("Test basic ByName functionality.", "[ByName]")
+	{
+		NamedObject values[3] = {10, 20, 30};
+		ByName<NamedObject> c;
 
-	CHECK( c(&values[0], &values[0]) == false );
-	CHECK( c(&values[0], &values[1]) == true );
-	CHECK( c(&values[0], &values[2]) == true );
+		CHECK(c(&values[0], &values[0]) == false);
+		CHECK(c(&values[0], &values[1]) == true);
+		CHECK(c(&values[0], &values[2]) == true);
 
-	CHECK( c(&values[1], &values[0]) == false );
-	CHECK( c(&values[1], &values[1]) == false );
-	CHECK( c(&values[1], &values[2]) == true );
+		CHECK(c(&values[1], &values[0]) == false);
+		CHECK(c(&values[1], &values[1]) == false);
+		CHECK(c(&values[1], &values[2]) == true);
 
-	CHECK( c(&values[2], &values[0]) == false );
-	CHECK( c(&values[2], &values[1]) == false );
-	CHECK( c(&values[2], &values[2]) == false );
-
-}
-// #endregion unit tests
+		CHECK(c(&values[2], &values[0]) == false);
+		CHECK(c(&values[2], &values[1]) == false);
+		CHECK(c(&values[2], &values[2]) == false);
+	}
+	// #endregion unit tests
 
 
 

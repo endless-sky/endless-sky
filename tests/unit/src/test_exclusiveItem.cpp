@@ -22,72 +22,86 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 namespace { // test namespace
 
-// #region mock data
-class Object {
-	// Some data that the object holds.
-	int value = 0;
-public:
-	Object() = default;
-	Object(int value) : value(value) {}
-	int GetValue() const { return value; }
-	bool operator==(const Object &other) const { return this->value == other.value; }
-};
-// #endregion mock data
+	// #region mock data
+	class Object {
+		// Some data that the object holds.
+		int value = 0;
+
+	public:
+		Object() = default;
+		Object(int value) : value(value) {}
+		int GetValue() const { return value; }
+		bool operator==(const Object &other) const { return this->value == other.value; }
+	};
+	// #endregion mock data
 
 
 
-// #region unit tests
-SCENARIO( "Creating an ExclusiveItem" , "[ExclusiveItem][Creation]" ) {
-	GIVEN( "an exclusive item" ) {
-		auto item = ExclusiveItem<Object>{};
+	// #region unit tests
+	SCENARIO("Creating an ExclusiveItem", "[ExclusiveItem][Creation]")
+	{
+		GIVEN("an exclusive item")
+		{
+			auto item = ExclusiveItem<Object>{};
 
-		WHEN( "it is default-constructed" ) {
-			THEN( "it contains default data" ) {
-				CHECK_FALSE( item.IsStock() );
-				CHECK( item->GetValue() == 0 );
+			WHEN("it is default-constructed")
+			{
+				THEN("it contains default data")
+				{
+					CHECK_FALSE(item.IsStock());
+					CHECK(item->GetValue() == 0);
+				}
+			}
+
+			WHEN("constructed with an rvalue reference")
+			{
+				item = ExclusiveItem<Object>(Object(2));
+				THEN("the object is obtainable and the item is nonstock")
+				{
+					CHECK_FALSE(item.IsStock());
+					CHECK(item->GetValue() == 2);
+				}
+			}
+
+			WHEN("constructed with a pointer to an instance")
+			{
+				auto obj = Object(3);
+				item = ExclusiveItem<Object>(&obj);
+				THEN("the object is obtainable and the item is stock")
+				{
+					CHECK(item.IsStock());
+					CHECK(item->GetValue() == 3);
+				}
 			}
 		}
+		GIVEN("two exclusive items")
+		{
+			auto firstItem = ExclusiveItem<Object>{};
+			auto secondItem = ExclusiveItem<Object>{};
 
-		WHEN( "constructed with an rvalue reference" ) {
-			item = ExclusiveItem<Object>(Object(2));
-			THEN( "the object is obtainable and the item is nonstock" ) {
-				CHECK_FALSE( item.IsStock() );
-				CHECK( item->GetValue() == 2 );
+			WHEN("the contents are equivalent")
+			{
+				const auto obj = Object(2);
+				firstItem = ExclusiveItem<Object>(&obj);
+				secondItem = ExclusiveItem<Object>(Object(2));
+				THEN("the exclusive items are equivalent")
+				{
+					CHECK(firstItem == secondItem);
+				}
 			}
-		}
 
-		WHEN( "constructed with a pointer to an instance" ) {
-			auto obj = Object(3);
-			item = ExclusiveItem<Object>(&obj);
-			THEN( "the object is obtainable and the item is stock" ) {
-				CHECK( item.IsStock() );
-				CHECK( item->GetValue() == 3 );
+			WHEN("the contents are not equivalent")
+			{
+				firstItem = ExclusiveItem<Object>(Object(2));
+				secondItem = ExclusiveItem<Object>(Object(3));
+				THEN("the exclusive items are not equivalent")
+				{
+					CHECK(firstItem != secondItem);
+				}
 			}
 		}
 	}
-	GIVEN( "two exclusive items" ) {
-		auto firstItem = ExclusiveItem<Object>{};
-		auto secondItem = ExclusiveItem<Object>{};
-
-		WHEN( "the contents are equivalent" ) {
-			const auto obj = Object(2);
-			firstItem = ExclusiveItem<Object>(&obj);
-			secondItem = ExclusiveItem<Object>(Object(2));
-			THEN( "the exclusive items are equivalent" ) {
-				CHECK( firstItem == secondItem );
-			}
-		}
-
-		WHEN( "the contents are not equivalent" ) {
-			firstItem = ExclusiveItem<Object>(Object(2));
-			secondItem = ExclusiveItem<Object>(Object(3));
-			THEN( "the exclusive items are not equivalent" ) {
-				CHECK( firstItem != secondItem );
-			}
-		}
-	}
-}
-// #endregion unit tests
+	// #endregion unit tests
 
 
 

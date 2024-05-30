@@ -24,60 +24,68 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 namespace { // test namespace
 
-// #region mock data
-// #endregion mock data
+	// #region mock data
+	// #endregion mock data
 
 
 
-// #region unit tests
-SCENARIO( "Creating a Dictionary instance", "[dictionary]") {
-	GIVEN( "an instance" ) {
-		Dictionary dict;
-		THEN( "it has the correct default properties" ) {
-			CHECK( dict.empty() );
-			CHECK( dict.begin() == dict.end() );
+	// #region unit tests
+	SCENARIO("Creating a Dictionary instance", "[dictionary]")
+	{
+		GIVEN("an instance")
+		{
+			Dictionary dict;
+			THEN("it has the correct default properties")
+			{
+				CHECK(dict.empty());
+				CHECK(dict.begin() == dict.end());
+			}
 		}
 	}
-}
 
-SCENARIO( "A Dictionary instance is being used", "[dictionary]") {
-	GIVEN( "an empty dictionary" ) {
-		Dictionary dict;
-		THEN( "add new elements works" ) {
-			dict["foo"] = 10.;
-			dict["bar"] = 42.;
-			CHECK( dict.Get("foo") == 10. );
-			CHECK( dict["bar"] == 42. );
-			CHECK( std::distance(dict.begin(), dict.end()) == 2 );
+	SCENARIO("A Dictionary instance is being used", "[dictionary]")
+	{
+		GIVEN("an empty dictionary")
+		{
+			Dictionary dict;
+			THEN("add new elements works")
+			{
+				dict["foo"] = 10.;
+				dict["bar"] = 42.;
+				CHECK(dict.Get("foo") == 10.);
+				CHECK(dict["bar"] == 42.);
+				CHECK(std::distance(dict.begin(), dict.end()) == 2);
+			}
 		}
 	}
-}
 
 // #region benchmarks
 #ifdef CATCH_CONFIG_ENABLE_BENCHMARKING
-TEST_CASE( "Benchmark Dictionary::Get", "[!benchmark][dictionary]" ) {
-	constexpr int SIZE = 100;
-	constexpr int AVERAGE_ATTRIBUTE_LENGTH = 20;
-
-	Dictionary dict;
-	std::vector<std::string> strings;
-	for(int i = 0; i < SIZE; ++i)
+	TEST_CASE("Benchmark Dictionary::Get", "[!benchmark][dictionary]")
 	{
-		auto str = std::to_string(i);
-		const int size = str.size();
-		for(int j = 0; j < AVERAGE_ATTRIBUTE_LENGTH / size; ++j)
-			str += str;
+		constexpr int SIZE = 100;
+		constexpr int AVERAGE_ATTRIBUTE_LENGTH = 20;
 
-		dict[str] = i;
-		strings.emplace_back(std::move(str));
+		Dictionary dict;
+		std::vector<std::string> strings;
+		for(int i = 0; i < SIZE; ++i)
+		{
+			auto str = std::to_string(i);
+			const int size = str.size();
+			for(int j = 0; j < AVERAGE_ATTRIBUTE_LENGTH / size; ++j)
+				str += str;
+
+			dict[str] = i;
+			strings.emplace_back(std::move(str));
+		}
+
+		BENCHMARK("Dictionary::Get()", i)
+		{
+			return dict.Get(strings[i % SIZE]);
+		};
 	}
-
-	BENCHMARK( "Dictionary::Get()", i ) {
-		return dict.Get(strings[i % SIZE]);
-	};
-}
 #endif
-// #endregion benchmarks
+	// #endregion benchmarks
 
 
 
