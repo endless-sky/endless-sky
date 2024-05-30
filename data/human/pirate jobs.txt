@@ -15,6 +15,7 @@ mission "Cargo Smuggling [0]"
 	name "Smuggling to <planet>"
 	job
 	repeat
+	infiltrating
 	description "Smuggle <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Cargo" 5 2 .1
 	illegal 40000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
@@ -43,6 +44,7 @@ mission "Cargo Smuggling [1]"
 	name "Smuggling to <planet>"
 	job
 	repeat
+	infiltrating
 	description "Smuggle <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Cargo" 5 2 .1
 	illegal 50000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
@@ -72,6 +74,7 @@ mission "Cargo Smuggling [2]"
 	name "Smuggling to <planet>"
 	job
 	repeat
+	infiltrating
 	description "Smuggle <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Cargo" 5 2 .1
 	illegal 64000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
@@ -101,6 +104,7 @@ mission "Cargo Smuggling [3]"
 	name "Smuggling to <planet>"
 	job
 	repeat
+	infiltrating
 	description "Smuggle <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Cargo" 5 2 .1
 	illegal 80000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
@@ -132,6 +136,7 @@ mission "Drug Running [0]"
 	name "Drug run to <planet>"
 	job
 	repeat
+	infiltrating
 	description "Run <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Substances" 5 2 .1
 	illegal 75000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
@@ -160,6 +165,7 @@ mission "Drug Running [1]"
 	name "Drug run to <planet>"
 	job
 	repeat
+	infiltrating
 	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 46,000 credits. Payment is <payment>."
 	cargo "Illegal Substances" 5 2 .1
 	illegal 92000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
@@ -189,6 +195,7 @@ mission "Drug Running [2]"
 	name "Drug run to <planet>"
 	job
 	repeat
+	infiltrating
 	description "Run <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Substances" 5 2 .1
 	illegal 110000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
@@ -218,6 +225,7 @@ mission "Drug Running [3]"
 	name "Drug run to <planet>"
 	job
 	repeat
+	infiltrating
 	description "Run <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Substances" 5 2 .1
 	illegal 130000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
@@ -249,6 +257,7 @@ mission "Bulk Cargo Smuggling [0]"
 	name "Bulk smuggling to <planet>"
 	job
 	repeat
+	infiltrating
 	description "Smuggle <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Cargo" 25 2 .1
 	illegal 47000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
@@ -278,6 +287,7 @@ mission "Bulk Cargo Smuggling [1]"
 	name "Bulk smuggling to <planet>"
 	job
 	repeat
+	infiltrating
 	description "Smuggle <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Cargo" 25 2 .1
 	illegal 130000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
@@ -307,6 +317,7 @@ mission "Bulk Cargo Smuggling [2]"
 	name "Bulk smuggling to <planet>"
 	job
 	repeat
+	infiltrating
 	description "Smuggle <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Cargo" 25 2 .1
 	illegal 172000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
@@ -338,6 +349,7 @@ mission "Bulk Drug Running [0]"
 	name "Bulk drug run to <planet>"
 	job
 	repeat
+	infiltrating
 	description "Run <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Substances" 25 2 .1
 	illegal 172000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
@@ -367,6 +379,7 @@ mission "Bulk Drug Running [1]"
 	name "Bulk drug run to <planet>"
 	job
 	repeat
+	infiltrating
 	description "Run <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Substances" 25 2 .1
 	illegal 200000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
@@ -396,6 +409,7 @@ mission "Bulk Drug Running [2]"
 	name "Bulk drug run to <planet>"
 	job
 	repeat
+	infiltrating
 	description "Run <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Substances" 25 2 .1
 	illegal 240000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
@@ -1273,6 +1287,7 @@ mission "Wanted Passenger [0]"
 	name "Wanted individual to <planet>"
 	job
 	repeat
+	infiltrating
 	description "This wanted individual wishes to reach <destination> without being caught by local law enforcement. They also wish to bring with them <cargo>. Payment is <payment>."
 	passengers 1
 	cargo "battle trophies" 1
@@ -1302,6 +1317,7 @@ mission "Wanted Passengers [1]"
 	name "Wanted individuals to <planet>"
 	job
 	repeat
+	infiltrating
 	description "These <bunks> wanted individuals wish to reach <destination> without being caught by local law enforcement. They also wish to bring with them <cargo>. Payment is <payment>."
 	passengers 2 10 .9
 	cargo "credit chips" 1
@@ -1331,6 +1347,7 @@ mission "Wanted Passengers [2]"
 	name "Wanted individuals to <planet>"
 	job
 	repeat
+	infiltrating
 	description "These <bunks> wanted individuals wish to reach <destination> without being caught by local law enforcement. They also wish to bring with them <cargo>. Payment is <payment>."
 	passengers 2 10 .9
 	cargo "customized weapons" 1
@@ -1360,6 +1377,7 @@ mission "Wanted Passengers [3]"
 	name "Wanted individuals to <planet>"
 	job
 	repeat
+	infiltrating
 	description "These <bunks> wanted individuals wish to reach <destination> without being caught by local law enforcement. They also wish to bring with them <cargo>. Payment is <payment>."
 	passengers 2 10 .9
 	cargo "aged wine" 1
@@ -1665,6 +1683,7 @@ mission "Slave Transport [0]"
 	name "Transfer slaves to <planet>"
 	job
 	repeat
+	infiltrating
 	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves in secure cells to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
 	passengers 2 10 .9
 	illegal -1
@@ -1694,6 +1713,7 @@ mission "Slave Transport [1]"
 	name "Transfer slaves to <planet>"
 	job
 	repeat
+	infiltrating
 	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves in secure cells to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
 	passengers 2 10 .9
 	illegal -1
@@ -1723,6 +1743,7 @@ mission "Slave Transport [2]"
 	name "Transfer slaves to <planet>"
 	job
 	repeat
+	infiltrating
 	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves in secure cells to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
 	passengers 2 10 .9
 	illegal -1
@@ -1754,6 +1775,7 @@ mission "Bulk Slave Transport [0]"
 	name "Transfer slaves to <planet>"
 	job
 	repeat
+	infiltrating
 	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves in secure cells to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
 	passengers 10 4 .1
 	illegal -1
@@ -1783,6 +1805,7 @@ mission "Bulk Slave Transport [1]"
 	name "Transfer slaves to <planet>"
 	job
 	repeat
+	infiltrating
 	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves in secure cells to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
 	passengers 10 4 .1
 	illegal -1
