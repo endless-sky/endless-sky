@@ -55,8 +55,8 @@ void MaskManager::RegisterScale(const Sprite *sprite, double scale)
 	if(lb == scales.end() || lb->first != scale)
 		scales.emplace_hint(lb, scale, vector<Mask>{});
 	else if(!lb->second.empty())
-		Logger::LogError("Collision mask for sprite \"" + sprite->Name() + "\" at scale "
-			+ PrintScale(scale) + " was already generated.");
+		Logger::LogError("Collision mask for sprite \"" + sprite->Name() + "\" at scale " + PrintScale(scale)
+						 + " was already generated.");
 }
 
 
@@ -111,8 +111,10 @@ const std::vector<Mask> &MaskManager::GetMasks(const Sprite *sprite, double scal
 	if(warned.insert(make_pair(sprite, true)).second)
 	{
 		string warning = "Warning: sprite \"" + sprite->Name() + "\": collision mask not found.";
-		if(scales.empty()) warning += " (No scaled masks.)";
-		else if(maskIt != scales.end()) warning += " (No masks for scale " + PrintScale(scale) + ".)";
+		if(scales.empty())
+			warning += " (No scaled masks.)";
+		else if(maskIt != scales.end())
+			warning += " (No masks for scale " + PrintScale(scale) + ".)";
 		else
 		{
 			warning += "\n\t" + PrintScale(scale) + " not found in known scales:";

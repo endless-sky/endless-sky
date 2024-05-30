@@ -15,12 +15,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MessageLogPanel.h"
 
-#include "text/alignment.hpp"
 #include "Color.h"
 #include "Command.h"
 #include "FillShader.h"
-#include "text/Font.h"
-#include "text/FontSet.h"
 #include "GameData.h"
 #include "Interface.h"
 #include "Preferences.h"
@@ -28,8 +25,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
-#include "UI.h"
+#include "text/alignment.hpp"
+#include "text/Font.h"
+#include "text/FontSet.h"
 #include "text/WrappedText.h"
+#include "UI.h"
 
 using namespace std;
 
@@ -55,10 +55,7 @@ void MessageLogPanel::Draw()
 
 	// Draw the panel.
 	const Color &backColor = *GameData::Colors().Get("message log background");
-	FillShader::Fill(
-		Point(Screen::Left() + .5 * width, 0.),
-		Point(width, Screen::Height()),
-		backColor);
+	FillShader::Fill(Point(Screen::Left() + .5 * width, 0.), Point(width, Screen::Height()), backColor);
 
 	Panel::DrawEdgeSprite(SpriteSet::Get("ui/right edge"), Screen::Left() + width);
 
@@ -87,7 +84,7 @@ void MessageLogPanel::Draw()
 bool MessageLogPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	if(command.Has(Command::MESSAGE_LOG) || key == 'd' || key == SDLK_ESCAPE
-			|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
+		|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		GetUI()->Pop(this);
 	else if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
 	{

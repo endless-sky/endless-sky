@@ -36,6 +36,7 @@ template <class Type>
 class WeightedList {
 	using iterator = typename std::vector<Type>::iterator;
 	using const_iterator = typename std::vector<Type>::const_iterator;
+
 public:
 	template <class T>
 	friend std::size_t erase(WeightedList<T> &list, const T &item);
@@ -47,11 +48,10 @@ public:
 
 	// Average the result of the given function by the choices' weights.
 	template <class Callable>
-	std::enable_if_t<
-		std::is_arithmetic_v<std::invoke_result_t<Callable&&, const Type&&>>,
+	std::enable_if_t<std::is_arithmetic_v<std::invoke_result_t<Callable &&, const Type &&>>,
 		// The return type of WeightedList::Average, if the above test passes:
-		std::invoke_result_t<Callable&&, const Type&&>
-	> Average(Callable c) const;
+		std::invoke_result_t<Callable &&, const Type &&>>
+	Average(Callable c) const;
 	// Supplying a callable that does not return an arithmetic value will fail to compile.
 
 	iterator begin() noexcept { return choices.begin(); }
@@ -59,15 +59,24 @@ public:
 	iterator end() noexcept { return choices.end(); }
 	const_iterator end() const noexcept { return choices.end(); }
 
-	void clear() noexcept { choices.clear(); weights.clear(); total = 0; }
-	void reserve(std::size_t n) { choices.reserve(n); weights.reserve(n); }
+	void clear() noexcept
+	{
+		choices.clear();
+		weights.clear();
+		total = 0;
+	}
+	void reserve(std::size_t n)
+	{
+		choices.reserve(n);
+		weights.reserve(n);
+	}
 	std::size_t size() const noexcept { return choices.size(); }
 	bool empty() const noexcept { return choices.empty(); }
 	Type &back() noexcept { return choices.back(); }
 	const Type &back() const noexcept { return choices.back(); }
 
-	template <class ...Args>
-	Type &emplace_back(int weight, Args&&... args);
+	template <class... Args>
+	Type &emplace_back(int weight, Args &&...args);
 
 	iterator eraseAt(iterator position) noexcept;
 	iterator erase(iterator first, iterator last) noexcept;
@@ -88,7 +97,11 @@ private:
 template <class T>
 std::size_t erase(WeightedList<T> &list, const T &item)
 {
-	return erase_if(list, [&item](const T &t) noexcept -> bool { return item == t; });
+	return erase_if(list,
+		[&item](const T &t) noexcept -> bool
+		{
+			return item == t;
+		});
 }
 
 
@@ -141,13 +154,13 @@ const Type &WeightedList<Type>::Get() const
 
 template <class Type>
 template <class Callable>
-std::enable_if_t<
-	std::is_arithmetic_v<std::invoke_result_t<Callable&&, const Type&&>>,
-	std::invoke_result_t<Callable&&, const Type&&>
-> WeightedList<Type>::Average(Callable fn) const
+std::enable_if_t<std::is_arithmetic_v<std::invoke_result_t<Callable &&, const Type &&>>,
+	std::invoke_result_t<Callable &&, const Type &&>>
+WeightedList<Type>::Average(Callable fn) const
 {
 	std::size_t tw = TotalWeight();
-	if(tw == 0) return 0;
+	if(tw == 0)
+		return 0;
 
 	auto sum = typename std::invoke_result_t<Callable, const Type &>{};
 	for(unsigned index = 0; index < choices.size(); ++index)
@@ -158,8 +171,8 @@ std::enable_if_t<
 
 
 template <class Type>
-template <class ...Args>
-Type &WeightedList<Type>::emplace_back(int weight, Args&&... args)
+template <class... Args>
+Type &WeightedList<Type>::emplace_back(int weight, Args &&...args)
 {
 	// All weights must be >= 1.
 	if(weight < 1)
@@ -174,7 +187,8 @@ Type &WeightedList<Type>::emplace_back(int weight, Args&&... args)
 
 
 template <class Type>
-typename std::vector<Type>::iterator WeightedList<Type>::eraseAt(typename std::vector<Type>::iterator position) noexcept
+typename std::vector<Type>::iterator WeightedList<Type>::eraseAt(
+	typename std::vector<Type>::iterator position) noexcept
 {
 	unsigned index = std::distance(choices.begin(), position);
 	total -= weights[index];
@@ -185,8 +199,8 @@ typename std::vector<Type>::iterator WeightedList<Type>::eraseAt(typename std::v
 
 
 template <class Type>
-typename std::vector<Type>::iterator WeightedList<Type>::erase(typename std::vector<Type>::iterator first,
-	typename std::vector<Type>::iterator last) noexcept
+typename std::vector<Type>::iterator WeightedList<Type>::erase(
+	typename std::vector<Type>::iterator first, typename std::vector<Type>::iterator last) noexcept
 {
 	auto firstWeight = std::next(weights.begin(), std::distance(choices.begin(), first));
 	auto lastWeight = std::next(weights.begin(), std::distance(choices.begin(), last));

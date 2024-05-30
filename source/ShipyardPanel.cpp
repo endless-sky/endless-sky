@@ -15,15 +15,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ShipyardPanel.h"
 
-#include "text/alignment.hpp"
-#include "comparators/BySeriesAndIndex.h"
 #include "ClickZone.h"
 #include "Color.h"
+#include "comparators/BySeriesAndIndex.h"
 #include "Dialog.h"
-#include "text/DisplayText.h"
-#include "text/Font.h"
-#include "text/FontSet.h"
-#include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Mission.h"
@@ -36,6 +31,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
+#include "text/alignment.hpp"
+#include "text/DisplayText.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "text/truncate.hpp"
 #include "UI.h"
 
@@ -54,7 +54,9 @@ namespace {
 	class NameDialog : public Dialog {
 	public:
 		NameDialog(ShipyardPanel *panel, void (ShipyardPanel::*fun)(const string &), const string &message)
-			: Dialog(panel, fun, message) {}
+			: Dialog(panel, fun, message)
+		{
+		}
 
 		virtual void Draw() override
 		{
@@ -88,8 +90,7 @@ namespace {
 
 
 
-ShipyardPanel::ShipyardPanel(PlayerInfo &player)
-	: ShopPanel(player, false), modifier(0)
+ShipyardPanel::ShipyardPanel(PlayerInfo &player) : ShopPanel(player, false), modifier(0)
 {
 	for(const auto &it : GameData::Ships())
 		catalog[it.second.Attributes().Category()].push_back(it.first);
@@ -174,9 +175,11 @@ double ShipyardPanel::DrawDetails(const Point &center)
 		const Sprite *shipSprite = selectedShip->GetSprite();
 		if(shipSprite)
 		{
-			const float spriteScale = min(1.f, (INFOBAR_WIDTH - 60.f) / max(shipSprite->Width(), shipSprite->Height()));
+			const float spriteScale =
+				min(1.f, (INFOBAR_WIDTH - 60.f) / max(shipSprite->Width(), shipSprite->Height()));
 			const int swizzle = selectedShip->CustomSwizzle() >= 0
-				? selectedShip->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
+									? selectedShip->CustomSwizzle()
+									: GameData::PlayerGovernment()->GetSwizzle();
 			SpriteShader::Draw(shipSprite, spriteCenter, spriteScale, swizzle);
 		}
 
@@ -203,8 +206,8 @@ double ShipyardPanel::DrawDetails(const Point &center)
 			// Calculate the ClickZone for the description and add it.
 			const Point descriptionDimensions(INFOBAR_WIDTH, descriptionOffset);
 			const Point descriptionCenter(center.X(), startPoint.Y() + descriptionOffset / 2);
-			const ClickZone<string> collapseDescription = ClickZone<string>(
-				descriptionCenter, descriptionDimensions, DESCRIPTION);
+			const ClickZone<string> collapseDescription =
+				ClickZone<string>(descriptionCenter, descriptionDimensions, DESCRIPTION);
 			categoryZones.emplace_back(collapseDescription);
 		}
 
@@ -219,8 +222,7 @@ double ShipyardPanel::DrawDetails(const Point &center)
 	// Draw this string representing the selected ship (if any), centered in the details side panel
 	const Color &bright = *GameData::Colors().Get("bright");
 	const Point selectedPoint(center.X() - INFOBAR_WIDTH / 2, center.Y());
-	font.Draw({selectedItem, {INFOBAR_WIDTH, Alignment::CENTER, Truncate::MIDDLE}},
-		selectedPoint, bright);
+	font.Draw({selectedItem, {INFOBAR_WIDTH, Alignment::CENTER, Truncate::MIDDLE}}, selectedPoint, bright);
 
 	return heightOffset;
 }
@@ -238,7 +240,7 @@ ShopPanel::BuyResult ShipyardPanel::CanBuy(bool onlyOwned) const
 	int64_t licenseCost = LicenseCost(&selectedShip->Attributes());
 	if(licenseCost < 0)
 		return "Buying this ship requires a special license. "
-			"You will probably need to complete some sort of mission to get one.";
+			   "You will probably need to complete some sort of mission to get one.";
 
 	// Check if the player can't pay.
 	cost += licenseCost;
@@ -252,18 +254,20 @@ ShopPanel::BuyResult ShipyardPanel::CanBuy(bool onlyOwned) const
 		{
 			string ship = (player.Ships().size() == 1) ? "your current ship" : "some of your ships";
 			return "You do not have enough credits to buy this ship. "
-				"If you want to buy it, you must sell " + ship + " first.";
+				   "If you want to buy it, you must sell "
+				   + ship + " first.";
 		}
 
 		// Check if the license cost is the tipping point.
 		if(player.Accounts().Credits() >= cost - licenseCost)
 			return "You do not have enough credits to buy this ship, "
-				"because it will cost you an extra " + Format::Credits(licenseCost) +
-				" credits to buy the necessary licenses. "
-				"Consider checking if the bank will offer you a loan.";
+				   "because it will cost you an extra "
+				   + Format::Credits(licenseCost)
+				   + " credits to buy the necessary licenses. "
+					 "Consider checking if the bank will offer you a loan.";
 
 		return "You do not have enough credits to buy this ship. "
-				"Consider checking if the bank will offer you a loan.";
+			   "Consider checking if the bank will offer you a loan.";
 	}
 	return true;
 }
@@ -280,8 +284,8 @@ void ShipyardPanel::Buy(bool onlyOwned)
 	string message;
 	if(licenseCost)
 		message = "Note: you will need to pay " + Format::CreditString(licenseCost)
-			+ " for the licenses required to operate this ship, in addition to its cost."
-			" If that is okay with you, go ahead and enter a name for your brand new ";
+				  + " for the licenses required to operate this ship, in addition to its cost."
+					" If that is okay with you, go ahead and enter a name for your brand new ";
 	else
 		message = "Enter a name for your brand new ";
 

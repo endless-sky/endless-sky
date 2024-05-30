@@ -168,8 +168,8 @@ public:
 	void BuyShip(const Ship *model, const std::string &name);
 	const Ship *GiftShip(const Ship *model, const std::string &name, const std::string &id);
 	void SellShip(const Ship *selected, bool storeOutfits = false);
-	// Take the ship from the player, if a model is specified this will permanently remove outfits in said model,
-	// instead of allowing the player to buy them back by putting them in the stock.
+	// Take the ship from the player, if a model is specified this will permanently remove outfits in said
+	// model, instead of allowing the player to buy them back by putting them in the stock.
 	void TakeShip(const Ship *shipToTake, const Ship *model = nullptr, bool takeOutfits = false);
 	std::vector<std::shared_ptr<Ship>>::iterator DisownShip(const Ship *selected);
 	void ParkShip(const Ship *selected, bool isParked);
@@ -217,7 +217,7 @@ public:
 	const std::list<Mission> &Missions() const;
 	const std::list<Mission> &AvailableJobs() const;
 
-	enum SortType {ABC, PAY, SPEED, CONVENIENT};
+	enum SortType { ABC, PAY, SPEED, CONVENIENT };
 	const SortType GetAvailableSortType() const;
 	void NextAvailableSortType();
 	const bool ShouldSortAscending() const;
@@ -313,7 +313,7 @@ public:
 
 	// Keep track of any outfits that you have sold since landing. These will be
 	// available to buy back until you take off.
-	const std::map<const Outfit*, int> &GetStock() const;
+	const std::map<const Outfit *, int> &GetStock() const;
 	int Stock(const Outfit *outfit) const;
 	void AddStock(const Outfit *outfit, int count);
 	// Get depreciation information.

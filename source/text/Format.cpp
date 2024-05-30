@@ -25,24 +25,14 @@ using namespace std;
 
 namespace {
 	const int64_t K = 1000;
-	static const vector<pair<const char *, int64_t>> WORD_NUMBERS = {
-		{ "quintillion", K * K * K * K * K * K },
-		{ "quadrillion", K * K * K * K * K },
-		{ "trillion", K * K * K * K },
-		{ "billion", K * K * K },
-		{ "million", K * K },
-		{ "thousand", K }
-	};
-	static const vector<const char *> ONES_NAMES = {
-		"zero ", "one ", "two ", "three ", "four ", "five ",
-		"six ", "seven ", "eight ", "nine ", "ten ", "eleven ",
-		"twelve ", "thirteen ", "fourteen ", "fifteen ",
-		"sixteen ", "seventeen ", "eighteen ", "nineteen "
-	};
+	static const vector<pair<const char *, int64_t>> WORD_NUMBERS = {{"quintillion", K *K *K *K *K *K},
+		{"quadrillion", K *K *K *K *K}, {"trillion", K *K *K *K}, {"billion", K *K *K}, {"million", K *K},
+		{"thousand", K}};
+	static const vector<const char *> ONES_NAMES = {"zero ", "one ", "two ", "three ", "four ", "five ",
+		"six ", "seven ", "eight ", "nine ", "ten ", "eleven ", "twelve ", "thirteen ", "fourteen ",
+		"fifteen ", "sixteen ", "seventeen ", "eighteen ", "nineteen "};
 	static const vector<const char *> TENS_NAMES = {
-		"error", "error", "twenty", "thirty", "forty",
-		"fifty", "sixty", "seventy", "eighty", "ninety"
-	};
+		"error", "error", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"};
 
 	// This struct exists just to allow the operator<< below.
 	struct Wrapped {
@@ -51,19 +41,19 @@ namespace {
 
 	// Implementation of WordForm. Outputs the word form of the wrapped number,
 	// followed by a space.
-	ostream &operator<< (ostream &o, const Wrapped &num)
+	ostream &operator<<(ostream &o, const Wrapped &num)
 	{
 
 		if(num.value < 0)
-			return o << "negative " << Wrapped { -num.value };
+			return o << "negative " << Wrapped{-num.value};
 
-		Wrapped remaining { num };
+		Wrapped remaining{num};
 
 		if(remaining.value >= 1000)
 			for(auto &nameValue : WORD_NUMBERS)
 				if(remaining.value >= nameValue.second)
 				{
-					Wrapped above { remaining.value / nameValue.second };
+					Wrapped above{remaining.value / nameValue.second};
 					remaining.value %= nameValue.second;
 					o << above << nameValue.first;
 					if(!remaining.value)
@@ -105,9 +95,9 @@ namespace {
 			if(below)
 				continue;
 			const size_t BUFLEN = 100;
-			char buf[BUFLEN] = { 0 };
-			snprintf(buf, BUFLEN, "%s%.3f %s",
-				negative ? "negative " : "", above / 1000.0, WORD_NUMBERS[magnitude].first);
+			char buf[BUFLEN] = {0};
+			snprintf(buf, BUFLEN, "%s%.3f %s", negative ? "negative " : "", above / 1000.0,
+				WORD_NUMBERS[magnitude].first);
 			buf[BUFLEN - 1] = '\0';
 			return string(buf);
 		}
@@ -119,14 +109,16 @@ namespace {
 	void FormatInteger(int64_t value, bool isNegative, string &result)
 	{
 		int places = 0;
-		do {
+		do
+		{
 			if(places && !(places % 3))
 				result += ',';
 			++places;
 
 			result += static_cast<char>('0' + value % 10);
 			value /= 10;
-		} while(value);
+		}
+		while(value);
 
 		if(isNegative)
 			result += '-';
@@ -273,17 +265,21 @@ string Format::PlayTime(double timeVal)
 	timeValFormat = max(0., timeVal);
 	// Break time into larger and larger units until the largest one, or the value is empty
 	size_t i = 0;
-	do {
+	do
+	{
 		int period = (i < SUFFIX.size() - 1 ? timeValFormat % PERIOD[i] : timeValFormat);
 		result = (i == 0 ? result + SUFFIX[i] : result + ' ' + SUFFIX[i]);
-		do {
+		do
+		{
 			result += static_cast<char>('0' + period % 10);
 			period /= 10;
-		} while(period);
+		}
+		while(period);
 		if(i < PERIOD.size())
 			timeValFormat /= PERIOD[i];
 		i++;
-	} while (timeValFormat && i < SUFFIX.size());
+	}
+	while(timeValFormat && i < SUFFIX.size());
 
 	reverse(result.begin(), result.end());
 	return result;
@@ -364,7 +360,7 @@ string Format::Decimal(double value, int places)
 string Format::WordForm(int64_t value, bool startOfSentence)
 {
 	ostringstream o;
-	o << Wrapped { value };
+	o << Wrapped{value};
 	string result = o.str();
 	if(result.size() > 0 && result[result.size() - 1] == ' ')
 		result.resize(result.size() - 1);
@@ -380,7 +376,7 @@ string Format::ChicagoForm(int64_t value, bool startOfSentence)
 {
 	if(startOfSentence)
 		return WordForm(value, true);
-	if(value < 1000 && value > -1000 && ! (value % 100))
+	if(value < 1000 && value > -1000 && !(value % 100))
 		return WordForm(value, startOfSentence);
 	int64_t above = value, below = 0;
 	for(int i = 0; above && i < 6; i++)
@@ -443,11 +439,13 @@ double Format::Parse(const string &str)
 	while(it != end && (*it < '0' || *it > '9') && *it != '.')
 		++it;
 
-	for( ; it != end; ++it)
+	for(; it != end; ++it)
 	{
 		if(*it == '.')
 			place = .1;
-		else if(*it == ',' || *it == ' ') {}
+		else if(*it == ',' || *it == ' ')
+		{
+		}
 		else if(*it < '0' || *it > '9')
 			break;
 		else
@@ -675,8 +673,7 @@ string Format::ExpandConditions(const string &source, const ConditionGetter &get
 		{
 			conditionStart = formatStart + formatSize + 1;
 			conditionSize = look - conditionStart;
-			AppendCondition(result, source, getter, formatStart, formatSize,
-				conditionStart, conditionSize);
+			AppendCondition(result, source, getter, formatStart, formatSize, conditionStart, conditionSize);
 			start = look + 1;
 			state = OUTER;
 		}
@@ -696,8 +693,7 @@ string Format::ExpandConditions(const string &source, const ConditionGetter &get
 		{
 			conditionStart = start + 2;
 			conditionSize = look - conditionStart;
-			AppendCondition(result, source, getter, formatStart, formatSize,
-				conditionStart, conditionSize);
+			AppendCondition(result, source, getter, formatStart, formatSize, conditionStart, conditionSize);
 			start = look + 1;
 			state = OUTER;
 		}
@@ -719,6 +715,9 @@ string Format::ExpandConditions(const string &source, const ConditionGetter &get
 int Format::Search(const string &str, const string &sub)
 {
 	auto it = search(str.begin(), str.end(), sub.begin(), sub.end(),
-		[](char a, char b) { return toupper(a) == toupper(b); });
+		[](char a, char b)
+		{
+			return toupper(a) == toupper(b);
+		});
 	return (it == str.end() ? -1 : it - str.begin());
 }

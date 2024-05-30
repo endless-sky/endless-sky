@@ -114,8 +114,8 @@ void Wormhole::Load(const DataNode &node)
 			if(remove)
 				linkColor = ExclusiveItem<Color>(GameData::Colors().Get(DEFAULT_WORMHOLE_COLOR));
 			else if(child.Size() >= 3 + valueIndex)
-				linkColor = ExclusiveItem<Color>(Color(child.Value(valueIndex),
-						child.Value(valueIndex + 1), child.Value(valueIndex + 2)));
+				linkColor = ExclusiveItem<Color>(
+					Color(child.Value(valueIndex), child.Value(valueIndex + 1), child.Value(valueIndex + 2)));
 			else if(child.Size() >= 1 + valueIndex)
 				linkColor = ExclusiveItem<Color>(GameData::Colors().Get(child.Token(valueIndex)));
 			else
@@ -196,10 +196,10 @@ const System &Wormhole::WormholeSource(const System &to) const
 {
 	using value_type = decltype(links)::value_type;
 	auto it = find_if(links.begin(), links.end(),
-			[&to](const value_type &val)
-			{
-				return val.second == &to;
-			});
+		[&to](const value_type &val)
+		{
+			return val.second == &to;
+		});
 
 	return it == links.end() ? to : *it->first;
 }

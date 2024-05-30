@@ -15,7 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Politics.h"
 
-#include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Planet.h"
@@ -23,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Random.h"
 #include "Ship.h"
 #include "ShipEvent.h"
+#include "text/Format.h"
 
 #include <algorithm>
 #include <cmath>
@@ -50,8 +50,8 @@ namespace {
 	// Check if the ship evades being outfit scanned.
 	bool EvadesOutfitScan(const Ship &ship)
 	{
-		return ship.Attributes().Get("inscrutable") > 0. ||
-				Random::Real() > 1. / (1. + ship.Attributes().Get("scan interference"));
+		return ship.Attributes().Get("inscrutable") > 0.
+			   || Random::Real() > 1. / (1. + ship.Attributes().Get("scan interference"));
 	}
 }
 
@@ -169,8 +169,8 @@ bool Politics::CanLand(const Ship &ship, const Planet *planet) const
 
 	const Government *gov = ship.GetGovernment();
 	if(!gov->IsPlayer())
-		return !ship.IsRestrictedFrom(*planet) &&
-			(!planet->IsInhabited() || !IsEnemy(gov, planet->GetGovernment()));
+		return !ship.IsRestrictedFrom(*planet)
+			   && (!planet->IsInhabited() || !IsEnemy(gov, planet->GetGovernment()));
 
 	return CanLand(planet);
 }
@@ -237,7 +237,8 @@ bool Politics::HasDominated(const Planet *planet) const
 
 
 // Check to see if the player has done anything they should be fined for.
-string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const Ship *target, double security)
+string Politics::Fine(
+	PlayerInfo &player, const Government *gov, int scan, const Ship *target, double security)
 {
 	// Do nothing if you have already been fined today, or if you evade
 	// detection.
@@ -314,8 +315,8 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 		if(failedMissions && maxFine > 0)
 		{
 			reason += "\n\tYou failed " + Format::Number(failedMissions)
-				+ ((failedMissions > 1) ? " missions" : " mission")
-				+ " after your illegal cargo was discovered.";
+					  + ((failedMissions > 1) ? " missions" : " mission")
+					  + " after your illegal cargo was discovered.";
 		}
 	}
 
@@ -326,15 +327,15 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 			reason = "atrocity";
 		else
 			reason = "After scanning your ship, the " + gov->GetName()
-				+ " captain hails you with a grim expression on his face. He says, "
-				"\"I'm afraid we're going to have to put you to death " + reason + " Goodbye.\"";
+					 + " captain hails you with a grim expression on his face. He says, "
+					   "\"I'm afraid we're going to have to put you to death "
+					 + reason + " Goodbye.\"";
 	}
 	else if(maxFine > 0)
 	{
 		// Scale the fine based on how lenient this government is.
 		maxFine = lround(maxFine * gov->GetFineFraction());
-		reason = "The " + gov->GetName() + " authorities fine you "
-			+ Format::CreditString(maxFine) + reason;
+		reason = "The " + gov->GetName() + " authorities fine you " + Format::CreditString(maxFine) + reason;
 		player.Accounts().AddFine(maxFine);
 		fined.insert(gov);
 	}

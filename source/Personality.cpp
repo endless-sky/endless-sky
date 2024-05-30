@@ -70,50 +70,19 @@ namespace {
 		LAST_ITEM_IN_PERSONALITY_TRAIT_ENUM
 	};
 
-	const map<string, PersonalityTrait> TOKEN = {
-		{"pacifist", PACIFIST},
-		{"forbearing", FORBEARING},
-		{"timid", TIMID},
-		{"disables", DISABLES},
-		{"plunders", PLUNDERS},
-		{"hunting", HUNTING},
-		{"staying", STAYING},
-		{"entering", ENTERING},
-		{"nemesis", NEMESIS},
-		{"surveillance", SURVEILLANCE},
-		{"uninterested", UNINTERESTED},
-		{"waiting", WAITING},
-		{"derelict", DERELICT},
-		{"fleeing", FLEEING},
-		{"escort", ESCORT},
-		{"frugal", FRUGAL},
-		{"coward", COWARD},
-		{"vindictive", VINDICTIVE},
-		{"swarming", SWARMING},
-		{"unconstrained", UNCONSTRAINED},
-		{"mining", MINING},
-		{"harvests", HARVESTS},
-		{"appeasing", APPEASING},
-		{"mute", MUTE},
-		{"opportunistic", OPPORTUNISTIC},
-		{"merciful", MERCIFUL},
-		{"target", TARGET},
-		{"marked", MARKED},
-		{"launching", LAUNCHING},
-		{"lingering", LINGERING},
-		{"daring", DARING},
-		{"secretive", SECRETIVE},
-		{"ramming", RAMMING},
-		{"unrestricted", UNRESTRICTED},
-		{"restricted", RESTRICTED},
-		{"decloaked", DECLOAKED},
-		{"quiet", QUIET}
-	};
+	const map<string, PersonalityTrait> TOKEN = {{"pacifist", PACIFIST}, {"forbearing", FORBEARING},
+		{"timid", TIMID}, {"disables", DISABLES}, {"plunders", PLUNDERS}, {"hunting", HUNTING},
+		{"staying", STAYING}, {"entering", ENTERING}, {"nemesis", NEMESIS}, {"surveillance", SURVEILLANCE},
+		{"uninterested", UNINTERESTED}, {"waiting", WAITING}, {"derelict", DERELICT}, {"fleeing", FLEEING},
+		{"escort", ESCORT}, {"frugal", FRUGAL}, {"coward", COWARD}, {"vindictive", VINDICTIVE},
+		{"swarming", SWARMING}, {"unconstrained", UNCONSTRAINED}, {"mining", MINING}, {"harvests", HARVESTS},
+		{"appeasing", APPEASING}, {"mute", MUTE}, {"opportunistic", OPPORTUNISTIC}, {"merciful", MERCIFUL},
+		{"target", TARGET}, {"marked", MARKED}, {"launching", LAUNCHING}, {"lingering", LINGERING},
+		{"daring", DARING}, {"secretive", SECRETIVE}, {"ramming", RAMMING}, {"unrestricted", UNRESTRICTED},
+		{"restricted", RESTRICTED}, {"decloaked", DECLOAKED}, {"quiet", QUIET}};
 
 	// Tokens that combine two or more flags.
-	const map<string, vector<PersonalityTrait>> COMPOSITE_TOKEN = {
-		{"heroic", {DARING, HUNTING}}
-	};
+	const map<string, vector<PersonalityTrait>> COMPOSITE_TOKEN = {{"heroic", {DARING, HUNTING}}};
 
 	const double DEFAULT_CONFUSION = 10.;
 }
@@ -471,8 +440,8 @@ void Personality::UpdateConfusion(bool isFiring)
 Personality Personality::Defender()
 {
 	Personality defender;
-	defender.flags = bitset<PERSONALITY_COUNT>((1LL << STAYING) | (1LL << MARKED) | (1LL << HUNTING) | (1LL << DARING)
-			| (1LL << UNCONSTRAINED) | (1LL << TARGET));
+	defender.flags = bitset<PERSONALITY_COUNT>((1LL << STAYING) | (1LL << MARKED) | (1LL << HUNTING)
+											   | (1LL << DARING) | (1LL << UNCONSTRAINED) | (1LL << TARGET));
 	return defender;
 }
 
@@ -483,8 +452,8 @@ Personality Personality::Defender()
 Personality Personality::DefenderFighter()
 {
 	Personality defender;
-	defender.flags = bitset<PERSONALITY_COUNT>((1LL << STAYING) | (1LL << HUNTING) | (1LL << DARING)
-			| (1LL << UNCONSTRAINED));
+	defender.flags = bitset<PERSONALITY_COUNT>(
+		(1LL << STAYING) | (1LL << HUNTING) | (1LL << DARING) | (1LL << UNCONSTRAINED));
 	return defender;
 }
 

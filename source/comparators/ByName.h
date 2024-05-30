@@ -18,25 +18,18 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-template<class T>
+template <class T>
 class ByName {
 public:
-	bool operator()(const T *a, const T *b) const
-	{
-		return a->Name() < b->Name();
-	}
+	bool operator()(const T *a, const T *b) const { return a->Name() < b->Name(); }
 };
 
 
 
-template<class T>
+template <class T>
 class ByDisplayName {
 public:
-	bool operator()(const T *a, const T *b) const
-	{
-		return a->DisplayName() < b->DisplayName();
-	}
+	bool operator()(const T *a, const T *b) const { return a->DisplayName() < b->DisplayName(); }
 };
 
 #endif
-

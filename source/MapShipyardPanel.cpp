@@ -16,7 +16,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MapShipyardPanel.h"
 
 #include "CoreStartData.h"
-#include "text/Format.h"
 #include "GameData.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -26,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Sprite.h"
 #include "StellarObject.h"
 #include "System.h"
+#include "text/Format.h"
 #include "UI.h"
 
 #include <algorithm>
@@ -36,16 +36,14 @@ using namespace std;
 
 
 
-MapShipyardPanel::MapShipyardPanel(PlayerInfo &player)
-	: MapSalesPanel(player, false)
+MapShipyardPanel::MapShipyardPanel(PlayerInfo &player) : MapSalesPanel(player, false)
 {
 	Init();
 }
 
 
 
-MapShipyardPanel::MapShipyardPanel(const MapPanel &panel, bool onlyHere)
-	: MapSalesPanel(panel, false)
+MapShipyardPanel::MapShipyardPanel(const MapPanel &panel, bool onlyHere) : MapSalesPanel(panel, false)
 {
 	Init();
 	onlyShowSoldHere = onlyHere;
@@ -98,12 +96,7 @@ const ItemInfoDisplay &MapShipyardPanel::CompareInfo() const
 
 const string &MapShipyardPanel::KeyLabel(int index) const
 {
-	static const string LABEL[4] = {
-		"Has no shipyard",
-		"Has shipyard",
-		"Sells this ship",
-		"Ship parked here"
-	};
+	static const string LABEL[4] = {"Has no shipyard", "Has shipyard", "Sells this ship", "Ship parked here"};
 	return LABEL[index];
 }
 
@@ -220,7 +213,8 @@ void MapShipyardPanel::DrawItems()
 			{
 				isForSale = false;
 				for(const StellarObject &object : selectedSystem->Objects())
-					if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->Shipyard().Has(ship))
+					if(object.HasSprite() && object.HasValidPlanet()
+						&& object.GetPlanet()->Shipyard().Has(ship))
 					{
 						isForSale = true;
 						break;
@@ -243,14 +237,12 @@ void MapShipyardPanel::DrawItems()
 			if(!sprite)
 				sprite = ship->GetSprite();
 
-			const string parking_details =
-				onlyShowSoldHere || parkedInSystem == 0
-				? ""
-				: parkedInSystem == 1
-				? "1 ship parked"
-				: Format::Number(parkedInSystem) + " ships parked";
-			Draw(corner, sprite, ship->CustomSwizzle(), isForSale, ship == selected,
-					ship->DisplayModelName(), price, info, parking_details);
+			const string parking_details = onlyShowSoldHere || parkedInSystem == 0 ? ""
+										   : parkedInSystem == 1
+											   ? "1 ship parked"
+											   : Format::Number(parkedInSystem) + " ships parked";
+			Draw(corner, sprite, ship->CustomSwizzle(), isForSale, ship == selected, ship->DisplayModelName(),
+				price, info, parking_details);
 			list.push_back(ship);
 		}
 	}
@@ -287,5 +279,8 @@ void MapShipyardPanel::Init()
 
 	for(auto &it : catalog)
 		sort(it.second.begin(), it.second.end(),
-			[](const Ship *a, const Ship *b) { return a->DisplayModelName() < b->DisplayModelName(); });
+			[](const Ship *a, const Ship *b)
+			{
+				return a->DisplayModelName() < b->DisplayModelName();
+			});
 }

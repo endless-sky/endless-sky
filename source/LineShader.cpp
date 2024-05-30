@@ -85,12 +85,7 @@ void LineShader::Init()
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
-	GLfloat vertexData[] = {
-		0.f, -1.f,
-		1.f, -1.f,
-		0.f,  1.f,
-		1.f,  1.f
-	};
+	GLfloat vertexData[] = {0.f, -1.f, 1.f, -1.f, 0.f, 1.f, 1.f, 1.f};
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
 
 	glEnableVertexAttribArray(shader.Attrib("vert"));
@@ -136,7 +131,7 @@ void LineShader::Draw(const Point &from, const Point &to, float width, const Col
 
 
 void LineShader::DrawDashed(const Point &from, const Point &to, const Point &unit, const float width,
-		const Color &color, const double dashLength, double spaceLength)
+	const Color &color, const double dashLength, double spaceLength)
 {
 	const double length = (to - from).Length();
 	const double patternLength = dashLength + spaceLength;
@@ -150,6 +145,5 @@ void LineShader::DrawDashed(const Point &from, const Point &to, const Point &uni
 	spaceLength /= 2.;
 	for(int i = 0; i < segments; ++i)
 		Draw(from + unit * ((i * length) / segments + spaceLength),
-			from + unit * (((i + 1) * length) / segments - spaceLength),
-			width, color);
+			from + unit * (((i + 1) * length) / segments - spaceLength), width, color);
 }

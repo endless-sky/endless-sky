@@ -15,12 +15,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Table.h"
 
-#include "DisplayText.h"
 #include "../FillShader.h"
+#include "../Rectangle.h"
+#include "DisplayText.h"
 #include "Font.h"
 #include "FontSet.h"
 #include "Format.h"
-#include "../Rectangle.h"
 
 #include <algorithm>
 
@@ -207,8 +207,8 @@ void Table::DrawCustom(const DisplayText &text, const Color &color) const
 
 
 
-void Table::DrawTruncatedPair(const string &left, const Color &leftColor, const string &right, const Color &rightColor,
-	Truncate strategy, bool truncateRightColumn) const
+void Table::DrawTruncatedPair(const string &left, const Color &leftColor, const string &right,
+	const Color &rightColor, Truncate strategy, bool truncateRightColumn) const
 {
 	// Compute the width of the non-truncated string, and the margin we have for the possibly-large text.
 	const auto colWidth = it->layout.width;
@@ -299,10 +299,7 @@ Rectangle Table::GetRowBounds() const
 
 
 
-Table::Column::Column(double offset, Layout layout) noexcept
-	: offset(offset), layout(layout)
-{
-}
+Table::Column::Column(double offset, Layout layout) noexcept : offset(offset), layout(layout) {}
 
 
 
@@ -311,9 +308,13 @@ void Table::Draw(const string &text, const Layout *special, const Color &color) 
 	if(font && !columns.empty())
 	{
 		const auto &layout = special ? *special : it->layout;
-		const double alignmentOffset = layout.align == Alignment::RIGHT ? -1.
-			: layout.align == Alignment::CENTER ? -0.5 : 0.;
-		auto pos = point + Point(it->offset + alignmentOffset * (layout.width >= 0 ? layout.width : font->Width(text)), 0.);
+		const double alignmentOffset = layout.align == Alignment::RIGHT    ? -1.
+									   : layout.align == Alignment::CENTER ? -0.5
+																		   : 0.;
+		auto pos =
+			point
+			+ Point(
+				it->offset + alignmentOffset * (layout.width >= 0 ? layout.width : font->Width(text)), 0.);
 		font->Draw({text, layout}, pos, color);
 	}
 

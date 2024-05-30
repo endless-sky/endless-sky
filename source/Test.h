@@ -39,7 +39,7 @@ class TestContext;
 class Test {
 public:
 	// Status indicators for the test that we selected (if any).
-	enum class Status {ACTIVE, PARTIAL, BROKEN, KNOWN_FAILURE, MISSING_FEATURE};
+	enum class Status { ACTIVE, PARTIAL, BROKEN, KNOWN_FAILURE, MISSING_FEATURE };
 
 	// A tag type to denote a failing test that is not an error, such as a
 	// "known failure" test failing.
@@ -64,7 +64,8 @@ public:
 			CALL,
 			// Step that adds game-data, either in the config-directories or in the game directly.
 			INJECT,
-			// Step that performs input (key, mouse, command). Does cause the game to step (to process the inputs).
+			// Step that performs input (key, mouse, command). Does cause the game to step (to process the
+			// inputs).
 			INPUT,
 			// Label to jump to (similar as is done in conversations). Does not cause the game to step.
 			LABEL,

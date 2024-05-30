@@ -33,7 +33,9 @@ public:
 	class ImpactInfo {
 	public:
 		ImpactInfo(const Weapon &weapon, Point position, double scale)
-			: weapon(weapon), position(std::move(position)), scale(scale) {}
+			: weapon(weapon), position(std::move(position)), scale(scale)
+		{
+		}
 
 		const Weapon &weapon;
 		Point position;
@@ -42,7 +44,8 @@ public:
 
 public:
 	Weather() = default;
-	explicit Weather(const Hazard *hazard, int totalLifetime, int lifetimeRemaining, double strength, Point origin);
+	explicit Weather(
+		const Hazard *hazard, int totalLifetime, int lifetimeRemaining, double strength, Point origin);
 
 	// The hazard that is associated with this weather event.
 	const Hazard *GetHazard() const;

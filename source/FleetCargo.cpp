@@ -48,7 +48,8 @@ namespace {
 
 	// Construct a list of varying numbers of outfits that were either specified for
 	// this fleet directly, or are sold in this system or its linked neighbors.
-	vector<const Outfit *> OutfitChoices(const set<const Sale<Outfit> *> &outfitters, const System *hub, int maxSize)
+	vector<const Outfit *> OutfitChoices(
+		const set<const Sale<Outfit> *> &outfitters, const System *hub, int maxSize)
 	{
 		auto outfits = vector<const Outfit *>();
 		if(maxSize > 0)
@@ -77,9 +78,8 @@ namespace {
 						// or modify bunks.
 						// TODO: Specify rejection criteria in datafiles as ConditionSets or similar.
 						const auto &attributes = outfit->Attributes();
-						if(attributes.Get("outfit space") > 0.
-								|| attributes.Get("cargo space") > 0.
-								|| attributes.Get("bunks"))
+						if(attributes.Get("outfit space") > 0. || attributes.Get("cargo space") > 0.
+							|| attributes.Get("bunks"))
 							continue;
 
 						outfits.push_back(outfit);
@@ -89,8 +89,11 @@ namespace {
 		}
 		// Sort this list of choices ascending by mass, so it can be easily trimmed to just
 		// the outfits that fit as the ship's free space decreases.
-		sort(outfits.begin(), outfits.end(), [](const Outfit *a, const Outfit *b)
-			{ return a->Mass() < b->Mass(); });
+		sort(outfits.begin(), outfits.end(),
+			[](const Outfit *a, const Outfit *b)
+			{
+				return a->Mass() < b->Mass();
+			});
 		return outfits;
 	}
 
@@ -144,7 +147,7 @@ void FleetCargo::LoadSingle(const DataNode &node)
 	if(node.Size() < 2)
 		node.PrintTrace("Error: Expected key to have a value:");
 	else if(node.Token(0) == "cargo")
-			cargo = static_cast<int>(node.Value(1));
+		cargo = static_cast<int>(node.Value(1));
 	else if(node.Token(0) == "commodities")
 	{
 		commodities.clear();
@@ -185,7 +188,10 @@ void FleetCargo::SetCargo(Ship *ship) const
 		// Remove any outfits that do not fit into remaining cargo.
 		if(canChooseOutfits && !outfits.empty())
 			outfits.erase(remove_if(outfits.begin(), outfits.end(),
-					[&free](const Outfit *a) { return a->Mass() > free; }),
+							  [&free](const Outfit *a)
+							  {
+								  return a->Mass() > free;
+							  }),
 				outfits.end());
 
 		if(canChooseCommodities && canChooseOutfits)

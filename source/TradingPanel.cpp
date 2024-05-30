@@ -18,9 +18,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Color.h"
 #include "Command.h"
 #include "FillShader.h"
-#include "text/Font.h"
-#include "text/FontSet.h"
-#include "text/Format.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
@@ -29,6 +26,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Outfit.h"
 #include "PlayerInfo.h"
 #include "System.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "UI.h"
 
 #include <algorithm>
@@ -37,13 +37,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	const string TRADE_LEVEL[] = {
-		"(very low)",
-		"(low)",
-		"(medium)",
-		"(high)",
-		"(very high)"
-	};
+	const string TRADE_LEVEL[] = {"(very low)", "(low)", "(medium)", "(high)", "(very high)"};
 
 	const int NAME_X = 20;
 	const int PRICE_X = 140;
@@ -230,7 +224,8 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 		player.SetMapColoring(max(0, player.MapColoring() - 1));
 	else if(key == SDLK_DOWN)
 		player.SetMapColoring(max(0, min(COMMODITY_COUNT - 1, player.MapColoring() + 1)));
-	else if(key == SDLK_EQUALS || key == SDLK_KP_PLUS || key == SDLK_PLUS || key == SDLK_RETURN || key == SDLK_SPACE)
+	else if(key == SDLK_EQUALS || key == SDLK_KP_PLUS || key == SDLK_PLUS || key == SDLK_RETURN
+			|| key == SDLK_SPACE)
 		Buy(1);
 	else if(key == SDLK_MINUS || key == SDLK_KP_MINUS || key == SDLK_BACKSPACE || key == SDLK_DELETE)
 		Buy(-1);
@@ -258,7 +253,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 		int day = player.GetDate().DaysSinceEpoch();
 		for(const auto &it : player.Cargo().Outfits())
 		{
-			const Outfit * const outfit = it.first;
+			const Outfit *const outfit = it.first;
 			const int64_t &amount = it.second;
 			if(outfit->Get("minable") <= 0. && !sellOutfits)
 				continue;

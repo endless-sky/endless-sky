@@ -18,8 +18,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataFile.h"
 #include "DataNode.h"
 #include "Date.h"
-#include "text/Format.h"
 #include "SpriteSet.h"
+#include "text/Format.h"
 
 using namespace std;
 

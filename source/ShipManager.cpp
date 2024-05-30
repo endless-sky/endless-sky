@@ -72,7 +72,8 @@ void ShipManager::Load(const DataNode &node)
 	}
 
 	if(taking && !id.empty() && count > 1)
-		node.PrintTrace("Error: Use of \"id\" to refer to the ship is only supported when \"count\" is equal to 1.");
+		node.PrintTrace(
+			"Error: Use of \"id\" to refer to the ship is only supported when \"count\" is equal to 1.");
 }
 
 
@@ -124,9 +125,10 @@ void ShipManager::Do(PlayerInfo &player) const
 		for(const auto &ship : toTake)
 			player.TakeShip(ship.get(), model, takeOutfits);
 	}
-	Messages::Add((count == 1 ? "The " + model->DisplayModelName() + " \"" + shipName + "\" was " :
-		to_string(count) + " " + model->PluralModelName() + " were ") +
-		(Giving() ? "added to" : "removed from") + " your fleet.", Messages::Importance::High);
+	Messages::Add((count == 1 ? "The " + model->DisplayModelName() + " \"" + shipName + "\" was "
+							  : to_string(count) + " " + model->PluralModelName() + " were ")
+					  + (Giving() ? "added to" : "removed from") + " your fleet.",
+		Messages::Importance::High);
 }
 
 

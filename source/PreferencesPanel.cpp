@@ -15,14 +15,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "PreferencesPanel.h"
 
-#include "text/alignment.hpp"
 #include "Audio.h"
 #include "Color.h"
 #include "Dialog.h"
 #include "Files.h"
 #include "FillShader.h"
-#include "text/Font.h"
-#include "text/FontSet.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
@@ -35,10 +32,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "StarField.h"
+#include "text/alignment.hpp"
+#include "text/Font.h"
+#include "text/FontSet.h"
 #include "text/Table.h"
 #include "text/truncate.hpp"
-#include "UI.h"
 #include "text/WrappedText.h"
+#include "UI.h"
 
 #include "opengl.h"
 
@@ -90,8 +90,7 @@ namespace {
 
 
 
-PreferencesPanel::PreferencesPanel()
-	: editing(-1), selected(0), hover(-1)
+PreferencesPanel::PreferencesPanel() : editing(-1), selected(0), hover(-1)
 {
 	// Select the first valid plugin.
 	for(const auto &plugin : Plugins::Get())
@@ -126,9 +125,7 @@ PreferencesPanel::PreferencesPanel()
 
 
 // Stub, for unique_ptr destruction to be defined in the right compilation unit.
-PreferencesPanel::~PreferencesPanel()
-{
-}
+PreferencesPanel::~PreferencesPanel() {}
 
 
 
@@ -213,8 +210,8 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	else if(key == 'o' && page == 'p')
 		Files::OpenUserPluginFolder();
 	else if((key == 'n' || key == SDLK_PAGEUP)
-		&& ((page == 'c' && currentControlsPage < CONTROLS_PAGE_COUNT - 1)
-		|| (page == 's' && currentSettingsPage < SETTINGS_PAGE_COUNT - 1)))
+			&& ((page == 'c' && currentControlsPage < CONTROLS_PAGE_COUNT - 1)
+				|| (page == 's' && currentSettingsPage < SETTINGS_PAGE_COUNT - 1)))
 	{
 		if(page == 'c')
 			++currentControlsPage;
@@ -224,7 +221,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		selectedItem.clear();
 	}
 	else if((key == 'r' || key == SDLK_PAGEDOWN)
-		&& ((page == 'c' && currentControlsPage > 0) || (page == 's' && currentSettingsPage > 0)))
+			&& ((page == 'c' && currentControlsPage > 0) || (page == 's' && currentSettingsPage > 0)))
 	{
 		if(page == 'c')
 			--currentControlsPage;
@@ -457,57 +454,16 @@ void PreferencesPanel::DrawControls()
 	// * The namespace variable CONTROLS_PAGE_COUNT should be updated to the max
 	//   page count (count of '\n' characters plus one).
 	static const string CATEGORIES[] = {
-		"Keyboard Navigation",
-		"Fleet",
-		"\t",
-		"Targeting",
-		"Weapons",
-		"\n",
-		"Interface"
-	};
+		"Keyboard Navigation", "Fleet", "\t", "Targeting", "Weapons", "\n", "Interface"};
 	const string *category = CATEGORIES;
-	static const Command COMMANDS[] = {
-		Command::NONE,
-		Command::FORWARD,
-		Command::LEFT,
-		Command::RIGHT,
-		Command::BACK,
-		Command::AFTERBURNER,
-		Command::AUTOSTEER,
-		Command::LAND,
-		Command::JUMP,
-		Command::NONE,
-		Command::DEPLOY,
-		Command::FIGHT,
-		Command::GATHER,
-		Command::HOLD,
-		Command::AMMO,
-		Command::HARVEST,
-		Command::NONE,
-		Command::NONE,
-		Command::NEAREST,
-		Command::TARGET,
-		Command::HAIL,
-		Command::BOARD,
-		Command::NEAREST_ASTEROID,
-		Command::SCAN,
-		Command::NONE,
-		Command::PRIMARY,
-		Command::TURRET_TRACKING,
-		Command::SELECT,
-		Command::SECONDARY,
-		Command::CLOAK,
-		Command::MOUSE_TURNING_HOLD,
-		Command::NONE,
-		Command::NONE,
-		Command::MENU,
-		Command::MAP,
-		Command::INFO,
-		Command::FULLSCREEN,
-		Command::FASTFORWARD,
-		Command::HELP,
-		Command::MESSAGE_LOG
-	};
+	static const Command COMMANDS[] = {Command::NONE, Command::FORWARD, Command::LEFT, Command::RIGHT,
+		Command::BACK, Command::AFTERBURNER, Command::AUTOSTEER, Command::LAND, Command::JUMP, Command::NONE,
+		Command::DEPLOY, Command::FIGHT, Command::GATHER, Command::HOLD, Command::AMMO, Command::HARVEST,
+		Command::NONE, Command::NONE, Command::NEAREST, Command::TARGET, Command::HAIL, Command::BOARD,
+		Command::NEAREST_ASTEROID, Command::SCAN, Command::NONE, Command::PRIMARY, Command::TURRET_TRACKING,
+		Command::SELECT, Command::SECONDARY, Command::CLOAK, Command::MOUSE_TURNING_HOLD, Command::NONE,
+		Command::NONE, Command::MENU, Command::MAP, Command::INFO, Command::FULLSCREEN, Command::FASTFORWARD,
+		Command::HELP, Command::MESSAGE_LOG};
 
 	int page = 0;
 	for(const Command &command : COMMANDS)
@@ -629,71 +585,20 @@ void PreferencesPanel::DrawSettings()
 	//   entries.
 	// * The namespace variable SETTINGS_PAGE_COUNT should be updated to the max
 	//   page count (count of '\n' characters plus one).
-	static const string SETTINGS[] = {
-		"Display",
-		ZOOM_FACTOR,
-		VIEW_ZOOM_FACTOR,
-		SCREEN_MODE_SETTING,
-		VSYNC_SETTING,
-		CAMERA_ACCELERATION,
-		"",
-		"Performance",
-		"Show CPU / GPU load",
-		"Render motion blur",
-		"Reduce large graphics",
-		"Draw background haze",
-		"Draw starfield",
-		BACKGROUND_PARALLAX,
-		"Show hyperspace flash",
-		EXTENDED_JUMP_EFFECTS,
-		SHIP_OUTLINES,
-		HUD_SHIP_OUTLINES,
-		CLOAK_OUTLINE,
-		"\t",
-		"HUD",
-		STATUS_OVERLAYS_ALL,
-		STATUS_OVERLAYS_FLAGSHIP,
-		STATUS_OVERLAYS_ESCORT,
-		STATUS_OVERLAYS_ENEMY,
-		STATUS_OVERLAYS_NEUTRAL,
-		"Show missile overlays",
-		"Show asteroid scanner overlay",
-		"Highlight player's flagship",
-		"Rotate flagship in HUD",
-		"Show planet labels",
-		"Show mini-map",
-		"Clickable radar display",
-		ALERT_INDICATOR,
-		"Extra fleet status messages",
-		"\n",
-		"Gameplay",
-		"Control ship with mouse",
-		AUTO_AIM_SETTING,
-		AUTO_FIRE_SETTING,
-		TURRET_TRACKING,
-		TARGET_ASTEROIDS_BASED_ON,
-		BOARDING_PRIORITY,
-		EXPEND_AMMO,
-		FLOTSAM_SETTING,
-		FIGHTER_REPAIR,
-		"Fighters transfer cargo",
-		"Rehire extra crew when lost",
-		"",
-		"Map",
-		"Deadline blink by distance",
-		"Hide unexplored map regions",
-		"Show escort systems on map",
-		"Show stored outfits on map",
-		"System map sends move orders",
-		"\t",
-		"Other",
-		"Always underline shortcuts",
-		REACTIVATE_HELP,
-		"Interrupt fast-forward",
-		"Landing zoom",
-		SCROLL_SPEED,
-		DATE_FORMAT
-	};
+	static const string SETTINGS[] = {"Display", ZOOM_FACTOR, VIEW_ZOOM_FACTOR, SCREEN_MODE_SETTING,
+		VSYNC_SETTING, CAMERA_ACCELERATION, "", "Performance", "Show CPU / GPU load", "Render motion blur",
+		"Reduce large graphics", "Draw background haze", "Draw starfield", BACKGROUND_PARALLAX,
+		"Show hyperspace flash", EXTENDED_JUMP_EFFECTS, SHIP_OUTLINES, HUD_SHIP_OUTLINES, CLOAK_OUTLINE, "\t",
+		"HUD", STATUS_OVERLAYS_ALL, STATUS_OVERLAYS_FLAGSHIP, STATUS_OVERLAYS_ESCORT, STATUS_OVERLAYS_ENEMY,
+		STATUS_OVERLAYS_NEUTRAL, "Show missile overlays", "Show asteroid scanner overlay",
+		"Highlight player's flagship", "Rotate flagship in HUD", "Show planet labels", "Show mini-map",
+		"Clickable radar display", ALERT_INDICATOR, "Extra fleet status messages", "\n", "Gameplay",
+		"Control ship with mouse", AUTO_AIM_SETTING, AUTO_FIRE_SETTING, TURRET_TRACKING,
+		TARGET_ASTEROIDS_BASED_ON, BOARDING_PRIORITY, EXPEND_AMMO, FLOTSAM_SETTING, FIGHTER_REPAIR,
+		"Fighters transfer cargo", "Rehire extra crew when lost", "", "Map", "Deadline blink by distance",
+		"Hide unexplored map regions", "Show escort systems on map", "Show stored outfits on map",
+		"System map sends move orders", "\t", "Other", "Always underline shortcuts", REACTIVATE_HELP,
+		"Interrupt fast-forward", "Landing zoom", SCROLL_SPEED, DATE_FORMAT};
 
 	bool isCategory = true;
 	int page = 0;
@@ -935,7 +840,7 @@ void PreferencesPanel::DrawPlugins()
 	const Color &bright = *GameData::Colors().Get("bright");
 	const Interface *pluginUI = GameData::Interfaces().Get("plugins");
 
-	const Sprite *box[2] = { SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked") };
+	const Sprite *box[2] = {SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked")};
 
 	// Animate scrolling.
 	pluginListScroll.Step();
@@ -946,10 +851,8 @@ void PreferencesPanel::DrawPlugins()
 	Rectangle pluginListBox = pluginUI->GetBox("plugin list");
 
 	Table table;
-	table.AddColumn(
-		pluginListClip->Left() + box[0]->Width(),
-		Layout(pluginListBox.Width() - box[0]->Width(), Truncate::MIDDLE)
-	);
+	table.AddColumn(pluginListClip->Left() + box[0]->Width(),
+		Layout(pluginListBox.Width() - box[0]->Width(), Truncate::MIDDLE));
 	table.SetUnderline(pluginListClip->Left() + box[0]->Width(), pluginListClip->Right());
 
 	int firstY = pluginListClip->Top();
@@ -961,7 +864,8 @@ void PreferencesPanel::DrawPlugins()
 		if(!plugin.IsValid())
 			continue;
 
-		pluginZones.emplace_back(pluginListBox.Center() + table.GetCenterPoint(), table.GetRowSize(), plugin.name);
+		pluginZones.emplace_back(
+			pluginListBox.Center() + table.GetCenterPoint(), table.GetRowSize(), plugin.name);
 
 		bool isSelected = (plugin.name == selectedPlugin);
 		if(isSelected || plugin.name == hoverItem)
@@ -975,10 +879,15 @@ void PreferencesPanel::DrawPlugins()
 		Rectangle zoneBounds = spriteBounds + pluginListBox.Center();
 
 		// Only include the zone as clickable if it's within the drawing area.
-		bool displayed = table.GetPoint().Y() > pluginListClip->Top() - 20 &&
-			table.GetPoint().Y() < pluginListClip->Bottom() - table.GetRowBounds().Height() + 20;
+		bool displayed =
+			table.GetPoint().Y() > pluginListClip->Top() - 20
+			&& table.GetPoint().Y() < pluginListClip->Bottom() - table.GetRowBounds().Height() + 20;
 		if(displayed)
-			AddZone(zoneBounds, [&]() { Plugins::TogglePlugin(plugin.name); });
+			AddZone(zoneBounds,
+				[&]()
+				{
+					Plugins::TogglePlugin(plugin.name);
+				});
 		if(isSelected)
 			table.Draw(plugin.name, bright);
 		else
@@ -989,9 +898,7 @@ void PreferencesPanel::DrawPlugins()
 	target.Deactivate();
 
 	pluginListClip->SetFadePadding(
-		pluginListScroll.IsScrollAtMin() ? 0 : 20,
-		pluginListScroll.IsScrollAtMax() ? 0 : 20
-	);
+		pluginListScroll.IsScrollAtMin() ? 0 : 20, pluginListScroll.IsScrollAtMax() ? 0 : 20);
 
 	// Draw the scrolled and clipped plugin list to the screen.
 	pluginListClip->Draw(pluginListBox.Center());
@@ -1003,14 +910,22 @@ void PreferencesPanel::DrawPlugins()
 		// Draw up and down pointers, mostly to indicate when scrolling
 		// is possible, but might as well make them clickable too.
 		Rectangle topRight({pluginListBox.Right(), pluginListBox.Top() + POINTER_OFFSET.Y()}, {20.0, 20.0});
-		PointerShader::Draw(topRight.Center(), UP,
-			10.f, 10.f, 5.f, Color(pluginListScroll.IsScrollAtMin() ? .2f : .8f, 0.f));
-		AddZone(topRight, [&]() { pluginListScroll.Scroll(-Preferences::ScrollSpeed()); });
+		PointerShader::Draw(
+			topRight.Center(), UP, 10.f, 10.f, 5.f, Color(pluginListScroll.IsScrollAtMin() ? .2f : .8f, 0.f));
+		AddZone(topRight,
+			[&]()
+			{
+				pluginListScroll.Scroll(-Preferences::ScrollSpeed());
+			});
 
 		Rectangle bottomRight(pluginListBox.BottomRight() - POINTER_OFFSET, {20.0, 20.0});
-		PointerShader::Draw(bottomRight.Center(), DOWN,
-			10.f, 10.f, 5.f, Color(pluginListScroll.IsScrollAtMax() ? .2f : .8f, 0.f));
-		AddZone(bottomRight, [&]() { pluginListScroll.Scroll(Preferences::ScrollSpeed()); });
+		PointerShader::Draw(bottomRight.Center(), DOWN, 10.f, 10.f, 5.f,
+			Color(pluginListScroll.IsScrollAtMax() ? .2f : .8f, 0.f));
+		AddZone(bottomRight,
+			[&]()
+			{
+				pluginListScroll.Scroll(Preferences::ScrollSpeed());
+			});
 	}
 
 	// Draw the pre-rendered plugin description, if applicable.
@@ -1018,32 +933,36 @@ void PreferencesPanel::DrawPlugins()
 	{
 		pluginDescriptionScroll.Step();
 
-		pluginDescriptionBuffer->SetFadePadding(
-			pluginDescriptionScroll.IsScrollAtMin() ? 0 : 20,
-			pluginDescriptionScroll.IsScrollAtMax() ? 0 : 20
-		);
+		pluginDescriptionBuffer->SetFadePadding(pluginDescriptionScroll.IsScrollAtMin() ? 0 : 20,
+			pluginDescriptionScroll.IsScrollAtMax() ? 0 : 20);
 
 		Rectangle descriptionBox = pluginUI->GetBox("plugin description");
-		pluginDescriptionBuffer->Draw(
-			descriptionBox.Center(),
-			descriptionBox.Dimensions(),
-			Point(0, static_cast<int>(pluginDescriptionScroll.AnimatedValue()))
-		);
+		pluginDescriptionBuffer->Draw(descriptionBox.Center(), descriptionBox.Dimensions(),
+			Point(0, static_cast<int>(pluginDescriptionScroll.AnimatedValue())));
 
 		if(pluginDescriptionScroll.Scrollable())
 		{
 			// Draw up and down pointers, mostly to indicate when
 			// scrolling is possible, but might as well make them
 			// clickable too.
-			Rectangle topRight({descriptionBox.Right(), descriptionBox.Top() + POINTER_OFFSET.Y()}, {20.0, 20.0});
-			PointerShader::Draw(topRight.Center(), UP,
-				10.f, 10.f, 5.f, Color(pluginDescriptionScroll.IsScrollAtMin() ? .2f : .8f, 0.f));
-			AddZone(topRight, [&]() { pluginDescriptionScroll.Scroll(-Preferences::ScrollSpeed()); });
+			Rectangle topRight(
+				{descriptionBox.Right(), descriptionBox.Top() + POINTER_OFFSET.Y()}, {20.0, 20.0});
+			PointerShader::Draw(topRight.Center(), UP, 10.f, 10.f, 5.f,
+				Color(pluginDescriptionScroll.IsScrollAtMin() ? .2f : .8f, 0.f));
+			AddZone(topRight,
+				[&]()
+				{
+					pluginDescriptionScroll.Scroll(-Preferences::ScrollSpeed());
+				});
 
 			Rectangle bottomRight(descriptionBox.BottomRight() - POINTER_OFFSET, {20.0, 20.0});
-			PointerShader::Draw(bottomRight.Center(), DOWN,
-				10.f, 10.f, 5.f, Color(pluginDescriptionScroll.IsScrollAtMax() ? .2f : .8f, 0.f));
-			AddZone(bottomRight, [&]() { pluginDescriptionScroll.Scroll(Preferences::ScrollSpeed()); });
+			PointerShader::Draw(bottomRight.Center(), DOWN, 10.f, 10.f, 5.f,
+				Color(pluginDescriptionScroll.IsScrollAtMax() ? .2f : .8f, 0.f));
+			AddZone(bottomRight,
+				[&]()
+				{
+					pluginDescriptionScroll.Scroll(Preferences::ScrollSpeed());
+				});
 		}
 	}
 }
@@ -1172,8 +1091,8 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 			// Only show this if it's not possible to zoom the view at all, as
 			// otherwise the dialog will show every time, which is annoying.
 			if(newZoom == ZOOM_FACTOR_MIN + ZOOM_FACTOR_INCREMENT)
-				GetUI()->Push(new Dialog(
-					"Your screen resolution is too low to support a zoom level above 100%."));
+				GetUI()->Push(
+					new Dialog("Your screen resolution is too low to support a zoom level above 100%."));
 			Screen::SetZoom(ZOOM_FACTOR_MIN);
 		}
 		// Convert to raw window coordinates, at the new zoom level.
@@ -1192,15 +1111,17 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 		// Increase the zoom factor unless it is at the maximum. In that
 		// case, cycle around to the lowest zoom factor.
 		if(!Preferences::ZoomViewIn())
-			while(Preferences::ZoomViewOut()) {}
+			while(Preferences::ZoomViewOut())
+			{
+			}
 	}
 	else if(str == SCREEN_MODE_SETTING)
 		Preferences::ToggleScreenMode();
 	else if(str == VSYNC_SETTING)
 	{
 		if(!Preferences::ToggleVSync())
-			GetUI()->Push(new Dialog(
-				"Unable to change VSync state. (Your system's graphics settings may be controlling it instead.)"));
+			GetUI()->Push(new Dialog("Unable to change VSync state. (Your system's graphics settings may be "
+									 "controlling it instead.)"));
 	}
 	else if(str == CAMERA_ACCELERATION)
 		Preferences::ToggleCameraAcceleration();

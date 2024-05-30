@@ -15,15 +15,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "BoardingPanel.h"
 
-#include "text/alignment.hpp"
 #include "CargoHold.h"
 #include "Depreciation.h"
 #include "Dialog.h"
-#include "text/DisplayText.h"
 #include "FillShader.h"
-#include "text/Font.h"
-#include "text/FontSet.h"
-#include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Information.h"
@@ -35,6 +30,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipEvent.h"
 #include "ShipInfoPanel.h"
 #include "System.h"
+#include "text/alignment.hpp"
+#include "text/DisplayText.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "UI.h"
 
 #include <algorithm>
@@ -59,8 +59,8 @@ namespace {
 
 // Constructor.
 BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
-	: player(player), you(player.FlagshipPtr()), victim(victim),
-	attackOdds(*you, *victim), defenseOdds(*victim, *you)
+	: player(player), you(player.FlagshipPtr()), victim(victim), attackOdds(*you, *victim),
+	  defenseOdds(*victim, *you)
 {
 	// The escape key should close this panel rather than bringing up the main menu.
 	SetInterruptible(false);
@@ -83,10 +83,10 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 		int count = 0;
 		// Merge the outfit lists from the ship itself and its cargo bay. If an
 		// outfit exists in both locations, combine the counts.
-		bool shipIsFirst = (cit == victim->Cargo().Outfits().end() ||
-			(sit != victim->Outfits().end() && sit->first <= cit->first));
-		bool cargoIsFirst = (sit == victim->Outfits().end() ||
-			(cit != victim->Cargo().Outfits().end() && cit->first <= sit->first));
+		bool shipIsFirst = (cit == victim->Cargo().Outfits().end()
+							|| (sit != victim->Outfits().end() && sit->first <= cit->first));
+		bool cargoIsFirst = (sit == victim->Outfits().end()
+							 || (cit != victim->Cargo().Outfits().end() && cit->first <= sit->first));
 		if(shipIsFirst)
 		{
 			outfit = sit->first;
@@ -138,7 +138,7 @@ void BoardingPanel::Draw()
 	const Font &font = FontSet::Get(14);
 	// Y offset to center the text in a 20-pixel high row.
 	double fontOff = .5 * (20 - font.Height());
-	for( ; y < endY && static_cast<unsigned>(index) < plunder.size(); y += 20, ++index)
+	for(; y < endY && static_cast<unsigned>(index) < plunder.size(); y += 20, ++index)
 	{
 		const Plunder &item = plunder[index];
 
@@ -175,19 +175,15 @@ void BoardingPanel::Draw()
 		crew = you->Crew();
 		info.SetString("cargo space", to_string(you->Cargo().Free()));
 		info.SetString("your crew", to_string(crew));
-		info.SetString("your attack",
-			Round(attackOdds.AttackerPower(crew)));
-		info.SetString("your defense",
-			Round(defenseOdds.DefenderPower(crew)));
+		info.SetString("your attack", Round(attackOdds.AttackerPower(crew)));
+		info.SetString("your defense", Round(defenseOdds.DefenderPower(crew)));
 	}
 	int vCrew = victim ? victim->Crew() : 0;
 	if(victim && (canCapture || victim->IsYours()))
 	{
 		info.SetString("enemy crew", to_string(vCrew));
-		info.SetString("enemy attack",
-			Round(defenseOdds.AttackerPower(vCrew)));
-		info.SetString("enemy defense",
-			Round(attackOdds.DefenderPower(vCrew)));
+		info.SetString("enemy attack", Round(defenseOdds.AttackerPower(vCrew)));
+		info.SetString("enemy defense", Round(attackOdds.DefenderPower(vCrew)));
 	}
 	if(victim && canCapture && !victim->IsYours())
 	{
@@ -197,14 +193,10 @@ void BoardingPanel::Draw()
 		double odds = attackOdds.Odds(crew, vCrew);
 		if(!isCapturing)
 			odds *= (1. - victim->Attributes().Get("self destruct"));
-		info.SetString("attack odds",
-			Round(100. * odds) + "%");
-		info.SetString("attack casualties",
-			Round(attackOdds.AttackerCasualties(crew, vCrew)));
-		info.SetString("defense odds",
-			Round(100. * (1. - defenseOdds.Odds(vCrew, crew))) + "%");
-		info.SetString("defense casualties",
-			Round(defenseOdds.DefenderCasualties(vCrew, crew)));
+		info.SetString("attack odds", Round(100. * odds) + "%");
+		info.SetString("attack casualties", Round(attackOdds.AttackerCasualties(crew, vCrew)));
+		info.SetString("defense odds", Round(100. * (1. - defenseOdds.Odds(vCrew, crew))) + "%");
+		info.SetString("defense casualties", Round(defenseOdds.DefenderCasualties(vCrew, crew)));
 	}
 
 	const Interface *boarding = GameData::Interfaces().Get("boarding");
@@ -224,7 +216,8 @@ void BoardingPanel::Draw()
 // Handle key presses or button clicks that were mapped to key presses.
 bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	if((key == 'd' || key == 'x' || key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI)))) && CanExit())
+	if((key == 'd' || key == 'x' || key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
+		&& CanExit())
 	{
 		// When closing the panel, mark the player dead if their ship was captured.
 		if(playerDied)
@@ -274,9 +267,9 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		else
 			plunder[selected].Take(count);
 	}
-	else if(!isCapturing &&
-			(key == SDLK_UP || key == SDLK_DOWN || key == SDLK_PAGEUP
-			|| key == SDLK_PAGEDOWN || key == SDLK_HOME || key == SDLK_END))
+	else if(!isCapturing
+			&& (key == SDLK_UP || key == SDLK_DOWN || key == SDLK_PAGEUP || key == SDLK_PAGEDOWN
+				|| key == SDLK_HOME || key == SDLK_END))
 		DoKeyboardNavigation(key);
 	else if(key == 'c' && CanCapture())
 	{
@@ -287,7 +280,8 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		{
 			victim->SelfDestruct();
 			GetUI()->Pop(this);
-			GetUI()->Push(new Dialog("The moment you blast through the airlock, a series of explosions rocks the enemy ship."
+			GetUI()->Push(new Dialog(
+				"The moment you blast through the airlock, a series of explosions rocks the enemy ship."
 				" They appear to have set off their self-destruct sequence..."));
 			return true;
 		}
@@ -335,10 +329,10 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 
 				// Your chance of winning this round is equal to the ratio of
 				// your power to the enemy's power.
-				double yourPower = (youAttack ?
-					attackOdds.AttackerPower(yourCrew) : defenseOdds.DefenderPower(yourCrew));
-				double enemyPower = (enemyAttacks ?
-					defenseOdds.AttackerPower(enemyCrew) : attackOdds.DefenderPower(enemyCrew));
+				double yourPower =
+					(youAttack ? attackOdds.AttackerPower(yourCrew) : defenseOdds.DefenderPower(yourCrew));
+				double enemyPower = (enemyAttacks ? defenseOdds.AttackerPower(enemyCrew)
+												  : attackOdds.DefenderPower(enemyCrew));
 
 				double total = yourPower + enemyPower;
 				if(!total)
@@ -354,8 +348,8 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 			int yourCasualties = yourStartCrew - you->Crew();
 			int enemyCasualties = enemyStartCrew - victim->Crew();
 			if(yourCasualties && enemyCasualties)
-				messages.back() += "You lose " + to_string(yourCasualties)
-					+ " crew; they lose " + to_string(enemyCasualties) + ".";
+				messages.back() += "You lose " + to_string(yourCasualties) + " crew; they lose "
+								   + to_string(enemyCasualties) + ".";
 			else if(yourCasualties)
 				messages.back() += "You lose " + to_string(yourCasualties) + " crew.";
 			else if(enemyCasualties)
@@ -546,7 +540,7 @@ BoardingPanel::Plunder::Plunder(const string &commodity, int count, int unitValu
 // Constructor (outfit installed in the victim ship or transported as cargo).
 BoardingPanel::Plunder::Plunder(const Outfit *outfit, int count)
 	: name(outfit->DisplayName()), outfit(outfit), count(count),
-	unitValue(outfit->Cost() * (outfit->Get("installable") < 0. ? 1 : Depreciation::Full()))
+	  unitValue(outfit->Cost() * (outfit->Get("installable") < 0. ? 1 : Depreciation::Full()))
 {
 	UpdateStrings();
 }

@@ -15,15 +15,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MapPanel.h"
 
-#include "text/alignment.hpp"
 #include "Angle.h"
 #include "CargoHold.h"
 #include "Dialog.h"
 #include "FillShader.h"
 #include "FogShader.h"
-#include "text/Font.h"
-#include "text/FontSet.h"
-#include "text/Format.h"
 #include "Galaxy.h"
 #include "GameData.h"
 #include "Government.h"
@@ -48,8 +44,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SpriteShader.h"
 #include "StellarObject.h"
 #include "System.h"
-#include "Trade.h"
+#include "text/alignment.hpp"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "text/truncate.hpp"
+#include "Trade.h"
 #include "UI.h"
 #include "Wormhole.h"
 
@@ -81,7 +81,9 @@ namespace {
 	struct WormholeArrow {
 		WormholeArrow() = default;
 		WormholeArrow(const System *from, const System *to, const Color *color)
-		: from(from), to(to), color(color) {}
+			: from(from), to(to), color(color)
+		{
+		}
 		const System *from = nullptr;
 		const System *to = nullptr;
 		const Color *color = nullptr;
@@ -90,8 +92,8 @@ namespace {
 
 	// Log how many player ships are in a given system, tracking whether
 	// they are parked or in-flight.
-	void TallyEscorts(const vector<shared_ptr<Ship>> &escorts,
-		map<const System *, MapPanel::SystemTooltipData> &locations)
+	void TallyEscorts(
+		const vector<shared_ptr<Ship>> &escorts, map<const System *, MapPanel::SystemTooltipData> &locations)
 	{
 		for(const auto &ship : escorts)
 		{
@@ -142,7 +144,8 @@ namespace {
 	{
 		const Planet *firstPlanet = nullptr;
 		for(auto &&stellarObject : system.Objects())
-			if(stellarObject.HasValidPlanet() && stellarObject.HasSprite() && !stellarObject.GetPlanet()->IsWormhole())
+			if(stellarObject.HasValidPlanet() && stellarObject.HasSprite()
+				&& !stellarObject.GetPlanet()->IsWormhole())
 			{
 				// We can return true once we found 2 different landable planets.
 				if(!firstPlanet)
@@ -210,8 +213,8 @@ namespace {
 		double danger = system.Danger() * 60.;
 		if(withRaids)
 			for(const auto &raidFleet : system.GetGovernment()->RaidFleets())
-				danger += 10. * player.RaidFleetAttraction(raidFleet, &system) *
-					raidFleet.GetFleet()->Strength();
+				danger +=
+					10. * player.RaidFleetAttraction(raidFleet, &system) * raidFleet.GetFleet()->Strength();
 		return danger;
 	}
 
@@ -226,12 +229,9 @@ const float MapPanel::LINK_OFFSET = 7.f;
 
 
 MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
-	: player(player), distance(player),
-	playerSystem(*player.GetSystem()),
-	selectedSystem(special ? special : player.GetSystem()),
-	specialSystem(special),
-	playerJumpDistance(System::DEFAULT_NEIGHBOR_DISTANCE),
-	commodity(commodity)
+	: player(player), distance(player), playerSystem(*player.GetSystem()),
+	  selectedSystem(special ? special : player.GetSystem()), specialSystem(special),
+	  playerJumpDistance(System::DEFAULT_NEIGHBOR_DISTANCE), commodity(commodity)
 {
 	SetIsFullScreen(true);
 	SetInterruptible(false);
@@ -294,18 +294,17 @@ void MapPanel::Draw()
 
 	// Draw the "visible range" circle around your current location.
 	const Color &viewRangeColor = *GameData::Colors().Get("map view range color");
-	RingShader::Draw(Zoom() * (playerSystem.Position() + center),
-		System::DEFAULT_NEIGHBOR_DISTANCE * Zoom(), 2.0f, 1.0f, viewRangeColor);
+	RingShader::Draw(Zoom() * (playerSystem.Position() + center), System::DEFAULT_NEIGHBOR_DISTANCE * Zoom(),
+		2.0f, 1.0f, viewRangeColor);
 	// Draw the jump range circle around your current location if it is different than the
 	// visible range.
 	const Color &jumpRangeColor = *GameData::Colors().Get("map jump range color");
 	if(playerJumpDistance != System::DEFAULT_NEIGHBOR_DISTANCE)
-		RingShader::Draw(Zoom() * (playerSystem.Position() + center),
-			(playerJumpDistance + .5) * Zoom(), (playerJumpDistance - .5) * Zoom(), jumpRangeColor);
+		RingShader::Draw(Zoom() * (playerSystem.Position() + center), (playerJumpDistance + .5) * Zoom(),
+			(playerJumpDistance - .5) * Zoom(), jumpRangeColor);
 
 	Color brightColor(.4f, 0.f);
-	RingShader::Draw(Zoom() * (selectedSystem->Position() + center),
-		11.f, 9.f, brightColor);
+	RingShader::Draw(Zoom() * (selectedSystem->Position() + center), 11.f, 9.f, brightColor);
 
 	// Advance a "blink" timer.
 	++step;
@@ -340,8 +339,8 @@ void MapPanel::FinishDrawing(const string &buttonCondition)
 		info.SetCondition("max zoom");
 	if(player.MapZoom() <= static_cast<int>(mapInterface->GetValue("min zoom")))
 		info.SetCondition("min zoom");
-	const Interface *mapButtonUi = GameData::Interfaces().Get(Screen::Width() < 1280
-		? "map buttons (small screen)" : "map buttons");
+	const Interface *mapButtonUi =
+		GameData::Interfaces().Get(Screen::Width() < 1280 ? "map buttons (small screen)" : "map buttons");
 	mapButtonUi->Draw(info, this);
 
 	// Draw the tooltips.
@@ -365,11 +364,13 @@ void MapPanel::FinishDrawing(const string &buttonCondition)
 			// If you have both active and parked escorts, call the active ones
 			// "active escorts." Otherwise, just call them "escorts."
 			if(t.activeShips && t.parkedShips)
-				tooltip += to_string(t.activeShips) + (t.activeShips == 1 ? " active escort\n" : " active escorts\n");
+				tooltip += to_string(t.activeShips)
+						   + (t.activeShips == 1 ? " active escort\n" : " active escorts\n");
 			else if(t.activeShips)
 				tooltip += to_string(t.activeShips) + (t.activeShips == 1 ? " escort" : " escorts");
 			if(t.parkedShips)
-				tooltip += to_string(t.parkedShips) + (t.parkedShips == 1 ? " parked escort" : " parked escorts");
+				tooltip +=
+					to_string(t.parkedShips) + (t.parkedShips == 1 ? " parked escort" : " parked escorts");
 			if(!t.outfits.empty())
 			{
 				if(t.activeShips || t.parkedShips)
@@ -428,7 +429,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 	Color lineColor(alpha, 0.f);
 	Point center = .5 * (jump[0]->Position() + jump[1]->Position());
 	const Point &drawPos = GameData::Interfaces().Get("hud")->GetPoint("mini-map");
-	set<const System *> drawnSystems = { jump[0], jump[1] };
+	set<const System *> drawnSystems = {jump[0], jump[1]};
 	bool isLink = jump[0]->Links().count(jump[1]);
 
 	const Set<Color> &colors = GameData::Colors();
@@ -550,7 +551,7 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 {
 	const Interface *mapInterface = GameData::Interfaces().Get("map");
 	if(command.Has(Command::MAP) || key == 'd' || key == SDLK_ESCAPE
-			|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
+		|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		GetUI()->Pop(this);
 	else if(key == 's' && buttonCondition != "is shipyards")
 	{
@@ -574,8 +575,7 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 	}
 	else if(key == 'f')
 	{
-		GetUI()->Push(new Dialog(
-			this, &MapPanel::Find, "Search for:", "", Truncate::NONE, true));
+		GetUI()->Push(new Dialog(this, &MapPanel::Find, "Search for:", "", Truncate::NONE, true));
 		return true;
 	}
 	else if(key == SDLK_PLUS || key == SDLK_KP_PLUS || key == SDLK_EQUALS)
@@ -598,7 +598,7 @@ bool MapPanel::Click(int x, int y, int clicks)
 	{
 		const System &system = it.second;
 		if(system.IsValid() && !system.Inaccessible() && click.Distance(system.Position()) < 10.
-				&& (player.HasSeen(system) || &system == specialSystem))
+			&& (player.HasSeen(system) || &system == specialSystem))
 		{
 			Select(&system);
 			break;
@@ -636,7 +636,7 @@ bool MapPanel::Hover(int x, int y)
 	{
 		const System *system = squad.first;
 		if(pos.Distance(system->Position()) < maxDistance
-				&& (player.HasSeen(*system) || system == specialSystem))
+			&& (player.HasSeen(*system) || system == specialSystem))
 		{
 			// Start tracking this system.
 			hoverSystem = system;
@@ -684,17 +684,9 @@ Color MapPanel::MapColor(double value)
 
 	value = min(1., max(-1., value));
 	if(value < 0.)
-		return Color(
-			.12 + .12 * value,
-			.48 + .36 * value,
-			.48 - .12 * value,
-			.4);
+		return Color(.12 + .12 * value, .48 + .36 * value, .48 - .12 * value, .4);
 	else
-		return Color(
-			.12 + .48 * value,
-			.48,
-			.48 - .48 * value,
-			.4);
+		return Color(.12 + .48 * value, .48, .48 - .48 * value, .4);
 }
 
 
@@ -729,11 +721,8 @@ Color MapPanel::GovernmentColor(const Government *government)
 	if(!government)
 		return UninhabitedColor();
 
-	return Color(
-		.6f * government->GetColor().Get()[0],
-		.6f * government->GetColor().Get()[1],
-		.6f * government->GetColor().Get()[2],
-		.4f);
+	return Color(.6f * government->GetColor().Get()[0], .6f * government->GetColor().Get()[1],
+		.6f * government->GetColor().Get()[2], .4f);
 }
 
 
@@ -785,8 +774,9 @@ void MapPanel::Select(const System *system)
 	const System *source = isJumping ? flagship->GetTargetSystem() : &playerSystem;
 
 	auto mod = SDL_GetModState();
-	// TODO: Whoever called Select should tell us what to do with this system vis-a-vis the travel plan, rather than
-	// possibly manipulating it both here and there. Or, we entirely separate Select from travel plan modifications.
+	// TODO: Whoever called Select should tell us what to do with this system vis-a-vis the travel plan,
+	// rather than possibly manipulating it both here and there. Or, we entirely separate Select from travel
+	// plan modifications.
 	bool shift = (mod & KMOD_SHIFT) && !plan.empty();
 	if(mod & KMOD_CTRL)
 		return;
@@ -901,8 +891,8 @@ bool MapPanel::IsSatisfied(const PlayerInfo &player, const Mission &mission)
 
 
 
-bool MapPanel::GetTravelInfo(const System *previous, const System *next, const double jumpRange,
-	bool &isJump, bool &isWormhole, bool &isMappable, Color *wormholeColor) const
+bool MapPanel::GetTravelInfo(const System *previous, const System *next, const double jumpRange, bool &isJump,
+	bool &isWormhole, bool &isMappable, Color *wormholeColor) const
 {
 	const bool isHyper = previous->Links().count(next);
 	isWormhole = false;
@@ -910,10 +900,9 @@ bool MapPanel::GetTravelInfo(const System *previous, const System *next, const d
 	// Short-circuit the loop for MissionPanel, which draws hyperlinks and wormholes the same.
 	if(!isHyper || wormholeColor)
 		for(const StellarObject &object : previous->Objects())
-			if(object.HasSprite() && object.HasValidPlanet()
-				&& object.GetPlanet()->IsWormhole()
-				&& player.HasVisited(*object.GetPlanet())
-				&& player.CanView(*previous) && player.CanView(*next)
+			if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->IsWormhole()
+				&& player.HasVisited(*object.GetPlanet()) && player.CanView(*previous)
+				&& player.CanView(*next)
 				&& &object.GetPlanet()->GetWormhole()->WormholeDestination(*previous) == next)
 			{
 				isWormhole = true;
@@ -1087,8 +1076,8 @@ void MapPanel::UpdateCache()
 							continue;
 						canLand |= planet->CanLand() && planet->HasServices();
 						isInhabited |= planet->IsInhabited();
-						hasDominated &= (!planet->IsInhabited()
-							|| GameData::GetPolitics().HasDominated(planet));
+						hasDominated &=
+							(!planet->IsInhabited() || GameData::GetPolitics().HasDominated(planet));
 					}
 				hasDominated &= (isInhabited && canLand);
 				// Some systems may count as "inhabited" but not contain any
@@ -1099,8 +1088,7 @@ void MapPanel::UpdateCache()
 			}
 		}
 
-		nodes.emplace_back(system.Position(), color,
-			player.KnowsName(system) ? system.Name() : "",
+		nodes.emplace_back(system.Position(), color, player.KnowsName(system) ? system.Name() : "",
 			(&system == &playerSystem) ? closeNameColor : farNameColor,
 			player.CanView(system) ? system.GetGovernment() : nullptr);
 	}
@@ -1151,7 +1139,8 @@ void MapPanel::DrawTravelPlan()
 	bool hasEscort = false;
 	map<const Ship *, double> fuel;
 	for(const shared_ptr<Ship> &it : player.Ships())
-		if(!it->IsParked() && (!it->CanBeCarried() || it.get() == flagship) && it->GetSystem() == flagship->GetSystem())
+		if(!it->IsParked() && (!it->CanBeCarried() || it.get() == flagship)
+			&& it->GetSystem() == flagship->GetSystem())
 		{
 			if(it->IsDisabled())
 			{
@@ -1247,8 +1236,7 @@ void MapPanel::DrawSelectedSystem()
 
 	const Font &font = FontSet::Get(14);
 	Point pos(-175. + selectedSystemOffset, Screen::Top() + .5 * (30. - font.Height()));
-	font.Draw({text, {350, Alignment::CENTER, Truncate::MIDDLE}},
-		pos, *GameData::Colors().Get("bright"));
+	font.Draw({text, {350, Alignment::CENTER, Truncate::MIDDLE}}, pos, *GameData::Colors().Get("bright"));
 
 	// Reset the position of this UI element. If something is in the way, it will be
 	// moved back before it's drawn the next frame.
@@ -1310,9 +1298,8 @@ void MapPanel::DrawWormholes()
 
 		for(auto &&link : it.second.Links())
 			if(!link.first->Inaccessible() && !link.second->Inaccessible() && p.IsInSystem(link.first)
-					&& player.CanView(*link.first) && player.CanView(*link.second))
+				&& player.CanView(*link.first) && player.CanView(*link.second))
 				arrowsToDraw.emplace_back(link.first, link.second, it.second.GetLinkColor());
-
 	}
 
 	static const double ARROW_LENGTH = 4.;
@@ -1336,10 +1323,13 @@ void MapPanel::DrawWormholes()
 
 		// If an arrow is being drawn, the link will always be drawn too. Draw
 		// the link only for the first instance of it in this set.
-		if(link.from < link.to || !count_if(arrowsToDraw.begin(), arrowsToDraw.end(),
-			[&link](const WormholeArrow &cmp)
-			{ return cmp.from == link.to && cmp.to == link.from; }))
-				LineShader::Draw(from, to, LINK_WIDTH, wormholeDim);
+		if(link.from < link.to
+			|| !count_if(arrowsToDraw.begin(), arrowsToDraw.end(),
+				[&link](const WormholeArrow &cmp)
+				{
+					return cmp.from == link.to && cmp.to == link.from;
+				}))
+			LineShader::Draw(from, to, LINK_WIDTH, wormholeDim);
 
 		// Compute the start and end positions of the arrow edges.
 		Point arrowStem = zoom * ARROW_LENGTH * offset;
@@ -1475,7 +1465,11 @@ void MapPanel::DrawMissions()
 
 		pair<bool, bool> blink = BlinkMissionIndicator(player, mission, step);
 		bool isSatisfied = IsSatisfied(player, mission) && blink.second;
-		DrawPointer(system, it.drawn, blink.first ? black : isSatisfied ? currentColor : blockedColor, isSatisfied);
+		DrawPointer(system, it.drawn,
+			blink.first   ? black
+			: isSatisfied ? currentColor
+						  : blockedColor,
+			isSatisfied);
 
 		for(const System *waypoint : mission.Waypoints())
 			DrawPointer(waypoint, missionCount[waypoint].drawn, waypointColor);
@@ -1505,7 +1499,8 @@ void MapPanel::DrawPointer(const System *system, unsigned &systemCount, const Co
 
 
 
-void MapPanel::DrawPointer(Point position, unsigned &systemCount, const Color &color, bool drawBack, bool bigger)
+void MapPanel::DrawPointer(
+	Point position, unsigned &systemCount, const Color &color, bool drawBack, bool bigger)
 {
 	if(++systemCount > MAX_MISSION_POINTERS_DRAWN)
 		return;

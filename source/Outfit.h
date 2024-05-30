@@ -104,7 +104,8 @@ public:
 
 
 private:
-	// Add the license with the given name to the licenses required by this outfit, if it is not already present.
+	// Add the license with the given name to the licenses required by this outfit, if it is not already
+	// present.
 	void AddLicense(const std::string &name);
 
 
@@ -149,8 +150,14 @@ private:
 
 
 // These get called a lot, so inline them for speed.
-inline int64_t Outfit::Cost() const { return cost; }
-inline double Outfit::Mass() const { return mass; }
+inline int64_t Outfit::Cost() const
+{
+	return cost;
+}
+inline double Outfit::Mass() const
+{
+	return mass;
+}
 
 
 

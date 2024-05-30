@@ -59,7 +59,7 @@ File::operator bool() const
 
 
 
-File::operator FILE*() const
+File::operator FILE *() const
 {
 	return file;
 }

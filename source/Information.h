@@ -36,7 +36,8 @@ public:
 	const Rectangle &GetCustomRegion() const;
 	bool HasCustomRegion() const;
 
-	void SetSprite(const std::string &name, const Sprite *sprite, const Point &unit = Point(0., -1.), float frame = 0.f);
+	void SetSprite(
+		const std::string &name, const Sprite *sprite, const Point &unit = Point(0., -1.), float frame = 0.f);
 	const Sprite *GetSprite(const std::string &name) const;
 	const Point &GetSpriteUnit(const std::string &name) const;
 	float GetSpriteFrame(const std::string &name) const;

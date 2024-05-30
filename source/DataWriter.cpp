@@ -29,8 +29,7 @@ const string DataWriter::space = " ";
 
 
 // Constructor, specifying the file to save.
-DataWriter::DataWriter(const string &path)
-	: DataWriter()
+DataWriter::DataWriter(const string &path) : DataWriter()
 {
 	this->path = path;
 }
@@ -38,8 +37,7 @@ DataWriter::DataWriter(const string &path)
 
 
 // Constructor for a DataWriter that will not save its contents automatically
-DataWriter::DataWriter()
-	: before(&indent)
+DataWriter::DataWriter() : before(&indent)
 {
 	out.precision(8);
 }
@@ -130,8 +128,16 @@ void DataWriter::WriteToken(const char *a)
 void DataWriter::WriteToken(const string &a)
 {
 	// Figure out what kind of quotation marks need to be used for this string.
-	bool hasSpace = any_of(a.begin(), a.end(), [](char c) { return isspace(c); });
-	bool hasQuote = any_of(a.begin(), a.end(), [](char c) { return (c == '"'); });
+	bool hasSpace = any_of(a.begin(), a.end(),
+		[](char c)
+		{
+			return isspace(c);
+		});
+	bool hasQuote = any_of(a.begin(), a.end(),
+		[](char c)
+		{
+			return (c == '"');
+		});
 	// If the token is an empty string, it needs to be wrapped in quotes as if it had a space.
 	hasSpace |= a.empty();
 	// Write the token, enclosed in quotes if necessary.

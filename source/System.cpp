@@ -326,8 +326,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 						if(toRemoveTemplate.offset != object.offset)
 							return false;
 						return true;
-					}
-				);
+					});
 
 				if(removeIt == objects.end())
 				{
@@ -339,7 +338,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				auto last = removeIt + 1;
 				size_t removed = 1;
 				// Remove any child objects too.
-				for( ; last != objects.end() && last->parent >= index; ++last, ++removed)
+				for(; last != objects.end() && last->parent >= index; ++last, ++removed)
 					if(last->planet)
 						planets.Get(last->planet->TrueName())->RemoveSystem(this);
 				last = objects.erase(removeIt, last);
@@ -662,7 +661,8 @@ double System::RamscoopFuel(double shipRamscoop, double scale) const
 	// provided the system allows it. Both the system and the gamerule must allow the universal ramscoop
 	// in order for it to function.
 	double universal = 0.05 * scale * universalRamscoop * GameData::GetGamerules().UniversalRamscoopActive();
-	return max(0., SolarWind() * .03 * scale * ramscoopMultiplier * (sqrt(shipRamscoop) + universal) + ramscoopAddend);
+	return max(0.,
+		SolarWind() * .03 * scale * ramscoopMultiplier * (sqrt(shipRamscoop) + universal) + ramscoopAddend);
 }
 
 

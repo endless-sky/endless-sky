@@ -52,8 +52,8 @@ public:
 
 public:
 	// Constructor. Hardpoints may or may not specify what weapon is in them.
-	Hardpoint(const Point &point, const BaseAttributes &attributes,
-		bool isTurret, bool isUnder, const Outfit *outfit = nullptr);
+	Hardpoint(const Point &point, const BaseAttributes &attributes, bool isTurret, bool isUnder,
+		const Outfit *outfit = nullptr);
 
 	// Get the weapon installed in this hardpoint (or null if there is none).
 	const Outfit *GetOutfit() const;
@@ -134,8 +134,8 @@ private:
 	Point point;
 	// Angle of firing direction (guns) or idle position (turret).
 	Angle baseAngle;
-	// Range over which the turret can turn, from leftmost position to rightmost position if this is a directional turret,
-	// otherwise a pair of 180 degrees + baseAngle.
+	// Range over which the turret can turn, from leftmost position to rightmost position if this is a
+	// directional turret, otherwise a pair of 180 degrees + baseAngle.
 	Angle minArc;
 	Angle maxArc;
 	// The base attributes of a hardpoint, without considering additional limitations of the installed outfit.

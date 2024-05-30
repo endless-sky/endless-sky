@@ -35,10 +35,7 @@ namespace {
 
 
 
-ImageBuffer::ImageBuffer(int frames)
-	: width(0), height(0), frames(frames), pixels(nullptr)
-{
-}
+ImageBuffer::ImageBuffer(int frames) : width(0), height(0), frames(frames), pixels(nullptr) {}
 
 
 
@@ -52,7 +49,7 @@ ImageBuffer::~ImageBuffer()
 // Set the number of frames. This must be called before allocating.
 void ImageBuffer::Clear(int frames)
 {
-	delete [] pixels;
+	delete[] pixels;
 	pixels = nullptr;
 	this->frames = frames;
 }
@@ -137,11 +134,12 @@ void ImageBuffer::ShrinkToHalfSize()
 		unsigned char *aIt = begin + (4 * width) * (2 * y);
 		unsigned char *aEnd = aIt + 4 * 2 * result.width;
 		unsigned char *bIt = begin + (4 * width) * (2 * y + 1);
-		for( ; aIt != aEnd; aIt += 4, bIt += 4)
+		for(; aIt != aEnd; aIt += 4, bIt += 4)
 		{
 			for(int channel = 0; channel < 4; ++channel, ++aIt, ++bIt, ++out)
 				*out = (static_cast<unsigned>(aIt[0]) + static_cast<unsigned>(bIt[0])
-					+ static_cast<unsigned>(aIt[4]) + static_cast<unsigned>(bIt[4]) + 2) / 4;
+						   + static_cast<unsigned>(aIt[4]) + static_cast<unsigned>(bIt[4]) + 2)
+					   / 4;
 		}
 	}
 	swap(width, result.width);
@@ -215,8 +213,9 @@ namespace {
 			return false;
 		}
 
-		// MAYBE: Reading in lots of images in a 32-bit process gets really hairy using the standard approach due to
-		// contiguous memory layout requirements. Investigate using an iterative loading scheme for large images.
+		// MAYBE: Reading in lots of images in a 32-bit process gets really hairy using the standard approach
+		// due to contiguous memory layout requirements. Investigate using an iterative loading scheme for
+		// large images.
 		png_init_io(png, file);
 		png_set_sig_bytes(png, 0);
 
@@ -224,7 +223,8 @@ namespace {
 		int width = png_get_image_width(png, info);
 		int height = png_get_image_height(png, info);
 		// If the buffer is not yet allocated, allocate it.
-		try {
+		try
+		{
 			buffer.Allocate(width, height);
 		}
 		catch(const bad_alloc &)
@@ -240,9 +240,11 @@ namespace {
 			png_destroy_read_struct(&png, &info, nullptr);
 			string message = "Skipped processing \"" + path + "\":\n\tAll image frames must have equal ";
 			if(width && width != buffer.Width())
-				Logger::LogError(message + "width: expected " + to_string(buffer.Width()) + " but was " + to_string(width));
+				Logger::LogError(message + "width: expected " + to_string(buffer.Width()) + " but was "
+								 + to_string(width));
 			if(height && height != buffer.Height())
-				Logger::LogError(message + "height: expected " + to_string(buffer.Height()) + " but was " + to_string(height));
+				Logger::LogError(message + "height: expected " + to_string(buffer.Height()) + " but was "
+								 + to_string(height));
 			return false;
 		}
 
@@ -267,7 +269,7 @@ namespace {
 		if(bitDepth < 8)
 			png_set_packing(png);
 		if(colorType == PNG_COLOR_TYPE_PALETTE || colorType == PNG_COLOR_TYPE_RGB
-				|| colorType == PNG_COLOR_TYPE_GRAY)
+			|| colorType == PNG_COLOR_TYPE_GRAY)
 			png_set_add_alpha(png, 0xFFFF, PNG_FILLER_AFTER);
 		if(colorType == PNG_COLOR_TYPE_GRAY || colorType == PNG_COLOR_TYPE_GRAY_ALPHA)
 			png_set_gray_to_rgb(png);
@@ -308,13 +310,15 @@ namespace {
 		jpeg_read_header(&cinfo, true);
 		cinfo.out_color_space = JCS_EXT_RGBA;
 
-		// MAYBE: Reading in lots of images in a 32-bit process gets really hairy using the standard approach due to
-		// contiguous memory layout requirements. Investigate using an iterative loading scheme for large images.
+		// MAYBE: Reading in lots of images in a 32-bit process gets really hairy using the standard approach
+		// due to contiguous memory layout requirements. Investigate using an iterative loading scheme for
+		// large images.
 		jpeg_start_decompress(&cinfo);
 		int width = cinfo.image_width;
 		int height = cinfo.image_height;
 		// If the buffer is not yet allocated, allocate it.
-		try {
+		try
+		{
 			buffer.Allocate(width, height);
 		}
 		catch(const bad_alloc &)
@@ -330,9 +334,11 @@ namespace {
 			jpeg_destroy_decompress(&cinfo);
 			string message = "Skipped processing \"" + path + "\":\t\tAll image frames must have equal ";
 			if(width && width != buffer.Width())
-				Logger::LogError(message + "width: expected " + to_string(buffer.Width()) + " but was " + to_string(width));
+				Logger::LogError(message + "width: expected " + to_string(buffer.Width()) + " but was "
+								 + to_string(width));
 			if(height && height != buffer.Height())
-				Logger::LogError(message + "height: expected " + to_string(buffer.Height()) + " but was " + to_string(height));
+				Logger::LogError(message + "height: expected " + to_string(buffer.Height()) + " but was "
+								 + to_string(height));
 			return false;
 		}
 

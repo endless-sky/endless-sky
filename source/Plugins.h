@@ -28,7 +28,8 @@ struct Plugin {
 	struct PluginDependencies {
 		// Checks if there are any dependencies of any kind.
 		bool IsEmpty() const;
-		// Checks if there are any duplicate dependencies. E.g. the same dependency in both required and conflicted.
+		// Checks if there are any duplicate dependencies. E.g. the same dependency in both required and
+		// conflicted.
 		bool IsValid() const;
 
 		// The game version to match against.

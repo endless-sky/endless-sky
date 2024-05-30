@@ -115,8 +115,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 		else if(key == "submunition")
 		{
 			submunitions.emplace_back(
-				GameData::Outfits().Get(child.Token(1)),
-				(child.Size() >= 3) ? child.Value(2) : 1);
+				GameData::Outfits().Get(child.Token(1)), (child.Size() >= 3) ? child.Value(2) : 1);
 			for(const DataNode &grand : child)
 			{
 				if((grand.Size() >= 2) && (grand.Token(0) == "facing"))
@@ -367,14 +366,15 @@ void Weapon::LoadWeapon(const DataNode &node)
 	if(homing && !tracking && !opticalTracking && !infraredTracking && !radarTracking)
 	{
 		tracking = 1.;
-		node.PrintTrace("Warning: Deprecated use of \"homing\" without use of \"[optical|infrared|radar] tracking.\"");
+		node.PrintTrace(
+			"Warning: Deprecated use of \"homing\" without use of \"[optical|infrared|radar] tracking.\"");
 	}
 
 	// Convert the "live effect" counts from occurrences per projectile lifetime
 	// into chance of occurring per frame.
 	if(lifetime <= 0)
 		liveEffects.clear();
-	for(auto it = liveEffects.begin(); it != liveEffects.end(); )
+	for(auto it = liveEffects.begin(); it != liveEffects.end();)
 	{
 		if(!it->second)
 			it = liveEffects.erase(it);

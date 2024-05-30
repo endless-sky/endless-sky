@@ -26,10 +26,12 @@ class PointerShader {
 public:
 	static void Init();
 
-	static void Draw(const Point &center, const Point &angle, float width, float height, float offset, const Color &color);
+	static void Draw(
+		const Point &center, const Point &angle, float width, float height, float offset, const Color &color);
 
 	static void Bind();
-	static void Add(const Point &center, const Point &angle, float width, float height, float offset, const Color &color);
+	static void Add(
+		const Point &center, const Point &angle, float width, float height, float offset, const Color &color);
 	static void Unbind();
 };
 

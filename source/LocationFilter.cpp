@@ -72,7 +72,8 @@ namespace {
 	}
 
 	// Check if the given system is within the given distance of the center.
-	int Distance(const System *center, const System *system, int maximum, DistanceCalculationSettings distanceSettings)
+	int Distance(
+		const System *center, const System *system, int maximum, DistanceCalculationSettings distanceSettings)
 	{
 		// This function should only ever be called from the main thread, but
 		// just to be sure, use mutex protection on the static locals.
@@ -81,27 +82,18 @@ namespace {
 
 		static const System *previousCenter = center;
 		static DistanceMap distance(
-			center,
-			distanceSettings.WormholeStrat(),
-			distanceSettings.AssumesJumpDrive(),
-			-1,
-			maximum
-		);
+			center, distanceSettings.WormholeStrat(), distanceSettings.AssumesJumpDrive(), -1, maximum);
 		static int previousMaximum = maximum;
 		static DistanceCalculationSettings previousDistanceSettings = distanceSettings;
 
-		if(center != previousCenter || maximum > previousMaximum || distanceSettings != previousDistanceSettings)
+		if(center != previousCenter || maximum > previousMaximum
+			|| distanceSettings != previousDistanceSettings)
 		{
 			previousCenter = center;
 			previousMaximum = maximum;
 			previousDistanceSettings = distanceSettings;
 			distance = DistanceMap(
-				center,
-				distanceSettings.WormholeStrat(),
-				distanceSettings.AssumesJumpDrive(),
-				-1,
-				maximum
-			);
+				center, distanceSettings.WormholeStrat(), distanceSettings.AssumesJumpDrive(), -1, maximum);
 		}
 		// If the distance is greater than the maximum, this is not a match.
 		int d = distance.Days(system);
@@ -110,7 +102,8 @@ namespace {
 
 	// Check that at least one neighbor of the hub system matches, for each of the neighbor filters.
 	// False if at least one filter fails to match, true if all filters find at least one match.
-	bool MatchesNeighborFilters(const list<LocationFilter> &neighborFilters, const System *hub, const System *origin)
+	bool MatchesNeighborFilters(
+		const list<LocationFilter> &neighborFilters, const System *hub, const System *origin)
 	{
 		for(const LocationFilter &filter : neighborFilters)
 		{
@@ -131,19 +124,21 @@ namespace {
 	template <class T>
 	bool CheckValidity(const set<const T *> &c)
 	{
-		return c.empty() || any_of(c.begin(), c.end(),
-			[](const T *item) noexcept -> bool
-			{
-				return item->IsValid();
-			});
+		return c.empty()
+			   || any_of(c.begin(), c.end(),
+				   [](const T *item) noexcept -> bool
+				   {
+					   return item->IsValid();
+				   });
 	}
 	bool CheckValidity(const list<LocationFilter> &l)
 	{
-		return l.empty() || any_of(l.begin(), l.end(),
-			[](const LocationFilter &f) noexcept -> bool
-			{
-				return f.IsValid();
-			});
+		return l.empty()
+			   || any_of(l.begin(), l.end(),
+				   [](const LocationFilter &f) noexcept -> bool
+				   {
+					   return f.IsValid();
+				   });
 	}
 	bool CheckValidity(const list<set<const Outfit *>> &l)
 	{
@@ -190,9 +185,9 @@ void LocationFilter::Load(const DataNode &node)
 			LoadChild(child);
 	}
 
-	isEmpty = planets.empty() && attributes.empty() && systems.empty() && governments.empty()
-		&& !center && originMaxDistance < 0 && notFilters.empty() && neighborFilters.empty()
-		&& outfits.empty() && shipCategory.empty();
+	isEmpty = planets.empty() && attributes.empty() && systems.empty() && governments.empty() && !center
+			  && originMaxDistance < 0 && notFilters.empty() && neighborFilters.empty() && outfits.empty()
+			  && shipCategory.empty();
 }
 
 
@@ -493,10 +488,11 @@ const Planet *LocationFilter::PickPlanet(const System *origin, bool hasClearance
 		// Skip planets with incomplete data or which are from inaccessible systems.
 		if(!planet.IsValid() || (planet.GetSystem() && planet.GetSystem()->Inaccessible()))
 			continue;
-		// Skip planets that do not offer special jobs or missions, unless they were explicitly listed as options.
+		// Skip planets that do not offer special jobs or missions, unless they were explicitly listed as
+		// options.
 		if(planet.IsWormhole()
-				|| (requireSpaceport && !planet.GetPort().HasService(Port::ServicesType::OffersMissions))
-				|| (!hasClearance && !planet.CanLand()))
+			|| (requireSpaceport && !planet.GetPort().HasService(Port::ServicesType::OffersMissions))
+			|| (!hasClearance && !planet.CanLand()))
 			if(planets.empty() || !planets.count(&planet))
 				continue;
 		if(Matches(&planet, origin))
@@ -515,7 +511,7 @@ void LocationFilter::LoadChild(const DataNode &child)
 	const string &key = child.Token(valueIndex - 1);
 	if(key == "not" || key == "neighbor")
 		child.PrintTrace("Error: Skipping unsupported use of 'not' and 'neighbor'."
-			" These keywords must be nested if used together.");
+						 " These keywords must be nested if used together.");
 	else if(key == "planet")
 	{
 		for(int i = valueIndex; i < child.Size(); ++i)
@@ -648,7 +644,7 @@ bool LocationFilter::Matches(const System *system, const System *origin, bool di
 	if(center && Distance(center, system, centerMaxDistance, centerDistanceOptions) < centerMinDistance)
 		return false;
 	if(origin && originMaxDistance >= 0
-			&& Distance(origin, system, originMaxDistance, originDistanceOptions) < originMinDistance)
+		&& Distance(origin, system, originMaxDistance, originDistanceOptions) < originMinDistance)
 		return false;
 
 	return true;

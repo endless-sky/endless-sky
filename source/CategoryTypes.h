@@ -16,12 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef CATEGORY_TYPES_H_
 #define CATEGORY_TYPES_H_
 
-enum class CategoryType : int {
-	SHIP,
-	BAY,
-	OUTFIT,
-	SERIES
-};
+enum class CategoryType : int { SHIP, BAY, OUTFIT, SERIES };
 
 
 

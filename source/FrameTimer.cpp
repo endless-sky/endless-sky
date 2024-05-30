@@ -40,8 +40,7 @@ FrameTimer::FrameTimer()
 // _unless_ a frame takes too long by at least the given lag, in which case
 // the next frame happens immediately but no "catch-up" is done.
 FrameTimer::FrameTimer(int fps, int maxLagMsec)
-	: step(chrono::nanoseconds(1000000000 / fps)),
-	maxLag(chrono::milliseconds(maxLagMsec))
+	: step(chrono::nanoseconds(1000000000 / fps)), maxLag(chrono::milliseconds(maxLagMsec))
 {
 	next = chrono::steady_clock::now();
 	Step();
@@ -65,9 +64,9 @@ void FrameTimer::Wait()
 		if(now + step + maxLag < next)
 			next = now + step;
 
-		// The Winpthreads implementation of sleep on MinGW > 8 is inaccurate when
-		// compared to the native Windows Sleep function.
-		// See the thread starting with https://sourceforge.net/p/mingw-w64/mailman/message/37013810/.
+			// The Winpthreads implementation of sleep on MinGW > 8 is inaccurate when
+			// compared to the native Windows Sleep function.
+			// See the thread starting with https://sourceforge.net/p/mingw-w64/mailman/message/37013810/.
 #ifdef _WIN32
 		Sleep(chrono::duration_cast<chrono::milliseconds>(next - now).count());
 #else

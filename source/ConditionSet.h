@@ -80,7 +80,8 @@ private:
 	// either testing what value it has, or modifying it in some way.
 	class Expression {
 	public:
-		Expression(const std::vector<std::string> &left, const std::string &op, const std::vector<std::string> &right);
+		Expression(const std::vector<std::string> &left, const std::string &op,
+			const std::vector<std::string> &right);
 		Expression(const std::string &left, const std::string &op, const std::string &right);
 
 		void Save(DataWriter &out) const;

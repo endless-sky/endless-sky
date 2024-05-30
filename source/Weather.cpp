@@ -25,9 +25,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
-Weather::Weather(const Hazard *hazard, int totalLifetime, int lifetimeRemaining, double strength, Point origin)
-	: hazard(hazard), totalLifetime(totalLifetime), lifetimeRemaining(lifetimeRemaining),
-		strength(strength), origin(origin)
+Weather::Weather(
+	const Hazard *hazard, int totalLifetime, int lifetimeRemaining, double strength, Point origin)
+	: hazard(hazard), totalLifetime(totalLifetime), lifetimeRemaining(lifetimeRemaining), strength(strength),
+	  origin(origin)
 {
 	// Using a deviation of totalLifetime / 4.3 causes the strength of the
 	// weather to start and end at about 10% the maximum. Store the entire
@@ -114,8 +115,7 @@ void Weather::Step(vector<Visual> &visuals, const Point &center)
 			{
 				Point angle = Angle::Random().Unit();
 				double magnitude = (maxRange - minRange) * sqrt(Random::Real());
-				Point pos = (hazard->SystemWide() ? center : origin)
-					+ (minRange + magnitude) * angle;
+				Point pos = (hazard->SystemWide() ? center : origin) + (minRange + magnitude) * angle;
 				visuals.emplace_back(*effect.first, std::move(pos), Point(), Angle::Random());
 			}
 	}

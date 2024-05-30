@@ -42,7 +42,8 @@ shared_future<void> UniverseObjects::Load(TaskQueue &queue, const vector<string>
 	// We need to copy any variables used for loading to avoid a race condition.
 	// 'this' is not copied, so 'this' shouldn't be accessed after calling this
 	// function (except for calling GetProgress which is safe due to the atomic).
-	return queue.Run([this, sources, debugMode]() noexcept -> void
+	return queue.Run(
+		[this, sources, debugMode]() noexcept -> void
 		{
 			vector<string> files;
 			for(const string &source : sources)
@@ -52,9 +53,7 @@ shared_future<void> UniverseObjects::Load(TaskQueue &queue, const vector<string>
 				// override things in folders later in the path.
 				auto list = Files::RecursiveList(source + "data/");
 				files.reserve(files.size() + list.size());
-				files.insert(files.end(),
-						make_move_iterator(list.begin()),
-						make_move_iterator(list.end()));
+				files.insert(files.end(), make_move_iterator(list.begin()), make_move_iterator(list.end()));
 			}
 
 			const double step = 1. / (static_cast<int>(files.size()) + 1);
@@ -106,9 +105,11 @@ void UniverseObjects::FinishLoading()
 		it.FinishLoading();
 	// Remove any invalid starting conditions, so the game does not use incomplete data.
 	startConditions.erase(remove_if(startConditions.begin(), startConditions.end(),
-			[](const StartConditions &it) noexcept -> bool { return !it.IsValid(); }),
-		startConditions.end()
-	);
+							  [](const StartConditions &it) noexcept -> bool
+							  {
+								  return !it.IsValid();
+							  }),
+		startConditions.end());
 
 	// Process any disabled game objects.
 	for(const auto &category : disabled)
@@ -331,8 +332,8 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 	{
 		const string &key = node.Token(0);
 		if(key == "color" && node.Size() >= 5)
-			colors.Get(node.Token(1))->Load(
-				node.Value(2), node.Value(3), node.Value(4), node.Size() >= 6 ? node.Value(5) : 1.);
+			colors.Get(node.Token(1))
+				->Load(node.Value(2), node.Value(3), node.Value(4), node.Size() >= 6 ? node.Value(5) : 1.);
 		else if(key == "conversation" && node.Size() >= 2)
 			conversations.Get(node.Token(1))->Load(node);
 		else if(key == "effect" && node.Size() >= 2)
@@ -386,14 +387,18 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 		else if(key == "start" && node.HasChildren())
 		{
 			// This node may either declare an immutable starting scenario, or one that is open to extension
-			// by other nodes (e.g. plugins may customize the basic start, rather than provide a unique start).
+			// by other nodes (e.g. plugins may customize the basic start, rather than provide a unique
+			// start).
 			if(node.Size() == 1)
 				startConditions.emplace_back(node);
 			else
 			{
 				const string &identifier = node.Token(1);
 				auto existingStart = find_if(startConditions.begin(), startConditions.end(),
-					[&identifier](const StartConditions &it) noexcept -> bool { return it.Identifier() == identifier; });
+					[&identifier](const StartConditions &it) noexcept -> bool
+					{
+						return it.Identifier() == identifier;
+					});
 				if(existingStart != startConditions.end())
 					existingStart->Load(node);
 				else
@@ -437,12 +442,9 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 		}
 		else if(key == "category" && node.Size() >= 2)
 		{
-			static const map<string, CategoryType> category = {
-				{"ship", CategoryType::SHIP},
-				{"bay type", CategoryType::BAY},
-				{"outfit", CategoryType::OUTFIT},
-				{"series", CategoryType::SERIES}
-			};
+			static const map<string, CategoryType> category = {{"ship", CategoryType::SHIP},
+				{"bay type", CategoryType::BAY}, {"outfit", CategoryType::OUTFIT},
+				{"series", CategoryType::SERIES}};
 			auto it = category.find(node.Token(1));
 			if(it == category.end())
 			{

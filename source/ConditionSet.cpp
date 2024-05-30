@@ -38,26 +38,95 @@ namespace {
 		// Test operators return 0 (false) or 1 (true).
 		// "Apply" operators return the value that the condition should have
 		// after applying the expression.
-		static const map<string, BinFun> opMap = {
-			{"==", [](int64_t a, int64_t b) -> int64_t { return a == b; }},
-			{"!=", [](int64_t a, int64_t b) -> int64_t { return a != b; }},
-			{"<", [](int64_t a, int64_t b) -> int64_t { return a < b; }},
-			{">", [](int64_t a, int64_t b) -> int64_t { return a > b; }},
-			{"<=", [](int64_t a, int64_t b) -> int64_t { return a <= b; }},
-			{">=", [](int64_t a, int64_t b) -> int64_t { return a >= b; }},
-			{"=", [](int64_t a, int64_t b) { return b; }},
-			{"*=", [](int64_t a, int64_t b) { return a * b; }},
-			{"+=", [](int64_t a, int64_t b) { return a + b; }},
-			{"-=", [](int64_t a, int64_t b) { return a - b; }},
-			{"/=", [](int64_t a, int64_t b) { return b ? a / b : numeric_limits<int64_t>::max(); }},
-			{"<?=", [](int64_t a, int64_t b) { return min(a, b); }},
-			{">?=", [](int64_t a, int64_t b) { return max(a, b); }},
-			{"%", [](int64_t a, int64_t b) { return (a % b); }},
-			{"*", [](int64_t a, int64_t b) { return a * b; }},
-			{"+", [](int64_t a, int64_t b) { return a + b; }},
-			{"-", [](int64_t a, int64_t b) { return a - b; }},
-			{"/", [](int64_t a, int64_t b) { return b ? a / b : numeric_limits<int64_t>::max(); }}
-		};
+		static const map<string, BinFun> opMap = {{"==",
+													  [](int64_t a, int64_t b) -> int64_t
+													  {
+														  return a == b;
+													  }},
+			{"!=",
+				[](int64_t a, int64_t b) -> int64_t
+				{
+					return a != b;
+				}},
+			{"<",
+				[](int64_t a, int64_t b) -> int64_t
+				{
+					return a < b;
+				}},
+			{">",
+				[](int64_t a, int64_t b) -> int64_t
+				{
+					return a > b;
+				}},
+			{"<=",
+				[](int64_t a, int64_t b) -> int64_t
+				{
+					return a <= b;
+				}},
+			{">=",
+				[](int64_t a, int64_t b) -> int64_t
+				{
+					return a >= b;
+				}},
+			{"=",
+				[](int64_t a, int64_t b)
+				{
+					return b;
+				}},
+			{"*=",
+				[](int64_t a, int64_t b)
+				{
+					return a * b;
+				}},
+			{"+=",
+				[](int64_t a, int64_t b)
+				{
+					return a + b;
+				}},
+			{"-=",
+				[](int64_t a, int64_t b)
+				{
+					return a - b;
+				}},
+			{"/=",
+				[](int64_t a, int64_t b)
+				{
+					return b ? a / b : numeric_limits<int64_t>::max();
+				}},
+			{"<?=",
+				[](int64_t a, int64_t b)
+				{
+					return min(a, b);
+				}},
+			{">?=",
+				[](int64_t a, int64_t b)
+				{
+					return max(a, b);
+				}},
+			{"%",
+				[](int64_t a, int64_t b)
+				{
+					return (a % b);
+				}},
+			{"*",
+				[](int64_t a, int64_t b)
+				{
+					return a * b;
+				}},
+			{"+",
+				[](int64_t a, int64_t b)
+				{
+					return a + b;
+				}},
+			{"-",
+				[](int64_t a, int64_t b)
+				{
+					return a - b;
+				}},
+			{"/", [](int64_t a, int64_t b)
+				{
+					return b ? a / b : numeric_limits<int64_t>::max();
+				}}};
 
 		auto it = opMap.find(op);
 		return (it != opMap.end() ? it->second : nullptr);
@@ -66,35 +135,26 @@ namespace {
 	// Indicate if the operation is a comparison or modifies the condition.
 	bool IsComparison(const string &op)
 	{
-		static const set<string> comparison = {
-			"==", "!=", "<", ">", "<=", ">="
-		};
+		static const set<string> comparison = {"==", "!=", "<", ">", "<=", ">="};
 		return comparison.count(op);
 	}
 
 	bool IsAssignment(const string &op)
 	{
-		static const set<string> assignment = {
-			"=", "+=", "-=", "*=", "/=", "<?=", ">?="
-		};
+		static const set<string> assignment = {"=", "+=", "-=", "*=", "/=", "<?=", ">?="};
 		return assignment.count(op);
 	}
 
 	bool IsSimple(const string &op)
 	{
-		static const set<string> simple = {
-			"(", ")", "+", "-", "*", "/", "%"
-		};
+		static const set<string> simple = {"(", ")", "+", "-", "*", "/", "%"};
 		return simple.count(op);
 	}
 
 	int Precedence(const string &op)
 	{
 		static const map<string, int> precedence = {
-			{"(", 0}, {")", 0},
-			{"+", 1}, {"-", 1},
-			{"*", 2}, {"/", 2}, {"%", 2}
-		};
+			{"(", 0}, {")", 0}, {"+", 1}, {"-", 1}, {"*", 2}, {"/", 2}, {"%", 2}};
 		return precedence.at(op);
 	}
 
@@ -102,9 +162,7 @@ namespace {
 	bool HasInvalidOperators(const vector<string> &tokens)
 	{
 		static const set<string> invalids = {
-			"{", "}", "[", "]", "|", "^", "&", "!", "~",
-			"||", "&&", "&=", "|=", "<<", ">>"
-		};
+			"{", "}", "[", "]", "|", "^", "&", "!", "~", "||", "&&", "&=", "|=", "<<", ">>"};
 		for(const string &str : tokens)
 			if(invalids.count(str))
 				return true;
@@ -139,11 +197,15 @@ namespace {
 		if(assigns + compares != 1)
 			node.PrintTrace("Error: An expression must either perform a comparison or assign a value:");
 		else if(HasInvalidOperators(tokens))
-			node.PrintTrace("Error: Brackets, braces, exponentiation, and boolean/bitwise math are not supported:");
+			node.PrintTrace(
+				"Error: Brackets, braces, exponentiation, and boolean/bitwise math are not supported:");
 		else if(HasUnbalancedParentheses(tokens))
 			node.PrintTrace("Error: Unbalanced parentheses in condition expression:");
-		else if(count_if(tokens.begin(), tokens.end(), [](const string &token)
-				{ return token.size() > 1 && token.front() == '('; }))
+		else if(count_if(tokens.begin(), tokens.end(),
+					[](const string &token)
+					{
+						return token.size() > 1 && token.front() == '(';
+					}))
 			node.PrintTrace("Error: Parentheses must be separate from tokens:");
 		else
 			return true;
@@ -153,8 +215,8 @@ namespace {
 
 	// Converts the given vector of condition tokens (like "reputation: Republic",
 	// "random", or "4") into the integral values they have at runtime.
-	vector<int64_t> SubstituteValues(const vector<string> &side, const ConditionsStore &conditions,
-		const ConditionsStore &created)
+	vector<int64_t> SubstituteValues(
+		const vector<string> &side, const ConditionsStore &conditions, const ConditionsStore &created)
 	{
 		auto result = vector<int64_t>();
 		result.reserve(side.size());
@@ -190,9 +252,10 @@ namespace {
 		return true;
 	}
 
-	// Finding the left operand's index if getLeft = true. The operand's index is the first non-empty, non-used index.
-	size_t FindOperandIndex(const vector<string> &tokens, const vector<int> &resultIndices,
-		const size_t &opIndex, bool getLeft)
+	// Finding the left operand's index if getLeft = true. The operand's index is the first non-empty,
+	// non-used index.
+	size_t FindOperandIndex(
+		const vector<string> &tokens, const vector<int> &resultIndices, const size_t &opIndex, bool getLeft)
 	{
 		// Start at the operator index (left), or just past it (right).
 		size_t index = opIndex + !getLeft;
@@ -222,8 +285,8 @@ namespace {
 		if(DataNode::IsNumber(token))
 		{
 			auto value = DataNode::Value(token);
-			if(value > static_cast<double>(numeric_limits<int64_t>::max()) ||
-					value < static_cast<double>(numeric_limits<int64_t>::min()))
+			if(value > static_cast<double>(numeric_limits<int64_t>::max())
+				|| value < static_cast<double>(numeric_limits<int64_t>::min()))
 				return true;
 		}
 		// It's possible that a condition uses purely representable values, but performs math
@@ -305,7 +368,7 @@ void ConditionSet::Add(const DataNode &node)
 		// these will be processed after all non-child expressions.
 		if(children.back().hasAssign)
 			node.PrintTrace("Warning: Assignment expressions contained within and/or groups are applied last."
-			" This may be unexpected.");
+							" This may be unexpected.");
 	}
 	else if(IsValidCondition(node))
 	{
@@ -502,7 +565,8 @@ void ConditionSet::TestApply(const ConditionsStore &conditions, ConditionsStore 
 
 
 // Constructor for complex expressions.
-ConditionSet::Expression::Expression(const vector<string> &left, const string &op, const vector<string> &right)
+ConditionSet::Expression::Expression(
+	const vector<string> &left, const string &op, const vector<string> &right)
 	: op(op), fun(Op(op)), left(left), right(right)
 {
 }
@@ -618,7 +682,7 @@ const string ConditionSet::Expression::SubExpression::ToString() const
 	string out;
 	static const string SPACE = " ";
 	size_t i = 0;
-	for( ; i < operators.size(); ++i)
+	for(; i < operators.size(); ++i)
 	{
 		if(!tokens[i].empty())
 		{
@@ -630,7 +694,7 @@ const string ConditionSet::Expression::SubExpression::ToString() const
 			out += SPACE;
 	}
 	// The tokens vector contains more values than the operators vector.
-	for( ; i < tokens.size(); ++i)
+	for(; i < tokens.size(); ++i)
 	{
 		if(i != 0)
 			out += SPACE;
@@ -647,13 +711,13 @@ const vector<string> ConditionSet::Expression::SubExpression::ToStrings() const
 	auto out = vector<string>();
 	out.reserve(tokens.size() + operators.size());
 	size_t i = 0;
-	for( ; i < operators.size(); ++i)
+	for(; i < operators.size(); ++i)
 	{
 		if(!tokens[i].empty())
 			out.emplace_back(tokens[i]);
 		out.emplace_back(operators[i]);
 	}
-	for( ; i < tokens.size(); ++i)
+	for(; i < tokens.size(); ++i)
 		if(!tokens[i].empty())
 			out.emplace_back(tokens[i]);
 	return out;
@@ -669,8 +733,8 @@ bool ConditionSet::Expression::SubExpression::IsEmpty() const
 
 
 // Evaluate the SubExpression using the given condition maps.
-int64_t ConditionSet::Expression::SubExpression::Evaluate(const ConditionsStore &conditions,
-	const ConditionsStore &created) const
+int64_t ConditionSet::Expression::SubExpression::Evaluate(
+	const ConditionsStore &conditions, const ConditionsStore &created) const
 {
 	// Sanity check.
 	if(tokens.empty())
@@ -732,7 +796,11 @@ void ConditionSet::Expression::SubExpression::ParseSide(const vector<string> &si
 	// wrapped by only parentheses simplifies to just the token.
 	if(operators.empty() && !tokens.empty())
 		tokens.erase(remove_if(tokens.begin(), tokens.end(),
-			[](const string &token) { return token.empty(); }), tokens.end());
+						 [](const string &token)
+						 {
+							 return token.empty();
+						 }),
+			tokens.end());
 }
 
 
@@ -757,7 +825,7 @@ void ConditionSet::Expression::SubExpression::GenerateSequence()
 		{
 			// Stack ops until one of lower or equal precedence is found, then evaluate the higher one first.
 			if(opStack.empty() || operators.at(opIndex) == "("
-					|| (Precedence(operators.at(opIndex)) > Precedence(operators.at(opStack.back()))))
+				|| (Precedence(operators.at(opIndex)) > Precedence(operators.at(opStack.back()))))
 			{
 				opStack.push_back(opIndex);
 				// Mark this operator as used and advance.
@@ -811,7 +879,8 @@ void ConditionSet::Expression::SubExpression::GenerateSequence()
 
 
 // Use a valid working index and data pointer vector to create an evaluable Operation.
-bool ConditionSet::Expression::SubExpression::AddOperation(vector<int> &data, size_t &index, const size_t &opIndex)
+bool ConditionSet::Expression::SubExpression::AddOperation(
+	vector<int> &data, size_t &index, const size_t &opIndex)
 {
 	// Obtain the operand indices. The operator is never a parentheses. The
 	// operator index never exceeds the size of the tokens vector.
@@ -820,9 +889,10 @@ bool ConditionSet::Expression::SubExpression::AddOperation(vector<int> &data, si
 
 	// Bail out if the pointed token is in-bounds and empty.
 	if((leftIndex < tokens.size() && tokens.at(leftIndex).empty())
-			|| (rightIndex < tokens.size() && tokens.at(rightIndex).empty()))
+		|| (rightIndex < tokens.size() && tokens.at(rightIndex).empty()))
 	{
-		Logger::LogError("Unable to obtain valid operand for function \"" + operators.at(opIndex) + "\" with tokens:");
+		Logger::LogError(
+			"Unable to obtain valid operand for function \"" + operators.at(opIndex) + "\" with tokens:");
 		PrintConditionError(tokens);
 		tokens.clear();
 		operators.clear();

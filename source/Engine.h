@@ -103,8 +103,8 @@ public:
 private:
 	class Outline {
 	public:
-		constexpr Outline(const Sprite *sprite, const Point &position, const Point &unit,
-			const float frame, const Color &color)
+		constexpr Outline(const Sprite *sprite, const Point &position, const Point &unit, const float frame,
+			const Color &color)
 			: sprite(sprite), position(position), unit(unit), frame(frame), color(color)
 		{
 		}
@@ -127,10 +127,12 @@ private:
 
 	class Status {
 	public:
-		constexpr Status(const Point &position, double outer, double inner,
-			double disabled, double radius, int type, float alpha, double angle = 0.)
-			: position(position), outer(outer), inner(inner),
-				disabled(disabled), radius(radius), type(type), alpha(alpha), angle(angle) {}
+		constexpr Status(const Point &position, double outer, double inner, double disabled, double radius,
+			int type, float alpha, double angle = 0.)
+			: position(position), outer(outer), inner(inner), disabled(disabled), radius(radius), type(type),
+			  alpha(alpha), angle(angle)
+		{
+		}
 
 		Point position;
 		double outer;
@@ -183,8 +185,8 @@ private:
 	void DoGrudge(const std::shared_ptr<Ship> &target, const Government *attacker);
 
 	void CreateStatusOverlays();
-	void EmplaceStatusOverlay(const std::shared_ptr<Ship> &ship, Preferences::OverlayState overlaySetting,
-		int value, double cloak);
+	void EmplaceStatusOverlay(
+		const std::shared_ptr<Ship> &ship, Preferences::OverlayState overlaySetting, int value, double cloak);
 
 
 private:
@@ -212,10 +214,10 @@ private:
 
 	TaskQueue queue;
 
-	// ES uses a technique called double buffering to calculate the next frame and render the current one simultaneously.
-	// To facilitate this, it uses two buffers for each list of things to draw - one for the next frame's calculations and
-	// one for rendering the current frame. A little synchronization is required to prevent mutable references to the
-	// currently rendering buffer.
+	// ES uses a technique called double buffering to calculate the next frame and render the current one
+	// simultaneously. To facilitate this, it uses two buffers for each list of things to draw - one for the
+	// next frame's calculations and one for rendering the current frame. A little synchronization is required
+	// to prevent mutable references to the currently rendering buffer.
 	size_t currentCalcBuffer = 0;
 	size_t currentDrawBuffer = 0;
 	DrawList draw[2];

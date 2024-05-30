@@ -189,7 +189,8 @@ bool Rectangle::Contains(const Rectangle &other) const
 
 bool Rectangle::Overlaps(const Rectangle &other) const
 {
-	return !(other.Left() > Right() || other.Right() < Left() || other.Top() > Bottom() || other.Bottom() < Top());
+	return !(
+		other.Left() > Right() || other.Right() < Left() || other.Top() > Bottom() || other.Bottom() < Top());
 }
 
 

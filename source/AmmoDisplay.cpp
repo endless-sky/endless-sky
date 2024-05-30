@@ -16,8 +16,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "AmmoDisplay.h"
 
 #include "Color.h"
-#include "text/Font.h"
-#include "text/FontSet.h"
 #include "GameData.h"
 #include "Outfit.h"
 #include "PlayerInfo.h"
@@ -27,15 +25,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
 
 using namespace std;
 
 
 
-AmmoDisplay::AmmoDisplay(PlayerInfo &player)
-	: player(player)
-{
-}
+AmmoDisplay::AmmoDisplay(PlayerInfo &player) : player(player) {}
 
 
 
@@ -53,8 +50,7 @@ void AmmoDisplay::Update(const Ship &flagship)
 			ammoCount = flagship.OutfitCount(secWeapon->Ammo());
 		if(secWeapon->FiringFuel())
 		{
-			double remaining = flagship.Fuel()
-				* flagship.Attributes().Get("fuel capacity");
+			double remaining = flagship.Fuel() * flagship.Attributes().Get("fuel capacity");
 			double fuelAmmoCount = remaining / secWeapon->FiringFuel();
 			// Decide what remaining ammunition value to display.
 			ammoCount = (ammoCount == -1. ? fuelAmmoCount : min(ammoCount, fuelAmmoCount));
@@ -144,4 +140,3 @@ bool AmmoDisplay::Click(const Rectangle &clickBox)
 		}
 	return reselected;
 }
-

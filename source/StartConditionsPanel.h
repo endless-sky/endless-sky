@@ -36,8 +36,10 @@ class UI;
 
 class StartConditionsPanel : public Panel {
 	using StartConditionsList = std::vector<StartConditions>;
+
 public:
-	StartConditionsPanel(PlayerInfo &player, UI &gamePanels, const StartConditionsList &allScenarios, const Panel *parent);
+	StartConditionsPanel(
+		PlayerInfo &player, UI &gamePanels, const StartConditionsList &allScenarios, const Panel *parent);
 
 	virtual void Draw() override final;
 

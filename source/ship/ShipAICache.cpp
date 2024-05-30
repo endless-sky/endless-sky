@@ -52,11 +52,12 @@ void ShipAICache::Calibrate(const Ship &ship)
 			canFight = true;
 
 			// Calculate the damage per second,
-			// ignoring any special effects. (could be improved to account for those, maybe be based on cost instead)
+			// ignoring any special effects. (could be improved to account for those, maybe be based on cost
+			// instead)
 			double DPS = (weapon->ShieldDamage() + weapon->HullDamage()
-				+ (weapon->RelativeShieldDamage() * ship.MaxShields())
-				+ (weapon->RelativeHullDamage() * ship.MaxHull()))
-				/ weapon->Reload();
+							 + (weapon->RelativeShieldDamage() * ship.MaxShields())
+							 + (weapon->RelativeHullDamage() * ship.MaxHull()))
+						 / weapon->Reload();
 			totalDPS += DPS;
 
 			// Exploding weaponry that can damage this ship requires special consideration.
@@ -98,7 +99,7 @@ void ShipAICache::Calibrate(const Ship &ship)
 		// The AI shouldn't use the artillery AI if it has no reverse and it's turning
 		// capabilities are very bad. Otherwise it spends most of it's time flying around.
 		useArtilleryAI = (artilleryDPS > totalDPS * .75
-			&& (ship.MaxReverseVelocity() || maxTurningRadius < 0.2 * shortestArtillery));
+						  && (ship.MaxReverseVelocity() || maxTurningRadius < 0.2 * shortestArtillery));
 
 		// Don't try to avoid your own splash damage if it means you would be losing out
 		// on a lot of DPS. Helps with ships with very slow turning and not a lot of splash

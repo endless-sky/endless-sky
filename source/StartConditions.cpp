@@ -16,7 +16,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "StartConditions.h"
 
 #include "DataNode.h"
-#include "text/Format.h"
 #include "GameData.h"
 #include "Logger.h"
 #include "Planet.h"
@@ -24,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "System.h"
+#include "text/Format.h"
 
 #include <algorithm>
 #include <sstream>
@@ -65,7 +65,8 @@ void StartConditions::Load(const DataNode &node)
 
 		// Determine if the child is a "core" or "UNLOCKED state" attribute. Removal of such attributes
 		// is handled below.
-		if(!remove && (CoreStartData::LoadChild(child, add)
+		if(!remove
+			&& (CoreStartData::LoadChild(child, add)
 				|| LoadStateChild(child, unlocked, clearDescription, add)))
 			continue;
 
@@ -87,7 +88,10 @@ void StartConditions::Load(const DataNode &node)
 				ships.clear();
 			else if(key == "ship" && hasValue)
 				ships.erase(remove_if(ships.begin(), ships.end(),
-					[&value](const Ship &s) noexcept -> bool { return s.TrueModelName() == value; }),
+								[&value](const Ship &s) noexcept -> bool
+								{
+									return s.TrueModelName() == value;
+								}),
 					ships.end());
 			else if(key == "conversation")
 				conversation = ExclusiveItem<Conversation>();
@@ -118,7 +122,8 @@ void StartConditions::Load(const DataNode &node)
 				ships.emplace_back(child);
 			// If there's only 2 tokens & there's no child nodes, the created instance would be ill-formed.
 			else
-				child.PrintTrace("Skipping unsupported use of a \"stock\" ship (a full definition is required):");
+				child.PrintTrace(
+					"Skipping unsupported use of a \"stock\" ship (a full definition is required):");
 		}
 		else if(key == "conversation" && child.HasChildren() && !add)
 			conversation = ExclusiveItem<Conversation>(Conversation(child));
@@ -126,8 +131,8 @@ void StartConditions::Load(const DataNode &node)
 			conversation = ExclusiveItem<Conversation>(GameData::Conversations().Get(value));
 		else if(add)
 			child.PrintTrace("Skipping unsupported use of \"add\":");
-		// Only global conditions are supported in these ConditionSets. The global conditions are accessed directly,
-		// and therefore do not need the "global: " prefix.
+		// Only global conditions are supported in these ConditionSets. The global conditions are accessed
+		// directly, and therefore do not need the "global: " prefix.
 		else if(key == "to" && hasValue)
 		{
 			if(value == "display")
@@ -196,9 +201,9 @@ void StartConditions::FinishLoading()
 
 	string reason = GetConversation().Validate();
 	if(!GetConversation().IsValidIntro() || !reason.empty())
-		Logger::LogError("Warning: The start scenario \"" + Identifier() + "\" (named \""
-			+ unlocked.name + "\") has an invalid starting conversation."
-			+ (reason.empty() ? "" : "\n\t" + std::move(reason)));
+		Logger::LogError("Warning: The start scenario \"" + Identifier() + "\" (named \"" + unlocked.name
+						 + "\") has an invalid starting conversation."
+						 + (reason.empty() ? "" : "\n\t" + std::move(reason)));
 }
 
 
@@ -218,7 +223,11 @@ bool StartConditions::IsValid() const
 		return false;
 
 	// All ship models must be valid.
-	if(any_of(ships.begin(), ships.end(), [](const Ship &it) noexcept -> bool { return !it.IsValid(); }))
+	if(any_of(ships.begin(), ships.end(),
+		   [](const Ship &it) noexcept -> bool
+		   {
+			   return !it.IsValid();
+		   }))
 		return false;
 
 	return true;
@@ -357,7 +366,8 @@ void StartConditions::LoadState(const DataNode &node, StartState state)
 
 
 
-bool StartConditions::LoadStateChild(const DataNode &child, StartInfo &info, bool &clearDescription, bool isAdd)
+bool StartConditions::LoadStateChild(
+	const DataNode &child, StartInfo &info, bool &clearDescription, bool isAdd)
 {
 	const string &key = child.Token(isAdd ? 1 : 0);
 	int valueIndex = (isAdd) ? 2 : 1;

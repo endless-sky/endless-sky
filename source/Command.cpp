@@ -256,41 +256,18 @@ void Command::Load(const DataNode &node)
 {
 	for(int i = 1; i < node.Size(); ++i)
 	{
-		static const map<string, Command> lookup = {
-			{"none", Command::NONE},
-			{"menu", Command::MENU},
-			{"forward", Command::FORWARD},
-			{"left", Command::LEFT},
-			{"right", Command::RIGHT},
-			{"back", Command::BACK},
-			{"primary", Command::PRIMARY},
-			{"secondary", Command::SECONDARY},
-			{"select", Command::SELECT},
-			{"land", Command::LAND},
-			{"board", Command::BOARD},
-			{"hail", Command::HAIL},
-			{"scan", Command::SCAN},
-			{"jump", Command::JUMP},
-			{"mouseturninghold", Command::MOUSE_TURNING_HOLD},
-			{"fleet jump", Command::FLEET_JUMP},
-			{"target", Command::TARGET},
-			{"nearest", Command::NEAREST},
-			{"deploy", Command::DEPLOY},
-			{"afterburner", Command::AFTERBURNER},
-			{"cloak", Command::CLOAK},
-			{"map", Command::MAP},
-			{"info", Command::INFO},
-			{"fullscreen", Command::FULLSCREEN},
-			{"fastforward", Command::FASTFORWARD},
-			{"fight", Command::FIGHT},
-			{"gather", Command::GATHER},
-			{"hold", Command::HOLD},
-			{"ammo", Command::AMMO},
-			{"nearest asteroid", Command::NEAREST_ASTEROID},
-			{"wait", Command::WAIT},
-			{"stop", Command::STOP},
-			{"shift", Command::SHIFT}
-		};
+		static const map<string, Command> lookup = {{"none", Command::NONE}, {"menu", Command::MENU},
+			{"forward", Command::FORWARD}, {"left", Command::LEFT}, {"right", Command::RIGHT},
+			{"back", Command::BACK}, {"primary", Command::PRIMARY}, {"secondary", Command::SECONDARY},
+			{"select", Command::SELECT}, {"land", Command::LAND}, {"board", Command::BOARD},
+			{"hail", Command::HAIL}, {"scan", Command::SCAN}, {"jump", Command::JUMP},
+			{"mouseturninghold", Command::MOUSE_TURNING_HOLD}, {"fleet jump", Command::FLEET_JUMP},
+			{"target", Command::TARGET}, {"nearest", Command::NEAREST}, {"deploy", Command::DEPLOY},
+			{"afterburner", Command::AFTERBURNER}, {"cloak", Command::CLOAK}, {"map", Command::MAP},
+			{"info", Command::INFO}, {"fullscreen", Command::FULLSCREEN},
+			{"fastforward", Command::FASTFORWARD}, {"fight", Command::FIGHT}, {"gather", Command::GATHER},
+			{"hold", Command::HOLD}, {"ammo", Command::AMMO}, {"nearest asteroid", Command::NEAREST_ASTEROID},
+			{"wait", Command::WAIT}, {"stop", Command::STOP}, {"shift", Command::SHIFT}};
 
 		auto it = lookup.find(node.Token(i));
 		if(it != lookup.end())
@@ -413,17 +390,13 @@ Command &Command::operator|=(const Command &command)
 
 
 // Private constructor.
-Command::Command(uint64_t state)
-	: state(state)
-{
-}
+Command::Command(uint64_t state) : state(state) {}
 
 
 
 // Private constructor that also stores the given description in the lookup
 // table. (This is used for the enumeration at the top of this file.)
-Command::Command(uint64_t state, const string &text)
-	: state(state)
+Command::Command(uint64_t state, const string &text) : state(state)
 {
 	if(!text.empty())
 		description[*this] = text;

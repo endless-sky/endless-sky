@@ -29,7 +29,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "FillShader.h"
 #include "Fleet.h"
 #include "FogShader.h"
-#include "text/FontSet.h"
 #include "FormationPattern.h"
 #include "Galaxy.h"
 #include "GameEvent.h"
@@ -63,6 +62,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "TaskQueue.h"
 #include "Test.h"
 #include "TestData.h"
+#include "text/FontSet.h"
 #include "UniverseObjects.h"
 
 #include <algorithm>
@@ -114,8 +114,15 @@ namespace {
 	// Loads a sprite and queues it for upload to the GPU.
 	void LoadSprite(TaskQueue &queue, const shared_ptr<ImageSet> &image)
 	{
-		queue.Run([image] { image->Load(); },
-			[image] { image->Upload(SpriteSet::Modify(image->Name()), !preventSpriteUpload); });
+		queue.Run(
+			[image]
+			{
+				image->Load();
+			},
+			[image]
+			{
+				image->Upload(SpriteSet::Modify(image->Name()), !preventSpriteUpload);
+			});
 	}
 
 	void LoadSpriteQueued(TaskQueue &queue, const shared_ptr<ImageSet> &image);
@@ -135,7 +142,11 @@ namespace {
 	// Recursively loads the next image in the queue, if any.
 	void LoadSpriteQueued(TaskQueue &queue, const shared_ptr<ImageSet> &image)
 	{
-		queue.Run([image] { image->Load(); },
+		queue.Run(
+			[image]
+			{
+				image->Load();
+			},
 			[image, &queue]
 			{
 				image->Upload(SpriteSet::Modify(image->Name()), !preventSpriteUpload);
@@ -180,7 +191,8 @@ namespace {
 
 
 
-shared_future<void> GameData::BeginLoad(TaskQueue &queue, bool onlyLoadData, bool debugMode, bool preventUpload)
+shared_future<void> GameData::BeginLoad(
+	TaskQueue &queue, bool onlyLoadData, bool debugMode, bool preventUpload)
 {
 	preventSpriteUpload = preventUpload;
 
@@ -189,43 +201,45 @@ shared_future<void> GameData::BeginLoad(TaskQueue &queue, bool onlyLoadData, boo
 
 	if(!onlyLoadData)
 	{
-		queue.Run([&queue] {
-			// Now, read all the images in all the path directories. For each unique
-			// name, only remember one instance, letting things on the higher priority
-			// paths override the default images.
-			map<string, shared_ptr<ImageSet>> images = FindImages();
-
-			// From the name, strip out any frame number, plus the extension.
-			for(auto &it : images)
+		queue.Run(
+			[&queue]
 			{
-				// This should never happen, but just in case:
-				if(!it.second)
-					continue;
+				// Now, read all the images in all the path directories. For each unique
+				// name, only remember one instance, letting things on the higher priority
+				// paths override the default images.
+				map<string, shared_ptr<ImageSet>> images = FindImages();
 
-				// Reduce the set of images to those that are valid.
-				it.second->ValidateFrames();
-				// For landscapes, remember all the source files but don't load them yet.
-				if(ImageSet::IsDeferred(it.first))
-					deferred[SpriteSet::Get(it.first)] = std::move(it.second);
-				else
+				// From the name, strip out any frame number, plus the extension.
+				for(auto &it : images)
+				{
+					// This should never happen, but just in case:
+					if(!it.second)
+						continue;
+
+					// Reduce the set of images to those that are valid.
+					it.second->ValidateFrames();
+					// For landscapes, remember all the source files but don't load them yet.
+					if(ImageSet::IsDeferred(it.first))
+						deferred[SpriteSet::Get(it.first)] = std::move(it.second);
+					else
+					{
+						lock_guard lock(imageQueueMutex);
+						imageQueue.push(std::move(std::move(it.second)));
+						++totalSprites;
+					}
+				}
+
+				// Launch the tasks to actually load the images, making sure not to exceed the amount
+				// of tasks the main thread can handle in a single frame to limit peak memory usage.
 				{
 					lock_guard lock(imageQueueMutex);
-					imageQueue.push(std::move(std::move(it.second)));
-					++totalSprites;
+					for(int i = 0; i < TaskQueue::MAX_SYNC_TASKS; ++i)
+						LoadSpriteQueued(queue);
 				}
-			}
 
-			// Launch the tasks to actually load the images, making sure not to exceed the amount
-			// of tasks the main thread can handle in a single frame to limit peak memory usage.
-			{
-				lock_guard lock(imageQueueMutex);
-				for(int i = 0; i < TaskQueue::MAX_SYNC_TASKS; ++i)
-					LoadSpriteQueued(queue);
-			}
-
-			// Generate a catalog of music files.
-			Music::Init(sources);
-		});
+				// Generate a catalog of music files.
+				Music::Init(sources);
+			});
 	}
 
 	return objects.Load(queue, sources, debugMode);
@@ -318,7 +332,7 @@ void GameData::Preload(TaskQueue &queue, const Sprite *sprite)
 	map<const Sprite *, int>::iterator pit = preloaded.find(sprite);
 	if(pit != preloaded.end())
 	{
-		for(pair<const Sprite * const, int> &it : preloaded)
+		for(pair<const Sprite *const, int> &it : preloaded)
 			if(it.second < pit->second)
 				++it.second;
 
@@ -336,7 +350,11 @@ void GameData::Preload(TaskQueue &queue, const Sprite *sprite)
 		if(pit->second >= 20)
 		{
 			// Unloading needs to be queued on the main thread.
-			queue.Run({}, [name = pit->first->Name()] { SpriteSet::Modify(name)->Unload(); });
+			queue.Run({},
+				[name = pit->first->Name()]
+				{
+					SpriteSet::Modify(name)->Unload();
+				});
 			pit = preloaded.erase(pit);
 		}
 		else
@@ -440,9 +458,12 @@ void GameData::WriteEconomy(DataWriter &out)
 			out.Write("purchases");
 			out.BeginChild();
 			using Purchase = pair<const System *const, map<string, int>>;
-			WriteSorted(purchases,
+			WriteSorted(
+				purchases,
 				[](const Purchase *lhs, const Purchase *rhs)
-					{ return lhs->first->Name() < rhs->first->Name(); },
+				{
+					return lhs->first->Name() < rhs->first->Name();
+				},
 				[&out](const Purchase &pit)
 				{
 					// Write purchases for all systems, even ones from removed plugins.

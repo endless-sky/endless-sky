@@ -17,17 +17,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-DisplayText::DisplayText(const char *text, Layout layout)
-	: layout(layout), text(text)
-{
-}
+DisplayText::DisplayText(const char *text, Layout layout) : layout(layout), text(text) {}
 
 
 
-DisplayText::DisplayText(const std::string &text, Layout layout)
-	: layout(layout), text(text)
-{
-}
+DisplayText::DisplayText(const std::string &text, Layout layout) : layout(layout), text(text) {}
 
 
 

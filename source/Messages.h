@@ -33,19 +33,15 @@ class Color;
 // to keep repeated messages from filling up the whole screen.
 class Messages {
 public:
-	enum class Importance : uint_least8_t {
-		Highest,
-		High,
-		Info,
-		Daily,
-		Low
-	};
+	enum class Importance : uint_least8_t { Highest, High, Info, Daily, Low };
 
 	class Entry {
 	public:
 		Entry() = default;
 		Entry(int step, const std::string &message, Importance importance)
-			: step(step), message(message), importance(importance) {}
+			: step(step), message(message), importance(importance)
+		{
+		}
 
 		int step;
 		std::string message;

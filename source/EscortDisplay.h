@@ -48,7 +48,7 @@ private:
 	class Icon {
 	public:
 		Icon(const Ship &ship, bool isHere, bool systemNameKnown, bool fleetIsJumping, bool isSelected,
-				int basicHeight, int systemLabelHeight);
+			int basicHeight, int systemLabelHeight);
 
 		// Sorting operator.
 		bool operator<(const Icon &other) const;

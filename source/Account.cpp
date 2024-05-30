@@ -136,7 +136,7 @@ void Account::AddCredits(int64_t value)
 void Account::PayExtra(int mortgage, int64_t amount)
 {
 	if(static_cast<unsigned>(mortgage) >= mortgages.size() || amount > credits
-			|| amount > mortgages[mortgage].Principal())
+		|| amount > mortgages[mortgage].Principal())
 		return;
 
 	mortgages[mortgage].PayExtra(amount);
@@ -233,7 +233,7 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 		assets -= mortgage.Principal();
 	}
 	// If any mortgage has been fully paid off, remove it from the list.
-	for(auto it = mortgages.begin(); it != mortgages.end(); )
+	for(auto it = mortgages.begin(); it != mortgages.end();)
 	{
 		if(!it->Principal())
 			it = mortgages.erase(it);
@@ -295,8 +295,7 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 			out << Format::CreditString(mortgagesPaid) << " in mortgages"
 				<< ((finesPaid || debtPaid) ? " and " : ".");
 		if(finesPaid)
-			out << Format::CreditString(finesPaid) << " in fines"
-				<< (debtPaid ? " and " : ".");
+			out << Format::CreditString(finesPaid) << " in fines" << (debtPaid ? " and " : ".");
 		if(debtPaid)
 			out << Format::CreditString(debtPaid) << " in debt.";
 	}
@@ -314,15 +313,11 @@ const map<string, int64_t> &Account::SalariesIncome() const
 
 int64_t Account::SalariesIncomeTotal() const
 {
-	return accumulate(
-		salariesIncome.begin(),
-		salariesIncome.end(),
-		0,
+	return accumulate(salariesIncome.begin(), salariesIncome.end(), 0,
 		[](int64_t value, const std::map<string, int64_t>::value_type &salary)
 		{
 			return value + salary.second;
-		}
-	);
+		});
 }
 
 
@@ -421,9 +416,8 @@ int64_t Account::Prequalify() const
 	// Put a limit on new debt that the player can take out, as a fraction of
 	// their net worth, to avoid absurd mortgages being offered when the player
 	// has just captured some very lucrative ships.
-	return max<int64_t>(0, min(
-		NetWorth() / 3 + 500000 - liabilities,
-		Mortgage::Maximum(YearlyRevenue(), creditScore, payments)));
+	return max<int64_t>(0, min(NetWorth() / 3 + 500000 - liabilities,
+							   Mortgage::Maximum(YearlyRevenue(), creditScore, payments)));
 }
 
 

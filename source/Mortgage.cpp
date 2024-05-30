@@ -47,11 +47,8 @@ int64_t Mortgage::Maximum(int64_t annualRevenue, int creditScore, double current
 
 // Create a new mortgage of the given amount.
 Mortgage::Mortgage(string type, int64_t principal, int creditScore, int term)
-	: type(std::move(type)),
-	principal(principal),
-	interest((600 - creditScore / 2) * .00001),
-	interestString("0." + to_string(600 - creditScore / 2) + "%"),
-	term(term)
+	: type(std::move(type)), principal(principal), interest((600 - creditScore / 2) * .00001),
+	  interestString("0." + to_string(600 - creditScore / 2) + "%"), term(term)
 {
 }
 
@@ -61,11 +58,8 @@ Mortgage::Mortgage(string type, int64_t principal, int creditScore, int term)
 // credit score. Due to how the class is set up, the interest rate must currently
 // be within the range [0, 1).
 Mortgage::Mortgage(string type, int64_t principal, double interest, int term)
-	: type(std::move(type)),
-	principal(principal),
-	interest(interest * .01),
-	interestString("0." + to_string(static_cast<int>(1000. * interest)) + "%"),
-	term(term)
+	: type(std::move(type)), principal(principal), interest(interest * .01),
+	  interestString("0." + to_string(static_cast<int>(1000. * interest)) + "%"), term(term)
 {
 }
 

@@ -19,7 +19,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataWriter.h"
 #include "Dialog.h"
 #include "DistanceMap.h"
-#include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Logger.h"
@@ -30,6 +29,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Ship.h"
 #include "ShipEvent.h"
 #include "System.h"
+#include "text/Format.h"
 #include "UI.h"
 
 #include <cmath>
@@ -81,32 +81,32 @@ namespace {
 	{
 		switch(trigger)
 		{
-			case Mission::Trigger::ABORT:
-				return "on abort";
-			case Mission::Trigger::ACCEPT:
-				return "on accept";
-			case Mission::Trigger::COMPLETE:
-				return "on complete";
-			case Mission::Trigger::DECLINE:
-				return "on decline";
-			case Mission::Trigger::DEFER:
-				return "on defer";
-			case Mission::Trigger::FAIL:
-				return "on fail";
-			case Mission::Trigger::OFFER:
-				return "on offer";
-			case Mission::Trigger::STOPOVER:
-				return "on stopover";
-			case Mission::Trigger::VISIT:
-				return "on visit";
-			case Mission::Trigger::WAYPOINT:
-				return "on waypoint";
-			case Mission::Trigger::DAILY:
-				return "on daily";
-			case Mission::Trigger::DISABLED:
-				return "on disabled";
-			default:
-				return "unknown trigger";
+		case Mission::Trigger::ABORT:
+			return "on abort";
+		case Mission::Trigger::ACCEPT:
+			return "on accept";
+		case Mission::Trigger::COMPLETE:
+			return "on complete";
+		case Mission::Trigger::DECLINE:
+			return "on decline";
+		case Mission::Trigger::DEFER:
+			return "on defer";
+		case Mission::Trigger::FAIL:
+			return "on fail";
+		case Mission::Trigger::OFFER:
+			return "on offer";
+		case Mission::Trigger::STOPOVER:
+			return "on stopover";
+		case Mission::Trigger::VISIT:
+			return "on visit";
+		case Mission::Trigger::WAYPOINT:
+			return "on waypoint";
+		case Mission::Trigger::DAILY:
+			return "on daily";
+		case Mission::Trigger::DISABLED:
+			return "on disabled";
+		default:
+			return "unknown trigger";
 		}
 	}
 }
@@ -180,7 +180,8 @@ void Mission::Load(const DataNode &node)
 				if(!ParseContraband(grand))
 					grand.PrintTrace("Skipping unrecognized attribute:");
 				else
-					grand.PrintTrace("Warning: Deprecated use of \"stealth\" and \"illegal\" as a child of \"cargo\"."
+					grand.PrintTrace(
+						"Warning: Deprecated use of \"stealth\" and \"illegal\" as a child of \"cargo\"."
 						" They are now mission-level properties:");
 			}
 		}
@@ -859,7 +860,7 @@ bool Mission::HasSpace(const PlayerInfo &player) const
 	if(player.Flagship())
 		extraCrew = player.Flagship()->Crew() - player.Flagship()->RequiredCrew();
 	return (cargoSize <= player.Cargo().Free() + player.Cargo().CommoditiesSize()
-		&& passengers <= player.Cargo().BunksFree() + extraCrew);
+			&& passengers <= player.Cargo().BunksFree() + extraCrew);
 }
 
 
@@ -909,8 +910,9 @@ bool Mission::IsSatisfied(const PlayerInfo &player) const
 	for(const auto &ship : player.Ships())
 	{
 		// Skip in-system ships, and carried ships whose parent is in-system.
-		if(ship->GetSystem() == player.GetSystem() || (!ship->GetSystem() && ship->CanBeCarried()
-				&& ship->GetParent() && ship->GetParent()->GetSystem() == player.GetSystem()))
+		if(ship->GetSystem() == player.GetSystem()
+			|| (!ship->GetSystem() && ship->CanBeCarried() && ship->GetParent()
+				&& ship->GetParent()->GetSystem() == player.GetSystem()))
 			continue;
 
 		if(ship->Cargo().GetPassengers(this))
@@ -1001,7 +1003,8 @@ string Mission::BlockedMessage(const PlayerInfo &player)
 	if(bunksNeeded > 0 && cargoNeeded > 0)
 		out << " and ";
 	if(cargoNeeded > 0)
-		out << (cargoNeeded == 1 ? "another ton" : to_string(cargoNeeded) + " more tons") << " of cargo space";
+		out << (cargoNeeded == 1 ? "another ton" : to_string(cargoNeeded) + " more tons")
+			<< " of cargo space";
 	if(bunksNeeded <= 0 && cargoNeeded <= 0)
 		out << "no additional space";
 	subs["<capacity>"] = out.str();
@@ -1048,7 +1051,8 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 		for(const NPC &npc : npcs)
 			if(npc.IsLeftBehind(player.GetSystem()))
 			{
-				ui->Push(new Dialog("This is a stop for one of your missions, but you have left a ship behind."));
+				ui->Push(
+					new Dialog("This is a stop for one of your missions, but you have left a ship behind."));
 				return false;
 			}
 
@@ -1217,7 +1221,8 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 		{
 			hasFailed = true;
 			if(isVisible)
-				Messages::Add(message + "Mission failed: \"" + displayName + "\".", Messages::Importance::Highest);
+				Messages::Add(
+					message + "Mission failed: \"" + displayName + "\".", Messages::Importance::Highest);
 		}
 	}
 
@@ -1303,7 +1308,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	// Copy the template's stopovers, and add planets that match the template's filters.
 	result.stopovers = stopovers;
 	// Make sure they all exist in a valid system.
-	for(auto it = result.stopovers.begin(); it != result.stopovers.end(); )
+	for(auto it = result.stopovers.begin(); it != result.stopovers.end();)
 	{
 		if((*it)->IsValid())
 			++it;
@@ -1326,7 +1331,8 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.destination = destination;
 	if(!result.destination && !destinationFilter.IsEmpty())
 	{
-		result.destination = destinationFilter.PickPlanet(sourceSystem, ignoreClearance || !clearance.empty());
+		result.destination =
+			destinationFilter.PickPlanet(sourceSystem, ignoreClearance || !clearance.empty());
 		if(!result.destination)
 			return result;
 	}
@@ -1437,9 +1443,9 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	{
 		string stopovers;
 		string planets;
-		const Planet * const *last = &*--result.stopovers.end();
+		const Planet *const *last = &*--result.stopovers.end();
 		int count = 0;
-		for(const Planet * const &planet : result.stopovers)
+		for(const Planet *const &planet : result.stopovers)
 		{
 			if(count++)
 			{
@@ -1454,11 +1460,12 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		subs["<planet stopovers>"] = planets;
 	}
 	// Waypoints and marks: "<system name>" with "," and "and".
-	auto systemsReplacement = [](const set<const System *> &systemsSet) -> string {
+	auto systemsReplacement = [](const set<const System *> &systemsSet) -> string
+	{
 		string systems;
-		const System * const *last = &*--systemsSet.end();
+		const System *const *last = &*--systemsSet.end();
 		int count = 0;
-		for(const System * const &system : systemsSet)
+		for(const System *const &system : systemsSet)
 		{
 			if(count++)
 				systems += (&system != last) ? ", " : (count > 2 ? ", and " : " and ");
@@ -1477,17 +1484,18 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		reason = n.Validate(true);
 	if(!reason.empty())
 	{
-		Logger::LogError("Instantiation Error: NPC template in mission \""
-			+ Identifier() + "\" uses invalid " + std::move(reason));
+		Logger::LogError("Instantiation Error: NPC template in mission \"" + Identifier() + "\" uses invalid "
+						 + std::move(reason));
 		return result;
 	}
 	for(const NPC &npc : npcs)
-		result.npcs.push_back(npc.Instantiate(subs, sourceSystem, result.destination->GetSystem(), jumps, payload));
+		result.npcs.push_back(
+			npc.Instantiate(subs, sourceSystem, result.destination->GetSystem(), jumps, payload));
 
 	// Instantiate the actions. The "complete" action is always first so that
 	// the "<payment>" substitution can be filled in.
 	auto ait = actions.begin();
-	for( ; ait != actions.end(); ++ait)
+	for(; ait != actions.end(); ++ait)
 	{
 		reason = ait->second.Validate();
 		if(!reason.empty())
@@ -1496,14 +1504,14 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	if(ait != actions.end())
 	{
 		Logger::LogError("Instantiation Error: Action \"" + TriggerToText(ait->first) + "\" in mission \""
-			+ Identifier() + "\" uses invalid " + std::move(reason));
+						 + Identifier() + "\" uses invalid " + std::move(reason));
 		return result;
 	}
 	for(const auto &it : actions)
 		result.actions[it.first] = it.second.Instantiate(subs, sourceSystem, jumps, payload);
 
 	auto oit = onEnter.begin();
-	for( ; oit != onEnter.end(); ++oit)
+	for(; oit != onEnter.end(); ++oit)
 	{
 		reason = oit->first->IsValid() ? oit->second.Validate() : "trigger system";
 		if(!reason.empty())
@@ -1512,14 +1520,14 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	if(oit != onEnter.end())
 	{
 		Logger::LogError("Instantiation Error: Action \"on enter '" + oit->first->Name() + "'\" in mission \""
-			+ Identifier() + "\" uses invalid " + std::move(reason));
+						 + Identifier() + "\" uses invalid " + std::move(reason));
 		return result;
 	}
 	for(const auto &it : onEnter)
 		result.onEnter[it.first] = it.second.Instantiate(subs, sourceSystem, jumps, payload);
 
 	auto eit = genericOnEnter.begin();
-	for( ; eit != genericOnEnter.end(); ++eit)
+	for(; eit != genericOnEnter.end(); ++eit)
 	{
 		reason = eit->Validate();
 		if(!reason.empty())
@@ -1527,8 +1535,8 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	}
 	if(eit != genericOnEnter.end())
 	{
-		Logger::LogError("Instantiation Error: Generic \"on enter\" action in mission \""
-			+ Identifier() + "\" uses invalid " + std::move(reason));
+		Logger::LogError("Instantiation Error: Generic \"on enter\" action in mission \"" + Identifier()
+						 + "\" uses invalid " + std::move(reason));
 		return result;
 	}
 	for(const MissionAction &action : genericOnEnter)
@@ -1564,9 +1572,8 @@ int Mission::CalculateJumps(const System *sourceSystem)
 	while(!destinations.empty())
 	{
 		// Find the closest destination to this location.
-		DistanceMap distance(sourceSystem,
-				distanceCalcSettings.WormholeStrat(),
-				distanceCalcSettings.AssumesJumpDrive());
+		DistanceMap distance(
+			sourceSystem, distanceCalcSettings.WormholeStrat(), distanceCalcSettings.AssumesJumpDrive());
 		auto it = destinations.begin();
 		auto bestIt = it;
 		int bestDays = distance.Days(*bestIt);
@@ -1587,9 +1594,8 @@ int Mission::CalculateJumps(const System *sourceSystem)
 		expectedJumps += bestDays == numeric_limits<int>::max() ? -1 : bestDays;
 		destinations.erase(bestIt);
 	}
-	DistanceMap distance(sourceSystem,
-			distanceCalcSettings.WormholeStrat(),
-			distanceCalcSettings.AssumesJumpDrive());
+	DistanceMap distance(
+		sourceSystem, distanceCalcSettings.WormholeStrat(), distanceCalcSettings.AssumesJumpDrive());
 	// If currently unreachable, this system adds -1 to the deadline, to match previous behavior.
 	expectedJumps += distance.Days(destination->GetSystem());
 

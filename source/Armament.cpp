@@ -30,8 +30,8 @@ using namespace std;
 
 
 // Add a gun hardpoint (fixed-direction weapon).
-void Armament::AddGunPort(const Point &point, const Hardpoint::BaseAttributes &attributes,
-	bool isUnder, const Outfit *outfit)
+void Armament::AddGunPort(
+	const Point &point, const Hardpoint::BaseAttributes &attributes, bool isUnder, const Outfit *outfit)
 {
 	hardpoints.emplace_back(point, attributes, false, isUnder, outfit);
 }
@@ -39,8 +39,8 @@ void Armament::AddGunPort(const Point &point, const Hardpoint::BaseAttributes &a
 
 
 // Add a turret hardpoint.
-void Armament::AddTurret(const Point &point, const Hardpoint::BaseAttributes &attributes,
-	bool isUnder, const Outfit *outfit)
+void Armament::AddTurret(
+	const Point &point, const Hardpoint::BaseAttributes &attributes, bool isUnder, const Outfit *outfit)
 {
 	hardpoints.emplace_back(point, attributes, true, isUnder, outfit);
 }
@@ -62,8 +62,9 @@ int Armament::Add(const Outfit *outfit, int count)
 	// Do not equip weapons that do not define how they are mounted.
 	if(!isTurret && !outfit->Get("gun ports"))
 	{
-		Logger::LogError("Error: Skipping unmountable outfit \"" + outfit->TrueName() + "\"."
-			" Weapon outfits must specify either \"gun ports\" or \"turret mounts\".");
+		Logger::LogError("Error: Skipping unmountable outfit \"" + outfit->TrueName()
+						 + "\"."
+						   " Weapon outfits must specify either \"gun ports\" or \"turret mounts\".");
 		return 0;
 	}
 
@@ -235,7 +236,8 @@ void Armament::Aim(const FireCommand &command)
 
 // Fire the given weapon, if it is ready. If it did not fire because it is
 // not ready, return false.
-void Armament::Fire(unsigned index, Ship &ship, vector<Projectile> &projectiles, vector<Visual> &visuals, bool jammed)
+void Armament::Fire(
+	unsigned index, Ship &ship, vector<Projectile> &projectiles, vector<Visual> &visuals, bool jammed)
 {
 	// Don't check if the hardpoint jammed here, as the weapon may not even
 	// attempt to fire due to stream reloading.
@@ -261,8 +263,8 @@ void Armament::Fire(unsigned index, Ship &ship, vector<Projectile> &projectiles,
 
 
 
-bool Armament::FireAntiMissile(unsigned index, Ship &ship, const Projectile &projectile,
-	vector<Visual> &visuals, bool jammed)
+bool Armament::FireAntiMissile(
+	unsigned index, Ship &ship, const Projectile &projectile, vector<Visual> &visuals, bool jammed)
 {
 	if(!CheckHardpoint(index, jammed))
 		return false;
@@ -272,8 +274,8 @@ bool Armament::FireAntiMissile(unsigned index, Ship &ship, const Projectile &pro
 
 
 
-bool Armament::FireTractorBeam(unsigned index, Ship &ship, const Flotsam &flotsam,
-	vector<Visual> &visuals, bool jammed)
+bool Armament::FireTractorBeam(
+	unsigned index, Ship &ship, const Flotsam &flotsam, vector<Visual> &visuals, bool jammed)
 {
 	if(!CheckHardpoint(index, jammed))
 		return false;

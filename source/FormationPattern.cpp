@@ -27,8 +27,7 @@ namespace {
 
 
 
-FormationPattern::PositionIterator::PositionIterator(const FormationPattern &pattern)
-	: pattern(pattern)
+FormationPattern::PositionIterator::PositionIterator(const FormationPattern &pattern) : pattern(pattern)
 {
 	positionIt = pattern.positions.begin();
 }

@@ -16,8 +16,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Phrase.h"
 
 #include "DataNode.h"
-#include "text/Format.h"
 #include "GameData.h"
+#include "text/Format.h"
 
 using namespace std;
 
@@ -220,7 +220,8 @@ void Phrase::Sentence::Load(const DataNode &node, const Phrase *parent)
 				part.choices.emplace_back((grand.Size() >= 2) ? max<int>(1, grand.Value(1)) : 1, grand, true);
 		else if(child.Token(0) == "replace")
 			for(const DataNode &grand : child)
-				part.replacements.emplace_back(grand.Token(0), (grand.Size() >= 2) ? grand.Token(1) : string{});
+				part.replacements.emplace_back(
+					grand.Token(0), (grand.Size() >= 2) ? grand.Token(1) : string{});
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 
@@ -230,7 +231,8 @@ void Phrase::Sentence::Load(const DataNode &node, const Phrase *parent)
 			for(auto &element : choice)
 				if(element.second && element.second->ReferencesPhrase(parent))
 				{
-					child.PrintTrace("Warning: Replaced recursive '" + element.second->Name() + "' phrase reference with \"\":");
+					child.PrintTrace("Warning: Replaced recursive '" + element.second->Name()
+									 + "' phrase reference with \"\":");
 					element.second = nullptr;
 				}
 

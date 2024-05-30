@@ -52,8 +52,7 @@ ClickZone<Type>::ClickZone(Point center, Point dimensions, Type value)
 
 
 template <class Type>
-ClickZone<Type>::ClickZone(const Rectangle &rect, Type value)
-	: Rectangle(rect), value(std::move(value))
+ClickZone<Type>::ClickZone(const Rectangle &rect, Type value) : Rectangle(rect), value(std::move(value))
 {
 }
 

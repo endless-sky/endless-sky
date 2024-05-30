@@ -44,9 +44,11 @@ void EscortDisplay::Clear()
 
 
 
-void EscortDisplay::Add(const Ship &ship, bool isHere, bool systemNameKnown, bool fleetIsJumping, bool isSelected)
+void EscortDisplay::Add(
+	const Ship &ship, bool isHere, bool systemNameKnown, bool fleetIsJumping, bool isSelected)
 {
-	icons.emplace_back(ship, isHere, systemNameKnown, fleetIsJumping, isSelected, basicHeight, systemLabelHeight);
+	icons.emplace_back(
+		ship, isHere, systemNameKnown, fleetIsJumping, isSelected, basicHeight, systemLabelHeight);
 }
 
 
@@ -135,13 +137,8 @@ void EscortDisplay::Draw(const Rectangle &bounds) const
 		// Draw the status bars.
 		for(int i = 0; i < 5; ++i)
 		{
-			static const string levels[5][2] = {
-				{"shields high", "shields low"},
-				{"hull high", "hull low"},
-				{"energy high", "energy low"},
-				{"heat high", "heat low"},
-				{"fuel high", "fuel low"}
-			};
+			static const string levels[5][2] = {{"shields high", "shields low"}, {"hull high", "hull low"},
+				{"energy high", "energy low"}, {"heat high", "heat low"}, {"fuel high", "fuel low"}};
 			info.SetBar(levels[i][0], escort.high[i]);
 			info.SetBar(levels[i][1], escort.low[i]);
 		}
@@ -169,20 +166,16 @@ const vector<const Ship *> &EscortDisplay::Click(const Point &point) const
 
 
 
-EscortDisplay::Icon::Icon(const Ship &ship, bool isHere, bool systemNameKnown, bool fleetIsJumping, bool isSelected,
-		int basicHeight, int systemLabelHeight)
-	: sprite(ship.GetSprite()),
-	isDisabled(ship.IsDisabled()),
-	isHere(isHere),
-	isHostile(ship.GetGovernment() && ship.GetGovernment()->IsEnemy()),
-	notReadyToJump(fleetIsJumping && !ship.IsHyperspacing() && !ship.IsReadyToJump(true)),
-	cannotJump(fleetIsJumping && !ship.IsHyperspacing() && !ship.JumpsRemaining()),
-	isSelected(isSelected),
-	cost(ship.Cost()),
-	system((!isHere && ship.GetSystem()) ? (systemNameKnown ? ship.GetSystem()->Name() : "???") : ""),
-	low{ship.Shields(), ship.Hull(), ship.Energy(), min(ship.Heat(), 1.), ship.Fuel()},
-	high(low),
-	ships(1, &ship)
+EscortDisplay::Icon::Icon(const Ship &ship, bool isHere, bool systemNameKnown, bool fleetIsJumping,
+	bool isSelected, int basicHeight, int systemLabelHeight)
+	: sprite(ship.GetSprite()), isDisabled(ship.IsDisabled()), isHere(isHere),
+	  isHostile(ship.GetGovernment() && ship.GetGovernment()->IsEnemy()),
+	  notReadyToJump(fleetIsJumping && !ship.IsHyperspacing() && !ship.IsReadyToJump(true)),
+	  cannotJump(fleetIsJumping && !ship.IsHyperspacing() && !ship.JumpsRemaining()), isSelected(isSelected),
+	  cost(ship.Cost()),
+	  system((!isHere && ship.GetSystem()) ? (systemNameKnown ? ship.GetSystem()->Name() : "???") : ""),
+	  low{ship.Shields(), ship.Hull(), ship.Energy(), min(ship.Heat(), 1.), ship.Fuel()}, high(low),
+	  ships(1, &ship)
 {
 	height = basicHeight;
 	if(!system.empty())

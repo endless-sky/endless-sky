@@ -24,7 +24,8 @@ using namespace std;
 
 
 
-const bool CategoryList::Category::SortHelper(const CategoryList::Category &a, const CategoryList::Category &b)
+const bool CategoryList::Category::SortHelper(
+	const CategoryList::Category &a, const CategoryList::Category &b)
 {
 	if(a.precedence == b.precedence)
 		return a.name < b.name;
@@ -45,7 +46,10 @@ void CategoryList::Load(const DataNode &node)
 
 		// If a given category name already exists, its precedence will be updated.
 		auto it = find_if(list.begin(), list.end(),
-			[&cat](const Category &c) noexcept -> bool { return cat.name == c.name; });
+			[&cat](const Category &c) noexcept -> bool
+			{
+				return cat.name == c.name;
+			});
 		if(it != list.end())
 			it->precedence = cat.precedence;
 		else
@@ -53,7 +57,6 @@ void CategoryList::Load(const DataNode &node)
 			list.push_back(cat);
 			byName.insert(pair<const string, Category>(cat.name, cat));
 		}
-
 	}
 }
 
@@ -72,7 +75,10 @@ void CategoryList::Sort()
 bool CategoryList::Contains(const string &name) const
 {
 	const auto it = find_if(list.begin(), list.end(),
-		[&name](const Category &c) noexcept -> bool { return name == c.name; });
+		[&name](const Category &c) noexcept -> bool
+		{
+			return name == c.name;
+		});
 	return it != list.end();
 }
 

@@ -87,7 +87,7 @@ void BatchDrawList::Draw() const
 {
 	BatchShader::Bind();
 
-	for(const pair<const Sprite * const, vector<float>> &it : data)
+	for(const pair<const Sprite *const, vector<float>> &it : data)
 		BatchShader::Add(it.first, isHighDPI, it.second);
 
 	BatchShader::Unbind();
@@ -103,8 +103,7 @@ bool BatchDrawList::Cull(const Body &body, const Point &position) const
 	Point unit = body.Unit();
 	// Cull sprites that are completely off screen, to reduce the number of draw
 	// calls that we issue (which may be the bottleneck on some systems).
-	Point size(
-		fabs(unit.X() * body.Height()) + fabs(unit.Y() * body.Width()),
+	Point size(fabs(unit.X() * body.Height()) + fabs(unit.Y() * body.Width()),
 		fabs(unit.X() * body.Width()) + fabs(unit.Y() * body.Height()));
 	Point topLeft = position - size * zoom;
 	Point bottomRight = position + size * zoom;

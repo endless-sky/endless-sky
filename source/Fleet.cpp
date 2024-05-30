@@ -132,8 +132,8 @@ void Fleet::Load(const DataNode &node)
 	}
 
 	if(variants.empty())
-		node.PrintTrace("Warning: " + (fleetName.empty()
-			? "unnamed fleet" : "Fleet \"" + fleetName + "\"") + " contains no variants:");
+		node.PrintTrace("Warning: " + (fleetName.empty() ? "unnamed fleet" : "Fleet \"" + fleetName + "\"")
+						+ " contains no variants:");
 }
 
 
@@ -152,7 +152,10 @@ bool Fleet::IsValid(bool requireGovernment) const
 
 	// Any variant a fleet could choose should be valid.
 	if(any_of(variants.begin(), variants.end(),
-			[](const Variant &v) noexcept -> bool { return !v.IsValid(); }))
+		   [](const Variant &v) noexcept -> bool
+		   {
+			   return !v.IsValid();
+		   }))
 		return false;
 
 	return true;
@@ -163,13 +166,18 @@ bool Fleet::IsValid(bool requireGovernment) const
 void Fleet::RemoveInvalidVariants()
 {
 	int total = variants.TotalWeight();
-	int count = erase_if(variants, [](const Variant &v) noexcept -> bool { return !v.IsValid(); });
+	int count = erase_if(variants,
+		[](const Variant &v) noexcept -> bool
+		{
+			return !v.IsValid();
+		});
 	if(!count)
 		return;
 
 	Logger::LogError("Warning: " + (fleetName.empty() ? "unnamed fleet" : "fleet \"" + fleetName + "\"")
-		+ ": Removing " + to_string(count) + " invalid " + (count > 1 ? "variants" : "variant")
-		+ " (" + to_string(total - variants.TotalWeight()) + " of " + to_string(total) + " weight)");
+					 + ": Removing " + to_string(count) + " invalid " + (count > 1 ? "variants" : "variant")
+					 + " (" + to_string(total - variants.TotalWeight()) + " of " + to_string(total)
+					 + " weight)");
 }
 
 
@@ -251,8 +259,8 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		if(!personality.IsSurveillance())
 			for(const StellarObject &object : system.Objects())
 				if(object.HasValidPlanet() && object.GetPlanet()->IsInhabited()
-						&& (unrestricted || !government->IsRestrictedFrom(*object.GetPlanet()))
-						&& !object.GetPlanet()->GetGovernment()->IsEnemy(government))
+					&& (unrestricted || !government->IsRestrictedFrom(*object.GetPlanet()))
+					&& !object.GetPlanet()->GetGovernment()->IsEnemy(government))
 					stellarVector.push_back(&object);
 
 		// If there is nowhere for this fleet to come from, don't create it.
@@ -263,8 +271,8 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 			// uninhabited ones if there is no other option.
 			for(const StellarObject &object : system.Objects())
 				if(object.HasValidPlanet()
-						&& (unrestricted || !government->IsRestrictedFrom(*object.GetPlanet()))
-						&& !object.GetPlanet()->GetGovernment()->IsEnemy(government))
+					&& (unrestricted || !government->IsRestrictedFrom(*object.GetPlanet()))
+					&& !object.GetPlanet()->GetGovernment()->IsEnemy(government))
 					stellarVector.push_back(&object);
 			options = stellarVector.size();
 			if(!options)
@@ -311,7 +319,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 			{
 				// Log this error.
 				Logger::LogError("Fleet::Enter: Unable to find valid stellar object for planet \""
-					+ planet->TrueName() + "\" in system \"" + system.Name() + "\"");
+								 + planet->TrueName() + "\" in system \"" + system.Name() + "\"");
 				return;
 			}
 
@@ -320,8 +328,12 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 
 
 		// To take off from the planet, all non-carried ships must be able to access it.
-		if(planet->IsUnrestricted() || all_of(placed.cbegin(), placed.cend(), [&](const shared_ptr<Ship> &ship)
-				{ return ship->GetParent() || planet->IsAccessible(ship.get()); }))
+		if(planet->IsUnrestricted()
+			|| all_of(placed.cbegin(), placed.cend(),
+				[&](const shared_ptr<Ship> &ship)
+				{
+					return ship->GetParent() || planet->IsAccessible(ship.get());
+				}))
 		{
 			position = object->Position();
 			radius = object->Radius();
@@ -425,12 +437,12 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 // Do the randomization to make a ship enter or be in the given system.
 const System *Fleet::Enter(const System &system, Ship &ship, const System *source)
 {
-	bool canEnter = (source != nullptr || any_of(system.Links().begin(), system.Links().end(),
-		[&ship](const System *link) noexcept -> bool
-		{
-			return !ship.IsRestrictedFrom(*link);
-		}
-	));
+	bool canEnter = (source != nullptr
+					 || any_of(system.Links().begin(), system.Links().end(),
+						 [&ship](const System *link) noexcept -> bool
+						 {
+							 return !ship.IsRestrictedFrom(*link);
+						 }));
 
 	if(!canEnter || system.Links().empty() || (source && !system.Links().count(source)))
 	{
@@ -505,11 +517,12 @@ vector<shared_ptr<Ship>> Fleet::Instantiate(const vector<const Ship *> &ships) c
 	vector<shared_ptr<Ship>> placed;
 	for(const Ship *model : ships)
 	{
-		// At least one of this variant's ships is valid, but we should avoid spawning any that are not defined.
+		// At least one of this variant's ships is valid, but we should avoid spawning any that are not
+		// defined.
 		if(!model->IsValid())
 		{
 			Logger::LogError("Warning: Skipping invalid ship model \"" + model->TrueModelName()
-				+ "\" in fleet \"" + fleetName + "\".");
+							 + "\" in fleet \"" + fleetName + "\".");
 			continue;
 		}
 

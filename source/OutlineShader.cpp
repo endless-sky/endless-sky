@@ -41,21 +41,20 @@ namespace {
 
 void OutlineShader::Init()
 {
-	static const char *vertexCode =
-		"// vertex outline shader\n"
-		"uniform vec2 scale;\n"
-		"uniform vec2 position;\n"
-		"uniform mat2 transform;\n"
+	static const char *vertexCode = "// vertex outline shader\n"
+									"uniform vec2 scale;\n"
+									"uniform vec2 position;\n"
+									"uniform mat2 transform;\n"
 
-		"in vec2 vert;\n"
-		"in vec2 vertTexCoord;\n"
+									"in vec2 vert;\n"
+									"in vec2 vertTexCoord;\n"
 
-		"out vec2 fragTexCoord;\n"
+									"out vec2 fragTexCoord;\n"
 
-		"void main() {\n"
-		"  fragTexCoord = vertTexCoord;\n"
-		"  gl_Position = vec4((transform * vert + position) * scale, 0, 1);\n"
-		"}\n";
+									"void main() {\n"
+									"  fragTexCoord = vertTexCoord;\n"
+									"  gl_Position = vec4((transform * vert + position) * scale, 0, 1);\n"
+									"}\n";
 
 	// The outline shader applies a Sobel filter to an image. The alpha channel
 	// (i.e. the silhouette of the sprite) is given the most weight, but some
@@ -136,11 +135,7 @@ void OutlineShader::Init()
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
 	GLfloat vertexData[] = {
-		-.5f, -.5f, 0.f, 0.f,
-		 .5f, -.5f, 1.f, 0.f,
-		-.5f,  .5f, 0.f, 1.f,
-		 .5f,  .5f, 1.f, 1.f
-	};
+		-.5f, -.5f, 0.f, 0.f, .5f, -.5f, 1.f, 0.f, -.5f, .5f, 0.f, 1.f, .5f, .5f, 1.f, 1.f};
 	constexpr auto stride = 4 * sizeof(GLfloat);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
 
@@ -148,8 +143,8 @@ void OutlineShader::Init()
 	glVertexAttribPointer(shader.Attrib("vert"), 2, GL_FLOAT, GL_FALSE, stride, nullptr);
 
 	glEnableVertexAttribArray(shader.Attrib("vertTexCoord"));
-	glVertexAttribPointer(shader.Attrib("vertTexCoord"), 2, GL_FLOAT, GL_TRUE,
-		stride, reinterpret_cast<const GLvoid*>(2 * sizeof(GLfloat)));
+	glVertexAttribPointer(shader.Attrib("vertTexCoord"), 2, GL_FLOAT, GL_TRUE, stride,
+		reinterpret_cast<const GLvoid *>(2 * sizeof(GLfloat)));
 
 	// unbind the VBO and VAO
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -158,8 +153,8 @@ void OutlineShader::Init()
 
 
 
-void OutlineShader::Draw(const Sprite *sprite, const Point &pos, const Point &size,
-	const Color &color, const Point &unit, float frame)
+void OutlineShader::Draw(const Sprite *sprite, const Point &pos, const Point &size, const Color &color,
+	const Point &unit, float frame)
 {
 	glUseProgram(shader.Object());
 	glBindVertexArray(vao);
@@ -167,9 +162,7 @@ void OutlineShader::Draw(const Sprite *sprite, const Point &pos, const Point &si
 	GLfloat scale[2] = {2.f / Screen::Width(), -2.f / Screen::Height()};
 	glUniform2fv(scaleI, 1, scale);
 
-	GLfloat off[2] = {
-		static_cast<float>(.5 / size.X()),
-		static_cast<float>(.5 / size.Y())};
+	GLfloat off[2] = {static_cast<float>(.5 / size.X()), static_cast<float>(.5 / size.Y())};
 	glUniform2fv(offI, 1, off);
 
 	glUniform1f(frameI, frame);
@@ -177,16 +170,11 @@ void OutlineShader::Draw(const Sprite *sprite, const Point &pos, const Point &si
 
 	Point uw = unit * size.X();
 	Point uh = unit * size.Y();
-	GLfloat transform[4] = {
-		static_cast<float>(-uw.Y()),
-		static_cast<float>(uw.X()),
-		static_cast<float>(-uh.X()),
-		static_cast<float>(-uh.Y())
-	};
+	GLfloat transform[4] = {static_cast<float>(-uw.Y()), static_cast<float>(uw.X()),
+		static_cast<float>(-uh.X()), static_cast<float>(-uh.Y())};
 	glUniformMatrix2fv(transformI, 1, false, transform);
 
-	GLfloat position[2] = {
-		static_cast<float>(pos.X()), static_cast<float>(pos.Y())};
+	GLfloat position[2] = {static_cast<float>(pos.X()), static_cast<float>(pos.Y())};
 	glUniform2fv(positionI, 1, position);
 
 	glUniform4fv(colorI, 1, color.Get());

@@ -29,9 +29,8 @@ using namespace std;
 
 // Object default constructor.
 StellarObject::StellarObject()
-	: planet(nullptr),
-	distance(0.), speed(0.), offset(0.), parent(-1),
-	message(nullptr), isStar(false), isStation(false), isMoon(false)
+	: planet(nullptr), distance(0.), speed(0.), offset(0.), parent(-1), message(nullptr), isStar(false),
+	  isStation(false), isMoon(false)
 {
 	// Unlike ships and projectiles, stellar objects are not drawn shrunk to half size,
 	// because they do not need to be so sharp.

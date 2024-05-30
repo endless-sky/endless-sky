@@ -23,7 +23,6 @@ using namespace std;
 Collision::Collision(Body *hit, CollisionType collisionType, double range)
 	: hit(hit), collisionType(collisionType), range(range)
 {
-
 }
 
 

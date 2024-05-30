@@ -60,7 +60,7 @@ void RenderBuffer::Init()
 		"  vec2 tsize = size * srcscale;\n"       // Convert from screen to texture coordinates.
 		"  vec2 tsrc = srcposition * srcscale;\n" // Convert from screen to texture coordinates.
 		"  tpos = vpos * tsize + tsrc;\n"
-		"  tpos.y = 1.0 - tpos.y;\n"              // Negative is up.
+		"  tpos.y = 1.0 - tpos.y;\n" // Negative is up.
 		"}\n";
 
 	static const char *fragmentCode =
@@ -107,12 +107,7 @@ void RenderBuffer::Init()
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
-	GLfloat vertexData[] = {
-		-.5f, -.5f,
-		-.5f,  .5f,
-		.5f, -.5f,
-		.5f,  .5f
-	};
+	GLfloat vertexData[] = {-.5f, -.5f, -.5f, .5f, .5f, -.5f, .5f, .5f};
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
 
 	glEnableVertexAttribArray(shader.Attrib("vert"));
@@ -148,8 +143,7 @@ RenderBuffer::RenderTargetGuard::RenderTargetGuard(RenderBuffer &b, int screenWi
 
 
 // Create a texture of the given size that can be used as a render target.
-RenderBuffer::RenderBuffer(const Point &dimensions)
-	: size(dimensions)
+RenderBuffer::RenderBuffer(const Point &dimensions) : size(dimensions)
 {
 	// Generate a framebuffer.
 	glGenFramebuffers(1, &framebuffer);
@@ -167,7 +161,8 @@ RenderBuffer::RenderBuffer(const Point &dimensions)
 
 	// Attach a blank image to the texture.
 	const Point scaledSize = size * Screen::Zoom() / 100.0;
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, scaledSize.X(), scaledSize.Y(), 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+	glTexImage2D(
+		GL_TEXTURE_2D, 0, GL_RGBA, scaledSize.X(), scaledSize.Y(), 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
 
 	// Attach the texture to the frame buffer.
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, texid, 0);
@@ -205,7 +200,7 @@ RenderBuffer::RenderTargetGuard RenderBuffer::SetTarget()
 	//       is if we are nesting render buffers. If only one framebuffer is
 	//       enabled at a time, then we can just reset the buffer to 0 when we
 	//       are done.
-	glGetIntegerv(GL_FRAMEBUFFER_BINDING, reinterpret_cast<int*>(&lastFramebuffer));
+	glGetIntegerv(GL_FRAMEBUFFER_BINDING, reinterpret_cast<int *>(&lastFramebuffer));
 	glGetIntegerv(GL_VIEWPORT, lastViewport);
 	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
 
@@ -252,12 +247,8 @@ void RenderBuffer::Draw(const Point &position, const Point &clipsize, const Poin
 	glUniform2f(srcpositionI, srcposition.X(), srcposition.Y());
 	glUniform2f(srcscaleI, 1.f / size.X(), 1.f / size.Y());
 
-	glUniform4f(fadeI,
-		fadePadding[0] / clipsize.Y(),
-		fadePadding[1] / clipsize.Y(),
-		fadePadding[2] / clipsize.X(),
-		fadePadding[3] / clipsize.X()
-	);
+	glUniform4f(fadeI, fadePadding[0] / clipsize.Y(), fadePadding[1] / clipsize.Y(),
+		fadePadding[2] / clipsize.X(), fadePadding[3] / clipsize.X());
 
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 

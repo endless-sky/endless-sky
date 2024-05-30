@@ -19,10 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Command.h"
 #include "Conversation.h"
 #include "DataNode.h"
-#include "text/DisplayText.h"
 #include "FillShader.h"
-#include "text/Font.h"
-#include "text/FontSet.h"
 #include "GameData.h"
 #include "MapDetailPanel.h"
 #include "PlayerInfo.h"
@@ -32,6 +29,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
+#include "text/DisplayText.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
 #include "UI.h"
 
 #include <cmath>
@@ -45,51 +45,22 @@ namespace {
 
 	// Map any conceivable numeric keypad keys to their ASCII values. Most of
 	// these will presumably only exist on special programming keyboards.
-	const map<SDL_Keycode, char> KEY_MAP = {
-		{SDLK_KP_0, '0'},
-		{SDLK_KP_1, '1'},
-		{SDLK_KP_2, '2'},
-		{SDLK_KP_3, '3'},
-		{SDLK_KP_4, '4'},
-		{SDLK_KP_5, '5'},
-		{SDLK_KP_6, '6'},
-		{SDLK_KP_7, '7'},
-		{SDLK_KP_8, '8'},
-		{SDLK_KP_9, '9'},
-		{SDLK_KP_AMPERSAND, '&'},
-		{SDLK_KP_AT, '@'},
-		{SDLK_KP_A, 'a'},
-		{SDLK_KP_B, 'b'},
-		{SDLK_KP_C, 'c'},
-		{SDLK_KP_D, 'd'},
-		{SDLK_KP_E, 'e'},
-		{SDLK_KP_F, 'f'},
-		{SDLK_KP_COLON, ':'},
-		{SDLK_KP_COMMA, ','},
-		{SDLK_KP_DIVIDE, '/'},
-		{SDLK_KP_EQUALS, '='},
-		{SDLK_KP_EXCLAM, '!'},
-		{SDLK_KP_GREATER, '>'},
-		{SDLK_KP_HASH, '#'},
-		{SDLK_KP_LEFTBRACE, '{'},
-		{SDLK_KP_LEFTPAREN, '('},
-		{SDLK_KP_LESS, '<'},
-		{SDLK_KP_MINUS, '-'},
-		{SDLK_KP_MULTIPLY, '*'},
-		{SDLK_KP_PERCENT, '%'},
-		{SDLK_KP_PERIOD, '.'},
-		{SDLK_KP_PLUS, '+'},
-		{SDLK_KP_POWER, '^'},
-		{SDLK_KP_RIGHTBRACE, '}'},
-		{SDLK_KP_RIGHTPAREN, ')'},
-		{SDLK_KP_SPACE, ' '},
-		{SDLK_KP_VERTICALBAR, '|'}
-	};
+	const map<SDL_Keycode, char> KEY_MAP = {{SDLK_KP_0, '0'}, {SDLK_KP_1, '1'}, {SDLK_KP_2, '2'},
+		{SDLK_KP_3, '3'}, {SDLK_KP_4, '4'}, {SDLK_KP_5, '5'}, {SDLK_KP_6, '6'}, {SDLK_KP_7, '7'},
+		{SDLK_KP_8, '8'}, {SDLK_KP_9, '9'}, {SDLK_KP_AMPERSAND, '&'}, {SDLK_KP_AT, '@'}, {SDLK_KP_A, 'a'},
+		{SDLK_KP_B, 'b'}, {SDLK_KP_C, 'c'}, {SDLK_KP_D, 'd'}, {SDLK_KP_E, 'e'}, {SDLK_KP_F, 'f'},
+		{SDLK_KP_COLON, ':'}, {SDLK_KP_COMMA, ','}, {SDLK_KP_DIVIDE, '/'}, {SDLK_KP_EQUALS, '='},
+		{SDLK_KP_EXCLAM, '!'}, {SDLK_KP_GREATER, '>'}, {SDLK_KP_HASH, '#'}, {SDLK_KP_LEFTBRACE, '{'},
+		{SDLK_KP_LEFTPAREN, '('}, {SDLK_KP_LESS, '<'}, {SDLK_KP_MINUS, '-'}, {SDLK_KP_MULTIPLY, '*'},
+		{SDLK_KP_PERCENT, '%'}, {SDLK_KP_PERIOD, '.'}, {SDLK_KP_PLUS, '+'}, {SDLK_KP_POWER, '^'},
+		{SDLK_KP_RIGHTBRACE, '}'}, {SDLK_KP_RIGHTPAREN, ')'}, {SDLK_KP_SPACE, ' '},
+		{SDLK_KP_VERTICALBAR, '|'}};
 }
 
 
 
-Dialog::Dialog(function<void()> okFunction, const string &message, Truncate truncate, bool canCancel, bool okIsActive)
+Dialog::Dialog(
+	function<void()> okFunction, const string &message, Truncate truncate, bool canCancel, bool okIsActive)
 	: voidFun(okFunction)
 {
 	Init(message, truncate, canCancel, false);
@@ -109,10 +80,10 @@ Dialog::Dialog(const string &text, Truncate truncate, bool allowsFastForward)
 
 
 // Mission accept / decline dialog.
-Dialog::Dialog(const string &text, PlayerInfo &player, const System *system, Truncate truncate, bool allowsFastForward)
+Dialog::Dialog(
+	const string &text, PlayerInfo &player, const System *system, Truncate truncate, bool allowsFastForward)
 	: intFun(bind(&PlayerInfo::MissionCallback, &player, placeholders::_1)),
-	allowsFastForward(allowsFastForward),
-	system(system), player(&player)
+	  allowsFastForward(allowsFastForward), system(system), player(&player)
 {
 	Init(text, truncate, true, true);
 }
@@ -163,16 +134,12 @@ void Dialog::Draw()
 		string cancelText = isMission ? "Decline" : "Cancel";
 		cancelPos = pos + Point(isWide ? 110. : 10., 0.);
 		SpriteShader::Draw(cancel, cancelPos);
-		Point labelPos(
-			cancelPos.X() - .5 * font.Width(cancelText),
-			cancelPos.Y() - .5 * font.Height());
+		Point labelPos(cancelPos.X() - .5 * font.Width(cancelText), cancelPos.Y() - .5 * font.Height());
 		font.Draw(cancelText, labelPos, !okIsActive ? bright : dim);
 	}
 	string okText = isMission ? "Accept" : "OK";
 	okPos = pos + Point(isWide ? 190. : 90., 0.);
-	Point labelPos(
-		okPos.X() - .5 * font.Width(okText),
-		okPos.Y() - .5 * font.Height());
+	Point labelPos(okPos.X() - .5 * font.Width(okText), okPos.Y() - .5 * font.Height());
 	font.Draw(okText, labelPos, isOkDisabled ? inactive : (okIsActive ? bright : dim));
 
 	// Draw the text.
@@ -183,9 +150,7 @@ void Dialog::Draw()
 	{
 		FillShader::Fill(inputPos, Point(Width() - 20., 20.), back);
 
-		Point stringPos(
-			inputPos.X() - (Width() - 20) * .5 + 5.,
-			inputPos.Y() - .5 * font.Height());
+		Point stringPos(inputPos.X() - (Width() - 20) * .5 + 5., inputPos.Y() - .5 * font.Height());
 		const auto inputText = DisplayText(input, {Width() - 30, Truncate::FRONT});
 		font.Draw(inputText, stringPos, bright);
 
@@ -227,7 +192,8 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 {
 	auto it = KEY_MAP.find(key);
 	bool isCloseRequest = key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI)));
-	if((it != KEY_MAP.end() || (key >= ' ' && key <= '~')) && !isMission && (intFun || stringFun) && !isCloseRequest)
+	if((it != KEY_MAP.end() || (key >= ' ' && key <= '~')) && !isMission && (intFun || stringFun)
+		&& !isCloseRequest)
 	{
 		int ascii = (it != KEY_MAP.end()) ? it->second : key;
 		char c = ((mod & KMOD_SHIFT) ? SHIFT[ascii] : ascii);
@@ -384,7 +350,8 @@ void Dialog::DoCallback(const bool isOk) const
 	{
 		// Only call the callback if the input can be converted to an int.
 		// Otherwise treat this as if the player clicked "cancel."
-		try {
+		try
+		{
 			intFun(stoi(input));
 		}
 		catch(...)

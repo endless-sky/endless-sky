@@ -16,13 +16,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MainPanel.h"
 
 #include "BoardingPanel.h"
-#include "comparators/ByGivenOrder.h"
 #include "CategoryList.h"
+#include "comparators/ByGivenOrder.h"
 #include "CoreStartData.h"
 #include "Dialog.h"
-#include "text/Font.h"
-#include "text/FontSet.h"
-#include "text/Format.h"
 #include "FrameTimer.h"
 #include "GameData.h"
 #include "Government.h"
@@ -43,6 +40,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipEvent.h"
 #include "StellarObject.h"
 #include "System.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "UI.h"
 
 #include "opengl.h"
@@ -55,8 +55,7 @@ using namespace std;
 
 
 
-MainPanel::MainPanel(PlayerInfo &player)
-	: player(player), engine(player)
+MainPanel::MainPanel(PlayerInfo &player) : player(player), engine(player)
 {
 	SetIsFullScreen(true);
 }
@@ -215,8 +214,8 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	else if(command.Has(Command::AMMO))
 	{
 		Preferences::ToggleAmmoUsage();
-		Messages::Add("Your escorts will now expend ammo: " + Preferences::AmmoUsage() + "."
-			, Messages::Importance::High);
+		Messages::Add("Your escorts will now expend ammo: " + Preferences::AmmoUsage() + ".",
+			Messages::Importance::High);
 	}
 	else if((key == SDLK_MINUS || key == SDLK_KP_MINUS) && !command)
 		Preferences::ZoomViewOut();
@@ -336,7 +335,8 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 					out << Format::CargoString(tons, Format::LowerCase(it.first->PluralName())) << "\n";
 				}
 				else
-					out << it.second << " " << (it.second == 1 ? it.first->DisplayName() : it.first->PluralName()) << "\n";
+					out << it.second << " "
+						<< (it.second == 1 ? it.first->DisplayName() : it.first->PluralName()) << "\n";
 			}
 		if(first)
 			out << "This " + target->Noun() + " is not carrying any cargo.\n";
@@ -423,7 +423,8 @@ bool MainPanel::ShowHailPanel()
 		target.reset();
 
 	if(flagship->IsEnteringHyperspace())
-		Messages::Add("Unable to send hail: your flagship is entering hyperspace.", Messages::Importance::High);
+		Messages::Add(
+			"Unable to send hail: your flagship is entering hyperspace.", Messages::Importance::High);
 	else if(flagship->IsCloaked() && !flagship->Attributes().Get("cloaked communication"))
 		Messages::Add("Unable to send hail: your flagship is cloaked.", Messages::Importance::High);
 	else if(target)
@@ -432,15 +433,18 @@ bool MainPanel::ShowHailPanel()
 		// because the player has no way of telling if it's presently jumping or
 		// not. If it's in system and jumping, report that.
 		if(target->Zoom() < 1. || target->IsDestroyed() || target->GetSystem() != player.GetSystem()
-				|| target->IsCloaked())
+			|| target->IsCloaked())
 			Messages::Add("Unable to hail target " + target->Noun() + ".", Messages::Importance::High);
 		else if(target->IsEnteringHyperspace())
-			Messages::Add("Unable to send hail: " + target->Noun() + " is entering hyperspace."
-				, Messages::Importance::High);
+			Messages::Add("Unable to send hail: " + target->Noun() + " is entering hyperspace.",
+				Messages::Importance::High);
 		else
 		{
 			GetUI()->Push(new HailPanel(player, target,
-				[&](const Government *bribed) { MainPanel::OnBribeCallback(bribed); }));
+				[&](const Government *bribed)
+				{
+					MainPanel::OnBribeCallback(bribed);
+				}));
 			return true;
 		}
 	}
@@ -460,8 +464,8 @@ bool MainPanel::ShowHailPanel()
 			return true;
 		}
 		else
-			Messages::Add("Unable to send hail: " + planet->Noun() + " is not inhabited."
-				, Messages::Importance::High);
+			Messages::Add(
+				"Unable to send hail: " + planet->Noun() + " is not inhabited.", Messages::Importance::High);
 	}
 	else
 		Messages::Add("Unable to send hail: no target selected.", Messages::Importance::High);
@@ -537,9 +541,8 @@ bool MainPanel::ShowHelp(bool force)
 		else if(DoHelp("fleet harvest tutorial"))
 			return true;
 	}
-	if(flagship->IsTargetable() &&
-			flagship->Attributes().Get("asteroid scan power") &&
-			player.Ships().size() > 1)
+	if(flagship->IsTargetable() && flagship->Attributes().Get("asteroid scan power")
+		&& player.Ships().size() > 1)
 	{
 		// Different order of these messages is intentional,
 		// because we're displaying the forced messages in reverse order.
@@ -566,7 +569,7 @@ bool MainPanel::ShowHelp(bool force)
 			return true;
 	}
 	if(!flagship->IsHyperspacing() && flagship->Position().Length() > 10000.
-			&& player.GetDate() <= player.StartData().GetDate() + 4)
+		&& player.GetDate() <= player.StartData().GetDate() + 4)
 	{
 		++lostness;
 		int count = 1 + lostness / 3600;
@@ -631,15 +634,15 @@ void MainPanel::StepEvents(bool &isActive)
 		// the BoardingPanel, allowing the player to plunder it.
 		const Ship *flagship = player.Flagship();
 		if((event.Type() & (ShipEvent::BOARD | ShipEvent::ASSIST)) && actor->IsPlayer()
-				&& !event.Target()->IsDestroyed() && flagship && event.Actor().get() == flagship)
+			&& !event.Target()->IsDestroyed() && flagship && event.Actor().get() == flagship)
 		{
 			auto boardedShip = event.Target();
 			Mission *mission = player.BoardingMission(boardedShip);
 			if(mission && mission->HasSpace(*flagship))
 				mission->Do(Mission::OFFER, player, GetUI(), boardedShip);
 			else if(mission)
-				player.HandleBlockedMissions((event.Type() & ShipEvent::BOARD)
-						? Mission::BOARDING : Mission::ASSISTING, GetUI());
+				player.HandleBlockedMissions(
+					(event.Type() & ShipEvent::BOARD) ? Mission::BOARDING : Mission::ASSISTING, GetUI());
 			// Determine if a Dialog or ConversationPanel is being drawn next frame.
 			isActive = (GetUI()->Top().get() == this);
 
@@ -652,7 +655,7 @@ void MainPanel::StepEvents(bool &isActive)
 			// NPC completion conversation ends via `accept,` even if the ship is
 			// still hostile.
 			if(isActive && (event.Type() == ShipEvent::BOARD) && !boardedShip->IsDestroyed()
-					&& boardedShip->GetGovernment()->IsEnemy())
+				&& boardedShip->GetGovernment()->IsEnemy())
 			{
 				// Either no mission activated, or the one that did was "silent."
 				GetUI()->Push(new BoardingPanel(player, boardedShip));

@@ -18,18 +18,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 // Greyscale color constructor.
-Color::Color(float i, float a)
-	: color{i, i, i, a}
-{
-}
+Color::Color(float i, float a) : color{i, i, i, a} {}
 
 
 
 // Full color constructor.
-Color::Color(float r, float g, float b, float a)
-	: color{r, g, b, a}
-{
-}
+Color::Color(float r, float g, float b, float a) : color{r, g, b, a} {}
 
 
 
@@ -115,11 +109,8 @@ Color Color::Additive(float alpha) const
 
 Color Color::Combine(float a1, Color c1, float a2, Color c2)
 {
-	return Color(
-			a1 * c1.color[0] + a2 * c2.color[0],
-			a1 * c1.color[1] + a2 * c2.color[1],
-			a1 * c1.color[2] + a2 * c2.color[2],
-			a1 * c1.color[3] + a2 * c2.color[3]);
+	return Color(a1 * c1.color[0] + a2 * c2.color[0], a1 * c1.color[1] + a2 * c2.color[1],
+		a1 * c1.color[2] + a2 * c2.color[2], a1 * c1.color[3] + a2 * c2.color[3]);
 }
 
 
@@ -127,8 +118,5 @@ Color Color::Combine(float a1, Color c1, float a2, Color c2)
 Color Color::Multiply(float scalar, const Color &base)
 {
 	return Color(
-			scalar * base.color[0],
-			scalar * base.color[1],
-			scalar * base.color[2],
-			scalar * base.color[3]);
+		scalar * base.color[0], scalar * base.color[1], scalar * base.color[2], scalar * base.color[3]);
 }

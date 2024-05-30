@@ -184,9 +184,7 @@ double Flotsam::Mass() const
 // stabilized in proportion to the amount being transferred.
 int Flotsam::TransferTo(Ship *collector)
 {
-	int amount = outfit ?
-		collector->Cargo().Add(outfit, count) :
-		collector->Cargo().Add(commodity, count);
+	int amount = outfit ? collector->Cargo().Add(outfit, count) : collector->Cargo().Add(commodity, count);
 
 	Point relative = collector->Velocity() - velocity;
 	double proportion = static_cast<double>(amount) / count;

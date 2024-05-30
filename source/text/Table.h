@@ -17,9 +17,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define ES_TEXT_TABLE_H_
 
 #include "../Color.h"
+#include "../Point.h"
 #include "DisplayText.h"
 #include "layout.hpp"
-#include "../Point.h"
 
 #include <string>
 #include <vector>

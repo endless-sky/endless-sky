@@ -32,7 +32,7 @@ void Trade::Load(const DataNode &node)
 			bool isSpecial = (child.Size() < 4);
 			vector<Commodity> &list = (isSpecial ? specialCommodities : commodities);
 			auto it = list.begin();
-			for( ; it != list.end(); ++it)
+			for(; it != list.end(); ++it)
 				if(it->name == child.Token(1))
 					break;
 			if(it == list.end())

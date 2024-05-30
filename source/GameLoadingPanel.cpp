@@ -40,7 +40,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 GameLoadingPanel::GameLoadingPanel(PlayerInfo &player, TaskQueue &queue, const Conversation &conversation,
 	UI &gamePanels, bool &finishedLoading)
 	: player(player), queue(queue), conversation(conversation), gamePanels(gamePanels),
-		finishedLoading(finishedLoading), ANGLE_OFFSET(360. / MAX_TICKS)
+	  finishedLoading(finishedLoading), ANGLE_OFFSET(360. / MAX_TICKS)
 {
 	SetIsFullScreen(true);
 }
@@ -54,8 +54,8 @@ void GameLoadingPanel::Step()
 	queue.ProcessSyncTasks();
 	if(GameData::IsLoaded())
 	{
-		// Now that we have finished loading all the basic sprites and sounds, we can look for invalid file paths,
-		// e.g. due to capitalization errors or other typos.
+		// Now that we have finished loading all the basic sprites and sounds, we can look for invalid file
+		// paths, e.g. due to capitalization errors or other typos.
 		SpriteSet::CheckReferences();
 		Audio::CheckReferences();
 		// Set the game's initial internal state.
@@ -80,7 +80,11 @@ void GameLoadingPanel::Step()
 			auto *talk = new ConversationPanel(player, conversation);
 
 			UI *ui = GetUI();
-			talk->SetCallback([ui](int response) { ui->Quit(); });
+			talk->SetCallback(
+				[ui](int response)
+				{
+					ui->Quit();
+				});
 			GetUI()->Push(talk);
 		}
 

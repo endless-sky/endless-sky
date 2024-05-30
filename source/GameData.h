@@ -76,7 +76,8 @@ class Wormhole;
 // universe.
 class GameData {
 public:
-	static std::shared_future<void> BeginLoad(TaskQueue &queue, bool onlyLoadData, bool debugMode, bool preventUpload);
+	static std::shared_future<void> BeginLoad(
+		TaskQueue &queue, bool onlyLoadData, bool debugMode, bool preventUpload);
 	static void FinishLoading();
 	// Check for objects that are referred to but never defined.
 	static void CheckReferences();

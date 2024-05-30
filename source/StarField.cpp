@@ -50,8 +50,8 @@ namespace {
 	const double STAR_ZOOM = 0.70;
 	const double HAZE_ZOOM = 0.90;
 
-	void AddHaze(DrawList &drawList, const std::vector<Body> &haze,
-		const Point &topLeft, const Point &bottomRight, double transparency)
+	void AddHaze(DrawList &drawList, const std::vector<Body> &haze, const Point &topLeft,
+		const Point &bottomRight, double transparency)
 	{
 		for(auto &&it : haze)
 		{
@@ -134,8 +134,8 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom, const Syst
 	// Check preferences for the parallax quality.
 	const auto parallaxSetting = Preferences::GetBackgroundParallax();
 	int layers = (parallaxSetting == Preferences::BackgroundParallax::FANCY) ? 3 : 1;
-	bool isParallax = (parallaxSetting == Preferences::BackgroundParallax::FANCY ||
-						parallaxSetting == Preferences::BackgroundParallax::FAST);
+	bool isParallax = (parallaxSetting == Preferences::BackgroundParallax::FANCY
+					   || parallaxSetting == Preferences::BackgroundParallax::FAST);
 
 	// Draw the starfield unless it is disabled in the preferences.
 	if(Preferences::Has("Draw starfield") && density > 0.)
@@ -159,8 +159,7 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom, const Syst
 			GLfloat scale[2] = {baseZoom / Screen::Width(), -baseZoom / Screen::Height()};
 			glUniform2fv(scaleI, 1, scale);
 
-			GLfloat rotate[4] = {
-				static_cast<float>(unit.Y()), static_cast<float>(-unit.X()),
+			GLfloat rotate[4] = {static_cast<float>(unit.Y()), static_cast<float>(-unit.X()),
 				static_cast<float>(unit.X()), static_cast<float>(unit.Y())};
 			glUniformMatrix2fv(rotateI, pass, false, rotate);
 
@@ -185,10 +184,7 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom, const Syst
 				for(int gx = minX; gx < maxX; gx += TILE_SIZE)
 				{
 					Point off = Point(gx + shove, gy + shove) - pos;
-					GLfloat translate[2] = {
-						static_cast<float>(off.X()),
-						static_cast<float>(off.Y())
-					};
+					GLfloat translate[2] = {static_cast<float>(off.X()), static_cast<float>(off.Y())};
 					glUniform2fv(translateI, 1, translate);
 
 					int index = (gx & widthMod) / TILE_SIZE + ((gy & widthMod) / TILE_SIZE) * tileCols;
@@ -259,17 +255,16 @@ void StarField::SetUpGraphics()
 		"  gl_Position = vec4((rotate * elongated + translate + offset) * scale, 0, 1);\n"
 		"}\n";
 
-	static const char *fragmentCode =
-		"// fragment starfield shader\n"
-		"precision mediump float;\n"
-		"in float fragmentAlpha;\n"
-		"in vec2 coord;\n"
-		"out vec4 finalColor;\n"
+	static const char *fragmentCode = "// fragment starfield shader\n"
+									  "precision mediump float;\n"
+									  "in float fragmentAlpha;\n"
+									  "in vec2 coord;\n"
+									  "out vec4 finalColor;\n"
 
-		"void main() {\n"
-		"  float alpha = fragmentAlpha * (1. - abs(coord.x) - abs(coord.y));\n"
-		"  finalColor = vec4(1, 1, 1, 1) * alpha;\n"
-		"}\n";
+									  "void main() {\n"
+									  "  float alpha = fragmentAlpha * (1. - abs(coord.x) - abs(coord.y));\n"
+									  "  finalColor = vec4(1, 1, 1, 1) * alpha;\n"
+									  "}\n";
 
 	shader = Shader(vertexCode, fragmentCode);
 
@@ -353,7 +348,7 @@ void StarField::MakeStars(int stars, int width)
 
 	// Each star consists of five vertices, each with four data elements.
 	vector<GLfloat> data(6 * 4 * stars, 0.f);
-	for(auto it = temp.begin(); it != temp.end(); )
+	for(auto it = temp.begin(); it != temp.end();)
 	{
 		// Figure out what tile this star is in.
 		int x = *it++;
@@ -368,14 +363,9 @@ void StarField::MakeStars(int stars, int width)
 
 		// Fill in the data array.
 		auto dataIt = data.begin() + 6 * 4 * tileIndex[index]++;
-		const float CORNER[6] = {
-			static_cast<float>(0. * PI),
-			static_cast<float>(.5 * PI),
-			static_cast<float>(1.5 * PI),
-			static_cast<float>(.5 * PI),
-			static_cast<float>(1.5 * PI),
-			static_cast<float>(1. * PI)
-		};
+		const float CORNER[6] = {static_cast<float>(0. * PI), static_cast<float>(.5 * PI),
+			static_cast<float>(1.5 * PI), static_cast<float>(.5 * PI), static_cast<float>(1.5 * PI),
+			static_cast<float>(1. * PI)};
 		for(float corner : CORNER)
 		{
 			*dataIt++ = fx;
@@ -392,16 +382,15 @@ void StarField::MakeStars(int stars, int width)
 	// Connect the xy to the "vert" attribute of the vertex shader.
 	constexpr auto stride = 4 * sizeof(GLfloat);
 	glEnableVertexAttribArray(offsetI);
-	glVertexAttribPointer(offsetI, 2, GL_FLOAT, GL_FALSE,
-		stride, nullptr);
+	glVertexAttribPointer(offsetI, 2, GL_FLOAT, GL_FALSE, stride, nullptr);
 
 	glEnableVertexAttribArray(sizeI);
-	glVertexAttribPointer(sizeI, 1, GL_FLOAT, GL_FALSE,
-		stride, reinterpret_cast<const GLvoid *>(2 * sizeof(GLfloat)));
+	glVertexAttribPointer(
+		sizeI, 1, GL_FLOAT, GL_FALSE, stride, reinterpret_cast<const GLvoid *>(2 * sizeof(GLfloat)));
 
 	glEnableVertexAttribArray(cornerI);
-	glVertexAttribPointer(cornerI, 1, GL_FLOAT, GL_FALSE,
-		stride, reinterpret_cast<const GLvoid *>(3 * sizeof(GLfloat)));
+	glVertexAttribPointer(
+		cornerI, 1, GL_FLOAT, GL_FALSE, stride, reinterpret_cast<const GLvoid *>(3 * sizeof(GLfloat)));
 
 	// unbind the VBO and VAO
 	glBindBuffer(GL_ARRAY_BUFFER, 0);

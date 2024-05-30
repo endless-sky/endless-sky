@@ -76,12 +76,12 @@ bool TestData::Inject() const
 	// Determine data-type and call the relevant function.
 	switch(dataSetType)
 	{
-		case Type::SAVEGAME:
-			return InjectSavegame();
-		case Type::MISSION:
-			return InjectMission();
-		default:
-			return false;
+	case Type::SAVEGAME:
+		return InjectSavegame();
+	case Type::MISSION:
+		return InjectMission();
+	default:
+		return false;
 	}
 }
 

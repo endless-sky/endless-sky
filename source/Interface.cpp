@@ -17,13 +17,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Angle.h"
 #include "DataNode.h"
-#include "text/DisplayText.h"
 #include "FillShader.h"
-#include "text/Font.h"
-#include "text/FontSet.h"
 #include "GameData.h"
 #include "Information.h"
-#include "text/layout.hpp"
 #include "LineShader.h"
 #include "OutlineShader.h"
 #include "Panel.h"
@@ -34,6 +30,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
+#include "text/DisplayText.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/layout.hpp"
 #include "UI.h"
 
 #include <algorithm>
@@ -46,7 +46,7 @@ namespace {
 	Point ParseAlignment(const DataNode &node, int i = 1)
 	{
 		Point alignment;
-		for( ; i < node.Size(); ++i)
+		for(; i < node.Size(); ++i)
 		{
 			if(node.Token(i) == "left")
 				alignment.X() = -1.;
@@ -401,17 +401,13 @@ Point Interface::Element::NativeDimensions(const Information &info, int state) c
 
 
 // Draw this element in the given rectangle.
-void Interface::Element::Draw(const Rectangle &rect, const Information &info, int state) const
-{
-}
+void Interface::Element::Draw(const Rectangle &rect, const Information &info, int state) const {}
 
 
 
 // Add any click handlers needed for this element. This will only be
 // called if the element is visible and active.
-void Interface::Element::Place(const Rectangle &bounds, Panel *panel) const
-{
-}
+void Interface::Element::Place(const Rectangle &bounds, Panel *panel) const {}
 
 
 

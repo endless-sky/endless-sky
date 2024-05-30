@@ -64,8 +64,7 @@ void Music::Init(const vector<string> &sources)
 
 // Music constructor, which starts the decoding thread. Initially, the thread
 // has no file to read, so it will sleep until a file is specified.
-Music::Music()
-	: silence(OUTPUT_CHUNK, 0)
+Music::Music() : silence(OUTPUT_CHUNK, 0)
 {
 	// Don't start the thread until this object is fully constructed.
 	thread = std::thread(&Music::Decode, this);
@@ -152,7 +151,6 @@ const vector<int16_t> &Music::NextChunk()
 
 	// Return the buffer.
 	return current;
-
 }
 
 
@@ -246,10 +244,7 @@ void Music::Decode()
 
 				// If the source is mono, read both output channels from the left input.
 				// Otherwise, read two separate input channels.
-				mad_fixed_t *channels[2] = {
-					synth.pcm.samples[0],
-					synth.pcm.samples[synth.pcm.channels > 1]
-				};
+				mad_fixed_t *channels[2] = {synth.pcm.samples[0], synth.pcm.samples[synth.pcm.channels > 1]};
 
 				// For this part, we need access to the output buffer.
 				lock.lock();

@@ -33,7 +33,7 @@ public:
 	bool Inject() const;
 
 	// Types of datafiles that can be stored.
-	enum class Type {UNSPECIFIED, SAVEGAME, MISSION};
+	enum class Type { UNSPECIFIED, SAVEGAME, MISSION };
 
 
 

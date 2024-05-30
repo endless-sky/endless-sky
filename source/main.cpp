@@ -23,7 +23,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "Engine.h"
 #include "Files.h"
-#include "text/Font.h"
 #include "FrameTimer.h"
 #include "GameData.h"
 #include "GameLoadingPanel.h"
@@ -42,6 +41,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "TaskQueue.h"
 #include "Test.h"
 #include "TestContext.h"
+#include "text/Font.h"
 #include "UI.h"
 
 #include <chrono>
@@ -49,15 +49,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <map>
 
 #include <cassert>
-#include <future>
 #include <exception>
+#include <future>
 #include <string>
 
 #ifdef _WIN32
 #define STRICT
 #define WIN32_LEAN_AND_MEAN
-#include <windows.h>
 #include <mmsystem.h>
+#include <windows.h>
 #endif
 
 
@@ -65,8 +65,8 @@ using namespace std;
 
 void PrintHelp();
 void PrintVersion();
-void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversation,
-	const string &testToRun, bool debugMode);
+void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversation, const string &testToRun,
+	bool debugMode);
 Conversation LoadConversation();
 void PrintTestsTable();
 #ifdef _WIN32
@@ -94,12 +94,14 @@ int main(int argc, char *argv[])
 	// Whether the game has encountered errors while loading.
 	bool hasErrors = false;
 	// Ensure that we log errors to the errors.txt file.
-	Logger::SetLogErrorCallback([&hasErrors](const string &errorMessage) {
-		static const string PARSING_PREFIX = "Parsing: ";
-		if(errorMessage.substr(0, PARSING_PREFIX.length()) != PARSING_PREFIX)
-			hasErrors = true;
-		Files::LogErrorToFile(errorMessage);
-	});
+	Logger::SetLogErrorCallback(
+		[&hasErrors](const string &errorMessage)
+		{
+			static const string PARSING_PREFIX = "Parsing: ";
+			if(errorMessage.substr(0, PARSING_PREFIX.length()) != PARSING_PREFIX)
+				hasErrors = true;
+			Files::LogErrorToFile(errorMessage);
+		});
 
 	for(const char *const *it = argv + 1; *it; ++it)
 	{
@@ -132,7 +134,8 @@ int main(int argc, char *argv[])
 
 	// Whether we are running an integration test.
 	const bool isTesting = !testToRunName.empty();
-	try {
+	try
+	{
 		// Load plugin preferences before game data if any.
 		Plugins::LoadSettings();
 
@@ -140,8 +143,8 @@ int main(int argc, char *argv[])
 
 		// Begin loading the game data.
 		bool isConsoleOnly = loadOnly || printTests || printData;
-		auto dataFuture = GameData::BeginLoad(queue, isConsoleOnly, debugMode,
-			isConsoleOnly || (isTesting && !debugMode));
+		auto dataFuture =
+			GameData::BeginLoad(queue, isConsoleOnly, debugMode, isConsoleOnly || (isTesting && !debugMode));
 
 		// If we are not using the UI, or performing some automated task, we should load
 		// all data now.
@@ -242,7 +245,7 @@ int main(int argc, char *argv[])
 
 
 void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversation,
-		const string &testToRunName, bool debugMode)
+	const string &testToRunName, bool debugMode)
 {
 	// gamePanels is used for the main panel where you fly your spaceship.
 	// All other game content related dialogs are placed on top of the gamePanels.
@@ -280,8 +283,8 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 
 	const bool isHeadless = (testContext.CurrentTest() && !debugMode);
 
-	auto ProcessEvents = [&menuPanels, &gamePanels, &player, &cursorTime, &toggleTimeout, &debugMode, &isPaused,
-			&isFastForward]
+	auto ProcessEvents = [&menuPanels, &gamePanels, &player, &cursorTime, &toggleTimeout, &debugMode,
+							 &isPaused, &isFastForward]
 	{
 		SDL_Event event;
 		while(SDL_PollEvent(&event))
@@ -295,12 +298,11 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 			if(debugMode && event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_BACKQUOTE)
 				isPaused = !isPaused;
 			else if(event.type == SDL_KEYDOWN && menuPanels.IsEmpty()
-					&& Command(event.key.keysym.sym).Has(Command::MENU)
-					&& !gamePanels.IsEmpty() && gamePanels.Top()->IsInterruptible())
+					&& Command(event.key.keysym.sym).Has(Command::MENU) && !gamePanels.IsEmpty()
+					&& gamePanels.Top()->IsInterruptible())
 			{
 				// User pressed the Menu key.
-				menuPanels.Push(shared_ptr<Panel>(
-					new MenuPanel(player, gamePanels)));
+				menuPanels.Push(shared_ptr<Panel>(new MenuPanel(player, gamePanels)));
 			}
 			else if(event.type == SDL_QUIT)
 				menuPanels.Quit();
@@ -312,7 +314,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 			}
 			else if(event.type == SDL_KEYDOWN && !toggleTimeout
 					&& (Command(event.key.keysym.sym).Has(Command::FULLSCREEN)
-					|| (event.key.keysym.sym == SDLK_RETURN && (event.key.keysym.mod & KMOD_ALT))))
+						|| (event.key.keysym.sym == SDLK_RETURN && (event.key.keysym.mod & KMOD_ALT))))
 			{
 				toggleTimeout = 30;
 				Preferences::ToggleScreenMode();
@@ -487,8 +489,10 @@ void PrintHelp()
 	cerr << "    -t, --talk: read and display a conversation from STDIN." << endl;
 	cerr << "    -r, --resources <path>: load resources from given directory." << endl;
 	cerr << "    -c, --config <path>: save user's files to given directory." << endl;
-	cerr << "    -d, --debug: turn on debugging features (e.g. Caps Lock slows down instead of speeds up)." << endl;
-	cerr << "    -p, --parse-save: load the most recent saved game and inspect it for content errors." << endl;
+	cerr << "    -d, --debug: turn on debugging features (e.g. Caps Lock slows down instead of speeds up)."
+		 << endl;
+	cerr << "    -p, --parse-save: load the most recent saved game and inspect it for content errors."
+		 << endl;
 	cerr << "    --tests: print table of available tests, then exit." << endl;
 	cerr << "    --test <name>: run given test from resources directory." << endl;
 	cerr << "    --nomute: don't mute the game while running tests." << endl;
@@ -526,23 +530,12 @@ Conversation LoadConversation()
 			break;
 		}
 
-	map<string, string> subs = {
-		{"<bunks>", "[N]"},
-		{"<cargo>", "[N tons of Commodity]"},
-		{"<commodity>", "[Commodity]"},
-		{"<date>", "[Day Mon Year]"},
-		{"<day>", "[The Nth of Month]"},
-		{"<destination>", "[Planet in the Star system]"},
-		{"<fare>", "[N passengers]"},
-		{"<first>", "[First]"},
-		{"<last>", "[Last]"},
-		{"<origin>", "[Origin Planet]"},
-		{"<passengers>", "[your passengers]"},
-		{"<planet>", "[Planet]"},
-		{"<ship>", "[Ship]"},
-		{"<system>", "[Star]"},
-		{"<tons>", "[N tons]"}
-	};
+	map<string, string> subs = {{"<bunks>", "[N]"}, {"<cargo>", "[N tons of Commodity]"},
+		{"<commodity>", "[Commodity]"}, {"<date>", "[Day Mon Year]"}, {"<day>", "[The Nth of Month]"},
+		{"<destination>", "[Planet in the Star system]"}, {"<fare>", "[N passengers]"},
+		{"<first>", "[First]"}, {"<last>", "[Last]"}, {"<origin>", "[Origin Planet]"},
+		{"<passengers>", "[your passengers]"}, {"<planet>", "[Planet]"}, {"<ship>", "[Ship]"},
+		{"<system>", "[Star]"}, {"<tons>", "[N tons]"}};
 	return conversation.Instantiate(subs);
 }
 
@@ -553,8 +546,7 @@ Conversation LoadConversation()
 void PrintTestsTable()
 {
 	for(auto &it : GameData::Tests())
-		if(it.second.GetStatus() != Test::Status::PARTIAL
-				&& it.second.GetStatus() != Test::Status::BROKEN)
+		if(it.second.GetStatus() != Test::Status::PARTIAL && it.second.GetStatus() != Test::Status::BROKEN)
 			cout << it.second.Name() << '\n';
 	cout.flush();
 }

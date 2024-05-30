@@ -15,14 +15,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "SpaceportPanel.h"
 
-#include "text/alignment.hpp"
-#include "text/FontSet.h"
 #include "GameData.h"
 #include "Interface.h"
 #include "News.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Random.h"
+#include "text/alignment.hpp"
+#include "text/FontSet.h"
 #include "UI.h"
 
 using namespace std;

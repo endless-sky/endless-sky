@@ -42,10 +42,10 @@ class Sprite;
 // string to double significantly reduces access time.
 class Weapon {
 public:
-	struct Submunition{
+	struct Submunition {
 		Submunition() noexcept = default;
 		explicit Submunition(const Weapon *weapon, std::size_t count) noexcept
-			: weapon(weapon), count(count) {};
+			: weapon(weapon), count(count){};
 
 		const Weapon *weapon = nullptr;
 		std::size_t count = 0;
@@ -219,7 +219,7 @@ protected:
 
 	// A pair representing the outfit that is consumed as ammo and the number
 	// of that outfit consumed upon fire.
-	std::pair<const Outfit*, int> ammo;
+	std::pair<const Outfit *, int> ammo;
 
 
 private:
@@ -370,104 +370,355 @@ private:
 
 
 // Inline the accessors because they get called so frequently.
-inline int Weapon::Lifetime() const { return lifetime; }
-inline int Weapon::RandomLifetime() const { return randomLifetime; }
-inline int Weapon::FadeOut() const { return fadeOut; }
-inline double Weapon::Reload() const { return reload; }
-inline double Weapon::BurstReload() const { return burstReload; }
-inline int Weapon::BurstCount() const { return burstCount; }
-inline int Weapon::Homing() const { return homing; }
+inline int Weapon::Lifetime() const
+{
+	return lifetime;
+}
+inline int Weapon::RandomLifetime() const
+{
+	return randomLifetime;
+}
+inline int Weapon::FadeOut() const
+{
+	return fadeOut;
+}
+inline double Weapon::Reload() const
+{
+	return reload;
+}
+inline double Weapon::BurstReload() const
+{
+	return burstReload;
+}
+inline int Weapon::BurstCount() const
+{
+	return burstCount;
+}
+inline int Weapon::Homing() const
+{
+	return homing;
+}
 
-inline int Weapon::MissileStrength() const { return missileStrength; }
-inline int Weapon::AntiMissile() const { return antiMissile; }
-inline double Weapon::TractorBeam() const { return tractorBeam; }
-inline uint16_t Weapon::PenetrationCount() const noexcept { return penetrationCount; }
-inline bool Weapon::IsStreamed() const { return isStreamed; }
+inline int Weapon::MissileStrength() const
+{
+	return missileStrength;
+}
+inline int Weapon::AntiMissile() const
+{
+	return antiMissile;
+}
+inline double Weapon::TractorBeam() const
+{
+	return tractorBeam;
+}
+inline uint16_t Weapon::PenetrationCount() const noexcept
+{
+	return penetrationCount;
+}
+inline bool Weapon::IsStreamed() const
+{
+	return isStreamed;
+}
 
-inline double Weapon::Velocity() const { return velocity; }
-inline double Weapon::RandomVelocity() const { return randomVelocity; }
-inline double Weapon::WeightedVelocity() const { return (velocityOverride > 0.) ? velocityOverride : velocity; }
-inline double Weapon::Acceleration() const { return acceleration; }
-inline double Weapon::Drag() const { return drag; }
-inline const Point &Weapon::HardpointOffset() const { return hardpointOffset; }
+inline double Weapon::Velocity() const
+{
+	return velocity;
+}
+inline double Weapon::RandomVelocity() const
+{
+	return randomVelocity;
+}
+inline double Weapon::WeightedVelocity() const
+{
+	return (velocityOverride > 0.) ? velocityOverride : velocity;
+}
+inline double Weapon::Acceleration() const
+{
+	return acceleration;
+}
+inline double Weapon::Drag() const
+{
+	return drag;
+}
+inline const Point &Weapon::HardpointOffset() const
+{
+	return hardpointOffset;
+}
 
-inline double Weapon::Turn() const { return turn; }
-inline double Weapon::TurretTurn() const { return turretTurn; }
-inline double Weapon::Arc() const { return maxAngle; }
+inline double Weapon::Turn() const
+{
+	return turn;
+}
+inline double Weapon::TurretTurn() const
+{
+	return turretTurn;
+}
+inline double Weapon::Arc() const
+{
+	return maxAngle;
+}
 
-inline double Weapon::Tracking() const { return tracking; }
-inline double Weapon::OpticalTracking() const { return opticalTracking; }
-inline double Weapon::InfraredTracking() const { return infraredTracking; }
-inline double Weapon::RadarTracking() const { return radarTracking; }
+inline double Weapon::Tracking() const
+{
+	return tracking;
+}
+inline double Weapon::OpticalTracking() const
+{
+	return opticalTracking;
+}
+inline double Weapon::InfraredTracking() const
+{
+	return infraredTracking;
+}
+inline double Weapon::RadarTracking() const
+{
+	return radarTracking;
+}
 
-inline double Weapon::FiringEnergy() const { return firingEnergy; }
-inline double Weapon::FiringForce() const { return firingForce; }
-inline double Weapon::FiringFuel() const { return firingFuel; }
-inline double Weapon::FiringHeat() const { return firingHeat; }
-inline double Weapon::FiringHull() const { return firingHull; }
-inline double Weapon::FiringShields() const { return firingShields; }
-inline double Weapon::FiringIon() const{ return firingIon; }
-inline double Weapon::FiringScramble() const { return firingScramble; }
-inline double Weapon::FiringSlowing() const{ return firingSlowing; }
-inline double Weapon::FiringDisruption() const{ return firingDisruption; }
-inline double Weapon::FiringDischarge() const{ return firingDischarge; }
-inline double Weapon::FiringCorrosion() const{ return firingCorrosion; }
-inline double Weapon::FiringLeak() const{ return firingLeak; }
-inline double Weapon::FiringBurn() const{ return firingBurn; }
+inline double Weapon::FiringEnergy() const
+{
+	return firingEnergy;
+}
+inline double Weapon::FiringForce() const
+{
+	return firingForce;
+}
+inline double Weapon::FiringFuel() const
+{
+	return firingFuel;
+}
+inline double Weapon::FiringHeat() const
+{
+	return firingHeat;
+}
+inline double Weapon::FiringHull() const
+{
+	return firingHull;
+}
+inline double Weapon::FiringShields() const
+{
+	return firingShields;
+}
+inline double Weapon::FiringIon() const
+{
+	return firingIon;
+}
+inline double Weapon::FiringScramble() const
+{
+	return firingScramble;
+}
+inline double Weapon::FiringSlowing() const
+{
+	return firingSlowing;
+}
+inline double Weapon::FiringDisruption() const
+{
+	return firingDisruption;
+}
+inline double Weapon::FiringDischarge() const
+{
+	return firingDischarge;
+}
+inline double Weapon::FiringCorrosion() const
+{
+	return firingCorrosion;
+}
+inline double Weapon::FiringLeak() const
+{
+	return firingLeak;
+}
+inline double Weapon::FiringBurn() const
+{
+	return firingBurn;
+}
 
-inline double Weapon::RelativeFiringEnergy() const{ return relativeFiringEnergy; }
-inline double Weapon::RelativeFiringHeat() const{ return relativeFiringHeat; }
-inline double Weapon::RelativeFiringFuel() const{ return relativeFiringFuel; }
-inline double Weapon::RelativeFiringHull() const{ return relativeFiringHull; }
-inline double Weapon::RelativeFiringShields() const{ return relativeFiringShields; }
+inline double Weapon::RelativeFiringEnergy() const
+{
+	return relativeFiringEnergy;
+}
+inline double Weapon::RelativeFiringHeat() const
+{
+	return relativeFiringHeat;
+}
+inline double Weapon::RelativeFiringFuel() const
+{
+	return relativeFiringFuel;
+}
+inline double Weapon::RelativeFiringHull() const
+{
+	return relativeFiringHull;
+}
+inline double Weapon::RelativeFiringShields() const
+{
+	return relativeFiringShields;
+}
 
-inline double Weapon::Piercing() const { return piercing; }
+inline double Weapon::Piercing() const
+{
+	return piercing;
+}
 
-inline double Weapon::Prospecting() const { return prospecting; }
+inline double Weapon::Prospecting() const
+{
+	return prospecting;
+}
 
-inline double Weapon::SplitRange() const { return splitRange; }
-inline double Weapon::TriggerRadius() const { return triggerRadius; }
-inline double Weapon::BlastRadius() const { return blastRadius; }
-inline double Weapon::SafeRange() const { return safeRange; }
-inline double Weapon::HitForce() const { return TotalDamage(HIT_FORCE); }
+inline double Weapon::SplitRange() const
+{
+	return splitRange;
+}
+inline double Weapon::TriggerRadius() const
+{
+	return triggerRadius;
+}
+inline double Weapon::BlastRadius() const
+{
+	return blastRadius;
+}
+inline double Weapon::SafeRange() const
+{
+	return safeRange;
+}
+inline double Weapon::HitForce() const
+{
+	return TotalDamage(HIT_FORCE);
+}
 
-inline bool Weapon::IsSafe() const { return isSafe; }
-inline bool Weapon::IsPhasing() const { return isPhasing; }
-inline bool Weapon::IsDamageScaled() const { return isDamageScaled; }
-inline bool Weapon::IsGravitational() const { return isGravitational; }
-inline bool Weapon::IsFused() const { return isFused; }
-inline bool Weapon::CanCollideShips() const { return canCollideShips; }
-inline bool Weapon::CanCollideAsteroids() const { return canCollideAsteroids; }
-inline bool Weapon::CanCollideMinables() const { return canCollideMinables; }
+inline bool Weapon::IsSafe() const
+{
+	return isSafe;
+}
+inline bool Weapon::IsPhasing() const
+{
+	return isPhasing;
+}
+inline bool Weapon::IsDamageScaled() const
+{
+	return isDamageScaled;
+}
+inline bool Weapon::IsGravitational() const
+{
+	return isGravitational;
+}
+inline bool Weapon::IsFused() const
+{
+	return isFused;
+}
+inline bool Weapon::CanCollideShips() const
+{
+	return canCollideShips;
+}
+inline bool Weapon::CanCollideAsteroids() const
+{
+	return canCollideAsteroids;
+}
+inline bool Weapon::CanCollideMinables() const
+{
+	return canCollideMinables;
+}
 
-inline double Weapon::ShieldDamage() const { return TotalDamage(SHIELD_DAMAGE); }
-inline double Weapon::HullDamage() const { return TotalDamage(HULL_DAMAGE); }
-inline double Weapon::DisabledDamage() const { return TotalDamage(DISABLED_DAMAGE); }
-inline double Weapon::MinableDamage() const { return TotalDamage(MINABLE_DAMAGE); }
-inline double Weapon::FuelDamage() const { return TotalDamage(FUEL_DAMAGE); }
-inline double Weapon::HeatDamage() const { return TotalDamage(HEAT_DAMAGE); }
-inline double Weapon::EnergyDamage() const { return TotalDamage(ENERGY_DAMAGE); }
+inline double Weapon::ShieldDamage() const
+{
+	return TotalDamage(SHIELD_DAMAGE);
+}
+inline double Weapon::HullDamage() const
+{
+	return TotalDamage(HULL_DAMAGE);
+}
+inline double Weapon::DisabledDamage() const
+{
+	return TotalDamage(DISABLED_DAMAGE);
+}
+inline double Weapon::MinableDamage() const
+{
+	return TotalDamage(MINABLE_DAMAGE);
+}
+inline double Weapon::FuelDamage() const
+{
+	return TotalDamage(FUEL_DAMAGE);
+}
+inline double Weapon::HeatDamage() const
+{
+	return TotalDamage(HEAT_DAMAGE);
+}
+inline double Weapon::EnergyDamage() const
+{
+	return TotalDamage(ENERGY_DAMAGE);
+}
 
-inline double Weapon::IonDamage() const { return TotalDamage(ION_DAMAGE); }
-inline double Weapon::ScramblingDamage() const { return TotalDamage(WEAPON_JAMMING_DAMAGE); }
-inline double Weapon::DisruptionDamage() const { return TotalDamage(DISRUPTION_DAMAGE); }
-inline double Weapon::SlowingDamage() const { return TotalDamage(SLOWING_DAMAGE); }
-inline double Weapon::DischargeDamage() const { return TotalDamage(DISCHARGE_DAMAGE); }
-inline double Weapon::CorrosionDamage() const { return TotalDamage(CORROSION_DAMAGE); }
-inline double Weapon::LeakDamage() const { return TotalDamage(LEAK_DAMAGE); }
-inline double Weapon::BurnDamage() const { return TotalDamage(BURN_DAMAGE); }
+inline double Weapon::IonDamage() const
+{
+	return TotalDamage(ION_DAMAGE);
+}
+inline double Weapon::ScramblingDamage() const
+{
+	return TotalDamage(WEAPON_JAMMING_DAMAGE);
+}
+inline double Weapon::DisruptionDamage() const
+{
+	return TotalDamage(DISRUPTION_DAMAGE);
+}
+inline double Weapon::SlowingDamage() const
+{
+	return TotalDamage(SLOWING_DAMAGE);
+}
+inline double Weapon::DischargeDamage() const
+{
+	return TotalDamage(DISCHARGE_DAMAGE);
+}
+inline double Weapon::CorrosionDamage() const
+{
+	return TotalDamage(CORROSION_DAMAGE);
+}
+inline double Weapon::LeakDamage() const
+{
+	return TotalDamage(LEAK_DAMAGE);
+}
+inline double Weapon::BurnDamage() const
+{
+	return TotalDamage(BURN_DAMAGE);
+}
 
-inline double Weapon::RelativeShieldDamage() const { return TotalDamage(RELATIVE_SHIELD_DAMAGE); }
-inline double Weapon::RelativeHullDamage() const { return TotalDamage(RELATIVE_HULL_DAMAGE); }
-inline double Weapon::RelativeDisabledDamage() const { return TotalDamage(RELATIVE_DISABLED_DAMAGE); }
-inline double Weapon::RelativeMinableDamage() const { return TotalDamage(RELATIVE_MINABLE_DAMAGE); }
-inline double Weapon::RelativeFuelDamage() const { return TotalDamage(RELATIVE_FUEL_DAMAGE); }
-inline double Weapon::RelativeHeatDamage() const { return TotalDamage(RELATIVE_HEAT_DAMAGE); }
-inline double Weapon::RelativeEnergyDamage() const { return TotalDamage(RELATIVE_ENERGY_DAMAGE); }
+inline double Weapon::RelativeShieldDamage() const
+{
+	return TotalDamage(RELATIVE_SHIELD_DAMAGE);
+}
+inline double Weapon::RelativeHullDamage() const
+{
+	return TotalDamage(RELATIVE_HULL_DAMAGE);
+}
+inline double Weapon::RelativeDisabledDamage() const
+{
+	return TotalDamage(RELATIVE_DISABLED_DAMAGE);
+}
+inline double Weapon::RelativeMinableDamage() const
+{
+	return TotalDamage(RELATIVE_MINABLE_DAMAGE);
+}
+inline double Weapon::RelativeFuelDamage() const
+{
+	return TotalDamage(RELATIVE_FUEL_DAMAGE);
+}
+inline double Weapon::RelativeHeatDamage() const
+{
+	return TotalDamage(RELATIVE_HEAT_DAMAGE);
+}
+inline double Weapon::RelativeEnergyDamage() const
+{
+	return TotalDamage(RELATIVE_ENERGY_DAMAGE);
+}
 
-inline bool Weapon::DoesDamage() const { if(!calculatedDamage) TotalDamage(0); return doesDamage; }
+inline bool Weapon::DoesDamage() const
+{
+	if(!calculatedDamage)
+		TotalDamage(0);
+	return doesDamage;
+}
 
-inline bool Weapon::HasDamageDropoff() const { return hasDamageDropoff; }
+inline bool Weapon::HasDamageDropoff() const
+{
+	return hasDamageDropoff;
+}
 
 
 

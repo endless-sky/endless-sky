@@ -50,8 +50,8 @@ public:
 
 	// "Instantiate" this action by filling in the wildcard text for the actual
 	// destination, payment, cargo, etc.
-	NPCAction Instantiate(std::map<std::string, std::string> &subs,
-		const System *origin, int jumps, int64_t payload) const;
+	NPCAction Instantiate(
+		std::map<std::string, std::string> &subs, const System *origin, int jumps, int64_t payload) const;
 
 
 private:

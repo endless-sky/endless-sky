@@ -16,8 +16,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlanetLabel.h"
 
 #include "Angle.h"
-#include "text/Font.h"
-#include "text/FontSet.h"
 #include "Government.h"
 #include "LineShader.h"
 #include "pi.h"
@@ -28,6 +26,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "RingShader.h"
 #include "StellarObject.h"
 #include "System.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
 #include "Wormhole.h"
 
 #include <algorithm>
@@ -105,10 +105,10 @@ PlanetLabel::PlanetLabel(const vector<PlanetLabel> &labels, const System &system
 	{
 		SetBoundingBox(labelDimensions, angle);
 		if(none_of(allZooms.begin(), allZooms.end(),
-				[&](const double zoom)
-				{
-					return HasOverlaps(labels, system, object, zoom);
-				}))
+			   [&](const double zoom)
+			   {
+				   return HasOverlaps(labels, system, object, zoom);
+			   }))
 		{
 			innerAngle = angle;
 			break;
@@ -173,10 +173,9 @@ void PlanetLabel::Draw() const
 		LineShader::Draw(from, to, 1.3f, labelColor);
 
 		// Use non-rounding version to prevent labels from jittering.
-		FontSet::Get(18).DrawAliased(name, to.X() + nameOffset.X(),
-			to.Y() + nameOffset.Y(), labelColor);
-		FontSet::Get(14).DrawAliased(government, to.X() + governmentOffset.X(),
-			to.Y() + governmentOffset.Y(), labelColor);
+		FontSet::Get(18).DrawAliased(name, to.X() + nameOffset.X(), to.Y() + nameOffset.Y(), labelColor);
+		FontSet::Get(14).DrawAliased(
+			government, to.X() + governmentOffset.X(), to.Y() + governmentOffset.Y(), labelColor);
 	}
 }
 
@@ -186,8 +185,8 @@ void PlanetLabel::SetBoundingBox(const Point &labelDimensions, const double angl
 {
 	const Point unit = Angle(angle).Unit();
 	zoomOffset = objectPosition + unit * objectRadius;
-	box = Rectangle(unit * (INNER_SPACE + LINE_GAP + LINE_LENGTH) + GetOffset(unit, labelDimensions),
-		labelDimensions);
+	box = Rectangle(
+		unit * (INNER_SPACE + LINE_GAP + LINE_LENGTH) + GetOffset(unit, labelDimensions), labelDimensions);
 }
 
 
@@ -202,7 +201,7 @@ Rectangle PlanetLabel::GetBoundingBox(const double zoom) const
 // Check if the label for the given stellar object overlaps
 // with any existing label or any other stellar object in the system.
 bool PlanetLabel::HasOverlaps(const vector<PlanetLabel> &labels, const System &system,
-		const StellarObject &object, const double zoom) const
+	const StellarObject &object, const double zoom) const
 {
 	const Rectangle boundingBox = GetBoundingBox(zoom);
 
@@ -211,8 +210,8 @@ bool PlanetLabel::HasOverlaps(const vector<PlanetLabel> &labels, const System &s
 			return true;
 
 	for(const StellarObject &other : system.Objects())
-		if(&other != &object && boundingBox.Overlaps(other.Position() * zoom,
-				other.Radius() * zoom + MIN_DISTANCE))
+		if(&other != &object
+			&& boundingBox.Overlaps(other.Position() * zoom, other.Radius() * zoom + MIN_DISTANCE))
 			return true;
 
 	return false;

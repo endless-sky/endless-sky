@@ -15,16 +15,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "PlayerInfoPanel.h"
 
-#include "text/alignment.hpp"
 #include "Command.h"
-#include "text/Font.h"
-#include "text/FontSet.h"
-#include "text/Format.h"
 #include "GameData.h"
 #include "InfoPanelState.h"
 #include "Information.h"
 #include "Interface.h"
-#include "text/layout.hpp"
 #include "LogbookPanel.h"
 #include "MissionPanel.h"
 #include "Planet.h"
@@ -34,6 +29,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Ship.h"
 #include "ShipInfoPanel.h"
 #include "System.h"
+#include "text/alignment.hpp"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
+#include "text/layout.hpp"
 #include "text/Table.h"
 #include "text/truncate.hpp"
 #include "UI.h"
@@ -49,8 +49,8 @@ namespace {
 	const int LINES_PER_PAGE = 26;
 
 	// Draw a list of (string, value) pairs.
-	void DrawList(vector<pair<int64_t, string>> &list, Table &table, const string &title,
-		int maxCount = 0, bool drawValues = true)
+	void DrawList(vector<pair<int64_t, string>> &list, Table &table, const string &title, int maxCount = 0,
+		bool drawValues = true)
 	{
 		if(list.empty())
 			return;
@@ -116,8 +116,8 @@ namespace {
 
 	bool CompareFuel(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
 	{
-		return lhs->Attributes().Get("fuel capacity") * lhs->Fuel() <
-			rhs->Attributes().Get("fuel capacity") * rhs->Fuel();
+		return lhs->Attributes().Get("fuel capacity") * lhs->Fuel()
+			   < rhs->Attributes().Get("fuel capacity") * rhs->Fuel();
 	}
 
 	bool CompareRequiredCrew(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
@@ -164,15 +164,11 @@ const PlayerInfoPanel::SortableColumn PlayerInfoPanel::columns[7] = {
 	SortableColumn("shields", 550, 493, {57, Alignment::RIGHT, Truncate::BACK}, CompareShields),
 	SortableColumn("hull", 610, 553, {57, Alignment::RIGHT, Truncate::BACK}, CompareHull),
 	SortableColumn("fuel", 670, 613, {57, Alignment::RIGHT, Truncate::BACK}, CompareFuel),
-	SortableColumn("crew", 730, 673, {57, Alignment::RIGHT, Truncate::BACK}, CompareRequiredCrew)
-};
+	SortableColumn("crew", 730, 673, {57, Alignment::RIGHT, Truncate::BACK}, CompareRequiredCrew)};
 
 
 
-PlayerInfoPanel::PlayerInfoPanel(PlayerInfo &player)
-	: PlayerInfoPanel(player, InfoPanelState(player))
-{
-}
+PlayerInfoPanel::PlayerInfoPanel(PlayerInfo &player) : PlayerInfoPanel(player, InfoPanelState(player)) {}
 
 PlayerInfoPanel::PlayerInfoPanel(PlayerInfo &player, InfoPanelState panelState)
 	: player(player), panelState(panelState)
@@ -278,8 +274,8 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 {
 	bool control = (mod & (KMOD_CTRL | KMOD_GUI));
 	bool shift = (mod & KMOD_SHIFT);
-	if(key == 'd' || key == SDLK_ESCAPE || (key == 'w' && control)
-			|| key == 'i' || command.Has(Command::INFO))
+	if(key == 'd' || key == SDLK_ESCAPE || (key == 'w' && control) || key == 'i'
+		|| command.Has(Command::INFO))
 	{
 		GetUI()->Pop(this);
 	}
@@ -396,7 +392,8 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 				ScrollAbsolute(selected);
 		}
 	}
-	else if(panelState.CanEdit() && (key == 'k' || (key == 'p' && shift)) && !panelState.AllSelected().empty())
+	else if(panelState.CanEdit() && (key == 'k' || (key == 'p' && shift))
+			&& !panelState.AllSelected().empty())
 	{
 		// Toggle the parked status for all selected ships.
 		bool allParked = true;
@@ -606,12 +603,12 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 	table.SetUnderline(0, columnWidth);
 	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
 
-	table.DrawTruncatedPair("player:", dim, player.FirstName() + " " + player.LastName(),
-		bright, Truncate::MIDDLE, true);
-	table.DrawTruncatedPair("net worth:", dim, Format::CreditString(player.Accounts().NetWorth()),
-		bright, Truncate::MIDDLE, true);
-	table.DrawTruncatedPair("time played:", dim, Format::PlayTime(player.GetPlayTime()),
-		bright, Truncate::MIDDLE, true);
+	table.DrawTruncatedPair(
+		"player:", dim, player.FirstName() + " " + player.LastName(), bright, Truncate::MIDDLE, true);
+	table.DrawTruncatedPair("net worth:", dim, Format::CreditString(player.Accounts().NetWorth()), bright,
+		Truncate::MIDDLE, true);
+	table.DrawTruncatedPair(
+		"time played:", dim, Format::PlayTime(player.GetPlayTime()), bright, Truncate::MIDDLE, true);
 
 	// Determine the player's combat rating.
 	int combatExperience = player.Conditions().Get("combat rating");
@@ -625,15 +622,13 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 		table.Advance();
 		table.DrawGap(5);
 
-		table.DrawTruncatedPair("rank:", dim,
-			to_string(combatLevel) + " - " + combatRating,
-			dim, Truncate::MIDDLE, false);
-		table.DrawTruncatedPair("experience:", dim,
-			Format::Number(combatExperience), dim, Truncate::MIDDLE, false);
+		table.DrawTruncatedPair(
+			"rank:", dim, to_string(combatLevel) + " - " + combatRating, dim, Truncate::MIDDLE, false);
+		table.DrawTruncatedPair(
+			"experience:", dim, Format::Number(combatExperience), dim, Truncate::MIDDLE, false);
 		bool maxRank = (combatRating == GameData::Rating("combat", combatLevel + 1));
 		table.DrawTruncatedPair("    for next rank:", dim,
-				maxRank ? "MAX" : Format::Number(ceil(exp(combatLevel + 1))),
-				dim, Truncate::MIDDLE, false);
+			maxRank ? "MAX" : Format::Number(ceil(exp(combatLevel + 1))), dim, Truncate::MIDDLE, false);
 	}
 
 	// Display the factors affecting piracy targeting the player.
@@ -711,16 +706,16 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 	const Point tablePoint = table.GetPoint();
 	for(const auto &column : columns)
 	{
-		Rectangle zone = Rectangle(
-			tablePoint + Point((column.offset + column.endX) / 2, table.GetRowSize().Y() / 2),
-			Point(column.layout.width, table.GetRowSize().Y())
-		);
+		Rectangle zone =
+			Rectangle(tablePoint + Point((column.offset + column.endX) / 2, table.GetRowSize().Y() / 2),
+				Point(column.layout.width, table.GetRowSize().Y()));
 
 		// Highlight the column header if it is under the mouse
 		// or ships are sorted according to that column.
-		const Color &columnHeaderColor = ((!isDragging && zone.Contains(hoverPoint))
-			|| panelState.CurrentSort() == column.shipSort)
-				? bright : dim;
+		const Color &columnHeaderColor =
+			((!isDragging && zone.Contains(hoverPoint)) || panelState.CurrentSort() == column.shipSort)
+				? bright
+				: dim;
 
 		table.Draw(column.name, columnHeaderColor);
 
@@ -752,19 +747,18 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 
 		const Ship &ship = **sit;
 		bool isElsewhere = (ship.GetSystem() != player.GetSystem());
-		isElsewhere |= ((ship.CanBeCarried() || ship.GetPlanet() != player.GetPlanet()) && player.GetPlanet());
+		isElsewhere |=
+			((ship.CanBeCarried() || ship.GetPlanet() != player.GetPlanet()) && player.GetPlanet());
 		bool isDead = ship.IsDestroyed();
 		bool isDisabled = ship.IsDisabled();
 		bool isFlagship = &ship == player.Flagship();
 
-		table.SetColor(
-			isDead ? dead
-			: isHovered ? bright
-			: isFlagship ? flagship
-			: isDisabled ? disabled
-			: isElsewhere ? elsewhere
-			: dim
-		);
+		table.SetColor(isDead        ? dead
+					   : isHovered   ? bright
+					   : isFlagship  ? flagship
+					   : isDisabled  ? disabled
+					   : isElsewhere ? elsewhere
+									 : dim);
 
 		// Indent the ship name if it is a fighter or drone.
 		table.Draw(ship.CanBeCarried() ? "    " + ship.Name() : ship.Name());
@@ -779,8 +773,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 		string hull = to_string(static_cast<int>(100. * max(0., ship.Hull()))) + "%";
 		table.Draw(hull);
 
-		string fuel = to_string(static_cast<int>(
-			ship.Attributes().Get("fuel capacity") * ship.Fuel()));
+		string fuel = to_string(static_cast<int>(ship.Attributes().Get("fuel capacity") * ship.Fuel()));
 		table.Draw(fuel);
 
 		// If this isn't the flagship, we'll remember how many crew it has, but
@@ -820,9 +813,8 @@ void PlayerInfoPanel::SortShips(InfoPanelState::ShipComparator *shipComparator)
 
 	// Save selected ships to preserve selection after sort.
 	multiset<shared_ptr<Ship>, InfoPanelState::ShipComparator *> selectedShips(shipComparator);
-	shared_ptr<Ship> lastSelected = panelState.SelectedIndex() == -1
-		? nullptr
-		: panelState.Ships()[panelState.SelectedIndex()];
+	shared_ptr<Ship> lastSelected =
+		panelState.SelectedIndex() == -1 ? nullptr : panelState.Ships()[panelState.SelectedIndex()];
 
 	for(int i : panelState.AllSelected())
 		selectedShips.insert(panelState.Ships()[i]);
@@ -836,11 +828,7 @@ void PlayerInfoPanel::SortShips(InfoPanelState::ShipComparator *shipComparator)
 			break;
 		}
 
-	stable_sort(
-		panelState.Ships().begin() + 1,
-		panelState.Ships().end(),
-		shipComparator
-	);
+	stable_sort(panelState.Ships().begin() + 1, panelState.Ships().end(), shipComparator);
 
 	// Load the same selected ships from before the sort.
 	auto it = selectedShips.begin();
@@ -910,12 +898,7 @@ bool PlayerInfoPanel::Scroll(int distance)
 
 
 PlayerInfoPanel::SortableColumn::SortableColumn(
-	string name,
-	double offset,
-	double endX,
-	Layout layout,
-	InfoPanelState::ShipComparator *shipSort
-)
+	string name, double offset, double endX, Layout layout, InfoPanelState::ShipComparator *shipSort)
 	: name(name), offset(offset), endX(endX), layout(layout), shipSort(shipSort)
 {
 }

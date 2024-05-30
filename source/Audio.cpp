@@ -417,8 +417,7 @@ void Audio::Step()
 			for(size_t i = 0; i < chunk.size(); ++i)
 			{
 				// Blend the two tracks together.
-				fadeBuffer.push_back(
-					(musicFade * other[i] + (65536 - musicFade) * chunk[i]) / 65536);
+				fadeBuffer.push_back((musicFade * other[i] + (65536 - musicFade) * chunk[i]) / 65536);
 
 				// Slowly fade into the new track.
 				if(musicFade)
@@ -531,8 +530,7 @@ namespace {
 
 
 	// This is a wrapper for an OpenAL audio source.
-	Source::Source(const Sound *sound, unsigned source)
-		: sound(sound), source(source)
+	Source::Source(const Sound *sound, unsigned source) : sound(sound), source(source)
 	{
 		// Give each source a small, random pitch variation. Otherwise, multiple
 		// instances of the same sound playing at slightly different times

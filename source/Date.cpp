@@ -52,10 +52,7 @@ namespace {
 // Since converting a date to a string is the most common operation, store the
 // date in a way that allows easy extraction of the day, month, and year. Allow
 // 5 bits for the day and 4 for the month. This also allows easy comparison.
-Date::Date(int day, int month, int year)
-	: date(day + (month << 5) + (year << 9))
-{
-}
+Date::Date(int day, int month, int year) : date(day + (month << 5) + (year << 9)) {}
 
 
 
@@ -79,7 +76,7 @@ const string &Date::ToString() const
 		int year = Year();
 
 		static const string MONTH[] = {
-				"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+			"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 
 		const string &weekday_str = Weekday(day, month, year);
 		const string &month_str = MONTH[month - 1];
@@ -117,20 +114,8 @@ string Date::LongString() const
 		dayString += "rd";
 
 	// Write out the month name instead of abbreviating it.
-	static const string MONTH[] = {
-		"January",
-		"February",
-		"March",
-		"April",
-		"May",
-		"June",
-		"July",
-		"August",
-		"September",
-		"October",
-		"November",
-		"December"
-	};
+	static const string MONTH[] = {"January", "February", "March", "April", "May", "June", "July", "August",
+		"September", "October", "November", "December"};
 	const string &month = MONTH[Month() - 1];
 
 	Preferences::DateFormat dateFormat = Preferences::GetDateFormat();

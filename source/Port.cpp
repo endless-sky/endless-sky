@@ -20,7 +20,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Port.h"
 
 #include "DataNode.h"
-#include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
 #include "PlayerInfo.h"
@@ -30,6 +29,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipEvent.h"
 #include "SpriteSet.h"
 #include "System.h"
+#include "text/Format.h"
 
 #include <algorithm>
 
@@ -55,7 +55,8 @@ void Port::Load(const DataNode &node)
 
 		if(key == "recharges" && (child.HasChildren() || child.Size() >= 2))
 		{
-			auto setRecharge = [&](const DataNode &valueNode, const string &value) noexcept -> void {
+			auto setRecharge = [&](const DataNode &valueNode, const string &value) noexcept -> void
+			{
 				if(value == "all")
 					recharge |= RechargeType::All;
 				else if(value == "shields")
@@ -76,7 +77,8 @@ void Port::Load(const DataNode &node)
 		}
 		else if(key == "services" && (child.HasChildren() || child.Size() >= 2))
 		{
-			auto setServices = [&](const DataNode &valueNode, const string &value) noexcept -> void {
+			auto setServices = [&](const DataNode &valueNode, const string &value) noexcept -> void
+			{
 				if(value == "all")
 					services |= ServicesType::All;
 				else if(value == "trading")

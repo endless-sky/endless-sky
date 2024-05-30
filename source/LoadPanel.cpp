@@ -20,15 +20,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ConversationPanel.h"
 #include "DataFile.h"
 #include "Dialog.h"
-#include "text/DisplayText.h"
 #include "Files.h"
 #include "FillShader.h"
-#include "text/Font.h"
-#include "text/FontSet.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
-#include "text/layout.hpp"
 #include "MainPanel.h"
 #include "MaskManager.h"
 #include "PlayerInfo.h"
@@ -36,6 +32,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Rectangle.h"
 #include "StarField.h"
 #include "StartConditionsPanel.h"
+#include "text/DisplayText.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/layout.hpp"
 #include "text/truncate.hpp"
 #include "UI.h"
 
@@ -50,25 +50,25 @@ using namespace std;
 
 namespace {
 	// Return a pair containing settings to use for time formatting.
-	pair<const char*, const char*> TimestampFormatString(Preferences::DateFormat format)
+	pair<const char *, const char *> TimestampFormatString(Preferences::DateFormat format)
 	{
 		// pair<string, string>: Linux (1st) and Windows (2nd) format strings.
 		switch(format)
 		{
-			case Preferences::DateFormat::YMD:
-				return make_pair("%F %T", "%F %T");
-			case Preferences::DateFormat::MDY:
-				return make_pair("%-I:%M %p on %b %-d, %Y", "%#I:%M %p on %b %#d, %Y");
-			case Preferences::DateFormat::DMY:
-			default:
-				return make_pair("%-I:%M %p on %-d %b %Y", "%#I:%M %p on %#d %b %Y");
+		case Preferences::DateFormat::YMD:
+			return make_pair("%F %T", "%F %T");
+		case Preferences::DateFormat::MDY:
+			return make_pair("%-I:%M %p on %b %-d, %Y", "%#I:%M %p on %b %#d, %Y");
+		case Preferences::DateFormat::DMY:
+		default:
+			return make_pair("%-I:%M %p on %-d %b %Y", "%#I:%M %p on %#d %b %Y");
 		}
 	}
 
 	// Convert a time_t to a human-readable time and date.
 	string TimestampString(time_t timestamp)
 	{
-		pair<const char*, const char*> format = TimestampFormatString(Preferences::GetDateFormat());
+		pair<const char *, const char *> format = TimestampFormatString(Preferences::GetDateFormat());
 		static const size_t BUF_SIZE = 25;
 		char str[BUF_SIZE];
 
@@ -115,8 +115,8 @@ namespace {
 
 LoadPanel::LoadPanel(PlayerInfo &player, UI &gamePanels)
 	: player(player), gamePanels(gamePanels), selectedPilot(player.Identifier()),
-	pilotBox(GameData::Interfaces().Get("load menu")->GetBox("pilots")),
-	snapshotBox(GameData::Interfaces().Get("load menu")->GetBox("snapshots"))
+	  pilotBox(GameData::Interfaces().Get("load menu")->GetBox("pilots")),
+	  snapshotBox(GameData::Interfaces().Get("load menu")->GetBox("snapshots"))
 {
 	// If you have a player loaded, and the player is on a planet, make sure
 	// the player is saved so that any snapshot you create will be of the
@@ -124,7 +124,7 @@ LoadPanel::LoadPanel(PlayerInfo &player, UI &gamePanels)
 	// game is paused and 'dirty', i.e. the "main panel" is not on top, and we
 	// actually were using the loaded save.
 	if(player.GetPlanet() && !player.IsDead() && !gamePanels.IsTop(&*gamePanels.Root())
-			&& gamePanels.CanSave())
+		&& gamePanels.CanSave())
 		player.Save();
 	UpdateLists();
 }
@@ -197,15 +197,16 @@ void LoadPanel::Draw()
 			const Point textPoint(drawPoint.X() + hTextPad, zone.Center().Y() - font.Height() / 2);
 			bool isHighlighted = (it.first == selectedPilot || (hasHover && zone.Contains(hoverPoint)));
 
-			double alpha = min((drawPoint.Y() - (top - fadeOut)) * .1,
-					(bottom - fadeOut - drawPoint.Y()) * .1);
+			double alpha =
+				min((drawPoint.Y() - (top - fadeOut)) * .1, (bottom - fadeOut - drawPoint.Y()) * .1);
 			alpha = max(alpha, 0.);
 			alpha = min(alpha, 1.);
 
 			if(it.first == selectedPilot)
 				FillShader::Fill(zone.Center(), zone.Dimensions(), Color(.1 * alpha, 0.));
 			const int textWidth = pilotBox.Width() - 2. * hTextPad;
-			font.Draw({it.first, {textWidth, Truncate::BACK}}, textPoint, Color((isHighlighted ? .7 : .5) * alpha, 0.));
+			font.Draw({it.first, {textWidth, Truncate::BACK}}, textPoint,
+				Color((isHighlighted ? .7 : .5) * alpha, 0.));
 		}
 	}
 
@@ -245,8 +246,8 @@ void LoadPanel::Draw()
 					hoverText = TimestampString(it.second);
 			}
 
-			double alpha = min((drawPoint.Y() - (top - fadeOut)) * .1,
-					(bottom - fadeOut - drawPoint.Y()) * .1);
+			double alpha =
+				min((drawPoint.Y() - (top - fadeOut)) * .1, (bottom - fadeOut - drawPoint.Y()) * .1);
 			alpha = max(alpha, 0.);
 			alpha = min(alpha, 1.);
 
@@ -255,7 +256,8 @@ void LoadPanel::Draw()
 			size_t pos = file.find('~') + 1;
 			const string name = file.substr(pos, file.size() - 4 - pos);
 			const int textWidth = snapshotBox.Width() - 2. * hTextPad;
-			font.Draw({name, {textWidth, Truncate::BACK}}, textPoint, Color((isHighlighted ? .7 : .5) * alpha, 0.));
+			font.Draw(
+				{name, {textWidth, Truncate::BACK}}, textPoint, Color((isHighlighted ? .7 : .5) * alpha, 0.));
 		}
 	}
 
@@ -285,7 +287,10 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			"Are you sure you want to delete the selected pilot, \"" + loadedInfo.Name()
 				+ "\", and all their saved games?\n\n(This will permanently delete the pilot data.)\n"
 				+ "Confirm the name of the pilot you want to delete.",
-				[this](const string &pilot) { return pilot == loadedInfo.Name(); }));
+			[this](const string &pilot)
+			{
+				return pilot == loadedInfo.Name();
+			}));
 	}
 	else if(key == 'a' && !player.IsDead() && player.IsLoaded())
 	{
@@ -296,16 +301,14 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		nameToConfirm.clear();
 		string lastSave = Files::Saves() + it->second.front().first;
 		GetUI()->Push(new Dialog(this, &LoadPanel::SnapshotCallback,
-			"Enter a name for this snapshot, or use the most recent save's date:",
-			FileDate(lastSave)));
+			"Enter a name for this snapshot, or use the most recent save's date:", FileDate(lastSave)));
 	}
 	else if(key == 'R' && !selectedFile.empty())
 	{
 		string fileName = selectedFile.substr(selectedFile.rfind('/') + 1);
 		if(!(fileName == selectedPilot + ".txt"))
 			GetUI()->Push(new Dialog(this, &LoadPanel::DeleteSave,
-				"Are you sure you want to delete the selected saved game file, \""
-					+ selectedFile + "\"?"));
+				"Are you sure you want to delete the selected saved game file, \"" + selectedFile + "\"?"));
 	}
 	else if((key == 'l' || key == 'e') && !selectedPilot.empty())
 	{
@@ -330,7 +333,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		{
 			auto it = files.begin();
 			int index = 0;
-			for( ; it != files.end(); ++it, ++index)
+			for(; it != files.end(); ++it, ++index)
 				if(it->first == selectedPilot)
 					break;
 
@@ -366,7 +369,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		{
 			auto it = pit->second.begin();
 			int index = 0;
-			for( ; it != pit->second.end(); ++it, ++index)
+			for(; it != pit->second.end(); ++it, ++index)
 				if(it->first == selectedFile)
 					break;
 
@@ -532,8 +535,7 @@ void LoadPanel::UpdateLists()
 			[](const pair<string, time_t> &a, const pair<string, time_t> &b) -> bool
 			{
 				return a.second > b.second || (a.second == b.second && a.first < b.first);
-			}
-		);
+			});
 	}
 
 	if(!files.empty())
@@ -571,8 +573,8 @@ void LoadPanel::SnapshotCallback(const string &name)
 	if(Files::Exists(to) && suffix != nameToConfirm)
 	{
 		nameToConfirm = suffix;
-		GetUI()->Push(new Dialog(this, &LoadPanel::SnapshotCallback, "Warning: \"" + suffix
-			+ "\" is being used for an existing snapshot.\nOverwrite it?", suffix));
+		GetUI()->Push(new Dialog(this, &LoadPanel::SnapshotCallback,
+			"Warning: \"" + suffix + "\" is being used for an existing snapshot.\nOverwrite it?", suffix));
 	}
 	else
 		WriteSnapshot(from, to);

@@ -223,7 +223,8 @@ void Government::Load(const DataNode &node)
 				const string &grandKey = grand.Token(0);
 				bool hasGrandValue = grand.Size() >= 2;
 				if(grandKey == "player reputation" && hasGrandValue)
-					initialPlayerReputation = add ? initialPlayerReputation + grand.Value(valueIndex) : grand.Value(valueIndex);
+					initialPlayerReputation =
+						add ? initialPlayerReputation + grand.Value(valueIndex) : grand.Value(valueIndex);
 				else if(grandKey == "max" && hasGrandValue)
 					reputationMax = add ? reputationMax + grand.Value(valueIndex) : grand.Value(valueIndex);
 				else if(grandKey == "min" && hasGrandValue)
@@ -361,7 +362,8 @@ void Government::Load(const DataNode &node)
 		else if(key == "default attitude")
 			defaultAttitude = child.Value(valueIndex);
 		else if(key == "player reputation")
-			initialPlayerReputation = add ? initialPlayerReputation + child.Value(valueIndex) : child.Value(valueIndex);
+			initialPlayerReputation =
+				add ? initialPlayerReputation + child.Value(valueIndex) : child.Value(valueIndex);
 		else if(key == "crew attack")
 			crewAttack = max(0., add ? child.Value(valueIndex) + crewAttack : child.Value(valueIndex));
 		else if(key == "crew defense")
@@ -379,8 +381,8 @@ void Government::Load(const DataNode &node)
 		else if(key == "color")
 		{
 			if(child.Size() >= 3 + valueIndex)
-				color = ExclusiveItem<Color>(Color(child.Value(valueIndex),
-						child.Value(valueIndex + 1), child.Value(valueIndex + 2)));
+				color = ExclusiveItem<Color>(
+					Color(child.Value(valueIndex), child.Value(valueIndex + 1), child.Value(valueIndex + 2)));
 			else if(child.Size() >= 1 + valueIndex)
 				color = ExclusiveItem<Color>(GameData::Colors().Get(child.Token(valueIndex)));
 		}

@@ -17,7 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "comparators/ByName.h"
 #include "CoreStartData.h"
-#include "text/Format.h"
 #include "GameData.h"
 #include "Outfit.h"
 #include "Planet.h"
@@ -27,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Sprite.h"
 #include "StellarObject.h"
 #include "System.h"
+#include "text/Format.h"
 #include "UI.h"
 
 #include <algorithm>
@@ -38,16 +38,14 @@ using namespace std;
 
 
 
-MapOutfitterPanel::MapOutfitterPanel(PlayerInfo &player)
-	: MapSalesPanel(player, true)
+MapOutfitterPanel::MapOutfitterPanel(PlayerInfo &player) : MapSalesPanel(player, true)
 {
 	Init();
 }
 
 
 
-MapOutfitterPanel::MapOutfitterPanel(const MapPanel &panel, bool onlyHere)
-	: MapSalesPanel(panel, true)
+MapOutfitterPanel::MapOutfitterPanel(const MapPanel &panel, bool onlyHere) : MapSalesPanel(panel, true)
 {
 	Init();
 	onlyShowSoldHere = onlyHere;
@@ -91,11 +89,7 @@ const string &MapOutfitterPanel::KeyLabel(int index) const
 		return MINE;
 
 	static const string LABEL[4] = {
-		"Has no outfitter",
-		"Has outfitter",
-		"Sells this outfit",
-		"Outfit in storage"
-	};
+		"Has no outfitter", "Has outfitter", "Sells this outfit", "Outfit in storage"};
 	return LABEL[index];
 }
 
@@ -134,7 +128,7 @@ double MapOutfitterPanel::SystemValue(const System *system) const
 		return numeric_limits<double>::quiet_NaN();
 
 	auto it = player.Harvested().lower_bound(pair<const System *, const Outfit *>(system, nullptr));
-	for( ; it != player.Harvested().end() && it->first == system; ++it)
+	for(; it != player.Harvested().end() && it->first == system; ++it)
 		if(it->second == selected)
 			return 1.;
 
@@ -253,14 +247,12 @@ void MapOutfitterPanel::DrawItems()
 			if(!storedInSystem && onlyShowStorageHere)
 				continue;
 
-			const string storage_details =
-				onlyShowSoldHere || storedInSystem == 0
-				? ""
-				: storedInSystem == 1
-				? "1 unit in storage"
-				: Format::Number(storedInSystem) + " units in storage";
-			Draw(corner, outfit->Thumbnail(), 0, isForSale, outfit == selected,
-				outfit->DisplayName(), price, info, storage_details);
+			const string storage_details = onlyShowSoldHere || storedInSystem == 0 ? ""
+										   : storedInSystem == 1
+											   ? "1 unit in storage"
+											   : Format::Number(storedInSystem) + " units in storage";
+			Draw(corner, outfit->Thumbnail(), 0, isForSale, outfit == selected, outfit->DisplayName(), price,
+				info, storage_details);
 			list.push_back(outfit);
 		}
 	}

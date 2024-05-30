@@ -48,8 +48,8 @@ namespace {
 
 
 Projectile::Projectile(const Ship &parent, Point position, Angle angle, const Weapon *weapon)
-	: Body(weapon->WeaponSprite(), position, parent.Velocity(), angle),
-	weapon(weapon), targetShip(parent.GetTargetShip()), lifetime(weapon->Lifetime())
+	: Body(weapon->WeaponSprite(), position, parent.Velocity(), angle), weapon(weapon),
+	  targetShip(parent.GetTargetShip()), lifetime(weapon->Lifetime())
 {
 	government = parent.GetGovernment();
 	hitsRemaining = weapon->PenetrationCount();
@@ -75,10 +75,11 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const We
 
 
 
-Projectile::Projectile(const Projectile &parent, const Point &offset, const Angle &angle, const Weapon *weapon)
+Projectile::Projectile(
+	const Projectile &parent, const Point &offset, const Angle &angle, const Weapon *weapon)
 	: Body(weapon->WeaponSprite(), parent.position + parent.velocity + parent.angle.Rotate(offset),
-	parent.velocity, parent.angle + angle),
-	weapon(weapon), targetShip(parent.targetShip), lifetime(weapon->Lifetime())
+		parent.velocity, parent.angle + angle),
+	  weapon(weapon), targetShip(parent.targetShip), lifetime(weapon->Lifetime())
 {
 	government = parent.government;
 	targetGovernment = parent.targetGovernment;
@@ -91,7 +92,8 @@ Projectile::Projectile(const Projectile &parent, const Point &offset, const Angl
 	// it is often the case that submunitions don't add any additional velocity.
 	// But we still want inaccuracy to have an effect on submunitions. Because of
 	// this, we tilt the velocity of submunitions in the direction of the inaccuracy.
-	dV = this->angle.Unit() * (parent.dV.Length() + weapon->Velocity() + Random::Real() * weapon->RandomVelocity());
+	dV = this->angle.Unit()
+		 * (parent.dV.Length() + weapon->Velocity() + Random::Real() * weapon->RandomVelocity());
 	velocity += dV - parent.dV;
 
 	// If a random lifetime is specified, add a random amount up to that amount.
@@ -102,8 +104,7 @@ Projectile::Projectile(const Projectile &parent, const Point &offset, const Angl
 
 
 // Ship explosion.
-Projectile::Projectile(Point position, const Weapon *weapon)
-	: weapon(weapon)
+Projectile::Projectile(Point position, const Weapon *weapon) : weapon(weapon)
 {
 	this->position = std::move(position);
 }
@@ -127,8 +128,8 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 				for(size_t i = 0; i < it.count; ++i)
 				{
 					const Weapon *const subWeapon = it.weapon;
-					Angle inaccuracy = Distribution::GenerateInaccuracy(subWeapon->Inaccuracy(),
-							subWeapon->InaccuracyDistribution());
+					Angle inaccuracy = Distribution::GenerateInaccuracy(
+						subWeapon->Inaccuracy(), subWeapon->InaccuracyDistribution());
 					projectiles.emplace_back(*this, it.offset, it.facing + inaccuracy, subWeapon);
 				}
 		}
@@ -146,8 +147,8 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 	if(target)
 	{
 		target = TargetPtr().get();
-		if(!target || !target->IsTargetable() || target->GetGovernment() != targetGovernment ||
-				(!targetDisabled && target->IsDisabled() && target->CanBeCarried()))
+		if(!target || !target->IsTargetable() || target->GetGovernment() != targetGovernment
+			|| (!targetDisabled && target->IsDisabled() && target->CanBeCarried()))
 		{
 			BreakTarget();
 			target = nullptr;
@@ -239,16 +240,14 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 		{
 			double opticalTracking = weapon->OpticalTracking();
 			double opticalJamming = target->Attributes().Get("optical jamming");
-			opticalConfused = ConfusedTracking(opticalTracking, weapon->Range(),
-				opticalJamming, distance);
+			opticalConfused = ConfusedTracking(opticalTracking, weapon->Range(), opticalJamming, distance);
 		}
 
 		if(weapon->RadarTracking())
 		{
 			double radarTracking = weapon->RadarTracking();
 			double radarJamming = target->Attributes().Get("radar jamming");
-			radarConfused = ConfusedTracking(radarTracking, weapon->Range(),
-				radarJamming, distance);
+			radarConfused = ConfusedTracking(radarTracking, weapon->Range(), radarJamming, distance);
 		}
 		if(infraredConfused && opticalConfused && radarConfused)
 			turn = Random::Real() - min(.5, turn);

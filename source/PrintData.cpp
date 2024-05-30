@@ -40,16 +40,23 @@ namespace {
 	string ObjectName(const Type &object) = delete;
 
 	template <>
-	string ObjectName(const Ship &object) { return object.TrueModelName(); }
+	string ObjectName(const Ship &object)
+	{
+		return object.TrueModelName();
+	}
 
 	template <>
-	string ObjectName(const Outfit &object) { return object.TrueName(); }
+	string ObjectName(const Outfit &object)
+	{
+		return object.TrueName();
+	}
 
 
-	// Take a set of items and a set of sales and print a list of each item followed by the sales it appears in.
+	// Take a set of items and a set of sales and print a list of each item followed by the sales it appears
+	// in.
 	template <class Type>
-	void PrintItemSales(const Set<Type> &items, const Set<Sale<Type>> &sales,
-		const string &itemNoun, const string &saleNoun)
+	void PrintItemSales(
+		const Set<Type> &items, const Set<Sale<Type>> &sales, const string &itemNoun, const string &saleNoun)
 	{
 		cout << itemNoun << ',' << saleNoun << '\n';
 		map<string, set<string>> itemSales;
@@ -96,7 +103,8 @@ namespace {
 	}
 
 	// Takes a Set of objects and prints the key for each, followed by a list of its attributes.
-	// The class 'Type' must have an accessible 'Attributes()' member method which returns a collection of strings.
+	// The class 'Type' must have an accessible 'Attributes()' member method which returns a collection of
+	// strings.
 	template <class Type>
 	void PrintObjectAttributes(const Set<Type> &objects, const string &name)
 	{
@@ -112,8 +120,9 @@ namespace {
 		}
 	}
 
-	// Takes a Set of objects, which must have an accessible member `Attributes()`, returning a collection of strings.
-	// Prints a list of all those string attributes and, for each, the list of keys of objects with that attribute.
+	// Takes a Set of objects, which must have an accessible member `Attributes()`, returning a collection of
+	// strings. Prints a list of all those string attributes and, for each, the list of keys of objects with
+	// that attribute.
 	template <class Type>
 	void PrintObjectsByAttribute(const Set<Type> &objects, const string &name)
 	{
@@ -144,11 +153,12 @@ namespace {
 	{
 		auto PrintBaseShipStats = []() -> void
 		{
-			cout << "model" << ',' << "category" << ',' << "chassis cost" << ',' << "loaded cost" << ',' << "shields" << ','
-				<< "hull" << ',' << "mass" << ',' << "drag" << ',' << "heat dissipation" << ','
-				<< "required crew" << ',' << "bunks" << ',' << "cargo space" << ',' << "fuel" << ','
-				<< "outfit space" << ',' << "weapon capacity" << ',' << "engine capacity" << ',' << "gun mounts" << ','
-				<< "turret mounts" << ',' << "fighter bays" << ',' << "drone bays" << '\n';
+			cout << "model" << ',' << "category" << ',' << "chassis cost" << ',' << "loaded cost" << ','
+				 << "shields" << ',' << "hull" << ',' << "mass" << ',' << "drag" << ',' << "heat dissipation"
+				 << ',' << "required crew" << ',' << "bunks" << ',' << "cargo space" << ',' << "fuel" << ','
+				 << "outfit space" << ',' << "weapon capacity" << ',' << "engine capacity" << ','
+				 << "gun mounts" << ',' << "turret mounts" << ',' << "fighter bays" << ',' << "drone bays"
+				 << '\n';
 
 			for(auto &it : GameData::Ships())
 			{
@@ -198,14 +208,14 @@ namespace {
 
 		auto PrintLoadedShipStats = [](bool variants) -> void
 		{
-			cout << "model" << ',' << "category" << ',' << "cost" << ',' << "shields" << ','
-				<< "hull" << ',' << "mass" << ',' << "required crew" << ',' << "bunks" << ','
-				<< "cargo space" << ',' << "fuel" << ',' << "outfit space" << ',' << "weapon capacity" << ','
-				<< "engine capacity" << ',' << "speed" << ',' << "accel" << ',' << "turn" << ','
-				<< "energy generation" << ',' << "max energy usage" << ',' << "energy capacity" << ','
-				<< "idle/max heat" << ',' << "max heat generation" << ',' << "max heat dissipation" << ','
-				<< "gun mounts" << ',' << "turret mounts" << ',' << "fighter bays" << ','
-				<< "drone bays" << ',' << "deterrence" << '\n';
+			cout << "model" << ',' << "category" << ',' << "cost" << ',' << "shields" << ',' << "hull" << ','
+				 << "mass" << ',' << "required crew" << ',' << "bunks" << ',' << "cargo space" << ','
+				 << "fuel" << ',' << "outfit space" << ',' << "weapon capacity" << ',' << "engine capacity"
+				 << ',' << "speed" << ',' << "accel" << ',' << "turn" << ',' << "energy generation" << ','
+				 << "max energy usage" << ',' << "energy capacity" << ',' << "idle/max heat" << ','
+				 << "max heat generation" << ',' << "max heat dissipation" << ',' << "gun mounts" << ','
+				 << "turret mounts" << ',' << "fighter bays" << ',' << "drone bays" << ',' << "deterrence"
+				 << '\n';
 
 			for(auto &it : GameData::Ships())
 			{
@@ -232,29 +242,29 @@ namespace {
 				cout << ship.BaseAttributes().Get("outfit space") << ',';
 				cout << ship.BaseAttributes().Get("weapon capacity") << ',';
 				cout << ship.BaseAttributes().Get("engine capacity") << ',';
-				cout << (attributes.Get("drag") ? (60. * attributes.Get("thrust") / attributes.Get("drag")) : 0) << ',';
+				cout << (attributes.Get("drag") ? (60. * attributes.Get("thrust") / attributes.Get("drag"))
+												: 0)
+					 << ',';
 				cout << 3600. * attributes.Get("thrust") / mass << ',';
 				cout << 60. * attributes.Get("turn") / mass << ',';
 
-				double energyConsumed = attributes.Get("energy consumption")
+				double energyConsumed =
+					attributes.Get("energy consumption")
 					+ max(attributes.Get("thrusting energy"), attributes.Get("reverse thrusting energy"))
-					+ attributes.Get("turning energy")
-					+ attributes.Get("afterburner energy")
+					+ attributes.Get("turning energy") + attributes.Get("afterburner energy")
 					+ attributes.Get("fuel energy")
 					+ (attributes.Get("hull energy") * (1 + attributes.Get("hull energy multiplier")))
 					+ (attributes.Get("shield energy") * (1 + attributes.Get("shield energy multiplier")))
-					+ attributes.Get("cooling energy")
-					+ attributes.Get("cloaking energy");
+					+ attributes.Get("cooling energy") + attributes.Get("cloaking energy");
 
-				double heatProduced = attributes.Get("heat generation") - attributes.Get("cooling")
+				double heatProduced =
+					attributes.Get("heat generation") - attributes.Get("cooling")
 					+ max(attributes.Get("thrusting heat"), attributes.Get("reverse thrusting heat"))
-					+ attributes.Get("turning heat")
-					+ attributes.Get("afterburner heat")
+					+ attributes.Get("turning heat") + attributes.Get("afterburner heat")
 					+ attributes.Get("fuel heat")
 					+ (attributes.Get("hull heat") * (1. + attributes.Get("hull heat multiplier")))
 					+ (attributes.Get("shield heat") * (1. + attributes.Get("shield heat multiplier")))
-					+ attributes.Get("solar heat")
-					+ attributes.Get("cloaking heat");
+					+ attributes.Get("solar heat") + attributes.Get("cloaking heat");
 
 				for(const auto &oit : ship.Outfits())
 					if(oit.first->IsWeapon() && oit.first->Reload())
@@ -263,7 +273,8 @@ namespace {
 						energyConsumed += oit.second * oit.first->FiringEnergy() / reload;
 						heatProduced += oit.second * oit.first->FiringHeat() / reload;
 					}
-				cout << 60. * (attributes.Get("energy generation") + attributes.Get("solar collection")) << ',';
+				cout << 60. * (attributes.Get("energy generation") + attributes.Get("solar collection"))
+					 << ',';
 				cout << 60. * energyConsumed << ',';
 				cout << attributes.Get("energy capacity") << ',';
 				cout << ship.IdleHeat() / max(1., ship.MaximumHeat()) << ',';
@@ -294,8 +305,8 @@ namespace {
 						if(weapon->Ammo() && !ship.OutfitCount(weapon->Ammo()))
 							continue;
 						double damage = weapon->ShieldDamage() + weapon->HullDamage()
-							+ (weapon->RelativeShieldDamage() * ship.MaxShields())
-							+ (weapon->RelativeHullDamage() * ship.MaxHull());
+										+ (weapon->RelativeShieldDamage() * ship.MaxShields())
+										+ (weapon->RelativeHullDamage() * ship.MaxHull());
 						deterrence += .12 * damage / weapon->Reload();
 					}
 				cout << deterrence << '\n';
@@ -347,14 +358,14 @@ namespace {
 		auto PrintWeaponStats = []() -> void
 		{
 			cout << "name" << ',' << "category" << ',' << "cost" << ',' << "space" << ',' << "range" << ','
-				<< "reload" << ',' << "burst count" << ',' << "burst reload" << ',' << "lifetime" << ','
-				<< "shots/second" << ',' << "energy/shot" << ',' << "heat/shot" << ',' << "recoil/shot" << ','
-				<< "energy/s" << ',' << "heat/s" << ',' << "recoil/s" << ',' << "shield/s" << ','
-				<< "discharge/s" << ',' << "hull/s" << ',' << "corrosion/s" << ',' << "heat dmg/s" << ','
-				<< "burn dmg/s" << ',' << "energy dmg/s" << ',' << "ion dmg/s" << ',' << "scrambling dmg/s" << ','
-				<< "slow dmg/s" << ',' << "disruption dmg/s" << ',' << "piercing" << ',' << "fuel dmg/s" << ','
-				<< "leak dmg/s" << ',' << "push/s" << ',' << "homing" << ',' << "strength" << ','
-				<< "deterrence" << '\n';
+				 << "reload" << ',' << "burst count" << ',' << "burst reload" << ',' << "lifetime" << ','
+				 << "shots/second" << ',' << "energy/shot" << ',' << "heat/shot" << ',' << "recoil/shot"
+				 << ',' << "energy/s" << ',' << "heat/s" << ',' << "recoil/s" << ',' << "shield/s" << ','
+				 << "discharge/s" << ',' << "hull/s" << ',' << "corrosion/s" << ',' << "heat dmg/s" << ','
+				 << "burn dmg/s" << ',' << "energy dmg/s" << ',' << "ion dmg/s" << ',' << "scrambling dmg/s"
+				 << ',' << "slow dmg/s" << ',' << "disruption dmg/s" << ',' << "piercing" << ','
+				 << "fuel dmg/s" << ',' << "leak dmg/s" << ',' << "push/s" << ',' << "homing" << ','
+				 << "strength" << ',' << "deterrence" << '\n';
 
 			for(auto &it : GameData::Outfits())
 			{
@@ -437,11 +448,11 @@ namespace {
 		auto PrintEngineStats = []() -> void
 		{
 			cout << "name" << ',' << "cost" << ',' << "mass" << ',' << "outfit space" << ','
-				<< "engine capacity" << ',' << "thrust/s" << ',' << "thrust energy/s" << ','
-				<< "thrust heat/s" << ',' << "turn/s" << ',' << "turn energy/s" << ','
-				<< "turn heat/s" << ',' << "reverse thrust/s" << ',' << "reverse energy/s" << ','
-				<< "reverse heat/s" << ',' << "afterburner thrust/s" << ',' << "afterburner energy/s" << ','
-				<< "afterburner heat/s" << ',' << "afterburner fuel/s" << '\n';
+				 << "engine capacity" << ',' << "thrust/s" << ',' << "thrust energy/s" << ','
+				 << "thrust heat/s" << ',' << "turn/s" << ',' << "turn energy/s" << ',' << "turn heat/s"
+				 << ',' << "reverse thrust/s" << ',' << "reverse energy/s" << ',' << "reverse heat/s" << ','
+				 << "afterburner thrust/s" << ',' << "afterburner energy/s" << ',' << "afterburner heat/s"
+				 << ',' << "afterburner fuel/s" << '\n';
 
 			for(auto &it : GameData::Outfits())
 			{
@@ -476,7 +487,7 @@ namespace {
 		auto PrintPowerStats = []() -> void
 		{
 			cout << "name" << ',' << "cost" << ',' << "mass" << ',' << "outfit space" << ','
-				<< "energy generation" << ',' << "heat generation" << ',' << "energy capacity" << '\n';
+				 << "energy generation" << ',' << "heat generation" << ',' << "energy capacity" << '\n';
 
 			for(auto &it : GameData::Outfits())
 			{
@@ -678,24 +689,9 @@ namespace {
 	}
 
 
-	const set<string> OUTFIT_ARGS = {
-		"-w",
-		"--weapons",
-		"-e",
-		"--engines",
-		"--power",
-		"-o",
-		"--outfits"
-	};
+	const set<string> OUTFIT_ARGS = {"-w", "--weapons", "-e", "--engines", "--power", "-o", "--outfits"};
 
-	const set<string> OTHER_VALID_ARGS = {
-		"-s",
-		"--ships",
-		"--sales",
-		"--planets",
-		"--systems",
-		"--matches"
-	};
+	const set<string> OTHER_VALID_ARGS = {"-s", "--ships", "--sales", "--planets", "--systems", "--matches"};
 }
 
 
@@ -747,11 +743,13 @@ void PrintData::Print(const char *const *argv)
 
 void PrintData::Help()
 {
-	cerr << "    -s, --ships: prints a table of ship stats (just the base stats, not considering any stored outfits)."
-			<< endl;
+	cerr << "    -s, --ships: prints a table of ship stats (just the base stats, not considering any stored "
+			"outfits)."
+		 << endl;
 	cerr << "        --sales: prints a table of ships with every 'shipyard' each appears in." << endl;
-	cerr << "        --loaded: prints a table of ship stats accounting for installed outfits. Does not include variants."
-			<< endl;
+	cerr << "        --loaded: prints a table of ship stats accounting for installed outfits. Does not "
+			"include variants."
+		 << endl;
 	cerr << "        --list: prints a list of all ship names." << endl;
 	cerr << "    Use the modifier `--variants` with the above two commands to include variants." << endl;
 	cerr << "    -w, --weapons: prints a table of weapon stats." << endl;
@@ -759,21 +757,24 @@ void PrintData::Help()
 	cerr << "    --power: prints a table of power outfit stats." << endl;
 	cerr << "    -o, --outfits: prints a list of outfits." << endl;
 	cerr << "        --sales: prints a list of outfits and every 'outfitter' each appears in." << endl;
-	cerr << "        -a, --all: prints a table of outfits and all attributes used by any outfits present." << endl;
-	cerr << "    --sales: prints a list of all shipyards and outfitters, and the ships or outfits they each contain."
-			<< endl;
+	cerr << "        -a, --all: prints a table of outfits and all attributes used by any outfits present."
+		 << endl;
+	cerr << "    --sales: prints a list of all shipyards and outfitters, and the ships or outfits they each "
+			"contain."
+		 << endl;
 	cerr << "        -s, --ships: prints a list of shipyards and the ships they each contain." << endl;
 	cerr << "        -o, --outfits: prints a list of outfitters and the outfits they each contain." << endl;
 	cerr << "    --planets: prints a list of all planets." << endl;
 	cerr << "        --descriptions: prints a table of all planets and their descriptions." << endl;
 	cerr << "        --attributes: prints a table of all planets and their attributes." << endl;
 	cerr << "            --reverse: prints a table of all planet attributes and which planets have them."
-			<< endl;
+		 << endl;
 	cerr << "    --systems: prints a list of all systems." << endl;
 	cerr << "        --attributes: prints a list of all systems and their attributes." << endl;
 	cerr << "            --reverse: prints a list of all system attributes and which systems have them."
-			<< endl;
-	cerr << "    --matches: prints a list of all planets and systems matching a location filter passed in STDIN."
-			<< endl;
+		 << endl;
+	cerr << "    --matches: prints a list of all planets and systems matching a location filter passed in "
+			"STDIN."
+		 << endl;
 	cerr << "        The first node of the location filter should be `location`." << endl;
 }

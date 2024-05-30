@@ -115,8 +115,7 @@ bool DrawList::Cull(const Body &body, const Point &position, const Point &blur) 
 	Point unit = body.Facing().Unit();
 	// Cull sprites that are completely off screen, to reduce the number of draw
 	// calls that we issue (which may be the bottleneck on some systems).
-	Point size(
-		.5 * (fabs(unit.X() * body.Height()) + fabs(unit.Y() * body.Width()) + fabs(blur.X())),
+	Point size(.5 * (fabs(unit.X() * body.Height()) + fabs(unit.Y() * body.Width()) + fabs(blur.X())),
 		.5 * (fabs(unit.X() * body.Width()) + fabs(unit.Y() * body.Height()) + fabs(blur.Y())));
 	Point topLeft = (position - size) * zoom;
 	Point bottomRight = (position + size) * zoom;

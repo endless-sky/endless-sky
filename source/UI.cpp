@@ -45,11 +45,9 @@ bool UI::Handle(const SDL_Event &event)
 		{
 			if(event.motion.state & SDL_BUTTON(1))
 				handled = (*it)->Drag(
-					event.motion.xrel * 100. / Screen::Zoom(),
-					event.motion.yrel * 100. / Screen::Zoom());
+					event.motion.xrel * 100. / Screen::Zoom(), event.motion.yrel * 100. / Screen::Zoom());
 			else
-				handled = (*it)->Hover(
-					Screen::Left() + event.motion.x * 100 / Screen::Zoom(),
+				handled = (*it)->Hover(Screen::Left() + event.motion.x * 100 / Screen::Zoom(),
 					Screen::Top() + event.motion.y * 100 / Screen::Zoom());
 		}
 		else if(event.type == SDL_MOUSEBUTTONDOWN)
@@ -120,7 +118,7 @@ void UI::DrawAll()
 		if((*--it)->IsFullScreen())
 			break;
 
-	for( ; it != stack.end(); ++it)
+	for(; it != stack.end(); ++it)
 		(*it)->Draw();
 }
 

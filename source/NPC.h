@@ -97,8 +97,8 @@ public:
 	const std::list<std::shared_ptr<Ship>> Ships() const;
 
 	// Handle the given ShipEvent.
-	void Do(const ShipEvent &event, PlayerInfo &player, UI *ui = nullptr,
-		const Mission *caller = nullptr, bool isVisible = true);
+	void Do(const ShipEvent &event, PlayerInfo &player, UI *ui = nullptr, const Mission *caller = nullptr,
+		bool isVisible = true);
 	// Determine if the NPC is in a successful state, assuming the player is in the given system.
 	// (By default, a despawnable NPC has succeeded and is not actually checked.)
 	bool HasSucceeded(const System *playerSystem, bool ignoreIfDespawnable = true) const;
@@ -111,7 +111,7 @@ public:
 	// Create a copy of this NPC but with the fleets replaced by the actual
 	// ships they represent, wildcards in the conversation text replaced, etc.
 	NPC Instantiate(std::map<std::string, std::string> &subs, const System *origin, const System *destination,
-			int jumps, int64_t payload) const;
+		int jumps, int64_t payload) const;
 
 
 private:

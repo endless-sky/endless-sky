@@ -55,7 +55,10 @@ bool Variant::IsValid() const
 {
 	// At least one valid ship is enough to make the variant valid.
 	if(any_of(ships.begin(), ships.end(),
-			[](const Ship *const s) noexcept -> bool { return s->IsValid(); }))
+		   [](const Ship *const s) noexcept -> bool
+		   {
+			   return s->IsValid();
+		   }))
 		return true;
 
 	return false;
@@ -91,8 +94,7 @@ int64_t Variant::Strength() const
 bool Variant::operator==(const Variant &other) const
 {
 	// Are the ships of other a permutation of this variant's?
-	if(other.ships.size() != ships.size()
-		|| !is_permutation(ships.begin(), ships.end(), other.ships.begin()))
+	if(other.ships.size() != ships.size() || !is_permutation(ships.begin(), ships.end(), other.ships.begin()))
 		return false;
 
 	// If all checks have passed, these variants are equal.

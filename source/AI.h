@@ -50,11 +50,11 @@ class System;
 class AI {
 public:
 	// Any object that can be a ship's target is in a list of this type:
-template <class Type>
+	template <class Type>
 	using List = std::list<std::shared_ptr<Type>>;
 	// Constructor, giving the AI access to the player and various object lists.
-	AI(const PlayerInfo &player, const List<Ship> &ships,
-			const List<Minable> &minables, const List<Flotsam> &flotsam);
+	AI(const PlayerInfo &player, const List<Ship> &ships, const List<Minable> &minables,
+		const List<Flotsam> &flotsam);
 
 	// Fleet commands from the player.
 	void IssueShipTarget(const std::shared_ptr<Ship> &target);
@@ -111,12 +111,13 @@ private:
 	// Methods of moving from the current position to a desired position / orientation.
 	static double TurnBackward(const Ship &ship);
 	// Determine the value to use in Command::SetTurn() to turn the ship towards the desired facing.
-	// "precision" is an optional argument corresponding to a value of the dot product of the current and target facing
-	// vectors above which no turning should be attempting, to reduce constant, minute corrections.
+	// "precision" is an optional argument corresponding to a value of the dot product of the current and
+	// target facing vectors above which no turning should be attempting, to reduce constant, minute
+	// corrections.
 	static double TurnToward(const Ship &ship, const Point &vector, const double precision = 0.9999);
 	static bool MoveToPlanet(Ship &ship, Command &command);
-	static bool MoveTo(Ship &ship, Command &command, const Point &targetPosition,
-		const Point &targetVelocity, double radius, double slow);
+	static bool MoveTo(Ship &ship, Command &command, const Point &targetPosition, const Point &targetVelocity,
+		double radius, double slow);
 	static bool Stop(Ship &ship, Command &command, double maxSpeed = 0., const Point direction = Point());
 	static void PrepareForHyperspace(Ship &ship, Command &command);
 	static void CircleAround(Ship &ship, Command &command, const Body &target);
@@ -151,7 +152,8 @@ private:
 	void AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic = false) const;
 	// Fire whichever of the given ship's weapons can hit a hostile target.
 	// Return a bitmask giving the weapons to fire.
-	void AutoFire(const Ship &ship, FireCommand &command, bool secondary = true, bool isFlagship = false) const;
+	void AutoFire(
+		const Ship &ship, FireCommand &command, bool secondary = true, bool isFlagship = false) const;
 	void AutoFire(const Ship &ship, FireCommand &command, const Body &target) const;
 
 	// Calculate how long it will take a projectile to reach a target given the

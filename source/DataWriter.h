@@ -50,7 +50,7 @@ public:
 
 	// The Write() function can take any number of arguments. Each argument is
 	// converted to a token. Arguments may be strings or numeric values.
-	template <class A, class ...B>
+	template <class A, class... B>
 	void Write(const A &a, B... others);
 	// Write the entire structure represented by a DataNode, including any
 	// children that it has.
@@ -95,7 +95,7 @@ private:
 
 // The Write() function can take any number of arguments, each of which becomes
 // a token. They must be either strings or numeric types.
-template <class A, class ...B>
+template <class A, class... B>
 void DataWriter::Write(const A &a, B... others)
 {
 	WriteToken(a);
@@ -108,8 +108,8 @@ void DataWriter::Write(const A &a, B... others)
 template <class A>
 void DataWriter::WriteToken(const A &a)
 {
-	static_assert(std::is_arithmetic_v<A>,
-		"DataWriter cannot output anything but strings and arithmetic types.");
+	static_assert(
+		std::is_arithmetic_v<A>, "DataWriter cannot output anything but strings and arithmetic types.");
 
 	out << *before << a;
 	before = &space;
@@ -120,7 +120,7 @@ void DataWriter::WriteToken(const A &a)
 // Encapsulate the logic for writing the contents of a collection in a sorted manner. The caller
 // should provide a sorting method; it will be called with pointers to the type of the container.
 // The provided write method will be called for each element of the container.
-template <class T, template<class, class...> class C, class... Args, typename A, typename B>
+template <class T, template <class, class...> class C, class... Args, typename A, typename B>
 void WriteSorted(const C<T, Args...> &container, A sortFn, B writeFn)
 {
 	std::vector<const T *> sorted;

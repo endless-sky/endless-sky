@@ -64,33 +64,31 @@ namespace {
 
 void FogShader::Init()
 {
-	static const char *vertexCode =
-		"// vertex fog shader\n"
-		"uniform vec2 corner;\n"
-		"uniform vec2 dimensions;\n"
+	static const char *vertexCode = "// vertex fog shader\n"
+									"uniform vec2 corner;\n"
+									"uniform vec2 dimensions;\n"
 
-		"in vec2 vert;\n"
-		"out vec2 fragTexCoord;\n"
+									"in vec2 vert;\n"
+									"out vec2 fragTexCoord;\n"
 
-		"void main() {\n"
-		"  gl_Position = vec4(corner + vert * dimensions, 0, 1);\n"
-		"  fragTexCoord = vert;\n"
-		"}\n";
+									"void main() {\n"
+									"  gl_Position = vec4(corner + vert * dimensions, 0, 1);\n"
+									"  fragTexCoord = vert;\n"
+									"}\n";
 
-	static const char *fragmentCode =
-		"// fragment fog shader\n"
+	static const char *fragmentCode = "// fragment fog shader\n"
 #ifdef ES_GLES
-		"precision mediump sampler2D;\n"
+									  "precision mediump sampler2D;\n"
 #endif
-		"precision mediump float;\n"
-		"uniform sampler2D tex;\n"
+									  "precision mediump float;\n"
+									  "uniform sampler2D tex;\n"
 
-		"in vec2 fragTexCoord;\n"
-		"out vec4 finalColor;\n"
+									  "in vec2 fragTexCoord;\n"
+									  "out vec4 finalColor;\n"
 
-		"void main() {\n"
-		"  finalColor = vec4(0, 0, 0, texture(tex, fragTexCoord).r);\n"
-		"}\n";
+									  "void main() {\n"
+									  "  finalColor = vec4(0, 0, 0, texture(tex, fragTexCoord).r);\n"
+									  "}\n";
 
 	// Compile the shader and store indices to its variables.
 	shader = Shader(vertexCode, fragmentCode);
@@ -109,12 +107,7 @@ void FogShader::Init()
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
 	// Corners of a rectangle to draw.
-	GLfloat vertexData[] = {
-		0.f, 0.f,
-		0.f, 1.f,
-		1.f, 0.f,
-		1.f, 1.f
-	};
+	GLfloat vertexData[] = {0.f, 0.f, 0.f, 1.f, 1.f, 0.f, 1.f, 1.f};
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
 
 	GLuint vertI = shader.Attrib("vert");
@@ -151,9 +144,9 @@ void FogShader::Draw(const Point &center, double zoom, const PlayerInfo &player)
 	// moved. This might cause an inaccurate mask if you explore more systems,
 	// come back to the original, and view the map again without viewing it in
 	// between. But, that's an unlikely situation.
-	bool shouldRegenerate = (
-		zoom != previousZoom || center.X() != previousCenter.X() || center.Y() != previousCenter.Y() ||
-		left != previousLeft || top != previousTop || columns != previousColumns || rows != previousRows);
+	bool shouldRegenerate = (zoom != previousZoom || center.X() != previousCenter.X()
+							 || center.Y() != previousCenter.Y() || left != previousLeft || top != previousTop
+							 || columns != previousColumns || rows != previousRows);
 	if(shouldRegenerate)
 	{
 		bool sizeChanged = (!texture || columns != previousColumns || rows != previousRows);
@@ -189,14 +182,16 @@ void FogShader::Draw(const Point &center, double zoom, const PlayerInfo &player)
 		// opposite direction. Once these two passes are done, each value is equal
 		for(int y = 1; y < rows; ++y)
 			for(int x = 1; x < columns; ++x)
-				buffer[x + y * columns] = min<int>(buffer[x + y * columns], min(
-					ORTH + min(buffer[(x - 1) + y * columns], buffer[x + (y - 1) * columns]),
-					DIAG + min(buffer[(x - 1) + (y - 1) * columns], buffer[(x + 1) + (y - 1) * columns])));
+				buffer[x + y * columns] = min<int>(buffer[x + y * columns],
+					min(ORTH + min(buffer[(x - 1) + y * columns], buffer[x + (y - 1) * columns]),
+						DIAG
+							+ min(buffer[(x - 1) + (y - 1) * columns], buffer[(x + 1) + (y - 1) * columns])));
 		for(int y = rows - 2; y >= 0; --y)
 			for(int x = columns - 2; x >= 0; --x)
-				buffer[x + y * columns] = min<int>(buffer[x + y * columns], min(
-					ORTH + min(buffer[(x + 1) + y * columns], buffer[x + (y + 1) * columns]),
-					DIAG + min(buffer[(x - 1) + (y + 1) * columns], buffer[(x + 1) + (y + 1) * columns])));
+				buffer[x + y * columns] = min<int>(buffer[x + y * columns],
+					min(ORTH + min(buffer[(x + 1) + y * columns], buffer[x + (y + 1) * columns]),
+						DIAG
+							+ min(buffer[(x - 1) + (y + 1) * columns], buffer[(x + 1) + (y + 1) * columns])));
 
 		// Stretch the distance values so there is no shading up to about 200 pixels
 		// away, then it transitions somewhat quickly.
@@ -234,12 +229,10 @@ void FogShader::Draw(const Point &center, double zoom, const PlayerInfo &player)
 	glUseProgram(shader.Object());
 	glBindVertexArray(vao);
 
-	GLfloat corner[2] = {
-		static_cast<float>(left - .5 * GRID * zoom) / (.5f * Screen::Width()),
+	GLfloat corner[2] = {static_cast<float>(left - .5 * GRID * zoom) / (.5f * Screen::Width()),
 		static_cast<float>(top - .5 * GRID * zoom) / (-.5f * Screen::Height())};
 	glUniform2fv(cornerI, 1, corner);
-	GLfloat dimensions[2] = {
-		GRID * static_cast<float>(zoom) * (columns + 1.f) / (.5f * Screen::Width()),
+	GLfloat dimensions[2] = {GRID * static_cast<float>(zoom) * (columns + 1.f) / (.5f * Screen::Width()),
 		GRID * static_cast<float>(zoom) * (rows + 1.f) / (-.5f * Screen::Height())};
 	glUniform2fv(dimensionsI, 1, dimensions);
 

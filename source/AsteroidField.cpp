@@ -42,7 +42,7 @@ namespace {
 // Constructor, to set up the collision set parameters.
 AsteroidField::AsteroidField()
 	: asteroidCollisions(CELL_SIZE, CELL_COUNT, CollisionType::ASTEROID),
-	minableCollisions(CELL_SIZE, CELL_COUNT, CollisionType::MINABLE)
+	  minableCollisions(CELL_SIZE, CELL_COUNT, CollisionType::MINABLE)
 {
 }
 

@@ -103,8 +103,9 @@ bool GameWindow::Init(bool headless)
 		return false;
 	}
 	if(mode.refresh_rate && mode.refresh_rate < 60)
-		Logger::LogError("Warning: low monitor frame rate detected (" + to_string(mode.refresh_rate) + ")."
-			" The game will run more slowly.");
+		Logger::LogError("Warning: low monitor frame rate detected (" + to_string(mode.refresh_rate)
+						 + ")."
+						   " The game will run more slowly.");
 
 	// Make the window just slightly smaller than the monitor resolution.
 	int minWidth = 640;
@@ -137,8 +138,8 @@ bool GameWindow::Init(bool headless)
 		flags |= SDL_WINDOW_MAXIMIZED;
 
 	// The main window spawns visibly at this point.
-	mainWindow = SDL_CreateWindow("Endless Sky", SDL_WINDOWPOS_UNDEFINED,
-		SDL_WINDOWPOS_UNDEFINED, windowWidth, windowHeight, headless ? 0 : flags);
+	mainWindow = SDL_CreateWindow("Endless Sky", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
+		windowWidth, windowHeight, headless ? 0 : flags);
 
 	if(!mainWindow)
 	{
@@ -261,11 +262,11 @@ void GameWindow::Quit()
 	SDL_ShowCursor(true);
 
 	// Clean up in the reverse order that everything is launched.
-//#ifndef _WIN32
-	// Under windows, this cleanup code causes intermittent crashes.
+	// #ifndef _WIN32
+	//  Under windows, this cleanup code causes intermittent crashes.
 	if(context)
 		SDL_GL_DeleteContext(context);
-//#endif
+	// #endif
 
 	if(mainWindow)
 		SDL_DestroyWindow(mainWindow);
@@ -295,8 +296,8 @@ void GameWindow::SetIcon()
 		return;
 
 	// Convert the icon to an SDL surface.
-	SDL_Surface *surface = SDL_CreateRGBSurfaceFrom(buffer.Pixels(), buffer.Width(), buffer.Height(),
-		32, 4 * buffer.Width(), 0x00FF0000, 0x0000FF00, 0x000000FF, 0xFF000000);
+	SDL_Surface *surface = SDL_CreateRGBSurfaceFrom(buffer.Pixels(), buffer.Width(), buffer.Height(), 32,
+		4 * buffer.Width(), 0x00FF0000, 0x0000FF00, 0x000000FF, 0xFF000000);
 	if(surface)
 	{
 		SDL_SetWindowIcon(mainWindow, surface);
@@ -354,17 +355,17 @@ bool GameWindow::SetVSync(Preferences::VSync state)
 	int interval = 1;
 	switch(state)
 	{
-		case Preferences::VSync::adaptive:
-			interval = -1;
-			break;
-		case Preferences::VSync::off:
-			interval = 0;
-			break;
-		case Preferences::VSync::on:
-			interval = 1;
-			break;
-		default:
-			return false;
+	case Preferences::VSync::adaptive:
+		interval = -1;
+		break;
+	case Preferences::VSync::off:
+		interval = 0;
+		break;
+	case Preferences::VSync::on:
+		interval = 1;
+		break;
+	default:
+		return false;
 	}
 	// Do not attempt to enable adaptive VSync when unsupported,
 	// as this can crash older video drivers.

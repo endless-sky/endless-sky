@@ -20,9 +20,7 @@ class Test;
 
 
 // Constructor to be used when running an actual test.
-TestContext::TestContext(const Test *toRun) : callstack({{toRun, 0}})
-{
-}
+TestContext::TestContext(const Test *toRun) : callstack({{toRun, 0}}) {}
 
 
 

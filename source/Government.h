@@ -119,7 +119,8 @@ public:
 	void Bribe() const;
 	// Check to see if the player has done anything they should be fined for.
 	// Each government can only fine you once per day.
-	std::string Fine(PlayerInfo &player, int scan = 0, const Ship *target = nullptr, double security = 1.) const;
+	std::string Fine(
+		PlayerInfo &player, int scan = 0, const Ship *target = nullptr, double security = 1.) const;
 	// Check to see if the items are condemnable (atrocities) or warrant a fine.
 	bool Condemns(const Outfit *outfit) const;
 	bool Condemns(const Ship *ship) const;
@@ -162,9 +163,9 @@ private:
 	double reputationMax = std::numeric_limits<double>::max();
 	double reputationMin = std::numeric_limits<double>::lowest();
 	std::map<int, double> penaltyFor;
-	std::map<const Outfit*, int> illegalOutfits;
+	std::map<const Outfit *, int> illegalOutfits;
 	std::map<std::string, int> illegalShips;
-	std::map<const Outfit*, bool> atrocityOutfits;
+	std::map<const Outfit *, bool> atrocityOutfits;
 	std::map<std::string, bool> atrocityShips;
 	double bribe = 0.;
 	double fine = 1.;

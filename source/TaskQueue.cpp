@@ -146,7 +146,8 @@ void TaskQueue::ThreadLoop() noexcept
 			lock.unlock();
 
 			// Execute the task.
-			try {
+			try
+			{
 				if(task.async)
 					task.async();
 			}
@@ -155,7 +156,10 @@ void TaskQueue::ThreadLoop() noexcept
 				// Any exception by the task is caught and rethrown inside the main thread
 				// so we can handle it appropriately.
 				auto exception = current_exception();
-				task.sync = [exception] { rethrow_exception(exception); };
+				task.sync = [exception]
+				{
+					rethrow_exception(exception);
+				};
 			}
 
 			// If there is a followup function to execute, queue it for execution
@@ -176,6 +180,10 @@ void TaskQueue::ThreadLoop() noexcept
 			task.queue->futures.erase(task.futureIt);
 		}
 
-		asyncCondition.wait(lock, [] { return shouldQuit || !tasks.empty(); });
+		asyncCondition.wait(lock,
+			[]
+			{
+				return shouldQuit || !tasks.empty();
+			});
 	}
 }

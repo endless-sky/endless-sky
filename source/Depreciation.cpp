@@ -78,9 +78,8 @@ void Depreciation::Load(const DataNode &node)
 			continue;
 
 		// Figure out which record we're modifying.
-		map<int, int> &entry = isShip ?
-			ships[GameData::Ships().Get(child.Token(1))] :
-			outfits[GameData::Outfits().Get(child.Token(1))];
+		map<int, int> &entry = isShip ? ships[GameData::Ships().Get(child.Token(1))]
+									  : outfits[GameData::Outfits().Get(child.Token(1))];
 
 		// Load any depreciation records for this item.
 		for(const DataNode &grand : child)
@@ -98,9 +97,12 @@ void Depreciation::Save(DataWriter &out, int day) const
 	out.BeginChild();
 	{
 		using ShipElement = pair<const Ship *const, map<int, int>>;
-		WriteSorted(ships,
+		WriteSorted(
+			ships,
 			[](const ShipElement *lhs, const ShipElement *rhs)
-				{ return lhs->first->TrueModelName() < rhs->first->TrueModelName(); },
+			{
+				return lhs->first->TrueModelName() < rhs->first->TrueModelName();
+			},
 			[=, &out](const ShipElement &sit)
 			{
 				out.Write("ship", sit.first->TrueModelName());
@@ -117,9 +119,12 @@ void Depreciation::Save(DataWriter &out, int day) const
 				out.EndChild();
 			});
 		using OutfitElement = pair<const Outfit *const, map<int, int>>;
-		WriteSorted(outfits,
+		WriteSorted(
+			outfits,
 			[](const OutfitElement *lhs, const OutfitElement *rhs)
-				{ return lhs->first->TrueName() < rhs->first->TrueName(); },
+			{
+				return lhs->first->TrueName() < rhs->first->TrueName();
+			},
 			[=, &out](const OutfitElement &oit)
 			{
 				out.Write("outfit", oit.first->TrueName());

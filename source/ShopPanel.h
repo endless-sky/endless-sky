@@ -126,11 +126,7 @@ protected:
 		const Outfit *outfit = nullptr;
 	};
 
-	enum class ShopPane : int {
-		Main,
-		Sidebar,
-		Info
-	};
+	enum class ShopPane : int { Main, Sidebar, Info };
 
 
 protected:

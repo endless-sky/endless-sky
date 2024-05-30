@@ -155,8 +155,8 @@ const vector<Collision> &CollisionSet::Line(const Projectile &projectile) const
 
 // Get all possible collisions along a line. Collisions are not necessarily sorted by
 // distance.
-const vector<Collision> &CollisionSet::Line(const Point &from, const Point &to,
-		const Government *pGov, const Body *target) const
+const vector<Collision> &CollisionSet::Line(
+	const Point &from, const Point &to, const Government *pGov, const Body *target) const
 {
 	const int x = from.X();
 	const int y = from.Y();
@@ -179,7 +179,7 @@ const vector<Collision> &CollisionSet::Line(const Point &from, const Point &to,
 		const auto index = (gy & WRAP_MASK) * CELLS + (gx & WRAP_MASK);
 		vector<Entry>::const_iterator it = sorted.begin() + counts[index];
 		vector<Entry>::const_iterator end = sorted.begin() + counts[index + 1];
-		for( ; it != end; ++it)
+		for(; it != end; ++it)
 		{
 			// Skip objects that were put in this same grid cell only because
 			// of the cell coordinates wrapping around.
@@ -246,7 +246,7 @@ const vector<Collision> &CollisionSet::Line(const Point &from, const Point &to,
 		auto i = (gy & WRAP_MASK) * CELLS + (gx & WRAP_MASK);
 		vector<Entry>::const_iterator it = sorted.begin() + counts[i];
 		vector<Entry>::const_iterator end = sorted.begin() + counts[i + 1];
-		for( ; it != end; ++it)
+		for(; it != end; ++it)
 		{
 			// Skip objects that were put in this same grid cell only because
 			// of the cell coordinates wrapping around.
@@ -344,7 +344,7 @@ const vector<Body *> &CollisionSet::Ring(const Point &center, double inner, doub
 			vector<Entry>::const_iterator it = sorted.begin() + counts[index];
 			vector<Entry>::const_iterator end = sorted.begin() + counts[index + 1];
 
-			for( ; it != end; ++it)
+			for(; it != end; ++it)
 			{
 				// Skip objects that were put in this same grid cell only because
 				// of the cell coordinates wrapping around.

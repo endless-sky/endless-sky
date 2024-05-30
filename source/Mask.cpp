@@ -36,7 +36,7 @@ namespace {
 		auto LogError = [width, height](string reason)
 		{
 			Logger::LogError("Unable to create mask for " + to_string(width) + "x" + to_string(height)
-				+ " px image: " + std::move(reason));
+							 + " px image: " + std::move(reason));
 		};
 		raw.clear();
 
@@ -50,7 +50,7 @@ namespace {
 			points.clear();
 
 			// Find a pixel with some renderable color data (i.e. a non-zero alpha component).
-			for( ; start < numPixels; ++start)
+			for(; start < numPixels; ++start)
 			{
 				if(begin[start] & on)
 				{
@@ -74,13 +74,25 @@ namespace {
 			// Direction kernel for obtaining the 8 nearest neighbors, beginning with "N" and
 			// moving clockwise (since the frame data starts in the top-left and moves L->R).
 			static const int step[][2] = {
-				{0, -1}, { 1, -1}, { 1, 0}, { 1,  1},
-				{0,  1}, {-1,  1}, {-1, 0}, {-1, -1},
+				{0, -1},
+				{1, -1},
+				{1, 0},
+				{1, 1},
+				{0, 1},
+				{-1, 1},
+				{-1, 0},
+				{-1, -1},
 			};
 			// Convert from a direction index to the desired pixel.
 			const int off[] = {
-				-width, -width + 1,  1,  width + 1,
-				 width,  width - 1, -1, -width - 1,
+				-width,
+				-width + 1,
+				1,
+				width + 1,
+				width,
+				width - 1,
+				-1,
+				-width - 1,
 			};
 
 			// Loop until we come back to the start, recording the directions
@@ -90,7 +102,8 @@ namespace {
 			int pos = start;
 			// The current image pixel, in (X, Y) coordinates.
 			int p[] = {pos % width, pos / width};
-			do {
+			do
+			{
 				hasOutline[pos] = true;
 				int firstD = d;
 				// The image pixel being inspected, in XY coords.
@@ -129,7 +142,8 @@ namespace {
 				d = (d + 6) & 7;
 
 				// Loop until we are back where we started.
-			} while(pos != start);
+			}
+			while(pos != start);
 
 			// At least 4 points are needed to outline a non-transparent pixel.
 			if(directions.size() < 4)
@@ -150,10 +164,10 @@ namespace {
 
 				// Determine the subpixel shift, where higher alphas will shift the estimate outward.
 				// (MAYBE: use an actual alpha gradient for dir & magnitude, or remove altogether.)
-				static const double scale[] = { 1., 1. / sqrt(2.) };
-				Point shift = Point(
-					step[out0][0] * scale[out0 & 1] + step[out1][0] * scale[out1 & 1],
-					step[out0][1] * scale[out0 & 1] + step[out1][1] * scale[out1 & 1]).Unit();
+				static const double scale[] = {1., 1. / sqrt(2.)};
+				Point shift = Point(step[out0][0] * scale[out0 & 1] + step[out1][0] * scale[out1 & 1],
+					step[out0][1] * scale[out0 & 1] + step[out1][1] * scale[out1 & 1])
+								  .Unit();
 				shift *= ((begin[pos] & on) >> 24) * (1. / 255.) - .5;
 				points.push_back(shift + Point(p[0], p[1]));
 
@@ -511,8 +525,8 @@ bool Mask::Contains(Point point) const
 			if(prev.X() != next.X())
 				if((prev.X() <= point.X()) == (point.X() < next.X()))
 				{
-					double y = prev.Y() + (next.Y() - prev.Y()) *
-						(point.X() - prev.X()) / (next.X() - prev.X());
+					double y =
+						prev.Y() + (next.Y() - prev.Y()) * (point.X() - prev.X()) / (next.X() - prev.X());
 					intersections += (y >= point.Y());
 				}
 			prev = next;

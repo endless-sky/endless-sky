@@ -19,7 +19,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Dialog.h"
-#include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Logger.h"
@@ -29,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Ship.h"
 #include "ShipEvent.h"
 #include "System.h"
+#include "text/Format.h"
 #include "UI.h"
 
 #include <algorithm>
@@ -41,28 +41,28 @@ namespace {
 	{
 		switch(trigger)
 		{
-			case NPC::Trigger::ASSIST:
-				return "on assist";
-			case NPC::Trigger::SCAN_CARGO:
-				return "on 'scan cargo'";
-			case NPC::Trigger::SCAN_OUTFITS:
-				return "on 'scan outfits'";
-			case NPC::Trigger::PROVOKE:
-				return "on provoke";
-			case NPC::Trigger::DISABLE:
-				return "on disable";
-			case NPC::Trigger::BOARD:
-				return "on board";
-			case NPC::Trigger::CAPTURE:
-				return "on capture";
-			case NPC::Trigger::DESTROY:
-				return "on destroy";
-			case NPC::Trigger::KILL:
-				return "on kill";
-			case NPC::Trigger::ENCOUNTER:
-				return "on encounter";
-			default:
-				return "unknown trigger";
+		case NPC::Trigger::ASSIST:
+			return "on assist";
+		case NPC::Trigger::SCAN_CARGO:
+			return "on 'scan cargo'";
+		case NPC::Trigger::SCAN_OUTFITS:
+			return "on 'scan outfits'";
+		case NPC::Trigger::PROVOKE:
+			return "on provoke";
+		case NPC::Trigger::DISABLE:
+			return "on disable";
+		case NPC::Trigger::BOARD:
+			return "on board";
+		case NPC::Trigger::CAPTURE:
+			return "on capture";
+		case NPC::Trigger::DESTROY:
+			return "on destroy";
+		case NPC::Trigger::KILL:
+			return "on kill";
+		case NPC::Trigger::ENCOUNTER:
+			return "on encounter";
+		default:
+			return "unknown trigger";
 		}
 	}
 }
@@ -106,7 +106,8 @@ void NPC::Load(const DataNode &node)
 		else if(node.Token(i) == "accompany")
 			mustAccompany = true;
 		else
-			node.PrintTrace("Warning: Skipping unrecognized NPC completion condition \"" + node.Token(i) + "\":");
+			node.PrintTrace(
+				"Warning: Skipping unrecognized NPC completion condition \"" + node.Token(i) + "\":");
 	}
 
 	// Check for incorrect objective combinations.
@@ -229,9 +230,11 @@ void NPC::Load(const DataNode &node)
 			{
 				string message = "Error: Skipping unsupported use of a ship token and child nodes: ";
 				if(child.Size() >= 3)
-					message += "to both name and customize a ship, create a variant and then reference it here.";
+					message +=
+						"to both name and customize a ship, create a variant and then reference it here.";
 				else
-					message += "the \'ship\' token must be followed by the name of a ship, e.g. ship \"Bulk Freighter\"";
+					message += "the \'ship\' token must be followed by the name of a ship, e.g. ship \"Bulk "
+							   "Freighter\"";
 				child.PrintTrace(message);
 			}
 		}
@@ -499,8 +502,8 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, const Mission *
 	// Certain events only count towards the NPC's status if originated by
 	// the player: scanning, boarding, assisting, capturing, or provoking.
 	if(!event.ActorGovernment() || !event.ActorGovernment()->IsPlayer())
-		type &= ~(ShipEvent::SCAN_CARGO | ShipEvent::SCAN_OUTFITS | ShipEvent::ASSIST
-				| ShipEvent::BOARD | ShipEvent::CAPTURE | ShipEvent::PROVOKE);
+		type &= ~(ShipEvent::SCAN_CARGO | ShipEvent::SCAN_OUTFITS | ShipEvent::ASSIST | ShipEvent::BOARD
+				  | ShipEvent::CAPTURE | ShipEvent::PROVOKE);
 
 	// Determine if this event is new for this ship.
 	bool newEvent = ~(shipEvents[ship.get()]) & type;
@@ -534,8 +537,7 @@ bool NPC::HasSucceeded(const System *playerSystem, bool ignoreIfDespawnable) con
 	// If this NPC has not yet spawned, or has fully despawned, then ignore its
 	// objectives. An NPC that will despawn on landing is allowed to still enter
 	// a "completed" state and trigger related completion events.
-	if(checkedSpawnConditions && (!passedSpawnConditions
-			|| (ignoreIfDespawnable && passedDespawnConditions)))
+	if(checkedSpawnConditions && (!passedSpawnConditions || (ignoreIfDespawnable && passedDespawnConditions)))
 		return true;
 
 	if(HasFailed())
@@ -561,8 +563,7 @@ bool NPC::HasSucceeded(const System *playerSystem, bool ignoreIfDespawnable) con
 				// A ship that was disabled is considered 'immobile'.
 				isImmobile = (it->second & ShipEvent::DISABLE);
 				// If this NPC is 'derelict' and has no ASSIST on record, it is immobile.
-				isImmobile |= ship->GetPersonality().IsDerelict()
-					&& !(it->second & ShipEvent::ASSIST);
+				isImmobile |= ship->GetPersonality().IsDerelict() && !(it->second & ShipEvent::ASSIST);
 			}
 			bool isHere;
 			// If this ship is being carried, check the parent's system.
@@ -631,8 +632,8 @@ bool NPC::HasFailed() const
 
 // Create a copy of this NPC but with the fleets replaced by the actual
 // ships they represent, wildcards in the conversation text replaced, etc.
-NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const System *destination,
-		int jumps, int64_t payload) const
+NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const System *destination, int jumps,
+	int64_t payload) const
 {
 	NPC result;
 	result.government = government;
@@ -651,7 +652,7 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 	// Instantiate the actions.
 	string reason;
 	auto ait = npcActions.begin();
-	for( ; ait != npcActions.end(); ++ait)
+	for(; ait != npcActions.end(); ++ait)
 	{
 		reason = ait->second.Validate();
 		if(!reason.empty())
@@ -659,8 +660,8 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 	}
 	if(ait != npcActions.end())
 	{
-		Logger::LogError("Instantiation Error: Action \"" + TriggerToText(ait->first) +
-				"\" in NPC uses invalid " + std::move(reason));
+		Logger::LogError("Instantiation Error: Action \"" + TriggerToText(ait->first)
+						 + "\" in NPC uses invalid " + std::move(reason));
 		return result;
 	}
 	for(const auto &it : npcActions)
@@ -685,7 +686,7 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 	}
 	auto shipIt = stockShips.begin();
 	auto nameIt = shipNames.begin();
-	for( ; shipIt != stockShips.end() && nameIt != shipNames.end(); ++shipIt, ++nameIt)
+	for(; shipIt != stockShips.end() && nameIt != shipNames.end(); ++shipIt, ++nameIt)
 	{
 		result.ships.push_back(make_shared<Ship>(**shipIt));
 		result.ships.back()->SetName(*nameIt);
@@ -788,9 +789,7 @@ void NPC::DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, U
 
 		// Some Triggers cannot be met if any of the ships in this NPC have certain events.
 		// If any of the ships were captured, the DESTROY trigger will not run.
-		static const map<Trigger, int> triggerExclusions = {
-			{Trigger::DESTROY, ShipEvent::CAPTURE}
-		};
+		static const map<Trigger, int> triggerExclusions = {{Trigger::DESTROY, ShipEvent::CAPTURE}};
 
 		const auto requiredIt = triggerRequirements.find(trigger);
 		const int requiredEvents = requiredIt == triggerRequirements.end() ? 0 : requiredIt->second;
@@ -800,11 +799,13 @@ void NPC::DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, U
 		// The PROVOKE and ENCOUNTER Triggers only requires a single ship to receive the
 		// event in order to run. All other Triggers require that all ships
 		// be affected.
-		if(trigger == Trigger::ENCOUNTER || trigger == Trigger::PROVOKE || all_of(ships.begin(), ships.end(),
+		if(trigger == Trigger::ENCOUNTER || trigger == Trigger::PROVOKE
+			|| all_of(ships.begin(), ships.end(),
 				[&](const shared_ptr<Ship> &ship) -> bool
 				{
 					auto it = shipEvents.find(ship.get());
-					return it != shipEvents.end() && (it->second & requiredEvents) && !(it->second & excludedEvents);
+					return it != shipEvents.end() && (it->second & requiredEvents)
+						   && !(it->second & excludedEvents);
 				}))
 		{
 			it->second.Do(player, ui, caller);

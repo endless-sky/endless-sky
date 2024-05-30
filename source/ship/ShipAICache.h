@@ -54,11 +54,26 @@ private:
 
 
 // Inline the accessors and setters because they get called so frequently.
-inline bool ShipAICache::IsArtilleryAI() const { return useArtilleryAI; }
-inline double ShipAICache::ShortestRange() const { return shortestRange; }
-inline double ShipAICache::ShortestArtillery() const { return shortestArtillery; }
-inline double ShipAICache::MinSafeDistance() const { return minSafeDistance; }
-inline bool ShipAICache::NeedsAmmo() const { return hasWeapons != canFight; }
+inline bool ShipAICache::IsArtilleryAI() const
+{
+	return useArtilleryAI;
+}
+inline double ShipAICache::ShortestRange() const
+{
+	return shortestRange;
+}
+inline double ShipAICache::ShortestArtillery() const
+{
+	return shortestArtillery;
+}
+inline double ShipAICache::MinSafeDistance() const
+{
+	return minSafeDistance;
+}
+inline bool ShipAICache::NeedsAmmo() const
+{
+	return hasWeapons != canFight;
+}
 
 
 

@@ -110,9 +110,10 @@ namespace {
 		return frame;
 	}
 
-	// Add consecutive frames from the given map to the given vector. Issue warnings for missing or mislabeled frames.
-	void AddValid(const map<size_t, string> &frameData, vector<string> &sequence,
-		const string &prefix, bool is2x, bool isSwizzleMask) noexcept(false)
+	// Add consecutive frames from the given map to the given vector. Issue warnings for missing or mislabeled
+	// frames.
+	void AddValid(const map<size_t, string> &frameData, vector<string> &sequence, const string &prefix,
+		bool is2x, bool isSwizzleMask) noexcept(false)
 	{
 		if(frameData.empty())
 			return;
@@ -120,8 +121,9 @@ namespace {
 		if(frameData.begin()->first != 0)
 		{
 			Logger::LogError(prefix + "ignored " + (isSwizzleMask ? "mask " : "") + (is2x ? "@2x " : "")
-				+ "frame " + to_string(frameData.begin()->first) + " (" + to_string(frameData.size())
-				+ " ignored in total). Animations must start at frame 0.");
+							 + "frame " + to_string(frameData.begin()->first) + " ("
+							 + to_string(frameData.size())
+							 + " ignored in total). Animations must start at frame 0.");
 			return;
 		}
 
@@ -135,15 +137,18 @@ namespace {
 		size_t count = distance(frameData.begin(), next);
 		sequence.resize(count);
 		transform(frameData.begin(), next, sequence.begin(),
-			[](const pair<size_t, string> &p) -> string { return p.second; });
+			[](const pair<size_t, string> &p) -> string
+			{
+				return p.second;
+			});
 
 		// If `next` is not the end, then there was at least one discontinuous frame.
 		if(next != frameData.end())
 		{
 			size_t ignored = distance(next, frameData.end());
-			Logger::LogError(prefix + "missing " + (isSwizzleMask ? "mask " : "") + (is2x ? "@2x " : "") + "frame "
-				+ to_string(it->first + 1) + " (" + to_string(ignored)
-				+ (ignored > 1 ? " frames" : " frame") + " ignored in total).");
+			Logger::LogError(prefix + "missing " + (isSwizzleMask ? "mask " : "") + (is2x ? "@2x " : "")
+							 + "frame " + to_string(it->first + 1) + " (" + to_string(ignored)
+							 + (ignored > 1 ? " frames" : " frame") + " ignored in total).");
 		}
 	}
 }
@@ -183,10 +188,7 @@ bool ImageSet::IsDeferred(const string &path)
 
 
 
-ImageSet::ImageSet(string name)
-	: name(std::move(name))
-{
-}
+ImageSet::ImageSet(string name) : name(std::move(name)) {}
 
 
 
@@ -232,11 +234,12 @@ void ImageSet::ValidateFrames() noexcept(false)
 	framePaths[2].clear();
 	framePaths[3].clear();
 
-	auto DropPaths = [&](vector<string> &toResize, const string &specifier) {
+	auto DropPaths = [&](vector<string> &toResize, const string &specifier)
+	{
 		if(toResize.size() > paths[0].size())
 		{
-			Logger::LogError(prefix + to_string(toResize.size() - paths[0].size())
-				+ " extra frames for the " + specifier + " sprite will be ignored.");
+			Logger::LogError(prefix + to_string(toResize.size() - paths[0].size()) + " extra frames for the "
+							 + specifier + " sprite will be ignored.");
 			toResize.resize(paths[0].size());
 		}
 	};
@@ -279,11 +282,13 @@ void ImageSet::Load() noexcept(false)
 		{
 			masks[i].Create(buffer[0], i);
 			if(!masks[i].IsLoaded())
-				Logger::LogError("Failed to create collision mask for \"" + name + "\" frame #" + to_string(i));
+				Logger::LogError(
+					"Failed to create collision mask for \"" + name + "\" frame #" + to_string(i));
 		}
 	}
 
-	auto FillSwizzleMasks = [&](vector<string> &toFill, unsigned int intendedSize) {
+	auto FillSwizzleMasks = [&](vector<string> &toFill, unsigned int intendedSize)
+	{
 		if(toFill.size() == 1 && intendedSize > 1)
 			for(unsigned int i = toFill.size(); i < intendedSize; i++)
 				toFill.emplace_back(toFill.back());
@@ -294,7 +299,8 @@ void ImageSet::Load() noexcept(false)
 	FillSwizzleMasks(paths[3], paths[0].size());
 
 
-	auto LoadSprites = [&](vector<string> &toLoad, ImageBuffer &buffer, const string &specifier) {
+	auto LoadSprites = [&](vector<string> &toLoad, ImageBuffer &buffer, const string &specifier)
+	{
 		for(size_t i = 0; i < frames && i < toLoad.size(); ++i)
 			if(!buffer.Read(toLoad[i], i))
 			{
@@ -311,13 +317,13 @@ void ImageSet::Load() noexcept(false)
 
 	// Warn about a "high-profile" image that will be blurry due to rendering at 50% scale.
 	bool willBlur = (buffer[0].Width() & 1) || (buffer[0].Height() & 1);
-	if(willBlur && (
-			(name.length() > 5 && !name.compare(0, 5, "ship/"))
+	if(willBlur
+		&& ((name.length() > 5 && !name.compare(0, 5, "ship/"))
 			|| (name.length() > 7 && !name.compare(0, 7, "outfit/"))
-			|| (name.length() > 10 && !name.compare(0, 10, "thumbnail/"))
-	))
-		Logger::LogError("Warning: image \"" + name + "\" will be blurry since width and/or height are not even ("
-			+ to_string(buffer[0].Width()) + "x" + to_string(buffer[0].Height()) + ").");
+			|| (name.length() > 10 && !name.compare(0, 10, "thumbnail/"))))
+		Logger::LogError("Warning: image \"" + name
+						 + "\" will be blurry since width and/or height are not even ("
+						 + to_string(buffer[0].Width()) + "x" + to_string(buffer[0].Height()) + ").");
 }
 
 

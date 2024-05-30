@@ -43,7 +43,8 @@ class System;
 class GameEvent {
 public:
 	// Determine the universe object definitions that are defined by the given list of changes.
-	static std::map<std::string, std::set<std::string>> DeferredDefinitions(const std::list<DataNode> &changes);
+	static std::map<std::string, std::set<std::string>> DeferredDefinitions(
+		const std::list<DataNode> &changes);
 
 
 public:

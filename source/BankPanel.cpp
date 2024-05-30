@@ -15,17 +15,17 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "BankPanel.h"
 
-#include "text/alignment.hpp"
 #include "Color.h"
 #include "Command.h"
 #include "Dialog.h"
-#include "text/DisplayText.h"
-#include "text/Format.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
 #include "PlayerInfo.h"
 #include "Point.h"
+#include "text/alignment.hpp"
+#include "text/DisplayText.h"
+#include "text/Format.h"
 #include "text/Table.h"
 #include "text/truncate.hpp"
 #include "UI.h"
@@ -48,8 +48,7 @@ namespace {
 
 
 // Constructor.
-BankPanel::BankPanel(PlayerInfo &player)
-	: player(player), qualify(player.Accounts().Prequalify())
+BankPanel::BankPanel(PlayerInfo &player) : player(player), qualify(player.Accounts().Prequalify())
 {
 	// This panel should allow events it does not respond to to pass through to
 	// the underlying PlanetPanel.
@@ -118,8 +117,9 @@ void BankPanel::Draw()
 	int64_t maintenanceDue = player.Accounts().MaintenanceDue();
 	// Figure out how many rows of the display are for mortgages, and also check
 	// whether multiple mortgages have to be combined into the last row.
-	mortgageRows = MAX_ROWS - (salaries != 0 || crewSalariesOwed != 0) - (b.maintenanceCosts != 0 || maintenanceDue != 0)
-		- (b.assetsReturns != 0 || salariesIncome != 0 || tributeIncome != 0);
+	mortgageRows = MAX_ROWS - (salaries != 0 || crewSalariesOwed != 0)
+				   - (b.maintenanceCosts != 0 || maintenanceDue != 0)
+				   - (b.assetsReturns != 0 || salariesIncome != 0 || tributeIncome != 0);
 	int mortgageCount = player.Accounts().Mortgages().size();
 	mergedMortgages = (mortgageCount > mortgageRows);
 	if(!mergedMortgages)
@@ -212,12 +212,14 @@ void BankPanel::Draw()
 		// Your daily income offsets expenses.
 		totalPayment -= salariesIncome + tributeIncome + b.assetsReturns;
 
-		static const string LABEL[] = {"", "Your Salary Income", "Your Tribute Income", "Your Salary and Tribute Income",
-			"Your Return on Assets Income", "Your Salary and Return on Assets Income",
-			"Your Tribute and Return on Assets Income", "Your Salary, Tribute, and Returns Income" };
+		static const string LABEL[] = {"", "Your Salary Income", "Your Tribute Income",
+			"Your Salary and Tribute Income", "Your Return on Assets Income",
+			"Your Salary and Return on Assets Income", "Your Tribute and Return on Assets Income",
+			"Your Salary, Tribute, and Returns Income"};
 		const auto incomeLayout = Layout(310, Truncate::BACK);
-		table.DrawCustom({LABEL[(salariesIncome != 0) + 2 * (tributeIncome != 0) + 4 * (b.assetsReturns != 0)],
-			incomeLayout});
+		table.DrawCustom(
+			{LABEL[(salariesIncome != 0) + 2 * (tributeIncome != 0) + 4 * (b.assetsReturns != 0)],
+				incomeLayout});
 		// For crew salaries, only the "payment" field needs to be shown.
 		table.Advance(3);
 		table.Draw(Format::Credits(-(salariesIncome + tributeIncome + b.assetsReturns)));
@@ -286,8 +288,7 @@ bool BankPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	}
 	else if(key == SDLK_RETURN && qualify)
 	{
-		GetUI()->Push(new Dialog(this, &BankPanel::NewMortgage,
-			"Borrow how many credits?"));
+		GetUI()->Push(new Dialog(this, &BankPanel::NewMortgage, "Borrow how many credits?"));
 		DoHelp("bank advanced");
 	}
 	else if(key == 'a')
@@ -360,7 +361,8 @@ void BankPanel::PayExtra(const string &str)
 
 	// Pay the mortgage. If this is the "other" row, loop through all the
 	// mortgages included in that row.
-	do {
+	do
+	{
 		// You cannot pay more than you have or more than the mortgage principal.
 		int64_t payment = min(amount, min(player.Accounts().Credits(), mortgages[selectedRow].Principal()));
 		if(payment < 1)
@@ -369,7 +371,8 @@ void BankPanel::PayExtra(const string &str)
 		// Make an extra payment.
 		player.Accounts().PayExtra(selectedRow, payment);
 		amount -= payment;
-	} while(isOther && static_cast<unsigned>(selectedRow) < mortgages.size());
+	}
+	while(isOther && static_cast<unsigned>(selectedRow) < mortgages.size());
 
 	// Recalculate how much the player can prequalify for.
 	qualify = player.Accounts().Prequalify();

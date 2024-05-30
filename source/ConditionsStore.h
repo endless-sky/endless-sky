@@ -68,11 +68,23 @@ public:
 
 		// Lambda functions for accessing the derived conditions, with some sensible
 		// default implementations;
-		std::function<int64_t(const std::string &)> getFunction = [](const std::string &name) { return 0; };
-		std::function<bool(const std::string &)> hasFunction = [](const std::string &name) { return true; };
-		std::function<bool(const std::string &, int64_t)> setFunction = [](const std::string &name, int64_t value) {
-			return false; };
-		std::function<bool(const std::string &)> eraseFunction = [](const std::string &name) { return false; };
+		std::function<int64_t(const std::string &)> getFunction = [](const std::string &name)
+		{
+			return 0;
+		};
+		std::function<bool(const std::string &)> hasFunction = [](const std::string &name)
+		{
+			return true;
+		};
+		std::function<bool(const std::string &, int64_t)> setFunction =
+			[](const std::string &name, int64_t value)
+		{
+			return false;
+		};
+		std::function<bool(const std::string &)> eraseFunction = [](const std::string &name)
+		{
+			return false;
+		};
 	};
 
 

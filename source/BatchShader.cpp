@@ -40,45 +40,43 @@ namespace {
 // Initialize the shaders.
 void BatchShader::Init()
 {
-	static const char *vertexCode =
-		"// vertex batch shader\n"
-		"uniform vec2 scale;\n"
-		"in vec2 vert;\n"
-		"in vec3 texCoord;\n"
-		"in float alpha;\n"
+	static const char *vertexCode = "// vertex batch shader\n"
+									"uniform vec2 scale;\n"
+									"in vec2 vert;\n"
+									"in vec3 texCoord;\n"
+									"in float alpha;\n"
 
-		"out vec3 fragTexCoord;\n"
-		"out float fragAlpha;\n"
+									"out vec3 fragTexCoord;\n"
+									"out float fragAlpha;\n"
 
-		"void main() {\n"
-		"  gl_Position = vec4(vert * scale, 0, 1);\n"
-		"  fragTexCoord = texCoord;\n"
-		"  fragAlpha = alpha;\n"
-		"}\n";
+									"void main() {\n"
+									"  gl_Position = vec4(vert * scale, 0, 1);\n"
+									"  fragTexCoord = texCoord;\n"
+									"  fragAlpha = alpha;\n"
+									"}\n";
 
-	static const char *fragmentCode =
-		"// fragment batch shader\n"
-		"precision mediump float;\n"
+	static const char *fragmentCode = "// fragment batch shader\n"
+									  "precision mediump float;\n"
 #ifdef ES_GLES
-		"precision mediump sampler2DArray;\n"
+									  "precision mediump sampler2DArray;\n"
 #endif
-		"uniform sampler2DArray tex;\n"
-		"uniform float frameCount;\n"
+									  "uniform sampler2DArray tex;\n"
+									  "uniform float frameCount;\n"
 
-		"in vec3 fragTexCoord;\n"
-		"in float fragAlpha;\n"
+									  "in vec3 fragTexCoord;\n"
+									  "in float fragAlpha;\n"
 
-		"out vec4 finalColor;\n"
+									  "out vec4 finalColor;\n"
 
-		"void main() {\n"
-		"  float first = floor(fragTexCoord.z);\n"
-		"  float second = mod(ceil(fragTexCoord.z), frameCount);\n"
-		"  float fade = fragTexCoord.z - first;\n"
-		"  finalColor = mix(\n"
-		"    texture(tex, vec3(fragTexCoord.xy, first)),\n"
-		"    texture(tex, vec3(fragTexCoord.xy, second)), fade);\n"
-		"  finalColor *= vec4(fragAlpha);\n"
-		"}\n";
+									  "void main() {\n"
+									  "  float first = floor(fragTexCoord.z);\n"
+									  "  float second = mod(ceil(fragTexCoord.z), frameCount);\n"
+									  "  float fade = fragTexCoord.z - first;\n"
+									  "  finalColor = mix(\n"
+									  "    texture(tex, vec3(fragTexCoord.xy, first)),\n"
+									  "    texture(tex, vec3(fragTexCoord.xy, second)), fade);\n"
+									  "  finalColor *= vec4(fragAlpha);\n"
+									  "}\n";
 
 	// Compile the shaders.
 	shader = Shader(vertexCode, fragmentCode);

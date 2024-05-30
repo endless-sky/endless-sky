@@ -37,10 +37,10 @@ namespace {
 	}
 }
 
-template<class T>
+template <class T>
 class BySeriesAndIndex;
 
-template<>
+template <>
 class BySeriesAndIndex<Ship> {
 public:
 	bool operator()(const std::string &nameA, const std::string &nameB) const
@@ -51,7 +51,7 @@ public:
 	}
 };
 
-template<>
+template <>
 class BySeriesAndIndex<Outfit> {
 public:
 	bool operator()(const std::string &nameA, const std::string &nameB)

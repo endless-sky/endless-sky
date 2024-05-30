@@ -25,8 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // suitable range. The Animate methods will return negative values, as they are
 // meant to be added as an offset to the draw position.
 template <typename T>
-class ScrollVar: public Animate<T>
-{
+class ScrollVar : public Animate<T> {
 public:
 	ScrollVar() = default;
 	ScrollVar(const T &maxVal, const T &displaySize);
@@ -64,8 +63,7 @@ private:
 
 
 template <typename T>
-ScrollVar<T>::ScrollVar(const T &maxVal, const T &displaySize)
-	: maxVal{maxVal}, displaySize{displaySize}
+ScrollVar<T>::ScrollVar(const T &maxVal, const T &displaySize) : maxVal{maxVal}, displaySize{displaySize}
 {
 }
 

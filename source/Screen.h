@@ -26,8 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class Screen {
 public:
 	// Use RAII to define the scope of a temporary screen size change.
-	class ScreenDimensionsGuard final
-	{
+	class ScreenDimensionsGuard final {
 	public:
 		// Constructor that changes the screen size on creation.
 		ScreenDimensionsGuard(int width, int height);

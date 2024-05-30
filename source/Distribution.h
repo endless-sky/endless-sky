@@ -26,13 +26,7 @@ class Angle;
 // given its inaccuracy value and type.
 class Distribution {
 public:
-	enum class Type {
-		Narrow = 0,
-		Medium = 1,
-		Wide = 2,
-		Uniform = 3,
-		Triangular = 4
-	};
+	enum class Type { Narrow = 0, Medium = 1, Wide = 2, Uniform = 3, Triangular = 4 };
 
 
 public:

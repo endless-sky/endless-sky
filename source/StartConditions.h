@@ -34,17 +34,12 @@ class Sprite;
 class StartConditions : public CoreStartData {
 public:
 	// Various states that a StartConditions can be in depending on global conditions.
-	enum class StartState : int {
-		HIDDEN,
-		DISPLAYED,
-		REVEALED,
-		UNLOCKED
-	};
+	enum class StartState : int { HIDDEN, DISPLAYED, REVEALED, UNLOCKED };
 
 	// Information to be shown to the player depending on current StartState.
 	// Information which is a child of the root node gets loaded into the UNLOCKED StartState.
-	// Information under "on (display | reveal)" nodes gets loaded into their respective VISIBLE or REVEALED states.
-	// The HIDDEN state has no information to display.
+	// Information under "on (display | reveal)" nodes gets loaded into their respective VISIBLE or REVEALED
+	// states. The HIDDEN state has no information to display.
 	class StartInfo {
 	public:
 		const Sprite *thumbnail = nullptr;

@@ -83,18 +83,17 @@ namespace {
 
 
 
-void Files::Init(const char * const *argv)
+void Files::Init(const char *const *argv)
 {
 	// Parse the command line arguments to see if the user has specified
 	// different directories to use.
-	for(const char * const *it = argv + 1; *it; ++it)
+	for(const char *const *it = argv + 1; *it; ++it)
 	{
 		string arg = *it;
 		if((arg == "-r" || arg == "--resources") && *++it)
 			resources = *it;
 		else if((arg == "-c" || arg == "--config") && *++it)
 			config = *it;
-
 	}
 
 	if(resources.empty())
@@ -237,13 +236,15 @@ vector<string> Files::List(string directory)
 	if(!hFind)
 		return list;
 
-	do {
+	do
+	{
 		if(ffd.cFileName[0] == '.')
 			continue;
 
 		if(!(ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
 			list.push_back(directory + Utf8::ToUTF8(ffd.cFileName));
-	} while(FindNextFileW(hFind, &ffd));
+	}
+	while(FindNextFileW(hFind, &ffd));
 
 	FindClose(hFind);
 #else
@@ -294,13 +295,15 @@ vector<string> Files::ListDirectories(string directory)
 	if(!hFind)
 		return list;
 
-	do {
+	do
+	{
 		if(ffd.cFileName[0] == '.')
 			continue;
 
 		if(ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
 			list.push_back(directory + Utf8::ToUTF8(ffd.cFileName) + '/');
-	} while(FindNextFileW(hFind, &ffd));
+	}
+	while(FindNextFileW(hFind, &ffd));
 
 	FindClose(hFind);
 #else
@@ -362,7 +365,8 @@ void Files::RecursiveList(string directory, vector<string> *list)
 	if(hFind == INVALID_HANDLE_VALUE)
 		return;
 
-	do {
+	do
+	{
 		if(ffd.cFileName[0] == '.')
 			continue;
 
@@ -370,7 +374,8 @@ void Files::RecursiveList(string directory, vector<string> *list)
 			list->push_back(directory + Utf8::ToUTF8(ffd.cFileName));
 		else
 			RecursiveList(directory + Utf8::ToUTF8(ffd.cFileName) + '/', list);
-	} while(FindNextFileW(hFind, &ffd));
+	}
+	while(FindNextFileW(hFind, &ffd));
 
 	FindClose(hFind);
 #else
@@ -591,8 +596,8 @@ void Files::LogErrorToFile(const string &message)
 		errorLog = File(config + "errors.txt", true);
 		if(!errorLog)
 		{
-			cerr << "Unable to create \"errors.txt\" " << (config.empty()
-				? "in current directory" : "in \"" + config + "\"") << endl;
+			cerr << "Unable to create \"errors.txt\" "
+				 << (config.empty() ? "in current directory" : "in \"" + config + "\"") << endl;
 			return;
 		}
 	}

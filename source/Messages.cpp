@@ -128,16 +128,16 @@ const Color *Messages::GetColor(Importance importance, bool isLogPanel)
 	string prefix = isLogPanel ? "message log importance " : "message importance ";
 	switch(importance)
 	{
-		case Messages::Importance::Highest:
-			return GameData::Colors().Get(prefix + "highest");
-		case Messages::Importance::High:
-			return GameData::Colors().Get(prefix + "high");
-		case Messages::Importance::Info:
-			return GameData::Colors().Get(prefix + "info");
-		case Messages::Importance::Daily:
-			return GameData::Colors().Get(prefix + "daily");
-		case Messages::Importance::Low:
-		default:
-			return GameData::Colors().Get(prefix + "low");
+	case Messages::Importance::Highest:
+		return GameData::Colors().Get(prefix + "highest");
+	case Messages::Importance::High:
+		return GameData::Colors().Get(prefix + "high");
+	case Messages::Importance::Info:
+		return GameData::Colors().Get(prefix + "info");
+	case Messages::Importance::Daily:
+		return GameData::Colors().Get(prefix + "daily");
+	case Messages::Importance::Low:
+	default:
+		return GameData::Colors().Get(prefix + "low");
 	}
 }

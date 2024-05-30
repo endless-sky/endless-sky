@@ -33,7 +33,8 @@ using namespace std;
 
 namespace {
 	// Create all the effects in the given list, at the given location, velocity, and angle.
-	void CreateEffects(const map<const Effect *, int> &m, Point pos, Point vel, Angle angle, vector<Visual> &visuals)
+	void CreateEffects(
+		const map<const Effect *, int> &m, Point pos, Point vel, Angle angle, vector<Visual> &visuals)
 	{
 		for(const auto &it : m)
 			for(int i = 0; i < it.second; ++i)
@@ -44,10 +45,10 @@ namespace {
 
 
 // Constructor.
-Hardpoint::Hardpoint(const Point &point, const BaseAttributes &attributes,
-	bool isTurret, bool isUnder, const Outfit *outfit)
+Hardpoint::Hardpoint(
+	const Point &point, const BaseAttributes &attributes, bool isTurret, bool isUnder, const Outfit *outfit)
 	: outfit(outfit), point(point * .5), baseAngle(attributes.baseAngle), baseAttributes(attributes),
-	isTurret(isTurret), isParallel(baseAttributes.isParallel), isUnder(isUnder)
+	  isTurret(isTurret), isParallel(baseAttributes.isParallel), isUnder(isUnder)
 {
 	UpdateArc();
 }
@@ -420,8 +421,8 @@ bool Hardpoint::FireSpecialSystem(Ship &ship, const Body &body, std::vector<Visu
 	}
 
 	// Precompute the number of visuals that will be added.
-	visuals.reserve(visuals.size() + outfit->FireEffects().size()
-		+ outfit->HitEffects().size() + outfit->DieEffects().size());
+	visuals.reserve(visuals.size() + outfit->FireEffects().size() + outfit->HitEffects().size()
+					+ outfit->DieEffects().size());
 
 	angle = aim - facing;
 	start += aim.Rotate(outfit->HardpointOffset());

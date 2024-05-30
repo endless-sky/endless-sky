@@ -28,12 +28,10 @@ class DataNode;
 
 // Class representing a port on a planet and its capabilities, such as what properties
 // of a ship it can recharge and what services (e.g. banking, trading) it can provide.
-class Port
-{
+class Port {
 public:
 	// The different ship properties that can be recharged by a port.
-	class RechargeType
-	{
+	class RechargeType {
 	public:
 		static constexpr int None = 0;
 		static constexpr int Shields = (1 << 0);
@@ -44,8 +42,7 @@ public:
 	};
 
 	// The different services available on this port.
-	class ServicesType
-	{
+	class ServicesType {
 	public:
 		static constexpr int None = 0;
 		static constexpr int Trading = (1 << 0);

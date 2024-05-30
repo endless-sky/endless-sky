@@ -57,7 +57,8 @@ public:
 
 
 private:
-	void UpdateAttributes(const Ship &ship, const PlayerInfo &player, bool descriptionCollapsed, bool scrollingPanel);
+	void UpdateAttributes(
+		const Ship &ship, const PlayerInfo &player, bool descriptionCollapsed, bool scrollingPanel);
 	void UpdateOutfits(const Ship &ship, const PlayerInfo &player, const Depreciation &depreciation);
 
 

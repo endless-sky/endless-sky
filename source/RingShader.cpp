@@ -44,21 +44,20 @@ namespace {
 
 void RingShader::Init()
 {
-	static const char *vertexCode =
-		"// vertex ring shader\n"
-		"precision mediump float;\n"
-		"uniform vec2 scale;\n"
-		"uniform vec2 position;\n"
-		"uniform float radius;\n"
-		"uniform float width;\n"
+	static const char *vertexCode = "// vertex ring shader\n"
+									"precision mediump float;\n"
+									"uniform vec2 scale;\n"
+									"uniform vec2 position;\n"
+									"uniform float radius;\n"
+									"uniform float width;\n"
 
-		"in vec2 vert;\n"
-		"out vec2 coord;\n"
+									"in vec2 vert;\n"
+									"out vec2 coord;\n"
 
-		"void main() {\n"
-		"  coord = (radius + width) * vert;\n"
-		"  gl_Position = vec4((coord + position) * scale, 0.f, 1.f);\n"
-		"}\n";
+									"void main() {\n"
+									"  coord = (radius + width) * vert;\n"
+									"  gl_Position = vec4((coord + position) * scale, 0.f, 1.f);\n"
+									"}\n";
 
 	static const char *fragmentCode =
 		"// fragment ring shader\n"
@@ -105,12 +104,7 @@ void RingShader::Init()
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
-	GLfloat vertexData[] = {
-		-1.f, -1.f,
-		-1.f,  1.f,
-		 1.f, -1.f,
-		 1.f,  1.f
-	};
+	GLfloat vertexData[] = {-1.f, -1.f, -1.f, 1.f, 1.f, -1.f, 1.f, 1.f};
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
 
 	glEnableVertexAttribArray(shader.Attrib("vert"));
@@ -125,14 +119,14 @@ void RingShader::Init()
 
 void RingShader::Draw(const Point &pos, float out, float in, const Color &color)
 {
-	float width = .5f * (1.f + out - in) ;
+	float width = .5f * (1.f + out - in);
 	Draw(pos, out - width, width, 1.f, color);
 }
 
 
 
-void RingShader::Draw(const Point &pos, float radius, float width, float fraction,
-	const Color &color, float dash, float startAngle)
+void RingShader::Draw(const Point &pos, float radius, float width, float fraction, const Color &color,
+	float dash, float startAngle)
 {
 	Bind();
 
@@ -159,14 +153,14 @@ void RingShader::Bind()
 
 void RingShader::Add(const Point &pos, float out, float in, const Color &color)
 {
-	float width = .5f * (1.f + out - in) ;
+	float width = .5f * (1.f + out - in);
 	Add(pos, out - width, width, 1.f, color);
 }
 
 
 
-void RingShader::Add(const Point &pos, float radius, float width, float fraction,
-	const Color &color, float dash, float startAngle)
+void RingShader::Add(const Point &pos, float radius, float width, float fraction, const Color &color,
+	float dash, float startAngle)
 {
 	GLfloat position[2] = {static_cast<float>(pos.X()), static_cast<float>(pos.Y())};
 	glUniform2fv(positionI, 1, position);

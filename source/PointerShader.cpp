@@ -60,23 +60,22 @@ void PointerShader::Init()
 		"  gl_Position = vec4((base + wing) * scale, 0, 1);\n"
 		"}\n";
 
-	static const char *fragmentCode =
-		"// fragment pointer shader\n"
-		"precision mediump float;\n"
-		"uniform vec4 color;\n"
-		"uniform vec2 size;\n"
+	static const char *fragmentCode = "// fragment pointer shader\n"
+									  "precision mediump float;\n"
+									  "uniform vec4 color;\n"
+									  "uniform vec2 size;\n"
 
-		"in vec2 coord;\n"
-		"out vec4 finalColor;\n"
+									  "in vec2 coord;\n"
+									  "out vec4 finalColor;\n"
 
-		"void main() {\n"
-		"  float height = (coord.x + coord.y) / size.x;\n"
-		"  float taper = height * height * height;\n"
-		"  taper *= taper * .5 * size.x;\n"
-		"  float alpha = clamp(.8 * min(coord.x, coord.y) - taper, 0.f, 1.f);\n"
-		"  alpha *= clamp(1.8 * (1. - height), 0.f, 1.f);\n"
-		"  finalColor = color * alpha;\n"
-		"}\n";
+									  "void main() {\n"
+									  "  float height = (coord.x + coord.y) / size.x;\n"
+									  "  float taper = height * height * height;\n"
+									  "  taper *= taper * .5 * size.x;\n"
+									  "  float alpha = clamp(.8 * min(coord.x, coord.y) - taper, 0.f, 1.f);\n"
+									  "  alpha *= clamp(1.8 * (1. - height), 0.f, 1.f);\n"
+									  "  finalColor = color * alpha;\n"
+									  "}\n";
 
 	shader = Shader(vertexCode, fragmentCode);
 	scaleI = shader.Uniform("scale");
@@ -94,9 +93,12 @@ void PointerShader::Init()
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
 	GLfloat vertexData[] = {
-		0.f, 0.f,
-		0.f, 1.f,
-		1.f, 0.f,
+		0.f,
+		0.f,
+		0.f,
+		1.f,
+		1.f,
+		0.f,
 	};
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
 
@@ -110,8 +112,8 @@ void PointerShader::Init()
 
 
 
-void PointerShader::Draw(const Point &center, const Point &angle,
-	float width, float height, float offset, const Color &color)
+void PointerShader::Draw(
+	const Point &center, const Point &angle, float width, float height, float offset, const Color &color)
 {
 	Bind();
 
@@ -136,8 +138,8 @@ void PointerShader::Bind()
 
 
 
-void PointerShader::Add(const Point &center, const Point &angle,
-	float width, float height, float offset, const Color &color)
+void PointerShader::Add(
+	const Point &center, const Point &angle, float width, float height, float offset, const Color &color)
 {
 	GLfloat c[2] = {static_cast<float>(center.X()), static_cast<float>(center.Y())};
 	glUniform2fv(centerI, 1, c);

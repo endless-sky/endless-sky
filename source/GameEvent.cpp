@@ -45,7 +45,7 @@ namespace {
 // Determine the universe object definitions that are defined by the given list of changes.
 map<string, set<string>> GameEvent::DeferredDefinitions(const list<DataNode> &changes)
 {
-	auto definitions = map<string, set<string>> {};
+	auto definitions = map<string, set<string>>{};
 
 	for(auto &&node : changes)
 		if(node.Size() >= 2 && node.HasChildren() && DEFINITION_NODES.count(node.Token(0)))
@@ -55,10 +55,11 @@ map<string, set<string>> GameEvent::DeferredDefinitions(const list<DataNode> &ch
 			if(key == "system")
 			{
 				// A system is only actually defined by this change node if its position is set.
-				if(any_of(node.begin(), node.end(), [](const DataNode &child) noexcept -> bool
-						{
-							return child.Size() >= 3 && child.Token(0) == "pos";
-						}))
+				if(any_of(node.begin(), node.end(),
+					   [](const DataNode &child) noexcept -> bool
+					   {
+						   return child.Size() >= 3 && child.Token(0) == "pos";
+					   }))
 					definitions[key].emplace(name);
 			}
 			// Since this (or any other) event may be used to assign a planet to a system, we cannot
@@ -93,15 +94,15 @@ void GameEvent::Load(const DataNode &node)
 	isDefined = true;
 
 	static const auto allowedChanges = []() -> set<string>
-		{
-			auto allowed = DEFINITION_NODES;
-			// Include other modifications that cannot create new universe objects.
-			allowed.insert({
-				"link",
-				"unlink",
-			});
-			return allowed;
-		}();
+	{
+		auto allowed = DEFINITION_NODES;
+		// Include other modifications that cannot create new universe objects.
+		allowed.insert({
+			"link",
+			"unlink",
+		});
+		return allowed;
+	}();
 
 	for(const DataNode &child : node)
 	{

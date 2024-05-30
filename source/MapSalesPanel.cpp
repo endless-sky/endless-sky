@@ -18,14 +18,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "CategoryTypes.h"
 #include "Command.h"
 #include "Dialog.h"
-#include "text/DisplayText.h"
 #include "FillShader.h"
-#include "text/Font.h"
-#include "text/FontSet.h"
 #include "GameData.h"
 #include "Government.h"
 #include "ItemInfoDisplay.h"
-#include "text/layout.hpp"
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "PointerShader.h"
@@ -36,6 +32,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "System.h"
+#include "text/DisplayText.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/layout.hpp"
 #include "text/truncate.hpp"
 #include "UI.h"
 
@@ -51,9 +51,8 @@ const int MapSalesPanel::WIDTH = 270;
 
 MapSalesPanel::MapSalesPanel(PlayerInfo &player, bool isOutfitters)
 	: MapPanel(player, SHOW_SPECIAL),
-	categories(GameData::GetCategory(isOutfitters ? CategoryType::OUTFIT : CategoryType::SHIP)),
-	isOutfitters(isOutfitters),
-	collapsed(player.Collapsed(isOutfitters ? "outfitter map" : "shipyard map"))
+	  categories(GameData::GetCategory(isOutfitters ? CategoryType::OUTFIT : CategoryType::SHIP)),
+	  isOutfitters(isOutfitters), collapsed(player.Collapsed(isOutfitters ? "outfitter map" : "shipyard map"))
 {
 }
 
@@ -61,9 +60,8 @@ MapSalesPanel::MapSalesPanel(PlayerInfo &player, bool isOutfitters)
 
 MapSalesPanel::MapSalesPanel(const MapPanel &panel, bool isOutfitters)
 	: MapPanel(panel),
-	categories(GameData::GetCategory(isOutfitters ? CategoryType::OUTFIT : CategoryType::SHIP)),
-	isOutfitters(isOutfitters),
-	collapsed(player.Collapsed(isOutfitters ? "outfitter map" : "shipyard map"))
+	  categories(GameData::GetCategory(isOutfitters ? CategoryType::OUTFIT : CategoryType::SHIP)),
+	  isOutfitters(isOutfitters), collapsed(player.Collapsed(isOutfitters ? "outfitter map" : "shipyard map"))
 {
 	commodity = SHOW_SPECIAL;
 }
@@ -96,7 +94,8 @@ bool MapSalesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		DoHelp("map advanced shops", true);
 	else if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
 	{
-		scroll += static_cast<double>((Screen::Height() - 100) * ((key == SDLK_PAGEUP) - (key == SDLK_PAGEDOWN)));
+		scroll +=
+			static_cast<double>((Screen::Height() - 100) * ((key == SDLK_PAGEUP) - (key == SDLK_PAGEDOWN)));
 		scroll = min(0., max(-maxScroll, scroll));
 	}
 	else if(key == SDLK_HOME)
@@ -116,8 +115,7 @@ bool MapSalesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		ScrollTo(selected);
 	}
 	else if(key == 'f')
-		GetUI()->Push(new Dialog(
-			this, &MapSalesPanel::DoFind, "Search for:"));
+		GetUI()->Push(new Dialog(this, &MapSalesPanel::DoFind, "Search for:"));
 	else
 		return MapPanel::KeyDown(key, mod, command, isNewPress);
 
@@ -132,7 +130,10 @@ bool MapSalesPanel::Click(int x, int y, int clicks)
 	{
 		const Point point(x, y);
 		const auto zone = find_if(zones.begin(), zones.end(),
-			[&](const ClickZone<int> zone){ return zone.Contains(point); });
+			[&](const ClickZone<int> zone)
+			{
+				return zone.Contains(point);
+			});
 
 		if(zone == zones.end())
 		{
@@ -225,7 +226,8 @@ int MapSalesPanel::CompareSpriteSwizzle() const
 void MapSalesPanel::DrawKey() const
 {
 	const Sprite *back = SpriteSet::Get("ui/sales key");
-	SpriteShader::Draw(back, Screen::TopLeft() + Point(WIDTH + 10, 0) + .5 * Point(back->Width(), back->Height()));
+	SpriteShader::Draw(
+		back, Screen::TopLeft() + Point(WIDTH + 10, 0) + .5 * Point(back->Width(), back->Height()));
 
 	Color bright(.6f, .6f);
 	Color dim(.3f, .3f);
@@ -234,12 +236,7 @@ void MapSalesPanel::DrawKey() const
 	Point pos(Screen::Left() + 50. + WIDTH, Screen::Top() + 12.);
 	Point textOff(10., -.5 * font.Height());
 
-	static const double VALUE[] = {
-		-1.,
-		0.,
-		1.,
-		.5
-	};
+	static const double VALUE[] = {-1., 0., 1., .5};
 
 	double selectedValue = SystemValue(selectedSystem);
 	for(int i = 0; i < 4; ++i)
@@ -261,10 +258,7 @@ void MapSalesPanel::DrawKey() const
 void MapSalesPanel::DrawPanel() const
 {
 	const Color &back = *GameData::Colors().Get("map side panel background");
-	FillShader::Fill(
-		Point(Screen::Left() + WIDTH * .5, 0.),
-		Point(WIDTH, Screen::Height()),
-		back);
+	FillShader::Fill(Point(Screen::Left() + WIDTH * .5, 0.), Point(WIDTH, Screen::Height()), back);
 
 	Panel::DrawEdgeSprite(SpriteSet::Get("ui/right edge"), Screen::Left() + WIDTH);
 }
@@ -294,15 +288,13 @@ void MapSalesPanel::DrawInfo() const
 		Point topLeft(Screen::Right() - size.X(), Screen::Top());
 		FillShader::Fill(topLeft + .5 * size, size, back);
 
-		Point leftPos = topLeft + Point(
-			-.5 * left->Width(),
-			size.Y() - .5 * left->Height());
+		Point leftPos = topLeft + Point(-.5 * left->Width(), size.Y() - .5 * left->Height());
 		SpriteShader::Draw(left, leftPos);
 		// The top left corner of the bottom sprite should be 10 x units right
 		// of the bottom left corner of the left edge sprite.
-		Point bottomPos = leftPos + Point(
-			10. + .5 * (bottom->Width() - left->Width()),
-			.5 * (left->Height() + bottom->Height()));
+		Point bottomPos =
+			leftPos
+			+ Point(10. + .5 * (bottom->Width() - left->Width()), .5 * (left->Height() + bottom->Height()));
 		SpriteShader::Draw(bottom, bottomPos);
 
 		if(compare >= 0)
@@ -338,7 +330,11 @@ bool MapSalesPanel::DrawHeader(Point &corner, const string &category)
 	const Color &textColor = *GameData::Colors().Get(hide ? "medium" : "bright");
 	const Font &bigFont = FontSet::Get(18);
 	bigFont.Draw(category, corner + Point(30., 15.), textColor);
-	AddZone(Rectangle::FromCorner(corner, Point(WIDTH, 40.)), [this, category](){ ClickCategory(category); });
+	AddZone(Rectangle::FromCorner(corner, Point(WIDTH, 40.)),
+		[this, category]()
+		{
+			ClickCategory(category);
+		});
 	corner.Y() += 40.;
 
 	return hide;
@@ -351,7 +347,8 @@ void MapSalesPanel::DrawSprite(const Point &corner, const Sprite *sprite, int sw
 	if(sprite)
 	{
 		Point iconOffset(.5 * ICON_HEIGHT, .5 * ICON_HEIGHT);
-		double scale = min(.5, min((ICON_HEIGHT - 2.) / sprite->Height(), (ICON_HEIGHT - 2.) / sprite->Width()));
+		double scale =
+			min(.5, min((ICON_HEIGHT - 2.) / sprite->Height(), (ICON_HEIGHT - 2.) / sprite->Width()));
 
 		// No swizzle was specified, so default to the player swizzle.
 		if(swizzle == -1)
@@ -362,9 +359,8 @@ void MapSalesPanel::DrawSprite(const Point &corner, const Sprite *sprite, int sw
 
 
 
-void MapSalesPanel::Draw(Point &corner, const Sprite *sprite, int swizzle, bool isForSale,
-		bool isSelected, const string &name, const string &price, const string &info,
-		const std::string &storage)
+void MapSalesPanel::Draw(Point &corner, const Sprite *sprite, int swizzle, bool isForSale, bool isSelected,
+	const string &name, const string &price, const string &info, const std::string &storage)
 {
 	const Font &font = FontSet::Get(14);
 	const Color &selectionColor = *GameData::Colors().Get("item selected");
@@ -388,8 +384,9 @@ void MapSalesPanel::Draw(Point &corner, const Sprite *sprite, int swizzle, bool 
 
 		const Color &mediumColor = *GameData::Colors().Get("medium");
 		const Color &dimColor = *GameData::Colors().Get("dim");
-		const Color textColor = isForSale ? mediumColor : storage.empty()
-			? dimColor : Color::Combine(.5f, mediumColor, .5f, dimColor);
+		const Color textColor = isForSale         ? mediumColor
+								: storage.empty() ? dimColor
+												  : Color::Combine(.5f, mediumColor, .5f, dimColor);
 		auto layout = Layout(static_cast<int>(WIDTH - ICON_HEIGHT - 1), Truncate::BACK);
 		font.Draw({name, layout}, corner + nameOffset, textColor);
 		font.Draw({price, layout}, corner + priceOffset, textColor);

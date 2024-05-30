@@ -15,22 +15,22 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "LogbookPanel.h"
 
-#include "text/alignment.hpp"
 #include "Color.h"
-#include "text/DisplayText.h"
 #include "FillShader.h"
-#include "text/Font.h"
-#include "text/FontSet.h"
 #include "GameData.h"
-#include "text/layout.hpp"
 #include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Screen.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
-#include "UI.h"
+#include "text/alignment.hpp"
+#include "text/DisplayText.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/layout.hpp"
 #include "text/WrappedText.h"
+#include "UI.h"
 
 #include <algorithm>
 #include <set>
@@ -44,19 +44,18 @@ namespace {
 	const double WIDTH = SIDEBAR_WIDTH + TEXT_WIDTH;
 	const double LINE_HEIGHT = 25.;
 
-	// The minimum distance in pixels between the selected month and the edge of the screen before the month gets centered
+	// The minimum distance in pixels between the selected month and the edge of the screen before the month
+	// gets centered
 	const double MINIMUM_SELECTION_DISTANCE = LINE_HEIGHT * 3;
 
 	const double GAP = 30.;
-	const string MONTH[] = {
-		"  January", "  February", "  March", "  April", "  May", "  June",
-		"  July", "  August", "  September", "  October", "  November", "  December"};
+	const string MONTH[] = {"  January", "  February", "  March", "  April", "  May", "  June", "  July",
+		"  August", "  September", "  October", "  November", "  December"};
 }
 
 
 
-LogbookPanel::LogbookPanel(PlayerInfo &player)
-	: player(player)
+LogbookPanel::LogbookPanel(PlayerInfo &player) : player(player)
 {
 	SetInterruptible(false);
 	if(!player.Logbook().empty())
@@ -78,19 +77,12 @@ void LogbookPanel::Draw()
 	// Draw the panel. The sidebar should be slightly darker than the rest.
 	const Color &sideColor = *GameData::Colors().Get("logbook sidebar");
 	FillShader::Fill(
-		Point(Screen::Left() + .5 * SIDEBAR_WIDTH, 0.),
-		Point(SIDEBAR_WIDTH, Screen::Height()),
-		sideColor);
+		Point(Screen::Left() + .5 * SIDEBAR_WIDTH, 0.), Point(SIDEBAR_WIDTH, Screen::Height()), sideColor);
 	const Color &backColor = *GameData::Colors().Get("logbook background");
-	FillShader::Fill(
-		Point(Screen::Left() + SIDEBAR_WIDTH + .5 * TEXT_WIDTH, 0.),
-		Point(TEXT_WIDTH, Screen::Height()),
-		backColor);
+	FillShader::Fill(Point(Screen::Left() + SIDEBAR_WIDTH + .5 * TEXT_WIDTH, 0.),
+		Point(TEXT_WIDTH, Screen::Height()), backColor);
 	const Color &lineColor = *GameData::Colors().Get("logbook line");
-	FillShader::Fill(
-		Point(Screen::Left() + SIDEBAR_WIDTH - .5, 0.),
-		Point(1., Screen::Height()),
-		lineColor);
+	FillShader::Fill(Point(Screen::Left() + SIDEBAR_WIDTH - .5, 0.), Point(1., Screen::Height()), lineColor);
 
 	Panel::DrawEdgeSprite(SpriteSet::Get("ui/right edge"), Screen::Left() + WIDTH);
 
@@ -181,7 +173,7 @@ bool LogbookPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	{
 		// Find the index of the currently selected line.
 		size_t i = 0;
-		for( ; i < contents.size(); ++i)
+		for(; i < contents.size(); ++i)
 			if(contents[i] == selectedName)
 				break;
 		if(i == contents.size())
@@ -217,7 +209,7 @@ bool LogbookPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 			Update(key == SDLK_UP);
 
 			// Find our currently selected item again
-			for(i = 0 ; i < contents.size(); ++i)
+			for(i = 0; i < contents.size(); ++i)
 				if(contents[i] == selectedName)
 					break;
 
@@ -228,7 +220,8 @@ bool LogbookPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 			int position = i * LINE_HEIGHT - categoryScroll;
 
 			// If it's out of bounds, recenter it
-			if(position < MINIMUM_SELECTION_DISTANCE || position > (Screen::Height() - MINIMUM_SELECTION_DISTANCE))
+			if(position < MINIMUM_SELECTION_DISTANCE
+				|| position > (Screen::Height() - MINIMUM_SELECTION_DISTANCE))
 				categoryScroll = position - (Screen::Height() / 2);
 
 			categoryScroll = max(categoryScroll, 0.);

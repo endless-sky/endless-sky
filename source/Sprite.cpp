@@ -44,9 +44,9 @@ namespace {
 		glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
 		// Upload the image data.
-		glTexImage3D(GL_TEXTURE_2D_ARRAY, 0, GL_RGBA8, // target, mipmap level, internal format,
+		glTexImage3D(GL_TEXTURE_2D_ARRAY, 0, GL_RGBA8,        // target, mipmap level, internal format,
 			buffer.Width(), buffer.Height(), buffer.Frames(), // width, height, depth,
-			0, GL_RGBA, GL_UNSIGNED_BYTE, buffer.Pixels()); // border, input format, data type, data.
+			0, GL_RGBA, GL_UNSIGNED_BYTE, buffer.Pixels());   // border, input format, data type, data.
 
 		// Unbind the texture.
 		glBindTexture(GL_TEXTURE_2D_ARRAY, 0);
@@ -58,10 +58,7 @@ namespace {
 
 
 
-Sprite::Sprite(const string &name)
-	: name(name)
-{
-}
+Sprite::Sprite(const string &name) : name(name) {}
 
 
 

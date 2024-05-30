@@ -131,8 +131,7 @@ private:
 	//   element whose "next" member is followed.
 	class Element {
 	public:
-		explicit Element(std::string text, int next)
-			: text(std::move(text)), next(next) {}
+		explicit Element(std::string text, int next) : text(std::move(text)), next(next) {}
 		// The text to display:
 		std::string text;
 		// The next node to visit:

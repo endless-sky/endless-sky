@@ -19,7 +19,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Dialog.h"
-#include "text/Format.h"
 #include "GameData.h"
 #include "GameEvent.h"
 #include "Messages.h"
@@ -29,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Random.h"
 #include "Ship.h"
 #include "System.h"
+#include "text/Format.h"
 #include "UI.h"
 
 #include <cstdlib>
@@ -151,8 +151,7 @@ void GameAction::LoadSingle(const DataNode &child)
 	if(key == "log")
 	{
 		bool isSpecial = (child.Size() >= 3);
-		string &text = (isSpecial ?
-			specialLogText[child.Token(1)][child.Token(2)] : logText);
+		string &text = (isSpecial ? specialLogText[child.Token(1)][child.Token(2)] : logText);
 		Dialog::ParseTextNode(child, isSpecial ? 3 : 1, text);
 	}
 	else if((key == "give" || key == "take") && child.Size() >= 3 && child.Token(1) == "ship")

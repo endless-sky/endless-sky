@@ -326,9 +326,8 @@ ConditionsStore::ConditionEntry &ConditionsStore::operator[](const string &name)
 // Build a provider for a given prefix.
 ConditionsStore::DerivedProvider &ConditionsStore::GetProviderPrefixed(const string &prefix)
 {
-	auto it = providers.emplace(std::piecewise_construct,
-		std::forward_as_tuple(prefix),
-		std::forward_as_tuple(prefix, true));
+	auto it = providers.emplace(
+		std::piecewise_construct, std::forward_as_tuple(prefix), std::forward_as_tuple(prefix, true));
 	DerivedProvider *provider = &(it.first->second);
 	if(!provider->isPrefixProvider)
 	{
@@ -347,8 +346,8 @@ ConditionsStore::DerivedProvider &ConditionsStore::GetProviderPrefixed(const str
 			{
 				ce.provider = provider;
 				ce.fullKey = checkIt->first;
-				throw runtime_error("Replacing condition entries matching prefixed provider \""
-						+ prefix + "\".");
+				throw runtime_error(
+					"Replacing condition entries matching prefixed provider \"" + prefix + "\".");
 			}
 			++checkIt;
 		}
@@ -361,9 +360,8 @@ ConditionsStore::DerivedProvider &ConditionsStore::GetProviderPrefixed(const str
 // Build a provider for the condition identified by the given name.
 ConditionsStore::DerivedProvider &ConditionsStore::GetProviderNamed(const string &name)
 {
-	auto it = providers.emplace(std::piecewise_construct,
-		std::forward_as_tuple(name),
-		std::forward_as_tuple(name, false));
+	auto it = providers.emplace(
+		std::piecewise_construct, std::forward_as_tuple(name), std::forward_as_tuple(name, false));
 	DerivedProvider *provider = &(it.first->second);
 	if(provider->isPrefixProvider)
 		Logger::LogError("Error: Retrieving prefixed provider \"" + name + "\" as named provider.");
@@ -402,7 +400,8 @@ int64_t ConditionsStore::PrimariesSize() const
 ConditionsStore::ConditionEntry *ConditionsStore::GetEntry(const string &name)
 {
 	// Avoid code-duplication between const and non-const function.
-	return const_cast<ConditionsStore::ConditionEntry *>(const_cast<const ConditionsStore *>(this)->GetEntry(name));
+	return const_cast<ConditionsStore::ConditionEntry *>(
+		const_cast<const ConditionsStore *>(this)->GetEntry(name));
 }
 
 
@@ -454,8 +453,11 @@ bool ConditionsStore::VerifyProviderLocation(const string &name, DerivedProvider
 		return true;
 	}
 
-	if(ce.provider && ce.provider->isPrefixProvider && 0 == name.compare(0, ce.provider->name.length(), ce.provider->name))
-		throw runtime_error("Error: not adding provider for \"" + name + "\""
-				", because it is within range of prefixed derived provider \"" + ce.provider->name + "\".");
+	if(ce.provider && ce.provider->isPrefixProvider
+		&& 0 == name.compare(0, ce.provider->name.length(), ce.provider->name))
+		throw runtime_error("Error: not adding provider for \"" + name
+							+ "\""
+							  ", because it is within range of prefixed derived provider \""
+							+ ce.provider->name + "\".");
 	return true;
 }

@@ -28,8 +28,7 @@ class Weapon;
 // blast for Ship::TakeDamage to access.
 class DamageDealt {
 public:
-	DamageDealt(const Weapon &weapon, double scaling)
-		: weapon(weapon), scaling(scaling) {}
+	DamageDealt(const Weapon &weapon, double scaling) : weapon(weapon), scaling(scaling) {}
 
 	// The weapon that dealt damage.
 	const Weapon &GetWeapon() const;
@@ -86,25 +85,73 @@ private:
 	Point forcePoint;
 };
 
-inline const Weapon &DamageDealt::GetWeapon() const { return weapon; }
-inline double DamageDealt::Scaling() const { return scaling; }
+inline const Weapon &DamageDealt::GetWeapon() const
+{
+	return weapon;
+}
+inline double DamageDealt::Scaling() const
+{
+	return scaling;
+}
 
-inline double DamageDealt::Shield() const noexcept { return shieldDamage; }
-inline double DamageDealt::Hull() const noexcept { return hullDamage; }
-inline double DamageDealt::Energy() const noexcept { return energyDamage; }
-inline double DamageDealt::Heat() const noexcept { return heatDamage; }
-inline double DamageDealt::Fuel() const noexcept { return fuelDamage; }
+inline double DamageDealt::Shield() const noexcept
+{
+	return shieldDamage;
+}
+inline double DamageDealt::Hull() const noexcept
+{
+	return hullDamage;
+}
+inline double DamageDealt::Energy() const noexcept
+{
+	return energyDamage;
+}
+inline double DamageDealt::Heat() const noexcept
+{
+	return heatDamage;
+}
+inline double DamageDealt::Fuel() const noexcept
+{
+	return fuelDamage;
+}
 
-inline double DamageDealt::Discharge() const noexcept { return dischargeDamage; }
-inline double DamageDealt::Corrosion() const noexcept { return corrosionDamage; }
-inline double DamageDealt::Ion() const noexcept { return ionDamage; }
-inline double DamageDealt::Scrambling() const noexcept { return scramblingDamage; }
-inline double DamageDealt::Burn() const noexcept { return burnDamage; }
-inline double DamageDealt::Leak() const noexcept { return leakDamage; }
+inline double DamageDealt::Discharge() const noexcept
+{
+	return dischargeDamage;
+}
+inline double DamageDealt::Corrosion() const noexcept
+{
+	return corrosionDamage;
+}
+inline double DamageDealt::Ion() const noexcept
+{
+	return ionDamage;
+}
+inline double DamageDealt::Scrambling() const noexcept
+{
+	return scramblingDamage;
+}
+inline double DamageDealt::Burn() const noexcept
+{
+	return burnDamage;
+}
+inline double DamageDealt::Leak() const noexcept
+{
+	return leakDamage;
+}
 
-inline double DamageDealt::Disruption() const noexcept { return disruptionDamage; }
-inline double DamageDealt::Slowing() const noexcept { return slowingDamage; }
+inline double DamageDealt::Disruption() const noexcept
+{
+	return disruptionDamage;
+}
+inline double DamageDealt::Slowing() const noexcept
+{
+	return slowingDamage;
+}
 
-inline const Point &DamageDealt::HitForce() const noexcept { return forcePoint; }
+inline const Point &DamageDealt::HitForce() const noexcept
+{
+	return forcePoint;
+}
 
 #endif

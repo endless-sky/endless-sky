@@ -23,7 +23,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Dialog.h"
 #include "DistanceMap.h"
 #include "Files.h"
-#include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Logger.h"
@@ -44,6 +43,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "StartConditions.h"
 #include "StellarObject.h"
 #include "System.h"
+#include "text/Format.h"
 #include "UI.h"
 
 #include <algorithm>
@@ -83,15 +83,15 @@ namespace {
 	{
 		switch(entryType)
 		{
-			case SystemEntry::HYPERDRIVE:
-				return "hyperdrive";
-			case SystemEntry::JUMP:
-				return "jump drive";
-			case SystemEntry::WORMHOLE:
-				return "wormhole";
-			default:
-			case SystemEntry::TAKE_OFF:
-				return "takeoff";
+		case SystemEntry::HYPERDRIVE:
+			return "hyperdrive";
+		case SystemEntry::JUMP:
+			return "jump drive";
+		case SystemEntry::WORMHOLE:
+			return "wormhole";
+		default:
+		case SystemEntry::TAKE_OFF:
+			return "takeoff";
 		}
 	}
 
@@ -320,10 +320,12 @@ void PlayerInfo::Load(const string &path)
 			missions.emplace_back(child);
 			cargo.AddMissionCargo(&missions.back());
 		}
-		else if((child.Token(0) == "mission cargo" || child.Token(0) == "mission passengers") && child.HasChildren())
+		else if((child.Token(0) == "mission cargo" || child.Token(0) == "mission passengers")
+				&& child.HasChildren())
 		{
 			map<string, map<string, int>> &toDistribute = (child.Token(0) == "mission cargo")
-					? missionCargoToDistribute : missionPassengersToDistribute;
+															  ? missionCargoToDistribute
+															  : missionPassengersToDistribute;
 			for(const DataNode &grand : child)
 				if(grand.Token(0) == "player ships" && grand.HasChildren())
 					for(const DataNode &great : grand)
@@ -374,8 +376,7 @@ void PlayerInfo::Load(const string &path)
 			for(const DataNode &grand : child)
 				if(grand.Size() >= 2)
 					harvested.emplace(
-						GameData::Systems().Get(grand.Token(0)),
-						GameData::Outfits().Get(grand.Token(1)));
+						GameData::Systems().Get(grand.Token(0)), GameData::Outfits().Get(grand.Token(1)));
 		}
 		else if(child.Token(0) == "logbook")
 		{
@@ -421,20 +422,27 @@ void PlayerInfo::Load(const string &path)
 	// cargo and passengers.
 	UpdateCargoCapacities();
 
-	auto DistributeMissionCargo = [](map<string, map<string, int>> &toDistribute, const list<Mission> &missions,
-			vector<shared_ptr<Ship>> &ships, CargoHold &cargo, bool passengers) -> void
+	auto DistributeMissionCargo = [](map<string, map<string, int>> &toDistribute,
+									  const list<Mission> &missions, vector<shared_ptr<Ship>> &ships,
+									  CargoHold &cargo, bool passengers) -> void
 	{
 		for(const auto &it : toDistribute)
 		{
 			const auto missionIt = find_if(missions.begin(), missions.end(),
-					[&it](const Mission &mission) { return mission.UUID().ToString() == it.first; });
+				[&it](const Mission &mission)
+				{
+					return mission.UUID().ToString() == it.first;
+				});
 			if(missionIt != missions.end())
 			{
 				const Mission *cargoOf = &*missionIt;
 				for(const auto &shipCargo : it.second)
 				{
 					auto shipIt = find_if(ships.begin(), ships.end(),
-							[&shipCargo](const shared_ptr<Ship> &ship) { return ship->UUID().ToString() == shipCargo.first; });
+						[&shipCargo](const shared_ptr<Ship> &ship)
+						{
+							return ship->UUID().ToString() == shipCargo.first;
+						});
 					if(shipIt != ships.end())
 					{
 						Ship *destination = shipIt->get();
@@ -1061,7 +1069,7 @@ void PlayerInfo::SetFlagship(Ship &other)
 	MoveFlagshipBegin(ships, flagship);
 
 	// Make sure your flagship is not included in the escort selection.
-	for(auto it = selectedShips.begin(); it != selectedShips.end(); )
+	for(auto it = selectedShips.begin(); it != selectedShips.end();)
 	{
 		shared_ptr<Ship> ship = it->lock();
 		if(!ship || ship == flagship)
@@ -1118,7 +1126,8 @@ map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
 				// The bays should always be empty. But if not, count that ship too.
 				if(bay.ship)
 				{
-					Logger::LogError("Expected bay to be empty for " + ship->TrueModelName() + ": " + ship->Name());
+					Logger::LogError(
+						"Expected bay to be empty for " + ship->TrueModelName() + ": " + ship->Name());
 					categoryCount[bay.ship->Attributes().Category()].emplace_back(bay.ship);
 				}
 			}
@@ -1266,8 +1275,8 @@ void PlayerInfo::TakeShip(const Ship *shipToTake, const Ship *model, bool takeOu
 			if(takeOutfits)
 				for(const auto &it : shipToTake->Outfits())
 				{
-					// We only take all of the outfits specified in the model without putting them in the stock.
-					// The extra outfits of this ship are transfered into the stock.
+					// We only take all of the outfits specified in the model without putting them in the
+					// stock. The extra outfits of this ship are transfered into the stock.
 					int amountToTake = 0;
 					if(model)
 					{
@@ -1541,7 +1550,8 @@ void PlayerInfo::Land(UI *ui)
 				const bool alreadyLanded = ship->GetPlanet() == planet;
 				if(alreadyLanded || planet->CanLand(*ship) || (clearance && planet->IsAccessible(ship.get())))
 				{
-					ship->Recharge(canUseServices ? planet->GetPort().GetRecharges() : Port::RechargeType::None,
+					ship->Recharge(
+						canUseServices ? planet->GetPort().GetRecharges() : Port::RechargeType::None,
 						planet->GetPort().HasService(Port::ServicesType::HireCrew));
 					if(!ship->GetPlanet())
 						ship->SetPlanet(planet);
@@ -1591,7 +1601,7 @@ void PlayerInfo::Land(UI *ui)
 	else if(ui && !inactiveMissions.empty())
 	{
 		string message = "These active missions or jobs were deactivated due to a missing definition"
-			" - perhaps you recently removed a plugin?\n";
+						 " - perhaps you recently removed a plugin?\n";
 		auto mit = inactiveMissions.rbegin();
 		int named = 0;
 		while(mit != inactiveMissions.rend() && (++named < 10))
@@ -1608,15 +1618,16 @@ void PlayerInfo::Land(UI *ui)
 	// Hire extra crew back if any were lost in-flight (i.e. boarding) or
 	// some bunks were freed up upon landing (i.e. completed missions).
 	if(Preferences::Has("Rehire extra crew when lost")
-			&& (planet->GetPort().HasService(Port::ServicesType::HireCrew) && canUseServices) && flagship)
+		&& (planet->GetPort().HasService(Port::ServicesType::HireCrew) && canUseServices) && flagship)
 	{
 		int added = desiredCrew - flagship->Crew();
 		if(added > 0)
 		{
 			flagship->AddCrew(added);
-			Messages::Add("You hire " + to_string(added) + (added == 1
-					? " extra crew member to fill your now-empty bunk."
-					: " extra crew members to fill your now-empty bunks."), Messages::Importance::High);
+			Messages::Add("You hire " + to_string(added)
+							  + (added == 1 ? " extra crew member to fill your now-empty bunk."
+											: " extra crew members to fill your now-empty bunks."),
+				Messages::Importance::High);
 		}
 	}
 
@@ -1684,10 +1695,12 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 		{
 			flagship->AddCrew(-extra);
 			if(extra == 1)
-				Messages::Add("You fired a crew member to free up a bunk for a passenger.", Messages::Importance::High);
+				Messages::Add(
+					"You fired a crew member to free up a bunk for a passenger.", Messages::Importance::High);
 			else
-				Messages::Add("You fired " + to_string(extra) + " crew members to free up bunks for passengers.",
-						Messages::Importance::High);
+				Messages::Add(
+					"You fired " + to_string(extra) + " crew members to free up bunks for passengers.",
+					Messages::Importance::High);
 			flagship->Cargo().SetBunks(flagship->Attributes().Get("bunks") - flagship->Crew());
 			cargo.TransferAll(flagship->Cargo());
 		}
@@ -1698,10 +1711,12 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 	{
 		flagship->AddCrew(-extra);
 		if(extra == 1)
-			Messages::Add("You fired a crew member because you have no bunk for them.", Messages::Importance::High);
+			Messages::Add(
+				"You fired a crew member because you have no bunk for them.", Messages::Importance::High);
 		else
-			Messages::Add("You fired " + to_string(extra) + " crew members because you have no bunks for them.",
-					Messages::Importance::High);
+			Messages::Add(
+				"You fired " + to_string(extra) + " crew members because you have no bunks for them.",
+				Messages::Importance::High);
 		flagship->Cargo().SetBunks(flagship->Attributes().Get("bunks") - flagship->Crew());
 	}
 
@@ -1756,8 +1771,8 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 		{
 			if(it.first->IsVisible())
 				Messages::Add("Mission \"" + it.first->Name()
-					+ "\" aborted because you do not have space for the cargo."
-						, Messages::Importance::Highest);
+								  + "\" aborted because you do not have space for the cargo.",
+					Messages::Importance::Highest);
 			missionsToRemove.push_back(it.first);
 		}
 	for(const auto &it : cargo.PassengerList())
@@ -1765,10 +1780,9 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 		{
 			if(it.first->IsVisible())
 				Messages::Add("Mission \"" + it.first->Name()
-					+ "\" aborted because you do not have enough passenger bunks free."
-						, Messages::Importance::Highest);
+								  + "\" aborted because you do not have enough passenger bunks free.",
+					Messages::Importance::Highest);
 			missionsToRemove.push_back(it.first);
-
 		}
 	for(const Mission *mission : missionsToRemove)
 		RemoveMission(Mission::ABORT, *mission, ui);
@@ -1828,7 +1842,8 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 	{
 		// Report how much excess cargo was sold, and what profit you earned.
 		ostringstream out;
-		out << "You sold " << Format::CargoString(sold, "excess cargo") << " for " << Format::CreditString(income);
+		out << "You sold " << Format::CargoString(sold, "excess cargo") << " for "
+			<< Format::CreditString(income);
 		if(totalBasis && totalBasis != income)
 			out << " (for a profit of " << Format::CreditString(income - totalBasis) << ").";
 		else
@@ -2099,8 +2114,7 @@ Mission *PlayerInfo::BoardingMission(const shared_ptr<Ship> &ship)
 	// "boardingMissions" is emptied by MissionCallback, but to be sure:
 	boardingMissions.clear();
 
-	Mission::Location location = (ship->GetGovernment()->IsEnemy()
-			? Mission::BOARDING : Mission::ASSISTING);
+	Mission::Location location = (ship->GetGovernment()->IsEnemy() ? Mission::BOARDING : Mission::ASSISTING);
 
 	// Check for available boarding or assisting missions.
 	for(const auto &it : GameData::Missions())
@@ -2122,17 +2136,19 @@ bool PlayerInfo::CaptureOverriden(const shared_ptr<Ship> &ship) const
 {
 	if(ship->IsCapturable())
 		return false;
-	// Check if there's a boarding mission being offered which allows this ship to be captured. If the boarding
-	// mission was declined, then this results in one-time capture access to the ship. If it was accepted, then
-	// the next boarding attempt will have the boarding mission in the player's active missions list, checked below.
+	// Check if there's a boarding mission being offered which allows this ship to be captured. If the
+	// boarding mission was declined, then this results in one-time capture access to the ship. If it was
+	// accepted, then the next boarding attempt will have the boarding mission in the player's active missions
+	// list, checked below.
 	const Mission *mission = boardingMissions.empty() ? nullptr : &boardingMissions.back();
-	// Otherwise, check if there's an already active mission which grants access. This allows trying to board the
-	// ship again after accepting the mission.
+	// Otherwise, check if there's an already active mission which grants access. This allows trying to board
+	// the ship again after accepting the mission.
 	if(!mission)
 		for(const Mission &mission : Missions())
 			if(mission.OverridesCapture() && !mission.IsFailed(*this) && mission.SourceShip() == ship.get())
 				return true;
-	return mission && mission->OverridesCapture() && !mission->IsFailed(*this) && mission->SourceShip() == ship.get();
+	return mission && mission->OverridesCapture() && !mission->IsFailed(*this)
+		   && mission->SourceShip() == ship.get();
 }
 
 
@@ -2306,7 +2322,8 @@ const ConditionsStore &PlayerInfo::Conditions() const
 
 
 
-// Uuid for the gifted ships, with the ship class follow by the names they had when they were gifted to the player.
+// Uuid for the gifted ships, with the ship class follow by the names they had when they were gifted to the
+// player.
 const map<string, EsUuid> &PlayerInfo::GiftedShips() const
 {
 	return giftedShips;
@@ -2374,15 +2391,11 @@ const map<const Planet *, int64_t> &PlayerInfo::GetTribute() const
 // Get the total sum of the tribute the player receives.
 int64_t PlayerInfo::GetTributeTotal() const
 {
-	return accumulate(
-		tributeReceived.begin(),
-		tributeReceived.end(),
-		0,
+	return accumulate(tributeReceived.begin(), tributeReceived.end(), 0,
 		[](int64_t value, const std::map<const Planet *, int64_t>::value_type &tribute)
 		{
 			return value + tribute.second;
-		}
-	);
+		});
 }
 
 
@@ -2421,7 +2434,10 @@ bool PlayerInfo::HasSeen(const System &system) const
 	{
 		// All systems linked to a system the player can view are visible.
 		if(any_of(system.Links().begin(), system.Links().end(),
-				[&](const System *s) noexcept -> bool { return CanView(*s); }))
+			   [&](const System *s) noexcept -> bool
+			   {
+				   return CanView(*s);
+			   }))
 			return true;
 		// A shrouded system not linked to a viewable system must be visible from the current system.
 		if(!system.VisibleNeighbors().count(this->system))
@@ -2630,7 +2646,7 @@ void PlayerInfo::SelectNextSecondary()
 	}
 
 	// Find the next secondary weapon.
-	for( ; it != flagship->Outfits().end(); ++it)
+	for(; it != flagship->Outfits().end(); ++it)
 		if(it->first->Icon())
 		{
 			selectedWeapons.clear();
@@ -2645,7 +2661,7 @@ void PlayerInfo::SelectNextSecondary()
 
 	// Reached the end of the list. Select all possible secondary weapons here.
 	it = flagship->Outfits().begin();
-	for( ; it != flagship->Outfits().end(); ++it)
+	for(; it != flagship->Outfits().end(); ++it)
 		if(it->first->Icon())
 			selectedWeapons.insert(it->first);
 
@@ -2698,8 +2714,8 @@ bool PlayerInfo::SelectShips(const Rectangle &box, bool hasShift)
 
 	bool matched = false;
 	for(const shared_ptr<Ship> &ship : ships)
-		if(!ship->IsDestroyed() && !ship->IsParked() && ship->GetSystem() == system && ship.get() != Flagship()
-				&& box.Contains(ship->Position()))
+		if(!ship->IsDestroyed() && !ship->IsParked() && ship->GetSystem() == system
+			&& ship.get() != Flagship() && box.Contains(ship->Position()))
 		{
 			matched = true;
 			SelectShip(ship, &first);
@@ -2769,7 +2785,7 @@ void PlayerInfo::SelectGroup(int group, bool hasShift)
 			if(groups[ship.get()] & bit)
 			{
 				auto it = selectedShips.begin();
-				for( ; it != selectedShips.end(); ++it)
+				for(; it != selectedShips.end(); ++it)
 					if(it->lock() == ship)
 						break;
 				if(it != selectedShips.end())
@@ -3035,13 +3051,18 @@ void PlayerInfo::ValidateLoad()
 	if(!planet && !ships.empty())
 	{
 		string warning = "Warning: no planet specified for player";
-		auto it = find_if(ships.begin(), ships.end(), [](const shared_ptr<Ship> &ship) noexcept -> bool
-			{ return ship->GetPlanet() && ship->GetPlanet()->IsValid() && !ship->IsParked() && ship->CanBeFlagship(); });
+		auto it = find_if(ships.begin(), ships.end(),
+			[](const shared_ptr<Ship> &ship) noexcept -> bool
+			{
+				return ship->GetPlanet() && ship->GetPlanet()->IsValid() && !ship->IsParked()
+					   && ship->CanBeFlagship();
+			});
 		if(it != ships.end())
 		{
 			planet = (*it)->GetPlanet();
 			system = (*it)->GetSystem();
-			warning += ". Defaulting to location of flagship \"" + (*it)->Name() + "\", " + planet->TrueName() + ".";
+			warning +=
+				". Defaulting to location of flagship \"" + (*it)->Name() + "\", " + planet->TrueName() + ".";
 		}
 		else
 			warning += " (no ships could supply a valid player location).";
@@ -3054,13 +3075,15 @@ void PlayerInfo::ValidateLoad()
 	if(planet && !system)
 	{
 		system = planet->GetSystem();
-		Logger::LogError("Warning: player system was not specified. Defaulting to the specified planet's system.");
+		Logger::LogError(
+			"Warning: player system was not specified. Defaulting to the specified planet's system.");
 	}
 	if(!planet || !planet->IsValid() || !system || !system->IsValid())
 	{
 		system = &startData.GetSystem();
 		planet = &startData.GetPlanet();
-		Logger::LogError("Warning: player system and/or planet was not valid. Defaulting to the starting location.");
+		Logger::LogError(
+			"Warning: player system and/or planet was not valid. Defaulting to the starting location.");
 	}
 
 	// Every ship ought to have specified a valid location, but if not,
@@ -3071,7 +3094,7 @@ void PlayerInfo::ValidateLoad()
 		{
 			ship->SetSystem(system);
 			Logger::LogError("Warning: player ship \"" + ship->Name()
-				+ "\" did not specify a valid system. Defaulting to the player's system.");
+							 + "\" did not specify a valid system. Defaulting to the player's system.");
 		}
 		// In-system ships that aren't on a valid planet should get moved to the player's planet
 		// (but e.g. disabled ships or those that didn't have a planet should remain in space).
@@ -3079,7 +3102,7 @@ void PlayerInfo::ValidateLoad()
 		{
 			ship->SetPlanet(planet);
 			Logger::LogError("Warning: in-system player ship \"" + ship->Name()
-				+ "\" specified an invalid planet. Defaulting to the player's planet.");
+							 + "\" specified an invalid planet. Defaulting to the player's planet.");
 		}
 		// Owned ships that are not in the player's system always start in flight.
 	}
@@ -3087,11 +3110,16 @@ void PlayerInfo::ValidateLoad()
 	// Validate the travel plan.
 	if(travelDestination && !travelDestination->IsValid())
 	{
-		Logger::LogError("Warning: removed invalid travel plan destination \"" + travelDestination->TrueName() + ".\"");
+		Logger::LogError(
+			"Warning: removed invalid travel plan destination \"" + travelDestination->TrueName() + ".\"");
 		travelDestination = nullptr;
 	}
-	if(!travelPlan.empty() && any_of(travelPlan.begin(), travelPlan.end(),
-			[](const System *waypoint) noexcept -> bool { return !waypoint->IsValid(); }))
+	if(!travelPlan.empty()
+		&& any_of(travelPlan.begin(), travelPlan.end(),
+			[](const System *waypoint) noexcept -> bool
+			{
+				return !waypoint->IsValid();
+			}))
 	{
 		travelPlan.clear();
 		travelDestination = nullptr;
@@ -3112,8 +3140,10 @@ void PlayerInfo::ValidateLoad()
 				conditions["unverified start scenario"] = true;
 		}
 		else
-			throw runtime_error("Unable to set a starting scenario for an existing pilot. (No valid \"start\" "
-				"nodes were found in data files or loaded plugins--make sure you've installed the game properly.)");
+			throw runtime_error(
+				"Unable to set a starting scenario for an existing pilot. (No valid \"start\" "
+				"nodes were found in data files or loaded plugins--make sure you've installed the game "
+				"properly.)");
 	}
 
 	// Validate the missions that were loaded. Active-but-invalid missions are removed from
@@ -3124,7 +3154,10 @@ void PlayerInfo::ValidateLoad()
 
 	// Invalid available jobs or missions are erased (since there is no guarantee
 	// the player will be on the correct planet when a plugin is re-added).
-	auto isInvalidMission = [](const Mission &m) noexcept -> bool { return !m.IsValid(); };
+	auto isInvalidMission = [](const Mission &m) noexcept -> bool
+	{
+		return !m.IsValid();
+	};
 	availableJobs.remove_if(isInvalidMission);
 	availableMissions.remove_if(isInvalidMission);
 }
@@ -3136,64 +3169,113 @@ void PlayerInfo::RegisterDerivedConditions()
 {
 	// Read-only date functions.
 	auto &&dayProvider = conditions.GetProviderNamed("day");
-	dayProvider.SetGetFunction([this](const string &name) { return date.Day(); });
+	dayProvider.SetGetFunction(
+		[this](const string &name)
+		{
+			return date.Day();
+		});
 
 	auto &&monthProvider = conditions.GetProviderNamed("month");
-	monthProvider.SetGetFunction([this](const string &name) { return date.Month(); });
+	monthProvider.SetGetFunction(
+		[this](const string &name)
+		{
+			return date.Month();
+		});
 
 	auto &&yearProvider = conditions.GetProviderNamed("year");
-	yearProvider.SetGetFunction([this](const string &name) { return date.Year(); });
+	yearProvider.SetGetFunction(
+		[this](const string &name)
+		{
+			return date.Year();
+		});
 
 	auto &&daysSinceYearStartProvider = conditions.GetProviderNamed("days since year start");
-	daysSinceYearStartProvider.SetGetFunction([this](const string &name) { return date.DaysSinceYearStart(); });
+	daysSinceYearStartProvider.SetGetFunction(
+		[this](const string &name)
+		{
+			return date.DaysSinceYearStart();
+		});
 
 	auto &&daysUntilYearEndProvider = conditions.GetProviderNamed("days until year end");
-	daysUntilYearEndProvider.SetGetFunction([this](const string &name) { return date.DaysUntilYearEnd(); });
+	daysUntilYearEndProvider.SetGetFunction(
+		[this](const string &name)
+		{
+			return date.DaysUntilYearEnd();
+		});
 
 	auto &&daysSinceEpochProvider = conditions.GetProviderNamed("days since epoch");
-	daysSinceEpochProvider.SetGetFunction([this](const string &name) { return date.DaysSinceEpoch(); });
+	daysSinceEpochProvider.SetGetFunction(
+		[this](const string &name)
+		{
+			return date.DaysSinceEpoch();
+		});
 
 	auto &&daysSinceStartProvider = conditions.GetProviderNamed("days since start");
-	daysSinceStartProvider.SetGetFunction([this](const string &name)
-	{
-		return date.DaysSinceEpoch() - StartData().GetDate().DaysSinceEpoch();
-	});
+	daysSinceStartProvider.SetGetFunction(
+		[this](const string &name)
+		{
+			return date.DaysSinceEpoch() - StartData().GetDate().DaysSinceEpoch();
+		});
 
 	// Read-only account conditions.
 	// Bound financial conditions to +/- 4.6 x 10^18 credits, within the range of a 64-bit int.
 	static constexpr int64_t limit = static_cast<int64_t>(1) << 62;
 
 	auto &&netWorthProvider = conditions.GetProviderNamed("net worth");
-	netWorthProvider.SetGetFunction([this](const string &name)
-		{ return min(limit, max(-limit, accounts.NetWorth())); });
+	netWorthProvider.SetGetFunction(
+		[this](const string &name)
+		{
+			return min(limit, max(-limit, accounts.NetWorth()));
+		});
 
 	auto &&creditsProvider = conditions.GetProviderNamed("credits");
-	creditsProvider.SetGetFunction([this](const string &name) {
-		return min(limit, accounts.Credits()); });
+	creditsProvider.SetGetFunction(
+		[this](const string &name)
+		{
+			return min(limit, accounts.Credits());
+		});
 
 	auto &&unpaidMortgagesProvider = conditions.GetProviderNamed("unpaid mortgages");
-	unpaidMortgagesProvider.SetGetFunction([this](const string &name) {
-		return min(limit, accounts.TotalDebt("Mortgage")); });
+	unpaidMortgagesProvider.SetGetFunction(
+		[this](const string &name)
+		{
+			return min(limit, accounts.TotalDebt("Mortgage"));
+		});
 
 	auto &&unpaidFinesProvider = conditions.GetProviderNamed("unpaid fines");
-	unpaidFinesProvider.SetGetFunction([this](const string &name) {
-		return min(limit, accounts.TotalDebt("Fine")); });
+	unpaidFinesProvider.SetGetFunction(
+		[this](const string &name)
+		{
+			return min(limit, accounts.TotalDebt("Fine"));
+		});
 
 	auto &&unpaidDebtsProvider = conditions.GetProviderNamed("unpaid debts");
-	unpaidDebtsProvider.SetGetFunction([this](const string &name) {
-		return min(limit, accounts.TotalDebt("Debt")); });
+	unpaidDebtsProvider.SetGetFunction(
+		[this](const string &name)
+		{
+			return min(limit, accounts.TotalDebt("Debt"));
+		});
 
 	auto &&unpaidSalariesProvider = conditions.GetProviderNamed("unpaid salaries");
-	unpaidSalariesProvider.SetGetFunction([this](const string &name) {
-		return min(limit, accounts.CrewSalariesOwed()); });
+	unpaidSalariesProvider.SetGetFunction(
+		[this](const string &name)
+		{
+			return min(limit, accounts.CrewSalariesOwed());
+		});
 
 	auto &&unpaidMaintenanceProvider = conditions.GetProviderNamed("unpaid maintenance");
-	unpaidMaintenanceProvider.SetGetFunction([this](const string &name) {
-		return min(limit, accounts.MaintenanceDue()); });
+	unpaidMaintenanceProvider.SetGetFunction(
+		[this](const string &name)
+		{
+			return min(limit, accounts.MaintenanceDue());
+		});
 
 	auto &&creditScoreProvider = conditions.GetProviderNamed("credit score");
-	creditScoreProvider.SetGetFunction([this](const string &name) {
-		return accounts.CreditScore(); });
+	creditScoreProvider.SetGetFunction(
+		[this](const string &name)
+		{
+			return accounts.CreditScore();
+		});
 
 	// Read/write assets and debts.
 	auto &&salaryIncomeProvider = conditions.GetProviderPrefixed("salary: ");
@@ -3207,16 +3289,18 @@ void PlayerInfo::RegisterDerivedConditions()
 	};
 	salaryIncomeProvider.SetHasFunction(salaryIncomeHasGetFun);
 	salaryIncomeProvider.SetGetFunction(salaryIncomeHasGetFun);
-	salaryIncomeProvider.SetSetFunction([this](const string &name, int64_t value) -> bool
-	{
-		accounts.SetSalaryIncome(name.substr(strlen("salary: ")), value);
-		return true;
-	});
-	salaryIncomeProvider.SetEraseFunction([this](const string &name) -> bool
-	{
-		accounts.SetSalaryIncome(name.substr(strlen("salary: ")), 0);
-		return true;
-	});
+	salaryIncomeProvider.SetSetFunction(
+		[this](const string &name, int64_t value) -> bool
+		{
+			accounts.SetSalaryIncome(name.substr(strlen("salary: ")), value);
+			return true;
+		});
+	salaryIncomeProvider.SetEraseFunction(
+		[this](const string &name) -> bool
+		{
+			accounts.SetSalaryIncome(name.substr(strlen("salary: ")), 0);
+			return true;
+		});
 
 	auto &&tributeProvider = conditions.GetProviderPrefixed("tribute: ");
 	auto tributeHasGetFun = [this](const string &name) -> int64_t
@@ -3233,48 +3317,67 @@ void PlayerInfo::RegisterDerivedConditions()
 	};
 	tributeProvider.SetHasFunction(tributeHasGetFun);
 	tributeProvider.SetGetFunction(tributeHasGetFun);
-	tributeProvider.SetSetFunction([this](const string &name, int64_t value) -> bool {
-		return SetTribute(name.substr(strlen("tribute: ")), value);
-	});
-	tributeProvider.SetEraseFunction([this](const string &name) -> bool {
-		return SetTribute(name.substr(strlen("tribute: ")), 0);
-	});
+	tributeProvider.SetSetFunction(
+		[this](const string &name, int64_t value) -> bool
+		{
+			return SetTribute(name.substr(strlen("tribute: ")), value);
+		});
+	tributeProvider.SetEraseFunction(
+		[this](const string &name) -> bool
+		{
+			return SetTribute(name.substr(strlen("tribute: ")), 0);
+		});
 
 	auto &&licenseProvider = conditions.GetProviderPrefixed("license: ");
-	licenseProvider.SetHasFunction([this](const string &name) -> bool {
-		return HasLicense(name.substr(strlen("license: ")));
-	});
-	licenseProvider.SetGetFunction([this](const string &name) -> int64_t {
-		return HasLicense(name.substr(strlen("license: ")));
-	});
+	licenseProvider.SetHasFunction(
+		[this](const string &name) -> bool
+		{
+			return HasLicense(name.substr(strlen("license: ")));
+		});
+	licenseProvider.SetGetFunction(
+		[this](const string &name) -> int64_t
+		{
+			return HasLicense(name.substr(strlen("license: ")));
+		});
 
-	licenseProvider.SetSetFunction([this](const string &name, int64_t value) -> bool
-	{
-		if(!value)
+	licenseProvider.SetSetFunction(
+		[this](const string &name, int64_t value) -> bool
+		{
+			if(!value)
+				RemoveLicense(name.substr(strlen("license: ")));
+			else
+				AddLicense(name.substr(strlen("license: ")));
+			return true;
+		});
+
+	licenseProvider.SetEraseFunction(
+		[this](const string &name) -> bool
+		{
 			RemoveLicense(name.substr(strlen("license: ")));
-		else
-			AddLicense(name.substr(strlen("license: ")));
-		return true;
-	});
-
-	licenseProvider.SetEraseFunction([this](const string &name) -> bool
-	{
-		RemoveLicense(name.substr(strlen("license: ")));
-		return true;
-	});
+			return true;
+		});
 
 	// Read-only flagship conditions.
 	auto &&flagshipCrewProvider = conditions.GetProviderNamed("flagship crew");
-	flagshipCrewProvider.SetGetFunction([this](const string &name) -> int64_t {
-		return flagship ? flagship->Crew() : 0; });
+	flagshipCrewProvider.SetGetFunction(
+		[this](const string &name) -> int64_t
+		{
+			return flagship ? flagship->Crew() : 0;
+		});
 
 	auto &&flagshipRequiredCrewProvider = conditions.GetProviderNamed("flagship required crew");
-	flagshipRequiredCrewProvider.SetGetFunction([this](const string &name) -> int64_t {
-		return flagship ? flagship->RequiredCrew() : 0; });
+	flagshipRequiredCrewProvider.SetGetFunction(
+		[this](const string &name) -> int64_t
+		{
+			return flagship ? flagship->RequiredCrew() : 0;
+		});
 
 	auto &&flagshipBunksProvider = conditions.GetProviderNamed("flagship bunks");
-	flagshipBunksProvider.SetGetFunction([this](const string &name) -> int64_t {
-		return flagship ? flagship->Attributes().Get("bunks") : 0; });
+	flagshipBunksProvider.SetGetFunction(
+		[this](const string &name) -> int64_t
+		{
+			return flagship ? flagship->Attributes().Get("bunks") : 0;
+		});
 
 	auto &&flagshipModelProvider = conditions.GetProviderPrefixed("flagship model: ");
 	auto flagshipModelFun = [this](const string &name) -> bool
@@ -3310,7 +3413,8 @@ void PlayerInfo::RegisterDerivedConditions()
 	auto &&flagshipBaseAttributeProvider = conditions.GetProviderPrefixed("flagship base attribute: ");
 	auto flagshipBaseAttributeFun = [this, flagshipAttributeHelper](const string &name) -> int64_t
 	{
-		return flagshipAttributeHelper(this->Flagship(), name.substr(strlen("flagship base attribute: ")), true);
+		return flagshipAttributeHelper(
+			this->Flagship(), name.substr(strlen("flagship base attribute: ")), true);
 	};
 	flagshipBaseAttributeProvider.SetGetFunction(flagshipBaseAttributeFun);
 	flagshipBaseAttributeProvider.SetHasFunction(flagshipBaseAttributeFun);
@@ -3361,19 +3465,26 @@ void PlayerInfo::RegisterDerivedConditions()
 
 	// Conditions for your fleet's attractiveness to pirates.
 	auto &&cargoAttractivenessProvider = conditions.GetProviderNamed("cargo attractiveness");
-	cargoAttractivenessProvider.SetGetFunction([this](const string &name) -> int64_t {
-		return RaidFleetFactors().first; });
+	cargoAttractivenessProvider.SetGetFunction(
+		[this](const string &name) -> int64_t
+		{
+			return RaidFleetFactors().first;
+		});
 
 	auto &&armamentDeterrence = conditions.GetProviderNamed("armament deterrence");
-	armamentDeterrence.SetGetFunction([this](const string &name) -> int64_t {
-		return RaidFleetFactors().second; });
+	armamentDeterrence.SetGetFunction(
+		[this](const string &name) -> int64_t
+		{
+			return RaidFleetFactors().second;
+		});
 
 	auto &&pirateAttractionProvider = conditions.GetProviderNamed("pirate attraction");
-	pirateAttractionProvider.SetGetFunction([this](const string &name) -> int64_t
-	{
-		auto rff = RaidFleetFactors();
-		return rff.first - rff.second;
-	});
+	pirateAttractionProvider.SetGetFunction(
+		[this](const string &name) -> int64_t
+		{
+			auto rff = RaidFleetFactors();
+			return rff.first - rff.second;
+		});
 
 	auto &&systemAttractionProvider = conditions.GetProviderPrefixed("raid chance in system: ");
 	auto systemAttractionFun = [this](const string &name) -> double
@@ -3405,309 +3516,327 @@ void PlayerInfo::RegisterDerivedConditions()
 	// in the player's entire fleet. The only fleet parameter offered to a
 	// boarding mission is the fleet composition (e.g. 4 Heavy Warships).
 	auto &&cargoSpaceProvider = conditions.GetProviderNamed("cargo space");
-	cargoSpaceProvider.SetGetFunction([this](const string &name) -> int64_t
-	{
-		if(flagship && !boardingMissions.empty())
-			return flagship->Cargo().Free();
-		int64_t retVal = 0;
-		for(const shared_ptr<Ship> &ship : ships)
-			if(!ship->IsParked() && !ship->IsDisabled() && ship->GetActualSystem() == system)
-				retVal += ship->Attributes().Get("cargo space");
-		return retVal;
-	});
+	cargoSpaceProvider.SetGetFunction(
+		[this](const string &name) -> int64_t
+		{
+			if(flagship && !boardingMissions.empty())
+				return flagship->Cargo().Free();
+			int64_t retVal = 0;
+			for(const shared_ptr<Ship> &ship : ships)
+				if(!ship->IsParked() && !ship->IsDisabled() && ship->GetActualSystem() == system)
+					retVal += ship->Attributes().Get("cargo space");
+			return retVal;
+		});
 
 	auto &&passengerSpaceProvider = conditions.GetProviderNamed("passenger space");
-	passengerSpaceProvider.SetGetFunction([this](const string &name) -> int64_t
-	{
-		if(flagship && !boardingMissions.empty())
-			return flagship->Cargo().BunksFree();
-		int64_t retVal = 0;
-		for(const shared_ptr<Ship> &ship : ships)
-			if(!ship->IsParked() && !ship->IsDisabled() && ship->GetActualSystem() == system)
-				retVal += ship->Attributes().Get("bunks") - ship->RequiredCrew();
-		return retVal;
-	});
+	passengerSpaceProvider.SetGetFunction(
+		[this](const string &name) -> int64_t
+		{
+			if(flagship && !boardingMissions.empty())
+				return flagship->Cargo().BunksFree();
+			int64_t retVal = 0;
+			for(const shared_ptr<Ship> &ship : ships)
+				if(!ship->IsParked() && !ship->IsDisabled() && ship->GetActualSystem() == system)
+					retVal += ship->Attributes().Get("bunks") - ship->RequiredCrew();
+			return retVal;
+		});
 
 	// The number of active, present ships the player has of the given category
 	// (e.g. Heavy Warships).
 	auto &&shipTypesProvider = conditions.GetProviderPrefixed("ships: ");
-	shipTypesProvider.SetGetFunction([this](const string &name) -> int64_t
-	{
-		int64_t retVal = 0;
-		for(const shared_ptr<Ship> &ship : ships)
-			if(!ship->IsParked() && !ship->IsDisabled() && ship->GetActualSystem() == system
+	shipTypesProvider.SetGetFunction(
+		[this](const string &name) -> int64_t
+		{
+			int64_t retVal = 0;
+			for(const shared_ptr<Ship> &ship : ships)
+				if(!ship->IsParked() && !ship->IsDisabled() && ship->GetActualSystem() == system
 					&& name == "ships: " + ship->Attributes().Category())
-				++retVal;
-		return retVal;
-	});
+					++retVal;
+			return retVal;
+		});
 
 	// The number of ships the player has of the given category anywhere in their fleet.
 	auto &&shipTypesAllProvider = conditions.GetProviderPrefixed("ships (all): ");
-	shipTypesAllProvider.SetGetFunction([this](const string &name) -> int64_t
-	{
-		int64_t retVal = 0;
-		for(const shared_ptr<Ship> &ship : ships)
-			if(!ship->IsDestroyed() && name == "ships (all): " + ship->Attributes().Category())
-				++retVal;
-		return retVal;
-	});
+	shipTypesAllProvider.SetGetFunction(
+		[this](const string &name) -> int64_t
+		{
+			int64_t retVal = 0;
+			for(const shared_ptr<Ship> &ship : ships)
+				if(!ship->IsDestroyed() && name == "ships (all): " + ship->Attributes().Category())
+					++retVal;
+			return retVal;
+		});
 
 	// The number of ships the player has of the given model active and present.
 	auto &&shipModelProvider = conditions.GetProviderPrefixed("ship model: ");
-	shipModelProvider.SetGetFunction([this](const string &name) -> int64_t
-	{
-		int64_t retVal = 0;
-		for(const shared_ptr<Ship> &ship : ships)
-			if(!ship->IsParked() && !ship->IsDisabled() && ship->GetActualSystem() == system
+	shipModelProvider.SetGetFunction(
+		[this](const string &name) -> int64_t
+		{
+			int64_t retVal = 0;
+			for(const shared_ptr<Ship> &ship : ships)
+				if(!ship->IsParked() && !ship->IsDisabled() && ship->GetActualSystem() == system
 					&& name == "ship model: " + ship->TrueModelName())
-				++retVal;
-		return retVal;
-	});
+					++retVal;
+			return retVal;
+		});
 
 	// The number of ships that the player has of the given model anywhere in their fleet.
 	auto &&shipModelAllProvider = conditions.GetProviderPrefixed("ship model (all): ");
-	shipModelAllProvider.SetGetFunction([this](const string &name) -> int64_t
-	{
-		int64_t retVal = 0;
-		for(const shared_ptr<Ship> &ship : ships)
-			if(!ship->IsDestroyed() && name == "ship model (all): " + ship->TrueModelName())
-				++retVal;
-		return retVal;
-	});
+	shipModelAllProvider.SetGetFunction(
+		[this](const string &name) -> int64_t
+		{
+			int64_t retVal = 0;
+			for(const shared_ptr<Ship> &ship : ships)
+				if(!ship->IsDestroyed() && name == "ship model (all): " + ship->TrueModelName())
+					++retVal;
+			return retVal;
+		});
 
 	// The total number of ships the player has active and present.
 	auto &&totalPresentShipsProvider = conditions.GetProviderNamed("total ships");
-	totalPresentShipsProvider.SetGetFunction([this](const string &name) -> int64_t
-	{
-		int64_t retVal = 0;
-		for(const shared_ptr<Ship> &ship : ships)
-			if(!ship->IsParked() && !ship->IsDisabled() && ship->GetActualSystem() == system)
-				++retVal;
-		return retVal;
-	});
+	totalPresentShipsProvider.SetGetFunction(
+		[this](const string &name) -> int64_t
+		{
+			int64_t retVal = 0;
+			for(const shared_ptr<Ship> &ship : ships)
+				if(!ship->IsParked() && !ship->IsDisabled() && ship->GetActualSystem() == system)
+					++retVal;
+			return retVal;
+		});
 
 	// The total number of ships the player has anywhere.
 	auto &&totalAnywhereShipsProvider = conditions.GetProviderNamed("total ships (all)");
-	totalAnywhereShipsProvider.SetGetFunction([this](const string &name) -> int64_t
-	{
-		int64_t retVal = 0;
-		for(const shared_ptr<Ship> &ship : ships)
-			if(!ship->IsDestroyed())
-				++retVal;
-		return retVal;
-	});
+	totalAnywhereShipsProvider.SetGetFunction(
+		[this](const string &name) -> int64_t
+		{
+			int64_t retVal = 0;
+			for(const shared_ptr<Ship> &ship : ships)
+				if(!ship->IsDestroyed())
+					++retVal;
+			return retVal;
+		});
 
 	// The following condition checks all sources of outfits which are present with the player.
 	// If in orbit, this means checking all ships in-system for installed and in cargo outfits.
 	// If landed, this means checking all landed ships for installed outfits, the pooled cargo
 	// hold, and the planetary storage of the planet. Excludes parked ships.
 	auto &&presentOutfitProvider = conditions.GetProviderPrefixed("outfit: ");
-	presentOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
-	{
-		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit: ")));
-		if(!outfit)
-			return 0;
-		int64_t retVal = 0;
-		if(planet)
+	presentOutfitProvider.SetGetFunction(
+		[this](const string &name) -> int64_t
 		{
-			retVal += Cargo().Get(outfit);
-			auto it = planetaryStorage.find(planet);
-			if(it != planetaryStorage.end())
-				retVal += it->second.Get(outfit);
-		}
-		for(const shared_ptr<Ship> &ship : ships)
-		{
-			// Destroyed and parked ships aren't checked.
-			// If not on a planet, the ship's system must match.
-			// If on a planet, the ship's planet must match.
-			if(ship->IsDestroyed() || ship->IsParked()
-					|| (planet && ship->GetPlanet() != planet)
+			const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit: ")));
+			if(!outfit)
+				return 0;
+			int64_t retVal = 0;
+			if(planet)
+			{
+				retVal += Cargo().Get(outfit);
+				auto it = planetaryStorage.find(planet);
+				if(it != planetaryStorage.end())
+					retVal += it->second.Get(outfit);
+			}
+			for(const shared_ptr<Ship> &ship : ships)
+			{
+				// Destroyed and parked ships aren't checked.
+				// If not on a planet, the ship's system must match.
+				// If on a planet, the ship's planet must match.
+				if(ship->IsDestroyed() || ship->IsParked() || (planet && ship->GetPlanet() != planet)
 					|| (!planet && ship->GetActualSystem() != system))
-				continue;
-			retVal += ship->OutfitCount(outfit);
-			retVal += ship->Cargo().Get(outfit);
-		}
-		return retVal;
-	});
+					continue;
+				retVal += ship->OutfitCount(outfit);
+				retVal += ship->Cargo().Get(outfit);
+			}
+			return retVal;
+		});
 
 	// Conditions to determine what outfits the player owns, with various possible locations to check.
 	// The following condition checks all possible locations for outfits in the player's possession.
 	auto &&allOutfitProvider = conditions.GetProviderPrefixed("outfit (all): ");
-	allOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
-	{
-		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (all): ")));
-		if(!outfit)
-			return 0;
-		int64_t retVal = Cargo().Get(outfit);
-		for(const shared_ptr<Ship> &ship : ships)
+	allOutfitProvider.SetGetFunction(
+		[this](const string &name) -> int64_t
 		{
-			if(ship->IsDestroyed())
-				continue;
-			retVal += ship->OutfitCount(outfit);
-			retVal += ship->Cargo().Get(outfit);
-		}
-		for(const auto &storage : planetaryStorage)
-			retVal += storage.second.Get(outfit);
-		return retVal;
-	});
+			const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (all): ")));
+			if(!outfit)
+				return 0;
+			int64_t retVal = Cargo().Get(outfit);
+			for(const shared_ptr<Ship> &ship : ships)
+			{
+				if(ship->IsDestroyed())
+					continue;
+				retVal += ship->OutfitCount(outfit);
+				retVal += ship->Cargo().Get(outfit);
+			}
+			for(const auto &storage : planetaryStorage)
+				retVal += storage.second.Get(outfit);
+			return retVal;
+		});
 
 	// The following condition checks the player's fleet for installed outfits on active
 	// escorts local to the player.
 	auto &presentInstalledOutfitProvider = conditions.GetProviderPrefixed("outfit (installed): ");
-	presentInstalledOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
-	{
-		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (installed): ")));
-		if(!outfit)
-			return 0;
-		int64_t retVal = 0;
-		for(const shared_ptr<Ship> &ship : ships)
+	presentInstalledOutfitProvider.SetGetFunction(
+		[this](const string &name) -> int64_t
 		{
-			// Destroyed and parked ships aren't checked.
-			// If not on a planet, the ship's system must match.
-			// If on a planet, the ship's planet must match.
-			if(ship->IsDestroyed() || ship->IsParked()
-					|| (planet && ship->GetPlanet() != planet)
+			const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (installed): ")));
+			if(!outfit)
+				return 0;
+			int64_t retVal = 0;
+			for(const shared_ptr<Ship> &ship : ships)
+			{
+				// Destroyed and parked ships aren't checked.
+				// If not on a planet, the ship's system must match.
+				// If on a planet, the ship's planet must match.
+				if(ship->IsDestroyed() || ship->IsParked() || (planet && ship->GetPlanet() != planet)
 					|| (!planet && ship->GetActualSystem() != system))
-				continue;
-			retVal += ship->OutfitCount(outfit);
-		}
-		return retVal;
-	});
+					continue;
+				retVal += ship->OutfitCount(outfit);
+			}
+			return retVal;
+		});
 
 	// The following condition checks the player's fleet for installed outfits on parked escorts
 	// which are local to the player.
 	auto &parkedInstalledOutfitProvider = conditions.GetProviderPrefixed("outfit (parked): ");
-	parkedInstalledOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
-	{
-		// If the player isn't landed then there can be no parked ships local to them.
-		if(!planet)
-			return 0;
-		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (parked): ")));
-		if(!outfit)
-			return 0;
-		int64_t retVal = 0;
-		for(const shared_ptr<Ship> &ship : ships)
+	parkedInstalledOutfitProvider.SetGetFunction(
+		[this](const string &name) -> int64_t
 		{
-			if(!ship->IsParked() || ship->GetPlanet() != planet)
-				continue;
-			retVal += ship->OutfitCount(outfit);
-		}
-		return retVal;
-	});
+			// If the player isn't landed then there can be no parked ships local to them.
+			if(!planet)
+				return 0;
+			const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (parked): ")));
+			if(!outfit)
+				return 0;
+			int64_t retVal = 0;
+			for(const shared_ptr<Ship> &ship : ships)
+			{
+				if(!ship->IsParked() || ship->GetPlanet() != planet)
+					continue;
+				retVal += ship->OutfitCount(outfit);
+			}
+			return retVal;
+		});
 
 	// The following condition checks the player's entire fleet for installed outfits.
 	auto &&allInstalledOutfitProvider = conditions.GetProviderPrefixed("outfit (all installed): ");
-	allInstalledOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
-	{
-		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (all installed): ")));
-		if(!outfit)
-			return 0;
-		int64_t retVal = 0;
-		for(const shared_ptr<Ship> &ship : ships)
-			if(!ship->IsDestroyed())
-				retVal += ship->OutfitCount(outfit);
-		return retVal;
-	});
+	allInstalledOutfitProvider.SetGetFunction(
+		[this](const string &name) -> int64_t
+		{
+			const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (all installed): ")));
+			if(!outfit)
+				return 0;
+			int64_t retVal = 0;
+			for(const shared_ptr<Ship> &ship : ships)
+				if(!ship->IsDestroyed())
+					retVal += ship->OutfitCount(outfit);
+			return retVal;
+		});
 
 	// The following condition checks the flagship's installed outfits.
 	auto &&flagshipInstalledOutfitProvider = conditions.GetProviderPrefixed("outfit (flagship installed): ");
-	flagshipInstalledOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
-	{
-		if(!flagship)
-			return 0;
-		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (flagship installed): ")));
-		if(!outfit)
-			return 0;
-		return flagship->OutfitCount(outfit);
-	});
+	flagshipInstalledOutfitProvider.SetGetFunction(
+		[this](const string &name) -> int64_t
+		{
+			if(!flagship)
+				return 0;
+			const Outfit *outfit =
+				GameData::Outfits().Find(name.substr(strlen("outfit (flagship installed): ")));
+			if(!outfit)
+				return 0;
+			return flagship->OutfitCount(outfit);
+		});
 
 	// The following condition checks the player's fleet for outfits in the cargo of escorts
 	// local to the player.
 	auto &&presentCargoOutfitProvider = conditions.GetProviderPrefixed("outfit (cargo): ");
-	presentCargoOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
-	{
-		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (cargo): ")));
-		if(!outfit)
-			return 0;
-		int64_t retVal = 0;
-		if(planet)
-			retVal += Cargo().Get(outfit);
-		for(const shared_ptr<Ship> &ship : ships)
+	presentCargoOutfitProvider.SetGetFunction(
+		[this](const string &name) -> int64_t
 		{
-			// If not on a planet, parked ships in system don't count.
-			// If on a planet, the ship's planet must match.
-			if(ship->IsDestroyed() || (planet && ship->GetPlanet() != planet)
+			const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (cargo): ")));
+			if(!outfit)
+				return 0;
+			int64_t retVal = 0;
+			if(planet)
+				retVal += Cargo().Get(outfit);
+			for(const shared_ptr<Ship> &ship : ships)
+			{
+				// If not on a planet, parked ships in system don't count.
+				// If on a planet, the ship's planet must match.
+				if(ship->IsDestroyed() || (planet && ship->GetPlanet() != planet)
 					|| (!planet && (ship->GetActualSystem() != system || ship->IsParked())))
-				continue;
-			retVal += ship->Cargo().Get(outfit);
-		}
-		return retVal;
-	});
+					continue;
+				retVal += ship->Cargo().Get(outfit);
+			}
+			return retVal;
+		});
 
 	// The following condition checks all cargo locations in the player's fleet.
 	auto &&allCargoOutfitProvider = conditions.GetProviderPrefixed("outfit (all cargo): ");
-	allCargoOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
-	{
-		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (all cargo): ")));
-		if(!outfit)
-			return 0;
-		int64_t retVal = 0;
-		if(planet)
-			retVal += Cargo().Get(outfit);
-		for(const shared_ptr<Ship> &ship : ships)
-			if(!ship->IsDestroyed())
-				retVal += ship->Cargo().Get(outfit);
-		return retVal;
-	});
+	allCargoOutfitProvider.SetGetFunction(
+		[this](const string &name) -> int64_t
+		{
+			const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (all cargo): ")));
+			if(!outfit)
+				return 0;
+			int64_t retVal = 0;
+			if(planet)
+				retVal += Cargo().Get(outfit);
+			for(const shared_ptr<Ship> &ship : ships)
+				if(!ship->IsDestroyed())
+					retVal += ship->Cargo().Get(outfit);
+			return retVal;
+		});
 
 	// The following condition checks the flagship's cargo or the pooled cargo if landed.
 	auto &&flagshipCargoOutfitProvider = conditions.GetProviderPrefixed("outfit (flagship cargo): ");
-	flagshipCargoOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
-	{
-		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (flagship cargo): ")));
-		if(!outfit)
-			return 0;
-		return (flagship ? flagship->Cargo().Get(outfit) : 0) + (planet ? Cargo().Get(outfit) : 0);
-	});
+	flagshipCargoOutfitProvider.SetGetFunction(
+		[this](const string &name) -> int64_t
+		{
+			const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (flagship cargo): ")));
+			if(!outfit)
+				return 0;
+			return (flagship ? flagship->Cargo().Get(outfit) : 0) + (planet ? Cargo().Get(outfit) : 0);
+		});
 
 	// The following condition checks planetary storage on the current planet, or on
 	// planets in the current system if in orbit.
 	auto &&presentStorageOutfitProvider = conditions.GetProviderPrefixed("outfit (storage): ");
-	presentStorageOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
-	{
-		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (storage): ")));
-		if(!outfit)
-			return 0;
-		if(planet)
+	presentStorageOutfitProvider.SetGetFunction(
+		[this](const string &name) -> int64_t
 		{
-			auto it = planetaryStorage.find(planet);
-			return it != planetaryStorage.end() ? it->second.Get(outfit) : 0;
-		}
-		else
-		{
-			int64_t retVal = 0;
-			for(const StellarObject &object : system->Objects())
+			const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (storage): ")));
+			if(!outfit)
+				return 0;
+			if(planet)
 			{
-				auto it = planetaryStorage.find(object.GetPlanet());
-				if(object.HasValidPlanet() && it != planetaryStorage.end())
-					retVal += it->second.Get(outfit);
+				auto it = planetaryStorage.find(planet);
+				return it != planetaryStorage.end() ? it->second.Get(outfit) : 0;
 			}
-			return retVal;
-		}
-	});
+			else
+			{
+				int64_t retVal = 0;
+				for(const StellarObject &object : system->Objects())
+				{
+					auto it = planetaryStorage.find(object.GetPlanet());
+					if(object.HasValidPlanet() && it != planetaryStorage.end())
+						retVal += it->second.Get(outfit);
+				}
+				return retVal;
+			}
+		});
 
 	// The following condition checks all planetary storage.
 	auto &&allStorageOutfitProvider = conditions.GetProviderPrefixed("outfit (all storage): ");
-	allStorageOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
-	{
-		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (all storage): ")));
-		if(!outfit)
-			return 0;
-		int64_t retVal = 0;
-		for(const auto &storage : planetaryStorage)
-			retVal += storage.second.Get(outfit);
-		return retVal;
-	});
+	allStorageOutfitProvider.SetGetFunction(
+		[this](const string &name) -> int64_t
+		{
+			const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (all storage): ")));
+			if(!outfit)
+				return 0;
+			int64_t retVal = 0;
+			for(const auto &storage : planetaryStorage)
+				retVal += storage.second.Get(outfit);
+			return retVal;
+		});
 
 	// This condition corresponds to the method by which the flagship entered the current system.
 	auto &&systemEntryProvider = conditions.GetProviderPrefixed("entered system by: ");
@@ -3834,7 +3963,7 @@ void PlayerInfo::RegisterDerivedConditions()
 		if(!system)
 		{
 			Logger::LogError("Warning: System \"" + name.substr(strlen("hyperjumps to system: "))
-					+ "\" referred to in condition is not valid.");
+							 + "\" referred to in condition is not valid.");
 			return -1;
 		}
 		return HyperspaceTravelDays(this->GetSystem(), system);
@@ -3849,14 +3978,14 @@ void PlayerInfo::RegisterDerivedConditions()
 		if(!planet)
 		{
 			Logger::LogError("Warning: Planet \"" + name.substr(strlen("hyperjumps to planet: "))
-					+ "\" referred to in condition is not valid.");
+							 + "\" referred to in condition is not valid.");
 			return -1;
 		}
 		const System *system = planet->GetSystem();
 		if(!system)
 		{
 			Logger::LogError("Warning: Planet \"" + name.substr(strlen("hyperjumps to planet: "))
-					+ "\" referred to in condition is not in any system.");
+							 + "\" referred to in condition is not in any system.");
 			return -1;
 		}
 		return HyperspaceTravelDays(this->GetSystem(), system);
@@ -3867,28 +3996,31 @@ void PlayerInfo::RegisterDerivedConditions()
 	// Read/write government reputation conditions.
 	// The erase function is still default (since we cannot erase government conditions).
 	auto &&reputationProvider = conditions.GetProviderPrefixed("reputation: ");
-	reputationProvider.SetHasFunction([](const string &name) -> bool
-	{
-		string govName = name.substr(strlen("reputation: "));
-		return GameData::Governments().Has(govName);
-	});
-	reputationProvider.SetGetFunction([](const string &name) -> int64_t
-	{
-		string govName = name.substr(strlen("reputation: "));
-		auto gov = GameData::Governments().Get(govName);
-		if(!gov)
-			return 0;
-		return gov->Reputation();
-	});
-	reputationProvider.SetSetFunction([](const string &name, int64_t value) -> bool
-	{
-		string govName = name.substr(strlen("reputation: "));
-		auto gov = GameData::Governments().Get(govName);
-		if(!gov)
-			return false;
-		gov->SetReputation(value);
-		return true;
-	});
+	reputationProvider.SetHasFunction(
+		[](const string &name) -> bool
+		{
+			string govName = name.substr(strlen("reputation: "));
+			return GameData::Governments().Has(govName);
+		});
+	reputationProvider.SetGetFunction(
+		[](const string &name) -> int64_t
+		{
+			string govName = name.substr(strlen("reputation: "));
+			auto gov = GameData::Governments().Get(govName);
+			if(!gov)
+				return 0;
+			return gov->Reputation();
+		});
+	reputationProvider.SetSetFunction(
+		[](const string &name, int64_t value) -> bool
+		{
+			string govName = name.substr(strlen("reputation: "));
+			auto gov = GameData::Governments().Get(govName);
+			if(!gov)
+				return false;
+			gov->SetReputation(value);
+			return true;
+		});
 
 	// A condition for returning a random integer in the range [0, input). Input may be a number,
 	// or it may be the name of a condition. For example, "roll: 100" would roll a random
@@ -3913,26 +4045,30 @@ void PlayerInfo::RegisterDerivedConditions()
 
 	// Global conditions setters and getters:
 	auto &&globalProvider = conditions.GetProviderPrefixed("global: ");
-	globalProvider.SetHasFunction([](const string &name) -> bool
-	{
-		string condition = name.substr(strlen("global: "));
-		return GameData::GlobalConditions().Has(condition);
-	});
-	globalProvider.SetGetFunction([](const string &name) -> int64_t
-	{
-		string condition = name.substr(strlen("global: "));
-		return GameData::GlobalConditions().Get(condition);
-	});
-	globalProvider.SetSetFunction([](const string &name, int64_t value) -> bool
-	{
-		string condition = name.substr(strlen("global: "));
-		return GameData::GlobalConditions().Set(condition, value);
-	});
-	globalProvider.SetEraseFunction([](const string &name) -> bool
-	{
-		string condition = name.substr(strlen("global: "));
-		return GameData::GlobalConditions().Erase(condition);
-	});
+	globalProvider.SetHasFunction(
+		[](const string &name) -> bool
+		{
+			string condition = name.substr(strlen("global: "));
+			return GameData::GlobalConditions().Has(condition);
+		});
+	globalProvider.SetGetFunction(
+		[](const string &name) -> int64_t
+		{
+			string condition = name.substr(strlen("global: "));
+			return GameData::GlobalConditions().Get(condition);
+		});
+	globalProvider.SetSetFunction(
+		[](const string &name, int64_t value) -> bool
+		{
+			string condition = name.substr(strlen("global: "));
+			return GameData::GlobalConditions().Set(condition, value);
+		});
+	globalProvider.SetEraseFunction(
+		[](const string &name) -> bool
+		{
+			string condition = name.substr(strlen("global: "));
+			return GameData::GlobalConditions().Erase(condition);
+		});
 }
 
 
@@ -3973,8 +4109,8 @@ void PlayerInfo::CreateMissions()
 		while(it != availableMissions.end())
 		{
 			bool hasLowerPriorityLocation = it->IsAtLocation(Mission::SPACEPORT)
-				|| it->IsAtLocation(Mission::SHIPYARD)
-				|| it->IsAtLocation(Mission::OUTFITTER);
+											|| it->IsAtLocation(Mission::SHIPYARD)
+											|| it->IsAtLocation(Mission::OUTFITTER);
 			if(hasLowerPriorityLocation && !it->HasPriority())
 				it = availableMissions.erase(it);
 			else
@@ -4027,34 +4163,39 @@ void PlayerInfo::SortAvailable()
 			}
 		}
 	}
-	availableJobs.sort([&](const Mission &lhs, const Mission &rhs) {
-		// First, separate rush orders with deadlines, if wanted
-		if(sortSeparateDeadline)
+	availableJobs.sort(
+		[&](const Mission &lhs, const Mission &rhs)
 		{
-			// availableSortAsc instead of true, to counter the reverse below
-			if(!lhs.Deadline() && rhs.Deadline())
-				return availableSortAsc;
-			if(lhs.Deadline() && !rhs.Deadline())
-				return !availableSortAsc;
-		}
-		// Then, separate greyed-out jobs you can't accept
-		if(sortSeparatePossible)
-		{
-			if(lhs.CanAccept(*this) && !rhs.CanAccept(*this))
-				return availableSortAsc;
-			if(!lhs.CanAccept(*this) && rhs.CanAccept(*this))
-				return !availableSortAsc;
-		}
-		// Sort by desired type:
-		switch(availableSortType)
-		{
+			// First, separate rush orders with deadlines, if wanted
+			if(sortSeparateDeadline)
+			{
+				// availableSortAsc instead of true, to counter the reverse below
+				if(!lhs.Deadline() && rhs.Deadline())
+					return availableSortAsc;
+				if(lhs.Deadline() && !rhs.Deadline())
+					return !availableSortAsc;
+			}
+			// Then, separate greyed-out jobs you can't accept
+			if(sortSeparatePossible)
+			{
+				if(lhs.CanAccept(*this) && !rhs.CanAccept(*this))
+					return availableSortAsc;
+				if(!lhs.CanAccept(*this) && rhs.CanAccept(*this))
+					return !availableSortAsc;
+			}
+			// Sort by desired type:
+			switch(availableSortType)
+			{
 			case CONVENIENT:
 			{
 				// Sorting by "convenience" means you already have a mission to a
 				// planet. Missions at the same planet are sorted higher.
-				// 0 : No convenient mission; 1: same system; 2: same planet (because both system+planet means 1+1 = 2)
-				const int lConvenient = destinations.count(lhs.Destination()) + destinations.count(lhs.Destination()->GetSystem());
-				const int rConvenient = destinations.count(rhs.Destination()) + destinations.count(rhs.Destination()->GetSystem());
+				// 0 : No convenient mission; 1: same system; 2: same planet (because both system+planet means
+				// 1+1 = 2)
+				const int lConvenient = destinations.count(lhs.Destination())
+										+ destinations.count(lhs.Destination()->GetSystem());
+				const int rConvenient = destinations.count(rhs.Destination())
+										+ destinations.count(rhs.Destination()->GetSystem());
 				if(lConvenient < rConvenient)
 					return true;
 				if(lConvenient > rConvenient)
@@ -4115,8 +4256,8 @@ void PlayerInfo::SortAvailable()
 			// Tiebreaker fallback to keep sorting consistent is unique UUID:
 			default:
 				return lhs.UUID() < rhs.UUID();
-		}
-	});
+			}
+		});
 
 	if(!availableSortAsc)
 		availableJobs.reverse();
@@ -4139,10 +4280,7 @@ void PlayerInfo::StepMissions(UI *ui)
 	// Check missions for status changes from landing.
 	string visitText;
 	int missionVisits = 0;
-	auto substitutions = map<string, string>{
-		{"<first>", firstName},
-		{"<last>", lastName}
-	};
+	auto substitutions = map<string, string>{{"<first>", firstName}, {"<last>", lastName}};
 	if(Flagship())
 		substitutions["<ship>"] = Flagship()->Name();
 
@@ -4181,7 +4319,7 @@ void PlayerInfo::StepMissions(UI *ui)
 	{
 		if(missionVisits > 1)
 			visitText += "\n\t(You have " + Format::Number(missionVisits - 1) + " other unfinished "
-				+ ((missionVisits > 2) ? "missions" : "mission") + " at this location.)";
+						 + ((missionVisits > 2) ? "missions" : "mission") + " at this location.)";
 		ui->Push(new Dialog(visitText));
 	}
 	// One mission's actions may influence another mission, so loop through one
@@ -4379,9 +4517,12 @@ void PlayerInfo::Save(DataWriter &out) const
 		out.BeginChild();
 		{
 			using StockElement = pair<const Outfit *const, int>;
-			WriteSorted(stock,
+			WriteSorted(
+				stock,
 				[](const StockElement *lhs, const StockElement *rhs)
-					{ return lhs->first->TrueName() < rhs->first->TrueName(); },
+				{
+					return lhs->first->TrueName() < rhs->first->TrueName();
+				},
 				[&out](const StockElement &it)
 				{
 					if(it.second)
@@ -4414,9 +4555,11 @@ void PlayerInfo::Save(DataWriter &out) const
 		for(const auto &cargo : ship.Cargo().MissionCargo())
 			offWorldMissionCargo[cargo.first->UUID().ToString()][ship.UUID().ToString()] = cargo.second;
 		for(const auto &passengers : ship.Cargo().PassengerList())
-			offWorldMissionPassengers[passengers.first->UUID().ToString()][ship.UUID().ToString()] = passengers.second;
+			offWorldMissionPassengers[passengers.first->UUID().ToString()][ship.UUID().ToString()] =
+				passengers.second;
 	}
-	auto SaveMissionCargoDistribution = [&out](const map<string, map<string, int>> &toSave, bool passengers) -> void
+	auto SaveMissionCargoDistribution = [&out](const map<string, map<string, int>> &toSave,
+											bool passengers) -> void
 	{
 		if(passengers)
 			out.Write("mission passengers");
@@ -4493,18 +4636,24 @@ void PlayerInfo::Save(DataWriter &out) const
 	out.WriteComment("What you know:");
 
 	// Save a list of systems the player has visited.
-	WriteSorted(visitedSystems,
+	WriteSorted(
+		visitedSystems,
 		[](const System *const *lhs, const System *const *rhs)
-			{ return (*lhs)->Name() < (*rhs)->Name(); },
+		{
+			return (*lhs)->Name() < (*rhs)->Name();
+		},
 		[&out](const System *system)
 		{
 			out.Write("visited", system->Name());
 		});
 
 	// Save a list of planets the player has visited.
-	WriteSorted(visitedPlanets,
+	WriteSorted(
+		visitedPlanets,
 		[](const Planet *const *lhs, const Planet *const *rhs)
-			{ return (*lhs)->TrueName() < (*rhs)->TrueName(); },
+		{
+			return (*lhs)->TrueName() < (*rhs)->TrueName();
+		},
 		[&out](const Planet *planet)
 		{
 			out.Write("visited planet", planet->TrueName());
@@ -4516,7 +4665,8 @@ void PlayerInfo::Save(DataWriter &out) const
 		out.BeginChild();
 		{
 			using HarvestLog = pair<const System *, const Outfit *>;
-			WriteSorted(harvested,
+			WriteSorted(
+				harvested,
 				[](const HarvestLog *lhs, const HarvestLog *rhs) -> bool
 				{
 					// Sort by system name and then by outfit name.
@@ -4596,8 +4746,9 @@ void PlayerInfo::Fine(UI *ui)
 
 	// Planets should not fine you if you have mission clearance or are infiltrating.
 	for(const Mission &mission : missions)
-		if(mission.HasClearance(planet) || (!mission.HasFullClearance() &&
-					(mission.Destination() == planet || mission.Stopovers().count(planet))))
+		if(mission.HasClearance(planet)
+			|| (!mission.HasFullClearance()
+				&& (mission.Destination() == planet || mission.Stopovers().count(planet))))
 			return;
 
 	// The planet's government must have the authority to enforce laws.
@@ -4616,11 +4767,10 @@ void PlayerInfo::Fine(UI *ui)
 			else
 			{
 				message = "Before you can leave your ship, the " + gov->GetName()
-					+ " authorities show up and begin scanning it. They say, \"Captain "
-					+ LastName()
-					+ ", we detect highly illegal material on your ship.\""
-					"\n\tYou are sentenced to lifetime imprisonment on a penal colony."
-					" Your days of traveling the stars have come to an end.";
+						  + " authorities show up and begin scanning it. They say, \"Captain " + LastName()
+						  + ", we detect highly illegal material on your ship.\""
+							"\n\tYou are sentenced to lifetime imprisonment on a penal colony."
+							" Your days of traveling the stars have come to an end.";
 				ui->Push(new Dialog(message));
 			}
 			// All ships belonging to the player should be removed.
@@ -4638,7 +4788,7 @@ void PlayerInfo::SelectShip(const shared_ptr<Ship> &ship, bool *first)
 {
 	// Make sure this ship is not already selected.
 	auto it = selectedShips.begin();
-	for( ; it != selectedShips.end(); ++it)
+	for(; it != selectedShips.end(); ++it)
 		if(it->lock() == ship)
 			break;
 	if(it == selectedShips.end())
@@ -4680,7 +4830,10 @@ void PlayerInfo::ForgetGiftedShip(const Ship &oldShip, bool failsMissions)
 {
 	const EsUuid &id = oldShip.UUID();
 	auto shipToForget = find_if(giftedShips.begin(), giftedShips.end(),
-		[&id](const pair<const string, EsUuid> &shipId) { return shipId.second == id; });
+		[&id](const pair<const string, EsUuid> &shipId)
+		{
+			return shipId.second == id;
+		});
 	if(shipToForget != giftedShips.end())
 	{
 		if(failsMissions)

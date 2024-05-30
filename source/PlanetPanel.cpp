@@ -17,13 +17,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Information.h"
 
-#include "text/alignment.hpp"
 #include "BankPanel.h"
 #include "Command.h"
 #include "ConversationPanel.h"
 #include "Dialog.h"
-#include "text/FontSet.h"
-#include "text/Format.h"
 #include "GameData.h"
 #include "HiringPanel.h"
 #include "Interface.h"
@@ -40,6 +37,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SpaceportPanel.h"
 #include "System.h"
 #include "TaskQueue.h"
+#include "text/alignment.hpp"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "TradingPanel.h"
 #include "UI.h"
 
@@ -50,9 +50,8 @@ using namespace std;
 
 
 PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
-	: player(player), callback(callback),
-	planet(*player.GetPlanet()), system(*player.GetSystem()),
-	ui(*GameData::Interfaces().Get("planet"))
+	: player(player), callback(callback), planet(*player.GetPlanet()), system(*player.GetSystem()),
+	  ui(*GameData::Interfaces().Get("planet"))
 {
 	trading.reset(new TradingPanel(player));
 	bank.reset(new BankPanel(player));
@@ -165,8 +164,8 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	}
 	else if(key == 'l')
 		selectedPanel = nullptr;
-	else if(key == 't' && hasAccess
-			&& planet.GetPort().HasService(Port::ServicesType::Trading) && system.HasTrade())
+	else if(key == 't' && hasAccess && planet.GetPort().HasService(Port::ServicesType::Trading)
+			&& system.HasTrade())
 	{
 		selectedPanel = trading.get();
 		GetUI()->Push(trading);
@@ -235,7 +234,7 @@ void PlanetPanel::TakeOffIfReady()
 {
 	// If we're currently showing a conversation or dialog, wait for it to close.
 	if(!GetUI()->IsTop(this) && !GetUI()->IsTop(trading.get()) && !GetUI()->IsTop(bank.get())
-			&& !GetUI()->IsTop(spaceport.get()) && !GetUI()->IsTop(hiring.get()))
+		&& !GetUI()->IsTop(spaceport.get()) && !GetUI()->IsTop(hiring.get()))
 		return;
 
 	// If something happens here that cancels the order to take off, don't try
@@ -272,9 +271,9 @@ void PlanetPanel::TakeOffIfReady()
 			if(check.back() == '!')
 			{
 				// If the ship with a flight check error is in another system, then the only thing the player
-				// can do is park it. But if the ship is with the player, then they may be able to make changes
-				// to rectify the error. As such, provide a conversation for any single present ship, but
-				// record and report all absent ships later.
+				// can do is park it. But if the ship is with the player, then they may be able to make
+				// changes to rectify the error. As such, provide a conversation for any single present ship,
+				// but record and report all absent ships later.
 				if(result.first->GetSystem() != &system)
 				{
 					out << result.first->Name() << ", ";
@@ -283,7 +282,8 @@ void PlanetPanel::TakeOffIfReady()
 				else
 				{
 					GetUI()->Push(new ConversationPanel(player,
-						*GameData::Conversations().Get("flight check: " + check), nullptr, nullptr, result.first));
+						*GameData::Conversations().Get("flight check: " + check), nullptr, nullptr,
+						result.first));
 					return;
 				}
 			}
@@ -295,8 +295,9 @@ void PlanetPanel::TakeOffIfReady()
 			shipNames.pop_back();
 			shipNames.pop_back();
 			GetUI()->Push(new Dialog(this, &PlanetPanel::CheckWarningsAndTakeOff,
-				"Some of your ships in other systems are not be able to fly:\n" + shipNames +
-				"\nDo you want to park those ships and depart?", Truncate::MIDDLE));
+				"Some of your ships in other systems are not be able to fly:\n" + shipNames
+					+ "\nDo you want to park those ships and depart?",
+				Truncate::MIDDLE));
 			return;
 		}
 	}
@@ -341,9 +342,7 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 	if(!flightChecks.empty())
 	{
 		// There may be multiple warnings reported, but only 3 result in a ship which cannot jump.
-		const auto jumpWarnings = set<string>{
-			"no bays?", "no fuel?", "no hyperdrive?"
-		};
+		const auto jumpWarnings = set<string>{"no bays?", "no fuel?", "no hyperdrive?"};
 		for(const auto &result : flightChecks)
 			for(const auto &warning : result.second)
 				if(jumpWarnings.count(warning))
@@ -353,24 +352,24 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 				}
 	}
 
-	if(nonJumpCount > 0 || missionCargoToSell > 0 || outfitsToSell > 0 || commoditiesToSell > 0 || overbooked > 0
-		|| !leftUniques.empty())
+	if(nonJumpCount > 0 || missionCargoToSell > 0 || outfitsToSell > 0 || commoditiesToSell > 0
+		|| overbooked > 0 || !leftUniques.empty())
 	{
 		ostringstream out;
-		auto ListUniques = [&out] (const map<const Outfit *, int> &uniques)
+		auto ListUniques = [&out](const map<const Outfit *, int> &uniques)
 		{
 			const int detailedSize = (uniques.size() > 5 ? 4 : uniques.size());
 			auto it = uniques.begin();
 			for(int i = 0; i < detailedSize; ++i)
 			{
 				out << "\n" + to_string(it->second) + " "
-					+ (it->second == 1 ? it->first->DisplayName() : it->first->PluralName());
+						   + (it->second == 1 ? it->first->DisplayName() : it->first->PluralName());
 				++it;
 			}
 			int otherUniquesCount = 0;
 			if(it != uniques.end())
 			{
-				for( ; it != uniques.end(); ++it)
+				for(; it != uniques.end(); ++it)
 					otherUniquesCount += it->second;
 				out << "\nand " + to_string(otherUniquesCount) + " other unique outfits.";
 			}

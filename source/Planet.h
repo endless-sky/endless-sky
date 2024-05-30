@@ -43,12 +43,7 @@ class Wormhole;
 // might choose it as a source or destination.
 class Planet {
 public:
-	enum class Friendliness : int_fast8_t {
-		FRIENDLY,
-		RESTRICTED,
-		HOSTILE,
-		DOMINATED
-	};
+	enum class Friendliness : int_fast8_t { FRIENDLY, RESTRICTED, HOSTILE, DOMINATED };
 
 
 public:

@@ -109,7 +109,7 @@ void DataFile::LoadData(const string &data)
 	size_t lineNumber = 0;
 
 	size_t end = data.length();
-	for(size_t pos = 0; pos < end; )
+	for(size_t pos = 0; pos < end;)
 	{
 		++lineNumber;
 		size_t tokenPos = pos;
@@ -141,7 +141,8 @@ void DataFile::LoadData(const string &data)
 		if(c == '#')
 		{
 			if(mixedIndentation)
-				root.PrintTrace("Warning: Mixed whitespace usage for comment at line " + to_string(lineNumber));
+				root.PrintTrace(
+					"Warning: Mixed whitespace usage for comment at line " + to_string(lineNumber));
 			while(c != '\n')
 				c = Utf8::DecodeCodePoint(data, pos);
 		}

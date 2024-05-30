@@ -76,8 +76,7 @@ Angle Angle::Random(const double range)
 
 
 // Construct an Angle from the given angle in degrees.
-Angle::Angle(const double degrees) noexcept
-	: angle(llround(degrees * DEG_TO_STEP) & MASK)
+Angle::Angle(const double degrees) noexcept : angle(llround(degrees * DEG_TO_STEP) & MASK)
 {
 	// Make sure llround does not overflow with the values of System::SetDate.
 	// "now" has 32 bit integer precision. "speed" and "offset" have floating
@@ -88,10 +87,7 @@ Angle::Angle(const double degrees) noexcept
 
 
 // Construct an angle pointing in the direction of the given vector.
-Angle::Angle(const Point &point) noexcept
-	: Angle(TO_DEG * atan2(point.X(), -point.Y()))
-{
-}
+Angle::Angle(const Point &point) noexcept : Angle(TO_DEG * atan2(point.X(), -point.Y())) {}
 
 
 
@@ -185,15 +181,14 @@ Point Angle::Rotate(const Point &point) const
 	// If using the normal mathematical coordinate system, this would be easier.
 	// Since we're not, the math is a tiny bit less elegant:
 	const Point unit = Unit();
-	return Point(-unit.Y() * point.X() - unit.X() * point.Y(),
-		-unit.Y() * point.Y() + unit.X() * point.X());
+	return Point(-unit.Y() * point.X() - unit.X() * point.Y(), -unit.Y() * point.Y() + unit.X() * point.X());
 }
 
 
 
 // Judge whether this is inside from "base" to "limit."
 // The range from "base" to "limit" is expressed by "clock" orientation.
-bool Angle::IsInRange(const Angle& base, const Angle& limit) const
+bool Angle::IsInRange(const Angle &base, const Angle &limit) const
 {
 	// Choose an edge of the arc as the reference angle (base) and
 	// compare relative angles to decide whether this is in the range.
@@ -205,7 +200,4 @@ bool Angle::IsInRange(const Angle& base, const Angle& limit) const
 
 
 // Constructor using Angle's internal representation.
-Angle::Angle(const int32_t angle)
-	: angle(angle)
-{
-}
+Angle::Angle(const int32_t angle) : angle(angle) {}

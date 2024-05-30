@@ -18,14 +18,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Command.h"
 #include "ConversationPanel.h"
-#include "text/DisplayText.h"
 #include "FillShader.h"
-#include "text/Font.h"
-#include "text/FontSet.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
-#include "text/layout.hpp"
 #include "MainPanel.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -36,6 +32,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "StarField.h"
 #include "StartConditions.h"
 #include "System.h"
+#include "text/DisplayText.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/layout.hpp"
 #include "text/truncate.hpp"
 #include "UI.h"
 
@@ -45,12 +45,11 @@ using namespace std;
 
 
 
-StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels,
-	const StartConditionsList &allScenarios, const Panel *parent)
-	: player(player), gamePanels(gamePanels), parent(parent),
-	bright(*GameData::Colors().Get("bright")), medium(*GameData::Colors().Get("medium")),
-	selectedBackground(*GameData::Colors().Get("faint")),
-	description(FontSet::Get(14))
+StartConditionsPanel::StartConditionsPanel(
+	PlayerInfo &player, UI &gamePanels, const StartConditionsList &allScenarios, const Panel *parent)
+	: player(player), gamePanels(gamePanels), parent(parent), bright(*GameData::Colors().Get("bright")),
+	  medium(*GameData::Colors().Get("medium")), selectedBackground(*GameData::Colors().Get("faint")),
+	  description(FontSet::Get(14))
 {
 	// Extract from all start scenarios those that are visible to the player.
 	for(const auto &scenario : allScenarios)
@@ -79,7 +78,8 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels,
 	const auto startCount = scenarios.size();
 	startConditionsClickZones.reserve(startCount);
 	for(size_t i = 0; i < startCount; ++i)
-		startConditionsClickZones.emplace_back(firstRectangle + Point(0, i * entryBox.Height()), scenarios.begin() + i);
+		startConditionsClickZones.emplace_back(
+			firstRectangle + Point(0, i * entryBox.Height()), scenarios.begin() + i);
 
 	description.SetWrapWidth(descriptionBox.Width());
 
@@ -106,8 +106,7 @@ void StartConditionsPanel::Draw()
 	auto pos = entriesContainer.TopLeft() - Point(0., entriesScroll);
 
 	const Font &font = FontSet::Get(14);
-	for(auto it = scenarios.begin(); it != scenarios.end();
-			++it, pos += Point(0., entryBox.Height()))
+	for(auto it = scenarios.begin(); it != scenarios.end(); ++it, pos += Point(0., entryBox.Height()))
 	{
 		// Any scenario wholly outside the bounds can be skipped.
 		const auto zone = Rectangle::FromCorner(pos, entryBox.Dimensions());
@@ -115,8 +114,9 @@ void StartConditionsPanel::Draw()
 			continue;
 
 		// Partially visible entries should fade in or out.
-		double opacity = entriesContainer.Contains(zone) ? 1.
-			: min(1., max(0., min(pos.Y() - fadeInY, fadeOutY - pos.Y()) / fadeDistance));
+		double opacity = entriesContainer.Contains(zone)
+							 ? 1.
+							 : min(1., max(0., min(pos.Y() - fadeInY, fadeOutY - pos.Y()) / fadeDistance));
 
 		bool isHighlighted = it == startIt || (hasHover && zone.Contains(hoverPoint));
 		if(it == startIt)
@@ -134,13 +134,15 @@ void StartConditionsPanel::Draw()
 
 bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool /* isNewPress */)
 {
-	if(key == 'b' || key == SDLK_ESCAPE || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
+	if(key == 'b' || key == SDLK_ESCAPE || command.Has(Command::MENU)
+		|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		GetUI()->Pop(this);
-	else if(!scenarios.empty() && (key == SDLK_UP || key == SDLK_DOWN || key == SDLK_PAGEUP || key == SDLK_PAGEDOWN))
+	else if(!scenarios.empty()
+			&& (key == SDLK_UP || key == SDLK_DOWN || key == SDLK_PAGEUP || key == SDLK_PAGEDOWN))
 	{
 		// Move up / down an entry, or a page. If at the bottom / top, wrap around.
-		const ptrdiff_t magnitude = (key == SDLK_UP || key == SDLK_DOWN) ? 1
-				: entriesContainer.Height() / entryBox.Height() - 1;
+		const ptrdiff_t magnitude =
+			(key == SDLK_UP || key == SDLK_DOWN) ? 1 : entriesContainer.Height() / entryBox.Height() - 1;
 		if(key == SDLK_UP || key == SDLK_PAGEUP)
 		{
 			if(startIt == scenarios.begin())
@@ -158,13 +160,13 @@ bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &c
 
 		Select(startIt);
 	}
-	else if(startIt != scenarios.end() && (key == 's' || key == 'n' || key == SDLK_KP_ENTER || key == SDLK_RETURN)
-		&& info.HasCondition("unlocked start"))
+	else if(startIt != scenarios.end()
+			&& (key == 's' || key == 'n' || key == SDLK_KP_ENTER || key == SDLK_RETURN)
+			&& info.HasCondition("unlocked start"))
 	{
 		player.New(*startIt);
 
-		ConversationPanel *panel = new ConversationPanel(
-			player, startIt->GetConversation());
+		ConversationPanel *panel = new ConversationPanel(player, startIt->GetConversation());
 		GetUI()->Push(panel);
 		panel->SetCallback(this, &StartConditionsPanel::OnConversationEnd);
 	}
@@ -211,8 +213,8 @@ bool StartConditionsPanel::Drag(double /* dx */, double dy)
 {
 	if(entriesContainer.Contains(hoverPoint))
 	{
-		entriesScroll = max(0., min(entriesScroll - dy,
-			scenarios.size() * entryBox.Height() - entriesContainer.Height()));
+		entriesScroll = max(
+			0., min(entriesScroll - dy, scenarios.size() * entryBox.Height() - entriesContainer.Height()));
 	}
 	else if(descriptionBox.Contains(hoverPoint))
 	{
@@ -303,7 +305,7 @@ void StartConditionsPanel::Select(StartConditionsList::iterator it)
 	{
 		// The only time we should be here is if there are no scenarios at all.
 		description.Wrap("No valid starting scenarios were defined!\n\n"
-			"Make sure you installed Endless Sky (and any plugins) properly.");
+						 "Make sure you installed Endless Sky (and any plugins) properly.");
 		return;
 	}
 

@@ -20,8 +20,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ClickZone.h"
 #include "InfoPanelState.h"
-#include "text/layout.hpp"
 #include "Point.h"
+#include "text/layout.hpp"
 
 #include <set>
 #include <vector>
@@ -72,7 +72,8 @@ private:
 
 	class SortableColumn {
 	public:
-		SortableColumn(std::string name, double offset, double endX, Layout layout, InfoPanelState::ShipComparator *shipSort);
+		SortableColumn(std::string name, double offset, double endX, Layout layout,
+			InfoPanelState::ShipComparator *shipSort);
 
 		std::string name;
 		double offset = 0.;

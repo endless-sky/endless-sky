@@ -15,14 +15,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ItemInfoDisplay.h"
 
-#include "text/alignment.hpp"
 #include "Color.h"
 #include "FillShader.h"
-#include "text/FontSet.h"
 #include "GameData.h"
-#include "text/layout.hpp"
 #include "Rectangle.h"
 #include "Screen.h"
+#include "text/alignment.hpp"
+#include "text/FontSet.h"
+#include "text/layout.hpp"
 #include "text/Table.h"
 
 #include <algorithm>
@@ -83,7 +83,8 @@ int ItemInfoDisplay::AttributesHeight() const
 void ItemInfoDisplay::DrawDescription(const Point &topLeft) const
 {
 	Rectangle hoverTarget = Rectangle::FromCorner(topLeft, Point(PanelWidth(), DescriptionHeight()));
-	Color color = hoverTarget.Contains(hoverPoint) ? *GameData::Colors().Get("bright") : *GameData::Colors().Get("medium");
+	Color color = hoverTarget.Contains(hoverPoint) ? *GameData::Colors().Get("bright")
+												   : *GameData::Colors().Get("medium");
 	description.Draw(topLeft + Point(10., 12.), color);
 }
 

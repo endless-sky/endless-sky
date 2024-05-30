@@ -33,11 +33,12 @@ class Outfit;
 class OutfitInfoDisplay : public ItemInfoDisplay {
 public:
 	OutfitInfoDisplay() = default;
-	OutfitInfoDisplay(const Outfit &outfit, const PlayerInfo &player,
-			bool canSell = false, bool descriptionCollapsed = true);
+	OutfitInfoDisplay(const Outfit &outfit, const PlayerInfo &player, bool canSell = false,
+		bool descriptionCollapsed = true);
 
 	// Call this every time the ship changes.
-	void Update(const Outfit &outfit, const PlayerInfo &player, bool canSell = false, bool descriptionCollapsed = true);
+	void Update(const Outfit &outfit, const PlayerInfo &player, bool canSell = false,
+		bool descriptionCollapsed = true);
 
 	// Provided by ItemInfoDisplay:
 	// int PanelWidth();
@@ -53,7 +54,8 @@ public:
 
 
 private:
-	void UpdateRequirements(const Outfit &outfit, const PlayerInfo &player, bool canSell, bool descriptionCollapsed);
+	void UpdateRequirements(
+		const Outfit &outfit, const PlayerInfo &player, bool canSell, bool descriptionCollapsed);
 	void AddRequirementAttribute(std::string label, double value);
 	void UpdateAttributes(const Outfit &outfit);
 

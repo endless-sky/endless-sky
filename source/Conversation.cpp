@@ -17,25 +17,18 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "DataNode.h"
 #include "DataWriter.h"
-#include "text/Format.h"
 #include "Phrase.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
+#include "text/Format.h"
 
 using namespace std;
 
 namespace {
 	// Lookup table for matching special tokens to enumeration values.
-	map<string, int> TOKEN_INDEX = {
-		{"accept", Conversation::ACCEPT},
-		{"decline", Conversation::DECLINE},
-		{"defer", Conversation::DEFER},
-		{"launch", Conversation::LAUNCH},
-		{"flee", Conversation::FLEE},
-		{"depart", Conversation::DEPART},
-		{"die", Conversation::DIE},
-		{"explode", Conversation::EXPLODE}
-	};
+	map<string, int> TOKEN_INDEX = {{"accept", Conversation::ACCEPT}, {"decline", Conversation::DECLINE},
+		{"defer", Conversation::DEFER}, {"launch", Conversation::LAUNCH}, {"flee", Conversation::FLEE},
+		{"depart", Conversation::DEPART}, {"die", Conversation::DIE}, {"explode", Conversation::EXPLODE}};
 
 	// Get the index of the given special string. 0 means it is "goto", a number
 	// less than 0 means it is an outcome, and 1 means no match.
@@ -180,7 +173,8 @@ void Conversation::Load(const DataNode &node)
 		else if(child.Token(0) == "action" || child.Token(0) == "apply")
 		{
 			if(child.Token(0) == "apply")
-				child.PrintTrace("Warning: `apply` is deprecated syntax. Use `action` instead to ensure future compatibility.");
+				child.PrintTrace("Warning: `apply` is deprecated syntax. Use `action` instead to ensure "
+								 "future compatibility.");
 			// Don't merge "action" nodes with any other nodes. Allow the legacy keyword "apply," too.
 			AddNode();
 			nodes.back().canMergeOnto = false;
@@ -223,7 +217,8 @@ void Conversation::Load(const DataNode &node)
 			nodeIndex = NextNodeForChoice(nodeIndex);
 			if(nodeIndex == it.second)
 			{
-				node.PrintTrace("Error: Conversation contains infinite loop beginning with label \"" + it.first + "\":");
+				node.PrintTrace(
+					"Error: Conversation contains infinite loop beginning with label \"" + it.first + "\":");
 				nodes.clear();
 				return;
 			}
@@ -330,9 +325,11 @@ bool Conversation::IsEmpty() const noexcept
 // Check if this conversation contains a name prompt, and thus can be used as an "intro" conversation.
 bool Conversation::IsValidIntro() const noexcept
 {
-	return any_of(nodes.begin(), nodes.end(), [](const Node &node) noexcept -> bool {
-		return node.isChoice && node.elements.empty();
-	});
+	return any_of(nodes.begin(), nodes.end(),
+		[](const Node &node) noexcept -> bool
+		{
+			return node.isChoice && node.elements.empty();
+		});
 }
 
 
@@ -504,7 +501,7 @@ int Conversation::NextNodeForChoice(int node, int element) const
 // Go to the next node of the conversation, ignoring any choices.
 int Conversation::StepToNextNode(int node) const
 {
-	int next_node = node+1;
+	int next_node = node + 1;
 
 	if(!NodeIsValid(next_node))
 		return DECLINE;

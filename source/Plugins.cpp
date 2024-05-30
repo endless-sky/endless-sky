@@ -81,7 +81,8 @@ bool Plugin::PluginDependencies::IsValid() const
 	{
 		dependencyCollisions.pop_back();
 		dependencyCollisions.pop_back();
-		Logger::LogError("Warning: Dependencies named " + dependencyCollisions
+		Logger::LogError(
+			"Warning: Dependencies named " + dependencyCollisions
 			+ " were found in both the required dependencies list and the optional dependencies list.");
 		dependencyCollisions.clear();
 	}
@@ -99,7 +100,8 @@ bool Plugin::PluginDependencies::IsValid() const
 	{
 		dependencyCollisions.pop_back();
 		dependencyCollisions.pop_back();
-		Logger::LogError("Warning: Dependencies named " + dependencyCollisions
+		Logger::LogError(
+			"Warning: Dependencies named " + dependencyCollisions
 			+ " were found in both the conflicting dependencies list and the required dependencies list.");
 		dependencyCollisions.clear();
 	}
@@ -117,7 +119,8 @@ bool Plugin::PluginDependencies::IsValid() const
 	{
 		dependencyCollisions.pop_back();
 		dependencyCollisions.pop_back();
-		Logger::LogError("Warning: Dependencies named " + dependencyCollisions
+		Logger::LogError(
+			"Warning: Dependencies named " + dependencyCollisions
 			+ " were found in both the optional dependencies list and the conflicting dependencies list.");
 		dependencyCollisions.clear();
 	}
@@ -257,8 +260,8 @@ const Plugin *Plugins::Load(const string &path)
 	if(plugin && plugin->IsValid())
 	{
 		Logger::LogError("Warning: Skipping plugin located at \"" + path
-			+ "\" because another plugin with the same name has already been loaded from: \""
-			+ plugin->path + "\".");
+						 + "\" because another plugin with the same name has already been loaded from: \""
+						 + plugin->path + "\".");
 		return nullptr;
 	}
 
@@ -266,7 +269,7 @@ const Plugin *Plugins::Load(const string &path)
 	if(!dependencies.IsValid())
 	{
 		Logger::LogError("Warning: Skipping plugin located at \"" + path
-			+ "\" because plugin has errors in its dependencies.");
+						 + "\" because plugin has errors in its dependencies.");
 		return nullptr;
 	}
 

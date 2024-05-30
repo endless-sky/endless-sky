@@ -23,7 +23,8 @@ class Test;
 
 // State-information used during testing with the AC/Integration test framework.
 class TestContext {
-friend class Test;
+	friend class Test;
+
 public:
 	TestContext() = default;
 	explicit TestContext(const Test *toRun);

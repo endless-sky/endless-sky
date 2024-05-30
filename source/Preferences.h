@@ -50,58 +50,21 @@ public:
 		ON_HIT,
 	};
 
-	enum class OverlayType : int_fast8_t {
-		ALL = 0,
-		FLAGSHIP,
-		ESCORT,
-		ENEMY,
-		NEUTRAL
-	};
+	enum class OverlayType : int_fast8_t { ALL = 0, FLAGSHIP, ESCORT, ENEMY, NEUTRAL };
 
-	enum class AutoAim : int_fast8_t {
-		OFF = 0,
-		ALWAYS_ON,
-		WHEN_FIRING
-	};
+	enum class AutoAim : int_fast8_t { OFF = 0, ALWAYS_ON, WHEN_FIRING };
 
-	enum class AutoFire : int_fast8_t {
-		OFF = 0,
-		ON,
-		GUNS_ONLY,
-		TURRETS_ONLY
-	};
+	enum class AutoFire : int_fast8_t { OFF = 0, ON, GUNS_ONLY, TURRETS_ONLY };
 
-	enum class BoardingPriority : int_fast8_t {
-		PROXIMITY = 0,
-		VALUE,
-		MIXED
-	};
+	enum class BoardingPriority : int_fast8_t { PROXIMITY = 0, VALUE, MIXED };
 
-	enum class FlotsamCollection : int_fast8_t {
-		OFF = 0,
-		ON,
-		FLAGSHIP,
-		ESCORT
-	};
+	enum class FlotsamCollection : int_fast8_t { OFF = 0, ON, FLAGSHIP, ESCORT };
 
-	enum class BackgroundParallax : int {
-		OFF = 0,
-		FANCY,
-		FAST
-	};
+	enum class BackgroundParallax : int { OFF = 0, FANCY, FAST };
 
-	enum class ExtendedJumpEffects : int {
-		OFF = 0,
-		MEDIUM,
-		HEAVY
-	};
+	enum class ExtendedJumpEffects : int { OFF = 0, MEDIUM, HEAVY };
 
-	enum class AlertIndicator : int_fast8_t {
-		NONE = 0,
-		AUDIO,
-		VISUAL,
-		BOTH
-	};
+	enum class AlertIndicator : int_fast8_t { NONE = 0, AUDIO, VISUAL, BOTH };
 
 
 public:

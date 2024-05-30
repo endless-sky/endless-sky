@@ -19,13 +19,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Command.h"
 #include "Dialog.h"
 #include "FillShader.h"
-#include "text/Format.h"
 #include "GameData.h"
 #include "Point.h"
 #include "Preferences.h"
 #include "Screen.h"
 #include "Sprite.h"
 #include "SpriteShader.h"
+#include "text/Format.h"
 #include "UI.h"
 
 using namespace std;
@@ -39,10 +39,8 @@ void Panel::DrawEdgeSprite(const Sprite *edgeSprite, int posX)
 	{
 		// If the screen is high enough, the edge sprite should repeat.
 		double spriteHeight = edgeSprite->Height();
-		Point pos(
-			posX + .5 * edgeSprite->Width(),
-			Screen::Top() + .5 * spriteHeight);
-		for( ; pos.Y() - .5 * spriteHeight < Screen::Bottom(); pos.Y() += spriteHeight)
+		Point pos(posX + .5 * edgeSprite->Width(), Screen::Top() + .5 * spriteHeight);
+		for(; pos.Y() - .5 * spriteHeight < Screen::Bottom(); pos.Y() += spriteHeight)
 			SpriteShader::Draw(edgeSprite, pos);
 	}
 }
@@ -103,7 +101,11 @@ void Panel::AddZone(const Rectangle &rect, const function<void()> &fun)
 
 void Panel::AddZone(const Rectangle &rect, SDL_Keycode key)
 {
-	AddZone(rect, [this, key](){ this->KeyDown(key, 0, Command(), true); });
+	AddZone(rect,
+		[this, key]()
+		{
+			this->KeyDown(key, 0, Command(), true);
+		});
 }
 
 

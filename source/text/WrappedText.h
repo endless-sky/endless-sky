@@ -16,9 +16,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef ES_TEXT_WRAPPEDTEXT_H_
 #define ES_TEXT_WRAPPEDTEXT_H_
 
+#include "../Point.h"
 #include "alignment.hpp"
 #include "DisplayText.h"
-#include "../Point.h"
 #include "truncate.hpp"
 
 #include <string>

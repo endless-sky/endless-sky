@@ -17,8 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Color.h"
 #include "FillShader.h"
-#include "text/Font.h"
-#include "text/FontSet.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Interface.h"
@@ -30,6 +28,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SpriteShader.h"
 #include "StellarObject.h"
 #include "System.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
 #include "text/WrappedText.h"
 
 using namespace std;
@@ -58,18 +58,18 @@ MapPlanetCard::MapPlanetCard(const StellarObject &object, unsigned number, bool 
 	{
 		switch(planet->GetFriendliness())
 		{
-			case Planet::Friendliness::FRIENDLY:
-				reputationLabel = "Friendly";
-				break;
-			case Planet::Friendliness::RESTRICTED:
-				reputationLabel = "Restricted";
-				break;
-			case Planet::Friendliness::HOSTILE:
-				reputationLabel = "Hostile";
-				break;
-			case Planet::Friendliness::DOMINATED:
-				reputationLabel = "Dominated";
-				break;
+		case Planet::Friendliness::FRIENDLY:
+			reputationLabel = "Friendly";
+			break;
+		case Planet::Friendliness::RESTRICTED:
+			reputationLabel = "Restricted";
+			break;
+		case Planet::Friendliness::HOSTILE:
+			reputationLabel = "Hostile";
+			break;
+		case Planet::Friendliness::DOMINATED:
+			reputationLabel = "Dominated";
+			break;
 		}
 	}
 
@@ -102,15 +102,14 @@ MapPlanetCard::ClickAction MapPlanetCard::Click(int x, int y, int clicks)
 		if(relativeY > 0. && relativeY < AvailableSpace())
 		{
 			// The first category is the planet name and is not selectable.
-			if(x > Screen::Left() + planetIconMaxSize &&
-					relativeY > textStart + categorySize && relativeY < textStart + categorySize * (categories + hasGovernments))
+			if(x > Screen::Left() + planetIconMaxSize && relativeY > textStart + categorySize
+				&& relativeY < textStart + categorySize * (categories + hasGovernments))
 				selectedCategory = (relativeY - textStart - categorySize) / categorySize;
 			else
 				clickAction = ClickAction::SELECTED;
 
 			static const int SHOW[5] = {MapPanel::SHOW_GOVERNMENT, MapPanel::SHOW_REPUTATION,
-										MapPanel::SHOW_SHIPYARD, MapPanel::SHOW_OUTFITTER,
-										MapPanel::SHOW_VISITED};
+				MapPanel::SHOW_SHIPYARD, MapPanel::SHOW_OUTFITTER, MapPanel::SHOW_VISITED};
 			if(clickAction != ClickAction::SELECTED)
 			{
 				// If there are no governments shown, the first category is the reputation.
@@ -144,7 +143,8 @@ bool MapPlanetCard::DrawIfFits(const Point &uiPoint)
 		const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
 		// The maximum possible size for the sprite of the planet.
 		const double planetIconMaxSize = planetCardInterface->GetValue("planet icon max size");
-		const auto alignLeft = Layout(planetCardInterface->GetValue("width") - planetIconMaxSize, Truncate::BACK);
+		const auto alignLeft =
+			Layout(planetCardInterface->GetValue("width") - planetIconMaxSize, Truncate::BACK);
 
 		// Height of one MapPlanetCard element.
 		const double height = Height();
@@ -161,8 +161,8 @@ bool MapPlanetCard::DrawIfFits(const Point &uiPoint)
 		// The top part goes out of the screen so we can draw there. The bottom would go out of this panel.
 		const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
 
-		auto spriteItem = SpriteShader::Prepare(sprite, Point(Screen::Left() + planetIconMaxSize / 2.,
-			uiPoint.Y() + height / 2.), spriteScale);
+		auto spriteItem = SpriteShader::Prepare(
+			sprite, Point(Screen::Left() + planetIconMaxSize / 2., uiPoint.Y() + height / 2.), spriteScale);
 
 		float clip = 1.f;
 		// Lowest point of the planet sprite.
@@ -183,15 +183,14 @@ bool MapPlanetCard::DrawIfFits(const Point &uiPoint)
 		SpriteShader::Unbind();
 
 		// Check if drawing a category would not go out of the panel.
-		const auto FitsCategory = [availableBottomSpace, categorySize, height]
-			(double number)
+		const auto FitsCategory = [availableBottomSpace, categorySize, height](double number)
 		{
 			return availableBottomSpace >= height - (categorySize * number);
 		};
 
 		// Draw the name of the planet.
 		if(FitsCategory(categories + hasGovernments))
-			font.Draw({ planetName, alignLeft }, uiPoint + Point(0, textStart), isSelected ? medium : dim);
+			font.Draw({planetName, alignLeft}, uiPoint + Point(0, textStart), isSelected ? medium : dim);
 
 		// Draw the government name, reputation, shipyard, outfitter and visited.
 		const double margin = mapInterface->GetValue("text margin");
@@ -199,7 +198,8 @@ bool MapPlanetCard::DrawIfFits(const Point &uiPoint)
 			font.Draw(governmentName, uiPoint + Point(margin, textStart + categorySize),
 				governmentName == "Uninhabited" ? faint : dim);
 		if(FitsCategory(4.))
-			font.Draw(reputationLabel, uiPoint + Point(margin, textStart + categorySize * (1. + hasGovernments)),
+			font.Draw(reputationLabel,
+				uiPoint + Point(margin, textStart + categorySize * (1. + hasGovernments)),
 				hasSpaceport ? medium : faint);
 		if(FitsCategory(3.))
 			font.Draw("Shipyard", uiPoint + Point(margin, textStart + categorySize * (2. + hasGovernments)),
@@ -213,7 +213,8 @@ bool MapPlanetCard::DrawIfFits(const Point &uiPoint)
 
 		// Draw the arrow pointing to the selected category.
 		if(FitsCategory(categories - (selectedCategory + 1.)))
-			PointerShader::Draw(uiPoint + Point(margin, textStart + 8. + (selectedCategory + 1) * categorySize),
+			PointerShader::Draw(
+				uiPoint + Point(margin, textStart + 8. + (selectedCategory + 1) * categorySize),
 				Point(1., 0.), 10.f, 10.f, 0.f, medium);
 
 		if(isSelected)
@@ -265,9 +266,9 @@ void MapPlanetCard::Select(bool select)
 double MapPlanetCard::Height()
 {
 	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
-	return planetCardInterface->GetValue("height padding") +
-		(planetCardInterface->GetValue("categories") + hasGovernments) *
-		planetCardInterface->GetValue("category size");
+	return planetCardInterface->GetValue("height padding")
+		   + (planetCardInterface->GetValue("categories") + hasGovernments)
+				 * planetCardInterface->GetValue("category size");
 }
 
 
@@ -303,6 +304,7 @@ double MapPlanetCard::AvailableBottomSpace() const
 	const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
 	double maxPlanetPanelHeight = mapInterface->GetValue("max planet panel height");
 
-	return min(Height(), max(0., Screen::Top() +
-		min(MapDetailPanel::PlanetPanelHeight(), maxPlanetPanelHeight) - yCoordinate));
+	return min(Height(),
+		max(0.,
+			Screen::Top() + min(MapDetailPanel::PlanetPanelHeight(), maxPlanetPanelHeight) - yCoordinate));
 }

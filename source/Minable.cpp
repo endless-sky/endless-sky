@@ -18,13 +18,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "Effect.h"
 #include "Flotsam.h"
-#include "text/Format.h"
 #include "GameData.h"
 #include "Outfit.h"
 #include "pi.h"
 #include "Projectile.h"
 #include "Random.h"
 #include "SpriteSet.h"
+#include "text/Format.h"
 #include "Visual.h"
 
 #include <algorithm>
@@ -225,7 +225,8 @@ bool Minable::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				dropRate += (1. - dropRate) / (1. + it.toughness / prospecting);
 			if(dropRate <= 0.)
 				continue;
-			for(int amount = Random::Binomial(it.maxDrops, dropRate); amount > 0; amount -= Flotsam::TONS_PER_BOX)
+			for(int amount = Random::Binomial(it.maxDrops, dropRate); amount > 0;
+				amount -= Flotsam::TONS_PER_BOX)
 			{
 				flotsam.emplace_back(new Flotsam(it.outfit, min(amount, Flotsam::TONS_PER_BOX)));
 				flotsam.back()->Place(*this);

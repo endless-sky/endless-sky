@@ -178,8 +178,8 @@ private:
 	void DrawNames();
 	void DrawMissions();
 	void DrawPointer(const System *system, unsigned &systemCount, const Color &color, bool bigger = false);
-	static void DrawPointer(Point position, unsigned &systemCount, const Color &color,
-		bool drawBack = true, bool bigger = false);
+	static void DrawPointer(
+		Point position, unsigned &systemCount, const Color &color, bool drawBack = true, bool bigger = false);
 
 
 private:
@@ -188,9 +188,11 @@ private:
 
 	class Node {
 	public:
-		Node(const Point &position, const Color &color, const std::string &name,
-			const Color &nameColor, const Government *government)
-			: position(position), color(color), name(name), nameColor(nameColor), government(government) {}
+		Node(const Point &position, const Color &color, const std::string &name, const Color &nameColor,
+			const Government *government)
+			: position(position), color(color), name(name), nameColor(nameColor), government(government)
+		{
+		}
 
 		Point position;
 		Color color;
@@ -202,8 +204,9 @@ private:
 
 	class Link {
 	public:
-		Link(const Point &start, const Point &end, const Color &color)
-			: start(start), end(end), color(color) {}
+		Link(const Point &start, const Point &end, const Color &color) : start(start), end(end), color(color)
+		{
+		}
 
 		Point start;
 		Point end;

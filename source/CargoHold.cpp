@@ -42,8 +42,7 @@ namespace {
 			[](const Outfit *lhs, const Outfit *rhs)
 			{
 				return lhs->Mass() > rhs->Mass();
-			}
-		);
+			});
 
 		return sortedOutfits;
 	}

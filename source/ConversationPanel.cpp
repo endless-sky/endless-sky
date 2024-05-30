@@ -15,16 +15,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ConversationPanel.h"
 
-#include "text/alignment.hpp"
 #include "BoardingPanel.h"
 #include "Color.h"
 #include "Command.h"
 #include "Conversation.h"
-#include "text/DisplayText.h"
 #include "FillShader.h"
-#include "text/Font.h"
-#include "text/FontSet.h"
-#include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
 #include "MapDetailPanel.h"
@@ -37,6 +32,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
+#include "text/alignment.hpp"
+#include "text/DisplayText.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "UI.h"
 
 #if defined _WIN32
@@ -63,7 +63,7 @@ namespace {
 ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &conversation,
 	const Mission *caller, const System *system, const shared_ptr<Ship> &ship, bool useTransactions)
 	: player(player), caller(caller), useTransactions(useTransactions), conversation(conversation),
-	scroll(0.), system(system), ship(ship)
+	  scroll(0.), system(system), ship(ship)
 {
 #if defined _WIN32
 	PATH_LENGTH = Files::Saves().size();
@@ -106,10 +106,7 @@ void ConversationPanel::Draw()
 	// of the margin is included in the filled rectangle drawn here:
 	const Color &back = *GameData::Colors().Get("conversation background");
 	double boxWidth = WIDTH + 2. * MARGIN - 10.;
-	FillShader::Fill(
-		Point(Screen::Left() + .5 * boxWidth, 0.),
-		Point(boxWidth, Screen::Height()),
-		back);
+	FillShader::Fill(Point(Screen::Left() + .5 * boxWidth, 0.), Point(boxWidth, Screen::Height()), back);
 
 	Panel::DrawEdgeSprite(SpriteSet::Get("ui/right edge"), Screen::Left() + boxWidth);
 
@@ -122,9 +119,7 @@ void ConversationPanel::Draw()
 	const Color &dark = *GameData::Colors().Get("dark");
 
 	// Figure out where we should start drawing.
-	Point point(
-		Screen::Left() + MARGIN,
-		Screen::Top() + MARGIN + scroll);
+	Point point(Screen::Left() + MARGIN, Screen::Top() + MARGIN + scroll);
 	// Draw all the conversation text up to this point.
 	for(const Paragraph &it : text)
 		point = it.Draw(point, gray);
@@ -140,7 +135,11 @@ void ConversationPanel::Draw()
 		font.Draw(done, off, bright);
 
 		// Handle clicks on this button.
-		AddZone(Rectangle::FromCorner(off, Point(width, height)), [this](){ this->Exit(); });
+		AddZone(Rectangle::FromCorner(off, Point(width, height)),
+			[this]()
+			{
+				this->Exit();
+			});
 	}
 	else if(choices.empty())
 	{
@@ -154,7 +153,11 @@ void ConversationPanel::Draw()
 			// Handle mouse clicks in whatever field is not selected.
 			if(side != choice)
 			{
-				AddZone(Rectangle(center, fieldSize), [this, side](){ this->ClickName(side); });
+				AddZone(Rectangle(center, fieldSize),
+					[this, side]()
+					{
+						this->ClickName(side);
+					});
 				continue;
 			}
 
@@ -205,7 +208,11 @@ void ConversationPanel::Draw()
 
 			if(index == choice)
 				FillShader::Fill(center + Point(-5, 0), size + Point(30, 0), selectionColor);
-			AddZone(zone, [this, index](){ this->ClickChoice(index); });
+			AddZone(zone,
+				[this, index]()
+				{
+					this->ClickChoice(index);
+				});
 			++index;
 
 			font.Draw(label, point + Point(-15, 0), dim);
@@ -296,7 +303,8 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 		--choice;
 	else if(key == SDLK_DOWN && choice + 1 < static_cast<int>(choices.size()))
 		++choice;
-	else if((key == SDLK_RETURN || key == SDLK_KP_ENTER) && isNewPress && choice < static_cast<int>(choices.size()))
+	else if((key == SDLK_RETURN || key == SDLK_KP_ENTER) && isNewPress
+			&& choice < static_cast<int>(choices.size()))
 		Goto(conversation.NextNodeForChoice(node, MapChoice(choice)), choice);
 	else if(key >= '1' && key < static_cast<SDL_Keycode>('1' + choices.size()))
 		Goto(conversation.NextNodeForChoice(node, MapChoice(key - '1')), key - '1');
@@ -342,7 +350,8 @@ bool ConversationPanel::Hover(int x, int y)
 void ConversationPanel::Goto(int index, int selectedChoice)
 {
 	const ConditionsStore &conditions = player.Conditions();
-	Format::ConditionGetter getter = [&conditions](const std::string &str, size_t start, size_t length) -> int64_t
+	Format::ConditionGetter getter = [&conditions](
+										 const std::string &str, size_t start, size_t length) -> int64_t
 	{
 		return conditions.Get(str.substr(start, length));
 	};
@@ -411,7 +420,8 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 	for(int i = 0; i < conversation.Choices(node); ++i)
 		if(conversation.ShouldDisplayNode(player.Conditions(), node, i))
 		{
-			string altered = Format::ExpandConditions(Format::Replace(conversation.Text(node, i), subs), getter);
+			string altered =
+				Format::ExpandConditions(Format::Replace(conversation.Text(node, i), subs), getter);
 			choices.emplace_back(Paragraph(altered), i);
 		}
 	// This is a safeguard in case of logic errors, to ensure we don't set the player name.
@@ -445,8 +455,8 @@ void ConversationPanel::Exit()
 		// Only show the BoardingPanel for a hostile NPC that is being boarded.
 		// (NPC completion conversations can result from non-boarding events.)
 		// TODO: Is there a better / more robust boarding check than relative position?
-		else if((node != Conversation::ACCEPT || player.CaptureOverriden(ship)) && ship->GetGovernment()->IsEnemy()
-				&& !ship->IsDestroyed() && ship->IsDisabled()
+		else if((node != Conversation::ACCEPT || player.CaptureOverriden(ship))
+				&& ship->GetGovernment()->IsEnemy() && !ship->IsDestroyed() && ship->IsDisabled()
 				&& ship->Position().Distance(player.Flagship()->Position()) <= 1.)
 			GetUI()->Push(new BoardingPanel(player, ship));
 	}

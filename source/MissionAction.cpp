@@ -20,12 +20,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Dialog.h"
-#include "text/Format.h"
 #include "GameData.h"
 #include "GameEvent.h"
 #include "Outfit.h"
 #include "PlayerInfo.h"
 #include "Ship.h"
+#include "text/Format.h"
 #include "TextReplacements.h"
 #include "UI.h"
 
@@ -46,8 +46,8 @@ namespace {
 			{
 				if(ship->IsDisabled() || ship->IsParked())
 					continue;
-				if(ship->GetSystem() == here || (ship->CanBeCarried()
-						&& !ship->GetSystem() && ship->GetParent()->GetSystem() == here))
+				if(ship->GetSystem() == here
+					|| (ship->CanBeCarried() && !ship->GetSystem() && ship->GetParent()->GetSystem() == here))
 					available += ship->Cargo().Get(outfit);
 			}
 		}
@@ -118,7 +118,8 @@ void MissionAction::LoadSingle(const DataNode &child)
 	// The legacy syntax "outfit <outfit> 0" means "the player must have this outfit installed."
 	else if(key == "outfit" && child.Size() >= 3 && child.Token(2) == "0")
 	{
-		child.PrintTrace("Warning: Deprecated use of \"outfit\" with count of 0. Use \"require <outfit>\" instead:");
+		child.PrintTrace(
+			"Warning: Deprecated use of \"outfit\" with count of 0. Use \"require <outfit>\" instead:");
 		requiredOutfits[GameData::Outfits().Get(child.Token(1))] = 1;
 	}
 	else if(key == "system")
@@ -237,8 +238,7 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 		// boarding, consider only the flagship's cargo hold. If in-flight, show mission status
 		// by checking the cargo holds of ships that would contribute to player.Cargo if landed.
 		int available = flagship ? flagship->OutfitCount(it.first) : 0;
-		available += boardingShip ? flagship->Cargo().Get(it.first)
-				: CountInCargo(it.first, player);
+		available += boardingShip ? flagship->Cargo().Get(it.first) : CountInCargo(it.first, player);
 
 		if(available < -it.second)
 			return false;
@@ -280,8 +280,7 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 			// Required outfits must be present on the player's flagship or
 			// in the cargo holds of able ships at the player's location.
 			int available = flagship ? flagship->OutfitCount(it.first) : 0;
-			available += boardingShip ? flagship->Cargo().Get(it.first)
-					: CountInCargo(it.first, player);
+			available += boardingShip ? flagship->Cargo().Get(it.first) : CountInCargo(it.first, player);
 
 			if(available < it.second)
 				return false;
@@ -315,7 +314,8 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const 
 	{
 		// Conversations offered while boarding or assisting reference a ship,
 		// which may be destroyed depending on the player's choices.
-		ConversationPanel *panel = new ConversationPanel(player, *conversation, caller, destination, ship, isOffer);
+		ConversationPanel *panel =
+			new ConversationPanel(player, *conversation, caller, destination, ship, isOffer);
 		if(isOffer)
 			panel->SetCallback(&player, &PlayerInfo::MissionCallback);
 		// Use a basic callback to handle forced departure outside of `on offer`
@@ -353,8 +353,8 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const 
 
 
 // Convert this validated template into a populated action.
-MissionAction MissionAction::Instantiate(map<string, string> &subs, const System *origin,
-	int jumps, int64_t payload) const
+MissionAction MissionAction::Instantiate(
+	map<string, string> &subs, const System *origin, int jumps, int64_t payload) const
 {
 	MissionAction result;
 	result.trigger = trigger;

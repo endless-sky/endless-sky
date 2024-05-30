@@ -26,8 +26,7 @@ using namespace std;
 
 
 // Construct a DataNode and remember what its parent is.
-DataNode::DataNode(const DataNode *parent) noexcept(false)
-	: parent(parent)
+DataNode::DataNode(const DataNode *parent) noexcept(false) : parent(parent)
 {
 	// To avoid a lot of memory reallocation, have every node start out with
 	// capacity for four tokens. This makes file loading slightly faster, at the
@@ -307,8 +306,16 @@ int DataNode::PrintTrace(const string &message) const
 	{
 		if(&token != &tokens.front())
 			line += ' ';
-		bool hasSpace = any_of(token.begin(), token.end(), [](char c) { return isspace(c); });
-		bool hasQuote = any_of(token.begin(), token.end(), [](char c) { return (c == '"'); });
+		bool hasSpace = any_of(token.begin(), token.end(),
+			[](char c)
+			{
+				return isspace(c);
+			});
+		bool hasQuote = any_of(token.begin(), token.end(),
+			[](char c)
+			{
+				return (c == '"');
+			});
 		if(hasSpace)
 			line += hasQuote ? '`' : '"';
 		line += token;

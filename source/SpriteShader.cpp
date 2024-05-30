@@ -274,12 +274,7 @@ void SpriteShader::Init()
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
-	GLfloat vertexData[] = {
-		-.5f, -.5f,
-		-.5f,  .5f,
-		 .5f, -.5f,
-		 .5f,  .5f
-	};
+	GLfloat vertexData[] = {-.5f, -.5f, -.5f, .5f, .5f, -.5f, .5f, .5f};
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
 
 	glEnableVertexAttribArray(shader.Attrib("vert"));
@@ -292,8 +287,8 @@ void SpriteShader::Init()
 
 
 
-void SpriteShader::Draw(const Sprite *sprite, const Point &position,
-	float zoom, int swizzle, float frame, const Point &unit)
+void SpriteShader::Draw(
+	const Sprite *sprite, const Point &position, float zoom, int swizzle, float frame, const Point &unit)
 {
 	if(!sprite)
 		return;
@@ -305,8 +300,8 @@ void SpriteShader::Draw(const Sprite *sprite, const Point &position,
 
 
 
-SpriteShader::Item SpriteShader::Prepare(const Sprite *sprite, const Point &position,
-	float zoom, int swizzle, float frame, const Point &unit)
+SpriteShader::Item SpriteShader::Prepare(
+	const Sprite *sprite, const Point &position, float zoom, int swizzle, float frame, const Point &unit)
 {
 	if(!sprite)
 		return {};

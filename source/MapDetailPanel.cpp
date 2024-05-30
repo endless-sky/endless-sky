@@ -15,21 +15,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MapDetailPanel.h"
 
-#include "text/alignment.hpp"
 #include "Angle.h"
 #include "Color.h"
 #include "Command.h"
 #include "CoreStartData.h"
 #include "Dialog.h"
-#include "text/DisplayText.h"
 #include "FillShader.h"
-#include "text/Font.h"
-#include "text/FontSet.h"
-#include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Interface.h"
-#include "text/layout.hpp"
 #include "MapOutfitterPanel.h"
 #include "MapShipyardPanel.h"
 #include "Planet.h"
@@ -47,11 +41,17 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SpriteShader.h"
 #include "StellarObject.h"
 #include "System.h"
-#include "Trade.h"
+#include "text/alignment.hpp"
+#include "text/DisplayText.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
+#include "text/layout.hpp"
 #include "text/truncate.hpp"
+#include "text/WrappedText.h"
+#include "Trade.h"
 #include "UI.h"
 #include "Wormhole.h"
-#include "text/WrappedText.h"
 
 #include <algorithm>
 #include <cmath>
@@ -100,8 +100,7 @@ MapDetailPanel::MapDetailPanel(PlayerInfo &player, const System *system)
 
 
 
-MapDetailPanel::MapDetailPanel(const MapPanel &panel)
-	: MapPanel(panel)
+MapDetailPanel::MapDetailPanel(const MapPanel &panel) : MapPanel(panel)
 {
 	// Use whatever map coloring is specified in the PlayerInfo.
 	commodity = player.MapColoring();
@@ -157,7 +156,7 @@ bool MapDetailPanel::Hover(int x, int y)
 {
 	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
 	isPlanetViewSelected = (x < Screen::Left() + planetCardInterface->GetValue("width")
-		&& y < Screen::Top() + PlanetPanelHeight());
+							&& y < Screen::Top() + PlanetPanelHeight());
 
 	return isPlanetViewSelected ? true : MapPanel::Hover(x, y);
 }
@@ -227,8 +226,9 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 		// Depending on whether the flagship has a jump drive, the possible links
 		// we can travel along are different:
 		bool hasJumpDrive = player.Flagship()->JumpNavigation().HasJumpDrive();
-		const set<const System *> &links = hasJumpDrive
-			? source->JumpNeighbors(player.Flagship()->JumpNavigation().JumpRange()) : source->Links();
+		const set<const System *> &links =
+			hasJumpDrive ? source->JumpNeighbors(player.Flagship()->JumpNavigation().JumpRange())
+						 : source->Links();
 
 		// For each link we can travel from this system, check whether the link
 		// is closer to the current angle (while still being larger) than any
@@ -305,7 +305,6 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 				planetCards.front().Select();
 			}
 		}
-
 	}
 	else if(key == SDLK_UP)
 	{
@@ -370,13 +369,14 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 		// Clicking the system name activates the view of the player's reputation with various governments.
 		// But the bit to the left will show danger of pirate/raid fleets instead.
 		else if(y < governmentY && y > governmentY - 30)
-			SetCommodity(x < Screen::Left() + mapInterface->GetValue("text margin") ?
-				SHOW_DANGER : SHOW_REPUTATION);
+			SetCommodity(
+				x < Screen::Left() + mapInterface->GetValue("text margin") ? SHOW_DANGER : SHOW_REPUTATION);
 		// Clicking the government name activates the view of system / planet ownership.
 		else if(y >= governmentY && y < governmentY + 25)
 			SetCommodity(SHOW_GOVERNMENT);
 	}
-	if(y <= Screen::Top() + planetPanelHeight + 30 && x <= Screen::Left() + planetCardWidth + arrowOffset + 10)
+	if(y <= Screen::Top() + planetPanelHeight + 30
+		&& x <= Screen::Left() + planetCardWidth + arrowOffset + 10)
 	{
 		if(maxScroll && x > Screen::Left() + planetCardWidth + arrowOffset - 10)
 		{
@@ -524,15 +524,9 @@ void MapDetailPanel::DrawKey()
 	Point textOff(10., -.5 * font.Height());
 
 	static const string HEADER[] = {
-		"Trade prices:",
-		"Ships for sale:",
-		"Outfits for sale:",
-		"You have visited:",
+		"Trade prices:", "Ships for sale:", "Outfits for sale:", "You have visited:",
 		"", // Special should never be active in this mode.
-		"Government:",
-		"System:",
-		"Danger level:"
-	};
+		"Government:", "System:", "Danger level:"};
 	const string &header = HEADER[-min(0, max(-7, commodity))];
 	font.Draw(header, pos + headerOff, medium);
 	pos.Y() += 20.;
@@ -557,9 +551,7 @@ void MapDetailPanel::DrawKey()
 	else if(commodity >= SHOW_OUTFITTER)
 	{
 		// Each system is colored by the number of outfits for sale.
-		static const string LABEL[2][4] = {
-			{"None", "1", "5", "10+"},
-			{"None", "1", "30", "60+"}};
+		static const string LABEL[2][4] = {{"None", "1", "5", "10+"}, {"None", "1", "30", "60+"}};
 		static const double VALUE[4] = {-1., 0., .5, 1.};
 
 		for(int i = 0; i < 4; ++i)
@@ -571,11 +563,7 @@ void MapDetailPanel::DrawKey()
 	}
 	else if(commodity == SHOW_VISITED)
 	{
-		static const string LABEL[3] = {
-			"All planets",
-			"Some",
-			"None"
-		};
+		static const string LABEL[3] = {"All planets", "Some", "None"};
 		for(int i = 0; i < 3; ++i)
 		{
 			RingShader::Draw(pos, OUTER, INNER, MapColor(1 - i));
@@ -601,8 +589,8 @@ void MapDetailPanel::DrawKey()
 		{
 			const string &displayName = it.second->GetName();
 			const Color &displayColor = it.second->GetColor();
-			auto foundIt = find(alreadyDisplayed.begin(), alreadyDisplayed.end(),
-					make_pair(displayName, displayColor));
+			auto foundIt =
+				find(alreadyDisplayed.begin(), alreadyDisplayed.end(), make_pair(displayName, displayColor));
 			if(foundIt != alreadyDisplayed.end())
 				continue;
 			RingShader::Draw(pos, OUTER, INNER, GovernmentColor(it.second));
@@ -690,13 +678,13 @@ void MapDetailPanel::DrawInfo()
 	bool canView = player.CanView(*selectedSystem);
 
 	// Draw the panel for the planets. If the system was not visited, no planets will be shown.
-	const double minimumSize = max(minPlanetPanelHeight, Screen::Height() - bottomGovY - systemSprite->Height());
-	planetPanelHeight = canView ? min(min(minimumSize, maxPlanetPanelHeight),
-		(planetCards.size()) * planetCardHeight) : 0.;
+	const double minimumSize =
+		max(minPlanetPanelHeight, Screen::Height() - bottomGovY - systemSprite->Height());
+	planetPanelHeight =
+		canView ? min(min(minimumSize, maxPlanetPanelHeight), (planetCards.size()) * planetCardHeight) : 0.;
 	Point size(planetWidth, planetPanelHeight);
 	// This needs to fill from the start of the screen.
-	FillShader::Fill(Screen::TopLeft() + Point(size.X() / 2., size.Y() / 2.),
-		size, back);
+	FillShader::Fill(Screen::TopLeft() + Point(size.X() / 2., size.Y() / 2.), size, back);
 
 	const double startingX = mapInterface->GetValue("starting X");
 	Point uiPoint(Screen::Left() + startingX, Screen::Top());
@@ -733,11 +721,12 @@ void MapDetailPanel::DrawInfo()
 			const double arrowOffsetX = mapInterface->GetValue("arrow x offset");
 			const double arrowOffsetY = mapInterface->GetValue("arrow y offset");
 			// Draw the pointers to go up and down by a planet at most.
+			PointerShader::Draw(
+				Point(Screen::Left() + planetWidth + arrowOffsetX, Screen::Top() + arrowOffsetY),
+				Point(0., -1.), 10.f, 10.f, 5.f, scroll ? medium : dim);
 			PointerShader::Draw(Point(Screen::Left() + planetWidth + arrowOffsetX,
-				Screen::Top() + arrowOffsetY), Point(0., -1.), 10.f, 10.f, 5.f, scroll ? medium : dim);
-			PointerShader::Draw(Point(Screen::Left() + planetWidth + arrowOffsetX,
-				Screen::Top() - arrowOffsetY + planetPanelHeight), Point(0., 1.), 10.f, 10.f, 5.f,
-				(scroll < maxScroll) ? medium : dim);
+									Screen::Top() - arrowOffsetY + planetPanelHeight),
+				Point(0., 1.), 10.f, 10.f, 5.f, (scroll < maxScroll) ? medium : dim);
 		}
 	}
 
@@ -748,13 +737,13 @@ void MapDetailPanel::DrawInfo()
 	SpriteShader::Draw(systemSprite, uiPoint + Point(systemSprite->Width() / 2. - textMargin, 0.));
 
 	const Font &font = FontSet::Get(14);
-	const Sprite *alertSprite = SpriteSet::Get(commodity == SHOW_DANGER ? "ui/red alert" : "ui/red alert grayed");
-	const float alertScale = min<float>(1.f, min<double>(textMargin,
-		font.Height()) / max(alertSprite->Width(), alertSprite->Height()));
+	const Sprite *alertSprite =
+		SpriteSet::Get(commodity == SHOW_DANGER ? "ui/red alert" : "ui/red alert grayed");
+	const float alertScale = min<float>(
+		1.f, min<double>(textMargin, font.Height()) / max(alertSprite->Width(), alertSprite->Height()));
 	SpriteShader::Draw(alertSprite, uiPoint + Point(-textMargin / 2., -7. + font.Height() / 2.), alertScale);
 
-	string systemName = player.KnowsName(*selectedSystem) ?
-		selectedSystem->Name() : "Unexplored System";
+	string systemName = player.KnowsName(*selectedSystem) ? selectedSystem->Name() : "Unexplored System";
 	const auto alignLeft = Layout(145, Truncate::BACK);
 	font.Draw({systemName, alignLeft}, uiPoint + Point(0., -7.), medium);
 
@@ -762,8 +751,7 @@ void MapDetailPanel::DrawInfo()
 	string gov = canView ? selectedSystem->GetGovernment()->GetName() : "Unknown Government";
 	font.Draw({gov, alignLeft}, uiPoint + Point(0., 13.), (commodity == SHOW_GOVERNMENT) ? medium : dim);
 	if(commodity == SHOW_GOVERNMENT)
-		PointerShader::Draw(uiPoint + Point(0., 20.), Point(1., 0.),
-			10.f, 10.f, 0.f, medium);
+		PointerShader::Draw(uiPoint + Point(0., 20.), Point(1., 0.), 10.f, 10.f, 0.f, medium);
 
 	const double tradeHeight = mapInterface->GetValue("trade height");
 	uiPoint = Point(Screen::Left() + startingX, Screen::Bottom() - tradeHeight);
@@ -819,8 +807,8 @@ void MapDetailPanel::DrawInfo()
 		uiPoint.Y() += 20.;
 	}
 
-	if(selectedPlanet && !selectedPlanet->Description().empty()
-			&& player.HasVisited(*selectedPlanet) && !selectedPlanet->IsWormhole())
+	if(selectedPlanet && !selectedPlanet->Description().empty() && player.HasVisited(*selectedPlanet)
+		&& !selectedPlanet->IsWormhole())
 	{
 		static const int X_OFFSET = 240;
 		static const int WIDTH = 500;
@@ -846,7 +834,8 @@ void MapDetailPanel::DrawOrbits()
 {
 	planets.clear();
 	const Sprite *orbitSprite = SpriteSet::Get("ui/orbits and key");
-	SpriteShader::Draw(orbitSprite, Screen::TopRight() + .5 * Point(-orbitSprite->Width(), orbitSprite->Height()));
+	SpriteShader::Draw(
+		orbitSprite, Screen::TopRight() + .5 * Point(-orbitSprite->Width(), orbitSprite->Height()));
 	Point orbitCenter = Screen::TopRight() + Point(-120., 160.);
 
 	if(!player.CanView(*selectedSystem))
@@ -875,15 +864,8 @@ void MapDetailPanel::DrawOrbits()
 		scale *= 115. / maxDistance;
 
 	// Draw the orbits.
-	static const Color habitColor[7] = {
-		Color(.4, .2, .2, 1.),
-		Color(.3, .3, 0., 1.),
-		Color(0., .4, 0., 1.),
-		Color(0., .3, .4, 1.),
-		Color(.1, .2, .5, 1.),
-		Color(.2, .2, .2, 1.),
-		Color(1., 1., 1., 1.)
-	};
+	static const Color habitColor[7] = {Color(.4, .2, .2, 1.), Color(.3, .3, 0., 1.), Color(0., .4, 0., 1.),
+		Color(0., .3, .4, 1.), Color(.1, .2, .5, 1.), Color(.2, .2, .2, 1.), Color(1., 1., 1., 1.)};
 	for(const StellarObject &object : selectedSystem->Objects())
 	{
 		if(object.Radius() <= 0.)
@@ -900,9 +882,7 @@ void MapDetailPanel::DrawOrbits()
 		}
 
 		double radius = object.Distance() * scale;
-		RingShader::Draw(orbitCenter + parentPos * scale,
-			radius + .7, radius - .7,
-			habitColor[habit]);
+		RingShader::Draw(orbitCenter + parentPos * scale, radius + .7, radius - .7, habitColor[habit]);
 	}
 
 	// Draw the planets themselves.
@@ -915,7 +895,8 @@ void MapDetailPanel::DrawOrbits()
 		// Special case: wormholes which would lead to an inaccessible location should not
 		// be drawn as landable.
 		bool hasPlanet = object.HasValidPlanet();
-		bool inaccessible = hasPlanet && object.GetPlanet()->GetWormhole()
+		bool inaccessible =
+			hasPlanet && object.GetPlanet()->GetWormhole()
 			&& object.GetPlanet()->GetWormhole()->WormholeDestination(*selectedSystem).Inaccessible();
 		if(hasPlanet && object.GetPlanet()->IsAccessible(player.Flagship()) && !inaccessible)
 			planets[object.GetPlanet()] = pos;
@@ -923,9 +904,10 @@ void MapDetailPanel::DrawOrbits()
 		// The above wormhole check prevents the wormhole from being selected, but does not change its color
 		// on the orbits radar.
 		const float *rgb = inaccessible ? Radar::GetColor(Radar::INACTIVE).Get()
-			: Radar::GetColor(object.RadarType(player.Flagship())).Get();
+										: Radar::GetColor(object.RadarType(player.Flagship())).Get();
 		// Darken and saturate the color, and make it opaque.
-		Color color(max(0.f, rgb[0] * 1.2f - .2f), max(0.f, rgb[1] * 1.2f - .2f), max(0.f, rgb[2] * 1.2f - .2f), 1.f);
+		Color color(
+			max(0.f, rgb[0] * 1.2f - .2f), max(0.f, rgb[1] * 1.2f - .2f), max(0.f, rgb[2] * 1.2f - .2f), 1.f);
 		RingShader::Draw(pos, object.Radius() * scale + 1., 0.f, color);
 	}
 
@@ -957,15 +939,13 @@ void MapDetailPanel::DrawOrbits()
 	// Draw the selection ring on top of everything else.
 	for(const StellarObject &object : selectedSystem->Objects())
 		if(selectedPlanet && object.GetPlanet() == selectedPlanet)
-			RingShader::Draw(orbitCenter + object.Position() * scale,
-				object.Radius() * scale + 5., object.Radius() * scale + 4.,
-				habitColor[6]);
+			RingShader::Draw(orbitCenter + object.Position() * scale, object.Radius() * scale + 5.,
+				object.Radius() * scale + 4., habitColor[6]);
 
 	// Draw the name of the selected planet.
 	const string &name = selectedPlanet ? selectedPlanet->Name() : selectedSystem->Name();
 	Point namePos(Screen::Right() - 190., Screen::Top() + 7.);
-	font.Draw({name, {180, Alignment::CENTER, Truncate::BACK}},
-		namePos, *GameData::Colors().Get("medium"));
+	font.Draw({name, {180, Alignment::CENTER, Truncate::BACK}}, namePos, *GameData::Colors().Get("medium"));
 }
 
 

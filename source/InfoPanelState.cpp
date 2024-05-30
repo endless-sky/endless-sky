@@ -174,7 +174,7 @@ bool InfoPanelState::ReorderShips(const set<int> &fromIndices, int toIndex)
 	// Remove the ships from last to first, so that each removal leaves all the
 	// remaining indices in the set still valid.
 	vector<shared_ptr<Ship>> removed;
-	for(set<int>::const_iterator it = fromIndices.end(); it != fromIndices.begin(); )
+	for(set<int>::const_iterator it = fromIndices.end(); it != fromIndices.begin();)
 	{
 		// The "it" pointer doesn't point to the beginning of the list, so it is
 		// safe to decrement it here.

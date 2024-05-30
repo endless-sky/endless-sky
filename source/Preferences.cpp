@@ -68,7 +68,8 @@ namespace {
 
 		const std::string &ToString() const
 		{
-			return OVERLAY_SETTINGS[max<int>(0, min<int>(OVERLAY_SETTINGS.size() - 1, static_cast<int>(state)))];
+			return OVERLAY_SETTINGS[max<int>(
+				0, min<int>(OVERLAY_SETTINGS.size() - 1, static_cast<int>(state)))];
 		}
 
 		const int ToInt() const { return static_cast<int>(state); }
@@ -84,21 +85,21 @@ namespace {
 		{
 			switch(state)
 			{
-				case Preferences::OverlayState::OFF:
-					state = Preferences::OverlayState::ON;
-					break;
-				case Preferences::OverlayState::ON:
-					state = Preferences::OverlayState::DAMAGED;
-					break;
-				case Preferences::OverlayState::DAMAGED:
-					state = Preferences::OverlayState::ON_HIT;
-					break;
-				case Preferences::OverlayState::ON_HIT:
-					state = Preferences::OverlayState::OFF;
-					break;
-				case Preferences::OverlayState::DISABLED:
-					state = Preferences::OverlayState::OFF;
-					break;
+			case Preferences::OverlayState::OFF:
+				state = Preferences::OverlayState::ON;
+				break;
+			case Preferences::OverlayState::ON:
+				state = Preferences::OverlayState::DAMAGED;
+				break;
+			case Preferences::OverlayState::DAMAGED:
+				state = Preferences::OverlayState::ON_HIT;
+				break;
+			case Preferences::OverlayState::ON_HIT:
+				state = Preferences::OverlayState::OFF;
+				break;
+			case Preferences::OverlayState::DISABLED:
+				state = Preferences::OverlayState::OFF;
+				break;
 			}
 		}
 
@@ -193,7 +194,8 @@ void Preferences::Load()
 		else if(node.Token(0) == "vsync")
 			vsyncIndex = max<int>(0, min<int>(node.Value(1), VSYNC_SETTINGS.size() - 1));
 		else if(node.Token(0) == "camera acceleration")
-			cameraAccelerationIndex = max<int>(0, min<int>(node.Value(1), CAMERA_ACCELERATION_SETTINGS.size() - 1));
+			cameraAccelerationIndex =
+				max<int>(0, min<int>(node.Value(1), CAMERA_ACCELERATION_SETTINGS.size() - 1));
 		else if(node.Token(0) == "Show all status overlays")
 			statusOverlaySettings[OverlayType::ALL].SetState(node.Value(1));
 		else if(node.Token(0) == "Show flagship overlay")
@@ -211,7 +213,8 @@ void Preferences::Load()
 		else if(node.Token(0) == "Parallax background")
 			parallaxIndex = max<int>(0, min<int>(node.Value(1), PARALLAX_SETTINGS.size() - 1));
 		else if(node.Token(0) == "Extended jump effects")
-			extendedJumpEffectIndex = max<int>(0, min<int>(node.Value(1), EXTENDED_JUMP_EFFECT_SETTINGS.size() - 1));
+			extendedJumpEffectIndex =
+				max<int>(0, min<int>(node.Value(1), EXTENDED_JUMP_EFFECT_SETTINGS.size() - 1));
 		else if(node.Token(0) == "fullscreen")
 			screenModeIndex = max<int>(0, min<int>(node.Value(1), SCREEN_MODE_SETTINGS.size() - 1));
 		else if(node.Token(0) == "date format")

@@ -23,12 +23,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 // Compare Ts according to the order specified at construction time.
 // Unknown Ts are considered larger than any known one.
-template<class T>
+template <class T>
 class ByGivenOrder {
 public:
-	explicit ByGivenOrder(const std::vector<T>& order_)
-		: order(order_)
-	{}
+	explicit ByGivenOrder(const std::vector<T> &order_) : order(order_) {}
 
 	bool operator()(const T &a, const T &b) const
 	{
@@ -49,7 +47,7 @@ public:
 
 
 private:
-	const std::vector<T>& order;
+	const std::vector<T> &order;
 };
 
 

@@ -69,7 +69,10 @@ void News::Load(const DataNode &node)
 
 				// Erase them in unison.
 				portraits.erase(remove_if(portraits.begin(), portraits.end(),
-						[&toRemove](const Sprite *sprite) { return toRemove.find(sprite) != toRemove.end(); }),
+									[&toRemove](const Sprite *sprite)
+									{
+										return toRemove.find(sprite) != toRemove.end();
+									}),
 					portraits.end());
 			}
 			else
