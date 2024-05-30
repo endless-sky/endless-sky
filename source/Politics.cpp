@@ -260,7 +260,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 
 		if((!scan || (scan & ShipEvent::SCAN_CARGO)) && !EvadesCargoScan(*ship))
 		{
-			int64_t fine = ship->Cargo().IllegalCargoFine(gov);
+			int64_t fine = ship->Cargo().IllegalCargoFine(gov, player);
 			if((fine > maxFine && maxFine >= 0) || fine < 0)
 			{
 				maxFine = fine;
@@ -268,7 +268,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 
 				for(const Mission &mission : player.Missions())
 				{
-					if(mission.IsFailed())
+					if(mission.IsFailed(player))
 						continue;
 
 					// Append the illegalCargoMessage from each applicable mission, if available
