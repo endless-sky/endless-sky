@@ -1831,7 +1831,7 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 	accounts.AddCredits(income);
 	cargo.Clear();
 	stockDepreciation = Depreciation();
-	if(leftOver && income)
+	if(leftOver)
 	{
 		// Report how much excess cargo was left over, and what profit you earned.
 		ostringstream out;
