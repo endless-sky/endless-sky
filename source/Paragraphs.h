@@ -18,8 +18,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ConditionSet.h"
 
-#include <algorithm>
 #include <string>
+#include <utility>
 #include <vector>
 
 class ConditionsStore;
