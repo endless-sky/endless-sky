@@ -22,9 +22,9 @@ ship "Anomalocaris"
 		"hull" 6800
 		"required crew" 20
 		"bunks" 26
-		"mass" 440
-		"drag" 6
-		"heat dissipation" .65
+		"mass" 970
+		"drag" 9.3
+		"heat dissipation" .49
 		"fuel capacity" 400
 		"cargo space" 121
 		"outfit space" 533
