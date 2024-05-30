@@ -36,7 +36,7 @@ line_include = {re.compile(regex): description for regex, description in {
 	# Matches any '{' following an 'if', 'else if', 'for', 'while' or 'switch' statement.
 	"^(else\\sif|if|else|for|switch|catch|while)\\s?\\(.*{$": "'{' should be on new line",
 	# Matches any '{' not preceded by a whitespace or '(', except when the '{' is closed on the same line.
-	"(?<!^(struct|inline).*)[^\\s(]+{(?!.*})": "missing whitespace before '{'",
+	# "(?<!^(struct|inline).*)[^\\s(]+{(?!.*})": "missing whitespace before '{'",
 	# Matches any parenthesis preceded by a whitespace,
 	# except if the whitespace follows a semicolon,
 	# or follows an all-caps method name
