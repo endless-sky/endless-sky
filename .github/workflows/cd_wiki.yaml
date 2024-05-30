@@ -35,7 +35,7 @@ jobs:
           cd endless-sky.wiki
           git config --local user.name "GitHub Actions"
           git config --local user.email "actions@github.com"
-          git commit -m "Update" -m "Triggered by ${{ github.actor }}"
+          git commit -m "Synchronize with endless-sky-wiki" -m "Triggered by ${{ github.actor }}"
       - name: Push changes
         if: ${{ steps.check-diff.outputs.changes == 'yes' }}
         env:
