@@ -26,8 +26,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
-class ConditionSet;
-class ConditionsStore;
 class DataNode;
 class Fleet;
 class Government;

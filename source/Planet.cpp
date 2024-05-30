@@ -15,8 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Planet.h"
 
-#include "ConditionSet.h"
-#include "ConditionsStore.h"
 #include "DataNode.h"
 #include "text/Format.h"
 #include "GameData.h"
