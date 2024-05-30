@@ -71,10 +71,6 @@ public:
 	void SetName(const std::string &name);
 	// Get the name used for this planet in the data files.
 	const std::string &TrueName() const;
-	// Does the planet have a descriptive text?
-	bool HasDescription() const;
-	// Does description text have anything to display?
-	bool HasDescription(const ConditionsStore &vars) const;
 	// Return the description text for the planet, but not the spaceport:
 	const Paragraphs &Description() const;
 	// Get the landscape sprite.

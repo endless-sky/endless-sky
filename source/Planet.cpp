@@ -104,7 +104,7 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 			else if(key == "attributes")
 				attributes.clear();
 			else if(key == "description")
-				description.clear();
+				description.Clear();
 			else if(key == "port" || key == "spaceport")
 			{
 				port = Port();

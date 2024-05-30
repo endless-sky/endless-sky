@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ConditionSet.h"
 #include "ConditionsStore.h"
+#include "DataNode.h"
 #include "Paragraphs.h"
 
 using namespace std;
@@ -24,31 +25,31 @@ void Paragraphs::Load(const DataNode &node)
 	for(const DataNode &child : node)
 		if(child.Size() == 2 && child.Token(0) == "to" && child.Token(1) == "display")
 		{
-			paragraphs.emplace_back(node.Token(1) + "\n", make_shared<ConditionSet>(child));
+			text.emplace_back(child, node.Token(1) + "\n");
 			return;
 		}
-	paragraphs.emplace_back(node.Token(1) + "\n", shared_ptr<ConditionSet>());
+	text.emplace_back(ConditionSet(), node.Token(1) + "\n");
 }
 
 
 
 void Paragraphs::Clear()
 {
-	paragraphs.clear();
+	text.clear();
 }
 
 
 
 bool Paragraphs::IsEmpty() const
 {
-	return paragraphs.empty();
+	return text.empty();
 }
 
 
 
 bool Paragraphs::IsEmptyFor(const ConditionsStore &vars) const
 {
-	for(auto &varsText : paragraphs)
+	for(auto &varsText : text)
 		if(!varsText.second.empty() && (varsText.first.IsEmpty() || varsText.first.Test(vars)))
 			return false;
 	return true;
@@ -59,7 +60,7 @@ bool Paragraphs::IsEmptyFor(const ConditionsStore &vars) const
 string Paragraphs::ToString(const ConditionsStore &vars) const
 {
 	string result;
-	for(auto &varsText : paragraphs)
+	for(auto &varsText : text)
 		if(!varsText.second.empty() && (varsText.first.IsEmpty() || varsText.first.Test(vars)))
 			result += varsText.second;
 	return result;
@@ -70,6 +71,20 @@ string Paragraphs::ToString(const ConditionsStore &vars) const
 Paragraphs Paragraphs::operator + (const Paragraphs &other) const
 {
 	Paragraphs result(*this);
-	result.paragraphs.insert(result.paragraphs.end(), other.paragraphs.begin(), other.paragraphs.end());
+	result.text.insert(result.text.end(), other.text.begin(), other.text.end());
 	return result;
+}
+
+
+
+Paragraphs::ConstIterator Paragraphs::begin() const
+{
+	return text.begin();
+}
+
+
+
+Paragraphs::ConstIterator Paragraphs::end() const
+{
+	return text.end();
 }

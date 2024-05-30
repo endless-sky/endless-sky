@@ -114,6 +114,16 @@ void Port::Load(const DataNode &node)
 
 
 
+void Port::LoadDefaultSpaceport()
+{
+	name = SPACEPORT;
+	recharge = RechargeType::All;
+	services = ServicesType::All;
+	hasNews = true;
+}
+
+
+
 void Port::LoadUninhabitedSpaceport()
 {
 	name = SPACEPORT;
@@ -161,14 +171,7 @@ const string &Port::Name() const
 
 
 
-Description &Port::Description()
-{
-	return description;
-}
-
-
-
-const Description &Port::Description() const
+const Paragraphs &Port::Description() const
 {
 	return description;
 }

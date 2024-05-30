@@ -13,6 +13,9 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
+#ifndef PARAGRAPHS_H_
+#define PARAGRAPHS_H_
+
 #include "ConditionSet.h"
 
 #include <algorithm>
@@ -23,6 +26,11 @@ class ConditionsStore;
 class DataNode;
 
 class Paragraphs {
+public:
+	using ConditionalText = std::vector<std::pair<ConditionSet, std::string>>;
+	using ConstIterator = ConditionalText::const_iterator;
+
+
 public:
 	// Load one line of text and possible conditions from the given node.
 	void Load(const DataNode &node);
@@ -42,6 +50,13 @@ public:
 	// Returns a new Paragraphs that contains both this object's lines and the other objects', in that order.
 	Paragraphs operator + (const Paragraphs &other) const;
 
+	// Iterate over all text. Needed to support PrintData.
+	// These must use standard naming conventions (begin, end) for compatibility with range-based for loops.
+	ConstIterator begin() const;
+	ConstIterator end() const;
+
 private:
-	std::vector<std::pair<ConditionSet, std::string>> text;
+	ConditionalText text;
 };
+
+#endif

@@ -65,6 +65,9 @@ public:
 	void LoadDefaultSpaceport();
 	void LoadUninhabitedSpaceport();
 
+	// Load a port's description text paragraphs from the planet spaceport description.
+	void LoadDescription(const DataNode &node);
+
 	// Whether this port was loaded from the Load function.
 	bool CustomLoaded() const;
 
