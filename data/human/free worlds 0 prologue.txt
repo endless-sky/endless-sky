@@ -79,8 +79,11 @@ mission "Pact Recon 0"
 		dialog phrase "generic waypoint on visit"
 	on complete
 		payment 25000
+		event "pact recon 0" 1
 		dialog `When you land on <planet>, you're approached by Freya Winters. She gives you <payment> in exchange for your scanner logs of the Southern systems. "Thank you, Captain. I pray the pirates didn't give you too much trouble," she says. "I'll be in touch when we've got a new assignment for you, assuming you're still interested."`
 
+
+event "pact recon 0"
 
 
 mission "Pact Recon 1"
@@ -97,7 +100,7 @@ mission "Pact Recon 1"
 	waypoint "Wei"
 	to offer
 		random < 40
-		has "Pact Recon 0: done"
+		has "event: pact recon 0"
 		not "event: war begins"
 	
 	on offer
@@ -107,8 +110,11 @@ mission "Pact Recon 1"
 		dialog phrase "generic waypoint on visit"
 	on complete
 		payment 35000
+		event "pact recon 1" 1
 		dialog `You transfer your sensor logs to Freya. She thanks you for your work and pays you <payment>. "I'll let you know when we need your services again," she says.`
 
+
+event "pact recon 1"
 
 
 mission "Pact Recon 2"
@@ -125,7 +131,7 @@ mission "Pact Recon 2"
 	waypoint "Shaula"
 	to offer
 		random < 40
-		has "Pact Recon 1: done"
+		has "event: pact recon 1"
 		not "event: war begins"
 	
 	on offer
@@ -135,8 +141,11 @@ mission "Pact Recon 2"
 		dialog phrase "generic waypoint on visit"
 	on complete
 		payment 70000
+		event "pact recon 2" 1
 		dialog `Freya Winters meets up with you in person soon after you land. "Glad to see you're still in one piece. I pray you didn't have much trouble," she says, as she hands you a credit chip for <payment>. "You've been a great help to us. I'll be sure to contact you next time we need a scout."`
 
+
+event "pact recon 2"
 
 
 mission "Pact Recon 3"
@@ -153,7 +162,7 @@ mission "Pact Recon 3"
 	mark "Orvala"
 	to offer
 		random < 40
-		has "Pact Recon 2: done"
+		has "event: pact recon 2"
 		not "event: war begins"
 	on offer
 		dialog `Once again, you receive a message from Freya Winters. "We have another mission for you," she says, "this one a bit more dangerous. We've heard rumors of a pirate fleet amassing in one of the seldom-visited systems in the Dirt Belt, and we need to know where they are. Interested in helping to track them down? As before, you don't need to fight, just observe them."`
