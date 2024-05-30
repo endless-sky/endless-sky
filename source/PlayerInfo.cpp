@@ -1833,8 +1833,10 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 	stockDepreciation = Depreciation();
 	if(leftOver)
 	{
-		// Report how much excess cargo was left over, and what profit you earned.
-		ostringstream out;
+		if(income)
+		{
+			// Report how much excess cargo was left over, and what profit you earned.
+			ostringstream out;
 		out << "You sold " << Format::CargoString(leftOver, "excess cargo") << " for " << Format::CreditString(income);
 		if(totalBasis && totalBasis != income)
 			out << " (for a profit of " << Format::CreditString(income - totalBasis) << ").";
