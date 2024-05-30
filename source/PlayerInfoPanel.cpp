@@ -842,6 +842,9 @@ void PlayerInfoPanel::SortShips(InfoPanelState::ShipComparator *shipComparator)
 		shipComparator
 	);
 
+	// Ships are now sorted.
+	panelState.SetCurrentSort(shipComparator);
+
 	// Load the same selected ships from before the sort.
 	auto it = selectedShips.begin();
 	for(size_t i = 0; i < panelState.Ships().size(); ++i)
@@ -856,9 +859,6 @@ void PlayerInfoPanel::SortShips(InfoPanelState::ShipComparator *shipComparator)
 			if(it == selectedShips.end())
 				break;
 		}
-
-	// Ships are now sorted.
-	panelState.SetCurrentSort(shipComparator);
 }
 
 
