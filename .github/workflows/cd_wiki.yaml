@@ -10,7 +10,7 @@ jobs:
 
   cd_wiki:
     name: Wiki deployment
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
