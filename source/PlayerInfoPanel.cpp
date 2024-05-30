@@ -846,6 +846,8 @@ void PlayerInfoPanel::SortShips(InfoPanelState::ShipComparator *shipComparator)
 	panelState.SetCurrentSort(shipComparator);
 
 	// Load the same selected ships from before the sort.
+	if(selectedShips.empty())
+		return;
 	auto it = selectedShips.begin();
 	for(size_t i = 0; i < panelState.Ships().size(); ++i)
 		if(panelState.Ships()[i] == *it)
