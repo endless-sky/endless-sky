@@ -712,9 +712,9 @@ ship "Modified Shield Beetle"
 		"hull" 10000
 		"required crew" 59
 		"bunks" 78
-		"mass" 720
-		"drag" 9.1
-		"heat dissipation" .35
+		"mass" 2060
+		"drag" 16.9
+		"heat dissipation" .19
 		"fuel capacity" 600
 		"cargo space" 80
 		"outfit space" 855
