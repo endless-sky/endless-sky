@@ -25,6 +25,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class ConditionsStore;
 class DataNode;
 
+
+
+// Stores a list of description paragraphs, and a condition under which each should be shown.
+// See the planet and spaceport description code for examples.
 class Paragraphs {
 public:
 	using ConditionalText = std::vector<std::pair<ConditionSet, std::string>>;
