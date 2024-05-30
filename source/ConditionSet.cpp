@@ -123,7 +123,8 @@ namespace {
 				{
 					return a - b;
 				}},
-			{"/", [](int64_t a, int64_t b)
+			{"/",
+				[](int64_t a, int64_t b)
 				{
 					return b ? a / b : numeric_limits<int64_t>::max();
 				}}};

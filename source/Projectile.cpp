@@ -93,7 +93,7 @@ Projectile::Projectile(
 	// But we still want inaccuracy to have an effect on submunitions. Because of
 	// this, we tilt the velocity of submunitions in the direction of the inaccuracy.
 	dV = this->angle.Unit()
-		 * (parent.dV.Length() + weapon->Velocity() + Random::Real() * weapon->RandomVelocity());
+		* (parent.dV.Length() + weapon->Velocity() + Random::Real() * weapon->RandomVelocity());
 	velocity += dV - parent.dV;
 
 	// If a random lifetime is specified, add a random amount up to that amount.

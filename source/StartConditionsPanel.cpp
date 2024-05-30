@@ -115,8 +115,8 @@ void StartConditionsPanel::Draw()
 
 		// Partially visible entries should fade in or out.
 		double opacity = entriesContainer.Contains(zone)
-							 ? 1.
-							 : min(1., max(0., min(pos.Y() - fadeInY, fadeOutY - pos.Y()) / fadeDistance));
+			? 1.
+			: min(1., max(0., min(pos.Y() - fadeInY, fadeOutY - pos.Y()) / fadeDistance));
 
 		bool isHighlighted = it == startIt || (hasHover && zone.Contains(hoverPoint));
 		if(it == startIt)
@@ -138,7 +138,7 @@ bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &c
 		|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		GetUI()->Pop(this);
 	else if(!scenarios.empty()
-			&& (key == SDLK_UP || key == SDLK_DOWN || key == SDLK_PAGEUP || key == SDLK_PAGEDOWN))
+		&& (key == SDLK_UP || key == SDLK_DOWN || key == SDLK_PAGEUP || key == SDLK_PAGEDOWN))
 	{
 		// Move up / down an entry, or a page. If at the bottom / top, wrap around.
 		const ptrdiff_t magnitude =
@@ -161,8 +161,8 @@ bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &c
 		Select(startIt);
 	}
 	else if(startIt != scenarios.end()
-			&& (key == 's' || key == 'n' || key == SDLK_KP_ENTER || key == SDLK_RETURN)
-			&& info.HasCondition("unlocked start"))
+		&& (key == 's' || key == 'n' || key == SDLK_KP_ENTER || key == SDLK_RETURN)
+		&& info.HasCondition("unlocked start"))
 	{
 		player.New(*startIt);
 

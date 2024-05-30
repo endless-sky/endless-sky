@@ -134,9 +134,9 @@ void ShopPanel::Draw()
 		if(!warningType.empty())
 			text += "\n" + GameData::Tooltip(warningType);
 		const Color &textColor = *GameData::Colors().Get("medium");
-		const Color &backColor = *GameData::Colors().Get(
-			warningType.empty() ? "tooltip background"
-								: (warningType.back() == '!' ? "error back" : "warning back"));
+		const Color &backColor = *GameData::Colors().Get(warningType.empty()
+				? "tooltip background"
+				: (warningType.back() == '!' ? "error back" : "warning back"));
 		DrawTooltip(text, hoverPoint, textColor, backColor);
 	}
 
@@ -233,7 +233,7 @@ bool ShopPanel::CanSellMultiple() const
 bool ShopPanel::IsAlreadyOwned() const
 {
 	return (playerShip && selectedOutfit && player.Cargo().Get(selectedOutfit))
-		   || player.Storage().Get(selectedOutfit);
+		|| player.Storage().Get(selectedOutfit);
 }
 
 
@@ -1017,8 +1017,9 @@ void ShopPanel::DrawMain()
 
 	// What amount would mainScroll have to equal to make nextY equal the
 	// bottom of the screen? (Also leave space for the "key" at the bottom.)
-	mainScroll.SetMaxValue(max(0., nextY + mainScroll.AnimatedValue() - Screen::Height() / 2 - TILE_SIZE / 2
-									   + VisibilityCheckboxesSize() + 40.));
+	mainScroll.SetMaxValue(max(0.,
+		nextY + mainScroll.AnimatedValue() - Screen::Height() / 2 - TILE_SIZE / 2 + VisibilityCheckboxesSize()
+			+ 40.));
 
 	PointerShader::Draw(Point(Screen::Right() - 10 - SIDE_WIDTH, Screen::Top() + 10), Point(0., -1.), 10.f,
 		10.f, 5.f, Color(!mainScroll.IsScrollAtMin() ? .8f : .2f, 0.f));

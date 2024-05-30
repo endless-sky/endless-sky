@@ -156,7 +156,7 @@ bool MapDetailPanel::Hover(int x, int y)
 {
 	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
 	isPlanetViewSelected = (x < Screen::Left() + planetCardInterface->GetValue("width")
-							&& y < Screen::Top() + PlanetPanelHeight());
+		&& y < Screen::Top() + PlanetPanelHeight());
 
 	return isPlanetViewSelected ? true : MapPanel::Hover(x, y);
 }
@@ -226,9 +226,9 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 		// Depending on whether the flagship has a jump drive, the possible links
 		// we can travel along are different:
 		bool hasJumpDrive = player.Flagship()->JumpNavigation().HasJumpDrive();
-		const set<const System *> &links =
-			hasJumpDrive ? source->JumpNeighbors(player.Flagship()->JumpNavigation().JumpRange())
-						 : source->Links();
+		const set<const System *> &links = hasJumpDrive
+			? source->JumpNeighbors(player.Flagship()->JumpNavigation().JumpRange())
+			: source->Links();
 
 		// For each link we can travel from this system, check whether the link
 		// is closer to the current angle (while still being larger) than any
@@ -895,8 +895,7 @@ void MapDetailPanel::DrawOrbits()
 		// Special case: wormholes which would lead to an inaccessible location should not
 		// be drawn as landable.
 		bool hasPlanet = object.HasValidPlanet();
-		bool inaccessible =
-			hasPlanet && object.GetPlanet()->GetWormhole()
+		bool inaccessible = hasPlanet && object.GetPlanet()->GetWormhole()
 			&& object.GetPlanet()->GetWormhole()->WormholeDestination(*selectedSystem).Inaccessible();
 		if(hasPlanet && object.GetPlanet()->IsAccessible(player.Flagship()) && !inaccessible)
 			planets[object.GetPlanet()] = pos;

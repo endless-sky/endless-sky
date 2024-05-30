@@ -298,8 +298,8 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 			if(debugMode && event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_BACKQUOTE)
 				isPaused = !isPaused;
 			else if(event.type == SDL_KEYDOWN && menuPanels.IsEmpty()
-					&& Command(event.key.keysym.sym).Has(Command::MENU) && !gamePanels.IsEmpty()
-					&& gamePanels.Top()->IsInterruptible())
+				&& Command(event.key.keysym.sym).Has(Command::MENU) && !gamePanels.IsEmpty()
+				&& gamePanels.Top()->IsInterruptible())
 			{
 				// User pressed the Menu key.
 				menuPanels.Push(shared_ptr<Panel>(new MenuPanel(player, gamePanels)));
@@ -313,8 +313,8 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 				GameWindow::AdjustViewport();
 			}
 			else if(event.type == SDL_KEYDOWN && !toggleTimeout
-					&& (Command(event.key.keysym.sym).Has(Command::FULLSCREEN)
-						|| (event.key.keysym.sym == SDLK_RETURN && (event.key.keysym.mod & KMOD_ALT))))
+				&& (Command(event.key.keysym.sym).Has(Command::FULLSCREEN)
+					|| (event.key.keysym.sym == SDLK_RETURN && (event.key.keysym.mod & KMOD_ALT))))
 			{
 				toggleTimeout = 30;
 				Preferences::ToggleScreenMode();
@@ -324,8 +324,8 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 				// The UI handled the event.
 			}
 			else if(event.type == SDL_KEYDOWN && !event.key.repeat
-					&& (Command(event.key.keysym.sym).Has(Command::FASTFORWARD))
-					&& !Command(SDLK_CAPSLOCK).Has(Command::FASTFORWARD))
+				&& (Command(event.key.keysym.sym).Has(Command::FASTFORWARD))
+				&& !Command(SDLK_CAPSLOCK).Has(Command::FASTFORWARD))
 			{
 				isFastForward = !isFastForward;
 			}

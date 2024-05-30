@@ -127,7 +127,7 @@ void ShipManager::Do(PlayerInfo &player) const
 	}
 	Messages::Add((count == 1 ? "The " + model->DisplayModelName() + " \"" + shipName + "\" was "
 							  : to_string(count) + " " + model->PluralModelName() + " were ")
-					  + (Giving() ? "added to" : "removed from") + " your fleet.",
+			+ (Giving() ? "added to" : "removed from") + " your fleet.",
 		Messages::Importance::High);
 }
 

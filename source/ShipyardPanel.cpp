@@ -178,8 +178,8 @@ double ShipyardPanel::DrawDetails(const Point &center)
 			const float spriteScale =
 				min(1.f, (INFOBAR_WIDTH - 60.f) / max(shipSprite->Width(), shipSprite->Height()));
 			const int swizzle = selectedShip->CustomSwizzle() >= 0
-									? selectedShip->CustomSwizzle()
-									: GameData::PlayerGovernment()->GetSwizzle();
+				? selectedShip->CustomSwizzle()
+				: GameData::PlayerGovernment()->GetSwizzle();
 			SpriteShader::Draw(shipSprite, spriteCenter, spriteScale, swizzle);
 		}
 
@@ -255,16 +255,16 @@ ShopPanel::BuyResult ShipyardPanel::CanBuy(bool onlyOwned) const
 			string ship = (player.Ships().size() == 1) ? "your current ship" : "some of your ships";
 			return "You do not have enough credits to buy this ship. "
 				   "If you want to buy it, you must sell "
-				   + ship + " first.";
+				+ ship + " first.";
 		}
 
 		// Check if the license cost is the tipping point.
 		if(player.Accounts().Credits() >= cost - licenseCost)
 			return "You do not have enough credits to buy this ship, "
 				   "because it will cost you an extra "
-				   + Format::Credits(licenseCost)
-				   + " credits to buy the necessary licenses. "
-					 "Consider checking if the bank will offer you a loan.";
+				+ Format::Credits(licenseCost)
+				+ " credits to buy the necessary licenses. "
+				  "Consider checking if the bank will offer you a loan.";
 
 		return "You do not have enough credits to buy this ship. "
 			   "Consider checking if the bank will offer you a loan.";
@@ -284,8 +284,8 @@ void ShipyardPanel::Buy(bool onlyOwned)
 	string message;
 	if(licenseCost)
 		message = "Note: you will need to pay " + Format::CreditString(licenseCost)
-				  + " for the licenses required to operate this ship, in addition to its cost."
-					" If that is okay with you, go ahead and enter a name for your brand new ";
+			+ " for the licenses required to operate this ship, in addition to its cost."
+			  " If that is okay with you, go ahead and enter a name for your brand new ";
 	else
 		message = "Enter a name for your brand new ";
 

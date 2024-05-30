@@ -232,7 +232,7 @@ void Phrase::Sentence::Load(const DataNode &node, const Phrase *parent)
 				if(element.second && element.second->ReferencesPhrase(parent))
 				{
 					child.PrintTrace("Warning: Replaced recursive '" + element.second->Name()
-									 + "' phrase reference with \"\":");
+						+ "' phrase reference with \"\":");
 					element.second = nullptr;
 				}
 

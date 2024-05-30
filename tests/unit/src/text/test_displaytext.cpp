@@ -48,12 +48,12 @@ namespace { // test namespace
 			CHECK(std::is_default_constructible_v<T>);
 			// In gcc-5 (Steam Scout Runtime), std::string is not default nothrow constructible
 			CHECK(std::is_nothrow_default_constructible_v<T>
-				  == std::is_nothrow_default_constructible_v<std::string>);
+				== std::is_nothrow_default_constructible_v<std::string>);
 			CHECK(std::is_copy_constructible_v<T>);
 			// Copying a string is not "trivial."
 			CHECK_FALSE(std::is_trivially_copy_constructible_v<T>);
 			CHECK(std::is_trivially_copy_constructible_v<T>
-				  == std::is_trivially_copy_constructible_v<std::string>);
+				== std::is_trivially_copy_constructible_v<std::string>);
 			// Copying a string may throw.
 			CHECK_FALSE(std::is_nothrow_copy_constructible_v<T>);
 			CHECK(
@@ -62,7 +62,7 @@ namespace { // test namespace
 			// Moving a string is not "trivial."
 			CHECK_FALSE(std::is_trivially_move_constructible_v<T>);
 			CHECK(std::is_trivially_move_constructible_v<T>
-				  == std::is_trivially_move_constructible_v<std::string>);
+				== std::is_trivially_move_constructible_v<std::string>);
 			CHECK(std::is_nothrow_move_constructible_v<T>);
 			SECTION("Constructor Arguments")
 			{

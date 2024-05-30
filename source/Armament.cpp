@@ -63,8 +63,8 @@ int Armament::Add(const Outfit *outfit, int count)
 	if(!isTurret && !outfit->Get("gun ports"))
 	{
 		Logger::LogError("Error: Skipping unmountable outfit \"" + outfit->TrueName()
-						 + "\"."
-						   " Weapon outfits must specify either \"gun ports\" or \"turret mounts\".");
+			+ "\"."
+			  " Weapon outfits must specify either \"gun ports\" or \"turret mounts\".");
 		return 0;
 	}
 

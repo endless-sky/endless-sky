@@ -121,9 +121,8 @@ namespace {
 		if(frameData.begin()->first != 0)
 		{
 			Logger::LogError(prefix + "ignored " + (isSwizzleMask ? "mask " : "") + (is2x ? "@2x " : "")
-							 + "frame " + to_string(frameData.begin()->first) + " ("
-							 + to_string(frameData.size())
-							 + " ignored in total). Animations must start at frame 0.");
+				+ "frame " + to_string(frameData.begin()->first) + " (" + to_string(frameData.size())
+				+ " ignored in total). Animations must start at frame 0.");
 			return;
 		}
 
@@ -147,8 +146,8 @@ namespace {
 		{
 			size_t ignored = distance(next, frameData.end());
 			Logger::LogError(prefix + "missing " + (isSwizzleMask ? "mask " : "") + (is2x ? "@2x " : "")
-							 + "frame " + to_string(it->first + 1) + " (" + to_string(ignored)
-							 + (ignored > 1 ? " frames" : " frame") + " ignored in total).");
+				+ "frame " + to_string(it->first + 1) + " (" + to_string(ignored)
+				+ (ignored > 1 ? " frames" : " frame") + " ignored in total).");
 		}
 	}
 }
@@ -239,7 +238,7 @@ void ImageSet::ValidateFrames() noexcept(false)
 		if(toResize.size() > paths[0].size())
 		{
 			Logger::LogError(prefix + to_string(toResize.size() - paths[0].size()) + " extra frames for the "
-							 + specifier + " sprite will be ignored.");
+				+ specifier + " sprite will be ignored.");
 			toResize.resize(paths[0].size());
 		}
 	};
@@ -322,8 +321,8 @@ void ImageSet::Load() noexcept(false)
 			|| (name.length() > 7 && !name.compare(0, 7, "outfit/"))
 			|| (name.length() > 10 && !name.compare(0, 10, "thumbnail/"))))
 		Logger::LogError("Warning: image \"" + name
-						 + "\" will be blurry since width and/or height are not even ("
-						 + to_string(buffer[0].Width()) + "x" + to_string(buffer[0].Height()) + ").");
+			+ "\" will be blurry since width and/or height are not even (" + to_string(buffer[0].Width())
+			+ "x" + to_string(buffer[0].Height()) + ").");
 }
 
 

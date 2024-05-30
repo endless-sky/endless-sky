@@ -125,20 +125,20 @@ namespace {
 	bool CheckValidity(const set<const T *> &c)
 	{
 		return c.empty()
-			   || any_of(c.begin(), c.end(),
-				   [](const T *item) noexcept -> bool
-				   {
-					   return item->IsValid();
-				   });
+			|| any_of(c.begin(), c.end(),
+				[](const T *item) noexcept -> bool
+				{
+					return item->IsValid();
+				});
 	}
 	bool CheckValidity(const list<LocationFilter> &l)
 	{
 		return l.empty()
-			   || any_of(l.begin(), l.end(),
-				   [](const LocationFilter &f) noexcept -> bool
-				   {
-					   return f.IsValid();
-				   });
+			|| any_of(l.begin(), l.end(),
+				[](const LocationFilter &f) noexcept -> bool
+				{
+					return f.IsValid();
+				});
 	}
 	bool CheckValidity(const list<set<const Outfit *>> &l)
 	{
@@ -186,8 +186,8 @@ void LocationFilter::Load(const DataNode &node)
 	}
 
 	isEmpty = planets.empty() && attributes.empty() && systems.empty() && governments.empty() && !center
-			  && originMaxDistance < 0 && notFilters.empty() && neighborFilters.empty() && outfits.empty()
-			  && shipCategory.empty();
+		&& originMaxDistance < 0 && notFilters.empty() && neighborFilters.empty() && outfits.empty()
+		&& shipCategory.empty();
 }
 
 

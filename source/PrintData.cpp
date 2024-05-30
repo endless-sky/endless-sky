@@ -248,8 +248,7 @@ namespace {
 				cout << 3600. * attributes.Get("thrust") / mass << ',';
 				cout << 60. * attributes.Get("turn") / mass << ',';
 
-				double energyConsumed =
-					attributes.Get("energy consumption")
+				double energyConsumed = attributes.Get("energy consumption")
 					+ max(attributes.Get("thrusting energy"), attributes.Get("reverse thrusting energy"))
 					+ attributes.Get("turning energy") + attributes.Get("afterburner energy")
 					+ attributes.Get("fuel energy")
@@ -257,8 +256,7 @@ namespace {
 					+ (attributes.Get("shield energy") * (1 + attributes.Get("shield energy multiplier")))
 					+ attributes.Get("cooling energy") + attributes.Get("cloaking energy");
 
-				double heatProduced =
-					attributes.Get("heat generation") - attributes.Get("cooling")
+				double heatProduced = attributes.Get("heat generation") - attributes.Get("cooling")
 					+ max(attributes.Get("thrusting heat"), attributes.Get("reverse thrusting heat"))
 					+ attributes.Get("turning heat") + attributes.Get("afterburner heat")
 					+ attributes.Get("fuel heat")
@@ -305,8 +303,8 @@ namespace {
 						if(weapon->Ammo() && !ship.OutfitCount(weapon->Ammo()))
 							continue;
 						double damage = weapon->ShieldDamage() + weapon->HullDamage()
-										+ (weapon->RelativeShieldDamage() * ship.MaxShields())
-										+ (weapon->RelativeHullDamage() * ship.MaxHull());
+							+ (weapon->RelativeShieldDamage() * ship.MaxShields())
+							+ (weapon->RelativeHullDamage() * ship.MaxHull());
 						deterrence += .12 * damage / weapon->Reload();
 					}
 				cout << deterrence << '\n';

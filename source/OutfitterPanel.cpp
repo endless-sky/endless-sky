@@ -371,7 +371,7 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 		return "You cannot buy this outfit here. "
 			   "It is being shown in the list because you have one, "
 			   "but this "
-			   + planet->Noun() + " does not sell them.";
+			+ planet->Noun() + " does not sell them.";
 	}
 
 	// Check if you need to pay, and can't afford it.
@@ -383,12 +383,12 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 
 		if(cost > credits)
 			return "You cannot buy this outfit, because it costs " + Format::CreditString(cost)
-				   + ", and you only have " + Format::Credits(credits) + ".";
+				+ ", and you only have " + Format::Credits(credits) + ".";
 
 		// Add the cost to buy the required license.
 		if(cost + licenseCost > credits)
 			return "You don't have enough money to buy this outfit, because it will cost you an extra "
-				   + Format::CreditString(licenseCost) + " to buy the necessary licenses.";
+				+ Format::CreditString(licenseCost) + " to buy the necessary licenses.";
 	}
 
 	// Check if the outfit will fit
@@ -401,8 +401,8 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 			return true;
 
 		return "You cannot " + string(onlyOwned ? "load" : "buy") + " this outfit, because it takes up "
-			   + Format::CargoString(mass, "mass") + " and your fleet has "
-			   + Format::CargoString(freeCargo, "cargo space") + " free.";
+			+ Format::CargoString(mass, "mass") + " and your fleet has "
+			+ Format::CargoString(freeCargo, "cargo space") + " free.";
 	}
 	else
 	{
@@ -417,32 +417,32 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 		double outfitSpace = playerShip->Attributes().Get("outfit space");
 		if(outfitNeeded > outfitSpace)
 			return "You cannot install this outfit, because it takes up "
-				   + Format::CargoString(outfitNeeded, "outfit space") + ", and this ship has "
-				   + Format::MassString(outfitSpace) + " free.";
+				+ Format::CargoString(outfitNeeded, "outfit space") + ", and this ship has "
+				+ Format::MassString(outfitSpace) + " free.";
 
 		double weaponNeeded = -selectedOutfit->Get("weapon capacity");
 		double weaponSpace = playerShip->Attributes().Get("weapon capacity");
 		if(weaponNeeded > weaponSpace)
 			return "Only part of your ship's outfit capacity is usable for weapons. "
 				   "You cannot install this outfit, because it takes up "
-				   + Format::CargoString(weaponNeeded, "weapon space") + ", and this ship has "
-				   + Format::MassString(weaponSpace) + " free.";
+				+ Format::CargoString(weaponNeeded, "weapon space") + ", and this ship has "
+				+ Format::MassString(weaponSpace) + " free.";
 
 		double engineNeeded = -selectedOutfit->Get("engine capacity");
 		double engineSpace = playerShip->Attributes().Get("engine capacity");
 		if(engineNeeded > engineSpace)
 			return "Only part of your ship's outfit capacity is usable for engines. "
 				   "You cannot install this outfit, because it takes up "
-				   + Format::CargoString(engineNeeded, "engine space") + ", and this ship has "
-				   + Format::MassString(engineSpace) + " free.";
+				+ Format::CargoString(engineNeeded, "engine space") + ", and this ship has "
+				+ Format::MassString(engineSpace) + " free.";
 
 		if(selectedOutfit->Category() == "Ammunition")
 			return !playerShip->OutfitCount(selectedOutfit)
-					   ? "This outfit is ammunition for a weapon. "
-						 "You cannot install it without first installing the appropriate weapon."
-					   : "You already have the maximum amount of ammunition for this weapon. "
-						 "If you want to install more ammunition, you must first install another of these "
-						 "weapons.";
+				? "This outfit is ammunition for a weapon. "
+				  "You cannot install it without first installing the appropriate weapon."
+				: "You already have the maximum amount of ammunition for this weapon. "
+				  "If you want to install more ammunition, you must first install another of these "
+				  "weapons.";
 
 		int mountsNeeded = -selectedOutfit->Get("turret mounts");
 		int mountsFree = playerShip->Attributes().Get("turret mounts");
@@ -697,24 +697,24 @@ void OutfitterPanel::FailSell(bool toStorage) const
 							if(sit.first->Get(it.first) < 0.)
 							{
 								GetUI()->Push(new Dialog("You cannot " + verb
-														 + " this outfit, "
-														   "because that would cause your ship's \""
-														 + it.first
-														 + "\" value to be reduced to less than zero. "
-														   "To "
-														 + verb + " this outfit, you must " + verb + " the "
-														 + sit.first->DisplayName() + " outfit first."));
+									+ " this outfit, "
+									  "because that would cause your ship's \""
+									+ it.first
+									+ "\" value to be reduced to less than zero. "
+									  "To "
+									+ verb + " this outfit, you must " + verb + " the "
+									+ sit.first->DisplayName() + " outfit first."));
 								return;
 							}
 						GetUI()->Push(new Dialog("You cannot " + verb
-												 + " this outfit, "
-												   "because that would cause your ship's \""
-												 + it.first + "\" value to be reduced to less than zero."));
+							+ " this outfit, "
+							  "because that would cause your ship's \""
+							+ it.first + "\" value to be reduced to less than zero."));
 						return;
 					}
 			GetUI()->Push(new Dialog("You cannot " + verb
-									 + " this outfit, "
-									   "because something else in your ship depends on it."));
+				+ " this outfit, "
+				  "because something else in your ship depends on it."));
 		}
 	}
 }
@@ -958,8 +958,8 @@ void OutfitterPanel::Refill()
 				neededAmmo -= fromCargo;
 				// Then, buy at reduced (or full) price.
 				int available = outfitter.Has(outfit)
-									? neededAmmo
-									: min<int>(neededAmmo, max<int>(0, player.Stock(outfit)));
+					? neededAmmo
+					: min<int>(neededAmmo, max<int>(0, player.Stock(outfit)));
 				if(neededAmmo && available > 0)
 				{
 					int64_t price = player.StockDepreciation().Value(outfit, day, available);

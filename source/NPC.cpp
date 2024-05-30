@@ -503,7 +503,7 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, const Mission *
 	// the player: scanning, boarding, assisting, capturing, or provoking.
 	if(!event.ActorGovernment() || !event.ActorGovernment()->IsPlayer())
 		type &= ~(ShipEvent::SCAN_CARGO | ShipEvent::SCAN_OUTFITS | ShipEvent::ASSIST | ShipEvent::BOARD
-				  | ShipEvent::CAPTURE | ShipEvent::PROVOKE);
+			| ShipEvent::CAPTURE | ShipEvent::PROVOKE);
 
 	// Determine if this event is new for this ship.
 	bool newEvent = ~(shipEvents[ship.get()]) & type;
@@ -661,7 +661,7 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 	if(ait != npcActions.end())
 	{
 		Logger::LogError("Instantiation Error: Action \"" + TriggerToText(ait->first)
-						 + "\" in NPC uses invalid " + std::move(reason));
+			+ "\" in NPC uses invalid " + std::move(reason));
 		return result;
 	}
 	for(const auto &it : npcActions)
@@ -805,7 +805,7 @@ void NPC::DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, U
 				{
 					auto it = shipEvents.find(ship.get());
 					return it != shipEvents.end() && (it->second & requiredEvents)
-						   && !(it->second & excludedEvents);
+						&& !(it->second & excludedEvents);
 				}))
 		{
 			it->second.Do(player, ui, caller);

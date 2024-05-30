@@ -117,7 +117,7 @@ namespace {
 	bool CompareFuel(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
 	{
 		return lhs->Attributes().Get("fuel capacity") * lhs->Fuel()
-			   < rhs->Attributes().Get("fuel capacity") * rhs->Fuel();
+			< rhs->Attributes().Get("fuel capacity") * rhs->Fuel();
 	}
 
 	bool CompareRequiredCrew(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
@@ -393,7 +393,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 		}
 	}
 	else if(panelState.CanEdit() && (key == 'k' || (key == 'p' && shift))
-			&& !panelState.AllSelected().empty())
+		&& !panelState.AllSelected().empty())
 	{
 		// Toggle the parked status for all selected ships.
 		bool allParked = true;
@@ -714,8 +714,8 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 		// or ships are sorted according to that column.
 		const Color &columnHeaderColor =
 			((!isDragging && zone.Contains(hoverPoint)) || panelState.CurrentSort() == column.shipSort)
-				? bright
-				: dim;
+			? bright
+			: dim;
 
 		table.Draw(column.name, columnHeaderColor);
 
@@ -753,12 +753,12 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 		bool isDisabled = ship.IsDisabled();
 		bool isFlagship = &ship == player.Flagship();
 
-		table.SetColor(isDead        ? dead
-					   : isHovered   ? bright
-					   : isFlagship  ? flagship
-					   : isDisabled  ? disabled
-					   : isElsewhere ? elsewhere
-									 : dim);
+		table.SetColor(isDead ? dead
+				: isHovered   ? bright
+				: isFlagship  ? flagship
+				: isDisabled  ? disabled
+				: isElsewhere ? elsewhere
+							  : dim);
 
 		// Indent the ship name if it is a fighter or drone.
 		table.Draw(ship.CanBeCarried() ? "    " + ship.Name() : ship.Name());

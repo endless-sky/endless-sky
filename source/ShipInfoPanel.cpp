@@ -180,8 +180,7 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 			AddToUniques(shipIt->get()->Outfits());
 			AddToUniques(shipIt->get()->Cargo().Outfits());
 
-			string message =
-				"Are you sure you want to disown \"" + shipIt->get()->Name()
+			string message = "Are you sure you want to disown \"" + shipIt->get()->Name()
 				+ "\"? Disowning a ship rather than selling it means you will not get any money for it.";
 			if(!uniqueOutfits.empty())
 			{
@@ -192,7 +191,7 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 				for(int i = 0; i < detailedOutfitSize; ++i)
 				{
 					message += "\n" + to_string(it->second) + " "
-							   + (it->second == 1 ? it->first->DisplayName() : it->first->PluralName());
+						+ (it->second == 1 ? it->first->DisplayName() : it->first->PluralName());
 					++it;
 				}
 				if(it != uniqueOutfits.end())
@@ -714,7 +713,7 @@ bool ShipInfoPanel::CanDump() const
 
 	CargoHold &cargo = (*shipIt)->Cargo();
 	return (selectedPlunder && cargo.Get(selectedPlunder) > 0) || cargo.CommoditiesSize()
-		   || cargo.OutfitsSize();
+		|| cargo.OutfitsSize();
 }
 
 

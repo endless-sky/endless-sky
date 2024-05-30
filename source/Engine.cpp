@@ -158,7 +158,7 @@ namespace {
 		const vector<pair<Body, int>> &flareSprites, uint8_t side)
 	{
 		double gimbalDirection = (ship.Commands().Has(Command::FORWARD) || ship.Commands().Has(Command::BACK))
-								 * -ship.Commands().Turn();
+			* -ship.Commands().Turn();
 
 		for(const Ship::EnginePoint &point : enginePoints)
 		{
@@ -310,10 +310,9 @@ Engine::Engine(PlayerInfo &player)
 
 	// Add all neighboring systems that the player has seen to the radar.
 	const System *targetSystem = flagship ? flagship->GetTargetSystem() : nullptr;
-	const set<const System *> &links =
-		(flagship && flagship->JumpNavigation().HasJumpDrive())
-			? player.GetSystem()->JumpNeighbors(flagship->JumpNavigation().JumpRange())
-			: player.GetSystem()->Links();
+	const set<const System *> &links = (flagship && flagship->JumpNavigation().HasJumpDrive())
+		? player.GetSystem()->JumpNeighbors(flagship->JumpNavigation().JumpRange())
+		: player.GetSystem()->Links();
 	for(const System *system : links)
 		if(player.HasSeen(*system))
 			radar[currentCalcBuffer].AddPointer((system == targetSystem) ? Radar::SPECIAL : Radar::INACTIVE,
@@ -381,8 +380,7 @@ void Engine::Place()
 			const Personality &person = ship->GetPersonality();
 			bool hasOwnPlanet = ship->GetPlanet();
 			bool launchesWithPlayer = (planet && planet->CanLand(*ship)) && !person.IsStaying()
-									  && !person.IsWaiting()
-									  && (!hasOwnPlanet || (ship->IsYours() && ship->GetPlanet() == planet));
+				&& !person.IsWaiting() && (!hasOwnPlanet || (ship->IsYours() && ship->GetPlanet() == planet));
 			const StellarObject *object =
 				hasOwnPlanet ? ship->GetSystem()->FindStellar(ship->GetPlanet()) : nullptr;
 			// Default to the player's planet in the case of data definition errors.
@@ -401,7 +399,7 @@ void Engine::Place()
 		{
 			// Log this error.
 			Logger::LogError("Engine::Place: Set fallback system for the NPC \"" + ship->Name()
-							 + "\" as it had no system");
+				+ "\" as it had no system");
 			ship->SetSystem(system);
 		}
 
@@ -795,10 +793,9 @@ void Engine::Step(bool isActive)
 	if(flagship && flagship->GetTargetStellar() && !isJumping)
 	{
 		const StellarObject *object = flagship->GetTargetStellar();
-		string navigationMode = flagship->Commands().Has(Command::LAND) ? "Landing on:"
-								: object->GetPlanet() && object->GetPlanet()->CanLand(*flagship)
-									? "Can land on:"
-									: "Cannot land on:";
+		string navigationMode = flagship->Commands().Has(Command::LAND)      ? "Landing on:"
+			: object->GetPlanet() && object->GetPlanet()->CanLand(*flagship) ? "Can land on:"
+																			 : "Cannot land on:";
 		info.SetString("navigation mode", navigationMode);
 		const string &name = object->Name();
 		info.SetString("destination", name);
@@ -1053,9 +1050,9 @@ void Engine::Draw() const
 	Preferences::ExtendedJumpEffects jumpEffectState = Preferences::GetExtendedJumpEffects();
 	if(jumpEffectState != Preferences::ExtendedJumpEffects::OFF)
 		motionBlur *= 1.
-					  + pow(hyperspacePercentage
-								* (jumpEffectState == Preferences::ExtendedJumpEffects::MEDIUM ? 2.5 : 5.),
-						  2);
+			+ pow(hyperspacePercentage
+					* (jumpEffectState == Preferences::ExtendedJumpEffects::MEDIUM ? 2.5 : 5.),
+				2);
 
 	GameData::Background().Draw(
 		center, motionBlur, zoom, (player.Flagship() ? player.Flagship()->GetSystem() : player.GetSystem()));
@@ -1282,7 +1279,7 @@ void Engine::EnterSystem()
 	GameData::SetHaze(system->Haze(), false);
 
 	Messages::Add("Entering the " + system->Name() + " system on " + today.ToString()
-					  + (system->IsInhabited(flagship) ? "." : ". No inhabited planets detected."),
+			+ (system->IsInhabited(flagship) ? "." : ". No inhabited planets detected."),
 		Messages::Importance::Daily);
 
 	// Preload landscapes and determine if the player used a wormhole.
@@ -1378,7 +1375,7 @@ void Engine::EnterSystem()
 				{
 					raidFleet.GetFleet()->Place(*system, newShips);
 					Messages::Add("Your fleet has attracted the interest of a "
-									  + raidFleet.GetFleet()->GetGovernment()->GetName() + " raiding party.",
+							+ raidFleet.GetFleet()->GetGovernment()->GetName() + " raiding party.",
 						Messages::Importance::Highest);
 				}
 	}
@@ -1486,15 +1483,15 @@ void Engine::CalculateStep()
 			for(const auto &it : playerSystem->Objects())
 				if(it.HasValidPlanet() && it.GetPlanet()->IsWormhole()
 					&& &it.GetPlanet()->GetWormhole()->WormholeDestination(*playerSystem)
-						   == flagship->GetSystem())
+						== flagship->GetSystem())
 				{
 					wormholeEntry = true;
 					player.Visit(*it.GetPlanet());
 				}
 
-		player.SetSystemEntry(wormholeEntry                  ? SystemEntry::WORMHOLE
-							  : flagship->IsUsingJumpDrive() ? SystemEntry::JUMP
-															 : SystemEntry::HYPERDRIVE);
+		player.SetSystemEntry(wormholeEntry    ? SystemEntry::WORMHOLE
+				: flagship->IsUsingJumpDrive() ? SystemEntry::JUMP
+											   : SystemEntry::HYPERDRIVE);
 		doFlash = Preferences::Has("Show hyperspace flash");
 		playerSystem = flagship->GetSystem();
 		player.SetSystem(*playerSystem);
@@ -1939,7 +1936,7 @@ void Engine::HandleKeyboardInputs()
 
 	// Transfer all commands that need to be active as long as the corresponding key is pressed.
 	activeCommands |= keyHeld.And(Command::PRIMARY | Command::SECONDARY | Command::SCAN | maneuveringCommands
-								  | Command::SHIFT | Command::MOUSE_TURNING_HOLD);
+		| Command::SHIFT | Command::MOUSE_TURNING_HOLD);
 
 	// Certain commands (e.g. LAND, BOARD) are debounced, allowing the player to toggle between
 	// navigable destinations in the system.
@@ -2305,9 +2302,9 @@ void Engine::DoWeather(Weather &weather)
 		// Get all ship bodies that are touching a ring defined by the hazard's min
 		// and max ranges at the hazard's origin. Any ship touching this ring takes
 		// hazard damage.
-		for(Body *body : (hazard->SystemWide() ? shipCollisions.All()
-											   : shipCollisions.Ring(
-												   weather.Origin(), hazard->MinRange(), hazard->MaxRange())))
+		for(Body *body : (hazard->SystemWide()
+					? shipCollisions.All()
+					: shipCollisions.Ring(weather.Origin(), hazard->MinRange(), hazard->MaxRange())))
 		{
 			Ship *hit = reinterpret_cast<Ship *>(body);
 			hit->TakeDamage(visuals, damage.CalculateDamage(*hit), nullptr);
@@ -2409,7 +2406,7 @@ void Engine::DoCollection(Flotsam &flotsam)
 		}
 		else
 			message = name + to_string(amount) + " "
-					  + (amount == 1 ? outfit->DisplayName() : outfit->PluralName()) + ".";
+				+ (amount == 1 ? outfit->DisplayName() : outfit->PluralName()) + ".";
 	}
 	else
 		commodity = flotsam.CommodityType();
@@ -2466,10 +2463,9 @@ void Engine::FillRadar()
 	if(flagship)
 	{
 		const System *targetSystem = flagship->GetTargetSystem();
-		const set<const System *> &links =
-			(flagship->JumpNavigation().HasJumpDrive())
-				? playerSystem->JumpNeighbors(flagship->JumpNavigation().JumpRange())
-				: playerSystem->Links();
+		const set<const System *> &links = (flagship->JumpNavigation().HasJumpDrive())
+			? playerSystem->JumpNeighbors(flagship->JumpNavigation().JumpRange())
+			: playerSystem->Links();
 		for(const System *system : links)
 			if(player.HasSeen(*system))
 				radar[currentCalcBuffer].AddPointer(
@@ -2507,7 +2503,7 @@ void Engine::FillRadar()
 
 			// Check if this is a hostile ship.
 			hasHostiles |= (!ship->IsDisabled() && ship->GetGovernment()->IsEnemy() && ship->GetTargetShip()
-							&& ship->GetTargetShip()->IsYours());
+				&& ship->GetTargetShip()->IsYours());
 		}
 	// If hostile ships have appeared, play the siren.
 	if(alarmTime)

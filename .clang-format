@@ -32,9 +32,8 @@ AlwaysBreakTemplateDeclarations: true
 AlignAfterOpenBracket: DontAlign
 BreakBeforeTernaryOperators: true
 ColumnLimit: 110
-AlignOperands: Align
+AlignOperands: DontAlign
 BreakBeforeBinaryOperators: NonAssignment
-BreakArrays: true
 MaxEmptyLinesToKeep: 3
 FixNamespaceComments: false
 AllowShortFunctionsOnASingleLine: Inline

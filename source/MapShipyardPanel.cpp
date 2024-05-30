@@ -238,9 +238,8 @@ void MapShipyardPanel::DrawItems()
 				sprite = ship->GetSprite();
 
 			const string parking_details = onlyShowSoldHere || parkedInSystem == 0 ? ""
-										   : parkedInSystem == 1
-											   ? "1 ship parked"
-											   : Format::Number(parkedInSystem) + " ships parked";
+				: parkedInSystem == 1                                              ? "1 ship parked"
+									  : Format::Number(parkedInSystem) + " ships parked";
 			Draw(corner, sprite, ship->CustomSwizzle(), isForSale, ship == selected, ship->DisplayModelName(),
 				price, info, parking_details);
 			list.push_back(ship);

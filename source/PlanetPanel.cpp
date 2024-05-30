@@ -165,7 +165,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	else if(key == 'l')
 		selectedPanel = nullptr;
 	else if(key == 't' && hasAccess && planet.GetPort().HasService(Port::ServicesType::Trading)
-			&& system.HasTrade())
+		&& system.HasTrade())
 	{
 		selectedPanel = trading.get();
 		GetUI()->Push(trading);
@@ -363,7 +363,7 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 			for(int i = 0; i < detailedSize; ++i)
 			{
 				out << "\n" + to_string(it->second) + " "
-						   + (it->second == 1 ? it->first->DisplayName() : it->first->PluralName());
+						+ (it->second == 1 ? it->first->DisplayName() : it->first->PluralName());
 				++it;
 			}
 			int otherUniquesCount = 0;

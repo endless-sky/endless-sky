@@ -139,7 +139,7 @@ void ImageBuffer::ShrinkToHalfSize()
 			for(int channel = 0; channel < 4; ++channel, ++aIt, ++bIt, ++out)
 				*out = (static_cast<unsigned>(aIt[0]) + static_cast<unsigned>(bIt[0])
 						   + static_cast<unsigned>(aIt[4]) + static_cast<unsigned>(bIt[4]) + 2)
-					   / 4;
+					/ 4;
 		}
 	}
 	swap(width, result.width);
@@ -241,10 +241,10 @@ namespace {
 			string message = "Skipped processing \"" + path + "\":\n\tAll image frames must have equal ";
 			if(width && width != buffer.Width())
 				Logger::LogError(message + "width: expected " + to_string(buffer.Width()) + " but was "
-								 + to_string(width));
+					+ to_string(width));
 			if(height && height != buffer.Height())
 				Logger::LogError(message + "height: expected " + to_string(buffer.Height()) + " but was "
-								 + to_string(height));
+					+ to_string(height));
 			return false;
 		}
 
@@ -335,10 +335,10 @@ namespace {
 			string message = "Skipped processing \"" + path + "\":\t\tAll image frames must have equal ";
 			if(width && width != buffer.Width())
 				Logger::LogError(message + "width: expected " + to_string(buffer.Width()) + " but was "
-								 + to_string(width));
+					+ to_string(width));
 			if(height && height != buffer.Height())
 				Logger::LogError(message + "height: expected " + to_string(buffer.Height()) + " but was "
-								 + to_string(height));
+					+ to_string(height));
 			return false;
 		}
 

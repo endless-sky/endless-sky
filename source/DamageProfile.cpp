@@ -125,8 +125,10 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 	double shields = ship.ShieldLevel();
 	if(shields > 0.)
 	{
-		double piercing = max(0., min(1., weapon.Piercing() / (1. + attributes.Get("piercing protection"))
-											  - attributes.Get("piercing resistance")));
+		double piercing = max(0.,
+			min(1.,
+				weapon.Piercing() / (1. + attributes.Get("piercing protection"))
+					- attributes.Get("piercing resistance")));
 		double highPermeability = attributes.Get("high shield permeability");
 		double lowPermeability = attributes.Get("low shield permeability");
 		double permeability = 0.;
@@ -141,9 +143,9 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 		shieldFraction = (1. - min(piercing + permeability, 1.)) / (1. + ship.DisruptionLevel() * .01);
 
 		damage.shieldDamage = (weapon.ShieldDamage() + weapon.RelativeShieldDamage() * ship.MaxShields())
-							  * ScaleType(0., 0.,
-								  attributes.Get("shield protection")
-									  + (ship.IsCloaked() ? attributes.Get("cloak shield protection") : 0.));
+			* ScaleType(0., 0.,
+				attributes.Get("shield protection")
+					+ (ship.IsCloaked() ? attributes.Get("cloak shield protection") : 0.));
 		if(damage.shieldDamage > shields)
 			shieldFraction = min(shieldFraction, shields / damage.shieldDamage);
 	}
@@ -164,15 +166,15 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 		double hullFraction = hull / damage.hullDamage;
 		damage.hullDamage *= hullFraction;
 		damage.hullDamage += (weapon.DisabledDamage() + weapon.RelativeDisabledDamage() * ship.MaxHull())
-							 * totalHullProtection * (1. - hullFraction);
+			* totalHullProtection * (1. - hullFraction);
 	}
 	damage.energyDamage =
 		(weapon.EnergyDamage() + weapon.RelativeEnergyDamage() * attributes.Get("energy capacity"))
 		* ScaleType(.5, 0., attributes.Get("energy protection"));
 	damage.heatDamage = (weapon.HeatDamage() + weapon.RelativeHeatDamage() * ship.MaximumHeat())
-						* ScaleType(.5, 0., attributes.Get("heat protection"));
+		* ScaleType(.5, 0., attributes.Get("heat protection"));
 	damage.fuelDamage = (weapon.FuelDamage() + weapon.RelativeFuelDamage() * attributes.Get("fuel capacity"))
-						* ScaleType(.5, 0., attributes.Get("fuel protection"));
+		* ScaleType(.5, 0., attributes.Get("fuel protection"));
 
 	// DoT damage types with an instantaneous analog.
 	// Ion and burn damage are blocked 50% by shields.

@@ -113,7 +113,7 @@ namespace {
 	bool IsNotRequirement(const string &label)
 	{
 		return label == "automaton" || SCALE.find(label) != SCALE.end()
-			   || BOOLEAN_ATTRIBUTES.find(label) != BOOLEAN_ATTRIBUTES.end();
+			|| BOOLEAN_ATTRIBUTES.find(label) != BOOLEAN_ATTRIBUTES.end();
 	}
 }
 

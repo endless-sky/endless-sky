@@ -479,7 +479,7 @@ namespace { // test namespace
 				Format::ExpandConditions("__&[credits@balanced[][[]][]]__", getter) == "__4.361M credits__");
 			CHECK(Format::ExpandConditions("__&[tons@balanced[][[]][]]__", getter) == "__4,361,000 tons__");
 			CHECK(Format::ExpandConditions("__&[playtime@balanced[][[]][]]__", getter)
-				  == "__50d 11h 23m 20s__");
+				== "__50d 11h 23m 20s__");
 		}
 		SECTION("corner cases")
 		{
@@ -503,15 +503,15 @@ namespace { // test namespace
 			CHECK(Format::ExpandConditions("&[chicago@negative]", getter) == "negative five");
 			CHECK(Format::ExpandConditions("&[mla@negative]", getter) == "negative five");
 			CHECK(Format::ExpandConditions("&[words@big test]", getter)
-				  == "thirty billion one hundred three million ten thousand three hundred one");
+				== "thirty billion one hundred three million ten thousand three hundred one");
 			CHECK(Format::ExpandConditions("&[chicago@big test]", getter) == "30,103,010,301");
 			CHECK(Format::ExpandConditions("&[mla@big test]", getter) == "30,103,010,301");
 			CHECK(Format::ExpandConditions("&[Words@big test]", getter)
-				  == "Thirty billion one hundred three million ten thousand three hundred one");
+				== "Thirty billion one hundred three million ten thousand three hundred one");
 			CHECK(Format::ExpandConditions("&[Chicago@big test]", getter)
-				  == "Thirty billion one hundred three million ten thousand three hundred one");
+				== "Thirty billion one hundred three million ten thousand three hundred one");
 			CHECK(Format::ExpandConditions("&[Mla@big test]", getter)
-				  == "Thirty billion one hundred three million ten thousand three hundred one");
+				== "Thirty billion one hundred three million ten thousand three hundred one");
 			CHECK(Format::ExpandConditions("&[words@twelve thousand]", getter) == "twelve thousand");
 			CHECK(Format::ExpandConditions("&[chicago@twelve thousand]", getter) == "twelve thousand");
 			CHECK(Format::ExpandConditions("&[mla@twelve thousand]", getter) == "12,000");

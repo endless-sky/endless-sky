@@ -133,7 +133,7 @@ void Fleet::Load(const DataNode &node)
 
 	if(variants.empty())
 		node.PrintTrace("Warning: " + (fleetName.empty() ? "unnamed fleet" : "Fleet \"" + fleetName + "\"")
-						+ " contains no variants:");
+			+ " contains no variants:");
 }
 
 
@@ -175,9 +175,8 @@ void Fleet::RemoveInvalidVariants()
 		return;
 
 	Logger::LogError("Warning: " + (fleetName.empty() ? "unnamed fleet" : "fleet \"" + fleetName + "\"")
-					 + ": Removing " + to_string(count) + " invalid " + (count > 1 ? "variants" : "variant")
-					 + " (" + to_string(total - variants.TotalWeight()) + " of " + to_string(total)
-					 + " weight)");
+		+ ": Removing " + to_string(count) + " invalid " + (count > 1 ? "variants" : "variant") + " ("
+		+ to_string(total - variants.TotalWeight()) + " of " + to_string(total) + " weight)");
 }
 
 
@@ -319,7 +318,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 			{
 				// Log this error.
 				Logger::LogError("Fleet::Enter: Unable to find valid stellar object for planet \""
-								 + planet->TrueName() + "\" in system \"" + system.Name() + "\"");
+					+ planet->TrueName() + "\" in system \"" + system.Name() + "\"");
 				return;
 			}
 
@@ -438,11 +437,11 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 const System *Fleet::Enter(const System &system, Ship &ship, const System *source)
 {
 	bool canEnter = (source != nullptr
-					 || any_of(system.Links().begin(), system.Links().end(),
-						 [&ship](const System *link) noexcept -> bool
-						 {
-							 return !ship.IsRestrictedFrom(*link);
-						 }));
+		|| any_of(system.Links().begin(), system.Links().end(),
+			[&ship](const System *link) noexcept -> bool
+			{
+				return !ship.IsRestrictedFrom(*link);
+			}));
 
 	if(!canEnter || system.Links().empty() || (source && !system.Links().count(source)))
 	{
@@ -522,7 +521,7 @@ vector<shared_ptr<Ship>> Fleet::Instantiate(const vector<const Ship *> &ships) c
 		if(!model->IsValid())
 		{
 			Logger::LogError("Warning: Skipping invalid ship model \"" + model->TrueModelName()
-							 + "\" in fleet \"" + fleetName + "\".");
+				+ "\" in fleet \"" + fleetName + "\".");
 			continue;
 		}
 

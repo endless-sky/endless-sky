@@ -441,7 +441,7 @@ Personality Personality::Defender()
 {
 	Personality defender;
 	defender.flags = bitset<PERSONALITY_COUNT>((1LL << STAYING) | (1LL << MARKED) | (1LL << HUNTING)
-											   | (1LL << DARING) | (1LL << UNCONSTRAINED) | (1LL << TARGET));
+		| (1LL << DARING) | (1LL << UNCONSTRAINED) | (1LL << TARGET));
 	return defender;
 }
 

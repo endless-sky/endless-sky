@@ -422,7 +422,7 @@ bool Hardpoint::FireSpecialSystem(Ship &ship, const Body &body, std::vector<Visu
 
 	// Precompute the number of visuals that will be added.
 	visuals.reserve(visuals.size() + outfit->FireEffects().size() + outfit->HitEffects().size()
-					+ outfit->DieEffects().size());
+		+ outfit->DieEffects().size());
 
 	angle = aim - facing;
 	start += aim.Rotate(outfit->HardpointOffset());

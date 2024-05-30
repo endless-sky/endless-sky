@@ -308,11 +308,10 @@ void Table::Draw(const string &text, const Layout *special, const Color &color) 
 	if(font && !columns.empty())
 	{
 		const auto &layout = special ? *special : it->layout;
-		const double alignmentOffset = layout.align == Alignment::RIGHT    ? -1.
-									   : layout.align == Alignment::CENTER ? -0.5
-																		   : 0.;
-		auto pos =
-			point
+		const double alignmentOffset = layout.align == Alignment::RIGHT ? -1.
+			: layout.align == Alignment::CENTER                         ? -0.5
+																		: 0.;
+		auto pos = point
 			+ Point(
 				it->offset + alignmentOffset * (layout.width >= 0 ? layout.width : font->Width(text)), 0.);
 		font->Draw({text, layout}, pos, color);

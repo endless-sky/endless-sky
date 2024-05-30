@@ -210,8 +210,8 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	else if(key == 'o' && page == 'p')
 		Files::OpenUserPluginFolder();
 	else if((key == 'n' || key == SDLK_PAGEUP)
-			&& ((page == 'c' && currentControlsPage < CONTROLS_PAGE_COUNT - 1)
-				|| (page == 's' && currentSettingsPage < SETTINGS_PAGE_COUNT - 1)))
+		&& ((page == 'c' && currentControlsPage < CONTROLS_PAGE_COUNT - 1)
+			|| (page == 's' && currentSettingsPage < SETTINGS_PAGE_COUNT - 1)))
 	{
 		if(page == 'c')
 			++currentControlsPage;
@@ -221,7 +221,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		selectedItem.clear();
 	}
 	else if((key == 'r' || key == SDLK_PAGEDOWN)
-			&& ((page == 'c' && currentControlsPage > 0) || (page == 's' && currentSettingsPage > 0)))
+		&& ((page == 'c' && currentControlsPage > 0) || (page == 's' && currentSettingsPage > 0)))
 	{
 		if(page == 'c')
 			--currentControlsPage;
@@ -879,8 +879,7 @@ void PreferencesPanel::DrawPlugins()
 		Rectangle zoneBounds = spriteBounds + pluginListBox.Center();
 
 		// Only include the zone as clickable if it's within the drawing area.
-		bool displayed =
-			table.GetPoint().Y() > pluginListClip->Top() - 20
+		bool displayed = table.GetPoint().Y() > pluginListClip->Top() - 20
 			&& table.GetPoint().Y() < pluginListClip->Bottom() - table.GetRowBounds().Height() + 20;
 		if(displayed)
 			AddZone(zoneBounds,

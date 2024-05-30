@@ -258,7 +258,7 @@ void Ship::Load(const DataNode &node)
 		if(add && (child.Size() < 2 || child.Token(1) != "attributes"))
 		{
 			child.PrintTrace("Skipping invalid use of 'add' with "
-							 + (child.Size() < 2 ? "no key." : "key: " + child.Token(1)));
+				+ (child.Size() < 2 ? "no key." : "key: " + child.Token(1)));
 			continue;
 		}
 		if(key == "sprite")
@@ -300,8 +300,8 @@ void Ship::Load(const DataNode &node)
 			bool steering = (key == "steering engine");
 
 			vector<EnginePoint> &editPoints = (!steering && !reverse)
-												  ? enginePoints
-												  : (reverse ? reverseEnginePoints : steeringEnginePoints);
+				? enginePoints
+				: (reverse ? reverseEnginePoints : steeringEnginePoints);
 			editPoints.emplace_back(
 				0.5 * child.Value(1), 0.5 * child.Value(2), (child.Size() > 3 ? child.Value(3) : 1.));
 			EnginePoint &engine = editPoints.back();
@@ -383,7 +383,7 @@ void Ship::Load(const DataNode &node)
 						drawUnder = false;
 					else
 						grand.PrintTrace("Warning: Child nodes of \"" + key
-										 + "\" tokens can only be \"angle\", \"parallel\", or \"arc\":");
+							+ "\" tokens can only be \"angle\", \"parallel\", or \"arc\":");
 
 					if(needToCheckAngles && !defaultBaseAngle && !attributes.isOmnidirectional)
 					{
@@ -408,7 +408,7 @@ void Ship::Load(const DataNode &node)
 		else if(key == "uncapturable")
 			isCapturable = false;
 		else if(((key == "fighter" || key == "drone") && child.Size() >= 3)
-				|| (key == "bay" && child.Size() >= 4))
+			|| (key == "bay" && child.Size() >= 4))
 		{
 			// While the `drone` and `fighter` keywords are supported for backwards compatibility, the
 			// standard format is `bay <ship-category>`, with the same signature for other values.
@@ -594,7 +594,7 @@ void Ship::Load(const DataNode &node)
 			if(displayModelName.back() == 's' || displayModelName.back() == 'z')
 				node.PrintTrace("Warning: explicit plural name definition required, but none is provided. "
 								"Defaulting to \""
-								+ pluralModelName + "\".");
+					+ pluralModelName + "\".");
 		}
 	}
 }
@@ -786,7 +786,7 @@ void Ship::FinishLoading(bool isNewInstance)
 			message = variantName.empty() ? "Stock ship \"" + trueModelName + "\": "
 										  : trueModelName + " variant \"" + variantName + "\": ";
 			message += to_string(undefinedOutfits.size()) + " undefined outfit" + (plural ? "s" : "")
-					   + " installed.";
+				+ " installed.";
 		}
 
 		Logger::LogError(message);
@@ -862,7 +862,7 @@ void Ship::FinishLoading(bool isNewInstance)
 	if(attributes.Get("drag") <= 0.)
 	{
 		warning += "Defaulting " + string(attributes.Get("drag") ? "invalid" : "missing")
-				   + " \"drag\" attribute to 100.0\n";
+			+ " \"drag\" attribute to 100.0\n";
 		attributes.Set("drag", 100.);
 	}
 
@@ -899,15 +899,15 @@ void Ship::FinishLoading(bool isNewInstance)
 	if(!isNewInstance && targetSystem)
 	{
 		string message = "Warning: " + string(isYours ? "player-owned " : "NPC ") + trueModelName + " \""
-						 + name + "\": Cannot reach target system \"" + targetSystem->Name();
+			+ name + "\": Cannot reach target system \"" + targetSystem->Name();
 		if(!currentSystem)
 		{
 			Logger::LogError(message + "\" (no current system).");
 			targetSystem = nullptr;
 		}
 		else if(!currentSystem->Links().count(targetSystem)
-				&& (!navigation.JumpRange()
-					|| !currentSystem->JumpNeighbors(navigation.JumpRange()).count(targetSystem)))
+			&& (!navigation.JumpRange()
+				|| !currentSystem->JumpNeighbors(navigation.JumpRange()).count(targetSystem)))
 		{
 			Logger::LogError(
 				message + "\" by hyperlink or jump from system \"" + currentSystem->Name() + ".\"");
@@ -1919,8 +1919,8 @@ int Ship::Scan(const PlayerInfo &player)
 		// For fast scan rates, apply an exponential drop-off to prevent insta-scanning.
 		else
 			elapsed += SCAN_TIME
-					   - (SCAN_TIME - LINEAR_RATE)
-							 * exp(-(progress - LINEAR_RATE) / SCAN_TIME / SCAN_DROPOFF_EXPONENT);
+				- (SCAN_TIME - LINEAR_RATE)
+					* exp(-(progress - LINEAR_RATE) / SCAN_TIME / SCAN_DROPOFF_EXPONENT);
 
 		if(elapsed >= SCAN_TIME)
 			result |= event;
@@ -1960,18 +1960,17 @@ int Ship::Scan(const PlayerInfo &player)
 	}
 	else if(startedScanning && target->isYours && isImportant)
 		Messages::Add("The " + government->GetName() + " " + Noun() + " \"" + Name()
-						  + "\" is attempting to scan your ship \"" + target->Name() + "\".",
+				+ "\" is attempting to scan your ship \"" + target->Name() + "\".",
 			Messages::Importance::Low);
 
 	if(target->isYours && !isYours && isImportant)
 	{
 		if(result & ShipEvent::SCAN_CARGO)
 			Messages::Add("The " + government->GetName() + " " + Noun() + " \"" + Name()
-							  + "\" completed its cargo scan of your ship \"" + target->Name() + "\".",
+					+ "\" completed its cargo scan of your ship \"" + target->Name() + "\".",
 				Messages::Importance::High);
 		if(result & ShipEvent::SCAN_OUTFITS)
-			Messages::Add(
-				"The " + government->GetName() + " " + Noun() + " \"" + Name()
+			Messages::Add("The " + government->GetName() + " " + Noun() + " \"" + Name()
 					+ "\" completed its outfit scan of your ship \"" + target->Name()
 					+ (target->Attributes().Get("inscrutable") > 0. ? "\" with no useful results." : "\"."),
 				Messages::Importance::High);
@@ -2176,7 +2175,7 @@ bool Ship::IsCapturable() const
 bool Ship::IsTargetable() const
 {
 	return (zoom == 1.f && !explosionRate && !forget && !isInvisible && !IsCloaked() && hull >= 0.
-			&& hyperspaceCount < 70);
+		&& hyperspaceCount < 70);
 }
 
 
@@ -2241,7 +2240,7 @@ bool Ship::CanLand() const
 bool Ship::CannotAct(ActionType actionType) const
 {
 	bool cannotAct = zoom != 1.f || isDisabled || hyperspaceCount || pilotError
-					 || (actionType == ActionType::COMMUNICATION && !Crew());
+		|| (actionType == ActionType::COMMUNICATION && !Crew());
 	if(cannotAct)
 		return true;
 	bool canActCloaked = true;
@@ -2362,9 +2361,9 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 
 	// If the system has a departure distance the ship is only allowed to leave the system
 	// if it is beyond this distance.
-	double departure =
-		isJump ? currentSystem->JumpDepartureDistance() * currentSystem->JumpDepartureDistance()
-			   : currentSystem->HyperDepartureDistance() * currentSystem->HyperDepartureDistance();
+	double departure = isJump
+		? currentSystem->JumpDepartureDistance() * currentSystem->JumpDepartureDistance()
+		: currentSystem->HyperDepartureDistance() * currentSystem->HyperDepartureDistance();
 	if(position.LengthSquared() <= departure)
 		return false;
 
@@ -2996,7 +2995,7 @@ double Ship::Acceleration() const
 {
 	double thrust = attributes.Get("thrust");
 	return (thrust ? thrust : attributes.Get("afterburner thrust")) / InertialMass()
-		   * (1. + attributes.Get("acceleration multiplier"));
+		* (1. + attributes.Get("acceleration multiplier"));
 }
 
 
@@ -3016,7 +3015,7 @@ double Ship::MaxVelocity(bool withAfterburner) const
 double Ship::ReverseAcceleration() const
 {
 	return attributes.Get("reverse thrust") / InertialMass()
-		   * (1. + attributes.Get("acceleration multiplier"));
+		* (1. + attributes.Get("acceleration multiplier"));
 }
 
 
@@ -3363,9 +3362,9 @@ void Ship::Jettison(const Outfit *outfit, int count, bool wasAppeasing)
 
 	const Government *notForGov = wasAppeasing ? GetGovernment() : nullptr;
 
-	const int perBox = (mass <= 0.)                     ? count
-					   : (mass > Flotsam::TONS_PER_BOX) ? 1
-														: static_cast<int>(Flotsam::TONS_PER_BOX / mass);
+	const int perBox = (mass <= 0.)      ? count
+		: (mass > Flotsam::TONS_PER_BOX) ? 1
+										 : static_cast<int>(Flotsam::TONS_PER_BOX / mass);
 	while(count > 0)
 	{
 		jettisoned.emplace_back(new Flotsam(outfit, (perBox < count) ? perBox : count, notForGov));
@@ -3495,7 +3494,7 @@ bool Ship::CanFire(const Weapon *weapon) const
 	// If a weapon requires heat to fire, (rather than generating heat), we must
 	// have enough heat to spare.
 	if(heat < -(weapon->FiringHeat()
-				+ (!weapon->RelativeFiringHeat() ? 0. : weapon->RelativeFiringHeat() * MaximumHeat())))
+		   + (!weapon->RelativeFiringHeat() ? 0. : weapon->RelativeFiringHeat() * MaximumHeat())))
 		return false;
 	// Repeat this for various effects which shouldn't drop below 0.
 	if(ionization < -weapon->FiringIon())
@@ -3876,7 +3875,7 @@ void Ship::DoGeneration()
 
 		const double hullAvailable = (attributes.Get("hull repair rate")
 										 + (hullDelay ? 0 : attributes.Get("delayed hull repair rate")))
-									 * (1. + attributes.Get("hull repair multiplier"));
+			* (1. + attributes.Get("hull repair multiplier"));
 		const double hullEnergy =
 			(attributes.Get("hull energy") + (hullDelay ? 0 : attributes.Get("delayed hull energy")))
 			* (1. + attributes.Get("hull energy multiplier")) / hullAvailable;
@@ -3891,7 +3890,7 @@ void Ship::DoGeneration()
 
 		const double shieldsAvailable = (attributes.Get("shield generation")
 											+ (shieldDelay ? 0 : attributes.Get("delayed shield generation")))
-										* (1. + attributes.Get("shield generation multiplier"));
+			* (1. + attributes.Get("shield generation multiplier"));
 		const double shieldsEnergy =
 			(attributes.Get("shield energy") + (shieldDelay ? 0 : attributes.Get("delayed shield energy")))
 			* (1. + attributes.Get("shield energy multiplier")) / shieldsAvailable;
@@ -4221,9 +4220,8 @@ void Ship::DoCloakDecision()
 	const double cloakingEnergy = attributes.Get("cloaking energy");
 	const double cloakingHull = attributes.Get("cloaking hull");
 	const double cloakingShield = attributes.Get("cloaking shields");
-	bool canCloak =
-		(!isDisabled && cloakingSpeed > 0. && !cloakDisruption && fuel >= cloakingFuel
-			&& energy >= cloakingEnergy && MinimumHull() < hull - cloakingHull && shields >= cloakingShield);
+	bool canCloak = (!isDisabled && cloakingSpeed > 0. && !cloakDisruption && fuel >= cloakingFuel
+		&& energy >= cloakingEnergy && MinimumHull() < hull - cloakingHull && shields >= cloakingShield);
 	if(commands.Has(Command::CLOAK) && canCloak)
 	{
 		cloak = min(1., max(0., cloak + cloakingSpeed));
@@ -4448,7 +4446,7 @@ bool Ship::DoLandingLogic()
 	}
 	// Only refuel if this planet has a spaceport.
 	else if(fuel >= attributes.Get("fuel capacity") || !landingPlanet
-			|| !landingPlanet->GetPort().CanRecharge(Port::RechargeType::Fuel))
+		|| !landingPlanet->GetPort().CanRecharge(Port::RechargeType::Fuel))
 	{
 		zoom = min(1.f, zoom + landingSpeed);
 		SetTargetStellar(nullptr);
@@ -4619,36 +4617,30 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 				{
 					double scale = fabs(thrustCommand);
 
-					shields -=
-						scale
+					shields -= scale
 						* attributes.Get(isThrusting ? "thrusting shields" : "reverse thrusting shields");
 					hull -= scale * attributes.Get(isThrusting ? "thrusting hull" : "reverse thrusting hull");
 					energy -=
 						scale * attributes.Get(isThrusting ? "thrusting energy" : "reverse thrusting energy");
 					fuel -= scale * attributes.Get(isThrusting ? "thrusting fuel" : "reverse thrusting fuel");
 					heat += scale * attributes.Get(isThrusting ? "thrusting heat" : "reverse thrusting heat");
-					discharge +=
-						scale
+					discharge += scale
 						* attributes.Get(isThrusting ? "thrusting discharge" : "reverse thrusting discharge");
-					corrosion +=
-						scale
+					corrosion += scale
 						* attributes.Get(isThrusting ? "thrusting corrosion" : "reverse thrusting corrosion");
 					ionization +=
 						scale * attributes.Get(isThrusting ? "thrusting ion" : "reverse thrusting ion");
-					scrambling +=
-						scale
+					scrambling += scale
 						* attributes.Get(isThrusting ? "thrusting scramble" : "reverse thrusting scramble");
 					burning +=
 						scale * attributes.Get(isThrusting ? "thrusting burn" : "reverse thrusting burn");
-					leakage +=
-						scale
+					leakage += scale
 						* attributes.Get(isThrusting ? "thrusting leakage" : "reverse thrusting leakage");
-					slowness +=
-						scale
+					slowness += scale
 						* attributes.Get(isThrusting ? "thrusting slowing" : "reverse thrusting slowing");
 					disruption += scale
-								  * attributes.Get(
-									  isThrusting ? "thrusting disruption" : "reverse thrusting disruption");
+						* attributes.Get(
+							isThrusting ? "thrusting disruption" : "reverse thrusting disruption");
 
 					acceleration +=
 						angle.Unit() * thrustCommand * (isThrusting ? Acceleration() : ReverseAcceleration());
@@ -4656,7 +4648,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 			}
 		}
 		bool applyAfterburner = (commands.Has(Command::AFTERBURNER) || (thrustCommand > 0. && !thrust))
-								&& !CannotAct(Ship::ActionType::AFTERBURNER);
+			&& !CannotAct(Ship::ActionType::AFTERBURNER);
 		if(applyAfterburner)
 		{
 			thrust = attributes.Get("afterburner thrust");
@@ -4761,7 +4753,7 @@ void Ship::StepTargeting()
 			if(!target->IsDisabled() && government->IsEnemy(target->government))
 				isBoarding = false;
 			else if(target->IsDestroyed() || target->IsLanding() || target->IsHyperspacing()
-					|| target->GetSystem() != GetSystem())
+				|| target->GetSystem() != GetSystem())
 				isBoarding = false;
 		}
 		if(isBoarding && !pilotError)
@@ -4799,7 +4791,7 @@ void Ship::StepTargeting()
 					if(isEnemy && Random::Real() < target->Attributes().Get("self destruct"))
 					{
 						Messages::Add("The " + target->DisplayModelName() + " \"" + target->Name()
-										  + "\" has activated its self-destruct mechanism.",
+								+ "\" has activated its self-destruct mechanism.",
 							Messages::Importance::High);
 						GetTargetShip()->SelfDestruct();
 					}
@@ -4877,8 +4869,7 @@ double Ship::MinimumHull() const
 
 	double thresholdPercent = attributes.Get("threshold percentage");
 	double transition = 1 / (1 + 0.0005 * maximumHull);
-	double minimumHull =
-		maximumHull
+	double minimumHull = maximumHull
 		* (thresholdPercent > 0. ? min(thresholdPercent, 1.) : 0.1 * (1. - transition) + 0.5 * transition);
 
 	return max(0., floor(minimumHull + attributes.Get("hull threshold")));
@@ -4980,20 +4971,20 @@ double Ship::CalculateDeterrence() const
 			// Shield and hull damage are the primary damage types that dictate combat, so
 			// consider the full damage dealt by these types for the strength of a weapon.
 			double shieldFactor = weapon->ShieldDamage() + weapon->RelativeShieldDamage() * MaxShields()
-								  + weapon->DischargeDamage() * 100.;
+				+ weapon->DischargeDamage() * 100.;
 			double hullFactor = weapon->HullDamage() + weapon->RelativeHullDamage() * MaxHull()
-								+ weapon->CorrosionDamage() * 100.;
+				+ weapon->CorrosionDamage() * 100.;
 
 			// Other damage types don't outright destroy ships, so they aren't considered
 			// as heavily in the strength of a weapon.
 			double energyFactor = weapon->EnergyDamage()
-								  + weapon->RelativeEnergyDamage() * attributes.Get("energy capacity")
-								  + weapon->IonDamage() * 100.;
+				+ weapon->RelativeEnergyDamage() * attributes.Get("energy capacity")
+				+ weapon->IonDamage() * 100.;
 			double heatFactor = weapon->HeatDamage() + weapon->RelativeHeatDamage() * MaximumHeat()
-								+ weapon->BurnDamage() * 100.;
+				+ weapon->BurnDamage() * 100.;
 			double fuelFactor = weapon->FuelDamage()
-								+ weapon->RelativeFuelDamage() * attributes.Get("fuel capacity")
-								+ weapon->LeakDamage() * 100.;
+				+ weapon->RelativeFuelDamage() * attributes.Get("fuel capacity")
+				+ weapon->LeakDamage() * 100.;
 			double scramblingFactor = weapon->ScramblingDamage() * 100.;
 			double slowingFactor = weapon->SlowingDamage() * 100.;
 			double disruptionFactor = weapon->DisruptionDamage() * 100.;
@@ -5001,9 +4992,9 @@ double Ship::CalculateDeterrence() const
 			// Disabled and asteroid damage are ignored because they don't matter in combat.
 
 			double strength = shieldFactor + hullFactor
-							  + 0.2
-									* (energyFactor + heatFactor + fuelFactor + scramblingFactor
-										+ slowingFactor + disruptionFactor);
+				+ 0.2
+					* (energyFactor + heatFactor + fuelFactor + scramblingFactor + slowingFactor
+						+ disruptionFactor);
 			tempDeterrence += .12 * strength / weapon->Reload();
 		}
 	return tempDeterrence;

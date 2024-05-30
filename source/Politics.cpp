@@ -51,7 +51,7 @@ namespace {
 	bool EvadesOutfitScan(const Ship &ship)
 	{
 		return ship.Attributes().Get("inscrutable") > 0.
-			   || Random::Real() > 1. / (1. + ship.Attributes().Get("scan interference"));
+			|| Random::Real() > 1. / (1. + ship.Attributes().Get("scan interference"));
 	}
 }
 
@@ -170,7 +170,7 @@ bool Politics::CanLand(const Ship &ship, const Planet *planet) const
 	const Government *gov = ship.GetGovernment();
 	if(!gov->IsPlayer())
 		return !ship.IsRestrictedFrom(*planet)
-			   && (!planet->IsInhabited() || !IsEnemy(gov, planet->GetGovernment()));
+			&& (!planet->IsInhabited() || !IsEnemy(gov, planet->GetGovernment()));
 
 	return CanLand(planet);
 }
@@ -315,8 +315,8 @@ string Politics::Fine(
 		if(failedMissions && maxFine > 0)
 		{
 			reason += "\n\tYou failed " + Format::Number(failedMissions)
-					  + ((failedMissions > 1) ? " missions" : " mission")
-					  + " after your illegal cargo was discovered.";
+				+ ((failedMissions > 1) ? " missions" : " mission")
+				+ " after your illegal cargo was discovered.";
 		}
 	}
 
@@ -327,9 +327,9 @@ string Politics::Fine(
 			reason = "atrocity";
 		else
 			reason = "After scanning your ship, the " + gov->GetName()
-					 + " captain hails you with a grim expression on his face. He says, "
-					   "\"I'm afraid we're going to have to put you to death "
-					 + reason + " Goodbye.\"";
+				+ " captain hails you with a grim expression on his face. He says, "
+				  "\"I'm afraid we're going to have to put you to death "
+				+ reason + " Goodbye.\"";
 	}
 	else if(maxFine > 0)
 	{

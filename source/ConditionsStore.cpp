@@ -456,8 +456,8 @@ bool ConditionsStore::VerifyProviderLocation(const string &name, DerivedProvider
 	if(ce.provider && ce.provider->isPrefixProvider
 		&& 0 == name.compare(0, ce.provider->name.length(), ce.provider->name))
 		throw runtime_error("Error: not adding provider for \"" + name
-							+ "\""
-							  ", because it is within range of prefixed derived provider \""
-							+ ce.provider->name + "\".");
+			+ "\""
+			  ", because it is within range of prefixed derived provider \""
+			+ ce.provider->name + "\".");
 	return true;
 }

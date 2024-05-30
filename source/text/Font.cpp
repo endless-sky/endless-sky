@@ -184,8 +184,9 @@ void Font::DrawAliased(const string &str, double x, double y, const Color &color
 		if(underlineChar)
 		{
 			glUniform1i(glyphI, underscoreGlyph);
-			glUniform1f(aspectI, static_cast<float>(advance[glyph * GLYPHS] + KERN)
-									 / (advance[underscoreGlyph * GLYPHS] + KERN));
+			glUniform1f(aspectI,
+				static_cast<float>(advance[glyph * GLYPHS] + KERN)
+					/ (advance[underscoreGlyph * GLYPHS] + KERN));
 
 			glUniform2fv(positionI, 1, textPos);
 

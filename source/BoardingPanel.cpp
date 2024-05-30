@@ -84,9 +84,9 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 		// Merge the outfit lists from the ship itself and its cargo bay. If an
 		// outfit exists in both locations, combine the counts.
 		bool shipIsFirst = (cit == victim->Cargo().Outfits().end()
-							|| (sit != victim->Outfits().end() && sit->first <= cit->first));
+			|| (sit != victim->Outfits().end() && sit->first <= cit->first));
 		bool cargoIsFirst = (sit == victim->Outfits().end()
-							 || (cit != victim->Cargo().Outfits().end() && cit->first <= sit->first));
+			|| (cit != victim->Cargo().Outfits().end() && cit->first <= sit->first));
 		if(shipIsFirst)
 		{
 			outfit = sit->first;
@@ -268,8 +268,8 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 			plunder[selected].Take(count);
 	}
 	else if(!isCapturing
-			&& (key == SDLK_UP || key == SDLK_DOWN || key == SDLK_PAGEUP || key == SDLK_PAGEDOWN
-				|| key == SDLK_HOME || key == SDLK_END))
+		&& (key == SDLK_UP || key == SDLK_DOWN || key == SDLK_PAGEUP || key == SDLK_PAGEDOWN
+			|| key == SDLK_HOME || key == SDLK_END))
 		DoKeyboardNavigation(key);
 	else if(key == 'c' && CanCapture())
 	{
@@ -349,7 +349,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 			int enemyCasualties = enemyStartCrew - victim->Crew();
 			if(yourCasualties && enemyCasualties)
 				messages.back() += "You lose " + to_string(yourCasualties) + " crew; they lose "
-								   + to_string(enemyCasualties) + ".";
+					+ to_string(enemyCasualties) + ".";
 			else if(yourCasualties)
 				messages.back() += "You lose " + to_string(yourCasualties) + " crew.";
 			else if(enemyCasualties)

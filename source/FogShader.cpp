@@ -145,8 +145,8 @@ void FogShader::Draw(const Point &center, double zoom, const PlayerInfo &player)
 	// come back to the original, and view the map again without viewing it in
 	// between. But, that's an unlikely situation.
 	bool shouldRegenerate = (zoom != previousZoom || center.X() != previousCenter.X()
-							 || center.Y() != previousCenter.Y() || left != previousLeft || top != previousTop
-							 || columns != previousColumns || rows != previousRows);
+		|| center.Y() != previousCenter.Y() || left != previousLeft || top != previousTop
+		|| columns != previousColumns || rows != previousRows);
 	if(shouldRegenerate)
 	{
 		bool sizeChanged = (!texture || columns != previousColumns || rows != previousRows);

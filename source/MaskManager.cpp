@@ -56,7 +56,7 @@ void MaskManager::RegisterScale(const Sprite *sprite, double scale)
 		scales.emplace_hint(lb, scale, vector<Mask>{});
 	else if(!lb->second.empty())
 		Logger::LogError("Collision mask for sprite \"" + sprite->Name() + "\" at scale " + PrintScale(scale)
-						 + " was already generated.");
+			+ " was already generated.");
 }
 
 

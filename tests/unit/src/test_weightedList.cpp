@@ -468,8 +468,8 @@ namespace { // test namespace
 						return pow(difference, 2) / expected;
 					};
 					return toTermValue(summary.at(first.GetValue()), toExpected(weights[0]))
-						   + toTermValue(summary.at(second.GetValue()), toExpected(weights[1]))
-						   + toTermValue(summary.at(third.GetValue()), toExpected(weights[2]));
+						+ toTermValue(summary.at(second.GetValue()), toExpected(weights[1]))
+						+ toTermValue(summary.at(third.GetValue()), toExpected(weights[2]));
 				};
 				const unsigned totalPicks = 1 << 16;
 				THEN("each item is selectable in accordance with its weight")

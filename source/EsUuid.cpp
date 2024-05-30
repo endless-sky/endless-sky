@@ -88,7 +88,7 @@ namespace es_uuid {
 			auto result = UuidCompare(const_cast<UUID *>(&a.id), const_cast<UUID *>(&b.id), &status);
 			if(status != RPC_S_OK)
 				throw std::runtime_error("Fatal error comparing UUIDs \"" + Serialize(a.id) + "\" and \""
-										 + Serialize(b.id) + "\"");
+					+ Serialize(b.id) + "\"");
 			return result;
 		}
 #else

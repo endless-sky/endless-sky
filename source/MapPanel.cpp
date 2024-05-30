@@ -365,7 +365,7 @@ void MapPanel::FinishDrawing(const string &buttonCondition)
 			// "active escorts." Otherwise, just call them "escorts."
 			if(t.activeShips && t.parkedShips)
 				tooltip += to_string(t.activeShips)
-						   + (t.activeShips == 1 ? " active escort\n" : " active escorts\n");
+					+ (t.activeShips == 1 ? " active escort\n" : " active escorts\n");
 			else if(t.activeShips)
 				tooltip += to_string(t.activeShips) + (t.activeShips == 1 ? " escort" : " escorts");
 			if(t.parkedShips)
@@ -989,7 +989,7 @@ void MapPanel::UpdateCache()
 		if(!player.CanView(system))
 			color = UnexploredColor();
 		else if(system.IsInhabited(player.Flagship()) || commodity == SHOW_SPECIAL
-				|| commodity == SHOW_VISITED || commodity == SHOW_DANGER)
+			|| commodity == SHOW_VISITED || commodity == SHOW_DANGER)
 		{
 			if(commodity >= SHOW_SPECIAL)
 			{
@@ -1466,9 +1466,9 @@ void MapPanel::DrawMissions()
 		pair<bool, bool> blink = BlinkMissionIndicator(player, mission, step);
 		bool isSatisfied = IsSatisfied(player, mission) && blink.second;
 		DrawPointer(system, it.drawn,
-			blink.first   ? black
-			: isSatisfied ? currentColor
-						  : blockedColor,
+			blink.first       ? black
+				: isSatisfied ? currentColor
+							  : blockedColor,
 			isSatisfied);
 
 		for(const System *waypoint : mission.Waypoints())

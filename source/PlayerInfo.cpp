@@ -321,11 +321,11 @@ void PlayerInfo::Load(const string &path)
 			cargo.AddMissionCargo(&missions.back());
 		}
 		else if((child.Token(0) == "mission cargo" || child.Token(0) == "mission passengers")
-				&& child.HasChildren())
+			&& child.HasChildren())
 		{
 			map<string, map<string, int>> &toDistribute = (child.Token(0) == "mission cargo")
-															  ? missionCargoToDistribute
-															  : missionPassengersToDistribute;
+				? missionCargoToDistribute
+				: missionPassengersToDistribute;
 			for(const DataNode &grand : child)
 				if(grand.Token(0) == "player ships" && grand.HasChildren())
 					for(const DataNode &great : grand)
@@ -1625,8 +1625,8 @@ void PlayerInfo::Land(UI *ui)
 		{
 			flagship->AddCrew(added);
 			Messages::Add("You hire " + to_string(added)
-							  + (added == 1 ? " extra crew member to fill your now-empty bunk."
-											: " extra crew members to fill your now-empty bunks."),
+					+ (added == 1 ? " extra crew member to fill your now-empty bunk."
+								  : " extra crew members to fill your now-empty bunks."),
 				Messages::Importance::High);
 		}
 	}
@@ -1771,7 +1771,7 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 		{
 			if(it.first->IsVisible())
 				Messages::Add("Mission \"" + it.first->Name()
-								  + "\" aborted because you do not have space for the cargo.",
+						+ "\" aborted because you do not have space for the cargo.",
 					Messages::Importance::Highest);
 			missionsToRemove.push_back(it.first);
 		}
@@ -1780,7 +1780,7 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 		{
 			if(it.first->IsVisible())
 				Messages::Add("Mission \"" + it.first->Name()
-								  + "\" aborted because you do not have enough passenger bunks free.",
+						+ "\" aborted because you do not have enough passenger bunks free.",
 					Messages::Importance::Highest);
 			missionsToRemove.push_back(it.first);
 		}
@@ -2148,7 +2148,7 @@ bool PlayerInfo::CaptureOverriden(const shared_ptr<Ship> &ship) const
 			if(mission.OverridesCapture() && !mission.IsFailed(*this) && mission.SourceShip() == ship.get())
 				return true;
 	return mission && mission->OverridesCapture() && !mission->IsFailed(*this)
-		   && mission->SourceShip() == ship.get();
+		&& mission->SourceShip() == ship.get();
 }
 
 
@@ -3055,7 +3055,7 @@ void PlayerInfo::ValidateLoad()
 			[](const shared_ptr<Ship> &ship) noexcept -> bool
 			{
 				return ship->GetPlanet() && ship->GetPlanet()->IsValid() && !ship->IsParked()
-					   && ship->CanBeFlagship();
+					&& ship->CanBeFlagship();
 			});
 		if(it != ships.end())
 		{
@@ -3094,7 +3094,7 @@ void PlayerInfo::ValidateLoad()
 		{
 			ship->SetSystem(system);
 			Logger::LogError("Warning: player ship \"" + ship->Name()
-							 + "\" did not specify a valid system. Defaulting to the player's system.");
+				+ "\" did not specify a valid system. Defaulting to the player's system.");
 		}
 		// In-system ships that aren't on a valid planet should get moved to the player's planet
 		// (but e.g. disabled ships or those that didn't have a planet should remain in space).
@@ -3102,7 +3102,7 @@ void PlayerInfo::ValidateLoad()
 		{
 			ship->SetPlanet(planet);
 			Logger::LogError("Warning: in-system player ship \"" + ship->Name()
-							 + "\" specified an invalid planet. Defaulting to the player's planet.");
+				+ "\" specified an invalid planet. Defaulting to the player's planet.");
 		}
 		// Owned ships that are not in the player's system always start in flight.
 	}
@@ -3963,7 +3963,7 @@ void PlayerInfo::RegisterDerivedConditions()
 		if(!system)
 		{
 			Logger::LogError("Warning: System \"" + name.substr(strlen("hyperjumps to system: "))
-							 + "\" referred to in condition is not valid.");
+				+ "\" referred to in condition is not valid.");
 			return -1;
 		}
 		return HyperspaceTravelDays(this->GetSystem(), system);
@@ -3978,14 +3978,14 @@ void PlayerInfo::RegisterDerivedConditions()
 		if(!planet)
 		{
 			Logger::LogError("Warning: Planet \"" + name.substr(strlen("hyperjumps to planet: "))
-							 + "\" referred to in condition is not valid.");
+				+ "\" referred to in condition is not valid.");
 			return -1;
 		}
 		const System *system = planet->GetSystem();
 		if(!system)
 		{
 			Logger::LogError("Warning: Planet \"" + name.substr(strlen("hyperjumps to planet: "))
-							 + "\" referred to in condition is not in any system.");
+				+ "\" referred to in condition is not in any system.");
 			return -1;
 		}
 		return HyperspaceTravelDays(this->GetSystem(), system);
@@ -4109,8 +4109,7 @@ void PlayerInfo::CreateMissions()
 		while(it != availableMissions.end())
 		{
 			bool hasLowerPriorityLocation = it->IsAtLocation(Mission::SPACEPORT)
-											|| it->IsAtLocation(Mission::SHIPYARD)
-											|| it->IsAtLocation(Mission::OUTFITTER);
+				|| it->IsAtLocation(Mission::SHIPYARD) || it->IsAtLocation(Mission::OUTFITTER);
 			if(hasLowerPriorityLocation && !it->HasPriority())
 				it = availableMissions.erase(it);
 			else
@@ -4193,9 +4192,9 @@ void PlayerInfo::SortAvailable()
 				// 0 : No convenient mission; 1: same system; 2: same planet (because both system+planet means
 				// 1+1 = 2)
 				const int lConvenient = destinations.count(lhs.Destination())
-										+ destinations.count(lhs.Destination()->GetSystem());
+					+ destinations.count(lhs.Destination()->GetSystem());
 				const int rConvenient = destinations.count(rhs.Destination())
-										+ destinations.count(rhs.Destination()->GetSystem());
+					+ destinations.count(rhs.Destination()->GetSystem());
 				if(lConvenient < rConvenient)
 					return true;
 				if(lConvenient > rConvenient)
@@ -4319,7 +4318,7 @@ void PlayerInfo::StepMissions(UI *ui)
 	{
 		if(missionVisits > 1)
 			visitText += "\n\t(You have " + Format::Number(missionVisits - 1) + " other unfinished "
-						 + ((missionVisits > 2) ? "missions" : "mission") + " at this location.)";
+				+ ((missionVisits > 2) ? "missions" : "mission") + " at this location.)";
 		ui->Push(new Dialog(visitText));
 	}
 	// One mission's actions may influence another mission, so loop through one
@@ -4767,10 +4766,10 @@ void PlayerInfo::Fine(UI *ui)
 			else
 			{
 				message = "Before you can leave your ship, the " + gov->GetName()
-						  + " authorities show up and begin scanning it. They say, \"Captain " + LastName()
-						  + ", we detect highly illegal material on your ship.\""
-							"\n\tYou are sentenced to lifetime imprisonment on a penal colony."
-							" Your days of traveling the stars have come to an end.";
+					+ " authorities show up and begin scanning it. They say, \"Captain " + LastName()
+					+ ", we detect highly illegal material on your ship.\""
+					  "\n\tYou are sentenced to lifetime imprisonment on a penal colony."
+					  " Your days of traveling the stars have come to an end.";
 				ui->Push(new Dialog(message));
 			}
 			// All ships belonging to the player should be removed.

@@ -97,7 +97,7 @@ namespace {
 			[&it](const pair<Body, int> &flare)
 			{
 				return (it.first.GetSprite() == flare.first.GetSprite()
-						&& it.first.Scale() == flare.first.Scale());
+					&& it.first.Scale() == flare.first.Scale());
 			});
 
 		if(oit == thisFlares.end())
@@ -263,7 +263,7 @@ void Outfit::Load(const DataNode &node)
 		{
 			attributes[label] = 0.;
 			node.PrintTrace("Warning: Deprecated use of \"" + label + "\" instead of \"" + label
-							+ " power\" and \"" + label + " speed\":");
+				+ " power\" and \"" + label + " speed\":");
 
 			// A scan value of 300 is equivalent to a scan power of 9.
 			attributes[label + " power"] += initial * initial * .0001;

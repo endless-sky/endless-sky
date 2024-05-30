@@ -358,7 +358,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 				if(!requestedToBribeShip)
 				{
 					SetMessage("If you want us to leave you alone, it'll cost you "
-							   + Format::CreditString(bribe) + ".");
+						+ Format::CreditString(bribe) + ".");
 					requestedToBribeShip = true;
 				}
 				else
@@ -366,7 +366,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 					bribed = ship->GetGovernment();
 					bribed->Bribe();
 					Messages::Add("You bribed a " + bribed->GetName() + " ship " + Format::CreditString(bribe)
-									  + " to refrain from attacking you today.",
+							+ " to refrain from attacking you today.",
 						Messages::Importance::High);
 				}
 			}
@@ -374,7 +374,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			{
 				planet->Bribe();
 				Messages::Add("You bribed the authorities on " + planet->Name() + " "
-								  + Format::CreditString(bribe) + " to permit you to land.",
+						+ Format::CreditString(bribe) + " to permit you to land.",
 					Messages::Importance::High);
 			}
 		}

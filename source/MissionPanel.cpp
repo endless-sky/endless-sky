@@ -815,9 +815,9 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos,
 
 		bool canAccept = (&list == &available ? it->CanAccept(player) : IsSatisfied(*it));
 		font.Draw({it->Name(), {SIDE_WIDTH - 11, Truncate::BACK}}, pos,
-			(!canAccept      ? dim
-				: isSelected ? selected
-							 : unselected));
+			(!canAccept          ? dim
+					: isSelected ? selected
+								 : unselected));
 	}
 
 	return pos;
