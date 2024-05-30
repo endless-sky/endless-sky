@@ -814,12 +814,12 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 // Sorts the player's fleet given a comparator function (based on column).
 void PlayerInfoPanel::SortShips(InfoPanelState::ShipComparator *shipComparator)
 {
+	if(panelState.Ships().empty())
+		return;
+
 	// Clicking on a sort column twice reverses the comparison.
 	if(panelState.CurrentSort() == shipComparator)
 		shipComparator = GetReverseCompareFrom(*shipComparator);
-
-	if(panelState.Ships().empty())
-		return;
 
 	// Save selected ships to preserve selection after sort.
 	multiset<shared_ptr<Ship>, InfoPanelState::ShipComparator *> selectedShips(shipComparator);
