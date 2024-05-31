@@ -75,6 +75,13 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 
 void PlanetPanel::Step()
 {
+	if(player.IsDead())
+	{
+		player.SetPlanet(nullptr);
+		GetUI()->PopThrough(this);
+		return;
+	}
+
 	// If the previous mission callback resulted in a "launch", take off now.
 	const Ship *flagship = player.Flagship();
 	if(flagship && flagship->CanBeFlagship() && (player.ShouldLaunch() || requestedLaunch))
@@ -102,12 +109,6 @@ void PlanetPanel::Step()
 
 void PlanetPanel::Draw()
 {
-	if(player.IsDead())
-	{
-		GetUI()->Pop(this);
-		return;
-	}
-
 	Information info;
 	info.SetSprite("land", planet.Landscape());
 
