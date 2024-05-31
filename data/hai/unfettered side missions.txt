@@ -1,0 +1,67 @@
+# Copyright (c) 2015 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+mission "Unfettered returning home"
+	minor
+	description "This Hai has asked you to smuggle him out of Unfettered space and bring him to <destination>."
+	source
+		attributes "unfettered"
+	destination "Hai-home"
+	clearance
+	passengers 1
+	to offer
+		has "Unfettered Tribute 3: done"
+		random < 40
+	on offer
+		conversation
+			`During the night, you hear a gentle scratching sound on your ship's main hatch. Do you investigate?`
+			choice
+				`	(Yes.)`
+				`	(No.)`
+					defer
+			`	You grab a flashlight and open the hatch, and find a juvenile Hai there, with a large satchel slung over his shoulder. "You are the <first> <last>, yes?" he says. You nod. He says, "Is it true what is written here?"`
+			`	In his hands he is holding a piece of foil paper. You recognize it as the wrapper from one of the food rations that you have been transporting to the Unfettered, the "tribute" that they demand from the peaceful Hai. But having never unwrapped one of the rations, you had not realized that there is writing on the inside, a few words in the angular alphabet of the Hai. The Unfettered youth sees your look of confusion, and translates the message. "It says, 'Hai-home is your home too. Rejoin your people.'"`
+			choice
+				`	"I think it is true. The Hai who gave this tribute said they hoped the Unfettered would turn from violence and be reconciled with them."`
+					goto true
+				`	"I'm sorry, but I don't think they will ever let you live among them, if it is your nature to be prone to violence."`
+			`	You have little experience reading Hai emotions, but the youth seems crestfallen. "You are certain?" he asks.`
+			choice
+				`	"I am certain. I can do nothing for you."`
+					goto refuse
+				`	"Perhaps you can come with me and find out, but don't get your hopes up."`
+					goto end
+			label true
+			`	"Will you take me to Hai-home?" he asks. "You are able to be outside Unfettered places. Can I go with you?"`
+			choice
+				`	"Yes, I will take you there."`
+					goto end
+				`	"Sorry, I can't risk angering the Unfettered by carrying a defector."`
+			label refuse
+			`	Disappointed, the youth leaves. You hope you made the right choice.`
+				decline
+			label end
+			`	You show the youth to one of your bunk rooms, and tell him to stay hidden there until you reach Hai-home.`
+				accept
+
+	on visit
+		dialog `You look for the young Hai, but realize that he took a ride on one of your escorts! Better depart and wait for your escorts to arrive in this star system.`
+	on complete
+		payment 100000
+		dialog
+			`You need not have worried about the reception the Unfettered youth would receive here on Hai-home. Scarcely minutes after you hesitantly contact the Hai government, a happy crowd has gathered around your ship. When he steps out of the hatchway, he looks stunned at being welcomed so warmly. One of the Hai governors thanks you for transporting him, and pays you <payment>.`
+		"reputation: Hai" += 10
+		"reputation: Hai (Wormhole Access)" += 10
+		"reputation: Hai Merchant" += 10
+		"reputation: Hai Merchant (Human)" += 10
+		"reputation: Hai Merchant (Sympathizers)" += 10

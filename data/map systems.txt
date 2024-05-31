@@ -1973,6 +1973,7 @@ system Acamar
 	fleet "Small Core Merchants" 2000
 	fleet "Small Republic" 3600
 	fleet "Small Syndicate" 3200
+	fleet "Derelict Core" 30000
 	object
 		sprite star/g0
 		period 10
@@ -2345,7 +2346,7 @@ system "Ae Ce L-332"
 	asteroids "large metal" 1 2.1
 	asteroids "medium rock" 11 3.6
 	minables unknown 1 2.7
-	fleet Astral 45000
+	fleet Astral 50000
 	object
 		sprite star/f-dwarf
 		period 10
@@ -2414,7 +2415,7 @@ system "Ae Il A-3"
 	government Uninhabited
 	attributes "giant star" "multi-star" "notable star" "supergiant star"
 	arrival 5000
-	habitable 15715
+	habitable 15705
 	belt 1031 5
 	belt 1674 6
 	haze _menu/haze-133
@@ -2450,7 +2451,7 @@ system "Ae Il A-3"
 	object
 		sprite planet/browndwarf-l
 		distance 9784.96
-		period 1100
+		period 3089.43
 		offset 270
 		object
 			sprite planet/lava4-b
@@ -2459,7 +2460,7 @@ system "Ae Il A-3"
 	object
 		sprite planet/gas1
 		distance 32407.6
-		period 18609.5
+		period 18621.3
 
 system "Ae Il B-11"
 	pos 397.635 -661.079
@@ -2850,7 +2851,7 @@ system Aescolanus
 		period 2870.08
 
 system Aierena
-	pos 1045.838 -347.623
+	pos 1045.83 -347.623
 	government Uninhabited
 	attributes "bright star" "notable star"
 	arrival 3000
@@ -3086,6 +3087,52 @@ system "Al Dhanab"
 		sprite planet/luna
 		distance 2298.15
 		period 1340.95
+
+system "Al Hurr"
+	hidden
+	pos -432 -491
+	government Uninhabited
+	arrival 1715
+	habitable 1715
+	belt 1312
+	haze _menu/haze-brown
+	trade Clothing 201
+	trade Electronics 658
+	trade Equipment 484
+	trade Food 280
+	trade "Heavy Metals" 850
+	trade Industrial 621
+	trade "Luxury Goods" 1134
+	trade Medical 582
+	trade Metal 339
+	trade Plastic 353
+	object
+		sprite star/f5
+		period 10
+	object
+		sprite planet/rock15
+		distance 382
+		period 72.1145
+	object
+		sprite planet/rock6
+		distance 686
+		period 173.545
+	object Aspiration
+		sprite planet/ice8-b
+		distance 980
+		period 296.324
+	object
+		sprite planet/dust6
+		distance 1299
+		period 452.211
+	object
+		sprite planet/gas1
+		distance 1706.99
+		period 681.199
+		object
+			sprite planet/dust1
+			distance 216
+			period 11.1964
 
 system Albaldah
 	pos -350 484
@@ -3995,50 +4042,6 @@ system Alhena
 			distance 275
 			period 12.2356
 
-system "Al Hurr"
-	hidden
-	pos -432 -491
-	government "Uninhabited"
-	belt 1312
-	haze _menu/haze-brown
-	trade "Clothing" 201
-	trade "Electronics" 658
-	trade "Equipment" 484
-	trade "Food" 280
-	trade "Heavy Metals" 850
-	trade "Industrial" 621
-	trade "Luxury Goods" 1134
-	trade "Medical" 582
-	trade "Metal" 339
-	trade "Plastic" 353
-	object
-		sprite star/f5
-		period 10
-	object
-		sprite planet/rock15
-		distance 382
-		period 52.6472
-	object
-		sprite planet/rock6
-		distance 686
-		period 77.7827
-	object Aspiration
-		sprite planet/ice8-b
-		distance 980
-		period 98.6622
-	object
-		sprite planet/dust6
-		distance 1299
-		period 119.0528
-	object
-		sprite planet/gas1
-		distance 1706.99
-		period 557.553
-		object
-			sprite planet/dust1
-			distance 216
-			period 11.1964
-
 system Alioth
 	pos -620 315
 	government Republic
@@ -4145,7 +4148,7 @@ system Alkaid
 		sprite planet/gas0
 		distance 1927.89
 		period 1030.31
-		object
+		object "Rowark's Roost"
 			sprite planet/dust3-b
 			distance 266
 			period 12.0683
@@ -4379,6 +4382,7 @@ system Alnasl
 	fleet "Small Militia" 3000
 	fleet "Large Militia" 6000
 	fleet "Small Southern Pirates" 4000
+	fleet "Derelict Southern" 30000
 	object
 		sprite star/k5-old
 		distance 31.6761
@@ -4648,6 +4652,7 @@ system "Alpha Arae"
 	fleet "Large Militia" 9000
 	fleet "Small Southern Pirates" 4000
 	fleet "Large Southern Pirates" 9000
+	fleet "Derelict Southern" 30000
 	object
 		sprite star/g5
 		distance 37.4834
@@ -4980,7 +4985,7 @@ system Alpheratz
 			sprite planet/rock14-b
 			distance 173
 			period 18.5791
-	object
+	object Neriene
 		sprite planet/dust0
 		distance 1246.89
 		period 527.429
@@ -4992,6 +4997,72 @@ system Alpheratz
 			sprite planet/oberon
 			distance 285
 			period 12.909
+
+system Alpherg
+	pos -1009.44 272.194
+	government Pirate
+	attributes "ccor" "giant star" "notable star" "south"
+	arrival 4475
+	habitable 4475
+	haze _menu/haze-33
+	link Fumalsamakah
+	asteroids "medium rock" 3 2.97
+	asteroids "small metal" 3 3.195
+	trade Clothing 305
+	trade Electronics 878
+	trade Equipment 442
+	trade Food 221
+	trade "Heavy Metals" 860
+	trade Industrial 900
+	trade "Luxury Goods" 1280
+	trade Medical 869
+	trade Metal 280
+	trade Plastic 286
+	fleet "Small Southern Pirates" 1000
+	fleet "Large Southern Pirates" 2000
+	fleet "Small CCOR" 3800
+	fleet "Large CCOR" 6000
+	fleet "CCOR Logistics" 9000
+	object
+		sprite star/g-giant
+		period 10
+	object
+		sprite star/k5
+		distance 220
+		period 25
+	object "Mendez Station"
+		sprite planet/mendez
+			scale 0.5
+		distance 517.5
+		period 70.3929
+	object
+		sprite planet/cloud8-b
+		distance 1817.57
+		period 463.340
+	object Jakobsen
+		sprite planet/ocean3-b
+		distance 3164.1
+		period 1064.23
+	object
+		sprite planet/desert10-b
+		distance 3943.18
+		period 1480.58
+		object
+			sprite planet/dust1-b
+			distance 226.581
+			offset 180
+		object
+			sprite planet/dust3
+			distance 332.337
+			offset 40
+	object
+		sprite planet/gas13
+		distance 5672.61
+		period 2554.68
+		object
+			sprite planet/rhea
+			distance 535.683
+			offset 13
 
 system Altair
 	pos -357 161
@@ -6018,6 +6089,7 @@ system Atik
 	fleet "Large Core Pirates" 18000
 	fleet "Human Miners" 5000
 	fleet "Korath Miners" 15000
+	fleet "Derelict Pirate" 10000
 	object
 		sprite star/b-giant
 		distance 150
@@ -6428,6 +6500,63 @@ system Beginning
 			distance 256
 			period 11.563
 
+system Belenos
+	pos -901.111 279.139
+	government Pirate
+	attributes "ccor" "south"
+	arrival 1310
+	habitable 1310
+	haze _menu/haze-33
+	link Fumalsamakah
+	link Thuban
+	asteroids "small rock" 1 1.188
+	asteroids "large rock" 1 0.977
+	asteroids "small metal" 6 0.977
+	asteroids "medium metal" 6 0.871
+	trade Clothing 270
+	trade Electronics 805
+	trade Equipment 404
+	trade Food 243
+	trade "Heavy Metals" 900
+	trade Industrial 870
+	trade "Luxury Goods" 1330
+	trade Medical 833
+	trade Metal 265
+	trade Plastic 267
+	fleet "Small Southern Pirates" 600
+	fleet "Large Southern Pirates" 2000
+	fleet "Small CCOR" 3800
+	fleet "Large CCOR" 5000
+	fleet "CCOR Logistics" 8000
+	object
+		sprite star/f8
+		period 10
+	object
+		sprite planet/desert0-b
+		distance 238
+		period 40.5779
+	object
+		sprite planet/ice0-b
+		distance 658.6
+		period 186.791
+	object Gagarin
+		sprite planet/forest5
+		distance 1432.76
+		period 599.355
+		object Mordente-Bridi
+			sprite planet/station18
+				scale 0.5
+			distance 185
+			period 40
+	object
+		sprite planet/gas10-b
+		distance 2762.88
+		period 1604.97
+		object
+			sprite planet/ice0-b
+			distance 271.352
+			period 81
+
 system Bellatrix
 	pos -225 -82
 	government Syndicate
@@ -6739,6 +6868,7 @@ system "Beta Lupi"
 	fleet "Small Militia" 2000
 	fleet "Large Militia" 5000
 	fleet "Human Miners" 3000
+	fleet "Derelict Southern" 30000
 	object
 		sprite star/g5
 		period 10
@@ -7076,6 +7206,7 @@ system Boral
 	fleet "Small Southern Pirates" 1500
 	fleet "Small Militia" 10000
 	fleet "Human Miners" 2000
+	fleet "Derelict Southern" 10000
 	object
 		sprite star/m3
 		period 10
@@ -7150,6 +7281,7 @@ system "Bore Fah"
 	fleet "Small Human Merchants (Hai)" 12000
 	fleet "Large Human Merchants (Hai)" 18000
 	fleet "Hai Surveillance" 5000
+	fleet "Hai Miners" 15000
 	object
 		sprite star/g5
 		period 10
@@ -7850,6 +7982,7 @@ system Cardax
 	fleet "Small Core Pirates" 3000
 	fleet "Small Republic" 2000
 	fleet "Large Republic" 5000
+	fleet "Derelict Northern" 30000
 	object
 		sprite star/g0
 		distance 36.6984
@@ -8533,6 +8666,75 @@ system Cinxia
 			distance 270
 			period 16.6355
 
+system Citadelle
+	pos -980.667 225.917
+	government Pirate
+	attributes "ccor" "south"
+	arrival 1240
+	habitable 1240
+	haze _menu/haze-33
+	link Fumalsamakah
+	asteroids "small rock" 28 1.404
+	asteroids "medium rock" 7 1.24
+	asteroids "large rock" 15 2.059
+	asteroids "small metal" 1 1.287
+	asteroids "medium metal" 27 1.217
+	asteroids "large metal" 3 1.661
+	minables iron 6 1.7
+	minables lead 7 2.9
+	trade Clothing 260
+	trade Electronics 882
+	trade Equipment 470
+	trade Food 260
+	trade "Heavy Metals" 832
+	trade Industrial 911
+	trade "Luxury Goods" 1190
+	trade Medical 879
+	trade Metal 236
+	trade Plastic 278
+	fleet "Small Southern Pirates" 1000
+	fleet "Large Southern Pirates" 2500
+	fleet "Small CCOR" 3800
+	fleet "Large CCOR" 4500
+	fleet "CCOR Logistics" 6000
+	object
+		sprite star/k0
+		period 15
+	object
+		sprite star/a-dwarf
+		distance 102.423
+		period 15
+	object Bailey
+		sprite planet/lava0
+		distance 192.4
+		period 30.3149
+	object Alvorada
+		sprite planet/alvorada
+			scale 0.5
+		distance 1428.7
+		period 613.423
+	object
+		sprite planet/desert0-b
+		distance 2253.29
+		period 1214.99
+	object Independance
+		sprite planet/gas14-b
+		distance 3916.23
+		period 2783.88
+		object
+			sprite planet/ice0-b
+			distance 254.677
+			period 214
+		object
+			sprite planet/ice8
+			distance 396.023
+			period 385
+			offset 54
+		object
+			sprite planet/desert9-b
+			distance 540.643
+			period 269
+
 system Coluber
 	pos 149.504 197.389
 	government Uninhabited
@@ -8935,6 +9137,7 @@ system "Da Ent"
 	fleet "Small Human Merchants (Hai)" 9000
 	fleet "Large Human Merchants (Hai)" 10000
 	fleet "Hai Surveillance" 3000
+	fleet "Hai Miners" 9000
 	object
 		sprite star/m3
 		period 10
@@ -9014,6 +9217,7 @@ system "Da Lest"
 	fleet "Small Human Merchants (Hai)" 7000
 	fleet "Large Human Merchants (Hai)" 8000
 	fleet "Hai Surveillance" 5000
+	fleet "Hai Miners" 10000
 	object
 		sprite star/m0
 		period 10
@@ -9138,6 +9342,7 @@ system Danoa
 	fleet "Large Northern Pirates" 16000
 	fleet "Large Republic" 30000
 	fleet "Human Miners" 1600
+	fleet "Derelict Pirate" 15000
 	object
 		sprite star/m8
 		period 10
@@ -9319,7 +9524,7 @@ system Debrugt
 system "Deep Space 19K12"
 	pos -1113 -747
 	government Uninhabited
-	attributes "proto-system" "notable star" "inaccessible"
+	attributes "inaccessible" "notable star" "proto-system"
 	arrival 500
 	habitable 135
 	belt 1977
@@ -9350,7 +9555,7 @@ system "Deep Space 19K12"
 system "Deep Space 19M1"
 	pos -895 -745
 	government Uninhabited
-	attributes "giant star" "notable star" "inaccessible"
+	attributes "giant star" "inaccessible" "notable star"
 	arrival 4050
 	habitable 4050
 	belt 2115
@@ -9480,7 +9685,7 @@ system "Deep Space 19M2"
 system "Deep Space 19M5"
 	pos -1133 -828
 	government Uninhabited
-	attributes "proto-system" "notable star" "inaccessible"
+	attributes "inaccessible" "notable star" "proto-system"
 	arrival 500
 	habitable 370
 	belt 1977
@@ -9537,7 +9742,7 @@ system "Deep Space 19M5"
 system "Deep Space 1Q"
 	pos -920 -668
 	government Uninhabited
-	attributes "bright star" "notable star" "inaccessible"
+	attributes "bright star" "inaccessible" "notable star"
 	arrival 3650
 	habitable 3650
 	belt 2577
@@ -9608,7 +9813,7 @@ system "Deep Space 1Q"
 system "Deep Space 1X"
 	pos -935 -695
 	government Uninhabited
-	attributes "notable star" "nova" "inaccessible"
+	attributes "inaccessible" "notable star" "nova"
 	arrival 500
 	habitable 100
 	belt 1751
@@ -10921,6 +11126,7 @@ system Durax
 	fleet "Large Syndicate" 2500
 	fleet "Korath Raid" 7000
 	fleet "Korath Miners" 17000
+	fleet "Derelict Pirate" 30000
 	object
 		sprite star/g0-old
 		period 10
@@ -11097,6 +11303,7 @@ system Eber
 	fleet "Small Militia" 4000
 	fleet "Large Militia" 5000
 	fleet "Small Southern Pirates" 2000
+	fleet "Derelict Southern" 10000
 	object
 		sprite star/k5-old
 		period 10
@@ -11948,6 +12155,7 @@ system Eltanin
 	fleet "Small Southern Merchants" 1000
 	fleet "Large Southern Merchants" 3000
 	fleet "Small Southern Pirates" 4000
+	fleet "Derelict Southern" 30000
 	fleet Quarg 10000
 	object
 		sprite star/k3
@@ -12850,6 +13058,7 @@ system Eteron
 	fleet "Large Republic" 4000
 	fleet "Small Northern Pirates" 1000
 	fleet "Human Miners" 2000
+	fleet "Derelict Northern" 30000
 	object
 		sprite star/m8
 		period 10
@@ -13129,6 +13338,7 @@ system Fala
 	fleet "Small Northern Pirates" 2000
 	fleet "Large Northern Pirates" 4000
 	fleet "Human Miners" 2000
+	fleet "Derelict Northern" 30000
 	object
 		sprite star/g5-old
 		period 10
@@ -13976,6 +14186,7 @@ system Fingol
 	fleet "Large Republic" 3000
 	fleet "Small Northern Pirates" 2000
 	fleet "Human Miners" 3000
+	fleet "Derelict Northern" 10000
 	object
 		sprite star/m8
 		period 10
@@ -14128,10 +14339,11 @@ system Fomalhaut
 		sprite planet/gas10-b
 		distance 2203.28
 		period 1950.10
-		object
-			sprite planet/oberon-b
-			distance 181
-			period 12.0027
+		object "Dagon Station"
+			sprite planet/station19
+				scale 0.5
+			distance 204
+			period 12.003
 		object
 			sprite planet/rock0-b
 			distance 320
@@ -14311,6 +14523,65 @@ system Fscher
 		sprite planet/gas0-hot
 		distance 15894
 		period 10098.0
+
+system Fumalsamakah
+	pos -962.334 301.805
+	government Pirate
+	attributes "bright star" "ccor" "notable star" "south"
+	arrival 5000
+	habitable 5600
+	haze _menu/haze-33
+	link Alpherg
+	link Belenos
+	link Citadelle
+	link Thuban
+	asteroids "small rock" 4 12
+	trade Clothing 318
+	trade Electronics 808
+	trade Equipment 358
+	trade Food 217
+	trade "Heavy Metals" 954
+	trade Industrial 834
+	trade "Luxury Goods" 1220
+	trade Medical 882
+	trade Metal 245
+	trade Plastic 366
+	fleet "Small Southern Pirates" 1000
+	fleet "Large Southern Pirates" 2000
+	fleet "Small CCOR" 3800
+	fleet "Large CCOR" 6000
+	fleet "CCOR Logistics" 9000
+	object
+		sprite star/b5
+		period 10
+	object
+		sprite planet/dust1-b
+		distance 757.697
+		period 111.483
+	object
+		sprite planet/gas0-b
+		distance 3608.23
+		period 1158.53
+		object
+			sprite planet/cloud0
+			distance 314.164
+			period 83
+		object
+			sprite planet/rock11-b
+			distance 475.844
+			period 121
+	object
+		sprite planet/gas1
+		distance 6016.11
+		period 2494.24
+		object
+			sprite planet/ice1
+			distance 575.411
+			period 84
+		object
+			sprite planet/rock3
+			distance 846.619
+			period 120
 
 system Furmeliki
 	pos -35.5695 -281.812
@@ -14581,6 +14852,7 @@ system Gacrux
 	fleet "Small Southern Pirates" 1000
 	fleet "Large Southern Pirates" 3000
 	fleet "Small Republic" 15000
+	fleet "Derelict Northern" 30000
 	object
 		sprite star/k8
 		distance 28.8811
@@ -14594,8 +14866,8 @@ system Gacrux
 		sprite planet/lava5
 		distance 316.995
 		period 98.0619
-	object
-		sprite planet/ocean5
+	object Asphodel
+		sprite planet/cloud6-b
 		distance 698.285
 		period 320.605
 	object
@@ -14651,6 +14923,7 @@ system "Gamma Cassiopeiae"
 	fleet "Large Core Pirates" 2000
 	fleet "Large Syndicate" 5000
 	fleet "Human Miners" 2000
+	fleet "Derelict Core" 10000
 	object
 		sprite star/b0
 		period 10
@@ -14747,7 +15020,7 @@ system "Gamma Corvi"
 		period 2076.63
 
 system Gaungu
-	pos 1096.979 -320.418
+	pos 1096.97 -320.418
 	government Uninhabited
 	arrival 500
 	habitable 400
@@ -15492,6 +15765,7 @@ system Gorvi
 	fleet "Large Northern Pirates" 1000
 	fleet "Large Republic" 4000
 	fleet "Small Northern Merchants" 8000
+	fleet "Derelict Pirate" 10000
 	object
 		sprite star/wr
 		period 10
@@ -16025,6 +16299,7 @@ system Hatysa
 	fleet "Small Northern Pirates" 600
 	fleet "Large Northern Pirates" 1000
 	fleet "Large Republic" 15000
+	fleet "Derelict Pirate" 30000
 	object
 		sprite star/k0
 		distance 5.29989
@@ -16499,6 +16774,7 @@ system Hintar
 	fleet "Small Southern Merchants" 1000
 	fleet "Small Militia" 5000
 	fleet "Small Southern Pirates" 2000
+	fleet "Derelict Southern" 10000
 	object
 		sprite star/g5
 		period 10
@@ -16556,6 +16832,7 @@ system Holeb
 	fleet "Large Southern Merchants" 3000
 	fleet "Small Southern Pirates" 5000
 	fleet "Small Militia" 5000
+	fleet "Derelict Southern" 30000
 	object
 		sprite star/f5-old
 		period 10
@@ -17029,8 +17306,7 @@ system Ildaria
 	fleet "Large Southern Merchants" 2000
 	fleet "Small Militia" 3000
 	fleet "Large Militia" 6000
-	fleet "Small Southern Pirates" 1000
-	fleet "Large Southern Pirates" 2000
+	fleet "Derelict Southern" 25000
 	object
 		sprite star/nova-small
 		period 10
@@ -17167,9 +17443,11 @@ system "Imo Dep"
 	asteroids "small metal" 98 4.4156
 	asteroids "medium metal" 124 5.9052
 	asteroids "large metal" 4 2.9792
-	minables silicon 18 10.1357
+	minables silicon 18 7.411
 	minables silver 12 6.77561
 	minables titanium 9 8.61292
+	minables tungsten 15 3.154
+	minables uranium 7 2.786
 	trade Clothing 331
 	trade Electronics 763
 	trade Equipment 528
@@ -17191,6 +17469,7 @@ system "Imo Dep"
 	fleet "Small Human Merchants (Hai)" 10000
 	fleet "Large Human Merchants (Hai)" 14000
 	fleet "Hai Surveillance" 3000
+	fleet "Hai Miners" 8000
 	object
 		sprite star/f5
 		period 10
@@ -17328,6 +17607,7 @@ system "Io Lowe"
 	fleet "Small Human Merchants (Hai)" 4000
 	fleet "Large Human Merchants (Hai)" 7000
 	fleet "Hai Surveillance" 5000
+	fleet "Hai Miners" 7000
 	object
 		sprite star/m8
 		period 10
@@ -17468,6 +17748,7 @@ system Ipsing
 	trade Plastic 416
 	fleet "Small Southern Merchants" 2000
 	fleet "Small Southern Pirates" 3000
+	fleet "Derelict Northern" 10000
 	object
 		sprite star/g0-old
 		distance 20.2927
@@ -17531,7 +17812,7 @@ system "Is Ce B-139"
 	asteroids "medium metal" 5 3.41
 	asteroids "large metal" 2 4.402
 	fleet "Vyrmeid (Plankton)" 300
-	fleet Astral 50000
+	fleet Astral 55000
 	object
 		sprite star/g8
 		period 40
@@ -17555,7 +17836,7 @@ system "Is Ce F-422"
 	asteroids "large rock" 9 2.262
 	asteroids "large metal" 1 3.783
 	fleet "Vyrmeid (Plankton)" 400
-	fleet Astral 50000
+	fleet Astral 57000
 	object
 		sprite star/a5
 		distance 52.236
@@ -17629,7 +17910,7 @@ system "Is Ce G-460"
 	minables silicon 6 10.214
 	minables unknown 2 2.5
 	fleet "Vyrmeid (Plankton)" 700
-	fleet Astral 50000
+	fleet Astral 65000
 	object
 		sprite star/k-dwarf
 		period 10
@@ -17676,7 +17957,7 @@ system "Is Ce J-591"
 	asteroids "large metal" 3 1.664
 	minables silicon 8 3.635
 	fleet "Vyrmeid (Plankton)" 450
-	fleet Astral 50000
+	fleet Astral 60000
 	object
 		sprite star/f-giant
 		distance 60.57
@@ -17860,7 +18141,7 @@ system "Is Il V-263"
 	minables titanium 3 5.731
 	fleet "Vyrmeid (Plankton)" 500
 	fleet "Vyrmeid (Boomerang)" 700
-	fleet Astral 50000
+	fleet Astral 56000
 	object
 		sprite star/b-supergiant
 		period 10
@@ -17908,7 +18189,7 @@ system "Is Il X-626"
 	asteroids "large metal" 1 3.402
 	fleet "Vyrmeid (Plankton)" 500
 	fleet "Vyrmeid (Boomerang)" 800
-	fleet Astral 50000
+	fleet Astral 62000
 	object
 		sprite star/a8
 		distance 48.468
@@ -17951,7 +18232,7 @@ system "Is Il Z-59"
 	minables iron 14 4.93
 	fleet "Vyrmeid (Plankton)" 500
 	fleet "Vyrmeid (Cephalopod)" 600
-	fleet Astral 50000
+	fleet Astral 75000
 	object
 		sprite star/g3
 		distance 67.938
@@ -19276,7 +19557,7 @@ system "Kifrana Terberah"
 		period 3488.63
 
 system Kilema
-	pos 1039.944 -479.191
+	pos 1039.94 -479.191
 	government Uninhabited
 	arrival 500
 	habitable 150
@@ -19303,12 +19584,12 @@ system Kilema
 		distance 638
 		period 526.314
 		offset -10
-	object "Beryl"
+	object Beryl
 		sprite planet/beryl/beryl
-			"scale" 0.5
 			"frame rate" 4
+			scale 0.5
 		distance 1200
-		period 3000
+		period 1357.64
 		offset 75
 	object
 		sprite planet/rock17
@@ -20338,6 +20619,7 @@ system Kugel
 	fleet "Small Syndicate" 8000
 	fleet "Large Core Pirates" 4000
 	fleet "Small Core Pirates" 4000
+	fleet "Derelict Core" 10000
 	object
 		sprite star/g5
 		period 10
@@ -20434,7 +20716,7 @@ system Kursa
 		period 1517.13
 
 system L-118
-	pos 1088.891 -408.306
+	pos 1088.89 -408.306
 	government Uninhabited
 	attributes "bright star" "notable star" "umbral reach"
 	arrival 3000
@@ -20610,6 +20892,7 @@ system Lesath
 	fleet "Small Southern Pirates" 2000
 	fleet "Large Southern Pirates" 4000
 	fleet "Small Militia" 5000
+	fleet "Derelict Southern" 30000
 	object
 		sprite star/f5
 		period 10
@@ -20744,6 +21027,7 @@ system Limen
 	fleet "Small Southern Pirates" 1000
 	fleet "Large Southern Pirates" 2000
 	fleet "Human Miners" 1000
+	fleet "Derelict Northern" 10000
 	object
 		sprite star/f5
 		period 10
@@ -20914,6 +21198,7 @@ system Lolami
 	fleet "Small Northern Pirates" 2000
 	fleet "Large Northern Pirates" 4000
 	fleet "Human Miners" 3000
+	fleet "Derelict Northern" 10000
 	object
 		sprite star/g0
 		distance 11.5199
@@ -21181,6 +21466,7 @@ system Lurata
 	fleet Quarg 7000
 	fleet "Small Militia" 9000
 	fleet "Large Southern Pirates" 4000
+	fleet "Derelict Southern" 30000
 	object
 		sprite star/k3
 		period 10
@@ -22222,7 +22508,7 @@ system Mekislepti
 			period 30.4733
 
 system Men
-	pos -888 361
+	pos -900.2 366.4
 	government Pirate
 	attributes "south"
 	arrival 500
@@ -22230,6 +22516,7 @@ system Men
 	belt 1580
 	haze _menu/haze-33
 	link "Beta Lupi"
+	link Thuban
 	asteroids "small rock" 9 3.504
 	asteroids "medium rock" 2 5.376
 	asteroids "large rock" 5 5.952
@@ -22947,6 +23234,7 @@ system Mintaka
 	fleet "Large Republic" 5000
 	fleet "Small Northern Merchants" 4000
 	fleet "Human Miners" 2000
+	fleet "Derelict Pirate" 30000
 	object
 		sprite star/k0
 		distance 51.7144
@@ -23273,6 +23561,7 @@ system Mizar
 	fleet "Small Southern Merchants" 1000
 	fleet "Large Southern Merchants" 3500
 	fleet "Small Southern Pirates" 6000
+	fleet "Derelict Northern" 30000
 	object
 		sprite star/g0
 		period 10
@@ -23445,6 +23734,7 @@ system Moktar
 	fleet "Large Syndicate" 4000
 	fleet "Small Core Pirates" 2000
 	fleet "Small Northern Pirates" 3000
+	fleet "Derelict Core" 30000
 	object
 		sprite star/k8
 		distance 31.0221
@@ -23513,6 +23803,7 @@ system Mora
 	fleet "Large Southern Pirates" 3000
 	fleet "Small Republic" 20000
 	fleet "Human Miners" 2000
+	fleet "Derelict Northern" 30000
 	object
 		sprite star/k5
 		period 10
@@ -23646,6 +23937,7 @@ system Muphrid
 	fleet "Large Southern Merchants" 3500
 	fleet "Small Southern Pirates" 6000
 	fleet "Small Republic" 5000
+	fleet "Derelict Northern" 30000
 	object
 		sprite star/g5-old
 		distance 19.407
@@ -23782,6 +24074,7 @@ system Naper
 	fleet "Small Militia" 5000
 	fleet "Small Southern Pirates" 1000
 	fleet "Human Miners" 3000
+	fleet "Derelict Southern" 10000
 	object
 		sprite star/f5
 		period 10
@@ -24101,6 +24394,7 @@ system Nocte
 	fleet "Large Republic" 7000
 	fleet "Small Northern Pirates" 2500
 	fleet "Human Miners" 1600
+	fleet "Derelict Northern" 10000
 	object
 		sprite star/m8
 		period 10
@@ -24116,12 +24410,12 @@ system Nocte
 		sprite planet/gas17
 		distance 973.25
 		period 1045.27
-		object
-			sprite planet/dust2
+		object Asterus
+			sprite planet/europa
 			distance 219
 			period 13.075
 		object
-			sprite planet/europa
+			sprite planet/dust2
 			distance 363
 			period 27.9019
 	object
@@ -24399,6 +24693,7 @@ system Oblate
 	fleet "Small Core Pirates" 600
 	fleet "Large Core Pirates" 1000
 	fleet "Large Syndicate" 3000
+	fleet "Derelict Pirate" 30000
 	object
 		sprite star/m-giant
 		period 10
@@ -24630,6 +24925,7 @@ system Orbona
 	fleet "Small Southern Pirates" 1200
 	fleet "Large Southern Pirates" 3200
 	fleet "Human Miners" 1500
+	fleet "Derelict Northern" 10000
 	object
 		sprite star/b-giant
 		distance 3.8401
@@ -24700,6 +24996,7 @@ system Orvala
 	fleet "Small Southern Merchants" 3000
 	fleet "Small Southern Pirates" 1000
 	fleet "Large Southern Pirates" 3000
+	fleet "Derelict Southern" 10000
 	object
 		sprite star/k0
 		distance 8.71066
@@ -24900,7 +25197,7 @@ system Paeli
 	object
 		sprite planet/gas2-b
 		distance 2010.84
-		period 8065.10
+		period 8065.12
 		offset 270.243
 		object Eavine
 			sprite planet/ice8-b
@@ -25132,7 +25429,7 @@ system Patir
 	hidden
 	pos -38 553
 	government Uninhabited
-	attributes "black hole" "ember waste" "notable star" "nova" "graveyard"
+	attributes "black hole" "ember waste" "graveyard" "notable star" "nova"
 	arrival 500
 	ramscoop
 		universal 0
@@ -25610,6 +25907,7 @@ system Persian
 	fleet "Small Core Pirates" 600
 	fleet "Large Core Pirates" 2000
 	fleet "Human Miners" 3000
+	fleet "Derelict Core" 30000
 	object
 		sprite star/f5-old
 		distance 14.3826
@@ -26530,7 +26828,7 @@ system Procyon
 	object
 		sprite star/k3
 		period 10
-	object
+	object Cassandra
 		sprite planet/rock4
 		distance 243.06
 		period 71.4535
@@ -27632,6 +27930,7 @@ system Regulus
 	fleet "Large Southern Pirates" 8000
 	fleet "Small Republic" 10000
 	fleet "Human Miners" 3000
+	fleet "Derelict Northern" 10000
 	object
 		sprite star/b0
 		period 10
@@ -27854,6 +28153,7 @@ system Rigel
 	fleet "Small Northern Pirates" 3000
 	fleet "Large Northern Pirates" 5000
 	fleet "Human Miners" 2000
+	fleet "Derelict Northern" 30000
 	object
 		sprite star/b-supergiant
 		period 10
@@ -28411,6 +28711,7 @@ system Sadr
 	fleet "Small Southern Pirates" 5000
 	fleet "Large Southern Pirates" 9000
 	fleet "Human Miners" 2000
+	fleet "Derelict Southern" 10000
 	object
 		sprite star/a5
 		distance 6.26811
@@ -29527,6 +29828,10 @@ system Sheratan
 		sprite planet/ocean1
 		distance 1329.34
 		period 424.581
+		object Taylor
+			sprite planet/dust0
+			distance 220
+			period 34.8
 	object
 		sprite planet/rhea-b
 		distance 1632.5
@@ -30476,7 +30781,7 @@ system "Sol Kimek"
 	object "Ki Patek Ka"
 		sprite planet/ocean1
 		distance 466.11
-		period 291.452
+		period 195.253
 		object "Starting Rubin"
 			sprite planet/station1c
 				scale 0.5
@@ -30682,6 +30987,7 @@ system Sospi
 	fleet "Small Republic" 5000
 	fleet "Large Republic" 9000
 	fleet "Human Miners" 5000
+	fleet "Derelict Northern" 10000
 	object
 		sprite star/wr
 		period 10
@@ -31274,6 +31580,7 @@ system Tais
 	fleet Quarg 15000
 	fleet "Small Southern Pirates" 3000
 	fleet "Large Southern Pirates" 7000
+	fleet "Derelict Southern" 30000
 	object
 		sprite star/a5
 		period 10
@@ -31679,6 +31986,7 @@ system Terminus
 	trade Plastic 402
 	fleet "Small Southern Pirates" 2000
 	fleet "Large Southern Pirates" 5000
+	fleet "Derelict Northern" 10000
 	object
 		sprite star/k5-old
 		period 10
@@ -31808,6 +32116,36 @@ system "Thshybo Le"
 		distance 4964.03
 		period 2473.07
 
+system Thuban
+	pos -882.629 328.38
+	government Pirate
+	attributes "bright star" "ccor" "notable star" "south"
+	arrival 5000
+	habitable 7050
+	belt 200 1
+	belt 600 1
+	belt 1500 2
+	haze _menu/haze-33
+	link Belenos
+	link Fumalsamakah
+	link Men
+	asteroids "small metal" 14 7
+	asteroids "large rock" 25 4
+	minables uranium 9 1.3
+	minables titanium 11 1
+	fleet "Small Southern Pirates" 1500
+	fleet "Large Southern Pirates" 2500
+	fleet "Small CCOR" 6000
+	object
+		sprite star/a0
+		distance 100
+		period 50
+	object
+		sprite star/a3
+		distance 100
+		period 50
+		offset 180
+
 system Torbab
 	pos -949.587 490.051
 	government Coalition
@@ -31921,6 +32259,7 @@ system Tortor
 	fleet "Large Northern Pirates" 1000
 	fleet "Large Republic" 6000
 	fleet "Small Northern Merchants" 6000
+	fleet "Derelict Pirate" 10000
 	object
 		sprite star/k3
 		period 10
@@ -32380,11 +32719,11 @@ system Umbral
 	fleet "Large Southern Pirates" 6000
 	object
 		sprite star/k0-old
-		distance 23.3222
+		distance 25
 		period 10.2313
 	object
 		sprite star/m0
-		distance 71.4243
+		distance 90
 		period 10.2313
 		offset 180
 	object
@@ -32455,6 +32794,7 @@ system Unagi
 	trade Plastic 364
 	fleet "Small Northern Pirates" 1500
 	fleet "Large Northern Pirates" 3000
+	fleet "Derelict Pirate" 10000
 	object
 		sprite star/m0
 		period 10
@@ -33033,8 +33373,8 @@ system Vesvii
 	minables gold 6 2.4
 	minables iron 9 1.7
 	minables lead 11 2.1
-	fleet "Vi Warfleet" 1100
-	fleet "Scin Warfleet" 1000
+	fleet "Vi Warfleet" 1200
+	fleet "Scin Warfleet" 1200
 	object
 		sprite star/k5-old
 		distance 81.5
@@ -33187,6 +33527,7 @@ system Volax
 	fleet "Large Northern Pirates" 3000
 	fleet "Small Republic" 5000
 	fleet "Large Republic" 9000
+	fleet "Derelict Northern" 30000
 	object
 		sprite star/f5
 		period 10
@@ -33257,7 +33598,7 @@ system Vorsuke
 			period 320
 
 system Vulcuja
-	pos 1072.046 -264.656
+	pos 1072.04 -264.656
 	government Uninhabited
 	attributes "carbon" "notable star"
 	arrival 3000
@@ -33442,6 +33783,7 @@ system "Wah Oh"
 	fleet "Small Human Merchants (Hai)" 6000
 	fleet "Large Human Merchants (Hai)" 9000
 	fleet "Hai Surveillance" 5000
+	fleet "Hai Miners" 9000
 	object
 		sprite star/a0
 		period 10
@@ -33712,6 +34054,7 @@ system Wei
 	fleet "Small Southern Pirates" 4000
 	fleet "Small Militia" 3000
 	fleet "Large Militia" 5000
+	fleet "Derelict Southern" 30000
 	object
 		sprite star/k3
 		period 10
@@ -34400,7 +34743,7 @@ system Yllke
 			period 242.1
 
 system Yranjiu
-	pos 1056.344 -303.683
+	pos 1056.34 -303.683
 	government Uninhabited
 	attributes "black hole" "notable star"
 	arrival 5000
@@ -34913,6 +35256,7 @@ system Zubenelgenubi
 	fleet "Large Militia" 3000
 	fleet "Small Southern Pirates" 3000
 	fleet "Large Southern Pirates" 5000
+	fleet "Derelict Southern" 30000
 	object
 		sprite star/g5
 		distance 37.6707

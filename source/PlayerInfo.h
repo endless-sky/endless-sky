@@ -268,6 +268,7 @@ public:
 
 	// Check what the player knows about the given system or planet.
 	bool HasSeen(const System &system) const;
+	bool CanView(const System &system) const;
 	bool HasVisited(const System &system) const;
 	bool HasVisited(const Planet &planet) const;
 	bool KnowsName(const System &system) const;

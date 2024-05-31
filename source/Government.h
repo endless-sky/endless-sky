@@ -127,7 +127,7 @@ public:
 	int Fines(const Outfit *outfit) const;
 	int Fines(const Ship *ship) const;
 	// Check if given ship has illegal outfits or cargo.
-	bool FinesContents(const Ship *ship) const;
+	bool FinesContents(const Ship *ship, const PlayerInfo &player) const;
 
 	// Get or set the player's reputation with this government.
 	double Reputation() const;
@@ -155,6 +155,7 @@ private:
 	ExclusiveItem<Color> color;
 
 	std::vector<double> attitudeToward;
+	double defaultAttitude = 0.;
 	std::set<const Government *> trusted;
 	std::map<unsigned, std::map<int, double>> customPenalties;
 	double initialPlayerReputation = 0.;

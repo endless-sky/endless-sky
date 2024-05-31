@@ -89,6 +89,10 @@ OutfitterPanel::OutfitterPanel(PlayerInfo &player)
 
 	if(player.GetPlanet())
 		outfitter = player.GetPlanet()->Outfitter();
+
+	for(auto &ship : player.Ships())
+		if(ship->GetPlanet() == planet)
+			++shipsHere;
 }
 
 
@@ -101,7 +105,8 @@ void OutfitterPanel::Step()
 	if(GetUI()->IsTop(this) && !checkedHelp)
 		// Use short-circuiting to only display one of them at a time.
 		// (The first valid condition encountered will make us skip the others.)
-		if(DoHelp("outfitter") || DoHelp("cargo management") || DoHelp("uninstalling and storage") || true)
+		if(DoHelp("outfitter") || DoHelp("cargo management") || DoHelp("uninstalling and storage")
+				|| (shipsHere > 1 && DoHelp("outfitter with multiple ships")) || true)
 			// Either a help message was freshly displayed, or all of them have already been seen.
 			checkedHelp = true;
 }
@@ -241,12 +246,12 @@ int OutfitterPanel::DetailWidth() const
 
 
 
-int OutfitterPanel::DrawDetails(const Point &center)
+double OutfitterPanel::DrawDetails(const Point &center)
 {
 	string selectedItem = "Nothing Selected";
 	const Font &font = FontSet::Get(14);
 
-	int heightOffset = 20;
+	double heightOffset = 20.;
 
 	if(selectedOutfit)
 	{
@@ -978,4 +983,26 @@ const vector<Ship *> OutfitterPanel::GetShipsToOutfit(bool isBuy) const
 	}
 
 	return shipsToOutfit;
+}
+
+
+
+int OutfitterPanel::FindItem(const string &text) const
+{
+	int bestIndex = 9999;
+	int bestItem = -1;
+	auto it = zones.begin();
+	for(unsigned int i = 0; i < zones.size(); ++i, ++it)
+	{
+		const Outfit *outfit = it->GetOutfit();
+		int index = Format::Search(outfit->DisplayName(), text);
+		if(index >= 0 && index < bestIndex)
+		{
+			bestIndex = index;
+			bestItem = i;
+			if(!index)
+				return i;
+		}
+	}
+	return bestItem;
 }
