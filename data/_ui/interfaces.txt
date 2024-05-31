@@ -1668,3 +1668,22 @@ interface "sales key"
 	label "Ship parked here"
 		from 330 72
 		align left
+
+interface "sales key row"
+	anchor top left
+	ring "full"
+		center 320 12
+		dimensions 9 9
+		size 1.75
+		"map color" -1
+	visible if "selected"
+	string "label"
+		color bright
+	pointer
+		center 10 10
+		dimensions 10 10
+		"orientation angle" 90
+		color "escort selected"
+	visible if "!selected"
+	string "label"
+		color dim
