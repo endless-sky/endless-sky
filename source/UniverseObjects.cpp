@@ -168,14 +168,14 @@ void UniverseObjects::Change(const DataNode &node)
 
 // Update the neighbor lists and other information for all the systems.
 // (This must be done any time a GameEvent creates or moves a system.)
-void UniverseObjects::UpdateSystems(const PlayerInfo *player)
+void UniverseObjects::UpdateSystems()
 {
 	for(auto &it : systems)
 	{
 		// Skip systems that have no name.
 		if(it.first.empty() || it.second.Name().empty())
 			continue;
-		it.second.UpdateSystem(systems, neighborDistances, player);
+		it.second.UpdateSystem(systems, neighborDistances);
 
 		// If there were changes to a system there might have been a change to a legacy
 		// wormhole which we must handle.
