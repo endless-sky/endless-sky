@@ -73,6 +73,7 @@ void MainPanel::Step()
 
 	if(player.IsDead())
 		show = Command::NONE;
+
 	// Display any requested panels.
 	if(show.Has(Command::MAP))
 	{
@@ -207,6 +208,7 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 {
 	if(player.IsDead())
 		return true;
+
 	if(command.Has(Command::MAP | Command::INFO | Command::MESSAGE_LOG | Command::HAIL | Command::HELP))
 		show = command;
 	else if(command.Has(Command::TURRET_TRACKING))
