@@ -4978,8 +4978,6 @@ mission "Hroar's Haulers 10"
 			`	"Good. We got places to be." He turns toward the exit. "I'll be waiting for you on your ship, Captain <last>. It'll be good to get back on the float."`
 				accept
 
-
-
 	npc accompany save
 		government "Merchant"
 		personality timid escort
@@ -5001,6 +4999,40 @@ mission "Hroar's Haulers 10"
 		ship "Mule" "H.H.H. Grit"
 		ship "Hauler III" "H.H.H. Unstoppable Force"
 		ship "Mule" "H.H.H. Red Socks"
+
+	npc
+		government "Pirate"
+		personality nemesis staying
+		system "Procyon"
+		fleet "Large Northern Pirates"
+		fleet "Large Northern Pirates"
+	npc
+		government "Pirate"
+		personality nemesis staying
+		system "Altair"
+		fleet "Small Northern Pirates"
+	npc
+		government "Pirate"
+		personality nemesis staying
+		system "Ascella"
+		fleet "Large Northern Pirates"
+		fleet "Large Northern Pirates"
+	npc
+		government "Pirate"
+		personality nemesis
+		system "Sirius"
+		fleet "Large Northern Pirates"
+	npc
+		government "Pirate"
+		personality nemesis
+		system "Cebalrai"
+		fleet "Small Northern Pirates"
+	npc
+		government "Pirate"
+		personality nemesis staying
+		system "Tarazed"
+		fleet "Large Northern Pirates"
+		fleet "Small Northern Pirates"
 	
 	on visit
 		dialog
@@ -5382,10 +5414,10 @@ mission "Hroar's Haulers 14"
 			goto followyngvar
 
 		label yngvar
-		`	Yngvar nods to you as you approach the quiet table in the back he and Bolverka are seated at. Bolverka looks about middle aged, older than Unferth and Gunhilda, but quite a bit younger than Yngvar. She has close cropped brown hair and dark brown eyes. She watches you curiously as you take your seat.`
+		`	Yngvar nods to you as you approach the quiet table he shares with Bolverka in the back. Bolverka looks about middle aged, older than Unferth and Gunhilda, but quite a bit younger than Yngvar. She has close cropped brown hair and dark brown eyes. She watches you curiously as you take your seat.`
 		`	"Smart thinking, <last>." Yngvar says, "You'll go deaf or blind from the music or drink with the crowd at the bar. Safer back here with us."`
 		`	Bolverka laughs, "Don't let old Yngvar fool you, if he wasn't the logistics officer he'd be right there with them."`
-		`	"Bah," Yngvar rolls his one good eye, "What'sa stoner know about having a little fun anyways?"`
+		`	"Bah," Yngvar rolls his one good eye, "What's a stoner know about having a little fun anyways?"`
 		choice
 			`	"Stoner?"`
 				goto stoner
@@ -5394,13 +5426,43 @@ mission "Hroar's Haulers 14"
 			`	(Say nothing.)`
 		`	"You know full well that we 'stoners' have just as much fun as anyone else, Yngvar. Besides, you're practically one yourself so stop acting all superior." Bolverka says back with more affection than venom.`
 		`	"I'm a spacer, not a stoner! There ain't no stones with my life memories scribbled on them under my bed!" Yngvar retorts, and you suddenly feel like you're in the middle of an agrument they've had a hundred times before.`
-		`	"Old man, carving your story on a piece of ship metal and leaving that piece in a pile of your ancestors on some old asteroid next to an Elf-Stone is about as stoner as it gets, with only the midlest of tweaks."`
-		`	Yngvar frowns, "A piece of high technology is as different from a stone as a dwarf-planet is to a sun."`
+		`	"Old man, carving your story on a small piece of your first ship and then placing it on a pile of older ones left by your ancestors on some old asteroid next to an Elf-Stone is about as stoner as it gets, with only the midlest of tweaks."`
+		`	Yngvar frowns, "A piece of high technology is as different from a stone as a dwarf planet from a sun."`
 		`	This time Bolverka rolls her eyes, "It's the symbolism that matters, not the... you know what? How about we ask the greenhorn? Let them weigh in on the matter. I hear they have some experience with us 'stoners'."`
 		`	"Fine." Yngvar grumbles, "What do you say, <last>? Are they the same thing? Or different?"`
 		choice
-			`	"Wait, tell me more about the ship metal first."`
-			`	`
+			`	"So there's a cairn of spacer stories, but instead of stones you use a piece of your ship?"`
+				goto cairn
+			`	"Your first ship, or your first stone, sounds like the same thing to me."`
+				goto samething
+			`	"A ship is not a stone. I'm with Yngvar on this one."`
+				goto shipnotstone
+			`	"I'm just here because Yngvar told me to report in. I don't care about this discussion."`
+		`	Both Yngvar and Bolverka give you unflattering frowns. "Fine," Yngvar says,"I thought you could do with a little culture, but if that's the case you're free to go."`
+		choice
+			`	(Get up and leave.)`
+		`	As you make your way to the exit you hear the singing suddenly cut off and some sort of fight break out.`
+		`	Yngvar's voice suddenly rings through the estblishment, "Haulers, out!"`
+		`	You find yourself suddenly in the middle a large group of Haulers who've followed you outside. A moment later Yngvar joins you.`
+		`	"<last>." Yngvar says dryly, "Syndicate Enforcers decided we were a little too disorderly and started arresting folks. They got Solvi and most his crew, along with Gunhilda, but there's no point in picking a fight we can't win." `
+		`	Yngvar pushes into the middle of the Haulers and whistles until the frantic chatter dies down.`
+		`	"Alright everyone," Yngvar's voice rings out, "Head back to your ships and stay put. Do you pre-launch checks as discretely as possible and wait for my signal. <last> and myself are going to go try and sort things out."`
+		`	With that the group starts shuffling away from you and Yngvar. The old man turns to you, "Syndies are always looking for an excuse to come down hard on us Haulers. I shoulda seen it coming. Still, they are more or less lawful, and where that fails money still talks with them. Let's see if we can wriggle our way outta this mess."`
+		`	Yngvar starts walking in the opposite direction of the departing haulers.`
+		choice
+			`	(Follow Yngvar.)`
+			goto followyngvar
+
+		label stoner
+		`	Yngvar chuckles, "Buncha stone-worshipping fools who think elves brought 'em to the Deep."`
+		`	"Yng, dear, you know that isn't the whole story." Bolverka says with exhasperation.`
+		`	"Listen, I ain't never seen no Elf. But I've sure as Schwarzschild seen a lot of ships. You stoners are just the children of a lost generation ship who reverted to their primal natures is all."`
+		`	Bolverka sighs and taps her fingers on the table, "Generation ships? The ones that couldn't have possibly traveled to the Deep in the time you claim they did? That's nearly as outlandish as any story about elves."`
+		`	She pauses and then turns back to you, "Stoners is just what some folk in the Deep call those of us who follow the old ways. We don't necessarily believe it was elves that brought us here, but something did."`
+		`	"Generation ships." Yngvar grumbles."`
+		
+
+
 
 
 mission "Hroar's Haulers 9"
