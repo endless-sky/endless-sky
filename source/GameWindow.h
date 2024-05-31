@@ -24,7 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class GameWindow {
 public:
 	static std::string SDLVersions();
-	static bool Init();
+	static bool Init(bool headless);
 	static void Quit();
 
 	// Paint the next frame in the main window.
