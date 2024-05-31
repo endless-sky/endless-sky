@@ -563,8 +563,8 @@ string Format::Capitalize(const string &str)
 			first = true;
 		else
 		{
-			if(first && islower(c))
-				c = toupper(c);
+			if(first && islower(static_cast<unsigned char>(c)))
+				c = toupper(static_cast<unsigned char>(c));
 			first = false;
 		}
 	}
