@@ -26,7 +26,7 @@ using namespace std;
 
 
 namespace {
-	static constexpr char32_t BOM = 0x0000FEFF;
+	constexpr char32_t BOM = 0x0000FEFF;
 }
 
 
