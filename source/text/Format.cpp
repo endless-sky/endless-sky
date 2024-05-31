@@ -194,15 +194,15 @@ namespace {
 		auto SubstitutionFor = [&](const string &request) -> const string *
 		{
 			auto hasResult = result.find(request);
+			// Already finished this one.
 			if(hasResult != result.end())
-				// Already finished this one.
 				return &hasResult->second;
+			// Refuse to traverse a cycle in the graph.
 			if(keysBeingExpanded.find(request) != keysBeingExpanded.end())
-				// Refuse to traverse a cycle in the graph.
 				return nullptr;
 			auto hasSource = source.find(request);
+			// Undefined key.
 			if(hasSource == source.end())
-				// Undefined key.
 				return nullptr;
 			// This key-value pair has not been expanded yet.
 			ExpandInto(request, hasSource->second, source, result, keysBeingExpanded);
