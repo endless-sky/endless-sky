@@ -834,8 +834,6 @@ void MapDetailPanel::DrawInfo()
 		text.SetWrapWidth(WIDTH - 20);
 		text.Wrap(selectedPlanet->Description());
 		text.Draw(Point(Screen::Left() + X_OFFSET + 20, Screen::Bottom() - panelSprite->Height() + 20), medium);
-
-		selectedSystemOffset = 0;
 	}
 }
 
