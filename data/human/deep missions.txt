@@ -4952,7 +4952,7 @@ mission "Hroar's Haulers 10"
 				`	Yngvar nods. "Is good to spend some time together. You have much to learn about being a red jacket. And I hope to learn a few things from you. In the meantime, I am guessing you may have some questions. Now's the time to ask."`
 					goto whatisthis
 			label myship
-			`	Yngar shakes his head. "It is your ship, and ol' Yngvar ain't about to be anybody's babysitter. I'll handle myself in the ports, and if you ask, I got more then a few wise words for you. But what you do with them is on your head. Now is there anything you want to know, Captain, before we head off?"`
+			`	Yngvar shakes his head. "It is your ship, and ol' Yngvar ain't about to be anybody's babysitter. I'll handle myself in the ports, and if you ask, I got more then a few wise words for you. But what you do with them is on your head. Now is there anything you want to know, Captain, before we head off?"`
 			label whatisthis
 			choice
 				`	Where are we headed?"`
@@ -5054,7 +5054,7 @@ mission "Hroar's Haulers 12"
 			action
 				set "generationship"
 			`	"Aye. I hail from an old spacer family that came on one of the first generation ships to the Deep. For four generations my ancestors lived and died in the depths of the uttermost Gap, only to barely beat the Hyperdrive ships by a decade or two." Yngvar laughs."`
-			`	Yngar's eyes gloss over as he talks,"Not that those Hyperspace jockeys had anything over my folks. What's a month or two in the Gap compared to several lifetimes? Ah, we could never quite kick the knack for it after that. Always felt most at home between worlds. Which is one of the reasons why we became Haulers."`
+			`	Yngvar's eyes gloss over as he talks,"Not that those Hyperspace jockeys had anything over my folks. What's a month or two in the Gap compared to several lifetimes? Ah, we could never quite kick the knack for it after that. Always felt most at home between worlds. Which is one of the reasons why we became Haulers."`
 			`	The old man shakes his head, "That's enough of my wobblin' jaw. Let's get back to the matter at hand."`
 			`	He leans back over the railing and nods toward disembarking guest-workers.`	
 			label whatnow
@@ -5164,7 +5164,7 @@ mission "Hroar's Haulers 14"
 			goto gunext
 
 		label red
-		`	"Ha, look at you, leading us around without knowing the first thing about us! Hroar really likes his greenhorns tender." She knowcks back another drink," I'da thought you'd pick it up by now. It just means you were raised or spent, like, formative time on Muspel, or Helheim." `
+		`	"Ha, look at you, leading us around without knowing the first thing about us! Hroar really likes his greenhorns tender." She knowcks back another drink," I'da thought you'd pick it up by now. It just means you were raised or spent, like, formative time on Muspel, or Helheim."`
 		`	She shrugs, "There really aren't a lot of children on either world, it's not as if I learned to walk on Muspel, but ma was a miner and she spent half the year workin' the red, and as soon as I could tell a dust-devil from a rust-banshee I was right there with her."`
 
 		label gunext
@@ -5178,23 +5178,160 @@ mission "Hroar's Haulers 14"
 			`	(Try to help Gunhilda to the exit.)`
 				goto helpgun
 			`	(Stay with Gunhilda.)`
-		`	Gunhilda is nursing another drink, talking about the time she and her ma,  "found a motherlode on Muspel", as the aruging and shouts draws nearer and nearer to you. Four riot-gear toting Syndicate Enforcers surround both of you.`
+		`	Gunhilda while nursing another drink, is talking aimlessly about the time she and her ma,  "found a motherlode on Muspel", as the aruging and shouts draws nearer and nearer to you. Four riot-gear toting Syndicate Enforcers surround both of you.`
 		`	"You two are coming with us for breaking Corporate Ordinance C7-A2, drunken and disorderly conduct in a Syndicate establishment." The nearest one nearly shouts.`
 		choice
 			`	(Comply.)`
+				goto comply
 			`	(Fight them.)`
-		` 	`
+		` 	Despite your best efforts you're quickly overwhelemed. Unfortunately, they don't stop once you are subdued. Red blood trickles into your eyes, and you hear your skull crack beneath repeated baton strikes. Then you hear nothing at all.`
+			die
 
 		label helpgun
 		branch "50 percent chance"
 			random < 50
-		`	You save Gunhilda.`
-			goto nextsave
-		label "50 percent chance"
-		`	You don't save Gunhilda.`
+		`	You quickly pull Gunhilda to her feet and drape an arm around her shoulder. "Wh-what are you...?"`
+		`	Unsteadily you are able to lead Gunhilda out of the bar even as the shouting and scuffling noises behind you reaches a crescendo.`
+		`	You find Yngvar and the majority of the Haulers just beyond the premises.`
+		`	"<last>." Yngvar says approvingly, "And Gunhilda, good. They've got Solvi and most his crew, but there's no point in picking a fight we can't win."`
+		`	Yngvar pushes into the middle of the Haulers and whistles until the frantic chatter dies down.`
+		`	"Alright everyone," Yngvar's voice rings out, "Head back to your ships and stay put. Do you pre-launch checks as discretely as possible and wait for my signal. <last> and myself are going to go try and sort things out."`
+		`	With that the group starts shuffling away from you and Yngvar. The old man turns to you, "Syndies are always looking for an excuse to come down hard on us Haulers. I shoulda seen it coming. Still, they are more or less lawful, and where that fails money still talks with them. Let's see if we can wriggle our way outta this mess."`
+		`	Yngvar starts walking in the opposite direction of the departing haulers.`
+		choice
+			`	(Follow Yngvar.)`
+		action
+			set "savedgunhilda"
+			goto followyngvar
 
-		label nextsave
-		`	You keep saving Gunhilda.`
+		label "50 percent chance"
+		`	You do your best to help Gunhilda to her feet, but she's sluggish and confused. "Wh-what are you..?"`
+		`	Unsteadily you manage to get your arm around her to help her toward the exit. However, after on a few steps she stumbles and pulls you down with her.`
+		`	The two of you awkwardly fall to the floor in a heap of misplaced appendages. You try to untangle yourself from Gunhilda, but before you can you feel a boot on your chest.`
+		`	Four baton-wielding membeters of the Syndicate Enforcers are looming over. The one with her foot on your chest gives you a cheerless grin, "You two are coming with us for breaking Corporate Ordinance C7-A2, drunken and disorderly conduct in a Syndicate establishment."`
+		choice
+			`	(Comply)`
+				goto comply
+			`	(Fight them.)`
+		action
+			set "resist"
+		`	The Syndicate Enforcer above you laughs and presses her foot down harder on your torso; pinning you to the floor, "Not much of a thinker, are we?"`
+		`	One of the other Enforcers kicks you a few times until they see the fight go out of you, and then they cuff you and drag you away.`
+			goto arrested
+
+		label comply
+		`	The Syndicate Enforcers seem almost disappointed that you didn't put up more of fight. They briskly pull you and Gunhilda to your feet, where they cuff both of you and haul you away.`
+			goto arrested
+
+		label getout
+		`	Leaving Gunhilda behind you quickly maneuver your way through the press of bodies to the exit. The sounds of shouting and struggle drop off once you're outside.`
+		`	You find Yngvar and the majority of the Haulers just beyond the premises.`
+		`	"<last>." Yngvar says, "Good you made it out. They've got Solvi and most his crew, along with Gunhilda, but there's no point in picking a fight we can't win."`
+		`	Yngvar pushes into the middle of the Haulers and whistles until the frantic chatter dies down.`
+		`	"Alright everyone," Yngvar's voice rings out, "Head back to your ships and stay put. Do you pre-launch checks as discretely as possible and wait for my signal. <last> and myself are going to go try and sort things out."`
+		`	With that the group starts shuffling away from you and Yngvar. The old man turns to you, "Syndies are always looking for an excuse to come down hard on us Haulers. I shoulda seen it coming. Still, they are more or less lawful, and where that fails money still talks with them. Let's see if we can wriggle our way outta this mess."`
+		`	Yngvar starts walking in the opposite direction of the departing haulers.`
+		choice
+			`	(Follow Yngvar.)`
+			goto followyngvar
+
+		label solvisong
+		`	Solvi flashes you a big stupid grin when he sees you accompanying him, "Captain <last>! I knew you were a person of culture!"`
+		`	The Haulers continue their singing,`
+		`	"Heap the haul, high and tall"`
+		`	"Upon our backs, we've borne it all"`
+		`	"Red our hearts, black our skies"`
+		`	"Like the Gap, Hroar never dies!"`
+		`	At that they all clink their overflowing drinks together and shout, "For Hroar!"`
+		choice
+			`	"For Hroar!"`
+			`	(Say nothing.)`
+		`	Solvi claps you on the back, "This is what it means to be a Hauler! Good drink, good song, good friends!"`
+		`	The others cheer at that and drink again.`
+		`	"Whatdya say lads? We sing another? How about the one about Hel-Hrut?" Solvi asks the crowd.`
+		`	"Hel-Hrut? Gettin' melancholy drunk are ya, Solvi?" One shouts back.`
+		`	"Hey now! It's sentimental like! Hroar's father was a hero and we're lucky to be a'singing his song." Another voice opines.`
+		choice
+			`	"Yeah, sing the Hel-Hrut song!"`
+			`	"Who is Hel-Hrut?"`
+			`	(Say nothing.)`
+		`	Solvi laughs and holds up his hands, "Alright! Alright! The Ballad of Hel-Hrut it is!"`
+		`	Solvi launched, alone, into song, "Before the rust, when we nearly when bust, and the contracts sank, and bank went blank - who should appear and show no fear, but..."`
+		`	"Hel-Hruty!" The crowd, larger now than earlier, roared.`
+		`	Captain Unferth continued, "When the lanes went dark, and the stars wouldn't spark, and the Syndies came and took our mark - who stood tall and refused to fall, but..."`
+		choice
+			`	"Hel-Hruty!"`
+			`	(Say nothing.)`
+		`	"Hel-Hruty!" The majority of the Haulers in the Watering Hole all shout in unison.`
+		`	You notice what look like local police quietly filing into the bar from a back entrance.`
+		`	"Who led his crew into the maw! Who battled the Syndie and won it all! Who brought back the greatest Long Haul, but..."`
+		choice
+			`	"Hel-Hruty!"`
+			`	"Hey, I think the police are here..."`
+			`	(Say nothing.)`
+		`	"But he met his doom, where no suns bloom, and the pirate bought Syndie's loom - where Yngvar burned and Hroar was... hey!" Solvi's voice abruptly cuts off as he's grabbed by two Syndicate Enforcers.`
+		`	Suddenly the Enforcers are everywhere, grabbing everyone, and you hear Yngvar's booming voice cut through the din, "Haulers, out!"`
+		`	An Enforcer grabs you by the arm, "You're in violation of Corporate Ordinance C7-A2, drunken and disorderly conduct in a Syndicate establishment. You're coming with us."`
+		choice
+			`	(Comply).`
+				goto complysong
+			`	(Try to break free and get to the exit.)`
+				goto escapesolvi
+			`	(Fight back.)`
+		`	You shove the Enforcer off you, who tumbles back onto the ground. All around you chaos is breaking out. Solvi is twisting in the arms of two Enforcers, while Yngvar is in the back leading out as many Haulers as he can.`
+		choice
+			`	(Get to the exit.)`
+				goto chooseyourbattles
+			`	(Help Solvi.)`
+				goto helpsolvi
+			`	(Continue to attack the Enforcer.)`
+		`	You unleash a hail of punches on the downed Enforcer. After a brief moment he goes limp and stops fighting back. With him taken care of you start to look for your next target when suddenly you hear a loud crack and see a bright light.`
+		`	This followed by another crack, and another, as batons rain down on your crumpled skull. The thudding noise of whacking batons gets softer and softer until you hear nothing at all.`
+			die
+
+		label helpsolvi
+		`	`
+
+
+		label chooseyourbattles
+		`	Free of the immediate Enforcer threat, you're able to work your way through the crowd and to the exit.`
+		`	You find Yngvar and the majority of the Haulers just beyond the premises.`
+		`	"<last>." Yngvar says, "Good you made it out. They've got Solvi and most his crew, along with Gunhilda, but there's no point in picking a fight we can't win." `
+		`	Yngvar pushes into the middle of the Haulers and whistles until the frantic chatter dies down.`
+		`	"Alright everyone," Yngvar's voice rings out, "Head back to your ships and stay put. Do you pre-launch checks as discretely as possible and wait for my signal. <last> and myself are going to go try and sort things out."`
+		`	With that the group starts shuffling away from you and Yngvar. The old man turns to you, "Syndies are always looking for an excuse to come down hard on us Haulers. I shoulda seen it coming. Still, they are more or less lawful, and where that fails money still talks with them. Let's see if we can wriggle our way outta this mess."`
+		`	Yngvar starts walking in the opposite direction of the departing haulers.`
+		choice
+			`	(Follow Yngvar.)`
+			goto followyngvar
+
+		label complysong
+		`	The Syndicate Enforcer quickly handcuffs you drags you toward the exit. You notice numerous other cuff Haulers suffering the same fate.`
+			goto arrested
+
+		label escapesolvi
+		branch "50 percent chance solvi"
+			random < 50
+		`	You twist out of the Enforcers grasp and plunge into the chaos errupting all around you. A few Enforcers try to stop you, but you're able to maneuver around them and press through the crowd to the exit.`
+		`	You find Yngvar and the majority of the Haulers just beyond the premises.`
+		`	"<last>." Yngvar says, "Good you made it out. They've got Solvi and most his crew, along with Gunhilda, but there's no point in picking a fight we can't win." `
+		`	Yngvar pushes into the middle of the Haulers and whistles until the frantic chatter dies down.`
+		`	"Alright everyone," Yngvar's voice rings out, "Head back to your ships and stay put. Do you pre-launch checks as discretely as possible and wait for my signal. <last> and myself are going to go try and sort things out."`
+		`	With that the group starts shuffling away from you and Yngvar. The old man turns to you, "Syndies are always looking for an excuse to come down hard on us Haulers. I shoulda seen it coming. Still, they are more or less lawful, and where that fails money still talks with them. Let's see if we can wriggle our way outta this mess."`
+		`	Yngvar starts walking in the opposite direction of the departing haulers.`
+		choice
+			`	(Follow Yngvar.)`
+			goto followyngvar
+
+		label "50 percent chance solvi"
+		action
+			set "resist"
+		`	You twist out of the Enforcers grasp and plunge into the chaos errupting all around you. Your freedom is short-lived as you're tackled by another Enforcer deeper in the crowd. You fall to the ground with his heavy body on yop of you. A few more enforcers appear to help restrain and cuff you.`
+		`	The Syndicate Enforcer gives you a twisted smile as they pull you to your feet, "Now we get to add a resisting arrest charge. That's a bonus for me."`
+		`	The Enforcer drags you away toward the exit along with all the other arrested Haulers.`
+			goto arrested
+			
+
 
 
 
