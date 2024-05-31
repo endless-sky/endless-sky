@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Information.h"
 #include "text/layout.hpp"
 #include "LineShader.h"
+#include "MapPanel.h"
 #include "OutlineShader.h"
 #include "Panel.h"
 #include "PointerShader.h"
@@ -663,6 +664,8 @@ bool Interface::BarElement::ParseLine(const DataNode &node)
 {
 	if(node.Token(0) == "color" && node.Size() >= 2)
 		color = GameData::Colors().Get(node.Token(1));
+	else if(node.Token(0) == "map color" && node.Size() >= 2)
+		mapColor = node.Value(1);
 	else if(node.Token(0) == "size" && node.Size() >= 2)
 		width = node.Value(1);
 	else if(node.Token(0) == "span angle" && node.Size() >= 2)
@@ -689,17 +692,22 @@ void Interface::BarElement::Draw(const Rectangle &rect, const Information &info,
 		segments = 0.;
 
 	// Avoid crashes for malformed interface elements that are not fully loaded.
-	if(!color || !width || !value)
+	if((!color && std::isnan(mapColor)) || !width || !value)
 		return;
+
+	Color trueColor;
+	// if(color)
+	// 	trueColor = *color;
+	// else
+		trueColor = MapPanel::MapColor(mapColor);
 
 	if(isRing)
 	{
 		if(!rect.Width() || !rect.Height())
 			return;
 
-
 		double fraction = value * spanAngle / 360.;
-		RingShader::Draw(rect.Center(), .5 * rect.Width(), width, fraction, *color, segments, startAngle);
+		RingShader::Draw(rect.Center(), .5 * rect.Width(), width, fraction, trueColor, segments, startAngle);
 	}
 	else
 	{
@@ -725,7 +733,7 @@ void Interface::BarElement::Draw(const Rectangle &rect, const Information &info,
 			Point to = start + min(v, value) * dimensions;
 			v += empty;
 
-			LineShader::Draw(from, to, width, *color);
+			LineShader::Draw(from, to, width, trueColor);
 		}
 	}
 }

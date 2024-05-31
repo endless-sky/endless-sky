@@ -1612,3 +1612,59 @@ interface "hail panel"
 	button h "Ask For _Help"
 		center -20 115
 		dimensions 140 30
+
+
+
+interface "sales key"
+	anchor top left
+	sprite "ui/sales key"
+		align top left
+		from 280 0
+	ring "full"
+		center 320 12
+		dimensions 9 9
+		size 1.75
+		"map color" -1
+	ring "full"
+		center 320 32
+		dimensions 9 9
+		size 1.75
+		"map color" 0
+	ring "full"
+		center 320 52
+		dimensions 9 9
+		size 1.75
+		"map color" 1
+	ring "full"
+		center 320 72
+		dimensions 9 9
+		size 1.75
+		"map color" 0.5
+
+	visible if "is outfitters"
+	label "Has no outfitter",
+		from 330 12
+		align left
+	label "Has outfitter",
+		from 330 32
+		align left
+	label "Sells this outfit",
+		from 330 52
+		align left
+	label "Outfit in storage"
+		from 330 72
+		align left
+
+	visible if "is shipyards"
+	label "Has no shipyard",
+		from 330 12
+		align left
+	label "Has shipyard",
+		from 330 32
+		align left
+	label "Sells this ship",
+		from 330 52
+		align left
+	label "Ship parked here"
+		from 330 72
+		align left

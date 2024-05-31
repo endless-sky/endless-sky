@@ -24,6 +24,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/FontSet.h"
 #include "GameData.h"
 #include "Government.h"
+#include "Information.h"
+#include "Interface.h"
 #include "ItemInfoDisplay.h"
 #include "text/layout.hpp"
 #include "PlayerInfo.h"
@@ -81,11 +83,13 @@ void MapSalesPanel::Draw()
 	// that no items are visible.
 	scroll = min(0., max(-maxScroll, scroll));
 
-	DrawKey();
+	const string buttonCondition = isOutfitters ? "is outfitters" : "is shipyards";
+
+	DrawKey(buttonCondition);
 	DrawPanel();
 	DrawItems();
 	DrawInfo();
-	FinishDrawing(isOutfitters ? "is outfitters" : "is shipyards");
+	FinishDrawing(buttonCondition);
 }
 
 
@@ -231,33 +235,33 @@ int MapSalesPanel::CompareSpriteSwizzle() const
 
 
 
-void MapSalesPanel::DrawKey() const
+void MapSalesPanel::DrawKey(const string &buttonCondition) const
 {
-	const Sprite *back = SpriteSet::Get("ui/sales key");
-	const Point backPos = Screen::BottomLeft() + Point(WIDTH + 40., -back->Height());
-	SpriteShader::Draw(back, backPos + back->Center());
+	double selectedValue = SystemValue(selectedSystem);
+
+	Information info;
+	info.SetCondition(buttonCondition);
+	info.SetBar("full", 1.);
+	GameData::Interfaces().Get("sales key")->Draw(info, (Panel *)this);
 
 	Color bright(.6f, .6f);
-	Color dim(.3f, .3f);
-	const Font &font = FontSet::Get(14);
+	// Color dim(.3f, .3f);
+	// const Font &font = FontSet::Get(14);
 
-	static const Point PADDING(40., 48.);
-	Point pos = backPos + PADDING;
-	Point textOff(10., -.5 * font.Height());
+	Point pos(Screen::Left() + 50. + WIDTH, Screen::Top() + 12.);
+	// Point textOff(10., -.5 * font.Height());
 
-	static const double VALUE[] = {
-		-1.,
-		0.,
-		1.,
-		.5
-	};
+	// static const double VALUE[] = {
+	// 	-1.,
+	// 	0.,
+	// 	1.,
+	// 	.5
+	// };
 
-	double selectedValue = SystemValue(selectedSystem);
 	for(int i = 0; i < 4; ++i)
 	{
-		bool isSelected = (VALUE[i] == selectedValue);
-		RingShader::Draw(pos, OUTER, INNER, MapColor(VALUE[i]));
-		font.Draw(KeyLabel(i), pos + textOff, isSelected ? bright : dim);
+		// bool isSelected = (VALUE[i] == selectedValue);
+		// font.Draw(KeyLabel(i), pos + textOff, isSelected ? bright : dim);
 		// If we're filtering out items not sold/stored here, draw a pointer.
 		if(onlyShowSoldHere && i == 2)
 			PointerShader::Draw(pos + Point(-7., 0.), Point(1., 0.), 10.f, 10.f, 0.f, bright);

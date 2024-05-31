@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "CategoryList.h"
 #include "ClickZone.h"
+#include "Information.h"
 
 #include <set>
 #include <string>
@@ -63,7 +64,7 @@ protected:
 
 	virtual void DrawItems() = 0;
 
-	void DrawKey() const;
+	void DrawKey(const std::string &buttonCondition) const;
 	void DrawPanel() const;
 	void DrawInfo() const;
 

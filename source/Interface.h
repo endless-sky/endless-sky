@@ -25,6 +25,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+using namespace std;
+
 class DataNode;
 class Information;
 class Panel;
@@ -198,6 +200,7 @@ private:
 	private:
 		std::string name;
 		const Color *color = nullptr;
+		double mapColor = numeric_limits<double>::quiet_NaN();
 		float width = 2.f;
 		bool reversed = false;
 		bool isRing = false;
