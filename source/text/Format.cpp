@@ -719,6 +719,6 @@ string Format::ExpandConditions(const string &source, const ConditionGetter &get
 int Format::Search(const string &str, const string &sub)
 {
 	auto it = search(str.begin(), str.end(), sub.begin(), sub.end(),
-		[](char a, char b) { return toupper(a) == toupper(b); });
+		[](unsigned char a, unsigned char b) { return toupper(a) == toupper(b); });
 	return (it == str.end() ? -1 : it - str.begin());
 }
