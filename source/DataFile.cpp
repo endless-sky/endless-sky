@@ -112,7 +112,7 @@ void DataFile::LoadData(const string &data)
 
 	size_t pos = 0;
 	// If the first character is the UTF8 byte order mark (BOM), skip it.
-	if(Utf8::IsBOM(Utf8::DecodeCodePoint(data, pos)))
+	if(!Utf8::IsBOM(Utf8::DecodeCodePoint(data, pos)))
 		pos = 0;
 
 	while(pos < end)
