@@ -137,10 +137,12 @@ namespace {
 		reverse(result.begin(), result.end());
 	}
 
-	void ScanForSubstitutions(const string &source,
-			function<void(const string &, size_t, size_t)> ProcessText,
+	string StringSubstituter(const string &source,
 			function<const string *(const string &)> SubstitutionFor)
 	{
+		string target;
+		target.reserve(source.length());
+
 		string key;
 		size_t start = 0;
 		size_t search = start;
@@ -157,11 +159,11 @@ namespace {
 			++right;
 			size_t length = right - left;
 			key.assign(source, left, length);
-			const string *subs = SubstitutionFor(key);
-			if(subs)
+			const string *sub = SubstitutionFor(key);
+			if(sub)
 			{
-				ProcessText(source, start, left - start);
-				ProcessText(*subs, 0, string::npos);
+				target.append(source, start, left - start);
+				target.append(*sub, 0, string::npos);
 				start = right;
 				search = start;
 			}
@@ -169,7 +171,8 @@ namespace {
 				search = left + 1;
 		}
 
-		ProcessText(source, start, source.length() - start);
+		target.append(source, start, source.length() - start);
+		return target;
 	}
 
 	// Helper function for Format::Expand, to recursively expand one key,
@@ -188,14 +191,6 @@ namespace {
 		// detect recursion.
 		auto inserted = keysBeingExpanded.insert(key);
 
-		// Allocate space for the new text.
-		string newValue;
-		newValue.reserve(oldValue.length());
-
-		auto ProcessText = [&](const string &from, size_t start, size_t length)
-		{
-			newValue.append(from, start, length);
-		};
 		auto SubstitutionFor = [&](const string &request) -> const string *
 		{
 			auto hasResult = result.find(request);
@@ -215,7 +210,7 @@ namespace {
 			return hasResult == result.end() ? nullptr : &hasResult->second;
 		};
 
-		ScanForSubstitutions(oldValue, ProcessText, SubstitutionFor);
+		string newValue = StringSubstituter(oldValue, SubstitutionFor);
 
 		// Success! Indicate we're done expanding this key, and provide its value.
 		keysBeingExpanded.erase(inserted.first);
@@ -573,21 +568,13 @@ double Format::Parse(const string &str)
 
 string Format::Replace(const string &source, const map<string, string> &keys)
 {
-	string result;
-	result.reserve(source.length());
-
-	auto ProcessText = [&](const string &from, size_t start, size_t length)
-	{
-		result.append(from, start, length);
-	};
 	auto SubstitutionFor = [&](const string &key) -> const string *
 	{
 		auto found = keys.find(key);
 		return (found == keys.end()) ? nullptr : &found->second;
 	};
 
-	ScanForSubstitutions(source, ProcessText, SubstitutionFor);
-	return result;
+	return StringSubstituter(source, SubstitutionFor);
 }
 
 
