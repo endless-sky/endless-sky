@@ -822,20 +822,20 @@ void MapDetailPanel::DrawInfo()
 	if(selectedPlanet && !selectedPlanet->Description().empty()
 			&& player.HasVisited(*selectedPlanet) && !selectedPlanet->IsWormhole())
 	{
-		static const int X_OFFSET = 240;
+		static const int X_OFFSET = 190;
 		static const int WIDTH = 500;
 		const Sprite *panelSprite = SpriteSet::Get("ui/description panel");
-		Point pos(Screen::Right() - X_OFFSET - .5f * panelSprite->Width(),
-			Screen::Top() + .5f * panelSprite->Height());
+		Point pos(Screen::Left() + X_OFFSET + .5f * panelSprite->Width(),
+			Screen::Bottom() - .5f * panelSprite->Height());
 		SpriteShader::Draw(panelSprite, pos);
 
 		WrappedText text(font);
 		text.SetAlignment(Alignment::JUSTIFIED);
 		text.SetWrapWidth(WIDTH - 20);
 		text.Wrap(selectedPlanet->Description());
-		text.Draw(Point(Screen::Right() - X_OFFSET - WIDTH, Screen::Top() + 20), medium);
+		text.Draw(Point(Screen::Left() + X_OFFSET + 20, Screen::Bottom() - panelSprite->Height() + 20), medium);
 
-		selectedSystemOffset = -150;
+		selectedSystemOffset = 0;
 	}
 }
 
