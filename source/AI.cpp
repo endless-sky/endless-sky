@@ -116,6 +116,7 @@ namespace {
 		}
 		return true;
 	}
+
 	bool EscortsReadyToLand(const Ship &ship)
 	{
 		bool shipIsYours = ship.IsYours();
