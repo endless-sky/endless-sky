@@ -461,7 +461,7 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 	}
 
 	for(auto &&it : giftShips)
-		result.giftShips.push_back(std::move(it.Instantiate(subs)));
+		result.giftShips.emplace_back(it.Instantiate(subs));
 	result.giftOutfits = giftOutfits;
 
 	result.music = music;
