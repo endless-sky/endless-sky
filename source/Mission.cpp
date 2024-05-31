@@ -1482,8 +1482,8 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		return result;
 	}
 	for(const NPC &npc : npcs)
-		result.npcs.push_back(npc.Instantiate(player.Conditions(), subs, sourceSystem, result.destination->GetSystem(),
-			jumps, payload));
+		result.npcs.push_back(npc.Instantiate(player.Conditions(), subs,
+			sourceSystem, result.destination->GetSystem(), jumps, payload));
 
 	// Instantiate the actions. The "complete" action is always first so that
 	// the "<payment>" substitution can be filled in.
@@ -1501,8 +1501,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		return result;
 	}
 	for(const auto &it : actions)
-		result.actions[it.first] = it.second.Instantiate(
-			player.Conditions(), subs, sourceSystem, jumps, payload);
+		result.actions[it.first] = it.second.Instantiate(player.Conditions(), subs, sourceSystem, jumps, payload);
 
 	auto oit = onEnter.begin();
 	for( ; oit != onEnter.end(); ++oit)
@@ -1518,8 +1517,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		return result;
 	}
 	for(const auto &it : onEnter)
-		result.onEnter[it.first] = it.second.Instantiate(
-			player.Conditions(), subs, sourceSystem, jumps, payload);
+		result.onEnter[it.first] = it.second.Instantiate(player.Conditions(), subs, sourceSystem, jumps, payload);
 
 	auto eit = genericOnEnter.begin();
 	for( ; eit != genericOnEnter.end(); ++eit)
