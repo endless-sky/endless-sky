@@ -577,7 +577,7 @@ string Format::LowerCase(const string &str)
 {
 	string result = str;
 	for(char &c : result)
-		c = tolower(c);
+		c = tolower(static_cast<unsigned char>(c));
 	return result;
 }
 
