@@ -48,7 +48,7 @@ public:
 	// Are there any lines which match these vars?
 	bool IsEmptyFor(const ConditionsStore &vars) const;
 
-	// Concatinate all lines which match these vars.
+	// Concatenate all lines which match these vars.
 	std::string ToString(const ConditionsStore &vars) const;
 
 	// Iterate over all text. Needed to support PrintData.
