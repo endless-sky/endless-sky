@@ -103,7 +103,10 @@ void PlanetPanel::Step()
 void PlanetPanel::Draw()
 {
 	if(player.IsDead())
+	{
+		GetUI()->Pop(this);
 		return;
+	}
 
 	Information info;
 	info.SetSprite("land", planet.Landscape());
@@ -155,7 +158,7 @@ void PlanetPanel::Draw()
 bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	if(player.IsDead())
-		return false;
+		return true;
 
 	Panel *oldPanel = selectedPanel;
 	const Ship *flagship = player.Flagship();
