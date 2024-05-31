@@ -38,8 +38,9 @@ outfit "Holovid Zone"
 	"heat generation" 1.0
 	"cargo scan opacity" 150
 	"outfit scan opacity" 150
-	description "Behold the ultimate in immersive holographic entertainment: the Holovid Zone. Its holographic projectors and textured force fields present lifelike visuals. A phase array speaker system can emanate sounds from anywhere in the room. Connect this to your scanners to view a tactical situation as it evolves, or to your communications systems for a real-time 3D conference. Dazzle your passengers with the latest in holovids and games."
-	description "The possibilities are endless... especially for a sly captain who misuses the device. Should authorities seek contraband or illegal outfits, a Holovid Zone may fool them long enough for you to escape. Deathsticks are hard to find in a ship with fifty tons of holographic straw."
+	description "Hai holographic technology far exceeds the comparable human equivalents, and nowhere is this best exemplified than in the Holovid Zone. Its holographic projectors and textured force fields present lifelike visuals, while phase array speakers emanate sounds from anywhere in the room."
+	description "	For the Hai, such technology is commonplace, being used to create 3D conference rooms, holovid theaters, gaming arcades, and more. In the past, Hai captains used to install Holovid Zones on their command deck, allowing them to generate tactical evaluations of battles in real-time."
+	description "	The possibilities are endless... especially for a sly captain who misuses the device. Should authorities seek contraband or illegal outfits, a Holovid Zone may fool them long enough for a smuggler to escape. Deathsticks are hard to find in a ship with fifty tons of holographic straw."
 
 outfit "Pulse Cannon"
 	category "Guns"
