@@ -8,13 +8,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  changed:
-    uses: ./.github/workflows/compute-changes.yml
-
   build_linux:
     name: Linux
-    needs: changed
-    if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.integration_tests == 'true' || needs.changed.outputs.cmake_files == 'true' }}
     runs-on: ubuntu-22.04
     strategy:
       matrix:
@@ -47,7 +42,7 @@ jobs:
         sudo apt-get install -y --no-install-recommends libosmesa6 mesa-utils
     - name: Restore cached Steam Runtime environment
       id: cache-runtime
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: |
           ${{ env.runtime }}
@@ -73,7 +68,7 @@ jobs:
         cd steam
         docker-compose run test-steam-${{ matrix.arch }}
     - name: Upload artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: binary-steam-${{ matrix.arch }}
         path: build/steam-${{ matrix.arch }}/endless-sky
