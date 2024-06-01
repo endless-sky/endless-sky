@@ -60,6 +60,9 @@ namespace {
 MissionAction::MissionDialog::MissionDialog(const ExclusiveItem<Phrase> &phrase):
 	dialogPhrase(phrase)
 {
+	// Stock phrases that generate text must be defined.
+	if(dialogPhrase.IsStock() && dialogPhrase->IsEmpty())
+		dialogText = "stock phrase";
 }
 
 
