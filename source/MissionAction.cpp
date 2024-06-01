@@ -57,6 +57,60 @@ namespace {
 
 
 
+MissionAction::MissionDialog::MissionDialog(const ExclusiveItem<Phrase> &phrase):
+	dialogPhrase(phrase)
+{
+}
+
+
+
+MissionAction::MissionDialog::MissionDialog(const string &text):
+	dialogText(text)
+{
+}
+
+
+
+MissionAction::MissionDialog::MissionDialog(const DataNode &node)
+{
+	// Handle anonymous phrases
+	//    phrase
+	//       ...
+	if(node.Size() == 1 && node.Token(0) == "phrase")
+	{
+		dialogPhrase = ExclusiveItem<Phrase>(Phrase(node));
+		// Anonymous phrases do not support "to display"
+		return;
+	}
+
+	// Handle named phrases
+	//    phrase "A Phrase Name"
+	if(node.Size() == 2 && node.Token(0) == "phrase")
+		dialogPhrase = ExclusiveItem<Phrase>(GameData::Phrases().Get(node.Token(1)));
+
+	// Handle regular dialog text
+	//    "Some thrilling dialog that truly moves the player."
+	else
+	{
+		if(node.Size() > 1)
+			node.PrintTrace("Ignoring extra tokens.");
+		dialogText = node.Token(0);
+
+		// Prevent a corner case that breaks assumptions. Dialog text cannot be empty (that indicates a phrase).
+		if(dialogText.empty())
+			dialogText = '\t';
+	}
+
+	// Search for "to display" lines.
+	for(auto &child : node)
+		if(child.Size() != 2 || child.Token(0) != "to" || child.Token(1) != "display" || !child.HasChildren())
+			node.PrintTrace("Ignoring unrecognized dialog token");
+		else
+			condition.Load(child);
+}
+
+
+
 // Construct and Load() at the same time.
 MissionAction::MissionAction(const DataNode &node)
 {
@@ -74,6 +128,12 @@ void MissionAction::Load(const DataNode &node)
 
 	for(const DataNode &child : node)
 		LoadSingle(child);
+
+	// Collapse pure-text dialog (no conditions or phrases). This is necessary to handle saved missions.
+	// It is also an optimization for the most common case in game data files.
+	dialogText = CollapseDialog(nullptr, nullptr);
+	if(!dialogText.empty())
+		dialog.clear();
 }
 
 
@@ -84,7 +144,15 @@ void MissionAction::LoadSingle(const DataNode &child)
 	bool hasValue = (child.Size() >= 2);
 
 	if(key == "dialog")
-		LoadDialog(child);
+	{
+		// Parse the "dialog phrase whatever" and "dialog whatever" lines:
+		if(child.Size() == 3 && child.Token(1) == "phrase")
+			dialog.emplace_back(ExclusiveItem<Phrase>(GameData::Phrases().Get(child.Token(2))));
+		else if(hasValue)
+			dialog.emplace_back(child.Token(1));
+		for(const auto &grand : child)
+			dialog.emplace_back(grand);
+	}
 	else if(key == "conversation" && child.HasChildren())
 		conversation = ExclusiveItem<Conversation>(Conversation(child));
 	else if(key == "conversation" && hasValue)
@@ -141,19 +209,14 @@ void MissionAction::SaveBody(DataWriter &out) const
 		// LocationFilter indentation is handled by its Save method.
 		systemFilter.Save(out);
 	}
-	if(!dialog.empty())
+	if(!dialogText.empty())
 	{
 		out.Write("dialog");
 		out.BeginChild();
-		for(auto &item : dialog)
 		{
-			out.Write(item.first);
-			if(item.second)
-			{
-				out.BeginChild();
-				item.second->Save(out);
-				out.EndChild();
-			}
+			// Break the text up into paragraphs.
+			for(const string &line : Format::Split(dialogText, "\n\t"))
+				out.Write(line);
 		}
 		out.EndChild();
 	}
@@ -194,29 +257,9 @@ string MissionAction::Validate() const
 
 
 
-const MissionAction::DialogList &MissionAction::GetDialogList() const
+string MissionAction::DialogText() const
 {
-	return dialog;
-}
-
-
-
-string MissionAction::MakeDialogText(const ConditionsStore &conditions, const map<string, string> &subs) const
-{
-	string result;
-	for(auto &item : dialog)
-		if(!item.second || item.second->Test(conditions))
-		{
-			string content = Format::Replace(Phrase::ExpandPhrases(item.first), subs);
-			if(!result.empty())
-			{
-				result += '\n';
-				if(!content.empty() && content[0] != '\t')
-					result += '\t';
-			}
-			result += content;
-		}
-	return result;
+	return dialogText;
 }
 
 
@@ -314,7 +357,6 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const 
 	const shared_ptr<Ship> &ship, const bool isUnique) const
 {
 	bool isOffer = (trigger == "offer");
-	string dialogText;
 	if(!conversation->IsEmpty() && ui)
 	{
 		// Conversations offered while boarding or assisting reference a ship,
@@ -328,7 +370,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const 
 			panel->SetCallback(&player, &PlayerInfo::BasicCallback);
 		ui->Push(panel);
 	}
-	else if(!dialog.empty() && ui)
+	else if(!dialogText.empty() && ui)
 	{
 		map<string, string> subs;
 		GameData::GetTextReplacements().Substitutions(subs, player.Conditions());
@@ -336,9 +378,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const 
 		subs["<last>"] = player.LastName();
 		if(player.Flagship())
 			subs["<ship>"] = player.Flagship()->Name();
-		string text = MakeDialogText(player.Conditions(), subs);
-		if(text.empty())
-			text = "(empty dialog)";
+		string text = Format::Replace(dialogText, subs);
 
 		// Don't push the dialog text if this is a visit action on a nonunique
 		// mission; on visit, nonunique dialogs are handled by PlayerInfo as to
@@ -375,8 +415,7 @@ MissionAction MissionAction::Instantiate(const ConditionsStore &store, map<strin
 	result.action = action.Instantiate(subs, jumps, payload);
 
 	// Create any associated dialog text from phrases, or use the directly specified text.
-	for(auto &item : dialog)
-		result.dialog.emplace_back(Format::Replace(Phrase::ExpandPhrases(item.first), subs), item.second);
+	result.dialogText = CollapseDialog(&store, &subs);
 
 	if(!conversation->IsEmpty())
 		result.conversation = ExclusiveItem<Conversation>(conversation->Instantiate(subs, jumps, payload));
@@ -400,36 +439,48 @@ int64_t MissionAction::Payment() const noexcept
 
 
 
-shared_ptr<ConditionSet> MissionAction::GetToDisplay(const DataNode &node)
+string MissionAction::CollapseDialog(const ConditionsStore *store, map<string, string> *subs) const
 {
-	shared_ptr<ConditionSet> conditions;
-	for(auto &child : node)
-		if(child.Size() != 2 || child.Token(0) != "to" || child.Token(1) != "display" || !child.HasChildren())
-			child.PrintTrace("Ignoring unrecognized dialog token");
-		else if(!conditions)
-			conditions = make_shared<ConditionSet>(child);
+	// No store or subs means we're determining whether the dialog is pure text.
+	// This is done at load time.
+	bool loadTimeScan = !store || !subs;
+
+	// Result is already cached for dialogs that are pure text at Load() time.
+	if(!dialogText.empty())
+	{
+		if(loadTimeScan)
+			return dialogText;
 		else
-			conditions->Load(child);
-	return conditions;
-}
+			return Format::Replace(Phrase::ExpandPhrases(dialogText), *subs);
+	}
 
+	string resultText;
+	for(auto &item : dialog)
+	{
+		// When checking for a pure-text dialog, reject a dialog with conditions or phrases,
+		// An empty string return value tells the caller that this dialog isn't pure text.
+		if(loadTimeScan && (!item.condition.IsEmpty() || item.dialogText.empty()))
+			return string();
 
+		// Skip text that is disabled.
+		if(!item.condition.IsEmpty() && !item.condition.Test(*store))
+			continue;
 
-void MissionAction::LoadDialog(const DataNode &node)
-{
-	// Parse the "dialog phrase whatever" and "dialog whatever" lines:
-	if(node.Size() == 3 && node.Token(1) == "phrase")
-		dialog.emplace_back("${" + node.Token(2) + "}", nullptr);
-	else if(node.Size() == 2)
-		dialog.emplace_back(node.Token(1), nullptr);
-	// Parse dialog in children:
-	for(auto &child : node)
-		if(child.Size() == 2 && child.Token(0) == "phrase")
-			dialog.emplace_back("${" + child.Token(1) + "}", GetToDisplay(child));
-		else
+		// Evaluate the phrase if we have one, otherwise copy the prepared text.
+		string content = item.dialogText.empty() ? item.dialogPhrase->Get() : item.dialogText;
+
+		// Expand any ${phrases} and <substitutions>
+		if(!loadTimeScan)
+			content = Format::Replace(Phrase::ExpandPhrases(content), *subs);
+
+		// Concatenated lines should start with a tab and be preceeded by end-of-line.
+		if(!resultText.empty())
 		{
-			if(child.Size() > 1)
-				child.PrintTrace("Ignoring extra tokens.");
-			dialog.emplace_back(child.Token(0), GetToDisplay(child));
+			resultText += '\n';
+			if(!content.empty() && content[0] != '\t')
+				resultText += '\t';
 		}
+		resultText += content;
+	}
+	return resultText;
 }

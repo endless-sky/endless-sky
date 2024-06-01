@@ -25,7 +25,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Phrase.h"
 
 #include <map>
-#include <memory>
 #include <string>
 #include <vector>
 
@@ -44,9 +43,16 @@ class UI;
 // In addition to performing a GameAction, a MissionAction can gate the task on
 // the ownership of specific outfits and also display dialogs or conversations.
 class MissionAction {
-public:
-	using DialogItem = std::pair<std::string, std::shared_ptr<ConditionSet>>;
-	using DialogList = std::vector<DialogItem>;
+private:
+	struct MissionDialog {
+		MissionDialog(const ExclusiveItem<Phrase> &);
+		MissionDialog(const std::string &);
+		MissionDialog(const DataNode &);
+
+		std::string dialogText;
+		ExclusiveItem<Phrase> dialogPhrase;
+		ConditionSet condition;
+	};
 
 
 public:
@@ -63,8 +69,8 @@ public:
 	// Determine if this MissionAction references content that is not fully defined.
 	std::string Validate() const;
 
-	const DialogList &GetDialogList() const;
-	std::string MakeDialogText(const ConditionsStore &conditions, const std::map<std::string, std::string> &subs) const;
+	// Only valid in an instantiated mission: get the instantiated dialog text.
+	std::string DialogText() const;
 
 	// Check if this action can be completed right now. It cannot be completed
 	// if it takes away money or outfits that the player does not have, or should
@@ -87,8 +93,7 @@ public:
 
 
 private:
-	static std::shared_ptr<ConditionSet> GetToDisplay(const DataNode &node);
-	void LoadDialog(const DataNode &node);
+	std::string CollapseDialog(const ConditionsStore *store, std::map<std::string, std::string> *subs) const;
 
 
 private:
@@ -96,7 +101,12 @@ private:
 	std::string system;
 	LocationFilter systemFilter;
 
-	DialogList dialog;
+	// Dialog text of instantiated missions. Not valid for missions read from game data files.
+	std::string dialogText;
+
+	// Logic for creating dialog text. Only valid for missions read in from game data files.
+	std::vector<MissionDialog> dialog;
+
 	ExclusiveItem<Conversation> conversation;
 
 	// Outfits that are required to be owned (or not) for this action to be performable.
