@@ -823,6 +823,9 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 // Sorts the player's fleet given a comparator function (based on column).
 void PlayerInfoPanel::SortShips(InfoPanelState::ShipComparator *shipComparator)
 {
+	if(panelState.Ships().empty())
+		return;
+
 	// Clicking on a sort column twice reverses the comparison.
 	if(panelState.CurrentSort() == shipComparator)
 		shipComparator = GetReverseCompareFrom(*shipComparator);
@@ -851,7 +854,12 @@ void PlayerInfoPanel::SortShips(InfoPanelState::ShipComparator *shipComparator)
 		shipComparator
 	);
 
+	// Ships are now sorted.
+	panelState.SetCurrentSort(shipComparator);
+
 	// Load the same selected ships from before the sort.
+	if(selectedShips.empty())
+		return;
 	auto it = selectedShips.begin();
 	for(size_t i = 0; i < panelState.Ships().size(); ++i)
 		if(panelState.Ships()[i] == *it)
@@ -865,9 +873,6 @@ void PlayerInfoPanel::SortShips(InfoPanelState::ShipComparator *shipComparator)
 			if(it == selectedShips.end())
 				break;
 		}
-
-	// Ships are now sorted.
-	panelState.SetCurrentSort(shipComparator);
 }
 
 

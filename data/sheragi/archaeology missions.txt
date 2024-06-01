@@ -1575,7 +1575,7 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 				`	"Did that happen with the last one?"`
 					goto last
 			
-			`	Your questions is met with a chorus of "No, I'm fine," "All good over here," and various other affirmations of safety from the crew.`
+			`	Your question is met with a chorus of "No, I'm fine," "All good over here," and various other affirmations of safety from the crew.`
 				goto desyoend
 			
 			label last
