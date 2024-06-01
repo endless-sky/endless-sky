@@ -130,7 +130,7 @@ void DataWriter::WriteToken(const char *a)
 void DataWriter::WriteToken(const string &a)
 {
 	// Figure out what kind of quotation marks need to be used for this string.
-	bool hasSpace = any_of(a.begin(), a.end(), [](char c) { return isspace(c); });
+	bool hasSpace = any_of(a.begin(), a.end(), [](unsigned char c) { return isspace(c); });
 	bool hasQuote = any_of(a.begin(), a.end(), [](char c) { return (c == '"'); });
 	// If the token is an empty string, it needs to be wrapped in quotes as if it had a space.
 	hasSpace |= a.empty();
