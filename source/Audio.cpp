@@ -118,7 +118,7 @@ namespace {
 	int musicFade = 0;
 	vector<int16_t> fadeBuffer;
 	double musicVolume = 1.;
-	double musicVolumeModifier = 0.;
+	double playlistVolumeModifier = 0.;
 
 	const Playlist *currentPlaylist = nullptr;
 	const Track *currentPlaylistTrack = nullptr;
@@ -260,7 +260,7 @@ void Audio::SetMusicVolume(double level)
 {
 	musicVolume = min(1., max(0., level));
 	if(isInitialized)
-		alSourcef(musicSource, AL_GAIN, min(1., musicVolume + musicVolumeModifier));
+		alSourcef(musicSource, AL_GAIN, min(1., musicVolume + playlistVolumeModifier));
 }
 
 
@@ -376,7 +376,7 @@ void Audio::UpdateMusic(PlayerInfo &player, Track::GameState state)
 			currentPlaylistTrack = currentPlaylist->GetCurrentTrack();
 			if(currentPlaylistTrack)
 			{
-				musicVolumeModifier = currentPlaylistTrack->GetVolumeModifier();
+				playlistVolumeModifier = currentPlaylistTrack->GetVolumeModifier();
 				SetMusicVolume(musicVolume);
 				PlayMusic(currentPlaylistTrack->GetTitle(state));
 				finishedWaiting = false;

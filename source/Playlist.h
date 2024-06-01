@@ -45,8 +45,8 @@ public:
 
 	bool MatchingConditions(const PlayerInfo &player) const;
 
-	int Priority() const;
-	int Weight() const;
+	unsigned Priority() const;
+	unsigned Weight() const;
 
 
 private:
@@ -55,8 +55,8 @@ private:
 	ConditionSet toPlay;
 	LocationFilter location;
 
-	int priority = 0;
-	int weight = 1;
+	unsigned priority = 0;
+	unsigned weight = 1;
 
 	std::string progressionStyle;
 	WeightedList<const Track *> tracks;

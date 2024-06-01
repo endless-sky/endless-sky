@@ -461,10 +461,8 @@ interface "load menu"
 interface "controls"
 	sprite "ui/keys panel"
 		center -65 -20
-	visible if "show music slider"
 	sprite "ui/music volume"
-		center 330 -60
-	visible
+		center 330 -59
 	button c "_Controls"
 		center -300 -230
 		dimensions 90 30

@@ -662,13 +662,6 @@ const Set<Playlist> &GameData::Playlists()
 
 
 
-bool GameData::HasPlaylists()
-{
-	return objects.playlists.empty();
-}
-
-
-
 const Set<Ship> &GameData::Ships()
 {
 	return objects.ships;

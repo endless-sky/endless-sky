@@ -51,17 +51,14 @@ void Playlist::Load(const DataNode &node)
 	{
 		const string &key = child.Token(0);
 		bool hasValue = child.Size() >= 2;
-		if(key == "to")
-		{
-			if(child.Token(1) == "play")
-				toPlay.Load(child);
-		}
+		if(key == "to" && child.Token(1) == "play")
+			toPlay.Load(child);
 		else if(key == "location")
 			location.Load(child);
 		else if(key == "priority" && hasValue)
-			priority = max<int>(0, child.Value(1));
+			priority = max<unsigned>(0, child.Value(1));
 		else if(key == "weight" && hasValue)
-			weight = max<int>(1, child.Value(1));
+			weight = max<unsigned>(1, child.Value(1));
 		else if(key == "tracks")
 		{
 			bool validProgressionStyle = hasValue ?
@@ -122,22 +119,21 @@ const Track *Playlist::GetCurrentTrack() const
 
 bool Playlist::MatchingConditions(const PlayerInfo &player) const
 {
-	if(player.GetPlanet())
-		if(!location.Matches(player.GetPlanet()))
-			return false;
+	if(player.GetPlanet() && !location.Matches(player.GetPlanet()))
+		return false;
 	return toPlay.Test(player.Conditions()) && location.Matches(player.GetSystem());
 }
 
 
 
-int Playlist::Priority() const
+unsigned Playlist::Priority() const
 {
 	return priority;
 }
 
 
 
-int Playlist::Weight() const
+unsigned Playlist::Weight() const
 {
 	return weight;
 }
