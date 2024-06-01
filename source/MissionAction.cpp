@@ -258,7 +258,7 @@ string MissionAction::Validate() const
 
 
 
-string MissionAction::DialogText() const
+const string &MissionAction::DialogText() const
 {
 	return dialogText;
 }
