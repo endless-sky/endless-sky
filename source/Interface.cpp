@@ -732,7 +732,6 @@ void Interface::BarElement::Draw(const Rectangle &rect, const Information &info,
 
 
 
-
 // Members of the PointerElement class:
 
 // Constructor.

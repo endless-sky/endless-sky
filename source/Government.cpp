@@ -223,7 +223,7 @@ void Government::Load(const DataNode &node)
 				const string &grandKey = grand.Token(0);
 				bool hasGrandValue = grand.Size() >= 2;
 				if(grandKey == "player reputation" && hasGrandValue)
-					initialPlayerReputation = add ? initialPlayerReputation + child.Value(valueIndex) : child.Value(valueIndex);
+					initialPlayerReputation = add ? initialPlayerReputation + grand.Value(valueIndex) : grand.Value(valueIndex);
 				else if(grandKey == "max" && hasGrandValue)
 					reputationMax = add ? reputationMax + grand.Value(valueIndex) : grand.Value(valueIndex);
 				else if(grandKey == "min" && hasGrandValue)
@@ -699,13 +699,13 @@ int Government::Fines(const Ship *ship) const
 
 
 
-bool Government::FinesContents(const Ship *ship) const
+bool Government::FinesContents(const Ship *ship, const PlayerInfo &player) const
 {
 	for(auto &it : ship->Outfits())
 		if(this->Fines(it.first) || this->Condemns(it.first))
 			return true;
 
-	return ship->Cargo().IllegalCargoFine(this);
+	return ship->Cargo().IllegalCargoFine(this, player);
 }
 
 
