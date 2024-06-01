@@ -150,6 +150,7 @@ void MissionAction::LoadSingle(const DataNode &child)
 			dialog.emplace_back(ExclusiveItem<Phrase>(GameData::Phrases().Get(child.Token(2))));
 		else if(hasValue)
 			dialog.emplace_back(child.Token(1));
+		// Parse embedded child dialog
 		for(const auto &grand : child)
 			dialog.emplace_back(grand);
 	}

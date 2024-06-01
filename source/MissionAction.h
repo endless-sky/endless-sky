@@ -101,7 +101,7 @@ private:
 	std::string system;
 	LocationFilter systemFilter;
 
-	// Dialog text of instantiated missions. Not valid for missions read from game data files.
+	// Dialog text of instantiated missions, or missions with pure-text dialog (no conditions or phrase blocks)
 	std::string dialogText;
 
 	// Logic for creating dialog text. Only valid for missions read in from game data files.
