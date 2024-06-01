@@ -88,6 +88,10 @@ MissionAction::MissionDialog::MissionDialog(const DataNode &node)
 	if(node.Size() == 2 && node.Token(0) == "phrase")
 		dialogPhrase = ExclusiveItem<Phrase>(GameData::Phrases().Get(node.Token(1)));
 
+	// Stock phrases that generate text must be defined.
+	if(dialogPhrase.IsStock() && dialogPhrase->IsEmpty())
+		dialogText = "stock phrase";
+
 	// Handle regular dialog text
 	//    "Some thrilling dialog that truly moves the player."
 	else
@@ -439,7 +443,7 @@ int64_t MissionAction::Payment() const noexcept
 
 
 
-string MissionAction::CollapseDialog(const ConditionsStore *store, map<string, string> *subs) const
+string MissionAction::CollapseDialog(const ConditionsStore *store, const map<string, string> *subs) const
 {
 	// No store or subs means we're determining whether the dialog is pure text.
 	// This is done at load time.

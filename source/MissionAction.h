@@ -93,7 +93,7 @@ public:
 
 
 private:
-	std::string CollapseDialog(const ConditionsStore *store, std::map<std::string, std::string> *subs) const;
+	std::string CollapseDialog(const ConditionsStore *store, const std::map<std::string, std::string> *subs) const;
 
 
 private:
