@@ -5493,7 +5493,7 @@ mission "Hroar's Haulers 14"
 		label logofficer
 		action
 			set "logofficer"
-		`	"I'm whatever the Haulers need me to be. Back in Hrut's day,  that's Hroar's father, I often ran hrither like you. But before and after that I ran my own ships and convoys. Important to have one of us spacers around to keep an eye on the miners. Just because they got themselves a ship, doesn't mean they know what to do with it."`
+		`	"I'm whatever the Haulers need me to be. Back in Hrut's day, that's Hroar's father, I often ran hrither like you. But before and after that I ran my own ships and convoys. Important to have one of us spacers around to keep an eye on the miners. Just because they got themselves a ship, doesn't mean they know what to do with it."`
 		`	Bolverka scoffs.`
 		`	"I figure Captain Solvi Unferth, another spacer like me, will take over logistics when it's time for me to return to the cosmic dust."`
 		`	"Could you be less dramatic, Yngvar?" Bolverka nearly laughs, "you'll outlast all of us yet. Probably put a few of those blackholes you're always talking about to shame, too. Now, I think you were saying something about us 'stoners' not having any fun."`
@@ -5513,6 +5513,57 @@ mission "Hroar's Haulers 14"
 		`	"No! Your stones weather and rot in your atmospheres, your cairns tumble and disappear, on the Spacer Asteroid they'll last forever. It's different, better, and more refined."`
 		`	"Sure, Yng," Bolverka turns her attention back to you, "So what do you say, greenhorn? Same thing, right?"`
 			goto cairntalk
+
+		label samething
+		`	Bolverka beams, "Yngvar the space-stoner, maybe that's the song we oughta to be singing?"`
+		`	"Bah, what does <last> know about it anyways." Yngvar glares unhappily at Bolverka.`
+		`	As Bolverka and Yngvar continue to bicker you notice the singing in the background pick up;`
+		`	Captain Unferth's voice is clear, "Who led his crew into the maw! Who battled the Syndie and won it all! Who brought back the largest Long Haul, but..."`
+		`	"Hel-Hruty!" nearly the entire bar chants back.`
+		`	Yngvar, hearing it, scowls. Bolverka puts her hand on his.`
+		`	"Let them have their fun." she says softly to Yngvar.`
+		`	"That damned fool." Yngvar growls and then holds up his radation burnt hand,"If he just listened to me we could have saved so many, he could have been..."`
+		`	Yngvar stops talking as the singing abruptly dies out. He stands up and peers across the bar. You look and notice multiple people in riot gear have surrounded Captain Unferth and those nearest him.`
+			goto yngvarswears
+
+		label shipnotstone
+		`	"Ha!" Yngvar exclaims triumphantly, "I told you. It's different. It's more technical, more nuanced, more rational, more..."`
+		`	"...of the same." Bolverka interrupts.`
+		`	"Are you sure you want to gloat, Yng?" She reaches a hand out to touch his, and gives him a knowing look, "Who knows what winning could cost you?"`
+		`	"I, uh..." Yngvar stammers, but before he can say anything else a commotion can breaks out near the bar.`
+		`	A group of people in riot gear have surrounded Captain Unferth and those nearest him.`
+		label yngvarswears
+		`	Yngvar swears under his breath, "Syndicate Enforcers. Here to arrest as many of us as they can for trumped up charges, no doubt."`
+		`	He pulls himself to his feet and grumbles to you, "The best thing for the Haulers would be to just get out of this with as few of us arrested as possible. No brawls. That'd put the contract at risk."`
+		`	Yngvar puts his hands to his mouth, and his voice booms throghout the estbalishment, "Haulers, out!"`
+		choice
+			`	(Follow Yngvar out.)`
+				goto leavewithyngvar
+			`	(Encourage the Haulers to fight back.)`
+				goto fightjerk
+				to display
+					has "jerktosolvi"
+			`	(Encourage the Haulers to fight back.)`
+				goto fightnice
+				to display
+					not "jerktosolvi"
+
+		label leavewithyngvar
+		`	You follow Yngvar, Bolverka, and most the other Haulers out of the Watering Hole. It looks like only the group nearest the bar got arrested.`
+		`	"<last>." Yngvar says, "Thanks for keeping a cool head. By my count they've got Solvi and most his crew, along with Gunhilda, but there's no point in picking a fight we can't win." `
+		`	Yngvar pushes into the middle of the Haulers and whistles until the frantic chatter dies down.`
+		`	"Alright everyone," Yngvar's voice rings out, "Head back to your ships and stay put. Do you pre-launch checks as discretely as possible and wait for my signal. <last> and myself are going to go try and sort things out."`
+		`	With that the group starts shuffling away from you and Yngvar. The old man turns to you, "Syndies are always looking for an excuse to come down hard on us Haulers. I shoulda seen it coming. Still, they are more or less lawful, and where that fails money still talks with them. Let's see if we can wriggle our way outta this mess."`
+		`	Yngvar starts walking in the opposite direction of the departing haulers.`
+		choice
+			`	(Follow Yngvar.)`
+			goto followyngvar
+
+		label fightjerk
+		`	Ignoring Yngvar's command, you leap onto the table and pump your fist in the air.`
+		`	"Haulers!" Your voice cuts through the din and everyone, even the Enforcers, turn to look at you.`
+		choice
+		`	"`
 
 
 
