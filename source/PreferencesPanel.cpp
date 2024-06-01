@@ -1256,11 +1256,13 @@ void PreferencesPanel::DrawPluginInstalls()
 // Render the named plugin description into the pluginDescriptionBuffer.
 void PreferencesPanel::RenderPluginDescription(const std::string &pluginName)
 {
+	static const string EMPTY = "(No description given.)";
+
 	const Plugin *plugin = Plugins::Get().Find(pluginName);
 	if(plugin)
 	{
 		const Sprite *sprite = SpriteSet::Get(plugin->name);
-		RenderPluginDescription(sprite, plugin->aboutText);
+		RenderPluginDescription(sprite, plugin->aboutText.empty() ? EMPTY : plugin->CreateDescription());
 	}
 	else
 		pluginDescriptionBuffer.reset();
@@ -1291,8 +1293,7 @@ void PreferencesPanel::RenderPluginDescription(const Sprite *sprite, const std::
 
 	WrappedText wrap(font);
 	wrap.SetWrapWidth(box.Width());
-	static const string EMPTY = "(No description given.)";
-	wrap.Wrap(plugin.aboutText.empty() ? EMPTY : plugin.CreateDescription());
+	wrap.Wrap(description);
 
 	descriptionHeight += wrap.Height();
 
