@@ -5418,21 +5418,28 @@ mission "Hroar's Haulers 14"
 		`	"Smart thinking, <last>." Yngvar says, "You'll go deaf or blind from the music or drink with the crowd at the bar. Safer back here with us."`
 		`	Bolverka laughs, "Don't let old Yngvar fool you, if he wasn't the logistics officer he'd be right there with them."`
 		`	"Bah," Yngvar rolls his one good eye, "What's a stoner know about having a little fun anyways?"`
+		label stonertalk
 		choice
 			`	"Stoner?"`
 				goto stoner
 			`	"You're not always the logistics officer?"`
 				goto logofficer
+				to display
+					not "logofficer"
 			`	(Say nothing.)`
-		`	"You know full well that we 'stoners' have just as much fun as anyone else, Yngvar. Besides, you're practically one yourself so stop acting all superior." Bolverka says back with more affection than venom.`
+		`	"You know full well that we 'stoners' have just as much fun as anyone else, Yngvar. Besides, you're practically one yourself so stop acting all superior." Bolverka says with more affection than venom.`
+		label yngcont
 		`	"I'm a spacer, not a stoner! There ain't no stones with my life memories scribbled on them under my bed!" Yngvar retorts, and you suddenly feel like you're in the middle of an agrument they've had a hundred times before.`
 		`	"Old man, carving your story on a small piece of your first ship and then placing it on a pile of older ones left by your ancestors on some old asteroid next to an Elf-Stone is about as stoner as it gets, with only the midlest of tweaks."`
 		`	Yngvar frowns, "A piece of high technology is as different from a stone as a dwarf planet from a sun."`
 		`	This time Bolverka rolls her eyes, "It's the symbolism that matters, not the... you know what? How about we ask the greenhorn? Let them weigh in on the matter. I hear they have some experience with us 'stoners'."`
 		`	"Fine." Yngvar grumbles, "What do you say, <last>? Are they the same thing? Or different?"`
+		label cairntalk
 		choice
 			`	"So there's a cairn of spacer stories, but instead of stones you use a piece of your ship?"`
 				goto cairn
+				to display
+					not "cairn"
 			`	"Your first ship, or your first stone, sounds like the same thing to me."`
 				goto samething
 			`	"A ship is not a stone. I'm with Yngvar on this one."`
@@ -5456,11 +5463,57 @@ mission "Hroar's Haulers 14"
 		label stoner
 		`	Yngvar chuckles, "Buncha stone-worshipping fools who think elves brought 'em to the Deep."`
 		`	"Yng, dear, you know that isn't the whole story." Bolverka says with exhasperation.`
-		`	"Listen, I ain't never seen no Elf. But I've sure as Schwarzschild seen a lot of ships. You stoners are just the children of a lost generation ship who reverted to their primal natures is all."`
+		`	"Listen, I ain't never seen no elf. But I've sure as Schwarzschild seen a lot of ships. You stoners are just the children of a lost generation ship who reverted to their primal natures is all."`
 		`	Bolverka sighs and taps her fingers on the table, "Generation ships? The ones that couldn't have possibly traveled to the Deep in the time you claim they did? That's nearly as outlandish as any story about elves."`
 		`	She pauses and then turns back to you, "Stoners is just what some folk in the Deep call those of us who follow the old ways. We don't necessarily believe it was elves that brought us here, but something did."`
 		`	"Generation ships." Yngvar grumbles."`
-		
+		branch nogenerationshipchoice
+			not "generationship"
+
+		choice
+		`	"You think the same ships that brought your family here, also brought the stoners here?"`
+			goto genshipask
+		`	(Say nothing.)`
+		label nogenerationshipchoice
+		`	"Anyways, back to the topic at hand, we 'stoners' have just as much fun as anyone else, and you know it, Yngvar. Besides, you're practically one yourself so stop acting all superior." Bolverka says with more affection than venom.`
+			goto yngcont
+
+		label genshipask
+		action
+			set "generationship2"
+			clear "generationship"
+		`	Yngvar sighs, "It's a bit more complicated than that. Three of the earliest generation ships were sent to the Deep. It was a private affair using... let's say untested technology."`
+		`	Bolverka snorts, but says nothing else."`
+		`	"The first of these ships was called Thorismund's Folly." He pauses, "Well, it may have had a different name back then. But we know it as Thorismund's Folly. Anyways, it never got to it's destination. The other two ships, one of which my family was on, arrived in the Deep and found no trace of the Folly. But they did find some wild folks venerating stones. Just makes sense that they would be the survivors."`
+		`	"And how exactly did one generation ship, without FTL technology, manage to seed half a dozen systems with these survivors?" Bolverka says sharply.`
+		`	"Wormholes? I don't know, woman, I don't have all the answers. But it makes more sense then your elf theory!"`
+		`	Bolverka rolls her eyes, "Anyways, back to the topic at hand, we 'stoners' have just as much fun as anyone else, and you know it, Yngvar. Besides, you're practically one yourself so stop acting all superior."`
+			goto yngcont
+
+		label logofficer
+		action
+			set "logofficer"
+		`	"I'm whatever the Haulers need me to be. Back in Hrut's day,  that's Hroar's father, I often ran hrither like you. But before and after that I ran my own ships and convoys. Important to have one of us spacers around to keep an eye on the miners. Just because they got themselves a ship, doesn't mean they know what to do with it."`
+		`	Bolverka scoffs.`
+		`	"I figure Captain Solvi Unferth, another spacer like me, will take over logistics when it's time for me to return to the cosmic dust."`
+		`	"Could you be less dramatic, Yngvar?" Bolverka nearly laughs, "you'll outlast all of us yet. Probably put a few of those blackholes you're always talking about to shame, too. Now, I think you were saying something about us 'stoners' not having any fun."`
+			goto stonetalker
+
+		label cairn
+		action
+			set "cairn"
+		`	Bolverka grins, "Oh, you'll love this. You see each spacer takes a piece of the first ship the served on, usually their family's..."`
+		`	"Hold on now!" Yngvar interjects, "I'm the spacer here, let me tell it."`
+		`	Bolverka holds up both hands in surrender, "Fine, fine. Tell your story, old man."`
+		`	"Haulers are a figurative, and often times literal, marriage of miners and spacers from the Caravan days. I'll admit after near 300 years, the differences between the two groups have gotten more than a little muddled. These days most Haulers are a mix of both, they spend some time mining and sometime spacing. But there's still a few of us, who to stick to one trade and one tradition."`
+		`	Bolverka yawns.`
+		`	Yngvar pointedly ignores her, "I was born on the Hauler's old flagship back when Hrjothr, Hroar's grandad, led the Haulers. It was a Bactrian that had been passed down from the old days. My family had served on it for centuries."`
+		`	"She was a beauty, what I wouldn't do to see her like fly again," Yngvar's clear eye sparkles, "When one of his spacers finish our first apprenticeship as children, we take some broken or replaced piece of tech from the ship we served on, and keep with it with us for all our days. We laser-etch into it every ship we servered on, and whatever commendations we earned, formal and informal. When we die our bodies sent back into the Gap, and our kin take our ship-fragment to the Spacer Asteroid where it's laid to rest."`
+		`	"So just like our stones." Bolverka says brightly.`
+		`	"No! Your stones weather and rot in your atmospheres, your cairns tumble and disappear, on the Spacer Asteroid they'll last forever. It's different, better, and more refined."`
+		`	"Sure, Yng," Bolverka turns her attention back to you, "So what do you say, greenhorn? Same thing, right?"`
+			goto cairntalk
+
 
 
 
@@ -5508,6 +5561,240 @@ fleet "The Lost"
 	on complete
 		conversation
 			` Yngvar paces unhappily. "The Iron Siren is filling her holds with old culture; archaeology and the like, we'll get a right decent price for it in the Deep. But, it won't make us whole, not even close. And Captain Bolverka - she's good people. No, none of this sits right with me."`
-			` Finally Yngvar sits down. "I'll keep an ear out for the wherabouts of our people and our cargo, but it's now more important than ever we have a good Haul. Our next stop is Chiron."
+			` Finally Yngvar sits down. "I'll keep an ear out for the wherabouts of our people and our cargo, but it's now more important than ever we have a good Haul. Our next stop is Chiron."`
   
 
+			label greenoptions
+			choice
+			to display
+				has "generationship"
+				`	(Find someone that can produce a fake ID for you.)`
+					goto id1
+					to display
+						not "id1"
+				`	(Go back to Ivaldur's forging stall for the fake ID.)`
+					goto id2
+					to display
+						has "id1"
+						not "id2"
+				`	(Look for a survival suit.)`
+					goto suit1
+					to display
+						"timothy radrickson suit" = 0
+						not "suit1"
+				`	(Return to the shop to buy the survival suit.)`
+					goto suit2
+					to display
+						has "suit1"
+						not "suit2"
+				`	(Find the detoxification medicine.)`
+					goto med1
+					to display
+						"timothy radrickson id" <= 1
+						not "id1"
+				`	(Go back to the drug dealer to get the detoxification medicine.)`
+					goto med2
+					to display
+						has "med1"
+						not "med2"
+				`	(Leave the emporium.)`
+					goto end
+			
+			label id1
+			action
+				set "id1"
+			`	There's more than a half dozen stalls all advertising their high skills and production value when it comes to the art of crafting fake IDs. Most the stalls and their employees have a garish, sloppy, and boastful manner, but one with a more professional and constrained feel attracts your attention; it's run by an older gentleman who has the look of a respectable watchmaker.`
+			`	He nods at you politely as you approach. "Good day to you. I am Ivaldur the Forger, and what can I do for you?"`
+			choice
+				`	(Ask about producing a fake ID.)`
+					goto ask
+				`	(Turn around and leave.)`
+
+			`	For whatever reason you are not interested in doing business with Ivaldur the Forger, and promptly head back out into the emporium.`
+				goto greenoptions
+			
+			label ask
+			`	The old man smiles at you good-naturedly. "Simple enough request. I can provide you with an ID, and a complex matching background that will pass all but the most exhaustive of checks."`
+			`	He gives off an aura of quiet confidence as he speaks. "My service is thorough and, as you'll find, quite unmatched. Unless your friend is someone being hunted by Navy Intelligence, he will be able to seamlessly integrate into life on any human world."`
+			`	He pauses as if considering something, and then adds, "If he is also a war criminal on the run from someone like, I don't know, Deep Security or Republic Intelligence... I could also come up with something, but that would be a premium service I doubt you need at the moment."`
+			`	Ivaldur adjusts his spectacles thoughtfully. "The going rate for my basic service is 350,000 credits."`
+			`	He looks at you expectantly and waits.`
+			choice
+				`	(Pay 350,000 credits for a fake ID and history for Tim.)`
+					goto getid
+				`	(Pass.)`
+
+			`	He simply nods and gives you a knowing look. "I acknowledge the fee seems high, but rest assured the service I provide is well worth it.`
+			`	"I'll be here if you change your mind."`
+				goto greenoptions
+
+			label id2
+			action
+				set "id2"
+			`	Your return to Ivaldur the Forger's stall, and the old man gives you a curt nod as you approach. "Back so soon? I hope you have made your decision."`
+			choice
+				`	(Pay 350,000 credits for a fake ID and history for Tim.)`
+					goto getid
+				`	(Pass.)`
+
+			`	Without speaking you again leave Ivaldur's stall.`
+				goto greenoptions
+
+			label getid
+			action
+				set "id2"
+				"timothy radrickson id" = 3
+				payment -350000
+			`	Ivaldur's eyes light up and he immediately gets to work. From his panel he backdoors his way into various databases, diving into the code with an obvious alacrity and unbridled joy.`
+			`	Whole histories, lives, records and attachments burst into existence in a dozen corners of official networks and reports. It becomes apparent that he is not really creating a fake ID; the ID he creates is real. It is sanctioned, stamped, and endorsed by multiple governing bodies, uploaded to and referenced by institutional records, and given the appropriate checks and markers.`
+			`	In fact, what Ivaldur has done is create a fake person, and this is that person's real ID.`
+			`	When he finishes he says nothing and instead basks in a job well done. Finally, he turns to you for payment. <payment> is transferred into his account, and he hands you Tim's brand new ID card.`
+			`	"It was a pleasure," he says in a satisfied voice, and bids you well.`
+				goto greenoptions
+		
+			label suit1
+			action
+				set "suit1"
+			`	You find a large stall boasting all the survival equipment an enterprising pirate could ever need. Inside there's various used gear, some more used than others, and only a few well weathered survival suits.`
+			`	The proprietor appears out of nowhere and immediately begins flogging his goods to you. "Ah! Yes. With any of these you can survive the harshest of climates!"`
+			`	He takes one suit off the rack and begins, "Notice the intricate mesh weave on this state of the art..." the suit comes apart at its seams in his hands. The proprietor frowns, but then quickly tosses it to the side.`
+			`	"A, uh, defunct specimen. Happens from time to time. Rest assured I never would have sold it to you." He looks at you unconvincingly.`
+			`	He pulls another suit down which, to his obvious relief, doesn't simply fall apart in his hands.`
+			`	"Now as I was saying, top of the line mesh weaves. Great comfort and breathability. For tough spots..."`
+			`	You look carefully at the suit as the proprietor's words drift uselessly out of his mouth. It has patches on top of patches, and its seals look worn and corroded. It looks like a death trap.`
+			`	"...and look just how clean it looks inside." The proprietor opens up one the seals, revealing quite a bit of dried blood staining its insides. He quickly closes the seal and wipes some sweat from his brow.`
+			`	"Perfectly normal to find in a suit. Totally unrelated to its operation. You know, pirates, just bleed a lot in general. Part of the lifestyle and all that."`
+			`	He looks at you with earnest, bulging eyes. "So what do you think? I'd be willing to sell this baby to you for 400,000 credits."`
+			choice
+				`	(Purchase the patched survival suit for Tim.)`
+					goto getgear
+				`	(Haggle for a lower price.)`
+					goto haggle
+				`	(Pass.)`
+
+			`	That death trap might hasten Tim's demise, not guard against it. You leave the sweating proprietor behind and head back into the emporium at large.`
+				goto greenoptions
+			
+			label haggle
+			`	The proprietor's eyes dart back and forth, and then he nods vigorously.`
+			`	"Of course. Of course. Given it's... condition. It only makes sense that a discerning privateer such as yourself get a discount."`
+			`	But, uh, if anyone asks about where you got this suit from. Given the obscene value you're getting from me, do me the favor of not disclosing where you got it. I wouldn't want anyone thinking they could get a deal like this."`
+			`	He gives a nervous yet earnest smile.`
+			choice
+				`	(Offer 20,000 for the suit.)`
+					goto getgear2
+				`	(Offer 100,000 for the suit.)`
+					goto getgear3
+				`	(Offer 250,000 for the suit.)`
+					goto getgear4
+				`	(Pass.)`
+
+			`	That death trap might hasten Tim's demise, not guard against it. You leave the sweating proprietor behind and head back into the emporium at large.`
+				goto greenoptions
+				
+			label suit2
+			action
+				set "suit2"
+			`	You return to the clothing stall, where the proprietor immediately hounds you again for the suit. The suit you were shown before looks just as patched, worn and corroded as before. The few other options next to it are even worse.`
+			`	The proprietor reminds you the price is still 400,000 credits for this 'lightly used' and 'field tested' state of the art survival suit.`
+			choice
+				`	(Purchase the patched survival suit for Tim.)`
+					goto getgear
+				`	(Haggle for a lower price.)`
+					goto haggle
+				`	(Pass.)`
+
+			`	That death trap might hasten Tim's demise, not guard against it. You leave the sweating proprietor behind and head back into the emporium at large.`
+				goto greenoptions
+
+			label getgear
+			action
+				set "suit2"
+				"timothy radrickson suit" = 1
+				payment -400000
+			`	The proprietor quickly rings you up as if worried you'll change your mind at any moment, and gleefully takes your <payment>.`
+			`	"Safe travels, privateer," he says as you leave his stall.`
+				goto greenoptions
+
+			label getgear2
+			action
+				set "suit2"
+				"timothy radrickson suit" = 1
+				payment -20000
+			`	The proprietor quickly rings you up as if worried you'll change your mind at any moment, and gleefully takes your <payment>.`
+			`	"Safe travels, privateer," he says as you leave his stall.`
+				goto greenoptions
+
+			label getgear3
+			action
+				set "suit2"
+				"timothy radrickson suit" = 1
+				payment -100000
+			`	The proprietor quickly rings you up as if worried you'll change your mind at any moment, and gleefully takes your <payment>.`
+			`	"Safe travels, privateer," he says as you leave his stall.`
+				goto greenoptions
+
+			label getgear4
+			action
+				set "suit2"
+				"timothy radrickson suit" = 1
+				payment -250000
+			`	The proprietor quickly rings you up as if worried you'll change your mind at any moment, and gleefully takes your <payment>.`
+			`	"Safe travels, privateer," he says as you leave his stall.`
+				goto greenoptions
+
+			label med1
+			action
+				set "med1"
+			`	There are many stalls loudly advertising all kinds of illegal drugs, and it takes some work to sift through them until you come across one selling legal drugs as well. The man running it is sallow and pock-marked, but his eyes are keen. He almost hisses as he greets you.`
+			`	"Whatever you need, wherever you're going. I have you covered."`
+			choice
+				`	(Ask about detoxification medicine for Oblivion.)`
+					goto askdrugs
+				`	(Leave.)`
+
+			`	This is not the place for you. You take your leave and return to the emporium at large.`
+				goto greenoptions
+
+			label askdrugs
+			`	The drug-dealer flashes you with his yellow teeth and unnerving smile. "For every kind of toxic environment under any sun." He jolts towards his little wall of drawers, pulling out one labeled "Oblivion detoxifiers." From the drawer he picks a bottle up, checking its label.`
+			`	"It says it expired a few years ago, but that's just so the corpos can squeeze the common man, ya know? Stuff's still good." He shrugs.`
+			`	"So what'dya say? It'll cost'ya a cool 50,000 credits. But trust me, that's way cheaper than what you'll find elsewhere."`
+			choice
+				`	(Buy the expired detoxification medicine for Tim.)`
+					goto getmed
+				`	(Pass.)`
+
+			`	The drug-dealer says as you go away, "You won't find a better deal than this. I'll be here if you change your mind."`
+				goto greenoptions
+
+			label med2
+			action
+				set "med2"
+			`	The drug-dealer's knowing smile is almost a sneer as you return to his stall. He waits to see if you're ready to buy something.`
+			choice
+				`	(Buy the expired detoxification medicine for Tim.)`
+					goto getmed
+				`	(Pass.)`
+
+			`	You leave the drug-dealer behind and head back into the emporium.`
+				goto greenoptions
+			
+			label getmed
+			action
+				set "med2"
+				"timothy radrickson	medicine" = 2
+				payment -50000
+			`	"Trust me, it's still good," the drug-dealer says as he takes your <payment>. He hands you the drugs with a smirk.`
+				goto greenoptions
+
+			label end
+			action
+				clear "med1"
+				clear "med2"
+				clear "suit1"
+				clear "suit2"
+				clear "id1"
+				clear "id2"
+			`	It's never wise to linger in a place like this, especially aimlessly. With your business concluded you leave Greenrock's stalls behind.`
+				decline
