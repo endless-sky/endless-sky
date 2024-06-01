@@ -71,6 +71,7 @@ void MainPanel::Step()
 	// checks only already-drawn panels.
 	bool isActive = GetUI()->IsTop(this);
 
+	// If the player is dead, don't show anything.
 	if(player.IsDead())
 		show = Command::NONE;
 

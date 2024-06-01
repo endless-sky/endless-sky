@@ -75,6 +75,7 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 
 void PlanetPanel::Step()
 {
+	// If the player is dead, pop the planet panel.
 	if(player.IsDead())
 	{
 		player.SetPlanet(nullptr);
