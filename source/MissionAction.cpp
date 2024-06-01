@@ -60,9 +60,6 @@ namespace {
 MissionAction::MissionDialog::MissionDialog(const ExclusiveItem<Phrase> &phrase):
 	dialogPhrase(phrase)
 {
-	// Stock phrases that generate text must be defined.
-	if(dialogPhrase.IsStock() && dialogPhrase->IsEmpty())
-		dialogText = "stock phrase";
 }
 
 
@@ -90,10 +87,6 @@ MissionAction::MissionDialog::MissionDialog(const DataNode &node)
 	//    phrase "A Phrase Name"
 	if(node.Size() == 2 && node.Token(0) == "phrase")
 		dialogPhrase = ExclusiveItem<Phrase>(GameData::Phrases().Get(node.Token(1)));
-
-	// Stock phrases that generate text must be defined.
-	if(dialogPhrase.IsStock() && dialogPhrase->IsEmpty())
-		dialogText = "stock phrase";
 
 	// Handle regular dialog text
 	//    "Some thrilling dialog that truly moves the player."
@@ -474,7 +467,13 @@ string MissionAction::CollapseDialog(const ConditionsStore *store, const map<str
 			continue;
 
 		// Evaluate the phrase if we have one, otherwise copy the prepared text.
-		string content = item.dialogText.empty() ? item.dialogPhrase->Get() : item.dialogText;
+		string content;
+		if(!item.dialogText.empty())
+			content = item.dialogText;
+		else if(item.dialogPhrase.IsStock() && item.dialogPhrase->IsEmpty())
+			content = "stock phrase";
+		else
+			content = item.dialogPhrase->Get();
 
 		// Expand any ${phrases} and <substitutions>
 		if(!loadTimeScan)
