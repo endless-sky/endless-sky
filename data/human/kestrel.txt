@@ -249,23 +249,32 @@ mission "Kestrel Available"
 				decline
 
 
+shipyard "Kestrel"
 
 event "kestrel available: more weapons"
 	set "kestrel available"
-	shipyard "Tarazed Advanced"
+	shipyard "Kestrel"
 		"Kestrel (More Weapons)"
+	planet Wayfarer
+		add shipyard "Kestrel"
 event "kestrel available: more engines"
 	set "kestrel available"
-	shipyard "Tarazed Advanced"
+	shipyard "Kestrel"
 		"Kestrel (More Engines)"
+	planet Wayfarer
+		add shipyard "Kestrel"
 event "kestrel available: more shields"
 	set "kestrel available"
-	shipyard "Tarazed Advanced"
+	shipyard "Kestrel"
 		"Kestrel (More Shields)"
+	planet Wayfarer
+		add shipyard "Kestrel"
 event "kestrel available: more bays"
 	set "kestrel available"
-	shipyard "Tarazed Advanced"
+	shipyard "Kestrel"
 		"Kestrel (More Bays)"
+	planet Wayfarer
+		add shipyard "Kestrel"
 
 
 ship "Unknown Ship Type"
@@ -278,9 +287,9 @@ ship "Unknown Ship Type"
 		"hull" 7200
 		"required crew" 64
 		"bunks" 128
-		"mass" 740
-		"drag" 11
-		"heat dissipation" .6
+		"mass" 2135
+		"drag" 20.9
+		"heat dissipation" .32
 		"fuel capacity" 500
 		"cargo space" 120
 		"outfit space" 810
@@ -335,9 +344,9 @@ ship "Kestrel"
 		"hull" 7200
 		"required crew" 64
 		"bunks" 128
-		"mass" 740
-		"drag" 11
-		"heat dissipation" .6
+		"mass" 2135
+		"drag" 20.9
+		"heat dissipation" .32
 		"fuel capacity" 500
 		"cargo space" 120
 		"outfit space" 810
@@ -391,7 +400,7 @@ ship "Kestrel" "Kestrel (More Engines)"
 	sprite "ship/kestrele"
 	thumbnail "thumbnail/kestrele"
 	add attributes
-		"drag" -1.0
+		"drag" -1.9
 		"fuel capacity" 100
 		"engine capacity" 30
 	engine 13 170
@@ -405,7 +414,7 @@ ship "Kestrel" "Kestrel (More Shields)"
 	add attributes
 		"shields" 3000
 		"hull" 1500
-		"heat dissipation" .06
+		"heat dissipation" .032
 
 ship "Kestrel" "Kestrel (More Weapons)"
 	sprite "ship/kestrelw"

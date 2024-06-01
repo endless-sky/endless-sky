@@ -136,7 +136,7 @@ namespace {
 		{"cloaking heat", 0.},
 		{"cloaking hull", 0.},
 		{"cloaking repair delay", 0.},
-		{"cloaking shield", 0.},
+		{"cloaking shields", 0.},
 		{"cloaking shield delay", 0.},
 		{"cloaked firing", 0.},
 
