@@ -223,11 +223,15 @@ mission "Hai Festival [1]"
 	job
 	repeat
 	description "For a month each year, the Hai have a huge holiday festival. This group of <bunks> Hai will pay you <payment> for you to transport them and their <tons> of supplies to <planet>."
+	deadline 0 2
 	passengers 10 20
 	cargo "party supplies" 1 2
 	to offer
 		month == 3
 		random < 60
+		"days until year end" > 289
+	to fail
+		month >= 4
 	source
 		government "Hai"
 	destination
@@ -249,11 +253,15 @@ mission "Hai Festival [2]"
 	job
 	repeat
 	description "For a month each year, the Hai have a huge holiday festival. This group of <bunks> humans will pay you <payment> for you to transport them and their <tons> of supplies to <planet>."
+	deadline 0 2
 	passengers 10 20
 	cargo "party supplies" 1 2
 	to offer
 		month == 3
 		random < 60
+		"days until year end" > 289
+	to fail
+		month >= 4
 	source
 		government "Hai"
 	destination
@@ -275,11 +283,15 @@ mission "Hai Festival [3]"
 	job
 	repeat
 	description "For a month each year, the Hai have a huge holiday festival. This group of <bunks> Hai and humans will pay you <payment> for you to transport them and their <tons> of supplies to <planet>."
+	deadline 0 2
 	passengers 10 20
 	cargo "party supplies" 1 2
 	to offer
 		month == 3
 		random < 60
+		"days until year end" > 289
+	to fail
+		month >= 4
 	source
 		government "Hai"
 	destination
