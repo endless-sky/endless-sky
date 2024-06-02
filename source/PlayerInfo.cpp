@@ -3480,11 +3480,11 @@ void PlayerInfo::RegisterDerivedConditions()
 	auto shipAttributeFun = [this](const string &name) -> int64_t
 	{
 		auto attrib = name.substr(strlen("ship attribute: "));
+		int64_t sum = 0;
 		for(const shared_ptr<Ship> &ship : ships)
-			if(ship->Attributes().Get(attrib))
-				return 1;
+			sum += ship->Attributes().Get(attrib);
 
-		return 0;
+		return sum;
 	};
 	shipAttributeProvider.SetGetFunction(shipAttributeFun);
 	shipAttributeProvider.SetHasFunction(shipAttributeFun);
