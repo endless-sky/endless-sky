@@ -1191,7 +1191,8 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 	if(event.TargetGovernment()->IsPlayer() && !hasFailed)
 	{
 		bool failed = false;
-		string message = "Your ship \"" + event.Target()->Name() + "\" has been ";
+		string message = "Your " + event.Target()->DisplayModelName() +
+			" \"" + event.Target()->Name() + "\" has been ";
 		if(event.Type() & ShipEvent::DESTROY)
 		{
 			// Destroyed ships carrying mission cargo result in failed missions.
@@ -1202,7 +1203,7 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 			for(const auto &it : event.Target()->Cargo().PassengerList())
 				failed |= (it.first == this && it.second);
 			if(failed)
-				message += "lost. ";
+				message += "destroyed. ";
 		}
 		else if(event.Type() & ShipEvent::BOARD)
 		{
