@@ -3479,7 +3479,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	auto &&shipAttributeProvider = conditions.GetProviderPrefixed("ship attribute: ");
 	auto shipAttributeFun = [this](const string &name) -> int64_t
 	{
-		auto attrib = name.substr(strlen("ship attribute: "));
+		string attrib = name.substr(strlen("ship attribute: "));
 		int64_t retVal = 0;
 		for(const shared_ptr<Ship> &ship : ships)
 			retVal += ship->Attributes().Get(attrib);
