@@ -3477,7 +3477,7 @@ void PlayerInfo::RegisterDerivedConditions()
 
 	// Check if an attribute is present in fleet.
 	auto &&shipAttributeProvider = conditions.GetProviderPrefixed("ship attribute: ");
-	auto shipAttributeFun = [this, flagshipAttributeHelper](const string &name) -> int64_t
+	auto shipAttributeFun = [this](const string &name) -> int64_t
 	{
 		auto attrib = name.substr(strlen("ship attribute: "));
 		for(const shared_ptr<Ship> &ship : ships)
