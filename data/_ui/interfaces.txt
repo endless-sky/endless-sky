@@ -1467,9 +1467,14 @@ interface "bank"
 
 
 interface "mission" bottom
+	visible if "has description"
 	sprite "ui/mission"
 		align bottom
-	
+	visible if "!has description"
+	sprite "ui/mission empty"
+		align bottom
+
+	visible
 	label "cargo space free:"
 		center -130 -85
 	string "cargo free"

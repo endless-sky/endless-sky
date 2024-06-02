@@ -3851,7 +3851,8 @@ int Ship::StepDestroyed(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flot
 	if(explosionCount == explosionTotal || forget)
 	{
 		if(IsYours() && Preferences::Has("Extra fleet status messages"))
-			Messages::Add("Your ship \"" + Name() + "\" has been destroyed.", Messages::Importance::Highest);
+			Messages::Add("Your " + DisplayModelName() +
+				" \"" + Name() + "\" has been destroyed.", Messages::Importance::Highest);
 
 		if(!forget)
 		{

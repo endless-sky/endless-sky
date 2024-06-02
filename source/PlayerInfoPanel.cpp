@@ -60,7 +60,7 @@ namespace {
 
 		if(otherCount > 0 && maxCount > 0)
 		{
-			list[maxCount - 1].second = "(" + to_string(otherCount + 1) + " Others)";
+			list[maxCount - 1].second = "(" + to_string(otherCount + 1) + " others)";
 			while(otherCount--)
 			{
 				list[maxCount - 1].first += list.back().first;
@@ -673,13 +673,13 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 	vector<pair<int64_t, string>> salary;
 	for(const auto &it : player.Accounts().SalariesIncome())
 		salary.emplace_back(it.second, it.first);
-	sort(salary.begin(), salary.end());
+	sort(salary.begin(), salary.end(), std::greater<>());
 	DrawList(salary, table, "salary:", 4);
 
 	vector<pair<int64_t, string>> tribute;
 	for(const auto &it : player.GetTribute())
 		tribute.emplace_back(it.second, it.first->TrueName());
-	sort(tribute.begin(), tribute.end());
+	sort(tribute.begin(), tribute.end(), std::greater<>());
 	DrawList(tribute, table, "tribute:", 4);
 
 	int maxRows = static_cast<int>(250. - 30. - table.GetPoint().Y()) / 20;
