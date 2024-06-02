@@ -1395,7 +1395,7 @@ void MapPanel::DrawSystems()
 		RingShader::Draw(pos, OUTER, INNER, node.color);
 
 		if(commodity == SHOW_GOVERNMENT && node.government && node.government->GetName() != "Uninhabited" &&
-			pos.X() > left && pos.X() < right && pos.Y() > top && pos.Y() < bottom)
+			pos.X() > left && pos.X() < right && pos.Y() > top && pos.Y() < bottom && (pow(pos.Y(), 2) + pow(pos.X(), 2)) < (pow((right + bottom) / 2, 2)))
 		{
 
 			// Count the number of occurences of each government
