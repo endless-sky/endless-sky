@@ -587,14 +587,14 @@ void MapDetailPanel::DrawKey()
 	{
 		// Each system is colored by the government of the system. Only the
 		// four largest visible governments are labeled in the legend.
-		vector<pair<double, const Government *>> distances;
+		vector<pair<unsigned int, const Government *>> distances;
 		for(const auto &it : closeGovernments)
 		{
 			if(!it.first)
 				continue;
 			distances.emplace_back(it.second, it.first);
 		}
-		sort(distances.begin(), distances.end());
+		sort(distances.begin(), distances.end(), std::greater{});
 		int drawn = 0;
 		vector<pair<string, Color>> alreadyDisplayed;
 		for(const auto &it : distances)

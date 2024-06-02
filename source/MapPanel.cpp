@@ -1375,12 +1375,15 @@ void MapPanel::DrawLinks()
 
 void MapPanel::DrawSystems()
 {
+	const int left = Screen::Left();
+	const int top = Screen::Top();
+	const int right = Screen::Right();
+	const int bottom = Screen::Bottom();
 	if(commodity != cachedCommodity)
 		UpdateCache();
 
-	// If coloring by government, we need to keep track of which ones are the
-	// closest to the center of the window because those will be the ones that
-	// are shown in the map key.
+	// If coloring by government, we need to keep track of which ones are
+	// most prevelent
 	if(commodity == SHOW_GOVERNMENT)
 		closeGovernments.clear();
 
@@ -1391,17 +1394,12 @@ void MapPanel::DrawSystems()
 		Point pos = zoom * (node.position + center);
 		RingShader::Draw(pos, OUTER, INNER, node.color);
 
-		if(commodity == SHOW_GOVERNMENT && node.government && node.government->GetName() != "Uninhabited")
+		if(commodity == SHOW_GOVERNMENT && node.government && node.government->GetName() != "Uninhabited" &&
+			pos.X() > left && pos.X() < right && pos.Y() > top && pos.Y() < bottom)
 		{
-			// For every government that is drawn, keep track of how close it
-			// is to the center of the view. The four closest governments
-			// will be displayed in the key.
-			double distance = pos.Length();
-			auto it = closeGovernments.find(node.government);
-			if(it == closeGovernments.end())
-				closeGovernments[node.government] = distance;
-			else
-				it->second = min(it->second, distance);
+
+			// Count the number of occurences of each government
+			closeGovernments[node.government]++;
 		}
 	}
 }

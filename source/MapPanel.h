@@ -144,7 +144,7 @@ protected:
 
 	// Distance from the screen center to the nearest owned system,
 	// for use in determining which governments are in the legend.
-	std::map<const Government *, double> closeGovernments;
+	std::map<const Government *, unsigned int> closeGovernments;
 	// Systems in which your (active and parked) escorts and stored outfits are located.
 	std::map<const System *, SystemTooltipData> escortSystems;
 	// Center the view on the given system (may actually be slightly offset
