@@ -3663,7 +3663,7 @@ mission "Pirate Duel"
 			set "anglerfish caught"
 			conversation
 				`As soon as you open fire, the <npc> angrily hails you.`
-				`	A voice you recognize as the "captain of the Esca" says "How did you know that was me? Well, it doesn't matter, because I've paid off the militia."`
+				`	A voice you recognize as the "captain of the Esca" says, "How did you know that was me? Well, it doesn't matter, because I've paid off the militia. Get ready to die, small-fry."`
 				`	The <npc> powers up its weapons.`
 					decline
 		on kill
