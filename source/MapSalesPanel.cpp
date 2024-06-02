@@ -232,8 +232,8 @@ void MapSalesPanel::DrawKey() const
 	Color dim(.3f, .3f);
 	const Font &font = FontSet::Get(14);
 
-	static const Point padding(40., 48.);
-	Point pos = backPos + padding;
+	static const Point PADDING(40., 48.);
+	Point pos = backPos + PADDING;
 	Point textOff(10., -.5 * font.Height());
 
 	static const double VALUE[] = {
