@@ -23,8 +23,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
-
-
 namespace {
 	constexpr char32_t BOM = 0x0000FEFF;
 }
