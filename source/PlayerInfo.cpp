@@ -3475,6 +3475,20 @@ void PlayerInfo::RegisterDerivedConditions()
 		return retVal;
 	});
 
+	// Check if an attribute is present in fleet.
+	auto &&shipAttributeProvider = conditions.GetProviderPrefixed("ship attribute: ");
+	auto shipAttributeFun = [this, flagshipAttributeHelper](const string &name) -> int64_t
+	{
+		auto attrib = name.substr(strlen("ship attribute: "));
+		for(const shared_ptr<Ship> &ship : ships)
+			if(ship->Attributes().Get(attrib))
+				return 1;
+
+		return 0;
+	};
+	shipAttributeProvider.SetGetFunction(shipAttributeFun);
+	shipAttributeProvider.SetHasFunction(shipAttributeFun);
+
 	// The total number of ships the player has active and present.
 	auto &&totalPresentShipsProvider = conditions.GetProviderNamed("total ships");
 	totalPresentShipsProvider.SetGetFunction([this](const string &name) -> int64_t
