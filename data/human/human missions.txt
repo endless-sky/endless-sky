@@ -3671,13 +3671,12 @@ mission "Pirate Duel"
 			conversation
 				branch "orbiting tarazed"
 					has "flagship system: Tarazed"
-				`The <npc> and the "captain of the Esca" have been destroyed. You consider going back to Wayfarer to see if you can grab some sort of reward for your effort.`
-					to display
-						not "anglerfish caught"
-					decline
+				branch "passed tarazed"
+					not "anglerfish caught"
 				`The <npc> and the "captain of the Esca" have been destroyed. You consider continuing on to Wayfarer to see if you can grab some sort of reward for your effort.`
-					to display
-						has "anglerfish caught"
+					decline
+				label "passed tarazed"
+				`The <npc> and the "captain of the Esca" have been destroyed. You consider going back to Wayfarer to see if you can grab some sort of reward for your effort.`
 					decline
 				label "orbiting tarazed"
 				`The <npc> and the "captain of the Esca" have been destroyed. You consider landing on Wayfarer to see if you can grab some sort of reward for your effort.`
