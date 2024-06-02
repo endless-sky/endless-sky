@@ -3483,7 +3483,6 @@ void PlayerInfo::RegisterDerivedConditions()
 		int64_t sum = 0;
 		for(const shared_ptr<Ship> &ship : ships)
 			sum += ship->Attributes().Get(attrib);
-
 		return sum;
 	};
 	shipAttributeProvider.SetGetFunction(shipAttributeFun);
