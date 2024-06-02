@@ -15,7 +15,6 @@ mission "Unlock Cloaking Key"
 	invisible
 	landing
 	to offer
-		not "global: found cloaking"
 		or
 			has "ship attribute: cloak"
 			has "outfit (all): Cloaking Device"
