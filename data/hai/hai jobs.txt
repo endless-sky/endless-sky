@@ -227,7 +227,11 @@ mission "Hai Festival [1]"
 	passengers 10 20
 	cargo "party supplies" 1 2
 	to offer
-		month == 3
+		or
+			month == 3
+			and
+				month == 2
+				day >= 24
 		random < 60
 		"days until year end" > 289
 	to fail
@@ -257,7 +261,11 @@ mission "Hai Festival [2]"
 	passengers 10 20
 	cargo "party supplies" 1 2
 	to offer
-		month == 3
+		or
+			month == 3
+			and
+				month == 2
+				day >= 24
 		random < 60
 		"days until year end" > 289
 	to fail
@@ -287,7 +295,11 @@ mission "Hai Festival [3]"
 	passengers 10 20
 	cargo "party supplies" 1 2
 	to offer
-		month == 3
+		or
+			month == 3
+			and
+				month == 2
+				day >= 24
 		random < 60
 		"days until year end" > 289
 	to fail
