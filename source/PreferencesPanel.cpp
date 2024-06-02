@@ -586,7 +586,8 @@ void PreferencesPanel::DrawControls()
 
 			zones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), command);
 
-			if(UNLOCKABLE_CONTROLS.count(command) && !GameData::GlobalConditions().Has(it->second))
+			auto it = UNLOCKABLE_CONTROLS.find(command);
+			if(it != UNLOCKABLE_CONTROLS.end() && !GameData::GlobalConditions().Has(it->second))
 				table.Draw("unknown command", medium);
 			else
 				table.Draw(command.Description(), medium);
