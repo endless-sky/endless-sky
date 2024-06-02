@@ -231,7 +231,7 @@ mission "Hai Festival [1]"
 			month == 3
 			and
 				month == 2
-				day >= 24
+				day >= 27
 		random < 60
 		"days until year end" > 289
 	to fail
@@ -265,7 +265,7 @@ mission "Hai Festival [2]"
 			month == 3
 			and
 				month == 2
-				day >= 24
+				day >= 27
 		random < 60
 		"days until year end" > 289
 	to fail
@@ -299,7 +299,7 @@ mission "Hai Festival [3]"
 			month == 3
 			and
 				month == 2
-				day >= 24
+				day >= 27
 		random < 60
 		"days until year end" > 289
 	to fail
