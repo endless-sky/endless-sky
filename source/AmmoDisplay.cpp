@@ -38,6 +38,7 @@ AmmoDisplay::AmmoDisplay(PlayerInfo &player)
 }
 
 
+
 void AmmoDisplay::Reset()
 {
 	ammo.clear();
