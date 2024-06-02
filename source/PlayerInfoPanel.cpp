@@ -887,7 +887,8 @@ bool PlayerInfoPanel::Hover(const Point &point)
 
 bool PlayerInfoPanel::Scroll(double /* dx */, double dy)
 {
-	return Scroll(dy * -.1 * Preferences::ScrollSpeed());
+	// maps pref. of 20, 40, or 60 "pixels" to 1, 2, or 3 table rows
+	return Scroll(dy * -.05 * Preferences::ScrollSpeed());
 }
 
 
