@@ -45,7 +45,6 @@ void AmmoDisplay::Reset()
 
 
 
-
 void AmmoDisplay::Update(const Ship &flagship)
 {
 	Reset();
