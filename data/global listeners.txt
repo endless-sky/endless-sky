@@ -15,11 +15,10 @@ mission "Unlock Cloaking Key"
 	invisible
 	landing
 	to offer
-		and
-			not "global: found cloaking"
-			or
-				has "flagship attribute: cloak"
-				has "outfit (all): Cloaking Device"
+		not "global: found cloaking"
+		or
+			has "ship attribute: cloak"
+			has "outfit (all): Cloaking Device"
 	on offer
 		set "global: found cloaking"
 		fail
