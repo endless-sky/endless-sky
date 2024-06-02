@@ -3475,7 +3475,7 @@ void PlayerInfo::RegisterDerivedConditions()
 		return retVal;
 	});
 
-	// Check if an attribute is present in fleet.
+	// Check if an attribute is present in the player's fleet.
 	auto &&shipAttributeProvider = conditions.GetProviderPrefixed("ship attribute: ");
 	auto shipAttributeFun = [this](const string &name) -> int64_t
 	{
