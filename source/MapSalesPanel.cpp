@@ -232,7 +232,7 @@ void MapSalesPanel::DrawKey() const
 	Color dim(.3f, .3f);
 	const Font &font = FontSet::Get(14);
 
-	Point padding(40., 48.);
+	static const Point padding(40., 48.);
 	Point pos = backPos + padding;
 	Point textOff(10., -.5 * font.Height());
 
