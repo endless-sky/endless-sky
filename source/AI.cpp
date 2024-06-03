@@ -128,7 +128,7 @@ namespace {
 			if(!escort || (shipIsYours && !escort->IsYours() && (!escort->GetPersonality().IsEscort()
 				|| gov->IsEnemy(escort->GetGovernment()))))
 				continue;
-			if(escort->IsDisabled() || escort->CanBeCarried())
+			if(escort->IsDisabled())
 				continue;
 			if(escort->GetTargetStellar() == ship.GetTargetStellar() && !escort->CanLand())
 				return false;
