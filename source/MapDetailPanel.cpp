@@ -675,9 +675,9 @@ void MapDetailPanel::DrawInfo()
 	const Color &dim = *GameData::Colors().Get("dim");
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &profitable = *GameData::Colors().Get("profitable");
-	const Color &profitable_selected = *GameData::Colors().Get("profitable selected");
+	const Color &profitableSelected = *GameData::Colors().Get("profitable selected");
 	const Color &unprofitable = *GameData::Colors().Get("unprofitable");
-	const Color &unprofitable_selected = *GameData::Colors().Get("unprofitable selected");
+	const Color &unprofitableSelected = *GameData::Colors().Get("unprofitable selected");
 
 	const Color &back = *GameData::Colors().Get("map side panel background");
 
@@ -807,11 +807,11 @@ void MapDetailPanel::DrawInfo()
 				if(value > 0)
 				{
 					price += '+';
-					color = isSelected ? profitable_selected : profitable;
+					color = isSelected ? profitableSelected : profitable;
 				}
 				else if(value < 0)
 				{
-					color = isSelected ? unprofitable_selected : unprofitable;
+					color = isSelected ? unprofitableSelected : unprofitable;
 				}
 				price += to_string(value);
 			}
