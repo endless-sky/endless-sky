@@ -194,7 +194,7 @@ Point Point::operator/(double scalar) const
 Point operator/(double scalar, const Point &point)
 {
 #ifdef __SSE3__
-	return Point(point.v / _mm_loaddup_pd(&scalar));
+	return Point(_mm_loaddup_pd(&scalar) / point.v);
 #else
 	return Point(scalar / point.x, scalar / point.y);
 #endif
