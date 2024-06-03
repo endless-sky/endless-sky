@@ -60,7 +60,6 @@ void Playlist::Load(const DataNode &node)
 			weight = max<unsigned>(1, child.Value(1));
 		else if(key == "tracks")
 		{
-			
 			if(child.Token(1) == "linear")
 				progressionStyle = ProgressionStyle::LINEAR;
 			else if(child.Token(1) == "pick")
