@@ -587,8 +587,19 @@ void PlayerInfo::AddChanges(list<DataNode> &changes)
 // Add an event that will happen at the given date.
 void PlayerInfo::AddEvent(const GameEvent &event, const Date &date)
 {
-	gameEvents.push_back(event);
-	gameEvents.back().SetDate(date);
+	// Check if the event should be applied directly.
+	if(date <= this->date)
+	{
+		GameEvent eventCopy = event;
+		list<DataNode> eventChanges = {eventCopy.Apply(*this)};
+		if(!eventChanges.empty())
+			AddChanges(eventChanges);
+	}
+	else
+	{
+		gameEvents.push_back(event);
+		gameEvents.back().SetDate(date);
+	}
 }
 
 
@@ -636,6 +647,8 @@ void PlayerInfo::Die(int response, const shared_ptr<Ship> &capturer)
 		if(it != ships.end())
 			ships.erase(it);
 	}
+
+	flagship.reset();
 }
 
 
@@ -729,7 +742,7 @@ void PlayerInfo::IncrementDate()
 		if(mission.CheckDeadline(date) && mission.IsVisible())
 			Messages::Add("You failed to meet the deadline for the mission \"" + mission.Name() + "\".",
 				Messages::Importance::Highest);
-		if(!mission.IsFailed())
+		if(!mission.IsFailed(*this))
 			mission.Do(Mission::DAILY, *this);
 	}
 
@@ -2101,7 +2114,7 @@ Mission *PlayerInfo::BoardingMission(const shared_ptr<Ship> &ship)
 		if(it.second.IsAtLocation(location) && it.second.CanOffer(*this, ship))
 		{
 			boardingMissions.push_back(it.second.Instantiate(*this, ship));
-			if(boardingMissions.back().HasFailed(*this))
+			if(boardingMissions.back().IsFailed(*this))
 				boardingMissions.pop_back();
 			else
 				return &boardingMissions.back();
@@ -2124,9 +2137,9 @@ bool PlayerInfo::CaptureOverriden(const shared_ptr<Ship> &ship) const
 	// ship again after accepting the mission.
 	if(!mission)
 		for(const Mission &mission : Missions())
-			if(mission.OverridesCapture() && !mission.IsFailed() && mission.SourceShip() == ship.get())
+			if(mission.OverridesCapture() && !mission.IsFailed(*this) && mission.SourceShip() == ship.get())
 				return true;
-	return mission && mission->OverridesCapture() && !mission->IsFailed() && mission->SourceShip() == ship.get();
+	return mission && mission->OverridesCapture() && !mission->IsFailed(*this) && mission->SourceShip() == ship.get();
 }
 
 
@@ -2398,6 +2411,8 @@ bool PlayerInfo::HasSeen(const System &system) const
 		if(!m.IsVisible())
 			return false;
 		if(m.Waypoints().count(&system))
+			return true;
+		if(m.MarkedSystems().count(&system))
 			return true;
 		for(auto &&p : m.Stopovers())
 			if(p->IsInSystem(&system))
@@ -3170,6 +3185,10 @@ void PlayerInfo::RegisterDerivedConditions()
 	auto &&unpaidFinesProvider = conditions.GetProviderNamed("unpaid fines");
 	unpaidFinesProvider.SetGetFunction([this](const string &name) {
 		return min(limit, accounts.TotalDebt("Fine")); });
+
+	auto &&unpaidDebtsProvider = conditions.GetProviderNamed("unpaid debts");
+	unpaidDebtsProvider.SetGetFunction([this](const string &name) {
+		return min(limit, accounts.TotalDebt("Debt")); });
 
 	auto &&unpaidSalariesProvider = conditions.GetProviderNamed("unpaid salaries");
 	unpaidSalariesProvider.SetGetFunction([this](const string &name) {
@@ -3946,7 +3965,7 @@ void PlayerInfo::CreateMissions()
 				it.second.IsAtLocation(Mission::JOB) ? availableJobs : availableMissions;
 
 			missions.push_back(it.second.Instantiate(*this));
-			if(missions.back().HasFailed(*this))
+			if(missions.back().IsFailed(*this))
 				missions.pop_back();
 			else if(!it.second.IsAtLocation(Mission::JOB))
 				hasPriorityMissions |= missions.back().HasPriority();
@@ -4143,7 +4162,7 @@ void PlayerInfo::StepMissions(UI *ui)
 		// If this is a stopover for the mission, perform the stopover action.
 		mission.Do(Mission::STOPOVER, *this, ui);
 
-		if(mission.HasFailed(*this))
+		if(mission.IsFailed(*this))
 			RemoveMission(Mission::FAIL, mission, ui);
 		else if(mission.CanComplete(*this))
 			RemoveMission(Mission::COMPLETE, mission, ui);
@@ -4181,7 +4200,7 @@ void PlayerInfo::StepMissions(UI *ui)
 		Mission &mission = *mit;
 		++mit;
 
-		if(mission.HasFailed(*this))
+		if(mission.IsFailed(*this))
 			RemoveMission(Mission::FAIL, mission, ui);
 		else if(mission.CanComplete(*this))
 			RemoveMission(Mission::COMPLETE, mission, ui);
