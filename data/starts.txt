@@ -71,23 +71,7 @@ start "hai space"
 			has "main plot completed"
 			has "Ask the Hai about the Unfettered"
 	on display
-		description "What if you had not grown up on New Boston?"
-		thumbnail ""
-		date "3013"
-		planet "Slightly too warm"
-		credits "over a million"
-	to reveal
-		has "main plot completed"
-		has "Ask the Hai about the Unfettered"
-	on reveal
-		name "Undiscovered Hai Start"
-		description "There could be interesting possibilities up north, once all crises are resolved."
-		description "	You could have started a different way, went a different path."
-		system "Somewhere far north"
-		planet "Mixed culture"
-		date "16 11 3013"
-		credits 1.431M
-		debt 1.431M
+		description "This start is locked for now."
 	to unlock
 		has "main plot completed"
 		# TODO: think about what point of HR should unlock this once it's back in the game, if any
@@ -110,46 +94,41 @@ start "hai space"
 conversation "hai intro"
 	scene "scene/hai shipyard"
 	`Going to the North Pole already makes you feel as if you're on another world. Though you've met some Hai in the past, you've never been among so many of them in one place; the movement of the crowd in this Hai city far outstrips the equatorial human town where you grew up.`
-	`	The pictures and videos you've seen of all these ships before simply don't do them justice; seeing them for real is something else entirely. Even though you know a lot of those ships must have been in service for many years, you are stunned by how new and shiny they look. You begin to wonder if you are ready to take the big leap.`
-	`	This "Aphid" could suit your needs. It is fast and able to carry a respectable amount of cargo.`
-	scene "thumbnail/hai aphid"
-	`	That is, unless you want to get adventurous and try out the impetuous "Grasshopper." Surely the Hai interceptor could take on any of the small, human warships here... provided a competent pilot is at the helm.`
-	`	You have heard tales of pirates and quick money from the many newcomers to Hai space - for those willing to take big risks, that is.`
-	`	Alternatively, up north you can go and meet the "Unfettered Hai." Maybe they would come to like you, if you were to show them the strength and cunning they respect.`
-	choice
-		`	(Go to the bank.)`
 	scene "scene/hai bank"
-	`	You head to the bank's lobby, hoping to get enough of a loan to be able to buy one of these pristine ships.`
-	`	To your disappointment, the only ship you can afford is an Aphid. You arrange the contract to loan as much money as you need in order to buy one, in what has to be the first seriously unwise act of your life.`
-	`	You've heard of new captains stripping down their ships to recoup the initial buy-in, which is crossing your mind as you see the financial burden you're about to take on. As you wait for the paperwork to be processed, you passively scan over an Aphid pamphlet in the office. The pricey shield regenerator could be traded in if you can avoid combat... and perhaps even the anti-missile system could be downgraded or outright removed... one of the Sand Cells could be sold back to make more space for cargo...`
+	`	You head to the bank's lobby, hoping to get enough of a loan to be able to buy one of the pristine ships advertised here.`
+	`	To your disappointment, the only ship you can afford is an Aphid. You arrange the contract to loan as much money as you need in order to buy one, in what has to be the first seriously unwise act of your life. However, upon receiving the papers you find out they are in Hai, which you can't make sense of. Probably seeing the confusion on your face, they promptly give you new papers and give you time to read. Only now do you fully realize how risky this is, you might have to cut some costs once you get your hands on the ship.`
 	`	Those anxious musings are interrupted when the bank employee finally lays it out to you, with a hesitant smile. "You are accepting a loan in the amount of 1,431,000 credits, due over the course of 2 years, with an interest rate of 0.3% per day. Please sign here."`
 	name
-	`	You head out of the bank, but on your way to buy the Aphid at the shipyard, you see a notice. A retiring captain is selling off his fleet at a reduced price, and one of the ships he's offering is a Grasshopper... maybe you could get a deal on it.`
+	`	You head out of the bank, but see a notice on your way to buy the Aphid at the shipyard. A retiring captain is selling off his fleet at a reduced price, and one of the ships he's offering is a Grasshopper... maybe you could get a deal on it.`
 	choice
 		`	(Go to the shipyard.)`
-			decline
+			goto shipyard
 		`	(Go see what the captain has to offer first.)`
-	`	You head to the spaceport and easily find the captain, a Hai, selling one of his Centipedes to another Hai. Thankfully it looks like he has not sold the Grasshopper yet.`
-	`	When he's finished selling the Centipede the captain turns and greets you in Hai. You are embarrassed to have to explain to them that you never learned their language. Most Hai speak your language however, and, as usual, they are able to switch to speaking yours without much difficulty.`
-	`	"Hello, good fellow! I assume you come for the Grasshopper." Your interest for this ship must be apparent.`
+	`	You head to the spaceport and easily find the captain, a Hai, selling one of his Centipedes to another Hai. Thankfully it looks like he has not sold the Grasshopper yet. They happen to be conversing in your language, and you can overhear part of the conversation as the buyer is speaking. "... great that some people still care about helping others make their way to the stars faster, instead of only looking at profit."`
+	`	He responds with a smile, "Buying back a ship for a fair price is how I got to the stars myself! It really is a great change of scenery, but I think I got to the point where I want to leave space for others in space, and help others on the ground instead. I am planning on teaching and learning now."`
+	`	"What a noble goal indeed," she says, before noticing you, "But it seems you have a new customer here. I will leave you to it." The captain turns to you, "Hello, good fellow! I assume you come for the Grasshopper."`
 	choice
 		`	"Indeed."`
 		`	"How did you know?"`
 		`	"Sorry, not interested."`
 			decline
-	`	"I can see the will to explore in your eyes, but it is not only that: I know that some humans want to head back to their space, now that it is safer to do so. I would be delighted to have you flying the 'Pristine Jewel'!" he says, taking you to the ship. It is clearly not brand new, but is still in a surprisingly good condition.`
+	`	"I can see the will to explore in your eyes, and with your age it just seems like the perfect fit. I would be delighted to have you flying the 'Pristine Jewel'!" he says, taking you to the ship. It is clearly not brand new, but is still in a surprisingly good condition.`
 	scene "thumbnail/hai grasshopper"
 	`	"Because I like you I'll give you a friendly price. What do you say about... a bit over a million credits, for this wonderful ship? That's less than a third the price you would have to pay if you were to buy this model from the shipyard. Except you can't find a model like this in shipyards, trust me!"`
 	choice
 		`	"Sold!"`
-		`	"Sorry, not interested."`
-			decline
+		`	"Sorry, not interested. I'll go to the shipyard instead."`
+			goto shipyard
 	`	As the two of you settle up the paperwork, the captain takes the time to explain, in great detail, why this ship is so marvelous. In your excitement to buy the ship all you can hear from the Hai captain's speech is the repeated reference to the Grasshopper's 'exceptional' reinforced armor.`
-	`	Before you leave, he gives you a final tip: "If you want to, you can always sell this ship and buy an Aphid instead. The shipyard authorities will give you a discount for having sold my ship."`
 	action
 		set "hai space start: Grasshopper"
 		give ship "Grasshopper (Expensive)" "Pristine Jewel"
 		payment -1132000
+	`	Before you leave, he gives you a final tip: "If you want to, you can always sell this ship and buy an Aphid instead. The shipyard authorities will give you a discount for having sold my ship."`
+		decline
+	label shipyard
+	`	The pictures and videos you've seen of Hai ships before simply don't do them justice; seeing them in all their splendor here in the shipyard is something else entirely. Even though you know a lot of those ships must have been in service for many years, you are stunned by how new and shiny they look.`
+
 
 # this ship uses the most expensive loadout possible (3.5M)
 # so that you +- have the same amount of value back if you sell it (1.3mill)
