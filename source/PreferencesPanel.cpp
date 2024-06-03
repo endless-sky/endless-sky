@@ -141,7 +141,6 @@ void PreferencesPanel::Draw()
 	Information info;
 	info.SetBar("volume", Audio::Volume());
 	info.SetBar("music volume", Audio::MusicVolume());
-	info.SetCondition("show music slider");
 	if(Plugins::HasChanged())
 		info.SetCondition("show plugins changed");
 	if(CONTROLS_PAGE_COUNT > 1)

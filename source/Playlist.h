@@ -32,6 +32,14 @@ class PlayerInfo;
 
 // Class to store a track of music that can be used in a playlist.
 class Playlist {
+private:
+	enum class ProgressionStyle : int_fast8_t {
+		RANDOM,
+		LINEAR,
+		PICK,
+	};
+
+
 public:
 	Playlist() = default;
 
@@ -58,7 +66,7 @@ private:
 	unsigned priority = 0;
 	unsigned weight = 1;
 
-	std::string progressionStyle;
+	ProgressionStyle progressionStyle;
 	WeightedList<const Track *> tracks;
 };
 

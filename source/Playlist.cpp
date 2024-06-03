@@ -26,7 +26,6 @@ using namespace std;
 
 namespace {
 	const Track *currentTrack = nullptr;
-	const std::set<std::string> PROGRESSION_STYLES = {"random", "linear", "pick"};
 }
 
 
@@ -61,16 +60,18 @@ void Playlist::Load(const DataNode &node)
 			weight = max<unsigned>(1, child.Value(1));
 		else if(key == "tracks")
 		{
-			bool validProgressionStyle = hasValue ?
-					PROGRESSION_STYLES.count(child.Token(1)) :
-					false;
-			if(validProgressionStyle)
-				progressionStyle = child.Token(1);
+			
+			if(child.Token(1) == "linear")
+				progressionStyle = ProgressionStyle::LINEAR;
+			else if(child.Token(1) == "pick")
+				progressionStyle = ProgressionStyle::PICK;
+			else if(child.Token(1) == "random")
+				progressionStyle = ProgressionStyle::RANDOM;
 			else
 			{
 				if(hasValue)
 					child.PrintTrace("Warning: \"" + child.Token(1) + "\" is not a valid progression style so using linear:");
-				progressionStyle = "linear";
+				progressionStyle = ProgressionStyle::LINEAR;
 			}
 			for(const auto &grand : child)
 			{
@@ -88,7 +89,7 @@ void Playlist::Load(const DataNode &node)
 void Playlist::Activate() const
 {
 	// Linear should always get the first track in the list when activating.
-	if(progressionStyle == "linear" && tracks.size() > 0)
+	if(progressionStyle == ProgressionStyle::LINEAR && tracks.size() > 0)
 		currentTrack = *tracks.begin();
 	else
 		currentTrack = tracks.Get();
@@ -98,21 +99,24 @@ void Playlist::Activate() const
 
 const Track *Playlist::GetCurrentTrack() const
 {
-	if(progressionStyle == "linear")
+	switch (progressionStyle)
 	{
-		const Track *tmpTrack = currentTrack;
-		auto it = find(tracks.begin(), tracks.end(), tmpTrack);
-		++it;
-		if(it == tracks.end())
-			it = tracks.begin();
-		currentTrack = *it;
-		return tmpTrack;
-	}
-	else if(progressionStyle == "pick")
+	case ProgressionStyle::LINEAR:
+		{
+			const Track *tmpTrack = currentTrack;
+			auto it = find(tracks.begin(), tracks.end(), tmpTrack);
+			++it;
+			if(it == tracks.end())
+				it = tracks.begin();
+			currentTrack = *it;
+			return tmpTrack;
+		}
+	case ProgressionStyle::PICK:
 		return currentTrack;
-
-	// Asuming the progression style is "random".
-	return tracks.Get();
+	case ProgressionStyle::RANDOM:
+	default:
+		return tracks.Get();
+	}
 }
 
 
