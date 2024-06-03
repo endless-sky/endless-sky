@@ -73,8 +73,8 @@ outfit "Stagnation Beam"
 		# Deal damage to provoke ships.
 		"shield damage" 0.1
 		"hull damage" 0.1
-		"hit force" -60
-		"slowing damage" 0.2
+		"hit force" -40
+		"slowing damage" 0.1
 	description "The Stagnation Beam is one of the few technologies of the Incipias that surpasses anything humanity has made thus far - in fact, the first prototypes were built before the Incipias even dreamed of space travel. Giant reactors were constructed to pull asteroids out of their home planet's orbit for easy access to more resources. Naturally, a mechanism to slow the asteroids down was also implemented to prevent accidental asteroid strikes."
 	description "As the Incipias' mastery of spaceflight grew, so did the generators' efficiency, which allowed for more compact, ship-based tractor beams. Resource collection was greatly streamlined by these new models, much to the benefit of the Incipias' otherwise sluggish ships."
 	description "Officially, these beams are used for mining operations; however, less scrupulous individuals have found they are equally valuable in combat, using the beams to lock down and pull in their opponents."
