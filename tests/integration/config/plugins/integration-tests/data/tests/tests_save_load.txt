@@ -1,3 +1,16 @@
+# Copyright (c) 2020 by Peter van der Meer
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
 test-data "Save During Conversation Save"
 	category "savegame"
 	contents
@@ -82,6 +95,8 @@ test "Saving during conversation"
 		call "Depart"
 		assert
 			"transient" == 0
+		navigate
+			"travel destination" Ruin
 		call "Land"
 		# This condition is set to ensure that the transaction snapshot includes everything before this mission.
 		apply
@@ -146,8 +161,7 @@ test "Loading and Reloading"
 			travel "Alpha Centauri"
 		input
 			command jump
-		# Wait loop while jumping to Alpha Centuari (with a timeout for if this jump fails).
-		watchdog 12000
+		# Wait loop while jumping to Alpha Centuari.
 		label notAlpha1
 		branch notAlpha1
 			not "flagship system: Alpha Centauri"
@@ -182,7 +196,6 @@ test "Loading and Saving"
 			travel "Alpha Centauri"
 		input
 			command jump
-		watchdog 12000
 		label notAlpha1
 		branch notAlpha1
 			not "flagship system: Alpha Centauri"
@@ -194,7 +207,6 @@ test "Loading and Saving"
 			"travel destination" Earth
 		input
 			command jump
-		watchdog 12000
 		label notReturned1
 		branch notReturned1
 			not "flagship planet: Earth"
@@ -215,8 +227,7 @@ test "Loading and Saving"
 			travel "Alpha Centauri"
 		input
 			command jump
-		# Wait loop while jumping to Alpha Centuari (with a timeout for if this jump fails).
-		watchdog 12000
+		# Wait loop while jumping to Alpha Centuari.
 		label notAlpha2
 		branch notAlpha2
 			not "flagship system: Alpha Centauri"

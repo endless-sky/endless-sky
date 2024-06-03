@@ -58,7 +58,7 @@ public:
 	~Mission() noexcept = default;
 
 	// Construct and Load() at the same time.
-	Mission(const DataNode &node);
+	explicit Mission(const DataNode &node);
 
 	// Load a mission, either from the game data or from a saved game.
 	void Load(const DataNode &node);
@@ -167,6 +167,7 @@ public:
 	// If any event occurs between two ships, check to see if this mission cares
 	// about it. This may affect the mission status or display a message.
 	void Do(const ShipEvent &event, PlayerInfo &player, UI *ui);
+	bool RequiresGiftedShip(const std::string &shipId) const;
 
 	// Get the internal name used for this mission. This name is unique and is
 	// never modified by string substitution, so it can be used in condition

@@ -243,7 +243,7 @@ ship "Cicada"
 	explode "large explosion" 16
 	explode "huge explosion" 4
 	"final explode" "final explosion medium"
-	description `A design nearly as old as the Aphid, practically no new Cicadas have been built in recent memory; it is so reliable that the second-hand market is saturated Cicadas that have outlived not just one pilot, but in many cases multiple whole lineages of Hai that have owned one and passed it down through the generations. This feature is likely the main factor which has kept the popularity of the Scarab in check as well as defining the Yeer e Ki shipyard's motto: "Service for Life".`
+	description `A design nearly as old as the Aphid, practically no new Cicadas have been built in recent memory; it is so reliable that the second-hand market is saturated Cicadas that have outlived not just one pilot, but in many cases multiple whole lineages of Hai that have owned one and passed it down through the generations. This feature is likely the main factor which has kept the popularity of the Scarab in check as well as defining the Yeer e Ki shipyard's motto: "Service for Life."`
 
 
 
@@ -280,7 +280,7 @@ ship "Flea"
 	gun 0 -27 "Railgun"
 	leak "leak" 60 50
 	explode "tiny explosion" 15
-	description `This combat drone is built to amplify the strength of any combat force for as few credits as possible. It was designed in conjunction with the tactical recoil of the Railgun to allow it to kite its targets, prolonging its combat efficacy while it supports its allies with debilitating ion damage.`
+	description `This combat drone is built to amplify the strength of any combat force for as few credits as possible. It was designed in conjunction with the tactical recoil of the Skipper Railgun to allow it to kite its targets, prolonging its combat efficacy while it supports its allies with debilitating ion damage.`
 	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
 
 ship "Flea" "Flea (Pulse)"
@@ -332,11 +332,11 @@ ship "Geocoris"
 	engine -100 39
 	gun 24 -118 "Pulse Cannon"
 	gun -24 -118 "Pulse Cannon"
+	turret 0 -89 "Bullfrog Anti-Missile"
 	turret 110 -23 "Pulse Turret"
 	turret -110 -23 "Pulse Turret"
 	turret 35 94 "Bullfrog Anti-Missile"
 	turret -35 94 "Bullfrog Anti-Missile"
-	turret 0 -89 "Bullfrog Anti-Missile"
 	leak "leak" 40 50
 	leak "flame" 40 80
 	leak "big leak" 70 30
@@ -366,6 +366,11 @@ ship "Geocoris" "Geocoris (Tracker)"
 		`"Biroo" Atomic Thruster`
 		`"Bondir" Atomic Steering`
 		Hyperdrive
+	turret "Chameleon Anti-Missile"
+	turret "Pulse Turret"
+	turret "Pulse Turret"
+	turret "Bullfrog Anti-Missile"
+	turret "Bullfrog Anti-Missile"
 
 
 
@@ -768,7 +773,7 @@ ship "Pond Strider"
 	explode "large explosion" 40
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
-	description "The Hai upgraded their original Pond Strider after acquiring hull repair technology through alien diplomacy. These improvements have greatly reduced casualties in their conflict with the Unfettered, since the light Pond Striders become vulnerable as they collect damaged drones. Besides enabling the ship to repair damaged drones, the Hai have cleverly innovated the Railgun to make the Pond Strider and Fleas into very efficient combat support for their fleets."
+	description "The Hai upgraded their original Pond Strider after acquiring hull repair technology through alien diplomacy. These improvements have greatly reduced casualties in their conflict with the Unfettered, since the light Pond Striders become vulnerable as they collect damaged drones. Besides enabling the ship to repair damaged drones, the Hai have cleverly innovated the Skipper Railgun to make the Pond Strider and Fleas into very efficient combat support for their fleets."
 
 ship "Pond Strider" "Pond Strider (Tracker)"
 	outfits
@@ -1515,12 +1520,12 @@ ship "Emperor Beetle"
 	"steering engine" 43 131
 		zoom 0.45
 		left
-	gun -42.5 -53.5 "Tripulse Shredder"
-	gun 43.5 -54.5 "Tripulse Shredder"
-	gun -23 -102.5
-	gun 24.5 -102.5
 	gun 12.5 -128
 	gun -10 -128
+	gun -23 -102.5
+	gun 24.5 -102.5
+	gun -42.5 -53.5 "Tripulse Shredder"
+	gun 43.5 -54.5 "Tripulse Shredder"
 	turret 0.5 -25.5 "Warder Anti-Missile"
 	turret -47.5 11.5
 	turret 48.5 11.5
@@ -1620,7 +1625,7 @@ ship "Solifuge"
 	explode "large explosion" 50
 	explode "huge explosion" 20
 	"final explode" "final explosion large"
-	description `Impressed by the Alpha's "Giftbringer," the Unfettered endeavored to build their own fighter carrier to take more advantage of their supply of jump drives.`
+	description `Impressed by the Alphas' "Giftbringer," the Unfettered endeavored to build their own fighter carrier to take more advantage of their supply of jump drives.`
 
 ship "Solifuge" "Solifuge (Jump)"
 	outfits
@@ -1736,7 +1741,7 @@ ship "Violin Spider"
 		"drag" 0.9
 		"heat dissipation" .7
 		"outfit space" 92
-		"weapon capacity" 19
+		"weapon capacity" 23
 		"engine capacity" 30
 		weapon
 			"blast radius" 12

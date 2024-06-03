@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "GameData.h"
+#include "Gamerules.h"
 #include "Outfit.h"
 #include "Ship.h"
 
@@ -28,13 +29,29 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
+	// Methods to retrieve depreciation constants from gamerules.
+	double Min()
+	{
+		return GameData::GetGamerules().DepreciationMin();
+	}
+
+	int GracePeriod()
+	{
+		return GameData::GetGamerules().DepreciationGracePeriod();
+	}
+
+	double Daily()
+	{
+		return GameData::GetGamerules().DepreciationDaily();
+	}
+
+	int MaxAge()
+	{
+		return GameData::GetGamerules().DepreciationMaxAge() + GracePeriod();
+	}
+
 	// Names for the two kinds of depreciation records.
 	string NAME[2] = {"fleet depreciation", "stock depreciation"};
-	// Depreciation parameters.
-	constexpr double FULL_DEPRECIATION = 0.25;
-	constexpr double DAILY_DEPRECIATION = 0.997;
-	constexpr int GRACE_PERIOD = 7;
-	constexpr int MAX_AGE = 1000 + GRACE_PERIOD;
 }
 
 
@@ -42,7 +59,7 @@ namespace {
 // What fraction of its cost a fully depreciated item has left:
 double Depreciation::Full()
 {
-	return FULL_DEPRECIATION;
+	return Min();
 }
 
 
@@ -95,7 +112,7 @@ void Depreciation::Save(DataWriter &out, int day) const
 					// anything not recorded is considered fully depreciated, so
 					// there is no reason to save records for those items.
 					for(const auto &it : sit.second)
-						if(isStock || (it.second && it.first > day - MAX_AGE))
+						if(isStock || (it.second && it.first > day - MaxAge()))
 							out.Write(it.first, it.second);
 				}
 				out.EndChild();
@@ -110,7 +127,7 @@ void Depreciation::Save(DataWriter &out, int day) const
 				out.BeginChild();
 				{
 					for(const auto &it : oit.second)
-						if(isStock || (it.second && it.first > day - MAX_AGE))
+						if(isStock || (it.second && it.first > day - MaxAge()))
 							out.Write(it.first, it.second);
 				}
 				out.EndChild();
@@ -148,12 +165,13 @@ void Depreciation::Init(const vector<shared_ptr<Ship>> &fleet, int day)
 
 
 // Add a ship, and all its outfits, to the depreciation record.
-void Depreciation::Buy(const Ship &ship, int day, Depreciation *source)
+void Depreciation::Buy(const Ship &ship, int day, Depreciation *source, bool chassisOnly)
 {
 	// First, add records for all outfits the ship is carrying.
-	for(const auto &it : ship.Outfits())
-		for(int i = 0; i < it.second; ++i)
-			Buy(it.first, day, source);
+	if(!chassisOnly)
+		for(const auto &it : ship.Outfits())
+			for(int i = 0; i < it.second; ++i)
+				Buy(it.first, day, source);
 
 	// Then, check the base day for the ship chassis itself.
 	const Ship *base = GameData::Ships().Get(ship.TrueModelName());
@@ -171,7 +189,7 @@ void Depreciation::Buy(const Ship &ship, int day, Depreciation *source)
 		{
 			// If we're a planet buying from the player, and the player has no
 			// record of how old this ship is, it's fully depreciated.
-			day -= MAX_AGE;
+			day -= MaxAge();
 		}
 	}
 
@@ -201,7 +219,7 @@ void Depreciation::Buy(const Outfit *outfit, int day, Depreciation *source)
 		{
 			// If we're a planet buying from the player, and the player has no
 			// record of how old this outfit is, it's fully depreciated.
-			day -= MAX_AGE;
+			day -= MaxAge();
 		}
 	}
 
@@ -212,7 +230,7 @@ void Depreciation::Buy(const Outfit *outfit, int day, Depreciation *source)
 
 
 // Get the value of an entire fleet.
-int64_t Depreciation::Value(const vector<shared_ptr<Ship>> &fleet, int day) const
+int64_t Depreciation::Value(const vector<shared_ptr<Ship>> &fleet, int day, bool chassisOnly) const
 {
 	map<const Ship *, int> shipCount;
 	map<const Outfit *, int> outfitCount;
@@ -222,8 +240,9 @@ int64_t Depreciation::Value(const vector<shared_ptr<Ship>> &fleet, int day) cons
 		const Ship *base = GameData::Ships().Get(ship->TrueModelName());
 		++shipCount[base];
 
-		for(const auto &it : ship->Outfits())
-			outfitCount[it.first] += it.second;
+		if(!chassisOnly)
+			for(const auto &it : ship->Outfits())
+				outfitCount[it.first] += it.second;
 	}
 
 	int64_t value = 0;
@@ -282,7 +301,7 @@ int64_t Depreciation::Value(const Outfit *outfit, int day, int count) const
 
 // "Sell" an item, removing it from the given record and returning the base
 // day for its depreciation.
-int Depreciation::Sell(map<int, int> &record)
+int Depreciation::Sell(map<int, int> &record) const
 {
 	// If we're a planet, we start by selling the oldest, cheapest thing.
 	auto it = (isStock ? record.begin() : --record.end());
@@ -345,14 +364,15 @@ double Depreciation::Depreciate(const map<int, int> &record, int day, int count)
 // Calculate the value fraction for an item of the given age.
 double Depreciation::Depreciate(int age) const
 {
-	if(age <= GRACE_PERIOD)
+	if(age <= GracePeriod())
 		return 1.;
-	if(age >= MAX_AGE)
-		return FULL_DEPRECIATION;
 
-	double daily = pow(DAILY_DEPRECIATION, age - GRACE_PERIOD);
-	double linear = static_cast<double>(MAX_AGE - age) / (MAX_AGE - GRACE_PERIOD);
-	return FULL_DEPRECIATION + (1. - FULL_DEPRECIATION) * daily * linear;
+	if(age >= MaxAge())
+		return Min();
+
+	double daily = pow(Daily(), age - GracePeriod());
+	double linear = static_cast<double>(MaxAge() - age) / (MaxAge() - GracePeriod());
+	return Min() + (1. - Min()) * daily * linear;
 }
 
 
@@ -361,5 +381,5 @@ double Depreciation::Depreciate(int age) const
 // default to no depreciation. When selling, they default to full.
 double Depreciation::DefaultDepreciation() const
 {
-	return (isStock ? 1. : FULL_DEPRECIATION);
+	return (isStock ? 1. : Min());
 }

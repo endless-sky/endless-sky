@@ -11,6 +11,35 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+
+
+ship "Aerie" "Aerie (Miner)"
+	outfits
+		"Mining Laser" 2
+		"Mining Laser Turret" 2
+		"Tractor Beam"
+		
+		"Asteroid Scanner" 2
+		"NT-200 Nucleovoltaic"
+		"KP-6 Photovoltaic Panel" 2
+		"LP072a Battery Pack"
+		"D67-TM Shield Generator"
+		"Cargo Expansion"
+		"Large Radar Jammer"
+		"Laser Rifle" 3
+		
+		"X1100 Ion Reverse Thruster"
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+	gun "Mining Laser"
+	gun "Mining Laser"
+	turret "Tractor Beam"
+	turret "Mining Laser Turret"
+	turret "Mining Laser Turret"
+
+
+
 ship "Argosy" "Argosy (Blaster)"
 	outfits
 		"Energy Blaster" 4
@@ -191,7 +220,6 @@ ship "Auxiliary" "Auxiliary (Jump Transport)"
 		"Cooling Ducts"
 		"Outfits Expansion" 2
 		"S-970 Regenerator" 5
-		"Quantum Keystone"
 		"Armageddon Core"
 		"LP288a Battery Pack"
 		"A520 Atomic Thruster"
@@ -330,6 +358,18 @@ ship "Bactrian" "Bactrian (Plasma Blaster Anti-Missile)"
 
 
 
+ship "Barb" "Barb (Proton)"
+	outfits
+		"Proton Gun"
+		
+		"nGVF-AA Fuel Cell"
+		"Supercapacitor"
+		"D14-RN Shield Generator"
+
+		"X1050 Ion Engines"
+
+
+
 ship "Barb" "Barb (Gatling)"
 	outfits
 		"Gatling Gun"
@@ -338,6 +378,17 @@ ship "Barb" "Barb (Gatling)"
 		"nGVF-AA Fuel Cell"
 		Supercapacitor 3
 		"D14-RN Shield Generator"
+		"X1050 Ion Engines"
+
+
+ship "Barb" "Barb (Miner)"
+	outfits
+		"Mining Laser Turret"
+
+		"nGVF-AA Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+
 		"X1050 Ion Engines"
 
 
@@ -382,6 +433,33 @@ ship "Bastion" "Bastion (Laser)"
 	turret "Heavy Laser Turret"
 
 
+ship "Bastion" "Bastion (Gatling)"
+	outfits
+		"Plasma Cannon" 2
+		"Twin Modified Blaster" 2
+		"Gatling Turret" 2
+		"Gatling Gun Ammo" 9000
+		"Bullet Boxes" 2
+		"Heavy Anti-Missile Turret"
+		"S3 Thermionic"
+		"nGVF-BB Fuel Cell"
+		"D67-TM Shield Generator"
+		"LP144a Battery Pack"
+		"Water Coolant System"
+		"Laser Rifle" 9
+		"Tactical Scanner"
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+	turret "Heavy Anti-Missile Turret"
+	turret "Gatling Turret"
+	turret "Gatling Turret"
+	gun "Plasma Cannon"
+	gun "Twin Modified Blaster"
+	gun "Plasma Cannon"
+	gun "Twin Modified Blaster"
+
+
 ship "Bastion" "Bastion (Scanner)"
 	outfits
 		"Plasma Cannon" 2
@@ -398,6 +476,10 @@ ship "Bastion" "Bastion (Scanner)"
 		"Impala Plasma Thruster"
 		"Impala Plasma Steering"
 		"Hyperdrive"
+	gun "Heavy Rocket Launcher"
+	gun "Plasma Cannon"
+	gun "Heavy Rocket Launcher"
+	gun "Plasma Cannon"
 
 
 
@@ -486,6 +568,36 @@ ship "Behemoth" "Behemoth (Speedy)"
 		"Scram Drive"
 
 
+ship "Behemoth" "Behemoth (Miner)"
+	outfits
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 90
+		"Mining Laser Turret" 4
+		"Tractor Beam" 2
+		
+		"Asteroid Scanner" 2
+		"NT-200 Nucleovoltaic"
+		"LP144a Battery Pack"
+		"D67-TM Shield Generator"
+		"Cooling Ducts" 2
+		"Large Radar Jammer"
+		"Cargo Expansion" 2
+		"Laser Rifle" 6
+		
+		"AR120 Reverse Thruster"
+		"A250 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Scram Drive"
+	gun "Meteor Missile Launcher"
+	gun "Meteor Missile Launcher"
+	turret "Tractor Beam"
+	turret "Mining Laser Turret"
+	turret "Mining Laser Turret"
+	turret "Mining Laser Turret"
+	turret "Mining Laser Turret"
+	turret "Tractor Beam"
+
+
 
 ship "Berserker" "Berserker (Afterburner)"
 	outfits
@@ -515,6 +627,24 @@ ship "Berserker" "Berserker (Strike)"
 		"Chipmunk Plasma Thruster"
 		"Chipmunk Plasma Steering"
 		"Hyperdrive"
+
+
+ship "Berserker" "Berserker (CCOR)"
+	outfits
+		"Gatling Gun" 4
+		"Gatling Gun Ammo" 12000
+		"nGVF-CC Fuel Cell"
+		"Water Coolant System"
+		"D41-HY Shield Generator"
+		"Small Radar Jammer" 3
+		"Cargo Scanner" 2
+		"Outfit Scanner" 2
+		"Security Station"
+		"Laser Rifle" 2
+		"Chipmunk Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Hyperdrive"
+
 
 
 ship "Blackbird" "Blackbird (Prisoner Transport)"
@@ -580,6 +710,22 @@ ship "Bounder" "Bounder (Luxury)"
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
 		"Hyperdrive"
+
+
+ship "Bounder" "Bounder (Hai Trafficker)"
+	outfits
+		"A255 Atomic Steering"
+		"A370 Atomic Thruster"
+		"Fuel Pod"
+		"Hai Fissure Batteries"
+		"Hai Corundum Regenerator"
+		"Water Coolant System"
+		"NT-200 Nucleovoltaic"
+		"Ramscoop"
+		"Scram Drive"
+		"Brig"
+		"Outfits Expansion"
+		"Pulse Rifle" 7
 
 
 
@@ -723,9 +869,9 @@ ship "Bulwark" "Bulwark (Heavy)"
 	gun "Plasma Cannon"
 	gun "Torpedo Launcher"
 	gun "Plasma Cannon"
-	turret "Anti-Missile Turret"
-	turret "Anti-Missile Turret"
 	turret "Heavy Laser Turret"
+	turret "Anti-Missile Turret"
+	turret "Anti-Missile Turret"
 
 
 
@@ -1273,7 +1419,6 @@ ship "Cruiser" "Cruiser (Jump Plasma Anti-Missile)"
 		"Catalytic Ramscoop"
 		"Fuel Pod" 3
 		"Jump Drive"
-		"Quantum Keystone"
 		"S-970 Regenerator" 3
 		"Liquid Helium Cooler"
 		"Outfits Expansion" 2
@@ -1310,6 +1455,19 @@ ship "Cutthroat" "Cutthroat (Jousting)"
 	gun 21.5 -18 "Heavy Rocket Pod"
 	gun -11 -8.5 "Twin Modified Blaster"
 	gun 11 -8.5 "Twin Modified Blaster"
+
+
+
+ship "Dagger" "Dagger (Miner)"
+	outfits
+		"Mining Laser"
+
+		"nGVF-BB Fuel Cell"
+		"Supercapacitor"
+		"D14-RN Shield Generator"
+		
+		"X1700 Ion Thruster"
+		"X1200 Ion Steering"
 
 
 
@@ -1359,7 +1517,7 @@ ship "Dreadnought" "Dreadnought (Plasma Blaster Anti-Missile)"
 
 
 # Same as above but repurposed for Hai Reveal.
-ship "Dreadnought" "Dreadnought (Plasma Jump Keystone)"
+ship "Dreadnought" "Dreadnought (Plasma Jump)"
 	outfits
 		"Heavy Anti-Missile Turret" 2
 		"Plasma Turret" 3
@@ -1373,9 +1531,26 @@ ship "Dreadnought" "Dreadnought (Plasma Jump Keystone)"
 		"A525 Atomic Steering"
 		"Laser Rifle" 25
 		"LP144a Battery Pack"
-		"Quantum Keystone"
 		"Fuel Pod" 2
 		"Catalytic Ramscoop"
+
+
+
+ship "Enforcer" "Enforcer (CCOR)"
+	outfits
+		"Energy Blaster" 4
+		"Javelin Turret"
+		"Javelin" 500
+		"Javelin Storage Crate"
+		"nGVF-CC Fuel Cell"
+		"LP036a Battery Pack"
+		"D23-QP Shield Generator"
+		"Cargo Scanner"
+		"Laser Rifle" 3
+		"Greyhound Plasma Steering"
+		"Greyhound Plasma Thruster"
+		"Hyperdrive"
+
 
 
 ship "Falcon" "Falcon (Heavy)"
@@ -1467,6 +1642,35 @@ ship "Falcon" "Falcon (Laser Chaser)"
 		"Armageddon Core"
 
 
+ship "Falcon" "Falcon (Javelin)"
+	outfits
+		"Twin Blaster" 4
+		"Heavy Laser Turret"
+		"Heavy Anti-Missile Turret"
+		"Javelin Turret" 2
+		"Javelin" 1100
+		"Javelin Storage Crate" 3
+		"Breeder Reactor"
+		"LP072a Battery Pack"
+		"D67-TM Shield Generator"
+		"Large Radar Jammer"
+		"Liquid Nitrogen Cooler"
+		"Tactical Scanner"
+		"Laser Rifle" 25
+		"Capybara Reverse Thruster"
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+	gun "Twin Blaster"
+	gun "Twin Blaster"
+	gun "Twin Blaster"
+	gun "Twin Blaster"
+	turret "Heavy Laser Turret"
+	turret "Heavy Anti-Missile Turret"
+	turret "Javelin Turret"
+	turret "Javelin Turret"
+
+
 
 ship "Firebird" "Firebird (Hai Shields)"
 	outfits
@@ -1555,7 +1759,29 @@ ship "Firebird" "Firebird (Plasma)"
 		"X3700 Ion Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
-		
+
+
+ship "Firebird" "Firebird (CCOR)"
+	outfits
+		"Twin Modified Blaster" 4
+		"Heavy Anti-Missile Turret"
+		"Javelin Turret"
+		"Javelin" 700
+		"Javelin Storage Crate" 3
+		"Fission Reactor"
+		"Water Coolant System"
+		"nGVF-BB Fuel Cell"
+		"Supercapacitor"
+		"D67-TM Shield Generator"
+		"Large Radar Jammer"
+		"Outfit Scanner"
+		"Laser Rifle" 22
+		"Security Station"
+		"Chipmunk Plasma Steering"
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Hyperdrive"
+
 
 
 ship "Flivver" "Flivver (Hai)"
@@ -1590,6 +1816,44 @@ ship "Flivver" "Flivver (Racing)"
 		"A125 Atomic Steering"
 		"Hyperdrive"
 
+
+
+ship "Freighter" "Freighter (Miner A)"
+	outfits
+		"Mining Laser Turret"
+		"Tractor Beam" 2
+
+		"Asteroid Scanner"
+		"nGVF-CC Fuel Cell"
+		"LP072a Battery Pack"
+		"D14-RN Shield Generator"
+
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"X1100 Ion Reverse Thruster"
+		"Scram Drive"
+	turret "Tractor Beam"
+	turret "Mining Laser Turret"
+	turret "Tractor Beam"
+
+
+ship "Freighter" "Freighter (Miner B)"
+	outfits
+		"Mining Laser Turret" 2
+		"Tractor Beam"
+
+		"nGVF-CC Fuel Cell"
+		"LP072a Battery Pack"
+		"D14-RN Shield Generator"
+
+		"Asteroid Scanner"
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"X1100 Ion Reverse Thruster"
+		"Scram Drive"
+	turret "Mining Laser Turret"
+	turret "Tractor Beam"
+	turret "Mining Laser Turret"
 
 
 ship "Freighter" "Freighter (Fancy)"
@@ -1814,7 +2078,7 @@ ship "Fury" "Fury (Missile)"
 		"Hyperdrive"
 
 
-ship "Fury" "Fury (Miner)"
+ship "Fury" "Fury (Miner A)"
 	outfits
 		"Heavy Laser" 2
 		"nGVF-CC Fuel Cell"
@@ -1824,6 +2088,26 @@ ship "Fury" "Fury (Miner)"
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
 		"Hyperdrive"
+
+
+ship "Fury" "Fury (Miner B)"
+	outfits
+		"Mining Laser" 2
+		"Energy Blaster" 2
+		
+		"nGVF-CC Fuel Cell"
+		"LP036a Battery Pack"
+		"Small Radar Jammer" 2
+		
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
+		"Hyperdrive"
+	gun "Mining Laser"
+	gun "Mining Laser"
+	gun
+	gun
+	gun "Energy Blaster"
+	gun "Energy Blaster"
 
 
 
@@ -1884,6 +2168,23 @@ ship "Hauler II" "Hauler II (Hai)"
 	turret "Chameleon Anti-Missile"
 	turret "Chameleon Anti-Missile"
 	turret "Quad Blaster Turret"
+
+
+ship "Hauler II" "Hauler II (CCOR)"
+	outfits
+		"Heavy Anti-Missile Turret" 2
+		"Anti-Missile Turret" 2
+		"S3 Thermionic"
+		"LP072a Battery Pack"
+		"D67-TM Shield Generator"
+		"Small Radar Jammer"
+		"Laser Rifle" 12
+		"Security Station" 2
+		"Capybara Reverse Thruster"
+		"Chipmunk Plasma Thruster"
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Scram Drive"
 
 
 
@@ -1958,7 +2259,7 @@ ship "Hawk" "Hawk (Speedy)"
 		"Hyperdrive"
 
 
-ship "Hawk" "Hawk (Miner)"
+ship "Hawk" "Hawk (Miner A)"
 	outfits
 		"Heavy Laser" 2
 		"S3 Thermionic"
@@ -1967,6 +2268,21 @@ ship "Hawk" "Hawk (Miner)"
 		"Asteroid Scanner"
 		"A120 Atomic Thruster"
 		"A255 Atomic Steering"
+		"Hyperdrive"
+
+
+ship "Hawk" "Hawk (Miner B)"
+	outfits
+		"Mining Laser" 2
+		
+		"nGVF-CC Fuel Cell"
+		"KP-6 Photovoltaic Panel" 2
+		"LP036a Battery Pack"
+		"D23-QP Shield Generator"
+		"Small Radar Jammer"
+		
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
 		"Hyperdrive"
 
 
@@ -1994,7 +2310,7 @@ ship "Headhunter" "Headhunter (Particle)"
 		"Hyperdrive"
 
 
-ship "Headhunter" "Headhunter (Miner)"
+ship "Headhunter" "Headhunter (Miner A)"
 	outfits
 		"Particle Cannon" 2
 		"NT-200 Nucleovoltaic"
@@ -2003,6 +2319,21 @@ ship "Headhunter" "Headhunter (Miner)"
 		"Asteroid Scanner"
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
+		"Hyperdrive"
+
+
+ship "Headhunter" "Headhunter (Miner B)"
+	outfits
+		"Mining Laser" 4
+		
+		"Asteroid Scanner"
+		"RT-I Radiothermal"
+		"KP-6 Photovoltaic Array"
+		"LP072a Battery Pack"
+		"D23-QP Shield Generator"
+		
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
 		"Hyperdrive"
 
 
@@ -2043,6 +2374,26 @@ ship "Lance" "Lance (Gatling)"
 		"D14-RN Shield Generator"
 		"X1700 Ion Thruster"
 		"X1200 Ion Steering"
+	gun
+	gun "Gatling Gun"
+	gun "Gatling Gun"
+
+
+
+ship "Hogshead" "Hogshead (CCOR)"
+	outfits
+		"Heavy Anti-Missile Turret" 2
+		"S3 Thermionic"
+		"LP036a Battery Pack"
+		"D67-TM Shield Generator"
+		"Large Radar Jammer"
+		"Outfits Expansion"
+		"Bunk Room" 2
+		"Laser Rifle" 56
+		"Capybara Reverse Thruster"
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Scram Drive"
 
 
 
@@ -2169,6 +2520,28 @@ ship "Leviathan" "Leviathan (Particle Chaser)"
 		"Armageddon Core"
 
 
+ship "Leviathan" "Leviathan (CCOR)"
+	outfits
+		"Plasma Cannon" 4
+		"Heavy Anti-Missile Turret" 2
+		"Javelin Turret" 2
+		"Javelin" 1200
+		"Javelin Storage Crate" 4
+		"Fusion Reactor"
+		"nGVF-EE Fuel Cell"
+		"Supercapacitor"
+		"Liquid Helium Cooler"
+		"D67-TM Shield Generator"
+		"Outfits Expansion" 3
+		"Tactical Scanner"
+		"Laser Rifle" 64
+		"Security Station"
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
+		"Chipmunk Plasma Steering"
+		"Scram Drive"
+
+
 
 ship "Manta" "Manta (Mark II)"
 	outfits
@@ -2185,12 +2558,12 @@ ship "Manta" "Manta (Mark II)"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 		"Ionic Afterburner"
-	gun "Particle Cannon"
-	gun "Particle Cannon"
-	gun "Particle Cannon"
-	gun "Particle Cannon"
 	gun "Sidewinder Missile Launcher"
 	gun
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
 
 
 ship "Manta" "Manta (Nuclear)"
@@ -2205,12 +2578,12 @@ ship "Manta" "Manta (Nuclear)"
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
-	gun "Particle Cannon"
-	gun "Particle Cannon"
-	gun "Particle Cannon"
-	gun "Particle Cannon"
 	gun "Nuclear Missile"
 	gun "Nuclear Missile"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
 
 
 ship "Manta" "Manta (Proton)"
@@ -2359,6 +2732,43 @@ ship "Modified Argosy" "Modified Argosy (Missile)"
 		"X3700 Ion Thruster"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"
+	
+	
+ship "Modified Argosy" "Modified Argosy (Javelin)"
+	outfits
+		"Twin Blaster" 4
+		"Javelin Turret"
+		"Javelin" 600
+		"Javelin Storage Crate" 2
+		"Heavy Anti-Missile Turret"
+		"S3 Thermionic"
+		"LP072a Battery Pack"
+		"D41-HY Shield Generator"
+		"Brig"
+		"Outfits Expansion"
+		"Laser Rifle" 3
+		"Greyhound Plasma Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+
+
+ship "Modified Argosy" "Modified Argosy (Gatling)"
+	outfits
+		"Twin Modified Blaster" 2
+		"Gatling Gun" 2
+		"Gatling Turret"
+		"Gatling Gun Ammo" 9000
+		"Bullet Boxes" 2
+		"Heavy Anti-Missile Turret"
+		"S3 Thermionic"
+		"LP072a Battery Pack"
+		"D67-TM Shield Generator"
+		"Brig"
+		"Laser Rifle" 5
+		"X1100 Ion Reverse Thruster"
+		"X3700 Ion Thruster"
+		"Greyhound Plasma Steering"
+		"Hyperdrive"
 
 
 ship "Modified Argosy" "Modified Argosy (Smuggler)"
@@ -2396,6 +2806,24 @@ ship "Mule" "Mule (Hai Engines)"
 		`"Bondir" Atomic Thruster`
 		`"Biroo" Atomic Steering`
 		"Hyperdrive"
+
+
+ship "Mule" "Mule (Hai Trafficker)"
+	outfits
+		`"Basrem" Reverse Thruster`
+		`"Bondir" Atomic Thruster`
+		"A375 Atomic Steering"
+		"Boulder Reactor"
+		Brig
+		"Chameleon Anti-Missile" 4
+		"Fuel Pod" 3
+		"Hai Chasm Batteries"
+		"Hai Diamond Regenerator"
+		"Liquid Nitrogen Cooler"
+		"Pulse Rifle" 10
+		Ramscoop
+		"Scram Drive"
+		"Security Station"
 
 
 ship "Mule" "Mule (Hai Weapons)"
@@ -2451,6 +2879,34 @@ ship "Nest" "Nest (Sidewinder)"
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
 		Hyperdrive
+
+
+ship "Nest" "Nest (Miner)"
+	outfits
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 60
+		"Mining Laser Turret"
+		"Tractor Beam" 2
+		"Heavy Anti-Missile Turret"
+		
+		"Asteroid Scanner"
+		"S3 Thermionic"
+		"LP072a Battery Pack"
+		"D41-HY Shield Generator"
+		"Large Radar Jammer"
+		"Cargo Expansion"
+		"Laser Rifle" 3
+		
+		"Capybara Reverse Thruster"
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Scram Drive"
+	gun "Meteor Missile Launcher"
+	gun "Meteor Missile Launcher"
+	turret "Mining Laser Turret"
+	turret "Tractor Beam"
+	turret "Tractor Beam"
+	turret "Heavy Anti-Missile Turret"
 
 
 
@@ -2587,14 +3043,14 @@ ship "Protector" "Protector (Laser)"
 		"A370 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
-	turret
-	turret "Heavy Laser Turret"
-	turret "Heavy Laser Turret"
-	turret "Anti-Missile Turret"
-	turret "Anti-Missile Turret"
 	turret "Heavy Laser Turret"
 	turret "Heavy Laser Turret"
 	turret
+	turret "Anti-Missile Turret"
+	turret "Anti-Missile Turret"
+	turret
+	turret "Heavy Laser Turret"
+	turret "Heavy Laser Turret"
 
 
 ship "Protector" "Protector (Proton)"
@@ -2612,14 +3068,14 @@ ship "Protector" "Protector (Proton)"
 		"A370 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
-	turret
-	turret "Proton Turret"
-	turret "Proton Turret"
-	turret "Heavy Anti-Missile Turret"
-	turret "Heavy Anti-Missile Turret"
 	turret "Proton Turret"
 	turret "Proton Turret"
 	turret
+	turret "Heavy Anti-Missile Turret"
+	turret "Heavy Anti-Missile Turret"
+	turret
+	turret "Proton Turret"
+	turret "Proton Turret"
 
 
 ship "Protector" "Protector (Quad Blaster)"
@@ -2762,6 +3218,42 @@ ship "Roost" "Roost (Sidewinder)"
 
 
 
+ship "Saber" "Saber (CCOR Javelin)"
+	outfits
+		"Twin Modified Blaster" 2
+		"Gatling Gun" 3
+		"Gatling Gun Ammo" 9000
+		"Javelin Turret"
+		"Javelin" 500
+		"Javelin Storage Crate"
+		"nGVF-CC Fuel Cell"
+		"LP072a Battery Pack"
+		"D41-HY Shield Generator"
+		"Laser Rifle" 16
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Chipmunk Plasma Steering"
+		"Hyperdrive"
+
+
+ship "Saber" "Saber (CCOR Gatling)"
+	outfits
+		"Twin Blaster" 3
+		"Gatling Turret"
+		"Gatling Gun Ammo" 6000
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 60
+		"nGVF-BB Fuel Cell"
+		"LP072a Battery Pack"
+		"D23-QP Shield Generator"
+		"Laser Rifle" 12
+		"Security Station"
+		"X3700 Ion Thruster"
+		"Greyhound Plasma Steering"
+		"Hyperdrive"
+
+
+
 ship "Scout" "Scout (Speedy)"
 	outfits
 		"Meteor Missile Pod"
@@ -2860,6 +3352,18 @@ ship "Sparrow" "Sparrow (Patrol)"
 		"Hyperdrive"
 
 
+ship "Sparrow" "Sparrow (Miner)"
+	outfits
+		"Mining Laser" 2
+		
+		"nGVF-BB Fuel Cell"
+		"LP036a Battery Pack"
+
+		"Chipmunk Plasma Thruster"
+		"Chipmunk Plasma Steering"
+		"Hyperdrive"
+
+
 
 ship "Splinter" "Splinter (Laser)"
 	outfits
@@ -2913,7 +3417,7 @@ ship "Splinter" "Splinter (Proton)"
 	turret "Proton Turret"
 
 
-# Used in the Hai Reveal campaign by a special Syndicate Security team. Should not be used before.
+# Used in the Hai Reveal campaign by a special Syndicated Security team. Should not be used before.
 ship "Splinter" "Splinter (Flamethrower Blaster)"
 	outfits
 		"Heavy Anti-Missile Turret"
@@ -2947,6 +3451,19 @@ ship "Star Barge" "Star Barge (Armed)"
 		"Hyperdrive"
 
 
+ship "Star Barge" "Star Barge (Miner)"
+	outfits
+		"Mining Laser Turret"
+
+		"nGVF-BB Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		
+		"X1700 Ion Thruster"
+		"X1200 Ion Steering"
+		"Hyperdrive"
+
+
 
 ship "Star Queen" "Star Queen (Hai)"
 	outfits
@@ -2961,6 +3478,41 @@ ship "Star Queen" "Star Queen (Hai)"
 		"A375 Atomic Steering"
 		"Luxury Accommodations"
 		"Hyperdrive"
+
+
+
+ship "Star Queen" "Star Queen (Hai Trafficker)"
+	outfits
+		`"Biroo" Atomic Steering`
+		`"Biroo" Atomic Thruster`
+		"AR120 Reverse Thruster"
+		"Breeder Reactor"
+		Brig
+		"Fuel Pod" 2
+		"Hai Chasm Batteries"
+		"Hai Diamond Regenerator"
+		"Heavy Anti-Missile Turret" 2
+		"Liquid Nitrogen Cooler"
+		"Outfits Expansion"
+		Ramscoop
+		"Scram Drive"
+		"Security Station" 2
+
+
+
+ship "Sunder" "Sunder (Heavy)"
+	outfits
+		"Mining Laser" 2
+		"Mining Laser Turret"
+
+		"Asteroid Scanner"
+		"nGVF-DD Fuel Cell"
+		"LP036a Battery Pack"
+		"D23-QP Shield Generator"
+
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Scram Drive"
 
 
 

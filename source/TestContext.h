@@ -26,7 +26,7 @@ class TestContext {
 friend class Test;
 public:
 	TestContext() = default;
-	TestContext(const Test *toRun);
+	explicit TestContext(const Test *toRun);
 	const Test *CurrentTest() const noexcept;
 
 
@@ -48,8 +48,6 @@ private:
 	// Reference to the currently running test and test-step within the test.
 	std::vector<ActiveTestStep> callstack;
 
-	// Teststep to run.
-	unsigned int watchdog = 0;
 	std::set<ActiveTestStep> branchesSinceGameStep;
 };
 

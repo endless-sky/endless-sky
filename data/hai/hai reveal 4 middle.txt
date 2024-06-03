@@ -921,7 +921,7 @@ mission "Hai Reveal [A06a] The Calm"
 			label accepted
 			`	"Excellent," says Remington, standing up and flicking over the pickup details to your pad. "Check in with Terry on your way; she may have updated scouting information. Now I have another meeting to get to momentarily, but thank you, Captain. It's been a pleasure seeing you again."`
 			`	He gives a meaningful look to Alondo on his way out, but exactly what it means is not clear to you. Alondo's posture relaxes as he gets up and quietly closes the door.`
-			`	"Now," says Alondo, setting aside his pad. "We have some other business. I have a lead on this symbol you wanted investigating. I still wish you'd tell me why you're looking for it, but for now, I'll accept that it's important." He fishes around in a small satchel bag that usually carries his pad and pulls out an actual piece of physical paper. The text on it reads, 'Adjunct Research Library, Navy Intelligence Observatory, Moscow. Room number: 3017A19'.`
+			`	"Now," says Alondo, setting aside his pad. "We have some other business. I have a lead on this symbol you wanted investigating. I still wish you'd tell me why you're looking for it, but for now, I'll accept that it's important." He fishes around in a small satchel bag that usually carries his pad and pulls out an actual piece of physical paper. The text on it reads, "Adjunct Research Library, Navy Intelligence Observatory, Moscow. Room number: 3017A19."`
 			`	"Fortunately, I found someone for you to speak to and a cover for being there in the first place. Xilin needs a trusted aide to stay on top of things here, especially as Mountaintop progresses. So far he's found the staff provided there to be... lacking. I get the sense from him that he's expecting things to get more complicated, though he hasn't said in so many words. So, you get to go to Earth to pick up his assistant, and while you're there, you can speak to a certain Ms. Giti Gilani. She's an expert in the history of space flight and related archaic topics. Meanwhile the aide you'll pick up is a young man called Batu Cegeen. You'll have to land at the Ulaanbaatar spaceport for him, and travel locally for your business with Ms. Gilani."`
 			choice
 				`	"Thank you."`
@@ -977,7 +977,7 @@ mission "Hai Reveal [A07] Deliver the Relays"
 			label regular
 			`	"Yes, my regular job. Specifically the one I had before the end of the war, and before this farce they have me doing now, while my successor tries and fails to be half as competent."`
 			label card
-			`	She pushes a button her datapad's case and it ejects a business card which she hands to you. You see on the card, "Chief Operations Officer".`
+			`	She pushes a button her datapad's case and it ejects a business card which she hands to you. You see on the card, "Chief Operations Officer."`
 			`	"Of course," she says, taking the card back and neatly pushing into the case, "I'm not allowed to disseminate those cards at the moment. At least not until this is over, when I can take back my position after the fool in my place has made a mess of things."`
 			`	She seems absolutely sure that that's exactly how things are going to turn out.`
 			`	"Now, speaking of my second job, you have relays on your ship that will make that easier, yes?"`
@@ -1013,7 +1013,7 @@ mission "Hai Reveal [A07] Deliver the Relays"
 			`	Turner smiles with a little twinkle in his eye.`
 			label yes
 			`	"Of course, the famous Captain <last> always has a finger on the pulse. Being right where they need to be. Good thing we got the advertising out there up in time, hey?" He taps his nose and gives a shockingly conspicuous wink.`
-			`	"Anyway, give me your details too just in case I need them, and I'll let you get to your business. Good luck out there." He checks your details into his pad and gives you a firm handshake before hurrying off towards people moving a very large prop. 'No, no, they said they wanted that on stage five! Stage five!'.`
+			`	"Anyway, give me your details too just in case I need them, and I'll let you get to your business. Good luck out there." He checks your details into his pad and gives you a firm handshake before hurrying off towards people moving a very large prop. "No, no, they said they wanted that on stage five! Stage five!"`
 			`	Time to drop off those relays and head to <planet>.`
 				accept
 	on enter Sumar
@@ -1324,7 +1324,7 @@ mission "Hai Reveal [A09] History of Appeasement"
 				`	"What can we do to solve this, Sayari?"`
 				`	"Teeneep, I think we need quick action. You mentioned something back in the cave."`
 			`	The three of you head back to the diplomatic quarter and where Xilin and Batu lead you to a conference room. They consult Sayari, and occasionally Teeneep, in a long discussion about the Navy knowing of the pirate troubles and willfully not intervening. Xilin sympathizes and suggests the Hai ask the Navy to rescue those captured.`
-			`	Batu cuts in. "I'm sorry, deputy minister, I have not had time to fully brief you. The Navy already considered this and said 'not under any circumstances' will they 'clean up the Hai's mess'." In the slightly stunned pause following his words he draws breath and adds somewhat less intensely, "It's, uh, possible that five thousand missing civilians was not one of the things they considered when they said that."`
+			`	Batu cuts in. "I'm sorry, deputy minister, I have not had time to fully brief you. The Navy already considered this and said 'not under any circumstances' will they 'clean up the Hai's mess.'" In the slightly stunned pause following his words he draws breath and adds somewhat less intensely, "It's, uh, possible that five thousand missing civilians was not one of the things they considered when they said that."`
 			`	Xilin frowns. "We should definitely present that case. They'll have to do another whole round of private briefings, and then no doubt a large debate. Even if we started today, Parliament won't be able to act for months. I'll kick things off, but you'll have to be patient."`
 			`	When Teeneep makes a noise as if to speak, Sayari silences her with a gentle touch and thanks Xilin in the formal capacity. He briefly thanks you for delivering Batu safely and then the two excuse themselves to see if they can get a hold of someone before their day ended.`
 			choice
@@ -1367,7 +1367,7 @@ mission "Hai Reveal [A10] Demanding Satisfaction"
 				`	"What's your plan?"`
 				`	(Follow her.)`
 					goto follow
-			`	"To Unfettered Hai leadership, this meeting is all a political ploy. They know it's in their best interest to help us. It will raise public opinion towards them among the "Fettered" and likely lure more recruits to their side. But before they agree, I have to prove myself in front of their troops. If I don't, the public's perception will be that the Unfettered leaders helped a weak coward. Fortunately, dangerous sports have a tendency to open doors for you in Hai society. They're an essential hobby for anyone who hopes to have influence, and I have kept up with mine reasonably well. It's been a couple decades since I won anything, but I was regional champion in fencing a number of times when I was really into it."`
+			`	"To Unfettered Hai leadership, this meeting is all a political ploy. They know it's in their best interest to help us. It will raise public opinion towards them among the 'Fettered' and likely lure more recruits to their side. But before they agree, I have to prove myself in front of their troops. If I don't, the public's perception will be that the Unfettered leaders helped a weak coward. Fortunately, dangerous sports have a tendency to open doors for you in Hai society. They're an essential hobby for anyone who hopes to have influence, and I have kept up with mine reasonably well. It's been a couple decades since I won anything, but I was regional champion in fencing a number of times when I was really into it."`
 			label follow
 			`	Teeneep goes to disembark, pauses, then turns back to you. "Actually, before we leave the ship, there was something I wanted to make sure I explained before we meet the Unfettered leadership: I'm carrying real weapons for a reason. This meeting will probably seem violent, and that will probably make you think the Unfettered are a barbaric people. They're not; they 'play up' their violent nature. It's a hard concept to explain - we have Hai words for this that don't translate well into your language. That's the simplest way I can think to explain it without spending twenty minutes here, so it'll have to suffice."`
 			`	She glances around. "Besides, we're already close to running late. Let's get going."`
@@ -1468,7 +1468,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 			`	Her mouth quirks in a sly little smile. "Aimet has always been the master navigator of those systems. He's responsible for improving one of them for the first time in two thousand years." She frowns. "It's actually very odd that he wasn't chosen for the Triad last time we were here."`
 				goto return
 			label aimet
-			`	"He is the..." she pauses to look up aimlessly, "I don't think it translates quite right. You have a phenomenon in your language where you amalgamate words sometimes, like an engineer who works specifically on solutions to problems might be called a 'solutioneer'. We have a similar thing with our words for political systems and navigator. It's a title he has earned."`
+			`	"He is the..." she pauses to look up aimlessly, "I don't think it translates quite right. You have a phenomenon in your language where you amalgamate words sometimes, like an engineer who works specifically on solutions to problems might be called a 'solutioneer.' We have a similar thing with our words for political systems and navigator. It's a title he has earned."`
 			`	She spreads her arms, 'palms' up, in a human gesture indicating a loss for words. "Our system of government has systems and processes to allow almost any internal situation to be handled without resorting to base hysteria, and to actively punish and isolate those who try and subvert those processes. It is a difficult pill to swallow sometimes, but it works, and it has ensured stability since before humans learned to bash rocks together. Aimet is the master navigator of those systems. He's responsible for improving one of them for the first time in two thousand years."`
 			
 			label return
@@ -1485,7 +1485,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 			label correct
 			`	"Thank you, Captain. Since you have become involved as a witness, protocol dictates that the session will be held in your language, though for the sake of order normal council directions will still be in Hai. We will begin in a moment."`
 			`	After everyone is set in place, the moderator abruptly starts. "Teeneep has provided a confession about her visit to the Unfettered, incitement to war, involvement of outside government in internal Hai matters, and other concerns. She has justified this by an argument of necessity, that it is essential for action to be taken to produce both a peaceful outcome for the ongoing crisis with humanity and to heal a hole in the heart of our society."`
-			`	When the moderator refers to 'healing the hole', it is spoken with an emphasis that implies heavy quotation, and you can hear the muttering of translations and scoffs rippling out among the Elders in the room.`
+			`	When the moderator refers to "healing the hole," it is spoken with an emphasis that implies heavy quotation, and you can hear the muttering of translations and scoffs rippling out among the Elders in the room.`
 			`	Sayari hisses with distaste and quietly says, "The framing of this is terrible, someone has already decided what outcome they'd like to get and has got in on this process early."`
 			`	The moderator calls something out in Hai which ends with 'Teeneep' and Sayari translates, "The Council hears Teeneep."`
 			`	Not visibly disheartened by the situation, Teeneep steps into the middle and begins. She makes her case thoroughly and passionately, but with a clearly well-practiced presentation structure, ensuring that the full background for the situation is laid out for those present. Some Elders make snide comments at various points, but the moderator shuts them down and those most skeptical settle for being merely disengaged. When she presents the Unfettered's position as an offer of assistance there is a smattering of largely disbelieving sounds, though when she speaks of their willingness to force the matter the tone of the conversation gets remarkably more tense. "If you don't act, they will. Whether that's with you, or through you," she finishes.`
@@ -1565,11 +1565,11 @@ mission "Hai Reveal [A11] Sound the Alarm"
 				`	"What was that in there about the Mythos?"`
 				`	"What will happen if they get riled up?"`
 					goto riled
-			`	Teeneep rolls her eyes, putting her drink down with a sharp clink. "It's superstition. Humans have their religions, the Hai have the Mythos. It's a collection of stories about Hai who lived incredibly long lives and were involved in or responsible for incredibly influential events in our history, or more accurately pre-history for the vast majority of them. If you believe the stories literally, these Hai transcended mortal limitations and achieved immortality; our word for them translates imprecisely to either 'immortals' or 'imperishables'. When someone embodies a character from it well enough, there's a set of people who will believe it's actually that person come back to steer things.`
+			`	Teeneep rolls her eyes, putting her drink down with a sharp clink. "It's superstition. Humans have their religions, the Hai have the Mythos. It's a collection of stories about Hai who lived incredibly long lives and were involved in or responsible for incredibly influential events in our history, or more accurately pre-history for the vast majority of them. If you believe the stories literally, these Hai transcended mortal limitations and achieved immortality; our word for them translates imprecisely to either 'immortals' or 'imperishables.' When someone embodies a character from it well enough, there's a set of people who will believe it's actually that person come back to steer things.`
 			`	"Someone in there has linked that scene to a story, in which I am implicated as Eyrisen."`
 			label riled
 			`	She scoffs and waves a paw dismissively. "The contingencies shouldn't be affected. Superstition is mostly dead, it's really only the Elders that subscribe to it." She pauses and looks at Sayari. "The plan will work just fine."`
-			`	Sayari grumbles, "There's plenty of older Hai, those 'long tooths', that align with particular political factions. They also tend to subscribe, at least selectively, to the superstitions. Despite what Teeneep says, I would not count out the potential impact that scene in there could have on the situation."`
+			`	Sayari grumbles, "There's plenty of older Hai, those 'long tooths,' that align with particular political factions. They also tend to subscribe, at least selectively, to the superstitions. Despite what Teeneep says, I would not count out the potential impact that scene in there could have on the situation."`
 			`	She rounds on Teeneep. "I mean, seriously, Tee, what will you do if the plan doesn't play out fine? Will the Hai actually have to shed our brethren's blood with lethal intent?"`
 			`	Teeneep just sips her drink and shakes her head. "Oh, Sayari, you really are getting too long in the tooth yourself for domestic politics these days."`
 			`	A moment later Sayari squeaks and looks up in horror. "You triggered an election?! This wasn't just making it public, you had the petition for redress ready to go all along!"`
@@ -1679,7 +1679,7 @@ mission "Hai Reveal [A11-C] Outgoing Election Update 1"
 				`	"Is politics a very important matter for the Hai?"`
 					goto politics
 				`	"What do they need to prepare for an election?"`
-			`	He gestures at the various Hai captains paying close attention to the election coverage or scrolling information feeds on their data pads. "No one is more closely tied to the specific dynamics of trade between our worlds, and the subtleties of what makes them healthy, than our merchant captains are. I believe the human phrase is that they have their, 'fingers on the pulses', yes? This election has nothing to do with economics, and yet all the candidates have historical economic platforms that they can be expected to bring with them. These captains are being bombarded by queries from friends, families, organizations they trade with frequently, institutions they studied at or supported, local media outlets, and more.`
+			`	He gestures at the various Hai captains paying close attention to the election coverage or scrolling information feeds on their data pads. "No one is more closely tied to the specific dynamics of trade between our worlds, and the subtleties of what makes them healthy, than our merchant captains are. I believe the human phrase is that they have their, 'fingers on the pulses,' yes? This election has nothing to do with economics, and yet all the candidates have historical economic platforms that they can be expected to bring with them. These captains are being bombarded by queries from friends, families, organizations they trade with frequently, institutions they studied at or supported, local media outlets, and more.`
 			`	"Ordinarily, they would spend at least a month checking on different things and solidifying their positions before an election. A snap election has robbed them of that preparation time, and so they are stressed and concerned. Many, including myself, will have to put up with the consequences of this election for at least the next two decades before any meaningful correction can occur, should the outcome be unfortunate. Long is the timeline that a Hai merchant must consider when asked who should be supported in an election."`
 				goto ping
 			label politics
@@ -1760,7 +1760,7 @@ mission "Hai Reveal [A13] A New Elder"
 			`	Remington shifts his weight and determinedly pushes his wrist across his chest until his jacket sleeve pushes up far enough for him to look at his watch. After a lengthy pause spent staring at it's screen he screws up his face, finishes his drink, and says, "At least two hours too long."`
 				goto ok
 			label ok
-			`	Alondo grimaces, raises his eyebrows, and gives a lopsided shrug which altogether does a remarkable job of conveying the sentiment: 'so far it looks like it, but I still need at least one more stiff drink to get over it'. Remington looks at him and chuckles halfheartedly before emptying his glass and putting it down with a sharp clink. "We weren't sure for a while there, but other than being cut off, we're okay."`
+			`	Alondo grimaces, raises his eyebrows, and gives a lopsided shrug which altogether does a remarkable job of conveying the sentiment: "so far it looks like it, but I still need at least one more stiff drink to get over it." Remington looks at him and chuckles halfheartedly before emptying his glass and putting it down with a sharp clink. "We weren't sure for a while there, but other than being cut off, we're okay."`
 			label continue
 			`	Alondo gestures at the large, wall-mounted monitor they've been watching, and you realize that it must be displaying some kind of post-election coverage. The writing is all in Hai, but it seems that the majority of the information that would matter to the diplomats has been displayed visually. On its own you'd have never guessed at trying to read Teeneep's name written in Hai, but when it's presented next to her face and then shown on a pie chart next to percentages and other graphics, it becomes easy enough to follow what's happening.`
 			choice
@@ -1891,7 +1891,7 @@ ship "Centipede" "Centipede (Teeneep)"
 mission "Hai Reveal [A14] A Time of Trouble"
 	landing
 	name "A Time of Trouble"
-	description "Escort innocent civilians to <planet>, safely away from the 'Pirate Menace'."
+	description "Escort innocent civilians to <planet>, safely away from the 'Pirate Menace.'"
 	source "Mountaintop"
 	destination "Sunracer"
 	passengers 2

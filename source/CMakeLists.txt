@@ -24,6 +24,7 @@ target_sources(EndlessSkyLib PRIVATE
 	AmmoDisplay.h
 	Angle.cpp
 	Angle.h
+	Animate.h
 	Armament.cpp
 	Armament.h
 	AsteroidField.cpp
@@ -50,8 +51,11 @@ target_sources(EndlessSkyLib PRIVATE
 	CategoryList.h
 	CategoryTypes.h
 	ClickZone.h
+	Collision.cpp
+	Collision.h
 	CollisionSet.cpp
 	CollisionSet.h
+	CollisionType.h
 	Color.cpp
 	Color.h
 	Command.cpp
@@ -193,6 +197,8 @@ target_sources(EndlessSkyLib PRIVATE
 	MenuAnimationPanel.h
 	MenuPanel.cpp
 	MenuPanel.h
+	MessageLogPanel.cpp
+	MessageLogPanel.h
 	Messages.cpp
 	Messages.h
 	Minable.cpp
@@ -247,6 +253,8 @@ target_sources(EndlessSkyLib PRIVATE
 	PointerShader.h
 	Politics.cpp
 	Politics.h
+	Port.cpp
+	Port.h
 	Preferences.cpp
 	Preferences.h
 	PreferencesPanel.cpp
@@ -257,11 +265,15 @@ target_sources(EndlessSkyLib PRIVATE
 	Projectile.h
 	Radar.cpp
 	Radar.h
+	RaidFleet.cpp
+	RaidFleet.h
 	Random.cpp
 	Random.h
 	RandomEvent.h
 	Rectangle.cpp
 	Rectangle.h
+	RenderBuffer.cpp
+	RenderBuffer.h
 	RingShader.cpp
 	RingShader.h
 	Sale.h
@@ -269,6 +281,7 @@ target_sources(EndlessSkyLib PRIVATE
 	SavedGame.h
 	Screen.cpp
 	Screen.h
+	ScrollVar.h
 	Set.h
 	Shader.cpp
 	Shader.h
@@ -282,6 +295,8 @@ target_sources(EndlessSkyLib PRIVATE
 	ShipInfoPanel.h
 	ShipJumpNavigation.cpp
 	ShipJumpNavigation.h
+	ShipManager.cpp
+	ShipManager.h
 	ShipyardPanel.cpp
 	ShipyardPanel.h
 	ShopPanel.cpp
@@ -292,8 +307,6 @@ target_sources(EndlessSkyLib PRIVATE
 	SpaceportPanel.h
 	Sprite.cpp
 	Sprite.h
-	SpriteQueue.cpp
-	SpriteQueue.h
 	SpriteSet.cpp
 	SpriteSet.h
 	SpriteShader.cpp
@@ -309,6 +322,8 @@ target_sources(EndlessSkyLib PRIVATE
 	System.cpp
 	System.h
 	SystemEntry.h
+	TaskQueue.cpp
+	TaskQueue.h
 	Test.cpp
 	Test.h
 	TestContext.cpp

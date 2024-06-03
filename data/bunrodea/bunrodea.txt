@@ -106,7 +106,8 @@ fleet "Bunrodea Royal Guard"
 fleet "Bunrodea Royalty"
 	government "Bunrodea (Erabu)"
 	names "bunrodea (erabu)"
-	fighters "bunrodea"
+	fighters
+		names "bunrodea"
 	personality
 		timid vindictive unconstrained mute
 	variant 20

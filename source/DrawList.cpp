@@ -19,7 +19,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Preferences.h"
 #include "Screen.h"
 #include "Sprite.h"
-#include "SpriteSet.h"
 #include "SpriteShader.h"
 
 #include <cmath>
@@ -136,6 +135,7 @@ void DrawList::Push(const Body &body, Point pos, Point blur, double cloak, int s
 	SpriteShader::Item item;
 
 	item.texture = body.GetSprite()->Texture(isHighDPI);
+	item.swizzleMask = body.GetSprite()->SwizzleMask(isHighDPI);
 	item.frame = body.GetFrame(step);
 	item.frameCount = body.GetSprite()->Frames();
 
