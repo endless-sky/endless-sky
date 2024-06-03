@@ -164,6 +164,12 @@ color "planet target pointer restricted" .8 .8 .3 0.
 color "planet target pointer hostile" .85 .3 .2 0.
 color "planet target pointer dominated" 1. 1. 1. 0.
 
+# Colors used for commodity prices.
+color "profitable" 0. .5 0. 0.
+color "profitable selected" .2 .8 .2 0.
+color "unprofitable" .6 .2 .2 0.
+color "unprofitable selected" 1. .1 .1 0.
+
 # Colors used for warnings and errors.
 color "error back" .25 .1 .1 1.
 color "warning back" .21 .18 .08 1.
