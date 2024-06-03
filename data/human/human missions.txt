@@ -4674,8 +4674,7 @@ mission "Hai Wormhole Warning"
 			`	The officer chuckles. "I think the answer you're looking for is 'Yes,' not 'Perhaps.' The Republic is aware that you've made contact with the Hai.`
 				goto secret
 			label grewup
-			`	"Yes, you are <first> <last>, right?" He takes the look on your face as confirmation, and checks his pad. "You may not have been seen or heard from in human space for many years, but you were born here, on a spaceship: the 'Explorer', if my records are correct." He then looks back at you and stores his pad. "Trust me, they are.`
-			`	"Whilst we don't know every detail, the Republic is aware that you've had contact with the Hai."`
+			`	"That's all the same to me.`
 				goto secret
 			label yes
 			`	"There is no problem, <last>. I am just letting you know that the Republic is aware that you've made contact with the Hai.`
