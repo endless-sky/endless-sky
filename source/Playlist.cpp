@@ -98,7 +98,7 @@ void Playlist::Activate() const
 
 const Track *Playlist::GetCurrentTrack() const
 {
-	switch (progressionStyle)
+	switch(progressionStyle)
 	{
 	case ProgressionStyle::LINEAR:
 		{
