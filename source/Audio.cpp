@@ -124,7 +124,7 @@ namespace {
 	const Track *currentPlaylistTrack = nullptr;
 	Track::GameState oldState = Track::GameState::IDLE;
 
-	std::chrono::time_point<std::chrono::high_resolution_clock> onEnd;
+	chrono::time_point<chrono::high_resolution_clock> onEnd;
 	int currentWait = 0;
 	bool isWaiting = false;
 	bool finishedWaiting = false;
@@ -258,7 +258,7 @@ double Audio::MusicVolume()
 // Set the volume (to a value between 0 and 1).
 void Audio::SetMusicVolume(double level)
 {
-	musicVolume = min(1., max(0., level));
+	musicVolume = clamp(level, 0., 1.);
 	if(isInitialized)
 		alSourcef(musicSource, AL_GAIN, min(1., musicVolume + playlistVolumeModifier));
 }
@@ -306,12 +306,11 @@ void Audio::UpdateMusic(PlayerInfo &player, Track::GameState state)
 			return;
 		}
 	}
-	else
-		if(player.GetSystem() && !player.GetSystem()->MusicName().empty())
-		{
-			PlayMusic(player.GetSystem()->MusicName());
-			return;
-		}
+	else if(player.GetSystem() && !player.GetSystem()->MusicName().empty())
+	{
+		PlayMusic(player.GetSystem()->MusicName());
+		return;
+	}
 
 	// Wait for the time set by the track.
 	if(currentTrack->IsFinished() && currentPlaylistTrack)
@@ -320,11 +319,11 @@ void Audio::UpdateMusic(PlayerInfo &player, Track::GameState state)
 		{
 			isWaiting = true;
 			currentWait = currentPlaylistTrack->Wait();
-			onEnd = std::chrono::high_resolution_clock::now();
+			onEnd = chrono::high_resolution_clock::now();
 		}
 		if(isWaiting)
 		{
-			std::chrono::duration<double> elapsed = std::chrono::high_resolution_clock::now() - onEnd;
+			chrono::duration<double> elapsed = chrono::high_resolution_clock::now() - onEnd;
 			if(elapsed.count() >= currentWait)
 			{
 				finishedWaiting = true;

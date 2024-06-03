@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef TRACK_H
-#define TRACK_H
+#ifndef TRACK_H_
+#define TRACK_H_
 
 #include <map>
 #include <string>
@@ -45,8 +45,8 @@ public:
 	const std::string &Name() const;
 
 	const std::string &GetTitle(GameState state) const;
-	const double GetVolumeModifier() const;
-	const int Wait() const;
+	double GetVolumeModifier() const;
+	int Wait() const;
 
 
 private:

@@ -46,13 +46,13 @@ void Track::Load(const DataNode &node)
 		bool hasValue = child.Size() >= 2;
 		if(key == "volume" && hasValue)
 			volumeModifier = clamp<double>(child.Value(1), -1., 1.);
-		else if(child.Token(0) == "idle" && child.Size() >= 2)
+		else if(key == "idle" && hasValue)
 			idleTitle = child.Token(1);
-		else if(child.Token(0) == "combat" && child.Size() >= 2)
+		else if(key == "combat" && hasValue)
 			combatTitle = child.Token(1);
-		else if(child.Token(0) == "landed" && child.Size() >= 2)
+		else if(key == "landed" && hasValue)
 			landedTitle = child.Token(1);
-		else if(child.Token(0) == "wait" && child.Size() >= 2)
+		else if(key == "wait" && hasValue)
 			wait = max<int>(0, child.Value(1));
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
@@ -61,14 +61,14 @@ void Track::Load(const DataNode &node)
 
 
 
-const std::string &Track::Name() const
+const string &Track::Name() const
 {
 	return name;
 }
 
 
 
-const std::string &Track::GetTitle(GameState state) const
+const string &Track::GetTitle(GameState state) const
 {
 	switch(state)
 	{
@@ -84,14 +84,14 @@ const std::string &Track::GetTitle(GameState state) const
 
 
 
-const double Track::GetVolumeModifier() const
+double Track::GetVolumeModifier() const
 {
 	return volumeModifier;
 }
 
 
 
-const int Track::Wait() const
+int Track::Wait() const
 {
 	return wait;
 }

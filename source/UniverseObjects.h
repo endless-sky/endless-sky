@@ -124,8 +124,8 @@ private:
 	Set<Ship> ships;
 	Set<System> systems;
 	Set<Test> tests;
-	Set<Track> tracks;
 	Set<TestData> testDataSets;
+	Set<Track> tracks;
 	Set<Sale<Ship>> shipSales;
 	Set<Sale<Outfit>> outfitSales;
 	Set<Wormhole> wormholes;
