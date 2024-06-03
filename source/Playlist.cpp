@@ -90,7 +90,7 @@ void Playlist::Activate() const
 {
 	// Linear should always get the first track in the list when activating.
 	if(progressionStyle == ProgressionStyle::LINEAR && tracks.size() > 0)
-		currentTrack = *tracks.begin();
+		currentTrack = tracks.front();
 	else
 		currentTrack = tracks.Get();
 }
