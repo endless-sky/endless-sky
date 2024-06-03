@@ -1385,7 +1385,7 @@ void MapPanel::DrawSystems()
 	// If coloring by government, we need to keep track of which ones are
 	// most prevalent.
 	if(commodity == SHOW_GOVERNMENT)
-		closeGovernments.clear();
+		bigGovernments.clear();
 
 	// Draw the circles for the systems.
 	double zoom = Zoom();
@@ -1394,13 +1394,15 @@ void MapPanel::DrawSystems()
 		Point pos = zoom * (node.position + center);
 		RingShader::Draw(pos, OUTER, INNER, node.color);
 
+		// Count the system for the government (to chose what goverment labels to display)
+		// Make sure that it is in an oval that is stretched to fit in the centers of all the edges
+		// before counting it 
 		if(commodity == SHOW_GOVERNMENT && node.government && node.government->GetName() != "Uninhabited" &&
-			pos.X() > left && pos.X() < right && pos.Y() > top && pos.Y() < bottom &&
-			(pow(pos.Y(), 2) + pow(pos.X(), 2)) < (pow((right + bottom) / 2, 2)))
+			(pos * (1 / Screen::BottomRight())).LengthSquared() < 1)
 		{
 
 			// Count the number of occurences of each government.
-			closeGovernments[node.government]++;
+			bigGovernments[node.government]++;
 		}
 	}
 }
