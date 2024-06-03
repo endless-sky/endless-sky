@@ -1375,10 +1375,6 @@ void MapPanel::DrawLinks()
 
 void MapPanel::DrawSystems()
 {
-	const int left = Screen::Left();
-	const int top = Screen::Top();
-	const int right = Screen::Right();
-	const int bottom = Screen::Bottom();
 	if(commodity != cachedCommodity)
 		UpdateCache();
 
