@@ -1392,7 +1392,7 @@ void MapPanel::DrawSystems()
 
 		// Count the system for the government (to chose what goverment labels to display)
 		// Make sure that it is in an oval that is stretched to fit in the centers of all the edges
-		// before counting it 
+		// before counting it
 		if(commodity == SHOW_GOVERNMENT && node.government && node.government->GetName() != "Uninhabited" &&
 			(pos * (1 / Screen::BottomRight())).LengthSquared() < 1)
 		{
