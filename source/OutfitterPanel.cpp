@@ -346,7 +346,7 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 
 	// Check if the outfit is available to get at all.
 	bool isInCargo = player.Cargo().Get(selectedOutfit);
-	bool isInStorage = player.Storage()->Get(selectedOutfit);
+	bool isInStorage = player.Storage().Get(selectedOutfit);
 	bool isSold = CustomSaleManager::CanBuy(*selectedOutfit);
 	bool isInStore = (outfitter.Has(selectedOutfit) && isSold) ||
 		player.Stock(selectedOutfit) > 0;
