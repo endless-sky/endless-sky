@@ -594,7 +594,7 @@ void MapDetailPanel::DrawKey()
 				continue;
 			distances.emplace_back(it.second, it.first);
 		}
-		sort(distances.begin(), distances.end(), std::greater{});
+		sort(distances.begin(), distances.end(), greater<double>());
 		int drawn = 0;
 		vector<pair<string, Color>> alreadyDisplayed;
 		for(const auto &it : distances)

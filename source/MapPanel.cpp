@@ -1383,7 +1383,7 @@ void MapPanel::DrawSystems()
 		UpdateCache();
 
 	// If coloring by government, we need to keep track of which ones are
-	// most prevelent
+	// most prevalent.
 	if(commodity == SHOW_GOVERNMENT)
 		closeGovernments.clear();
 
@@ -1399,7 +1399,7 @@ void MapPanel::DrawSystems()
 			(pow(pos.Y(), 2) + pow(pos.X(), 2)) < (pow((right + bottom) / 2, 2)))
 		{
 
-			// Count the number of occurences of each government
+			// Count the number of occurences of each government.
 			closeGovernments[node.government]++;
 		}
 	}
