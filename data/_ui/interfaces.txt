@@ -1616,57 +1616,75 @@ interface "hail panel"
 
 
 interface "sales key"
-	anchor top left
+	anchor bottom left
+	box "click area"
+		align bottom left
+		from 330 -80
+		dimensions 140 80
 	sprite "ui/sales key"
-		align top left
-		from 280 0
+		align bottom left
+		from 300 0
 	ring "full"
-		center 320 12
+		center 340 -72
 		dimensions 9 9
 		size 1.75
 		"map color" -1
 	ring "full"
-		center 320 32
+		center 340 -52
 		dimensions 9 9
 		size 1.75
 		"map color" 0
 	ring "full"
-		center 320 52
+		center 340 -32
 		dimensions 9 9
 		size 1.75
 		"map color" 1
 	ring "full"
-		center 320 72
+		center 340 -12
 		dimensions 9 9
 		size 1.75
 		"map color" 0.5
 
-	visible if "is outfitters"
-	label "Has no outfitter",
-		from 330 12
-		align left
-	label "Has outfitter",
-		from 330 32
-		align left
-	label "Sells this outfit",
-		from 330 52
-		align left
-	label "Outfit in storage"
-		from 330 72
-		align left
-
 	visible if "is shipyards"
 	label "Has no shipyard",
-		from 330 12
+		from 350 -72
 		align left
 	label "Has shipyard",
-		from 330 32
+		from 350 -52
 		align left
 	label "Sells this ship",
-		from 330 52
+		from 350 -32
 		align left
 	label "Ship parked here"
-		from 330 72
+		from 350 -12
+		align left
+
+	visible if "is outfitters"
+	label "Has no outfitter",
+		from 350 -72
+		align left
+	label "Has outfitter",
+		from 350 -52
+		align left
+	label "Sells this outfit",
+		from 350 -32
+		align left
+	label "Outfit in storage"
+		from 350 -12
+		align left
+
+	visible if "is outfitters w/ minerals"
+	label "Has no outfitter",
+		from 350 -72
+		align left
+	label "Has outfitter",
+		from 350 -52
+		align left
+	label "Mine this here",
+		from 350 -32
+		align left
+	label "Mineral in storage"
+		from 350 -12
 		align left
 
 interface "sales key row"

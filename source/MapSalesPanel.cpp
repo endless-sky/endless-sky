@@ -85,7 +85,8 @@ void MapSalesPanel::Draw()
 
 	const string buttonCondition = isOutfitters ? "is outfitters" : "is shipyards";
 
-	DrawKey(buttonCondition);
+	Information info;
+	DrawKey(info);
 	DrawPanel();
 	DrawItems();
 	DrawInfo();
@@ -133,13 +134,9 @@ bool MapSalesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 bool MapSalesPanel::Click(int x, int y, int clicks)
 {
 	static const int KEY_ROW_COUNT = 4;
-	static const Point KEY_ROW_SIZE(140., 20.);
-	static const Point KEY_ROWS_SIZE = Point(KEY_ROW_SIZE.X(), KEY_ROW_SIZE.Y() * KEY_ROW_COUNT);
-	static const Point KEY_ROWS_INSET(30., 40.);
 
-	const Sprite *key = SpriteSet::Get("ui/sales key");
-	const Point keyRowsTopLeft = Screen::BottomLeft() + Point(WIDTH + 40., -key->Height()) + KEY_ROWS_INSET;
-	const Rectangle keyRows(keyRowsTopLeft + .5 * KEY_ROWS_SIZE, KEY_ROWS_SIZE);
+	const Interface *ui = GameData::Interfaces().Get("sales key");
+	const Rectangle keyClickArea = ui->GetBox("click area");
 
 	if(x < Screen::Left() + WIDTH)
 	{
@@ -160,15 +157,16 @@ bool MapSalesPanel::Click(int x, int y, int clicks)
 		else if(zone->Value() != selected)
 			Compare(compare = zone->Value());
 	}
-	else if(keyRows.Contains(Point(x, y)))
+	else if(keyClickArea.Contains(Point(x, y)))
 	{
-		int clickRow = (y - keyRows.Top()) / KEY_ROW_SIZE.Y() + 1;
-		if(clickRow == 3)
+		const double keyRowHeight = keyClickArea.Height() / KEY_ROW_COUNT;
+		int clickRow = (y - keyClickArea.Top()) / keyRowHeight;
+		if(clickRow == 2)
 		{
 			onlyShowSoldHere = !onlyShowSoldHere;
 			onlyShowStorageHere = false;
 		}
-		else if(clickRow == 4)
+		else if(clickRow == 3)
 		{
 			onlyShowSoldHere = false;
 			onlyShowStorageHere = !onlyShowStorageHere;
@@ -235,39 +233,28 @@ int MapSalesPanel::CompareSpriteSwizzle() const
 
 
 
-void MapSalesPanel::DrawKey(const string &buttonCondition) const
+void MapSalesPanel::DrawKey(Information &info) const
 {
-	double selectedValue = SystemValue(selectedSystem);
+	static const double KEY_ROW_HEIGHT = 20.;
 
-	Information info;
-	info.SetCondition(buttonCondition);
 	info.SetBar("full", 1.);
-	GameData::Interfaces().Get("sales key")->Draw(info, (Panel *)this);
+
+	const Interface *ui = GameData::Interfaces().Get("sales key");
+	ui->Draw(info, nullptr);
 
 	Color bright(.6f, .6f);
-	// Color dim(.3f, .3f);
-	// const Font &font = FontSet::Get(14);
-
-	Point pos(Screen::Left() + 50. + WIDTH, Screen::Top() + 12.);
-	// Point textOff(10., -.5 * font.Height());
-
-	// static const double VALUE[] = {
-	// 	-1.,
-	// 	0.,
-	// 	1.,
-	// 	.5
-	// };
+	Point pos = Screen::BottomLeft() + Point(WIDTH + 63., -72.);
 
 	for(int i = 0; i < 4; ++i)
 	{
 		// bool isSelected = (VALUE[i] == selectedValue);
 		// font.Draw(KeyLabel(i), pos + textOff, isSelected ? bright : dim);
 		// If we're filtering out items not sold/stored here, draw a pointer.
-		if(onlyShowSoldHere && i == 2)
-			PointerShader::Draw(pos + Point(-7., 0.), Point(1., 0.), 10.f, 10.f, 0.f, bright);
-		else if(onlyShowStorageHere && i == 3)
-			PointerShader::Draw(pos + Point(-7., 0.), Point(1., 0.), 10.f, 10.f, 0.f, bright);
-		pos.Y() += 20.;
+		if(i == 2 && onlyShowSoldHere)
+			PointerShader::Draw(pos, Point(1., 0.), 10.f, 10.f, 0.f, bright);
+		else if(i == 3 && onlyShowStorageHere)
+			PointerShader::Draw(pos, Point(1., 0.), 10.f, 10.f, 0.f, bright);
+		pos.Y() += KEY_ROW_HEIGHT;
 	}
 }
 

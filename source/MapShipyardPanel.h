@@ -51,6 +51,7 @@ protected:
 	virtual double SystemValue(const System *system) const override;
 	virtual int FindItem(const std::string &text) const override;
 
+	virtual void DrawKey(Information &info) const override;
 	virtual void DrawItems() override;
 
 

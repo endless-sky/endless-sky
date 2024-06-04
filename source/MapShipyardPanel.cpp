@@ -109,6 +109,15 @@ const string &MapShipyardPanel::KeyLabel(int index) const
 
 
 
+void MapShipyardPanel::DrawKey(Information &info) const
+{
+	info.SetCondition("is shipyards");
+
+	MapSalesPanel::DrawKey(info);
+}
+
+
+
 void MapShipyardPanel::Select(int index)
 {
 	if(index < 0 || index >= static_cast<int>(list.size()))

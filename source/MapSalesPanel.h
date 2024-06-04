@@ -64,7 +64,7 @@ protected:
 
 	virtual void DrawItems() = 0;
 
-	void DrawKey(const std::string &buttonCondition) const;
+	virtual void DrawKey(Information &info) const;
 	void DrawPanel() const;
 	void DrawInfo() const;
 
