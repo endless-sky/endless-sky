@@ -235,24 +235,25 @@ int MapSalesPanel::CompareSpriteSwizzle() const
 
 void MapSalesPanel::DrawKey(Information &info) const
 {
-	static const double KEY_ROW_HEIGHT = 20.;
+	static const double KEY_ROW_COUNT = 4;
 
 	info.SetBar("full", 1.);
 
 	const Interface *ui = GameData::Interfaces().Get("sales key");
 	ui->Draw(info, nullptr);
 
-	Color bright(.6f, .6f);
-	Point pos = Screen::BottomLeft() + Point(WIDTH + 63., -72.);
+	const Color bright(.6f, .6f);
+	const Rectangle keyClickArea = ui->GetBox("click area");
+	const double keyRowHeight = keyClickArea.Height() / KEY_ROW_COUNT;
+	const Point angle = Point(1., 0.);
+	Point pos = keyClickArea.TopLeft() + Point(3., 8.);
 
 	for(int i = 0; i < 4; ++i)
 	{
 		// If we're filtering out items not sold/stored here, draw a pointer.
-		if(i == 2 && onlyShowSoldHere)
-			PointerShader::Draw(pos, Point(1., 0.), 10.f, 10.f, 0.f, bright);
-		else if(i == 3 && onlyShowStorageHere)
-			PointerShader::Draw(pos, Point(1., 0.), 10.f, 10.f, 0.f, bright);
-		pos.Y() += KEY_ROW_HEIGHT;
+		if((i == 2 && onlyShowSoldHere) || (i == 3 && onlyShowStorageHere))
+			PointerShader::Draw(pos, angle, 10.f, 10.f, 0.f, bright);
+		pos.Y() += keyRowHeight;
 	}
 }
 
