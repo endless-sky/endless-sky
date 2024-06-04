@@ -136,7 +136,7 @@ bool MapSalesPanel::Click(int x, int y, int clicks)
 	static const int KEY_ROW_COUNT = 4;
 
 	const Interface *ui = GameData::Interfaces().Get("sales key");
-	const Rectangle keyClickArea = ui->GetBox("click area");
+	const Rectangle keyContentBox = ui->GetBox("content");
 
 	if(x < Screen::Left() + WIDTH)
 	{
@@ -157,10 +157,10 @@ bool MapSalesPanel::Click(int x, int y, int clicks)
 		else if(zone->Value() != selected)
 			Compare(compare = zone->Value());
 	}
-	else if(keyClickArea.Contains(Point(x, y)))
+	else if(keyContentBox.Contains(Point(x, y)))
 	{
-		const double keyRowHeight = keyClickArea.Height() / KEY_ROW_COUNT;
-		int clickRow = (y - keyClickArea.Top()) / keyRowHeight;
+		const double keyRowHeight = keyContentBox.Height() / KEY_ROW_COUNT;
+		int clickRow = (y - keyContentBox.Top()) / keyRowHeight;
 		if(clickRow == 2)
 		{
 			onlyShowSoldHere = !onlyShowSoldHere;
@@ -243,12 +243,12 @@ void MapSalesPanel::DrawKey(Information &info) const
 	ui->Draw(info, nullptr);
 
 	const Color bright(.6f, .6f);
-	const Rectangle keyClickArea = ui->GetBox("click area");
-	const double keyRowHeight = keyClickArea.Height() / KEY_ROW_COUNT;
+	const Rectangle keyContentBox = ui->GetBox("content");
+	const double keyRowHeight = keyContentBox.Height() / KEY_ROW_COUNT;
 	const Point angle = Point(1., 0.);
-	Point pos = keyClickArea.TopLeft() + Point(3., 8.);
+	Point pos = keyContentBox.TopLeft() + Point(3., 8.);
 
-	for(int i = 0; i < 4; ++i)
+	for(int i = 0; i < KEY_ROW_COUNT; ++i)
 	{
 		// If we're filtering out items not sold/stored here, draw a pointer.
 		if((i == 2 && onlyShowSoldHere) || (i == 3 && onlyShowStorageHere))

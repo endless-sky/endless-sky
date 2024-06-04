@@ -1617,7 +1617,7 @@ interface "hail panel"
 
 interface "sales key"
 	anchor bottom left
-	box "click area"
+	box "content"
 		align bottom left
 		from 330 -80
 		dimensions 140 80
