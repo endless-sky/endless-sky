@@ -247,8 +247,6 @@ void MapSalesPanel::DrawKey(Information &info) const
 
 	for(int i = 0; i < 4; ++i)
 	{
-		// bool isSelected = (VALUE[i] == selectedValue);
-		// font.Draw(KeyLabel(i), pos + textOff, isSelected ? bright : dim);
 		// If we're filtering out items not sold/stored here, draw a pointer.
 		if(i == 2 && onlyShowSoldHere)
 			PointerShader::Draw(pos, Point(1., 0.), 10.f, 10.f, 0.f, bright);

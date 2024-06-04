@@ -42,7 +42,6 @@ protected:
 	virtual const Sprite *CompareSprite() const override;
 	virtual const ItemInfoDisplay &SelectedInfo() const override;
 	virtual const ItemInfoDisplay &CompareInfo() const override;
-	virtual const std::string &KeyLabel(int index) const override;
 
 	virtual void Select(int index) override;
 	virtual void Compare(int index) override;

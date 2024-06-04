@@ -55,7 +55,6 @@ protected:
 	virtual int CompareSpriteSwizzle() const;
 	virtual const ItemInfoDisplay &SelectedInfo() const = 0;
 	virtual const ItemInfoDisplay &CompareInfo() const = 0;
-	virtual const std::string &KeyLabel(int index) const = 0;
 
 	virtual void Select(int index) = 0;
 	virtual void Compare(int index) = 0;
