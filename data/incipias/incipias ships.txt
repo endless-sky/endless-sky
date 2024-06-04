@@ -236,4 +236,4 @@ ship "Gero"
 	explode "medium explosion" 20
 	explode "large explosion" 30
 	"final explode" "final explosion medium"
-	description "The completion of Pon'tes caused a huge increase in travel between the station and Redias. Designers from Alto Shipyards quickly saw an opportunity and so the Incipias' first passenger-only ship was built."
+	description "The completion of Pon'tes caused a huge increase in travel between the station and Redias. Designers from Alto Shipyards quickly saw an opportunity and so the Incipias' first transport ship was built."

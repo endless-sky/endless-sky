@@ -34,7 +34,7 @@ outfit "Plasma Discharger"
 		"shield damage" 55
 		"hull damage" 65
 		"minable damage" 90
-	description "The Incipias started to mine asteroids long before they started space travel due to the proximity of their planet's rings. As a result this mining tool seems to be more advanced than their general technology, yet it is still not comparable to the efficiency of human weapons."
+	description "The Incipias started to mine asteroids long before they began intrasystem travel due to the proximity of their atmosphere to their home world's rings. As a result this mining tool seems to be more advanced than their general technology, yet it is still not comparable to the efficiency of human weapons."
 	description "The weapon itself shoots bolts of high density plasma that split up into small particles after some time. Because of the plasma infuser the fire rate is exceptional, but the energy usage is severe."
 
 outfit "plasma particle"
@@ -73,8 +73,8 @@ outfit "Stagnation Beam"
 		# Deal damage to provoke ships.
 		"shield damage" 0.1
 		"hull damage" 0.1
-		"hit force" -60
-		"slowing damage" 0.2
+		"hit force" -40
+		"slowing damage" 0.1
 	description "The Stagnation Beam is one of the few technologies of the Incipias that surpasses anything humanity has made thus far - in fact, the first prototypes were built before the Incipias even dreamed of space travel. Giant reactors were constructed to pull asteroids out of their home planet's orbit for easy access to more resources. Naturally, a mechanism to slow the asteroids down was also implemented to prevent accidental asteroid strikes."
 	description "As the Incipias' mastery of spaceflight grew, so did the generators' efficiency, which allowed for more compact, ship-based tractor beams. Resource collection was greatly streamlined by these new models, much to the benefit of the Incipias' otherwise sluggish ships."
 	description "Officially, these beams are used for mining operations; however, less scrupulous individuals have found they are equally valuable in combat, using the beams to lock down and pull in their opponents."
@@ -120,7 +120,7 @@ outfit "Star Tail"
 		ammo "Star Tail Cell"
 		"submunition" "Star Tail Projectile" 1
 	description "Little to no information about this weapon has ever reached the public. Rumors are that it shoots highly volatile plasma chunks."
-	description "Those who experienced the use of this weapon tell that the projectiles changed direction mid-flight following their targets to deliver inevitable doom."
+	description "Captains that used this weapon say that its projectiles could change direction mid-flight, and were able to follow their targets despite attempts to dodge them."
 
 outfit "Star Tail Projectile"
 	weapon
@@ -162,7 +162,7 @@ outfit "Star Tail Cell"
 	"star tail capacity" -1
 	licenses
 		"Hicemus Conflict"
-	description "The Star Tail Gun needs an extreme amount of energy that the Incipias are not able to create in a short amount of time. To accommodate this, the Star Tail Cell contains an energy-rich substance that releases this energy when fired. One of these cells holds enough energy to fire exactly one shot."
+	description "The Star Tail Gun needs an extreme amount of energy that the Incipias are not able to create in a short amount of time. To accommodate this, the Star Tail Cell contains an energy-rich substance that releases its energy when fired. One of these cells holds enough energy to fire exactly one shot."
 
 outfit "Star Tail Storage"
 	category "Ammunition"
@@ -184,7 +184,7 @@ outfit "Gas-Class Shield"
 	"shield generation" .1
 	"energy generation" 4.2
 	"heat generation" 5
-	description "Shield technology is one of the most recent developments of the Incipias. While this shield appears similar to a human shield device, it works on a completely different basis. In its core hydrogen is burned providing energy for regeneration. This proved so effective that it became the main power source of all of their ships."
+	description "Shield technology is one of the most recent developments of the Incipias. While this shield appears similar to a human shield device, it works on a completely different basis. In its core hydrogen is burned, providing energy for regeneration. This proved so effective that it became the main power source of all of their ships."
 
 outfit "Liquid-Class Shield"
 	category "Systems"
@@ -194,7 +194,7 @@ outfit "Liquid-Class Shield"
 	"shield generation" .25
 	"energy generation" 6.1
 	"heat generation" 6
-	description "This more advanced shield generator burns a liquid instead of a gas. This raises the efficiency considerably but also requires some extra structures, making this outfit popular only on larger ships."
+	description "This more advanced shield generator burns a liquid instead of a gas. This raises the efficiency considerably but also requires more space, making this outfit popular only on larger ships."
 
 outfit "Metallic Hydrogen Cell"
 	category "Power"
@@ -269,7 +269,7 @@ outfit "MH Red-Class Engine"
 	"thrust" 48
 	"thrusting energy" 5
 	"thrusting heat" 10
-	description "The Incipias burn metallic hydrogen to move around in space. As a race that has easy access to metallic hydrogen on their home planet this allows for very efficient engines."
+	description "The Incipias burn metallic hydrogen to move their ships, allowing for very efficient engines. The abundance of the fuel source on their home planet is also a benefit."
 
 outfit "MH Red-Class Steering"
 	category "Engines"
@@ -294,4 +294,4 @@ outfit "Cloud Piercer"
 	"capture attack" .55
 	"capture defense" 1.5
 	"unplunderable" 1
-	description "When it comes to close combat, the Incipias are serious enemies. This brutal weapon may not be the best to invade another ship with, but when it comes to defending, it shreds enemies."
+	description "When it comes to close combat, the Incipias are serious enemies. This brutal weapon may not be the best to invade another ship with, but when it comes to defending, it quite literally shreds enemies."
