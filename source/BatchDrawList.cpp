@@ -25,13 +25,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	void Push(vector<float> &v, const Point &pos, float s, float t, float frame)
+	void Push(vector<float> &v, const Point &pos, float s, float t, float frame, float alpha)
 	{
 		v.push_back(pos.X());
 		v.push_back(pos.Y());
 		v.push_back(s);
 		v.push_back(t);
 		v.push_back(frame);
+		v.push_back(alpha);
 	}
 }
 
@@ -143,14 +144,16 @@ bool BatchDrawList::Add(const Body &body, Point position, float clip)
 	Point bottomLeft = topLeft + uh;
 	Point bottomRight = bottomLeft + uw;
 
+	float alpha = body.Alpha();
+
 	// Push two copies of the first and last vertices to mark the break between
 	// the sprites.
-	Push(v, topLeft, 0.f, 1.f, frame);
-	Push(v, topLeft, 0.f, 1.f, frame);
-	Push(v, topRight, 1.f, 1.f, frame);
-	Push(v, bottomLeft, 0.f, 1.f - clip, frame);
-	Push(v, bottomRight, 1.f, 1.f - clip, frame);
-	Push(v, bottomRight, 1.f, 1.f - clip, frame);
+	Push(v, topLeft, 0.f, 1.f, frame, alpha);
+	Push(v, topLeft, 0.f, 1.f, frame, alpha);
+	Push(v, topRight, 1.f, 1.f, frame, alpha);
+	Push(v, bottomLeft, 0.f, 1.f - clip, frame, alpha);
+	Push(v, bottomRight, 1.f, 1.f - clip, frame, alpha);
+	Push(v, bottomRight, 1.f, 1.f - clip, frame, alpha);
 
 	return true;
 }

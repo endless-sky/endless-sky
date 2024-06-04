@@ -29,7 +29,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
-#include "text/layout.hpp"
 #include "LineShader.h"
 #include "Mission.h"
 #include "Planet.h"
@@ -45,7 +44,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "System.h"
 #include "text/truncate.hpp"
 #include "UI.h"
-#include "Wormhole.h"
 
 #include <algorithm>
 #include <cmath>
@@ -74,6 +72,10 @@ namespace {
 
 		for(const Planet *stopover : mission.Stopovers())
 			if(stopover->IsInSystem(system))
+				return true;
+
+		for(const System *mark : mission.MarkedSystems())
+			if(mark == system)
 				return true;
 
 		return false;
@@ -267,7 +269,6 @@ void MissionPanel::Draw()
 
 	// Now that the mission lists and map elements are drawn, draw the top-most UI elements.
 	DrawKey();
-	DrawSelectedSystem();
 	DrawMissionInfo();
 	DrawTooltips();
 	FinishDrawing("is missions");
@@ -278,7 +279,12 @@ void MissionPanel::Draw()
 // Only override the ones you need; the default action is to return false.
 bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	if(key == 'a' && CanAccept())
+	if(command.Has(Command::HELP))
+	{
+		DoHelp("jobs", true);
+		DoHelp("map advanced", true);
+	}
+	else if(key == 'a' && CanAccept())
 	{
 		Accept((mod & KMOD_CTRL));
 		return true;
@@ -589,7 +595,7 @@ bool MissionPanel::Hover(int x, int y)
 	if(oldSort != hoverSort)
 		tooltip.clear();
 
-	return dragSide ? true : MapPanel::Hover(x, y);
+	return dragSide || MapPanel::Hover(x, y);
 }
 
 
@@ -654,7 +660,7 @@ void MissionPanel::DrawKey() const
 		"Too little space to accept",
 		"Active job; go here to complete",
 		"Has unfinished requirements",
-		"Waypoint you must visit"
+		"System of importance"
 	};
 	int selected = -1;
 	if(availableIt != available.end())
@@ -672,47 +678,16 @@ void MissionPanel::DrawKey() const
 
 
 
-// Fill in the top-middle header bar that names the selected system, and indicates its distance.
-void MissionPanel::DrawSelectedSystem() const
-{
-	const Sprite *sprite = SpriteSet::Get("ui/selected system");
-	SpriteShader::Draw(sprite, Point(0., Screen::Top() + .5f * sprite->Height()));
-
-	string text;
-	if(!player.KnowsName(*selectedSystem))
-		text = "Selected system: unexplored system";
-	else
-		text = "Selected system: " + selectedSystem->Name();
-
-	int jumps = 0;
-	const vector<const System *> &plan = player.TravelPlan();
-	auto it = find(plan.begin(), plan.end(), selectedSystem);
-	if(it != plan.end())
-		jumps = plan.end() - it;
-	else if(distance.HasRoute(selectedSystem))
-		jumps = distance.Days(selectedSystem);
-
-	if(jumps == 1)
-		text += " (1 jump away)";
-	else if(jumps > 0)
-		text += " (" + to_string(jumps) + " jumps away)";
-
-	const Font &font = FontSet::Get(14);
-	Point pos(-175., Screen::Top() + .5 * (30. - font.Height()));
-	font.Draw({text, {350, Alignment::CENTER, Truncate::MIDDLE}},
-		pos, *GameData::Colors().Get("bright"));
-}
-
-
-
 // Highlight the systems associated with the given mission (i.e. destination and
 // waypoints) by drawing colored rings around them.
 void MissionPanel::DrawMissionSystem(const Mission &mission, const Color &color) const
 {
 	auto toVisit = set<const System *>{mission.Waypoints()};
+	toVisit.insert(mission.MarkedSystems().begin(), mission.MarkedSystems().end());
 	for(const Planet *planet : mission.Stopovers())
 		toVisit.insert(planet->GetSystem());
 	auto hasVisited = set<const System *>{mission.VisitedWaypoints()};
+	hasVisited.insert(mission.UnmarkedSystems().begin(), mission.UnmarkedSystems().end());
 	for(const Planet *planet : mission.VisitedStopovers())
 		hasVisited.insert(planet->GetSystem());
 
@@ -869,6 +844,9 @@ void MissionPanel::DrawMissionInfo()
 		info.SetCondition("can accept");
 	else if(acceptedIt != accepted.end())
 		info.SetCondition("can abort");
+
+	if(availableIt != available.end() || acceptedIt != accepted.end())
+		info.SetCondition("has description");
 
 	info.SetString("cargo free", to_string(player.Cargo().Free()) + " tons");
 	info.SetString("bunks free", to_string(player.Cargo().BunksFree()) + " bunks");
@@ -1143,6 +1121,12 @@ void MissionPanel::CycleInvolvedSystems(const Mission &mission)
 			return;
 		}
 
+	for(const System *mark : mission.MarkedSystems())
+		if(++index == cycleInvolvedIndex)
+		{
+			CenterOnSystem(mark);
+			return;
+		}
 
 	cycleInvolvedIndex = 0;
 	CenterOnSystem(mission.Destination()->GetSystem());

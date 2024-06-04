@@ -16,12 +16,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef COLLISION_SET_H_
 #define COLLISION_SET_H_
 
+#include "Collision.h"
+#include "CollisionType.h"
+
 #include <vector>
 
+class Body;
 class Government;
 class Point;
 class Projectile;
-class Body;
 
 
 
@@ -32,7 +35,7 @@ class CollisionSet {
 public:
 	// Initialize a collision set. The cell size and cell count should both be
 	// powers of two; otherwise, they are rounded down to a power of two.
-	CollisionSet(unsigned cellSize, unsigned cellCount);
+	CollisionSet(unsigned cellSize, unsigned cellCount, CollisionType collisionType);
 
 	// Clear all objects in the set. Specify which engine step we are on, so we
 	// know what animation frame each object is on.
@@ -42,12 +45,13 @@ public:
 	// Finish adding objects (and organize them into the final lookup table).
 	void Finish();
 
-	// Get the first object that collides with the given projectile. If a
-	// "closest hit" value is given, update that value.
-	Body *Line(const Projectile &projectile, double *closestHit = nullptr) const;
-	// Check for collisions with a line, which may be a projectile's current
-	// position or its entire expected trajectory (for the auto-firing AI).
-	Body *Line(const Point &from, const Point &to, double *closestHit = nullptr,
+	// Get all possible collisions for the given projectile. Collisions are not necessarily
+	// sorted by distance.
+	const std::vector<Collision> &Line(const Projectile &projectile) const;
+
+	// Get all possible collisions along a line. Collisions are not necessarily sorted by
+	// distance.
+	const std::vector<Collision> &Line(const Point &from, const Point &to,
 		const Government *pGov = nullptr, const Body *target = nullptr) const;
 
 	// Get all objects within the given range of the given point.
@@ -74,6 +78,9 @@ private:
 
 
 private:
+	// The type of collisions this CollisionSet is responsible for.
+	CollisionType collisionType;
+
 	// The size of individual cells of the grid.
 	unsigned CELL_SIZE;
 	unsigned SHIFT;
@@ -94,7 +101,9 @@ private:
 	std::vector<unsigned> counts;
 
 	// Vector for returning the result of a circle query.
-	mutable std::vector<Body *> result;
+	mutable std::vector<Body *> circleResult;
+	// Vector for returning the result of a line query.
+	mutable std::vector<Collision> lineResult;
 
 	// Keep track of which objects we've already considered
 	mutable std::vector<unsigned> seen;

@@ -253,9 +253,7 @@ phrase "wanderer untranslated"
 		" v'"
 		" va'"
 		"'a iy cha'"
-		" "
-		" "
-		" "
+		" " 3
 	word
 		"akai'"
 		"ar"
@@ -294,8 +292,7 @@ phrase "wanderer untranslated"
 		" sek "
 		" iy "
 		" salek "
-		" "
-		" "
+		" " 2
 	word
 		"reku'"
 		"sarka'"
@@ -321,9 +318,7 @@ phrase "wanderer untranslated"
 		"a'uk"
 		"echa"
 	word
-		"."
-		"."
-		"."
+		"." 3
 		"'i."
 		"'ai."
 		" eku."
@@ -529,9 +524,7 @@ phrase "friendly disabled wanderer"
 	word
 		", please"
 		", we beg you"
-		""
-		""
-		""
+		"" 3
 	word
 		"."
 		"!"

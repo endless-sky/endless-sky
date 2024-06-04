@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef PLANET_H_
 #define PLANET_H_
 
+#include "Port.h"
 #include "Sale.h"
 
 #include <list>
@@ -80,11 +81,13 @@ public:
 	// Get planet's noun descriptor from attributes
 	const std::string &Noun() const;
 
-	// Check whether there is a spaceport (which implies there is also trading,
-	// jobs, banking, and hiring).
-	bool HasSpaceport() const;
-	// Get the spaceport's descriptive text.
-	const std::string &SpaceportDescription() const;
+	// Check whether this planet's port is named.
+	bool HasNamedPort() const;
+	// Get this planet's port.
+	const Port &GetPort() const;
+	// Check whether there are port services (such as trading, jobs, banking, and hiring)
+	// available on this planet.
+	bool HasServices() const;
 
 	// Check if this planet is inhabited (i.e. it has a spaceport, and does not
 	// have the "uninhabited" attribute).
@@ -157,7 +160,7 @@ private:
 	bool isDefined = false;
 	std::string name;
 	std::string description;
-	std::string spaceport;
+	Port port;
 	const Sprite *landscape = nullptr;
 	std::string music;
 

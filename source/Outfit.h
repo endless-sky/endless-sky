@@ -76,6 +76,8 @@ public:
 	// For tracking a combination of outfits in a ship: add the given number of
 	// instances of the given outfit to this outfit.
 	void Add(const Outfit &other, int count = 1);
+	// Add the licenses required by the given outfit to this outfit.
+	void AddLicenses(const Outfit &outfit);
 	// Modify this outfit's attributes. Note that this cannot be used to change
 	// special attributes, like cost and mass.
 	void Set(const char *attribute, double value);
@@ -99,6 +101,11 @@ public:
 	const std::map<const Sound *, int> &JumpOutSounds() const;
 	// Get the sprite this outfit uses when dumped into space.
 	const Sprite *FlotsamSprite() const;
+
+
+private:
+	// Add the license with the given name to the licenses required by this outfit, if it is not already present.
+	void AddLicense(const std::string &name);
 
 
 private:
