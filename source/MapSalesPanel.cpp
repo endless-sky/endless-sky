@@ -133,8 +133,8 @@ bool MapSalesPanel::Click(int x, int y, int clicks)
 {
 	static const int KEY_ROW_COUNT = 4;
 
-	const Interface *ui = GameData::Interfaces().Get("sales key");
-	const Rectangle keyContentBox = ui->GetBox("content");
+	const Interface *keyInterface = GameData::Interfaces().Get("sales key");
+	const Rectangle keyContentBox = keyInterface->GetBox("content");
 
 	if(x < Screen::Left() + WIDTH)
 	{
