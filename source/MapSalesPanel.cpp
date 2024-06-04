@@ -83,14 +83,12 @@ void MapSalesPanel::Draw()
 	// that no items are visible.
 	scroll = min(0., max(-maxScroll, scroll));
 
-	const string buttonCondition = isOutfitters ? "is outfitters" : "is shipyards";
-
 	Information info;
 	DrawKey(info);
 	DrawPanel();
 	DrawItems();
 	DrawInfo();
-	FinishDrawing(buttonCondition);
+	FinishDrawing(isOutfitters ? "is outfitters" : "is shipyards");
 }
 
 
