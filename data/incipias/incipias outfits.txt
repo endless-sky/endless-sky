@@ -184,7 +184,7 @@ outfit "Gas-Class Shield"
 	"shield generation" .1
 	"energy generation" 4.2
 	"heat generation" 5
-	description "Shield technology is one of the most recent developments of the Incipias. While this shield appears similar to a human shield device, it works on a completely different basis. In its core hydrogen is burned providing energy for regeneration. This proved so effective that it became the main power source of all of their ships."
+	description "Shield technology is one of the most recent developments of the Incipias. While this shield appears similar to a human shield device, it works on a completely different basis. In its core hydrogen is burned, providing energy for regeneration. This proved so effective that it became the main power source of all of their ships."
 
 outfit "Liquid-Class Shield"
 	category "Systems"
@@ -194,7 +194,7 @@ outfit "Liquid-Class Shield"
 	"shield generation" .25
 	"energy generation" 6.1
 	"heat generation" 6
-	description "This more advanced shield generator burns a liquid instead of a gas. This raises the efficiency considerably but also requires some extra structures, making this outfit popular only on larger ships."
+	description "This more advanced shield generator burns a liquid instead of a gas. This raises the efficiency considerably but also requires more space, making this outfit popular only on larger ships."
 
 outfit "Metallic Hydrogen Cell"
 	category "Power"
@@ -269,7 +269,7 @@ outfit "MH Red-Class Engine"
 	"thrust" 48
 	"thrusting energy" 5
 	"thrusting heat" 10
-	description "The Incipias burn metallic hydrogen to move around in space. As a race that has easy access to metallic hydrogen on their home planet this allows for very efficient engines."
+	description "The Incipias burn metallic hydrogen to move their ships, allowing for very efficient engines. The abundance of the fuel source on their home planet is also a benefit."
 
 outfit "MH Red-Class Steering"
 	category "Engines"
@@ -294,4 +294,4 @@ outfit "Cloud Piercer"
 	"capture attack" .55
 	"capture defense" 1.5
 	"unplunderable" 1
-	description "When it comes to close combat, the Incipias are serious enemies. This brutal weapon may not be the best to invade another ship with, but when it comes to defending, it shreds enemies."
+	description "When it comes to close combat, the Incipias are serious enemies. This brutal weapon may not be the best to invade another ship with, but when it comes to defending, it quite literally shreds enemies."
