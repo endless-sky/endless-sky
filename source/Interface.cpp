@@ -695,11 +695,7 @@ void Interface::BarElement::Draw(const Rectangle &rect, const Information &info,
 	if((!color && std::isnan(mapColor)) || !width || !value)
 		return;
 
-	Color trueColor;
-	// if(color)
-	// 	trueColor = *color;
-	// else
-		trueColor = MapPanel::MapColor(mapColor);
+	const Color drawColor = std::isnan(mapColor) ? *color : MapPanel::MapColor(mapColor);
 
 	if(isRing)
 	{
@@ -707,7 +703,7 @@ void Interface::BarElement::Draw(const Rectangle &rect, const Information &info,
 			return;
 
 		double fraction = value * spanAngle / 360.;
-		RingShader::Draw(rect.Center(), .5 * rect.Width(), width, fraction, trueColor, segments, startAngle);
+		RingShader::Draw(rect.Center(), .5 * rect.Width(), width, fraction, drawColor, segments, startAngle);
 	}
 	else
 	{
@@ -733,7 +729,7 @@ void Interface::BarElement::Draw(const Rectangle &rect, const Information &info,
 			Point to = start + min(v, value) * dimensions;
 			v += empty;
 
-			LineShader::Draw(from, to, width, trueColor);
+			LineShader::Draw(from, to, width, drawColor);
 		}
 	}
 }
