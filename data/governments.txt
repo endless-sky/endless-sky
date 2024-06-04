@@ -204,6 +204,14 @@ government "Deep Security"
 government "Derelict"
 	"fine" 0
 
+government "Derelict (Boardable)"
+	swizzle 10
+	"display name" "Derelict"
+	"player reputation" -1
+	"default attitude" -.01
+	"crew attack" 0
+	"crew defense" 0
+
 government "Drak"
 	swizzle 0
 	color 1 1 1
