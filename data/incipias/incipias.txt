@@ -244,22 +244,22 @@ phrase "incipias common"
 
 phrase "incipias common hard defined"
 	word
-		"You say you left this [system, home]? One day, [I, we] will also see other [systems, homes]."
-		"The past was a more [interesting, dangerous] time to fly a spaceship. Nowadays, a lot of people have one."
-		"I just got my license for being part of a spaceship renewed. The government controls them [strictly, like freaks]."
-		"There is nothing more [exciting, fun] than to switch to turbine mode and fly through the clouds of [our home, our origin]."
-		"It has been [some, a lot of] time since the last great breakthrough has been achieved. The government [says, promises us] that they are working on something, but my guess is that they have no clue what to do."
-		"I saw a plasma discharger with a [leak, crack] not so long ago. The ship looked good from the outside, but the inside was a firestorm."
-		"I have never seen something like [you, your species]. Why don't you float like us?"
+		"You say you left this home-system? One day, I will also see other home-systems."
+		"The before-present was a more interesting time to fly a spaceship. Nowadays, a lot of people have one."
+		"I just got my license for being part of a spaceship renewed. The government controls them strictly."
+		"There is nothing more exciting than to switch to turbine mode and fly through the landscape-clouds of our origin-home."
+		"It has been some time since the last great breakthrough has been achieved. The government promises us that they are working on something, but my guess is that they have no clue what to do."
+		"I saw a plasma discharger with a leak-crack not so long ago. The ship looked good from the outside, but the inside was a firestorm."
+		"I have never seen something like your species. Why don't you float like us?"
 		"I was on a mining mission not so long ago when I saw a government ship drop a small box. The box accelerated really fast in one direction and disappeared with a flash."
 
 phrase "incipias common praise"
 	word
 		"These technologies"
-		"These [ships, relocation mechanisms]"
-		"These [weapons, death machines]"
-		"These [engines, movement devices]"
-		"These [shields, secure mechanisms]"
+		"These ships"
+		"These death-weapons"
+		"These engines"
+		"These life-shields"
 	word
 		" "
 	word
@@ -284,7 +284,7 @@ news "Hicemus official"
 			"Hicemus Inspector"
 	message
 		word
-			"We go forward to [evolve, be superior]. No one can stop us."
+			"We go forward to evolve. No one can stop us."
 			"Have you seen our newest engines? They are much more efficient than anything before them."
 			"Our technology is superior. No one can question our authority."
 			"As long as we exist, we will progress."
@@ -294,15 +294,15 @@ news "Hicemus official"
 phrase "incipias friendly disabled"
 	word
 		"Friend"
-		"[Known one, Stranger]"
+		"Known-stranger"
 		"Fellow Captain"
 	word
 		", I am "
 	word
-		"in a [bad, unlucky] situation"
+		"in a bad situation"
 		"in trouble"
 		"in need of repairs"
-		"[unable to fly, near death]"
+		"unable to fly"
 		"on the brink of uselessness"
 	word
 		","
@@ -310,26 +310,15 @@ phrase "incipias friendly disabled"
 		" could you please "
 	word
 		"assist me"
-		"[repair, safe] me"
+		"safe me"
 		"perform an outstanding deed"
 	word
 		"?"
 
 phrase "incipias hostile disabled"
 	word
-		"Would you really take [lives, the future]?"
+		"Would you really take the future?"
 		"Where is your honor?"
 		"What would happen to our civilization if there were more like you?"
-		"Stop your [rampage, chaos]!"
-		"Do you not value [life, the future]?"
-
-# is this ok? XD
-news "special"
-	location
-		planet "Pon'tes"
-	name
-		word
-			"ES Developer"
-	message
-		word
-			"I [hate, recreate] myself when creating an alien language pattern that is [horrible, interesting] to use."
+		"Stop your chaos-rampage!"
+		"Do you not value future-life?"
