@@ -55,6 +55,7 @@ public:
 
 	// Move the object one time-step forward.
 	void Move(std::vector<Visual> &visuals);
+	void SetVelocity(Point velocity);
 
 	// This is the one ship that cannot pick up this flotsam.
 	const Ship *Source() const;
@@ -69,6 +70,7 @@ public:
 	// This is how big one "unit" of the flotsam is (in tons). If a ship has
 	// less than this amount of space, it can't pick up anything here.
 	double UnitSize() const;
+	double Mass() const;
 
 	// Transfer contents to the collector ship. The flotsam velocity is
 	// stabilized in proportion to the amount being transferred.

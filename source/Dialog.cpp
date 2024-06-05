@@ -88,6 +88,7 @@ namespace {
 }
 
 
+
 Dialog::Dialog(function<void()> okFunction, const string &message, Truncate truncate, bool canCancel, bool okIsActive)
 	: voidFun(okFunction)
 {
