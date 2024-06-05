@@ -1392,7 +1392,7 @@ void MapPanel::DrawSystems()
 		Point pos = zoom * (node.position + center);
 		RingShader::Draw(pos, OUTER, INNER, node.color);
 
-		// Count the system for the government (to chose what goverment labels to display)
+		// Count the system for the government (to choose what government labels to display)
 		// Make sure that it is in an oval that is stretched to fit in the centers of all the edges
 		// before counting it
 		if(commodity == SHOW_GOVERNMENT &&

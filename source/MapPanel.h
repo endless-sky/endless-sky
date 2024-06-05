@@ -147,7 +147,7 @@ protected:
 	std::map<const Government *, unsigned int> bigGovernments;
 
 	// Uninhabited and Unexplored are handled differently, as those should always be on the map
-	// As long as there are Uninhabited and Unexplored
+	// as long as there are Uninhabited and Unexplored systems visible
 	bool hasUninhabited = false;
 	bool hasUnexplored = false;
 
