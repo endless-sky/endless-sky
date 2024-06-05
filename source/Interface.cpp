@@ -86,6 +86,7 @@ void Interface::Load(const DataNode &node)
 	points.clear();
 	values.clear();
 	lists.clear();
+	strings.clear();
 
 	// First, figure out the anchor point of this interface.
 	Point anchor = ParseAlignment(node, 2);
@@ -109,6 +110,12 @@ void Interface::Load(const DataNode &node)
 			auto &list = lists[child.Token(1)];
 			for(const auto &grand : child)
 				list.emplace_back(grand.Value(0));
+		}
+		else if(child.Token(0) == "strings" && child.Size() >= 2)
+		{
+			auto &list = strings[child.Token(1)];
+			for(const auto &grand : child)
+				list.emplace_back(grand.Token(0));
 		}
 		else if(child.Token(0) == "visible" || child.Token(0) == "active")
 		{
@@ -196,12 +203,22 @@ double Interface::GetValue(const string &name) const
 
 
 
-// Get a named list.
+// Get a named list of values.
 const vector<double> &Interface::GetList(const string &name) const
 {
 	static vector<double> EMPTY;
 	auto it = lists.find(name);
 	return (it == lists.end() ? EMPTY : it->second);
+}
+
+
+
+// Get a named list of strings.
+const vector<std::string> &Interface::GetStrings(const string &name) const
+{
+	static vector<std::string> EMPTY;
+	auto it = strings.find(name);
+	return (it == strings.end() ? EMPTY : it->second);
 }
 
 

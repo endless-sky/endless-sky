@@ -1276,6 +1276,16 @@ interface "trade"
 
 
 interface "bank"
+	strings "income"
+		""
+		"Your Salary Income"
+		"Your Tribute Income"
+		"Your Salary and Tribute Income"
+		"Your Return on Assets Income"
+		"Your Salary and Return on Assets Income"
+		"Your Tribute and Return on Assets Income"
+		"Your Salary, Tribute, and Returns Income"
+
 	box "content"
 		from -310 78 to 190 355
 

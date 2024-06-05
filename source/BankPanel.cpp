@@ -212,11 +212,10 @@ void BankPanel::Draw()
 		// Your daily income offsets expenses.
 		totalPayment -= salariesIncome + tributeIncome + b.assetsReturns;
 
-		static const string LABEL[] = {"", "Your Salary Income", "Your Tribute Income", "Your Salary and Tribute Income",
-			"Your Return on Assets Income", "Your Salary and Return on Assets Income",
-			"Your Tribute and Return on Assets Income", "Your Salary, Tribute, and Returns Income" };
+		const Interface *bankUi = GameData::Interfaces().Get("bank");
+		const vector<std::string> labels = bankUi->GetStrings("income");
 		const auto incomeLayout = Layout(310, Truncate::BACK);
-		table.DrawCustom({LABEL[(salariesIncome != 0) + 2 * (tributeIncome != 0) + 4 * (b.assetsReturns != 0)],
+		table.DrawCustom({labels[(salariesIncome != 0) + 2 * (tributeIncome != 0) + 4 * (b.assetsReturns != 0)],
 			incomeLayout});
 		// For crew salaries, only the "payment" field needs to be shown.
 		table.Advance(3);
