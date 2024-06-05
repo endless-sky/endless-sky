@@ -246,12 +246,12 @@ phrase "incipias common hard defined"
 	word
 		"You say you left this home-system? One day, I will also see other home-systems."
 		"The before-present was a more interesting time to fly a spaceship. Nowadays, a lot of people have one."
-		"I just got my license for being part of a spaceship renewed. The government controls them strictly."
+		"I just got my crewmember-ship-license renewed. The government controls them strictly."
 		"There is nothing more exciting than to switch to turbine mode and fly through the landscape-clouds of our origin-home."
-		"It has been some time since the last great breakthrough has been achieved. The government promises us that they are working on something, but my guess is that they have no clue what to do."
+		"It has been some time since the last great knowledge-breakthrough has been achieved in technological research-understanding. The government promises us that they are working on something, but my guess is that they have no clue what to do."
 		"I saw a plasma discharger with a leak-crack not so long ago. The ship looked good from the outside, but the inside was a firestorm."
 		"I have never seen something like your species. Why don't you float like us?"
-		"I was on a mining mission not so long ago when I saw a government ship drop a small box. The box accelerated really fast in one direction and disappeared with a flash."
+		"I was on a mining mission-job not so long ago when I saw a government ship drop a small box. The box accelerated very fast in one direction and disappeared with a flash."
 
 phrase "incipias common praise"
 	word
@@ -284,18 +284,18 @@ news "Hicemus official"
 			"Hicemus Inspector"
 	message
 		word
-			"We go forward to evolve. No one can stop us."
-			"Have you seen our newest engines? They are much more efficient than anything before them."
+			"We go forward to evolve-advance. No one can stop us."
+			"Have you seen-understood our newest engines? They are much more efficient than anything before them."
 			"Our technology is superior. No one can question our authority."
-			"As long as we exist, we will progress."
-			"The beginning of a new age of space travel is near."
+			"As long as we exist, we will progress-change."
+			"The beginning-dawn of a new age of space travel is near."
 
 
 phrase "incipias friendly disabled"
 	word
 		"Friend"
 		"Known-stranger"
-		"Fellow Captain"
+		"Fellow captain"
 	word
 		", I am "
 	word
@@ -310,14 +310,14 @@ phrase "incipias friendly disabled"
 		" could you please "
 	word
 		"assist me"
-		"safe me"
+		"save me"
 		"perform an outstanding deed"
 	word
 		"?"
 
 phrase "incipias hostile disabled"
 	word
-		"Would you really take the future?"
+		"Would you really take-destroy our future?"
 		"Where is your honor?"
 		"What would happen to our civilization if there were more like you?"
 		"Stop your chaos-rampage!"
