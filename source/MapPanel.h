@@ -140,6 +140,7 @@ protected:
 	int recentering = 0;
 	int commodity;
 	int step = 0;
+	double zoom;
 	std::string buttonCondition;
 
 	// Distance from the screen center to the nearest owned system,

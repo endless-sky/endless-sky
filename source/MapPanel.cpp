@@ -137,6 +137,8 @@ namespace {
 	const int HOVER_TIME = 60;
 	// Length in frames of the recentering animation.
 	const int RECENTER_TIME = 20;
+	// Length in frames of the zooming animation.
+	const int ZOOM_TIME = 10;
 
 	bool HasMultipleLandablePlanets(const System &system)
 	{
@@ -270,6 +272,10 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
 
 void MapPanel::Step()
 {
+	const double targetZoom = player.MapZoom();
+	if(zoom != targetZoom)
+		zoom += (targetZoom - zoom) / ZOOM_TIME;
+
 	if(recentering > 0)
 	{
 		double step = (recentering - .5) / RECENTER_TIME;
@@ -880,7 +886,7 @@ void MapPanel::Find(const string &name)
 
 double MapPanel::Zoom() const
 {
-	return pow(1.5, player.MapZoom());
+	return pow(1.5, zoom);
 }
 
 
