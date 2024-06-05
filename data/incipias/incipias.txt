@@ -231,7 +231,6 @@ news "Incipias common"
 		word
 			"Incipias Captain"
 			"Incipias Crew Member"
-			""
 	message
 		phrase
 			"incipias common hard defined"
@@ -239,8 +238,10 @@ news "Incipias common"
 
 phrase "incipias common"
 	phrase
-		"incipias common hard defined"
-		"incipias common praise"
+		"incipias common hard defined" 1
+		"incipias common praise" 5
+		"incipias common interest" 3
+		"incipias common advise" 3
 
 phrase "incipias common hard defined"
 	word
@@ -274,6 +275,53 @@ phrase "incipias common praise"
 		"are very efficient."
 		"look very stylish."
 
+phrase "incipias common interest"
+	word
+		"What "
+	word
+		"have you seen"
+		"happened to you"
+		"did you encounter"
+		"wonders lie"
+	word
+		" "
+	word
+		"beyond our system-home"
+		"in the stars"
+		"away from safety"
+		"past our travel-borders"
+	word
+		"? "
+	word
+		"Were you impressed?"
+		"Was it fearsome?"
+		"Was it dangerous?"
+
+phrase "incipias common advise"
+	word
+		"See"
+		"Look at"
+		"Pay attention to"
+		"Light"
+	word
+		" my "
+	word
+		"advice"
+		"wisdom"
+		"call"
+		"wish"
+	word
+		": Do not "
+	word
+		"use your engines on our planet-home"
+		"fiddle with the plasma discharger"
+		"oppose the government"
+		"use your weaponry for something else than mining"
+		"use your weaponry for something else than mining"
+	word
+		" it would cause death-sadness."
+
+
 news "Hicemus official"
 	location
 		government "Hicemus"
@@ -298,6 +346,7 @@ phrase "incipias friendly disabled"
 		"Fellow captain"
 	word
 		", I am "
+		", we are "
 	word
 		"in a bad situation"
 		"in trouble"
