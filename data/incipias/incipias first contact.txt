@@ -192,7 +192,7 @@ mission "Incipias: Help the stranded Part 1"
 				`	"Then let me help them."`
 					goto initiative
 				`	"You can deal with the consequences later. Help them now!"`
-			`	The Quarg takes on a sour look. "Insisting you are. Understand that our own intervention is out of the question." It sighs. "However, I can forsee the likelihood of you making a rash and impetuous decision to contact this ship."`
+			`	The Quarg takes on a sour look. "Insisting you are. Understand that our own intervention is out of the question." It sighs. "However, I can foresee the likelihood of you making a rash and impetuous decision to contact this ship."`
 			choice
 				`	"Sure, let me do the work."`
 				`	"If you are too weak..."`
