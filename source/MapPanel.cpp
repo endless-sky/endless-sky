@@ -1401,7 +1401,7 @@ void MapPanel::DrawSystems()
 			hasUnexplored |= (node.color == UnexploredColor());
 			hasUninhabited |= (node.color == UninhabitedColor());
 			// Count the number of occurences of each government.
-			if (node.color != UninhabitedColor()  && node.government)
+			if(node.color != UninhabitedColor() && node.government)
 				bigGovernments[node.government]++;
 		}
 	}

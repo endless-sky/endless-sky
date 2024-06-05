@@ -663,7 +663,8 @@ void MapDetailPanel::DrawKey()
 		font.Draw("Uninhabited", pos + textOff, dim);
 		pos.Y() += 20.;
 	}
-	if (hasUnexplored) {
+	if(hasUnexplored)
+	{
 		RingShader::Draw(pos, OUTER, INNER, UnexploredColor());
 		font.Draw("Unexplored", pos + textOff, dim);
 	}
