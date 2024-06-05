@@ -162,4 +162,4 @@ phrase "generic completed emancipation mission"
 
 phrase "generic completed emancipation raid mission"
 	word
-		`Local authorities thank you with joyous words and <payment>. They lead the people you helped emancipate to their newfound freedom.`
+		`Wounded raiders and emancipated refugees leave the ships you escorted. They're all grateful for the heroism you ensured today.`
