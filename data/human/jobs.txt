@@ -4204,6 +4204,7 @@ mission "Syndicate Defectors [1]"
 	repeat
 	description "Go to <stopovers> and pick up <bunks> Syndicate defectors. Fly them to <destination> for <payment>. Expect bounty hunters."
 	passengers 4 15 .8
+	illegal 50000
 	clearance "You provide a passcode given to you on <origin> and the authorities give you landing coordinates."
 	to offer
 		random < 50
@@ -4236,6 +4237,7 @@ mission "Syndicate Defectors [2]"
 	repeat
 	description "Go to <stopovers> and pick up <bunks> Syndicate defectors. Fly them to <destination> for <payment>. Expect bounty hunters."
 	passengers 7 28 .8
+	illegal 50000
 	clearance "You provide a passcode given to you on <origin> and the authorities give you landing coordinates."
 	to offer
 		random < 40
