@@ -316,10 +316,9 @@ phrase "incipias common advise"
 		"use your engines on our planet-home"
 		"fiddle with the plasma discharger"
 		"oppose the government"
-		"use your weaponry for something else than mining"
-		"use your weaponry for something else than mining"
+		"use your weaponry for something else than mining" 2
 	word
-		" it would cause death-sadness."
+		"; it would cause death-sadness."
 
 
 news "Hicemus official"
