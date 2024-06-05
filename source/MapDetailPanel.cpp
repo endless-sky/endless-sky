@@ -810,9 +810,7 @@ void MapDetailPanel::DrawInfo()
 					color = isSelected ? profitableSelected : profitable;
 				}
 				else if(value < 0)
-				{
 					color = isSelected ? unprofitableSelected : unprofitable;
-				}
 				price += to_string(value);
 			}
 		}
