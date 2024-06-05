@@ -228,12 +228,13 @@ mission "Hai Festival [1]"
 	cargo "party supplies" 1 2
 	to offer
 		or
-			month == 3
+			and
+				month == 3
+				day <= 17
 			and
 				month == 2
 				day >= 27
 		random < 60
-		"days until year end" > 289
 	to fail
 		month >= 4
 	source
@@ -262,12 +263,13 @@ mission "Hai Festival [2]"
 	cargo "party supplies" 1 2
 	to offer
 		or
-			month == 3
+			and
+				month == 3
+				day <= 17
 			and
 				month == 2
 				day >= 27
 		random < 60
-		"days until year end" > 289
 	to fail
 		month >= 4
 	source
@@ -296,12 +298,13 @@ mission "Hai Festival [3]"
 	cargo "party supplies" 1 2
 	to offer
 		or
-			month == 3
+			and
+				month == 3
+				day <= 17
 			and
 				month == 2
 				day >= 27
 		random < 60
-		"days until year end" > 289
 	to fail
 		month >= 4
 	source
