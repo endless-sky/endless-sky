@@ -1385,6 +1385,8 @@ void MapPanel::DrawSystems()
 
 	// Draw the circles for the systems.
 	double zoom = Zoom();
+	hasUnexplored = false;
+	hasUninhabited = false;
 	for(const Node &node : nodes)
 	{
 		Point pos = zoom * (node.position + center);
@@ -1393,12 +1395,14 @@ void MapPanel::DrawSystems()
 		// Count the system for the government (to chose what goverment labels to display)
 		// Make sure that it is in an oval that is stretched to fit in the centers of all the edges
 		// before counting it
-		if(commodity == SHOW_GOVERNMENT && node.government && node.government->GetName() != "Uninhabited" &&
+		if(commodity == SHOW_GOVERNMENT &&
 			(pos * (1 / Screen::BottomRight())).LengthSquared() < 1)
 		{
-
+			hasUnexplored |= (node.color == UnexploredColor());
+			hasUninhabited |= (node.color == UninhabitedColor());
 			// Count the number of occurences of each government.
-			bigGovernments[node.government]++;
+			if (node.color != UninhabitedColor()  && node.government)
+				bigGovernments[node.government]++;
 		}
 	}
 }

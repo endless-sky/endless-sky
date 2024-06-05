@@ -145,6 +145,12 @@ protected:
 	// Distance from the screen center to the nearest owned system,
 	// for use in determining which governments are in the legend.
 	std::map<const Government *, unsigned int> bigGovernments;
+
+	// Uninhabited and Unexplored are handled differently, as those should always be on the map
+	// As long as there are Uninhabited and Unexplored
+	bool hasUninhabited = false;
+	bool hasUnexplored = false;
+
 	// Systems in which your (active and parked) escorts and stored outfits are located.
 	std::map<const System *, SystemTooltipData> escortSystems;
 	// Center the view on the given system (may actually be slightly offset
