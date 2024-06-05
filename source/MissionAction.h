@@ -86,7 +86,6 @@ private:
 	std::shared_ptr<ConditionSet> toDecline;
 	std::string dialogText;
 	ExclusiveItem<Phrase> dialogPhrase;
-	bool dialogOkCancel = false;
 	ExclusiveItem<Conversation> conversation;
 
 	// Outfits that are required to be owned (or not) for this action to be performable.

@@ -77,6 +77,7 @@ public:
 	Dialog(T *t, void (T::*fun)(), const std::string &text,
 		Truncate truncate = Truncate::NONE, bool allowsFastForward = false);
 
+	bool GetCanCancel() const;
 	void SetCanCancel(bool canCancel);
 
 	// true = use "Accept" and "Decline" instead of "Ok" and "Cancel"

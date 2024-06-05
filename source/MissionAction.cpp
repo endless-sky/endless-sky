@@ -88,15 +88,13 @@ void MissionAction::LoadSingle(const DataNode &child)
 		// Collect the "to decline" button condition and determine if there are text grandchildren
 		const DataNode *firstText = nullptr;
 		for(auto &grand : child)
-			if(grand.Size() == 1 && grand.Token(0) == "ok/cancel")
-				dialogOkCancel = true;
-			else if(grand.Size() != 2 || grand.Token(0) != "to")
+			if(grand.Size() != 2 || grand.Token(0) != "to")
 			{
 				if(!firstText)
 					firstText = &grand;
 			}
 			else if(grand.Token(1) != "decline")
-				grand.PrintTrace("Expected \"phrase\", \"to decline\", \"ok/cancel\", or dialog text:");
+				grand.PrintTrace("Expected \"phrase\", \"to decline\", or dialog text:");
 			else if(toDecline)
 				toDecline->Load(grand);
 			else
@@ -187,8 +185,6 @@ void MissionAction::SaveBody(DataWriter &out) const
 				toDecline->Save(out);
 				out.EndChild();
 			}
-			if(dialogOkCancel)
-				out.Write("ok/cancel");
 			// Break the text up into paragraphs.
 			for(const string &line : Format::Split(dialogText, "\n\t"))
 				out.Write(line);
@@ -372,7 +368,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const 
 		if(dialog)
 		{
 			dialog->SetCanCancel(!toDecline || toDecline->Test(player.Conditions()));
-			dialog->SetAcceptDecline(!dialogOkCancel);
+			dialog->SetAcceptDecline(dialog->GetCanCancel());
 			ui->Push(dialog);
 		}
 	}
@@ -402,7 +398,6 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 
 	// Create any associated dialog text from phrases, or use the directly specified text.
 	string dialogText = !dialogPhrase->IsEmpty() ? dialogPhrase->Get() : this->dialogText;
-	result.dialogOkCancel = dialogOkCancel;
 	if(!dialogText.empty())
 		result.dialogText = Format::Replace(Phrase::ExpandPhrases(dialogText), subs);
 	if(toDecline)

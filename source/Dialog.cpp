@@ -119,6 +119,13 @@ Dialog::Dialog(const string &text, PlayerInfo &player, const System *system, Tru
 
 
 
+bool Dialog::GetCanCancel() const
+{
+	return canCancel;
+}
+
+
+
 void Dialog::SetCanCancel(bool canCancel)
 {
 	this->canCancel = canCancel;
@@ -221,7 +228,7 @@ void Dialog::ParseTextNode(const DataNode &node, size_t startingIndex, string &t
 	}
 	for(const DataNode &child : node)
 	{
-		if((child.Size() > 1 && child.Token(0) == "to") || child.Token(0) == "ok/cancel")
+		if(child.Size() > 1 && child.Token(0) == "to")
 			// Caller already handles options.
 			continue;
 		for(int i = 0; i < child.Size(); ++i)
@@ -289,11 +296,9 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 		bool shouldCallback = false;
 		bool shouldPop = false;
 
-		// If we should accept and we can, then do that.
-		if(okIsActive && !isOkDisabled)
-			shouldCallback = shouldPop = true;
-		// When the player wants to decline a mission (and is allowed to), always call the callback.
-		else if(!okIsActive && canCancel && isMission)
+		// If we should accept and we can, then do that. Also, when the player wants to decline a mission
+		// (and is allowed to), always call the callback.
+		if((okIsActive && !isOkDisabled) || (!okIsActive && canCancel && isMission))
 			shouldCallback = shouldPop = true;
 		// For any other dialog that wants to cancel (and can cancel) we don't call the callback.
 		else if(!okIsActive && canCancel)
