@@ -1191,8 +1191,7 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 	if(event.TargetGovernment()->IsPlayer() && !hasFailed)
 	{
 		bool failed = false;
-		string message = "Your " + event.Target()->DisplayModelName() +
-			" \"" + event.Target()->Name() + "\" has been ";
+		string message = "";
 		if(event.Type() & ShipEvent::DESTROY)
 		{
 			// Destroyed ships carrying mission cargo result in failed missions.
@@ -1202,8 +1201,6 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 			// If any mission passengers were present, this mission is failed.
 			for(const auto &it : event.Target()->Cargo().PassengerList())
 				failed |= (it.first == this && it.second);
-			if(failed)
-				message += "destroyed. ";
 		}
 		else if(event.Type() & ShipEvent::BOARD)
 		{
@@ -1211,7 +1208,8 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 			for(const auto &it : event.Actor()->Cargo().MissionCargo())
 				failed |= (it.first == this);
 			if(failed)
-				message += "plundered. ";
+				message += "Your " + event.Target()->DisplayModelName() +
+			" \"" + event.Target()->Name() + "\" has been plundered. ";
 		}
 
 		if(failed)
