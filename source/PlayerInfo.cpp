@@ -3482,7 +3482,7 @@ void PlayerInfo::RegisterDerivedConditions()
 		string attrib = name.substr(strlen("ship attribute: "));
 		int64_t retVal = 0;
 		for(const shared_ptr<Ship> &ship : ships)
-			retVal += ship->Attributes().Get(attrib);
+			retVal += ship->Attributes().Get(attrib) * 1000.;
 		return retVal;
 	};
 	shipAttributeProvider.SetGetFunction(shipAttributeFun);
