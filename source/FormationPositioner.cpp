@@ -21,9 +21,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "Ship.h"
 
+#include <algorithm>
 #include <cmath>
 
 using namespace std;
+
 
 
 // Initializer based on the formation pattern to follow.
@@ -96,17 +98,8 @@ Point FormationPositioner::Position(const Ship *ship)
 // Re-generate the list of (relative) positions for the ships in the formation.
 void FormationPositioner::CalculatePositions()
 {
-	// Set scaling based on results from previous run.
-	double diameterToPx = maxDiameter;
-	double widthToPx = maxWidth;
-	double heightToPx = maxHeight;
-	maxDiameter = 0;
-	maxWidth = 0;
-	maxHeight = 0;
-
 	// Run the position iterator for the ships in the formation.
-	auto itPos = pattern->begin(diameterToPx, widthToPx, heightToPx,
-		centerBodyRadius, shipsInFormation.size());
+	auto itPos = pattern->begin(centerBodyRadius, shipsInFormation.size());
 
 	// Run the iterator.
 	size_t shipIndex = 0;
@@ -114,17 +107,17 @@ void FormationPositioner::CalculatePositions()
 	{
 		// If the ship is no longer valid or not or no longer part of this
 		// formation, then we need to remove it.
-		auto ship = (shipsInFormation[shipIndex]).lock();
+		auto ship = shipsInFormation[shipIndex].lock();
 		bool removeShip = !ship || !IsActiveInFormation(ship.get());
 
 		// Lookup the ship in the positions map.
 		auto itCoor = shipPositions.end();
 		if(ship)
-			itCoor = shipPositions.find(&(*ship));
+			itCoor = shipPositions.find(ship.get());
 
 		// If the ship is not in the overall table or if it was not
 		// active since the last iteration, then we also remove it.
-		removeShip = removeShip || itCoor == shipPositions.end() ||
+		removeShip |= itCoor == shipPositions.end() ||
 				itCoor->second.second != tickTock;
 
 		// Perform removes if we need to.
@@ -138,10 +131,6 @@ void FormationPositioner::CalculatePositions()
 		}
 		else
 		{
-			// Set scaling for next round based on the sizes of the
-			// participating ships.
-			Tally(*ship);
-
 			// Calculate the new coordinate for the current ship.
 			Point &shipRelPos = itCoor->second.first;
 			shipRelPos = *itPos;
@@ -160,27 +149,18 @@ void FormationPositioner::CalculatePositions()
 
 
 
-void FormationPositioner::Tally(const Body &body)
-{
-	maxDiameter = max(maxDiameter, body.Radius() * 2.);
-	maxHeight = max(maxHeight, body.Height());
-	maxWidth = max(maxWidth, body.Width());
-}
-
-
-
 void FormationPositioner::CalculateDirection()
 {
-	// Calculate new direction, if the formationLead is moving, then we use the movement vector.
-	// Otherwise we use the facing vector.
+	// Calculate new direction. If the formationLead is moving, then we use the movement vector,
+	// otherwise use the facing vector.
 	Point velocity = formationLead->Velocity();
-	auto desiredDir = velocity.Length() > 0.1 ? Angle(velocity) : formationLead->Facing();
+	Angle desiredDir = velocity.Length() > .1 ? Angle(velocity) : formationLead->Facing();
 
 	Angle deltaDir = desiredDir - direction;
 
 	// Change the desired direction according to rotational settings if that fits better.
 	double symRot = pattern->Rotatable();
-	if(symRot > 0 && fabs(deltaDir.Degrees()) > (symRot / 2))
+	if(symRot > 0 && fabs(deltaDir.Degrees()) > symRot / 2)
 	{
 		if(deltaDir.Degrees() > 0)
 			symRot = -symRot;
@@ -212,16 +192,13 @@ void FormationPositioner::CalculateDirection()
 			positionsTimer = 0;
 		}
 	}
-	else
+	else if(symRot != 0)
 	{
 		// Turn max 1/4th degree per frame. The game runs at 60fps, so a turn of 180 degrees will take
 		// about 12 seconds.
-		constexpr double MAX_FORMATION_TURN = 0.25;
+		constexpr double MAX_FORMATION_TURN = .25;
 
-		if(deltaDir.Degrees() > MAX_FORMATION_TURN)
-			deltaDir = Angle(MAX_FORMATION_TURN);
-		else if(deltaDir.Degrees() < -MAX_FORMATION_TURN)
-			deltaDir = Angle(-MAX_FORMATION_TURN);
+		deltaDir = Angle(clamp(deltaDir.Degrees(), -MAX_FORMATION_TURN, MAX_FORMATION_TURN));
 
 		direction += deltaDir;
 	}
@@ -249,8 +226,8 @@ bool FormationPositioner::IsActiveInFormation(const Ship *ship) const
 	// the child/parent relationship.
 	auto targetShip = ship->GetTargetShip();
 	auto parentShip = ship->GetParent();
-	if((!targetShip || &(*targetShip) != formationLead) &&
-		(!parentShip || &(*parentShip) != formationLead))
+	if((!targetShip || targetShip.get() != formationLead) &&
+			(!parentShip || parentShip.get() != formationLead))
 		return false;
 
 	return true;
@@ -269,7 +246,7 @@ void FormationPositioner::Remove(unsigned int index)
 	// Move the last element to the current position and remove the last
 	// element; this will let last ship take the position of the ship that
 	// we will remove.
-	if(index < (shipsInFormation.size() - 1))
+	if(index < shipsInFormation.size() - 1)
 		shipsInFormation[index].swap(shipsInFormation.back());
 	shipsInFormation.pop_back();
 }

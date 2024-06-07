@@ -33,11 +33,9 @@ class DataNode;
 class FormationPattern {
 public:
 	// Iterator that provides sequential access to all formation positions.
-	class PositionIterator
-	{
+	class PositionIterator {
 	public:
 		explicit PositionIterator(const FormationPattern &pattern,
-			double diameterToPx, double widthToPx, double heightToPx,
 			double centerBodyRadius, unsigned int shipsToPlace);
 
 		PositionIterator() = delete;
@@ -55,6 +53,7 @@ public:
 		PositionIterator &operator++();
 
 	private:
+		void MoveToValidPositionOutsideCenterBody();
 		void MoveToValidPosition();
 
 	private:
@@ -72,17 +71,11 @@ public:
 		// The number of ships affects the last line that is placed in
 		// case the last line is centered. When zero is given then every
 		// line is treated as if many more ships need to be placed.
-		unsigned int shipsToPlace;
+		unsigned int shipsToPlace = 0;
 		// Center radius that is to be kept clear. This is used to avoid
 		// positions of ships overlapping with the body around which the
 		// formation is formed.
-		double centerBodyRadius;
-		// Factors to convert coordinates based on ship sizes/dimensions to
-		// coordinates in pixels. Typically initialized with the maximum
-		// sizes/dimensions of the ships participating in the formation.
-		double diameterToPx;
-		double widthToPx;
-		double heightToPx;
+		double centerBodyRadius = 0;
 		// Currently calculated Point.
 		Point currentPoint;
 		// Internal status variable;
@@ -97,8 +90,7 @@ public:
 	void SetName(const std::string &name);
 
 	// Get an iterator to iterate over the formation positions in this pattern.
-	PositionIterator begin(double diameterToPx, double widthToPx, double heightToPx,
-		double centerBodyRadius, unsigned int shipsToPlace = 0) const;
+	PositionIterator begin(double centerBodyRadius, unsigned int shipsToPlace = 0) const;
 
 	// Information about allowed rotating and mirroring that still results in the same formation.
 	int Rotatable() const;
@@ -118,38 +110,14 @@ private:
 
 	// Calculate a position based on the current ring, line/arc, repeat-section and position on the line-repeat-section.
 	Point Position(unsigned int ring, unsigned int lineNr, unsigned int repeatNr,
-		unsigned int lineRepeatPosition, double diameterToPx, double widthToPx, double heightToPx) const;
+		unsigned int lineRepeatPosition) const;
 
 private:
-	class MultiAxisPoint {
-	public:
-		// Coordinate axises for formations; in pixels (default) and heights, widths and diameters
-		// of ships.
-		enum Axis { PIXELS, DIAMETERS, WIDTHS, HEIGHTS };
-
-		// Add position information to one of the internal tracked points.
-		void Add(Axis axis, const Point &toAdd);
-
-		// Parse a position input from a data-node and add the values to this MultiAxisPoint.
-		// This function is typically called when getting the first or last position on a
-		// line or when getting an anchor for an arc.
-		void AddLoad(const DataNode &node);
-
-		// Get a point in pixel coordinates based on the conversion factors given for
-		// the diameters, widths and heights.
-		Point GetPx(double diameterToPx, double widthToPx, double heightToPx) const;
-
-
-	private:
-		// Position based on the possible axises.
-		Point position[4];
-	};
-
 	class LineRepeat {
 	public:
 		// Vector to apply to get to the next start point for the next iteration.
-		MultiAxisPoint repeatStart;
-		MultiAxisPoint repeatEndOrAnchor;
+		Point repeatStart;
+		Point repeatEndOrAnchor;
 
 		double repeatAngle = 0;
 
@@ -163,8 +131,8 @@ private:
 	class Line {
 	public:
 		// The starting point for this line.
-		MultiAxisPoint start;
-		MultiAxisPoint endOrAnchor;
+		Point start;
+		Point endOrAnchor;
 
 		// Angle in case this line is an Arc.
 		double angle = 0;
@@ -183,25 +151,28 @@ private:
 	};
 
 
-
 private:
 	// Name of the formation pattern.
 	std::string name;
-	// Indicates if the formation is rotatable, a value of -1 means not
+	// Indicates if the formation is rotatable. A value of -1 means not
 	// rotatable, while a positive value is taken as the rotation angle
 	// in relation to the full 360 degrees full angle:
 	// Square and Diamond shapes could get a value of 90, since you can
 	// rotate such a shape over 90 degrees and still have the same shape.
 	// Triangles could get a value of 120, since you can rotate them over
 	// 120 degrees and again get the same shape.
+	// A value of 0 means that the formation can be rotated in any way and
+	// still be fine. This could be used for shapes like (perfect) circles
+	// and for formations where rotation just shouldn't happen.
 	int rotatable = -1;
 	// Indicates if the formation is flippable along the longitudinal axis.
-	bool flippable_y = false;
+	bool flippableY = false;
 	// Indicates if the formation is flippable along the transverse axis.
-	bool flippable_x = false;
+	bool flippableX = false;
 	// The lines that define the formation.
 	std::vector<Line> lines;
 };
+
 
 
 #endif

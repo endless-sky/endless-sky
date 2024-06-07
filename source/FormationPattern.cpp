@@ -24,12 +24,10 @@ using namespace std;
 
 
 FormationPattern::PositionIterator::PositionIterator(const FormationPattern &pattern,
-		double diameterToPx, double widthToPx, double heightToPx, double centerBodyRadius,
-		unsigned int shipsToPlace)
-	: pattern(pattern), shipsToPlace(shipsToPlace), centerBodyRadius(centerBodyRadius),
-		diameterToPx(diameterToPx), widthToPx(widthToPx), heightToPx(heightToPx)
+		double centerBodyRadius, unsigned int shipsToPlace)
+	: pattern(pattern), shipsToPlace(shipsToPlace), centerBodyRadius(centerBodyRadius)
 {
-	MoveToValidPosition();
+	MoveToValidPositionOutsideCenterBody();
 }
 
 
@@ -46,13 +44,7 @@ FormationPattern::PositionIterator &FormationPattern::PositionIterator::operator
 	if(!atEnd)
 	{
 		position++;
-		MoveToValidPosition();
-	}
-	// Skip positions too close to the center body
-	while(!atEnd && currentPoint.Length() <= centerBodyRadius)
-	{
-		position++;
-		MoveToValidPosition();
+		MoveToValidPositionOutsideCenterBody();
 	}
 
 	// Number of ships is used as number of remaining ships still to be placed.
@@ -63,19 +55,34 @@ FormationPattern::PositionIterator &FormationPattern::PositionIterator::operator
 
 
 
+void FormationPattern::PositionIterator::MoveToValidPositionOutsideCenterBody()
+{
+	MoveToValidPosition();
+	unsigned int maxTries = 50;
+	// Skip positions too close to the center body
+	while(!atEnd && currentPoint.Length() <= centerBodyRadius && maxTries > 0)
+	{
+		position++;
+		MoveToValidPosition();
+		maxTries--;
+	}
+	if(maxTries == 0)
+		atEnd = true;
+}
+
+
+
 void FormationPattern::PositionIterator::MoveToValidPosition()
 {
+	unsigned int lines = pattern.Lines();
+
 	// If we cannot calculate any new positions, then just return center point.
-	if(atEnd)
+	if(atEnd || lines < 1)
 	{
+		atEnd = true;
 		currentPoint = Point();
 		return;
 	}
-
-	// Check if there are any lines available.
-	unsigned int lines = pattern.Lines();
-	if(lines < 1)
-		atEnd = true;
 
 	unsigned int ringsScanned = 0;
 	unsigned int startingRing = ring;
@@ -124,15 +131,14 @@ void FormationPattern::PositionIterator::MoveToValidPosition()
 	// If we are at the last line and we have less ships still to place than that
 	// would fit on the line, then perform centering if required.
 	if(!atEnd && position == 0 && shipsToPlace > 0 &&
-			(lineRepeatPositions - 1) > shipsToPlace && pattern.IsCentered(line))
+			lineRepeatPositions - 1 > shipsToPlace && pattern.IsCentered(line))
 		// Determine the amount to skip for centering and skip those.
 		position += (lineRepeatPositions - shipsToPlace) / 2;
 
 	if(atEnd)
 		currentPoint = Point();
 	else
-		currentPoint = pattern.Position(ring, line, repeat, position,
-			diameterToPx, widthToPx, heightToPx);
+		currentPoint = pattern.Position(ring, line, repeat, position);
 }
 
 
@@ -158,9 +164,9 @@ void FormationPattern::Load(const DataNode &node)
 			for(int i = 1; i < child.Size(); ++i)
 			{
 				if(child.Token(i) == "x")
-					flippable_x = true;
+					flippableX = true;
 				else if(child.Token(i) == "y")
-					flippable_y = true;
+					flippableY = true;
 				else
 					child.PrintTrace("Skipping unrecognized attribute:");
 			}
@@ -168,12 +174,11 @@ void FormationPattern::Load(const DataNode &node)
 			rotatable = child.Value(1);
 		else if(child.Token(0) == "position" && child.Size() >= 3)
 		{
-			lines.emplace_back();
-			Line &line = lines.back();
+			Line &line = lines.emplace_back();
 			// A point is a line with just 1 position on it.
 			line.positions = 1;
 			// The specification of the coordinates is on the same line as the keyword.
-			line.start.AddLoad(child);
+			line.start.Set(child.Value(1), child.Value(2));
 			line.endOrAnchor = line.start;
 		}
 		else if(child.Token(0) == "line" || child.Token(0) == "arc")
@@ -251,13 +256,11 @@ void FormationPattern::SetName(const std::string &name)
 }
 
 
+
 // Get an iterator to iterate over the formation positions in this pattern.
-FormationPattern::PositionIterator FormationPattern::begin(
-	double diameterToPx, double widthToPx, double heightToPx,
-	double centerBodyRadius, unsigned int shipsToPlace) const
+FormationPattern::PositionIterator FormationPattern::begin(double centerBodyRadius, unsigned int shipsToPlace) const
 {
-	return FormationPattern::PositionIterator(*this, diameterToPx, widthToPx,
-		heightToPx, centerBodyRadius, shipsToPlace);
+	return FormationPattern::PositionIterator(*this, centerBodyRadius, shipsToPlace);
 }
 
 
@@ -326,7 +329,7 @@ bool FormationPattern::IsCentered(unsigned int lineNr) const
 
 // Get a formation position based on ring, line(or arc)-number and position on the line.
 Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigned int repeatNr,
-	unsigned int linePosition, double diameterToPx, double widthToPx, double heightToPx) const
+	unsigned int linePosition) const
 {
 	// First check if the inputs result in a valid line or arc position.
 	if(lineNr >= lines.size())
@@ -336,19 +339,19 @@ Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigne
 		return Point();
 
 	// Perform common start and end/anchor position calculations in pixels.
-	Point startPx = line.start.GetPx(diameterToPx, widthToPx, heightToPx);
-	Point endOrAnchorPx = line.endOrAnchor.GetPx(diameterToPx, widthToPx, heightToPx);
+	Point startPx = line.start;
+	Point endOrAnchorPx = line.endOrAnchor;
 
 	// Get the number of positions for this line or arc.
 	int positions = line.positions;
 
 	// Check if we have a valid repeat section and apply it to the common calculations if we have it.
 	const LineRepeat *repeat = nullptr;
-	if(ring > 0 && repeatNr < line.repeats.size())
+	if(ring > 0)
 	{
 		repeat = &(line.repeats[repeatNr]);
-		startPx += repeat->repeatStart.GetPx(diameterToPx, widthToPx, heightToPx) * ring;
-		endOrAnchorPx += repeat->repeatEndOrAnchor.GetPx(diameterToPx, widthToPx, heightToPx) * ring;
+		startPx += repeat->repeatStart * ring;
+		endOrAnchorPx += repeat->repeatEndOrAnchor * ring;
 		positions += repeat->repeatPositions * ring;
 	}
 
@@ -385,7 +388,7 @@ Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigne
 			endAngle /= positions - 1;
 		double positionAngle = startAngle + endAngle * linePosition;
 
-		// Get into the range of 0 to 360 for conversion to angle)
+		// Get into the range of 0 to 360 for conversion to angle.
 		if(positionAngle < 0)
 			positionAngle = -fmod(-positionAngle, 360) + 360;
 		else
@@ -400,11 +403,7 @@ Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigne
 	// Swap start and end if we need to alternate in the repeat section.
 	// Apply repeat section if it is relevant.
 	if(ring % 2 && repeat && repeat->alternating)
-	{
-		Point tmpPx = endOrAnchorPx;
-		endOrAnchorPx = startPx;
-		startPx = tmpPx;
-	}
+		swap(startPx, endOrAnchorPx);
 
 	// Calculate the step from each position between start and end.
 	Point positionPx = endOrAnchorPx - startPx;
@@ -413,7 +412,7 @@ Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigne
 	if(positions > 1)
 		positionPx /= positions - 1;
 
-	// Calculate position of the current position.
+	// Calculate position in the formation based on the position in the line.
 	return startPx + positionPx * linePosition;
 }
 
@@ -428,80 +427,12 @@ int FormationPattern::Rotatable() const
 
 bool FormationPattern::FlippableY() const
 {
-	return flippable_y;
+	return flippableY;
 }
 
 
 
 bool FormationPattern::FlippableX() const
 {
-	return flippable_x;
-}
-
-
-void FormationPattern::MultiAxisPoint::Add(Axis axis, const Point& toAdd)
-{
-	position[axis] += toAdd;
-}
-
-
-
-void FormationPattern::MultiAxisPoint::AddLoad(const DataNode &node)
-{
-	// We need at least the position keyword and 2 coordinate numbers.
-	if(node.Size() < 3)
-		return;
-
-	// Track if we are parsing a polar coordinate.
-	bool parsePolar = false;
-
-	// By default we parse for pixels.
-	Axis axis = PIXELS;
-	double scalingFactor = 1.;
-
-	// Parse all the keywords before the coordinate
-	for(int i = 1; i < node.Size() - 2; ++i)
-	{
-		if(node.Token(i) == "polar")
-			parsePolar = true;
-		else if(node.Token(i) == "px")
-			axis = PIXELS;
-		else if(node.Token(i) == "diameter")
-			axis = DIAMETERS;
-		else if(node.Token(i) == "radius")
-		{
-			scalingFactor = 2.;
-			axis = DIAMETERS;
-		}
-		else if(node.Token(i) == "width")
-			axis = WIDTHS;
-		else if(node.Token(i) == "height")
-			axis = HEIGHTS;
-		else
-			node.PrintTrace("Skipping unrecognized token " + node.Token(i) + ":");
-	}
-
-	// The last 2 numbers are always the coordinate.
-	if(parsePolar)
-	{
-		Angle dir = Angle(node.Value(node.Size() - 2));
-		double len = node.Value(node.Size() - 1) * scalingFactor;
-		Add(axis, dir.Unit() * len);
-	}
-	else
-	{
-		double x = node.Value(node.Size() - 2);
-		double y = node.Value(node.Size() - 1);
-		Add(axis, Point(x, y) * scalingFactor);
-	}
-}
-
-
-
-Point FormationPattern::MultiAxisPoint::GetPx(double diameterToPx, double widthToPx, double heightToPx) const
-{
-	return position[PIXELS] +
-		position[DIAMETERS] * diameterToPx +
-		position[WIDTHS] * widthToPx +
-		position[HEIGHTS] * heightToPx;
+	return flippableX;
 }

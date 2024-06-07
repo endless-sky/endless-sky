@@ -17,13 +17,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define FORMATION_POSITIONER_H_
 
 #include "Angle.h"
-#include "Body.h"
-#include "FormationPattern.h"
 
 #include <map>
 #include <memory>
 #include <vector>
 
+class Body;
+class FormationPattern;
 class Ship;
 
 
@@ -35,8 +35,7 @@ public:
 	// Initializer based on the formation pattern to follow.
 	FormationPositioner(const Body *formationLead, const FormationPattern *pattern);
 
-	// Start/reset/initialize for a (new) round of formation position calculations
-	// for a formation around the ship given as parameter.
+	// Start/reset/initialize for a (new) round of formation position calculations.
 	void Step();
 
 	// Get the formation position for the ship given as parameter. If a given ship is
@@ -47,9 +46,6 @@ public:
 private:
 	// Re-generate the list of (relative) positions for the ships in the formation.
 	void CalculatePositions();
-
-	// Consider ship for the formation maximum dimensions.
-	void Tally(const Body &body);
 
 	// Calculate the direction the formation is facing.
 	void CalculateDirection();
@@ -74,13 +70,9 @@ private:
 	// Timer that controls the (re)generation of ship positions.
 	int positionsTimer = 0;
 
-	// The scaling factors as we currently have for this formation, based
-	// on the ships in the formation. (Initialized with some defaults for
-	// small ships.)
+	// The scaling factor as we currently have for this formation for the ship or
+	// other body around which this formation is formed.
 	double centerBodyRadius = 150;
-	double maxDiameter = 80;
-	double maxWidth = 80;
-	double maxHeight = 80;
 
 	// The body around which the formation will be formed and the pattern to follow.
 	const Body *formationLead;

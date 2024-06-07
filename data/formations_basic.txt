@@ -1,0 +1,91 @@
+# Copyright (c) 2019-2021 by Peter van der Meer
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+
+
+# Formation where ships form a line behind the formation leader.
+formation "Trailing line"
+	flippable y
+	position 0 200
+	position 0 400
+	position 0 600
+	position 0 800
+	position 0 1000
+	position 0 1200
+	position 0 1400
+	position 0 1600
+	position 0 1800
+	position 0 2000
+	position 0 2200
+	position 0 2400
+	position 0 2600
+	position 0 2800
+	position 0 3000
+
+
+
+# Formation with two legs extending on a 30 degree angle behind the lead ship.
+formation "Vic close"
+	flippable y
+	position -150 87
+	position 150 87
+	position -300 174
+	position 300 174
+	position -450 261
+	position 450 261
+	position -600 348
+	position 600 348
+
+# Formation with two legs extending on a 30 degree angle behind the lead ship.
+formation "Vic spaceous"
+	flippable y
+	position -200 115
+	position 200 115
+	position -400 230
+	position 400 230
+	position -600 345
+	position 600 345
+	position -800 460
+	position 800 460
+
+# Formation with two legs extending on a 30 degree angle behind the lead ship.
+formation "Vic tight"
+	flippable y
+	position -100 57.5
+	position 100 57.5
+	position -200 115
+	position 200 115
+	position -300 172.5
+	position 300 172.5
+	position -400 230
+	position 400 230
+
+# Stable X or + shaped formation that doesn't rotate with the flagship.
+formation "X stable"
+	rotatable 0
+	position 200 0
+	position -200 0
+	position 0 200
+	position 0 -200
+	position 400 0
+	position -400 0
+	position 0 400
+	position 0 -400
+	position 600 0
+	position -600 0
+	position 0 600
+	position 0 -600
+	position 800 0
+	position -800 0
+	position 0 800
+	position 0 -800

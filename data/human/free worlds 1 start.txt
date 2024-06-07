@@ -2262,6 +2262,7 @@ mission "FW Rogue Elements"
 		has "event: wolf pack reveal"
 	on offer
 		event "navy occupying the south" 45
+		event "memorial on Deep"
 		conversation
 			`After you land, you notice that a sizeable crowd has gathered around a video screen near the edge of the <origin> spaceport. You approach to find out what's going on. You're about to ask someone what's happening when you overhear Tomek's voice coming from screen. You look up to see a video of Tomek standing atop a Free Worlds warship and addressing an unseen crowd.`
 			`	"For generations we have been neglected by the Republic!" he shouts. "Our grievances were ignored! Our pain and suffering was ignored! Our needs were ignored! We cried out for help, and yet the Republic did nothing, allowing our planets to be ravaged by piracy while continuing to tax our credits for services we were not provided. And as the years have gone on the pirates have only become more and more emboldened.`
