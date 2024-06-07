@@ -117,6 +117,25 @@ namespace {
 		return true;
 	}
 
+	bool EscortsReadyToLand(const Ship &ship)
+	{
+		bool shipIsYours = ship.IsYours();
+		const Government *gov = ship.GetGovernment();
+		for(const weak_ptr<Ship> &ptr : ship.GetEscorts())
+		{
+			shared_ptr<const Ship> escort = ptr.lock();
+			// Skip escorts which are not player-owned and not escort mission NPCs.
+			if(!escort || (shipIsYours && !escort->IsYours() && (!escort->GetPersonality().IsEscort()
+				|| gov->IsEnemy(escort->GetGovernment()))))
+				continue;
+			if(escort->IsDisabled())
+				continue;
+			if(escort->GetTargetStellar() == ship.GetTargetStellar() && !escort->CanLand())
+				return false;
+		}
+		return true;
+	}
+
 	// Determine if the ship has any usable weapons.
 	bool IsArmed(const Ship &ship)
 	{
@@ -4405,6 +4424,9 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 
 	if(autoPilot.Has(Command::LAND) || (autoPilot.Has(Command::JUMP | Command::FLEET_JUMP) && isWormhole))
 	{
+		if(activeCommands.Has(Command::WAIT) || (autoPilot.Has(Command::FLEET_JUMP) && !EscortsReadyToLand(ship)))
+			command |= Command::WAIT;
+
 		if(ship.GetPlanet())
 			autoPilot.Clear(Command::LAND | Command::JUMP | Command::FLEET_JUMP);
 		else

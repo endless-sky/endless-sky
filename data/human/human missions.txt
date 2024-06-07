@@ -883,7 +883,7 @@ mission "Transport Workers C"
 		payment
 		payment 10000
 		dialog `You drop off the Pattersons, the farm family from <origin>, and help them to unload their wagon and cattle from your cargo hold. They thank you, and Jim pays you <payment>.`
-		log "Minor People" "Jim and Annette Patterson" `An unusual family who needed you to make a very unconventional trip with a sizeable number of farm animals that had to be kept happy in an enclosed area of your spaceship.`
+		log "Minor People" "Jim and Annette Patterson" `An unusual family who needed you to make a very unconventional trip with a sizable number of farm animals that had to be kept happy in an enclosed area of your spaceship.`
 
 
 
@@ -7406,7 +7406,6 @@ mission "Adelita 5"
 	on complete
 		payment 220000
 		log `Helped the underground journalism collective "Adelita" gather video evidence of Syndicate participation in the slave trade while escaping from pirates.`
-		log ``
 		conversation
 			`Ale, River, and Bunker look glad to be back on <planet>. "Being there in person was bad enough," Ale grumbles as she looks through a stack of folders on her datapad. "Now we have to watch it over and over again to edit it into something presentable."`
 			`	As they are leaving, Ale hands you a stack of credit chips totaling <payment>. "There's a bonus in there for you. We really couldn't have done it without you," she tells you with a bittersweet smile. "Of course, you'll be one of the first to know when it's done."`

@@ -798,7 +798,7 @@ news "dentist"
 		word
 			`"`
 		word
-			"Remember to pack a toothcleanser for your journey!"
+			"Remember to pack a toothcleaner for your journey!"
 			"My new anti-cavity campaign is called 'Plaque Doesn't Deserve a Plaque.' Do you like it?"
 			"If the galaxy has many alien species, I hope they all have teeth."
 			"The advent of almost perfect artificial teeth may tempt you to stop caring if your natural teeth start to rot. Trust me that taking care of your teeth saves a lot of pain from both your mouth and your wallet."
@@ -1006,7 +1006,6 @@ news "reporter"
 			"Read this! 'The Real UGLIEST Starship that Lionheart Don't Want You to Know About!'"
 			"Look at my new article! 'The Protector - Actually a SCAM?'"
 			"Look at this! 'Five Reasons Why Captains Should Check Spaceports More Often - Number Two Will Make You Cry!'"
-			"Read my new article! 'Ten Things the Quarg Are Hiding from Us - Number Seven Will Surprise You!'"
 			"Check this out! 'Top 20 Things Starship Pilots Don't Want You to Know!' Wait, never mind."
 			"'11 signs that you are dealing with a corporate executive.' Read my blog to protect yourself from those psychopaths!"
 		word

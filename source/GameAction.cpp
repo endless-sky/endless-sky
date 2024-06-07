@@ -58,7 +58,7 @@ namespace {
 		string message;
 		if(isSingle)
 		{
-			char c = tolower(nameWas.front());
+			char c = tolower(static_cast<unsigned char>(nameWas.front()));
 			bool isVowel = (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u');
 			message = (isVowel ? "An " : "A ");
 		}
