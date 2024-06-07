@@ -193,9 +193,9 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	attributeLabels.push_back(string());
 	attributeValues.push_back(string());
 	attributesHeight += 10;
-	double shieldRegen = (attributes.Get("shield generation")
+	double shieldRegen = (attributes.Get({SHIELD_GENERATION, SHIELDS})
 		+ attributes.Get("delayed shield generation"))
-		* (1. + attributes.Get("shield generation multiplier"));
+		* (1. + attributes.Get(AttributeAccess{SHIELD_GENERATION, SHIELDS}.Multiplier()));
 	bool hasShieldRegen = shieldRegen > 0.;
 	if(hasShieldRegen)
 	{
@@ -209,9 +209,9 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 		attributeValues.push_back(Format::Number(ship.MaxShields()));
 	}
 	attributesHeight += 20;
-	double hullRepair = (attributes.Get("hull repair rate")
+	double hullRepair = (attributes.Get(AttributeAccess{HULL_REPAIR, HULL})
 		+ attributes.Get("delayed hull repair rate"))
-		* (1. + attributes.Get("hull repair multiplier"));
+		* (1. + attributes.Get(AttributeAccess{HULL_REPAIR, HULL}.Multiplier()));
 	bool hasHullRepair = hullRepair > 0.;
 	if(hasHullRepair)
 	{
@@ -379,21 +379,21 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 
 	// Add energy and heat when doing shield and hull repair to the table.
 	attributesHeight += 20;
-	double shieldEnergy = (hasShieldRegen) ? (attributes.Get("shield energy")
+	double shieldEnergy = (hasShieldRegen) ? (attributes.Get({SHIELD_GENERATION, ENERGY})
 		+ attributes.Get("delayed shield energy"))
-		* (1. + attributes.Get("shield energy multiplier")) : 0.;
-	double hullEnergy = (hasHullRepair) ? (attributes.Get("hull energy")
+		* (1. + attributes.Get(AttributeAccess{SHIELD_GENERATION, ENERGY}.Multiplier())) : 0.;
+	double hullEnergy = (hasHullRepair) ? (attributes.Get({HULL_REPAIR, ENERGY})
 		+ attributes.Get("delayed hull energy"))
-		* (1. + attributes.Get("hull energy multiplier")) : 0.;
+		* (1. + attributes.Get(AttributeAccess{HULL_REPAIR, ENERGY}.Multiplier())) : 0.;
 	tableLabels.push_back((shieldEnergy && hullEnergy) ? "shields / hull:" :
 		hullEnergy ? "repairing hull:" : "charging shields:");
 	energyTable.push_back(Format::Number(-60. * (shieldEnergy + hullEnergy)));
-	double shieldHeat = (hasShieldRegen) ? (attributes.Get("shield heat")
+	double shieldHeat = (hasShieldRegen) ? (attributes.Get({SHIELD_GENERATION, HEAT})
 		+ attributes.Get("delayed shield heat"))
-		* (1. + attributes.Get("shield heat multiplier")) : 0.;
-	double hullHeat = (hasHullRepair) ? (attributes.Get("hull heat")
+		* (1. + attributes.Get(AttributeAccess{SHIELD_GENERATION, HEAT}.Multiplier())) : 0.;
+	double hullHeat = (hasHullRepair) ? (attributes.Get({HULL_REPAIR, HEAT})
 		+ attributes.Get("delayed hull heat"))
-		* (1. + attributes.Get("hull heat multiplier")) : 0.;
+		* (1. + attributes.Get(AttributeAccess{HULL_REPAIR, HEAT}.Multiplier())) : 0.;
 	heatTable.push_back(Format::Number(60. * (shieldHeat + hullHeat)));
 
 	if(scrollingPanel)

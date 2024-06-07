@@ -2836,7 +2836,7 @@ bool Ship::IsCloaked() const
 
 double Ship::CloakingSpeed() const
 {
-	return attributes.Get("cloak") + attributes.Get("cloak by mass") * 1000. / Mass();
+	return attributes.Get({CLOAKING, CLOAK}) + attributes.Get("cloak by mass") * 1000. / Mass();
 }
 
 
@@ -2979,8 +2979,8 @@ double Ship::MaxVelocity(bool withAfterburner) const
 	// v * drag / mass == thrust / mass
 	// v * drag == thrust
 	// v = thrust / drag
-	double thrust = attributes.Get("thrust");
-	double afterburnerThrust = attributes.Get("afterburner thrust");
+	double thrust = attributes.Get({THRUSTING, THRUST});
+	double afterburnerThrust = attributes.Get({AFTERBURNING, THRUST});
 	return (thrust ? thrust + afterburnerThrust * withAfterburner : afterburnerThrust) / Drag();
 }
 
@@ -3850,34 +3850,34 @@ void Ship::DoGeneration()
 		// 4. Shields of carried fighters
 		// 5. Transfer of excess energy and fuel to carried fighters.
 
-		const double hullAvailable = (attributes.Get("hull repair rate")
+		const double hullAvailable = (attributes.Get({HULL_REPAIR, HULL})
 			+ (hullDelay ? 0 : attributes.Get("delayed hull repair rate")))
-			* (1. + attributes.Get("hull repair multiplier"));
-		const double hullEnergy = (attributes.Get("hull energy")
+			* (1. + attributes.Get(AttributeAccess{HULL_REPAIR, HULL}.Multiplier()));
+		const double hullEnergy = (attributes.Get({HULL_REPAIR, ENERGY})
 			+ (hullDelay ? 0 : attributes.Get("delayed hull energy")))
-			* (1. + attributes.Get("hull energy multiplier")) / hullAvailable;
-		const double hullFuel = (attributes.Get("hull fuel")
+			* (1. + attributes.Get(AttributeAccess{HULL_REPAIR, ENERGY}.Multiplier())) / hullAvailable;
+		const double hullFuel = (attributes.Get({HULL_REPAIR, FUEL})
 			+ (hullDelay ? 0 : attributes.Get("delayed hull fuel")))
-			* (1. + attributes.Get("hull fuel multiplier")) / hullAvailable;
-		const double hullHeat = (attributes.Get("hull heat")
+			* (1. + attributes.Get(AttributeAccess{HULL_REPAIR, FUEL}.Multiplier())) / hullAvailable;
+		const double hullHeat = (attributes.Get({HULL_REPAIR, HEAT})
 			+ (hullDelay ? 0 : attributes.Get("delayed hull heat")))
-			* (1. + attributes.Get("hull heat multiplier")) / hullAvailable;
+			* (1. + attributes.Get(AttributeAccess{HULL_REPAIR, HEAT}.Multiplier())) / hullAvailable;
 		double hullRemaining = hullAvailable;
 		DoRepair(hull, hullRemaining, MaxHull(),
 			energy, hullEnergy, fuel, hullFuel, heat, hullHeat);
 
-		const double shieldsAvailable = (attributes.Get("shield generation")
+		const double shieldsAvailable = (attributes.Get({SHIELD_GENERATION, SHIELDS})
 			+ (shieldDelay ? 0 : attributes.Get("delayed shield generation")))
-			* (1. + attributes.Get("shield generation multiplier"));
-		const double shieldsEnergy = (attributes.Get("shield energy")
+			* (1. + attributes.Get(AttributeAccess{SHIELD_GENERATION, SHIELDS}.Multiplier()));
+		const double shieldsEnergy = (attributes.Get({SHIELD_GENERATION, ENERGY})
 			+ (shieldDelay ? 0 : attributes.Get("delayed shield energy")))
-			* (1. + attributes.Get("shield energy multiplier")) / shieldsAvailable;
-		const double shieldsFuel = (attributes.Get("shield fuel")
+			* (1. + attributes.Get(AttributeAccess{SHIELD_GENERATION, ENERGY}.Multiplier())) / shieldsAvailable;
+		const double shieldsFuel = (attributes.Get({SHIELD_GENERATION, FUEL})
 			+ (shieldDelay ? 0 : attributes.Get("delayed shield fuel")))
-			* (1. + attributes.Get("shield fuel multiplier")) / shieldsAvailable;
-		const double shieldsHeat = (attributes.Get("shield heat")
+			* (1. + attributes.Get(AttributeAccess{SHIELD_GENERATION, FUEL}.Multiplier())) / shieldsAvailable;
+		const double shieldsHeat = (attributes.Get({SHIELD_GENERATION, HEAT})
 			+ (shieldDelay ? 0 : attributes.Get("delayed shield heat")))
-			* (1. + attributes.Get("shield heat multiplier")) / shieldsAvailable;
+			* (1. + attributes.Get(AttributeAccess{SHIELD_GENERATION, HEAT}.Multiplier())) / shieldsAvailable;
 		double shieldsRemaining = shieldsAvailable;
 		DoRepair(shields, shieldsRemaining, MaxShields(),
 			energy, shieldsEnergy, fuel, shieldsFuel, heat, shieldsHeat);
@@ -4190,14 +4190,14 @@ void Ship::DoCloakDecision()
 	// Attempting to cloak when the cloaking device can no longer operate (because of hull damage)
 	// will result in it being uncloaked.
 	const double minimalHullForCloak = attributes.Get("cloak hull threshold");
-	if(minimalHullForCloak && (hull / attributes.Get("hull") < minimalHullForCloak))
+	if(minimalHullForCloak && (hull / attributes.Get({PASSIVE, HULL}) < minimalHullForCloak))
 		cloakDisruption = 1.;
 
 	const double cloakingSpeed = CloakingSpeed();
-	const double cloakingFuel = attributes.Get("cloaking fuel");
-	const double cloakingEnergy = attributes.Get("cloaking energy");
-	const double cloakingHull = attributes.Get("cloaking hull");
-	const double cloakingShield = attributes.Get("cloaking shields");
+	const double cloakingFuel = attributes.Get({CLOAKING, FUEL});
+	const double cloakingEnergy = attributes.Get({CLOAKING, ENERGY});
+	const double cloakingHull = attributes.Get({CLOAKING, HULL});
+	const double cloakingShield = attributes.Get({CLOAKING, SHIELDS});
 	bool canCloak = (!isDisabled && cloakingSpeed > 0. && !cloakDisruption
 		&& fuel >= cloakingFuel && energy >= cloakingEnergy
 		&& MinimumHull() < hull - cloakingHull && shields >= cloakingShield);
@@ -4208,7 +4208,7 @@ void Ship::DoCloakDecision()
 		energy -= cloakingEnergy;
 		shields -= cloakingShield;
 		hull -= cloakingHull;
-		heat += attributes.Get("cloaking heat");
+		heat += attributes.Get({CLOAKING, HEAT});
 		double cloakingShieldDelay = attributes.Get("cloaking shield delay");
 		double cloakingHullDelay = attributes.Get("cloaking repair delay");
 		cloakingShieldDelay = (cloakingShieldDelay < 1.) ?

@@ -201,8 +201,6 @@ void Weapon::LoadWeapon(const DataNode &node)
 				else
 					child.PrintTrace("Unsupported \"" + key + "\" specification:");
 			}
-			else if(key == "turn")
-				turn = value;
 			else if(key == "turret turn")
 				turretTurn = value;
 			else if(key == "arc")
