@@ -1749,7 +1749,7 @@ void AI::MoveInFormation(Ship &ship, Command &command)
 	{
 		double facingDeltaDegrees = (formationLead->Facing() - ship.Facing()).Degrees();
 		if(abs(facingDeltaDegrees) > FACING_TOLERANCE_DEGREES)
-			command.SetTurn(facingDelta);
+			command.SetTurn(facingDeltaDegrees);
 	}
 }
 
