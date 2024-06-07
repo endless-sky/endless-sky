@@ -592,6 +592,7 @@ mission "Wanderers: Defend Vara Ke'sok"
 				launch
 	on accept
 		"reputation: Hai (Unfettered)" <?= -1
+		"reputation: Hai (Unfettered Raiders)" <?= -1
 		event "Sich'ka'ara empty"
 	on visit
 		dialog "There are still Unfettered warships overhead. You should take off again and assist in the fight."
@@ -1017,14 +1018,17 @@ mission "Wanderers: Alpha Surveillance B"
 	on enter "Ehma Ti"
 		dialog "Using the transmitter that came with the surveillance cubes, you send out the signal and receive back the encrypted fleet activity recordings."
 		"reputation: Hai (Unfettered)" <?= -1
+		"reputation: Hai (Unfettered Raiders)" <?= -1
 	waypoint "Wah Yoot"
 	on enter "Wah Yoot"
 		dialog "Using the transmitter that came with the surveillance cubes, you send out the signal and receive back the encrypted fleet activity recordings."
 		"reputation: Hai (Unfettered)" <?= -1
+		"reputation: Hai (Unfettered Raiders)" <?= -1
 	waypoint "Hi Yahr"
 	on enter "Hi Yahr"
 		dialog "Using the transmitter that came with the surveillance cubes, you send out the signal and receive back the encrypted fleet activity recordings."
 		"reputation: Hai (Unfettered)" <?= -1
+		"reputation: Hai (Unfettered Raiders)" <?= -1
 	
 	on offer
 		conversation
@@ -2013,12 +2017,33 @@ mission "Wanderers Hai Assistance Fleet"
 	invisible
 	to offer
 		has "Wanderers Hai Assistance 1: done"
+	on offer
+		event "hai blockade"
 	npc kill
 		government "Hai"
 		personality heroic staying uninterested frugal
 		system "Wah Ki"
 		fleet "Large Hai" 6
 
+# This prevents the raids from going beyond Wah Ki
+event "hai blockade"
+	system Boral
+		remove raid
+	system "Bosuno Le"
+		remove raid
+	system Ilirco
+		remove raid
+	system Zosma
+		remove raid
+
+mission "Wanderers Hai Assistance Fleet patch"
+	landing
+	invisible
+	to offer
+		has "Wanderers Hai Assistance Fleet: done"
+		not "event: hai blockade"
+	on offer
+		event "hai blockade"
 
 
 mission "Wanderers Hai Assistance 3"
