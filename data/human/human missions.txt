@@ -7836,6 +7836,7 @@ mission "Ice Queen 6"
 	description "Smuggle Ildico and her child to <destination>."
 	source "Chiron"
 	destination "Haven"
+	passengers 2
 	illegal 1250000 `Ildico Drifa is dragged away in chains for high crimes against the Republic and its most honorable servants. Her infant child is taken into the custody of the Republic. You can only watch in sad silence as they are removed from your ship. You wind up quite a bit poorer through a combination of fines and bribes (the breakdown remains somewhat unclear).`
 	stealth
 	to offer
