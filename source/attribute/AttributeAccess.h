@@ -19,6 +19,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "AttributeCategory.h"
 #include "AttributeEffectType.h"
 
+#include <optional>
+
 class AttributeAccess {
 public:
 	AttributeAccess(const AttributeCategory category, const AttributeEffectType effect);
@@ -56,6 +58,9 @@ public:
 	// Checks if this effect, when used with the PASSIVE category, denotes a capacity or a
 	// passively applied effect.
 	static bool IsCapacity(const AttributeEffectType type);
+	// Gets the basic effect of an attribute category. This is the effect used when
+	// the category is used in a node with a value directly applied to it.
+	static std::optional<AttributeEffectType> GetBaseEffect(const AttributeCategory category);
 
 	// Gets the default minimum value for this attribute.
 	double GetDefaultMinimum() const;

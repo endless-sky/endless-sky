@@ -191,21 +191,39 @@ void AttributeStore::Load(const DataNode &node) {
 void AttributeStore::Save(DataWriter &writer) const
 {
 	for(auto &it : textAttributes)
-		writer.Write(it.first, it.second);
+		if(it.second)
+			writer.Write(it.first, it.second);
 	for(auto &it : categorizedAttributes)
 	{
+		// The node containing every effect of this attribute category
 		DataNode node;
 		node.AddToken(Attribute::GetCategoryName(it.first));
+		// The base effect of the attribute that is put on the category's line
+		optional<AttributeEffectType> baseEffect = AttributeAccess::GetBaseEffect(it.first);
 		for(auto &entry : it.second.Effects())
 		{
-			DataNode child(&node);
-			child.AddToken(Attribute::GetEffectName(entry.second.Type()));
+			if(!entry.second.Value())
+				continue;
+
 			ostringstream temp;
 			temp << entry.second.Value();
-			child.AddToken(temp.str());
-			node.AddChild(child);
+
+			// Add the value to the category of as a new effect.
+			if(baseEffect.has_value() && baseEffect.value() == entry.first)
+				node.AddToken(temp.str());
+			else
+			{
+				DataNode child(&node);
+				child.AddToken(Attribute::GetEffectName(entry.second.Type()));
+				child.AddToken(temp.str());
+				node.AddChild(child);
+			}
 		}
-		writer.Write(node);
+		if(node.Size() == 1 && baseEffect.has_value())
+			node.AddToken("0");
+
+		if(node.HasChildren())
+			writer.Write(node);
 	}
 }
 

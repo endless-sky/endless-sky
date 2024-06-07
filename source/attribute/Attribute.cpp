@@ -26,9 +26,7 @@ const string Attribute::effectNames[] = {"shields", "hull", "thrust", "reverse t
 										"ion", "scramble", "slowing", "disruption", "disabled", "minable", "piercing"};
 
 // Some category names are always the same as the corresponding effect names.
-// The last two entries both correspond to PASSIVE, as it can denote both capacity
-// and passively applied effects (such as cooling).
-const string Attribute::categoryNames[] = {"shield generation", "hull repair rate",
+const string Attribute::categoryNames[] = {"shield generation", "hull repair",
 										GetEffectName(THRUST), GetEffectName(REVERSE_THRUST), GetEffectName(TURN), GetEffectName(ACTIVE_COOLING),
 										GetEffectName(RAMSCOOP), GetEffectName(CLOAK), "afterburner thrust", "firing", "protection",
 										"resistance", "damage", "capacity"};
@@ -37,7 +35,8 @@ const string Attribute::categoryNames[] = {"shield generation", "hull repair rat
 
 
 namespace {
-	// Cached mappings between the two formats. The indexing of newToOld is offset by one compared to the enum values.
+	// Cached mappings between the two formats.
+	// Any attribute without an effect will not be present in newToOld.
 	map<string, Attribute> oldToNew = {
 			{"capacity", Attribute(PASSIVE)},
 			{"energy capacity", AttributeAccess(PASSIVE, ENERGY)},
@@ -222,7 +221,8 @@ namespace {
 			{"burn damage", AttributeAccess(DAMAGE, BURN)}
 	};
 
-	map<AttributeAccess, string> newToOld = []() {
+	// Mapping of new-style AttributeAccess to legacy names.
+	map<AttributeAccess, string> newToOld = [](){
 		map<AttributeAccess, string> m;
 		for(const auto &it : oldToNew)
 			for(const auto &effect : it.second.Effects()) // There should only be a single effect
@@ -230,13 +230,27 @@ namespace {
 		return m;
 	}();
 
-	map<string, AttributeEffectType> allEffects = []()
-	{
+	// The name of every individual effect, as used within category nodes.
+	map<string, AttributeEffectType> allEffects = [](){
 		map<string, AttributeEffectType> names;
 		for(int i = 0; i < 4 * ATTRIBUTE_EFFECT_COUNT; i++)
 		{
 			AttributeEffectType type = static_cast<AttributeEffectType>(i);
 			names.emplace(Attribute::GetEffectName(type), type);
+		}
+		return names;
+	}();
+
+	// The name of every category that has a base attribute. These categories can have a value defined in their node,
+	// while others have to define all their effects in their children.
+	map<string, Attribute> allBaseAttributes = [](){
+		map<string, Attribute> names;
+		for(int i = 0; i < 4 * ATTRIBUTE_CATEGORY_COUNT; i++)
+		{
+			AttributeCategory category = static_cast<AttributeCategory>(i);
+			optional<AttributeEffectType> effect = AttributeAccess::GetBaseEffect(category);
+			if(effect.has_value())
+				names.emplace(Attribute::GetCategoryName(category), AttributeAccess(category, effect.value()));
 		}
 		return names;
 	}();
@@ -329,15 +343,23 @@ string Attribute::GetLegacyName(const AnyAttribute &attribute)
 // Gets the attribute for the specified token, if any.
 Attribute *Attribute::Parse(const string &token)
 {
+	// Check if it's a legacy attribute name.
 	auto it = oldToNew.find(token);
 	if(it == oldToNew.end())
-		return nullptr;
+	{
+		// Check if it's a category name.
+		auto it = allBaseAttributes.find(token);
+		if(it == allBaseAttributes.end())
+			return nullptr;
+		return &(it->second);
+	}
 	return &(it->second);
 }
 
 
 
 // Applies the effect from the token to this attribute.
+// The node is a single attribute effect within an attribute category node.
 void Attribute::Parse(const DataNode &node)
 {
 	const string &text = node.Token(0);
@@ -354,7 +376,6 @@ void Attribute::Parse(const DataNode &node)
 	}
 	else
 		node.PrintTrace("Skipping attribute effect without value:");
-
 }
 
 

@@ -39,6 +39,7 @@ public:
 	static Attribute *Parse(const std::string &token);
 
 	// Applies the effect from the token to this attribute.
+	// The node is a single attribute effect within an attribute category node.
 	void Parse(const DataNode &node);
 
 	// Parses an attribute into an AttributeAccess or the original string.

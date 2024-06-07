@@ -178,6 +178,22 @@ bool AttributeAccess::IsCapacity(const AttributeEffectType effect)
 
 
 
+// Gets the basic effect of an attribute category. This is the effect used when
+// the category is used in a node with a value directly applied to it.
+optional<AttributeEffectType> AttributeAccess::GetBaseEffect(const AttributeCategory category)
+{
+	// Categories until CLOAKING correspond to their effects
+	if(category <= CLOAKING)
+		return static_cast<AttributeEffectType>(category);
+	// Composite categories always have their own composite effect as the default
+	AttributeEffectType effect = GetCategoryEffect(category);
+	if(effect >= 0)
+		return effect;
+	return std::nullopt;
+}
+
+
+
 // Gets the default minimum value for this attribute.
 double AttributeAccess::GetDefaultMinimum() const
 {
