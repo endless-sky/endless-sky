@@ -76,7 +76,7 @@ formation "Vic small"
 
 # Stable X or + shaped formation that doesn't rotate with the flagship.
 # For warship-sized escorts
-formation "X stable medium "
+formation "X stable medium"
 	rotatable 0
 	position 200 0
 	position -200 0
