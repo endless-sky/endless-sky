@@ -65,8 +65,6 @@ public:
 	const AttributeEffect *GetEffect(const AttributeEffectType type) const;
 	AttributeEffect *GetEffect(const AttributeEffectType type);
 
-	Attribute &operator=(Attribute &other) = delete;
-
 	// Category-based comparators
 	template <class A>
 	bool operator==(const A &other) const;
