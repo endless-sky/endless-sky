@@ -3313,7 +3313,7 @@ mission "Bounty Hunting (Small, Local)"
 
 mission "Bounty Hunting (Medium)"
 	name "Wanted pirate near <system>"
-	description "A sizeable pirate warship named the <npc> has been attacking merchants a jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
+	description "A sizable pirate warship named the <npc> has been attacking merchants a jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 14
@@ -3351,7 +3351,7 @@ mission "Bounty Hunting (Medium)"
 
 mission "Bounty Hunting (Medium, Local)"
 	name "Wanted pirate entering <system>"
-	description "A sizeable pirate warship named the <npc> has been attacking merchants in nearby star systems, and is reportedly entering this system. Destroy it by <day> for payment (<payment>)."
+	description "A sizable pirate warship named the <npc> has been attacking merchants in nearby star systems, and is reportedly entering this system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 3
