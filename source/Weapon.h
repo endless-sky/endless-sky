@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 
 #include <cstddef>
+#include <cstdint>
 #include <map>
 #include <utility>
 #include <vector>
@@ -89,6 +90,8 @@ public:
 
 	int MissileStrength() const;
 	int AntiMissile() const;
+	double TractorBeam() const;
+	uint16_t PenetrationCount() const noexcept;
 	// Weapons of the same type will alternate firing (streaming) rather than
 	// firing all at once (clustering) if the weapon is not an anti-missile and
 	// is not vulnerable to anti-missile, or has the "stream" attribute.
@@ -106,6 +109,7 @@ public:
 	double Inaccuracy() const;
 	std::pair<Distribution::Type, bool> InaccuracyDistribution() const;
 	double TurretTurn() const;
+	double Arc() const;
 
 	double Tracking() const;
 	double OpticalTracking() const;
@@ -152,6 +156,14 @@ public:
 	// Gravitational weapons deal the same amount of hit force to a ship regardless
 	// of its mass.
 	bool IsGravitational() const;
+	// True if this projectile should create an explosion at the end of its lifetime
+	// instead of simply disappearing or only creating a die effect. Blast radius
+	// weapons will cause a blast at the end of their lifetime.
+	bool IsFused() const;
+	// Whether projectiles from this weapon can directly collide with objects.
+	bool CanCollideShips() const;
+	bool CanCollideAsteroids() const;
+	bool CanCollideMinables() const;
 
 	// These values include all submunitions:
 	// Normal damage types:
@@ -184,6 +196,8 @@ public:
 	bool DoesDamage() const;
 
 	double Piercing() const;
+
+	double Prospecting() const;
 
 	double TotalLifetime() const;
 	double Range() const;
@@ -241,6 +255,10 @@ private:
 	bool isPhasing = false;
 	bool isDamageScaled = true;
 	bool isGravitational = false;
+	bool isFused = false;
+	bool canCollideShips = true;
+	bool canCollideAsteroids = true;
+	bool canCollideMinables = true;
 	// Guns and missiles are by default aimed a converged point at the
 	// maximum weapons range in front of the ship. When either the installed
 	// weapon or the gun-port (or both) have the isParallel attribute set
@@ -259,6 +277,11 @@ private:
 
 	int missileStrength = 0;
 	int antiMissile = 0;
+	double tractorBeam = 0.;
+	// Use of an unsigned integer allows explicit penetration count values of 0
+	// to result in a projectile that will hit 65k targets before being destroyed
+	// (which is effectively infinite under any reasonable balance).
+	uint16_t penetrationCount = 1U;
 
 	double velocity = 0.;
 	double randomVelocity = 0.;
@@ -268,10 +291,11 @@ private:
 
 	double turn = 0.;
 	double inaccuracy = 0.;
-	// A pair representing the disribution type of this weapon's inaccuracy
+	// A pair representing the distribution type of this weapon's inaccuracy
 	// and whether it is inverted
 	std::pair<Distribution::Type, bool> inaccuracyDistribution = {Distribution::Type::Triangular, false};
 	double turretTurn = 0.;
+	double maxAngle = 360.;
 
 	double tracking = 0.;
 	double opticalTracking = 0.;
@@ -282,6 +306,39 @@ private:
 	double triggerRadius = 0.;
 	double blastRadius = 0.;
 	double safeRange = 0.;
+
+	static const int DAMAGE_TYPES = 23;
+	static const int HIT_FORCE = 0;
+	// Normal damage types:
+	static const int SHIELD_DAMAGE = 1;
+	static const int HULL_DAMAGE = 2;
+	static const int DISABLED_DAMAGE = 3;
+	static const int MINABLE_DAMAGE = 4;
+	static const int FUEL_DAMAGE = 5;
+	static const int HEAT_DAMAGE = 6;
+	static const int ENERGY_DAMAGE = 7;
+	// Status effects:
+	static const int ION_DAMAGE = 8;
+	static const int WEAPON_JAMMING_DAMAGE = 9;
+	static const int DISRUPTION_DAMAGE = 10;
+	static const int SLOWING_DAMAGE = 11;
+	static const int DISCHARGE_DAMAGE = 12;
+	static const int CORROSION_DAMAGE = 13;
+	static const int LEAK_DAMAGE = 14;
+	static const int BURN_DAMAGE = 15;
+	// Relative damage types:
+	static const int RELATIVE_SHIELD_DAMAGE = 16;
+	static const int RELATIVE_HULL_DAMAGE = 17;
+	static const int RELATIVE_DISABLED_DAMAGE = 18;
+	static const int RELATIVE_MINABLE_DAMAGE = 19;
+	static const int RELATIVE_FUEL_DAMAGE = 20;
+	static const int RELATIVE_HEAT_DAMAGE = 21;
+	static const int RELATIVE_ENERGY_DAMAGE = 22;
+	mutable double damage[DAMAGE_TYPES] = {};
+
+	double piercing = 0.;
+
+	double prospecting = 0.;
 
 	double rangeOverride = 0.;
 	double velocityOverride = 0.;
@@ -317,6 +374,8 @@ inline int Weapon::Homing() const { return homing; }
 
 inline int Weapon::MissileStrength() const { return missileStrength; }
 inline int Weapon::AntiMissile() const { return antiMissile; }
+inline double Weapon::TractorBeam() const { return tractorBeam; }
+inline uint16_t Weapon::PenetrationCount() const noexcept { return penetrationCount; }
 inline bool Weapon::IsStreamed() const { return isStreamed; }
 
 inline double Weapon::Velocity() const { return velocity; }
@@ -328,6 +387,7 @@ inline const Point &Weapon::HardpointOffset() const { return hardpointOffset; }
 
 inline double Weapon::Turn() const { return turn; }
 inline double Weapon::TurretTurn() const { return turretTurn; }
+inline double Weapon::Arc() const { return maxAngle; }
 
 inline double Weapon::Tracking() const { return tracking; }
 inline double Weapon::OpticalTracking() const { return opticalTracking; }
@@ -357,6 +417,8 @@ inline double Weapon::RelativeFiringShields() const{ return Get(AttributeAccess(
 
 inline double Weapon::Piercing() const { return Get({DAMAGE, PIERCING}); }
 
+inline double Weapon::Prospecting() const { return prospecting; }
+
 inline double Weapon::SplitRange() const { return splitRange; }
 inline double Weapon::TriggerRadius() const { return triggerRadius; }
 inline double Weapon::BlastRadius() const { return blastRadius; }
@@ -367,6 +429,10 @@ inline bool Weapon::IsSafe() const { return isSafe; }
 inline bool Weapon::IsPhasing() const { return isPhasing; }
 inline bool Weapon::IsDamageScaled() const { return isDamageScaled; }
 inline bool Weapon::IsGravitational() const { return isGravitational; }
+inline bool Weapon::IsFused() const { return isFused; }
+inline bool Weapon::CanCollideShips() const { return canCollideShips; }
+inline bool Weapon::CanCollideAsteroids() const { return canCollideAsteroids; }
+inline bool Weapon::CanCollideMinables() const { return canCollideMinables; }
 
 inline double Weapon::ShieldDamage() const { return TotalDamage(SHIELDS); }
 inline double Weapon::HullDamage() const { return TotalDamage(HULL); }

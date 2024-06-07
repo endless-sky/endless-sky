@@ -109,7 +109,13 @@ void DataFile::LoadData(const string &data)
 	size_t lineNumber = 0;
 
 	size_t end = data.length();
-	for(size_t pos = 0; pos < end; )
+
+	size_t pos = 0;
+	// If the first character is the UTF8 byte order mark (BOM), skip it.
+	if(!Utf8::IsBOM(Utf8::DecodeCodePoint(data, pos)))
+		pos = 0;
+
+	while(pos < end)
 	{
 		++lineNumber;
 		size_t tokenPos = pos;

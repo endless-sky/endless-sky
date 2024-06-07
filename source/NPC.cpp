@@ -59,6 +59,8 @@ namespace {
 				return "on destroy";
 			case NPC::Trigger::KILL:
 				return "on kill";
+			case NPC::Trigger::ENCOUNTER:
+				return "on encounter";
 			default:
 				return "unknown trigger";
 		}
@@ -197,7 +199,8 @@ void NPC::Load(const DataNode &node)
 				{"board", Trigger::BOARD},
 				{"capture", Trigger::CAPTURE},
 				{"destroy", Trigger::DESTROY},
-				{"kill", Trigger::KILL}
+				{"kill", Trigger::KILL},
+				{"encounter", Trigger::ENCOUNTER},
 			};
 			auto it = trigger.find(child.Token(1));
 			if(it != trigger.end())
@@ -747,6 +750,7 @@ void NPC::DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, U
 		{ShipEvent::BOARD, {Trigger::BOARD}},
 		{ShipEvent::CAPTURE, {Trigger::CAPTURE, Trigger::KILL}},
 		{ShipEvent::DESTROY, {Trigger::DESTROY, Trigger::KILL}},
+		{ShipEvent::ENCOUNTER, {Trigger::ENCOUNTER}},
 	};
 
 	int type = event.Type();
@@ -778,7 +782,8 @@ void NPC::DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, U
 			{Trigger::BOARD, ShipEvent::BOARD},
 			{Trigger::CAPTURE, ShipEvent::CAPTURE},
 			{Trigger::DESTROY, ShipEvent::DESTROY},
-			{Trigger::KILL, ShipEvent::CAPTURE | ShipEvent::DESTROY}
+			{Trigger::KILL, ShipEvent::CAPTURE | ShipEvent::DESTROY},
+			{Trigger::ENCOUNTER, ShipEvent::ENCOUNTER},
 		};
 
 		// Some Triggers cannot be met if any of the ships in this NPC have certain events.
@@ -792,10 +797,10 @@ void NPC::DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, U
 		const auto excludedIt = triggerExclusions.find(trigger);
 		const int excludedEvents = excludedIt == triggerExclusions.end() ? 0 : excludedIt->second;
 
-		// The PROVOKE Trigger only requires a single ship to receive the
+		// The PROVOKE and ENCOUNTER Triggers only requires a single ship to receive the
 		// event in order to run. All other Triggers require that all ships
 		// be affected.
-		if(trigger == Trigger::PROVOKE || all_of(ships.begin(), ships.end(),
+		if(trigger == Trigger::ENCOUNTER || trigger == Trigger::PROVOKE || all_of(ships.begin(), ships.end(),
 				[&](const shared_ptr<Ship> &ship) -> bool
 				{
 					auto it = shipEvents.find(ship.get());
