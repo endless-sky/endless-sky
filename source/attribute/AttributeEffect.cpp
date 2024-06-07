@@ -98,7 +98,7 @@ void AttributeEffect::Add(const double amount)
 // Sets the effect's value to the specified amount.
 void AttributeEffect::Set(const double amount)
 {
-	value = std::max(min, amount);
+	value = std::fmax(min, amount);
 	if(value && fabs(value) < EPS)
 		value = 0;
 }
