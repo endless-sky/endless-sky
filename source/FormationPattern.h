@@ -189,7 +189,7 @@ private:
 private:
 	// Name of the formation pattern.
 	std::string name;
-	// Indicates if the formation is rotatable, a value of -1 means not
+	// Indicates if the formation is rotatable. A value of -1 means not
 	// rotatable, while a positive value is taken as the rotation angle
 	// in relation to the full 360 degrees full angle:
 	// Square and Diamond shapes could get a value of 90, since you can

@@ -378,7 +378,7 @@ void AI::IssueFormationChange(const PlayerInfo &player)
 		}
 	}
 
-	// Now determine what formationPattern to set.
+	// Now determine what formation pattern to set.
 	if(!toSet)
 		// If no pattern was set at all, then we set the first one from the set of formationPatterns.
 		toSet = &(formationPatterns.begin()->second);
@@ -608,7 +608,7 @@ void AI::Clean()
 	miningRadius.clear();
 	miningTime.clear();
 	appeasementThreshold.clear();
-	// Records for formations flying around leadships and other objects.
+	// Records for formations flying around lead ships and other objects.
 	formations.clear();
 	// Records that affect the combat behavior of various governments.
 	shipStrength.clear();

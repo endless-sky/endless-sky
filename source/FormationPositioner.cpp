@@ -172,8 +172,8 @@ void FormationPositioner::Tally(const Body &body)
 
 void FormationPositioner::CalculateDirection()
 {
-	// Calculate new direction, if the formationLead is moving, then we use the movement vector.
-	// Otherwise we use the facing vector.
+	// Calculate new direction. If the formationLead is moving, then we use the movement vector,
+	// otherwise use the facing vector.
 	Point velocity = formationLead->Velocity();
 	Angle desiredDir = velocity.Length() > .1 ? Angle(velocity) : formationLead->Facing();
 
@@ -219,10 +219,7 @@ void FormationPositioner::CalculateDirection()
 		// about 12 seconds.
 		constexpr double MAX_FORMATION_TURN = .25;
 
-		if(deltaDir.Degrees() > MAX_FORMATION_TURN)
-			deltaDir = Angle(MAX_FORMATION_TURN);
-		else if(deltaDir.Degrees() < -MAX_FORMATION_TURN)
-			deltaDir = Angle(-MAX_FORMATION_TURN);
+		deltaDir = Angle(std::clamp(deltaDir.Degrees(), -MAX_FORMATION_TURN, MAX_FORMATION_TURN))
 
 		direction += deltaDir;
 	}
