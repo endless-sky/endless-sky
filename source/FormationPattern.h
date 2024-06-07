@@ -196,6 +196,9 @@ private:
 	// rotate such a shape over 90 degrees and still have the same shape.
 	// Triangles could get a value of 120, since you can rotate them over
 	// 120 degrees and again get the same shape.
+	// A value of 0 means that the formation can be rotated in any way and
+	// still be fine. This could be used for shapes like (perfect) circles
+	// and for formations where rotation just shouldn't happen.
 	int rotatable = -1;
 	// Indicates if the formation is flippable along the longitudinal axis.
 	bool flippableY = false;
