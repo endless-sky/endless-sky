@@ -7485,7 +7485,7 @@ mission "Stone to Hope"
 				decline
 
 			label hopeprice
-			`	He grimances, as if he was just punched in the gut. "I am sorry, ser. We're just poor laborers. Work is hard to come by for us refugees. I thought - I thought I'd just ask. In case you were near. In case it was within your power is all."`
+			`	He grimaces, as if he was just punched in the gut. "I am sorry, ser. We're just poor laborers. Work is hard to come by for us refugees. I thought - I thought I'd just ask. In case you were near. In case it was within your power is all."`
 			`	His eyes remain downcast and tears slide down his smooth face. His whole body seems to shake with the shame of what he just admitted.`
 			choice
 				`	"I might be in the area. No promises though.`
