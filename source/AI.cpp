@@ -117,6 +117,25 @@ namespace {
 		return true;
 	}
 
+	bool EscortsReadyToLand(const Ship &ship)
+	{
+		bool shipIsYours = ship.IsYours();
+		const Government *gov = ship.GetGovernment();
+		for(const weak_ptr<Ship> &ptr : ship.GetEscorts())
+		{
+			shared_ptr<const Ship> escort = ptr.lock();
+			// Skip escorts which are not player-owned and not escort mission NPCs.
+			if(!escort || (shipIsYours && !escort->IsYours() && (!escort->GetPersonality().IsEscort()
+				|| gov->IsEnemy(escort->GetGovernment()))))
+				continue;
+			if(escort->IsDisabled())
+				continue;
+			if(escort->GetTargetStellar() == ship.GetTargetStellar() && !escort->CanLand())
+				return false;
+		}
+		return true;
+	}
+
 	// Determine if the ship has any usable weapons.
 	bool IsArmed(const Ship &ship)
 	{
@@ -376,7 +395,7 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 	// Only toggle the "cloak" command if one of your ships has a cloaking device.
 	if(activeCommands.Has(Command::CLOAK))
 		for(const auto &it : player.Ships())
-			if(!it->IsParked() && it->Attributes().Get("cloak"))
+			if(!it->IsParked() && it->CloakingSpeed())
 			{
 				isCloaking = !isCloaking;
 				Messages::Add(isCloaking ? "Engaging cloaking device." : "Disengaging cloaking device."
@@ -428,8 +447,9 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 		{
 			shared_ptr<Ship> ship = it->second.target.lock();
 			shared_ptr<Minable> asteroid = it->second.targetAsteroid.lock();
-			// Check if the target ship itself is targetable.
-			bool invalidTarget = !ship || !ship->IsTargetable() || (ship->IsDisabled() && it->second.type == Orders::ATTACK);
+			// Check if the target ship itself is targetable, or if it is one of your ship that you targeted.
+			bool invalidTarget = !ship || (!ship->IsTargetable() && it->first->GetGovernment() != ship->GetGovernment()) ||
+				(ship->IsDisabled() && it->second.type == Orders::ATTACK);
 			// Alternately, if an asteroid is targeted, then not an invalid target.
 			invalidTarget &= !asteroid;
 			// Check if the target ship is in a system where we can target.
@@ -675,7 +695,8 @@ void AI::Step(Command &activeCommands)
 			// Each ship only switches targets twice a second, so that it can
 			// focus on damaging one particular ship.
 			targetTurn = (targetTurn + 1) & 31;
-			if(targetTurn == step || !target || target->IsDestroyed() || (target->IsDisabled() && personality.Disables())
+			if(targetTurn == step || !target || target->IsDestroyed() || (target->IsDisabled() &&
+					(personality.Disables() || (target->CanBeCarried() && !personality.IsVindictive())))
 					|| (target->IsFleeing() && personality.IsMerciful()) || !target->IsTargetable())
 			{
 				target = FindTarget(*it);
@@ -1225,9 +1246,9 @@ bool AI::CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel) con
 		return false;
 
 	// Fighters, drones, and disabled / absent ships can't offer assistance.
-	if(helper.CanBeCarried() || helper.GetSystem() != ship.GetSystem()
-			|| (helper.Cloaking() == 1. && helper.GetGovernment() != ship.GetGovernment())
-			|| helper.IsDisabled() || helper.IsOverheated() || helper.IsHyperspacing())
+	if(helper.CanBeCarried() || helper.GetSystem() != ship.GetSystem() ||
+			(helper.GetGovernment() != ship.GetGovernment() && helper.CannotAct(Ship::ActionType::COMMUNICATION))
+			|| helper.IsOverheated() || helper.IsHyperspacing())
 		return false;
 
 	// An enemy cannot provide assistance, and only ships of the same government will repair disabled ships.
@@ -1395,7 +1416,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	if(!target && person.IsVindictive())
 	{
 		target = ship.GetTargetShip();
-		if(target && (target->Cloaking() == 1. || target->GetSystem() != ship.GetSystem()))
+		if(target && (target->IsCloaked() || target->GetSystem() != ship.GetSystem()))
 			target.reset();
 	}
 
@@ -1895,7 +1916,8 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 	// If the parent is in-system and planning to jump, non-staying escorts should follow suit.
 	else if(parent.Commands().Has(Command::JUMP) && parent.GetTargetSystem() && !isStaying)
 	{
-		SelectRoute(ship, parent.GetTargetSystem());
+		if(parent.GetTargetSystem() != ship.GetTargetSystem())
+			SelectRoute(ship, parent.GetTargetSystem());
 
 		if(ship.GetTargetSystem())
 		{
@@ -2004,6 +2026,7 @@ bool AI::CanRefuel(const Ship &ship, const StellarObject *target)
 
 	return true;
 }
+
 
 
 // Set the ship's target system or planet in order to reach the
@@ -2202,7 +2225,14 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition,
 	bool isFacing = (dp.Unit().Dot(angle.Unit()) > .95);
 	if(!isClose || (!isFacing && !shouldReverse))
 		command.SetTurn(TurnToward(ship, dp));
-	if(isFacing)
+	// Drag is not applied when not thrusting, so stop thrusting when close to max speed
+	// to save energy. Work with a slightly lower maximum velocity to avoid border cases.
+	// In order for a ship to use their afterburner, they must also have the forward
+	// command active. Therefore, if this ship should use its afterburner, use the
+	// max velocity with afterburner thrust included.
+	double maxVelocity = ship.MaxVelocity(ShouldUseAfterburner(ship)) * .99;
+	if(isFacing && (velocity.LengthSquared() <= maxVelocity * maxVelocity
+			|| dp.Unit().Dot(velocity.Unit()) < .95))
 		command |= Command::FORWARD;
 	else if(shouldReverse)
 	{
@@ -2990,18 +3020,18 @@ bool AI::DoCloak(Ship &ship, Command &command)
 {
 	if(ship.GetPersonality().IsDecloaked())
 		return false;
-
-	const Outfit &attributes = ship.Attributes();
-	if(!attributes.Get("cloak"))
+	double cloakingSpeed = ship.CloakingSpeed();
+	if(!cloakingSpeed)
 		return false;
-
 	// Never cloak if it will cause you to be stranded.
-	double fuelCost = attributes.Get("cloaking fuel") + attributes.Get("fuel consumption")
-		- attributes.Get("fuel generation");
-	if(attributes.Get("cloaking fuel") && !attributes.Get("ramscoop"))
+	const Outfit &attributes = ship.Attributes();
+	double cloakingFuel = attributes.Get("cloaking fuel");
+	double fuelCost = cloakingFuel
+		+ attributes.Get("fuel consumption") - attributes.Get("fuel generation");
+	if(cloakingFuel && !attributes.Get("ramscoop"))
 	{
 		double fuel = ship.Fuel() * attributes.Get("fuel capacity");
-		int steps = ceil((1. - ship.Cloaking()) / attributes.Get("cloak"));
+		int steps = ceil((1. - ship.Cloaking()) / cloakingSpeed);
 		// Only cloak if you will be able to fully cloak and also maintain it
 		// for as long as it will take you to reach full cloak.
 		fuel -= fuelCost * (1 + 2 * steps);
@@ -3355,7 +3385,7 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 			{
 				// Get the index of this weapon.
 				int index = &hardpoint - &ship.Weapons().front();
-				double offset = (hardpoint.HarmonizedAngle() - hardpoint.GetAngle()).Degrees();
+				double offset = (hardpoint.GetIdleAngle() - hardpoint.GetAngle()).Degrees();
 				command.SetAim(index, offset / hardpoint.GetOutfit()->TurretTurn());
 			}
 		return;
@@ -3373,8 +3403,12 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 				if(!previous && (Random::Int(60)))
 					continue;
 
-				Angle centerAngle = Angle(hardpoint.GetPoint());
-				double bias = (centerAngle - hardpoint.GetAngle()).Degrees() / 180.;
+				// Sweep between the min and max arc.
+				Angle centerAngle = Angle(hardpoint.GetIdleAngle());
+				const Angle minArc = hardpoint.GetMinArc();
+				const Angle maxArc = hardpoint.GetMaxArc();
+				const double arcMiddleDegrees = (minArc.AbsDegrees() + maxArc.AbsDegrees()) / 2.;
+				double bias = (centerAngle - hardpoint.GetAngle()).Degrees() / min(arcMiddleDegrees, 180.);
 				double acceleration = Random::Real() - Random::Real() + bias;
 				command.SetAim(index, previous + .1 * acceleration);
 			}
@@ -3436,7 +3470,32 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 				}
 
 				// Determine how much the turret must turn to face that vector.
-				double degrees = (Angle(p) - aim).Degrees();
+				double degrees = 0.;
+				Angle angleToPoint = Angle(p);
+				if(hardpoint.IsOmnidirectional())
+					degrees = (angleToPoint - aim).Degrees();
+				else
+				{
+					// For turret with limited arc, determine the turn up to the nearest arc limit.
+					// Also reduce priority of target if it's not within the firing arc.
+					const Angle facing = ship.Facing();
+					const Angle minArc = hardpoint.GetMinArc() + facing;
+					const Angle maxArc = hardpoint.GetMaxArc() + facing;
+					if(!angleToPoint.IsInRange(minArc, maxArc))
+					{
+						// Decrease the priority of the target.
+						rendezvousTime += 2. * weapon->TotalLifetime();
+
+						// Point to the nearer edge of the arc.
+						const double minDegree = (minArc - angleToPoint).Degrees();
+						const double maxDegree = (maxArc - angleToPoint).Degrees();
+						if(fabs(minDegree) < fabs(maxDegree))
+							angleToPoint = minArc;
+						else
+							angleToPoint = maxArc;
+					}
+					degrees = (angleToPoint - minArc).AbsDegrees() - (aim - minArc).AbsDegrees();
+				}
 				double turnTime = fabs(degrees) / weapon->TurretTurn();
 				// Always prefer targets that you are able to hit.
 				double score = turnTime + (180. / weapon->TurretTurn()) * rendezvousTime;
@@ -3461,7 +3520,7 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool isFlagship) const
 {
 	const Personality &person = ship.GetPersonality();
-	if(person.IsPacifist() || ship.CannotAct())
+	if(person.IsPacifist() || ship.CannotAct(Ship::ActionType::FIRE))
 		return;
 
 	bool beFrugal = (ship.IsYours() && !escortsUseAmmo);
@@ -3738,6 +3797,7 @@ double AI::RendezvousTime(const Point &p, const Point &v, double vp)
 }
 
 
+
 // Searches every asteroid within the ship scan limit and returns either the
 // asteroid closest to the ship or the asteroid of highest value in range, depending
 // on the player's preferences.
@@ -3841,8 +3901,8 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 		size_t missions = 0;
 		for(const Mission &mission : player.Missions())
 		{
-			// Don't include invisible missions in the check.
-			if(!mission.IsVisible())
+			// Don't include invisible and failed missions in the check.
+			if(!mission.IsVisible() || mission.IsFailed(player))
 				continue;
 
 			// If the accessible destination of a mission is in this system, and you've been
@@ -4364,6 +4424,9 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 
 	if(autoPilot.Has(Command::LAND) || (autoPilot.Has(Command::JUMP | Command::FLEET_JUMP) && isWormhole))
 	{
+		if(activeCommands.Has(Command::WAIT) || (autoPilot.Has(Command::FLEET_JUMP) && !EscortsReadyToLand(ship)))
+			command |= Command::WAIT;
+
 		if(ship.GetPlanet())
 			autoPilot.Clear(Command::LAND | Command::JUMP | Command::FLEET_JUMP);
 		else

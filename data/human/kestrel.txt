@@ -16,9 +16,12 @@ mission "Kestrel Testing"
 	description "Travel to the <waypoints> system to fight and disable a prototype warship that Tarazed Corporation is testing. Do not destroy the ship, or you will lose your payment and your opportunity to buy one."
 	source "Wayfarer"
 	waypoint "Umbral"
+	# The Kestrel is a secret that can only be unlocked after completing the rest of the game. Combat rating is used to track gameplay progression.
+	# After finding the Kestrel once, the threshold is lowered so players can use the ship during the human campaign on a later playthrough.
+	# Any requests to reduce the requirements will be rejected.
 	to offer
 		or
-			"combat rating" > 8000
+			"combat rating" > 6000
 			and
 				"combat rating" > 2000
 				has "global: unlocked kestrel"
@@ -246,23 +249,32 @@ mission "Kestrel Available"
 				decline
 
 
+shipyard "Kestrel"
 
 event "kestrel available: more weapons"
 	set "kestrel available"
-	shipyard "Tarazed Advanced"
+	shipyard "Kestrel"
 		"Kestrel (More Weapons)"
+	planet Wayfarer
+		add shipyard "Kestrel"
 event "kestrel available: more engines"
 	set "kestrel available"
-	shipyard "Tarazed Advanced"
+	shipyard "Kestrel"
 		"Kestrel (More Engines)"
+	planet Wayfarer
+		add shipyard "Kestrel"
 event "kestrel available: more shields"
 	set "kestrel available"
-	shipyard "Tarazed Advanced"
+	shipyard "Kestrel"
 		"Kestrel (More Shields)"
+	planet Wayfarer
+		add shipyard "Kestrel"
 event "kestrel available: more bays"
 	set "kestrel available"
-	shipyard "Tarazed Advanced"
+	shipyard "Kestrel"
 		"Kestrel (More Bays)"
+	planet Wayfarer
+		add shipyard "Kestrel"
 
 
 ship "Unknown Ship Type"
@@ -275,9 +287,9 @@ ship "Unknown Ship Type"
 		"hull" 7200
 		"required crew" 64
 		"bunks" 128
-		"mass" 740
-		"drag" 11
-		"heat dissipation" .6
+		"mass" 2135
+		"drag" 20.9
+		"heat dissipation" .32
 		"fuel capacity" 500
 		"cargo space" 120
 		"outfit space" 810
@@ -332,9 +344,9 @@ ship "Kestrel"
 		"hull" 7200
 		"required crew" 64
 		"bunks" 128
-		"mass" 740
-		"drag" 11
-		"heat dissipation" .6
+		"mass" 2135
+		"drag" 20.9
+		"heat dissipation" .32
 		"fuel capacity" 500
 		"cargo space" 120
 		"outfit space" 810
@@ -388,7 +400,7 @@ ship "Kestrel" "Kestrel (More Engines)"
 	sprite "ship/kestrele"
 	thumbnail "thumbnail/kestrele"
 	add attributes
-		"drag" -1.0
+		"drag" -1.9
 		"fuel capacity" 100
 		"engine capacity" 30
 	engine 13 170
@@ -402,7 +414,7 @@ ship "Kestrel" "Kestrel (More Shields)"
 	add attributes
 		"shields" 3000
 		"hull" 1500
-		"heat dissipation" .06
+		"heat dissipation" .032
 
 ship "Kestrel" "Kestrel (More Weapons)"
 	sprite "ship/kestrelw"
