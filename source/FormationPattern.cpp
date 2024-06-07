@@ -192,11 +192,11 @@ void FormationPattern::Load(const DataNode &node)
 			for(const DataNode &grand : child)
 			{
 				if(grand.Token(0) == "start" && grand.Size() >= 3)
-					line.start.AddLoad(grand);
+					line.start.Set(grand.Value(1), grand.Value(2));
 				else if(grand.Token(0) == "end" && grand.Size() >= 3 && !line.isArc)
-					line.endOrAnchor.AddLoad(grand);
+					line.endOrAnchor.Set(grand.Value(1), grand.Value(2));
 				else if(grand.Token(0) == "anchor" && grand.Size() >= 3 && line.isArc)
-					line.endOrAnchor.AddLoad(grand);
+					line.endOrAnchor.Set(grand.Value(1), grand.Value(2));
 				else if(grand.Token(0) == "angle" && grand.Size() >= 2 && line.isArc)
 					line.angle = grand.Value(1);
 				else if(grand.Token(0) == "positions" && grand.Size() >= 2)
@@ -219,11 +219,11 @@ void FormationPattern::Load(const DataNode &node)
 					LineRepeat &repeat = line.repeats[line.repeats.size() - 1];
 					for(const DataNode &grandGrand : grand)
 						if(grandGrand.Token(0) == "start" && grandGrand.Size() >= 3)
-							repeat.repeatStart.AddLoad(grandGrand);
+							repeat.repeatStart.Set(grandGrand.Value(1), grandGrand.Value(2));
 						else if(grandGrand.Token(0) == "end" && grandGrand.Size() >= 3 && !line.isArc)
-							repeat.repeatEndOrAnchor.AddLoad(grandGrand);
+							repeat.repeatEndOrAnchor.Set(grandGrand.Value(1), grandGrand.Value(2));
 						else if(grandGrand.Token(0) == "anchor" && grandGrand.Size() >= 3 && line.isArc)
-							repeat.repeatEndOrAnchor.AddLoad(grandGrand);
+							repeat.repeatEndOrAnchor.Set(grandGrand.Value(1), grandGrand.Value(2));
 						else if(grandGrand.Token(0) == "angle" && grandGrand.Size() >= 2 && line.isArc)
 							repeat.repeatAngle = grandGrand.Value(1);
 						else if(grandGrand.Token(0) == "positions" && grandGrand.Size() >= 2)
