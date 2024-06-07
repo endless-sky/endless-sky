@@ -7485,7 +7485,7 @@ mission "Stone to Hope"
 				decline
 
 			label hopeprice
-			`	He grimances, as if he was just punched in the gut. "I am sorry, ser. We're just poor laborers. Work is hard to come by for us refugees. I thought - I thought I'd just ask. In case you were near. In case it was within your power is all."`
+			`	He grimaces, as if he was just punched in the gut. "I am sorry, ser. We're just poor laborers. Work is hard to come by for us refugees. I thought - I thought I'd just ask. In case you were near. In case it was within your power is all."`
 			`	His eyes remain downcast and tears slide down his smooth face. His whole body seems to shake with the shame of what he just admitted.`
 			choice
 				`	"I might be in the area. No promises though.`
@@ -7836,6 +7836,7 @@ mission "Ice Queen 6"
 	description "Smuggle Ildico and her child to <destination>."
 	source "Chiron"
 	destination "Haven"
+	passengers 2
 	illegal 1250000 `Ildico Drifa is dragged away in chains for high crimes against the Republic and its most honorable servants. Her infant child is taken into the custody of the Republic. You can only watch in sad silence as they are removed from your ship. You wind up quite a bit poorer through a combination of fines and bribes (the breakdown remains somewhat unclear).`
 	stealth
 	to offer
