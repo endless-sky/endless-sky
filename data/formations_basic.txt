@@ -33,21 +33,9 @@ formation "Trailing line"
 	position 0 3000
 
 
-
 # Formation with two legs extending on a 30 degree angle behind the lead ship.
-formation "Vic close"
-	flippable y
-	position -150 87
-	position 150 87
-	position -300 174
-	position 300 174
-	position -450 261
-	position 450 261
-	position -600 348
-	position 600 348
-
-# Formation with two legs extending on a 30 degree angle behind the lead ship.
-formation "Vic spaceous"
+# For interceptor-sized escorts
+formation "Vic large"
 	flippable y
 	position -200 115
 	position 200 115
@@ -58,8 +46,23 @@ formation "Vic spaceous"
 	position -800 460
 	position 800 460
 
+
 # Formation with two legs extending on a 30 degree angle behind the lead ship.
-formation "Vic tight"
+# For warship-sized escorts
+formation "Vic medium"
+	flippable y
+	position -150 87
+	position 150 87
+	position -300 174
+	position 300 174
+	position -450 261
+	position 450 261
+	position -600 348
+	position 600 348
+
+
+# Formation with two legs extending on a 30 degree angle behind the lead ship.
+formation "Vic small"
 	flippable y
 	position -100 57.5
 	position 100 57.5
@@ -70,8 +73,10 @@ formation "Vic tight"
 	position -400 230
 	position 400 230
 
+
 # Stable X or + shaped formation that doesn't rotate with the flagship.
-formation "X stable"
+# For warship-sized escorts
+formation "X stable medium "
 	rotatable 0
 	position 200 0
 	position -200 0
