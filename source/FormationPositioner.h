@@ -70,13 +70,9 @@ private:
 	// Timer that controls the (re)generation of ship positions.
 	int positionsTimer = 0;
 
-	// The scaling factors as we currently have for this formation, based
-	// on the ships in the formation. (Initialized with some defaults for
-	// small ships.)
+	// The scaling factor as we currently have for this formation for the ship or
+	// other body around which this formation is formed.
 	double centerBodyRadius = 150;
-	double maxDiameter = 80;
-	double maxWidth = 80;
-	double maxHeight = 80;
 
 	// The body around which the formation will be formed and the pattern to follow.
 	const Body *formationLead;
