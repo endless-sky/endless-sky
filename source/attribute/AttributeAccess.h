@@ -24,6 +24,7 @@ public:
 	AttributeAccess(const AttributeCategory category, const AttributeEffectType effect);
 	AttributeAccess(const AttributeCategory category, const AttributeEffectType categoryEffect,
 			const AttributeEffectType effect);
+	AttributeAccess(const AttributeAccess &other) = default;
 
 	// Accessors
 	AttributeCategory Category() const;
@@ -65,6 +66,8 @@ public:
 
 	bool operator<(const AttributeAccess other) const;
 
+	AttributeAccess& operator=(AttributeAccess& other) = default;
+
 private:
 	// Checks if the given attribute category is always composite. These categories are always merged with their effect
 	// in the constructor.
@@ -72,8 +75,8 @@ private:
 
 private:
 	// The category and effect type of the described attribute
-	const AttributeCategory category;
-	const AttributeEffectType effect;
+	AttributeCategory category;
+	AttributeEffectType effect;
 };
 
 
