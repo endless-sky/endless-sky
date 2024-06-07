@@ -8116,8 +8116,9 @@ mission "Skadenga: Blood of Surtr"
 
 mission "Stone to Hope: Thanks"
 	source "Norn"
-	on offer
+	to offer
 		has "Stone to Ice Queen: offered"
+	on offer
 		conversation
 			`In the quiet, creaking spaceport, it's easy enough to spot Helm doing some much needed maintenance on the ships that have landed here for the night. The last time you met him, he asked you to bring a stone to Hope. Do you want to check in with him?`
 			choice
