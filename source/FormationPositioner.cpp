@@ -214,7 +214,7 @@ void FormationPositioner::CalculateDirection()
 			positionsTimer = 0;
 		}
 	}
-	else if (symRot != 0)
+	else if(symRot != 0)
 	{
 		// Turn max 1/4th degree per frame. The game runs at 60fps, so a turn of 180 degrees will take
 		// about 12 seconds.

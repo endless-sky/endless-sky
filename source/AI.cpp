@@ -1743,14 +1743,13 @@ void AI::MoveInFormation(Ship &ship, Command &command)
 	bool inPosition = MoveTo(ship, command, it->second.Position(&ship), formationLead->Velocity(), positionDeadband,
 		VELOCITY_DEADBAND);
 
-	// If we match the position and velocity, then also match the facing angle.
+	// If we match the position and velocity, then also match the facing angle within some limits.
+	constexpr double FACING_TOLERANCE_DEGREES = 3;
 	if(inPosition)
 	{
-		double facingDelta = formationLead->Facing().Degrees() - ship.Facing().Degrees();
-		if(abs(facingDelta) > 180.)
-			facingDelta += (facingDelta < 0. ? 360. : -360.);
-
-		command.SetTurn(facingDelta);
+		double facingDeltaDegrees = (formationLead->Facing() - ship.Facing()).Degrees();
+		if(abs(facingDeltaDegrees) > FACING_TOLERANCE_DEGREES)
+			command.SetTurn(facingDelta);
 	}
 }
 
