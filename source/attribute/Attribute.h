@@ -80,7 +80,7 @@ private:
 	static const std::string categoryNames[];
 
 	// The category and effects of this attribute
-	const AttributeCategory category;
+	AttributeCategory category;
 	std::map<AttributeEffectType, AttributeEffect> effects;
 };
 
