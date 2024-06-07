@@ -432,7 +432,7 @@ outfit "Tear of Skade"
 
 outfit "Blood of Surtr"
 	category "Unique"
-	thumbnail "outfit/bloodsurtr"
+	thumbnail "outfit/surtrblood"
 	"energy generation" 1
 	"heat generation" 4
 	"unique" 1
