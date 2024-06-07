@@ -102,15 +102,33 @@ SCENARIO( "Loading and using of a formation pattern", "[formationPattern][Positi
 		auto tailNode = AsDataNode(formation_tail_px_point);
 		FormationPattern tailFormation;
 		tailFormation.Load(tailNode);
-		double centerBodyRadius = 0.;
 		REQUIRE( tailFormation.Name() == "Tail (px point)");
 		WHEN( "positions are requested") {
+			double centerBodyRadius = 0.;
 			auto it = tailFormation.begin(centerBodyRadius);
 			THEN ( "all returned positions are as expected" ) {
 				CHECK( Near(*it, Point(-100, 0)) );
 				++it;
 				CHECK( Near(*it, Point(-200, 0)) );
 				++it;
+				CHECK( Near(*it, Point(-300, 0)) );
+				++it;
+				CHECK( Near(*it, Point(-400, 0)) );
+				++it;
+				CHECK( Near(*it, Point(-500, 0)) );
+				++it;
+				CHECK( Near(*it, Point(-600, 0)) );
+				++it;
+				CHECK( Near(*it, Point(-700, 0)) );
+				++it;
+				CHECK( Near(*it, Point(-800, 0)) );
+			}
+		}
+		WHEN( "a centerbody radius is set" )
+		{
+			double centerBodyRadius = 250.;
+			auto it = tailFormation.begin(centerBodyRadius);
+			THEN ( "the points in the center are skipped" ) {
 				CHECK( Near(*it, Point(-300, 0)) );
 				++it;
 				CHECK( Near(*it, Point(-400, 0)) );
