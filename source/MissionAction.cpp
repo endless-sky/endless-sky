@@ -85,23 +85,37 @@ void MissionAction::LoadSingle(const DataNode &child)
 
 	if(key == "dialog")
 	{
-		if(hasValue && child.Token(1) == "phrase")
-		{
-			if(!child.HasChildren() && child.Size() == 3)
-				dialogPhrase = ExclusiveItem<Phrase>(GameData::Phrases().Get(child.Token(2)));
+		// Collect the "to decline" button condition and determine if there are text grandchildren
+		const DataNode *firstText = nullptr;
+		for(auto &grand : child)
+			if(grand.Size() != 2 || grand.Token(0) != "to")
+			{
+				if(!firstText)
+					firstText = &grand;
+			}
+			else if(grand.Token(1) != "decline")
+				grand.PrintTrace("Expected \"phrase\", \"to decline\", or dialog text:");
+			else if(toDecline)
+				toDecline->Load(grand);
 			else
-				child.PrintTrace("Skipping unsupported dialog phrase syntax:");
-		}
-		else if(!hasValue && child.HasChildren() && (*child.begin()).Token(0) == "phrase")
+				toDecline = make_shared<ConditionSet>(grand);
+
+		// Construct the dialog phrase or text, if it is valid
+		if(child.Size() == 3 && child.Token(1) == "phrase" && !firstText)
 		{
-			const DataNode &firstGrand = (*child.begin());
-			if(firstGrand.Size() == 1 && firstGrand.HasChildren())
-				dialogPhrase = ExclusiveItem<Phrase>(Phrase(firstGrand));
+			const Phrase *phrase = GameData::Phrases().Get(child.Token(2));
+			if(phrase)
+				dialogPhrase = ExclusiveItem<Phrase>(phrase);
 			else
-				firstGrand.PrintTrace("Skipping unsupported dialog phrase syntax:");
+				child.PrintTrace("Unknown phrase \"" + child.Token(2) + "\":");
 		}
-		else
+		else if(child.Size() == 1 && firstText && firstText->Size() == 1 && firstText->Token(0) == "phrase" &&
+				firstText->HasChildren())
+			dialogPhrase = ExclusiveItem<Phrase>(Phrase(*firstText));
+		else if((child.Size() == 1 && firstText) || (child.Size() > 1 && child.Token(1) != "phrase"))
 			Dialog::ParseTextNode(child, 1, dialogText);
+		else
+			child.PrintTrace("Skipping unsupported dialog phrase syntax:");
 	}
 	else if(key == "conversation" && child.HasChildren())
 		conversation = ExclusiveItem<Conversation>(Conversation(child));
@@ -164,6 +178,13 @@ void MissionAction::SaveBody(DataWriter &out) const
 		out.Write("dialog");
 		out.BeginChild();
 		{
+			if(toDecline && !toDecline->IsEmpty())
+			{
+				out.Write("to", "decline");
+				out.BeginChild();
+				toDecline->Save(out);
+				out.EndChild();
+			}
 			// Break the text up into paragraphs.
 			for(const string &line : Format::Split(dialogText, "\n\t"))
 				out.Write(line);
@@ -339,10 +360,17 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const 
 		// avoid the player being spammed by dialogs if they have multiple
 		// missions active with the same destination (e.g. in the case of
 		// stacking bounty jobs).
+		Dialog *dialog = nullptr;
 		if(isOffer)
-			ui->Push(new Dialog(text, player, destination));
+			dialog = new Dialog(text, player, destination);
 		else if(isUnique || trigger != "visit")
-			ui->Push(new Dialog(text));
+			dialog = new Dialog(text);
+		if(dialog)
+		{
+			dialog->SetCanCancel(!toDecline || toDecline->Test(player.Conditions()));
+			dialog->SetAcceptDecline(dialog->GetCanCancel());
+			ui->Push(dialog);
+		}
 	}
 	else if(isOffer && ui)
 		player.MissionCallback(Conversation::ACCEPT);
@@ -372,6 +400,8 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 	string dialogText = !dialogPhrase->IsEmpty() ? dialogPhrase->Get() : this->dialogText;
 	if(!dialogText.empty())
 		result.dialogText = Format::Replace(Phrase::ExpandPhrases(dialogText), subs);
+	if(toDecline)
+		result.toDecline = make_shared<ConditionSet>(*toDecline);
 
 	if(!conversation->IsEmpty())
 		result.conversation = ExclusiveItem<Conversation>(conversation->Instantiate(subs, jumps, payload));
