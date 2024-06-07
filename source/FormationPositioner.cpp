@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "Ship.h"
 
+#include <algorithm>
 #include <cmath>
 
 using namespace std;
@@ -213,13 +214,13 @@ void FormationPositioner::CalculateDirection()
 			positionsTimer = 0;
 		}
 	}
-	else
+	else if (symRot != 0)
 	{
 		// Turn max 1/4th degree per frame. The game runs at 60fps, so a turn of 180 degrees will take
 		// about 12 seconds.
 		constexpr double MAX_FORMATION_TURN = .25;
 
-		deltaDir = Angle(std::clamp(deltaDir.Degrees(), -MAX_FORMATION_TURN, MAX_FORMATION_TURN))
+		deltaDir = Angle(clamp(deltaDir.Degrees(), -MAX_FORMATION_TURN, MAX_FORMATION_TURN));
 
 		direction += deltaDir;
 	}
