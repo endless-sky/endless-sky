@@ -25,7 +25,7 @@ const double AttributeEffect::EPS = 0.0000000001;
 
 // Creates a new effect of a specified type and value, with optional sub-effects.
 AttributeEffect::AttributeEffect(const AttributeEffectType type, const double value, const double minimum)
-		: type(type), value(std::max(value, minimum)), min(minimum)
+		: type(type), value(std::fmax(value, minimum)), min(minimum)
 {
 }
 
