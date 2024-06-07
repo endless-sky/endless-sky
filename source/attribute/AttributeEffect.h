@@ -55,11 +55,11 @@ public:
 	const static double EPS;
 private:
 	// The type of this effect,
-	const AttributeEffectType type;
+	AttributeEffectType type;
 	// its value,
 	double value;
 	// and its minimum value.
-	const double min;
+	double min;
 };
 
 #endif
