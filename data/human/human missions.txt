@@ -7424,6 +7424,7 @@ mission "Stone to Hope"
 		random < 60
 		has "Stone of our Fathers 5: done"
 		has "event: stone waiting most"
+		not "Ice Queen: offered"
 	source "Norn"
 	destination "Hope"
 	on offer
@@ -7527,7 +7528,7 @@ mission "Ice Queen"
 	passengers 1
 	to offer
 		has "Expedition to Hope 2: done"
-		not "Stone to Ice Queen: offered"
+		not "Stone to Hope: done"
 		random < 15
 	on offer
 		conversation "Ice Queen"
@@ -7537,6 +7538,7 @@ mission "Ice Queen"
 
 conversation "Ice Queen"
 	branch "has stone"
+		has "Stone to Hope: done"
 	`There is nothing here. Only unceasing desolation. The slow churning of hateful ice that swallowed the dream of a world. Yet, here you are. You've landed along the equator, where the environment is not quite so hostile, and where patches of unconquered ice-free rock still reign.`
 	`	Beyond your ship are the ruins of the last unfrozen city. Where the final refugees huddled together awaiting their saviors, the Republic Navy, and were whisked away to other more welcoming worlds.`
 	choice
