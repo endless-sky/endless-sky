@@ -127,6 +127,8 @@ namespace {
 			{"cloaking energy", AttributeAccess(CLOAKING, ENERGY)},
 			{"cloaking fuel", AttributeAccess(CLOAKING, FUEL)},
 			{"cloaking heat", AttributeAccess(CLOAKING, HEAT)},
+			{"cloak shield protection", AttributeAccess(PROTECTION, CLOAK, SHIELDS)},
+			{"cloak hull protection", AttributeAccess(PROTECTION, CLOAK, HULL)},
 			{"disruption resistance", AttributeAccess(RESISTANCE, DISRUPTION)},
 			{"disruption resistance energy", AttributeAccess(RESISTANCE, DISRUPTION, ENERGY)},
 			{"disruption resistance heat", AttributeAccess(RESISTANCE, DISRUPTION, HEAT)},
