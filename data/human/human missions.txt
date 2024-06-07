@@ -7911,7 +7911,7 @@ mission "Ice Queen 6"
 			`	Ildico opens the rune-carved lid of the box, revealing a faintly glowing red rock. "It is called the Blood of Surtr, and it was said to have been the symbol of our rulership, and more importantly, a source of power."`
 			`	She shrugs. "I know it sounds far-fetched. But I had this with me on Hope, and I don't think I would have survived without it. When the generators went down, this kept the lights on.`
 			`	"But, it's time with me is over. I want you, the last friend of House Drifa, and the only person whose shown me any kindness in many years, to have it.`
-			scene "outfit/bloodsurtr"
+			scene "outfit/surtrblood"
 			`	"I'll also transfer a small sum of money for your troubles. I fear I will be needing most of my family's fortune, but hopefully what little I can offer will help."`
 			choice
 				`	"Thank you."`
