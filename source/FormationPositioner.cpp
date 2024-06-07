@@ -98,17 +98,8 @@ Point FormationPositioner::Position(const Ship *ship)
 // Re-generate the list of (relative) positions for the ships in the formation.
 void FormationPositioner::CalculatePositions()
 {
-	// Set scaling based on results from previous run.
-	double diameterToPx = maxDiameter;
-	double widthToPx = maxWidth;
-	double heightToPx = maxHeight;
-	maxDiameter = 1;
-	maxWidth = 1;
-	maxHeight = 1;
-
 	// Run the position iterator for the ships in the formation.
-	auto itPos = pattern->begin(diameterToPx, widthToPx, heightToPx,
-		centerBodyRadius, shipsInFormation.size());
+	auto itPos = pattern->begin(centerBodyRadius, shipsInFormation.size());
 
 	// Run the iterator.
 	size_t shipIndex = 0;
@@ -140,10 +131,6 @@ void FormationPositioner::CalculatePositions()
 		}
 		else
 		{
-			// Set scaling for next round based on the sizes of the
-			// participating ships.
-			Tally(*ship);
-
 			// Calculate the new coordinate for the current ship.
 			Point &shipRelPos = itCoor->second.first;
 			shipRelPos = *itPos;
@@ -158,15 +145,6 @@ void FormationPositioner::CalculatePositions()
 
 	// Switch marker to detect stale/missing ships in the next iteration.
 	tickTock = !tickTock;
-}
-
-
-
-void FormationPositioner::Tally(const Body &body)
-{
-	maxDiameter = max(maxDiameter, body.Radius() * 2.);
-	maxHeight = max(maxHeight, body.Height());
-	maxWidth = max(maxWidth, body.Width());
 }
 
 

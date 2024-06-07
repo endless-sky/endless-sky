@@ -1,5 +1,5 @@
 /* test_formationPattern.cpp
-Copyright (c) 2021 by Peter van der Meer
+Copyright (c) 2021-2024 by Peter van der Meer
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -71,12 +71,9 @@ SCENARIO( "Loading and using of a formation pattern", "[formationPattern][Positi
 		FormationPattern emptyFormation;
 		emptyFormation.Load(emptyNode);
 		REQUIRE( emptyFormation.Name() == "Empty");
-		double diameterToPx = 0.;
-		double widthToPx = 0.;
-		double heightToPx = 0.;
 		double centerBodyRadius = 0.;
 		WHEN( "positions are requested") {
-			auto it = emptyFormation.begin(diameterToPx, widthToPx, heightToPx, centerBodyRadius);
+			auto it = emptyFormation.begin(centerBodyRadius);
 			THEN ( "all returned positions are near Point(0,0)" ) {
 				CHECK( Near(*it, Point(0, 0)) );
 				++it;

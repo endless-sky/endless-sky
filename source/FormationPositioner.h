@@ -47,9 +47,6 @@ private:
 	// Re-generate the list of (relative) positions for the ships in the formation.
 	void CalculatePositions();
 
-	// Consider ship for the formation maximum dimensions.
-	void Tally(const Body &body);
-
 	// Calculate the direction the formation is facing.
 	void CalculateDirection();
 

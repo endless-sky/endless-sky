@@ -24,10 +24,8 @@ using namespace std;
 
 
 FormationPattern::PositionIterator::PositionIterator(const FormationPattern &pattern,
-		double diameterToPx, double widthToPx, double heightToPx, double centerBodyRadius,
-		unsigned int shipsToPlace)
-	: pattern(pattern), shipsToPlace(shipsToPlace), centerBodyRadius(centerBodyRadius),
-		diameterToPx(diameterToPx), widthToPx(widthToPx), heightToPx(heightToPx)
+		double centerBodyRadius, unsigned int shipsToPlace)
+	: pattern(pattern), shipsToPlace(shipsToPlace), centerBodyRadius(centerBodyRadius)
 {
 	MoveToValidPositionOutsideCenterBody();
 }
@@ -140,8 +138,7 @@ void FormationPattern::PositionIterator::MoveToValidPosition()
 	if(atEnd)
 		currentPoint = Point();
 	else
-		currentPoint = pattern.Position(ring, line, repeat, position,
-			diameterToPx, widthToPx, heightToPx);
+		currentPoint = pattern.Position(ring, line, repeat, position);
 }
 
 
@@ -181,7 +178,7 @@ void FormationPattern::Load(const DataNode &node)
 			// A point is a line with just 1 position on it.
 			line.positions = 1;
 			// The specification of the coordinates is on the same line as the keyword.
-			line.start.AddLoad(child);
+			line.start.Set(child.Value(1), child.Value(2));
 			line.endOrAnchor = line.start;
 		}
 		else
@@ -205,12 +202,9 @@ void FormationPattern::SetName(const std::string &name)
 
 
 // Get an iterator to iterate over the formation positions in this pattern.
-FormationPattern::PositionIterator FormationPattern::begin(
-	double diameterToPx, double widthToPx, double heightToPx,
-	double centerBodyRadius, unsigned int shipsToPlace) const
+FormationPattern::PositionIterator FormationPattern::begin(double centerBodyRadius, unsigned int shipsToPlace) const
 {
-	return FormationPattern::PositionIterator(*this, diameterToPx, widthToPx,
-		heightToPx, centerBodyRadius, shipsToPlace);
+	return FormationPattern::PositionIterator(*this, centerBodyRadius, shipsToPlace);
 }
 
 
@@ -279,7 +273,7 @@ bool FormationPattern::IsCentered(unsigned int lineNr) const
 
 // Get a formation position based on ring, line(or arc)-number and position on the line.
 Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigned int repeatNr,
-	unsigned int linePosition, double diameterToPx, double widthToPx, double heightToPx) const
+	unsigned int linePosition) const
 {
 	// First check if the inputs result in a valid line or arc position.
 	if(lineNr >= lines.size())
@@ -289,8 +283,8 @@ Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigne
 		return Point();
 
 	// Perform common start and end/anchor position calculations in pixels.
-	Point startPx = line.start.GetPx(diameterToPx, widthToPx, heightToPx);
-	Point endOrAnchorPx = line.endOrAnchor.GetPx(diameterToPx, widthToPx, heightToPx);
+	Point startPx = line.start;
+	Point endOrAnchorPx = line.endOrAnchor;
 
 	// Get the number of positions for this line or arc.
 	int positions = line.positions;
@@ -300,8 +294,8 @@ Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigne
 	if(ring > 0)
 	{
 		repeat = &(line.repeats[repeatNr]);
-		startPx += repeat->repeatStart.GetPx(diameterToPx, widthToPx, heightToPx) * ring;
-		endOrAnchorPx += repeat->repeatEndOrAnchor.GetPx(diameterToPx, widthToPx, heightToPx) * ring;
+		startPx += repeat->repeatStart * ring;
+		endOrAnchorPx += repeat->repeatEndOrAnchor * ring;
 		positions += repeat->repeatPositions * ring;
 	}
 
@@ -385,45 +379,4 @@ bool FormationPattern::FlippableY() const
 bool FormationPattern::FlippableX() const
 {
 	return flippableX;
-}
-
-
-
-void FormationPattern::MultiAxisPoint::Add(Axis axis, const Point &toAdd)
-{
-	position[axis] += toAdd;
-}
-
-
-
-void FormationPattern::MultiAxisPoint::AddLoad(const DataNode &node)
-{
-	// We need at least the position keyword and 2 coordinate numbers.
-	if(node.Size() < 3)
-		return;
-
-	// By default we parse for pixels.
-	Axis axis = PIXELS;
-	double scalingFactor = 1.;
-
-	// Parse all the keywords before the coordinate and warn if the datafiles
-	// use tokens used in other formation-pattern formats (that are not supported
-	// in this codebase at this moment).
-	for(int i = 1; i < node.Size() - 2; ++i)
-		node.PrintTrace("Ignoring unrecognized token " + node.Token(i) + ":");
-
-	// The last 2 numbers are always the coordinate.
-	double x = node.Value(node.Size() - 2);
-	double y = node.Value(node.Size() - 1);
-	Add(axis, Point(x, y) * scalingFactor);
-}
-
-
-
-Point FormationPattern::MultiAxisPoint::GetPx(double diameterToPx, double widthToPx, double heightToPx) const
-{
-	return position[PIXELS] +
-		position[DIAMETERS] * diameterToPx +
-		position[WIDTHS] * widthToPx +
-		position[HEIGHTS] * heightToPx;
 }

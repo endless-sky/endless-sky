@@ -36,7 +36,6 @@ public:
 	class PositionIterator {
 	public:
 		explicit PositionIterator(const FormationPattern &pattern,
-			double diameterToPx, double widthToPx, double heightToPx,
 			double centerBodyRadius, unsigned int shipsToPlace);
 
 		PositionIterator() = delete;
@@ -77,12 +76,6 @@ public:
 		// positions of ships overlapping with the body around which the
 		// formation is formed.
 		double centerBodyRadius = 0;
-		// Factors to convert coordinates based on ship sizes/dimensions to
-		// coordinates in pixels. Typically initialized with the maximum
-		// sizes/dimensions of the ships participating in the formation.
-		double diameterToPx = 1;
-		double widthToPx = 1;
-		double heightToPx = 1;
 		// Currently calculated Point.
 		Point currentPoint;
 		// Internal status variable;
@@ -97,8 +90,7 @@ public:
 	void SetName(const std::string &name);
 
 	// Get an iterator to iterate over the formation positions in this pattern.
-	PositionIterator begin(double diameterToPx, double widthToPx, double heightToPx,
-		double centerBodyRadius, unsigned int shipsToPlace = 0) const;
+	PositionIterator begin(double centerBodyRadius, unsigned int shipsToPlace = 0) const;
 
 	// Information about allowed rotating and mirroring that still results in the same formation.
 	int Rotatable() const;
@@ -118,41 +110,14 @@ private:
 
 	// Calculate a position based on the current ring, line/arc, repeat-section and position on the line-repeat-section.
 	Point Position(unsigned int ring, unsigned int lineNr, unsigned int repeatNr,
-		unsigned int lineRepeatPosition, double diameterToPx, double widthToPx, double heightToPx) const;
+		unsigned int lineRepeatPosition) const;
 
 private:
-	// Helper class to allow formations to be built using coordinates that are in pixels, but also
-	// using coordinates based on the sizes of ships in the formation. (To allow formations to scale
-	// based on the size of participants in the formation.)
-	class MultiAxisPoint {
-	public:
-		// Coordinate axes for formations; in pixels (default) and heights, widths and diameters
-		// of ships.
-		enum Axis { PIXELS, DIAMETERS, WIDTHS, HEIGHTS };
-
-		// Add position information to one of the internal tracked points.
-		void Add(Axis axis, const Point &toAdd);
-
-		// Parse a position input from a data-node and add the values to this MultiAxisPoint.
-		// This function is typically called when getting the first or last position on a
-		// line or when getting an anchor for an arc.
-		void AddLoad(const DataNode &node);
-
-		// Get a point in pixel coordinates based on the conversion factors given for
-		// the diameters, widths and heights.
-		Point GetPx(double diameterToPx, double widthToPx, double heightToPx) const;
-
-
-	private:
-		// Position based on the possible axes.
-		Point position[4];
-	};
-
 	class LineRepeat {
 	public:
 		// Vector to apply to get to the next start point for the next iteration.
-		MultiAxisPoint repeatStart;
-		MultiAxisPoint repeatEndOrAnchor;
+		Point repeatStart;
+		Point repeatEndOrAnchor;
 
 		double repeatAngle = 0;
 
@@ -166,8 +131,8 @@ private:
 	class Line {
 	public:
 		// The starting point for this line.
-		MultiAxisPoint start;
-		MultiAxisPoint endOrAnchor;
+		Point start;
+		Point endOrAnchor;
 
 		// Angle in case this line is an Arc.
 		double angle = 0;
