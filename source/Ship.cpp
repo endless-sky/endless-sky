@@ -1302,7 +1302,7 @@ vector<string> Ship::FlightCheck() const
 			checks.emplace_back("afterburner only?");
 		if(!thrust && !afterburner)
 			checks.emplace_back("reverse only?");
-		if(!generation && !solar && !consuming)
+		if(energy <= battery)
 			checks.emplace_back("battery only?");
 		if(energy < thrustEnergy)
 			checks.emplace_back("limited thrust?");
