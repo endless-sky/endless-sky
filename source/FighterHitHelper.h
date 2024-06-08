@@ -36,8 +36,8 @@ public:
 				case Gamerules::FighterHitPolicy::NEVER: return false;
 				case Gamerules::FighterHitPolicy::ALWAYS: return true;
 				case Gamerules::FighterHitPolicy::NOT_PLAYER: return !ship->IsYours();
-				default: return false;
 			}
+		return false;
 	}
 };
 
