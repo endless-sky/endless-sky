@@ -7442,7 +7442,7 @@ mission "Timothy Radrickson 1: Stowaway"
 			`	It's almost certainly nothing, and you have more important things to do than chase down every little sensor glitch on your ship.`
 
 			label check
-			`	After a short search, and the rearranging of quite a few deceptively heavy boxes, you are able to track the heat signature to a foodstuff crate you recently took on. It has yet to be opened, but you can already tell its seal has been tampered with.`
+			`	After a short search, and the rearranging of quite a few deceptively heavy boxes, you are able to track the heat signature to a foodstuff crate you recently took on. It has yet to be opened, but you can tell its seal has already been tampered with.`
 			choice
 				`	(Open the crate.)`
 					goto crate
