@@ -231,7 +231,7 @@ mission "Incipias: Help the stranded Part 1"
 			choice
 				`	"I am here to make peaceful contact with you."`
 				`	"I want to help one of your stranded ships."`
-			`	Again a long pause. "Your intention-goals are welcome. Please dock to capital-station."`
+			`	Again a long pause. "Your intention-goals are welcome. Please dock to the capital-station."`
 			`	Along the message comes a small map of the station with the docking ports highlighted.`
 	on complete
 		conversation
