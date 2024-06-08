@@ -24,7 +24,7 @@ class DataNode;
 // for example, the spawnrate of person ships or whether universal ramscoops are active.
 class Gamerules {
 public:
-	// Defines when disabled fighters can dodge stray projectiles
+	// Defines which disabled fighters can dodge stray projectiles.
 	enum class FighterDodgePolicy
 	{
 		ALL, NONE, ONLY_PLAYER
