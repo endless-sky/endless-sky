@@ -44,11 +44,15 @@ mission "Incipias: Warning of the Guardian"
 			choice
 				`	"You can't fool me. This is no dead end."`
 				`	"Why should I listen to you?"`
+				`	"Alright, thanks for the warning."`
+					goto agree
 			label reason
 			`	"Here lie the unborn flowers yet to come into full bloom. There is nothing here for you to find. Listen to my advice and turn back." The voice sounds more energetic this time and you feel as if it is coming out of your head.`
 			choice
 				`	"Unborn flowers. That sounds interesting."`
 				`	"I will see for myself."`
+				`	"Alright, thanks for the warning."`
+					goto agree
 			`	A sigh seems to drift through the continuum, "Human, these unborn flowers-" an impression of euphoria comes over you, "-would only be endangered by your presence. Please respect the beauty of life and do not step into this region that will soon bring forth a new species. Your kind is much more advanced than anything that you could hope to find here. No treasures here await you."`
 			choice
 				`	"Why do you care about these 'flowers'?"`
@@ -59,6 +63,35 @@ mission "Incipias: Warning of the Guardian"
 			`	"Why do humans care about art?" The voice now seems far away yet more present than ever. "Because it amazes you, the same way it amazes us to see another kind grow and overcome their burdens. The lives of species are like a painting that never stop being painted, but when they do stop it is a tragic thing to watch. That is why we try to protect these creations of life - so we can see what heights they reach."`
 			`	The voice pauses before continuing. "I see that you can not be convinced by me. Even though I could simply wipe you out here and now, I do not favor violence. I will let you pass, but I will be watching you as I am-" you can hear the ultimate resolution in the voice, "-the guardian of this space."`
 			`	The voice fades out leaving nothing behind but the feeling of being watched.`
+				decline
+			label agree
+			action
+				set "Incipias: accepted the guardians warning"
+			`	"You are understanding human, I thank you in the name of this region." The voice fades away lwaving only the feeling of being watched behind."`
+				decline
+
+mission "Incipias: Presence of the Guardian"
+	invisible
+	landing
+	to complete
+		never
+	on enter Dom'us
+		conversation
+			`As you enter the system you still have a feeling of being watched, the presence from the previous system still ligering around you.`
+				to display
+					not "Incipias: accepted the guardians warning"
+			`As you enter the system the same voice from before echoes through your mind. "I do not take kindly on atempts to decieve me, human. Know that you will be watched." As the voice fades away a strong presence stays around you.`
+				to display
+					has "Incipias: accepted the guardians warning"
+				decline
+	on enter Hui'uc
+		conversation
+			`As you enter the system you still have a feeling of being watched, the presence from the previous system still ligering around you.`
+				to display
+					not "Incipias: accepted the guardians warning"
+			`As you enter the system the same voice from before echoes through your mind. "I do not take kindly on atempts to decieve me, human. Know that you will be watched." As the voice fades away a strong presence stays around you.`
+				to display
+					has "Incipias: accepted the guardians warning"
 				decline
 
 mission "Incipias: First Contact I"
@@ -90,10 +123,10 @@ mission "Incipias: Meet the Quarg"
 				has "flagship planet: Ut Divitas"
 			label "ut divitas"
 			`Your spaceship lands with a soft jolt. A small group of Quarg quickly gathers around your ship, making some simple but clear gestures telling you to wait. After they've realized that you understood, one of them walks away in a hurried manner.`
-			`	Only a moment later the Quarg returns with another Quarg. The new one starts talking with a very strange accent.`
+			`	You have to wait for quite some time until the Quarg returns with another Quarg. The new one starts talking with a very strange accent.`
 				goto "both planets"
 			label "spec inci"
-			`	You only wait for a few minutes before three Quarg appear on the landing pad. The one in the middle is wearing clothing that makes clear that it is a military official. The two in the back are wearing full combat gear but do not seem to expect a fight. The one in the middle starts talking in a very strange accent.`
+			`	You have to wait for a few hours until a group of three Quargs appear. The one in the middle starts talking in a very strange accent.`
 			label "both planets"
 			`	"Welcome human. Your lengthy travels have brought you here, yet your kind has never set foot in this region of space. May we inquire as to your mission?"`
 			choice
@@ -110,7 +143,7 @@ mission "Incipias: Meet the Quarg"
 			`	After a short pause it continues talking; you notice an almost-hidden frustration lurking beneath the Quarg's face. "You are permitted to travel here, but there are conditions. Not too far from here another kind has begun their journey to the stars. Do not interrupt them for your own sake, as we will avenge any hostile actions against them."`
 			`	With these words the Quarg turns around and leaves. It seems like you are free to use the local facilities now.`
 
-# Maybe add a version of the ships sprite that looks damaged/modded.
+# TODO: Maybe add a version of the ships sprite that looks damaged/modded.
 ship "Nimbus" "Nimbus FTL"
 	add attributes
 		"bunks" -25
@@ -173,7 +206,7 @@ mission "Incipias: Help the stranded Part 1"
 		has "incipias: helped the derelict"
 	on offer
 		conversation
-			`Right after you arrived on the planet you go looking for a Quarg official to tell about the stranded ship. Luckily it is not long before you find one.`
+			`Right after you arrived on the planet you go looking for a Quarg who speaks your language to tell about the stranded ship. You are not able to find one but another Quarg seems to understand your intention and gestures you to wait. It returns a few hours later accompanied by the same Quarg you talked to before.`
 			`	"Human, you seem to be in quite a haste. What could be such a pressing matter?" it asks.`
 			choice
 				`	(Explain the situation.)`
@@ -186,6 +219,8 @@ mission "Incipias: Help the stranded Part 1"
 			choice
 				`	"Then let me help them."`
 					goto initiative
+				`	"I see, there is nothing to do."`
+					goto declined
 				`	"How can you make such a cold-hearted decision?"`
 			`	"This might be difficult for you to understand, but we must place the greater good above individual lives. If we show ourselves to them now, the shock of such an advanced species appearing in their space will fan the flames of chaos."`
 			choice
@@ -196,7 +231,7 @@ mission "Incipias: Help the stranded Part 1"
 			choice
 				`	"Sure, let me do the work."`
 				`	"If you are too weak..."`
-			`	Something like a laugh comes from the Quarg, before continuing.`
+			`	The Quarg rappidly clicks it teeths, before continuing.`
 			label initiative
 			`	"You lack the tools for such a mission. To my knowledge, no vessels capable of landing on gas giants have ever been developed by your kind. And you are certainly not able to make your intentions known to them in any meaningful sense."`
 			`	"But for the sake of the Incipias, I will assist you on this last point. If you cannot be dissuaded from your course of action, then it is best you are given a means of communication, so that your interactions can at least be on amicable terms. I can provide you with a single one of our translators, which will allow you to contact the species in their home system. Request that they sell you one of their ships, so that you are able to land on their planets."`
@@ -215,6 +250,9 @@ mission "Incipias: Help the stranded Part 1"
 			`	As you stow it away, the Quarg speaks once more. "To satisfactorily utilize this device, you must point it towards the source of the communication, so that it is able to pick up on the emission. Given the complexity of their language, the translator might not be able to adequately translate some parts of their speech. You will understand it when it happens."`
 			`	It then looks you directly in the eyes. "Remember what I have told you, human. The stars have no place for those who would act foolishly and thoughtlessly towards their fellow beings." The Quarg then walks away, leaving you alone.`
 				accept
+			label declined
+			`	"Thank you for your understanding human, have safe travels." With these words the Quarg turns away.`
+				decline
 	on enter Dom'us
 		"reputation: Hicemus" += 10
 		conversation
@@ -258,6 +296,20 @@ mission "Incipias: Help the stranded Part 1"
 			`	"So they are still alive. We shall give you access to our ship. Let us prepare the ship-seller. Do note though that they can not jump between system-places, not like your own ship. We hope to question you more on another future-time.`
 			label end
 			`	The five float away but the crowd continues staring at you, probably out of interest.`
+
+mission "Incipias: No help for the stranded"
+	landing
+	invisible
+	source
+		planet Turra
+	destination "Pon'tes"
+	to offer
+		or
+			has "Incipias: Help the stranded Part 1: declined"
+		not "Incipias: Help the stranded Part 1: offered"
+	on offer
+		conversation
+			`You see the stranded ship on your scanners but with no way to communicate you have no way to help them and have no choice but to leave them to their doom on this stormy world.`
 
 mission "Incipias: Help the stranded Part 2"
 	landing
