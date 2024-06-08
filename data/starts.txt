@@ -60,7 +60,7 @@ conversation "default intro"
 
 start "hai space"
 	name "Hai Space Start"
-	description `You grew up on Greenwater, a world with a very rich and mixed culture. You've dreamed of owning your own fleet since you were given toy spaceships as a small child. In order to reach that goal, you worked hard at a travel company, recommending mostly locations in human space.`
+	description `You grew up on Greenwater, a world with a very rich and mixed culture. You've dreamed of owning your own fleet since you were given toy spaceships as a small child. In order to reach that goal, you worked hard at a travel company, mostly recommending locations in human space.`
 	description `	Now, as you enter the shipyard, you feel like this is the start of a new life as a captain.`
 	thumbnail "scene/hai start"
 	system "Fah Soom"
@@ -96,7 +96,7 @@ conversation "hai intro"
 	`Going to the North Pole already makes you feel as if you're on another world. Though you've met some Hai in the past, you've never been among so many of them in one place; the movement of the crowd in this Hai city far outstrips the equatorial human town where you grew up.`
 	scene "scene/hai bank"
 	`	You head to the bank's lobby, hoping to get enough of a loan to be able to buy one of the pristine ships advertised here.`
-	`	To your disappointment, the only ship you can afford is an Aphid. You arrange the contract to loan as much money as you need in order to buy one, in what has to be the first seriously unwise act of your life. However, upon receiving the papers you find out they are in Hai, which you can't make sense of. Probably seeing the confusion on your face, they promptly give you new papers and give you time to read. Only now do you fully realize how risky this is, you might have to cut some costs once you get your hands on the ship.`
+	`	To your disappointment, the only ship you can afford is an Aphid. You arrange the contract to loan as much money as you need in order to buy one, in what has to be the first seriously unwise act of your life. However, upon receiving the papers you find out they are in Hai, which you can't make sense of. Probably seeing the confusion on your face, they promptly give you new papers and give you time to read. Only now do you fully realize how risky this is. You might have to cut some costs once you get your hands on the ship.`
 	`	Those anxious musings are interrupted when the bank employee finally lays it out to you, with a hesitant smile. "You are accepting a loan in the amount of 1,431,000 credits, due over the course of 2 years, with an interest rate of 0.3% per day. Please sign here."`
 	name
 	`	You head out of the bank, but see a notice on your way to buy the Aphid at the shipyard. A retiring captain is selling off his fleet at a reduced price, and one of the ships he's offering is a Grasshopper... maybe you could get a deal on it.`
