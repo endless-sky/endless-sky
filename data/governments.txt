@@ -1269,11 +1269,6 @@ government "Quarg (Incipias)"
 		"Quarg (Hai)" 1
 		"Quarg (Kor Efret)" 1
 		"Quarg (Gegno)" 1
-		"Merchant" .01
-		"Hai" .01
-		"Hai (Wormhole Access)" .01
-		"Pirate" -.01
-		"Pirate (Devil-Run Gang)" -.01
 	"custom penalties for"
 		"Conlatio"
 			disable 10
