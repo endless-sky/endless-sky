@@ -72,18 +72,8 @@ void MissionAction::Load(const DataNode &node)
 	if(node.Size() >= 3)
 		system = node.Token(2);
 
-	if(node.HasChildren())
-	{
-		auto it = node.begin();
-		if(it->Token(0) == "triggers for failed missions")
-		{
-			runsWhenFailed = true;
-			it++;
-		}
-
-		for(; it != node.end(); it++)
-			LoadSingle(*it);
-	}
+	for(const DataNode &child : node)
+		LoadSingle(child);
 }
 
 
@@ -138,6 +128,8 @@ void MissionAction::LoadSingle(const DataNode &child)
 		else
 			child.PrintTrace("Error: Unsupported use of \"system\" LocationFilter:");
 	}
+	else if(key == "can trigger after failure")
+		runsWhenFailed = true;
 	else
 		action.LoadSingle(child);
 }

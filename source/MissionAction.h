@@ -79,7 +79,7 @@ public:
 
 private:
 	// Whether this action can be triggered after the mission has failed.
-	bool runsWhenFailed;
+	bool runsWhenFailed = false;
 
 	std::string trigger;
 	std::string system;

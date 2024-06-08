@@ -814,20 +814,21 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 	if(repeat && playerConditions.Get(name + ": offered") >= repeat)
 		return false;
 
+	bool isFailed = IsFailed(player);
 	auto it = actions.find(OFFER);
-	if(it != actions.end() && !it->second.CanBeDone(player, IsFailed(player), boardingShip))
+	if(it != actions.end() && !it->second.CanBeDone(player, isFailed, boardingShip))
 		return false;
 
 	it = actions.find(ACCEPT);
-	if(it != actions.end() && !it->second.CanBeDone(player, IsFailed(player), boardingShip))
+	if(it != actions.end() && !it->second.CanBeDone(player, isFailed, boardingShip))
 		return false;
 
 	it = actions.find(DECLINE);
-	if(it != actions.end() && !it->second.CanBeDone(player, IsFailed(player), boardingShip))
+	if(it != actions.end() && !it->second.CanBeDone(player, isFailed, boardingShip))
 		return false;
 
 	it = actions.find(DEFER);
-	if(it != actions.end() && !it->second.CanBeDone(player, IsFailed(player), boardingShip))
+	if(it != actions.end() && !it->second.CanBeDone(player, isFailed, boardingShip))
 		return false;
 
 	return true;
@@ -841,12 +842,13 @@ bool Mission::CanAccept(const PlayerInfo &player) const
 	if(!toAccept.Test(playerConditions))
 		return false;
 
+	bool isFailed = IsFailed(player);
 	auto it = actions.find(OFFER);
-	if(it != actions.end() && !it->second.CanBeDone(player, IsFailed(player)))
+	if(it != actions.end() && !it->second.CanBeDone(player, isFailed))
 		return false;
 
 	it = actions.find(ACCEPT);
-	if(it != actions.end() && !it->second.CanBeDone(player, IsFailed(player)))
+	if(it != actions.end() && !it->second.CanBeDone(player, isFailed))
 		return false;
 	return HasSpace(player);
 }
