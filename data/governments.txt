@@ -1302,6 +1302,8 @@ government "Quarg (Incipias)"
 		"Medium Graviton Thruster"
 		"Medium Graviton Steering"
 		"Quantum Shield Generator"
+		ship "Quarg Skylark"
+		ship "Quarg Wardragon"
 
 government "Quarg (Kor Efret)"
 	swizzle 0
