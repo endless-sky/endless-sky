@@ -148,7 +148,7 @@ mission "Incipias: The Derelict"
 					die
 				label peace
 				`	Feeling that the situation could escalate any moment, you slowly place the crate with the repair equipment on the ground and walk back a few steps. You are careful not to make any hasty movements. Both sides are still for a moment until one of the aliens slowly floats forward. Tones of yellow are now mixing into the creature's orange color, and two of their tentacles wrap around the crate. The other four back off in response. Once the alien manages to open the crate and look inside, its colors shift to a weak green. The rest of the crew also seem to relax as they take on the same color.`
-				`	With the repair equipment delivered there is nothing else you can do, given the communication barrier. Just as you leave you can see how the aliens start pulsating in all colors of the spectrum; gradients are moving over their skin so fast that they almost look white.`
+				`	With the repair equipment delivered, there is nothing else you can do, given the communication barrier. Just as you leave you can see how the aliens start pulsating in all colors of the spectrum; gradients are moving over their skin so fast that they almost look white.`
 					goto end
 				label flee
 				`	As the tension increases even further, you simply drop the repair equipment and run back into your ship, smashing the button that closes the lock. You get a last look on the alien: blue and yellow tones are mixing on their skin, but they are not taking any action.`
@@ -162,7 +162,7 @@ mission "Incipias: The Derelict"
 			derelict uninterested staying
 	on enter "Hui'uc"
 		conversation
-			`On entering the system you find an alien spaceship disabled and badly damaged. There does not appear to be any other ships or inhabited planets in the system.`
+			`On entering the system you find an alien spaceship disabled and badly damaged. There do not appear to be any other ships or inhabited planets in the system.`
 
 mission "Incipias: Help the stranded Part 1"
 	landing
