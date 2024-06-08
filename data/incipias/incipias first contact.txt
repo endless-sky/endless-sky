@@ -54,7 +54,7 @@ mission "Incipias: Warning of the Guardian"
 				`	"Why do you care about these 'flowers'?"`
 					goto care
 				`	"What I search for is not technology."`
-			`	The voice now takes on a calm tone. "Your persistence on this topic is admirable, but allow me to explain my conviction with an example." You say nothing, so the voice continues.`
+			`	The voice now takes on a calm tone. "Your persistence on this topic is admirable, but allow me to explain my conviction with an example."`
 			label care
 			`	"Why do humans care about art?" The voice now seems far away yet more present than ever. "Because it amazes you, the same way it amazes us to see another kind grow and overcome their burdens. The lives of species are like a painting that never stop being painted, but when they do stop it is a tragic thing to watch. That is why we try to protect these creations of life - so we can see what heights they reach."`
 			`	The voice pauses before continuing. "I see that you can not be convinced by me. Even though I could simply wipe you out here and now, I do not favor violence. I will let you pass, but I will be watching you as I am-" you can hear the ultimate resolution in the voice, "-the guardian of this space."`
