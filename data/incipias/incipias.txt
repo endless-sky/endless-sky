@@ -274,6 +274,7 @@ phrase "incipias common praise"
 		"are very impressive."
 		"are very efficient."
 		"look very stylish."
+		"seem to work with utmost efficiency."
 
 phrase "incipias common interest"
 	word
