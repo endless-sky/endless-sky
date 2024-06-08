@@ -54,7 +54,7 @@ void Gamerules::Load(const DataNode &node)
 			depreciationGracePeriod = max<int>(0, child.Value(1));
 		else if(key == "depreciation max age")
 			depreciationMaxAge = max<int>(0, child.Value(1));
-		else if(key == "disabled fighters get hit")
+		else if(key == "disabled fighters avoid projectiles")
 		{
 			const string &value = child.Token(1);
 			if(value == "all")
