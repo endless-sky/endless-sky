@@ -218,7 +218,7 @@ outfit "MH Blue-Class Engine"
 	"thrust" 24
 	"thrusting energy" 2
 	"thrusting heat" 2.5
-	description "In Incipian culture, blue is the weakest color. An engine labeled with blue does not bode well for the speed of any ship using it."
+	description "In Incipian culture, blue is the weakest color. An engine labeled as blue does not bode well for the speed of any ship using it."
 
 outfit "MH Blue-Class Steering"
 	category "Engines"
