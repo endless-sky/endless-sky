@@ -567,7 +567,6 @@ void Ship::Load(const DataNode &node)
 			description += child.Token(1);
 			description += '\n';
 		}
-		// TODO: formation rings also need to be serialized (in load and store).
 		else if(key == "formation" && child.Size() >= 2)
 			formationPattern = GameData::Formations().Get(child.Token(1));
 		else if(key == "remove" && child.Size() >= 2)
