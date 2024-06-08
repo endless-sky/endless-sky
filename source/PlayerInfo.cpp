@@ -1835,23 +1835,26 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 	accounts.AddCredits(income);
 	cargo.Clear();
 	stockDepreciation = Depreciation();
-	if(leftOver && income)
+	if(leftOver)
 	{
-		// Report how much excess cargo was left over, and what profit you earned.
-		ostringstream out;
-		out << "You sold " << Format::CargoString(leftOver, "excess cargo") << " for " << Format::CreditString(income);
-		if(totalBasis && totalBasis != income)
-			out << " (for a profit of " << Format::CreditString(income - totalBasis) << ").";
+		if(income)
+		{
+			// Report how much excess cargo was left over, and what profit you earned.
+			ostringstream out;
+			out << "You sold " << Format::CargoString(leftOver, "excess cargo") << " for " << Format::CreditString(income);
+			if(totalBasis && totalBasis != income)
+				out << " (for a profit of " << Format::CreditString(income - totalBasis) << ").";
+			else
+				out << ".";
+			Messages::Add(out.str(), Messages::Importance::High);
+		}
 		else
-			out << ".";
-		Messages::Add(out.str(), Messages::Importance::High);
-	}
-	else if(leftOver)
-	{
-		// Report how much excess cargo was dumped.
-		ostringstream out;
-		out << "You dumped " << Format::CargoString(leftOver, "excess cargo") << ".";
-		Messages::Add(out.str(), Messages::Importance::High);
+		{
+			// Report how much excess cargo was dumped.
+			ostringstream out;
+			out << "You dumped " << Format::CargoString(leftOver, "excess cargo") << ".";
+			Messages::Add(out.str(), Messages::Importance::High);
+		}
 	}
 
 	return true;
