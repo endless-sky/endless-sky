@@ -16,9 +16,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef FIGHTER_HIT_POLICY_H_
 #define FIGHTER_HIT_POLICY_H_
 
+#include "GameData.h"
 #include "Gamerules.h"
 #include "Ship.h"
-#include "GameData.h"
 
 
 
@@ -30,13 +30,14 @@ public:
 	{
 		if(!ship->CanBeCarried() || !ship->IsDisabled())
 			return true;
-		else switch(GameData::GetGamerules().FightersHitWhenDisabled())
-		{
-			case Gamerules::FighterHitPolicy::NEVER: return false;
-			case Gamerules::FighterHitPolicy::ALWAYS: return true;
-			case Gamerules::FighterHitPolicy::NOT_PLAYER: return !ship->IsYours();
-		}
-		return false;
+		else
+			switch(GameData::GetGamerules().FightersHitWhenDisabled())
+			{
+				case Gamerules::FighterHitPolicy::NEVER: return false;
+				case Gamerules::FighterHitPolicy::ALWAYS: return true;
+				case Gamerules::FighterHitPolicy::NOT_PLAYER: return !ship->IsYours();
+				default: return false;
+			}
 	}
 };
 
