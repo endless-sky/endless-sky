@@ -57,12 +57,12 @@ void Gamerules::Load(const DataNode &node)
 		else if(key == "disabled fighters get hit")
 		{
 			const string &value = child.Token(1);
-			if(value == "always")
-				fighterHitPolicy = FighterHitPolicy::ALWAYS;
-			else if(value == "never")
-				fighterHitPolicy = FighterHitPolicy::NEVER;
-			else if(value == "not player")
-				fighterHitPolicy = FighterHitPolicy::NOT_PLAYER;
+			if(value == "all")
+				fighterHitPolicy = FighterDodgePolicy::ALL;
+			else if(value == "none")
+				fighterHitPolicy = FighterDodgePolicy::NONE;
+			else if(value == "only player")
+				fighterHitPolicy = FighterDodgePolicy::ONLY_PLAYER;
 			else
 				child.PrintTrace("Skipping unrecognized value for gamerule:");
 		}
@@ -136,7 +136,7 @@ int Gamerules::DepreciationMaxAge() const
 
 
 
-Gamerules::FighterHitPolicy Gamerules::FightersHitWhenDisabled() const
+Gamerules::FighterDodgePolicy Gamerules::FightersHitWhenDisabled() const
 {
 	return fighterHitPolicy;
 }

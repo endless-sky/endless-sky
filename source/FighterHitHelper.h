@@ -33,9 +33,9 @@ public:
 		else
 			switch(GameData::GetGamerules().FightersHitWhenDisabled())
 			{
-				case Gamerules::FighterHitPolicy::NEVER: return false;
-				case Gamerules::FighterHitPolicy::ALWAYS: return true;
-				case Gamerules::FighterHitPolicy::NOT_PLAYER: return !ship->IsYours();
+				case Gamerules::FighterDodgePolicy::ALL: return false;
+				case Gamerules::FighterDodgePolicy::NONE: return true;
+				case Gamerules::FighterDodgePolicy::ONLY_PLAYER: return !ship->IsYours();
 			}
 		return false;
 	}
