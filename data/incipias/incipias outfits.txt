@@ -169,6 +169,7 @@ outfit "Star Tail Storage"
 	cost 500
 	thumbnail "outfit/star tail cell storage"
 	"mass" 10
+	"outfit space" -10
 	"star tail capacity" 20
 	licenses
 		"Hicemus Conflict"
@@ -229,7 +230,7 @@ outfit "MH Blue-Class Steering"
 	"turn" 498
 	"turning energy" 1.
 	"turning heat" 3
-	description "This steering barely provides the minimum force needed to turn a ship, but it still used often because of how cheap it is."
+	description "This steering barely provides the minimum force needed to turn a ship, but it is still used often because of how cheap it is."
 
 outfit "MH Green-Class Engine"
 	category "Engines"
@@ -281,7 +282,7 @@ outfit "MH Red-Class Steering"
 	"turn" 1134
 	"turning energy" 2.5
 	"turning heat" 12
-	description "Even the Incipias realize that ships need to turn towards their target to be able to shoot it. This steering is specifically designed for combat but captains with a lot of money find it very useful for mining."
+	description "Even the Incipias realize that ships need to turn towards their target to be able to shoot it. This steering is specifically designed for combat, but captains with a lot of money find it very useful for mining."
 
 
 # Hand to Hand
