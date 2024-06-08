@@ -29,8 +29,9 @@ public:
 	{
 		ALL, NONE, ONLY_PLAYER
 	};
-public:
 
+
+public:
 	Gamerules() = default;
 
 	// Load a gamerules node.
