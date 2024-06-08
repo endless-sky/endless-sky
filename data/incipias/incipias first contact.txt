@@ -80,7 +80,7 @@ mission "Incipias: Presence of the Guardian"
 			`As you enter the system you still have a feeling of being watched, the presence from the previous system still ligering around you.`
 				to display
 					not "Incipias: accepted the guardians warning"
-			`As you enter the system the same voice from before echoes through your mind. "I do not take kindly on atempts to decieve me, human. Know that you will be watched." As the voice fades away a strong presence stays around you.`
+			`As you enter the system the same voice from before echoes through your mind. "I do not take kindly on attempts to deceive me, human. Know that you will be watched." As the voice fades away a strong presence stays around you.`
 				to display
 					has "Incipias: accepted the guardians warning"
 				decline
@@ -89,7 +89,7 @@ mission "Incipias: Presence of the Guardian"
 			`As you enter the system you still have a feeling of being watched, the presence from the previous system still ligering around you.`
 				to display
 					not "Incipias: accepted the guardians warning"
-			`As you enter the system the same voice from before echoes through your mind. "I do not take kindly on atempts to decieve me, human. Know that you will be watched." As the voice fades away a strong presence stays around you.`
+			`As you enter the system the same voice from before echoes through your mind. "I do not take kindly on attempts to deceive me, human. Know that you will be watched." As the voice fades away a strong presence stays around you.`
 				to display
 					has "Incipias: accepted the guardians warning"
 				decline
