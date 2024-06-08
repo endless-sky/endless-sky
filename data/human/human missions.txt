@@ -7451,6 +7451,7 @@ mission "Timothy Radrickson 1: Stowaway"
 			action
 				fail
 			`	As the crate tumbles out into lifeless space your onboard sensors quickly note the anomalous heat signature disappear. Whatever was in that crate is no longer your problem, and probably won't be anyone else's either.`
+				decline
 
 			label crate
 			`	You pry open the crate. It should be full of meals for you and your crew, but after removing the lid you discover a dirty, disheveled man.`
