@@ -24,6 +24,13 @@ class DataNode;
 // for example, the spawnrate of person ships or whether universal ramscoops are active.
 class Gamerules {
 public:
+	// Defines when disabled fighters can be hit by stray projectiles
+	enum class FighterHitPolicy
+	{
+		ALWAYS, NEVER, NOT_PLAYER
+	};
+public:
+
 	Gamerules() = default;
 
 	// Load a gamerules node.
@@ -38,6 +45,7 @@ public:
 	double DepreciationDaily() const;
 	int DepreciationGracePeriod() const;
 	int DepreciationMaxAge() const;
+	FighterHitPolicy FightersHitWhenDisabled() const;
 
 
 private:
@@ -50,6 +58,7 @@ private:
 	double depreciationDaily = 0.997;
 	int depreciationGracePeriod = 7;
 	int depreciationMaxAge = 1000;
+	FighterHitPolicy fighterHitPolicy = FighterHitPolicy::NEVER;
 };
 
 

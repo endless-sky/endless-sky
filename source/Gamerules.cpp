@@ -54,6 +54,18 @@ void Gamerules::Load(const DataNode &node)
 			depreciationGracePeriod = max<int>(0, child.Value(1));
 		else if(key == "depreciation max age")
 			depreciationMaxAge = max<int>(0, child.Value(1));
+		else if(key == "disabled fighters get hit")
+		{
+			const string &value = child.Token(1);
+			if(value == "always")
+				fighterHitPolicy = FighterHitPolicy::ALWAYS;
+			else if(value == "never")
+				fighterHitPolicy = FighterHitPolicy::NEVER;
+			else if(value == "not player")
+				fighterHitPolicy = FighterHitPolicy::NOT_PLAYER;
+			else
+				child.PrintTrace("Skipping unrecognized value for gamerule:");
+		}
 		else
 			child.PrintTrace("Skipping unrecognized gamerule:");
 	}
@@ -120,4 +132,11 @@ int Gamerules::DepreciationGracePeriod() const
 int Gamerules::DepreciationMaxAge() const
 {
 	return depreciationMaxAge;
+}
+
+
+
+Gamerules::FighterHitPolicy Gamerules::FightersHitWhenDisabled() const
+{
+	return fighterHitPolicy;
 }
