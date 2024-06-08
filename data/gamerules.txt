@@ -52,8 +52,8 @@ gamerules
 	"universal frugal threshold" 0.75
 
 	# Controls which fighters, when disabled, will not be hit by projectiles unless they are directly targeting.
-    # DEFAULT: all
-    # ALLOWABLE VALUES: all, none, only player
+	# DEFAULT: all
+	# ALLOWABLE VALUES: all, none, only player
 	"disabled fighters avoid projectiles" "all"
 
 	# Depreciation related game rules:
