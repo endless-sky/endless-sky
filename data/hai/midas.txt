@@ -523,7 +523,7 @@ mission "Midas: Betrayal For The Bars"
 			`	You decide not to check it out now. A few moments later, you hear a big metallic sound, followed by deep silence. You may want to check your cargo bay later on.`
 				defer
 			label investigate
-			`	You pull out your sidearm and approach the bay as discreetly as you can. Worst case scenario is you find one of your own crew, in which case you better not overreact, or someone could get hurt.`
+			`	You pull out your sidearm and approach the bay as discreetly as you can. Worst case scenario is you find one of your own crew, in which case you had better not overreact, or someone could get hurt.`
 			choice
 				`	(Ask if someone is there.)`
 					goto hello
