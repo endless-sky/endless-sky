@@ -1809,7 +1809,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 
 			label unfettered
 			action
-				log `A Hai intelligence report puts the relative cost to Hai of seeking "full Hai unification" as being around 2.5 billion credits a day more expensive than handling the ongoing Unfettered raids`
+				log `A Hai intelligence report puts the relative cost to Hai of seeking "full Hai unification" as being around 2.5 billion credits a day more expensive than handling the ongoing Unfettered raids.`
 				log `A Hai intelligence report on "Unfettered military activities" included several fully-redacted sections, including "Multi-Decadal Timeline Expected before Unfettered Progress," and "Theories on the Sentient Evolution of Nocturnal Raptors."`
 				set "Hai Reveal [A11] Sound the Alarm: unfettered book"
 				"Hai Reveal [A11] Sound the Alarm: time" ++
