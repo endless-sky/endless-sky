@@ -7706,6 +7706,7 @@ mission "Ice Queen 2"
 			`	"Please." Eustice says, backing up further. "That's all I know about him. I never saw him again."`
 			`	Ildico stares at him for a few more moments, and then turns and passes you on her way to the exit.`
 			`	She opens the door and nods to you. "We're going to <planet>."`
+				accept
 
 	on complete
 		conversation
