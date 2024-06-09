@@ -3673,13 +3673,13 @@ mission "Pirate Duel"
 					has "flagship system: Tarazed"
 				branch "passed tarazed"
 					not "anglerfish caught"
-				`The <npc> and the "captain of the Esca" have been destroyed. You consider continuing on to Wayfarer to see if you can grab some sort of reward for your effort.`
+				`The <npc> and the "captain of the Esca" have been destroyed. You should continue on to Wayfarer to see if you can claim some sort of reward for your effort.`
 					decline
 				label "passed tarazed"
-				`The <npc> and the "captain of the Esca" have been destroyed. You consider going back to Wayfarer to see if you can grab some sort of reward for your effort.`
+				`The <npc> and the "captain of the Esca" have been destroyed. You should head back to Wayfarer to see if you can claim some sort of reward for your effort.`
 					decline
 				label "orbiting tarazed"
-				`The <npc> and the "captain of the Esca" have been destroyed. You consider landing on Wayfarer to see if you can grab some sort of reward for your effort.`
+				`The <npc> and the "captain of the Esca" have been destroyed. You should land on Wayfarer to see if you can claim some sort of reward for your effort.`
 	
 	on complete
 		"reputation: Independent (Killable)" = 10
