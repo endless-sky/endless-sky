@@ -460,7 +460,8 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 		result.events[it.first] = make_pair(day, day);
 	}
 
-	result.giftShips = giftShips;
+	for(auto &&it : giftShips)
+		result.giftShips.push_back(it.Instantiate(subs));
 	result.giftOutfits = giftOutfits;
 
 	result.music = music;
