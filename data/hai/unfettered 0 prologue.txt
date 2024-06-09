@@ -576,10 +576,7 @@ mission "<uhai> 0: Bring Hai"
 				`	"Yes, thank you."`
 					goto translate
 				`	"Thank you, but I already understand what I need to."`
-					goto polite
 				`	"I have no need for your help."`
-			`	She seems a bit offended that you do not want her help.`
-			label polite
 			`	She does not press the matter further and proceeds to move away. Most of the Hai here are with what seems to be families or groups of friends, but you do not see your would-be helper join anyone else as she returns to her previous spot in the shifting audience.`
 			choice
 				`	(Ignore her.)`
@@ -1272,7 +1269,7 @@ mission "<uhai> 3: Jump Drive Vault"
 			`	"If the vault indeed be compromised, 'twas not by landlubbers. Those inside will be more dangerous and well-armed than the lily-livered locals. Still, I do not be having to guarantee yer safety to secure me loot, so ye be free to do as ye wish. The defense mechanisms be offline for the moment, so ye would have to fend for yerself. These locals be so young and frail and malnourished that even ye can surely handle yerself against them." The disdain in the last words is palpable.`
 			label choose
 			choice
-				`	(Follow him in.)`
+				`	"I'll come in."`
 				`	(Stay outside.)`
 					goto outside
 			# He would be fine with you dying so he does not have to share to loot...
