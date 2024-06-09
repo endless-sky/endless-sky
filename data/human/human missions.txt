@@ -7645,11 +7645,11 @@ conversation "Ice Queen"
 	choice
 		`	"Anywhere you need to go, I can take you."`
 			goto wheresheneedstogo
-		`	"Okay, I'll just take you to <planet>."`
+		`	"Okay, I'll take you to <planet>, but after that you're on your own."`
 			accept
 
 	label wheresheneedstogo
-	`	Ildico narrows her eyes. "Nothing is free. Especially not a trip around the galaxy."`
+	`	Ildico narrows her eyes. "Nothing is free."`
 	choice
 		`	"I just want to make the universe a better place."`
 		`	"It's karma. What goes around comes around."`
@@ -7706,7 +7706,6 @@ mission "Ice Queen 2"
 			`	"Please." Eustice says, backing up further. "That's all I know about him. I never saw him again."`
 			`	Ildico stares at him for a few more moments, and then turns and passes you on her way to the exit.`
 			`	She opens the door and nods to you. "We're going to <planet>."`
-				accept
 
 	on complete
 		conversation
