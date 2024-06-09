@@ -41,7 +41,7 @@ trade
 		"canned olives"
 		"canned soup"
 		"canned tuna"
-		"cantaloupe"
+		"cantaloupes"
 		"cattle"
 		"cheese"
 		"cherries"
