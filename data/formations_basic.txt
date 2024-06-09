@@ -12,9 +12,30 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 
+# Formation where ships fly in a diagonal line left behind the formation leader.
+formation "Echelon (left) medium"
+	position -150 150
+		repeat -150 150
+
+
+# Formation where ships fly in a diagonal line right behind the formation leader.
+formation "Echelon (right) medium"
+	position 150 150
+		repeat 150 150
+
+
+# Formation where ships form a line right and left of the formation leader.
+formation "Line (sides) medium"
+	flippable x y
+	rotatable 180
+	position -200 0
+		repeat -200 0
+	position 200 0
+		repeat 200 0
+
 
 # Formation where ships form a line behind the formation leader.
-formation "Trailing line medium"
+formation "Line (trailing) medium"
 	flippable y
 	position 0 200
 		repeat 0 200
@@ -49,15 +70,30 @@ formation "Vic small"
 		repeat 100 57.5
 
 
+# X shaped formation that rotates with the flagship.
+# For warship-sized escorts
+formation "X medium"
+	flippable x y
+	rotatable 90
+	position -150 150
+		repeat -150 150
+	position 150 150
+		repeat 150 150
+	position 150 -150
+		repeat 150 -150
+	position -150 -150
+		repeat -150 -150
+
+
 # Stable X or + shaped formation that doesn't rotate with the flagship.
 # For warship-sized escorts
 formation "X stable medium"
 	rotatable 0
-	position 200 0
-		repeat 200 0
-	position -200 0
-		repeat -200 0
-	position 0 200
-		repeat 0 200
-	position 0 -200
-		repeat 0 -200
+	position -150 150
+		repeat -150 150
+	position 150 150
+		repeat 150 150
+	position 150 -150
+		repeat 150 -150
+	position -150 -150
+		repeat -150 -150
