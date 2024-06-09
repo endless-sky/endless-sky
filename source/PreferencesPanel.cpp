@@ -1554,8 +1554,7 @@ void PreferencesPanel::ProcessPluginIndex()
 		}
 		ifstream pluginlistFile(Files::Config() + "plugins.json");
 		nlohmann::json pluginInstallList = nlohmann::json::parse(pluginlistFile);
-		pluginInstallPages = ((pluginInstallList.size() - (pluginInstallList.size() % MAX_PLUGIN_INSTALLS_PER_PAGE))
-			/ MAX_PLUGIN_INSTALLS_PER_PAGE) + (pluginInstallList.size() % MAX_PLUGIN_INSTALLS_PER_PAGE > 0);
+		pluginInstallPages = ceil(static_cast<float>(pluginInstallList.size()) / static_cast<float>(MAX_PLUGIN_INSTALLS_PER_PAGE));
 		for(const auto &pluginInstall : pluginInstallList)
 		{
 			const Plugin *installedVersion = Plugins::Get().Find(pluginInstall["name"]);
