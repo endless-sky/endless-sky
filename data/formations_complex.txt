@@ -79,8 +79,7 @@ formation "Nabla (trailing) medium"
 # Built in six segment sections using the same layouting as the hexagon shape.
 formation "Sphere medium"
 	flippable x y
-	# Could also be set to 0 or 1.
-	rotatable 60
+	rotatable 0
 	arc
 		start 200 0
 		angle 360
