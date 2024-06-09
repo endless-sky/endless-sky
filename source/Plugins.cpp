@@ -85,7 +85,7 @@ namespace {
 	const int MAX_DOWNLOAD_SIZE = 1000000000;
 
 	// Copy an entry from one archive to the other
-	void CopyData(struct archive *ar, struct archive *aw)
+	bool CopyData(struct archive *ar, struct archive *aw)
 	{
 		int retVal;
 		const void *buff;
@@ -96,12 +96,13 @@ namespace {
 		{
 			retVal = archive_read_data_block(ar, &buff, &size, &offset);
 			if(retVal == ARCHIVE_EOF)
-				return;
+				return false;
 			if(retVal != ARCHIVE_OK)
-				return;
+				return false;
 			if(archive_write_data_block(aw, buff, size, offset) != ARCHIVE_OK)
-				return;
+				return false;
 		}
+		return true;
 	}
 
 	bool ExtractZIP(std::string &filename, const std::string &destination, const std::string &expectedName)
@@ -181,7 +182,8 @@ namespace {
 			// Write files.
 			if(archive_write_header(ext, entry) == ARCHIVE_OK)
 			{
-				CopyData(read, ext);
+				if(!CopyData(read, ext))
+					return false;
 				if(archive_write_finish_entry(ext) != ARCHIVE_OK)
 					return false;
 			}
@@ -527,6 +529,7 @@ future<void> Plugins::Install(InstallData *installData, bool update)
 
 	return async(launch::async, [installData, update]() noexcept -> void
 		{
+			
 			string zipLocation = Files::Plugins() + installData->name + ".zip";
 			bool success = Download(installData->url, zipLocation);
 			if(success)

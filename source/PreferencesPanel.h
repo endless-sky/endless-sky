@@ -107,6 +107,7 @@ private:
 	std::string selectedPlugin;
 
 
+	// Pointers to keep track of what plugin is selected/clicked/hovered.
 	Plugins::InstallData *latestPlugin = nullptr;
 
 	Plugins::InstallData *selecPluginInstall = nullptr;
@@ -114,7 +115,7 @@ private:
 	Plugins::InstallData *clickedPluginInstall = nullptr;
 	Plugins::InstallData *oldClickedPluginInstall = nullptr;
 	Plugins::InstallData *hoverPluginInstall = nullptr;
- 
+
 	unsigned pluginInstallPages = 1;
 	unsigned currentPluginInstallPage = 0;
 	// If the plugin index was already downloaded.
