@@ -58,7 +58,7 @@ template <class Type>
 			const List<Minable> &minables, const List<Flotsam> &flotsam);
 
 	// Fleet commands from the player.
-	void IssueFormationChange(const PlayerInfo &player);
+	void IssueFormationChange(PlayerInfo &player);
 	void IssueShipTarget(const std::shared_ptr<Ship> &target);
 	void IssueAsteroidTarget(const std::shared_ptr<Minable> &targetAsteroid);
 	void IssueMoveTarget(const Point &target, const System *moveToSystem);
