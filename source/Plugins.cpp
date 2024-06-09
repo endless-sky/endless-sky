@@ -171,6 +171,10 @@ namespace {
 				size_t start_pos = thisEntryName.find(firstEntry);
 				if(start_pos != std::string::npos)
 					thisEntryName.replace(start_pos, firstEntry.length(), expectedName);
+				
+				// Check for malicous path.
+				if(thisEntryName.find("..") != string::npos)
+					return false;
 
 				archive_entry_set_pathname(entry, thisEntryName.c_str());
 			}
@@ -529,7 +533,9 @@ future<void> Plugins::Install(InstallData *installData, bool update)
 
 	return async(launch::async, [installData, update]() noexcept -> void
 		{
-			
+			// Check for malicous path.
+			if(installData->name.find("..") != string::npos)
+				return;
 			string zipLocation = Files::Plugins() + installData->name + ".zip";
 			bool success = Download(installData->url, zipLocation);
 			if(success)
