@@ -343,7 +343,7 @@ AI::AI(const PlayerInfo &player, const List<Ship> &ships,
 
 
 // Fleet commands from the player.
-void AI::IssueFormationChange(const PlayerInfo &player)
+void AI::IssueFormationChange(PlayerInfo &player)
 {
 	// Figure out what ships we are giving orders to
 	vector<Ship *> targetShips = GetShipsForFormationCommand(player);
@@ -398,6 +398,7 @@ void AI::IssueFormationChange(const PlayerInfo &player)
 	{
 		ship->SetFormationPattern(toSet);
 		orders[ship].type = Orders::GATHER;
+		orders[ship].target = player.FlagshipPtr();
 	}
 
 	unsigned int count = targetShips.size();
