@@ -490,14 +490,16 @@ conversation "Hai Diplomat Intro"
 		`	"What if the humans want our own envoy to these aliens?"`
 	label envoy
 	`	She says, "If they prove to be friendly, I will help you to find a way to communicate with them directly, so you need not use me as an intermediary. But our first step must be to speak with them." You help her aboard your ship, and get ready to return to the alien homeworld.`
-		goto "let's go"
+		goto go
 
 	label "let's go"
+	`	"Excellent! I will await you in your ship."`
+
+	label go
 	action
 		event "Wanderers after Hai Reveal"
 		fail "First Contact: Wanderer"
-	`	"Excellent! I will await you in your ship."`
-		accept
+	branch accept
 
 	label "Alternative Ambassador"
 	action
