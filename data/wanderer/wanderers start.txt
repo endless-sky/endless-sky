@@ -298,12 +298,12 @@ mission "Wanderers: Meet Professor"
 	to complete
 		has "Wanderers: Diplomacy (Before Hai Reveal): offered"
 	on offer
-		log "Minor People" "Professor Andelena" `Professor Maindell Stormchild Andelena, IV speaks with Shroud cloud city accent and is a daughter of the rich Andelena family. Her wealthy meanderings have led her to a university on Allhome where she studies Skiorology, the Hai-studying equivalent of Anthropology.`
+		log "Minor People" "Professor Andelena" `Professor Maindell Stormchild Andelena IV speaks with a Shroud cloud city accent and is a daughter of the rich Andelena family. Her wealthy meanderings have led her to a university on Allhome where she studies Skiorology, the Hai-studying equivalent of Anthropology.`
 		log "Minor People" "Eenap" `Professor Andelena's small Hai grad student, who is interested in studying the aliens to the north as her thesis research subject.`
 		conversation
 			`It turns out Mongongo University is the size of a large town, with its own spaceport. The Department of Skiourology has five entire buildings. You enter the largest and inquire about Professor Andalena, whose office is through a labyrinth of corridors. After a few minutes of navigation, you begin to conclude you've been trapped in a Mobius strip.`
 			`	"Captain <last>," squeaks a Hai voice near you. "I'm Eenap, Professor Andelena's grad student. Please follow me to her office so we may discuss an expedition." Soon, you arrive at Professor Andelena's office, which looks like a small museum exhibit, filled with taxidermy statues of evolutionary ancestors of the Hai, and diagrams of development of Hai society.`
-			`	"Welcome, Captain <last>! I am Professor Maindell Stormchild Andelena, IV." This human woman speaks with the famously-dignified Shroud cloud city accent. "We were planning an expedition to study planets suspected of being part of a past Hai empire, but your discovery has piqued our interest."`
+			`	"Welcome, Captain <last>! I am Professor Maindell Stormchild Andelena IV." This human woman speaks with the famously-dignified Shroud cloud city accent. "We were planning an expedition to study planets suspected of being part of a past Hai empire, but your discovery has piqued our interest."`
 			choice
 				`	"You said you were... Skiorologists?"`
 				`	"My only interest is translation. Will you do that for me?"`
@@ -365,7 +365,7 @@ mission "Wanderers: Intercepted"
 					decline
 				`	"You're right. Solving this mystery isn't worth losing my life."`
 					decline
-			`	She laughs, "Do I wonder why they are fascinated? Of course not. A core tenant of Unfettered society is the lust for strife. If they see prey to the north, they will strike. That is no mystery to me.`
+			`	She laughs, "Do I wonder why they are fascinated? Of course not. A core tenet of Unfettered society is the lust for strife. If they see prey to the north, they will strike. That is no mystery to me.`
 			`	"I do wonder who the birds are, and why they are attractive as prey. I have little knowledge on the matter, but my superiors may know more. Perhaps not, though.`
 					goto forward
 			label accusation
@@ -466,7 +466,7 @@ conversation "Hai Diplomat Intro"
 	`As you are approaching Hai-home, you contact the Hai government and inform them you are ready to receive an ambassador to the aliens to the north. They immediately direct you to a now familiar private government hangar, where a familiar diplomat meets you.`
 		to display
 			has "Wanderers: Diplomacy Delayed: offered"
-	`	"Good to see you again Captain <last>, I have arranged for some refreshments so please, come and tell me all about these new aliens you have discovered!"`
+	`	"Good to see you again, Captain <last>! I have arranged for some refreshments, so please come, tell me all about these new aliens!"`
 	`	Her exuberance is catching and after recent stressful events you see a new side to her as you relay your experience with the bird-like aliens. You realize that opportunities like this are why she became a diplomat in the first place and that this is, to some degree, a dream come true.`
 	`	"So in conclusion, it seems you need a translator," she says with a wry smile.`
 	choice
