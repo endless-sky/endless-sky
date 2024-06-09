@@ -2004,17 +2004,20 @@ void Engine::HandleKeyboardInputs()
 			&& !activeCommands.Has(Command::LAND | Command::JUMP | Command::BOARD | Command::STOP))
 		activeCommands |= Command::AUTOSTEER;
 
-	// Use number keys to select landable planets, stations, etc.
-	const Uint8 *pressedKeys = SDL_GetKeyboardState(nullptr);
-	int planetNumberOffset = 0;
-	for(int planetKey = 0; planetKey < 9; planetKey++)
+	// Use shift+number keys to select landable planets, stations, etc.
+	if(SDL_GetModState() & KMOD_SHIFT)
 	{
-		// If the player has assigned a number key to a command, skip it.
-		if(Command::KeyCodeInUse(SDL_KeyCode::SDLK_1 + planetKey))
-			planetNumberOffset--;
-		else if(pressedKeys[SDL_GetScancodeFromKey(SDL_KeyCode::SDLK_1 + planetKey)])
+		const Uint8 *pressedKeys = SDL_GetKeyboardState(nullptr);
+		int planetNumberOffset = 0;
+		for(int planetKey = 0; planetKey < 9; planetKey++)
 		{
-			SelectLandablePlanet(planetKey + planetNumberOffset);
+			// If the player has assigned a number key to a command, skip it.
+			if(Command::KeyCodeInUse(SDL_KeyCode::SDLK_1 + planetKey))
+				planetNumberOffset--;
+			else if(pressedKeys[SDL_GetScancodeFromKey(SDL_KeyCode::SDLK_1 + planetKey)])
+			{
+				SelectLandablePlanet(planetKey + planetNumberOffset);
+			}
 		}
 	}
 }
