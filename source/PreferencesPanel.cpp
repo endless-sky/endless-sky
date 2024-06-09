@@ -185,7 +185,8 @@ void PreferencesPanel::Draw()
 		info.SetCondition("next install plugin");
 
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
-	string pageName = (page == 'c' ? "controls" : (page == 's' ? "settings" : page == 'p' ? "plugins" : "install plugins"));
+	string pageName = (page == 'c' ? "controls" :
+		(page == 's' ? "settings" : page == 'p' ? "plugins" : "install plugins"));
 	GameData::Interfaces().Get(pageName)->Draw(info, this);
 	GameData::Interfaces().Get("preferences")->Draw(info, this);
 
@@ -1554,7 +1555,8 @@ void PreferencesPanel::ProcessPluginIndex()
 		}
 		ifstream pluginlistFile(Files::Config() + "plugins.json");
 		nlohmann::json pluginInstallList = nlohmann::json::parse(pluginlistFile);
-		pluginInstallPages = ceil(static_cast<float>(pluginInstallList.size()) / static_cast<float>(MAX_PLUGIN_INSTALLS_PER_PAGE));
+		pluginInstallPages = ceil(static_cast<float>(pluginInstallList.size())
+			/ static_cast<float>(MAX_PLUGIN_INSTALLS_PER_PAGE));
 		for(const auto &pluginInstall : pluginInstallList)
 		{
 			const Plugin *installedVersion = Plugins::Get().Find(pluginInstall["name"]);
