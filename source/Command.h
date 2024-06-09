@@ -108,7 +108,6 @@ public:
 	const std::string &Description() const;
 	const std::string &KeyName() const;
 	bool HasBinding() const;
-	static bool KeyCodeInUse(int keycode);
 	bool HasConflict() const;
 
 	// Load this command from an input file (for testing or scripted missions).

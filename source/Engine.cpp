@@ -2008,16 +2008,10 @@ void Engine::HandleKeyboardInputs()
 	if(SDL_GetModState() & KMOD_SHIFT)
 	{
 		const Uint8 *pressedKeys = SDL_GetKeyboardState(nullptr);
-		int planetNumberOffset = 0;
 		for(int planetKey = 0; planetKey < 9; planetKey++)
 		{
-			// If the player has assigned a number key to a command, skip it.
-			if(Command::KeyCodeInUse(SDL_KeyCode::SDLK_1 + planetKey))
-				planetNumberOffset--;
-			else if(pressedKeys[SDL_GetScancodeFromKey(SDL_KeyCode::SDLK_1 + planetKey)])
-			{
-				SelectLandablePlanet(planetKey + planetNumberOffset);
-			}
+			if(pressedKeys[SDL_GetScancodeFromKey(SDL_KeyCode::SDLK_1 + planetKey)])
+				SelectLandablePlanet(planetKey);
 		}
 	}
 }
