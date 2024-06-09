@@ -2003,6 +2003,45 @@ void Engine::HandleKeyboardInputs()
 	if(keyHeld.Has(Command::AUTOSTEER) && !activeCommands.Turn()
 			&& !activeCommands.Has(Command::LAND | Command::JUMP | Command::BOARD | Command::STOP))
 		activeCommands |= Command::AUTOSTEER;
+
+	// Use number keys to select landable planets, stations, etc.
+	const Uint8 *pressedKeys = SDL_GetKeyboardState(nullptr);
+	int planetNumberOffset = 0;
+	for(int planetKey = 0; planetKey < 9; planetKey++)
+	{
+		// If the player has assigned a number key to a command, skip it.
+		if(Command::KeyCodeInUse(SDL_KeyCode::SDLK_1 + planetKey))
+			planetNumberOffset--;
+		else if(pressedKeys[SDL_GetScancodeFromKey(SDL_KeyCode::SDLK_1 + planetKey)])
+		{
+			SelectLandablePlanet(planetKey + planetNumberOffset);
+		}
+	}
+}
+
+
+
+void Engine::SelectLandablePlanet(int n)
+{
+	Ship *flagship = player.Flagship();
+	const System *system = flagship->GetSystem();
+	if(system)
+	{
+		for(const StellarObject &object : system->Objects())
+		{
+			const Planet *planet = object.GetPlanet();
+			if(object.HasSprite() && object.HasValidPlanet() && planet->CanLand(*flagship))
+			{
+				if(n > 0)
+					n--;
+				else
+				{
+					flagship->SetTargetStellar(&object);
+					return;
+				}
+			}
+		}
+	}
 }
 
 

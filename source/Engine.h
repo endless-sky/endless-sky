@@ -166,6 +166,7 @@ private:
 	void GenerateWeather();
 	void SendHails();
 	void HandleKeyboardInputs();
+	void SelectLandablePlanet(int n);
 	void HandleMouseClicks();
 	void HandleMouseInput(Command &activeCommands);
 

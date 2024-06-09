@@ -236,7 +236,11 @@ bool Command::HasBinding() const
 	return true;
 }
 
-
+// Check whether a key code is in use.
+bool Command::KeyCodeInUse(int keycode)
+{
+	return commandForKeycode.find(keycode) != commandForKeycode.end();
+}
 
 // Check whether this is the only command mapped to the key it is mapped to.
 bool Command::HasConflict() const
