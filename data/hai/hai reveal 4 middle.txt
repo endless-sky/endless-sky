@@ -1549,7 +1549,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 			`	"Now, as a witness, you will have ample opportunity to speak when it is asked of you. You may raise your hand only to protest a matter of factual inaccuracy. You may not protest on a matter of opinion, or it will undermine your quality as a witness. Process dictates that any matter should be confirmed anyway so there should be no need.`
 			`	"Your presence," he continues quietly, "is distasteful to many Elders, and," he pauses, "presents opportunities to others."`
 			`	His dispassionate expression slips slightly and his tone reveals a hint of compassion. "Even the most hardened Hai politicians would not envy the situation you are in. You presence has great potential to both aid or harm Teeneep's case. Some may think less of you for choosing not to attend. My most solemn duty is to ensure that due representation is given to the facts. If you abide in the antechamber, your words will be relayed truthfully and sensitively. Of this you have my word.`
-			`	"You may travel between the proceedings and the antechamber at your leisure. In the antechamber is a reading room where you may find... other opportunities available. At the end of the proceedings, you may view our internal classified news network's report on the proceedings' results.`
+			`	"You may travel between the proceedings and the antechamber at your leisure. In the antechamber is a reading room where you may find... other opportunities available. At the end of the proceedings, you may view our internal classified news network's report on the results of the proceeding.`
 				goto "functionary will attend you"
 
 			label "short explanation"
