@@ -185,7 +185,7 @@ void PreferencesPanel::Draw()
 		info.SetCondition("next install plugin");
 
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
-	string pageName = (page == 'c' ? "controls" : page == 's' ? "settings" : page == 'p' ? "plugins" : "install plugins");
+	string pageName = (page == 'c' ? "controls" : (page == 's' ? "settings" : page == 'p' ? "plugins" : "install plugins"));
 	GameData::Interfaces().Get(pageName)->Draw(info, this);
 	GameData::Interfaces().Get("preferences")->Draw(info, this);
 
@@ -311,8 +311,8 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	}
 	else if(key == 'e' && page == 'i')
 	{
-		currentPluginInstallPage = currentPluginInstallPage < pluginInstallPages - 1 ?
-			currentPluginInstallPage + 1 : pluginInstallPages - 1;
+		currentPluginInstallPage = ((currentPluginInstallPage < pluginInstallPages - 1) ?
+			currentPluginInstallPage + 1 : pluginInstallPages - 1);
 		selected = 0;
 		selecPluginInstall = nullptr;
 	}
