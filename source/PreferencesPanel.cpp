@@ -185,7 +185,7 @@ void PreferencesPanel::Draw()
 		info.SetCondition("next install plugin");
 
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
-	string pageName = (page == 'c' ? "controls" : page == 's' ? "settings" : page == 'p' ? "plugins" : "install plugins");
+	string pageName = (page == 'c' ? "controls" : (page == 's' ? "settings" : page == 'p' ? "plugins" : "install plugins"));
 	GameData::Interfaces().Get(pageName)->Draw(info, this);
 	GameData::Interfaces().Get("preferences")->Draw(info, this);
 
