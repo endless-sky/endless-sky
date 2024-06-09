@@ -7747,7 +7747,7 @@ mission "Ice Queen 3"
 			
 			label nodanger
 			`	Ildico barks out a laugh. "So naive. We are always in danger. But for answers I will risk it."`
-			`	She carefully checks the inside of the vheicle before carefully climbing in.`
+			`	She carefully checks the inside of the vehicle before carefully climbing in.`
 			choice
 				`	(Follow her in.)`
 					goto ridealong
@@ -7759,7 +7759,7 @@ mission "Ice Queen 3"
 				`	(Follow her in.)`
 
 			label ridealong
-			`	After a brief ride through the campus you are escorted deeper and deeper into the maze that is the Everest Facility. Another half an hour later of hallways, and turns, and stairs and ups and downs, you finally find yourself inside Ian McGiven's office.`
+			`	After a brief ride through the campus you are escorted deeper and deeper into the maze that is the Everest Facility. Another half an hour of hallways, and turns, and stairs and ups and downs, you finally find yourself inside Ian McGiven's office.`
 			`	The man hears your inquiry and nods earnestly. "Ah, yes, of course I remember the fellow! What an interesting meeting that was," Ian says from behind his small desk.`
 			`	"Obviously, the details are proprietary, but in very broad generalities, he wanted me to warm up a freezing world."`
 			`	Ildico doesn't blink; on second thought, you're not sure you've ever seen her blink. "Hope. Yes, and could you warm it?"`
@@ -7908,7 +7908,7 @@ mission "Ice Queen 6"
 			`Having evaded Republic patrols on the lookout for the "Murderous Heiress," you make it to the pirate planet of Haven. Ildico watches the dismal landscape as you land and says, almost curtly, "It'll do."`
 			`	She opens the briefcase she took off Chiron, revealing a storage device and an oranate wooden box.`
 			`	Ildico gives you a sly smile. "It took years, but the majority of the Drifa fortune has been smuggled into this storage device. They thought I was meek, malleable, and pitiful. Not a threat. They were fools."`
-			`	She holds up the box. "And in this, well, this may take some explaining. Before we migrated to Hope, the Drifa were old nobility in The Deep. Legend says we ruled Valhalla before the first ships came. Whatever the truth, my ancestors had this in their possession as a sign of their royalty, this bauble."`
+			`	She holds up the box. "And in this, well, this may take some explaining. Before we migrated to Hope, the Drifa were old nobility in the Deep. Legend says we ruled Valhalla before the first ships came. Whatever the truth, my ancestors had this in their possession as a sign of their royalty, this bauble."`
 			`	Ildico opens the rune-carved lid of the box, revealing a faintly glowing red rock. "It is called the Blood of Surtr, and it was said to have been the symbol of our rulership, and more importantly, a source of power."`
 			`	She shrugs. "I know it sounds far-fetched. But I had this with me on Hope, and I don't think I would have survived without it. When the generators went down, this kept the lights on.`
 			`	"But, it's time with me is over. I want you, the last friend of House Drifa, and the only person whose shown me any kindness in many years, to have it.`
@@ -7919,7 +7919,7 @@ mission "Ice Queen 6"
 					goto "gotta go"
 				`	"Is it wise for you and your child to be left alone in a place like Haven?"`
 
-			`	She laughs. "Haven better watch out for me. After Hope and Chiron, this place will be a cakewalk."`
+			`	She laughs. "After surviving on Hope and Chiron? Haven will be a cakewalk."`
 				goto end
 
 			label "gotta go"
