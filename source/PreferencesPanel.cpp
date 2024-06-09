@@ -101,7 +101,7 @@ namespace {
 	const string PLUGIN_LIST_URL =
 		"https://raw.githubusercontent.com/endless-sky/endless-sky-plugins/master/generated/plugins.json";
 
-	const unsigned MAX_PLUGIN_INSTALLS_PER_PAGE = 18;
+	const size_t MAX_PLUGIN_INSTALLS_PER_PAGE = 18;
 }
 
 

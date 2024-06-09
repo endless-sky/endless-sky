@@ -116,8 +116,8 @@ private:
 	Plugins::InstallData *oldClickedPluginInstall = nullptr;
 	Plugins::InstallData *hoverPluginInstall = nullptr;
 
-	unsigned pluginInstallPages = 1;
-	unsigned currentPluginInstallPage = 0;
+	size_t pluginInstallPages = 1;
+	size_t currentPluginInstallPage = 0;
 	// If the plugin index was already downloaded.
 	bool downloadedInfo = false;
 	// Vector to store the feedback of the async tasks from installing/updating/deleting.

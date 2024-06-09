@@ -171,7 +171,7 @@ namespace {
 				size_t start_pos = thisEntryName.find(firstEntry);
 				if(start_pos != std::string::npos)
 					thisEntryName.replace(start_pos, firstEntry.length(), expectedName);
-				
+
 				// Check for malicous path.
 				if(thisEntryName.find("..") != string::npos)
 					return false;
@@ -536,6 +536,7 @@ future<void> Plugins::Install(InstallData *installData, bool update)
 			// Check for malicous path.
 			if(installData->name.find("..") != string::npos)
 				return;
+
 			string zipLocation = Files::Plugins() + installData->name + ".zip";
 			bool success = Download(installData->url, zipLocation);
 			if(success)
@@ -545,8 +546,10 @@ future<void> Plugins::Install(InstallData *installData, bool update)
 					Files::Plugins(), installData->name + "/");
 				if(success)
 				{
+					// Remove old version.
 					if(update)
 						filesystem::remove_all(Files::Plugins() + installData->name);
+
 					// Create a new entry for the plugin.
 					Plugin *newPlugin;
 					{
