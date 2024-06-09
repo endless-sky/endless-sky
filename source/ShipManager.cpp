@@ -132,6 +132,7 @@ void ShipManager::Do(PlayerInfo &player) const
 
 
 
+// Expands phrases and substitutions in the ship name, into a new copy of this ShipManager
 ShipManager ShipManager::Instantiate(const map<string, string> &subs) const
 {
 	ShipManager result = *this;
