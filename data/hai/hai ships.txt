@@ -1678,13 +1678,13 @@ ship "Stag Beetle"
 		"hull" 11000
 		"required crew" 70
 		"bunks" 78
-		"mass" 720
-		"drag" 9.1
+		"mass" 2040
+		"drag" 16.8
 		"cloak" .01
 		"cloaking energy" 5
 		"cloaking fuel" .5
 		"cloaking heat" 5
-		"heat dissipation" .45
+		"heat dissipation" .25
 		"fuel capacity" 600
 		"cargo space" 80
 		"outfit space" 834
