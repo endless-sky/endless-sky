@@ -78,7 +78,6 @@ struct Plugin {
 // This object is updated by toggling plugins in the Preferences UI.
 class Plugins {
 public:
-
 	struct InstallData
 	{
 		std::string name;

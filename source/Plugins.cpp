@@ -33,6 +33,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cstdio>
 #include <cstring>
 #include <curl/curl.h>
+#include <filesystem>
 #include <future>
 #include <map>
 #include <mutex>
@@ -536,7 +537,7 @@ future<void> Plugins::Install(InstallData *installData, bool update)
 				if(success)
 				{
 					if(update)
-						Files::DeleteDir(Files::Plugins() + installData->name);
+						filesystem::remove_all(Files::Plugins() + installData->name);
 					// Create a new entry for the plugin.
 					Plugin *newPlugin;
 					{
@@ -554,7 +555,7 @@ future<void> Plugins::Install(InstallData *installData, bool update)
 					installData->outdated = false;
 				}
 				else
-					Files::DeleteDir(Files::Plugins() + installData->name);
+					filesystem::remove_all(Files::Plugins() + installData->name);
 			}
 			Files::Delete(zipLocation);
 			{
@@ -597,7 +598,7 @@ void Plugins::DeletePlugin(const std::string &pluginName)
 		plugins.Get(pluginName)->removed = true;
 	}
 
-	Files::DeleteDir(Files::Plugins() + pluginName);
+	filesystem::remove_all(Files::Plugins() + pluginName);
 }
 
 
