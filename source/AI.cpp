@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Audio.h"
 #include "Command.h"
 #include "DistanceMap.h"
+#include "FighterHitHelper.h"
 #include "Flotsam.h"
 #include "GameData.h"
 #include "Gamerules.h"
@@ -696,7 +697,7 @@ void AI::Step(Command &activeCommands)
 			// focus on damaging one particular ship.
 			targetTurn = (targetTurn + 1) & 31;
 			if(targetTurn == step || !target || target->IsDestroyed() || (target->IsDisabled() &&
-					(personality.Disables() || (target->CanBeCarried() && !personality.IsVindictive())))
+					(personality.Disables() || (!FighterHitHelper::IsValidTarget(target.get()) && !personality.IsVindictive())))
 					|| (target->IsFleeing() && personality.IsMerciful()) || !target->IsTargetable())
 			{
 				target = FindTarget(*it);
@@ -3684,6 +3685,9 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 				continue;
 			// Merciful ships let fleeing ships go.
 			if(target->IsFleeing() && person.IsMerciful())
+				continue;
+			// Don't hit ships that cannot be hit without targeting
+			if(target != currentTarget.get() && !FighterHitHelper::IsValidTarget(target))
 				continue;
 
 			Point p = target->Position() - start;
