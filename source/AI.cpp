@@ -393,9 +393,12 @@ void AI::IssueFormationChange(const PlayerInfo &player)
 	// If more than one formation was found on the ships, then we set the pattern it to the first one found.
 	// No code is needed here for this option, since all variables are already set to just apply the change below.
 
-	// Now set the pattern on the selected ships.
+	// Now set the pattern on the selected ships, and tell them to gather.
 	for(Ship *ship : targetShips)
+	{
 		ship->SetFormationPattern(toSet);
+		orders[ship].type = Orders::GATHER;
+	}
 
 	unsigned int count = targetShips.size();
 	if(toSet)
@@ -1634,7 +1637,8 @@ vector<Ship *> AI::GetShipsList(const Ship &ship, bool targetEnemies, double max
 
 
 
-bool AI::FollowOrders(Ship &ship, Command &command) const
+// TODO: This should be const when ships are not added and removed from formations in MoveInFormation
+bool AI::FollowOrders(Ship &ship, Command &command)
 {
 	auto it = orders.find(&ship);
 	if(it == orders.end())
@@ -1708,7 +1712,10 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 	else if(type == Orders::KEEP_STATION)
 		KeepStation(ship, command, *target);
 	else if(type == Orders::GATHER)
-		CircleAround(ship, command, *target);
+		if(ship.GetFormationPattern())
+			MoveInFormation(ship, command);
+		else
+			CircleAround(ship, command, *target);
 	else
 		MoveIndependent(ship, command);
 

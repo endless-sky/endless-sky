@@ -100,7 +100,7 @@ private:
 	// Obtain a list of ships matching the desired hostility.
 	std::vector<Ship *> GetShipsList(const Ship &ship, bool targetEnemies, double maxRange = -1.) const;
 
-	bool FollowOrders(Ship &ship, Command &command) const;
+	bool FollowOrders(Ship &ship, Command &command);
 	void MoveInFormation(Ship &ship, Command &command);
 	void MoveIndependent(Ship &ship, Command &command) const;
 	void MoveEscort(Ship &ship, Command &command);
