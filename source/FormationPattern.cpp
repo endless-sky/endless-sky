@@ -180,11 +180,20 @@ void FormationPattern::Load(const DataNode &node)
 			// The specification of the coordinates is on the same line as the keyword.
 			line.start.Set(child.Value(1), child.Value(2));
 			line.endOrAnchor = line.start;
+			// Also allow positions to have a repeat section, for single points only
+			for(const DataNode &grand : child)
+				if(grand.Token(0) == "repeat" && grand.Size() >= 3)
+				{
+					LineRepeat &repeat = line.repeats.emplace_back();
+					repeat.repeatStart.Set(grand.Value(1), grand.Value(2));
+					repeat.repeatPositions = 1;
+				}
+				else
+					grand.PrintTrace("Skipping unrecognized attribute:");
 		}
 		else if(child.Token(0) == "line" || child.Token(0) == "arc")
 		{
-			lines.emplace_back();
-			Line &line = lines.back();
+			Line &line = lines.emplace_back();
 
 			if(child.Token(0) == "arc")
 				line.isArc = true;
@@ -215,8 +224,7 @@ void FormationPattern::Load(const DataNode &node)
 					}
 				else if(grand.Token(0) == "repeat")
 				{
-					line.repeats.emplace_back();
-					LineRepeat &repeat = line.repeats[line.repeats.size() - 1];
+					LineRepeat &repeat = line.repeats.emplace_back();
 					for(const DataNode &grandGrand : grand)
 						if(grandGrand.Token(0) == "start" && grandGrand.Size() >= 3)
 							repeat.repeatStart.Set(grandGrand.Value(1), grandGrand.Value(2));
