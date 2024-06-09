@@ -186,7 +186,6 @@ void FormationPattern::Load(const DataNode &node)
 				{
 					LineRepeat &repeat = line.repeats.emplace_back();
 					repeat.repeatStart.Set(grand.Value(1), grand.Value(2));
-					repeat.repeatPositions = 1;
 				}
 				else
 					grand.PrintTrace("Skipping unrecognized attribute:");
@@ -236,8 +235,6 @@ void FormationPattern::Load(const DataNode &node)
 							repeat.repeatAngle = grandGrand.Value(1);
 						else if(grandGrand.Token(0) == "positions" && grandGrand.Size() >= 2)
 							repeat.repeatPositions = static_cast<int>(grandGrand.Value(1) + 0.5);
-						else if(grandGrand.Token(0) == "alternating")
-							repeat.alternating = true;
 						else
 							grandGrand.PrintTrace("Skipping unrecognized attribute:");
 				}
@@ -363,11 +360,7 @@ Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigne
 		positions += repeat->repeatPositions * ring;
 	}
 
-	// Compensate for any skipped positions. This would usually be the start-position on the line, but it can be the
-	// end position if we are on an alternating line.
-	if(ring % 2 && repeat && repeat->alternating && line.skipLast)
-		++linePosition;
-	else if(line.skipFirst)
+	if(line.skipFirst)
 		++linePosition;
 
 	// Switch to arc-specific calculations if this line is an arc.
@@ -380,16 +373,7 @@ Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigne
 
 		// Apply repeat section for endAngle, startAngle and anchor were already done before.
 		if(repeat)
-		{
 			endAngle += repeat->repeatAngle * ring;
-
-			// Calculate new start and turn end angle if we need to alternate this repeat.
-			if(ring % 2 && repeat->alternating && positions > 0)
-			{
-				startAngle += endAngle;
-				endAngle = -endAngle;
-			}
-		}
 
 		// Apply positions to get the correct position-angle.
 		if(positions > 1)
@@ -407,11 +391,6 @@ Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigne
 	}
 
 	// This is not an arc, perform the line-based calculations.
-
-	// Swap start and end if we need to alternate in the repeat section.
-	// Apply repeat section if it is relevant.
-	if(ring % 2 && repeat && repeat->alternating)
-		swap(startPx, endOrAnchorPx);
 
 	// Calculate the step from each position between start and end.
 	Point positionPx = endOrAnchorPx - startPx;

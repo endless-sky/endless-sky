@@ -149,8 +149,8 @@ namespace {
 		// Figure out what ships we are giving orders to.
 		vector<Ship *> targetShips;
 		auto &selectedShips = player.SelectedShips();
-		bool fullFleet = selectedShips.empty();
-		if(fullFleet)
+		// If selectedShips is empty, this applies to the whole fleet.
+		if(selectedShips.empty())
 		{
 			auto &playerShips = player.Ships();
 			targetShips.reserve(playerShips.size() - 1);
@@ -402,12 +402,9 @@ void AI::IssueFormationChange(PlayerInfo &player)
 	}
 
 	unsigned int count = targetShips.size();
-	if(toSet)
-		Messages::Add(to_string(count) + (count == 1 ? " ship" : " ships") + " will assume a \"" + toSet->Name() +
-			"\" formation.", Messages::Importance::Low);
-	else
-		Messages::Add(to_string(count) + (count == 1 ? " ship" : " ships") + " will no longer fly in formation.",
-			Messages::Importance::Low);
+	string message = to_string(count) + (count == 1 ? " ship" : " ships") + " will ";
+	message += toSet ? ("assume a \"" + toSet->Name() + "\" formation.") : "no longer fly in formation.";
+	Messages::Add(message, Messages::Importance::Low);
 }
 
 
@@ -1713,10 +1710,12 @@ bool AI::FollowOrders(Ship &ship, Command &command)
 	else if(type == Orders::KEEP_STATION)
 		KeepStation(ship, command, *target);
 	else if(type == Orders::GATHER)
+	{
 		if(ship.GetFormationPattern())
 			MoveInFormation(ship, command);
 		else
 			CircleAround(ship, command, *target);
+	}
 	else
 		MoveIndependent(ship, command);
 
