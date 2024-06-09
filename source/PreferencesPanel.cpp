@@ -311,8 +311,8 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	}
 	else if(key == 'e' && page == 'i')
 	{
-		currentPluginInstallPage = currentPluginInstallPage < pluginInstallPages - 1 ?
-			currentPluginInstallPage + 1 : pluginInstallPages - 1;
+		currentPluginInstallPage = ((currentPluginInstallPage < pluginInstallPages - 1) ?
+			currentPluginInstallPage + 1 : pluginInstallPages - 1);
 		selected = 0;
 		selecPluginInstall = nullptr;
 	}
