@@ -123,9 +123,6 @@ private:
 
 		// Positions to add or remove in this repeat section.
 		int repeatPositions = 0;
-
-		// Indicates if each odd repeat section should start from the end instead of the start.
-		bool alternating = false;
 	};
 
 	class Line {
