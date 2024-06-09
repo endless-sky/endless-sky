@@ -32,20 +32,20 @@ mission "Unfettered: Hunger!"
 	on enter
 		system
 			government "Hai"
-		dialog `The local Hai authorities hail you. "Captain, We need your help! Our brethren up north are starving! The situation is even more dire than usual, and requires your immediate assistance. You will of course be well rewarded, as usual. We added a new job to respond to this crisis."`
+		dialog `The local Hai authorities hail you. "Captain, we need your help! Our brethren up north are starving! The situation is even more dire than usual, and requires your immediate assistance. You will of course be well rewarded, as usual. We added a new job to respond to this crisis."`
 	on enter
 		system
 			attributes "unfettered"
 		conversation
 			branch "not first time"
 				"Unfettered: Hunger!: offered" > 1
-			`Surprisingly, the local Unfettered authorities hail you. In fact, they seem to be relaying a message to all ships in range, both in human and Hai... Their situation must be desperate.`
+			`Surprisingly, the local Unfettered authorities hail you. In fact, they seem to be relaying a message to all ships in range, both in human and Hai... their situation must be desperate.`
 				goto message
 			label "not first time"
-			`The local Unfettered authorities hail you. In fact, they are hailing all ships, in human and hai. This is not the first time they do this, and it probably means that, like last time, another famine is happening. If that were to be the case, they most likely did not manage their food issue in a permanent manner.`
+			`The local Unfettered authorities hail you. In fact, they are hailing all ships, in both human and Hai languages. This is not the first time they have done this, and it probably means that, like last time, another famine is happening. If that were to be the case, they most likely did not manage their food issue in a permanent manner.`
 			label message
-			`	"Attention, to all that are sympathetic to our cause, or simply want to help a people survive, we are in great need of food. As such, we have negotiated an increase of tributes from the Hai, and they have offered some food supplies, as well as specialists to help us stabilize our food production. That is what we need all of you for, captains, all over our worlds parents are starving because they give what little they have to their children, to their future.`
-			`	You can almost feel them laying low their pride to say the next part, "We are not used to nor comfortable with begging, but please, help us! Spread the word, bring food, we will reward you handsomely as ever! Do it for the money if you must, or do it because you care."`
+			`	"Attention, to all that are sympathetic to our cause, or simply want to help a people survive. We are in great need of food. As such, we have negotiated an increase of tributes from the Hai, and they have offered some food supplies, as well as specialists to help us stabilize our food production. That is what we need all of you for, captains, because over all our worlds parents are starving due to giving what little they have to their children, to their future.`
+			`	You can almost feel them laying low their pride to say the next part, "We are not used to nor comfortable with begging, but please, help us! Spread the word, bring food, and we will reward you more handsomely than ever! Do it for the money if you must, or do it because you care."`
 	on daily
 		"unfettered: hunger stops" += random
 	to fail
@@ -225,14 +225,13 @@ mission "Unfettered: Hunger Stories 1"
 			branch translator
 				has "language: Hai"
 
-			`	Your approach startles her out of her distraction and she pulls the boy close. When you speak to her it's clear she doesn't understand you. You look around for an Unfettered who could translate, but she grabs your sleeve and shakes her head. Eventually one hai who understands your language as well comes to help translate.`
+			`	Your approach startles her out of her distraction and she pulls the boy close. When you speak to her it's clear she doesn't understand you. You look around for an Unfettered who could translate, but she grabs your sleeve and shakes her head. Eventually one Hai who understands your language as well as hers comes to help and translate for you.`
 				goto message
 			label translator
-			`	Your approach startles her out of her distraction and she pulls the boy close. She is shaking her head to say she doesn't understand when your translator begins to relay your words. She relaxes somewhat but holds the boy's paw tightly.`
-
+			`	Your approach startles her out of her distraction and she pulls the boy close. She is shaking her head to say she doesn't understand when your translator begins to relay your words. She relaxes somewhat, but still holds the boy's paw tightly.`
 			label message
 			`	"They have told me my husband is dead. The thieving vultures killed him. And now the boy has a medal but no father. They gave me his death money but there is no food and I don't know what we will do."`
-			`	You know that the Hai send food aid to the Unfettered and you've not seen anyone obviously hungry in Hai space. They would probably take this family in.`
+			`	You know that the Hai send food aid to the Unfettered and you have yet to see anyone obviously hungry in Hai space. The Normal Hai would probably take this family in.`
 			choice
 				`	(Offer to take them to <destination>.)`
 				`	(Offer your condolences and move on.)`
@@ -240,20 +239,17 @@ mission "Unfettered: Hunger Stories 1"
 			`	While it's awkward to wait for the translation, it gives you time to choose your words. "Your brothers and sisters in the south have food and shelter for your family. I can take you there if you want."`
 			`	She hesitates but then the baby starts to cry. She looks at you with tears in her eyes and nods. You send some crew with her to help her pack her things and bring them to the ship.`
 				accept
-			
 			label business
 			`	The Unfettered mother never notices you as you pass by. You see the family later in a long queue for food rations.`
 				decline
-
 			label condolences
-			`	You tell her you are sorry for her loss. You see anger flare across her features as you turn to leave and if she wasn't holding an infant she might well have attacked you. "What good are your words monkey?" she shouts. "Will they feed my children? Did you come all this way to make fun of us? We have to choose between dying for a new world or starving on this one. Go back through the wormhole and give your words to your own kind!"`
+			`	You tell her you are sorry for her loss. You see anger flare across her features as you turn to leave and if she wasn't holding an infant she might well have attacked you. "What good are your words, monkey?" she shouts. "Will they feed my children? Did you come all this way to make fun of us? We have to choose between dying for a new world, or starving on this one. Go back through the wormhole and give your words to your own kind!"`
 			`	A group of Unfettered roughly screen you off from the distraught mother and tells you to leave. She continues screaming at you and crying as you walk away.`
 				decline
-
 	on complete
 		payment 300000
 		conversation
-			`You are surprised to see a military honor guard in addition to what you assume are social services. They greet the family with a keening trill in what must be a sound of mourning. The Hai move in close and surround the group in what seems to be a group hug and then they move together into the spaceport. One of the Hai soldiers approaches you and says, "Thank you for bringing our family back together" and gives you your payment of <payment>.`
+			`You are surprised to see a military honor guard in addition to what you assume are social services. They greet the family with a keening trill in what must be a sound of mourning. The Hai move in close and surround the group in what seems to be a group hug and then they move together into the spaceport. One of the Hai soldiers approaches you and says, "Thank you for bringing our family back together," as they hand you a payment of <payment>.`
 
 
 
@@ -279,27 +275,23 @@ mission "Unfettered: Hunger Stories 2"
 					goto polite
 				`(Laugh at him and walk away.)`
 					goto laugh
-			
 			label hire
-			`	The young Unfettered proves diligent in his work. He steers you away from some vendors and towards others and the prices and quality are at least competitive. Several times his staff has flashed out and blocked people who might have bumped into you. While some of the vendors you traded with were amused by his translations, most worked through him rather than speaking to you directly. He even kept watch while you were eating, though he did seem to be distracted by the food.`
+			`	The young Unfettered proves diligent in his work. He steers you away from some vendors and towards others where the prices and quality are at least competitive. Several times his staff has flashed out and blocked people who might have bumped into you. While some of the vendors you traded with were amused by his translations, most worked through him rather than speaking to you directly. He even kept watch while you were eating, though he did seem to be distracted by the food.`
 			`	At the end of the day, he follows you to the <ship> and you pay him his fee. He surprises you though, by following you on board. "I will watch over you until you make it back to the Fettered worlds. You should be safe enough on <destination>." From the prices you saw in the restaurants and shops, the amount you paid would feed him for a few days at most.`
 			choice
 				`	(Give him transport.)`
 					goto transport
 				`	(Escort him off the ship.)`
 					goto escort
-				
 			label polite
 			`	You tell him that you can take care of yourself. He nods to acknowledge your decision but maintains eye contact. He then turns and walks away.`
 			`	You see him around the spaceport a few times: once working as a porter, another time loading cargo. Both seem like odd jobs for someone with his apparent skills and neither will pay very well. As you are heading back to your ship you see him at one of the small food stalls that sells really cheap noodle cups and you wonder if that's the only time he's eaten today.`
 				decline
-
 			label laugh
 			`	You find yourself flat on your back looking up at the young Unfettered. He's holding your sidearm and is pointing it at you with the safety off. You later decide that he must have swept your legs with the staff and grabbed your weapon, but it happened so swiftly you never saw it.`
-			`	"I was wrong," he says as he secures your weapon inside his jacket. "I thought you warrior. Have respect. You just monkey after all."`
+			`	"I was wrong," he says as he secures your weapon inside his jacket. "I mistook you for a warrior. You do not know the meaning of respect. You are but a monkey after all."`
 			`	He walks off causally, never bothering to turn around.`
 				decline
-
 			label escort
 			`	His eyes narrow when you tell him to leave. "Mistake to refuse generosity of True Hai," he says. You get the distinct impression that he'd take it further if he wasn't on your ship. As it is, he leaves peacefully and you close the hatch.`
 				decline
@@ -311,9 +303,8 @@ mission "Unfettered: Hunger Stories 2"
 	on complete
 		payment 500
 		conversation
-			`When you arrive at <destination>, the young Hai guides you around the spaceport as you take care of your business. You don't see his staff; so, either it's too provocative to carry in Hai space or it's collapsible and he has it somewhere on his person. He offers you comments on the Hai conversations going on around you where they are either about you or your business. While he is still stays close to you, he seems to naturally relax into the flow of Hai culture.`
+			`When you arrive at <destination>, the young Hai guides you around the spaceport as you take care of your business. You don't see his staff; so either it's too provocative to carry in Hai space or it's collapsible and he has it somewhere on his person. He offers you comments on the Hai conversations going on around you when they are either about you or your business. While he is still stays close to you, he seems to naturally relax into the flow of Hai culture.`
 			`	You lose track of him somewhere near the end of the day and he doesn't show back up at the ship. When you check his bunk, you find the <payment> you paid him on <origin> with a crudely lettered note that says, "FOR TRANSPORT."`
-
 
 
 
@@ -326,7 +317,7 @@ mission "Unfettered: Hunger Stories 3"
 	on offer
 		conversation
 			`You take some time to explore outside the secure facilities at the spaceport. You can see long lines of people waiting for the food rations that seem to be the main cargo delivered here.`
-			`	On your way back to your ship, a gang of Unfettered children block your path and move to encircle you. One of the older girls steps forward and in halting Human says, "Trespass. 500 credits. Then go." You can see half a dozen of them and all of them are half your size.`
+			`	On your way back to your ship, a gang of Unfettered children block your path and move to encircle you. One of the older girls steps forward and in halting human says, "Trespassing. 500 credits. Then go." You can see half a dozen of them and all of them are half your size.`
 			choice
 				`	(Pay them.)`
 					goto bribe
@@ -344,7 +335,7 @@ mission "Unfettered: Hunger Stories 3"
 			action
 				payment -5000
 			`	You reach for your sidearm only to find that it isn't there. It seems like a dozen pairs of paws are on you, some tearing at your clothes and some climbing on you. You spin around to try and shake them off. You end up rolling on the ground and then, as suddenly as it began, everything stops and you are alone in the street. You check yourself quickly and you seem to be uninjured. Your clothes are in tatters, though, and your sidearm, communicator, and bag are nowhere to be seen.`
-			`	You make your way back to the spaceport. For once, it's useful to be the alien. The guards are quickly able to quickly clear you even without documentation. You hear them laughing as you head for the safety of your ship. You have no doubt that the story of the monkey robbed by children is already making the rounds.`
+			`	You make your way back to the spaceport. For once, it's useful to be the alien. The guards are easily able to quickly clear you even without documentation. You hear them laughing as you head for the safety of your ship. You have no doubt that the story of the monkey robbed by children is already making the rounds.`
 			`	As you are walking, you wonder if you should report the gang to the authorities and perhaps save some other merchants or travellers from being mugged.`
 			choice
 				`	(Report them.)`
@@ -356,7 +347,7 @@ mission "Unfettered: Hunger Stories 3"
 			action
 				payment 5000
 			`	The Unfettered authorities surprise you by not only listening to your story, but pulling up surveillance video of your encounter with the gang. After consulting among themselves, they thank you for bringing this to their attention and give you <payment>.`
-			`	You ask if this is compensation for your stolen property and they laugh. "No, Human. We don't reward the weak and foolish," they answer. "This is a finder's fee. Those children show much promise. We will get them in training immediately."`
+			`	You ask if this is compensation for your stolen property and they laugh. "No, monkey. We don't reward the weak and foolish," they answer. "This is a finder's fee. Those children show much promise. We will get them in training immediately."`
 			`	You take the credits and return to your ship.`
 				decline
 
