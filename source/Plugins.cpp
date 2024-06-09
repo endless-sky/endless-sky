@@ -158,7 +158,8 @@ namespace {
 				return false;
 
 			size += archive_entry_size(entry);
-			if(size > MAX_DOWNLOAD_SIZE)
+			// The extracted size may be 4 times the maximum download size.
+			if(size > MAX_DOWNLOAD_SIZE * 4)
 				return false;
 
 			// Adjust root folder name if neccessary.
