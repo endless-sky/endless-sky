@@ -411,13 +411,13 @@ mission "Midas: Who is the mad one?"
 			`	He looks at you, fascinated. "You truly do not know, do you?" He stops for a few seconds, examining your face as if the truth was hidden behind your left ear. "Good! Then you may still be free. Do not make the mistake I did, or this gold will corrupt you! They will come for it! Stash it away, or sell it whilst you still can! It is not worth the fabulous prices they may offer for it!"`
 			`	He continues, finally and painfully catching his breath. "I went to the pirate worlds! To their territory! What a fool I was. Yes, it was a lot of credits, but not for me. I got plundered myself on the way there!"`
 			choice
-				`	"A good price you say? That sounds interesting."`
+				`	"A good price, you say? That sounds interesting."`
 				`	"You're right, it is not worth it, I will get rid of them."`
 					goto rid
-				`	"I just sold all of my bars but if they are this interesting I'll be looking for more."`
+				`	"I just sold all of my bars, but if they are this interesting I'll be looking for more."`
 					to display
 						not "outfit (all): Gold Bars"
-			`	His eyes open fully in despair, "NO!! You fool! You won't be able to say I did not warn you. You truly are a lost cause, perhaps the bars have already affected you! At least, make sure to have enough escorts, and watch your back.`
+			`	His eyes open fully in despair, "NO!! You fool! You won't be able to say I did not warn you. You truly are a lost cause. Perhaps the bars have already affected you! At any rate, make sure to have enough escorts, and watch your back.`
 			`	"At least do not keep them on your flagship, that would only attract them," he shouts over his shoulder before running away.`
 				accept
 			label rid
@@ -443,7 +443,7 @@ mission "Midas: Who is the mad one?"
 
 phrase "midas defeated"
 	word
-		`After disabling the last of the pirate ships, you wonder what could have motivated such an attack. Do you possess something valuable to them? When they entered the system, they only sent one message: "nemo me impune lacessit". It is probably best to store whatever they were interested in on a planet (using U) or to get rid of it.`
+		`After getting rid of the last of the pirate ships, you wonder what could have motivated such an attack. Do you possess something valuable to them? When they entered the system, they only sent one message: "Nemo me impune lacessit". It is probably best to store whatever they were interested in on a planet (using U) or to get rid of it.`
 
 # Attacks to get the bars back, in Hai and human space; as they have more influence in human space they are more numerous there
 mission "Midas: Nemo Me Impune Lacessit"
@@ -557,7 +557,7 @@ mission "Midas: Betrayal For The Bars"
 			`	There is no doubt that you were heard, but the only reaction from the silhouette is to run faster, and by another, more direct path. You cannot catch them, and you assume they escaped your ship, as later on you cannot find any intruders when doing a full search of your ship. Thankfully, they didn't manage to steal anything, surprisingly they only moved a few gold bars.`
 				accept
 			label shoot
-			`	You hit the crew member in the shoulder and they fall. You remove their weapon to be safe and ask for an explanation, but the only answer you get is "nemo me impune lacessit" before they lose consciousness. Looking into their eyes, you could see terror. You put them at a nearby hospital, but when you come back later, the crew member is gone, and no one has seen or heard anything.`
+			`	You hit the crew member in the shoulder and they fall. You remove their weapon to be safe and ask for an explanation, but the only answer you get is "Nemo me impune lacessit" before they lose consciousness. Looking into their eyes, you could see terror. You put them at a nearby hospital, but when you come back later, the crew member is gone, and no one has seen or heard anything.`
 				decline
 			label hello
 			`	In order to be sure to avoid any misunderstanding, you shout "Hello?" to see if someone answers. Nobody does. You still head into the cargo bay, a bit more alert than before. As you enter, you see that a few gold bars have fallen off the pile. That was probably the sound you heard.`
@@ -670,7 +670,7 @@ mission "<uhai> 6 B: To The Wolves"
 	on waypoint
 		"reputation: Midas" >?= 0
 		conversation
-			`One of the unidentified ships hail you. "You did well, Captain. Here is the first part of your reward: <payment>. You may help us by taking out these Hai ships, but it may be wise not to so that the rest of the Hai government will not suspect you for this unfortunate pirate attack.`
+			`One of the unidentified ships hails you. "You did well, Captain. Here is the first part of your reward: <payment>. You may help us by taking out these Hai ships, but it may be wise not to so that the rest of the Hai government will not suspect you for this unfortunate pirate attack.`
 			`	When this is done, go to <destination> for your reward. The Unfettered are going to be in high need of food, and you should bring them as much as you can to compensate for this small... delay in Hai food supplies."`
 			`	Right after that, the governor's ship hails you, and you hear her voice, between anger and confusion. "What have you done?!" You feel like she was about to continue, but before she could all communications are jammed.`
 			`	You can see some pirates present with the Midas fleets, probably to distract other Hai ships that happen to be in the system. It might be a good idea to bribe them.`
@@ -716,12 +716,12 @@ mission "<uhai> 6 B: To The Wolves"
 # The miners will keep on doing their thing, but this is sign of the amount of influence Midas has with the Korath
 # (also they just bashed some Alphas so the Korath are happy right now)
 event "misam: korath raids stop"
-	system Midas
+	system Misam
 		remove fleet "Korath Raid"
 		remove fleet "Korath Large Raid"
 
 event "misam: korath raids resume"
-	system Midas
+	system Misam
 		add fleet "Korath Raid" 5000
 		add fleet "Korath Large Raid" 11000
 
@@ -750,7 +750,7 @@ mission "<uhai> 7: Duel"
 		ship "Sea Dragon" "Thorn"
 		ship "Sea Dragon" "Talon"
 		on kill
-			dialog `Killing at least one of the twins will have consequences with the Shadow of Mintaka. As they said, "nemo me impune lacessit!" The Unfettered may refrain from offering you missions, for disrespecting the sacred rules of the duel, if they get wind of this.`
+			dialog `Killing at least one of the twins will have consequences with the Shadow of Mintaka. As they said, "Nemo me impune lacessit!" The Unfettered may refrain from offering you missions, for disrespecting the sacred rules of the duel, if they get wind of this.`
 			set "midas: thorn assassination"
 			set "midas: talon assassination"
 			"midas: wronged" += 2
@@ -772,7 +772,7 @@ mission "<uhai> 7: Duel"
 			`Having landed, you concede the duel, and receive a hail. "Do not feel ashamed, you fought well. To be fair, you never stood much of a chance against our superior firepower and agility," one says. "We hope you will have improved next time!"`
 				to display
 					not "midas: won the duel"
-			`Shortly after you land the ships disappear from your radar. They must have somehow repaired themselves.`
+			`Shortly after you land, the ships disappear from your radar. They must have somehow repaired themselves.`
 				to display
 					has "midas: won the duel"
 
@@ -828,7 +828,7 @@ mission "Midas: Daemons Unleashed"
 			choice
 				`	"May I wear your colors as well?"`
 					goto wearcolors
-				`	"How can I restore my reputation with the Unfettered? Attacking the previous flagship seem to have upset them."`
+				`	"How can I restore my reputation with the Unfettered? Attacking the previous flagship seems to have upset them."`
 					to display
 						"reputation: Hai (Unfettered)" < 0
 				`	"You did not even ask me if I wanted to be a part of it."`
@@ -843,12 +843,12 @@ mission "Midas: Daemons Unleashed"
 			label wearcolors
 			action
 				event "joined midas"
-			`	"You may paint your ship however you like." They then end the connection.`
+			`	"You may paint your ship however you like.`
 				goto endco
 			label asked
-			`	"That's right. And I won't." They cut the transmission.`
+			`	"That's right. And I won't.`
 			label endco
-			`	"Now you should leave the system. I will have to get some things straight with the others before they stop shooting you permanently, some still consider you an enemy."`
+			`	"Now you should leave the system. I will have to get some things straight with the others before they stop shooting you permanently, some still consider you an enemy." They cut the transmission.`
 			action
 				"reputation: Midas" >?= 100
 				"salary: Midas" = 5000
