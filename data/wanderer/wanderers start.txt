@@ -355,7 +355,7 @@ mission "Wanderers: Intercepted"
 			`	"Your efforts to find an interpreter have stumbled upon a suspected Unfettered spy who tried to transmit details about you and your ship to the Unfettered." She glares again at Eenap, who parries with a defiant look. "Fortunately, we shut down the operation before it got too far. You are safe, for now, Captain <last>."`
 			`	She motions for you to follow her to another room. There, she continues, "If you follow your curiosity, the Unfettered may take more extreme measures than spying. They have an unhealthy fascination with the birds to the North. This is a matter that doesn't concern you, and I suggest you stay away."`
 			action
-				log `The Hai arrested Professor Andelena's grad student Eenap for being an Unfettered agent me. She tried to transmit details about myself and my ship to the Unfettered. The Hai are concerned about the "unhealthy fascination" that Unfettered have with the Wanderers. A Hai agent warned me against getting involved, for my own safety.`
+				log `The Hai arrested Professor Andelena's grad student Eenap for being an Unfettered agent. She tried to transmit details about myself and my ship to the Unfettered. The Hai are concerned about the "unhealthy fascination" that Unfettered have with the Wanderers. A Hai agent warned me against getting involved, for my own safety.`
 			choice
 				`	"Aren't you wondering why the Unfettered are so fascinated by the 'birds to the North?' I could take you north to investigate."`
 				# The ambiguity of the second sentence here is intentional:
