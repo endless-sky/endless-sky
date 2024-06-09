@@ -484,7 +484,7 @@ bool PreferencesPanel::Drag(double dx, double dy)
 		const Rectangle &pluginBox = ui->GetBox("plugin list");
 		const Rectangle &descriptionBox = ui->GetBox("plugin description");
 
-		if(page != 'i' && pluginBox.Contains(hoverPoint))
+		if(page == 'p' && pluginBox.Contains(hoverPoint))
 		{
 			// Steps is zero so that we don't animate mouse drags.
 			pluginListScroll.Scroll(-dy, 0);
@@ -1072,7 +1072,7 @@ void PreferencesPanel::DrawPlugins()
 		if(!displayed)
 			continue;
 
-		AddZone(zoneBounds, [&]() { Plugins::TogglePlugin(plugin.name); });
+		AddZone(zoneBounds, [&](){ Plugins::TogglePlugin(plugin.name); });
 
 		if(plugin.removed)
 			table.Draw(plugin.name, removed);

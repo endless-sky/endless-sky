@@ -106,6 +106,7 @@ private:
 
 	std::string selectedPlugin;
 
+
 	Plugins::InstallData *latestPlugin = nullptr;
 
 	Plugins::InstallData *selecPluginInstall = nullptr;
@@ -113,11 +114,16 @@ private:
 	Plugins::InstallData *clickedPluginInstall = nullptr;
 	Plugins::InstallData *oldClickedPluginInstall = nullptr;
 	Plugins::InstallData *hoverPluginInstall = nullptr;
+ 
 	unsigned pluginInstallPages = 1;
 	unsigned currentPluginInstallPage = 0;
+	// If the plugin index was already downloaded.
 	bool downloadedInfo = false;
+	// Vector to store the feedback of the async tasks from installing/updating/deleting.
 	std::vector<std::future<void>> installFeedbacks;
+	// A list of plugins that can be installed.
 	std::vector<Plugins::InstallData> pluginInstallData;
+	// Queue to load icons for installable plugins and a list of those.
 	TaskQueue queue;
 	Set<Sprite> icons;
 

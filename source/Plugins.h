@@ -53,7 +53,7 @@ struct Plugin {
 	std::string path;
 	// The about text, if any, of this plugin.
 	std::string aboutText;
-	// The version of this plugin, importanted if it has been installed over ES.
+	// The version of this plugin, important if it has been installed over ES.
 	std::string version = "???";
 
 	// The set of tags which are used to categorize the plugin.
@@ -115,7 +115,7 @@ public:
 	// Toggles enabling or disabling a plugin for the next game restart.
 	static void TogglePlugin(const std::string &name);
 
-	// Install or update or delete a plugin.
+	// Install, update or delete a plugin.
 	static std::future<void> Install(InstallData *installData, bool update = false);
 	static std::future<void> Update(InstallData *installData);
 	static void DeletePlugin(const std::string &pluginName);
