@@ -1189,7 +1189,7 @@ tip "no bays?"
 	`There are insufficient bays available to carry this ship. If it took off, it would be unable to leave this star system.`
 
 tip "inefficient cooling?"
-	`This ship has inefficient cooling. Remove some outfit expansions to improve efficiency.`
+	`This ship has inefficient cooling. Removing some outfits that have the "cooling inefficiency" property will alleviate this.`
 
 tip "insufficient energy to fire?"
 	`This ship has insufficient energy storage to fire an installed weapon.`
