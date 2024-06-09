@@ -462,7 +462,6 @@ outfit "Hai Diamond Regenerator"
 	"energy consumption" .9
 	description "The Hai Diamond Shield Regenerator is an advanced type of shield recharging technology. Unfortunately, its power needs are quite high, and the shifts it makes to your shield matrix causes intense heat at the regenerator when your shields are charging. The Hai usually employ Williwaw Cooling when they use this regenerator."
 
-
 outfit "Hai Williwaw Cooling"
 	category "Systems"
 	cost 15000
@@ -482,7 +481,6 @@ outfit "Hai Zephyr Cooling"
 	description `This modern cooling system has been developed by the Unfettered with significant help from Korath scientists, who were highly amused that the Williwaw had such a "primitive" design yet simultaneously shared many similarities with a Korath heat shunt.`
 	description `	Although advanced for the Hai, the Korath meant this "simple" hydrogen-circulating cooler to be an easy-to-understand stopgap for immediate production, while they brought the Hai up to speed with "proper" heat shunt theory and design.`
 
-
 outfit "Quantum Keystone"
 	category "Systems"
 	cost 12000
@@ -492,8 +490,7 @@ outfit "Quantum Keystone"
 	"quantum keystone" 1
 	description "This chunk of rock from the mountains on the Hai homeworld is apparently nothing more than a good luck charm, but the Hai have decorated their ships with them since the height of their empire. More superstitious Hai claim that the stones somehow reduce the nausea induced by hyperspace jumps by making travel between star systems easier, and many wealthy Hai refuse to book passage on a ship without one."
 	description "	This keystone comes with a package including a holo-film certificate of authenticity certifying its origins on Hai-home, a decorative but robust frame, and a tiny plaque with the keystone logo and sale number stamped on it. The packaging suggests mounting the framed certificate in a prominent location near the main airlock or public common area."
-
-
+	
 outfit "Value Detector"
 	category "Systems"
 	cost 260000
@@ -505,7 +502,6 @@ outfit "Value Detector"
 	"tactical scan power" 35
 	"heat generation" 2
 	description "The Unfettered developed this scanner in order to determine which ships are worth plundering, or which lack the capacity to stand up to their ion weapons. Some Hai consider it rather rudimentary, but it is sufficient to identify the cargo on a ship from afar and provide more detailed information about the tactical condition of enemy vessels. This dual function is useful when fielding experimental weaponry."
-
 
 outfit "Hai Chasm Batteries"
 	plural "Hai Chasm Batteries"
@@ -835,7 +831,6 @@ outfit "Dual Pulse Pistols"
 	"capture defense" 1.6
 	"unplunderable" 1
 	description "A pair of modified heavy pulse pistols that are favored by some Unfettered and the occasional pirate captain. Dual wielding them adds more firepower during short raids against a ship's defenders. Individually, they lose their energy charge more quickly than a pulse rifle, making them a poor choice for holding a defensive position during a long siege."
-
 
 outfit "Heshi"
 	category "Unique"

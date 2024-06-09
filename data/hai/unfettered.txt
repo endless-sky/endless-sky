@@ -133,31 +133,3 @@ mission "Unfettered: Betrayed: Failure"
 	on offer
 		fail "Unfettered: Betrayed"
 
-mission "Unfettered: Restitution"
-	invisible
-	to offer
-		has "unfettered: outcast"
-		has "ship model (all): Modified Shield Beetle"
-		has "Wanderers: Alpha Surveillance D: done"
-		or
-			has "flagship planet attribute: shipyard"
-			"total ships" > 1
-	on offer
-		take ship "Modified Shield Beetle"
-			id "unfettered: personal beetle"
-			"with outfits"
-			"unconstrained"
-		conversation
-			`The exit hatch suddenly closes behind you as soon as you exit your ship, and you can hear the repulsors coming to full power! You hail your first mate to demand an explanation.`
-				to display
-					has "flagship model: Modified Shield Beetle"
-				goto message
-			`As you exit your flagship, you notice one of your escorts powers all engines on without any of the usual checks or security measures. You hail the Captain in charge of that ship.`
-				goto message
-			`Following on a hunch, you routinely check your ships before going to the spaceport. But it is quickly apparent that something is missing: the Modified Shield Beetle. It looks like the Unfettered were not kidding about getting the ship back at any cost."`
-				to display
-					not "ship model: Modified Shield Beetle"
-					has "ship model (all): Modified Shield Beetle"
-				decline
-			label message
-			`	They respond, in a state of panic, "I swear I did not order takeoff, Captain! I have no idea what is going on, it's as if the ship is flying itself. We'll head to the escape pods at once and abandon it. I'm sorry, there's nothing we can do, the engineer tells me this is a command that has been in the ship all along: return home."`

@@ -291,7 +291,6 @@ ship "Flea" "Flea (Pulse)"
 		`"Baellie" Atomic Engines`
 
 
-
 ship "Geocoris"
 	plural "Geocoris"
 	sprite "ship/hai geocoris"
@@ -699,7 +698,6 @@ ship "Ladybug" "Ladybug (Tracker)"
 	gun "Hai Tracker Pod"
 	turret "Chameleon Anti-Missile"
 	turret "Pulse Turret"
-
 
 
 ship "Modified Shield Beetle"
