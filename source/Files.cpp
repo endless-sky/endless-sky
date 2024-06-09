@@ -163,9 +163,8 @@ void Files::Init(const char * const *argv)
 
 	// Create the "plugins" directory if it does not yet exist, so that it is
 	// clear to the user where plugins should go.
-	CreateFolder(config + "plugins/");
-
 	pluginsPath = config + "plugins/";
+	CreateFolder(pluginsPath);
 
 	// Check that all the directories exist.
 	if(!Exists(dataPath) || !Exists(imagePath) || !Exists(soundPath))
