@@ -75,6 +75,14 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 
 void PlanetPanel::Step()
 {
+	// If the player is dead, pop the planet panel.
+	if(player.IsDead())
+	{
+		player.SetPlanet(nullptr);
+		GetUI()->PopThrough(this);
+		return;
+	}
+
 	// If the previous mission callback resulted in a "launch", take off now.
 	const Ship *flagship = player.Flagship();
 	if(flagship && flagship->CanBeFlagship() && (player.ShouldLaunch() || requestedLaunch))
@@ -102,9 +110,6 @@ void PlanetPanel::Step()
 
 void PlanetPanel::Draw()
 {
-	if(player.IsDead())
-		return;
-
 	Information info;
 	info.SetSprite("land", planet.Landscape());
 
@@ -154,6 +159,9 @@ void PlanetPanel::Draw()
 // Only override the ones you need; the default action is to return false.
 bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
+	if(player.IsDead())
+		return true;
+
 	Panel *oldPanel = selectedPanel;
 	const Ship *flagship = player.Flagship();
 
