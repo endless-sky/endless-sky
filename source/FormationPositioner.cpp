@@ -99,7 +99,7 @@ Point FormationPositioner::Position(const Ship *ship)
 void FormationPositioner::CalculatePositions()
 {
 	// Run the position iterator for the ships in the formation.
-	auto itPos = pattern->begin(centerBodyRadius, shipsInFormation.size());
+	auto itPos = pattern->begin(centerBodyRadius);
 
 	// Run the iterator.
 	size_t shipIndex = 0;

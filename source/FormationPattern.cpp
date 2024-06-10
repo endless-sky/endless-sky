@@ -24,8 +24,8 @@ using namespace std;
 
 
 FormationPattern::PositionIterator::PositionIterator(const FormationPattern &pattern,
-		double centerBodyRadius, unsigned int shipsToPlace)
-	: pattern(pattern), shipsToPlace(shipsToPlace), centerBodyRadius(centerBodyRadius)
+		double centerBodyRadius)
+	: pattern(pattern), centerBodyRadius(centerBodyRadius)
 {
 	MoveToValidPositionOutsideCenterBody();
 }
@@ -47,9 +47,6 @@ FormationPattern::PositionIterator &FormationPattern::PositionIterator::operator
 		MoveToValidPositionOutsideCenterBody();
 	}
 
-	// Number of ships is used as number of remaining ships still to be placed.
-	if(shipsToPlace > 0)
-		--shipsToPlace;
 	return *this;
 }
 
@@ -128,13 +125,6 @@ void FormationPattern::PositionIterator::MoveToValidPosition()
 		}
 	}
 
-	// If we are at the last line and we have less ships still to place than that
-	// would fit on the line, then perform centering if required.
-	if(!atEnd && position == 0 && shipsToPlace > 0 &&
-			lineRepeatPositions - 1 > shipsToPlace && pattern.IsCentered(line))
-		// Determine the amount to skip for centering and skip those.
-		position += (lineRepeatPositions - shipsToPlace) / 2;
-
 	if(atEnd)
 		currentPoint = Point();
 	else
@@ -209,8 +199,6 @@ void FormationPattern::Load(const DataNode &node)
 					line.angle = grand.Value(1);
 				else if(grand.Token(0) == "positions" && grand.Size() >= 2)
 					line.positions = static_cast<int>(grand.Value(1) + 0.5);
-				else if(grand.Token(0) == "centered")
-					line.centered = true;
 				else if(grand.Token(0) == "skip")
 					for(int i = 1; i < grand.Size(); ++i)
 					{
@@ -263,9 +251,9 @@ void FormationPattern::SetName(const std::string &name)
 
 
 // Get an iterator to iterate over the formation positions in this pattern.
-FormationPattern::PositionIterator FormationPattern::begin(double centerBodyRadius, unsigned int shipsToPlace) const
+FormationPattern::PositionIterator FormationPattern::begin(double centerBodyRadius) const
 {
-	return FormationPattern::PositionIterator(*this, centerBodyRadius, shipsToPlace);
+	return FormationPattern::PositionIterator(*this, centerBodyRadius);
 }
 
 
@@ -319,15 +307,6 @@ unsigned int FormationPattern::Positions(unsigned int ring, unsigned int lineNr,
 		return 0;
 
 	return lineRepeatPositions;
-}
-
-
-
-// Check if a certain arc or line is centered.
-bool FormationPattern::IsCentered(unsigned int lineNr) const
-{
-	// Returns false if we have an invalid lineNr or when the line is not centered.
-	return lineNr < lines.size() && lines[lineNr].centered;
 }
 
 

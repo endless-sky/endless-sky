@@ -47,7 +47,6 @@ formation "Delta (tailing) medium"
 		start -75 129.9
 		end 75 129.9
 		positions 2
-		centered
 		repeat
 			start -75 129.9
 			end 75 129.9
@@ -83,7 +82,6 @@ formation "Sphere medium"
 	arc
 		start 200 0
 		angle 360
-		centered
 		# start and end positions overlap, so need to specify 7 instead of 6 and use skip first or skip last.
 		# no anchor point specified, since the flagship (position 0,0) is the anchor point (and that is the default)
 		skip last
