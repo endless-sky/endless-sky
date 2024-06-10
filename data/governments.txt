@@ -685,15 +685,14 @@ government "Hai (Unfettered Civilians)"
 	"hostile disabled hail" "hostile disabled unfettered"
 
 government "Hai (Unfettered Challenger)"
-	"display name" "Unfettered Heshi"
 	swizzle 5
+	"display name" "Unfettered Heshi"
 	"crew attack" 1.4
 	"crew defense" 2.2
 
 	"player reputation" -1000
 	"bribe" .001
 	"fine" 0
-
 	"travel restrictions"
 		system "Wah Ki"
 	"friendly hail" "unfettered challenger"
@@ -719,7 +718,6 @@ government "Hai (Unfettered Blue Challenger)"
 		"Hai (Unfettered Red Challenger)" -.01
 	"bribe" 0
 	"fine" 0
-
 	"friendly hail" "unfettered dueling"
 	"friendly disabled hail" "friendly disabled unfettered"
 	"hostile hail" "hostile unfettered"
@@ -734,8 +732,8 @@ government "Hai (Unfettered Blue Challenger)"
 
 # A government used to make unfettered challengers fight each other.
 government "Hai (Unfettered Red Challenger)"
-	"display name" "Unfettered Duelist"
 	swizzle 2
+	"display name" "Unfettered Duelist"
 	"crew attack" 1.4
 	"crew defense" 2.2
 	
@@ -743,7 +741,6 @@ government "Hai (Unfettered Red Challenger)"
 		"Hai (Unfettered Blue Challenger)" -.01
 	"bribe" 0
 	"fine" 0
-
 	"friendly hail" "unfettered dueling"
 	"friendly disabled hail" "friendly disabled unfettered"
 	"hostile hail" "hostile unfettered"

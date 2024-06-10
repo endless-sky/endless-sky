@@ -205,7 +205,7 @@ fleet "Emergency Sympathizer Food"
 
 mission "Unfettered: Hunger Stories 1"
 	minor
-	name `Transport a family of <passengers> to <destination>`
+	name `Family of <passengers> to <destination>`
 	description `Transport a bereaved Unfettered family to <destination>.`
 	source "Firelode"
 	destination "Hai-home"

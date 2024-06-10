@@ -180,7 +180,7 @@ mission "Duel Rewards"
 		has "unfettered challenger defeated"
 	on offer
 		conversation
-			`You open the hatch of your ship, only to discover a hai standing right in front of you, pointing pistols you have never seen before! This must be the captain you have just defeated.`
+			`You open the hatch of your ship, only to discover a Hai standing right in front of you, pointing pistols you have never seen before! This must be the captain you have just defeated.`
 			choice
 				`	(Wait for them to reveal their intentions.)`
 					goto explain
