@@ -44,11 +44,15 @@ class UI;
 // the ownership of specific outfits and also display dialogs or conversations.
 class MissionAction {
 private:
-	struct MissionDialog {
+	class MissionDialog {
+		friend class MissionAction;
+
+	public:
 		MissionDialog(const ExclusiveItem<Phrase> &);
 		MissionDialog(const std::string &);
 		MissionDialog(const DataNode &);
 
+	private:
 		std::string dialogText;
 		ExclusiveItem<Phrase> dialogPhrase;
 		ConditionSet condition;
