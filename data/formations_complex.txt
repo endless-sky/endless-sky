@@ -40,6 +40,47 @@ formation "Atomic medium"
 			positions 1
 
 
+formation "Diamond medium"
+	flippable x y
+	rotatable 90
+	# Segment below, right of lead ship. Growing in down/right direction
+	line
+		start 100 100
+		end 0 200
+		positions 2
+		repeat
+			start 200 0
+			end 0 200
+			positions 2
+	# Segment left, below, of lead ship. Growing in left/down direction
+	line
+		start -100 100
+		end -200 0
+		positions 2
+		repeat
+			start 0 200
+			end -200 0
+			positions 2
+	# Segment above, left of lead ship. Growing in above/left direction
+	line
+		start -100 -100
+		end 0 -200
+		positions 2
+		repeat
+			start -200 0
+			end 0 -200
+			positions 2
+	# Segment right, above of lead ship. Growing in right/above direction
+	line
+		start 100 -100
+		end 200 0
+		positions 2
+		repeat
+			start 0 -200
+			end 200 0
+			positions 2
+
+
 # Triangle forming behind the formation leader.
 formation "Delta (tailing) medium"
 	flippable y
@@ -50,6 +91,65 @@ formation "Delta (tailing) medium"
 		repeat
 			start -75 129.9
 			end 75 129.9
+			positions 1
+
+
+formation "Hegagon (wide) medium"
+	flippable y
+	rotatable 60
+	#section lower-right
+	line
+		start 75 150
+		end 75 150
+		positions 1
+		repeat
+			start 150 0
+			end 75 150
+			positions 1
+	#section lower-left
+	line
+		start -75 150
+		end -75 150
+		positions 1
+		repeat
+			start 75 150
+			end -75 150
+			positions 1
+	#section left
+	line
+		start -150 0
+		end -150 0
+		positions 1
+		repeat
+			start -75 150
+			end -150 0
+			positions 1
+	#section upper-left
+	line
+		start -75 -150
+		end -75 -150
+		positions 1
+		repeat
+			start -150 0
+			end -75 -150
+			positions 1
+	#section upper-right
+	line
+		start 75 -150
+		end 75 -150
+		positions 1
+		repeat
+			start -75 -150
+			end 75 -150
+			positions 1
+	#section right
+	line
+		start 150 0
+		end 150 0
+		positions 1
+		repeat
+			start 75 -150
+			end 150 0
 			positions 1
 
 
