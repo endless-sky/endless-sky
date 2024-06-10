@@ -68,7 +68,7 @@ mission "<uhai> 10: Belt Materials"
 					to display
 						has "language: Hai"
 					goto speak
-			`	You notice she seems to have made a few friends since the last time you saw her, and she is so busy discussing with them that she hardly notices you until you are right in front of her. She stands there for a few seconds, maw open, before gaining back focus and smiling with joy. "<first>! It's been a while." She presents her comrades to you, "This is Rick, a human that grew up in Hai space and then proved himself through other means than battles." You shake hands and present yourself. "And this is Kenep, she left Hai space some time ago, to get inspiration for her art. They work on the same ship I do. To be frank we don't see battle often, but I've had my fair share of it already, so I'm more than happy with that!" She says the last part with a bit of shame, but honesty.`
+			`	You notice she seems to have made a few friends since the last time you saw her, and she is so busy talking with them that she hardly notices you until you are right in front of her. She stands there for a few seconds, mouth open, before gaining back focus and smiling with joy. "<first>! It's been a while." She presents her comrades to you, "This is Rick, a human that grew up in Hai space and then proved himself through other means than battles." You shake hands and present yourself. "And this is Kenep. She left Hai space some time ago, to get inspiration for her art. They work on the same ship I do. To be frank we don't see battle often, but I've had my fair share of it already, so I'm more than happy with that!" She says the last part with a bit of shame, but honesty.`
 			choice
 				`	"Can you translate for me, like last time?"`
 				`	"Do you know if I may borrow these translators?"`
@@ -122,14 +122,14 @@ mission "<uhai> 10: Belt Materials"
 			label where
 			action
 				set "unfettered: asteroid systems"
-			`	Lead can simply be found right over our heads, and there are silver asteroids present in Ehma Ti. The lead asteroid looks similar to copper but is bigger. You can also just differentiate them with an asteroid scanner. Silver is easy to recognize with its very small size and natural sturdiness. As for titanium, I know there is some in Ik'kara'ka, up North, I can point the location on your map if you want."`
+			`	Lead can simply be found right over our heads, and there are silver asteroids present in Ehma Ti. The lead asteroid looks similar to copper but is bigger. You can also just differentiate them with an asteroid scanner. Silver is easy to recognize with its very small size and natural sturdiness. As for titanium, I know there is some in Ik'kara'ka, up north, I can point out the location on your map if you want."`
 				goto choice
 			label nobiggie
-			`	"Oh, I see." Her tail movement stops at once. "Are you sure? This would mean a lot for me, a lot of Unfettered refuse to collect resources this way already, preferring to shoot enemies that fire back."`
+			`	"Oh, I see." Her tail movement stops at once. "Are you sure? This would mean a lot for me, because a lot of Unfettered refuse to collect resources this way, instead preferring to attack enemies that shoot back."`
 			choice
 				`	"Alright, I changed my mind."`
 					goto choice
-				`	"Yes but this does not mean I will not help the Unfettered anymore."`
+				`	"Yes, but this does not mean I will not help the Unfettered anymore."`
 					decline
 	on decline
 		"unfettered rep: Mera" -= 2
@@ -154,7 +154,7 @@ mission "<uhai> 10: Belt Materials"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on visit
-		dialog "You have landed, but you do not mined enough materials from asteroids yet, or they are in one of your escorts that is not in the system. Remember that silver can be acquired in Ehma Ti, whilst lead can be found in Wah Yoot."
+		dialog "You have landed, but you have not mined enough materials from asteroids yet, or they are in one of your escorts that is not in the system. Remember that silver can be acquired in Ehma Ti, whilst lead can be found in Wah Yoot."
 	on complete
 		clear "unfettered: asteroid tuto"
 		clear "unfettered: asteroid systems"

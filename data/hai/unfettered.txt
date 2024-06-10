@@ -71,7 +71,7 @@ conversation "unfettered outcast"
 	`	"You have disappointed us greatly by breaking the sacred rules of the duels! Think very carefully before you make any more mistakes, or it will be war! We have removed any privileges you had, and have added you to the list of shame. Rest assured that no True Hai will offer you special missions any longer, but we'll allow you to ferry cargo. For now."`
 		decline
 	label "alpha ship"
-	`	"How dare you?! This ship was helping us by providing supplies, and you just shoot it down? Disabling it would have been more than fine, looting it tolerated, but destroying the source of our independence? We cannot tolerate it. It matters not who may have drawn the first shot, you have hereby lost all privileges, and it will be war if you make the slightest mistake!"`
+	`	"How dare you?! This ship was helping us by providing supplies, and you just shoot it down? Disabling it would have been more than fine, looting it tolerated, but destroying the source of our independence? We cannot tolerate it. It matters not who shot first, you have hereby lost all privileges, and it will be war if you make the slightest mistake!"`
 
 
 

@@ -490,7 +490,7 @@ outfit "Quantum Keystone"
 	"quantum keystone" 1
 	description "This chunk of rock from the mountains on the Hai homeworld is apparently nothing more than a good luck charm, but the Hai have decorated their ships with them since the height of their empire. More superstitious Hai claim that the stones somehow reduce the nausea induced by hyperspace jumps by making travel between star systems easier, and many wealthy Hai refuse to book passage on a ship without one."
 	description "	This keystone comes with a package including a holo-film certificate of authenticity certifying its origins on Hai-home, a decorative but robust frame, and a tiny plaque with the keystone logo and sale number stamped on it. The packaging suggests mounting the framed certificate in a prominent location near the main airlock or public common area."
-	
+
 outfit "Value Detector"
 	category "Systems"
 	cost 260000
@@ -849,7 +849,7 @@ outfit "Unfettered License"
 	thumbnail "outfit/true unfettered license"
 	"unplunderable" 1
 	description "This sword may be a bit of a strange license, but its intention is to inspire pride in the wearer, and when the Unfettered see it, they show respect. This was given by one of their warlords as a sign of trust, and it is quite handy in fights."
-	description "	When striking, somehow this blade feels very light, as though it was moving along with its wielder. The blade itself is mostly intended to be defensive and fits you quite well, despite clearly being meant for a Hai."
+	description "	When striking, somehow this blade feels very light, as though it was moving along with its wielder. The blade itself is mostly designed to be defensive and fits you quite well, despite clearly being meant for a Hai."
 
 outfit "Ionic Blade"
 	category "Unique"
