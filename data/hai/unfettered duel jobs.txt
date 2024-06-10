@@ -19,17 +19,16 @@ mission "Unfettered: Challengers Arrive"
 		has "unfettered: duel ready"
 	on offer
 		conversation
-			# the first time you speak wit him is presumably shortly after the duel, he is just done fixing his ship
 			branch fixing
 				not "Unfettered: Challengers Arrive: deferred"
-			`Do you want to go see the Captain in the spaceport now? He may have more to tell you about the duels.`
+			`Do you want to go see the captain in the spaceport now? He may have more to tell you about the duels.`
 			choice
 				`	(Yes.)`
 					goto explain
 				`	(Maybe another time.)`
 					defer
 			label fixing
-			`The Captain meets you in the spaceport now that his crew is done patching up his ship. "She be spaceworthy again, alright. I got lots to explain to you, if ye're ready to listen, mate!"`
+			`The captain meets you in the spaceport now that his crew is done patching up his ship. "She be spaceworthy again, alright. I got lots to explain to you, if ye're ready to listen, mate!"`
 			choice
 				`	"Go ahead."`
 				`	"Maybe another time."`
@@ -52,10 +51,11 @@ mission "Unfettered: Challengers Arrive"
 	on defer
 		set "Unfettered: Challengers Arrive: deferred"
 
+
 mission "Unfettered: Trigger The Challengers"
 	job
 	repeat
-	name "Ready for more spontaneous challengers"
+	name "More Spontaneous Challengers"
 	description "Mark yourself as ready for more spontaneous challengers to come in all Unfettered systems, up to three of them at once."
 	source "Darkcloak"
 	to offer
@@ -66,6 +66,7 @@ mission "Unfettered: Trigger The Challengers"
 	on accept
 		"unfettered: challengers" ++
 		dialog "Even more spontaneous challengers will come, hopefully you are ready for them! Do remember you need to board them to claim your reward, and in no circumstances are you allowed to destroy or capture their ships."
+
 
 mission "Unfettered: Remove The Challengers"
 	job
@@ -167,7 +168,7 @@ phrase "unfettered challenger defeat message"
 
 phrase "unfettered challenger captured"
 	word
-		`As soon as you captured the enemy challenger, you are hailed by the local unfettered authorities with a purple code priority transmission: "Never do that again. This is your first and final warning."`
+		`As soon as you captured the enemy challenger, you are hailed by the local Unfettered authorities with a purple code priority transmission: "Never do that again. This is your first and final warning."`
 
 
 
@@ -656,6 +657,7 @@ mission "Unfettered: Bring Fire"
 		payment 500000
 		dialog phrase "unfettered weapon delivery"
 
+
 mission "Unfettered: Bring Hell"
 	job
 	repeat
@@ -698,7 +700,7 @@ mission "Unfettered: Bring Repeater"
 	name "Sell <weapons>"
 	description "The captain you just duelled is impressed by the raw amount of heat brought by your weapons. Bring <weapons> to them for <payment>."
 	substitutions
-		<weapons> "two Plasma repeaters"
+		<weapons> "two Plasma Repeaters"
 	source
 		attributes "unfettered"
 	to offer
@@ -751,7 +753,7 @@ phrase "unfettered challenger"
 		" "
 	word
 		"until a day has passed"
-		"until you changed system or landed"
+		"until you have changed system or landed"
 		"until the time out is considered over"
 	word
 		", "
@@ -822,8 +824,8 @@ phrase "hostile unfettered challenger"
 		"Remember, you only need to give me a symbolic bribe for this to stop."
 		"This is not a duel to the death, or else only one of us would be able learn."
 		"Do you wish to surrender?"
-		"I am reasonable, if you wish to surrender, we can come to terms."
-		"You are lucky that I have to accept any ceasefire if you ask... You would do well not to attempt anything."
+		"I am reasonable. If you wish to surrender, we can come to terms."
+		"You are lucky that I have to accept any ceasefire if you ask... you would do well not to attempt anything."
 
 phrase "hostile unfettered challenger"
 	word
@@ -845,7 +847,7 @@ phrase "overwhelmed in duel"
 		"tactically retreat to the edge of the system"
 		"bribe the challengers"
 		"try to split the enemies apart"
-		"change system"
+		"go to another system"
 		"upgrade your ship design"
 		"scan the enemy to find out their vulnerabilities"
 
@@ -940,7 +942,7 @@ phrase "unfettered dueling"
 		"Do not presume to interrupt us"
 		"This is an official challenge, do not intervene"
 		"Under no circumstances are you to interrupt us, or you will suffer the wrath of the Unfettered"
-		"Make sure you don't distracting me"
+		"Make sure you aren't distracting me"
 		"If you try anything, the whole fleet will be on you"
 		"Careful, you do not want to know what happens to Kavakais"
 	word
