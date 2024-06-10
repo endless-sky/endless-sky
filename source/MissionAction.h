@@ -43,20 +43,6 @@ class UI;
 // In addition to performing a GameAction, a MissionAction can gate the task on
 // the ownership of specific outfits and also display dialogs or conversations.
 class MissionAction {
-private:
-	class MissionDialog {
-	public:
-		MissionDialog(const ExclusiveItem<Phrase> &);
-		MissionDialog(const std::string &);
-		MissionDialog(const DataNode &);
-
-
-		std::string dialogText;
-		ExclusiveItem<Phrase> dialogPhrase;
-		ConditionSet condition;
-	};
-
-
 public:
 	MissionAction() = default;
 	// Construct and Load() at the same time.
@@ -91,6 +77,20 @@ public:
 		const System *origin, int jumps, int64_t payload) const;
 
 	int64_t Payment() const noexcept;
+
+
+private:
+	class MissionDialog {
+	public:
+		MissionDialog(const ExclusiveItem<Phrase> &);
+		MissionDialog(const std::string &);
+		MissionDialog(const DataNode &);
+
+
+		std::string dialogText;
+		ExclusiveItem<Phrase> dialogPhrase;
+		ConditionSet condition;
+	};
 
 
 private:
