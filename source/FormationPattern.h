@@ -36,7 +36,7 @@ public:
 	class PositionIterator {
 	public:
 		explicit PositionIterator(const FormationPattern &pattern,
-			double centerBodyRadius, unsigned int shipsToPlace);
+			double centerBodyRadius);
 
 		PositionIterator() = delete;
 
@@ -67,11 +67,6 @@ public:
 		unsigned int repeat = 0;
 		// The position on the current repeat section of the line or arc.
 		unsigned int position = 0;
-		// Number of ships that we expect to place using this iterator.
-		// The number of ships affects the last line that is placed in
-		// case the last line is centered. When zero is given then every
-		// line is treated as if many more ships need to be placed.
-		unsigned int shipsToPlace = 0;
 		// Center radius that is to be kept clear. This is used to avoid
 		// positions of ships overlapping with the body around which the
 		// formation is formed.
@@ -90,7 +85,7 @@ public:
 	void SetName(const std::string &name);
 
 	// Get an iterator to iterate over the formation positions in this pattern.
-	PositionIterator begin(double centerBodyRadius, unsigned int shipsToPlace = 0) const;
+	PositionIterator begin(double centerBodyRadius) const;
 
 	// Information about allowed rotating and mirroring that still results in the same formation.
 	int Rotatable() const;
@@ -105,8 +100,6 @@ private:
 	unsigned int Repeats(unsigned int lineNr) const;
 	// Number of positions on the current repeat section of the active line or arc.
 	unsigned int Positions(unsigned int ring, unsigned int lineNr, unsigned int repeatNr) const;
-	// Tells if the current line or arc is centered.
-	bool IsCentered(unsigned int lineNr) const;
 
 	// Calculate a position based on the current ring, line/arc, repeat-section and position on the line-repeat-section.
 	Point Position(unsigned int ring, unsigned int lineNr, unsigned int repeatNr,
@@ -141,7 +134,6 @@ private:
 		int positions = 1;
 
 		// Properties of how the line behaves
-		bool centered = false;
 		bool isArc = false;
 		bool skipFirst = false;
 		bool skipLast = false;
