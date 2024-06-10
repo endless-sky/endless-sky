@@ -272,15 +272,14 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 					if(mission.IsFailed(player))
 						continue;
 
-					// IllegalCargoMessage applies to both cargo and passengers.
-					string illegalCargoMessage = mission.IllegalCargoMessage();
-					if(!illegalCargoMessage.empty())
+					string fineMessage = mission.FineMessage();
+					if(!fineMessage.empty())
 					{
 						reason = ".\n\t";
-						reason.append(illegalCargoMessage);
+						reason.append(fineMessage);
 					}
 					// Fail any missions with illegal passengers and "stealth" set.
-					if(mission.IllegalCargoFine() > 0 && mission.Passengers() && mission.FailIfDiscovered())
+					if(mission.Fine() > 0 && mission.Passengers() && mission.FailIfDiscovered())
 					{
 						player.FailMission(mission);
 						++failedMissions;
@@ -301,15 +300,15 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 					if(mission.IsFailed(player))
 						continue;
 
-					// Append the illegalCargoMessage from each applicable mission, if available.
-					string illegalCargoMessage = mission.IllegalCargoMessage();
-					if(!illegalCargoMessage.empty())
+					// Append the fineMessage from each applicable mission, if available.
+					string fineMessage = mission.FineMessage();
+					if(!fineMessage.empty())
 					{
 						reason = ".\n\t";
-						reason.append(illegalCargoMessage);
+						reason.append(fineMessage);
 					}
 					// Fail any missions with illegal cargo and "stealth" set.
-					if(mission.IllegalCargoFine() > 0 && mission.CargoSize() && mission.FailIfDiscovered())
+					if(mission.Fine() > 0 && mission.CargoSize() && mission.FailIfDiscovered())
 					{
 						player.FailMission(mission);
 						++failedMissions;
