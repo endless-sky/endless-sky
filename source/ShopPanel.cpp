@@ -26,6 +26,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
+#include "Information.h"
+#include "Interface.h"
 #include "MapOutfitterPanel.h"
 #include "MapShipyardPanel.h"
 #include "Mission.h"
@@ -388,6 +390,21 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		return SetScrollToTop();
 	else if(key == SDLK_END)
 		return SetScrollToBottom();
+	else if((key == 'k' || (key == 'p' && (mod & KMOD_SHIFT))))
+	{
+		bool allParked = true;
+		const Ship *flagship = player.Flagship();
+		for(Ship *ship : playerShips)
+		{
+			if(!ship->IsDisabled() && ship != flagship)
+				allParked &= ship->IsParked();
+		}
+		for(Ship *ship : playerShips)
+		{
+			if(!ship->IsDisabled() && ship != flagship)
+				player.ParkShip(ship, !allParked);
+		}
+	}
 	else if(key >= '0' && key <= '9')
 	{
 		int group = key - '0';
@@ -818,7 +835,7 @@ void ShopPanel::DrawShipsSidebar()
 
 	PointerShader::Draw(Point(Screen::Right() - 10, Screen::Top() + 10),
 		Point(0., -1.), 10.f, 10.f, 5.f, Color(!sidebarScroll.IsScrollAtMin() ? .8f : .2f, 0.f));
-	PointerShader::Draw(Point(Screen::Right() - 10, Screen::Bottom() - 80),
+	PointerShader::Draw(Point(Screen::Right() - 10, Screen::Bottom() - BUTTON_HEIGHT - 10),
 		Point(0., 1.), 10.f, 10.f, 5.f, Color(!sidebarScroll.IsScrollAtMax() ? .8f : .2f, 0.f));
 }
 
@@ -847,11 +864,12 @@ void ShopPanel::DrawDetailsSidebar()
 
 	double heightOffset = DrawDetails(point);
 
-	infobarScroll.SetMaxValue(max(0., heightOffset + infobarScroll.AnimatedValue() - Screen::Bottom()));
+	infobarScroll.SetMaxValue(max(0., heightOffset + infobarScroll.AnimatedValue() - Screen::Bottom() +
+		BUTTON_HEIGHT + 10));
 
 	PointerShader::Draw(Point(Screen::Right() - SIDEBAR_WIDTH - 10, Screen::Top() + 10),
 		Point(0., -1.), 10.f, 10.f, 5.f, Color(!infobarScroll.IsScrollAtMin() ? .8f : .2f, 0.f));
-	PointerShader::Draw(Point(Screen::Right() - SIDEBAR_WIDTH - 10, Screen::Bottom() - 10),
+	PointerShader::Draw(Point(Screen::Right() - SIDEBAR_WIDTH - 10, Screen::Bottom() - BUTTON_HEIGHT - 10),
 		Point(0., 1.), 10.f, 10.f, 5.f, Color(!infobarScroll.IsScrollAtMax() ? .8f : .2f, 0.f));
 }
 
@@ -859,13 +877,16 @@ void ShopPanel::DrawDetailsSidebar()
 
 void ShopPanel::DrawButtons()
 {
-	// The last 70 pixels on the end of the side panel are for the buttons:
-	Point buttonSize(SIDEBAR_WIDTH, BUTTON_HEIGHT);
-	FillShader::Fill(Screen::BottomRight() - .5 * buttonSize, buttonSize,
+	// The bottom 70 pixels on the end of the side panels are for the buttons:
+	static const Point FLEET_BUTTONS_SIZE = {SIDEBAR_WIDTH, BUTTON_HEIGHT};
+	static const Point INFO_BUTTONS_SIZE = {INFOBAR_WIDTH, BUTTON_HEIGHT};
+	FillShader::Fill(Screen::BottomRight() - .5 * FLEET_BUTTONS_SIZE, FLEET_BUTTONS_SIZE,
 		*GameData::Colors().Get("shop side panel background"));
+	FillShader::Fill(Screen::BottomRight() - Point(SIDEBAR_WIDTH, 0) - .5 * INFO_BUTTONS_SIZE, INFO_BUTTONS_SIZE,
+		*GameData::Colors().Get("shop info panel footer"));
 	FillShader::Fill(
-		Point(Screen::Right() - SIDEBAR_WIDTH / 2, Screen::Bottom() - BUTTON_HEIGHT),
-		Point(SIDEBAR_WIDTH, 1), *GameData::Colors().Get("shop side panel footer"));
+		Point(Screen::Right() - (SIDEBAR_WIDTH + INFOBAR_WIDTH) / 2, Screen::Bottom() - BUTTON_HEIGHT),
+		Point(SIDEBAR_WIDTH + INFOBAR_WIDTH, 1), *GameData::Colors().Get("shop side panel footer"));
 
 	const Font &font = FontSet::Get(14);
 	const Color &bright = *GameData::Colors().Get("bright");
@@ -873,46 +894,45 @@ void ShopPanel::DrawButtons()
 	const Color &back = *GameData::Colors().Get("panel background");
 
 	const Point creditsPoint(
-		Screen::Right() - SIDEBAR_WIDTH + 10,
+		Screen::Right() - SIDE_WIDTH + 10,
 		Screen::Bottom() - 65);
 	font.Draw("You have:", creditsPoint, dim);
 
 	const auto credits = Format::CreditString(player.Accounts().Credits());
-	font.Draw({credits, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, creditsPoint, bright);
+	font.Draw({credits, {INFOBAR_WIDTH - 20, Alignment::RIGHT}}, creditsPoint, bright);
 
-	const Font &bigFont = FontSet::Get(18);
-	const Color &hover = *GameData::Colors().Get("hover");
-	const Color &active = *GameData::Colors().Get("active");
-	const Color &inactive = *GameData::Colors().Get("inactive");
+	if(playerShips.size() > 1)
+	{
+		const Point textPoint(
+			Screen::Right() - SIDEBAR_WIDTH + 10,
+			Screen::Bottom() - 65);
+		font.Draw(to_string(playerShips.size()) + " ships selected", textPoint, dim);
+	}
 
-	const Point buyCenter = Screen::BottomRight() - Point(210, 25);
-	FillShader::Fill(buyCenter, Point(60, 30), back);
-	bool isOwned = IsAlreadyOwned();
-	const Color *buyTextColor;
-	if(!CanBuy(isOwned))
-		buyTextColor = &inactive;
-	else if(hoverButton == (isOwned ? 'i' : 'b'))
-		buyTextColor = &hover;
-	else
-		buyTextColor = &active;
-	string BUY = isOwned ? (playerShip ? "_Install" : "_Cargo") : "_Buy";
-	bigFont.Draw(BUY,
-		buyCenter - .5 * Point(bigFont.Width(BUY), bigFont.Height()),
-		*buyTextColor);
+	const Interface *interface = GameData::Interfaces().Get("shop");
+	const Rectangle leaveButton = interface->GetBox("leave button");
+	const Rectangle parkButton = interface->GetBox("park button");
+	const Rectangle buyButton = interface->GetBox("buy button");
+	const Rectangle sellButton = interface->GetBox(isOutfitter ? "sell button" : "sell ship button");
+	FillShader::Fill(leaveButton.Center(), leaveButton.Dimensions(), back);
+	FillShader::Fill(parkButton.Center(), parkButton.Dimensions(), back);
+	FillShader::Fill(buyButton.Center(), buyButton.Dimensions(), back);
+	FillShader::Fill(sellButton.Center(), sellButton.Dimensions(), back);
 
-	const Point sellCenter = Screen::BottomRight() - Point(130, 25);
-	FillShader::Fill(sellCenter, Point(60, 30), back);
-	static const string SELL = "_Sell";
-	bigFont.Draw(SELL,
-		sellCenter - .5 * Point(bigFont.Width(SELL), bigFont.Height()),
-		CanSell() ? hoverButton == 's' ? hover : active : inactive);
-
-	const Point leaveCenter = Screen::BottomRight() - Point(45, 25);
-	FillShader::Fill(leaveCenter, Point(70, 30), back);
-	static const string LEAVE = "_Leave";
-	bigFont.Draw(LEAVE,
-		leaveCenter - .5 * Point(bigFont.Width(LEAVE), bigFont.Height()),
-		hoverButton == 'l' ? hover : active);
+	Information info;
+	const bool isOwned = IsAlreadyOwned();
+	info.SetCondition(isOwned ? (playerShip ? "use install" : "use cargo") : "use buy");
+	if(isOutfitter)
+		info.SetCondition("is outfitters");
+	if(CanBuy(isOwned))
+		info.SetCondition("can buy");
+	if(CanSell())
+		info.SetCondition("can sell");
+	if(CanPark())
+		info.SetCondition("can park");
+	else if(CanUnpark())
+		info.SetCondition("can unpark");
+	interface->Draw(info, nullptr);
 
 	const Point findCenter = Screen::BottomRight() - Point(580, 20);
 	const Sprite *findIcon =
@@ -925,13 +945,13 @@ void ShopPanel::DrawButtons()
 	{
 		string mod = "x " + to_string(modifier);
 		int modWidth = font.Width(mod);
-		font.Draw(mod, buyCenter + Point(-.5 * modWidth, 10.), dim);
+		font.Draw(mod, buyButton.Center() + Point(-.5 * modWidth, 10.), dim);
 		if(CanSellMultiple())
-			font.Draw(mod, sellCenter + Point(-.5 * modWidth, 10.), dim);
+			font.Draw(mod, sellButton.Center() + Point(-.5 * modWidth, 10.), dim);
 	}
 
 	// Draw the tooltip for your full number of credits.
-	const Rectangle creditsBox = Rectangle::FromCorner(creditsPoint, Point(SIDEBAR_WIDTH - 20, 15));
+	const Rectangle creditsBox = Rectangle::FromCorner(creditsPoint, Point(INFOBAR_WIDTH - 20, 15));
 	if(creditsBox.Contains(hoverPoint))
 		hoverCount += hoverCount < HOVER_TIME;
 	else if(hoverCount)
@@ -942,6 +962,56 @@ void ShopPanel::DrawButtons()
 		string text = Format::Number(player.Accounts().Credits()) + " credits";
 		DrawTooltip(text, hoverPoint, dim, *GameData::Colors().Get("tooltip background"));
 	}
+}
+
+
+
+bool ShopPanel::EscortSelected()
+{
+	if(playerShips.empty())
+		return false;
+
+	if(playerShips.size() == 1)
+	{
+		const Ship *flagship = player.Flagship();
+		auto it = playerShips.begin();
+		if(*it == flagship)
+			return false;
+	}
+
+	return true;
+}
+
+
+
+bool ShopPanel::CanPark()
+{
+	if(!EscortSelected())
+		return false;
+
+	return !CanUnpark();
+}
+
+
+
+bool ShopPanel::CanUnpark()
+{
+	if(!EscortSelected())
+		return false;
+
+	bool allParked = true;
+	const Ship *flagship = player.Flagship();
+	for(Ship *ship : playerShips)
+	{
+		if(ship == flagship)
+			return false;
+		if(ship->IsDisabled())
+			continue;
+
+		allParked &= ship->IsParked();
+	}
+
+	return allParked;
 }
 
 
@@ -1458,28 +1528,28 @@ vector<ShopPanel::Zone>::const_iterator ShopPanel::Selected() const
 // letter of the button (or ' ' if it's not on a button).
 char ShopPanel::CheckButton(int x, int y)
 {
-	if(x > Screen::Right() - SIDEBAR_WIDTH - 342 && x < Screen::Right() - SIDEBAR_WIDTH - 316 &&
+	const Point click(x, y);
+	const Interface *interface = GameData::Interfaces().Get("shop");
+	const Rectangle leaveButton = interface->GetBox("leave button");
+	const Rectangle parkButton = interface->GetBox("park button");
+	const Rectangle buyButton = interface->GetBox("buy button");
+	const Rectangle sellButton = interface->GetBox(isOutfitter ? "sell button" : "sell ship button");
+
+	if(leaveButton.Contains(click))
+		return 'l';
+	if(parkButton.Contains(click))
+		return 'k';
+	if(buyButton.Contains(click))
+		return IsAlreadyOwned() ? 'i' : 'b';
+	if(sellButton.Contains(click))
+		return 's';
+
+	if(x > Screen::Right() - SIDE_WIDTH - 42 && x < Screen::Right() - SIDE_WIDTH - 16 &&
 		y > Screen::Bottom() - 31 && y < Screen::Bottom() - 4)
 		return 'f';
 
-	if(x < Screen::Right() - SIDEBAR_WIDTH || y < Screen::Bottom() - BUTTON_HEIGHT)
+	if(x < Screen::Right() - SIDE_WIDTH || y < Screen::Bottom() - BUTTON_HEIGHT)
 		return '\0';
-
-	if(y < Screen::Bottom() - 40 || y >= Screen::Bottom() - 10)
-		return ' ';
-
-	x -= Screen::Right() - SIDEBAR_WIDTH;
-	if(x > 9 && x < 70)
-	{
-		if(!IsAlreadyOwned())
-			return 'b';
-		else
-			return 'i';
-	}
-	else if(x > 89 && x < 150)
-		return 's';
-	else if(x > 169 && x < 240)
-		return 'l';
 
 	return ' ';
 }

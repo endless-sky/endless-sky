@@ -40,6 +40,7 @@ color "map jump range color" .3 .3 .3 .0
 color "shop side panel background" .2 .2 .2 1.
 color "shop side panel footer" .3 .3 .3 1.
 color "shop info panel background" .055 .055 .055 1.
+color "shop info panel footer" .155 .155 .155 1.
 color "tooltip background" .2 .2 .2 1.
 color "player info hardpoint gun" .5 .375 0. 1.
 color "player info hardpoint gun hover" .8 .6 0. 1.
@@ -1290,6 +1291,81 @@ interface "bank"
 		center 140 355
 		dimensions 80 40
 
+
+
+interface "shop"
+	anchor bottom right
+	value "fleet bar width" 250
+	value "item bar width" 300
+	box "leave button"
+		center -45 -25
+		dimensions 70 30
+	box "park button"
+		center -125 -25
+		dimensions 70 30
+	box "buy button"
+		center -505 -25
+		dimensions 70 30
+	box "sell button"
+		center -425 -25
+		dimensions 70 30
+	box "sell ship button"
+		center -215 -25
+		dimensions 50 30
+
+	button l "_Leave"
+		center -45 -25
+		dimensions 70 30
+		size 18
+
+	visible if "use buy"
+	active if "can buy"
+	button b "_Buy"
+		center -505 -25
+		dimensions 70 30
+		size 18
+
+	visible if "use install"
+	active if "can buy"
+	button b "_Install"
+		center -505 -25
+		dimensions 70 30
+		size 18
+
+	visible if "use cargo"
+	active if "can buy"
+	button b "_Cargo"
+		center -505 -25
+		dimensions 70 30
+		size 18
+
+	visible if "is outfitters"
+	active if "can sell"
+	button s "_Sell"
+		center -425 -25
+		dimensions 70 30
+		size 18
+
+	visible if "!is outfitters"
+	active if "can sell"
+	button s "_Sell"
+		center -215 -25
+		dimensions 50 30
+		size 18
+
+	visible if "!can unpark"
+	active if "can park"
+	button k "Par_k"
+		center -125 -25
+		dimensions 70 30
+		size 18
+
+	visible if "can unpark"
+	active if "can unpark"
+	button k "Unpar_k"
+		center -125 -25
+		dimensions 70 30
+		size 18
 
 
 interface "mission" bottom

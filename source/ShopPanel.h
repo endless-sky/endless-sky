@@ -208,6 +208,10 @@ private:
 	// letter of the button (or ' ' if it's not on a button).
 	char CheckButton(int x, int y);
 
+	bool EscortSelected();
+	bool CanPark();
+	bool CanUnpark();
+
 
 private:
 	bool delayedAutoScroll = false;
