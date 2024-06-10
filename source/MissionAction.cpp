@@ -103,10 +103,12 @@ MissionAction::MissionDialog::MissionDialog(const DataNode &node)
 
 	// Search for "to display" lines.
 	for(auto &child : node)
+	{
 		if(child.Size() != 2 || child.Token(0) != "to" || child.Token(1) != "display" || !child.HasChildren())
 			node.PrintTrace("Ignoring unrecognized dialog token");
 		else
 			condition.Load(child);
+	}
 }
 
 
