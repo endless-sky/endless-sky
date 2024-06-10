@@ -909,11 +909,11 @@ void ShopPanel::DrawButtons()
 		font.Draw(to_string(playerShips.size()) + " ships selected", textPoint, dim);
 	}
 
-	const Interface *interface = GameData::Interfaces().Get("shop");
-	const Rectangle leaveButton = interface->GetBox("leave button");
-	const Rectangle parkButton = interface->GetBox("park button");
-	const Rectangle buyButton = interface->GetBox("buy button");
-	const Rectangle sellButton = interface->GetBox(isOutfitter ? "sell button" : "sell ship button");
+	const Interface *shopUi = GameData::Interfaces().Get("shop");
+	const Rectangle leaveButton = shopUi->GetBox("leave button");
+	const Rectangle parkButton = shopUi->GetBox("park button");
+	const Rectangle buyButton = shopUi->GetBox("buy button");
+	const Rectangle sellButton = shopUi->GetBox(isOutfitter ? "sell button" : "sell ship button");
 	FillShader::Fill(leaveButton.Center(), leaveButton.Dimensions(), back);
 	FillShader::Fill(parkButton.Center(), parkButton.Dimensions(), back);
 	FillShader::Fill(buyButton.Center(), buyButton.Dimensions(), back);
@@ -932,7 +932,7 @@ void ShopPanel::DrawButtons()
 		info.SetCondition("can park");
 	else if(CanUnpark())
 		info.SetCondition("can unpark");
-	interface->Draw(info, nullptr);
+	shopUi->Draw(info, nullptr);
 
 	const Point findCenter = Screen::BottomRight() - Point(580, 20);
 	const Sprite *findIcon =
@@ -1529,11 +1529,11 @@ vector<ShopPanel::Zone>::const_iterator ShopPanel::Selected() const
 char ShopPanel::CheckButton(int x, int y)
 {
 	const Point click(x, y);
-	const Interface *interface = GameData::Interfaces().Get("shop");
-	const Rectangle leaveButton = interface->GetBox("leave button");
-	const Rectangle parkButton = interface->GetBox("park button");
-	const Rectangle buyButton = interface->GetBox("buy button");
-	const Rectangle sellButton = interface->GetBox(isOutfitter ? "sell button" : "sell ship button");
+	const Interface *shopUi = GameData::Interfaces().Get("shop");
+	const Rectangle leaveButton = shopUi->GetBox("leave button");
+	const Rectangle parkButton = shopUi->GetBox("park button");
+	const Rectangle buyButton = shopUi->GetBox("buy button");
+	const Rectangle sellButton = shopUi->GetBox(isOutfitter ? "sell button" : "sell ship button");
 
 	if(leaveButton.Contains(click))
 		return 'l';
