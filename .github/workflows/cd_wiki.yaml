@@ -13,6 +13,7 @@ jobs:
   cd_wiki:
     name: Wiki deployment
     runs-on: ubuntu-latest
+    if: ${{ github.repository == 'endless-sky/endless-sky' && github.ref == 'refs/heads/master' }}
     permissions:
       contents: write
     steps:
