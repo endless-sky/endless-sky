@@ -97,7 +97,7 @@ formation "Delta (tailing) medium"
 formation "Hegagon (wide) medium"
 	flippable y
 	rotatable 60
-	#section lower-right
+	# section lower-right
 	line
 		start 75 150
 		end 75 150
@@ -106,7 +106,7 @@ formation "Hegagon (wide) medium"
 			start 150 0
 			end 75 150
 			positions 1
-	#section lower-left
+	# section lower-left
 	line
 		start -75 150
 		end -75 150
@@ -115,7 +115,7 @@ formation "Hegagon (wide) medium"
 			start 75 150
 			end -75 150
 			positions 1
-	#section left
+	# section left
 	line
 		start -150 0
 		end -150 0
@@ -124,7 +124,7 @@ formation "Hegagon (wide) medium"
 			start -75 150
 			end -150 0
 			positions 1
-	#section upper-left
+	# section upper-left
 	line
 		start -75 -150
 		end -75 -150
@@ -133,7 +133,7 @@ formation "Hegagon (wide) medium"
 			start -150 0
 			end -75 -150
 			positions 1
-	#section upper-right
+	# section upper-right
 	line
 		start 75 -150
 		end 75 -150
@@ -142,7 +142,7 @@ formation "Hegagon (wide) medium"
 			start -75 -150
 			end 75 -150
 			positions 1
-	#section right
+	# section right
 	line
 		start 150 0
 		end 150 0
