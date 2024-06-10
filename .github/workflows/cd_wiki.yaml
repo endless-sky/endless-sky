@@ -32,13 +32,19 @@ jobs:
           if [[ $(git diff --cached --raw) ]]; then
             echo "changes=yes" >> "$GITHUB_OUTPUT"
           fi
+      - name: Get latest commit hash
+        if: ${{ steps.check-diff.outputs.changes == 'yes' }}
+        id: latest-commit
+        run: |
+          cd endless-sky-wiki
+          echo "hash=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
       - name: Commit changes
         if: ${{ steps.check-diff.outputs.changes == 'yes' }}
         run: |
           cd endless-sky.wiki
           git config --local user.name "GitHub Actions"
           git config --local user.email "actions@github.com"
-          git commit -m "Synchronize with endless-sky-wiki" -m "Triggered by ${{ github.actor }}"
+          git commit -m "Synchronize with endless-sky-wiki" -m "Latest commit: ${{ steps.latest-commit.outputs.hash }}" -m "Triggered by ${{ github.actor }}"
       - name: Push changes
         if: ${{ steps.check-diff.outputs.changes == 'yes' }}
         env:
