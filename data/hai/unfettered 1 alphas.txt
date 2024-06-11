@@ -1240,7 +1240,7 @@ mission "<uhai> 9: Alpha Quest"
 
 mission "<uhai> 9: Capture The Alpha Auxiliary"
 	landing
-	name `Find and capture the Alpha Auxiliary`
+	name `Capture the Alpha Auxiliary`
 	description `You found out that the Auxiliary has a problem with its jump drive. Try and find the traces Mera pointed out around the system you last saw it in, and then capture it. You need to land with that Auxiliary as your flagship, and all jump drives you may find.`
 	source "Firelode"
 	destination "Darkcloak"
@@ -1474,7 +1474,7 @@ mission "<uhai> 9: Alpha Base"
 			`You do a detailed scan of the Alpha base to see if there are any more jump drives, or anyone who could have witnessed the fight. You cannot retrieve any information: it seems to either be too deep or shielded from scans in some way. You will have to go in blind.`
 			`	Surprisingly, the doors of the hangar open to let you in. Maybe it is an automated response to this ship, or whoever is down here assumed the Alphas won the fight. That said, if there is anyone here, it's probably a skeleton crew.`
 			`	You and your crew carefully exit your ship, but you see no signs of life here. They could be hidden, so you proceed cautiously, looking for the jump drive vault. On the way you hear sounds - sounds that definitely did not originate from humans. Heading that way, you find a brig full of prisoners, with a lizard head displayed above the cells. They seem to have been mistreated by the Alphas, and you find what appears to be a crudely rigged translation device next to their cell, with information regarding these Korath, an alien species located north-east of human space that sometimes engages in raiding. They apparently used to control the territories nearby that are now owned by automata.`
-			`	The captives themselves must have endured a lot, so you should take them to Darkcloak and ask the Chiefs for help. You notice one of them has a very serious injury to their leg, and it seems that it has been partially replaced by a crude prosthetic. He may not survive the transport.`
+			`	The captives themselves must have endured a lot, so you should take them to Darkcloak and ask the Chiefs for help. You notice one of them has a very serious injury to his leg, and it seems that it has been partially replaced by a crude prosthetic. He may not survive the transport.`
 			`	You find the jump drives easily enough, close to the hangar. There are ten here, and you load them all onto your ship. It seems the base was abandoned for some reason, but you can find no bodies or signs of an attack. Deciding to not overstay your welcome, you head back to the Auxiliary.`
 			choice
 				`	(Explore the Auxiliary.)`
