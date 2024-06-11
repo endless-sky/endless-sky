@@ -753,8 +753,8 @@ mission "Wanderers: Kor Efret 3"
 			names "kor mereti"
 			variant
 				"Model 512" 2
-				"Model 256" 4
-				"Model 128" 7
+				"Model 256" 3
+				"Model 128" 5
 		dialog `The Kor Mereti drones have been neutralized. You should land on the planet and reconnect with Rek and the Korath engineers.`
 	npc
 		government "Kor Efret"
