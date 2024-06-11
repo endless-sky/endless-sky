@@ -1555,6 +1555,8 @@ government "Wanderer"
 	"friendly disabled hail" "wanderer untranslated"
 	"hostile hail" "wanderer untranslated"
 	"hostile disabled hail" "wanderer untranslated"
+	"travel restrictions"
+		government "Hai (Unfettered)"
 
 # A dummy government used to prevent Hai from entering the wormhole in Waypoint/Ultima Thule, but allowing human merchants and other governments to enter.
 government "Wormhole Alpha"
