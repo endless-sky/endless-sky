@@ -1139,7 +1139,7 @@ mission "Wanderers: Mind 6"
 			names "kor mereti"
 			variant
 				"Model 256" 1
-				"Model 128" 2
+				"Model 128" 1
 				"Model 64" 3
 				"Model 32" 5
 				"Model 16" 10
