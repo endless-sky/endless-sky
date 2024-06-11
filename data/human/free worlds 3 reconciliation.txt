@@ -1038,9 +1038,9 @@ mission "FW Pug 2"
 	to offer
 		has "FW Pug 1: done"
 	passengers 1
-	blocked `As you are landing, Alondo contacts you and says, "Do you have a bunk free for me?" You do not, so you will need to free one up in order to continue this mission.`
+	blocked `As you are landing, Alondo contacts you and asks, "Do you have a bunk free for me?" You do not, so you will need to free one up in order to continue this mission.`
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the storyline, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		log "The Syndicate may be cutting off the hyperspace links that join their territory to the rest of human space, in order to escape being punished for their crimes. People are worried that they will try to take over even more territory, including Earth itself."
