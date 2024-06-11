@@ -30,7 +30,7 @@ phrase "twilight trapped"
 
 mission "Avgi: First Contact"
 	autosave
-	name "First Contact: Avgi"
+	name "An Alien Encounter"
 	description "Follow the alien ship to the destination marked on your map."
 	source
 		attributes "avgi"

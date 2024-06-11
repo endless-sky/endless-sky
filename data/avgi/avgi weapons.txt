@@ -45,7 +45,7 @@ outfit "Speckle Coilgun"
 	"gun ports" -1
 	"speck capacity" 900
 	weapon
-		sound "fleck"
+		sound "speckle"
 		ammo "Speck Round"
 		"fire effect" "speckle fire"
 		"inaccuracy" 1.2
@@ -74,7 +74,7 @@ outfit "Speckle Turret"
 	"turret mounts" -1
 	"speck capacity" 2400
 	weapon
-		sound "fleck"
+		sound "speckle"
 		ammo "Speck Round" 2
 		"hardpoint sprite" "hardpoint/speckle turret"
 		"hardpoint offset" 6
@@ -177,9 +177,9 @@ outfit "Blue Optical Laser"
 		"shield damage" 3
 		"hull damage" 4.2
 		"heat damage" 6
-		"damage dropoff" 0 3600
+		"damage dropoff" 0 2400
 	description "This lightweight turret can be fed a beam of light from a lasing generator, which is then combined and focused to produce an intense beam ideal for damaging other ships. By pulsing thousands of times each second, the beam can create thermal and mechanical shocks in the target material, enhancing its ability to drill through armor. Unlike the advanced beam weapons used by some other species, this laser is subject to the effects of diffraction, causing its damage to become less intense with distance while also rendering it invisible. However, precise optics allow the beam to be targeted from an exceptional range, despite the tenuous damage at the edge of the laser's reach."
-	description "The turret itself only contains the optics needed to synthesize, focus, and target the beam, allowing the laser light to be produced elsewhere. Because of this, an Optical Lasing Generator is needed to run this turret, providing enough power to support a single Blue Laser."
+	description "	The turret itself only contains the optics needed to synthesize, focus, and target the beam, allowing the laser light to be produced elsewhere. Because of this, an Optical Lasing Generator is needed to run this turret, providing enough power to support a single Blue Laser."
 
 
 effect "laser ejecta"

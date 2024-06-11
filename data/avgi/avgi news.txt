@@ -211,7 +211,7 @@ news "avgi missing advisory"
 			" "
 		word
 			"reported"
-			"failed check in"
+			"failed check-in"
 			"missed check-in"
 		word
 			", "

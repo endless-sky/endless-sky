@@ -56,7 +56,7 @@ outfit "Nanoceramic Scales"
 	"hull multiplier" 0.33
 	"shield generation multiplier" -0.33
 	"solar heat" 3
-	description "These extra armor plates can significantly reinforce a ship's hull, but are quite heavy. The added bulk in front of a ship's shield emitters can also interfere with shield generators, impairing their ability to recharge them."
+	description "These extra armor plates can significantly reinforce a ship's hull, but are quite heavy. The added bulk in front of a ship's shield emitters also interferes with the rate at which they can be recharged, impairing a ship's shield generation."
 	description "Scales take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
 
 
@@ -69,7 +69,7 @@ outfit "Adamant Scales"
 	thumbnail "outfit/unknown"
 	"mass" 36
 	"anchor point" -1
-	"hull multiplier" 1
+	"hull multiplier" 0.6
 	"solar heat" 3
 	description "Thanks to recent breakthroughs in materials science, the Avgi have devised this retrofitting kit to allow older ships to take advantage of the increased hull strength offered by exotic materials. These armor plates and structural members reinforce both the skin and core strength of a ship, strengthening it without compromising its internal structure."
 	description "Scales take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
@@ -305,13 +305,13 @@ outfit "Magnetoplasma Drive"
 	"mass" 12
 	"outfit space" -12
 	"engine capacity" -12
-	"thrust" 6
+	"thrust" 9
 	"thrusting energy" 0.6
 	"thrusting heat" 0.3
-	"reverse thrust" 6
+	"reverse thrust" 9
 	"reverse thrusting energy" 0.6
 	"reverse thrusting heat" 0.3
-	"turn" 180
+	"turn" 270
 	"turning energy" 0.6
 	"turning heat" 0.3
 	"drag reduction" 1
@@ -337,7 +337,7 @@ outfit `Z-330 "Spark" Fusion Torch`
 	"mass" 66
 	"outfit space" -33
 	"engine capacity" -33
-	"thrust" 69
+	"thrust" 108
 	"thrusting energy" 9
 	"thrusting heat" 45
 	"thrusting fuel" 0.09
@@ -345,7 +345,7 @@ outfit `Z-330 "Spark" Fusion Torch`
 	"flare sprite" "effect/avgi flare/fusion"
 		"frame rate" 15
 		"scale" 0.75
-	"flare sound" "remnant afterburner"
+	"flare sound" "zpinch"
 	"afterburner effect" "small remass injection"
 	"magnozzle rings" 3
 	description "Balance TBD"
@@ -360,7 +360,7 @@ outfit `Z-660 "Zap" Fusion Torch`
 	"mass" 132
 	"outfit space" -66
 	"engine capacity" -66
-	"thrust" 144
+	"thrust" 222
 	"thrusting energy" 18
 	"thrusting heat" 90
 	"thrusting fuel" 0.18
@@ -382,7 +382,7 @@ outfit `Z-990 "Arc" Fusion Torch`
 	"mass" 198
 	"outfit space" -99
 	"engine capacity" -99
-	"thrust" 222
+	"thrust" 360
 	"thrusting energy" 27
 	"thrusting heat" 135
 	"thrusting fuel" 0.27
@@ -393,7 +393,7 @@ outfit `Z-990 "Arc" Fusion Torch`
 	"flare sound" "remnant afterburner"
 	"afterburner effect" "large remass injection"
 	"magnozzle rings" 9
-	description "The largest of the standard fusion torches used by the Avgi "
+	description "The largest of the standard fusion torches used by the Avgi"
 
 
 effect "small remass injection"
@@ -423,7 +423,7 @@ outfit "Remass Injector"
 	"mass" 3
 	"outfit space" -3
 	"engine capacity" -3
-	"afterburner thrust" 60
+	"afterburner thrust" 90
 	"afterburner energy" 3
 	"afterburner heat" -12
 	"afterburner fuel" 0.3
@@ -443,7 +443,7 @@ outfit "Inductive Extractor"
 	"engine capacity" -3
 	"energy generation" 1.5
 	"heat generation" 1.5
-	"thrust" -6
+	"thrust" -9
 	"thrusting energy" -30
 	"thrusting heat" 6
 	"magnozzle rings" -1
