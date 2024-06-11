@@ -55,7 +55,7 @@ planet Aviskir
 
 planet Sela
 	attributes avgi moon "ice moon" frozen uninhabited
-	landscape land/snow23
+	landscape land/snow37
 	description "A former planetoid captured into Aviskir's orbit only a few hundred million years ago, Sela is unusual for large moons in that it is not tidally locked, instead having a rapid rotational period of only forty-two hours. Almost one third of the moon is covered in a glassy plain of ice, smoothed by seasonal melting and refreezing. This is thought to have been deposited by a cometary impact relatively recently, and has been steadily sublimating away into space ever since."
 	description "An Avgi first set foot on another world here, carried by a ship driven by nuclear pulsed propulsion. Driving a ship by detonating small nuclear explosives behind a pusher plate would be seen as insanity by most species, but for the Avgi it was their first stepping stone in the colonization of their home system."
 	government Uninhabited
@@ -366,7 +366,7 @@ planet Katradol
 
 planet "Alonis Observatory"
 	attributes avgi research station telescope uninhabited
-	landscape land/station49
+	landscape land/station56
 	description "Decades ago, this large observatory station was constructed in order to peer into the anomalous region known as the Ember Waste. Before the Avgi were able to harden their ships against the prevalent ion storms, this was their only way to extract its secrets. An array of advanced telescopes covering the entire electromagnetic spectrum sits side by side with more exotic equipment, from gravitational wave interferometers to neutrino detectors."
 	description "After Avgi starships advanced to the point of being able to reliably withstand ion storms, it was trained deeper into the Ember Waste, looking further back in both space and time. It gathered an impressive amount of data before the Incursion forced its abandonment, though fortunately the telescope seems to have been left unscathed."
 	government Uninhabited
@@ -436,7 +436,7 @@ planet "Peripheria"
 
 planet "Napigeo Station"
 	attributes avgi "avgi diaspora" station military
-	landscape land/station50
+	landscape land/station57
 	description "Napigeo Station is a dedicated shipyard, with dozens of modular dry docks capable of quickly building and repairing ships. Overall, more than two thirds of the large warships in service of the Twilight Guard are built here, though efforts are being made to decentralize warship production for the sake of survivability."
 	description "	Due to its importance and nature as a directly government operated shipyard, the station is managed by the Twilight Guard directly. An oversight board appointed by the Assembly maintains a level of civilian governance, but given the composition of the station's population, this is clearly a military installation first and foremost."
 	spaceport "The spaceport is closer to being a giant array of dry docks than it is a true port, with the available amenities confined to the bare essentials. You can easily see a dozen warships under construction, with Avgi workers and robotic arms alike working together to churn ships out every day."
