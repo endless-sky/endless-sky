@@ -2169,7 +2169,7 @@ mission "FW Pug 5B"
 	
 	on offer
 		log "Succeeded in rendezvousing with the Navy in the Sol system and reopening a link to the Pug territory. But now Shiver is under attack by a massive Pug fleet."
-		event "reconnected altair"
+		event "reconnected altair" 0
 		conversation
 			`You help some Navy engineers on Earth to set up the graviton reflector according to Freya's instructions. As before, soon after the reflector is operational the ground seems to tilt and roll as Freya's beam homes in on the reflector and sets up a harmonic oscillation between the two. "The link is reopening!" says one of the engineers. "We're beginning to receive hyperspace communications from Altair again, and from the Syndicate too."`
 			`	A second later your own communicator beeps. It's Freya. "Get back here quickly," she says. "Bring whatever reinforcements you can. A massive Pug fleet just appeared in orbit."`
