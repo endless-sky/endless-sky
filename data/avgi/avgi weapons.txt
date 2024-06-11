@@ -21,7 +21,7 @@ outfit "Speck Round"
 	"mass" 0.003
 	"speck capacity" -1
 	"flotsam chance" 1
-	description "These densely wound metallic glass slugs are capable of inflicting a good amount of kinetic damage via hypervelocity impacts, but are easily stopped by momentum-repulsion shield systems."
+	description "These densely-wound metallic glass slugs are capable of inflicting a good amount of kinetic damage via hypervelocity impacts, but are easily stopped by momentum-repulsion shield systems."
 
 
 outfit "Speck Magazine"
@@ -316,7 +316,7 @@ outfit `"Nettle" Kinetic Missile`
 	thumbnail "outfit/nettle missile"
 	"mass" 0.15
 	"nettle capacity" -1
-	description "The Nettle missile is a cheap, disposable kinetic kill vehicle designed for situations where a nuclear warhead would be unnecessary. Upon closing in on a target, the missile unwraps into dozens of thin tungsten rods to create a cone-shaped area of effect. This makes it difficult to shoot down without very long ranged antimissile systems."
+	description "The Nettle missile is a cheap, disposable kinetic kill vehicle designed for situations where a nuclear warhead would be unnecessary. Upon closing in on a target, the missile unwraps into dozens of thin tungsten rods to create a cone-shaped area of effect. This makes it difficult to shoot down without very long-ranged antimissile systems."
 
 
 outfit "Nettle Magazine"
@@ -399,7 +399,7 @@ outfit "Nettle Launch Array"
 		"stream"
 	description "Nettle missiles are minimalist kinetic kill vehicles designed for use in situations where nuclear weapons are considered unnecessary. Little more than a payload of tungsten rods, a thruster package, and a nose mounted sensor array, they can be manufactured in bulk at minimal cost."
 	description "By splitting into a number of tungsten rods upon approaching a target, only a fraction of the payload actually impacts it, but the damage is also distributed over a large area of effect, making evasion difficult."
-	description "This large Vertical Launch Cell array is made up of forty cells, each with Nettle stacked six missiles deep. Designed for rapid vertical cold-launch, it needs an open space comparable to a turret mount to function properly."
+	description "This large Vertical Launch Cell array is made up of forty cells, each with Nettles stacked six missiles deep. Designed for rapid vertical cold-launch, it needs an open space comparable to a turret mount to function properly."
 
 
 outfit "Nettle Active"

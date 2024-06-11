@@ -218,7 +218,7 @@ outfit "Optical Lasing Generator"
 	"outfit space" -30
 	"lasing power" 3
 	description "A monolithic slab of semiconductor diode is used to efficiently pump a spool of doped optical fiber. Hundreds of kilometers long, the coiled fibers serve as a lasing medium with the power needed to produce an intense beam of light, and can be gain-switched to pulse at a variety of frequencies. The produced laser light, which can be converted to a number of wavelengths, can be easily tapped and routed via optical fibers or mirrors to a number of turrets on a ship, eliminating the need for the heavy lasing generator to be anywhere near the turret itself."
-	description "The infrared light produced in the coil can either be passed through a frequency doubling crystal to support up to three Green Optical Lasers, or frequency tripled to support a single Blue Optical Lasers."
+	description "The infrared light produced in the coil can either be passed through a frequency doubling crystal to support up to three Green Optical Lasers, or frequency tripled to support a single Blue Optical Laser."
 
 
 
@@ -280,7 +280,7 @@ outfit "Ultracapacitor Cell"
 	"outfit space" -3
 	"energy capacity" 1500
 	"ion protection" -0.01
-	"description" "The internal structure of this deceptively light capacitor cell resembles a fractal of molecule-thin graphene sheets interlocked together. While not the most efficient in their use of volume, and thus outfit space, this capacitor cell is extraordinarily energy dense for its mass, a deliberate design choice from the days of sublight interstellar travel, when every gram counted."
+	"description" "The internal structure of this deceptively light capacitor cell resembles a fractal of molecule-thin graphene sheets interlocked together. While not the most efficient in their use of outfit space, this capacitor cell is extraordinarily energy dense for its mass, a deliberate design choice from the days of sublight interstellar travel, when every gram counted."
 	"description" "Unfortunately, the internal structure is also quite delicate, and is prone to potential discharge when exposed to ionizing radiation. Thankfully, resilient grounding leads prevents this discharge from becoming catastrophic."
 	
 	
@@ -475,7 +475,7 @@ outfit "XY-180 Radial Thrusters"
 		"frame rate" 30
 		"scale" 0.125
 	"reverse flare sound" "plasma small"
-	description `Avgi radial thrusters are hybrid thermal-electric thrusters, designed to allow translation in any direction. By using reactor heat to expel superheated water vapor out of a set of nozzles, they can help a ship cool off, but require the ship to have been "warmed up" in order to function.`
+	description `Avgi radial thrusters are hybrid thermal-electric thrusters, designed to allow translation in any direction. By using reactor heat to expel superheated water vapor out of a set of nozzles, they can help a ship cool off, but require the ship to have excess heat in order to function.`
 
 
 outfit "XY-360 Radial Thrusters"
@@ -567,7 +567,7 @@ outfit "Anomalous Mass"
 	thumbnail "outfit/unknown"
 	"flotsam chance" 0.5
 	"unplunderable" 1
-	description "A collection of material shed by an Aberration. Found with various properties in different segments of an Aberration, it has been characterized by Avgi scientists by its unique composition: the material does not seem to be made of atomic matter as they know it, resisting any attempts to probe its makeup."
+	description "Found with various properties in different segments of an Aberration, this collection of material has been characterized by Avgi scientists by its unique composition: the material does not seem to be made of atomic matter as they know it, resisting any attempts to probe its makeup."
 
 
 outfit "Electromotive Rifle"

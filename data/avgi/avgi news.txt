@@ -29,12 +29,12 @@ news "avgi siege civilian"
 		word
 			`"Dejection. Once this star system was our own, but now we only hold the soil beneath our wings."`
 			`"Rejection. The Consonance claims to speak for the Avgi, yet none of us in the occupied systems voted for their rule."`
-			`"Remembrance. The Aberrations tried to bombardment our cities early in the war, but our defense systems were able to shoot most of their projectiles down."`
+			`"Remembrance. The Aberrations tried to bombard our cities early in the war, but our defense systems were able to shoot most of their projectiles down."`
 			`"Remembrance. Much of my family was lost when the Aberrant destroyed our cylinder habitats. In the Anax system, only the Nisos Cylinder survived."`
 			`"Guilt. Twelve million Avgi lived on each of the cylinder habitats. Less than one in six made it out alive."`
 			`"Worry. If not for our ground to orbit laser batteries, the Aberrant would surely have invaded the surface by now."`
 			`"Sorrow. You can see the debris from our shattered skyhooks in orbit with the naked eye."`
-			`"Anger. Why did the Consonance have to abandon our space? The surface of our core planets could have sheltered our ships, but instead they ran to save themselves"`
+			`"Anger. Why did the Consonance have to abandon our space? The surface of our core planets could have sheltered our ships, but instead they ran to save themselves."`
 			`"Curiosity. I've never been to the Tangled Shroud, but I heard it is a safe place away from the Aberrant."`
 			`"Satisfaction. Every time an Aberration comes too close, we hit it with half a dozen surface to orbit nuclear missiles."`
 			`"Optimism. Despite the siege of our star systems, the surface of our inhabited planets remain quite safe from attack."`
@@ -136,7 +136,7 @@ news "avgi politician"
 			`"Pride. Before the Incursion, there were over a thousand recognized independent polities among the Avgi. Now, the Consonance is ready to unite our species."`
 			`"Mocking. Why of course, I never considered before that we should simply build more ships to defeat the Aberrant. Have you considered petitioning the Assembly with your idea?"`
 			`"Humor. Reaching a consensus among hundreds of independent polities is more difficult than fighting an existential war for the survival of your species. And less exciting."`
-			`"Reservation. While those of us who understand matters of policy accept that the war economy is necessary, the people are beginning to chafe under the long economic austerity it has imposed. More needs to be done to inform the common people less we lose the war behind the front lines."`
+			`"Reservation. While those of us who understand matters of policy accept that the war economy is necessary, the people are beginning to chafe under the long economic austerity it has imposed. More needs to be done to inform the common people lest we lose the war behind the front lines."`
 			`"Assurance. The current debts will surely not be enforced once the war ends. And if they are, we'll be the ones collecting them."`
 			"An Avgi clothed in dark tassels flits overhead, tailed by half a dozen journalists buzzing with questions and demands for answers."
 
@@ -212,7 +212,7 @@ news "avgi missing advisory"
 		word
 			"reported"
 			"failed check in"
-			"missed check in"
+			"missed check-in"
 		word
 			", "
 		word
@@ -268,7 +268,7 @@ news "avgi engineer"
 		not attributes "aberrant siege"
 	name
 		word
-			"Avgi"
+			"Avgi "
 		word
 			"Engineer"
 			"Mechanical Engineer"
@@ -323,9 +323,9 @@ news "avgi astronomer"
 			"Cosmologist"
 	message
 		word
-			`"Instructive. The Twilight nebula is a reflection nebula nearly a thousand light years wide. Illuminated by relatively young neutron stars, it is the remnants of multiple supernovae that occurred millions of years ago."`
-			`"Inquisitive. It is notable that the star cluster southeast of Stream is mostly made up of young, hot stars. That part of the Twilight nebula was likely once a dense molecular cloud, compact enough to collapse into giant stars millions of years ago"`
-			`"Tutelage. The Twilight nebula is not in hydrostatic equilibrium. It is slowly contracting as it cools, a stellar nursery on a massive scale."`
+			`"Instructive. The Twilight Nebula is a reflection nebula nearly a thousand light years wide. Illuminated by relatively young neutron stars, it is the remnants of multiple supernovae that occurred millions of years ago."`
+			`"Inquisitive. It is notable that the star cluster southeast of Stream is mostly made up of young, hot stars. That part of the Twilight nebula was likely once a dense molecular cloud, compact enough to collapse into giant stars millions of years ago."`
+			`"Tutelage. The Twilight Nebula is not in hydrostatic equilibrium. It is slowly contracting as it cools, a stellar nursery on a massive scale."`
 			`"Frustration. The galaxy is three-dimensional, but you wouldn't know it from the way everyone draws their maps!"`
 			`"Annoyance. Using cardinal directions like 'North' and 'West' to describe locations in the galaxy should be a crime! Polar coordinates for 'spinward' and 'rimward' would be far better."`
 			`"Curiosity. To this day, there is no explanation as to why some systems are linked by starways and others are not."`

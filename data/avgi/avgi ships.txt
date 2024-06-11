@@ -370,7 +370,7 @@ ship "Avlaki"
 	explode "medium explosion" 9
 	"final explode" "final explosion medium"
 
-	description "The Avlaki is a mid-sized freighter loosely descended from a pre-hyperdrive solar-electric tug design. Its low cost and renowned maintainability has enabled it to remain in service to this day, a popular choice among independent captains."
+	description "The Avlaki is a mid-sized freighter loosely descended from a pre-hyperdrive solar-electric tug design. Its low cost and renowned maintainability has enabled it to remain in service to this day, and is a popular choice among independent captains."
 	description "Enterprising captains often exploit the commonality of the Koryfi and Avlaki designs, swapping out the standard cargo containers for a centrifuge habitat."
 	description "While its standard set of magnetoplasmadynamic thrusters give it an acceleration generously described as sluggish, the Avlaki's constant thrust flight profile allows it to reach an impressive cruising velocity given enough time."
 
@@ -1102,7 +1102,7 @@ ship "Modified Tachytia"
 	"final explode" "nuke explosion" 3
 	"final explode" "nuke residue fast" 90
 
-	description "This was once an Avgi sublight starship, one of the last models built before the discovery of the hyperdrive. Most starships around this period used ram augmented fusion drives to reach cruising speeds of up to 0.25c, but the Tachytia class was designed to reach a velocity of 0.4c with an antimatter fuel source to ignite propellant gathered with its huge ramscoop."
+	description "This was once an Avgi sublight starship, one of the last models built before the discovery of the hyperdrive. Most starships around this period used ram-augmented fusion drives to reach cruising speeds of up to 0.25c, but the Tachytia class was designed to reach a velocity of 0.4c with an antimatter fuel source to ignite propellant gathered with its huge ramscoop."
 	description "This particular ship was never launched on its mission, commissioned just before the hyperdrive made it obsolete. Now, it has been extensively modified by removing many of its propellant tanks, replacing them with a hyperdrive, additional equipment spaces, and several docking bays. The cryosleep bay has also been substituted for spacious habitatation cylinders, making this a true city ship."
 
 
@@ -1369,7 +1369,7 @@ ship "Interferos"
 	explode "medium explosion" 6
 	"final explode" "final explosion medium"
 
-	description "The Interferos-class Frigate is an autonomous support ship, designed to be easy to build and disposable enough for mass production. To free up front line warships from having to escort merchant convoys in the Tangles, the Consonance commissioned this design with the intent of licensing its sale to independent merchant captains. It has since become popular due to its impressively large armament, though its attrition rates leave something to be desired."
+	description "The Interferos-class Frigate is an autonomous support ship, designed to be easy to build and disposable enough for mass production. To free up frontline warships from having to escort merchant convoys in the Tangles, the Consonance commissioned this design with the intent of licensing its sale to independent merchant captains. It has since become popular due to its impressively large armament, though its attrition rates leave something to be desired."
 
 
 # Medium Warships
@@ -1595,7 +1595,7 @@ ship "Difraktos"
 	explode "large explosion" 12
 	"final explode" "final explosion large"
 
-	description "The Difraktos-class Cruiser is a versatile platform capable of serving in configurations from a high-performance kinetic weapon battlecruiser to a guided missile cruiser, or anything in between. Its powerful torch drive is used to push its heavily armored hull, rather than for speed, giving the Difraktos good survivability even in close range brawls."
+	description "The Difraktos-class Cruiser is a versatile platform capable of serving in configurations from a high-performance kinetic weapon battlecruiser to a guided missile cruiser, or anything in between. Its powerful torch drive is used to push its heavily armored hull, rather than for speed, giving the Difraktos good survivability even in close-range brawls."
 
 
 ship "Difraktos" "Difraktos (Missile)"
@@ -1884,7 +1884,7 @@ ship "Atenuatia"
 	explode "huge explosion" 6
 	"final explode" "final explosion large"
 
-	description "The Atenuatia is an Avgi fleet carrier, a capital ship that makes up the centerpiece of their battlefleets. With six wings of combat drones and two wings of bombers, an Atenuatia can bring forth an astounding amount of firepower. Carrying this arsenal of fighters has its cost, however, and the Atenuatia can carry relayively few heavy weapons for its size."
+	description "The Atenuatia is an Avgi fleet carrier, a capital ship that makes up the centerpiece of their battlefleets. With six wings of combat drones and two wings of bombers, an Atenuatia can bring forth an astounding amount of firepower. Carrying this arsenal of fighters has its cost, however, and the Atenuatia can carry relatively few heavy weapons for its size."
 
 
 ship "Atenuatia" "Atenuatia (Atomic)"
@@ -1979,7 +1979,7 @@ ship "Akoustiki"
 	leak "leak" 30 60
 	explode "tiny explosion" 9
 
-	description "The Akoustiki Excursion Vehicle is a modern take on the utility pod, a small personal craft designed to aid in the maintenance and repair of a station, or a carrier vessel and its escorts. It is just as commonly seen flitting about the orbitals, servicing satellites acting as a personal transport shuttle between stations and low gravity bodies. Recent advances in magnetoplasmadynamic engines have made it a capable mining craft as well, albeit one with little room for ores."
+	description "The Akoustiki Excursion Vehicle is a modern take on the utility pod, a small personal craft designed to aid in the maintenance and repair of a station, or a carrier vessel and its escorts. It is just as commonly seen flitting about the orbitals as it is servicing satellites or acting as a personal transport shuttle between stations and low gravity bodies. Recent advances in magnetoplasmadynamic engines have made it a capable mining craft as well, albeit one with little room for ores."
 
 
 ship "Photikon"
@@ -2053,7 +2053,7 @@ ship "Photikon"
 	"final explode" "final explosion small"
 
 	description "The Photikon Torpedo Bomber is the cornerstone of Avgi antiship carrier doctrine. While it is possible for a swarm of Vibratia and similar interdiction drones to engage capital ships, it is the Photikon that is capable of delivering the nuclear anti-ship munitions necessary to bring down the largest warships. By bringing a nuclear torpedo within close range, the payload has a higher chance of surviving enemy point defense weapons compared with standard missiles."
-	description "Photikons are occasionally used as gun platforms, mounting a Speckle Turret instead of their standard armament of a pair of Equinox Torpedoes."
+	description "Photikons are occasionally used as gun platforms, mounting a Speckle Turret instead of their standard armament of two Equinox Torpedoes."
 	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
 
 
@@ -2203,7 +2203,7 @@ ship "Undulon"
 
 	explode "tiny explosion" 12
 
-	description "The Undulon Orbital Silo was first envisioned as a cheap static defense satellite, little more than a tube capable of storing and launching nuclear tipped missiles. Over time, this specialization was broadened, and the modern line of Undulons is alternatively capable of mounting a large fixed gun, and carrying the energy supply to support it, in order to serve as in the ranged artillery role. Their mostly hollow construction provides a great deal of internal space for their size, but also makes the drone quite fragile."
+	description "The Undulon Orbital Silo was first envisioned as a cheap static defense satellite, little more than a tube capable of storing and launching nuclear-tipped missiles. Over time, this specialization was broadened, and the modern line of Undulons is capable of both mounting a large fixed gun and carrying the energy supply needed to support it. Their mostly hollow construction provides a great deal of internal space for their size, but also makes the drone quite fragile."
 	description "Undulons are usually seen defending critical planets and stations, ready to unload their atomic payloads on any hostile ships that jump into the system."
 	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
 

@@ -24,7 +24,7 @@ planet Omanet
 	attributes avgi mining uninhabited
 	landscape land/mars0
 	description "Omanet is thought to be a chthonian world, a former gas giant whose atmosphere was stripped away until the rocky core was left bare. For whatever reason, Omanet went a step further, and its silicate crust and mantle were also boiled off, leaving behind an extraordinarily dense planet made almost entirely out of metal."
-	description "Despite its unfavorable position deep in Anax's gravity well, Omanet was heavily industrialized, with autofabs building enormous discs of nickel-iron anodized with silver. These orbital mirrors are then launched via mass driver, collecting sunlight for uses from industrial asteroid smelting to remote beamed power. Avgi futurists saw this as first steps of a Dyson swarm, but the current rate of mirror assembly will take millennia to exploit a meaningful fraction of Anax's output."
+	description "Despite its unfavorable position deep in Anax's gravity well, Omanet was heavily industrialized, with autofabs building enormous discs of nickel-iron anodized with silver. These orbital mirrors are then launched via mass driver, collecting sunlight for uses from industrial asteroid smelting to remote beamed power. Avgi futurists saw this as the first step towards a Dyson swarm, but the current rate of mirror assembly will take millennia to exploit a meaningful fraction of Anax's output."
 	government Uninhabited
 	
 
@@ -146,7 +146,7 @@ planet Calesi
 planet Iconil
 	attributes uninhabited
 	landscape land/snow25
-	description "The first crewed interstellar expedition launched by the Avgi entered orbit first around Iconil, rather than the tantalizingly habitable world of Livoula nearby. This seemingly unorthodox decision was made by the ship's crew because of the dwarf's planet combination of low gravity and clearly visible ice deposits, which offered an easy way to replenish the vessel's propellant. The mission spent several months gathering resources and launching probes before finally crossing the final stretch to settle Livoula, the Avgi's first interstellar colony."
+	description "The first crewed interstellar expedition launched by the Avgi entered orbit first around Iconil, rather than the tantalizingly habitable world of Livoula nearby. This seemingly unorthodox decision was made by the ship's crew because of the dwarf planet's combination of low gravity and clearly visible ice deposits, which offered an easy way to replenish the vessel's propellant. The mission spent several months gathering resources and launching probes before finally crossing the final stretch to settle Livoula, the Avgi's first interstellar colony."
 	government Uninhabited
 
 
@@ -177,8 +177,8 @@ planet Uryyhr
 planet Stilacrest
 	attributes avgi "aberrant siege" fishing rich religious
 	landscape land/myrabella4
-	description "This warm world, with its shallow freshwater seas, pleasant weather, and white limestone cliffs would be an ideal vacation world to any human. The mountain-born Avgi, however, were rather discomforted by its relatively flat landscape and sluggish winds, and permanent settlement has been sparse."
-	description "The oceans are rich in appetizing sea life, and Stilacrest is home to an abundance of independent fishing boats run by those seeking to build a new life away from the homeworld. The lure of the calm waves and mild weather is said to have attracted a meditative, laid back sort of personality."
+	description "Stilacrest is a warm world, with its shallow freshwater seas, pleasant weather, and white limestone cliffs would be an ideal vacation world to any human. The mountain-born Avgi, however, were rather discomforted by its relatively flat landscape and sluggish winds, and permanent settlement has been sparse."
+	description "The oceans are rich in appetizing sea life, and Stilacrest is home to an abundance of independent fishing boats run by those seeking to build a new life away from the homeworld. The lure of the calm waves and mild weather is said to have attracted a meditative, laid-back sort of personality."
 	spaceport "The largest spaceport is built on the edge of one of the smaller continents, with ample access to the sea. Unlike most Avgi spaceports, the city that grew around it has fairly few skyscrapers or tall buildings, with most structures being short and sprawling."
 	government Avgi
 	security 0
@@ -193,7 +193,7 @@ planet Stilacrest
 planet Cyreal
 	attributes avgi "aberrant siege" forest tourism
 	landscape land/hills13
-	description "Cyreal was one of the first extrasolar worlds to be colonized by the Avgi. Like the rest of the nearest worlds, it was settled by numerous waves of slower than light starships. A low gravity moon, it is covered in sharp mountains and tall forests. It was once heavily settled, used as a green space by the miners in the system who grew weary of the confines of their mining vessels."
+	description "Cyreal was one of the first extrasolar worlds to be colonized by the Avgi, and, like all those near the Avgi homeworld, it was settled by numerous waves of slower than light starships. Once heavily settled, this low-gravity moon's sharp mountains and tall forests were used as a green space by nearby miners grown weary of the cramped confines of their vessels."
 	description "While somewhat metal-poor, by exploiting the asteroids and other bodies in the Span system, Cyreal developed a robust industrial base that allowed it to weather the economic shock that came with the invention of the hyperdrive relatively easily."
 	spaceport "The spaceport is large for the moon's population, a product of its status as a hub for the many mining ships in the system."
 	government Avgi
@@ -211,7 +211,7 @@ planet Amathil
 	attributes avgi "aberrant siege" desert
 	landscape land/canyon16
 	description "As far as desert worlds come, Amathil is merely dry and sandy, with a mild surface temperature that is surprisingly uniform across latitudes thanks to high altitude winds. While unattractive for settlement due to the scarcity of greenery, Amathil is still home to the descendents of those who arrived on the first few sublight starships, back when little was known about the planet besides that it had an oxygenated atmosphere. The unique culture that has since grown here, under a unified planetary government, emphasizes a sense of community and generosity, or at least that is the way the locals are perceived by outsiders."
-	spaceport "The spaceport is spartan, with Amathil not receiving much traffic on a daily basis. Amathil's primary export is people, with many choosing to leave the isolated world in favor of moving to one of the more cosmopolitan worlds elsewhere."
+	spaceport "The spaceport is spartan, with Amathil not receiving much traffic on a daily basis. Amathil's primary export is people, with many choosing to leave the isolated planet in favor of moving to one of the more cosmopolitan worlds elsewhere."
 	government Avgi
 	outfitter "Avgi Basic Systems"
 	outfitter "Avgi Basic Drives"
@@ -229,7 +229,7 @@ planet Araio
 	attributes avgi "aberrant siege" farming frontier rich
 	landscape land/canyon3
 	description "Araio is a relatively small world dominated by a single supercontinent. Continental uplift has made much of the land characterized by mountainous highland, scattered with numerous springs and lakes. Though the air is thin and the soil is rocky, hardy plants and woody trees cling to life, breaking up the landscape of rocky mountains with colorful meadows and bountiful forests."
-	description "Araio garnered a reputation as a frontier world ripe for plucky pioneers, being reminiscent of an often romanticized historical era on Aviskir. While rich in gemstones, natural stones have not been competitive with nanofabricated alternatives since long before the planet was settled, and thus the economy on the surface is almost completely dominated by homesteads and small frontier towns."
+	description "Araio garnered a reputation as a frontier world ripe for plucky pioneers, reminiscent of an often romanticized historical era on Aviskir. While rich in gemstones, natural stones have not been competitive with nanofabricated alternatives since long before the planet was settled, and thus the economy on the surface is almost completely dominated by homesteads and small frontier towns."
 	spaceport "Araio's spaceport was small, but well run, capable of efficiently moving small volume goods on and off the world. It was however razed from orbit by the Incursors shortly after the fall of Anax, and the few scouts that are able to sneak through the blockade are forced to use a variety of rocky plateaus instead."
 	spaceport "Though imports of advanced technology from other worlds, which the planet lacks the development to manufacture itself, were cut off with the Incursion, the planet is self-sufficient enough to get by for the foreseeable future, even if it means a slight regression in technology."
 	government Avgi
@@ -309,7 +309,7 @@ planet Alathil
 planet Hespair
 	attributes uninhabited
 	landscape land/beach18
-	description "Hespair was once a life bearing world, but no longer. An unknown event several million years ago thoroughly sterilized the planet down to the last bacterium, and life has not since reemerged."
+	description "Hespair was once a life-bearing world, but no longer. An unknown event several million years ago thoroughly sterilized the planet down to the last bacterium, and life has not since reemerged."
 	description "	However, during their exploration of the planet, the Avgi accidentally, if inevitably, introduced bacteria from their own ships to Hespair's oceans. These motes of life are still sparse, but even if the Avgi refrain from terraforming this world, they will form the seeds of a new biosphere."
 	government Uninhabited
 
@@ -415,9 +415,9 @@ planet Ashkelon
 planet "Peripheria"
 	attributes avgi "avgi diaspora" station urban
 	landscape land/station54
-	description "This enormous, kilometer wide rotating station is the capital of the Avgi civilization in exile. Shaped like a solid disc, it is home to almost a million Avgi, made up of both civilians that were able to flee the core worlds during the invasion and those who already led independent lives in deep space."
+	description "This enormous, kilometer-wide rotating station is the capital of the Avgi civilization in exile. Shaped like a solid disc, it is home to almost a million Avgi, made up of both civilians that were able to flee the core worlds during the invasion and those who already led independent lives in deep space."
 	description "The station contains hundreds of levels, with centripetal gravity on the edges being the strongest. The outer rim is perpetually expanded to create more living space, and will likely continue to grow until the structural limits of the station are reached."
-	description "The station also hosts the Assembly of Consonant Polities, a league of various nations and communities that now serves as the de-facto species wide government."
+	description "The station also hosts the Assembly of Consonant Polities, a league of various nations and communities that now serves as the de-facto species-wide government."
 	spaceport "An extensive set of docks and shipyards makes up the innermost portion of the station's disc, and you can see dozens of ships in various states of completion."
 	spaceport "The usual amenities often located around a spaceport fill a dense ring of shops, restaurants, and other services surrounding the spaceport, but many in the Assembly are considering expanding the spaceport outwards at their expense."
 	government "Avgi (Consonance)"
@@ -480,7 +480,7 @@ planet Aspar
 planet "Tilo Station"
 	attributes avgi "avgi diaspora" dissonance station
 	landscape land/space0
-	description "Tilo Station was the first major refueling station built in the Tangled Shroud, predating the Incursion, and while it continues to harvest deuterium and helium-3 from the gas giant below, it has largely been supplanted by smaller, less centralized ice-based deuterium refineries. This has led to a degree of neglect by the Assembly, and a posting here is generally regarded as a minor punishment."
+	description "Predating the Incursion, Tilo Station was the first major refueling station built in the Tangled Shroud. While it continues to harvest deuterium and helium-3 from the gas giant below, it has largely been supplanted by smaller, less centralized ice-based deuterium refineries. This has led to a degree of neglect by the Assembly, and a posting here is generally regarded as a minor punishment."
 	description "	As a result, the station's crew has been thoroughly penetrated by those with sympathies to the Dissonance."
 	government "Avgi (Consonance)"
 	"required reputation" 10
