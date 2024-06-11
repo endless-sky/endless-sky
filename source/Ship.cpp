@@ -2537,7 +2537,7 @@ bool Ship::CanRefuel(const Ship &other) const
 
 bool Ship::CanGiveEnergy(const Ship &other) const
 {
-	double toGive = max(200., other.attributes.Get("energy capacity"));
+	double toGive = max(200., other.attributes.Get("energy capacity") * 0.2);
 	return attributes.Get("energy capacity") >= 2 * toGive;
 }
 
