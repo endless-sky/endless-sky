@@ -62,7 +62,7 @@ outfit "Telescopic Antimissile"
 		"lifetime" 1
 		"reload" 15
 		"firing energy" 90
-	description "Oddly enough, this antimissile system resembles an array of scanners and telescopes. Such an assortment of sensing devices was certainly not intended to be used as a weapon, but somehow enough power has been pumped into a scanning beam to make it a potent antimissile defense."
+	description "Oddly enough, this antimissile system resembles an array of scanners and telescopes. Such an assortment of sensing devices was certainly not intended to be used as a weapon, but somehow enough power has been pumped into this scanning beam to make it a potent antimissile defense."
 	description "The various lenses and mirrors that make up a large telescope seem to be used to focus the emitted beam, giving this antimissile system a very long range."
 
 

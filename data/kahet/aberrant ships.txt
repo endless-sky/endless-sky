@@ -635,7 +635,7 @@ ship "Twilight Ka'sei 2B"
 	"final explode" "nuke explosion"
 	"final explode" "nuke residue fast" 50
 	description "This appears to be some kind of organo-metallic entity, made from a strange mosaic of organic tissue, conventional material, and an exotic matter that defies conventional analysis."
-	description "This variant in particular seems to be in the process of growing more elongated, with a tougher hull than usual."
+	description "This variant in particular seems to be in the process of growing more elongated, and has a tougher hull than usual."
 
 
 ship "Twilight Ka'sei 2B" "Twilight Ka'sei 2B (Disable-able)"
