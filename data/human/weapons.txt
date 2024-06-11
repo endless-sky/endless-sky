@@ -553,9 +553,9 @@ outfit "Particle Cannon"
 		"lifetime" 25
 		"reload" 20
 		"firing energy" 35
-		"firing force" 10
+		"firing force" 15
 		"firing heat" 120
-		"hit force" 80
+		"hit force" 120
 		"shield damage" 65
 		"hull damage" 62
 	description "The Particle Cannon works by accelerating a short burst of particles to near-relativistic speeds. When mounted on a ship that can turn fast enough to keep it trained on approaching ships, it becomes a nearly unbeatable weapon, capable of destroying smaller ships before they can even approach close enough for their comparatively short-ranged weapons to be effective."
@@ -589,7 +589,7 @@ outfit "Proton Gun"
 		"lifetime" 2
 		"reload" 8
 		"firing energy" 15
-		"firing force" 2
+		"firing force" 3
 		"firing heat" 60
 	description "The Proton Gun started out as the Syndicate's attempt to reverse engineer and mass-produce a cheap competitor for the Particle Cannon. Unfortunately, they were unable to find a reliable way to keep the beam coherent, but the resulting weapon is still popular with some captains, particularly as an anti-fighter gun."
 
@@ -601,7 +601,7 @@ outfit "Proton Fragment"
 		"hit effect" "proton impact"
 		"inaccuracy" 2
 		"lifetime" 24
-		"hit force" 6
+		"hit force" 9
 		"shield damage" 10.1
 		"hull damage" 8.4
 
@@ -636,7 +636,7 @@ outfit "Proton Turret"
 		"lifetime" 2
 		"reload" 8
 		"firing energy" 15
-		"firing force" 2
+		"firing force" 3
 		"firing heat" 60
 	description "The Syndicate Proton Turret is a relatively new product designed to compete with Deep Sky's perennially popular Laser Turrets in the anti-fighter defense market. Though cruder than its competition, the Proton Turret maintains a loyal following among captains dissatisfied with laser weapons' short range."
 
@@ -660,7 +660,7 @@ outfit "Plasma Cannon"
 		"reload" 18
 		"firing energy" 30
 		"firing heat" 180
-		"hit force" 30
+		"hit force" 45
 		"shield damage" 63
 		"hull damage" 25
 		"heat damage" 340
@@ -689,7 +689,7 @@ outfit "Plasma Turret"
 		"reload" 9
 		"firing energy" 30
 		"firing heat" 180
-		"hit force" 30
+		"hit force" 45
 		"shield damage" 63
 		"hull damage" 25
 		"heat damage" 340
@@ -717,7 +717,7 @@ outfit "Plasma Repeater"
 		"shield damage" 33
 		"hull damage" 13
 		"heat damage" 144
-		"hit force" 19
+		"hit force" 28.5
 	description `Decades after buying the rights for the Plasma Cannon, Kraz Cybernetics put this weapon on the shelves of every high-end outfitter of the Southern Rim. The repeater has so far proved immensely popular amongst any who braved testing it, and is shaping up to become an essential deterrent for anyone who flaunts their haul for pirate plunder.`
 	description `	Derived from the original Plasma Cannon, this heavier version trades off its larger bursts for a much faster rate of fire. Although the smaller bursts of superheated plasma deal far less damage than its predecessor, the volume of fire results in more damage to the target overall.`
 
@@ -837,23 +837,21 @@ outfit "Meteor Missile Launcher"
 		"die effect" "missile death"
 		"hit effect" "missile hit"
 		"inaccuracy" 5
-		"velocity" 0
-		"velocity override" 20
-		"lifetime" 192
-		"range override" 3850
+		"velocity" 11
+		"lifetime" 350
 		"reload" 80
 		"firing energy" 1
 		"firing heat" 20
-		"acceleration" .4
-		"drag" .02
-		"turn" 2
+		"acceleration" 1
+		"drag" .1
+		"turn" 1.8
 		"homing" 1
 		"infrared tracking" .65
 		"shield damage" 360
 		"hull damage" 220
-		"hit force" 220
+		"hit force" 330
 		"missile strength" 6
-	description "The Meteor Missile is the cheapest and simplest homing weapon available in human space, with only rudimentary infrared tracking systems that can have trouble homing in on targets with low heat levels. True to its name, the missile reaches a very high speed to leave its target's anti-missile defenses with little time to react. The trade-off is maneuverability, so Meteor Missiles are practically useless against agile targets farther than point-blank range."
+	description "The Meteor Missile is the cheapest and simplest homing weapon available in human space. Meteors are quickly destroyed by anti-missile systems, and their infrared tracking systems have trouble homing in on targets with low heat levels. Nevertheless, their large warheads can spell doom for poorly-defended targets when the missiles are fired in great numbers."
 
 outfit "Meteor Missile Pod"
 	category "Secondary Weapons"
@@ -875,25 +873,23 @@ outfit "Meteor Missile Pod"
 		"die effect" "missile death"
 		"hit effect" "missile hit"
 		"inaccuracy" 5
-		"velocity" 0
-		"velocity override" 20
-		"lifetime" 192
-		"range override" 3850
+		"velocity" 11
+		"lifetime" 350
 		"reload" 200
 		"burst count" 7
 		"burst reload" 80
 		"firing energy" 1
 		"firing heat" 20
-		"acceleration" .4
-		"drag" .02
-		"turn" 2
+		"acceleration" 1
+		"drag" .1
+		"turn" 1.8
 		"homing" 1
 		"infrared tracking" .65
 		"shield damage" 360
 		"hull damage" 220
-		"hit force" 220
+		"hit force" 330
 		"missile strength" 6
-	description "The Meteor Missile is the cheapest and simplest homing weapon available in human space, with only rudimentary infrared tracking systems that can have trouble homing in on targets with low heat levels. True to its name, the missile reaches a very high speed to leave its target's anti-missile defenses with little time to react. The trade-off is maneuverability, so Meteor Missiles are practically useless against agile targets farther than point-blank range."
+	description "The Meteor Missile is the cheapest and simplest homing weapon available in human space. Meteors are quickly destroyed by anti-missile systems, and their infrared tracking systems have trouble homing in on targets with low heat levels. Nevertheless, their large warheads can spell doom for poorly-defended targets when the missiles are fired in great numbers."
 	description "	Pods enable fighters and other light craft to carry small quantities of missiles into battle while retaining enough space for other weapons. Large ships are better off with full-size launchers."
 
 effect "meteor fire"
@@ -942,22 +938,20 @@ outfit "Sidewinder Missile Launcher"
 		"die effect" "missile death"
 		"hit effect" "missile hit"
 		"inaccuracy" 4
-		"velocity" 0
-		"velocity override" 14
+		"velocity" 14
 		"lifetime" 350
-		"range override" 4900
 		"reload" 60
 		"firing energy" 1
 		"firing heat" 15
-		"acceleration" .3
-		"drag" .021
+		"acceleration" 1.2
+		"drag" .1
 		"turn" 4
 		"homing" 4
 		"radar tracking" .9
 		"shield damage" 260
 		"hull damage" 180
-		"hit force" 170
-		"missile strength" 12
+		"hit force" 255
+		"missile strength" 18
 	description "The Sidewinder Missile is designed by Lovelace Labs, which is ironically also the designer of the Anti-Missile Turret. Rumors say that the two engineering teams at Lovelace who make the missiles and the anti-missiles are locked in furious competition with each other: the result has been generation after generation of smarter missiles and then smarter turrets to fend them off."
 	description "	Although not as powerful or cheap as the popular Meteor Missiles, Sidewinders have several advantages, including their superior maneuverability, better tracking systems, and protective casings that make them much harder for anti-missile systems to destroy."
 
@@ -969,7 +963,7 @@ outfit "Sidewinder Missile Pod"
 	"outfit space" -4
 	"weapon capacity" -4
 	"gun ports" -1
-	"sidewinder capacity" 4
+	"sidewinder capacity" 6
 	weapon
 		sprite "projectile/sidewinder"
 			"no repeat"
@@ -981,24 +975,22 @@ outfit "Sidewinder Missile Pod"
 		"die effect" "missile death"
 		"hit effect" "missile hit"
 		"inaccuracy" 4
-		"velocity" 0
-		"velocity override" 14
+		"velocity" 14
 		"lifetime" 350
-		"range override" 4900
 		"reload" 150
-		"burst count" 4
+		"burst count" 6
 		"burst reload" 60
 		"firing energy" 1
 		"firing heat" 15
-		"acceleration" .3
-		"drag" .021
+		"acceleration" 1.2
+		"drag" .1
 		"turn" 4
 		"homing" 4
 		"radar tracking" .9
 		"shield damage" 260
 		"hull damage" 180
-		"hit force" 170
-		"missile strength" 12
+		"hit force" 255
+		"missile strength" 18
 	description "The Sidewinder Missile is designed by Lovelace Labs, which is ironically also the designer of the Anti-Missile Turret. Rumors say that the two engineering teams at Lovelace who make the missiles and the anti-missiles are locked in furious competition with each other: the result has been generation after generation of smarter missiles and then smarter turrets to fend them off."
 	description "	Although not as powerful or cheap as the popular Meteor Missiles, Sidewinders have several advantages, including their superior maneuverability, better tracking systems, and protective casings that make them much harder for anti-missile systems to destroy."
 	description "	Pods enable fighters and other light craft to carry small quantities of missiles into battle while retaining enough space for other weapons. Large ships are better off with full-size launchers."
@@ -1053,7 +1045,7 @@ outfit "Javelin Pod"
 		"firing heat" 12
 		"shield damage" 48
 		"hull damage" 26
-		"hit force" 50
+		"hit force" 75
 		"missile strength" 3
 	description "The Javelin Pod fires a rapid stream of unguided missiles. A Javelin Pod does far more damage than any gun of a comparable size, and has a longer range as well, but once a ship has expended all of its ammunition it must leave combat and find a planet where it can buy more, which makes Javelins less useful in protracted battles."
 	description "	The weapon's high rate of fire also makes it useful for saturating well-protected ships' anti-missile defenses so that more dangerous projectiles fired by allied ships can sneak through."
@@ -1066,7 +1058,7 @@ outfit "Javelin Mini Pod"
 	"outfit space" -3
 	"weapon capacity" -3
 	"gun ports" -1
-	"javelin capacity" 40
+	"javelin capacity" 30
 	weapon
 		sprite "projectile/javelin"
 		sound "javelin"
@@ -1077,13 +1069,13 @@ outfit "Javelin Mini Pod"
 		"velocity" 10
 		"lifetime" 60
 		"reload" 40
-		"burst count" 40
+		"burst count" 30
 		"burst reload" 15
 		"firing energy" .2
 		"firing heat" 12
 		"shield damage" 48
 		"hull damage" 26
-		"hit force" 50
+		"hit force" 75
 		"missile strength" 3
 	description "The Javelin Pod fires a rapid stream of unguided missiles. A Javelin Pod does far more damage than any gun of a comparable size, and has a longer range as well, but once a ship has expended all of its ammunition it must leave combat and find a planet where it can buy more, which makes Javelins less useful in protracted battles."
 	description "	The weapon's high rate of fire also makes it useful for saturating well-protected ships' anti-missile defenses so that more dangerous projectiles fired by allied ships can sneak through."
@@ -1116,7 +1108,7 @@ outfit "Javelin Turret"
 		"firing heat" 12
 		"shield damage" 48
 		"hull damage" 26
-		"hit force" 50
+		"hit force" 75
 		"missile strength" 3
 	description "Mounting not one but two Javelin Pods, the Javelin Turret delivers a torrential downpour of unguided missiles that deal noticeably more damage than other turreted weapons of the same size, at the expense of using a prodigious amount of ammo due to its high fire rate. For that reason, these turrets are commonly paired with Javelin Storage Crates and weapons that don't require the use of ammunition to fall back on once all of the missiles are expended."
 
@@ -1160,21 +1152,19 @@ outfit "Torpedo Launcher"
 		"hit effect" "torpedo hit"
 		"die effect" "tiny explosion"
 		"inaccuracy" 5
-		"velocity" 0
-		"velocity override" 7
+		"velocity" 7
 		"lifetime" 900
-		"range override" 6300
 		"reload" 150
 		"firing energy" 2
 		"firing heat" 45
-		"acceleration" .1
-		"drag" .015
+		"acceleration" .15
+		"drag" .025
 		"turn" 1.5
 		"homing" 3
 		"optical tracking" .8
 		"shield damage" 820
 		"hull damage" 820
-		"hit force" 300
+		"hit force" 450
 		"missile strength" 30
 	description "Torpedoes are the most powerful homing weapon, but they move slowly enough that fast ships can simply outrun them, making them most useful against large targets or against small ships at times when they are too distracted to dodge. Torpedo launchers are also much larger than other missile systems, so they are most often found in capital ships."
 
@@ -1198,23 +1188,21 @@ outfit "Torpedo Pod"
 		"hit effect" "torpedo hit"
 		"die effect" "tiny explosion"
 		"inaccuracy" 5
-		"velocity" 0
-		"velocity override" 7
+		"velocity" 7
 		"lifetime" 900
-		"range override" 6300
 		"reload" 320
 		"burst count" 3
 		"burst reload" 150
 		"firing energy" 2
 		"firing heat" 45
-		"acceleration" .1
-		"drag" .015
+		"acceleration" .15
+		"drag" .025
 		"turn" 1.5
 		"homing" 3
 		"optical tracking" .8
 		"shield damage" 820
 		"hull damage" 820
-		"hit force" 300
+		"hit force" 450
 		"missile strength" 30
 	description "Torpedoes are the most powerful homing weapon, but they move slowly enough that fast ships can simply outrun them, making them most useful against large targets or against small ships at times when they are too distracted to dodge."
 	description "	Pods enable fighters and other light craft to carry small quantities of Torpedoes into battle while retaining enough space for other weapons. Large ships are better off with full-size launchers."
@@ -1265,21 +1253,19 @@ outfit "Typhoon Launcher"
 		"hit effect" "torpedo hit"
 		"die effect" "tiny explosion"
 		"inaccuracy" 5
-		"velocity" 0
-		"velocity override" 6
+		"velocity" 6
 		"lifetime" 1100
-		"range override" 6600
 		"reload" 120
 		"firing energy" 4
 		"firing heat" 50
 		"acceleration" .1
-		"drag" .017
+		"drag" .02
 		"turn" 1.5
 		"homing" 4
 		"optical tracking" .9
 		"shield damage" 1050
 		"hull damage" 1050
-		"hit force" 450
+		"hit force" 675
 		"missile strength" 40
 	description "Typhoon Torpedoes are an improved torpedo technology; they do considerably more damage than ordinary torpedoes. However, they are also much slower, because they are intended mostly for use against large and slow-moving capital ships. As a result, sufficiently skilled pilots can often dodge around them."
 
@@ -1291,7 +1277,7 @@ outfit "Typhoon Pod"
 	"outfit space" -12
 	"weapon capacity" -12
 	"gun ports" -1
-	"typhoon capacity" 2
+	"typhoon capacity" 3
 	weapon
 		sprite "projectile/typhoon"
 			"frame rate" 4
@@ -1303,23 +1289,21 @@ outfit "Typhoon Pod"
 		"hit effect" "torpedo hit"
 		"die effect" "tiny explosion"
 		"inaccuracy" 5
-		"velocity" 0
-		"velocity override" 6
+		"velocity" 6
 		"lifetime" 1100
-		"range override" 6600
 		"reload" 252
-		"burst count" 2
+		"burst count" 3
 		"burst reload" 120
 		"firing energy" 4
 		"firing heat" 50
 		"acceleration" .1
-		"drag" .017
+		"drag" .02
 		"turn" 1.5
 		"homing" 4
 		"optical tracking" .9
 		"shield damage" 1050
 		"hull damage" 1050
-		"hit force" 450
+		"hit force" 675
 		"missile strength" 40
 	description "Typhoon Torpedoes are an improved torpedo technology; they do considerably more damage than ordinary torpedoes. However, they are also much slower, because they are intended mostly for use against large and slow-moving capital ships. As a result, sufficiently skilled pilots can often dodge around them."
 	description "	Pods enable fighters and other light craft to carry small quantities of Typhoon Torpedoes into battle while retaining enough space for other weapons. Large ships are better off with full-size launchers."
@@ -1367,22 +1351,20 @@ outfit "Heavy Rocket Launcher"
 		"hit effect" "heavy rocket hit"
 		"die effect" "small explosion"
 		"inaccuracy" 1
-		"velocity" 0
-		"velocity override" 8
+		"velocity" 8
 		"lifetime" 125
-		"range override" 1000
 		"reload" 240
 		"firing energy" 1
 		"firing heat" 250
-		"acceleration" .2
-		"drag" .025
+		"acceleration" .8
+		"drag" .1
 		"trigger radius" 20
-		"blast radius" 50
-		"shield damage" 1060
-		"hull damage" 900
-		"hit force" 600
+		"blast radius" 90
+		"shield damage" 790
+		"hull damage" 670
+		"hit force" 900
 		"missile strength" 16
-	description "Heavy Rockets are the most powerful missile weapon available, but at a price: instead of having a homing system, they simply fire straight forward and rely on a proximity trigger to set them off. Once triggered, however, they damage all ships within their blast radius, making them highly effective against clusters of fighters."
+	description "Heavy Rockets are one of the most powerful missile weapons available, but at a price: instead of having a homing system, they simply fire straight forward and rely on a proximity trigger to set them off. Once triggered, however, they damage all ships within their blast radius, making them highly effective against clusters of fighters."
 
 outfit "Heavy Rocket Pod"
 	category "Secondary Weapons"
@@ -1402,24 +1384,22 @@ outfit "Heavy Rocket Pod"
 		"hit effect" "heavy rocket hit"
 		"die effect" "small explosion"
 		"inaccuracy" 1
-		"velocity" 0
-		"velocity override" 8
+		"velocity" 8
 		"lifetime" 125
-		"range override" 1000
 		"reload" 500
 		"burst count" 2
 		"burst reload" 240
 		"firing energy" 1
 		"firing heat" 250
-		"acceleration" .2
-		"drag" .025
+		"acceleration" .8
+		"drag" .1
 		"trigger radius" 20
-		"blast radius" 50
-		"shield damage" 1060
-		"hull damage" 900
-		"hit force" 600
+		"blast radius" 90
+		"shield damage" 790
+		"hull damage" 670
+		"hit force" 900
 		"missile strength" 16
-	description "Heavy Rockets are the most powerful missile weapon available, but at a price: instead of having a homing system, they simply fire straight forward and rely on a proximity trigger to set them off. Once triggered, however, they damage all ships within their blast radius, making them highly effective against clusters of fighters."
+	description "Heavy Rockets are one of the most powerful missile weapons available, but at a price: instead of having a homing system, they simply fire straight forward and rely on a proximity trigger to set them off. Once triggered, however, they damage all ships within their blast radius, making them highly effective against clusters of fighters."
 	description "	Pods enable fighters and other light craft to carry small quantities of rockets into battle while retaining enough space for other weapons. Large ships are better off with full-size launchers."
 
 effect "heavy rocket hit"
@@ -1472,7 +1452,7 @@ outfit "Nuclear Missile"
 		"blast radius" 150
 		"shield damage" 9000
 		"hull damage" 7000
-		"hit force" 4000
+		"hit force" 6000
 		"missile strength" 200
 	description "It has been centuries since the last nuclear war was fought, and until very recently, most people in the galaxy assumed that that era of chaos and destruction was forever behind us..."
 	description "	[Nuclear missiles are a one-shot weapon: each missile occupies a gun slot, and after it is fired, the slot it was in is left empty.]"
@@ -1604,7 +1584,7 @@ outfit "gbullet"
 		"random lifetime" 5
 		"shield damage" 3
 		"hull damage" 6
-		"hit force" 2
+		"hit force" 3
 		"hit effect" "bullet impact"
 
 effect "bullet impact"
