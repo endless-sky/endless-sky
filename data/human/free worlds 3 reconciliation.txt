@@ -801,7 +801,7 @@ mission "FW Syndicate Capture 1B"
 	npc
 		system Ruchbah
 		government Syndicate
-		personality heroic staying nemesis
+		personality heroic nemesis staying
 		fleet
 			names "syndicate capital"
 			variant
