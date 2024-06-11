@@ -1763,7 +1763,7 @@ mission "<uhai> 17: Spy On Hai B"
 				`	(Search the upper decks.)`
 				`	(Leave the ship before you get caught and provoke the warlord.)`
 					goto challenge
-			`	You notice a lot of security stations around, they obviously care a lot about their warlord's security.`
+			`	You notice a lot of security stations around, so their new warlord obviously cares about security, but there is nothing else.`
 				goto search
 			label weapons
 			`	This part of the ship is mostly full of torpedoes - apparently the warlord loves them. But there are not many people here, since it does not seem to have suffered damage. The torpedoes will probably be restocked soon, so you leave before someone comes in and notices you.`
@@ -1803,7 +1803,7 @@ mission "<uhai> 17: Spy On Hai B"
 				`	(Five.)`
 					goto five
 				`	(Eight could be reasonable.)`
-				`	(Take as much as I can: fifteen!.)`
+				`	(Take as many as I can: fifteen!)`
 					goto fifteen
 				`	(Never mind, this isn't a good idea.)`
 					goto fake
@@ -1820,12 +1820,12 @@ mission "<uhai> 17: Spy On Hai B"
 			label one
 			action
 				outfit "Gold Bars"
-			`	You are able to take one stack of gold bars in very little time, wonder if you could have gotten away with more.`
+			`	You are able to take one stack of gold bars in very little time, and you wonder if you could have gotten away with more.`
 				goto dropbars
 			label three
 			action
 				outfit "Gold Bars" 3
-			`	You decide to take three stacks of gold bars, they feel heavy but are not too much to carry around by yourself.`
+			`	You decide to take three stacks of gold bars. They feel heavy but are not too much to carry around by yourself.`
 				goto dropbars
 			label five
 			action
@@ -1888,11 +1888,11 @@ mission "<uhai> 17: Spy On Hai B"
 			action
 				set "midas: brokered deal"
 				"reputation: Mhairi's Legion" >?= 1
-				log `Bought a mystery cube off pirates for the Unfettered. The price tag was large.`
+				log `Bought a mystery cube off some pirates for the Unfettered. The price tag was large.`
 			`	You head to your ship, preparing to leave the planet. No pirates try to stop you on the way. In fact, the pirates in orbit are no longer hostile to you. It seems like they respected the agreement.`
 				accept
 			label challenge
-			`	You launch your fleet and send a challenge to the warlord, putting her authority and competence in question. She cannot resist the urge to come and kill you, you only hope you can beat her and collect the item from her ship.`
+			`	You launch your fleet and send a challenge to the warlord, putting her authority and competence in question. She cannot resist the urge to come and kill you, and you only hope you can beat her and collect the item from her ship.`
 				flee
 	on accept
 		outfit "Mystery Cube"
@@ -1929,7 +1929,7 @@ mission "<uhai> 17: Mirror Spy"
 			`	"I want you to go to <destination> and collect a tribute of food for us there. This will give you a [pretext, reason] for going to their world, because otherwise I fear they may be curious about your [reasons, intentions]. While there, I want you to place this device you recovered somewhere on the surface, discreetly," he explains. "It doesn't matter where as long as no one [noticed, suspects]. You'll also need to be able to tell me exactly where it is so it can be [retrieved, used] later."`
 			choice
 				`	"Is this the real reason for my trip, like with the shipyard?"`
-			`	"Indeed. The Hai seem almost eager to allow our operatives into their space to collect tributes, why should I change my [tactics, plans] when there is no need?"`
+			`	"Indeed. The Hai seem almost eager to allow our operatives into their space to collect tributes, and why should I change my [tactics, plans] when there is no need?"`
 			choice
 				`	"I'll do it."`
 					accept
@@ -1954,7 +1954,7 @@ mission "<uhai> 17: Mirror Spy"
 					goto orbit
 				`	"I was almost caught last time. I'm not trying again, even if it costs me my reputation with the Unfettered."`
 					decline
-			`	"You're right actually... This would be a sign of mistrust, showing that we even dare to suspect they could attack us... You don't have to do this, we can always keep the cube in reserve."`
+			`	"You're right actually... this would be a sign of mistrust, showing that we even dare to suspect they could attack us... you don't have to do this, we can always keep the cube in reserve."`
 			label choice
 			choice
 				`	"I say we should trust the Hai indeed. They could have swarmed you ages ago if they really wanted to."`
@@ -1972,7 +1972,7 @@ mission "<uhai> 17: Mirror Spy"
 				decline
 			label keep
 			branch joke
-				"unfettered rep: He-Yi" >= 3
+				"unfettered rep: He-Yi" < 3
 			`	"You are indeed [honourable, strong, worthy] of it. But do not lose it, it is [important, precious] to me!"`
 				decline
 			label joke
@@ -1993,14 +1993,14 @@ mission "<uhai> 17: Mirror Spy"
 		payment 5000000
 		dialog
 			`You land, and the Hai start loading their food onto your ship. You tell them you want to stretch your legs (which isn't entirely a lie), and they don't appear to suspect a thing. You find a clearing and choose to bury the cube just below the ground. You remember to mark the exact spot, and then you return to your ship.`
-			`You then notice that you have received a generous payment of <payment>. It appears they somehow learned of it.`
+			`You then notice that you have received a generous payment of <payment>. It appears the Unfettered somehow learned of what you did.`
 
 
 
 # 18 is optional, in side missions because you can learn Hai through the Hai diplomats
 # idea: add a duel against the Herald where they have a Water Bug wearing an Octopulse
 mission "<uhai> 19: Scout Wanderer Systems"
-	name `Know your enemy`
+	name `Know Thine Enemy`
 	description `Go to <waypoints> and scout the fleet presence of all Wanderer ships. Then, come back to <destination> for your reward.`
 	source
 		attributes "unfettered"
@@ -2010,10 +2010,10 @@ mission "<uhai> 19: Scout Wanderer Systems"
 		has "<uhai> 12: Outfitter Upgrade: done"
 		not "<uhai> 18: Hai Language: active"
 	on offer
-		log "Minor People" "Mysterious Herald" "A Herald of He-Yi that does not want to reveal their true identity. They seem to have a lot of culture, and stay calm in most situations."
+		log "Minor People" "Mysterious Herald" "A Herald of He-Yi that does not want to reveal their true identity. They seem to have a lot of culture, and they stay calm in most situations."
 		conversation
 			`You exit your ship and head to the spaceport as usual, but you cannot shake the sensation that you are being followed. Looking around you see a curious figure with a bird mask: the Herald. They head your way, aware of the fact they have been spotted.`
-			`	As they get closer you feel like the color of the mask has slightly changed, but their voice seems the same "It did not take you long to spot me, did it? You have bested me<, unfettered title> <last>!" They say, bowing their head so little you barely notice it. "Rest assured, I am not just here to watch over you; my master has yet another task to ask of you before the war starts."`
+			`	As they get closer you feel like the color of the mask has slightly changed, but their voice seems the same. "It did not take you long to spot me, did it? You have bested me<, unfettered title> <last>!" they say, bowing their head so little you barely notice it. "Rest assured, I am not just here to watch over you; my master has yet another task to ask of you before the war starts."`
 			choice
 				`	"I am listening."`
 					goto task
@@ -2062,7 +2062,7 @@ mission "<uhai> 19: Scout Wanderer Systems"
 			action
 				"unfettered rep: Herald" --
 				"unfettered rep: He-Yi" --
-			`	They seem a bit angry, for once, "Again? In the last mission we had arranged for them to not shoot at you, what did you do?? Well there is nothing we can do for you this time, I just hope you have some means of hiding, or a very agile ship. Theirs are not that impressive but they do have long range missiles, meaning you should probably install some Chameleon Anti-Missiles on your ship."`
+			`	They seem a bit angry, for once. "Again? In the last mission we had arranged for them to not shoot at you, and what did you do? Well, there is nothing we can do for you this time. I just hope you have some means of hiding, or a very agile ship. Their spacecraft are not that impressive, but they do have long range missiles, meaning you should probably install some Chameleon Anti-Missiles on your ship."`
 			label neutral
 			choice
 				`	"I'm in."`
@@ -2090,12 +2090,12 @@ mission "<uhai> 19: Scout Wanderer Systems"
 	waypoint "Es'sprak'ai"
 	waypoint "Aya'k'k"
 	on waypoint
-		dialog `You have scouted all of the Wanderer's systems. It's time to come back to <destination> for your reward.`
+		dialog `You have scouted all of the Wanderer systems. It's time to go back to <destination> for your reward.`
 	on complete
 		clear "uhai choice: watching"
 		payment 1000000
 		conversation
-			`You find a message from the Herald on your terminal. "You should transmit the scans to the local authorities, we trust them to handle this kind of information. Please, accept these <payment> credits in advance.`
+			`You find a message from the Herald on your terminal. "You should transmit the scans to the local authorities, for we trust them to handle this kind of information. Please, accept these <payment> credits in advance.`
 			`	"I think you deserve a small explanation as to why these aliens up north are hostile to us: as you probably already know, we are planning to invade them shortly. But, to be fair, we have already started doing a few skirmishes and raids, notably to assess their strength, but mostly for food. They have huge ships transporting a thousand tons of cargo each, that lack maneuverability and are therefore prime targets for our tracker pods."`
 			`	You bring the scans to the authorities, as requested, and return to the spaceport.`
 
@@ -2131,7 +2131,7 @@ mission "<uhai> 19: Weird Aliens Spotted"
 					decline
 			action
 				payment 150000
-				log `Warned the Unfettered about the weird aliens presence north of the Wanderers.`
+				log `Warned the Unfettered about the presence of the weird aliens north of the Wanderers.`
 				set "unfettered: warned about the pug"
 			`	You explain to the herald you have seen some weird aliens in the north that could be allied with the Wanderers. Looking at the brief scans you took of them, they seem to discard that warning as if it was nothing, "I do not know how those aliens have obtained jump drives, they must have stolen them somehow. Once we have taken Wanderer space they will prove to be a very handy supply of new jump drives... I would not worry about their pathetic, although strange looking weapons. Still, I appreciate you taking this initiative of coming here to warn us, please accept these <payment> for that."`
 				goto "show arfecta?"
@@ -2159,7 +2159,7 @@ mission "<uhai> 19: Weird Aliens Spotted"
 			`	"Did you not say these Pug, as you call them, are masters of deception?`
 				to display
 					has "main plot completed"
-			`	"We already know that they have somehow tricked the Wanderers into blindly worshiping them. That ship could have tricked your sensors. Nevertheless you deserve a reward for all of this intel, I shall double the payment."`
+			`	"We already know that they have somehow tricked the Wanderers into blindly worshipping them. That ship could have tricked your sensors. Nevertheless you deserve a reward for all of this intel, so I shall double the payment."`
 				accept
 			label arfectadesigns
 			action
