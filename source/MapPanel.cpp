@@ -1398,10 +1398,11 @@ void MapPanel::DrawSystems()
 		if(commodity == SHOW_GOVERNMENT &&
 			(pos * (1 / Screen::BottomRight())).LengthSquared() < 1)
 		{
-			hasUnexplored |= (node.color == UnexploredColor());
-			hasUninhabited |= (node.color == UninhabitedColor());
+			hasUnexplored |= !(node.government);
+			hasUninhabited |= (node.government->GetName() == "Uninhabited");
 			// Count the number of occurences of each government.
-			if(node.color != UninhabitedColor() && node.government)
+			// Exclude ones that are colored as 'Uninhabited' or aren't their true color
+			if(node.government && node.government->GetName() == "Uninhabited" && node.color == node.government->GetColor())
 				GovermnentCounts[node.government]++;
 		}
 	}
