@@ -792,8 +792,11 @@ void ShopPanel::DrawShipsSidebar()
 				Point(1., 0.), 14.f, 12.f, 0., Color(.9f, .9f, .9f, .2f));
 
 		if (ship->IsParked())
-			FillShader::Fill(point + .35 * Point(ICON_TILE, -ICON_TILE),
-				Point(5., 5.), Color(.7f, .7f, .7f, 1.f));
+		{
+			static const Point CORNER = .35 * Point(ICON_TILE, ICON_TILE);
+			FillShader::Fill(point + CORNER, Point(6., 6.), Color(0.f, 0.f, 0.f, 1.f));
+			FillShader::Fill(point + CORNER, Point(4., 4.), Color(.7f, .7f, .7f, 1.f));
+		}
 
 		point.X() += ICON_TILE;
 	}
