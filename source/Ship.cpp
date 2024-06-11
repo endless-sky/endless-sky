@@ -2811,8 +2811,8 @@ bool Ship::NeedsFuel(bool followParent) const
 
 bool Ship::NeedsEnergy() const
 {
-	return Attributes().Get("energy capacity") && !energy && !Attributes().Get("energy generation")
-			&& !Attributes().Get("fuel energy") && !Attributes().Get("solar collection");
+	return attributes.Get("energy capacity") && !energy && !attributes.Get("energy generation")
+			&& !attributes.Get("fuel energy") && !attributes.Get("solar collection");
 }
 
 
