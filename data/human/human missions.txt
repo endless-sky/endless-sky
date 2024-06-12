@@ -3635,6 +3635,8 @@ mission "Pirate Duel"
 		conversation
 			branch "killed anglerfish"
 				has "anglerfish dead"
+			branch "disabled anglerfish"
+				has "anglerfish disabled"
 			branch "caught anglerfish"
 				has "anglerfish caught"
 			`When you enter Umbral, you continue to see no sign of the Esca. Suddenly, an alarm rings out as your sensors detect that a pirate Vanguard has entered the system alongside you. Before you can respond, your ship intercepts a hail, and it opens communication.`
@@ -3644,12 +3646,15 @@ mission "Pirate Duel"
 			label "killed anglerfish"
 			`You enter Umbral, but see no sign of the Esca, as the "captain of the Esca" was killed. You should head back to Wayfarer to see if you can claim some sort of reward.`
 				decline
+			label "disabled anglerfish"
+			`You enter Umbral, but see no sign of the Esca, as the "captain of the Esca" was on the ship you disabled. You should head back to make sure the Anglerfish has been fully destroyed.`
+				decline
 			label "caught anglerfish"
 			action
 				clear "anglerfish caught"
-			`As you enter Umbral, the <npc> follows behind you, and opens a hail.`
+			`As you enter Umbral, the Anglerfish follows behind you, and opens a hail.`
 			`	"Did you think that if you went to Umbral, I would switch to a smaller ship? Ha!"`
-			`	The <npc> once again powers up its weapons.`
+			`	The Anglerfish once again powers up its weapons.`
 				decline
 	
 	npc kill
@@ -3662,24 +3667,27 @@ mission "Pirate Duel"
 			"reputation: Independent (Killable)" = -1000
 			set "anglerfish caught"
 			conversation
-				`As soon as you open fire, the <npc> angrily hails you.`
+				`As soon as you open fire, the Anglerfish hails you.`
 				`	A voice you recognize as the "captain of the Esca" says, "How did you know that was me? Well, it doesn't matter, because I've paid off the militia. Get ready to die, small-fry."`
-				`	The <npc> powers up its weapons.`
+				`	The Anglerfish powers up its weapons.`
 					decline
+		on disable
+			set "anglerfish disabled"`
 		on kill
+			clear "anglerfish disabled"
 			set "anglerfish dead"
 			conversation
 				branch "orbiting tarazed"
 					has "flagship system: Tarazed"
 				branch "passed tarazed"
 					not "anglerfish caught"
-				`The <npc> and the "captain of the Esca" have been destroyed. You should continue on to Wayfarer to see if you can claim some sort of reward for your effort.`
+				`The Anglerfish and the "captain of the Esca" have been destroyed. You should continue on to Wayfarer to see if you can claim some sort of reward for your effort.`
 					decline
 				label "passed tarazed"
-				`The <npc> and the "captain of the Esca" have been destroyed. You should head back to Wayfarer to see if you can claim some sort of reward for your effort.`
+				`The Anglerfish and the "captain of the Esca" have been destroyed. You should head back to Wayfarer to see if you can claim some sort of reward for your effort.`
 					decline
 				label "orbiting tarazed"
-				`The <npc> and the "captain of the Esca" have been destroyed. You should land on Wayfarer to see if you can claim some sort of reward for your effort.`
+				`The Anglerfish and the "captain of the Esca" have been destroyed. You should land on Wayfarer to see if you can claim some sort of reward for your effort.`
 	
 	on complete
 		"reputation: Independent (Killable)" = 10
