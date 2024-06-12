@@ -18,8 +18,9 @@ fleet "Quarg Jumpers"
 	personality
 		disables heroic secretive
 	variant 2
-		"Skylark" 1
-		"Wardragon" 3
+		"Quarg Skylark" 1
+		"Quarg Wardragon" 3
+
 fleet "Raiding Fleet"
 	government "Pirate"
 	names "Pirate"
@@ -32,6 +33,7 @@ fleet "Raiding Fleet"
 		"Falcon" 20
 		"Roost" 15
 		"Odyssey" 15
+
 fleet "Bait Fleet"
 	government "Pirate"
 	names "Pirate"
@@ -44,6 +46,7 @@ fleet "Bait Fleet"
 		"Falcon" 5
 		"Roost" 10
 		"Odyssey" 15
+
 fleet "Quarg Hunters"
 	government "Quarg"
 	names "Quarg Hunters"
@@ -52,8 +55,9 @@ fleet "Quarg Hunters"
 	personality
 		disables heroic secretive
 	variant 2
-		"Skylark" 5
-		"Wardragon" 7
+		"Quarg Skylark" 5
+		"Quarg Wardragon" 7
+
 fleet "Storming Fleet"
 	government "Pirate"
 	names "Pirate"
@@ -66,6 +70,7 @@ fleet "Storming Fleet"
 		"Falcon" 15
 		"Roost" 15
 		"Odyssey" 15
+
 fleet "Quarg Planetary Defense"
 	government "Quarg"
 	names "Quarg"
@@ -74,9 +79,9 @@ fleet "Quarg Planetary Defense"
 	personality
 		disables heroic
 	variant 3
-		"Skylark" 3
-		"Wardragon" 6
-	
+		"Quarg Skylark" 3
+		"Quarg Wardragon" 6
+
 fleet "Small Southern Merchants"
 	government "Merchant"
 	names "civilian"
