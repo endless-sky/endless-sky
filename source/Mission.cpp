@@ -1208,8 +1208,8 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 			for(const auto &it : event.Actor()->Cargo().MissionCargo())
 				failed |= (it.first == this);
 			if(failed)
-				message += "Your " + event.Target()->DisplayModelName() +
-			" \"" + event.Target()->Name() + "\" has been plundered. ";
+				message = "Your " + event.Target()->DisplayModelName() +
+					" \"" + event.Target()->Name() + "\" has been plundered. ";
 		}
 
 		if(failed)
