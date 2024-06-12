@@ -432,6 +432,8 @@ public:
 	const Outfit &Attributes() const;
 	// Get the attributes of this ship chassis before any outfits were added.
 	const Outfit &BaseAttributes() const;
+	// Get the computed attributes of this ship.
+	const Dictionary &DerivedAttributes() const;
 	// Get the list of all outfits installed in this ship.
 	const std::map<const Outfit *, int> &Outfits() const;
 	// Find out how many outfits of the given type this ship contains.
@@ -490,6 +492,8 @@ public:
 
 
 private:
+	void RecomputeDerivedAttributes();
+
 	// Various steps of Ship::Move:
 
 	// Check if this ship has been in a different system from the player for so
@@ -604,6 +608,7 @@ private:
 	// Installed outfits, cargo, etc.:
 	Outfit attributes;
 	Outfit baseAttributes;
+	Dictionary derivedAttributes;
 	bool addAttributes = false;
 	const Outfit *explosionWeapon = nullptr;
 	std::map<const Outfit *, int> outfits;
