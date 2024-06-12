@@ -23,8 +23,8 @@ mission "Pirates 0"
 				`       (Try to catch the knife between two of your fingers John Wick style.)`
 					goto mistake
 			label mistake
-				`	Well, that was a mistake. Another knife comes flying towards you and immediately sends you to the hospital, where you die.`
-					die
-# if you want this to be different that's fine
+				`	Well, that was a mistake. Another knife comes flying towards you, pinning your baggy overcoat to the wall.`
+					goto question1
+# if you want this to be different that's fine Ok!!!
 			label question1
-				``
+				`` "Well, well...what do we have here..." Two goons, one dressed in a sassy grey jacket labeled "Leviathan is My GOAT, Sorry Kestrel", the other fumbling with a few of the same kinds of knives stuck on to your `
