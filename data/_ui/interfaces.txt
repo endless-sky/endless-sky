@@ -2022,6 +2022,7 @@ interface "main buttons" bottom right
 		"Stop"
 		"View player info"
 		"Land on planet / station"
+		"Board selected ship"
 		"View message log"
 		visible if "can hail"
 		"Talk to selected ship"
