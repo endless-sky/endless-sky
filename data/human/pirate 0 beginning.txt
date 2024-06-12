@@ -1,0 +1,21 @@
+mission "Pirates 0"
+	minor
+	name "Scan the Northies"
+	description "Go up to Northern Pirate space and scan some of the ships there. Then come back to <destination> for your reward of <payment>."
+	source
+		attributes "south pirate"
+		not attributes "ccor"
+		not planet "Greenrock"
+	destination "Greenrock"
+	mark "Almaaz"
+	to offer
+		random < 60
+		has "outfit (flagship installed): Jump Drive"
+	
+	on offer
+		conversation
+			`As you walk into the spaceport, you suddenly get dived into by someone on the left. At the same time, a knife flies by where your head just was.`
+			choice
+				`	"What was that about?"`
+				`	(Run back to <ship> and fly far away.)`
+					flee
