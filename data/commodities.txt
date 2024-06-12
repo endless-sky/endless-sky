@@ -901,6 +901,7 @@ trade
 		"southern snacks"
 		"space weed"
 		"star shrooms"
+		"steam"
 		"steroids"
 		"stolen pharmaceuticals"
 	commodity "Highly Illegal Substances"
