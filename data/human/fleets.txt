@@ -10,19 +10,40 @@
 #
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
+fleet "Quarg Jumpers"
+	government "Quarg"
+	names "Quarg"
+	cargo 2
+	commodities "Food" "Clothing" "Plastic" "Medical"
+	personality
+		disables heroic secretive
+	variant 2
+		"Skylark" 1
+		"Wardragon" 3
 fleet "Raiding Fleet"
 	government "Pirate"
-	names "Raiders"
+	names "Pirate"
 	cargo 0
 	commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
-	outfitters "Korath Exiles Remnant Donations" "Ka'het"
 	personality
-		disables plunders appeasing secretive
+		disables plunders
 	variant 1
-		"Leviathan" 25
-		"Falcon" 30
-		"Roost" 20
-		"Odyssey" 10
+		"Leviathan" 20
+		"Falcon" 20
+		"Roost" 15
+		"Odyssey" 15
+fleet "Bait Fleet"
+	government "Pirate"
+	names "Pirate"
+	cargo 2
+	commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
+	personality
+		disables plunders
+	variant 1
+		"Leviathan" 5
+		"Falcon" 5
+		"Roost" 10
+		"Odyssey" 15
 fleet "Quarg Hunters"
 	government "Quarg"
 	names "Quarg Hunters"
@@ -31,8 +52,31 @@ fleet "Quarg Hunters"
 	personality
 		disables heroic appeasing secretive
 	variant 2
-		"Skylark" 7
-		"Wardragon" 10
+		"Skylark" 5
+		"Wardragon" 7
+fleet "Storming Fleet"
+	government "Pirate"
+	names "Pirate"
+	cargo 0
+	commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
+	personality
+		disables plunders 
+	variant 1
+		"Leviathan" 15
+		"Falcon" 15
+		"Roost" 15
+		"Odyssey" 15
+fleet "Quarg Planetary Defense"
+	government "Quarg"
+	names "Quarg"
+	cargo 4
+	commodities "Food" "Clothing" "Plastic" "Medical"
+	personality
+		disables heroic appeasing secretive
+	variant 3
+		"Skylark" 3
+		"Wardragon" 6
+	
 fleet "Small Southern Merchants"
 	government "Merchant"
 	names "civilian"
