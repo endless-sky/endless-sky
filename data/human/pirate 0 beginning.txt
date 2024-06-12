@@ -12,7 +12,8 @@ ship "Bactrian" "Bactrian (Quarg Technology)"
 		"D94-YV Shield Generator"
 		"Large Radar Jammer"
 		"Ramscoop"
-		"Laser Rifle" 15
+		"Laser Rifle" 250
+		"Nerve Gas" 50
 		
 		"X4700 Ion Thruster"
 		"X5200 Ion Steering"
