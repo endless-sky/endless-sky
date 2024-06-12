@@ -239,6 +239,39 @@ ship "Auxiliary" "Auxiliary (Jump Transport)"
 
 
 
+ship "Bactrian" "Bactrian (Quarg Technology)"
+	outfits
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 90
+		"Meteor Missile Launcher"
+		"Meteor Missile" 45
+		"Quarg Skylance" 2
+		"Quarg Anti-Missile" 2
+		
+		"Fusion Reactor"
+		"LP144a Battery Pack"
+		"D94-YV Shield Generator"
+		"Large Radar Jammer"
+		"Ramscoop"
+		"Laser Rifle" 250
+		"Nerve Gas" 50
+		
+		"X4700 Ion Thruster"
+		"X5200 Ion Steering"
+		"Hyperdrive"
+	gun
+	gun "Meteor Missile Launcher"
+	gun "Sidewinder Missile Launcher"
+	gun "Sidewinder Missile Launcher"
+	turret "Quarg Anti-Missile"
+	turret "Quarg Skylance"
+	turret
+	turret
+	turret "Quarg Skylance"
+	turret "Quarg Anti-Missile"
+
+
+
 ship "Bactrian" "Bactrian (Hai Engines)"
 	outfits
 		"Sidewinder Missile Launcher" 2
