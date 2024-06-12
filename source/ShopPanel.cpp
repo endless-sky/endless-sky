@@ -388,7 +388,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		return SetScrollToTop();
 	else if(key == SDLK_END)
 		return SetScrollToBottom();
-	else if((key == 'k' || (key == 'p' && (mod & KMOD_SHIFT))))
+	else if(key == 'k' || (key == 'p' && (mod & KMOD_SHIFT)))
 	{
 		bool allParked = true;
 		const Ship *flagship = player.Flagship();
