@@ -3672,7 +3672,7 @@ mission "Pirate Duel"
 				`	The Anglerfish powers up its weapons.`
 					decline
 		on disable
-			set "anglerfish disabled"`
+			set "anglerfish disabled"
 		on kill
 			clear "anglerfish disabled"
 			set "anglerfish dead"
