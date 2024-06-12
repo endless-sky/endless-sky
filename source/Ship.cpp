@@ -2202,6 +2202,9 @@ bool Ship::CanLand() const
 	if(!GetTargetStellar()->GetPlanet()->CanLand(*this))
 		return false;
 
+	if(commands.Has(Command::WAIT))
+		return false;
+
 	Point distance = GetTargetStellar()->Position() - position;
 	double speed = velocity.Length();
 
