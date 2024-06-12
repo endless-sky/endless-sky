@@ -773,7 +773,7 @@ void ShopPanel::DrawShipsSidebar()
 
 		if(mouse.Y() < Screen::Bottom() - BUTTON_HEIGHT && shipZones.back().Contains(mouse))
 		{
-			shipName = ship->Name();
+			shipName = ship->Name() + (ship->IsParked() ? GameData::Tooltip("parked") : "");
 			hoverPoint = shipZones.back().TopLeft();
 		}
 
