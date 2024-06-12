@@ -333,6 +333,12 @@ void GameData::Preload(TaskQueue &queue, const Sprite *sprite)
 	while(pit != preloaded.end())
 	{
 		++pit->second;
+		#ifdef __APPLE__
+		// When using Steam on macOS the glDeleteTextures call segfaults when erasing old textures.
+		// We can work around it by not unloading the textures.
+		// TODO: fix the underlying OpenGL issue
+		++pit;
+		#else
 		if(pit->second >= 20)
 		{
 			// Unloading needs to be queued on the main thread.
@@ -341,6 +347,7 @@ void GameData::Preload(TaskQueue &queue, const Sprite *sprite)
 		}
 		else
 			++pit;
+		#endif
 	}
 
 	// Now, load all the files for this sprite.
