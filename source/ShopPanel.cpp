@@ -692,6 +692,7 @@ const Outfit *ShopPanel::Zone::GetOutfit() const
 void ShopPanel::DrawShipsSidebar()
 {
 	const Font &font = FontSet::Get(14);
+	const Color &dark = *GameData::Colors().Get("dark");
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
 
@@ -794,8 +795,8 @@ void ShopPanel::DrawShipsSidebar()
 		if (ship->IsParked())
 		{
 			static const Point CORNER = .35 * Point(ICON_TILE, ICON_TILE);
-			FillShader::Fill(point + CORNER, Point(6., 6.), Color(0.f, 0.f, 0.f, 1.f));
-			FillShader::Fill(point + CORNER, Point(4., 4.), Color(.7f, .7f, .7f, 1.f));
+			FillShader::Fill(point + CORNER, Point(6., 6.), dark);
+			FillShader::Fill(point + CORNER, Point(4., 4.), bright);
 		}
 
 		point.X() += ICON_TILE;
