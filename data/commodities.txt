@@ -773,7 +773,6 @@ trade
 		"liqueurs"
 		"live lobsters"
 		"luxury fabrics"
-		"luxury goods"
 		"marble"
 		"mineral water"
 		"monogrammed handkerchiefs"
