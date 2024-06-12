@@ -10,7 +10,29 @@
 #
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
-
+fleet "Raiding Fleet"
+	government "Pirate"
+	names "Raiders"
+	cargo 0
+	commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
+	outfitters "Korath Exiles Remnant Donations" "Ka'het"
+	personality
+		disables plunders appeasing secretive
+	variant 1
+		"Leviathan" 25
+		"Falcon" 30
+		"Roost" 20
+		"Odyssey" 10
+fleet "Quarg Hunters"
+	government "Quarg"
+	names "Quarg Hunters"
+	cargo 4
+	commodities "Food" "Clothing" "Plastic" "Medical"
+	personality
+		disables heroic appeasing secretive
+	variant 2
+		"Skylark" 7
+		"Wardragon" 10
 fleet "Small Southern Merchants"
 	government "Merchant"
 	names "civilian"
