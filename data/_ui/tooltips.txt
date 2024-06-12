@@ -13,7 +13,7 @@
 
 # Fleet management:
 tip "parked"
-	` (parked)`
+	`(parked)`
 
 # Outfit and ship attributes:
 tip "acceleration:"
