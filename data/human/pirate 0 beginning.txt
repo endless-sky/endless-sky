@@ -1,34 +1,3 @@
-ship "Bactrian" "Bactrian (Quarg Technology)"
-	outfits
-		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 90
-		"Meteor Missile Launcher"
-		"Meteor Missile" 45
-		"Quarg Skylance" 2
-		"Quarg Anti-Missile" 2
-		
-		"Fusion Reactor"
-		"LP144a Battery Pack"
-		"D94-YV Shield Generator"
-		"Large Radar Jammer"
-		"Ramscoop"
-		"Laser Rifle" 250
-		"Nerve Gas" 50
-		
-		"X4700 Ion Thruster"
-		"X5200 Ion Steering"
-		"Hyperdrive"
-	gun
-	gun "Meteor Missile Launcher"
-	gun "Sidewinder Missile Launcher"
-	gun "Sidewinder Missile Launcher"
-	turret "Quarg Anti-Missile"
-	turret "Quarg Skylance"
-	turret
-	turret
-	turret "Quarg Skylance"
-	turret "Quarg Anti-Missile"
-
 mission "Pirates 0"
 	minor
 	name "Scan the Northies"
@@ -55,31 +24,30 @@ mission "Pirates 0"
 					goto mistake
 			label mistake
 				`	Well, that was a mistake. Another knife comes flying towards you, pinning your baggy overcoat to the wall.`
-					goto question1
-# if you want this to be different that's fine Ok!!!
+					goto question
 			label question1
-				`` "Well, well...what do we have here..." Two goons, one dressed in a sassy grey jacket labeled "Leviathan is My GOAT, Sorry Kestrel", the other fumbling with a few of the same kinds of knives stuck on to your sleeves, turning red by the second with the bleeding cut caused by the knife still embedded into the wall. "Tell me young fella, are you the new guy around here that everybody is talking about?" He took one knife from his buddy's hand and pressed it against your throat slightly "Answer me or else my blade would speak for me."`
+				`` "Well, well...what do we have here..." Two goons, one dressed in a sassy grey jacket labeled "Leviathan is My GOAT, Sorry Kestrel", the other fumbling with a few of the same kinds of knives stuck on to your sleeves, turning red by the second with the bleeding cut caused by the knife still embedded into the wall. "Tell me young fella, are you the new guy around here that everybody is talking about?" He takes one knife from his buddy's hand and pressed it against your throat slightly. "Answer me or else my blade would speak for me."`
 			choice
-			`	(Shakes head)`
-				nospat
-			`	(Nods)`
-				yesspat
+			`	(Shake my head.)`
+				goto nospat
+			`	(Nod.)`
+				goto yesspat
 			`	" There are many new guys around here, I don't k-know anything!"`
-				question2
+				goto question2
 			label nospat
-				`The goon looked at you for a second, then spat at your right eye. "Piece of coward", he grumbled and stood up, retreaving the knife trapping you to the wall, "My grandmother would have done better." He sighed, "these newbies are getting soft I tell ya...soft". Shaking his head he raised his hands to greet you, "Carl GaSan" he said, extending a hand coated in glove.`
+				`The goon looks at you for a second, then spits at your right eye. "Piece of coward", he grumbled and stood up, retreaving the knife trapping you to the wall, "My grandmother would have done better." He sighed, "these newbies are getting soft I tell ya...soft". Shaking his head he raised his hands to greet you, "Carl GaSan," he says, extending a hand coated in glove.`
 			choice
-			`	(Gingerly shakes hand)`
-				converse0
+			`	(Gingerly shake his hand.)`
+				goto converse0
 			label yesspat
-				`The goon looked at you for a second, then spat at your left eye. "Flamboyant as hell", he grumbled and stood up, retreaving the knife trapping you to the wall, "My grandmother would have done better." He sighed, "these newbies are getting egos I tell ya...egos". Shaking his head he raised his hands to greet you, "Carl GaSan" he said, extending a hand coated in glove.`
+				`The goon looked at you for a second, then spat at your left eye. "Flamboyant as hell", he grumbles and stands up, retreiving the knife trapping you to the wall, "My grandmother would have done better." He sighed, "these newbies are getting egos I tell ya...egos". Shaking his head he raised his hands to greet you, "Carl GaSan," he says, extending a hand coated in glove.`
 			choice
-			`	(Gingerly shakes hand)`
-				converse0
+			`	(Gingerly shake his hand.)`
+				goto converse0
 			label question2
-			`"You don't...know anything?", The goon's smiled nearly cracked his already scared face, "Oh man...this is..." His chuckles rang across the spaceport, halting curious onlookers and earning eyes from everywhere. "Ok ok" He smiled.`
+			`"You don't...know anything?", The goon's smile nearly cracks his already scarred face, "Oh man...this is..." His chuckles rang across the spaceport, halting curious onlookers and earning eyes from everywhere. "Ok ok" He smiles.`
 			choice
-			`	(Laughs and tries to soften the mood)`
+			`	(Laugh and try to soften the mood.)`
 				
 			
 			
