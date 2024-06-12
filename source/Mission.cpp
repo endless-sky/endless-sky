@@ -1191,7 +1191,7 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 	if(event.TargetGovernment()->IsPlayer() && !hasFailed)
 	{
 		bool failed = false;
-		string message = "";
+		string message;
 		if(event.Type() & ShipEvent::DESTROY)
 		{
 			// Destroyed ships carrying mission cargo result in failed missions.
