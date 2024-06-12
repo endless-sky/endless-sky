@@ -19,3 +19,4 @@ mission "Pirates 0"
 				`	"What was that about?"`
 				`	(Run back to <ship> and fly far away.)`
 					flee
+				`       Tries to catch the knife between two of your fingers John Wick style
