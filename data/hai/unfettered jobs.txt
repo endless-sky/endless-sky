@@ -426,7 +426,7 @@ mission "Unfettered Big Medicals Rush"
 mission "Unfettered Bring Reverse Engine"
 	job
 	name "Bring Hai reverse engines"
-	description "An Unfettered captain wants to try out the reverse engines the Hai are selling, bring 1 of each size to <destination> for <payment>."
+	description "An Unfettered captain wants to try out the reverse engines the Hai are selling. Bring 1 of each size to <destination> for <payment>."
 	source
 		attributes "unfettered"
 	destination

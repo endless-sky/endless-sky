@@ -2159,7 +2159,7 @@ mission "<uhai> 19: Weird Aliens Spotted"
 			`	"Did you not say these Pug, as you call them, are masters of deception?`
 				to display
 					has "main plot completed"
-			`	"We already know that they have somehow tricked the Wanderers into blindly worshipping them. That ship could have tricked your sensors. Nevertheless you deserve a reward for all of this intel, so I shall double the payment."`
+			`	"We already know that they have somehow tricked the Wanderers into blindly worshiping them. That ship could have tricked your sensors. Nevertheless you deserve a reward for all of this intel, so I shall double the payment."`
 				accept
 			label arfectadesigns
 			action

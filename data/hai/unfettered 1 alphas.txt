@@ -1372,7 +1372,7 @@ mission "<uhai> 9: Capture The Alpha Auxiliary"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on visit
-		dialog `You have landed, but the Auxiliary is not your flagship, or you landed without the jump drives. Go and look for traces of fuel from the Auxiliary in systems neighboring Hi Yahr. Don't forget to land on the Alpha base to recover any information or jump drives it may have! Don't forget the Jump Drives need to be on your flagship or in cargo.`
+		dialog `You have landed, but the Auxiliary is not your flagship, or you landed without the jump drives. Go and look for traces of fuel from the Auxiliary in systems neighboring Hi Yahr. Don't forget to land on the Alpha base to recover any information or jump drives it may have! Don't forget the jump drives need to be on your flagship or in cargo.`
 	to complete
 		has "<uhai> 9: Alpha Base: offered"
 		has "flagship base attribute: alpha logs"
