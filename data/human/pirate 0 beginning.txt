@@ -27,4 +27,28 @@ mission "Pirates 0"
 					goto question1
 # if you want this to be different that's fine Ok!!!
 			label question1
-				`` "Well, well...what do we have here..." Two goons, one dressed in a sassy grey jacket labeled "Leviathan is My GOAT, Sorry Kestrel", the other fumbling with a few of the same kinds of knives stuck on to your `
+				`` "Well, well...what do we have here..." Two goons, one dressed in a sassy grey jacket labeled "Leviathan is My GOAT, Sorry Kestrel", the other fumbling with a few of the same kinds of knives stuck on to your sleeves, turning red by the second with the bleeding cut caused by the knife still embedded into the wall. "Tell me young fella, are you the new guy around here that everybody is talking about?" He took one knife from his buddy's hand and pressed it against your throat slightly "Answer me or else my blade would speak for me."`
+			choice
+			`	(Shakes head)`
+				nospat
+			`	(Nods)`
+				yesspat
+			`	" There are many new guys around here, I don't k-know anything!"`
+				question2
+			label nospat
+				`The goon looked at you for a second, then spat at your right eye. "Piece of coward", he grumbled and stood up, retreaving the knife trapping you to the wall, "My grandmother would have done better." He sighed, "these newbies are getting soft I tell ya...soft". Shaking his head he raised his hands to greet you, "Carl GaSan" he said, extending a hand coated in glove.`
+			choice
+			`	(Gingerly shakes hand)`
+				converse0
+			label yesspat
+				`The goon looked at you for a second, then spat at your left eye. "Flamboyant as hell", he grumbled and stood up, retreaving the knife trapping you to the wall, "My grandmother would have done better." He sighed, "these newbies are getting egos I tell ya...egos". Shaking his head he raised his hands to greet you, "Carl GaSan" he said, extending a hand coated in glove.`
+			choice
+			`	(Gingerly shakes hand)`
+				converse0
+			label question2
+			`"You don't...know anything?", The goon's smiled nearly cracked his already scared face, "Oh man...this is..." His chuckles rang across the spaceport, halting curious onlookers and earning eyes from everywhere. "Ok ok" He smiled.`
+			choice
+			`	(Laughs and tries to soften the mood)`
+				
+			
+			
