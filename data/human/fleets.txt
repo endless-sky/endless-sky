@@ -26,7 +26,7 @@ fleet "Raiding Fleet"
 	cargo 0
 	commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
 	personality
-		disables plunders
+		disables appeasing plunders
 	variant 1
 		"Leviathan" 20
 		"Falcon" 20
@@ -38,7 +38,7 @@ fleet "Bait Fleet"
 	cargo 2
 	commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
 	personality
-		disables plunders
+		disables appeasing plunders
 	variant 1
 		"Leviathan" 5
 		"Falcon" 5
@@ -50,7 +50,7 @@ fleet "Quarg Hunters"
 	cargo 4
 	commodities "Food" "Clothing" "Plastic" "Medical"
 	personality
-		disables heroic appeasing secretive
+		disables heroic secretive
 	variant 2
 		"Skylark" 5
 		"Wardragon" 7
@@ -60,7 +60,7 @@ fleet "Storming Fleet"
 	cargo 0
 	commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
 	personality
-		disables plunders 
+		disables appeasing plunders 
 	variant 1
 		"Leviathan" 15
 		"Falcon" 15
@@ -72,7 +72,7 @@ fleet "Quarg Planetary Defense"
 	cargo 4
 	commodities "Food" "Clothing" "Plastic" "Medical"
 	personality
-		disables heroic appeasing secretive
+		disables heroic
 	variant 3
 		"Skylark" 3
 		"Wardragon" 6
