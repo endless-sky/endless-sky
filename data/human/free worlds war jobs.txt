@@ -837,7 +837,7 @@ mission "FW Care Package from Republic [1]"
 
 phrase "free worlds thanked refugee transport"
 	word
-		`Your passengers thank you graciously for taking them away from the dangerous frontlines of the war. You wish them the best of luck on <planet>, and collect your payment of <payment>.`
+		`Your passengers graciously thank you for taking them away from the dangerous frontlines of the war. You wish them the best of luck on <planet>, and collect your payment of <payment>.`
 
 mission "FW Refugees [0]"
 	job
