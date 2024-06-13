@@ -107,7 +107,7 @@ outfit "Speck"
 		"random lifetime" 3
 		"shield damage" 24
 		"hull damage" 48
-		"hit force" 12
+		"hit force" 18
 
 
 effect "speckle fire"
@@ -178,6 +178,7 @@ outfit "Blue Optical Laser"
 		"hull damage" 4.2
 		"heat damage" 6
 		"damage dropoff" 0 2400
+		"dropoff modifier" 0
 	description "This lightweight turret can be fed a beam of light from a lasing generator, which is then combined and focused to produce an intense beam ideal for damaging other ships. By pulsing thousands of times each second, the beam can create thermal and mechanical shocks in the target material, enhancing its ability to drill through armor. Unlike the advanced beam weapons used by some other species, this laser is subject to the effects of diffraction, causing its damage to become less intense with distance while also rendering it invisible. However, precise optics allow the beam to be targeted from an exceptional range, despite the tenuous damage at the edge of the laser's reach."
 	description "	The turret itself only contains the optics needed to synthesize, focus, and target the beam, allowing the laser light to be produced elsewhere. Because of this, an Optical Lasing Generator is needed to run this turret, providing enough power to support a single Blue Laser."
 
@@ -417,7 +418,7 @@ outfit "Nettle Active"
 		"turn" 9
 		"homing" 4
 		"infrared tracking" 0.9
-		"hit force" 210
+		"hit force" 300
 		"missile strength" 12
 		"submunition" "Fleck Flack" 30
 
@@ -436,7 +437,7 @@ outfit "Fleck Flack"
 		"random velocity" -6
 		"shield damage" 6
 		"hull damage" 9
-		"hit force" 60
+		"hit force" 90
 		"missile strength" 3
 
 effect "nettle exhaust"

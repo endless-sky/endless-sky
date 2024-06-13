@@ -334,7 +334,7 @@ outfit `Z-330 "Spark" Fusion Torch`
 		"Twilight Guard"
 	"cost" 660000
 	thumbnail "outfit/fusion engine small"
-	"mass" 66
+	"mass" 99
 	"outfit space" -33
 	"engine capacity" -33
 	"thrust" 108
@@ -357,7 +357,7 @@ outfit `Z-660 "Zap" Fusion Torch`
 		"Twilight Guard"
 	"cost" 1440000
 	thumbnail "outfit/fusion engine medium"
-	"mass" 132
+	"mass" 198
 	"outfit space" -66
 	"engine capacity" -66
 	"thrust" 222
@@ -367,7 +367,7 @@ outfit `Z-660 "Zap" Fusion Torch`
 	"drag reduction" 0.6
 	"flare sprite" "effect/avgi flare/fusion"
 		"frame rate" 15
-	"flare sound" "remnant afterburner"
+	"flare sound" "zpinch"
 	"afterburner effect" "medium remass injection"
 	"magnozzle rings" 6
 	description "Balance TBD"
@@ -379,7 +379,7 @@ outfit `Z-990 "Arc" Fusion Torch`
 		"Twilight Guard"
 	"cost" 2760000
 	thumbnail "outfit/fusion engine large"
-	"mass" 198
+	"mass" 297
 	"outfit space" -99
 	"engine capacity" -99
 	"thrust" 360
@@ -390,7 +390,7 @@ outfit `Z-990 "Arc" Fusion Torch`
 	"flare sprite" "effect/avgi flare/fusion"
 		"frame rate" 30
 		"scale" 2
-	"flare sound" "remnant afterburner"
+	"flare sound" "zpinch"
 	"afterburner effect" "large remass injection"
 	"magnozzle rings" 9
 	description "The largest of the standard fusion torches used by the Avgi"
@@ -461,10 +461,10 @@ outfit "XY-180 Radial Thrusters"
 	"mass" 18
 	"outfit space" -18
 	"engine capacity" -18
-	"turn" 540
+	"turn" 810
 	"turning energy" 1.5
 	"turning heat" -3
-	"reverse thrust" 6
+	"reverse thrust" 9
 	"reverse thrusting energy" 1.5
 	"reverse thrusting heat" -3
 	"steering flare sprite" "effect/avgi flare/rcs"
@@ -488,10 +488,10 @@ outfit "XY-360 Radial Thrusters"
 	"mass" 36
 	"outfit space" -36
 	"engine capacity" -36
-	"turn" 1140
+	"turn" 1710
 	"turning energy" 3
 	"turning heat" -6
-	"reverse thrust" 12
+	"reverse thrust" 18
 	"reverse thrusting energy" 3
 	"reverse thrusting heat" -6
 	"steering flare sprite" "effect/avgi flare/rcs"
@@ -515,10 +515,10 @@ outfit "XY-720 Radial Thrusters"
 	"mass" 72
 	"outfit space" -72
 	"engine capacity" -72
-	"turn" 2400
+	"turn" 3600
 	"turning energy" 6
 	"turning heat" -9
-	"reverse thrust" 24
+	"reverse thrust" 36
 	"reverse thrusting energy" 6
 	"reverse thrusting heat" -9
 	"steering flare sprite" "effect/avgi flare/rcs"
@@ -536,18 +536,18 @@ outfit `Z-1200 "Beam" Antimatter Torch`
 	category "Engines"
 	"cost" 900000000
 	thumbnail "outfit/unknown"
-	"mass" 120
+	"mass" 360
 	"outfit space" -120
 	"engine capacity" -120
-	"thrust" 360
+	"thrust" 540
 	"thrusting energy" 12
 	"thrusting heat" 90
 	"thrusting fuel" 0.24
 	"drag reduction" 9
 	"flare sprite" "effect/avgi flare/antimatter"
 		"frame rate" 30
-	"flare sound" "remnant afterburner"
-	"turn" 2790
+	"flare sound" "zpinch"
+	"turn" 4200
 	"turning energy" 3.6
 	"turning heat" 2.4
 	"steering flare sprite" "effect/avgi flare/antimatter"

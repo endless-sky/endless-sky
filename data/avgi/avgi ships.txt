@@ -2104,7 +2104,7 @@ ship "Vibratia"
 		"Ultracapacitor Cell"
 		"Multispectral Scanner"
 	
-		"Magnetoplasma Drive" 2
+		"Magnetoplasma Drive"
 
 	engine 0 27
 	"reverse engine" -5 -12
