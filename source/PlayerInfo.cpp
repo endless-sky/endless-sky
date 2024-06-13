@@ -1346,6 +1346,7 @@ void PlayerInfo::ReorderShip(int fromIndex, int toIndex)
 	shared_ptr<Ship> ship = ships[fromIndex];
 	ships.erase(ships.begin() + fromIndex);
 	ships.insert(ships.begin() + toIndex, ship);
+	ships[0]->SetIsParked(false);
 	flagship.reset();
 }
 
@@ -1357,6 +1358,7 @@ void PlayerInfo::SetShipOrder(const vector<shared_ptr<Ship>> &newOrder)
 	if(std::is_permutation(ships.begin(), ships.end(), newOrder.begin()))
 	{
 		ships = newOrder;
+		ships[0]->SetIsParked(false);
 		flagship.reset();
 	}
 	else
