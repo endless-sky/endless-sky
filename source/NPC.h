@@ -111,7 +111,9 @@ public:
 	// Create a copy of this NPC but with the fleets replaced by the actual
 	// ships they represent, wildcards in the conversation text replaced, etc.
 	NPC Instantiate(std::map<std::string, std::string> &subs, const System *origin, const System *destination,
-			int jumps, int64_t payload) const;
+			int jumps, int64_t payload, int64_t &npcPayload) const;
+
+	const Personality &GetPersonality() const;
 
 
 private:
@@ -127,6 +129,13 @@ private:
 	// The cargo ships in this NPC will be able to carry.
 	FleetCargo cargo;
 	bool overrideFleetCargo = false;
+
+	// How much each ship in this NPC counts toward the mission payload per jump.
+	// For reference, each ton of cargo adds 1 payload while each passenger
+	// adds 10. This ship payload will be added to this NPC's own actions, while
+	// the ship payload across all NPCs in a mission will be added to the mission's
+	// actions.
+	int64_t shipPayload = 0;
 
 	EsUuid uuid;
 
