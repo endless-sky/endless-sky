@@ -26,7 +26,7 @@ mission "Pirates 0"
 				`	Well, that was a mistake. Another knife comes flying towards you, pinning your baggy overcoat to the wall.`
 					goto question
 			label question1
-				`` "Well, well...what do we have here..." Two goons, one dressed in a sassy grey jacket labeled "Leviathan is My GOAT, Sorry Kestrel", the other fumbling with a few of the same kinds of knives stuck on to your sleeves, turning red by the second with the bleeding cut caused by the knife still embedded into the wall. "Tell me young fella, are you the new guy around here that everybody is talking about?" He takes one knife from his buddy's hand and pressed it against your throat slightly. "Answer me or else my blade would speak for me."`
+				`` "Well, well...what do we have here..." Two goons, one dressed in a sassy gray jacket labeled "Leviathan is My GOAT, Sorry Kestrel", the other fumbling with a few of the same kinds of knives stuck on to your sleeves, turning red by the second with the bleeding cut caused by the knife still embedded into the wall. "Tell me young fella, are you the new guy around here that everybody is talking about?" He takes one knife from his buddy's hand and pressed it against your throat slightly. "Answer me or else my blade would speak for me."`
 			choice
 			`	(Shake my head.)`
 				goto nospat
