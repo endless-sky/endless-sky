@@ -2302,7 +2302,7 @@ news "Discontent"
 			"and they disperse the demonstrators. "
 			"and the demonstrators scatter but don't appear dissuaded."
 		replace
-			"% The rioters" "The protesters"
+			"%The rioters" "The protesters"
 			"%" ""
 
 news "Clandestine"
@@ -2360,7 +2360,7 @@ news "Raiders returning to Mordente-Bridi"
 phrase "Raiders returning to Mordente-Bridi - serious damage"
 	word
 		"battered with thousands of small perforations. Somebody's turned a mainstay of the pirate arsenal, Gatling Guns, back on them"
-		"with substantial sections of hull heavily battered or missing altogether. Fair guess they didn't have enough anti-missile"
+		"with substantial sections of hull heavily battered or missing altogether. It's a fair guess that they didn't have enough anti-missile"
 		"its hull covered in gashes and burns from Plasma Cannons"
 	word
 		". "
@@ -2432,8 +2432,7 @@ news "Symbol War"
 			"watched but kept their distance."
 			"pointedly ignored it as it happened."
 		replace
-			"%replace the crest" "replacing them"
-			"replacing them, then take down their ladders and leave" "replacing them, then taking down their ladders and leaving"
+			"%replace the crest, then take down their ladders and leave" "replacing them, then taking down their ladders and leaving"
 			"%" ""
 
 news "Betelgeuse Stolen Ship Advisory"
@@ -2443,14 +2442,10 @@ news "Betelgeuse Stolen Ship Advisory"
 		not government "Pirate"
 	name
 		word
-			"Advertisement"
+			"Message on an interactive screen"
+			"Audio broadcast"
+			"Televised message"
 	message
-		word
-			"A message on an interactive screen reads"
-			"An audio broadcast playing in the spaceport recites"
-			"A televised message on one of the news screens broadcasts"
-		word
-			": "
 		word
 			`"How do you know that your Betelgeuse ship`
 		word
@@ -2492,4 +2487,4 @@ news "Betelgeuse Stolen Ship Advisory"
 			"bootleggers. "
 			"criminals. "
 		word
-			`Buy a genuine Betelgeuse ship today!" The message then displays a listing of nearby planets that sell "genuine" Betelgeuse ships.`
+			`Buy a genuine Betelgeuse ship today!"`
