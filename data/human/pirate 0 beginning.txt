@@ -11,8 +11,7 @@ mission "Pirates 0"
 	mark "Almaaz"
 	to offer
 		random < 60
-		has "outfit (flagship installed): Jump Drive"
-	
+		has "outfit (flagship installed): Jump Drive"	
 	on offer
 		conversation
 			`As you walk into the spaceport, you suddenly get dived into by someone on the left. At the same time, a knife flies by where your head just was.`
@@ -27,14 +26,14 @@ mission "Pirates 0"
 				`	Well, that was a mistake. Another knife comes flying towards you, pinning your baggy overcoat to the wall.`
 					goto question
 			label question1
-				`	"Well, well...what do we have here..." Two goons, one dressed in a sassy gray jacket labeled "Leviathan is My GOAT, Sorry Kestrel", the other fumbling with a few of the same kinds of knives stuck on to your sleeves, which are turning red by the second with the bleeding cut caused by the knife still embedded into the wall. "Tell me young fella, are you the new guy around here that everybody is talking about?" He takes one knife from his buddy's hand and presses it against your throat slightly. "Answer me or else my blade will speak for me."`
+			`	"Well, well...what do we have here..." Two goons, one dressed in a sassy gray jacket labeled "Leviathan is My GOAT, Sorry Kestrel", the other fumbling with a few of the same kinds of knives stuck on to your sleeves, which are turning red by the second with the bleeding cut caused by the knife still embedded into the wall. "Tell me young fella, are you the new guy around here that everybody is talking about?" He takes one knife from his buddy's hand and presses it against your throat slightly. "Answer me or else my blade will speak for me."`
 			choice
-			`	(Shake my head.)`
-				goto nospat
-			`	(Nod.)`
-				goto yesspat
-			`	"There are many new guys around here, I don't k-know anything!"`
-				goto question2
+				`	(Shake my head.)`
+					goto nospat
+				`	(Nod.)`
+					goto yesspat
+				`	"There are many new guys around here, I don't k-know anything!"`
+					goto question2
 			label nospat
 				`	The goon looks at you for a second, and then spits at your right eye. "Piece of coward", he grumbles and stands up after retrieving the knife trapping you to the wall. "My grandmother would have done better." He sighs, "these newbies are getting soft I tell ya...soft." Shaking his head he raised his hands to greet you, "Carl GaSan," he says, extending a hand with a glove on.`
 			choice
@@ -50,11 +49,13 @@ mission "Pirates 0"
 			choice
 			`	(Laugh and try to soften the mood.)`
 		npc "scan outfits"
-			on "scan outfits"
-				dialog `You've finished scanning the ships of the Northern Pirates. Time to head back to Greenrock to give your logs to Carl GaSan.`
-			on "encounter"
-				dialog `Some of the ships you see are behaving strangely. Maybe you should scan them and give Carl GaSan the data.`
-			fleet "Large Northern Pirates"
+fleet "Large Northern Pirates"
 				government "Pirate"
 				personality heroic secretive staying
 				system "Arneb" "Hatysa" "Alnilam" "Almaaz" "Unagi"
+			on kill
+				dialog `Carl GaSan probably would have preferred you didn't kill these...`
+			on "scan outfits"
+				dialog `You've finished scanning the ships of the Northern Pirates. Time to head back to Greenrock and give your logs to Carl GaSan.`
+			on encounter
+				dialog `Some of the ships you see are behaving strangely. Maybe you should scan them and give Carl GaSan the data.`
