@@ -11,46 +11,6 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-fleet "Raiding Fleet"
-	government "Pirate"
-	names "Pirate"
-	cargo 0
-	commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
-	outfits "Heavy Laser Turret" "Plasma Cannon" "Plasma Turret" "Flamethrower" "Heavy Anti Missile Turret"
-	personality
-		disables appeasing plunders
-	variant 1
-		"Leviathan" 20
-		"Falcon" 20
-		"Roost" 15
-		"Odyssey" 15
-
-fleet "Bait Fleet"
-	government "Pirate"
-	names "Pirate"
-	cargo 2
-	commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
-	personality
-		disables appeasing plunders
-	variant 1
-		"Leviathan" 5
-		"Falcon" 5
-		"Roost" 10
-		"Odyssey" 15
-
-fleet "Storming Fleet"
-	government "Pirate"
-	names "Pirate"
-	cargo 0
-	commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
-	outfits "Heavy Laser Turret" "Plasma Cannon" "Plasma Turret" "Flamethrower" "Heavy Anti Missile Turret"
-	personality
-		disables appeasing plunders 
-	variant 1
-		"Leviathan" 15
-		"Falcon" 15
-		"Roost" 15
-		"Odyssey" 15
 
 fleet "Small Southern Merchants"
 	government "Merchant"
@@ -3524,3 +3484,47 @@ fleet "Human Wormhole Guards"
 		"Frigate (Mark II)"
 	variant 5
 		"Rainmaker (Mark II Old Weapons)"
+
+fleet "Raiding Fleet"
+	government "Pirate"
+	names "pirate"
+	cargo 0
+	commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
+	outfits "Heavy Laser Turret" "Plasma Cannon" "Plasma Turret" "Flamethrower" "Heavy Anti Missile Turret"
+	personality
+		appeasing disables plunders
+	variant 1
+		"Leviathan" 20
+		"Falcon" 20
+		"Roost" 10
+		"Finch" 25
+		"Barb" 15
+
+fleet "Bait Fleet"
+	government "Pirate"
+	names "pirate"
+	cargo 2
+	commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
+	personality
+		appeasing disables plunders
+	variant 1
+		"Leviathan" 5
+		"Falcon" 5
+		"Roost" 10
+		"Barb" 20
+		"Finch"20
+
+fleet "Storming Fleet"
+	government "Pirate"
+	names "pirate"
+	cargo 0
+	commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
+	outfits "Heavy Laser Turret" "Plasma Cannon" "Plasma Turret" "Flamethrower" "Heavy Anti Missile Turret"
+	personality
+		disables appeasing plunders 
+	variant 1
+		"Leviathan" 15
+		"Falcon" 15
+		"Roost" 10
+		"Barb" 20
+		"Finch" 20
