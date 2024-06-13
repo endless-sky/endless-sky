@@ -7,6 +7,7 @@ mission "Pirates 0"
 		not attributes "ccor"
 		not planet "Greenrock"
 	destination "Greenrock"
+	waypoint "Arneb" "Hatysa" "Alnilam" "Almaaz" "Unagi"
 	mark "Almaaz"
 	to offer
 		random < 60
@@ -48,6 +49,17 @@ mission "Pirates 0"
 			`	"You don't...know anything?", The goon's smile nearly cracks his already scarred face, "Oh man...this is..." His chuckles rang across the spaceport, halting curious onlookers and earning eyes from everywhere. "Ok ok" He smiles.`
 			choice
 			`	(Laugh and try to soften the mood.)`
+		npc "scan outfits"
+		on "scan outfits"
+			dialogue `"You've finished scanning the general information of the Northern Pirates' ships, time to head back to the Greenrock system to report the data on the scanner to GaSan."`
+		on "encounter"
+			dialogue `"Some of the ships you saw seems to be behaving differently from other pirates, you decided to go and scan them to see what they are up to and fullfill GaSan's Requests"`
+		fleet "Large Northern Pirates"
+		government "Pirate"
+		cargo <cargo>
+		personality appeasing wandering secretive
+		system "Arneb" "Hatysa" "Alnilam" "Almaaz" "Unagi"
+		
 				
 			
 			
