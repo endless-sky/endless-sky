@@ -98,6 +98,39 @@ fleet "Large Quarg"
 		"Quarg Skylark" 3
 		"Quarg Wardragon"
 
+fleet "Quarg Jumpers"
+	government "Quarg"
+	names "Quarg"
+	cargo 2
+	commodities "Food" "Clothing" "Plastic" "Medical"
+	personality
+		forbearing heroic opportunistic
+	variant
+		"Quarg Skylark" 1
+		"Quarg Wardragon" 3
+
+fleet "Quarg Hunters"
+	government "Quarg"
+	names "Quarg"
+	cargo 4
+	commodities "Food" "Clothing" "Plastic" "Medical"
+	personality
+		forbearing heroic opportunistic
+	variant 2
+		"Quarg Skylark" 5
+		"Quarg Wardragon" 7
+
+fleet "Quarg Planetary Defense"
+	government "Quarg"
+	names "Quarg"
+	cargo 4
+	commodities "Food" "Clothing" "Plastic" "Medical"
+	personality
+		forbearing heroic opportunistic
+	variant 3
+		"Quarg Skylark" 3
+		"Quarg Wardragon" 6
+
 # Hai Quarg
 fleet "Quarg (Hai)"
 	government "Quarg (Hai)"
