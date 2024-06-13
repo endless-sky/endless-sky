@@ -40,7 +40,7 @@ mission "Pirates 0"
 			`	(Gingerly shake his hand.)`
 				goto converse0
 			label yesspat
-				`The goon looked at you for a second, then spat at your left eye. "Flamboyant as hell", he grumbles and stands up, retreiving the knife trapping you to the wall, "My grandmother would have done better." He sighed, "these newbies are getting egos I tell ya...egos". Shaking his head he raised his hands to greet you, "Carl GaSan," he says, extending a hand coated in glove.`
+				`The goon looked at you for a second, then spat at your left eye. "Flamboyant as hell", he grumbles and stands up, retrieving the knife trapping you to the wall, "My grandmother would have done better." He sighed, "these newbies are getting egos I tell ya...egos". Shaking his head he raised his hands to greet you, "Carl GaSan," he says, extending a hand coated in glove.`
 			choice
 			`	(Gingerly shake his hand.)`
 				goto converse0
