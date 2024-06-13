@@ -35,12 +35,12 @@ mission "Pirates 0"
 			`	" There are many new guys around here, I don't k-know anything!"`
 				goto question2
 			label nospat
-				`The goon looks at you for a second, then spits at your right eye. "Piece of coward", he grumbled and stood up, retreaving the knife trapping you to the wall, "My grandmother would have done better." He sighed, "these newbies are getting soft I tell ya...soft". Shaking his head he raised his hands to greet you, "Carl GaSan," he says, extending a hand coated in glove.`
+				`	The goon looks at you for a second, and then spits at your right eye. "Piece of coward", he grumbles and stands up after retrieving the knife trapping you to the wall. "My grandmother would have done better." He sighs, "these newbies are getting soft I tell ya...soft." Shaking his head he raised his hands to greet you, "Carl GaSan," he says, extending a hand with a glove on.`
 			choice
 			`	(Gingerly shake his hand.)`
 				goto converse0
 			label yesspat
-				`The goon looked at you for a second, then spat at your left eye. "Flamboyant as hell", he grumbles and stands up, retrieving the knife trapping you to the wall, "My grandmother would have done better." He sighed, "these newbies are getting egos I tell ya...egos". Shaking his head he raised his hands to greet you, "Carl GaSan," he says, extending a hand coated in glove.`
+				`	The goon looked at you for a second, then spits at your left eye. "Flamboyant as hell", he grumbles and stands up, retrieving the knife trapping you to the wall. "My grandmother would have done better." He sighs, "these newbies are getting egos I tell ya...egos". Shaking his head he raised his hands to greet you, "Carl GaSan," he says, extending a hand with a glove on.`
 			choice
 			`	(Gingerly shake his hand.)`
 				goto converse0
