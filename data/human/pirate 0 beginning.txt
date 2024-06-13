@@ -50,16 +50,11 @@ mission "Pirates 0"
 			choice
 			`	(Laugh and try to soften the mood.)`
 		npc "scan outfits"
-		on "scan outfits"
-			dialogue `"You've finished scanning the general information of the Northern Pirates' ships, time to head back to the Greenrock system to report the data on the scanner to GaSan."`
-		on "encounter"
-			dialogue `"Some of the ships you saw seems to be behaving differently from other pirates, you decided to go and scan them to see what they are up to and fullfill GaSan's Requests"`
+			on "scan outfits"
+				dialog `You've finished scanning the ships of the Northern Pirates. Time to head back to Greenrock to give your logs to Carl GaSan.`
+			on "encounter"
+				dialog `Some of the ships you see are behaving strangely. Maybe you should scan them and give Carl GaSan the data.`
 		fleet "Large Northern Pirates"
-		government "Pirate"
-		cargo <cargo>
-		personality appeasing wandering secretive
+			government "Pirate"
+			personality heroic secretive staying
 		system "Arneb" "Hatysa" "Alnilam" "Almaaz" "Unagi"
-		
-				
-			
-			
