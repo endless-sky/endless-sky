@@ -50,17 +50,18 @@ mission "Pirates 0"
 			`	(Laugh and try to soften the mood.)`
 				goto doublespat
 			label doublespat
-			`	The goon's smile vanished as fast as it had came. Looking at you for a second,  He spat into to of your eyes with two quick movements of the mouth. "Flamboyant as hell and a Piece of coward", he grumbles and stands up, retrieving the knife trapping you to the wall. "My grandmother would have done better." He sighs, "These newbies are getting egos I tell ya...egos and softness". Shaking his head he raised his hands to greet you, "Carl GaSan," he says, extending a hand with a glove on, "You're stupidity is on another level if you consider yourself innocent of knowledge when you choose to live a life of looting and plundering"`
+			`	The goon's smile vanishes as fast as it had come. Looking at you for a second, he spits into to of your eyes with two quick movements of the mouth. "Flamboyant as hell and a piece of coward," he grumbles and stands up, after retrieving the knife trapping you to the wall. "My grandmother would have done better." He sighs, "These newbies are getting egos I tell ya...egos and softness." Shaking his head he raised his hands to greet you, "Carl GaSan," he says, extending a hand with a glove on, "Your stupidity is on another level if you consider yourself innocent of knowledge when you choose to live a life of looting and plundering."`
 			choice
 			`	(Gingerly shake his hand.)`
 				goto converse0
 			label converse0
-			` "I'll get to the tip of the blade real fast..." GaSan said, twirling one of his knife in his other free hand while hauling you up from the floor "My superiors had assigned me to scout in the Northern Pirate Regions, don't know whats in their brains but a journey there is a hell of a ride" He face contworts into distain for just a instance before regaining a smug smile "However, a life of a new brat around would never rival mine, so..." His gaze met yours, smile widening, revealing two rows of golden K-9s like a tiger in the process of prowessing his prey. "Better Get going boy"`
+			`	"I'll get to the tip of the blade real fast..." GaSan says, twirling one of his knifes in his other free hand while hauling you up from the floor "My superiors have assigned me to scout in the Northern Pirate Regions, I don't know what’s in their brains but a journey there is a hell of a ride." His face contorts into disdain for just a second before regaining a smug smile. "However, a life of a new brat around would never rival mine, so..." His gaze meets yours while his smile widens, revealing two rows of golden teeth like a tiger in the process of chomping his prey. "Better get going, <first>."`
 			choice
-			`	(Silent backpedals away from him and running to your ship as fast as you can)`
+			`	(Silently backpedal away from him and run to your ship, taking off.)`
 				goto converse1
 			label converse1
-			`As the airlock of your ship closes, your heard his loud, boomerang voice slipping in, "If you I am you I better finish the job good, or else-" the line cuts off as the airlock hisses shut. Feeling the leftover sensation of cold blade metal on your neck and GaSan's temper, you probably need to go to get things done as required.`
+			`	 As the airlock of your ship closes, you hear his loud, boomerang voice slipping in, "If you know who I am you had better finish the job good, or else-" the line cuts off as the airlock hisses shut. Feeling the leftover sensation of cold blade metal on your neck and GaSan's temper, you probably need to go to get things done as required.`
+				launch
 		npc "scan outfits"
 fleet "Large Northern Pirates"
 				government "Pirate"
