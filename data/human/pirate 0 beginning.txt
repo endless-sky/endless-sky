@@ -48,6 +48,19 @@ mission "Pirates 0"
 			`	"You don't...know anything?", The goon's smile nearly cracks his already scarred face, "Oh man...this is..." His chuckles rang across the spaceport, halting curious onlookers and earning eyes from everywhere. "Ok ok" He smiles.`
 			choice
 			`	(Laugh and try to soften the mood.)`
+				goto doublespat
+			label doublespat
+			`	The goon's smile vanished as fast as it had came. Looking at you for a second,  He spat into to of your eyes with two quick movements of the mouth. "Flamboyant as hell and a Piece of coward", he grumbles and stands up, retrieving the knife trapping you to the wall. "My grandmother would have done better." He sighs, "These newbies are getting egos I tell ya...egos and softness". Shaking his head he raised his hands to greet you, "Carl GaSan," he says, extending a hand with a glove on, "You're stupidity is on another level if you consider yourself innocent of knowledge when you choose to live a life of looting and plundering"`
+			choice
+			`	(Gingerly shake his hand.)`
+				goto converse0
+			label converse0
+			` "I'll get to the tip of the blade real fast..." GaSan said, twirling one of his knife in his other free hand while hauling you up from the floor "My superiors had assigned me to scout in the Northern Pirate Regions, don't know whats in their brains but a journey there is a hell of a ride" He face contworts into distain for just a instance before regaining a smug smile "However, a life of a new brat around would never rival mine, so..." His gaze met yours, smile widening, revealing two rows of golden K-9s like a tiger in the process of prowessing his prey. "Better Get going boy"`
+			choice
+			`	(Silent backpedals away from him and running to your ship as fast as you can)`
+				goto converse1
+			label converse1
+			`As the airlock of your ship closes, your heard his loud, boomerang voice slipping in, "If you I am you I better finish the job good, or else-" the line cuts off as the airlock hisses shut. Feeling the leftover sensation of cold blade metal on your neck and GaSan's temper, you probably need to go to get things done as required.`
 		npc "scan outfits"
 fleet "Large Northern Pirates"
 				government "Pirate"
