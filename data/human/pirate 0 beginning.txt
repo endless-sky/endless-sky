@@ -54,7 +54,7 @@ mission "Pirates 0"
 				dialog `You've finished scanning the ships of the Northern Pirates. Time to head back to Greenrock to give your logs to Carl GaSan.`
 			on "encounter"
 				dialog `Some of the ships you see are behaving strangely. Maybe you should scan them and give Carl GaSan the data.`
-		fleet "Large Northern Pirates"
-			government "Pirate"
-			personality heroic secretive staying
-		system "Arneb" "Hatysa" "Alnilam" "Almaaz" "Unagi"
+			fleet "Large Northern Pirates"
+				government "Pirate"
+				personality heroic secretive staying
+				system "Arneb" "Hatysa" "Alnilam" "Almaaz" "Unagi"
