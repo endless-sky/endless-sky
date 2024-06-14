@@ -26,7 +26,7 @@ fleet "Quarg Hunters"
 	cargo 2
 	commodities "Food" "Clothing" "Plastic" "Medical"
 	personality
-		heroic secretive
+		nemesis secretive
 	variant 1
 		"Quarg Skylark" 4
 		"Quarg Wardragon" 6
@@ -36,7 +36,7 @@ fleet "Quarg Planetary Defense"
 	cargo 2
 	commodities "Food" "Clothing" "Plastic" "Medical"
 	personality
-		heroic secretive
+		nemesis secretive
 	variant 1
 		"Quarg Skylark" 3
 		"Quarg Wardragon" 4
@@ -47,7 +47,7 @@ fleet "Raiding Fleet"
 	commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
 	outfits "Heavy Laser Turret" "Plasma Cannon" "Plasma Turret" "Flamethrower" "Heavy Anti Missile Turret"
 	personality
-		appeasing disables plunders
+		disables heroic plunders
 	variant 1
 		"Leviathan" 20
 		"Falcon" 20
@@ -55,19 +55,20 @@ fleet "Raiding Fleet"
 		"Finch" 25
 		"Barb" 15
 
-fleet "Bait Fleet"
+fleet "Scan Fleet"
 	government "Pirate"
 	names "pirate"
-	cargo 2
+	cargo 1
+	outfits "Quarg Skylance" "Heavy Laser Turret" "Quadblaster Turret" "Heavy Anti Missile Turret" "Torpedo Launcher" 
 	commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
 	personality
 		appeasing disables plunders
 	variant 1
-		"Leviathan" 5
-		"Falcon" 5
-		"Roost" 10
-		"Barb" 20
-		"Finch"20
+		"Leviathan" 2
+		"Falcon" 3
+		"Roost" 2
+		"Barb" 2
+		"Finch"1
 
 fleet "Storming Fleet"
 	government "Pirate"
@@ -76,13 +77,14 @@ fleet "Storming Fleet"
 	commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
 	outfits "Heavy Laser Turret" "Plasma Cannon" "Plasma Turret" "Flamethrower" "Heavy Anti Missile Turret"
 	personality
-		disables appeasing plunders
+		disables heroic plunders
 	variant 1
 		"Leviathan" 15
 		"Falcon" 15
 		"Roost" 10
 		"Barb" 20
 		"Finch" 20
+
 fleet "Small Southern Merchants"
 	government "Merchant"
 	names "civilian"
