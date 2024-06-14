@@ -1099,7 +1099,7 @@ void MapPanel::UpdateCache()
 			}
 		}
 
-		nodes.emplace_back(system.Position(), color,
+		nodes.emplace_back(system.Position(), color, system.IsInhabited(player.Flagship()),
 			player.KnowsName(system) ? system.Name() : "",
 			(&system == &playerSystem) ? closeNameColor : farNameColor,
 			player.CanView(system) ? system.GetGovernment() : nullptr);
@@ -1399,10 +1399,10 @@ void MapPanel::DrawSystems()
 			(pos * (1 / Screen::BottomRight())).LengthSquared() < 1)
 		{
 			hasUnexplored |= !(node.government);
-			hasUninhabited |= (node.government->GetName() == "Uninhabited");
+			hasUninhabited |= !(node.isInhabited);
 			// Count the number of occurences of each government.
 			// Exclude ones that are colored as 'Uninhabited' or aren't their true color
-			if(node.government && node.government->GetName() == "Uninhabited" && node.color == node.government->GetColor())
+			if(node.government && node.government->GetName() != "Uninhabited" && node.color == GovernmentColor(node.government))
 				GovermnentCounts[node.government]++;
 		}
 	}
