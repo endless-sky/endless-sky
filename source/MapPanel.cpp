@@ -1381,7 +1381,7 @@ void MapPanel::DrawSystems()
 	// If coloring by government, we need to keep track of which ones are
 	// most prevalent.
 	if(commodity == SHOW_GOVERNMENT)
-		GovermnentCounts.clear();
+		GovernmentCounts.clear();
 
 	// Draw the circles for the systems.
 	double zoom = Zoom();
