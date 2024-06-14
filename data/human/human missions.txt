@@ -7581,7 +7581,7 @@ mission "Timothy Radrickson 3: Governor Notification"
 
 	on complete
 		conversation
-			`Upon landing you are met by a squat, heavy-set woman in her late 40s. She reaches out a calloused hand to shake yours. "Welcome to Rand, Captain <last>. It is a pleasure, and honor, to have someone of your status here on our little world. I am Regina, the mayor of the spaceport town, and one of the major company-bosses here. I've been instructed to escort you to the Governor's mansion. I have a vehicle waiting for you just outside the spaceport. Meet me there when you're ready."`
+			`Upon landing you are met by a squat, heavy-set woman in her late forties. She reaches out a calloused hand to shake yours. "Welcome to Rand, Captain <last>. It is a pleasure, and honor, to have someone of your status here on our little world. I am Regina, the mayor of this town, and one of the major company-bosses here. I've been instructed to escort you to the Governor's mansion. I have a vehicle waiting for you just outside the spaceport. Meet me there when you're ready."`
 
 
 mission "Timothy Radrickson 3a: Rescue the Convoy"
