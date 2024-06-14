@@ -30,7 +30,7 @@ fleet "Scan Fleet"
 	government "Pirate"
 	names "pirate"
 	cargo 1
-	outfitters "Southern Pirate Loot" 
+	outfitters "Southern Pirate Loot"
 	commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
 	variant
 		"Leviathan" 2
