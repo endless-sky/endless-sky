@@ -1341,6 +1341,9 @@ tip "Draw starfield"
 tip "Parallax background"
 	`Add parallax to objects in the background (haze and starfield). If set to fancy, create three layers of parallax. If set to fast, create one layer of parallax.`
 
+tip "System parallax"
+	`Add parallax to any stars and nebulae within the system.`
+
 tip "Show hyperspace flash"
 	`Create a white flash when hyperspacing between systems.`
 

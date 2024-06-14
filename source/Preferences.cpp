@@ -133,9 +133,12 @@ namespace {
 	const vector<string> FLOTSAM_SETTINGS = {"off", "on", "flagship only", "escorts only"};
 	int flotsamIndex = 1;
 
+	const vector<string> SYSTEM_PARALLAX_SETTINGS = {"off", "on"};
+	bool systemParallax = false;
+
 	// Enable "fast" parallax by default. "fancy" is too GPU heavy, especially for low-end hardware.
-	const vector<string> PARALLAX_SETTINGS = {"off", "fancy", "fast"};
-	int parallaxIndex = 2;
+	const vector<string> BACKGROUND_PARALLAX_SETTINGS = {"off", "fancy", "fast"};
+	int backgroundParallaxIndex = 2;
 
 	const vector<string> EXTENDED_JUMP_EFFECT_SETTINGS = {"off", "medium", "heavy"};
 	int extendedJumpEffectIndex = 0;
@@ -208,8 +211,10 @@ void Preferences::Load()
 			autoAimIndex = max<int>(0, min<int>(node.Value(1), AUTO_AIM_SETTINGS.size() - 1));
 		else if(node.Token(0) == "Automatic firing")
 			autoFireIndex = max<int>(0, min<int>(node.Value(1), AUTO_FIRE_SETTINGS.size() - 1));
+		else if(node.Token(0) == "System parallax")
+			systemParallax = !!node.Value(1);
 		else if(node.Token(0) == "Parallax background")
-			parallaxIndex = max<int>(0, min<int>(node.Value(1), PARALLAX_SETTINGS.size() - 1));
+			backgroundParallaxIndex = max<int>(0, min<int>(node.Value(1), BACKGROUND_PARALLAX_SETTINGS.size() - 1));
 		else if(node.Token(0) == "Extended jump effects")
 			extendedJumpEffectIndex = max<int>(0, min<int>(node.Value(1), EXTENDED_JUMP_EFFECT_SETTINGS.size() - 1));
 		else if(node.Token(0) == "fullscreen")
@@ -280,7 +285,8 @@ void Preferences::Save()
 	out.Write("Show neutral overlays", statusOverlaySettings[OverlayType::NEUTRAL].ToInt());
 	out.Write("Automatic aiming", autoAimIndex);
 	out.Write("Automatic firing", autoFireIndex);
-	out.Write("Parallax background", parallaxIndex);
+	out.Write("System parallax", systemParallax);
+	out.Write("Parallax background", backgroundParallaxIndex);
 	out.Write("Extended jump effects", extendedJumpEffectIndex);
 	out.Write("alert indicator", alertIndicatorIndex);
 	out.Write("previous saves", previousSaveCount);
@@ -427,27 +433,49 @@ const vector<double> &Preferences::Zooms()
 
 
 
-// Starfield parallax.
-void Preferences::ToggleParallax()
+// Parallax of stars and nebulae within the system.
+void Preferences::ToggleSystemParallax()
 {
-	int targetIndex = parallaxIndex + 1;
-	if(targetIndex == static_cast<int>(PARALLAX_SETTINGS.size()))
+	systemParallax = !systemParallax;
+}
+
+
+
+bool Preferences::GetSystemParallax()
+{
+	return systemParallax;
+}
+
+
+
+const string &Preferences::SystemParallaxSetting()
+{
+	return SYSTEM_PARALLAX_SETTINGS[systemParallax];
+}
+
+
+
+// Starfield parallax.
+void Preferences::ToggleBackgroundParallax()
+{
+	int targetIndex = backgroundParallaxIndex + 1;
+	if(targetIndex == static_cast<int>(BACKGROUND_PARALLAX_SETTINGS.size()))
 		targetIndex = 0;
-	parallaxIndex = targetIndex;
+	backgroundParallaxIndex = targetIndex;
 }
 
 
 
 Preferences::BackgroundParallax Preferences::GetBackgroundParallax()
 {
-	return static_cast<BackgroundParallax>(parallaxIndex);
+	return static_cast<BackgroundParallax>(backgroundParallaxIndex);
 }
 
 
 
-const string &Preferences::ParallaxSetting()
+const string &Preferences::BackgroundParallaxSetting()
 {
-	return PARALLAX_SETTINGS[parallaxIndex];
+	return BACKGROUND_PARALLAX_SETTINGS[backgroundParallaxIndex];
 }
 
 

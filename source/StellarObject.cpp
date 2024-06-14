@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Government.h"
 #include "Planet.h"
 #include "Politics.h"
+#include "Preferences.h"
 #include "Radar.h"
 
 #include <algorithm>
@@ -157,7 +158,7 @@ double StellarObject::Distance() const
 
 double StellarObject::Parallax() const
 {
-	return isStar ? .7 : 1.;
+	return (isStar && Preferences::GetSystemParallax()) ? .7 : 1.;
 }
 
 

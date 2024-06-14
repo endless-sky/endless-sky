@@ -159,10 +159,15 @@ public:
 	static AutoFire GetAutoFire();
 	static const std::string &AutoFireSetting();
 
+	// System parallax setting, either "on", or "off".
+	static void ToggleSystemParallax();
+	static bool GetSystemParallax();
+	static const std::string &SystemParallaxSetting();
+
 	// Background parallax setting, either "fast", "fancy", or "off".
-	static void ToggleParallax();
+	static void ToggleBackgroundParallax();
 	static BackgroundParallax GetBackgroundParallax();
-	static const std::string &ParallaxSetting();
+	static const std::string &BackgroundParallaxSetting();
 
 	// Extended jump effects setting, either "off", "medium", or "heavy".
 	static void ToggleExtendedJumpEffects();

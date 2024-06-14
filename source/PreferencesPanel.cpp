@@ -76,6 +76,7 @@ namespace {
 	const string DATE_FORMAT = "Date format";
 	const string BOARDING_PRIORITY = "Boarding target priority";
 	const string TARGET_ASTEROIDS_BASED_ON = "Target asteroid based on";
+	const string SYSTEM_PARALLAX = "System parallax";
 	const string BACKGROUND_PARALLAX = "Parallax background";
 	const string EXTENDED_JUMP_EFFECTS = "Extended jump effects";
 	const string ALERT_INDICATOR = "Alert indicator";
@@ -643,6 +644,7 @@ void PreferencesPanel::DrawSettings()
 		"Reduce large graphics",
 		"Draw background haze",
 		"Draw starfield",
+		SYSTEM_PARALLAX,
 		BACKGROUND_PARALLAX,
 		"Show hyperspace flash",
 		EXTENDED_JUMP_EFFECTS,
@@ -850,9 +852,14 @@ void PreferencesPanel::DrawSettings()
 			isOn = true;
 			text = Preferences::Has(TARGET_ASTEROIDS_BASED_ON) ? "proximity" : "value";
 		}
+		else if(setting == SYSTEM_PARALLAX)
+		{
+			text = Preferences::SystemParallaxSetting();
+			isOn = text != "off";
+		}
 		else if(setting == BACKGROUND_PARALLAX)
 		{
-			text = Preferences::ParallaxSetting();
+			text = Preferences::BackgroundParallaxSetting();
 			isOn = text != "off";
 		}
 		else if(setting == EXTENDED_JUMP_EFFECTS)
@@ -1183,8 +1190,10 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 	}
 	else if(str == BOARDING_PRIORITY)
 		Preferences::ToggleBoarding();
+	else if(str == SYSTEM_PARALLAX)
+		Preferences::ToggleSystemParallax();
 	else if(str == BACKGROUND_PARALLAX)
-		Preferences::ToggleParallax();
+		Preferences::ToggleBackgroundParallax();
 	else if(str == EXTENDED_JUMP_EFFECTS)
 		Preferences::ToggleExtendedJumpEffects();
 	else if(str == VIEW_ZOOM_FACTOR)
