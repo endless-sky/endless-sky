@@ -72,6 +72,7 @@ public:
 	const std::vector<RandomEvent<Hazard>> &Hazards() const;
 	// Find out how far this object is from its parent.
 	double Distance() const;
+	virtual double Parallax() const override;
 
 
 private:

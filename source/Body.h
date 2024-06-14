@@ -38,6 +38,7 @@ public:
 	Body() = default;
 	Body(const Sprite *sprite, Point position, Point velocity = Point(), Angle facing = Angle(), double zoom = 1.);
 	Body(const Body &sprite, Point position, Point velocity = Point(), Angle facing = Angle(), double zoom = 1.);
+	virtual ~Body();
 
 	// Check that this Body has a sprite and that the sprite has at least one frame.
 	bool HasSprite() const;
@@ -62,6 +63,7 @@ public:
 	Point Unit() const;
 	double Zoom() const;
 	double Scale() const;
+	virtual double Parallax() const;
 
 	// Check if this object is marked for removal from the game.
 	bool ShouldBeRemoved() const;

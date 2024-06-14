@@ -97,7 +97,7 @@ const string &StellarObject::LandingMessage() const
 // Get the color to be used for displaying this object.
 int StellarObject::RadarType(const Ship *ship) const
 {
-	if(IsStar())
+	if(isStar)
 		return Radar::STAR;
 	else if(!planet || !planet->IsAccessible(ship))
 		return Radar::INACTIVE;
@@ -151,6 +151,13 @@ int StellarObject::Parent() const
 double StellarObject::Distance() const
 {
 	return distance;
+}
+
+
+
+double StellarObject::Parallax() const
+{
+	return isStar ? .7 : 1.;
 }
 
 

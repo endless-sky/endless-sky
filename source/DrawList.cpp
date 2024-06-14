@@ -56,7 +56,7 @@ bool DrawList::Add(const Body &body, double cloak)
 
 bool DrawList::Add(const Body &body, Point position, double cloak)
 {
-	position -= center;
+	position = position - center * body.Parallax();
 	Point blur = body.Velocity() - centerVelocity;
 	if(Cull(body, position, blur))
 		return false;
@@ -69,7 +69,7 @@ bool DrawList::Add(const Body &body, Point position, double cloak)
 
 bool DrawList::AddUnblurred(const Body &body)
 {
-	Point position = body.Position() - center;
+	Point position = body.Position() - center * body.Parallax();
 	Point blur;
 	if(Cull(body, position, blur))
 		return false;
@@ -82,7 +82,7 @@ bool DrawList::AddUnblurred(const Body &body)
 
 bool DrawList::AddSwizzled(const Body &body, int swizzle, double cloak)
 {
-	Point position = body.Position() - center;
+	Point position = body.Position() - center * body.Parallax();
 	Point blur = body.Velocity() - centerVelocity;
 	if(Cull(body, position, blur))
 		return false;

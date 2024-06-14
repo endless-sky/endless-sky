@@ -52,6 +52,12 @@ Body::Body(const Body &sprite, Point position, Point velocity, Angle facing, dou
 
 
 
+Body::~Body()
+{
+}
+
+
+
 // Check that this Body has a sprite and that the sprite has at least one frame.
 bool Body::HasSprite() const
 {
@@ -183,6 +189,13 @@ double Body::Zoom() const
 double Body::Scale() const
 {
 	return static_cast<double>(scale);
+}
+
+
+
+double Body::Parallax() const
+{
+	return 1.;
 }
 
 
