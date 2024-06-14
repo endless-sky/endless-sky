@@ -22,7 +22,8 @@ mission "SoPi 1: Engine Collection"
 	to offer
 		has "SoPi 0: Scanning: done"
 	on offer
-
+		conversation
+			`As you land in the spaceport and shut down the engine,`
 
 mission "SoPi 1: Weapons Collection"
 	minor
