@@ -72,7 +72,7 @@ ship "Nimbus"
 		"category" "Medium Warship"
 		licenses
 			"Hicemus Conflict"
-		"cost" 500000
+		"cost" 3250000
 		"hull" 5000
 		"shields" 7500
 		"required crew" 20
@@ -138,7 +138,7 @@ ship "Nimbo Stratus"
 	"swizzle" 0
 	attributes
 		"category" "Utility"
-		"cost" 50000
+		"cost" 460000
 		"hull" 500
 		"shields" 700
 		"required crew" 5
@@ -176,7 +176,7 @@ ship "Nimbo Cirrus"
 	"swizzle" 0
 	attributes
 		"category" "Light Freighter"
-		"cost" 100000
+		"cost" 330000
 		"hull" 750
 		"shields" 1500
 		"required crew" 7
@@ -210,7 +210,7 @@ ship "Gero"
 	"swizzle" 0
 	attributes
 		"category" "Transport"
-		"cost" 100000
+		"cost" 985000
 		"hull" 850
 		"shields" 1700
 		"required crew" 10
