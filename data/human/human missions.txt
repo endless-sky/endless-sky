@@ -7702,7 +7702,7 @@ mission "Timothy Radrickson 3b: Pirate Base"
 				`	(This is too dangerous. Leave.)`
 					flee
 
-			`	Getting as far as you can to the base without compromising your position, you notice the base is surrounded by an array of laser turrets and ground-to-air missile systems, which makes further approach highly risky. Furthermore, the ships outside the base appear to be highly modified. You don't see any other entrance to the base, however; it looks like you'll have to force the pirates out, one way or another.`
+			`	Getting as far as you can toward the base without compromising your position, you notice the base is surrounded by an array of laser turrets and ground-to-air missile systems, which makes further approach highly risky. Furthermore, the ships outside the base appear to be highly modified. You don't see any other entrance to the base, however; it looks like you'll have to force the pirates out, one way or another.`
 			`	It still seems as if the pirates don't see you. With a little movement, you could strafe the encampment and take out a fair few of the parked ships if you can avoid the turrets.`
 			choice
 				`	(Strafe the parked pirate vessels.)`
