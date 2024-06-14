@@ -7607,7 +7607,7 @@ mission "Timothy Radrickson 3a: Rescue the Convoy"
 
 			label nothing
 			`	The vehicle pulls up to a grandiose entrance near the center of the huge structure. An attendant opens the door, and you're ushered outside the vehicle.`
-			`	Regina does not get out. She smiles politely through the opened door. "Only you were invited to enter the Governor's Mansion. I am afraid this as far as I am allowed to go. Take care, Captain <last>, it truly was an honor meeting you."`
+			`	Regina does not get out. She smiles politely through the opened door. "Only you were invited to enter the Governor's Mansion. I am afraid this as far as I am allowed to go. Take care, Captain <last>. It truly was an honor meeting you."`
 			`	With that the door shuts, and a few moments later the black vehicle departs, leaving you and the attendant at the mansion's entrance.`
 			`	The attendant bows deeply. "Please, Captain <last>. If you would follow me." He turns and heads into the building.`
 			choice
