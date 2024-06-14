@@ -16,10 +16,10 @@ fleet "Raiding Fleet"
 	names "pirate"
 	cargo 0
 	commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
-	outfits "Heavy Laser Turret" "Plasma Cannon" "Plasma Turret" "Flamethrower" "Heavy Anti Missile Turret"
+	outfitters "Southern Pirate Loot"
 	personality
 		disables heroic plunders
-	variant 1
+	variant
 		"Leviathan" 20
 		"Falcon" 20
 		"Roost" 10
@@ -30,24 +30,24 @@ fleet "Scan Fleet"
 	government "Pirate"
 	names "pirate"
 	cargo 1
-	outfits "Quarg Skylance" "Heavy Laser Turret" "Quadblaster Turret" "Heavy Anti Missile Turret" "Torpedo Launcher" 
+	outfitters "Southern Pirate Loot" 
 	commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
-	variant 1
+	variant
 		"Leviathan" 2
 		"Falcon" 3
 		"Roost" 2
-		"Barb" 6
-		"Finch" 6
+		"Barb" 4
+		"Finch" 4
 
 fleet "Storming Fleet"
 	government "Pirate"
 	names "pirate"
 	cargo 0
 	commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
-	outfits "Heavy Laser Turret" "Plasma Cannon" "Plasma Turret" "Flamethrower" "Heavy Anti Missile Turret"
+	outfitters "Southern Pirate Loot"
 	personality
 		disables heroic plunders
-	variant 1
+	variant
 		"Leviathan" 15
 		"Falcon" 15
 		"Roost" 10
