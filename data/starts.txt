@@ -71,7 +71,7 @@ start "hai space"
 			has "main plot completed"
 			has "Ask the Hai about the Unfettered"
 	on display
-		description "This start is locked for now."
+		description "This start is locked."
 	to unlock
 		has "main plot completed"
 		# TODO: think about what point of HR should unlock this once it's back in the game, if any
@@ -130,9 +130,8 @@ conversation "hai intro"
 	`	The pictures and videos you've seen of Hai ships before simply don't do them justice; seeing them in all their splendor here in the shipyard is something else entirely. Even though you know a lot of those ships must have been in service for many years, you are stunned by how new and shiny they look.`
 
 
-# this ship uses the most expensive loadout possible (3.5M)
-# so that you +- have the same amount of value back if you sell it (1.3mill)
-# It has a small hull buff to help the player survive.
+# This ship uses the most expensive loadout possible so its sell price is roughly equal to the buy price.
+# It also has a small hull buff to help the player survive.
 ship "Grasshopper" "Grasshopper (Hai Start)"
 	add attributes
 		"hull" 400
