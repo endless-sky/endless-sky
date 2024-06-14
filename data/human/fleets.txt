@@ -20,11 +20,17 @@ fleet "Raiding Fleet"
 	personality
 		disables heroic plunders
 	variant
-		"Leviathan" 20
-		"Falcon" 20
-		"Roost" 10
-		"Finch" 25
-		"Barb" 15
+		"Leviathan" 10
+		"Falcon" 7
+		"Roost" 7
+		"Finch" 14
+		"Barb" 14
+		"Leviathan (Plasma)" 10
+		"Falcon (Flamethrower)" 7
+		"Falcon (Plasma)" 6
+		"Roost (Sidewinder)" 3
+		"Finch (Flames)" 6
+		"Barb (Proton)" 6
 
 fleet "Scan Fleet"
 	government "Pirate"
