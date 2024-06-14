@@ -7867,7 +7867,7 @@ mission "Timothy Radrickson 3c: Escort the Convoy"
 			`	With that she heads back to her freighter fleet.`
 
 	npc accompany save
-		government "Merchant" # 3800 cargo capacity
+		government "Merchant" # 3880 cargo capacity
 		personality escort timid
 		ship "Behemoth" "H.H.H. Gullveig's Revenge"
 		ship "Hauler" "H.H.H. Hard and Fast"
