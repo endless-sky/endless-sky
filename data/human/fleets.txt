@@ -65,8 +65,8 @@ fleet "Scan Fleet"
 		"Leviathan" 2
 		"Falcon" 3
 		"Roost" 2
-		"Barb" 2
-		"Finch"1
+		"Barb" 6
+		"Finch" 6
 
 fleet "Storming Fleet"
 	government "Pirate"
