@@ -271,7 +271,6 @@ ship "Bactrian" "Bactrian (Quarg Technology)"
 	turret "Quarg Anti-Missile"
 
 
-
 ship "Bactrian" "Bactrian (Hai Engines)"
 	outfits
 		"Sidewinder Missile Launcher" 2
