@@ -8920,7 +8920,7 @@ mission "Timothy Radrickson 5e: Back to Oblivion"
 				"timothy radrickson preparedness" > 7
 
 			label unprepared
-			`	As he inspects the suit, drugs, and ID you can see his demeanor shift. He seems to inflate a little.`
+			`	As he inspects the suit, drugs, and ID you can see his demeanor shift. He seems to deflate a little.`
 			`	Finally, he straightens back up. "You did the best you could. I'm sure." He eyes the gear wearily. "At least it's a chance."`
 				goto end
 
