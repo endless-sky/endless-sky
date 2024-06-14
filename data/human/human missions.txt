@@ -7734,7 +7734,7 @@ mission "Ice Queen 3"
 
 			`	A few painfully tedious hours later, all the right forms have been filled out and you're met by an intern in a small vehicle.`
 			`	She glances at her electronic clipboard. "Captain <last>? Lady Drifa? I am here to escort you to the Everest Facility." She opens the door and gestures to you two. "Please climb aboard. I know the confines are quite small, but the E.F. is only a few kilometers away."`
-			`	Ildico glares at the young woman suscupiously, then turns to you. "Can we trust her?"`
+			`	Ildico glares at the young woman suspiciously, then turns to you. "Can we trust her?"`
 			`	The intern looks confused and a little hurt, but says nothing.`
 			choice
 				`	"We can trust her. We're in no danger here."`
@@ -7783,7 +7783,7 @@ mission "Ice Queen 4"
 	on offer
 		event "deoricdeeds" 1103
 		conversation
-			`It's easy to imagine Earth once look and felt much like Chiron does today. A vibrant world, full of engaged and motivated people, all in a hurry to change the universe, or at least, to run it.`
+			`It's easy to imagine Earth once looked and felt much like Chiron does today. A vibrant world, full of engaged and motivated people, all in a hurry to change the universe, or at least, to run it.`
 			`	The Department of Migration, Stellar Populations and Advanced Interplanetary Economics is easy enough to find. What's surprising is how quickly you are ushered into a waiting room outside the office of one Mr. Drifa, Sub-Executive of Multiplanetary Pricing.`
 			`	After a brief wait, a young secretary announces that Mr. Drifa is ready to see you, and brings you and Ildico into his office.`
 			`	"So what can I help you with..." Deoric Drifa's voice trails off as he sees Ildico.`
@@ -7792,7 +7792,7 @@ mission "Ice Queen 4"
 			`	"Why. Didn't. You. Come?" Ildico forces out each word.`
 			`	"I sent for you. They told me you were all dead. They found bodies... and the generator blown."`
 			`	"The accident..." Ildico says more to herself than anyone else. And then in that instant she unfreezes, emotions roil through her, and she runs to her father. Everything forgiven.`
-			`	After a long tear-filled embrace she disengages and wipes her eyes. "Early on the generator blew and we had to evacuate the compound. Some people died.. including Hogne." She glances at you and says, "he was my older brother."`
+			`	After a long tear-filled embrace she disengages and wipes her eyes. "Early on the generator blew and we had to evacuate the compound. Some people died.. including Hogne." She glances at you and says, "He was my older brother."`
 			`	She continues, "I salvaged what I could and set up at home. I've been at home the whole time."`
 			`	"It's my fault," Deoric says. "I should have gone and looked for you myself. I would have known where to look."`
 			`	They talk about family, the time apart, and what happened back on Hope. Finally, Ildico turns her attention back to you.`
