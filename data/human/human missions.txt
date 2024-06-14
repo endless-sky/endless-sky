@@ -8395,7 +8395,7 @@ mission "Timothy Radrickson 5b: New Britain"
 					goto options
 				`	(Approach the teenagers for help about the ID.)`
 
-			`	The teenagers, two of them guys and one a girl, grin at you like fresh meat as you near them.`
+			`	The teenagers, two of them boys and one a girl, grin at you like fresh meat as you near them.`
 			`	The guy in the middle says, "What'dya need, boss? Wanna get high? Wanna get low? Wanna get out?" Apparently this group is used to working with frustrated castouts from the overly legal spaceport emporium.`
 			choice
 				`	(Ask them about where you could get a fake ID.)`
