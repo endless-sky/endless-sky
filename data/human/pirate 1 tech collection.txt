@@ -1,6 +1,20 @@
+# Copyright (c) 2024 by ProNooberEX
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+
 mission "SoPi 1: Engine Collection"
 	priority
-		name "Gathering the Tech"
+	name "Gathering the Tech"
 	description "Return to the Northern Pirate space and lay hands on <engines> from the Northern Pirates, then return to Greenrock for GaSan and the other pirate leaders to investigate and try out."
 	source Greenrock
 	destination "Greenrock"
@@ -8,35 +22,30 @@ mission "SoPi 1: Engine Collection"
 	to offer
 		has "SoPi 0: Scanning: done"
 	on offer
-mission "Weapons Collection"
+
+
+mission "SoPi 1: Weapons Collection"
 	minor
-		name "Gathering the Tech"
-	description "Return to the Northern Pirate space and lay hands on <weapons> from the Northern Pirates, then return to Greenlock for GaSan and the other pirate leaders to investigate and equip"
-	source
-		attributes "south pirate"
-		not attributes "ccor"
-		not planet "Greenrock"
+	name "Gathering the Tech"
+	description "Return to the Northern Pirate space and lay hands on <weapons> from the Northern Pirates, then return to Greenrock for GaSan and the other pirate leaders to investigate and try out."
+	source Greenrock
 	destination "Greenrock"
 	mark "Almaaz"
 	to offer
-		random < 60
-		has "outfit (flagship installed): Jump Drive"	
-		has launch
+		has "SoPi 0: Scanning: done"
 	on offer
+
 
 mission "Shield Collection"
 	minor
-		name "Gathering the Tech"
-	description "Return to the Northern Pirate space and lay hands on <> from the Northern Pirates, then return to Greenlock for GaSan and the other pirate leaders to investigate and equip"
-	source
-		attributes "south pirate"
-		not attributes "ccor"
-		not planet "Greenrock"
+	name "Gathering the Tech"
+	description "Return to the Northern Pirate space and lay hands on <shields> from the Northern Pirates, then return to Greenrock for GaSan and the other pirate leaders to investigate and try out."
+	source Greenrock
 	destination "Greenrock"
 	mark "Almaaz"
 	to offer
-		random < 60
-		has "outfit (flagship installed): Jump Drive"	
-		has launch
+		has "SoPi 0: Scanning: done"
 	on offer
-		
+
+
+
