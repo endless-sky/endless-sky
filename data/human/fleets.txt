@@ -16,7 +16,7 @@ fleet "Quarg Jumpers"
 	cargo 3
 	commodities "Food" "Clothing" "Plastic" "Medical"
 	personality
-		heroic secretive 
+		heroic secretive
 	variant 1
 		"Quarg Skylark" 1
 		"Quarg Wardragon" 3
@@ -26,7 +26,7 @@ fleet "Quarg Hunters"
 	cargo 2
 	commodities "Food" "Clothing" "Plastic" "Medical"
 	personality
-		heroic secretive 
+		heroic secretive
 	variant 1
 		"Quarg Skylark" 4
 		"Quarg Wardragon" 6
@@ -36,7 +36,7 @@ fleet "Quarg Planetary Defense"
 	cargo 2
 	commodities "Food" "Clothing" "Plastic" "Medical"
 	personality
-		heroic secretive 
+		heroic secretive
 	variant 1
 		"Quarg Skylark" 3
 		"Quarg Wardragon" 4
@@ -76,7 +76,7 @@ fleet "Storming Fleet"
 	commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
 	outfits "Heavy Laser Turret" "Plasma Cannon" "Plasma Turret" "Flamethrower" "Heavy Anti Missile Turret"
 	personality
-		disables appeasing plunders 
+		disables appeasing plunders
 	variant 1
 		"Leviathan" 15
 		"Falcon" 15
@@ -3592,7 +3592,7 @@ fleet "Storming Fleet"
 	commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
 	outfits "Heavy Laser Turret" "Plasma Cannon" "Plasma Turret" "Flamethrower" "Heavy Anti Missile Turret"
 	personality
-		disables appeasing plunders 
+		disables appeasing plunders
 	variant 1
 		"Leviathan" 15
 		"Falcon" 15
