@@ -196,7 +196,8 @@ private:
 	public:
 		Node(const Point &position, const Color &color, const bool isInhabited, const std::string &name,
 			const Color &nameColor, const Government *government)
-			: position(position), color(color), isInhabited(isInhabited), name(name), nameColor(nameColor), government(government) {}
+			: position(position), color(color), isInhabited(isInhabited),
+			name(name), nameColor(nameColor), government(government) {}
 
 		Point position;
 		Color color;
