@@ -8079,7 +8079,7 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 				`	(Say nothing, turn away and leave.)`
 					goto leave
 
-			`	Timothy leans against the nearest wall, and for a moment the only noise in the darkness is his ragged breathing. Finally he says, "In a week I go south. Far side of the world. I'll last maybe months. Probably less. I need a chance. I need to get out."`
+			`	Timothy leans against the nearest wall, and for a moment the only noise in the darkness is his ragged breathing. Finally he says, "In a couple of weeks I go south. Far side of the world. I'll last maybe months. Probably less. I need a chance. I need to get out."`
 			`	His voice gets more animated as he speaks and he nearly launches into another coughing fit before catching himself and taking several uneven breaths. "They're watching me. I can't leave with you. But with the right supplies. Right tools. I can make it."`
 			`	His red eyes rimmed with bloody tears look directly into yours. "Please. Don't let me die here. At least.. give me a chance."`
 			choice
