@@ -3572,9 +3572,8 @@ mission "Pirate Duel"
 	source
 		near "Tarazed" 1 5
 		government "Republic" "Free Worlds"
-	waypoint "Umbral"
+	mark "Umbral"
 	destination "Wayfarer"
-	
 	to offer
 		"combat rating" > 20
 		"combat rating" < 400
@@ -3631,18 +3630,64 @@ mission "Pirate Duel"
 	on enter
 		dialog `When you take off, you run a quick scan on all other ships that are taking off. You see no sign of the Esca. Maybe it's already waiting for you at Umbral.`
 	on enter "Umbral"
+		unmark "Umbral"
 		"reputation: Independent (Killable)" = -1000
 		conversation
+			branch "killed anglerfish"
+				has "anglerfish dead"
+			branch "disabled anglerfish"
+				has "anglerfish disabled"
+			branch "caught anglerfish"
+				has "anglerfish caught"
 			`When you enter Umbral, you continue to see no sign of the Esca. Suddenly, an alarm rings out as your sensors detect that a pirate Vanguard has entered the system alongside you. Before you can respond, your ship intercepts a hail, and it opens communication.`
 			`	The voice of the alleged captain of the Esca shouts out towards you. "Ho ho ho! Did you really think that I was the leader of the militia? Well, considering that you're here, I suppose you did. And now you'll pay for your mistake! Don't bother trying to call for help either, the militia don't patrol this system!"`
 			`	The Vanguard powers up its weapons.`
+				decline
+			label "killed anglerfish"
+			`You enter Umbral, but see no sign of the Esca, as the "captain of the Esca" was killed. You should head back to Wayfarer to see if you can claim some sort of reward.`
+				decline
+			label "disabled anglerfish"
+			`You enter Umbral, but see no sign of the Esca, as the "captain of the Esca" was on the ship you disabled. You should head back to make sure the Anglerfish has been fully destroyed.`
+				decline
+			label "caught anglerfish"
+			action
+				clear "anglerfish caught"
+			`As you enter Umbral, the Anglerfish follows behind you, and opens a hail.`
+			`	"Did you think that if you went to Umbral, I would switch to a smaller ship? Ha!"`
+			`	The Anglerfish once again powers up its weapons.`
+				decline
 	
 	npc kill
 		government "Independent (Killable)"
 		personality heroic vindictive unconstrained launching
 			confusion 20
 		ship "Vanguard (Plasma Slow)" "Anglerfish"
-		dialog `The Anglerfish and the "captain of the Esca" have been destroyed. You consider going back to Wayfarer to see if you can grab some sort of reward for your effort.`
+		on provoke
+			unmark "Umbral"
+			"reputation: Independent (Killable)" = -1000
+			set "anglerfish caught"
+			conversation
+				`As soon as you open fire, the Anglerfish hails you.`
+				`	A voice you recognize as the "captain of the Esca" says, "How did you know that was me? Well, it doesn't matter, because I've paid off the militia. Get ready to die, small-fry."`
+				`	The Anglerfish powers up its weapons.`
+					decline
+		on disable
+			set "anglerfish disabled"
+		on kill
+			clear "anglerfish disabled"
+			set "anglerfish dead"
+			conversation
+				branch "orbiting tarazed"
+					has "flagship system: Tarazed"
+				branch "passed tarazed"
+					not "anglerfish caught"
+				`The Anglerfish and the "captain of the Esca" have been destroyed. You should continue on to Wayfarer to see if you can claim some sort of reward for your effort.`
+					decline
+				label "passed tarazed"
+				`The Anglerfish and the "captain of the Esca" have been destroyed. You should head back to Wayfarer to see if you can claim some sort of reward for your effort.`
+					decline
+				label "orbiting tarazed"
+				`The Anglerfish and the "captain of the Esca" have been destroyed. You should land on Wayfarer to see if you can claim some sort of reward for your effort.`
 	
 	on complete
 		"reputation: Independent (Killable)" = 10
