@@ -402,7 +402,7 @@ trade
 		"plastic pellets"
 		"plastic welding rods"
 		"plastic wrap"
-		"plumber's pipe"
+		"plumber's pipes"
 		"polyethylene"
 		"polymerizing agents"
 		"polystyrene foam"
