@@ -2547,7 +2547,21 @@ ship "Leviathan" "Leviathan (Laser)"
 	turret "Heavy Laser Turret"
 	turret "Heavy Anti-Missile Turret"
 	turret "Heavy Laser Turret"
-	
+
+
+ship "Leviathan" "Leviathan (Plasma)"
+	outfits
+		"Impala Plasma Steering"
+		"Impala Plasma Thruster"
+		"Breeder Reactor"
+		"Plasma Cannon" 4
+		"Plasma Turret" 4
+		"Hyperdrive"
+		"Liquid Nitrogen Cooler"
+		"Laser Rifle" 25
+		"Nerve Gas" 10
+		"D67-TM Shield Generator" 2
+
 
 ship "Leviathan" "Leviathan (Plasma Repeater)"
 	outfits
