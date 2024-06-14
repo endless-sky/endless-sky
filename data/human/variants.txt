@@ -1705,7 +1705,7 @@ ship "Falcon" "Falcon (Flamethrower)"
 		"Flamethrower" 4
 		"Quad Blaster Turret" 2
 		"Heavy Anti-Missile Turret" 2
-		"X3700 Ion Thrusters"
+		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
 		"Hyperdrive"
 		"D67-TM Shield Generator" 2
@@ -1748,9 +1748,10 @@ ship "Falcon" "Falcon (Javelin)"
 ship "Finch" "Finch (Flames)"
 	outfits
 		"X1050 Ion Engines"
-		"Flamethrower" 3
+		"Flamethrower" 2
 		"Fuel Pod" 5
 		"nGVF-BB Fuel Cell"
+		"Supercapacitor"
 
 
 
@@ -2578,10 +2579,9 @@ ship "Leviathan" "Leviathan (Laser)"
 
 ship "Leviathan" "Leviathan (Plasma)"
 	outfits
-		"Impala Plasma Steering"
-		"Impala Plasma Thruster"
+		"Orca Plasma Steering"
+		"Orca Plasma Thruster"
 		"Breeder Reactor"
-		"Plasma Cannon" 4
 		"Plasma Turret" 4
 		"Hyperdrive"
 		"Liquid Nitrogen Cooler"
