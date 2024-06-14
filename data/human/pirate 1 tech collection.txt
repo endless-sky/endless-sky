@@ -1,17 +1,12 @@
-mission "Engine Collection"
-	minor
+mission "SoPi 1: Engine Collection"
+	priority
 		name "Gathering the Tech"
-	description "Return to the Northern Pirate space and lay hands on <engines> from the Northern Pirates, then return to Greenlock for GaSan and the other pirate leaders to investigate and equip"
-	source
-		attributes "south pirate"
-		not attributes "ccor"
-		not planet "Greenrock"
+	description "Return to the Northern Pirate space and lay hands on <engines> from the Northern Pirates, then return to Greenrock for GaSan and the other pirate leaders to investigate and try out."
+	source Greenrock
 	destination "Greenrock"
 	mark "Almaaz"
 	to offer
-		random < 60
-		has "outfit (flagship installed): Jump Drive"	
-		has launch
+		has "SoPi 0: Scanning: done"
 	on offer
 mission "Weapons Collection"
 	minor

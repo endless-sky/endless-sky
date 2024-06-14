@@ -1,4 +1,4 @@
-mission "Pirates 0"
+mission "SoPi 0: Scanning"
 	minor
 	name "Scan the Northies"
 	description "Go up to Northern Pirate space and scan some of the ships there. Then come back to <destination> for your reward of <payment>."
