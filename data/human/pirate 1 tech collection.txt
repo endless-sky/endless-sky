@@ -1,1 +1,47 @@
-mission "Technology Collection"
+mission "Engine Collection"
+	minor
+		name "Gathering the Tech"
+	description "Return to the Northern Pirate space and lay hands on <engines> from the Northern Pirates, then return to Greenlock for GaSan and the other pirate leaders to investigate and equip"
+	source
+		attributes "south pirate"
+		not attributes "ccor"
+		not planet "Greenrock"
+	destination "Greenrock"
+	mark "Almaaz"
+	to offer
+		random < 60
+		has "outfit (flagship installed): Jump Drive"	
+		has launch
+	on offer
+mission "Weapons Collection"
+	minor
+		name "Gathering the Tech"
+	description "Return to the Northern Pirate space and lay hands on <weapons> from the Northern Pirates, then return to Greenlock for GaSan and the other pirate leaders to investigate and equip"
+	source
+		attributes "south pirate"
+		not attributes "ccor"
+		not planet "Greenrock"
+	destination "Greenrock"
+	mark "Almaaz"
+	to offer
+		random < 60
+		has "outfit (flagship installed): Jump Drive"	
+		has launch
+	on offer
+
+mission "Shield Collection"
+	minor
+		name "Gathering the Tech"
+	description "Return to the Northern Pirate space and lay hands on <> from the Northern Pirates, then return to Greenlock for GaSan and the other pirate leaders to investigate and equip"
+	source
+		attributes "south pirate"
+		not attributes "ccor"
+		not planet "Greenrock"
+	destination "Greenrock"
+	mark "Almaaz"
+	to offer
+		random < 60
+		has "outfit (flagship installed): Jump Drive"	
+		has launch
+	on offer
+		
