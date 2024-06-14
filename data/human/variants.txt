@@ -1745,6 +1745,15 @@ ship "Falcon" "Falcon (Javelin)"
 
 
 
+ship "Finch" "Finch (Flames)"
+	outfits
+		"X1050 Ion Engines"
+		"Flamethrower" 3
+		"Fuel Pod" 5
+		"nGVF-BB Fuel Cell"
+
+
+
 ship "Firebird" "Firebird (Hai Shields)"
 	outfits
 		"Plasma Cannon" 4
