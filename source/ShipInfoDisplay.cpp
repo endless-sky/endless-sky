@@ -238,6 +238,9 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	attributeValues.push_back(Format::Number(ship.RequiredCrew())
 		+ " / " + Format::Number(attributes.Get("bunks")));
 	attributesHeight += 20;
+	attributeLabels.push_back("cargo efficiency:");
+	attributeValues.push_back(Format::Number(attributes.Get("cargo space") / ship.RequiredCrew()));
+	attributesHeight += 20;
 	attributeLabels.push_back(isGeneric ? "fuel capacity:" : "fuel:");
 	double fuelCapacity = attributes.Get("fuel capacity");
 	if(isGeneric)
