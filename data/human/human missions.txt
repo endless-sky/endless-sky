@@ -8546,7 +8546,7 @@ mission "Timothy Radrickson 5c: Dancer"
 			label suit2
 			action
 				set "suit2"
-			`	You loop back to where the well-crafted survial suits hang. The price is still 300,000 credits.`
+			`	You loop back to where the well-crafted survival suits hang. The price is still 300,000 credits.`
 			choice
 				`	(Purchase a survival suit for Tim.)`
 					goto getsuit
@@ -8769,8 +8769,8 @@ mission "Timothy Radrickson 5d: Greenrock"
 			
 			label haggle
 			`	The proprietor's eyes dart back and forth, and then he nods vigorously.`
-			`	"Of course. Of course. Given it's... condition. It only makes sense that a discerning privateer such as yourself get a discount."`
-			`	But, uh, if anyone asks about where you got this suit from. Given the obscene value you're getting from me, do me the favor of not disclosing where you got it. I wouldn't want anyone thinking they could get a deal like this."`
+			`	"Of course. Of course. Given its... condition. It only makes sense that a discerning privateer such as yourself get a discount."`
+			`	"But, uh, if anyone asks about where you got this suit from. Given the obscene value you're getting from me, do me the favor of not disclosing where you got it. I wouldn't want anyone thinking they could get a deal like this."`
 			`	He gives a nervous yet earnest smile.`
 			choice
 				`	(Offer 20,000 for the suit.)`
@@ -8839,7 +8839,7 @@ mission "Timothy Radrickson 5d: Greenrock"
 			action
 				set "med1"
 			`	There are many stalls loudly advertising all kinds of illegal drugs, and it takes some work to sift through them until you come across one selling legal drugs as well. The man running it is sallow and pock-marked, but his eyes are keen. He almost hisses as he greets you.`
-			`	"Whatever you need, wherever you're going. I have you covered."`
+			`	"Whatever you need, wherever you're going, I have you covered."`
 			choice
 				`	(Ask about detoxification medicine for Oblivion.)`
 					goto askdrugs
@@ -8900,7 +8900,7 @@ mission "Timothy Radrickson 5e: Back to Oblivion"
 		"timothy radrickson preparedness" = "timothy radrickson	medicine" + "timothy radrickson suit" + "timothy radrickson id"
 		conversation
 			`Your ship touches down beneath Oblivion's toxic ammonia-blue sky. Night or day, there is a constant flurry of workers loading, unloading, building, and expanding the ever growing boom-town of Tukayyid. You unload all of Timothy's gear onto a dolly and push it out into the busy street.`
-			`	Your presence goes unnoticed among the general ruckus and you're able to slip into the off-loading warehouses unseen. You find Timothy there, leaning over a pile of hose hookups, breathing heavily. His blood red eyes rise to meet yours, and despite their bloody, milky gloss, a glimmer of hope burns within them.`
+			`	Your presence goes unnoticed among the general ruckus and you're able to slip into the off-loading warehouses unseen. You find Timothy there, leaning over a pile of hose hookups, breathing heavily. His blood-red eyes rise to meet yours, and despite their milky gloss, a glimmer of hope burns within them.`
 			`	"You did it?" His words more strained than the last time you spoke. "You got the gear?"`
 			`	He looks down at your dolly expectantly.`
 			choice
@@ -8951,7 +8951,7 @@ mission "Timothy Radrickson 6: News of Death"
 		conversation
 			`A spaceport is a symphony of smells, sounds, and images in constant motion. Somewhere in the din, a news report is playing, and a familiar name leaps out at you. Your attention piqued, you turn to watch.`
 			`	"News out of Oblivion today. A minor explosion has the claimed the life of Timothy Radrickson, former disgraced Governor of Rand. Sentenced to prison-labor on Oblivion, a hard but fair justice for a man who..."`
-			`	The news broadcast continues to blare, but you aren't able to follow anymore than that.`
+			`	The news broadcast continues to blare, but you aren't able to follow any more than that.`
 				decline
 
 
@@ -8967,7 +8967,7 @@ mission "Timothy Radrickson 7: Monk"
 	on offer
 		conversation
 			`A group of monks passes you by in the spaceport, and one stops to look at you curiously.`
-			`	"Are you Captain <last>?" They ask.`
+			`	"Are you Captain <last>?" they ask.`
 			choice
 				`	"Why?"`
 					goto why
@@ -8993,7 +8993,7 @@ mission "Timothy Radrickson 7: Monk"
 
 			label whyyes
 			`	The monk beams. "Wonderful. It'll be a bit of a hike, but the views are worth it."`
-			`	He leads you into the mountains beyond the spaceport. You travel up various narrow passes and steep cliff sides. It's a difficult trail, but the scenery is remarkable. Your views are filled with broken mountains, jagged rocks, green vibrant life, and distant valleys.`
+			`	He leads you into the mountains beyond the spaceport. You travel up various narrow passes and steep cliff sides. It's a difficult trail, but the scenery is remarkable. Your views are filled with broken mountains, jagged rocks, vibrant green life, and distant valleys.`
 			`	After several arduous hours, you clear a peak, and discover a vast stone building waiting for you. "We have arrived," the guide says almost anticlimactically. Perhaps the fact he lives here makes it less grand to him than it ought to be.`
 			`	Your guide leaves you outside the entrance, and disappears within for a few minutes before returning with another monk.`
 			`	The new monk looks at you with an open, serene expression, that quickly breaks into a wide grin. Although much about his face has changed, whether from wear or surgery, you recognize that grin.`
@@ -9044,7 +9044,7 @@ mission "Timothy Radrickson 7: Monk"
 			action
 				clear "salary: Hero of Rand"
 				clear "offers"
-			`	As you speak Timothy shakes his head slowly, tears streaming down his face. Finally, as you finish, he wraps his arms around you in an earnest heartfelt hug.`
+			`	As you speak Timothy shakes his head slowly, tears streaming down his face. Finally, as you finish, he wraps his arms around you in an earnest, heartfelt hug.`
 			`	He tries to speak, but his voice fails him. Instead he just shakes his teary-eyed head at you and gives you a deep solemn bow.`
 			`	Timothy stays to watch as you begin your slow descent down the mountain, and back to civilization.`
 			decline
@@ -9146,7 +9146,7 @@ mission "Timothy Radrickson 7: Hospice"
 			`	"Always." He manages to whisper through phlegm and weakened lungs as you turn to leave, "always you."`
 			`	You leave him bedridden in the hospital, and to your surprise find your guide waiting for you outside the room.`
 			`	"His is a tough case. Perhaps one day he will recover enough to leave this place." The monk pauses, thoughtfully. "Or perhaps not."`
-			`	He leads you back to the train station, and from there you take brief journey back to New Tibet's spaceport.`
+			`	He leads you back to the train station, and from there you take the brief journey back to New Tibet's spaceport.`
 				decline
 
 
@@ -9180,12 +9180,12 @@ mission "Timothy Radrickson 7: Grave"
 					goto search
 				`	(Leave.)`
 
-			`	You've seen all you wanted to see of this place, and leave this unloved graveyard to its forlorn dead.`
+			`	You've seen all you wanted to see of this place, and you leave this unloved graveyard to its forlorn dead.`
 				decline
 
 			label search
-			`	The index is easy to find, and has all the hallmarks of having never been used. The graveyard is set up in a carefully regimented grid system and despite the large number of graves, it is surprisingly easy finding Timothy's.`
-			`	You walk across the forgotten memorial to find a small, flat unremarkable stone, hemmed in amongst other unremarkable stones, pressed into the dead ground. The text laser-chiseled onto it reads, "Timothy Radrickson. Prisoner - 645631-4C"`
+			`	The index is easy to find, and has all the hallmarks of having never been used. The graveyard is set up in a carefully regimented grid system and despite the large number of graves, it is surprisingly easy to find Timothy's.`
+			`	You walk across the forgotten memorial to find a small, flat unremarkable stone, hemmed in amongst other unremarkable stones, pressed into the dead ground. The text laser-chiseled onto it reads, "Timothy Radrickson. Prisoner - 645631-4C."`
 			`	That's all. Nothing about his meteoric rise, about being the Governor of Rand, or even how or when his death occurred here. Just another dead prisoner.`
 			choice
 				`	(Stay a while and contemplate.)`
@@ -9221,7 +9221,7 @@ mission "Timothy Radrickson 7: Grave"
 			label rise
 			action
 				set "rise"
-			`	Despite starting with nothing, Timothy had somehow become the powerful and well respected governor of an entire world. He made way own way on Rand and became its civic ruler, but he also didn't forget your small gift. He invited you to a lavish celebration and named you the Hero of Rand.`
+			`	Despite starting with nothing, Timothy had somehow become the powerful and well respected governor of an entire world. He made his own way on Rand and became its civic ruler, but he also didn't forget your small gift. He invited you to a lavish celebration and named you the Hero of Rand.`
 			`	You recall his office wall covered in newspaper clippings of your own exploits, of how Timothy had quietly followed and cheered along your own career. And then there were the toasts, the speeches, and the rest of the dazzling night you spent as the most important person on Rand.`
 			`	Who knows how high Timothy could have climbed, who he could have been, had he not been sent to Oblivion.`
 				goto stayawhile
