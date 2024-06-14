@@ -1403,7 +1403,7 @@ void MapPanel::DrawSystems()
 			// Count the number of occurences of each government.
 			// Exclude ones that are uninhabited, unexplored, or aren't their true color
 			if(node.government && node.isInhabited && node.color == GovernmentColor(node.government))
-				GovermnentCounts[node.government]++;
+				GovernmentCounts[node.government]++;
 		}
 	}
 }
