@@ -1,3 +1,16 @@
+# Copyright (c) 2024 by ProNooberEX
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
 mission "SoPi 0: Scanning"
 	minor
 	name "Scan the Northies"
@@ -11,7 +24,7 @@ mission "SoPi 0: Scanning"
 	mark "Almaaz"
 	to offer
 		random < 60
-		has "outfit (flagship installed): Jump Drive"	
+		has "outfit (flagship installed): Jump Drive"
 	on offer
 		conversation
 			`As you walk into the spaceport, you suddenly get dived into by someone on the left. At the same time, a knife flies by where your head just was.`
@@ -20,7 +33,7 @@ mission "SoPi 0: Scanning"
 					goto question1
 				`	(Run back to <ship> and fly far away.)`
 					flee
-				`       (Try to catch the knife between two of your fingers John Wick style.)`
+				`	(Try to catch the knife between two of your fingers John Wick style.)`
 					goto mistake
 			label mistake
 				`	Well, that was a mistake. Another knife comes flying towards you, pinning your baggy overcoat to the wall.`
@@ -55,18 +68,18 @@ mission "SoPi 0: Scanning"
 			`	(Gingerly shake his hand.)`
 				goto converse0
 			label converse0
-			`	"I'll get to the tip of the blade real fast..." GaSan says, twirling one of his knifes in his other free hand while hauling you up from the floor "My superiors have assigned me to scout in the Northern Pirate Regions, I don't know what’s in their brains but a journey there is a hell of a ride." His face contorts into disdain for just a second before regaining a smug smile. "However, a life of a new brat around would never rival mine, so..." His gaze meets yours while his smile widens, revealing two rows of golden teeth like a tiger in the process of chomping his prey. "Better get going, <first>."`
+			`	"I'll get to the tip of the blade real fast..." GaSan says, twirling one of his knives in his free hand while hauling you up from the floor. "My superiors have assigned me to scout in the Northern Pirate Regions, I don't know what's in their brains but a journey there is a hell of a ride." His face contorts into disdain for just a second before regaining a smug smile. "However, a life of a new brat around would never rival mine, so..." His gaze meets yours while his smile widens, revealing two rows of golden teeth like a tiger in the process of chomping his prey. "Better get going, <first>."`
 			choice
 			`	(Silently backpedal away from him and run to your ship, taking off.)`
 				goto converse1
 			label converse1
-			`	 As the airlock of your ship closes, you hear his loud, boomerang voice slipping in, "If you know who I am you had better finish the job good, or else-" the line cuts off as the airlock hisses shut. Feeling the leftover sensation of cold blade metal on your neck and GaSan's temper, you probably need to go to get things done as required.`
+			`	As the airlock of your ship closes, you hear his loud, boomerang voice slipping in, "If you know who I am you had better finish the job good, or else-" the line cuts off as the airlock hisses shut. Feeling the leftover sensation of cold blade metal on your neck and GaSan's temper, you probably need to go to get things done as required.`
 				launch
 		npc "scan outfits"
-fleet "Large Northern Pirates"
-				government "Pirate"
-				personality heroic secretive staying
-				system "Arneb" "Hatysa" "Alnilam" "Almaaz" "Unagi"
+			fleet "Large Northern Pirates"
+			government "Pirate"
+			personality heroic secretive staying
+			system "Arneb" "Hatysa" "Alnilam" "Almaaz" "Unagi"
 			on kill
 				dialog `Carl GaSan probably would have preferred you didn't kill these...`
 			on "scan outfits"
