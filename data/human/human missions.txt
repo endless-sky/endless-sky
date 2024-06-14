@@ -7840,7 +7840,7 @@ mission "Timothy Radrickson 3c: Escort the Convoy"
 				`	"You do your job. I'll do mine."`
 
 			`	Hrodny grins. "Great. We weren't too keen on stickin' around these parts anyhow."`
-			`	She looks back at her ships, whistles, and points toward the ships. They turn and run toward them, preparing them for takeoff. She then looks back at you. "Ya know, those pirates parked us right in the middle of their treasure trove. It'd be rude not take advantage of their hospitality." You notice the loaders behind Hrodny whirring around and moving all sorts of goods into the ships, while a number of crew are draining the base's deuterium tanks and filling up the ships inside.`
+			`	She looks back at her ships, whistles, and points toward the ships. A group of Haulers turn and run toward them, preparing them for takeoff. She then looks back at you. "Ya know, those pirates parked us right in the middle of their treasure trove. It'd be rude not take advantage of their hospitality." You notice the loaders behind Hrodny whirring around and moving all sorts of goods into the ships, while a number of crew are draining the base's deuterium tanks and filling up the ships inside.`
 			`	"Hazard pay," Hrodny says, winking at you. "You head back your ship, and by the time you get there we'll be ready to launch. We'll follow ya out."`
 			`	She gives you a final mock salute and then turns and jogs toward her ships. There's nothing for you to do but head back toward yours.`
 
