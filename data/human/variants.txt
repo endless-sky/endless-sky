@@ -1628,6 +1628,7 @@ ship "Falcon" "Falcon (Prisoner Transport)"
 		"Hyperdrive"
 		"Brig"
 
+
 ship "Falcon" "Falcon (Laser)"
 	outfits
 		"Heavy Laser" 4
@@ -1658,6 +1659,7 @@ ship "Falcon" "Falcon (Plasma)"
 		"Impala Plasma Steering"
 		"Hyperdrive"
 
+
 ship "Falcon" "Falcon (Laser Chaser)"
 	outfits
 		"Outfits Expansion" 2
@@ -1673,6 +1675,7 @@ ship "Falcon" "Falcon (Laser Chaser)"
 		"LP036a Battery Pack"
 		"Heavy Laser" 4
 		"Armageddon Core"
+
 
 ship "Falcon" "Falcon (Tractor Beam)"
 	outfits
@@ -1696,6 +1699,22 @@ ship "Falcon" "Falcon (Tractor Beam)"
 	turret "Tractor Beam"
 	turret "Quad Blaster Turret"
 	turret "Quad Blaster Turret"
+
+
+ship "Falcon" "Falcon (Flamethrower)"
+	outfits
+		"Flamethrower" 4
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret" 2
+		"X3700 Ion Thrusters"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+		"D67-TM Shield Generator" 2
+	turret "Heavy Anti-Missile Turret"
+	turret "Heavy Anti-Missile Turret"
+	turret "Quad Blaster Turret"
+	turret "Quad Blaster Turret"
+
 
 ship "Falcon" "Falcon (Javelin)"
 	outfits
