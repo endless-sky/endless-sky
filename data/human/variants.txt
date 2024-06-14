@@ -2579,7 +2579,7 @@ ship "Leviathan" "Leviathan (Laser)"
 
 ship "Leviathan" "Leviathan (Plasma)"
 	outfits
-		"Orca Plasma Steering"
+		"Impala Plasma Steering"
 		"Orca Plasma Thruster"
 		"Breeder Reactor"
 		"Plasma Turret" 4
