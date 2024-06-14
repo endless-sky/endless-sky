@@ -7595,7 +7595,7 @@ mission "Timothy Radrickson 3a: Rescue the Convoy"
 		has "Timothy Radrickson 3: Invitation to Rand: done"
 	on offer
 		conversation
-			`Regina, her driver, and a black sleek vehicle are all waiting for you outside the worn down and substandard spaceport. You slide into the comfortable seating and look out the window as the dry, ugly landscape of Rand passes you by. From time to time you see a strip mine or a camp of workers' barracks, but rarely anything else. Behind your vehicle there is a huge plume of half-frozen dust. Apparently low gravity and dust is a terrible combination.`
+			`Regina, her driver, and a sleek black vehicle are all waiting for you outside the worn down and substandard spaceport. You slide into the comfortable seating and look out the window as the dry, ugly landscape of Rand passes you by. From time to time you see a strip mine or a camp of workers' barracks, but rarely anything else. Behind your vehicle there is a huge plume of half-frozen dust. Apparently low gravity and dust is a terrible combination.`
 			`	After an hour of driving you notice the landscape suddenly shift. The first tendrils of greenery invades the otherwise brown-yellow desert. Upon closer inspection, the green plants are accompanied by all manner of technology to help and promote their growth. Money, it seems, is turning just a little bit of this parched place green.`
 			`	Beyond the suddenly green hills sits a huge sprawling complex. You recognize a few massive structures outside the building as artificial gravity drives; the same sort of drives ships use to maintain gravity onboard, but for an entire estate.`
 			choice
@@ -7620,11 +7620,11 @@ mission "Timothy Radrickson 3a: Rescue the Convoy"
 				`	(Enter the room.)`
 
 			`	You enter a large richly furnished room. At the center of the room is an imposing desk, with a slightly graying man seated behind it. There is something immediately familiar about his face.`
-			`	"Ah, Captain <last>. At last we can meet face to face, and I can thank you properly." The Governor stands. "You may not remember me, it has been some years since you last laid eyes on me, and," the governor gestures to himself, "I looked quite different back then."`
+			`	"Ah, Captain <last>. At last we can meet face to face, and I can thank you properly." The Governor stands. "You may not remember me, for it has been some years since you last laid eyes on me, and," the governor gestures to himself, "I looked quite different back then."`
 			`	"I was a stowaway on your ship. You found me in a food crate, and you took me here. I'm Timothy Radrickson, Governor Timothy Radrickson now."`
 			`	Timothy sits back down and indicates that you should do the same. "It took me some time. But through some good decisions, and quite a bit of luck, I've been able to claw my way to a level of respectability and wealth. I've really been able to make something of myself."`
 			`	His face opens up into a large grin. "Then again, compared to what you've done in all this time, my successes hardly register. Still, as meager as they may be, I owe it all to you and your kind gesture. Which is why I've invited you here, to thank you and pay you back properly."`
-			`	Timothy taps a display on his desk. "First, I am trasnfering 125,000 credits to your account to pay you back for the crate of food, the fuel, and the additional expenses of taking care of me on your ship; plus interest, of course."`
+			`	Timothy taps a display on his desk. "First, I am transferring 125,000 credits to your account to pay you back for the crate of food, the fuel, and the additional expenses of taking care of me on your ship; plus interest, of course."`
 			choice
 				`	(Accept the money.)`
 					goto moneyaccept
@@ -7645,7 +7645,7 @@ mission "Timothy Radrickson 3a: Rescue the Convoy"
 			`	His eyes refocus on you. "You'd be proud, <first>. I am going to make a real difference here..."`
 			`	Timothy is suddenly interrupted by an incessant notification coming from his desk. He glowers and says, "Excuse me for a moment, <last>," sits up straight, turns on his ear piece and answers the call.`
 			`	"What?!" He nearly shouts after ten seconds of listening, followed by "How can that be?" and finally, "What about the Navy or the militias, where are they!?" His face goes from red to white as the color drains out of him, and he finishes the call with a few unhappy "uh huhs" before finally hanging up.`
-			`	"Nevermind." He rubs his forehead and closes his eyes before saying, "Rand's future is gone. It's just been hijacked by marauders."`
+			`	"Never mind." He rubs his forehead and closes his eyes before saying, "Rand's future is gone. It's just been hijacked by marauders."`
 			`	He stands up and starts pacing around the room. "I'm sorry. We're going to have to cut this reunion short. Our freighter fleet, filled to the brim with all of Rand's mineral wealth, has been taken. To make matters worse, in order to make this shipment happen I had to hire a private outfit from the Deep, and neither the Navy nor the Free Worlds militias are going to intervene on their behalf. Which means this entire world, and myself, are finished."`
 			`	He collapses back in his chair with his head in his hands. "I'm sorry. There will be a car waiting for you at the entrance."`
 			choice
@@ -7830,7 +7830,7 @@ mission "Timothy Radrickson 3c: Escort the Convoy"
 			label inside
 			`	A moment passes before it says, "We're just pulling your leg, <last>. We can see your tracking beacon reflecting our own, so we know it's you. Come on in." The turrets promptly depower and you gently put your ship down through the blast doors.`
 			`	Inside the bay's walls you can make out the moored and apparently intact freighter fleet. The ships are surrounded by various loaders, but they appear to have been abandoned before they could begin the process of offloading the goods. The pirates must have all raced to their ships when you entered the system.`
-			`	As you exit your ship a woman wearing a captain's hat approaches you and then flashes a reluctant smile at you. "Name's Hrodny, Capt'n Hrodny of Hroar's Haulers. You probably heard Alan on the radio," she says, flicking her eyes to the control room.`
+			`	As you exit your ship a woman wearing a captain's hat approaches you and then flashes a reluctant smile at you. "Name's Hrodny. Capt'n Hrodny of Hroar's Haulers. You probably heard Alan on the radio," she says, flicking her eyes to the control room.`
 			`	"Well, thanks for the distraction. Once you got the fleet out of here we overpowered what little detail they kept here and took control of the turrets." She looks around to the blast doors where the depowered turrets once guarded. "Been waitin' for the right moment to move outta this place."`
 			`	Hrodny turns her piercing green eyes back on you. "We got 'em in here easy, but we can't fight past whatever is out there. I'm presuming you're not just a lost mercenary and are in fact our cavalry?"`
 			choice
