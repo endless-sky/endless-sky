@@ -7693,17 +7693,17 @@ mission "Ice Queen 2"
 		conversation
 			`Pushing through the boomtown hustle and bustle, you and Ildico make your way to a series of kiosks, booths, and hastily constructed offices that serve a variety of needs and functions in the ever-growing world of Clark.`
 			`	Among these you find the offices of "Clark's Third Law Terraformists." Ildico steps in front of you and enters first.`
-			`	An older man with greying hair and a bit of a paunch looks up from his desk. He stands up genially as both of you approach and says, "Howdy friends, I am Eustice Goodfellow, and welcome to our cozy establishment. Do you have need of a little terraforming?" Eustice flashes a wide open smile.`
+			`	An older man with greying hair and a bit of a paunch looks up from his desk. He stands up genially as both of you approach and says, "Howdy friends, I am Eustace Goodfellow, and welcome to our cozy establishment. Do you have need of a little terraforming?" Eustace flashes a wide open smile.`
 			`	"Yes. I'd like to terraform the planet Hope." Ildico says flatly.`
-			`	"Well, uh, ma'am. We don't, that is to say, we're not that kind of terraforming firm. We do small jobs. Touch ups. We can't.. we can't terraform a world, and I don't..." Eustice looks at both of you carefully before saying, "I don't think you could pay for it either."`
-			`	Ildico leaps over the desk and grabs Eustice by his collar. "Is that what you told my father, Lord of House Drifa? Did you send him away like some misbegotten pauper?"`
-			`	Eustice pales and holds out his hands. "Please, let me go. I meant no insult."`
+			`	"Well, uh, ma'am. We don't, that is to say, we're not that kind of terraforming firm. We do small jobs. Touch ups. We can't.. we can't terraform a world, and I don't..." Eustace looks at both of you carefully before saying, "I don't think you could pay for it either."`
+			`	Ildico leaps over the desk and grabs Eustace by his collar. "Is that what you told my father, Lord of House Drifa? Did you send him away like some misbegotten pauper?"`
+			`	Eustace pales and holds out his hands. "Please, let me go. I meant no insult."`
 			choice
 				`	(Don't interfere.)`
 				`	(Tell Ildico to calm down.)`
 			`	Ildico releases his collar, but remains only inches from his face. "Did Deoric Drifa come here years ago asking to terraform Hope?"`
-			`	Eustice takes a step back, and nods vigorously. "Yes, yes. I remember him. You don't forget a man like him, or a request like his. He asked about terraforming Hope. As I said earlier, we aren't that kind of firm. I told him he'd have to talk to the Academy of Planetary Sciences on <planet> for that kinda work. And then he left.`
-			`	"Please." Eustice says, backing up further. "That's all I know about him. I never saw him again."`
+			`	Eustace takes a step back, and nods vigorously. "Yes, yes. I remember him. You don't forget a man like him, or a request like his. He asked about terraforming Hope. As I said earlier, we aren't that kind of firm. I told him he'd have to talk to the Academy of Planetary Sciences on <planet> for that kinda work. And then he left.`
+			`	"Please." Eustace says, backing up further. "That's all I know about him. I never saw him again."`
 			`	Ildico stares at him for a few more moments, and then turns and passes you on her way to the exit.`
 			`	She opens the door and nods to you. "We're going to <planet>."`
 				accept
