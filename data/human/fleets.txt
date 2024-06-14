@@ -10,36 +10,7 @@
 #
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
-fleet "Quarg Jumpers"
-	government "Quarg"
-	names "Quarg"
-	cargo 3
-	commodities "Food" "Clothing" "Plastic" "Medical"
-	personality
-		heroic secretive
-	variant 1
-		"Quarg Skylark" 1
-		"Quarg Wardragon" 3
-fleet "Quarg Hunters"
-	government "Quarg"
-	names "Quarg"
-	cargo 2
-	commodities "Food" "Clothing" "Plastic" "Medical"
-	personality
-		nemesis secretive
-	variant 1
-		"Quarg Skylark" 4
-		"Quarg Wardragon" 6
-fleet "Quarg Planetary Defense"
-	government "Quarg"
-	names "Quarg"
-	cargo 2
-	commodities "Food" "Clothing" "Plastic" "Medical"
-	personality
-		nemesis secretive
-	variant 1
-		"Quarg Skylark" 3
-		"Quarg Wardragon" 4
+
 fleet "Raiding Fleet"
 	government "Pirate"
 	names "pirate"
