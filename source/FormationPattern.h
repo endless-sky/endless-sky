@@ -60,8 +60,10 @@ public:
 		// The pattern for which we are calculating positions.
 		const FormationPattern &pattern;
 
-		// The location in the pattern.
+		// The iteration of the (repeating) pattern we are processing.
+		// Most formationpatterns grow from the inside to the outside.
 		unsigned int ring = 0;
+		// The line (or point, or arc) in the pattern that we are processing.
 		unsigned int line = 0;
 		// The active repeat-section on the line or arc. (Lines or arcs can have more than 1 repeat section)
 		unsigned int repeat = 0;
