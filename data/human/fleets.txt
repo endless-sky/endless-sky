@@ -61,8 +61,6 @@ fleet "Scan Fleet"
 	cargo 1
 	outfits "Quarg Skylance" "Heavy Laser Turret" "Quadblaster Turret" "Heavy Anti Missile Turret" "Torpedo Launcher" 
 	commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
-	personality
-		appeasing disables plunders
 	variant 1
 		"Leviathan" 2
 		"Falcon" 3
