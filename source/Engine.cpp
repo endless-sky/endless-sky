@@ -1115,11 +1115,10 @@ void Engine::Draw() const
 
 	for(const auto &outline : outlines)
 	{
-		if(outline.sprite)
-		{
-			Point size(outline.sprite->Width(), outline.sprite->Height());
-			OutlineShader::Draw(outline.sprite, outline.position, size, outline.color, outline.unit, outline.frame);
-		}
+		if(!outline.sprite)
+			continue;
+		Point size(outline.sprite->Width(), outline.sprite->Height());
+		OutlineShader::Draw(outline.sprite, outline.position, size, outline.color, outline.unit, outline.frame);
 	}
 
 	if(flash)
