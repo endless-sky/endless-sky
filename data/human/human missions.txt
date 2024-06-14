@@ -7428,7 +7428,7 @@ mission "Stone to Hope"
 	destination "Hope"
 	on offer
 		conversation
-			`There is a certain comfort to be found in the familiar swaying of Norn's spaceport. The creaking bridges no longer feel intimidating or threatening, only welcoming. There's never much staff here, but the few you do run into greet you warmly. Word has apparently spread that you've all but been adopted into the Hlewagasti family.`
+			`There is a certain comfort to be found in the familiar swaying of Norn's spaceport. The creaking bridges no longer feel intimidating or threatening, only welcoming. There's never many staff here, but the few you do run into greet you warmly. Word has apparently spread that you've all but been adopted into the Hlewagasti family.`
 			`	Helm, with his sandy hair and short beard, approaches you with a young man in tow. "<first>! It's well to see you again.`
 			`	"So..." he says conspiratorially, "... there is no date yet, but a certain red haired stoic and his exotic Alfheimian girlfriend may be looking at wedding dates."`
 			choice
@@ -7461,7 +7461,7 @@ mission "Stone to Hope"
 				`	(Wait for him to get the point.)`
 					goto finish
 				`	"Leave me alone. I'm not interested."`
-			`	Cresfallen, the young man stumbles over his words attempting to apologize for the intrusion and slinks away from you in an ungraceful hurry.`
+			`	Crestfallen, the young man stumbles over his words attempting to apologize for the intrusion and slinks away from you in an ungraceful hurry.`
 			`	Helm watches him go with an unhappy frown upon his face. "You could have at least heard him out."`
 			`	He shakes his head and turns from you before saying, "I thought better of you."`
 				decline
@@ -7480,7 +7480,7 @@ mission "Stone to Hope"
 
 			label hopeno
 			`	Helm sighs and tries to pat the young man on the back before he entirely deflates in shame.	"Captain <last> is a very busy man. I am sure we can find someone else to make the journey. There is no shame in asking for help."`
-			`	Tosti is red and shaking and mumbles some apologies before slinking away from you and Helm.`
+			`	Tosti is red and shaking, and mumbles some apologies before slinking away from you and Helm.`
 			`	Helm gives you a nod and says, "Thanks for listening, at least."`
 				decline
 
@@ -7607,7 +7607,7 @@ conversation "Ice Queen"
 		`	"Are you okay?"`
 		`	"What are you doing here?"`
 
-	`	The woman has short jet black hair. She's wearing a military grade, all-purpose survival suit. The kind you might see on deeply embedded special forces. The only weapon on her is a decorated knife at her belt. She looks pale, and frail, probably malnourished. But her icy eyes are clear, and she locks them onto you.`
+	`	The woman has short jet black hair. She's wearing a military grade, all-purpose survival suit, which is the kind you might see on deeply embedded special forces. The only weapon on her is a decorated knife at her belt. She looks pale, and frail, probably malnourished. But her icy eyes are clear, and she locks them onto you.`
 	`	"You come into my home, and expect me to answer your questions?" Her voice is steady.`
 	`	Slowly, awkwardly, she pulls herself to her feet, keeping one hand on the counter for balance. She rests her other hand over her knife.`
 	`	"You are lucky that you did not barge in here a year ago, or even a month ago." Despite her bravdo there is a deep wariness behind her words. "Now tell me, who are you, and what are you doing here?" she says, through gritted teeth.`
@@ -7618,12 +7618,12 @@ conversation "Ice Queen"
 		`	(Tell her who you are, and how you were just out exploring.)`
 
 	`	The woman nods slowly, and then painfully, slides back down to the ground.`
-	`	Her eyes fall to the floor. "I have no choice, but to trust you. I have lived here all my life, but my equipment has failed. I never wanted to leave, I was never meant to leave, but I won't let the ice win. I won't let it take me, too."`
+	`	Her eyes fall to the floor. "I have no choice but to trust you. I have lived here all my life, but my equipment has failed. I never wanted to leave, I was never meant to leave, but I won't let the ice win. I won't let it take me, too."`
 	`	She looks back up at you with her piercing eyes. "I am Ildico, last of House Drifa, daughter of Deoric, once one of the most powerful men on Hope. Everyone fled the ice. The Republic Navy made it easy. Enter their ships and be shipped off to paradise, to live as nobodies at the sufferance of strangers.`
 	`	"But we were House Drifa. More than anyone else we built this world, and we would not abandon it to be someone else's dredges. My father bought supplies, equipment, necessities from the Navy. Enough so that me, my brother, and my mother could survive here."`
 	`	She pauses, as though unsure she wants to continue; then finally, in a less firm voice: "And then my father left. He said that dozens of worlds, worse off than ours, were terraformed every day. He said all they needed was a little convincing, and that he would come back with the support to terraform, and save, Hope. And then... he never came back."`
 	`	Ildico sighs. "A treasure hunter killed my brother a few years back. My mother... she is also dead, and I am starving. I have no way to contact anyone else, and no one else is left."`
-	`	"So, what do you say." She leans her head back, clearly exhausted by this exchange, and closes her eyes. "Will you kill me? Take advantage of me? Save me? Or leave me... to die."`
+	`	"So, what do you say," she says while leaning her head back, clearly exhausted by this exchange. "Will you kill me? Take advantage of me? Save me? Or leave me... to die?"`
 	choice
 		`	"Come with me. It's time you gave up on Hope."`
 			goto comewithme
@@ -7661,7 +7661,7 @@ conversation "Ice Queen"
 		set "helpildico"
 	`	Ildico doesn't react for a moment, seemingly taking in your words.`
 	`	At length she nods slowly. "We'll see."`
-	`	She pauses again and then shrugs. "It's not like I have anything to lose... Very well. I need to discover what happened to my father. I know he first went to Clark to meet with a terraforming firm there. That's where I start my search."`
+	`	She pauses again and then shrugs. "It's not like I have anything to lose... very well. I need to discover what happened to my father. I know he first went to Clark to meet with a terraforming firm there. That's where I start my search."`
 		launch
 
 conversation "Ice Queen End"
