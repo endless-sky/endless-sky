@@ -3063,7 +3063,13 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 		hullDelay = max(hullDelay, static_cast<int>(attributes.Get("disabled repair delay")));
 	}
 	if(!wasDestroyed && IsDestroyed())
+	{
 		type |= ShipEvent::DESTROY;
+
+		if(IsYours() && Preferences::Has("Extra fleet status messages"))
+			Messages::Add("Your " + DisplayModelName() +
+				" \"" + Name() + "\" has been destroyed.", Messages::Importance::Highest);
+	}
 
 	// Inflicted heat damage may also disable a ship, but does not trigger a "DISABLE" event.
 	if(heat > MaximumHeat())
@@ -3730,10 +3736,6 @@ int Ship::StepDestroyed(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flot
 	// Once we've created enough little explosions, die.
 	if(explosionCount == explosionTotal || forget)
 	{
-		if(IsYours() && Preferences::Has("Extra fleet status messages"))
-			Messages::Add("Your " + DisplayModelName() +
-				" \"" + Name() + "\" has been destroyed.", Messages::Importance::Highest);
-
 		if(!forget)
 		{
 			const Effect *effect = GameData::Effects().Get("smoke");
