@@ -1959,9 +1959,9 @@ void Engine::HandleKeyboardInputs()
 	activeCommands |= keyHeld.And(Command::PRIMARY | Command::SECONDARY | Command::SCAN |
 		maneuveringCommands | Command::SHIFT | Command::MOUSE_TURNING_HOLD);
 
-	// Certain commands (e.g. LAND, BOARD) are debounced, allowing the player to toggle between
-	// navigable destinations in the system.
-	static const Command debouncedCommands = Command::LAND | Command::BOARD;
+	// Certain commands (e.g. BOARD) are debounced, allowing the player to toggle between navigable
+	// destinations in the system.
+	static const Command debouncedCommands = Command::BOARD;
 	constexpr int keyCooldown = 60;
 	++keyInterval;
 	if(oldHeld.Has(debouncedCommands))
