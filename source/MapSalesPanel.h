@@ -68,8 +68,8 @@ protected:
 	void DrawInfo() const;
 
 	bool DrawHeader(Point &corner, const std::string &category);
-	void DrawSprite(const Point &corner, const Sprite *sprite, int swizzle) const;
-	void Draw(Point &corner, const Sprite *sprite, int swizzle, bool isForSale, bool isSelected,
+	void DrawSprite(const Point &corner, const Sprite *sprite, int swizzle, int frame = 0) const;
+	void Draw(Point &corner, const Sprite *sprite, int swizzle, int frame, bool isForSale, bool isSelected,
 		const std::string &name, const std::string &price, const std::string &info,
 		const std::string &storage = "");
 

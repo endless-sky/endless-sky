@@ -189,6 +189,10 @@ outfit "Jump Drive"
 	category "Systems"
 	cost 1000000
 	thumbnail "outfit/jump drive"
+	"thumbnail sprite" "outfit/jump drive"
+		"frame rate" 6
+		"random start frame"
+		scale .5
 	"mass" 20
 	"outfit space" -20
 	"jump speed" .3

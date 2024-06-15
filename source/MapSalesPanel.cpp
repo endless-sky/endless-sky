@@ -346,7 +346,7 @@ bool MapSalesPanel::DrawHeader(Point &corner, const string &category)
 
 
 
-void MapSalesPanel::DrawSprite(const Point &corner, const Sprite *sprite, int swizzle) const
+void MapSalesPanel::DrawSprite(const Point &corner, const Sprite *sprite, int swizzle, int frame) const
 {
 	if(sprite)
 	{
@@ -356,15 +356,15 @@ void MapSalesPanel::DrawSprite(const Point &corner, const Sprite *sprite, int sw
 		// No swizzle was specified, so default to the player swizzle.
 		if(swizzle == -1)
 			swizzle = GameData::PlayerGovernment()->GetSwizzle();
-		SpriteShader::Draw(sprite, corner + iconOffset, scale, swizzle);
+		SpriteShader::Draw(sprite, corner + iconOffset, scale, swizzle, frame);
 	}
 }
 
 
 
-void MapSalesPanel::Draw(Point &corner, const Sprite *sprite, int swizzle, bool isForSale,
-		bool isSelected, const string &name, const string &price, const string &info,
-		const std::string &storage)
+void MapSalesPanel::Draw(Point &corner, const Sprite *sprite, int swizzle, int frame,
+		bool isForSale, bool isSelected, const string &name, const string &price,
+		const string &info, const std::string &storage)
 {
 	const Font &font = FontSet::Get(14);
 	const Color &selectionColor = *GameData::Colors().Get("item selected");
@@ -384,7 +384,7 @@ void MapSalesPanel::Draw(Point &corner, const Sprite *sprite, int swizzle, bool 
 		if(isSelected)
 			FillShader::Fill(corner + .5 * blockSize, blockSize, selectionColor);
 
-		DrawSprite(corner, sprite, swizzle);
+		DrawSprite(corner, sprite, swizzle, frame);
 
 		const Color &mediumColor = *GameData::Colors().Get("medium");
 		const Color &dimColor = *GameData::Colors().Get("dim");

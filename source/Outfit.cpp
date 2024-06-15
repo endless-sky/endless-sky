@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <cmath>
 #include <cstring>
+#include <iostream>
 
 using namespace std;
 
@@ -266,6 +267,12 @@ void Outfit::Load(const DataNode &node)
 			flotsamSprite = SpriteSet::Get(child.Token(1));
 		else if(child.Token(0) == "thumbnail" && child.Size() >= 2)
 			thumbnail = SpriteSet::Get(child.Token(1));
+		else if(child.Token(0) == "thumbnail sprite")
+		{
+			thumbnailSprites.emplace_back(Body());
+			thumbnailSprites.back().LoadSprite(child);
+			cerr << "loaded jump drive sprites" << endl;
+		}
 		else if(child.Token(0) == "weapon")
 			LoadWeapon(child);
 		else if(child.Token(0) == "ammo" && child.Size() >= 2)
@@ -455,6 +462,15 @@ const vector<string> &Outfit::Licenses() const
 const Sprite *Outfit::Thumbnail() const
 {
 	return thumbnail;
+}
+
+
+
+// Get the image to display in the outfitter when buying this item.
+const Sprite *Outfit::ThumbnailSprite() const
+{
+	const Body body = thumbnailSprites.back();
+	return nullptr;//thumbnailSprites.back().GetSprite();
 }
 
 
