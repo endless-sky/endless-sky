@@ -4140,15 +4140,15 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 		// If the player has selected a planet in this system, cycle from there.
 		const StellarObject *target = ship.GetTargetStellar();
 		auto landIt = find(landables.cbegin(), landables.cend(), target);
-		if (landIt == landables.cend())
+		if(landIt == landables.cend())
 			landIt = landables.cbegin(); // No, so pick first planet.
 		else if(++landIt == landables.cend())
 			landIt = landables.cbegin();
-		
+
 		string message;
 		Messages::Importance messageImportance = Messages::Importance::High;
-		
-		if (landIt == landables.cend())
+
+		if(landIt == landables.cend())
 		{
 			message = "There are no planets in this system that you can land on.";
 			messageImportance = Messages::Importance::Highest;
