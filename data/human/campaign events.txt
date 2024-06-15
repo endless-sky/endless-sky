@@ -2500,8 +2500,10 @@ event "pug territory liberated"
 		fleet "Large Syndicate" 2000
 	planet "Pugglemug"
 		remove attributes
+		"bribe" 0.01
 	planet "Pugglequat"
 		remove attributes
+		"bribe" 0.01
 	planet "Rand"
 		security 0.05
 		tribute 500
