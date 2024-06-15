@@ -373,7 +373,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 				isFastForward = false;
 
 			// Tell all the panels to step forward, then draw them.
-			((menuPanels.IsEmpty()) ? gamePanels : menuPanels).StepAll();
+			(menuPanels.IsEmpty() ? gamePanels : menuPanels).StepAll();
 
 			// Caps lock slows the frame rate in debug mode.
 			// Slowing eases in and out over a couple of frames.
