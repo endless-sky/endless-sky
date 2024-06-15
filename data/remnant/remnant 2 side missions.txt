@@ -715,7 +715,7 @@ mission "Remnant: Will Not Someone Please Think Of The Children"
 	minor
 	landing
 	name "Sympathy For The Korath"
-	description "Travel to the <waypoints> system to disable a stranded Kas'lor Ik 582. Do not destroy or capture the ship, as it likely has a large civilian population."
+	description "Travel to the <waypoints> system to disable a stranded Dathnak A'awoj. Do not destroy or capture the ship, as it likely has a large civilian population."
 	source
 		government "Remnant"
 	waypoint "Vaticanus"
@@ -730,7 +730,7 @@ mission "Remnant: Will Not Someone Please Think Of The Children"
 	on offer
 		conversation
 			`You step out of your airlock to find Prefect Chilia waiting for you with a worried look on his face. "Captain <first>, I have a sensitive request for you.`
-			`	"Our scouts are reporting a stranded Korath ship in Vaticanus, a Kas'lor Ik 582 to be precise. If it were a typical warship obstructing our operations, we would request you track it down and eliminate it, but because ships of this type tend to be home to a large civilian population, destroying or capturing it outright may instigate a reprisal, especially in that sector.`
+			`	"Our scouts are reporting a stranded Korath ship in Vaticanus, a Dathnak A'awoj to be precise. If it were a typical warship obstructing our operations, we would request you track it down and eliminate it, but because ships of this type tend to be home to a large civilian population, destroying or capturing it outright may instigate a reprisal, especially in that sector.`
 			`	"Would you be up for disabling it, so the threat is eliminated while preserving the lives of the innocents on board?" His signs shift from a questioning tone to a confident one. "After you are done we can disarm the ship and fix their jump drive. If they adhere to their typical doctrine they should decide to head back home."`
 			choice
 				`	"Happy to help those in need, even the Korath."`
@@ -761,7 +761,7 @@ mission "Remnant: Will Not Someone Please Think Of The Children"
 		dialog `The Remnant are puzzled at your aborting of this mission, but they tell you they will send someone else to do this work. They warn you they will not propose any more of the sort to you again.`
 	on fail
 		"reputation: Remnant" -= 250
-		dialog `You were unable to disable the Kas'lor Ik 582 without destroying it... The Remnant will not be pleased...`
+		dialog `You were unable to disable the Dathnak A'awoj without destroying it... The Remnant will not be pleased...`
 	on complete
 		"remnant: disable and save count" ++
 		payment 2500000
