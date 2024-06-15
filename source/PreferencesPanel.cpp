@@ -505,6 +505,7 @@ void PreferencesPanel::DrawControls()
 		Command::INFO,
 		Command::FULLSCREEN,
 		Command::FASTFORWARD,
+		Command::PAUSE,
 		Command::HELP,
 		Command::MESSAGE_LOG
 	};

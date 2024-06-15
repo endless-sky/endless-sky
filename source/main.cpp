@@ -292,8 +292,13 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 			if(event.type == SDL_MOUSEMOTION)
 				cursorTime = 0;
 
-			if(debugMode && event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_BACKQUOTE)
+			if(event.type == SDL_KEYDOWN && !event.key.repeat
+					&& (Command(event.key.keysym.sym).Has(Command::PAUSE)))
+			{
 				isPaused = !isPaused;
+				MainPanel *mainPanel = static_cast<MainPanel *>(gamePanels.Root().get());
+				mainPanel->GetEngine().SetTimePaused(isPaused);
+			}
 			else if(event.type == SDL_KEYDOWN && menuPanels.IsEmpty()
 					&& Command(event.key.keysym.sym).Has(Command::MENU)
 					&& !gamePanels.IsEmpty() && gamePanels.Top()->IsInterruptible())
@@ -368,7 +373,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 				isFastForward = false;
 
 			// Tell all the panels to step forward, then draw them.
-			((!isPaused && menuPanels.IsEmpty()) ? gamePanels : menuPanels).StepAll();
+			((menuPanels.IsEmpty()) ? gamePanels : menuPanels).StepAll();
 
 			// Caps lock slows the frame rate in debug mode.
 			// Slowing eases in and out over a couple of frames.
@@ -401,7 +406,9 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 			// Events in this frame may have cleared out the menu, in which case
 			// we should draw the game panels instead:
 			(menuPanels.IsEmpty() ? gamePanels : menuPanels).DrawAll();
-			if(isFastForward)
+			if (isPaused)
+				SpriteShader::Draw(SpriteSet::Get("ui/paused"), Screen::TopLeft() + Point(10., 10.));
+			else if(isFastForward)
 				SpriteShader::Draw(SpriteSet::Get("ui/fast forward"), Screen::TopLeft() + Point(10., 10.));
 
 			GameWindow::Step();
