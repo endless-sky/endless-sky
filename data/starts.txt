@@ -119,7 +119,7 @@ conversation "hai intro"
 		`	"Sold!"`
 		`	"Sorry, not interested. I'll go to the shipyard instead."`
 			goto shipyard
-	`	As the two of you settle up the paperwork, the captain takes the time to explain, in great detail, why this ship is so marvelous. In your excitement to buy the ship, all you can hear from the Hai captain's speech is the repeated reference to the Grasshopper's 'exceptional' reinforced armor.`
+	`	As the two of you settle up the paperwork, the captain takes the time to explain, in great detail, why this ship is so marvelous. In your excitement to buy the ship, all you can hear from the Hai captain's speech is how good of a deal you're making for this price.`
 	action
 		set "hai space start: Grasshopper"
 		give ship "Grasshopper (Hai Start)" "Pristine Jewel"
@@ -131,10 +131,7 @@ conversation "hai intro"
 
 
 # This ship uses the most expensive loadout possible so its sell price is roughly equal to the buy price.
-# It also has a small hull buff to help the player survive.
 ship "Grasshopper" "Grasshopper (Hai Start)"
-	add attributes
-		"hull" 400
 	outfits
 		`"Benga" Atomic Thruster`
 		`"Biroo" Atomic Steering`
