@@ -154,11 +154,6 @@ License: public-domain
  From NASA, and therefore in the public domain because they were created by
  government employees while doing work for the government.
 
-Files:
- images/ui/paused*
-Copyright: David Stark (zarkonnen@gmail.com)
-License: CC-BY-SA-4.0
-
 
 
 Files:
@@ -3547,6 +3542,13 @@ Files:
 Copyright: NASA
 License: public-domain
  Derived from works by NASA/JPL-Caltech/Malin Space Science Systems.
+
+Files:
+ images/ui/paused*
+Copyright: David Stark (zarkonnen@gmail.com)
+License: CC-BY-SA-4.0
+
+
 
 License: Depends
  Taken from unsplash.com. Until June 2017, this was a collection of photographs that had been donated and
