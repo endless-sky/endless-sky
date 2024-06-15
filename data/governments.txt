@@ -1116,6 +1116,7 @@ government "Pug"
 		"Quarg (Hai)" -.01
 		"Quarg (Kor Efret)" -.01
 		"Quarg (Gegno)" -.01
+	"bribe" 0
 	"friendly hail" "friendly pug"
 	"friendly disabled hail" "friendly disabled pug"
 	"hostile hail" "hostile pug"
@@ -1134,6 +1135,7 @@ government "Pug (Wanderer)"
 		"Quarg (Hai)" -.01
 		"Quarg (Kor Efret)" -.01
 		"Quarg (Gegno)" -.01
+	"bribe" 0
 	"friendly hail" "friendly pug"
 	"friendly disabled hail" "friendly disabled pug"
 	"hostile hail" "hostile pug"
