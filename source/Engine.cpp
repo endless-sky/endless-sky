@@ -1031,7 +1031,7 @@ void Engine::Step(bool isActive)
 // Begin the next step of calculations.
 void Engine::Go()
 {
-	if (!timePaused)
+	if(!timePaused)
 		++step;
 	currentCalcBuffer = currentCalcBuffer ? 0 : 1;
 	queue.Run([this] { CalculateStep(); });
@@ -1457,7 +1457,7 @@ void Engine::CalculateStep()
 	const Ship *flagship = player.Flagship();
 	const System *playerSystem = player.GetSystem();
 
-	if (timePaused)
+	if(timePaused)
 	{
 		// Only process player commands and handle mouse clicks.
 		ai.MovePlayer(*player.Flagship(), activeCommands);
@@ -1482,7 +1482,6 @@ void Engine::CalculateStep()
 				object.GetPlanet()->DeployDefense(newShips);
 
 		// Keep track of the flagship to see if it jumps or enters a wormhole this turn.
-		
 		bool flagshipWasUntargetable = (flagship && !flagship->IsTargetable());
 		bool wasHyperspacing = (flagship && flagship->IsEnteringHyperspace());
 		// First, move the player's flagship.
@@ -1654,7 +1653,7 @@ void Engine::CalculateStep()
 			if(ship.get() != flagship)
 			{
 				DrawShipSprites(*ship);
-				if (!timePaused)
+				if(!timePaused)
 				{
 					if(ship->IsThrusting() && !ship->EnginePoints().empty())
 					{
@@ -1680,7 +1679,7 @@ void Engine::CalculateStep()
 	if(flagship && showFlagship)
 	{
 		DrawShipSprites(*flagship);
-		if (!timePaused)
+		if(!timePaused)
 		{
 			if(flagship->IsThrusting() && !flagship->EnginePoints().empty())
 			{

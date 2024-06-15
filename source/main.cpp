@@ -406,7 +406,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 			// Events in this frame may have cleared out the menu, in which case
 			// we should draw the game panels instead:
 			(menuPanels.IsEmpty() ? gamePanels : menuPanels).DrawAll();
-			if (isPaused)
+			if(isPaused)
 				SpriteShader::Draw(SpriteSet::Get("ui/paused"), Screen::TopLeft() + Point(10., 10.));
 			else if(isFastForward)
 				SpriteShader::Draw(SpriteSet::Get("ui/fast forward"), Screen::TopLeft() + Point(10., 10.));
