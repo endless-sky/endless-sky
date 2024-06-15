@@ -382,13 +382,19 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 			}
 			else
 			{
-				if(frameRate < 60)
+				int targetFrameRate = !isFastForward && Preferences::Has("Half speed") ? 30 : 60;
+				if(frameRate < targetFrameRate)
 				{
-					frameRate = min(frameRate + 5, 60);
+					frameRate = min(frameRate + 5, targetFrameRate);
+					timer.SetFrameRate(frameRate);
+				}
+				else if(frameRate > targetFrameRate)
+				{
+					frameRate = max(frameRate - 5, targetFrameRate);
 					timer.SetFrameRate(frameRate);
 				}
 
-				if(isFastForward && inFlight)
+				if(inFlight && isFastForward && !Preferences::Has("Half speed"))
 				{
 					skipFrame = (skipFrame + 1) % 3;
 					if(skipFrame)
@@ -401,7 +407,9 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 			// Events in this frame may have cleared out the menu, in which case
 			// we should draw the game panels instead:
 			(menuPanels.IsEmpty() ? gamePanels : menuPanels).DrawAll();
-			if(isFastForward)
+			if (Preferences::Has("Half speed") && !isFastForward)
+				SpriteShader::Draw(SpriteSet::Get("ui/half speed"), Screen::TopLeft() + Point(10., 10.));
+			else if (!Preferences::Has("Half speed") && isFastForward)
 				SpriteShader::Draw(SpriteSet::Get("ui/fast forward"), Screen::TopLeft() + Point(10., 10.));
 
 			GameWindow::Step();
