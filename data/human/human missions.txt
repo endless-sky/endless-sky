@@ -8087,7 +8087,7 @@ mission "Skadenga: Blood of Surtr"
 
 			label who
 			`	The Ondurdis steps away from the group and takes you aside, leaving Aldfrith to continue talking with them.`
-			`	"They from Alfheim. They say their culture and world dying and they look for new home before old one gone." She pats your arm gently.`
+			`	"They are from Alfheim. They say their culture and world dying and they look for new home before old one gone." She pats your arm gently.`
 			`	"Word spreads of Hrithfjell and in some corners of Deep old ways still remembered. So they come." Her eyes gleam, "We are like fire on glacier. All see, all come. For warmth, for happiness, for life."`
 			`	"But, <first>, you have not come all this way to talk with old woman. What brings you here?"`
 
