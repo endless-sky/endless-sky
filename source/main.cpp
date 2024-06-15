@@ -293,7 +293,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 				cursorTime = 0;
 
 			if(event.type == SDL_KEYDOWN && !event.key.repeat
-					&& (Command(event.key.keysym.sym).Has(Command::PAUSE)))
+					&& Command(event.key.keysym.sym).Has(Command::PAUSE))
 			{
 				isPaused = !isPaused;
 				MainPanel *mainPanel = static_cast<MainPanel *>(gamePanels.Root().get());
