@@ -696,4 +696,4 @@ mission "Remnant: Disable 1"
 	on complete
 		"remnant: disable and save count" ++
 		payment 2000000
-		dialog "A Remnant military prefect thanks you for disabling down the Dathnak A'awoj <npc>, and gives you the agreed-upon logistics adjustment of <payment>."
+		dialog "A Remnant military prefect thanks you for disabling the Dathnak A'awoj <npc>, and gives you the agreed-upon logistics adjustment of <payment>."
