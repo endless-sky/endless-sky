@@ -3155,8 +3155,10 @@ event "fwc pug defeated"
 		government "Republic"
 	planet "Pugglemug"
 		remove attributes
+		"bribe" 0
 	planet "Pugglequat"
 		remove attributes
+		"bribe" 0
 	planet "Shiver"
 		security 0.1
 		tribute 300
