@@ -8153,7 +8153,7 @@ mission "Stone to Hope: Thanks"
 			label threw
 			`	Helm stops what's he doing and looks up at you searchingly. "Best keep that to yourself, then. You of all people should know that folks around here take stone-bearing pretty seriously."`
 			`	He sighs, "Still, better than not being on Hope at all, I suppose. As for Tosti, he's out on the seas. Got himself a job working on a fishing trawler. It'd likely be a few years before he'll call to port here again."`
-			`	He turns and looks out over Norn's endless oceans," I'll have a message sent to him so he knows he can rest easy. I'll of course leave out the part about you tossing the stone. No reason to give him grief."`
+			`	He turns and looks out over Norn's endless oceans. "I'll have a message sent to him so he knows he can rest easy. I'll of course leave out the part about you tossing the stone. No reason to give him grief."`
 			`	He returns to wrestling with the rope but continues, "There's no money or reward, but a good deed is it's own reward, isn't it?"`
 			`	"At least that's what I believe." He says more to himself than to you.`
 				decline
