@@ -407,9 +407,9 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 			// Events in this frame may have cleared out the menu, in which case
 			// we should draw the game panels instead:
 			(menuPanels.IsEmpty() ? gamePanels : menuPanels).DrawAll();
-			if (Preferences::Has("Half speed") && !isFastForward)
+			if(Preferences::Has("Half speed") && !isFastForward)
 				SpriteShader::Draw(SpriteSet::Get("ui/half speed"), Screen::TopLeft() + Point(10., 10.));
-			else if (!Preferences::Has("Half speed") && isFastForward)
+			else if(!Preferences::Has("Half speed") && isFastForward)
 				SpriteShader::Draw(SpriteSet::Get("ui/fast forward"), Screen::TopLeft() + Point(10., 10.));
 
 			GameWindow::Step();
