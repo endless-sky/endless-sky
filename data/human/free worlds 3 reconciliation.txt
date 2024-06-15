@@ -1040,7 +1040,7 @@ mission "FW Pug 2"
 	passengers 1
 	blocked `As you are landing, Alondo contacts you and asks, "Do you have a bunk free for me?" You do not, so you will need to free one up in order to continue this mission.`
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the storyline, revert to the autosave or another earlier snapshot of the game.`
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		log "The Syndicate may be cutting off the hyperspace links that join their territory to the rest of human space, in order to escape being punished for their crimes. People are worried that they will try to take over even more territory, including Earth itself."
@@ -1110,7 +1110,7 @@ mission "FW Pug 2A"
 					goto no
 				`	"Did the Syndicate communicate anything to you before the links were cut that might help us guess at their intentions?"`
 			
-			`	One of the members of Parliament says, "It's all terribly confusing. Our sources in Syndicate space were reporting massive fleet movements just before it happened. We also heard rumors of Syndicate fleets fighting each other in some sort of internal power struggle."`
+			`	One of the members of Parliament says, "It's all terribly confusing. Our sources in Syndicate space were reporting massive fleet movements just before it happened. We also heard rumors of Syndicate fleets fighting each other. Some sort of internal power struggle."`
 			`	Another man speaks up and adds, "We had also been aware for some time that the Syndicate had gained access to alien technology, through encounters with a nomadic alien species currently inhabiting the galactic core. They may have found a way to use that technology to alter the links." From the surprised expressions on the faces of many of the other members of Parliament, it's clear that this information is new to them.`
 			choice
 				`	"Very well, we will accept this mission."`
@@ -1123,7 +1123,7 @@ mission "FW Pug 2A"
 			`	"Very well," you say, "I accept. But I'm afraid of what will happen when we reach Syndicate space."`
 			
 			label yes
-			`	Parliament thanks you for your willingness to serve, and you and Alondo hurry back to your ship. "There's no telling how long the link will remain open," he says. "So we must hurry to the Syndicate headquarters on <planet> immediately."`
+			`	Parliament thanks you for your willingness to serve, and you and Alondo hurry back to your ship. "There's no telling how long the link will remain open," he says. "So; we must hurry to the Syndicate headquarters on <planet> immediately."`
 				accept
 	on enter
 		system
