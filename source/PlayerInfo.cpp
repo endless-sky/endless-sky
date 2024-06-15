@@ -1381,6 +1381,7 @@ void PlayerInfo::SetShipOrder(const vector<shared_ptr<Ship>> &newOrder)
 			}
 			
 		}
+		flagshi.reset();
 	}
 	else
 		throw runtime_error("Cannot reorder ships because the new order does not contain the same ships");
