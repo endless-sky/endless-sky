@@ -7728,7 +7728,7 @@ mission "Ice Queen 3"
 		conversation
 			`The Academy of Planetary Sciences is a campus the size of a small nation-state on Earth. Various artificially created and maintained microclimates abound as you travel between miniature mountains and micro-savannahs; between marshland and jungle, desert and forest. Impossible machines - some larger than skyscrapers - litter the twisted and ever-changing landscape, and terraforming satellites make meteor showers overhead in the dawn light. This is a place where anything is possible, and land bends eagerly to the whims of the terraforming wizards.`
 			`	Eventually, Ildico and you make it to the primary reception complex, where after hours of filling out inane forms, and waiting in different meaningless queues, you finally reach someone who can help you. An old visitor list shows that one Deoric Drifa had visited a Professor Ian McGiven, Second Degree Terraformer and World Warming specialist in JZ86 Cantos-B of Cooling Block 9 in the Everest Facility.`
-			`	The receptionist helpfully draws you a map to where you're going. She also lets you know that in order to visit him you'll need to fill out six other forums first. You get to work.`
+			`	The receptionist helpfully draws you a map to where you're going. She also lets you know that in order to visit him you'll need to fill out six other forms first. You get to work.`
 			choice
 				`	(Fill out the forms.)`
 
