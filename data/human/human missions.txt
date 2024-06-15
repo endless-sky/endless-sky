@@ -7451,7 +7451,7 @@ mission "Stone to Hope"
 			`	Helm frowns and takes a step back like he's been struck. After a moment he regains his composure and replies, "If you say so. In that case I have another matter to discuss with you."`
 
 			label hopestone
-			`	Standing beside Helm is a young, unremarkable man with a sunburnt face, calloused hands, and threadbare garb. "Ca-Captain <last>?" he says nervously, "I'm sorry to be a bothering you, ser. But I heard tell what you did for Thorleif, and I thought maybe you were the like to do a good turn by me."`
+			`	Standing beside Helm is an unremarkable young man with a sunburnt face, calloused hands, and threadbare garb. "Ca-Captain <last>?" he says nervously, "I'm sorry to be a bothering you, ser. But I heard tell what you did for Thorleif, and I thought maybe you were the like to do a good turn by me."`
 			`	Sensing his discomfort Helm puts an arm on the young man's shoulder. "It's alright, Tosti, we're all friends on Norn."`
 			`	The young man staightens up a bit at Helm's reassurance and looks you in the eyes. "My da, well, he liked the waves well enough, but never really settled here, you see? In his heart that is.`
 			`	"He never really left our old home. We were refugees and were ever so glad to be taken in by Norn, but he never felt so tall as when he thought about Hope, about home."`
