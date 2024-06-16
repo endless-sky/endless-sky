@@ -64,7 +64,7 @@ public:
 	const std::vector<std::string> &Licenses() const;
 	// Get the image to display in the outfitter when buying this item.
 	const Sprite *Thumbnail() const;
-	const Sprite *ThumbnailSprite() const;
+	const Body &ThumbnailBody() const;
 
 	double Get(const char *attribute) const;
 	double Get(const std::string &attribute) const;
@@ -121,7 +121,7 @@ private:
 	int index;
 	std::string description;
 	const Sprite *thumbnail = nullptr;
-	std::vector<Body> thumbnailSprites;
+	Body thumbnailBody;
 	int64_t cost = 0;
 	double mass = 0.;
 	// Licenses needed to purchase this item.

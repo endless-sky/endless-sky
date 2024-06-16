@@ -269,9 +269,9 @@ void Outfit::Load(const DataNode &node)
 			thumbnail = SpriteSet::Get(child.Token(1));
 		else if(child.Token(0) == "thumbnail sprite")
 		{
-			thumbnailSprites.emplace_back(Body());
-			thumbnailSprites.back().LoadSprite(child);
-			cerr << "loaded jump drive sprites" << endl;
+			thumbnailBody = Body();
+			thumbnailBody.LoadSprite(child);
+			cerr << "loaded jump drive sprites: " << &thumbnailBody << endl;
 		}
 		else if(child.Token(0) == "weapon")
 			LoadWeapon(child);
@@ -467,10 +467,9 @@ const Sprite *Outfit::Thumbnail() const
 
 
 // Get the image to display in the outfitter when buying this item.
-const Sprite *Outfit::ThumbnailSprite() const
+const Body &Outfit::ThumbnailBody() const
 {
-	const Body body = thumbnailSprites.back();
-	return nullptr;//thumbnailSprites.back().GetSprite();
+	return thumbnailBody;
 }
 
 

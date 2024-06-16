@@ -261,11 +261,9 @@ void MapOutfitterPanel::DrawItems()
 				? "1 unit in storage"
 				: Format::Number(storedInSystem) + " units in storage";
 
-			const Sprite *thumbnailSprite = outfit->ThumbnailSprite();
-			const Sprite *sprite = thumbnailSprite ? outfit->Thumbnail() : thumbnailSprite;
-			if(outfit->DisplayName() == "Jump Drive")
-				cerr << (thumbnailSprite ? "rendering new sprite" : "rendering old thumbnail") << endl;
-			int frame = 0;
+			const Sprite *thumbnailSprite = outfit->ThumbnailBody().GetSprite();
+			const Sprite *sprite = thumbnailSprite ? thumbnailSprite : outfit->Thumbnail();
+			int frame = outfit->ThumbnailBody().GetFrame();
 			Draw(corner, sprite, 0, frame, isForSale, outfit == selected,
 				outfit->DisplayName(), price, info, storage_details);
 			list.push_back(outfit);

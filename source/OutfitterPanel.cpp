@@ -39,6 +39,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "UI.h"
 
 #include <algorithm>
+#include <iostream>
 #include <limits>
 #include <memory>
 
@@ -99,6 +100,8 @@ OutfitterPanel::OutfitterPanel(PlayerInfo &player)
 
 void OutfitterPanel::Step()
 {
+	step++;
+
 	CheckRefill();
 	ShopPanel::Step();
 	ShopPanel::CheckForMissions(Mission::OUTFITTER);
@@ -829,11 +832,13 @@ bool OutfitterPanel::ShipCanSell(const Ship *ship, const Outfit *outfit)
 
 void OutfitterPanel::DrawOutfit(const Outfit &outfit, const Point &center, bool isSelected, bool isOwned)
 {
-	const Sprite *thumbnail = outfit.Thumbnail();
+	const Body body = outfit.ThumbnailBody();
+	const bool isAnimated = body.GetSprite() != nullptr;
+	const Sprite *thumbnail = isAnimated ? body.GetSprite() : outfit.Thumbnail();
 	const Sprite *back = SpriteSet::Get(
 		isSelected ? "ui/outfitter selected" : "ui/outfitter unselected");
 	SpriteShader::Draw(back, center);
-	SpriteShader::Draw(thumbnail, center);
+	SpriteShader::Draw(thumbnail, center, 1.f, 0, isAnimated ? (step / 5) % thumbnail->Frames() : 0.f);
 
 	// Draw the outfit name.
 	const string &name = outfit.DisplayName();
