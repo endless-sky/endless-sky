@@ -16,8 +16,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef PARTIALLY_GUARDED_H_
 #define PARTIALLY_GUARDED_H_
 
-#include <mutex>
 #include <list>
+#include <mutex>
 
 // A list and vector that guards against concurrent emplace_back calls, and nothing else. Use with caution.
 // For most purposes, this can be treated and passed around like any std::list or std::vector,
