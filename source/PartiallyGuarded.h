@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef PARTIALLY_GUARDED_H_
 #define PARTIALLY_GUARDED_H_
 
+#include <list>
 #include <mutex>
 
 // A list and vector that guards against concurrent emplace_back calls, and nothing else. Use with caution.
