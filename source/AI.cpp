@@ -242,43 +242,7 @@ namespace {
 		return fuel < route.RequiredFuel();
 	}
 
-	// Set the ship's TargetStellar or TargetSystem in order to reach the
-	// next desired system. Will target a landable planet to refuel.
-	void SelectRoute(Ship &ship, const System *targetSystem)
-	{
-		const System *from = ship.GetSystem();
-		if(from == targetSystem || !targetSystem)
-			return;
-		const RoutePlan route(ship, *targetSystem);
-		if(ShouldRefuel(ship, route))
-		{
-			// There is at least one planet that can refuel the ship.
-			ship.SetTargetStellar(AI::FindLandingLocation(ship));
-			return;
-		}
-		const System *nextSystem = route.FirstStep();
-		// The destination may be accessible by both jump and wormhole.
-		// Prefer wormhole travel in these cases, to conserve fuel.
-		if(nextSystem)
-			for(const StellarObject &object : from->Objects())
-			{
-				if(!object.HasSprite() || !object.HasValidPlanet())
-					continue;
 
-				const Planet &planet = *object.GetPlanet();
-				if(planet.IsWormhole() && planet.IsAccessible(&ship)
-						&& &planet.GetWormhole()->WormholeDestination(*from) == nextSystem)
-				{
-					ship.SetTargetStellar(&object);
-					ship.SetTargetSystem(nullptr);
-					return;
-				}
-			}
-		// Either there is no viable wormhole route to this system, or
-		// the target system cannot be reached.
-		ship.SetTargetSystem(nextSystem);
-		ship.SetTargetStellar(nullptr);
-	}
 
 	// The health remaining before becoming disabled, at which fighters and
 	// other ships consider retreating from battle.
@@ -1951,7 +1915,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 	else if(parent.Commands().Has(Command::JUMP) && parent.GetTargetSystem() && !isStaying)
 	{
 		if(parent.GetTargetSystem() != ship.GetTargetSystem())
-		SelectRoute(ship, parent.GetTargetSystem());
+			SelectRoute(ship, parent.GetTargetSystem());
 
 		if(ship.GetTargetSystem())
 		{
@@ -2068,40 +2032,38 @@ bool AI::CanRefuel(const Ship &ship, const StellarObject *target)
 // If the ship is an escort it will only use routes known to the player.
 void AI::SelectRoute(Ship &ship, const System *targetSystem) const
 {
-		const System *from = ship.GetSystem();
-		if(from == targetSystem || !targetSystem)
-			return;
-		const DistanceMap route(ship, targetSystem, ship.IsYours() ? &player : nullptr);
-		const bool needsRefuel = ShouldRefuel(ship, route);
-		const System *to = route.Route(from);
-		// The destination may be accessible by both jump and wormhole.
-		// Prefer wormhole travel in these cases, to conserve fuel. Must
-		// check accessibility as DistanceMap may only see the jump path.
-		if(to && !needsRefuel)
-			for(const StellarObject &object : from->Objects())
-			{
-				if(!object.HasSprite() || !object.HasValidPlanet())
-					continue;
-
-				const Planet &planet = *object.GetPlanet();
-				if(planet.IsWormhole() && planet.IsAccessible(&ship)
-						&& &planet.GetWormhole()->WormholeDestination(*from) == to)
-				{
-					ship.SetTargetStellar(&object);
-					ship.SetTargetSystem(nullptr);
-					return;
-				}
-			}
-		else if(needsRefuel)
+	const System *from = ship.GetSystem();
+	if (from == targetSystem || !targetSystem)
+		return;
+	RoutePlan route(ship, *targetSystem, ship.IsYours() ? &player : nullptr);
+	if (ShouldRefuel(ship, route))
+	{
+		// There is at least one planet that can refuel the ship.
+		ship.SetTargetStellar(AI::FindLandingLocation(ship));
+		return;
+	}
+	const System* nextSystem = route.FirstStep();
+	// The destination may be accessible by both jump and wormhole.
+	// Prefer wormhole travel in these cases, to conserve fuel.
+	if (nextSystem)
+		for (const StellarObject& object : from->Objects())
 		{
-			// There is at least one planet that can refuel the ship.
-			ship.SetTargetStellar(AI::FindLandingLocation(ship));
-			return;
+			if (!object.HasSprite() || !object.HasValidPlanet())
+				continue;
+
+			const Planet& planet = *object.GetPlanet();
+			if (planet.IsWormhole() && planet.IsAccessible(&ship)
+				&& &planet.GetWormhole()->WormholeDestination(*from) == nextSystem)
+			{
+				ship.SetTargetStellar(&object);
+				ship.SetTargetSystem(nullptr);
+				return;
+			}
 		}
-		// Either there is no viable wormhole route to this system, or
-		// the target system cannot be reached.
-		ship.SetTargetSystem(to);
-		ship.SetTargetStellar(nullptr);
+	// Either there is no viable wormhole route to this system, or
+	// the target system cannot be reached.
+	ship.SetTargetSystem(nextSystem);
+	ship.SetTargetStellar(nullptr);
 }
 
 

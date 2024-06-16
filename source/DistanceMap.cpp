@@ -27,11 +27,11 @@ using namespace std;
 
 
 
-// Find paths to the given system. If the given maximum count is above zero,
+// Find paths from the given system. If the given maximum count is above zero,
 // it is a limit on how many systems should be returned. If it is below zero
 // it specifies the maximum distance away that paths should be found.
-DistanceMap::DistanceMap(const System *center, int maxCount, int maxDistance)
-	: DistanceMap(center, WormholeStrategy::NONE, false, maxCount, maxDistance)
+DistanceMap::DistanceMap(const System *center, int maxSystems, int maxDays)
+	: DistanceMap(center, WormholeStrategy::NONE, false, maxSystems, maxDays)
 {
 }
 
@@ -49,7 +49,8 @@ DistanceMap::DistanceMap(const System *center, WormholeStrategy wormholeStrategy
 
 
 
-// If a player is given with no center, the map will start from the player's system.
+// Constructor that uses PlayerInfo to determine the path.
+// If no center system is given, the map will start from the player's system.
 // Pathfinding will only use hyperspace paths known to the player; that is,
 // one end of the path has been visited. Also, if the ship has a jump drive
 // or wormhole access, the route will make use of it.
@@ -75,32 +76,25 @@ DistanceMap::DistanceMap(const PlayerInfo &player, const System *center)
 }
 
 
-// Private constructors with a destination for use by RoutePlan
-DistanceMap::DistanceMap(const System &center, const System &destination)
-	: center(&center), destination(&destination)
-{
-	Init();
-}
 
 // Calculate the path for the given ship to get to the given system. The
 // ship will use a jump drive or hyperdrive depending on what it has. The
 // pathfinding will stop once a path to the destination is found.
 // If a player is given, the path will only include systems that the
 // player has visited.
-DistanceMap::DistanceMap(const PlayerInfo &player, const System &center, const System &destination)
-	: player(&player), center(&center), destination(&destination), useWormholes(true)
+DistanceMap::DistanceMap(const System &center, const System &destination, const PlayerInfo *player)
+	: player(player), center(&center), destination(&destination), useWormholes(true)
 {
-	if(!source || !destination)
-	if(!player.Flagship())
-		return;
-
-	Init(player.Flagship());
+	if (player != nullptr)
+		Init(player->Flagship());
+	else
+		Init();
 }
 
 
 
-DistanceMap::DistanceMap(const Ship &ship, const System &destination)
-	: center(ship.GetSystem()), destination(&destination), useWormholes(true)
+DistanceMap::DistanceMap(const Ship &ship, const System &destination, const PlayerInfo* player)
+	: player(player), center(ship.GetSystem()), destination(&destination), useWormholes(true)
 {
 	Init(&ship);
 }

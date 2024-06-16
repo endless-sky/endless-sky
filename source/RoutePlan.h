@@ -32,9 +32,8 @@ class System;
 // and keeps only the route to that system.
 class RoutePlan {
 public:
-	explicit RoutePlan(const System &center, const System &destination);
-	explicit RoutePlan(const PlayerInfo &player, const System &center, const System &destination);
-	explicit RoutePlan(const Ship &ship, const System &destination);
+	explicit RoutePlan(const System &center, const System &destination, const PlayerInfo *player = nullptr);
+	explicit RoutePlan(const Ship &ship, const System &destination, const PlayerInfo* player = nullptr);
 
 	// Find out if the destination is reachable.
 	bool HasRoute() const;

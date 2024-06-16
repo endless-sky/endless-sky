@@ -24,23 +24,16 @@ using namespace std;
 
 
 // RoutePlan is a wrapper on DistanceMap that uses destination
-RoutePlan::RoutePlan(const System &center, const System &destination)
+RoutePlan::RoutePlan(const System& center, const System& destination, const PlayerInfo* player)
 {
-	Init(DistanceMap(center, destination));
+	Init(DistanceMap(center, destination, player));
 }
 
 
 
-RoutePlan::RoutePlan(const PlayerInfo &player, const System &center, const System &destination)
+RoutePlan::RoutePlan(const Ship& ship, const System& destination, const PlayerInfo* player)
 {
-	Init(DistanceMap(player, center, destination));
-}
-
-
-
-RoutePlan::RoutePlan(const Ship &ship, const System &destination)
-{
-	Init(DistanceMap(ship, destination));
+	Init(DistanceMap(ship, destination, player));
 }
 
 

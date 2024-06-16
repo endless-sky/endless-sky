@@ -805,7 +805,7 @@ void MapPanel::Select(const System *system)
 		if(system == planEnd)
 			return;
 
-		RoutePlan addedRoute(player, *planEnd, *system);
+		RoutePlan addedRoute(*planEnd, *system, &player);
 		if(!addedRoute.HasRoute())
 			return;
 
@@ -1231,8 +1231,8 @@ void MapPanel::DrawSelectedSystem()
 	auto it = find(plan.begin(), plan.end(), selectedSystem);
 	if(it != plan.end())
 		jumps = plan.end() - it;
-	else if(distance.HasRoute(selectedSystem))
-		jumps = distance.Days(selectedSystem);
+	else if(distance.HasRoute(*selectedSystem))
+		jumps = distance.Days(*selectedSystem);
 
 	if(jumps == 1)
 		text += " (1 jump away)";
