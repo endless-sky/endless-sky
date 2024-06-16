@@ -82,7 +82,7 @@ jobs:
 
   release_macos_universal:
     name: MacOS Universal
-    runs-on: macos-12
+    runs-on: macos-13
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       OUTPUT: Endless-Sky-${{ inputs.release_version }}

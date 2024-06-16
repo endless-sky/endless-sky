@@ -141,7 +141,7 @@ jobs:
     name: MacOS
     needs: changed
     if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.cmake_files == 'true' || needs.changed.outputs.ci_config == 'true' }}
-    runs-on: macos-12
+    runs-on: macos-13
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
