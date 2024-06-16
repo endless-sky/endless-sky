@@ -97,7 +97,7 @@ private:
 	// Obtain a list of ships matching the desired hostility.
 	std::vector<Ship *> GetShipsList(const Ship &ship, bool targetEnemies, double maxRange = -1.) const;
 
-	bool FollowOrders(Ship &ship, Command &command) const;
+	bool FollowOrders(Ship &ship, Command &command, FireCommand &fireCommand) const;
 	void MoveIndependent(Ship &ship, Command &command) const;
 	void MoveEscort(Ship &ship, Command &command) const;
 	static void Refuel(Ship &ship, Command &command);
@@ -132,7 +132,7 @@ private:
 	void DoAppeasing(const std::shared_ptr<Ship> &ship, double *threshold) const;
 	void DoSwarming(Ship &ship, Command &command, std::shared_ptr<Ship> &target);
 	void DoSurveillance(Ship &ship, Command &command, std::shared_ptr<Ship> &target) const;
-	void DoMining(Ship &ship, Command &command);
+	void DoMining(Ship &ship, Command &command, FireCommand &fireCommand);
 	bool DoHarvesting(Ship &ship, Command &command) const;
 	bool DoCloak(Ship &ship, Command &command);
 	void DoPatrol(Ship &ship, Command &command) const;
@@ -159,7 +159,7 @@ private:
 	// projectile. If it cannot hit the target, this returns NaN.
 	static double RendezvousTime(const Point &p, const Point &v, double vp);
 
-	void MovePlayer(Ship &ship, Command &activeCommands);
+	void MovePlayer(Ship &ship, Command &activeCommands, FireCommand &fireCommand);
 
 	// True if found asteroid.
 	bool TargetMinable(Ship &ship) const;
@@ -227,10 +227,6 @@ private:
 	Command autoPilot;
 	// Position of the cursor, for when the player is using mouse turning.
 	Point mousePosition;
-	// General firing command for ships. This is a data member to avoid
-	// thrashing the heap, since we can reuse the storage for
-	// each ship.
-	FireCommand firingCommands;
 
 	bool isCloaking = false;
 

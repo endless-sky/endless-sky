@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 
 #include <cstdint>
+#include <mutex>
 #include <string>
 
 class DataNode;
@@ -30,9 +31,24 @@ class Sprite;
 
 
 
+// Helper class to add a mutex to Body without declaring the full copy constructor.
+// These operations are not thread safe. Do not copy the object in a concurrent context,
+// or with a locked mutex.
+// The use of the mutex must be enforced externally.
+class WithMutex {
+public:
+	WithMutex() = default;
+	WithMutex(const WithMutex &other);
+	WithMutex &operator=(const WithMutex &other);
+
+	// Gets the mutex for this object.
+	std::mutex &GetMutex();
+protected:
+	std::mutex mutex;
+};
 // Class representing any object in the game that has a position, velocity, and
 // facing direction and usually also has a sprite.
-class Body {
+class Body : public WithMutex {
 public:
 	// Constructors.
 	Body() = default;

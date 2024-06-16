@@ -111,7 +111,7 @@ Projectile::Projectile(Point position, const Weapon *weapon)
 
 
 // This returns false if it is time to delete this projectile.
-void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
+void Projectile::Move(list<Visual> &visuals, vector<Projectile> &projectiles)
 {
 	if(--lifetime <= 0)
 	{
@@ -291,7 +291,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 
 // This projectile hit something. Create the explosion, if any. This also
 // marks the projectile as needing deletion if it has run out of hits.
-void Projectile::Explode(vector<Visual> &visuals, double intersection, Point hitVelocity)
+void Projectile::Explode(list<Visual> &visuals, double intersection, Point hitVelocity)
 {
 	for(const auto &it : weapon->HitEffects())
 		for(int i = 0; i < it.second; ++i)

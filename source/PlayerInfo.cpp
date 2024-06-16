@@ -50,6 +50,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cassert>
 #include <cmath>
 #include <ctime>
+#include <execution>
 #include <functional>
 #include <iterator>
 #include <limits>
@@ -1725,7 +1726,7 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 		{
 			// Order carried ships such that those requiring bays are loaded first. For
 			// jump-capable carried ships, prefer loading those with a shorter range.
-			stable_sort(toLoad.begin(), toLoad.end(),
+			stable_sort(execution::par_unseq, toLoad.begin(), toLoad.end(),
 				[](const shared_ptr<Ship> &a, const shared_ptr<Ship> &b)
 				{
 					return a->JumpsRemaining() < b->JumpsRemaining();

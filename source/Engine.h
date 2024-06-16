@@ -27,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DrawList.h"
 #include "EscortDisplay.h"
 #include "Information.h"
+#include "PartiallyGuarded.h"
 #include "PlanetLabel.h"
 #include "Point.h"
 #include "Preferences.h"
@@ -39,6 +40,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <list>
 #include <map>
 #include <memory>
+#include <mutex>
 #include <utility>
 #include <vector>
 
@@ -159,7 +161,13 @@ private:
 
 	void CalculateStep();
 
-	void MoveShip(const std::shared_ptr<Ship> &ship);
+	// Thread-safe wrapper for MoveShip.
+	void MoveShip(const std::shared_ptr<Ship> &ship, std::vector<std::mutex> &bufferMutexes,
+			std::vector<std::list<Visual>> &visualsBuffer, std::vector<std::list<std::shared_ptr<Flotsam>>> &flotsamBuffer,
+			std::vector<std::list<std::shared_ptr<Ship>>> &newShips, std::vector<std::vector<Projectile>> &projectiles);
+	void MoveShip(const std::shared_ptr<Ship> &ship, std::list<Visual> &visuals,
+			std::list<std::shared_ptr<Flotsam>> &flotsam, std::list<std::shared_ptr<Ship>> &newShips,
+			std::vector<Projectile> &projectiles);
 
 	void SpawnFleets();
 	void SpawnPersons();
@@ -171,7 +179,7 @@ private:
 
 	void FillCollisionSets();
 
-	void DoCollisions(Projectile &projectile);
+	void DoCollisions(std::vector<std::pair<std::mutex, std::list<Visual>>> &parallelBuffer, Projectile &projectile);
 	void DoWeather(Weather &weather);
 	void DoCollection(Flotsam &flotsam);
 	void DoScanning(const std::shared_ptr<Ship> &ship);
@@ -194,19 +202,19 @@ private:
 	std::vector<Projectile> projectiles;
 	std::vector<Weather> activeWeather;
 	std::list<std::shared_ptr<Flotsam>> flotsam;
-	std::vector<Visual> visuals;
+	std::list<Visual> visuals;
 	AsteroidField asteroids;
 
 	// New objects created within the latest step:
 	std::list<std::shared_ptr<Ship>> newShips;
 	std::vector<Projectile> newProjectiles;
 	std::list<std::shared_ptr<Flotsam>> newFlotsam;
-	std::vector<Visual> newVisuals;
+	std::list<Visual> newVisuals;
 
 	// Track which ships currently have anti-missiles or
 	// tractor beams ready to fire.
-	std::vector<Ship *> hasAntiMissile;
-	std::vector<Ship *> hasTractorBeam;
+	PartiallyGuardedVector<Ship *> hasAntiMissile;
+	PartiallyGuardedVector<Ship *> hasTractorBeam;
 
 	AI ai;
 
@@ -248,8 +256,8 @@ private:
 
 	int step = 0;
 
-	std::list<ShipEvent> eventQueue;
-	std::list<ShipEvent> events;
+	PartiallyGuardedList<ShipEvent> eventQueue;
+	PartiallyGuardedList<ShipEvent> events;
 	// Keep track of who has asked for help in fighting whom.
 	std::map<const Government *, std::weak_ptr<const Ship>> grudge;
 	int grudgeTime = 0;
@@ -294,6 +302,9 @@ private:
 	double load = 0.;
 	int loadCount = 0;
 	double loadSum = 0.;
+
+	// Mutex for DoGrudge().
+	std::mutex grudgeMutex;
 };
 
 

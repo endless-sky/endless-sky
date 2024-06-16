@@ -235,7 +235,7 @@ void Armament::Aim(const FireCommand &command)
 
 // Fire the given weapon, if it is ready. If it did not fire because it is
 // not ready, return false.
-void Armament::Fire(unsigned index, Ship &ship, vector<Projectile> &projectiles, vector<Visual> &visuals, bool jammed)
+void Armament::Fire(unsigned index, Ship &ship, vector<Projectile> &projectiles, list<Visual> &visuals, bool jammed)
 {
 	// Don't check if the hardpoint jammed here, as the weapon may not even
 	// attempt to fire due to stream reloading.
@@ -262,7 +262,7 @@ void Armament::Fire(unsigned index, Ship &ship, vector<Projectile> &projectiles,
 
 
 bool Armament::FireAntiMissile(unsigned index, Ship &ship, const Projectile &projectile,
-	vector<Visual> &visuals, bool jammed)
+	list<Visual> &visuals, bool jammed)
 {
 	if(!CheckHardpoint(index, jammed))
 		return false;
@@ -273,7 +273,7 @@ bool Armament::FireAntiMissile(unsigned index, Ship &ship, const Projectile &pro
 
 
 bool Armament::FireTractorBeam(unsigned index, Ship &ship, const Flotsam &flotsam,
-	vector<Visual> &visuals, bool jammed)
+	list<Visual> &visuals, bool jammed)
 {
 	if(!CheckHardpoint(index, jammed))
 		return false;

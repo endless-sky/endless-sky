@@ -40,6 +40,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cmath>
+#include <execution>
 #include <utility>
 
 using namespace std;
@@ -840,6 +841,7 @@ void PlayerInfoPanel::SortShips(InfoPanelState::ShipComparator *shipComparator)
 		}
 
 	stable_sort(
+		execution::par_unseq,
 		panelState.Ships().begin() + 1,
 		panelState.Ships().end(),
 		shipComparator

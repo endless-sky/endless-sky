@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cmath>
+#include <execution>
 #include <vector>
 
 using namespace std;
@@ -38,7 +39,7 @@ namespace {
 		for(const auto &it : outfits)
 			sortedOutfits.emplace_back(it.first);
 
-		sort(sortedOutfits.begin(), sortedOutfits.end(),
+		sort(execution::par_unseq, sortedOutfits.begin(), sortedOutfits.end(),
 			[](const Outfit *lhs, const Outfit *rhs)
 			{
 				return lhs->Mass() > rhs->Mass();

@@ -45,6 +45,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cmath>
+#include <execution>
 #include <limits>
 #include <set>
 
@@ -323,8 +324,6 @@ AI::AI(const PlayerInfo &player, const List<Ship> &ships,
 		const List<Minable> &minables, const List<Flotsam> &flotsam)
 	: player(player), ships(ships), minables(minables), flotsam(flotsam)
 {
-	// Allocate a starting amount of hardpoints for ships.
-	firingCommands.SetHardpoints(12);
 }
 
 
@@ -578,21 +577,26 @@ void AI::Step(Command &activeCommands)
 	bool opportunisticEscorts = !Preferences::Has("Turrets focus fire");
 	bool fightersRetreat = Preferences::Has("Damaged fighters retreat");
 	const int npcMaxMiningTime = GameData::GetGamerules().NPCMaxMiningTime();
-	for(const auto &it : ships)
+
+	// Copy the ship pointers for parallel execution
+	vector<shared_ptr<Ship>> shipVector(ships.begin(), ships.end());
+	for_each(execution::par, shipVector.begin(), shipVector.end(), [&](auto &it)
 	{
 		// A destroyed ship can't do anything.
 		if(it->IsDestroyed())
-			continue;
+			return;
 		// Skip any carried fighters or drones that are somehow in the list.
 		if(!it->GetSystem())
-			continue;
+			return;
+
+		FireCommand firingCommands;
 
 		if(it.get() == flagship)
 		{
 			// Player cannot do anything if the flagship is landing.
 			if(!flagship->IsLanding())
-				MovePlayer(*it, activeCommands);
-			continue;
+				MovePlayer(*it, activeCommands, firingCommands);
+			return;
 		}
 
 		const Government *gov = it->GetGovernment();
@@ -622,12 +626,12 @@ void AI::Step(Command &activeCommands)
 					double &threshold = appeasementThreshold[it.get()];
 					threshold = max((1. - health) + .1, threshold);
 				}
-				continue;
+				return;
 			}
 		}
 		// Overheated ships are effectively disabled, and cannot fire, cloak, etc.
 		if(it->IsOverheated())
-			continue;
+			return;
 
 		Command command;
 		firingCommands.SetHardpoints(it->Weapons().size());
@@ -650,7 +654,7 @@ void AI::Step(Command &activeCommands)
 			{
 				// The ship chose to retreat from its target, e.g. to repair.
 				it->SetCommands(command);
-				continue;
+				return;
 			}
 
 		shared_ptr<Ship> parent = it->GetParent();
@@ -668,8 +672,8 @@ void AI::Step(Command &activeCommands)
 		shared_ptr<Ship> target = it->GetTargetShip();
 		shared_ptr<Minable> targetAsteroid = it->GetTargetAsteroid();
 		shared_ptr<Flotsam> targetFlotsam = it->GetTargetFlotsam();
-		if(isPresent && it->IsYours() && targetFlotsam && FollowOrders(*it, command))
-			continue;
+		if(isPresent && it->IsYours() && targetFlotsam && FollowOrders(*it, command, firingCommands))
+			return;
 		// Determine if this ship was trying to scan its previous target. If so, keep
 		// track of this ship's scan time and count.
 		if(isPresent && !it->IsYours())
@@ -718,7 +722,7 @@ void AI::Step(Command &activeCommands)
 		{
 			it->SetCommands(command);
 			it->SetCommands(firingCommands);
-			continue;
+			return;
 		}
 
 		// Run away if your hostile target is not disabled
@@ -793,7 +797,7 @@ void AI::Step(Command &activeCommands)
 				it->SetTargetShip(shipToAssist);
 				it->SetCommands(command);
 				it->SetCommands(firingCommands);
-				continue;
+				return;
 			}
 		}
 
@@ -825,7 +829,7 @@ void AI::Step(Command &activeCommands)
 			DoSwarming(*it, command, target);
 			it->SetCommands(command);
 			it->SetCommands(firingCommands);
-			continue;
+			return;
 		}
 
 		if(isPresent && personality.IsSecretive())
@@ -833,7 +837,7 @@ void AI::Step(Command &activeCommands)
 			if(DoSecretive(*it, command))
 			{
 				it->SetCommands(command);
-				continue;
+				return;
 			}
 		}
 
@@ -845,7 +849,7 @@ void AI::Step(Command &activeCommands)
 			DoSurveillance(*it, command, target);
 			it->SetCommands(command);
 			it->SetCommands(firingCommands);
-			continue;
+			return;
 		}
 
 		// Ships that harvest flotsam prioritize it over stopping to be refueled.
@@ -853,7 +857,7 @@ void AI::Step(Command &activeCommands)
 		{
 			it->SetCommands(command);
 			it->SetCommands(firingCommands);
-			continue;
+			return;
 		}
 
 		// Attacking a hostile ship, fleeing and stopping to be refueled are more important than mining.
@@ -869,10 +873,10 @@ void AI::Step(Command &activeCommands)
 					command |= Command::DEPLOY;
 					Deploy(*it, false);
 				}
-				DoMining(*it, command);
+				DoMining(*it, command, firingCommands);
 				it->SetCommands(command);
 				it->SetCommands(firingCommands);
-				continue;
+				return;
 			}
 			// Fighters and drones should assist their parent's mining operation if they cannot
 			// carry ore, and the asteroid is near enough that the parent can harvest the ore.
@@ -886,7 +890,7 @@ void AI::Step(Command &activeCommands)
 					AutoFire(*it, firingCommands, *minable);
 					it->SetCommands(command);
 					it->SetCommands(firingCommands);
-					continue;
+					return;
 				}
 			}
 			it->SetTargetAsteroid(nullptr);
@@ -981,7 +985,7 @@ void AI::Step(Command &activeCommands)
 				command |= Command::BOARD;
 				it->SetCommands(command);
 				it->SetCommands(firingCommands);
-				continue;
+				return;
 			}
 			// If we get here, it means that the ship has not decided to return
 			// to its mothership. So, it should continue to be deployed.
@@ -1014,7 +1018,7 @@ void AI::Step(Command &activeCommands)
 			else
 				command.SetTurn(TurnToward(*it, TargetAim(*it)));
 		}
-		else if(FollowOrders(*it, command))
+		else if(FollowOrders(*it, command, firingCommands))
 		{
 			// If this is an escort and it followed orders, its only final task
 			// is to convert completed MOVE_TO orders into HOLD_POSITION orders.
@@ -1082,7 +1086,7 @@ void AI::Step(Command &activeCommands)
 
 		it->SetCommands(command);
 		it->SetCommands(firingCommands);
-	}
+	});
 }
 
 
@@ -1541,7 +1545,7 @@ vector<Ship *> AI::GetShipsList(const Ship &ship, bool targetEnemies, double max
 
 
 
-bool AI::FollowOrders(Ship &ship, Command &command) const
+bool AI::FollowOrders(Ship &ship, Command &command, FireCommand &firingCommands) const
 {
 	auto it = orders.find(&ship);
 	if(it == orders.end())
@@ -2898,7 +2902,7 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 
 
 
-void AI::DoMining(Ship &ship, Command &command)
+void AI::DoMining(Ship &ship, Command &command, FireCommand &firingCommands)
 {
 	// This function is only called for ships that are in the player's system.
 	// Update the radius that the ship is searching for asteroids at.
@@ -3861,7 +3865,7 @@ bool AI::TargetMinable(Ship &ship) const
 
 
 
-void AI::MovePlayer(Ship &ship, Command &activeCommands)
+void AI::MovePlayer(Ship &ship, Command &activeCommands, FireCommand &firingCommands)
 {
 	Command command;
 	firingCommands.SetHardpoints(ship.Weapons().size());
@@ -4099,7 +4103,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 			else
 			{
 				// Sort the list of options in increasing order of desirability.
-				sort(options.begin(), options.end(),
+				sort(execution::par_unseq, options.begin(), options.end(),
 					[&ship, boardingPriority](const ShipValue &lhs, const ShipValue &rhs)
 					{
 						if(boardingPriority == Preferences::BoardingPriority::PROXIMITY)

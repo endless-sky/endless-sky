@@ -48,6 +48,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <cassert>
 #include <cmath>
+#include <execution>
 #include <limits>
 #include <sstream>
 
@@ -1605,7 +1606,7 @@ const FireCommand &Ship::FiringCommands() const noexcept
 // Move this ship. A ship may create effects as it moves, in particular if
 // it is in the process of blowing up. If this returns false, the ship
 // should be deleted.
-void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
+void Ship::Move(list<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 {
 	// Do nothing with ships that are being forgotten.
 	if(StepFlags())
@@ -1666,7 +1667,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 
 
 // Launch any ships that are ready to launch.
-void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
+void Ship::Launch(list<shared_ptr<Ship>> &ships, list<Visual> &visuals)
 {
 	// Allow carried ships to launch from a disabled ship, but not from a ship that
 	// is landing, jumping, or cloaked. If already destroyed (e.g. self-destructing),
@@ -1980,7 +1981,7 @@ double Ship::OutfitScanFraction() const
 // Fire any primary or secondary weapons that are ready to fire. Determines
 // if any special weapons (e.g. anti-missile, tractor beam) are ready to fire.
 // The firing of special weapons is handled separately.
-void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
+void Ship::Fire(vector<Projectile> &projectiles, list<Visual> &visuals)
 {
 	isInSystem = true;
 	forget = 0;
@@ -2043,7 +2044,7 @@ bool Ship::HasTractorBeam() const
 
 
 // Fire an anti-missile.
-bool Ship::FireAntiMissile(const Projectile &projectile, vector<Visual> &visuals)
+bool Ship::FireAntiMissile(const Projectile &projectile, list<Visual> &visuals)
 {
 	if(projectile.Position().Distance(position) > antiMissileRange)
 		return false;
@@ -2068,7 +2069,7 @@ bool Ship::FireAntiMissile(const Projectile &projectile, vector<Visual> &visuals
 
 // Fire tractor beams at the given flotsam. Returns a Point representing the net
 // pull on the flotsam from this ship's tractor beams.
-Point Ship::FireTractorBeam(const Flotsam &flotsam, vector<Visual> &visuals)
+Point Ship::FireTractorBeam(const Flotsam &flotsam, list<Visual> &visuals)
 {
 	Point pullVector;
 	if(flotsam.Position().Distance(position) > tractorBeamRange)
@@ -3007,7 +3008,7 @@ double Ship::MaxReverseVelocity() const
 // DamageDealt from that weapon. The return value is a ShipEvent type,
 // which may be a combination of PROVOKED, DISABLED, and DESTROYED.
 // Create any target effects as sparks.
-int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const Government *sourceGovernment)
+int Ship::TakeDamage(list<Visual> &visuals, const DamageDealt &damage, const Government *sourceGovernment)
 {
 	damageOverlayTimer = TOTAL_DAMAGE_FRAMES;
 
@@ -3719,7 +3720,7 @@ bool Ship::StepFlags()
 
 // Step ship destruction logic. Returns 1 if the ship has been destroyed, -1 if it is being
 // destroyed, or 0 otherwise.
-int Ship::StepDestroyed(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
+int Ship::StepDestroyed(list<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 {
 	if(!IsDestroyed())
 		return 0;
@@ -3741,9 +3742,6 @@ int Ship::StepDestroyed(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flot
 			double scale = .03 * size + .5;
 			double radius = .2 * size;
 			int debrisCount = attributes.Mass() * .07;
-
-			// Estimate how many new visuals will be added during destruction.
-			visuals.reserve(visuals.size() + debrisCount + explosionTotal + finalExplosions.size());
 
 			for(int i = 0; i < debrisCount; ++i)
 			{
@@ -3891,7 +3889,7 @@ void Ship::DoGeneration()
 			for(const Bay &bay : bays)
 				if(bay.ship)
 					carried.emplace_back(1. - bay.ship->Health(), bay.ship.get());
-			sort(carried.begin(), carried.end(), (isYours && Preferences::Has(FIGHTER_REPAIR))
+			sort(execution::par_unseq, carried.begin(), carried.end(), (isYours && Preferences::Has(FIGHTER_REPAIR))
 				// Players may use a parallel strategy, to launch fighters in waves.
 				? [] (const pair<double, Ship *> &lhs, const pair<double, Ship *> &rhs)
 					{ return lhs.first > rhs.first; }
@@ -4142,7 +4140,7 @@ void Ship::DoGeneration()
 
 
 
-void Ship::DoPassiveEffects(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
+void Ship::DoPassiveEffects(list<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 {
 	// Adjust the error in the pilot's targeting.
 	personality.UpdateConfusion(firingCommands.IsFiring());
@@ -4235,7 +4233,7 @@ void Ship::DoCloakDecision()
 
 
 
-bool Ship::DoHyperspaceLogic(vector<Visual> &visuals)
+bool Ship::DoHyperspaceLogic(list<Visual> &visuals)
 {
 	if(!hyperspaceSystem && !hyperspaceCount)
 		return false;
@@ -4780,7 +4778,7 @@ void Ship::StepTargeting()
 
 
 // Finally, move the ship and create any movement visuals.
-void Ship::DoEngineVisuals(vector<Visual> &visuals, bool isUsingAfterburner)
+void Ship::DoEngineVisuals(list<Visual> &visuals, bool isUsingAfterburner)
 {
 	if(isUsingAfterburner && !Attributes().AfterburnerEffects().empty())
 	{
@@ -4845,7 +4843,7 @@ double Ship::MinimumHull() const
 
 
 
-void Ship::CreateExplosion(vector<Visual> &visuals, bool spread)
+void Ship::CreateExplosion(list<Visual> &visuals, bool spread)
 {
 	if(!HasSprite() || !GetMask().IsLoaded() || explosionEffects.empty())
 		return;
@@ -4882,22 +4880,20 @@ void Ship::CreateExplosion(vector<Visual> &visuals, bool spread)
 
 
 // Place a "spark" effect, like ionization or disruption.
-void Ship::CreateSparks(vector<Visual> &visuals, const string &name, double amount)
+void Ship::CreateSparks(list<Visual> &visuals, const string &name, double amount)
 {
 	CreateSparks(visuals, GameData::Effects().Get(name), amount);
 }
 
 
 
-void Ship::CreateSparks(vector<Visual> &visuals, const Effect *effect, double amount)
+void Ship::CreateSparks(list<Visual> &visuals, const Effect *effect, double amount)
 {
 	if(forget)
 		return;
 
 	// Limit the number of sparks, depending on the size of the sprite.
 	amount = min(amount, Width() * Height() * .0006);
-	// Preallocate capacity, in case we're adding a non-trivial number of sparks.
-	visuals.reserve(visuals.size() + static_cast<int>(amount));
 
 	while(true)
 	{

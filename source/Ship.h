@@ -213,10 +213,10 @@ public:
 	const FireCommand &FiringCommands() const noexcept;
 	// Move this ship. A ship may create effects as it moves, in particular if
 	// it is in the process of blowing up.
-	void Move(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
+	void Move(std::list<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
 
 	// Launch any ships that are ready to launch.
-	void Launch(std::list<std::shared_ptr<Ship>> &ships, std::vector<Visual> &visuals);
+	void Launch(std::list<std::shared_ptr<Ship>> &ships, std::list<Visual> &visuals);
 	// Check if this ship is boarding another ship. If it is, it either plunders
 	// it or, if this is a player ship, returns the ship it is plundering so a
 	// plunder dialog can be displayed.
@@ -231,15 +231,15 @@ public:
 	// Fire any primary or secondary weapons that are ready to fire. Determines
 	// if any special weapons (e.g. anti-missile, tractor beam) are ready to fire.
 	// The firing of special weapons is handled separately.
-	void Fire(std::vector<Projectile> &projectiles, std::vector<Visual> &visuals);
+	void Fire(std::vector<Projectile> &projectiles, std::list<Visual> &visuals);
 	// Return true if any anti-missile or tractor beam systems are ready to fire.
 	bool HasAntiMissile() const;
 	bool HasTractorBeam() const;
 	// Fire an anti-missile at the given missile. Returns true if the missile was killed.
-	bool FireAntiMissile(const Projectile &projectile, std::vector<Visual> &visuals);
+	bool FireAntiMissile(const Projectile &projectile, std::list<Visual> &visuals);
 	// Fire tractor beams at the given flotsam. Returns a Point representing the net
 	// pull on the flotsam from this ship's tractor beams.
-	Point FireTractorBeam(const Flotsam &flotsam, std::vector<Visual> &visuals);
+	Point FireTractorBeam(const Flotsam &flotsam, std::list<Visual> &visuals);
 
 	// Get the system this ship is in. Set to nullptr if the ship is being carried.
 	const System *GetSystem() const;
@@ -392,7 +392,7 @@ public:
 	// DamageDealt from that weapon. The return value is a ShipEvent type,
 	// which may be a combination of PROVOKED, DISABLED, and DESTROYED.
 	// Create any target effects as sparks.
-	int TakeDamage(std::vector<Visual> &visuals, const DamageDealt &damage, const Government *sourceGovernment);
+	int TakeDamage(std::list<Visual> &visuals, const DamageDealt &damage, const Government *sourceGovernment);
 	// Apply a force to this ship, accelerating it. This might be from a weapon
 	// impact, or from firing a weapon, for example.
 	void ApplyForce(const Point &force, bool gravitational = false);
@@ -499,20 +499,20 @@ private:
 	bool StepFlags();
 	// Step ship destruction logic. Returns 1 if the ship has been destroyed, -1 if it is being
 	// destroyed, or 0 otherwise.
-	int StepDestroyed(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
+	int StepDestroyed(std::list<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
 	void DoGeneration();
-	void DoPassiveEffects(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
+	void DoPassiveEffects(std::list<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
 	void DoJettison(std::list<std::shared_ptr<Flotsam>> &flotsam);
 	void DoCloakDecision();
 	// Step hyperspace enter/exit logic. Returns true if ship is hyperspacing in or out.
-	bool DoHyperspaceLogic(std::vector<Visual> &visuals);
+	bool DoHyperspaceLogic(std::list<Visual> &visuals);
 	// Step landing logic. Returns true if the ship is landing or departing.
 	bool DoLandingLogic();
 	void DoInitializeMovement();
 	void StepPilot();
 	void DoMovement(bool &isUsingAfterburner);
 	void StepTargeting();
-	void DoEngineVisuals(std::vector<Visual> &visuals, bool isUsingAfterburner);
+	void DoEngineVisuals(std::list<Visual> &visuals, bool isUsingAfterburner);
 
 
 	// Add or remove a ship from this ship's list of escorts.
@@ -522,10 +522,10 @@ private:
 	double MinimumHull() const;
 	// Create one of this ship's explosions, within its mask. The explosions can
 	// either stay over the ship, or spread out if this is the final explosion.
-	void CreateExplosion(std::vector<Visual> &visuals, bool spread = false);
+	void CreateExplosion(std::list<Visual> &visuals, bool spread = false);
 	// Place a "spark" effect, like ionization or disruption.
-	void CreateSparks(std::vector<Visual> &visuals, const std::string &name, double amount);
-	void CreateSparks(std::vector<Visual> &visuals, const Effect *effect, double amount);
+	void CreateSparks(std::list<Visual> &visuals, const std::string &name, double amount);
+	void CreateSparks(std::list<Visual> &visuals, const Effect *effect, double amount);
 
 	// Calculate the attraction and deterrence of this ship, for pirate raids.
 	// This is only useful for the player's ships.

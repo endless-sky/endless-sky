@@ -140,7 +140,7 @@ void CollisionSet::Finish()
 
 // Get all possible collisions for the given projectile. Collisions are not necessarily
 // sorted by distance.
-const vector<Collision> &CollisionSet::Line(const Projectile &projectile) const
+const vector<Collision> CollisionSet::Line(const Projectile &projectile) const
 {
 	// What objects the projectile hits depends on its government.
 	const Government *pGov = projectile.GetGovernment();
@@ -155,7 +155,7 @@ const vector<Collision> &CollisionSet::Line(const Projectile &projectile) const
 
 // Get all possible collisions along a line. Collisions are not necessarily sorted by
 // distance.
-const vector<Collision> &CollisionSet::Line(const Point &from, const Point &to,
+const vector<Collision> CollisionSet::Line(const Point &from, const Point &to,
 		const Government *pGov, const Body *target) const
 {
 	const int x = from.X();
@@ -169,7 +169,7 @@ const vector<Collision> &CollisionSet::Line(const Point &from, const Point &to,
 	const int endGX = endX >> SHIFT;
 	const int endGY = endY >> SHIFT;
 
-	lineResult.clear();
+	vector<Collision> lineResult;
 
 	// Special case, very common: the projectile is contained in one grid cell.
 	// In this case, all the complicated code below can be skipped.
@@ -314,7 +314,7 @@ const vector<Collision> &CollisionSet::Line(const Point &from, const Point &to,
 
 
 // Get all objects within the given range of the given point.
-const vector<Body *> &CollisionSet::Circle(const Point &center, double radius) const
+const vector<Body *> CollisionSet::Circle(const Point &center, double radius) const
 {
 	return Ring(center, 0., radius);
 }
@@ -323,7 +323,7 @@ const vector<Body *> &CollisionSet::Circle(const Point &center, double radius) c
 
 // Get all objects touching a ring with a given inner and outer range
 // centered at the given point.
-const vector<Body *> &CollisionSet::Ring(const Point &center, double inner, double outer) const
+const vector<Body *> CollisionSet::Ring(const Point &center, double inner, double outer) const
 {
 	// Calculate the range of (x, y) grid coordinates this ring covers.
 	const int minX = static_cast<int>(center.X() - outer) >> SHIFT;
@@ -333,7 +333,7 @@ const vector<Body *> &CollisionSet::Ring(const Point &center, double inner, doub
 
 	++seenEpoch;
 
-	circleResult.clear();
+	vector<Body *> circleResult;
 	for(int y = minY; y <= maxY; ++y)
 	{
 		const auto gy = y & WRAP_MASK;

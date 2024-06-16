@@ -73,6 +73,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cmath>
+#include <execution>
 #include <string>
 
 using namespace std;
@@ -124,6 +125,18 @@ namespace {
 		for(auto it = objects.begin(); it != objects.end(); )
 		{
 			if((*it)->ShouldBeRemoved())
+				it = objects.erase(it);
+			else
+				++it;
+		}
+	}
+
+	template <class Type>
+	void Prune(list<Type> &objects)
+	{
+		for(auto it = objects.begin(); it != objects.end(); )
+		{
+			if(it->ShouldBeRemoved())
 				it = objects.erase(it);
 			else
 				++it;
@@ -1463,25 +1476,46 @@ void Engine::CalculateStep()
 	const Ship *flagship = player.Flagship();
 	bool flagshipWasUntargetable = (flagship && !flagship->IsTargetable());
 	bool wasHyperspacing = (flagship && flagship->IsEnteringHyperspace());
+
 	// First, move the player's flagship.
 	if(flagship)
-		MoveShip(player.FlagshipPtr());
+		MoveShip(player.FlagshipPtr(), newVisuals, newFlotsam, newShips, newProjectiles);
 	const System *flagshipSystem = (flagship ? flagship->GetSystem() : nullptr);
 	bool flagshipIsTargetable = (flagship && flagship->IsTargetable());
 	bool flagshipBecameTargetable = flagshipWasUntargetable && flagshipIsTargetable;
+
 	// Then, move the other ships.
-	for(const shared_ptr<Ship> &it : ships)
+	// Keep separate lists for each thread to avoid lock contention.
+	vector<mutex> bufferLocks(thread::hardware_concurrency());
+	vector<list<Visual>> visualBuffer(thread::hardware_concurrency());
+	vector<list<shared_ptr<Flotsam>>> flotsamBuffer(thread::hardware_concurrency());
+	vector<list<shared_ptr<Ship>>> shipBuffer(thread::hardware_concurrency());
+	vector<vector<Projectile>> projectileBuffer(thread::hardware_concurrency());
+
+	// And a copy of the ship list for random access.
+	vector<shared_ptr<Ship>> shipVector(ships.begin(), ships.end());
+	for_each(execution::par, shipVector.begin(), shipVector.end(), [&](const shared_ptr<Ship> &it)
 	{
 		if(it == player.FlagshipPtr())
-			continue;
+			return;
 		bool wasUntargetable = !it->IsTargetable();
-		MoveShip(it);
+		MoveShip(it, bufferLocks, visualBuffer, flotsamBuffer, shipBuffer, projectileBuffer);
 		bool isTargetable = it->IsTargetable();
 		if(flagshipSystem == it->GetSystem()
 			&& ((wasUntargetable && isTargetable) || flagshipBecameTargetable)
 			&& isTargetable && flagshipIsTargetable)
 				eventQueue.emplace_back(player.FlagshipPtr(), it, ShipEvent::ENCOUNTER);
-	}
+	});
+	// Add the per-thread lists to the main lists.
+	for(auto &item : visualBuffer)
+		newVisuals.splice(newVisuals.end(), item);
+	for(auto &item : flotsamBuffer)
+		newFlotsam.splice(newFlotsam.end(), item);
+	for(auto &item : shipBuffer)
+		newShips.splice(newShips.end(), item);
+	for(auto &item : projectileBuffer)
+		Append(newProjectiles, item);
+
 	// If the flagship just began jumping, play the appropriate sound.
 	if(!wasHyperspacing && flagship && flagship->IsEnteringHyperspace())
 	{
@@ -1558,7 +1592,7 @@ void Engine::CalculateStep()
 	ships.splice(ships.end(), newShips);
 	Append(projectiles, newProjectiles);
 	flotsam.splice(flotsam.end(), newFlotsam);
-	Append(visuals, newVisuals);
+	visuals.splice(visuals.end(), newVisuals);
 
 	// Decrement the count of how long it's been since a ship last asked for help.
 	if(grudgeTime)
@@ -1568,8 +1602,14 @@ void Engine::CalculateStep()
 	FillCollisionSets();
 
 	// Perform collision detection.
-	for(Projectile &projectile : projectiles)
-		DoCollisions(projectile);
+	// We store the visuals in a separate list for every thread to reduce lock contention.
+	vector<pair<mutex, list<Visual>>> parallelBuffer(thread::hardware_concurrency());
+	for_each(execution::par, projectiles.begin(), projectiles.end(), [&](auto &projectile){
+		DoCollisions(parallelBuffer, projectile);
+	});
+	for(auto &item : parallelBuffer)
+		visuals.splice(visuals.end(), item.second);
+
 	// Now that collision detection is done, clear the cache of ships with anti-
 	// missile systems ready to fire.
 	hasAntiMissile.clear();
@@ -1689,9 +1729,40 @@ void Engine::CalculateStep()
 
 
 
+// Move a ship. Can be called concurrently.
+void Engine::MoveShip(const shared_ptr<Ship> &ship, vector<mutex> &bufferMutexes, vector<list<Visual>> &visualsBuffer,
+		vector<list<shared_ptr<Flotsam>>> &flotsamBuffer,
+		vector<list<shared_ptr<Ship>>> &shipBuffer, vector<vector<Projectile>> &projectileBuffer)
+{
+	// Find a free lock, and call MoveShip with the locked lists.
+	size_t id = std::hash<thread::id>{}(this_thread::get_id());
+	const int index = id % bufferMutexes.size();
+	if(bufferMutexes[index].try_lock())
+	{
+		MoveShip(ship, visualsBuffer[index], flotsamBuffer[index], shipBuffer[index], projectileBuffer[index]);
+		bufferMutexes[index].unlock();
+		return;
+	}
+	else
+		for(unsigned newIndex = 0; newIndex < bufferMutexes.size(); newIndex++)
+			if(bufferMutexes[newIndex].try_lock())
+			{
+				MoveShip(ship, visualsBuffer[newIndex], flotsamBuffer[newIndex], shipBuffer[newIndex], projectileBuffer[newIndex]);
+				bufferMutexes[newIndex].unlock();
+				return;
+			}
+	// If there is no free lock, fall back to the original guess.
+	bufferMutexes[index].lock();
+	MoveShip(ship, visualsBuffer[index], flotsamBuffer[index], shipBuffer[index], projectileBuffer[index]);
+	bufferMutexes[index].unlock();
+}
+
+
+
 // Move a ship. Also determine if the ship should generate hyperspace sounds or
 // boarding events, fire weapons, and launch fighters.
-void Engine::MoveShip(const shared_ptr<Ship> &ship)
+void Engine::MoveShip(const shared_ptr<Ship> &ship, list<Visual> &newVisuals, list<shared_ptr<Flotsam>> &newFlotsam,
+		list<shared_ptr<Ship>> &newShips, vector<Projectile> &newProjectiles)
 {
 	// Various actions a ship could have taken last frame may have impacted the accuracy of cached values.
 	// Therefore, determine with any information needs recalculated and cache it.
@@ -1778,9 +1849,9 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 	// Anti-missile and tractor beam systems are fired separately from normal weaponry.
 	// Track which ships have at least one such system ready to fire.
 	if(ship->HasAntiMissile())
-		hasAntiMissile.push_back(ship.get());
+		hasAntiMissile.emplace_back(ship.get());
 	if(ship->HasTractorBeam())
-		hasTractorBeam.push_back(ship.get());
+		hasTractorBeam.emplace_back(ship.get());
 }
 
 
@@ -2161,12 +2232,13 @@ void Engine::HandleMouseInput(Command &activeCommands)
 // Perform collision detection. Note that unlike the preceding functions, this
 // one adds any visuals that are created directly to the main visuals list. If
 // this is multi-threaded in the future, that will need to change.
-void Engine::DoCollisions(Projectile &projectile)
+void Engine::DoCollisions(vector<pair<mutex, list<Visual>>> &parallelBuffer, Projectile &projectile)
 {
 	// The asteroids can collide with projectiles, the same as any other
 	// object. If the asteroid turns out to be closer than the ship, it
 	// shields the ship (unless the projectile has a blast radius).
 	vector<Collision> collisions;
+	list<Visual> visuals; // Temporary storage for new visuals
 	const Government *gov = projectile.GetGovernment();
 	const Weapon &weapon = projectile.GetWeapon();
 
@@ -2224,7 +2296,7 @@ void Engine::DoCollisions(Projectile &projectile)
 	}
 
 	// Sort the Collisions by increasing range so that the closer collisions are evaluated first.
-	sort(collisions.begin(), collisions.end());
+	sort(execution::par_unseq, collisions.begin(), collisions.end());
 
 	// Run all collisions until either the projectile dies or there are no more collisions left.
 	for(Collision &collision : collisions)
@@ -2271,14 +2343,19 @@ void Engine::DoCollisions(Projectile &projectile)
 					continue;
 
 				// Only directly targeted ships get provoked by blast weapons.
-				int eventType = ship->TakeDamage(visuals, damage.CalculateDamage(*ship, ship == hit),
-					targeted ? gov : nullptr);
+				int eventType;
+				{
+					const std::lock_guard<mutex> lock(ship->GetMutex());
+					eventType = ship->TakeDamage(visuals, damage.CalculateDamage(*ship, ship == hit),
+							targeted ? gov : nullptr);
+				}
 				if(eventType)
 					eventQueue.emplace_back(gov, ship->shared_from_this(), eventType);
 			}
 		}
 		else if(hit)
 		{
+			const std::lock_guard<mutex> lock(hit->GetMutex());
 			if(collisionType == CollisionType::SHIP)
 			{
 				int eventType = shipHit->TakeDamage(visuals, damage.CalculateDamage(*shipHit), gov);
@@ -2300,11 +2377,25 @@ void Engine::DoCollisions(Projectile &projectile)
 	{
 		for(Ship *ship : hasAntiMissile)
 			if(ship == projectile.Target() || gov->IsEnemy(ship->GetGovernment()))
+			{
+				const std::lock_guard<mutex> lock(ship->GetMutex());
 				if(ship->FireAntiMissile(projectile, visuals))
 				{
 					projectile.Kill();
 					break;
 				}
+			}
+	}
+
+	{
+		size_t id = std::hash<thread::id>{}(this_thread::get_id());
+		int index = id % parallelBuffer.size();
+		auto &element = parallelBuffer[index];
+
+		// Even though we have one list per thread, we cannot effectively map them to each other
+		// so we still need to lock. It is not worth finding a free lock for this constant-time operation.
+		const std::lock_guard<mutex> lock(element.first);
+		element.second.splice(element.second.end(), visuals);
 	}
 }
 
@@ -2629,6 +2720,9 @@ void Engine::DrawShipSprites(const Ship &ship)
 // player for assistance (and ask for assistance if appropriate).
 void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker)
 {
+	// Projectile collisions may trigger this concurrently
+	const std::lock_guard<mutex> lock(grudgeMutex);
+
 	if(attacker->IsPlayer())
 	{
 		shared_ptr<const Ship> previous = grudge[target->GetGovernment()].lock();
