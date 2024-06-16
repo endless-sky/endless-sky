@@ -5181,23 +5181,38 @@ mission "Hroar's Haulers 14"
 			`	(Stay with Gunhilda.)`
 
 		label gunhilda
-		`	"So how exactly did someone like you end up with Haulers?" Gunhilda says as she saddles up next to you at the bar.`
+		`	"Well, howdy there star-child." Gunhilda says as she saddles up next to you at the bar.`
+		`	She gives you an impish grin, her large gray eyes taking you in, and says, "You're not like the rest of us. Your aura dances in hues of royal purple and deep dreaming blues."`
+		`	She leans a little a closer to you, the alcohol thick on her breath," So, what's a royal dreamer such as yourself doing amongst us lowly rusty-brown haulers?"`
 		choice
 			`	(Tell her your story.)`
-		`	She shakes her head, "Well, ain't that something. Hroar has a soft spot for the little folk, and it doesn't get much littler than those Skadenga."`
-		`	She sips her beer, "Like most of us, I was born on red, or at least spent better part of my life on it. Lot of us come from families who've been involved in mining and hauling for generations. Haulers are just one big tight dysfunctional family."`
+		`	She slowly shakes her head, "Like a jewled moon on a dark world, you rise to the occasion. You know, you remind me of Hroar, you're both cosmic heroes in your own way. Doing right by the little people; like the Skadenga, the littliest of them all."`
+		`	She sips her beer, "Like most haulers, I was born on the red, and spent my life sifting through Muspel's depths, or flittering between stars in the yawning Gap. We are interwoven, we haulers, like strands of hair in the wind; both miner and spacer, both family and business, all tangled up onto one off-red whole."`
+		`	"In other words, we're really just one large dysnfunctional family whose very fabric is woven through all human worlds."`
 		choice
+			`	"I am not like Hroar"`
+				goto hroar
 			`	"What do you mean, 'the red'?"`
 			`	"So you're all related?"`
-		`	She laughs and pushes her a strand of thick black hair back behind her ear, "Why, Captain <last>, little early to be meeting my ma, don'tchya think?"`
-		`	Gunhilda downs her glass, her face flush with effects of alcohol, "Don't look so serious! I am kidding. Anyways, to answer your question; yes and no. It depends on how you became a Hauler."`
-		`	She holds up two fingers, "Usually it's one of two ways. Lot of us are mining or spacer brats from the old families who been working Muspel since the Caravan days. Or there's the new ones who work there way up from the mines, usually they start out as guest workers from Earth or some other core planet."`
-		`	"However," she pauses to gulp down some of her refilled beverage, "thems new folks usually marry into the old families... so give it a little time and we're back to where we started. Also, you know what they say, ain't none more devout than a convert. The new Haulers are at times more Hauler than those of us born to it."`
+		`	She laughs and pushes her a strand of thick black hair back behind her ear, "Why, Captain <last>, it's a little early to be meeting my mom, isn't it?"`
+		`	Gunhilda downs her glass, her face flush with effects of alcohol, "Don't be so serious, my royal dreamer, I only kid. To answer your question; yes and no. It's all about your beginnings, you see."`
+		`	She holds up two fingers, "For most of us there are two paths to the Haulers. For many, we are born to this life. The tumbling children of generations of miners and spacers who have called themselves Haulers since the Caravan days. Or there are those who hear the call of the earth, and Gap above. The poor souls on overcrowded worlds, or stuck in uninteresting lives that find their way to one of our mines on Muspel or Helheim. Those guest workers who work there up and into our extended family."`
+		`	"However," she pauses to gulp down some of her refilled beverage, "it's not long before the new Haulers marry the old Haulres, and we're back to where we started, one big cosmic family. An you know what they say, there's none more devout than a convert. The new Haulers are at times more Hauler than those of us born to it."`
+			goto gunext
+
+		label hroar
+		`	"Now, now, my royal dreamer, it's all about perspective, isn't it? To some, he may appear to be a prickly man in a dive bar on a forgrettable world. But to others, a Prince of a dynasty, a leader to a clan of earth-and-starborn children that yearn for more than life's fetid lot. A harbinger of change, and heir to a better future."`
+		`	She laughs and pushes her a strand of thick black hair back behind her ear, "You see now, Captain <last>? Does that really sound so different from yourself?"`
+		choice
+			`	"I see now."`
+			`	"Nope, nothing like me."`
+		
+		`	Gunhilda lifts her drink to her lips, her face flush with effects of alcohol, "It's all just a matter of perspective."`
 			goto gunext
 
 		label red
-		`	"Ha, look at you, leading us around without knowing the first thing about us! Hroar really likes his greenhorns tender." She knowcks back another drink," I'da thought you'd pick it up by now. It just means you were raised or spent, like, formative time on Muspel, or Helheim."`
-		`	She shrugs, "There really aren't a lot of children on either world, it's not as if I learned to walk on Muspel, but ma was a miner and she spent half the year workin' the red, and as soon as I could tell a dust-devil from a rust-banshee I was right there with her."`
+		`	"My, Hroar really does like his greenhorns tender. Here you are leading us around without knowing the first thing about us." She knowcks back another drink," To most it simply means being born, or raised a Hauler. Whether that be in the mines, or on the Haul. But it is more than that, it's about letting the red into your soul. I can see it, you know, even now in the majesty of your purple and blue aura, there is small dull redness in the pit of your heart. Will you let it in, royal dreamer? Will you truly become one of us?"`
+		`	She winks at you, "As for me, my mother was a miner on Muspel, and I spent much of my childhood learning at her knee. Her aura was mix of red rocks and blue sky, of hard earth, and warm stars. And, I daresay, my aura is much the same. Just a child born on the red, who now bleeds it."`
 
 		label gunext
 		`	As Captain Gunhilda downs another drink your attention to drawn to loud arguing coming from the vicinity of Captain Unferth and his merry choir.`
