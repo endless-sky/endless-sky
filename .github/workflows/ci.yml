@@ -45,7 +45,7 @@ jobs:
     runs-on: ubuntu-${{ matrix.os }}
     strategy:
       matrix:
-        os: [20.04, 22.04]
+        os: [22.04, 24.04]
         opengl: [GL, GLES]
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

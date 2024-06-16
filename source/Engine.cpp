@@ -1605,7 +1605,7 @@ void Engine::CalculateStep()
 	// Perform collision detection.
 	// We store the visuals in a separate list for every thread to reduce lock contention.
 	vector<pair<mutex, list<Visual>>> parallelBuffer(thread::hardware_concurrency());
-	for_each(execution::par, projectiles.begin(), projectiles.end(), [&](auto &projectile){
+	for_each(execution::par, projectiles.begin(), projectiles.end(), [&](auto &projectile) {
 		DoCollisions(parallelBuffer, projectile);
 	});
 	for(auto &item : parallelBuffer)

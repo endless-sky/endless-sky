@@ -10,7 +10,7 @@ on:
 jobs:
   release_appimage_x64:
     name: AppImage x64
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     env:
       ARCH: x86_64
       OUTPUT: Endless_Sky-${{ inputs.release_version  }}-x86_64.AppImage
@@ -23,7 +23,7 @@ jobs:
         run: |
           sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends libxmu-dev libxi-dev libgl-dev libglu1-mesa-dev libgles2-mesa-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev libtbb-dev
+          sudo apt-get install -y --no-install-recommends libxmu-dev libxi-dev libgl-dev libglu1-mesa-dev libgles2-mesa-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev libtbb-dev fuse
       - name: Setup sccache
         uses: ./.github/sccache
       - uses: lukka/get-cmake@latest
