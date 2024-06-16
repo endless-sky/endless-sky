@@ -29,7 +29,14 @@
           "platform": "linux"
         },
         "sdl2",
-        "tbb"
+        {
+          "name": "tbb",
+          "features": []
+        },
+        {
+          "name": "tbb",
+          "platform": "linux"
+        }
       ]
     },
     "steam-libs": {
