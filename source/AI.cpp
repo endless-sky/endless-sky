@@ -581,7 +581,7 @@ void AI::Step(Command &activeCommands)
 
 	// Copy the ship pointers for parallel execution
 	vector<shared_ptr<Ship>> shipVector(ships.begin(), ships.end());
-	for_each(std::execution::par, shipVector.begin(), shipVector.end(), [&](auto &it)
+	for_each(execution::par, shipVector.begin(), shipVector.end(), [&](auto &it)
 	{
 		// A destroyed ship can't do anything.
 		if(it->IsDestroyed())
@@ -4107,7 +4107,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands, FireCommand &firingComm
 			else
 			{
 				// Sort the list of options in increasing order of desirability.
-				sort(std::execution::par_unseq, options.begin(), options.end(),
+				sort(execution::par_unseq, options.begin(), options.end(),
 					[&ship, boardingPriority](const ShipValue &lhs, const ShipValue &rhs)
 					{
 						if(boardingPriority == Preferences::BoardingPriority::PROXIMITY)
