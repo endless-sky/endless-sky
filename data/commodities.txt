@@ -767,6 +767,7 @@ trade
 		"handbags"
 		"high-performance automobiles"
 		"hoverskis"
+		"jade"
 		"jewelry"
 		"lawn furniture"
 		"leather"
