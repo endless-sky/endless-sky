@@ -96,6 +96,7 @@ jobs:
         uses: ./.github/sccache
       - name: Install pkg-config
         run: type -P pkg-config || brew install pkg-config
+      - run: brew install tbb
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
