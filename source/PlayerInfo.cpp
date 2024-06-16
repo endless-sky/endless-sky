@@ -647,8 +647,6 @@ void PlayerInfo::Die(int response, const shared_ptr<Ship> &capturer)
 		if(it != ships.end())
 			ships.erase(it);
 	}
-
-	flagship.reset();
 }
 
 

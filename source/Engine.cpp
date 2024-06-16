@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DamageDealt.h"
 #include "DamageProfile.h"
 #include "Effect.h"
+#include "FighterHitHelper.h"
 #include "FillShader.h"
 #include "Fleet.h"
 #include "Flotsam.h"
@@ -2311,7 +2312,7 @@ void Engine::DoCollisions(vector<pair<mutex, list<Visual>>> &parallelBuffer, Pro
 
 		// Don't collide with carried ships that are disabled and not directly targeted.
 		if(shipHit && hit != projectile.Target()
-				&& shipHit->CanBeCarried() && shipHit->IsDisabled())
+				&& !FighterHitHelper::IsValidTarget(shipHit.get()))
 			continue;
 
 		// If the ship is cloaked, and phasing, then skip this ship (during this step).

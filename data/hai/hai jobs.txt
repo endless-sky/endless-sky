@@ -222,12 +222,21 @@ mission "Hai Festival [1]"
 	name "Festival at <planet>"
 	job
 	repeat
-	description "For a month each year, the Hai have a huge holiday festival. This group of <bunks> Hai will pay you <payment> for you to transport them and their <tons> of supplies to <planet>."
+	description "For a month each year, the Hai have a huge holiday festival. This group of <bunks> Hai will pay you <payment> for you to transport them and their <tons> of supplies to <planet> by <date>."
+	deadline 0 2
 	passengers 10 20
 	cargo "party supplies" 1 2
 	to offer
-		month == 3
+		or
+			and
+				month == 3
+				day <= 17
+			and
+				month == 2
+				day >= 27
 		random < 60
+	to fail
+		month >= 4
 	source
 		government "Hai"
 	destination
@@ -248,12 +257,21 @@ mission "Hai Festival [2]"
 	name "Festival at <planet>"
 	job
 	repeat
-	description "For a month each year, the Hai have a huge holiday festival. This group of <bunks> humans will pay you <payment> for you to transport them and their <tons> of supplies to <planet>."
+	description "For a month each year, the Hai have a huge holiday festival. This group of <bunks> humans will pay you <payment> for you to transport them and their <tons> of supplies to <planet> by <date>."
+	deadline 0 2
 	passengers 10 20
 	cargo "party supplies" 1 2
 	to offer
-		month == 3
+		or
+			and
+				month == 3
+				day <= 17
+			and
+				month == 2
+				day >= 27
 		random < 60
+	to fail
+		month >= 4
 	source
 		government "Hai"
 	destination
@@ -274,12 +292,21 @@ mission "Hai Festival [3]"
 	name "Festival at <planet>"
 	job
 	repeat
-	description "For a month each year, the Hai have a huge holiday festival. This group of <bunks> Hai and humans will pay you <payment> for you to transport them and their <tons> of supplies to <planet>."
+	description "For a month each year, the Hai have a huge holiday festival. This group of <bunks> Hai and humans will pay you <payment> for you to transport them and their <tons> of supplies to <planet> by <date>."
+	deadline 0 2
 	passengers 10 20
 	cargo "party supplies" 1 2
 	to offer
-		month == 3
+		or
+			and
+				month == 3
+				day <= 17
+			and
+				month == 2
+				day >= 27
 		random < 60
+	to fail
+		month >= 4
 	source
 		government "Hai"
 	destination
