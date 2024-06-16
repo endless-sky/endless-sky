@@ -144,7 +144,7 @@ protected:
 
 	// The number of systems owned by each government which are currently
 	// on the screen, for use in determining which governments are in the legend.
-	std::map<const Government *, unsigned int> GovermnentCounts;
+	std::map<const Government *, unsigned int> GovernmentCounts;
 
 	// Uninhabited and Unexplored are handled differently, as those should always be on the map
 	// as long as there are Uninhabited and Unexplored systems visible
