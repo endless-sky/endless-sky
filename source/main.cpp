@@ -280,7 +280,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 
 	const bool isHeadless = (testContext.CurrentTest() && !debugMode);
 
-	auto ProcessEvents = [&menuPanels, &gamePanels, &player, &cursorTime, &toggleTimeout, &debugMode, &isPaused,
+	auto ProcessEvents = [&menuPanels, &gamePanels, &player, &cursorTime, &toggleTimeout, &isPaused,
 			&isFastForward]
 	{
 		SDL_Event event;
