@@ -100,6 +100,10 @@ jobs:
       - uses: lukka/run-vcpkg@v11
         with:
           vcpkgGitCommitId: '2cf957350da28ad032178a974607f59f961217d9'
+      - run: |
+          cd vcpkg
+          vcpkg install tbb
+          cd ..
       - uses: lukka/run-cmake@v10
         with:
           configurePreset: 'macos-release'
