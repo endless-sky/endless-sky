@@ -537,7 +537,7 @@ void MapDetailPanel::DrawKey()
 	font.Draw(header, pos + headerOff, medium);
 	pos.Y() += 20.;
 
-	int numCommodities = 4 + !hasUnexplored + !hasUninhabited;
+	int availableLines = 4 + !hasUnexplored + !hasUninhabited;
 
 	if(commodity >= 0)
 	{
@@ -612,7 +612,7 @@ void MapDetailPanel::DrawKey()
 			pos.Y() += 20.;
 			alreadyDisplayed.emplace_back(displayName, displayColor);
 			++drawn;
-			if(drawn >= numCommodities)
+			if(drawn >= availableLines)
 				break;
 		}
 	}
