@@ -30,7 +30,7 @@ public:
 	inline T &emplace_back(Args &&... args)
 	{
 		const std::lock_guard<std::mutex> lock(write_mutex);
-		return this->list::emplace_back(args...);
+		return std::list<T, Allocator>::emplace_back(args...);
 	}
 
 private:
@@ -44,7 +44,7 @@ public:
 	inline T &emplace_back(Args &&... args)
 	{
 		const std::lock_guard<std::mutex> lock(write_mutex);
-		return this->vector::emplace_back(args...);
+		return std::vector<T, Allocator>::emplace_back(args...);
 	}
 
 private:
