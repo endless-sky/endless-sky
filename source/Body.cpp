@@ -31,23 +31,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 
-WithMutex::WithMutex(const WithMutex &other) : mutex()
-{}
-
-
-
-WithMutex &WithMutex::operator=(const WithMutex &other)
-{
-	return *this;
-}
-
-
-// Gets the mutex for this body.
-std::mutex &WithMutex::GetMutex() {
-	return mutex;
-}
-
-
 
 // Constructor, based on a Sprite.
 Body::Body(const Sprite *sprite, Point position, Point velocity, Angle facing, double zoom)

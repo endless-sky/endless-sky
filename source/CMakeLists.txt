@@ -347,6 +347,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Weather.cpp
 	Weather.h
 	WeightedList.h
+	WithMutex.cpp
+	WithMutex.h
 	Wormhole.cpp
 	Wormhole.h
 	WormholeStrategy.h
