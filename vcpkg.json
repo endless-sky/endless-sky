@@ -29,20 +29,14 @@
           "platform": "linux"
         },
         "sdl2",
-        {
-          "name": "tbb",
-          "platform": "linux"
-        }
+        "tbb"
       ]
     },
     "steam-libs": {
       "description": "System libraries not provided in the Steam Sniper Runtime.",
       "dependencies": [
         "libmad",
-        {
-          "name": "tbb",
-          "platform": "linux"
-        }
+        "tbb"
       ]
     }
   }
