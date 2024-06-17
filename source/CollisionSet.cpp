@@ -140,7 +140,7 @@ void CollisionSet::Finish()
 
 // Get all possible collisions for the given projectile. Collisions are not necessarily
 // sorted by distance.
-std::vector<Collision> &CollisionSet::Line(const Projectile &projectile, vector<Collision> &result) const
+vector<Collision> &CollisionSet::Line(const Projectile &projectile, vector<Collision> &result) const
 {
 	// What objects the projectile hits depends on its government.
 	const Government *pGov = projectile.GetGovernment();
@@ -156,7 +156,7 @@ std::vector<Collision> &CollisionSet::Line(const Projectile &projectile, vector<
 
 // Get all possible collisions along a line. Collisions are not necessarily sorted by
 // distance.
-std::vector<Collision> &CollisionSet::Line(const Point &from, const Point &to, vector<Collision> &lineResult,
+vector<Collision> &CollisionSet::Line(const Point &from, const Point &to, vector<Collision> &lineResult,
 		const Government *pGov, const Body *target) const
 {
 	const int x = from.X();
@@ -314,7 +314,7 @@ std::vector<Collision> &CollisionSet::Line(const Point &from, const Point &to, v
 
 
 // Get all objects within the given range of the given point.
-std::vector<Body *> &CollisionSet::Circle(const Point &center, double radius, vector<Body *> &result) const
+vector<Body *> &CollisionSet::Circle(const Point &center, double radius, vector<Body *> &result) const
 {
 	return Ring(center, 0., radius, result);
 }
@@ -323,7 +323,7 @@ std::vector<Body *> &CollisionSet::Circle(const Point &center, double radius, ve
 
 // Get all objects touching a ring with a given inner and outer range
 // centered at the given point.
-std::vector<Body *> &CollisionSet::Ring(const Point &center, double inner, double outer, vector<Body *> &circleResult) const
+vector<Body *> &CollisionSet::Ring(const Point &center, double inner, double outer, vector<Body *> &circleResult) const
 {
 	// Calculate the range of (x, y) grid coordinates this ring covers.
 	const int minX = static_cast<int>(center.X() - outer) >> SHIFT;
