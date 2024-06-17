@@ -25,7 +25,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <cmath>
 #include <cstring>
-#include <iostream>
 
 using namespace std;
 
@@ -271,7 +270,6 @@ void Outfit::Load(const DataNode &node)
 		{
 			thumbnailBody = Body();
 			thumbnailBody.LoadSprite(child);
-			cerr << "loaded jump drive sprites: " << &thumbnailBody << endl;
 		}
 		else if(child.Token(0) == "weapon")
 			LoadWeapon(child);
