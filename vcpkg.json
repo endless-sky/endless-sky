@@ -31,10 +31,6 @@
         "sdl2",
         {
           "name": "tbb",
-          "features": []
-        },
-        {
-          "name": "tbb",
           "platform": "linux"
         }
       ]
