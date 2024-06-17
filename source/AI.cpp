@@ -581,7 +581,7 @@ void AI::Step(Command &activeCommands)
 
 	// Copy the ship pointers for parallel execution
 	vector<shared_ptr<Ship>> shipVector(ships.begin(), ships.end());
-	for_each(parallel::seq, shipVector.begin(), shipVector.end(), [&](auto &it)
+	for_each(parallel::par, shipVector.begin(), shipVector.end(), [&](auto &it)
 	{
 		// A destroyed ship can't do anything.
 		if(it->IsDestroyed())
