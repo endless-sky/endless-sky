@@ -33,7 +33,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-#ifndef __cpp_lib_execution
+#if !defined(__cpp_lib_execution) and !defined(_LIBCPP_EXECUTION)
 
 // Dummy for std::execution.
 enum class execution
