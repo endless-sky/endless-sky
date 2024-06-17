@@ -96,7 +96,7 @@ private:
 	bool checkedHelp = false;
 
 	int shipsHere = 0;
-	int step; // for frames
+	int step = 0;
 };
 
 

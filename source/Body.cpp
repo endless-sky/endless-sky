@@ -113,18 +113,6 @@ float Body::GetFrame(int step) const
 
 
 
-// Get the frame index for the given time step. If no time step is given, this
-// will return the frame from the most recently given step.
-float Body::GetOutfitFrame(int step) const
-{
-	// I don't understand why SetStep(), called above, doesn't give the same output
-
-	// frameRate is in sprite frames per sixtith of a second (i.e. per step)
-	return fmodf(roundf(step * frameRate), sprite->Frames());
-}
-
-
-
 // Get the mask for the given time step. If no time step is given, this will
 // return the mask from the most recently given step.
 const Mask &Body::GetMask(int step) const

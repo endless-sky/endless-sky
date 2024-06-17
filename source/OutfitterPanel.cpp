@@ -834,7 +834,7 @@ void OutfitterPanel::DrawOutfit(const Outfit &outfit, const Point &center, bool 
 {
 	const Body body = outfit.ThumbnailBody();
 	const bool isAnimated = body.GetSprite() != nullptr;
-	const float frame = isAnimated ? body.GetOutfitFrame(step) : 0.f;
+	const float frame = isAnimated ? body.GetFrame(step) : 0.f;
 	const Sprite *thumbnail = isAnimated ? body.GetSprite() : outfit.Thumbnail();
 	const Sprite *back = SpriteSet::Get(
 		isSelected ? "ui/outfitter selected" : "ui/outfitter unselected");

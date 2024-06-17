@@ -52,7 +52,6 @@ public:
 	int GetSwizzle() const;
 	// Get the sprite frame and mask for the given time step.
 	float GetFrame(int step = -1) const;
-	float GetOutfitFrame(int step) const;
 	const Mask &GetMask(int step = -1) const;
 
 	// Positional attributes.
