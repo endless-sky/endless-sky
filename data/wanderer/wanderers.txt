@@ -1068,5 +1068,5 @@ mission "Wanderer Tribute Patch"
 	to offer
 		has "event: wanderers: desi seledrak"
 	on offer
-		event "wanderer tribute patch" 0
+		event "wanderer tribute patch"
 		fail
