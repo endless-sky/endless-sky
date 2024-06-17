@@ -36,13 +36,16 @@ enum class execution
 
 
 
-// Holds a TaskQueue to void adding globals to the namespace.
+// Executes tasks in parallel using a TaskQueue.
 class Parallel
 {
 public:
+	// Executes the given function over every element in the range.
 	template<class RandomIt, class Func>
 	static void RunBulk(const RandomIt begin, const RandomIt end, Func &&f);
+	// Executes the given function asynchronously.
 	static inline void Run(std::function<void()> f) {queue.Run(std::move(f));}
+	// Waits for all tasks to finish.
 	static inline void Wait() {queue.Wait();}
 private:
 	static TaskQueue queue;
@@ -50,6 +53,7 @@ private:
 
 
 
+// Executes the given function over every element in the range.
 template<class RandomIt, class Func>
 void Parallel::RunBulk(const RandomIt begin, const RandomIt end, Func &&f)
 {
