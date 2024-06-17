@@ -139,8 +139,11 @@ inline void stable_sort(ExecutionPolicy, RandomIt first, RandomIt last)
 }
 
 #else
+
 #include <execution>
+
 namespace parallel = std::execution;
+
 #endif
 
 #endif
