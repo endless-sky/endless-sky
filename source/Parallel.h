@@ -44,11 +44,7 @@ enum class execution
 
 #else
 
-namespace execution {
-	inline constexpr auto seq = std::execution::seq;
-	inline constexpr auto par = std::execution::par;
-	inline constexpr auto par_unseq = std::execution::par_unseq;
-}
+namespace execution = std::execution;
 
 #endif
 
