@@ -46,7 +46,12 @@ enum class execution
 
 #include <execution>
 
-namespace execution = std::execution;
+namespace execution
+{
+	constexpr int seq = 1;
+	constexpr int par = 2;
+	constexpr int par_unseq = 3;
+}
 
 #endif
 
