@@ -44,8 +44,9 @@ enum class execution
 
 #else
 
-#include <execution>
-typedef std::execution execution;
+typedef std::execution::seq execution::seq;
+typedef std::execution::par execution::par;
+typedef std::execution::par_unseq execution::par_unseq;
 
 #endif
 
