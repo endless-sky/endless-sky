@@ -37,16 +37,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define _LIBCPP_EXECUTION
 
 // Dummy for std::execution.
-enum class execution
+enum class parallel
 {
 	seq, par, par_unseq
 };
 
 #else
 
-#include <execution>
 
-namespace execution
+namespace parallel
 {
 	constexpr int seq = 1;
 	constexpr int par = 2;
@@ -107,7 +106,7 @@ void Parallel::RunBulk(const RandomIt begin, const RandomIt end, Func &&f)
 template<class ExecutionPolicy, class RandomIt, class Func>
 inline void for_each(ExecutionPolicy e, RandomIt begin, RandomIt end, Func &&f)
 {
-	if(e == execution::seq)
+	if(e == parallel::seq)
 		std::for_each(begin, end, f);
 	else
 	{
@@ -150,6 +149,7 @@ inline void stable_sort(ExecutionPolicy, RandomIt first, RandomIt last)
 
 #else
 #include <execution>
+namespace parallel = std::execution;
 #endif
 
 #endif
