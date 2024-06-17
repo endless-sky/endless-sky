@@ -49,6 +49,12 @@ typedef std::execution::sequenced_policy execution::seq;
 typedef std::execution::parallel_policy execution::par;
 typedef std::execution::parallel_unsequenced_policy execution::par_unseq;
 
+#else
+
+typedef std::execution::seq execution::seq;
+typedef std::execution::par execution::par;
+typedef std::execution::par_unseq execution::par_unseq;
+
 #endif
 
 
