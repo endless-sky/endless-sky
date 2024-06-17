@@ -838,7 +838,7 @@ void OutfitterPanel::DrawOutfit(const Outfit &outfit, const Point &center, bool 
 	const Sprite *back = SpriteSet::Get(
 		isSelected ? "ui/outfitter selected" : "ui/outfitter unselected");
 	SpriteShader::Draw(back, center);
-	SpriteShader::Draw(thumbnail, center, body.Scale(), 0, frame);
+	SpriteShader::Draw(thumbnail, center, isAnimated ? body.Scale() : 1.f, 0, frame);
 
 	// Draw the outfit name.
 	const string &name = outfit.DisplayName();
