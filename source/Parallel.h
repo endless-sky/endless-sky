@@ -38,7 +38,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // Dummy for std::execution.
 namespace parallel
 {
-    constexpr int seq = 0;
+	constexpr int seq = 0;
 	constexpr int par = 1;
 	constexpr int par_useq = 2;
 };
