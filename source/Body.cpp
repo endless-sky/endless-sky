@@ -27,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cmath>
+#include <iostream>
 
 using namespace std;
 
@@ -108,6 +109,18 @@ float Body::GetFrame(int step) const
 		SetStep(step);
 
 	return frame;
+}
+
+
+
+// Get the frame index for the given time step. If no time step is given, this
+// will return the frame from the most recently given step.
+float Body::GetOutfitFrame(int step) const
+{
+	// I don't understand why SetStep(), called above, doesn't give the same output
+
+	// frameRate is in sprite frames per sixtith of a second (i.e. per step)
+	return fmodf(roundf(step * frameRate), sprite->Frames());
 }
 
 
@@ -218,7 +231,7 @@ void Body::LoadSprite(const DataNode &node)
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "frame rate" && child.Size() >= 2 && child.Value(1) >= 0.)
-			frameRate = child.Value(1) / 60.;
+			frameRate = static_cast<float>(child.Value(1)) / 60.f;
 		else if(child.Token(0) == "frame time" && child.Size() >= 2 && child.Value(1) > 0.)
 			frameRate = 1. / child.Value(1);
 		else if(child.Token(0) == "delay" && child.Size() >= 2 && child.Value(1) > 0.)

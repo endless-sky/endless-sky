@@ -190,7 +190,7 @@ outfit "Jump Drive"
 	cost 1000000
 	thumbnail "outfit/jump drive"
 	"thumbnail sprite" "outfit/jump drive"
-		"frame rate" 4
+		"frame rate" 15
 		"random start frame"
 	"mass" 20
 	"outfit space" -20
