@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <execution>
 
 // Only use this header if the underlying system doesn't support the standard algorithms.
-#if !defined(__cpp_lib_parallel_algorithm) && !defined(__cpp_lib_execution)
+//#if !defined(__cpp_lib_parallel_algorithm) && !defined(__cpp_lib_execution)
 
 #define ES_PARALLEL_USE_TASK_QUEUE
 
@@ -66,10 +66,11 @@ void Parallel::RunBulk(const RandomIt begin, const RandomIt end, Func &&f)
 		RandomIt first = current;
 		RandomIt last = (i == taskCount ? end : first + itemPerTask);
 		current = last;
-		Run({[=]{
+		Run([=]
+		{
 			for(RandomIt it = first; it != last; it++)
 				f(*it);
-		}});
+		});
 	}
 }
 
@@ -118,6 +119,6 @@ inline void stable_sort(execution, RandomIt first, RandomIt last)
 {
 	std::stable_sort(first, last);
 }
-#endif
+//#endif
 
 #endif
