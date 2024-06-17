@@ -1045,3 +1045,28 @@ event "wanderers: moonbeam mass production"
 	outfitter "Wanderer Advanced"
 		"Moonbeam"
 		"Moonbeam Turret"
+
+event "wanderer tribute patch"
+	planet "Varu K'est"
+		tribute clear
+	planet "Vara Ke'stai"
+		tribute clear
+	planet "Var' Kar'i'i"
+		tribute clear
+	planet "Spera Anatrusk"
+		tribute 600
+			threshold 1200
+			fleet "Wanderer Defense" 2
+	planet "Desi Seledrak"
+		tribute 500
+			threshold 1100
+			fleet "Wanderer Defense" 2
+
+mission "Wanderer Tribute Patch"
+	landing
+	invisible
+	to offer
+		has "event: wanderers: desi seledrak"
+	on offer
+		"event: wanderer tribute patch" 0
+		fail
