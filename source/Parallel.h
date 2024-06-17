@@ -26,7 +26,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "TaskQueue.h"
 
 #include <algorithm>
-#include <execution>
 #include <utility>
 
 // Dummy for std::execution.
@@ -120,6 +119,9 @@ inline void stable_sort(execution, RandomIt first, RandomIt last)
 {
 	std::stable_sort(first, last);
 }
+
+#else
+#include <execution>
 #endif
 
 #endif
