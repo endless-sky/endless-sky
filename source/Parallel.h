@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef PARALLEL_H_
 #define PARALLEL_H_
 
-#include <execution>
+#include <version>
 
 // Only use this header if the underlying system doesn't support the standard algorithms.
 #if !defined(__cpp_lib_parallel_algorithm) && !defined(__cpp_lib_execution)
@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "TaskQueue.h"
 
 #include <algorithm>
+#include <execution>
 #include <utility>
 
 // Dummy for std::execution.
