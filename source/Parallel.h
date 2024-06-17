@@ -34,6 +34,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 #if !defined(__cpp_lib_execution) && !defined(_LIBCPP_EXECUTION)
+#define _LIBCPP_EXECUTION
 
 // Dummy for std::execution.
 enum class execution
@@ -41,6 +42,8 @@ enum class execution
 	seq, par, par_unseq
 };
 
+#else
+typedef std::execution execution;
 #endif
 
 
