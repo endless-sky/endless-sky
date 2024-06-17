@@ -1063,8 +1063,8 @@ event "wanderer tribute patch"
 			fleet "Wanderer Defense" 2
 
 mission "Wanderer Tribute Patch"
-	landing
 	invisible
+	landing
 	to offer
 		has "event: wanderers: desi seledrak"
 	on offer
