@@ -4713,7 +4713,7 @@ planet "Var' Kayi"
 	bribe 0
 	tribute 4500
 		threshold 12500
-		fleet "Wanderer Defense" 7
+		fleet "Wanderer Defense" 12
 
 planet "Var' Roi"
 	attributes frozen moon research wanderer
@@ -4736,7 +4736,7 @@ planet "Vara K'chrai"
 	outfitter "Wanderer Advanced"
 	bribe 0
 	tribute 8000
-		threshold 140000
+		threshold 14000
 		fleet "Wanderer Defense" 17
 
 planet "Vara Ke'sok"
