@@ -21,7 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 // Only use this header if the underlying system doesn't support the standard algorithms.
-#if !defined(__cpp_lib_parallel_algorithm) && !defined(__cpp_lib_execution)
+#if !defined(__cpp_lib_parallel_algorithm)
 
 #define ES_PARALLEL_USE_TASK_QUEUE
 
@@ -32,11 +32,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
+#ifndef __cpp_lib_execution
+
 // Dummy for std::execution.
 enum class execution
 {
 	seq, par, par_unseq
 };
+
+#endif
 
 
 
