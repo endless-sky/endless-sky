@@ -33,24 +33,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-#if !defined(__cpp_lib_execution) && !defined(_LIBCPP_EXECUTION)
-#define _LIBCPP_EXECUTION
+#if !defined(__cpp_lib_execution)
 
 // Dummy for std::execution.
 enum class parallel
 {
-	seq, par, par_unseq
+    seq, par, par_unseq
 };
-
-#else
-
-
-namespace parallel
-{
-	constexpr int seq = 1;
-	constexpr int par = 2;
-	constexpr int par_unseq = 3;
-}
 
 #endif
 
