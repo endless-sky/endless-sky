@@ -42,11 +42,12 @@ enum class execution
 	seq, par, par_unseq
 };
 
-#else
+#elif defined(__APPLE__)
 
-typedef std::execution::seq execution::seq;
-typedef std::execution::par execution::par;
-typedef std::execution::par_unseq execution::par_unseq;
+// Apple users need special care because their library doesn't conform with the standard.
+typedef std::execution::sequenced_policy execution::seq;
+typedef std::execution::parallel_policy execution::par;
+typedef std::execution::parallel_unsequenced_policy execution::par_unseq;
 
 #endif
 
@@ -99,8 +100,8 @@ void Parallel::RunBulk(const RandomIt begin, const RandomIt end, Func &&f)
 
 
 // Dummies for parallel stl functions.
-template<class RandomIt, class Func>
-inline void for_each(execution e, RandomIt begin, RandomIt end, Func &&f)
+template<class ExecutionPolicy, class RandomIt, class Func>
+inline void for_each(ExecutionPolicy e, RandomIt begin, RandomIt end, Func &&f)
 {
 	if(e == execution::seq)
 		std::for_each(begin, end, f);
@@ -113,32 +114,32 @@ inline void for_each(execution e, RandomIt begin, RandomIt end, Func &&f)
 
 
 
-template<class RandomIt, class Compare>
-inline void sort(execution, RandomIt first, RandomIt last, Compare comp)
+template<class ExecutionPolicy, class RandomIt, class Compare>
+inline void sort(ExecutionPolicy, RandomIt first, RandomIt last, Compare comp)
 {
 	std::sort(first, last, comp);
 }
 
 
 
-template<class RandomIt>
-inline void sort(execution, RandomIt first, RandomIt last)
+template<class ExecutionPolicy, class RandomIt>
+inline void sort(ExecutionPolicy, RandomIt first, RandomIt last)
 {
 	std::sort(first, last);
 }
 
 
 
-template<class RandomIt, class Compare>
-inline void stable_sort(execution, RandomIt first, RandomIt last, Compare comp)
+template<class ExecutionPolicy, class RandomIt, class Compare>
+inline void stable_sort(ExecutionPolicy, RandomIt first, RandomIt last, Compare comp)
 {
 	std::stable_sort(first, last, comp);
 }
 
 
 
-template<class RandomIt>
-inline void stable_sort(execution, RandomIt first, RandomIt last)
+template<class ExecutionPolicy, class RandomIt>
+inline void stable_sort(ExecutionPolicy, RandomIt first, RandomIt last)
 {
 	std::stable_sort(first, last);
 }
