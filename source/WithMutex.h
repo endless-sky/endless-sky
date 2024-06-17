@@ -29,7 +29,9 @@ class WithMutex
 public:
 	WithMutex() = default;
 	WithMutex(const WithMutex &other);
+	WithMutex(const WithMutex &&other);
 	WithMutex &operator=(const WithMutex &other);
+	WithMutex &operator=(const WithMutex &&other);
 
 	// Gets the mutex for this object.
 	std::mutex &GetMutex();

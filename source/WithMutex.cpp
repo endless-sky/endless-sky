@@ -22,7 +22,19 @@ WithMutex::WithMutex(const WithMutex &other) : mutex()
 
 
 
+WithMutex::WithMutex(const WithMutex &&other) : mutex()
+{}
+
+
+
 WithMutex &WithMutex::operator=(const WithMutex &other)
+{
+	return *this;
+}
+
+
+
+WithMutex &WithMutex::operator=(const WithMutex &&other)
 {
 	return *this;
 }
