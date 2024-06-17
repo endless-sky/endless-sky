@@ -40,7 +40,7 @@ namespace parallel
 {
 	constexpr int seq = 0;
 	constexpr int par = 1;
-	constexpr int par_useq = 2;
+	constexpr int par_unseq = 2;
 };
 
 #endif
