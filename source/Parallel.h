@@ -42,21 +42,12 @@ enum class execution
 	seq, par, par_unseq
 };
 
-#elif defined(__APPLE__)
-
-// Apple users need special care because their library doesn't conform with the standard.
-namespace execution {
-	typedef std::execution::sequenced_policy seq;
-	typedef std::execution::parallel_policy par;
-	typedef std::execution::parallel_unsequenced_policy par_unseq;
-}
-
 #else
 
 namespace execution {
-	typedef std::execution::seq seq;
-	typedef std::execution::par par;
-	typedef std::execution::par_unseq par_unseq;
+	inline constexpr auto seq = std::execution::seq;
+	inline constexpr auto par = std::execution::par;
+	inline constexpr auto par_unseq = std::execution::par_unseq;
 }
 
 #endif
