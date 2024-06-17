@@ -55,7 +55,6 @@ public:
 	TaskQueue() = default;
 	TaskQueue(const TaskQueue &) = delete;
 	TaskQueue &operator=(const TaskQueue &) = delete;
-	~TaskQueue();
 
 	// Queue a function to execute in parallel, with an another optional function that
 	// will get executed on the main thread after the first function finishes.

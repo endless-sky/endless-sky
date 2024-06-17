@@ -55,14 +55,6 @@ namespace {
 
 
 
-TaskQueue::~TaskQueue()
-{
-	// Make sure every task that belongs to this queue is finished.
-	Wait();
-}
-
-
-
 // Queue a function to execute in parallel, with an another optional function that
 // will get executed on the main thread after the first function finishes.
 // Returns a future representing the future result of the async call. Ignores
