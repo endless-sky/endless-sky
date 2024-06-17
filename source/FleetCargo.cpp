@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "GameData.h"
 #include "Outfit.h"
+#include "Parallel.h"
 #include "Planet.h"
 #include "Ship.h"
 #include "StellarObject.h"
@@ -26,7 +27,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cmath>
-#include <execution>
 
 using namespace std;
 

@@ -22,11 +22,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Government.h"
 #include "Mission.h"
 #include "Outfit.h"
+#include "Parallel.h"
 #include "System.h"
 
 #include <algorithm>
 #include <cmath>
-#include <execution>
 #include <vector>
 
 using namespace std;

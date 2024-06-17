@@ -30,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Logger.h"
 #include "Mask.h"
 #include "Messages.h"
+#include "Parallel.h"
 #include "Phrase.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -48,7 +49,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <cassert>
 #include <cmath>
-#include <execution>
 #include <limits>
 #include <sstream>
 

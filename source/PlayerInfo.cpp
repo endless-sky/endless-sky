@@ -29,6 +29,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Logger.h"
 #include "Messages.h"
 #include "Outfit.h"
+#include "Parallel.h"
 #include "Person.h"
 #include "Planet.h"
 #include "Plugins.h"
@@ -50,7 +51,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cassert>
 #include <cmath>
 #include <ctime>
-#include <execution>
 #include <functional>
 #include <iterator>
 #include <limits>

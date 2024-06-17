@@ -28,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Mask.h"
 #include "Messages.h"
 #include "Minable.h"
+#include "Parallel.h"
 #include "pi.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -46,7 +47,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cmath>
-#include <execution>
 #include <limits>
 #include <set>
 

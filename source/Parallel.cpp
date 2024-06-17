@@ -1,4 +1,4 @@
-/* WithMutex.h
+/* Parallel.cpp
 Copyright (c) 2024 by tibetiroka
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -13,30 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef WITH_MUTEX_H_
-#define WITH_MUTEX_H_
+#include "Parallel.h"
 
-#include <mutex>
-
-
-
-// Helper class to add a mutex to Body without declaring the full copy constructor.
-// These operations are not thread safe. Do not copy the object in a concurrent context,
-// or with a locked mutex.
-// The use of the mutex must be enforced externally.
-class WithMutex
-{
-public:
-	WithMutex() = default;
-	WithMutex(const WithMutex &other);
-	WithMutex &operator=(const WithMutex &other);
-
-	// Gets the mutex for this object.
-	std::mutex &GetMutex();
-protected:
-	std::mutex mutex;
-};
-
-
-
+# ifdef ES_PARALLEL_USE_TASK_QUEUE
+TaskQueue Parallel::queue;
 #endif
