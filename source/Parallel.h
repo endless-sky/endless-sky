@@ -44,6 +44,8 @@ enum class execution
 
 #else
 
+#include <execution>
+
 namespace execution = std::execution;
 
 #endif
