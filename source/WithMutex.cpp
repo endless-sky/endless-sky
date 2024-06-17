@@ -34,6 +34,7 @@ WithMutex &WithMutex::operator=(const WithMutex &other)
 
 
 
+
 WithMutex &WithMutex::operator=(const WithMutex &&other)
 {
 	return *this;
