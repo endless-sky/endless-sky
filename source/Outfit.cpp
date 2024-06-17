@@ -151,6 +151,11 @@ void Outfit::Load(const DataNode &node)
 			for(const DataNode &grand : child)
 				AddLicense(grand.Token(0));
 		}
+		else if(child.Token(0) == "jump range" && child.Size() >= 2)
+		{
+			// Jump range must be positive.
+			attributes.Set(child.Token(0), max(0., child.Value(1)));
+		}
 		else
 			attributes.Load(child);
 	}
