@@ -1495,7 +1495,7 @@ void Engine::CalculateStep()
 
 	// And a copy of the ship list for random access.
 	vector<shared_ptr<Ship>> shipVector(ships.begin(), ships.end());
-	for_each(parallel::par, shipVector.begin(), shipVector.end(), [&](const shared_ptr<Ship> &it)
+	for_each(parallel::seq, shipVector.begin(), shipVector.end(), [&](const shared_ptr<Ship> &it)
 	{
 		if(it == player.FlagshipPtr())
 			return;
@@ -1605,7 +1605,7 @@ void Engine::CalculateStep()
 	// Perform collision detection.
 	// We store the visuals in a separate list for every thread to reduce lock contention.
 	vector<pair<mutex, list<Visual>>> parallelBuffer(thread::hardware_concurrency());
-	for_each(parallel::par, projectiles.begin(), projectiles.end(), [&](auto &projectile) {
+	for_each(parallel::seq, projectiles.begin(), projectiles.end(), [&](auto &projectile) {
 		DoCollisions(parallelBuffer, projectile);
 	});
 	for(auto &item : parallelBuffer)
