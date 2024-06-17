@@ -262,7 +262,7 @@ void MapOutfitterPanel::DrawItems()
 
 			const Sprite *thumbnailSprite = outfit->ThumbnailBody().GetSprite();
 			const Sprite *sprite = thumbnailSprite ? thumbnailSprite : outfit->Thumbnail();
-			int frame = outfit->ThumbnailBody().GetFrame();
+			int frame = outfit->ThumbnailBody().GetFrame(step);
 			Draw(corner, sprite, 0, frame, isForSale, outfit == selected,
 				outfit->DisplayName(), price, info, storage_details);
 			list.push_back(outfit);
