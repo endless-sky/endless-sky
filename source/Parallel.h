@@ -45,9 +45,11 @@ enum class execution
 #elif defined(__APPLE__)
 
 // Apple users need special care because their library doesn't conform with the standard.
-typedef std::execution::sequenced_policy seq;
-typedef std::execution::parallel_policy par;
-typedef std::execution::parallel_unsequenced_policy par_unseq;
+namespace execution {
+	typedef std::execution::sequenced_policy seq;
+	typedef std::execution::parallel_policy par;
+	typedef std::execution::parallel_unsequenced_policy par_unseq;
+}
 
 #else
 
