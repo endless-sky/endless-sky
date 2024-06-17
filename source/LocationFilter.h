@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <list>
 #include <set>
 #include <string>
+#include <vector>
 
 class DataNode;
 class DataWriter;
@@ -69,6 +70,66 @@ public:
 
 
 private:
+	class NearOrDistanceFilter {
+	public:
+		virtual ~NearOrDistanceFilter() = default;
+
+		void Load(const DataNode &node, int valueIndex);
+
+	protected:
+		class DistanceElement {
+		public:
+			int minDistance = 0;
+			int maxDistance = -1;
+			DistanceCalculationSettings distanceOptions;
+		};
+
+		class NearElement {
+		public:
+			NearElement() = default;
+			NearElement(const DistanceElement &other);
+
+			const System *center = nullptr;
+			int minDistance = 0;
+			int maxDistance = 1;
+			DistanceCalculationSettings distanceOptions;
+		};
+
+	protected:
+		virtual void LoadElement(const DataNode &node, int index) = 0;
+	};
+
+	class DistanceFilter : public NearOrDistanceFilter {
+	public:
+		bool Matches(const System *system, const System *origin) const;
+		const std::list<DistanceElement> &Elements() const;
+
+	protected:
+		virtual void LoadElement(const DataNode &node, int index) override;
+
+	private:
+		std::list<DistanceElement> elements;
+	};
+
+	class NearFilter : public NearOrDistanceFilter {
+	public:
+		NearFilter() = default;
+		NearFilter(const DistanceFilter &other, const System *origin);
+
+		void Save(DataWriter &out) const;
+
+		bool Matches(const System *system) const;
+		bool IsValid() const;
+
+	protected:
+		virtual void LoadElement(const DataNode &node, int index) override;
+
+	private:
+		std::list<NearElement> elements;
+	};
+
+
+private:
 	// Load one particular line of conditions.
 	void LoadChild(const DataNode &child);
 	// Check if the filter matches the given system. If it did not, return true
@@ -89,14 +150,9 @@ private:
 	std::set<const System *> systems;
 	std::set<const Government *> governments;
 	// The reference point and distance limits of a "near <system>" filter.
-	const System *center = nullptr;
-	int centerMinDistance = 0;
-	int centerMaxDistance = 1;
-	DistanceCalculationSettings centerDistanceOptions;
+	std::vector<NearFilter> nearFilters;
 	// Distance limits used in a "distance" filter.
-	int originMinDistance = 0;
-	int originMaxDistance = -1;
-	DistanceCalculationSettings originDistanceOptions;
+	std::vector<DistanceFilter> distanceFilters;
 
 	// At least one of the outfits from each set must be available
 	// (to purchase or plunder):
