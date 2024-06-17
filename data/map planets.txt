@@ -4808,8 +4808,7 @@ planet "Varu Ek'lak'lai"
 	bribe 0
 	tribute 1300
 		threshold 3400
-		fleet "Wanderer Flycatchers" 20
-		fleet "Wanderer Defense" 2
+		fleet "Wanderer Defense" 3
 
 planet "Varu K'est"
 	attributes military wanderer
