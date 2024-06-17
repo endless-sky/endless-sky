@@ -316,7 +316,7 @@ mission "Ask Quarg About Coalition Late"
 	invisible
 	landing
 	source
-		attributes "hai quarg" "human quarg"
+		attributes "quarg"
 		attributes "station"
 	to offer
 		or
