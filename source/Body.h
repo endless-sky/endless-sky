@@ -31,7 +31,6 @@ class Sprite;
 
 
 
-
 // Class representing any object in the game that has a position, velocity, and
 // facing direction and usually also has a sprite.
 class Body : public WithMutex {

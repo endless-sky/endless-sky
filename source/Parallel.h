@@ -18,6 +18,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <version>
 
+
+
 // Only use this header if the underlying system doesn't support the standard algorithms.
 #if !defined(__cpp_lib_parallel_algorithm) && !defined(__cpp_lib_execution)
 
@@ -27,6 +29,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <utility>
+
+
 
 // Dummy for std::execution.
 enum class execution
@@ -47,6 +51,8 @@ public:
 	static inline void Run(std::function<void()> f) {queue.Run(std::move(f));}
 	// Waits for all tasks to finish.
 	static inline void Wait() {queue.Wait();}
+
+
 private:
 	static TaskQueue queue;
 };
@@ -77,6 +83,7 @@ void Parallel::RunBulk(const RandomIt begin, const RandomIt end, Func &&f)
 		});
 	}
 }
+
 
 
 // Dummies for parallel stl functions.

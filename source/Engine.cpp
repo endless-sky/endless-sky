@@ -1745,6 +1745,7 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship, vector<mutex> &bufferMutexes
 		return;
 	}
 	else
+	{
 		for(unsigned newIndex = 0; newIndex < bufferMutexes.size(); newIndex++)
 			if(bufferMutexes[newIndex].try_lock())
 			{
@@ -1752,6 +1753,7 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship, vector<mutex> &bufferMutexes
 				bufferMutexes[newIndex].unlock();
 				return;
 			}
+	}
 	// If there is no free lock, fall back to the original guess.
 	bufferMutexes[index].lock();
 	MoveShip(ship, visualsBuffer[index], flotsamBuffer[index], shipBuffer[index], projectileBuffer[index]);
@@ -2345,6 +2347,7 @@ void Engine::DoCollisions(vector<pair<mutex, list<Visual>>> &parallelBuffer, Pro
 					eventType = ship->TakeDamage(visuals, damage.CalculateDamage(*ship, ship == hit),
 							targeted ? gov : nullptr);
 				}
+
 				if(eventType)
 					eventQueue.emplace_back(gov, ship->shared_from_this(), eventType);
 			}
@@ -2374,7 +2377,7 @@ void Engine::DoCollisions(vector<pair<mutex, list<Visual>>> &parallelBuffer, Pro
 		for(Ship *ship : hasAntiMissile)
 			if(ship == projectile.Target() || gov->IsEnemy(ship->GetGovernment()))
 			{
-				const std::lock_guard<mutex> lock(ship->GetMutex());
+				const lock_guard<mutex> lock(ship->GetMutex());
 				if(ship->FireAntiMissile(projectile, visuals))
 				{
 					projectile.Kill();
@@ -2383,11 +2386,11 @@ void Engine::DoCollisions(vector<pair<mutex, list<Visual>>> &parallelBuffer, Pro
 			}
 	}
 
-	{
-		size_t id = std::hash<thread::id>{}(this_thread::get_id());
-		int index = id % parallelBuffer.size();
-		auto &element = parallelBuffer[index];
+	size_t id = std::hash<thread::id>{}(this_thread::get_id());
+	int index = id % parallelBuffer.size();
+	auto &element = parallelBuffer[index];
 
+	{
 		// Even though we have one list per thread, we cannot effectively map them to each other
 		// so we still need to lock. It is not worth finding a free lock for this constant-time operation.
 		const std::lock_guard<mutex> lock(element.first);
