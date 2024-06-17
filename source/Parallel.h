@@ -52,9 +52,9 @@ typedef std::execution::parallel_unsequenced_policy execution::par_unseq;
 #else
 
 namespace execution {
-	typedef std::execution::seq execution::seq;
-	typedef std::execution::par execution::par;
-	typedef std::execution::par_unseq execution::par_unseq;
+	typedef std::execution::seq seq;
+	typedef std::execution::par par;
+	typedef std::execution::par_unseq par_unseq;
 }
 
 #endif
