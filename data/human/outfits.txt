@@ -191,7 +191,6 @@ outfit "Jump Drive"
 	thumbnail "outfit/jump drive"
 	"thumbnail sprite" "outfit/jump drive"
 		"frame rate" 15
-		"random start frame"
 	"mass" 20
 	"outfit space" -20
 	"jump speed" .3
