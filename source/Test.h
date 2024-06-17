@@ -89,7 +89,7 @@ public:
 		// checking asserts (similar to Conversations).
 		ConditionSet conditions;
 		// Labels to jump to in case of branches. We could optimize during
-		// load to lookup the step numbers (and provide integer stepnumbers
+		// load to look up the step numbers (and provide integer step numbers
 		// here), but we can also use the textual information during error/
 		// debug printing, so keeping the strings for now.
 		std::string jumpOnTrueTarget;
