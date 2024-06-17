@@ -234,7 +234,7 @@ mission "Ask Quarg About Coalition Early"
 		not "joined the lunarium"
 		not "joined the heliarchs"
 	source
-		attributes "quarg"
+		attributes "hai quarg" "human quarg"
 		attributes "station"
 		not attributes "gegno quarg"
 	on offer
@@ -267,7 +267,7 @@ mission "Quarg Pug Arfecta Warning"
 	minor
 	landing
 	source
-		attributes "quarg"
+		attributes "hai quarg" "human quarg"
 		attributes "ringworld"
 		not attributes "gegno quarg"
 	to offer
@@ -318,7 +318,7 @@ mission "Ask Quarg About Coalition Late"
 	invisible
 	landing
 	source
-		attributes "quarg"
+		attributes "hai quarg" "human quarg"
 		attributes "station"
 	to offer
 		or
