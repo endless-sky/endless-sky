@@ -153,8 +153,8 @@ ResourceProvider<Types...>::ResourceGuard::Sync()
 	{
 		std::mutex &resourceMutex = this->provider.remoteLocks.at(index);
 		const std::lock_guard<std::mutex> lock(resourceMutex);
-		auto remoteResource = std::get<Index>(provider.remoteResources);
-		auto resource = get<Index>();
+		auto remoteResource = std::get<index>(provider.remoteResources);
+		auto resource = get<index>();
 		SyncSingle(remoteResource, resource);
 	}
 	this->Sync<index + 1>();
