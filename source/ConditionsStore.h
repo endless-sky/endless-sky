@@ -76,7 +76,7 @@ public:
 	};
 
 
-	// Storage entry for a condition. Can act as a int64_t proxy when operator[] is used for access
+	// Storage entry for a condition. Can act as an int64_t proxy when operator[] is used for access
 	// to conditions in the ConditionsStore.
 	class ConditionEntry {
 		friend ConditionsStore;

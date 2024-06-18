@@ -136,7 +136,7 @@ namespace {
 
 	// Helper function for ExpandConditions.
 	//
-	// source.substr(formatStart, formatSize) contains the format (credits, mass, etc)
+	// source.substr(formatStart, formatSize) contains the format (credits, mass, etc.)
 	// source.substr(conditionStart, conditionSize) contains the condition name
 	//
 	// If formatStart or formatSize are string::npos, then there is no formatting.
