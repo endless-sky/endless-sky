@@ -78,8 +78,8 @@ public:
 	void Step(bool isActive);
 	// Begin the next step of calculations.
 	void Go();
-	// Set whether the flow of time is paused.
-	void SetTimePaused(bool timePaused);
+	// Whether the player paused the game.
+	bool IsPaused();
 
 	// Give a command on behalf of the player, used for integration tests.
 	void GiveCommand(const Command &command);

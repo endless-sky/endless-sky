@@ -1039,10 +1039,10 @@ void Engine::Go()
 
 
 
-// Set whether the flow of time is paused.
-void Engine::SetTimePaused(bool tp)
+// Whether the flow of time is paused.
+bool Engine::IsPaused()
 {
-	timePaused = tp;
+	return timePaused;
 }
 
 
@@ -2030,6 +2030,9 @@ void Engine::HandleKeyboardInputs()
 	if(keyHeld.Has(Command::AUTOSTEER) && !activeCommands.Turn()
 			&& !activeCommands.Has(Command::LAND | Command::JUMP | Command::BOARD | Command::STOP))
 		activeCommands |= Command::AUTOSTEER;
+
+	if(keyDown.Has(Command::PAUSE))
+		timePaused = !timePaused;
 }
 
 
