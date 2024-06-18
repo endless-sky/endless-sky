@@ -84,6 +84,10 @@ public:
 	ResourceProvider &operator=(const ResourceProvider &other) = delete;
 	ResourceProvider &operator=(const ResourceProvider &&other) = delete;
 
+	// Gets a remote resource. Does not acquire the lock for editing the resource.
+	template<std::size_t I>
+	inline auto &get_remote();
+
 	// Lock a mutex, and return a guard for that lock.
 	const ResourceGuard Lock();
 
@@ -164,7 +168,7 @@ ResourceProvider<Types...>::ResourceGuard::Sync()
 {
 	{
 		const std::lock_guard<std::mutex> lock(this->provider.remoteLocks[index]);
-		SyncSingle(std::get<index>(provider.remoteResources), this->get<index>());
+		SyncSingle(provider.get_remote<index>(), this->get<index>());
 	}
 	Sync<index + 1>();
 }
@@ -172,8 +176,8 @@ ResourceProvider<Types...>::ResourceGuard::Sync()
 
 
 template<class ...Types>
-template<int Index>
-std::enable_if_t<Index >= sizeof...(Types)>
+template<int index>
+std::enable_if_t<index >= sizeof...(Types)>
 ResourceProvider<Types...>::ResourceGuard::Sync()
 {
 	// End of recursion
@@ -216,6 +220,16 @@ template <class ...Types>
 ResourceProvider<Types...>::ResourceProvider(Types & ...remoteResources)
 		: ResourceProvider(std::thread::hardware_concurrency(), remoteResources...)
 {
+}
+
+
+
+// Gets a remote resource. Does not acquire the lock for editing the resource.
+template <class ...Types>
+template <std::size_t I>
+inline auto &ResourceProvider<Types...>::get_remote()
+{
+	return std::get<I>(remoteResources);
 }
 
 
