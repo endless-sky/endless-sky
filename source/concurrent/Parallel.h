@@ -26,7 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // Mark that we are using a TaskQueue for parallel algorithms, instead of sdl functions.
 #define ES_PARALLEL_USE_TASK_QUEUE
 
-#include "TaskQueue.h"
+#include "../TaskQueue.h"
 
 #include <algorithm>
 #include <utility>

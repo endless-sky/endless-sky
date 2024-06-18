@@ -181,7 +181,8 @@ void ResourceProvider<Types...>::ResourceGuard::SyncSingle(Container &remote, Co
 
 template<class ...Types>
 template<class Item, class Alloc>
-void ResourceProvider<Types...>::ResourceGuard::SyncSingle(std::list<Item, Alloc> &remote, std::list<Item, Alloc> &local)
+void ResourceProvider<Types...>::ResourceGuard::SyncSingle(std::list<Item, Alloc> &remote,
+		std::list<Item, Alloc> &local)
 {
 	remote.splice(remote.end(), local);
 }

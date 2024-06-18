@@ -560,7 +560,7 @@ void AI::Step(Command &activeCommands)
 		else
 			++it;
 	}
-	for_each(parallel::par_unseq, ships.begin(), ships.end(),[&](const auto &it)
+	for_each(parallel::par_unseq, ships.begin(), ships.end(), [&](const auto &it)
 	{
 		const System *system = it->GetActualSystem();
 		if(system && it->Position().Length() >= system->InvisibleFenceRadius())

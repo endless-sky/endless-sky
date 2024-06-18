@@ -27,7 +27,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DrawList.h"
 #include "EscortDisplay.h"
 #include "Information.h"
-#include "concurrent/ResourceProvider.h"
 #include "concurrent/PartiallyGuarded.h"
 #include "PlanetLabel.h"
 #include "Point.h"
@@ -35,6 +34,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Projectile.h"
 #include "Radar.h"
 #include "Rectangle.h"
+#include "concurrent/ResourceProvider.h"
 #include "TaskQueue.h"
 
 #include <condition_variable>
