@@ -108,14 +108,6 @@ inline void for_each(ExecutionPolicy e, RandomIt begin, RandomIt end, Func &&f)
 
 
 
-template<class ExecutionPolicy, class It1, class It2, class Func>
-inline void copy_if(ExecutionPolicy e, It1 begin, It1 end, It2 backInserter, Func &&f)
-{
-	std::copy_if(begin, end, backInserter, f);
-}
-
-
-
 template<class ExecutionPolicy, class RandomIt, class Compare>
 inline void sort(ExecutionPolicy, RandomIt first, RandomIt last, Compare comp)
 {
