@@ -1508,7 +1508,7 @@ void Engine::CalculateStep()
 
 	// Then, move the other ships.
 	// Keep separate lists for each thread to avoid lock contention.
-	ShipResourceProvider provider(newVisuals, newFlotsam, ships, newProjectiles);
+	ShipResourceProvider provider(newVisuals, newFlotsam, newShips, newProjectiles);
 		// And a copy of the ship list for random access.
 	for_each(parallel::par, ships.begin(), ships.end(), [&](const shared_ptr<Ship> &it)
 	{
