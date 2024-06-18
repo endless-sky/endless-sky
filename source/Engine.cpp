@@ -2386,7 +2386,7 @@ void Engine::DoCollection(Flotsam &flotsam)
 			// you'll be pushing the flotsam away from your ship, but the pull of the tractor beam
 			// will still slowly close the distance between the ship and the flotsam.
 			// When dealing with multiple ships, this causes a better appearance of a struggle between
-			// the ships all trying to get ahold of the flotsam should the ships all have similar velocities.
+			// the ships all trying to get a hold of the flotsam should the ships all have similar velocities.
 			// If the ships have differing velocities, then it can make it look like the quicker ship is
 			// yanking the flotsam away from the slower ship.
 			pullVector += avgShipVelocity / count;
