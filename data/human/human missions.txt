@@ -7878,7 +7878,7 @@ mission "Ice Queen 6"
 			`	At this Ildico's wicked grin widens deeper. "My brother? Dear Hogne. Father, I killed him. He couldn't handle the ice, the isolation, the hopelessness of Hope. He lost his mind. He tried to make me his wife. And mother? She cracked long before that. An entitled debutant like her had no chance in that hellhole, and I? I needed to eat."`
 			`	The color drains out of Deoric's face. "Monster." He says. "I will put an end to you. I will start a new family, as I should have before."`
 			`	Deoric lunges at Ildico, but before he can take more then a single step, Ildico's wrist flicks and her knife slams into Deoric's throat. He falls to the ground, bleeding out, dying.`
-			`	Ildico stands over him. "You are a coward. A miserable disgusting man." She spits on him, and pulls her dagger from his heaving neck. He tries to speak as his dying body squirms, but no words materilize and he goes still."`
+			`	Ildico stands over him. "You are a coward. A miserable disgusting man." She spits on him, and pulls her dagger from his heaving neck. He tries to speak as his dying body squirms, but no words materialize and he goes still."`
 			`	She turns to you. "I am now a fugitive, and you are my only friend. I need you to get us out of here."`
 			`	Ildico walks back to corner far from any of the fighting, and retrieves a bundled baby you'd neglected to notice until now.`
 			choice
