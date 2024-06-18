@@ -1032,7 +1032,7 @@ void Engine::Step(bool isActive)
 void Engine::Go()
 {
 	++step;
-	currentCalcBuffer = currentCalcBuffer ? 0 : 1;
+	currentCalcBuffer = (!currentCalcBuffer) & 1;
 	queue.Run([this] { CalculateStep(); });
 }
 

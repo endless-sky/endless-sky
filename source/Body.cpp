@@ -352,10 +352,10 @@ void Body::Turn(double amount)
 		return;
 
 	auto RotatePointAroundOrigin = [](Point &toRotate, double radians) -> Point {
-		float si = sin(radians);
-		float co = cos(radians);
-		float newX = toRotate.X() * co - toRotate.Y() * si;
-		float newY = toRotate.X() * si + toRotate.Y() * co;
+		double si = sin(radians);
+		double co = cos(radians);
+		double newX = toRotate.X() * co - toRotate.Y() * si;
+		double newY = toRotate.X() * si + toRotate.Y() * co;
 		return Point(newX, newY);
 	};
 
