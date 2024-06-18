@@ -27,7 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DrawList.h"
 #include "EscortDisplay.h"
 #include "Information.h"
-#include "concurrent/LockProvider.h"
+#include "concurrent/ResourceProvider.h"
 #include "concurrent/PartiallyGuarded.h"
 #include "PlanetLabel.h"
 #include "Point.h"
@@ -163,9 +163,9 @@ private:
 	void CalculateStep();
 
 	// Thread-safe wrapper for MoveShip.
-	void MoveShip(const std::shared_ptr<Ship> &ship, LockProvider &locks,
-			std::vector<std::list<Visual>> &visualsBuffer, std::vector<std::list<std::shared_ptr<Flotsam>>> &flotsamBuffer,
-			std::vector<std::vector<std::shared_ptr<Ship>>> &newShips, std::vector<std::vector<Projectile>> &projectiles);
+	typedef ResourceProvider<std::list<Visual>, std::list<std::shared_ptr<Flotsam>>,
+			std::vector<std::shared_ptr<Ship>>, std::vector<Projectile>> ShipResourceProvider;
+	void MoveShip(const std::shared_ptr<Ship> &ship, ShipResourceProvider &provider);
 	void MoveShip(const std::shared_ptr<Ship> &ship, std::list<Visual> &visuals,
 			std::list<std::shared_ptr<Flotsam>> &flotsam, std::vector<std::shared_ptr<Ship>> &newShips,
 			std::vector<Projectile> &projectiles);
@@ -180,7 +180,10 @@ private:
 
 	void FillCollisionSets();
 
-	void DoCollisions(LockProvider &locks, std::vector<std::list<Visual>> &visualBuffer, Projectile &projectile);
+	// Thread-safe wrapper for DoCollisions.
+	void DoCollisions(ResourceProvider<std::list<Visual>> &provider, Projectile &projectile);
+	void DoCollisions(std::list<Visual> &visuals, Projectile &projectile);
+
 	void DoWeather(Weather &weather);
 	void DoCollection(Flotsam &flotsam);
 	void DoScanning(const std::shared_ptr<Ship> &ship);
