@@ -219,12 +219,12 @@ int main(int argc, char *argv[])
 	{
 		// This is not an error. Simply exit successfully.
 	}
-	catch(const exception &error)
+	/*catch(const exception &error)
 	{
 		Audio::Quit();
 		GameWindow::ExitWithError(error.what(), !isTesting);
 		return 1;
-	}
+	}*/
 
 	// Remember the window state and preferences if quitting normally.
 	Preferences::Set("maximized", GameWindow::IsMaximized());
