@@ -4590,7 +4590,7 @@ void AI::UpdateStrengths(map<const Government *, int64_t> &strength, const Syste
 	}
 
 	// Ships with nearby allies consider their allies' strength as well as their own.
-	for_each(parallel::par, ships.begin(), ships.end(), [&](const auto &it)
+	for(const auto &it : ships)
 	{
 		const Government *gov = it->GetGovernment();
 
@@ -4603,16 +4603,16 @@ void AI::UpdateStrengths(map<const Government *, int64_t> &strength, const Syste
 			return;
 
 		int64_t &myStrength = shipStrength[it.get()];
-		for(const auto &allies : governmentRosters)
+		for_each(parallel::par, governmentRosters.begin(), governmentRosters.end(), [&](const auto &allies)
 		{
 			// If this is not an allied government, its ships will not assist this ship when attacked.
 			if(allies.first->AttitudeToward(gov) <= 0.)
-				continue;
+				return;
 			for(const auto &ally : allies.second)
 				if(!ally->IsDisabled() && ally->Position().Distance(it->Position()) < 2000.)
 					myStrength += ally->Strength();
-		}
-	});
+		});
+	}
 }
 
 

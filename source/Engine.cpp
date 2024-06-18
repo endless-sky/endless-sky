@@ -1508,34 +1508,20 @@ void Engine::CalculateStep()
 
 	// Then, move the other ships.
 	// Keep separate lists for each thread to avoid lock contention.
-	LockProvider lockProvider;
-	vector<list<Visual>> visualBuffer(lockProvider.Size());
-	vector<list<shared_ptr<Flotsam>>> flotsamBuffer(lockProvider.Size());
-	vector<vector<shared_ptr<Ship>>> shipBuffer(lockProvider.Size());
-	vector<vector<Projectile>> projectileBuffer(lockProvider.Size());
-
-	// And a copy of the ship list for random access.
+	ShipResourceProvider provider(newVisuals, newFlotsam, ships, newProjectiles);
+		// And a copy of the ship list for random access.
 	for_each(parallel::par, ships.begin(), ships.end(), [&](const shared_ptr<Ship> &it)
 	{
 		if(it == player.FlagshipPtr())
 			return;
 		bool wasUntargetable = !it->IsTargetable();
-		MoveShip(it, lockProvider, visualBuffer, flotsamBuffer, shipBuffer, projectileBuffer);
+		MoveShip(it, provider);
 		bool isTargetable = it->IsTargetable();
 		if(flagshipSystem == it->GetSystem()
 			&& ((wasUntargetable && isTargetable) || flagshipBecameTargetable)
 			&& isTargetable && flagshipIsTargetable)
 				eventQueue.emplace_back(player.FlagshipPtr(), it, ShipEvent::ENCOUNTER);
 	});
-	// Add the per-thread lists to the main lists.
-	for(auto &item : visualBuffer)
-		newVisuals.splice(newVisuals.end(), item);
-	for(auto &item : flotsamBuffer)
-		newFlotsam.splice(newFlotsam.end(), item);
-	for(auto &item : shipBuffer)
-		Append(ships, item); // newShips and ships doesn't get read from after this, so we can copy directly to ships
-	for(auto &item : projectileBuffer)
-		Append(newProjectiles, item);
 
 	// If the flagship just began jumping, play the appropriate sound.
 	if(!wasHyperspacing && flagship && flagship->IsEnteringHyperspace())
@@ -1624,11 +1610,10 @@ void Engine::CalculateStep()
 
 	// Perform collision detection.
 	// We store the visuals in a separate list for every thread to reduce lock contention.
+	ResourceProvider<list<Visual>> visualProvider(visuals);
 	for_each(parallel::par, projectiles.begin(), projectiles.end(), [&](auto &projectile) {
-		DoCollisions(lockProvider, visualBuffer, projectile);
+		DoCollisions(visualProvider, projectile);
 	});
-	for(auto &item : visualBuffer)
-		visuals.splice(visuals.end(), item);
 
 	// Now that collision detection is done, clear the cache of ships with anti-
 	// missile systems ready to fire.
@@ -1750,13 +1735,10 @@ void Engine::CalculateStep()
 
 
 // Move a ship. Can be called concurrently.
-void Engine::MoveShip(const shared_ptr<Ship> &ship, LockProvider &locks, vector<list<Visual>> &visualsBuffer,
-		vector<list<shared_ptr<Flotsam>>> &flotsamBuffer,
-		vector<vector<shared_ptr<Ship>>> &shipBuffer, vector<vector<Projectile>> &projectileBuffer)
+void Engine::MoveShip(const shared_ptr<Ship> &ship, ShipResourceProvider &provider)
 {
-	const auto lock = locks.Lock();
-	MoveShip(ship, visualsBuffer[lock.Index()], flotsamBuffer[lock.Index()], shipBuffer[lock.Index()],
-			projectileBuffer[lock.Index()]);
+	const auto lock = provider.Lock();
+	MoveShip(ship, lock.get<0>(), lock.get<1>(), lock.get<2>(), lock.get<3>());
 }
 
 
@@ -2231,17 +2213,21 @@ void Engine::HandleMouseInput(Command &activeCommands)
 
 
 
-// Perform collision detection. Note that unlike the preceding functions, this
-// one adds any visuals that are created directly to the main visuals list. If
-// this is multi-threaded in the future, that will need to change.
-void Engine::DoCollisions(LockProvider &locks, vector<list<Visual>> &visualBuffer, Projectile &projectile)
+// Perform collision detection.
+void Engine::DoCollisions(ResourceProvider<std::list<Visual>> &provider, Projectile &projectile)
+{
+	const auto lock = provider.Lock();
+	DoCollisions(lock.get<0>(), projectile);
+}
+
+
+
+void Engine::DoCollisions(list<Visual> &visuals, Projectile &projectile)
 {
 	// The asteroids can collide with projectiles, the same as any other
 	// object. If the asteroid turns out to be closer than the ship, it
 	// shields the ship (unless the projectile has a blast radius).
 	vector<Collision> collisions;
-	const auto lock = locks.Lock();
-	list<Visual> &visuals = visualBuffer[lock.Index()];
 	const Government *gov = projectile.GetGovernment();
 	const Weapon &weapon = projectile.GetWeapon();
 
