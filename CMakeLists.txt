@@ -52,7 +52,6 @@ if(ES_STEAM)
 endif()
 
 # Tell the preprocessor to enable the TaskQueue backend.
-#SET(ES_PARALLEL_USE_TASK_QUEUE ON)
 if(ES_PARALLEL_USE_TASK_QUEUE)
 	add_compile_definitions("ES_PARALLEL_USE_TASK_QUEUE=1")
 endif()
