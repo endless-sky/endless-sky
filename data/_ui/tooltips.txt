@@ -1398,6 +1398,9 @@ tip "Alert indicator"
 tip "Extra fleet status messages"
 	`Display extra status messages about escorts in your fleet, such as when they are destroyed or scanned.`
 
+tip "Automatically unpark flagship"
+	`Automatically swap your current flagship with another ship that happens to be in first place of the order.`
+
 tip "Control ship with mouse"
 	`If active, your flagship will always turn toward your mouse. For activating mouse turning on a key press, see the "Mouse turning (hold)" control.`
 
@@ -1463,6 +1466,3 @@ tip "Scroll speed"
 
 tip "Date format"
 	`The format that dates in the game are displayed in.`
-
-tip "Automatically unpark flagship"
-	`Automatically swap your current flagship with another ship that happens to be in first place of the order.`
