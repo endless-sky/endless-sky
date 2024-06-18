@@ -101,20 +101,66 @@ namespace {
 		return Radar::UNFRIENDLY;
 	}
 
-	template <template <class, class> class Container, class Type, class Allocator = allocator<Type>>
-	void Prune(Container<Type, Allocator> &objects)
+	template <class Type>
+	void Prune(vector<shared_ptr<Type>> &objects)
 	{
-		remove_if(parallel::par_unseq, objects.begin(), objects.end(), [&](const auto &it){
-			return it.ShouldBeRemoved();
-		});
+		// First, erase any of the old objects that should be removed.
+		typename vector<shared_ptr<Type>>::iterator in = objects.begin();
+		while(in != objects.end() && !(*in)->ShouldBeRemoved())
+			++in;
+
+		typename vector<shared_ptr<Type>>::iterator out = in;
+		while(in != objects.end())
+		{
+			if(!(*in)->ShouldBeRemoved())
+				*out++ = move(*in);
+			++in;
+		}
+		if(out != objects.end())
+			objects.erase(out, objects.end());
 	}
 
-	template <template <class, class> class Container, class Type, class Allocator = allocator<shared_ptr<Type>>>
-	void Prune(Container<shared_ptr<Type>, Allocator> &objects)
+	template <class Type>
+	void Prune(vector<Type> &objects)
 	{
-		remove_if(parallel::par_unseq, objects.begin(), objects.end(), [&](const auto &it){
-			return it->ShouldBeRemoved();
-		});
+		// First, erase any of the old objects that should be removed.
+		typename vector<Type>::iterator in = objects.begin();
+		while(in != objects.end() && !in->ShouldBeRemoved())
+			++in;
+
+		typename vector<Type>::iterator out = in;
+		while(in != objects.end())
+		{
+			if(!in->ShouldBeRemoved())
+				*out++ = move(*in);
+			++in;
+		}
+		if(out != objects.end())
+			objects.erase(out, objects.end());
+	}
+
+	template <class Type>
+	void Prune(list<shared_ptr<Type>> &objects)
+	{
+		for(auto it = objects.begin(); it != objects.end(); )
+		{
+			if((*it)->ShouldBeRemoved())
+				it = objects.erase(it);
+			else
+				++it;
+		}
+	}
+
+	template <class Type>
+	void Prune(list<Type> &objects)
+	{
+		for(auto it = objects.begin(); it != objects.end(); )
+		{
+			if(it->ShouldBeRemoved())
+				it = objects.erase(it);
+			else
+				++it;
+		}
 	}
 
 	template <class Type>
