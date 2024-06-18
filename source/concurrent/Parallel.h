@@ -20,11 +20,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-// Only use this header if the underlying system doesn't support the standard algorithms.
-#ifndef __cpp_lib_parallel_algorithm
+// Only use this header if the underlying system doesn't support the standard algorithms,
+// or if the ES_PARALLEL_USE_TASK_QUEUE flag is defined.
+#if !defined(__cpp_lib_parallel_algorithm) || defined(ES_PARALLEL_USE_TASK_QUEUE)
 
 // Mark that we are using a TaskQueue for parallel algorithms, instead of sdl functions.
+#ifndef ES_PARALLEL_USE_TASK_QUEUE
 #define ES_PARALLEL_USE_TASK_QUEUE
+#endif
+
 
 #include "../TaskQueue.h"
 
@@ -33,7 +37,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-#if !defined(__cpp_lib_execution)
+#if !defined(__cpp_lib_execution) || defined(ES_PARALLEL_USE_TASK_QUEUE)
 
 // Dummy for std::execution.
 namespace parallel

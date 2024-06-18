@@ -10,6 +10,7 @@ cmake_dependent_option(ES_GLES "Build the game with OpenGL ES" OFF UNIX OFF)
 cmake_dependent_option(ES_STEAM "Build the game for the Steam Linux runtime" OFF UNIX OFF)
 cmake_dependent_option(ES_USE_SYSTEM_LIBRARIES "Use system libraries instead of the vcpkg ones." ON "APPLE OR ES_STEAM" OFF)
 cmake_dependent_option(ES_CREATE_BUNDLE "Create a Bundle instead of an executable. Not suitable for development purposes." OFF APPLE OFF)
+option(ES_PARALLEL_USE_TASK_QUEUE "Use the TaskQueue backend for parallel operations." OFF)
 
 # Support Debug and Release configurations.
 set(CMAKE_CONFIGURATION_TYPES "Debug" "Release" CACHE STRING "" FORCE)
@@ -48,6 +49,12 @@ endif()
 # Tell vcpkg to use system libraries that are missing in the Steam runtime.
 if(ES_STEAM)
 	list(APPEND VCPKG_MANIFEST_FEATURES "steam-libs")
+endif()
+
+# Tell the preprocessor to enable the TaskQueue backend.
+#SET(ES_PARALLEL_USE_TASK_QUEUE ON)
+if(ES_PARALLEL_USE_TASK_QUEUE)
+	add_compile_definitions("ES_PARALLEL_USE_TASK_QUEUE=1")
 endif()
 
 # Various helpful options for IDEs.
