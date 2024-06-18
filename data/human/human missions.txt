@@ -8150,7 +8150,7 @@ mission "Skadenga: Blood of Surtr"
 			choice
 				`	(Take your leave.)`
 
-			`	You thank the Ondurdis and Aldfrith for their gracious help and interesting stories. The Ondurdis hastily makes you a meal to take with you, believing it bad manners to let you leave unfed and wishes you well in your future travels among the lofty stars.`
+			`	You thank the Ondurdis and Aldfrith for their gracious help and interesting stories. The Ondurdis hastily prepares a small meal, believing it bad manners to let a guest leave unfed, and wishes you well in your future travels among the lofty stars.`
 				decline
 
 
