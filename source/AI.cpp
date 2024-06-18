@@ -4600,18 +4600,18 @@ void AI::UpdateStrengths(map<const Government *, int64_t> &strength, const Syste
 
 		// Only have ships update their strength estimate once per second on average.
 		if(!gov || it->GetSystem() != playerSystem || it->IsDisabled() || Random::Int(60))
-			return;
+			continue;
 
 		int64_t &myStrength = shipStrength[it.get()];
-		for_each(parallel::par, governmentRosters.begin(), governmentRosters.end(), [&](const auto &allies)
+		for(const auto &allies : governmentRosters)
 		{
 			// If this is not an allied government, its ships will not assist this ship when attacked.
 			if(allies.first->AttitudeToward(gov) <= 0.)
-				return;
+				continue;
 			for(const auto &ally : allies.second)
 				if(!ally->IsDisabled() && ally->Position().Distance(it->Position()) < 2000.)
 					myStrength += ally->Strength();
-		});
+		}
 	}
 }
 
