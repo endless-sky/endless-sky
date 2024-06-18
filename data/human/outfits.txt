@@ -188,7 +188,6 @@ outfit "Scram Drive"
 outfit "Jump Drive"
 	category "Systems"
 	cost 1000000
-	thumbnail "outfit/jump drive"
 	"thumbnail sprite" "outfit/jump drive"
 		"frame rate" 10
 	"mass" 20
