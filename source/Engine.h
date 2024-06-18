@@ -79,7 +79,7 @@ public:
 	// Begin the next step of calculations.
 	void Go();
 	// Whether the player paused the game.
-	bool IsPaused();
+	bool IsPaused() const;
 
 	// Give a command on behalf of the player, used for integration tests.
 	void GiveCommand(const Command &command);

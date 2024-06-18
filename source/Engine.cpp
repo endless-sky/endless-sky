@@ -1040,7 +1040,7 @@ void Engine::Go()
 
 
 // Whether the flow of time is paused.
-bool Engine::IsPaused()
+bool Engine::IsPaused() const
 {
 	return timePaused;
 }
