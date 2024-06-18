@@ -152,7 +152,7 @@ ResourceProvider<Types...>::ResourceGuard::Sync()
 {
 	{
 		const std::lock_guard<std::mutex> lock(this->provider.remoteLocks[Index]);
-		SyncSingle(std::get<Index>(provider.remoteResources), get<Index>());
+		this->SyncSingle(std::get<Index>(provider.remoteResources), this->provider.template get<Index>());
 	}
 	this->Sync<Index + 1>();
 }
