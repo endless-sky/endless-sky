@@ -151,10 +151,10 @@ std::enable_if_t<Index < sizeof...(Types)>
 ResourceProvider<Types...>::ResourceGuard::Sync()
 {
 	{
-		const std::lock_guard<std::mutex> lock(provider.remoteLocks[Index]);
+		const std::lock_guard<std::mutex> lock(this->provider.remoteLocks[Index]);
 		SyncSingle(std::get<Index>(provider.remoteResources), get<Index>());
 	}
-	Sync<Index + 1>();
+	this->Sync<Index + 1>();
 }
 
 
