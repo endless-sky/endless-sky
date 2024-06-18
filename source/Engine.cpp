@@ -1538,10 +1538,12 @@ void Engine::CalculateStep()
 	// Track which ships have at least one such system ready to fire.
 	hasAntiMissile.reserve(ships.size());
 	hasTractorBeam.reserve(ships.size());
-	copy_if(ships.begin(), ships.end(), back_inserter(hasAntiMissile), [&](const auto &ship){
+	copy_if(ships.begin(), ships.end(), back_inserter(hasAntiMissile), [&](const auto &ship)
+	{
 		return ship->HasAntiMissile();
 	});
-	copy_if(ships.begin(), ships.end(), back_inserter(hasTractorBeam), [&](const auto &ship){
+	copy_if(ships.begin(), ships.end(), back_inserter(hasTractorBeam), [&](const auto &ship)
+	{
 		return ship->HasTractorBeam();
 	});
 
