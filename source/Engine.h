@@ -27,7 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DrawList.h"
 #include "EscortDisplay.h"
 #include "Information.h"
-#include "PartiallyGuarded.h"
+#include "concurrent/PartiallyGuarded.h"
 #include "PlanetLabel.h"
 #include "Point.h"
 #include "Preferences.h"

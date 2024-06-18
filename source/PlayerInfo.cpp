@@ -29,7 +29,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Logger.h"
 #include "Messages.h"
 #include "Outfit.h"
-#include "Parallel.h"
+#include "concurrent/Parallel.h"
 #include "Person.h"
 #include "Planet.h"
 #include "Plugins.h"

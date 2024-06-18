@@ -226,9 +226,6 @@ target_sources(EndlessSkyLib PRIVATE
 	OutlineShader.h
 	Panel.cpp
 	Panel.h
-	Parallel.cpp
-	Parallel.h
-	PartiallyGuarded.h
 	Person.cpp
 	Person.h
 	Personality.cpp
@@ -349,8 +346,6 @@ target_sources(EndlessSkyLib PRIVATE
 	Weather.cpp
 	Weather.h
 	WeightedList.h
-	WithMutex.cpp
-	WithMutex.h
 	Wormhole.cpp
 	Wormhole.h
 	WormholeStrategy.h
@@ -358,6 +353,13 @@ target_sources(EndlessSkyLib PRIVATE
 	opengl.h
 	pi.h
 	shift.h
+	concurrent/LockProvider.cpp
+	concurrent/LockProvider.h
+	concurrent/Parallel.cpp
+	concurrent/Parallel.h
+	concurrent/PartiallyGuarded.h
+	concurrent/WithMutex.cpp
+	concurrent/WithMutex.h
 	comparators/ByGivenOrder.h
 	comparators/ByName.h
 	comparators/BySeriesAndIndex.h

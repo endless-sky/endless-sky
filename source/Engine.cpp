@@ -46,7 +46,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Mission.h"
 #include "NPC.h"
 #include "OutlineShader.h"
-#include "Parallel.h"
+#include "concurrent/Parallel.h"
 #include "Person.h"
 #include "Planet.h"
 #include "PlanetLabel.h"

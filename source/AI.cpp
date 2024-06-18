@@ -28,7 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Mask.h"
 #include "Messages.h"
 #include "Minable.h"
-#include "Parallel.h"
+#include "concurrent/Parallel.h"
 #include "pi.h"
 #include "Planet.h"
 #include "PlayerInfo.h"

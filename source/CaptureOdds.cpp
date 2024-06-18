@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Government.h"
 #include "Outfit.h"
-#include "Parallel.h"
+#include "concurrent/Parallel.h"
 #include "Ship.h"
 
 #include <algorithm>

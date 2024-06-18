@@ -30,7 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Logger.h"
 #include "Mask.h"
 #include "Messages.h"
-#include "Parallel.h"
+#include "concurrent/Parallel.h"
 #include "Phrase.h"
 #include "Planet.h"
 #include "PlayerInfo.h"

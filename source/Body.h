@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Angle.h"
 #include "Point.h"
-#include "WithMutex.h"
+#include "concurrent/WithMutex.h"
 
 #include <cstdint>
 #include <string>

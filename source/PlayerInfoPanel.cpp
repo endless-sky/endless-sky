@@ -27,7 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/layout.hpp"
 #include "LogbookPanel.h"
 #include "MissionPanel.h"
-#include "Parallel.h"
+#include "concurrent/Parallel.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Preferences.h"
