@@ -113,7 +113,7 @@ namespace {
 		while(in != objects.end())
 		{
 			if(!in->ShouldBeRemoved())
-				*out++ = std::move(*in);
+				*out++ = move(*in);
 			++in;
 		}
 		if(out != objects.end())
@@ -602,7 +602,7 @@ void Engine::Step(bool isActive)
 
 	// Update the zoom value now that the calculation thread is paused.
 	if(nextZoom)
-		zoom = std::exchange(nextZoom, {});
+		zoom = exchange(nextZoom, {});
 	// Smoothly zoom in and out.
 	if(isActive)
 	{
@@ -1489,11 +1489,11 @@ void Engine::CalculateStep()
 
 	// Then, move the other ships.
 	// Keep separate lists for each thread to avoid lock contention.
-	vector<mutex> bufferLocks(thread::hardware_concurrency());
-	vector<list<Visual>> visualBuffer(thread::hardware_concurrency());
-	vector<list<shared_ptr<Flotsam>>> flotsamBuffer(thread::hardware_concurrency());
-	vector<list<shared_ptr<Ship>>> shipBuffer(thread::hardware_concurrency());
-	vector<vector<Projectile>> projectileBuffer(thread::hardware_concurrency());
+	LockProvider lockProvider;
+	vector<list<Visual>> visualBuffer(lockProvider.Size());
+	vector<list<shared_ptr<Flotsam>>> flotsamBuffer(lockProvider.Size());
+	vector<list<shared_ptr<Ship>>> shipBuffer(lockProvider.Size());
+	vector<vector<Projectile>> projectileBuffer(lockProvider.Size());
 
 	// And a copy of the ship list for random access.
 	vector<shared_ptr<Ship>> shipVector(ships.begin(), ships.end());
@@ -1502,7 +1502,7 @@ void Engine::CalculateStep()
 		if(it == player.FlagshipPtr())
 			return;
 		bool wasUntargetable = !it->IsTargetable();
-		MoveShip(it, bufferLocks, visualBuffer, flotsamBuffer, shipBuffer, projectileBuffer);
+		MoveShip(it, lockProvider, visualBuffer, flotsamBuffer, shipBuffer, projectileBuffer);
 		bool isTargetable = it->IsTargetable();
 		if(flagshipSystem == it->GetSystem()
 			&& ((wasUntargetable && isTargetable) || flagshipBecameTargetable)
@@ -1606,12 +1606,11 @@ void Engine::CalculateStep()
 
 	// Perform collision detection.
 	// We store the visuals in a separate list for every thread to reduce lock contention.
-	vector<pair<mutex, list<Visual>>> parallelBuffer(thread::hardware_concurrency());
 	for_each(parallel::par, projectiles.begin(), projectiles.end(), [&](auto &projectile) {
-		DoCollisions(parallelBuffer, projectile);
+		DoCollisions(lockProvider, visualBuffer, projectile);
 	});
-	for(auto &item : parallelBuffer)
-		visuals.splice(visuals.end(), item.second);
+	for(auto &item : visualBuffer)
+		visuals.splice(visuals.end(), item);
 
 	// Now that collision detection is done, clear the cache of ships with anti-
 	// missile systems ready to fire.
@@ -1733,33 +1732,13 @@ void Engine::CalculateStep()
 
 
 // Move a ship. Can be called concurrently.
-void Engine::MoveShip(const shared_ptr<Ship> &ship, vector<mutex> &bufferMutexes, vector<list<Visual>> &visualsBuffer,
+void Engine::MoveShip(const shared_ptr<Ship> &ship, LockProvider &locks, vector<list<Visual>> &visualsBuffer,
 		vector<list<shared_ptr<Flotsam>>> &flotsamBuffer,
 		vector<list<shared_ptr<Ship>>> &shipBuffer, vector<vector<Projectile>> &projectileBuffer)
 {
-	// Find a free lock, and call MoveShip with the locked lists.
-	size_t id = std::hash<thread::id>{}(this_thread::get_id());
-	const int index = id % bufferMutexes.size();
-	if(bufferMutexes[index].try_lock())
-	{
-		MoveShip(ship, visualsBuffer[index], flotsamBuffer[index], shipBuffer[index], projectileBuffer[index]);
-		bufferMutexes[index].unlock();
-		return;
-	}
-	else
-	{
-		for(unsigned newIndex = 0; newIndex < bufferMutexes.size(); newIndex++)
-			if(bufferMutexes[newIndex].try_lock())
-			{
-				MoveShip(ship, visualsBuffer[newIndex], flotsamBuffer[newIndex], shipBuffer[newIndex], projectileBuffer[newIndex]);
-				bufferMutexes[newIndex].unlock();
-				return;
-			}
-	}
-	// If there is no free lock, fall back to the original guess.
-	bufferMutexes[index].lock();
-	MoveShip(ship, visualsBuffer[index], flotsamBuffer[index], shipBuffer[index], projectileBuffer[index]);
-	bufferMutexes[index].unlock();
+	const auto lock = locks.Lock();
+	MoveShip(ship, visualsBuffer[lock.Index()], flotsamBuffer[lock.Index()], shipBuffer[lock.Index()],
+			projectileBuffer[lock.Index()]);
 }
 
 
@@ -2237,13 +2216,14 @@ void Engine::HandleMouseInput(Command &activeCommands)
 // Perform collision detection. Note that unlike the preceding functions, this
 // one adds any visuals that are created directly to the main visuals list. If
 // this is multi-threaded in the future, that will need to change.
-void Engine::DoCollisions(vector<pair<mutex, list<Visual>>> &parallelBuffer, Projectile &projectile)
+void Engine::DoCollisions(LockProvider &locks, vector<list<Visual>> &visualBuffer, Projectile &projectile)
 {
 	// The asteroids can collide with projectiles, the same as any other
 	// object. If the asteroid turns out to be closer than the ship, it
 	// shields the ship (unless the projectile has a blast radius).
 	vector<Collision> collisions;
-	list<Visual> visuals; // Temporary storage for new visuals
+	const auto lock = locks.Lock();
+	list<Visual> &visuals = visualBuffer[lock.Index()];
 	const Government *gov = projectile.GetGovernment();
 	const Weapon &weapon = projectile.GetWeapon();
 
@@ -2333,7 +2313,7 @@ void Engine::DoCollisions(vector<pair<mutex, list<Visual>>> &parallelBuffer, Pro
 			// "safe" weapon.
 			Point hitPos = projectile.Position() + range * projectile.Velocity();
 			bool isSafe = weapon.IsSafe();
-			std::vector<Body *> circleCollisions;
+			vector<Body *> circleCollisions;
 			for(Body *body : shipCollisions.Circle(hitPos, blastRadius, circleCollisions))
 			{
 				Ship *ship = reinterpret_cast<Ship *>(body);
@@ -2345,7 +2325,7 @@ void Engine::DoCollisions(vector<pair<mutex, list<Visual>>> &parallelBuffer, Pro
 				// Only directly targeted ships get provoked by blast weapons.
 				int eventType;
 				{
-					const std::lock_guard<mutex> lock(ship->GetMutex());
+					const lock_guard<mutex> lock(ship->GetMutex());
 					eventType = ship->TakeDamage(visuals, damage.CalculateDamage(*ship, ship == hit),
 							targeted ? gov : nullptr);
 				}
@@ -2356,7 +2336,7 @@ void Engine::DoCollisions(vector<pair<mutex, list<Visual>>> &parallelBuffer, Pro
 		}
 		else if(hit)
 		{
-			const std::lock_guard<mutex> lock(hit->GetMutex());
+			const lock_guard<mutex> lock(hit->GetMutex());
 			if(collisionType == CollisionType::SHIP)
 			{
 				int eventType = shipHit->TakeDamage(visuals, damage.CalculateDamage(*shipHit), gov);
@@ -2387,17 +2367,6 @@ void Engine::DoCollisions(vector<pair<mutex, list<Visual>>> &parallelBuffer, Pro
 				}
 			}
 	}
-
-	size_t id = std::hash<thread::id>{}(this_thread::get_id());
-	int index = id % parallelBuffer.size();
-	auto &element = parallelBuffer[index];
-
-	{
-		// Even though we have one list per thread, we cannot effectively map them to each other
-		// so we still need to lock. It is not worth finding a free lock for this constant-time operation.
-		const std::lock_guard<mutex> lock(element.first);
-		element.second.splice(element.second.end(), visuals);
-	}
 }
 
 
@@ -2416,7 +2385,7 @@ void Engine::DoWeather(Weather &weather)
 		// Get all ship bodies that are touching a ring defined by the hazard's min
 		// and max ranges at the hazard's origin. Any ship touching this ring takes
 		// hazard damage.
-		std::vector<Body *> collisions;
+		vector<Body *> collisions;
 		for(Body *body : (hazard->SystemWide() ? shipCollisions.All()
 			: shipCollisions.Ring(weather.Origin(), hazard->MinRange(), hazard->MaxRange(), collisions)))
 		{
@@ -2433,7 +2402,7 @@ void Engine::DoCollection(Flotsam &flotsam)
 {
 	// Check if any ship can pick up this flotsam. Cloaked ships without "cloaked pickup" cannot act.
 	Ship *collector = nullptr;
-	std::vector<Body *> collisions;
+	vector<Body *> collisions;
 	for(Body *body : shipCollisions.Circle(flotsam.Position(), 5., collisions))
 	{
 		Ship *ship = reinterpret_cast<Ship *>(body);
@@ -2724,7 +2693,7 @@ void Engine::DrawShipSprites(const Ship &ship)
 void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker)
 {
 	// Projectile collisions may trigger this concurrently
-	const std::lock_guard<mutex> lock(grudgeMutex);
+	const lock_guard<mutex> lock(grudgeMutex);
 
 	if(attacker->IsPlayer())
 	{

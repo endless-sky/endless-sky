@@ -27,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DrawList.h"
 #include "EscortDisplay.h"
 #include "Information.h"
+#include "concurrent/LockProvider.h"
 #include "concurrent/PartiallyGuarded.h"
 #include "PlanetLabel.h"
 #include "Point.h"
@@ -162,7 +163,7 @@ private:
 	void CalculateStep();
 
 	// Thread-safe wrapper for MoveShip.
-	void MoveShip(const std::shared_ptr<Ship> &ship, std::vector<std::mutex> &bufferMutexes,
+	void MoveShip(const std::shared_ptr<Ship> &ship, LockProvider &locks,
 			std::vector<std::list<Visual>> &visualsBuffer, std::vector<std::list<std::shared_ptr<Flotsam>>> &flotsamBuffer,
 			std::vector<std::list<std::shared_ptr<Ship>>> &newShips, std::vector<std::vector<Projectile>> &projectiles);
 	void MoveShip(const std::shared_ptr<Ship> &ship, std::list<Visual> &visuals,
@@ -179,7 +180,7 @@ private:
 
 	void FillCollisionSets();
 
-	void DoCollisions(std::vector<std::pair<std::mutex, std::list<Visual>>> &parallelBuffer, Projectile &projectile);
+	void DoCollisions(LockProvider &locks, std::vector<std::list<Visual>> &visualBuffer, Projectile &projectile);
 	void DoWeather(Weather &weather);
 	void DoCollection(Flotsam &flotsam);
 	void DoScanning(const std::shared_ptr<Ship> &ship);
