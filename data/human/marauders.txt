@@ -302,7 +302,6 @@ ship "Marauder Falcon" "Marauder Falcon (Engines)"
 		"Large Radar Jammer"
 		"Outfits Expansion" 4
 		"Laser Rifle" 80
-
 		"Security Station" 3
 		
 		"A860 Atomic Thruster"
